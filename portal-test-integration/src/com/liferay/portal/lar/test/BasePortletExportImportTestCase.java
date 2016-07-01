@@ -541,7 +541,9 @@ public abstract class BasePortletExportImportTestCase
 
 		TemplateHandler templateHandler = portlet.getTemplateHandlerInstance();
 
-		if (templateHandler == null) {
+		if ((templateHandler == null) ||
+			!templateHandler.isDisplayTemplateHandler()) {
+
 			Assert.assertTrue("This test does not apply", true);
 
 			return;
