@@ -223,8 +223,13 @@ public class MBCommentManagerImpl implements CommentManager {
 		DiscussionComment rootDiscussionComment = new MBDiscussionCommentImpl(
 			treeWalker.getRoot(), treeWalker, ratingsEntries, ratingsStats);
 
+		MBTreeWalker treeWalker = messageDisplay.getTreeWalker();
+
+		List<MBMessage> messages = treeWalker.getMessages();
+
 		return new MBDiscussionImpl(
-			rootDiscussionComment, messageDisplay.isDiscussionMaxComments());
+			rootDiscussionComment, messageDisplay.isDiscussionMaxComments(),
+			messages.size() - 1);
 	}
 
 	@Override
