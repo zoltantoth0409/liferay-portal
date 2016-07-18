@@ -47,6 +47,27 @@ public class MBDiscussionCommentImpl
 	}
 
 	@Override
+	public List<DiscussionComment> getDescendantComments() {
+		List<DiscussionComment> discussionComments = new ArrayList<>();
+
+		DiscussionCommentIterator discussionCommentIterator =
+			getThreadDiscussionCommentIterator();
+
+		while (discussionCommentIterator.hasNext()) {
+			discussionComments.add(discussionCommentIterator.next());
+		}
+
+		return discussionComments;
+	}
+
+	@Override
+	public int getDescendantCommentsCount() {
+		List<MBMessage> messages = _treeWalker.getChildren(getMessage());
+
+		return messages.size();
+	}
+
+	@Override
 	public DiscussionComment getParentComment() throws PortalException {
 		MBMessage message = getMessage();
 
@@ -73,25 +94,16 @@ public class MBDiscussionCommentImpl
 		return _ratingsStats.get(getCommentId());
 	}
 
+	@Deprecated
 	@Override
 	public List<DiscussionComment> getThreadComments() {
-		List<DiscussionComment> discussionComments = new ArrayList<>();
-
-		DiscussionCommentIterator discussionCommentIterator =
-			getThreadDiscussionCommentIterator();
-
-		while (discussionCommentIterator.hasNext()) {
-			discussionComments.add(discussionCommentIterator.next());
-		}
-
-		return discussionComments;
+		return getDescendantComments();
 	}
 
+	@Deprecated
 	@Override
 	public int getThreadCommentsCount() {
-		List<MBMessage> messages = _treeWalker.getMessages();
-
-		return messages.size();
+		return getDescendantCommentsCount();
 	}
 
 	@Override
