@@ -1358,9 +1358,9 @@ public class SitesImpl implements Sites {
 
 			sb.append("Merge fail count increased to ");
 			sb.append(mergeFailCount);
-			sb.append(" for layoutSetPrototypeId ");
+			sb.append(" for layout set prototype ");
 			sb.append(layoutSetPrototype.getLayoutSetPrototypeId());
-			sb.append(" and layoutSetId ");
+			sb.append(" and layout set ");
 			sb.append(layoutSet.getLayoutSetId());
 
 			_log.error(sb.toString(), e);
