@@ -142,10 +142,10 @@ public class FriendlyURLNormalizerImpl implements FriendlyURLNormalizer {
 
 				charBuffer.put(c);
 
-				boolean endOfOutput = false;
+				boolean endOfInput = false;
 
 				if ((friendlyURL.length() - 1) == i) {
-					endOfOutput = true;
+					endOfInput = true;
 				}
 
 				if (Character.isHighSurrogate(c) &&
@@ -159,13 +159,13 @@ public class FriendlyURLNormalizerImpl implements FriendlyURLNormalizer {
 						i++;
 					}
 					else {
-						endOfOutput = true;
+						endOfInput = true;
 					}
 				}
 
 				charBuffer.flip();
 
-				charsetEncoder.encode(charBuffer, byteBuffer, endOfOutput);
+				charsetEncoder.encode(charBuffer, byteBuffer, endOfInput);
 
 				byteBuffer.flip();
 
@@ -177,7 +177,7 @@ public class FriendlyURLNormalizerImpl implements FriendlyURLNormalizer {
 					sb.append(_HEX_DIGITS[b & 0x0F]);
 				}
 
-				if (endOfOutput) {
+				if (endOfInput) {
 					charsetEncoder.flush(byteBuffer);
 
 					charsetEncoder.reset();
