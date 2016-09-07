@@ -76,6 +76,7 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.encryption.InvalidPasswordException;
 import org.apache.pdfbox.pdmodel.PDDocumentCatalog;
 import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
 
 /**
  * @author Alexander Chow
@@ -346,7 +347,7 @@ public class PDFProcessorImpl
 		}
 	}
 
-	private void _addDimensions(List<String> arguments, File file) 
+	private void _addDimensions(List<String> arguments, File file)
 		throws Exception {
 
 		Map<String, Integer> scaledDimensions = _getScaledDimensions(file);
@@ -363,7 +364,7 @@ public class PDFProcessorImpl
 					PropsValues.DL_FILE_ENTRY_PREVIEW_DOCUMENT_MAX_HEIGHT);
 		}
 		else if ((PropsValues.DL_FILE_ENTRY_PREVIEW_DOCUMENT_MAX_WIDTH != 0) &&
-					(PropsValues.DL_FILE_ENTRY_PREVIEW_DOCUMENT_MAX_HEIGHT == 0)) {
+				 (PropsValues.DL_FILE_ENTRY_PREVIEW_DOCUMENT_MAX_HEIGHT == 0)) {
 
 			arguments.add(
 				"-dDEVICEWIDTH=" +
@@ -372,7 +373,7 @@ public class PDFProcessorImpl
 			arguments.add("-dDEVICEHEIGHT=" + scaledDimensions.get("height"));
 		}
 		else if ((PropsValues.DL_FILE_ENTRY_PREVIEW_DOCUMENT_MAX_WIDTH == 0) &&
-					(PropsValues.DL_FILE_ENTRY_PREVIEW_DOCUMENT_MAX_HEIGHT != 0)) {
+				 (PropsValues.DL_FILE_ENTRY_PREVIEW_DOCUMENT_MAX_HEIGHT != 0)) {
 
 			arguments.add("-dDEVICEWIDTH=" + scaledDimensions.get("width"));
 
@@ -913,8 +914,10 @@ public class PDFProcessorImpl
 
 			PDPage firstPage = pdPages.get(0);
 
-			float width = firstPage.getMediaBox().getWidth();
-			float height = firstPage.getMediaBox().getHeight();
+			PDRectangle mediaBox = firstPage.getMediaBox();
+
+			float width = mediaBox.getWidth();
+			float height = mediaBox.getHeight();
 
 			double widthFactor =
 				(double)PropsValues.
@@ -927,8 +930,7 @@ public class PDFProcessorImpl
 			int scaledWidth = (int)Math.round(heightFactor * width);
 			int scaledHeight = (int)Math.round(widthFactor * height);
 
-			Map<String, Integer> scaledDimensions =
-				new HashMap<String, Integer>();
+			Map<String, Integer> scaledDimensions = new HashMap<>();
 
 			scaledDimensions.put("width", scaledWidth);
 			scaledDimensions.put("height", scaledHeight);
