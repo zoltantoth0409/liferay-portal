@@ -932,8 +932,8 @@ public class PDFProcessorImpl
 
 			Map<String, Integer> scaledDimensions = new HashMap<>();
 
-			scaledDimensions.put("width", scaledWidth);
 			scaledDimensions.put("height", scaledHeight);
+			scaledDimensions.put("width", scaledWidth);
 
 			return scaledDimensions;
 		}
