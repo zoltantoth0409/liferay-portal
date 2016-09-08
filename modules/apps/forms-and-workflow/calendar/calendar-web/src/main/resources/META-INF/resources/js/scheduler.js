@@ -858,7 +858,6 @@ AUI.add(
 
 						var startTimeDay = instance.get('date').getDate();
 
-
 						var data = {
 							activeView: activeViewName,
 							calendarId: calendarId,
