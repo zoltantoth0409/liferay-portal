@@ -1110,8 +1110,6 @@
 	</command>
 
 	<command name="viewChildCP">
-		<var name="key_siteName" value="${siteName}" />
-
 		<execute macro="Site#viewCP">
 			<var name="siteName" value="${siteName}" />
 		</execute>
