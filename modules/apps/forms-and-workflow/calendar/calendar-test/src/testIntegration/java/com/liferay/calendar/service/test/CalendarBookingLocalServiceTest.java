@@ -101,47 +101,12 @@ public class CalendarBookingLocalServiceTest {
 	public void setUp() throws Exception {
 		_user = UserTestUtil.addUser();
 
-		Bundle bundle = FrameworkUtil.getBundle(
-			CalendarBookingLocalServiceTest.class);
-
-		BundleContext bundleContext = bundle.getBundleContext();
-
-		ServiceReference<?> serviceReference =
-			bundleContext.getServiceReference(
-				"com.liferay.calendar.web.internal.messaging." +
-					"CheckBookingsMessageListener");
-
-		_checkBookingMessageListener = bundleContext.getService(
-			serviceReference);
-
-		ReflectionTestUtil.setFieldValue(
-			_checkBookingMessageListener, "_calendarBookingLocalService",
-			ProxyUtil.newProxyInstance(
-				CalendarBookingLocalService.class.getClassLoader(),
-				new Class<?>[] {CalendarBookingLocalService.class},
-				new InvocationHandler() {
-
-					@Override
-					public Object invoke(
-							Object proxy, Method method, Object[] args)
-						throws Throwable {
-
-						if ("checkCalendarBookings".equals(method.getName())) {
-							return null;
-						}
-
-						return method.invoke(
-							CalendarBookingLocalServiceUtil.getService(), args);
-					}
-
-				}));
+		setUpCheckBookingMessageListener();
 	}
 
 	@After
 	public void tearDown() {
-		ReflectionTestUtil.setFieldValue(
-			_checkBookingMessageListener, "_calendarBookingLocalService",
-			CalendarBookingLocalServiceUtil.getService());
+		tearDownCheckBookingMessageListener();
 	}
 
 	@Test
@@ -1339,6 +1304,49 @@ public class CalendarBookingLocalServiceTest {
 		StagingUtil.publishLayouts(
 			TestPropsValues.getUserId(), stagingGroup.getGroupId(),
 			liveGroup.getGroupId(), false, parameters);
+	}
+
+	protected void setUpCheckBookingMessageListener() {
+		Bundle bundle = FrameworkUtil.getBundle(
+			CalendarBookingLocalServiceTest.class);
+
+		BundleContext bundleContext = bundle.getBundleContext();
+
+		ServiceReference<?> serviceReference =
+			bundleContext.getServiceReference(
+				"com.liferay.calendar.web.internal.messaging." +
+					"CheckBookingsMessageListener");
+
+		_checkBookingMessageListener = bundleContext.getService(
+			serviceReference);
+
+		ReflectionTestUtil.setFieldValue(
+			_checkBookingMessageListener, "_calendarBookingLocalService",
+			ProxyUtil.newProxyInstance(
+				CalendarBookingLocalService.class.getClassLoader(),
+				new Class<?>[] {CalendarBookingLocalService.class},
+				new InvocationHandler() {
+
+					@Override
+					public Object invoke(
+							Object proxy, Method method, Object[] args)
+						throws Throwable {
+
+						if ("checkCalendarBookings".equals(method.getName())) {
+							return null;
+						}
+
+						return method.invoke(
+							CalendarBookingLocalServiceUtil.getService(), args);
+					}
+
+				}));
+	}
+
+	protected void tearDownCheckBookingMessageListener() {
+		ReflectionTestUtil.setFieldValue(
+			_checkBookingMessageListener, "_calendarBookingLocalService",
+			CalendarBookingLocalServiceUtil.getService());
 	}
 
 	private static final TimeZone _losAngelesTimeZone = TimeZone.getTimeZone(
