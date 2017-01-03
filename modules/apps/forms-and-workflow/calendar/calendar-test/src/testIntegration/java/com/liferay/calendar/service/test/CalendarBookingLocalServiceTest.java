@@ -20,14 +20,13 @@ import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.notification.NotificationType;
-import com.liferay.calendar.recurrence.Frequency;
-import com.liferay.calendar.recurrence.PositionalWeekday;
 import com.liferay.calendar.recurrence.Recurrence;
 import com.liferay.calendar.recurrence.RecurrenceSerializer;
 import com.liferay.calendar.service.CalendarBookingLocalService;
 import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
 import com.liferay.calendar.service.CalendarLocalServiceUtil;
 import com.liferay.calendar.test.util.CalendarBookingTestUtil;
+import com.liferay.calendar.test.util.RecurrenceTestUtil;
 import com.liferay.calendar.util.CalendarResourceUtil;
 import com.liferay.calendar.workflow.CalendarBookingWorkflowConstants;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -51,8 +50,6 @@ import com.liferay.portal.test.rule.SynchronousMailTestRule;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -172,16 +169,11 @@ public class CalendarBookingLocalServiceTest {
 			2017, java.util.Calendar.JANUARY, 1, 20, 0, 0, 0,
 			_losAngelesTimeZone);
 
-		Recurrence recurrence = new Recurrence();
-
-		recurrence.setFrequency(Frequency.DAILY);
-		recurrence.setPositionalWeekdays(new ArrayList<PositionalWeekday>());
-
 		java.util.Calendar untilJCalendar =
 			(java.util.Calendar)startTimeJCalendar.clone();
 
-		recurrence.setTimeZone(_losAngelesTimeZone);
-		recurrence.setUntilJCalendar(untilJCalendar);
+		Recurrence recurrence = RecurrenceTestUtil.getDailyRecurrence(
+			_losAngelesTimeZone, untilJCalendar);
 
 		long startTime = startTimeJCalendar.getTimeInMillis();
 
@@ -219,19 +211,12 @@ public class CalendarBookingLocalServiceTest {
 
 		long startTime = System.currentTimeMillis();
 
-		Recurrence recurrence = new Recurrence();
-
-		recurrence.setCount(2);
-		recurrence.setFrequency(Frequency.DAILY);
-		recurrence.setPositionalWeekdays(new ArrayList<PositionalWeekday>());
+		Recurrence recurrence = RecurrenceTestUtil.getDailyRecurrence(2);
 
 		CalendarBooking calendarBooking =
-			CalendarBookingTestUtil.addCalendarBooking(
-				_user, calendar, new long[0],
-				RandomTestUtil.randomLocaleStringMap(),
-				RandomTestUtil.randomLocaleStringMap(), startTime,
-				startTime + (Time.HOUR * 10), false, recurrence, 0, null, 0,
-				null, serviceContext);
+			CalendarBookingTestUtil.addRecurringCalendarBooking(
+				_user, calendar, startTime, startTime + (Time.HOUR * 10),
+				recurrence, serviceContext);
 
 		long calendarBookingId = calendarBooking.getCalendarBookingId();
 
@@ -684,19 +669,12 @@ public class CalendarBookingLocalServiceTest {
 
 		untilJCalendar.add(java.util.Calendar.DAY_OF_MONTH, -2);
 
-		Recurrence recurrence = new Recurrence();
+		Recurrence recurrence = RecurrenceTestUtil.getDailyRecurrence(
+			untilJCalendar);
 
-		recurrence.setFrequency(Frequency.DAILY);
-		recurrence.setUntilJCalendar(untilJCalendar);
-		recurrence.setPositionalWeekdays(
-			Collections.<PositionalWeekday>emptyList());
-
-		CalendarBookingTestUtil.addCalendarBooking(
-			_user, calendar, new long[0],
-			RandomTestUtil.randomLocaleStringMap(),
-			RandomTestUtil.randomLocaleStringMap(), startTime,
-			startTime + (Time.HOUR * 10), false, recurrence, 0, null, 0, null,
-			serviceContext);
+		CalendarBookingTestUtil.addRecurringCalendarBooking(
+			_user, calendar, startTime, startTime + (Time.HOUR * 10),
+			recurrence, serviceContext);
 	}
 
 	@Test
@@ -1063,12 +1041,8 @@ public class CalendarBookingLocalServiceTest {
 			2017, java.util.Calendar.JANUARY, 1, 20, 0, 0, 0,
 			_losAngelesTimeZone);
 
-		Recurrence recurrence = new Recurrence();
-
-		recurrence.setCount(3);
-		recurrence.setFrequency(Frequency.DAILY);
-		recurrence.setPositionalWeekdays(new ArrayList<PositionalWeekday>());
-		recurrence.setTimeZone(_losAngelesTimeZone);
+		Recurrence recurrence = RecurrenceTestUtil.getDailyRecurrence(
+			_losAngelesTimeZone);
 
 		long startTime = startTimeJCalendar.getTimeInMillis();
 
@@ -1093,10 +1067,8 @@ public class CalendarBookingLocalServiceTest {
 
 		Assert.assertNotNull(calendarBookingInstance);
 
-		java.util.Calendar untilJCalendar =
-			(java.util.Calendar)startTimeJCalendar.clone();
-
-		recurrence.setUntilJCalendar(untilJCalendar);
+		recurrence = RecurrenceTestUtil.getDailyRecurrence(
+			_losAngelesTimeZone, startTimeJCalendar);
 
 		CalendarBookingLocalServiceUtil.updateCalendarBooking(
 			calendarBooking.getUserId(), calendarBookingId,
