@@ -184,17 +184,7 @@ public class CalendarBookingLocalServiceTest {
 
 		long calendarBookingId = calendarBooking.getCalendarBookingId();
 
-		CalendarBooking calendarBookingInstance =
-			CalendarBookingLocalServiceUtil.getCalendarBookingInstance(
-				calendarBookingId, 0);
-
-		Assert.assertNotNull(calendarBookingInstance);
-
-		calendarBookingInstance =
-			CalendarBookingLocalServiceUtil.getCalendarBookingInstance(
-				calendarBookingId, 1);
-
-		Assert.assertNull(calendarBookingInstance);
+		assertCalendarBookingInstancesCount(calendarBookingId, 1);
 	}
 
 	@Test
@@ -1042,7 +1032,7 @@ public class CalendarBookingLocalServiceTest {
 			_losAngelesTimeZone);
 
 		Recurrence recurrence = RecurrenceTestUtil.getDailyRecurrence(
-			_losAngelesTimeZone);
+			3, _losAngelesTimeZone);
 
 		long startTime = startTimeJCalendar.getTimeInMillis();
 
@@ -1055,17 +1045,7 @@ public class CalendarBookingLocalServiceTest {
 
 		long calendarBookingId = calendarBooking.getCalendarBookingId();
 
-		CalendarBooking calendarBookingInstance =
-			CalendarBookingLocalServiceUtil.getCalendarBookingInstance(
-				calendarBookingId, 0);
-
-		Assert.assertNotNull(calendarBookingInstance);
-
-		calendarBookingInstance =
-			CalendarBookingLocalServiceUtil.getCalendarBookingInstance(
-				calendarBookingId, 1);
-
-		Assert.assertNotNull(calendarBookingInstance);
+		assertCalendarBookingInstancesCount(calendarBookingId, 3);
 
 		recurrence = RecurrenceTestUtil.getDailyRecurrence(
 			_losAngelesTimeZone, startTimeJCalendar);
@@ -1081,17 +1061,7 @@ public class CalendarBookingLocalServiceTest {
 			calendarBooking.getSecondReminder(),
 			calendarBooking.getSecondReminderType(), serviceContext);
 
-		calendarBookingInstance =
-			CalendarBookingLocalServiceUtil.getCalendarBookingInstance(
-				calendarBookingId, 0);
-
-		Assert.assertNotNull(calendarBookingInstance);
-
-		calendarBookingInstance =
-			CalendarBookingLocalServiceUtil.getCalendarBookingInstance(
-				calendarBookingId, 1);
-
-		Assert.assertNull(calendarBookingInstance);
+		assertCalendarBookingInstancesCount(calendarBookingId, 1);
 	}
 
 	protected Calendar addCalendar(
@@ -1130,6 +1100,27 @@ public class CalendarBookingLocalServiceTest {
 		}
 
 		return calendar;
+	}
+
+	protected void assertCalendarBookingInstancesCount(
+			long calendarBookingId, int count)
+		throws PortalException {
+
+		CalendarBooking calendarBookingInstance = null;
+
+		for (int i = 0; i < count; i++) {
+			calendarBookingInstance =
+				CalendarBookingLocalServiceUtil.getCalendarBookingInstance(
+					calendarBookingId, i);
+
+			Assert.assertNotNull(calendarBookingInstance);
+		}
+
+		calendarBookingInstance =
+			CalendarBookingLocalServiceUtil.getCalendarBookingInstance(
+				calendarBookingId, count);
+
+		Assert.assertNull(calendarBookingInstance);
 	}
 
 	protected ServiceContext createServiceContext() {
