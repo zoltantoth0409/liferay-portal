@@ -38,6 +38,17 @@ import java.util.Map;
  */
 public class CalendarBookingTestUtil {
 
+	public static CalendarBooking addAllDayCalendarBooking(
+			User user, Calendar calendar, long startTime, long endTime,
+			ServiceContext serviceContext)
+		throws PortalException {
+
+		return addCalendarBooking(
+			user, calendar, new long[0], RandomTestUtil.randomLocaleStringMap(),
+			RandomTestUtil.randomLocaleStringMap(), startTime, endTime, true,
+			null, 0, null, 0, null, serviceContext);
+	}
+
 	public static CalendarBooking addCalendarBooking(
 			User user, Calendar calendar, long[] childCalendarBookingIds,
 			Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
@@ -71,6 +82,22 @@ public class CalendarBookingTestUtil {
 				secondReminderTypeString, serviceContext);
 
 		return calendarBooking;
+	}
+
+	public static CalendarBooking addCalendarBooking(
+			User user, Calendar calendar, long[] childCalendarBookingIds,
+			Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
+			long startTime, long endTime, Recurrence recurrence,
+			int firstReminder, NotificationType firstReminderType,
+			int secondReminder, NotificationType secondReminderType,
+			ServiceContext serviceContext)
+		throws PortalException {
+
+		return addCalendarBooking(
+			user, calendar, childCalendarBookingIds, titleMap, descriptionMap,
+			startTime, endTime, false, recurrence, firstReminder,
+			firstReminderType, secondReminder, secondReminderType,
+			serviceContext);
 	}
 
 	public static CalendarBooking addCalendarBookingWithAction(
