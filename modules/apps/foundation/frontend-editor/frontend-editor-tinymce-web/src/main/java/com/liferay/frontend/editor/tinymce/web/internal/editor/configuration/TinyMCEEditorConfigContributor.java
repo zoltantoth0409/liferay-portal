@@ -20,7 +20,7 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactory;
-import com.liferay.portal.kernel.servlet.BrowserSnifferUtil;
+import com.liferay.portal.kernel.servlet.BrowserSniffer;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.AggregateResourceBundleLoader;
 import com.liferay.portal.kernel.util.HtmlUtil;
@@ -168,7 +168,7 @@ public class TinyMCEEditorConfigContributor
 		String currentToolbarSet = TextFormatter.format(
 			HtmlUtil.escapeJS(toolbarSet), TextFormatter.M);
 
-		if (BrowserSnifferUtil.isMobile(themeDisplay.getRequest())) {
+		if (_browserSniffer.isMobile(themeDisplay.getRequest())) {
 			currentToolbarSet = "phone";
 		}
 
@@ -312,6 +312,9 @@ public class TinyMCEEditorConfigContributor
 			resourceBundleLoader,
 			ResourceBundleLoaderUtil.getPortalResourceBundleLoader());
 	}
+
+	@Reference
+	private BrowserSniffer _browserSniffer;
 
 	private volatile ResourceBundleLoader _resourceBundleLoader;
 
