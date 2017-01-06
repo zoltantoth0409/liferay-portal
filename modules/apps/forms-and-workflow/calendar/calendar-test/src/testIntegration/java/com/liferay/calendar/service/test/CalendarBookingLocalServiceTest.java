@@ -43,7 +43,9 @@ import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Time;
+import com.liferay.portal.kernel.util.TimeZoneUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.SynchronousMailTestRule;
@@ -138,8 +140,7 @@ public class CalendarBookingLocalServiceTest {
 			_user, _losAngelesTimeZone, serviceContext);
 
 		java.util.Calendar nowJCalendar = JCalendarUtil.getJCalendar(
-			2017, java.util.Calendar.JANUARY, 5, 22, 0, 0, 0,
-			calendar.getTimeZone());
+			2017, java.util.Calendar.JANUARY, 5, 22, 0, 0, 0, _utcTimeZone);
 
 		CalendarBooking calendarBooking =
 			CalendarBookingTestUtil.addAllDayCalendarBooking(
@@ -1209,6 +1210,8 @@ public class CalendarBookingLocalServiceTest {
 
 	private static final TimeZone _losAngelesTimeZone = TimeZone.getTimeZone(
 		"America/Los_Angeles");
+	private static final TimeZone _utcTimeZone = TimeZoneUtil.getTimeZone(
+		StringPool.UTC);
 
 	private Object _checkBookingMessageListener;
 
