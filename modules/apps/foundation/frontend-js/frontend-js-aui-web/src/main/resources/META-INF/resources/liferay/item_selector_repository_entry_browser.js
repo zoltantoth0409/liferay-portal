@@ -41,6 +41,10 @@ AUI.add(
 						setter: Lang.toInt,
 						value: Liferay.PropsValues.UPLOAD_SERVLET_REQUEST_IMPL_MAX_SIZE
 					},
+					mimeTypes: {
+						validator: Lang.isString,
+						value: '*'
+					},
 					uploadItemReturnType: {
 						validator: Lang.isString,
 						value: ''
@@ -162,9 +166,32 @@ AUI.add(
 								else if (type === STR_DRAG_LEAVE || eventDrop) {
 									rootNode.removeClass(CSS_DROP_ACTIVE);
 
-									if (eventDrop) {
-										instance._previewFile(dataTransfer.files[0]);
-									}
+ 									if (eventDrop) {
+										var fileType = dataTransfer.files[0].type;
+
+										var mimeTypes = instance.get('mimeTypes');
+
+										if (mimeTypes.indexOf('*') != -1 || mimeTypes.indexOf(fileType) != -1) {
+											instance._previewFile(dataTransfer.files[0]);
+										}
+										else {
+											var message = Lang.sub(Liferay.Language.get('please-enter-a-file-with-a-valid-extension-x'), [mimeTypes]);
+
+											new Liferay.Alert(
+												{
+													closeable: true,
+													delay: {
+														hide: 3000,
+														show: 0
+													},
+													duration: 250,
+													icon: 'exclamation-full',
+													message: message,
+													type: 'danger'
+												}
+											).render(rootNode);
+										}
+ 									}
 								}
 							}
 						}
