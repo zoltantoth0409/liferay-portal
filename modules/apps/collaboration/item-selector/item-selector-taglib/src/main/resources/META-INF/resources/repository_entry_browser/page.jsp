@@ -25,7 +25,7 @@ ItemSelectorReturnType existingFileEntryReturnType = (ItemSelectorReturnType)req
 String itemSelectedEventName = GetterUtil.getString(request.getAttribute("liferay-item-selector:repository-entry-browser:itemSelectedEventName"));
 ItemSelectorReturnTypeResolver itemSelectorReturnTypeResolver = (ItemSelectorReturnTypeResolver)request.getAttribute("liferay-item-selector:repository-entry-browser:itemSelectorReturnTypeResolver");
 long maxFileSize = GetterUtil.getLong(request.getAttribute("liferay-item-selector:repository-entry-browser:maxFileSize"));
-String mimeTypes = GetterUtil.getString(request.getAttribute("liferay-item-selector:repository-entry-browser:mimeTypes"), "*");
+List<String> mimeTypes = (List)request.getAttribute("liferay-item-selector:repository-entry-browser:mimeTypes");
 PortletURL portletURL = (PortletURL)request.getAttribute("liferay-item-selector:repository-entry-browser:portletURL");
 List repositoryEntries = (List)request.getAttribute("liferay-item-selector:repository-entry-browser:repositoryEntries");
 int repositoryEntriesCount = GetterUtil.getInteger(request.getAttribute("liferay-item-selector:repository-entry-browser:repositoryEntriesCount"));
@@ -183,7 +183,7 @@ if (Validator.isNotNull(keywords)) {
 		>
 			<label class="btn btn-default" for="<%= randomNamespace %>InputFile"><liferay-ui:message key="select-file" /></label>
 
-			<input accept="<%= mimeTypes %>" class="hide" id="<%= randomNamespace %>InputFile" type="file" />
+			<input accept="<%= ListUtil.isEmpty(mimeTypes) ? "*" : StringUtil.merge(mimeTypes) %>" class="hide" id="<%= randomNamespace %>InputFile" type="file" />
 		</liferay-util:buffer>
 
 		<div class="drop-enabled drop-zone no-border">
@@ -528,7 +528,7 @@ if (Validator.isNotNull(keywords)) {
 			</c:if>
 
 			maxFileSize: '<%= maxFileSize %>',
-			mimeTypes: '<%= mimeTypes %>',
+			mimeTypes: '<%= ListUtil.isEmpty(mimeTypes) ? "*" : StringUtil.merge(mimeTypes) %>',
 			on: {
 				selectedItem: function(event) {
 					Liferay.Util.getOpener().Liferay.fire('<%= itemSelectedEventName %>', event);
