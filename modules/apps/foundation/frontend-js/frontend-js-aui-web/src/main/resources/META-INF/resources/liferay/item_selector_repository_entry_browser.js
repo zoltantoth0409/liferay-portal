@@ -41,10 +41,6 @@ AUI.add(
 						setter: Lang.toInt,
 						value: Liferay.PropsValues.UPLOAD_SERVLET_REQUEST_IMPL_MAX_SIZE
 					},
-					mimeTypes: {
-						validator: Lang.isString,
-						value: '*'
-					},
 					uploadItemReturnType: {
 						validator: Lang.isString,
 						value: ''
@@ -52,6 +48,10 @@ AUI.add(
 					uploadItemURL: {
 						validator: Lang.isString,
 						value: ''
+					},
+					validExtensions: {
+						validator: Lang.isString,
+						value: '*'
 					}
 				},
 
@@ -167,11 +167,11 @@ AUI.add(
 									rootNode.removeClass(CSS_DROP_ACTIVE);
 
  									if (eventDrop) {
-										var fileType = dataTransfer.files[0].type;
+										var fileExtension = dataTransfer.files[0].name.split('.').pop().toLowerCase();
 
-										var mimeTypes = instance.get('mimeTypes');
+										var validExtensions = instance.get('validExtensions');
 
-										if (mimeTypes.indexOf('*') != -1 || mimeTypes.indexOf(fileType) != -1) {
+										if (validExtensions === '*' || validExtensions.indexOf(fileExtension) != -1) {
 											instance._previewFile(dataTransfer.files[0]);
 										}
 										else {
