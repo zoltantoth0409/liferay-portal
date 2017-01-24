@@ -123,10 +123,10 @@ public class RepositoryEntryBrowserTag extends IncludeTag {
 		_desiredItemSelectorReturnTypes = null;
 		_displayStyle = null;
 		_emptyResultsMessage = null;
+		_extensions = new ArrayList<>();
 		_itemSelectedEventName = null;
 		_itemSelectorReturnTypeResolver = null;
 		_maxFileSize = PropsValues.UPLOAD_SERVLET_REQUEST_IMPL_MAX_SIZE;
-		_extensions = new ArrayList<>();
 		_portletURL = null;
 		_repositoryEntries = new ArrayList<>();
 		_repositoryEntriesCount = 0;
