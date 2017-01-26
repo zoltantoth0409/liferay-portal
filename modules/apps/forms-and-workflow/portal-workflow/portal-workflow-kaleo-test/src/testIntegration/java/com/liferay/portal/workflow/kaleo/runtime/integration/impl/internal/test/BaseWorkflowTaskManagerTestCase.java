@@ -151,25 +151,6 @@ public abstract class BaseWorkflowTaskManagerTestCase {
 			DDLRecordSetConstants.SCOPE_DYNAMIC_DATA_LISTS, serviceContext);
 	}
 
-	protected void approveWorkflowTask(User user) throws Exception {
-		try (CaptureAppender captureAppender =
-				Log4JLoggerTestUtil.configureLog4JLogger(
-					"com.liferay.util.mail.MailEngine", Level.OFF)) {
-
-			WorkflowTask workflowTask = getWorkflowTask();
-
-			PermissionChecker userPermissionChecker =
-				PermissionCheckerFactoryUtil.create(user);
-
-			PermissionThreadLocal.setPermissionChecker(userPermissionChecker);
-
-			WorkflowTaskManagerUtil.completeWorkflowTask(
-				group.getCompanyId(), user.getUserId(),
-				workflowTask.getWorkflowTaskId(), "approve", StringPool.BLANK,
-				null);
-		}
-	}
-
 	protected void assignWorkflowTaskToUser(User user, User assigneeUser)
 		throws Exception {
 
@@ -223,6 +204,26 @@ public abstract class BaseWorkflowTaskManagerTestCase {
 
 		Assert.assertEquals(
 			workflowInstances.toString(), 1, workflowInstances.size());
+	}
+
+	protected void completeWorkflowTask(User user, String transition)
+		throws Exception {
+
+		try (CaptureAppender captureAppender =
+				Log4JLoggerTestUtil.configureLog4JLogger(
+					"com.liferay.util.mail.MailEngine", Level.OFF)) {
+			WorkflowTask workflowTask = getWorkflowTask();
+
+			PermissionChecker userPermissionChecker =
+				PermissionCheckerFactoryUtil.create(user);
+
+			PermissionThreadLocal.setPermissionChecker(userPermissionChecker);
+
+			WorkflowTaskManagerUtil.completeWorkflowTask(
+				group.getCompanyId(), user.getUserId(),
+				workflowTask.getWorkflowTaskId(), transition, StringPool.BLANK,
+				null);
+		}
 	}
 
 	protected DDMFormValues createDDMFormValues(DDMForm ddmForm) {
