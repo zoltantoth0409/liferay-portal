@@ -69,7 +69,6 @@ import com.liferay.portal.kernel.service.persistence.GroupPersistence;
 import com.liferay.portal.kernel.settings.LocalizedValuesMap;
 import com.liferay.portal.kernel.social.SocialActivityManagerUtil;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
-import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.Function;
@@ -88,7 +87,6 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.SubscriptionSender;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.workflow.WorkflowHandlerRegistryUtil;
 import com.liferay.portal.kernel.workflow.WorkflowThreadLocal;
@@ -2068,14 +2066,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 				"message_boards/view_message/" + message.getMessageId();
 		}
 		else {
-			Group group = null;
-
-			ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
-				WebKeys.THEME_DISPLAY);
-
-			if (themeDisplay == null) {
-				group = groupLocalService.fetchGroup(message.getGroupId());
-			}
+			Group group = groupLocalService.fetchGroup(message.getGroupId());
 
 			portletId = PortletProviderUtil.getPortletId(
 				MBMessage.class.getName(), PortletProvider.Action.MANAGE);
