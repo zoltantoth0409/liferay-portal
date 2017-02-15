@@ -109,7 +109,7 @@ public abstract class BaseWorkflowTaskManagerTestCase {
 		PermissionThreadLocal.setPermissionChecker(_originalPermissionChecker);
 	}
 
-	protected void activeSingleApproverWorkflow(
+	protected void activateSingleApproverWorkflow(
 			String className, long classPK, long typePK)
 		throws PortalException {
 
@@ -342,7 +342,8 @@ public abstract class BaseWorkflowTaskManagerTestCase {
 		return user;
 	}
 
-	protected void deactiveWorkflow(String className, long classPK, long typePK)
+	protected void deactivateWorkflow(
+			String className, long classPK, long typePK)
 		throws PortalException {
 
 		WorkflowDefinitionLinkLocalServiceUtil.updateWorkflowDefinitionLink(
