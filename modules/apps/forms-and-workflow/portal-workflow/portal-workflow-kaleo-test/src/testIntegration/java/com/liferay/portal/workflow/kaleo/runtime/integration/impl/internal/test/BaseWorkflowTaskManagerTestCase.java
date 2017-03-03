@@ -80,7 +80,7 @@ import org.junit.Before;
 /**
  * @author Inácio Nery
  */
-public class BaseWorkflowTaskManagerTestCase {
+public abstract class BaseWorkflowTaskManagerTestCase {
 
 	@Before
 	public void setUp() throws Exception {
