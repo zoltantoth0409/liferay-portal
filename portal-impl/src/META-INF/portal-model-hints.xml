@@ -594,7 +594,7 @@
 		<field name="modifiedDate" type="Date" />
 		<field name="categoryId" type="long" />
 		<field name="emailAddress" type="String">
-			<hint name="max-length">254</hint>
+			<hint-collection name="EMAILADDRESS" />
 		</field>
 		<field name="inProtocol" type="String" />
 		<field name="inServerName" type="String" />
@@ -606,7 +606,7 @@
 		</field>
 		<field name="inReadInterval" type="int" />
 		<field name="outEmailAddress" type="String">
-			<hint name="max-length">254</hint>
+			<hint-collection name="EMAILADDRESS" />
 		</field>
 		<field name="outCustom" type="boolean" />
 		<field name="outServerName" type="String" />
@@ -805,7 +805,7 @@
 		<field name="accountId" type="long" />
 		<field name="parentContactId" type="long" />
 		<field name="emailAddress" type="String">
-			<hint name="max-length">254</hint>
+			<hint-collection name="EMAILADDRESS" />
 		</field>
 		<field name="firstName" type="String" />
 		<field name="middleName" type="String" />
@@ -854,8 +854,8 @@
 		<field name="classNameId" type="long" />
 		<field name="classPK" type="long" />
 		<field name="address" type="String">
+			<hint-collection name="EMAILADDRESS" />
 			<hint name="display-width">210</hint>
-			<hint name="max-length">254</hint>
 			<validator name="email" />
 		</field>
 		<field name="typeId" type="long" />
@@ -1638,8 +1638,8 @@
 			<validator name="required" />
 		</field>
 		<field name="emailAddress" type="String">
+			<hint-collection name="EMAILADDRESS" />
 			<validator name="email" />
-			<hint name="max-length">254</hint>
 		</field>
 		<field name="facebookId" type="long" />
 		<field name="googleUserId" type="String" />
