@@ -242,6 +242,9 @@ public class BaseExportImportContentProcessorTest {
 		String content = replaceParameters(
 			getContent("dl_references.txt"), _fileEntry);
 
+		_exportImportContentProcessor.validateContentReferences(
+			_stagingGroup.getGroupId(), content);
+
 		List<String> urls = getURLs(content);
 
 		content = _exportImportContentProcessor.replaceExportContentReferences(
