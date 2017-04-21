@@ -1401,10 +1401,8 @@ public class PortletURLImpl
 
 		String namespace = getNamespace();
 
-		Layout layout = getLayout();
-
 		Map<String, String[]> renderParameters = RenderParametersPool.get(
-			_request, layout.getPlid(), getPortlet().getPortletId());
+			_request, _plid, _portlet.getPortletId());
 
 		if (renderParameters == null) {
 			return portletURLParams;
