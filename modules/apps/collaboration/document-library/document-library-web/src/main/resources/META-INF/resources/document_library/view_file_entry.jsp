@@ -230,6 +230,7 @@ if (portletTitleBasedNavigation) {
 									iconCssClass="<%= DLUtil.getFileIconCssClass(conversion) %>"
 									label="<%= true %>"
 									message="<%= StringUtil.toUpperCase(conversion) %>"
+									method="get"
 									url='<%= DLUtil.getDownloadURL(fileEntry, fileVersion, themeDisplay, "&targetExtension=" + conversion) %>'
 								/>
 
