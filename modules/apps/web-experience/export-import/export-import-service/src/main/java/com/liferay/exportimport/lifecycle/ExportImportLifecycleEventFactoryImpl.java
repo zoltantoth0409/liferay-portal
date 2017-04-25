@@ -16,6 +16,7 @@ package com.liferay.exportimport.lifecycle;
 
 import com.liferay.exportimport.kernel.lifecycle.ExportImportLifecycleEvent;
 import com.liferay.exportimport.kernel.lifecycle.ExportImportLifecycleEventFactory;
+import com.liferay.portal.kernel.util.GetterUtil;
 
 import java.io.Serializable;
 
@@ -28,6 +29,10 @@ import org.osgi.service.component.annotations.Component;
 public class ExportImportLifecycleEventFactoryImpl
 	implements ExportImportLifecycleEventFactory {
 
+	/**
+	 * @deprecated As of 4.0.0
+	 */
+	@Deprecated
 	@Override
 	public ExportImportLifecycleEvent create(
 		int code, int processFlag, Serializable... attributes) {
@@ -38,6 +43,24 @@ public class ExportImportLifecycleEventFactoryImpl
 		exportImportLifecycleEvent.setAttributes(attributes);
 		exportImportLifecycleEvent.setCode(code);
 		exportImportLifecycleEvent.setProcessFlag(processFlag);
+		exportImportLifecycleEvent.setProcessId(
+			GetterUtil.getString(processFlag));
+
+		return exportImportLifecycleEvent;
+	}
+
+	@Override
+	public ExportImportLifecycleEvent create(
+		int code, int processFlag, String processId,
+		Serializable... attributes) {
+
+		ExportImportLifecycleEvent exportImportLifecycleEvent =
+			new ExportImportLifecycleEventImpl();
+
+		exportImportLifecycleEvent.setAttributes(attributes);
+		exportImportLifecycleEvent.setCode(code);
+		exportImportLifecycleEvent.setProcessFlag(processFlag);
+		exportImportLifecycleEvent.setProcessId(processId);
 
 		return exportImportLifecycleEvent;
 	}

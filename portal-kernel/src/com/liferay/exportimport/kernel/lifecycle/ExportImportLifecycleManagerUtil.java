@@ -23,11 +23,23 @@ import java.io.Serializable;
  */
 public class ExportImportLifecycleManagerUtil {
 
+	/**
+	 * @deprecated As of 7.0.0
+	 */
+	@Deprecated
 	public static void fireExportImportLifecycleEvent(
 		int code, int processFlag, Serializable... arguments) {
 
 		_exportImportLifecycleManager.fireExportImportLifecycleEvent(
 			code, processFlag, arguments);
+	}
+
+	public static void fireExportImportLifecycleEvent(
+		int code, int processFlag, String processId,
+		Serializable... arguments) {
+
+		_exportImportLifecycleManager.fireExportImportLifecycleEvent(
+			code, processFlag, processId, arguments);
 	}
 
 	private static volatile ExportImportLifecycleManager
