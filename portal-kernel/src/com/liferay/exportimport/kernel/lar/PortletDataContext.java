@@ -295,6 +295,8 @@ public interface PortletDataContext extends Serializable {
 
 	public Element getExportDataRootElement();
 
+	public String getExportImportProcessId();
+
 	public long getGroupId();
 
 	public Element getImportDataElement(StagedModel stagedModel);
@@ -552,6 +554,8 @@ public interface PortletDataContext extends Serializable {
 	public void setEndDate(Date endDate);
 
 	public void setExportDataRootElement(Element exportDataRootElement);
+
+	public void setExportImportProcessId(String exportImportProcessId);
 
 	public void setGroupId(long groupId);
 
