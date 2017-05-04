@@ -475,7 +475,10 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 			return missingReferences;
 		}
 		catch (IOException ioe) {
-			throw new SystemException(ioe);
+			throw new SystemException(
+				"Unable to complete remote staging publication request " +
+					stagingRequestId + " due to a file system error",
+				ioe);
 		}
 		finally {
 			ExportImportThreadLocal.setLayoutImportInProcess(false);
@@ -910,7 +913,10 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 			String checksum = FileUtil.getMD5Checksum(tempFile);
 
 			if (!checksum.equals(folder.getName())) {
-				throw new SystemException("Invalid checksum for LAR file");
+				throw new SystemException(
+					"Unable to process LAR file pieces for remote " +
+						"publication: LAR file checksum is invalid " +
+							checksum);
 			}
 
 			PortletFileRepositoryUtil.addPortletFileEntry(
@@ -924,13 +930,18 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 				stagingRequestId, folder);
 
 			if (stagingRequestFileEntry == null) {
-				throw new SystemException("Unable to assemble LAR file");
+				throw new SystemException(
+					"Unable to assemble LAR file for remote publication " +
+						"request " + stagingRequestId);
 			}
 
 			return stagingRequestFileEntry;
 		}
 		catch (IOException ioe) {
-			throw new SystemException("Unable to reassemble LAR file", ioe);
+			throw new SystemException(
+				"Unable to reassemble LAR file for remote staging " +
+					"publication request " + stagingRequestId,
+				ioe);
 		}
 		finally {
 			StreamUtil.cleanUp(fileOutputStream);
