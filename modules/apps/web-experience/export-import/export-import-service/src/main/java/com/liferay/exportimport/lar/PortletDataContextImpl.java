@@ -548,7 +548,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 		}
 		catch (IOException ioe) {
 			throw new SystemException(
-				"Unable to add data with path " + path + " to the LAR file",
+				"Unable to add data bytes to the LAR file with path: " + path,
 				ioe);
 		}
 	}
@@ -566,7 +566,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 		}
 		catch (IOException ioe) {
 			throw new SystemException(
-				"Unable to add data with path " + path + " to the LAR file",
+				"Unable to add data stream to the LAR file with path: " + path,
 				ioe);
 		}
 	}
@@ -589,7 +589,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 		}
 		catch (IOException ioe) {
 			throw new SystemException(
-				"Unable to add data with path " + path + " to the LAR file",
+				"Unable to add data string to the LAR file with path: " + path,
 				ioe);
 		}
 	}
