@@ -113,8 +113,8 @@ public class LayoutStagingImpl implements LayoutStaging {
 		}
 		catch (Exception e) {
 			throw new IllegalStateException(
-				"An error occured when trying to find out if layout " +
-					layout.getPlid() + " is enabled for versioning",
+				"Unable to find out if layout " + layout.getPlid() +
+					" is enabled for versioning",
 				e);
 		}
 	}
