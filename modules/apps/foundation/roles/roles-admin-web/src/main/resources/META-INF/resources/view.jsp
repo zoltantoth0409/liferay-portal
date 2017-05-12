@@ -52,6 +52,8 @@ else {
 String breadcrumbTitle = LanguageUtil.get(request, breadcrumbKey);
 
 PortalUtil.addPortletBreadcrumbEntry(request, breadcrumbTitle, currentURL);
+
+SearchContainer searchContainer = new RoleSearch(renderRequest, portletURL);
 %>
 
 <liferay-ui:error exception="<%= RequiredRoleException.class %>" message="you-cannot-delete-a-system-role" />
@@ -161,7 +163,8 @@ PortalUtil.addPortletBreadcrumbEntry(request, breadcrumbTitle, currentURL);
 	<liferay-ui:search-container
 		id="roleSearch"
 		rowChecker="<%= new RoleChecker(renderResponse) %>"
-		searchContainer="<%= new RoleSearch(renderRequest, portletURL) %>"
+		searchContainer="<%= searchContainer %>"
+		var="roleSearchContainer"
 	>
 		<liferay-ui:search-container-results>
 
