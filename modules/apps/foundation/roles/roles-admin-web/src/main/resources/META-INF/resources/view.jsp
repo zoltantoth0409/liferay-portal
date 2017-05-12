@@ -169,17 +169,17 @@ SearchContainer searchContainer = new RoleSearch(renderRequest, portletURL);
 		<liferay-ui:search-container-results>
 
 			<%
-			RoleSearchTerms searchTerms = (RoleSearchTerms)searchContainer.getSearchTerms();
+			RoleSearchTerms searchTerms = (RoleSearchTerms)roleSearchContainer.getSearchTerms();
 
 			total = RoleServiceUtil.searchCount(company.getCompanyId(), searchTerms.getKeywords(), searchTerms.getTypesObj(), new LinkedHashMap<String, Object>());
 
-			searchContainer.setTotal(total);
+			roleSearchContainer.setTotal(total);
 
-			results = RoleServiceUtil.search(company.getCompanyId(), searchTerms.getKeywords(), searchTerms.getTypesObj(), new LinkedHashMap<String, Object>(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
+			results = RoleServiceUtil.search(company.getCompanyId(), searchTerms.getKeywords(), searchTerms.getTypesObj(), new LinkedHashMap<String, Object>(), roleSearchContainer.getStart(), roleSearchContainer.getEnd(), roleSearchContainer.getOrderByComparator());
 
-			searchContainer.setResults(results);
+			roleSearchContainer.setResults(results);
 
-			portletURL.setParameter(searchContainer.getCurParam(), String.valueOf(searchContainer.getCur()));
+			portletURL.setParameter(roleSearchContainer.getCurParam(), String.valueOf(roleSearchContainer.getCur()));
 			%>
 
 		</liferay-ui:search-container-results>
@@ -207,7 +207,7 @@ SearchContainer searchContainer = new RoleSearch(renderRequest, portletURL);
 				rowURL = renderResponse.createRenderURL();
 
 				rowURL.setParameter("mvcPath", "/edit_role_assignments.jsp");
-				rowURL.setParameter("redirect", searchContainer.getIteratorURL().toString());
+				rowURL.setParameter("redirect", roleSearchContainer.getIteratorURL().toString());
 				rowURL.setParameter("roleId", String.valueOf(role.getRoleId()));
 			}
 			%>
