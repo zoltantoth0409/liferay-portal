@@ -135,6 +135,10 @@ page import="com.liferay.portlet.blogs.constants.BlogsConstants" %><%@
 page import="com.liferay.portlet.blogs.service.permission.BlogsEntryPermission" %><%@
 page import="com.liferay.portlet.blogs.service.permission.BlogsPermission" %><%@
 page import="com.liferay.portlet.blogs.util.BlogsUtil" %><%@
+page import="com.liferay.ratings.kernel.model.RatingsEntry" %><%@
+page import="com.liferay.ratings.kernel.model.RatingsStats" %><%@
+page import="com.liferay.ratings.kernel.service.RatingsEntryLocalServiceUtil" %><%@
+page import="com.liferay.ratings.kernel.service.RatingsStatsLocalServiceUtil" %><%@
 page import="com.liferay.taglib.search.ResultRow" %><%@
 page import="com.liferay.trash.kernel.util.TrashUtil" %>
 
