@@ -44,7 +44,7 @@ if (!setRatingsEntry) {
 }
 
 if (!setRatingsStats) {
-	ratingsStats = RatingsStatsLocalServiceUtil.getStats(className, classPK);
+	ratingsStats = RatingsStatsLocalServiceUtil.fetchStats(className, classPK);
 }
 
 if (Validator.isNull(url)) {
@@ -52,9 +52,13 @@ if (Validator.isNull(url)) {
 }
 
 double averageScore = 0.0;
+int totalEntries = 0;
+double totalScore = 0.0;
 
 if (ratingsStats != null) {
 	averageScore = ratingsStats.getAverageScore();
+	totalEntries = ratingsStats.getTotalEntries();
+	totalScore = ratingsStats.getTotalScore();
 }
 
 int averageIndex = (int)Math.round(averageScore * numberOfStars);
@@ -110,8 +114,8 @@ if (ratingsEntry != null) {
 						<div class="rating-label">
 							<liferay-ui:message key="average" />
 
-							(<%= ratingsStats.getTotalEntries() %> <liferay-ui:message key='<%= (ratingsStats.getTotalEntries() == 1) ? "vote" : "votes" %>' />)
-						</div>
+							(<%= totalEntries %> <liferay-ui:message key='<%= (totalEntries == 1) ? "vote" : "votes" %>' />)
+					</div>
 
 						<liferay-util:whitespace-remover>
 
@@ -145,9 +149,9 @@ if (ratingsEntry != null) {
 						<liferay-util:whitespace-remover>
 
 							<%
-							int positiveVotes = (int)Math.round(ratingsStats.getTotalScore());
+							int positiveVotes = (int)Math.round(totalScore);
 
-							int negativeVotes = ratingsStats.getTotalEntries() - positiveVotes;
+							int negativeVotes = totalEntries - positiveVotes;
 
 							boolean thumbUp = (yourScore != -1.0) && (yourScore >= 0.5);
 							boolean thumbDown = (yourScore != -1.0) && (yourScore < 0.5);
@@ -226,8 +230,8 @@ if (ratingsEntry != null) {
 					namespace: '<%= randomNamespace %>',
 					round: <%= round %>,
 					size: <%= numberOfStars %>,
-					totalEntries: <%= ratingsStats.getTotalEntries() %>,
-					totalScore: <%= ratingsStats.getTotalScore() %>,
+					totalEntries: <%= totalEntries %>,
+					totalScore: <%= totalScore %>,
 					type: '<%= type %>',
 					uri: '<%= url %>',
 					yourScore: <%= yourScore %>
