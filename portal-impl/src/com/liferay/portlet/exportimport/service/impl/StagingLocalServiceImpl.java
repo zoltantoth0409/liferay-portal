@@ -45,6 +45,7 @@ import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
+import com.liferay.portal.kernel.search.IndexingThreadLocal;
 import com.liferay.portal.kernel.security.auth.HttpPrincipal;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.security.auth.RemoteAuthException;
@@ -150,6 +151,10 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 	public void cleanUpStagingRequest(long stagingRequestId)
 		throws PortalException {
 
+		boolean indexingEnabled = IndexingThreadLocal.isIndexingEnabled();
+
+		IndexingThreadLocal.setIndexingEnabled(false);
+
 		try {
 			PortletFileRepositoryUtil.deletePortletFolder(stagingRequestId);
 		}
@@ -160,23 +165,36 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 					nsfe);
 			}
 		}
+		finally {
+			IndexingThreadLocal.setIndexingEnabled(indexingEnabled);
+		}
 	}
 
 	@Override
 	public long createStagingRequest(long userId, long groupId, String checksum)
 		throws PortalException {
 
-		ServiceContext serviceContext = new ServiceContext();
+		boolean indexingEnabled = IndexingThreadLocal.isIndexingEnabled();
 
-		Repository repository = PortletFileRepositoryUtil.addPortletRepository(
-			groupId, _PORTLET_REPOSITORY_ID, serviceContext);
+		IndexingThreadLocal.setIndexingEnabled(false);
 
-		Folder folder = PortletFileRepositoryUtil.addPortletFolder(
-			userId, repository.getRepositoryId(),
-			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, checksum,
-			serviceContext);
+		try {
+			ServiceContext serviceContext = new ServiceContext();
 
-		return folder.getFolderId();
+			Repository repository =
+				PortletFileRepositoryUtil.addPortletRepository(
+					groupId, _PORTLET_REPOSITORY_ID, serviceContext);
+
+			Folder folder = PortletFileRepositoryUtil.addPortletFolder(
+				userId, repository.getRepositoryId(),
+				DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, checksum,
+				serviceContext);
+
+			return folder.getFolderId();
+		}
+		finally {
+			IndexingThreadLocal.setIndexingEnabled(indexingEnabled);
+		}
 	}
 
 	@Override
@@ -497,11 +515,20 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 		Folder folder = PortletFileRepositoryUtil.getPortletFolder(
 			stagingRequestId);
 
-		PortletFileRepositoryUtil.addPortletFileEntry(
-			folder.getGroupId(), userId, Group.class.getName(),
-			folder.getGroupId(), _PORTLET_REPOSITORY_ID, folder.getFolderId(),
-			new UnsyncByteArrayInputStream(bytes), fileName,
-			ContentTypes.APPLICATION_ZIP, false);
+		boolean indexingEnabled = IndexingThreadLocal.isIndexingEnabled();
+
+		IndexingThreadLocal.setIndexingEnabled(false);
+
+		try {
+			PortletFileRepositoryUtil.addPortletFileEntry(
+				folder.getGroupId(), userId, Group.class.getName(),
+				folder.getGroupId(), _PORTLET_REPOSITORY_ID,
+				folder.getFolderId(), new UnsyncByteArrayInputStream(bytes),
+				fileName, ContentTypes.APPLICATION_ZIP, false);
+		}
+		finally {
+			IndexingThreadLocal.setIndexingEnabled(indexingEnabled);
+		}
 	}
 
 	/**
@@ -873,6 +900,10 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 			return stagingRequestFileEntry;
 		}
 
+		boolean indexingEnabled = IndexingThreadLocal.isIndexingEnabled();
+
+		IndexingThreadLocal.setIndexingEnabled(false);
+
 		FileOutputStream fileOutputStream = null;
 
 		File tempFile = null;
@@ -933,6 +964,8 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 				ioe);
 		}
 		finally {
+			IndexingThreadLocal.setIndexingEnabled(indexingEnabled);
+
 			StreamUtil.cleanUp(fileOutputStream);
 
 			FileUtil.delete(tempFile);
