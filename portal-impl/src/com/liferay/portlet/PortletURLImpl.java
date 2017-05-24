@@ -1404,7 +1404,7 @@ public class PortletURLImpl
 			}
 		}
 		catch (Exception e) {
-			_log.error(e);
+			_log.error("Unable to get company key", e);
 		}
 
 		return null;
