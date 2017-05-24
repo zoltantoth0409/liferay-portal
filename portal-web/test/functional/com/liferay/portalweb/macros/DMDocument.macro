@@ -331,7 +331,9 @@
 	<command name="addDocumentTypePG">
 		<var name="key_dmDocumentTypeName" value="${dmDocumentTypeName}" />
 
-		<execute function="Click#makeVisibleClickAt" locator1="Portlet#ICON_PLUS_SIGN" />
+		<execute macro="Portlet#clickPortletPlusIconPG">
+			<var name="portletName" value="Documents and Media" />
+		</execute>
 
 		<execute function="AssertClick" locator1="MenuItem#DOCUMENT_TYPE" value1="${dmDocumentTypeName}" />
 
@@ -398,7 +400,9 @@
 	</command>
 
 	<command name="addGoogleDoc">
-		<execute function="Click#makeVisibleClickAt" locator1="Portlet#ICON_PLUS_SIGN" />
+		<execute macro="Portlet#clickPortletPlusIconPG">
+			<var name="portletName" value="Documents and Media" />
+		</execute>
 
 		<execute function="AssertClick" locator1="MenuItem#GOOGLE_DOCS" value1="Google Docs" />
 
@@ -410,7 +414,9 @@
 	</command>
 
 	<command name="addMultiplePG">
-		<execute function="Click#makeVisibleClickAt" locator1="Portlet#ICON_PLUS_SIGN" />
+		<execute macro="Portlet#clickPortletPlusIconPG">
+			<var name="portletName" value="Documents and Media" />
+		</execute>
 
 		<execute function="AssertClick" locator1="MenuItem#MULTIPLE_DOCUMENTS" value1="Multiple Documents" />
 
@@ -454,7 +460,9 @@
 			</then>
 		</if>
 
-		<execute function="Click#makeVisibleClickAt" locator1="Portlet#ICON_PLUS_SIGN" />
+		<execute macro="Portlet#clickPortletPlusIconPG">
+			<var name="portletName" value="Documents and Media" />
+		</execute>
 
 		<if>
 			<isset var="dmDocumentTypeName" />
@@ -567,7 +575,9 @@
 			</then>
 		</if>
 
-		<execute function="Click#makeVisibleClickAt" locator1="Portlet#ICON_PLUS_SIGN" />
+		<execute macro="Portlet#clickPortletPlusIconPG">
+			<var name="portletName" value="Documents and Media" />
+		</execute>
 
 		<execute function="AssertClick" locator1="MenuItem#MULTIPLE_DOCUMENTS" value1="Multiple Documents" />
 
@@ -620,7 +630,9 @@
 	</command>
 
 	<command name="addPGViaMG">
-		<execute function="Click#makeVisibleClickAt" locator1="Portlet#ICON_PLUS_SIGN" />
+		<execute macro="Portlet#clickPortletPlusIconPG">
+			<var name="portletName" value="Media Gallery" />
+		</execute>
 
 		<execute function="AssertClick" locator1="MenuItem#BASIC_DOCUMENT" value1="Basic Document" />
 
@@ -658,7 +670,9 @@
 	</command>
 
 	<command name="addShortcutPG">
-		<execute function="Click#makeVisibleClickAt" locator1="Portlet#ICON_PLUS_SIGN" />
+		<execute macro="Portlet#clickPortletPlusIconPG">
+			<var name="portletName" value="Documents and Media" />
+		</execute>
 
 		<execute function="AssertClick" locator1="MenuItem#SHORTCUT" value1="Shortcut" />
 
@@ -1907,7 +1921,9 @@
 	</command>
 
 	<command name="viewCannotAddRepository">
-		<execute function="Click#makeVisibleClickAt" locator1="Portlet#ICON_PLUS_SIGN" />
+		<execute macro="Portlet#clickPortletPlusIconPG">
+			<var name="portletName" value="Documents and Media" />
+		</execute>
 
 		<execute function="AssertElementNotPresent" locator1="HOME_MENULIST_ADD_REPOSITORY" />
 	</command>
@@ -2564,7 +2580,9 @@
 	</command>
 
 	<command name="viewStagingDetailsPG">
-		<execute function="Click#makeVisibleClickAt" locator1="Portlet#ICON_PLUS_SIGN" />
+		<execute macro="Portlet#clickPortletPlusIconPG">
+			<var name="portletName" value="Documents and Media" />
+		</execute>
 
 		<execute function="AssertTextEquals" locator1="MenuItem#FOLDER" value1="Folder" />
 		<execute function="AssertTextEquals" locator1="MenuItem#SHORTCUT" value1="Shortcut" />
