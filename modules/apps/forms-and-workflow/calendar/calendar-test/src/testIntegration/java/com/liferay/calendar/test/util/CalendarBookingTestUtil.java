@@ -453,4 +453,21 @@ public class CalendarBookingTestUtil {
 			calendarBooking.getSecondReminderType(), serviceContext);
 	}
 
+	public static CalendarBooking
+			updateRecurringCalendarBookingInstanceAndAllFollowing(
+				User user, CalendarBooking calendarBooking, int instanceIndex,
+				Map<Locale, String> titleMap,
+				Map<Locale, String> descriptionMap, long instanceStartTime,
+				long instanceEndTime, String recurrence,
+				ServiceContext serviceContext)
+		throws PortalException {
+
+		return CalendarBookingLocalServiceUtil.updateCalendarBookingInstance(
+			user.getUserId(), calendarBooking.getCalendarBookingId(),
+			instanceIndex, calendarBooking.getCalendarId(), titleMap,
+			descriptionMap, calendarBooking.getLocation(), instanceStartTime,
+			instanceEndTime, false, recurrence, true, 0, null, 0, null,
+			serviceContext);
+	}
+
 }
