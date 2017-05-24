@@ -76,6 +76,20 @@
 		</for>
 	</command>
 
+	<command name="AddPageViaNavigationMenu" priority="4">
+		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
+
+		<execute macro="NavigationMenu#gotoAddPage" />
+
+		<execute macro="PortletEntry#inputName">
+			<var name="name" value="Test Page Name" />
+		</execute>
+
+		<execute macro="Page#saveAddPage" />
+
+		<execute function="AssertLocation" value1="${portalURL}/web/guest/test-page-name" />
+	</command>
+
 	<command name="AddPageWithEscapeCharacter" priority="3">
 		<execute macro="Page#add">
 			<var name="pageName" value="Tester&apos;s Page" />
