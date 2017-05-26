@@ -36,6 +36,7 @@ import java.io.StringReader;
 
 import java.util.Set;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
@@ -131,6 +132,8 @@ public class DeletionSystemEventImporter {
 			return true;
 		}
 
+		Stream<StagedModelType> stream = stagedModelTypes.stream();
+
 		Predicate<StagedModelType> classNameIdPredicate =
 			smt -> smt.getClassNameId() == stagedModelType.getClassNameId();
 
@@ -142,7 +145,7 @@ public class DeletionSystemEventImporter {
 				stagedModelType.getReferrerClassName()) &&
 				   REFERRER_CLASS_NAME_ANY.equals(smt.getReferrerClassName());
 
-		boolean hasSimilar = stagedModelTypes.stream().anyMatch(
+		boolean hasSimilar = stream.anyMatch(
 			classNameIdPredicate.and(
 				allReferrerClassNamePredicate.or(
 					anyReferrerClassNamePredicate)));
