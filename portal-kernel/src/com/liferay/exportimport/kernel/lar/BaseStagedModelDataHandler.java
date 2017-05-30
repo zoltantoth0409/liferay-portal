@@ -148,7 +148,7 @@ public abstract class BaseStagedModelDataHandler<T extends StagedModel>
 			if (t instanceof NoSuchModelException) {
 				pde.setStagedModelDisplayName(getDisplayName(stagedModel));
 				pde.setStagedModelClassName(stagedModel.getModelClassName());
-				pde.setStagedModelClassPk(
+				pde.setStagedModelClassPK(
 					GetterUtil.getString(stagedModel.getPrimaryKeyObj()));
 				pde.setType(PortletDataException.MISSING_DEPENDENCY);
 			}
@@ -397,7 +397,7 @@ public abstract class BaseStagedModelDataHandler<T extends StagedModel>
 
 			pde.setStagedModelDisplayName(getDisplayName(stagedModel));
 			pde.setStagedModelClassName(stagedModel.getModelClassName());
-			pde.setStagedModelClassPk(
+			pde.setStagedModelClassPK(
 				GetterUtil.getString(stagedModel.getPrimaryKeyObj()));
 			pde.setType(PortletDataException.MISSING_DEPENDENCY);
 
@@ -443,7 +443,7 @@ public abstract class BaseStagedModelDataHandler<T extends StagedModel>
 
 			pde.setStagedModelDisplayName(getDisplayName(stagedModel));
 			pde.setStagedModelClassName(stagedModel.getModelClassName());
-			pde.setStagedModelClassPk(
+			pde.setStagedModelClassPK(
 				GetterUtil.getString(stagedModel.getPrimaryKeyObj()));
 
 			throw pde;
@@ -880,7 +880,7 @@ public abstract class BaseStagedModelDataHandler<T extends StagedModel>
 
 				pde.setStagedModelDisplayName(getDisplayName(stagedModel));
 				pde.setStagedModelClassName(stagedModel.getModelClassName());
-				pde.setStagedModelClassPk(
+				pde.setStagedModelClassPK(
 					GetterUtil.getString(stagedModel.getPrimaryKeyObj()));
 
 				throw pde;
@@ -896,7 +896,7 @@ public abstract class BaseStagedModelDataHandler<T extends StagedModel>
 
 				pde.setStagedModelDisplayName(getDisplayName(stagedModel));
 				pde.setStagedModelClassName(stagedModel.getModelClassName());
-				pde.setStagedModelClassPk(
+				pde.setStagedModelClassPK(
 					GetterUtil.getString(stagedModel.getPrimaryKeyObj()));
 
 				throw pde;
