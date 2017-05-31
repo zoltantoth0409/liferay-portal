@@ -512,8 +512,7 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 
 	@Override
 	public void reindex(Collection<T> collection) {
-		if (IndexStatusManagerThreadLocal.isIndexReadOnly() ||
-			IndexWriterHelperUtil.isIndexReadOnly() ||
+		if (IndexWriterHelperUtil.isIndexReadOnly() ||
 			!isIndexerEnabled() || collection.isEmpty()) {
 
 			return;
@@ -532,8 +531,7 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 	@Override
 	public void reindex(String className, long classPK) throws SearchException {
 		try {
-			if (IndexStatusManagerThreadLocal.isIndexReadOnly() ||
-				IndexWriterHelperUtil.isIndexReadOnly() ||
+			if (IndexWriterHelperUtil.isIndexReadOnly() ||
 				!isIndexerEnabled() || (classPK <= 0)) {
 
 				return;
@@ -563,8 +561,7 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 		long companyThreadLocalCompanyId = CompanyThreadLocal.getCompanyId();
 
 		try {
-			if (IndexStatusManagerThreadLocal.isIndexReadOnly() ||
-				IndexWriterHelperUtil.isIndexReadOnly() ||
+			if (IndexWriterHelperUtil.isIndexReadOnly() ||
 				!isIndexerEnabled()) {
 
 				return;
@@ -592,8 +589,7 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 	@Override
 	public void reindex(T object) throws SearchException {
 		try {
-			if (IndexStatusManagerThreadLocal.isIndexReadOnly() ||
-				IndexWriterHelperUtil.isIndexReadOnly() ||
+			if (IndexWriterHelperUtil.isIndexReadOnly() ||
 				!isIndexerEnabled()) {
 
 				return;

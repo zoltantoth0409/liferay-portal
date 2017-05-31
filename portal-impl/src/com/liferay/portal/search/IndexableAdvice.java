@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.search.IndexStatusManagerThreadLocal;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.spring.aop.AnnotationChainableMethodAdvice;
@@ -47,7 +46,6 @@ public class IndexableAdvice
 		}
 
 		if (IndexWriterHelperUtil.isIndexReadOnly() ||
-			IndexStatusManagerThreadLocal.isIndexReadOnly() ||
 			CompanyThreadLocal.isDeleteInProcess()) {
 
 			return;
