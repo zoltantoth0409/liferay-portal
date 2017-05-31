@@ -47,7 +47,7 @@ public class IndexableAdvice
 		}
 
 		if (IndexWriterHelperUtil.isIndexReadOnly() ||
-			IndexStatusManagerThreadLocal.isIndexingDisabled() ||
+			IndexStatusManagerThreadLocal.isIndexReadOnly() ||
 			CompanyThreadLocal.isDeleteInProcess()) {
 
 			return;

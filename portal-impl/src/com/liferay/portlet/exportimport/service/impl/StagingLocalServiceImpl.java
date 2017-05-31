@@ -151,9 +151,9 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 	public void cleanUpStagingRequest(long stagingRequestId)
 		throws PortalException {
 
-		boolean indexingEnabled = IndexStatusManagerThreadLocal.isIndexingEnabled();
+		boolean indexReadOnly = IndexStatusManagerThreadLocal.isIndexReadOnly();
 
-		IndexStatusManagerThreadLocal.setIndexingEnabled(false);
+		IndexStatusManagerThreadLocal.setIndexReadOnly(true);
 
 		try {
 			PortletFileRepositoryUtil.deletePortletFolder(stagingRequestId);
@@ -166,7 +166,7 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 			}
 		}
 		finally {
-			IndexStatusManagerThreadLocal.setIndexingEnabled(indexingEnabled);
+			IndexStatusManagerThreadLocal.setIndexReadOnly(indexReadOnly);
 		}
 	}
 
@@ -174,9 +174,9 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 	public long createStagingRequest(long userId, long groupId, String checksum)
 		throws PortalException {
 
-		boolean indexingEnabled = IndexStatusManagerThreadLocal.isIndexingEnabled();
+		boolean indexReadOnly = IndexStatusManagerThreadLocal.isIndexReadOnly();
 
-		IndexStatusManagerThreadLocal.setIndexingEnabled(false);
+		IndexStatusManagerThreadLocal.setIndexReadOnly(true);
 
 		try {
 			ServiceContext serviceContext = new ServiceContext();
@@ -193,7 +193,7 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 			return folder.getFolderId();
 		}
 		finally {
-			IndexStatusManagerThreadLocal.setIndexingEnabled(indexingEnabled);
+			IndexStatusManagerThreadLocal.setIndexReadOnly(indexReadOnly);
 		}
 	}
 
@@ -515,9 +515,9 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 		Folder folder = PortletFileRepositoryUtil.getPortletFolder(
 			stagingRequestId);
 
-		boolean indexingEnabled = IndexStatusManagerThreadLocal.isIndexingEnabled();
+		boolean indexReadOnly = IndexStatusManagerThreadLocal.isIndexReadOnly();
 
-		IndexStatusManagerThreadLocal.setIndexingEnabled(false);
+		IndexStatusManagerThreadLocal.setIndexReadOnly(true);
 
 		try {
 			PortletFileRepositoryUtil.addPortletFileEntry(
@@ -527,7 +527,7 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 				fileName, ContentTypes.APPLICATION_ZIP, false);
 		}
 		finally {
-			IndexStatusManagerThreadLocal.setIndexingEnabled(indexingEnabled);
+			IndexStatusManagerThreadLocal.setIndexReadOnly(indexReadOnly);
 		}
 	}
 
@@ -900,9 +900,9 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 			return stagingRequestFileEntry;
 		}
 
-		boolean indexingEnabled = IndexStatusManagerThreadLocal.isIndexingEnabled();
+		boolean indexReadOnly = IndexStatusManagerThreadLocal.isIndexReadOnly();
 
-		IndexStatusManagerThreadLocal.setIndexingEnabled(false);
+		IndexStatusManagerThreadLocal.setIndexReadOnly(true);
 
 		FileOutputStream fileOutputStream = null;
 
@@ -964,7 +964,7 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 				ioe);
 		}
 		finally {
-			IndexStatusManagerThreadLocal.setIndexingEnabled(indexingEnabled);
+			IndexStatusManagerThreadLocal.setIndexReadOnly(indexReadOnly);
 
 			StreamUtil.cleanUp(fileOutputStream);
 
