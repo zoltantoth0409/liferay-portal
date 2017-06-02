@@ -190,19 +190,19 @@ public class CalendarBookingLocalServiceImpl
 		calendarBooking.setSecondReminderType(secondReminderType);
 		calendarBooking.setExpandoBridgeAttributes(serviceContext);
 
+		int status = 0;
+
 		if (calendarBooking.isMasterBooking()) {
-			calendarBooking.setStatus(
-				CalendarBookingWorkflowConstants.STATUS_DRAFT);
+			status = CalendarBookingWorkflowConstants.STATUS_DRAFT;
 		}
 		else if (isStagingCalendarBooking(calendarBooking)) {
-			calendarBooking.setStatus(
-				CalendarBookingWorkflowConstants.STATUS_MASTER_STAGING);
+			status = CalendarBookingWorkflowConstants.STATUS_MASTER_STAGING;
 		}
 		else {
-			calendarBooking.setStatus(
-				CalendarBookingWorkflowConstants.STATUS_MASTER_PENDING);
+			status = CalendarBookingWorkflowConstants.STATUS_MASTER_PENDING;
 		}
 
+		calendarBooking.setStatus(status);
 		calendarBooking.setStatusDate(serviceContext.getModifiedDate(now));
 
 		calendarBookingPersistence.update(calendarBooking);
