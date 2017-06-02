@@ -788,8 +788,13 @@ public class LayoutExportController implements ExportController {
 				layout.getPlid());
 		}
 		else {
-			layoutRevision = _layoutRevisionLocalService.fetchLayoutRevision(
-				layoutSetBranchId, true, layout.getPlid());
+			List<LayoutRevision> layoutRevisions =
+				_layoutRevisionLocalService.getLayoutRevisions(
+					layoutSetBranchId, layout.getPlid(), true);
+
+			if (!layoutRevisions.isEmpty()) {
+				layoutRevision = layoutRevisions.get(0);
+			}
 		}
 
 		if (layoutRevision == null) {
