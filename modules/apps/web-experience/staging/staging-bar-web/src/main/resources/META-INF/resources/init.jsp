@@ -38,6 +38,7 @@ page import="com.liferay.portal.kernel.exception.SystemException" %><%@
 page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
 page import="com.liferay.portal.kernel.log.Log" %><%@
 page import="com.liferay.portal.kernel.log.LogFactoryUtil" %><%@
+page import="com.liferay.portal.kernel.model.Group" %><%@
 page import="com.liferay.portal.kernel.model.Layout" %><%@
 page import="com.liferay.portal.kernel.model.LayoutBranch" %><%@
 page import="com.liferay.portal.kernel.model.LayoutRevision" %><%@
@@ -94,21 +95,9 @@ page import="javax.portlet.PortletURL" %>
 <portlet:defineObjects />
 
 <%
-layout = LayoutLocalServiceUtil.fetchLayout(plid);
-
-Layout selLayout = layout;
-
-long selPlid = ParamUtil.getLong(request, "selPlid");
-
-if (selPlid > 0) {
-	selLayout = LayoutLocalServiceUtil.getLayout(selPlid);
-}
-
-if (selLayout != null) {
-	group = selLayout.getGroup();
-
-	privateLayout = selLayout.isPrivateLayout();
-}
+group = (Group)renderRequest.getAttribute(WebKeys.GROUP);
+layout = (Layout)renderRequest.getAttribute(WebKeys.LAYOUT);
+privateLayout = (boolean)renderRequest.getAttribute(WebKeys.PRIVATE_LAYOUT);
 
 LayoutBranchDisplayContext layoutBranchDisplayContext = new LayoutBranchDisplayContext(request);
 LayoutSetBranchDisplayContext layoutSetBranchDisplayContext = new LayoutSetBranchDisplayContext(request);
