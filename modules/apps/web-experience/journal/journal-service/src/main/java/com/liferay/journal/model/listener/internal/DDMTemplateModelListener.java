@@ -15,11 +15,13 @@
 package com.liferay.journal.model.listener.internal;
 
 import com.liferay.dynamic.data.mapping.model.DDMTemplate;
+import com.liferay.journal.util.JournalContent;
 import com.liferay.portal.kernel.model.BaseModelListener;
 import com.liferay.portal.kernel.model.ModelListener;
 import com.liferay.portal.servlet.filters.cache.CacheUtil;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Mariano Álvaro Sáiz
@@ -42,9 +44,16 @@ public class DDMTemplateModelListener extends BaseModelListener<DDMTemplate> {
 			return;
 		}
 
+		// Article cache
+
+		_journalContent.clearCache(ddmTemplate.getTemplateKey());
+
 		// Layout cache
 
 		CacheUtil.clearCache(ddmTemplate.getCompanyId());
 	}
+
+	@Reference
+	private JournalContent _journalContent;
 
 }
