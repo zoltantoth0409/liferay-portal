@@ -21,6 +21,7 @@ String randomNamespace = PortalUtil.generateRandomKey(request, "taglib_ui_rating
 
 String className = (String)request.getAttribute("liferay-ui:ratings:className");
 long classPK = GetterUtil.getLong((String)request.getAttribute("liferay-ui:ratings:classPK"));
+Boolean inTrash = (Boolean)request.getAttribute("liferay-ui:ratings:inTrash");
 int numberOfStars = GetterUtil.getInteger((String)request.getAttribute("liferay-ui:ratings:numberOfStars"));
 RatingsEntry ratingsEntry = (RatingsEntry)request.getAttribute("liferay-ui:ratings:ratingsEntry");
 RatingsStats ratingsStats = (RatingsStats)request.getAttribute("liferay-ui:ratings:ratingsStats");
@@ -62,6 +63,10 @@ double yourScore = -1.0;
 
 if (ratingsEntry != null) {
 	yourScore = ratingsEntry.getScore();
+}
+
+if (inTrash == null) {
+	inTrash = TrashUtil.isInTrash(className, classPK);
 }
 %>
 
