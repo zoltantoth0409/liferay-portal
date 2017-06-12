@@ -262,6 +262,7 @@ String socialBookmarksDisplayPosition = blogsPortletInstanceConfiguration.social
 							<liferay-ui:ratings
 								className="<%= BlogsEntry.class.getName() %>"
 								classPK="<%= entry.getEntryId() %>"
+								inTrash="<%= entry.isInTrash() %>"
 							/>
 						</div>
 					</c:if>

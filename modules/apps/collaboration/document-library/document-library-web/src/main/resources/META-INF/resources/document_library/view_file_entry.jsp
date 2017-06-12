@@ -477,6 +477,7 @@ if (portletTitleBasedNavigation) {
 							<liferay-ui:ratings
 								className="<%= DLFileEntryConstants.getClassName() %>"
 								classPK="<%= fileEntryId %>"
+								inTrash="<%= fileEntry.isInTrash() %>"
 							/>
 						</span>
 					</c:if>
