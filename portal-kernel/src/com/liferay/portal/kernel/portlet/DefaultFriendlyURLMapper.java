@@ -281,7 +281,7 @@ public class DefaultFriendlyURLMapper extends BaseFriendlyURLMapper {
 				"userIdAndInstanceId",
 				PortletIdCodec.encodeUserIdAndInstanceId(userId, instanceId));
 
-			if (PortletIdCodec.hasInstanceId(portletInstanceKey)) {
+			if (instanceId != null) {
 				routeParameters.put("instanceId", instanceId);
 			}
 		}
