@@ -380,6 +380,23 @@ public class AssetEntryLocalServiceImpl extends AssetEntryLocalServiceBaseImpl {
 	}
 
 	@Override
+	public void incrementViewCounter(long userId, AssetEntry assetEntry)
+		throws PortalException {
+
+		User user = userPersistence.findByPrimaryKey(userId);
+
+		assetEntryLocalService.incrementViewCounter(
+			user.getUserId(), assetEntry.getClassName(),
+			assetEntry.getClassPK(), 1);
+
+		if (!user.isDefaultUser()) {
+			SocialActivityManagerUtil.addActivity(
+				user.getUserId(), assetEntry, SocialActivityConstants.TYPE_VIEW,
+				StringPool.BLANK, 0);
+		}
+	}
+
+	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public AssetEntry incrementViewCounter(
 			long userId, String className, long classPK)
