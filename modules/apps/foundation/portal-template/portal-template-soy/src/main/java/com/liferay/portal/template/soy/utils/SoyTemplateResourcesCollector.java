@@ -47,6 +47,18 @@ public class SoyTemplateResourcesCollector {
 		_templatePath = templatePath;
 	}
 
+	/**
+	 * @deprecated As of 2.4.0, with no direct replacement
+	 */
+	public List<TemplateResource> getAllTemplateResources()
+		throws TemplateException {
+
+		List<TemplateResource> templateResources =
+			SoyTemplateResourcesProvider.getAllTemplateResources();
+
+		return Collections.unmodifiableList(templateResources);
+	}
+
 	public List<TemplateResource> getTemplateResources()
 		throws TemplateException {
 
