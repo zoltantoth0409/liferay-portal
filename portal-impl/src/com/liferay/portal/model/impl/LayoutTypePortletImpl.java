@@ -1487,7 +1487,7 @@ public class LayoutTypePortletImpl
 				}
 
 				if (Validator.isNull(portletIdColumnId) &&
-					PortletIdCodec.hasIdenticalPortletName(
+					Objects.equals(
 						PortletIdCodec.decodePortletName(columnPortletId),
 						PortletIdCodec.decodePortletName(portletId))) {
 
