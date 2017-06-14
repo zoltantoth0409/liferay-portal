@@ -192,6 +192,10 @@ public class CalendarBookingLocalServiceImpl
 			calendarBooking.setStatus(
 				CalendarBookingWorkflowConstants.STATUS_DRAFT);
 		}
+		else if (isStagingCalendarBooking(calendarBooking)) {
+			calendarBooking.setStatus(
+				CalendarBookingWorkflowConstants.STATUS_MASTER_STAGING);
+		}
 		else {
 			calendarBooking.setStatus(
 				CalendarBookingWorkflowConstants.STATUS_MASTER_PENDING);
@@ -595,6 +599,18 @@ public class CalendarBookingLocalServiceImpl
 		}
 
 		return childCalendarIds;
+	}
+
+	public boolean isStagingCalendarBooking(CalendarBooking calendarBooking)
+		throws PortalException {
+
+		if (!calendarBooking.isMasterBooking()) {
+			return isStagingCalendarBooking(
+				calendarBooking.getParentCalendarBooking());
+		}
+
+		return calendarLocalService.isStagingCalendar(
+			calendarBooking.getCalendar());
 	}
 
 	@Override
