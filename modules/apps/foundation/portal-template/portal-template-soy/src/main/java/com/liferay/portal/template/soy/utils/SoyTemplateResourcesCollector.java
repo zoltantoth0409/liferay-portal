@@ -50,6 +50,7 @@ public class SoyTemplateResourcesCollector {
 	/**
 	 * @deprecated As of 2.4.0, with no direct replacement
 	 */
+	@Deprecated
 	public List<TemplateResource> getAllTemplateResources()
 		throws TemplateException {
 
