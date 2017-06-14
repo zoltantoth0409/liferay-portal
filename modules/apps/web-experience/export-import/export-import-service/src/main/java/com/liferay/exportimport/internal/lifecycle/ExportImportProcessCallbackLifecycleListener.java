@@ -15,12 +15,11 @@
 package com.liferay.exportimport.internal.lifecycle;
 
 import com.liferay.exportimport.kernel.lifecycle.BaseProcessExportImportLifecycleListener;
+import com.liferay.exportimport.kernel.lifecycle.ExportImportLifecycleEvent;
 import com.liferay.exportimport.kernel.lifecycle.ExportImportLifecycleListener;
 import com.liferay.exportimport.lar.ExportImportProcessCallbackUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-
-import java.io.Serializable;
 
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -40,25 +39,31 @@ public class ExportImportProcessCallbackLifecycleListener
 	}
 
 	@Override
-	protected void onProcessFailed(List<Serializable> attributes)
+	protected void onProcessFailed(
+			ExportImportLifecycleEvent exportImportLifecycleEvent)
 		throws Exception {
 
-		ExportImportProcessCallbackUtil.popCallbackList();
+		ExportImportProcessCallbackUtil.popCallbackList(
+			exportImportLifecycleEvent.getProcessId());
 	}
 
 	@Override
-	protected void onProcessStarted(List<Serializable> attributes)
+	protected void onProcessStarted(
+			ExportImportLifecycleEvent exportImportLifecycleEvent)
 		throws Exception {
 
-		ExportImportProcessCallbackUtil.pushCallbackList();
+		ExportImportProcessCallbackUtil.pushCallbackList(
+			exportImportLifecycleEvent.getProcessId());
 	}
 
 	@Override
-	protected void onProcessSucceeded(List<Serializable> attributes)
+	protected void onProcessSucceeded(
+			ExportImportLifecycleEvent exportImportLifecycleEvent)
 		throws Exception {
 
 		List<Callable<?>> callables =
-			ExportImportProcessCallbackUtil.popCallbackList();
+			ExportImportProcessCallbackUtil.popCallbackList(
+				exportImportLifecycleEvent.getProcessId());
 
 		for (Callable<?> callable : callables) {
 			try {
@@ -74,4 +79,4 @@ public class ExportImportProcessCallbackLifecycleListener
 	private static final Log _log = LogFactoryUtil.getLog(
 		ExportImportProcessCallbackLifecycleListener.class);
 
-};
+}

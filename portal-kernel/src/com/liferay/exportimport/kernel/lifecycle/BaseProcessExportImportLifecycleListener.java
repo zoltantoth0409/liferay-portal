@@ -65,86 +65,113 @@ public abstract class BaseProcessExportImportLifecycleListener
 
 		if (processFlag == PROCESS_FLAG_LAYOUT_EXPORT_IN_PROCESS) {
 			if (code == EVENT_LAYOUT_EXPORT_FAILED) {
-				onProcessFailed(exportImportLifecycleEvent.getAttributes());
+				onProcessFailed(exportImportLifecycleEvent);
 			}
 			else if (code == EVENT_LAYOUT_EXPORT_STARTED) {
-				onProcessStarted(exportImportLifecycleEvent.getAttributes());
+				onProcessStarted(exportImportLifecycleEvent);
 			}
 			else if (code == EVENT_LAYOUT_EXPORT_SUCCEEDED) {
-				onProcessSucceeded(exportImportLifecycleEvent.getAttributes());
+				onProcessSucceeded(exportImportLifecycleEvent);
 			}
 		}
 		else if (processFlag == PROCESS_FLAG_LAYOUT_IMPORT_IN_PROCESS) {
 			if (code == EVENT_LAYOUT_IMPORT_FAILED) {
-				onProcessFailed(exportImportLifecycleEvent.getAttributes());
+				onProcessFailed(exportImportLifecycleEvent);
 			}
 			else if (code == EVENT_LAYOUT_IMPORT_STARTED) {
-				onProcessStarted(exportImportLifecycleEvent.getAttributes());
+				onProcessStarted(exportImportLifecycleEvent);
 			}
 			else if (code == EVENT_LAYOUT_IMPORT_SUCCEEDED) {
-				onProcessSucceeded(exportImportLifecycleEvent.getAttributes());
+				onProcessSucceeded(exportImportLifecycleEvent);
 			}
 		}
 		else if (processFlag == PROCESS_FLAG_LAYOUT_STAGING_IN_PROCESS) {
 			if ((code == EVENT_PUBLICATION_LAYOUT_LOCAL_FAILED) ||
 				(code == EVENT_PUBLICATION_LAYOUT_REMOTE_FAILED)) {
 
-				onProcessFailed(exportImportLifecycleEvent.getAttributes());
+				onProcessFailed(exportImportLifecycleEvent);
 			}
 			else if ((code == EVENT_PUBLICATION_LAYOUT_LOCAL_STARTED) ||
 					 (code == EVENT_PUBLICATION_LAYOUT_REMOTE_STARTED)) {
 
-				onProcessStarted(exportImportLifecycleEvent.getAttributes());
+				onProcessStarted(exportImportLifecycleEvent);
 			}
 			else if ((code == EVENT_PUBLICATION_LAYOUT_LOCAL_SUCCEEDED) ||
 					 (code == EVENT_PUBLICATION_LAYOUT_REMOTE_SUCCEEDED)) {
 
-				onProcessSucceeded(exportImportLifecycleEvent.getAttributes());
+				onProcessSucceeded(exportImportLifecycleEvent);
 			}
 		}
 		else if (processFlag == PROCESS_FLAG_PORTLET_EXPORT_IN_PROCESS) {
 			if (code == EVENT_PORTLET_EXPORT_FAILED) {
-				onProcessFailed(exportImportLifecycleEvent.getAttributes());
+				onProcessFailed(exportImportLifecycleEvent);
 			}
 			else if (code == EVENT_PORTLET_EXPORT_STARTED) {
-				onProcessStarted(exportImportLifecycleEvent.getAttributes());
+				onProcessStarted(exportImportLifecycleEvent);
 			}
 			else if (code == EVENT_PORTLET_EXPORT_SUCCEEDED) {
-				onProcessSucceeded(exportImportLifecycleEvent.getAttributes());
+				onProcessSucceeded(exportImportLifecycleEvent);
 			}
 		}
 		else if (processFlag == PROCESS_FLAG_PORTLET_IMPORT_IN_PROCESS) {
 			if (code == EVENT_PORTLET_IMPORT_FAILED) {
-				onProcessFailed(exportImportLifecycleEvent.getAttributes());
+				onProcessFailed(exportImportLifecycleEvent);
 			}
 			else if (code == EVENT_PORTLET_IMPORT_STARTED) {
-				onProcessStarted(exportImportLifecycleEvent.getAttributes());
+				onProcessStarted(exportImportLifecycleEvent);
 			}
 			else if (code == EVENT_PORTLET_IMPORT_SUCCEEDED) {
-				onProcessSucceeded(exportImportLifecycleEvent.getAttributes());
+				onProcessSucceeded(exportImportLifecycleEvent);
 			}
 		}
 		else if (processFlag == PROCESS_FLAG_PORTLET_STAGING_IN_PROCESS) {
 			if (code == EVENT_PUBLICATION_PORTLET_LOCAL_FAILED) {
-				onProcessFailed(exportImportLifecycleEvent.getAttributes());
+				onProcessFailed(exportImportLifecycleEvent);
 			}
 			else if (code == EVENT_PUBLICATION_PORTLET_LOCAL_STARTED) {
-				onProcessStarted(exportImportLifecycleEvent.getAttributes());
+				onProcessStarted(exportImportLifecycleEvent);
 			}
 			else if (code == EVENT_PUBLICATION_PORTLET_LOCAL_SUCCEEDED) {
-				onProcessSucceeded(exportImportLifecycleEvent.getAttributes());
+				onProcessSucceeded(exportImportLifecycleEvent);
 			}
 		}
 	}
 
+	protected void onProcessFailed(
+			ExportImportLifecycleEvent exportImportLifecycleEvent)
+		throws Exception {
+	}
+
+	/**
+	 * @deprecated As of 7.0.0
+	 */
+	@Deprecated
 	protected void onProcessFailed(List<Serializable> attributes)
 		throws Exception {
 	}
 
+	protected void onProcessStarted(
+			ExportImportLifecycleEvent exportImportLifecycleEvent)
+		throws Exception {
+	}
+
+	/**
+	 * @deprecated As of 7.0.0
+	 */
+	@Deprecated
 	protected void onProcessStarted(List<Serializable> attributes)
 		throws Exception {
 	}
 
+	protected void onProcessSucceeded(
+			ExportImportLifecycleEvent exportImportLifecycleEvent)
+		throws Exception {
+	}
+
+	/**
+	 * @deprecated As of 7.0.0
+	 */
+	@Deprecated
 	protected void onProcessSucceeded(List<Serializable> attributes)
 		throws Exception {
 	}
