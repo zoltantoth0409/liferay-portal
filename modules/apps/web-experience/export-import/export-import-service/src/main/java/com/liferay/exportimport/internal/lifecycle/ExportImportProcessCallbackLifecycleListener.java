@@ -12,9 +12,10 @@
  * details.
  */
 
-package com.liferay.exportimport.lifecycle;
+package com.liferay.exportimport.internal.lifecycle;
 
 import com.liferay.exportimport.kernel.lifecycle.BaseProcessExportImportLifecycleListener;
+import com.liferay.exportimport.kernel.lifecycle.ExportImportLifecycleListener;
 import com.liferay.exportimport.lar.ExportImportProcessCallbackUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -24,11 +25,12 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.concurrent.Callable;
 
+import org.osgi.service.component.annotations.Component;
+
 /**
  * @author Daniel Kocsis
- * @deprecated As of 3.6.0
  */
-@Deprecated
+@Component(immediate = true, service = ExportImportLifecycleListener.class)
 public class ExportImportProcessCallbackLifecycleListener
 	extends BaseProcessExportImportLifecycleListener {
 

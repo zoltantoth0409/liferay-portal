@@ -12,12 +12,13 @@
  * details.
  */
 
-package com.liferay.exportimport.lifecycle;
+package com.liferay.exportimport.internal.lifecycle;
 
 import com.liferay.exportimport.kernel.lar.ExportImportClassedModelUtil;
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
 import com.liferay.exportimport.kernel.lifecycle.BaseExportImportLifecycleListener;
 import com.liferay.exportimport.kernel.lifecycle.ExportImportLifecycleEvent;
+import com.liferay.exportimport.kernel.lifecycle.ExportImportLifecycleListener;
 import com.liferay.exportimport.kernel.model.ExportImportConfiguration;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -31,11 +32,12 @@ import java.io.Serializable;
 
 import java.util.Map;
 
+import org.osgi.service.component.annotations.Component;
+
 /**
  * @author Daniel Kocsis
- * @deprecated As of 3.6.0
  */
-@Deprecated
+@Component(immediate = true, service = ExportImportLifecycleListener.class)
 public class LoggerExportImportLifecycleListener
 	extends BaseExportImportLifecycleListener {
 
