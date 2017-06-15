@@ -14,6 +14,8 @@
 
 package com.liferay.exportimport.kernel.lifecycle;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.concurrent.ConcurrentHashSet;
 import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
@@ -30,6 +32,7 @@ import java.util.Set;
 /**
  * @author Daniel Kocsis
  */
+@ProviderType
 public class ExportImportLifecycleEventListenerRegistryUtil {
 
 	public static Set<ExportImportLifecycleListener>

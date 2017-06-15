@@ -14,6 +14,8 @@
 
 package com.liferay.exportimport.lifecycle;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.exportimport.kernel.lar.ExportImportClassedModelUtil;
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
 import com.liferay.exportimport.kernel.lifecycle.BaseExportImportLifecycleListener;
@@ -36,6 +38,7 @@ import java.util.Map;
  * @deprecated As of 3.6.0
  */
 @Deprecated
+@ProviderType
 public class LoggerExportImportLifecycleListener
 	extends BaseExportImportLifecycleListener {
 

@@ -14,6 +14,8 @@
 
 package com.liferay.exportimport.lifecycle;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
 import com.liferay.exportimport.kernel.lifecycle.BaseExportImportLifecycleListener;
 import com.liferay.portal.security.permission.PermissionCacheUtil;
@@ -24,6 +26,7 @@ import com.liferay.portal.servlet.filters.cache.CacheUtil;
  * @deprecated As of 3.6.0
  */
 @Deprecated
+@ProviderType
 public class CacheExportImportLifecycleListener
 	extends BaseExportImportLifecycleListener {
 
