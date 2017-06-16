@@ -41,11 +41,13 @@ import com.liferay.exportimport.kernel.staging.StagingUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.service.PortletPreferencesLocalServiceUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.rule.Sync;
+import com.liferay.portal.kernel.test.rule.SynchronousDestinationTestRule;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
@@ -96,7 +98,9 @@ public class CalendarBookingLocalServiceTest {
 	@Rule
 	public static final AggregateTestRule aggregateTestRule =
 		new AggregateTestRule(
-			new LiferayIntegrationTestRule(), SynchronousMailTestRule.INSTANCE);
+			new LiferayIntegrationTestRule(),
+			SynchronousDestinationTestRule.INSTANCE,
+			SynchronousMailTestRule.INSTANCE);
 
 	@Before
 	public void setUp() throws Exception {
@@ -108,6 +112,8 @@ public class CalendarBookingLocalServiceTest {
 	@After
 	public void tearDown() {
 		tearDownCheckBookingMessageListener();
+
+		tearDownPortletPreferences();
 	}
 
 	@Test
@@ -255,6 +261,38 @@ public class CalendarBookingLocalServiceTest {
 				invitingCalendar, groupCalendar);
 
 		assertCalendar(childCalendarBooking, groupCalendar);
+	}
+
+	@Test
+	public void testInviteLiveSiteCalendarCreatesStagingSiteCalendarBooking()
+		throws Exception {
+
+		_liveGroup = GroupTestUtil.addGroup();
+
+		Calendar invitingCalendar = CalendarTestUtil.addCalendar(_user);
+
+		Calendar liveCalendar = CalendarTestUtil.getDefaultCalendar(_liveGroup);
+
+		enableLocalStaging(_liveGroup, true);
+
+		Calendar stagingCalendar = CalendarTestUtil.getStagingCalendar(
+			_liveGroup, liveCalendar);
+
+		Assert.assertNotNull(stagingCalendar);
+
+		CalendarBooking childCalendarBooking =
+			CalendarBookingTestUtil.addChildCalendarBooking(
+				invitingCalendar, liveCalendar);
+
+		assertCalendar(childCalendarBooking, stagingCalendar);
+
+		assertCalendarBookingsCount(invitingCalendar, 1);
+
+		assertCalendarBookingsCount(liveCalendar, 0);
+
+		assertCalendarBookingsCount(stagingCalendar, 1);
+
+		assertCalendar(childCalendarBooking, stagingCalendar);
 	}
 
 	@Test
@@ -1324,6 +1362,15 @@ public class CalendarBookingLocalServiceTest {
 		Assert.assertNull(calendarBookingInstance);
 	}
 
+	protected void assertCalendarBookingsCount(Calendar calendar, int count) {
+		List<CalendarBooking> calendarBookings =
+			CalendarBookingLocalServiceUtil.getCalendarBookings(
+				calendar.getCalendarId());
+
+		Assert.assertEquals(
+			calendarBookings.toString(), count, calendarBookings.size());
+	}
+
 	protected void assertEqualsTime(
 		int hour, int minute, java.util.Calendar jCalendar) {
 
@@ -1464,6 +1511,13 @@ public class CalendarBookingLocalServiceTest {
 		ReflectionTestUtil.setFieldValue(
 			_checkBookingMessageListener, "_calendarBookingLocalService",
 			CalendarBookingLocalServiceUtil.getService());
+	}
+
+	protected void tearDownPortletPreferences() {
+		if (_liveGroup != null) {
+			PortletPreferencesLocalServiceUtil.deletePortletPreferencesByPlid(
+				0);
+		}
 	}
 
 	private static final TimeZone _losAngelesTimeZone = TimeZone.getTimeZone(
