@@ -239,6 +239,25 @@ public class CalendarBookingLocalServiceTest {
 	}
 
 	@Test
+	public void testInviteGroupCalendar() throws Exception {
+		ServiceContext serviceContext = createServiceContext();
+
+		Calendar invitingCalendar = CalendarTestUtil.addCalendar(
+			_user, serviceContext);
+
+		_group = GroupTestUtil.addGroup();
+
+		Calendar groupCalendar = CalendarTestUtil.addCalendar(
+			_group, serviceContext);
+
+		CalendarBooking childCalendarBooking =
+			CalendarBookingTestUtil.addChildCalendarBooking(
+				invitingCalendar, groupCalendar);
+
+		assertCalendar(childCalendarBooking, groupCalendar);
+	}
+
+	@Test
 	public void testInviteToDraftCalendarBookingResultsInMasterPendingChild()
 		throws Exception {
 
@@ -1277,6 +1296,13 @@ public class CalendarBookingLocalServiceTest {
 		serviceContext.setAttribute(affixedKey, String.valueOf(value));
 	}
 
+	protected void assertCalendar(
+		CalendarBooking calendarBooking, Calendar calendar) {
+
+		Assert.assertEquals(
+			calendar.getCalendarId(), calendarBooking.getCalendarId());
+	}
+
 	protected void assertCalendarBookingInstancesCount(
 			long calendarBookingId, int count)
 		throws PortalException {
@@ -1446,6 +1472,9 @@ public class CalendarBookingLocalServiceTest {
 		StringPool.UTC);
 
 	private Object _checkBookingMessageListener;
+
+	@DeleteAfterTestRun
+	private Group _group;
 
 	@DeleteAfterTestRun
 	private Group _liveGroup;
