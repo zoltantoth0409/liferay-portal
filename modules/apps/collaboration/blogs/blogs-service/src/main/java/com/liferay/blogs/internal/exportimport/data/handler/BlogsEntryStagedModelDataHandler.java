@@ -313,6 +313,10 @@ public class BlogsEntryStagedModelDataHandler
 		if (coverImageSelector != null) {
 			_blogsEntryLocalService.addCoverImage(
 				importedEntry.getEntryId(), coverImageSelector);
+
+			_blogsEntryLocalService.addOriginalImageFileEntry(
+				userId, importedEntry.getGroupId(), importedEntry.getEntryId(),
+				coverImageSelector);
 		}
 
 		// Small image
