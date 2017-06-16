@@ -162,6 +162,7 @@ public class PageCommentsPortletDataHandler extends BasePortletDataHandler {
 		throws Exception {
 
 		ExportImportProcessCallbackRegistryUtil.registerCallback(
+			portletDataContext.getExportImportProcessId(),
 			new ImportCommentsCallable(_commentManager, portletDataContext));
 
 		return null;

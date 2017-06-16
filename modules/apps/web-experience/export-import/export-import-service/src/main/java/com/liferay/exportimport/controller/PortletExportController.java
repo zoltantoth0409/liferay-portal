@@ -298,6 +298,7 @@ public class PortletExportController implements ExportController {
 				portletLastPublishDate, portletDataContext.getEndDate());
 
 			ExportImportProcessCallbackRegistryUtil.registerCallback(
+				portletDataContext.getExportImportProcessId(),
 				new UpdatePortletLastPublishDateCallable(
 					adjustedDateRange, portletDataContext.getEndDate(),
 					portletDataContext.getGroupId(), layout.getPlid(),
