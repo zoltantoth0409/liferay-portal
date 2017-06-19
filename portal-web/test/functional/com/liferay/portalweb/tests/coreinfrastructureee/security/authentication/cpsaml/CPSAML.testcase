@@ -167,6 +167,11 @@
 		<property name="app.server.bundles.size" value="2" />
 		<property name="test.name.skip.portal.instance" value="CPSAML#ViewSingleLogoutWithMultipleSPs" />
 
+		<execute macro="User#loginPG">
+			<var name="password" value="test" />
+			<var name="userEmailAddress" value="test@liferay.com" />
+		</execute>
+
 		<execute macro="SAML#configureLiferaySAMLAsSP">
 			<var name="samlEntityID" value="samlsp2" />
 			<var name="spURL" value="http://www.baker.com:10080/" />
