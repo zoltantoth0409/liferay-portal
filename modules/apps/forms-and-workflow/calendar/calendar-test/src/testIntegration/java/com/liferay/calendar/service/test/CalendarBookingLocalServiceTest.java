@@ -264,6 +264,25 @@ public class CalendarBookingLocalServiceTest {
 	}
 
 	@Test
+	public void testInviteGroupResourceCalendar() throws Exception {
+		ServiceContext serviceContext = createServiceContext();
+
+		Calendar invitingCalendar = CalendarTestUtil.addCalendar(
+			_user, serviceContext);
+
+		_group = GroupTestUtil.addGroup();
+
+		Calendar resourceCalendar =
+			CalendarTestUtil.addCalendarResourceCalendar(_group);
+
+		CalendarBooking childCalendarBooking =
+			CalendarBookingTestUtil.addChildCalendarBooking(
+				invitingCalendar, resourceCalendar);
+
+		assertCalendar(childCalendarBooking, resourceCalendar);
+	}
+
+	@Test
 	public void testInviteLiveSiteCalendarCreatesStagingSiteCalendarBooking()
 		throws Exception {
 
@@ -485,6 +504,25 @@ public class CalendarBookingLocalServiceTest {
 
 		Assert.assertEquals(
 			calendarBooking.getTitle(), childCalendarBooking.getTitle());
+	}
+
+	@Test
+	public void testInviteUserResourceCalendar() throws Exception {
+		ServiceContext serviceContext = createServiceContext();
+
+		_group = GroupTestUtil.addGroup();
+
+		Calendar invitingCalendar = CalendarTestUtil.addCalendar(
+			_group, serviceContext);
+
+		Calendar resourceCalendar =
+			CalendarTestUtil.addCalendarResourceCalendar(_user);
+
+		CalendarBooking childCalendarBooking =
+			CalendarBookingTestUtil.addChildCalendarBooking(
+				invitingCalendar, resourceCalendar);
+
+		assertCalendar(childCalendarBooking, resourceCalendar);
 	}
 
 	@Test
