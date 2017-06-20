@@ -347,7 +347,7 @@ public abstract class BaseDDMDisplay implements DDMDisplay {
 	}
 
 	@Override
-	public boolean isShowAddButton(Group group) {
+	public boolean isShowAddButton(Group scopeGroup) {
 		String portletId = getPortletId();
 
 		String ddmStructurePortletId = PortletProviderUtil.getPortletId(
@@ -357,7 +357,11 @@ public abstract class BaseDDMDisplay implements DDMDisplay {
 			return false;
 		}
 
-		return true;
+		if (!scopeGroup.hasLocalOrRemoteStagingGroup()) {
+			return true;
+		}
+
+		return scopeGroup.isStagingGroup();
 	}
 
 	@Override
