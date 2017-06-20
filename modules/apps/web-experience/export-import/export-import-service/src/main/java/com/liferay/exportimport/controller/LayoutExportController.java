@@ -172,7 +172,8 @@ public class LayoutExportController implements ExportController {
 
 			_exportImportLifecycleManager.fireExportImportLifecycleEvent(
 				EVENT_LAYOUT_EXPORT_FAILED, getProcessFlag(),
-				portletDataContext.getExportImportProcessId(),
+				String.valueOf(
+					exportImportConfiguration.getExportImportConfigurationId()),
 				PortletDataContextFactoryUtil.clonePortletDataContext(
 					portletDataContext),
 				t);
