@@ -154,8 +154,7 @@ public class BindConfigurationMVCActionCommand implements MVCActionCommand {
 
 					configuration =
 						_configurationAdmin.createFactoryConfiguration(
-							configurationModel.getID(),
-							configurationModel.getBundleLocation());
+							configurationModel.getID(), StringPool.QUESTION);
 				}
 				else {
 					if (_log.isDebugEnabled()) {
@@ -163,8 +162,7 @@ public class BindConfigurationMVCActionCommand implements MVCActionCommand {
 					}
 
 					configuration = _configurationAdmin.getConfiguration(
-						configurationModel.getID(),
-						configurationModel.getBundleLocation());
+						configurationModel.getID(), StringPool.QUESTION);
 				}
 			}
 
