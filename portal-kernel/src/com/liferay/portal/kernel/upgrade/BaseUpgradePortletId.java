@@ -488,11 +488,11 @@ public abstract class BaseUpgradePortletId extends UpgradeProcess {
 					String portletId = oldPrimKey.substring(
 						pos + PortletConstants.LAYOUT_SEPARATOR.length());
 
-					String instanceId = PortletConstants.getInstanceId(
+					String instanceId = PortletIdCodec.decodeInstanceId(
 						portletId);
-					long userId = PortletConstants.getUserId(portletId);
+					long userId = PortletIdCodec.decodeUserId(portletId);
 
-					String newPortletId = PortletConstants.assemblePortletId(
+					String newPortletId = PortletIdCodec.encode(
 						newRootPortletId, userId, instanceId);
 
 					String newPrimKey = PortletPermissionUtil.getPrimaryKey(

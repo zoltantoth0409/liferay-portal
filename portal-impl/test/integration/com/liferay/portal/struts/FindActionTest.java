@@ -19,9 +19,9 @@ import com.liferay.blogs.kernel.service.BlogsEntryLocalServiceUtil;
 import com.liferay.portal.kernel.exception.NoSuchLayoutException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
-import com.liferay.portal.kernel.model.PortletInstance;
 import com.liferay.portal.kernel.model.impl.VirtualLayout;
 import com.liferay.portal.kernel.portlet.BasePortletLayoutFinder;
+import com.liferay.portal.kernel.portlet.PortletIdCodec;
 import com.liferay.portal.kernel.portlet.PortletLayoutFinder;
 import com.liferay.portal.kernel.portlet.PortletProvider;
 import com.liferay.portal.kernel.portlet.PortletProviderUtil;
@@ -168,10 +168,8 @@ public class FindActionTest {
 
 		preferenceMap.put("assetLinkBehavior", new String[] {"viewInPortlet"});
 
-		PortletInstance portletInstance = new PortletInstance(
+		_testPortletId = PortletIdCodec.encode(
 			com.liferay.portlet.util.test.PortletKeys.TEST);
-
-		_testPortletId = portletInstance.getPortletInstanceKey();
 
 		LayoutTestUtil.addPortletToLayout(
 			TestPropsValues.getUserId(), _assetLayout, _testPortletId,
