@@ -66,7 +66,8 @@
 		<execute macro="RSS#addFeed">
 			<var name="feedRowIndexNumber" value="0" />
 			<var name="feedTitle" value="Latimes > Technology News" />
-			<var name="feedUrlLink" value="http://www.latimes.com/business/technology/rss2.0.xml" />
+			<var name="feedType" value="file" />
+			<var name="feedUrlLink" value="rss2.0.xml" />
 		</execute>
 
 		<execute macro="PortletEntry#save" />
@@ -126,7 +127,8 @@
 		<execute macro="RSS#addFeed">
 			<var name="feedRowIndexNumber" value="0" />
 			<var name="feedTitle" value="Latimes > Technology News" />
-			<var name="feedUrlLink" value="http://www.latimes.com/business/technology/rss2.0.xml" />
+			<var name="feedType" value="file" />
+			<var name="feedUrlLink" value="rss2.0.xml" />
 		</execute>
 
 		<execute macro="PortletEntry#save" />
@@ -177,7 +179,8 @@
 		<execute macro="RSS#addFeed">
 			<var name="feedRowIndexNumber" value="0" />
 			<var name="feedTitle" value="Technology" />
-			<var name="feedUrlLink" value="http://rss.nytimes.com/services/xml/rss/nyt/Technology.xml" />
+			<var name="feedType" value="file" />
+			<var name="feedUrlLink" value="Technology.xml" />
 		</execute>
 
 		<execute macro="PortletEntry#save" />
