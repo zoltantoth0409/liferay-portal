@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.model.ResourceAction;
 import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.RoleConstants;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.portlet.PortletIdCodec;
 import com.liferay.portal.kernel.security.pacl.DoPrivileged;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.ResourceActions;
@@ -379,7 +380,7 @@ public class ResourceActionsImpl implements ResourceActions {
 
 	@Override
 	public List<String> getPortletModelResources(String portletName) {
-		portletName = PortletConstants.getRootPortletId(portletName);
+		portletName = PortletIdCodec.decodePortletName(portletName);
 
 		PortletResourceActionsBag portletResourceActionsBag =
 			_getPortletResourceActionsBag(portletName);
@@ -413,7 +414,7 @@ public class ResourceActionsImpl implements ResourceActions {
 
 	@Override
 	public List<String> getPortletResourceActions(String name) {
-		name = PortletConstants.getRootPortletId(name);
+		name = PortletIdCodec.decodePortletName(name);
 
 		PortletResourceActionsBag portletResourceActionsBag =
 			_getPortletResourceActionsBag(name);
@@ -461,7 +462,7 @@ public class ResourceActionsImpl implements ResourceActions {
 		// getPortletResourceGuestDefaultActions and
 		// getPortletResourceGuestDefaultActions may not work either.
 
-		name = PortletConstants.getRootPortletId(name);
+		name = PortletIdCodec.decodePortletName(name);
 
 		PortletResourceActionsBag portletResourceActionsBag =
 			_getPortletResourceActionsBag(name);
@@ -472,7 +473,7 @@ public class ResourceActionsImpl implements ResourceActions {
 
 	@Override
 	public List<String> getPortletResourceGuestDefaultActions(String name) {
-		name = PortletConstants.getRootPortletId(name);
+		name = PortletIdCodec.decodePortletName(name);
 
 		PortletResourceActionsBag portletResourceActionsBag =
 			_getPortletResourceActionsBag(name);
@@ -483,7 +484,7 @@ public class ResourceActionsImpl implements ResourceActions {
 
 	@Override
 	public List<String> getPortletResourceGuestUnsupportedActions(String name) {
-		name = PortletConstants.getRootPortletId(name);
+		name = PortletIdCodec.decodePortletName(name);
 
 		PortletResourceActionsBag portletResourceActionsBag =
 			_getPortletResourceActionsBag(name);
@@ -505,7 +506,7 @@ public class ResourceActionsImpl implements ResourceActions {
 
 	@Override
 	public List<String> getPortletResourceLayoutManagerActions(String name) {
-		name = PortletConstants.getRootPortletId(name);
+		name = PortletIdCodec.decodePortletName(name);
 
 		PortletResourceActionsBag portletResourceActionsBag =
 			_getPortletResourceActionsBag(name);
@@ -531,7 +532,7 @@ public class ResourceActionsImpl implements ResourceActions {
 
 	@Override
 	public String getPortletRootModelResource(String portletName) {
-		portletName = PortletConstants.getRootPortletId(portletName);
+		portletName = PortletIdCodec.decodePortletName(portletName);
 
 		PortletResourceActionsBag portletResourceActionsBag =
 			_getPortletResourceActionsBag(portletName);

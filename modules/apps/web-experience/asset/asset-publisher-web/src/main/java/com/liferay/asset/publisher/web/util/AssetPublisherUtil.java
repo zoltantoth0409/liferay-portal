@@ -50,7 +50,6 @@ import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.GroupConstants;
 import com.liferay.portal.kernel.model.Layout;
-import com.liferay.portal.kernel.model.PortletConstants;
 import com.liferay.portal.kernel.model.Subscription;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.PortletIdCodec;
@@ -156,7 +155,7 @@ public class AssetPublisherUtil {
 
 		String portletId = PortalUtil.getPortletId(portletRequest);
 
-		String rootPortletId = PortletConstants.getRootPortletId(portletId);
+		String rootPortletId = PortletIdCodec.decodePortletName(portletId);
 
 		if (!rootPortletId.equals(AssetPublisherPortletKeys.ASSET_PUBLISHER)) {
 			return;

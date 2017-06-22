@@ -49,11 +49,11 @@ import com.liferay.portal.kernel.model.GroupConstants;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.LayoutConstants;
 import com.liferay.portal.kernel.model.Portlet;
-import com.liferay.portal.kernel.model.PortletConstants;
 import com.liferay.portal.kernel.model.StagedGroupedModel;
 import com.liferay.portal.kernel.model.StagedModel;
 import com.liferay.portal.kernel.model.SystemEventConstants;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.portlet.PortletIdCodec;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.security.xml.SecureXMLFactoryProviderUtil;
 import com.liferay.portal.kernel.service.GroupLocalService;
@@ -252,7 +252,7 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 			return null;
 		}
 
-		return PortletConstants.getRootPortletId(portletId);
+		return PortletIdCodec.decodePortletName(portletId);
 	}
 
 	/**
@@ -1256,7 +1256,7 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 		return MapUtil.getBoolean(
 			parameterMap,
 			PortletDataHandlerKeys.PORTLET_DATA + StringPool.UNDERLINE +
-				PortletConstants.getRootPortletId(portletId));
+				PortletIdCodec.decodePortletName(portletId));
 	}
 
 	protected Map<String, Boolean> getExportPortletSetupControlsMap(
@@ -1376,7 +1376,7 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 		return MapUtil.getBoolean(
 			parameterMap,
 			PortletDataHandlerKeys.PORTLET_DATA + StringPool.UNDERLINE +
-				PortletConstants.getRootPortletId(portletId));
+				PortletIdCodec.decodePortletName(portletId));
 	}
 
 	protected Map<String, Boolean> getImportPortletSetupControlsMap(

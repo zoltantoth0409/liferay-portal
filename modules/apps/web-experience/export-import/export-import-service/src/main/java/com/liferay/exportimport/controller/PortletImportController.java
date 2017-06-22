@@ -71,10 +71,10 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.LayoutConstants;
-import com.liferay.portal.kernel.model.PortletConstants;
 import com.liferay.portal.kernel.model.PortletItem;
 import com.liferay.portal.kernel.model.PortletPreferences;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.portlet.PortletIdCodec;
 import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
@@ -981,7 +981,7 @@ public class PortletImportController implements ImportController {
 						exportImportPortletPreferencesProcessor =
 							ExportImportPortletPreferencesProcessorRegistryUtil.
 								getExportImportPortletPreferencesProcessor(
-									PortletConstants.getRootPortletId(
+									PortletIdCodec.decodePortletName(
 										curPortletId));
 
 					if (exportImportPortletPreferencesProcessor != null) {
@@ -1414,9 +1414,10 @@ public class PortletImportController implements ImportController {
 
 		String rootPortletId = headerElement.attributeValue("root-portlet-id");
 
-		if (!PortletConstants.getRootPortletId(portletId).equals(
-				rootPortletId)) {
+		String expectedRootPortletId = PortletIdCodec.decodePortletName(
+			portletId);
 
+		if (!expectedRootPortletId.equals(rootPortletId)) {
 			throw new PortletIdException("Invalid portlet id " + rootPortletId);
 		}
 

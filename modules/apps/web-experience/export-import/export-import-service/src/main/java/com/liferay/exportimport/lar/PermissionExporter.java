@@ -21,8 +21,8 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Layout;
-import com.liferay.portal.kernel.model.PortletConstants;
 import com.liferay.portal.kernel.model.Role;
+import com.liferay.portal.kernel.portlet.PortletIdCodec;
 import com.liferay.portal.kernel.security.permission.ResourceActionsUtil;
 import com.liferay.portal.kernel.service.RoleLocalServiceUtil;
 import com.liferay.portal.kernel.service.permission.PortletPermissionUtil;
@@ -105,7 +105,7 @@ public class PermissionExporter {
 			Layout layout, Element portletElement)
 		throws Exception {
 
-		String resourceName = PortletConstants.getRootPortletId(portletId);
+		String resourceName = PortletIdCodec.decodePortletName(portletId);
 		String resourcePrimKey = PortletPermissionUtil.getPrimaryKey(
 			layout.getPlid(), portletId);
 
