@@ -19,7 +19,7 @@
 <liferay-util:dynamic-include key="com.liferay.wiki.web#/wiki/view.jsp#pre" />
 
 <%
-WikiPortletInstanceOverriddenConfiguration wikiPortletInstanceOverriddenConfiguration = wikiRequestHelper.getWikiPortletInstanceOverridenConfiguration();
+WikiPortletInstanceConfiguration wikiPortletInstanceConfiguration = wikiRequestHelper.getWikiPortletInstanceConfiguration();
 
 boolean followRedirect = ParamUtil.getBoolean(request, "followRedirect", true);
 
@@ -210,7 +210,7 @@ if (portletTitleBasedNavigation) {
 
 				contextObjects.put("assetEntry", layoutAssetEntry);
 				contextObjects.put("formattedContent", formattedContent);
-				contextObjects.put("wikiPortletInstanceOverriddenConfiguration", wikiPortletInstanceOverriddenConfiguration);
+				contextObjects.put("wikiPortletInstanceConfiguration", wikiPortletInstanceConfiguration);
 				%>
 
 				<div class="lfr-alert-container"></div>
