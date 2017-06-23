@@ -29,6 +29,7 @@
 
 	<command name="AddFolder" priority="5">
 		<property name="portal.acceptance" value="true" />
+		<property name="testray.component.names" value="Training" />
 
 		<execute macro="Navigator#openURL" />
 
@@ -42,7 +43,10 @@
 		</execute>
 	</command>
 
-	<command name="AddStructures" priority="4">
+	<command name="AddStructures" priority="5">
+		<property name="portal.acceptance" value="pending" />
+		<property name="testray.component.names" value="Training" />
+
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -591,7 +595,10 @@
 		</execute>
 	</command>
 
-	<command name="AddTemplateXSL" priority="3">
+	<command name="AddTemplateXSL" priority="5">
+		<property name="portal.acceptance" value="pending" />
+		<property name="testray.component.names" value="Training" />
+
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">

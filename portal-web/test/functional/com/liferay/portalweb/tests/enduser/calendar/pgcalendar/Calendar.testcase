@@ -535,7 +535,10 @@
 		</execute>
 	</command>
 
-	<command name="AddEventRegularAndResourceWithStagingAndSchedulePublishToLive" priority="4">
+	<command name="AddEventRegularAndResourceWithStagingAndSchedulePublishToLive" priority="5">
+		<property name="portal.acceptance" value="pending" />
+		<property name="testray.component.names" value="Training" />
+
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
 		</execute>
@@ -4113,6 +4116,7 @@
 	<command name="SearchForOtherCalendars" priority="5">
 		<property name="portal.acceptance" value="pending" />
 		<property name="test.name.skip.portal.instance" value="Calendar#SearchForOtherCalendars" />
+		<property name="testray.component.names" value="Training" />
 
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />

@@ -227,7 +227,10 @@
 		</execute>
 	</command>
 
-	<command name="AddWebContentViaAddContentPanel" priority="4">
+	<command name="AddWebContentViaAddContentPanel" priority="5">
+		<property name="portal.acceptance" value="pending" />
+		<property name="testray.component.names" value="Training" />
+
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -262,7 +265,10 @@
 		</execute>
 	</command>
 
-	<command name="AddWithStructure" priority="4">
+	<command name="AddWithStructure" priority="5">
+		<property name="portal.acceptance" value="pending" />
+		<property name="testray.component.names" value="Training" />
+
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -506,6 +512,7 @@
 
 	<command name="RemoveWCDPortletSite" priority="5">
 		<property name="portal.acceptance" value="true" />
+		<property name="testray.component.names" value="Training" />
 
 		<execute macro="Portlet#deletePG">
 			<var name="portletName" value="Web Content Display" />
@@ -569,6 +576,7 @@
 
 	<command name="SelectWebContent" priority="5">
 		<property name="portal.acceptance" value="true" />
+		<property name="testray.component.names" value="Training" />
 
 		<execute macro="Navigator#openURL" />
 

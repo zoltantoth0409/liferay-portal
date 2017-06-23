@@ -284,8 +284,10 @@
 		</execute>
 	</command>
 
-	<command name="SitesPrivatePagesPermissions" priority="4">
+	<command name="SitesPrivatePagesPermissions" priority="5">
+		<property name="portal.acceptance" value="pending" />
 		<property name="test.name.skip.portal.instance" value="SitepagesUsecase#SitesPrivatePagesPermissions" />
+		<property name="testray.component.names" value="Training" />
 
 		<execute macro="ProductMenu#gotoControlPanelSites">
 			<var name="portlet" value="Sites" />
@@ -897,8 +899,10 @@
 		</execute>
 	</command>
 
-	<command name="ViewSecureContentAndPageAsUser" priority="3">
+	<command name="ViewSecureContentAndPageAsUser" priority="5">
+		<property name="portal.acceptance" value="pending" />
 		<property name="test.name.skip.portal.instance" value="SitepagesUsecase#ViewSecureContentAndPageAsUser" />
+		<property name="testray.component.names" value="Training" />
 
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
@@ -1194,6 +1198,7 @@
 	</command>
 
 	<command name="WebContentAdministrationSitesPageTypes" priority="5">
+		<property name="portal.acceptance" value="pending" />
 		<property name="testray.component.names" value="Training" />
 
 		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
