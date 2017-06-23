@@ -23,6 +23,7 @@ import static com.liferay.exportimport.kernel.lifecycle.ExportImportLifecycleCon
 import static com.liferay.exportimport.kernel.lifecycle.ExportImportLifecycleConstants.PROCESS_FLAG_LAYOUT_IMPORT_IN_PROCESS;
 import static com.liferay.exportimport.kernel.lifecycle.ExportImportLifecycleConstants.PROCESS_FLAG_LAYOUT_STAGING_IN_PROCESS;
 
+import com.liferay.asset.kernel.model.adapter.StagedAssetLink;
 import com.liferay.exportimport.kernel.controller.ExportImportController;
 import com.liferay.exportimport.kernel.controller.ImportController;
 import com.liferay.exportimport.kernel.exception.LARFileException;
@@ -1072,6 +1073,9 @@ public class LayoutImportController implements ImportController {
 			portletDataContext.addDeletionSystemEventStagedModelTypes(
 				portletDataHandler.getDeletionSystemEventStagedModelTypes());
 		}
+
+		portletDataContext.addDeletionSystemEventStagedModelTypes(
+			new StagedModelType(StagedAssetLink.class));
 
 		portletDataContext.addDeletionSystemEventStagedModelTypes(
 			new StagedModelType(Layout.class));

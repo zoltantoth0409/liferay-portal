@@ -47,6 +47,7 @@ import com.liferay.exportimport.kernel.lar.PortletDataHandler;
 import com.liferay.exportimport.kernel.lar.PortletDataHandlerKeys;
 import com.liferay.exportimport.kernel.lar.PortletDataHandlerStatusMessageSender;
 import com.liferay.exportimport.kernel.lar.StagedModelDataHandlerUtil;
+import com.liferay.exportimport.kernel.lar.StagedModelType;
 import com.liferay.exportimport.kernel.lar.UserIdStrategy;
 import com.liferay.exportimport.kernel.lifecycle.ExportImportLifecycleManager;
 import com.liferay.exportimport.kernel.model.ExportImportConfiguration;
@@ -1105,6 +1106,9 @@ public class PortletImportController implements ImportController {
 
 		portletDataContext.addDeletionSystemEventStagedModelTypes(
 			portletDataHandler.getDeletionSystemEventStagedModelTypes());
+
+		portletDataContext.addDeletionSystemEventStagedModelTypes(
+			new StagedModelType(StagedAssetLink.class));
 	}
 
 	protected void readExpandoTables(PortletDataContext portletDataContext)
