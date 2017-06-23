@@ -202,17 +202,8 @@ public class CalendarBookingStagedModelDataHandler
 				calendarBooking.getParentCalendarBookingId());
 		}
 		else {
-			Set<Long> calendarLiveIds = calendarIds.keySet();
-
-			Stream<Long> calendarLiveIdStream = calendarLiveIds.stream();
-
-			calendarLiveIdStream = calendarLiveIdStream.filter(
-				childCalendarId ->
-					childCalendarId != calendarBooking.getCalendarId());
-
-			childCalendarIds = calendarLiveIdStream.mapToLong(
-				Long::longValue
-			).toArray();
+			childCalendarIds = filterChildCalendarIds(
+				calendarIds.keySet(), calendarBooking.getCalendarId());
 		}
 
 		ServiceContext serviceContext = portletDataContext.createServiceContext(
@@ -322,6 +313,20 @@ public class CalendarBookingStagedModelDataHandler
 			trashHandler.restoreTrashEntry(
 				userId, existingBooking.getCalendarBookingId());
 		}
+	}
+
+	protected long[] filterChildCalendarIds(
+		Set<Long> calendarIds, long masterCalendarId) {
+
+		Stream<Long> calendarIdsStream = calendarIds.stream();
+
+		long[] childCalendarIds = calendarIdsStream.filter(
+			calendarId -> calendarId != masterCalendarId
+		).mapToLong(
+			Long::longValue
+		).toArray();
+
+		return childCalendarIds;
 	}
 
 	@Reference(unbind = "-")
