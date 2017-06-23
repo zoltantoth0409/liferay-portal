@@ -339,6 +339,30 @@ public class CalendarBookingLocalServiceTest {
 			WorkflowConstants.STATUS_PENDING, childCalendarBooking.getStatus());
 	}
 
+	@Test	
+	public void testInviteToStagedCalendarBookingResultsInMasterStagedChild()
+		throws Exception {
+
+		_liveGroup = GroupTestUtil.addGroup();
+
+		Calendar liveCalendar = CalendarTestUtil.getDefaultCalendar(_liveGroup);
+
+		enableLocalStaging(_liveGroup, true);
+
+		Calendar stagingCalendar = CalendarTestUtil.getStagingCalendar(
+			_liveGroup, liveCalendar);
+
+		Calendar invitedCalendar = CalendarTestUtil.addCalendar(_user);
+
+		CalendarBooking calendarBooking =
+			CalendarBookingTestUtil.addChildCalendarBooking(
+				stagingCalendar, invitedCalendar);
+
+		Assert.assertEquals(
+			CalendarBookingWorkflowConstants.STATUS_MASTER_STAGING,
+			calendarBooking.getStatus());
+	}
+
 	@Test
 	public void testMoveToTrashCalendarBookingShouldMoveItsChildrenToTrash()
 		throws Exception {
