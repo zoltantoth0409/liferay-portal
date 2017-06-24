@@ -58,11 +58,11 @@ public class EmptyTempDirTest {
 
 				Calendar calendar = Calendar.getInstance();
 
-				Date today = calendar.getTime();
+				Date date = calendar.getTime();
 
 				Path logFilePath = Paths.get(
 					System.getProperty("liferay.log.dir"),
-					"liferay." + dateFormat.format(today) + ".xml");
+					"liferay." + dateFormat.format(date) + ".xml");
 
 				if (Files.exists(logFilePath)) {
 					Files.write(
