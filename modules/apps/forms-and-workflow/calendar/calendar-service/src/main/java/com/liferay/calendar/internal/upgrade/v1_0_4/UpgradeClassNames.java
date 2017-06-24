@@ -41,15 +41,19 @@ public class UpgradeClassNames extends UpgradeKernelPackage {
 			runSQL(
 				"delete from Counter where name like '" +
 					_CAL_EVENT_CLASS_NAME + "%'");
+
 			runSQL(
 				"delete from ClassName_ where value like '" +
 					_CAL_EVENT_CLASS_NAME + "%'");
+
 			runSQL(
 				"delete from ResourceAction where name like '" +
 					_CAL_EVENT_CLASS_NAME + "%'");
+
 			runSQL(
 				"delete from ResourceBlock where name like '" +
 					_CAL_EVENT_CLASS_NAME + "%'");
+
 			runSQL(
 				"delete from ResourcePermission where name like '" +
 					_CAL_EVENT_CLASS_NAME + "%'");
