@@ -3609,11 +3609,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 
 			long groupParentGroupId = group.getParentGroupId();
 
-			if ((parentGroupIdEquals &&
-				 (groupParentGroupId != parentGroupId)) ||
-				(!parentGroupIdEquals &&
-				 (groupParentGroupId == parentGroupId))) {
-
+			if (parentGroupIdEquals && (groupParentGroupId != parentGroupId)) {
 				iterator.remove();
 
 				continue;
