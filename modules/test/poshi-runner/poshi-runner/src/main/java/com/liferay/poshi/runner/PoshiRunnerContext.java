@@ -77,7 +77,7 @@ public class PoshiRunnerContext {
 		_filePaths.clear();
 		_functionLocatorCounts.clear();
 		_pathLocators.clear();
-		_resources.clear();
+		_resourceURLs.clear();
 		_rootElements.clear();
 		_seleniumParameterCounts.clear();
 	}
@@ -186,8 +186,8 @@ public class PoshiRunnerContext {
 		return _rootElements.get("path#" + className);
 	}
 
-	public static List<URL> getResources() {
-		return _resources;
+	public static List<URL> getResourceURLs() {
+		return _resourceURLs;
 	}
 
 	public static Map<String, Element> getRootElementsMap() {
@@ -431,7 +431,7 @@ public class PoshiRunnerContext {
 				PoshiRunnerGetterUtil.getFileNameFromFilePath(filePath),
 				filePath);
 
-			_resources.add(url);
+			_resourceURLs.add(url);
 		}
 
 		return urls;
@@ -880,23 +880,24 @@ public class PoshiRunnerContext {
 		List<URL> urls = new ArrayList<>();
 
 		for (String resourceName : resourceNames) {
-			Enumeration<URL> resources = classLoader.getResources(resourceName);
+			Enumeration<URL> enumeration = classLoader.getResources(
+				resourceName);
 
-			while (resources.hasMoreElements()) {
-				URL resource = resources.nextElement();
+			while (enumeration.hasMoreElements()) {
+				URL resourceURL = enumeration.nextElement();
 
-				String resourceString = resource.toString();
+				String resourceURLString = resourceURL.toString();
 
-				int x = resourceString.indexOf("!");
+				int x = resourceURLString.indexOf("!");
 
 				try (FileSystem fileSystem = FileSystems.newFileSystem(
-						URI.create(resourceString.substring(0, x)),
+						URI.create(resourceURLString.substring(0, x)),
 						new HashMap<String, String>(), classLoader)) {
 
 					urls.addAll(
 						_getPoshiURLs(
 							fileSystem, includes,
-							resourceString.substring(x + 1)));
+							resourceURLString.substring(x + 1)));
 				}
 			}
 		}
@@ -1043,7 +1044,7 @@ public class PoshiRunnerContext {
 			String locator = locatorElement.getText();
 
 			if (locatorKey.equals("EXTEND_ACTION_PATH")) {
-				for (URL resource : _resources) {
+				for (URL resource : _resourceURLs) {
 					String expectedExtendedPath = "/" + locator + ".path";
 
 					if (OSDetector.isWindows()) {
@@ -1283,7 +1284,7 @@ public class PoshiRunnerContext {
 		new HashMap<>();
 	private static final Map<String, String> _pathLocators = new HashMap<>();
 	private static final List<String> _productNames = new ArrayList<>();
-	private static final List<URL> _resources = new ArrayList<>();
+	private static final List<URL> _resourceURLs = new ArrayList<>();
 	private static final Map<String, Element> _rootElements = new HashMap<>();
 	private static final Map<String, Integer> _seleniumParameterCounts =
 		new HashMap<>();
