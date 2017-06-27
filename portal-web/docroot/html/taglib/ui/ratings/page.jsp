@@ -31,6 +31,10 @@ boolean setRatingsStats = GetterUtil.getBoolean((String)request.getAttribute("li
 String type = GetterUtil.getString((String)request.getAttribute("liferay-ui:ratings:type"));
 String url = (String)request.getAttribute("liferay-ui:ratings:url");
 
+if (inTrash == null) {
+	inTrash = TrashUtil.isInTrash(className, classPK);
+}
+
 if (numberOfStars < 1) {
 	numberOfStars = 1;
 }
@@ -63,10 +67,6 @@ double yourScore = -1.0;
 
 if (ratingsEntry != null) {
 	yourScore = ratingsEntry.getScore();
-}
-
-if (inTrash == null) {
-	inTrash = TrashUtil.isInTrash(className, classPK);
 }
 %>
 
