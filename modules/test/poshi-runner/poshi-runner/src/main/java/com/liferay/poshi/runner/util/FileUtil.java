@@ -89,7 +89,8 @@ public class FileUtil {
 			Path path = fileSystem.getPath(baseDirName);
 
 			if (!Files.exists(path)) {
-				System.out.println("Directory " + baseDirName + " does not exist.");
+				System.out.println(
+					"Directory " + baseDirName + " does not exist.");
 
 				continue;
 			}
