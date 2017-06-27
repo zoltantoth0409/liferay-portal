@@ -414,7 +414,7 @@ public class PoshiRunnerContext {
 			FileSystem fileSystem, String[] includes, String... baseDirs)
 		throws IOException {
 
-		List<URL> urls;
+		List<URL> urls = null;
 
 		if (fileSystem == null) {
 			urls = FileUtil.getIncludedResourceURLs(includes, baseDirs);
