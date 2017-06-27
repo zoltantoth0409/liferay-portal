@@ -58,8 +58,8 @@ public class PoshiRunnerValidation {
 	}
 
 	public static void validate() throws Exception {
-		for (URL resource : PoshiRunnerContext.getResources()) {
-			String filePath = resource.getFile();
+		for (URL resourceURL : PoshiRunnerContext.getResourceURLs()) {
+			String filePath = resourceURL.getFile();
 
 			if (OSDetector.isWindows()) {
 				filePath = filePath.replace("/", "\\");
