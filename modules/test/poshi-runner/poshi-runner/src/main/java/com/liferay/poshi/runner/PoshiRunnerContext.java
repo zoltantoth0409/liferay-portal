@@ -913,10 +913,9 @@ public class PoshiRunnerContext {
 		Method[] methods = LiferaySelenium.class.getMethods();
 
 		for (Method method : methods) {
-			Class<?>[] parameterTypes = method.getParameterTypes();
+			Class<?>[] classes = method.getParameterTypes();
 
-			_seleniumParameterCounts.put(
-				method.getName(), parameterTypes.length);
+			_seleniumParameterCounts.put(method.getName(), classes.length);
 		}
 
 		_seleniumParameterCounts.put("open", 1);
@@ -928,12 +927,12 @@ public class PoshiRunnerContext {
 				continue;
 			}
 
+			SAXReader saxReader = new SAXReader();
+
 			String content = FileUtil.read(testToggleFileName);
 
 			InputStream inputStream = new ByteArrayInputStream(
 				content.getBytes("UTF-8"));
-
-			SAXReader saxReader = new SAXReader();
 
 			Document document = saxReader.read(inputStream);
 
