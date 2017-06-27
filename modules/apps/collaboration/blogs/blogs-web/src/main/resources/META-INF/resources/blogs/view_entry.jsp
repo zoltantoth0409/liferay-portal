@@ -35,7 +35,7 @@ long entryId = ParamUtil.getLong(request, "entryId", entry.getEntryId());
 
 AssetEntry assetEntry = AssetEntryLocalServiceUtil.getEntry(BlogsEntry.class.getName(), entry.getEntryId());
 
-AssetEntryServiceUtil.incrementViewCounter(BlogsEntry.class.getName(), entry.getEntryId());
+AssetEntryServiceUtil.incrementViewCounter(assetEntry);
 
 AssetUtil.addLayoutTags(request, AssetTagLocalServiceUtil.getTags(BlogsEntry.class.getName(), entry.getEntryId()));
 
