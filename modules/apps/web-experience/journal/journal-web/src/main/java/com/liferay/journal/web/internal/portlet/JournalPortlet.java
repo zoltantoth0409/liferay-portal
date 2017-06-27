@@ -919,9 +919,10 @@ public class JournalPortlet extends MVCPortlet {
 				actionRequest, ddmPortletId + "requestProcessed");
 		}
 
-		if (ParamUtil.getBoolean(
-				actionRequest, "hideDefaultSuccessMessage", false)) {
+		boolean hideDefaultSuccessMessage = ParamUtil.getBoolean(
+			actionRequest, "hideDefaultSuccessMessage");
 
+		if (hideDefaultSuccessMessage) {
 			hideDefaultSuccessMessage(actionRequest);
 		}
 	}

@@ -190,10 +190,9 @@ public class JournalArticleAssetRendererFactory
 			liferayPortletRequest, getGroup(liferayPortletRequest),
 			JournalPortletKeys.JOURNAL, 0, 0, PortletRequest.RENDER_PHASE);
 
-		portletURL.setParameter("mvcPath", "/edit_article.jsp");
-
 		portletURL.setParameter(
 			"hideDefaultSuccessMessage", Boolean.TRUE.toString());
+		portletURL.setParameter("mvcPath", "/edit_article.jsp");
 
 		if (classTypeId > 0) {
 			DDMStructure ddmStructure =
