@@ -24,8 +24,8 @@ import java.util.Set;
 public class LayoutTypePortletConstants
 	extends com.liferay.portal.kernel.model.LayoutTypePortletConstants {
 
-	public static boolean isLayoutTemplateColumnName(String id) {
-		return !_typeSettingsIds.contains(id);
+	public static boolean isLayoutTemplateColumnName(String typeSettingId) {
+		return !_typeSettingsIds.contains(typeSettingId);
 	}
 
 	private static final Set<String> _typeSettingsIds = SetUtil.fromArray(
