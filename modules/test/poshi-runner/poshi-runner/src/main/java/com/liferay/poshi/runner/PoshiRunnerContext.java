@@ -875,11 +875,11 @@ public class PoshiRunnerContext {
 			String[] includes, String... resourceNames)
 		throws Exception {
 
-		ClassLoader classLoader = PoshiRunnerContext.class.getClassLoader();
-
 		List<URL> urls = new ArrayList<>();
 
 		for (String resourceName : resourceNames) {
+			ClassLoader classLoader = PoshiRunnerContext.class.getClassLoader();
+
 			Enumeration<URL> enumeration = classLoader.getResources(
 				resourceName);
 
