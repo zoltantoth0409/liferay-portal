@@ -66,7 +66,7 @@ public class FileUtil {
 	}
 
 	public static List<URL> getIncludedResourceURLs(
-			FileSystem fileSystem, String[] includes, String... basedirs)
+			FileSystem fileSystem, String[] includes, String... baseDirs)
 		throws IOException {
 
 		final List<PathMatcher> pathMatchers = new ArrayList<>();
@@ -81,15 +81,15 @@ public class FileUtil {
 
 		final List<URL> filePaths = new ArrayList<>();
 
-		for (String basedir : basedirs) {
-			if (Validator.isNull(basedir)) {
+		for (String baseDir : baseDirs) {
+			if (Validator.isNull(baseDir)) {
 				continue;
 			}
 
-			Path path = fileSystem.getPath(basedir);
+			Path path = fileSystem.getPath(baseDir);
 
 			if (!Files.exists(path)) {
-				System.out.println("Directory " + basedir + " does not exist.");
+				System.out.println("Directory " + baseDir + " does not exist.");
 
 				continue;
 			}
@@ -124,11 +124,11 @@ public class FileUtil {
 	}
 
 	public static List<URL> getIncludedResourceURLs(
-			String[] includes, String... basedirs)
+			String[] includes, String... baseDirs)
 		throws IOException {
 
 		return getIncludedResourceURLs(
-			FileSystems.getDefault(), includes, basedirs);
+			FileSystems.getDefault(), includes, baseDirs);
 	}
 
 	public static String getSeparator() {
