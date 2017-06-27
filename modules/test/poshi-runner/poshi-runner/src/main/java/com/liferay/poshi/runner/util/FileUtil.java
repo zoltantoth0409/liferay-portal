@@ -146,12 +146,12 @@ public class FileUtil {
 	}
 
 	public static String read(URL url) throws IOException {
+		StringBuilder sb = new StringBuilder();
+
 		BufferedReader bufferedReader = new BufferedReader(
 			new InputStreamReader(url.openStream()));
 
-		String line;
-
-		StringBuilder sb = new StringBuilder();
+		String line = null;
 
 		while ((line = bufferedReader.readLine()) != null) {
 			sb.append(line);
