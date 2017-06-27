@@ -119,9 +119,10 @@ public abstract class BaseUpgradePortletId extends UpgradeProcess {
 					newRootPortletId, userId, instanceId);
 			}
 
+			String portletIdsString = StringUtil.merge(portletIds);
+
 			typeSettingsProperties.setProperty(
-				typeSettingId,
-				StringUtil.merge(portletIds).concat(StringPool.COMMA));
+				typeSettingId, portletIdsString.concat(StringPool.COMMA));
 		}
 
 		return typeSettingsProperties.toString();
