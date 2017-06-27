@@ -84,9 +84,11 @@ public abstract class BaseUpgradePortletId extends UpgradeProcess {
 		for (Map.Entry<String, String> entry :
 				typeSettingsProperties.entrySet()) {
 
-			String id = entry.getKey();
+			String typeSettingId = entry.getKey();
 
-			if (!LayoutTypePortletConstants.isLayoutTemplateColumnName(id)) {
+			if (!LayoutTypePortletConstants.isLayoutTemplateColumnName(
+					typeSettingId)) {
+
 				continue;
 			}
 
@@ -118,7 +120,8 @@ public abstract class BaseUpgradePortletId extends UpgradeProcess {
 			}
 
 			typeSettingsProperties.setProperty(
-				id, StringUtil.merge(portletIds).concat(StringPool.COMMA));
+				typeSettingId,
+				StringUtil.merge(portletIds).concat(StringPool.COMMA));
 		}
 
 		return typeSettingsProperties.toString();
