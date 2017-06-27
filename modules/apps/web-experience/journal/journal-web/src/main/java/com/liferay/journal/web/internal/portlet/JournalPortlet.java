@@ -903,8 +903,6 @@ public class JournalPortlet extends MVCPortlet {
 				updateContentSearch(
 					actionRequest, portletResource, article.getArticleId());
 			}
-
-			hideDefaultSuccessMessage(actionRequest);
 		}
 
 		sendEditArticleRedirect(
@@ -919,6 +917,12 @@ public class JournalPortlet extends MVCPortlet {
 
 			MultiSessionMessages.add(
 				actionRequest, ddmPortletId + "requestProcessed");
+		}
+
+		if (ParamUtil.getBoolean(
+				actionRequest, "hideDefaultSuccessMessage", false)) {
+
+			hideDefaultSuccessMessage(actionRequest);
 		}
 	}
 
