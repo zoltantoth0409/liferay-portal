@@ -116,7 +116,6 @@ public class DDMFormTemplateContextProcessor {
 			jsonObject.getBoolean("repeatable", false), ddmFormField);
 		setDDMFormFieldRequired(
 			jsonObject.getBoolean("required", false), ddmFormField);
-
 		setDDMFormFieldValidation(
 			jsonObject.getJSONObject("validation"), ddmFormField);
 		setDDMFormFieldVisibilityExpression(
