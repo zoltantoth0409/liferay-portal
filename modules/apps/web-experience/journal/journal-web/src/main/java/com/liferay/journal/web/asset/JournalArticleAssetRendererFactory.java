@@ -192,6 +192,9 @@ public class JournalArticleAssetRendererFactory
 
 		portletURL.setParameter("mvcPath", "/edit_article.jsp");
 
+		portletURL.setParameter(
+			"hideDefaultSuccessMessage", Boolean.TRUE.toString());
+
 		if (classTypeId > 0) {
 			DDMStructure ddmStructure =
 				_ddmStructureLocalService.fetchDDMStructure(classTypeId);

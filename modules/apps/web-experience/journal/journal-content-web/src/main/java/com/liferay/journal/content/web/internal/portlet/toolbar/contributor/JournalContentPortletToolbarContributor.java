@@ -91,6 +91,9 @@ public class JournalContentPortletToolbarContributor
 		portletURL.setParameter("referringPlid", String.valueOf(plid));
 		portletURL.setParameter("showHeader", Boolean.FALSE.toString());
 
+		portletURL.setParameter(
+			"hideDefaultSuccessMessage", Boolean.TRUE.toString());
+
 		portletURL.setWindowState(LiferayWindowState.POP_UP);
 
 		List<DDMStructure> ddmStructures =
