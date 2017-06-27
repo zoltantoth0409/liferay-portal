@@ -422,11 +422,14 @@ public class LiferaySeleniumHelper {
 
 		int x = PropsValues.TEST_CONSOLE_LOG_FILE_NAME.lastIndexOf("/");
 
-		String baseDirName = PropsValues.TEST_CONSOLE_LOG_FILE_NAME.substring(0, x);
+		String baseDirName = PropsValues.TEST_CONSOLE_LOG_FILE_NAME.substring(
+			0, x);
 		String[] includes =
 			new String[] {PropsValues.TEST_CONSOLE_LOG_FILE_NAME.substring(x)};
 
-		for (URL url : FileUtil.getIncludedResourceURLs(includes, baseDirName)) {
+		for (URL url :
+				FileUtil.getIncludedResourceURLs(includes, baseDirName)) {
+
 			File file = new File(url.toURI());
 
 			consoleLogFiles.put(Long.toString(file.lastModified()), file);
