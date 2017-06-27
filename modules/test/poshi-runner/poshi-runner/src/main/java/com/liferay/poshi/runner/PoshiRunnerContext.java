@@ -411,17 +411,17 @@ public class PoshiRunnerContext {
 	}
 
 	private static List<URL> _getPoshiURLs(
-			FileSystem fileSystem, String[] includes, String... baseDirs)
+			FileSystem fileSystem, String[] includes, String... baseDirNames)
 		throws IOException {
 
 		List<URL> urls = null;
 
 		if (fileSystem == null) {
-			urls = FileUtil.getIncludedResourceURLs(includes, baseDirs);
+			urls = FileUtil.getIncludedResourceURLs(includes, baseDirNames);
 		}
 		else {
 			urls = FileUtil.getIncludedResourceURLs(
-				fileSystem, includes, baseDirs);
+				fileSystem, includes, baseDirNames);
 		}
 
 		for (URL url : urls) {
@@ -438,10 +438,10 @@ public class PoshiRunnerContext {
 	}
 
 	private static List<URL> _getPoshiURLs(
-			String[] includes, String... baseDirs)
+			String[] includes, String... baseDirNames)
 		throws Exception {
 
-		return _getPoshiURLs(null, includes, baseDirs);
+		return _getPoshiURLs(null, includes, baseDirNames);
 	}
 
 	private static List<String> _getRelatedActionClassCommandNames(
