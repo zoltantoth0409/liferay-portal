@@ -1440,7 +1440,7 @@
 		</execute>
 	</command>
 
-	<command name="AddEventWithLargeDateRange" priority="4">
+	<command name="AddEventWithLargeDateRange" priority="5">
 		<description message="This is a use case for LPS-61427." />
 
 		<execute macro="Navigator#gotoPage">
