@@ -129,7 +129,7 @@ public class DefaultCommentTreeDisplayContext
 			return false;
 		}
 
-		return _discussionComment.isInTrash();
+		return !_discussionComment.isInTrash();
 	}
 
 	@Override
