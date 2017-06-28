@@ -15,7 +15,6 @@
 package com.liferay.calendar.service.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
-import com.liferay.calendar.constants.CalendarPortletKeys;
 import com.liferay.calendar.exception.CalendarBookingRecurrenceException;
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarBooking;
@@ -34,15 +33,9 @@ import com.liferay.calendar.test.util.RecurrenceTestUtil;
 import com.liferay.calendar.util.CalendarResourceUtil;
 import com.liferay.calendar.util.JCalendarUtil;
 import com.liferay.calendar.workflow.CalendarBookingWorkflowConstants;
-import com.liferay.exportimport.kernel.configuration.ExportImportConfigurationParameterMapFactory;
-import com.liferay.exportimport.kernel.lar.PortletDataHandlerKeys;
-import com.liferay.exportimport.kernel.service.StagingLocalServiceUtil;
-import com.liferay.exportimport.kernel.staging.StagingConstants;
-import com.liferay.exportimport.kernel.staging.StagingUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.User;
-import com.liferay.portal.kernel.service.PortletPreferencesLocalServiceUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
@@ -51,8 +44,6 @@ import com.liferay.portal.kernel.test.rule.Sync;
 import com.liferay.portal.kernel.test.rule.SynchronousDestinationTestRule;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
-import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
-import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -113,7 +104,8 @@ public class CalendarBookingLocalServiceTest {
 	@After
 	public void tearDown() {
 		tearDownCheckBookingMessageListener();
-		tearDownPortletPreferences();
+
+		CalendarStagingTestUtil.cleanUp();
 	}
 
 	@Test
@@ -292,9 +284,9 @@ public class CalendarBookingLocalServiceTest {
 
 		Calendar liveCalendar = CalendarTestUtil.getDefaultCalendar(_liveGroup);
 
-		enableLocalStaging(_liveGroup, true);
+		CalendarStagingTestUtil.enableLocalStaging(_liveGroup, true);
 
-		Calendar stagingCalendar = CalendarTestUtil.getStagingCalendar(
+		Calendar stagingCalendar = CalendarStagingTestUtil.getStagingCalendar(
 			_liveGroup, liveCalendar);
 
 		Assert.assertNotNull(stagingCalendar);
@@ -322,9 +314,9 @@ public class CalendarBookingLocalServiceTest {
 
 		Calendar liveCalendar = CalendarTestUtil.addCalendar(_liveGroup);
 
-		enableLocalStaging(_liveGroup, true);
+		CalendarStagingTestUtil.enableLocalStaging(_liveGroup, true);
 
-		Calendar stagingCalendar = CalendarTestUtil.getStagingCalendar(
+		Calendar stagingCalendar = CalendarStagingTestUtil.getStagingCalendar(
 			_liveGroup, liveCalendar);
 
 		Assert.assertNotNull(stagingCalendar);
@@ -355,9 +347,9 @@ public class CalendarBookingLocalServiceTest {
 		Calendar liveCalendar = CalendarTestUtil.addCalendarResourceCalendar(
 			_liveGroup);
 
-		enableLocalStaging(_liveGroup, true);
+		CalendarStagingTestUtil.enableLocalStaging(_liveGroup, true);
 
-		Calendar stagingCalendar = CalendarTestUtil.getStagingCalendar(
+		Calendar stagingCalendar = CalendarStagingTestUtil.getStagingCalendar(
 			_liveGroup, liveCalendar);
 
 		Assert.assertNotNull(stagingCalendar);
@@ -386,9 +378,9 @@ public class CalendarBookingLocalServiceTest {
 		Calendar liveCalendar = CalendarTestUtil.addCalendarResourceCalendar(
 			_liveGroup);
 
-		enableLocalStaging(_liveGroup, true);
+		CalendarStagingTestUtil.enableLocalStaging(_liveGroup, true);
 
-		Calendar stagingCalendar = CalendarTestUtil.getStagingCalendar(
+		Calendar stagingCalendar = CalendarStagingTestUtil.getStagingCalendar(
 			_liveGroup, liveCalendar);
 
 		Assert.assertNotNull(stagingCalendar);
@@ -419,9 +411,9 @@ public class CalendarBookingLocalServiceTest {
 
 		Calendar liveCalendar = CalendarTestUtil.getDefaultCalendar(_liveGroup);
 
-		enableLocalStaging(_liveGroup, false);
+		CalendarStagingTestUtil.enableLocalStaging(_liveGroup, false);
 
-		Calendar stagingCalendar = CalendarTestUtil.getStagingCalendar(
+		Calendar stagingCalendar = CalendarStagingTestUtil.getStagingCalendar(
 			_liveGroup, liveCalendar);
 
 		Assert.assertNull(stagingCalendar);
@@ -444,9 +436,9 @@ public class CalendarBookingLocalServiceTest {
 		Calendar liveCalendar = CalendarTestUtil.addCalendarResourceCalendar(
 			_liveGroup);
 
-		enableLocalStaging(_liveGroup, false);
+		CalendarStagingTestUtil.enableLocalStaging(_liveGroup, false);
 
-		Calendar stagingCalendar = CalendarTestUtil.getStagingCalendar(
+		Calendar stagingCalendar = CalendarStagingTestUtil.getStagingCalendar(
 			_liveGroup, liveCalendar);
 
 		Assert.assertNull(stagingCalendar);
@@ -468,9 +460,9 @@ public class CalendarBookingLocalServiceTest {
 
 		Calendar liveCalendar = CalendarTestUtil.getDefaultCalendar(_liveGroup);
 
-		enableLocalStaging(_liveGroup, true);
+		CalendarStagingTestUtil.enableLocalStaging(_liveGroup, true);
 
-		Calendar stagingCalendar = CalendarTestUtil.getStagingCalendar(
+		Calendar stagingCalendar = CalendarStagingTestUtil.getStagingCalendar(
 			_liveGroup, liveCalendar);
 
 		Assert.assertNotNull(stagingCalendar);
@@ -485,7 +477,7 @@ public class CalendarBookingLocalServiceTest {
 
 		assertCalendarBookingsCount(stagingCalendar, 1);
 
-		publishLayouts(_liveGroup, true);
+		CalendarStagingTestUtil.publishLayouts(_liveGroup, true);
 
 		assertCalendarBookingsCount(liveCalendar, 1);
 
@@ -585,7 +577,7 @@ public class CalendarBookingLocalServiceTest {
 
 		Calendar liveCalendar = CalendarTestUtil.getDefaultCalendar(_liveGroup);
 
-		enableLocalStaging(_liveGroup, true);
+		CalendarStagingTestUtil.enableLocalStaging(_liveGroup, true);
 
 		Calendar stagingCalendar = CalendarStagingTestUtil.getStagingCalendar(
 			_liveGroup, liveCalendar);
@@ -611,7 +603,7 @@ public class CalendarBookingLocalServiceTest {
 
 		Calendar liveCalendar = CalendarTestUtil.getDefaultCalendar(_liveGroup);
 
-		enableLocalStaging(_liveGroup, true);
+		CalendarStagingTestUtil.enableLocalStaging(_liveGroup, true);
 
 		Calendar stagingCalendar = CalendarStagingTestUtil.getStagingCalendar(
 			_liveGroup, liveCalendar);
@@ -620,7 +612,7 @@ public class CalendarBookingLocalServiceTest {
 			CalendarBookingTestUtil.addMasterCalendarBooking(
 				stagingCalendar, invitedCalendar);
 
-		publishLayouts(_liveGroup, true);
+		CalendarStagingTestUtil.publishLayouts(_liveGroup, true);
 
 		List<CalendarBooking> childCalendarBookings =
 			CalendarBookingLocalServiceUtil.getCalendarBookings(
@@ -1557,21 +1549,6 @@ public class CalendarBookingLocalServiceTest {
 		return calendar;
 	}
 
-	protected void addStagingAttribute(
-		Map<String, String[]> parameters, String key, Object value) {
-
-		parameters.put(key, new String[] {String.valueOf(value)});
-	}
-
-	protected void addStagingAttribute(
-		ServiceContext serviceContext, String key, Object value) {
-
-		String affixedKey =
-			StagingConstants.STAGED_PREFIX + key + StringPool.DOUBLE_DASH;
-
-		serviceContext.setAttribute(affixedKey, String.valueOf(value));
-	}
-
 	protected void assertCalendar(
 		CalendarBooking calendarBooking, Calendar calendar) {
 
@@ -1647,29 +1624,6 @@ public class CalendarBookingLocalServiceTest {
 		return serviceContext;
 	}
 
-	protected void enableLocalStaging(
-			Group group, boolean enableCalendarStaging)
-		throws PortalException {
-
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(group.getGroupId());
-
-		addStagingAttribute(
-			serviceContext,
-			StagingUtil.getStagedPortletId(CalendarPortletKeys.CALENDAR),
-			enableCalendarStaging);
-		addStagingAttribute(
-			serviceContext, PortletDataHandlerKeys.PORTLET_CONFIGURATION_ALL,
-			false);
-		addStagingAttribute(
-			serviceContext, PortletDataHandlerKeys.PORTLET_DATA_ALL, false);
-		addStagingAttribute(
-			serviceContext, PortletDataHandlerKeys.PORTLET_SETUP_ALL, false);
-
-		StagingLocalServiceUtil.enableLocalStaging(
-			_user.getUserId(), group, false, false, serviceContext);
-	}
-
 	protected CalendarBooking getChildCalendarBooking(
 		CalendarBooking calendarBooking) {
 
@@ -1683,33 +1637,6 @@ public class CalendarBookingLocalServiceTest {
 		}
 
 		return childCalendarBooking;
-	}
-
-	protected void publishLayouts(
-			Group liveGroup, boolean enableCalendarStaging)
-		throws PortalException {
-
-		Group stagingGroup = liveGroup.getStagingGroup();
-
-		Map<String, String[]> parameters =
-			ExportImportConfigurationParameterMapFactory.buildParameterMap();
-
-		addStagingAttribute(
-			parameters,
-			PortletDataHandlerKeys.PORTLET_DATA + StringPool.UNDERLINE +
-				CalendarPortletKeys.CALENDAR,
-			enableCalendarStaging);
-		addStagingAttribute(
-			parameters, PortletDataHandlerKeys.PORTLET_CONFIGURATION_ALL,
-			false);
-		addStagingAttribute(
-			parameters, PortletDataHandlerKeys.PORTLET_DATA_ALL, false);
-		addStagingAttribute(
-			parameters, PortletDataHandlerKeys.PORTLET_SETUP_ALL, false);
-
-		StagingUtil.publishLayouts(
-			TestPropsValues.getUserId(), stagingGroup.getGroupId(),
-			liveGroup.getGroupId(), false, parameters);
 	}
 
 	protected void setUpCheckBookingMessageListener() {
@@ -1753,13 +1680,6 @@ public class CalendarBookingLocalServiceTest {
 		ReflectionTestUtil.setFieldValue(
 			_checkBookingMessageListener, "_calendarBookingLocalService",
 			CalendarBookingLocalServiceUtil.getService());
-	}
-
-	protected void tearDownPortletPreferences() {
-		if (_liveGroup != null) {
-			PortletPreferencesLocalServiceUtil.deletePortletPreferencesByPlid(
-				0);
-		}
 	}
 
 	private static final TimeZone _losAngelesTimeZone = TimeZone.getTimeZone(
