@@ -259,7 +259,8 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		List<NameValuePair> nameValuePairs = toNameValuePairs(parameters);
 
 		if (!nameValuePairs.isEmpty()) {
-			String queryString = URLEncodedUtils.format(nameValuePairs, _CHARSET);
+			String queryString = URLEncodedUtils.format(
+				nameValuePairs, _CHARSET);
 
 			url += "?" + queryString;
 		}
@@ -300,7 +301,8 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		List<NameValuePair> nameValuePairs = toNameValuePairs(parameters);
 
 		if (!nameValuePairs.isEmpty()) {
-			String queryString = URLEncodedUtils.format(nameValuePairs, _CHARSET);
+			String queryString = URLEncodedUtils.format(
+				nameValuePairs, _CHARSET);
 
 			url += "?" + queryString;
 		}
