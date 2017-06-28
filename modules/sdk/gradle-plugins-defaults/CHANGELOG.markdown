@@ -1627,7 +1627,7 @@ failure.
 ## 3.7.12 - 2017-06-28
 
 ### Changed
-- [LPS-X]: Disable JVM assertions for unit tests.
+- [LPS-73327]: Disable JVM assertions for unit tests.
 
 [Find Security Bugs]: https://github.com/liferay/liferay-portal/tree/master/modules/third-party/com-h3xstream-findsecbugs
 [Liferay CDN]: https://cdn.lfrs.sl/repository.liferay.com/nexus/content/groups/public
@@ -1802,7 +1802,7 @@ failure.
 [LPS-73235]: https://issues.liferay.com/browse/LPS-73235
 [LPS-73271]: https://issues.liferay.com/browse/LPS-73271
 [LPS-73289]: https://issues.liferay.com/browse/LPS-73289
-[LPS-X]: https://issues.liferay.com/browse/LPS-X
+[LPS-73327]: https://issues.liferay.com/browse/LPS-73327
 [LRDOCS-2594]: https://issues.liferay.com/browse/LRDOCS-2594
 [LRDOCS-2841]: https://issues.liferay.com/browse/LRDOCS-2841
 [LRDOCS-2981]: https://issues.liferay.com/browse/LRDOCS-2981
