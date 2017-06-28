@@ -1078,10 +1078,9 @@ public class LayoutImportController implements ImportController {
 		}
 
 		portletDataContext.addDeletionSystemEventStagedModelTypes(
-			new StagedModelType(StagedAssetLink.class));
-
-		portletDataContext.addDeletionSystemEventStagedModelTypes(
 			new StagedModelType(Layout.class));
+		portletDataContext.addDeletionSystemEventStagedModelTypes(
+			new StagedModelType(StagedAssetLink.class));
 	}
 
 	@Reference(unbind = "-")
