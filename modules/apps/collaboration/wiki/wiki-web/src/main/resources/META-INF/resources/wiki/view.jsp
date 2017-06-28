@@ -211,6 +211,10 @@ if (portletTitleBasedNavigation) {
 				contextObjects.put("assetEntry", layoutAssetEntry);
 				contextObjects.put("formattedContent", formattedContent);
 				contextObjects.put("wikiPortletInstanceConfiguration", wikiPortletInstanceConfiguration);
+
+				// Deprecated
+
+				contextObjects.put("wikiPortletInstanceOverriddenConfiguration", wikiPortletInstanceConfiguration);
 				%>
 
 				<div class="lfr-alert-container"></div>
