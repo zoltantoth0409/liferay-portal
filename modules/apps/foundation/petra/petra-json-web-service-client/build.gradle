@@ -1,5 +1,5 @@
-sourceCompatibility = 1.6
-targetCompatibility = 1.6
+sourceCompatibility = "1.6"
+targetCompatibility = "1.6"
 
 dependencies {
 	compileInclude group: "com.fasterxml.jackson.core", name: "jackson-annotations", version: "2.4.2"
