@@ -1617,9 +1617,10 @@ confidence warnings.
 - [LPS-73271]: Print the [Find Security Bugs] report location even in case of
 failure.
 
-## 3.7.11 - 2017-06-26
+## 3.7.11 - 2017-06-27
 
 ### Changed
+- [LPS-72705]: Update the [Liferay Gradle Plugins] dependency to version 3.3.33.
 - [LPS-73289]: Update the [Find Security Bugs] dependency to version
 1.6.0.LIFERAY-PATCHED-4.
 
