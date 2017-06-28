@@ -259,7 +259,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		List<NameValuePair> nameValuePairs = toNameValuePairs(parameters);
 
 		if (!nameValuePairs.isEmpty()) {
-			String queryString = URLEncodedUtils.format(nameValuePairs, _UTF_8);
+			String queryString = URLEncodedUtils.format(nameValuePairs, _CHARSET);
 
 			url += "?" + queryString;
 		}
@@ -300,7 +300,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		List<NameValuePair> nameValuePairs = toNameValuePairs(parameters);
 
 		if (!nameValuePairs.isEmpty()) {
-			String queryString = URLEncodedUtils.format(nameValuePairs, _UTF_8);
+			String queryString = URLEncodedUtils.format(nameValuePairs, _CHARSET);
 
 			url += "?" + queryString;
 		}
@@ -352,7 +352,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		List<NameValuePair> nameValuePairs = toNameValuePairs(parameters);
 
 		HttpEntity httpEntity = new UrlEncodedFormEntity(
-			nameValuePairs, _UTF_8);
+			nameValuePairs, _CHARSET);
 
 		addHeaders(httpPost, headers);
 
@@ -377,7 +377,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 
 		addHeaders(httpPost, headers);
 
-		StringEntity stringEntity = new StringEntity(json.toString(), _UTF_8);
+		StringEntity stringEntity = new StringEntity(json.toString(), _CHARSET);
 
 		stringEntity.setContentType("application/json");
 
@@ -417,7 +417,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		List<NameValuePair> nameValuePairs = toNameValuePairs(parameters);
 
 		HttpEntity httpEntity = new UrlEncodedFormEntity(
-			nameValuePairs, _UTF_8);
+			nameValuePairs, _CHARSET);
 
 		addHeaders(httpPut, headers);
 
@@ -617,11 +617,11 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 					}
 
 					return EntityUtils.toString(
-						httpResponse.getEntity(), _UTF_8);
+						httpResponse.getEntity(), _CHARSET);
 				}
 			}
 			else if (statusCode == HttpServletResponse.SC_OK) {
-				return EntityUtils.toString(httpResponse.getEntity(), _UTF_8);
+				return EntityUtils.toString(httpResponse.getEntity(), _CHARSET);
 			}
 			else if (statusCode == HttpServletResponse.SC_UNAUTHORIZED) {
 				throw new JSONWebServiceTransportException.
@@ -797,7 +797,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		setHeaders(headers);
 	}
 
-	private static final Charset _UTF_8 = Charset.forName("UTF-8");
+	private static final Charset _CHARSET = Charset.forName("UTF-8");
 
 	private static final Logger _logger = LoggerFactory.getLogger(
 		JSONWebServiceClientImpl.class);
