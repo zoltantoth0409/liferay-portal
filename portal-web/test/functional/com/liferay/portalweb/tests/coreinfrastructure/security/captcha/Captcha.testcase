@@ -1,6 +1,7 @@
 <definition component-name="portal-security">
 	<property name="captcha.max.challenges" value="0" />
 	<property name="portal.upstream" value="true" />
+	<property name="test.assert.warning.exceptions" value="true" />
 	<property name="testray.main.component.name" value="Security" />
 
 	<set-up>
