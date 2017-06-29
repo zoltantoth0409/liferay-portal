@@ -139,8 +139,8 @@
 		</execute>
 
 		<execute macro="ServerAdministration#configureMailServerSettings">
-			<var name="userName" method="TestPropsUtil#get('email.address.2')" />
-			<var name="userPassword" method="TestPropsUtil#get('email.password.2')" />
+			<var method="TestPropsUtil#get('email.address.2')" name="userName" />
+			<var method="TestPropsUtil#get('email.password.2')" name="userPassword" />
 		</execute>
 
 		<execute macro="Navigator#openURL" />
@@ -152,7 +152,7 @@
 		<execute macro="ReportsAdmin#gotoConfiguration" />
 
 		<execute macro="ReportsAdmin#configureEmailFrom">
-			<var name="emailFromAddress" method="TestPropsUtil#get('email.address.2')" />
+			<var method="TestPropsUtil#get('email.address.2')" name="emailFromAddress" />
 			<var name="emailFromName" value="Liferay QA" />
 		</execute>
 
@@ -204,8 +204,8 @@ Thanks,<br/>
 		</execute>
 
 		<execute macro="ReportsAdmin#addReportEntry">
-			<var name="emailNotificationsAddress" method="TestPropsUtil#get('email.address.4')" />
-			<var name="emailRecipientAddress" method="TestPropsUtil#get('email.address.3')" />
+			<var method="TestPropsUtil#get('email.address.4')" name="emailNotificationsAddress" />
+			<var method="TestPropsUtil#get('email.address.3')" name="emailRecipientAddress" />
 			<var name="reportFormat" value="pdf" />
 			<var name="reportsDefinitionName" value="Reports Definition Name" />
 		</execute>
@@ -213,8 +213,8 @@ Thanks,<br/>
 		<execute function="Pause" locator1="30000" />
 
 		<execute macro="Gmail#login">
-			<var name="userEmailAddress" method="TestPropsUtil#get('email.address.4')" />
-			<var name="userPassword" method="TestPropsUtil#get('email.password.4')" />
+			<var method="TestPropsUtil#get('email.address.4')" name="userEmailAddress" />
+			<var method="TestPropsUtil#get('email.password.4')" name="userPassword" />
 		</execute>
 
 		<execute macro="Gmail#gotoHtmlMode" />
@@ -233,8 +233,8 @@ Thanks,<br/>
 		</execute>
 
 		<execute macro="Gmail#logoutAndLogin">
-			<var name="userEmailAddress" method="TestPropsUtil#get('email.address.3')" />
-			<var name="userPassword" method="TestPropsUtil#get('email.password.3')" />
+			<var method="TestPropsUtil#get('email.address.3')" name="userEmailAddress" />
+			<var method="TestPropsUtil#get('email.password.3')" name="userPassword" />
 		</execute>
 
 		<execute macro="Gmail#gotoHtmlMode" />
