@@ -444,8 +444,8 @@
 		</execute>
 
 		<execute macro="ServerAdministration#configureMailServerSettings">
-			<var name="userName" property-value="email.address.2" />
-			<var name="userPassword" property-value="email.password.2" />
+			<var name="userName" method="TestPropsUtil#get('email.address.2')" />
+			<var name="userPassword" method="TestPropsUtil#get('email.password.2')" />
 		</execute>
 
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
@@ -461,7 +461,7 @@
 		</execute>
 
 		<execute macro="User#addCP">
-			<var name="userEmailAddress" property-value="email.address.4" />
+			<var name="userEmailAddress" method="TestPropsUtil#get('email.address.4')" />
 			<var name="userFirstName" value="userfn1" />
 			<var name="userLastName" value="userln1" />
 			<var name="userScreenName" value="usersn1" />
@@ -481,7 +481,7 @@
 		</execute>
 
 		<execute macro="User#editPasswordCP">
-			<var name="userEmailAddress" property-value="email.address.4" />
+			<var name="userEmailAddress" method="TestPropsUtil#get('email.address.4')" />
 			<var name="userScreenName" value="usersn1" />
 		</execute>
 
@@ -520,7 +520,7 @@
 		</execute>
 
 		<execute macro="User#logoutAndLoginPG">
-			<var name="userLoginEmailAddress" property-value="email.address.4" />
+			<var name="userLoginEmailAddress" method="TestPropsUtil#get('email.address.4')" />
 			<var name="userLoginFullName" value="userfn1 userln1" />
 		</execute>
 
@@ -564,8 +564,8 @@
 		<execute function="Pause" locator1="30000" />
 
 		<execute macro="Gmail#login">
-			<var name="userEmailAddress" property-value="email.address.4" />
-			<var name="userPassword" property-value="email.password.4" />
+			<var name="userEmailAddress" method="TestPropsUtil#get('email.address.4')" />
+			<var name="userPassword" method="TestPropsUtil#get('email.password.4')" />
 		</execute>
 
 		<execute macro="Gmail#gotoHtmlMode" />
@@ -659,8 +659,8 @@
 		</execute>
 
 		<execute macro="ServerAdministration#configureMailServerSettings">
-			<var name="userName" property-value="email.address.2" />
-			<var name="userPassword" property-value="email.password.2" />
+			<var name="userName" method="TestPropsUtil#get('email.address.2')" />
+			<var name="userPassword" method="TestPropsUtil#get('email.password.2')" />
 		</execute>
 
 		<execute macro="ProductMenu#gotoControlPanelUsers">
@@ -668,7 +668,7 @@
 		</execute>
 
 		<execute macro="User#addCP">
-			<var name="userEmailAddress" property-value="email.address.4" />
+			<var name="userEmailAddress" method="TestPropsUtil#get('email.address.4')" />
 			<var name="userFirstName" value="userfn1" />
 			<var name="userLastName" value="userln1" />
 			<var name="userScreenName" value="usersn1" />
@@ -708,7 +708,7 @@
 		</execute>
 
 		<execute macro="User#editPasswordCP">
-			<var name="userEmailAddress" property-value="email.address.4" />
+			<var name="userEmailAddress" method="TestPropsUtil#get('email.address.4')" />
 			<var name="userScreenName" value="usersn1" />
 		</execute>
 
@@ -752,7 +752,7 @@
 		</execute>
 
 		<execute macro="User#logoutAndLoginPG">
-			<var name="userLoginEmailAddress" property-value="email.address.4" />
+			<var name="userLoginEmailAddress" method="TestPropsUtil#get('email.address.4')" />
 			<var name="userLoginFullName" value="userfn1 userln1" />
 		</execute>
 
@@ -796,8 +796,8 @@
 		<execute function="Pause" locator1="30000" />
 
 		<execute macro="Gmail#login">
-			<var name="userEmailAddress" property-value="email.address.4" />
-			<var name="userPassword" property-value="email.password.4" />
+			<var name="userEmailAddress" method="TestPropsUtil#get('email.address.4')" />
+			<var name="userPassword" method="TestPropsUtil#get('email.password.4')" />
 		</execute>
 
 		<execute macro="Gmail#gotoHtmlMode" />
@@ -914,8 +914,8 @@
 		</execute>
 
 		<execute macro="ServerAdministration#configureMailServerSettings">
-			<var name="userName" property-value="email.address.2" />
-			<var name="userPassword" property-value="email.password.2" />
+			<var name="userName" method="TestPropsUtil#get('email.address.2')" />
+			<var name="userPassword" method="TestPropsUtil#get('email.password.2')" />
 		</execute>
 
 		<execute macro="ProductMenu#gotoControlPanelUsers">
@@ -923,7 +923,7 @@
 		</execute>
 
 		<execute macro="User#addCP">
-			<var name="userEmailAddress" property-value="email.address.4" />
+			<var name="userEmailAddress" method="TestPropsUtil#get('email.address.4')" />
 			<var name="userFirstName" value="userfn1" />
 			<var name="userLastName" value="userln1" />
 			<var name="userScreenName" value="usersn1" />
@@ -954,7 +954,7 @@
 		</execute>
 
 		<execute macro="User#editPasswordCP">
-			<var name="userEmailAddress" property-value="email.address.4" />
+			<var name="userEmailAddress" method="TestPropsUtil#get('email.address.4')" />
 			<var name="userScreenName" value="usersn1" />
 		</execute>
 
@@ -998,7 +998,7 @@
 		</execute>
 
 		<execute macro="User#logoutAndLoginPG">
-			<var name="userLoginEmailAddress" property-value="email.address.4" />
+			<var name="userLoginEmailAddress" method="TestPropsUtil#get('email.address.4')" />
 			<var name="userLoginFullName" value="userfn1 userln1" />
 		</execute>
 
@@ -1042,8 +1042,8 @@
 		<execute function="Pause" locator1="30000" />
 
 		<execute macro="Gmail#login">
-			<var name="userEmailAddress" property-value="email.address.4" />
-			<var name="userPassword" property-value="email.password.4" />
+			<var name="userEmailAddress" method="TestPropsUtil#get('email.address.4')" />
+			<var name="userPassword" method="TestPropsUtil#get('email.password.4')" />
 		</execute>
 
 		<execute macro="Gmail#gotoHtmlMode" />
