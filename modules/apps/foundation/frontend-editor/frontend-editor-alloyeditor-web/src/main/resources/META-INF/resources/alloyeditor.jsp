@@ -17,7 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String portletId = portletDisplay.getRootPortletId();
+String portletId = portletDisplay.getId();
 
 String doAsUserId = themeDisplay.getDoAsUserId();
 
