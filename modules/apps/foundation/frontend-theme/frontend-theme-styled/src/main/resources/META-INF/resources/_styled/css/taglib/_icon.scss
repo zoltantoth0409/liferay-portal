@@ -17,3 +17,8 @@ a.taglib-icon {
 		}
 	}
 }
+
+.taglib-icon[lang] > img {
+	vertical-align: baseline;
+	width: 16px;
+}
