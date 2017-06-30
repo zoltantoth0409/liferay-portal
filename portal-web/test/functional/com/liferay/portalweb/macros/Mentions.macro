@@ -69,6 +69,8 @@
 
 		<var name="key_mentionsUserScreenName" value="${mentionsUserScreenName}" />
 
+		<execute function="Click" locator1="TextInput#SUBJECT" />
+
 		<execute function="Type" locator1="TextInput#SUBJECT" value1="${threadSubject}" />
 
 		<execute function="SelectFrame" locator1="CKEditor#BODY_FIELD_IFRAME" />
