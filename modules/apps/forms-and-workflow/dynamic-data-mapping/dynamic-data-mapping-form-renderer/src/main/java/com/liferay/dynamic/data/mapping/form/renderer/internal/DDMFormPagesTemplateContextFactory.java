@@ -154,12 +154,10 @@ public class DDMFormPagesTemplateContextFactory {
 			new DDMFormFieldTemplateContextFactory(
 				_ddmFormFieldsMap, _ddmFormEvaluationResult,
 				_ddmFormFieldValuesMap.get(ddmFormFieldName),
-				_ddmFormRenderingContext);
+				_ddmFormRenderingContext, _pageEnabled);
 
 		ddmFormFieldTemplateContextFactory.setDDMFormFieldTypeServicesTracker(
 			_ddmFormFieldTypeServicesTracker);
-
-		ddmFormFieldTemplateContextFactory.setPageEnabled(_pageEnabled);
 
 		return ddmFormFieldTemplateContextFactory.create();
 	}

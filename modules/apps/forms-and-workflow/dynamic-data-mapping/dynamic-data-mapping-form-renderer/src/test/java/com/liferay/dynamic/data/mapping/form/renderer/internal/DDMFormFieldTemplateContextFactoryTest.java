@@ -287,7 +287,7 @@ public class DDMFormFieldTemplateContextFactoryTest {
 		DDMFormFieldTemplateContextFactory ddmFormFieldTemplateContextFactory =
 			new DDMFormFieldTemplateContextFactory(
 				ddmForm.getDDMFormFieldsMap(true), ddmFormEvaluationResult,
-				ddmFormFieldValues, ddmFormRenderingContext);
+				ddmFormFieldValues, ddmFormRenderingContext, true);
 
 		DDMFormFieldTypeServicesTracker ddmFormFieldTypeServicesTracker =
 			mockDDMFormFieldTypeServicesTracker(
@@ -295,8 +295,6 @@ public class DDMFormFieldTemplateContextFactoryTest {
 
 		ddmFormFieldTemplateContextFactory.setDDMFormFieldTypeServicesTracker(
 			ddmFormFieldTypeServicesTracker);
-
-		ddmFormFieldTemplateContextFactory.setPageEnabled(true);
 
 		return ddmFormFieldTemplateContextFactory;
 	}

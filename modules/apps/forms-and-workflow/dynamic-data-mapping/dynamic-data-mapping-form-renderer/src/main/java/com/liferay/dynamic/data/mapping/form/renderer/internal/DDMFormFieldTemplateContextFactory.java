@@ -53,13 +53,14 @@ public class DDMFormFieldTemplateContextFactory {
 		Map<String, DDMFormField> ddmFormFieldsMap,
 		DDMFormEvaluationResult ddmFormEvaluationResult,
 		List<DDMFormFieldValue> ddmFormFieldValues,
-		DDMFormRenderingContext ddmFormRenderingContext) {
+		DDMFormRenderingContext ddmFormRenderingContext, boolean pageEnabled) {
 
 		_ddmFormFieldsMap = ddmFormFieldsMap;
 
 		_ddmFormEvaluationResult = ddmFormEvaluationResult;
 		_ddmFormFieldValues = ddmFormFieldValues;
 		_ddmFormRenderingContext = ddmFormRenderingContext;
+		_pageEnabled = pageEnabled;
 
 		_locale = ddmFormRenderingContext.getLocale();
 	}
@@ -67,10 +68,6 @@ public class DDMFormFieldTemplateContextFactory {
 	public List<Object> create() {
 		return createDDMFormFieldTemplateContexts(
 			_ddmFormFieldValues, StringPool.BLANK);
-	}
-
-	public void setPageEnabled(boolean pageEnabled) {
-		_pageEnabled = pageEnabled;
 	}
 
 	protected DDMFormFieldRenderingContext
@@ -598,6 +595,6 @@ public class DDMFormFieldTemplateContextFactory {
 	private final List<DDMFormFieldValue> _ddmFormFieldValues;
 	private final DDMFormRenderingContext _ddmFormRenderingContext;
 	private final Locale _locale;
-	private boolean _pageEnabled;
+	private final boolean _pageEnabled;
 
 }
