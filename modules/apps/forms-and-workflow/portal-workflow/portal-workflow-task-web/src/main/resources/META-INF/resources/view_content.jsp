@@ -23,8 +23,6 @@ AssetEntry assetEntry = workflowTaskDisplayContext.getAssetEntry();
 AssetRenderer assetRenderer = workflowTaskDisplayContext.getAssetRenderer();
 AssetRendererFactory assetRendererFactory = workflowTaskDisplayContext.getAssetRendererFactory();
 
-String viewInContextURL = assetRenderer.getURLViewInContext(liferayPortletRequest, liferayPortletResponse, null);
-
 request.setAttribute(WebKeys.WORKFLOW_ASSET_PREVIEW, Boolean.TRUE);
 
 portletDisplay.setShowBackIcon(true);
@@ -40,6 +38,10 @@ renderResponse.setTitle(assetRenderer.getTitle(locale));
 		assetRendererFactory="<%= assetRendererFactory %>"
 	/>
 </c:if>
+
+<%
+String viewInContextURL = assetRenderer.getURLViewInContext(liferayPortletRequest, liferayPortletResponse, null);
+%>
 
 <c:if test="<%= viewInContextURL != null %>">
 	<div class="asset-more">
