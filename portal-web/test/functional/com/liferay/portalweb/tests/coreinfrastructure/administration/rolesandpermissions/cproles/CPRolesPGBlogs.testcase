@@ -679,7 +679,7 @@
 	</command>
 
 	<command name="DeleteBlogsEntryOrgRoleDefinePermission" priority="5">
-		<property name="portal.acceptance" value="true" />
+		<property name="portal.acceptance" value="quarantine" />
 
 		<execute macro="Permissions#setUpOrgRoleLoginUserPG">
 			<var name="orgName" value="Organization Name" />
