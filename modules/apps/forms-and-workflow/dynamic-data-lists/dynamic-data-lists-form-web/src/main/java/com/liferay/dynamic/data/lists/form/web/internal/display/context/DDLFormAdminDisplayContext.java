@@ -498,11 +498,11 @@ public class DDLFormAdminDisplayContext {
 	}
 
 	public ResourceBundle getResourceBundle() {
-		ThemeDisplay themeDisplay =
-			_ddlFormAdminRequestHelper.getThemeDisplay();
-
 		ResourceBundleLoader portalResourceBundleLoader =
 			ResourceBundleLoaderUtil.getPortalResourceBundleLoader();
+
+		ThemeDisplay themeDisplay =
+			_ddlFormAdminRequestHelper.getThemeDisplay();
 
 		ResourceBundle portalResourceBundle =
 			portalResourceBundleLoader.loadResourceBundle(
