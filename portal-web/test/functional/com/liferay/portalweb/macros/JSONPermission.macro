@@ -5,7 +5,7 @@
 		</execute>
 
 		<execute macro="JSONRole#getRoleIdByName">
-			<var name="roleTitle" value="${roleTitle}" />
+			<var name="roleName" value="${roleName}" />
 			<return from="roleId" name="roleId" />
 		</execute>
 

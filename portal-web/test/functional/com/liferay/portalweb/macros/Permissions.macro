@@ -109,7 +109,7 @@
 			<var name="method" value="add-resource-permission" />
 			<var name="resourceAction" value="${resourceAction}" />
 			<var name="resourceName" value="${resourceName}" />
-			<var name="roleTitle" value="${roleTitle}" />
+			<var name="roleName" value="${roleName}" />
 		</execute>
 	</command>
 
@@ -153,7 +153,7 @@
 			<var name="method" value="remove-resource-permission" />
 			<var name="resourceAction" value="${resourceAction}" />
 			<var name="resourceName" value="${resourceName}" />
-			<var name="roleTitle" value="${roleTitle}" />
+			<var name="roleName" value="${roleName}" />
 		</execute>
 	</command>
 
