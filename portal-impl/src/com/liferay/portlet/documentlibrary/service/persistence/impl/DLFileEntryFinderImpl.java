@@ -177,6 +177,10 @@ public class DLFileEntryFinderImpl
 			queryDefinition, false);
 	}
 
+	/**
+	 * @deprecated As of 7.0.0, with no direct replacement
+	 */
+	@Deprecated
 	@Override
 	public DLFileEntry fetchByAnyImageId(long imageId) {
 		Session session = null;
@@ -298,6 +302,10 @@ public class DLFileEntryFinderImpl
 			queryDefinition, true);
 	}
 
+	/**
+	 * @deprecated As of 7.0.0, with no direct replacement
+	 */
+	@Deprecated
 	@Override
 	public DLFileEntry findByAnyImageId(long imageId)
 		throws NoSuchFileEntryException {
