@@ -6362,6 +6362,8 @@ index.on.startup=true
 
 setup.wizard.enabled=false
 
+cluster.link.autodetect.address=
+
 mail.session.jndi.name=
 
 sprite.root.dir=/tmp/sprite
@@ -6372,9 +6374,7 @@ persisted.scheduler.org.quartz.threadPool.threadCount=1
 
 axis.servlet.hosts.allowed=
 
-tunnel.servlet.hosts.allowed=
-
-cluster.link.autodetect.address=</echo>
+tunnel.servlet.hosts.allowed=</echo>
 
 		<if>
 			<equals arg1="${database.type}" arg2="oracle" />
