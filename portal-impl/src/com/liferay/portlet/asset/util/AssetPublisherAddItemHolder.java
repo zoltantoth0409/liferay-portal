@@ -40,9 +40,8 @@ public class AssetPublisherAddItemHolder
 		_locale = locale;
 		_portletURL = portletURL;
 
-		_modelResource = _getModelResource(resourceBundle);
-
 		_collator = Collator.getInstance(locale);
+		_modelResource = _getModelResource(resourceBundle);
 	}
 
 	@Override
