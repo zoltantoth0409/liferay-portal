@@ -671,8 +671,8 @@ public class AssetPublisherDisplayContext {
 			return Collections.emptyMap();
 		}
 
-		Map<Long, List<AssetPublisherAddItemHolder>> scopeAddPortletURLHolders =
-			new HashMap<>();
+		Map<Long, List<AssetPublisherAddItemHolder>>
+			scopeAssetPublisherAddItemHolders = new HashMap<>();
 
 		LiferayPortletRequest liferayPortletRequest =
 			(LiferayPortletRequest)_portletRequest;
@@ -690,16 +690,16 @@ public class AssetPublisherDisplayContext {
 					getAllAssetCategoryIds(), getAllAssetTagNames(), redirect);
 
 			if (ListUtil.isNotEmpty(assetPublisherAddItemHolders)) {
-				scopeAddPortletURLHolders.put(
+				scopeAssetPublisherAddItemHolders.put(
 					groupId, assetPublisherAddItemHolders);
 			}
 
-			if (scopeAddPortletURLHolders.size() > max) {
+			if (scopeAssetPublisherAddItemHolders.size() > max) {
 				break;
 			}
 		}
 
-		return scopeAddPortletURLHolders;
+		return scopeAssetPublisherAddItemHolders;
 	}
 
 	public Long getScopeGroupId() {
