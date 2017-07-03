@@ -157,8 +157,13 @@ public abstract class BaseStagedModelDataHandlerTestCase {
 
 		Assert.assertNotNull(importedAssetEntry);
 
-		Assert.assertFalse(importedAssetEntry.getTags().isEmpty());
-		Assert.assertFalse(importedAssetEntry.getCategories().isEmpty());
+		List<AssetTag> assetTags = importedAssetEntry.getTags();
+
+		Assert.assertFalse(assetTags.isEmpty());
+
+		List<AssetCategory> assetCategories = importedAssetEntry.getCategories();
+
+		Assert.assertFalse(assetCategories.isEmpty());
 
 		assetEntry = fetchAssetEntry(stagedModel, stagingGroup);
 
@@ -186,8 +191,13 @@ public abstract class BaseStagedModelDataHandlerTestCase {
 
 		Assert.assertNotNull(importedAssetEntry);
 
-		Assert.assertTrue(importedAssetEntry.getTags().isEmpty());
-		Assert.assertTrue(importedAssetEntry.getCategories().isEmpty());
+		assetTags = importedAssetEntry.getTags();
+
+		Assert.assertFalse(assetTags.isEmpty());
+
+		assetCategories = importedAssetEntry.getCategories();
+
+		Assert.assertFalse(assetCategories.isEmpty());
 	}
 
 	@Test
