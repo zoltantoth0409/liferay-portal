@@ -1405,6 +1405,6 @@
 
 		<execute macro="Button#clickSave" />
 
-		<execute function="AssertElementNotPresent" locator1="//body[.=123]" />
+		<execute function="AssertAlertNotPresent" />
 	</command>
 </definition>
