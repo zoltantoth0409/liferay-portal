@@ -161,7 +161,8 @@ public abstract class BaseStagedModelDataHandlerTestCase {
 
 		Assert.assertFalse(assetTags.isEmpty());
 
-		List<AssetCategory> assetCategories = importedAssetEntry.getCategories();
+		List<AssetCategory> assetCategories =
+			importedAssetEntry.getCategories();
 
 		Assert.assertFalse(assetCategories.isEmpty());
 
