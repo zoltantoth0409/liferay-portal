@@ -67,13 +67,13 @@ public class AddRecordMVCCommandHelper {
 		DDMFormEvaluationResult ddmFormEvaluationResult = evaluate(
 			actionRequest, ddmForm, ddmFormValues, locale);
 
+		Set<String> invisibleFields = getInvisibleFields(
+			ddmFormEvaluationResult);
+
 		DDMFormLayout ddmFormLayout = getDDMFormLayout(actionRequest);
 
 		Set<String> fieldsFromDisabledPages = getFieldNamesFromDisabledPages(
 			ddmFormEvaluationResult, ddmFormLayout);
-
-		Set<String> invisibleFields = getInvisibleFields(
-			ddmFormEvaluationResult);
 
 		invisibleFields.addAll(fieldsFromDisabledPages);
 
