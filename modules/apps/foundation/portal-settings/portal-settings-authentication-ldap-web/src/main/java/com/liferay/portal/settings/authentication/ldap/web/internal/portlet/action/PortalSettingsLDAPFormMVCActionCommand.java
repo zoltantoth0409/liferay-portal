@@ -215,18 +215,20 @@ public class PortalSettingsLDAPFormMVCActionCommand
 			Stream<Dictionary<String, Object>> stream = dictionaries.stream();
 
 			stream.filter(
-				l -> GetterUtil.getLong(
-					l.get(LDAPConstants.LDAP_SERVER_ID)) ==
+				dictionary -> GetterUtil.getLong(
+					dictionary.get(LDAPConstants.LDAP_SERVER_ID)) ==
 						ldapServerId
 			).findFirst(
 			).ifPresent(
-				l -> {
-					l.put(LDAPConstants.AUTH_SERVER_PRIORITY, priority);
+				dictionary -> {
+					dictionary.put(
+						LDAPConstants.AUTH_SERVER_PRIORITY, priority);
 
 					_ldapServerConfigurationProvider.updateProperties(
 						companyId,
-						GetterUtil.getLong(l.get(LDAPConstants.LDAP_SERVER_ID)),
-						l);
+						GetterUtil.getLong(
+								dictionary.get(LDAPConstants.LDAP_SERVER_ID)),
+						dictionary);
 				}
 			);
 		}
