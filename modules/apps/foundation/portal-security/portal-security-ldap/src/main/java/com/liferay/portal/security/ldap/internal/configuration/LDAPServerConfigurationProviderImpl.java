@@ -242,18 +242,18 @@ public class LDAPServerConfigurationProviderImpl
 			ldapServerConfigurations.add(_defaultLDAPServerConfiguration);
 		}
 		else if (!MapUtil.isEmpty(objectValuePairs)) {
-			ArrayList<ObjectValuePair<Configuration, LDAPServerConfiguration>>
+			List<ObjectValuePair<Configuration, LDAPServerConfiguration>>
 				objectValuePairsList = new ArrayList<>(
 					objectValuePairs.values());
 
 			objectValuePairsList.sort(
 				Comparator.comparing(
 					o -> {
-						Configuration key = o.getKey();
+						Configuration configuration = o.getKey();
 
 						try {
 							Dictionary<String, Object> properties =
-								key.getProperties();
+								configuration.getProperties();
 
 							return GetterUtil.getLong(
 								properties.get(
