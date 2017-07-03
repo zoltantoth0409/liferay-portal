@@ -208,9 +208,8 @@ public class PortalSettingsLDAPFormMVCActionCommand
 				companyId);
 
 		for (int i = 0; i < orderedLdapServerIds.length; i++) {
+			final int authServerPriority = i;
 			long ldapServerId = GetterUtil.getLong(orderedLdapServerIds[i]);
-
-			final int priority = i;
 
 			Stream<Dictionary<String, Object>> stream = dictionaries.stream();
 
@@ -222,11 +221,10 @@ public class PortalSettingsLDAPFormMVCActionCommand
 			).ifPresent(
 				dictionary -> {
 					dictionary.put(
-						LDAPConstants.AUTH_SERVER_PRIORITY, priority);
+						LDAPConstants.AUTH_SERVER_PRIORITY, authServerPriority);
 
 					_ldapServerConfigurationProvider.updateProperties(
-						companyId,
-						GetterUtil.getLong(
+						companyId, GetterUtil.getLong(
 								dictionary.get(LDAPConstants.LDAP_SERVER_ID)),
 						dictionary);
 				}
