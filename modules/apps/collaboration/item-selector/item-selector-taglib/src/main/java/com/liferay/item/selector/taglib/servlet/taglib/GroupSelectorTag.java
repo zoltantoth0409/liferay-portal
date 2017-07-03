@@ -92,12 +92,12 @@ public class GroupSelectorTag extends IncludeTag {
 
 		if (permissionChecker.isCompanyAdmin()) {
 			return GroupLocalServiceUtil.search(
-				themeDisplay.getCompanyId(), _COMPANY_ADMIN_CLASSNAME_IDS,
+				themeDisplay.getCompanyId(), _CLASS_NAME_IDS_COMPANY_ADMIN,
 				keywords, groupParams, startAndEnd[0], startAndEnd[1], null);
 		}
 
 		return GroupLocalServiceUtil.search(
-			themeDisplay.getCompanyId(), _CLASSNAME_IDS, keywords, groupParams,
+			themeDisplay.getCompanyId(), _CLASS_NAME_IDS, keywords, groupParams,
 			startAndEnd[0], startAndEnd[1], null);
 	}
 
@@ -120,12 +120,13 @@ public class GroupSelectorTag extends IncludeTag {
 
 		if (permissionChecker.isCompanyAdmin()) {
 			return GroupLocalServiceUtil.searchCount(
-				themeDisplay.getCompanyId(), _COMPANY_ADMIN_CLASSNAME_IDS,
+				themeDisplay.getCompanyId(), _CLASS_NAME_IDS_COMPANY_ADMIN,
 				keywords, groupParams);
 		}
 
 		return GroupLocalServiceUtil.searchCount(
-			themeDisplay.getCompanyId(), _CLASSNAME_IDS, keywords, groupParams);
+			themeDisplay.getCompanyId(), _CLASS_NAME_IDS, keywords,
+			groupParams);
 	}
 
 	@Override
@@ -145,12 +146,12 @@ public class GroupSelectorTag extends IncludeTag {
 			ItemSelectorUtil.getItemSelector());
 	}
 
-	private static final long[] _CLASSNAME_IDS = {
+	private static final long[] _CLASS_NAME_IDS = {
 		ClassNameLocalServiceUtil.getClassNameId(Group.class),
 		ClassNameLocalServiceUtil.getClassNameId(Organization.class)
 	};
 
-	private static final long[] _COMPANY_ADMIN_CLASSNAME_IDS = {
+	private static final long[] _CLASS_NAME_IDS_COMPANY_ADMIN = {
 		ClassNameLocalServiceUtil.getClassNameId(Company.class),
 		ClassNameLocalServiceUtil.getClassNameId(Group.class),
 		ClassNameLocalServiceUtil.getClassNameId(Organization.class)
