@@ -159,7 +159,7 @@ public class TokenExtractor {
 	private static final Pattern _stringPattern = Pattern.compile(
 		"\"([^\"]*)\"");
 	private static final Pattern _variablePattern = Pattern.compile(
-		"\\b([a-zA-Z]+[\\w_]*)(?!\\()\\b");
+		"\\b([^0-9_\\s]+[^\\s]*)(?!\\()\\b");
 
 	private String _expression;
 	private final Map<String, String> _variableMap = new HashMap<>();
