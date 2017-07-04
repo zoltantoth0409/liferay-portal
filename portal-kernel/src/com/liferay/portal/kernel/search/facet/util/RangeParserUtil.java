@@ -37,10 +37,10 @@ public class RangeParserUtil {
 			return new String[] {null, null};
 		}
 
-		String lower = range.substring(x + 1, y).trim();
-		String upper = range.substring(y + 4, z).trim();
+		String lower = range.substring(x + 1, y);
+		String upper = range.substring(y + 4, z);
 
-		return new String[] {lower, upper};
+		return new String[] {lower.trim(), upper.trim()};
 	}
 
 }
