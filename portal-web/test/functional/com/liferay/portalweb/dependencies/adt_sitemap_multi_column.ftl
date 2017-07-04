@@ -2,7 +2,7 @@
 	<@liferay_aui.row>
 		<#list entries as entry>
 			<@liferay_aui.col
-				width = 25
+				width=25
 			>
 				<div class="results-header">
 					<h3>
@@ -19,8 +19,8 @@
 				</div>
 
 				<@displayPages
-					pages = entry.getChildren()
-					depth = 1
+					depth=1
+					pages=entry.getChildren()
 				/>
 			</@liferay_aui.col>
 		</#list>
@@ -28,8 +28,8 @@
 </#if>
 
 <#macro displayPages
-	pages
 	depth
+	pages
 >
 	<#if pages?has_content && ((depth < displayDepth?number) || (displayDepth?number == 0))>
 		<ul class="child-pages">
@@ -46,8 +46,8 @@
 					>${page.getName(locale)}</a>
 
 					<@displayPages
-						pages = page.getChildren()
-						depth = depth + 1
+						depth=depth + 1
+						pages=page.getChildren()
 					/>
 				</li>
 			</#list>
