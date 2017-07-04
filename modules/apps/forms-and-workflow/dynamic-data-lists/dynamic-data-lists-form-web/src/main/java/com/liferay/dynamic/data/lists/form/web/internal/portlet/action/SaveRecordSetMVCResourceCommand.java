@@ -80,7 +80,6 @@ public class SaveRecordSetMVCResourceCommand extends BaseMVCResourceCommand {
 				"modifiedDate",
 				formatDate(
 					recordSet.getModifiedDate(), themeDisplay.getLocale()));
-
 			response.put("recordSetId", recordSet.getRecordSetId());
 		}
 		catch (Throwable t) {
