@@ -102,7 +102,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 		function(event) {
 			event.preventDefault();
 
-			retrieveWebContent(0);
+			retrieveWebContent(-1);
 		},
 		'.selector-button'
 	);
