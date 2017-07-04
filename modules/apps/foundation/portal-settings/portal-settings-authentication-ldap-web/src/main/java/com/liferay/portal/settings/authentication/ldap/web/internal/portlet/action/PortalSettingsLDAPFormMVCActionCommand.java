@@ -224,8 +224,9 @@ public class PortalSettingsLDAPFormMVCActionCommand
 						LDAPConstants.AUTH_SERVER_PRIORITY, authServerPriority);
 
 					_ldapServerConfigurationProvider.updateProperties(
-						companyId, GetterUtil.getLong(
-								dictionary.get(LDAPConstants.LDAP_SERVER_ID)),
+						companyId,
+						GetterUtil.getLong(
+							dictionary.get(LDAPConstants.LDAP_SERVER_ID)),
 						dictionary);
 				}
 			);
