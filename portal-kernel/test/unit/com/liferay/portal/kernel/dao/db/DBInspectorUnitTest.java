@@ -102,7 +102,9 @@ public class DBInspectorUnitTest {
 
 		dbInspector.hasColumn(_TABLE_NAME, _COLUMN_NAME);
 
-		Mockito.verify(_preparedStatement, Mockito.never()).executeQuery();
+		Mockito.verify(
+			_preparedStatement, Mockito.never()
+		).executeQuery();
 	}
 
 	private void _givenTableWithColumn(String tableName, String columnName)
@@ -121,20 +123,51 @@ public class DBInspectorUnitTest {
 			String tableName, String columnName, boolean withColumn)
 		throws SQLException {
 
-		Mockito.when(_resultSet.next()).thenReturn(withColumn);
-		Mockito.when(_resultSet.getMetaData()).thenReturn(_resultSetMetadata);
-		Mockito.when(_preparedStatement.executeQuery()).thenReturn(_resultSet);
 		Mockito.when(
-			_databaseMetadata.storesLowerCaseIdentifiers()).thenReturn(true);
+			_resultSet.next()
+		).thenReturn(
+			withColumn
+		);
+
+		Mockito.when(
+			_resultSet.getMetaData()
+		).thenReturn(
+			_resultSetMetadata
+		);
+
+		Mockito.when(
+			_preparedStatement.executeQuery()
+		).thenReturn(
+			_resultSet
+		);
+
+		Mockito.when(
+			_databaseMetadata.storesLowerCaseIdentifiers()
+		).thenReturn(
+			true
+		);
+
 		Mockito.when(
 			_databaseMetadata.getColumns(
 				Mockito.anyString(), Mockito.anyString(),
 				Mockito.eq(StringUtil.toLowerCase(tableName)),
-				Mockito.eq(columnName))).thenReturn(_resultSet);
+				Mockito.eq(columnName))
+		).thenReturn(
+			_resultSet
+		);
+
 		Mockito.when(
 			_connection.prepareStatement(
-				Mockito.anyString())).thenReturn(_preparedStatement);
-		Mockito.when(_connection.getMetaData()).thenReturn(_databaseMetadata);
+				Mockito.anyString())
+		).thenReturn(
+			_preparedStatement
+		);
+
+		Mockito.when(
+			_connection.getMetaData()
+		).thenReturn(
+			_databaseMetadata
+		);
 	}
 
 	private static final String _COLUMN_NAME = "column_name";
