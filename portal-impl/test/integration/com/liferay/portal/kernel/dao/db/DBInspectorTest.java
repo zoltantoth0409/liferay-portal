@@ -85,14 +85,14 @@ public class DBInspectorTest {
 	}
 
 	@Test
-	public void testHasNoColumn() throws Exception {
+	public void testHasColumnNonexisting() throws Exception {
 		Assert.isTrue(
 			!_dbInspector.hasColumn(
 				_TABLE_NAME_EXISTING, _COLUMN_NAME_NONEXISTING));
 	}
 
 	@Test
-	public void testHasNoTable() throws Exception {
+	public void testHasTableNonexisting() throws Exception {
 		Assert.isTrue(!_dbInspector.hasTable(_TABLE_NAME_NONEXISTING));
 	}
 
