@@ -135,7 +135,7 @@ public class UpgradeResourcePermission extends UpgradeProcess {
 
 					@Override
 					public void persist() {
-						if (newResourceBlockId == -1) {
+						if (_newResourceBlockId == -1) {
 							return;
 						}
 
@@ -148,7 +148,7 @@ public class UpgradeResourcePermission extends UpgradeProcess {
 						try (PreparedStatement ps = connection.prepareStatement(
 								sbUpdate.toString())) {
 
-							ps.setLong(1, newResourceBlockId);
+							ps.setLong(1, _newResourceBlockId);
 							ps.setLong(2, calendarResourceId);
 
 							ps.execute();
@@ -160,10 +160,10 @@ public class UpgradeResourcePermission extends UpgradeProcess {
 
 					@Override
 					public void setResourceBlockId(long resourceBlockId) {
-						newResourceBlockId = resourceBlockId;
+						_newResourceBlockId = resourceBlockId;
 					}
 
-					protected long newResourceBlockId = -1;
+					private long _newResourceBlockId = -1;
 
 				};
 
