@@ -127,9 +127,9 @@ public class DBInspectorTest {
 
 	private static final String _TABLE_NAME_EXISTING = "Release_";
 
-	private static final String _COLUMN_NAME_NONEXISTING = "NonExistingColumn";
+	private static final String _COLUMN_NAME_NONEXISTING = "nonexistingColumn";
 
-	private static final String _TABLE_NAME_NONEXISTING = "NonExistingTable";
+	private static final String _TABLE_NAME_NONEXISTING = "NonexistingTable";
 
 	private static Connection _connection;
 	private static DBInspector _dbInspector;
