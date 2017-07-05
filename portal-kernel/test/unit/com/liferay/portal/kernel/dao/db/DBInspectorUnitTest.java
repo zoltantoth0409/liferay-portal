@@ -113,7 +113,7 @@ public class DBInspectorUnitTest {
 	}
 
 	private void _mockTableWithOrWithoutColumn(
-			String tableName, String columnName, boolean withColumn)
+			String tableName, String columnName, boolean hasColumn)
 		throws SQLException {
 
 		Mockito.when(
@@ -158,7 +158,7 @@ public class DBInspectorUnitTest {
 		Mockito.when(
 			_resultSet.next()
 		).thenReturn(
-			withColumn
+			hasColumn
 		);
 	}
 
