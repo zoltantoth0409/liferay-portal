@@ -75,10 +75,10 @@ public class DBInspectorUnitTest {
 	}
 
 	@Test
-	public void testHasColumnReturnsFalseWhenNonExistingColumn()
+	public void testHasColumnReturnsFalseWithoutnexistingColumn()
 		throws Exception {
 
-		_givenTableWithNoColumn(_TABLE_NAME, _COLUMN_NAME);
+		_givenTableWithoutColumn(_TABLE_NAME, _COLUMN_NAME);
 
 		DBInspector dbInspector = new DBInspector(_connection);
 
@@ -86,7 +86,7 @@ public class DBInspectorUnitTest {
 	}
 
 	@Test
-	public void testHasColumnReturnsTrueWhenExistingColumn() throws Exception {
+	public void testHasColumnReturnsTrueWithExistingColumn() throws Exception {
 		_givenTableWithColumn(_TABLE_NAME, _COLUMN_NAME);
 
 		DBInspector dbInspector = new DBInspector(_connection);
@@ -95,7 +95,7 @@ public class DBInspectorUnitTest {
 	}
 
 	@Test
-	public void testNoQueryNeededToCheckIfColumnExists() throws Exception {
+	public void testNoQueryIfColumnExists() throws Exception {
 		_givenTableWithColumn(_TABLE_NAME, _COLUMN_NAME);
 
 		DBInspector dbInspector = new DBInspector(_connection);
@@ -113,7 +113,7 @@ public class DBInspectorUnitTest {
 		_givenTableWithOrWithoutColumn(tableName, columnName, true);
 	}
 
-	private void _givenTableWithNoColumn(String tableName, String columnName)
+	private void _givenTableWithoutColumn(String tableName, String columnName)
 		throws SQLException {
 
 		_givenTableWithOrWithoutColumn(tableName, columnName, false);
