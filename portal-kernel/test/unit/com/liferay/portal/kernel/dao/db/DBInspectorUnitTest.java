@@ -64,8 +64,7 @@ public class DBInspectorUnitTest {
 
 	@Test
 	public void testHasColumnIsCaseInsensitive() throws Exception {
-		_mockTableWithColumn(
-			_TABLE_NAME, StringUtil.toLowerCase(_COLUMN_NAME));
+		_mockTableWithColumn(_TABLE_NAME, StringUtil.toLowerCase(_COLUMN_NAME));
 
 		DBInspector dbInspector = new DBInspector(_connection);
 
@@ -113,12 +112,6 @@ public class DBInspectorUnitTest {
 		_mockTableWithOrWithoutColumn(tableName, columnName, true);
 	}
 
-	private void _mockTableWithoutColumn(String tableName, String columnName)
-		throws SQLException {
-
-		_mockTableWithOrWithoutColumn(tableName, columnName, false);
-	}
-
 	private void _mockTableWithOrWithoutColumn(
 			String tableName, String columnName, boolean withColumn)
 		throws SQLException {
@@ -130,8 +123,7 @@ public class DBInspectorUnitTest {
 		);
 
 		Mockito.when(
-			_connection.prepareStatement(
-				Mockito.anyString())
+			_connection.prepareStatement(Mockito.anyString())
 		).thenReturn(
 			_preparedStatement
 		);
@@ -168,6 +160,12 @@ public class DBInspectorUnitTest {
 		).thenReturn(
 			withColumn
 		);
+	}
+
+	private void _mockTableWithoutColumn(String tableName, String columnName)
+		throws SQLException {
+
+		_mockTableWithOrWithoutColumn(tableName, columnName, false);
 	}
 
 	private static final String _COLUMN_NAME = "column_name";
