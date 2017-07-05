@@ -51,7 +51,11 @@ public class DBInspectorUnitTest {
 		DatabaseMetaData databaseMetaData = Mockito.mock(
 			DatabaseMetaData.class);
 
-		when(databaseMetaData.storesLowerCaseIdentifiers()).thenReturn(true);
+		when(
+			databaseMetaData.storesLowerCaseIdentifiers()
+		).thenReturn(
+			true
+		);
 
 		dbInspector.normalizeName(_TABLE_NAME, databaseMetaData);
 
