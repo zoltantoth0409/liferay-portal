@@ -75,7 +75,7 @@ public class DBInspectorUnitTest {
 	}
 
 	@Test
-	public void testHasColumnReturnsFalseWithoutnexistingColumn()
+	public void testHasColumnReturnsFalseWithoutExistingColumn()
 		throws Exception {
 
 		_givenTableWithoutColumn(_TABLE_NAME, _COLUMN_NAME);
@@ -95,7 +95,7 @@ public class DBInspectorUnitTest {
 	}
 
 	@Test
-	public void testNoQueryIfColumnExists() throws Exception {
+	public void testHasColumnSkipsQueryWithExistingColumn() throws Exception {
 		_givenTableWithColumn(_TABLE_NAME, _COLUMN_NAME);
 
 		DBInspector dbInspector = new DBInspector(_connection);
