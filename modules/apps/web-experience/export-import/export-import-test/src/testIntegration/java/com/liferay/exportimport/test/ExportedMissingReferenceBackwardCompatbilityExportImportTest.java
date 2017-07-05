@@ -135,6 +135,7 @@ public class ExportedMissingReferenceBackwardCompatbilityExportImportTest
 	@Rule
 	public final TestRule skipParentTestsRule =
 		(statement, description) -> new Statement() {
+
 			@Override
 			public void evaluate() throws Throwable {
 				Stream<Method> methodStream = _parentTestMethods.stream();
