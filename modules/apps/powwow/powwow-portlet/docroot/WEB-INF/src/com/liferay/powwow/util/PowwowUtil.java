@@ -205,16 +205,19 @@ public class PowwowUtil {
 		String participantJSON = ParamUtil.getString(
 			actionRequest, "powwowParticipantData");
 
-		JSONArray participants = JSONFactoryUtil.createJSONArray(
+		JSONArray participantsJSONArray = JSONFactoryUtil.createJSONArray(
 			participantJSON);
 
-		for (int i = 0; i < participants.length(); i++) {
-			JSONObject participant = participants.getJSONObject(i);
+		for (int i = 0; i < participantsJSONArray.length(); i++) {
+			JSONObject participantJSONObject =
+				participantsJSONArray.getJSONObject(i);
 
-			String name = participant.getString("name");
-			long participantUserId = participant.getLong("participantUserId");
-			String emailAddress = participant.getString("emailAddress");
-			int type = participant.getInt("type");
+			String name = participantJSONObject.getString("name");
+			long participantUserId = participantJSONObject.getLong(
+				"participantUserId");
+			String emailAddress = participantJSONObject.getString(
+				"emailAddress");
+			int type = participantJSONObject.getInt("type");
 
 			if (Validator.isNull(name) && Validator.isNull(emailAddress)) {
 				continue;
