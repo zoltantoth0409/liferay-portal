@@ -536,7 +536,6 @@ public class MeetingsPortlet extends MVCPortlet {
 				"emailBody",
 				powwowSubscriptionSender.getEmailNotificationBody(
 					serviceContext.getLocale()));
-
 			jsonObject.put(
 				"emailSubject",
 				powwowSubscriptionSender.getEmailNotificationSubject(
