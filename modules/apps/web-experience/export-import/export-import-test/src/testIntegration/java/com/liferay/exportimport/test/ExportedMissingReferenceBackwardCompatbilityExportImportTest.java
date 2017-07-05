@@ -265,6 +265,7 @@ public class ExportedMissingReferenceBackwardCompatbilityExportImportTest
 		Class<?> clazz, Class<? extends Annotation> annotation) {
 
 		List<Method> methods = new ArrayList<>();
+
 		Class<?> currentClazz = clazz;
 
 		while (currentClazz != Object.class) {
