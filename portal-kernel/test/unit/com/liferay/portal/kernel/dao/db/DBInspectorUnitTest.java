@@ -53,8 +53,13 @@ public class DBInspectorUnitTest {
 
 		dbInspector.normalizeName(_TABLE_NAME, databaseMetaData);
 
-		Mockito.verify(_connection, Mockito.never()).getMetaData();
-		Mockito.verify(databaseMetaData, Mockito.times(1)).storesLowerCaseIdentifiers();
+		Mockito.verify(
+			_connection, Mockito.never()
+		).getMetaData();
+
+		Mockito.verify(
+			databaseMetaData, Mockito.times(1)
+		).storesLowerCaseIdentifiers();
 	}
 
 	@Test
@@ -119,10 +124,12 @@ public class DBInspectorUnitTest {
 		Mockito.when(_resultSet.next()).thenReturn(withColumn);
 		Mockito.when(_resultSet.getMetaData()).thenReturn(_resultSetMetadata);
 		Mockito.when(_preparedStatement.executeQuery()).thenReturn(_resultSet);
-		Mockito.when(_databaseMetadata.storesLowerCaseIdentifiers()).thenReturn(true);
+		Mockito.when(
+			_databaseMetadata.storesLowerCaseIdentifiers()).thenReturn(true);
 		Mockito.when(
 			_databaseMetadata.getColumns(
-				Mockito.anyString(), Mockito.anyString(), Mockito.eq(StringUtil.toLowerCase(tableName)),
+				Mockito.anyString(), Mockito.anyString(),
+				Mockito.eq(StringUtil.toLowerCase(tableName)),
 				Mockito.eq(columnName))).thenReturn(_resultSet);
 		Mockito.when(
 			_connection.prepareStatement(
