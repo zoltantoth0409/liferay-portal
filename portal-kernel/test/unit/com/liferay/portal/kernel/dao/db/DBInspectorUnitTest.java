@@ -64,7 +64,7 @@ public class DBInspectorUnitTest {
 
 	@Test
 	public void testHasColumnIsCaseInsensitive() throws Exception {
-		_givenTableWithColumn(
+		_mockTableWithColumn(
 			_TABLE_NAME, StringUtil.toLowerCase(_COLUMN_NAME));
 
 		DBInspector dbInspector = new DBInspector(_connection);
@@ -78,7 +78,7 @@ public class DBInspectorUnitTest {
 	public void testHasColumnReturnsFalseWithoutExistingColumn()
 		throws Exception {
 
-		_givenTableWithoutColumn(_TABLE_NAME, _COLUMN_NAME);
+		_mockTableWithoutColumn(_TABLE_NAME, _COLUMN_NAME);
 
 		DBInspector dbInspector = new DBInspector(_connection);
 
@@ -87,7 +87,7 @@ public class DBInspectorUnitTest {
 
 	@Test
 	public void testHasColumnReturnsTrueWithExistingColumn() throws Exception {
-		_givenTableWithColumn(_TABLE_NAME, _COLUMN_NAME);
+		_mockTableWithColumn(_TABLE_NAME, _COLUMN_NAME);
 
 		DBInspector dbInspector = new DBInspector(_connection);
 
@@ -96,7 +96,7 @@ public class DBInspectorUnitTest {
 
 	@Test
 	public void testHasColumnSkipsQueryWithExistingColumn() throws Exception {
-		_givenTableWithColumn(_TABLE_NAME, _COLUMN_NAME);
+		_mockTableWithColumn(_TABLE_NAME, _COLUMN_NAME);
 
 		DBInspector dbInspector = new DBInspector(_connection);
 
@@ -107,19 +107,19 @@ public class DBInspectorUnitTest {
 		).executeQuery();
 	}
 
-	private void _givenTableWithColumn(String tableName, String columnName)
+	private void _mockTableWithColumn(String tableName, String columnName)
 		throws SQLException {
 
-		_givenTableWithOrWithoutColumn(tableName, columnName, true);
+		_mockTableWithOrWithoutColumn(tableName, columnName, true);
 	}
 
-	private void _givenTableWithoutColumn(String tableName, String columnName)
+	private void _mockTableWithoutColumn(String tableName, String columnName)
 		throws SQLException {
 
-		_givenTableWithOrWithoutColumn(tableName, columnName, false);
+		_mockTableWithOrWithoutColumn(tableName, columnName, false);
 	}
 
-	private void _givenTableWithOrWithoutColumn(
+	private void _mockTableWithOrWithoutColumn(
 			String tableName, String columnName, boolean withColumn)
 		throws SQLException {
 
