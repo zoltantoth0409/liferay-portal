@@ -124,27 +124,22 @@ public class DBInspectorUnitTest {
 		throws SQLException {
 
 		Mockito.when(
-			_resultSet.next()
+			_connection.getMetaData()
 		).thenReturn(
-			withColumn
+			_databaseMetadata
 		);
 
 		Mockito.when(
-			_resultSet.getMetaData()
+			_connection.prepareStatement(
+				Mockito.anyString())
 		).thenReturn(
-			_resultSetMetadata
+			_preparedStatement
 		);
 
 		Mockito.when(
 			_preparedStatement.executeQuery()
 		).thenReturn(
 			_resultSet
-		);
-
-		Mockito.when(
-			_databaseMetadata.storesLowerCaseIdentifiers()
-		).thenReturn(
-			true
 		);
 
 		Mockito.when(
@@ -157,16 +152,21 @@ public class DBInspectorUnitTest {
 		);
 
 		Mockito.when(
-			_connection.prepareStatement(
-				Mockito.anyString())
+			_databaseMetadata.storesLowerCaseIdentifiers()
 		).thenReturn(
-			_preparedStatement
+			true
 		);
 
 		Mockito.when(
-			_connection.getMetaData()
+			_resultSet.getMetaData()
 		).thenReturn(
-			_databaseMetadata
+			_resultSetMetadata
+		);
+
+		Mockito.when(
+			_resultSet.next()
+		).thenReturn(
+			withColumn
 		);
 	}
 
