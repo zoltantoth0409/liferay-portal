@@ -69,9 +69,8 @@ public class DBInspector {
 			if (!rs.next()) {
 				return false;
 			}
-			else {
-				return true;
-			}
+
+			return true;
 		}
 		catch (Exception e) {
 			_log.error(e, e);
