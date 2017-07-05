@@ -121,9 +121,9 @@ public class DefinitionElement extends PoshiElement {
 
 		sb.append(createReadableBlock(content.toString()));
 
-		String sbString = sb.toString();
+		String string = sb.toString();
 
-		return sbString.trim();
+		return string.trim();
 	}
 
 	@Override
