@@ -92,7 +92,6 @@ public class ExecuteElement extends PoshiElement {
 				}
 
 				sb.append(poshiElementAttribute.toReadableSyntax());
-
 				sb.append(", ");
 			}
 

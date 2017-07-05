@@ -85,9 +85,7 @@ public abstract class PoshiElement extends DefaultElement {
 		String name = assignment.split("=")[0];
 
 		name = name.trim();
-
 		name = name.replaceAll("@", "");
-
 		name = name.replaceAll("property ", "");
 
 		return name.replaceAll("var ", "");
