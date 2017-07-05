@@ -711,7 +711,7 @@
 
 		<execute macro="Permissions#definePermissionViaJSONAPI">
 			<var name="resourceAction" value="DELETE" />
-			<var name="resourceName" value="com.liferay.blogs.model.BlogsEntry" />
+			<var name="resourceName" value="com.liferay.blogs.kernel.model.BlogsEntry" />
 			<var name="roleName" value="Roles Orgrole Name" />
 		</execute>
 
@@ -728,7 +728,7 @@
 
 		<execute macro="Permissions#removePermissionViaAPI">
 			<var name="resourceAction" value="DELETE" />
-			<var name="resourceName" value="com.liferay.blogs.model.BlogsEntry" />
+			<var name="resourceName" value="com.liferay.blogs.kernel.model.BlogsEntry" />
 			<var name="roleName" value="Roles Orgrole Name" />
 		</execute>
 
