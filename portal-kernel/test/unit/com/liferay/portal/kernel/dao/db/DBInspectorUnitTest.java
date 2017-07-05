@@ -14,13 +14,6 @@
 
 package com.liferay.portal.kernel.dao.db;
 
-import static org.mockito.Mockito.anyString;
-import static org.mockito.Mockito.eq;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
 import com.liferay.portal.kernel.util.StringUtil;
 
 import com.mysql.jdbc.ResultSetMetaData;
@@ -52,7 +45,7 @@ public class DBInspectorUnitTest {
 		DatabaseMetaData databaseMetaData = Mockito.mock(
 			DatabaseMetaData.class);
 
-		when(
+		Mockito.when(
 			databaseMetaData.storesLowerCaseIdentifiers()
 		).thenReturn(
 			true
@@ -60,8 +53,8 @@ public class DBInspectorUnitTest {
 
 		dbInspector.normalizeName(_TABLE_NAME, databaseMetaData);
 
-		verify(_connection, never()).getMetaData();
-		verify(databaseMetaData, times(1)).storesLowerCaseIdentifiers();
+		Mockito.verify(_connection, Mockito.never()).getMetaData();
+		Mockito.verify(databaseMetaData, Mockito.times(1)).storesLowerCaseIdentifiers();
 	}
 
 	@Test
@@ -104,7 +97,7 @@ public class DBInspectorUnitTest {
 
 		dbInspector.hasColumn(_TABLE_NAME, _COLUMN_NAME);
 
-		verify(_preparedStatement, never()).executeQuery();
+		Mockito.verify(_preparedStatement, Mockito.never()).executeQuery();
 	}
 
 	private void _givenTableWithColumn(String tableName, String columnName)
@@ -123,18 +116,18 @@ public class DBInspectorUnitTest {
 			String tableName, String columnName, boolean withColumn)
 		throws SQLException {
 
-		when(_resultSet.next()).thenReturn(withColumn);
-		when(_resultSet.getMetaData()).thenReturn(_resultSetMetadata);
-		when(_preparedStatement.executeQuery()).thenReturn(_resultSet);
-		when(_databaseMetadata.storesLowerCaseIdentifiers()).thenReturn(true);
-		when(
+		Mockito.when(_resultSet.next()).thenReturn(withColumn);
+		Mockito.when(_resultSet.getMetaData()).thenReturn(_resultSetMetadata);
+		Mockito.when(_preparedStatement.executeQuery()).thenReturn(_resultSet);
+		Mockito.when(_databaseMetadata.storesLowerCaseIdentifiers()).thenReturn(true);
+		Mockito.when(
 			_databaseMetadata.getColumns(
-				anyString(), anyString(), eq(StringUtil.toLowerCase(tableName)),
-				eq(columnName))).thenReturn(_resultSet);
-		when(
+				Mockito.anyString(), Mockito.anyString(), Mockito.eq(StringUtil.toLowerCase(tableName)),
+				Mockito.eq(columnName))).thenReturn(_resultSet);
+		Mockito.when(
 			_connection.prepareStatement(
-				anyString())).thenReturn(_preparedStatement);
-		when(_connection.getMetaData()).thenReturn(_databaseMetadata);
+				Mockito.anyString())).thenReturn(_preparedStatement);
+		Mockito.when(_connection.getMetaData()).thenReturn(_databaseMetadata);
 	}
 
 	private static final String _COLUMN_NAME = "column_name";
