@@ -43,95 +43,95 @@ public class DBInspectorTest {
 
 	@BeforeClass
 	public static void setUpClass() throws Exception {
-		_con = DataAccess.getConnection();
+		_connection = DataAccess.getConnection();
 
-		_dbInspector = new DBInspector(_con);
+		_dbInspector = new DBInspector(_connection);
 	}
 
 	@AfterClass
 	public static void tearDownClass() throws Exception {
-		DataAccess.cleanUp(_con);
+		DataAccess.cleanUp(_connection);
 	}
 
 	@Test
 	public void testHasColumn() throws Exception {
 		Assert.isTrue(
 			_dbInspector.hasColumn(
-				_EXISTING_TABLE_NAME, _EXISTING_COLUMN_NAME));
+				_TABLE_NAME_EXISTING, _COLUMN_NAME_EXISTING));
 	}
 
 	@Test
 	public void testHasColumnLowerCase() throws Exception {
-		DatabaseMetaData databaseMetaData = _con.getMetaData();
+		DatabaseMetaData databaseMetaData = _connection.getMetaData();
 
 		Assume.assumeTrue(databaseMetaData.storesLowerCaseIdentifiers());
 
 		Assert.isTrue(
 			_dbInspector.hasColumn(
-				_EXISTING_TABLE_NAME,
-				StringUtil.toLowerCase(_EXISTING_COLUMN_NAME)));
+				_TABLE_NAME_EXISTING,
+				StringUtil.toLowerCase(_COLUMN_NAME_EXISTING)));
 	}
 
 	@Test
 	public void testHasColumnUpperCase() throws Exception {
-		DatabaseMetaData databaseMetaData = _con.getMetaData();
+		DatabaseMetaData databaseMetaData = _connection.getMetaData();
 
 		Assume.assumeTrue(databaseMetaData.storesUpperCaseIdentifiers());
 
 		Assert.isTrue(
 			_dbInspector.hasColumn(
-				_EXISTING_TABLE_NAME,
-				StringUtil.toUpperCase(_EXISTING_COLUMN_NAME)));
+				_TABLE_NAME_EXISTING,
+				StringUtil.toUpperCase(_COLUMN_NAME_EXISTING)));
 	}
 
 	@Test
 	public void testHasNoColumn() throws Exception {
 		Assert.isTrue(
 			!_dbInspector.hasColumn(
-				_EXISTING_TABLE_NAME, _NON_EXISTING_COLUMN_NAME));
+				_TABLE_NAME_EXISTING, _COLUMN_NAME_NONEXISTING));
 	}
 
 	@Test
 	public void testHasNoTable() throws Exception {
-		Assert.isTrue(!_dbInspector.hasTable(_NON_EXISTING_TABLE_NAME));
+		Assert.isTrue(!_dbInspector.hasTable(_TABLE_NAME_NONEXISTING));
 	}
 
 	@Test
 	public void testHasTable() throws Exception {
-		Assert.isTrue(_dbInspector.hasTable(_EXISTING_TABLE_NAME));
+		Assert.isTrue(_dbInspector.hasTable(_TABLE_NAME_EXISTING));
 	}
 
 	@Test
 	public void testHasTableLowerCase() throws Exception {
-		DatabaseMetaData databaseMetaData = _con.getMetaData();
+		DatabaseMetaData databaseMetaData = _connection.getMetaData();
 
 		Assume.assumeTrue(databaseMetaData.storesLowerCaseIdentifiers());
 
 		Assert.isTrue(
 			_dbInspector.hasTable(
-				StringUtil.toLowerCase(_EXISTING_TABLE_NAME)));
+				StringUtil.toLowerCase(_TABLE_NAME_EXISTING)));
 	}
 
 	@Test
 	public void testHasTableUpperCase() throws Exception {
-		DatabaseMetaData databaseMetaData = _con.getMetaData();
+		DatabaseMetaData databaseMetaData = _connection.getMetaData();
 
 		Assume.assumeTrue(databaseMetaData.storesUpperCaseIdentifiers());
 
 		Assert.isTrue(
 			_dbInspector.hasTable(
-				StringUtil.toUpperCase(_EXISTING_TABLE_NAME)));
+				StringUtil.toUpperCase(_TABLE_NAME_EXISTING)));
 	}
 
-	private static final String _EXISTING_COLUMN_NAME = "releaseId";
+	private static final String _COLUMN_NAME_EXISTING = "releaseId";
 
-	private static final String _EXISTING_TABLE_NAME = "Release_";
+	private static final String _TABLE_NAME_EXISTING = "Release_";
 
-	private static final String _NON_EXISTING_COLUMN_NAME = "NonExistingColumn";
+	private static final String _COLUMN_NAME_NONEXISTING = "NonExistingColumn";
 
-	private static final String _NON_EXISTING_TABLE_NAME = "NonExistingTable";
+	private static final String _TABLE_NAME_NONEXISTING = "NonExistingTable";
 
-	private static Connection _con;
+	private static Connection _connection;
 	private static DBInspector _dbInspector;
 
 }
