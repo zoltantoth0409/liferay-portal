@@ -48,6 +48,7 @@ public class DBInspectorUnitTest {
 	@Test
 	public void testArgumentMetaDataIsUsedToNormalizeName() throws Exception {
 		DBInspector dbInspector = new DBInspector(_connection);
+
 		DatabaseMetaData databaseMetaData = Mockito.mock(
 			DatabaseMetaData.class);
 
