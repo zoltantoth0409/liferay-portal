@@ -38,7 +38,14 @@
 		value=escape(fieldStructure.value)
 	/>
 <#else>
-	<@liferay_aui.input checked=selected cssClass=cssClass label=escape(fieldStructure.label) name="${namespacedParentFieldName}" type="radio" value=fieldStructure.value>
+	<@liferay_aui.input
+		checked=selected
+		cssClass=cssClass
+		label=escape(fieldStructure.label)
+		name="${namespacedParentFieldName}"
+		type="radio"
+		value=fieldStructure.value
+	>
 		<#if stringUtil.equals(parentFieldStructure.required, "true")>
 			<@liferay_aui.validator name="required" />
 		</#if>
