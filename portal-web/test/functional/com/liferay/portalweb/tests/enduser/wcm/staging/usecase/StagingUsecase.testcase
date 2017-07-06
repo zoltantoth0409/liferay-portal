@@ -381,7 +381,7 @@
 
 		<execute macro="Staging#enablePageInSitePagesVariation">
 			<var name="pageName" value="Test Page Name" />
-			<var name="sitePagesVariationName" value="main-variation" />
+			<var name="sitePagesVariationName" value="Main Variation" />
 		</execute>
 
 		<execute macro="Navigator#gotoStagedSitePage">
@@ -3964,7 +3964,7 @@
 
 		<execute macro="Staging#viewIncompletePageViaStagingPageVariation">
 			<var name="pageName" value="Test Page Name" />
-			<var name="sitePagesVariationName" value="main-variation" />
+			<var name="sitePagesVariationName" value="Main Variation" />
 		</execute>
 	</command>
 
