@@ -23,10 +23,10 @@ List<LayoutSetBranch> layoutSetBranches = (List<LayoutSetBranch>)renderRequest.g
 liveGroup = (Group)renderRequest.getAttribute(StagingProcessesWebKeys.LIVE_GROUP);
 Layout liveLayout = (Layout)renderRequest.getAttribute(StagingProcessesWebKeys.LIVE_LAYOUT);
 String liveURL = (String)renderRequest.getAttribute(StagingProcessesWebKeys.LIVE_URL);
+String remoteSiteURL = (String)renderRequest.getAttribute(StagingProcessesWebKeys.REMOTE_SITE_URL);
+String remoteURL = (String)renderRequest.getAttribute(StagingProcessesWebKeys.REMOTE_URL);
 stagingGroup = (Group)renderRequest.getAttribute(StagingProcessesWebKeys.STAGING_GROUP);
 String stagingURL = (String)renderRequest.getAttribute(StagingProcessesWebKeys.STAGING_URL);
-String remoteURL = (String)renderRequest.getAttribute(StagingProcessesWebKeys.REMOTE_URL);
-String remoteSiteURL = (String)renderRequest.getAttribute(StagingProcessesWebKeys.REMOTE_SITE_URL);
 
 if (liveLayout != null) {
 	request.setAttribute("view.jsp-typeSettingsProperties", liveLayout.getTypeSettingsProperties());
