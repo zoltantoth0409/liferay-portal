@@ -2068,11 +2068,20 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 				"message_boards/view_message/" + message.getMessageId();
 		}
 		else {
+			Group group = null;
+
+			ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
+				WebKeys.THEME_DISPLAY);
+
+			if (themeDisplay == null) {
+				group = groupLocalService.fetchGroup(message.getGroupId());
+			}
+
 			portletId = PortletProviderUtil.getPortletId(
 				MBMessage.class.getName(), PortletProvider.Action.MANAGE);
 
 			PortletURL portletURL = PortalUtil.getControlPanelPortletURL(
-				request, portletId, PortletRequest.RENDER_PHASE);
+				request, group, portletId, 0, 0, PortletRequest.RENDER_PHASE);
 
 			portletURL.setParameter(
 				"mvcRenderCommandName", "/message_boards/view_message");
