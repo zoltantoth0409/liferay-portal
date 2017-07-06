@@ -53,7 +53,7 @@ for (Long groupId : groupIds) {
 		}
 	}
 
-	groupDescriptiveNames.add(groupDescriptiveName);
+	groupDescriptiveNames.add(HtmlUtil.escapeJS(groupDescriptiveName));
 }
 
 List<AssetVocabulary> vocabularies = AssetVocabularyServiceUtil.getGroupVocabularies(groupIds);
