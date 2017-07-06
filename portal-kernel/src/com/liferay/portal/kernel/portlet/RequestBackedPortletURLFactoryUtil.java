@@ -123,14 +123,8 @@ public class RequestBackedPortletURLFactoryUtil {
 			String portletId, Group group, long refererGroupId,
 			long refererPlid, String lifecycle) {
 
-			Layout controlPanelLayout = null;
-
 			ThemeDisplay themeDisplay = (ThemeDisplay)_request.getAttribute(
 				WebKeys.THEME_DISPLAY);
-
-			if (themeDisplay != null) {
-				controlPanelLayout = themeDisplay.getControlPanelLayout();
-			}
 
 			if (group == null) {
 				group = themeDisplay.getScopeGroup();
@@ -138,7 +132,9 @@ public class RequestBackedPortletURLFactoryUtil {
 
 			LiferayPortletURL liferayPortletURL = PortletURLFactoryUtil.create(
 				_request, portletId,
-				_getControlPanelLayout(controlPanelLayout, group), lifecycle);
+				_getControlPanelLayout(
+					themeDisplay.getControlPanelLayout(), group),
+				lifecycle);
 
 			return _populateControlPanelPortletURL(
 				liferayPortletURL, refererGroupId, refererPlid);
