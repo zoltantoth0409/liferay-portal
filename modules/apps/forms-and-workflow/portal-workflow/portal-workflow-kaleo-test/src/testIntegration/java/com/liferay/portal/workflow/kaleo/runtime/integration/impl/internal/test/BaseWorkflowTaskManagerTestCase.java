@@ -243,7 +243,7 @@ public abstract class BaseWorkflowTaskManagerTestCase {
 
 		try (CaptureAppender captureAppender =
 				Log4JLoggerTestUtil.configureLog4JLogger(
-						_MAIL_ENGINE_CLASS_NAME, Level.OFF)) {
+					_MAIL_ENGINE_CLASS_NAME, Level.OFF)) {
 
 			WorkflowTask workflowTask = getWorkflowTask();
 
@@ -299,6 +299,7 @@ public abstract class BaseWorkflowTaskManagerTestCase {
 		try (CaptureAppender captureAppender =
 				Log4JLoggerTestUtil.configureLog4JLogger(
 					_MAIL_ENGINE_CLASS_NAME, Level.OFF)) {
+
 			WorkflowTask workflowTask = getWorkflowTask();
 
 			PermissionChecker userPermissionChecker =
