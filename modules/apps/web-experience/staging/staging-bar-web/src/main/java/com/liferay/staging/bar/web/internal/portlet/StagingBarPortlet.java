@@ -133,15 +133,13 @@ public class StagingBarPortlet extends MVCPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		HttpServletRequest httpServletRequest = _portal.getHttpServletRequest(
 			renderRequest);
 
-		long plid = themeDisplay.getPlid();
+		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
-		Layout layout = _layoutLocalService.fetchLayout(plid);
+		Layout layout = _layoutLocalService.fetchLayout(themeDisplay.getPlid());
 
 		Layout selLayout = layout;
 
@@ -171,13 +169,9 @@ public class StagingBarPortlet extends MVCPortlet {
 		}
 
 		boolean branchingEnabled = false;
-
-		LayoutRevision layoutRevision = null;
-
-		LayoutSetBranch layoutSetBranch = null;
-
 		LayoutBranch layoutBranch = null;
-
+		LayoutRevision layoutRevision = null;
+		LayoutSetBranch layoutSetBranch = null;
 		Layout liveLayout = null;
 
 		if (layout != null) {
@@ -199,14 +193,14 @@ public class StagingBarPortlet extends MVCPortlet {
 			}
 		}
 
+		List<LayoutSetBranch> layoutSetBranches = null;
 		Group liveGroup = _staging.getLiveGroup(group.getGroupId());
 		String liveURL = null;
 		Group stagingGroup = _staging.getStagingGroup(group.getGroupId());
 		Layout stagingLayout = null;
-		String stagingURL = null;
-		List<LayoutSetBranch> layoutSetBranches = null;
-		String remoteURL = null;
 		String remoteSiteURL = StringPool.BLANK;
+		String remoteURL = null;
+		String stagingURL = null;
 
 		if (themeDisplay.isShowStagingIcon()) {
 			if (liveGroup != null) {
