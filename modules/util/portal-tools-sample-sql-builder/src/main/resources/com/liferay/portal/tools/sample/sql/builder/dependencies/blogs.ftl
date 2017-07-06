@@ -4,8 +4,8 @@
 	${dataFactory.toInsertSQL(blogsEntryModel)}
 
 	<@insertAssetEntry
-		_entry = blogsEntryModel
-		_categoryAndTag = true
+		_categoryAndTag=true
+		_entry=blogsEntryModel
 	/>
 
 	<#assign
@@ -14,12 +14,12 @@
 	/>
 
 	<@insertMBDiscussion
-		_classNameId = dataFactory.blogsEntryClassNameId
-		_classPK = blogsEntryModel.entryId
-		_groupId = groupId
-		_maxCommentCount = dataFactory.maxBlogsEntryCommentCount
-		_mbRootMessageId = mbRootMessageId
-		_mbThreadId = mbThreadId
+		_classNameId=dataFactory.blogsEntryClassNameId
+		_classPK=blogsEntryModel.entryId
+		_groupId=groupId
+		_maxCommentCount=dataFactory.maxBlogsEntryCommentCount
+		_mbRootMessageId=mbRootMessageId
+		_mbThreadId=mbThreadId
 	/>
 
 	${dataFactory.toInsertSQL(dataFactory.newSubscriptionModel(blogsEntryModel))}
