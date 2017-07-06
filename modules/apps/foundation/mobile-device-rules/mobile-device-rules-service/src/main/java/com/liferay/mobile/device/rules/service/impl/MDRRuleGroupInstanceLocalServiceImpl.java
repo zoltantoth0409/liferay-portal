@@ -133,7 +133,7 @@ public class MDRRuleGroupInstanceLocalServiceImpl
 		mdrActionLocalService.deleteActions(
 			ruleGroupInstance.getRuleGroupInstanceId());
 
-		// Update priorities
+		// Rule group instance priorities
 
 		List<MDRRuleGroupInstance> mdrRuleGroupInstances =
 			getRuleGroupInstances(
