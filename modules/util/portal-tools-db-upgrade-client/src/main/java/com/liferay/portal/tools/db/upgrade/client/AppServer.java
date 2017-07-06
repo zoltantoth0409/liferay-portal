@@ -109,12 +109,11 @@ public class AppServer {
 		String portalDirName, String serverDetectorServerId) {
 
 		_dir = new File(dirName);
-
-		_setExtraLibDirNames(extraLibDirNames);
-
 		_globalLibDir = new File(dirName, globalLibDirName);
 		_portalDir = new File(dirName, portalDirName);
 		_serverDetectorServerId = serverDetectorServerId;
+
+		_setExtraLibDirNames(extraLibDirNames);
 	}
 
 	public File getDir() {
