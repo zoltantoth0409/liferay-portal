@@ -155,6 +155,7 @@ public abstract class BaseWorkflowTaskManagerTestCase {
 		try (CaptureAppender captureAppender =
 				Log4JLoggerTestUtil.configureLog4JLogger(
 					"com.liferay.util.mail.MailEngine", Level.OFF)) {
+
 			WorkflowTask workflowTask = getWorkflowTask();
 
 			PermissionChecker userPermissionChecker =
@@ -175,6 +176,7 @@ public abstract class BaseWorkflowTaskManagerTestCase {
 		try (CaptureAppender captureAppender =
 				Log4JLoggerTestUtil.configureLog4JLogger(
 					"com.liferay.util.mail.MailEngine", Level.OFF)) {
+
 			WorkflowTask workflowTask = getWorkflowTask();
 
 			PermissionChecker userPermissionChecker =
@@ -197,7 +199,9 @@ public abstract class BaseWorkflowTaskManagerTestCase {
 						user.getUserId(),
 						UserNotificationDeliveryConstants.TYPE_WEBSITE, false);
 
-			Assert.assertEquals(1, userNotificationEvents.size());
+			Assert.assertEquals(
+				userNotificationEvents.toString(), 1,
+				userNotificationEvents.size());
 
 			UserNotificationEvent userNotificationEvent =
 				userNotificationEvents.get(0);
@@ -217,7 +221,8 @@ public abstract class BaseWorkflowTaskManagerTestCase {
 				adminUser.getCompanyId(), adminUser.getUserId(), className,
 				classPK, true, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
-		Assert.assertEquals(1, workflowInstances.size());
+		Assert.assertEquals(
+			workflowInstances.toString(), 1, workflowInstances.size());
 	}
 
 	protected DDMFormValues createDDMFormValues(DDMForm ddmForm) {
@@ -263,7 +268,7 @@ public abstract class BaseWorkflowTaskManagerTestCase {
 				adminUser.getCompanyId(), adminUser.getUserId(), false,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
-		Assert.assertEquals(1, workflowTasks.size());
+		Assert.assertEquals(workflowTasks.toString(), 1, workflowTasks.size());
 
 		return workflowTasks.get(0);
 	}
