@@ -103,7 +103,7 @@
 </tr>
 <tr>
 	<td>APPLICATION_CONFIGURATION_APPLICATION_CHANGE_LINK</td>
-	<td>//a[@data-portlettitle='${key_applicationName}']</td>
+	<td>//a[contains(@class,'configuration-link modify-link') and contains(.,'Change')]</td>
 	<td></td>
 </tr>
 <tr>
