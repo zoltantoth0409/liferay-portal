@@ -618,11 +618,11 @@
 
 		<execute function="Confirm" value1="Are you sure you want to merge changes from ${sitePagesVariationMergeName}?" />
 
-		<execute function="SelectFrameTop" value1="relative=top" />
+		<execute macro="Staging#viewVariationSuccessMessage" />
 
-		<execute function="SelectFrame" locator1="IFrame#SITE_VARIATION_IFRAME" />
+		<execute function="SelectFrame" value1="relative=top" />
 
-		<execute function="AssertElementPresent" locator1="Message#SUCCESS" />
+		<execute function="Click" locator1="Icon#CLOSE" />
 	</command>
 
 	<command name="modifyVariation">
