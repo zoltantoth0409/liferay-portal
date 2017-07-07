@@ -80,7 +80,6 @@ public class TestResult {
 
 		if (status.equals("FAILED")) {
 			errorDetails = caseJSONObject.getString("errorDetails");
-
 			errorStackTrace = caseJSONObject.getString("errorStackTrace");
 		}
 	}
