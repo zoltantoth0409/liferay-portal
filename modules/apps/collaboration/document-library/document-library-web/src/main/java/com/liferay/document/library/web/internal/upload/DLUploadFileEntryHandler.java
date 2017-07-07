@@ -14,9 +14,9 @@
 
 package com.liferay.document.library.web.internal.upload;
 
-import com.liferay.document.library.kernel.exception.FileSizeException;
 import com.liferay.document.library.kernel.model.DLFileEntry;
 import com.liferay.document.library.kernel.service.DLAppService;
+import com.liferay.document.library.kernel.util.DLValidator;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -27,10 +27,8 @@ import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.portal.util.PrefsPropsUtil;
 import com.liferay.portlet.documentlibrary.service.permission.DLFolderPermission;
 import com.liferay.upload.UniqueFileNameProvider;
 import com.liferay.upload.UploadFileEntryHandler;
@@ -66,7 +64,7 @@ public class DLUploadFileEntryHandler implements UploadFileEntryHandler {
 		String fileName = uploadPortletRequest.getFileName(_PARAMETER_NAME);
 		long size = uploadPortletRequest.getSize(_PARAMETER_NAME);
 
-		_validateFile(size);
+		_dlValidator.validateFileSize(fileName, size);
 
 		String contentType = uploadPortletRequest.getContentType(
 			_PARAMETER_NAME);
@@ -108,15 +106,6 @@ public class DLUploadFileEntryHandler implements UploadFileEntryHandler {
 		}
 	}
 
-	private void _validateFile(long size) throws PortalException {
-		long maxSize = PrefsPropsUtil.getLong(PropsKeys.DL_FILE_MAX_SIZE);
-
-		if ((maxSize > 0) && (size > maxSize)) {
-			throw new FileSizeException(
-				size + " exceeds its maximum permitted size of " + maxSize);
-		}
-	}
-
 	private static final String _PARAMETER_NAME = "imageSelectorFileName";
 
 	private static final Log _log = LogFactoryUtil.getLog(
@@ -124,6 +113,9 @@ public class DLUploadFileEntryHandler implements UploadFileEntryHandler {
 
 	@Reference
 	private DLAppService _dlAppService;
+
+	@Reference
+	private DLValidator _dlValidator;
 
 	@Reference
 	private UniqueFileNameProvider _uniqueFileNameProvider;
