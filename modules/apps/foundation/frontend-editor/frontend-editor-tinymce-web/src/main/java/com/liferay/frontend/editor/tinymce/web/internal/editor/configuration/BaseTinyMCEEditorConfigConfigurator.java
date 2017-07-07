@@ -20,6 +20,6 @@ package com.liferay.frontend.editor.tinymce.web.internal.editor.configuration;
  *             BaseTinyMCEEditorConfigContributor}
  */
 @Deprecated
-public class BaseTinyMCEEditorConfigConfigurator
+public abstract class BaseTinyMCEEditorConfigConfigurator
 	extends BaseTinyMCEEditorConfigContributor {
 }

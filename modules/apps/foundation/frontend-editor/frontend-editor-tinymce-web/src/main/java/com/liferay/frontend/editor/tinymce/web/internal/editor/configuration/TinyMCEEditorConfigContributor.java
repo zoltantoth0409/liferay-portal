@@ -14,6 +14,7 @@
 
 package com.liferay.frontend.editor.tinymce.web.internal.editor.configuration;
 
+import com.liferay.item.selector.ItemSelector;
 import com.liferay.portal.kernel.editor.configuration.EditorConfigContributor;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -64,6 +65,11 @@ public class TinyMCEEditorConfigContributor
 		jsonObject.put(
 			"toolbar",
 			getToolbarJSONArray(inputEditorTaglibAttributes, themeDisplay));
+	}
+
+	@Override
+	protected ItemSelector getItemSelector() {
+		return _itemSelector;
 	}
 
 	protected JSONArray getPluginsJSONArray(
@@ -315,6 +321,9 @@ public class TinyMCEEditorConfigContributor
 
 	@Reference
 	private BrowserSniffer _browserSniffer;
+
+	@Reference
+	private ItemSelector _itemSelector;
 
 	private volatile ResourceBundleLoader _resourceBundleLoader;
 
