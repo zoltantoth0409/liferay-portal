@@ -652,7 +652,6 @@
 		</execute>
 
 		<execute macro="Staging#publishToLiveNowViaPortletPG">
-			<var name="applicationName" value="MB" />
 			<var name="portletOption" value="Staging" />
 			<var name="uncheckConfiguration" value="Setup" />
 		</execute>

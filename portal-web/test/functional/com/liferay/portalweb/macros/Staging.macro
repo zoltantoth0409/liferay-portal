@@ -732,8 +732,6 @@
 		<if>
 			<isset var="uncheckConfiguration" />
 			<then>
-				<var name="key_applicationName" value="${applicationName}" />
-
 				<execute function="AssertClick" locator1="StagingPublishToLive#APPLICATION_CONFIGURATION_APPLICATION_CHANGE_LINK" value1="Change" />
 
 				<execute function="Uncheck" locator1="StagingPublishToLive#APPLICATION_CONFIGURATION_APPLICATION_SETUP_CHECK" />
