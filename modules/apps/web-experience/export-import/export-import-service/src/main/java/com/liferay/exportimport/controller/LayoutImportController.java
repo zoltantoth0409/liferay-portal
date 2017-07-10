@@ -38,7 +38,7 @@ import com.liferay.exportimport.kernel.lar.PortletDataContext;
 import com.liferay.exportimport.kernel.lar.PortletDataContextFactory;
 import com.liferay.exportimport.kernel.lar.PortletDataHandler;
 import com.liferay.exportimport.kernel.lar.PortletDataHandlerKeys;
-import com.liferay.exportimport.kernel.lar.PortletDataHandlerStatusMessageSenderUtil;
+import com.liferay.exportimport.kernel.lar.PortletDataHandlerStatusMessageSender;
 import com.liferay.exportimport.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.exportimport.kernel.lar.StagedModelType;
 import com.liferay.exportimport.kernel.lar.UserIdStrategy;
@@ -635,7 +635,7 @@ public class LayoutImportController implements ImportController {
 				portletIds.add(portletId);
 			}
 
-			PortletDataHandlerStatusMessageSenderUtil.sendStatusMessage(
+			_portletDataHandlerStatusMessageSender.sendStatusMessage(
 				"layout", ArrayUtil.toStringArray(portletIds), manifestSummary);
 		}
 
@@ -769,7 +769,7 @@ public class LayoutImportController implements ImportController {
 			portletDataContext.setPortletId(portletId);
 
 			if (BackgroundTaskThreadLocal.hasBackgroundTask()) {
-				PortletDataHandlerStatusMessageSenderUtil.sendStatusMessage(
+				_portletDataHandlerStatusMessageSender.sendStatusMessage(
 					"portlet", portletId, manifestSummary);
 			}
 
@@ -1633,6 +1633,10 @@ public class LayoutImportController implements ImportController {
 
 	@Reference
 	private PortletDataHandlerProvider _portletDataHandlerProvider;
+
+	@Reference
+	private PortletDataHandlerStatusMessageSender
+		_portletDataHandlerStatusMessageSender;
 
 	private PortletImportController _portletImportController;
 	private PortletLocalService _portletLocalService;

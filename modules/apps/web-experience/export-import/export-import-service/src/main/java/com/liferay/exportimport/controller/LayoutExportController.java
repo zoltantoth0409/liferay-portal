@@ -35,7 +35,7 @@ import com.liferay.exportimport.kernel.lar.PortletDataContext;
 import com.liferay.exportimport.kernel.lar.PortletDataContextFactory;
 import com.liferay.exportimport.kernel.lar.PortletDataHandler;
 import com.liferay.exportimport.kernel.lar.PortletDataHandlerKeys;
-import com.liferay.exportimport.kernel.lar.PortletDataHandlerStatusMessageSenderUtil;
+import com.liferay.exportimport.kernel.lar.PortletDataHandlerStatusMessageSender;
 import com.liferay.exportimport.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.exportimport.kernel.lar.StagedModelType;
 import com.liferay.exportimport.kernel.lifecycle.ExportImportLifecycleManager;
@@ -475,7 +475,7 @@ public class LayoutExportController implements ExportController {
 			ManifestSummary manifestSummary =
 				portletDataContext.getManifestSummary();
 
-			PortletDataHandlerStatusMessageSenderUtil.sendStatusMessage(
+			_portletDataHandlerStatusMessageSender.sendStatusMessage(
 				"layout", ArrayUtil.toStringArray(portletIds.keySet()),
 				manifestSummary);
 
@@ -927,6 +927,10 @@ public class LayoutExportController implements ExportController {
 
 	@Reference
 	private PortletDataContextFactory _portletDataContextFactory;
+
+	@Reference
+	private PortletDataHandlerStatusMessageSender
+		_portletDataHandlerStatusMessageSender;
 
 	private PortletExportController _portletExportController;
 	private final ThemeExporter _themeExporter = ThemeExporter.getInstance();
