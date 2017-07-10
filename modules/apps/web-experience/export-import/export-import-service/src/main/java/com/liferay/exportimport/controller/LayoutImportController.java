@@ -35,7 +35,7 @@ import com.liferay.exportimport.kernel.lar.ManifestSummary;
 import com.liferay.exportimport.kernel.lar.MissingReference;
 import com.liferay.exportimport.kernel.lar.MissingReferences;
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
-import com.liferay.exportimport.kernel.lar.PortletDataContextFactoryUtil;
+import com.liferay.exportimport.kernel.lar.PortletDataContextFactory;
 import com.liferay.exportimport.kernel.lar.PortletDataHandler;
 import com.liferay.exportimport.kernel.lar.PortletDataHandlerKeys;
 import com.liferay.exportimport.kernel.lar.PortletDataHandlerStatusMessageSenderUtil;
@@ -214,7 +214,7 @@ public class LayoutImportController implements ImportController {
 			_exportImportLifecycleManager.fireExportImportLifecycleEvent(
 				EVENT_LAYOUT_IMPORT_STARTED, getProcessFlag(),
 				portletDataContext.getExportImportProcessId(),
-				PortletDataContextFactoryUtil.clonePortletDataContext(
+				_portletDataContextFactory.clonePortletDataContext(
 					portletDataContext));
 
 			Map<String, Serializable> settingsMap =
@@ -229,7 +229,7 @@ public class LayoutImportController implements ImportController {
 			_exportImportLifecycleManager.fireExportImportLifecycleEvent(
 				EVENT_LAYOUT_IMPORT_SUCCEEDED, getProcessFlag(),
 				portletDataContext.getExportImportProcessId(),
-				PortletDataContextFactoryUtil.clonePortletDataContext(
+				_portletDataContextFactory.clonePortletDataContext(
 					portletDataContext),
 				userId);
 		}
@@ -240,7 +240,7 @@ public class LayoutImportController implements ImportController {
 				EVENT_LAYOUT_IMPORT_FAILED, getProcessFlag(),
 				String.valueOf(
 					exportImportConfiguration.getExportImportConfigurationId()),
-				PortletDataContextFactoryUtil.clonePortletDataContext(
+				_portletDataContextFactory.clonePortletDataContext(
 					portletDataContext),
 				t);
 
@@ -802,7 +802,7 @@ public class LayoutImportController implements ImportController {
 				_exportImportLifecycleManager.fireExportImportLifecycleEvent(
 					EVENT_PORTLET_IMPORT_STARTED, getProcessFlag(),
 					portletDataContext.getExportImportProcessId(),
-					PortletDataContextFactoryUtil.clonePortletDataContext(
+					_portletDataContextFactory.clonePortletDataContext(
 						portletDataContext));
 
 				// Portlet preferences
@@ -831,14 +831,14 @@ public class LayoutImportController implements ImportController {
 				_exportImportLifecycleManager.fireExportImportLifecycleEvent(
 					EVENT_PORTLET_IMPORT_SUCCEEDED, getProcessFlag(),
 					portletDataContext.getExportImportProcessId(),
-					PortletDataContextFactoryUtil.clonePortletDataContext(
+					_portletDataContextFactory.clonePortletDataContext(
 						portletDataContext));
 			}
 			catch (Throwable t) {
 				_exportImportLifecycleManager.fireExportImportLifecycleEvent(
 					EVENT_PORTLET_IMPORT_FAILED, getProcessFlag(),
 					portletDataContext.getExportImportProcessId(),
-					PortletDataContextFactoryUtil.clonePortletDataContext(
+					_portletDataContextFactory.clonePortletDataContext(
 						portletDataContext),
 					t);
 
@@ -1002,7 +1002,7 @@ public class LayoutImportController implements ImportController {
 		ZipReader zipReader = ZipReaderFactoryUtil.getZipReader(file);
 
 		PortletDataContext portletDataContext =
-			PortletDataContextFactoryUtil.createImportPortletDataContext(
+			_portletDataContextFactory.createImportPortletDataContext(
 				group.getCompanyId(), targetGroupId, parameterMap,
 				userIdStrategy, zipReader);
 
@@ -1627,6 +1627,9 @@ public class LayoutImportController implements ImportController {
 	private LayoutSetPrototypeLocalService _layoutSetPrototypeLocalService;
 	private final PermissionImporter _permissionImporter =
 		PermissionImporter.getInstance();
+
+	@Reference
+	private PortletDataContextFactory _portletDataContextFactory;
 
 	@Reference
 	private PortletDataHandlerProvider _portletDataHandlerProvider;
