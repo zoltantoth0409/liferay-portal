@@ -57,8 +57,6 @@ page import="com.liferay.portlet.asset.util.AssetUtil" %>
 
 <liferay-theme:defineObjects />
 
-<portlet:defineObjects />
-
 <%
 Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
 %>
