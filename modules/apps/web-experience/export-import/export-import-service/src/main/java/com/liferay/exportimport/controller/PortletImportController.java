@@ -35,7 +35,7 @@ import com.liferay.exportimport.kernel.exception.LARFileException;
 import com.liferay.exportimport.kernel.exception.LARTypeException;
 import com.liferay.exportimport.kernel.exception.LayoutImportException;
 import com.liferay.exportimport.kernel.exception.MissingReferenceException;
-import com.liferay.exportimport.kernel.lar.ExportImportHelperUtil;
+import com.liferay.exportimport.kernel.lar.ExportImportHelper;
 import com.liferay.exportimport.kernel.lar.ExportImportPathUtil;
 import com.liferay.exportimport.kernel.lar.ExportImportThreadLocal;
 import com.liferay.exportimport.kernel.lar.ManifestSummary;
@@ -357,7 +357,7 @@ public class PortletImportController implements ImportController {
 				exportImportConfiguration, file);
 
 			MissingReferences missingReferences =
-				ExportImportHelperUtil.validateMissingReferences(
+				_exportImportHelper.validateMissingReferences(
 					portletDataContext);
 
 			Map<String, MissingReference> dependencyMissingReferences =
@@ -528,7 +528,7 @@ public class PortletImportController implements ImportController {
 		// Manifest
 
 		ManifestSummary manifestSummary =
-			ExportImportHelperUtil.getManifestSummary(portletDataContext);
+			_exportImportHelper.getManifestSummary(portletDataContext);
 
 		if (BackgroundTaskThreadLocal.hasBackgroundTask()) {
 			PortletDataHandlerStatusMessageSenderUtil.sendStatusMessage(
@@ -582,7 +582,7 @@ public class PortletImportController implements ImportController {
 		Element portletDataElement = portletElement.element("portlet-data");
 
 		Map<String, Boolean> importPortletControlsMap =
-			ExportImportHelperUtil.getImportPortletControlsMap(
+			_exportImportHelper.getImportPortletControlsMap(
 				portletDataContext.getCompanyId(),
 				portletDataContext.getPortletId(), parameterMap,
 				portletDataElement, manifestSummary);
@@ -709,9 +709,8 @@ public class PortletImportController implements ImportController {
 		String userIdStrategyString = MapUtil.getString(
 			parameterMap, PortletDataHandlerKeys.USER_ID_STRATEGY);
 
-		UserIdStrategy userIdStrategy =
-			ExportImportHelperUtil.getUserIdStrategy(
-				userId, userIdStrategyString);
+		UserIdStrategy userIdStrategy = _exportImportHelper.getUserIdStrategy(
+			userId, userIdStrategyString);
 
 		ZipReader zipReader = ZipReaderFactoryUtil.getZipReader(file);
 
@@ -1471,6 +1470,10 @@ public class PortletImportController implements ImportController {
 		DeletionSystemEventImporter.getInstance();
 	private ExpandoColumnLocalService _expandoColumnLocalService;
 	private ExpandoTableLocalService _expandoTableLocalService;
+
+	@Reference
+	private ExportImportHelper _exportImportHelper;
+
 	private ExportImportLifecycleManager _exportImportLifecycleManager;
 	private GroupLocalService _groupLocalService;
 	private LayoutLocalService _layoutLocalService;

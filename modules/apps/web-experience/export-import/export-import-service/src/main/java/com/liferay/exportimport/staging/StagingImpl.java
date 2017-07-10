@@ -28,7 +28,7 @@ import com.liferay.exportimport.kernel.exception.LARTypeException;
 import com.liferay.exportimport.kernel.exception.MissingReferenceException;
 import com.liferay.exportimport.kernel.exception.RemoteExportException;
 import com.liferay.exportimport.kernel.lar.ExportImportDateUtil;
-import com.liferay.exportimport.kernel.lar.ExportImportHelperUtil;
+import com.liferay.exportimport.kernel.lar.ExportImportHelper;
 import com.liferay.exportimport.kernel.lar.MissingReference;
 import com.liferay.exportimport.kernel.lar.MissingReferences;
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
@@ -271,7 +271,7 @@ public class StagingImpl implements Staging {
 		long sourceGroupId = stagingGroup.getLiveGroupId();
 
 		boolean privateLayout = getPrivateLayout(portletRequest);
-		long[] layoutIds = ExportImportHelperUtil.getLayoutIds(
+		long[] layoutIds = _exportImportHelper.getLayoutIds(
 			portletRequest, targetGroupId);
 
 		Map<String, String[]> parameterMap =
@@ -1009,8 +1009,7 @@ public class StagingImpl implements Staging {
 	public List<Layout> getMissingParentLayouts(Layout layout, long liveGroupId)
 		throws PortalException {
 
-		return ExportImportHelperUtil.getMissingParentLayouts(
-			layout, liveGroupId);
+		return _exportImportHelper.getMissingParentLayouts(layout, liveGroupId);
 	}
 
 	@Override
@@ -1371,7 +1370,7 @@ public class StagingImpl implements Staging {
 		layouts.add(layout);
 
 		List<Layout> parentLayouts =
-			ExportImportHelperUtil.getMissingParentLayouts(layout, liveGroupId);
+			_exportImportHelper.getMissingParentLayouts(layout, liveGroupId);
 
 		layouts.addAll(parentLayouts);
 
@@ -1379,7 +1378,7 @@ public class StagingImpl implements Staging {
 			layouts.addAll(layout.getAllChildren());
 		}
 
-		long[] layoutIds = ExportImportHelperUtil.getLayoutIds(layouts);
+		long[] layoutIds = _exportImportHelper.getLayoutIds(layouts);
 
 		return publishLayouts(
 			userId, layout.getGroupId(), liveGroupId, layout.isPrivateLayout(),
@@ -1519,7 +1518,7 @@ public class StagingImpl implements Staging {
 
 		return publishLayouts(
 			userId, sourceGroupId, targetGroupId, privateLayout,
-			ExportImportHelperUtil.getLayoutIds(layoutIdMap, targetGroupId),
+			_exportImportHelper.getLayoutIds(layoutIdMap, targetGroupId),
 			parameterMap, startDate, endDate);
 	}
 
@@ -1534,8 +1533,7 @@ public class StagingImpl implements Staging {
 
 		return publishLayouts(
 			userId, sourceGroupId, targetGroupId, privateLayout,
-			ExportImportHelperUtil.getLayoutIds(sourceGroupLayouts),
-			parameterMap);
+			_exportImportHelper.getLayoutIds(sourceGroupLayouts), parameterMap);
 	}
 
 	/**
@@ -1672,7 +1670,7 @@ public class StagingImpl implements Staging {
 
 		if (publishLayoutLocalSettingsMap == null) {
 			boolean privateLayout = getPrivateLayout(portletRequest);
-			long[] layoutIds = ExportImportHelperUtil.getLayoutIds(
+			long[] layoutIds = _exportImportHelper.getLayoutIds(
 				portletRequest, targetGroupId);
 
 			Map<String, String[]> parameterMap =
@@ -1801,8 +1799,8 @@ public class StagingImpl implements Staging {
 
 		if (publishLayoutRemoteSettingsMap == null) {
 			boolean privateLayout = getPrivateLayout(portletRequest);
-			Map<Long, Boolean> layoutIdMap =
-				ExportImportHelperUtil.getLayoutIdMap(portletRequest);
+			Map<Long, Boolean> layoutIdMap = _exportImportHelper.getLayoutIdMap(
+				portletRequest);
 			Map<String, String[]> parameterMap =
 				ExportImportConfigurationParameterMapFactory.buildParameterMap(
 					portletRequest);
@@ -1878,7 +1876,7 @@ public class StagingImpl implements Staging {
 		long sourceGroupId = targetGroup.getLiveGroupId();
 
 		boolean privateLayout = getPrivateLayout(portletRequest);
-		long[] layoutIds = ExportImportHelperUtil.getLayoutIds(
+		long[] layoutIds = _exportImportHelper.getLayoutIds(
 			portletRequest, targetGroupId);
 		Map<String, String[]> parameterMap =
 			ExportImportConfigurationParameterMapFactory.buildParameterMap(
@@ -1933,7 +1931,7 @@ public class StagingImpl implements Staging {
 
 		if (parameterMap == null) {
 			privateLayout = getPrivateLayout(portletRequest);
-			layoutIds = ExportImportHelperUtil.getLayoutIds(
+			layoutIds = _exportImportHelper.getLayoutIds(
 				portletRequest, targetGroupId);
 			parameterMap =
 				ExportImportConfigurationParameterMapFactory.buildParameterMap(
@@ -2003,7 +2001,7 @@ public class StagingImpl implements Staging {
 
 		if (parameterMap == null) {
 			privateLayout = getPrivateLayout(portletRequest);
-			layoutIdMap = ExportImportHelperUtil.getLayoutIdMap(portletRequest);
+			layoutIdMap = _exportImportHelper.getLayoutIdMap(portletRequest);
 			parameterMap =
 				ExportImportConfigurationParameterMapFactory.buildParameterMap(
 					portletRequest);
@@ -3094,6 +3092,10 @@ public class StagingImpl implements Staging {
 
 	private ExportImportConfigurationLocalService
 		_exportImportConfigurationLocalService;
+
+	@Reference
+	private ExportImportHelper _exportImportHelper;
+
 	private GroupLocalService _groupLocalService;
 	private LayoutBranchLocalService _layoutBranchLocalService;
 	private LayoutLocalService _layoutLocalService;

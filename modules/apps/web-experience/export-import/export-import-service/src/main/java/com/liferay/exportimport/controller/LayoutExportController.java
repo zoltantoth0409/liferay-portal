@@ -26,7 +26,7 @@ import static com.liferay.exportimport.kernel.lifecycle.ExportImportLifecycleCon
 import com.liferay.exportimport.kernel.controller.ExportController;
 import com.liferay.exportimport.kernel.controller.ExportImportController;
 import com.liferay.exportimport.kernel.lar.ExportImportDateUtil;
-import com.liferay.exportimport.kernel.lar.ExportImportHelperUtil;
+import com.liferay.exportimport.kernel.lar.ExportImportHelper;
 import com.liferay.exportimport.kernel.lar.ExportImportPathUtil;
 import com.liferay.exportimport.kernel.lar.ExportImportProcessCallbackRegistryUtil;
 import com.liferay.exportimport.kernel.lar.ExportImportThreadLocal;
@@ -311,7 +311,7 @@ public class LayoutExportController implements ExportController {
 
 			headerElement.addAttribute("type-uuid", layoutPrototype.getUuid());
 
-			layoutIds = ExportImportHelperUtil.getAllLayoutIds(
+			layoutIds = _exportImportHelper.getAllLayoutIds(
 				portletDataContext.getGroupId(),
 				portletDataContext.isPrivateLayout());
 		}
@@ -409,7 +409,7 @@ public class LayoutExportController implements ExportController {
 		// Collect data portlets
 
 		for (Portlet portlet :
-				ExportImportHelperUtil.getDataSiteLevelPortlets(companyId)) {
+				_exportImportHelper.getDataSiteLevelPortlets(companyId)) {
 
 			String portletId = portlet.getRootPortletId();
 
@@ -543,7 +543,7 @@ public class LayoutExportController implements ExportController {
 			portletDataContext.setScopeLayoutUuid(scopeLayoutUuid);
 
 			Map<String, Boolean> exportPortletControlsMap =
-				ExportImportHelperUtil.getExportPortletControlsMap(
+				_exportImportHelper.getExportPortletControlsMap(
 					companyId, portletId, parameterMap, type);
 
 			try {
@@ -600,7 +600,7 @@ public class LayoutExportController implements ExportController {
 				portletDataContext);
 		}
 
-		ExportImportHelperUtil.writeManifestSummary(
+		_exportImportHelper.writeManifestSummary(
 			document, portletDataContext.getManifestSummary());
 
 		if (_log.isInfoEnabled()) {
@@ -749,7 +749,7 @@ public class LayoutExportController implements ExportController {
 			exportImportConfiguration);
 
 		Group group = _groupLocalService.getGroup(sourceGroupId);
-		ZipWriter zipWriter = ExportImportHelperUtil.getLayoutSetZipWriter(
+		ZipWriter zipWriter = _exportImportHelper.getLayoutSetZipWriter(
 			sourceGroupId);
 
 		PortletDataContext portletDataContext =
@@ -904,6 +904,10 @@ public class LayoutExportController implements ExportController {
 	private BackgroundTaskLocalService _backgroundTaskLocalService;
 	private final DeletionSystemEventExporter _deletionSystemEventExporter =
 		DeletionSystemEventExporter.getInstance();
+
+	@Reference
+	private ExportImportHelper _exportImportHelper;
+
 	private ExportImportLifecycleManager _exportImportLifecycleManager;
 	private GroupLocalService _groupLocalService;
 	private ImageLocalService _imageLocalService;

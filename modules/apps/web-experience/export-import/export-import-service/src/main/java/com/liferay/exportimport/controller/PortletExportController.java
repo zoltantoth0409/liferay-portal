@@ -29,7 +29,7 @@ import com.liferay.exportimport.kernel.controller.ExportController;
 import com.liferay.exportimport.kernel.controller.ExportImportController;
 import com.liferay.exportimport.kernel.exception.LayoutImportException;
 import com.liferay.exportimport.kernel.lar.ExportImportDateUtil;
-import com.liferay.exportimport.kernel.lar.ExportImportHelperUtil;
+import com.liferay.exportimport.kernel.lar.ExportImportHelper;
 import com.liferay.exportimport.kernel.lar.ExportImportPathUtil;
 import com.liferay.exportimport.kernel.lar.ExportImportProcessCallbackRegistryUtil;
 import com.liferay.exportimport.kernel.lar.ExportImportThreadLocal;
@@ -431,7 +431,7 @@ public class PortletExportController implements ExportController {
 			missingReferencesElement);
 
 		Map<String, Boolean> exportPortletControlsMap =
-			ExportImportHelperUtil.getExportPortletControlsMap(
+			_exportImportHelper.getExportPortletControlsMap(
 				layout.getCompanyId(), portletDataContext.getPortletId(),
 				portletDataContext.getParameterMap());
 
@@ -459,7 +459,7 @@ public class PortletExportController implements ExportController {
 				portletDataContext);
 		}
 
-		ExportImportHelperUtil.writeManifestSummary(
+		_exportImportHelper.writeManifestSummary(
 			document, portletDataContext.getManifestSummary());
 
 		if (_log.isInfoEnabled()) {
@@ -1219,7 +1219,7 @@ public class PortletExportController implements ExportController {
 			exportImportConfiguration);
 
 		Layout layout = _layoutLocalService.getLayout(sourcePlid);
-		ZipWriter zipWriter = ExportImportHelperUtil.getPortletZipWriter(
+		ZipWriter zipWriter = _exportImportHelper.getPortletZipWriter(
 			portletId);
 
 		PortletDataContext portletDataContext =
@@ -1335,6 +1335,10 @@ public class PortletExportController implements ExportController {
 	private AssetLinkLocalService _assetLinkLocalService;
 	private final DeletionSystemEventExporter _deletionSystemEventExporter =
 		DeletionSystemEventExporter.getInstance();
+
+	@Reference
+	private ExportImportHelper _exportImportHelper;
+
 	private ExportImportLifecycleManager _exportImportLifecycleManager;
 	private GroupLocalService _groupLocalService;
 	private LayoutLocalService _layoutLocalService;
