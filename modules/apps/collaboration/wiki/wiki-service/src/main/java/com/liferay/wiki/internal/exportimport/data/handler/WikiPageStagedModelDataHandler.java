@@ -66,6 +66,14 @@ public class WikiPageStagedModelDataHandler
 			String uuid, long groupId, String className, String extraData)
 		throws PortalException {
 
+		WikiPage wikiPage = fetchStagedModelByUuidAndGroupId(uuid, groupId);
+
+		if (wikiPage != null) {
+			deleteStagedModel(wikiPage);
+
+			return;
+		}
+
 		WikiPageResource pageResource =
 			_wikiPageResourceLocalService.fetchWikiPageResourceByUuidAndGroupId(
 				uuid, groupId);
