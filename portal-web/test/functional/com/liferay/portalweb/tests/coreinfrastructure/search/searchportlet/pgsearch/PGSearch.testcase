@@ -271,9 +271,7 @@
 		</execute>
 	</command>
 
-	<!--LPS-59837-->
-
-	<!--<command name="SearchBlogsEntryCategoryQuotes" priority="4">
+	<command name="SearchBlogsEntryCategoryQuotes" priority="4">
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -368,7 +366,7 @@
 			<var name="searchNoResults" value="true" />
 			<var name="searchTerm" value="&quot;Name1&quot;" />
 		</execute>
-	</command>-->
+	</command>
 
 	<command name="SearchBlogsEntryQuotes" priority="4">
 		<execute macro="Navigator#openURL" />

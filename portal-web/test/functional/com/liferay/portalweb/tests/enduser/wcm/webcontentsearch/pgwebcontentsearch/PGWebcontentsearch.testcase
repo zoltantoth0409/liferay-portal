@@ -255,9 +255,7 @@
 		</execute>
 	</command>
 
-	<!--LPS-59837-->
-
-	<!--<command name="SearchWebContentCategoryQuotes" priority="3">
+	<command name="SearchWebContentCategoryQuotes" priority="3">
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -361,11 +359,9 @@
 		<execute macro="WebContentSearchPortlet#viewNoResults">
 			<var name="webContentSearchTerm" value="&quot;Name1&quot;" />
 		</execute>
-	</command>-->
+	</command>
 
-	<!--LPS-59837-->
-
-	<!--<command name="SearchWebContentQuotes" priority="3">
+	<command name="SearchWebContentQuotes" priority="3">
 		<execute macro="Page#add">
 			<var name="pageName" value="Web Content Display Page" />
 		</execute>
@@ -519,7 +515,7 @@
 		<execute macro="WebContentSearchPortlet#viewNoResults">
 			<var name="webContentSearchTerm" value="&quot;WC WebContent Content1&quot;" />
 		</execute>
-	</command>-->
+	</command>
 
 	<command name="SearchWebContentTag" priority="5">
 		<property name="portal.acceptance" value="pending" />
@@ -604,9 +600,7 @@
 		</execute>
 	</command>
 
-	<!--LPS-59837-->
-
-	<!--<command name="SearchWebContentTagQuotes" priority="3">
+	<command name="SearchWebContentTagQuotes" priority="3">
 		<execute macro="Page#add">
 			<var name="pageName" value="Web Content Display Page" />
 		</execute>
@@ -692,5 +686,5 @@
 		<execute macro="WebContentSearchPortlet#viewNoResults">
 			<var name="webContentSearchTerm" value="&quot;name1&quot;" />
 		</execute>
-	</command>-->
+	</command>
 </definition>
