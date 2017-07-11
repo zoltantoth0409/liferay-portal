@@ -354,8 +354,9 @@ if (Validator.isNotNull(keywords)) {
 									data.put("url", DLUtil.getPreviewURL(fileEntry, latestFileVersion, themeDisplay, StringPool.BLANK));
 									data.put("value", ItemSelectorRepositoryEntryBrowserUtil.getValue(itemSelectorReturnTypeResolver, existingFileEntryReturnType, fileEntry, themeDisplay));
 
-									String fileExtensionSticker = StringUtil.shorten(StringUtil.upperCase(fileEntry.getExtension()), 3, StringPool.BLANK);
 									String stickerCssClass = "file-icon-color-0";
+
+									String fileExtensionSticker = StringUtil.shorten(StringUtil.upperCase(fileEntry.getExtension()), 3, StringPool.BLANK);
 
 									if (Validator.isNotNull(dlMimeTypeDisplayContext)) {
 										stickerCssClass = dlMimeTypeDisplayContext.getCssClassFileMimeType(fileEntry.getMimeType());
