@@ -187,7 +187,7 @@ public class SitemapImpl implements Sitemap {
 		Element rootElement = null;
 
 		if (Validator.isNull(layoutUuid) &&
-			PropsValues.XML_SITEMAPINDEX_ENABLED) {
+			PropsValues.XML_SITEMAP_INDEX_ENABLED) {
 
 			rootElement = document.addElement(
 				"sitemapindex", "http://www.sitemaps.org/schemas/sitemap/0.9");
@@ -203,7 +203,7 @@ public class SitemapImpl implements Sitemap {
 			groupId, privateLayout);
 
 		if (Validator.isNull(layoutUuid) &&
-			PropsValues.XML_SITEMAPINDEX_ENABLED) {
+			PropsValues.XML_SITEMAP_INDEX_ENABLED) {
 
 			visitLayoutSet(rootElement, layoutSet, themeDisplay);
 
