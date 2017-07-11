@@ -4,8 +4,8 @@
 [subrepo]
 	autopull = false
 	cmdver = liferay
-	commit = 06558cf6ae1a1a1a49209d1853c5ed657ed8567c
+	commit = 2298a3f102b2122717ab46a7f4811af6929800bd
 	mergebuttonmergecommits = false
 	mode = push
-	parent = a6872543837bf50ac6380fa42d80300c1fc117c8
+	parent = 5a1e54503bca049a92711759a851e3b4e8e8d8d3
 	remote = git@github.com:liferay/com-liferay-password-policies-admin.git
