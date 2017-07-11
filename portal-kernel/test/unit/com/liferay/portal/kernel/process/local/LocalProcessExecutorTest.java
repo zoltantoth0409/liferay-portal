@@ -734,7 +734,7 @@ public class LocalProcessExecutorTest {
 
 		Assert.assertEquals(System.getenv(), future.get());
 
-		// Overrided environment
+		// New environment
 
 		Map<String, String> environmentMap = new HashMap<>();
 
