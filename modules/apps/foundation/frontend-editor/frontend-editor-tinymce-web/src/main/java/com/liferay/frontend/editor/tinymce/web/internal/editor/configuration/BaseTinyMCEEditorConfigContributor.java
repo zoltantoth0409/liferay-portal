@@ -70,10 +70,10 @@ public abstract class BaseTinyMCEEditorConfigContributor
 		jsonObject.put("convert_urls", Boolean.FALSE);
 		jsonObject.put("extended_valid_elements", _EXTENDED_VALID_ELEMENTS);
 
+		ItemSelector itemSelector = getItemSelector();
+
 		String filebrowserImageBrowseUrl = jsonObject.getString(
 			"filebrowserImageBrowseUrl");
-
-		ItemSelector itemSelector = getItemSelector();
 
 		String itemSelectedEventName = itemSelector.getItemSelectedEventName(
 			filebrowserImageBrowseUrl);
