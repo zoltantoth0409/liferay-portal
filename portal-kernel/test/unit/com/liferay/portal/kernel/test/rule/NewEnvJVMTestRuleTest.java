@@ -47,7 +47,7 @@ public class NewEnvJVMTestRuleTest {
 	@BeforeClass
 	public static void setUpClass() {
 		System.setProperty(
-			_SYSTEM_PROPERTY_KEY_ENVIRONMENT, _toString(_getEnv()));
+			_SYSTEM_PROPERTY_KEY_ENVIRONMENT, _toString(_getEnvironment()));
 	}
 
 	@Before
@@ -57,7 +57,7 @@ public class NewEnvJVMTestRuleTest {
 
 		_processId = getProcessId();
 
-		_parentEnv = _fromString(
+		_parentEnvironment = _fromString(
 			System.getProperty(_SYSTEM_PROPERTY_KEY_ENVIRONMENT));
 	}
 
@@ -138,13 +138,13 @@ public class NewEnvJVMTestRuleTest {
 
 		assertProcessId();
 
-		Map<String, String> env = _getEnv();
+		Map<String, String> environment = _getEnvironment();
 
-		Assert.assertEquals("ENV_VALUE", env.get("ENV_KEY"));
+		Assert.assertEquals("ENV_VALUE", environment.get("ENV_KEY"));
 
-		_parentEnv.put("ENV_KEY", "ENV_VALUE");
+		_parentEnvironment.put("ENV_KEY", "ENV_VALUE");
 
-		Assert.assertEquals(_parentEnv, env);
+		Assert.assertEquals(_parentEnvironment, environment);
 	}
 
 	@Environment(variables = {"USER=UNIT_TEST", "ENV_KEY=NEW_VALUE"})
@@ -158,15 +158,16 @@ public class NewEnvJVMTestRuleTest {
 
 		assertProcessId();
 
-		Map<String, String> env = _getEnv();
+		Map<String, String> environment = _getEnvironment();
 
-		Assert.assertEquals("UNIT_TEST", env.get(_ENVIRONMENT_KEY_USER));
-		Assert.assertEquals("NEW_VALUE", env.get("ENV_KEY"));
+		Assert.assertEquals(
+			"UNIT_TEST", environment.get(_ENVIRONMENT_KEY_USER));
+		Assert.assertEquals("NEW_VALUE", environment.get("ENV_KEY"));
 
-		_parentEnv.put(_ENVIRONMENT_KEY_USER, "UNIT_TEST");
-		_parentEnv.put("ENV_KEY", "NEW_VALUE");
+		_parentEnvironment.put(_ENVIRONMENT_KEY_USER, "UNIT_TEST");
+		_parentEnvironment.put("ENV_KEY", "NEW_VALUE");
 
-		Assert.assertEquals(_parentEnv, env);
+		Assert.assertEquals(_parentEnvironment, environment);
 	}
 
 	@Environment(append = false, variables = {"KEY1=VALUE1"})
@@ -180,15 +181,15 @@ public class NewEnvJVMTestRuleTest {
 
 		assertProcessId();
 
-		Map<String, String> env = _getEnv();
+		Map<String, String> environment = _getEnvironment();
 
-		Assert.assertEquals("VALUE1", env.get("KEY1"));
-		Assert.assertNull(env.get("ENV_KEY"));
-		Assert.assertNull(env.get(_ENVIRONMENT_KEY_USER));
+		Assert.assertEquals("VALUE1", environment.get("KEY1"));
+		Assert.assertNull(environment.get("ENV_KEY"));
+		Assert.assertNull(environment.get(_ENVIRONMENT_KEY_USER));
 
-		_parentEnv.put("KEY1", "VALUE1");
+		_parentEnvironment.put("KEY1", "VALUE1");
 
-		Assert.assertNotEquals(_parentEnv, env);
+		Assert.assertNotEquals(_parentEnvironment, environment);
 	}
 
 	@Rule
@@ -237,12 +238,12 @@ public class NewEnvJVMTestRuleTest {
 		return map;
 	}
 
-	private static Map<String, String> _getEnv() {
-		Map<String, String> env = new HashMap<>(System.getenv());
+	private static Map<String, String> _getEnvironment() {
+		Map<String, String> environment = new HashMap<>(System.getenv());
 
-		env.remove("TERMCAP");
+		environment.remove("TERMCAP");
 
-		return env;
+		return environment;
 	}
 
 	private static String _toString(Map<String, String> map) {
@@ -270,7 +271,7 @@ public class NewEnvJVMTestRuleTest {
 		"KEY_ENVIRONMENT";
 
 	private final AtomicInteger _counter = new AtomicInteger();
-	private Map<String, String> _parentEnv;
+	private Map<String, String> _parentEnvironment;
 	private Integer _processId;
 
 }
