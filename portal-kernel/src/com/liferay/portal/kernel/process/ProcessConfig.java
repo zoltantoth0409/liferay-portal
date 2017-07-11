@@ -119,10 +119,8 @@ public class ProcessConfig implements Serializable {
 
 	private ProcessConfig(Builder builder) {
 		_arguments = builder._arguments;
-
 		_bootstrapClassPathHolders = _toPathHolders(
 			builder._bootstrapClassPath);
-
 		_environment = builder._environment;
 		_javaExecutable = builder._javaExecutable;
 		_reactClassLoader = builder._reactClassLoader;
