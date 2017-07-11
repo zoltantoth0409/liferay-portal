@@ -36,6 +36,19 @@ DLPortletInstanceSettingsHelper dlPortletInstanceSettingsHelper = new DLPortletI
 			<c:when test="<%= fileEntry != null %>">
 
 				<%
+				String dataOptions = StringPool.BLANK;
+
+				FileVersion fileVersion = fileEntry.getFileVersion();
+
+				boolean hasAudio = AudioProcessorUtil.hasAudio(fileVersion);
+				boolean hasImages = ImageProcessorUtil.hasImages(fileVersion);
+				boolean hasPDFImages = PDFProcessorUtil.hasImages(fileVersion);
+				boolean hasVideo = VideoProcessorUtil.hasVideo(fileVersion);
+
+				String imagePreviewURL = null;
+				String imageURL = themeDisplay.getPathThemeImages() + "/file_system/large/" + DLUtil.getGenericName(fileEntry.getExtension()) + ".png";
+				int playerHeight = 500;
+
 				String thumbnailId = null;
 
 				if (fileShortcut != null) {
@@ -45,32 +58,15 @@ DLPortletInstanceSettingsHelper dlPortletInstanceSettingsHelper = new DLPortletI
 					thumbnailId = "entry_" + fileEntry.getFileEntryId();
 				}
 
-				FileVersion fileVersion = fileEntry.getFileVersion();
-
-				boolean hasAudio = AudioProcessorUtil.hasAudio(fileVersion);
-				boolean hasImages = ImageProcessorUtil.hasImages(fileVersion);
-				boolean hasPDFImages = PDFProcessorUtil.hasImages(fileVersion);
-				boolean hasVideo = VideoProcessorUtil.hasVideo(fileVersion);
-
-				String imageURL = themeDisplay.getPathThemeImages() + "/file_system/large/" + DLUtil.getGenericName(fileEntry.getExtension()) + ".png";
-
-				int playerHeight = 500;
-
-				String dataOptions = StringPool.BLANK;
-
-				String imagePreviewURL = null;
-
 				if (PropsValues.DL_FILE_ENTRY_PREVIEW_ENABLED) {
 					if (hasAudio) {
-						imageURL = DLUtil.getPreviewURL(fileEntry, fileVersion, themeDisplay, HtmlUtil.escapeURL("&audioPreview=1") + "&supportedAudio=1&mediaGallery=1");
-
 						for (String audioContainer : PropsValues.DL_FILE_ENTRY_PREVIEW_AUDIO_CONTAINERS) {
 							dataOptions += "&" + audioContainer + "PreviewURL=" + HtmlUtil.escapeURL(DLUtil.getPreviewURL(fileEntry, fileVersion, themeDisplay, "&supportedAudio=1&audioPreview=1&type=" + audioContainer));
 						}
 
-						playerHeight = 43;
-
 						imagePreviewURL = DLUtil.getImagePreviewURL(fileEntry, fileVersion, themeDisplay);
+						imageURL = DLUtil.getPreviewURL(fileEntry, fileVersion, themeDisplay, HtmlUtil.escapeURL("&audioPreview=1") + "&supportedAudio=1&mediaGallery=1");
+						playerHeight = 43;
 					}
 					else if (hasImages) {
 						imageURL = DLUtil.getPreviewURL(fileEntry, fileVersion, themeDisplay, "&imagePreview=1");
@@ -78,18 +74,16 @@ DLPortletInstanceSettingsHelper dlPortletInstanceSettingsHelper = new DLPortletI
 						imagePreviewURL = imageURL;
 					}
 					else if (hasPDFImages) {
-						imageURL = DLUtil.getPreviewURL(fileEntry, fileVersion, themeDisplay, "&previewFileIndex=1");
-
 						imagePreviewURL = DLUtil.getImagePreviewURL(fileEntry, fileVersion, themeDisplay);
+						imageURL = DLUtil.getPreviewURL(fileEntry, fileVersion, themeDisplay, "&previewFileIndex=1");
 					}
 					else if (hasVideo) {
-						imageURL = DLUtil.getPreviewURL(fileEntry, fileVersion, themeDisplay, "&supportedVideo=1&mediaGallery=1");
-
 						for (String videoContainer : PropsValues.DL_FILE_ENTRY_PREVIEW_VIDEO_CONTAINERS) {
 							dataOptions += "&" + videoContainer + "PreviewURL=" + HtmlUtil.escapeURL(DLUtil.getPreviewURL(fileEntry, fileVersion, themeDisplay, "&supportedVideo=1&videoPreview=1&type=" + videoContainer));
 						}
 
 						imagePreviewURL = DLUtil.getImagePreviewURL(fileEntry, fileVersion, themeDisplay);
+						imageURL = DLUtil.getPreviewURL(fileEntry, fileVersion, themeDisplay, "&supportedVideo=1&mediaGallery=1");
 					}
 				}
 
