@@ -12,8 +12,9 @@
  * details.
  */
 
-package com.liferay.portlet.blogs.trash;
+package com.liferay.blogs.service.test;
 
+import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.asset.kernel.model.AssetEntry;
 import com.liferay.blogs.kernel.model.BlogsEntry;
 import com.liferay.blogs.kernel.service.BlogsEntryLocalServiceUtil;
@@ -26,23 +27,27 @@ import com.liferay.portal.kernel.test.rule.Sync;
 import com.liferay.portal.kernel.test.rule.SynchronousDestinationTestRule;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.service.test.ServiceTestUtil;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portlet.blogs.util.test.BlogsTestUtil;
-import com.liferay.portlet.trash.test.BaseTrashHandlerTestCase;
-import com.liferay.portlet.trash.test.DefaultWhenIsAssetable;
-import com.liferay.portlet.trash.test.DefaultWhenIsIndexableBaseModel;
-import com.liferay.portlet.trash.test.WhenHasDraftStatus;
-import com.liferay.portlet.trash.test.WhenIsAssetable;
-import com.liferay.portlet.trash.test.WhenIsAssetableBaseModel;
-import com.liferay.portlet.trash.test.WhenIsIndexableBaseModel;
+import com.liferay.trash.test.util.BaseTrashHandlerTestCase;
+import com.liferay.trash.test.util.DefaultWhenIsAssetable;
+import com.liferay.trash.test.util.DefaultWhenIsIndexableBaseModel;
+import com.liferay.trash.test.util.WhenHasDraftStatus;
+import com.liferay.trash.test.util.WhenIsAssetable;
+import com.liferay.trash.test.util.WhenIsAssetableBaseModel;
+import com.liferay.trash.test.util.WhenIsIndexableBaseModel;
 
+import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Rule;
+import org.junit.runner.RunWith;
 
 /**
  * @author Manuel de la Peña
  * @author Julio Camarero
  */
+@RunWith(Arquillian.class)
 @Sync
 public class BlogsEntryTrashHandlerTest
 	extends BaseTrashHandlerTestCase
@@ -99,6 +104,13 @@ public class BlogsEntryTrashHandlerTest
 
 		return _whenIsIndexableBaseModel.searchTrashEntriesCount(
 			keywords, serviceContext);
+	}
+
+	@Before
+	public void setUp() throws Exception {
+		ServiceTestUtil.setUser(TestPropsValues.getUser());
+
+		super.setUp();
 	}
 
 	@Override
