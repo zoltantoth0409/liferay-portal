@@ -15,7 +15,7 @@
 package com.liferay.portal.upgrade.v7_0_3;
 
 /**
- * @author Inácio Nery
+ * @author Shuyang Zhou
  */
 public class UpgradeModules
 	extends com.liferay.portal.upgrade.v7_0_0.UpgradeModules {
