@@ -36,8 +36,6 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.repository.model.FileEntry;
-import com.liferay.portal.kernel.security.permission.PermissionChecker;
-import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
@@ -52,9 +50,9 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
-import com.liferay.portal.security.permission.SimplePermissionChecker;
 import com.liferay.portal.test.randomizerbumpers.TikaSafeRandomizerBumper;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
+import com.liferay.portal.test.rule.PermissionCheckerTestRule;
 import com.liferay.portal.util.test.LayoutTestUtil;
 import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
@@ -86,6 +84,7 @@ public class DDLExporterTest {
 	public static final AggregateTestRule aggregateTestRule =
 		new AggregateTestRule(
 			new LiferayIntegrationTestRule(),
+			PermissionCheckerTestRule.INSTANCE,
 			SynchronousDestinationTestRule.INSTANCE);
 
 	@Before
@@ -94,21 +93,15 @@ public class DDLExporterTest {
 		_defaultLocale = Locale.US;
 		_group = GroupTestUtil.addGroup();
 
-		_originalPermissionChecker =
-			PermissionThreadLocal.getPermissionChecker();
-
 		setUpDDLExporterFactory();
 		setUpDDMFormFieldDataTypes();
 		setUpDDMFormFieldValues();
-		setUpPermissionChecker();
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		FileUtil.delete("record-set.xml");
 		FileUtil.delete("record-set.csv");
-
-		PermissionThreadLocal.setPermissionChecker(_originalPermissionChecker);
 	}
 
 	@Test
@@ -358,25 +351,6 @@ public class DDLExporterTest {
 		return _fieldValues;
 	}
 
-	protected void setUpPermissionChecker() throws Exception {
-		PermissionThreadLocal.setPermissionChecker(
-			new SimplePermissionChecker() {
-
-				{
-					init(TestPropsValues.getUser());
-				}
-
-				@Override
-				public boolean hasOwnerPermission(
-					long companyId, String name, String primKey, long ownerId,
-					String actionId) {
-
-					return true;
-				}
-
-			});
-	}
-
 	private Set<Locale> _availableLocales;
 	private DDLExporterFactory _ddlExporterFactory;
 	private Map<DDMFormFieldType, String> _ddmFormFieldDataTypes;
@@ -385,8 +359,6 @@ public class DDLExporterTest {
 
 	@DeleteAfterTestRun
 	private Group _group;
-
-	private PermissionChecker _originalPermissionChecker;
 
 	private enum DDMFormFieldType {
 
