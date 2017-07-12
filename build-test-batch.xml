@@ -379,6 +379,7 @@ app.server.type=@{app.server.type}]]></echo>
 				<equals arg1="@{app.server.type}" arg2="tomcat" />
 				<then>
 					<setup-testable-tomcat />
+
 					<setup-test-batch-testable-tomcat />
 				</then>
 			</if>
@@ -749,6 +750,7 @@ app.server.type=@{app.server.type}]]></echo>
 								</and>
 								<then>
 									<setup-testable-tomcat />
+
 									<setup-test-batch-testable-tomcat />
 								</then>
 							</if>
@@ -785,6 +787,7 @@ app.server.type=@{app.server.type}]]></echo>
 								</and>
 								<then>
 									<setup-testable-tomcat />
+
 									<setup-test-batch-testable-tomcat />
 								</then>
 							</if>
@@ -1444,7 +1447,7 @@ app.server.type=@{app.server.type}]]></echo>
 							<resourcecontains resource="${app.server.tomcat.dir}/bin/setenv.bat" substring="${test.batch.app.server.tomcat.setenv.gc.new}" />
 						</not>
 						<then>
-							<fail message="Unable to setup tomcat gc properties for ${app.server.tomcat.dir}/bin/setenv.bat" />
+							<fail message="Unable to setup Tomcat GC properties for ${app.server.tomcat.dir}/bin/setenv.bat." />
 						</then>
 					</if>
 				</else>
@@ -1461,7 +1464,7 @@ app.server.type=@{app.server.type}]]></echo>
 							<resourcecontains resource="${app.server.tomcat.dir}/bin/setenv.sh" substring="${test.batch.app.server.tomcat.setenv.gc.new}" />
 						</not>
 						<then>
-							<fail message="Unable to setup tomcat gc properties for ${app.server.tomcat.dir}/bin/setenv.sh" />
+							<fail message="Unable to setup Tomcat GC properties for ${app.server.tomcat.dir}/bin/setenv.sh." />
 						</then>
 					</if>
 				</else>
