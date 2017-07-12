@@ -385,7 +385,7 @@ public abstract class BaseWorkflowTaskManagerTestCase {
 	}
 
 	protected String getBasePath() {
-		return "com/liferay/portal/workflow/kaleo/dependencies/";
+		return "com/liferay/portal/workflow/kaleo/runtime/dependencies/";
 	}
 
 	protected WorkflowTask getWorkflowTask() throws WorkflowException {
