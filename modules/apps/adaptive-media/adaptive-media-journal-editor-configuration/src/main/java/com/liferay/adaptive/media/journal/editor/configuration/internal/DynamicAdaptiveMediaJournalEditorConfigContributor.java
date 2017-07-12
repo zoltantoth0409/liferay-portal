@@ -66,9 +66,9 @@ public class DynamicAdaptiveMediaJournalEditorConfigContributor
 			!allowedContent.equals(Boolean.TRUE.toString())) {
 
 			allowedContent += StringPool.SPACE + _IMG_TAG_RULE;
-		}
 
-		jsonObject.put("allowedContent", allowedContent);
+			jsonObject.put("allowedContent", allowedContent);
+		}
 
 		String itemSelectorURL = jsonObject.getString(
 			"filebrowserImageBrowseLinkUrl");
