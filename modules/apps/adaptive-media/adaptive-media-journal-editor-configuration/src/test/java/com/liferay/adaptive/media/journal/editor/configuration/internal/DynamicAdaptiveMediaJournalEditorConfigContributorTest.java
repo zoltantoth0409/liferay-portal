@@ -266,8 +266,6 @@ public class DynamicAdaptiveMediaJournalEditorConfigContributorTest
 
 		JSONObject expectedJSONObject = JSONFactoryUtil.createJSONObject();
 
-		expectedJSONObject.put("allowedContent", "img[*](*);");
-
 		JSONAssert.assertEquals(
 			expectedJSONObject.toJSONString(), jsonObject.toJSONString(), true);
 	}
@@ -278,7 +276,7 @@ public class DynamicAdaptiveMediaJournalEditorConfigContributorTest
 
 		JSONObject originalJSONObject = JSONFactoryUtil.createJSONObject();
 
-		originalJSONObject.put("allowedContent", "true");
+		originalJSONObject.put("allowedContent", true);
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 			originalJSONObject.toJSONString());
@@ -294,7 +292,7 @@ public class DynamicAdaptiveMediaJournalEditorConfigContributorTest
 
 		JSONObject expectedJSONObject = JSONFactoryUtil.createJSONObject();
 
-		expectedJSONObject.put("allowedContent", "true");
+		expectedJSONObject.put("allowedContent", true);
 
 		JSONAssert.assertEquals(
 			expectedJSONObject.toJSONString(), jsonObject.toJSONString(), true);
@@ -333,8 +331,6 @@ public class DynamicAdaptiveMediaJournalEditorConfigContributorTest
 
 		JSONObject expectedJSONObject = JSONFactoryUtil.createJSONObject(
 			originalJSONObject.toJSONString());
-
-		expectedJSONObject.put("allowedContent", "img[*](*);");
 
 		JSONAssert.assertEquals(
 			expectedJSONObject.toJSONString(), jsonObject.toJSONString(), true);
@@ -381,8 +377,6 @@ public class DynamicAdaptiveMediaJournalEditorConfigContributorTest
 
 		JSONObject expectedJSONObject = JSONFactoryUtil.createJSONObject(
 			originalJSONObject.toJSONString());
-
-		expectedJSONObject.put("allowedContent", "img[*](*);");
 
 		JSONAssert.assertEquals(
 			expectedJSONObject.toJSONString(), jsonObject.toJSONString(), true);
