@@ -72,19 +72,19 @@ public class NGramHolderBuilderImpl implements NGramHolderBuilder {
 			while (nGramTokenizer.incrementToken()) {
 				String nGram = charTermAttribute.toString();
 
-				int currentNGramLength = charTermAttribute.length();
+				int currentNGramSize = charTermAttribute.length();
 
-				if ((currentNGramLength >= nGramMinLength) &&
-					(currentNGramLength <= nGramMaxLength)) {
+				if ((currentNGramSize >= nGramMinLength) &&
+					(currentNGramSize <= nGramMaxLength)) {
 
 					if (offsetAttribute.startOffset() == 0) {
-						nGramHolder.addNGramStart(currentNGramLength, nGram);
+						nGramHolder.addNGramStart(currentNGramSize, nGram);
 					}
 					else if (offsetAttribute.endOffset() == input.length()) {
-						nGramHolder.addNGramEnd(currentNGramLength, nGram);
+						nGramHolder.addNGramEnd(currentNGramSize, nGram);
 					}
 					else {
-						nGramHolder.addNGram(currentNGramLength, nGram);
+						nGramHolder.addNGram(currentNGramSize, nGram);
 					}
 				}
 			}
