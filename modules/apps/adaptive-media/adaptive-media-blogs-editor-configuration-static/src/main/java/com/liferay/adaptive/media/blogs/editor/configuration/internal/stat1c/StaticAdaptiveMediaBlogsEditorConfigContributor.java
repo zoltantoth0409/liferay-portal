@@ -148,14 +148,14 @@ public class StaticAdaptiveMediaBlogsEditorConfigContributor
 	private void _allowTagRule(JSONObject jsonObject, String tagRule) {
 		String allowedContent = jsonObject.getString("allowedContent");
 
-		if (Validator.isNotNull(allowedContent)) {
+		if (Validator.isNotNull(allowedContent) &&
+			!allowedContent.equals(Boolean.TRUE.toString())) {
+
 			allowedContent += StringPool.SPACE + tagRule;
-		}
-		else {
-			allowedContent = tagRule;
+
+			jsonObject.put("allowedContent", allowedContent);
 		}
 
-		jsonObject.put("allowedContent", allowedContent);
 	}
 
 	private static final String _IMG_TAG_RULE = "img[*](*){*};";

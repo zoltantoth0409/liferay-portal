@@ -491,8 +491,6 @@ public class StaticAdaptiveMediaBlogsEditorConfigContributorTest
 
 		JSONObject expectedJSONObject = JSONFactoryUtil.createJSONObject();
 
-		expectedJSONObject.put(
-			"allowedContent", "picture[*](*); source[*](*); img[*](*){*};");
 		expectedJSONObject.put("extraPlugins", "adaptivemedia");
 		expectedJSONObject.put(
 			"filebrowserImageBrowseLinkUrl", itemSelectorPortletURL.toString());
