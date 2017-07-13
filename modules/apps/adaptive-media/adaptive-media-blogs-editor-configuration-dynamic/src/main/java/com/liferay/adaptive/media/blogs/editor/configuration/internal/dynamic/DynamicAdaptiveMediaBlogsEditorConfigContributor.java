@@ -148,7 +148,7 @@ public class DynamicAdaptiveMediaBlogsEditorConfigContributor
 			desiredItemSelectorReturnTypes);
 	}
 
-	private static final String _IMG_TAG_RULE = "img[*](*);";
+	private static final String _IMG_TAG_RULE = "img[*](*){*};";
 
 	private ItemSelector _itemSelector;
 
