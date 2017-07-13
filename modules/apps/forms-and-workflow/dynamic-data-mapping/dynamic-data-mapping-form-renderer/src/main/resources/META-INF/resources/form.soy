@@ -3,7 +3,7 @@
 /**
  * Defines the base delegated template for the any field.
  */
-{deltemplate ddm.field autoescape="deprecated-contextual"}
+{deltemplate ddm.field}
 {/deltemplate}
 
 /**
@@ -11,7 +11,7 @@
  *
  * @param fields
  */
-{template .fields autoescape="deprecated-contextual"}
+{template .fields}
 	{foreach $field in $fields}
 		{let $variant: $field.type /}
 
@@ -31,20 +31,20 @@
  * @param portletNamespace
  * @param readOnly
  */
-{template .form_renderer_js autoescape="deprecated-contextual"}
+{template .form_renderer_js}
 	<script type="text/javascript">
 		AUI().use(
 			'liferay-ddm-form-renderer',
 			'liferay-ddm-form-renderer-field',
 			function(A) {lb}
-				Liferay.DDM.Renderer.FieldTypes.register({$fieldTypes|noAutoescape});
+				Liferay.DDM.Renderer.FieldTypes.register({$fieldTypes});
 
 				var form = Liferay.component(
 					'{$containerId}DDMForm',
 					new Liferay.DDM.Renderer.Form(
 						{lb}
 							container: '#{$containerId}',
-							context: {$context|noAutoescape},
+							context: {$context},
 							evaluatorURL: '{$evaluatorURL}',
 							portletNamespace: '{$portletNamespace}',
 							readOnly: {$readOnly}
@@ -82,7 +82,7 @@
  *
  * @param rows
  */
-{template .form_rows autoescape="deprecated-contextual"}
+{template .form_rows}
 	{foreach $row in $rows}
 		<div class="row">
 			{call ddm.form_row_columns data="all"}
@@ -97,7 +97,7 @@
  *
  * @param column
  */
-{template .form_row_column autoescape="deprecated-contextual"}
+{template .form_row_column}
 	<div class="col-md-{$column.size}">
 		{call ddm.fields data="all"}
 			{param fields: $column.fields /}
@@ -110,7 +110,7 @@
  *
  * @param columns
  */
-{template .form_row_columns autoescape="deprecated-contextual"}
+{template .form_row_columns}
 	{foreach $column in $columns}
 		{call ddm.form_row_column data="all"}
 			{param column: $column /}
@@ -124,9 +124,9 @@
  * @param showRequiredFieldsWarning
  * @param requiredFieldsWarningMessageHTML
  */
-{template .required_warning_message autoescape="deprecated-contextual"}
+{template .required_warning_message}
 	{if $showRequiredFieldsWarning}
-		{$requiredFieldsWarningMessageHTML|noAutoescape}
+		{$requiredFieldsWarningMessageHTML}
 	{/if}
 {/template}
 
@@ -140,7 +140,7 @@
  * @param submitLabel
  * @param strings
  */
-{template .wizard_form autoescape="deprecated-contextual"}
+{template .wizard_form}
 	<div class="lfr-ddm-form-container" id="{$containerId}">
 		<div class="lfr-ddm-form-content">
 			{if length($pages) > 1}
@@ -148,7 +148,7 @@
 					<ul class="multi-step-progress-bar multi-step-progress-bar-collapse">
 						{foreach $page in $pages}
 							<li {if isFirst($page)}class="active"{/if}>
-								<div class="progress-bar-title">{$page.title|noAutoescape}</div>
+								<div class="progress-bar-title">{$page.title}</div>
 
 								<div class="divider"></div>
 
@@ -163,11 +163,11 @@
 				{foreach $page in $pages}
 					<div class="{if isFirst($page)}active{/if} lfr-ddm-form-page">
 						{if $page.title}
-							<h3 class="lfr-ddm-form-page-title">{$page.title|noAutoescape}</h3>
+							<h3 class="lfr-ddm-form-page-title">{$page.title}</h3>
 						{/if}
 
 						{if $page.description}
-							<h4 class="lfr-ddm-form-page-description">{$page.description|noAutoescape}</h4>
+							<h4 class="lfr-ddm-form-page-description">{$page.description}</h4>
 						{/if}
 
 						{call ddm.required_warning_message data="all"}
@@ -209,18 +209,18 @@
  * @param submitLabel
  * @param strings
  */
-{template .paginated_form autoescape="deprecated-contextual"}
+{template .paginated_form}
 	<div class="lfr-ddm-form-container" id="{$containerId}">
 		<div class="lfr-ddm-form-content">
 			<div class="lfr-ddm-form-pages">
 				{foreach $page in $pages}
 					<div class="{if isFirst($page)}active{/if} lfr-ddm-form-page">
 						{if $page.title}
-							<h3 class="lfr-ddm-form-page-title">{$page.title|noAutoescape}</h3>
+							<h3 class="lfr-ddm-form-page-title">{$page.title}</h3>
 						{/if}
 
 						{if $page.description}
-							<h4 class="lfr-ddm-form-page-description">{$page.description|noAutoescape}</h4>
+							<h4 class="lfr-ddm-form-page-description">{$page.description}</h4>
 						{/if}
 
 						{call ddm.required_warning_message data="all"}
@@ -271,7 +271,7 @@
  * @param pages
  * @param requiredFieldsWarningMessageHTML
  */
-{template .simple_form autoescape="deprecated-contextual"}
+{template .simple_form}
 	<div class="lfr-ddm-form-container" id="{$containerId}">
 		<div class="lfr-ddm-form-fields">
 			{foreach $page in $pages}
@@ -295,7 +295,7 @@
  * @param pages
  * @param requiredFieldsWarningMessageHTML
  */
-{template .tabbed_form autoescape="deprecated-contextual"}
+{template .tabbed_form}
 	<div class="lfr-ddm-form-container" id="{$containerId}">
 		<div class="lfr-ddm-form-tabs">
 			<ul class="nav navbar-nav">
@@ -329,7 +329,7 @@
  *
  * @param? active
  */
-{template .tabbed_form_frame autoescape="deprecated-contextual"}
+{template .tabbed_form_frame}
 	<div class="lfr-ddm-form-page tab-pane {if $active}active{/if}"></div>
 {/template}
 
@@ -339,7 +339,7 @@
  * @param containerId
  * @param pages
  */
-{template .settings_form autoescape="deprecated-contextual"}
+{template .settings_form}
 	<div class="lfr-ddm-form-container" id="{$containerId}">
 		<div class="lfr-ddm-settings-form">
 			{foreach $page in $pages}

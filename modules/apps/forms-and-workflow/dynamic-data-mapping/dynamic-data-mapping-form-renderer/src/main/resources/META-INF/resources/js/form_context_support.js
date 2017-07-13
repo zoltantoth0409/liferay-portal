@@ -14,6 +14,7 @@ AUI.add(
 		FormContextSupport.ATTRS = {
 			context: {
 				getter: '_getContext',
+				setter: function(val) { return JSON.parse(val); },
 				valueFn: '_valueContext'
 			},
 
