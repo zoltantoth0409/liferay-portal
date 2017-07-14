@@ -111,13 +111,13 @@ public class TemporaryFileEntryRepository extends LiferayRepository {
 	}
 
 	private <T extends Throwable> void _runWithoutSystemEvents(
-			UnsafeRunnable<T> runnable)
+			UnsafeRunnable<T> unsafeRunnable)
 		throws T {
 
 		SystemEventHierarchyEntryThreadLocal.push(DLFileEntry.class);
 
 		try {
-			runnable.run();
+			unsafeRunnable.run();
 		}
 		finally {
 			SystemEventHierarchyEntryThreadLocal.pop(DLFileEntry.class);
