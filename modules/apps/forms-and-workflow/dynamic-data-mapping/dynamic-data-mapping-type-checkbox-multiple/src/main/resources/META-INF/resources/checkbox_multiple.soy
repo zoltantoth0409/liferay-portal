@@ -3,14 +3,13 @@
 /**
  * Defines the delegated template for the checkbox multiple field.
  */
-{deltemplate ddm.field autoescape="deprecated-contextual" variant="'checkbox_multiple'"}
+{deltemplate ddm.field variant="'checkbox_multiple'"}
 	{call .checkbox_multiple data="all" /}
 {/deltemplate}
 
 /**
  * Prints the DDM form checkbox multiple field.
  *
- * @param? childElementsHTML
  * @param dir
  * @param inline
  * @param label
@@ -23,7 +22,7 @@
  * @param tip
  * @param value
  */
-{template .checkbox_multiple autoescape="deprecated-contextual"}
+{template .checkbox_multiple}
 	<div class="form-group liferay-ddm-form-field-checkbox-multiple" data-fieldname="{$name}">
 		{if $showLabel}
 			<label for="{$name}">
@@ -45,7 +44,7 @@
 					<div>
 				{/if}
 
-				{let $checked}
+				{let $checked kind="attributes"}
 					{foreach $currentValue in $value}
 						{if $currentValue == $option.value}
 							checked
@@ -87,10 +86,6 @@
 
 		{if $tip and length($options) == 1}
 			<p class="liferay-ddm-form-field-tip">{$tip}</p>
-		{/if}
-
-		{if $childElementsHTML}
-			{$childElementsHTML|noAutoescape}
 		{/if}
 	</div>
 {/template}

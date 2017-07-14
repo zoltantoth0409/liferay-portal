@@ -3,7 +3,7 @@
 /**
  * Defines the delegated template for the grid field.
  */
-{deltemplate ddm.field autoescape="deprecated-contextual" variant="'grid'"}
+{deltemplate ddm.field variant="'grid'"}
 	{call .grid data="all" /}
 {/deltemplate}
 
@@ -24,7 +24,7 @@
  * @param value
  * @param visible
  */
-{template .grid autoescape="deprecated-contextual"}
+{template .grid}
 	<div class="form-group{$visible ? '' : ' hide'}" data-fieldname="{$name}">
 		{if $showLabel}
 			<label class="control-label">
@@ -79,7 +79,7 @@
 		</div>
 
 		{if $childElementsHTML}
-			{$childElementsHTML|noAutoescape}
+			{$childElementsHTML}
 		{/if}
 	</div>
 {/template}
@@ -92,7 +92,7 @@
  * @param rows
  * @param value
  */
-{template .hidden_grid autoescape="deprecated-contextual"}
+{template .hidden_grid}
 	{foreach $row in $rows}
 		{let $inputValue: $value[$row.value] ? $row.value + ';' + $value[$row.value] : '' /}
 

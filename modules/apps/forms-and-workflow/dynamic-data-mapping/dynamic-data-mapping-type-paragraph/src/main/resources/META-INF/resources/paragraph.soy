@@ -3,7 +3,7 @@
 /**
  * Defines the delegated template for the paragraph field.
  */
-{deltemplate ddm.field autoescape="deprecated-contextual" variant="'paragraph'"}
+{deltemplate ddm.field variant="'paragraph'"}
 	{call .paragraph data="all" /}
 {/deltemplate}
 
@@ -15,12 +15,12 @@
  * @param text
  * @param visible
  */
-{template .paragraph autoescape="deprecated-contextual"}
+{template .paragraph}
 	<div class="form-group{$visible ? '' : ' hide'} liferay-ddm-form-field-paragraph" data-fieldname="{$name}">
 		{if $label}
 			<label class="control-label" for="{$name}">{$label}</label>
 		{/if}
 
-		<div>{$text|noAutoescape}</div>
+		<div>{$text}</div>
 	</div>
 {/template}

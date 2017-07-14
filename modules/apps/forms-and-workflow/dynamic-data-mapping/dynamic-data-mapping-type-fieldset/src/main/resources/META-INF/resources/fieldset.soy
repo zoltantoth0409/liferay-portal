@@ -3,7 +3,7 @@
 /**
  * Defines the delegated template for the fieldset field.
  */
-{deltemplate ddm.field autoescape="deprecated-contextual" variant="'fieldset'"}
+{deltemplate ddm.field variant="'fieldset'"}
 	{call .fieldset data="all" /}
 {/deltemplate}
 
@@ -13,7 +13,7 @@
  * @param columnSize
  * @param field
  */
-{template .fieldset_column autoescape="deprecated-contextual"}
+{template .fieldset_column}
 	<div class="col-md-{$columnSize}">
 		<div class="clearfix {if not $field.visible}hide{/if} lfr-ddm-form-field-container">
 			{let $variant: $field.type /}
@@ -29,7 +29,7 @@
  * @param columnSize
  * @param fields
  */
-{template .fieldset_columns autoescape="deprecated-contextual"}
+{template .fieldset_columns}
 	{foreach $field in $fields}
 
 		{call ddm.fieldset_column data="all"}
@@ -52,7 +52,7 @@
  * @param tip
  * @param visible
  */
-{template .fieldset autoescape="deprecated-contextual"}
+{template .fieldset}
 	<div class="form-group{$visible ? '' : ' hide'} liferay-ddm-form-field-fieldset
 		{$showBorderTop ? ' border-top' : ''} {$showBorderBottom ? ' border-bottom' : ''}" data-fieldname="{$name}">
 

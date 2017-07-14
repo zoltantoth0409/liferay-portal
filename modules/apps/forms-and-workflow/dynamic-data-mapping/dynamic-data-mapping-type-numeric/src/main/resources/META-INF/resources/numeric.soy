@@ -3,14 +3,13 @@
 /**
  * Defines the delegated template for the numeric field.
  */
-{deltemplate ddm.field autoescape="deprecated-contextual" variant="'numeric'"}
+{deltemplate ddm.field variant="'numeric'"}
 	{call .numeric data="all" /}
 {/deltemplate}
 
 /**
  * Prints the DDM form numeric field.
  *
- * @param? childElementsHTML
  * @param dir
  * @param? label
  * @param name
@@ -24,7 +23,7 @@
  * @param value
  * @param visible
  */
-{template .numeric autoescape="deprecated-contextual"}
+{template .numeric}
 	{let $displayValue: $value ? $value : $predefinedValue ? $predefinedValue : '' /}
 
 	<div class="form-group{$visible ? '' : ' hide'} liferay-ddm-form-field-numeric {$tip ? 'liferay-ddm-form-field-has-tip' : ''}" data-fieldname="{$name}">
@@ -53,9 +52,5 @@
 				</span>
 			{/if}
 		</div>
-
-		{if $childElementsHTML}
-			{$childElementsHTML|noAutoescape}
-		{/if}
 	</div>
 {/template}

@@ -3,14 +3,13 @@
 /**
  * Defines the delegated template for the date field.
  */
-{deltemplate ddm.field autoescape="deprecated-contextual" variant="'date'"}
+{deltemplate ddm.field variant="'date'"}
 	{call .date data="all" /}
 {/deltemplate}
 
 /**
  * Prints the DDM form date field.
  *
- * @param? childElementsHTML
  * @param displayValue
  * @param label
  * @param name
@@ -21,7 +20,7 @@
  * @param value
  * @param visible
  */
-{template .date autoescape="deprecated-contextual"}
+{template .date}
 	<div class="form-group{$visible ? '' : ' hide'} liferay-ddm-form-field-date" data-fieldname="{$name}">
 		{if $showLabel}
 			<label class="control-label" for="{$name}">
@@ -44,9 +43,5 @@
 
 			<span class="input-group-addon"><span class="icon-calendar"></span></span>
 		</div>
-
-		{if $childElementsHTML}
-			{$childElementsHTML|noAutoescape}
-		{/if}
 	</div>
 {/template}

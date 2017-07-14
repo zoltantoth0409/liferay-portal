@@ -3,7 +3,7 @@
 /**
  * Defines the delegated template for the radio field.
  */
-{deltemplate ddm.field autoescape="deprecated-contextual" variant="'radio'"}
+{deltemplate ddm.field variant="'radio'"}
 	{call .radio data="all" /}
 {/deltemplate}
 
@@ -24,7 +24,7 @@
  * @param value
  * @param visible
  */
-{template .radio autoescape="deprecated-contextual"}
+{template .radio}
 	{let $displayValue: $value ? $value : $predefinedValue /}
 
 	<div class="form-group{$visible ? '' : ' hide'}" data-fieldname="{$name}">
@@ -62,7 +62,7 @@
 		</div>
 
 		{if $childElementsHTML}
-			{$childElementsHTML|noAutoescape}
+			{$childElementsHTML}
 		{/if}
 	</div>
 {/template}

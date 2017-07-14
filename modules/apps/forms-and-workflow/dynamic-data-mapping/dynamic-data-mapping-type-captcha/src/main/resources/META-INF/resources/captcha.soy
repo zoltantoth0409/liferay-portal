@@ -3,7 +3,7 @@
 /**
  * Defines the delegated template for the captcha field.
  */
-{deltemplate ddm.field autoescape="deprecated-contextual" variant="'captcha'"}
+{deltemplate ddm.field variant="'captcha'"}
 	{call .captcha data="all" /}
 {/deltemplate}
 
@@ -14,8 +14,8 @@
  * @param name
  * @param visible
  */
-{template .captcha autoescape="deprecated-contextual"}
+{template .captcha}
 	<div class="form-group{$visible ? '' : ' hide'} liferay-ddm-form-field-captcha" data-fieldname="{$name}">
-		{$html|noAutoescape}
+		{$html}
 	</div>
 {/template}
