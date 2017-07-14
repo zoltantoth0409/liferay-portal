@@ -307,13 +307,13 @@ public class TemporaryFileEntriesCapabilityImpl
 	}
 
 	private void _runWithoutSystemEvents(
-			UnsafeRunnable<PortalException> runnable)
+			UnsafeRunnable<PortalException> unsafeRunnable)
 		throws PortalException {
 
 		SystemEventHierarchyEntryThreadLocal.push(DLFileEntry.class);
 
 		try {
-			runnable.run();
+			unsafeRunnable.run();
 		}
 		finally {
 			SystemEventHierarchyEntryThreadLocal.pop(DLFileEntry.class);
