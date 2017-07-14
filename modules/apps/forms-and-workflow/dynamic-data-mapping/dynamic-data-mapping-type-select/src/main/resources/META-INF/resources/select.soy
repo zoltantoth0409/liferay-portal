@@ -1,17 +1,16 @@
-{namespace ddm}
+{namespace DDMSelect}
 
 /**
  * Defines the delegated template for the select field.
  */
-{deltemplate ddm.field autoescape="deprecated-contextual" variant="'select'"}
-	{call .select data="all" /}
+{deltemplate ddm.field variant="'select'"}
+	{call .render data="all" /}
 {/deltemplate}
 
 /**
  * Prints the DDM form select field.
  *
  * @param? badgeCloseIcon
- * @param? childElementsHTML
  * @param dir
  * @param label
  * @param multiple
@@ -28,12 +27,12 @@
  * @param value
  * @param visible
  */
-{template .select autoescape="deprecated-contextual"}
+{template .render}
 	<div class="form-group{$visible ? '' : ' hide'}" data-fieldname="{$name}">
 		<div class="input-select-wrapper">
 
 			{if $showLabel}
-				{call ddm.select_label data="all" /}
+				{call .select_label data="all" /}
 			{/if}
 
 			<div class="form-builder-select-field input-group-container">
@@ -45,7 +44,7 @@
 				<div class="form-control select-field-trigger" dir="{$dir}" id="{$name}" name="{$name}">
 					<a class="select-arrow-down-container" href="javascript:;">
 						{if $selectCaretDoubleIcon}
-							{$selectCaretDoubleIcon|noAutoescape}
+							{$selectCaretDoubleIcon}
 						{/if}
 					</a>
 
@@ -55,7 +54,7 @@
 						{else}
 							<ul class="multiple-badge-list">
 								{foreach $currentValue in $value}
-									{call ddm.badge_item}
+									{call .badge_item}
 										{param badgeCloseIcon: $badgeCloseIcon /}
 										{param value: $currentValue.value /}
 										{param label: $currentValue.label /}
@@ -82,21 +81,17 @@
 						<div class="search-chosen">
 							<div class="select-search-container">
 								{if $selectSearchIcon}
-									<a class="" href="javascript:;">{$selectSearchIcon|noAutoescape}</a>
+									<a class="" href="javascript:;">{$selectSearchIcon}</a>
 								{/if}
 							</div>
 							<input autocomplete="off" class="drop-chosen-search" placeholder="{$strings.search}" type="text">
 						</div>
 						<ul class="results-chosen">
-							{call ddm.select_options data="all" /}
+							{call .select_options data="all" /}
 						</ul>
 					</div>
 				{/if}
 			</div>
-
-			{if $childElementsHTML}
-				{$childElementsHTML|noAutoescape}
-			{/if}
 		</div>
 	</div>
 {/template}
@@ -108,11 +103,11 @@
  * @param label
  * @param value
  */
-{template .badge_item autoescape="deprecated-contextual"}
+{template .badge_item}
 	<li>
 		<span class="badge badge-default badge-sm multiple-badge" data-original-title="{$label}" title="{$label}">
 			{$label}
-			<a class="trigger-badge-item-close" data-badge-value="{$value}" href="javascript:void(0)">{$badgeCloseIcon|noAutoescape}</a>
+			<a class="trigger-badge-item-close" data-badge-value="{$value}" href="javascript:void(0)">{$badgeCloseIcon}</a>
 		</span>
 	</li>
 {/template}
@@ -124,7 +119,7 @@
  * @param required
  * @param tip
  */
-{template .select_label autoescape="deprecated-contextual"}
+{template .select_label}
 	<label class="control-label" for="{$name}">
 		{$label}
 
@@ -148,7 +143,7 @@
  * @param strings
  * @param value
  */
-{template .hidden_select autoescape="deprecated-contextual"}
+{template .hidden_select}
 	<select class="form-control hide" dir="{$dir}" id="{$name}" name="{$name}" {if $multiple}multiple size="{length($options)}"{/if}>
 		{if not $readOnly}
 			<option dir="{$dir}" disabled {if length($value) == 0}selected{/if} value="">
@@ -157,7 +152,7 @@
 		{/if}
 
 		{foreach $option in $options}
-			{call ddm.select_hidden_options}
+			{call .select_hidden_options}
 				{param dir: $dir /}
 				{param option: $option /}
 				{param values: $value /}
@@ -173,8 +168,8 @@
  * @param option
  * @param values
  */
-{template .select_hidden_options autoescape="deprecated-contextual"}
-	{let $selected}
+{template .select_hidden_options}
+	{let $selected kind="attributes"}
 		{if $values}
 			{foreach $currentValue in $values}
 				{if $currentValue.value == $option.value}
@@ -195,10 +190,10 @@
  * @param strings
  * @param value
  */
-{template .select_options autoescape="deprecated-contextual"}
+{template .select_options}
 	{if length($options) > 0}
 		{foreach $option in $options}
-			{let $selected}
+			{let $selected kind="attributes"}
 				{if $value}
 					{foreach $currentValue in $value}
 						{if $currentValue.value == $option.value}
