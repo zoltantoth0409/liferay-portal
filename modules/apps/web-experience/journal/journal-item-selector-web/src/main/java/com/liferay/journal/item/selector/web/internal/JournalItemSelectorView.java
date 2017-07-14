@@ -92,6 +92,10 @@ public class JournalItemSelectorView
 			PortletURL portletURL, String itemSelectedEventName, boolean search)
 		throws IOException, ServletException {
 
+		request.setAttribute(
+			JournalItemSelectorWebKeys.DL_MIME_TYPE_DISPLAY_CONTEXT,
+			_dlMimeTypeDisplayContext);
+
 		JournalItemSelectorViewDisplayContext
 			journalItemSelectorViewDisplayContext =
 				new JournalItemSelectorViewDisplayContext(
@@ -103,10 +107,6 @@ public class JournalItemSelectorView
 			JournalItemSelectorWebKeys.
 				JOURNAL_ITEM_SELECTOR_VIEW_DISPLAY_CONTEXT,
 			journalItemSelectorViewDisplayContext);
-
-		request.setAttribute(
-			JournalItemSelectorWebKeys.DL_MIME_TYPE_DISPLAY_CONTEXT,
-			_dlMimeTypeDisplayContext);
 
 		ServletContext servletContext = getServletContext();
 
