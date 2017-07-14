@@ -138,7 +138,9 @@ public class LoginPostAction extends Action {
 			UserLocalServiceUtil.updateUser(user);
 		}
 
-		long timeModified = user.getPasswordModifiedDate().getTime();
+		Date passwordModifiedDate = user.getPasswordModifiedDate();
+
+		long timeModified = passwordModifiedDate.getTime();
 
 		long passwordExpiresOn =
 			(passwordPolicy.getMaxAge() * 1000) + timeModified;
