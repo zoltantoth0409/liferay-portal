@@ -35,7 +35,6 @@ import com.liferay.portal.kernel.test.util.UserTestUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
@@ -85,52 +84,38 @@ public class UserIndexerTest {
 
 	@Test
 	public void testEmailAddress() throws Exception {
-		User expectedUser = UserTestUtil.addUser();
+		User user = addUserEmailAddress("Em.Ail@liferay.com");
 
-		String expectedEmail = expectedUser.getEmailAddress();
+		user = assertSearchOneUser("Em.Ail@liferay.com", user);
 
-		User actualUser = assertSearchOneUser(
-			StringUtil.toUpperCase(expectedEmail), expectedUser);
-
-		Assert.assertEquals(expectedEmail, actualUser.getEmailAddress());
+		Assert.assertEquals("em.ail@liferay.com", user.getEmailAddress());
 	}
 
 	@Test
 	public void testEmailAddressField() throws Exception {
-		User expectedUser = UserTestUtil.addUser();
+		User user = addUserEmailAddress("Em.Ail@liferay.com");
 
-		String expectedEmail = expectedUser.getEmailAddress();
+		user = assertSearchOneUser("emailAddress", "em.ail@liferay.com", user);
 
-		User actualUser = assertSearchOneUser(
-			"emailAddress", expectedEmail, expectedUser);
-
-		Assert.assertEquals(expectedEmail, actualUser.getEmailAddress());
+		Assert.assertEquals("em.ail@liferay.com", user.getEmailAddress());
 	}
 
 	@Test
 	public void testEmailAddressPrefix() throws Exception {
-		User expectedUser = UserTestUtil.addUser();
+		User user = addUserEmailAddress("Em.Ail@liferay.com");
 
-		String expectedEmail = expectedUser.getEmailAddress();
+		user = assertSearchOneUser("EM.AIL", user);
 
-		User actualUser = assertSearchOneUser(
-			StringUtil.removeSubstring(expectedEmail, "@liferay.com"),
-			expectedUser);
-
-		Assert.assertEquals(expectedEmail, actualUser.getEmailAddress());
+		Assert.assertEquals("em.ail@liferay.com", user.getEmailAddress());
 	}
 
 	@Test
 	public void testEmailAddressSubstring() throws Exception {
-		User expectedUser = UserTestUtil.addUser();
+		User user = addUserEmailAddress("Em.Ail@liferay.com");
 
-		String expectedEmail = expectedUser.getEmailAddress();
+		user = assertSearchOneUser("ail@life", user);
 
-		User actualUser = assertSearchOneUser(
-			expectedEmail.substring(4, expectedEmail.length() - 7),
-			expectedUser);
-
-		Assert.assertEquals(expectedEmail, actualUser.getEmailAddress());
+		Assert.assertEquals("em.ail@liferay.com", user.getEmailAddress());
 	}
 
 	@Test
@@ -324,6 +309,16 @@ public class UserIndexerTest {
 		_users.add(user);
 
 		return user;
+	}
+
+	protected User addUserEmailAddress(String emailAddress) throws Exception {
+		String firstName = RandomTestUtil.randomString();
+		String lastName = RandomTestUtil.randomString();
+		String middleName = RandomTestUtil.randomString();
+		String screenName = testName.getMethodName();
+
+		return addUser(
+			firstName, lastName, middleName, screenName, emailAddress);
 	}
 
 	protected User addUserNameFields(
