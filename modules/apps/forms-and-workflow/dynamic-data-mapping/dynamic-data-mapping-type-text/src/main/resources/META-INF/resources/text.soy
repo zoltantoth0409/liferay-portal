@@ -1,16 +1,15 @@
-{namespace ddm}
+{namespace DDMText}
 
 /**
  * Defines the delegated template for the text field.
  */
-{deltemplate ddm.field autoescape="deprecated-contextual" variant="'text'"}
-	{call .text data="all" /}
+{deltemplate ddm.field variant="'text'"}
+	{call .render data="all" /}
 {/deltemplate}
 
 /**
  * Prints the DDM form text field.
  *
- * @param? childElementsHTML
  * @param dir
  * @param displayStyle
  * @param? label
@@ -25,7 +24,7 @@
  * @param value
  * @param visible
  */
-{template .text autoescape="deprecated-contextual"}
+{template .render}
 	{let $displayValue: $value ? $value : $predefinedValue ? $predefinedValue : '' /}
 
 	<div class="form-group{$visible ? '' : ' hide'} liferay-ddm-form-field-text {$tip ? 'liferay-ddm-form-field-has-tip' : ''}" data-fieldname="{$name}">
@@ -60,9 +59,5 @@
 				</span>
 			{/if}
 		</div>
-
-		{if $childElementsHTML}
-			{$childElementsHTML|noAutoescape}
-		{/if}
 	</div>
 {/template}
