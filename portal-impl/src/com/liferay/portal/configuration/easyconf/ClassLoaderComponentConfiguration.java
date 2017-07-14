@@ -144,8 +144,7 @@ public class ClassLoaderComponentConfiguration extends ComponentConfiguration {
 					if (_log.isWarnEnabled()) {
 						_log.warn(
 							"Unable to decode part \"" + encoded +
-								"\" from \"" + s +
-									"\", preserve it literally");
+								"\" from \"" + s + "\", preserve it literally");
 					}
 
 					sb.append(s.substring(openUnderLine, index + 1));
