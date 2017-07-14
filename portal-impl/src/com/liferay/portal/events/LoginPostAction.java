@@ -140,10 +140,9 @@ public class LoginPostAction extends Action {
 
 		Date passwordModifiedDate = user.getPasswordModifiedDate();
 
-		long timeModified = passwordModifiedDate.getTime();
-
 		long passwordExpiresOn =
-			(passwordPolicy.getMaxAge() * 1000) + timeModified;
+			(passwordPolicy.getMaxAge() * 1000) +
+				passwordModifiedDate.getTime();
 
 		long timeStartWarning =
 			passwordExpiresOn - (passwordPolicy.getWarningTime() * 1000);
