@@ -114,20 +114,17 @@ public class ClassLoaderComponentConfiguration extends ComponentConfiguration {
 	}
 
 	protected static String decode(String s) {
-		StringBundler sb = new StringBundler();
-
-		int position = 0;
-
-		int openUnderLine = -1;
-
 		int index = -1;
+		int openUnderLine = -1;
+		int position = 0;
+		StringBundler sb = new StringBundler();
 
 		while ((index = s.indexOf(CharPool.UNDERLINE, index + 1)) != -1) {
 			if (openUnderLine == -1) {
 				sb.append(s.substring(position, index));
 
-				position = index;
 				openUnderLine = index;
+				position = index;
 
 				continue;
 			}
@@ -148,7 +145,7 @@ public class ClassLoaderComponentConfiguration extends ComponentConfiguration {
 						_log.warn(
 							"Unable to decode part \"" + encoded +
 								"\" from \"" + s +
-									"\", preserve it literally.");
+									"\", preserve it literally");
 					}
 
 					sb.append(s.substring(openUnderLine, index + 1));
@@ -158,8 +155,8 @@ public class ClassLoaderComponentConfiguration extends ComponentConfiguration {
 				sb.append(character);
 			}
 
-			position = index + 1;
 			openUnderLine = -1;
+			position = index + 1;
 		}
 
 		sb.append(s.substring(position, s.length()));
@@ -222,7 +219,7 @@ public class ClassLoaderComponentConfiguration extends ComponentConfiguration {
 
 			if (_log.isInfoEnabled()) {
 				_log.info(
-					"Overrided property " + newKey +
+					"Overrode property " + newKey +
 						" with environment variable " + key + "'s value");
 			}
 		}
