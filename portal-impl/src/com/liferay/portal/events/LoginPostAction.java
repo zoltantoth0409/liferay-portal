@@ -140,16 +140,16 @@ public class LoginPostAction extends Action {
 
 		Date passwordModifiedDate = user.getPasswordModifiedDate();
 
-		long passwordExpiresOn =
+		long passwordExpirationTime =
 			(passwordPolicy.getMaxAge() * 1000) +
 				passwordModifiedDate.getTime();
 
-		long timeStartWarning =
-			passwordExpiresOn - (passwordPolicy.getWarningTime() * 1000);
+		long startWarningTime =
+			passwordExpirationTime - (passwordPolicy.getWarningTime() * 1000);
 
-		if (now.getTime() > timeStartWarning) {
+		if (now.getTime() > startWarningTime) {
 			int daysUntilPasswordExpiration =
-				(int)((passwordExpiresOn - now.getTime()) / Time.DAY);
+				(int)((passwordExpirationTime - now.getTime()) / Time.DAY);
 
 			if (daysUntilPasswordExpiration >= 0) {
 				SessionMessages.add(
