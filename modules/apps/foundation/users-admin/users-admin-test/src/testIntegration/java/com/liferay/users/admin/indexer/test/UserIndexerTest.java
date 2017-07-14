@@ -79,51 +79,50 @@ public class UserIndexerTest {
 	public void testEmailAddress() throws Exception {
 		_expectedUser = UserTestUtil.addUser();
 
-		String expectedEmailAddress = _expectedUser.getEmailAddress();
+		String expectedEmail = _expectedUser.getEmailAddress();
 
 		User actualUser = assertSearchOneUser(
-			StringUtil.toUpperCase(expectedEmailAddress), _expectedUser);
+			StringUtil.toUpperCase(expectedEmail), _expectedUser);
 
-		Assert.assertEquals(expectedEmailAddress, actualUser.getEmailAddress());
+		Assert.assertEquals(expectedEmail, actualUser.getEmailAddress());
 	}
 
 	@Test
 	public void testEmailAddressField() throws Exception {
 		_expectedUser = UserTestUtil.addUser();
 
-		String expectedEmailAddress = _expectedUser.getEmailAddress();
+		String expectedEmail = _expectedUser.getEmailAddress();
 
 		User actualUser = assertSearchOneUser(
-			"emailAddress", expectedEmailAddress, _expectedUser);
+			"emailAddress", expectedEmail, _expectedUser);
 
-		Assert.assertEquals(expectedEmailAddress, actualUser.getEmailAddress());
+		Assert.assertEquals(expectedEmail, actualUser.getEmailAddress());
 	}
 
 	@Test
 	public void testEmailAddressPrefix() throws Exception {
 		_expectedUser = UserTestUtil.addUser();
 
-		String expectedEmailAddress = _expectedUser.getEmailAddress();
+		String expectedEmail = _expectedUser.getEmailAddress();
 
 		User actualUser = assertSearchOneUser(
-			StringUtil.removeSubstring(expectedEmailAddress, "@liferay.com"),
+			StringUtil.removeSubstring(expectedEmail, "@liferay.com"),
 			_expectedUser);
 
-		Assert.assertEquals(expectedEmailAddress, actualUser.getEmailAddress());
+		Assert.assertEquals(expectedEmail, actualUser.getEmailAddress());
 	}
 
 	@Test
 	public void testEmailAddressSubstring() throws Exception {
 		_expectedUser = UserTestUtil.addUser();
 
-		String expectedEmailAddress = _expectedUser.getEmailAddress();
+		String expectedEmail = _expectedUser.getEmailAddress();
 
 		User actualUser = assertSearchOneUser(
-			expectedEmailAddress.substring(
-				4, expectedEmailAddress.length() - 7),
+			expectedEmail.substring(4, expectedEmail.length() - 7),
 			_expectedUser);
 
-		Assert.assertEquals(expectedEmailAddress, actualUser.getEmailAddress());
+		Assert.assertEquals(expectedEmail, actualUser.getEmailAddress());
 	}
 
 	@Test
