@@ -1364,7 +1364,7 @@ public class DLAppHelperLocalServiceImpl
 			dlFileVersionStatusOVPs = getDlFileVersionStatuses(dlFileVersions);
 		}
 
-		FileVersion fileVersion = fileEntry.getFileVersion();
+		FileVersion fileVersion = fileEntry.getLatestFileVersion();
 
 		int oldStatus = fileVersion.getStatus();
 
