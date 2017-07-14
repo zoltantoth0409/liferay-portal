@@ -148,20 +148,19 @@ public class LoginPostAction extends Action {
 			passwordExpirationTime - (passwordPolicy.getWarningTime() * 1000);
 
 		if (now.getTime() > startWarningTime) {
-			int daysUntilPasswordExpiration =
+			int passwordExpiresInXDays =
 				(int)((passwordExpirationTime - now.getTime()) / Time.DAY);
 
-			if (daysUntilPasswordExpiration >= 0) {
+			if (passwordExpiresInXDays >= 0) {
 				SessionMessages.add(
-					request, "daysUntilPasswordExpiration",
-					daysUntilPasswordExpiration);
+					request, "passwordExpiresInXDays", passwordExpiresInXDays);
 			}
 			else {
-				int graceLoginsRemaining =
+				int remainingGraceLogins =
 					passwordPolicy.getGraceLimit() - user.getGraceLoginCount();
 
 				SessionMessages.add(
-					request, "graceLoginsRemaining", graceLoginsRemaining);
+					request, "remainingGraceLogins", remainingGraceLogins);
 			}
 		}
 	}
