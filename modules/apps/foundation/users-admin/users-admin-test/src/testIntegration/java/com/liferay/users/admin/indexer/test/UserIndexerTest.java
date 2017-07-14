@@ -146,18 +146,11 @@ public class UserIndexerTest {
 		String middleName = "Watson";
 		String lastName = "Parker";
 
-		User expectedUser = UserTestUtil.addUser();
+		User user = addUserNameFields(firstName, lastName, middleName);
 
-		expectedUser.setFirstName(firstName);
-		expectedUser.setMiddleName(middleName);
-		expectedUser.setLastName(lastName);
+		user = assertSearchOneUser("firstName", "\"Mary Jane\"", user);
 
-		_userLocalService.updateUser(expectedUser);
-
-		User actualUser = assertSearchOneUser(
-			"firstName", "\"Mary Jane\"", expectedUser);
-
-		Assert.assertEquals(firstName, actualUser.getFirstName());
+		Assert.assertEquals(firstName, user.getFirstName());
 	}
 
 	@Test
@@ -166,21 +159,14 @@ public class UserIndexerTest {
 		String middleName = "Joanne";
 		String lastName = "Parker";
 
-		User expectedUser = UserTestUtil.addUser();
-
-		expectedUser.setFirstName(firstName);
-		expectedUser.setMiddleName(middleName);
-		expectedUser.setLastName(lastName);
-
-		_userLocalService.updateUser(expectedUser);
+		User user = addUserNameFields(firstName, lastName, middleName);
 
 		assertNoHits("firstName", "\"Mary Watson\"");
 		assertNoHits("firstName", "\"Mary Jane\" Missingword");
 
-		User actualUser = assertSearchOneUser(
-			"firstName", "Mary \"Jane Watson\"", expectedUser);
+		user = assertSearchOneUser("firstName", "Mary \"Jane Watson\"", user);
 
-		Assert.assertEquals(firstName, actualUser.getFirstName());
+		Assert.assertEquals(firstName, user.getFirstName());
 	}
 
 	@Test
@@ -227,25 +213,19 @@ public class UserIndexerTest {
 		String lastName = "Last";
 		String middleName = "Middle";
 
-		User expectedUser = UserTestUtil.addUser();
+		User user = addUserNameFields(firstName, lastName, middleName);
 
-		expectedUser.setFirstName(firstName);
-		expectedUser.setMiddleName(middleName);
-		expectedUser.setLastName(lastName);
+		user = assertSearchOneUser("Fir", user);
 
-		_userLocalService.updateUser(expectedUser);
+		Assert.assertEquals("First", user.getFirstName());
 
-		User actualUser = assertSearchOneUser("Fir", expectedUser);
+		user = assertSearchOneUser("LasT", user);
 
-		Assert.assertEquals("First", actualUser.getFirstName());
+		Assert.assertEquals("Last", user.getLastName());
 
-		actualUser = assertSearchOneUser("LasT", expectedUser);
+		user = assertSearchOneUser("midd", user);
 
-		Assert.assertEquals("Last", actualUser.getLastName());
-
-		actualUser = assertSearchOneUser("midd", expectedUser);
-
-		Assert.assertEquals("Middle", actualUser.getMiddleName());
+		Assert.assertEquals("Middle", user.getMiddleName());
 	}
 
 	@Test
@@ -254,25 +234,19 @@ public class UserIndexerTest {
 		String lastName = "Last";
 		String middleName = "Middle";
 
-		User expectedUser = UserTestUtil.addUser();
+		User user = addUserNameFields(firstName, lastName, middleName);
 
-		expectedUser.setFirstName(firstName);
-		expectedUser.setMiddleName(middleName);
-		expectedUser.setLastName(lastName);
+		user = assertSearchOneUser("Fir", user);
 
-		_userLocalService.updateUser(expectedUser);
+		Assert.assertEquals("First", user.getFirstName());
 
-		User actualUser = assertSearchOneUser("Fir", expectedUser);
+		user = assertSearchOneUser("asT", user);
 
-		Assert.assertEquals("First", actualUser.getFirstName());
+		Assert.assertEquals("Last", user.getLastName());
 
-		actualUser = assertSearchOneUser("asT", expectedUser);
+		user = assertSearchOneUser("idd", user);
 
-		Assert.assertEquals("Last", actualUser.getLastName());
-
-		actualUser = assertSearchOneUser("idd", expectedUser);
-
-		Assert.assertEquals("Middle", actualUser.getMiddleName());
+		Assert.assertEquals("Middle", user.getMiddleName());
 	}
 
 	@Test
@@ -350,6 +324,17 @@ public class UserIndexerTest {
 		_users.add(user);
 
 		return user;
+	}
+
+	protected User addUserNameFields(
+			String firstName, String lastName, String middleName)
+		throws Exception {
+
+		String screenName = testName.getMethodName();
+		String emailAddress = RandomTestUtil.randomString() + "@liferay.com";
+
+		return addUser(
+			firstName, lastName, middleName, screenName, emailAddress);
 	}
 
 	protected User addUserScreenName(String screenName) throws Exception {
@@ -493,27 +478,19 @@ public class UserIndexerTest {
 			String firstName, String lastName, String middleName)
 		throws Exception {
 
-		User expectedUser = UserTestUtil.addUser();
+		User user = addUserNameFields(firstName, lastName, middleName);
 
-		expectedUser.setFirstName(firstName);
-		expectedUser.setMiddleName(middleName);
-		expectedUser.setLastName(lastName);
+		user = assertSearchOneUser("firstName", firstName, user);
 
-		_userLocalService.updateUser(expectedUser);
+		Assert.assertEquals(firstName, user.getFirstName());
 
-		User actualUser = assertSearchOneUser(
-			"firstName", firstName, expectedUser);
+		user = assertSearchOneUser("lastName", lastName, user);
 
-		Assert.assertEquals(firstName, actualUser.getFirstName());
+		Assert.assertEquals(lastName, user.getLastName());
 
-		actualUser = assertSearchOneUser("lastName", lastName, expectedUser);
+		user = assertSearchOneUser("middleName", middleName, user);
 
-		Assert.assertEquals(lastName, actualUser.getLastName());
-
-		actualUser = assertSearchOneUser(
-			"middleName", middleName, expectedUser);
-
-		Assert.assertEquals(middleName, actualUser.getMiddleName());
+		Assert.assertEquals(middleName, user.getMiddleName());
 	}
 
 	protected String toString(List<String> strings) {
