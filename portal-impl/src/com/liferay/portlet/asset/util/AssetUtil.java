@@ -61,6 +61,7 @@ import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.CharPool;
+import com.liferay.portal.kernel.util.CollatorUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -76,8 +77,6 @@ import com.liferay.portlet.asset.service.permission.AssetCategoryPermission;
 import com.liferay.portlet.asset.service.permission.AssetVocabularyPermission;
 
 import java.io.Serializable;
-
-import java.text.Collator;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -970,7 +969,7 @@ public class AssetUtil {
 		Map<String, PortletURL> addPortletURLs, Locale locale) {
 
 		Map<String, Map.Entry<String, PortletURL>> tempSortedMap =
-			new TreeMap<>(Collator.getInstance(locale));
+			new TreeMap<>(CollatorUtil.getInstance(locale));
 
 		for (Map.Entry<String, PortletURL> addPortletURL :
 				addPortletURLs.entrySet()) {
