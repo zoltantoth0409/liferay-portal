@@ -220,7 +220,7 @@ public class ClassLoaderComponentConfiguration extends ComponentConfiguration {
 			if (_log.isInfoEnabled()) {
 				_log.info(
 					"Overrode property " + newKey +
-						" with environment variable " + key + "'s value");
+						" with the value from the environment variable " + key);
 			}
 		}
 	}
