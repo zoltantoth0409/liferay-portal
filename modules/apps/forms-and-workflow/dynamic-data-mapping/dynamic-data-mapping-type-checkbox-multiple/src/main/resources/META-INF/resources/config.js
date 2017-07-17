@@ -33,10 +33,7 @@
 							condition: {
 								trigger: 'liferay-ddm-form-renderer'
 							},
-							path: 'checkbox_multiple.soy.js',
-							requires: [
-								'soyutils'
-							]
+							path: 'checkbox_multiple.js'
 						}
 					},
 					root: MODULE_PATH + '/'

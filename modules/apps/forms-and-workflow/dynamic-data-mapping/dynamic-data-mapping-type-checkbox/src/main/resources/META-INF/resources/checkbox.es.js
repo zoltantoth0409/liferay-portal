@@ -9,6 +9,6 @@ import templates from './checkbox.soy';
 class Checkbox extends Component {}
 
 // Register component
-Soy.register(Checkbox, templates, 'checkbox');
+Soy.register(Checkbox, templates, 'render');
 
 export default Checkbox;

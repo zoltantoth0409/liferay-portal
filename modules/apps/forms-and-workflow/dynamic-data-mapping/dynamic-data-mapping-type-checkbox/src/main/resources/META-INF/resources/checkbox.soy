@@ -1,10 +1,10 @@
-{namespace ddm}
+{namespace DDMCheckbox}
 
 /**
  * Defines the delegated template for the checkbox field.
  */
 {deltemplate ddm.field variant="'checkbox'"}
-	{call .checkbox data="all" /}
+	{call .render data="all" /}
 {/deltemplate}
 
 /**
@@ -20,7 +20,7 @@
  * @param visible
  * @param value
  */
-{template .checkbox}
+{template .render}
 	{let $status: $value ? 'checked' : '' /}
 
 	<div class="form-group{$visible ? '' : ' hide'} liferay-ddm-form-field-checkbox" data-fieldname="{$name}">

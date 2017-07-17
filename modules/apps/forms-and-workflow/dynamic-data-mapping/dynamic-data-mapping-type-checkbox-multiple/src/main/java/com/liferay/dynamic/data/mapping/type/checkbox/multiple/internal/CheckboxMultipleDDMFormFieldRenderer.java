@@ -46,7 +46,7 @@ public class CheckboxMultipleDDMFormFieldRenderer
 
 	@Override
 	public String getTemplateNamespace() {
-		return "ddm.checkbox_multiple";
+		return "DDMCheckboxMultiple.render";
 	}
 
 	@Override
