@@ -1707,49 +1707,51 @@ public class ServiceBuilder {
 
 		String packageName = javaClass.getPackageName();
 
-		if (packageName.endsWith(".service.base")) {
-			if (!methodName.endsWith("Finder") &&
-				!methodName.endsWith("Persistence") &&
-				!methodName.endsWith("Service")) {
+		if (!packageName.endsWith(".service.base")) {
+			return true;
+		}
 
-				return true;
+		if (!methodName.endsWith("Finder") &&
+			!methodName.endsWith("Persistence") &&
+			!methodName.endsWith("Service")) {
+
+			return true;
+		}
+
+		Type type = null;
+
+		Type[] parameterTypes = method.getParameterTypes(true);
+		Type returnType = method.getReturnType(true);
+
+		if (methodName.startsWith("get")) {
+			if (ArrayUtil.isEmpty(parameterTypes)) {
+				type = returnType;
 			}
-
-			Type[] parameterTypes = method.getParameterTypes(true);
-			Type returnType = method.getReturnType(true);
-
-			Type checkType = null;
-
-			if (methodName.startsWith("get")) {
-				if (ArrayUtil.isEmpty(parameterTypes)) {
-					checkType = returnType;
-				}
+		}
+		else if (methodName.startsWith("set")) {
+			if ((parameterTypes != null) && (parameterTypes.length == 1)) {
+				type = parameterTypes[0];
 			}
-			else if (methodName.startsWith("set")) {
-				if ((parameterTypes != null) && (parameterTypes.length == 1)) {
-					checkType = parameterTypes[0];
-				}
-			}
+		}
 
-			if (checkType == null) {
-				return true;
-			}
+		if (type == null) {
+			return true;
+		}
 
-			String checkTypeName = checkType.getFullyQualifiedName();
+		String typeClassName = type.getFullyQualifiedName();
 
-			int pos = checkTypeName.lastIndexOf(CharPool.PERIOD);
+		int index = typeClassName.lastIndexOf(CharPool.PERIOD);
 
-			if (pos == -1) {
-				return true;
-			}
+		if (index == -1) {
+			return true;
+		}
 
-			String checkPackageName = checkTypeName.substring(0, pos);
+		String typePackageName = typeClassName.substring(0, index);
 
-			if (checkPackageName.endsWith(".persistence") ||
-				checkPackageName.endsWith(".service")) {
+		if (typePackageName.endsWith(".persistence") ||
+			typePackageName.endsWith(".service")) {
 
-				return false;
-			}
+			return false;
 		}
 
 		return true;
