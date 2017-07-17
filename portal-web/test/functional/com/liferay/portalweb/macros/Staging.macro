@@ -480,7 +480,7 @@
 
 		<execute function="Click" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
 
-		<execute function="ClickNoError" locator1="MenuItem#DELETE" value1="Delete" />
+		<execute function="ClickNoError" locator1="MenuItem#DELETE" />
 
 		<var name="key_sitePagesVariationName" value="${sitePagesVariationName}" />
 
