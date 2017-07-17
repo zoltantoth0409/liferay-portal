@@ -1,10 +1,10 @@
-{namespace ddm}
+{namespace DDMCaptcha}
 
 /**
  * Defines the delegated template for the captcha field.
  */
 {deltemplate ddm.field variant="'captcha'"}
-	{call .captcha data="all" /}
+	{call .render data="all" /}
 {/deltemplate}
 
 /**
@@ -14,7 +14,7 @@
  * @param name
  * @param visible
  */
-{template .captcha}
+{template .render}
 	<div class="form-group{$visible ? '' : ' hide'} liferay-ddm-form-field-captcha" data-fieldname="{$name}">
 		{$html}
 	</div>
