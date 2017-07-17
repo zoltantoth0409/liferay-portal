@@ -12,9 +12,8 @@
  * details.
  */
 
-package com.liferay.portal.search.pagination.test;
+package com.liferay.portal.search;
 
-import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.search.Document;
@@ -50,12 +49,10 @@ import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 /**
  * @author Roberto Díaz
  */
-@RunWith(Arquillian.class)
 @Sync
 public class SearchPaginationTest {
 
