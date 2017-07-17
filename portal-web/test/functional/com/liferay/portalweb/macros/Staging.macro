@@ -683,6 +683,14 @@
 		<execute function="AssertElementPresent" locator1="Message#SUCCESS" />
 	</command>
 
+	<command name="navigateToSitePageVariation">
+		<execute function="Click" locator1="Icon#STAGING_BAR_VERTICAL_ELLIPSIS" />
+
+		<execute function="Click" locator1="Staging#MANAGE_VARIATIONS" />
+
+		<execute function="SelectFrame" locator1="IFrame#SITE_VARIATION_IFRAME" />
+	</command>
+
 	<command name="publishCustomPublication">
 		<execute function="Click" locator1="Button#PLUS" />
 
