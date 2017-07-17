@@ -246,7 +246,7 @@ if (powwowMeeting != null) {
 	<h3><liferay-ui:message key="participants" /></h3>
 
 	<aui:fieldset cssClass="participants" id="participants">
-		<aui:input name="powwowParticipantJSONString" type="hidden" />
+		<aui:input name="participantsJSON" type="hidden" />
 
 		<div class="row-fields">
 			<aui:input autocomplete="off" cssClass="add-participant" inlineField="<%= true %>" label="" name="powwowParticipantInput" placeholder="add-participant-by-name-or-email-address" type="text" />
@@ -406,8 +406,8 @@ if (powwowMeeting != null) {
 			creatorUserId: <%= user.getUserId() %>,
 			formName: 'fm',
 			meetingId: <%= (powwowMeeting != null) ? powwowMeeting.getPowwowMeetingId() : -1 %>,
-			namespace: '<portlet:namespace/>',
-			participantDataField: 'powwowParticipantJSONString',
+			namespace: '<portlet:namespace />',
+			participantDataField: 'participantsJSON',
 			participantInvitedSelector: '#<portlet:namespace />powwowParticipantList .participant-invited',
 			participantKeywords: 'powwowParticipantInput',
 			participantList: 'powwowParticipantList',
