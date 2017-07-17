@@ -1,10 +1,10 @@
-{namespace ddm}
+{namespace DDMFieldset}
 
 /**
  * Defines the delegated template for the fieldset field.
  */
 {deltemplate ddm.field variant="'fieldset'"}
-	{call .fieldset data="all" /}
+	{call .render data="all" /}
 {/deltemplate}
 
 /**
@@ -32,7 +32,7 @@
 {template .fieldset_columns}
 	{foreach $field in $fields}
 
-		{call ddm.fieldset_column data="all"}
+		{call .fieldset_column data="all"}
 			{param columnSize: $columnSize /}
 			{param field: $field /}
 		{/call}
@@ -52,7 +52,7 @@
  * @param tip
  * @param visible
  */
-{template .fieldset}
+{template .render}
 	<div class="form-group{$visible ? '' : ' hide'} liferay-ddm-form-field-fieldset
 		{$showBorderTop ? ' border-top' : ''} {$showBorderBottom ? ' border-bottom' : ''}" data-fieldname="{$name}">
 
@@ -65,7 +65,7 @@
 				<legend>{$label}</legend>
 			{/if}
 
-			{call ddm.fieldset_columns data="all"}
+			{call .fieldset_columns data="all"}
 				{param columnSize: $columnSize /}
 				{param fields: $nestedFields /}
 			{/call}
