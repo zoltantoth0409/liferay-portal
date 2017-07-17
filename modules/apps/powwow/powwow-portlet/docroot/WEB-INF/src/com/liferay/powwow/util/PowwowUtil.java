@@ -202,11 +202,11 @@ public class PowwowUtil {
 		long powwowMeetingId = ParamUtil.getLong(
 			actionRequest, "powwowMeetingId");
 
-		String powwowParticipantJSONString = ParamUtil.getString(
-			actionRequest, "powwowParticipantJSONString");
+		String participantsJSON = ParamUtil.getString(
+			actionRequest, "participantsJSON");
 
 		JSONArray participantsJSONArray = JSONFactoryUtil.createJSONArray(
-			powwowParticipantJSONString);
+			participantsJSON);
 
 		for (int i = 0; i < participantsJSONArray.length(); i++) {
 			JSONObject participantJSONObject =
