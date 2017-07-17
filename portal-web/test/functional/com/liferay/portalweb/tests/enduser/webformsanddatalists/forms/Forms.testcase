@@ -556,7 +556,7 @@
 		<execute macro="FormFields#save" />
 
 		<execute macro="Form#gotoAddField">
-			<var name="fieldType" value="Multiple Selection" />
+			<var name="fieldType" value="Single Checkbox" />
 		</execute>
 
 		<execute macro="Form#editFieldLabel">
@@ -995,7 +995,7 @@
 		</execute>
 
 		<execute macro="Form#gotoAddField">
-			<var name="fieldType" value="Multiple Selection" />
+			<var name="fieldType" value="Single Checkbox" />
 		</execute>
 
 		<execute macro="Form#editFieldLabel">
@@ -1680,7 +1680,7 @@
 		<execute macro="FormFields#save" />
 
 		<execute macro="Form#gotoAddField">
-			<var name="fieldType" value="Multiple Selection" />
+			<var name="fieldType" value="Single Checkbox" />
 		</execute>
 
 		<execute macro="Form#editFieldLabel">
@@ -2155,7 +2155,7 @@
 		<execute macro="FormFields#save" />
 
 		<execute macro="Form#gotoAddField">
-			<var name="fieldType" value="Multiple Selection" />
+			<var name="fieldType" value="Single Checkbox" />
 		</execute>
 
 		<execute macro="Form#editFieldLabel">
@@ -2441,7 +2441,7 @@
 		<execute macro="FormFields#save" />
 
 		<execute macro="Form#gotoAddField">
-			<var name="fieldType" value="Multiple Selection" />
+			<var name="fieldType" value="Single Checkbox" />
 		</execute>
 
 		<execute macro="Form#editFieldLabel">
@@ -2710,7 +2710,7 @@
 		<execute macro="Form#editDescription" />
 
 		<execute macro="Form#gotoAddField">
-			<var name="fieldType" value="Multiple Selection" />
+			<var name="fieldType" value="Single Checkbox" />
 		</execute>
 
 		<execute macro="Form#editFieldLabel">
@@ -3156,7 +3156,7 @@
 		<execute macro="Form#editDescription" />
 
 		<execute macro="Form#gotoAddField">
-			<var name="fieldType" value="Multiple Selection" />
+			<var name="fieldType" value="Single Checkbox" />
 		</execute>
 
 		<execute macro="Form#editFieldLabel">
@@ -3378,7 +3378,7 @@
 		</execute>
 
 		<execute macro="Form#gotoAddField">
-			<var name="fieldType" value="Multiple Selection" />
+			<var name="fieldType" value="Single Checkbox" />
 		</execute>
 
 		<execute macro="Form#editFieldLabel">
