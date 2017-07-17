@@ -1154,4 +1154,14 @@
 
 		<execute function="AssertTextEquals#assertPartialText" locator1="Message#ERROR" value1="${validateErrorMessage}" />
 	</command>
+
+	<command name="viewVariationSuccessMessage">
+		<execute function="SelectFrameTop" value1="relative=top" />
+
+		<execute function="SelectFrame" locator1="IFrame#SITE_VARIATION_IFRAME" />
+
+		<execute function="AssertElementPresent" locator1="Message#SUCCESS" />
+
+		<execute function="SelectFrameTop" value1="relative=top" />
+	</command>
 </definition>
