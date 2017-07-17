@@ -1,10 +1,10 @@
-{namespace ddm}
+{namespace DDMEditor}
 
 /**
  * Defines the delegated template for the editor field.
  */
 {deltemplate ddm.field variant="'editor'"}
-	{call .editor data="all" /}
+	{call .render data="all" /}
 {/deltemplate}
 
 /**
@@ -19,7 +19,7 @@
  * @param value
  * @param visible
  */
-{template .editor}
+{template .render}
 	<div class="form-group{$visible ? '' : ' hide'} liferay-ddm-form-field-editor" data-fieldname="{$name}">
 		{if $showLabel}
 			<label class="control-label" for="{$name}">
