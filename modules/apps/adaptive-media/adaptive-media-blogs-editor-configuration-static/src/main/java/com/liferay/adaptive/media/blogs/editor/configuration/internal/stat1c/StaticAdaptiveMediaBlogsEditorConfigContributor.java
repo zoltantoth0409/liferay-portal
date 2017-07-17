@@ -155,7 +155,6 @@ public class StaticAdaptiveMediaBlogsEditorConfigContributor
 
 			jsonObject.put("allowedContent", allowedContent);
 		}
-
 	}
 
 	private static final String _IMG_TAG_RULE = "img[*](*){*};";
