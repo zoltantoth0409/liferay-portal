@@ -298,15 +298,15 @@ public class ComboServletTest extends PowerMockito {
 
 	protected void setUpPortalPortlet() {
 		when(
-			_portalPortletApp.getServletContext()
-		).thenReturn(
-			_portalServletContext
-		);
-
-		when(
 			_portalPortlet.getContextPath()
 		).thenReturn(
 			"portal"
+		);
+
+		when(
+			_portalPortletApp.getServletContext()
+		).thenReturn(
+			_portalServletContext
 		);
 
 		when(
