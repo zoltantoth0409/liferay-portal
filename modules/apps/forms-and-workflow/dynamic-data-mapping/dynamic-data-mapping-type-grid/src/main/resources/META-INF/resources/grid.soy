@@ -1,17 +1,16 @@
-{namespace ddm}
+{namespace DDMGrid}
 
 /**
  * Defines the delegated template for the grid field.
  */
 {deltemplate ddm.field variant="'grid'"}
-	{call .grid data="all" /}
+	{call .render data="all" /}
 {/deltemplate}
 
 /**
  * Prints the DDM form grid field.
  *
  * @param columns
- * @param? childElementsHTML
  * @param dir
  * @param? focusTarget
  * @param label
@@ -24,7 +23,7 @@
  * @param value
  * @param visible
  */
-{template .grid}
+{template .render}
 	<div class="form-group{$visible ? '' : ' hide'}" data-fieldname="{$name}">
 		{if $showLabel}
 			<label class="control-label">
@@ -64,12 +63,20 @@
 						<tr name="{$row.value}">
 							<td>{$row.label}</td>
 							{foreach $column in $columns}
-								{let $checked: $column.value == $value[$row.value] ? 'checked' : '' /}
+								{let $checked kind="attributes"}
+									{if $column.value == $value[$row.value]}
+										checked
+									{/if}
+								{/let}
 
-								{let $autoFocus: $focusTarget and ($focusTarget.row == $row.value and $focusTarget.index == index($column)) ? 'autofocus' : ''/}
+								{let $autoFocus kind="attributes"}
+									{if $focusTarget and ($focusTarget.row == $row.value and $focusTarget.index == index($column))}
+										autoFocus
+									{/if}
+								{/let}
 
 								<td>
-									<input {$autoFocus} {$checked} class="form-builder-grid-field" data-row-index="{index($column)}" {if $readOnly}disabled{/if} name="{$row.value}" type="radio" value="{$column.value}" />
+									<input {if $autoFocus}autoFocus{/if} {if $checked}checked{/if} class="form-builder-grid-field" data-row-index="{index($column)}" {if $readOnly}disabled{/if} name="{$row.value}" type="radio" value="{$column.value}" />
 								</td>
 							{/foreach}
 						</tr>
@@ -77,10 +84,6 @@
 				</tbody>
 			</table>
 		</div>
-
-		{if $childElementsHTML}
-			{$childElementsHTML}
-		{/if}
 	</div>
 {/template}
 
