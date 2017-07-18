@@ -1,10 +1,10 @@
-{namespace ddm}
+{namespace DDMNumeric}
 
 /**
  * Defines the delegated template for the numeric field.
  */
 {deltemplate ddm.field variant="'numeric'"}
-	{call .numeric data="all" /}
+	{call .render data="all" /}
 {/deltemplate}
 
 /**
@@ -23,7 +23,7 @@
  * @param value
  * @param visible
  */
-{template .numeric}
+{template .render}
 	{let $displayValue: $value ? $value : $predefinedValue ? $predefinedValue : '' /}
 
 	<div class="form-group{$visible ? '' : ' hide'} liferay-ddm-form-field-numeric {$tip ? 'liferay-ddm-form-field-has-tip' : ''}" data-fieldname="{$name}">
