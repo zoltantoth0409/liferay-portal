@@ -131,7 +131,7 @@ if [[ -z "${GITHUB_API_TOKEN}" ]]; then
 fi
 
 if [[ -z "${GITHUB_API_TOKEN}" ]]; then
-	error "Your GitHub api token is not set. Set it using the GITHUB_API_TOKEN environment variable, or with 'git config github.token'."
+	error "Your GitHub API token is not set. Set it using the GITHUB_API_TOKEN environment variable, or with 'git config github.token'."
 fi
 
 #
@@ -161,7 +161,7 @@ master
 		if [[ "$?" != "0" ]] || [[ "$(echo "${OUTPUT}" | grep -i '\"not found\"')" ]]; then
 			warn "${OUTPUT}"
 
-			error "Failed to list the remote branches at liferay/${SUBREPO_NAME} via the GitHub api."
+			error "Failed to list the remote branches at liferay/${SUBREPO_NAME} via the GitHub API."
 		fi
 
 		REMOTE_BRANCHES=($(echo "${OUTPUT}" | grep '"name"' | sed 's/"[^"]*$//' | sed 's/.*"//'))
@@ -301,11 +301,11 @@ if [[ "${REMAINING_RATE}" ]]; then
 	MAXIMUM_RATE=$((MAXIMUM_API_CALLS_PER_BRANCH*TOTAL_BRANCHES))
 
 	if ((REMAINING_RATE < MINIMUM_RATE)); then
-		error "Your current rate limit is insufficient, a minimum of ${MINIMUM_RATE} api calls will be made. Try again in an hour when your rate limit resets."
+		error "Your current rate limit is insufficient, a minimum of ${MINIMUM_RATE} API calls will be made. Try again in an hour when your rate limit resets."
 	fi
 
 	if ((REMAINING_RATE < MAXIMUM_RATE)); then
-		warn "Warning: your current rate limit may be insufficient, up to ${MAXIMUM_RATE} api calls may be made."
+		warn "Warning: your current rate limit may be insufficient, up to ${MAXIMUM_RATE} API calls may be made."
 	fi
 fi
 
@@ -318,8 +318,8 @@ for SUBREPO_BRANCH in "${SUBREPO_BRANCHES[@]}"; do
 	SUBREPO="${SUBREPO_BRANCH##*:}"
 
 	#
-	# Retrieve the shas for the files in gradle/wrapper.
-	# Also check for any errors interacting with the repo via the api.
+	# Retrieve the shas for the files in gradle/wrapper. Also check for any
+	# errors interacting with the repo via the API.
 	#
 
 	GRADLE_WRAPPER_JSON=
@@ -343,8 +343,8 @@ for SUBREPO_BRANCH in "${SUBREPO_BRANCHES[@]}"; do
 	GRADLE_WRAPPER_PROPERTIES_REMOTE_SHA="$(printf '%s\n' "${GRADLE_WRAPPER_JSON[@]}" | grep '"gradle-wrapper.properties"' | sed 's/",/&\'$'\n/g' | grep '"sha"' | sed 's/"[^"]*$//' | sed 's/.*"//')"
 
 	#
-	# Retrieve the shas for gradlew and gradlew.bat.
-	# Assume "Not Found" just means the file doesn't exist.
+	# Retrieve the SHAs for gradlew and gradlew.bat. Assume "Not Found" means
+	# that the file does not exist.
 	#
 
 	GRADLEW_JSON=
