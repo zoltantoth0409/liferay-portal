@@ -2082,7 +2082,7 @@
 			<type>boolean</type>
 		</attribute>
 		<attribute>
-			<description>Whether to display the checkbox that disables input field.</description>
+			<description>Whether to display the checkbox that disables the input field.</description>
 			<name>showDisableCheckbox</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
