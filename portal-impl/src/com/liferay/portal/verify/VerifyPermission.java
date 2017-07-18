@@ -250,8 +250,7 @@ public class VerifyPermission extends VerifyProcess {
 					long oldActionIds = resourcePermission.getActionIds();
 
 					long newActionIds =
-						oldActionIds &
-						~_deprecatedOrganizationBitwiseValues;
+						oldActionIds & ~_deprecatedOrganizationBitwiseValues;
 
 					if (newActionIds == oldActionIds) {
 						return;
