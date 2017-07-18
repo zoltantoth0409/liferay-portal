@@ -1,10 +1,10 @@
-{namespace ddm}
+{namespace DDMKeyValue}
 
 /**
  * Defines the delegated template for the key/value field.
  */
 {deltemplate ddm.field variant="'key_value'"}
-	{call .key_value data="all" /}
+	{call .render data="all" /}
 {/deltemplate}
 
 /**
@@ -24,7 +24,7 @@
  * @param value
  * @param visible
  */
-{template .key_value}
+{template .render}
 	<div class="form-group{$visible ? '' : ' hide'} liferay-ddm-form-field-key-value liferay-ddm-form-field-text" data-fieldname="{$name}">
 		{if $showLabel}
 			<label class="control-label" for="{$name}">
@@ -50,7 +50,7 @@
 
 		<div class="active key-value-editor">
 			<label class="control-label key-value-label">{$strings.keyLabel}:</label>
-			<input class="key-value-input" {if not $keyInputEnabled}readonly{/if} size="{$keyInputSize}" tabindex="-1" type="text" value='{$key}' />
+			<input class="key-value-input" {if not $keyInputEnabled}readonly{/if} size="{$keyInputSize}" tabindex="-1" type="text" value="{$key}" />
 		</div>
 	</div>
 {/template}

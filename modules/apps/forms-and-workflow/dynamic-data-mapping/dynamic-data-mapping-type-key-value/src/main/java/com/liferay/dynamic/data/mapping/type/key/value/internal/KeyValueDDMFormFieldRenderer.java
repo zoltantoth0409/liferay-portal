@@ -45,7 +45,7 @@ public class KeyValueDDMFormFieldRenderer extends BaseDDMFormFieldRenderer {
 
 	@Override
 	public String getTemplateNamespace() {
-		return "ddm.key_value";
+		return "DDMKeyValue.render";
 	}
 
 	@Override
