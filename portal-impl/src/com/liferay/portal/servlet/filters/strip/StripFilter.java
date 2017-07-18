@@ -658,9 +658,11 @@ public class StripFilter extends BasePortalFilter {
 				}
 				else if (hasMarker(charBuffer, _MARKER_STYLE_OPEN) ||
 						 hasMarker(
-							 charBuffer, _MARKER_DATA_SENNA_STYLE_PERMANENT) ||
+							 charBuffer,
+							 _MARKER_STYLE_DATA_SENNA_TRACK_PERMANENT) ||
 						 hasMarker(
-							 charBuffer, _MARKER_DATA_SENNA_STYLE_TEMPORARY)) {
+							 charBuffer,
+							 _MARKER_STYLE_DATA_SENNA_TRACK_TEMPORARY)) {
 
 					processCSS(request, response, charBuffer, writer);
 
@@ -678,12 +680,6 @@ public class StripFilter extends BasePortalFilter {
 	}
 
 	private static final String _ENSURE_CONTENT_LENGTH = "ensureContentLength";
-
-	private static final char[] _MARKER_DATA_SENNA_STYLE_PERMANENT =
-		"style data-senna-track=\"permanent\" type=\"text/css\">".toCharArray();
-
-	private static final char[] _MARKER_DATA_SENNA_STYLE_TEMPORARY =
-		"style data-senna-track=\"temporary\" type=\"text/css\">".toCharArray();
 
 	private static final String _MARKER_INPUT_CLOSE = "/>";
 
@@ -715,6 +711,12 @@ public class StripFilter extends BasePortalFilter {
 
 	private static final int[] _MARKER_STYLE_CLOSE_NEXTS =
 		KMPSearch.generateNexts(_MARKER_STYLE_CLOSE);
+
+	private static final char[] _MARKER_STYLE_DATA_SENNA_TRACK_PERMANENT =
+		"style data-senna-track=\"permanent\" type=\"text/css\">".toCharArray();
+
+	private static final char[] _MARKER_STYLE_DATA_SENNA_TRACK_TEMPORARY =
+		"style data-senna-track=\"temporary\" type=\"text/css\">".toCharArray();
 
 	private static final char[] _MARKER_STYLE_OPEN =
 		"style type=\"text/css\">".toCharArray();
