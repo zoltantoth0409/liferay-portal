@@ -46,11 +46,11 @@ warn() {
 	echo "${MESSAGE}" >&2
 }
 
-PATTERN=
 OPTION_ALL=
 OPTION_DEBUG=
 OPTION_FORCE=
 OPTION_VERIFY=
+PATTERN=
 
 while getopts "adfp:v" OPT
 do
