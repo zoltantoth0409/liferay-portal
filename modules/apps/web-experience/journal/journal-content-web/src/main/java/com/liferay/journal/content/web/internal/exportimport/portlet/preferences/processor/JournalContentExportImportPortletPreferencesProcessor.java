@@ -349,61 +349,19 @@ public class JournalContentExportImportPortletPreferencesProcessor
 		return portletPreferences;
 	}
 
-	@Reference(unbind = "-")
-	protected void setAssetEntryLocalService(
-		AssetEntryLocalService assetEntryLocalService) {
-
-		_assetEntryLocalService = assetEntryLocalService;
-	}
-
-	@Reference(unbind = "-")
-	protected void setDDMTemplateLocalService(
-		DDMTemplateLocalService ddmTemplateLocalService) {
-
-		_ddmTemplateLocalService = ddmTemplateLocalService;
-	}
-
-	@Reference(unbind = "-")
-	protected void setGroupLocalService(GroupLocalService groupLocalService) {
-		_groupLocalService = groupLocalService;
-	}
-
-	@Reference(unbind = "-")
-	protected void setJournalArticleLocalService(
-		JournalArticleLocalService journalArticleLocalService) {
-
-		_journalArticleLocalService = journalArticleLocalService;
-	}
-
-	@Reference(unbind = "-")
-	protected void setJournalContentSearchLocalService(
-		JournalContentSearchLocalService journalContentSearchLocalService) {
-
-		_journalContentSearchLocalService = journalContentSearchLocalService;
-	}
-
-	@Reference(unbind = "-")
-	protected void setLayoutLocalService(
-		LayoutLocalService layoutLocalService) {
-
-		_layoutLocalService = layoutLocalService;
-	}
-
-	@Reference(unbind = "-")
-	protected void setReferencedStagedModelImporterCapability(
-		ReferencedStagedModelImporterCapability
-			referencedStagedModelImporterCapability) {
-
-		_referencedStagedModelImporterCapability =
-			referencedStagedModelImporterCapability;
-	}
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		JournalContentExportImportPortletPreferencesProcessor.class);
 
+	@Reference(unbind = "-")
 	private AssetEntryLocalService _assetEntryLocalService;
+
+	@Reference(unbind = "-")
 	private DDMTemplateLocalService _ddmTemplateLocalService;
+
+	@Reference(unbind = "-")
 	private GroupLocalService _groupLocalService;
+
+	@Reference(unbind = "-")
 	private JournalArticleLocalService _journalArticleLocalService;
 
 	@Reference
@@ -414,12 +372,16 @@ public class JournalContentExportImportPortletPreferencesProcessor
 	private JournalContentMetadataImporterCapability
 		_journalContentMetadataImporterCapability;
 
+	@Reference(unbind = "-")
 	private JournalContentSearchLocalService _journalContentSearchLocalService;
+
+	@Reference(unbind = "-")
 	private LayoutLocalService _layoutLocalService;
 
 	@Reference
 	private Portal _portal;
 
+	@Reference(unbind = "-")
 	private ReferencedStagedModelImporterCapability
 		_referencedStagedModelImporterCapability;
 
