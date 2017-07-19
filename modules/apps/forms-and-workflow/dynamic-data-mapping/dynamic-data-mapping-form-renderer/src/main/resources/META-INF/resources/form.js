@@ -10,11 +10,6 @@ Liferay.Loader.require(
 			window.ddm[item.key] = item.component;
 		});
 
-		AUI.add(
-			'liferay-ddm-form-soy',
-			function(A) {
-				console.log('funcionou!!');
-			}
-		);
+		AUI.add('liferay-ddm-form-soy');
 	}
 );

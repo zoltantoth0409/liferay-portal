@@ -37,7 +37,8 @@
 			'liferay-ddm-form-renderer',
 			'liferay-ddm-form-renderer-field',
 			function(A) {lb}
-				Liferay.DDM.Renderer.FieldTypes.register({$fieldTypes});
+				setTimeout(function() {lb}
+					Liferay.DDM.Renderer.FieldTypes.register({$fieldTypes});
 
 				var form = Liferay.component(
 					'{$containerId}DDMForm',
@@ -60,19 +61,20 @@
 				);
 
 				var destroyFormHandle = function(event) {lb}
-					var form = Liferay.component('{$containerId}DDMForm');
+						var form = Liferay.component('{$containerId}DDMForm');
 
-					var portlet = event.portlet;
+						var portlet = event.portlet;
 
-					if (portlet && portlet.contains(form.get('container'))) {lb}
-						form.destroy();
+						if (portlet && portlet.contains(form.get('container'))) {lb}
+							form.destroy();
 
-						Liferay.detach('destroyPortlet', destroyFormHandle);
-					{rb}
-				{rb};
+							Liferay.detach('destroyPortlet', destroyFormHandle);
+						{rb}
+					{rb};
 
-				Liferay.on('destroyPortlet', destroyFormHandle);
-			{rb}
+					Liferay.on('destroyPortlet', destroyFormHandle);
+				{rb}, 500);
+				{rb}
 		);
 	</script>
 {/template}
@@ -85,7 +87,7 @@
 {template .form_rows}
 	{foreach $row in $rows}
 		<div class="row">
-			{call ddm.form_row_columns data="all"}
+			{call .form_row_columns data="all"}
 				{param columns: $row.columns /}
 			{/call}
 		</div>
@@ -99,7 +101,7 @@
  */
 {template .form_row_column}
 	<div class="col-md-{$column.size}">
-		{call ddm.fields data="all"}
+		{call .fields data="all"}
 			{param fields: $column.fields /}
 		{/call}
 	</div>
@@ -112,7 +114,7 @@
  */
 {template .form_row_columns}
 	{foreach $column in $columns}
-		{call ddm.form_row_column data="all"}
+		{call .form_row_column data="all"}
 			{param column: $column /}
 		{/call}
 	{/foreach}
@@ -170,12 +172,12 @@
 							<h4 class="lfr-ddm-form-page-description">{$page.description}</h4>
 						{/if}
 
-						{call ddm.required_warning_message data="all"}
+						{call .required_warning_message data="all"}
 							{param showRequiredFieldsWarning: $page.showRequiredFieldsWarning /}
 							{param requiredFieldsWarningMessageHTML: $requiredFieldsWarningMessageHTML /}
 						{/call}
 
-						{call ddm.form_rows data="all"}
+						{call .form_rows data="all"}
 							{param rows: $page.rows /}
 						{/call}
 					</div>
@@ -223,12 +225,12 @@
 							<h4 class="lfr-ddm-form-page-description">{$page.description}</h4>
 						{/if}
 
-						{call ddm.required_warning_message data="all"}
+						{call .required_warning_message data="all"}
 							{param showRequiredFieldsWarning: $page.showRequiredFieldsWarning /}
 							{param requiredFieldsWarningMessageHTML: $requiredFieldsWarningMessageHTML /}
 						{/call}
 
-						{call ddm.form_rows data="all"}
+						{call .form_rows data="all"}
 							{param rows: $page.rows /}
 						{/call}
 					</div>
@@ -275,12 +277,12 @@
 	<div class="lfr-ddm-form-container" id="{$containerId}">
 		<div class="lfr-ddm-form-fields">
 			{foreach $page in $pages}
-				{call ddm.required_warning_message data="all"}
+				{call .required_warning_message data="all"}
 					{param showRequiredFieldsWarning: $page.showRequiredFieldsWarning /}
 					{param requiredFieldsWarningMessageHTML: $requiredFieldsWarningMessageHTML /}
 				{/call}
 
-				{call ddm.form_rows data="all"}
+				{call .form_rows data="all"}
 					{param rows: $page.rows /}
 				{/call}
 			{/foreach}
@@ -309,12 +311,12 @@
 			<div class="tab-content">
 				{foreach $page in $pages}
 					<div class="lfr-ddm-form-page tab-pane {if isFirst($page)}active{/if}">
-						{call ddm.required_warning_message data="all"}
+						{call .required_warning_message data="all"}
 							{param showRequiredFieldsWarning: $page.showRequiredFieldsWarning /}
 							{param requiredFieldsWarningMessageHTML: $requiredFieldsWarningMessageHTML /}
 						{/call}
 
-						{call ddm.form_rows data="all"}
+						{call .form_rows data="all"}
 							{param rows: $page.rows /}
 						{/call}
 					</div>
@@ -344,7 +346,7 @@
 		<div class="lfr-ddm-settings-form">
 			{foreach $page in $pages}
 				<div class="lfr-ddm-form-page{if isFirst($page)} active basic{/if}{if isLast($page)} advanced{/if}">
-					{call ddm.form_rows data="all"}
+					{call .form_rows data="all"}
 						{param rows: $page.rows /}
 					{/call}
 				</div>
