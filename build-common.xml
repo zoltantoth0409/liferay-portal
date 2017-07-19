@@ -645,7 +645,7 @@ information.
 								<then>
 									<local name="outputproperty" />
 
-									<propertycopy name="outputproperty" from="@{outputproperty}" />
+									<propertycopy from="@{outputproperty}" name="outputproperty" />
 
 									<echo message="${outputproperty}" />
 								</then>
