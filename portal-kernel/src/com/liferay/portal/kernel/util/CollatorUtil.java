@@ -32,7 +32,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class CollatorUtil {
 
 	public static Collator getInstance(Locale locale) {
-		String rules = _cache.get(locale);
+		String rules = _rules.get(locale);
 
 		if (rules == null) {
 			String languageId = LocaleUtil.toLanguageId(locale);
@@ -43,7 +43,7 @@ public class CollatorUtil {
 				rules = StringPool.BLANK;
 			}
 
-			_cache.put(locale, rules);
+			_rules.put(locale, rules);
 		}
 
 		if (rules != StringPool.BLANK) {
@@ -53,7 +53,7 @@ public class CollatorUtil {
 			catch (ParseException pe) {
 				_log.error(pe, pe);
 
-				_cache.put(locale, StringPool.BLANK);
+				_rules.put(locale, StringPool.BLANK);
 			}
 		}
 
@@ -62,6 +62,6 @@ public class CollatorUtil {
 
 	private static final Log _log = LogFactoryUtil.getLog(CollatorUtil.class);
 
-	private static final Map<Locale, String> _cache = new ConcurrentHashMap<>();
+	private static final Map<Locale, String> _rules = new ConcurrentHashMap<>();
 
 }
