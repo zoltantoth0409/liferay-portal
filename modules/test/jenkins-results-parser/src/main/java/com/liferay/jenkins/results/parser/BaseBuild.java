@@ -1082,7 +1082,7 @@ public abstract class BaseBuild implements Build {
 		}
 		catch (JSONException jsone) {
 			System.out.println(
-				"Unable to get upstream acceptance failure data.");
+				"Unable to get upstream acceptance failure data");
 
 			jsone.printStackTrace();
 
