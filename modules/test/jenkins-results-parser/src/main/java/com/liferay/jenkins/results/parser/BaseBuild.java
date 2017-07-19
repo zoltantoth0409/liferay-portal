@@ -1845,7 +1845,7 @@ public abstract class BaseBuild implements Build {
 
 				upstreamFailuresJobJSONObject =
 					JenkinsResultsParserUtil.toJSONObject(
-						upstreamFailuresJobBaseURL + upstreamJobName +
+						UPSTREAM_FAILURES_JOB_BASE_URL + upstreamJobName +
 							"/builds/latest/test.results.json");
 			}
 		}
@@ -2022,9 +2022,9 @@ public abstract class BaseBuild implements Build {
 			"buildWithParameters\\?(?<queryString>.*)"));
 	protected static final Pattern jobNamePattern = Pattern.compile(
 		"(?<baseJob>[^\\(]+)\\((?<branchName>[^\\)]+)\\)");
-	protected static final String tempMapBaseURL =
+	protected static final String TEMP_MAP_BASE_URL =
 		"http://cloud-10-0-0-31.lax.liferay.com/osb-jenkins-web/map/";
-	protected static final String upstreamFailuresJobBaseURL =
+	protected static final String UPSTREAM_FAILURES_JOB_BASE_URL =
 		"https://test-1-0.liferay.com/userContent/testResults/";
 	protected static JSONObject upstreamFailuresJobJSONObject = new JSONObject(
 		"{\"SHA\":\"\",\"failedBatches\":[]}");
