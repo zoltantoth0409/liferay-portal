@@ -2,17 +2,12 @@ Liferay.Loader.require(
 	'frontend-js-metal-web/metal-soy-bundle/build/bundle',
 	'dynamic-data-mapping-type-text/text.es',
 	function(MetalSoyBundle, Text) {
-		if (!window.ddm) {
-			window.ddm = {};
+		if (!window.DDMText) {
+			window.DDMText = {};
 		}
 
-		window.ddm['text'] = Text.default;
+		window.DDMText.render = Text.default;
 
-		AUI.add(
-			'liferay-ddm-text-soy',
-			function(A) {
-				debugger;
-			}
-		);
+		AUI.add('liferay-ddm-form-field-text-template');
 	}
 );
