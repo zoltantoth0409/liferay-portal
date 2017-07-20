@@ -65,7 +65,9 @@ public class UpgradeGroup extends UpgradeProcess {
 					List<GroupTreeModel> treeModels = new ArrayList<>();
 
 					try (PreparedStatement ps = connection.prepareStatement(
-							_SELECT_GROUP_BY_PARENT_GROUP_ID)) {
+							"select groupId from Group_ group_ where group_." +
+								"groupId > ? and group_.companyId = ? and " +
+									"group_.parentGroupId = ?")) {
 
 						ps.setLong(1, previousId);
 						ps.setLong(2, companyId);
@@ -195,10 +197,6 @@ public class UpgradeGroup extends UpgradeProcess {
 			}
 		}
 	}
-
-	private static final String _SELECT_GROUP_BY_PARENT_GROUP_ID =
-		"select groupId from Group_ group_ where group_.groupId > ? and " +
-			"group_.companyId = ? and group_.parentGroupId = ?";
 
 	private static final Log _log = LogFactoryUtil.getLog(UpgradeGroup.class);
 
