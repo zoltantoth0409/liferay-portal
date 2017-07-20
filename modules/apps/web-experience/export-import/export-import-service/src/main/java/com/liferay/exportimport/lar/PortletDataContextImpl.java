@@ -668,7 +668,14 @@ public class PortletDataContextImpl implements PortletDataContext {
 
 	@Override
 	public long[] getAssetCategoryIds(Class<?> clazz, long classPK) {
-		return _assetCategoryIdsMap.get(getPrimaryKeyString(clazz, classPK));
+		long[] assetCategoryIds = _assetCategoryIdsMap.get(
+			getPrimaryKeyString(clazz, classPK));
+
+		if (assetCategoryIds == null) {
+			return new long[0];
+		}
+
+		return assetCategoryIds;
 	}
 
 	/**
@@ -705,12 +712,12 @@ public class PortletDataContextImpl implements PortletDataContext {
 
 	@Override
 	public String[] getAssetTagNames(Class<?> clazz, long classPK) {
-		return _assetTagNamesMap.get(getPrimaryKeyString(clazz, classPK));
+		return getAssetTagNames(getPrimaryKeyString(clazz, classPK));
 	}
 
 	@Override
 	public String[] getAssetTagNames(String className, long classPK) {
-		return _assetTagNamesMap.get(getPrimaryKeyString(className, classPK));
+		return getAssetTagNames(getPrimaryKeyString(className, classPK));
 	}
 
 	@Override
@@ -2208,6 +2215,16 @@ public class PortletDataContextImpl implements PortletDataContext {
 		}
 
 		return referenceElement;
+	}
+
+	protected String[] getAssetTagNames(String key) {
+		String[] assetTagNames = _assetTagNamesMap.get(key);
+
+		if (assetTagNames == null) {
+			return new String[0];
+		}
+
+		return assetTagNames;
 	}
 
 	protected Element getDataElement(
