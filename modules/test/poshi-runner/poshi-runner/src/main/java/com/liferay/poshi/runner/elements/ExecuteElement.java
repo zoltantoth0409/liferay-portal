@@ -47,14 +47,16 @@ public class ExecuteElement extends PoshiElement {
 	@Override
 	public void parseReadableSyntax(String readableSyntax) {
 		if (readableSyntax.contains("return(\n")) {
+			ReturnElement returnElement = new ReturnElement(readableSyntax);
+
 			String returnFrom = RegexUtil.getGroup(
 				readableSyntax, ".*,(.*)\\)", 1);
+
+			returnElement.addAttribute("from", returnFrom.trim());
+
 			String returnName = RegexUtil.getGroup(
 				readableSyntax, "var(.*?)=", 1);
 
-			ReturnElement returnElement = new ReturnElement(readableSyntax);
-
-			returnElement.addAttribute("from", returnFrom.trim());
 			returnElement.addAttribute("name", returnName.trim());
 
 			add(returnElement);
