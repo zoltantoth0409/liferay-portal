@@ -23,11 +23,11 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 public class RuleGroupInstancePriorityComparator
 	extends OrderByComparator<MDRRuleGroupInstance> {
 
-	public static final RuleGroupInstancePriorityComparator ASCENDING_INSTANCE =
+	public static final RuleGroupInstancePriorityComparator INSTANCE_ASCENDING =
 		new RuleGroupInstancePriorityComparator(Boolean.TRUE);
 
 	public static final RuleGroupInstancePriorityComparator
-		DESCENDING_INSTANCE = new RuleGroupInstancePriorityComparator(
+		INSTANCE_DESCENDING = new RuleGroupInstancePriorityComparator(
 			Boolean.FALSE);
 
 	public static final String ORDER_BY_ASC =
@@ -42,14 +42,14 @@ public class RuleGroupInstancePriorityComparator
 		boolean ascending) {
 
 		if (ascending) {
-			return ASCENDING_INSTANCE;
+			return INSTANCE_ASCENDING;
 		}
 
-		return DESCENDING_INSTANCE;
+		return INSTANCE_DESCENDING;
 	}
 
 	/**
-	 * @deprecated As of 2.0.0, replaced by {@link #ASCENDING_INSTANCE}
+	 * @deprecated As of 2.0.0, replaced by {@link #INSTANCE_ASCENDING}
 	 */
 	@Deprecated
 	public RuleGroupInstancePriorityComparator() {
