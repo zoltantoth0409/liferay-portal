@@ -1030,17 +1030,13 @@ public class GroupServiceTest {
 	public void testUpdateGroupParentFromStagedParentToStagedParentInStagedGroup()
 		throws Exception {
 
-		Group parentGroup1 = GroupTestUtil.addGroup();
-
-		Group parentGroup2 = GroupTestUtil.addGroup();
-
 		Group childGroup = GroupTestUtil.addGroup();
+		Group parentGroup1 = GroupTestUtil.addGroup();
+		Group parentGroup2 = GroupTestUtil.addGroup();
 
 		try {
 			GroupTestUtil.enableLocalStaging(childGroup);
-
 			GroupTestUtil.enableLocalStaging(parentGroup1);
-
 			GroupTestUtil.enableLocalStaging(parentGroup2);
 
 			GroupLocalServiceUtil.updateGroup(
@@ -1067,9 +1063,7 @@ public class GroupServiceTest {
 		}
 		finally {
 			GroupLocalServiceUtil.deleteGroup(childGroup);
-
 			GroupLocalServiceUtil.deleteGroup(parentGroup1);
-
 			GroupLocalServiceUtil.deleteGroup(parentGroup2);
 		}
 	}
