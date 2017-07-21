@@ -1751,7 +1751,7 @@
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="PermissionsInline#gotoBlogsEntryPG" />
+		<execute macro="BlogsNavigator#gotoBlogsEntryPermissionsPG" />
 
 		<execute macro="Role#removePermissionPG">
 			<var name="entryTitle" value="Blogs Entry Title" />
@@ -1861,7 +1861,7 @@
 			<var name="pageName" value="Blogs Page" />
 		</execute>
 
-		<execute macro="PermissionsInline#gotoBlogsEntryPG" />
+		<execute macro="BlogsNavigator#gotoBlogsEntryPermissionsPG" />
 
 		<execute macro="PermissionsInline#viewPermissionsRemoved">
 			<var name="permissionDefinitionKey" value="CONFIGURATION_PERMISSIONS_ADD_DISCUSSION_CHECKBOX" />
