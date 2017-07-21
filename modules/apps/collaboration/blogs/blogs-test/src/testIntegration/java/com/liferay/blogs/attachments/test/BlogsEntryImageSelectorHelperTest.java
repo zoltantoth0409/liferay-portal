@@ -12,8 +12,9 @@
  * details.
  */
 
-package com.liferay.portlet.blogs;
+package com.liferay.blogs.attachments.test;
 
+import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.document.library.kernel.model.DLFolderConstants;
 import com.liferay.document.library.kernel.service.DLAppLocalServiceUtil;
 import com.liferay.portal.kernel.model.Group;
@@ -34,6 +35,8 @@ import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.TempFileEntryUtil;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
+import com.liferay.portal.test.rule.PermissionCheckerTestRule;
+import com.liferay.portlet.blogs.BlogsEntryImageSelectorHelper;
 
 import java.io.InputStream;
 
@@ -42,10 +45,12 @@ import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 /**
  * @author Roberto Díaz
  */
+@RunWith(Arquillian.class)
 @Sync
 public class BlogsEntryImageSelectorHelperTest {
 
@@ -54,6 +59,7 @@ public class BlogsEntryImageSelectorHelperTest {
 	public static final AggregateTestRule aggregateTestRule =
 		new AggregateTestRule(
 			new LiferayIntegrationTestRule(),
+			PermissionCheckerTestRule.INSTANCE,
 			SynchronousDestinationTestRule.INSTANCE);
 
 	@Before
@@ -232,7 +238,7 @@ public class BlogsEntryImageSelectorHelperTest {
 		ClassLoader classLoader = clazz.getClassLoader();
 
 		return classLoader.getResourceAsStream(
-			"com/liferay/portal/util/dependencies/test.jpg");
+			"com/liferay/blogs/dependencies/test.jpg");
 	}
 
 	private static final String _IMAGE_CROP_REGION =

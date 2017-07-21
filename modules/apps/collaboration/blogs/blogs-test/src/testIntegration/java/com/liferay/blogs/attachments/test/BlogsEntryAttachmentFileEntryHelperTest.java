@@ -12,10 +12,12 @@
  * details.
  */
 
-package com.liferay.portlet.blogs;
+package com.liferay.blogs.attachments.test;
 
+import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.blogs.kernel.model.BlogsEntry;
 import com.liferay.blogs.kernel.service.BlogsEntryLocalServiceUtil;
+import com.liferay.blogs.util.test.BlogsTestUtil;
 import com.liferay.portal.kernel.editor.EditorConstants;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.User;
@@ -28,14 +30,17 @@ import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
+import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.DigesterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.TempFileEntryUtil;
+import com.liferay.portal.service.test.ServiceTestUtil;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.portlet.blogs.util.test.BlogsTestUtil;
+import com.liferay.portlet.blogs.BlogsEntryAttachmentFileEntryHelper;
+import com.liferay.portlet.blogs.BlogsEntryAttachmentFileEntryReference;
 
 import java.io.InputStream;
 
@@ -47,11 +52,13 @@ import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 /**
  * @author Roberto Díaz
  * @author Sergio González
  */
+@RunWith(Arquillian.class)
 public class BlogsEntryAttachmentFileEntryHelperTest {
 
 	@ClassRule
@@ -64,6 +71,8 @@ public class BlogsEntryAttachmentFileEntryHelperTest {
 		_group = GroupTestUtil.addGroup();
 
 		_user = UserTestUtil.addGroupAdminUser(_group);
+
+		ServiceTestUtil.setUser(TestPropsValues.getUser());
 	}
 
 	@Test
@@ -99,21 +108,6 @@ public class BlogsEntryAttachmentFileEntryHelperTest {
 		Assert.assertEquals(
 			DigesterUtil.digestBase64(tempFileEntry.getContentStream()),
 			DigesterUtil.digestBase64(fileEntry.getContentStream()));
-	}
-
-	@Test
-	public void testGetBlogsEntryAttachmentFileEntryImgTag() throws Exception {
-		FileEntry tempFileEntry = TempFileEntryUtil.addTempFileEntry(
-			_group.getGroupId(), _user.getUserId(), _TEMP_FOLDER_NAME,
-			"image.jpg", getInputStream(), ContentTypes.IMAGE_JPEG);
-
-		String fileEntryURL = PortletFileRepositoryUtil.getPortletFileEntryURL(
-			null, tempFileEntry, StringPool.BLANK);
-
-		Assert.assertEquals(
-			"<img src=\"" + fileEntryURL + "\" />",
-			_blogsEntryAttachmentFileEntryHelper.
-				getBlogsEntryAttachmentFileEntryImgTag(tempFileEntry));
 	}
 
 	@Test
@@ -223,7 +217,7 @@ public class BlogsEntryAttachmentFileEntryHelperTest {
 		ClassLoader classLoader = clazz.getClassLoader();
 
 		return classLoader.getResourceAsStream(
-			"com/liferay/portal/util/dependencies/test.jpg");
+			"com/liferay/blogs/dependencies/test.jpg");
 	}
 
 	protected String getModifiedTempFileEntryImgTag(FileEntry tempFileEntry) {
