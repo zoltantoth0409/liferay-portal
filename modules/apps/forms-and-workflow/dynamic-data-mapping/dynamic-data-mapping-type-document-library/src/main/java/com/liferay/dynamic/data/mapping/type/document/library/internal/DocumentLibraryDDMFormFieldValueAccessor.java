@@ -57,6 +57,17 @@ public class DocumentLibraryDDMFormFieldValueAccessor
 		}
 	}
 
+	@Override
+	public boolean isEmpty(DDMFormFieldValue ddmFormFieldValue, Locale locale) {
+		JSONObject valueJSONObject = getValue(ddmFormFieldValue, locale);
+
+		if (valueJSONObject.length() == 0) {
+			return true;
+		}
+
+		return false;
+	}
+
 	@Reference
 	protected JSONFactory jsonFactory;
 
