@@ -208,6 +208,12 @@
 	<td>//tr[contains(.,'${key_webContentTitle}')]//span[@class='workflow-status']/strong</td>
 	<td></td>
 </tr>
+<!--FOLDER_TABLE-->
+<tr>
+	<td>FOLDER_TABLE_CHOOSE</td>
+	<td>//tr[contains(.,'${key_folderName}')]/td[4]//button[contains(.,'Choose')]</td>
+	<td></td>
+</tr>
 </tbody>
 </table>
 </body>
