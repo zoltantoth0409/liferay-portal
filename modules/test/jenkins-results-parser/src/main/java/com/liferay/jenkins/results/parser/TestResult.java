@@ -80,7 +80,7 @@ public class TestResult {
 			simpleClassName = className;
 
 			System.out.println(
-				"Invalid test className: " + className + " in build: " +
+				"Invalid test class name \"" + className + "\" in build " +
 					axisBuild.getBuildURL());
 		}
 
