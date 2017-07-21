@@ -14,13 +14,13 @@
 
 package com.liferay.blogs.util;
 
+import com.liferay.blogs.test.util.BlogsTestUtil;
 import com.liferay.portal.kernel.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portlet.blogs.BlogsEntryAttachmentFileEntryReference;
-import com.liferay.portlet.blogs.util.test.BlogsTestUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
