@@ -14,10 +14,8 @@
 
 package com.liferay.dynamic.data.mapping.type.document.library.internal;
 
-import com.liferay.dynamic.data.mapping.model.DDMFormField;
 import com.liferay.dynamic.data.mapping.model.UnlocalizedValue;
 import com.liferay.dynamic.data.mapping.storage.DDMFormFieldValue;
-import com.liferay.dynamic.data.mapping.test.util.DDMFormTestUtil;
 import com.liferay.dynamic.data.mapping.test.util.DDMFormValuesTestUtil;
 import com.liferay.portal.json.JSONFactoryImpl;
 import com.liferay.portal.kernel.json.JSONFactory;
@@ -47,7 +45,7 @@ public class DocumentLibraryDDMFormFieldValueAccessorTest extends PowerMockito {
 	public void testEmpty() {
 		DDMFormFieldValue ddmFormFieldValue =
 			DDMFormValuesTestUtil.createDDMFormFieldValue(
-				"documentLibrary", new UnlocalizedValue(""));
+				"documentLibrary", new UnlocalizedValue("{}"));
 
 		Assert.assertTrue(
 			_documentLibraryDDMFormFieldValueAccessor.isEmpty(
@@ -58,10 +56,10 @@ public class DocumentLibraryDDMFormFieldValueAccessorTest extends PowerMockito {
 	public void testNotEmpty() {
 		StringBundler sb = new StringBundler();
 
-		sb.append("\"{\"groupId\":\"32964\",");
+		sb.append("{\"groupId\":\"32964\",");
 		sb.append("\"title\":\"Welcome to Liferay Forms!\",");
 		sb.append("\"type\":\"document\",");
-		sb.append("\"uuid\":\"f85c8ae1-603b-04eb-1132-12645d73519e\"}\"");
+		sb.append("\"uuid\":\"f85c8ae1-603b-04eb-1132-12645d73519e\"}");
 
 		DDMFormFieldValue ddmFormFieldValue =
 			DDMFormValuesTestUtil.createDDMFormFieldValue(
