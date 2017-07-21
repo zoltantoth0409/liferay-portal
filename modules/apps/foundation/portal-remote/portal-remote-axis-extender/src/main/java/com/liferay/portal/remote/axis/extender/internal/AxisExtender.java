@@ -126,6 +126,8 @@ public class AxisExtender {
 				return null;
 			}
 
+			BundleContext bundleContext = bundle.getBundleContext();
+
 			Dictionary<String, Object> properties = new Hashtable<>();
 
 			properties.put(
@@ -134,8 +136,6 @@ public class AxisExtender {
 			properties.put(
 				HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_PATH,
 				"/" + bundle.getSymbolicName());
-
-			BundleContext bundleContext = bundle.getBundleContext();
 
 			ServiceRegistration<ServletContextHelper>
 				bundleServletContextHelperServiceRegistration =
