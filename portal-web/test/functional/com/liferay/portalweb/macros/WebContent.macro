@@ -1186,6 +1186,52 @@
 		<execute function="AssertClick" locator1="MenuItem#VIEW_HISTORY" value1="View History" />
 	</command>
 
+	<command name="moveToFolderCP">
+		<var name="key_webContentTitle" value="${webContentTitle}" />
+
+		<execute macro="WebContent#viewTitle">
+			<var name="webContentTitle" value="${webContentTitle}" />
+		</execute>
+
+		<execute function="Click" locator1="WC#ENTRY_DESCRIPTIVE_MENULIST_ICON" />
+
+		<execute function="AssertClick#assertPartialTextClickAt" locator1="MenuItem#MOVE" value1="Move" />
+
+		<execute function="AssertTextEquals" locator1="Portlet#HEADER" value1="Move Web Content" />
+
+		<execute function="Click" locator1="Button#PARENT_FOLDER_SELECT" />
+
+		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+
+		<var name="key_folderName" value="${folderName}" />
+
+		<execute function="AssertClick" locator1="WC#FOLDER_TABLE_CHOOSE" value1="Choose" />
+
+		<execute function="SelectFrameTop" />
+
+		<execute function="AssertClick" locator1="Button#DONE" value1="Done" />
+
+		<execute function="AssertClick" locator1="Button#MOVE" value1="Move" />
+
+		<execute function="AssertElementPresent" locator1="Message#SUCCESS" />
+
+		<execute macro="Navigator#openURL" />
+
+		<execute macro="ProductMenu#gotoSitesContent">
+			<var name="portlet" value="Web Content" />
+		</execute>
+
+		<var name="key_webContentTitle" value="${folderName}" />
+
+		<execute function="Click" locator1="WC#ENTRY_DESCRIPTIVE_TITLE" value1="${folderName}" />
+
+		<execute function="AssertTextEquals" locator1="Portlet#HEADER" value1="${folderName}" />
+
+		<var name="key_webContentTitle" value="${webContentTitle}" />
+
+		<execute function="AssertTextEquals#assertPartialText" locator1="WC#ENTRY_DESCRIPTIVE_TITLE" value1="${webContentTitle}" />
+	</command>
+
 	<command name="moveToRecycleBinCP">
 		<var name="key_assetType" value="${assetType}" />
 
