@@ -389,9 +389,21 @@ public class PortletDisplayTemplateImpl implements PortletDisplayTemplate {
 
 		Transformer transformer = TransformerHolder.getTransformer();
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		PortletRequest portletRequest = (PortletRequest)request.getAttribute(
+			JavaConstants.JAVAX_PORTLET_REQUEST);
+		PortletResponse portletResponse = (PortletResponse)request.getAttribute(
+			JavaConstants.JAVAX_PORTLET_RESPONSE);
+
+		PortletURL currentURL = PortletURLUtil.getCurrent(
+			_portal.getLiferayPortletRequest(portletRequest),
+			_portal.getLiferayPortletResponse(portletResponse));
+
 		contextObjects.put(
-			PortletDisplayTemplateConstants.TEMPLATE_ID,
-			ddmTemplate.getTemplateId());
+			PortletDisplayTemplateConstants.CURRENT_URL, currentURL.toString());
+
 		contextObjects.put(PortletDisplayTemplateConstants.ENTRIES, entries);
 
 		if (!entries.isEmpty()) {
@@ -401,9 +413,6 @@ public class PortletDisplayTemplateImpl implements PortletDisplayTemplate {
 
 		contextObjects.put(
 			PortletDisplayTemplateConstants.LOCALE, request.getLocale());
-
-		PortletRequest portletRequest = (PortletRequest)request.getAttribute(
-			JavaConstants.JAVAX_PORTLET_REQUEST);
 
 		RenderRequest renderRequest = null;
 
@@ -420,9 +429,6 @@ public class PortletDisplayTemplateImpl implements PortletDisplayTemplate {
 				PortletDisplayTemplateConstants.RESOURCE_REQUEST,
 				resourceRequest);
 		}
-
-		PortletResponse portletResponse = (PortletResponse)request.getAttribute(
-			JavaConstants.JAVAX_PORTLET_RESPONSE);
 
 		RenderResponse renderResponse = null;
 
@@ -442,15 +448,9 @@ public class PortletDisplayTemplateImpl implements PortletDisplayTemplate {
 				resourceResponse);
 		}
 
-		PortletURL currentURL = PortletURLUtil.getCurrent(
-			_portal.getLiferayPortletRequest(portletRequest),
-			_portal.getLiferayPortletResponse(portletResponse));
-
 		contextObjects.put(
-			PortletDisplayTemplateConstants.CURRENT_URL, currentURL.toString());
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
-			WebKeys.THEME_DISPLAY);
+			PortletDisplayTemplateConstants.TEMPLATE_ID,
+			ddmTemplate.getTemplateId());
 
 		contextObjects.put(
 			PortletDisplayTemplateConstants.THEME_DISPLAY, themeDisplay);
@@ -460,10 +460,8 @@ public class PortletDisplayTemplateImpl implements PortletDisplayTemplate {
 		contextObjects.put(
 			TemplateConstants.CLASS_NAME_ID, ddmTemplate.getClassNameId());
 
-		String language = ddmTemplate.getLanguage();
-
 		TemplateManager templateManager =
-			TemplateManagerUtil.getTemplateManager(language);
+			TemplateManagerUtil.getTemplateManager(ddmTemplate.getLanguage());
 
 		TemplateHandler templateHandler =
 			TemplateHandlerRegistryUtil.getTemplateHandler(
@@ -489,8 +487,8 @@ public class PortletDisplayTemplateImpl implements PortletDisplayTemplate {
 		}
 
 		return transformer.transform(
-			themeDisplay, contextObjects, ddmTemplate.getScript(), language,
-			unsyncStringWriter);
+			themeDisplay, contextObjects, ddmTemplate.getScript(),
+			ddmTemplate.getLanguage(), unsyncStringWriter);
 	}
 
 	@Override
