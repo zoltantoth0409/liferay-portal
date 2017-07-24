@@ -141,11 +141,11 @@ public class TestIntegrationDefaultsPlugin
 
 				@Override
 				public List<String> call() throws Exception {
-					String startExecutableArgs = System.getProperty(
+					String argLine = System.getProperty(
 						"app.server.start.executable.arg.line");
 
-					if (Validator.isNotNull(startExecutableArgs)) {
-						return Arrays.asList(startExecutableArgs.split(" "));
+					if (Validator.isNotNull(argLine)) {
+						return Arrays.asList(argLine.split(" "));
 					}
 
 					return tomcatAppServer.getStartExecutableArgs();
