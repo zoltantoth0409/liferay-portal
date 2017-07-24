@@ -335,7 +335,6 @@ public class SoyTemplate extends AbstractMultiResourceTemplate {
 			Renderer renderer = soyTofu.newRenderer(namespace);
 
 			renderer.setData(getSoyMapData());
-
 			renderer.setIjData(getSoyMapInjectedData());
 
 			SoyFileSet soyFileSet = soyTofuCacheBag.getSoyFileSet();
