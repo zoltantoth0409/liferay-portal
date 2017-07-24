@@ -54,13 +54,6 @@ public class DDLDDMDisplay extends BaseDDMDisplay {
 
 		return LanguageUtil.get(resourceBundle, "data-definition");
 	}
-	
-	@Override
-	public String getTitle(Locale locale) {
-		ResourceBundle resourceBundle = getResourceBundle(locale);
-
-		return LanguageUtil.get(resourceBundle, "data-definitions");
-	}
 
 	@Override
 	public String getStructureType() {
@@ -72,6 +65,13 @@ public class DDLDDMDisplay extends BaseDDMDisplay {
 		DDMTemplate template, long classNameId) {
 
 		return portal.getClassNameId(DDLRecordSet.class);
+	}
+
+	@Override
+	public String getTitle(Locale locale) {
+		ResourceBundle resourceBundle = getResourceBundle(locale);
+
+		return LanguageUtil.get(resourceBundle, "data-definitions");
 	}
 
 	@Override
