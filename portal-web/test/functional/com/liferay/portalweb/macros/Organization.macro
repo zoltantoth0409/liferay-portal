@@ -93,6 +93,7 @@
 				<condition function="IsElementPresent" locator1="MenuItem#ANY_MENU_ITEM">
 					<var name="key_menuItem" value="Organization" />
 				</condition>
+
 				<then>
 					<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Organization">
 						<var name="key_menuItem" value="Organization" />
@@ -303,6 +304,7 @@
 			<condition function="IsElementPresent" locator1="MenuItem#ANY_MENU_ITEM">
 				<var name="key_menuItem" value="${localizedOption}" />
 			</condition>
+
 			<then>
 				<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="${localizedOption}">
 					<var name="key_menuItem" value="${localizedOption}" />
