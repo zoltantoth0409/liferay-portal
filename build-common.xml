@@ -1538,7 +1538,7 @@ rerun your task.
 				</then>
 			</elseif>
 			<else>
-				<fail message="Missing JaCoCo session file ${jacoco.dump.file}, please run tests with code coverage before generating reports." />
+				<fail message="Unable to find JaCoCo session file ${jacoco.dump.file}. Please run tests with code coverage before generating reports." />
 			</else>
 		</if>
 
