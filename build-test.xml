@@ -3064,7 +3064,8 @@ go</echo>
 				<then>
 					<echo append="true" file="${app.server.tomcat.dir}/bin/setenv.sh">
 						<![CDATA[
-							if [ "$1" = "jacoco" ] ; then
+							if [ "$1" = "jacoco" ]
+							then
 								JACOCO_OPTS="${jacoco.agent}"
 
 								CATALINA_OPTS="${CATALINA_OPTS} ${JACOCO_OPTS}"

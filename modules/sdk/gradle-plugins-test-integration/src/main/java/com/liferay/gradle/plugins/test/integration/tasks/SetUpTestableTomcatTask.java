@@ -340,7 +340,8 @@ public class SetUpTestableTomcatTask
 
 				printWriter.println();
 
-				printWriter.println("if [ \"$1\" = \"jacoco\" ] ; then");
+				printWriter.println("if [ \"$1\" = \"jacoco\" ]");
+				printWriter.println("then");
 				printWriter.print("    JACOCO_OPTS=\"");
 				printWriter.print(jaCoCoJvmArg);
 				printWriter.println("\"");
