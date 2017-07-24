@@ -290,11 +290,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>STAGING_SITE_PAGES_VARIATION_MENULIST_VARIATION_NAME</td>
-	<td>xpath=(//div | //li)[contains(@class,'open')]/ul[contains(@class,'menu')]//*[normalize-space(.//text())='${key_sitePagesVariationName}']</td>
-	<td></td>
-</tr>
-<tr>
 	<td></td>
 	<td></td>
 	<td></td>
