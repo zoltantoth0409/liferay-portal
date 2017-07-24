@@ -51,6 +51,7 @@ public class CodeCoverageAssertor implements TestRule {
 		_includes = includes;
 		_excludes = excludes;
 		_includeInnerClasses = includeInnerClasses;
+
 		_skip = Boolean.getBoolean("junit.code.coverage");
 	}
 
