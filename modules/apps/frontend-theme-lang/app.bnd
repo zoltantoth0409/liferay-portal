@@ -1,5 +1,5 @@
-Liferay-Releng-App-Description: Set of Common Lang Keys for Themes.
-Liferay-Releng-App-Title: ${liferay.releng.app.title.prefix} Common Theme Lang Keys
+Liferay-Releng-App-Description:
+Liferay-Releng-App-Title: ${liferay.releng.app.title.prefix} Frontend Theme Lang
 Liferay-Releng-Bundle: false
 Liferay-Releng-Category: Themes
 Liferay-Releng-Demo-Url:
