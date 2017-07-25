@@ -154,17 +154,13 @@ public class DLFileEntryIndexerLocalizedContentTest {
 			addFileEntry("locale_ja.txt", _group.getGroupId());
 			addFileEntry("locale_en.txt", testGroup.getGroupId());
 
-			String searchTerm = "新規";
-
 			Document japenseDocument = _search(
-				searchTerm, LocaleUtil.JAPAN, _group.getGroupId());
+				"新規", LocaleUtil.JAPAN, _group.getGroupId());
 
 			assertLocalization(japaneseContentStrings, japenseDocument);
 
-			searchTerm = "Locale Test";
-
 			Document englishDocument = _search(
-				searchTerm, LocaleUtil.ENGLISH, testGroup.getGroupId());
+				"Locale Test", LocaleUtil.ENGLISH, testGroup.getGroupId());
 
 			assertLocalization(englishContentStrings, englishDocument);
 		}
