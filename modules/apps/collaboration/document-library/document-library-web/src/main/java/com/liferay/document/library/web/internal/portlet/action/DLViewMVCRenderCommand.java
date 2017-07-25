@@ -120,7 +120,9 @@ public class DLViewMVCRenderCommand extends GetFolderMVCRenderCommand {
 			AuthorizationCapability authorizationCapability =
 				repository.getCapability(AuthorizationCapability.class);
 
-			return authorizationCapability.authorize(
+			authorizationCapability.authorize(renderRequest, renderResponse);
+
+			return authorizationCapability.hasCustomRedirectFlow(
 				renderRequest, renderResponse);
 		}
 		else {
