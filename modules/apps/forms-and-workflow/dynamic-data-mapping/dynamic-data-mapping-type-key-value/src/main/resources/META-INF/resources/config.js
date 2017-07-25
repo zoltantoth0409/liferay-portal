@@ -24,7 +24,7 @@
 							condition: {
 								trigger: 'liferay-ddm-form-renderer'
 							},
-							path: 'key_value.js'
+							path: 'key-value.js'
 						}
 					},
 					root: MODULE_PATH + '/'

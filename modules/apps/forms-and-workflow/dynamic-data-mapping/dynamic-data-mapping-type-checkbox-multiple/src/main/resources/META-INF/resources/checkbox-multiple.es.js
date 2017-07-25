@@ -1,7 +1,7 @@
 import Component from 'metal-component';
 import Soy from 'metal-soy';
 
-import templates from './checkbox_multiple.soy';
+import templates from './checkbox-multiple.soy';
 
 /**
  * CheckboxMultiple Component

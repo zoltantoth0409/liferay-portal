@@ -33,7 +33,7 @@
 							condition: {
 								trigger: 'liferay-ddm-form-renderer'
 							},
-							path: 'checkbox_multiple.js'
+							path: 'checkbox-multiple.js'
 						}
 					},
 					root: MODULE_PATH + '/'

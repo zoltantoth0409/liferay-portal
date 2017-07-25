@@ -1,6 +1,6 @@
 Liferay.Loader.require(
 	'frontend-js-metal-web/metal-soy-bundle/build/bundle',
-	'dynamic-data-mapping-type-key-value/key_value.es',
+	'dynamic-data-mapping-type-key-value/key-value.es',
 	function(MetalSoyBundle, KeyValue) {
 		if (!window.DDMKeyValue) {
 			window.DDMKeyValue = {};

@@ -1,6 +1,6 @@
 Liferay.Loader.require(
 	'frontend-js-metal-web/metal-soy-bundle/build/bundle',
-	'dynamic-data-mapping-type-checkbox-multiple/checkbox_multiple.es',
+	'dynamic-data-mapping-type-checkbox-multiple/checkbox-multiple.es',
 	function(MetalSoyBundle, CheckboxMultiple) {
 		if (!window.DDMCheckboxMultiple) {
 			window.DDMCheckboxMultiple = {};
