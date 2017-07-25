@@ -110,6 +110,13 @@ public class TunnelUtil {
 		HttpURLConnection httpURLConnection =
 			(HttpURLConnection)url.openConnection();
 
+		int connectTimeout = GetterUtil.getInteger(
+			PropsUtil.get(PropsKeys.TUNNELING_SERVLET_TIMEOUT));
+
+		if (connectTimeout > 0) {
+			httpURLConnection.setConnectTimeout(connectTimeout);
+		}
+
 		httpURLConnection.setDoInput(true);
 		httpURLConnection.setDoOutput(true);
 
@@ -130,19 +137,11 @@ public class TunnelUtil {
 				});
 		}
 
+		httpURLConnection.setRequestMethod(HttpMethods.POST);
 		httpURLConnection.setRequestProperty(
 			HttpHeaders.CONTENT_TYPE,
 			ContentTypes.APPLICATION_X_JAVA_SERIALIZED_OBJECT);
 		httpURLConnection.setUseCaches(false);
-
-		int connectTimeout = GetterUtil.getInteger(
-			PropsUtil.get(PropsKeys.TUNNELING_SERVLET_TIMEOUT));
-
-		if (connectTimeout > 0) {
-			httpURLConnection.setConnectTimeout(connectTimeout);
-		}
-
-		httpURLConnection.setRequestMethod(HttpMethods.POST);
 
 		return httpURLConnection;
 	}
