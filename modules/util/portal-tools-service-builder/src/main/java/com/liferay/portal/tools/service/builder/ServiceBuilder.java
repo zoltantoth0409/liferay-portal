@@ -5179,12 +5179,6 @@ public class ServiceBuilder {
 		for (Element columnElement : columnElements) {
 			String columnName = columnElement.attributeValue("name");
 
-			if (columnName.equals("resourceBlockId") &&
-				!ejbName.equals("ResourceBlock")) {
-
-				permissionedModel = true;
-			}
-
 			String columnDBName = columnElement.attributeValue("db-name");
 
 			if (Validator.isNull(columnDBName)) {
@@ -5205,10 +5199,6 @@ public class ServiceBuilder {
 			String collectionEntity = columnElement.attributeValue("entity");
 
 			String mappingTable = columnElement.attributeValue("mapping-table");
-
-			if (columnName.equals("resourcePrimKey") && !primary) {
-				resourcedModel = true;
-			}
 
 			if (Validator.isNotNull(mappingTable)) {
 				if (_badTableNames.contains(mappingTable)) {
@@ -5235,6 +5225,16 @@ public class ServiceBuilder {
 				columnElement.attributeValue("container-model"));
 			boolean parentContainerModel = GetterUtil.getBoolean(
 				columnElement.attributeValue("parent-container-model"));
+
+			if (columnName.equals("resourceBlockId") &&
+				!ejbName.equals("ResourceBlock")) {
+
+				permissionedModel = true;
+			}
+
+			if (columnName.equals("resourcePrimKey") && !primary) {
+				resourcedModel = true;
+			}
 
 			EntityColumn col = new EntityColumn(
 				columnName, columnDBName, columnType, primary, accessor,
