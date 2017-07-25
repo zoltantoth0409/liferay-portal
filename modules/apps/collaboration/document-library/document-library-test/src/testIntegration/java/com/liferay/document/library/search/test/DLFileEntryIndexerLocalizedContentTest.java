@@ -239,7 +239,6 @@ public class DLFileEntryIndexerLocalizedContentTest {
 			groupId);
 
 		searchContext.setKeywords(searchTerm);
-
 		searchContext.setLocale(locale);
 
 		QueryConfig queryConfig = searchContext.getQueryConfig();
