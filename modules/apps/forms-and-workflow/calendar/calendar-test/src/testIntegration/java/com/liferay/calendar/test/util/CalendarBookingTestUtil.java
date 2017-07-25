@@ -18,7 +18,9 @@ import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.model.CalendarBookingConstants;
 import com.liferay.calendar.model.CalendarResource;
+import com.liferay.calendar.notification.NotificationType;
 import com.liferay.calendar.recurrence.Recurrence;
+import com.liferay.calendar.recurrence.RecurrenceSerializer;
 import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
 import com.liferay.calendar.util.CalendarResourceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -37,34 +39,34 @@ import java.util.Map;
 public class CalendarBookingTestUtil {
 
 	public static CalendarBooking addCalendarBooking(
-			long userId, long calendarId, long[] childCalendarBookingIds,
-			long parentCalendarBookingId,
-			Map<Locale, java.lang.String> titleMap,
-			Map<Locale, java.lang.String> descriptionMap,
-			java.lang.String location, long startTime, long endTime,
-			boolean allDay, java.lang.String recurrence, long firstReminder,
-			java.lang.String firstReminderType, long secondReminder,
-			java.lang.String secondReminderType, ServiceContext serviceContext)
+			User user, Calendar calendar, long[] childCalendarBookingIds,
+			Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
+			long startTime, long endTime, boolean allDay, Recurrence recurrence,
+			int firstReminder, NotificationType firstReminderType,
+			int secondReminder, NotificationType secondReminderType,
+			ServiceContext serviceContext)
 		throws PortalException {
 
 		String firstReminderTypeString = null;
 
 		if (firstReminderType != null) {
-			firstReminderTypeString = firstReminderType;
+			firstReminderTypeString = firstReminderType.getValue();
 		}
 
 		String secondReminderTypeString = null;
 
 		if (secondReminderType != null) {
-			secondReminderTypeString = secondReminderType;
+			secondReminderTypeString = secondReminderType.getValue();
 		}
 
 		CalendarBooking calendarBooking =
 			CalendarBookingLocalServiceUtil.addCalendarBooking(
-				userId, calendarId, childCalendarBookingIds,
+				user.getUserId(), calendar.getCalendarId(),
+				childCalendarBookingIds,
 				CalendarBookingConstants.PARENT_CALENDAR_BOOKING_ID_DEFAULT,
 				titleMap, descriptionMap, RandomTestUtil.randomString(),
-				startTime, endTime, allDay, recurrence, firstReminder,
+				startTime, endTime, allDay,
+				RecurrenceSerializer.serialize(recurrence), firstReminder,
 				firstReminderTypeString, secondReminder,
 				secondReminderTypeString, serviceContext);
 
@@ -106,12 +108,10 @@ public class CalendarBookingTestUtil {
 		throws PortalException {
 
 		return addCalendarBooking(
-			user.getUserId(), calendar.getCalendarId(), childCalendarBookingIds,
-			CalendarBookingConstants.PARENT_CALENDAR_BOOKING_ID_DEFAULT,
+			user, calendar, childCalendarBookingIds,
 			RandomTestUtil.randomLocaleStringMap(),
-			RandomTestUtil.randomLocaleStringMap(),
-			RandomTestUtil.randomString(), startTime, endTime, false, null, 0,
-			null, 0, null, serviceContext);
+			RandomTestUtil.randomLocaleStringMap(), startTime, endTime, false,
+			null, 0, null, 0, null, serviceContext);
 	}
 
 	public static CalendarBooking addPublishedCalendarBooking(User user)
@@ -127,12 +127,9 @@ public class CalendarBookingTestUtil {
 		throws PortalException {
 
 		return addCalendarBooking(
-			user.getUserId(), calendar.getCalendarId(), new long[0],
-			CalendarBookingConstants.PARENT_CALENDAR_BOOKING_ID_DEFAULT,
-			RandomTestUtil.randomLocaleStringMap(),
-			RandomTestUtil.randomLocaleStringMap(),
-			RandomTestUtil.randomString(), startTime, endTime, false, null, 0,
-			null, 0, null, serviceContext);
+			user, calendar, new long[0], RandomTestUtil.randomLocaleStringMap(),
+			RandomTestUtil.randomLocaleStringMap(), startTime, endTime, false,
+			recurrence, 0, null, 0, null, serviceContext);
 	}
 
 	public static CalendarBooking addRegularCalendarBooking(
@@ -141,12 +138,9 @@ public class CalendarBookingTestUtil {
 		throws PortalException {
 
 		return addCalendarBooking(
-			user.getUserId(), calendar.getCalendarId(), new long[0],
-			CalendarBookingConstants.PARENT_CALENDAR_BOOKING_ID_DEFAULT,
-			RandomTestUtil.randomLocaleStringMap(),
-			RandomTestUtil.randomLocaleStringMap(),
-			RandomTestUtil.randomString(), startTime, endTime, false, null, 0,
-			null, 0, null, serviceContext);
+			user, calendar, new long[0], RandomTestUtil.randomLocaleStringMap(),
+			RandomTestUtil.randomLocaleStringMap(), startTime, endTime, false,
+			null, 0, null, 0, null, serviceContext);
 	}
 
 	public static CalendarBooking
@@ -157,12 +151,9 @@ public class CalendarBookingTestUtil {
 		throws PortalException {
 
 		return addCalendarBooking(
-			user.getUserId(), calendar.getCalendarId(), new long[0],
-			CalendarBookingConstants.PARENT_CALENDAR_BOOKING_ID_DEFAULT,
-			RandomTestUtil.randomLocaleStringMap(),
-			RandomTestUtil.randomLocaleStringMap(),
-			RandomTestUtil.randomString(), startTime, endTime, false, null, 0,
-			null, 0, null, serviceContext);
+			user, calendar, new long[0], RandomTestUtil.randomLocaleStringMap(),
+			RandomTestUtil.randomLocaleStringMap(), startTime, endTime, false,
+			null, 0, null, 0, null, serviceContext);
 	}
 
 }
