@@ -70,7 +70,7 @@
 	</tear-down>
 
 	<command name="AddCalendarResource" priority="5">
-		<property name="portal.acceptance" value="true" />
+		<property name="portal.acceptance" value="quarantine" />
 
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
@@ -178,7 +178,7 @@
 	</command>
 
 	<command name="AddEventAllDay" priority="5">
-		<property name="portal.acceptance" value="true" />
+		<property name="portal.acceptance" value="quarantine" />
 
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
@@ -1722,7 +1722,7 @@
 	</command>
 
 	<command name="AddResourceCalendarToOtherCalendars" priority="5">
-		<property name="portal.acceptance" value="true" />
+		<property name="portal.acceptance" value="quarantine" />
 
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
@@ -5671,7 +5671,7 @@
 	</command>
 
 	<command name="ViewWeekStartMonday" priority="5">
-		<property name="portal.acceptance" value="true" />
+		<property name="portal.acceptance" value="quarantine" />
 
 		<description message="This is a use case for 51127." />
 
