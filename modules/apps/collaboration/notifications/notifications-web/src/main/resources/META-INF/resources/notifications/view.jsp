@@ -17,9 +17,9 @@
 <%@ include file="/init.jsp" %>
 
 <%
-boolean actionRequired = ParamUtil.getBoolean(request, "actionRequired");
-
 String navigation = ParamUtil.getString(request, "navigation", "all");
+
+boolean actionRequired = ParamUtil.getBoolean(request, "actionRequired");
 
 String orderByCol = "date";
 String orderByType = ParamUtil.getString(request, "orderByType", "desc");
