@@ -140,9 +140,9 @@ public class DLFileEntryIndexerLocalizedContentTest {
 	public void testSiteLocale() throws Exception {
 		Group testGroup = GroupTestUtil.addGroup();
 
-		List<String> contentStringsJa = new ArrayList<>(
+		List<String> japaneseContentStrings = new ArrayList<>(
 			Collections.singletonList("content_ja_JP"));
-		List<String> contentStringsEn = new ArrayList<>(
+		List<String> englishContentStrings = new ArrayList<>(
 			Collections.singletonList("content_en_US"));
 
 		try {
@@ -156,17 +156,17 @@ public class DLFileEntryIndexerLocalizedContentTest {
 
 			String searchTerm = "新規";
 
-			Document documentJa = _search(
+			Document japenseDocument = _search(
 				searchTerm, LocaleUtil.JAPAN, _group.getGroupId());
 
-			assertLocalization(contentStringsJa, documentJa);
+			assertLocalization(japaneseContentStrings, japenseDocument);
 
 			searchTerm = "Locale Test";
 
-			Document documentEn = _search(
+			Document englishDocument = _search(
 				searchTerm, LocaleUtil.ENGLISH, testGroup.getGroupId());
 
-			assertLocalization(contentStringsEn, documentEn);
+			assertLocalization(englishContentStrings, englishDocument);
 		}
 		finally {
 			GroupLocalServiceUtil.deleteGroup(testGroup);
