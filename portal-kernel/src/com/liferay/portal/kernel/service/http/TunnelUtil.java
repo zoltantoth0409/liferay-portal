@@ -65,9 +65,8 @@ public class TunnelUtil {
 		}
 		catch (SocketTimeoutException ste) {
 			_log.error(
-				"Tunnel connection timed out in TunnelUtil (timeout length " +
-					"in ms is set with with tunneling.servlet.timeout in " +
-						"portal-ext.properties)");
+				"Tunnel connection time out may be configured with the " +
+					"portal property \"tunneling.servlet.timeout\");
 
 			throw ste;
 		}
