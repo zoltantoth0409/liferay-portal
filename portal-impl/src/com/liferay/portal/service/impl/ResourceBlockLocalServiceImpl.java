@@ -477,10 +477,10 @@ public class ResourceBlockLocalServiceImpl
 
 						qPos.add(resourceBlockId);
 
-						if (sqlQuery.executeUpdate() > 0) {
-							resourceBlockPermissionLocalService.
-								deleteResourceBlockPermissions(resourceBlockId);
-						}
+						sqlQuery.executeUpdate();
+
+						resourceBlockPermissionLocalService.
+							deleteResourceBlockPermissions(resourceBlockId);
 
 						PermissionCacheUtil.clearResourceBlockCache(
 							resourceBlock.getCompanyId(),
