@@ -29,7 +29,7 @@ public class OAuth2AuthorizationException extends AuthorizationException {
 		String error, String description) {
 
 		Function<String, OAuth2AuthorizationException> function =
-			_exceptions.getOrDefault(error, OAuth2AuthorizationException::new);
+			_functions.getOrDefault(error, OAuth2AuthorizationException::new);
 
 		return function.apply(description);
 	}
@@ -151,25 +151,25 @@ public class OAuth2AuthorizationException extends AuthorizationException {
 
 	private static final Map<
 		String, Function<String, OAuth2AuthorizationException>>
-			_exceptions = new HashMap<>(7);
+			_functions = new HashMap<>(7);
 
 	static {
-		_exceptions.put(
+		_functions.put(
 			"access_denied", OAuth2AuthorizationException.AccessDenied::new);
-		_exceptions.put(
+		_functions.put(
 			"invalid_request",
 			OAuth2AuthorizationException.InvalidRequest::new);
-		_exceptions.put(
+		_functions.put(
 			"invalid_scope", OAuth2AuthorizationException.InvalidScope::new);
-		_exceptions.put(
+		_functions.put(
 			"server_error", OAuth2AuthorizationException.ServerError::new);
-		_exceptions.put(
+		_functions.put(
 			"temporarily_unavailable",
 			OAuth2AuthorizationException.TemporarilyUnavailable::new);
-		_exceptions.put(
+		_functions.put(
 			"unauthorized_client",
 			OAuth2AuthorizationException.UnauthorizedClient::new);
-		_exceptions.put(
+		_functions.put(
 			"unsupported_response_type",
 			OAuth2AuthorizationException.UnsupportedResponseType::new);
 	}
