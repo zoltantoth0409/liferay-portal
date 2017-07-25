@@ -40,7 +40,7 @@ public class OAuth2AuthorizationException extends AuthorizationException {
 			super(
 				String.format(
 					"The client is not authorized to request an " +
-						"authorization code using this method: %s",
+						"authorization code using method: %s",
 					description));
 		}
 
