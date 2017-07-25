@@ -184,7 +184,7 @@ public class DLFileEntryIndexerLocalizedContentTest {
 			ServiceContextTestUtil.getServiceContext(groupId);
 
 		File file = null;
-		FileEntry fileEntry;
+		FileEntry fileEntry = null;
 
 		try (InputStream inputStream =
 				DLFileEntrySearchTest.class.getResourceAsStream(
