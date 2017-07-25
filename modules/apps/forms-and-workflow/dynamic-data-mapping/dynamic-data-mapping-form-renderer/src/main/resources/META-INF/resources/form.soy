@@ -8,10 +8,10 @@
 
 /**
  * Prints a list of fields.
- *
- * @param fields
  */
 {template .fields}
+	{@param fields: list<?>}
+
 	{foreach $field in $fields}
 		{let $variant: $field.type /}
 
@@ -23,15 +23,15 @@
 
 /**
  * Prints the JavaScript form renderer.
- *
- * @param containerId
- * @param context
- * @param evaluatorURL
- * @param fieldTypes
- * @param portletNamespace
- * @param readOnly
  */
 {template .form_renderer_js}
+	{@param containerId: string}
+	{@param context: ?}
+	{@param evaluatorURL: string}
+	{@param fieldTypes: string}
+	{@param portletNamespace: string}
+	{@param readOnly: bool}
+
 	<script type="text/javascript">
 		AUI().use(
 			'liferay-ddm-form-renderer',
@@ -81,10 +81,10 @@
 
 /**
  * Prints all rows.
- *
- * @param rows
  */
 {template .form_rows}
+	{@param rows: list<[columns: list<[size: int, fields: list<?>]>]>}
+
 	{foreach $row in $rows}
 		<div class="row">
 			{call .form_row_columns data="all"}
@@ -96,10 +96,10 @@
 
 /**
  * Prints a column.
- *
- * @param column
  */
 {template .form_row_column}
+	{@param column: [size: int, fields: list<?>]}
+
 	<div class="col-md-{$column.size}">
 		{call .fields data="all"}
 			{param fields: $column.fields /}
@@ -109,10 +109,10 @@
 
 /**
  * Prints all columns.
- *
- * @param columns
  */
 {template .form_row_columns}
+	{@param columns: list<[size: int, fields: list<?>]>}
+
 	{foreach $column in $columns}
 		{call .form_row_column data="all"}
 			{param column: $column /}
@@ -122,11 +122,11 @@
 
 /**
  * Prints the form fields required message warning.
- *
- * @param showRequiredFieldsWarning
- * @param requiredFieldsWarningMessageHTML
  */
 {template .required_warning_message}
+	{@param showRequiredFieldsWarning: bool}
+	{@param requiredFieldsWarningMessageHTML: html}
+
 	{if $showRequiredFieldsWarning}
 		{$requiredFieldsWarningMessageHTML}
 	{/if}
@@ -134,15 +134,20 @@
 
 /**
  * Prints a form with pagination.
- *
- * @param containerId
- * @param pages
- * @param requiredFieldsWarningMessageHTML
- * @param showSubmitButton
- * @param submitLabel
- * @param strings
  */
 {template .wizard_form}
+	{@param containerId: string}
+	{@param pages: list<[
+		title: string,
+		description: string,
+		showRequiredFieldsWarning: bool,
+		rows: list<[columns: list<[size: int, fields: list<?>]>]>
+	]>}
+	{@param requiredFieldsWarningMessageHTML: html}
+	{@param submitLabel: string}
+	{@param showSubmitButton: bool}
+	{@param strings: [previous: string, next: string]}
+
 	<div class="lfr-ddm-form-container" id="{$containerId}">
 		<div class="lfr-ddm-form-content">
 			{if length($pages) > 1}
@@ -203,15 +208,20 @@
 
 /**
  * Prints a form with pagination.
- *
- * @param containerId
- * @param pages
- * @param requiredFieldsWarningMessageHTML
- * @param showSubmitButton
- * @param submitLabel
- * @param strings
  */
 {template .paginated_form}
+	{@param containerId: string}
+	{@param pages: list<[
+		title: string,
+		description: string,
+		showRequiredFieldsWarning: bool,
+		rows: list<[columns: list<[size: int, fields: list<?>]>]>
+	]>}
+	{@param requiredFieldsWarningMessageHTML: html}
+	{@param showSubmitButton: bool}
+	{@param strings: [previous: string, next: string]}
+	{@param submitLabel: string}
+
 	<div class="lfr-ddm-form-container" id="{$containerId}">
 		<div class="lfr-ddm-form-content">
 			<div class="lfr-ddm-form-pages">
@@ -268,12 +278,17 @@
 
 /**
  * Prints a simple form with just one page.
- *
- * @param containerId
- * @param pages
- * @param requiredFieldsWarningMessageHTML
  */
 {template .simple_form}
+	{@param containerId: string}
+	{@param pages: list<[
+		title: string,
+		description: string,
+		showRequiredFieldsWarning: bool,
+		rows: list<[columns: list<[size: int, fields: list<?>]>]>
+	]>}
+	{@param requiredFieldsWarningMessageHTML: html}
+
 	<div class="lfr-ddm-form-container" id="{$containerId}">
 		<div class="lfr-ddm-form-fields">
 			{foreach $page in $pages}
@@ -292,12 +307,17 @@
 
 /**
  * Prints a form with tabs.
- *
- * @param containerId
- * @param pages
- * @param requiredFieldsWarningMessageHTML
  */
 {template .tabbed_form}
+	{@param containerId: string}
+	{@param pages: list<[
+		title: string,
+		description: string,
+		showRequiredFieldsWarning: bool,
+		rows: list<[columns: list<[size: int, fields: list<?>]>]>
+	]>}
+	{@param requiredFieldsWarningMessageHTML: html}
+
 	<div class="lfr-ddm-form-container" id="{$containerId}">
 		<div class="lfr-ddm-form-tabs">
 			<ul class="nav navbar-nav">
@@ -328,20 +348,25 @@
 
 /**
  * Prints an empty form tab.
- *
- * @param? active
  */
 {template .tabbed_form_frame}
+	{@param? active: ?}
+
 	<div class="lfr-ddm-form-page tab-pane {if $active}active{/if}"></div>
 {/template}
 
 /**
  * Prints the settings form.
- *
- * @param containerId
- * @param pages
  */
 {template .settings_form}
+	{@param containerId: string}
+	{@param pages: list<[
+		title: string,
+		description: string,
+		showRequiredFieldsWarning: bool,
+		rows: list<[columns: list<[size: int, fields: list<?>]>]>
+	]>}
+
 	<div class="lfr-ddm-form-container" id="{$containerId}">
 		<div class="lfr-ddm-settings-form">
 			{foreach $page in $pages}

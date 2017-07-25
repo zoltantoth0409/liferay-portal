@@ -9,21 +9,21 @@
 
 /**
  * Prints the DDM form grid field.
- *
- * @param columns
- * @param dir
- * @param? focusTarget
- * @param label
- * @param name
- * @param rows
- * @param readOnly
- * @param required
- * @param showLabel
- * @param tip
- * @param value
- * @param visible
  */
 {template .render}
+	{@param columns: list<[label: string, value: ?]>}
+	{@param? dir: string}
+	{@param? focusTarget: [row: int, index: int]}
+	{@param label: string}
+	{@param name: string}
+	{@param rows: list<[label: string, value: ?]>}
+	{@param readOnly: bool}
+	{@param? required: bool}
+	{@param showLabel: bool}
+	{@param? tip: string}
+	{@param value: ?}
+	{@param visible: bool}
+
 	<div class="form-group{$visible ? '' : ' hide'}" data-fieldname="{$name}">
 		{if $showLabel}
 			<label class="control-label">
@@ -89,16 +89,16 @@
 
 /**
  * Prints the hidden input to send the values to the backend.
- *
- * @param dir
- * @param name
- * @param rows
- * @param value
  */
 {template .hidden_grid}
+	{@param? dir: string}
+	{@param name: string}
+	{@param rows: list<[label: string, value: ?]>}
+	{@param value: ?}
+
 	{foreach $row in $rows}
 		{let $inputValue: $value[$row.value] ? $row.value + ';' + $value[$row.value] : '' /}
 
-		<input class="form-control" dir="{$dir}" name="{$name}" type="hidden" {if $inputValue}value="{$inputValue}"{/if}/>
+		<input class="form-control" {if $dir}dir="{$dir}"{/if} name="{$name}" type="hidden" {if $inputValue}value="{$inputValue}"{/if}/>
 	{/foreach}
 {/template}

@@ -9,14 +9,14 @@
 
 /**
  * Prints the DDM form options field.
- *
- * @param label
- * @param name
- * @param required
- * @param showLabel
- * @param visible
  */
 {template .render}
+	{@param? label: string}
+	{@param name: string}
+	{@param required: bool}
+	{@param showLabel: bool}
+	{@param visible: bool}
+
 	<div class="form-group{$visible ? '' : ' hide'} liferay-ddm-form-field-options" data-fieldname="{$name}">
 		{if $showLabel}
 			<label class="control-label">

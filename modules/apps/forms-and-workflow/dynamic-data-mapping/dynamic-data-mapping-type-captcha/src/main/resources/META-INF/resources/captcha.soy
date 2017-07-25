@@ -9,12 +9,12 @@
 
 /**
  * Prints the DDM form captcha field.
- *
- * @param html
- * @param name
- * @param visible
  */
 {template .render}
+	{@param html: html}
+	{@param name: string}
+	{@param visible: bool}
+
 	<div class="form-group{$visible ? '' : ' hide'} liferay-ddm-form-field-captcha" data-fieldname="{$name}">
 		{$html}
 	</div>

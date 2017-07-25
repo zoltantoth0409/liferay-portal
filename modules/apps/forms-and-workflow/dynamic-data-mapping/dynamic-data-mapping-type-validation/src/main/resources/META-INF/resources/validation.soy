@@ -9,27 +9,27 @@
 
 /**
  * Prints an option.
- *
- * @param option
  */
 {template .validationOption}
+	{@param option: [label: string, status: string, value: string]}
+
 	<option {if $option.status == 'selected'}selected{/if} value="{$option.value}">{$option.label}</option>
 {/template}
 
 /**
  * Prints the DDM form validation field.
- *
- * @param enableValidationValue
- * @param errorMessagePlaceholder
- * @param errorMessageValue
- * @param name
- * @param parameterMessagePlaceholder
- * @param parameterValue
- * @param validationMessage
- * @param validationsOptions
- * @param value
  */
 {template .render}
+	{@param? enableValidationValue: bool}
+	{@param? errorMessagePlaceholder: string}
+	{@param? errorMessageValue: string}
+	{@param name: string}
+	{@param? parameterMessagePlaceholder: string}
+	{@param? parameterValue: string}
+	{@param? validationMessage: string}
+	{@param? validationsOptions: list<[label: string, status: string, value: string]>}
+	{@param value: ?}
+
 	<div class="form-group lfr-ddm-form-field-validation" data-fieldname="{$name}">
 		<div class="form-group">
 			<label class="control-label" for="{$name}EnableValidation">

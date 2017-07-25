@@ -9,13 +9,13 @@
 
 /**
  * Prints the DDM form paragraph field.
- *
- * @param label
- * @param name
- * @param text
- * @param visible
  */
 {template .render}
+	{@param label: string}
+	{@param name: string}
+	{@param text: string}
+	{@param visible: bool}
+
 	<div class="form-group{$visible ? '' : ' hide'} liferay-ddm-form-field-paragraph" data-fieldname="{$name}">
 		{if $label}
 			<label class="control-label" for="{$name}">{$label}</label>

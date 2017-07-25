@@ -9,24 +9,34 @@
 
 /**
  * Prints the DDM form checkbox field.
- *
- * @param label
- * @param name
- * @param readOnly
- * @param required
- * @param showAsSwitcher
- * @param showLabel
- * @param tip
- * @param visible
- * @param value
  */
 {template .render}
-	{let $status: $value ? 'checked' : '' /}
+	{@param label: string}
+	{@param name: string}
+	{@param readOnly: bool}
+	{@param required: bool}
+	{@param showAsSwitcher: bool}
+	{@param showLabel: bool}
+	{@param? tip: string}
+	{@param visible: bool}
+	{@param value: ?}
+
+	{let $checked kind="attributes"}
+		{if $value}
+			checked
+		{/if}
+	{/let}
+
+	{let $disabled kind="attributes"}
+		{if $readOnly}
+			disabled
+		{/if}
+	{/let}
 
 	<div class="form-group{$visible ? '' : ' hide'} liferay-ddm-form-field-checkbox" data-fieldname="{$name}">
 		{if $showAsSwitcher}
-			<label aria-checked="{($status) ? true : false}" for="{$name}" role="checkbox">
-				<input class="toggle-switch" {if $readOnly}disabled{/if} id="{$name}" name="{$name}" type="checkbox" value="true" />
+			<label aria-checked="{$value ? 'true' : 'false'}" for="{$name}" role="checkbox">
+				<input class="toggle-switch" {$checked} {$disabled} id="{$name}" name="{$name}" type="checkbox" value="true" />
 
 				<span aria-hidden="true" class="toggle-switch-bar">
 					<span class="toggle-switch-handle"></span>
@@ -52,7 +62,7 @@
 					<label for="{$name}">
 				{/if}
 
-				<input {if $readOnly}disabled{/if} id="{$name}" name="{$name}" type="checkbox" value="true" />{if $showLabel} {$label}{/if}
+				<input {$checked} {$disabled} id="{$name}" name="{$name}" type="checkbox" value="true" />{if $showLabel} {$label}{/if}
 
 				{if $showLabel}
 						{if $required}
