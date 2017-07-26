@@ -14,14 +14,12 @@
 
 package com.liferay.exportimport.internal.verify.system.event;
 
-import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.SystemEventLocalService;
 import com.liferay.portal.verify.VerifyProcess;
-
-import java.util.List;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -37,14 +35,25 @@ import org.osgi.service.component.annotations.Reference;
 public class SystemEventVerifyProcess extends VerifyProcess {
 
 	protected void deleteInvalidSystemEvents() throws PortalException {
-		List<Group> groups = _groupLocalService.getGroups(
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+		ActionableDynamicQuery actionableDynamicQuery =
+			_groupLocalService.getActionableDynamicQuery();
 
-		for (Group group : groups) {
-			if (!_systemEventLocalService.validateGroup(group.getGroupId())) {
-				_systemEventLocalService.deleteSystemEvents(group.getGroupId());
-			}
-		}
+		actionableDynamicQuery.setPerformActionMethod(
+			new ActionableDynamicQuery.PerformActionMethod<Group>() {
+
+				@Override
+				public void performAction(Group group) throws PortalException {
+					if (!_systemEventLocalService.validateGroup(
+							group.getGroupId())) {
+
+						_systemEventLocalService.deleteSystemEvents(
+							group.getGroupId());
+					}
+				}
+
+			});
+
+		actionableDynamicQuery.performActions();
 	}
 
 	@Override
