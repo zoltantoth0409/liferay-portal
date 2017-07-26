@@ -405,9 +405,9 @@ public class SoyTemplate extends AbstractMultiResourceTemplate {
 
 	private static final Log _log = LogFactoryUtil.getLog(SoyTemplate.class);
 
+	private SoyMapData _injectedSoyMapData;
 	private final boolean _privileged;
 	private SoyMapData _soyMapData;
-	private SoyMapData _injectedSoyMapData;
 	private final SoyTofuCacheHandler _soyTofuCacheHandler;
 	private final SoyTemplateContextHelper _templateContextHelper;
 
