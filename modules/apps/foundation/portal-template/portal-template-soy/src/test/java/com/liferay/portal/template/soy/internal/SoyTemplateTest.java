@@ -63,9 +63,9 @@ public class SoyTemplateTest {
 
 		Assert.assertEquals(0, soyTemplate.keySet().size());
 
-		SoyMapData soyMapInjectedData = soyTemplate.getSoyMapInjectedData();
+		SoyMapData injectedSoyMapData = soyTemplate.getSoyMapInjectedData();
 
-		Assert.assertEquals(0, soyMapInjectedData.getKeys().size());
+		Assert.assertEquals(0, injectedSoyMapData.getKeys().size());
 	}
 
 	/**
@@ -172,10 +172,10 @@ public class SoyTemplateTest {
 		Assert.assertTrue(soyMapData.hasField("key1"));
 		Assert.assertEquals("value1", soyMapData.getString("key1"));
 
-		SoyMapData soyMapInjectedData = soyTemplate.getSoyMapInjectedData();
+		SoyMapData injectedSoyMapData = soyTemplate.getSoyMapInjectedData();
 
 		Assert.assertEquals(
-			"injectedValue", soyMapInjectedData.getString("injectedKey"));
+			"injectedValue", injectedSoyMapData.getString("injectedKey"));
 	}
 
 	@Test
@@ -186,9 +186,9 @@ public class SoyTemplateTest {
 
 		soyTemplate.remove(SoyTemplateConstants.INJECTED_DATA);
 
-		SoyMapData soyMapInjectedData = soyTemplate.getSoyMapInjectedData();
+		SoyMapData injectedSoyMapData = soyTemplate.getSoyMapInjectedData();
 
-		Assert.assertEquals(0, soyMapInjectedData.getKeys().size());
+		Assert.assertEquals(0, injectedSoyMapData.getKeys().size());
 	}
 
 	private final SoyTestHelper _soyTestHelper = new SoyTestHelper();
