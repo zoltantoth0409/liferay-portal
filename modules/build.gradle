@@ -108,7 +108,8 @@ gradle.beforeProject {
 				task buildWSDD(dependsOn: "build-wsdd")
 			}
 
-			// See "compile-jsp" target in tools/sdk/build-common-plugin.xml
+			// See the "compile-jsp" target in tools/sdk/build-common-plugin.xml
+			// for more information.
 
 			if (ant.properties["app.server.type"] == "tomcat") {
 				task compileJSP(dependsOn: "compile-jsp")
