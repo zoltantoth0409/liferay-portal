@@ -163,8 +163,7 @@ public class UpgradeGroup extends UpgradeProcess {
 						else {
 							if (_log.isWarnEnabled()) {
 								_log.warn(
-									"Group " + parentGroupId +
-										" could not be found");
+									"Unable to find group " + parentGroupId);
 							}
 
 							StringBundler treePathSB = new StringBundler(5);
