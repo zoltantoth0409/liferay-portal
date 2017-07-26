@@ -62,17 +62,17 @@ public class SoyTemplateTest {
 
 		Set<String> keys = soyMapData.getKeys();
 
-		Assert.assertEquals(0, keys.size());
+		Assert.assertEquals(keys.toString(), 0, keys.size());
 
 		keys = soyTemplate.keySet();
 
-		Assert.assertEquals(0, keys.size());
+		Assert.assertEquals(keys.toString(), 0, keys.size());
 
 		SoyMapData injectedSoyMapData = soyTemplate.getSoyMapInjectedData();
 
 		keys = injectedSoyMapData.getKeys();
 
-		Assert.assertEquals(0, keys.size());
+		Assert.assertEquals(keys.toString(), 0, keys.size());
 	}
 
 	/**
@@ -197,7 +197,7 @@ public class SoyTemplateTest {
 
 		Set<String> keys = injectedSoyMapData.getKeys();
 
-		Assert.assertEquals(0, keys.size());
+		Assert.assertEquals(keys.toString(), 0, keys.size());
 	}
 
 	private final SoyTestHelper _soyTestHelper = new SoyTestHelper();
