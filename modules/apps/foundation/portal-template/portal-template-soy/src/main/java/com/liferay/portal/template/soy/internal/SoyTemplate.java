@@ -88,14 +88,14 @@ public class SoyTemplate extends AbstractMultiResourceTemplate {
 		_privileged = privileged;
 
 		_soyMapData = new SoyMapData();
-		_soyMapInjectedData = new SoyMapData();
+		_injectedSoyMapData = new SoyMapData();
 		_soyTofuCacheHandler = soyTofuCacheHandler;
 	}
 
 	@Override
 	public void clear() {
 		_soyMapData = new SoyMapData();
-		_soyMapInjectedData = new SoyMapData();
+		_injectedSoyMapData = new SoyMapData();
 
 		super.clear();
 	}
@@ -140,13 +140,13 @@ public class SoyTemplate extends AbstractMultiResourceTemplate {
 	}
 
 	public void putInjectedData(String key, Object value) {
-		_soyMapInjectedData.put(key, getSoyMapValue(value));
+		_injectedSoyMapData.put(key, getSoyMapValue(value));
 	}
 
 	@Override
 	public Object remove(Object key) {
 		if (SoyTemplateConstants.INJECTED_DATA.equals(key)) {
-			_soyMapInjectedData = new SoyMapData();
+			_injectedSoyMapData = new SoyMapData();
 		}
 
 		_soyMapData.remove((String)key);
@@ -206,7 +206,7 @@ public class SoyTemplate extends AbstractMultiResourceTemplate {
 			}
 		}
 
-		return _soyMapInjectedData;
+		return _injectedSoyMapData;
 	}
 
 	protected Object getSoyMapValue(Object value) {
@@ -407,7 +407,7 @@ public class SoyTemplate extends AbstractMultiResourceTemplate {
 
 	private final boolean _privileged;
 	private SoyMapData _soyMapData;
-	private SoyMapData _soyMapInjectedData;
+	private SoyMapData _injectedSoyMapData;
 	private final SoyTofuCacheHandler _soyTofuCacheHandler;
 	private final SoyTemplateContextHelper _templateContextHelper;
 
