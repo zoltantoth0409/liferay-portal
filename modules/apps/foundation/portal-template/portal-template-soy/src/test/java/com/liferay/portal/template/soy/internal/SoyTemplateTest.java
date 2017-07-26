@@ -48,22 +48,22 @@ public class SoyTemplateTest {
 
 	@Test
 	public void testClear() {
-		SoyTemplate template = _soyTestHelper.getSoyTemplate("ijdata.soy");
+		SoyTemplate soyTemplate = _soyTestHelper.getSoyTemplate("ijdata.soy");
 
-		template.put("key1", "value1");
-		template.put("key2", "value2");
+		soyTemplate.put("key1", "value1");
+		soyTemplate.put("key2", "value2");
 
-		template.putInjectedData("injectedKey", "injectedValue");
+		soyTemplate.putInjectedData("injectedKey", "injectedValue");
 
-		template.clear();
+		soyTemplate.clear();
 
-		SoyMapData soyMapData = template.getSoyMapData();
+		SoyMapData soyMapData = soyTemplate.getSoyMapData();
 
 		Assert.assertEquals(0, soyMapData.getKeys().size());
 
-		Assert.assertEquals(0, template.keySet().size());
+		Assert.assertEquals(0, soyTemplate.keySet().size());
 
-		SoyMapData soyMapInjectedData = template.getSoyMapInjectedData();
+		SoyMapData soyMapInjectedData = soyTemplate.getSoyMapInjectedData();
 
 		Assert.assertEquals(0, soyMapInjectedData.getKeys().size());
 	}
@@ -73,19 +73,19 @@ public class SoyTemplateTest {
 	 */
 	@Test
 	public void testProcessTemplateWithInjectedData() throws Exception {
-		SoyTemplate template = _soyTestHelper.getSoyTemplate("ijdata.soy");
+		SoyTemplate soyTemplate = _soyTestHelper.getSoyTemplate("ijdata.soy");
 
-		template.put("namespace", "soy.test.ijdata");
+		soyTemplate.put("namespace", "soy.test.ijdata");
 
 		Map<String, Object> injectedData = new HashMap<>();
 
 		injectedData.put("hasData", true);
 
-		template.put(SoyTemplateConstants.INJECTED_DATA, injectedData);
+		soyTemplate.put(SoyTemplateConstants.INJECTED_DATA, injectedData);
 
 		UnsyncStringWriter unsyncStringWriter = new UnsyncStringWriter();
 
-		template.processTemplate(unsyncStringWriter);
+		soyTemplate.processTemplate(unsyncStringWriter);
 
 		Assert.assertEquals(
 			"Injected Data: true", unsyncStringWriter.toString());
@@ -93,25 +93,25 @@ public class SoyTemplateTest {
 
 	@Test
 	public void testPut() {
-		SoyTemplate template = _soyTestHelper.getSoyTemplate("ijdata.soy");
+		SoyTemplate soyTemplate = _soyTestHelper.getSoyTemplate("ijdata.soy");
 
-		SoyMapData soyMapData = template.getSoyMapData();
+		SoyMapData soyMapData = soyTemplate.getSoyMapData();
 
-		template.put("key", "value");
+		soyTemplate.put("key", "value");
 
 		Assert.assertEquals("value", soyMapData.getString("key"));
 	}
 
 	@Test
 	public void testPutRestrictedVariable() {
-		SoyTemplate template = Mockito.spy(
+		SoyTemplate soyTemplate = Mockito.spy(
 			_soyTestHelper.getSoyTemplate("ijdata.soy"));
 
 		TemplateContextHelper templateContextHelper = Mockito.mock(
 			TemplateContextHelper.class);
 
 		Mockito.when(
-			template.getTemplateContextHelper()
+			soyTemplate.getTemplateContextHelper()
 		).thenReturn(
 			templateContextHelper
 		);
@@ -122,57 +122,57 @@ public class SoyTemplateTest {
 			Sets.newSet("restrictedKey")
 		);
 
-		template.put("restrictedKey", "restrictedValue");
+		soyTemplate.put("restrictedKey", "restrictedValue");
 
 		Mockito.verify(
-			template, Mockito.times(0)
+			soyTemplate, Mockito.times(0)
 		).getSoyMapValue(
 			"restrictedValue"
 		);
 
-		SoyMapData soyMapData = template.getSoyMapData();
+		SoyMapData soyMapData = soyTemplate.getSoyMapData();
 
 		Assert.assertFalse("value", soyMapData.hasField("restrictedKey"));
 	}
 
 	@Test
 	public void testPutWithSameValue() {
-		SoyTemplate template = Mockito.spy(
+		SoyTemplate soyTemplate = Mockito.spy(
 			_soyTestHelper.getSoyTemplate("ijdata.soy"));
 
 		String value = "value";
 
-		template.put("key", value);
-		template.put("key", value);
+		soyTemplate.put("key", value);
+		soyTemplate.put("key", value);
 
 		Mockito.verify(
-			template, Mockito.times(1)
+			soyTemplate, Mockito.times(1)
 		).getSoyMapValue(
 			value
 		);
 
-		SoyMapData soyMapData = template.getSoyMapData();
+		SoyMapData soyMapData = soyTemplate.getSoyMapData();
 
 		Assert.assertEquals("value", soyMapData.getString("key"));
 	}
 
 	@Test
 	public void testRemove() {
-		SoyTemplate template = _soyTestHelper.getSoyTemplate("ijdata.soy");
+		SoyTemplate soyTemplate = _soyTestHelper.getSoyTemplate("ijdata.soy");
 
-		template.put("key1", "value1");
-		template.put("key2", "value2");
+		soyTemplate.put("key1", "value1");
+		soyTemplate.put("key2", "value2");
 
-		template.putInjectedData("injectedKey", "injectedValue");
+		soyTemplate.putInjectedData("injectedKey", "injectedValue");
 
-		template.remove("key2");
+		soyTemplate.remove("key2");
 
-		SoyMapData soyMapData = template.getSoyMapData();
+		SoyMapData soyMapData = soyTemplate.getSoyMapData();
 
 		Assert.assertTrue(soyMapData.hasField("key1"));
 		Assert.assertEquals("value1", soyMapData.getString("key1"));
 
-		SoyMapData soyMapInjectedData = template.getSoyMapInjectedData();
+		SoyMapData soyMapInjectedData = soyTemplate.getSoyMapInjectedData();
 
 		Assert.assertEquals(
 			"injectedValue", soyMapInjectedData.getString("injectedKey"));
@@ -180,13 +180,13 @@ public class SoyTemplateTest {
 
 	@Test
 	public void testRemoveInjectedData() {
-		SoyTemplate template = _soyTestHelper.getSoyTemplate("ijdata.soy");
+		SoyTemplate soyTemplate = _soyTestHelper.getSoyTemplate("ijdata.soy");
 
-		template.putInjectedData("injectedKey", "injectedValue");
+		soyTemplate.putInjectedData("injectedKey", "injectedValue");
 
-		template.remove(SoyTemplateConstants.INJECTED_DATA);
+		soyTemplate.remove(SoyTemplateConstants.INJECTED_DATA);
 
-		SoyMapData soyMapInjectedData = template.getSoyMapInjectedData();
+		SoyMapData soyMapInjectedData = soyTemplate.getSoyMapInjectedData();
 
 		Assert.assertEquals(0, soyMapInjectedData.getKeys().size());
 	}
