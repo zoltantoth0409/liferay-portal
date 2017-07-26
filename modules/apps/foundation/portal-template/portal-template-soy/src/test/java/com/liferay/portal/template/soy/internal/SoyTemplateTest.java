@@ -22,6 +22,7 @@ import com.liferay.portal.template.soy.constants.SoyTemplateConstants;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -59,13 +60,19 @@ public class SoyTemplateTest {
 
 		SoyMapData soyMapData = soyTemplate.getSoyMapData();
 
-		Assert.assertEquals(0, soyMapData.getKeys().size());
+		Set<String> keys = soyMapData.getKeys();
 
-		Assert.assertEquals(0, soyTemplate.keySet().size());
+		Assert.assertEquals(0, keys.size());
+
+		keys = soyTemplate.keySet();
+
+		Assert.assertEquals(0, keys.size());
 
 		SoyMapData injectedSoyMapData = soyTemplate.getSoyMapInjectedData();
 
-		Assert.assertEquals(0, injectedSoyMapData.getKeys().size());
+		keys = injectedSoyMapData.getKeys();
+
+		Assert.assertEquals(0, keys.size());
 	}
 
 	/**
@@ -188,7 +195,9 @@ public class SoyTemplateTest {
 
 		SoyMapData injectedSoyMapData = soyTemplate.getSoyMapInjectedData();
 
-		Assert.assertEquals(0, injectedSoyMapData.getKeys().size());
+		Set<String> keys = injectedSoyMapData.getKeys();
+
+		Assert.assertEquals(0, keys.size());
 	}
 
 	private final SoyTestHelper _soyTestHelper = new SoyTestHelper();
