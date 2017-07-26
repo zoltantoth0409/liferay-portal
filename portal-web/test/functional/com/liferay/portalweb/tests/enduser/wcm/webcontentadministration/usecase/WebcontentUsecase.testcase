@@ -1791,7 +1791,7 @@
 		</for>
 	</command>
 
-	<command name="MoveHomeWebContentToSubFolder" priority="5">
+	<command name="MoveRootWebContentToFolder" priority="5">
 		<property name="testray.component.names" value="Training" />
 
 		<execute macro="Navigator#openURL" />
@@ -1832,6 +1832,21 @@
 
 		<execute macro="WebContent#moveToFolderCP">
 			<var name="folderName" value="WC Folder Name" />
+			<var name="webContentTitle" value="WC WebContent Title" />
+		</execute>
+
+		<execute macro="Navigator#openURL" />
+
+		<execute macro="ProductMenu#gotoSitesContent">
+			<var name="portlet" value="Web Content" />
+		</execute>
+
+		<execute macro="WebContentFolder#gotoCP">
+			<var name="folderName" value="WC Folder Name" />
+			<var name="webContentTitle" value="WC Folder Name" />
+		</execute>
+
+		<execute macro="WebContent#viewTitle">
 			<var name="webContentTitle" value="WC WebContent Title" />
 		</execute>
 	</command>
