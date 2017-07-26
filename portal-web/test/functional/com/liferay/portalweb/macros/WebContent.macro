@@ -1187,13 +1187,13 @@
 	</command>
 
 	<command name="moveToFolderCP">
-		<var name="key_webContentTitle" value="${webContentTitle}" />
-
 		<execute macro="WebContent#viewTitle">
 			<var name="webContentTitle" value="${webContentTitle}" />
 		</execute>
 
-		<execute function="Click" locator1="WC#ENTRY_DESCRIPTIVE_MENULIST_ICON" />
+		<execute function="Click" locator1="WC#ENTRY_DESCRIPTIVE_MENULIST_ICON">
+			<var name="key_webContentTitle" value="${webContentTitle}" />
+		</execute>
 
 		<execute function="AssertClick#assertPartialTextClickAt" locator1="MenuItem#MOVE" value1="Move" />
 
@@ -1203,9 +1203,9 @@
 
 		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
 
-		<var name="key_folderName" value="${folderName}" />
-
-		<execute function="AssertClick" locator1="WC#FOLDER_TABLE_CHOOSE" value1="Choose" />
+		<execute function="AssertClick" locator1="WC#FOLDER_TABLE_CHOOSE" value1="Choose">
+			<var name="key_folderName" value="${folderName}" />
+		</execute>
 
 		<execute function="SelectFrameTop" />
 
@@ -1213,7 +1213,7 @@
 
 		<execute function="AssertClick" locator1="Button#MOVE" value1="Move" />
 
-		<execute function="AssertElementPresent" locator1="Message#SUCCESS" />
+		<execute macro="Alert#viewSuccessMessage" />
 	</command>
 
 	<command name="moveToRecycleBinCP">
