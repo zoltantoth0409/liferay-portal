@@ -20,10 +20,15 @@ import aQute.bnd.annotation.ProviderType;
  * @author Leonardo Barros
  */
 @ProviderType
-public class StringTerm extends Term {
+public class StringLiteral extends Term {
 
-	public StringTerm(String value) {
+	public StringLiteral(String value) {
 		super(value);
+	}
+
+	@Override
+	public <T> T accept(ExpressionVisitor<T> visitor) {
+		return visitor.visit(this);
 	}
 
 	@Override
