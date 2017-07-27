@@ -1327,9 +1327,6 @@ public class CalendarPortlet extends MVCPortlet {
 
 		Hits hits = search(themeDisplay, keywords);
 
-		long layoutSetPrototypeClassNameId = _portal.getClassNameId(
-			LayoutSetPrototype.class);
-
 		for (Document document : hits.getDocs()) {
 			long calendarId = GetterUtil.getLong(
 				document.get(Field.ENTRY_CLASS_PK));
@@ -1341,6 +1338,9 @@ public class CalendarPortlet extends MVCPortlet {
 			if (calendarResource.isActive()) {
 				Group group = _groupLocalService.getGroup(
 					calendar.getGroupId());
+
+				long layoutSetPrototypeClassNameId = _portal.getClassNameId(
+					LayoutSetPrototype.class);
 
 				if (group.getClassNameId() == layoutSetPrototypeClassNameId) {
 					continue;
@@ -1373,9 +1373,9 @@ public class CalendarPortlet extends MVCPortlet {
 			themeDisplay.getCompanyId(), name, null, params, true, 0,
 			SearchContainer.DEFAULT_DELTA);
 
-		long groupClassNameId = _portal.getClassNameId(Group.class);
-
 		for (Group group : groups) {
+			long groupClassNameId = _portal.getClassNameId(Group.class);
+
 			addCalendar(
 				resourceRequest, calendarsSet, groupClassNameId,
 				group.getGroupId());
