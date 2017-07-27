@@ -33,12 +33,6 @@ NotificationsUtil.populateResults(themeDisplay.getUserId(), actionRequired, navi
 PortletURL navigationURL = PortletURLUtil.clone(currentURLObj, renderResponse);
 
 navigationURL.setParameter(SearchContainer.DEFAULT_CUR_PARAM, "0");
-
-String[] navigationKeys = new String[] {"all"};
-
-if (!actionRequired) {
-	navigationKeys = new String[] {"all", "unread", "read"};
-}
 %>
 
 <aui:nav-bar markupView="lexicon">
@@ -81,6 +75,15 @@ if (!actionRequired) {
 	</liferay-frontend:management-bar-buttons>
 
 	<liferay-frontend:management-bar-filters>
+
+		<%
+		String[] navigationKeys = new String[] {"all"};
+
+		if (!actionRequired) {
+			navigationKeys = new String[] {"all", "unread", "read"};
+		}
+		%>
+
 		<liferay-frontend:management-bar-navigation
 			navigationKeys="<%= navigationKeys %>"
 			portletURL="<%= PortletURLUtil.clone(navigationURL, renderResponse) %>"
