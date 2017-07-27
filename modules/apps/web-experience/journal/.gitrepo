@@ -7,5 +7,5 @@
 	commit = 0141be54d49ce2e0d4a537aa26061fae11034ad6
 	mergebuttonmergecommits = false
 	mode = pull
-	parent = da91f7f4392dd94eed9a5db46d659e9c9e798d1a
+	parent = 0000000000000000000000000000000000000000
 	remote = git@github.com:liferay/com-liferay-journal.git
