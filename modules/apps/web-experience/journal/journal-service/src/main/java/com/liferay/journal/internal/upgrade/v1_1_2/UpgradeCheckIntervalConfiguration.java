@@ -16,6 +16,7 @@ package com.liferay.journal.internal.upgrade.v1_1_2;
 
 import com.liferay.journal.configuration.JournalServiceConfiguration;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Time;
 
@@ -41,29 +42,29 @@ public class UpgradeCheckIntervalConfiguration extends UpgradeProcess {
 	}
 
 	protected void upgradeCheckIntervalConfiguration() throws Exception {
-		Configuration journalServiceConfiguration =
-			_configurationAdmin.getConfiguration(
-				JournalServiceConfiguration.class.getName(),
-				StringPool.QUESTION);
+		Configuration configuration = _configurationAdmin.getConfiguration(
+			JournalServiceConfiguration.class.getName(), StringPool.QUESTION);
 
-		Dictionary properties = journalServiceConfiguration.getProperties();
+		Dictionary<String, Object> properties = configuration.getProperties();
 
 		if (properties == null) {
 			return;
 		}
 
-		long checkIntervalMilliseconds = (long)properties.get("checkInterval");
+		long checkIntervalMilliseconds = GetterUtil.getLong(
+			properties.get("checkInterval"));
 
 		long checkIntervalMinutes = checkIntervalMilliseconds / Time.MINUTE;
 
-		if (checkIntervalMinutes > Integer.MAX_VALUE) {
-			properties.put("checkInterval", Integer.MAX_VALUE);
-		}
-		else {
-			properties.put("checkInterval", (int)checkIntervalMinutes);
+		int checkInterval = Integer.MAX_VALUE;
+
+		if (checkIntervalMinutes <= Integer.MAX_VALUE) {
+			checkInterval = (int)checkIntervalMinutes;
 		}
 
-		journalServiceConfiguration.update(properties);
+		properties.put("checkInterval", checkInterval);
+
+		configuration.update(properties);
 	}
 
 	private final ConfigurationAdmin _configurationAdmin;
