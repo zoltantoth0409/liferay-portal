@@ -221,11 +221,11 @@ do
 
 	if [[ -z $(git -C "${SUBREPO_PATH}" show "${SUBREPO_COMMIT}" 2>/dev/null) ]]
 	then
-		git -C "${SUBREPO_PATH}" fetch -q "git@github.com:liferay/${SUBREPO_NAME}" "${SUBREPO_COMMIT}"
+		git -C "${SUBREPO_PATH}" fetch -q "git@github.com:liferay/${SUBREPO_NAME}.git" "${SUBREPO_COMMIT}"
 
 		if [[ -z $(git -C "${SUBREPO_PATH}" show "${SUBREPO_COMMIT}" 2>/dev/null) ]]
 		then
-			warn "Skipping ${SUBREPO_NAME}:${SUBREPO_BRANCH}, failed to fetch sha subrepo sha ${SUBREPO_COMMIT}."
+			warn "Skipping ${SUBREPO_NAME}:${SUBREPO_BRANCH}, failed to fetch sha subrepo sha ${SUBREPO_COMMIT}"
 
 			continue
 		fi
