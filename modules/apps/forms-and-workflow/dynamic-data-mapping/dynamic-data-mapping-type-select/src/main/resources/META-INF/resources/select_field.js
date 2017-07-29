@@ -136,6 +136,10 @@ AUI.add(
 										instance.set('dataSourceOptions', options);
 
 										container.html(instance.getTemplate());
+
+										if (instance.get('repeatable')) {
+											instance.renderRepeatable();
+										}
 									}
 								);
 							}
