@@ -48,6 +48,8 @@
 	</tear-down>
 
 	<command name="ViewEventTime" priority="5">
+		<property name="portal.release" value="true" />
+
 		<execute macro="EventsListPortlet#viewDefaultMessage" />
 
 		<execute macro="CalendarNavigator#gotoAddEvent" />
