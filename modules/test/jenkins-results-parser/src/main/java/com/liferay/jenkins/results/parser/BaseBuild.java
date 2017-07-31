@@ -1843,14 +1843,12 @@ public abstract class BaseBuild implements Build {
 				String upstreamJobName =
 					getJobName().replace("pullrequest", "upstream");
 
-				String upstreamFailuresJSONURL =
-					JenkinsResultsParserUtil.getLocalURL(
-						UPSTREAM_FAILURES_JOB_BASE_URL + upstreamJobName +
-							"/builds/latest/test.results.json");
+				String url = JenkinsResultsParserUtil.getLocalURL(
+					UPSTREAM_FAILURES_JOB_BASE_URL + upstreamJobName +
+						"/builds/latest/test.results.json");
 
 				upstreamFailuresJobJSONObject =
-					JenkinsResultsParserUtil.toJSONObject(
-						upstreamFailuresJSONURL);
+					JenkinsResultsParserUtil.toJSONObject(url);
 			}
 		}
 		catch (IOException ioe) {
