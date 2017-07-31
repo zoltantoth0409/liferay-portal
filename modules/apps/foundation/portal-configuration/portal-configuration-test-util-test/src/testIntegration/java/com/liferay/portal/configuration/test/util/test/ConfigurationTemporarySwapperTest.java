@@ -51,7 +51,7 @@ public class ConfigurationTemporarySwapperTest {
 
 	@Before
 	public void setUp() throws Exception {
-		_deleteConfiguration(_SEARCH_CONFIGURATION_PID);
+		_deleteConfiguration(_CONFIGURATION_PID);
 	}
 
 	@After
@@ -61,7 +61,7 @@ public class ConfigurationTemporarySwapperTest {
 
 	@Test
 	public void testWillCleanUpConfiguration() throws Exception {
-		_pid = _SEARCH_CONFIGURATION_PID;
+		_pid = _CONFIGURATION_PID;
 
 		_callPersistenceManager(
 			persistenceManager -> {
@@ -129,7 +129,7 @@ public class ConfigurationTemporarySwapperTest {
 
 	@Test
 	public void testWillPreservePreviouslySavedProperties() throws Exception {
-		_pid = _SEARCH_CONFIGURATION_PID;
+		_pid = _CONFIGURATION_PID;
 
 		String testKey = "permissionTermsLimit";
 		Integer valueToPreserve = 250;
@@ -171,7 +171,7 @@ public class ConfigurationTemporarySwapperTest {
 
 	@Test
 	public void testWillUpdateConfigurationValues() throws Exception {
-		_pid = _SEARCH_CONFIGURATION_PID;
+		_pid = _CONFIGURATION_PID;
 
 		String testKey = "permissionTermsLimit";
 		Integer testValue = 300;
@@ -238,7 +238,7 @@ public class ConfigurationTemporarySwapperTest {
 				pid, location));
 	}
 
-	private static final String _SEARCH_CONFIGURATION_PID =
+	private static final String _CONFIGURATION_PID =
 		"com.liferay.portal.search.configuration." +
 			"SearchPermissionCheckerConfiguration";
 
