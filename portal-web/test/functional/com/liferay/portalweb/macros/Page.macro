@@ -864,18 +864,18 @@
 			</then>
 		</if>
 	</command>
-</command>
 
-<command name="viewLayoutLogoPG">
-	<if>
-		<equals arg1="${assertLayoutLogoPresent}" arg2="true" />
-		<then>
-			<execute function="AssertElementPresent" locator1="Home#LAYOUT_LOGO" />
-		</then>
-		<else>
-			<execute function="AssertElementNotPresent" locator1="Home#LAYOUT_LOGO" />
-		</else>
-	</if>
+	<command name="viewLayoutLogoPG">
+		<if>
+			<equals arg1="${assertLayoutLogoPresent}" arg2="true" />
+			<then>
+				<execute function="AssertElementPresent" locator1="Home#LAYOUT_LOGO" />
+			</then>
+			<else>
+				<execute function="AssertElementNotPresent" locator1="Home#LAYOUT_LOGO" />
+			</else>
+		</if>
+	</command>
 
 	<command name="viewLoadMoreResultsPages">
 		<execute macro="ProductMenuHelper#expandPageTree" />
