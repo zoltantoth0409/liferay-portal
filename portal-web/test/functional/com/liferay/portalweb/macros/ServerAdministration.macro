@@ -84,15 +84,7 @@
 		<execute function="Type" locator1="ServerAdministrationMail#INCOMING_PORT" value1="995" />
 		<execute function="Check" locator1="ServerAdministrationMail#INCOMING_SECURE_NETWORK_CONNECTION_CHECKBOX" />
 
-		<if>
-			<equals arg1="${needsReply}" arg2="true" />
-			<then>
-				<execute function="Type" locator1="ServerAdministrationMail#INCOMING_USER_NAME" value1="recent:${userName}" />
-			</then>
-			<else>
-				<execute function="Type" locator1="ServerAdministrationMail#INCOMING_USER_NAME" value1="${userName}" />
-			</else>
-		</if>
+		<execute function="Type" locator1="ServerAdministrationMail#INCOMING_USER_NAME" value1="${userName}" />
 
 		<execute function="Type" locator1="ServerAdministrationMail#INCOMING_PASSWORD" value1="${userPassword}" />
 		<execute function="Type" locator1="ServerAdministrationMail#OUTGOING_SMTP_SERVER" value1="smtp.gmail.com" />
