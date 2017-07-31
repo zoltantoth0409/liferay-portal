@@ -28,7 +28,7 @@ public class AppServer {
 
 	public static AppServer getJBossEAPAppServer() {
 		return new AppServer(
-			"../../jboss-eap-6.4.0", _getJBossAndWildflyExtraLibDirs(),
+			"../../jboss-eap-6.4.0", _getJBossExtraLibDirNames(),
 			"/modules/com/liferay/portal/main",
 			"/standalone/deployments/ROOT.war", "jboss");
 	}
@@ -71,7 +71,7 @@ public class AppServer {
 
 	public static AppServer getWildFlyAppServer() {
 		return new AppServer(
-			"../../wildfly-10.0.0", _getJBossAndWildflyExtraLibDirs(),
+			"../../wildfly-10.0.0", _getJBossExtraLibDirNames(),
 			"/modules/com/liferay/portal/main",
 			"/standalone/deployments/ROOT.war", "wildfly");
 	}
@@ -136,7 +136,7 @@ public class AppServer {
 		_portalDir = new File(_dir, portalDirName);
 	}
 
-	private static String _getJBossAndWildflyExtraLibDirs() {
+	private static String _getJBossExtraLibDirNames() {
 		StringBuilder sb = new StringBuilder();
 
 		String extraLibDirPrefix = "/modules/system/layers/base/";
