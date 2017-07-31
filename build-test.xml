@@ -5112,9 +5112,9 @@ go]]></replacevalue>
 										String fixpackVersion = project.getProperty("fixpack.version");
 
 										if (appFileName.equals("Liferay Sync Connector.lpkg") && (fixpackVersion != null)) {
-											int fixpackVersionInteger = Integer.valueOf(fixpackVersion);
+											int fixpackVersionInt = Integer.valueOf(fixpackVersion);
 
-											if (fixpackVersionInteger >= 19) {
+											if (fixpackVersionInt >= 19) {
 												project.setProperty("sync.connector.override", "true");
 											}
 										}
@@ -8360,9 +8360,9 @@ ANT_OPTS=${env.ANT_OPTS}</echo>
 						String fixpackVersion = project.getProperty("fixpack.version");
 
 						if (fixpackVersion != null) {
-							Integer fixpackVersionInteger = Integer.valueOf(fixpackVersion);
+							Integer fixpackVersionInt = Integer.valueOf(fixpackVersion);
 
-							if (fixpackVersionInteger >= 16) {
+							if (fixpackVersionInt >= 16) {
 								project.setProperty("enable.ext.environment", "true");
 							}
 						}
