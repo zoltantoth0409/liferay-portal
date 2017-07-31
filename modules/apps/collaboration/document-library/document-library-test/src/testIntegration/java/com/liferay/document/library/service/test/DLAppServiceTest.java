@@ -118,7 +118,7 @@ public class DLAppServiceTest extends BaseDLAppTestCase {
 		public void assetTagsShouldBeOrdered() throws Exception {
 			String fileName = RandomTestUtil.randomString();
 
-			String[] assetTagNames = new String[] {"hello", "world"};
+			String[] assetTagNames = {"hello", "world"};
 
 			FileEntry fileEntry = addFileEntry(
 				group.getGroupId(), parentFolder.getFolderId(), fileName,
@@ -1179,7 +1179,7 @@ public class DLAppServiceTest extends BaseDLAppTestCase {
 		public void shouldFindFileEntryByAssetTagName() throws Exception {
 			String fileName = RandomTestUtil.randomString();
 
-			String[] assetTagNames = new String[] {"hello", "world"};
+			String[] assetTagNames = {"hello", "world"};
 
 			FileEntry fileEntry = addFileEntry(
 				group.getGroupId(), parentFolder.getFolderId(), fileName,
@@ -1200,7 +1200,7 @@ public class DLAppServiceTest extends BaseDLAppTestCase {
 			String changeLog = StringPool.BLANK;
 			byte[] bytes = CONTENT.getBytes();
 
-			String[] assetTagNames = new String[] {"hello", "world"};
+			String[] assetTagNames = {"hello", "world"};
 
 			FileEntry fileEntry = addFileEntry(
 				group.getGroupId(), parentFolder.getFolderId(), fileName,
@@ -1252,7 +1252,7 @@ public class DLAppServiceTest extends BaseDLAppTestCase {
 		public void assetEntryShouldBeAddedWhenDraft() throws Exception {
 			String fileName = RandomTestUtil.randomString();
 			byte[] bytes = CONTENT.getBytes();
-			String[] assetTagNames = new String[] {"hello"};
+			String[] assetTagNames = {"hello"};
 
 			FileEntry fileEntry = addFileEntry(
 				group.getGroupId(), parentFolder.getFolderId(), fileName,
@@ -1300,7 +1300,7 @@ public class DLAppServiceTest extends BaseDLAppTestCase {
 			throws Exception {
 
 			String fileName = RandomTestUtil.randomString();
-			String[] assetTagNames = new String[] {"hello"};
+			String[] assetTagNames = {"hello"};
 
 			FileEntry fileEntry = addFileEntry(
 				group.getGroupId(), parentFolder.getFolderId(), fileName,
@@ -1351,7 +1351,7 @@ public class DLAppServiceTest extends BaseDLAppTestCase {
 			FileEntry fileEntry = addFileEntry(
 				group.getGroupId(), parentFolder.getFolderId(), fileName);
 
-			String[] assetTagNames = new String[] {"hello", "world", "liferay"};
+			String[] assetTagNames = {"hello", "world", "liferay"};
 
 			ServiceContext serviceContext =
 				ServiceContextTestUtil.getServiceContext(group.getGroupId());
