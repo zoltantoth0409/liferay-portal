@@ -53,7 +53,7 @@ public class StagingServiceImpl extends StagingServiceBaseImpl {
 		catch (PortalException pe) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"Error calling StagingServiceImpl.cleanUpStagingRequest(" +
+					"StagingServiceImpl#cleanUpStagingRequest(" +
 						stagingRequestId + ")",
 					pe);
 			}
@@ -77,8 +77,8 @@ public class StagingServiceImpl extends StagingServiceBaseImpl {
 		catch (PortalException pe) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"Error calling StagingServiceImpl.createStagingRequest(" +
-						groupId + "," + checksum + ")",
+					"StagingServiceImpl#createStagingRequest(" + groupId +
+						", " + checksum + ")",
 					pe);
 			}
 
@@ -101,8 +101,8 @@ public class StagingServiceImpl extends StagingServiceBaseImpl {
 		catch (PortalException pe) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"Error calling StagingServiceImpl.hasRemoteLayout(" + uuid +
-						"," + groupId + "," + privateLayout + ")",
+					"StagingServiceImpl#hasRemoteLayout(" + uuid + ", " +
+						groupId + ", " + privateLayout + ")",
 					pe);
 			}
 
@@ -146,16 +146,16 @@ public class StagingServiceImpl extends StagingServiceBaseImpl {
 		}
 		catch (PortalException pe) {
 			if (_log.isDebugEnabled()) {
-				StringBundler sb = new StringBundler(10);
+				StringBundler sb = new StringBundler(9);
 
-				sb.append("Error calling StagingServiceImpl.");
-				sb.append("propagateExportImportLifecycleEvent(");
+				sb.append(
+					"StagingServiceImpl#propagateExportImportLifecycleEvent(");
 				sb.append(code);
-				sb.append(StringPool.COMMA);
+				sb.append(StringPool.COMMA_AND_SPACE);
 				sb.append(processFlag);
-				sb.append(StringPool.COMMA);
+				sb.append(StringPool.COMMA_AND_SPACE);
 				sb.append(processId);
-				sb.append(StringPool.COMMA);
+				sb.append(StringPool.COMMA_AND_SPACE);
 				sb.append(arguments);
 				sb.append(StringPool.CLOSE_PARENTHESIS);
 
@@ -197,8 +197,8 @@ public class StagingServiceImpl extends StagingServiceBaseImpl {
 		catch (PortalException pe) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"Error calling StagingServiceImpl.publishStagingRequest(" +
-						stagingRequestId + "," + exportImportConfiguration +
+					"StagingServiceImpl#publishStagingRequest(" +
+						stagingRequestId + ", " + exportImportConfiguration +
 							")",
 					pe);
 			}
@@ -221,9 +221,9 @@ public class StagingServiceImpl extends StagingServiceBaseImpl {
 		catch (PortalException pe) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"Error calling StagingServiceImpl.updateStagingRequest(" +
-						stagingRequestId + "," + fileName + "," + bytes.length +
-							"bytes)",
+					"StagingServiceImpl#updateStagingRequest(" +
+						stagingRequestId + ", " + fileName + ", " +
+							bytes.length + "bytes)",
 					pe);
 			}
 
