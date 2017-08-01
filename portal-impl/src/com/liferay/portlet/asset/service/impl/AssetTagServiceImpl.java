@@ -238,7 +238,7 @@ public class AssetTagServiceImpl extends AssetTagServiceBaseImpl {
 	public JSONArray search(long[] groupIds, String name, int start, int end) {
 		List<AssetTag> tags = getTags(groupIds, name, start, end);
 
-		return Autocomplete.listToJson(tags, "name", "name");
+		return Autocomplete.arrayToJSONArray(tags, "name", "name");
 	}
 
 	@Override

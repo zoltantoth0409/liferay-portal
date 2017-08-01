@@ -27,11 +27,17 @@ import java.util.Map;
  */
 public class Autocomplete {
 
-	public static JSONArray arrayToJson(String[] array, int max) {
-		return arrayToJson(_singleToPairArray(array), max);
+	public static JSONArray arrayToJSONArray(
+		List<?> list, String textParam, String valueParam) {
+
+		return arrayToJSONArray(listToArray(list, textParam, valueParam), -1);
 	}
 
-	public static JSONArray arrayToJson(String[][] array, int max) {
+	public static JSONArray arrayToJSONArray(String[] array, int max) {
+		return arrayToJSONArray(_singleToPairArray(array), max);
+	}
+
+	public static JSONArray arrayToJSONArray(String[][] array, int max) {
 		if (max <= 0) {
 			max = array.length;
 		}
@@ -112,12 +118,6 @@ public class Autocomplete {
 		}
 
 		return array;
-	}
-
-	public static JSONArray listToJson(
-		List<?> list, String textParam, String valueParam) {
-
-		return arrayToJson(listToArray(list, textParam, valueParam), -1);
 	}
 
 	public static String listToXml(

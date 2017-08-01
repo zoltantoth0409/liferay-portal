@@ -373,7 +373,7 @@ public class AssetCategoryServiceImpl extends AssetCategoryServiceBaseImpl {
 
 		categories = filterCategories(categories);
 
-		return Autocomplete.listToJson(categories, "name", "name");
+		return Autocomplete.arrayToJSONArray(categories, "name", "name");
 	}
 
 	@Override
