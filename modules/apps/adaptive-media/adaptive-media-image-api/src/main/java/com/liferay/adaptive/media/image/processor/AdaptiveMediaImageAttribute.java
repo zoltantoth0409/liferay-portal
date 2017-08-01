@@ -44,9 +44,9 @@ public final class AdaptiveMediaImageAttribute {
 	 * @return the list of available attributes
 	 */
 	public static Map<String, AdaptiveMediaAttribute<?, ?>>
-		getAllowedAttributes() {
+		getAllowedAdaptiveMediaAttributes() {
 
-		return _allowedAttributes;
+		return _allowedAdaptiveMediaAttributes;
 	}
 
 	private static int _intDistance(int i1, int i2) {
@@ -57,18 +57,18 @@ public final class AdaptiveMediaImageAttribute {
 	}
 
 	private static final Map<String, AdaptiveMediaAttribute<?, ?>>
-		_allowedAttributes = new HashMap<>();
+		_allowedAdaptiveMediaAttributes = new HashMap<>();
 
 	static {
-		_allowedAttributes.put(
+		_allowedAdaptiveMediaAttributes.put(
 			AdaptiveMediaImageAttribute.IMAGE_HEIGHT.getName(),
 			AdaptiveMediaImageAttribute.IMAGE_HEIGHT);
-		_allowedAttributes.put(
+		_allowedAdaptiveMediaAttributes.put(
 			AdaptiveMediaImageAttribute.IMAGE_WIDTH.getName(),
 			AdaptiveMediaImageAttribute.IMAGE_WIDTH);
 
-		_allowedAttributes.putAll(
-			AdaptiveMediaAttribute.getAllowedAttributes());
+		_allowedAdaptiveMediaAttributes.putAll(
+			AdaptiveMediaAttribute.getAllowedAdaptiveMediaAttributes());
 	}
 
 }

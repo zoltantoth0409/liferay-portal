@@ -44,9 +44,9 @@ public final class AdaptiveMediaAttribute<T, V> {
 	 * @return the list of available attributes
 	 */
 	public static Map<String, AdaptiveMediaAttribute<?, ?>>
-		getAllowedAttributes() {
+		getAllowedAdaptiveMediaAttributes() {
 
-		return _allowedAttributes;
+		return _allowedAdaptiveMediaAttributes;
 	}
 
 	/**
@@ -112,7 +112,7 @@ public final class AdaptiveMediaAttribute<T, V> {
 		String name, Function<String, V> converter, Comparator<V> comparator) {
 
 		_name = name;
-		_converter = converter;
+		_converterFunction = converter;
 		_comparator = comparator;
 	}
 
@@ -138,7 +138,7 @@ public final class AdaptiveMediaAttribute<T, V> {
 	 * @return the value converted to the correct type
 	 */
 	public V convert(String value) {
-		return _converter.apply(value);
+		return _converterFunction.apply(value);
 	}
 
 	/**
@@ -180,25 +180,25 @@ public final class AdaptiveMediaAttribute<T, V> {
 			"file-name", (value) -> value, String::compareTo);
 
 	private static final Map<String, AdaptiveMediaAttribute<?, ?>>
-		_allowedAttributes = new HashMap<>();
+		_allowedAdaptiveMediaAttributes = new HashMap<>();
 
 	static {
-		_allowedAttributes.put(
+		_allowedAdaptiveMediaAttributes.put(
 			AdaptiveMediaAttribute._CONFIGURATION_UUID.getName(),
 			AdaptiveMediaAttribute._CONFIGURATION_UUID);
-		_allowedAttributes.put(
+		_allowedAdaptiveMediaAttributes.put(
 			AdaptiveMediaAttribute._CONTENT_LENGTH.getName(),
 			AdaptiveMediaAttribute._CONTENT_LENGTH);
-		_allowedAttributes.put(
+		_allowedAdaptiveMediaAttributes.put(
 			AdaptiveMediaAttribute._CONTENT_TYPE.getName(),
 			AdaptiveMediaAttribute._CONTENT_TYPE);
-		_allowedAttributes.put(
+		_allowedAdaptiveMediaAttributes.put(
 			AdaptiveMediaAttribute._FILE_NAME.getName(),
 			AdaptiveMediaAttribute._FILE_NAME);
 	}
 
 	private final Comparator<V> _comparator;
-	private final Function<String, V> _converter;
+	private final Function<String, V> _converterFunction;
 	private final String _name;
 
 }
