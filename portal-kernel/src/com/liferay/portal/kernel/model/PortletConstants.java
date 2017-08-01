@@ -82,9 +82,9 @@ public class PortletConstants {
 	 * the portlet ID contains a user ID it will be replaced by the user ID
 	 * parameter.
 	 *
-	 * @param  portletId the portlet ID
-	 * @param  userId a user ID
-	 * @return the properly assembled portlet ID
+	 * @param      portletId the portlet ID
+	 * @param      userId a user ID
+	 * @return     the properly assembled portlet ID
 	 * @deprecated As of 7.0.0, with no direct replacement
 	 */
 	@Deprecated
@@ -99,11 +99,11 @@ public class PortletConstants {
 	 * parameter. If the portlet ID contains an instance ID it will be replaced
 	 * by the instance ID parameter.
 	 *
-	 * @param  portletId the portlet ID
-	 * @param  userId the user ID
-	 * @param  instanceId an instance ID. If <code>null</code>, an instance ID
-	 *         is derived from the portlet ID.
-	 * @return the properly assembled portlet ID
+	 * @param      portletId the portlet ID
+	 * @param      userId the user ID
+	 * @param      instanceId an instance ID. If <code>null</code>, an instance
+	 *             ID is derived from the portlet ID.
+	 * @return     the properly assembled portlet ID
 	 * @deprecated As of 7.0.0, with no direct replacement
 	 */
 	@Deprecated
@@ -124,9 +124,9 @@ public class PortletConstants {
 	 * portlet ID contains an instance ID it will be replaced by the instance ID
 	 * parameter.
 	 *
-	 * @param  portletId the portlet ID
-	 * @param  instanceId an instance ID
-	 * @return the properly assembled portlet ID
+	 * @param      portletId the portlet ID
+	 * @param      instanceId an instance ID
+	 * @return     the properly assembled portlet ID
 	 * @deprecated As of 7.0.0, with no direct replacement
 	 */
 	@Deprecated
@@ -150,8 +150,8 @@ public class PortletConstants {
 	/**
 	 * Returns the instance ID of the portlet.
 	 *
-	 * @param  portletId the portlet ID
-	 * @return the instance ID of the portlet
+	 * @param      portletId the portlet ID
+	 * @return     the instance ID of the portlet
 	 * @deprecated As of 7.0.0, replaced by {@link
 	 *             PortletIdCodec#decodeInstanceId(java.lang.String)}
 	 */
@@ -163,8 +163,8 @@ public class PortletConstants {
 	/**
 	 * Returns the root portlet ID of the portlet.
 	 *
-	 * @param  portletId the portlet ID
-	 * @return the root portlet ID of the portlet
+	 * @param      portletId the portlet ID
+	 * @return     the root portlet ID of the portlet
 	 * @deprecated As of 7.0.0, replaced by {@link
 	 *             PortletIdCodec#decodePortletName(java.lang.String)}
 	 */
@@ -177,8 +177,8 @@ public class PortletConstants {
 	 * Returns the user ID of the portlet. This only applies when the portlet is
 	 * added by a user to a page in customizable mode.
 	 *
-	 * @param  portletId the portlet ID
-	 * @return the user ID of the portlet
+	 * @param      portletId the portlet ID
+	 * @return     the user ID of the portlet
 	 * @deprecated As of 7.0.0, replaced by {@link
 	 *             PortletIdCodec#decodeUserId(java.lang.String)}
 	 */
@@ -202,9 +202,9 @@ public class PortletConstants {
 	/**
 	 * Returns <code>true</code> if the portlet ID contains an instance ID.
 	 *
-	 * @param  portletId the portlet ID
-	 * @return <code>true</code> if the portlet ID contains an instance ID;
-	 *         <code>false</code> otherwise
+	 * @param      portletId the portlet ID
+	 * @return     <code>true</code> if the portlet ID contains an instance ID;
+	 *             <code>false</code> otherwise
 	 * @deprecated As of 7.0.0, replaced by {@link
 	 *             PortletIdCodec#hasInstanceId(java.lang.String)}
 	 */
@@ -216,9 +216,9 @@ public class PortletConstants {
 	/**
 	 * Returns <code>true</code> if the portlet ID contains a user ID.
 	 *
-	 * @param  portletId the portlet ID
-	 * @return <code>true</code> if the portlet ID contains a user ID;
-	 *         <code>false</code> otherwise
+	 * @param      portletId the portlet ID
+	 * @return     <code>true</code> if the portlet ID contains a user ID;
+	 *             <code>false</code> otherwise
 	 * @deprecated As of 7.0.0, replaced by {@link
 	 *             PortletIdCodec#hasUserId(java.lang.String)}
 	 */

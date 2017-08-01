@@ -37,8 +37,8 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Michael C. Han
- * @see PortalInstancesLocalServiceBaseImpl
- * @see com.liferay.portal.instances.service.PortalInstancesLocalServiceUtil
+ * @see    PortalInstancesLocalServiceBaseImpl
+ * @see    com.liferay.portal.instances.service.PortalInstancesLocalServiceUtil
  */
 public class PortalInstancesLocalServiceImpl
 	extends PortalInstancesLocalServiceBaseImpl {

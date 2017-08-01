@@ -37,7 +37,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * @author Adolfo Pérez
+ * @author     Adolfo Pérez
  * @deprecated As of 7.0.0, replaced by {@link
  *             com.liferay.document.library.internal.util.DLValidatorImpl}
  */

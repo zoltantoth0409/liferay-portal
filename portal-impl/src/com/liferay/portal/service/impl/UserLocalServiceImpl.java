@@ -449,8 +449,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	/**
 	 * Adds the users to the group.
 	 *
-	 * @param groupId the primary key of the group
-	 * @param users the users
+	 * @param  groupId the primary key of the group
+	 * @param  users the users
 	 * @throws PortalException
 	 */
 	@Override
@@ -601,8 +601,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	/**
 	 * Adds the users to the role.
 	 *
-	 * @param roleId the primary key of the role
-	 * @param users the users
+	 * @param  roleId the primary key of the role
+	 * @param  users the users
 	 * @throws PortalException
 	 */
 	@Override
@@ -668,8 +668,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	/**
 	 * Adds the users to the team.
 	 *
-	 * @param teamId the primary key of the team
-	 * @param users the users
+	 * @param  teamId the primary key of the team
+	 * @param  users the users
 	 * @throws PortalException
 	 */
 	@Override
@@ -788,7 +788,6 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	 * Adds the user to the user group.
 	 *
 	 * @param userGroupId the primary key of the user group
-	 * @param userIds the primary key of the user
 	 */
 	@Override
 	@SuppressWarnings("deprecation")
@@ -2978,9 +2977,9 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	 * the user that his password is expiring and the remaining time until
 	 * expiration is equal or less than the configured warning time.
 	 *
-	 * @param  user the user
-	 * @return <code>true</code> if the user's password is expiring soon;
-	 *         <code>false</code> otherwise
+	 * @param      user the user
+	 * @return     <code>true</code> if the user's password is expiring soon;
+	 *             <code>false</code> otherwise
 	 * @deprecated As of 7.0.0
 	 */
 	@Deprecated

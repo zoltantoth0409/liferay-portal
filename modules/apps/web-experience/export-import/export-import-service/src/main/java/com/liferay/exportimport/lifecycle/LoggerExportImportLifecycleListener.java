@@ -34,7 +34,7 @@ import java.io.Serializable;
 import java.util.Map;
 
 /**
- * @author Daniel Kocsis
+ * @author     Daniel Kocsis
  * @deprecated As of 3.6.0
  */
 @Deprecated

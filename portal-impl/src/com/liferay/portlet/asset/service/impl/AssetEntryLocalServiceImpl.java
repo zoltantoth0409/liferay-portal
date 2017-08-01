@@ -1048,7 +1048,7 @@ public class AssetEntryLocalServiceImpl extends AssetEntryLocalServiceBaseImpl {
 
 	/**
 	 * @deprecated As of 7.0.0, replaced by {@link #validate(long, String, long,
-	 * 			   long, long[], String[])}
+	 *             long, long[], String[])}
 	 */
 	@Deprecated
 	@Override
