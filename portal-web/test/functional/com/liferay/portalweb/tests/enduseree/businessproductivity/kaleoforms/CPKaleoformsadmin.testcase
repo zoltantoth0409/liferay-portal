@@ -383,7 +383,7 @@
 		</execute>
 	</command>
 
-	<command ignore="true" name="DeleteCreateFormViaDDL" priority="3">
+	<command name="DeleteCreateFormViaDDL" priority="3">
 		<var name="kfFieldSetName" value="${kfFieldSetName}" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
@@ -508,7 +508,7 @@
 		</execute>
 	</command>
 
-	<command ignore="true" name="DeleteCreateFormViaKaleoFormsAdmin" priority="4">
+	<command name="DeleteCreateFormViaKaleoFormsAdmin" priority="4">
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
 		<execute macro="Navigator#openURL" />
@@ -601,7 +601,7 @@
 		</execute>
 	</command>
 
-	<command ignore="true" name="DeleteEditFormViaKaleoFormsAdmin" priority="3">
+	<command name="DeleteEditFormViaKaleoFormsAdmin" priority="3">
 		<var name="kfProcessName" value="Kaleo Forms Process" />
 
 		<execute macro="Navigator#openURL" />
@@ -721,7 +721,7 @@
 		<execute macro="KaleoFormsAdmin#deleteFieldSet" />
 	</command>
 
-	<command ignore="true" name="DeleteForm" priority="4">
+	<command name="DeleteForm" priority="4">
 		<var name="kfFieldSetName" value="${kfFieldSetName}" />
 		<var name="kfProcessDescription" value="Kaleo Forms Process Description" />
 		<var name="kfProcessName" value="Kaleo Forms Process" />
