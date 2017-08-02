@@ -230,7 +230,7 @@ do
 
 	if [[ -z $(git -C "${SUBREPO_PATH}" show "${SUBREPO_COMMIT}" 2>/dev/null) ]]
 	then
-		git -C "${SUBREPO_PATH}" fetch -q "git@github.com:liferay/${SUBREPO_NAME}.git" "${SUBREPO_COMMIT}"
+		git -C "${SUBREPO_PATH}" fetch -q "git@github.com:liferay/${SUBREPO_NAME}.git" "${SUBREPO_BRANCH}"
 
 		if [[ -z $(git -C "${SUBREPO_PATH}" show "${SUBREPO_COMMIT}" 2>/dev/null) ]]
 		then
