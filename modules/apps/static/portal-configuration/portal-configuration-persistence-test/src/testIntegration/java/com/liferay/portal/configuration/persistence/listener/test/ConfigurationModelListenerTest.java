@@ -20,6 +20,7 @@ import com.liferay.portal.configuration.persistence.listener.ConfigurationModelL
 import com.liferay.portal.kernel.util.HashMapDictionary;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.UnsafeConsumer;
 import com.liferay.portal.osgi.util.test.OSGiServiceUtil;
 
 import java.io.IOException;
@@ -92,7 +93,10 @@ public class ConfigurationModelListenerTest {
 		_configuration.delete();
 
 		Assert.assertTrue(called.get());
-		Assert.assertFalse(_hasPid(pid));
+
+		_callPersistenceManager(
+			persistenceManager -> Assert.assertFalse(
+				persistenceManager.exists(pid)));
 	}
 
 	@Test
@@ -158,7 +162,9 @@ public class ConfigurationModelListenerTest {
 			Assert.fail();
 		}
 		catch (ConfigurationModelListenerException cmle) {
-			Assert.assertTrue(_hasPid(pid));
+			_callPersistenceManager(
+				persistenceManager -> Assert.assertTrue(
+					persistenceManager.exists(pid)));
 		}
 	}
 
@@ -212,6 +218,19 @@ public class ConfigurationModelListenerTest {
 		}
 	}
 
+	private static <E extends Throwable> void _callPersistenceManager(
+			UnsafeConsumer<PersistenceManager, E> unsafeConsumer)
+		throws E {
+
+		OSGiServiceUtil.callService(
+			_bundleContext, PersistenceManager.class,
+			persistenceManager -> {
+				unsafeConsumer.accept(persistenceManager);
+
+				return null;
+			});
+	}
+
 	private static Configuration _getConfiguration(String pid, String location)
 		throws IOException {
 
@@ -219,12 +238,6 @@ public class ConfigurationModelListenerTest {
 			_bundleContext, ConfigurationAdmin.class,
 			configurationAdmin -> configurationAdmin.getConfiguration(
 				pid, location));
-	}
-
-	private static boolean _hasPid(String pid) {
-		return OSGiServiceUtil.callService(
-			_bundleContext, PersistenceManager.class,
-			persistenceManager -> persistenceManager.exists(pid));
 	}
 
 	private ServiceRegistration<?> _registerConfigurationModelListener(
