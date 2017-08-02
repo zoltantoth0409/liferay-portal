@@ -8325,6 +8325,7 @@ public class PortalImpl implements Portal {
 		}
 
 		for (Locale locale : availableLocales) {
+			String alternateURL = canonicalURL;
 			String alternateURLSuffix = canonicalURLSuffix;
 			String languageId = LocaleUtil.toLanguageId(locale);
 
@@ -8352,13 +8353,13 @@ public class PortalImpl implements Portal {
 						friendlyURL);
 				}
 
-				canonicalURL = canonicalURLPrefix.concat(alternateURLSuffix);
+				alternateURL = canonicalURLPrefix.concat(alternateURLSuffix);
 			}
 
 			if (siteDefaultLocale.equals(locale) &&
 				(PropsValues.LOCALE_PREPEND_FRIENDLY_URL_STYLE != 2)) {
 
-				alternateURLs.put(locale, canonicalURL);
+				alternateURLs.put(locale, alternateURL);
 			}
 			else {
 				alternateURLs.put(
