@@ -87,7 +87,7 @@ public class ConfigurationModelListenerTest {
 		_serviceRegistration = _registerConfigurationModelListener(
 			configurationModelListener, pid);
 
-		_configuration = _getConfiguration(pid);
+		_configuration = _getConfiguration(pid, StringPool.QUESTION);
 
 		_configuration.delete();
 
@@ -122,7 +122,7 @@ public class ConfigurationModelListenerTest {
 		_serviceRegistration = _registerConfigurationModelListener(
 			configurationModelListener, pid);
 
-		_configuration = _getConfiguration(pid);
+		_configuration = _getConfiguration(pid, StringPool.QUESTION);
 
 		_configuration.update(testProperties);
 
@@ -153,7 +153,7 @@ public class ConfigurationModelListenerTest {
 		_serviceRegistration = _registerConfigurationModelListener(
 			configurationModelListener, pid);
 
-		_configuration = _getConfiguration(pid);
+		_configuration = _getConfiguration(pid, StringPool.QUESTION);
 
 		try {
 			_configuration.delete();
@@ -174,7 +174,7 @@ public class ConfigurationModelListenerTest {
 
 		testProperties.put(_TEST_KEY, _TEST_VALUE);
 
-		_configuration = _getConfiguration(pid);
+		_configuration = _getConfiguration(pid, StringPool.QUESTION);
 
 		_configuration.update(testProperties);
 
@@ -213,7 +213,7 @@ public class ConfigurationModelListenerTest {
 		catch (ConfigurationModelListenerException cmle) {
 			Assert.assertSame(cmle1, cmle);
 
-			_configuration = _getConfiguration(pid);
+			_configuration = _getConfiguration(pid, StringPool.QUESTION);
 
 			Dictionary<String, Object> properties =
 				_configuration.getProperties();
@@ -222,13 +222,13 @@ public class ConfigurationModelListenerTest {
 		}
 	}
 
-	private static Configuration _getConfiguration(String pid)
+	private static Configuration _getConfiguration(String pid, String location)
 		throws IOException {
 
 		return OSGiServiceUtil.callService(
 			_bundleContext, ConfigurationAdmin.class,
 			configurationAdmin -> configurationAdmin.getConfiguration(
-				pid, StringPool.QUESTION));
+				pid, location));
 	}
 
 	private static boolean _hasPid(String pid) {
