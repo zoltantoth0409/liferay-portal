@@ -141,9 +141,8 @@ public class ConfigurationModelListenerTest {
 					throws ConfigurationModelListenerException {
 
 					throw new ConfigurationModelListenerException(
-						"There was an issue",
-						ConfigurationModelListenerTest.class, getClass(),
-						new HashMapDictionary<>());
+						"There was an issue", DummyConfiguration.class,
+						getClass(), new HashMapDictionary<>());
 				}
 
 			};
@@ -188,9 +187,8 @@ public class ConfigurationModelListenerTest {
 					Assert.assertEquals(newValue, properties.get(_TEST_KEY));
 
 					throw new ConfigurationModelListenerException(
-						"There was an issue",
-						ConfigurationModelListenerTest.class, getClass(),
-						new HashMapDictionary<>());
+						"There was an issue", DummyConfiguration.class,
+						getClass(), new HashMapDictionary<>());
 				}
 
 			};
@@ -262,5 +260,8 @@ public class ConfigurationModelListenerTest {
 
 	private Configuration _configuration;
 	private ServiceRegistration<?> _serviceRegistration;
+
+	private static class DummyConfiguration {
+	}
 
 }
