@@ -147,7 +147,8 @@ public class KnowledgeBaseUtil {
 			title = String.valueOf(id);
 		}
 		else {
-			title = FriendlyURLNormalizerUtil.normalizeWithEncoding(title);
+			title = FriendlyURLNormalizerUtil.normalize(
+				title, _normalizationFriendlyUrlPattern);
 		}
 
 		return ModelHintsUtil.trimString(
@@ -248,6 +249,8 @@ public class KnowledgeBaseUtil {
 	private static final int _SQL_DATA_MAX_PARAMETERS = GetterUtil.getInteger(
 		PropsUtil.get(PropsKeys.SQL_DATA_MAX_PARAMETERS));
 
+	private static final Pattern _normalizationFriendlyUrlPattern =
+		Pattern.compile("[^a-z0-9_-]");
 	private static final Pattern _validFriendlyUrlPattern = Pattern.compile(
 		"/[a-z0-9_-]+");
 
