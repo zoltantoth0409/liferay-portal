@@ -390,9 +390,9 @@
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
 
-		<var name="key_dmDocumentTitle" value="Document1" />
-
-		<execute function="AssertClick" locator1="DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE" value1="Document1" />
+		<execute function="AssertClick" locator1="DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE" value1="Document1">
+			<var name="key_dmDocumentTitle" value="Document1" />
+		</execute>
 
 		<execute function="AssertClick#assertTextClick" locator1="Button#EDIT" value1="Edit" />
 
@@ -508,13 +508,13 @@
 			<var name="portletName" value="Activities" />
 		</execute>
 
-		<var name="key_dmFolderName" value="Folder1" />
+		<execute function="AssertTextEquals" locator1="DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_TITLE" value1="Folder1">
+			<var name="key_dmFolderName" value="Folder1" />
+		</execute>
 
-		<execute function="AssertTextEquals" locator1="DocumentsAndMedia#DESCRIPTIVE_LIST_FOLDER_TITLE" value1="Folder1" />
-
-		<var name="key_assetName" value="Zero Document File" />
-
-		<execute function="AssertClick" locator1="Activities#ACTIVITY_TITLE_ASSET_NAME" value1="Zero Document File" />
+		<execute function="AssertClick" locator1="Activities#ACTIVITY_TITLE_ASSET_NAME" value1="Zero Document File">
+			<var name="key_assetName" value="Zero Document File" />
+		</execute>
 
 		<execute macro="DMDocument#viewDocumentTitleCmdPG">
 			<var name="dmDocumentTitle" value="Zero Document File" />
@@ -670,21 +670,21 @@
 		<execute function="Open" locator1="${videoPreviewThumbnailLink}" />
 		<execute function="Pause" locator1="1000" />
 
-		<var name="key_videoGenerationThumbnailResolution" value="640" />
+		<execute function="AssertElementNotPresent" locator1="DocumentsAndMediaDocument#VIDEO_GENERATION_THUMBNAIL_RESOLUTION">
+			<var name="key_videoGenerationThumbnailResolution" value="640" />
+		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="DocumentsAndMediaDocument#VIDEO_GENERATION_THUMBNAIL_RESOLUTION" />
+		<execute function="AssertElementNotPresent" locator1="DocumentsAndMediaDocument#VIDEO_GENERATION_THUMBNAIL_RESOLUTION">
+			<var name="key_videoGenerationThumbnailResolution" value="360" />
+		</execute>
 
-		<var name="key_videoGenerationThumbnailResolution" value="360" />
+		<execute function="AssertElementPresent#assertElementPresent" locator1="DocumentsAndMediaDocument#VIDEO_GENERATION_THUMBNAIL_RESOLUTION">
+			<var name="key_videoGenerationThumbnailResolution" value="1280" />
+		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="DocumentsAndMediaDocument#VIDEO_GENERATION_THUMBNAIL_RESOLUTION" />
-
-		<var name="key_videoGenerationThumbnailResolution" value="1280" />
-
-		<execute function="AssertElementPresent#assertElementPresent" locator1="DocumentsAndMediaDocument#VIDEO_GENERATION_THUMBNAIL_RESOLUTION" />
-
-		<var name="key_videoGenerationThumbnailResolution" value="720" />
-
-		<execute function="AssertElementPresent#assertElementPresent" locator1="DocumentsAndMediaDocument#VIDEO_GENERATION_THUMBNAIL_RESOLUTION" />
+		<execute function="AssertElementPresent#assertElementPresent" locator1="DocumentsAndMediaDocument#VIDEO_GENERATION_THUMBNAIL_RESOLUTION">
+			<var name="key_videoGenerationThumbnailResolution" value="720" />
+		</execute>
 	</command>
 
 	<command name="ImportDocumentWithDBStore" priority="3">
@@ -1076,7 +1076,7 @@
 
 		<execute function="AssertElementPresent" locator1="Icon#ASTERISK_DATE_FIELD">
 			<var name="key_fieldFieldLabel" value="Effective Date" />
-		</function>
+		</execute>
 
 		<execute function="AssertElementPresent" locator1="Icon#ASTERISK_DATE_FIELD">
 			<var name="key_fieldFieldLabel" value="Expiration Date" />
@@ -1319,19 +1319,19 @@
 			<var name="tagNameList" value="tag1,tag2" />
 		</execute>
 
-		<var name="key_dmDocumentTitle" value="Document Title" />
-
-		<execute function="Click" locator1="DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_VERTICAL_ELLIPSIS" />
+		<execute function="Click" locator1="DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_VERTICAL_ELLIPSIS">
+			<var name="key_dmDocumentTitle" value="Document Title" />
+		</execute>
 
 		<execute function="AssertClick" locator1="MenuItem#EDIT" value1="Edit" />
-
-		<var name="key_categoryName" value="Category Name" />
 
 		<execute macro="Panel#expandPanel">
 			<var name="panelHeading" value="Categorization" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="AssetCategorization#CATEGORY" value1="Category Name" />
+		<execute function="AssertTextEquals" locator1="AssetCategorization#CATEGORY" value1="Category Name">
+			<var name="key_categoryName" value="Category Name" />
+		</execute>
 
 		<for list="tag1,tag2" param="tagName">
 			<var name="key_tagName" value="${tagName}" />
