@@ -223,6 +223,7 @@
 	<command name="StagingDeletePageVariation" priority="4">
 		<property name="osgi.app.includes" value="youtube" />
 		<property name="plugins.deployment.type" value="osgi" />
+
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
@@ -302,6 +303,7 @@
 	<command name="StagingDeleteSitePagesVariation" priority="4">
 		<property name="osgi.app.includes" value="youtube" />
 		<property name="plugins.deployment.type" value="osgi" />
+
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
