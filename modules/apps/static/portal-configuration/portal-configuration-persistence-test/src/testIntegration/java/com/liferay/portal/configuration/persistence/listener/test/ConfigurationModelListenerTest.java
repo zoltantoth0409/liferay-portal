@@ -142,7 +142,7 @@ public class ConfigurationModelListenerTest {
 
 					throw new ConfigurationModelListenerException(
 						"There was an issue", getClass(),
-						DummyConfiguration.class, new HashMapDictionary<>());
+						DummyConfiguration.class, new HashMapDictionary());
 				}
 
 			};
@@ -166,7 +166,7 @@ public class ConfigurationModelListenerTest {
 	public void testOnBeforeSave() throws Exception {
 		String pid = StringUtil.randomString(20);
 
-		Dictionary<String, Object> testProperties = new HashMapDictionary<>();
+		Dictionary testProperties = new HashMapDictionary<>();
 
 		testProperties.put(_TEST_KEY, _TEST_VALUE);
 
@@ -188,7 +188,7 @@ public class ConfigurationModelListenerTest {
 
 					throw new ConfigurationModelListenerException(
 						"There was an issue", getClass(),
-						DummyConfiguration.class, new HashMapDictionary<>());
+						DummyConfiguration.class, new HashMapDictionary());
 				}
 
 			};
@@ -206,8 +206,7 @@ public class ConfigurationModelListenerTest {
 		catch (ConfigurationModelListenerException cmle) {
 			_configuration = _getConfiguration(pid, StringPool.QUESTION);
 
-			Dictionary<String, Object> properties =
-				_configuration.getProperties();
+			Dictionary properties = _configuration.getProperties();
 
 			Assert.assertEquals(_TEST_VALUE, properties.get(_TEST_KEY));
 		}
@@ -259,7 +258,7 @@ public class ConfigurationModelListenerTest {
 	}
 
 	private Configuration _configuration;
-	private ServiceRegistration<?> _serviceRegistration;
+	private ServiceRegistration _serviceRegistration;
 
 	private static class DummyConfiguration {
 	}
