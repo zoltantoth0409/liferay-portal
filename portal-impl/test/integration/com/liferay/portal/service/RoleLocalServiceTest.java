@@ -254,7 +254,7 @@ public class RoleLocalServiceTest {
 
 		Assert.assertNotNull(role);
 
-		long[] excludedRoleIds = new long[] {role.getRoleId()};
+		long[] excludedRoleIds = {role.getRoleId()};
 
 		List<Role> roles = RoleLocalServiceUtil.getTeamRoles(
 			organization.getGroupId(), excludedRoleIds);
