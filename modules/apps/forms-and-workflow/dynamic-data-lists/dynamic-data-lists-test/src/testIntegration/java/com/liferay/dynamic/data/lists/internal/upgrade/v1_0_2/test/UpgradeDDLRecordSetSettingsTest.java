@@ -239,7 +239,7 @@ public class UpgradeDDLRecordSetSettingsTest {
 
 						String className = clazz.getName();
 
-						if (className.contains(_UPGRADE_CLASSNAME)) {
+						if (className.contains(_CLASS_NAME)) {
 							_upgradeDDLRecordSetSettings =
 								(UpgradeProcess)upgradeStep;
 						}
@@ -249,7 +249,7 @@ public class UpgradeDDLRecordSetSettingsTest {
 			});
 	}
 
-	private static final String _UPGRADE_CLASSNAME =
+	private static final String _CLASS_NAME =
 		"com.liferay.dynamic.data.lists.internal.upgrade.v1_0_2." +
 			"UpgradeDDLRecordSetSettings";
 
