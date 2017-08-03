@@ -141,7 +141,6 @@ public class PortalSettingsContributorServiceTrackerCustomizer
 
 		properties.put(
 			"javax.portlet.name", PortalSettingsPortletKeys.PORTAL_SETTINGS);
-
 		properties.put("mvc.command.name", mvcActionCommandName);
 
 		return _bundleContext.registerService(
