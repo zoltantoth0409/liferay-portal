@@ -216,6 +216,8 @@
 	</command>
 
 	<command name="AddWebContentFeed" priority="3">
+		<property name="test.name.skip.portal.instance" value="RSS#AddWebContentFeed" />
+
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
@@ -552,6 +554,8 @@
 	</command>
 
 	<command name="EnableRSSFeedFromAssetpublisher" priority="3">
+		<property name="test.name.skip.portal.instance" value="RSS#AddWebContentFeed" />
+
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
