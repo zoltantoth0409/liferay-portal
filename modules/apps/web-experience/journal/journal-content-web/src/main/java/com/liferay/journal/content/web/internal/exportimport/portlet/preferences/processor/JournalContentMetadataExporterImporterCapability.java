@@ -52,7 +52,6 @@ public class JournalContentMetadataExporterImporterCapability
 		parameterMap.put(
 			PortletDataHandlerKeys.PORTLET_DATA_ALL,
 			new String[] {Boolean.TRUE.toString()});
-
 		parameterMap.put(
 			PortletDataHandlerKeys.RATINGS,
 			new String[] {Boolean.TRUE.toString()});
