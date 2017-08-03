@@ -26,7 +26,6 @@ import static com.liferay.exportimport.kernel.lifecycle.ExportImportLifecycleCon
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.asset.kernel.model.adapter.StagedAssetLink;
-import com.liferay.exportimport.constants.ExportImportConstants;
 import com.liferay.exportimport.kernel.controller.ExportController;
 import com.liferay.exportimport.kernel.controller.ExportImportController;
 import com.liferay.exportimport.kernel.lar.ExportImportDateUtil;
@@ -133,6 +132,7 @@ import org.osgi.service.component.annotations.Reference;
 	property = {"model.class.name=com.liferay.portal.kernel.model.Layout"},
 	service = {ExportImportController.class, LayoutExportController.class}
 )
+@ProviderType
 public class LayoutExportController implements ExportController {
 
 	@Override
