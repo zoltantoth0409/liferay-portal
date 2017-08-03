@@ -378,7 +378,7 @@ public class MirrorsGetTask extends Task {
 	}
 
 	protected URLConnection openConnection(URL url) throws IOException {
-		URLConnection urlConnection;
+		URLConnection urlConnection = null;
 
 		while (true) {
 			urlConnection = url.openConnection();
