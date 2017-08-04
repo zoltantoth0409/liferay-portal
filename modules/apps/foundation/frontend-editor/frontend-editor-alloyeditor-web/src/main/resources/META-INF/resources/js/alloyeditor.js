@@ -288,6 +288,21 @@ AUI.add(
 						// LPS-73775
 
 						instance.getNativeEditor().editable().$.addEventListener('compositionend', A.bind('_onChange', instance));
+
+						//LPS-72963
+
+						var editorConfig = instance.getNativeEditor().config;
+
+						var removeResizePlugin = editorConfig.removePlugins && editorConfig.removePlugins.indexOf('ae_dragresize') != -1;
+
+						if (CKEDITOR.env.gecko && removeResizePlugin) {
+							var doc = instance.getNativeEditor().document.$;
+
+							doc.designMode = 'on';
+							doc.execCommand('enableObjectResizing', false, false);
+							doc.execCommand('enableInlineTableEditing', false, false);
+							doc.designMode = 'off';
+						}
 					},
 
 					_onKey: function(event) {
