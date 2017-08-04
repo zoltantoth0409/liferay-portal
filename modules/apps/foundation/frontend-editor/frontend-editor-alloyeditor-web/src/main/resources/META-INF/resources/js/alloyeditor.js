@@ -360,7 +360,7 @@ AUI.add(
 							);
 						}
 
-						//LPS-72963
+						// LPS-72963
 
 						var editorConfig = instance.getNativeEditor().config;
 
@@ -370,8 +370,10 @@ AUI.add(
 							var doc = instance.getNativeEditor().document.$;
 
 							doc.designMode = 'on';
+
 							doc.execCommand('enableObjectResizing', false, false);
 							doc.execCommand('enableInlineTableEditing', false, false);
+
 							doc.designMode = 'off';
 						}
 					},
