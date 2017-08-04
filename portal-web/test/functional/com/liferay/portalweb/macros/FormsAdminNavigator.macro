@@ -64,7 +64,9 @@
 
 		<execute function="Click" locator1="Icon#HEADER_VERTICAL_ELLIPSIS" />
 
-		<execute function="AssertClick" locator1="MenuItem#PUBLISH" value1="Publish" />
+		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Publish">
+			<var name="key_menuItem" value="Publish" />
+		</execute>
 	</command>
 
 	<command name="gotoSettings">

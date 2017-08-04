@@ -386,7 +386,9 @@
 			</else>
 		</if>
 
-		<execute function="AssertClick" locator1="MenuItem#DEFINE_PERMISSIONS" value1="Define Permissions" />
+		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Define Permissions">
+			<var name="key_menuItem" value="Define Permissions" />
+		</execute>
 
 		<if>
 			<and>

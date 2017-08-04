@@ -82,7 +82,9 @@
 
 				<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
 
-				<execute function="AssertClickNoError" locator1="MenuItem#DELETE" value1="Delete" />
+				<execute function="AssertClickNoError" locator1="MenuItem#ANY_MENU_ITEM" value1="Delete">
+					<var name="key_menuItem" value="Delete" />
+				</execute>
 			</then>
 			<elseif>
 				<equals arg1="${deleteMethod}" arg2="From Toolbar" />
@@ -97,7 +99,9 @@
 
 				<execute function="Click" locator1="Tags#TOOLBAR_ACTIONS" />
 
-				<execute function="AssertClickNoError" locator1="MenuItem#DELETE" value1="Delete" />
+				<execute function="AssertClickNoError" locator1="MenuItem#ANY_MENU_ITEM" value1="Delete">
+					<var name="key_menuItem" value="Delete" />
+				</execute>
 			</else>
 		</if>
 

@@ -11,7 +11,9 @@
 
 		<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
 
-		<execute function="AssertClick" locator1="MenuItem#ADD_SUBCATEGORY" value1="Add Subcategory" />
+		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Add Subcategory">
+			<var name="key_menuItem" value="Add Subcategory" />
+		</execute>
 
 		<var name="key_subcategoryName" value="${subCategoryName}" />
 
@@ -65,7 +67,9 @@
 
 		<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
 
-		<execute function="AssertClick" locator1="MenuItem#ADD_SUBCATEGORY" value1="Add Subcategory" />
+		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Add Subcategory">
+			<var name="key_menuItem" value="Add Subcategory" />
+		</execute>
 
 		<var name="key_subcategoryName" value="${subCategoryName}" />
 
@@ -164,7 +168,9 @@
 
 		<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
 
-		<execute function="AssertClick" locator1="MenuItem#MOVE" value1="Move" />
+		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Move">
+			<var name="key_menuItem" value="Move" />
+		</execute>
 
 		<execute function="Click" locator1="CategoriesEditSubcategory#CATEGORY_SELECT_BUTTON" />
 

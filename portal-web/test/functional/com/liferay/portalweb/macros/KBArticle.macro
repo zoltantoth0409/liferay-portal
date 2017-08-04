@@ -325,7 +325,9 @@
 	<command name="addPGViaAP">
 		<execute function="Click#makeVisibleClickAt" locator1="AP#ADD_ASSET_PLUS_ICON" />
 
-		<execute function="AssertClick" locator1="MenuItem#KNOWLEDGE_BASE_ARTICLE" value1="Knowledge Base Article" />
+		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Knowledge Base Article">
+			<var name="key_menuItem" value="Knowledge Base Article" />
+		</execute>
 
 		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
 

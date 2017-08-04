@@ -47,7 +47,9 @@
 
 		<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
 
-		<execute function="AssertClick" locator1="MenuItem#ADD_CATEGORY" value1="Add Category" />
+		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Add Category">
+			<var name="key_menuItem" value="Add Category" />
+		</execute>
 
 		<execute macro="PortletEntry#inputTitle">
 			<var name="title" value="${categoryName}" />
@@ -331,7 +333,9 @@
 
 		<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
 
-		<execute function="AssertClick" locator1="MenuItem#MOVE" value1="Move" />
+		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Move">
+			<var name="key_menuItem" value="Move" />
+		</execute>
 
 		<execute function="Select" locator1="CategoriesEditCategory#VOCABULARY_SELECT" value1="${vocabularyName2}" />
 

@@ -78,7 +78,9 @@
 	<command name="gotoAddEventViaAssetPublisher">
 		<execute function="Click#makeVisibleClickAt" locator1="AP#ADD_ASSET_PLUS_ICON" />
 
-		<execute function="AssertClick" locator1="MenuItem#CALENDAR_EVENT" value1="Calendar Event" />
+		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Calendar Event">
+			<var name="key_menuItem" value="Calendar Event" />
+		</execute>
 
 		<execute macro="CalendarEvent#selectEventIframe" />
 

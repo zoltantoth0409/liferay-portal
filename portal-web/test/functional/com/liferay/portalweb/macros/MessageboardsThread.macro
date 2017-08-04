@@ -648,7 +648,9 @@
 
 		<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#BODY_VERTICAL_ELLIPSIS" />
 
-		<execute function="AssertClick" locator1="MenuItem#QUICK_REPLY" value1="Quick Reply" />
+		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Quick Reply">
+			<var name="key_menuItem" value="Quick Reply" />
+		</execute>
 
 		<execute function="Type#typeCKEditorWaitForCKEditor" locator1="CKEditor#BODY_FIELD" value1="${threadReplyBody}" />
 

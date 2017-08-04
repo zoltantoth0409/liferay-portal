@@ -4,7 +4,9 @@
 	<command name="addBookmarkViaAP">
 		<execute function="Click#makeVisibleClickAt" locator1="AP#ADD_ASSET_PLUS_ICON" />
 
-		<execute function="AssertClick" locator1="MenuItem#BOOKMARKS_ENTRY" value1="Bookmarks Entry" />
+		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Bookmarks Entry">
+			<var name="key_menuItem" value="Bookmarks Entry" />
+		</execute>
 
 		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
 

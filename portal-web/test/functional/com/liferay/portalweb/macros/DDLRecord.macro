@@ -18,8 +18,8 @@
 	<command name="addPGViaAP">
 		<execute function="Click#makeVisibleClickAt" locator1="AP#ADD_ASSET_PLUS_ICON" />
 
-		<execute function="AssertClick" locator1="MenuItem#DDL_RECORD_NAME" value1="${ddlListName}" >
-			<var name="key_ddlListName" value="${ddlListName}" />
+		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="${ddlListName}" >
+			<var name="key_menuItem" value="${ddlListName}" />
 		</execute>
 
 		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
