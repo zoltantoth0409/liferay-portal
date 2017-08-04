@@ -56,7 +56,7 @@
 	</command>
 
 	<command name="DeletePages" priority="5">
-		<property name="portal.acceptance" value="quarantine" />
+		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Page#add">
 			<var name="pageName" value="Page1" />
