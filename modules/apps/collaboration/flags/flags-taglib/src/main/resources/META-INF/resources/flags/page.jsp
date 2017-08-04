@@ -70,7 +70,7 @@ if (!TrashUtil.isInTrash(className, classPK)) {
 									className: '<%= className %>',
 									classPK: '<%= classPK %>',
 									contentTitle: '<%= HtmlUtil.escapeJS(contentTitle) %>',
-									contentURL: '<%= HtmlUtil.escapeJS(PortalUtil.getPortalURL(request) + currentURL) %>',
+									contentURL: '<%= HtmlUtil.escapeJS(currentURL) %>',
 									reportedUserId: '<%= reportedUserId %>'
 								}
 							);
