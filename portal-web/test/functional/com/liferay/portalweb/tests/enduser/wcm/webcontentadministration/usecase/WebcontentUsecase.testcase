@@ -38,7 +38,7 @@
 	</tear-down>
 
 	<command name="AddAndViewStructureAndTemplateWithPermissions" priority="5">
-		<property name="portal.acceptance" value="pending" />
+		<property name="portal.acceptance" value="true" />
 		<property name="testray.component.names" value="Training" />
 
 		<execute macro="ProductMenu#gotoControlPanelSites">
@@ -650,7 +650,7 @@
 	</command>
 
 	<command name="AddExistingPageAsDisplayPageInSiteCP" priority="5">
-		<property name="portal.acceptance" value="pending" />
+		<property name="portal.acceptance" value="true" />
 		<property name="testray.component.names" value="Training" />
 
 		<execute macro="ProductMenu#gotoControlPanelSites">
@@ -736,7 +736,7 @@
 	</command>
 
 	<command name="AddImageToWebContentViaItemSelector" priority="5">
-		<property name="portal.acceptance" value="pending" />
+		<property name="portal.acceptance" value="true" />
 		<property name="testray.component.names" value="Training" />
 
 		<execute macro="Page#add">
@@ -981,7 +981,7 @@
 	</command>
 
 	<command name="AddWebContentViaSourceEditor" priority="5">
-		<property name="portal.acceptance" value="pending" />
+		<property name="portal.acceptance" value="true" />
 		<property name="testray.component.names" value="Training,Web Content Administration" />
 
 		<execute macro="Page#add">
@@ -1434,7 +1434,7 @@
 	</command>
 
 	<command name="EditContentWithTitleAndAllFieldsNull" priority="5">
-		<property name="portal.acceptance" value="pending" />
+		<property name="portal.acceptance" value="true" />
 		<property name="testray.component.names" value="Training" />
 
 		<execute macro="Navigator#openURL" />
@@ -1792,7 +1792,7 @@
 	</command>
 
 	<command name="MoveWebContentToFolder" priority="5">
-		<property name="portal.acceptance" value="pending" />
+		<property name="portal.acceptance" value="true" />
 		<property name="testray.component.names" value="Training" />
 
 		<execute macro="Navigator#openURL" />

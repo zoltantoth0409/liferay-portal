@@ -40,7 +40,7 @@
 	</tear-down>
 
 	<command name="AddChildSiteWikiFrontPageFormatHTML" priority="5">
-		<property name="portal.acceptance" value="pending" />
+		<property name="portal.acceptance" value="true" />
 		<property name="testray.component.names" value="Training" />
 
 		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
@@ -597,7 +597,7 @@
 	</command>
 
 	<command name="AddWikiFrontPageFormatHTML" priority="5">
-		<property name="portal.acceptance" value="pending" />
+		<property name="portal.acceptance" value="true" />
 		<property name="testray.component.names" value="Training" />
 
 		<execute macro="Navigator#gotoPage">
@@ -826,7 +826,7 @@
 	</command>
 
 	<command name="AddWikiPages" priority="5">
-		<property name="portal.acceptance" value="pending" />
+		<property name="portal.acceptance" value="true" />
 		<property name="testray.component.names" value="Training" />
 
 		<execute macro="Navigator#gotoPage">
