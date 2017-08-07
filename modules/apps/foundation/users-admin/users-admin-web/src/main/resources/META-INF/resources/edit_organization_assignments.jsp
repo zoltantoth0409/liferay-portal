@@ -73,8 +73,6 @@ renderResponse.setTitle(organization.getName());
 		<liferay-ui:user-search-form />
 
 		<%
-		UserSearchTerms searchTerms = (UserSearchTerms)userSearchContainer.getSearchTerms();
-
 		LinkedHashMap<String, Object> userParams = new LinkedHashMap<String, Object>();
 
 		if (tabs2.equals("current")) {

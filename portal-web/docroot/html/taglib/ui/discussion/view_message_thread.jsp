@@ -43,7 +43,6 @@ else if (depth < 4) {
 }
 
 DiscussionRequestHelper discussionRequestHelper = new DiscussionRequestHelper(request);
-DiscussionTaglibHelper discussionTaglibHelper = new DiscussionTaglibHelper(request);
 
 DiscussionPermission discussionPermission = CommentManagerUtil.getDiscussionPermission(discussionRequestHelper.getPermissionChecker());
 

@@ -307,11 +307,6 @@ if (organization != null) {
 					</liferay-util:buffer>
 
 					<c:if test="<%= (organization != null) || (usersCount != 0) || (inactiveUsersCount == 0) %>">
-
-						<%
-						boolean organizationContextView = true;
-						%>
-
 						<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="usersAdminUsersPanel" markupView="lexicon" persistState="<%= true %>" title="<%= usersPanelTitle %>">
 							<liferay-util:include page="/view_flat_users.jsp" servletContext="<%= application %>" />
 						</liferay-ui:panel>
