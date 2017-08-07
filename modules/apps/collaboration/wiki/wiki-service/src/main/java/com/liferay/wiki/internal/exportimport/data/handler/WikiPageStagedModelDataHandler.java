@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.trash.TrashHandler;
@@ -271,6 +272,10 @@ public class WikiPageStagedModelDataHandler
 			}
 		}
 
+		if (existingPage != null) {
+			_deleteExistingAttachments(existingPage);
+		}
+
 		if (page.isHead()) {
 			List<Element> attachmentElements =
 				portletDataContext.getReferenceDataElements(
@@ -384,6 +389,17 @@ public class WikiPageStagedModelDataHandler
 		WikiPageResourceLocalService wikiPageResourceLocalService) {
 
 		_wikiPageResourceLocalService = wikiPageResourceLocalService;
+	}
+
+	private void _deleteExistingAttachments(WikiPage page)
+		throws PortalException {
+
+		List<FileEntry> existingAttachments = page.getAttachmentsFileEntries();
+
+		for (FileEntry existingAttachment : existingAttachments) {
+			PortletFileRepositoryUtil.deletePortletFileEntry(
+				existingAttachment.getFileEntryId());
+		}
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
