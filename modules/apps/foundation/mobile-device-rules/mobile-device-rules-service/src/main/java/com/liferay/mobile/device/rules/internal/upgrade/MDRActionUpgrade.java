@@ -41,13 +41,13 @@ public class MDRActionUpgrade extends UpgradeProcess {
 			ThemeModificationActionHandler.class.getName());
 	}
 
-	private void _updateMDRAction(String originalSimpleName, String newName)
+	private void _updateMDRAction(String oldType, String newType)
 		throws Exception {
 
 		runSQL(
-			"update MDRAction set type_ = '" + newName +
-				"' where type_ = 'com.liferay.portal.mobile.device.rulegroup." +
-					"action.impl." + originalSimpleName + "'");
+			"update MDRAction set type_ = '" + newType + "' where type_ = " +
+				"'com.liferay.portal.mobile.device.rulegroup.action.impl." +
+					oldType + "'");
 	}
 
 }
