@@ -5515,8 +5515,10 @@ public class PortalImpl implements Portal {
 
 			if (httpSession != null) {
 				while (httpSession instanceof HttpSessionWrapper) {
-					httpSession =
-						((HttpSessionWrapper)httpSession).getWrappedSession();
+					HttpSessionWrapper httpSessionWrapper =
+						(HttpSessionWrapper)httpSession;
+
+					httpSession = httpSessionWrapper.getWrappedSession();
 				}
 
 				sessionId = httpSession.getId();
