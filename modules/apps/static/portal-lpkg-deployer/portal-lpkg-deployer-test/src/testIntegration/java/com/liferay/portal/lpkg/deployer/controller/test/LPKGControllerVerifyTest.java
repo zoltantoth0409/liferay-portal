@@ -70,10 +70,10 @@ public class LPKGControllerVerifyTest {
 			}
 		}
 
-		Assert.assertNotNull("No jar bundle found", jarBundle);
-		Assert.assertNotNull("No lpkg bundle found", lpkgBundle);
-		Assert.assertNotNull("No war bundle found", warBundle);
-		Assert.assertNotNull("No war wrapper bundle found", warWrapperBundle);
+		Assert.assertNotNull("No JAR bundle found", jarBundle);
+		Assert.assertNotNull("No LPKG bundle found", lpkgBundle);
+		Assert.assertNotNull("No WAR bundle found", warBundle);
+		Assert.assertNotNull("No WAR wrapper bundle found", warWrapperBundle);
 
 		// Stop jar and restart by refreshing LPKG
 
@@ -117,13 +117,13 @@ public class LPKGControllerVerifyTest {
 		}
 
 		Assert.assertEquals(
-			"Jar bundle was not reinstalled", Bundle.ACTIVE,
+			"JAR bundle was not reinstalled", Bundle.ACTIVE,
 			jarBundle.getState());
 		Assert.assertEquals(
-			"War bundle was not reinstalled", Bundle.ACTIVE,
+			"WAR bundle was not reinstalled", Bundle.ACTIVE,
 			warBundle.getState());
 		Assert.assertEquals(
-			"War wrapper bundle was not reinstalled", Bundle.ACTIVE,
+			"WAR wrapper bundle was not reinstalled", Bundle.ACTIVE,
 			warWrapperBundle.getState());
 
 		// Stop wab and restart by refreshing wrapper
@@ -153,7 +153,7 @@ public class LPKGControllerVerifyTest {
 		}
 
 		Assert.assertEquals(
-			"War bundle was not reinstalled", Bundle.ACTIVE,
+			"WAR bundle was not reinstalled", Bundle.ACTIVE,
 			warBundle.getState());
 
 		// Uninstall LPKG and check that contents have been uninstalled
