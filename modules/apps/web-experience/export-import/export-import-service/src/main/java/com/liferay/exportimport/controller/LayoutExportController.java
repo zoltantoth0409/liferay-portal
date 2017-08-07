@@ -451,6 +451,13 @@ public class LayoutExportController implements ExportController {
 					continue;
 				}
 
+				LayoutTypePortlet layoutTypePortlet =
+					(LayoutTypePortlet)layout.getLayoutType();
+
+				if (!layoutTypePortlet.hasPortletId(portletId)) {
+					continue;
+				}
+
 				Group scopeGroup = layout.getScopeGroup();
 
 				portletIds.put(
