@@ -54,13 +54,13 @@ public class CalendarBookingServiceTest {
 
 	@Before
 	public void setUp() throws Exception {
+		_omnidminUser = UserTestUtil.addOmniAdminUser();
 		_user1 = UserTestUtil.addUser();
 		_user2 = UserTestUtil.addUser();
-		_adminUser = UserTestUtil.addOmniAdminUser();
 	}
 
 	@Test
-	public void testGetUnapprovedCalendarBookingsForBookingManager()
+	public void testGetUnapprovedCalendarBookingsForOmniadmin()
 		throws Exception {
 
 		ServiceContext serviceContext = createServiceContext();
@@ -81,7 +81,7 @@ public class CalendarBookingServiceTest {
 		List<CalendarBooking> calendarBookings = Collections.emptyList();
 
 		try (ContextUserReplace contextUserReplacer = new ContextUserReplace(
-				_adminUser)) {
+				_omnidminUser)) {
 
 			calendarBookings = CalendarBookingServiceUtil.getCalendarBookings(
 				calendar.getCalendarId(), statuses);
@@ -134,14 +134,13 @@ public class CalendarBookingServiceTest {
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setCompanyId(_user1.getCompanyId());
-
 		serviceContext.setUserId(_user1.getUserId());
 
 		return serviceContext;
 	}
 
 	@DeleteAfterTestRun
-	private User _adminUser;
+	private User _omnidminUser;
 
 	@DeleteAfterTestRun
 	private User _user1;
