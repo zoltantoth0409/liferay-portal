@@ -502,7 +502,6 @@ public abstract class BaseUpgradePortletId extends UpgradeProcess {
 					ps2.setString(1, newPrimKey);
 
 					ps2.setLong(2, companyId);
-
 					ps2.setString(3, oldPrimKey);
 
 					ps2.addBatch();
