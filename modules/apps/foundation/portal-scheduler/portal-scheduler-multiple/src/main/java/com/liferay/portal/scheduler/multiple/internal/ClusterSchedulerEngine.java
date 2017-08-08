@@ -789,7 +789,7 @@ public class ClusterSchedulerEngine
 		protected void doMasterTokenReleased() throws Exception {
 			_writeLock.lock();
 
-			int counter = 0;
+			int count = 0;
 
 			try {
 				for (SchedulerResponse schedulerResponse :
@@ -803,7 +803,7 @@ public class ClusterSchedulerEngine
 							schedulerResponse.getGroupName(),
 							schedulerResponse.getStorageType());
 
-						counter++;
+						count++;
 					}
 				}
 
@@ -811,7 +811,7 @@ public class ClusterSchedulerEngine
 
 				if (_log.isInfoEnabled()) {
 					_log.info(
-						counter + " MEMORY_CLUSTERED jobs stopped running on " +
+						count + " MEMORY_CLUSTERED jobs stopped running on " +
 							"this node");
 				}
 			}
