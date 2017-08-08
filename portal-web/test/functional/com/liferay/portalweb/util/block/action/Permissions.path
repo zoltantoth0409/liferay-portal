@@ -148,7 +148,7 @@
 </tr>
 <tr>
 	<td>CONTENT_PERMISSIONS_ADD_DOCUMENT_CHECKBOX</td>
-	<td>//tr[contains(.,'${key_roleTitle}')]//input[contains(@id,'ACTION_ADD_DOCUMENT')]</td>
+	<td>//tr[contains(.,'${key_roleName}')]//input[contains(@id,'ACTION_ADD_DOCUMENT')]</td>
 	<td></td>
 </tr>
 <tr>
@@ -168,12 +168,12 @@
 </tr>
 <tr>
 	<td>CONTENT_PERMISSIONS_ADD_SUBFOLDER_CHECKBOX</td>
-	<td>//tr[contains(.,'${key_roleTitle}')]//input[contains(@id,'ACTION_ADD_SUBFOLDER')]</td>
+	<td>//tr[contains(.,'${key_roleName}')]//input[contains(@id,'ACTION_ADD_SUBFOLDER')]</td>
 	<td></td>
 </tr>
 <tr>
 	<td>CONTENT_PERMISSIONS_ADD_SHORTCUT_CHECKBOX</td>
-	<td>//tr[contains(.,'${key_roleTitle}')]//input[contains(@id,'ACTION_ADD_SHORTCUT')]</td>
+	<td>//tr[contains(.,'${key_roleName}')]//input[contains(@id,'ACTION_ADD_SHORTCUT')]</td>
 	<td></td>
 </tr>
 <tr>

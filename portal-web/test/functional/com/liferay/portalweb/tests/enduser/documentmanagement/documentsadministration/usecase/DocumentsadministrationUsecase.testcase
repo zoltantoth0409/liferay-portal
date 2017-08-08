@@ -777,7 +777,7 @@
 		<execute macro="DMFolder#removePermissions">
 			<var name="dmFolder" value="Audio Lectures" />
 			<var name="permissionNameList" value="ADD_DOCUMENT,ADD_SHORTCUT,ADD_SUBFOLDER" />
-			<var name="roleTitle" value="Site Member" />
+			<var name="roleName" value="Site Member" />
 		</execute>
 
 		<execute macro="IFrame#closeFrame" />

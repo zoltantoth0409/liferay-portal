@@ -497,10 +497,10 @@
 	<command name="removePermissions">
 		<execute macro="DMFolder#viewFolderPermissionsPG">
 			<var name="dmFolder" value="${dmFolder}" />
-			<var name="key_roleTitle" value="${roleTitle}" />
+			<var name="key_roleName" value="${roleName}" />
 		</execute>
 
-		<var name="key_roleTitle" value="${roleTitle}" />
+		<var name="key_roleName" value="${roleName}" />
 
 		<for list="${permissionNameList}" param="permissionName">
 			<execute function="Uncheck" locator1="Permissions#CONTENT_PERMISSIONS_${permissionName}_CHECKBOX" />
@@ -637,7 +637,7 @@
 	<command name="viewFolderViewPermissionsPG">
 		<execute macro="DMFolder#viewFolderPermissionsPG">
 			<var name="dmFolder" value="${dmFolder}" />
-			<var name="key_roleTitle" value="${roleTitle}" />
+			<var name="key_roleName" value="${roleName}" />
 		</execute>
 
 		<if>
