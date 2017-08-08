@@ -37,12 +37,10 @@ public class BundleStartLevelUtil {
 		FrameworkStartLevel frameworkStartLevel = systemBundle.adapt(
 			FrameworkStartLevel.class);
 
-		int frameStartLevel = frameworkStartLevel.getStartLevel();
-
 		BundleStartLevel bundleStartLevel = bundle.adapt(
 			BundleStartLevel.class);
 
-		if (frameStartLevel >= startLevel) {
+		if (frameworkStartLevel.getStartLevel() >= startLevel) {
 			_startBundle(bundle);
 
 			bundleStartLevel.setStartLevel(startLevel);
