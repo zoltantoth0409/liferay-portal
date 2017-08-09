@@ -623,8 +623,9 @@ public class ServiceComponentLocalServiceImpl
 				sb.append(buildNamespace);
 				sb.append(" database to build number ");
 				sb.append(buildNumber);
-				sb.append(" this is not supported for production, write a ");
-				sb.append("UpgradeStep to ensure data is upgraded correctly");
+				sb.append(" is not supported for a production environment. ");
+				sb.append("Write an UpgradeStep to ensure data is upgraded ");
+				sb.append("correctly.");
 
 				_log.warn(sb.toString());
 			}
