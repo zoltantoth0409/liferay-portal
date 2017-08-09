@@ -288,7 +288,6 @@ AUI.add(
 						// LPS-73775
 
 						instance.getNativeEditor().editable().$.addEventListener('compositionend', A.bind('_onChange', instance));
-
 					},
 
 					_onKey: function(event) {
