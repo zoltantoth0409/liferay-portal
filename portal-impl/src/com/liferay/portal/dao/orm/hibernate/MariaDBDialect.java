@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.spring.hibernate.dialect;
+package com.liferay.portal.dao.orm.hibernate;
 
 import org.hibernate.dialect.MySQLDialect;
 
