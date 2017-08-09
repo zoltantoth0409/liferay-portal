@@ -217,11 +217,9 @@
 				AssetVocabulary.name ASC
 		]]>
 	</sql>
-	<sql id="com.liferay.portlet.asset.service.impl.AssetLinkLocalServiceImpl.findByAssetEntryGroupId">
+	<sql id="com.liferay.portlet.asset.service.impl.AssetLinkLocalServiceImpl.deleteByAssetEntryGroupId">
 		<![CDATA[
-			SELECT
-				AssetLink.*
-			FROM
+			DELETE FROM
 				AssetLink
 			WHERE
 				EXISTS
