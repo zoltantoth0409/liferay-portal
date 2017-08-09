@@ -26,11 +26,15 @@ import javax.sql.DataSource;
 public class DBManagerUtil {
 
 	public static DB getDB() {
-		return getDBManager().getDB();
+		DBManager dbManager = getDBManager();
+
+		return dbManager.getDB();
 	}
 
 	public static DB getDB(DBType dbType, DataSource dataSource) {
-		return getDBManager().getDB(dbType, dataSource);
+		DBManager dbManager = getDBManager();
+
+		return dbManager.getDB(dbType, dataSource);
 	}
 
 	public static DB getDB(Object dialect, DataSource dataSource) {
@@ -46,11 +50,15 @@ public class DBManagerUtil {
 	}
 
 	public static DBType getDBType(Object dialect) {
-		return getDBManager().getDBType(dialect);
+		DBManager dbManager = getDBManager();
+
+		return dbManager.getDBType(dialect);
 	}
 
 	public static Set<DBType> getDBTypes() {
-		return getDBManager().getDBTypes();
+		DBManager dbManager = getDBManager();
+
+		return dbManager.getDBTypes();
 	}
 
 	public static void reset() {
