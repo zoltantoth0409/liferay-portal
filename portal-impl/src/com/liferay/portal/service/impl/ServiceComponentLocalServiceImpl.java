@@ -304,11 +304,9 @@ public class ServiceComponentLocalServiceImpl
 			UpgradeStepHolder upgradeStepHolder = (UpgradeStepHolder)service;
 
 			String servletContextName = upgradeStepHolder._servletContextName;
-			int buildNumber = upgradeStepHolder._buildNumber;
-			UpgradeStep upgradeStep = upgradeStepHolder._upgradeStep;
 
 			Release release = releaseLocalService.fetchRelease(
-				servletContextName);
+				upgradeStepHolder._servletContextName);
 
 			if ((release != null) &&
 				!Objects.equals(release.getSchemaVersion(), "0.0.0")) {
@@ -317,6 +315,8 @@ public class ServiceComponentLocalServiceImpl
 			}
 
 			try {
+				UpgradeStep upgradeStep = upgradeStepHolder._upgradeStep;
+
 				upgradeStep.upgrade(
 					new DBProcessContext() {
 
@@ -336,6 +336,8 @@ public class ServiceComponentLocalServiceImpl
 					servletContextName, "0.0.1", "0.0.0");
 
 				release = releaseLocalService.fetchRelease(servletContextName);
+
+				int buildNumber = upgradeStepHolder._buildNumber;
 
 				release.setBuildNumber(buildNumber);
 
