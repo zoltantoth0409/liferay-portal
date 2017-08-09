@@ -1994,6 +1994,10 @@ public interface PropsKeys {
 
 	public static final String SETUP_DATABASE_JAR_URL = "setup.database.jar.url";
 
+	/**
+	 * @deprecated As of 7.0.0, with no direct replacement
+	 */
+	@Deprecated
 	public static final String SETUP_DATABASE_TYPES = "setup.database.types";
 
 	public static final String SETUP_DATABASE_URL = "setup.database.url";
