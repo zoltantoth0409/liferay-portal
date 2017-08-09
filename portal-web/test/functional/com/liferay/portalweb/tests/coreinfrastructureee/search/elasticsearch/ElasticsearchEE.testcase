@@ -276,6 +276,8 @@
 	<command name="ElasticsearchRemoteWithMarvelAndKibanaAndShieldSmokeTest" priority="5">
 		<property name="elastic.kibana.enabled" value="true" />
 		<property name="elastic.shield.enabled" value="true" />
+		<property name="osgi.app.includes" value="portal-search-elasticsearch-marvel" />
+		<property name="plugins.deployment.type" value="osgi" />
 		<property name="portal.release" value="true" />
 		<property name="remote.elasticsearch.enabled" value="true" />
 		<property name="test.name.skip.portal.instance" value="ElasticsearchEE#ElasticsearchRemoteWithMarvelAndKibanaAndShieldSmokeTest" />
@@ -309,6 +311,8 @@
 
 	<command name="ElasticsearchRemoteWithMarvelAndKibanaSmokeTest" priority="5">
 		<property name="elastic.kibana.enabled" value="true" />
+		<property name="osgi.app.includes" value="portal-search-elasticsearch-marvel" />
+		<property name="plugins.deployment.type" value="osgi" />
 		<property name="portal.release" value="true" />
 		<property name="remote.elasticsearch.enabled" value="true" />
 		<property name="test.name.skip.portal.instance" value="ElasticsearchEE#ElasticsearchRemoteWithMarvelAndKibanaSmokeTest" />
