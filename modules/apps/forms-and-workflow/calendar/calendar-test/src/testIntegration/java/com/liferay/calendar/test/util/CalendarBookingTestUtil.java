@@ -26,10 +26,12 @@ import com.liferay.calendar.util.CalendarResourceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -122,6 +124,25 @@ public class CalendarBookingTestUtil {
 			serviceContext);
 	}
 
+	public static CalendarBooking addChildCalendarBooking(
+			Calendar invitingCalendar, Calendar invitedCalendar)
+		throws PortalException {
+
+		User user = UserLocalServiceUtil.fetchUser(
+			invitingCalendar.getUserId());
+
+		long startTime = System.currentTimeMillis();
+
+		long endTime = startTime + Time.HOUR;
+
+		CalendarBooking masterCalendarBooking = addMasterCalendarBooking(
+			user, invitingCalendar,
+			new long[] {invitedCalendar.getCalendarId()}, startTime, endTime,
+			createServiceContext(user));
+
+		return getChildCalendarBooking(masterCalendarBooking);
+	}
+
 	public static CalendarBooking addDraftCalendarBooking(User user)
 		throws PortalException {
 
@@ -152,6 +173,20 @@ public class CalendarBookingTestUtil {
 			RandomTestUtil.randomLocaleStringMap(),
 			RandomTestUtil.randomLocaleStringMap(), startTime, endTime, false,
 			null, 0, null, 0, null, serviceContext);
+	}
+
+	public static CalendarBooking addMasterCalendarBooking(
+			User user, Calendar calendar, long[] childCalendarIds,
+			ServiceContext serviceContext)
+		throws PortalException {
+
+		long startTime = System.currentTimeMillis();
+
+		long endTime = startTime + Time.HOUR * 10;
+
+		return addMasterCalendarBooking(
+			user, calendar, childCalendarIds, startTime, endTime,
+			serviceContext);
 	}
 
 	public static CalendarBooking addPublishedCalendarBooking(User user)
@@ -194,6 +229,35 @@ public class CalendarBookingTestUtil {
 			user, calendar, new long[0], RandomTestUtil.randomLocaleStringMap(),
 			RandomTestUtil.randomLocaleStringMap(), startTime, endTime, false,
 			null, 0, null, 0, null, serviceContext);
+	}
+
+	public static ServiceContext createServiceContext(User user) {
+		ServiceContext serviceContext = new ServiceContext();
+
+		serviceContext.setCompanyId(user.getCompanyId());
+		serviceContext.setUserId(user.getUserId());
+
+		return serviceContext;
+	}
+
+	public static CalendarBooking getChildCalendarBooking(
+		CalendarBooking calendarBooking) {
+
+		List<CalendarBooking> childCalendarBookings =
+			calendarBooking.getChildCalendarBookings();
+
+		CalendarBooking childCalendarBooking = childCalendarBookings.get(0);
+
+		if (childCalendarBooking.isMasterBooking()) {
+			if (childCalendarBookings.size() > 1) {
+				childCalendarBooking = childCalendarBookings.get(1);
+			}
+			else {
+				childCalendarBooking = null;
+			}
+		}
+
+		return childCalendarBooking;
 	}
 
 }

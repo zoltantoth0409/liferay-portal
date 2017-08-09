@@ -15,6 +15,7 @@
 package com.liferay.calendar.service.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
+import com.liferay.calendar.constants.CalendarPortletKeys;
 import com.liferay.calendar.exception.CalendarBookingRecurrenceException;
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarBooking;
@@ -26,19 +27,27 @@ import com.liferay.calendar.service.CalendarBookingLocalService;
 import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
 import com.liferay.calendar.service.CalendarLocalServiceUtil;
 import com.liferay.calendar.test.util.CalendarBookingTestUtil;
+import com.liferay.calendar.test.util.CalendarTestUtil;
 import com.liferay.calendar.test.util.RecurrenceTestUtil;
 import com.liferay.calendar.util.CalendarResourceUtil;
 import com.liferay.calendar.util.JCalendarUtil;
 import com.liferay.calendar.workflow.CalendarBookingWorkflowConstants;
 import com.liferay.exportimport.kernel.configuration.ExportImportConfigurationParameterMapFactory;
+import com.liferay.exportimport.kernel.lar.PortletDataHandlerKeys;
+import com.liferay.exportimport.kernel.service.StagingLocalServiceUtil;
+import com.liferay.exportimport.kernel.staging.StagingConstants;
+import com.liferay.exportimport.kernel.staging.StagingUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.rule.Sync;
+import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
@@ -341,7 +350,7 @@ public class CalendarBookingLocalServiceTest {
 			WorkflowConstants.STATUS_PENDING, childCalendarBooking.getStatus());
 	}
 
-	@Test	
+	@Test
 	public void testInviteToStagedCalendarBookingResultsInMasterStagedChild()
 		throws Exception {
 
@@ -1158,12 +1167,6 @@ public class CalendarBookingLocalServiceTest {
 		assertCalendarBookingInstancesCount(calendarBookingId, 1);
 	}
 
-	protected void addStagingAttribute(
-		Map<String, String[]> parameters, String key, Object value) {
-
-		parameters.put(key, new String[] {String.valueOf(value)});
-	}
-
 	protected Calendar addCalendar(
 			CalendarResource calendarResource, ServiceContext serviceContext)
 		throws PortalException {
@@ -1200,6 +1203,21 @@ public class CalendarBookingLocalServiceTest {
 		}
 
 		return calendar;
+	}
+
+	protected void addStagingAttribute(
+		Map<String, String[]> parameters, String key, Object value) {
+
+		parameters.put(key, new String[] {String.valueOf(value)});
+	}
+
+	protected void addStagingAttribute(
+		ServiceContext serviceContext, String key, Object value) {
+
+		String affixedKey =
+			StagingConstants.STAGED_PREFIX + key + StringPool.DOUBLE_DASH;
+
+		serviceContext.setAttribute(affixedKey, String.valueOf(value));
 	}
 
 	protected void assertCalendarBookingInstancesCount(
@@ -1257,6 +1275,29 @@ public class CalendarBookingLocalServiceTest {
 		return serviceContext;
 	}
 
+	protected void enableLocalStaging(
+			Group group, boolean enableCalendarStaging)
+		throws PortalException {
+
+		ServiceContext serviceContext =
+			ServiceContextTestUtil.getServiceContext(group.getGroupId());
+
+		addStagingAttribute(
+			serviceContext,
+			StagingUtil.getStagedPortletId(CalendarPortletKeys.CALENDAR),
+			enableCalendarStaging);
+		addStagingAttribute(
+			serviceContext, PortletDataHandlerKeys.PORTLET_CONFIGURATION_ALL,
+			false);
+		addStagingAttribute(
+			serviceContext, PortletDataHandlerKeys.PORTLET_DATA_ALL, false);
+		addStagingAttribute(
+			serviceContext, PortletDataHandlerKeys.PORTLET_SETUP_ALL, false);
+
+		StagingLocalServiceUtil.enableLocalStaging(
+			_user.getUserId(), group, false, false, serviceContext);
+	}
+
 	protected CalendarBooking getChildCalendarBooking(
 		CalendarBooking calendarBooking) {
 
@@ -1305,6 +1346,9 @@ public class CalendarBookingLocalServiceTest {
 		StringPool.UTC);
 
 	private Object _checkBookingMessageListener;
+
+	@DeleteAfterTestRun
+	private Group _liveGroup;
 
 	@DeleteAfterTestRun
 	private User _user;
