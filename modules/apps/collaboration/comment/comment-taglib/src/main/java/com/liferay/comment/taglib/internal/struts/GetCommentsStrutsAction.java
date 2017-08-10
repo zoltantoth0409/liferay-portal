@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.comment.taglib.internal.action;
+package com.liferay.comment.taglib.internal.struts;
 
 import com.liferay.portal.kernel.struts.BaseStrutsAction;
 import com.liferay.portal.kernel.struts.StrutsAction;

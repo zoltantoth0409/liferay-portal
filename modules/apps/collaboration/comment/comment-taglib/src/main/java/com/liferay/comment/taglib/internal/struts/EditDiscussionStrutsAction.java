@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.comment.taglib.internal.action;
+package com.liferay.comment.taglib.internal.struts;
 
 import com.liferay.message.boards.kernel.exception.DiscussionMaxCommentsException;
 import com.liferay.message.boards.kernel.exception.MessageBodyException;
