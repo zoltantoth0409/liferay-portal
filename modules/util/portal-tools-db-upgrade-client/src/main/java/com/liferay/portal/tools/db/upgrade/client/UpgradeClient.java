@@ -315,10 +315,10 @@ public class UpgradeClient {
 
 		CodeSource codeSource = protectionDomain.getCodeSource();
 
-		URL location = codeSource.getLocation();
+		URL url = codeSource.getLocation();
 
 		try {
-			Path path = Paths.get(location.toURI());
+			Path path = Paths.get(url.toURI());
 
 			File jarFile = path.toFile();
 
