@@ -51,7 +51,10 @@ import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.spring.aop.Skip;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
+import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
+import com.liferay.portal.kernel.transaction.TransactionConfig;
+import com.liferay.portal.kernel.transaction.TransactionInvokerUtil;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.CharPool;
@@ -80,6 +83,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.Callable;
 
 /**
  * Provides the local service for accessing, adding, checking, deleting, and
@@ -244,6 +248,18 @@ public class RoleLocalServiceImpl extends RoleLocalServiceBaseImpl {
 		userPersistence.addRoles(userId, roleIds);
 
 		reindex(userId);
+	}
+
+	@Override
+	public void afterPropertiesSet() {
+		super.afterPropertiesSet();
+
+		TransactionConfig.Builder builder = new TransactionConfig.Builder();
+
+		builder.setIsolation(Isolation.READ_COMMITTED);
+		builder.setPropagation(Propagation.REQUIRES_NEW);
+
+		_transactionConfig = builder.build();
 	}
 
 	/**
@@ -426,11 +442,28 @@ public class RoleLocalServiceImpl extends RoleLocalServiceBaseImpl {
 		List<ResourceBlockPermission> resourceBlockPermissions =
 			resourceBlockPermissionPersistence.findByRoleId(role.getRoleId());
 
-		for (ResourceBlockPermission resourceBlockPermission :
-				resourceBlockPermissions) {
+		try {
+			TransactionInvokerUtil.invoke(
+				_transactionConfig,
+				new Callable<Void>() {
 
-			resourceBlockPermissionLocalService.deleteResourceBlockPermission(
-				resourceBlockPermission);
+					@Override
+					public Void call() {
+						for (ResourceBlockPermission resourceBlockPermission :
+								resourceBlockPermissions) {
+
+							resourceBlockPermissionLocalService.
+								deleteResourceBlockPermission(
+									resourceBlockPermission);
+						}
+
+						return null;
+					}
+
+				});
+		}
+		catch (Throwable t) {
+			throw new PortalException(t);
 		}
 
 		List<ResourcePermission> resourcePermissions =
@@ -1667,5 +1700,6 @@ public class RoleLocalServiceImpl extends RoleLocalServiceBaseImpl {
 		RoleLocalServiceImpl.class);
 
 	private final Map<String, Role> _systemRolesMap = new HashMap<>();
+	private TransactionConfig _transactionConfig;
 
 }
