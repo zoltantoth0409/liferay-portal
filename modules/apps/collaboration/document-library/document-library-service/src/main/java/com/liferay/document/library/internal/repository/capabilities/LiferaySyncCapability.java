@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.document.library.internal.capabilities;
+package com.liferay.document.library.internal.repository.capabilities;
 
 import com.liferay.document.library.kernel.model.DLSyncConstants;
 import com.liferay.document.library.kernel.model.DLSyncEvent;
