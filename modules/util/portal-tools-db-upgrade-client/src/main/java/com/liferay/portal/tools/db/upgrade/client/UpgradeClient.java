@@ -318,11 +318,11 @@ public class UpgradeClient {
 		URL url = codeSource.getLocation();
 
 		try {
+			StringBuilder sb = new StringBuilder();
+
 			Path path = Paths.get(url.toURI());
 
 			File jarFile = path.toFile();
-
-			StringBuilder sb = new StringBuilder();
 
 			_appendClassPath(sb, jarFile.getParentFile());
 
