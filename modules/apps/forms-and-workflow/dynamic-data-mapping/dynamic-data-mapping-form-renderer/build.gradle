@@ -1,8 +1,6 @@
 apply plugin: "com.liferay.gulp"
 apply plugin: "com.liferay.lang.merger"
 
-task testJS
-
 sourceCompatibility = "1.8"
 targetCompatibility = "1.8"
 
@@ -31,8 +29,4 @@ dependencies {
 	testCompile project(":apps:forms-and-workflow:dynamic-data-mapping:dynamic-data-mapping-expression")
 	testCompile project(":apps:forms-and-workflow:dynamic-data-mapping:dynamic-data-mapping-form-evaluator-impl")
 	testCompile project(":apps:forms-and-workflow:dynamic-data-mapping:dynamic-data-mapping-service")
-}
-
-testJS {
-	dependsOn gulpTest
 }
