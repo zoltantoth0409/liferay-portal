@@ -26,7 +26,7 @@ public class UpgradeDDMTemplateSmallImageURL extends UpgradeProcess {
 	protected void doUpgrade() throws Exception {
 		alter(
 			DDMTemplateTable.class,
-			new AlterColumnName("smallImageURL", "smallImageURL STRING null"));
+			new AlterColumnType("smallImageURL", "STRING null"));
 	}
 
 }
