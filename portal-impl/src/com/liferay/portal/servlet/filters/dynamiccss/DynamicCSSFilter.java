@@ -98,17 +98,17 @@ public class DynamicCSSFilter extends IgnoreModuleRequestFilter {
 					originalRequestPath.substring(pos);
 		}
 
-		ObjectValuePair<ServletContext, URL> ovp =
+		ObjectValuePair<ServletContext, URL> objectValuePair =
 			ResourceUtil.getObjectValuePair(
 				originalRequestPath, requestPath, _servletContext);
 
-		if (ovp == null) {
+		if (objectValuePair == null) {
 			return null;
 		}
 
-		ServletContext servletContext = ovp.getKey();
+		ServletContext servletContext = objectValuePair.getKey();
 
-		URL resourceURL = ovp.getValue();
+		URL resourceURL = objectValuePair.getValue();
 
 		String cacheCommonFileName = getCacheFileName(request);
 

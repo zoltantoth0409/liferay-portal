@@ -78,14 +78,15 @@ public class ResourceUtil {
 			ServletContext defaultServletContext)
 		throws IOException {
 
-		ObjectValuePair<ServletContext, URL> ovp = getObjectValuePair(
-			requestPath, requestURI, defaultServletContext);
+		ObjectValuePair<ServletContext, URL> objectValuePair =
+			getObjectValuePair(
+				requestPath, requestURI, defaultServletContext);
 
-		if (ovp == null) {
+		if (objectValuePair == null) {
 			return null;
 		}
 
-		return ovp.getKey();
+		return objectValuePair.getKey();
 	}
 
 	public static URL getResource(
@@ -93,14 +94,15 @@ public class ResourceUtil {
 			ServletContext defaultServletContext)
 		throws IOException {
 
-		ObjectValuePair<ServletContext, URL> ovp = getObjectValuePair(
-			requestPath, requestURI, defaultServletContext);
+		ObjectValuePair<ServletContext, URL> objectValuePair =
+			getObjectValuePair(
+				requestPath, requestURI, defaultServletContext);
 
-		if (ovp == null) {
+		if (objectValuePair == null) {
 			return null;
 		}
 
-		return ovp.getValue();
+		return objectValuePair.getValue();
 	}
 
 }
