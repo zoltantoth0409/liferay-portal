@@ -354,7 +354,7 @@ public class AggregateFilter extends IgnoreModuleRequestFilter {
 					resourcePath.substring(pos);
 		}
 
-		URL resourceURL = ResourceUtil.getResource(
+		URL resourceURL = ResourceUtil.getResourceURL(
 			resourcePath, request.getRequestURI(), _servletContext);
 
 		if (resourceURL == null) {

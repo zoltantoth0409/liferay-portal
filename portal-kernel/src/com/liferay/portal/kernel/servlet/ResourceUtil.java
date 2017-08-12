@@ -79,8 +79,7 @@ public class ResourceUtil {
 		throws IOException {
 
 		ObjectValuePair<ServletContext, URL> objectValuePair =
-			getObjectValuePair(
-				requestPath, requestURI, defaultServletContext);
+			getObjectValuePair(requestPath, requestURI, defaultServletContext);
 
 		if (objectValuePair == null) {
 			return null;
@@ -89,14 +88,13 @@ public class ResourceUtil {
 		return objectValuePair.getKey();
 	}
 
-	public static URL getResource(
+	public static URL getResourceURL(
 			String requestPath, String requestURI,
 			ServletContext defaultServletContext)
 		throws IOException {
 
 		ObjectValuePair<ServletContext, URL> objectValuePair =
-			getObjectValuePair(
-				requestPath, requestURI, defaultServletContext);
+			getObjectValuePair(requestPath, requestURI, defaultServletContext);
 
 		if (objectValuePair == null) {
 			return null;
