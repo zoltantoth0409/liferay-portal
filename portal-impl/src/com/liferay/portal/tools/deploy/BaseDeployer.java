@@ -571,14 +571,14 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 		if (appServerType.equals(ServerDetector.JBOSS_ID) ||
 			appServerType.equals(ServerDetector.WILDFLY_ID)) {
 
-			copyDependencyXml(
-				"jboss-deployment-structure.xml", srcFile + "/WEB-INF");
-
 			File file = new File(PropsValues.LIFERAY_WEB_PORTAL_DIR);
 
 			copyDependencyXml(
 				"jboss-all.xml", srcFile + "/WEB-INF",
 				Collections.singletonMap("root_war", file.getName()), true);
+
+			copyDependencyXml(
+				"jboss-deployment-structure.xml", srcFile + "/WEB-INF");
 		}
 
 		for (DeploymentExtension deploymentExtension : _deploymentExtensions) {
