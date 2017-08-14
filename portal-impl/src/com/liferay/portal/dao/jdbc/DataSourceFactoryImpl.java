@@ -37,6 +37,7 @@ import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.ServerDetector;
 import com.liferay.portal.kernel.util.SortedProperties;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.spring.hibernate.DialectDetector;
 import com.liferay.portal.util.JarUtil;
@@ -629,10 +630,10 @@ public class DataSourceFactoryImpl implements DataSourceFactory {
 			return;
 		}
 
-		int deplay = PropsValues.RETRY_JDBC_ON_STARTUP_DELAY;
+		int delay = PropsValues.RETRY_JDBC_ON_STARTUP_DELAY;
 
-		if (deplay < 0) {
-			deplay = 0;
+		if (delay < 0) {
+			delay = 0;
 		}
 
 		String url = properties.getProperty("url");
@@ -647,7 +648,7 @@ public class DataSourceFactoryImpl implements DataSourceFactory {
 
 				if (connection != null) {
 					if (_log.isInfoEnabled()) {
-						_log.info("JDBC connection successfully acquired.");
+						_log.info("Successfully acquired JDBC connection");
 					}
 
 					return;
@@ -655,23 +656,23 @@ public class DataSourceFactoryImpl implements DataSourceFactory {
 			}
 			catch (SQLException sqle) {
 				if (_log.isDebugEnabled()) {
-					_log.error("Unable to get JDBC connection", sqle);
+					_log.error("Unable to acquire JDBC connection", sqle);
 				}
 			}
 
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Retrying JDBC connection in " + deplay +
-						" seconds. (Currently " + (maxRetries - count) + "/" +
-							maxRetries + ")");
+					"At attempt " + (maxRetries - count) + " of " + maxRetries +
+						" in acquiring a JDBC connection after a " + delay +
+							" second " + delay);
 			}
 
 			try {
-				Thread.sleep(deplay * 1000);
+				Thread.sleep(delay * Time.SECOND);
 			}
 			catch (InterruptedException ie) {
 				if (_log.isWarnEnabled()) {
-					_log.warn("Interruptted JDBC retry waiting", ie);
+					_log.warn("Interruptted acquiring a JDBC connection", ie);
 				}
 
 				break;
@@ -680,8 +681,8 @@ public class DataSourceFactoryImpl implements DataSourceFactory {
 
 		if (_log.isWarnEnabled()) {
 			_log.warn(
-				"Unable to acquired a JDBC connection, proceed to try on " +
-					"DataSource");
+				"Unable to acquire a direct JDBC connection, proceeding to " +
+					"use a data source instead");
 		}
 	}
 
