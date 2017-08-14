@@ -22,6 +22,8 @@
 	</tear-down>
 
 	<command name="AssertChatBar" priority="3">
+		<property name="osgi.app.includes" value="chat" />
+		<property name="plugins.deployment.type" value="osgi" />
 		<execute function="AssertVisible" locator1="Chat#CHAT_BAR" />
 		<execute function="AssertVisible" locator1="Chat#CHAT_BAR_BUDDY_LIST" />
 	</command>
