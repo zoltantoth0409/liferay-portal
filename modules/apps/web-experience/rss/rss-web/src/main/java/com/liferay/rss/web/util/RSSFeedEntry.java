@@ -106,6 +106,7 @@ public class RSSFeedEntry {
 			String sanitizedValue = StringPool.BLANK;
 
 			String feedType = syndFeed.getFeedType();
+
 			String type = syndContent.getType();
 
 			if (type == null) {
