@@ -281,19 +281,19 @@ master
 master-private
 "
 
-			for BRANCH in $(echo "${OUTPUT}" | tr '\n' ' ' | sed 's/ //g' | sed 's/"name"/\'$'\n&/g' | grep '"name"')
+			for BRANCH_JSON in $(echo "${OUTPUT}" | tr '\n' ' ' | sed 's/ //g' | sed 's/"name"/\'$'\n&/g' | grep '"name"')
 			do
-				BRANCH_NAME="$(echo "${BRANCH}" | sed 's/.*"name":"//' | sed 's/".*//')"
+				BRANCH="$(echo "${BRANCH_JSON}" | sed 's/.*"name":"//' | sed 's/".*//')"
 
-				if [[ "$(echo "${PROTECTED_BRANCHES}" | grep "^${BRANCH_NAME}\$")" ]] && [[ "$(echo "${BRANCH}" | grep '"protected":false')" ]]
+				if [[ "$(echo "${PROTECTED_BRANCHES}" | grep "^${BRANCH}\$")" ]] && [[ "$(echo "${BRANCH_JSON}" | grep '"protected":false')" ]]
 				then
-					info "Protecting branch ${BRANCH_NAME} at liferay/${REPO_NAME}."
+					info "Protecting branch ${BRANCH} at liferay/${REPO_NAME}."
 
-					OUTPUT="$(curl -d "{\"enforce_admins\":false,\"required_status_checks\":null,\"restrictions\":null}" -H "Accept: application/vnd.github.loki-preview+json" -H "Authorization: token ${GITHUB_API_TOKEN}" -L -s "https://api.github.com/repos/liferay/${REPO_NAME}/branches/${BRANCH_NAME}/protection" -X PUT 2>&1)"
+					OUTPUT="$(curl -d "{\"enforce_admins\":false,\"required_status_checks\":null,\"restrictions\":null}" -H "Accept: application/vnd.github.loki-preview+json" -H "Authorization: token ${GITHUB_API_TOKEN}" -L -s "https://api.github.com/repos/liferay/${REPO_NAME}/branches/${BRANCH}/protection" -X PUT 2>&1)"
 
 					if [[ -z "$(echo "${OUTPUT}" | grep '"url"')" ]]
 					then
-						warn "Failed to protect branch ${BRANCH_NAME} at liferay/${REPO_NAME}."
+						warn "Failed to protect branch ${BRANCH} at liferay/${REPO_NAME}."
 
 						warn "${OUTPUT}"
 					fi
@@ -335,7 +335,7 @@ master-private
 
 			if [[ "${CORRECT_DEFAULT_BRANCH}" ]] && [[ "${CURRENT_DEFAULT_BRANCH}" != "${CORRECT_DEFAULT_BRANCH}" ]]
 			then
-				echo "Configuring default branch at liferay/${REPO_NAME}."
+				info "Configuring default branch at liferay/${REPO_NAME}."
 
 				OUTPUT="$(curl -d "{\"name\": \"${REPO_NAME}\",\"default_branch\": \"${CORRECT_DEFAULT_BRANCH}\"}" -H "Authorization: token ${GITHUB_API_TOKEN}" -L -s "https://api.github.com/repos/liferay/${REPO_NAME}" -X PATCH 2>&1)"
 
@@ -349,5 +349,64 @@ master-private
 		fi
 	fi
 
-	# [create,branches,merges,users,webhooks]
+	if [[ -z "${COMMANDS}" ]] || [[ "$(echo "${COMMANDS}" | grep '^merges$')" ]]
+	then
+		if [[ "$(git -C "${REPO_PATH}" show "${BRANCH_NAME}:${GITREPO_PATH}" | grep 'mergebuttonmergecommits.*true')" ]]
+		then
+			MERGES_PAYLOAD="{\"name\":\"${REPO_NAME}\",\"allow_merge_commit\":true,\"allow_rebase_merge\":true,\"allow_squash_merge\":false}"
+		else
+			MERGES_PAYLOAD="{\"name\":\"${REPO_NAME}\",\"allow_merge_commit\":false,\"allow_rebase_merge\":true,\"allow_squash_merge\":false}"
+		fi
+
+		OUTPUT="$(curl -d "${MERGES_PAYLOAD}" -H "Authorization: token ${GITHUB_API_TOKEN}" -L -s "https://api.github.com/repos/liferay/${REPO_NAME}" -X PATCH 2>&1)"
+
+		if [[ -z "$(echo "${OUTPUT}" | grep "\"name\":.*\"${REPO_NAME}\"")" ]]
+		then
+			warn "Failed to configure merging at liferay/${REPO_NAME}."
+
+			warn "${OUTPUT}"
+
+			continue
+		fi
+	fi
+
+	if [[ -z "${COMMANDS}" ]] || [[ "$(echo "${COMMANDS}" | grep '^users$')" ]]
+	then
+		curl -d "{\"permission\": \"push\"}" "https://api.github.com/repos/liferay/${REPO_NAME}/collaborators/liferay-continuous-integration" -H "Authorization: token ${GITHUB_API_TOKEN}" -s -X PUT
+
+		if [[ "${REPO_NAME}" == *-private ]]
+		then
+			curl -d "{\"permission\": \"pull\"}" "https://api.github.com/teams/65863/repos/liferay/${REPO_NAME}" -H "Authorization: token ${GITHUB_API_TOKEN}" -s -X PUT
+		fi
+	fi
+
+	if [[ -z "${COMMANDS}" ]] || [[ "$(echo "${COMMANDS}" | grep '^webhooks$')" ]]
+	then
+		OUTPUT="$(curl -H "Authorization: token ${GITHUB_API_TOKEN}" -L -s "https://api.github.com/repos/liferay/${REPO_NAME}/hooks" -X GET 2>&1)"
+
+		if [[ -z "$(echo "${OUTPUT}" | grep '\[')" ]] || [[ -z "$(echo "${OUTPUT}" | grep '\]')" ]]
+		then
+			warn "Failed to get webhooks at liferay/${REPO_NAME}."
+
+			warn "${OUTPUT}"
+
+			continue
+		fi
+
+		if [[ -z "$(echo "${OUTPUT}" | grep "\"url\":.*\"http://webhook.liferay.com\"")" ]]
+		then
+			info "Creating webhook at liferay/${REPO_NAME}."
+
+			OUTPUT="$(curl -d "{\"active\":true,\"config\":{\"url\":\"http://webhook.liferay.com\",\"content_type\":\"json\"},\"events\":[\"*\"],\"name\":\"web\"}" -H "Authorization: token ${GITHUB_API_TOKEN}" -L -s "https://api.github.com/repos/liferay/${REPO_NAME}/hooks" -X POST 2>&1)"
+
+			if [[ -z "$(echo "${OUTPUT}" | grep "\"url\":.*\"http://webhook.liferay.com\"")" ]]
+			then
+				warn "Error creating webhook at liferay/${REPO_NAME}."
+
+				warn "${OUTPUT}"
+
+				continue
+			fi
+		fi
+	fi
 done
