@@ -64,25 +64,6 @@ public interface KaleoTaskInstanceTokenLocalService extends BaseLocalService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link KaleoTaskInstanceTokenLocalServiceUtil} to access the kaleo task instance token local service. Add custom service methods to {@link com.liferay.portal.workflow.kaleo.service.impl.KaleoTaskInstanceTokenLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ActionableDynamicQuery getActionableDynamicQuery();
-
-	public DynamicQuery dynamicQuery();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
-
-	/**
-	* @throws PortalException
-	*/
-	@Override
-	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
-		throws PortalException;
-
-	@Override
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException;
 
 	/**
 	* Adds the kaleo task instance token to the database. Also notifies the appropriate model listeners.
@@ -120,6 +101,13 @@ public interface KaleoTaskInstanceTokenLocalService extends BaseLocalService,
 	public KaleoTaskInstanceToken createKaleoTaskInstanceToken(
 		long kaleoTaskInstanceTokenId);
 
+	public void deleteCompanyKaleoTaskInstanceTokens(long companyId);
+
+	public void deleteKaleoDefinitionKaleoTaskInstanceTokens(
+		long kaleoDefinitionId);
+
+	public void deleteKaleoInstanceKaleoTaskInstanceTokens(long kaleoInstanceId);
+
 	/**
 	* Deletes the kaleo task instance token from the database. Also notifies the appropriate model listeners.
 	*
@@ -141,100 +129,14 @@ public interface KaleoTaskInstanceTokenLocalService extends BaseLocalService,
 	public KaleoTaskInstanceToken deleteKaleoTaskInstanceToken(
 		long kaleoTaskInstanceTokenId) throws PortalException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public KaleoTaskInstanceToken fetchKaleoTaskInstanceToken(
-		long kaleoTaskInstanceTokenId);
-
 	/**
-	* Returns the kaleo task instance token with the primary key.
-	*
-	* @param kaleoTaskInstanceTokenId the primary key of the kaleo task instance token
-	* @return the kaleo task instance token
-	* @throws PortalException if a kaleo task instance token with the primary key could not be found
+	* @throws PortalException
 	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public KaleoTaskInstanceToken getKaleoTaskInstanceToken(
-		long kaleoTaskInstanceTokenId) throws PortalException;
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public KaleoTaskInstanceToken getKaleoTaskInstanceTokens(
-		long kaleoInstanceId, long kaleoTaskId) throws PortalException;
-
-	public KaleoTaskInstanceToken updateDueDate(long kaleoTaskInstanceTokenId,
-		Date dueDate, ServiceContext serviceContext) throws PortalException;
-
-	/**
-	* Updates the kaleo task instance token in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param kaleoTaskInstanceToken the kaleo task instance token
-	* @return the kaleo task instance token that was updated
-	*/
-	@Indexable(type = IndexableType.REINDEX)
-	public KaleoTaskInstanceToken updateKaleoTaskInstanceToken(
-		KaleoTaskInstanceToken kaleoTaskInstanceToken);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getCompanyKaleoTaskInstanceTokensCount(long companyId);
-
-	/**
-	* Returns the number of kaleo task instance tokens.
-	*
-	* @return the number of kaleo task instance tokens
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getKaleoTaskInstanceTokensCount();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getKaleoTaskInstanceTokensCount(java.lang.Boolean completed,
-		ServiceContext serviceContext);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getKaleoTaskInstanceTokensCount(
-		java.lang.String assigneeClassName, long assigneeClassPK,
-		java.lang.Boolean completed, ServiceContext serviceContext);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getKaleoTaskInstanceTokensCount(List<java.lang.Long> roleIds,
-		java.lang.Boolean completed, ServiceContext serviceContext);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getKaleoTaskInstanceTokensCount(long kaleoInstanceId,
-		java.lang.Boolean completed, ServiceContext serviceContext);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getSubmittingUserKaleoTaskInstanceTokensCount(long userId,
-		java.lang.Boolean completed, ServiceContext serviceContext);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int searchCount(java.lang.String keywords,
-		java.lang.Boolean completed, java.lang.Boolean searchByUserRoles,
-		ServiceContext serviceContext);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int searchCount(java.lang.String keywords,
-		java.lang.String[] assetTypes, java.lang.Boolean completed,
-		java.lang.Boolean searchByUserRoles, ServiceContext serviceContext);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int searchCount(java.lang.String taskName,
-		java.lang.String assetType, java.lang.Long[] assetPrimaryKeys,
-		Date dueDateGT, Date dueDateLT, java.lang.Boolean completed,
-		java.lang.Boolean searchByUserRoles, boolean andOperator,
-		ServiceContext serviceContext);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int searchCount(java.lang.String taskName,
-		java.lang.String[] assetTypes, java.lang.Long[] assetPrimaryKeys,
-		Date dueDateGT, Date dueDateLT, java.lang.Boolean completed,
-		java.lang.Boolean searchByUserRoles, boolean andOperator,
-		ServiceContext serviceContext);
-
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	public java.lang.String getOSGiServiceIdentifier();
+	public DynamicQuery dynamicQuery();
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -275,9 +177,51 @@ public interface KaleoTaskInstanceTokenLocalService extends BaseLocalService,
 	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end, OrderByComparator<T> orderByComparator);
 
+	/**
+	* Returns the number of rows matching the dynamic query.
+	*
+	* @param dynamicQuery the dynamic query
+	* @return the number of rows matching the dynamic query
+	*/
+	public long dynamicQueryCount(DynamicQuery dynamicQuery);
+
+	/**
+	* Returns the number of rows matching the dynamic query.
+	*
+	* @param dynamicQuery the dynamic query
+	* @param projection the projection to apply to the query
+	* @return the number of rows matching the dynamic query
+	*/
+	public long dynamicQueryCount(DynamicQuery dynamicQuery,
+		Projection projection);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public KaleoTaskInstanceToken fetchKaleoTaskInstanceToken(
+		long kaleoTaskInstanceTokenId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public ActionableDynamicQuery getActionableDynamicQuery();
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KaleoTaskInstanceToken> getCompanyKaleoTaskInstanceTokens(
 		long companyId, int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getCompanyKaleoTaskInstanceTokensCount(long companyId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
+
+	/**
+	* Returns the kaleo task instance token with the primary key.
+	*
+	* @param kaleoTaskInstanceTokenId the primary key of the kaleo task instance token
+	* @return the kaleo task instance token
+	* @throws PortalException if a kaleo task instance token with the primary key could not be found
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public KaleoTaskInstanceToken getKaleoTaskInstanceToken(
+		long kaleoTaskInstanceTokenId) throws PortalException;
 
 	/**
 	* Returns a range of all the kaleo task instance tokens.
@@ -320,10 +264,55 @@ public interface KaleoTaskInstanceTokenLocalService extends BaseLocalService,
 		ServiceContext serviceContext);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public KaleoTaskInstanceToken getKaleoTaskInstanceTokens(
+		long kaleoInstanceId, long kaleoTaskId) throws PortalException;
+
+	/**
+	* Returns the number of kaleo task instance tokens.
+	*
+	* @return the number of kaleo task instance tokens
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getKaleoTaskInstanceTokensCount();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getKaleoTaskInstanceTokensCount(java.lang.Boolean completed,
+		ServiceContext serviceContext);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getKaleoTaskInstanceTokensCount(
+		java.lang.String assigneeClassName, long assigneeClassPK,
+		java.lang.Boolean completed, ServiceContext serviceContext);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getKaleoTaskInstanceTokensCount(List<java.lang.Long> roleIds,
+		java.lang.Boolean completed, ServiceContext serviceContext);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getKaleoTaskInstanceTokensCount(long kaleoInstanceId,
+		java.lang.Boolean completed, ServiceContext serviceContext);
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	public java.lang.String getOSGiServiceIdentifier();
+
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KaleoTaskInstanceToken> getSubmittingUserKaleoTaskInstanceTokens(
 		long userId, java.lang.Boolean completed, int start, int end,
 		OrderByComparator<KaleoTaskInstanceToken> orderByComparator,
 		ServiceContext serviceContext);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getSubmittingUserKaleoTaskInstanceTokensCount(long userId,
+		java.lang.Boolean completed, ServiceContext serviceContext);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KaleoTaskInstanceToken> search(java.lang.String keywords,
@@ -341,7 +330,7 @@ public interface KaleoTaskInstanceTokenLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KaleoTaskInstanceToken> search(java.lang.String taskName,
-		java.lang.String assetType, java.lang.Long[] assetPrimaryKeys,
+		java.lang.String[] assetTypes, java.lang.Long[] assetPrimaryKeys,
 		Date dueDateGT, Date dueDateLT, java.lang.Boolean completed,
 		java.lang.Boolean searchByUserRoles, boolean andOperator, int start,
 		int end, OrderByComparator<KaleoTaskInstanceToken> orderByComparator,
@@ -349,34 +338,46 @@ public interface KaleoTaskInstanceTokenLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KaleoTaskInstanceToken> search(java.lang.String taskName,
-		java.lang.String[] assetTypes, java.lang.Long[] assetPrimaryKeys,
+		java.lang.String assetType, java.lang.Long[] assetPrimaryKeys,
 		Date dueDateGT, Date dueDateLT, java.lang.Boolean completed,
 		java.lang.Boolean searchByUserRoles, boolean andOperator, int start,
 		int end, OrderByComparator<KaleoTaskInstanceToken> orderByComparator,
 		ServiceContext serviceContext);
 
-	/**
-	* Returns the number of rows matching the dynamic query.
-	*
-	* @param dynamicQuery the dynamic query
-	* @return the number of rows matching the dynamic query
-	*/
-	public long dynamicQueryCount(DynamicQuery dynamicQuery);
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int searchCount(java.lang.String keywords,
+		java.lang.Boolean completed, java.lang.Boolean searchByUserRoles,
+		ServiceContext serviceContext);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int searchCount(java.lang.String keywords,
+		java.lang.String[] assetTypes, java.lang.Boolean completed,
+		java.lang.Boolean searchByUserRoles, ServiceContext serviceContext);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int searchCount(java.lang.String taskName,
+		java.lang.String[] assetTypes, java.lang.Long[] assetPrimaryKeys,
+		Date dueDateGT, Date dueDateLT, java.lang.Boolean completed,
+		java.lang.Boolean searchByUserRoles, boolean andOperator,
+		ServiceContext serviceContext);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int searchCount(java.lang.String taskName,
+		java.lang.String assetType, java.lang.Long[] assetPrimaryKeys,
+		Date dueDateGT, Date dueDateLT, java.lang.Boolean completed,
+		java.lang.Boolean searchByUserRoles, boolean andOperator,
+		ServiceContext serviceContext);
+
+	public KaleoTaskInstanceToken updateDueDate(long kaleoTaskInstanceTokenId,
+		Date dueDate, ServiceContext serviceContext) throws PortalException;
 
 	/**
-	* Returns the number of rows matching the dynamic query.
+	* Updates the kaleo task instance token in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
-	* @param dynamicQuery the dynamic query
-	* @param projection the projection to apply to the query
-	* @return the number of rows matching the dynamic query
+	* @param kaleoTaskInstanceToken the kaleo task instance token
+	* @return the kaleo task instance token that was updated
 	*/
-	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection);
-
-	public void deleteCompanyKaleoTaskInstanceTokens(long companyId);
-
-	public void deleteKaleoDefinitionKaleoTaskInstanceTokens(
-		long kaleoDefinitionId);
-
-	public void deleteKaleoInstanceKaleoTaskInstanceTokens(long kaleoInstanceId);
+	@Indexable(type = IndexableType.REINDEX)
+	public KaleoTaskInstanceToken updateKaleoTaskInstanceToken(
+		KaleoTaskInstanceToken kaleoTaskInstanceToken);
 }

@@ -250,25 +250,18 @@ public class DDMTemplateWrapper implements DDMTemplate,
 	}
 
 	@Override
-	public DDMTemplate toEscapedModel() {
-		return new DDMTemplateWrapper(_ddmTemplate.toEscapedModel());
+	public java.lang.Object clone() {
+		return new DDMTemplateWrapper((DDMTemplate)_ddmTemplate.clone());
 	}
 
 	@Override
-	public DDMTemplate toUnescapedModel() {
-		return new DDMTemplateWrapper(_ddmTemplate.toUnescapedModel());
+	public int compareTo(DDMTemplate ddmTemplate) {
+		return _ddmTemplate.compareTo(ddmTemplate);
 	}
 
 	@Override
-	public DDMTemplateVersion getLatestTemplateVersion()
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _ddmTemplate.getLatestTemplateVersion();
-	}
-
-	@Override
-	public DDMTemplateVersion getTemplateVersion()
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _ddmTemplate.getTemplateVersion();
+	public java.lang.String[] getAvailableLanguageIds() {
+		return _ddmTemplate.getAvailableLanguageIds();
 	}
 
 	/**
@@ -282,81 +275,6 @@ public class DDMTemplateWrapper implements DDMTemplate,
 	}
 
 	/**
-	* Returns the small image of this ddm template.
-	*
-	* @return the small image of this ddm template
-	*/
-	@Override
-	public boolean getSmallImage() {
-		return _ddmTemplate.getSmallImage();
-	}
-
-	/**
-	* Returns <code>true</code> if this ddm template is cacheable.
-	*
-	* @return <code>true</code> if this ddm template is cacheable; <code>false</code> otherwise
-	*/
-	@Override
-	public boolean isCacheable() {
-		return _ddmTemplate.isCacheable();
-	}
-
-	@Override
-	public boolean isCachedModel() {
-		return _ddmTemplate.isCachedModel();
-	}
-
-	@Override
-	public boolean isEscapedModel() {
-		return _ddmTemplate.isEscapedModel();
-	}
-
-	@Override
-	public boolean isNew() {
-		return _ddmTemplate.isNew();
-	}
-
-	/**
-	* Returns <code>true</code> if this ddm template is small image.
-	*
-	* @return <code>true</code> if this ddm template is small image; <code>false</code> otherwise
-	*/
-	@Override
-	public boolean isSmallImage() {
-		return _ddmTemplate.isSmallImage();
-	}
-
-	@Override
-	public ExpandoBridge getExpandoBridge() {
-		return _ddmTemplate.getExpandoBridge();
-	}
-
-	@Override
-	public com.liferay.portal.kernel.model.CacheModel<DDMTemplate> toCacheModel() {
-		return _ddmTemplate.toCacheModel();
-	}
-
-	@Override
-	public int compareTo(DDMTemplate ddmTemplate) {
-		return _ddmTemplate.compareTo(ddmTemplate);
-	}
-
-	@Override
-	public int hashCode() {
-		return _ddmTemplate.hashCode();
-	}
-
-	@Override
-	public Serializable getPrimaryKeyObj() {
-		return _ddmTemplate.getPrimaryKeyObj();
-	}
-
-	@Override
-	public java.lang.Object clone() {
-		return new DDMTemplateWrapper((DDMTemplate)_ddmTemplate.clone());
-	}
-
-	/**
 	* Returns the fully qualified class name of this ddm template.
 	*
 	* @return the fully qualified class name of this ddm template
@@ -364,6 +282,46 @@ public class DDMTemplateWrapper implements DDMTemplate,
 	@Override
 	public java.lang.String getClassName() {
 		return _ddmTemplate.getClassName();
+	}
+
+	/**
+	* Returns the class name ID of this ddm template.
+	*
+	* @return the class name ID of this ddm template
+	*/
+	@Override
+	public long getClassNameId() {
+		return _ddmTemplate.getClassNameId();
+	}
+
+	/**
+	* Returns the class pk of this ddm template.
+	*
+	* @return the class pk of this ddm template
+	*/
+	@Override
+	public long getClassPK() {
+		return _ddmTemplate.getClassPK();
+	}
+
+	/**
+	* Returns the company ID of this ddm template.
+	*
+	* @return the company ID of this ddm template
+	*/
+	@Override
+	public long getCompanyId() {
+		return _ddmTemplate.getCompanyId();
+	}
+
+	/**
+	* Returns the create date of this ddm template.
+	*
+	* @return the create date of this ddm template
+	*/
+	@Override
+	public Date getCreateDate() {
+		return _ddmTemplate.getCreateDate();
 	}
 
 	@Override
@@ -440,6 +398,31 @@ public class DDMTemplateWrapper implements DDMTemplate,
 	}
 
 	/**
+	* Returns a map of the locales and localized descriptions of this ddm template.
+	*
+	* @return the locales and localized descriptions of this ddm template
+	*/
+	@Override
+	public Map<java.util.Locale, java.lang.String> getDescriptionMap() {
+		return _ddmTemplate.getDescriptionMap();
+	}
+
+	@Override
+	public ExpandoBridge getExpandoBridge() {
+		return _ddmTemplate.getExpandoBridge();
+	}
+
+	/**
+	* Returns the group ID of this ddm template.
+	*
+	* @return the group ID of this ddm template
+	*/
+	@Override
+	public long getGroupId() {
+		return _ddmTemplate.getGroupId();
+	}
+
+	/**
 	* Returns the language of this ddm template.
 	*
 	* @return the language of this ddm template
@@ -450,6 +433,22 @@ public class DDMTemplateWrapper implements DDMTemplate,
 	}
 
 	/**
+	* Returns the last publish date of this ddm template.
+	*
+	* @return the last publish date of this ddm template
+	*/
+	@Override
+	public Date getLastPublishDate() {
+		return _ddmTemplate.getLastPublishDate();
+	}
+
+	@Override
+	public DDMTemplateVersion getLatestTemplateVersion()
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _ddmTemplate.getLatestTemplateVersion();
+	}
+
+	/**
 	* Returns the mode of this ddm template.
 	*
 	* @return the mode of this ddm template
@@ -457,6 +456,16 @@ public class DDMTemplateWrapper implements DDMTemplate,
 	@Override
 	public java.lang.String getMode() {
 		return _ddmTemplate.getMode();
+	}
+
+	/**
+	* Returns the modified date of this ddm template.
+	*
+	* @return the modified date of this ddm template
+	*/
+	@Override
+	public Date getModifiedDate() {
+		return _ddmTemplate.getModifiedDate();
 	}
 
 	/**
@@ -527,6 +536,41 @@ public class DDMTemplateWrapper implements DDMTemplate,
 	}
 
 	/**
+	* Returns a map of the locales and localized names of this ddm template.
+	*
+	* @return the locales and localized names of this ddm template
+	*/
+	@Override
+	public Map<java.util.Locale, java.lang.String> getNameMap() {
+		return _ddmTemplate.getNameMap();
+	}
+
+	/**
+	* Returns the primary key of this ddm template.
+	*
+	* @return the primary key of this ddm template
+	*/
+	@Override
+	public long getPrimaryKey() {
+		return _ddmTemplate.getPrimaryKey();
+	}
+
+	@Override
+	public Serializable getPrimaryKeyObj() {
+		return _ddmTemplate.getPrimaryKeyObj();
+	}
+
+	/**
+	* Returns the resource class name ID of this ddm template.
+	*
+	* @return the resource class name ID of this ddm template
+	*/
+	@Override
+	public long getResourceClassNameId() {
+		return _ddmTemplate.getResourceClassNameId();
+	}
+
+	/**
 	* Returns the script of this ddm template.
 	*
 	* @return the script of this ddm template
@@ -534,6 +578,26 @@ public class DDMTemplateWrapper implements DDMTemplate,
 	@Override
 	public java.lang.String getScript() {
 		return _ddmTemplate.getScript();
+	}
+
+	/**
+	* Returns the small image of this ddm template.
+	*
+	* @return the small image of this ddm template
+	*/
+	@Override
+	public boolean getSmallImage() {
+		return _ddmTemplate.getSmallImage();
+	}
+
+	/**
+	* Returns the small image ID of this ddm template.
+	*
+	* @return the small image ID of this ddm template
+	*/
+	@Override
+	public long getSmallImageId() {
+		return _ddmTemplate.getSmallImageId();
 	}
 
 	@Override
@@ -552,6 +616,16 @@ public class DDMTemplateWrapper implements DDMTemplate,
 		return _ddmTemplate.getSmallImageURL();
 	}
 
+	/**
+	* Returns the template ID of this ddm template.
+	*
+	* @return the template ID of this ddm template
+	*/
+	@Override
+	public long getTemplateId() {
+		return _ddmTemplate.getTemplateId();
+	}
+
 	@Override
 	public java.lang.String getTemplateImageURL(
 		com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay) {
@@ -568,6 +642,12 @@ public class DDMTemplateWrapper implements DDMTemplate,
 		return _ddmTemplate.getTemplateKey();
 	}
 
+	@Override
+	public DDMTemplateVersion getTemplateVersion()
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _ddmTemplate.getTemplateVersion();
+	}
+
 	/**
 	* Returns the type of this ddm template.
 	*
@@ -576,6 +656,16 @@ public class DDMTemplateWrapper implements DDMTemplate,
 	@Override
 	public java.lang.String getType() {
 		return _ddmTemplate.getType();
+	}
+
+	/**
+	* Returns the user ID of this ddm template.
+	*
+	* @return the user ID of this ddm template
+	*/
+	@Override
+	public long getUserId() {
+		return _ddmTemplate.getUserId();
 	}
 
 	/**
@@ -619,6 +709,16 @@ public class DDMTemplateWrapper implements DDMTemplate,
 	}
 
 	/**
+	* Returns the version user ID of this ddm template.
+	*
+	* @return the version user ID of this ddm template
+	*/
+	@Override
+	public long getVersionUserId() {
+		return _ddmTemplate.getVersionUserId();
+	}
+
+	/**
 	* Returns the version user name of this ddm template.
 	*
 	* @return the version user name of this ddm template
@@ -655,168 +755,43 @@ public class DDMTemplateWrapper implements DDMTemplate,
 	}
 
 	@Override
-	public java.lang.String toString() {
-		return _ddmTemplate.toString();
-	}
-
-	@Override
-	public java.lang.String toXmlString() {
-		return _ddmTemplate.toXmlString();
-	}
-
-	@Override
-	public java.lang.String[] getAvailableLanguageIds() {
-		return _ddmTemplate.getAvailableLanguageIds();
+	public int hashCode() {
+		return _ddmTemplate.hashCode();
 	}
 
 	/**
-	* Returns the create date of this ddm template.
+	* Returns <code>true</code> if this ddm template is cacheable.
 	*
-	* @return the create date of this ddm template
+	* @return <code>true</code> if this ddm template is cacheable; <code>false</code> otherwise
 	*/
 	@Override
-	public Date getCreateDate() {
-		return _ddmTemplate.getCreateDate();
+	public boolean isCacheable() {
+		return _ddmTemplate.isCacheable();
+	}
+
+	@Override
+	public boolean isCachedModel() {
+		return _ddmTemplate.isCachedModel();
+	}
+
+	@Override
+	public boolean isEscapedModel() {
+		return _ddmTemplate.isEscapedModel();
+	}
+
+	@Override
+	public boolean isNew() {
+		return _ddmTemplate.isNew();
 	}
 
 	/**
-	* Returns the last publish date of this ddm template.
+	* Returns <code>true</code> if this ddm template is small image.
 	*
-	* @return the last publish date of this ddm template
+	* @return <code>true</code> if this ddm template is small image; <code>false</code> otherwise
 	*/
 	@Override
-	public Date getLastPublishDate() {
-		return _ddmTemplate.getLastPublishDate();
-	}
-
-	/**
-	* Returns the modified date of this ddm template.
-	*
-	* @return the modified date of this ddm template
-	*/
-	@Override
-	public Date getModifiedDate() {
-		return _ddmTemplate.getModifiedDate();
-	}
-
-	/**
-	* Returns a map of the locales and localized descriptions of this ddm template.
-	*
-	* @return the locales and localized descriptions of this ddm template
-	*/
-	@Override
-	public Map<java.util.Locale, java.lang.String> getDescriptionMap() {
-		return _ddmTemplate.getDescriptionMap();
-	}
-
-	/**
-	* Returns a map of the locales and localized names of this ddm template.
-	*
-	* @return the locales and localized names of this ddm template
-	*/
-	@Override
-	public Map<java.util.Locale, java.lang.String> getNameMap() {
-		return _ddmTemplate.getNameMap();
-	}
-
-	/**
-	* Returns the class name ID of this ddm template.
-	*
-	* @return the class name ID of this ddm template
-	*/
-	@Override
-	public long getClassNameId() {
-		return _ddmTemplate.getClassNameId();
-	}
-
-	/**
-	* Returns the class pk of this ddm template.
-	*
-	* @return the class pk of this ddm template
-	*/
-	@Override
-	public long getClassPK() {
-		return _ddmTemplate.getClassPK();
-	}
-
-	/**
-	* Returns the company ID of this ddm template.
-	*
-	* @return the company ID of this ddm template
-	*/
-	@Override
-	public long getCompanyId() {
-		return _ddmTemplate.getCompanyId();
-	}
-
-	/**
-	* Returns the group ID of this ddm template.
-	*
-	* @return the group ID of this ddm template
-	*/
-	@Override
-	public long getGroupId() {
-		return _ddmTemplate.getGroupId();
-	}
-
-	/**
-	* Returns the primary key of this ddm template.
-	*
-	* @return the primary key of this ddm template
-	*/
-	@Override
-	public long getPrimaryKey() {
-		return _ddmTemplate.getPrimaryKey();
-	}
-
-	/**
-	* Returns the resource class name ID of this ddm template.
-	*
-	* @return the resource class name ID of this ddm template
-	*/
-	@Override
-	public long getResourceClassNameId() {
-		return _ddmTemplate.getResourceClassNameId();
-	}
-
-	/**
-	* Returns the small image ID of this ddm template.
-	*
-	* @return the small image ID of this ddm template
-	*/
-	@Override
-	public long getSmallImageId() {
-		return _ddmTemplate.getSmallImageId();
-	}
-
-	/**
-	* Returns the template ID of this ddm template.
-	*
-	* @return the template ID of this ddm template
-	*/
-	@Override
-	public long getTemplateId() {
-		return _ddmTemplate.getTemplateId();
-	}
-
-	/**
-	* Returns the user ID of this ddm template.
-	*
-	* @return the user ID of this ddm template
-	*/
-	@Override
-	public long getUserId() {
-		return _ddmTemplate.getUserId();
-	}
-
-	/**
-	* Returns the version user ID of this ddm template.
-	*
-	* @return the version user ID of this ddm template
-	*/
-	@Override
-	public long getVersionUserId() {
-		return _ddmTemplate.getVersionUserId();
+	public boolean isSmallImage() {
+		return _ddmTemplate.isSmallImage();
 	}
 
 	@Override
@@ -1271,6 +1246,31 @@ public class DDMTemplateWrapper implements DDMTemplate,
 	@Override
 	public void setVersionUserUuid(java.lang.String versionUserUuid) {
 		_ddmTemplate.setVersionUserUuid(versionUserUuid);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.model.CacheModel<DDMTemplate> toCacheModel() {
+		return _ddmTemplate.toCacheModel();
+	}
+
+	@Override
+	public DDMTemplate toEscapedModel() {
+		return new DDMTemplateWrapper(_ddmTemplate.toEscapedModel());
+	}
+
+	@Override
+	public java.lang.String toString() {
+		return _ddmTemplate.toString();
+	}
+
+	@Override
+	public DDMTemplate toUnescapedModel() {
+		return new DDMTemplateWrapper(_ddmTemplate.toUnescapedModel());
+	}
+
+	@Override
+	public java.lang.String toXmlString() {
+		return _ddmTemplate.toXmlString();
 	}
 
 	@Override
