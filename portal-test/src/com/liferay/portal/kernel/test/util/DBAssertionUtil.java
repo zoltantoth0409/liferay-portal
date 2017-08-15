@@ -40,14 +40,16 @@ public class DBAssertionUtil {
 			columnNames[i] = StringUtil.toLowerCase(columnNames[i]);
 		}
 
-		Set<String> names = SetUtil.fromArray(columnNames);
+		Set<String> columnNamesSet = SetUtil.fromArray(columnNames);
 
-		try (Connection con = DataAccess.getUpgradeOptimizedConnection()) {
-			DBInspector dbInspector = new DBInspector(con);
+		try (Connection connection =
+				DataAccess.getUpgradeOptimizedConnection()) {
 
-			DatabaseMetaData metaData = con.getMetaData();
+			DBInspector dbInspector = new DBInspector(connection);
 
-			try (ResultSet rs = metaData.getColumns(
+			DatabaseMetaData databaseMetaData = connection.getMetaData();
+
+			try (ResultSet rs = databaseMetaData.getColumns(
 					dbInspector.getCatalog(), dbInspector.getSchema(),
 					dbInspector.normalizeName(tableName), null)) {
 
@@ -57,12 +59,13 @@ public class DBAssertionUtil {
 
 					Assert.assertTrue(
 						columnName + " should not exist",
-						names.remove(columnName));
+						columnNamesSet.remove(columnName));
 				}
 			}
 		}
 
-		Assert.assertEquals(names.toString(), 0, names.size());
+		Assert.assertEquals(
+			columnNamesSet.toString(), 0, columnNamesSet.size());
 	}
 
 }
