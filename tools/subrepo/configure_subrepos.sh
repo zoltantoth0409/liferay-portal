@@ -261,7 +261,7 @@ do
 
 	if [[ -z "${COMMANDS}" ]] || [[ "$(echo "${COMMANDS}" | grep '^branches$')" ]]
 	then
-		OUTPUT="$(curl -H "Authorization: token ${GITHUB_API_TOKEN}" -L -s "https://api.github.com/repos/liferay/${REPO_NAME}/branches" -X GET 2>&1)"
+		OUTPUT="$(curl -H "Accept: application/vnd.github.loki-preview+json" -H "Authorization: token ${GITHUB_API_TOKEN}" -L -s "https://api.github.com/repos/liferay/${REPO_NAME}/branches" -X GET 2>&1)"
 
 		if [[ -z "$(echo "${OUTPUT}" | grep '\[')" ]] || [[ -z "$(echo "${OUTPUT}" | grep '\]')" ]]
 		then
@@ -274,8 +274,6 @@ do
 
 		if [[ "$(echo "${OUTPUT}" | grep '"name"')" ]]
 		then
-			BRANCHES="$(echo "${OUTPUT}" | grep '"name"' | sed 's/"[^"]*$//' | sed 's/.*"//')"
-
 			PROTECTED_BRANCHES="
 7.0.x
 7.0.x-private
@@ -283,15 +281,19 @@ master
 master-private
 "
 
-			for BRANCH in ${BRANCHES}
+			for BRANCH in $(echo "${OUTPUT}" | tr '\n' ' ' | sed 's/ //g' | sed 's/"name"/\'$'\n&/g' | grep '"name"')
 			do
-				if [[ "$(echo "${PROTECTED_BRANCHES}" | grep "^${BRANCH}\$")" ]]
+				BRANCH_NAME="$(echo "${BRANCH}" | sed 's/.*"name":"//' | sed 's/".*//')"
+
+				if [[ "$(echo "${PROTECTED_BRANCHES}" | grep "^${BRANCH_NAME}\$")" ]] && [[ "$(echo "${BRANCH}" | grep '"protected":false')" ]]
 				then
-					OUTPUT="$(curl -d "{\"enforce_admins\":false,\"required_status_checks\":null,\"restrictions\":null}" -H "Accept: application/vnd.github.loki-preview+json" -H "Authorization: token ${GITHUB_API_TOKEN}" -L -s "https://api.github.com/repos/liferay/${REPO_NAME}/branches/${BRANCH}/protection" -X PUT 2>&1)"
+					info "Protecting branch ${BRANCH_NAME} at liferay/${REPO_NAME}."
+
+					OUTPUT="$(curl -d "{\"enforce_admins\":false,\"required_status_checks\":null,\"restrictions\":null}" -H "Accept: application/vnd.github.loki-preview+json" -H "Authorization: token ${GITHUB_API_TOKEN}" -L -s "https://api.github.com/repos/liferay/${REPO_NAME}/branches/${BRANCH_NAME}/protection" -X PUT 2>&1)"
 
 					if [[ -z "$(echo "${OUTPUT}" | grep '"url"')" ]]
 					then
-						warn "Failed to protect branch ${BRANCH} at liferay/${REPO_NAME}."
+						warn "Failed to protect branch ${BRANCH_NAME} at liferay/${REPO_NAME}."
 
 						warn "${OUTPUT}"
 					fi
