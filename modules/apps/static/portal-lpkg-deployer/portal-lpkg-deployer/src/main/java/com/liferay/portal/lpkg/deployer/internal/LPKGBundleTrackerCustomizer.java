@@ -525,15 +525,16 @@ public class LPKGBundleTrackerCustomizer
 		sb.append(bundle.getVersion());
 		sb.append(StringPool.SLASH);
 
-		String[] strings = _readServletContextNameAndPortalProfileNames(url);
+		String[] servletContextNameAndPortalProfileNames =
+			_readServletContextNameAndPortalProfileNames(url);
 
-		String servletContextName = strings[0];
+		String servletContextName = servletContextNameAndPortalProfileNames[0];
 
 		sb.append(servletContextName);
 
 		sb.append(".war");
 
-		String portalProfileNames = strings[1];
+		String portalProfileNames = servletContextNameAndPortalProfileNames[1];
 
 		if (Validator.isNotNull(portalProfileNames)) {
 			sb.append(StringPool.QUESTION);
