@@ -76,7 +76,6 @@ public abstract class BaseAssetRendererFactory<T>
 	}
 
 	@Override
-	@SuppressWarnings("unused")
 	public AssetRenderer<T> getAssetRenderer(long groupId, String urlTitle)
 		throws PortalException {
 
@@ -270,7 +269,6 @@ public abstract class BaseAssetRendererFactory<T>
 	}
 
 	@Override
-	@SuppressWarnings("unused")
 	public PortletURL getURLAdd(
 			LiferayPortletRequest liferayPortletRequest,
 			LiferayPortletResponse liferayPortletResponse, long classTypeId)
@@ -280,7 +278,6 @@ public abstract class BaseAssetRendererFactory<T>
 	}
 
 	@Override
-	@SuppressWarnings("unused")
 	public PortletURL getURLView(
 			LiferayPortletResponse liferayPortletResponse,
 			WindowState windowState)
