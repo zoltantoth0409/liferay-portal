@@ -151,7 +151,7 @@ fi
 
 SUBREPO_SEARCH_PARAMETERS=(
 	"7.0.x:../..:modules/apps"
-	"ee-7.0.x:../../../liferay-portal-ee:modules/private/apps"
+	"7.0.x-private:../../../liferay-portal-ee:modules/private/apps"
 	"master-private:../../../liferay-portal-ee:modules/private/apps"
 	"master:../..:modules/apps"
 )
@@ -240,12 +240,6 @@ else
 
 		ALL_SUBREPOS=("${ALL_SUBREPOS[@]}" "${SUBREPO_SEARCH[@]}")
 	done
-
-	#
-	# Fix for ee-7.0.x.
-	#
-
-	ALL_SUBREPOS=($(printf '%s\n' "${ALL_SUBREPOS[@]}" | sed 's/^ee-7.0.x/7.0.x-private/'))
 
 	SUBREPO_BRANCHES=($(printf '%s\n' "${ALL_SUBREPOS[@]}" | grep "^[^:]*:.*${PATTERN}"))
 
