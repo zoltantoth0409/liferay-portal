@@ -17,8 +17,6 @@
 <%@ include file="/init.jsp" %>
 
 <%
-int abstractLength = GetterUtil.getInteger(request.getAttribute(WebKeys.ASSET_ENTRY_ABSTRACT_LENGTH), AssetUtil.ASSET_ENTRY_ABSTRACT_LENGTH);
-
 SearchContainer articleSearchContainer = journalDisplayContext.getSearchContainer(false);
 
 String displayStyle = journalDisplayContext.getDisplayStyle();
@@ -181,7 +179,7 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 						<liferay-ui:search-container-column-text
 							cssClass="table-cell-content"
 							name="description"
-							value="<%= StringUtil.shorten(HtmlUtil.stripHtml(curArticle.getDescription(locale)), abstractLength) %>"
+							value="<%= StringUtil.shorten(HtmlUtil.stripHtml(curArticle.getDescription(locale)), 200) %>"
 						/>
 
 						<liferay-ui:search-container-column-text
