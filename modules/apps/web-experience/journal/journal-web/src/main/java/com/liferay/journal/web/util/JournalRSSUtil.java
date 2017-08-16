@@ -563,7 +563,7 @@ public class JournalRSSUtil {
 	}
 
 	/**
-	 * @deprecated As of 7.0.0, replaced by {@link
+	 * @deprecated As of 2.0.0, replaced by {@link
 	 *             #processContent(ResourceRequest, ResourceResponse,
 	 *             JournalFeed, JournalArticle, String, ThemeDisplay, SyndEntry,
 	 *             SyndContent)}
@@ -573,7 +573,7 @@ public class JournalRSSUtil {
 			JournalFeed feed, JournalArticle article, String languageId,
 			ThemeDisplay themeDisplay, SyndEntry syndEntry,
 			SyndContent syndContent)
-			throws Exception {
+		throws Exception {
 
 		return StringPool.BLANK;
 	}
