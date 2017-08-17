@@ -302,7 +302,8 @@
 
 		<exec dir="${modules.dir}" executable="git" failonerror="true">
 			<arg value="clean" />
-			<arg value="-df" />
+			<arg value="-dfx" />
+			<arg value=".releng" />
 		</exec>
 
 		<exec dir="${modules.dir}" executable="git" failonerror="true">
