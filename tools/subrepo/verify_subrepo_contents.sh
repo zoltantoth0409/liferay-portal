@@ -35,7 +35,7 @@ warn() {
 OPTION_ALL=
 PATTERN=
 
-while getopts "adfp:v" OPT
+while getopts "ap:" OPT
 do
 	case ${OPT} in
 	a)
