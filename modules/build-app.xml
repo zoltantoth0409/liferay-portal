@@ -308,6 +308,7 @@
 		<exec dir="${modules.dir}" executable="git" failonerror="true">
 			<arg value="add" />
 			<arg value=".releng" />
+			<arg value="-f" />
 		</exec>
 
 		<exec dir="${modules.dir}" executable="git" failonerror="true">
