@@ -53,6 +53,7 @@ CommentSectionDisplayContext commentSectionDisplayContext = CommentDisplayContex
 
 				<%
 				String contentURL = PortalUtil.getCanonicalURL(discussionTaglibHelper.getRedirect(), themeDisplay, layout);
+
 				contentURL = HttpUtil.removeParameter(contentURL, namespace + "skipEditorLoading");
 				%>
 
