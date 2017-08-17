@@ -761,10 +761,13 @@ public class JournalArticleIndexer
 				content = HtmlUtil.extractText(articleDisplay.getContent());
 			}
 
+			String snippet = document.get(
+				snippetLocale,
+				Field.SNIPPET + StringPool.UNDERLINE + Field.CONTENT);
+
 			Set<String> highlights = new HashSet<>();
 
-			_populateHighlightsFromSearchEngine(
-				highlights, document, snippetLocale);
+			HighlightUtil.addSnippet(document, highlights, snippet, "temp");
 
 			content = HighlightUtil.highlight(
 				content, ArrayUtil.toStringArray(highlights),
@@ -934,16 +937,6 @@ public class JournalArticleIndexer
 	@Reference(unbind = "-")
 	protected void setJournalConverter(JournalConverter journalConverter) {
 		_journalConverter = journalConverter;
-	}
-
-	private void _populateHighlightsFromSearchEngine(
-		Set<String> highlights, Document document, Locale snippetLocale) {
-
-		String snippet = document.get(
-			snippetLocale,
-			Field.SNIPPET + StringPool.UNDERLINE + Field.CONTENT);
-
-		HighlightUtil.addSnippet(document, highlights, snippet, "temp");
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
