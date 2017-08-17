@@ -17,7 +17,7 @@ package com.liferay.portal.configuration.upgrade.util;
 /**
  * @author Drew Brokke
  */
-public enum PropertyDataType {
+public enum PrefsPropsValueType {
 
 	BOOLEAN, DOUBLE, INT, LONG, SHORT, STRING, STRING_ARRAY
 

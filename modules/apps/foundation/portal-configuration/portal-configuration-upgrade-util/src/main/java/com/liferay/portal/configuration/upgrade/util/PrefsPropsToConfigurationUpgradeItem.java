@@ -17,37 +17,39 @@ package com.liferay.portal.configuration.upgrade.util;
 /**
  * @author Drew Brokke
  */
-public class PropertiesToConfigurationUpgradeKey {
+public class PrefsPropsToConfigurationUpgradeItem {
 
-	public PropertiesToConfigurationUpgradeKey(
-		String propertyKey, String configurationMethodName) {
+	public PrefsPropsToConfigurationUpgradeItem(
+		String prefsPropsName, PrefsPropsValueType prefsPropsValueType,
+		String configurationMethodName) {
 
-		this(propertyKey, configurationMethodName, PropertyDataType.STRING);
+		_prefsPropsName = prefsPropsName;
+		_prefsPropsValueType = prefsPropsValueType;
+		_configurationMethodName = configurationMethodName;
 	}
 
-	public PropertiesToConfigurationUpgradeKey(
-		String propertyKey, String configurationMethodName,
-		PropertyDataType propertyDataType) {
+	public PrefsPropsToConfigurationUpgradeItem(
+		String prefsPropsName, String configurationMethodName) {
 
-		_propertyKey = propertyKey;
-		_configurationMethodName = configurationMethodName;
-		_propertyDataType = propertyDataType;
+		this(
+			prefsPropsName, PrefsPropsValueType.STRING,
+			configurationMethodName);
 	}
 
 	public String getConfigurationMethodName() {
 		return _configurationMethodName;
 	}
 
-	public PropertyDataType getPropertyDataType() {
-		return _propertyDataType;
+	public String getPrefsPropsName() {
+		return _prefsPropsName;
 	}
 
-	public String getPropertyKey() {
-		return _propertyKey;
+	public PrefsPropsValueType getPrefsPropsValueType() {
+		return _prefsPropsValueType;
 	}
 
 	private final String _configurationMethodName;
-	private final PropertyDataType _propertyDataType;
-	private final String _propertyKey;
+	private final String _prefsPropsName;
+	private final PrefsPropsValueType _prefsPropsValueType;
 
 }

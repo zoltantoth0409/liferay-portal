@@ -34,15 +34,15 @@ import org.osgi.service.cm.Configuration;
 /**
  * @author Drew Brokke
  */
-public class PropertiesToConfigurationUpgradeUtil {
+public class PrefsPropsToConfigurationUpgradeUtil {
 
-	public static void upgradePropertiesToConfiguration(
+	public static void upgradePrefsPropsToConfiguration(
 			PortletPreferences portletPreferences, Configuration configuration,
-			PropertiesToConfigurationUpgradeKey[]
-				propertiesToConfigurationUpgradeKeys)
+			PrefsPropsToConfigurationUpgradeItem[]
+				prefsPropsToConfigurationUpgradeItems)
 		throws UpgradeException {
 
-		if (ArrayUtil.isEmpty(propertiesToConfigurationUpgradeKeys)) {
+		if (ArrayUtil.isEmpty(prefsPropsToConfigurationUpgradeItems)) {
 			return;
 		}
 
@@ -53,28 +53,30 @@ public class PropertiesToConfigurationUpgradeUtil {
 		}
 
 		try {
-			for (PropertiesToConfigurationUpgradeKey
-					propertiesToConfigurationUpgradeKey :
-						propertiesToConfigurationUpgradeKeys) {
+			for (PrefsPropsToConfigurationUpgradeItem
+					prefsPropsToConfigurationUpgradeItem :
+						prefsPropsToConfigurationUpgradeItems) {
 
-				String propertyKey =
-					propertiesToConfigurationUpgradeKey.getPropertyKey();
-				PropertyDataType propertyDataType =
-					propertiesToConfigurationUpgradeKey.getPropertyDataType();
+				String prefsPropsName =
+					prefsPropsToConfigurationUpgradeItem.getPrefsPropsName();
 
 				Object value = PrefsPropsUtil.getString(
-					portletPreferences, propertyKey);
+					portletPreferences, prefsPropsName);
 
 				if (Validator.isNull(value)) {
 					continue;
 				}
 
-				properties.put(
-					propertiesToConfigurationUpgradeKey.
-						getConfigurationMethodName(),
-					_getTypedValue(value, propertyDataType));
+				PrefsPropsValueType prefsPropsValueType =
+					prefsPropsToConfigurationUpgradeItem.
+						getPrefsPropsValueType();
 
-				portletPreferences.reset(propertyKey);
+				properties.put(
+					prefsPropsToConfigurationUpgradeItem.
+						getConfigurationMethodName(),
+					_getTypedValue(value, prefsPropsValueType));
+
+				portletPreferences.reset(prefsPropsName);
 			}
 
 			if (properties.isEmpty()) {
@@ -90,24 +92,24 @@ public class PropertiesToConfigurationUpgradeUtil {
 	}
 
 	private static Object _getTypedValue(
-		Object value, PropertyDataType propertyDataType) {
+		Object value, PrefsPropsValueType prefsPropsValueType) {
 
-		if (propertyDataType == PropertyDataType.BOOLEAN) {
+		if (prefsPropsValueType == PrefsPropsValueType.BOOLEAN) {
 			return GetterUtil.getBoolean(value);
 		}
-		else if (propertyDataType == PropertyDataType.DOUBLE) {
+		else if (prefsPropsValueType == PrefsPropsValueType.DOUBLE) {
 			return GetterUtil.getDouble(value);
 		}
-		else if (propertyDataType == PropertyDataType.INT) {
+		else if (prefsPropsValueType == PrefsPropsValueType.INT) {
 			return GetterUtil.getInteger(value);
 		}
-		else if (propertyDataType == PropertyDataType.LONG) {
+		else if (prefsPropsValueType == PrefsPropsValueType.LONG) {
 			return GetterUtil.getLong(value);
 		}
-		else if (propertyDataType == PropertyDataType.SHORT) {
+		else if (prefsPropsValueType == PrefsPropsValueType.SHORT) {
 			return GetterUtil.getShort(value);
 		}
-		else if (propertyDataType == PropertyDataType.STRING_ARRAY) {
+		else if (prefsPropsValueType == PrefsPropsValueType.STRING_ARRAY) {
 			return StringUtil.split((String)value);
 		}
 		else {
