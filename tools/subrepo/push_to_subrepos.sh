@@ -27,7 +27,6 @@ error() {
 help() {
 	info "Usage: ./push_to_subrepos.sh [-a] [-d] [-f] [-p PATTERN] [-v] [SUBREPO_NAME]"
 	info " -a: All subrepos. Must omit -p and SUBREPO_NAME."
-	info " -d: Debug mode. More verbose console logging."
 	info " -f: Force update a subrepo that is either lacking gitrepo information or is not configured for pushing."
 	info " -p: Update subrepos matching a regex pattern. Must omit -a and SUBREPO_NAME."
 	info " -v: Verify only. Lists all subrepos/branches/files out of date."
@@ -46,7 +45,6 @@ warn() {
 }
 
 OPTION_ALL=
-OPTION_DEBUG=
 OPTION_FORCE=
 OPTION_VERIFY=
 PATTERN=
@@ -56,9 +54,6 @@ do
 	case ${OPT} in
 	a)
 		OPTION_ALL=true
-		;;
-	d)
-		OPTION_DEBUG=true
 		;;
 	f)
 		OPTION_FORCE=true
