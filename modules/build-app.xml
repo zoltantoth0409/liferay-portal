@@ -95,7 +95,7 @@
 		<echo message="Current branch: ${liferay.releng.branch}" />
 
 		<condition property="current.branch.private">
-			<contains string="${liferay.releng.branch}" substring="ee-" />
+			<contains string="${liferay.releng.branch}" substring="-private" />
 		</condition>
 
 		<condition else="Liferay CE" property="liferay.releng.app.title.prefix" value="Liferay">
