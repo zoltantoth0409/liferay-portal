@@ -15,7 +15,7 @@ error() {
 }
 
 help() {
-	info "Usage: ./push_to_subrepos.sh [-a] [-p PATTERN] [SUBREPO_NAME]"
+	info "Usage: ./verify_subrepo_contents.sh [-a] [-p PATTERN] [SUBREPO_NAME]"
 	info " -a: All subrepos. Must omit -p and SUBREPO_NAME."
 	info " -p: Verify subrepos matching a regex pattern. Must omit -a and SUBREPO_NAME."
 }
