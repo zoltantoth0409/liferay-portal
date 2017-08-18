@@ -123,6 +123,7 @@ public class GitWorkingDirectory {
 		}
 
 		_repositoryName = repositoryName;
+
 		_repositoryUsername = loadRepositoryUsername();
 	}
 
