@@ -322,6 +322,29 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	/**
 	* Returns the localized title of this kaleo definition in the language. Uses the default language if no localization exists for the requested language.
 	*
+	* @param locale the locale of the language
+	* @return the localized title of this kaleo definition
+	*/
+	@Override
+	public java.lang.String getTitle(java.util.Locale locale) {
+		return _kaleoDefinition.getTitle(locale);
+	}
+
+	/**
+	* Returns the localized title of this kaleo definition in the language, optionally using the default language if no localization exists for the requested language.
+	*
+	* @param locale the local of the language
+	* @param useDefault whether to use the default language if no localization exists for the requested language
+	* @return the localized title of this kaleo definition. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
+	*/
+	@Override
+	public java.lang.String getTitle(java.util.Locale locale, boolean useDefault) {
+		return _kaleoDefinition.getTitle(locale, useDefault);
+	}
+
+	/**
+	* Returns the localized title of this kaleo definition in the language. Uses the default language if no localization exists for the requested language.
+	*
 	* @param languageId the ID of the language
 	* @return the localized title of this kaleo definition
 	*/
@@ -341,29 +364,6 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	public java.lang.String getTitle(java.lang.String languageId,
 		boolean useDefault) {
 		return _kaleoDefinition.getTitle(languageId, useDefault);
-	}
-
-	/**
-	* Returns the localized title of this kaleo definition in the language. Uses the default language if no localization exists for the requested language.
-	*
-	* @param locale the locale of the language
-	* @return the localized title of this kaleo definition
-	*/
-	@Override
-	public java.lang.String getTitle(java.util.Locale locale) {
-		return _kaleoDefinition.getTitle(locale);
-	}
-
-	/**
-	* Returns the localized title of this kaleo definition in the language, optionally using the default language if no localization exists for the requested language.
-	*
-	* @param locale the local of the language
-	* @param useDefault whether to use the default language if no localization exists for the requested language
-	* @return the localized title of this kaleo definition. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
-	*/
-	@Override
-	public java.lang.String getTitle(java.util.Locale locale, boolean useDefault) {
-		return _kaleoDefinition.getTitle(locale, useDefault);
 	}
 
 	@Override
@@ -427,13 +427,13 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	}
 
 	@Override
-	public boolean hasIncompleteKaleoInstances() {
-		return _kaleoDefinition.hasIncompleteKaleoInstances();
+	public int hashCode() {
+		return _kaleoDefinition.hashCode();
 	}
 
 	@Override
-	public int hashCode() {
-		return _kaleoDefinition.hashCode();
+	public boolean hasIncompleteKaleoInstances() {
+		return _kaleoDefinition.hasIncompleteKaleoInstances();
 	}
 
 	/**
@@ -535,14 +535,14 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
-		_kaleoDefinition.setExpandoBridgeAttributes(expandoBridge);
-	}
-
-	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
 		_kaleoDefinition.setExpandoBridgeAttributes(baseModel);
+	}
+
+	@Override
+	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
+		_kaleoDefinition.setExpandoBridgeAttributes(expandoBridge);
 	}
 
 	@Override

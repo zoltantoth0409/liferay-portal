@@ -34,18 +34,6 @@ public class DDMDataProviderInstanceLocalServiceWrapper
 		_ddmDataProviderInstanceLocalService = ddmDataProviderInstanceLocalService;
 	}
 
-	/**
-	* Adds the ddm data provider instance to the database. Also notifies the appropriate model listeners.
-	*
-	* @param ddmDataProviderInstance the ddm data provider instance
-	* @return the ddm data provider instance that was added
-	*/
-	@Override
-	public com.liferay.dynamic.data.mapping.model.DDMDataProviderInstance addDDMDataProviderInstance(
-		com.liferay.dynamic.data.mapping.model.DDMDataProviderInstance ddmDataProviderInstance) {
-		return _ddmDataProviderInstanceLocalService.addDDMDataProviderInstance(ddmDataProviderInstance);
-	}
-
 	@Override
 	public com.liferay.dynamic.data.mapping.model.DDMDataProviderInstance addDataProviderInstance(
 		long userId, long groupId,
@@ -61,6 +49,18 @@ public class DDMDataProviderInstanceLocalServiceWrapper
 	}
 
 	/**
+	* Adds the ddm data provider instance to the database. Also notifies the appropriate model listeners.
+	*
+	* @param ddmDataProviderInstance the ddm data provider instance
+	* @return the ddm data provider instance that was added
+	*/
+	@Override
+	public com.liferay.dynamic.data.mapping.model.DDMDataProviderInstance addDDMDataProviderInstance(
+		com.liferay.dynamic.data.mapping.model.DDMDataProviderInstance ddmDataProviderInstance) {
+		return _ddmDataProviderInstanceLocalService.addDDMDataProviderInstance(ddmDataProviderInstance);
+	}
+
+	/**
 	* Creates a new ddm data provider instance with the primary key. Does not add the ddm data provider instance to the database.
 	*
 	* @param dataProviderInstanceId the primary key for the new ddm data provider instance
@@ -70,6 +70,26 @@ public class DDMDataProviderInstanceLocalServiceWrapper
 	public com.liferay.dynamic.data.mapping.model.DDMDataProviderInstance createDDMDataProviderInstance(
 		long dataProviderInstanceId) {
 		return _ddmDataProviderInstanceLocalService.createDDMDataProviderInstance(dataProviderInstanceId);
+	}
+
+	@Override
+	public void deleteDataProviderInstance(
+		com.liferay.dynamic.data.mapping.model.DDMDataProviderInstance dataProviderInstance)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_ddmDataProviderInstanceLocalService.deleteDataProviderInstance(dataProviderInstance);
+	}
+
+	@Override
+	public void deleteDataProviderInstance(long dataProviderInstanceId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_ddmDataProviderInstanceLocalService.deleteDataProviderInstance(dataProviderInstanceId);
+	}
+
+	@Override
+	public void deleteDataProviderInstances(long companyId, long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_ddmDataProviderInstanceLocalService.deleteDataProviderInstances(companyId,
+			groupId);
 	}
 
 	/**
@@ -96,26 +116,6 @@ public class DDMDataProviderInstanceLocalServiceWrapper
 		long dataProviderInstanceId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _ddmDataProviderInstanceLocalService.deleteDDMDataProviderInstance(dataProviderInstanceId);
-	}
-
-	@Override
-	public void deleteDataProviderInstance(
-		com.liferay.dynamic.data.mapping.model.DDMDataProviderInstance dataProviderInstance)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		_ddmDataProviderInstanceLocalService.deleteDataProviderInstance(dataProviderInstance);
-	}
-
-	@Override
-	public void deleteDataProviderInstance(long dataProviderInstanceId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		_ddmDataProviderInstanceLocalService.deleteDataProviderInstance(dataProviderInstanceId);
-	}
-
-	@Override
-	public void deleteDataProviderInstances(long companyId, long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		_ddmDataProviderInstanceLocalService.deleteDataProviderInstances(companyId,
-			groupId);
 	}
 
 	/**
@@ -215,6 +215,12 @@ public class DDMDataProviderInstanceLocalServiceWrapper
 	}
 
 	@Override
+	public com.liferay.dynamic.data.mapping.model.DDMDataProviderInstance fetchDataProviderInstance(
+		long dataProviderInstanceId) {
+		return _ddmDataProviderInstanceLocalService.fetchDataProviderInstance(dataProviderInstanceId);
+	}
+
+	@Override
 	public com.liferay.dynamic.data.mapping.model.DDMDataProviderInstance fetchDDMDataProviderInstance(
 		long dataProviderInstanceId) {
 		return _ddmDataProviderInstanceLocalService.fetchDDMDataProviderInstance(dataProviderInstanceId);
@@ -235,14 +241,21 @@ public class DDMDataProviderInstanceLocalServiceWrapper
 	}
 
 	@Override
-	public com.liferay.dynamic.data.mapping.model.DDMDataProviderInstance fetchDataProviderInstance(
-		long dataProviderInstanceId) {
-		return _ddmDataProviderInstanceLocalService.fetchDataProviderInstance(dataProviderInstanceId);
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _ddmDataProviderInstanceLocalService.getActionableDynamicQuery();
 	}
 
 	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
-		return _ddmDataProviderInstanceLocalService.getActionableDynamicQuery();
+	public com.liferay.dynamic.data.mapping.model.DDMDataProviderInstance getDataProviderInstance(
+		long dataProviderInstanceId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _ddmDataProviderInstanceLocalService.getDataProviderInstance(dataProviderInstanceId);
+	}
+
+	@Override
+	public java.util.List<com.liferay.dynamic.data.mapping.model.DDMDataProviderInstance> getDataProviderInstances(
+		long[] groupIds) {
+		return _ddmDataProviderInstanceLocalService.getDataProviderInstances(groupIds);
 	}
 
 	/**
@@ -336,19 +349,6 @@ public class DDMDataProviderInstanceLocalServiceWrapper
 	}
 
 	@Override
-	public com.liferay.dynamic.data.mapping.model.DDMDataProviderInstance getDataProviderInstance(
-		long dataProviderInstanceId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _ddmDataProviderInstanceLocalService.getDataProviderInstance(dataProviderInstanceId);
-	}
-
-	@Override
-	public java.util.List<com.liferay.dynamic.data.mapping.model.DDMDataProviderInstance> getDataProviderInstances(
-		long[] groupIds) {
-		return _ddmDataProviderInstanceLocalService.getDataProviderInstances(groupIds);
-	}
-
-	@Override
 	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
 		com.liferay.exportimport.kernel.lar.PortletDataContext portletDataContext) {
 		return _ddmDataProviderInstanceLocalService.getExportActionableDynamicQuery(portletDataContext);
@@ -408,18 +408,6 @@ public class DDMDataProviderInstanceLocalServiceWrapper
 			groupIds, name, description, andOperator);
 	}
 
-	/**
-	* Updates the ddm data provider instance in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
-	*
-	* @param ddmDataProviderInstance the ddm data provider instance
-	* @return the ddm data provider instance that was updated
-	*/
-	@Override
-	public com.liferay.dynamic.data.mapping.model.DDMDataProviderInstance updateDDMDataProviderInstance(
-		com.liferay.dynamic.data.mapping.model.DDMDataProviderInstance ddmDataProviderInstance) {
-		return _ddmDataProviderInstanceLocalService.updateDDMDataProviderInstance(ddmDataProviderInstance);
-	}
-
 	@Override
 	public com.liferay.dynamic.data.mapping.model.DDMDataProviderInstance updateDataProviderInstance(
 		long userId, long dataProviderInstanceId,
@@ -431,6 +419,18 @@ public class DDMDataProviderInstanceLocalServiceWrapper
 		return _ddmDataProviderInstanceLocalService.updateDataProviderInstance(userId,
 			dataProviderInstanceId, nameMap, descriptionMap, ddmFormValues,
 			serviceContext);
+	}
+
+	/**
+	* Updates the ddm data provider instance in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
+	*
+	* @param ddmDataProviderInstance the ddm data provider instance
+	* @return the ddm data provider instance that was updated
+	*/
+	@Override
+	public com.liferay.dynamic.data.mapping.model.DDMDataProviderInstance updateDDMDataProviderInstance(
+		com.liferay.dynamic.data.mapping.model.DDMDataProviderInstance ddmDataProviderInstance) {
+		return _ddmDataProviderInstanceLocalService.updateDDMDataProviderInstance(ddmDataProviderInstance);
 	}
 
 	@Override

@@ -60,6 +60,8 @@ public interface DDMDataProviderInstanceLinkLocalService
 	 *
 	 * Never modify or reference this interface directly. Always use {@link DDMDataProviderInstanceLinkLocalServiceUtil} to access the ddm data provider instance link local service. Add custom service methods to {@link com.liferay.dynamic.data.mapping.service.impl.DDMDataProviderInstanceLinkLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public DDMDataProviderInstanceLink addDataProviderInstanceLink(
+		long dataProviderInstanceId, long structureId);
 
 	/**
 	* Adds the ddm data provider instance link to the database. Also notifies the appropriate model listeners.
@@ -71,9 +73,6 @@ public interface DDMDataProviderInstanceLinkLocalService
 	public DDMDataProviderInstanceLink addDDMDataProviderInstanceLink(
 		DDMDataProviderInstanceLink ddmDataProviderInstanceLink);
 
-	public DDMDataProviderInstanceLink addDataProviderInstanceLink(
-		long dataProviderInstanceId, long structureId);
-
 	/**
 	* Creates a new ddm data provider instance link with the primary key. Does not add the ddm data provider instance link to the database.
 	*
@@ -82,6 +81,17 @@ public interface DDMDataProviderInstanceLinkLocalService
 	*/
 	public DDMDataProviderInstanceLink createDDMDataProviderInstanceLink(
 		long dataProviderInstanceLinkId);
+
+	public void deleteDataProviderInstanceLink(
+		DDMDataProviderInstanceLink dataProviderInstanceLink);
+
+	public void deleteDataProviderInstanceLink(long dataProviderInstanceLinkId)
+		throws PortalException;
+
+	public void deleteDataProviderInstanceLink(long dataProviderInstanceId,
+		long structureId) throws PortalException;
+
+	public void deleteDataProviderInstanceLinks(long structureId);
 
 	/**
 	* Deletes the ddm data provider instance link from the database. Also notifies the appropriate model listeners.
@@ -103,17 +113,6 @@ public interface DDMDataProviderInstanceLinkLocalService
 	@Indexable(type = IndexableType.DELETE)
 	public DDMDataProviderInstanceLink deleteDDMDataProviderInstanceLink(
 		long dataProviderInstanceLinkId) throws PortalException;
-
-	public void deleteDataProviderInstanceLink(
-		DDMDataProviderInstanceLink dataProviderInstanceLink);
-
-	public void deleteDataProviderInstanceLink(long dataProviderInstanceLinkId)
-		throws PortalException;
-
-	public void deleteDataProviderInstanceLink(long dataProviderInstanceId,
-		long structureId) throws PortalException;
-
-	public void deleteDataProviderInstanceLinks(long structureId);
 
 	/**
 	* @throws PortalException
@@ -182,15 +181,19 @@ public interface DDMDataProviderInstanceLinkLocalService
 		Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public DDMDataProviderInstanceLink fetchDDMDataProviderInstanceLink(
-		long dataProviderInstanceLinkId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public DDMDataProviderInstanceLink fetchDataProviderInstanceLink(
 		long dataProviderInstanceId, long structureId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public DDMDataProviderInstanceLink fetchDDMDataProviderInstanceLink(
+		long dataProviderInstanceLinkId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<DDMDataProviderInstanceLink> getDataProviderInstanceLinks(
+		long structureId);
 
 	/**
 	* Returns the ddm data provider instance link with the primary key.
@@ -225,10 +228,6 @@ public interface DDMDataProviderInstanceLinkLocalService
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getDDMDataProviderInstanceLinksCount();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<DDMDataProviderInstanceLink> getDataProviderInstanceLinks(
-		long structureId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();

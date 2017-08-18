@@ -274,6 +274,13 @@ public class BlogsStatsUserLocalServiceWrapper
 	}
 
 	@Override
+	public java.util.List<com.liferay.blogs.kernel.model.BlogsStatsUser> getGroupsStatsUsers(
+		long companyId, long groupId, int start, int end) {
+		return _blogsStatsUserLocalService.getGroupsStatsUsers(companyId,
+			groupId, start, end);
+	}
+
+	@Override
 	public java.util.List<com.liferay.blogs.kernel.model.BlogsStatsUser> getGroupStatsUsers(
 		long groupId, int start, int end) {
 		return _blogsStatsUserLocalService.getGroupStatsUsers(groupId, start,
@@ -294,25 +301,8 @@ public class BlogsStatsUserLocalServiceWrapper
 	}
 
 	@Override
-	public java.util.List<com.liferay.blogs.kernel.model.BlogsStatsUser> getGroupsStatsUsers(
-		long companyId, long groupId, int start, int end) {
-		return _blogsStatsUserLocalService.getGroupsStatsUsers(companyId,
-			groupId, start, end);
-	}
-
-	@Override
 	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
 		return _blogsStatsUserLocalService.getIndexableActionableDynamicQuery();
-	}
-
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	@Override
-	public java.lang.String getOSGiServiceIdentifier() {
-		return _blogsStatsUserLocalService.getOSGiServiceIdentifier();
 	}
 
 	@Override
@@ -333,6 +323,16 @@ public class BlogsStatsUserLocalServiceWrapper
 	@Override
 	public int getOrganizationStatsUsersCount(long organizationId) {
 		return _blogsStatsUserLocalService.getOrganizationStatsUsersCount(organizationId);
+	}
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _blogsStatsUserLocalService.getOSGiServiceIdentifier();
 	}
 
 	@Override

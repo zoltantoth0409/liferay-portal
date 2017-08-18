@@ -81,6 +81,39 @@ public interface DDMTemplateLocalService extends BaseLocalService,
 	public DDMTemplate addDDMTemplate(DDMTemplate ddmTemplate);
 
 	/**
+	* Adds a template.
+	*
+	* @param userId the primary key of the template's creator/owner
+	* @param groupId the primary key of the group
+	* @param classNameId the primary key of the class name for the template's
+	related model
+	* @param classPK the primary key of the template's related entity
+	* @param resourceClassNameId the primary key of the class name for
+	template's resource model
+	* @param nameMap the template's locales and localized names
+	* @param descriptionMap the template's locales and localized descriptions
+	* @param type the template's type. For more information, see
+	DDMTemplateConstants in the dynamic-data-mapping-api module.
+	* @param mode the template's mode. For more information, see
+	DDMTemplateConstants in the dynamic-data-mapping-api module.
+	* @param language the template's script language. For more information,
+	see DDMTemplateConstants in the dynamic-data-mapping-api module.
+	* @param script the template's script
+	* @param serviceContext the service context to be applied. Can set the
+	UUID, creation date, modification date, guest permissions, and
+	group permissions for the template.
+	* @return the template
+	* @throws PortalException if a portal exception occurred
+	*/
+	public DDMTemplate addTemplate(long userId, long groupId, long classNameId,
+		long classPK, long resourceClassNameId,
+		Map<Locale, java.lang.String> nameMap,
+		Map<Locale, java.lang.String> descriptionMap, java.lang.String type,
+		java.lang.String mode, java.lang.String language,
+		java.lang.String script, ServiceContext serviceContext)
+		throws PortalException;
+
+	/**
 	* Adds a template with additional parameters.
 	*
 	* @param userId the primary key of the template's creator/owner
@@ -123,39 +156,6 @@ public interface DDMTemplateLocalService extends BaseLocalService,
 		ServiceContext serviceContext) throws PortalException;
 
 	/**
-	* Adds a template.
-	*
-	* @param userId the primary key of the template's creator/owner
-	* @param groupId the primary key of the group
-	* @param classNameId the primary key of the class name for the template's
-	related model
-	* @param classPK the primary key of the template's related entity
-	* @param resourceClassNameId the primary key of the class name for
-	template's resource model
-	* @param nameMap the template's locales and localized names
-	* @param descriptionMap the template's locales and localized descriptions
-	* @param type the template's type. For more information, see
-	DDMTemplateConstants in the dynamic-data-mapping-api module.
-	* @param mode the template's mode. For more information, see
-	DDMTemplateConstants in the dynamic-data-mapping-api module.
-	* @param language the template's script language. For more information,
-	see DDMTemplateConstants in the dynamic-data-mapping-api module.
-	* @param script the template's script
-	* @param serviceContext the service context to be applied. Can set the
-	UUID, creation date, modification date, guest permissions, and
-	group permissions for the template.
-	* @return the template
-	* @throws PortalException if a portal exception occurred
-	*/
-	public DDMTemplate addTemplate(long userId, long groupId, long classNameId,
-		long classPK, long resourceClassNameId,
-		Map<Locale, java.lang.String> nameMap,
-		Map<Locale, java.lang.String> descriptionMap, java.lang.String type,
-		java.lang.String mode, java.lang.String language,
-		java.lang.String script, ServiceContext serviceContext)
-		throws PortalException;
-
-	/**
 	* Adds the resources to the template.
 	*
 	* @param template the template to add resources to
@@ -177,9 +177,6 @@ public interface DDMTemplateLocalService extends BaseLocalService,
 	public void addTemplateResources(DDMTemplate template,
 		ModelPermissions modelPermissions) throws PortalException;
 
-	public DDMTemplate copyTemplate(long userId, long templateId,
-		ServiceContext serviceContext) throws PortalException;
-
 	/**
 	* Copies the template, creating a new template with all the values
 	* extracted from the original one. This method supports defining a new name
@@ -199,6 +196,9 @@ public interface DDMTemplateLocalService extends BaseLocalService,
 	public DDMTemplate copyTemplate(long userId, long templateId,
 		Map<Locale, java.lang.String> nameMap,
 		Map<Locale, java.lang.String> descriptionMap,
+		ServiceContext serviceContext) throws PortalException;
+
+	public DDMTemplate copyTemplate(long userId, long templateId,
 		ServiceContext serviceContext) throws PortalException;
 
 	/**
@@ -579,10 +579,6 @@ public interface DDMTemplateLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<DDMTemplate> getTemplates(long groupId, long classNameId);
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<DDMTemplate> getTemplates(long[] groupIds, long classNameId,
-		long classPK);
-
 	/**
 	* Returns all the templates matching the group, class name ID, and class
 	* PK.
@@ -637,14 +633,18 @@ public interface DDMTemplateLocalService extends BaseLocalService,
 		long classPK, java.lang.String type, java.lang.String mode);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<DDMTemplate> getTemplatesByClassPK(long groupId, long classPK);
+	public List<DDMTemplate> getTemplates(long[] groupIds, long classNameId,
+		long classPK);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<DDMTemplate> getTemplatesByClassPK(long[] groupIds, long classPK);
+	public List<DDMTemplate> getTemplatesByClassPK(long groupId, long classPK);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<DDMTemplate> getTemplatesByClassPK(long groupId, long classPK,
 		int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<DDMTemplate> getTemplatesByClassPK(long[] groupIds, long classPK);
 
 	/**
 	* Returns the number of templates matching the group and class PK.
@@ -789,6 +789,60 @@ public interface DDMTemplateLocalService extends BaseLocalService,
 		OrderByComparator<DDMTemplate> orderByComparator);
 
 	/**
+	* Returns an ordered range of all the templates matching the group, class
+	* name ID, class PK, name keyword, description keyword, type, mode, status,
+	* and language.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end -
+	* start</code> instances. <code>start</code> and <code>end</code> are not
+	* primary keys, they are indexes in the result set. Thus, <code>0</code>
+	* refers to the first result in the set. Setting both <code>start</code>
+	* and <code>end</code> to {@link
+	* com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full
+	* result set.
+	* </p>
+	*
+	* @param companyId the primary key of the template's company
+	* @param groupId the primary key of the group
+	* @param classNameId the primary key of the class name for the template's
+	related model
+	* @param classPK the primary key of the template's related entity
+	* @param resourceClassNameId the primary key of the class name for
+	template's resource model
+	* @param name the name keywords (optionally <code>null</code>)
+	* @param description the description keywords (optionally
+	<code>null</code>)
+	* @param type the template's type (optionally <code>null</code>). For more
+	information, see DDMTemplateConstants in the
+	dynamic-data-mapping-api module.
+	* @param mode the template's mode (optionally <code>null</code>). For more
+	information, see DDMTemplateConstants in the
+	dynamic-data-mapping-api module.
+	* @param language the template's script language (optionally
+	<code>null</code>). For more information, see
+	DDMTemplateConstants in the dynamic-data-mapping-api module.
+	* @param status the template's workflow status. For more information see
+	{@link WorkflowConstants} for constants starting with the
+	"STATUS_" prefix.
+	* @param andOperator whether every field must match its keywords, or just
+	one field
+	* @param start the lower bound of the range of templates to return
+	* @param end the upper bound of the range of templates to return (not
+	inclusive)
+	* @param orderByComparator the comparator to order the templates
+	(optionally <code>null</code>)
+	* @return the range of matching templates ordered by the comparator
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<DDMTemplate> search(long companyId, long groupId,
+		long classNameId, long classPK, long resourceClassNameId,
+		java.lang.String name, java.lang.String description,
+		java.lang.String type, java.lang.String mode,
+		java.lang.String language, int status, boolean andOperator, int start,
+		int end, OrderByComparator<DDMTemplate> orderByComparator);
+
+	/**
 	* Returns an ordered range of all the templates matching the group IDs,
 	* class Name IDs, class PK, type, mode, and status, and include the
 	* keywords on its names and descriptions.
@@ -890,19 +944,38 @@ public interface DDMTemplateLocalService extends BaseLocalService,
 		int end, OrderByComparator<DDMTemplate> orderByComparator);
 
 	/**
-	* Returns an ordered range of all the templates matching the group, class
-	* name ID, class PK, name keyword, description keyword, type, mode, status,
-	* and language.
+	* Returns the number of templates matching the group, class name ID, class
+	* PK, type, mode, and status, and matching the keywords in the template
+	* names and descriptions.
 	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end -
-	* start</code> instances. <code>start</code> and <code>end</code> are not
-	* primary keys, they are indexes in the result set. Thus, <code>0</code>
-	* refers to the first result in the set. Setting both <code>start</code>
-	* and <code>end</code> to {@link
-	* com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full
-	* result set.
-	* </p>
+	* @param companyId the primary key of the template's company
+	* @param groupId the primary key of the group
+	* @param classNameId the primary key of the class name for the template's
+	related model
+	* @param classPK the primary key of the template's related entity
+	* @param resourceClassNameId the primary key of the class name for
+	template's resource model
+	* @param keywords the keywords (space separated), which may occur in the
+	template's name or description (optionally <code>null</code>)
+	* @param type the template's type (optionally <code>null</code>). For more
+	information, see DDMTemplateConstants in the
+	dynamic-data-mapping-api module.
+	* @param mode the template's mode (optionally <code>null</code>). For more
+	information, see DDMTemplateConstants in the
+	dynamic-data-mapping-api module.
+	* @param status the template's workflow status. For more information see
+	{@link WorkflowConstants} for constants starting with the
+	"STATUS_" prefix.
+	* @return the number of matching templates
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int searchCount(long companyId, long groupId, long classNameId,
+		long classPK, long resourceClassNameId, java.lang.String keywords,
+		java.lang.String type, java.lang.String mode, int status);
+
+	/**
+	* Returns the number of templates matching the group, class name ID, class
+	* PK, name keyword, description keyword, type, mode, language, and status.
 	*
 	* @param companyId the primary key of the template's company
 	* @param groupId the primary key of the group
@@ -927,21 +1000,15 @@ public interface DDMTemplateLocalService extends BaseLocalService,
 	{@link WorkflowConstants} for constants starting with the
 	"STATUS_" prefix.
 	* @param andOperator whether every field must match its keywords, or just
-	one field
-	* @param start the lower bound of the range of templates to return
-	* @param end the upper bound of the range of templates to return (not
-	inclusive)
-	* @param orderByComparator the comparator to order the templates
-	(optionally <code>null</code>)
-	* @return the range of matching templates ordered by the comparator
+	one field.
+	* @return the number of matching templates
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<DDMTemplate> search(long companyId, long groupId,
-		long classNameId, long classPK, long resourceClassNameId,
-		java.lang.String name, java.lang.String description,
-		java.lang.String type, java.lang.String mode,
-		java.lang.String language, int status, boolean andOperator, int start,
-		int end, OrderByComparator<DDMTemplate> orderByComparator);
+	public int searchCount(long companyId, long groupId, long classNameId,
+		long classPK, long resourceClassNameId, java.lang.String name,
+		java.lang.String description, java.lang.String type,
+		java.lang.String mode, java.lang.String language, int status,
+		boolean andOperator);
 
 	/**
 	* Returns the number of templates matching the group IDs, class name IDs,
@@ -973,36 +1040,6 @@ public interface DDMTemplateLocalService extends BaseLocalService,
 		long[] classNameIds, long[] classPKs, long resourceClassNameId,
 		java.lang.String keywords, java.lang.String type,
 		java.lang.String mode, int status);
-
-	/**
-	* Returns the number of templates matching the group, class name ID, class
-	* PK, type, mode, and status, and matching the keywords in the template
-	* names and descriptions.
-	*
-	* @param companyId the primary key of the template's company
-	* @param groupId the primary key of the group
-	* @param classNameId the primary key of the class name for the template's
-	related model
-	* @param classPK the primary key of the template's related entity
-	* @param resourceClassNameId the primary key of the class name for
-	template's resource model
-	* @param keywords the keywords (space separated), which may occur in the
-	template's name or description (optionally <code>null</code>)
-	* @param type the template's type (optionally <code>null</code>). For more
-	information, see DDMTemplateConstants in the
-	dynamic-data-mapping-api module.
-	* @param mode the template's mode (optionally <code>null</code>). For more
-	information, see DDMTemplateConstants in the
-	dynamic-data-mapping-api module.
-	* @param status the template's workflow status. For more information see
-	{@link WorkflowConstants} for constants starting with the
-	"STATUS_" prefix.
-	* @return the number of matching templates
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int searchCount(long companyId, long groupId, long classNameId,
-		long classPK, long resourceClassNameId, java.lang.String keywords,
-		java.lang.String type, java.lang.String mode, int status);
 
 	/**
 	* Returns the number of templates matching the group IDs, class name IDs,
@@ -1041,43 +1078,6 @@ public interface DDMTemplateLocalService extends BaseLocalService,
 		java.lang.String name, java.lang.String description,
 		java.lang.String type, java.lang.String mode,
 		java.lang.String language, int status, boolean andOperator);
-
-	/**
-	* Returns the number of templates matching the group, class name ID, class
-	* PK, name keyword, description keyword, type, mode, language, and status.
-	*
-	* @param companyId the primary key of the template's company
-	* @param groupId the primary key of the group
-	* @param classNameId the primary key of the class name for the template's
-	related model
-	* @param classPK the primary key of the template's related entity
-	* @param resourceClassNameId the primary key of the class name for
-	template's resource model
-	* @param name the name keywords (optionally <code>null</code>)
-	* @param description the description keywords (optionally
-	<code>null</code>)
-	* @param type the template's type (optionally <code>null</code>). For more
-	information, see DDMTemplateConstants in the
-	dynamic-data-mapping-api module.
-	* @param mode the template's mode (optionally <code>null</code>). For more
-	information, see DDMTemplateConstants in the
-	dynamic-data-mapping-api module.
-	* @param language the template's script language (optionally
-	<code>null</code>). For more information, see
-	DDMTemplateConstants in the dynamic-data-mapping-api module.
-	* @param status the template's workflow status. For more information see
-	{@link WorkflowConstants} for constants starting with the
-	"STATUS_" prefix.
-	* @param andOperator whether every field must match its keywords, or just
-	one field.
-	* @return the number of matching templates
-	*/
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int searchCount(long companyId, long groupId, long classNameId,
-		long classPK, long resourceClassNameId, java.lang.String name,
-		java.lang.String description, java.lang.String type,
-		java.lang.String mode, java.lang.String language, int status,
-		boolean andOperator);
 
 	/**
 	* Updates the ddm template in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.

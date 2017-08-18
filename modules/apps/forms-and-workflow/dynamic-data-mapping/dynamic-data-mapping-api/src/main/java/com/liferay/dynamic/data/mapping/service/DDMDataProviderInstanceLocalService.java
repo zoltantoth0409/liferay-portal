@@ -67,6 +67,11 @@ public interface DDMDataProviderInstanceLocalService extends BaseLocalService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link DDMDataProviderInstanceLocalServiceUtil} to access the ddm data provider instance local service. Add custom service methods to {@link com.liferay.dynamic.data.mapping.service.impl.DDMDataProviderInstanceLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public DDMDataProviderInstance addDataProviderInstance(long userId,
+		long groupId, Map<Locale, java.lang.String> nameMap,
+		Map<Locale, java.lang.String> descriptionMap,
+		DDMFormValues ddmFormValues, java.lang.String type,
+		ServiceContext serviceContext) throws PortalException;
 
 	/**
 	* Adds the ddm data provider instance to the database. Also notifies the appropriate model listeners.
@@ -78,12 +83,6 @@ public interface DDMDataProviderInstanceLocalService extends BaseLocalService,
 	public DDMDataProviderInstance addDDMDataProviderInstance(
 		DDMDataProviderInstance ddmDataProviderInstance);
 
-	public DDMDataProviderInstance addDataProviderInstance(long userId,
-		long groupId, Map<Locale, java.lang.String> nameMap,
-		Map<Locale, java.lang.String> descriptionMap,
-		DDMFormValues ddmFormValues, java.lang.String type,
-		ServiceContext serviceContext) throws PortalException;
-
 	/**
 	* Creates a new ddm data provider instance with the primary key. Does not add the ddm data provider instance to the database.
 	*
@@ -92,6 +91,15 @@ public interface DDMDataProviderInstanceLocalService extends BaseLocalService,
 	*/
 	public DDMDataProviderInstance createDDMDataProviderInstance(
 		long dataProviderInstanceId);
+
+	public void deleteDataProviderInstance(
+		DDMDataProviderInstance dataProviderInstance) throws PortalException;
+
+	public void deleteDataProviderInstance(long dataProviderInstanceId)
+		throws PortalException;
+
+	public void deleteDataProviderInstances(long companyId, long groupId)
+		throws PortalException;
 
 	/**
 	* Deletes the ddm data provider instance from the database. Also notifies the appropriate model listeners.
@@ -113,15 +121,6 @@ public interface DDMDataProviderInstanceLocalService extends BaseLocalService,
 	@Indexable(type = IndexableType.DELETE)
 	public DDMDataProviderInstance deleteDDMDataProviderInstance(
 		long dataProviderInstanceId) throws PortalException;
-
-	public void deleteDataProviderInstance(
-		DDMDataProviderInstance dataProviderInstance) throws PortalException;
-
-	public void deleteDataProviderInstance(long dataProviderInstanceId)
-		throws PortalException;
-
-	public void deleteDataProviderInstances(long companyId, long groupId)
-		throws PortalException;
 
 	/**
 	* @throws PortalException
@@ -190,6 +189,10 @@ public interface DDMDataProviderInstanceLocalService extends BaseLocalService,
 		Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public DDMDataProviderInstance fetchDataProviderInstance(
+		long dataProviderInstanceId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public DDMDataProviderInstance fetchDDMDataProviderInstance(
 		long dataProviderInstanceId);
 
@@ -205,11 +208,15 @@ public interface DDMDataProviderInstanceLocalService extends BaseLocalService,
 		java.lang.String uuid, long groupId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public DDMDataProviderInstance fetchDataProviderInstance(
-		long dataProviderInstanceId);
+	public ActionableDynamicQuery getActionableDynamicQuery();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ActionableDynamicQuery getActionableDynamicQuery();
+	public DDMDataProviderInstance getDataProviderInstance(
+		long dataProviderInstanceId) throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<DDMDataProviderInstance> getDataProviderInstances(
+		long[] groupIds);
 
 	/**
 	* Returns the ddm data provider instance with the primary key.
@@ -284,14 +291,6 @@ public interface DDMDataProviderInstanceLocalService extends BaseLocalService,
 	public int getDDMDataProviderInstancesCount();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public DDMDataProviderInstance getDataProviderInstance(
-		long dataProviderInstanceId) throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<DDMDataProviderInstance> getDataProviderInstances(
-		long[] groupIds);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ExportActionableDynamicQuery getExportActionableDynamicQuery(
 		PortletDataContext portletDataContext);
 
@@ -329,6 +328,12 @@ public interface DDMDataProviderInstanceLocalService extends BaseLocalService,
 	public int searchCount(long companyId, long[] groupIds,
 		java.lang.String name, java.lang.String description, boolean andOperator);
 
+	public DDMDataProviderInstance updateDataProviderInstance(long userId,
+		long dataProviderInstanceId, Map<Locale, java.lang.String> nameMap,
+		Map<Locale, java.lang.String> descriptionMap,
+		DDMFormValues ddmFormValues, ServiceContext serviceContext)
+		throws PortalException;
+
 	/**
 	* Updates the ddm data provider instance in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
@@ -338,10 +343,4 @@ public interface DDMDataProviderInstanceLocalService extends BaseLocalService,
 	@Indexable(type = IndexableType.REINDEX)
 	public DDMDataProviderInstance updateDDMDataProviderInstance(
 		DDMDataProviderInstance ddmDataProviderInstance);
-
-	public DDMDataProviderInstance updateDataProviderInstance(long userId,
-		long dataProviderInstanceId, Map<Locale, java.lang.String> nameMap,
-		Map<Locale, java.lang.String> descriptionMap,
-		DDMFormValues ddmFormValues, ServiceContext serviceContext)
-		throws PortalException;
 }

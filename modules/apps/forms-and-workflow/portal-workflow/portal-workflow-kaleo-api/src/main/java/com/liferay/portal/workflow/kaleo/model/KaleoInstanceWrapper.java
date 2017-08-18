@@ -338,18 +338,18 @@ public class KaleoInstanceWrapper implements KaleoInstance,
 
 	@Override
 	public KaleoInstanceToken getRootKaleoInstanceToken(
-		ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _kaleoInstance.getRootKaleoInstanceToken(serviceContext);
-	}
-
-	@Override
-	public KaleoInstanceToken getRootKaleoInstanceToken(
 		Map<java.lang.String, Serializable> workflowContext,
 		ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoInstance.getRootKaleoInstanceToken(workflowContext,
 			serviceContext);
+	}
+
+	@Override
+	public KaleoInstanceToken getRootKaleoInstanceToken(
+		ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kaleoInstance.getRootKaleoInstanceToken(serviceContext);
 	}
 
 	/**
@@ -503,14 +503,14 @@ public class KaleoInstanceWrapper implements KaleoInstance,
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
-		_kaleoInstance.setExpandoBridgeAttributes(expandoBridge);
-	}
-
-	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
 		_kaleoInstance.setExpandoBridgeAttributes(baseModel);
+	}
+
+	@Override
+	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
+		_kaleoInstance.setExpandoBridgeAttributes(expandoBridge);
 	}
 
 	@Override

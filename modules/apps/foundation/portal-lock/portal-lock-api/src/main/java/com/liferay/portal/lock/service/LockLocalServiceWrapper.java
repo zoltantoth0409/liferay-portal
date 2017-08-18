@@ -180,9 +180,8 @@ public class LockLocalServiceWrapper implements LockLocalService,
 	}
 
 	@Override
-	public com.liferay.portal.lock.model.Lock fetchLock(
-		java.lang.String className, java.lang.String key) {
-		return _lockLocalService.fetchLock(className, key);
+	public com.liferay.portal.lock.model.Lock fetchLock(long lockId) {
+		return _lockLocalService.fetchLock(lockId);
 	}
 
 	@Override
@@ -192,8 +191,9 @@ public class LockLocalServiceWrapper implements LockLocalService,
 	}
 
 	@Override
-	public com.liferay.portal.lock.model.Lock fetchLock(long lockId) {
-		return _lockLocalService.fetchLock(lockId);
+	public com.liferay.portal.lock.model.Lock fetchLock(
+		java.lang.String className, java.lang.String key) {
+		return _lockLocalService.fetchLock(className, key);
 	}
 
 	/**
@@ -219,20 +219,6 @@ public class LockLocalServiceWrapper implements LockLocalService,
 		return _lockLocalService.getIndexableActionableDynamicQuery();
 	}
 
-	@Override
-	public com.liferay.portal.lock.model.Lock getLock(
-		java.lang.String className, java.lang.String key)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _lockLocalService.getLock(className, key);
-	}
-
-	@Override
-	public com.liferay.portal.lock.model.Lock getLock(
-		java.lang.String className, long key)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _lockLocalService.getLock(className, key);
-	}
-
 	/**
 	* Returns the lock with the primary key.
 	*
@@ -244,6 +230,20 @@ public class LockLocalServiceWrapper implements LockLocalService,
 	public com.liferay.portal.lock.model.Lock getLock(long lockId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _lockLocalService.getLock(lockId);
+	}
+
+	@Override
+	public com.liferay.portal.lock.model.Lock getLock(
+		java.lang.String className, long key)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _lockLocalService.getLock(className, key);
+	}
+
+	@Override
+	public com.liferay.portal.lock.model.Lock getLock(
+		java.lang.String className, java.lang.String key)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _lockLocalService.getLock(className, key);
 	}
 
 	/**
@@ -306,14 +306,19 @@ public class LockLocalServiceWrapper implements LockLocalService,
 	}
 
 	@Override
+	public boolean hasLock(long userId, java.lang.String className, long key) {
+		return _lockLocalService.hasLock(userId, className, key);
+	}
+
+	@Override
 	public boolean hasLock(long userId, java.lang.String className,
 		java.lang.String key) {
 		return _lockLocalService.hasLock(userId, className, key);
 	}
 
 	@Override
-	public boolean hasLock(long userId, java.lang.String className, long key) {
-		return _lockLocalService.hasLock(userId, className, key);
+	public boolean isLocked(java.lang.String className, long key) {
+		return _lockLocalService.isLocked(className, key);
 	}
 
 	@Override
@@ -322,8 +327,21 @@ public class LockLocalServiceWrapper implements LockLocalService,
 	}
 
 	@Override
-	public boolean isLocked(java.lang.String className, long key) {
-		return _lockLocalService.isLocked(className, key);
+	public com.liferay.portal.lock.model.Lock lock(long userId,
+		java.lang.String className, long key, java.lang.String owner,
+		boolean inheritable, long expirationTime)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _lockLocalService.lock(userId, className, key, owner,
+			inheritable, expirationTime);
+	}
+
+	@Override
+	public com.liferay.portal.lock.model.Lock lock(long userId,
+		java.lang.String className, java.lang.String key,
+		java.lang.String owner, boolean inheritable, long expirationTime)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _lockLocalService.lock(userId, className, key, owner,
+			inheritable, expirationTime);
 	}
 
 	@Override
@@ -341,28 +359,15 @@ public class LockLocalServiceWrapper implements LockLocalService,
 	}
 
 	@Override
-	public com.liferay.portal.lock.model.Lock lock(long userId,
-		java.lang.String className, java.lang.String key,
-		java.lang.String owner, boolean inheritable, long expirationTime)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _lockLocalService.lock(userId, className, key, owner,
-			inheritable, expirationTime);
-	}
-
-	@Override
-	public com.liferay.portal.lock.model.Lock lock(long userId,
-		java.lang.String className, long key, java.lang.String owner,
-		boolean inheritable, long expirationTime)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _lockLocalService.lock(userId, className, key, owner,
-			inheritable, expirationTime);
-	}
-
-	@Override
 	public com.liferay.portal.lock.model.Lock refresh(java.lang.String uuid,
 		long companyId, long expirationTime)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _lockLocalService.refresh(uuid, companyId, expirationTime);
+	}
+
+	@Override
+	public void unlock(java.lang.String className, long key) {
+		_lockLocalService.unlock(className, key);
 	}
 
 	@Override
@@ -374,11 +379,6 @@ public class LockLocalServiceWrapper implements LockLocalService,
 	public void unlock(java.lang.String className, java.lang.String key,
 		java.lang.String owner) {
 		_lockLocalService.unlock(className, key, owner);
-	}
-
-	@Override
-	public void unlock(java.lang.String className, long key) {
-		_lockLocalService.unlock(className, key);
 	}
 
 	/**

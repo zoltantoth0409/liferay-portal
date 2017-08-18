@@ -360,13 +360,13 @@ public class KaleoNodeWrapper implements KaleoNode, ModelWrapper<KaleoNode> {
 	}
 
 	@Override
-	public boolean hasKaleoTransition() {
-		return _kaleoNode.hasKaleoTransition();
+	public int hashCode() {
+		return _kaleoNode.hashCode();
 	}
 
 	@Override
-	public int hashCode() {
-		return _kaleoNode.hashCode();
+	public boolean hasKaleoTransition() {
+		return _kaleoNode.hasKaleoTransition();
 	}
 
 	@Override
@@ -445,14 +445,14 @@ public class KaleoNodeWrapper implements KaleoNode, ModelWrapper<KaleoNode> {
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
-		_kaleoNode.setExpandoBridgeAttributes(expandoBridge);
-	}
-
-	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
 		_kaleoNode.setExpandoBridgeAttributes(baseModel);
+	}
+
+	@Override
+	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
+		_kaleoNode.setExpandoBridgeAttributes(expandoBridge);
 	}
 
 	@Override

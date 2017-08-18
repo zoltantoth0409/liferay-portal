@@ -597,14 +597,14 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken,
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
-		_kaleoTimerInstanceToken.setExpandoBridgeAttributes(expandoBridge);
-	}
-
-	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
 		_kaleoTimerInstanceToken.setExpandoBridgeAttributes(baseModel);
+	}
+
+	@Override
+	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
+		_kaleoTimerInstanceToken.setExpandoBridgeAttributes(expandoBridge);
 	}
 
 	@Override

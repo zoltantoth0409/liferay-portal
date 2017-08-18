@@ -42,51 +42,6 @@ public class LayoutServiceUtil {
 	 */
 
 	/**
-	* Adds a layout with single entry maps for name, title, and description to
-	* the default locale.
-	*
-	* <p>
-	* This method handles the creation of the layout including its resources,
-	* metadata, and internal data structures. It is not necessary to make
-	* subsequent calls to any methods to setup default groups, resources, ...
-	* etc.
-	* </p>
-	*
-	* @param groupId the primary key of the group
-	* @param privateLayout whether the layout is private to the group
-	* @param parentLayoutId the primary key of the parent layout (optionally
-	{@link LayoutConstants#DEFAULT_PARENT_LAYOUT_ID})
-	* @param name the layout's locales and localized names
-	* @param title the layout's locales and localized titles
-	* @param description the layout's locales and localized descriptions
-	* @param type the layout's type (optionally {@link
-	LayoutConstants#TYPE_PORTLET}). The possible types can be found
-	in {@link LayoutConstants}.
-	* @param hidden whether the layout is hidden
-	* @param friendlyURL the layout's locales and localized friendly URLs. To
-	see how the URL is normalized when accessed, see {@link
-	com.liferay.portal.kernel.util.FriendlyURLNormalizerUtil#normalize(
-	String)}.
-	* @param serviceContext the service context to be applied. Must set the
-	UUID for the layout. Can specify the creation date, modification
-	date, and expando bridge attributes for the layout. For layouts
-	that belong to a layout set prototype, an attribute named
-	<code>layoutUpdateable</code> can be used to specify whether site
-	administrators can modify this page within their site.
-	* @return the layout
-	*/
-	public static com.liferay.portal.kernel.model.Layout addLayout(
-		long groupId, boolean privateLayout, long parentLayoutId,
-		java.lang.String name, java.lang.String title,
-		java.lang.String description, java.lang.String type, boolean hidden,
-		java.lang.String friendlyURL, ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .addLayout(groupId, privateLayout, parentLayoutId, name,
-			title, description, type, hidden, friendlyURL, serviceContext);
-	}
-
-	/**
 	* Adds a layout with additional parameters.
 	*
 	* <p>
@@ -142,6 +97,51 @@ public class LayoutServiceUtil {
 			serviceContext);
 	}
 
+	/**
+	* Adds a layout with single entry maps for name, title, and description to
+	* the default locale.
+	*
+	* <p>
+	* This method handles the creation of the layout including its resources,
+	* metadata, and internal data structures. It is not necessary to make
+	* subsequent calls to any methods to setup default groups, resources, ...
+	* etc.
+	* </p>
+	*
+	* @param groupId the primary key of the group
+	* @param privateLayout whether the layout is private to the group
+	* @param parentLayoutId the primary key of the parent layout (optionally
+	{@link LayoutConstants#DEFAULT_PARENT_LAYOUT_ID})
+	* @param name the layout's locales and localized names
+	* @param title the layout's locales and localized titles
+	* @param description the layout's locales and localized descriptions
+	* @param type the layout's type (optionally {@link
+	LayoutConstants#TYPE_PORTLET}). The possible types can be found
+	in {@link LayoutConstants}.
+	* @param hidden whether the layout is hidden
+	* @param friendlyURL the layout's locales and localized friendly URLs. To
+	see how the URL is normalized when accessed, see {@link
+	com.liferay.portal.kernel.util.FriendlyURLNormalizerUtil#normalize(
+	String)}.
+	* @param serviceContext the service context to be applied. Must set the
+	UUID for the layout. Can specify the creation date, modification
+	date, and expando bridge attributes for the layout. For layouts
+	that belong to a layout set prototype, an attribute named
+	<code>layoutUpdateable</code> can be used to specify whether site
+	administrators can modify this page within their site.
+	* @return the layout
+	*/
+	public static com.liferay.portal.kernel.model.Layout addLayout(
+		long groupId, boolean privateLayout, long parentLayoutId,
+		java.lang.String name, java.lang.String title,
+		java.lang.String description, java.lang.String type, boolean hidden,
+		java.lang.String friendlyURL, ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .addLayout(groupId, privateLayout, parentLayoutId, name,
+			title, description, type, hidden, friendlyURL, serviceContext);
+	}
+
 	public static com.liferay.portal.kernel.repository.model.FileEntry addTempFileEntry(
 		long groupId, java.lang.String folderName, java.lang.String fileName,
 		java.io.InputStream inputStream, java.lang.String mimeType)
@@ -186,30 +186,6 @@ public class LayoutServiceUtil {
 	}
 
 	/**
-	* Exports all layouts that match the criteria as a byte array.
-	*
-	* @param groupId the primary key of the group
-	* @param privateLayout whether the layout is private to the group
-	* @param parameterMap the mapping of parameters indicating which
-	information to export. For information on the keys used in
-	the map see {@link
-	com.liferay.exportimport.kernel.lar.PortletDataHandlerKeys}.
-	* @param startDate the export's start date
-	* @param endDate the export's end date
-	* @return the layout as a byte array
-	* @deprecated As of 7.0.0, with no direct replacement
-	*/
-	@Deprecated
-	public static byte[] exportLayouts(long groupId, boolean privateLayout,
-		java.util.Map<java.lang.String, java.lang.String[]> parameterMap,
-		java.util.Date startDate, java.util.Date endDate)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .exportLayouts(groupId, privateLayout, parameterMap,
-			startDate, endDate);
-	}
-
-	/**
 	* Exports the layouts that match the primary keys and the criteria as a
 	* byte array.
 	*
@@ -234,6 +210,30 @@ public class LayoutServiceUtil {
 		return getService()
 				   .exportLayouts(groupId, privateLayout, layoutIds,
 			parameterMap, startDate, endDate);
+	}
+
+	/**
+	* Exports all layouts that match the criteria as a byte array.
+	*
+	* @param groupId the primary key of the group
+	* @param privateLayout whether the layout is private to the group
+	* @param parameterMap the mapping of parameters indicating which
+	information to export. For information on the keys used in
+	the map see {@link
+	com.liferay.exportimport.kernel.lar.PortletDataHandlerKeys}.
+	* @param startDate the export's start date
+	* @param endDate the export's end date
+	* @return the layout as a byte array
+	* @deprecated As of 7.0.0, with no direct replacement
+	*/
+	@Deprecated
+	public static byte[] exportLayouts(long groupId, boolean privateLayout,
+		java.util.Map<java.lang.String, java.lang.String[]> parameterMap,
+		java.util.Date startDate, java.util.Date endDate)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .exportLayouts(groupId, privateLayout, parameterMap,
+			startDate, endDate);
 	}
 
 	/**
@@ -289,6 +289,19 @@ public class LayoutServiceUtil {
 	}
 
 	/**
+	* @deprecated As of 7.0.0, replaced by {@link
+	com.liferay.exportimport.kernel.service.ExportImportService#exportLayoutsAsFileInBackground(
+	long)}
+	*/
+	@Deprecated
+	public static long exportLayoutsAsFileInBackground(
+		long exportImportConfigurationId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .exportLayoutsAsFileInBackground(exportImportConfigurationId);
+	}
+
+	/**
 	* @deprecated As of 7.0.0, with no direct replacement
 	*/
 	@Deprecated
@@ -320,33 +333,6 @@ public class LayoutServiceUtil {
 	}
 
 	/**
-	* @deprecated As of 7.0.0, replaced by {@link
-	com.liferay.exportimport.kernel.service.ExportImportService#exportLayoutsAsFileInBackground(
-	long)}
-	*/
-	@Deprecated
-	public static long exportLayoutsAsFileInBackground(
-		long exportImportConfigurationId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .exportLayoutsAsFileInBackground(exportImportConfigurationId);
-	}
-
-	/**
-	* @deprecated As of 7.0.0, with no direct replacement
-	*/
-	@Deprecated
-	public static byte[] exportPortletInfo(long companyId,
-		java.lang.String portletId,
-		java.util.Map<java.lang.String, java.lang.String[]> parameterMap,
-		java.util.Date startDate, java.util.Date endDate)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .exportPortletInfo(companyId, portletId, parameterMap,
-			startDate, endDate);
-	}
-
-	/**
 	* Exports the portlet information (categories, permissions, ... etc.) as a
 	* byte array.
 	*
@@ -374,6 +360,20 @@ public class LayoutServiceUtil {
 	}
 
 	/**
+	* @deprecated As of 7.0.0, with no direct replacement
+	*/
+	@Deprecated
+	public static byte[] exportPortletInfo(long companyId,
+		java.lang.String portletId,
+		java.util.Map<java.lang.String, java.lang.String[]> parameterMap,
+		java.util.Date startDate, java.util.Date endDate)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .exportPortletInfo(companyId, portletId, parameterMap,
+			startDate, endDate);
+	}
+
+	/**
 	* @deprecated As of 7.0.0, replaced by {@link
 	com.liferay.exportimport.kernel.service.ExportImportService#exportPortletInfoAsFile(
 	ExportImportConfiguration)}
@@ -383,20 +383,6 @@ public class LayoutServiceUtil {
 		com.liferay.exportimport.kernel.model.ExportImportConfiguration exportImportConfiguration)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().exportPortletInfoAsFile(exportImportConfiguration);
-	}
-
-	/**
-	* @deprecated As of 7.0.0, with no direct replacement
-	*/
-	@Deprecated
-	public static java.io.File exportPortletInfoAsFile(
-		java.lang.String portletId,
-		java.util.Map<java.lang.String, java.lang.String[]> parameterMap,
-		java.util.Date startDate, java.util.Date endDate)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .exportPortletInfoAsFile(portletId, parameterMap, startDate,
-			endDate);
 	}
 
 	/**
@@ -430,15 +416,14 @@ public class LayoutServiceUtil {
 	* @deprecated As of 7.0.0, with no direct replacement
 	*/
 	@Deprecated
-	public static long exportPortletInfoAsFileInBackground(
-		java.lang.String taskName, java.lang.String portletId,
+	public static java.io.File exportPortletInfoAsFile(
+		java.lang.String portletId,
 		java.util.Map<java.lang.String, java.lang.String[]> parameterMap,
-		java.util.Date startDate, java.util.Date endDate,
-		java.lang.String fileName)
+		java.util.Date startDate, java.util.Date endDate)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
-				   .exportPortletInfoAsFileInBackground(taskName, portletId,
-			parameterMap, startDate, endDate, fileName);
+				   .exportPortletInfoAsFile(portletId, parameterMap, startDate,
+			endDate);
 	}
 
 	/**
@@ -455,6 +440,21 @@ public class LayoutServiceUtil {
 		return getService()
 				   .exportPortletInfoAsFileInBackground(taskName, plid,
 			groupId, portletId, parameterMap, startDate, endDate, fileName);
+	}
+
+	/**
+	* @deprecated As of 7.0.0, with no direct replacement
+	*/
+	@Deprecated
+	public static long exportPortletInfoAsFileInBackground(
+		java.lang.String taskName, java.lang.String portletId,
+		java.util.Map<java.lang.String, java.lang.String[]> parameterMap,
+		java.util.Date startDate, java.util.Date endDate,
+		java.lang.String fileName)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .exportPortletInfoAsFileInBackground(taskName, portletId,
+			parameterMap, startDate, endDate, fileName);
 	}
 
 	/**
@@ -735,28 +735,6 @@ public class LayoutServiceUtil {
 	}
 
 	/**
-	* @deprecated As of 7.0.0, with no direct replacement
-	*/
-	@Deprecated
-	public static void importPortletInfo(java.lang.String portletId,
-		java.util.Map<java.lang.String, java.lang.String[]> parameterMap,
-		java.io.File file)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		getService().importPortletInfo(portletId, parameterMap, file);
-	}
-
-	/**
-	* @deprecated As of 7.0.0, with no direct replacement
-	*/
-	@Deprecated
-	public static void importPortletInfo(java.lang.String portletId,
-		java.util.Map<java.lang.String, java.lang.String[]> parameterMap,
-		java.io.InputStream is)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		getService().importPortletInfo(portletId, parameterMap, is);
-	}
-
-	/**
 	* Imports the portlet information (categories, permissions, ... etc.) from
 	* the file.
 	*
@@ -808,27 +786,22 @@ public class LayoutServiceUtil {
 	* @deprecated As of 7.0.0, with no direct replacement
 	*/
 	@Deprecated
-	public static void importPortletInfoInBackground(
-		java.lang.String taskName, java.lang.String portletId,
+	public static void importPortletInfo(java.lang.String portletId,
 		java.util.Map<java.lang.String, java.lang.String[]> parameterMap,
 		java.io.File file)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		getService()
-			.importPortletInfoInBackground(taskName, portletId, parameterMap,
-			file);
+		getService().importPortletInfo(portletId, parameterMap, file);
 	}
 
 	/**
 	* @deprecated As of 7.0.0, with no direct replacement
 	*/
 	@Deprecated
-	public static void importPortletInfoInBackground(
-		java.lang.String taskName, java.lang.String portletId,
+	public static void importPortletInfo(java.lang.String portletId,
 		java.util.Map<java.lang.String, java.lang.String[]> parameterMap,
 		java.io.InputStream is)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		getService()
-			.importPortletInfoInBackground(taskName, portletId, parameterMap, is);
+		getService().importPortletInfo(portletId, parameterMap, is);
 	}
 
 	/**
@@ -862,77 +835,30 @@ public class LayoutServiceUtil {
 	}
 
 	/**
-	* Schedules a range of layouts to be published.
-	*
-	* @param sourceGroupId the primary key of the source group
-	* @param targetGroupId the primary key of the target group
-	* @param privateLayout whether the layout is private to the group
-	* @param layoutIdMap the layouts considered for publishing, specified
-	by the layout IDs and booleans indicating whether they have
-	children
-	* @param parameterMap the mapping of parameters indicating which
-	information will be used. See {@link
-	com.liferay.exportimport.kernel.lar.PortletDataHandlerKeys}.
-	* @param groupName the group name (optionally {@link
-	DestinationNames#LAYOUTS_LOCAL_PUBLISHER}). See {@link
-	DestinationNames}.
-	* @param cronText the cron text. See {@link
-	com.liferay.portal.kernel.cal.RecurrenceSerializer
-	#toCronText}
-	* @param schedulerStartDate the scheduler start date
-	* @param schedulerEndDate the scheduler end date
-	* @param description the scheduler description
-	* @deprecated As of 7.0.0, replaced by {@link #schedulePublishToLive(long,
-	long, boolean, long[], Map, String, Date, Date, String,
-	String, Date, Date, String)}
+	* @deprecated As of 7.0.0, with no direct replacement
 	*/
 	@Deprecated
-	public static void schedulePublishToLive(long sourceGroupId,
-		long targetGroupId, boolean privateLayout,
-		java.util.Map<java.lang.Long, java.lang.Boolean> layoutIdMap,
+	public static void importPortletInfoInBackground(
+		java.lang.String taskName, java.lang.String portletId,
 		java.util.Map<java.lang.String, java.lang.String[]> parameterMap,
-		java.lang.String scope, java.util.Date startDate,
-		java.util.Date endDate, java.lang.String groupName,
-		java.lang.String cronText, java.util.Date schedulerStartDate,
-		java.util.Date schedulerEndDate, java.lang.String description)
+		java.io.File file)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		getService()
-			.schedulePublishToLive(sourceGroupId, targetGroupId, privateLayout,
-			layoutIdMap, parameterMap, scope, startDate, endDate, groupName,
-			cronText, schedulerStartDate, schedulerEndDate, description);
+			.importPortletInfoInBackground(taskName, portletId, parameterMap,
+			file);
 	}
 
 	/**
-	* Schedules a range of layouts to be published.
-	*
-	* @param sourceGroupId the primary key of the source group
-	* @param targetGroupId the primary key of the target group
-	* @param privateLayout whether the layout is private to the group
-	* @param layoutIds the layouts considered for publishing, specified by the
-	layout IDs
-	* @param parameterMap the mapping of parameters indicating which
-	information will be used. See {@link
-	com.liferay.exportimport.kernel.lar.PortletDataHandlerKeys}.
-	* @param groupName the group name (optionally {@link
-	DestinationNames#LAYOUTS_LOCAL_PUBLISHER}). See {@link
-	DestinationNames}.
-	* @param cronText the cron text. See {@link
-	com.liferay.portal.kernel.cal.RecurrenceSerializer #toCronText}
-	* @param schedulerStartDate the scheduler start date
-	* @param schedulerEndDate the scheduler end date
-	* @param description the scheduler description
+	* @deprecated As of 7.0.0, with no direct replacement
 	*/
-	public static void schedulePublishToLive(long sourceGroupId,
-		long targetGroupId, boolean privateLayout, long[] layoutIds,
+	@Deprecated
+	public static void importPortletInfoInBackground(
+		java.lang.String taskName, java.lang.String portletId,
 		java.util.Map<java.lang.String, java.lang.String[]> parameterMap,
-		java.lang.String groupName, java.lang.String cronText,
-		java.util.Date schedulerStartDate, java.util.Date schedulerEndDate,
-		java.lang.String description)
+		java.io.InputStream is)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		getService()
-			.schedulePublishToLive(sourceGroupId, targetGroupId, privateLayout,
-			layoutIds, parameterMap, groupName, cronText, schedulerStartDate,
-			schedulerEndDate, description);
+			.importPortletInfoInBackground(taskName, portletId, parameterMap, is);
 	}
 
 	/**
@@ -975,6 +901,80 @@ public class LayoutServiceUtil {
 		getService()
 			.schedulePublishToLive(sourceGroupId, targetGroupId, privateLayout,
 			layoutIds, parameterMap, scope, startDate, endDate, groupName,
+			cronText, schedulerStartDate, schedulerEndDate, description);
+	}
+
+	/**
+	* Schedules a range of layouts to be published.
+	*
+	* @param sourceGroupId the primary key of the source group
+	* @param targetGroupId the primary key of the target group
+	* @param privateLayout whether the layout is private to the group
+	* @param layoutIds the layouts considered for publishing, specified by the
+	layout IDs
+	* @param parameterMap the mapping of parameters indicating which
+	information will be used. See {@link
+	com.liferay.exportimport.kernel.lar.PortletDataHandlerKeys}.
+	* @param groupName the group name (optionally {@link
+	DestinationNames#LAYOUTS_LOCAL_PUBLISHER}). See {@link
+	DestinationNames}.
+	* @param cronText the cron text. See {@link
+	com.liferay.portal.kernel.cal.RecurrenceSerializer #toCronText}
+	* @param schedulerStartDate the scheduler start date
+	* @param schedulerEndDate the scheduler end date
+	* @param description the scheduler description
+	*/
+	public static void schedulePublishToLive(long sourceGroupId,
+		long targetGroupId, boolean privateLayout, long[] layoutIds,
+		java.util.Map<java.lang.String, java.lang.String[]> parameterMap,
+		java.lang.String groupName, java.lang.String cronText,
+		java.util.Date schedulerStartDate, java.util.Date schedulerEndDate,
+		java.lang.String description)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService()
+			.schedulePublishToLive(sourceGroupId, targetGroupId, privateLayout,
+			layoutIds, parameterMap, groupName, cronText, schedulerStartDate,
+			schedulerEndDate, description);
+	}
+
+	/**
+	* Schedules a range of layouts to be published.
+	*
+	* @param sourceGroupId the primary key of the source group
+	* @param targetGroupId the primary key of the target group
+	* @param privateLayout whether the layout is private to the group
+	* @param layoutIdMap the layouts considered for publishing, specified
+	by the layout IDs and booleans indicating whether they have
+	children
+	* @param parameterMap the mapping of parameters indicating which
+	information will be used. See {@link
+	com.liferay.exportimport.kernel.lar.PortletDataHandlerKeys}.
+	* @param groupName the group name (optionally {@link
+	DestinationNames#LAYOUTS_LOCAL_PUBLISHER}). See {@link
+	DestinationNames}.
+	* @param cronText the cron text. See {@link
+	com.liferay.portal.kernel.cal.RecurrenceSerializer
+	#toCronText}
+	* @param schedulerStartDate the scheduler start date
+	* @param schedulerEndDate the scheduler end date
+	* @param description the scheduler description
+	* @deprecated As of 7.0.0, replaced by {@link #schedulePublishToLive(long,
+	long, boolean, long[], Map, String, Date, Date, String,
+	String, Date, Date, String)}
+	*/
+	@Deprecated
+	public static void schedulePublishToLive(long sourceGroupId,
+		long targetGroupId, boolean privateLayout,
+		java.util.Map<java.lang.Long, java.lang.Boolean> layoutIdMap,
+		java.util.Map<java.lang.String, java.lang.String[]> parameterMap,
+		java.lang.String scope, java.util.Date startDate,
+		java.util.Date endDate, java.lang.String groupName,
+		java.lang.String cronText, java.util.Date schedulerStartDate,
+		java.util.Date schedulerEndDate, java.lang.String description)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService()
+			.schedulePublishToLive(sourceGroupId, targetGroupId, privateLayout,
+			layoutIdMap, parameterMap, scope, startDate, endDate, groupName,
 			cronText, schedulerStartDate, schedulerEndDate, description);
 	}
 
@@ -1080,25 +1080,6 @@ public class LayoutServiceUtil {
 	}
 
 	/**
-	* Updates the layout replacing its type settings.
-	*
-	* @param groupId the primary key of the group
-	* @param privateLayout whether the layout is private to the group
-	* @param layoutId the primary key of the layout
-	* @param typeSettings the settings to load the unicode properties object.
-	See {@link com.liferay.portal.kernel.util.UnicodeProperties
-	#fastLoad(String)}.
-	* @return the updated layout
-	*/
-	public static com.liferay.portal.kernel.model.Layout updateLayout(
-		long groupId, boolean privateLayout, long layoutId,
-		java.lang.String typeSettings)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .updateLayout(groupId, privateLayout, layoutId, typeSettings);
-	}
-
-	/**
 	* Updates the layout with additional parameters.
 	*
 	* @param groupId the primary key of the group
@@ -1143,6 +1124,25 @@ public class LayoutServiceUtil {
 			parentLayoutId, localeNamesMap, localeTitlesMap, descriptionMap,
 			keywordsMap, robotsMap, type, hidden, friendlyURLMap, iconImage,
 			iconBytes, serviceContext);
+	}
+
+	/**
+	* Updates the layout replacing its type settings.
+	*
+	* @param groupId the primary key of the group
+	* @param privateLayout whether the layout is private to the group
+	* @param layoutId the primary key of the layout
+	* @param typeSettings the settings to load the unicode properties object.
+	See {@link com.liferay.portal.kernel.util.UnicodeProperties
+	#fastLoad(String)}.
+	* @return the updated layout
+	*/
+	public static com.liferay.portal.kernel.model.Layout updateLayout(
+		long groupId, boolean privateLayout, long layoutId,
+		java.lang.String typeSettings)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .updateLayout(groupId, privateLayout, layoutId, typeSettings);
 	}
 
 	/**

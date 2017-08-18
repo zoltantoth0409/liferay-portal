@@ -78,17 +78,6 @@ public class RatingsStatsLocalServiceUtil {
 	}
 
 	/**
-	* Deletes the ratings stats from the database. Also notifies the appropriate model listeners.
-	*
-	* @param ratingsStats the ratings stats
-	* @return the ratings stats that was removed
-	*/
-	public static com.liferay.ratings.kernel.model.RatingsStats deleteRatingsStats(
-		com.liferay.ratings.kernel.model.RatingsStats ratingsStats) {
-		return getService().deleteRatingsStats(ratingsStats);
-	}
-
-	/**
 	* Deletes the ratings stats with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param statsId the primary key of the ratings stats
@@ -99,6 +88,17 @@ public class RatingsStatsLocalServiceUtil {
 		long statsId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteRatingsStats(statsId);
+	}
+
+	/**
+	* Deletes the ratings stats from the database. Also notifies the appropriate model listeners.
+	*
+	* @param ratingsStats the ratings stats
+	* @return the ratings stats that was removed
+	*/
+	public static com.liferay.ratings.kernel.model.RatingsStats deleteRatingsStats(
+		com.liferay.ratings.kernel.model.RatingsStats ratingsStats) {
+		return getService().deleteRatingsStats(ratingsStats);
 	}
 
 	public static void deleteStats(java.lang.String className, long classPK) {
@@ -254,6 +254,12 @@ public class RatingsStatsLocalServiceUtil {
 		return getService().getRatingsStatsesCount();
 	}
 
+	public static com.liferay.ratings.kernel.model.RatingsStats getStats(
+		long statsId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getStats(statsId);
+	}
+
 	public static java.util.List<com.liferay.ratings.kernel.model.RatingsStats> getStats(
 		java.lang.String className, java.util.List<java.lang.Long> classPKs) {
 		return getService().getStats(className, classPKs);
@@ -262,12 +268,6 @@ public class RatingsStatsLocalServiceUtil {
 	public static com.liferay.ratings.kernel.model.RatingsStats getStats(
 		java.lang.String className, long classPK) {
 		return getService().getStats(className, classPK);
-	}
-
-	public static com.liferay.ratings.kernel.model.RatingsStats getStats(
-		long statsId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getStats(statsId);
 	}
 
 	/**

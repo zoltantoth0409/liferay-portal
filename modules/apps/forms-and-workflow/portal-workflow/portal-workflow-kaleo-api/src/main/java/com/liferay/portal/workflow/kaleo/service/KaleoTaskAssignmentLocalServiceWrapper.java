@@ -252,13 +252,6 @@ public class KaleoTaskAssignmentLocalServiceWrapper
 
 	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskAssignments(
-		java.lang.String kaleoClassName, long kaleoClassPK) {
-		return _kaleoTaskAssignmentLocalService.getKaleoTaskAssignments(kaleoClassName,
-			kaleoClassPK);
-	}
-
-	@Override
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskAssignments(
 		long kaleoTaskId) {
 		return _kaleoTaskAssignmentLocalService.getKaleoTaskAssignments(kaleoTaskId);
 	}
@@ -268,6 +261,13 @@ public class KaleoTaskAssignmentLocalServiceWrapper
 		long kaleoTaskId, java.lang.String assigneeClassName) {
 		return _kaleoTaskAssignmentLocalService.getKaleoTaskAssignments(kaleoTaskId,
 			assigneeClassName);
+	}
+
+	@Override
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskAssignments(
+		java.lang.String kaleoClassName, long kaleoClassPK) {
+		return _kaleoTaskAssignmentLocalService.getKaleoTaskAssignments(kaleoClassName,
+			kaleoClassPK);
 	}
 
 	/**

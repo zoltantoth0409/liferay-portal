@@ -226,30 +226,6 @@ public class DDMDataProviderInstanceWrapper implements DDMDataProviderInstance,
 	/**
 	* Returns the localized description of this ddm data provider instance in the language. Uses the default language if no localization exists for the requested language.
 	*
-	* @param languageId the ID of the language
-	* @return the localized description of this ddm data provider instance
-	*/
-	@Override
-	public java.lang.String getDescription(java.lang.String languageId) {
-		return _ddmDataProviderInstance.getDescription(languageId);
-	}
-
-	/**
-	* Returns the localized description of this ddm data provider instance in the language, optionally using the default language if no localization exists for the requested language.
-	*
-	* @param languageId the ID of the language
-	* @param useDefault whether to use the default language if no localization exists for the requested language
-	* @return the localized description of this ddm data provider instance
-	*/
-	@Override
-	public java.lang.String getDescription(java.lang.String languageId,
-		boolean useDefault) {
-		return _ddmDataProviderInstance.getDescription(languageId, useDefault);
-	}
-
-	/**
-	* Returns the localized description of this ddm data provider instance in the language. Uses the default language if no localization exists for the requested language.
-	*
 	* @param locale the locale of the language
 	* @return the localized description of this ddm data provider instance
 	*/
@@ -269,6 +245,30 @@ public class DDMDataProviderInstanceWrapper implements DDMDataProviderInstance,
 	public java.lang.String getDescription(java.util.Locale locale,
 		boolean useDefault) {
 		return _ddmDataProviderInstance.getDescription(locale, useDefault);
+	}
+
+	/**
+	* Returns the localized description of this ddm data provider instance in the language. Uses the default language if no localization exists for the requested language.
+	*
+	* @param languageId the ID of the language
+	* @return the localized description of this ddm data provider instance
+	*/
+	@Override
+	public java.lang.String getDescription(java.lang.String languageId) {
+		return _ddmDataProviderInstance.getDescription(languageId);
+	}
+
+	/**
+	* Returns the localized description of this ddm data provider instance in the language, optionally using the default language if no localization exists for the requested language.
+	*
+	* @param languageId the ID of the language
+	* @param useDefault whether to use the default language if no localization exists for the requested language
+	* @return the localized description of this ddm data provider instance
+	*/
+	@Override
+	public java.lang.String getDescription(java.lang.String languageId,
+		boolean useDefault) {
+		return _ddmDataProviderInstance.getDescription(languageId, useDefault);
 	}
 
 	@Override
@@ -329,6 +329,29 @@ public class DDMDataProviderInstanceWrapper implements DDMDataProviderInstance,
 	/**
 	* Returns the localized name of this ddm data provider instance in the language. Uses the default language if no localization exists for the requested language.
 	*
+	* @param locale the locale of the language
+	* @return the localized name of this ddm data provider instance
+	*/
+	@Override
+	public java.lang.String getName(java.util.Locale locale) {
+		return _ddmDataProviderInstance.getName(locale);
+	}
+
+	/**
+	* Returns the localized name of this ddm data provider instance in the language, optionally using the default language if no localization exists for the requested language.
+	*
+	* @param locale the local of the language
+	* @param useDefault whether to use the default language if no localization exists for the requested language
+	* @return the localized name of this ddm data provider instance. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
+	*/
+	@Override
+	public java.lang.String getName(java.util.Locale locale, boolean useDefault) {
+		return _ddmDataProviderInstance.getName(locale, useDefault);
+	}
+
+	/**
+	* Returns the localized name of this ddm data provider instance in the language. Uses the default language if no localization exists for the requested language.
+	*
 	* @param languageId the ID of the language
 	* @return the localized name of this ddm data provider instance
 	*/
@@ -348,29 +371,6 @@ public class DDMDataProviderInstanceWrapper implements DDMDataProviderInstance,
 	public java.lang.String getName(java.lang.String languageId,
 		boolean useDefault) {
 		return _ddmDataProviderInstance.getName(languageId, useDefault);
-	}
-
-	/**
-	* Returns the localized name of this ddm data provider instance in the language. Uses the default language if no localization exists for the requested language.
-	*
-	* @param locale the locale of the language
-	* @return the localized name of this ddm data provider instance
-	*/
-	@Override
-	public java.lang.String getName(java.util.Locale locale) {
-		return _ddmDataProviderInstance.getName(locale);
-	}
-
-	/**
-	* Returns the localized name of this ddm data provider instance in the language, optionally using the default language if no localization exists for the requested language.
-	*
-	* @param locale the local of the language
-	* @param useDefault whether to use the default language if no localization exists for the requested language
-	* @return the localized name of this ddm data provider instance. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
-	*/
-	@Override
-	public java.lang.String getName(java.util.Locale locale, boolean useDefault) {
-		return _ddmDataProviderInstance.getName(locale, useDefault);
 	}
 
 	@Override
@@ -607,14 +607,14 @@ public class DDMDataProviderInstanceWrapper implements DDMDataProviderInstance,
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
-		_ddmDataProviderInstance.setExpandoBridgeAttributes(expandoBridge);
-	}
-
-	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
 		_ddmDataProviderInstance.setExpandoBridgeAttributes(baseModel);
+	}
+
+	@Override
+	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
+		_ddmDataProviderInstance.setExpandoBridgeAttributes(expandoBridge);
 	}
 
 	@Override

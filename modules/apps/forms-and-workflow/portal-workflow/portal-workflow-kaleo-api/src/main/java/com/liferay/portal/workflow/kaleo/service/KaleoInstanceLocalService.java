@@ -213,15 +213,15 @@ public interface KaleoInstanceLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KaleoInstance> getKaleoInstances(java.lang.Long userId,
-		java.lang.String[] assetClassNames, java.lang.Boolean completed,
-		int start, int end, OrderByComparator<KaleoInstance> orderByComparator,
+		java.lang.String assetClassName, java.lang.Long assetClassPK,
+		java.lang.Boolean completed, int start, int end,
+		OrderByComparator<KaleoInstance> orderByComparator,
 		ServiceContext serviceContext);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KaleoInstance> getKaleoInstances(java.lang.Long userId,
-		java.lang.String assetClassName, java.lang.Long assetClassPK,
-		java.lang.Boolean completed, int start, int end,
-		OrderByComparator<KaleoInstance> orderByComparator,
+		java.lang.String[] assetClassNames, java.lang.Boolean completed,
+		int start, int end, OrderByComparator<KaleoInstance> orderByComparator,
 		ServiceContext serviceContext);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -240,9 +240,7 @@ public interface KaleoInstanceLocalService extends BaseLocalService,
 	public int getKaleoInstancesCount();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getKaleoInstancesCount(java.lang.Long userId,
-		java.lang.String[] assetClassNames, java.lang.Boolean completed,
-		ServiceContext serviceContext);
+	public int getKaleoInstancesCount(long kaleoDefinitionId, boolean completed);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getKaleoInstancesCount(java.lang.Long userId,
@@ -250,12 +248,14 @@ public interface KaleoInstanceLocalService extends BaseLocalService,
 		java.lang.Boolean completed, ServiceContext serviceContext);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getKaleoInstancesCount(java.lang.String kaleoDefinitionName,
-		int kaleoDefinitionVersion, boolean completed,
+	public int getKaleoInstancesCount(java.lang.Long userId,
+		java.lang.String[] assetClassNames, java.lang.Boolean completed,
 		ServiceContext serviceContext);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getKaleoInstancesCount(long kaleoDefinitionId, boolean completed);
+	public int getKaleoInstancesCount(java.lang.String kaleoDefinitionName,
+		int kaleoDefinitionVersion, boolean completed,
+		ServiceContext serviceContext);
 
 	/**
 	* Returns the OSGi service identifier.

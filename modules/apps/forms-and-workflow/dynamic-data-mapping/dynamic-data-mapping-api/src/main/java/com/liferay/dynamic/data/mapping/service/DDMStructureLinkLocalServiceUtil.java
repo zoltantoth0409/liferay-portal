@@ -281,12 +281,6 @@ public class DDMStructureLinkLocalServiceUtil {
 		return getService().getStructureLink(structureLinkId);
 	}
 
-	public static java.util.List<com.liferay.dynamic.data.mapping.model.DDMStructure> getStructureLinkStructures(
-		long classNameId, long classPK)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getStructureLinkStructures(classNameId, classPK);
-	}
-
 	public static java.util.List<com.liferay.dynamic.data.mapping.model.DDMStructureLink> getStructureLinks(
 		long structureId) {
 		return getService().getStructureLinks(structureId);
@@ -300,6 +294,12 @@ public class DDMStructureLinkLocalServiceUtil {
 	public static java.util.List<com.liferay.dynamic.data.mapping.model.DDMStructureLink> getStructureLinks(
 		long classNameId, long classPK) {
 		return getService().getStructureLinks(classNameId, classPK);
+	}
+
+	public static java.util.List<com.liferay.dynamic.data.mapping.model.DDMStructure> getStructureLinkStructures(
+		long classNameId, long classPK)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getStructureLinkStructures(classNameId, classPK);
 	}
 
 	public static com.liferay.dynamic.data.mapping.model.DDMStructureLink getUniqueStructureLink(

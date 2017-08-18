@@ -251,6 +251,29 @@ public class DDMContentWrapper implements DDMContent, ModelWrapper<DDMContent> {
 	/**
 	* Returns the localized name of this ddm content in the language. Uses the default language if no localization exists for the requested language.
 	*
+	* @param locale the locale of the language
+	* @return the localized name of this ddm content
+	*/
+	@Override
+	public java.lang.String getName(java.util.Locale locale) {
+		return _ddmContent.getName(locale);
+	}
+
+	/**
+	* Returns the localized name of this ddm content in the language, optionally using the default language if no localization exists for the requested language.
+	*
+	* @param locale the local of the language
+	* @param useDefault whether to use the default language if no localization exists for the requested language
+	* @return the localized name of this ddm content. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
+	*/
+	@Override
+	public java.lang.String getName(java.util.Locale locale, boolean useDefault) {
+		return _ddmContent.getName(locale, useDefault);
+	}
+
+	/**
+	* Returns the localized name of this ddm content in the language. Uses the default language if no localization exists for the requested language.
+	*
 	* @param languageId the ID of the language
 	* @return the localized name of this ddm content
 	*/
@@ -270,29 +293,6 @@ public class DDMContentWrapper implements DDMContent, ModelWrapper<DDMContent> {
 	public java.lang.String getName(java.lang.String languageId,
 		boolean useDefault) {
 		return _ddmContent.getName(languageId, useDefault);
-	}
-
-	/**
-	* Returns the localized name of this ddm content in the language. Uses the default language if no localization exists for the requested language.
-	*
-	* @param locale the locale of the language
-	* @return the localized name of this ddm content
-	*/
-	@Override
-	public java.lang.String getName(java.util.Locale locale) {
-		return _ddmContent.getName(locale);
-	}
-
-	/**
-	* Returns the localized name of this ddm content in the language, optionally using the default language if no localization exists for the requested language.
-	*
-	* @param locale the local of the language
-	* @param useDefault whether to use the default language if no localization exists for the requested language
-	* @return the localized name of this ddm content. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
-	*/
-	@Override
-	public java.lang.String getName(java.util.Locale locale, boolean useDefault) {
-		return _ddmContent.getName(locale, useDefault);
 	}
 
 	@Override
@@ -464,14 +464,14 @@ public class DDMContentWrapper implements DDMContent, ModelWrapper<DDMContent> {
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
-		_ddmContent.setExpandoBridgeAttributes(expandoBridge);
-	}
-
-	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
 		_ddmContent.setExpandoBridgeAttributes(baseModel);
+	}
+
+	@Override
+	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
+		_ddmContent.setExpandoBridgeAttributes(expandoBridge);
 	}
 
 	@Override

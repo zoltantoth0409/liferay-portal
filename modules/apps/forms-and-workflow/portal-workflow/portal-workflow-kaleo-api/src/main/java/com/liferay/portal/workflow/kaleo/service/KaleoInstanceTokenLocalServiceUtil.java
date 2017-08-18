@@ -248,19 +248,19 @@ public class KaleoInstanceTokenLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken> getKaleoInstanceTokens(
-		long parentKaleoInstanceTokenId,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
-		return getService()
-				   .getKaleoInstanceTokens(parentKaleoInstanceTokenId,
-			serviceContext);
-	}
-
-	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken> getKaleoInstanceTokens(
 		long parentKaleoInstanceTokenId, java.util.Date completionDate,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
 		return getService()
 				   .getKaleoInstanceTokens(parentKaleoInstanceTokenId,
 			completionDate, serviceContext);
+	}
+
+	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken> getKaleoInstanceTokens(
+		long parentKaleoInstanceTokenId,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
+		return getService()
+				   .getKaleoInstanceTokens(parentKaleoInstanceTokenId,
+			serviceContext);
 	}
 
 	/**
@@ -273,19 +273,19 @@ public class KaleoInstanceTokenLocalServiceUtil {
 	}
 
 	public static int getKaleoInstanceTokensCount(
-		long parentKaleoInstanceTokenId,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
-		return getService()
-				   .getKaleoInstanceTokensCount(parentKaleoInstanceTokenId,
-			serviceContext);
-	}
-
-	public static int getKaleoInstanceTokensCount(
 		long parentKaleoInstanceTokenId, java.util.Date completionDate,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
 		return getService()
 				   .getKaleoInstanceTokensCount(parentKaleoInstanceTokenId,
 			completionDate, serviceContext);
+	}
+
+	public static int getKaleoInstanceTokensCount(
+		long parentKaleoInstanceTokenId,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
+		return getService()
+				   .getKaleoInstanceTokensCount(parentKaleoInstanceTokenId,
+			serviceContext);
 	}
 
 	/**

@@ -117,6 +117,20 @@ public class BlogsEntryServiceWrapper implements BlogsEntryService,
 
 	@Override
 	public java.util.List<com.liferay.blogs.kernel.model.BlogsEntry> getGroupEntries(
+		long groupId, java.util.Date displayDate, int status, int max) {
+		return _blogsEntryService.getGroupEntries(groupId, displayDate, status,
+			max);
+	}
+
+	@Override
+	public java.util.List<com.liferay.blogs.kernel.model.BlogsEntry> getGroupEntries(
+		long groupId, java.util.Date displayDate, int status, int start, int end) {
+		return _blogsEntryService.getGroupEntries(groupId, displayDate, status,
+			start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.blogs.kernel.model.BlogsEntry> getGroupEntries(
 		long groupId, int status, int max) {
 		return _blogsEntryService.getGroupEntries(groupId, status, max);
 	}
@@ -136,29 +150,15 @@ public class BlogsEntryServiceWrapper implements BlogsEntryService,
 	}
 
 	@Override
-	public java.util.List<com.liferay.blogs.kernel.model.BlogsEntry> getGroupEntries(
-		long groupId, java.util.Date displayDate, int status, int max) {
-		return _blogsEntryService.getGroupEntries(groupId, displayDate, status,
-			max);
-	}
-
-	@Override
-	public java.util.List<com.liferay.blogs.kernel.model.BlogsEntry> getGroupEntries(
-		long groupId, java.util.Date displayDate, int status, int start, int end) {
-		return _blogsEntryService.getGroupEntries(groupId, displayDate, status,
-			start, end);
+	public int getGroupEntriesCount(long groupId, java.util.Date displayDate,
+		int status) {
+		return _blogsEntryService.getGroupEntriesCount(groupId, displayDate,
+			status);
 	}
 
 	@Override
 	public int getGroupEntriesCount(long groupId, int status) {
 		return _blogsEntryService.getGroupEntriesCount(groupId, status);
-	}
-
-	@Override
-	public int getGroupEntriesCount(long groupId, java.util.Date displayDate,
-		int status) {
-		return _blogsEntryService.getGroupEntriesCount(groupId, displayDate,
-			status);
 	}
 
 	@Override
@@ -174,11 +174,11 @@ public class BlogsEntryServiceWrapper implements BlogsEntryService,
 	}
 
 	@Override
-	public java.util.List<com.liferay.blogs.kernel.model.BlogsEntry> getGroupUserEntries(
-		long groupId, long userId, int[] statuses, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.blogs.kernel.model.BlogsEntry> obc) {
-		return _blogsEntryService.getGroupUserEntries(groupId, userId,
-			statuses, start, end, obc);
+	public java.util.List<com.liferay.blogs.kernel.model.BlogsEntry> getGroupsEntries(
+		long companyId, long groupId, java.util.Date displayDate, int status,
+		int max) throws com.liferay.portal.kernel.exception.PortalException {
+		return _blogsEntryService.getGroupsEntries(companyId, groupId,
+			displayDate, status, max);
 	}
 
 	@Override
@@ -187,6 +187,14 @@ public class BlogsEntryServiceWrapper implements BlogsEntryService,
 		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.blogs.kernel.model.BlogsEntry> obc) {
 		return _blogsEntryService.getGroupUserEntries(groupId, userId, status,
 			start, end, obc);
+	}
+
+	@Override
+	public java.util.List<com.liferay.blogs.kernel.model.BlogsEntry> getGroupUserEntries(
+		long groupId, long userId, int[] statuses, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.blogs.kernel.model.BlogsEntry> obc) {
+		return _blogsEntryService.getGroupUserEntries(groupId, userId,
+			statuses, start, end, obc);
 	}
 
 	@Override
@@ -200,24 +208,6 @@ public class BlogsEntryServiceWrapper implements BlogsEntryService,
 		int[] statuses) {
 		return _blogsEntryService.getGroupUserEntriesCount(groupId, userId,
 			statuses);
-	}
-
-	@Override
-	public java.util.List<com.liferay.blogs.kernel.model.BlogsEntry> getGroupsEntries(
-		long companyId, long groupId, java.util.Date displayDate, int status,
-		int max) throws com.liferay.portal.kernel.exception.PortalException {
-		return _blogsEntryService.getGroupsEntries(companyId, groupId,
-			displayDate, status, max);
-	}
-
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	@Override
-	public java.lang.String getOSGiServiceIdentifier() {
-		return _blogsEntryService.getOSGiServiceIdentifier();
 	}
 
 	@Override
@@ -238,6 +228,16 @@ public class BlogsEntryServiceWrapper implements BlogsEntryService,
 		return _blogsEntryService.getOrganizationEntriesRSS(organizationId,
 			displayDate, status, max, type, version, displayStyle, feedURL,
 			entryURL, themeDisplay);
+	}
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	@Override
+	public java.lang.String getOSGiServiceIdentifier() {
+		return _blogsEntryService.getOSGiServiceIdentifier();
 	}
 
 	@Override

@@ -409,13 +409,13 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken,
 	}
 
 	@Override
-	public boolean hasIncompleteChildrenKaleoInstanceToken() {
-		return _kaleoInstanceToken.hasIncompleteChildrenKaleoInstanceToken();
+	public int hashCode() {
+		return _kaleoInstanceToken.hashCode();
 	}
 
 	@Override
-	public int hashCode() {
-		return _kaleoInstanceToken.hashCode();
+	public boolean hasIncompleteChildrenKaleoInstanceToken() {
+		return _kaleoInstanceToken.hasIncompleteChildrenKaleoInstanceToken();
 	}
 
 	@Override
@@ -540,14 +540,14 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken,
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
-		_kaleoInstanceToken.setExpandoBridgeAttributes(expandoBridge);
-	}
-
-	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
 		_kaleoInstanceToken.setExpandoBridgeAttributes(baseModel);
+	}
+
+	@Override
+	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
+		_kaleoInstanceToken.setExpandoBridgeAttributes(expandoBridge);
 	}
 
 	@Override

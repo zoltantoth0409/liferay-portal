@@ -274,30 +274,6 @@ public class DDMTemplateVersionWrapper implements DDMTemplateVersion,
 	/**
 	* Returns the localized description of this ddm template version in the language. Uses the default language if no localization exists for the requested language.
 	*
-	* @param languageId the ID of the language
-	* @return the localized description of this ddm template version
-	*/
-	@Override
-	public java.lang.String getDescription(java.lang.String languageId) {
-		return _ddmTemplateVersion.getDescription(languageId);
-	}
-
-	/**
-	* Returns the localized description of this ddm template version in the language, optionally using the default language if no localization exists for the requested language.
-	*
-	* @param languageId the ID of the language
-	* @param useDefault whether to use the default language if no localization exists for the requested language
-	* @return the localized description of this ddm template version
-	*/
-	@Override
-	public java.lang.String getDescription(java.lang.String languageId,
-		boolean useDefault) {
-		return _ddmTemplateVersion.getDescription(languageId, useDefault);
-	}
-
-	/**
-	* Returns the localized description of this ddm template version in the language. Uses the default language if no localization exists for the requested language.
-	*
 	* @param locale the locale of the language
 	* @return the localized description of this ddm template version
 	*/
@@ -317,6 +293,30 @@ public class DDMTemplateVersionWrapper implements DDMTemplateVersion,
 	public java.lang.String getDescription(java.util.Locale locale,
 		boolean useDefault) {
 		return _ddmTemplateVersion.getDescription(locale, useDefault);
+	}
+
+	/**
+	* Returns the localized description of this ddm template version in the language. Uses the default language if no localization exists for the requested language.
+	*
+	* @param languageId the ID of the language
+	* @return the localized description of this ddm template version
+	*/
+	@Override
+	public java.lang.String getDescription(java.lang.String languageId) {
+		return _ddmTemplateVersion.getDescription(languageId);
+	}
+
+	/**
+	* Returns the localized description of this ddm template version in the language, optionally using the default language if no localization exists for the requested language.
+	*
+	* @param languageId the ID of the language
+	* @param useDefault whether to use the default language if no localization exists for the requested language
+	* @return the localized description of this ddm template version
+	*/
+	@Override
+	public java.lang.String getDescription(java.lang.String languageId,
+		boolean useDefault) {
+		return _ddmTemplateVersion.getDescription(languageId, useDefault);
 	}
 
 	@Override
@@ -377,6 +377,29 @@ public class DDMTemplateVersionWrapper implements DDMTemplateVersion,
 	/**
 	* Returns the localized name of this ddm template version in the language. Uses the default language if no localization exists for the requested language.
 	*
+	* @param locale the locale of the language
+	* @return the localized name of this ddm template version
+	*/
+	@Override
+	public java.lang.String getName(java.util.Locale locale) {
+		return _ddmTemplateVersion.getName(locale);
+	}
+
+	/**
+	* Returns the localized name of this ddm template version in the language, optionally using the default language if no localization exists for the requested language.
+	*
+	* @param locale the local of the language
+	* @param useDefault whether to use the default language if no localization exists for the requested language
+	* @return the localized name of this ddm template version. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
+	*/
+	@Override
+	public java.lang.String getName(java.util.Locale locale, boolean useDefault) {
+		return _ddmTemplateVersion.getName(locale, useDefault);
+	}
+
+	/**
+	* Returns the localized name of this ddm template version in the language. Uses the default language if no localization exists for the requested language.
+	*
 	* @param languageId the ID of the language
 	* @return the localized name of this ddm template version
 	*/
@@ -396,29 +419,6 @@ public class DDMTemplateVersionWrapper implements DDMTemplateVersion,
 	public java.lang.String getName(java.lang.String languageId,
 		boolean useDefault) {
 		return _ddmTemplateVersion.getName(languageId, useDefault);
-	}
-
-	/**
-	* Returns the localized name of this ddm template version in the language. Uses the default language if no localization exists for the requested language.
-	*
-	* @param locale the locale of the language
-	* @return the localized name of this ddm template version
-	*/
-	@Override
-	public java.lang.String getName(java.util.Locale locale) {
-		return _ddmTemplateVersion.getName(locale);
-	}
-
-	/**
-	* Returns the localized name of this ddm template version in the language, optionally using the default language if no localization exists for the requested language.
-	*
-	* @param locale the local of the language
-	* @param useDefault whether to use the default language if no localization exists for the requested language
-	* @return the localized name of this ddm template version. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
-	*/
-	@Override
-	public java.lang.String getName(java.util.Locale locale, boolean useDefault) {
-		return _ddmTemplateVersion.getName(locale, useDefault);
 	}
 
 	@Override
@@ -815,14 +815,14 @@ public class DDMTemplateVersionWrapper implements DDMTemplateVersion,
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
-		_ddmTemplateVersion.setExpandoBridgeAttributes(expandoBridge);
-	}
-
-	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
 		_ddmTemplateVersion.setExpandoBridgeAttributes(baseModel);
+	}
+
+	@Override
+	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
+		_ddmTemplateVersion.setExpandoBridgeAttributes(expandoBridge);
 	}
 
 	@Override

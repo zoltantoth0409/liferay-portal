@@ -476,6 +476,11 @@ public class PortletWrapper implements Portlet, ModelWrapper<Portlet> {
 		return _portlet.getDisplayName();
 	}
 
+	@Override
+	public ExpandoBridge getExpandoBridge() {
+		return _portlet.getExpandoBridge();
+	}
+
 	/**
 	* Returns expiration cache of the portlet.
 	*
@@ -484,11 +489,6 @@ public class PortletWrapper implements Portlet, ModelWrapper<Portlet> {
 	@Override
 	public java.lang.Integer getExpCache() {
 		return _portlet.getExpCache();
-	}
-
-	@Override
-	public ExpandoBridge getExpandoBridge() {
-		return _portlet.getExpandoBridge();
 	}
 
 	/**
@@ -704,16 +704,6 @@ public class PortletWrapper implements Portlet, ModelWrapper<Portlet> {
 	}
 
 	/**
-	* Returns the instance ID of the portlet.
-	*
-	* @return the instance ID of the portlet
-	*/
-	@Override
-	public java.lang.String getInstanceId() {
-		return _portlet.getInstanceId();
-	}
-
-	/**
 	* Returns <code>true</code> if the portlet can be added multiple times to a
 	* layout.
 	*
@@ -723,6 +713,16 @@ public class PortletWrapper implements Portlet, ModelWrapper<Portlet> {
 	@Override
 	public boolean getInstanceable() {
 		return _portlet.getInstanceable();
+	}
+
+	/**
+	* Returns the instance ID of the portlet.
+	*
+	* @return the instance ID of the portlet
+	*/
+	@Override
+	public java.lang.String getInstanceId() {
+		return _portlet.getInstanceId();
 	}
 
 	/**
@@ -1539,26 +1539,6 @@ public class PortletWrapper implements Portlet, ModelWrapper<Portlet> {
 	}
 
 	/**
-	* Returns the name of the URL encoder class of the portlet.
-	*
-	* @return the name of the URL encoder class of the portlet
-	*/
-	@Override
-	public java.lang.String getURLEncoderClass() {
-		return _portlet.getURLEncoderClass();
-	}
-
-	/**
-	* Returns the URL encoder instance of the portlet.
-	*
-	* @return the URL encoder instance of the portlet
-	*/
-	@Override
-	public com.liferay.portal.kernel.servlet.URLEncoder getURLEncoderInstance() {
-		return _portlet.getURLEncoderInstance();
-	}
-
-	/**
 	* Returns <code>true</code> if the portlet is an undeployed portlet.
 	*
 	* @return <code>true</code> if the portlet is a placeholder of an
@@ -1577,6 +1557,26 @@ public class PortletWrapper implements Portlet, ModelWrapper<Portlet> {
 	@Override
 	public java.util.Set<java.lang.String> getUnlinkedRoles() {
 		return _portlet.getUnlinkedRoles();
+	}
+
+	/**
+	* Returns the name of the URL encoder class of the portlet.
+	*
+	* @return the name of the URL encoder class of the portlet
+	*/
+	@Override
+	public java.lang.String getURLEncoderClass() {
+		return _portlet.getURLEncoderClass();
+	}
+
+	/**
+	* Returns the URL encoder instance of the portlet.
+	*
+	* @return the URL encoder instance of the portlet
+	*/
+	@Override
+	public com.liferay.portal.kernel.servlet.URLEncoder getURLEncoderInstance() {
+		return _portlet.getURLEncoderInstance();
 	}
 
 	/**
@@ -1770,6 +1770,11 @@ public class PortletWrapper implements Portlet, ModelWrapper<Portlet> {
 	}
 
 	@Override
+	public int hashCode() {
+		return _portlet.hashCode();
+	}
+
+	@Override
 	public boolean hasHeaderPortalCss() {
 		return _portlet.hasHeaderPortalCss();
 	}
@@ -1841,11 +1846,6 @@ public class PortletWrapper implements Portlet, ModelWrapper<Portlet> {
 	public boolean hasWindowState(java.lang.String mimeType,
 		javax.portlet.WindowState windowState) {
 		return _portlet.hasWindowState(mimeType, windowState);
-	}
-
-	@Override
-	public int hashCode() {
-		return _portlet.hashCode();
 	}
 
 	/**
@@ -2439,14 +2439,9 @@ public class PortletWrapper implements Portlet, ModelWrapper<Portlet> {
 		_portlet.setDisplayName(displayName);
 	}
 
-	/**
-	* Sets expiration cache of the portlet.
-	*
-	* @param expCache expiration cache of the portlet
-	*/
 	@Override
-	public void setExpCache(java.lang.Integer expCache) {
-		_portlet.setExpCache(expCache);
+	public void setExpandoBridgeAttributes(BaseModel<?> baseModel) {
+		_portlet.setExpandoBridgeAttributes(baseModel);
 	}
 
 	@Override
@@ -2455,13 +2450,18 @@ public class PortletWrapper implements Portlet, ModelWrapper<Portlet> {
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(BaseModel<?> baseModel) {
-		_portlet.setExpandoBridgeAttributes(baseModel);
-	}
-
-	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		_portlet.setExpandoBridgeAttributes(serviceContext);
+	}
+
+	/**
+	* Sets expiration cache of the portlet.
+	*
+	* @param expCache expiration cache of the portlet
+	*/
+	@Override
+	public void setExpCache(java.lang.Integer expCache) {
+		_portlet.setExpCache(expCache);
 	}
 
 	/**
@@ -3322,16 +3322,6 @@ public class PortletWrapper implements Portlet, ModelWrapper<Portlet> {
 	}
 
 	/**
-	* Sets the name of the URL encoder class of the portlet.
-	*
-	* @param urlEncoderClass the name of the URL encoder class of the portlet
-	*/
-	@Override
-	public void setURLEncoderClass(java.lang.String urlEncoderClass) {
-		_portlet.setURLEncoderClass(urlEncoderClass);
-	}
-
-	/**
 	* Set to <code>true</code> if the portlet is an undeployed portlet.
 	*
 	* @param undeployedPortlet boolean value for whether the portlet is an
@@ -3350,6 +3340,16 @@ public class PortletWrapper implements Portlet, ModelWrapper<Portlet> {
 	@Override
 	public void setUnlinkedRoles(java.util.Set<java.lang.String> unlinkedRoles) {
 		_portlet.setUnlinkedRoles(unlinkedRoles);
+	}
+
+	/**
+	* Sets the name of the URL encoder class of the portlet.
+	*
+	* @param urlEncoderClass the name of the URL encoder class of the portlet
+	*/
+	@Override
+	public void setURLEncoderClass(java.lang.String urlEncoderClass) {
+		_portlet.setURLEncoderClass(urlEncoderClass);
 	}
 
 	/**

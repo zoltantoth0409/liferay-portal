@@ -42,17 +42,6 @@ public class SubscriptionLocalServiceUtil {
 	 */
 
 	/**
-	* Adds the subscription to the database. Also notifies the appropriate model listeners.
-	*
-	* @param subscription the subscription
-	* @return the subscription that was added
-	*/
-	public static com.liferay.portal.kernel.model.Subscription addSubscription(
-		com.liferay.portal.kernel.model.Subscription subscription) {
-		return getService().addSubscription(subscription);
-	}
-
-	/**
 	* Subscribes the user to the entity, notifying him the instant the entity
 	* is created, deleted, or modified.
 	*
@@ -110,6 +99,17 @@ public class SubscriptionLocalServiceUtil {
 	}
 
 	/**
+	* Adds the subscription to the database. Also notifies the appropriate model listeners.
+	*
+	* @param subscription the subscription
+	* @return the subscription that was added
+	*/
+	public static com.liferay.portal.kernel.model.Subscription addSubscription(
+		com.liferay.portal.kernel.model.Subscription subscription) {
+		return getService().addSubscription(subscription);
+	}
+
+	/**
 	* Creates a new subscription with the primary key. Does not add the subscription to the database.
 	*
 	* @param subscriptionId the primary key for the new subscription
@@ -127,19 +127,6 @@ public class SubscriptionLocalServiceUtil {
 		com.liferay.portal.kernel.model.PersistedModel persistedModel)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deletePersistedModel(persistedModel);
-	}
-
-	/**
-	* Deletes the subscription from the database. Also notifies the appropriate model listeners.
-	*
-	* @param subscription the subscription
-	* @return the subscription that was removed
-	* @throws PortalException
-	*/
-	public static com.liferay.portal.kernel.model.Subscription deleteSubscription(
-		com.liferay.portal.kernel.model.Subscription subscription)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deleteSubscription(subscription);
 	}
 
 	/**
@@ -170,6 +157,19 @@ public class SubscriptionLocalServiceUtil {
 	}
 
 	/**
+	* Deletes the subscription from the database. Also notifies the appropriate model listeners.
+	*
+	* @param subscription the subscription
+	* @return the subscription that was removed
+	* @throws PortalException
+	*/
+	public static com.liferay.portal.kernel.model.Subscription deleteSubscription(
+		com.liferay.portal.kernel.model.Subscription subscription)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deleteSubscription(subscription);
+	}
+
+	/**
 	* Deletes all the subscriptions of the user.
 	*
 	* @param userId the primary key of the user
@@ -177,6 +177,11 @@ public class SubscriptionLocalServiceUtil {
 	public static void deleteSubscriptions(long userId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().deleteSubscriptions(userId);
+	}
+
+	public static void deleteSubscriptions(long userId, long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService().deleteSubscriptions(userId, groupId);
 	}
 
 	/**
@@ -190,11 +195,6 @@ public class SubscriptionLocalServiceUtil {
 		java.lang.String className, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().deleteSubscriptions(companyId, className, classPK);
-	}
-
-	public static void deleteSubscriptions(long userId, long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		getService().deleteSubscriptions(userId, groupId);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery() {
@@ -355,19 +355,6 @@ public class SubscriptionLocalServiceUtil {
 	}
 
 	/**
-	* Returns all the subscriptions to the entity.
-	*
-	* @param companyId the primary key of the company
-	* @param className the entity's class name
-	* @param classPK the primary key of the entity's instance
-	* @return the subscriptions to the entity
-	*/
-	public static java.util.List<com.liferay.portal.kernel.model.Subscription> getSubscriptions(
-		long companyId, java.lang.String className, long classPK) {
-		return getService().getSubscriptions(companyId, className, classPK);
-	}
-
-	/**
 	* Returns all the subscriptions of the user to the entities.
 	*
 	* @param companyId the primary key of the company
@@ -380,6 +367,19 @@ public class SubscriptionLocalServiceUtil {
 		long companyId, long userId, java.lang.String className, long[] classPKs) {
 		return getService()
 				   .getSubscriptions(companyId, userId, className, classPKs);
+	}
+
+	/**
+	* Returns all the subscriptions to the entity.
+	*
+	* @param companyId the primary key of the company
+	* @param className the entity's class name
+	* @param classPK the primary key of the entity's instance
+	* @return the subscriptions to the entity
+	*/
+	public static java.util.List<com.liferay.portal.kernel.model.Subscription> getSubscriptions(
+		long companyId, java.lang.String className, long classPK) {
+		return getService().getSubscriptions(companyId, className, classPK);
 	}
 
 	/**
@@ -431,6 +431,21 @@ public class SubscriptionLocalServiceUtil {
 	}
 
 	/**
+	* Returns <code>true</code> if the user is subscribed to the entity.
+	*
+	* @param companyId the primary key of the company
+	* @param userId the primary key of the user
+	* @param className the entity's class name
+	* @param classPK the primary key of the entity's instance
+	* @return <code>true</code> if the user is subscribed to the entity;
+	<code>false</code> otherwise
+	*/
+	public static boolean isSubscribed(long companyId, long userId,
+		java.lang.String className, long classPK) {
+		return getService().isSubscribed(companyId, userId, className, classPK);
+	}
+
+	/**
 	* Returns <code>true</code> if the user is subscribed to any of the
 	* entities.
 	*
@@ -444,21 +459,6 @@ public class SubscriptionLocalServiceUtil {
 	public static boolean isSubscribed(long companyId, long userId,
 		java.lang.String className, long[] classPKs) {
 		return getService().isSubscribed(companyId, userId, className, classPKs);
-	}
-
-	/**
-	* Returns <code>true</code> if the user is subscribed to the entity.
-	*
-	* @param companyId the primary key of the company
-	* @param userId the primary key of the user
-	* @param className the entity's class name
-	* @param classPK the primary key of the entity's instance
-	* @return <code>true</code> if the user is subscribed to the entity;
-	<code>false</code> otherwise
-	*/
-	public static boolean isSubscribed(long companyId, long userId,
-		java.lang.String className, long classPK) {
-		return getService().isSubscribed(companyId, userId, className, classPK);
 	}
 
 	/**

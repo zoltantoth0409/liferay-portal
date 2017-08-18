@@ -54,112 +54,6 @@ public class DDMStructureLocalServiceUtil {
 	}
 
 	public static com.liferay.dynamic.data.mapping.model.DDMStructure addStructure(
-		long userId, long groupId, java.lang.String parentStructureKey,
-		long classNameId, java.lang.String structureKey,
-		java.util.Map<java.util.Locale, java.lang.String> nameMap,
-		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		com.liferay.dynamic.data.mapping.model.DDMForm ddmForm,
-		com.liferay.dynamic.data.mapping.model.DDMFormLayout ddmFormLayout,
-		java.lang.String storageType, int type,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .addStructure(userId, groupId, parentStructureKey,
-			classNameId, structureKey, nameMap, descriptionMap, ddmForm,
-			ddmFormLayout, storageType, type, serviceContext);
-	}
-
-	/**
-	* Adds a structure referencing a default parent structure if the parent
-	* structure is not found.
-	*
-	* @param userId the primary key of the structure's creator/owner
-	* @param groupId the primary key of the group
-	* @param parentStructureKey the unique string identifying the parent
-	structure (optionally <code>null</code>)
-	* @param classNameId the primary key of the class name for the
-	structure's related model
-	* @param structureKey the unique string identifying the structure
-	(optionally <code>null</code>)
-	* @param nameMap the structure's locales and localized names
-	* @param descriptionMap the structure's locales and localized
-	descriptions
-	* @param definition the structure's XML schema definition
-	* @param storageType the structure's storage type. It can be "xml" or
-	"expando". For more information, see {@link StorageType}.
-	* @param type the structure's type. For more information, see {@link
-	DDMStructureConstants}.
-	* @param serviceContext the service context to be applied. Can set the
-	UUID, creation date, modification date, guest permissions and
-	group permissions for the structure.
-	* @return the structure
-	* @deprecated As of 2.1.0, replaced by {@link #addStructure(long, long,
-	String, long, String, Map, Map, DDMForm, DDMFormLayout,
-	String, int, ServiceContext)}
-	*/
-	@Deprecated
-	public static com.liferay.dynamic.data.mapping.model.DDMStructure addStructure(
-		long userId, long groupId, java.lang.String parentStructureKey,
-		long classNameId, java.lang.String structureKey,
-		java.util.Map<java.util.Locale, java.lang.String> nameMap,
-		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		java.lang.String definition, java.lang.String storageType, int type,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .addStructure(userId, groupId, parentStructureKey,
-			classNameId, structureKey, nameMap, descriptionMap, definition,
-			storageType, type, serviceContext);
-	}
-
-	public static com.liferay.dynamic.data.mapping.model.DDMStructure addStructure(
-		long userId, long groupId, long classNameId,
-		java.util.Map<java.util.Locale, java.lang.String> nameMap,
-		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		com.liferay.dynamic.data.mapping.model.DDMForm ddmForm,
-		com.liferay.dynamic.data.mapping.model.DDMFormLayout ddmFormLayout,
-		java.lang.String storageType,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .addStructure(userId, groupId, classNameId, nameMap,
-			descriptionMap, ddmForm, ddmFormLayout, storageType, serviceContext);
-	}
-
-	/**
-	* Adds a structure referencing a default parent structure, using the portal
-	* property <code>dynamic.data.lists.storage.type</code> storage type and
-	* default structure type.
-	*
-	* @param userId the primary key of the structure's creator/owner
-	* @param groupId the primary key of the group
-	* @param classNameId the primary key of the class name for the
-	structure's related model
-	* @param nameMap the structure's locales and localized names
-	* @param descriptionMap the structure's locales and localized
-	descriptions
-	* @param definition the structure's XML schema definition
-	* @param serviceContext the service context to be applied. Can set the
-	UUID, creation date, modification date, guest permissions,
-	and group permissions for the structure.
-	* @return the structure
-	* @deprecated As of 2.1.0, replaced by {@link #addStructure(long, long,
-	long, Map, Map, DDMForm, DDMFormLayout, ServiceContext)}
-	*/
-	@Deprecated
-	public static com.liferay.dynamic.data.mapping.model.DDMStructure addStructure(
-		long userId, long groupId, long classNameId,
-		java.util.Map<java.util.Locale, java.lang.String> nameMap,
-		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		java.lang.String definition,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .addStructure(userId, groupId, classNameId, nameMap,
-			descriptionMap, definition, serviceContext);
-	}
-
-	public static com.liferay.dynamic.data.mapping.model.DDMStructure addStructure(
 		long userId, long groupId, long parentStructureId, long classNameId,
 		java.lang.String structureKey,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
@@ -218,6 +112,112 @@ public class DDMStructureLocalServiceUtil {
 			storageType, type, serviceContext);
 	}
 
+	public static com.liferay.dynamic.data.mapping.model.DDMStructure addStructure(
+		long userId, long groupId, long classNameId,
+		java.util.Map<java.util.Locale, java.lang.String> nameMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		com.liferay.dynamic.data.mapping.model.DDMForm ddmForm,
+		com.liferay.dynamic.data.mapping.model.DDMFormLayout ddmFormLayout,
+		java.lang.String storageType,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .addStructure(userId, groupId, classNameId, nameMap,
+			descriptionMap, ddmForm, ddmFormLayout, storageType, serviceContext);
+	}
+
+	/**
+	* Adds a structure referencing a default parent structure, using the portal
+	* property <code>dynamic.data.lists.storage.type</code> storage type and
+	* default structure type.
+	*
+	* @param userId the primary key of the structure's creator/owner
+	* @param groupId the primary key of the group
+	* @param classNameId the primary key of the class name for the
+	structure's related model
+	* @param nameMap the structure's locales and localized names
+	* @param descriptionMap the structure's locales and localized
+	descriptions
+	* @param definition the structure's XML schema definition
+	* @param serviceContext the service context to be applied. Can set the
+	UUID, creation date, modification date, guest permissions,
+	and group permissions for the structure.
+	* @return the structure
+	* @deprecated As of 2.1.0, replaced by {@link #addStructure(long, long,
+	long, Map, Map, DDMForm, DDMFormLayout, ServiceContext)}
+	*/
+	@Deprecated
+	public static com.liferay.dynamic.data.mapping.model.DDMStructure addStructure(
+		long userId, long groupId, long classNameId,
+		java.util.Map<java.util.Locale, java.lang.String> nameMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		java.lang.String definition,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .addStructure(userId, groupId, classNameId, nameMap,
+			descriptionMap, definition, serviceContext);
+	}
+
+	public static com.liferay.dynamic.data.mapping.model.DDMStructure addStructure(
+		long userId, long groupId, java.lang.String parentStructureKey,
+		long classNameId, java.lang.String structureKey,
+		java.util.Map<java.util.Locale, java.lang.String> nameMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		com.liferay.dynamic.data.mapping.model.DDMForm ddmForm,
+		com.liferay.dynamic.data.mapping.model.DDMFormLayout ddmFormLayout,
+		java.lang.String storageType, int type,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .addStructure(userId, groupId, parentStructureKey,
+			classNameId, structureKey, nameMap, descriptionMap, ddmForm,
+			ddmFormLayout, storageType, type, serviceContext);
+	}
+
+	/**
+	* Adds a structure referencing a default parent structure if the parent
+	* structure is not found.
+	*
+	* @param userId the primary key of the structure's creator/owner
+	* @param groupId the primary key of the group
+	* @param parentStructureKey the unique string identifying the parent
+	structure (optionally <code>null</code>)
+	* @param classNameId the primary key of the class name for the
+	structure's related model
+	* @param structureKey the unique string identifying the structure
+	(optionally <code>null</code>)
+	* @param nameMap the structure's locales and localized names
+	* @param descriptionMap the structure's locales and localized
+	descriptions
+	* @param definition the structure's XML schema definition
+	* @param storageType the structure's storage type. It can be "xml" or
+	"expando". For more information, see {@link StorageType}.
+	* @param type the structure's type. For more information, see {@link
+	DDMStructureConstants}.
+	* @param serviceContext the service context to be applied. Can set the
+	UUID, creation date, modification date, guest permissions and
+	group permissions for the structure.
+	* @return the structure
+	* @deprecated As of 2.1.0, replaced by {@link #addStructure(long, long,
+	String, long, String, Map, Map, DDMForm, DDMFormLayout,
+	String, int, ServiceContext)}
+	*/
+	@Deprecated
+	public static com.liferay.dynamic.data.mapping.model.DDMStructure addStructure(
+		long userId, long groupId, java.lang.String parentStructureKey,
+		long classNameId, java.lang.String structureKey,
+		java.util.Map<java.util.Locale, java.lang.String> nameMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		java.lang.String definition, java.lang.String storageType, int type,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .addStructure(userId, groupId, parentStructureKey,
+			classNameId, structureKey, nameMap, descriptionMap, definition,
+			storageType, type, serviceContext);
+	}
+
 	/**
 	* Adds the resources to the structure.
 	*
@@ -247,13 +247,6 @@ public class DDMStructureLocalServiceUtil {
 		getService().addStructureResources(structure, modelPermissions);
 	}
 
-	public static com.liferay.dynamic.data.mapping.model.DDMStructure copyStructure(
-		long userId, long structureId,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().copyStructure(userId, structureId, serviceContext);
-	}
-
 	/**
 	* Copies a structure, creating a new structure with all the values
 	* extracted from the original one. The new structure supports a new name
@@ -278,6 +271,13 @@ public class DDMStructureLocalServiceUtil {
 		return getService()
 				   .copyStructure(userId, structureId, nameMap, descriptionMap,
 			serviceContext);
+	}
+
+	public static com.liferay.dynamic.data.mapping.model.DDMStructure copyStructure(
+		long userId, long structureId,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().copyStructure(userId, structureId, serviceContext);
 	}
 
 	/**
@@ -572,24 +572,6 @@ public class DDMStructureLocalServiceUtil {
 	}
 
 	/**
-	* Returns all the structures matching the class name ID ordered by the
-	* comparator.
-	*
-	* @param companyId the primary key of the structure's company
-	* @param classNameId the primary key of the class name for the structure's
-	related model
-	* @param orderByComparator the comparator to order the structures
-	(optionally <code>null</code>)
-	* @return the matching structures ordered by the comparator
-	*/
-	public static java.util.List<com.liferay.dynamic.data.mapping.model.DDMStructure> getClassStructures(
-		long companyId, long classNameId,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.dynamic.data.mapping.model.DDMStructure> orderByComparator) {
-		return getService()
-				   .getClassStructures(companyId, classNameId, orderByComparator);
-	}
-
-	/**
 	* Returns a range of all the structures matching the class name ID.
 	*
 	* <p>
@@ -613,6 +595,24 @@ public class DDMStructureLocalServiceUtil {
 		long companyId, long classNameId, int start, int end) {
 		return getService()
 				   .getClassStructures(companyId, classNameId, start, end);
+	}
+
+	/**
+	* Returns all the structures matching the class name ID ordered by the
+	* comparator.
+	*
+	* @param companyId the primary key of the structure's company
+	* @param classNameId the primary key of the class name for the structure's
+	related model
+	* @param orderByComparator the comparator to order the structures
+	(optionally <code>null</code>)
+	* @return the matching structures ordered by the comparator
+	*/
+	public static java.util.List<com.liferay.dynamic.data.mapping.model.DDMStructure> getClassStructures(
+		long companyId, long classNameId,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.dynamic.data.mapping.model.DDMStructure> orderByComparator) {
+		return getService()
+				   .getClassStructures(companyId, classNameId, orderByComparator);
 	}
 
 	/**
@@ -734,19 +734,6 @@ public class DDMStructureLocalServiceUtil {
 	}
 
 	/**
-	* Returns all the structures matching the group, name, and description.
-	*
-	* @param groupId the primary key of the structure's group
-	* @param name the structure's name
-	* @param description the structure's description
-	* @return the matching structures
-	*/
-	public static java.util.List<com.liferay.dynamic.data.mapping.model.DDMStructure> getStructure(
-		long groupId, java.lang.String name, java.lang.String description) {
-		return getService().getStructure(groupId, name, description);
-	}
-
-	/**
 	* Returns the structure matching the class name ID, structure key, and
 	* group.
 	*
@@ -792,6 +779,19 @@ public class DDMStructureLocalServiceUtil {
 			includeAncestorStructures);
 	}
 
+	/**
+	* Returns all the structures matching the group, name, and description.
+	*
+	* @param groupId the primary key of the structure's group
+	* @param name the structure's name
+	* @param description the structure's description
+	* @return the matching structures
+	*/
+	public static java.util.List<com.liferay.dynamic.data.mapping.model.DDMStructure> getStructure(
+		long groupId, java.lang.String name, java.lang.String description) {
+		return getService().getStructure(groupId, name, description);
+	}
+
 	public static com.liferay.dynamic.data.mapping.model.DDMForm getStructureDDMForm(
 		com.liferay.dynamic.data.mapping.model.DDMStructure structure)
 		throws com.liferay.portal.kernel.exception.PortalException {
@@ -805,17 +805,6 @@ public class DDMStructureLocalServiceUtil {
 	*/
 	public static java.util.List<com.liferay.dynamic.data.mapping.model.DDMStructure> getStructures() {
 		return getService().getStructures();
-	}
-
-	/**
-	* Returns all the structures belonging to the groups.
-	*
-	* @param groupIds the primary keys of the groups
-	* @return the structures belonging to the groups
-	*/
-	public static java.util.List<com.liferay.dynamic.data.mapping.model.DDMStructure> getStructures(
-		long[] groupIds) {
-		return getService().getStructures(groupIds);
 	}
 
 	/**
@@ -852,25 +841,6 @@ public class DDMStructureLocalServiceUtil {
 		return getService().getStructures(groupId, start, end);
 	}
 
-	public static java.util.List<com.liferay.dynamic.data.mapping.model.DDMStructure> getStructures(
-		long groupId, java.lang.String name, java.lang.String description) {
-		return getService().getStructures(groupId, name, description);
-	}
-
-	/**
-	* Returns all the structures matching the class name ID and belonging to
-	* the groups.
-	*
-	* @param groupIds the primary keys of the groups
-	* @param classNameId the primary key of the class name for the structure's
-	related model
-	* @return the matching structures
-	*/
-	public static java.util.List<com.liferay.dynamic.data.mapping.model.DDMStructure> getStructures(
-		long[] groupIds, long classNameId) {
-		return getService().getStructures(groupIds, classNameId);
-	}
-
 	/**
 	* Returns all the structures matching class name ID and group.
 	*
@@ -882,32 +852,6 @@ public class DDMStructureLocalServiceUtil {
 	public static java.util.List<com.liferay.dynamic.data.mapping.model.DDMStructure> getStructures(
 		long groupId, long classNameId) {
 		return getService().getStructures(groupId, classNameId);
-	}
-
-	/**
-	* Returns a range of all the structures matching the class name ID and
-	* belonging to the groups.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end -
-	* start</code> instances. <code>start</code> and <code>end</code> are not
-	* primary keys, they are indexes in the result set. Thus, <code>0</code>
-	* refers to the first result in the set. Setting both <code>start</code>
-	* and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full
-	* result set.
-	* </p>
-	*
-	* @param groupIds the primary keys of the groups
-	* @param classNameId the primary key of the class name for the structure's
-	related model
-	* @param start the lower bound of the range of structures to return
-	* @param end the upper bound of the range of structures to return (not
-	inclusive)
-	* @return the range of matching structures
-	*/
-	public static java.util.List<com.liferay.dynamic.data.mapping.model.DDMStructure> getStructures(
-		long[] groupIds, long classNameId, int start, int end) {
-		return getService().getStructures(groupIds, classNameId, start, end);
 	}
 
 	/**
@@ -967,6 +911,62 @@ public class DDMStructureLocalServiceUtil {
 			orderByComparator);
 	}
 
+	public static java.util.List<com.liferay.dynamic.data.mapping.model.DDMStructure> getStructures(
+		long groupId, java.lang.String name, java.lang.String description) {
+		return getService().getStructures(groupId, name, description);
+	}
+
+	/**
+	* Returns all the structures belonging to the groups.
+	*
+	* @param groupIds the primary keys of the groups
+	* @return the structures belonging to the groups
+	*/
+	public static java.util.List<com.liferay.dynamic.data.mapping.model.DDMStructure> getStructures(
+		long[] groupIds) {
+		return getService().getStructures(groupIds);
+	}
+
+	/**
+	* Returns all the structures matching the class name ID and belonging to
+	* the groups.
+	*
+	* @param groupIds the primary keys of the groups
+	* @param classNameId the primary key of the class name for the structure's
+	related model
+	* @return the matching structures
+	*/
+	public static java.util.List<com.liferay.dynamic.data.mapping.model.DDMStructure> getStructures(
+		long[] groupIds, long classNameId) {
+		return getService().getStructures(groupIds, classNameId);
+	}
+
+	/**
+	* Returns a range of all the structures matching the class name ID and
+	* belonging to the groups.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end -
+	* start</code> instances. <code>start</code> and <code>end</code> are not
+	* primary keys, they are indexes in the result set. Thus, <code>0</code>
+	* refers to the first result in the set. Setting both <code>start</code>
+	* and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full
+	* result set.
+	* </p>
+	*
+	* @param groupIds the primary keys of the groups
+	* @param classNameId the primary key of the class name for the structure's
+	related model
+	* @param start the lower bound of the range of structures to return
+	* @param end the upper bound of the range of structures to return (not
+	inclusive)
+	* @return the range of matching structures
+	*/
+	public static java.util.List<com.liferay.dynamic.data.mapping.model.DDMStructure> getStructures(
+		long[] groupIds, long classNameId, int start, int end) {
+		return getService().getStructures(groupIds, classNameId, start, end);
+	}
+
 	/**
 	* Returns the number of structures belonging to the group.
 	*
@@ -975,6 +975,18 @@ public class DDMStructureLocalServiceUtil {
 	*/
 	public static int getStructuresCount(long groupId) {
 		return getService().getStructuresCount(groupId);
+	}
+
+	/**
+	* Returns the number of structures matching the class name ID and group.
+	*
+	* @param groupId the primary key of the group
+	* @param classNameId the primary key of the class name for the structure's
+	related model
+	* @return the number of matching structures
+	*/
+	public static int getStructuresCount(long groupId, long classNameId) {
+		return getService().getStructuresCount(groupId, classNameId);
 	}
 
 	/**
@@ -988,18 +1000,6 @@ public class DDMStructureLocalServiceUtil {
 	*/
 	public static int getStructuresCount(long[] groupIds, long classNameId) {
 		return getService().getStructuresCount(groupIds, classNameId);
-	}
-
-	/**
-	* Returns the number of structures matching the class name ID and group.
-	*
-	* @param groupId the primary key of the group
-	* @param classNameId the primary key of the class name for the structure's
-	related model
-	* @return the number of matching structures
-	*/
-	public static int getStructuresCount(long groupId, long classNameId) {
-		return getService().getStructuresCount(groupId, classNameId);
 	}
 
 	public static java.lang.String prepareLocalizedDefinitionForImport(
@@ -1164,33 +1164,32 @@ public class DDMStructureLocalServiceUtil {
 			ddmFormLayout, serviceContext);
 	}
 
-	/**
-	* Updates the structure matching the structure ID, replacing its old parent
-	* structure, name map, description map, and XSD with new ones.
-	*
-	* @param structureId the primary key of the structure
-	* @param parentStructureId the primary key of the new parent structure
-	* @param nameMap the structure's new locales and localized names
-	* @param descriptionMap the structure's new locales and localized
-	descriptions
-	* @param definition the structure's new XML schema definition
-	* @param serviceContext the service context to be applied. Can set the
-	structure's modification date.
-	* @return the updated structure
-	* @deprecated As of 2.1.0, replaced by {@link #updateStructure(long, long,
-	long, Map, Map, DDMForm, DDMFormLayout, ServiceContext)}
-	*/
-	@Deprecated
 	public static com.liferay.dynamic.data.mapping.model.DDMStructure updateStructure(
-		long structureId, long parentStructureId,
+		long userId, long groupId, long parentStructureId, long classNameId,
+		java.lang.String structureKey,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		java.lang.String definition,
+		com.liferay.dynamic.data.mapping.model.DDMForm ddmForm,
+		com.liferay.dynamic.data.mapping.model.DDMFormLayout ddmFormLayout,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
-				   .updateStructure(structureId, parentStructureId, nameMap,
-			descriptionMap, definition, serviceContext);
+				   .updateStructure(userId, groupId, parentStructureId,
+			classNameId, structureKey, nameMap, descriptionMap, ddmForm,
+			ddmFormLayout, serviceContext);
+	}
+
+	public static com.liferay.dynamic.data.mapping.model.DDMStructure updateStructure(
+		long userId, long structureId, long parentStructureId,
+		java.util.Map<java.util.Locale, java.lang.String> nameMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		com.liferay.dynamic.data.mapping.model.DDMForm ddmForm,
+		com.liferay.dynamic.data.mapping.model.DDMFormLayout ddmFormLayout,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .updateStructure(userId, structureId, parentStructureId,
+			nameMap, descriptionMap, ddmForm, ddmFormLayout, serviceContext);
 	}
 
 	/**
@@ -1228,32 +1227,33 @@ public class DDMStructureLocalServiceUtil {
 			structureKey, nameMap, descriptionMap, definition, serviceContext);
 	}
 
+	/**
+	* Updates the structure matching the structure ID, replacing its old parent
+	* structure, name map, description map, and XSD with new ones.
+	*
+	* @param structureId the primary key of the structure
+	* @param parentStructureId the primary key of the new parent structure
+	* @param nameMap the structure's new locales and localized names
+	* @param descriptionMap the structure's new locales and localized
+	descriptions
+	* @param definition the structure's new XML schema definition
+	* @param serviceContext the service context to be applied. Can set the
+	structure's modification date.
+	* @return the updated structure
+	* @deprecated As of 2.1.0, replaced by {@link #updateStructure(long, long,
+	long, Map, Map, DDMForm, DDMFormLayout, ServiceContext)}
+	*/
+	@Deprecated
 	public static com.liferay.dynamic.data.mapping.model.DDMStructure updateStructure(
-		long userId, long structureId, long parentStructureId,
+		long structureId, long parentStructureId,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		com.liferay.dynamic.data.mapping.model.DDMForm ddmForm,
-		com.liferay.dynamic.data.mapping.model.DDMFormLayout ddmFormLayout,
+		java.lang.String definition,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
-				   .updateStructure(userId, structureId, parentStructureId,
-			nameMap, descriptionMap, ddmForm, ddmFormLayout, serviceContext);
-	}
-
-	public static com.liferay.dynamic.data.mapping.model.DDMStructure updateStructure(
-		long userId, long groupId, long parentStructureId, long classNameId,
-		java.lang.String structureKey,
-		java.util.Map<java.util.Locale, java.lang.String> nameMap,
-		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		com.liferay.dynamic.data.mapping.model.DDMForm ddmForm,
-		com.liferay.dynamic.data.mapping.model.DDMFormLayout ddmFormLayout,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .updateStructure(userId, groupId, parentStructureId,
-			classNameId, structureKey, nameMap, descriptionMap, ddmForm,
-			ddmFormLayout, serviceContext);
+				   .updateStructure(structureId, parentStructureId, nameMap,
+			descriptionMap, definition, serviceContext);
 	}
 
 	/**

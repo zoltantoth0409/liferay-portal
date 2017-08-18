@@ -64,6 +64,9 @@ public interface PortletPreferencesLocalService extends BaseLocalService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link PortletPreferencesLocalServiceUtil} to access the portlet preferences local service. Add custom service methods to {@link com.liferay.portal.service.impl.PortletPreferencesLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public PortletPreferences addPortletPreferences(long companyId,
+		long ownerId, int ownerType, long plid, java.lang.String portletId,
+		Portlet portlet, java.lang.String defaultPreferences);
 
 	/**
 	* Adds the portlet preferences to the database. Also notifies the appropriate model listeners.
@@ -74,10 +77,6 @@ public interface PortletPreferencesLocalService extends BaseLocalService,
 	@Indexable(type = IndexableType.REINDEX)
 	public PortletPreferences addPortletPreferences(
 		PortletPreferences portletPreferences);
-
-	public PortletPreferences addPortletPreferences(long companyId,
-		long ownerId, int ownerType, long plid, java.lang.String portletId,
-		Portlet portlet, java.lang.String defaultPreferences);
 
 	/**
 	* Creates a new portlet preferences with the primary key. Does not add the portlet preferences to the database.
@@ -96,16 +95,6 @@ public interface PortletPreferencesLocalService extends BaseLocalService,
 		throws PortalException;
 
 	/**
-	* Deletes the portlet preferences from the database. Also notifies the appropriate model listeners.
-	*
-	* @param portletPreferences the portlet preferences
-	* @return the portlet preferences that was removed
-	*/
-	@Indexable(type = IndexableType.DELETE)
-	public PortletPreferences deletePortletPreferences(
-		PortletPreferences portletPreferences);
-
-	/**
 	* Deletes the portlet preferences with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param portletPreferencesId the primary key of the portlet preferences
@@ -120,6 +109,16 @@ public interface PortletPreferencesLocalService extends BaseLocalService,
 
 	public void deletePortletPreferences(long ownerId, int ownerType,
 		long plid, java.lang.String portletId) throws PortalException;
+
+	/**
+	* Deletes the portlet preferences from the database. Also notifies the appropriate model listeners.
+	*
+	* @param portletPreferences the portlet preferences
+	* @return the portlet preferences that was removed
+	*/
+	@Indexable(type = IndexableType.DELETE)
+	public PortletPreferences deletePortletPreferences(
+		PortletPreferences portletPreferences);
 
 	public void deletePortletPreferencesByPlid(long plid);
 
@@ -186,12 +185,12 @@ public interface PortletPreferencesLocalService extends BaseLocalService,
 	public PortletPreferences fetchPortletPreferences(long portletPreferencesId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public javax.portlet.PortletPreferences fetchPreferences(
-		PortletPreferencesIds portletPreferencesIds);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public javax.portlet.PortletPreferences fetchPreferences(long companyId,
 		long ownerId, int ownerType, long plid, java.lang.String portletId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public javax.portlet.PortletPreferences fetchPreferences(
+		PortletPreferencesIds portletPreferencesIds);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();
@@ -244,10 +243,6 @@ public interface PortletPreferencesLocalService extends BaseLocalService,
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<PortletPreferences> getPortletPreferences(long plid,
-		java.lang.String portletId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<PortletPreferences> getPortletPreferences(long companyId,
 		long ownerId, int ownerType, java.lang.String portletId)
 		throws PortalException;
@@ -258,23 +253,27 @@ public interface PortletPreferencesLocalService extends BaseLocalService,
 		boolean privateLayout);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<PortletPreferences> getPortletPreferencesByPlid(long plid);
+	public List<PortletPreferences> getPortletPreferences(long plid,
+		java.lang.String portletId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public long getPortletPreferencesCount(int ownerType,
-		java.lang.String portletId);
+	public List<PortletPreferences> getPortletPreferencesByPlid(long plid);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public long getPortletPreferencesCount(int ownerType, long plid,
 		java.lang.String portletId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public long getPortletPreferencesCount(long ownerId, int ownerType,
-		java.lang.String portletId, boolean excludeDefaultPreferences);
+	public long getPortletPreferencesCount(int ownerType,
+		java.lang.String portletId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public long getPortletPreferencesCount(long ownerId, int ownerType,
 		long plid, Portlet portlet, boolean excludeDefaultPreferences);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public long getPortletPreferencesCount(long ownerId, int ownerType,
+		java.lang.String portletId, boolean excludeDefaultPreferences);
 
 	/**
 	* Returns a range of all the portlet preferenceses.
@@ -303,14 +302,6 @@ public interface PortletPreferencesLocalService extends BaseLocalService,
 	}
 	)
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public javax.portlet.PortletPreferences getPreferences(
-		PortletPreferencesIds portletPreferencesIds);
-
-	@Retry(acceptor = ExceptionRetryAcceptor.class, properties =  {
-		@Property(name = ExceptionRetryAcceptor.EXCEPTION_NAME, value = "org.springframework.dao.DataIntegrityViolationException")
-	}
-	)
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public javax.portlet.PortletPreferences getPreferences(long companyId,
 		long ownerId, int ownerType, long plid, java.lang.String portletId);
 
@@ -323,18 +314,26 @@ public interface PortletPreferencesLocalService extends BaseLocalService,
 		long ownerId, int ownerType, long plid, java.lang.String portletId,
 		java.lang.String defaultPreferences);
 
+	@Retry(acceptor = ExceptionRetryAcceptor.class, properties =  {
+		@Property(name = ExceptionRetryAcceptor.EXCEPTION_NAME, value = "org.springframework.dao.DataIntegrityViolationException")
+	}
+	)
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public javax.portlet.PortletPreferences getPreferences(
+		PortletPreferencesIds portletPreferencesIds);
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Map<java.lang.String, javax.portlet.PortletPreferences> getStrictPreferences(
 		Layout layout, List<Portlet> portlets);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public javax.portlet.PortletPreferences getStrictPreferences(
-		PortletPreferencesIds portletPreferencesIds);
+		long companyId, long ownerId, int ownerType, long plid,
+		java.lang.String portletId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public javax.portlet.PortletPreferences getStrictPreferences(
-		long companyId, long ownerId, int ownerType, long plid,
-		java.lang.String portletId);
+		PortletPreferencesIds portletPreferencesIds);
 
 	/**
 	* Updates the portlet preferences in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
@@ -347,9 +346,9 @@ public interface PortletPreferencesLocalService extends BaseLocalService,
 		PortletPreferences portletPreferences);
 
 	public PortletPreferences updatePreferences(long ownerId, int ownerType,
-		long plid, java.lang.String portletId, java.lang.String xml);
-
-	public PortletPreferences updatePreferences(long ownerId, int ownerType,
 		long plid, java.lang.String portletId,
 		javax.portlet.PortletPreferences portletPreferences);
+
+	public PortletPreferences updatePreferences(long ownerId, int ownerType,
+		long plid, java.lang.String portletId, java.lang.String xml);
 }

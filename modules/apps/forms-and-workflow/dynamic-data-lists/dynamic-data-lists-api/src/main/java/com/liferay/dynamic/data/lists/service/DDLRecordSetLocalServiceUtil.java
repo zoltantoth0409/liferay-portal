@@ -477,6 +477,26 @@ public class DDLRecordSetLocalServiceUtil {
 	}
 
 	/**
+	* Returns all the record sets belonging the group.
+	*
+	* @return the record sets belonging to the group
+	*/
+	public static java.util.List<com.liferay.dynamic.data.lists.model.DDLRecordSet> getRecordSets(
+		long groupId) {
+		return getService().getRecordSets(groupId);
+	}
+
+	/**
+	* Returns the number of all the record sets belonging the group.
+	*
+	* @param groupId the primary key of the record set's group
+	* @return the number of record sets belonging to the group
+	*/
+	public static int getRecordSetsCount(long groupId) {
+		return getService().getRecordSetsCount(groupId);
+	}
+
+	/**
 	* Returns the record set's settings as a DDMFormValues object. For more
 	* information see <code>DDMFormValues</code> in the
 	* <code>dynamic.data.mapping.api</code> module.
@@ -503,26 +523,6 @@ public class DDLRecordSetLocalServiceUtil {
 		com.liferay.dynamic.data.lists.model.DDLRecordSet recordSet)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getRecordSetSettingsModel(recordSet);
-	}
-
-	/**
-	* Returns all the record sets belonging the group.
-	*
-	* @return the record sets belonging to the group
-	*/
-	public static java.util.List<com.liferay.dynamic.data.lists.model.DDLRecordSet> getRecordSets(
-		long groupId) {
-		return getService().getRecordSets(groupId);
-	}
-
-	/**
-	* Returns the number of all the record sets belonging the group.
-	*
-	* @param groupId the primary key of the record set's group
-	* @return the number of record sets belonging to the group
-	*/
-	public static int getRecordSetsCount(long groupId) {
-		return getService().getRecordSetsCount(groupId);
 	}
 
 	/**
@@ -717,6 +717,34 @@ public class DDLRecordSetLocalServiceUtil {
 	}
 
 	/**
+	* Updates the DDM structure, name, description, and minimum number of
+	* display rows for the record set matching the record set ID.
+	*
+	* @param recordSetId the primary key of the record set
+	* @param ddmStructureId the primary key of the record set's DDM structure
+	* @param nameMap the record set's locales and localized names
+	* @param descriptionMap the record set's locales and localized
+	descriptions
+	* @param minDisplayRows the record set's minimum number of rows to be
+	displayed in spreadsheet view
+	* @param serviceContext the service context to be applied. This can set
+	the record set modified date.
+	* @return the record set
+	* @throws PortalException if a portal exception occurred
+	*/
+	public static com.liferay.dynamic.data.lists.model.DDLRecordSet updateRecordSet(
+		long recordSetId, long ddmStructureId,
+		java.util.Map<java.util.Locale, java.lang.String> nameMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		int minDisplayRows,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .updateRecordSet(recordSetId, ddmStructureId, nameMap,
+			descriptionMap, minDisplayRows, serviceContext);
+	}
+
+	/**
 	* Updates the DDM strucutre, name, description, and minimum number of
 	* display rows for the record set matching the record set key and group ID.
 	*
@@ -743,34 +771,6 @@ public class DDLRecordSetLocalServiceUtil {
 		return getService()
 				   .updateRecordSet(groupId, ddmStructureId, recordSetKey,
 			nameMap, descriptionMap, minDisplayRows, serviceContext);
-	}
-
-	/**
-	* Updates the DDM structure, name, description, and minimum number of
-	* display rows for the record set matching the record set ID.
-	*
-	* @param recordSetId the primary key of the record set
-	* @param ddmStructureId the primary key of the record set's DDM structure
-	* @param nameMap the record set's locales and localized names
-	* @param descriptionMap the record set's locales and localized
-	descriptions
-	* @param minDisplayRows the record set's minimum number of rows to be
-	displayed in spreadsheet view
-	* @param serviceContext the service context to be applied. This can set
-	the record set modified date.
-	* @return the record set
-	* @throws PortalException if a portal exception occurred
-	*/
-	public static com.liferay.dynamic.data.lists.model.DDLRecordSet updateRecordSet(
-		long recordSetId, long ddmStructureId,
-		java.util.Map<java.util.Locale, java.lang.String> nameMap,
-		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		int minDisplayRows,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService()
-				   .updateRecordSet(recordSetId, ddmStructureId, nameMap,
-			descriptionMap, minDisplayRows, serviceContext);
 	}
 
 	public static DDLRecordSetLocalService getService() {

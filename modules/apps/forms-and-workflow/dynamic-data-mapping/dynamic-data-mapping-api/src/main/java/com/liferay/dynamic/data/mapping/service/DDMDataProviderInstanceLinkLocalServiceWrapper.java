@@ -34,6 +34,13 @@ public class DDMDataProviderInstanceLinkLocalServiceWrapper
 		_ddmDataProviderInstanceLinkLocalService = ddmDataProviderInstanceLinkLocalService;
 	}
 
+	@Override
+	public com.liferay.dynamic.data.mapping.model.DDMDataProviderInstanceLink addDataProviderInstanceLink(
+		long dataProviderInstanceId, long structureId) {
+		return _ddmDataProviderInstanceLinkLocalService.addDataProviderInstanceLink(dataProviderInstanceId,
+			structureId);
+	}
+
 	/**
 	* Adds the ddm data provider instance link to the database. Also notifies the appropriate model listeners.
 	*
@@ -46,13 +53,6 @@ public class DDMDataProviderInstanceLinkLocalServiceWrapper
 		return _ddmDataProviderInstanceLinkLocalService.addDDMDataProviderInstanceLink(ddmDataProviderInstanceLink);
 	}
 
-	@Override
-	public com.liferay.dynamic.data.mapping.model.DDMDataProviderInstanceLink addDataProviderInstanceLink(
-		long dataProviderInstanceId, long structureId) {
-		return _ddmDataProviderInstanceLinkLocalService.addDataProviderInstanceLink(dataProviderInstanceId,
-			structureId);
-	}
-
 	/**
 	* Creates a new ddm data provider instance link with the primary key. Does not add the ddm data provider instance link to the database.
 	*
@@ -63,6 +63,31 @@ public class DDMDataProviderInstanceLinkLocalServiceWrapper
 	public com.liferay.dynamic.data.mapping.model.DDMDataProviderInstanceLink createDDMDataProviderInstanceLink(
 		long dataProviderInstanceLinkId) {
 		return _ddmDataProviderInstanceLinkLocalService.createDDMDataProviderInstanceLink(dataProviderInstanceLinkId);
+	}
+
+	@Override
+	public void deleteDataProviderInstanceLink(
+		com.liferay.dynamic.data.mapping.model.DDMDataProviderInstanceLink dataProviderInstanceLink) {
+		_ddmDataProviderInstanceLinkLocalService.deleteDataProviderInstanceLink(dataProviderInstanceLink);
+	}
+
+	@Override
+	public void deleteDataProviderInstanceLink(long dataProviderInstanceLinkId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_ddmDataProviderInstanceLinkLocalService.deleteDataProviderInstanceLink(dataProviderInstanceLinkId);
+	}
+
+	@Override
+	public void deleteDataProviderInstanceLink(long dataProviderInstanceId,
+		long structureId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_ddmDataProviderInstanceLinkLocalService.deleteDataProviderInstanceLink(dataProviderInstanceId,
+			structureId);
+	}
+
+	@Override
+	public void deleteDataProviderInstanceLinks(long structureId) {
+		_ddmDataProviderInstanceLinkLocalService.deleteDataProviderInstanceLinks(structureId);
 	}
 
 	/**
@@ -89,31 +114,6 @@ public class DDMDataProviderInstanceLinkLocalServiceWrapper
 		long dataProviderInstanceLinkId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _ddmDataProviderInstanceLinkLocalService.deleteDDMDataProviderInstanceLink(dataProviderInstanceLinkId);
-	}
-
-	@Override
-	public void deleteDataProviderInstanceLink(
-		com.liferay.dynamic.data.mapping.model.DDMDataProviderInstanceLink dataProviderInstanceLink) {
-		_ddmDataProviderInstanceLinkLocalService.deleteDataProviderInstanceLink(dataProviderInstanceLink);
-	}
-
-	@Override
-	public void deleteDataProviderInstanceLink(long dataProviderInstanceLinkId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		_ddmDataProviderInstanceLinkLocalService.deleteDataProviderInstanceLink(dataProviderInstanceLinkId);
-	}
-
-	@Override
-	public void deleteDataProviderInstanceLink(long dataProviderInstanceId,
-		long structureId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		_ddmDataProviderInstanceLinkLocalService.deleteDataProviderInstanceLink(dataProviderInstanceId,
-			structureId);
-	}
-
-	@Override
-	public void deleteDataProviderInstanceLinks(long structureId) {
-		_ddmDataProviderInstanceLinkLocalService.deleteDataProviderInstanceLinks(structureId);
 	}
 
 	/**
@@ -213,12 +213,6 @@ public class DDMDataProviderInstanceLinkLocalServiceWrapper
 	}
 
 	@Override
-	public com.liferay.dynamic.data.mapping.model.DDMDataProviderInstanceLink fetchDDMDataProviderInstanceLink(
-		long dataProviderInstanceLinkId) {
-		return _ddmDataProviderInstanceLinkLocalService.fetchDDMDataProviderInstanceLink(dataProviderInstanceLinkId);
-	}
-
-	@Override
 	public com.liferay.dynamic.data.mapping.model.DDMDataProviderInstanceLink fetchDataProviderInstanceLink(
 		long dataProviderInstanceId, long structureId) {
 		return _ddmDataProviderInstanceLinkLocalService.fetchDataProviderInstanceLink(dataProviderInstanceId,
@@ -226,8 +220,20 @@ public class DDMDataProviderInstanceLinkLocalServiceWrapper
 	}
 
 	@Override
+	public com.liferay.dynamic.data.mapping.model.DDMDataProviderInstanceLink fetchDDMDataProviderInstanceLink(
+		long dataProviderInstanceLinkId) {
+		return _ddmDataProviderInstanceLinkLocalService.fetchDDMDataProviderInstanceLink(dataProviderInstanceLinkId);
+	}
+
+	@Override
 	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
 		return _ddmDataProviderInstanceLinkLocalService.getActionableDynamicQuery();
+	}
+
+	@Override
+	public java.util.List<com.liferay.dynamic.data.mapping.model.DDMDataProviderInstanceLink> getDataProviderInstanceLinks(
+		long structureId) {
+		return _ddmDataProviderInstanceLinkLocalService.getDataProviderInstanceLinks(structureId);
 	}
 
 	/**
@@ -270,12 +276,6 @@ public class DDMDataProviderInstanceLinkLocalServiceWrapper
 	@Override
 	public int getDDMDataProviderInstanceLinksCount() {
 		return _ddmDataProviderInstanceLinkLocalService.getDDMDataProviderInstanceLinksCount();
-	}
-
-	@Override
-	public java.util.List<com.liferay.dynamic.data.mapping.model.DDMDataProviderInstanceLink> getDataProviderInstanceLinks(
-		long structureId) {
-		return _ddmDataProviderInstanceLinkLocalService.getDataProviderInstanceLinks(structureId);
 	}
 
 	@Override

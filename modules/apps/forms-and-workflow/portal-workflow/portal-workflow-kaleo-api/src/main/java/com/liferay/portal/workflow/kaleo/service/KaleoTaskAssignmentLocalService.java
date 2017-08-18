@@ -214,15 +214,15 @@ public interface KaleoTaskAssignmentLocalService extends BaseLocalService,
 	public List<KaleoTaskAssignment> getKaleoTaskAssignments(int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<KaleoTaskAssignment> getKaleoTaskAssignments(
-		java.lang.String kaleoClassName, long kaleoClassPK);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KaleoTaskAssignment> getKaleoTaskAssignments(long kaleoTaskId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KaleoTaskAssignment> getKaleoTaskAssignments(long kaleoTaskId,
 		java.lang.String assigneeClassName);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<KaleoTaskAssignment> getKaleoTaskAssignments(
+		java.lang.String kaleoClassName, long kaleoClassPK);
 
 	/**
 	* Returns the number of kaleo task assignments.

@@ -593,14 +593,14 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken,
 	}
 
 	@Override
-	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
-		_kaleoTaskInstanceToken.setExpandoBridgeAttributes(expandoBridge);
-	}
-
-	@Override
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.kernel.model.BaseModel<?> baseModel) {
 		_kaleoTaskInstanceToken.setExpandoBridgeAttributes(baseModel);
+	}
+
+	@Override
+	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
+		_kaleoTaskInstanceToken.setExpandoBridgeAttributes(expandoBridge);
 	}
 
 	@Override

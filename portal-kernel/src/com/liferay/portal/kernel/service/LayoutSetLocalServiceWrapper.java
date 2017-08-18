@@ -192,14 +192,14 @@ public class LayoutSetLocalServiceWrapper implements LayoutSetLocalService,
 
 	@Override
 	public com.liferay.portal.kernel.model.LayoutSet fetchLayoutSet(
-		java.lang.String virtualHostname) {
-		return _layoutSetLocalService.fetchLayoutSet(virtualHostname);
+		long layoutSetId) {
+		return _layoutSetLocalService.fetchLayoutSet(layoutSetId);
 	}
 
 	@Override
 	public com.liferay.portal.kernel.model.LayoutSet fetchLayoutSet(
-		long layoutSetId) {
-		return _layoutSetLocalService.fetchLayoutSet(layoutSetId);
+		java.lang.String virtualHostname) {
+		return _layoutSetLocalService.fetchLayoutSet(virtualHostname);
 	}
 
 	@Override
@@ -218,13 +218,6 @@ public class LayoutSetLocalServiceWrapper implements LayoutSetLocalService,
 	@Override
 	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
 		return _layoutSetLocalService.getIndexableActionableDynamicQuery();
-	}
-
-	@Override
-	public com.liferay.portal.kernel.model.LayoutSet getLayoutSet(
-		java.lang.String virtualHostname)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _layoutSetLocalService.getLayoutSet(virtualHostname);
 	}
 
 	/**
@@ -246,6 +239,13 @@ public class LayoutSetLocalServiceWrapper implements LayoutSetLocalService,
 		long groupId, boolean privateLayout)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _layoutSetLocalService.getLayoutSet(groupId, privateLayout);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.model.LayoutSet getLayoutSet(
+		java.lang.String virtualHostname)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _layoutSetLocalService.getLayoutSet(virtualHostname);
 	}
 
 	/**

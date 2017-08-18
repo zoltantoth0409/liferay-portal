@@ -219,12 +219,12 @@ public interface KaleoInstanceTokenLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KaleoInstanceToken> getKaleoInstanceTokens(
-		long parentKaleoInstanceTokenId, ServiceContext serviceContext);
+		long parentKaleoInstanceTokenId, Date completionDate,
+		ServiceContext serviceContext);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KaleoInstanceToken> getKaleoInstanceTokens(
-		long parentKaleoInstanceTokenId, Date completionDate,
-		ServiceContext serviceContext);
+		long parentKaleoInstanceTokenId, ServiceContext serviceContext);
 
 	/**
 	* Returns the number of kaleo instance tokens.
@@ -236,11 +236,11 @@ public interface KaleoInstanceTokenLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getKaleoInstanceTokensCount(long parentKaleoInstanceTokenId,
-		ServiceContext serviceContext);
+		Date completionDate, ServiceContext serviceContext);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getKaleoInstanceTokensCount(long parentKaleoInstanceTokenId,
-		Date completionDate, ServiceContext serviceContext);
+		ServiceContext serviceContext);
 
 	/**
 	* Returns the OSGi service identifier.

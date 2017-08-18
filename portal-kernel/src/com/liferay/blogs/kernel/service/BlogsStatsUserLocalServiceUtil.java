@@ -254,6 +254,11 @@ public class BlogsStatsUserLocalServiceUtil {
 		return getService().getCompanyStatsUsersCount(companyId);
 	}
 
+	public static java.util.List<com.liferay.blogs.kernel.model.BlogsStatsUser> getGroupsStatsUsers(
+		long companyId, long groupId, int start, int end) {
+		return getService().getGroupsStatsUsers(companyId, groupId, start, end);
+	}
+
 	public static java.util.List<com.liferay.blogs.kernel.model.BlogsStatsUser> getGroupStatsUsers(
 		long groupId, int start, int end) {
 		return getService().getGroupStatsUsers(groupId, start, end);
@@ -269,22 +274,8 @@ public class BlogsStatsUserLocalServiceUtil {
 		return getService().getGroupStatsUsersCount(groupId);
 	}
 
-	public static java.util.List<com.liferay.blogs.kernel.model.BlogsStatsUser> getGroupsStatsUsers(
-		long companyId, long groupId, int start, int end) {
-		return getService().getGroupsStatsUsers(companyId, groupId, start, end);
-	}
-
 	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
 		return getService().getIndexableActionableDynamicQuery();
-	}
-
-	/**
-	* Returns the OSGi service identifier.
-	*
-	* @return the OSGi service identifier
-	*/
-	public static java.lang.String getOSGiServiceIdentifier() {
-		return getService().getOSGiServiceIdentifier();
 	}
 
 	public static java.util.List<com.liferay.blogs.kernel.model.BlogsStatsUser> getOrganizationStatsUsers(
@@ -301,6 +292,15 @@ public class BlogsStatsUserLocalServiceUtil {
 
 	public static int getOrganizationStatsUsersCount(long organizationId) {
 		return getService().getOrganizationStatsUsersCount(organizationId);
+	}
+
+	/**
+	* Returns the OSGi service identifier.
+	*
+	* @return the OSGi service identifier
+	*/
+	public static java.lang.String getOSGiServiceIdentifier() {
+		return getService().getOSGiServiceIdentifier();
 	}
 
 	public static com.liferay.portal.kernel.model.PersistedModel getPersistedModel(

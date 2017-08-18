@@ -170,10 +170,10 @@ public interface LayoutSetLocalService extends BaseLocalService,
 		Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public LayoutSet fetchLayoutSet(java.lang.String virtualHostname);
+	public LayoutSet fetchLayoutSet(long layoutSetId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public LayoutSet fetchLayoutSet(long layoutSetId);
+	public LayoutSet fetchLayoutSet(java.lang.String virtualHostname);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public LayoutSet fetchLayoutSetByLogoId(boolean privateLayout, long logoId)
@@ -184,10 +184,6 @@ public interface LayoutSetLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public LayoutSet getLayoutSet(java.lang.String virtualHostname)
-		throws PortalException;
 
 	/**
 	* Returns the layout set with the primary key.
@@ -201,6 +197,10 @@ public interface LayoutSetLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public LayoutSet getLayoutSet(long groupId, boolean privateLayout)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public LayoutSet getLayoutSet(java.lang.String virtualHostname)
 		throws PortalException;
 
 	/**

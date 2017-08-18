@@ -69,10 +69,6 @@ public interface CalendarBookingLocalService extends BaseLocalService,
 	 * Never modify or reference this interface directly. Always use {@link CalendarBookingLocalServiceUtil} to access the calendar booking local service. Add custom service methods to {@link com.liferay.calendar.service.impl.CalendarBookingLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public boolean isStagingCalendarBooking(CalendarBooking calendarBooking)
-		throws PortalException;
-
 	/**
 	* Adds the calendar booking to the database. Also notifies the appropriate model listeners.
 	*
@@ -207,15 +203,15 @@ public interface CalendarBookingLocalService extends BaseLocalService,
 		java.lang.String type) throws java.lang.Exception;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public CalendarBooking fetchCalendarBooking(java.lang.String uuid,
-		long groupId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public CalendarBooking fetchCalendarBooking(long calendarBookingId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public CalendarBooking fetchCalendarBooking(long calendarId,
 		java.lang.String vEventUid);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public CalendarBooking fetchCalendarBooking(java.lang.String uuid,
+		long groupId);
 
 	/**
 	* Returns the calendar booking matching the UUID and group.
@@ -360,6 +356,10 @@ public interface CalendarBookingLocalService extends BaseLocalService,
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public boolean isStagingCalendarBooking(CalendarBooking calendarBooking)
+		throws PortalException;
+
 	public CalendarBooking moveCalendarBookingToTrash(long userId,
 		CalendarBooking calendarBooking) throws PortalException;
 
@@ -372,6 +372,13 @@ public interface CalendarBookingLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<CalendarBooking> search(long companyId, long[] groupIds,
 		long[] calendarIds, long[] calendarResourceIds,
+		long parentCalendarBookingId, java.lang.String keywords,
+		long startTime, long endTime, boolean recurring, int[] statuses,
+		int start, int end, OrderByComparator<CalendarBooking> orderByComparator);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<CalendarBooking> search(long companyId, long[] groupIds,
+		long[] calendarIds, long[] calendarResourceIds,
 		long parentCalendarBookingId, java.lang.String title,
 		java.lang.String description, java.lang.String location,
 		long startTime, long endTime, boolean recurring, int[] statuses,
@@ -379,11 +386,9 @@ public interface CalendarBookingLocalService extends BaseLocalService,
 		OrderByComparator<CalendarBooking> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<CalendarBooking> search(long companyId, long[] groupIds,
-		long[] calendarIds, long[] calendarResourceIds,
-		long parentCalendarBookingId, java.lang.String keywords,
-		long startTime, long endTime, boolean recurring, int[] statuses,
-		int start, int end, OrderByComparator<CalendarBooking> orderByComparator);
+	public int searchCount(long companyId, long[] groupIds, long[] calendarIds,
+		long[] calendarResourceIds, long parentCalendarBookingId,
+		java.lang.String keywords, long startTime, long endTime, int[] statuses);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int searchCount(long companyId, long[] groupIds, long[] calendarIds,
@@ -391,11 +396,6 @@ public interface CalendarBookingLocalService extends BaseLocalService,
 		java.lang.String title, java.lang.String description,
 		java.lang.String location, long startTime, long endTime,
 		int[] statuses, boolean andOperator);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int searchCount(long companyId, long[] groupIds, long[] calendarIds,
-		long[] calendarResourceIds, long parentCalendarBookingId,
-		java.lang.String keywords, long startTime, long endTime, int[] statuses);
 
 	public void updateAsset(long userId, CalendarBooking calendarBooking,
 		long[] assetCategoryIds, java.lang.String[] assetTagNames,
@@ -413,16 +413,6 @@ public interface CalendarBookingLocalService extends BaseLocalService,
 		CalendarBooking calendarBooking);
 
 	public CalendarBooking updateCalendarBooking(long userId,
-		long calendarBookingId, long calendarId,
-		Map<Locale, java.lang.String> titleMap,
-		Map<Locale, java.lang.String> descriptionMap,
-		java.lang.String location, long startTime, long endTime,
-		boolean allDay, java.lang.String recurrence, long firstReminder,
-		java.lang.String firstReminderType, long secondReminder,
-		java.lang.String secondReminderType, ServiceContext serviceContext)
-		throws PortalException;
-
-	public CalendarBooking updateCalendarBooking(long userId,
 		long calendarBookingId, long calendarId, long[] childCalendarIds,
 		Map<Locale, java.lang.String> titleMap,
 		Map<Locale, java.lang.String> descriptionMap,
@@ -432,9 +422,19 @@ public interface CalendarBookingLocalService extends BaseLocalService,
 		java.lang.String secondReminderType, ServiceContext serviceContext)
 		throws PortalException;
 
+	public CalendarBooking updateCalendarBooking(long userId,
+		long calendarBookingId, long calendarId,
+		Map<Locale, java.lang.String> titleMap,
+		Map<Locale, java.lang.String> descriptionMap,
+		java.lang.String location, long startTime, long endTime,
+		boolean allDay, java.lang.String recurrence, long firstReminder,
+		java.lang.String firstReminderType, long secondReminder,
+		java.lang.String secondReminderType, ServiceContext serviceContext)
+		throws PortalException;
+
 	public CalendarBooking updateCalendarBookingInstance(long userId,
 		long calendarBookingId, int instanceIndex, long calendarId,
-		Map<Locale, java.lang.String> titleMap,
+		long[] childCalendarIds, Map<Locale, java.lang.String> titleMap,
 		Map<Locale, java.lang.String> descriptionMap,
 		java.lang.String location, long startTime, long endTime,
 		boolean allDay, java.lang.String recurrence, boolean allFollowing,
@@ -444,7 +444,7 @@ public interface CalendarBookingLocalService extends BaseLocalService,
 
 	public CalendarBooking updateCalendarBookingInstance(long userId,
 		long calendarBookingId, int instanceIndex, long calendarId,
-		long[] childCalendarIds, Map<Locale, java.lang.String> titleMap,
+		Map<Locale, java.lang.String> titleMap,
 		Map<Locale, java.lang.String> descriptionMap,
 		java.lang.String location, long startTime, long endTime,
 		boolean allDay, java.lang.String recurrence, boolean allFollowing,

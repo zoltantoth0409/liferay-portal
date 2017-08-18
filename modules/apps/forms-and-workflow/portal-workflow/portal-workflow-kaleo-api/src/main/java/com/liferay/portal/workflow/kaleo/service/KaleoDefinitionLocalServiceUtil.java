@@ -41,11 +41,13 @@ public class KaleoDefinitionLocalServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.portal.workflow.kaleo.service.impl.KaleoDefinitionLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static void activateKaleoDefinition(java.lang.String name,
-		int version,
+	public static void activateKaleoDefinition(long kaleoDefinitionId,
+		long startKaleoNodeId,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		getService().activateKaleoDefinition(name, version, serviceContext);
+		getService()
+			.activateKaleoDefinition(kaleoDefinitionId, startKaleoNodeId,
+			serviceContext);
 	}
 
 	public static void activateKaleoDefinition(long kaleoDefinitionId,
@@ -54,13 +56,11 @@ public class KaleoDefinitionLocalServiceUtil {
 		getService().activateKaleoDefinition(kaleoDefinitionId, serviceContext);
 	}
 
-	public static void activateKaleoDefinition(long kaleoDefinitionId,
-		long startKaleoNodeId,
+	public static void activateKaleoDefinition(java.lang.String name,
+		int version,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		getService()
-			.activateKaleoDefinition(kaleoDefinitionId, startKaleoNodeId,
-			serviceContext);
+		getService().activateKaleoDefinition(name, version, serviceContext);
 	}
 
 	/**
@@ -117,13 +117,6 @@ public class KaleoDefinitionLocalServiceUtil {
 		return getService().deleteKaleoDefinition(kaleoDefinition);
 	}
 
-	public static void deleteKaleoDefinition(java.lang.String name,
-		int version,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		getService().deleteKaleoDefinition(name, version, serviceContext);
-	}
-
 	/**
 	* Deletes the kaleo definition with the primary key from the database. Also notifies the appropriate model listeners.
 	*
@@ -135,6 +128,13 @@ public class KaleoDefinitionLocalServiceUtil {
 		long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteKaleoDefinition(kaleoDefinitionId);
+	}
+
+	public static void deleteKaleoDefinition(java.lang.String name,
+		int version,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService().deleteKaleoDefinition(name, version, serviceContext);
 	}
 
 	/**
@@ -244,13 +244,6 @@ public class KaleoDefinitionLocalServiceUtil {
 		return getService().getIndexableActionableDynamicQuery();
 	}
 
-	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinition getKaleoDefinition(
-		java.lang.String name, int version,
-		com.liferay.portal.kernel.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getKaleoDefinition(name, version, serviceContext);
-	}
-
 	/**
 	* Returns the kaleo definition with the primary key.
 	*
@@ -262,6 +255,13 @@ public class KaleoDefinitionLocalServiceUtil {
 		long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getKaleoDefinition(kaleoDefinitionId);
+	}
+
+	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinition getKaleoDefinition(
+		java.lang.String name, int version,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getKaleoDefinition(name, version, serviceContext);
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> getKaleoDefinitions(
