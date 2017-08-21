@@ -80,7 +80,7 @@ AUI.add(
 							);
 						}
 
-						return values;
+						return values.join();
 					},
 
 					setValue: function(val) {
@@ -130,7 +130,7 @@ AUI.add(
 
 						var container = instance.get('container');
 
-						CheckboxMultipleField.superclass.showErrorMessage.apply(instance, arguments);
+						CheckboxMultipleField.superclass._renderErrorMessage.apply(instance, arguments);
 
 						container.all('.help-block').appendTo(container);
 					}
