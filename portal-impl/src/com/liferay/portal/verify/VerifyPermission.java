@@ -395,8 +395,8 @@ public class VerifyPermission extends VerifyProcess {
 
 		try {
 			runSQL(
-				"create index tmp_idx on ResourcePermission (roleId, scope, " +
-					"primKey[$COLUMN_LENGTH:255$])");
+				"create index TEMP_INDEX on ResourcePermission (roleId, " +
+					"scope, primKey[$COLUMN_LENGTH:255$])");
 		}
 		catch (SQLException sqle) {
 			if (_log.isDebugEnabled()) {
@@ -434,7 +434,7 @@ public class VerifyPermission extends VerifyProcess {
 			runSQL(sb.toString());
 		}
 
-		runSQL("drop index tmp_idx on ResourcePermission");
+		runSQL("drop index TEMP_INDEX on ResourcePermission");
 	}
 
 	protected void fixUserDefaultRolePermissionsOracle(
