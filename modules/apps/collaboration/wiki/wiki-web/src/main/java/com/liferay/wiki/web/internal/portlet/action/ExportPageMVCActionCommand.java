@@ -77,6 +77,8 @@ public class ExportPageMVCActionCommand extends BaseMVCActionCommand {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
+		hideDefaultSuccessMessage(actionRequest);
+
 		PortletConfig portletConfig = getPortletConfig(actionRequest);
 
 		try {
@@ -119,8 +121,6 @@ public class ExportPageMVCActionCommand extends BaseMVCActionCommand {
 			getFile(
 				nodeId, title, version, targetExtension, viewPageURL,
 				editPageURL, themeDisplay, request, response);
-
-			hideDefaultSuccessMessage(actionRequest);
 
 			actionResponse.setRenderParameter("mvcPath", "/null.jsp");
 		}
