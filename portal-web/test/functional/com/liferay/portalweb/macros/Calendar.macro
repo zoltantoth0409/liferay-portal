@@ -1,7 +1,6 @@
 <definition>
 	<var name="calendarDefault" value="Yes" />
 	<var name="calendarDescription" value="" />
-	<var name="siteName" value="Liferay" />
 
 	<command name="_checkForRSSTitle">
 		<if>
