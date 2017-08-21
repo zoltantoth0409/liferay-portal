@@ -131,10 +131,10 @@ public class LanguageFilterTracker {
 
 			Bundle bundle = serviceReference.getBundle();
 
+			StringBundler filterSB = new StringBundler();
+
 			Object contextName = serviceReference.getProperty(
 				HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_NAME);
-
-			StringBundler filterSB = new StringBundler();
 
 			if (contextName == null) {
 				filterSB.append("(&");
