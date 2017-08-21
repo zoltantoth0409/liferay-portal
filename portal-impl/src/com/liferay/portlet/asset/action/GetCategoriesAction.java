@@ -72,11 +72,11 @@ public class GetCategoriesAction extends JSONAction {
 	protected List<AssetCategory> getCategories(HttpServletRequest request)
 		throws Exception {
 
+		long scopeGroupId = ParamUtil.getLong(request, "scopeGroupId");
 		long categoryId = ParamUtil.getLong(request, "categoryId");
 		long vocabularyId = ParamUtil.getLong(request, "vocabularyId");
 		int start = ParamUtil.getInteger(request, "start", QueryUtil.ALL_POS);
 		int end = ParamUtil.getInteger(request, "end", QueryUtil.ALL_POS);
-		long scopeGroupId = ParamUtil.getLong(request, "scopeGroupId");
 
 		List<AssetCategory> categories = Collections.emptyList();
 
