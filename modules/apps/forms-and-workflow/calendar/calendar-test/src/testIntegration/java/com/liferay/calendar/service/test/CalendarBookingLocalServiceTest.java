@@ -27,6 +27,7 @@ import com.liferay.calendar.service.CalendarBookingLocalService;
 import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
 import com.liferay.calendar.service.CalendarLocalServiceUtil;
 import com.liferay.calendar.test.util.CalendarBookingTestUtil;
+import com.liferay.calendar.test.util.CalendarStagingTestUtil;
 import com.liferay.calendar.test.util.CalendarTestUtil;
 import com.liferay.calendar.test.util.RecurrenceTestUtil;
 import com.liferay.calendar.util.CalendarResourceUtil;
@@ -360,7 +361,7 @@ public class CalendarBookingLocalServiceTest {
 
 		enableLocalStaging(_liveGroup, true);
 
-		Calendar stagingCalendar = CalendarTestUtil.getStagingCalendar(
+		Calendar stagingCalendar = CalendarStagingTestUtil.getStagingCalendar(
 			_liveGroup, liveCalendar);
 
 		Calendar invitedCalendar = CalendarTestUtil.addCalendar(_user);
@@ -386,7 +387,7 @@ public class CalendarBookingLocalServiceTest {
 
 		enableLocalStaging(_liveGroup, true);
 
-		Calendar stagingCalendar = CalendarTestUtil.getStagingCalendar(
+		Calendar stagingCalendar = CalendarStagingTestUtil.getStagingCalendar(
 			_liveGroup, liveCalendar);
 
 		CalendarBooking calendarBooking =

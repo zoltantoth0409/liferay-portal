@@ -26,11 +26,8 @@ import com.liferay.portal.kernel.service.ClassNameLocalServiceUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
-import com.liferay.portal.kernel.util.TimeZoneUtil;
 
 import java.util.TimeZone;
-
-import org.junit.Assert;
 
 /**
  * @author Adam Brandizzi
@@ -72,16 +69,13 @@ public class CalendarTestUtil {
 			CalendarResourceUtil.getGroupCalendarResource(
 				group.getGroupId(), serviceContext);
 
-		if (timeZone == null) {
-			timeZone = TimeZoneUtil.getDefault();
-		}
+		Calendar calendar = calendarResource.getDefaultCalendar();
 
-		Calendar calendar = CalendarLocalServiceUtil.addCalendar(
-			group.getCreatorUserId(), group.getGroupId(),
-			calendarResource.getCalendarResourceId(),
-			RandomTestUtil.randomLocaleStringMap(),
-			RandomTestUtil.randomLocaleStringMap(), timeZone.getID(),
-			RandomTestUtil.randomInt(), false, false, false, serviceContext);
+		if (timeZone != null) {
+			calendar.setTimeZoneId(timeZone.getID());
+
+			CalendarLocalServiceUtil.updateCalendar(calendar);
+		}
 
 		return calendar;
 	}
@@ -113,24 +107,6 @@ public class CalendarTestUtil {
 		}
 
 		return calendar;
-	}
-
-	public static Calendar addCalendarResourceCalendar(Group group)
-		throws PortalException {
-
-		ServiceContext createServiceContext =
-			ServiceContextTestUtil.getServiceContext(group.getGroupId());
-
-		CalendarResource calendarResource =
-			CalendarResourceLocalServiceUtil.addCalendarResource(
-				group.getCreatorUserId(), group.getGroupId(),
-				ClassNameLocalServiceUtil.getClassNameId(
-					CalendarResource.class),
-				0, null, null, RandomTestUtil.randomLocaleStringMap(),
-				RandomTestUtil.randomLocaleStringMap(), true,
-				createServiceContext);
-
-		return calendarResource.getDefaultCalendar();
 	}
 
 	public static Calendar addCalendarResourceCalendar(User user)
@@ -166,19 +142,6 @@ public class CalendarTestUtil {
 				ServiceContextTestUtil.getServiceContext(group.getGroupId()));
 
 		return calendarResource.getDefaultCalendar();
-	}
-
-	public static Calendar getStagingCalendar(Group group, Calendar calendar)
-		throws PortalException {
-
-		if (group.hasStagingGroup()) {
-			group = group.getStagingGroup();
-		}
-
-		Assert.assertTrue(group.isStaged());
-
-		return CalendarLocalServiceUtil.fetchCalendarByUuidAndGroupId(
-			calendar.getUuid(), group.getGroupId());
 	}
 
 }
