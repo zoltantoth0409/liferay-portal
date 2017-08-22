@@ -17,7 +17,7 @@ error() {
 help() {
 	info "Usage: ./configure_subrepos.sh [-a] [-c command1,command2...] [-p PATTERN] [SUBREPO_NAME]"
 	info " -a: All subrepos. Must omit -p and SUBREPO_NAME."
-	info " -c: Commands to run for each subrepo. [create,branches,merges,users,webhooks]"
+	info " -c: Commands to run for each subrepo. [create,branches,list,merges,users,webhooks]"
 	info " -p: Configure subrepos matching a regex pattern. Must omit -a and SUBREPO_NAME."
 }
 
@@ -236,6 +236,11 @@ do
 	if [[ "${PRIVATE_MIRROR}" == "true" ]]
 	then
 		REPO_NAME="${REPO_NAME}-private"
+	fi
+
+	if [[ "$(echo "${COMMANDS}" | grep '^list$')" ]]
+	then
+		info "liferay/${REPO_NAME}"
 	fi
 
 	if [[ -z "${COMMANDS}" ]] || [[ "$(echo "${COMMANDS}" | grep '^create$')" ]]
