@@ -31,7 +31,8 @@ import org.osgi.service.component.annotations.Reference;
 	property = {
 		"com.liferay.portlet.display-category=category.hidden",
 		"javax.portlet.display-name=Announcements",
-		"javax.portlet.name=" + AnnouncementsPortletKeys.ANNOUNCEMENTS_ADMIN
+		"javax.portlet.name=" + AnnouncementsPortletKeys.ANNOUNCEMENTS_ADMIN,
+		"javax.portlet.resource-bundle=content.Language"
 	},
 	service = Portlet.class
 )
