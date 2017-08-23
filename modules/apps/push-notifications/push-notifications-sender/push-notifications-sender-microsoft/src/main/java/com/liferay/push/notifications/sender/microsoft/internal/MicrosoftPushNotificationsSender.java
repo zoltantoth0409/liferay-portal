@@ -61,21 +61,21 @@ public class MicrosoftPushNotificationsSender
 		String body = payloadJSONObject.getString(
 			PushNotificationsConstants.KEY_BODY);
 
-		JSONObject customPayloadJSONObject = JSONFactoryUtil.createJSONObject();
+		JSONObject newPayloadJSONObject = JSONFactoryUtil.createJSONObject();
 
-		Iterator<String> keysIterator = payloadJSONObject.keys();
+		Iterator<String> iterator = payloadJSONObject.keys();
 
-		while (keysIterator.hasNext()) {
-			String key = keysIterator.next();
+		while (iterator.hasNext()) {
+			String key = iterator.next();
 
 			if (!key.equals(PushNotificationsConstants.KEY_FROM) &&
 				!key.equals(PushNotificationsConstants.KEY_BODY)) {
 
-				customPayloadJSONObject.put(key, payloadJSONObject.get(key));
+				newPayloadJSONObject.put(key, payloadJSONObject.get(key));
 			}
 		}
 
-		String attributes = getAttributes(customPayloadJSONObject);
+		String attributes = getAttributes(newPayloadJSONObject);
 
 		TileNotification tileNotification = buildTileNotification(
 			from, body, attributes);
