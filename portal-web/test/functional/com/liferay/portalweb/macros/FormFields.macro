@@ -144,6 +144,13 @@
 		<execute function="AssertClick" locator1="Button#SAVE" value1="Save" />
 	</command>
 
+	<command name="selectCheckboxOption">
+		<var name="key_checkboxOption" value="${checkboxOption}" />
+		<var name="key_fieldName" value="${fieldName}" />
+
+		<execute function="Click" locator1="FormFields#CHECKBOX_OPTION" />
+	</command>
+
 	<command name="selectRadioOption">
 		<var name="key_fieldName" value="${fieldName}" />
 		<var name="key_radioOption" value="${radioOption}" />
