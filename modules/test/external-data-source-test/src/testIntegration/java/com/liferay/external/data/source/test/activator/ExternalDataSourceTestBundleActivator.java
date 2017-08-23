@@ -26,7 +26,7 @@ import org.osgi.framework.ServiceReference;
 /**
  * @author Preston Crary
  */
-public class ExternalDataSourceTestActivator implements BundleActivator {
+public class ExternalDataSourceTestBundleActivator implements BundleActivator {
 
 	@Override
 	public void start(BundleContext bundleContext) {
