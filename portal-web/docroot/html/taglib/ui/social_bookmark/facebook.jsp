@@ -49,10 +49,10 @@ else if (displayStyle.equals("vertical")) {
 
 <div id="fb-root"></div>
 <div class="fb-like"
+	data-action="like"
 	data-height="<%= (facebookDisplayStyle.equals("standard") || facebookDisplayStyle.equals("button_count")) ? 20 : StringPool.BLANK %>"
 	data-href="<%= url %>"
 	data-layout="<%= facebookDisplayStyle %>"
-	data-action="like"
 	data-size="small"
 	data-show_faces="true"
 >
