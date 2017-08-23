@@ -77,6 +77,8 @@
 	</command>
 
 	<command name="AddPageViaNavigationMenu" priority="4">
+		<property name="test.name.skip.portal.instance" value="CPSitepages#AddPageViaNavigationMenu" />
+
 		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
 
 		<execute macro="NavigationMenu#gotoAddPage" />
