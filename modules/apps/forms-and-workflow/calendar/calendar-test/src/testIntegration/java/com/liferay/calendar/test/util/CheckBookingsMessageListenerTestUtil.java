@@ -23,6 +23,8 @@ import com.liferay.portal.kernel.util.ProxyUtil;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
+import java.util.Objects;
+
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
@@ -59,7 +61,9 @@ public class CheckBookingsMessageListenerTestUtil {
 							Object proxy, Method method, Object[] args)
 						throws Throwable {
 
-						if ("checkCalendarBookings".equals(method.getName())) {
+						if (Objects.equals(
+								"checkCalendarBookings", method.getName())) {
+
 							return null;
 						}
 
