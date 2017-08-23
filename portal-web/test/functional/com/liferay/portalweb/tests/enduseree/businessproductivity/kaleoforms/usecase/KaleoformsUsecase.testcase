@@ -4724,7 +4724,7 @@
 		</execute>
 	</command>
 
-	<command name="RejectAndResubmitProcess" priority="3">>
+	<command name="RejectAndResubmitProcess" priority="3">
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
