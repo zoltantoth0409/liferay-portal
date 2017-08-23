@@ -182,12 +182,12 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 			builder.sound(sound);
 		}
 
-		JSONObject customPayloadJSONObject = JSONFactoryUtil.createJSONObject();
+		JSONObject newPayloadJSONObject = JSONFactoryUtil.createJSONObject();
 
-		Iterator<String> keysIterator = payloadJSONObject.keys();
+		Iterator<String> iterator = payloadJSONObject.keys();
 
-		while (keysIterator.hasNext()) {
-			String key = keysIterator.next();
+		while (iterator.hasNext()) {
+			String key = iterator.next();
 
 			if (!key.equals(PushNotificationsConstants.KEY_BADGE) &&
 				!key.equals(PushNotificationsConstants.KEY_BODY) &&
@@ -197,13 +197,13 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 				!key.equals(PushNotificationsConstants.KEY_SOUND) &&
 				!key.equals(PushNotificationsConstants.KEY_SILENT)) {
 
-				customPayloadJSONObject.put(key, payloadJSONObject.get(key));
+				newPayloadJSONObject.put(key, payloadJSONObject.get(key));
 			}
 		}
 
 		builder.customField(
 			PushNotificationsConstants.KEY_PAYLOAD,
-			customPayloadJSONObject.toString());
+			newPayloadJSONObject.toString());
 
 		return builder.build();
 	}

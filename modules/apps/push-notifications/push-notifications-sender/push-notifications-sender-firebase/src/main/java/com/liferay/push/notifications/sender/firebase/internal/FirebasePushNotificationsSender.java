@@ -99,12 +99,12 @@ public class FirebasePushNotificationsSender
 		builder.notification(buildNotification(payloadJSONObject));
 		builder.to(tokens);
 
-		JSONObject customPayloadJSONObject = JSONFactoryUtil.createJSONObject();
+		JSONObject newPayloadJSONObject = JSONFactoryUtil.createJSONObject();
 
-		Iterator<String> keysIterator = payloadJSONObject.keys();
+		Iterator<String> iterator = payloadJSONObject.keys();
 
-		while (keysIterator.hasNext()) {
-			String key = keysIterator.next();
+		while (iterator.hasNext()) {
+			String key = iterator.next();
 
 			if (!key.equals(PushNotificationsConstants.KEY_BADGE) &&
 				!key.equals(PushNotificationsConstants.KEY_BODY) &&
@@ -114,16 +114,16 @@ public class FirebasePushNotificationsSender
 				!key.equals(PushNotificationsConstants.KEY_SOUND) &&
 				!key.equals(PushNotificationsConstants.KEY_SILENT)) {
 
-				customPayloadJSONObject.put(key, payloadJSONObject.get(key));
+				newPayloadJSONObject.put(key, payloadJSONObject.get(key));
 			}
 		}
 
-		if (customPayloadJSONObject.length() > 0) {
+		if (newPayloadJSONObject.length() > 0) {
 			Map<String, String> data = new HashMap<>();
 
 			data.put(
 				PushNotificationsConstants.KEY_PAYLOAD,
-				customPayloadJSONObject.toString());
+				newPayloadJSONObject.toString());
 
 			builder.data(data);
 		}
