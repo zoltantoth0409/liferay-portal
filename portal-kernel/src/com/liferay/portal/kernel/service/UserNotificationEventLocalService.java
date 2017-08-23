@@ -60,6 +60,17 @@ public interface UserNotificationEventLocalService extends BaseLocalService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link UserNotificationEventLocalServiceUtil} to access the user notification event local service. Add custom service methods to {@link com.liferay.portal.service.impl.UserNotificationEventLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+
+	/**
+	* Adds the user notification event to the database. Also notifies the appropriate model listeners.
+	*
+	* @param userNotificationEvent the user notification event
+	* @return the user notification event that was added
+	*/
+	@Indexable(type = IndexableType.REINDEX)
+	public UserNotificationEvent addUserNotificationEvent(
+		UserNotificationEvent userNotificationEvent);
+
 	public UserNotificationEvent addUserNotificationEvent(long userId,
 		boolean actionRequired, NotificationEvent notificationEvent)
 		throws PortalException;
@@ -88,19 +99,12 @@ public interface UserNotificationEventLocalService extends BaseLocalService,
 		java.lang.String payload, boolean archived,
 		ServiceContext serviceContext) throws PortalException;
 
-	/**
-	* Adds the user notification event to the database. Also notifies the appropriate model listeners.
-	*
-	* @param userNotificationEvent the user notification event
-	* @return the user notification event that was added
-	*/
-	@Indexable(type = IndexableType.REINDEX)
-	public UserNotificationEvent addUserNotificationEvent(
-		UserNotificationEvent userNotificationEvent);
-
 	public List<UserNotificationEvent> addUserNotificationEvents(long userId,
 		Collection<NotificationEvent> notificationEvents)
 		throws PortalException;
+
+	public void archiveUserNotificationEvents(long userId, int deliveryType,
+		boolean actionRequired) throws PortalException;
 
 	/**
 	* Creates a new user notification event with the primary key. Does not add the user notification event to the database.
@@ -119,6 +123,19 @@ public interface UserNotificationEventLocalService extends BaseLocalService,
 		throws PortalException;
 
 	/**
+	* Deletes the user notification event from the database. Also notifies the appropriate model listeners.
+	*
+	* @param userNotificationEvent the user notification event
+	* @return the user notification event that was removed
+	*/
+	@Indexable(type = IndexableType.DELETE)
+	public UserNotificationEvent deleteUserNotificationEvent(
+		UserNotificationEvent userNotificationEvent);
+
+	public void deleteUserNotificationEvent(java.lang.String uuid,
+		long companyId);
+
+	/**
 	* Deletes the user notification event with the primary key from the database. Also notifies the appropriate model listeners.
 	*
 	* @param userNotificationEventId the primary key of the user notification event
@@ -128,19 +145,6 @@ public interface UserNotificationEventLocalService extends BaseLocalService,
 	@Indexable(type = IndexableType.DELETE)
 	public UserNotificationEvent deleteUserNotificationEvent(
 		long userNotificationEventId) throws PortalException;
-
-	public void deleteUserNotificationEvent(java.lang.String uuid,
-		long companyId);
-
-	/**
-	* Deletes the user notification event from the database. Also notifies the appropriate model listeners.
-	*
-	* @param userNotificationEvent the user notification event
-	* @return the user notification event that was removed
-	*/
-	@Indexable(type = IndexableType.DELETE)
-	public UserNotificationEvent deleteUserNotificationEvent(
-		UserNotificationEvent userNotificationEvent);
 
 	public void deleteUserNotificationEvents(
 		Collection<java.lang.String> uuids, long companyId);
@@ -241,12 +245,6 @@ public interface UserNotificationEventLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<UserNotificationEvent> getArchivedUserNotificationEvents(
-		long userId, int deliveryType, boolean actionRequired,
-		boolean archived, int start, int end,
-		OrderByComparator<UserNotificationEvent> obc);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<UserNotificationEvent> getArchivedUserNotificationEvents(
 		long userId, int deliveryType, boolean archived);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -257,6 +255,12 @@ public interface UserNotificationEventLocalService extends BaseLocalService,
 	public List<UserNotificationEvent> getArchivedUserNotificationEvents(
 		long userId, int deliveryType, boolean actionRequired,
 		boolean archived, int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<UserNotificationEvent> getArchivedUserNotificationEvents(
+		long userId, int deliveryType, boolean actionRequired,
+		boolean archived, int start, int end,
+		OrderByComparator<UserNotificationEvent> obc);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<UserNotificationEvent> getArchivedUserNotificationEvents(
@@ -432,9 +436,6 @@ public interface UserNotificationEventLocalService extends BaseLocalService,
 		java.lang.String portletId, int deliveryType,
 		JSONObject notificationEventJSONObject) throws PortalException;
 
-	public UserNotificationEvent updateUserNotificationEvent(
-		java.lang.String uuid, long companyId, boolean archive);
-
 	/**
 	* Updates the user notification event in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
@@ -444,6 +445,9 @@ public interface UserNotificationEventLocalService extends BaseLocalService,
 	@Indexable(type = IndexableType.REINDEX)
 	public UserNotificationEvent updateUserNotificationEvent(
 		UserNotificationEvent userNotificationEvent);
+
+	public UserNotificationEvent updateUserNotificationEvent(
+		java.lang.String uuid, long companyId, boolean archive);
 
 	public List<UserNotificationEvent> updateUserNotificationEvents(
 		Collection<java.lang.String> uuids, long companyId, boolean archive);
