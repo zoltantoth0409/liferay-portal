@@ -142,15 +142,15 @@ public class ServiceBuilder {
 	public static boolean hasAnnotation(
 		AbstractBaseJavaEntity abstractBaseJavaEntity, String annotationName) {
 
-		List<JavaAnnotation> annotations =
+		List<JavaAnnotation> javaAnnotations =
 			abstractBaseJavaEntity.getAnnotations();
 
-		if (annotations == null) {
+		if (javaAnnotations == null) {
 			return false;
 		}
 
-		for (int i = 0; i < annotations.size(); i++) {
-			JavaClass javaClass = annotations.get(i).getType();
+		for (int i = 0; i < javaAnnotations.size(); i++) {
+			JavaClass javaClass = javaAnnotations.get(i).getType();
 
 			if (annotationName.equals(javaClass.getName())) {
 				return true;
@@ -922,78 +922,18 @@ public class ServiceBuilder {
 			true);
 	}
 
-	public String annotationToString(JavaAnnotation annotation) {
-		StringBundler sb = new StringBundler();
-
-		sb.append(StringPool.AT);
-
-		JavaClass type = annotation.getType();
-
-		sb.append(type.getFullyQualifiedName());
-
-		Map<String, Object> namedParameters = annotation.getNamedParameterMap();
-
-		if (namedParameters.isEmpty()) {
-			return sb.toString();
-		}
-
-		sb.append(StringPool.OPEN_PARENTHESIS);
-
-		for (Map.Entry<String, Object> entry : namedParameters.entrySet()) {
-			sb.append(entry.getKey());
-
-			sb.append(StringPool.EQUAL);
-
-			Object value = entry.getValue();
-
-			if (value instanceof List) {
-				List<?> values = (List<?>)value;
-
-				sb.append(StringPool.OPEN_CURLY_BRACE);
-
-				for (Object object : values) {
-					if (object instanceof JavaAnnotation) {
-						sb.append(annotationToString((JavaAnnotation)object));
-					}
-					else {
-						sb.append(object);
-					}
-
-					sb.append(StringPool.COMMA_AND_SPACE);
-				}
-
-				if (!values.isEmpty()) {
-					sb.setIndex(sb.index() - 1);
-				}
-
-				sb.append(StringPool.CLOSE_CURLY_BRACE);
-			}
-			else {
-				sb.append(value);
-			}
-
-			sb.append(StringPool.COMMA_AND_SPACE);
-		}
-
-		sb.setIndex(sb.index() - 1);
-
-		sb.append(StringPool.CLOSE_PARENTHESIS);
-
-		return sb.toString();
-	}
-
 	public String getCacheFieldMethodName(JavaField javaField) {
-		List<JavaAnnotation> annotations = javaField.getAnnotations();
+		List<JavaAnnotation> javaAnnotations = javaField.getAnnotations();
 
-		for (JavaAnnotation annotation : annotations) {
-			JavaClass type = annotation.getType();
+		for (JavaAnnotation javaAnnotation : javaAnnotations) {
+			JavaClass type = javaAnnotation.getType();
 
 			String className = type.getFullyQualifiedName();
 
 			if (className.equals(CacheField.class.getName())) {
 				String methodName = null;
 
-				Object namedParameter = annotation.getNamedParameter(
+				Object namedParameter = javaAnnotation.getNamedParameter(
 					"methodName");
 
 				if (namedParameter != null) {
@@ -1802,11 +1742,11 @@ public class ServiceBuilder {
 	public boolean isReadOnlyMethod(
 		JavaMethod method, List<String> txRequiredList, String[] prefixes) {
 
-		List<JavaAnnotation> annotations = method.getAnnotations();
+		List<JavaAnnotation> javaAnnotations = method.getAnnotations();
 
-		if (annotations != null) {
-			for (JavaAnnotation annotation : annotations) {
-				JavaClass type = annotation.getType();
+		if (javaAnnotations != null) {
+			for (JavaAnnotation javaAnnotation : javaAnnotations) {
+				JavaClass type = javaAnnotation.getType();
 
 				String className = type.getFullyQualifiedName();
 
@@ -1916,6 +1856,66 @@ public class ServiceBuilder {
 		}
 
 		return false;
+	}
+
+	public String javaAnnotationToString(JavaAnnotation javaAnnotation) {
+		StringBundler sb = new StringBundler();
+
+		sb.append(StringPool.AT);
+
+		JavaClass type = javaAnnotation.getType();
+
+		sb.append(type.getFullyQualifiedName());
+
+		Map<String, Object> namedParameters = javaAnnotation.getNamedParameterMap();
+
+		if (namedParameters.isEmpty()) {
+			return sb.toString();
+		}
+
+		sb.append(StringPool.OPEN_PARENTHESIS);
+
+		for (Map.Entry<String, Object> entry : namedParameters.entrySet()) {
+			sb.append(entry.getKey());
+
+			sb.append(StringPool.EQUAL);
+
+			Object value = entry.getValue();
+
+			if (value instanceof List) {
+				List<?> values = (List<?>)value;
+
+				sb.append(StringPool.OPEN_CURLY_BRACE);
+
+				for (Object object : values) {
+					if (object instanceof JavaAnnotation) {
+						sb.append(javaAnnotationToString((JavaAnnotation)object));
+					}
+					else {
+						sb.append(object);
+					}
+
+					sb.append(StringPool.COMMA_AND_SPACE);
+				}
+
+				if (!values.isEmpty()) {
+					sb.setIndex(sb.index() - 1);
+				}
+
+				sb.append(StringPool.CLOSE_CURLY_BRACE);
+			}
+			else {
+				sb.append(value);
+			}
+
+			sb.append(StringPool.COMMA_AND_SPACE);
+		}
+
+		sb.setIndex(sb.index() - 1);
+
+		sb.append(StringPool.CLOSE_PARENTHESIS);
+
+		return sb.toString();
 	}
 
 	private static SAXReader _getSAXReader() {
@@ -4142,12 +4142,12 @@ public class ServiceBuilder {
 		List<JavaField> javaFields = new ArrayList<>();
 
 		for (JavaField javaField : javaClass.getFields()) {
-			List<JavaAnnotation> annotations = javaField.getAnnotations();
+			List<JavaAnnotation> javaAnnotations = javaField.getAnnotations();
 
-			for (JavaAnnotation annotation : annotations) {
-				JavaClass annotationClass = annotation.getType();
+			for (JavaAnnotation javaAnnotation : javaAnnotations) {
+				JavaClass javaAnnotationClass = javaAnnotation.getType();
 
-				String className = annotationClass.getFullyQualifiedName();
+				String className = javaAnnotationClass.getFullyQualifiedName();
 
 				if (className.equals(CacheField.class.getName())) {
 					javaFields.add(javaField);
@@ -4647,23 +4647,23 @@ public class ServiceBuilder {
 		List<String> cacheFieldMethods = new ArrayList<>();
 
 		for (JavaField javaField : javaClass.getFields()) {
-			List<JavaAnnotation> annotations = javaField.getAnnotations();
+			List<JavaAnnotation> javaAnnotations = javaField.getAnnotations();
 
-			for (JavaAnnotation annotation : annotations) {
-				JavaClass annotationClass = annotation.getType();
+			for (JavaAnnotation javaAnnotation : javaAnnotations) {
+				JavaClass javaAnnotationClass = javaAnnotation.getType();
 
-				String className = annotationClass.getFullyQualifiedName();
+				String className = javaAnnotationClass.getFullyQualifiedName();
 
 				if (!className.equals(CacheField.class.getName())) {
 					continue;
 				}
 
 				if (!GetterUtil.getBoolean(
-						annotation.getNamedParameter("propagateToInterface"))) {
+						javaAnnotation.getNamedParameter("propagateToInterface"))) {
 
 					String methodName = null;
 
-					Object namedParameter = annotation.getNamedParameter(
+					Object namedParameter = javaAnnotation.getNamedParameter(
 						"methodName");
 
 					if (namedParameter != null) {
@@ -4973,39 +4973,39 @@ public class ServiceBuilder {
 	}
 
 	private List<JavaAnnotation> _mergeAnnotations(
-		List<JavaAnnotation> annotations1, List<JavaAnnotation> annotations2) {
+		List<JavaAnnotation> javaAnnotations1, List<JavaAnnotation> javaAnnotations2) {
 
-		Map<JavaType, JavaAnnotation> annotationsMap = new HashMap<>();
+		Map<JavaType, JavaAnnotation> javaAnnotationsMap = new HashMap<>();
 
-		for (JavaAnnotation annotation : annotations2) {
-			annotationsMap.put(annotation.getType(), annotation);
+		for (JavaAnnotation javaAnnotation : javaAnnotations2) {
+			javaAnnotationsMap.put(javaAnnotation.getType(), javaAnnotation);
 		}
 
-		for (JavaAnnotation annotation : annotations1) {
-			annotationsMap.put(annotation.getType(), annotation);
+		for (JavaAnnotation javaAnnotation : javaAnnotations1) {
+			javaAnnotationsMap.put(javaAnnotation.getType(), javaAnnotation);
 		}
 
-		List<JavaAnnotation> annotations = new ArrayList<>(
-			annotationsMap.values());
+		List<JavaAnnotation> javaAnnotations = new ArrayList<>(
+			javaAnnotationsMap.values());
 
 		Comparator<JavaAnnotation> comparator =
 			new Comparator<JavaAnnotation>() {
 
 				@Override
 				public int compare(
-					JavaAnnotation annotation1, JavaAnnotation annotation2) {
+					JavaAnnotation javaAnnotation1, JavaAnnotation javaAnnotation2) {
 
-					String annotationString1 = annotation1.toString();
-					String annotationString2 = annotation2.toString();
+					String javaAnnotationString1 = javaAnnotation1.toString();
+					String javaAnnotationString2 = javaAnnotation2.toString();
 
-					return annotationString1.compareTo(annotationString2);
+					return javaAnnotationString1.compareTo(javaAnnotationString2);
 				}
 
 			};
 
-		Collections.sort(annotations, comparator);
+		Collections.sort(javaAnnotations, comparator);
 
-		return annotations;
+		return javaAnnotations;
 	}
 
 	private List<JavaMethod> _mergeMethods(
@@ -5032,11 +5032,11 @@ public class ServiceBuilder {
 				DefaultJavaMethod newJavaMethod =
 					(DefaultJavaMethod)existingJavaMethod;
 
-				List<JavaAnnotation> annotations = _mergeAnnotations(
+				List<JavaAnnotation> javaAnnotations = _mergeAnnotations(
 					javaMethod.getAnnotations(),
 					existingJavaMethod.getAnnotations());
 
-				newJavaMethod.setAnnotations(annotations);
+				newJavaMethod.setAnnotations(javaAnnotations);
 
 				javaMethodMap.put(javaMethodKey, newJavaMethod);
 			}

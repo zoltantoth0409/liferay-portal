@@ -116,7 +116,7 @@ public interface ${entity.name}${sessionTypeName}Service
 
 			<#list method.annotations as annotation>
 				<#if !stringUtil.equals(annotation.type.name, "Override") && !stringUtil.equals(annotation.type.name, "SuppressWarnings")>
-					${serviceBuilder.annotationToString(annotation)}
+					${serviceBuilder.javaAnnotationToString(annotation)}
 				</#if>
 			</#list>
 
