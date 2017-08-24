@@ -42,11 +42,11 @@ public class MSBFragmentCollectionLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		// Collection
-
-		validate(groupId, name);
+		// Mobile site building collection
 
 		User user = userLocalService.getUser(userId);
+
+		validate(groupId, name);
 
 		long msbFragmentCollectionId = counterLocalService.increment();
 
@@ -90,17 +90,18 @@ public class MSBFragmentCollectionLocalServiceImpl
 			MSBFragmentCollection msbFragmentCollection)
 		throws PortalException {
 
-		// Entries
+		// Mobile site building fragment entries
 
-		List<MSBFragmentEntry> fragmentEntries =
+		List<MSBFragmentEntry> msbFragmentEntries =
 			msbFragmentEntryPersistence.findByMSBFragmentCollectionId(
 				msbFragmentCollection.getFragmentCollectionId());
 
-		for (MSBFragmentEntry msbFragmentEntry : fragmentEntries) {
-			msbFragmentEntryLocalService.deleteMSBFragmentEntry(msbFragmentEntry);
+		for (MSBFragmentEntry msbFragmentEntry : msbFragmentEntries) {
+			msbFragmentEntryLocalService.deleteMSBFragmentEntry(
+				msbFragmentEntry);
 		}
 
-		// Collection
+		/// Mobile site building collection
 
 		msbFragmentCollectionPersistence.remove(msbFragmentCollection);
 
