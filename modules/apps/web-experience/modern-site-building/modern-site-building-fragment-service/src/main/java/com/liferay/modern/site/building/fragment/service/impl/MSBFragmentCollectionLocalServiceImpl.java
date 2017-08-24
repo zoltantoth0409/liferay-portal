@@ -90,17 +90,6 @@ public class MSBFragmentCollectionLocalServiceImpl
 			MSBFragmentCollection msbFragmentCollection)
 		throws PortalException {
 
-		// Mobile site building fragment entries
-
-		List<MSBFragmentEntry> msbFragmentEntries =
-			msbFragmentEntryPersistence.findByMSBFragmentCollectionId(
-				msbFragmentCollection.getFragmentCollectionId());
-
-		for (MSBFragmentEntry msbFragmentEntry : msbFragmentEntries) {
-			msbFragmentEntryLocalService.deleteMSBFragmentEntry(
-				msbFragmentEntry);
-		}
-
 		/// Mobile site building collection
 
 		msbFragmentCollectionPersistence.remove(msbFragmentCollection);
@@ -112,6 +101,17 @@ public class MSBFragmentCollectionLocalServiceImpl
 			MSBFragmentCollection.class.getName(),
 			ResourceConstants.SCOPE_INDIVIDUAL,
 			msbFragmentCollection.getFragmentCollectionId());
+
+		// Mobile site building fragment entries
+
+		List<MSBFragmentEntry> msbFragmentEntries =
+			msbFragmentEntryPersistence.findByMSBFragmentCollectionId(
+				msbFragmentCollection.getFragmentCollectionId());
+
+		for (MSBFragmentEntry msbFragmentEntry : msbFragmentEntries) {
+			msbFragmentEntryLocalService.deleteMSBFragmentEntry(
+				msbFragmentEntry);
+		}
 
 		return msbFragmentCollection;
 	}
