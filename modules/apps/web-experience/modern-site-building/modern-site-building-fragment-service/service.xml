@@ -2,7 +2,7 @@
 <!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_0_0.dtd">
 
 <service-builder auto-import-default-references="false" auto-namespace-tables="false" package-path="com.liferay.modern.site.building.fragment">
-	<namespace>Fragment</namespace>
+	<namespace>MSB</namespace>
 	<entity local-service="true" name="MSBFragmentCollection" remote-service="true">
 
 		<!-- PK fields -->
