@@ -58,7 +58,7 @@ public class MSBFragmentEntryPermission implements BaseModelPermissionChecker {
 		if (!contains(permissionChecker, msbFragmentEntry, actionId)) {
 			throw new PrincipalException.MustHavePermission(
 				permissionChecker, MSBFragmentEntry.class.getName(),
-				msbFragmentEntry.getFragmentEntryId(), actionId);
+				msbFragmentEntry.getMsbFragmentEntryId(), actionId);
 		}
 	}
 
@@ -90,7 +90,7 @@ public class MSBFragmentEntryPermission implements BaseModelPermissionChecker {
 			permissionChecker.getPermissionChecksMap();
 
 		PermissionCacheKey permissionCacheKey = new PermissionCacheKey(
-			msbFragmentEntry.getFragmentEntryId(), actionId);
+			msbFragmentEntry.getMsbFragmentEntryId(), actionId);
 
 		Boolean contains = (Boolean)permissionChecksMap.get(permissionCacheKey);
 

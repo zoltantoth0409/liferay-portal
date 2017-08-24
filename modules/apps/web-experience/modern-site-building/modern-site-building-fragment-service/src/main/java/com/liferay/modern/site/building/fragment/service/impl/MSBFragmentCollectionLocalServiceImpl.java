@@ -100,13 +100,13 @@ public class MSBFragmentCollectionLocalServiceImpl
 			msbFragmentCollection.getCompanyId(),
 			MSBFragmentCollection.class.getName(),
 			ResourceConstants.SCOPE_INDIVIDUAL,
-			msbFragmentCollection.getFragmentCollectionId());
+			msbFragmentCollection.getMsbFragmentCollectionId());
 
 		// Mobile site building fragment entries
 
 		List<MSBFragmentEntry> msbFragmentEntries =
 			msbFragmentEntryPersistence.findByMSBFragmentCollectionId(
-				msbFragmentCollection.getFragmentCollectionId());
+				msbFragmentCollection.getMsbFragmentCollectionId());
 
 		for (MSBFragmentEntry msbFragmentEntry : msbFragmentEntries) {
 			msbFragmentEntryLocalService.deleteMSBFragmentEntry(

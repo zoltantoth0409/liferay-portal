@@ -98,7 +98,7 @@ public class MSBFragmentEntryLocalServiceImpl
 		resourceLocalService.deleteResource(
 			msbFragmentEntry.getCompanyId(), MSBFragmentEntry.class.getName(),
 			ResourceConstants.SCOPE_INDIVIDUAL,
-			msbFragmentEntry.getFragmentEntryId());
+			msbFragmentEntry.getMsbFragmentEntryId());
 
 		return msbFragmentEntry;
 	}

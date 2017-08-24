@@ -59,7 +59,7 @@ public class MSBFragmentCollectionPermission
 		if (!contains(permissionChecker, msbFragmentCollection, actionId)) {
 			throw new PrincipalException.MustHavePermission(
 				permissionChecker, MSBFragmentCollection.class.getName(),
-				msbFragmentCollection.getFragmentCollectionId(), actionId);
+				msbFragmentCollection.getMsbFragmentCollectionId(), actionId);
 		}
 	}
 
@@ -91,7 +91,7 @@ public class MSBFragmentCollectionPermission
 			permissionChecker.getPermissionChecksMap();
 
 		PermissionCacheKey permissionCacheKey = new PermissionCacheKey(
-			msbFragmentCollection.getFragmentCollectionId(), actionId);
+			msbFragmentCollection.getMsbFragmentCollectionId(), actionId);
 
 		Boolean contains = (Boolean)permissionChecksMap.get(permissionCacheKey);
 
