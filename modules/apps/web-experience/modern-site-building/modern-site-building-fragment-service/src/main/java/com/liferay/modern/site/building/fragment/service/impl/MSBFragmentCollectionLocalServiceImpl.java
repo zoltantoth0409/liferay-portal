@@ -181,15 +181,14 @@ public class MSBFragmentCollectionLocalServiceImpl
 	protected void validate(long groupId, String name) throws PortalException {
 		if (Validator.isNull(name)) {
 			throw new MSBFragmentCollectionNameException(
-				"Fragment collection name cannot be null for group " + groupId);
+				"Name must not be null for group " + groupId);
 		}
 
 		MSBFragmentCollection msbFragmentCollection =
 			msbFragmentCollectionPersistence.fetchByG_N(groupId, name);
 
 		if (msbFragmentCollection != null) {
-			throw new DuplicateMSBFragmentCollectionException(
-				"A fragment collection with name " + name + " already exists");
+			throw new DuplicateMSBFragmentCollectionException(name);
 		}
 	}
 

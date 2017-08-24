@@ -176,15 +176,14 @@ public class MSBFragmentEntryLocalServiceImpl
 	protected void validate(long groupId, String name) throws PortalException {
 		if (Validator.isNull(name)) {
 			throw new MSBFragmentEntryNameException(
-				"Fragment entry name cannot be null for group " + groupId);
+				"Name must not be null for group " + groupId);
 		}
 
 		MSBFragmentEntry msbFragmentEntry = msbFragmentEntryPersistence.fetchByG_N(
 			groupId, name);
 
 		if (msbFragmentEntry != null) {
-			throw new DuplicateMSBFragmentEntryException(
-				"A fragment entry with name " + name + " already exists");
+			throw new DuplicateMSBFragmentEntryException(name);
 		}
 	}
 
