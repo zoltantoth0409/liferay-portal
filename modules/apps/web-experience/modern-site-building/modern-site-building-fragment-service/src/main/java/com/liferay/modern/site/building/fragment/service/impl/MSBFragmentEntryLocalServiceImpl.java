@@ -131,7 +131,7 @@ public class MSBFragmentEntryLocalServiceImpl
 			OrderByComparator<MSBFragmentEntry> orderByComparator)
 		throws PortalException {
 
-		return msbFragmentEntryPersistence.findByG_MSBFC(
+		return msbFragmentEntryPersistence.findByG_MSBFCI(
 			groupId, msbFragmentCollectionId, start, end, orderByComparator);
 	}
 
@@ -141,11 +141,11 @@ public class MSBFragmentEntryLocalServiceImpl
 		int end, OrderByComparator<MSBFragmentEntry> orderByComparator) {
 
 		if (Validator.isNull(name)) {
-			return msbFragmentEntryPersistence.findByG_MSBFC(
+			return msbFragmentEntryPersistence.findByG_MSBFCI(
 				groupId, msbFragmentCollectionId, start, end, orderByComparator);
 		}
 
-		return msbFragmentEntryPersistence.findByG_MSBFC_LikeN(
+		return msbFragmentEntryPersistence.findByG_MSBFCI_LikeN(
 			groupId, msbFragmentCollectionId, name, start, end, orderByComparator);
 	}
 
