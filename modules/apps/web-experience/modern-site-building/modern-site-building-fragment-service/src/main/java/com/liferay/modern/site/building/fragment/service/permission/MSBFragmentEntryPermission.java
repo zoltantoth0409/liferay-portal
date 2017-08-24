@@ -33,7 +33,7 @@ import org.osgi.service.component.annotations.Component;
  * @author Jürgen Kappler
  */
 @Component(
-	property = {"model.class.name=com.liferay.modern.site.building.fragment.model.FragmentEntry"},
+	property = {"model.class.name=com.liferay.modern.site.building.fragment.model.MSBFragmentEntry"},
 	service = BaseModelPermissionChecker.class
 )
 public class MSBFragmentEntryPermission implements BaseModelPermissionChecker {
