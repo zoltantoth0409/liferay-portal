@@ -138,6 +138,9 @@ public class NGramQueryBuilderImpl implements NGramQueryBuilder {
 	}
 
 	protected void addQuery(StringBundler sb, String name, String value) {
+		sb.append(name);
+		sb.append(StringPool.COLON);
+
 		value = QueryParser.escape(value);
 
 		value = _defuseUpperCaseLuceneBooleanOperators(value);
@@ -145,8 +148,6 @@ public class NGramQueryBuilderImpl implements NGramQueryBuilder {
 		value = _encloseMultiword(
 			value, StringPool.OPEN_PARENTHESIS, StringPool.CLOSE_PARENTHESIS);
 
-		sb.append(name);
-		sb.append(StringPool.COLON);
 		sb.append(value);
 	}
 
