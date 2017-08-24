@@ -137,8 +137,7 @@ public class AUIUtil {
 		}
 
 		if (showForLabel) {
-			sb.append(StringPool.SPACE);
-			sb.append("for=\"");
+			sb.append(" for=\"");
 			sb.append(HtmlUtil.escapeAttribute(forLabel));
 			sb.append("\"");
 		}
