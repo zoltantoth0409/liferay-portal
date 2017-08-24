@@ -44,9 +44,9 @@ public class MSBFragmentEntryLocalServiceImpl
 
 		// Mobile site building fragment entry
 
-		validate(groupId, name);
-
 		User user = userLocalService.getUser(userId);
+
+		validate(groupId, name);
 
 		long msbFragmentEntryId = counterLocalService.increment();
 
