@@ -32,7 +32,7 @@ public class NGramQueryBuilderImplTest {
 	public void testGetNGramQuery() throws Exception {
 		NGramQueryBuilder nGramQueryBuilder = createNGramQueryBuilder();
 
-		SolrQuery nGramQuery = nGramQueryBuilder.getNGramQuery("LIFERAY ROCKS");
+		SolrQuery solrQuery = nGramQueryBuilder.getNGramQuery("LIFERAY ROCKS");
 
 		Assert.assertEquals(
 			concat(
@@ -43,14 +43,14 @@ public class NGramQueryBuilderImplTest {
 				"OR+gram4%3A%28y+ro%29+OR+gram4%3A%28+roc%29+OR+gram4%3Arock+O",
 				"R+end4%3Aocks+OR+end3%3Acks+OR+start3%3Alif+OR+start4%3Alife+",
 				"OR+spellCheckWord%3A%28liferay+rocks%29"),
-			nGramQuery.toString());
+			solrQuery.toString());
 	}
 
 	@Test
 	public void testLuceneUnfriendlyTerms() throws Exception {
 		NGramQueryBuilder nGramQueryBuilder = createNGramQueryBuilder();
 
-		SolrQuery nGramQuery = nGramQueryBuilder.getNGramQuery(
+		SolrQuery solrQuery = nGramQueryBuilder.getNGramQuery(
 			"+alpha AND -bravo");
 
 		Assert.assertEquals(
@@ -66,7 +66,7 @@ public class NGramQueryBuilderImplTest {
 				"av+OR+end4%3Aravo+OR+end3%3Aavo+OR+start3%3A%5C%2Bal+OR+start",
 				"4%3A%5C%2Balp+OR+spellCheckWord%3A%28%5C%2Balpha+and+%5C-brav",
 				"o%29"),
-			nGramQuery.toString());
+			solrQuery.toString());
 	}
 
 	protected String concat(String s1, String s2, String... stringArray) {
