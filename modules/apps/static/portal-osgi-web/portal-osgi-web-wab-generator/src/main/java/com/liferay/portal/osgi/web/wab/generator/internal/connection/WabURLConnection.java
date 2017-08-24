@@ -73,9 +73,8 @@ public class WabURLConnection extends URLConnection {
 					"Web-ContextPath");
 		}
 
-		String[] protocols = parameters.get("protocol");
-
 		String path = url.getPath();
+		String[] protocols = parameters.get("protocol");
 
 		if (ArrayUtil.isEmpty(protocols)) {
 			if (path.startsWith("file:")) {
