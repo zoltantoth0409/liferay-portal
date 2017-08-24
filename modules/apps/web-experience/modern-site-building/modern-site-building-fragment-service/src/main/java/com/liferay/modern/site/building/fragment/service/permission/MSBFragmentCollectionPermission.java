@@ -74,7 +74,7 @@ public class MSBFragmentCollectionPermission
 
 		if (msbFragmentCollection == null) {
 			_log.error(
-				"Unable to get fragment collection with id " +
+				"Unable to get modern site building fragment collection " +
 					msbFragmentCollectionId);
 
 			return false;
