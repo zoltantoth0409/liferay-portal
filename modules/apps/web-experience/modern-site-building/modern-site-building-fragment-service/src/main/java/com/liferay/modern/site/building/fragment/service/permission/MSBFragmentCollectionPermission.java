@@ -121,12 +121,12 @@ public class MSBFragmentCollectionPermission
 		if (permissionChecker.hasOwnerPermission(
 				msbFragmentCollection.getCompanyId(),
 				MSBFragmentCollection.class.getName(),
-				msbFragmentCollection.getFragmentCollectionId(),
+				msbFragmentCollection.getMsbFragmentCollectionId(),
 				msbFragmentCollection.getUserId(), actionId) ||
 			permissionChecker.hasPermission(
 				msbFragmentCollection.getGroupId(),
 				MSBFragmentCollection.class.getName(),
-				msbFragmentCollection.getFragmentCollectionId(), actionId)) {
+				msbFragmentCollection.getMsbFragmentCollectionId(), actionId)) {
 
 			return true;
 		}

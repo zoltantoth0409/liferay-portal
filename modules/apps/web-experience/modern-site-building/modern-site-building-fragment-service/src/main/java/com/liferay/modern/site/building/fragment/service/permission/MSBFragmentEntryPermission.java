@@ -122,7 +122,7 @@ public class MSBFragmentEntryPermission implements BaseModelPermissionChecker {
 				msbFragmentEntry.getUserId(), actionId) ||
 			permissionChecker.hasPermission(
 				msbFragmentEntry.getGroupId(), MSBFragmentEntry.class.getName(),
-				msbFragmentEntry.getFragmentEntryId(), actionId)) {
+				msbFragmentEntry.getMsbFragmentEntryId(), actionId)) {
 
 			return true;
 		}
