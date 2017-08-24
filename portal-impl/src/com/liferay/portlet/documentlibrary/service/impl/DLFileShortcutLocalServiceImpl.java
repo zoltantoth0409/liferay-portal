@@ -245,6 +245,13 @@ public class DLFileShortcutLocalServiceImpl
 	public void deleteRepositoryFileShortcuts(long repositoryId)
 		throws PortalException {
 
+		ActionableDynamicQuery actionableDynamicQuery =
+			dlFileShortcutLocalService.getActionableDynamicQuery();
+
+		actionableDynamicQuery.setAddCriteriaMethod(
+			dynamicQuery -> dynamicQuery.add(
+				RestrictionsFactoryUtil.eq("repositoryId", repositoryId)));
+
 		long groupId = repositoryId;
 
 		Repository repository = _repositoryLocalService.fetchRepository(
@@ -254,13 +261,8 @@ public class DLFileShortcutLocalServiceImpl
 			groupId = repository.getGroupId();
 		}
 
-		ActionableDynamicQuery actionableDynamicQuery =
-			dlFileShortcutLocalService.getActionableDynamicQuery();
-
-		actionableDynamicQuery.setAddCriteriaMethod(
-			dynamicQuery -> dynamicQuery.add(
-				RestrictionsFactoryUtil.eq("repositoryId", repositoryId)));
 		actionableDynamicQuery.setGroupId(groupId);
+
 		actionableDynamicQuery.setPerformActionMethod(
 			(DLFileShortcut fileShortcut) ->
 				dlFileShortcutLocalService.deleteDLFileShortcut(fileShortcut));
