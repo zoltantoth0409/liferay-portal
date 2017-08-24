@@ -14,8 +14,8 @@
 
 package com.liferay.modern.site.building.fragment.service.impl;
 
-import com.liferay.modern.site.building.fragment.exception.DuplicateFragmentEntryException;
-import com.liferay.modern.site.building.fragment.exception.FragmentEntryNameException;
+import com.liferay.modern.site.building.fragment.exception.DuplicateMSBFragmentEntryException;
+import com.liferay.modern.site.building.fragment.exception.MSBFragmentEntryNameException;
 import com.liferay.modern.site.building.fragment.model.MSBFragmentEntry;
 import com.liferay.modern.site.building.fragment.service.base.MSBFragmentEntryLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -175,7 +175,7 @@ public class MSBFragmentEntryLocalServiceImpl
 
 	protected void validate(long groupId, String name) throws PortalException {
 		if (Validator.isNull(name)) {
-			throw new FragmentEntryNameException(
+			throw new MSBFragmentEntryNameException(
 				"Fragment entry name cannot be null for group " + groupId);
 		}
 
@@ -183,7 +183,7 @@ public class MSBFragmentEntryLocalServiceImpl
 			groupId, name);
 
 		if (msbFragmentEntry != null) {
-			throw new DuplicateFragmentEntryException(
+			throw new DuplicateMSBFragmentEntryException(
 				"A fragment entry with name " + name + " already exists");
 		}
 	}

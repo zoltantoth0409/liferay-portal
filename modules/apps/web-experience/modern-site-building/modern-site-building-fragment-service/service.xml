@@ -113,9 +113,9 @@
 		<reference entity="User" package-path="com.liferay.portal" />
 	</entity>
 	<exceptions>
-		<exception>DuplicateFragmentCollection</exception>
-		<exception>DuplicateFragmentEntry</exception>
-		<exception>FragmentCollectionName</exception>
-		<exception>FragmentEntryName</exception>
+		<exception>DuplicateMSBFragmentCollection</exception>
+		<exception>DuplicateMSBFragmentEntry</exception>
+		<exception>MSBFragmentCollectionName</exception>
+		<exception>MSBFragmentEntryName</exception>
 	</exceptions>
 </service-builder>

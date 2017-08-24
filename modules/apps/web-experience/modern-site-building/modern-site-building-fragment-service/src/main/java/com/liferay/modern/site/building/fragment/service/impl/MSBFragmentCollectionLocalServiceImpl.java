@@ -14,8 +14,8 @@
 
 package com.liferay.modern.site.building.fragment.service.impl;
 
-import com.liferay.modern.site.building.fragment.exception.DuplicateFragmentCollectionException;
-import com.liferay.modern.site.building.fragment.exception.FragmentCollectionNameException;
+import com.liferay.modern.site.building.fragment.exception.DuplicateMSBFragmentCollectionException;
+import com.liferay.modern.site.building.fragment.exception.MSBFragmentCollectionNameException;
 import com.liferay.modern.site.building.fragment.model.MSBFragmentCollection;
 import com.liferay.modern.site.building.fragment.model.MSBFragmentEntry;
 import com.liferay.modern.site.building.fragment.service.base.MSBFragmentCollectionLocalServiceBaseImpl;
@@ -180,7 +180,7 @@ public class MSBFragmentCollectionLocalServiceImpl
 
 	protected void validate(long groupId, String name) throws PortalException {
 		if (Validator.isNull(name)) {
-			throw new FragmentCollectionNameException(
+			throw new MSBFragmentCollectionNameException(
 				"Fragment collection name cannot be null for group " + groupId);
 		}
 
@@ -188,7 +188,7 @@ public class MSBFragmentCollectionLocalServiceImpl
 			msbFragmentCollectionPersistence.fetchByG_N(groupId, name);
 
 		if (msbFragmentCollection != null) {
-			throw new DuplicateFragmentCollectionException(
+			throw new DuplicateMSBFragmentCollectionException(
 				"A fragment collection with name " + name + " already exists");
 		}
 	}
