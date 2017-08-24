@@ -517,16 +517,16 @@ public class AdaptiveMediaImageConfigurationHelperImpl
 
 			Stream<String> imageVariantsStream = Stream.of(imageVariants);
 
-			List<AdaptiveMediaImageConfigurationEntry> collect =
+			List<AdaptiveMediaImageConfigurationEntry> configurationEntries =
 				imageVariantsStream.map(
 					_configurationEntryParser::parse
 				).collect(
 					Collectors.toList()
 				);
 
-			_configurationEntries.put(companyId, collect);
+			_configurationEntries.put(companyId, configurationEntries);
 
-			return collect.stream();
+			return configurationEntries.stream();
 		}
 		catch (SettingsException se) {
 			throw new AdaptiveMediaRuntimeException.InvalidConfiguration(se);
