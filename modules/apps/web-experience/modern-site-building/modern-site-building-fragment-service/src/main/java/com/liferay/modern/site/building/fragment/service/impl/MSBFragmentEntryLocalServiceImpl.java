@@ -42,7 +42,7 @@ public class MSBFragmentEntryLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		// Entry
+		// Mobile site building fragment entry
 
 		validate(groupId, name);
 
@@ -89,7 +89,7 @@ public class MSBFragmentEntryLocalServiceImpl
 			MSBFragmentEntry msbFragmentEntry)
 		throws PortalException {
 
-		// Entry
+		// Mobile site building fragment entry
 
 		msbFragmentEntryPersistence.remove(msbFragmentEntry);
 
