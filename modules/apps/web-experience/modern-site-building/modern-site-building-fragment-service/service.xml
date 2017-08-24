@@ -92,7 +92,7 @@
 		<finder name="MSBFragmentCollectionId" return-type="Collection">
 			<finder-column name="msbFragmentCollectionId" />
 		</finder>
-		<finder name="G_MSBFC" return-type="Collection">
+		<finder name="G_MSBFCI" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="msbFragmentCollectionId" />
 		</finder>
@@ -100,7 +100,7 @@
 			<finder-column name="groupId" />
 			<finder-column name="name" />
 		</finder>
-		<finder name="G_MSBFC_LikeN" return-type="Collection">
+		<finder name="G_MSBFCI_LikeN" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="msbFragmentCollectionId" />
 			<finder-column case-sensitive="false" comparator="LIKE" name="name" />
