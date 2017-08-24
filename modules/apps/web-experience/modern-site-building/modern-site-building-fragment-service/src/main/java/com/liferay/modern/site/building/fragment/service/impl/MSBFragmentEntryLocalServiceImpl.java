@@ -48,59 +48,59 @@ public class MSBFragmentEntryLocalServiceImpl
 
 		User user = userLocalService.getUser(userId);
 
-		long fragmentEntryId = counterLocalService.increment();
+		long msbFragmentEntryId = counterLocalService.increment();
 
-		MSBFragmentEntry fragmentEntry = msbFragmentEntryPersistence.create(
-			fragmentEntryId);
+		MSBFragmentEntry msbFragmentEntry = msbFragmentEntryPersistence.create(
+			msbFragmentEntryId);
 
-		fragmentEntry.setGroupId(groupId);
-		fragmentEntry.setCompanyId(user.getCompanyId());
-		fragmentEntry.setUserId(user.getUserId());
-		fragmentEntry.setUserName(user.getFullName());
-		fragmentEntry.setMsbFragmentCollectionId(msbFragmentCollectionId);
-		fragmentEntry.setName(name);
-		fragmentEntry.setCreateDate(serviceContext.getCreateDate(new Date()));
-		fragmentEntry.setModifiedDate(
+		msbFragmentEntry.setGroupId(groupId);
+		msbFragmentEntry.setCompanyId(user.getCompanyId());
+		msbFragmentEntry.setUserId(user.getUserId());
+		msbFragmentEntry.setUserName(user.getFullName());
+		msbFragmentEntry.setMsbFragmentCollectionId(msbFragmentCollectionId);
+		msbFragmentEntry.setName(name);
+		msbFragmentEntry.setCreateDate(serviceContext.getCreateDate(new Date()));
+		msbFragmentEntry.setModifiedDate(
 			serviceContext.getModifiedDate(new Date()));
-		fragmentEntry.setCss(css);
-		fragmentEntry.setHtml(html);
-		fragmentEntry.setJs(js);
+		msbFragmentEntry.setCss(css);
+		msbFragmentEntry.setHtml(html);
+		msbFragmentEntry.setJs(js);
 
-		msbFragmentEntryPersistence.update(fragmentEntry);
+		msbFragmentEntryPersistence.update(msbFragmentEntry);
 
 		// Resources
 
-		resourceLocalService.addModelResources(fragmentEntry, serviceContext);
+		resourceLocalService.addModelResources(msbFragmentEntry, serviceContext);
 
-		return fragmentEntry;
+		return msbFragmentEntry;
 	}
 
 	@Override
-	public MSBFragmentEntry deleteMSBFragmentEntry(long fragmentEntryId)
+	public MSBFragmentEntry deleteMSBFragmentEntry(long msbFragmentEntryId)
 		throws PortalException {
 
-		MSBFragmentEntry fragmentEntry = getMSBFragmentEntry(fragmentEntryId);
+		MSBFragmentEntry msbFragmentEntry = getMSBFragmentEntry(msbFragmentEntryId);
 
-		return deleteMSBFragmentEntry(fragmentEntry);
+		return deleteMSBFragmentEntry(msbFragmentEntry);
 	}
 
 	@Override
 	public MSBFragmentEntry deleteMSBFragmentEntry(
-			MSBFragmentEntry fragmentEntry)
+			MSBFragmentEntry msbFragmentEntry)
 		throws PortalException {
 
 		// Entry
 
-		msbFragmentEntryPersistence.remove(fragmentEntry);
+		msbFragmentEntryPersistence.remove(msbFragmentEntry);
 
 		// Resources
 
 		resourceLocalService.deleteResource(
-			fragmentEntry.getCompanyId(), MSBFragmentEntry.class.getName(),
+			msbFragmentEntry.getCompanyId(), MSBFragmentEntry.class.getName(),
 			ResourceConstants.SCOPE_INDIVIDUAL,
-			fragmentEntry.getFragmentEntryId());
+			msbFragmentEntry.getFragmentEntryId());
 
-		return fragmentEntry;
+		return msbFragmentEntry;
 	}
 
 	@Override
@@ -112,8 +112,8 @@ public class MSBFragmentEntryLocalServiceImpl
 	}
 
 	@Override
-	public MSBFragmentEntry fetchMSBFragmentEntry(long fragmentEntryId) {
-		return msbFragmentEntryPersistence.fetchByPrimaryKey(fragmentEntryId);
+	public MSBFragmentEntry fetchMSBFragmentEntry(long msbFragmentEntryId) {
+		return msbFragmentEntryPersistence.fetchByPrimaryKey(msbFragmentEntryId);
 	}
 
 	@Override
@@ -151,26 +151,26 @@ public class MSBFragmentEntryLocalServiceImpl
 
 	@Override
 	public MSBFragmentEntry updateMSBFragmentEntry(
-			long fragmentEntryId, String name, String css, String html,
+			long msbFragmentEntryId, String name, String css, String html,
 			String js)
 		throws PortalException {
 
-		MSBFragmentEntry fragmentEntry =
-			msbFragmentEntryPersistence.findByPrimaryKey(fragmentEntryId);
+		MSBFragmentEntry msbFragmentEntry =
+			msbFragmentEntryPersistence.findByPrimaryKey(msbFragmentEntryId);
 
-		if (!Objects.equals(fragmentEntry.getName(), name)) {
-			validate(fragmentEntry.getGroupId(), name);
+		if (!Objects.equals(msbFragmentEntry.getName(), name)) {
+			validate(msbFragmentEntry.getGroupId(), name);
 		}
 
-		fragmentEntry.setModifiedDate(new Date());
-		fragmentEntry.setName(name);
-		fragmentEntry.setCss(css);
-		fragmentEntry.setHtml(html);
-		fragmentEntry.setJs(js);
+		msbFragmentEntry.setModifiedDate(new Date());
+		msbFragmentEntry.setName(name);
+		msbFragmentEntry.setCss(css);
+		msbFragmentEntry.setHtml(html);
+		msbFragmentEntry.setJs(js);
 
-		msbFragmentEntryPersistence.update(fragmentEntry);
+		msbFragmentEntryPersistence.update(msbFragmentEntry);
 
-		return fragmentEntry;
+		return msbFragmentEntry;
 	}
 
 	protected void validate(long groupId, String name) throws PortalException {
@@ -179,10 +179,10 @@ public class MSBFragmentEntryLocalServiceImpl
 				"Fragment entry name cannot be null for group " + groupId);
 		}
 
-		MSBFragmentEntry fragmentEntry = msbFragmentEntryPersistence.fetchByG_N(
+		MSBFragmentEntry msbFragmentEntry = msbFragmentEntryPersistence.fetchByG_N(
 			groupId, name);
 
-		if (fragmentEntry != null) {
+		if (msbFragmentEntry != null) {
 			throw new DuplicateFragmentEntryException(
 				"A fragment entry with name " + name + " already exists");
 		}

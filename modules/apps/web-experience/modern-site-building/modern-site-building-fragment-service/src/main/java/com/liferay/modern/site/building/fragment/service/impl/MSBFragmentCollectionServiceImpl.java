@@ -51,43 +51,43 @@ public class MSBFragmentCollectionServiceImpl
 
 	@Override
 	public MSBFragmentCollection deleteMSBFragmentCollection(
-			long fragmentCollectionId)
+			long msbFragmentCollectionId)
 		throws PortalException {
 
 		MSBFragmentCollectionPermission.check(
-			getPermissionChecker(), fragmentCollectionId, ActionKeys.DELETE);
+			getPermissionChecker(), msbFragmentCollectionId, ActionKeys.DELETE);
 
 		return msbFragmentCollectionLocalService.deleteMSBFragmentCollection(
-			fragmentCollectionId);
+			msbFragmentCollectionId);
 	}
 
 	@Override
 	public List<MSBFragmentCollection> deleteMSBFragmentCollections(
-			long[] fragmentCollectionIds)
+			long[] msbFragmentCollectionIds)
 		throws PortalException {
 
 		List<MSBFragmentCollection> failedFragmentCollections =
 			new ArrayList<>();
 
-		for (long fragmentCollectionId : fragmentCollectionIds) {
+		for (long msbFragmentCollectionId : msbFragmentCollectionIds) {
 			try {
 				MSBFragmentCollectionPermission.check(
-					getPermissionChecker(), fragmentCollectionId,
+					getPermissionChecker(), msbFragmentCollectionId,
 					ActionKeys.DELETE);
 
 				msbFragmentCollectionLocalService.deleteMSBFragmentCollection(
-					fragmentCollectionId);
+					msbFragmentCollectionId);
 			}
 			catch (PortalException pe) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(pe, pe);
 				}
 
-				MSBFragmentCollection fragmentCollection =
+				MSBFragmentCollection msbFragmentCollection =
 					msbFragmentCollectionPersistence.fetchByPrimaryKey(
-						fragmentCollectionId);
+						msbFragmentCollectionId);
 
-				failedFragmentCollections.add(fragmentCollection);
+				failedFragmentCollections.add(msbFragmentCollection);
 			}
 		}
 
@@ -96,11 +96,11 @@ public class MSBFragmentCollectionServiceImpl
 
 	@Override
 	public MSBFragmentCollection fetchMSBFragmentCollection(
-			long fragmentCollectionId)
+			long msbFragmentCollectionId)
 		throws PortalException {
 
 		return msbFragmentCollectionLocalService.fetchMSBFragmentCollection(
-			fragmentCollectionId);
+			msbFragmentCollectionId);
 	}
 
 	@Override
@@ -139,14 +139,14 @@ public class MSBFragmentCollectionServiceImpl
 
 	@Override
 	public MSBFragmentCollection updateMSBFragmentCollection(
-			long fragmentCollectionId, String name, String description)
+			long msbFragmentCollectionId, String name, String description)
 		throws PortalException {
 
 		MSBFragmentCollectionPermission.check(
-			getPermissionChecker(), fragmentCollectionId, ActionKeys.UPDATE);
+			getPermissionChecker(), msbFragmentCollectionId, ActionKeys.UPDATE);
 
 		return msbFragmentCollectionLocalService.updateMSBFragmentCollection(
-			fragmentCollectionId, name, description);
+			msbFragmentCollectionId, name, description);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

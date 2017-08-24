@@ -57,13 +57,13 @@ public class MSBFragmentEntryServiceImpl
 
 		List<MSBFragmentEntry> failedFragmentEntries = new ArrayList<>();
 
-		for (long fragmentEntryId : fragmentEntriesIds) {
+		for (long msbFragmentEntryId : fragmentEntriesIds) {
 			try {
 				MSBFragmentEntryPermission.check(
-					getPermissionChecker(), fragmentEntryId, ActionKeys.DELETE);
+					getPermissionChecker(), msbFragmentEntryId, ActionKeys.DELETE);
 
 				msbFragmentEntryLocalService.deleteMSBFragmentEntry(
-					fragmentEntryId);
+					msbFragmentEntryId);
 			}
 			catch (PortalException pe) {
 				if (_log.isDebugEnabled()) {
@@ -72,7 +72,7 @@ public class MSBFragmentEntryServiceImpl
 
 				MSBFragmentEntry mSBFragmentEntry =
 					msbFragmentEntryPersistence.fetchByPrimaryKey(
-						fragmentEntryId);
+						msbFragmentEntryId);
 
 				failedFragmentEntries.add(mSBFragmentEntry);
 			}
@@ -82,14 +82,14 @@ public class MSBFragmentEntryServiceImpl
 	}
 
 	@Override
-	public MSBFragmentEntry deleteMSBFragmentEntry(long fragmentEntryId)
+	public MSBFragmentEntry deleteMSBFragmentEntry(long msbFragmentEntryId)
 		throws PortalException {
 
 		MSBFragmentEntryPermission.check(
-			getPermissionChecker(), fragmentEntryId, ActionKeys.DELETE);
+			getPermissionChecker(), msbFragmentEntryId, ActionKeys.DELETE);
 
 		return msbFragmentEntryLocalService.deleteMSBFragmentEntry(
-			fragmentEntryId);
+			msbFragmentEntryId);
 	}
 
 	@Override
@@ -102,9 +102,9 @@ public class MSBFragmentEntryServiceImpl
 	}
 
 	@Override
-	public MSBFragmentEntry fetchMSBFragmentEntry(long fragmentEntryId) {
+	public MSBFragmentEntry fetchMSBFragmentEntry(long msbFragmentEntryId) {
 		return msbFragmentEntryLocalService.fetchMSBFragmentEntry(
-			fragmentEntryId);
+			msbFragmentEntryId);
 	}
 
 	@Override
@@ -145,15 +145,15 @@ public class MSBFragmentEntryServiceImpl
 
 	@Override
 	public MSBFragmentEntry updateMSBFragmentEntry(
-			long fragmentEntryId, String name, String css, String html,
+			long msbFragmentEntryId, String name, String css, String html,
 			String js)
 		throws PortalException {
 
 		MSBFragmentEntryPermission.check(
-			getPermissionChecker(), fragmentEntryId, ActionKeys.UPDATE);
+			getPermissionChecker(), msbFragmentEntryId, ActionKeys.UPDATE);
 
 		return msbFragmentEntryLocalService.updateMSBFragmentEntry(
-			fragmentEntryId, name, css, html, js);
+			msbFragmentEntryId, name, css, html, js);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

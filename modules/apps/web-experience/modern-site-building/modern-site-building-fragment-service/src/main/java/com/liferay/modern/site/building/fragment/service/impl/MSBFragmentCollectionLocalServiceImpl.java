@@ -48,79 +48,79 @@ public class MSBFragmentCollectionLocalServiceImpl
 
 		User user = userLocalService.getUser(userId);
 
-		long fragmentCollectionId = counterLocalService.increment();
+		long msbFragmentCollectionId = counterLocalService.increment();
 
-		MSBFragmentCollection fragmentCollection =
-			msbFragmentCollectionPersistence.create(fragmentCollectionId);
+		MSBFragmentCollection msbFragmentCollection =
+			msbFragmentCollectionPersistence.create(msbFragmentCollectionId);
 
-		fragmentCollection.setGroupId(groupId);
-		fragmentCollection.setCompanyId(user.getCompanyId());
-		fragmentCollection.setUserId(user.getUserId());
-		fragmentCollection.setUserName(user.getFullName());
-		fragmentCollection.setCreateDate(
+		msbFragmentCollection.setGroupId(groupId);
+		msbFragmentCollection.setCompanyId(user.getCompanyId());
+		msbFragmentCollection.setUserId(user.getUserId());
+		msbFragmentCollection.setUserName(user.getFullName());
+		msbFragmentCollection.setCreateDate(
 			serviceContext.getCreateDate(new Date()));
-		fragmentCollection.setModifiedDate(
+		msbFragmentCollection.setModifiedDate(
 			serviceContext.getModifiedDate(new Date()));
-		fragmentCollection.setName(name);
-		fragmentCollection.setDescription(description);
+		msbFragmentCollection.setName(name);
+		msbFragmentCollection.setDescription(description);
 
-		msbFragmentCollectionPersistence.update(fragmentCollection);
+		msbFragmentCollectionPersistence.update(msbFragmentCollection);
 
 		// Resources
 
 		resourceLocalService.addModelResources(
-			fragmentCollection, serviceContext);
+			msbFragmentCollection, serviceContext);
 
-		return fragmentCollection;
+		return msbFragmentCollection;
 	}
 
 	@Override
 	public MSBFragmentCollection deleteMSBFragmentCollection(
-			long fragmentCollectionId)
+			long msbFragmentCollectionId)
 		throws PortalException {
 
-		MSBFragmentCollection fragmentCollection = getMSBFragmentCollection(
-			fragmentCollectionId);
+		MSBFragmentCollection msbFragmentCollection = getMSBFragmentCollection(
+			msbFragmentCollectionId);
 
-		return deleteMSBFragmentCollection(fragmentCollection);
+		return deleteMSBFragmentCollection(msbFragmentCollection);
 	}
 
 	@Override
 	public MSBFragmentCollection deleteMSBFragmentCollection(
-			MSBFragmentCollection fragmentCollection)
+			MSBFragmentCollection msbFragmentCollection)
 		throws PortalException {
 
 		// Entries
 
 		List<MSBFragmentEntry> fragmentEntries =
 			msbFragmentEntryPersistence.findByMSBFragmentCollectionId(
-				fragmentCollection.getFragmentCollectionId());
+				msbFragmentCollection.getFragmentCollectionId());
 
-		for (MSBFragmentEntry fragmentEntry : fragmentEntries) {
-			msbFragmentEntryLocalService.deleteMSBFragmentEntry(fragmentEntry);
+		for (MSBFragmentEntry msbFragmentEntry : fragmentEntries) {
+			msbFragmentEntryLocalService.deleteMSBFragmentEntry(msbFragmentEntry);
 		}
 
 		// Collection
 
-		msbFragmentCollectionPersistence.remove(fragmentCollection);
+		msbFragmentCollectionPersistence.remove(msbFragmentCollection);
 
 		// Resources
 
 		resourceLocalService.deleteResource(
-			fragmentCollection.getCompanyId(),
+			msbFragmentCollection.getCompanyId(),
 			MSBFragmentCollection.class.getName(),
 			ResourceConstants.SCOPE_INDIVIDUAL,
-			fragmentCollection.getFragmentCollectionId());
+			msbFragmentCollection.getFragmentCollectionId());
 
-		return fragmentCollection;
+		return msbFragmentCollection;
 	}
 
 	@Override
 	public MSBFragmentCollection fetchMSBFragmentCollection(
-		long fragmentCollectionId) {
+		long msbFragmentCollectionId) {
 
 		return msbFragmentCollectionPersistence.fetchByPrimaryKey(
-			fragmentCollectionId);
+			msbFragmentCollectionId);
 	}
 
 	@Override
@@ -157,24 +157,24 @@ public class MSBFragmentCollectionLocalServiceImpl
 
 	@Override
 	public MSBFragmentCollection updateMSBFragmentCollection(
-			long fragmentCollectionId, String name, String description)
+			long msbFragmentCollectionId, String name, String description)
 		throws PortalException {
 
-		MSBFragmentCollection fragmentCollection =
+		MSBFragmentCollection msbFragmentCollection =
 			msbFragmentCollectionPersistence.findByPrimaryKey(
-				fragmentCollectionId);
+				msbFragmentCollectionId);
 
-		if (!Objects.equals(fragmentCollection.getName(), name)) {
-			validate(fragmentCollection.getGroupId(), name);
+		if (!Objects.equals(msbFragmentCollection.getName(), name)) {
+			validate(msbFragmentCollection.getGroupId(), name);
 		}
 
-		fragmentCollection.setModifiedDate(new Date());
-		fragmentCollection.setName(name);
-		fragmentCollection.setDescription(description);
+		msbFragmentCollection.setModifiedDate(new Date());
+		msbFragmentCollection.setName(name);
+		msbFragmentCollection.setDescription(description);
 
-		msbFragmentCollectionPersistence.update(fragmentCollection);
+		msbFragmentCollectionPersistence.update(msbFragmentCollection);
 
-		return fragmentCollection;
+		return msbFragmentCollection;
 	}
 
 	protected void validate(long groupId, String name) throws PortalException {
@@ -183,10 +183,10 @@ public class MSBFragmentCollectionLocalServiceImpl
 				"Fragment collection name cannot be null for group " + groupId);
 		}
 
-		MSBFragmentCollection fragmentCollection =
+		MSBFragmentCollection msbFragmentCollection =
 			msbFragmentCollectionPersistence.fetchByG_N(groupId, name);
 
-		if (fragmentCollection != null) {
+		if (msbFragmentCollection != null) {
 			throw new DuplicateFragmentCollectionException(
 				"A fragment collection with name " + name + " already exists");
 		}
