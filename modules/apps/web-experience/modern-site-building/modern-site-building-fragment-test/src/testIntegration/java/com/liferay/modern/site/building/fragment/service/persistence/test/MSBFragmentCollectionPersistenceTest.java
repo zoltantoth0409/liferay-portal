@@ -16,7 +16,7 @@ package com.liferay.modern.site.building.fragment.service.persistence.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 
-import com.liferay.modern.site.building.fragment.exception.NoSuchMSBFragmentCollectionException;
+import com.liferay.modern.site.building.fragment.exception.NoSuchFragmentCollectionException;
 import com.liferay.modern.site.building.fragment.model.MSBFragmentCollection;
 import com.liferay.modern.site.building.fragment.service.MSBFragmentCollectionLocalServiceUtil;
 import com.liferay.modern.site.building.fragment.service.persistence.MSBFragmentCollectionPersistence;
@@ -146,8 +146,8 @@ public class MSBFragmentCollectionPersistenceTest {
 
 		MSBFragmentCollection existingMSBFragmentCollection = _persistence.findByPrimaryKey(newMSBFragmentCollection.getPrimaryKey());
 
-		Assert.assertEquals(existingMSBFragmentCollection.getFragmentCollectionId(),
-			newMSBFragmentCollection.getFragmentCollectionId());
+		Assert.assertEquals(existingMSBFragmentCollection.getMsbFragmentCollectionId(),
+			newMSBFragmentCollection.getMsbFragmentCollectionId());
 		Assert.assertEquals(existingMSBFragmentCollection.getGroupId(),
 			newMSBFragmentCollection.getGroupId());
 		Assert.assertEquals(existingMSBFragmentCollection.getCompanyId(),
@@ -203,7 +203,7 @@ public class MSBFragmentCollectionPersistenceTest {
 			newMSBFragmentCollection);
 	}
 
-	@Test(expected = NoSuchMSBFragmentCollectionException.class)
+	@Test(expected = NoSuchFragmentCollectionException.class)
 	public void testFindByPrimaryKeyMissing() throws Exception {
 		long pk = RandomTestUtil.nextLong();
 
@@ -224,8 +224,8 @@ public class MSBFragmentCollectionPersistenceTest {
 
 	protected OrderByComparator<MSBFragmentCollection> getOrderByComparator() {
 		return OrderByComparatorFactoryUtil.create("MSBFragmentCollection",
-			"fragmentCollectionId", true, "groupId", true, "companyId", true,
-			"userId", true, "userName", true, "createDate", true,
+			"msbFragmentCollectionId", true, "groupId", true, "companyId",
+			true, "userId", true, "userName", true, "createDate", true,
 			"modifiedDate", true, "name", true, "description", true);
 	}
 
@@ -361,8 +361,8 @@ public class MSBFragmentCollectionPersistenceTest {
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(MSBFragmentCollection.class,
 				_dynamicQueryClassLoader);
 
-		dynamicQuery.add(RestrictionsFactoryUtil.eq("fragmentCollectionId",
-				newMSBFragmentCollection.getFragmentCollectionId()));
+		dynamicQuery.add(RestrictionsFactoryUtil.eq("msbFragmentCollectionId",
+				newMSBFragmentCollection.getMsbFragmentCollectionId()));
 
 		List<MSBFragmentCollection> result = _persistence.findWithDynamicQuery(dynamicQuery);
 
@@ -379,7 +379,7 @@ public class MSBFragmentCollectionPersistenceTest {
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(MSBFragmentCollection.class,
 				_dynamicQueryClassLoader);
 
-		dynamicQuery.add(RestrictionsFactoryUtil.eq("fragmentCollectionId",
+		dynamicQuery.add(RestrictionsFactoryUtil.eq("msbFragmentCollectionId",
 				RandomTestUtil.nextLong()));
 
 		List<MSBFragmentCollection> result = _persistence.findWithDynamicQuery(dynamicQuery);
@@ -396,21 +396,21 @@ public class MSBFragmentCollectionPersistenceTest {
 				_dynamicQueryClassLoader);
 
 		dynamicQuery.setProjection(ProjectionFactoryUtil.property(
-				"fragmentCollectionId"));
+				"msbFragmentCollectionId"));
 
-		Object newFragmentCollectionId = newMSBFragmentCollection.getFragmentCollectionId();
+		Object newMsbFragmentCollectionId = newMSBFragmentCollection.getMsbFragmentCollectionId();
 
-		dynamicQuery.add(RestrictionsFactoryUtil.in("fragmentCollectionId",
-				new Object[] { newFragmentCollectionId }));
+		dynamicQuery.add(RestrictionsFactoryUtil.in("msbFragmentCollectionId",
+				new Object[] { newMsbFragmentCollectionId }));
 
 		List<Object> result = _persistence.findWithDynamicQuery(dynamicQuery);
 
 		Assert.assertEquals(1, result.size());
 
-		Object existingFragmentCollectionId = result.get(0);
+		Object existingMsbFragmentCollectionId = result.get(0);
 
-		Assert.assertEquals(existingFragmentCollectionId,
-			newFragmentCollectionId);
+		Assert.assertEquals(existingMsbFragmentCollectionId,
+			newMsbFragmentCollectionId);
 	}
 
 	@Test
@@ -419,9 +419,9 @@ public class MSBFragmentCollectionPersistenceTest {
 				_dynamicQueryClassLoader);
 
 		dynamicQuery.setProjection(ProjectionFactoryUtil.property(
-				"fragmentCollectionId"));
+				"msbFragmentCollectionId"));
 
-		dynamicQuery.add(RestrictionsFactoryUtil.in("fragmentCollectionId",
+		dynamicQuery.add(RestrictionsFactoryUtil.in("msbFragmentCollectionId",
 				new Object[] { RandomTestUtil.nextLong() }));
 
 		List<Object> result = _persistence.findWithDynamicQuery(dynamicQuery);

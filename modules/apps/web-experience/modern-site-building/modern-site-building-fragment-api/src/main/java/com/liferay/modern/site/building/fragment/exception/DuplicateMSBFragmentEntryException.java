@@ -21,20 +21,20 @@ import com.liferay.portal.kernel.exception.PortalException;
  * @author Brian Wing Shun Chan
  */
 @ProviderType
-public class FragmentCollectionNameException extends PortalException {
+public class DuplicateMSBFragmentEntryException extends PortalException {
 
-	public FragmentCollectionNameException() {
+	public DuplicateMSBFragmentEntryException() {
 	}
 
-	public FragmentCollectionNameException(String msg) {
+	public DuplicateMSBFragmentEntryException(String msg) {
 		super(msg);
 	}
 
-	public FragmentCollectionNameException(String msg, Throwable cause) {
+	public DuplicateMSBFragmentEntryException(String msg, Throwable cause) {
 		super(msg, cause);
 	}
 
-	public FragmentCollectionNameException(Throwable cause) {
+	public DuplicateMSBFragmentEntryException(Throwable cause) {
 		super(cause);
 	}
 

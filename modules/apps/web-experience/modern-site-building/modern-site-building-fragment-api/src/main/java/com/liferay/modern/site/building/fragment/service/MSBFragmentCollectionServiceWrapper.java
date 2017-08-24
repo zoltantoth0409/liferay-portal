@@ -45,23 +45,23 @@ public class MSBFragmentCollectionServiceWrapper
 
 	@Override
 	public com.liferay.modern.site.building.fragment.model.MSBFragmentCollection deleteMSBFragmentCollection(
-		long fragmentCollectionId)
+		long msbFragmentCollectionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _msbFragmentCollectionService.deleteMSBFragmentCollection(fragmentCollectionId);
+		return _msbFragmentCollectionService.deleteMSBFragmentCollection(msbFragmentCollectionId);
 	}
 
 	@Override
 	public java.util.List<com.liferay.modern.site.building.fragment.model.MSBFragmentCollection> deleteMSBFragmentCollections(
-		long[] fragmentCollectionIds)
+		long[] msbFragmentCollectionIds)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _msbFragmentCollectionService.deleteMSBFragmentCollections(fragmentCollectionIds);
+		return _msbFragmentCollectionService.deleteMSBFragmentCollections(msbFragmentCollectionIds);
 	}
 
 	@Override
 	public com.liferay.modern.site.building.fragment.model.MSBFragmentCollection fetchMSBFragmentCollection(
-		long fragmentCollectionId)
+		long msbFragmentCollectionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _msbFragmentCollectionService.fetchMSBFragmentCollection(fragmentCollectionId);
+		return _msbFragmentCollectionService.fetchMSBFragmentCollection(msbFragmentCollectionId);
 	}
 
 	@Override
@@ -107,10 +107,10 @@ public class MSBFragmentCollectionServiceWrapper
 
 	@Override
 	public com.liferay.modern.site.building.fragment.model.MSBFragmentCollection updateMSBFragmentCollection(
-		long fragmentCollectionId, java.lang.String name,
+		long msbFragmentCollectionId, java.lang.String name,
 		java.lang.String description)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _msbFragmentCollectionService.updateMSBFragmentCollection(fragmentCollectionId,
+		return _msbFragmentCollectionService.updateMSBFragmentCollection(msbFragmentCollectionId,
 			name, description);
 	}
 

@@ -21,20 +21,20 @@ import com.liferay.portal.kernel.exception.NoSuchModelException;
  * @author Brian Wing Shun Chan
  */
 @ProviderType
-public class NoSuchMSBFragmentEntryException extends NoSuchModelException {
+public class NoSuchFragmentCollectionException extends NoSuchModelException {
 
-	public NoSuchMSBFragmentEntryException() {
+	public NoSuchFragmentCollectionException() {
 	}
 
-	public NoSuchMSBFragmentEntryException(String msg) {
+	public NoSuchFragmentCollectionException(String msg) {
 		super(msg);
 	}
 
-	public NoSuchMSBFragmentEntryException(String msg, Throwable cause) {
+	public NoSuchFragmentCollectionException(String msg, Throwable cause) {
 		super(msg, cause);
 	}
 
-	public NoSuchMSBFragmentEntryException(Throwable cause) {
+	public NoSuchFragmentCollectionException(Throwable cause) {
 		super(cause);
 	}
 

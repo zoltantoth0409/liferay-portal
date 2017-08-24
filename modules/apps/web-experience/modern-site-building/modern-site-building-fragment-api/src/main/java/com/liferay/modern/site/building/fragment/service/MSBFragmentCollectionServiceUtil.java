@@ -51,21 +51,22 @@ public class MSBFragmentCollectionServiceUtil {
 	}
 
 	public static com.liferay.modern.site.building.fragment.model.MSBFragmentCollection deleteMSBFragmentCollection(
-		long fragmentCollectionId)
+		long msbFragmentCollectionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deleteMSBFragmentCollection(fragmentCollectionId);
+		return getService().deleteMSBFragmentCollection(msbFragmentCollectionId);
 	}
 
 	public static java.util.List<com.liferay.modern.site.building.fragment.model.MSBFragmentCollection> deleteMSBFragmentCollections(
-		long[] fragmentCollectionIds)
+		long[] msbFragmentCollectionIds)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deleteMSBFragmentCollections(fragmentCollectionIds);
+		return getService()
+				   .deleteMSBFragmentCollections(msbFragmentCollectionIds);
 	}
 
 	public static com.liferay.modern.site.building.fragment.model.MSBFragmentCollection fetchMSBFragmentCollection(
-		long fragmentCollectionId)
+		long msbFragmentCollectionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().fetchMSBFragmentCollection(fragmentCollectionId);
+		return getService().fetchMSBFragmentCollection(msbFragmentCollectionId);
 	}
 
 	public static int getGroupMSBFragmentCollectionsCount(long groupId) {
@@ -106,11 +107,11 @@ public class MSBFragmentCollectionServiceUtil {
 	}
 
 	public static com.liferay.modern.site.building.fragment.model.MSBFragmentCollection updateMSBFragmentCollection(
-		long fragmentCollectionId, java.lang.String name,
+		long msbFragmentCollectionId, java.lang.String name,
 		java.lang.String description)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
-				   .updateMSBFragmentCollection(fragmentCollectionId, name,
+				   .updateMSBFragmentCollection(msbFragmentCollectionId, name,
 			description);
 	}
 

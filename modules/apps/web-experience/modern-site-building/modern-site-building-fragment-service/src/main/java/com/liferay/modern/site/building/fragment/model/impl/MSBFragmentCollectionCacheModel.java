@@ -52,7 +52,7 @@ public class MSBFragmentCollectionCacheModel implements CacheModel<MSBFragmentCo
 
 		MSBFragmentCollectionCacheModel msbFragmentCollectionCacheModel = (MSBFragmentCollectionCacheModel)obj;
 
-		if (fragmentCollectionId == msbFragmentCollectionCacheModel.fragmentCollectionId) {
+		if (msbFragmentCollectionId == msbFragmentCollectionCacheModel.msbFragmentCollectionId) {
 			return true;
 		}
 
@@ -61,15 +61,15 @@ public class MSBFragmentCollectionCacheModel implements CacheModel<MSBFragmentCo
 
 	@Override
 	public int hashCode() {
-		return HashUtil.hash(0, fragmentCollectionId);
+		return HashUtil.hash(0, msbFragmentCollectionId);
 	}
 
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);
 
-		sb.append("{fragmentCollectionId=");
-		sb.append(fragmentCollectionId);
+		sb.append("{msbFragmentCollectionId=");
+		sb.append(msbFragmentCollectionId);
 		sb.append(", groupId=");
 		sb.append(groupId);
 		sb.append(", companyId=");
@@ -95,7 +95,7 @@ public class MSBFragmentCollectionCacheModel implements CacheModel<MSBFragmentCo
 	public MSBFragmentCollection toEntityModel() {
 		MSBFragmentCollectionImpl msbFragmentCollectionImpl = new MSBFragmentCollectionImpl();
 
-		msbFragmentCollectionImpl.setFragmentCollectionId(fragmentCollectionId);
+		msbFragmentCollectionImpl.setMsbFragmentCollectionId(msbFragmentCollectionId);
 		msbFragmentCollectionImpl.setGroupId(groupId);
 		msbFragmentCollectionImpl.setCompanyId(companyId);
 		msbFragmentCollectionImpl.setUserId(userId);
@@ -142,7 +142,7 @@ public class MSBFragmentCollectionCacheModel implements CacheModel<MSBFragmentCo
 
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
-		fragmentCollectionId = objectInput.readLong();
+		msbFragmentCollectionId = objectInput.readLong();
 
 		groupId = objectInput.readLong();
 
@@ -159,7 +159,7 @@ public class MSBFragmentCollectionCacheModel implements CacheModel<MSBFragmentCo
 	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
-		objectOutput.writeLong(fragmentCollectionId);
+		objectOutput.writeLong(msbFragmentCollectionId);
 
 		objectOutput.writeLong(groupId);
 
@@ -192,7 +192,7 @@ public class MSBFragmentCollectionCacheModel implements CacheModel<MSBFragmentCo
 		}
 	}
 
-	public long fragmentCollectionId;
+	public long msbFragmentCollectionId;
 	public long groupId;
 	public long companyId;
 	public long userId;

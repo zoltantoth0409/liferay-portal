@@ -34,7 +34,7 @@ public class MSBFragmentEntrySoap implements Serializable {
 	public static MSBFragmentEntrySoap toSoapModel(MSBFragmentEntry model) {
 		MSBFragmentEntrySoap soapModel = new MSBFragmentEntrySoap();
 
-		soapModel.setFragmentEntryId(model.getFragmentEntryId());
+		soapModel.setMsbFragmentEntryId(model.getMsbFragmentEntryId());
 		soapModel.setGroupId(model.getGroupId());
 		soapModel.setCompanyId(model.getCompanyId());
 		soapModel.setUserId(model.getUserId());
@@ -93,19 +93,19 @@ public class MSBFragmentEntrySoap implements Serializable {
 	}
 
 	public long getPrimaryKey() {
-		return _fragmentEntryId;
+		return _msbFragmentEntryId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setFragmentEntryId(pk);
+		setMsbFragmentEntryId(pk);
 	}
 
-	public long getFragmentEntryId() {
-		return _fragmentEntryId;
+	public long getMsbFragmentEntryId() {
+		return _msbFragmentEntryId;
 	}
 
-	public void setFragmentEntryId(long fragmentEntryId) {
-		_fragmentEntryId = fragmentEntryId;
+	public void setMsbFragmentEntryId(long msbFragmentEntryId) {
+		_msbFragmentEntryId = msbFragmentEntryId;
 	}
 
 	public long getGroupId() {
@@ -196,7 +196,7 @@ public class MSBFragmentEntrySoap implements Serializable {
 		_js = js;
 	}
 
-	private long _fragmentEntryId;
+	private long _msbFragmentEntryId;
 	private long _groupId;
 	private long _companyId;
 	private long _userId;

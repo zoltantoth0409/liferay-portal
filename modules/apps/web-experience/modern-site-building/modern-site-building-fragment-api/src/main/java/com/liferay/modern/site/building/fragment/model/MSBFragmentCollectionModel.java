@@ -66,18 +66,18 @@ public interface MSBFragmentCollectionModel extends BaseModel<MSBFragmentCollect
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Returns the fragment collection ID of this msb fragment collection.
+	 * Returns the msb fragment collection ID of this msb fragment collection.
 	 *
-	 * @return the fragment collection ID of this msb fragment collection
+	 * @return the msb fragment collection ID of this msb fragment collection
 	 */
-	public long getFragmentCollectionId();
+	public long getMsbFragmentCollectionId();
 
 	/**
-	 * Sets the fragment collection ID of this msb fragment collection.
+	 * Sets the msb fragment collection ID of this msb fragment collection.
 	 *
-	 * @param fragmentCollectionId the fragment collection ID of this msb fragment collection
+	 * @param msbFragmentCollectionId the msb fragment collection ID of this msb fragment collection
 	 */
-	public void setFragmentCollectionId(long fragmentCollectionId);
+	public void setMsbFragmentCollectionId(long msbFragmentCollectionId);
 
 	/**
 	 * Returns the group ID of this msb fragment collection.

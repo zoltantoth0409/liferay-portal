@@ -45,16 +45,16 @@ public class MSBFragmentEntryServiceWrapper implements MSBFragmentEntryService,
 
 	@Override
 	public java.util.List<com.liferay.modern.site.building.fragment.model.MSBFragmentEntry> deleteMSBFragmentEntries(
-		long[] fragmentEntriesIds)
+		long[] msbFragmentEntriesIds)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _msbFragmentEntryService.deleteMSBFragmentEntries(fragmentEntriesIds);
+		return _msbFragmentEntryService.deleteMSBFragmentEntries(msbFragmentEntriesIds);
 	}
 
 	@Override
 	public com.liferay.modern.site.building.fragment.model.MSBFragmentEntry deleteMSBFragmentEntry(
-		long fragmentEntryId)
+		long msbFragmentEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _msbFragmentEntryService.deleteMSBFragmentEntry(fragmentEntryId);
+		return _msbFragmentEntryService.deleteMSBFragmentEntry(msbFragmentEntryId);
 	}
 
 	@Override
@@ -66,8 +66,8 @@ public class MSBFragmentEntryServiceWrapper implements MSBFragmentEntryService,
 
 	@Override
 	public com.liferay.modern.site.building.fragment.model.MSBFragmentEntry fetchMSBFragmentEntry(
-		long fragmentEntryId) {
-		return _msbFragmentEntryService.fetchMSBFragmentEntry(fragmentEntryId);
+		long msbFragmentEntryId) {
+		return _msbFragmentEntryService.fetchMSBFragmentEntry(msbFragmentEntryId);
 	}
 
 	@Override
@@ -96,9 +96,9 @@ public class MSBFragmentEntryServiceWrapper implements MSBFragmentEntryService,
 	public java.util.List<com.liferay.modern.site.building.fragment.model.MSBFragmentEntry> getMSBFragmentEntries(
 		long groupId, long msbFragmentCollectionId, java.lang.String name,
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.modern.site.building.fragment.model.MSBFragmentEntry> obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.modern.site.building.fragment.model.MSBFragmentEntry> orderByComparator) {
 		return _msbFragmentEntryService.getMSBFragmentEntries(groupId,
-			msbFragmentCollectionId, name, start, end, obc);
+			msbFragmentCollectionId, name, start, end, orderByComparator);
 	}
 
 	/**
@@ -113,10 +113,10 @@ public class MSBFragmentEntryServiceWrapper implements MSBFragmentEntryService,
 
 	@Override
 	public com.liferay.modern.site.building.fragment.model.MSBFragmentEntry updateMSBFragmentEntry(
-		long fragmentEntryId, java.lang.String name, java.lang.String css,
+		long msbFragmentEntryId, java.lang.String name, java.lang.String css,
 		java.lang.String html, java.lang.String js)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _msbFragmentEntryService.updateMSBFragmentEntry(fragmentEntryId,
+		return _msbFragmentEntryService.updateMSBFragmentEntry(msbFragmentEntryId,
 			name, css, html, js);
 	}
 

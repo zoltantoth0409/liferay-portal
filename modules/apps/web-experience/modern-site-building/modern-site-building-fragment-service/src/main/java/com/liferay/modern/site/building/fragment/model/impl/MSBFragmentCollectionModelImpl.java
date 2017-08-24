@@ -70,7 +70,7 @@ public class MSBFragmentCollectionModelImpl extends BaseModelImpl<MSBFragmentCol
 	 */
 	public static final String TABLE_NAME = "MSBFragmentCollection";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "fragmentCollectionId", Types.BIGINT },
+			{ "msbFragmentCollectionId", Types.BIGINT },
 			{ "groupId", Types.BIGINT },
 			{ "companyId", Types.BIGINT },
 			{ "userId", Types.BIGINT },
@@ -83,7 +83,7 @@ public class MSBFragmentCollectionModelImpl extends BaseModelImpl<MSBFragmentCol
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
 
 	static {
-		TABLE_COLUMNS_MAP.put("fragmentCollectionId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("msbFragmentCollectionId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("groupId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("companyId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("userId", Types.BIGINT);
@@ -94,7 +94,7 @@ public class MSBFragmentCollectionModelImpl extends BaseModelImpl<MSBFragmentCol
 		TABLE_COLUMNS_MAP.put("description", Types.VARCHAR);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table MSBFragmentCollection (fragmentCollectionId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,description VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table MSBFragmentCollection (msbFragmentCollectionId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,description VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table MSBFragmentCollection";
 	public static final String ORDER_BY_JPQL = " ORDER BY msbFragmentCollection.name ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY MSBFragmentCollection.name ASC";
@@ -127,7 +127,7 @@ public class MSBFragmentCollectionModelImpl extends BaseModelImpl<MSBFragmentCol
 
 		MSBFragmentCollection model = new MSBFragmentCollectionImpl();
 
-		model.setFragmentCollectionId(soapModel.getFragmentCollectionId());
+		model.setMsbFragmentCollectionId(soapModel.getMsbFragmentCollectionId());
 		model.setGroupId(soapModel.getGroupId());
 		model.setCompanyId(soapModel.getCompanyId());
 		model.setUserId(soapModel.getUserId());
@@ -169,17 +169,17 @@ public class MSBFragmentCollectionModelImpl extends BaseModelImpl<MSBFragmentCol
 
 	@Override
 	public long getPrimaryKey() {
-		return _fragmentCollectionId;
+		return _msbFragmentCollectionId;
 	}
 
 	@Override
 	public void setPrimaryKey(long primaryKey) {
-		setFragmentCollectionId(primaryKey);
+		setMsbFragmentCollectionId(primaryKey);
 	}
 
 	@Override
 	public Serializable getPrimaryKeyObj() {
-		return _fragmentCollectionId;
+		return _msbFragmentCollectionId;
 	}
 
 	@Override
@@ -201,7 +201,7 @@ public class MSBFragmentCollectionModelImpl extends BaseModelImpl<MSBFragmentCol
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("fragmentCollectionId", getFragmentCollectionId());
+		attributes.put("msbFragmentCollectionId", getMsbFragmentCollectionId());
 		attributes.put("groupId", getGroupId());
 		attributes.put("companyId", getCompanyId());
 		attributes.put("userId", getUserId());
@@ -219,10 +219,11 @@ public class MSBFragmentCollectionModelImpl extends BaseModelImpl<MSBFragmentCol
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long fragmentCollectionId = (Long)attributes.get("fragmentCollectionId");
+		Long msbFragmentCollectionId = (Long)attributes.get(
+				"msbFragmentCollectionId");
 
-		if (fragmentCollectionId != null) {
-			setFragmentCollectionId(fragmentCollectionId);
+		if (msbFragmentCollectionId != null) {
+			setMsbFragmentCollectionId(msbFragmentCollectionId);
 		}
 
 		Long groupId = (Long)attributes.get("groupId");
@@ -276,13 +277,13 @@ public class MSBFragmentCollectionModelImpl extends BaseModelImpl<MSBFragmentCol
 
 	@JSON
 	@Override
-	public long getFragmentCollectionId() {
-		return _fragmentCollectionId;
+	public long getMsbFragmentCollectionId() {
+		return _msbFragmentCollectionId;
 	}
 
 	@Override
-	public void setFragmentCollectionId(long fragmentCollectionId) {
-		_fragmentCollectionId = fragmentCollectionId;
+	public void setMsbFragmentCollectionId(long msbFragmentCollectionId) {
+		_msbFragmentCollectionId = msbFragmentCollectionId;
 	}
 
 	@JSON
@@ -463,7 +464,7 @@ public class MSBFragmentCollectionModelImpl extends BaseModelImpl<MSBFragmentCol
 	public Object clone() {
 		MSBFragmentCollectionImpl msbFragmentCollectionImpl = new MSBFragmentCollectionImpl();
 
-		msbFragmentCollectionImpl.setFragmentCollectionId(getFragmentCollectionId());
+		msbFragmentCollectionImpl.setMsbFragmentCollectionId(getMsbFragmentCollectionId());
 		msbFragmentCollectionImpl.setGroupId(getGroupId());
 		msbFragmentCollectionImpl.setCompanyId(getCompanyId());
 		msbFragmentCollectionImpl.setUserId(getUserId());
@@ -547,7 +548,7 @@ public class MSBFragmentCollectionModelImpl extends BaseModelImpl<MSBFragmentCol
 	public CacheModel<MSBFragmentCollection> toCacheModel() {
 		MSBFragmentCollectionCacheModel msbFragmentCollectionCacheModel = new MSBFragmentCollectionCacheModel();
 
-		msbFragmentCollectionCacheModel.fragmentCollectionId = getFragmentCollectionId();
+		msbFragmentCollectionCacheModel.msbFragmentCollectionId = getMsbFragmentCollectionId();
 
 		msbFragmentCollectionCacheModel.groupId = getGroupId();
 
@@ -604,8 +605,8 @@ public class MSBFragmentCollectionModelImpl extends BaseModelImpl<MSBFragmentCol
 	public String toString() {
 		StringBundler sb = new StringBundler(19);
 
-		sb.append("{fragmentCollectionId=");
-		sb.append(getFragmentCollectionId());
+		sb.append("{msbFragmentCollectionId=");
+		sb.append(getMsbFragmentCollectionId());
 		sb.append(", groupId=");
 		sb.append(getGroupId());
 		sb.append(", companyId=");
@@ -637,8 +638,8 @@ public class MSBFragmentCollectionModelImpl extends BaseModelImpl<MSBFragmentCol
 		sb.append("</model-name>");
 
 		sb.append(
-			"<column><column-name>fragmentCollectionId</column-name><column-value><![CDATA[");
-		sb.append(getFragmentCollectionId());
+			"<column><column-name>msbFragmentCollectionId</column-name><column-value><![CDATA[");
+		sb.append(getMsbFragmentCollectionId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>groupId</column-name><column-value><![CDATA[");
@@ -682,7 +683,7 @@ public class MSBFragmentCollectionModelImpl extends BaseModelImpl<MSBFragmentCol
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
 			MSBFragmentCollection.class
 		};
-	private long _fragmentCollectionId;
+	private long _msbFragmentCollectionId;
 	private long _groupId;
 	private long _originalGroupId;
 	private boolean _setOriginalGroupId;

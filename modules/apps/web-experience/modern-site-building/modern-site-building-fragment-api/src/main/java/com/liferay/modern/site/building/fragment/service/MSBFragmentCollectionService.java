@@ -46,7 +46,7 @@ import java.util.List;
 @AccessControlled
 @JSONWebService
 @OSGiBeanProperties(property =  {
-	"json.web.service.context.name=fragment", "json.web.service.context.path=MSBFragmentCollection"}, service = MSBFragmentCollectionService.class)
+	"json.web.service.context.name=msb", "json.web.service.context.path=MSBFragmentCollection"}, service = MSBFragmentCollectionService.class)
 @ProviderType
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
@@ -61,14 +61,14 @@ public interface MSBFragmentCollectionService extends BaseService {
 		ServiceContext serviceContext) throws PortalException;
 
 	public MSBFragmentCollection deleteMSBFragmentCollection(
-		long fragmentCollectionId) throws PortalException;
+		long msbFragmentCollectionId) throws PortalException;
 
 	public List<MSBFragmentCollection> deleteMSBFragmentCollections(
-		long[] fragmentCollectionIds) throws PortalException;
+		long[] msbFragmentCollectionIds) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public MSBFragmentCollection fetchMSBFragmentCollection(
-		long fragmentCollectionId) throws PortalException;
+		long msbFragmentCollectionId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getGroupMSBFragmentCollectionsCount(long groupId);
@@ -97,6 +97,6 @@ public interface MSBFragmentCollectionService extends BaseService {
 	public java.lang.String getOSGiServiceIdentifier();
 
 	public MSBFragmentCollection updateMSBFragmentCollection(
-		long fragmentCollectionId, java.lang.String name,
+		long msbFragmentCollectionId, java.lang.String name,
 		java.lang.String description) throws PortalException;
 }

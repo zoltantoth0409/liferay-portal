@@ -65,25 +65,25 @@ public class MSBFragmentCollectionLocalServiceUtil {
 	/**
 	* Creates a new msb fragment collection with the primary key. Does not add the msb fragment collection to the database.
 	*
-	* @param fragmentCollectionId the primary key for the new msb fragment collection
+	* @param msbFragmentCollectionId the primary key for the new msb fragment collection
 	* @return the new msb fragment collection
 	*/
 	public static com.liferay.modern.site.building.fragment.model.MSBFragmentCollection createMSBFragmentCollection(
-		long fragmentCollectionId) {
-		return getService().createMSBFragmentCollection(fragmentCollectionId);
+		long msbFragmentCollectionId) {
+		return getService().createMSBFragmentCollection(msbFragmentCollectionId);
 	}
 
 	/**
 	* Deletes the msb fragment collection with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param fragmentCollectionId the primary key of the msb fragment collection
+	* @param msbFragmentCollectionId the primary key of the msb fragment collection
 	* @return the msb fragment collection that was removed
 	* @throws PortalException if a msb fragment collection with the primary key could not be found
 	*/
 	public static com.liferay.modern.site.building.fragment.model.MSBFragmentCollection deleteMSBFragmentCollection(
-		long fragmentCollectionId)
+		long msbFragmentCollectionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deleteMSBFragmentCollection(fragmentCollectionId);
+		return getService().deleteMSBFragmentCollection(msbFragmentCollectionId);
 	}
 
 	/**
@@ -187,8 +187,8 @@ public class MSBFragmentCollectionLocalServiceUtil {
 	}
 
 	public static com.liferay.modern.site.building.fragment.model.MSBFragmentCollection fetchMSBFragmentCollection(
-		long fragmentCollectionId) {
-		return getService().fetchMSBFragmentCollection(fragmentCollectionId);
+		long msbFragmentCollectionId) {
+		return getService().fetchMSBFragmentCollection(msbFragmentCollectionId);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
@@ -202,14 +202,14 @@ public class MSBFragmentCollectionLocalServiceUtil {
 	/**
 	* Returns the msb fragment collection with the primary key.
 	*
-	* @param fragmentCollectionId the primary key of the msb fragment collection
+	* @param msbFragmentCollectionId the primary key of the msb fragment collection
 	* @return the msb fragment collection
 	* @throws PortalException if a msb fragment collection with the primary key could not be found
 	*/
 	public static com.liferay.modern.site.building.fragment.model.MSBFragmentCollection getMSBFragmentCollection(
-		long fragmentCollectionId)
+		long msbFragmentCollectionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getMSBFragmentCollection(fragmentCollectionId);
+		return getService().getMSBFragmentCollection(msbFragmentCollectionId);
 	}
 
 	/**
@@ -245,9 +245,10 @@ public class MSBFragmentCollectionLocalServiceUtil {
 
 	public static java.util.List<com.liferay.modern.site.building.fragment.model.MSBFragmentCollection> getMSBFragmentCollections(
 		long groupId, java.lang.String name, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.modern.site.building.fragment.model.MSBFragmentCollection> obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.modern.site.building.fragment.model.MSBFragmentCollection> orderByComparator) {
 		return getService()
-				   .getMSBFragmentCollections(groupId, name, start, end, obc);
+				   .getMSBFragmentCollections(groupId, name, start, end,
+			orderByComparator);
 	}
 
 	/**
@@ -275,11 +276,11 @@ public class MSBFragmentCollectionLocalServiceUtil {
 	}
 
 	public static com.liferay.modern.site.building.fragment.model.MSBFragmentCollection updateMSBFragmentCollection(
-		long fragmentCollectionId, java.lang.String name,
+		long msbFragmentCollectionId, java.lang.String name,
 		java.lang.String description)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
-				   .updateMSBFragmentCollection(fragmentCollectionId, name,
+				   .updateMSBFragmentCollection(msbFragmentCollectionId, name,
 			description);
 	}
 

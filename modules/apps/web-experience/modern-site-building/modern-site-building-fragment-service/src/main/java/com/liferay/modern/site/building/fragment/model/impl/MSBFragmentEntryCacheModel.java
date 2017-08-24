@@ -52,7 +52,7 @@ public class MSBFragmentEntryCacheModel implements CacheModel<MSBFragmentEntry>,
 
 		MSBFragmentEntryCacheModel msbFragmentEntryCacheModel = (MSBFragmentEntryCacheModel)obj;
 
-		if (fragmentEntryId == msbFragmentEntryCacheModel.fragmentEntryId) {
+		if (msbFragmentEntryId == msbFragmentEntryCacheModel.msbFragmentEntryId) {
 			return true;
 		}
 
@@ -61,15 +61,15 @@ public class MSBFragmentEntryCacheModel implements CacheModel<MSBFragmentEntry>,
 
 	@Override
 	public int hashCode() {
-		return HashUtil.hash(0, fragmentEntryId);
+		return HashUtil.hash(0, msbFragmentEntryId);
 	}
 
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(25);
 
-		sb.append("{fragmentEntryId=");
-		sb.append(fragmentEntryId);
+		sb.append("{msbFragmentEntryId=");
+		sb.append(msbFragmentEntryId);
 		sb.append(", groupId=");
 		sb.append(groupId);
 		sb.append(", companyId=");
@@ -101,7 +101,7 @@ public class MSBFragmentEntryCacheModel implements CacheModel<MSBFragmentEntry>,
 	public MSBFragmentEntry toEntityModel() {
 		MSBFragmentEntryImpl msbFragmentEntryImpl = new MSBFragmentEntryImpl();
 
-		msbFragmentEntryImpl.setFragmentEntryId(fragmentEntryId);
+		msbFragmentEntryImpl.setMsbFragmentEntryId(msbFragmentEntryId);
 		msbFragmentEntryImpl.setGroupId(groupId);
 		msbFragmentEntryImpl.setCompanyId(companyId);
 		msbFragmentEntryImpl.setUserId(userId);
@@ -164,7 +164,7 @@ public class MSBFragmentEntryCacheModel implements CacheModel<MSBFragmentEntry>,
 
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
-		fragmentEntryId = objectInput.readLong();
+		msbFragmentEntryId = objectInput.readLong();
 
 		groupId = objectInput.readLong();
 
@@ -185,7 +185,7 @@ public class MSBFragmentEntryCacheModel implements CacheModel<MSBFragmentEntry>,
 	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
-		objectOutput.writeLong(fragmentEntryId);
+		objectOutput.writeLong(msbFragmentEntryId);
 
 		objectOutput.writeLong(groupId);
 
@@ -234,7 +234,7 @@ public class MSBFragmentEntryCacheModel implements CacheModel<MSBFragmentEntry>,
 		}
 	}
 
-	public long fragmentEntryId;
+	public long msbFragmentEntryId;
 	public long groupId;
 	public long companyId;
 	public long userId;

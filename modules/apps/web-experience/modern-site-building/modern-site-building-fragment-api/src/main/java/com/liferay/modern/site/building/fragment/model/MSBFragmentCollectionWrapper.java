@@ -59,7 +59,7 @@ public class MSBFragmentCollectionWrapper implements MSBFragmentCollection,
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("fragmentCollectionId", getFragmentCollectionId());
+		attributes.put("msbFragmentCollectionId", getMsbFragmentCollectionId());
 		attributes.put("groupId", getGroupId());
 		attributes.put("companyId", getCompanyId());
 		attributes.put("userId", getUserId());
@@ -74,10 +74,11 @@ public class MSBFragmentCollectionWrapper implements MSBFragmentCollection,
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long fragmentCollectionId = (Long)attributes.get("fragmentCollectionId");
+		Long msbFragmentCollectionId = (Long)attributes.get(
+				"msbFragmentCollectionId");
 
-		if (fragmentCollectionId != null) {
-			setFragmentCollectionId(fragmentCollectionId);
+		if (msbFragmentCollectionId != null) {
+			setMsbFragmentCollectionId(msbFragmentCollectionId);
 		}
 
 		Long groupId = (Long)attributes.get("groupId");
@@ -175,16 +176,6 @@ public class MSBFragmentCollectionWrapper implements MSBFragmentCollection,
 	}
 
 	/**
-	* Returns the fragment collection ID of this msb fragment collection.
-	*
-	* @return the fragment collection ID of this msb fragment collection
-	*/
-	@Override
-	public long getFragmentCollectionId() {
-		return _msbFragmentCollection.getFragmentCollectionId();
-	}
-
-	/**
 	* Returns the group ID of this msb fragment collection.
 	*
 	* @return the group ID of this msb fragment collection
@@ -202,6 +193,16 @@ public class MSBFragmentCollectionWrapper implements MSBFragmentCollection,
 	@Override
 	public Date getModifiedDate() {
 		return _msbFragmentCollection.getModifiedDate();
+	}
+
+	/**
+	* Returns the msb fragment collection ID of this msb fragment collection.
+	*
+	* @return the msb fragment collection ID of this msb fragment collection
+	*/
+	@Override
+	public long getMsbFragmentCollectionId() {
+		return _msbFragmentCollection.getMsbFragmentCollectionId();
 	}
 
 	/**
@@ -336,16 +337,6 @@ public class MSBFragmentCollectionWrapper implements MSBFragmentCollection,
 	}
 
 	/**
-	* Sets the fragment collection ID of this msb fragment collection.
-	*
-	* @param fragmentCollectionId the fragment collection ID of this msb fragment collection
-	*/
-	@Override
-	public void setFragmentCollectionId(long fragmentCollectionId) {
-		_msbFragmentCollection.setFragmentCollectionId(fragmentCollectionId);
-	}
-
-	/**
 	* Sets the group ID of this msb fragment collection.
 	*
 	* @param groupId the group ID of this msb fragment collection
@@ -363,6 +354,16 @@ public class MSBFragmentCollectionWrapper implements MSBFragmentCollection,
 	@Override
 	public void setModifiedDate(Date modifiedDate) {
 		_msbFragmentCollection.setModifiedDate(modifiedDate);
+	}
+
+	/**
+	* Sets the msb fragment collection ID of this msb fragment collection.
+	*
+	* @param msbFragmentCollectionId the msb fragment collection ID of this msb fragment collection
+	*/
+	@Override
+	public void setMsbFragmentCollectionId(long msbFragmentCollectionId) {
+		_msbFragmentCollection.setMsbFragmentCollectionId(msbFragmentCollectionId);
 	}
 
 	/**

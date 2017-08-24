@@ -78,22 +78,22 @@ public interface MSBFragmentCollectionLocalService extends BaseLocalService,
 	/**
 	* Creates a new msb fragment collection with the primary key. Does not add the msb fragment collection to the database.
 	*
-	* @param fragmentCollectionId the primary key for the new msb fragment collection
+	* @param msbFragmentCollectionId the primary key for the new msb fragment collection
 	* @return the new msb fragment collection
 	*/
 	public MSBFragmentCollection createMSBFragmentCollection(
-		long fragmentCollectionId);
+		long msbFragmentCollectionId);
 
 	/**
 	* Deletes the msb fragment collection with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param fragmentCollectionId the primary key of the msb fragment collection
+	* @param msbFragmentCollectionId the primary key of the msb fragment collection
 	* @return the msb fragment collection that was removed
 	* @throws PortalException if a msb fragment collection with the primary key could not be found
 	*/
 	@Indexable(type = IndexableType.DELETE)
 	public MSBFragmentCollection deleteMSBFragmentCollection(
-		long fragmentCollectionId) throws PortalException;
+		long msbFragmentCollectionId) throws PortalException;
 
 	/**
 	* Deletes the msb fragment collection from the database. Also notifies the appropriate model listeners.
@@ -174,7 +174,7 @@ public interface MSBFragmentCollectionLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public MSBFragmentCollection fetchMSBFragmentCollection(
-		long fragmentCollectionId);
+		long msbFragmentCollectionId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();
@@ -185,13 +185,13 @@ public interface MSBFragmentCollectionLocalService extends BaseLocalService,
 	/**
 	* Returns the msb fragment collection with the primary key.
 	*
-	* @param fragmentCollectionId the primary key of the msb fragment collection
+	* @param msbFragmentCollectionId the primary key of the msb fragment collection
 	* @return the msb fragment collection
 	* @throws PortalException if a msb fragment collection with the primary key could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public MSBFragmentCollection getMSBFragmentCollection(
-		long fragmentCollectionId) throws PortalException;
+		long msbFragmentCollectionId) throws PortalException;
 
 	/**
 	* Returns a range of all the msb fragment collections.
@@ -221,7 +221,7 @@ public interface MSBFragmentCollectionLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<MSBFragmentCollection> getMSBFragmentCollections(long groupId,
 		java.lang.String name, int start, int end,
-		OrderByComparator<MSBFragmentCollection> obc);
+		OrderByComparator<MSBFragmentCollection> orderByComparator);
 
 	/**
 	* Returns the number of msb fragment collections.
@@ -244,7 +244,7 @@ public interface MSBFragmentCollectionLocalService extends BaseLocalService,
 		throws PortalException;
 
 	public MSBFragmentCollection updateMSBFragmentCollection(
-		long fragmentCollectionId, java.lang.String name,
+		long msbFragmentCollectionId, java.lang.String name,
 		java.lang.String description) throws PortalException;
 
 	/**

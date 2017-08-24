@@ -37,11 +37,11 @@ public interface MSBFragmentEntry extends MSBFragmentEntryModel, PersistedModel 
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.modern.site.building.fragment.model.impl.MSBFragmentEntryImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public static final Accessor<MSBFragmentEntry, Long> FRAGMENT_ENTRY_ID_ACCESSOR =
+	public static final Accessor<MSBFragmentEntry, Long> MSB_FRAGMENT_ENTRY_ID_ACCESSOR =
 		new Accessor<MSBFragmentEntry, Long>() {
 			@Override
 			public Long get(MSBFragmentEntry msbFragmentEntry) {
-				return msbFragmentEntry.getFragmentEntryId();
+				return msbFragmentEntry.getMsbFragmentEntryId();
 			}
 
 			@Override

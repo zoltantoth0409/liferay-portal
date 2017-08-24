@@ -91,27 +91,27 @@ public abstract class MSBFragmentCollectionLocalServiceBaseImpl
 	/**
 	 * Creates a new msb fragment collection with the primary key. Does not add the msb fragment collection to the database.
 	 *
-	 * @param fragmentCollectionId the primary key for the new msb fragment collection
+	 * @param msbFragmentCollectionId the primary key for the new msb fragment collection
 	 * @return the new msb fragment collection
 	 */
 	@Override
 	public MSBFragmentCollection createMSBFragmentCollection(
-		long fragmentCollectionId) {
-		return msbFragmentCollectionPersistence.create(fragmentCollectionId);
+		long msbFragmentCollectionId) {
+		return msbFragmentCollectionPersistence.create(msbFragmentCollectionId);
 	}
 
 	/**
 	 * Deletes the msb fragment collection with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param fragmentCollectionId the primary key of the msb fragment collection
+	 * @param msbFragmentCollectionId the primary key of the msb fragment collection
 	 * @return the msb fragment collection that was removed
 	 * @throws PortalException if a msb fragment collection with the primary key could not be found
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public MSBFragmentCollection deleteMSBFragmentCollection(
-		long fragmentCollectionId) throws PortalException {
-		return msbFragmentCollectionPersistence.remove(fragmentCollectionId);
+		long msbFragmentCollectionId) throws PortalException {
+		return msbFragmentCollectionPersistence.remove(msbFragmentCollectionId);
 	}
 
 	/**
@@ -213,21 +213,21 @@ public abstract class MSBFragmentCollectionLocalServiceBaseImpl
 
 	@Override
 	public MSBFragmentCollection fetchMSBFragmentCollection(
-		long fragmentCollectionId) {
-		return msbFragmentCollectionPersistence.fetchByPrimaryKey(fragmentCollectionId);
+		long msbFragmentCollectionId) {
+		return msbFragmentCollectionPersistence.fetchByPrimaryKey(msbFragmentCollectionId);
 	}
 
 	/**
 	 * Returns the msb fragment collection with the primary key.
 	 *
-	 * @param fragmentCollectionId the primary key of the msb fragment collection
+	 * @param msbFragmentCollectionId the primary key of the msb fragment collection
 	 * @return the msb fragment collection
 	 * @throws PortalException if a msb fragment collection with the primary key could not be found
 	 */
 	@Override
 	public MSBFragmentCollection getMSBFragmentCollection(
-		long fragmentCollectionId) throws PortalException {
-		return msbFragmentCollectionPersistence.findByPrimaryKey(fragmentCollectionId);
+		long msbFragmentCollectionId) throws PortalException {
+		return msbFragmentCollectionPersistence.findByPrimaryKey(msbFragmentCollectionId);
 	}
 
 	@Override
@@ -238,7 +238,8 @@ public abstract class MSBFragmentCollectionLocalServiceBaseImpl
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(MSBFragmentCollection.class);
 
-		actionableDynamicQuery.setPrimaryKeyPropertyName("fragmentCollectionId");
+		actionableDynamicQuery.setPrimaryKeyPropertyName(
+			"msbFragmentCollectionId");
 
 		return actionableDynamicQuery;
 	}
@@ -252,7 +253,7 @@ public abstract class MSBFragmentCollectionLocalServiceBaseImpl
 		indexableActionableDynamicQuery.setModelClass(MSBFragmentCollection.class);
 
 		indexableActionableDynamicQuery.setPrimaryKeyPropertyName(
-			"fragmentCollectionId");
+			"msbFragmentCollectionId");
 
 		return indexableActionableDynamicQuery;
 	}
@@ -263,7 +264,8 @@ public abstract class MSBFragmentCollectionLocalServiceBaseImpl
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(MSBFragmentCollection.class);
 
-		actionableDynamicQuery.setPrimaryKeyPropertyName("fragmentCollectionId");
+		actionableDynamicQuery.setPrimaryKeyPropertyName(
+			"msbFragmentCollectionId");
 	}
 
 	/**

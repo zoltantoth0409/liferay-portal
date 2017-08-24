@@ -52,15 +52,15 @@ public class MSBFragmentEntryServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.modern.site.building.fragment.model.MSBFragmentEntry> deleteMSBFragmentEntries(
-		long[] fragmentEntriesIds)
+		long[] msbFragmentEntriesIds)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deleteMSBFragmentEntries(fragmentEntriesIds);
+		return getService().deleteMSBFragmentEntries(msbFragmentEntriesIds);
 	}
 
 	public static com.liferay.modern.site.building.fragment.model.MSBFragmentEntry deleteMSBFragmentEntry(
-		long fragmentEntryId)
+		long msbFragmentEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deleteMSBFragmentEntry(fragmentEntryId);
+		return getService().deleteMSBFragmentEntry(msbFragmentEntryId);
 	}
 
 	public static java.util.List<com.liferay.modern.site.building.fragment.model.MSBFragmentEntry> fetchMSBFragmentEntries(
@@ -70,8 +70,8 @@ public class MSBFragmentEntryServiceUtil {
 	}
 
 	public static com.liferay.modern.site.building.fragment.model.MSBFragmentEntry fetchMSBFragmentEntry(
-		long fragmentEntryId) {
-		return getService().fetchMSBFragmentEntry(fragmentEntryId);
+		long msbFragmentEntryId) {
+		return getService().fetchMSBFragmentEntry(msbFragmentEntryId);
 	}
 
 	public static int getGroupMSBFragmentCollectionsCount(
@@ -99,10 +99,10 @@ public class MSBFragmentEntryServiceUtil {
 	public static java.util.List<com.liferay.modern.site.building.fragment.model.MSBFragmentEntry> getMSBFragmentEntries(
 		long groupId, long msbFragmentCollectionId, java.lang.String name,
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.modern.site.building.fragment.model.MSBFragmentEntry> obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.modern.site.building.fragment.model.MSBFragmentEntry> orderByComparator) {
 		return getService()
 				   .getMSBFragmentEntries(groupId, msbFragmentCollectionId,
-			name, start, end, obc);
+			name, start, end, orderByComparator);
 	}
 
 	/**
@@ -115,11 +115,12 @@ public class MSBFragmentEntryServiceUtil {
 	}
 
 	public static com.liferay.modern.site.building.fragment.model.MSBFragmentEntry updateMSBFragmentEntry(
-		long fragmentEntryId, java.lang.String name, java.lang.String css,
+		long msbFragmentEntryId, java.lang.String name, java.lang.String css,
 		java.lang.String html, java.lang.String js)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
-				   .updateMSBFragmentEntry(fragmentEntryId, name, css, html, js);
+				   .updateMSBFragmentEntry(msbFragmentEntryId, name, css, html,
+			js);
 	}
 
 	public static MSBFragmentEntryService getService() {

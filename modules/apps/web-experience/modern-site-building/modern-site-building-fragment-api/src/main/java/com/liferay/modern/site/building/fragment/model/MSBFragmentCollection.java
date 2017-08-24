@@ -38,11 +38,11 @@ public interface MSBFragmentCollection extends MSBFragmentCollectionModel,
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.modern.site.building.fragment.model.impl.MSBFragmentCollectionImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public static final Accessor<MSBFragmentCollection, Long> FRAGMENT_COLLECTION_ID_ACCESSOR =
+	public static final Accessor<MSBFragmentCollection, Long> MSB_FRAGMENT_COLLECTION_ID_ACCESSOR =
 		new Accessor<MSBFragmentCollection, Long>() {
 			@Override
 			public Long get(MSBFragmentCollection msbFragmentCollection) {
-				return msbFragmentCollection.getFragmentCollectionId();
+				return msbFragmentCollection.getMsbFragmentCollectionId();
 			}
 
 			@Override

@@ -70,7 +70,7 @@ public class MSBFragmentEntryModelImpl extends BaseModelImpl<MSBFragmentEntry>
 	 */
 	public static final String TABLE_NAME = "MSBFragmentEntry";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "fragmentEntryId", Types.BIGINT },
+			{ "msbFragmentEntryId", Types.BIGINT },
 			{ "groupId", Types.BIGINT },
 			{ "companyId", Types.BIGINT },
 			{ "userId", Types.BIGINT },
@@ -86,7 +86,7 @@ public class MSBFragmentEntryModelImpl extends BaseModelImpl<MSBFragmentEntry>
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
 
 	static {
-		TABLE_COLUMNS_MAP.put("fragmentEntryId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("msbFragmentEntryId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("groupId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("companyId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("userId", Types.BIGINT);
@@ -100,7 +100,7 @@ public class MSBFragmentEntryModelImpl extends BaseModelImpl<MSBFragmentEntry>
 		TABLE_COLUMNS_MAP.put("js", Types.VARCHAR);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table MSBFragmentEntry (fragmentEntryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,msbFragmentCollectionId LONG,name VARCHAR(75) null,css STRING null,html STRING null,js STRING null)";
+	public static final String TABLE_SQL_CREATE = "create table MSBFragmentEntry (msbFragmentEntryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,msbFragmentCollectionId LONG,name VARCHAR(75) null,css STRING null,html STRING null,js STRING null)";
 	public static final String TABLE_SQL_DROP = "drop table MSBFragmentEntry";
 	public static final String ORDER_BY_JPQL = " ORDER BY msbFragmentEntry.name ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY MSBFragmentEntry.name ASC";
@@ -133,7 +133,7 @@ public class MSBFragmentEntryModelImpl extends BaseModelImpl<MSBFragmentEntry>
 
 		MSBFragmentEntry model = new MSBFragmentEntryImpl();
 
-		model.setFragmentEntryId(soapModel.getFragmentEntryId());
+		model.setMsbFragmentEntryId(soapModel.getMsbFragmentEntryId());
 		model.setGroupId(soapModel.getGroupId());
 		model.setCompanyId(soapModel.getCompanyId());
 		model.setUserId(soapModel.getUserId());
@@ -178,17 +178,17 @@ public class MSBFragmentEntryModelImpl extends BaseModelImpl<MSBFragmentEntry>
 
 	@Override
 	public long getPrimaryKey() {
-		return _fragmentEntryId;
+		return _msbFragmentEntryId;
 	}
 
 	@Override
 	public void setPrimaryKey(long primaryKey) {
-		setFragmentEntryId(primaryKey);
+		setMsbFragmentEntryId(primaryKey);
 	}
 
 	@Override
 	public Serializable getPrimaryKeyObj() {
-		return _fragmentEntryId;
+		return _msbFragmentEntryId;
 	}
 
 	@Override
@@ -210,7 +210,7 @@ public class MSBFragmentEntryModelImpl extends BaseModelImpl<MSBFragmentEntry>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("fragmentEntryId", getFragmentEntryId());
+		attributes.put("msbFragmentEntryId", getMsbFragmentEntryId());
 		attributes.put("groupId", getGroupId());
 		attributes.put("companyId", getCompanyId());
 		attributes.put("userId", getUserId());
@@ -231,10 +231,10 @@ public class MSBFragmentEntryModelImpl extends BaseModelImpl<MSBFragmentEntry>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long fragmentEntryId = (Long)attributes.get("fragmentEntryId");
+		Long msbFragmentEntryId = (Long)attributes.get("msbFragmentEntryId");
 
-		if (fragmentEntryId != null) {
-			setFragmentEntryId(fragmentEntryId);
+		if (msbFragmentEntryId != null) {
+			setMsbFragmentEntryId(msbFragmentEntryId);
 		}
 
 		Long groupId = (Long)attributes.get("groupId");
@@ -307,13 +307,13 @@ public class MSBFragmentEntryModelImpl extends BaseModelImpl<MSBFragmentEntry>
 
 	@JSON
 	@Override
-	public long getFragmentEntryId() {
-		return _fragmentEntryId;
+	public long getMsbFragmentEntryId() {
+		return _msbFragmentEntryId;
 	}
 
 	@Override
-	public void setFragmentEntryId(long fragmentEntryId) {
-		_fragmentEntryId = fragmentEntryId;
+	public void setMsbFragmentEntryId(long msbFragmentEntryId) {
+		_msbFragmentEntryId = msbFragmentEntryId;
 	}
 
 	@JSON
@@ -549,7 +549,7 @@ public class MSBFragmentEntryModelImpl extends BaseModelImpl<MSBFragmentEntry>
 	public Object clone() {
 		MSBFragmentEntryImpl msbFragmentEntryImpl = new MSBFragmentEntryImpl();
 
-		msbFragmentEntryImpl.setFragmentEntryId(getFragmentEntryId());
+		msbFragmentEntryImpl.setMsbFragmentEntryId(getMsbFragmentEntryId());
 		msbFragmentEntryImpl.setGroupId(getGroupId());
 		msbFragmentEntryImpl.setCompanyId(getCompanyId());
 		msbFragmentEntryImpl.setUserId(getUserId());
@@ -640,7 +640,7 @@ public class MSBFragmentEntryModelImpl extends BaseModelImpl<MSBFragmentEntry>
 	public CacheModel<MSBFragmentEntry> toCacheModel() {
 		MSBFragmentEntryCacheModel msbFragmentEntryCacheModel = new MSBFragmentEntryCacheModel();
 
-		msbFragmentEntryCacheModel.fragmentEntryId = getFragmentEntryId();
+		msbFragmentEntryCacheModel.msbFragmentEntryId = getMsbFragmentEntryId();
 
 		msbFragmentEntryCacheModel.groupId = getGroupId();
 
@@ -715,8 +715,8 @@ public class MSBFragmentEntryModelImpl extends BaseModelImpl<MSBFragmentEntry>
 	public String toString() {
 		StringBundler sb = new StringBundler(25);
 
-		sb.append("{fragmentEntryId=");
-		sb.append(getFragmentEntryId());
+		sb.append("{msbFragmentEntryId=");
+		sb.append(getMsbFragmentEntryId());
 		sb.append(", groupId=");
 		sb.append(getGroupId());
 		sb.append(", companyId=");
@@ -754,8 +754,8 @@ public class MSBFragmentEntryModelImpl extends BaseModelImpl<MSBFragmentEntry>
 		sb.append("</model-name>");
 
 		sb.append(
-			"<column><column-name>fragmentEntryId</column-name><column-value><![CDATA[");
-		sb.append(getFragmentEntryId());
+			"<column><column-name>msbFragmentEntryId</column-name><column-value><![CDATA[");
+		sb.append(getMsbFragmentEntryId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>groupId</column-name><column-value><![CDATA[");
@@ -811,7 +811,7 @@ public class MSBFragmentEntryModelImpl extends BaseModelImpl<MSBFragmentEntry>
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
 			MSBFragmentEntry.class
 		};
-	private long _fragmentEntryId;
+	private long _msbFragmentEntryId;
 	private long _groupId;
 	private long _originalGroupId;
 	private boolean _setOriginalGroupId;

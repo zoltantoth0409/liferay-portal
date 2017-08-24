@@ -58,7 +58,7 @@ public class MSBFragmentEntryWrapper implements MSBFragmentEntry,
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("fragmentEntryId", getFragmentEntryId());
+		attributes.put("msbFragmentEntryId", getMsbFragmentEntryId());
 		attributes.put("groupId", getGroupId());
 		attributes.put("companyId", getCompanyId());
 		attributes.put("userId", getUserId());
@@ -76,10 +76,10 @@ public class MSBFragmentEntryWrapper implements MSBFragmentEntry,
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long fragmentEntryId = (Long)attributes.get("fragmentEntryId");
+		Long msbFragmentEntryId = (Long)attributes.get("msbFragmentEntryId");
 
-		if (fragmentEntryId != null) {
-			setFragmentEntryId(fragmentEntryId);
+		if (msbFragmentEntryId != null) {
+			setMsbFragmentEntryId(msbFragmentEntryId);
 		}
 
 		Long groupId = (Long)attributes.get("groupId");
@@ -196,16 +196,6 @@ public class MSBFragmentEntryWrapper implements MSBFragmentEntry,
 	}
 
 	/**
-	* Returns the fragment entry ID of this msb fragment entry.
-	*
-	* @return the fragment entry ID of this msb fragment entry
-	*/
-	@Override
-	public long getFragmentEntryId() {
-		return _msbFragmentEntry.getFragmentEntryId();
-	}
-
-	/**
 	* Returns the group ID of this msb fragment entry.
 	*
 	* @return the group ID of this msb fragment entry
@@ -253,6 +243,16 @@ public class MSBFragmentEntryWrapper implements MSBFragmentEntry,
 	@Override
 	public long getMsbFragmentCollectionId() {
 		return _msbFragmentEntry.getMsbFragmentCollectionId();
+	}
+
+	/**
+	* Returns the msb fragment entry ID of this msb fragment entry.
+	*
+	* @return the msb fragment entry ID of this msb fragment entry
+	*/
+	@Override
+	public long getMsbFragmentEntryId() {
+		return _msbFragmentEntry.getMsbFragmentEntryId();
 	}
 
 	/**
@@ -387,16 +387,6 @@ public class MSBFragmentEntryWrapper implements MSBFragmentEntry,
 	}
 
 	/**
-	* Sets the fragment entry ID of this msb fragment entry.
-	*
-	* @param fragmentEntryId the fragment entry ID of this msb fragment entry
-	*/
-	@Override
-	public void setFragmentEntryId(long fragmentEntryId) {
-		_msbFragmentEntry.setFragmentEntryId(fragmentEntryId);
-	}
-
-	/**
 	* Sets the group ID of this msb fragment entry.
 	*
 	* @param groupId the group ID of this msb fragment entry
@@ -444,6 +434,16 @@ public class MSBFragmentEntryWrapper implements MSBFragmentEntry,
 	@Override
 	public void setMsbFragmentCollectionId(long msbFragmentCollectionId) {
 		_msbFragmentEntry.setMsbFragmentCollectionId(msbFragmentCollectionId);
+	}
+
+	/**
+	* Sets the msb fragment entry ID of this msb fragment entry.
+	*
+	* @param msbFragmentEntryId the msb fragment entry ID of this msb fragment entry
+	*/
+	@Override
+	public void setMsbFragmentEntryId(long msbFragmentEntryId) {
+		_msbFragmentEntry.setMsbFragmentEntryId(msbFragmentEntryId);
 	}
 
 	/**

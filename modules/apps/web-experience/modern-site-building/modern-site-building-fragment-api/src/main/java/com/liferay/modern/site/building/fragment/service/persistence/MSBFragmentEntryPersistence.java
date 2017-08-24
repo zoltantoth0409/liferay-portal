@@ -16,7 +16,7 @@ package com.liferay.modern.site.building.fragment.service.persistence;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.modern.site.building.fragment.exception.NoSuchMSBFragmentEntryException;
+import com.liferay.modern.site.building.fragment.exception.NoSuchFragmentEntryException;
 import com.liferay.modern.site.building.fragment.model.MSBFragmentEntry;
 
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
@@ -106,11 +106,11 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	* @param groupId the group ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching msb fragment entry
-	* @throws NoSuchMSBFragmentEntryException if a matching msb fragment entry could not be found
+	* @throws NoSuchFragmentEntryException if a matching msb fragment entry could not be found
 	*/
 	public MSBFragmentEntry findByGroupId_First(long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator<MSBFragmentEntry> orderByComparator)
-		throws NoSuchMSBFragmentEntryException;
+		throws NoSuchFragmentEntryException;
 
 	/**
 	* Returns the first msb fragment entry in the ordered set where groupId = &#63;.
@@ -128,11 +128,11 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	* @param groupId the group ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching msb fragment entry
-	* @throws NoSuchMSBFragmentEntryException if a matching msb fragment entry could not be found
+	* @throws NoSuchFragmentEntryException if a matching msb fragment entry could not be found
 	*/
 	public MSBFragmentEntry findByGroupId_Last(long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator<MSBFragmentEntry> orderByComparator)
-		throws NoSuchMSBFragmentEntryException;
+		throws NoSuchFragmentEntryException;
 
 	/**
 	* Returns the last msb fragment entry in the ordered set where groupId = &#63;.
@@ -147,16 +147,16 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	/**
 	* Returns the msb fragment entries before and after the current msb fragment entry in the ordered set where groupId = &#63;.
 	*
-	* @param fragmentEntryId the primary key of the current msb fragment entry
+	* @param msbFragmentEntryId the primary key of the current msb fragment entry
 	* @param groupId the group ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next msb fragment entry
-	* @throws NoSuchMSBFragmentEntryException if a msb fragment entry with the primary key could not be found
+	* @throws NoSuchFragmentEntryException if a msb fragment entry with the primary key could not be found
 	*/
-	public MSBFragmentEntry[] findByGroupId_PrevAndNext(long fragmentEntryId,
-		long groupId,
+	public MSBFragmentEntry[] findByGroupId_PrevAndNext(
+		long msbFragmentEntryId, long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator<MSBFragmentEntry> orderByComparator)
-		throws NoSuchMSBFragmentEntryException;
+		throws NoSuchFragmentEntryException;
 
 	/**
 	* Returns all the msb fragment entries that the user has permission to view where groupId = &#63;.
@@ -201,16 +201,16 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	/**
 	* Returns the msb fragment entries before and after the current msb fragment entry in the ordered set of msb fragment entries that the user has permission to view where groupId = &#63;.
 	*
-	* @param fragmentEntryId the primary key of the current msb fragment entry
+	* @param msbFragmentEntryId the primary key of the current msb fragment entry
 	* @param groupId the group ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next msb fragment entry
-	* @throws NoSuchMSBFragmentEntryException if a msb fragment entry with the primary key could not be found
+	* @throws NoSuchFragmentEntryException if a msb fragment entry with the primary key could not be found
 	*/
 	public MSBFragmentEntry[] filterFindByGroupId_PrevAndNext(
-		long fragmentEntryId, long groupId,
+		long msbFragmentEntryId, long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator<MSBFragmentEntry> orderByComparator)
-		throws NoSuchMSBFragmentEntryException;
+		throws NoSuchFragmentEntryException;
 
 	/**
 	* Removes all the msb fragment entries where groupId = &#63; from the database.
@@ -301,12 +301,12 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	* @param msbFragmentCollectionId the msb fragment collection ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching msb fragment entry
-	* @throws NoSuchMSBFragmentEntryException if a matching msb fragment entry could not be found
+	* @throws NoSuchFragmentEntryException if a matching msb fragment entry could not be found
 	*/
 	public MSBFragmentEntry findByMSBFragmentCollectionId_First(
 		long msbFragmentCollectionId,
 		com.liferay.portal.kernel.util.OrderByComparator<MSBFragmentEntry> orderByComparator)
-		throws NoSuchMSBFragmentEntryException;
+		throws NoSuchFragmentEntryException;
 
 	/**
 	* Returns the first msb fragment entry in the ordered set where msbFragmentCollectionId = &#63;.
@@ -325,12 +325,12 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	* @param msbFragmentCollectionId the msb fragment collection ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching msb fragment entry
-	* @throws NoSuchMSBFragmentEntryException if a matching msb fragment entry could not be found
+	* @throws NoSuchFragmentEntryException if a matching msb fragment entry could not be found
 	*/
 	public MSBFragmentEntry findByMSBFragmentCollectionId_Last(
 		long msbFragmentCollectionId,
 		com.liferay.portal.kernel.util.OrderByComparator<MSBFragmentEntry> orderByComparator)
-		throws NoSuchMSBFragmentEntryException;
+		throws NoSuchFragmentEntryException;
 
 	/**
 	* Returns the last msb fragment entry in the ordered set where msbFragmentCollectionId = &#63;.
@@ -346,16 +346,16 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	/**
 	* Returns the msb fragment entries before and after the current msb fragment entry in the ordered set where msbFragmentCollectionId = &#63;.
 	*
-	* @param fragmentEntryId the primary key of the current msb fragment entry
+	* @param msbFragmentEntryId the primary key of the current msb fragment entry
 	* @param msbFragmentCollectionId the msb fragment collection ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next msb fragment entry
-	* @throws NoSuchMSBFragmentEntryException if a msb fragment entry with the primary key could not be found
+	* @throws NoSuchFragmentEntryException if a msb fragment entry with the primary key could not be found
 	*/
 	public MSBFragmentEntry[] findByMSBFragmentCollectionId_PrevAndNext(
-		long fragmentEntryId, long msbFragmentCollectionId,
+		long msbFragmentEntryId, long msbFragmentCollectionId,
 		com.liferay.portal.kernel.util.OrderByComparator<MSBFragmentEntry> orderByComparator)
-		throws NoSuchMSBFragmentEntryException;
+		throws NoSuchFragmentEntryException;
 
 	/**
 	* Removes all the msb fragment entries where msbFragmentCollectionId = &#63; from the database.
@@ -379,7 +379,7 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	* @param msbFragmentCollectionId the msb fragment collection ID
 	* @return the matching msb fragment entries
 	*/
-	public java.util.List<MSBFragmentEntry> findByG_MSBFC(long groupId,
+	public java.util.List<MSBFragmentEntry> findByG_MSBFCI(long groupId,
 		long msbFragmentCollectionId);
 
 	/**
@@ -395,7 +395,7 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	* @param end the upper bound of the range of msb fragment entries (not inclusive)
 	* @return the range of matching msb fragment entries
 	*/
-	public java.util.List<MSBFragmentEntry> findByG_MSBFC(long groupId,
+	public java.util.List<MSBFragmentEntry> findByG_MSBFCI(long groupId,
 		long msbFragmentCollectionId, int start, int end);
 
 	/**
@@ -412,7 +412,7 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching msb fragment entries
 	*/
-	public java.util.List<MSBFragmentEntry> findByG_MSBFC(long groupId,
+	public java.util.List<MSBFragmentEntry> findByG_MSBFCI(long groupId,
 		long msbFragmentCollectionId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<MSBFragmentEntry> orderByComparator);
 
@@ -431,7 +431,7 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	* @param retrieveFromCache whether to retrieve from the finder cache
 	* @return the ordered range of matching msb fragment entries
 	*/
-	public java.util.List<MSBFragmentEntry> findByG_MSBFC(long groupId,
+	public java.util.List<MSBFragmentEntry> findByG_MSBFCI(long groupId,
 		long msbFragmentCollectionId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<MSBFragmentEntry> orderByComparator,
 		boolean retrieveFromCache);
@@ -443,12 +443,12 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	* @param msbFragmentCollectionId the msb fragment collection ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching msb fragment entry
-	* @throws NoSuchMSBFragmentEntryException if a matching msb fragment entry could not be found
+	* @throws NoSuchFragmentEntryException if a matching msb fragment entry could not be found
 	*/
-	public MSBFragmentEntry findByG_MSBFC_First(long groupId,
+	public MSBFragmentEntry findByG_MSBFCI_First(long groupId,
 		long msbFragmentCollectionId,
 		com.liferay.portal.kernel.util.OrderByComparator<MSBFragmentEntry> orderByComparator)
-		throws NoSuchMSBFragmentEntryException;
+		throws NoSuchFragmentEntryException;
 
 	/**
 	* Returns the first msb fragment entry in the ordered set where groupId = &#63; and msbFragmentCollectionId = &#63;.
@@ -458,7 +458,7 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching msb fragment entry, or <code>null</code> if a matching msb fragment entry could not be found
 	*/
-	public MSBFragmentEntry fetchByG_MSBFC_First(long groupId,
+	public MSBFragmentEntry fetchByG_MSBFCI_First(long groupId,
 		long msbFragmentCollectionId,
 		com.liferay.portal.kernel.util.OrderByComparator<MSBFragmentEntry> orderByComparator);
 
@@ -469,12 +469,12 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	* @param msbFragmentCollectionId the msb fragment collection ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching msb fragment entry
-	* @throws NoSuchMSBFragmentEntryException if a matching msb fragment entry could not be found
+	* @throws NoSuchFragmentEntryException if a matching msb fragment entry could not be found
 	*/
-	public MSBFragmentEntry findByG_MSBFC_Last(long groupId,
+	public MSBFragmentEntry findByG_MSBFCI_Last(long groupId,
 		long msbFragmentCollectionId,
 		com.liferay.portal.kernel.util.OrderByComparator<MSBFragmentEntry> orderByComparator)
-		throws NoSuchMSBFragmentEntryException;
+		throws NoSuchFragmentEntryException;
 
 	/**
 	* Returns the last msb fragment entry in the ordered set where groupId = &#63; and msbFragmentCollectionId = &#63;.
@@ -484,24 +484,24 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching msb fragment entry, or <code>null</code> if a matching msb fragment entry could not be found
 	*/
-	public MSBFragmentEntry fetchByG_MSBFC_Last(long groupId,
+	public MSBFragmentEntry fetchByG_MSBFCI_Last(long groupId,
 		long msbFragmentCollectionId,
 		com.liferay.portal.kernel.util.OrderByComparator<MSBFragmentEntry> orderByComparator);
 
 	/**
 	* Returns the msb fragment entries before and after the current msb fragment entry in the ordered set where groupId = &#63; and msbFragmentCollectionId = &#63;.
 	*
-	* @param fragmentEntryId the primary key of the current msb fragment entry
+	* @param msbFragmentEntryId the primary key of the current msb fragment entry
 	* @param groupId the group ID
 	* @param msbFragmentCollectionId the msb fragment collection ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next msb fragment entry
-	* @throws NoSuchMSBFragmentEntryException if a msb fragment entry with the primary key could not be found
+	* @throws NoSuchFragmentEntryException if a msb fragment entry with the primary key could not be found
 	*/
-	public MSBFragmentEntry[] findByG_MSBFC_PrevAndNext(long fragmentEntryId,
-		long groupId, long msbFragmentCollectionId,
+	public MSBFragmentEntry[] findByG_MSBFCI_PrevAndNext(
+		long msbFragmentEntryId, long groupId, long msbFragmentCollectionId,
 		com.liferay.portal.kernel.util.OrderByComparator<MSBFragmentEntry> orderByComparator)
-		throws NoSuchMSBFragmentEntryException;
+		throws NoSuchFragmentEntryException;
 
 	/**
 	* Returns all the msb fragment entries that the user has permission to view where groupId = &#63; and msbFragmentCollectionId = &#63;.
@@ -510,7 +510,7 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	* @param msbFragmentCollectionId the msb fragment collection ID
 	* @return the matching msb fragment entries that the user has permission to view
 	*/
-	public java.util.List<MSBFragmentEntry> filterFindByG_MSBFC(long groupId,
+	public java.util.List<MSBFragmentEntry> filterFindByG_MSBFCI(long groupId,
 		long msbFragmentCollectionId);
 
 	/**
@@ -526,7 +526,7 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	* @param end the upper bound of the range of msb fragment entries (not inclusive)
 	* @return the range of matching msb fragment entries that the user has permission to view
 	*/
-	public java.util.List<MSBFragmentEntry> filterFindByG_MSBFC(long groupId,
+	public java.util.List<MSBFragmentEntry> filterFindByG_MSBFCI(long groupId,
 		long msbFragmentCollectionId, int start, int end);
 
 	/**
@@ -543,24 +543,24 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching msb fragment entries that the user has permission to view
 	*/
-	public java.util.List<MSBFragmentEntry> filterFindByG_MSBFC(long groupId,
+	public java.util.List<MSBFragmentEntry> filterFindByG_MSBFCI(long groupId,
 		long msbFragmentCollectionId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<MSBFragmentEntry> orderByComparator);
 
 	/**
 	* Returns the msb fragment entries before and after the current msb fragment entry in the ordered set of msb fragment entries that the user has permission to view where groupId = &#63; and msbFragmentCollectionId = &#63;.
 	*
-	* @param fragmentEntryId the primary key of the current msb fragment entry
+	* @param msbFragmentEntryId the primary key of the current msb fragment entry
 	* @param groupId the group ID
 	* @param msbFragmentCollectionId the msb fragment collection ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next msb fragment entry
-	* @throws NoSuchMSBFragmentEntryException if a msb fragment entry with the primary key could not be found
+	* @throws NoSuchFragmentEntryException if a msb fragment entry with the primary key could not be found
 	*/
-	public MSBFragmentEntry[] filterFindByG_MSBFC_PrevAndNext(
-		long fragmentEntryId, long groupId, long msbFragmentCollectionId,
+	public MSBFragmentEntry[] filterFindByG_MSBFCI_PrevAndNext(
+		long msbFragmentEntryId, long groupId, long msbFragmentCollectionId,
 		com.liferay.portal.kernel.util.OrderByComparator<MSBFragmentEntry> orderByComparator)
-		throws NoSuchMSBFragmentEntryException;
+		throws NoSuchFragmentEntryException;
 
 	/**
 	* Removes all the msb fragment entries where groupId = &#63; and msbFragmentCollectionId = &#63; from the database.
@@ -568,7 +568,7 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	* @param groupId the group ID
 	* @param msbFragmentCollectionId the msb fragment collection ID
 	*/
-	public void removeByG_MSBFC(long groupId, long msbFragmentCollectionId);
+	public void removeByG_MSBFCI(long groupId, long msbFragmentCollectionId);
 
 	/**
 	* Returns the number of msb fragment entries where groupId = &#63; and msbFragmentCollectionId = &#63;.
@@ -577,7 +577,7 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	* @param msbFragmentCollectionId the msb fragment collection ID
 	* @return the number of matching msb fragment entries
 	*/
-	public int countByG_MSBFC(long groupId, long msbFragmentCollectionId);
+	public int countByG_MSBFCI(long groupId, long msbFragmentCollectionId);
 
 	/**
 	* Returns the number of msb fragment entries that the user has permission to view where groupId = &#63; and msbFragmentCollectionId = &#63;.
@@ -586,18 +586,18 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	* @param msbFragmentCollectionId the msb fragment collection ID
 	* @return the number of matching msb fragment entries that the user has permission to view
 	*/
-	public int filterCountByG_MSBFC(long groupId, long msbFragmentCollectionId);
+	public int filterCountByG_MSBFCI(long groupId, long msbFragmentCollectionId);
 
 	/**
-	* Returns the msb fragment entry where groupId = &#63; and name = &#63; or throws a {@link NoSuchMSBFragmentEntryException} if it could not be found.
+	* Returns the msb fragment entry where groupId = &#63; and name = &#63; or throws a {@link NoSuchFragmentEntryException} if it could not be found.
 	*
 	* @param groupId the group ID
 	* @param name the name
 	* @return the matching msb fragment entry
-	* @throws NoSuchMSBFragmentEntryException if a matching msb fragment entry could not be found
+	* @throws NoSuchFragmentEntryException if a matching msb fragment entry could not be found
 	*/
 	public MSBFragmentEntry findByG_N(long groupId, java.lang.String name)
-		throws NoSuchMSBFragmentEntryException;
+		throws NoSuchFragmentEntryException;
 
 	/**
 	* Returns the msb fragment entry where groupId = &#63; and name = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -627,7 +627,7 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	* @return the msb fragment entry that was removed
 	*/
 	public MSBFragmentEntry removeByG_N(long groupId, java.lang.String name)
-		throws NoSuchMSBFragmentEntryException;
+		throws NoSuchFragmentEntryException;
 
 	/**
 	* Returns the number of msb fragment entries where groupId = &#63; and name = &#63;.
@@ -646,7 +646,7 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	* @param name the name
 	* @return the matching msb fragment entries
 	*/
-	public java.util.List<MSBFragmentEntry> findByG_MSBFC_LikeN(long groupId,
+	public java.util.List<MSBFragmentEntry> findByG_MSBFCI_LikeN(long groupId,
 		long msbFragmentCollectionId, java.lang.String name);
 
 	/**
@@ -663,7 +663,7 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	* @param end the upper bound of the range of msb fragment entries (not inclusive)
 	* @return the range of matching msb fragment entries
 	*/
-	public java.util.List<MSBFragmentEntry> findByG_MSBFC_LikeN(long groupId,
+	public java.util.List<MSBFragmentEntry> findByG_MSBFCI_LikeN(long groupId,
 		long msbFragmentCollectionId, java.lang.String name, int start, int end);
 
 	/**
@@ -681,7 +681,7 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching msb fragment entries
 	*/
-	public java.util.List<MSBFragmentEntry> findByG_MSBFC_LikeN(long groupId,
+	public java.util.List<MSBFragmentEntry> findByG_MSBFCI_LikeN(long groupId,
 		long msbFragmentCollectionId, java.lang.String name, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator<MSBFragmentEntry> orderByComparator);
@@ -702,7 +702,7 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	* @param retrieveFromCache whether to retrieve from the finder cache
 	* @return the ordered range of matching msb fragment entries
 	*/
-	public java.util.List<MSBFragmentEntry> findByG_MSBFC_LikeN(long groupId,
+	public java.util.List<MSBFragmentEntry> findByG_MSBFCI_LikeN(long groupId,
 		long msbFragmentCollectionId, java.lang.String name, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator<MSBFragmentEntry> orderByComparator,
@@ -716,12 +716,12 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	* @param name the name
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching msb fragment entry
-	* @throws NoSuchMSBFragmentEntryException if a matching msb fragment entry could not be found
+	* @throws NoSuchFragmentEntryException if a matching msb fragment entry could not be found
 	*/
-	public MSBFragmentEntry findByG_MSBFC_LikeN_First(long groupId,
+	public MSBFragmentEntry findByG_MSBFCI_LikeN_First(long groupId,
 		long msbFragmentCollectionId, java.lang.String name,
 		com.liferay.portal.kernel.util.OrderByComparator<MSBFragmentEntry> orderByComparator)
-		throws NoSuchMSBFragmentEntryException;
+		throws NoSuchFragmentEntryException;
 
 	/**
 	* Returns the first msb fragment entry in the ordered set where groupId = &#63; and msbFragmentCollectionId = &#63; and name LIKE &#63;.
@@ -732,7 +732,7 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching msb fragment entry, or <code>null</code> if a matching msb fragment entry could not be found
 	*/
-	public MSBFragmentEntry fetchByG_MSBFC_LikeN_First(long groupId,
+	public MSBFragmentEntry fetchByG_MSBFCI_LikeN_First(long groupId,
 		long msbFragmentCollectionId, java.lang.String name,
 		com.liferay.portal.kernel.util.OrderByComparator<MSBFragmentEntry> orderByComparator);
 
@@ -744,12 +744,12 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	* @param name the name
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching msb fragment entry
-	* @throws NoSuchMSBFragmentEntryException if a matching msb fragment entry could not be found
+	* @throws NoSuchFragmentEntryException if a matching msb fragment entry could not be found
 	*/
-	public MSBFragmentEntry findByG_MSBFC_LikeN_Last(long groupId,
+	public MSBFragmentEntry findByG_MSBFCI_LikeN_Last(long groupId,
 		long msbFragmentCollectionId, java.lang.String name,
 		com.liferay.portal.kernel.util.OrderByComparator<MSBFragmentEntry> orderByComparator)
-		throws NoSuchMSBFragmentEntryException;
+		throws NoSuchFragmentEntryException;
 
 	/**
 	* Returns the last msb fragment entry in the ordered set where groupId = &#63; and msbFragmentCollectionId = &#63; and name LIKE &#63;.
@@ -760,26 +760,26 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching msb fragment entry, or <code>null</code> if a matching msb fragment entry could not be found
 	*/
-	public MSBFragmentEntry fetchByG_MSBFC_LikeN_Last(long groupId,
+	public MSBFragmentEntry fetchByG_MSBFCI_LikeN_Last(long groupId,
 		long msbFragmentCollectionId, java.lang.String name,
 		com.liferay.portal.kernel.util.OrderByComparator<MSBFragmentEntry> orderByComparator);
 
 	/**
 	* Returns the msb fragment entries before and after the current msb fragment entry in the ordered set where groupId = &#63; and msbFragmentCollectionId = &#63; and name LIKE &#63;.
 	*
-	* @param fragmentEntryId the primary key of the current msb fragment entry
+	* @param msbFragmentEntryId the primary key of the current msb fragment entry
 	* @param groupId the group ID
 	* @param msbFragmentCollectionId the msb fragment collection ID
 	* @param name the name
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next msb fragment entry
-	* @throws NoSuchMSBFragmentEntryException if a msb fragment entry with the primary key could not be found
+	* @throws NoSuchFragmentEntryException if a msb fragment entry with the primary key could not be found
 	*/
-	public MSBFragmentEntry[] findByG_MSBFC_LikeN_PrevAndNext(
-		long fragmentEntryId, long groupId, long msbFragmentCollectionId,
+	public MSBFragmentEntry[] findByG_MSBFCI_LikeN_PrevAndNext(
+		long msbFragmentEntryId, long groupId, long msbFragmentCollectionId,
 		java.lang.String name,
 		com.liferay.portal.kernel.util.OrderByComparator<MSBFragmentEntry> orderByComparator)
-		throws NoSuchMSBFragmentEntryException;
+		throws NoSuchFragmentEntryException;
 
 	/**
 	* Returns all the msb fragment entries that the user has permission to view where groupId = &#63; and msbFragmentCollectionId = &#63; and name LIKE &#63;.
@@ -789,7 +789,7 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	* @param name the name
 	* @return the matching msb fragment entries that the user has permission to view
 	*/
-	public java.util.List<MSBFragmentEntry> filterFindByG_MSBFC_LikeN(
+	public java.util.List<MSBFragmentEntry> filterFindByG_MSBFCI_LikeN(
 		long groupId, long msbFragmentCollectionId, java.lang.String name);
 
 	/**
@@ -806,7 +806,7 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	* @param end the upper bound of the range of msb fragment entries (not inclusive)
 	* @return the range of matching msb fragment entries that the user has permission to view
 	*/
-	public java.util.List<MSBFragmentEntry> filterFindByG_MSBFC_LikeN(
+	public java.util.List<MSBFragmentEntry> filterFindByG_MSBFCI_LikeN(
 		long groupId, long msbFragmentCollectionId, java.lang.String name,
 		int start, int end);
 
@@ -825,7 +825,7 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching msb fragment entries that the user has permission to view
 	*/
-	public java.util.List<MSBFragmentEntry> filterFindByG_MSBFC_LikeN(
+	public java.util.List<MSBFragmentEntry> filterFindByG_MSBFCI_LikeN(
 		long groupId, long msbFragmentCollectionId, java.lang.String name,
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<MSBFragmentEntry> orderByComparator);
@@ -833,19 +833,19 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	/**
 	* Returns the msb fragment entries before and after the current msb fragment entry in the ordered set of msb fragment entries that the user has permission to view where groupId = &#63; and msbFragmentCollectionId = &#63; and name LIKE &#63;.
 	*
-	* @param fragmentEntryId the primary key of the current msb fragment entry
+	* @param msbFragmentEntryId the primary key of the current msb fragment entry
 	* @param groupId the group ID
 	* @param msbFragmentCollectionId the msb fragment collection ID
 	* @param name the name
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next msb fragment entry
-	* @throws NoSuchMSBFragmentEntryException if a msb fragment entry with the primary key could not be found
+	* @throws NoSuchFragmentEntryException if a msb fragment entry with the primary key could not be found
 	*/
-	public MSBFragmentEntry[] filterFindByG_MSBFC_LikeN_PrevAndNext(
-		long fragmentEntryId, long groupId, long msbFragmentCollectionId,
+	public MSBFragmentEntry[] filterFindByG_MSBFCI_LikeN_PrevAndNext(
+		long msbFragmentEntryId, long groupId, long msbFragmentCollectionId,
 		java.lang.String name,
 		com.liferay.portal.kernel.util.OrderByComparator<MSBFragmentEntry> orderByComparator)
-		throws NoSuchMSBFragmentEntryException;
+		throws NoSuchFragmentEntryException;
 
 	/**
 	* Removes all the msb fragment entries where groupId = &#63; and msbFragmentCollectionId = &#63; and name LIKE &#63; from the database.
@@ -854,7 +854,7 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	* @param msbFragmentCollectionId the msb fragment collection ID
 	* @param name the name
 	*/
-	public void removeByG_MSBFC_LikeN(long groupId,
+	public void removeByG_MSBFCI_LikeN(long groupId,
 		long msbFragmentCollectionId, java.lang.String name);
 
 	/**
@@ -865,8 +865,8 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	* @param name the name
 	* @return the number of matching msb fragment entries
 	*/
-	public int countByG_MSBFC_LikeN(long groupId, long msbFragmentCollectionId,
-		java.lang.String name);
+	public int countByG_MSBFCI_LikeN(long groupId,
+		long msbFragmentCollectionId, java.lang.String name);
 
 	/**
 	* Returns the number of msb fragment entries that the user has permission to view where groupId = &#63; and msbFragmentCollectionId = &#63; and name LIKE &#63;.
@@ -876,7 +876,7 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	* @param name the name
 	* @return the number of matching msb fragment entries that the user has permission to view
 	*/
-	public int filterCountByG_MSBFC_LikeN(long groupId,
+	public int filterCountByG_MSBFCI_LikeN(long groupId,
 		long msbFragmentCollectionId, java.lang.String name);
 
 	/**
@@ -896,40 +896,40 @@ public interface MSBFragmentEntryPersistence extends BasePersistence<MSBFragment
 	/**
 	* Creates a new msb fragment entry with the primary key. Does not add the msb fragment entry to the database.
 	*
-	* @param fragmentEntryId the primary key for the new msb fragment entry
+	* @param msbFragmentEntryId the primary key for the new msb fragment entry
 	* @return the new msb fragment entry
 	*/
-	public MSBFragmentEntry create(long fragmentEntryId);
+	public MSBFragmentEntry create(long msbFragmentEntryId);
 
 	/**
 	* Removes the msb fragment entry with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param fragmentEntryId the primary key of the msb fragment entry
+	* @param msbFragmentEntryId the primary key of the msb fragment entry
 	* @return the msb fragment entry that was removed
-	* @throws NoSuchMSBFragmentEntryException if a msb fragment entry with the primary key could not be found
+	* @throws NoSuchFragmentEntryException if a msb fragment entry with the primary key could not be found
 	*/
-	public MSBFragmentEntry remove(long fragmentEntryId)
-		throws NoSuchMSBFragmentEntryException;
+	public MSBFragmentEntry remove(long msbFragmentEntryId)
+		throws NoSuchFragmentEntryException;
 
 	public MSBFragmentEntry updateImpl(MSBFragmentEntry msbFragmentEntry);
 
 	/**
-	* Returns the msb fragment entry with the primary key or throws a {@link NoSuchMSBFragmentEntryException} if it could not be found.
+	* Returns the msb fragment entry with the primary key or throws a {@link NoSuchFragmentEntryException} if it could not be found.
 	*
-	* @param fragmentEntryId the primary key of the msb fragment entry
+	* @param msbFragmentEntryId the primary key of the msb fragment entry
 	* @return the msb fragment entry
-	* @throws NoSuchMSBFragmentEntryException if a msb fragment entry with the primary key could not be found
+	* @throws NoSuchFragmentEntryException if a msb fragment entry with the primary key could not be found
 	*/
-	public MSBFragmentEntry findByPrimaryKey(long fragmentEntryId)
-		throws NoSuchMSBFragmentEntryException;
+	public MSBFragmentEntry findByPrimaryKey(long msbFragmentEntryId)
+		throws NoSuchFragmentEntryException;
 
 	/**
 	* Returns the msb fragment entry with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param fragmentEntryId the primary key of the msb fragment entry
+	* @param msbFragmentEntryId the primary key of the msb fragment entry
 	* @return the msb fragment entry, or <code>null</code> if a msb fragment entry with the primary key could not be found
 	*/
-	public MSBFragmentEntry fetchByPrimaryKey(long fragmentEntryId);
+	public MSBFragmentEntry fetchByPrimaryKey(long msbFragmentEntryId);
 
 	@Override
 	public java.util.Map<java.io.Serializable, MSBFragmentEntry> fetchByPrimaryKeys(

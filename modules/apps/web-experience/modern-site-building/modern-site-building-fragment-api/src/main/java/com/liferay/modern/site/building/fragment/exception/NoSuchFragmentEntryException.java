@@ -15,26 +15,26 @@ package com.liferay.modern.site.building.fragment.exception;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.NoSuchModelException;
 
 /**
  * @author Brian Wing Shun Chan
  */
 @ProviderType
-public class DuplicateFragmentEntryException extends PortalException {
+public class NoSuchFragmentEntryException extends NoSuchModelException {
 
-	public DuplicateFragmentEntryException() {
+	public NoSuchFragmentEntryException() {
 	}
 
-	public DuplicateFragmentEntryException(String msg) {
+	public NoSuchFragmentEntryException(String msg) {
 		super(msg);
 	}
 
-	public DuplicateFragmentEntryException(String msg, Throwable cause) {
+	public NoSuchFragmentEntryException(String msg, Throwable cause) {
 		super(msg, cause);
 	}
 
-	public DuplicateFragmentEntryException(Throwable cause) {
+	public NoSuchFragmentEntryException(Throwable cause) {
 		super(cause);
 	}
 

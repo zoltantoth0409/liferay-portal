@@ -46,7 +46,7 @@ import java.util.List;
 @AccessControlled
 @JSONWebService
 @OSGiBeanProperties(property =  {
-	"json.web.service.context.name=fragment", "json.web.service.context.path=MSBFragmentEntry"}, service = MSBFragmentEntryService.class)
+	"json.web.service.context.name=msb", "json.web.service.context.path=MSBFragmentEntry"}, service = MSBFragmentEntryService.class)
 @ProviderType
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
@@ -62,9 +62,9 @@ public interface MSBFragmentEntryService extends BaseService {
 		ServiceContext serviceContext) throws PortalException;
 
 	public List<MSBFragmentEntry> deleteMSBFragmentEntries(
-		long[] fragmentEntriesIds) throws PortalException;
+		long[] msbFragmentEntriesIds) throws PortalException;
 
-	public MSBFragmentEntry deleteMSBFragmentEntry(long fragmentEntryId)
+	public MSBFragmentEntry deleteMSBFragmentEntry(long msbFragmentEntryId)
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -72,7 +72,7 @@ public interface MSBFragmentEntryService extends BaseService {
 		long msbFragmentCollectionId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public MSBFragmentEntry fetchMSBFragmentEntry(long fragmentEntryId);
+	public MSBFragmentEntry fetchMSBFragmentEntry(long msbFragmentEntryId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getGroupMSBFragmentCollectionsCount(long msbFragmentCollectionId);
@@ -91,7 +91,7 @@ public interface MSBFragmentEntryService extends BaseService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<MSBFragmentEntry> getMSBFragmentEntries(long groupId,
 		long msbFragmentCollectionId, java.lang.String name, int start,
-		int end, OrderByComparator<MSBFragmentEntry> obc);
+		int end, OrderByComparator<MSBFragmentEntry> orderByComparator);
 
 	/**
 	* Returns the OSGi service identifier.
@@ -100,7 +100,7 @@ public interface MSBFragmentEntryService extends BaseService {
 	*/
 	public java.lang.String getOSGiServiceIdentifier();
 
-	public MSBFragmentEntry updateMSBFragmentEntry(long fragmentEntryId,
+	public MSBFragmentEntry updateMSBFragmentEntry(long msbFragmentEntryId,
 		java.lang.String name, java.lang.String css, java.lang.String html,
 		java.lang.String js) throws PortalException;
 }

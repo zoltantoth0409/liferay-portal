@@ -91,7 +91,7 @@ public class MSBFragmentCollectionServiceHttp {
 	}
 
 	public static com.liferay.modern.site.building.fragment.model.MSBFragmentCollection deleteMSBFragmentCollection(
-		HttpPrincipal httpPrincipal, long fragmentCollectionId)
+		HttpPrincipal httpPrincipal, long msbFragmentCollectionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(MSBFragmentCollectionServiceUtil.class,
@@ -99,7 +99,7 @@ public class MSBFragmentCollectionServiceHttp {
 					_deleteMSBFragmentCollectionParameterTypes1);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey,
-					fragmentCollectionId);
+					msbFragmentCollectionId);
 
 			Object returnObj = null;
 
@@ -124,7 +124,7 @@ public class MSBFragmentCollectionServiceHttp {
 	}
 
 	public static java.util.List<com.liferay.modern.site.building.fragment.model.MSBFragmentCollection> deleteMSBFragmentCollections(
-		HttpPrincipal httpPrincipal, long[] fragmentCollectionIds)
+		HttpPrincipal httpPrincipal, long[] msbFragmentCollectionIds)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(MSBFragmentCollectionServiceUtil.class,
@@ -132,7 +132,7 @@ public class MSBFragmentCollectionServiceHttp {
 					_deleteMSBFragmentCollectionsParameterTypes2);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey,
-					fragmentCollectionIds);
+					msbFragmentCollectionIds);
 
 			Object returnObj = null;
 
@@ -157,7 +157,7 @@ public class MSBFragmentCollectionServiceHttp {
 	}
 
 	public static com.liferay.modern.site.building.fragment.model.MSBFragmentCollection fetchMSBFragmentCollection(
-		HttpPrincipal httpPrincipal, long fragmentCollectionId)
+		HttpPrincipal httpPrincipal, long msbFragmentCollectionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(MSBFragmentCollectionServiceUtil.class,
@@ -165,7 +165,7 @@ public class MSBFragmentCollectionServiceHttp {
 					_fetchMSBFragmentCollectionParameterTypes3);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey,
-					fragmentCollectionId);
+					msbFragmentCollectionId);
 
 			Object returnObj = null;
 
@@ -319,7 +319,7 @@ public class MSBFragmentCollectionServiceHttp {
 	}
 
 	public static com.liferay.modern.site.building.fragment.model.MSBFragmentCollection updateMSBFragmentCollection(
-		HttpPrincipal httpPrincipal, long fragmentCollectionId,
+		HttpPrincipal httpPrincipal, long msbFragmentCollectionId,
 		java.lang.String name, java.lang.String description)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
@@ -328,7 +328,7 @@ public class MSBFragmentCollectionServiceHttp {
 					_updateMSBFragmentCollectionParameterTypes8);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey,
-					fragmentCollectionId, name, description);
+					msbFragmentCollectionId, name, description);
 
 			Object returnObj = null;
 

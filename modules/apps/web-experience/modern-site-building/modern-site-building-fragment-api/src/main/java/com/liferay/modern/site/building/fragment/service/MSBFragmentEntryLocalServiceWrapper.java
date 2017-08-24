@@ -60,27 +60,27 @@ public class MSBFragmentEntryLocalServiceWrapper
 	/**
 	* Creates a new msb fragment entry with the primary key. Does not add the msb fragment entry to the database.
 	*
-	* @param fragmentEntryId the primary key for the new msb fragment entry
+	* @param msbFragmentEntryId the primary key for the new msb fragment entry
 	* @return the new msb fragment entry
 	*/
 	@Override
 	public com.liferay.modern.site.building.fragment.model.MSBFragmentEntry createMSBFragmentEntry(
-		long fragmentEntryId) {
-		return _msbFragmentEntryLocalService.createMSBFragmentEntry(fragmentEntryId);
+		long msbFragmentEntryId) {
+		return _msbFragmentEntryLocalService.createMSBFragmentEntry(msbFragmentEntryId);
 	}
 
 	/**
 	* Deletes the msb fragment entry with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param fragmentEntryId the primary key of the msb fragment entry
+	* @param msbFragmentEntryId the primary key of the msb fragment entry
 	* @return the msb fragment entry that was removed
 	* @throws PortalException if a msb fragment entry with the primary key could not be found
 	*/
 	@Override
 	public com.liferay.modern.site.building.fragment.model.MSBFragmentEntry deleteMSBFragmentEntry(
-		long fragmentEntryId)
+		long msbFragmentEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _msbFragmentEntryLocalService.deleteMSBFragmentEntry(fragmentEntryId);
+		return _msbFragmentEntryLocalService.deleteMSBFragmentEntry(msbFragmentEntryId);
 	}
 
 	/**
@@ -201,8 +201,8 @@ public class MSBFragmentEntryLocalServiceWrapper
 
 	@Override
 	public com.liferay.modern.site.building.fragment.model.MSBFragmentEntry fetchMSBFragmentEntry(
-		long fragmentEntryId) {
-		return _msbFragmentEntryLocalService.fetchMSBFragmentEntry(fragmentEntryId);
+		long msbFragmentEntryId) {
+		return _msbFragmentEntryLocalService.fetchMSBFragmentEntry(msbFragmentEntryId);
 	}
 
 	@Override
@@ -253,9 +253,9 @@ public class MSBFragmentEntryLocalServiceWrapper
 	public java.util.List<com.liferay.modern.site.building.fragment.model.MSBFragmentEntry> getMSBFragmentEntries(
 		long groupId, long msbFragmentCollectionId, java.lang.String name,
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.modern.site.building.fragment.model.MSBFragmentEntry> obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.modern.site.building.fragment.model.MSBFragmentEntry> orderByComparator) {
 		return _msbFragmentEntryLocalService.getMSBFragmentEntries(groupId,
-			msbFragmentCollectionId, name, start, end, obc);
+			msbFragmentCollectionId, name, start, end, orderByComparator);
 	}
 
 	/**
@@ -271,15 +271,15 @@ public class MSBFragmentEntryLocalServiceWrapper
 	/**
 	* Returns the msb fragment entry with the primary key.
 	*
-	* @param fragmentEntryId the primary key of the msb fragment entry
+	* @param msbFragmentEntryId the primary key of the msb fragment entry
 	* @return the msb fragment entry
 	* @throws PortalException if a msb fragment entry with the primary key could not be found
 	*/
 	@Override
 	public com.liferay.modern.site.building.fragment.model.MSBFragmentEntry getMSBFragmentEntry(
-		long fragmentEntryId)
+		long msbFragmentEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _msbFragmentEntryLocalService.getMSBFragmentEntry(fragmentEntryId);
+		return _msbFragmentEntryLocalService.getMSBFragmentEntry(msbFragmentEntryId);
 	}
 
 	/**
@@ -301,10 +301,10 @@ public class MSBFragmentEntryLocalServiceWrapper
 
 	@Override
 	public com.liferay.modern.site.building.fragment.model.MSBFragmentEntry updateMSBFragmentEntry(
-		long fragmentEntryId, java.lang.String name, java.lang.String css,
+		long msbFragmentEntryId, java.lang.String name, java.lang.String css,
 		java.lang.String html, java.lang.String js)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _msbFragmentEntryLocalService.updateMSBFragmentEntry(fragmentEntryId,
+		return _msbFragmentEntryLocalService.updateMSBFragmentEntry(msbFragmentEntryId,
 			name, css, html, js);
 	}
 

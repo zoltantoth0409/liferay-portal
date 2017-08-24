@@ -16,7 +16,7 @@ package com.liferay.modern.site.building.fragment.service.persistence.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 
-import com.liferay.modern.site.building.fragment.exception.NoSuchMSBFragmentEntryException;
+import com.liferay.modern.site.building.fragment.exception.NoSuchFragmentEntryException;
 import com.liferay.modern.site.building.fragment.model.MSBFragmentEntry;
 import com.liferay.modern.site.building.fragment.service.MSBFragmentEntryLocalServiceUtil;
 import com.liferay.modern.site.building.fragment.service.persistence.MSBFragmentEntryPersistence;
@@ -151,8 +151,8 @@ public class MSBFragmentEntryPersistenceTest {
 
 		MSBFragmentEntry existingMSBFragmentEntry = _persistence.findByPrimaryKey(newMSBFragmentEntry.getPrimaryKey());
 
-		Assert.assertEquals(existingMSBFragmentEntry.getFragmentEntryId(),
-			newMSBFragmentEntry.getFragmentEntryId());
+		Assert.assertEquals(existingMSBFragmentEntry.getMsbFragmentEntryId(),
+			newMSBFragmentEntry.getMsbFragmentEntryId());
 		Assert.assertEquals(existingMSBFragmentEntry.getGroupId(),
 			newMSBFragmentEntry.getGroupId());
 		Assert.assertEquals(existingMSBFragmentEntry.getCompanyId(),
@@ -194,11 +194,11 @@ public class MSBFragmentEntryPersistenceTest {
 	}
 
 	@Test
-	public void testCountByG_MSBFC() throws Exception {
-		_persistence.countByG_MSBFC(RandomTestUtil.nextLong(),
+	public void testCountByG_MSBFCI() throws Exception {
+		_persistence.countByG_MSBFCI(RandomTestUtil.nextLong(),
 			RandomTestUtil.nextLong());
 
-		_persistence.countByG_MSBFC(0L, 0L);
+		_persistence.countByG_MSBFCI(0L, 0L);
 	}
 
 	@Test
@@ -211,13 +211,13 @@ public class MSBFragmentEntryPersistenceTest {
 	}
 
 	@Test
-	public void testCountByG_MSBFC_LikeN() throws Exception {
-		_persistence.countByG_MSBFC_LikeN(RandomTestUtil.nextLong(),
+	public void testCountByG_MSBFCI_LikeN() throws Exception {
+		_persistence.countByG_MSBFCI_LikeN(RandomTestUtil.nextLong(),
 			RandomTestUtil.nextLong(), StringPool.BLANK);
 
-		_persistence.countByG_MSBFC_LikeN(0L, 0L, StringPool.NULL);
+		_persistence.countByG_MSBFCI_LikeN(0L, 0L, StringPool.NULL);
 
-		_persistence.countByG_MSBFC_LikeN(0L, 0L, (String)null);
+		_persistence.countByG_MSBFCI_LikeN(0L, 0L, (String)null);
 	}
 
 	@Test
@@ -229,7 +229,7 @@ public class MSBFragmentEntryPersistenceTest {
 		Assert.assertEquals(existingMSBFragmentEntry, newMSBFragmentEntry);
 	}
 
-	@Test(expected = NoSuchMSBFragmentEntryException.class)
+	@Test(expected = NoSuchFragmentEntryException.class)
 	public void testFindByPrimaryKeyMissing() throws Exception {
 		long pk = RandomTestUtil.nextLong();
 
@@ -250,7 +250,7 @@ public class MSBFragmentEntryPersistenceTest {
 
 	protected OrderByComparator<MSBFragmentEntry> getOrderByComparator() {
 		return OrderByComparatorFactoryUtil.create("MSBFragmentEntry",
-			"fragmentEntryId", true, "groupId", true, "companyId", true,
+			"msbFragmentEntryId", true, "groupId", true, "companyId", true,
 			"userId", true, "userName", true, "createDate", true,
 			"modifiedDate", true, "msbFragmentCollectionId", true, "name",
 			true, "css", true, "html", true, "js", true);
@@ -384,8 +384,8 @@ public class MSBFragmentEntryPersistenceTest {
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(MSBFragmentEntry.class,
 				_dynamicQueryClassLoader);
 
-		dynamicQuery.add(RestrictionsFactoryUtil.eq("fragmentEntryId",
-				newMSBFragmentEntry.getFragmentEntryId()));
+		dynamicQuery.add(RestrictionsFactoryUtil.eq("msbFragmentEntryId",
+				newMSBFragmentEntry.getMsbFragmentEntryId()));
 
 		List<MSBFragmentEntry> result = _persistence.findWithDynamicQuery(dynamicQuery);
 
@@ -401,7 +401,7 @@ public class MSBFragmentEntryPersistenceTest {
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(MSBFragmentEntry.class,
 				_dynamicQueryClassLoader);
 
-		dynamicQuery.add(RestrictionsFactoryUtil.eq("fragmentEntryId",
+		dynamicQuery.add(RestrictionsFactoryUtil.eq("msbFragmentEntryId",
 				RandomTestUtil.nextLong()));
 
 		List<MSBFragmentEntry> result = _persistence.findWithDynamicQuery(dynamicQuery);
@@ -418,20 +418,20 @@ public class MSBFragmentEntryPersistenceTest {
 				_dynamicQueryClassLoader);
 
 		dynamicQuery.setProjection(ProjectionFactoryUtil.property(
-				"fragmentEntryId"));
+				"msbFragmentEntryId"));
 
-		Object newFragmentEntryId = newMSBFragmentEntry.getFragmentEntryId();
+		Object newMsbFragmentEntryId = newMSBFragmentEntry.getMsbFragmentEntryId();
 
-		dynamicQuery.add(RestrictionsFactoryUtil.in("fragmentEntryId",
-				new Object[] { newFragmentEntryId }));
+		dynamicQuery.add(RestrictionsFactoryUtil.in("msbFragmentEntryId",
+				new Object[] { newMsbFragmentEntryId }));
 
 		List<Object> result = _persistence.findWithDynamicQuery(dynamicQuery);
 
 		Assert.assertEquals(1, result.size());
 
-		Object existingFragmentEntryId = result.get(0);
+		Object existingMsbFragmentEntryId = result.get(0);
 
-		Assert.assertEquals(existingFragmentEntryId, newFragmentEntryId);
+		Assert.assertEquals(existingMsbFragmentEntryId, newMsbFragmentEntryId);
 	}
 
 	@Test
@@ -440,9 +440,9 @@ public class MSBFragmentEntryPersistenceTest {
 				_dynamicQueryClassLoader);
 
 		dynamicQuery.setProjection(ProjectionFactoryUtil.property(
-				"fragmentEntryId"));
+				"msbFragmentEntryId"));
 
-		dynamicQuery.add(RestrictionsFactoryUtil.in("fragmentEntryId",
+		dynamicQuery.add(RestrictionsFactoryUtil.in("msbFragmentEntryId",
 				new Object[] { RandomTestUtil.nextLong() }));
 
 		List<Object> result = _persistence.findWithDynamicQuery(dynamicQuery);

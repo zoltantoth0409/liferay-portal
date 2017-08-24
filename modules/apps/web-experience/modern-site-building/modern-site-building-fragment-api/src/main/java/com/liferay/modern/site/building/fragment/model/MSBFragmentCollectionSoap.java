@@ -35,7 +35,7 @@ public class MSBFragmentCollectionSoap implements Serializable {
 		MSBFragmentCollection model) {
 		MSBFragmentCollectionSoap soapModel = new MSBFragmentCollectionSoap();
 
-		soapModel.setFragmentCollectionId(model.getFragmentCollectionId());
+		soapModel.setMsbFragmentCollectionId(model.getMsbFragmentCollectionId());
 		soapModel.setGroupId(model.getGroupId());
 		soapModel.setCompanyId(model.getCompanyId());
 		soapModel.setUserId(model.getUserId());
@@ -92,19 +92,19 @@ public class MSBFragmentCollectionSoap implements Serializable {
 	}
 
 	public long getPrimaryKey() {
-		return _fragmentCollectionId;
+		return _msbFragmentCollectionId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setFragmentCollectionId(pk);
+		setMsbFragmentCollectionId(pk);
 	}
 
-	public long getFragmentCollectionId() {
-		return _fragmentCollectionId;
+	public long getMsbFragmentCollectionId() {
+		return _msbFragmentCollectionId;
 	}
 
-	public void setFragmentCollectionId(long fragmentCollectionId) {
-		_fragmentCollectionId = fragmentCollectionId;
+	public void setMsbFragmentCollectionId(long msbFragmentCollectionId) {
+		_msbFragmentCollectionId = msbFragmentCollectionId;
 	}
 
 	public long getGroupId() {
@@ -171,7 +171,7 @@ public class MSBFragmentCollectionSoap implements Serializable {
 		_description = description;
 	}
 
-	private long _fragmentCollectionId;
+	private long _msbFragmentCollectionId;
 	private long _groupId;
 	private long _companyId;
 	private long _userId;

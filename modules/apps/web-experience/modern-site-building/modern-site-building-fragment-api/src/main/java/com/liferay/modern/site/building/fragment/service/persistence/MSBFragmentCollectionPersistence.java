@@ -16,7 +16,7 @@ package com.liferay.modern.site.building.fragment.service.persistence;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.modern.site.building.fragment.exception.NoSuchMSBFragmentCollectionException;
+import com.liferay.modern.site.building.fragment.exception.NoSuchFragmentCollectionException;
 import com.liferay.modern.site.building.fragment.model.MSBFragmentCollection;
 
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
@@ -106,11 +106,11 @@ public interface MSBFragmentCollectionPersistence extends BasePersistence<MSBFra
 	* @param groupId the group ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching msb fragment collection
-	* @throws NoSuchMSBFragmentCollectionException if a matching msb fragment collection could not be found
+	* @throws NoSuchFragmentCollectionException if a matching msb fragment collection could not be found
 	*/
 	public MSBFragmentCollection findByGroupId_First(long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator<MSBFragmentCollection> orderByComparator)
-		throws NoSuchMSBFragmentCollectionException;
+		throws NoSuchFragmentCollectionException;
 
 	/**
 	* Returns the first msb fragment collection in the ordered set where groupId = &#63;.
@@ -128,11 +128,11 @@ public interface MSBFragmentCollectionPersistence extends BasePersistence<MSBFra
 	* @param groupId the group ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching msb fragment collection
-	* @throws NoSuchMSBFragmentCollectionException if a matching msb fragment collection could not be found
+	* @throws NoSuchFragmentCollectionException if a matching msb fragment collection could not be found
 	*/
 	public MSBFragmentCollection findByGroupId_Last(long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator<MSBFragmentCollection> orderByComparator)
-		throws NoSuchMSBFragmentCollectionException;
+		throws NoSuchFragmentCollectionException;
 
 	/**
 	* Returns the last msb fragment collection in the ordered set where groupId = &#63;.
@@ -147,16 +147,16 @@ public interface MSBFragmentCollectionPersistence extends BasePersistence<MSBFra
 	/**
 	* Returns the msb fragment collections before and after the current msb fragment collection in the ordered set where groupId = &#63;.
 	*
-	* @param fragmentCollectionId the primary key of the current msb fragment collection
+	* @param msbFragmentCollectionId the primary key of the current msb fragment collection
 	* @param groupId the group ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next msb fragment collection
-	* @throws NoSuchMSBFragmentCollectionException if a msb fragment collection with the primary key could not be found
+	* @throws NoSuchFragmentCollectionException if a msb fragment collection with the primary key could not be found
 	*/
 	public MSBFragmentCollection[] findByGroupId_PrevAndNext(
-		long fragmentCollectionId, long groupId,
+		long msbFragmentCollectionId, long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator<MSBFragmentCollection> orderByComparator)
-		throws NoSuchMSBFragmentCollectionException;
+		throws NoSuchFragmentCollectionException;
 
 	/**
 	* Returns all the msb fragment collections that the user has permission to view where groupId = &#63;.
@@ -202,16 +202,16 @@ public interface MSBFragmentCollectionPersistence extends BasePersistence<MSBFra
 	/**
 	* Returns the msb fragment collections before and after the current msb fragment collection in the ordered set of msb fragment collections that the user has permission to view where groupId = &#63;.
 	*
-	* @param fragmentCollectionId the primary key of the current msb fragment collection
+	* @param msbFragmentCollectionId the primary key of the current msb fragment collection
 	* @param groupId the group ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next msb fragment collection
-	* @throws NoSuchMSBFragmentCollectionException if a msb fragment collection with the primary key could not be found
+	* @throws NoSuchFragmentCollectionException if a msb fragment collection with the primary key could not be found
 	*/
 	public MSBFragmentCollection[] filterFindByGroupId_PrevAndNext(
-		long fragmentCollectionId, long groupId,
+		long msbFragmentCollectionId, long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator<MSBFragmentCollection> orderByComparator)
-		throws NoSuchMSBFragmentCollectionException;
+		throws NoSuchFragmentCollectionException;
 
 	/**
 	* Removes all the msb fragment collections where groupId = &#63; from the database.
@@ -237,15 +237,15 @@ public interface MSBFragmentCollectionPersistence extends BasePersistence<MSBFra
 	public int filterCountByGroupId(long groupId);
 
 	/**
-	* Returns the msb fragment collection where groupId = &#63; and name = &#63; or throws a {@link NoSuchMSBFragmentCollectionException} if it could not be found.
+	* Returns the msb fragment collection where groupId = &#63; and name = &#63; or throws a {@link NoSuchFragmentCollectionException} if it could not be found.
 	*
 	* @param groupId the group ID
 	* @param name the name
 	* @return the matching msb fragment collection
-	* @throws NoSuchMSBFragmentCollectionException if a matching msb fragment collection could not be found
+	* @throws NoSuchFragmentCollectionException if a matching msb fragment collection could not be found
 	*/
 	public MSBFragmentCollection findByG_N(long groupId, java.lang.String name)
-		throws NoSuchMSBFragmentCollectionException;
+		throws NoSuchFragmentCollectionException;
 
 	/**
 	* Returns the msb fragment collection where groupId = &#63; and name = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -275,7 +275,7 @@ public interface MSBFragmentCollectionPersistence extends BasePersistence<MSBFra
 	* @return the msb fragment collection that was removed
 	*/
 	public MSBFragmentCollection removeByG_N(long groupId, java.lang.String name)
-		throws NoSuchMSBFragmentCollectionException;
+		throws NoSuchFragmentCollectionException;
 
 	/**
 	* Returns the number of msb fragment collections where groupId = &#63; and name = &#63;.
@@ -357,12 +357,12 @@ public interface MSBFragmentCollectionPersistence extends BasePersistence<MSBFra
 	* @param name the name
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching msb fragment collection
-	* @throws NoSuchMSBFragmentCollectionException if a matching msb fragment collection could not be found
+	* @throws NoSuchFragmentCollectionException if a matching msb fragment collection could not be found
 	*/
 	public MSBFragmentCollection findByG_LikeN_First(long groupId,
 		java.lang.String name,
 		com.liferay.portal.kernel.util.OrderByComparator<MSBFragmentCollection> orderByComparator)
-		throws NoSuchMSBFragmentCollectionException;
+		throws NoSuchFragmentCollectionException;
 
 	/**
 	* Returns the first msb fragment collection in the ordered set where groupId = &#63; and name LIKE &#63;.
@@ -383,12 +383,12 @@ public interface MSBFragmentCollectionPersistence extends BasePersistence<MSBFra
 	* @param name the name
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching msb fragment collection
-	* @throws NoSuchMSBFragmentCollectionException if a matching msb fragment collection could not be found
+	* @throws NoSuchFragmentCollectionException if a matching msb fragment collection could not be found
 	*/
 	public MSBFragmentCollection findByG_LikeN_Last(long groupId,
 		java.lang.String name,
 		com.liferay.portal.kernel.util.OrderByComparator<MSBFragmentCollection> orderByComparator)
-		throws NoSuchMSBFragmentCollectionException;
+		throws NoSuchFragmentCollectionException;
 
 	/**
 	* Returns the last msb fragment collection in the ordered set where groupId = &#63; and name LIKE &#63;.
@@ -405,17 +405,17 @@ public interface MSBFragmentCollectionPersistence extends BasePersistence<MSBFra
 	/**
 	* Returns the msb fragment collections before and after the current msb fragment collection in the ordered set where groupId = &#63; and name LIKE &#63;.
 	*
-	* @param fragmentCollectionId the primary key of the current msb fragment collection
+	* @param msbFragmentCollectionId the primary key of the current msb fragment collection
 	* @param groupId the group ID
 	* @param name the name
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next msb fragment collection
-	* @throws NoSuchMSBFragmentCollectionException if a msb fragment collection with the primary key could not be found
+	* @throws NoSuchFragmentCollectionException if a msb fragment collection with the primary key could not be found
 	*/
 	public MSBFragmentCollection[] findByG_LikeN_PrevAndNext(
-		long fragmentCollectionId, long groupId, java.lang.String name,
+		long msbFragmentCollectionId, long groupId, java.lang.String name,
 		com.liferay.portal.kernel.util.OrderByComparator<MSBFragmentCollection> orderByComparator)
-		throws NoSuchMSBFragmentCollectionException;
+		throws NoSuchFragmentCollectionException;
 
 	/**
 	* Returns all the msb fragment collections that the user has permission to view where groupId = &#63; and name LIKE &#63;.
@@ -464,17 +464,17 @@ public interface MSBFragmentCollectionPersistence extends BasePersistence<MSBFra
 	/**
 	* Returns the msb fragment collections before and after the current msb fragment collection in the ordered set of msb fragment collections that the user has permission to view where groupId = &#63; and name LIKE &#63;.
 	*
-	* @param fragmentCollectionId the primary key of the current msb fragment collection
+	* @param msbFragmentCollectionId the primary key of the current msb fragment collection
 	* @param groupId the group ID
 	* @param name the name
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next msb fragment collection
-	* @throws NoSuchMSBFragmentCollectionException if a msb fragment collection with the primary key could not be found
+	* @throws NoSuchFragmentCollectionException if a msb fragment collection with the primary key could not be found
 	*/
 	public MSBFragmentCollection[] filterFindByG_LikeN_PrevAndNext(
-		long fragmentCollectionId, long groupId, java.lang.String name,
+		long msbFragmentCollectionId, long groupId, java.lang.String name,
 		com.liferay.portal.kernel.util.OrderByComparator<MSBFragmentCollection> orderByComparator)
-		throws NoSuchMSBFragmentCollectionException;
+		throws NoSuchFragmentCollectionException;
 
 	/**
 	* Removes all the msb fragment collections where groupId = &#63; and name LIKE &#63; from the database.
@@ -520,41 +520,41 @@ public interface MSBFragmentCollectionPersistence extends BasePersistence<MSBFra
 	/**
 	* Creates a new msb fragment collection with the primary key. Does not add the msb fragment collection to the database.
 	*
-	* @param fragmentCollectionId the primary key for the new msb fragment collection
+	* @param msbFragmentCollectionId the primary key for the new msb fragment collection
 	* @return the new msb fragment collection
 	*/
-	public MSBFragmentCollection create(long fragmentCollectionId);
+	public MSBFragmentCollection create(long msbFragmentCollectionId);
 
 	/**
 	* Removes the msb fragment collection with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param fragmentCollectionId the primary key of the msb fragment collection
+	* @param msbFragmentCollectionId the primary key of the msb fragment collection
 	* @return the msb fragment collection that was removed
-	* @throws NoSuchMSBFragmentCollectionException if a msb fragment collection with the primary key could not be found
+	* @throws NoSuchFragmentCollectionException if a msb fragment collection with the primary key could not be found
 	*/
-	public MSBFragmentCollection remove(long fragmentCollectionId)
-		throws NoSuchMSBFragmentCollectionException;
+	public MSBFragmentCollection remove(long msbFragmentCollectionId)
+		throws NoSuchFragmentCollectionException;
 
 	public MSBFragmentCollection updateImpl(
 		MSBFragmentCollection msbFragmentCollection);
 
 	/**
-	* Returns the msb fragment collection with the primary key or throws a {@link NoSuchMSBFragmentCollectionException} if it could not be found.
+	* Returns the msb fragment collection with the primary key or throws a {@link NoSuchFragmentCollectionException} if it could not be found.
 	*
-	* @param fragmentCollectionId the primary key of the msb fragment collection
+	* @param msbFragmentCollectionId the primary key of the msb fragment collection
 	* @return the msb fragment collection
-	* @throws NoSuchMSBFragmentCollectionException if a msb fragment collection with the primary key could not be found
+	* @throws NoSuchFragmentCollectionException if a msb fragment collection with the primary key could not be found
 	*/
-	public MSBFragmentCollection findByPrimaryKey(long fragmentCollectionId)
-		throws NoSuchMSBFragmentCollectionException;
+	public MSBFragmentCollection findByPrimaryKey(long msbFragmentCollectionId)
+		throws NoSuchFragmentCollectionException;
 
 	/**
 	* Returns the msb fragment collection with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param fragmentCollectionId the primary key of the msb fragment collection
+	* @param msbFragmentCollectionId the primary key of the msb fragment collection
 	* @return the msb fragment collection, or <code>null</code> if a msb fragment collection with the primary key could not be found
 	*/
-	public MSBFragmentCollection fetchByPrimaryKey(long fragmentCollectionId);
+	public MSBFragmentCollection fetchByPrimaryKey(long msbFragmentCollectionId);
 
 	@Override
 	public java.util.Map<java.io.Serializable, MSBFragmentCollection> fetchByPrimaryKeys(

@@ -91,26 +91,26 @@ public abstract class MSBFragmentEntryLocalServiceBaseImpl
 	/**
 	 * Creates a new msb fragment entry with the primary key. Does not add the msb fragment entry to the database.
 	 *
-	 * @param fragmentEntryId the primary key for the new msb fragment entry
+	 * @param msbFragmentEntryId the primary key for the new msb fragment entry
 	 * @return the new msb fragment entry
 	 */
 	@Override
-	public MSBFragmentEntry createMSBFragmentEntry(long fragmentEntryId) {
-		return msbFragmentEntryPersistence.create(fragmentEntryId);
+	public MSBFragmentEntry createMSBFragmentEntry(long msbFragmentEntryId) {
+		return msbFragmentEntryPersistence.create(msbFragmentEntryId);
 	}
 
 	/**
 	 * Deletes the msb fragment entry with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param fragmentEntryId the primary key of the msb fragment entry
+	 * @param msbFragmentEntryId the primary key of the msb fragment entry
 	 * @return the msb fragment entry that was removed
 	 * @throws PortalException if a msb fragment entry with the primary key could not be found
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public MSBFragmentEntry deleteMSBFragmentEntry(long fragmentEntryId)
+	public MSBFragmentEntry deleteMSBFragmentEntry(long msbFragmentEntryId)
 		throws PortalException {
-		return msbFragmentEntryPersistence.remove(fragmentEntryId);
+		return msbFragmentEntryPersistence.remove(msbFragmentEntryId);
 	}
 
 	/**
@@ -211,21 +211,21 @@ public abstract class MSBFragmentEntryLocalServiceBaseImpl
 	}
 
 	@Override
-	public MSBFragmentEntry fetchMSBFragmentEntry(long fragmentEntryId) {
-		return msbFragmentEntryPersistence.fetchByPrimaryKey(fragmentEntryId);
+	public MSBFragmentEntry fetchMSBFragmentEntry(long msbFragmentEntryId) {
+		return msbFragmentEntryPersistence.fetchByPrimaryKey(msbFragmentEntryId);
 	}
 
 	/**
 	 * Returns the msb fragment entry with the primary key.
 	 *
-	 * @param fragmentEntryId the primary key of the msb fragment entry
+	 * @param msbFragmentEntryId the primary key of the msb fragment entry
 	 * @return the msb fragment entry
 	 * @throws PortalException if a msb fragment entry with the primary key could not be found
 	 */
 	@Override
-	public MSBFragmentEntry getMSBFragmentEntry(long fragmentEntryId)
+	public MSBFragmentEntry getMSBFragmentEntry(long msbFragmentEntryId)
 		throws PortalException {
-		return msbFragmentEntryPersistence.findByPrimaryKey(fragmentEntryId);
+		return msbFragmentEntryPersistence.findByPrimaryKey(msbFragmentEntryId);
 	}
 
 	@Override
@@ -236,7 +236,7 @@ public abstract class MSBFragmentEntryLocalServiceBaseImpl
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(MSBFragmentEntry.class);
 
-		actionableDynamicQuery.setPrimaryKeyPropertyName("fragmentEntryId");
+		actionableDynamicQuery.setPrimaryKeyPropertyName("msbFragmentEntryId");
 
 		return actionableDynamicQuery;
 	}
@@ -250,7 +250,7 @@ public abstract class MSBFragmentEntryLocalServiceBaseImpl
 		indexableActionableDynamicQuery.setModelClass(MSBFragmentEntry.class);
 
 		indexableActionableDynamicQuery.setPrimaryKeyPropertyName(
-			"fragmentEntryId");
+			"msbFragmentEntryId");
 
 		return indexableActionableDynamicQuery;
 	}
@@ -261,7 +261,7 @@ public abstract class MSBFragmentEntryLocalServiceBaseImpl
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(MSBFragmentEntry.class);
 
-		actionableDynamicQuery.setPrimaryKeyPropertyName("fragmentEntryId");
+		actionableDynamicQuery.setPrimaryKeyPropertyName("msbFragmentEntryId");
 	}
 
 	/**

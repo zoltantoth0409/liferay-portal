@@ -1,5 +1,5 @@
 create table MSBFragmentCollection (
-	fragmentCollectionId LONG not null primary key,
+	msbFragmentCollectionId LONG not null primary key,
 	groupId LONG,
 	companyId LONG,
 	userId LONG,
@@ -11,7 +11,7 @@ create table MSBFragmentCollection (
 );
 
 create table MSBFragmentEntry (
-	fragmentEntryId LONG not null primary key,
+	msbFragmentEntryId LONG not null primary key,
 	groupId LONG,
 	companyId LONG,
 	userId LONG,

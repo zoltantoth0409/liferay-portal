@@ -79,20 +79,20 @@ public interface MSBFragmentEntryLocalService extends BaseLocalService,
 	/**
 	* Creates a new msb fragment entry with the primary key. Does not add the msb fragment entry to the database.
 	*
-	* @param fragmentEntryId the primary key for the new msb fragment entry
+	* @param msbFragmentEntryId the primary key for the new msb fragment entry
 	* @return the new msb fragment entry
 	*/
-	public MSBFragmentEntry createMSBFragmentEntry(long fragmentEntryId);
+	public MSBFragmentEntry createMSBFragmentEntry(long msbFragmentEntryId);
 
 	/**
 	* Deletes the msb fragment entry with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param fragmentEntryId the primary key of the msb fragment entry
+	* @param msbFragmentEntryId the primary key of the msb fragment entry
 	* @return the msb fragment entry that was removed
 	* @throws PortalException if a msb fragment entry with the primary key could not be found
 	*/
 	@Indexable(type = IndexableType.DELETE)
-	public MSBFragmentEntry deleteMSBFragmentEntry(long fragmentEntryId)
+	public MSBFragmentEntry deleteMSBFragmentEntry(long msbFragmentEntryId)
 		throws PortalException;
 
 	/**
@@ -177,7 +177,7 @@ public interface MSBFragmentEntryLocalService extends BaseLocalService,
 		long msbFragmentCollectionId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public MSBFragmentEntry fetchMSBFragmentEntry(long fragmentEntryId);
+	public MSBFragmentEntry fetchMSBFragmentEntry(long msbFragmentEntryId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();
@@ -213,7 +213,7 @@ public interface MSBFragmentEntryLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<MSBFragmentEntry> getMSBFragmentEntries(long groupId,
 		long msbFragmentCollectionId, java.lang.String name, int start,
-		int end, OrderByComparator<MSBFragmentEntry> obc);
+		int end, OrderByComparator<MSBFragmentEntry> orderByComparator);
 
 	/**
 	* Returns the number of msb fragment entries.
@@ -226,12 +226,12 @@ public interface MSBFragmentEntryLocalService extends BaseLocalService,
 	/**
 	* Returns the msb fragment entry with the primary key.
 	*
-	* @param fragmentEntryId the primary key of the msb fragment entry
+	* @param msbFragmentEntryId the primary key of the msb fragment entry
 	* @return the msb fragment entry
 	* @throws PortalException if a msb fragment entry with the primary key could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public MSBFragmentEntry getMSBFragmentEntry(long fragmentEntryId)
+	public MSBFragmentEntry getMSBFragmentEntry(long msbFragmentEntryId)
 		throws PortalException;
 
 	/**
@@ -246,7 +246,7 @@ public interface MSBFragmentEntryLocalService extends BaseLocalService,
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException;
 
-	public MSBFragmentEntry updateMSBFragmentEntry(long fragmentEntryId,
+	public MSBFragmentEntry updateMSBFragmentEntry(long msbFragmentEntryId,
 		java.lang.String name, java.lang.String css, java.lang.String html,
 		java.lang.String js) throws PortalException;
 

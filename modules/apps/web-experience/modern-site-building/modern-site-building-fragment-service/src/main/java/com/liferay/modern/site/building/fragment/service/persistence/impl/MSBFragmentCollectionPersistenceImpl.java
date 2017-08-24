@@ -16,7 +16,7 @@ package com.liferay.modern.site.building.fragment.service.persistence.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.modern.site.building.fragment.exception.NoSuchMSBFragmentCollectionException;
+import com.liferay.modern.site.building.fragment.exception.NoSuchFragmentCollectionException;
 import com.liferay.modern.site.building.fragment.model.MSBFragmentCollection;
 import com.liferay.modern.site.building.fragment.model.impl.MSBFragmentCollectionImpl;
 import com.liferay.modern.site.building.fragment.model.impl.MSBFragmentCollectionModelImpl;
@@ -287,12 +287,12 @@ public class MSBFragmentCollectionPersistenceImpl extends BasePersistenceImpl<MS
 	 * @param groupId the group ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching msb fragment collection
-	 * @throws NoSuchMSBFragmentCollectionException if a matching msb fragment collection could not be found
+	 * @throws NoSuchFragmentCollectionException if a matching msb fragment collection could not be found
 	 */
 	@Override
 	public MSBFragmentCollection findByGroupId_First(long groupId,
 		OrderByComparator<MSBFragmentCollection> orderByComparator)
-		throws NoSuchMSBFragmentCollectionException {
+		throws NoSuchFragmentCollectionException {
 		MSBFragmentCollection msbFragmentCollection = fetchByGroupId_First(groupId,
 				orderByComparator);
 
@@ -309,7 +309,7 @@ public class MSBFragmentCollectionPersistenceImpl extends BasePersistenceImpl<MS
 
 		msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-		throw new NoSuchMSBFragmentCollectionException(msg.toString());
+		throw new NoSuchFragmentCollectionException(msg.toString());
 	}
 
 	/**
@@ -338,12 +338,12 @@ public class MSBFragmentCollectionPersistenceImpl extends BasePersistenceImpl<MS
 	 * @param groupId the group ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching msb fragment collection
-	 * @throws NoSuchMSBFragmentCollectionException if a matching msb fragment collection could not be found
+	 * @throws NoSuchFragmentCollectionException if a matching msb fragment collection could not be found
 	 */
 	@Override
 	public MSBFragmentCollection findByGroupId_Last(long groupId,
 		OrderByComparator<MSBFragmentCollection> orderByComparator)
-		throws NoSuchMSBFragmentCollectionException {
+		throws NoSuchFragmentCollectionException {
 		MSBFragmentCollection msbFragmentCollection = fetchByGroupId_Last(groupId,
 				orderByComparator);
 
@@ -360,7 +360,7 @@ public class MSBFragmentCollectionPersistenceImpl extends BasePersistenceImpl<MS
 
 		msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-		throw new NoSuchMSBFragmentCollectionException(msg.toString());
+		throw new NoSuchFragmentCollectionException(msg.toString());
 	}
 
 	/**
@@ -392,18 +392,18 @@ public class MSBFragmentCollectionPersistenceImpl extends BasePersistenceImpl<MS
 	/**
 	 * Returns the msb fragment collections before and after the current msb fragment collection in the ordered set where groupId = &#63;.
 	 *
-	 * @param fragmentCollectionId the primary key of the current msb fragment collection
+	 * @param msbFragmentCollectionId the primary key of the current msb fragment collection
 	 * @param groupId the group ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next msb fragment collection
-	 * @throws NoSuchMSBFragmentCollectionException if a msb fragment collection with the primary key could not be found
+	 * @throws NoSuchFragmentCollectionException if a msb fragment collection with the primary key could not be found
 	 */
 	@Override
 	public MSBFragmentCollection[] findByGroupId_PrevAndNext(
-		long fragmentCollectionId, long groupId,
+		long msbFragmentCollectionId, long groupId,
 		OrderByComparator<MSBFragmentCollection> orderByComparator)
-		throws NoSuchMSBFragmentCollectionException {
-		MSBFragmentCollection msbFragmentCollection = findByPrimaryKey(fragmentCollectionId);
+		throws NoSuchFragmentCollectionException {
+		MSBFragmentCollection msbFragmentCollection = findByPrimaryKey(msbFragmentCollectionId);
 
 		Session session = null;
 
@@ -668,23 +668,23 @@ public class MSBFragmentCollectionPersistenceImpl extends BasePersistenceImpl<MS
 	/**
 	 * Returns the msb fragment collections before and after the current msb fragment collection in the ordered set of msb fragment collections that the user has permission to view where groupId = &#63;.
 	 *
-	 * @param fragmentCollectionId the primary key of the current msb fragment collection
+	 * @param msbFragmentCollectionId the primary key of the current msb fragment collection
 	 * @param groupId the group ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next msb fragment collection
-	 * @throws NoSuchMSBFragmentCollectionException if a msb fragment collection with the primary key could not be found
+	 * @throws NoSuchFragmentCollectionException if a msb fragment collection with the primary key could not be found
 	 */
 	@Override
 	public MSBFragmentCollection[] filterFindByGroupId_PrevAndNext(
-		long fragmentCollectionId, long groupId,
+		long msbFragmentCollectionId, long groupId,
 		OrderByComparator<MSBFragmentCollection> orderByComparator)
-		throws NoSuchMSBFragmentCollectionException {
+		throws NoSuchFragmentCollectionException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByGroupId_PrevAndNext(fragmentCollectionId, groupId,
+			return findByGroupId_PrevAndNext(msbFragmentCollectionId, groupId,
 				orderByComparator);
 		}
 
-		MSBFragmentCollection msbFragmentCollection = findByPrimaryKey(fragmentCollectionId);
+		MSBFragmentCollection msbFragmentCollection = findByPrimaryKey(msbFragmentCollectionId);
 
 		Session session = null;
 
@@ -980,16 +980,16 @@ public class MSBFragmentCollectionPersistenceImpl extends BasePersistenceImpl<MS
 			new String[] { Long.class.getName(), String.class.getName() });
 
 	/**
-	 * Returns the msb fragment collection where groupId = &#63; and name = &#63; or throws a {@link NoSuchMSBFragmentCollectionException} if it could not be found.
+	 * Returns the msb fragment collection where groupId = &#63; and name = &#63; or throws a {@link NoSuchFragmentCollectionException} if it could not be found.
 	 *
 	 * @param groupId the group ID
 	 * @param name the name
 	 * @return the matching msb fragment collection
-	 * @throws NoSuchMSBFragmentCollectionException if a matching msb fragment collection could not be found
+	 * @throws NoSuchFragmentCollectionException if a matching msb fragment collection could not be found
 	 */
 	@Override
 	public MSBFragmentCollection findByG_N(long groupId, String name)
-		throws NoSuchMSBFragmentCollectionException {
+		throws NoSuchFragmentCollectionException {
 		MSBFragmentCollection msbFragmentCollection = fetchByG_N(groupId, name);
 
 		if (msbFragmentCollection == null) {
@@ -1009,7 +1009,7 @@ public class MSBFragmentCollectionPersistenceImpl extends BasePersistenceImpl<MS
 				_log.debug(msg.toString());
 			}
 
-			throw new NoSuchMSBFragmentCollectionException(msg.toString());
+			throw new NoSuchFragmentCollectionException(msg.toString());
 		}
 
 		return msbFragmentCollection;
@@ -1142,7 +1142,7 @@ public class MSBFragmentCollectionPersistenceImpl extends BasePersistenceImpl<MS
 	 */
 	@Override
 	public MSBFragmentCollection removeByG_N(long groupId, String name)
-		throws NoSuchMSBFragmentCollectionException {
+		throws NoSuchFragmentCollectionException {
 		MSBFragmentCollection msbFragmentCollection = findByG_N(groupId, name);
 
 		return remove(msbFragmentCollection);
@@ -1430,12 +1430,12 @@ public class MSBFragmentCollectionPersistenceImpl extends BasePersistenceImpl<MS
 	 * @param name the name
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching msb fragment collection
-	 * @throws NoSuchMSBFragmentCollectionException if a matching msb fragment collection could not be found
+	 * @throws NoSuchFragmentCollectionException if a matching msb fragment collection could not be found
 	 */
 	@Override
 	public MSBFragmentCollection findByG_LikeN_First(long groupId, String name,
 		OrderByComparator<MSBFragmentCollection> orderByComparator)
-		throws NoSuchMSBFragmentCollectionException {
+		throws NoSuchFragmentCollectionException {
 		MSBFragmentCollection msbFragmentCollection = fetchByG_LikeN_First(groupId,
 				name, orderByComparator);
 
@@ -1455,7 +1455,7 @@ public class MSBFragmentCollectionPersistenceImpl extends BasePersistenceImpl<MS
 
 		msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-		throw new NoSuchMSBFragmentCollectionException(msg.toString());
+		throw new NoSuchFragmentCollectionException(msg.toString());
 	}
 
 	/**
@@ -1486,12 +1486,12 @@ public class MSBFragmentCollectionPersistenceImpl extends BasePersistenceImpl<MS
 	 * @param name the name
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching msb fragment collection
-	 * @throws NoSuchMSBFragmentCollectionException if a matching msb fragment collection could not be found
+	 * @throws NoSuchFragmentCollectionException if a matching msb fragment collection could not be found
 	 */
 	@Override
 	public MSBFragmentCollection findByG_LikeN_Last(long groupId, String name,
 		OrderByComparator<MSBFragmentCollection> orderByComparator)
-		throws NoSuchMSBFragmentCollectionException {
+		throws NoSuchFragmentCollectionException {
 		MSBFragmentCollection msbFragmentCollection = fetchByG_LikeN_Last(groupId,
 				name, orderByComparator);
 
@@ -1511,7 +1511,7 @@ public class MSBFragmentCollectionPersistenceImpl extends BasePersistenceImpl<MS
 
 		msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-		throw new NoSuchMSBFragmentCollectionException(msg.toString());
+		throw new NoSuchFragmentCollectionException(msg.toString());
 	}
 
 	/**
@@ -1544,19 +1544,19 @@ public class MSBFragmentCollectionPersistenceImpl extends BasePersistenceImpl<MS
 	/**
 	 * Returns the msb fragment collections before and after the current msb fragment collection in the ordered set where groupId = &#63; and name LIKE &#63;.
 	 *
-	 * @param fragmentCollectionId the primary key of the current msb fragment collection
+	 * @param msbFragmentCollectionId the primary key of the current msb fragment collection
 	 * @param groupId the group ID
 	 * @param name the name
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next msb fragment collection
-	 * @throws NoSuchMSBFragmentCollectionException if a msb fragment collection with the primary key could not be found
+	 * @throws NoSuchFragmentCollectionException if a msb fragment collection with the primary key could not be found
 	 */
 	@Override
 	public MSBFragmentCollection[] findByG_LikeN_PrevAndNext(
-		long fragmentCollectionId, long groupId, String name,
+		long msbFragmentCollectionId, long groupId, String name,
 		OrderByComparator<MSBFragmentCollection> orderByComparator)
-		throws NoSuchMSBFragmentCollectionException {
-		MSBFragmentCollection msbFragmentCollection = findByPrimaryKey(fragmentCollectionId);
+		throws NoSuchFragmentCollectionException {
+		MSBFragmentCollection msbFragmentCollection = findByPrimaryKey(msbFragmentCollectionId);
 
 		Session session = null;
 
@@ -1861,24 +1861,24 @@ public class MSBFragmentCollectionPersistenceImpl extends BasePersistenceImpl<MS
 	/**
 	 * Returns the msb fragment collections before and after the current msb fragment collection in the ordered set of msb fragment collections that the user has permission to view where groupId = &#63; and name LIKE &#63;.
 	 *
-	 * @param fragmentCollectionId the primary key of the current msb fragment collection
+	 * @param msbFragmentCollectionId the primary key of the current msb fragment collection
 	 * @param groupId the group ID
 	 * @param name the name
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next msb fragment collection
-	 * @throws NoSuchMSBFragmentCollectionException if a msb fragment collection with the primary key could not be found
+	 * @throws NoSuchFragmentCollectionException if a msb fragment collection with the primary key could not be found
 	 */
 	@Override
 	public MSBFragmentCollection[] filterFindByG_LikeN_PrevAndNext(
-		long fragmentCollectionId, long groupId, String name,
+		long msbFragmentCollectionId, long groupId, String name,
 		OrderByComparator<MSBFragmentCollection> orderByComparator)
-		throws NoSuchMSBFragmentCollectionException {
+		throws NoSuchFragmentCollectionException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_LikeN_PrevAndNext(fragmentCollectionId, groupId,
+			return findByG_LikeN_PrevAndNext(msbFragmentCollectionId, groupId,
 				name, orderByComparator);
 		}
 
-		MSBFragmentCollection msbFragmentCollection = findByPrimaryKey(fragmentCollectionId);
+		MSBFragmentCollection msbFragmentCollection = findByPrimaryKey(msbFragmentCollectionId);
 
 		Session session = null;
 
@@ -2360,15 +2360,15 @@ public class MSBFragmentCollectionPersistenceImpl extends BasePersistenceImpl<MS
 	/**
 	 * Creates a new msb fragment collection with the primary key. Does not add the msb fragment collection to the database.
 	 *
-	 * @param fragmentCollectionId the primary key for the new msb fragment collection
+	 * @param msbFragmentCollectionId the primary key for the new msb fragment collection
 	 * @return the new msb fragment collection
 	 */
 	@Override
-	public MSBFragmentCollection create(long fragmentCollectionId) {
+	public MSBFragmentCollection create(long msbFragmentCollectionId) {
 		MSBFragmentCollection msbFragmentCollection = new MSBFragmentCollectionImpl();
 
 		msbFragmentCollection.setNew(true);
-		msbFragmentCollection.setPrimaryKey(fragmentCollectionId);
+		msbFragmentCollection.setPrimaryKey(msbFragmentCollectionId);
 
 		msbFragmentCollection.setCompanyId(companyProvider.getCompanyId());
 
@@ -2378,14 +2378,14 @@ public class MSBFragmentCollectionPersistenceImpl extends BasePersistenceImpl<MS
 	/**
 	 * Removes the msb fragment collection with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param fragmentCollectionId the primary key of the msb fragment collection
+	 * @param msbFragmentCollectionId the primary key of the msb fragment collection
 	 * @return the msb fragment collection that was removed
-	 * @throws NoSuchMSBFragmentCollectionException if a msb fragment collection with the primary key could not be found
+	 * @throws NoSuchFragmentCollectionException if a msb fragment collection with the primary key could not be found
 	 */
 	@Override
-	public MSBFragmentCollection remove(long fragmentCollectionId)
-		throws NoSuchMSBFragmentCollectionException {
-		return remove((Serializable)fragmentCollectionId);
+	public MSBFragmentCollection remove(long msbFragmentCollectionId)
+		throws NoSuchFragmentCollectionException {
+		return remove((Serializable)msbFragmentCollectionId);
 	}
 
 	/**
@@ -2393,11 +2393,11 @@ public class MSBFragmentCollectionPersistenceImpl extends BasePersistenceImpl<MS
 	 *
 	 * @param primaryKey the primary key of the msb fragment collection
 	 * @return the msb fragment collection that was removed
-	 * @throws NoSuchMSBFragmentCollectionException if a msb fragment collection with the primary key could not be found
+	 * @throws NoSuchFragmentCollectionException if a msb fragment collection with the primary key could not be found
 	 */
 	@Override
 	public MSBFragmentCollection remove(Serializable primaryKey)
-		throws NoSuchMSBFragmentCollectionException {
+		throws NoSuchFragmentCollectionException {
 		Session session = null;
 
 		try {
@@ -2411,13 +2411,13 @@ public class MSBFragmentCollectionPersistenceImpl extends BasePersistenceImpl<MS
 					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
-				throw new NoSuchMSBFragmentCollectionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				throw new NoSuchFragmentCollectionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
 					primaryKey);
 			}
 
 			return remove(msbFragmentCollection);
 		}
-		catch (NoSuchMSBFragmentCollectionException nsee) {
+		catch (NoSuchFragmentCollectionException nsee) {
 			throw nsee;
 		}
 		catch (Exception e) {
@@ -2577,7 +2577,7 @@ public class MSBFragmentCollectionPersistenceImpl extends BasePersistenceImpl<MS
 		msbFragmentCollectionImpl.setNew(msbFragmentCollection.isNew());
 		msbFragmentCollectionImpl.setPrimaryKey(msbFragmentCollection.getPrimaryKey());
 
-		msbFragmentCollectionImpl.setFragmentCollectionId(msbFragmentCollection.getFragmentCollectionId());
+		msbFragmentCollectionImpl.setMsbFragmentCollectionId(msbFragmentCollection.getMsbFragmentCollectionId());
 		msbFragmentCollectionImpl.setGroupId(msbFragmentCollection.getGroupId());
 		msbFragmentCollectionImpl.setCompanyId(msbFragmentCollection.getCompanyId());
 		msbFragmentCollectionImpl.setUserId(msbFragmentCollection.getUserId());
@@ -2595,11 +2595,11 @@ public class MSBFragmentCollectionPersistenceImpl extends BasePersistenceImpl<MS
 	 *
 	 * @param primaryKey the primary key of the msb fragment collection
 	 * @return the msb fragment collection
-	 * @throws NoSuchMSBFragmentCollectionException if a msb fragment collection with the primary key could not be found
+	 * @throws NoSuchFragmentCollectionException if a msb fragment collection with the primary key could not be found
 	 */
 	@Override
 	public MSBFragmentCollection findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchMSBFragmentCollectionException {
+		throws NoSuchFragmentCollectionException {
 		MSBFragmentCollection msbFragmentCollection = fetchByPrimaryKey(primaryKey);
 
 		if (msbFragmentCollection == null) {
@@ -2607,7 +2607,7 @@ public class MSBFragmentCollectionPersistenceImpl extends BasePersistenceImpl<MS
 				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
-			throw new NoSuchMSBFragmentCollectionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+			throw new NoSuchFragmentCollectionException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
 				primaryKey);
 		}
 
@@ -2615,16 +2615,16 @@ public class MSBFragmentCollectionPersistenceImpl extends BasePersistenceImpl<MS
 	}
 
 	/**
-	 * Returns the msb fragment collection with the primary key or throws a {@link NoSuchMSBFragmentCollectionException} if it could not be found.
+	 * Returns the msb fragment collection with the primary key or throws a {@link NoSuchFragmentCollectionException} if it could not be found.
 	 *
-	 * @param fragmentCollectionId the primary key of the msb fragment collection
+	 * @param msbFragmentCollectionId the primary key of the msb fragment collection
 	 * @return the msb fragment collection
-	 * @throws NoSuchMSBFragmentCollectionException if a msb fragment collection with the primary key could not be found
+	 * @throws NoSuchFragmentCollectionException if a msb fragment collection with the primary key could not be found
 	 */
 	@Override
-	public MSBFragmentCollection findByPrimaryKey(long fragmentCollectionId)
-		throws NoSuchMSBFragmentCollectionException {
-		return findByPrimaryKey((Serializable)fragmentCollectionId);
+	public MSBFragmentCollection findByPrimaryKey(long msbFragmentCollectionId)
+		throws NoSuchFragmentCollectionException {
+		return findByPrimaryKey((Serializable)msbFragmentCollectionId);
 	}
 
 	/**
@@ -2678,12 +2678,12 @@ public class MSBFragmentCollectionPersistenceImpl extends BasePersistenceImpl<MS
 	/**
 	 * Returns the msb fragment collection with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param fragmentCollectionId the primary key of the msb fragment collection
+	 * @param msbFragmentCollectionId the primary key of the msb fragment collection
 	 * @return the msb fragment collection, or <code>null</code> if a msb fragment collection with the primary key could not be found
 	 */
 	@Override
-	public MSBFragmentCollection fetchByPrimaryKey(long fragmentCollectionId) {
-		return fetchByPrimaryKey((Serializable)fragmentCollectionId);
+	public MSBFragmentCollection fetchByPrimaryKey(long msbFragmentCollectionId) {
+		return fetchByPrimaryKey((Serializable)msbFragmentCollectionId);
 	}
 
 	@Override
@@ -2997,17 +2997,17 @@ public class MSBFragmentCollectionPersistenceImpl extends BasePersistenceImpl<MS
 	@ServiceReference(type = FinderCache.class)
 	protected FinderCache finderCache;
 	private static final String _SQL_SELECT_MSBFRAGMENTCOLLECTION = "SELECT msbFragmentCollection FROM MSBFragmentCollection msbFragmentCollection";
-	private static final String _SQL_SELECT_MSBFRAGMENTCOLLECTION_WHERE_PKS_IN = "SELECT msbFragmentCollection FROM MSBFragmentCollection msbFragmentCollection WHERE fragmentCollectionId IN (";
+	private static final String _SQL_SELECT_MSBFRAGMENTCOLLECTION_WHERE_PKS_IN = "SELECT msbFragmentCollection FROM MSBFragmentCollection msbFragmentCollection WHERE msbFragmentCollectionId IN (";
 	private static final String _SQL_SELECT_MSBFRAGMENTCOLLECTION_WHERE = "SELECT msbFragmentCollection FROM MSBFragmentCollection msbFragmentCollection WHERE ";
 	private static final String _SQL_COUNT_MSBFRAGMENTCOLLECTION = "SELECT COUNT(msbFragmentCollection) FROM MSBFragmentCollection msbFragmentCollection";
 	private static final String _SQL_COUNT_MSBFRAGMENTCOLLECTION_WHERE = "SELECT COUNT(msbFragmentCollection) FROM MSBFragmentCollection msbFragmentCollection WHERE ";
-	private static final String _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN = "msbFragmentCollection.fragmentCollectionId";
+	private static final String _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN = "msbFragmentCollection.msbFragmentCollectionId";
 	private static final String _FILTER_SQL_SELECT_MSBFRAGMENTCOLLECTION_WHERE = "SELECT DISTINCT {msbFragmentCollection.*} FROM MSBFragmentCollection msbFragmentCollection WHERE ";
 	private static final String _FILTER_SQL_SELECT_MSBFRAGMENTCOLLECTION_NO_INLINE_DISTINCT_WHERE_1 =
-		"SELECT {MSBFragmentCollection.*} FROM (SELECT DISTINCT msbFragmentCollection.fragmentCollectionId FROM MSBFragmentCollection msbFragmentCollection WHERE ";
+		"SELECT {MSBFragmentCollection.*} FROM (SELECT DISTINCT msbFragmentCollection.msbFragmentCollectionId FROM MSBFragmentCollection msbFragmentCollection WHERE ";
 	private static final String _FILTER_SQL_SELECT_MSBFRAGMENTCOLLECTION_NO_INLINE_DISTINCT_WHERE_2 =
-		") TEMP_TABLE INNER JOIN MSBFragmentCollection ON TEMP_TABLE.fragmentCollectionId = MSBFragmentCollection.fragmentCollectionId";
-	private static final String _FILTER_SQL_COUNT_MSBFRAGMENTCOLLECTION_WHERE = "SELECT COUNT(DISTINCT msbFragmentCollection.fragmentCollectionId) AS COUNT_VALUE FROM MSBFragmentCollection msbFragmentCollection WHERE ";
+		") TEMP_TABLE INNER JOIN MSBFragmentCollection ON TEMP_TABLE.msbFragmentCollectionId = MSBFragmentCollection.msbFragmentCollectionId";
+	private static final String _FILTER_SQL_COUNT_MSBFRAGMENTCOLLECTION_WHERE = "SELECT COUNT(DISTINCT msbFragmentCollection.msbFragmentCollectionId) AS COUNT_VALUE FROM MSBFragmentCollection msbFragmentCollection WHERE ";
 	private static final String _FILTER_ENTITY_ALIAS = "msbFragmentCollection";
 	private static final String _FILTER_ENTITY_TABLE = "MSBFragmentCollection";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "msbFragmentCollection.";

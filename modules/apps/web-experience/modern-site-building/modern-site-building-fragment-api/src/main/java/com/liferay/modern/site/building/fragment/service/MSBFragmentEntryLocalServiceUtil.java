@@ -66,25 +66,25 @@ public class MSBFragmentEntryLocalServiceUtil {
 	/**
 	* Creates a new msb fragment entry with the primary key. Does not add the msb fragment entry to the database.
 	*
-	* @param fragmentEntryId the primary key for the new msb fragment entry
+	* @param msbFragmentEntryId the primary key for the new msb fragment entry
 	* @return the new msb fragment entry
 	*/
 	public static com.liferay.modern.site.building.fragment.model.MSBFragmentEntry createMSBFragmentEntry(
-		long fragmentEntryId) {
-		return getService().createMSBFragmentEntry(fragmentEntryId);
+		long msbFragmentEntryId) {
+		return getService().createMSBFragmentEntry(msbFragmentEntryId);
 	}
 
 	/**
 	* Deletes the msb fragment entry with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param fragmentEntryId the primary key of the msb fragment entry
+	* @param msbFragmentEntryId the primary key of the msb fragment entry
 	* @return the msb fragment entry that was removed
 	* @throws PortalException if a msb fragment entry with the primary key could not be found
 	*/
 	public static com.liferay.modern.site.building.fragment.model.MSBFragmentEntry deleteMSBFragmentEntry(
-		long fragmentEntryId)
+		long msbFragmentEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deleteMSBFragmentEntry(fragmentEntryId);
+		return getService().deleteMSBFragmentEntry(msbFragmentEntryId);
 	}
 
 	/**
@@ -193,8 +193,8 @@ public class MSBFragmentEntryLocalServiceUtil {
 	}
 
 	public static com.liferay.modern.site.building.fragment.model.MSBFragmentEntry fetchMSBFragmentEntry(
-		long fragmentEntryId) {
-		return getService().fetchMSBFragmentEntry(fragmentEntryId);
+		long msbFragmentEntryId) {
+		return getService().fetchMSBFragmentEntry(msbFragmentEntryId);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
@@ -240,10 +240,10 @@ public class MSBFragmentEntryLocalServiceUtil {
 	public static java.util.List<com.liferay.modern.site.building.fragment.model.MSBFragmentEntry> getMSBFragmentEntries(
 		long groupId, long msbFragmentCollectionId, java.lang.String name,
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.modern.site.building.fragment.model.MSBFragmentEntry> obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.modern.site.building.fragment.model.MSBFragmentEntry> orderByComparator) {
 		return getService()
 				   .getMSBFragmentEntries(groupId, msbFragmentCollectionId,
-			name, start, end, obc);
+			name, start, end, orderByComparator);
 	}
 
 	/**
@@ -258,14 +258,14 @@ public class MSBFragmentEntryLocalServiceUtil {
 	/**
 	* Returns the msb fragment entry with the primary key.
 	*
-	* @param fragmentEntryId the primary key of the msb fragment entry
+	* @param msbFragmentEntryId the primary key of the msb fragment entry
 	* @return the msb fragment entry
 	* @throws PortalException if a msb fragment entry with the primary key could not be found
 	*/
 	public static com.liferay.modern.site.building.fragment.model.MSBFragmentEntry getMSBFragmentEntry(
-		long fragmentEntryId)
+		long msbFragmentEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getMSBFragmentEntry(fragmentEntryId);
+		return getService().getMSBFragmentEntry(msbFragmentEntryId);
 	}
 
 	/**
@@ -284,11 +284,12 @@ public class MSBFragmentEntryLocalServiceUtil {
 	}
 
 	public static com.liferay.modern.site.building.fragment.model.MSBFragmentEntry updateMSBFragmentEntry(
-		long fragmentEntryId, java.lang.String name, java.lang.String css,
+		long msbFragmentEntryId, java.lang.String name, java.lang.String css,
 		java.lang.String html, java.lang.String js)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
-				   .updateMSBFragmentEntry(fragmentEntryId, name, css, html, js);
+				   .updateMSBFragmentEntry(msbFragmentEntryId, name, css, html,
+			js);
 	}
 
 	/**

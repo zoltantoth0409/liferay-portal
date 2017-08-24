@@ -59,27 +59,27 @@ public class MSBFragmentCollectionLocalServiceWrapper
 	/**
 	* Creates a new msb fragment collection with the primary key. Does not add the msb fragment collection to the database.
 	*
-	* @param fragmentCollectionId the primary key for the new msb fragment collection
+	* @param msbFragmentCollectionId the primary key for the new msb fragment collection
 	* @return the new msb fragment collection
 	*/
 	@Override
 	public com.liferay.modern.site.building.fragment.model.MSBFragmentCollection createMSBFragmentCollection(
-		long fragmentCollectionId) {
-		return _msbFragmentCollectionLocalService.createMSBFragmentCollection(fragmentCollectionId);
+		long msbFragmentCollectionId) {
+		return _msbFragmentCollectionLocalService.createMSBFragmentCollection(msbFragmentCollectionId);
 	}
 
 	/**
 	* Deletes the msb fragment collection with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param fragmentCollectionId the primary key of the msb fragment collection
+	* @param msbFragmentCollectionId the primary key of the msb fragment collection
 	* @return the msb fragment collection that was removed
 	* @throws PortalException if a msb fragment collection with the primary key could not be found
 	*/
 	@Override
 	public com.liferay.modern.site.building.fragment.model.MSBFragmentCollection deleteMSBFragmentCollection(
-		long fragmentCollectionId)
+		long msbFragmentCollectionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _msbFragmentCollectionLocalService.deleteMSBFragmentCollection(fragmentCollectionId);
+		return _msbFragmentCollectionLocalService.deleteMSBFragmentCollection(msbFragmentCollectionId);
 	}
 
 	/**
@@ -194,8 +194,8 @@ public class MSBFragmentCollectionLocalServiceWrapper
 
 	@Override
 	public com.liferay.modern.site.building.fragment.model.MSBFragmentCollection fetchMSBFragmentCollection(
-		long fragmentCollectionId) {
-		return _msbFragmentCollectionLocalService.fetchMSBFragmentCollection(fragmentCollectionId);
+		long msbFragmentCollectionId) {
+		return _msbFragmentCollectionLocalService.fetchMSBFragmentCollection(msbFragmentCollectionId);
 	}
 
 	@Override
@@ -211,15 +211,15 @@ public class MSBFragmentCollectionLocalServiceWrapper
 	/**
 	* Returns the msb fragment collection with the primary key.
 	*
-	* @param fragmentCollectionId the primary key of the msb fragment collection
+	* @param msbFragmentCollectionId the primary key of the msb fragment collection
 	* @return the msb fragment collection
 	* @throws PortalException if a msb fragment collection with the primary key could not be found
 	*/
 	@Override
 	public com.liferay.modern.site.building.fragment.model.MSBFragmentCollection getMSBFragmentCollection(
-		long fragmentCollectionId)
+		long msbFragmentCollectionId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _msbFragmentCollectionLocalService.getMSBFragmentCollection(fragmentCollectionId);
+		return _msbFragmentCollectionLocalService.getMSBFragmentCollection(msbFragmentCollectionId);
 	}
 
 	/**
@@ -260,9 +260,9 @@ public class MSBFragmentCollectionLocalServiceWrapper
 	@Override
 	public java.util.List<com.liferay.modern.site.building.fragment.model.MSBFragmentCollection> getMSBFragmentCollections(
 		long groupId, java.lang.String name, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.modern.site.building.fragment.model.MSBFragmentCollection> obc) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.modern.site.building.fragment.model.MSBFragmentCollection> orderByComparator) {
 		return _msbFragmentCollectionLocalService.getMSBFragmentCollections(groupId,
-			name, start, end, obc);
+			name, start, end, orderByComparator);
 	}
 
 	/**
@@ -294,10 +294,10 @@ public class MSBFragmentCollectionLocalServiceWrapper
 
 	@Override
 	public com.liferay.modern.site.building.fragment.model.MSBFragmentCollection updateMSBFragmentCollection(
-		long fragmentCollectionId, java.lang.String name,
+		long msbFragmentCollectionId, java.lang.String name,
 		java.lang.String description)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _msbFragmentCollectionLocalService.updateMSBFragmentCollection(fragmentCollectionId,
+		return _msbFragmentCollectionLocalService.updateMSBFragmentCollection(msbFragmentCollectionId,
 			name, description);
 	}
 

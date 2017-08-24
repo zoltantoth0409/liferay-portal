@@ -66,18 +66,18 @@ public interface MSBFragmentEntryModel extends BaseModel<MSBFragmentEntry>,
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Returns the fragment entry ID of this msb fragment entry.
+	 * Returns the msb fragment entry ID of this msb fragment entry.
 	 *
-	 * @return the fragment entry ID of this msb fragment entry
+	 * @return the msb fragment entry ID of this msb fragment entry
 	 */
-	public long getFragmentEntryId();
+	public long getMsbFragmentEntryId();
 
 	/**
-	 * Sets the fragment entry ID of this msb fragment entry.
+	 * Sets the msb fragment entry ID of this msb fragment entry.
 	 *
-	 * @param fragmentEntryId the fragment entry ID of this msb fragment entry
+	 * @param msbFragmentEntryId the msb fragment entry ID of this msb fragment entry
 	 */
-	public void setFragmentEntryId(long fragmentEntryId);
+	public void setMsbFragmentEntryId(long msbFragmentEntryId);
 
 	/**
 	 * Returns the group ID of this msb fragment entry.
