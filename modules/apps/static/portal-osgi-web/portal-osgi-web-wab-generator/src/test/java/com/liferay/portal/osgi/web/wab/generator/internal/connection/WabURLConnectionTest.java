@@ -45,8 +45,6 @@ public class WabURLConnectionTest {
 
 	@BeforeClass
 	public static void setUpClass() {
-		PropsUtil.setProps(new PropsImpl());
-
 		FileUtil fileUtil = new FileUtil();
 
 		fileUtil.setFile(new FileImpl());
@@ -54,6 +52,8 @@ public class WabURLConnectionTest {
 		HttpUtil httpUtil = new HttpUtil();
 
 		httpUtil.setHttp(new HttpImpl());
+
+		PropsUtil.setProps(new PropsImpl());
 
 		SAXReaderUtil saxReaderUtil = new SAXReaderUtil();
 
@@ -72,9 +72,7 @@ public class WabURLConnectionTest {
 		UnsecureSAXReaderUtil unsecureSAXReaderUtil =
 			new UnsecureSAXReaderUtil();
 
-		SAXReaderImpl unsecureSAXReader = new SAXReaderImpl();
-
-		unsecureSAXReaderUtil.setSAXReader(unsecureSAXReader);
+		unsecureSAXReaderUtil.setSAXReader(new SAXReaderImpl());
 
 		URL.setURLStreamHandlerFactory(
 			protocol -> new URLStreamHandler() {
