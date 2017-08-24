@@ -55,7 +55,7 @@ public class MSBFragmentEntryServiceImpl
 			long[] msbFragmentEntriesIds)
 		throws PortalException {
 
-		List<MSBFragmentEntry> failedFragmentEntries = new ArrayList<>();
+		List<MSBFragmentEntry> undeletableMSBFragmentEntries = new ArrayList<>();
 
 		for (long msbFragmentEntryId : msbFragmentEntriesIds) {
 			try {
@@ -74,11 +74,11 @@ public class MSBFragmentEntryServiceImpl
 					msbFragmentEntryPersistence.fetchByPrimaryKey(
 						msbFragmentEntryId);
 
-				failedFragmentEntries.add(mSBFragmentEntry);
+				undeletableMSBFragmentEntries.add(mSBFragmentEntry);
 			}
 		}
 
-		return failedFragmentEntries;
+		return undeletableMSBFragmentEntries;
 	}
 
 	@Override
