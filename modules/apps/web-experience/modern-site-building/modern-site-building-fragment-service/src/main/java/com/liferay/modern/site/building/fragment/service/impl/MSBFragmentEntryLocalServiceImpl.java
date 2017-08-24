@@ -57,11 +57,11 @@ public class MSBFragmentEntryLocalServiceImpl
 		msbFragmentEntry.setCompanyId(user.getCompanyId());
 		msbFragmentEntry.setUserId(user.getUserId());
 		msbFragmentEntry.setUserName(user.getFullName());
-		msbFragmentEntry.setMsbFragmentCollectionId(msbFragmentCollectionId);
-		msbFragmentEntry.setName(name);
 		msbFragmentEntry.setCreateDate(serviceContext.getCreateDate(new Date()));
 		msbFragmentEntry.setModifiedDate(
 			serviceContext.getModifiedDate(new Date()));
+		msbFragmentEntry.setMsbFragmentCollectionId(msbFragmentCollectionId);
+		msbFragmentEntry.setName(name);
 		msbFragmentEntry.setCss(css);
 		msbFragmentEntry.setHtml(html);
 		msbFragmentEntry.setJs(js);
