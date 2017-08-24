@@ -66,7 +66,7 @@ public class MSBFragmentCollectionServiceImpl
 			long[] msbFragmentCollectionIds)
 		throws PortalException {
 
-		List<MSBFragmentCollection> failedFragmentCollections =
+		List<MSBFragmentCollection> undeletableMSBFragmentCollections =
 			new ArrayList<>();
 
 		for (long msbFragmentCollectionId : msbFragmentCollectionIds) {
@@ -87,11 +87,11 @@ public class MSBFragmentCollectionServiceImpl
 					msbFragmentCollectionPersistence.fetchByPrimaryKey(
 						msbFragmentCollectionId);
 
-				failedFragmentCollections.add(msbFragmentCollection);
+				undeletableMSBFragmentCollections.add(msbFragmentCollection);
 			}
 		}
 
-		return failedFragmentCollections;
+		return undeletableMSBFragmentCollections;
 	}
 
 	@Override
