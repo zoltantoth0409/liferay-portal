@@ -52,12 +52,12 @@ public class MSBFragmentEntryServiceImpl
 
 	@Override
 	public List<MSBFragmentEntry> deleteMSBFragmentEntries(
-			long[] fragmentEntriesIds)
+			long[] msbFragmentEntriesIds)
 		throws PortalException {
 
 		List<MSBFragmentEntry> failedFragmentEntries = new ArrayList<>();
 
-		for (long msbFragmentEntryId : fragmentEntriesIds) {
+		for (long msbFragmentEntryId : msbFragmentEntriesIds) {
 			try {
 				MSBFragmentEntryPermission.check(
 					getPermissionChecker(), msbFragmentEntryId, ActionKeys.DELETE);
@@ -137,10 +137,10 @@ public class MSBFragmentEntryServiceImpl
 	@Override
 	public List<MSBFragmentEntry> getMSBFragmentEntries(
 		long groupId, long msbFragmentCollectionId, String name, int start,
-		int end, OrderByComparator<MSBFragmentEntry> obc) {
+		int end, OrderByComparator<MSBFragmentEntry> orderByComparator) {
 
 		return msbFragmentEntryLocalService.getMSBFragmentEntries(
-			groupId, msbFragmentCollectionId, name, start, end, obc);
+			groupId, msbFragmentCollectionId, name, start, end, orderByComparator);
 	}
 
 	@Override

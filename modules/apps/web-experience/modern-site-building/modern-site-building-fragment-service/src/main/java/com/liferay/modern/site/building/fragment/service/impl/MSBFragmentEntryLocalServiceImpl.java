@@ -138,15 +138,15 @@ public class MSBFragmentEntryLocalServiceImpl
 	@Override
 	public List<MSBFragmentEntry> getMSBFragmentEntries(
 		long groupId, long msbFragmentCollectionId, String name, int start,
-		int end, OrderByComparator<MSBFragmentEntry> obc) {
+		int end, OrderByComparator<MSBFragmentEntry> orderByComparator) {
 
 		if (Validator.isNull(name)) {
 			return msbFragmentEntryPersistence.findByG_MSBFC(
-				groupId, msbFragmentCollectionId, start, end, obc);
+				groupId, msbFragmentCollectionId, start, end, orderByComparator);
 		}
 
 		return msbFragmentEntryPersistence.findByG_MSBFC_LikeN(
-			groupId, msbFragmentCollectionId, name, start, end, obc);
+			groupId, msbFragmentCollectionId, name, start, end, orderByComparator);
 	}
 
 	@Override
