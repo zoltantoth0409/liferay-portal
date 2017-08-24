@@ -2664,7 +2664,7 @@
 			<var name="fieldName" value="MultipleSelection" />
 		</execute>
 
-		<for list="1,2,3,4" param="checkboxOption">
+		<for list="1,2,4" param="checkboxOption">
 			<execute macro="FormFields#selectCheckboxOption">
 				<var name="checkboxOption" value="${checkboxOption}" />
 				<var name="fieldName" value="MultipleSelection" />
@@ -2681,12 +2681,17 @@
 
 		<execute macro="FormsAdminNavigator#gotoViewEntries" />
 
-		<for list="1,2,3,4" param="fieldValue">
+		<for list="1,2,4" param="fieldValue">
 			<execute macro="FormsAdmin#viewFormTableEntry">
 				<var name="fieldLabel" value="Multiple Selection" />
 				<var name="fieldValue" value="${fieldValue}" />
 			</execute>
 		</for>
+
+		<execute macro="FormsAdmin#viewFormTableEntryNotPresent">
+			<var name="fieldLabel" value="Multiple Selection" />
+			<var name="fieldValue" value="3" />
+		</execute>
 	</command>
 
 	<command name="SubmitFormWithParagraphField" priority="4">
