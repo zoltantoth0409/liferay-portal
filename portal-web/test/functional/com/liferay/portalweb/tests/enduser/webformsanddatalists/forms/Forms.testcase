@@ -2627,8 +2627,6 @@
 
 		<execute macro="Form#editName" />
 
-		<execute macro="Form#editDescription" />
-
 		<execute macro="Form#gotoAddField">
 			<var name="fieldType" value="Multiple Selection" />
 		</execute>
@@ -2685,7 +2683,7 @@
 
 		<for list="1,2,3,4" param="fieldValue">
 			<execute macro="FormsAdmin#viewFormTableEntry">
-				<var name="fieldLabel" value="Multiple Selection " />
+				<var name="fieldLabel" value="Multiple Selection" />
 				<var name="fieldValue" value="${fieldValue}" />
 			</execute>
 		</for>
