@@ -151,7 +151,8 @@ public class MSBFragmentCollectionPermission
 
 			PermissionCacheKey permissionCacheKey = (PermissionCacheKey)obj;
 
-			if ((_msbFragmentCollectionId == permissionCacheKey._msbFragmentCollectionId) &&
+			if ((_msbFragmentCollectionId ==
+					permissionCacheKey._msbFragmentCollectionId) &&
 				Objects.equals(_actionId, permissionCacheKey._actionId)) {
 
 				return true;
@@ -167,7 +168,9 @@ public class MSBFragmentCollectionPermission
 			return HashUtil.hash(hash, _actionId);
 		}
 
-		private PermissionCacheKey(long msbFragmentCollectionId, String actionId) {
+		private PermissionCacheKey(
+			long msbFragmentCollectionId, String actionId) {
+
 			_msbFragmentCollectionId = msbFragmentCollectionId;
 			_actionId = actionId;
 		}

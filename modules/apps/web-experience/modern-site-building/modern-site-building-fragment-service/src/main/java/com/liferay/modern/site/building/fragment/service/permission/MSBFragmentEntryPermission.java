@@ -117,7 +117,8 @@ public class MSBFragmentEntryPermission implements BaseModelPermissionChecker {
 		String actionId) {
 
 		if (permissionChecker.hasOwnerPermission(
-				msbFragmentEntry.getCompanyId(), MSBFragmentEntry.class.getName(),
+				msbFragmentEntry.getCompanyId(),
+				MSBFragmentEntry.class.getName(),
 				msbFragmentEntry.getMsbFragmentCollectionId(),
 				msbFragmentEntry.getUserId(), actionId) ||
 			permissionChecker.hasPermission(
@@ -147,7 +148,8 @@ public class MSBFragmentEntryPermission implements BaseModelPermissionChecker {
 
 			PermissionCacheKey permissionCacheKey = (PermissionCacheKey)obj;
 
-			if ((_msbFragmentEntryId == permissionCacheKey._msbFragmentEntryId) &&
+			if ((_msbFragmentEntryId ==
+					permissionCacheKey._msbFragmentEntryId) &&
 				Objects.equals(_actionId, permissionCacheKey._actionId)) {
 
 				return true;

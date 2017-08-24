@@ -55,12 +55,14 @@ public class MSBFragmentEntryServiceImpl
 			long[] msbFragmentEntriesIds)
 		throws PortalException {
 
-		List<MSBFragmentEntry> undeletableMSBFragmentEntries = new ArrayList<>();
+		List<MSBFragmentEntry> undeletableMSBFragmentEntries =
+			new ArrayList<>();
 
 		for (long msbFragmentEntryId : msbFragmentEntriesIds) {
 			try {
 				MSBFragmentEntryPermission.check(
-					getPermissionChecker(), msbFragmentEntryId, ActionKeys.DELETE);
+					getPermissionChecker(), msbFragmentEntryId,
+					ActionKeys.DELETE);
 
 				msbFragmentEntryLocalService.deleteMSBFragmentEntry(
 					msbFragmentEntryId);
@@ -140,7 +142,8 @@ public class MSBFragmentEntryServiceImpl
 		int end, OrderByComparator<MSBFragmentEntry> orderByComparator) {
 
 		return msbFragmentEntryLocalService.getMSBFragmentEntries(
-			groupId, msbFragmentCollectionId, name, start, end, orderByComparator);
+			groupId, msbFragmentCollectionId, name, start, end,
+			orderByComparator);
 	}
 
 	@Override

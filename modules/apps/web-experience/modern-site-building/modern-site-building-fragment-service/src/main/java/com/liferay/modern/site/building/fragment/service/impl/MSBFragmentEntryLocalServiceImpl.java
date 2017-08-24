@@ -57,7 +57,8 @@ public class MSBFragmentEntryLocalServiceImpl
 		msbFragmentEntry.setCompanyId(user.getCompanyId());
 		msbFragmentEntry.setUserId(user.getUserId());
 		msbFragmentEntry.setUserName(user.getFullName());
-		msbFragmentEntry.setCreateDate(serviceContext.getCreateDate(new Date()));
+		msbFragmentEntry.setCreateDate(
+			serviceContext.getCreateDate(new Date()));
 		msbFragmentEntry.setModifiedDate(
 			serviceContext.getModifiedDate(new Date()));
 		msbFragmentEntry.setMsbFragmentCollectionId(msbFragmentCollectionId);
@@ -70,7 +71,8 @@ public class MSBFragmentEntryLocalServiceImpl
 
 		// Resources
 
-		resourceLocalService.addModelResources(msbFragmentEntry, serviceContext);
+		resourceLocalService.addModelResources(
+			msbFragmentEntry, serviceContext);
 
 		return msbFragmentEntry;
 	}
@@ -79,7 +81,8 @@ public class MSBFragmentEntryLocalServiceImpl
 	public MSBFragmentEntry deleteMSBFragmentEntry(long msbFragmentEntryId)
 		throws PortalException {
 
-		MSBFragmentEntry msbFragmentEntry = getMSBFragmentEntry(msbFragmentEntryId);
+		MSBFragmentEntry msbFragmentEntry = getMSBFragmentEntry(
+			msbFragmentEntryId);
 
 		return deleteMSBFragmentEntry(msbFragmentEntry);
 	}
@@ -113,7 +116,8 @@ public class MSBFragmentEntryLocalServiceImpl
 
 	@Override
 	public MSBFragmentEntry fetchMSBFragmentEntry(long msbFragmentEntryId) {
-		return msbFragmentEntryPersistence.fetchByPrimaryKey(msbFragmentEntryId);
+		return msbFragmentEntryPersistence.fetchByPrimaryKey(
+			msbFragmentEntryId);
 	}
 
 	@Override
@@ -142,11 +146,13 @@ public class MSBFragmentEntryLocalServiceImpl
 
 		if (Validator.isNull(name)) {
 			return msbFragmentEntryPersistence.findByG_MSBFCI(
-				groupId, msbFragmentCollectionId, start, end, orderByComparator);
+				groupId, msbFragmentCollectionId, start, end,
+				orderByComparator);
 		}
 
 		return msbFragmentEntryPersistence.findByG_MSBFCI_LikeN(
-			groupId, msbFragmentCollectionId, name, start, end, orderByComparator);
+			groupId, msbFragmentCollectionId, name, start, end,
+			orderByComparator);
 	}
 
 	@Override
@@ -179,8 +185,8 @@ public class MSBFragmentEntryLocalServiceImpl
 				"Name must not be null for group " + groupId);
 		}
 
-		MSBFragmentEntry msbFragmentEntry = msbFragmentEntryPersistence.fetchByG_N(
-			groupId, name);
+		MSBFragmentEntry msbFragmentEntry =
+			msbFragmentEntryPersistence.fetchByG_N(groupId, name);
 
 		if (msbFragmentEntry != null) {
 			throw new DuplicateMSBFragmentEntryException(name);
