@@ -86,8 +86,8 @@ public interface DDLRecordSetSettings {
 
 	@DDMFormField(
 		label = "%to-address",
-		validationErrorMessage = "%please-enter-a-valid-email-address",
-		validationExpression = "isEmailAddress(emailToAddress)",
+		validationErrorMessage = "%please-enter-one-or-more-valid-email-addresses-separated-by-commas",
+		validationExpression = "isEmailAddresses(emailToAddress)",
 		visibilityExpression = "sendEmailNotification == TRUE"
 	)
 	public String emailToAddress();
