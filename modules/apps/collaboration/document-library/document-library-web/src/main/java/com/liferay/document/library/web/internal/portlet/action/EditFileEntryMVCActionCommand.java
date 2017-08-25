@@ -471,8 +471,6 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 			else if (cmd.equals(Constants.ADD_MULTIPLE)) {
 				addMultipleFileEntries(
 					portletConfig, actionRequest, actionResponse);
-
-				hideDefaultSuccessMessage(actionRequest);
 			}
 			else if (cmd.equals(Constants.ADD_TEMP)) {
 				addTempFileEntry(actionRequest, actionResponse);
