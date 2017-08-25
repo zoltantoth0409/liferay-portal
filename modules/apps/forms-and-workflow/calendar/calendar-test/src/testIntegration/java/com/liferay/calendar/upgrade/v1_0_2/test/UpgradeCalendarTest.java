@@ -57,7 +57,7 @@ public class UpgradeCalendarTest {
 
 		_user = UserTestUtil.addUser();
 
-		_upgradeCalendar = CalendarUpgradeTestUtil.getUpgradeStep(
+		_upgradeProcess = CalendarUpgradeTestUtil.getUpgradeStep(
 			"com.liferay.calendar.internal.upgrade.v1_0_2.UpgradeCalendar");
 		_upgradeDatabaseTestHelper =
 			CalendarUpgradeTestUtil.getUpgradeDatabaseTestHelper();
@@ -65,7 +65,7 @@ public class UpgradeCalendarTest {
 
 	@Test
 	public void testUpgradeCreatesCalendarTimeZoneId() throws Exception {
-		_upgradeCalendar.upgrade();
+		_upgradeProcess.upgrade();
 
 		assertHasColumn("timeZoneId");
 	}
@@ -74,7 +74,7 @@ public class UpgradeCalendarTest {
 	public void testUpgradeSetsSiteCalendarTimeZoneId() throws Exception {
 		Calendar calendar = CalendarTestUtil.addCalendar(_group);
 
-		_upgradeCalendar.upgrade();
+		_upgradeProcess.upgrade();
 
 		assertCalendarTimeZoneId(
 			calendar, PropsUtil.get(PropsKeys.COMPANY_DEFAULT_TIME_ZONE));
@@ -86,7 +86,7 @@ public class UpgradeCalendarTest {
 
 		Calendar calendar = CalendarTestUtil.addCalendar(_user);
 
-		_upgradeCalendar.upgrade();
+		_upgradeProcess.upgrade();
 
 		assertCalendarTimeZoneId(calendar, "Asia/Shangai");
 	}
@@ -117,7 +117,7 @@ public class UpgradeCalendarTest {
 	@DeleteAfterTestRun
 	private Group _group;
 
-	private UpgradeProcess _upgradeCalendar;
+	private UpgradeProcess _upgradeProcess;
 	private UpgradeDatabaseTestHelper _upgradeDatabaseTestHelper;
 
 	@DeleteAfterTestRun
