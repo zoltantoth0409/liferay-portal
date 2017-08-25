@@ -117,8 +117,8 @@ public class UpgradeCalendarTest {
 	@DeleteAfterTestRun
 	private Group _group;
 
-	private UpgradeProcess _upgradeProcess;
 	private UpgradeDatabaseTestHelper _upgradeDatabaseTestHelper;
+	private UpgradeProcess _upgradeProcess;
 
 	@DeleteAfterTestRun
 	private User _user;
