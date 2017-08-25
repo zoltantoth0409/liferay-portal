@@ -20,7 +20,7 @@ import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfiguration
 import com.liferay.portal.kernel.trash.TrashHandler;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.trash.model.TrashEntry;
+import com.liferay.trash.kernel.model.TrashEntry;
 import com.liferay.trash.web.internal.constants.TrashPortletKeys;
 import com.liferay.trash.web.internal.display.context.TrashDisplayContext;
 
