@@ -105,9 +105,10 @@ public class PropertiesDocBuilder {
 
 			System.out.println("Writing " + propertiesHTMLFile);
 
+			Charset charset = Charset.forName("UTF-8");
+
 			Writer writer = new OutputStreamWriter(
-				new FileOutputStream(propertiesHTMLFile),
-				Charset.forName("UTF-8").newEncoder());
+				new FileOutputStream(propertiesHTMLFile), charset.newEncoder());
 
 			try {
 				FreeMarkerUtil.process(
