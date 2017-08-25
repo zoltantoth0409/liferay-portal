@@ -15,8 +15,8 @@
 package com.liferay.modern.site.building.fragment.service.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
-import com.liferay.modern.site.building.fragment.exception.DuplicateFragmentCollectionException;
-import com.liferay.modern.site.building.fragment.exception.FragmentCollectionNameException;
+import com.liferay.modern.site.building.fragment.exception.DuplicateMSBFragmentCollectionException;
+import com.liferay.modern.site.building.fragment.exception.MSBFragmentCollectionNameException;
 import com.liferay.modern.site.building.fragment.model.MSBFragmentCollection;
 import com.liferay.modern.site.building.fragment.service.MSBFragmentCollectionServiceUtil;
 import com.liferay.modern.site.building.fragment.service.MSBFragmentEntryServiceUtil;
@@ -59,7 +59,7 @@ public class MSBFragmentCollectionServiceTest {
 		_group = GroupTestUtil.addGroup();
 	}
 
-	@Test(expected = DuplicateFragmentCollectionException.class)
+	@Test(expected = DuplicateMSBFragmentCollectionException.class)
 	public void testAddDuplicateFragmentCollections() throws Exception {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(
@@ -87,7 +87,7 @@ public class MSBFragmentCollectionServiceTest {
 			"Fragment Collection", fragmentCollection.getName());
 	}
 
-	@Test(expected = FragmentCollectionNameException.class)
+	@Test(expected = MSBFragmentCollectionNameException.class)
 	public void testAddFragmentCollectionWithEmptyName() throws Exception {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(
@@ -98,7 +98,7 @@ public class MSBFragmentCollectionServiceTest {
 			serviceContext);
 	}
 
-	@Test(expected = FragmentCollectionNameException.class)
+	@Test(expected = MSBFragmentCollectionNameException.class)
 	public void testAddFragmentCollectionWithNullName() throws Exception {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(
@@ -147,11 +147,11 @@ public class MSBFragmentCollectionServiceTest {
 				serviceContext);
 
 		MSBFragmentCollectionServiceUtil.deleteMSBFragmentCollection(
-			fragmentCollection.getFragmentCollectionId());
+			fragmentCollection.getMsbFragmentCollectionId());
 
 		Assert.assertNull(
 			MSBFragmentCollectionServiceUtil.fetchMSBFragmentCollection(
-				fragmentCollection.getFragmentCollectionId()));
+				fragmentCollection.getMsbFragmentCollectionId()));
 	}
 
 	@Test
@@ -168,16 +168,17 @@ public class MSBFragmentCollectionServiceTest {
 				serviceContext);
 
 		MSBFragmentEntryServiceUtil.addMSBFragmentEntry(
-			_group.getGroupId(), fragmentCollection.getFragmentCollectionId(),
-			"Fragment Entry", StringPool.BLANK, StringPool.BLANK,
-			StringPool.BLANK, serviceContext);
+			_group.getGroupId(),
+			fragmentCollection.getMsbFragmentCollectionId(), "Fragment Entry",
+			StringPool.BLANK, StringPool.BLANK, StringPool.BLANK,
+			serviceContext);
 
 		MSBFragmentCollectionServiceUtil.deleteMSBFragmentCollection(
-			fragmentCollection.getFragmentCollectionId());
+			fragmentCollection.getMsbFragmentCollectionId());
 
 		Assert.assertNull(
 			MSBFragmentCollectionServiceUtil.fetchMSBFragmentCollection(
-				fragmentCollection.getFragmentCollectionId()));
+				fragmentCollection.getMsbFragmentCollectionId()));
 	}
 
 	@DeleteAfterTestRun
