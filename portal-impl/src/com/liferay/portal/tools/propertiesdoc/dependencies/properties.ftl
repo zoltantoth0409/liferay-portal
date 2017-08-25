@@ -34,7 +34,7 @@
 
 	<head>
 		<title>${pageTitle!"Portal Properties"}</title>
-		<meta charset="utf-8" />
+		<meta charset="UTF-8" />
 	</head>
 
 	<body>
