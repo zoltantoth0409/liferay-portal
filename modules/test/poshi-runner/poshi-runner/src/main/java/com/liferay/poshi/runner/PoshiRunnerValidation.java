@@ -1228,12 +1228,13 @@ public class PoshiRunnerValidation {
 						PoshiRunnerContext.getPathRootElement(locator);
 
 					if (pathRootElement == null) {
+						String lineNumber = trElement.attributeValue(
+							"line-number");
+
 						_exceptions.add(
 							new Exception(
-								"Non-existent parent path file\n" + filePath +
-									":" +
-										trElement.attributeValue(
-											"line-number")));
+								"Nonexistent parent path file\n" + filePath +
+									":" + lineNumber));
 					}
 				}
 			}
