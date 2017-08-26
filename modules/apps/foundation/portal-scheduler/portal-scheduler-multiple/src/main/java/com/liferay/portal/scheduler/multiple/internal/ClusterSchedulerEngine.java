@@ -546,7 +546,8 @@ public class ClusterSchedulerEngine
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						"Give up the master response waiting due to " +
-							"interruption", ie);
+							"interruption",
+						ie);
 				}
 
 				return;
@@ -573,7 +574,8 @@ public class ClusterSchedulerEngine
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						"Give up the master call retry waiting due to " +
-							"interruption", ie);
+							"interruption",
+						ie);
 				}
 
 				return;
