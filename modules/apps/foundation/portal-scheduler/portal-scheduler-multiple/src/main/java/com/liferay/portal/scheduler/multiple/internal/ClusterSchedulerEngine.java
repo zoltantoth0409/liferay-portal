@@ -322,9 +322,9 @@ public class ClusterSchedulerEngine
 						schedulerResponse.setDestinationName(destinationName);
 						schedulerResponse.setGroupName(trigger.getGroupName());
 						schedulerResponse.setJobName(trigger.getJobName());
-						schedulerResponse.setTrigger(trigger);
 						schedulerResponse.setMessage(message);
 						schedulerResponse.setStorageType(storageType);
+						schedulerResponse.setTrigger(trigger);
 
 						_notifySlave(
 							_addMemoryClusteredJobMethodKey, schedulerResponse,
