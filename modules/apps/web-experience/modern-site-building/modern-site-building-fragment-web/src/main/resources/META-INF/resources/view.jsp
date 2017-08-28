@@ -118,7 +118,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "fragments"));
 
 <c:if test="<%= msbFragmentDisplayContext.isShowAddButton(MSBFragmentActionKeys.ADD_MSB_FRAGMENT_COLLECTION) %>">
 	<portlet:renderURL var="addFragmentCollectionURL">
-		<portlet:param name="mvcPath" value="/edit_fragment_collection.jsp" />
+		<portlet:param name="mvcPath" value="/edit_msb_fragment_collection.jsp" />
 	</portlet:renderURL>
 
 	<liferay-frontend:add-menu>
