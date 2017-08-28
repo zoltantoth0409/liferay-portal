@@ -55,7 +55,7 @@ public class EditMSBFragmentCollectionMVCActionCommand
 
 		if (msbFragmentCollectionId <= 0) {
 
-			// Add Fragment Collection
+			// Add modern site building fragment collection
 
 			ServiceContext serviceContext = ServiceContextFactory.getInstance(
 				actionRequest);
@@ -66,7 +66,7 @@ public class EditMSBFragmentCollectionMVCActionCommand
 		}
 		else {
 
-			// Update Fragment Collection
+			// Update modern site building fragment collection
 
 			_msbFragmentCollectionService.updateMSBFragmentCollection(
 				msbFragmentCollectionId, name, description);
