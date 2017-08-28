@@ -90,12 +90,12 @@ public class UsersDemo extends BasePortalInstanceLifecycleListener {
 		Role portalContentReviewerRole = _roleLocalService.getRole(
 			company.getCompanyId(), RoleConstants.PORTAL_CONTENT_REVIEWER);
 
-		User portalContentReviewer = _basicUserDemoDataCreator.create(
+		User portalContentReviewerUser = _basicUserDemoDataCreator.create(
 			company.getCompanyId(), "reviewersn", "reviewerea@liferay.com",
 			"reviewerfn", "reviewerln");
 
 		_roleLocalService.addUserRole(
-			portalContentReviewer.getUserId(), portalContentReviewerRole);
+			portalContentReviewerUser.getUserId(), portalContentReviewerRole);
 	}
 
 	@Deactivate
