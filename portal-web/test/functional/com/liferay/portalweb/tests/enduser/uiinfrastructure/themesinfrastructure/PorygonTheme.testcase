@@ -25,7 +25,6 @@
 	<command name="AddThemeSite" priority="5">
 		<property name="portal.acceptance" value="quarantine" />
 		<property name="test.name.skip.portal.instance" value="PorygonTheme#AddThemeSite" />
-		<property name="theme.file.name" value="porygon-theme.war" />
 
 		<var method="TestPropsUtil#get('theme.contains.resources')" name="themeContainsResources" />
 

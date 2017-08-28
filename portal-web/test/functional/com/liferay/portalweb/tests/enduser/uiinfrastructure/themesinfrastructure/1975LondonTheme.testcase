@@ -25,7 +25,6 @@
 	<command name="AddThemeSite" priority="5">
 		<property name="portal.acceptance" value="pending" />
 		<property name="test.name.skip.portal.instance" value="1975LondonTheme#AddThemeSite" />
-		<property name="theme.file.name" value="1975-london-theme.war" />
 
 		<var method="TestPropsUtil#get('theme.contains.resources')" name="themeContainsResources" />
 
