@@ -96,7 +96,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "fragments"));
 			<liferay-ui:search-container-column-text>
 				<liferay-ui:search-container-column-text colspan="<%= 2 %>">
 					<liferay-frontend:horizontal-card
-						actionJsp="/fragment_collection_action.jsp"
+						actionJsp="/msb_fragment_collection_action.jsp"
 						actionJspServletContext="<%= application %>"
 						resultRow="<%= row %>"
 						rowChecker="<%= searchContainer.getRowChecker() %>"
