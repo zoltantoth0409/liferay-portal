@@ -197,7 +197,7 @@
 
 		<execute function="AssertClickNoError" locator1="Button#SAVE" value1="Save" />
 
-		<execute function="Confirm#assertPartialConfirmation" locator1="${mergeConfirmation}" />
+		<execute function="Confirm#assertPartialConfirmation" value1="${mergeConfirmation}" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 	</command>
