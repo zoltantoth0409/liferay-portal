@@ -84,9 +84,9 @@ public class MessageDatagramReceiveHandlerTest {
 		PortalClassLoaderUtil.setClassLoader(
 			MessageDatagramReceiveHandlerTest.class.getClassLoader());
 
-		MessageBus messageBus = Mockito.mock(MessageBus.class);
-
 		Registry registry = RegistryUtil.getRegistry();
+
+		MessageBus messageBus = Mockito.mock(MessageBus.class);
 
 		registry.registerService(MessageBus.class, messageBus);
 
