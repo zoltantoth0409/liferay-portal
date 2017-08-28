@@ -2227,7 +2227,7 @@ version 2.3.17.
 - [LPS-74345]: Automatically apply the [`Eclipse`](https://docs.gradle.org/current/userguide/eclipse_plugin.html)
 plugin to OSGi projects.
 
-## 3.4.40 - 2017-08-25
+## 3.4.41 - 2017-08-28
 
 ### Changed
 - [LPS-74368]: Update the [Liferay Gradle Plugins Jasper JSPC] dependency to
