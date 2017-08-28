@@ -62,16 +62,12 @@ public class BrowserSnifferImplTest {
 			mockHttpServletRequest -> {
 				Assert.assertTrue(
 					_browserSnifferImpl.isEdge(mockHttpServletRequest));
-
 				Assert.assertFalse(
 					_browserSnifferImpl.isWebKit(mockHttpServletRequest));
-
 				Assert.assertFalse(
 					_browserSnifferImpl.isChrome(mockHttpServletRequest));
-
 				Assert.assertFalse(
 					_browserSnifferImpl.isGecko(mockHttpServletRequest));
-
 				Assert.assertFalse(
 					_browserSnifferImpl.isMozilla(mockHttpServletRequest));
 			});
