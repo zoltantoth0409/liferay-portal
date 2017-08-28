@@ -897,9 +897,11 @@ public class JournalDisplayContext {
 				params.put("expandoAttributes", getKeywords());
 
 				Indexer indexer = null;
+				boolean showNonindexable = false;
 
 				if (!showVersions) {
 					indexer = JournalSearcher.getInstance();
+					showNonindexable = true;
 				}
 				else {
 					indexer = IndexerRegistryUtil.getIndexer(
@@ -911,7 +913,8 @@ public class JournalDisplayContext {
 					folderIds, JournalArticleConstants.CLASSNAME_ID_DEFAULT,
 					getDDMStructureKey(), getDDMTemplateKey(), getKeywords(),
 					params, articleSearchContainer.getStart(),
-					articleSearchContainer.getEnd(), sort, showVersions);
+					articleSearchContainer.getEnd(), sort, showNonindexable,
+					showVersions);
 
 				Hits hits = indexer.search(searchContext);
 
@@ -1228,7 +1231,7 @@ public class JournalDisplayContext {
 		long companyId, long groupId, List<java.lang.Long> folderIds,
 		long classNameId, String ddmStructureKey, String ddmTemplateKey,
 		String keywords, LinkedHashMap<String, Object> params, int start,
-		int end, Sort sort, boolean showVersions) {
+		int end, Sort sort, boolean showNonindexable, boolean showVersions) {
 
 		String articleId = null;
 		String title = null;
@@ -1285,6 +1288,10 @@ public class JournalDisplayContext {
 
 		searchContext.setAttribute("head", !showVersions);
 		searchContext.setAttribute("params", params);
+
+		if (showNonindexable) {
+			searchContext.setAttribute("showNonindexable", Boolean.TRUE);
+		}
 		searchContext.setEnd(end);
 		searchContext.setFolderIds(folderIds);
 		searchContext.setStart(start);
