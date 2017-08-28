@@ -62,12 +62,12 @@ public class LanguageValidator {
 	}
 
 	private static boolean _isValidUserInitialsFieldNamesValue(String value) {
-		String[] valueArray = StringUtil.split(value);
+		String[] valueParts = StringUtil.split(value);
 
-		for (String curValue : valueArray) {
+		for (String valuePart : valueParts) {
 			if (!ArrayUtil.contains(
 					LanguageConstants.VALUES_USER_INITIALS_FIELD_NAMES,
-					curValue)) {
+					valuePart)) {
 
 				return false;
 			}
@@ -77,37 +77,37 @@ public class LanguageValidator {
 	}
 
 	private static boolean _isValidUserNameFieldNamesValue(String value) {
-		String[] valueArray = StringUtil.split(value);
+		String[] valueParts = StringUtil.split(value);
 
-		if (ArrayUtil.isEmpty(valueArray)) {
+		if (ArrayUtil.isEmpty(valueParts)) {
 			return false;
 		}
 
 		if (!ArrayUtil.contains(
-				valueArray, LanguageConstants.VALUE_FIRST_NAME) ||
+				valueParts, LanguageConstants.VALUE_FIRST_NAME) ||
 			!ArrayUtil.contains(
-				valueArray, LanguageConstants.VALUE_LAST_NAME)) {
+				valueParts, LanguageConstants.VALUE_LAST_NAME)) {
 
 			return false;
 		}
 
-		if (ArrayUtil.contains(valueArray, LanguageConstants.VALUE_PREFIX) &&
-			!valueArray[0].equals(LanguageConstants.VALUE_PREFIX)) {
+		if (ArrayUtil.contains(valueParts, LanguageConstants.VALUE_PREFIX) &&
+			!valueParts[0].equals(LanguageConstants.VALUE_PREFIX)) {
 
 			return false;
 		}
 
-		int index = valueArray.length - 1;
+		int index = valueParts.length - 1;
 
-		if (ArrayUtil.contains(valueArray, LanguageConstants.VALUE_SUFFIX) &&
-			!valueArray[index].equals(LanguageConstants.VALUE_SUFFIX)) {
+		if (ArrayUtil.contains(valueParts, LanguageConstants.VALUE_SUFFIX) &&
+			!valueParts[index].equals(LanguageConstants.VALUE_SUFFIX)) {
 
 			return false;
 		}
 
-		for (String curValue : valueArray) {
+		for (String valuePart : valueParts) {
 			if (!ArrayUtil.contains(
-					LanguageConstants.VALUES_USER_NAME_FIELD_NAMES, curValue)) {
+					LanguageConstants.VALUES_USER_NAME_FIELD_NAMES, valuePart)) {
 
 				return false;
 			}
@@ -119,15 +119,15 @@ public class LanguageValidator {
 	private static boolean _isValidUserNameRequiredFieldNamesValue(
 		String value) {
 
-		String[] valuesArray = StringUtil.split(value);
+		String[] valueParts = StringUtil.split(value);
 
-		if (ArrayUtil.isEmpty(valuesArray)) {
+		if (ArrayUtil.isEmpty(valueParts)) {
 			return false;
 		}
 
-		for (String curValue : valuesArray) {
+		for (String valuePart : valueParts) {
 			if (!ArrayUtil.contains(
-					LanguageConstants.VALUES_USER_NAME_FIELD_NAMES, curValue)) {
+					LanguageConstants.VALUES_USER_NAME_FIELD_NAMES, valuePart)) {
 
 				return false;
 			}
