@@ -46,7 +46,7 @@ public class UserInitialsGeneratorImpl implements UserInitialsGenerator {
 			_getUserInitialsFieldNames(locale));
 
 		return userInitialsFieldNamesStream.map(
-			key -> userNames[_userNameIndexMap.get(key)]
+			key -> userNames[_userNameIndexes.get(key)]
 		).filter(
 			name -> Validator.isNotNull(name)
 		).limit(
@@ -91,13 +91,13 @@ public class UserInitialsGeneratorImpl implements UserInitialsGenerator {
 	private static final String[] _DEFAULT_USER_INITIALS_FIELD_NAMES =
 		{LanguageConstants.VALUE_FIRST_NAME, LanguageConstants.VALUE_LAST_NAME};
 
-	private static final Map<String, Integer> _userNameIndexMap = new HashMap<>(
+	private static final Map<String, Integer> _userNameIndexes = new HashMap<>(
 		3);
 
 	static {
-		_userNameIndexMap.put(LanguageConstants.VALUE_FIRST_NAME, 0);
-		_userNameIndexMap.put(LanguageConstants.VALUE_MIDDLE_NAME, 1);
-		_userNameIndexMap.put(LanguageConstants.VALUE_LAST_NAME, 2);
+		_userNameIndexes.put(LanguageConstants.VALUE_FIRST_NAME, 0);
+		_userNameIndexes.put(LanguageConstants.VALUE_MIDDLE_NAME, 1);
+		_userNameIndexes.put(LanguageConstants.VALUE_LAST_NAME, 2);
 	}
 
 	private final Map<Locale, String[]> _userInitialsFieldNamesMap =

@@ -40,19 +40,19 @@ public class UserInitialsGeneratorImplTest {
 		Assert.assertEquals(
 			"FL",
 			_userInitialsGenerator.getInitials(
-				_locale, _firstName, _middleName, _lastName));
+				_LOCALE, _FIRST_NAME, _middleName, _LAST_NAME));
 		Assert.assertEquals(
 			"F",
 			_userInitialsGenerator.getInitials(
-				_locale, _firstName, _middleName, null));
+				_LOCALE, _FIRST_NAME, _middleName, null));
 		Assert.assertEquals(
 			"L",
 			_userInitialsGenerator.getInitials(
-				_locale, null, _middleName, _lastName));
+				_LOCALE, null, _middleName, _LAST_NAME));
 		Assert.assertEquals(
 			StringPool.BLANK,
 			_userInitialsGenerator.getInitials(
-				_locale, null, _middleName, null));
+				_LOCALE, null, _middleName, null));
 	}
 
 	@Test
@@ -62,30 +62,30 @@ public class UserInitialsGeneratorImplTest {
 		Assert.assertEquals(
 			"FM",
 			_userInitialsGenerator.getInitials(
-				_locale, _firstName, _middleName, _lastName));
+				_LOCALE, _FIRST_NAME, _middleName, _LAST_NAME));
 		Assert.assertEquals(
 			"FM",
 			_userInitialsGenerator.getInitials(
-				_locale, _firstName, _middleName, null));
+				_LOCALE, _FIRST_NAME, _middleName, null));
 		Assert.assertEquals(
 			"ML",
 			_userInitialsGenerator.getInitials(
-				_locale, null, _middleName, _lastName));
+				_LOCALE, null, _middleName, _LAST_NAME));
 		Assert.assertEquals(
 			"FL",
 			_userInitialsGenerator.getInitials(
-				_locale, _firstName, null, _lastName));
+				_LOCALE, _FIRST_NAME, null, _LAST_NAME));
 		Assert.assertEquals(
 			"F",
 			_userInitialsGenerator.getInitials(
-				_locale, _firstName, null, null));
+				_LOCALE, _FIRST_NAME, null, null));
 		Assert.assertEquals(
 			"M",
 			_userInitialsGenerator.getInitials(
-				_locale, null, _middleName, null));
+				_LOCALE, null, _middleName, null));
 		Assert.assertEquals(
 			"L",
-			_userInitialsGenerator.getInitials(_locale, null, null, _lastName));
+			_userInitialsGenerator.getInitials(_LOCALE, null, null, _LAST_NAME));
 	}
 
 	@Test
@@ -95,19 +95,19 @@ public class UserInitialsGeneratorImplTest {
 		Assert.assertEquals(
 			"LF",
 			_userInitialsGenerator.getInitials(
-				_locale, _firstName, _middleName, _lastName));
+				_LOCALE, _FIRST_NAME, _middleName, _LAST_NAME));
 		Assert.assertEquals(
 			"F",
 			_userInitialsGenerator.getInitials(
-				_locale, _firstName, _middleName, null));
+				_LOCALE, _FIRST_NAME, _middleName, null));
 		Assert.assertEquals(
 			"L",
 			_userInitialsGenerator.getInitials(
-				_locale, null, _middleName, _lastName));
+				_LOCALE, null, _middleName, _LAST_NAME));
 		Assert.assertEquals(
 			StringPool.BLANK,
 			_userInitialsGenerator.getInitials(
-				_locale, null, _middleName, null));
+				_LOCALE, null, _middleName, null));
 	}
 
 	@Test
@@ -117,30 +117,30 @@ public class UserInitialsGeneratorImplTest {
 		Assert.assertEquals(
 			"LF",
 			_userInitialsGenerator.getInitials(
-				_locale, _firstName, _middleName, _lastName));
+				_LOCALE, _FIRST_NAME, _middleName, _LAST_NAME));
 		Assert.assertEquals(
 			"FM",
 			_userInitialsGenerator.getInitials(
-				_locale, _firstName, _middleName, null));
+				_LOCALE, _FIRST_NAME, _middleName, null));
 		Assert.assertEquals(
 			"LM",
 			_userInitialsGenerator.getInitials(
-				_locale, null, _middleName, _lastName));
+				_LOCALE, null, _middleName, _LAST_NAME));
 		Assert.assertEquals(
 			"LF",
 			_userInitialsGenerator.getInitials(
-				_locale, _firstName, null, _lastName));
+				_LOCALE, _FIRST_NAME, null, _LAST_NAME));
 		Assert.assertEquals(
 			"F",
 			_userInitialsGenerator.getInitials(
-				_locale, _firstName, null, null));
+				_LOCALE, _FIRST_NAME, null, null));
 		Assert.assertEquals(
 			"M",
 			_userInitialsGenerator.getInitials(
-				_locale, null, _middleName, null));
+				_LOCALE, null, _middleName, null));
 		Assert.assertEquals(
 			"L",
-			_userInitialsGenerator.getInitials(_locale, null, null, _lastName));
+			_userInitialsGenerator.getInitials(_LOCALE, null, null, _LAST_NAME));
 	}
 
 	@Test
@@ -150,19 +150,19 @@ public class UserInitialsGeneratorImplTest {
 		Assert.assertEquals(
 			"FL",
 			_userInitialsGenerator.getInitials(
-				_locale, _firstName, _middleName, _lastName));
+				_LOCALE, _FIRST_NAME, _middleName, _LAST_NAME));
 		Assert.assertEquals(
 			"F",
 			_userInitialsGenerator.getInitials(
-				_locale, _firstName, _middleName, null));
+				_LOCALE, _FIRST_NAME, _middleName, null));
 		Assert.assertEquals(
 			"L",
 			_userInitialsGenerator.getInitials(
-				_locale, null, _middleName, _lastName));
+				_LOCALE, null, _middleName, _LAST_NAME));
 		Assert.assertEquals(
 			StringPool.BLANK,
 			_userInitialsGenerator.getInitials(
-				_locale, null, _middleName, null));
+				_LOCALE, null, _middleName, null));
 	}
 
 	private void _setUpLanguageUtil(String returnValue) throws Exception {
@@ -182,9 +182,9 @@ public class UserInitialsGeneratorImplTest {
 		languageUtil.setLanguage(language);
 	}
 
-	private static final String _firstName = "First";
-	private static final String _lastName = "Last";
-	private static final Locale _locale = LocaleUtil.ENGLISH;
+	private static final String _FIRST_NAME = "First";
+	private static final String _LAST_NAME = "Last";
+	private static final Locale _LOCALE = LocaleUtil.ENGLISH;
 	private static final String _middleName = "Middle";
 
 	private final UserInitialsGenerator _userInitialsGenerator =
