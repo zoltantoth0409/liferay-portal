@@ -85,7 +85,8 @@ public class UserInitialsGeneratorImplTest {
 				_LOCALE, null, _middleName, null));
 		Assert.assertEquals(
 			"L",
-			_userInitialsGenerator.getInitials(_LOCALE, null, null, _LAST_NAME));
+			_userInitialsGenerator.getInitials(
+				_LOCALE, null, null, _LAST_NAME));
 	}
 
 	@Test
@@ -140,7 +141,8 @@ public class UserInitialsGeneratorImplTest {
 				_LOCALE, null, _middleName, null));
 		Assert.assertEquals(
 			"L",
-			_userInitialsGenerator.getInitials(_LOCALE, null, null, _LAST_NAME));
+			_userInitialsGenerator.getInitials(
+				_LOCALE, null, null, _LAST_NAME));
 	}
 
 	@Test
@@ -183,8 +185,11 @@ public class UserInitialsGeneratorImplTest {
 	}
 
 	private static final String _FIRST_NAME = "First";
+
 	private static final String _LAST_NAME = "Last";
+
 	private static final Locale _LOCALE = LocaleUtil.ENGLISH;
+
 	private static final String _middleName = "Middle";
 
 	private final UserInitialsGenerator _userInitialsGenerator =

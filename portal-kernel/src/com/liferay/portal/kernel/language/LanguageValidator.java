@@ -107,7 +107,8 @@ public class LanguageValidator {
 
 		for (String valuePart : valueParts) {
 			if (!ArrayUtil.contains(
-					LanguageConstants.VALUES_USER_NAME_FIELD_NAMES, valuePart)) {
+					LanguageConstants.VALUES_USER_NAME_FIELD_NAMES,
+					valuePart)) {
 
 				return false;
 			}
@@ -127,7 +128,8 @@ public class LanguageValidator {
 
 		for (String valuePart : valueParts) {
 			if (!ArrayUtil.contains(
-					LanguageConstants.VALUES_USER_NAME_FIELD_NAMES, valuePart)) {
+					LanguageConstants.VALUES_USER_NAME_FIELD_NAMES,
+					valuePart)) {
 
 				return false;
 			}
