@@ -43,15 +43,13 @@ public class InjectTestCallbackTest {
 
 	@Test
 	public void testInjectBaseTestCase() throws Exception {
-		Description description = Description.createTestDescription(
-			TestCase1.class, TestCase1.class.getName());
-
-		Service1 service1 = new Service1();
-		Service2 service2 = new Service2();
-
 		Registry registry = RegistryUtil.getRegistry();
 
+		Service1 service1 = new Service1();
+
 		registry.registerService(Service1.class, service1);
+
+		Service2 service2 = new Service2();
 
 		registry.registerService(Service2.class, service2);
 
@@ -59,6 +57,9 @@ public class InjectTestCallbackTest {
 
 		Assert.assertNull(TestCase1.getService1());
 		Assert.assertNull(testCase1.getService2());
+
+		Description description = Description.createTestDescription(
+			TestCase1.class, TestCase1.class.getName());
 
 		InjectTestBag classInjectTestBag =
 			InjectTestCallback.INSTANCE.beforeClass(description);
@@ -161,7 +162,6 @@ public class InjectTestCallbackTest {
 	public void testInjectNonBlockingNonStaticWithFilter() throws Exception {
 		Description description = Description.createTestDescription(
 			TestCase2.class, TestCase2.class.getName());
-
 		TestCase2 testCase2 = new TestCase2();
 
 		InjectTestBag injectTestBag = InjectTestCallback.INSTANCE.beforeMethod(
