@@ -29,7 +29,7 @@ import java.util.Map;
 /**
  * @author Alec Shay
  */
-public class UpgradeMDRRuleGroupInstance extends UpgradeProcess {
+public class UpgradeMobileDeviceRules extends UpgradeProcess {
 
 	@Override
 	public void doUpgrade() throws Exception {
@@ -172,7 +172,7 @@ public class UpgradeMDRRuleGroupInstance extends UpgradeProcess {
 		}
 	}
 
-	private static final String _MDR_RULE_GROUP_INSTANCE =
+	private static final String _CLASS_NAME =
 		"com.liferay.mobile.device.rules.model.MDRRuleGroupInstance";
 
 }
