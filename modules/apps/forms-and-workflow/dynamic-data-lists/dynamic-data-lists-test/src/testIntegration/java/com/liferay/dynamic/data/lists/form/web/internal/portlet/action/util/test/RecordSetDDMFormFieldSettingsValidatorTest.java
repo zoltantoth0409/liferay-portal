@@ -105,7 +105,7 @@ public class RecordSetDDMFormFieldSettingsValidatorTest {
 	protected void assertValidateExceptionMessage(
 		PortletRequest portletRequest, DDMForm ddmForm, String fieldName) {
 
-		PortalException validateException = null;
+		PortalException portalException = null;
 
 		try {
 			invokeValidate(portletRequest, ddmForm);
@@ -118,16 +118,16 @@ public class RecordSetDDMFormFieldSettingsValidatorTest {
 			if (t instanceof PortalException &&
 				throwableClassName.endsWith("MustSetValidValueForProperties")) {
 
-				validateException = (PortalException)t;
+				portalException = (PortalException)t;
 			}
 		}
 
 		String expectedMessage = String.format(
 			"Invalid value set for the properties of field [%s]", fieldName);
 
-		Assert.assertNotNull(validateException);
+		Assert.assertNotNull(portalException);
 
-		Assert.assertEquals(expectedMessage, validateException.getMessage());
+		Assert.assertEquals(expectedMessage, portalException.getMessage());
 	}
 
 	protected MockPortletRequest createPortletRequest() {

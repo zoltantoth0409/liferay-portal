@@ -154,10 +154,9 @@ renderResponse.setTitle((recordSet == null) ? LanguageUtil.get(request, "new-for
 					LanguageUtil.format(
 						request,
 						(value.size() == 1 ? "the-setting-x-set-for-field-x-is-invalid" :"the-settings-x-set-for-field-x-are-invalid"),
-						new Object[] {StringUtil.merge(fieldNameProperties.getValue(), StringPool.COMMA_AND_SPACE), fieldNameProperties.getKey()},
+						new Object[] {StringUtil.merge(value, StringPool.COMMA_AND_SPACE), fieldNameProperties.getKey()},
 						false
-					)
-				);
+					));
 
 				sb.append(StringPool.SPACE);
 			}
