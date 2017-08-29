@@ -45,7 +45,7 @@ import org.osgi.service.component.annotations.ReferencePolicyOption;
  * @author Vilmos Papp
  */
 @Component(immediate = true, service = ModelListener.class)
-public class UserModelListener extends BaseLDAPExportListener<User> {
+public class UserModelListener extends BaseLDAPExportModelListener<User> {
 
 	@Override
 	public void onAfterAddAssociation(
