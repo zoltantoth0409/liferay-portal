@@ -1107,7 +1107,7 @@ to version 1.0.87.
 - [LPS-66853]: Update the [Liferay Source Formatter] dependency to version
 1.0.354.
 - [LPS-70677]: Exclude `com.liferay.portal` transitive dependencies from the
-`com.liferay.jasper.jspc` default dependency in the `jspCTool` configuration.
+`jspCTool` configuration's `com.liferay.jasper.jspc` default dependency.
 - [LPS-70677]: Update the [Liferay Gradle Plugins Jasper JSPC] dependency to
 version 2.0.0.
 
