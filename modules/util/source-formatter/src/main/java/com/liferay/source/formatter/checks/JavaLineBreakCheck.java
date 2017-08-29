@@ -395,8 +395,7 @@ public class JavaLineBreakCheck extends LineBreakCheck {
 				return StringUtil.replace(content, match, match + "\n");
 			}
 
-			String formattedClassLine = _getFormattedClassLine(
-				indent, match);
+			String formattedClassLine = _getFormattedClassLine(indent, match);
 
 			if (formattedClassLine != null) {
 				content = StringUtil.replace(
