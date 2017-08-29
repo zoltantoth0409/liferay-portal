@@ -49,7 +49,7 @@ public class EditMSBFragmentEntryMVCActionCommand extends BaseMVCActionCommand {
 		long msbFragmentCollectionId = ParamUtil.getLong(
 			actionRequest, "msbFragmentCollectionId");
 
-		long fragmentEntryId = ParamUtil.getLong(
+		long msbFragmentEntryId = ParamUtil.getLong(
 			actionRequest, "msbFragmentEntryId");
 
 		String name = ParamUtil.getString(actionRequest, "name");
@@ -57,7 +57,7 @@ public class EditMSBFragmentEntryMVCActionCommand extends BaseMVCActionCommand {
 		String js = ParamUtil.getString(actionRequest, "jsContent");
 		String html = ParamUtil.getString(actionRequest, "htmlContent");
 
-		if (fragmentEntryId <= 0) {
+		if (msbFragmentEntryId <= 0) {
 			ServiceContext serviceContext = ServiceContextFactory.getInstance(
 				actionRequest);
 
@@ -72,7 +72,7 @@ public class EditMSBFragmentEntryMVCActionCommand extends BaseMVCActionCommand {
 			// Update modern site building fragment entry
 
 			_msbFragmentEntryService.updateMSBFragmentEntry(
-				fragmentEntryId, name, css, html, js);
+				msbFragmentEntryId, name, css, html, js);
 		}
 	}
 
