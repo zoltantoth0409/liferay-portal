@@ -45,21 +45,21 @@ public class DeleteMSBFragmentEntriesMVCActionCommand
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		long[] deleteFragmentEntryIds = null;
+		long[] deleteMSBFragmentEntryIds = null;
 
-		long fragmentEntryId = ParamUtil.getLong(
+		long msbFragmentEntryId = ParamUtil.getLong(
 			actionRequest, "msbFragmentEntryId");
 
-		if (fragmentEntryId > 0) {
-			deleteFragmentEntryIds = new long[] {fragmentEntryId};
+		if (msbFragmentEntryId > 0) {
+			deleteMSBFragmentEntryIds = new long[] {msbFragmentEntryId};
 		}
 		else {
-			deleteFragmentEntryIds = ParamUtil.getLongValues(
+			deleteMSBFragmentEntryIds = ParamUtil.getLongValues(
 				actionRequest, "rowIds");
 		}
 
 		_msbFragmentEntryService.deleteMSBFragmentEntries(
-			deleteFragmentEntryIds);
+			deleteMSBFragmentEntryIds);
 	}
 
 	@Reference

@@ -46,7 +46,7 @@ public class EditMSBFragmentEntryMVCActionCommand extends BaseMVCActionCommand {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		long fragmentCollectionId = ParamUtil.getLong(
+		long msbFragmentCollectionId = ParamUtil.getLong(
 			actionRequest, "msbFragmentCollectionId");
 
 		long fragmentEntryId = ParamUtil.getLong(
@@ -64,7 +64,7 @@ public class EditMSBFragmentEntryMVCActionCommand extends BaseMVCActionCommand {
 			// Add modern site building fragment entry
 
 			_msbFragmentEntryService.addMSBFragmentEntry(
-				serviceContext.getScopeGroupId(), fragmentCollectionId, name,
+				serviceContext.getScopeGroupId(), msbFragmentCollectionId, name,
 				css, html, js, serviceContext);
 		}
 		else {
