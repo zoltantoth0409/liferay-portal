@@ -367,13 +367,13 @@ public class UpgradeClient {
 
 	private void _printHelp() {
 		System.out.println(
-			"\nEnter help to get available upgrade and verify commands");
+			"\nType \"help\" to get available upgrade and verify commands.");
 
 		System.out.println(
-			"Enter help {command} to get additional information about the " +
-				"command. For example, help upgrade:list");
+			"Type \"help {command}\" to get additional information about the " +
+				"command. For example, \"help upgrade:list\".");
 
-		System.out.println("Enter exit or quit to exit from DB upgrade client");
+		System.out.println("Enter \"exit\" or \"quit\" to exit.");
 	}
 
 	private Properties _readProperties(File file) {
