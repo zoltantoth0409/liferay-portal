@@ -100,13 +100,13 @@ public class InjectTestBag {
 		}
 	}
 
-	private <T> String _getFilterString(Class<T> clazz, String filter) {
-		if (filter.isEmpty()) {
+	private <T> String _getFilterString(Class<T> clazz, String filterString) {
+		if (filterString.isEmpty()) {
 			return "(objectClass=" + clazz.getName() + ")";
 		}
 
-		if ((clazz != Object.class) && !filter.contains("objectClass")) {
-			int index = filter.indexOf('&');
+		if ((clazz != Object.class) && !filterString.contains("objectClass")) {
+			int index = filterString.indexOf('&');
 
 			StringBundler sb = new StringBundler(5);
 
@@ -114,29 +114,29 @@ public class InjectTestBag {
 				sb.append("(&(objectClass=");
 				sb.append(clazz.getName());
 				sb.append(")(");
-				sb.append(filter);
+				sb.append(filterString);
 				sb.append("))");
 			}
 			else {
-				sb.append(filter.substring(0, index));
+				sb.append(filterString.substring(0, index));
 				sb.append("&(objectClass=");
 				sb.append(clazz.getName());
 				sb.append(")");
-				sb.append(filter.substring(index + 1));
+				sb.append(filterString.substring(index + 1));
 			}
 
-			filter = sb.toString();
+			filterString = sb.toString();
 		}
 
-		return filter;
+		return filterString;
 	}
 
 	private <T> ServiceReference<T> _getServiceReference(
-			Registry registry, Class<T> clazz, String filter)
+			Registry registry, Class<T> clazz, String filterString)
 		throws Exception {
 
 		Collection<ServiceReference<T>> serviceReferences =
-			registry.getServiceReferences(clazz, filter);
+			registry.getServiceReferences(clazz, filterString);
 
 		Stream<ServiceReference<T>> stream = serviceReferences.stream();
 
@@ -146,13 +146,14 @@ public class InjectTestBag {
 	}
 
 	private <T> ServiceReference<T> _getServiceReference(
-			Registry registry, Class<T> clazz, String filter, boolean blocking)
+			Registry registry, Class<T> clazz, String filterString,
+			boolean blocking)
 		throws Exception {
 
-		String filterString = _getFilterString(clazz, filter);
+		String filterStringString = _getFilterString(clazz, filterString);
 
 		ServiceReference<T> serviceReference = _getServiceReference(
-			registry, clazz, filterString);
+			registry, clazz, filterStringString);
 
 		if ((serviceReference != null) || !blocking) {
 			return serviceReference;
@@ -164,7 +165,7 @@ public class InjectTestBag {
 			new AtomicReference<>();
 
 		ServiceTracker<T, T> serviceTracker = registry.trackServices(
-			registry.getFilter(filterString),
+			registry.getFilter(filterStringString),
 			new ServiceTrackerCustomizer<T, T>() {
 
 				@Override
@@ -204,11 +205,11 @@ public class InjectTestBag {
 			if (waitTime >= TestPropsValues.CI_TEST_TIMEOUT_TIME) {
 				throw new IllegalStateException(
 					"Timed out while waiting for service " + className + " " +
-						filter);
+						filterString);
 			}
 
 			System.out.println(
-				"Waiting for service " + className + " " + filter);
+				"Waiting for service " + className + " " + filterString);
 
 			try {
 				countDownLatch.await(_SLEEP_TIME, TimeUnit.MILLISECONDS);
@@ -217,7 +218,7 @@ public class InjectTestBag {
 			}
 
 			serviceReference = _getServiceReference(
-				registry, clazz, filterString);
+				registry, clazz, filterStringString);
 		}
 
 		return serviceReference;
