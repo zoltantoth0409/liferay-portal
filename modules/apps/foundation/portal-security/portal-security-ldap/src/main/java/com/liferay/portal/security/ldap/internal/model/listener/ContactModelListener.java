@@ -34,7 +34,7 @@ import org.osgi.service.component.annotations.ReferencePolicyOption;
  * @author Raymond Augé
  */
 @Component(immediate = true, service = ModelListener.class)
-public class ContactModelListener extends BaseLDAPExportListener<Contact> {
+public class ContactModelListener extends BaseLDAPExportModelListener<Contact> {
 
 	@Override
 	public void onAfterCreate(Contact contact) {

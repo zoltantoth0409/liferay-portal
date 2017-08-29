@@ -32,7 +32,7 @@ import java.util.concurrent.Callable;
 /**
  * @author Minhchau Dang
  */
-public abstract class BaseLDAPExportListener<T extends BaseModel<T>>
+public abstract class BaseLDAPExportModelListener<T extends BaseModel<T>>
 	extends BaseModelListener<T> {
 
 	protected void exportToLDAP(
