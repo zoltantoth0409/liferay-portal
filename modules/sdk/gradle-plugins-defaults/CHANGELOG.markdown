@@ -1067,8 +1067,8 @@ process.
 
 ### Removed
 - [LPS-70677]: Remove exclusion of `com.liferay.portal` transitive dependencies
-from the `com.liferay.jasper.jspc` default dependency in the `jspCTool`
-configuration.
+from the `jspCTool` configuration's `com.liferay.jasper.jspc` default
+dependency.
 - [LPS-70699]: Disable the update check when building themes.
 
 ## 2.4.35 - 2017-02-17
