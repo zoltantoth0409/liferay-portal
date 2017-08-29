@@ -1821,7 +1821,7 @@
 		<execute macro="WebContentFolder#addCP">
 			<var name="folderDescription" value="Events Folder Description" />
 			<var name="folderName" value="Events" />
-		</execute>		
+		</execute>
 
 		<execute macro="LAR#importPortlet">
 			<var name="larFileName" value="space-web-content.lar" />

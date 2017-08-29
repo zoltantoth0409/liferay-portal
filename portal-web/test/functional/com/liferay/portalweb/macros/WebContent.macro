@@ -1204,18 +1204,14 @@
 		</execute>
 	</command>
 
-	<command name="moveToFolderCP">
-		<execute macro="WebContent#viewTitle">
-			<var name="webContentTitle" value="${webContentTitle}" />
-		</execute>
+	<command name="moveArticlesToFolderCP">
+		<for list="${webContentArticlesList}" param="webContentTitle">
+			<execute function="Check" locator1="WC#ENTRY_DESCRIPTIVE_CHECKBOX">
+				<var name="key_webContentTitle" value="${webContentTitle}" />
+			</execute>
+		</for>
 
-		<execute function="Click" locator1="WC#ENTRY_DESCRIPTIVE_MENULIST_ICON">
-			<var name="key_webContentTitle" value="${webContentTitle}" />
-		</execute>
-
-		<execute function="AssertClick#assertPartialTextClickAt" locator1="MenuItem#ANY_MENU_ITEM" value1="Move">
-			<var name="key_menuItem" value="Move" />
-		</execute>
+		<execute function="Click" locator1="WC#TOOLBAR_MOVE_BUTTON" value1="Move" />
 
 		<execute function="AssertTextEquals" locator1="Portlet#HEADER" value1="Move Web Content" />
 
@@ -1236,14 +1232,18 @@
 		<execute macro="Alert#viewSuccessMessage" />
 	</command>
 
-	<command name="moveArticlesToFolderCP">
-		<for list="${webContentArticlesList}" param="webContentTitle">
-			<execute function="Check" locator1="WC#ENTRY_DESCRIPTIVE_CHECKBOX">
-				<var name="key_webContentTitle" value="${webContentTitle}" />
-			</execute>	
-		</for>
+	<command name="moveToFolderCP">
+		<execute macro="WebContent#viewTitle">
+			<var name="webContentTitle" value="${webContentTitle}" />
+		</execute>
 
-		<execute function="Click" locator1="WC#TOOLBAR_MOVE_BUTTON" value1="Move" />
+		<execute function="Click" locator1="WC#ENTRY_DESCRIPTIVE_MENULIST_ICON">
+			<var name="key_webContentTitle" value="${webContentTitle}" />
+		</execute>
+
+		<execute function="AssertClick#assertPartialTextClickAt" locator1="MenuItem#ANY_MENU_ITEM" value1="Move">
+			<var name="key_menuItem" value="Move" />
+		</execute>
 
 		<execute function="AssertTextEquals" locator1="Portlet#HEADER" value1="Move Web Content" />
 
