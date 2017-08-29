@@ -1639,6 +1639,7 @@ war.path=${app.server.weblogic.portal.dir}/</echo>
 	</macrodef>
 
 	<macrodef name="prepare-custom-properties">
+		<attribute name="custom.properties" />
 		<sequential>
 			<property name="propertyList" value="" />
 			<propertyregex
@@ -6473,7 +6474,7 @@ web.server.display.node=true</echo>
 		<if>
 			<isset property="custom.properties" />
 			<then>
-				<prepare-custom-properties />
+				<prepare-custom-properties custom.properties="${custom.properties}" />
 			</then>
 		</if>
 
