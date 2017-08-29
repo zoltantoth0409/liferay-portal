@@ -128,7 +128,7 @@ public class UpgradeMDRRuleGroupInstance extends UpgradeProcess {
 		sb1.append("ResourcePermission.primKeyId) and (MDRRuleGroupInstance.");
 		sb1.append("userId = ResourcePermission.ownerId) and ");
 		sb1.append("(ResourcePermission.name = '");
-		sb1.append(_MDR_RULE_GROUP_INSTANCE);
+		sb1.append(_CLASS_NAME);
 		sb1.append("'))");
 
 		StringBundler sb2 = new StringBundler();
@@ -140,7 +140,7 @@ public class UpgradeMDRRuleGroupInstance extends UpgradeProcess {
 
 		Map<Long, Long> ownerRoleIds = getOwnerRoleIds();
 
-		long actionIds = getActionIds(_MDR_RULE_GROUP_INSTANCE);
+		long actionIds = getActionIds(_CLASS_NAME);
 
 		try (PreparedStatement ps1 = connection.prepareStatement(
 				sb1.toString());
@@ -156,7 +156,7 @@ public class UpgradeMDRRuleGroupInstance extends UpgradeProcess {
 
 				ps2.setLong(1, increment(ResourcePermission.class.getName()));
 				ps2.setLong(2, companyId);
-				ps2.setString(3, _MDR_RULE_GROUP_INSTANCE);
+				ps2.setString(3, _CLASS_NAME);
 				ps2.setInt(4, 4);
 				ps2.setString(5, String.valueOf(ruleGroupInstanceId));
 				ps2.setLong(6, ruleGroupInstanceId);
