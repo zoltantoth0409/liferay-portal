@@ -287,16 +287,6 @@ public class SetupWizardUtil {
 
 		unicodeProperties.put(PropsKeys.ADMIN_EMAIL_FROM_ADDRESS, emailAddress);
 
-		int index = emailAddress.indexOf(CharPool.AT);
-
-		unicodeProperties.put(
-			PropsKeys.DEFAULT_ADMIN_EMAIL_ADDRESS_PREFIX,
-			emailAddress.substring(0, index));
-
-		unicodeProperties.put(
-			PropsKeys.COMPANY_DEFAULT_WEB_ID,
-			emailAddress.substring(index + 1));
-
 		String firstName = ParamUtil.getString(
 			request, "adminFirstName", PropsValues.DEFAULT_ADMIN_FIRST_NAME);
 		String lastName = ParamUtil.getString(
@@ -310,6 +300,15 @@ public class SetupWizardUtil {
 
 		unicodeProperties.put(
 			PropsKeys.ADMIN_EMAIL_FROM_NAME, user.getFullName());
+
+		int index = emailAddress.indexOf(CharPool.AT);
+
+		unicodeProperties.put(
+			PropsKeys.COMPANY_DEFAULT_WEB_ID,
+			emailAddress.substring(index + 1));
+		unicodeProperties.put(
+			PropsKeys.DEFAULT_ADMIN_EMAIL_ADDRESS_PREFIX,
+			emailAddress.substring(0, index));
 
 		HttpSession session = request.getSession();
 
