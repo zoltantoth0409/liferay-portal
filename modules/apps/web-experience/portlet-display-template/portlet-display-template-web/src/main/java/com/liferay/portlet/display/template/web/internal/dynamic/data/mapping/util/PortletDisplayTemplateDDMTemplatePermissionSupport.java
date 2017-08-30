@@ -33,7 +33,7 @@ import org.osgi.service.component.annotations.Component;
 		"model.class.name=com.liferay.portlet.display.template.PortletDisplayTemplate"
 	}
 )
-public class PortletDisplayTemplateDDMPermissionSupport
+public class PortletDisplayTemplateDDMTemplatePermissionSupport
 	implements DDMTemplatePermissionSupport {
 
 	@Override
