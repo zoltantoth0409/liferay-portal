@@ -80,9 +80,7 @@ public class BundleUtil {
 		Map<String, String[]> parameters = ParamUtil.getParameterMap(location);
 
 		String[] lpkgPath = parameters.get("lpkgPath");
-
 		String[] protocol = parameters.get("protocol");
-
 		String[] webContextPath = parameters.get("Web-ContextPath");
 
 		if (parameters.isEmpty() && location.endsWith(".lpkg")) {
@@ -129,10 +127,8 @@ public class BundleUtil {
 			bundle = bundleContext.installBundle(location);
 		}
 
-		int startLevel = uninstalledBundleData.getStartLevel();
-
 		BundleStartLevelUtil.setStartLevelAndStart(
-			bundle, startLevel, bundleContext);
+			bundle, uninstalledBundleData.getStartLevel(), bundleContext);
 	}
 
 }
