@@ -414,11 +414,11 @@ public abstract class PortletRequestImpl implements LiferayPortletRequest {
 	public Enumeration<String> getProperties(String name) {
 		List<String> values = new ArrayList<>();
 
-		Enumeration<String> headersEnumeration = _request.getHeaders(name);
+		Enumeration<String> enumeration = _request.getHeaders(name);
 
-		if (headersEnumeration != null) {
-			while (headersEnumeration.hasMoreElements()) {
-				String header = headersEnumeration.nextElement();
+		if (enumeration != null) {
+			while (enumeration.hasMoreElements()) {
+				String header = enumeration.nextElement();
 
 				if (header != null) {
 					values.add(header);
@@ -437,35 +437,35 @@ public abstract class PortletRequestImpl implements LiferayPortletRequest {
 
 	@Override
 	public String getProperty(String name) {
-		String property = _request.getHeader(name);
+		String value = _request.getHeader(name);
 
-		if (property == null) {
-			property = _portalContext.getProperty(name);
+		if (value == null) {
+			value = _portalContext.getProperty(name);
 		}
 
-		return property;
+		return value;
 	}
 
 	@Override
 	public Enumeration<String> getPropertyNames() {
-		List<String> propertyNames = new ArrayList<>();
+		List<String> names = new ArrayList<>();
 
-		Enumeration<String> headerNameEnumeration = _request.getHeaderNames();
+		Enumeration<String> headerNamesEnumeration = _request.getHeaderNames();
 
-		if (headerNameEnumeration != null) {
-			while (headerNameEnumeration.hasMoreElements()) {
-				propertyNames.add(headerNameEnumeration.nextElement());
+		if (headerNamesEnumeration != null) {
+			while (headerNamesEnumeration.hasMoreElements()) {
+				names.add(headerNamesEnumeration.nextElement());
 			}
 		}
 
-		Enumeration<String> propertyNameEnumeration =
+		Enumeration<String> propertyNamesEnumeration =
 			_portalContext.getPropertyNames();
 
-		while (propertyNameEnumeration.hasMoreElements()) {
-			propertyNames.add(propertyNameEnumeration.nextElement());
+		while (propertyNamesEnumeration.hasMoreElements()) {
+			names.add(propertyNamesEnumeration.nextElement());
 		}
 
-		return Collections.enumeration(propertyNames);
+		return Collections.enumeration(names);
 	}
 
 	@Override
