@@ -2286,6 +2286,14 @@ version 1.0.3.
 - [LPS-73124]: Update the [Liferay Portal Tools DB Support] dependency to
 version 1.0.6.
 
+## 3.4.46 - 2017-08-29
+
+### Changed
+- [LPS-74278]: Update the [Liferay Gradle Plugins Service Builder] dependency
+to version 1.0.50.
+- [LPS-74278]: Update the [Liferay Portal Tools Service Builder] dependency to
+version 1.0.166.
+
 [Gradle Bundle Plugin]: https://github.com/TomDmitriev/gradle-bundle-plugin
 [Liferay Alloy Taglib]: https://github.com/liferay/alloy-taglibs
 [Liferay Ant BND]: https://github.com/liferay/liferay-portal/tree/master/modules/sdk/ant-bnd
