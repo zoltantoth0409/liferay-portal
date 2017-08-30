@@ -366,9 +366,55 @@ public class CalendarBookingLocalServiceImpl
 		return calendarBooking;
 	}
 
-	@Override
+	/**
+	 * @deprecated As of 2.4.0, replaced by {@link
+	 * #deleteCalendarBookingInstance(long, CalendarBooking, int, boolean)}
+	 */
+	@Deprecated
 	public void deleteCalendarBookingInstance(
 			CalendarBooking calendarBooking, int instanceIndex,
+			boolean allFollowing)
+		throws PortalException {
+	}
+
+	/**
+	 * @deprecated As of 2.4.0, replaced by {@link
+	 * #deleteCalendarBookingInstance(long, CalendarBooking, int, boolean,
+	 * boolean)}
+	 */
+	@Deprecated
+	public void deleteCalendarBookingInstance(
+			CalendarBooking calendarBooking, int instanceIndex,
+			boolean allFollowing, boolean deleteRecurringCalendarBookings)
+		throws PortalException {
+	}
+
+	/**
+	 * @deprecated As of 2.4.0, replaced by {@link
+	 * #deleteCalendarBookingInstance(long, CalendarBooking, long, boolean)}
+	 */
+	@Deprecated
+	public void deleteCalendarBookingInstance(
+			CalendarBooking calendarBooking, long startTime,
+			boolean allFollowing)
+		throws PortalException {
+	}
+
+	/**
+	 * @deprecated As of 2.4.0, replaced by {@link
+	 * #deleteCalendarBookingInstance(long, CalendarBooking, long, boolean,
+	 * boolean)}
+	 */
+	@Deprecated
+	public void deleteCalendarBookingInstance(
+			CalendarBooking calendarBooking, long startTime,
+			boolean allFollowing, boolean deleteRecurringCalendarBookings)
+		throws PortalException {
+	}
+
+	@Override
+	public void deleteCalendarBookingInstance(
+			long userId, CalendarBooking calendarBooking, int instanceIndex,
 			boolean allFollowing)
 		throws PortalException {
 
@@ -377,14 +423,39 @@ public class CalendarBookingLocalServiceImpl
 				calendarBooking, instanceIndex);
 
 		deleteCalendarBookingInstance(
-			calendarBooking, calendarBookingInstance.getStartTime(),
+			userId, calendarBooking, calendarBookingInstance.getStartTime(),
 			allFollowing);
 	}
 
 	@Override
 	public void deleteCalendarBookingInstance(
-			CalendarBooking calendarBooking, long startTime,
+			long userId, CalendarBooking calendarBooking, int instanceIndex,
+			boolean allFollowing, boolean deleteRecurringCalendarBookings)
+		throws PortalException {
+
+		CalendarBooking calendarBookingInstance =
+			RecurrenceUtil.getCalendarBookingInstance(
+				calendarBooking, instanceIndex);
+
+		deleteCalendarBookingInstance(
+			userId, calendarBooking, calendarBookingInstance.getStartTime(),
+			allFollowing, deleteRecurringCalendarBookings);
+	}
+
+	@Override
+	public void deleteCalendarBookingInstance(
+			long userId, CalendarBooking calendarBooking, long startTime,
 			boolean allFollowing)
+		throws PortalException {
+
+		deleteCalendarBookingInstance(
+			userId, calendarBooking, startTime, allFollowing, false);
+	}
+
+	@Override
+	public void deleteCalendarBookingInstance(
+			long userId, CalendarBooking calendarBooking, long startTime,
+			boolean allFollowing, boolean deleteRecurringCalendarBookings)
 		throws PortalException {
 
 		Date now = new Date();
@@ -429,15 +500,27 @@ public class CalendarBookingLocalServiceImpl
 		updateChildCalendarBookings(calendarBooking, now, recurrence);
 	}
 
-	@Override
+	/**
+	 * @deprecated As of 2.4.0, replaced by {@link
+	 * #deleteCalendarBookingInstance(long, long, long, boolean)}
+	 */
+	@Deprecated
 	public void deleteCalendarBookingInstance(
 			long calendarBookingId, long startTime, boolean allFollowing)
+		throws PortalException {
+	}
+
+	@Override
+	public void deleteCalendarBookingInstance(
+			long userId, long calendarBookingId, long startTime,
+			boolean allFollowing)
 		throws PortalException {
 
 		CalendarBooking calendarBooking =
 			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
 
-		deleteCalendarBookingInstance(calendarBooking, startTime, allFollowing);
+		deleteCalendarBookingInstance(
+			userId, calendarBooking, startTime, allFollowing);
 	}
 
 	@Override
@@ -1002,7 +1085,7 @@ public class CalendarBookingLocalServiceImpl
 		String oldRecurrence = calendarBooking.getRecurrence();
 
 		deleteCalendarBookingInstance(
-			calendarBooking, instanceIndex, allFollowing);
+			userId, calendarBooking, instanceIndex, allFollowing, false);
 
 		if (allFollowing) {
 			Calendar calendar = calendarLocalService.getCalendar(calendarId);
