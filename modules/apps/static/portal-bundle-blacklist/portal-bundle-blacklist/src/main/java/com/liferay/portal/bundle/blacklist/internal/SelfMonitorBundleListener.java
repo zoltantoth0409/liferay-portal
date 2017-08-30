@@ -53,9 +53,9 @@ public class SelfMonitorBundleListener implements BundleListener {
 
 		if (bundleEvent.getType() == BundleEvent.STARTED) {
 
-			// In case of STARTED, that means the blacklist bundle has been
-			// updated or refreshed, we must unregister the self monitor
-			// listener to release previous BundleRevision.
+			// In case of STARTED, that means the blacklist bundle was updated
+			// or refreshed, we must unregister the self monitor listener to
+			// release the previous bundle revision
 
 			_systemBundleContext.removeBundleListener(this);
 
