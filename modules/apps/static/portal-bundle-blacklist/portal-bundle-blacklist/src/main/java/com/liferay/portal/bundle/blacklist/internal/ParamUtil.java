@@ -30,13 +30,13 @@ import java.util.Map;
 public class ParamUtil {
 
 	public static Map<String, String[]> getParameterMap(String location) {
-		int pos = location.indexOf(CharPool.QUESTION);
+		int index = location.indexOf(CharPool.QUESTION);
 
-		if (pos == -1) {
+		if (index == -1) {
 			return Collections.emptyMap();
 		}
 
-		String queryString = location.substring(pos + 1);
+		String queryString = location.substring(index + 1);
 
 		if (Validator.isNull(queryString)) {
 			return Collections.emptyMap();
