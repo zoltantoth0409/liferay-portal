@@ -102,14 +102,15 @@ public class BundleBlacklist {
 
 					if (_log.isInfoEnabled()) {
 						_log.info(
-							"Due to cfg file " + cfgFilePath +
-								" has been removed, reset blacklist to empty");
+							"Reset blacklist to empty because configuration " +
+								"file " + cfgFilePath + " was removed");
 					}
 				}
 			}
 			catch (URISyntaxException urise) {
 				if (_log.isWarnEnabled()) {
-					_log.warn("Unable to recreate cfg file URI", urise);
+					_log.warn(
+						"Unable to recreate configuration file URI", urise);
 				}
 			}
 		}
