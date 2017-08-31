@@ -706,7 +706,6 @@ public class PoshiRunnerValidation {
 
 		String className =
 			PoshiRunnerGetterUtil.getClassNameFromClassCommandName(function);
-
 		String namespace = PoshiRunnerContext.getNamespace(filePath);
 
 		int locatorCount = PoshiRunnerContext.getFunctionLocatorCount(
@@ -1464,8 +1463,8 @@ public class PoshiRunnerValidation {
 		if (namespace != null) {
 			_exceptions.add(
 				new Exception(
-					"Namespace is not supported for nested testcase execution" +
-						"\n" + filePath + ":" +
+					"Namespace is not supported for nested test case " +
+						"execution \n" + filePath + ":" +
 							element.attributeValue("line-number")));
 		}
 
