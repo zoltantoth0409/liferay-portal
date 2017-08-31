@@ -94,16 +94,16 @@ public class AddressUtilTest {
 		Region region = Mockito.mock(Region.class);
 
 		Mockito.doReturn(
-			_REGION_NAME
-		).when(
-			region
-		).getName();
-
-		Mockito.doReturn(
 			region
 		).when(
 			_address
 		).getRegion();
+
+		Mockito.doReturn(
+			_REGION_NAME
+		).when(
+			region
+		).getName();
 
 		Mockito.doReturn(
 			RandomTestUtil.randomLong()
