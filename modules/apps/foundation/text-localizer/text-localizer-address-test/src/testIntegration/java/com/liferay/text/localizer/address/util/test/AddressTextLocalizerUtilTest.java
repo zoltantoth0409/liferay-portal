@@ -105,13 +105,13 @@ public class AddressTextLocalizerUtilTest {
 		_serviceRegistration = _registerAddressTextLocalizer(
 			addressTextLocalizer, countryA2);
 
-		AddressTextLocalizer retrievedAddressTextLocalizer =
+		AddressTextLocalizer registeredAddressTextLocalizer =
 			AddressTextLocalizerUtil.getAddressTextLocalizer(countryA2);
 
 		Assert.assertEquals(
-			addressTextLocalizer, retrievedAddressTextLocalizer);
+			addressTextLocalizer, registeredAddressTextLocalizer);
 		Assert.assertEquals(
-			addressText, retrievedAddressTextLocalizer.format(_address));
+			addressText, registeredAddressTextLocalizer.format(_address));
 	}
 
 	private Address _addAddress(User user) throws Exception {
