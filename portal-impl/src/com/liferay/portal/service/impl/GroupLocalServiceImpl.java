@@ -3227,13 +3227,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 
 		groupPersistence.update(group);
 
-		long[] userIds = groupLocalService.getUserPrimaryKeys(groupId);
-
-		for (long userId : userIds) {
-			User user = userLocalService.getUser(userId);
-
-			reindex(user.getUserId());
-		}
+		reindex(groupLocalService.getUserPrimaryKeys(groupId));
 
 		// Asset
 
@@ -4127,13 +4121,19 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 		return false;
 	}
 
-	protected void reindex(long userId) throws SearchException {
+	protected void reindex(long[] userIds) throws SearchException {
 		Indexer<User> indexer = IndexerRegistryUtil.nullSafeGetIndexer(
 			User.class);
 
-		User user = userLocalService.fetchUser(userId);
+		List<User> users = new ArrayList<>(userIds.length);
 
-		indexer.reindex(user);
+		for (Long userId : userIds) {
+			User user = userLocalService.fetchUser(userId);
+
+			users.add(user);
+		}
+
+		indexer.reindex(users);
 	}
 
 	protected void setCompanyPermissions(
