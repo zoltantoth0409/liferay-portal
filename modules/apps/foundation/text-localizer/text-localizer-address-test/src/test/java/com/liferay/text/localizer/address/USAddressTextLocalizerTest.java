@@ -53,7 +53,7 @@ public class USAddressTextLocalizerTest {
 				_STREET_3, StringPool.NEW_LINE, _CITY,
 				StringPool.COMMA_AND_SPACE, _REGION_NAME, StringPool.SPACE,
 				_ZIP, StringPool.NEW_LINE, _COUNTRY_NAME),
-			_localizer.format(_address));
+			_addressTextLocalizer.format(_address));
 	}
 
 	@Test
@@ -61,14 +61,14 @@ public class USAddressTextLocalizerTest {
 		_setCountry(_address);
 
 		Assert.assertEquals(
-			_concat(_COUNTRY_NAME), _localizer.format(_address));
+			_concat(_COUNTRY_NAME), _addressTextLocalizer.format(_address));
 	}
 
 	@Test
 	public void testRegionLineWithCity() {
 		_setCity(_address);
 
-		Assert.assertEquals(_concat(_CITY), _localizer.format(_address));
+		Assert.assertEquals(_concat(_CITY), _addressTextLocalizer.format(_address));
 	}
 
 	@Test
@@ -78,7 +78,7 @@ public class USAddressTextLocalizerTest {
 
 		Assert.assertEquals(
 			_concat(_CITY, StringPool.COMMA_AND_SPACE, _REGION_NAME),
-			_localizer.format(_address));
+			_addressTextLocalizer.format(_address));
 	}
 
 	@Test
@@ -91,7 +91,7 @@ public class USAddressTextLocalizerTest {
 			_concat(
 				_CITY, StringPool.COMMA_AND_SPACE, _REGION_NAME,
 				StringPool.SPACE, _ZIP),
-			_localizer.format(_address));
+			_addressTextLocalizer.format(_address));
 	}
 
 	@Test
@@ -101,14 +101,14 @@ public class USAddressTextLocalizerTest {
 
 		Assert.assertEquals(
 			_concat(_CITY, StringPool.COMMA_AND_SPACE, _ZIP),
-			_localizer.format(_address));
+			_addressTextLocalizer.format(_address));
 	}
 
 	@Test
 	public void testRegionLineWithRegionName() {
 		_setRegion(_address);
 
-		Assert.assertEquals(_concat(_REGION_NAME), _localizer.format(_address));
+		Assert.assertEquals(_concat(_REGION_NAME), _addressTextLocalizer.format(_address));
 	}
 
 	@Test
@@ -118,14 +118,14 @@ public class USAddressTextLocalizerTest {
 
 		Assert.assertEquals(
 			_concat(_REGION_NAME, StringPool.SPACE, _ZIP),
-			_localizer.format(_address));
+			_addressTextLocalizer.format(_address));
 	}
 
 	@Test
 	public void testRegionLineWithZip() {
 		_setZip(_address);
 
-		Assert.assertEquals(_concat(_ZIP), _localizer.format(_address));
+		Assert.assertEquals(_concat(_ZIP), _addressTextLocalizer.format(_address));
 	}
 
 	@Test
@@ -137,7 +137,7 @@ public class USAddressTextLocalizerTest {
 			_concat(
 				_STREET_1, StringPool.NEW_LINE, _STREET_2, StringPool.NEW_LINE,
 				_STREET_3, StringPool.NEW_LINE, _COUNTRY_NAME),
-			_localizer.format(_address));
+			_addressTextLocalizer.format(_address));
 	}
 
 	@Test
@@ -148,7 +148,7 @@ public class USAddressTextLocalizerTest {
 			_concat(
 				_STREET_1, StringPool.NEW_LINE, _STREET_2, StringPool.NEW_LINE,
 				_STREET_3),
-			_localizer.format(_address));
+			_addressTextLocalizer.format(_address));
 	}
 
 	@Test
@@ -198,7 +198,7 @@ public class USAddressTextLocalizerTest {
 				escapedValue, StringPool.COMMA_AND_SPACE, escapedValue,
 				StringPool.SPACE, escapedValue, StringPool.NEW_LINE,
 				escapedValue),
-			_localizer.format(_address));
+			_addressTextLocalizer.format(_address));
 	}
 
 	private String _concat(String... strings) {
@@ -367,7 +367,7 @@ public class USAddressTextLocalizerTest {
 
 	private Address _address;
 	private final Html _html = new HtmlImpl();
-	private final AddressTextLocalizer _localizer =
+	private final AddressTextLocalizer _addressTextLocalizer =
 		_createAddressTextLocalizer();
 
 }
