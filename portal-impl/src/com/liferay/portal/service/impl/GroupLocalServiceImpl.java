@@ -3219,15 +3219,18 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 		group.setMembershipRestriction(membershipRestriction);
 		group.setFriendlyURL(friendlyURL);
 		group.setInheritContent(inheritContent);
-		group.setActive(active);
+
+		if (group.isActive() != active) {
+			group.setActive(active);
+
+			reindex(groupLocalService.getUserPrimaryKeys(groupId));
+		}
 
 		if ((serviceContext != null) && group.isSite()) {
 			group.setExpandoBridgeAttributes(serviceContext);
 		}
 
 		groupPersistence.update(group);
-
-		reindex(groupLocalService.getUserPrimaryKeys(groupId));
 
 		// Asset
 
