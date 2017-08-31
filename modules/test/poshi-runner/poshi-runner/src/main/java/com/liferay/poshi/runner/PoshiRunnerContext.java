@@ -1378,6 +1378,10 @@ public class PoshiRunnerContext {
 			_componentNames.add(productName + "-known-issues");
 		}
 
+		UUID randomUUID = UUID.randomUUID();
+
+		_defaultNamespace = randomUUID.toString();
+
 		String testCaseAvailablePropertyNames =
 			PropsValues.TEST_CASE_AVAILABLE_PROPERTY_NAMES;
 
@@ -1399,10 +1403,6 @@ public class PoshiRunnerContext {
 				_testCaseRequiredPropertyNames,
 				StringUtil.split(testCaseRequiredPropertyNames));
 		}
-
-		UUID randomUUID = UUID.randomUUID();
-
-		_defaultNamespace = randomUUID.toString();
 	}
 
 }
