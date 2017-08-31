@@ -269,16 +269,16 @@ public class USAddressTextLocalizerTest {
 		Region region = Mockito.mock(Region.class);
 
 		Mockito.doReturn(
-			regionName
-		).when(
-			region
-		).getName();
-
-		Mockito.doReturn(
 			region
 		).when(
 			address
 		).getRegion();
+
+		Mockito.doReturn(
+			regionName
+		).when(
+			region
+		).getName();
 
 		Mockito.doReturn(
 			RandomTestUtil.randomLong()
