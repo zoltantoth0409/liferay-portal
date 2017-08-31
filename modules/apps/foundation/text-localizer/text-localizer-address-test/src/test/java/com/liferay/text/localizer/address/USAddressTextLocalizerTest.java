@@ -68,7 +68,8 @@ public class USAddressTextLocalizerTest {
 	public void testRegionLineWithCity() {
 		_setCity(_address);
 
-		Assert.assertEquals(_concat(_CITY), _addressTextLocalizer.format(_address));
+		Assert.assertEquals(
+			_concat(_CITY), _addressTextLocalizer.format(_address));
 	}
 
 	@Test
@@ -108,7 +109,8 @@ public class USAddressTextLocalizerTest {
 	public void testRegionLineWithRegionName() {
 		_setRegion(_address);
 
-		Assert.assertEquals(_concat(_REGION_NAME), _addressTextLocalizer.format(_address));
+		Assert.assertEquals(
+			_concat(_REGION_NAME), _addressTextLocalizer.format(_address));
 	}
 
 	@Test
@@ -125,7 +127,8 @@ public class USAddressTextLocalizerTest {
 	public void testRegionLineWithZip() {
 		_setZip(_address);
 
-		Assert.assertEquals(_concat(_ZIP), _addressTextLocalizer.format(_address));
+		Assert.assertEquals(
+			_concat(_ZIP), _addressTextLocalizer.format(_address));
 	}
 
 	@Test
@@ -366,8 +369,8 @@ public class USAddressTextLocalizerTest {
 	private static final String _ZIP = RandomTestUtil.randomString();
 
 	private Address _address;
-	private final Html _html = new HtmlImpl();
 	private final AddressTextLocalizer _addressTextLocalizer =
 		_createAddressTextLocalizer();
+	private final Html _html = new HtmlImpl();
 
 }
