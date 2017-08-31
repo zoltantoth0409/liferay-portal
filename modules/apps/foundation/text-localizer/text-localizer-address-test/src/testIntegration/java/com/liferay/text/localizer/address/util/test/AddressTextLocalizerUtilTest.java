@@ -96,10 +96,11 @@ public class AddressTextLocalizerUtilTest {
 		Assert.assertTrue(
 			defaultAddressTextLocalizer instanceof USAddressTextLocalizer);
 
-		String countryA2 = RandomTestUtil.randomString();
 		String addressText = RandomTestUtil.randomString();
 
 		AddressTextLocalizer addressTextLocalizer = address -> addressText;
+
+		String countryA2 = RandomTestUtil.randomString();
 
 		_serviceRegistration = _registerAddressTextLocalizer(
 			addressTextLocalizer, countryA2);
