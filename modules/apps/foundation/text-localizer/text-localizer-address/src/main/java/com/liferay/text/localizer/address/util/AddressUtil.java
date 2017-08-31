@@ -34,7 +34,13 @@ public class AddressUtil {
 		return addressOptional.map(
 			Address::getCountry
 		).filter(
-			country -> country.getCountryId() > 0
+			country -> {
+				if (country.getCountryId() > 0) {
+					return true;
+				}
+
+				return false;
+			}
 		).map(
 			country -> {
 				Optional<ServiceContext> serviceContextOptional =
@@ -59,7 +65,13 @@ public class AddressUtil {
 		return addressOptional.map(
 			Address::getRegion
 		).filter(
-			region -> region.getRegionId() > 0
+			region -> {
+				if (region.getRegionId() > 0) {
+					return true;
+				}
+
+				return false;
+			}
 		).map(
 			Region::getName
 		).filter(
