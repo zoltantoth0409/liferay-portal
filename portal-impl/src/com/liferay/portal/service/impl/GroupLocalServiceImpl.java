@@ -70,6 +70,9 @@ import com.liferay.portal.kernel.model.UserPersonalSite;
 import com.liferay.portal.kernel.model.WorkflowDefinitionLink;
 import com.liferay.portal.kernel.scheduler.SchedulerEngineHelperUtil;
 import com.liferay.portal.kernel.scheduler.StorageType;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.ResourceActionsUtil;
@@ -3239,6 +3242,14 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 			groupPersistence.update(stagingGroup);
 		}
 
+		long[] userIds = groupLocalService.getUserPrimaryKeys(groupId);
+
+		for (long userId : userIds) {
+			User user = userLocalService.getUser(userId);
+
+			reindex(user.getUserId());
+		}
+
 		// Asset
 
 		if ((serviceContext == null) || !group.isSite()) {
@@ -4130,6 +4141,15 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 		}
 
 		return false;
+	}
+
+	protected void reindex(long userId) throws SearchException {
+		Indexer<User> indexer = IndexerRegistryUtil.nullSafeGetIndexer(
+			User.class);
+
+		User user = userLocalService.fetchUser(userId);
+
+		indexer.reindex(user);
 	}
 
 	protected void setCompanyPermissions(
