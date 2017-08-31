@@ -90,7 +90,7 @@ public class PoshiRunnerContextTest extends TestCase {
 	@Test
 	public void testGetMacroCommandElement() {
 		Element element = PoshiRunnerContext.getMacroCommandElement(
-			"Macro#test", defaultNamespace);
+			"Macro#test", PoshiRunnerContext.getDefaultNamespace());
 
 		Assert.assertEquals(
 			"getMacroCommandElement is failing", "test",
