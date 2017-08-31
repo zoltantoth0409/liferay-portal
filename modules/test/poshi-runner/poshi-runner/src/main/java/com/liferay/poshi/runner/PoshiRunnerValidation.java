@@ -69,7 +69,6 @@ public class PoshiRunnerValidation {
 				filePath);
 			String classType = PoshiRunnerGetterUtil.getClassTypeFromFilePath(
 				filePath);
-
 			String namespace = PoshiRunnerContext.getNamespace(filePath);
 
 			if (classType.equals("function")) {
