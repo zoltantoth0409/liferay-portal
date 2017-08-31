@@ -181,9 +181,9 @@ public class PoshiRunnerContext {
 			String value = entry.getValue();
 
 			if (value.equals(filePath)) {
+				String key = entry.getKey();
 				String fileName = PoshiRunnerGetterUtil.getFileNameFromFilePath(
 					filePath);
-				String key = entry.getKey();
 
 				return key.substring(0, key.indexOf("." + fileName));
 			}
