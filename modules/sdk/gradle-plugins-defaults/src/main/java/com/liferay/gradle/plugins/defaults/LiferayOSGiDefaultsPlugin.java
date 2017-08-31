@@ -2005,7 +2005,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 						if (!rootDir.equals(dependencyRootDir)) {
 							throw new GradleException(
 								projectDependency + " in " + project +
-									" is not allowed to cross sub-repository " +
+									" is not allowed to cross subrepository " +
 										"boundaries");
 						}
 					}
