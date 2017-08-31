@@ -419,7 +419,7 @@ public class PoshiRunnerValidationTest extends TestCase {
 
 		Element element = PoshiRunnerContext.getMacroCommandElement(
 			"ValidateFunctionContext#validateFunctionContextPass",
-			_defaultNamespace);
+			PoshiRunnerContext.getDefaultNamespace());
 
 		List<Element> functionElements = element.elements("execute");
 
@@ -433,7 +433,7 @@ public class PoshiRunnerValidationTest extends TestCase {
 
 		element = PoshiRunnerContext.getMacroCommandElement(
 			"ValidateFunctionContext#validateFunctionContextFail1",
-			_defaultNamespace);
+			PoshiRunnerContext.getDefaultNamespace());
 
 		functionElements = element.elements("execute");
 
@@ -448,7 +448,7 @@ public class PoshiRunnerValidationTest extends TestCase {
 
 		element = PoshiRunnerContext.getMacroCommandElement(
 			"ValidateFunctionContext#validateFunctionContextFail2",
-			_defaultNamespace);
+			PoshiRunnerContext.getDefaultNamespace());
 
 		functionElements = element.elements("execute");
 
@@ -1636,8 +1636,5 @@ public class PoshiRunnerValidationTest extends TestCase {
 	protected URL getURL(String fileName) throws MalformedURLException {
 		return new URL("file:" + getFilePath(fileName));
 	}
-
-	private static final String _defaultNamespace =
-		PoshiRunnerContext.getDefaultNamespace();
 
 }

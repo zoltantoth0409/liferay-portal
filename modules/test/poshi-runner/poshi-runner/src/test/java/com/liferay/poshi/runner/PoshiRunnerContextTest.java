@@ -62,7 +62,7 @@ public class PoshiRunnerContextTest extends TestCase {
 	@Test
 	public void testGetFunctionCommandElement() throws Exception {
 		Element element = PoshiRunnerContext.getFunctionCommandElement(
-			"Click#clickAt", defaultNamespace);
+			"Click#clickAt", PoshiRunnerContext.getDefaultNamespace());
 
 		Assert.assertEquals(
 			"getFunctionCommandElement is failing", "clickAt",
@@ -80,7 +80,7 @@ public class PoshiRunnerContextTest extends TestCase {
 	@Test
 	public void testGetFunctionRootElement() {
 		Element element = PoshiRunnerContext.getFunctionRootElement(
-			"Click", defaultNamespace);
+			"Click", PoshiRunnerContext.getDefaultNamespace());
 
 		Assert.assertEquals(
 			"getFunctionRootElement is failing", "definition",
@@ -140,7 +140,5 @@ public class PoshiRunnerContextTest extends TestCase {
 			"getTestCaseRootElement is failing", "definition",
 			element.getName());
 	}
-
-	public String defaultNamespace = PoshiRunnerContext.getDefaultNamespace();
 
 }
