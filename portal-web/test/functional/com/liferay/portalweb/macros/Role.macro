@@ -239,6 +239,7 @@
 			<var name="permissionNavigationKey" value="${permissionNavigationKey}" />
 			<var name="permissionNavigationValue" value="${permissionNavigationValue}" />
 			<var name="remove" value="${remove}" />
+			<var name="removeLink" value="${removeLink}" />
 			<var name="roleName" value="${roleName}" />
 			<var name="roleType" value="${roleType}" />
 			<var name="roleUser" value="${roleUser}" />
@@ -670,7 +671,7 @@
 		<execute function="AssertClick" locator1="RolesPermissions#SAVE_BUTTON" value1="Save" />
 
 		<if>
-			<equals arg1="${remove}" arg2="true" />
+			<equals arg1="${removeLink}" arg2="true" />
 				<then>
 					<execute function="Confirm" value1="Updating the chosen permissions will overwrite the respective individually defined permissions for one or more of these resource types: Bookmarks Entry, Bookmarks Folder, Calendar Booking, Calendar, Calendar Resource" />
 				</then>
@@ -906,6 +907,7 @@
 			<var name="permissionNavigationKey" value="${permissionNavigationKey}" />
 			<var name="permissionNavigationValue" value="${permissionNavigationValue}" />
 			<var name="remove" value="true" />
+			<var name="removeLink" value="${removeLink}" />
 			<var name="roleName" value="${roleName}" />
 			<var name="roleType" value="${roleType}" />
 			<var name="roleUser" value="${roleUser}" />
@@ -947,6 +949,7 @@
 			<var name="permissionNavigationKey" value="${permissionNavigationKey}" />
 			<var name="permissionNavigationValue" value="${permissionNavigationValue}" />
 			<var name="remove" value="true" />
+			<var name="removeLink" value="${removeLink}" />
 			<var name="roleName" value="${roleName}" />
 			<var name="roleUser" value="${roleUser}" />
 			<var name="siteNameScope" value="${siteNameScope}" />

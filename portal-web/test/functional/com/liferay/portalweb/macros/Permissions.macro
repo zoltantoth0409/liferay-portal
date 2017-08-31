@@ -122,6 +122,7 @@
 			<var name="permissionDefinitionKey" value="${permissionDefinitionKey}" />
 			<var name="permissionDefinitionValue" value="${permissionDefinitionValue}" />
 			<var name="permissionNavigationValue" value="${permissionNavigationValue}" />
+			<var name="removeLink" value="${removeLink}" />
 			<var name="roleName" value="${roleName}" />
 			<var name="roleType" value="${roleType}" />
 		</execute>
@@ -137,6 +138,7 @@
 			<var name="permissionDefinitionKey" value="${permissionDefinitionKey}" />
 			<var name="permissionDefinitionValue" value="${permissionDefinitionValue}" />
 			<var name="permissionNavigationValue" value="${permissionNavigationValue}" />
+			<var name="removeLink" value="${removeLink}" />
 			<var name="roleName" value="${roleName}" />
 			<var name="roleType" value="${roleType}" />
 		</execute>
