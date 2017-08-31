@@ -445,8 +445,6 @@ if (comment) {
 								source: responseData
 							}
 						).render();
-
-						return autocompleteDiv;
 					}
 				}
 			);
