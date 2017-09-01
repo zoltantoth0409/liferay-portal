@@ -440,14 +440,15 @@ if (!portletName.equals(PortletKeys.SERVER_ADMIN)) {
 		var selectedPermissions = selectedPermissionsString.split(',');
 		var unselectedPermissions = unselectedPermissionsString.split(',');
 
-		if ((AUI._.intersection(selectedPermissions, oldUnselectedPermissions).length || AUI._.intersection(unselectedPermissions, oldSelectedPermissions).length) && !confirm('<liferay-ui:message key="updating-the-chosen-permissions-will-overwrite-the-respective-individually-defined-permissions-for-one-or-more-of-these-resource-types" />')) {
-			return;
+		if (!(AUI._.intersection(selectedPermissions, oldUnselectedPermissions).length || AUI._.intersection(unselectedPermissions, oldSelectedPermissions).length) ||
+			confirm('<liferay-ui:message key="updating-the-chosen-permissions-will-overwrite-the-respective-individually-defined-permissions-for-one-or-more-of-these-resource-types" />')) {
+
+			form.fm('redirect').val('<%= HtmlUtil.escapeJS(portletURL.toString()) %>');
+			form.fm('selectedTargets').val(selectedPermissionsString);
+			form.fm('unselectedTargets').val(unselectedPermissionsString);
+
+			submitForm(form);
 		}
 
-		form.fm('redirect').val('<%= HtmlUtil.escapeJS(portletURL.toString()) %>');
-		form.fm('selectedTargets').val(selectedPermissionsString);
-		form.fm('unselectedTargets').val(unselectedPermissionsString);
-
-		submitForm(form);
 	}
 </aui:script>
