@@ -155,10 +155,11 @@ public class DDMFormTemplateContextFactoryImpl
 
 		ResourceBundle resourceBundle = getResourceBundle(locale);
 
+		SoyHTMLContextValue soyHTMLContextValue = new SoyHTMLContextValue(
+			getRequiredFieldsWarningMessageHTML(resourceBundle));
+
 		templateContext.put(
-			"requiredFieldsWarningMessageHTML",
-			new SoyHTMLContextValue(
-				getRequiredFieldsWarningMessageHTML(resourceBundle)));
+			"requiredFieldsWarningMessageHTML", soyHTMLContextValue.getValue());
 
 		templateContext.put("rules", ddmForm.getDDMFormRules());
 		templateContext.put(
