@@ -13,6 +13,13 @@ classes {
 	dependsOn wrapSoyTemplates
 }
 
+mergeLang {
+	sourceDirs = [
+		"../dynamic-data-mapping-lang/src/main/resources/content",
+		"src/main/resources/content"
+	]
+}
+
 transpileJS {
 	soySrcIncludes = ""
 	srcIncludes = "**/*.es.js"
