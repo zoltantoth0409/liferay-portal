@@ -46,29 +46,30 @@ public class ConfigurationResetter {
 			Dictionary<String, Object> dictionary =
 				configuration.getProperties();
 
-			String cfgFilePath = (String)dictionary.get(
+			String fileName = (String)dictionary.get(
 				"felix.fileinstall.filename");
 
-			if (cfgFilePath == null) {
+			if (fileName == null) {
 				continue;
 			}
 
 			try {
-				File cfgFile = new File(new URI(cfgFilePath));
+				File file = new File(new URI(fileName));
 
-				if (!cfgFile.exists()) {
+				if (!file.exists()) {
 					configuration.delete();
 
 					if (_log.isInfoEnabled()) {
 						_log.info(
-							"Configuration has been reset due to " +
-								cfgFilePath + " being removed");
+							"Configuration was reset because " + fileName +
+								" being deleted");
 					}
 				}
 			}
 			catch (URISyntaxException urise) {
 				if (_log.isWarnEnabled()) {
-					_log.warn("Unable to recreate cfg file URI", urise);
+					_log.warn(
+						"Unable to recreate configuration file URI", urise);
 				}
 			}
 		}
