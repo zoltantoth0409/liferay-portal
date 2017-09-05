@@ -99,22 +99,20 @@ public class MinifierUtil {
 		while ((index = minifiedCss.indexOf("calc(", index)) != -1) {
 			index += 5;
 
+			int parensCount = 0;
 			int startIndex = index;
-
-			int parensCount;
 
 			for (parensCount = 1;
 				parensCount != 0 && index < minifiedCss.length();
 				index++) {
 
-				switch (minifiedCss.charAt(index)) {
-					case '(':
-						parensCount++;
-						break;
+				char c = minifiedCss.charAt(index);
 
-					case ')':
-						parensCount--;
-						break;
+				if (c == '(') {
+					parensCount++;
+				}
+				else if (c == ')') {
+					parensCount--;
 				}
 			}
 
