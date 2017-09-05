@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.osgi.felix.file.install.helper;
+package com.liferay.osgi.felix.file.install.configuration.cleaner.internal;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -35,7 +35,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Matthew Tambara
  */
 @Component(immediate = true)
-public class ConfigurationResetter {
+public class ConfigurationCleaner {
 
 	@Activate
 	protected void activate(BundleContext bundleContext) throws Exception {
@@ -76,7 +76,7 @@ public class ConfigurationResetter {
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		ConfigurationResetter.class);
+		ConfigurationCleaner.class);
 
 	@Reference
 	private ConfigurationAdmin _configurationAdmin;
