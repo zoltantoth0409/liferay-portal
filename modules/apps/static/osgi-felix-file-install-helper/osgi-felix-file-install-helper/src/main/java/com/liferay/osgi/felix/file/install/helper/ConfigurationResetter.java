@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.felix.file.install.helper;
+package com.liferay.osgi.felix.file.install.helper;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
