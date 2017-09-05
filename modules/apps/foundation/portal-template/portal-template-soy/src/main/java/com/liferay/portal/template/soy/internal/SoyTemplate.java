@@ -215,15 +215,15 @@ public class SoyTemplate extends AbstractMultiResourceTemplate {
 		if (value == null) {
 			soyMapValue = null;
 		}
-		else if (value instanceof SoyRawData) {
-			SoyRawData soyRawData = (SoyRawData)value;
-
-			soyMapValue = soyRawData.getValue();
-		}
 		else if (value instanceof SoyHTMLContextValue) {
 			SoyHTMLContextValue htmlValue = (SoyHTMLContextValue)value;
 
 			soyMapValue = htmlValue.getValue();
+		}
+		else if (value instanceof SoyRawData) {
+			SoyRawData soyRawData = (SoyRawData)value;
+
+			soyMapValue = soyRawData.getValue();
 		}
 		else {
 			soyMapValue = _templateContextHelper.deserializeValue(value);
