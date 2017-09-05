@@ -99,24 +99,24 @@ public class MinifierUtil {
 		while ((index = minifiedCss.indexOf("calc(", index)) != -1) {
 			index += 5;
 
-			int parensCount = 0;
+			int parenthesesCount = 0;
 			int startIndex = index;
 
-			for (parensCount = 1;
-				parensCount != 0 && index < minifiedCss.length();
+			for (parenthesesCount = 1;
+				parenthesesCount != 0 && index < minifiedCss.length();
 				index++) {
 
 				char c = minifiedCss.charAt(index);
 
 				if (c == '(') {
-					parensCount++;
+					parenthesesCount++;
 				}
 				else if (c == ')') {
-					parensCount--;
+					parenthesesCount--;
 				}
 			}
 
-			if (parensCount == 0) {
+			if (parenthesesCount == 0) {
 				StringBundler sb = new StringBundler(3);
 
 				sb.append(minifiedCss.substring(0, startIndex));
