@@ -66,7 +66,9 @@ if (Validator.isNotNull(languageId)) {
 
 										<aui:icon image="caret-double-l" markupView="lexicon" />
 									</a>
+
 									<ul class="dropdown-menu">
+
 										<%
 										PortletURL sourceURL = PortletURLUtil.clone(portletURL, renderResponse);
 
@@ -75,6 +77,7 @@ if (Validator.isNotNull(languageId)) {
 										for (DiffVersion diffVersion : diffVersions) {
 											sourceURL.setParameter("sourceVersion", String.valueOf(diffVersion.getVersion()));
 										%>
+
 											<c:if test="<%= (sourceVersion != diffVersion.getVersion()) && (targetVersion != diffVersion.getVersion()) %>">
 												<li>
 													<a href="<%= sourceURL.toString() %>">
@@ -82,9 +85,11 @@ if (Validator.isNotNull(languageId)) {
 													</a>
 												</li>
 											</c:if>
+
 										<%
 										}
 										%>
+
 									</ul>
 								</li>
 							</c:otherwise>
@@ -115,7 +120,9 @@ if (Validator.isNotNull(languageId)) {
 
 									<aui:icon image="caret-double-l" markupView="lexicon" />
 								</a>
+
 								<ul class="dropdown-menu">
+
 									<%
 									PortletURL targetURL = PortletURLUtil.clone(portletURL, renderResponse);
 
@@ -124,6 +131,7 @@ if (Validator.isNotNull(languageId)) {
 									for (DiffVersion diffVersion : diffVersions) {
 										targetURL.setParameter("targetVersion", String.valueOf(diffVersion.getVersion()));
 									%>
+
 										<c:if test="<%= (sourceVersion != diffVersion.getVersion()) && (targetVersion != diffVersion.getVersion()) %>">
 											<li>
 												<a href="<%= targetURL.toString() %>">
@@ -131,9 +139,11 @@ if (Validator.isNotNull(languageId)) {
 												</a>
 											</li>
 										</c:if>
+
 									<%
 									}
 									%>
+
 								</ul>
 							</li>
 						</c:otherwise>
