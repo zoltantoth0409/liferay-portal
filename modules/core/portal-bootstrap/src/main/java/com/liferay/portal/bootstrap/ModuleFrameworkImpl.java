@@ -57,7 +57,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 
@@ -704,11 +703,7 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 		properties.put(
 			FrameworkPropsKeys.OSGI_FRAMEWORK, codeSourceURL.toExternalForm());
 
-		URI codeSourceURI = codeSourceURL.toURI();
-
-		Path codeSourcePath = Paths.get(codeSourceURI);
-
-		File frameworkFile = codeSourcePath.toFile();
+		File frameworkFile = new File(codeSourceURL.toURI());
 
 		properties.put(
 			FrameworkPropsKeys.OSGI_INSTALL_AREA, frameworkFile.getParent());
