@@ -117,6 +117,10 @@ public class MinifierUtil {
 			}
 
 			if (parensCount == 0) {
+				StringBundler sb = new StringBundler(3);
+
+				sb.append(minifiedCss.substring(0, startIndex));
+
 				String replacement = minifiedCss.substring(
 					startIndex, index - 1);
 
@@ -125,10 +129,8 @@ public class MinifierUtil {
 				replacement = replacement.replaceAll("\\*", " * ");
 				replacement = replacement.replaceAll("/", " / ");
 
-				StringBundler sb = new StringBundler(3);
-
-				sb.append(minifiedCss.substring(0, startIndex));
 				sb.append(replacement);
+
 				sb.append(minifiedCss.substring(index - 1));
 
 				index += replacement.length() - (index - startIndex);
