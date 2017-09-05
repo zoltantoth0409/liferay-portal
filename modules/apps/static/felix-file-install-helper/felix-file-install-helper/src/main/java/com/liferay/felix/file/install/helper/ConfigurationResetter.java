@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.file.install.helper;
+package com.liferay.felix.file.install.helper;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
