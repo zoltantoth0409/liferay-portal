@@ -259,13 +259,13 @@ public class SpringExtenderDependencyManagerTest {
 
 				Attributes attributes = manifest.getMainAttributes();
 
-				attributes.putValue("Manifest-Version", "1.0");
 				attributes.putValue(Constants.BUNDLE_MANIFESTVERSION, "2");
 				attributes.putValue(
 					Constants.BUNDLE_SYMBOLICNAME,
 					"com.liferay.portal.osgi.debug.spring.extender.test." +
 						"bundle");
 				attributes.putValue(Constants.BUNDLE_VERSION, "1.0.0");
+				attributes.putValue("Manifest-Version", "1.0");
 				attributes.putValue("Liferay-Service", Boolean.TRUE.toString());
 				attributes.putValue("Liferay-Spring-Context", null);
 
