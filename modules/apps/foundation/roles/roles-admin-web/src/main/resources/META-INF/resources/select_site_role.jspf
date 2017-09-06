@@ -53,12 +53,6 @@ if (step == 1) {
 	}
 }
 
-long groupId = ParamUtil.getLong(request, "groupId", uniqueGroupId);
-
-if (groupId > 0) {
-	portletURL.setParameter("groupId", String.valueOf(groupId));
-}
-
 portletURL.setParameter("step", String.valueOf(step));
 %>
 
@@ -162,14 +156,18 @@ portletURL.setParameter("step", String.valueOf(step));
 			</aui:script>
 		</c:when>
 		<c:when test="<%= step == 2 %>">
-			<aui:input name="step" type="hidden" value="2" />
-			<aui:input name="groupId" type="hidden" value="<%= String.valueOf(groupId) %>" />
 
 			<%
+			long groupId = ParamUtil.getLong(request, "groupId", uniqueGroupId);
+
 			Group group = GroupServiceUtil.getGroup(groupId);
 
+			portletURL.setParameter("groupId", String.valueOf(groupId));
 			portletURL.setParameter("step", "1");
 			%>
+
+			<aui:input name="step" type="hidden" value="2" />
+			<aui:input name="groupId" type="hidden" value="<%= String.valueOf(groupId) %>" />
 
 			<c:if test="<%= selUser != null %>">
 
