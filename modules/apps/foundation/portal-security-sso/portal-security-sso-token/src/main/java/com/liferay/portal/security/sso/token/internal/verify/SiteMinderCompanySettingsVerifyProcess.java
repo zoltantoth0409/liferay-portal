@@ -66,8 +66,7 @@ public class SiteMinderCompanySettingsVerifyProcess
 			new String[] {
 				LegacyTokenPropsKeys.SITEMINDER_USER_HEADER,
 				TokenConfigurationKeys.USER_HEADER
-			}
-		};
+			}};
 	}
 
 	@Override

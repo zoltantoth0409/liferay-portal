@@ -92,8 +92,7 @@ public class OpenSSOCompanySettingsVerifyProcess
 			new String[] {
 				LegacyOpenSSOPropsKeys.OPENSSO_SERVICE_URL,
 				OpenSSOConfigurationKeys.SERVICE_URL
-			}
-		};
+			}};
 	}
 
 	@Override

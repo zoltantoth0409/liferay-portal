@@ -70,8 +70,7 @@ public class ShibbolethCompanySettingsVerifyProcess
 			new String[] {
 				LegacyTokenPropsKeys.SHIBBOLETH_USER_HEADER,
 				TokenConfigurationKeys.USER_HEADER
-			}
-		};
+			}};
 	}
 
 	@Override

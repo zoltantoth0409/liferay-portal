@@ -80,8 +80,7 @@ public class NtlmCompanySettingsVerifyProcess
 			new String[] {
 				LegacyNtlmPropsKeys.NTLM_AUTH_SERVICE_PASSWORD,
 				NtlmConfigurationKeys.AUTH_SERVICE_PASSWORD
-			}
-		};
+			}};
 	}
 
 	@Override
