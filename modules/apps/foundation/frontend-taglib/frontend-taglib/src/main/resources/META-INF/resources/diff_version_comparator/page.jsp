@@ -58,7 +58,7 @@ if (Validator.isNotNull(languageId)) {
 								/>
 							</c:when>
 							<c:otherwise>
-								<li class="dropdown">
+								<div class="dropdown">
 									<a aria-expanded="true" class="dropdown-toggle" data-toggle="dropdown" href="javascript:;">
 										<span class="management-bar-item-title">
 											<liferay-ui:message key='<%= LanguageUtil.format(request, "version-x", sourceVersion) %>' />
@@ -91,7 +91,7 @@ if (Validator.isNotNull(languageId)) {
 										%>
 
 									</ul>
-								</li>
+								</div>
 							</c:otherwise>
 						</c:choose>
 
@@ -112,7 +112,7 @@ if (Validator.isNotNull(languageId)) {
 							/>
 						</c:when>
 						<c:otherwise>
-							<li class="dropdown">
+							<div class="dropdown">
 								<a aria-expanded="true" class="dropdown-toggle" data-toggle="dropdown" href="javascript:;">
 									<span class="management-bar-item-title">
 										<liferay-ui:message key='<%= LanguageUtil.format(request, "version-x", targetVersion) %>' />
@@ -145,7 +145,7 @@ if (Validator.isNotNull(languageId)) {
 									%>
 
 								</ul>
-							</li>
+							</div>
 						</c:otherwise>
 					</c:choose>
 
