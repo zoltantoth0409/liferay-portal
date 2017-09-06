@@ -56,8 +56,7 @@ public class OpenIdCompanySettingsVerifyProcess
 			new String[] {
 				LegacyOpenIdPropsKeys.OPENID_AUTH_ENABLED,
 				OpenIdConfigurationKeys.AUTH_ENABLED
-			}
-		};
+			}};
 	}
 
 	@Override

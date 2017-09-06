@@ -64,8 +64,7 @@ public class GoogleLoginCompanySettingsVerifyProcess
 			new String[] {
 				LegacyGoogleLoginPropsKeys.CLIENT_SECRET,
 				GoogleAuthorizationConfigurationKeys.CLIENT_SECRET
-			}
-		};
+			}};
 	}
 
 	@Override

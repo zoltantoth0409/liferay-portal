@@ -100,8 +100,7 @@ public class FacebookConnectCompanySettingsVerifyProcess
 			new String[] {
 				LegacyFacebookConnectPropsKeys.VERIFIED_ACCOUNT_REQUIRED,
 				FacebookConnectConfigurationKeys.VERIFIED_ACCOUNT_REQUIRED
-			}
-		};
+			}};
 	}
 
 	@Override
