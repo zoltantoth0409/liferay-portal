@@ -163,7 +163,6 @@ portletURL.setParameter("step", String.valueOf(step));
 			Group group = GroupServiceUtil.getGroup(groupId);
 
 			portletURL.setParameter("groupId", String.valueOf(groupId));
-			portletURL.setParameter("step", "1");
 			%>
 
 			<aui:input name="step" type="hidden" value="2" />
@@ -172,17 +171,17 @@ portletURL.setParameter("step", String.valueOf(step));
 			<c:if test="<%= selUser != null %>">
 
 				<%
+				portletURL.setParameter("step", "1");
+
 				String breadcrumbs = "<a href=\"" + portletURL.toString() + "\">" + LanguageUtil.get(request, "sites") + "</a> &raquo; " + HtmlUtil.escape(group.getDescriptiveName(locale));
+
+				portletURL.setParameter("step", "2");
 				%>
 
 				<div class="breadcrumbs">
 					<%= breadcrumbs %>
 				</div>
 			</c:if>
-
-			<%
-			portletURL.setParameter("step", "2");
-			%>
 
 			<liferay-ui:search-container
 				headerNames="name"
