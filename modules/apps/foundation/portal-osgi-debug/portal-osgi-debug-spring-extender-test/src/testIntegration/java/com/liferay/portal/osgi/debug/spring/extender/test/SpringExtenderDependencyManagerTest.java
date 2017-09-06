@@ -83,7 +83,10 @@ public class SpringExtenderDependencyManagerTest {
 		_bundleContext = bundle.getBundleContext();
 
 		_unavailableComponentScannerConfiguration =
-			_configurationAdmin.getConfiguration(_CONFIG_NAME, null);
+			_configurationAdmin.getConfiguration(
+				"com.liferay.portal.osgi.debug.spring.extender.internal." +
+					"UnavailableComponentScannerConfiguration",
+				null);
 
 		_properties = _unavailableComponentScannerConfiguration.getProperties();
 
@@ -104,10 +107,7 @@ public class SpringExtenderDependencyManagerTest {
 	public void testSpringExtenderDependencyManagerResolvedDependencies()
 		throws Exception {
 
-		try (CaptureAppender captureAppender =
-				Log4JLoggerTestUtil.configureLog4JLogger(
-					_LOGGER_NAME, Level.INFO)) {
-
+		try (CaptureAppender captureAppender = _configureLog4JLogger()) {
 			_captureLog(captureAppender);
 
 			List<LoggingEvent> loggingEvents =
@@ -142,10 +142,7 @@ public class SpringExtenderDependencyManagerTest {
 
 		bundle.start();
 
-		try (CaptureAppender captureAppender =
-				Log4JLoggerTestUtil.configureLog4JLogger(
-					_LOGGER_NAME, Level.INFO)) {
-
+		try (CaptureAppender captureAppender = _configureLog4JLogger()) {
 			_captureLog(captureAppender);
 
 			List<LoggingEvent> loggingEvents =
@@ -164,7 +161,7 @@ public class SpringExtenderDependencyManagerTest {
 
 			sb.append("is unavailable due to missing required dependencies: ");
 			sb.append("ServiceDependency[interface ");
-			sb.append(_SPRING_EXTENDER_TEST_COMPONENT_REFERENCE_NAME);
+			sb.append(_SPRING_EXTENDER_TEST_COMPONENT_REFERENCE_CLASS_NAME);
 			sb.append(" null]");
 
 			Assert.assertTrue(message.contains(sb.toString()));
@@ -238,11 +235,15 @@ public class SpringExtenderDependencyManagerTest {
 		scanningThread.join();
 	}
 
-	private static void _ensureStopScanning() throws Exception {
-		try (CaptureAppender captureAppender =
-				Log4JLoggerTestUtil.configureLog4JLogger(
-					_LOGGER_NAME, Level.INFO)) {
+	private static CaptureAppender _configureLog4JLogger() {
+		return Log4JLoggerTestUtil.configureLog4JLogger(
+			"com.liferay.portal.osgi.debug.spring.extender.internal." +
+				"UnavailableComponentScanner",
+			Level.INFO);
+	}
 
+	private static void _ensureStopScanning() throws Exception {
+		try (CaptureAppender captureAppender = _configureLog4JLogger()) {
 			_captureLog(captureAppender);
 		}
 	}
@@ -283,7 +284,8 @@ public class SpringExtenderDependencyManagerTest {
 					new ZipEntry("OSGI-INF/context/context.dependencies"));
 
 				jarOutputStream.write(
-					_SPRING_EXTENDER_TEST_COMPONENT_REFERENCE_NAME.getBytes());
+					_SPRING_EXTENDER_TEST_COMPONENT_REFERENCE_CLASS_NAME.
+						getBytes());
 
 				jarOutputStream.closeEntry();
 
@@ -319,16 +321,9 @@ public class SpringExtenderDependencyManagerTest {
 		}
 	}
 
-	private static final String _CONFIG_NAME =
-		"com.liferay.portal.osgi.debug.spring.extender.internal." +
-			"UnavailableComponentScannerConfiguration";
-
-	private static final String _LOGGER_NAME =
-		"com.liferay.portal.osgi.debug.spring.extender.internal." +
-			"UnavailableComponentScanner";
-
-	private static final String _SPRING_EXTENDER_TEST_COMPONENT_REFERENCE_NAME =
-		SpringExtenderTestComponentReference.class.getName();
+	private static final String
+		_SPRING_EXTENDER_TEST_COMPONENT_REFERENCE_CLASS_NAME =
+			SpringExtenderTestComponentReference.class.getName();
 
 	private static BundleContext _bundleContext;
 
