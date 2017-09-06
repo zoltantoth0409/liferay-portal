@@ -165,7 +165,7 @@ portletURL.setParameter("step", String.valueOf(step));
 			portletURL.setParameter("groupId", String.valueOf(groupId));
 			%>
 
-			<aui:input name="step" type="hidden" value="2" />
+			<aui:input name="step" type="hidden" value="<%= step %>" />
 			<aui:input name="groupId" type="hidden" value="<%= String.valueOf(groupId) %>" />
 
 			<c:if test="<%= selUser != null %>">
@@ -175,7 +175,7 @@ portletURL.setParameter("step", String.valueOf(step));
 
 				String breadcrumbs = "<a href=\"" + portletURL.toString() + "\">" + LanguageUtil.get(request, "sites") + "</a> &raquo; " + HtmlUtil.escape(group.getDescriptiveName(locale));
 
-				portletURL.setParameter("step", "2");
+				portletURL.setParameter("step", String.valueOf(step));
 				%>
 
 				<div class="breadcrumbs">
