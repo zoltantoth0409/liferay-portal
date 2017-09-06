@@ -58,7 +58,7 @@ public class DateSearchEntry extends TextSearchEntry {
 
 			sb.append(
 				LanguageUtil.format(
-					locale, _getMask(),
+					locale, _getMessageKey(),
 					new Object[] {
 						LanguageUtil.getTimeDescription(
 							locale, _getTimeDelta(), true),
@@ -97,7 +97,7 @@ public class DateSearchEntry extends TextSearchEntry {
 		return new Object[] {_locale, _timeZone};
 	}
 
-	private String _getMask() {
+	private String _getMessageKey() {
 		if (_date.before(new Date())) {
 			if (_userName == null) {
 				return "x-ago";
