@@ -89,8 +89,7 @@ public class CASCompanySettingsVerifyProcess
 			new String[] {
 				LegacyCASPropsKeys.CAS_SERVICE_URL,
 				CASConfigurationKeys.SERVICE_URL
-			}
-		};
+			}};
 	}
 
 	@Override
