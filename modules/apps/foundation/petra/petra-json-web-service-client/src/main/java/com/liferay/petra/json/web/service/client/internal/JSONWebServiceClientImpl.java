@@ -618,17 +618,19 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		PoolingNHttpClientConnectionManager
 			poolingNHttpClientConnectionManager = null;
 
-		ConnectingIOReactor ioReactor = new DefaultConnectingIOReactor();
+		ConnectingIOReactor connectingIOReactor =
+			new DefaultConnectingIOReactor();
 
 		if (_keyStore != null) {
 			poolingNHttpClientConnectionManager =
 				new PoolingNHttpClientConnectionManager(
-					ioReactor, null, getSchemeIOSessionStrategyRegistry(), null,
-					null, 60000, TimeUnit.MILLISECONDS);
+					connectingIOReactor, null,
+					getSchemeIOSessionStrategyRegistry(), null, null, 60000,
+					TimeUnit.MILLISECONDS);
 		}
 		else {
 			poolingNHttpClientConnectionManager =
-				new PoolingNHttpClientConnectionManager(ioReactor);
+				new PoolingNHttpClientConnectionManager(connectingIOReactor);
 		}
 
 		poolingNHttpClientConnectionManager.setMaxTotal(20);
