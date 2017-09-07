@@ -80,7 +80,7 @@ public class MSBFragmentEntryRendererTag extends IncludeTag {
 			_msbFragmentEntry);
 	}
 
-	private static final String _PAGE = "/msb_fragment_entry/page.jsp";
+	private static final String _PAGE = "/msb_fragment_entry_renderer/page.jsp";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		MSBFragmentEntryRendererTag.class);
