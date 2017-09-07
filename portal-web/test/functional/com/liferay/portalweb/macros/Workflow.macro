@@ -96,8 +96,6 @@
 		<if>
 			<isset var="workflowActivityComment" />
 			<then>
-				<var name="key_workflowActivityComment" value="${workflowActivityComment}" />
-
 				<execute function="Type#clickAtType" locator1="MyWorkflowTasks#DIALOG_BOX_COMMENT_FIELD" value1="${workflowActivityComment}" />
 			</then>
 		</if>
@@ -202,6 +200,8 @@
 		<if>
 			<isset var="workflowActivityComment" />
 			<then>
+				<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+
 				<execute function="Type#clickAtType" locator1="MyWorkflowTasks#DIALOG_BOX_COMMENT_FIELD" value1="${workflowActivityComment}" />
 			</then>
 		</if>
