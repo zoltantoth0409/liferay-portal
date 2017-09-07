@@ -14,7 +14,7 @@
  */
 --%>
 
-<%@ include file="/msb_fragment_entry/init.jsp" %>
+<%@ include file="/msb_fragment_entry_renderer/init.jsp" %>
 
 <%
 MSBFragmentEntry msbFragmentEntry = (MSBFragmentEntry)request.getAttribute("liferay-modern-site-building-fragment:msb-fragment-entry-renderer:msbFragmentEntry");
