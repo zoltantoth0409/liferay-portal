@@ -76,7 +76,7 @@ public class LanguageImplTest {
 		public void testCompanyThreadLocalIsDefaultWithNoArgs()
 			throws Exception {
 
-			long originalCompanyId = CompanyThreadLocal.getCompanyId();
+			long companyId = CompanyThreadLocal.getCompanyId();
 
 			try {
 				_resetCompanyLocales();
@@ -84,7 +84,7 @@ public class LanguageImplTest {
 				Assert.assertEquals(_locales, _language.getAvailableLocales());
 			}
 			finally {
-				CompanyThreadLocal.setCompanyId(originalCompanyId);
+				CompanyThreadLocal.setCompanyId(companyId);
 			}
 		}
 
@@ -92,13 +92,13 @@ public class LanguageImplTest {
 		public void testGroupWithoutLocalesInheritsFromCompany()
 			throws Exception {
 
-			long originalCompanyId = CompanyThreadLocal.getCompanyId();
+			long companyId = CompanyThreadLocal.getCompanyId();
 
 			try {
 				_resetCompanyLocales();
 			}
 			finally {
-				CompanyThreadLocal.setCompanyId(originalCompanyId);
+				CompanyThreadLocal.setCompanyId(companyId);
 			}
 
 			Assert.assertEquals(
