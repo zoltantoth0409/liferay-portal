@@ -79,7 +79,7 @@ public class LanguageImplTest {
 			long originalCompanyId = CompanyThreadLocal.getCompanyId();
 
 			try {
-				_setCompanyThreadLocalWithLocales(_company, _locales);
+				_resetCompanyLocales();
 
 				Assert.assertEquals(_locales, _language.getAvailableLocales());
 			}
@@ -95,7 +95,7 @@ public class LanguageImplTest {
 			long originalCompanyId = CompanyThreadLocal.getCompanyId();
 
 			try {
-				_setCompanyThreadLocalWithLocales(_company, _locales);
+				_resetCompanyLocales();
 			}
 			finally {
 				CompanyThreadLocal.setCompanyId(originalCompanyId);
@@ -123,12 +123,9 @@ public class LanguageImplTest {
 			return group.getGroupId();
 		}
 
-		private void _setCompanyThreadLocalWithLocales(
-				Company company, Set<Locale> locales)
-			throws Exception {
-
+		private void _resetCompanyLocales() throws Exception {
 			CompanyTestUtil.resetCompanyLocales(
-				company.getCompanyId(), locales, LocaleUtil.US);
+				_company.getCompanyId(), _locales, LocaleUtil.US);
 		}
 
 		@Inject
