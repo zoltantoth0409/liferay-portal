@@ -17,9 +17,9 @@
 <%@ include file="/msb_fragment_entry_renderer/init.jsp" %>
 
 <%
-MSBFragmentEntry msbFragmentEntry = (MSBFragmentEntry)request.getAttribute("liferay-modern-site-building-fragment:msb-fragment-entry-renderer:msbFragmentEntry");
-
 String randomNamespace = PortalUtil.generateRandomKey(request, "taglib_modern_site_building_msb_fragment_entry_renderer_page") + StringPool.UNDERLINE;
+
+MSBFragmentEntry msbFragmentEntry = (MSBFragmentEntry)request.getAttribute("liferay-modern-site-building-fragment:msb-fragment-entry-renderer:msbFragmentEntry");
 %>
 
 <liferay-util:html-top outputKey="<%= randomNamespace %>">
