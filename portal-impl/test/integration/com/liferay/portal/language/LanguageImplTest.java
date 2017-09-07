@@ -58,7 +58,7 @@ import org.junit.runner.RunWith;
 public class LanguageImplTest {
 
 	@Sync
-	public static final class LanguageGetAvailableLocales {
+	public static final class GetAvailableLocales {
 
 		@ClassRule
 		@Rule
