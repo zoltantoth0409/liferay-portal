@@ -75,6 +75,8 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 			SearchContext searchContext, int max)
 		throws SearchException {
 
+		Map<String, List<String>> suggestions = new HashMap<>();
+
 		Tokenizer tokenizer = getTokenizer();
 
 		String localizedFieldName =
@@ -84,8 +86,6 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 		List<String> keywords = tokenizer.tokenize(
 			localizedFieldName, searchContext.getKeywords(),
 			searchContext.getLanguageId());
-
-		Map<String, List<String>> suggestions = new HashMap<>();
 
 		for (String keyword : keywords) {
 			List<String> keywordSuggestions = suggestKeywords(
