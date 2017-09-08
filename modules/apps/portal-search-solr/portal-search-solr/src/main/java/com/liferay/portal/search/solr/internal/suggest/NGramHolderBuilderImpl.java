@@ -104,8 +104,8 @@ public class NGramHolderBuilderImpl implements NGramHolderBuilder {
 		return new NGramTokenizer(nGramMinLength, nGramMaxLength) {
 
 			@Override
-			protected boolean isTokenChar(int chr) {
-				if (Character.isWhitespace(chr)) {
+			protected boolean isTokenChar(int c) {
+				if (Character.isWhitespace(c)) {
 					return false;
 				}
 
