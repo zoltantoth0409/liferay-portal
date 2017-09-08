@@ -68,12 +68,10 @@ public class RebaseErrorTopLevelBuild extends TopLevelBuild {
 				return result;
 			}
 
+			int retries = 0;
 			long time = System.currentTimeMillis();
-
 			Map<String, String> stopPropertiesTempMap =
 				getStopPropertiesTempMap();
-
-			int retries = 0;
 
 			while (!stopPropertiesTempMap.containsKey(
 						"TOP_LEVEL_GITHUB_COMMENT_ID")) {
