@@ -247,6 +247,7 @@ public class UpgradeDynamicDataMapping extends UpgradeProcess {
 
 				ps2.setString(
 					1, _ddmFormValuesJSONSerializer.serialize(ddmFormValues));
+
 				ps2.setLong(2, contentId);
 
 				ps2.addBatch();
@@ -274,6 +275,7 @@ public class UpgradeDynamicDataMapping extends UpgradeProcess {
 				updateDDMFormFields(ddmForm);
 
 				ps2.setString(1, _ddmFormJSONSerializer.serialize(ddmForm));
+
 				ps2.setLong(2, ddmStructureId);
 
 				ps2.addBatch();
