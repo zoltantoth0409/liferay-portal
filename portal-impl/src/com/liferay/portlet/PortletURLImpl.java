@@ -755,7 +755,7 @@ public class PortletURLImpl
 
 	/**
 	 * @deprecated As of 7.0.0, replaced by {@link
-	 *             #PortletURLImpl(PortletRequest, String, PortletRequest,
+	 *             #PortletURLImpl(HttpServletRequest, String, PortletRequest,
 	 *             Layout, String)}
 	 */
 	@Deprecated
