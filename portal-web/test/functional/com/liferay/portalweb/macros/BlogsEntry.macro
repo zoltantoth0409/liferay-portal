@@ -1057,7 +1057,7 @@
 
 					<execute function="AssertClick" locator1="BlogsEntry#TAG" value1="${tagName}" />
 
-					<execute function="AssertTextEquals" locator1="AssetCategorization#TAG_FILTER_TITLE" value1="Entries with tag ${tagName} ." />
+					<execute function="AssertTextEquals#assertPartialText" locator1="AssetCategorization#TAG_FILTER_TITLE" value1="Entries with tag ${tagName}" />
 					<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="${entryTitle}" />
 				</for>
 			</then>
@@ -1070,7 +1070,7 @@
 
 				<execute function="AssertClick" locator1="BlogsEntry#TAG" value1="${tagName}" />
 
-				<execute function="AssertTextEquals" locator1="AssetCategorization#TAG_FILTER_TITLE" value1="Entries with tag ${tagName} ." />
+				<execute function="AssertTextEquals#assertPartialText" locator1="AssetCategorization#TAG_FILTER_TITLE" value1="Entries with tag ${tagName}" />
 				<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="${entryTitle}" />
 			</else>
 		</if>
@@ -1089,7 +1089,7 @@
 
 					<execute function="AssertClick" locator1="BlogsEntry#TAG" value1="${tagName}" />
 
-					<execute function="AssertTextEquals" locator1="AssetCategorization#TAG_FILTER_TITLE" value1="Entries with tag ${tagName} ." />
+					<execute function="AssertTextEquals#assertPartialText" locator1="AssetCategorization#TAG_FILTER_TITLE" value1="Entries with tag ${tagName}" />
 					<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="${entryTitle}" />
 				</for>
 			</then>
@@ -1100,7 +1100,7 @@
 
 				<execute function="AssertClick" locator1="BlogsEntry#TAG" value1="${tagName}" />
 
-				<execute function="AssertTextEquals" locator1="AssetCategorization#TAG_FILTER_TITLE" value1="Entries with tag ${tagName} ." />
+				<execute function="AssertTextEquals#assertPartialText" locator1="AssetCategorization#TAG_FILTER_TITLE" value1="Entries with tag ${tagName}" />
 				<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="${entryTitle}" />
 			</else>
 		</if>
