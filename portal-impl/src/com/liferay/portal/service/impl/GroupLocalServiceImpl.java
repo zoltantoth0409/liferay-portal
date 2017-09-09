@@ -137,7 +137,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
-import java.util.concurrent.Callable;
 
 /**
  * Provides the local service for accessing, adding, deleting, and updating
@@ -1606,6 +1605,11 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	@Override
 	public Group getStagingGroup(long liveGroupId) throws PortalException {
 		return groupPersistence.findByLiveGroupId(liveGroupId);
+	}
+
+	@Override
+	public List<Long> getUserActiveGroupIds(long userId) {
+		return groupFinder.findByUserActiveGroupIds(userId);
 	}
 
 	/**
@@ -3231,8 +3235,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 
 			TransactionCommitCallbackUtil.registerCallback(
 				() -> {
-					reindex(
-						group.getCompanyId(), getUserPrimaryKeys(groupId));
+					reindex(group.getCompanyId(), getUserPrimaryKeys(groupId));
 
 					return null;
 				});
@@ -4147,12 +4150,10 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 
 		indexableActionableDynamicQuery.setAddCriteriaMethod(
 			dynamicQuery -> {
-					Property userId = PropertyFactoryUtil.forName(
-						"userId");
+				Property userId = PropertyFactoryUtil.forName("userId");
 
-					dynamicQuery.add(userId.in(userIds));
-				}
-		);
+				dynamicQuery.add(userId.in(userIds));
+			});
 
 		indexableActionableDynamicQuery.setCompanyId(companyId);
 		indexableActionableDynamicQuery.setPerformActionMethod(
