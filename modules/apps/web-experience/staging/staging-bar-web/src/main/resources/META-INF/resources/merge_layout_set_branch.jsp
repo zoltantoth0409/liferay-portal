@@ -30,14 +30,10 @@ if (layoutSetBranches.contains(layoutSetBranch)) {
 
 	layoutSetBranches.remove(layoutSetBranch);
 }
-
-String backLabel = LanguageUtil.get(resourceBundle, "back");
-
-String title = LanguageUtil.get(resourceBundle, "merge-site-pages-variation");
 %>
 
 <div class="site-pages-variation taglib-header">
-	<a class="icon-monospaced portlet-icon-back text-default" href="<%= HtmlUtil.escapeAttribute(redirect) %>" title="<%= HtmlUtil.escapeAttribute(backLabel) %>">
+	<a class="icon-monospaced portlet-icon-back text-default" href="<%= HtmlUtil.escapeAttribute(redirect) %>" title="<%= HtmlUtil.escapeAttribute(LanguageUtil.get(resourceBundle, "back")) %>">
 		<liferay-ui:icon
 			icon="angle-left"
 			markupView="lexicon"
@@ -46,7 +42,7 @@ String title = LanguageUtil.get(resourceBundle, "merge-site-pages-variation");
 
 	<h3 class="header-title">
 		<span>
-			<%= HtmlUtil.escape(title) %>
+			<%= HtmlUtil.escape(LanguageUtil.get(resourceBundle, "merge-site-pages-variation")) %>
 		</span>
 	</h3>
 </div>
