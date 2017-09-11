@@ -139,7 +139,7 @@ public class DDLFormAdminPortlet extends MVCPortlet {
 			DDMFormFieldOptions ddmFormFieldOptions, ThemeDisplay themeDisplay)
 		throws PortalException {
 
-		if (!_workflowEngineManager.isDeployed()) {
+		if (_workflowDefinitionManager == null) {
 			return;
 		}
 
@@ -500,7 +500,14 @@ public class DDLFormAdminPortlet extends MVCPortlet {
 
 	private StorageAdapterRegistry _storageAdapterRegistry;
 	private StorageEngine _storageEngine;
+
+	@Reference(
+		cardinality = ReferenceCardinality.OPTIONAL,
+		policyOption = ReferencePolicyOption.GREEDY,
+		target = "(proxy.bean=false)"
+	)
 	private WorkflowDefinitionManager _workflowDefinitionManager;
+
 	private WorkflowEngineManager _workflowEngineManager;
 
 }
