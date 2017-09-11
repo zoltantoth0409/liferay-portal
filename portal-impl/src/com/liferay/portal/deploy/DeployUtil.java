@@ -109,8 +109,7 @@ public class DeployUtil {
 	}
 
 	public static String getAutoDeployDestDir() throws Exception {
-		String destDir = PrefsPropsUtil.getString(
-			PropsKeys.AUTO_DEPLOY_DEST_DIR, PropsValues.AUTO_DEPLOY_DEST_DIR);
+		String destDir = PropsValues.AUTO_DEPLOY_DEST_DIR;
 
 		if (Validator.isNull(destDir)) {
 			destDir = getAutoDeployServerDestDir();
@@ -127,9 +126,7 @@ public class DeployUtil {
 		String serverId = GetterUtil.getString(ServerDetector.getServerId());
 
 		if (serverId.equals(ServerDetector.TOMCAT_ID)) {
-			destDir = PrefsPropsUtil.getString(
-				PropsKeys.AUTO_DEPLOY_TOMCAT_DEST_DIR,
-				PropsValues.AUTO_DEPLOY_TOMCAT_DEST_DIR);
+			destDir = PropsValues.AUTO_DEPLOY_TOMCAT_DEST_DIR;
 		}
 		else {
 			destDir = PrefsPropsUtil.getString(
@@ -137,9 +134,7 @@ public class DeployUtil {
 		}
 
 		if (Validator.isNull(destDir)) {
-			destDir = PrefsPropsUtil.getString(
-				PropsKeys.AUTO_DEPLOY_DEFAULT_DEST_DIR,
-				PropsValues.AUTO_DEPLOY_DEFAULT_DEST_DIR);
+			destDir = PropsValues.AUTO_DEPLOY_DEFAULT_DEST_DIR;
 		}
 
 		destDir = StringUtil.replace(
