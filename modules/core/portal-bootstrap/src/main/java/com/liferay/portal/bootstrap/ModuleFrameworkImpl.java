@@ -1571,11 +1571,10 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 
 		baseDir = baseDir.getAbsoluteFile();
 
-		// LPS-71758: Do what Equinox internally does to get a file path and
-		// validate it.
-		// Equinox converts a File into URL by File.toURL(), and later creates
-		// the osgi persistence dir using the URL's file part, which doesn't
-		// properly handle special character escaping and decoding.
+		// See LPS-71758. Do what Equinox does internally to get a file path and
+		// validate it. Equinox converts a File into a URL using File#toURL(),
+		// and later creates the OSGi persistence directory using the URL, which
+		// does not properly handle special character escaping and decoding.
 
 		URL url = baseDir.toURL();
 
@@ -1586,8 +1585,8 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 
 			sb.append("The module.framework.base.dir path \"");
 			sb.append(baseDir);
-			sb.append("\" contains character that Equinox can't handle. ");
-			sb.append("The osgi persistence data will be stored under \"");
+			sb.append("\" contains characters that Equinox cannot handle. ");
+			sb.append("The OSGi persistence data will be stored under \"");
 			sb.append(equinoxBaseDir);
 			sb.append("\"");
 
