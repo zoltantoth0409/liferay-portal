@@ -199,7 +199,6 @@ public class AMBlogsEntryExportImportContentProcessor
 			}
 		}
 
-
 		Element bodyElement = document.body();
 
 		return bodyElement.html();
