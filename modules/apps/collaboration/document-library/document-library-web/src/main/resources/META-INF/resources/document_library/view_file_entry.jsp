@@ -605,11 +605,6 @@ if (portletTitleBasedNavigation) {
 </c:if>
 
 <aui:script sandbox="<%= true %>">
-	function selectAllTextField() {
-		console.log('view file entry');
-		this.setSelectionRange(0, 9999);
-	}
-
 	$('.show-url-file').on(
 		'click',
 		function(event) {
@@ -635,7 +630,9 @@ if (portletTitleBasedNavigation) {
 
 	$('#<portlet:namespace />url, #<portlet:namespace />webDavURL').on(
 		'click',
-		selectAllTextField
+		function() {
+			this.setSelectionRange(0, 9999);
+		}
 	);
 </aui:script>
 
