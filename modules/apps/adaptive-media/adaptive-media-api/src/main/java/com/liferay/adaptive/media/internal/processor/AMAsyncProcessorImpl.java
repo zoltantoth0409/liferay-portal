@@ -87,8 +87,8 @@ public final class AMAsyncProcessorImpl<M, T>
 		Message message = new Message();
 
 		message.put("className", _clazz.getName());
-		message.put("model", model);
 		message.put("command", AMProcessorCommand.CLEAN_UP);
+		message.put("model", model);
 
 		if (Validator.isNotNull(modelId)) {
 			message.put("modelId", modelId);
