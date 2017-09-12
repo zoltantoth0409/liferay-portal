@@ -331,7 +331,7 @@ public class AMBlogsEntryExportImportContentProcessorTest {
 	}
 
 	@Test(expected = NoSuchFileEntryException.class)
-	public void testValidateContentFailsWhenInvalidReferences()
+	public void testValidateContentFailsWithInvalidReferences()
 		throws Exception {
 
 		String content = "<img data-fileentryid=\"0\" src=\"PATH_1\" />";
@@ -341,7 +341,7 @@ public class AMBlogsEntryExportImportContentProcessorTest {
 	}
 
 	@Test(expected = NoSuchFileEntryException.class)
-	public void testValidateContentFailsWhenInvalidStaticReferences()
+	public void testValidateContentFailsWithInvalidStaticReferences()
 		throws Exception {
 
 		String content = "<picture data-fileentryid=\"0\"></picture>";
@@ -473,6 +473,15 @@ public class AMBlogsEntryExportImportContentProcessorTest {
 		throws Exception {
 
 		Mockito.doReturn(
+			_amEmbeddedReferenceSet
+		).when(
+			_amEmbeddedReferenceSetFactory
+		).create(
+			Mockito.any(PortletDataContext.class),
+			Mockito.any(StagedModel.class)
+		);
+
+		Mockito.doReturn(
 			content
 		).when(
 			_exportImportContentProcessor
@@ -489,15 +498,6 @@ public class AMBlogsEntryExportImportContentProcessorTest {
 		).replaceImportContentReferences(
 			Mockito.any(PortletDataContext.class),
 			Mockito.any(StagedModel.class), Mockito.anyString()
-		);
-
-		Mockito.doReturn(
-			_amEmbeddedReferenceSet
-		).when(
-			_amEmbeddedReferenceSetFactory
-		).create(
-			Mockito.any(PortletDataContext.class),
-			Mockito.any(StagedModel.class)
 		);
 	}
 
