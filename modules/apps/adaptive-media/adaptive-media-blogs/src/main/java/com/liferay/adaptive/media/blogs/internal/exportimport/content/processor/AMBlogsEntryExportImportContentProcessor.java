@@ -188,10 +188,11 @@ public class AMBlogsEntryExportImportContentProcessor
 			if ("picture".equals(element.tagName())) {
 				Elements imgElements = element.getElementsByTag("img");
 
-				Element img = imgElements.first();
+				Element imgElement = imgElements.first();
 
 				Element picture = _parseNode(
-					_amImageHTMLTagFactory.create(img.toString(), fileEntry));
+					_amImageHTMLTagFactory.create(
+						imgElement.toString(), fileEntry));
 
 				element.html(picture.html());
 			}
