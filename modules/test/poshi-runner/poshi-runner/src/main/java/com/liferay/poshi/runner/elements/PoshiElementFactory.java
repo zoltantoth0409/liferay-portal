@@ -103,7 +103,7 @@ public class PoshiElementFactory {
 			Class<?> basePoshiElementClass = BasePoshiElement.class;
 
 			URL basePoshiElementResource = basePoshiElementClass.getResource(
-				"BasePoshiElement.class");
+				basePoshiElementClass.getSimpleName() + ".class");
 
 			File basePoshiElementFile = new File(
 				basePoshiElementResource.toURI());
