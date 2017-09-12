@@ -48,14 +48,14 @@ public class AMBlogsEntryExportImportContentProcessorTest {
 
 	@Before
 	public void setUp() throws Exception {
+		_amBlogsEntryExportImportContentProcessor.
+			setAMEmbeddedReferenceSetFactory(_amEmbeddedReferenceSetFactory);
+		_amBlogsEntryExportImportContentProcessor.setAMImageHTMLTagFactory(
+			_amImageHTMLTagFactory);
 		_amBlogsEntryExportImportContentProcessor.setDLAppLocalService(
 			_dlAppLocalService);
 		_amBlogsEntryExportImportContentProcessor.
 			setExportImportContentProcessor(_exportImportContentProcessor);
-		_amBlogsEntryExportImportContentProcessor.setAMImageHTMLTagFactory(
-			_amImageHTMLTagFactory);
-		_amBlogsEntryExportImportContentProcessor.
-			setAMEmbeddedReferenceSetFactory(_amEmbeddedReferenceSetFactory);
 
 		Mockito.doReturn(
 			_amEmbeddedReferenceSet
