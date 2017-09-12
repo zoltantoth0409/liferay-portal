@@ -31,7 +31,7 @@ import org.junit.Test;
 public class AMAttributeTest {
 
 	@Test
-	public void teestGetAllowedAMAttributes() {
+	public void testGetAllowedAMAttributes() {
 		Collection<AMAttribute<?, ?>> amAttributes = Arrays.asList(
 			AMAttribute.getConfigurationUuidAMAttribute(),
 			AMAttribute.getContentLengthAMAttribute(),
