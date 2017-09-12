@@ -167,10 +167,10 @@ public class AMBlogsEntryExportImportContentProcessor
 		Document document = _parseDocument(content);
 
 		Elements elements = document.getElementsByAttribute(
-			_EXPORT_IMPORT_PATH_ATTR);
+			_ATTRIBUTE_NAME_EXPORT_IMPORT_PATH);
 
 		for (Element element : elements) {
-			String path = element.attr(_EXPORT_IMPORT_PATH_ATTR);
+			String path = element.attr(_ATTRIBUTE_NAME_EXPORT_IMPORT_PATH);
 
 			if (!amEmbeddedReferenceSet.containsReference(path)) {
 				continue;
@@ -185,7 +185,7 @@ public class AMBlogsEntryExportImportContentProcessor
 			}
 
 			element.attr("data-fileEntryId", String.valueOf(fileEntryId));
-			element.removeAttr(_EXPORT_IMPORT_PATH_ATTR);
+			element.removeAttr(_ATTRIBUTE_NAME_EXPORT_IMPORT_PATH);
 
 			if ("picture".equals(element.tagName())) {
 				Elements imgElements = element.getElementsByTag("img");
@@ -217,7 +217,7 @@ public class AMBlogsEntryExportImportContentProcessor
 
 			element.removeAttr("data-fileEntryId");
 			element.attr(
-				_EXPORT_IMPORT_PATH_ATTR,
+				_ATTRIBUTE_NAME_EXPORT_IMPORT_PATH,
 				ExportImportPathUtil.getModelPath(fileEntry));
 		}
 
@@ -226,7 +226,8 @@ public class AMBlogsEntryExportImportContentProcessor
 		return body.html();
 	}
 
-	private static final String _EXPORT_IMPORT_PATH_ATTR = "export-import-path";
+	private static final String _ATTRIBUTE_NAME_EXPORT_IMPORT_PATH =
+		"export-import-path";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		AMBlogsEntryExportImportContentProcessor.class);
