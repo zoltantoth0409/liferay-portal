@@ -199,7 +199,10 @@ public class AMBlogsEntryExportImportContentProcessor
 			}
 		}
 
-		return document.body().html();
+
+		Element body = document.body();
+
+		return body.html();
 	}
 
 	private String _replace(
