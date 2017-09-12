@@ -167,9 +167,27 @@ public class AMBlogsEntryExportImportContentProcessorTest {
 	public void testExportImportContentWithMultipleStaticReferences()
 		throws Exception {
 
+		StringBundler sb = new StringBundler();
+
 		String prefix = StringUtil.randomString();
+
+		sb.append(prefix);
+
+		sb.append("<picture data-fileEntryId=\"1\">");
+		sb.append("<source /><img src=\"url1\" />");
+		sb.append("</picture>");
+
 		String infix = StringUtil.randomString();
+
+		sb.append(infix);
+
+		sb.append("<picture data-fileEntryId=\"2\">");
+		sb.append("<source /><img src=\"url2\" />");
+		sb.append("</picture>");
+
 		String suffix = StringUtil.randomString();
+
+		sb.append(suffix);
 
 		String content =
 			prefix + "<picture data-fileentryid=\"1\"><img src=\"url1\" />" +
@@ -177,18 +195,6 @@ public class AMBlogsEntryExportImportContentProcessorTest {
 					"<img src=\"url2\" /></picture>" + suffix;
 
 		String importedContent = _import(_export(content));
-
-		StringBundler sb = new StringBundler();
-
-		sb.append(prefix);
-		sb.append("<picture data-fileEntryId=\"1\">");
-		sb.append("<source /><img src=\"url1\" />");
-		sb.append("</picture>");
-		sb.append(infix);
-		sb.append("<picture data-fileEntryId=\"2\">");
-		sb.append("<source /><img src=\"url2\" />");
-		sb.append("</picture>");
-		sb.append(suffix);
 
 		Assert.assertEquals(sb.toString(), importedContent);
 	}
