@@ -67,7 +67,7 @@ public class ElsePoshiElement extends ThenPoshiElement {
 	private boolean _isElementType(
 		PoshiElement parentPoshiElement, String readableSyntax) {
 
-		if (parentPoshiElement instanceof IfPoshiElement &&
+		if ((parentPoshiElement instanceof IfPoshiElement) &&
 			readableSyntax.startsWith("else {")) {
 
 			return true;
