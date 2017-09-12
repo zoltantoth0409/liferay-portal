@@ -485,19 +485,20 @@ public class AMBlogsEntryExportImportContentProcessorTest {
 			content
 		).when(
 			_exportImportContentProcessor
-		).replaceExportContentReferences(
+		).replaceImportContentReferences(
 			Mockito.any(PortletDataContext.class),
-			Mockito.any(StagedModel.class), Mockito.anyString(),
-			Mockito.anyBoolean(), Mockito.anyBoolean()
+			Mockito.any(StagedModel.class), Mockito.anyString()
 		);
+
 
 		Mockito.doReturn(
 			content
 		).when(
 			_exportImportContentProcessor
-		).replaceImportContentReferences(
+		).replaceExportContentReferences(
 			Mockito.any(PortletDataContext.class),
-			Mockito.any(StagedModel.class), Mockito.anyString()
+			Mockito.any(StagedModel.class), Mockito.anyString(),
+			Mockito.anyBoolean(), Mockito.anyBoolean()
 		);
 	}
 
