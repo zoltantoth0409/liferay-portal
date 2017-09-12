@@ -56,7 +56,7 @@ public final class AMAttribute<T, V> {
 	public static final <S> AMAttribute<S, String>
 		getConfigurationUuidAMAttribute() {
 
-		return (AMAttribute<S, String>)_CONFIGURATION_UUID;
+		return (AMAttribute<S, String>)_AM_ATTRIBUTE_CONFIGURATION_UUID;
 	}
 
 	/**
@@ -68,7 +68,7 @@ public final class AMAttribute<T, V> {
 	public static final <S>
 		AMAttribute<S, Integer> getContentLengthAMAttribute() {
 
-		return (AMAttribute<S, Integer>)_CONTENT_LENGTH;
+		return (AMAttribute<S, Integer>)_AM_ATTRIBUTE_CONTENT_LENGTH;
 	}
 
 	/**
@@ -78,7 +78,7 @@ public final class AMAttribute<T, V> {
 	 * @return the content type attribute
 	 */
 	public static final <S> AMAttribute<S, String> getContentTypeAMAttribute() {
-		return (AMAttribute<S, String>)_CONTENT_TYPE;
+		return (AMAttribute<S, String>)_AM_ATTRIBUTE_CONTENT_TYPE;
 	}
 
 	/**
@@ -88,7 +88,7 @@ public final class AMAttribute<T, V> {
 	 * @return the file name attribute
 	 */
 	public static final <S> AMAttribute<S, String> getFileNameAMAttribute() {
-		return (AMAttribute<S, String>)_FILE_NAME;
+		return (AMAttribute<S, String>)_AM_ATTRIBUTE_FILE_NAME;
 	}
 
 	/**
@@ -160,33 +160,37 @@ public final class AMAttribute<T, V> {
 		return _name;
 	}
 
-	private static final AMAttribute<?, String> _CONFIGURATION_UUID =
-		new AMAttribute<>("configuration-uuid", (s) -> s, String::compareTo);
+	private static final AMAttribute<?, String>
+		_AM_ATTRIBUTE_CONFIGURATION_UUID = new AMAttribute<>(
+			"configuration-uuid", (s) -> s, String::compareTo);
 
-	private static final AMAttribute<?, Integer> _CONTENT_LENGTH =
+	private static final AMAttribute<?, Integer> _AM_ATTRIBUTE_CONTENT_LENGTH =
 		new AMAttribute<>(
 			"content-length", AMAttributeConverterUtil::parseInt,
 			(value1, value2) -> value1 - value2);
 
-	private static final AMAttribute<?, String> _CONTENT_TYPE =
+	private static final AMAttribute<?, String> _AM_ATTRIBUTE_CONTENT_TYPE =
 		new AMAttribute<>("content-type", (value) -> value, String::compareTo);
 
-	private static final AMAttribute<?, String> _FILE_NAME = new AMAttribute<>(
-		"file-name", (value) -> value, String::compareTo);
+	private static final AMAttribute<?, String> _AM_ATTRIBUTE_FILE_NAME =
+		new AMAttribute<>("file-name", (value) -> value, String::compareTo);
 
 	private static final Map<String, AMAttribute<?, ?>> _allowedAMAttributes =
 		new HashMap<>();
 
 	static {
 		_allowedAMAttributes.put(
-			AMAttribute._CONFIGURATION_UUID.getName(),
-			AMAttribute._CONFIGURATION_UUID);
+			AMAttribute._AM_ATTRIBUTE_CONFIGURATION_UUID.getName(),
+			AMAttribute._AM_ATTRIBUTE_CONFIGURATION_UUID);
 		_allowedAMAttributes.put(
-			AMAttribute._CONTENT_LENGTH.getName(), AMAttribute._CONTENT_LENGTH);
+			AMAttribute._AM_ATTRIBUTE_CONTENT_LENGTH.getName(),
+			AMAttribute._AM_ATTRIBUTE_CONTENT_LENGTH);
 		_allowedAMAttributes.put(
-			AMAttribute._CONTENT_TYPE.getName(), AMAttribute._CONTENT_TYPE);
+			AMAttribute._AM_ATTRIBUTE_CONTENT_TYPE.getName(),
+			AMAttribute._AM_ATTRIBUTE_CONTENT_TYPE);
 		_allowedAMAttributes.put(
-			AMAttribute._FILE_NAME.getName(), AMAttribute._FILE_NAME);
+			AMAttribute._AM_ATTRIBUTE_FILE_NAME.getName(),
+			AMAttribute._AM_ATTRIBUTE_FILE_NAME);
 	}
 
 	private final Comparator<V> _comparator;
