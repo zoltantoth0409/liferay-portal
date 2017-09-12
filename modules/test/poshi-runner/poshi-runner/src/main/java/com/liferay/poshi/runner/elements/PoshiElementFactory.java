@@ -99,8 +99,6 @@ public class PoshiElementFactory {
 	private static final List<PoshiElement> _poshiElements = new ArrayList<>();
 
 	static {
-		String path = "com.liferay.poshi.runner.elements";
-
 		try {
 			Class<?> basePoshiElementClass = BasePoshiElement.class;
 
@@ -122,7 +120,10 @@ public class PoshiElementFactory {
 
 					String className = fileName.substring(0, index);
 
-					Class<?> clazz = Class.forName(path + "." + className);
+					Package pkg = basePoshiElementClass.getPackage();
+
+					Class<?> clazz = Class.forName(
+						pkg.getName() + "." + className);
 
 					if (basePoshiElementClass.isAssignableFrom(clazz)) {
 						PoshiElement poshiElement =
