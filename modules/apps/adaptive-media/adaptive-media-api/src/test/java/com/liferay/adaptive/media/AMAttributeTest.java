@@ -31,7 +31,7 @@ import org.junit.Test;
 public class AMAttributeTest {
 
 	@Test
-	public void testAllPublicAttributesAreSupported() {
+	public void teestGetAllowedAMAttributes() {
 		Collection<AMAttribute<?, ?>> amAttributes = Arrays.asList(
 			AMAttribute.getConfigurationUuidAMAttribute(),
 			AMAttribute.getContentLengthAMAttribute(),
@@ -58,7 +58,7 @@ public class AMAttributeTest {
 	}
 
 	@Test(expected = AMRuntimeException.AMAttributeFormatException.class)
-	public void testContentLengthFailsForNonIntegers() {
+	public void testContentLengthFailsForNonintegers() {
 		AMAttribute<?, Integer> contentLengthAMAttribute =
 			AMAttribute.getContentLengthAMAttribute();
 
