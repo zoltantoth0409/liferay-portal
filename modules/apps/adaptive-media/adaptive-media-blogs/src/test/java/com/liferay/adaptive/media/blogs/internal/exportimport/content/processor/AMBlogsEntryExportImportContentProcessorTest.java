@@ -136,23 +136,29 @@ public class AMBlogsEntryExportImportContentProcessorTest {
 	public void testExportImportContentWithMultipleReferences()
 		throws Exception {
 
+		StringBundler sb = new StringBundler(4);
+
 		String prefix = StringUtil.randomString();
+
+		sb.append(prefix);
+
+		sb.append("<img src=\"url1\" data-fileEntryId=\"1\" />");
+
 		String infix = StringUtil.randomString();
+
+		sb.append(infix);
+
+		sb.append("<img src=\"url2\" data-fileEntryId=\"2\" />");
+
 		String suffix = StringUtil.randomString();
+
+		sb.append(suffix);
 
 		String content =
 			prefix + "<img data-fileentryid=\"1\" src=\"url1\" />" + infix +
 				"<img data-fileentryid=\"2\" src=\"url2\" />" + suffix;
 
 		String importedContent = _import(_export(content));
-
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(prefix);
-		sb.append("<img src=\"url1\" data-fileEntryId=\"1\" />");
-		sb.append(infix);
-		sb.append("<img src=\"url2\" data-fileEntryId=\"2\" />");
-		sb.append(suffix);
 
 		Assert.assertEquals(sb.toString(), importedContent);
 	}
