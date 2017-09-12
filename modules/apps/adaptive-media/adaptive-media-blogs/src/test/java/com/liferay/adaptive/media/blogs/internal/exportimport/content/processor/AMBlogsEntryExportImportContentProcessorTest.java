@@ -330,6 +330,24 @@ public class AMBlogsEntryExportImportContentProcessorTest {
 		Assert.assertEquals(content, replacedContent);
 	}
 
+	@Test(expected = PortalException.class)
+	public void testValidateContentFailsWhenOverridenProcessorFails()
+		throws Exception {
+
+		String content = StringUtil.randomString();
+
+		Mockito.doThrow(
+			PortalException.class
+		).when(
+			_exportImportContentProcessor
+		).validateContentReferences(
+			Mockito.anyLong(), Mockito.anyString()
+		);
+
+		_amBlogsEntryExportImportContentProcessor.validateContentReferences(
+			1, content);
+	}
+
 	@Test(expected = NoSuchFileEntryException.class)
 	public void testValidateContentFailsWithInvalidReferences()
 		throws Exception {
@@ -345,24 +363,6 @@ public class AMBlogsEntryExportImportContentProcessorTest {
 		throws Exception {
 
 		String content = "<picture data-fileentryid=\"0\"></picture>";
-
-		_amBlogsEntryExportImportContentProcessor.validateContentReferences(
-			1, content);
-	}
-
-	@Test(expected = PortalException.class)
-	public void testValidateContentFailsWhenOverridenProcessorFails()
-		throws Exception {
-
-		String content = StringUtil.randomString();
-
-		Mockito.doThrow(
-			PortalException.class
-		).when(
-			_exportImportContentProcessor
-		).validateContentReferences(
-			Mockito.anyLong(), Mockito.anyString()
-		);
 
 		_amBlogsEntryExportImportContentProcessor.validateContentReferences(
 			1, content);
@@ -489,7 +489,6 @@ public class AMBlogsEntryExportImportContentProcessorTest {
 			Mockito.any(PortletDataContext.class),
 			Mockito.any(StagedModel.class), Mockito.anyString()
 		);
-
 
 		Mockito.doReturn(
 			content
