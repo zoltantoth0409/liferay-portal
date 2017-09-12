@@ -80,7 +80,7 @@ public abstract class BasePoshiElement
 
 		if (!isElementType(name, element)) {
 			throw new RuntimeException(
-				"Element does not match expected PoshiElement name\n" +
+				"Element does not match expected Poshi element name\n" +
 					element.toString());
 		}
 
