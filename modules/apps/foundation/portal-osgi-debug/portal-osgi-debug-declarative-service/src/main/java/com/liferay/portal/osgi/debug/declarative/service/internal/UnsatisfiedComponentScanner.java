@@ -85,7 +85,7 @@ public class UnsatisfiedComponentScanner {
 				serviceComponentRuntime, bundleContext.getBundles());
 
 			if (message.isEmpty()) {
-				_log.info("All Declarative Service components are satisfied");
+				_log.info("All declarative service components are satisfied");
 			}
 			else if (_log.isWarnEnabled()) {
 				_log.warn(message);
@@ -114,7 +114,9 @@ public class UnsatisfiedComponentScanner {
 			}
 			catch (InterruptedException ie) {
 				if (_log.isInfoEnabled()) {
-					_log.info("Stopped scanning for unsatisfied components");
+					_log.info(
+						"Stopped scanning for unsatisfied declarative " +
+							"service components");
 				}
 			}
 		}

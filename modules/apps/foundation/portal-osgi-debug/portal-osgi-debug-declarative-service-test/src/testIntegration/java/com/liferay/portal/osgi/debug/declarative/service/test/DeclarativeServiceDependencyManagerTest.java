@@ -120,14 +120,15 @@ public class DeclarativeServiceDependencyManagerTest {
 
 			Assert.assertEquals(Level.INFO, loggingEvent.getLevel());
 			Assert.assertEquals(
-				"All Declarative Service components are satisfied",
+				"All declarative service components are satisfied",
 				loggingEvent.getMessage());
 
 			loggingEvent = loggingEvents.get(1);
 
 			Assert.assertEquals(Level.INFO, loggingEvent.getLevel());
 			Assert.assertEquals(
-				"Stopped scanning for unsatisfied components",
+				"Stopped scanning for unsatisfied declarative service " +
+					"components",
 				loggingEvent.getMessage());
 		}
 	}
@@ -169,7 +170,8 @@ public class DeclarativeServiceDependencyManagerTest {
 
 			Assert.assertEquals(Level.INFO, loggingEvent.getLevel());
 			Assert.assertEquals(
-				"Stopped scanning for unsatisfied components",
+				"Stopped scanning for unsatisfied declarative service " +
+					"components",
 				loggingEvent.getMessage());
 		}
 		finally {
@@ -193,8 +195,11 @@ public class DeclarativeServiceDependencyManagerTest {
 				public boolean add(LoggingEvent loggingEvent) {
 					boolean added = super.add(loggingEvent);
 
-					if ("Stopped scanning for unsatisfied components".equals(
-							loggingEvent.getMessage())) {
+					String message = loggingEvent.getMessage();
+
+					if (message.equals(
+							"Stopped scanning for unsatisfied declarative " +
+								"service components")) {
 
 						return added;
 					}
