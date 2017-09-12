@@ -52,7 +52,7 @@ public class PropertyPoshiElement extends VarPoshiElement {
 		super(_ELEMENT_NAME, readableSyntax);
 	}
 
-	private static boolean _isElementType(String readableSyntax) {
+	private boolean _isElementType(String readableSyntax) {
 		readableSyntax = readableSyntax.trim();
 
 		if (!isBalancedReadableSyntax(readableSyntax)) {

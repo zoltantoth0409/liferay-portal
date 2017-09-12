@@ -57,7 +57,7 @@ public class SetUpPoshiElement extends CommandPoshiElement {
 		return "setUp";
 	}
 
-	private static boolean _isElementType(String readableSyntax) {
+	private boolean _isElementType(String readableSyntax) {
 		readableSyntax = readableSyntax.trim();
 
 		if (!isBalancedReadableSyntax(readableSyntax)) {

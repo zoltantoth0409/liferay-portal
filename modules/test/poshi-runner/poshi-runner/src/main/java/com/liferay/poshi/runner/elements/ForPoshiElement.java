@@ -132,7 +132,7 @@ public class ForPoshiElement extends BasePoshiElement {
 		return readableBlocks;
 	}
 
-	private static boolean _isElementType(String readableSyntax) {
+	private boolean _isElementType(String readableSyntax) {
 		readableSyntax = readableSyntax.trim();
 
 		if (!isBalancedReadableSyntax(readableSyntax)) {

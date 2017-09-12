@@ -102,7 +102,7 @@ public class ThenPoshiElement extends BasePoshiElement {
 		return readableBlocks;
 	}
 
-	private static boolean _isElementType(
+	private boolean _isElementType(
 		PoshiElement parentPoshiElement, String readableSyntax) {
 
 		if (parentPoshiElement instanceof IfPoshiElement &&

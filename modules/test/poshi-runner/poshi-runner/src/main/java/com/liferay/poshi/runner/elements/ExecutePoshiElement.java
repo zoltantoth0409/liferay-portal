@@ -218,7 +218,7 @@ public class ExecutePoshiElement extends BasePoshiElement {
 		return attributeValue("macro");
 	}
 
-	private static boolean _isElementType(
+	private boolean _isElementType(
 		PoshiElement parentPoshiElement, String readableSyntax) {
 
 		readableSyntax = readableSyntax.trim();

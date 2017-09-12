@@ -57,7 +57,7 @@ public class TearDownPoshiElement extends CommandPoshiElement {
 		return "tearDown";
 	}
 
-	private static boolean _isElementType(String readableSyntax) {
+	private boolean _isElementType(String readableSyntax) {
 		readableSyntax = readableSyntax.trim();
 
 		if (!isBalancedReadableSyntax(readableSyntax)) {

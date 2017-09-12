@@ -124,7 +124,7 @@ public class ReturnPoshiElement extends BasePoshiElement {
 		return sb.toString();
 	}
 
-	private static boolean _isElementType(
+	private boolean _isElementType(
 		PoshiElement parentPoshiElement, String readableSyntax) {
 
 		if (parentPoshiElement instanceof ExecutePoshiElement &&

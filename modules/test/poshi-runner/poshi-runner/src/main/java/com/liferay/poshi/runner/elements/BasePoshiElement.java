@@ -83,11 +83,11 @@ public abstract class BasePoshiElement
 		return sb.toString();
 	}
 
-	protected static String getBracedContent(String readableSyntax) {
+	protected String getBracedContent(String readableSyntax) {
 		return RegexUtil.getGroup(readableSyntax, ".*?\\{(.*)\\}", 1);
 	}
 
-	protected static String getNameFromAssignment(String assignment) {
+	protected String getNameFromAssignment(String assignment) {
 		String name = assignment.split("=")[0];
 
 		name = name.trim();
@@ -97,15 +97,15 @@ public abstract class BasePoshiElement
 		return name.replaceAll("var ", "");
 	}
 
-	protected static String getParentheticalContent(String readableSyntax) {
+	protected String getParentheticalContent(String readableSyntax) {
 		return RegexUtil.getGroup(readableSyntax, ".*?\\((.*)\\)", 1);
 	}
 
-	protected static String getQuotedContent(String readableSyntax) {
+	protected String getQuotedContent(String readableSyntax) {
 		return RegexUtil.getGroup(readableSyntax, ".*?\"(.*)\"", 1);
 	}
 
-	protected static boolean isBalancedReadableSyntax(String readableSyntax) {
+	protected boolean isBalancedReadableSyntax(String readableSyntax) {
 		Stack<Character> stack = new Stack<>();
 
 		for (char c : readableSyntax.toCharArray()) {
