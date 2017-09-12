@@ -51,7 +51,7 @@ public final class AMAsyncProcessorImpl<M, T>
 
 		if (_log.isInfoEnabled()) {
 			_log.info(
-				"Cleaned queue for model id " + modelId +
+				"Cleaned queue for model ID " + modelId +
 					" and adaptive media processor command " +
 						amProcessorCommand);
 		}
@@ -69,7 +69,7 @@ public final class AMAsyncProcessorImpl<M, T>
 			if (cleanUpModelIds.contains(modelId)) {
 				if (_log.isInfoEnabled()) {
 					_log.info(
-						"Omitted clean up for model id " + modelId +
+						"Omitted clean up for model ID " + modelId +
 							" because it is already in progress");
 				}
 
@@ -80,7 +80,7 @@ public final class AMAsyncProcessorImpl<M, T>
 
 			if (_log.isInfoEnabled()) {
 				_log.info(
-					"Added clean up for model id " + modelId + " to the queue");
+					"Added clean up for model ID " + modelId + " to the queue");
 			}
 		}
 
