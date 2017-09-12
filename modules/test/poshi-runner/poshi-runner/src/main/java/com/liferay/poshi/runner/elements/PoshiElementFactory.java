@@ -119,11 +119,11 @@ public class PoshiElementFactory {
 					continue;
 				}
 
+				Package pkg = BasePoshiElement.class.getPackage();
+
 				int index = fileName.indexOf(".");
 
 				String className = fileName.substring(0, index);
-
-				Package pkg = BasePoshiElement.class.getPackage();
 
 				Class<?> clazz = Class.forName(
 					pkg.getName() + "." + className);
