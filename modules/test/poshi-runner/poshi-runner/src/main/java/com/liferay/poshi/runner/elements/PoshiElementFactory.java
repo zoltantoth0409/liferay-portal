@@ -111,24 +111,28 @@ public class PoshiElementFactory {
 			for (File file : poshiElementsDir.listFiles()) {
 				String fileName = file.getName();
 
-				if (fileName.endsWith("PoshiElement.class") &&
-					!fileName.contains("Base")) {
+				if (fileName.endsWith("BasePoshiElement.class")) {
+					continue;
+				}
 
-					int index = fileName.indexOf(".");
+				if (!fileName.endsWith("PoshiElement.class")) {
+					continue;
+				}
 
-					String className = fileName.substring(0, index);
+				int index = fileName.indexOf(".");
 
-					Package pkg = BasePoshiElement.class.getPackage();
+				String className = fileName.substring(0, index);
 
-					Class<?> clazz = Class.forName(
-						pkg.getName() + "." + className);
+				Package pkg = BasePoshiElement.class.getPackage();
 
-					if (BasePoshiElement.class.isAssignableFrom(clazz)) {
-						PoshiElement poshiElement =
-							(PoshiElement)clazz.newInstance();
+				Class<?> clazz = Class.forName(
+					pkg.getName() + "." + className);
 
-						_poshiElements.add(poshiElement);
-					}
+				if (BasePoshiElement.class.isAssignableFrom(clazz)) {
+					PoshiElement poshiElement =
+						(PoshiElement)clazz.newInstance();
+
+					_poshiElements.add(poshiElement);
 				}
 			}
 		}
