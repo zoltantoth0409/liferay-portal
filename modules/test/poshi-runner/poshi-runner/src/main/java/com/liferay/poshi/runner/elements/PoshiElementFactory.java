@@ -100,7 +100,7 @@ public class PoshiElementFactory {
 
 	static {
 		try {
-			URL url = basePoshiElementClass.getResource(
+			URL url = BasePoshiElement.class.getResource(
 				BasePoshiElement.class.getSimpleName() + ".class");
 
 			File basePoshiElementClassFile = new File(url.toURI());
@@ -126,8 +126,7 @@ public class PoshiElementFactory {
 
 				String className = fileName.substring(0, index);
 
-				Class<?> clazz = Class.forName(
-					pkg.getName() + "." + className);
+				Class<?> clazz = Class.forName(pkg.getName() + "." + className);
 
 				if (BasePoshiElement.class.isAssignableFrom(clazz)) {
 					PoshiElement poshiElement =
