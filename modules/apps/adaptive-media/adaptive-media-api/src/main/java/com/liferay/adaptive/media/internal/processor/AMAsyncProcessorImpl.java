@@ -51,8 +51,9 @@ public final class AMAsyncProcessorImpl<M, T>
 
 		if (_log.isInfoEnabled()) {
 			_log.info(
-				"Cleaned queue for model id " + modelId + " and command " +
-					amProcessorCommand);
+				"Cleaned queue for model id " + modelId +
+					" and adaptive media processor command " +
+						amProcessorCommand);
 		}
 	}
 
