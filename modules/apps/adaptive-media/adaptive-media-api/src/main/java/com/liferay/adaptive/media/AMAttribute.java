@@ -180,17 +180,15 @@ public final class AMAttribute<T, V> {
 
 	static {
 		_allowedAMAttributes.put(
-			AMAttribute._AM_ATTRIBUTE_CONFIGURATION_UUID.getName(),
-			AMAttribute._AM_ATTRIBUTE_CONFIGURATION_UUID);
+			_AM_ATTRIBUTE_CONFIGURATION_UUID.getName(),
+			_AM_ATTRIBUTE_CONFIGURATION_UUID);
 		_allowedAMAttributes.put(
-			AMAttribute._AM_ATTRIBUTE_CONTENT_LENGTH.getName(),
-			AMAttribute._AM_ATTRIBUTE_CONTENT_LENGTH);
+			_AM_ATTRIBUTE_CONTENT_LENGTH.getName(),
+			_AM_ATTRIBUTE_CONTENT_LENGTH);
 		_allowedAMAttributes.put(
-			AMAttribute._AM_ATTRIBUTE_CONTENT_TYPE.getName(),
-			AMAttribute._AM_ATTRIBUTE_CONTENT_TYPE);
+			_AM_ATTRIBUTE_CONTENT_TYPE.getName(), _AM_ATTRIBUTE_CONTENT_TYPE);
 		_allowedAMAttributes.put(
-			AMAttribute._AM_ATTRIBUTE_FILE_NAME.getName(),
-			AMAttribute._AM_ATTRIBUTE_FILE_NAME);
+			_AM_ATTRIBUTE_FILE_NAME.getName(), _AM_ATTRIBUTE_FILE_NAME);
 	}
 
 	private final Comparator<V> _comparator;
