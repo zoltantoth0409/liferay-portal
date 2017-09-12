@@ -111,7 +111,7 @@ public class PoshiElementFactory {
 			for (File file : poshiElementsDir.listFiles()) {
 				String fileName = file.getName();
 
-				if (fileName.contains("PoshiElement.class") &&
+				if (fileName.endsWith("PoshiElement.class") &&
 					!fileName.contains("Base")) {
 
 					int index = fileName.indexOf(".");
