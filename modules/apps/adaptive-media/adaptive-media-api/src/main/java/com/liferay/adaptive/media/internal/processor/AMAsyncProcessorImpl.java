@@ -45,9 +45,9 @@ public final class AMAsyncProcessorImpl<M, T>
 	public void cleanQueue(
 		AMProcessorCommand amProcessorCommand, String modelId) {
 
-		List<String> commandModelIds = _modelIds.get(amProcessorCommand);
+		List<String> modelIds = _modelIds.get(amProcessorCommand);
 
-		commandModelIds.remove(modelId);
+		modelIds.remove(modelId);
 
 		if (_log.isInfoEnabled()) {
 			_log.info(
