@@ -43,16 +43,16 @@ public class PoshiElementFactory {
 			}
 		}
 
-		String formattedElement = null;
+		String xml = null;
 
 		try {
-			formattedElement = Dom4JUtil.format(element);
+			xml = Dom4JUtil.format(element);
 		}
 		catch (IOException ioe) {
-			formattedElement = element.toString();
+			xml = element.toString();
 		}
 
-		throw new RuntimeException("Unknown element\n" + formattedElement);
+		throw new RuntimeException("Unknown element\n" + xml);
 	}
 
 	public static PoshiElement newPoshiElement(

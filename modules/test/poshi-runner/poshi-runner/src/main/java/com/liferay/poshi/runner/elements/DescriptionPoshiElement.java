@@ -67,7 +67,7 @@ public class DescriptionPoshiElement extends BasePoshiElement {
 	private boolean _isElementType(
 		PoshiElement parentPoshiElement, String readableSyntax) {
 
-		if (parentPoshiElement instanceof CommandPoshiElement &&
+		if ((parentPoshiElement instanceof CommandPoshiElement) &&
 			readableSyntax.startsWith("@description")) {
 
 			return true;
