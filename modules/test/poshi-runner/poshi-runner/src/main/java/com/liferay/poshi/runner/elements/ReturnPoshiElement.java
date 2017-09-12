@@ -127,7 +127,7 @@ public class ReturnPoshiElement extends BasePoshiElement {
 	private boolean _isElementType(
 		PoshiElement parentPoshiElement, String readableSyntax) {
 
-		if (parentPoshiElement instanceof ExecutePoshiElement &&
+		if ((parentPoshiElement instanceof ExecutePoshiElement) &&
 			readableSyntax.contains("return(\n")) {
 
 			return true;

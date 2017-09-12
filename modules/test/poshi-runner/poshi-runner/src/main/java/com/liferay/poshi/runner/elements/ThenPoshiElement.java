@@ -105,7 +105,7 @@ public class ThenPoshiElement extends BasePoshiElement {
 	private boolean _isElementType(
 		PoshiElement parentPoshiElement, String readableSyntax) {
 
-		if (parentPoshiElement instanceof IfPoshiElement &&
+		if ((parentPoshiElement instanceof IfPoshiElement) &&
 			readableSyntax.startsWith("{")) {
 
 			return true;

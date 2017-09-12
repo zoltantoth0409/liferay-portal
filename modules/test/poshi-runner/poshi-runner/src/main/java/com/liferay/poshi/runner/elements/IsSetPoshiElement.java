@@ -72,7 +72,7 @@ public class IsSetPoshiElement extends BasePoshiElement {
 	private boolean _isElementType(
 		PoshiElement parentPoshiElement, String readableSyntax) {
 
-		if (parentPoshiElement instanceof IfPoshiElement &&
+		if ((parentPoshiElement instanceof IfPoshiElement) &&
 			readableSyntax.startsWith("isSet(")) {
 
 			return true;
