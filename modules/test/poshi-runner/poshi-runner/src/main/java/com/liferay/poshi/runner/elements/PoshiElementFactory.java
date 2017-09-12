@@ -100,11 +100,11 @@ public class PoshiElementFactory {
 
 	static {
 		try {
-			URL basePoshiElementResource = basePoshiElementClass.getResource(
+			URL url = basePoshiElementClass.getResource(
 				BasePoshiElement.class.getSimpleName() + ".class");
 
 			File basePoshiElementFile = new File(
-				basePoshiElementResource.toURI());
+				url.toURI());
 
 			File poshiElementsDir = basePoshiElementFile.getParentFile();
 
