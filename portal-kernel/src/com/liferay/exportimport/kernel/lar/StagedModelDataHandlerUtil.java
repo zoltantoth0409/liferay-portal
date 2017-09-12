@@ -66,6 +66,8 @@ public class StagedModelDataHandlerUtil {
 			referrerPortletId);
 
 		if (!ExportImportHelperUtil.isReferenceWithinExportScope(
+				portletDataContext, stagedModel) ||
+			!ExportImportHelperUtil.alwaysIncludeReference(
 				portletDataContext, stagedModel)) {
 
 			return portletDataContext.addReferenceElement(
@@ -127,6 +129,8 @@ public class StagedModelDataHandlerUtil {
 			portletDataContext.getExportDataElement(referrerStagedModel);
 
 		if (!ExportImportHelperUtil.isReferenceWithinExportScope(
+				portletDataContext, stagedModel) ||
+			!ExportImportHelperUtil.alwaysIncludeReference(
 				portletDataContext, stagedModel)) {
 
 			return portletDataContext.addReferenceElement(
