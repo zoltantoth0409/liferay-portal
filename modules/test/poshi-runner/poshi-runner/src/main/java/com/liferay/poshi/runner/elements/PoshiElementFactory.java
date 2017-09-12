@@ -103,15 +103,16 @@ public class PoshiElementFactory {
 			URL url = basePoshiElementClass.getResource(
 				BasePoshiElement.class.getSimpleName() + ".class");
 
-			File basePoshiElementFile = new File(
-				url.toURI());
+			File basePoshiElementClassFile = new File(url.toURI());
 
-			File poshiElementsDir = basePoshiElementFile.getParentFile();
+			File dir = basePoshiElementClassFile.getParentFile();
 
-			for (File file : poshiElementsDir.listFiles()) {
+			for (File file : dir.listFiles()) {
 				String fileName = file.getName();
 
-				if (fileName.endsWith("BasePoshiElement.class")) {
+				if (fileName.endsWith(
+						BasePoshiElement.class.getSimpleName() + ".class")) {
+
 					continue;
 				}
 
