@@ -135,9 +135,7 @@ public class CalendarBookingStagedModelDataHandler
 		for (CalendarBooking childCalendarBooking :
 				calendarBooking.getChildCalendarBookings()) {
 
-			if (calendarBooking.getCalendarBookingId() ==
-					childCalendarBooking.getCalendarBookingId()) {
-
+			if (childCalendarBooking.isMasterBooking()) {
 				continue;
 			}
 
