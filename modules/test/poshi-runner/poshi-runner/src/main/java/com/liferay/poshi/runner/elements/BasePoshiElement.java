@@ -33,14 +33,6 @@ import org.dom4j.tree.DefaultElement;
 public abstract class BasePoshiElement
 	extends DefaultElement implements PoshiElement {
 
-	protected boolean isElementType(String name, Element element) {
-		if (name.equals(element.getName())) {
-			return true;
-		}
-
-		return false;
-	}
-
 	public BasePoshiElement() {
 		super("");
 	}
@@ -81,60 +73,6 @@ public abstract class BasePoshiElement
 		}
 
 		return sb.toString();
-	}
-
-	protected String getBracedContent(String readableSyntax) {
-		return RegexUtil.getGroup(readableSyntax, ".*?\\{(.*)\\}", 1);
-	}
-
-	protected String getNameFromAssignment(String assignment) {
-		String name = assignment.split("=")[0];
-
-		name = name.trim();
-		name = name.replaceAll("@", "");
-		name = name.replaceAll("property ", "");
-
-		return name.replaceAll("var ", "");
-	}
-
-	protected String getParentheticalContent(String readableSyntax) {
-		return RegexUtil.getGroup(readableSyntax, ".*?\\((.*)\\)", 1);
-	}
-
-	protected String getQuotedContent(String readableSyntax) {
-		return RegexUtil.getGroup(readableSyntax, ".*?\"(.*)\"", 1);
-	}
-
-	protected boolean isBalancedReadableSyntax(String readableSyntax) {
-		Stack<Character> stack = new Stack<>();
-
-		for (char c : readableSyntax.toCharArray()) {
-			if (!stack.isEmpty()) {
-				Character topCodeBoundary = stack.peek();
-
-				if (c == _codeBoundariesMap.get(topCodeBoundary)) {
-					stack.pop();
-
-					continue;
-				}
-
-				if (topCodeBoundary == '\"') {
-					continue;
-				}
-			}
-
-			if (_codeBoundariesMap.containsKey(c)) {
-				stack.push(c);
-
-				continue;
-			}
-
-			if (_codeBoundariesMap.containsValue(c)) {
-				return false;
-			}
-		}
-
-		return stack.isEmpty();
 	}
 
 	protected BasePoshiElement(String name, Element element) {
@@ -183,14 +121,76 @@ public abstract class BasePoshiElement
 
 	protected abstract String getBlockName();
 
+	protected String getBracedContent(String readableSyntax) {
+		return RegexUtil.getGroup(readableSyntax, ".*?\\{(.*)\\}", 1);
+	}
+
+	protected String getNameFromAssignment(String assignment) {
+		String name = assignment.split("=")[0];
+
+		name = name.trim();
+		name = name.replaceAll("@", "");
+		name = name.replaceAll("property ", "");
+
+		return name.replaceAll("var ", "");
+	}
+
 	protected String getPad() {
 		return "\t";
+	}
+
+	protected String getParentheticalContent(String readableSyntax) {
+		return RegexUtil.getGroup(readableSyntax, ".*?\\((.*)\\)", 1);
+	}
+
+	protected String getQuotedContent(String readableSyntax) {
+		return RegexUtil.getGroup(readableSyntax, ".*?\"(.*)\"", 1);
+	}
+
+	protected boolean isBalancedReadableSyntax(String readableSyntax) {
+		Stack<Character> stack = new Stack<>();
+
+		for (char c : readableSyntax.toCharArray()) {
+			if (!stack.isEmpty()) {
+				Character topCodeBoundary = stack.peek();
+
+				if (c == _codeBoundariesMap.get(topCodeBoundary)) {
+					stack.pop();
+
+					continue;
+				}
+
+				if (topCodeBoundary == '\"') {
+					continue;
+				}
+			}
+
+			if (_codeBoundariesMap.containsKey(c)) {
+				stack.push(c);
+
+				continue;
+			}
+
+			if (_codeBoundariesMap.containsValue(c)) {
+				return false;
+			}
+		}
+
+		return stack.isEmpty();
 	}
 
 	protected boolean isBalanceValidationRequired(String readableSyntax) {
 		readableSyntax = readableSyntax.trim();
 
 		if (readableSyntax.endsWith(";") || readableSyntax.endsWith("}")) {
+			return true;
+		}
+
+		return false;
+	}
+
+	protected boolean isElementType(String name, Element element) {
+		if (name.equals(element.getName())) {
 			return true;
 		}
 
