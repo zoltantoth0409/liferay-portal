@@ -75,17 +75,17 @@ public class PoshiElementFactory {
 		File file = new File(filePath);
 
 		try {
-			String fileContent = FileUtil.read(file);
+			String content = FileUtil.read(file);
 
-			if (fileContent.contains("<definition")) {
-				Document document = Dom4JUtil.parse(fileContent);
+			if (content.contains("<definition")) {
+				Document document = Dom4JUtil.parse(content);
 
 				Element rootElement = document.getRootElement();
 
 				return newPoshiElement(rootElement);
 			}
 
-			return newPoshiElement(null, fileContent);
+			return newPoshiElement(null, content);
 		}
 		catch (Exception e) {
 			System.out.println("Unable to generate the Poshi element");
