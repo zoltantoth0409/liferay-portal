@@ -78,7 +78,6 @@ public class AMBlogsEntryExportImportContentProcessorTest {
 
 		_defineFileEntryToExport(1, _fileEntry1);
 		_defineFileEntryToImport(1, _fileEntry1);
-
 		_defineFileEntryToExport(2, _fileEntry2);
 		_defineFileEntryToImport(2, _fileEntry2);
 	}
