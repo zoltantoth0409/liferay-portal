@@ -31,23 +31,6 @@ import org.junit.Test;
 public class AMAttributeTest {
 
 	@Test
-	public void testGetAllowedAMAttributes() {
-		Collection<AMAttribute<?, ?>> amAttributes = Arrays.asList(
-			AMAttribute.getConfigurationUuidAMAttribute(),
-			AMAttribute.getContentLengthAMAttribute(),
-			AMAttribute.getContentTypeAMAttribute(),
-			AMAttribute.getFileNameAMAttribute());
-
-		Map<String, AMAttribute<?, ?>> allowedAMAttributesMap =
-			AMAttribute.getAllowedAMAttributes();
-
-		Collection<AMAttribute<?, ?>> allowedAMAttributes =
-			allowedAMAttributesMap.values();
-
-		Assert.assertTrue(allowedAMAttributes.containsAll(amAttributes));
-	}
-
-	@Test
 	public void testConfigurationUuidRecognizesAnyString() {
 		AMAttribute<?, String> configurationUuidAMAttribute =
 			AMAttribute.getConfigurationUuidAMAttribute();
@@ -94,6 +77,23 @@ public class AMAttributeTest {
 		String value = StringUtil.randomString();
 
 		Assert.assertEquals(value, fileNameAMAttribute.convert(value));
+	}
+
+	@Test
+	public void testGetAllowedAMAttributes() {
+		Collection<AMAttribute<?, ?>> amAttributes = Arrays.asList(
+			AMAttribute.getConfigurationUuidAMAttribute(),
+			AMAttribute.getContentLengthAMAttribute(),
+			AMAttribute.getContentTypeAMAttribute(),
+			AMAttribute.getFileNameAMAttribute());
+
+		Map<String, AMAttribute<?, ?>> allowedAMAttributesMap =
+			AMAttribute.getAllowedAMAttributes();
+
+		Collection<AMAttribute<?, ?>> allowedAMAttributes =
+			allowedAMAttributesMap.values();
+
+		Assert.assertTrue(allowedAMAttributes.containsAll(amAttributes));
 	}
 
 }
