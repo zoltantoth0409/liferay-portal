@@ -57,7 +57,6 @@ public class AMBlogsEntryExportImportContentProcessor
 			_exportImportContentProcessor.replaceExportContentReferences(
 				portletDataContext, stagedModel, content,
 				exportReferencedContent, escapeContent);
-
 		AMReferenceExporter amReferenceExporter = new AMReferenceExporter(
 			portletDataContext, stagedModel, exportReferencedContent);
 
@@ -70,13 +69,12 @@ public class AMBlogsEntryExportImportContentProcessor
 			String content)
 		throws Exception {
 
-		AMEmbeddedReferenceSet amEmbeddedReferenceSet =
-			_amEmbeddedReferenceSetFactory.create(
-				portletDataContext, stagedModel);
-
 		String replacedContent =
 			_exportImportContentProcessor.replaceImportContentReferences(
 				portletDataContext, stagedModel, content);
+		AMEmbeddedReferenceSet amEmbeddedReferenceSet =
+			_amEmbeddedReferenceSetFactory.create(
+				portletDataContext, stagedModel);
 
 		return _replace(replacedContent, amEmbeddedReferenceSet);
 	}
