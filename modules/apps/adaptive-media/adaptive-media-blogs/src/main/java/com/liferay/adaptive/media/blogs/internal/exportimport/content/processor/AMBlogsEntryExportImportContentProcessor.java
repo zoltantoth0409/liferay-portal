@@ -155,9 +155,9 @@ public class AMBlogsEntryExportImportContentProcessor
 	private Element _parseNode(String tag) {
 		Document document = _parseDocument(tag);
 
-		Element body = document.body();
+		Element bodyElement = document.body();
 
-		return body.child(0);
+		return bodyElement.child(0);
 	}
 
 	private String _replace(
@@ -200,9 +200,9 @@ public class AMBlogsEntryExportImportContentProcessor
 		}
 
 
-		Element body = document.body();
+		Element bodyElement = document.body();
 
-		return body.html();
+		return bodyElement.html();
 	}
 
 	private String _replace(
@@ -224,9 +224,9 @@ public class AMBlogsEntryExportImportContentProcessor
 				ExportImportPathUtil.getModelPath(fileEntry));
 		}
 
-		Element body = document.body();
+		Element bodyElement = document.body();
 
-		return body.html();
+		return bodyElement.html();
 	}
 
 	private static final String _ATTRIBUTE_NAME_EXPORT_IMPORT_PATH =
