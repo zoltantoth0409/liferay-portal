@@ -115,7 +115,7 @@ public final class AMAsyncProcessorImpl<M, T>
 			if (processModelIds.contains(modelId)) {
 				if (_log.isInfoEnabled()) {
 					_log.info(
-						"Omitted process for model id " + modelId +
+						"Omitted process for model ID " + modelId +
 							" because it is already in progress");
 				}
 
@@ -126,7 +126,7 @@ public final class AMAsyncProcessorImpl<M, T>
 
 			if (_log.isInfoEnabled()) {
 				_log.info(
-					"Added process for model id " + modelId + " to the queue");
+					"Added process for model ID " + modelId + " to the queue");
 			}
 		}
 
