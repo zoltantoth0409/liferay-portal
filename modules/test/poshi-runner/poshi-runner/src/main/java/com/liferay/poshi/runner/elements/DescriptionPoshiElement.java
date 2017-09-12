@@ -64,7 +64,7 @@ public class DescriptionPoshiElement extends BasePoshiElement {
 		return "description";
 	}
 
-	private static boolean _isElementType(
+	private boolean _isElementType(
 		PoshiElement parentPoshiElement, String readableSyntax) {
 
 		if (parentPoshiElement instanceof CommandPoshiElement &&

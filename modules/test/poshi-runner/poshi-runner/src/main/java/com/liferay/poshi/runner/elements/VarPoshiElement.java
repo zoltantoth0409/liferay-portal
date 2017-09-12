@@ -180,7 +180,7 @@ public class VarPoshiElement extends BasePoshiElement {
 
 	protected String valueAttributeName;
 
-	private static boolean _isElementType(String readableSyntax) {
+	private boolean _isElementType(String readableSyntax) {
 		readableSyntax = readableSyntax.trim();
 
 		if (!isBalancedReadableSyntax(readableSyntax)) {

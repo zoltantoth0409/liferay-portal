@@ -71,7 +71,7 @@ public class ConditionPoshiElement extends ExecutePoshiElement {
 		return attributeValue("function");
 	}
 
-	private static boolean _isElementType(
+	private boolean _isElementType(
 		PoshiElement parentPoshiElement, String readableSyntax) {
 
 		if (parentPoshiElement instanceof IfPoshiElement &&
