@@ -245,7 +245,7 @@
 	</command>
 
 	<command name="AddSiteWithInvalidName" priority="3">
-		<for list="Site Name*,22222" param="siteName" >
+		<for list="Site Name*,22222" param="siteName">
 			<execute macro="ProductMenu#gotoControlPanelSites">
 				<var name="portlet" value="Sites" />
 			</execute>

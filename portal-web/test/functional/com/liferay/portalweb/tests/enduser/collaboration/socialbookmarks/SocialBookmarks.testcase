@@ -78,7 +78,7 @@
 
 		<execute function="Click" locator1="Icon#SHARE" />
 
-		<for list="Twitter,Facebook,Google+,LinkedIn,Delicious,Digg,Evernote,Newsvine,Reddit,Slashdot,StumbleUpon,Tuenti" param="socialBookmarkSites" >
+		<for list="Twitter,Facebook,Google+,LinkedIn,Delicious,Digg,Evernote,Newsvine,Reddit,Slashdot,StumbleUpon,Tuenti" param="socialBookmarkSites">
 			<execute macro="KBArticle#viewEnabledKBSocialBookmarkSites">
 				<var name="socialBookmarkSite" value="${socialBookmarkSites}" />
 			</execute>
@@ -102,13 +102,13 @@
 			<var name="pageName" value="Knowledge Base Display Page" />
 		</execute>
 
-		<for list="Facebook,Google+,AddThis,LinkedIn,Delicious,Digg,Evernote" param="socialBookmarkSites" >
+		<for list="Facebook,Google+,AddThis,LinkedIn,Delicious,Digg,Evernote" param="socialBookmarkSites">
 			<execute macro="KBArticle#viewEnabledKBSocialBookmarkSites">
 				<var name="socialBookmarkSite" value="${socialBookmarkSites}" />
 			</execute>
 		</for>
 
-		<for list="Twitter,Newsvine,Reddit,Slashdot,StumbleUpon,Tuenti" param="socialBookmarkSites" >
+		<for list="Twitter,Newsvine,Reddit,Slashdot,StumbleUpon,Tuenti" param="socialBookmarkSites">
 			<execute macro="KBArticle#viewDisabledKBSocialBookmarkSites">
 				<var name="socialBookmarkSite" value="${socialBookmarkSites}" />
 			</execute>
@@ -214,7 +214,7 @@
 			<var name="pageName" value="Knowledge Base Display Page" />
 		</execute>
 
-		<for list="Twitter,Facebook,Google+,AddThis,LinkedIn,Delicious,Digg,Evernote,Newsvine,Reddit,Slashdot,StumbleUpon,Tuenti" param="socialBookmarkSites" >
+		<for list="Twitter,Facebook,Google+,AddThis,LinkedIn,Delicious,Digg,Evernote,Newsvine,Reddit,Slashdot,StumbleUpon,Tuenti" param="socialBookmarkSites">
 			<execute macro="KBArticle#viewEnabledKBSocialBookmarkSites">
 				<var name="socialBookmarkSite" value="${socialBookmarkSites}" />
 			</execute>

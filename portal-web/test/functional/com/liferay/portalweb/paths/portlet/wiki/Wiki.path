@@ -228,7 +228,7 @@
 </tr>
 <tr>
 	<td>HISTORY_ACTIVITIES_TABLE_COMPARE_TO_LINK</td>
-	<td>//ul/li[contains(@class,'compare-to-link')]/a[contains(@class,' taglib-icon')]</td>
+	<td>//ul/li[contains(@class,'compare-to-link')]/a[contains(@class,'taglib-icon')]</td>
 	<td></td>
 </tr>
 <tr>

@@ -1320,7 +1320,7 @@
 			<var name="panelName" value="Invitations" />
 		</execute>
 
-		<for list="${resourceNameList}" param="resourceName" >
+		<for list="${resourceNameList}" param="resourceName">
 			<execute function="Type" locator1="CalendarEditEvent#INVITATIONS_INVITE_RESOURCE_FIELD" value1="${resourceName}" />
 
 			<var name="key_resource" value="${resourceName}" />
@@ -1944,7 +1944,7 @@
 			<var name="panelName" value="Invitations" />
 		</execute>
 
-		<for list="${resourceNameList}" param="resourceName" >
+		<for list="${resourceNameList}" param="resourceName">
 			<execute function="Type" locator1="CalendarEditEvent#INVITATIONS_INVITE_RESOURCE_FIELD" value1="${resourceName}" />
 
 			<var name="key_resource" value="${resourceName}" />

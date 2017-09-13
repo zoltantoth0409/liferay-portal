@@ -999,7 +999,7 @@
 			<var name="webContentTitle" value="WC WebContent Title" />
 		</execute>
 
-		<execute macro="Role#removePermissionPG" >
+		<execute macro="Role#removePermissionPG">
 			<var name="permissionDefinitionKey" value="CONFIGURATION_PERMISSIONS_VIEW_CHECKBOX" />
 			<var name="roleName" value="Guest" />
 		</execute>

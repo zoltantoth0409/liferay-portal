@@ -666,7 +666,7 @@
 			<var name="percentAdapted" value="0" />
 		</execute>
 
-		<for list="1,2" param="entryCount" >
+		<for list="1,2" param="entryCount">
 			<execute macro="ProductMenu#gotoSitesContent">
 				<var name="portlet" value="Documents and Media" />
 			</execute>
@@ -704,7 +704,7 @@
 			<var name="site" value="New Site" />
 		</execute>
 
-		<for list="1,2" param="entryCount" >
+		<for list="1,2" param="entryCount">
 			<execute macro="ProductMenu#gotoSitesContent">
 				<var name="portlet" value="Documents and Media" />
 			</execute>

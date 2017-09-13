@@ -123,7 +123,7 @@
 		</execute>
 	</command>
 
-	<command name="gotoPersonalSite" summary="Navigate to Product Menu > Profile" >
+	<command name="gotoPersonalSite" summary="Navigate to Product Menu > Profile">
 		<execute macro="ProductMenuHelper#expandPanelUser" />
 
 		<execute function="Click" locator1="ProductMenu#USER_PROFILE" />

@@ -15,7 +15,7 @@
 </tr>
 <tr>
 	<td>EDIT_EVENT_IFRAME</td>
-	<td>//iframe[contains(@class,'dialog-iframe-node ')]</td>
+	<td>//iframe[contains(@class,'dialog-iframe-node')]</td>
 	<td></td>
 </tr>
 <tr>

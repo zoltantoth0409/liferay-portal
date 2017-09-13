@@ -225,7 +225,7 @@
 	</command>
 
 	<command name="addMultipleCP">
-		<for list="${usersEmailsList}" param="userEmail" >
+		<for list="${usersEmailsList}" param="userEmail">
 			<var name="userEmailAddress" value="${userEmail}" />
 			<var method="StringUtil#replace('${userEmail}', '@liferay.com', '')" name="userName" />
 
@@ -611,7 +611,7 @@
 		</if>
 	</command>
 
-	<command name="advancedSearchViaMySitesDirectoryPG" >
+	<command name="advancedSearchViaMySitesDirectoryPG">
 		<execute function="Click" locator1="NavBar#SEARCH_TOGGLE_ADVANCED" />
 
 		<if>
@@ -668,7 +668,7 @@
 		</if>
 	</command>
 
-	<command name="advancedSearchViaPortalDirectoryPG" >
+	<command name="advancedSearchViaPortalDirectoryPG">
 		<execute function="Click" locator1="NavBar#SEARCH_TOGGLE_ADVANCED" />
 
 		<if>
@@ -725,7 +725,7 @@
 		</if>
 	</command>
 
-	<command name="advancedSearchViaSiteMembersDirectoryPG" >
+	<command name="advancedSearchViaSiteMembersDirectoryPG">
 		<execute function="Click" locator1="NavBar#SEARCH_TOGGLE_ADVANCED" />
 
 		<if>
@@ -1159,7 +1159,7 @@
 		<if>
 			<isset var="userTagList" />
 			<then>
-				<for list="${userTagList}" param="userTag" >
+				<for list="${userTagList}" param="userTag">
 					<var name="key_userTag" value="${userTag}" />
 
 					<execute function="Click" locator1="AssetCategorization#TAG_REMOVE" />

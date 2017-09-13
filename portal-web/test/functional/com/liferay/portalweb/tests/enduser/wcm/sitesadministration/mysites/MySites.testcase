@@ -100,7 +100,7 @@
 
 		<execute macro="User#logoutPG" />
 
-		<execute macro="User#loginPG" >
+		<execute macro="User#loginPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userScreenName" value="usersn" />
@@ -155,7 +155,7 @@
 
 		<execute macro="User#logoutPG" />
 
-		<execute macro="User#loginPG" >
+		<execute macro="User#loginPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userScreenName" value="usersn" />
@@ -209,7 +209,7 @@
 
 		<execute macro="User#logoutPG" />
 
-		<execute macro="User#loginPG" >
+		<execute macro="User#loginPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userScreenName" value="usersn" />
@@ -257,7 +257,7 @@
 
 		<execute macro="User#logoutPG" />
 
-		<execute macro="User#loginPG" >
+		<execute macro="User#loginPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userScreenName" value="usersn" />
@@ -312,7 +312,7 @@
 
 		<execute macro="User#logoutPG" />
 
-		<execute macro="User#loginPG" >
+		<execute macro="User#loginPG">
 			<var name="password" value="test" />
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userScreenName" value="usersn" />
@@ -748,7 +748,7 @@
 			<var name="portlet" value="Site Settings" />
 		</execute>
 
-		<for list="apple,banana,mango" param="tagName" >
+		<for list="apple,banana,mango" param="tagName">
 			<execute macro="Tag#addViaSiteCP">
 				<var name="tagName" value="${tagName}" />
 			</execute>
@@ -772,7 +772,7 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<for list="apple,banana,mango" param="tagName" >
+		<for list="apple,banana,mango" param="tagName">
 			<execute macro="MySites#viewTags">
 				<var name="tagName" value="${tagName}" />
 			</execute>

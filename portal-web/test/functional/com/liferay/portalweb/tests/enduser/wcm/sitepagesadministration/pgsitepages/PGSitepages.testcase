@@ -95,7 +95,7 @@
 			<var name="pageName" value="Site Page" />
 		</execute>
 
-		<execute macro="Navigator#gotoEditPageViaControlMenu" >
+		<execute macro="Navigator#gotoEditPageViaControlMenu">
 			<var name="pageName" value="Site Page" />
 		</execute>
 
@@ -111,7 +111,7 @@
 			<var name="pageName" value="Site Page Edit" />
 		</execute>
 
-		<execute macro="Navigator#gotoEditPageViaControlMenu" >
+		<execute macro="Navigator#gotoEditPageViaControlMenu">
 			<var name="pageName" value="Site Page Edit" />
 		</execute>
 
@@ -127,7 +127,7 @@
 			<var name="pageName" value="Site Page Edit" />
 		</execute>
 
-		<execute macro="Navigator#gotoEditPageViaControlMenu" >
+		<execute macro="Navigator#gotoEditPageViaControlMenu">
 			<var name="pageName" value="Site Page Edit" />
 		</execute>
 
