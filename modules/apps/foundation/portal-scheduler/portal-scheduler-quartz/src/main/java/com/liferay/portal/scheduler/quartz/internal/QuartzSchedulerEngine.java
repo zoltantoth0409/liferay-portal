@@ -532,7 +532,7 @@ public class QuartzSchedulerEngine implements SchedulerEngine {
 		}
 		catch (org.quartz.SchedulerException se) {
 			throw new SchedulerException(
-				"Unable to validate trigger '" + quartzTrigger.getKey() + "'",
+				"Unable to validate trigger \"" + quartzTrigger.getKey() + "\"",
 				se);
 		}
 
@@ -544,8 +544,8 @@ public class QuartzSchedulerEngine implements SchedulerEngine {
 		}
 
 		throw new SchedulerException(
-			"Based on configured schedule, the given trigger '" +
-				quartzTrigger.getKey() + "' will never fire.");
+			"Based on configured schedule, the given trigger \"" +
+				quartzTrigger.getKey() + "\" will never fire.");
 	}
 
 	@Activate
