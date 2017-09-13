@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.adaptive.media.blogs.web.fragment.internal;
+package com.liferay.adaptive.media.blogs.web.fragment.internal.content.transformer;
 
 import com.liferay.adaptive.media.content.transformer.ContentTransformerHandler;
 import com.liferay.osgi.service.tracker.collections.list.ServiceTrackerList;
