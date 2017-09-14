@@ -23,6 +23,7 @@ import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.document.library.kernel.model.DLFolderConstants;
 import com.liferay.document.library.kernel.service.DLAppLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
@@ -93,10 +94,6 @@ public class AMImageEntryLocalServiceImplTest {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
 
-		Class<?> clazz = getClass();
-
-		ClassLoader classLoader = clazz.getClassLoader();
-
 		byte[] bytes = FileUtil.getBytes(
 			AMImageEntryLocalServiceImplTest.class,
 			"com/liferay/adaptive/media/image/dependencies/image.jpg");
@@ -111,9 +108,7 @@ public class AMImageEntryLocalServiceImplTest {
 		AMImageEntry amImageEntry =
 			AMImageEntryLocalServiceUtil.addAMImageEntry(
 				amImageConfigurationEntry, fileVersion, 300, 100,
-				classLoader.getResourceAsStream(
-					"com/liferay/adaptive/media/image/dependencies/image.jpg"),
-				12345);
+				new UnsyncByteArrayInputStream(bytes), 12345);
 
 		Assert.assertEquals(
 			TestPropsValues.getCompanyId(), amImageEntry.getCompanyId());
@@ -134,10 +129,6 @@ public class AMImageEntryLocalServiceImplTest {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
 
-		Class<?> clazz = getClass();
-
-		ClassLoader classLoader = clazz.getClassLoader();
-
 		byte[] bytes = FileUtil.getBytes(
 			AMImageEntryLocalServiceImplTest.class,
 			"com/liferay/adaptive/media/image/dependencies/image.jpg");
@@ -152,15 +143,11 @@ public class AMImageEntryLocalServiceImplTest {
 
 		AMImageEntryLocalServiceUtil.addAMImageEntry(
 			amImageConfigurationEntry, fileEntry.getFileVersion(), 300, 100,
-			classLoader.getResourceAsStream(
-				"com/liferay/adaptive/media/image/dependencies/image.jpg"),
-			12345);
+			new UnsyncByteArrayInputStream(bytes), 12345);
 
 		AMImageEntryLocalServiceUtil.addAMImageEntry(
 			amImageConfigurationEntry, fileEntry.getFileVersion(), 300, 100,
-			classLoader.getResourceAsStream(
-				"com/liferay/adaptive/media/image/dependencies/image.jpg"),
-			12345);
+			new UnsyncByteArrayInputStream(bytes), 12345);
 	}
 
 	@Test
@@ -174,10 +161,6 @@ public class AMImageEntryLocalServiceImplTest {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
 
-		Class<?> clazz = getClass();
-
-		ClassLoader classLoader = clazz.getClassLoader();
-
 		byte[] bytes = FileUtil.getBytes(
 			AMImageEntryLocalServiceImplTest.class,
 			"com/liferay/adaptive/media/image/dependencies/image.jpg");
@@ -190,17 +173,11 @@ public class AMImageEntryLocalServiceImplTest {
 		AMImageEntry amImageEntryConfiguration1FileVersion1 =
 			AMImageEntryLocalServiceUtil.addAMImageEntry(
 				amImageConfigurationEntry1, fileEntry1.getFileVersion(), 300,
-				100,
-				classLoader.getResourceAsStream(
-					"com/liferay/adaptive/media/image/dependencies/image.jpg"),
-				12345);
+				100, new UnsyncByteArrayInputStream(bytes), 12345);
 		AMImageEntry amImageEntryConfiguration2FileVersion1 =
 			AMImageEntryLocalServiceUtil.addAMImageEntry(
 				amImageConfigurationEntry2, fileEntry1.getFileVersion(), 500,
-				300,
-				classLoader.getResourceAsStream(
-					"com/liferay/adaptive/media/image/dependencies/image.jpg"),
-				123456);
+				300, new UnsyncByteArrayInputStream(bytes), 123456);
 
 		FileEntry fileEntry2 = DLAppLocalServiceUtil.addFileEntry(
 			TestPropsValues.getUserId(), _group.getGroupId(),
@@ -210,17 +187,11 @@ public class AMImageEntryLocalServiceImplTest {
 		AMImageEntry amImageEntryConfiguration1FileVersion2 =
 			AMImageEntryLocalServiceUtil.addAMImageEntry(
 				amImageConfigurationEntry1, fileEntry2.getFileVersion(), 300,
-				100,
-				classLoader.getResourceAsStream(
-					"com/liferay/adaptive/media/image/dependencies/image.jpg"),
-				12345);
+				100, new UnsyncByteArrayInputStream(bytes), 12345);
 		AMImageEntry amImageEntryConfiguration2FileVersion2 =
 			AMImageEntryLocalServiceUtil.addAMImageEntry(
 				amImageConfigurationEntry2, fileEntry2.getFileVersion(), 500,
-				300,
-				classLoader.getResourceAsStream(
-					"com/liferay/adaptive/media/image/dependencies/image.jpg"),
-				123456);
+				300, new UnsyncByteArrayInputStream(bytes), 123456);
 
 		Assert.assertNotNull(
 			AMImageEntryLocalServiceUtil.fetchAMImageEntry(
@@ -263,10 +234,6 @@ public class AMImageEntryLocalServiceImplTest {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
 
-		Class<?> clazz = getClass();
-
-		ClassLoader classLoader = clazz.getClassLoader();
-
 		byte[] bytes = FileUtil.getBytes(
 			AMImageEntryLocalServiceImplTest.class,
 			"com/liferay/adaptive/media/image/dependencies/image.jpg");
@@ -279,17 +246,11 @@ public class AMImageEntryLocalServiceImplTest {
 		AMImageEntry amImageEntryConfiguration1FileVersion1 =
 			AMImageEntryLocalServiceUtil.addAMImageEntry(
 				amImageConfigurationEntry1, fileEntry1.getFileVersion(), 300,
-				100,
-				classLoader.getResourceAsStream(
-					"com/liferay/adaptive/media/image/dependencies/image.jpg"),
-				12345);
+				100, new UnsyncByteArrayInputStream(bytes), 12345);
 		AMImageEntry amImageEntryConfiguration2FileVersion1 =
 			AMImageEntryLocalServiceUtil.addAMImageEntry(
 				amImageConfigurationEntry2, fileEntry1.getFileVersion(), 500,
-				300,
-				classLoader.getResourceAsStream(
-					"com/liferay/adaptive/media/image/dependencies/image.jpg"),
-				123456);
+				300, new UnsyncByteArrayInputStream(bytes), 123456);
 
 		FileEntry fileEntry2 = DLAppLocalServiceUtil.addFileEntry(
 			TestPropsValues.getUserId(), _group.getGroupId(),
@@ -299,17 +260,11 @@ public class AMImageEntryLocalServiceImplTest {
 		AMImageEntry amImageEntryConfiguration1FileVersion2 =
 			AMImageEntryLocalServiceUtil.addAMImageEntry(
 				amImageConfigurationEntry1, fileEntry2.getFileVersion(), 300,
-				100,
-				classLoader.getResourceAsStream(
-					"com/liferay/adaptive/media/image/dependencies/image.jpg"),
-				12345);
+				100, new UnsyncByteArrayInputStream(bytes), 12345);
 		AMImageEntry amImageEntryConfiguration2FileVersion2 =
 			AMImageEntryLocalServiceUtil.addAMImageEntry(
 				amImageConfigurationEntry2, fileEntry2.getFileVersion(), 500,
-				300,
-				classLoader.getResourceAsStream(
-					"com/liferay/adaptive/media/image/dependencies/image.jpg"),
-				123456);
+				300, new UnsyncByteArrayInputStream(bytes), 123456);
 
 		Assert.assertNotNull(
 			AMImageEntryLocalServiceUtil.fetchAMImageEntry(
@@ -368,10 +323,6 @@ public class AMImageEntryLocalServiceImplTest {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
 
-		Class<?> clazz = getClass();
-
-		ClassLoader classLoader = clazz.getClassLoader();
-
 		byte[] bytes = FileUtil.getBytes(
 			AMImageEntryLocalServiceImplTest.class,
 			"com/liferay/adaptive/media/image/dependencies/image.jpg");
@@ -384,17 +335,11 @@ public class AMImageEntryLocalServiceImplTest {
 		AMImageEntry amImageEntryConfiguration1FileVersion1 =
 			AMImageEntryLocalServiceUtil.addAMImageEntry(
 				amImageConfigurationEntry1, fileEntry1.getFileVersion(), 300,
-				100,
-				classLoader.getResourceAsStream(
-					"com/liferay/adaptive/media/image/dependencies/image.jpg"),
-				12345);
+				100, new UnsyncByteArrayInputStream(bytes), 12345);
 		AMImageEntry amImageEntryConfiguration2FileVersion1 =
 			AMImageEntryLocalServiceUtil.addAMImageEntry(
 				amImageConfigurationEntry2, fileEntry1.getFileVersion(), 500,
-				300,
-				classLoader.getResourceAsStream(
-					"com/liferay/adaptive/media/image/dependencies/image.jpg"),
-				123456);
+				300, new UnsyncByteArrayInputStream(bytes), 123456);
 
 		FileEntry fileEntry2 = DLAppLocalServiceUtil.addFileEntry(
 			TestPropsValues.getUserId(), _group.getGroupId(),
@@ -404,17 +349,11 @@ public class AMImageEntryLocalServiceImplTest {
 		AMImageEntry amImageEntryConfiguration1FileVersion2 =
 			AMImageEntryLocalServiceUtil.addAMImageEntry(
 				amImageConfigurationEntry1, fileEntry2.getFileVersion(), 300,
-				100,
-				classLoader.getResourceAsStream(
-					"com/liferay/adaptive/media/image/dependencies/image.jpg"),
-				12345);
+				100, new UnsyncByteArrayInputStream(bytes), 12345);
 		AMImageEntry amImageEntryConfiguration2FileVersion2 =
 			AMImageEntryLocalServiceUtil.addAMImageEntry(
 				amImageConfigurationEntry2, fileEntry2.getFileVersion(), 500,
-				300,
-				classLoader.getResourceAsStream(
-					"com/liferay/adaptive/media/image/dependencies/image.jpg"),
-				123456);
+				300, new UnsyncByteArrayInputStream(bytes), 123456);
 
 		Assert.assertNotNull(
 			AMImageEntryLocalServiceUtil.fetchAMImageEntry(
@@ -460,10 +399,6 @@ public class AMImageEntryLocalServiceImplTest {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
 
-		Class<?> clazz = getClass();
-
-		ClassLoader classLoader = clazz.getClassLoader();
-
 		byte[] bytes = FileUtil.getBytes(
 			AMImageEntryLocalServiceImplTest.class,
 			"com/liferay/adaptive/media/image/dependencies/image.jpg");
@@ -475,14 +410,10 @@ public class AMImageEntryLocalServiceImplTest {
 
 		AMImageEntryLocalServiceUtil.addAMImageEntry(
 			amImageConfigurationEntry1, fileEntry1.getFileVersion(), 300, 100,
-			classLoader.getResourceAsStream(
-				"com/liferay/adaptive/media/image/dependencies/image.jpg"),
-			12345);
+			new UnsyncByteArrayInputStream(bytes), 12345);
 		AMImageEntryLocalServiceUtil.addAMImageEntry(
 			amImageConfigurationEntry2, fileEntry1.getFileVersion(), 500, 300,
-			classLoader.getResourceAsStream(
-				"com/liferay/adaptive/media/image/dependencies/image.jpg"),
-			123456);
+			new UnsyncByteArrayInputStream(bytes), 123456);
 
 		FileEntry fileEntry2 = DLAppLocalServiceUtil.addFileEntry(
 			TestPropsValues.getUserId(), _group.getGroupId(),
@@ -491,9 +422,7 @@ public class AMImageEntryLocalServiceImplTest {
 
 		AMImageEntryLocalServiceUtil.addAMImageEntry(
 			amImageConfigurationEntry1, fileEntry2.getFileVersion(), 300, 100,
-			classLoader.getResourceAsStream(
-				"com/liferay/adaptive/media/image/dependencies/image.jpg"),
-			12345);
+			new UnsyncByteArrayInputStream(bytes), 12345);
 
 		Assert.assertEquals(
 			2,
