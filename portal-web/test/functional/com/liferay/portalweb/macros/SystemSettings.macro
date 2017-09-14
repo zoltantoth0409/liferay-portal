@@ -24,16 +24,16 @@
 		</execute>
 	</command>
 
-	<command name="editTextAreaSetting">
-		<var name="key_fieldName" value="${settingName}" />
-
-		<execute function="Type" locator1="DDMField#TEXT_BOX" value1="${settingValue}" />
-	</command>
-
 	<command name="editSecurityCredential">
 		<execute function="Type" locator1="SystemSettings#SECURITY_CREDENTIAL_FIELD" value1="${securityCredential}" />
 
 		<execute function="SikuliAssertElementPresent" locator1="SystemSettings#SECURITY_CREDENTIAL_HIDDEN_IMAGE" />
+	</command>
+
+	<command name="editTextAreaSetting">
+		<var name="key_fieldName" value="${settingName}" />
+
+		<execute function="Type" locator1="DDMField#TEXT_BOX" value1="${settingValue}" />
 	</command>
 
 	<command name="enableSetting">
