@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.test.rule.SynchronousDestinationTestRule;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
+import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
@@ -99,7 +100,7 @@ public class AMImageEntryLocalServiceImplTest {
 		FileEntry fileEntry = DLAppLocalServiceUtil.addFileEntry(
 			TestPropsValues.getUserId(), _group.getGroupId(),
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "image.jpg",
-			"image/jpg", bytes, serviceContext);
+			ContentTypes.IMAGE_JPEG, bytes, serviceContext);
 
 		FileVersion fileVersion = fileEntry.getFileVersion();
 
@@ -113,7 +114,8 @@ public class AMImageEntryLocalServiceImplTest {
 		Assert.assertEquals(_group.getGroupId(), amImageEntry.getGroupId());
 		Assert.assertEquals(
 			fileVersion.getFileVersionId(), amImageEntry.getFileVersionId());
-		Assert.assertEquals("image/jpg", amImageEntry.getMimeType());
+		Assert.assertEquals(
+			ContentTypes.IMAGE_JPEG, amImageEntry.getMimeType());
 		Assert.assertEquals(100, amImageEntry.getHeight());
 		Assert.assertEquals(300, amImageEntry.getWidth());
 		Assert.assertEquals(12345, amImageEntry.getSize());
@@ -132,7 +134,7 @@ public class AMImageEntryLocalServiceImplTest {
 		FileEntry fileEntry = DLAppLocalServiceUtil.addFileEntry(
 			TestPropsValues.getUserId(), _group.getGroupId(),
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "image.jpg",
-			"image/jpg", bytes, serviceContext);
+			ContentTypes.IMAGE_JPEG, bytes, serviceContext);
 
 		AMImageConfigurationEntry amImageConfigurationEntry =
 			_addAMImageConfigurationEntry("uuid", 100, 200);
@@ -162,7 +164,7 @@ public class AMImageEntryLocalServiceImplTest {
 		FileEntry fileEntry1 = DLAppLocalServiceUtil.addFileEntry(
 			TestPropsValues.getUserId(), _group.getGroupId(),
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "image1.jpg",
-			"image/jpg", bytes, serviceContext);
+			ContentTypes.IMAGE_JPEG, bytes, serviceContext);
 
 		AMImageEntry amImageEntryConfiguration1FileVersion1 =
 			AMImageEntryLocalServiceUtil.addAMImageEntry(
@@ -176,7 +178,7 @@ public class AMImageEntryLocalServiceImplTest {
 		FileEntry fileEntry2 = DLAppLocalServiceUtil.addFileEntry(
 			TestPropsValues.getUserId(), _group.getGroupId(),
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "image2.jpg",
-			"image/jpg", bytes, serviceContext);
+			ContentTypes.IMAGE_JPEG, bytes, serviceContext);
 
 		AMImageEntry amImageEntryConfiguration1FileVersion2 =
 			AMImageEntryLocalServiceUtil.addAMImageEntry(
@@ -233,7 +235,7 @@ public class AMImageEntryLocalServiceImplTest {
 		FileEntry fileEntry1 = DLAppLocalServiceUtil.addFileEntry(
 			TestPropsValues.getUserId(), _group.getGroupId(),
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "image1.jpg",
-			"image/jpg", bytes, serviceContext);
+			ContentTypes.IMAGE_JPEG, bytes, serviceContext);
 
 		AMImageEntry amImageEntryConfiguration1FileVersion1 =
 			AMImageEntryLocalServiceUtil.addAMImageEntry(
@@ -247,7 +249,7 @@ public class AMImageEntryLocalServiceImplTest {
 		FileEntry fileEntry2 = DLAppLocalServiceUtil.addFileEntry(
 			TestPropsValues.getUserId(), _group.getGroupId(),
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "image2.jpg",
-			"image/jpg", bytes, serviceContext);
+			ContentTypes.IMAGE_JPEG, bytes, serviceContext);
 
 		AMImageEntry amImageEntryConfiguration1FileVersion2 =
 			AMImageEntryLocalServiceUtil.addAMImageEntry(
@@ -320,7 +322,7 @@ public class AMImageEntryLocalServiceImplTest {
 		FileEntry fileEntry1 = DLAppLocalServiceUtil.addFileEntry(
 			TestPropsValues.getUserId(), _group.getGroupId(),
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "image1.jpg",
-			"image/jpg", bytes, serviceContext);
+			ContentTypes.IMAGE_JPEG, bytes, serviceContext);
 
 		AMImageEntry amImageEntryConfiguration1FileVersion1 =
 			AMImageEntryLocalServiceUtil.addAMImageEntry(
@@ -334,7 +336,7 @@ public class AMImageEntryLocalServiceImplTest {
 		FileEntry fileEntry2 = DLAppLocalServiceUtil.addFileEntry(
 			TestPropsValues.getUserId(), _group.getGroupId(),
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "image2.jpg",
-			"image/jpg", bytes, serviceContext);
+			ContentTypes.IMAGE_JPEG, bytes, serviceContext);
 
 		AMImageEntry amImageEntryConfiguration1FileVersion2 =
 			AMImageEntryLocalServiceUtil.addAMImageEntry(
@@ -394,7 +396,7 @@ public class AMImageEntryLocalServiceImplTest {
 		FileEntry fileEntry1 = DLAppLocalServiceUtil.addFileEntry(
 			TestPropsValues.getUserId(), _group.getGroupId(),
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "image1.jpg",
-			"image/jpg", bytes, serviceContext);
+			ContentTypes.IMAGE_JPEG, bytes, serviceContext);
 
 		AMImageEntryLocalServiceUtil.addAMImageEntry(
 			amImageConfigurationEntry1, fileEntry1.getFileVersion(), 300, 100,
@@ -406,7 +408,7 @@ public class AMImageEntryLocalServiceImplTest {
 		FileEntry fileEntry2 = DLAppLocalServiceUtil.addFileEntry(
 			TestPropsValues.getUserId(), _group.getGroupId(),
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "image2.jpg",
-			"image/jpg", bytes, serviceContext);
+			ContentTypes.IMAGE_JPEG, bytes, serviceContext);
 
 		AMImageEntryLocalServiceUtil.addAMImageEntry(
 			amImageConfigurationEntry1, fileEntry2.getFileVersion(), 300, 100,
