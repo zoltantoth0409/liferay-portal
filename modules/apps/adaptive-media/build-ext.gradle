@@ -98,26 +98,26 @@ configure(subprojects.findAll {!it.childProjects}) {
 apply plugin: AppDockerPlugin
 
 appDocker {
-    imageName this.getImageName()
-    imageUser this.getUserName()
-    inputDir "adaptive-media-docker"
+	imageName this.getImageName()
+	imageUser this.getUserName()
+	inputDir "adaptive-media-docker"
 }
 
 docker {
-    registryCredentials {
-        username = System.getenv().get("DOCKER_USER")
-        password = System.getenv().get("DOCKER_PWD")
-    }
+	registryCredentials {
+		username = System.getenv().get("DOCKER_USER")
+		password = System.getenv().get("DOCKER_PWD")
+	}
 }
 
 buildAppDockerImage {
-    buildAppDockerImage.dependsOn subprojects.findAll{!it.childProjects}.deploy
+	buildAppDockerImage.dependsOn subprojects.findAll{!it.childProjects}.deploy
 }
 
 allprojects {
-    ext {
-        dockerDestinationDir = prepareAppDockerImageInputDir.destinationDir
-    }
+	ext {
+		dockerDestinationDir = prepareAppDockerImageInputDir.destinationDir
+	}
 }
 
 // This avoids the plugin building the image again on push
@@ -125,10 +125,10 @@ allprojects {
 pushAppDockerImage.dependsOn = []
 
 afterEvaluate {
-    for (DockerTagImage dockerTagImage in tasks.withType(DockerTagImage)) {
-        dockerTagImage.dependsOn = []
-        dockerTagImage.imageId = "${appDocker.imageUser}/${appDocker.imageName}"
-    }
+	for (DockerTagImage dockerTagImage in tasks.withType(DockerTagImage)) {
+		dockerTagImage.dependsOn = []
+		dockerTagImage.imageId = "${appDocker.imageUser}/${appDocker.imageName}"
+	}
 }
 
 task checkDocker() {
@@ -211,7 +211,7 @@ task jacocoRootReport(type: org.gradle.testing.jacoco.tasks.JacocoReport) {
 	dependsOn = subprojects.findAll{!it.childProjects}.test
 	additionalSourceDirs = files(subprojects.findAll{!it.childProjects}.sourceSets.main.allSource.srcDirs)
 	sourceDirectories = files(subprojects.findAll{!it.childProjects}.sourceSets.main.allSource.srcDirs)
-	classDirectories =  files(subprojects.findAll{!it.childProjects}.sourceSets.main.output)
+	classDirectories = files(subprojects.findAll{!it.childProjects}.sourceSets.main.output)
 
 	executionData = files(subprojects.findAll{!it.childProjects}.jacocoTestReport.executionData, "${rootDir}/build/jacoco/testIntegration.exec")
 

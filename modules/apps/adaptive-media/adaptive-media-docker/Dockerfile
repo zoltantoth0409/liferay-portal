@@ -1,4 +1,4 @@
-FROM liferay/liferay-de:20170703073124007430605-db
+FROM mdelapenya/liferay-portal-nightlies:20170914
 MAINTAINER Sergio González <sergio.gonzalez@liferay.com>
 
 COPY deploy/*.?ar $LIFERAY_HOME/osgi/modules/
