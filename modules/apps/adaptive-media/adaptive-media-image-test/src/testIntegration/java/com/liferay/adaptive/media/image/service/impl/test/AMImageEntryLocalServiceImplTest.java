@@ -97,7 +97,7 @@ public class AMImageEntryLocalServiceImplTest {
 
 		byte[] bytes = _getImageBytes();
 
-		FileEntry fileEntry = _addFileEntry("image.jpg", bytes, serviceContext);
+		FileEntry fileEntry = _addFileEntry(bytes, serviceContext);
 
 		FileVersion fileVersion = fileEntry.getFileVersion();
 
@@ -128,7 +128,7 @@ public class AMImageEntryLocalServiceImplTest {
 
 		byte[] bytes = _getImageBytes();
 
-		FileEntry fileEntry = _addFileEntry("image.jpg", bytes, serviceContext);
+		FileEntry fileEntry = _addFileEntry(bytes, serviceContext);
 
 		AMImageConfigurationEntry amImageConfigurationEntry =
 			_addAMImageConfigurationEntry("uuid", 100, 200);
@@ -155,8 +155,7 @@ public class AMImageEntryLocalServiceImplTest {
 
 		byte[] bytes = _getImageBytes();
 
-		FileEntry fileEntry1 = _addFileEntry(
-			"image1.jpg", bytes, serviceContext);
+		FileEntry fileEntry1 = _addFileEntry(bytes, serviceContext);
 
 		AMImageEntry amImageEntryConfiguration1FileVersion1 =
 			AMImageEntryLocalServiceUtil.addAMImageEntry(
@@ -167,8 +166,7 @@ public class AMImageEntryLocalServiceImplTest {
 				amImageConfigurationEntry2, fileEntry1.getFileVersion(), 500,
 				300, new UnsyncByteArrayInputStream(bytes), 123456);
 
-		FileEntry fileEntry2 = _addFileEntry(
-			"image2.jpg", bytes, serviceContext);
+		FileEntry fileEntry2 = _addFileEntry(bytes, serviceContext);
 
 		AMImageEntry amImageEntryConfiguration1FileVersion2 =
 			AMImageEntryLocalServiceUtil.addAMImageEntry(
@@ -222,8 +220,7 @@ public class AMImageEntryLocalServiceImplTest {
 
 		byte[] bytes = _getImageBytes();
 
-		FileEntry fileEntry1 = _addFileEntry(
-			"image1.jpg", bytes, serviceContext);
+		FileEntry fileEntry1 = _addFileEntry(bytes, serviceContext);
 
 		AMImageEntry amImageEntryConfiguration1FileVersion1 =
 			AMImageEntryLocalServiceUtil.addAMImageEntry(
@@ -234,8 +231,7 @@ public class AMImageEntryLocalServiceImplTest {
 				amImageConfigurationEntry2, fileEntry1.getFileVersion(), 500,
 				300, new UnsyncByteArrayInputStream(bytes), 123456);
 
-		FileEntry fileEntry2 = _addFileEntry(
-			"image2.jpg", bytes, serviceContext);
+		FileEntry fileEntry2 = _addFileEntry(bytes, serviceContext);
 
 		AMImageEntry amImageEntryConfiguration1FileVersion2 =
 			AMImageEntryLocalServiceUtil.addAMImageEntry(
@@ -305,8 +301,7 @@ public class AMImageEntryLocalServiceImplTest {
 
 		byte[] bytes = _getImageBytes();
 
-		FileEntry fileEntry1 = _addFileEntry(
-			"image1.jpg", bytes, serviceContext);
+		FileEntry fileEntry1 = _addFileEntry(bytes, serviceContext);
 
 		AMImageEntry amImageEntryConfiguration1FileVersion1 =
 			AMImageEntryLocalServiceUtil.addAMImageEntry(
@@ -317,8 +312,7 @@ public class AMImageEntryLocalServiceImplTest {
 				amImageConfigurationEntry2, fileEntry1.getFileVersion(), 500,
 				300, new UnsyncByteArrayInputStream(bytes), 123456);
 
-		FileEntry fileEntry2 = _addFileEntry(
-			"image2.jpg", bytes, serviceContext);
+		FileEntry fileEntry2 = _addFileEntry(bytes, serviceContext);
 
 		AMImageEntry amImageEntryConfiguration1FileVersion2 =
 			AMImageEntryLocalServiceUtil.addAMImageEntry(
@@ -375,8 +369,7 @@ public class AMImageEntryLocalServiceImplTest {
 
 		byte[] bytes = _getImageBytes();
 
-		FileEntry fileEntry1 = _addFileEntry(
-			"image1.jpg", bytes, serviceContext);
+		FileEntry fileEntry1 = _addFileEntry(bytes, serviceContext);
 
 		AMImageEntryLocalServiceUtil.addAMImageEntry(
 			amImageConfigurationEntry1, fileEntry1.getFileVersion(), 300, 100,
@@ -385,8 +378,7 @@ public class AMImageEntryLocalServiceImplTest {
 			amImageConfigurationEntry2, fileEntry1.getFileVersion(), 500, 300,
 			new UnsyncByteArrayInputStream(bytes), 123456);
 
-		FileEntry fileEntry2 = _addFileEntry(
-			"image2.jpg", bytes, serviceContext);
+		FileEntry fileEntry2 = _addFileEntry(bytes, serviceContext);
 
 		AMImageEntryLocalServiceUtil.addAMImageEntry(
 			amImageConfigurationEntry1, fileEntry2.getFileVersion(), 300, 100,
@@ -435,14 +427,14 @@ public class AMImageEntryLocalServiceImplTest {
 			StringUtil.randomString(), uuid, properties);
 	}
 
-	private FileEntry _addFileEntry(
-			String name, byte[] bytes, ServiceContext serviceContext)
+	private FileEntry _addFileEntry(byte[] bytes, ServiceContext serviceContext)
 		throws PortalException {
 
 		return DLAppLocalServiceUtil.addFileEntry(
 			TestPropsValues.getUserId(), _group.getGroupId(),
-			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, name,
-			ContentTypes.IMAGE_JPEG, bytes, serviceContext);
+			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
+			StringUtil.randomString(), ContentTypes.IMAGE_JPEG, bytes,
+			serviceContext);
 	}
 
 	private byte[] _getImageBytes() throws Exception {
