@@ -458,7 +458,7 @@ public class AMImageEntryLocalServiceImplTest {
 	private byte[] _getImageBytes() throws Exception {
 		return FileUtil.getBytes(
 			AMImageEntryLocalServiceImplTest.class,
-			"com/liferay/adaptive/media/image/dependencies/image.jpg");
+			"/com/liferay/adaptive/media/image/dependencies/image.jpg");
 	}
 
 	private AMImageConfigurationHelper _amImageConfigurationHelper;
