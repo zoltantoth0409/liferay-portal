@@ -453,13 +453,6 @@ public class AMImageEntryLocalServiceImplTest {
 		}
 	}
 
-	protected void setUpAMImageConfigurationHelper() {
-		Registry registry = RegistryUtil.getRegistry();
-
-		_amImageConfigurationHelper = registry.getService(
-			AMImageConfigurationHelper.class);
-	}
-
 	private AMImageConfigurationEntry _addAMImageConfigurationEntry(
 			String uuid, int maxHeight, int maxWidth)
 		throws IOException, PortalException {
