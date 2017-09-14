@@ -94,9 +94,7 @@ public class AMImageEntryLocalServiceImplTest {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
 
-		byte[] bytes = FileUtil.getBytes(
-			AMImageEntryLocalServiceImplTest.class,
-			"com/liferay/adaptive/media/image/dependencies/image.jpg");
+		byte[] bytes = _getImageBytes();
 
 		FileEntry fileEntry = DLAppLocalServiceUtil.addFileEntry(
 			TestPropsValues.getUserId(), _group.getGroupId(),
@@ -129,9 +127,7 @@ public class AMImageEntryLocalServiceImplTest {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
 
-		byte[] bytes = FileUtil.getBytes(
-			AMImageEntryLocalServiceImplTest.class,
-			"com/liferay/adaptive/media/image/dependencies/image.jpg");
+		byte[] bytes = _getImageBytes();
 
 		FileEntry fileEntry = DLAppLocalServiceUtil.addFileEntry(
 			TestPropsValues.getUserId(), _group.getGroupId(),
@@ -161,9 +157,7 @@ public class AMImageEntryLocalServiceImplTest {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
 
-		byte[] bytes = FileUtil.getBytes(
-			AMImageEntryLocalServiceImplTest.class,
-			"com/liferay/adaptive/media/image/dependencies/image.jpg");
+		byte[] bytes = _getImageBytes();
 
 		FileEntry fileEntry1 = DLAppLocalServiceUtil.addFileEntry(
 			TestPropsValues.getUserId(), _group.getGroupId(),
@@ -234,9 +228,7 @@ public class AMImageEntryLocalServiceImplTest {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
 
-		byte[] bytes = FileUtil.getBytes(
-			AMImageEntryLocalServiceImplTest.class,
-			"com/liferay/adaptive/media/image/dependencies/image.jpg");
+		byte[] bytes = _getImageBytes();
 
 		FileEntry fileEntry1 = DLAppLocalServiceUtil.addFileEntry(
 			TestPropsValues.getUserId(), _group.getGroupId(),
@@ -323,9 +315,7 @@ public class AMImageEntryLocalServiceImplTest {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
 
-		byte[] bytes = FileUtil.getBytes(
-			AMImageEntryLocalServiceImplTest.class,
-			"com/liferay/adaptive/media/image/dependencies/image.jpg");
+		byte[] bytes = _getImageBytes();
 
 		FileEntry fileEntry1 = DLAppLocalServiceUtil.addFileEntry(
 			TestPropsValues.getUserId(), _group.getGroupId(),
@@ -399,9 +389,7 @@ public class AMImageEntryLocalServiceImplTest {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
 
-		byte[] bytes = FileUtil.getBytes(
-			AMImageEntryLocalServiceImplTest.class,
-			"com/liferay/adaptive/media/image/dependencies/image.jpg");
+		byte[] bytes = _getImageBytes();
 
 		FileEntry fileEntry1 = DLAppLocalServiceUtil.addFileEntry(
 			TestPropsValues.getUserId(), _group.getGroupId(),
@@ -465,6 +453,12 @@ public class AMImageEntryLocalServiceImplTest {
 		return _amImageConfigurationHelper.addAMImageConfigurationEntry(
 			TestPropsValues.getCompanyId(), StringUtil.randomString(),
 			StringUtil.randomString(), uuid, properties);
+	}
+
+	private byte[] _getImageBytes() throws Exception {
+		return FileUtil.getBytes(
+			AMImageEntryLocalServiceImplTest.class,
+			"com/liferay/adaptive/media/image/dependencies/image.jpg");
 	}
 
 	private AMImageConfigurationHelper _amImageConfigurationHelper;
