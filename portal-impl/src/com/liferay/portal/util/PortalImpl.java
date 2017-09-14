@@ -5399,7 +5399,7 @@ public class PortalImpl implements Portal {
 
 		if (uniqueElementIds == null) {
 			uniqueElementIds = Collections.newSetFromMap(
-				new ConcurrentHashMap<String, Boolean>());
+				new ConcurrentHashMap<>());
 
 			request.setAttribute(WebKeys.UNIQUE_ELEMENT_IDS, uniqueElementIds);
 		}
