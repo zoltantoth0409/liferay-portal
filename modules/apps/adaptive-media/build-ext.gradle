@@ -102,10 +102,10 @@ appDocker {
 	imageUser this.getUserName()
 	inputDir "adaptive-media-docker"
 
-	def excludedModules = project.getProperty('com.liferay.adaptive.media.docker.excluded.modules')
+	def excludedModules = project.getProperty('com.liferay.adaptive.media.docker.excluded.modules').split(',')
 
 	onlyIf {
-		project -> !excludedModules.split(',').any {project.name.endsWith(it)}
+		project -> !excludedModules.contains(project.name)
 	}
 }
 
