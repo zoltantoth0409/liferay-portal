@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.adaptive.media.image.internal.test;
+package com.liferay.adaptive.media.image.internal.configuration.test;
 
 import com.liferay.adaptive.media.exception.AMImageConfigurationException.InvalidStateAMImageConfigurationException;
 import com.liferay.adaptive.media.image.configuration.AMImageConfigurationEntry;
@@ -769,8 +769,8 @@ public class AMImageDeleteConfigurationTest
 	}
 
 	private static final String _PNG_IMAGE_FILE_PATH =
-		"/com/liferay/adaptive/media/image/internal/test/dependencies" +
-			"/image.jpg";
+		"/com/liferay/adaptive/media/image/internal/configuration/test" +
+			"/dependencies/image.jpg";
 
 	@DeleteAfterTestRun
 	private Group _group;
