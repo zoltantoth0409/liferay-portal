@@ -405,7 +405,7 @@ public class AMThumbnailsOSGiCommandsTest {
 
 	private static final String _PROCESSOR_CLASS_NAME =
 		"com.liferay.adaptive.media.document.library.thumbnails.internal." +
-			"AMImageEntryProcessor";
+			"processor.AMImageEntryProcessor";
 
 	private static final String _THUMBNAIL_CONFIGURATION = "thumbnail";
 
