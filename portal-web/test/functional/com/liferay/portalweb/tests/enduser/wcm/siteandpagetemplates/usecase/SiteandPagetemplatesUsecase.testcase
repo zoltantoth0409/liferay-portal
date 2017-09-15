@@ -380,6 +380,9 @@
 	</command>
 
 	<command name="SitesTemplateResourceInheritance" priority="3">
+		<property name="osgi.app.includes" value="tasks" />
+		<property name="plugins.deployment.type" value="osgi" />
+
 		<execute macro="TestCase#getSiteName">
 			<return from="siteName" name="siteName" />
 			<var name="siteName" value="${siteName}" />
