@@ -189,7 +189,7 @@ class EditAdaptiveMediaConfig extends PortletBase {
 		let nsMaxWidth = this.ns('maxWidth');
 		let nsMaxHeight = this.ns('maxHeight');
 
-		let inputErrorMessage = Liferay.Language.get('at-least-one-value-of-size-fields-is-required');
+		let inputErrorMessage = Liferay.Language.get('at-least-one-value-is-required');
 		let STR_BLANK = ' ';
 
 		if (this.maxWidthInput.value || this.maxHeightInput.value) {
