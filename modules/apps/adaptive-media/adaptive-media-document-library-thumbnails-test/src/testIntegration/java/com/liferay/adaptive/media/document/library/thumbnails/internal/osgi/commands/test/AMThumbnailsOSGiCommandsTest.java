@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.adaptive.media.document.library.thumbnails.internal.commands.test;
+package com.liferay.adaptive.media.document.library.thumbnails.internal.osgi.commands.test;
 
 import com.liferay.adaptive.media.AdaptiveMedia;
 import com.liferay.adaptive.media.document.library.thumbnails.internal.test.util.PropsValuesReplacer;
@@ -367,7 +367,7 @@ public class AMThumbnailsOSGiCommandsTest {
 		return FileUtil.getBytes(
 			AMThumbnailsOSGiCommandsTest.class,
 			"/com/liferay/adaptive/media/document/library/thumbnails/internal" +
-				"/commands/test/dependencies/" + fileName);
+				"/osgi/commands/test/dependencies/" + fileName);
 	}
 
 	private int _getThumbnailCount() throws Exception {
@@ -401,7 +401,7 @@ public class AMThumbnailsOSGiCommandsTest {
 
 	private static final String _COMMAND_CLASS_NAME =
 		"com.liferay.adaptive.media.document.library.thumbnails.internal." +
-			"commands.AMThumbnailsOSGiCommands";
+			"osgi.commands.AMThumbnailsOSGiCommands";
 
 	private static final String _PROCESSOR_CLASS_NAME =
 		"com.liferay.adaptive.media.document.library.thumbnails.internal." +
