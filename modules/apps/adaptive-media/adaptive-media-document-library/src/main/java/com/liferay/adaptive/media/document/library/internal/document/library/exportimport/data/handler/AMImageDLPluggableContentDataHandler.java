@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.adaptive.media.document.library.internal.exportimport.data.handler;
+package com.liferay.adaptive.media.document.library.internal.document.library.exportimport.data.handler;
 
 import com.liferay.adaptive.media.AMAttribute;
 import com.liferay.adaptive.media.AdaptiveMedia;
