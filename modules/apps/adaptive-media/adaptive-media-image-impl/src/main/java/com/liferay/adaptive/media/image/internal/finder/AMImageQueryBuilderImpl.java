@@ -23,6 +23,8 @@ import com.liferay.adaptive.media.image.finder.AMImageQueryBuilder.Configuration
 import com.liferay.adaptive.media.image.finder.AMImageQueryBuilder.FuzzySortStep;
 import com.liferay.adaptive.media.image.finder.AMImageQueryBuilder.InitialStep;
 import com.liferay.adaptive.media.image.finder.AMImageQueryBuilder.StrictSortStep;
+import com.liferay.adaptive.media.image.internal.util.comparator.AMAttributeComparator;
+import com.liferay.adaptive.media.image.internal.util.comparator.AMPropertyDistanceComparator;
 import com.liferay.adaptive.media.image.processor.AMImageProcessor;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.repository.model.FileEntry;

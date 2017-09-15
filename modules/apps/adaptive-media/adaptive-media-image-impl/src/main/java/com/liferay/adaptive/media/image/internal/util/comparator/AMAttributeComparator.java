@@ -12,26 +12,43 @@
  * details.
  */
 
-package com.liferay.adaptive.media.image.internal.finder;
+package com.liferay.adaptive.media.image.internal.util.comparator;
 
 import com.liferay.adaptive.media.AMAttribute;
 import com.liferay.adaptive.media.AdaptiveMedia;
+import com.liferay.adaptive.media.image.finder.AMImageQueryBuilder;
 import com.liferay.adaptive.media.image.processor.AMImageProcessor;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Map;
 import java.util.Optional;
 
 /**
- * @author Adolfo Pérez
+ * @author Sergio González
  */
-public class AMPropertyDistanceComparator
+public class AMAttributeComparator
 	implements Comparator<AdaptiveMedia<AMImageProcessor>> {
 
-	public AMPropertyDistanceComparator(
-		Map<AMAttribute<AMImageProcessor, ?>, ?> amAttributes) {
+	public AMAttributeComparator(AMAttribute<AMImageProcessor, ?> amAttribute) {
+		this(
+			Collections.singletonMap(
+				amAttribute, AMImageQueryBuilder.SortOrder.ASC));
+	}
 
-		_amAttributes = amAttributes;
+	public AMAttributeComparator(
+		AMAttribute<AMImageProcessor, ?> amAttribute,
+		AMImageQueryBuilder.SortOrder sortOrder) {
+
+		this(Collections.singletonMap(amAttribute, sortOrder));
+	}
+
+	public AMAttributeComparator(
+		Map
+			<AMAttribute<AMImageProcessor, ?>,
+				AMImageQueryBuilder.SortOrder> sortCriteria) {
+
+		_sortCriteria = (Map)sortCriteria;
 	}
 
 	@Override
@@ -40,31 +57,29 @@ public class AMPropertyDistanceComparator
 		AdaptiveMedia<AMImageProcessor> adaptiveMedia2) {
 
 		for (Map.Entry
-				<AMAttribute<AMImageProcessor, ?>, ?>
-					entry : _amAttributes.entrySet()) {
+				<AMAttribute<AMImageProcessor, Object>,
+					AMImageQueryBuilder.SortOrder> sortCriterion :
+						_sortCriteria.entrySet()) {
 
 			AMAttribute<AMImageProcessor, Object> amAttribute =
-				(AMAttribute<AMImageProcessor, Object>)entry.getKey();
-
-			Object requestedValue = entry.getValue();
+				sortCriterion.getKey();
 
 			Optional<?> value1Optional = adaptiveMedia1.getValueOptional(
 				amAttribute);
-
-			Optional<Integer> value1DistanceOptional = value1Optional.map(
-				value1 -> amAttribute.distance(value1, requestedValue));
-
 			Optional<?> value2Optional = adaptiveMedia2.getValueOptional(
 				amAttribute);
 
-			Optional<Integer> value2DistanceOptional = value2Optional.map(
-				value2 -> amAttribute.distance(value2, requestedValue));
+			Optional<Integer> valueOptional = value1Optional.flatMap(
+				value1 -> value2Optional.map(
+					value2 -> amAttribute.compare(value1, value2)));
 
-			Optional<Integer> resultOptional = value1DistanceOptional.flatMap(
-				value1 -> value2DistanceOptional.map(
-					value2 -> value1 - value2));
+			AMImageQueryBuilder.SortOrder sortOrder = sortCriterion.getValue();
 
-			int result = resultOptional.orElse(0);
+			int result = valueOptional.map(
+				sortOrder::getSortValue
+			).orElse(
+				0
+			);
 
 			if (result != 0) {
 				return result;
@@ -74,6 +89,8 @@ public class AMPropertyDistanceComparator
 		return 0;
 	}
 
-	private final Map<AMAttribute<AMImageProcessor, ?>, ?> _amAttributes;
+	private final Map
+		<AMAttribute<AMImageProcessor, Object>, AMImageQueryBuilder.SortOrder>
+			_sortCriteria;
 
 }
