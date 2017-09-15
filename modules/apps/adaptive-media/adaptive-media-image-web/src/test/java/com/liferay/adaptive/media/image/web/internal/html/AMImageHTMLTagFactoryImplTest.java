@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.adaptive.media.image.internal.html;
+package com.liferay.adaptive.media.image.web.internal.html;
 
 import com.liferay.adaptive.media.image.mediaquery.Condition;
 import com.liferay.adaptive.media.image.mediaquery.MediaQuery;
