@@ -99,7 +99,7 @@ public final class AMAttribute<T, V> {
 	 *        com.liferay.adaptive.media.exception.AMRuntimeException.AMAttributeFormatException}
 	 *        if it cannot convert the String.
 	 * @param amDistanceComparator compares its two arguments for order
-	 *        considering the distance between their values; it should return a
+     *        considering the distance between their values; it should return a
 	 *        value between {@link Long#MIN_VALUE} and {@link Long#MAX_VALUE}
 	 *        based on the distance of the values.
 	 *
@@ -115,15 +115,16 @@ public final class AMAttribute<T, V> {
 	}
 
 	/**
-	 * Compares its two arguments for order. Returns a negative long, zero,
-	 * or a positive long depending on whether the first argument is less
-	 * than, equal to, or greater than the second argument respectively.
+	 * Compares its two arguments for order. Returns a negative long, zero, or a
+	 * positive long depending on whether the first argument is less than, equal
+	 * to, or greater than the second argument respectively.
 	 *
 	 * @param  value1 The first value to be compared
 	 * @param  value2 The second value to be compared
-	 * @return a negative long, zero, or a positive long depending on
-	 *         whether the first argument is less than, equal to, or greater
-	 *         than the second argument respectively.
+	 * @return a negative long, zero, or a positive long depending on whether
+	 *         the first argument is less than, equal to, or greater than the
+	 *         second argument respectively.
+	 *
 	 * @review
 	 */
 	public long compare(V value1, V value2) {

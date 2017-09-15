@@ -28,12 +28,11 @@ public interface AMDistanceComparator<T> {
 
 	/**
 	 * Compare the two given values, returning a long value representing how far
-	 * they are from each other. The meaning of this distance is dependent
-	 * on the attribute kind.
+	 * they are from each other. The meaning of this distance is dependent on
+	 * the attribute kind.
 	 *
-	 * @param value1 the first value
-	 * @param value2 the second value
-	 *
+	 * @param  value1 the first value
+	 * @param  value2 the second value
 	 * @return The distance between the two values
 	 * @review
 	 */
