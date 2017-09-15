@@ -24,7 +24,7 @@ import com.liferay.adaptive.media.image.finder.AMImageQueryBuilder.Configuration
 import com.liferay.adaptive.media.image.finder.AMImageQueryBuilder.FuzzySortStep;
 import com.liferay.adaptive.media.image.finder.AMImageQueryBuilder.InitialStep;
 import com.liferay.adaptive.media.image.finder.AMImageQueryBuilder.StrictSortStep;
-import com.liferay.adaptive.media.image.internal.util.comparator.AMAttributeComparator;
+import com.liferay.adaptive.media.image.internal.util.comparator.AMAttributeDistanceComparator;
 import com.liferay.adaptive.media.image.internal.util.comparator.AMPropertyDistanceComparator;
 import com.liferay.adaptive.media.image.processor.AMImageProcessor;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -92,10 +92,10 @@ public class AMImageQueryBuilderImpl
 	}
 
 	public AMDistanceComparator<AdaptiveMedia<AMImageProcessor>>
-		getComparator() {
+		getAMDistanceComparator() {
 
 		if (!_sortCriteria.isEmpty()) {
-			return new AMAttributeComparator(_sortCriteria);
+			return new AMAttributeDistanceComparator(_sortCriteria);
 		}
 
 		if (!_amAttributes.isEmpty()) {
