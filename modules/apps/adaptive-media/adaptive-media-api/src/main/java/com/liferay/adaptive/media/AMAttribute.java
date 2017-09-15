@@ -99,7 +99,7 @@ public final class AMAttribute<T, V> {
 	 *        com.liferay.adaptive.media.exception.AMRuntimeException.AMAttributeFormatException}
 	 *        if it cannot convert the String.
 	 * @param amDistanceComparator compares its two arguments for order
-     *        considering the distance between their values; it should return a
+	 *        considering the distance between their values; it should return a
 	 *        value between {@link Long#MIN_VALUE} and {@link Long#MAX_VALUE}
 	 *        based on the distance of the values.
 	 *
