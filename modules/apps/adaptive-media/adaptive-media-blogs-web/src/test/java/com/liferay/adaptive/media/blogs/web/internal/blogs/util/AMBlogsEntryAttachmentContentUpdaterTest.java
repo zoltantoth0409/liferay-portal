@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.adaptive.media.blogs.web.internal.attachment;
+package com.liferay.adaptive.media.blogs.web.internal.blogs.util;
 
 import com.liferay.portal.kernel.portletfilerepository.PortletFileRepository;
 import com.liferay.portal.kernel.repository.model.FileEntry;
