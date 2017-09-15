@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.adaptive.media.blogs.item.selector.web.internal;
+package com.liferay.adaptive.media.document.library.item.selector.web.internal.provider;
 
 import com.liferay.adaptive.media.image.item.selector.AMImageFileEntryItemSelectorReturnType;
 import com.liferay.adaptive.media.image.item.selector.AMImageURLItemSelectorReturnType;
@@ -32,38 +32,10 @@ import org.powermock.api.mockito.PowerMockito;
 /**
  * @author Sergio González
  */
-public class AMBlogsItemSelectorViewReturnTypeProviderTest
-	extends PowerMockito {
+public class AMDLItemSelectorViewReturnTypeProviderTest extends PowerMockito {
 
 	@Test
-	public void testAddAMImageURLItemSelectorReturnTypeWithEmptyList()
-		throws Exception {
-
-		List<ItemSelectorReturnType> supportedItemSelectorReturnTypes =
-			new ArrayList<>();
-
-		ItemSelectorViewReturnTypeProvider
-			amBlogsItemSelectorViewReturnTypeProvider =
-				new AMBlogsItemSelectorViewReturnTypeProvider();
-
-		List<ItemSelectorReturnType> itemSelectorReturnTypes =
-			amBlogsItemSelectorViewReturnTypeProvider.
-				populateSupportedItemSelectorReturnTypes(
-					supportedItemSelectorReturnTypes);
-
-		Assert.assertEquals(
-			itemSelectorReturnTypes.toString(), 2,
-			itemSelectorReturnTypes.size());
-		Assert.assertTrue(
-			itemSelectorReturnTypes.get(0) instanceof
-				AMImageFileEntryItemSelectorReturnType);
-		Assert.assertTrue(
-			itemSelectorReturnTypes.get(1) instanceof
-				AMImageURLItemSelectorReturnType);
-	}
-
-	@Test
-	public void testAddAMImageURLItemSelectorReturnTypeWithNonemptyList()
+	public void testAddAMImageItemSelectorReturnTypesWithNonEmptyList()
 		throws Exception {
 
 		List<ItemSelectorReturnType> supportedItemSelectorReturnTypes =
@@ -74,17 +46,18 @@ public class AMBlogsItemSelectorViewReturnTypeProviderTest
 		supportedItemSelectorReturnTypes.add(new URLItemSelectorReturnType());
 
 		ItemSelectorViewReturnTypeProvider
-			amBlogsItemSelectorViewReturnTypeProvider =
-				new AMBlogsItemSelectorViewReturnTypeProvider();
+			amDLItemSelectorViewReturnTypeProvider =
+				new AMDLItemSelectorViewReturnTypeProvider();
 
 		List<ItemSelectorReturnType> itemSelectorReturnTypes =
-			amBlogsItemSelectorViewReturnTypeProvider.
+			amDLItemSelectorViewReturnTypeProvider.
 				populateSupportedItemSelectorReturnTypes(
 					supportedItemSelectorReturnTypes);
 
 		Assert.assertEquals(
 			itemSelectorReturnTypes.toString(), 4,
 			itemSelectorReturnTypes.size());
+
 		Assert.assertTrue(
 			itemSelectorReturnTypes.get(0) instanceof
 				FileEntryItemSelectorReturnType);
@@ -96,6 +69,35 @@ public class AMBlogsItemSelectorViewReturnTypeProviderTest
 				AMImageFileEntryItemSelectorReturnType);
 		Assert.assertTrue(
 			itemSelectorReturnTypes.get(3) instanceof
+				AMImageURLItemSelectorReturnType);
+	}
+
+	@Test
+	public void testAddAMImagetemSelectorReturnTypesWithEmptyList()
+		throws Exception {
+
+		List<ItemSelectorReturnType> supportedItemSelectorReturnTypes =
+			new ArrayList<>();
+
+		ItemSelectorViewReturnTypeProvider
+			amDLItemSelectorViewReturnTypeProvider =
+				new AMDLItemSelectorViewReturnTypeProvider();
+
+		List<ItemSelectorReturnType> itemSelectorReturnTypes =
+			amDLItemSelectorViewReturnTypeProvider.
+				populateSupportedItemSelectorReturnTypes(
+					supportedItemSelectorReturnTypes);
+
+		Assert.assertEquals(
+			itemSelectorReturnTypes.toString(), 2,
+			itemSelectorReturnTypes.size());
+
+		Assert.assertTrue(
+			itemSelectorReturnTypes.get(0) instanceof
+				AMImageFileEntryItemSelectorReturnType);
+
+		Assert.assertTrue(
+			itemSelectorReturnTypes.get(1) instanceof
 				AMImageURLItemSelectorReturnType);
 	}
 

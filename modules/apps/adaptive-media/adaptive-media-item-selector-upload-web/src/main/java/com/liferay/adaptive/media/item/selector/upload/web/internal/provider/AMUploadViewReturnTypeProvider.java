@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.adaptive.media.document.library.item.selector.web.internal;
+package com.liferay.adaptive.media.item.selector.upload.web.internal.provider;
 
 import com.liferay.adaptive.media.image.item.selector.AMImageFileEntryItemSelectorReturnType;
 import com.liferay.adaptive.media.image.item.selector.AMImageURLItemSelectorReturnType;
@@ -24,15 +24,13 @@ import java.util.List;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Sergio González
+ * @author Alejandro Tardín
  */
 @Component(
-	property = {
-		"item.selector.view.key=dl-file", "item.selector.view.key=dl-image"
-	},
+	property = {"item.selector.view.key=upload"},
 	service = ItemSelectorViewReturnTypeProvider.class
 )
-public class AMDLItemSelectorViewReturnTypeProvider
+public class AMUploadViewReturnTypeProvider
 	implements ItemSelectorViewReturnTypeProvider {
 
 	public List<ItemSelectorReturnType>
