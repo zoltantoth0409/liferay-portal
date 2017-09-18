@@ -48,8 +48,11 @@ public class BndDeploymentScenarioGenerator
 	public List<DeploymentDescription> generate(TestClass testClass) {
 		try (Workspace workspace = new Workspace(_buildDir);
 			Project project = new Project(workspace, _buildDir);
+
 			ProjectBuilder projectBuilder = _createProjectBuilder(project);
+
 			Analyzer analyzer = new Analyzer();
+
 			Jar jar = _createJar(project, projectBuilder, analyzer)) {
 
 			ByteArrayOutputStream byteArrayOutputStream =
