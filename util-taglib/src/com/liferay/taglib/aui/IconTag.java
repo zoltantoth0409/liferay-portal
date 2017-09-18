@@ -157,12 +157,10 @@ public class IconTag extends BaseIconTag {
 						TagResourceBundleUtil.getResourceBundle(
 							request, themeDisplay.getLocale());
 
-					String labelLocalizedString = HtmlUtil.escapeAttribute(
+					title = HtmlUtil.escapeAttribute(
 						LanguageUtil.get(resourceBundle, label));
 
-					title = labelLocalizedString;
-
-					jspWriter.write(labelLocalizedString);
+					jspWriter.write(title);
 				}
 
 				if (title == null) {
