@@ -43,14 +43,6 @@ import javax.portlet.PortletRequest;
 @ProviderType
 public class ExportImportHelperUtil {
 
-	public static boolean isAlwaysIncludeReference(
-		PortletDataContext portletDataContext,
-		StagedModel referenceStagedModel) {
-
-		return _exportImportHelper.isAlwaysIncludeReference(
-			portletDataContext, referenceStagedModel);
-	}
-
 	public static long[] getAllLayoutIds(long groupId, boolean privateLayout) {
 		return _exportImportHelper.getAllLayoutIds(groupId, privateLayout);
 	}
@@ -323,6 +315,14 @@ public class ExportImportHelperUtil {
 		throws PortalException {
 
 		return _exportImportHelper.getUserIdStrategy(userId, userIdStrategy);
+	}
+
+	public static boolean isAlwaysIncludeReference(
+		PortletDataContext portletDataContext,
+		StagedModel referenceStagedModel) {
+
+		return _exportImportHelper.isAlwaysIncludeReference(
+			portletDataContext, referenceStagedModel);
 	}
 
 	public static boolean isReferenceWithinExportScope(
