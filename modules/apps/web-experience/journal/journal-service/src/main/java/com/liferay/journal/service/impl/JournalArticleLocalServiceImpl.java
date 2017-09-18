@@ -8066,10 +8066,10 @@ public class JournalArticleLocalServiceImpl
 			validate(articleId);
 		}
 
-		int articlesCount = journalArticlePersistence.countByG_A(
-			groupId, articleId);
+		JournalArticle article = journalArticlePersistence.fetchByG_A_V(
+			groupId, articleId, version);
 
-		if (articlesCount > 0) {
+		if (article != null) {
 			StringBundler sb = new StringBundler(7);
 
 			sb.append("{groupId=");
