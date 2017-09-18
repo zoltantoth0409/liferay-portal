@@ -125,47 +125,6 @@ import org.xml.sax.XMLReader;
 public class ExportImportHelperImpl implements ExportImportHelper {
 
 	@Override
-	public boolean isAlwaysIncludeReference(
-		PortletDataContext portletDataContext,
-		StagedModel referenceStagedModel) {
-
-		String rootPortletId = portletDataContext.getRootPortletId();
-
-		if (Validator.isBlank(rootPortletId)) {
-			return true;
-		}
-
-		Portlet portlet = _portletLocalService.getPortletById(rootPortletId);
-
-		PortletDataHandler portletDataHandler =
-			portlet.getPortletDataHandlerInstance();
-
-		Map<String, String[]> parameterMap =
-			portletDataContext.getParameterMap();
-
-		String[] referencedContentBehaviorArray = parameterMap.get(
-			PortletDataHandlerControl.getNamespacedControlName(
-				portletDataHandler.getNamespace(),
-				"referenced-content-behavior"));
-
-		String referencedContentBehavior = "include-always";
-
-		if (!ArrayUtil.isEmpty(referencedContentBehaviorArray)) {
-			referencedContentBehavior = referencedContentBehaviorArray[0];
-		}
-
-		if (referencedContentBehavior.equals("include-always") ||
-			(referencedContentBehavior.equals("include-if-modified") &&
-			 portletDataContext.isWithinDateRange(
-				 referenceStagedModel.getModifiedDate()))) {
-
-			return true;
-		}
-
-		return false;
-	}
-
-	@Override
 	public long[] getAllLayoutIds(long groupId, boolean privateLayout) {
 		List<Layout> layouts = _layoutLocalService.getLayouts(
 			groupId, privateLayout);
@@ -770,6 +729,47 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 		}
 
 		return new CurrentUserIdStrategy(user);
+	}
+
+	@Override
+	public boolean isAlwaysIncludeReference(
+		PortletDataContext portletDataContext,
+		StagedModel referenceStagedModel) {
+
+		String rootPortletId = portletDataContext.getRootPortletId();
+
+		if (Validator.isBlank(rootPortletId)) {
+			return true;
+		}
+
+		Portlet portlet = _portletLocalService.getPortletById(rootPortletId);
+
+		PortletDataHandler portletDataHandler =
+			portlet.getPortletDataHandlerInstance();
+
+		Map<String, String[]> parameterMap =
+			portletDataContext.getParameterMap();
+
+		String[] referencedContentBehaviorArray = parameterMap.get(
+			PortletDataHandlerControl.getNamespacedControlName(
+				portletDataHandler.getNamespace(),
+				"referenced-content-behavior"));
+
+		String referencedContentBehavior = "include-always";
+
+		if (!ArrayUtil.isEmpty(referencedContentBehaviorArray)) {
+			referencedContentBehavior = referencedContentBehaviorArray[0];
+		}
+
+		if (referencedContentBehavior.equals("include-always") ||
+			(referencedContentBehavior.equals("include-if-modified") &&
+			 portletDataContext.isWithinDateRange(
+				 referenceStagedModel.getModifiedDate()))) {
+
+			return true;
+		}
+
+		return false;
 	}
 
 	@Override

@@ -122,10 +122,6 @@ public interface ExportImportHelper {
 	public static final String TEMP_FOLDER_NAME =
 		ExportImportHelper.class.getName();
 
-	public boolean isAlwaysIncludeReference(
-		PortletDataContext portletDataContext,
-		StagedModel referenceStagedModel);
-
 	public long[] getAllLayoutIds(long groupId, boolean privateLayout);
 
 	public Map<Long, Boolean> getAllLayoutIdsMap(
@@ -287,6 +283,10 @@ public interface ExportImportHelper {
 
 	public UserIdStrategy getUserIdStrategy(long userId, String userIdStrategy)
 		throws PortalException;
+
+	public boolean isAlwaysIncludeReference(
+		PortletDataContext portletDataContext,
+		StagedModel referenceStagedModel);
 
 	public boolean isReferenceWithinExportScope(
 		PortletDataContext portletDataContext, StagedModel stagedModel);
