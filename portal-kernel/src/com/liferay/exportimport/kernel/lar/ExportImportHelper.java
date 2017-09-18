@@ -122,7 +122,7 @@ public interface ExportImportHelper {
 	public static final String TEMP_FOLDER_NAME =
 		ExportImportHelper.class.getName();
 
-	public boolean alwaysIncludeReference(
+	public boolean isAlwaysIncludeReference(
 		PortletDataContext portletDataContext,
 		StagedModel referenceStagedModel);
 

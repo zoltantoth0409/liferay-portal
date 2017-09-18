@@ -43,11 +43,11 @@ import javax.portlet.PortletRequest;
 @ProviderType
 public class ExportImportHelperUtil {
 
-	public static boolean alwaysIncludeReference(
+	public static boolean isAlwaysIncludeReference(
 		PortletDataContext portletDataContext,
 		StagedModel referenceStagedModel) {
 
-		return _exportImportHelper.alwaysIncludeReference(
+		return _exportImportHelper.isAlwaysIncludeReference(
 			portletDataContext, referenceStagedModel);
 	}
 

@@ -125,7 +125,7 @@ import org.xml.sax.XMLReader;
 public class ExportImportHelperImpl implements ExportImportHelper {
 
 	@Override
-	public boolean alwaysIncludeReference(
+	public boolean isAlwaysIncludeReference(
 		PortletDataContext portletDataContext,
 		StagedModel referenceStagedModel) {
 
