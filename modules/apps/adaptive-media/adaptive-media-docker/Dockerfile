@@ -1,4 +1,4 @@
-FROM mdelapenya/liferay-portal-nightlies:20170914
+FROM liferay/portal-tomcat-mysql:master-7227093900666b12759b383063ac60a03956fa6c
 MAINTAINER Sergio González <sergio.gonzalez@liferay.com>
 
 COPY *.?ar $LIFERAY_HOME/osgi/modules/
