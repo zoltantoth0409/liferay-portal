@@ -70,7 +70,7 @@
 
 		<execute function="SelectFrame" value1="relative=top" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<var name="key_ddlDataDefinitionName" value="${parentStructureName}" />
 
@@ -193,7 +193,7 @@
 					<var name="key_menuItem" value="Permissions" />
 				</execute>
 
-				<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+				<execute macro="IFrame#selectDialogFrame" />
 
 				<execute macro="PermissionsInline#addOrRemoveViewPermissionFromAllRoles">
 					<var name="addOrRemoveViewPermission" value="Add" />

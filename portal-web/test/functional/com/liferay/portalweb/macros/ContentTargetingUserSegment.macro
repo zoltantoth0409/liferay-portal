@@ -211,7 +211,7 @@
 
 		<execute function="Click" locator1="EditUserSegment#USER_SEGMENT_RULE_USER_ATTRIBUTES_CUSTOM_FIELD_SELECT_BUTTON" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute function="Select" locator1="EditUserSegment#USER_SEGMENT_RULE_USER_ATTRIBUTES_CUSTOM_FIELD_SELECT" value1="${customFieldKey}" />
 

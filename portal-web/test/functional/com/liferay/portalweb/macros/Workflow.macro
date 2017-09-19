@@ -208,7 +208,7 @@
 		<if>
 			<isset var="workflowActivityComment" />
 			<then>
-				<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+				<execute macro="IFrame#selectDialogFrame" />
 
 				<execute function="Type#clickAtType" locator1="MyWorkflowTasks#DIALOG_BOX_COMMENT_FIELD" value1="${workflowActivityComment}" />
 			</then>
@@ -326,7 +326,7 @@
 		<if>
 			<condition function="IsElementPresent" locator1="IFrame#DIALOG" />
 			<then>
-				<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+				<execute macro="IFrame#selectDialogFrame" />
 			</then>
 		</if>
 
@@ -339,7 +339,7 @@
 		<if>
 			<condition function="IsElementPresent" locator1="IFrame#DIALOG" />
 			<then>
-				<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+				<execute macro="IFrame#selectDialogFrame" />
 			</then>
 		</if>
 

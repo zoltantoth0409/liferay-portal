@@ -22,7 +22,7 @@
 	</command>
 
 	<command name="selectConfigurationFrame">
-		<execute macro="IFrame#selectConfigurationFrame" />
+		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
 	</command>
 
 	<command name="selectDialogFrame">

@@ -123,7 +123,7 @@
 
 					<execute function="SelectFrame" value1="relative=top" />
 
-					<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+					<execute macro="IFrame#selectDialogFrame" />
 
 					<var name="key_ddlDataDefinitionName" value="${structureName}" />
 

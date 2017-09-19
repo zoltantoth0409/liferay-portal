@@ -25,7 +25,7 @@
 
 				<execute function="AssertTextEquals" locator1="IFrame#IFRAME_TITLE" value1="New Field Set" />
 
-				<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+				<execute macro="IFrame#selectDialogFrame" />
 
 				<execute function="Type" locator1="DDMEditStructure#NAME_FIELD" value1="${kfFieldSetName}" />
 			</else>
@@ -82,7 +82,7 @@
 
 		<execute function="AssertClick" locator1="KaleoFormsAdminEditProcess#ADD_WORKFLOW_BUTTON" value1="Add Workflow" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute macro="PortletEntry#inputTitle">
 			<var name="title" value="${workflowDefinitionTitle}" />
@@ -359,7 +359,7 @@
 
 		<execute function="AssertTextEquals" locator1="IFrame#IFRAME_TITLE" value1="Edit Field Set" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute function="Type" locator1="DDMEditStructure#NAME_FIELD" value1="${kfFieldSetNameEdit}" />
 	</command>
@@ -389,7 +389,7 @@
 			<var name="key_menuItem" value="Edit Form" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute function="Type" locator1="DDMEditStructure#NAME_FIELD" value1="${kfFormNameEdit}" />
 
@@ -456,7 +456,7 @@
 			<var name="key_menuItem" value="Edit" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute macro="PortletEntry#inputTitle">
 			<var name="title" value="${workflowDefinitionTitleEdit}" />
@@ -753,7 +753,7 @@
 			<var name="key_menuItem" value="Edit Form" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute function="AssertTextEquals" locator1="DDMEditStructure#NAME_FIELD" value1="${kfFormNameEdit}" />
 	</command>

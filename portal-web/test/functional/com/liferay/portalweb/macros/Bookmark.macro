@@ -8,7 +8,7 @@
 			<var name="key_menuItem" value="Bookmarks Entry" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<if>
 			<isset var="bookmarkFolderName" />
@@ -381,7 +381,7 @@
 
 		<execute function="AssertClick" locator1="Button#SELECT" value1="Select" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<var name="key_folderName" value="${folderName2}" />
 
@@ -422,7 +422,7 @@
 
 		<execute function="AssertClick" locator1="Button#SELECT" value1="Select" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute function="AssertClick" locator1="Button#CHOOSE_THIS_FOLDER" value1="Choose This Folder" />
 

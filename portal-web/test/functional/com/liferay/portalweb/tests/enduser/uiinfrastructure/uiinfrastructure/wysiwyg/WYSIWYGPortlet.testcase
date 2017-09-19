@@ -29,7 +29,7 @@
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute function="Type#typeEditor" locator1="CKEditor#BODY_FIELD" value1="WYSIWYG Test Content" />
 

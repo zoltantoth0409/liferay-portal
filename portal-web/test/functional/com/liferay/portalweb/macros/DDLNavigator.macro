@@ -37,7 +37,7 @@
 
 		<execute function="SelectFrame" value1="relative=top" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute macro="WorkflowAsset#viewDetails">
 			<var name="userName" value="${userName}" />

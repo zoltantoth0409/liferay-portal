@@ -1,6 +1,6 @@
 <definition>
 	<command name="configureDisplaySettings">
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<for list="${uncheckSetting}" param="SettingName">
 			<execute function="Uncheck" locator1="Checkbox#${SettingName}" />
@@ -82,7 +82,7 @@
 	</command>
 
 	<command name="viewConfigurationTabs">
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<for list="${isPresent}" param="isPresent">
 			<execute function="AssertElementPresent" locator1="Configuration#${isPresent}" />
@@ -112,7 +112,7 @@
 	</command>
 
 	<command name="viewDisplaySettings">
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<for list="${uncheckedSetting}" param="SettingName">
 			<execute function="AssertNotChecked" locator1="Checkbox#${SettingName}" />

@@ -6,7 +6,7 @@
 			<var name="key_menuItem" value="Basic Web Content" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 	</command>
 
 	<command name="_gotoAddPGViaWCD">
@@ -180,7 +180,7 @@
 
 		<execute function="SelectFrame" value1="relative=top" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute function="AssertClickNoError" locator1="DDMSelectStructure#DDM_STRUCTURE_TABLE_NAME_LINK" value1="${structureName}">
 			<var name="key_ddlDataDefinitionName" value="${structureName}" />
@@ -522,7 +522,7 @@
 
 		<execute function="SelectFrame" value1="relative=top" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute function="AssertClickNoError" locator1="DDMSelectStructure#DDM_STRUCTURE_TABLE_NAME_LINK" value1="${structureName}">
 			<var name="key_ddlDataDefinitionName" value="${structureName}" />
@@ -711,7 +711,7 @@
 					<var name="key_fieldName" value="${fieldName}" />
 				</execute>
 
-				<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+				<execute macro="IFrame#selectDialogFrame" />
 
 				<execute function="AssertClick" locator1="Link#WEB_CONTENT_ARTICLE" value1="${WebContentSelectWCFile}">
 					<var name="key_webContentTitle" value="${WebContentSelectWCFile}" />
@@ -859,7 +859,7 @@
 			<var name="key_menuItem" value="Basic Web Content" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute macro="WebContent#addCP">
 			<var name="webContentContent" value="${webContentContent}" />
@@ -1015,7 +1015,7 @@
 			<var name="key_assetTitle" value="${assetTitle}" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute macro="Panel#expandPanel">
 			<var name="panelHeading" value="Display Page" />
@@ -1065,7 +1065,7 @@
 			</then>
 		</if>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute macro="Button#clickSave" />
 	</command>
@@ -1114,7 +1114,7 @@
 			<var name="key_assetTitle" value="${assetTitle}" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute macro="PortletEntry#inputTitle">
 			<var name="title" value="${webContentTitleEdit}" />
@@ -1210,7 +1210,7 @@
 			<var name="key_menuItem" value="Permissions" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 	</command>
 
 	<command name="gotoEditDuplicateEntryCP">
@@ -1248,7 +1248,7 @@
 
 		<execute function="Click" locator1="Button#PARENT_FOLDER_SELECT" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute function="AssertClick" locator1="WC#FOLDER_TABLE_CHOOSE" value1="Choose">
 			<var name="key_folderName" value="${folderName}" />
@@ -1280,7 +1280,7 @@
 
 		<execute function="Click" locator1="Button#PARENT_FOLDER_SELECT" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute function="AssertClick" locator1="WC#FOLDER_TABLE_CHOOSE" value1="Choose">
 			<var name="key_folderName" value="${folderName}" />
@@ -1655,7 +1655,7 @@
 	</command>
 
 	<command name="viewCompareVersions">
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute macro="LexiconEntry#gotoEntry">
 			<var name="rowEntry" value="${version}" />
@@ -1774,7 +1774,7 @@
 			<var name="key_assetTitle" value="${assetTitle}" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute macro="Panel#expandPanel">
 			<var name="panelHeading" value="Display Page" />
@@ -2022,13 +2022,13 @@
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute function="AssertClick" locator1="WCDConfiguration#SELECT_WEB_CONTENT_BUTTON" value1="Select" />
 
 		<execute function="SelectFrame" value1="relative=top" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute function="AssertElementNotPresent" locator1="WCDConfiguration#WEB_CONTENT_TABLE_TITLE">
 			<var name="key_webContentTitle" value="${webContentTitle}" />

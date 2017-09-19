@@ -326,7 +326,7 @@
 			<var name="key_menuItem" value="Permissions" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<if>
 			<equals arg1="${viewableBy}" arg2="Anyone (Guest Role)" />

@@ -99,7 +99,7 @@
 
 		<execute function="Click" locator1="EditCampaign#CAMPAIGN_TRACKING_ACTIONS_DDL_FORM_SELECT_BUTTON" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute macro="FormsAdmin#searchFormEntry">
 			<var name="searchTerm" value="${formName}" />

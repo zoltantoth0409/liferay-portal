@@ -84,7 +84,7 @@
 
 		<execute macro="ProductMenuHelper#openSitesPopup" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute macro="Navigator#gotoNavItem">
 			<var name="navItem" value="${navItem}" />
@@ -188,7 +188,7 @@
 
 		<execute macro="ProductMenuHelper#openSitesPopup" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute macro="Navigator#gotoNavItem">
 			<var name="navItem" value="My Sites" />

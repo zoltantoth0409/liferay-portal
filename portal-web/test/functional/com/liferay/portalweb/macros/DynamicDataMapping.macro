@@ -613,7 +613,7 @@
 			<elseif>
 				<condition function="IsElementPresent" locator1="IFrame#DIALOG" />
 				<then>
-					<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+					<execute macro="IFrame#selectDialogFrame" />
 				</then>
 			</elseif>
 		</if>

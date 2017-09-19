@@ -130,7 +130,7 @@
 			<var name="portletOption" value="Edit Template" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute macro="Panel#expandPanel">
 			<var name="panelHeading" value="Details" />

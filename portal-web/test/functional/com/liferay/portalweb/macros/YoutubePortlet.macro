@@ -1,6 +1,6 @@
 <definition>
 	<command name="addVideoId">
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute function="Type" locator1="TextInput#URL" value1="${videoId}" />
 	</command>
@@ -14,7 +14,7 @@
 	</command>
 
 	<command name="viewPortletConfiguration">
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute function="AssertTextEquals" locator1="TextInput#URL" value1="${videoId}" />
 	</command>

@@ -121,7 +121,7 @@
 
 		<execute function="Click" locator1="Button#PLUS" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute function="Check#checkAll" locator1="Checkbox#SELECT_ALL" />
 
@@ -155,7 +155,7 @@
 
 		<execute function="AssertElementPresent#assertVisible" locator1="Button#ADD" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute macro="User#searchCP">
 			<var name="searchTerm" value="${userScreenName}" />

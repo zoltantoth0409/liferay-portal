@@ -89,7 +89,7 @@
 	<command name="addDisplayTemplateTemplateViaDDLDisplayPG">
 		<execute function="Click" locator1="DDL#PORTLET_ACTIONS_ADD_DISPLAY_TEMPLATE" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute macro="PortletEntry#inputName">
 			<var name="name" value="${ddlDisplayTemplateName}" />
@@ -153,7 +153,7 @@
 	<command name="addFormTemplateViaDDLDisplayPG">
 		<execute function="Click" locator1="DDL#PORTLET_ACTIONS_ADD_FORM_TEMPLATE" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute macro="PortletEntry#inputName">
 			<var name="name" value="${ddlFormTemplateName}" />

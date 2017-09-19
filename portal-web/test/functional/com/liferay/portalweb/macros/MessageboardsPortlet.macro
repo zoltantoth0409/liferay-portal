@@ -178,7 +178,7 @@
 	<command name="gotoInlinePermissionsPG">
 		<execute function="AssertClick" locator1="Button#PERMISSIONS" value1="Permissions" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 	</command>
 
 	<command name="gotoRecentPostsPG">

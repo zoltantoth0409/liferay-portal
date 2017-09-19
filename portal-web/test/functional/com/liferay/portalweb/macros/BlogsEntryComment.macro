@@ -23,7 +23,7 @@
 
 		<execute function="AssertClick" locator1="Button#REPLY_AS" value1="Reply as..." />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute function="AssertClick" locator1="Link#GUEST" value1="Guest" />
 

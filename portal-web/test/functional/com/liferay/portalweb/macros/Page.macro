@@ -626,7 +626,7 @@
 			<var name="key_menuItem" value="Manage Actions" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute function="Click" locator1="Button#ADD_ACTION" />
 
@@ -679,7 +679,7 @@
 	<command name="selectMobileDeviceFamily">
 		<execute function="AssertClick" locator1="Button#SELECT_MOBILE_DEVICE_RULES" value1="Select" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<var name="key_deviceFamilyName" value="${deviceFamilyName}" />
 

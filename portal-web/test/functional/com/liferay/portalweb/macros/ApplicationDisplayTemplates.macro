@@ -26,7 +26,7 @@
 	</command>
 
 	<command name="addManualViaRSS">
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute function="Pause" locator1="5000" />
 

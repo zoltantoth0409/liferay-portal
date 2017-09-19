@@ -199,7 +199,7 @@
 			<var name="key_menuItem" value="Blogs Entry" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute function="Type" locator1="BlogsEntry#TITLE" value1="${entryTitle}" />
 		<execute function="Type" locator1="BlogsEntry#CONTENT" value1="${entryContent}" />

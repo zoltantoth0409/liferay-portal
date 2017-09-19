@@ -17,7 +17,7 @@
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute function="AssertChecked" locator1="Portlet#LAYOUT_2_COLUMNS" />
 

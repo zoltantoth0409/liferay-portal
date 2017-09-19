@@ -30,7 +30,7 @@
 
 		<execute function="AssertTextEquals" locator1="Portlet#H3_MODAL_TITLE" value1="Add List" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute macro="PortletEntry#inputName">
 			<var name="name" value="${ddlListName}" />
@@ -143,7 +143,7 @@
 	<command name="editViaDDLDisplayPG">
 		<execute function="Click" locator1="DDL#PORTLET_ACTIONS_EDIT_LIST" value1="Edit List" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute macro="PortletEntry#inputName">
 			<var name="name" value="${ddlListNameEdit}" />

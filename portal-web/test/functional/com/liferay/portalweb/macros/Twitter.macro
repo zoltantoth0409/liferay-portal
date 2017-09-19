@@ -2,7 +2,7 @@
 	<command name="configureUserProfile">
 		<execute function="AssertClick" locator1="Link#CONFIGURE_TWITTER" value1="Please configure your Twitter screen name." />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute function="AssertClick" locator1="NavTab#IDENTIFICATION" value1="Identification" />
 

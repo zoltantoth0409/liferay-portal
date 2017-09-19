@@ -9,7 +9,7 @@
 
 		<execute function="Click" locator1="Button#PLUS" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute function="Check#checkAll" locator1="Checkbox#SELECT_ALL" />
 
@@ -299,7 +299,7 @@
 
 		<execute function="Click" locator1="Button#PLUS" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute function="AssertTextEquals" locator1="Card#SPECIFIC_LARGE_TEXT" value1="${orgName}" />
 
@@ -318,7 +318,7 @@
 			<var name="rowEntry" value="${resourceName}" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute function="Check" locator1="Card#SPECIFIC_CHECKBOX">
 			<var name="key_cardText" value="${roleName}" />
@@ -338,7 +338,7 @@
 
 		<execute function="AssertVisible" locator1="Button#DONE" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<if>
 			<isset var="userMiddleName" />
@@ -372,7 +372,7 @@
 
 		<execute macro="LexiconEntry#gotoAdd" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute function="AssertTextEquals" locator1="Card#SPECIFIC_LARGE_TEXT" value1="${userGroupName}" />
 
@@ -914,7 +914,7 @@
 			<var name="key_menuItem" value="Assign Site Roles" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute function="Uncheck" locator1="Checkbox#SITE_OWNER" />
 
@@ -1205,7 +1205,7 @@
 
 		<execute function="Click" locator1="Button#PLUS" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute function="AssertTextNotPresent" locator1="SiteMembershipsAddMembers#USER_TABLE_NAME" value1="${userFirstName} ${userLastName}" />
 		<execute function="AssertTextNotPresent" locator1="SiteMembershipsAddMembers#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />

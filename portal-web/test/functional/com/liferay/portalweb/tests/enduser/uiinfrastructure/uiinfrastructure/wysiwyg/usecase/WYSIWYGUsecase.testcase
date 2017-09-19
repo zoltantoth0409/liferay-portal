@@ -104,7 +104,7 @@
 			<var name="webContentTitle" value="Web Content Title" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute function="AssertElementPresent" locator1="//img[contains(@src,'Document_1.jpg')]" />
 	</command>

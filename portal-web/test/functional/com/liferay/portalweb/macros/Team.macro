@@ -47,7 +47,7 @@
 
 		<execute macro="LexiconEntry#gotoAdd" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute macro="Team#_searchCP">
 			<var name="searchTerm" value="${userScreenName}" />
@@ -105,7 +105,7 @@
 
 		<execute macro="LexiconEntry#gotoAdd" />
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<var name="key_cardText" value="${userGroupName}" />
 

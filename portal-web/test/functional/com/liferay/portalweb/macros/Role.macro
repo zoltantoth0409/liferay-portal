@@ -269,7 +269,7 @@
 		<if>
 			<condition function="IsElementPresent#isElementPresentAfterWait" locator1="IFrame#DIALOG" />
 			<then>
-				<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+				<execute macro="IFrame#selectDialogFrame" />
 			</then>
 		</if>
 
@@ -920,7 +920,7 @@
 		<if>
 			<condition function="IsElementPresent#isElementPresentAfterWait" locator1="IFrame#DIALOG" />
 			<then>
-				<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+				<execute macro="IFrame#selectDialogFrame" />
 			</then>
 		</if>
 
