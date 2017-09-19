@@ -36,6 +36,12 @@ public class AMBlogsEntryAttachmentContentUpdaterTest extends PowerMockito {
 	public void setUp() {
 		_fileEntry = mock(FileEntry.class);
 
+		when(
+			_fileEntry.getFileEntryId()
+		).thenReturn(
+			_IMAGE_FILE_ENTRY_ID
+		);
+
 		_portletFileRepository = mock(PortletFileRepository.class);
 
 		_amBlogsEntryAttachmentContentUpdater =
@@ -47,12 +53,6 @@ public class AMBlogsEntryAttachmentContentUpdaterTest extends PowerMockito {
 				Mockito.eq(StringPool.BLANK))
 		).thenReturn(
 			_FILE_ENTRY_IMAGE_URL
-		);
-
-		when(
-			_fileEntry.getFileEntryId()
-		).thenReturn(
-			_IMAGE_FILE_ENTRY_ID
 		);
 	}
 
