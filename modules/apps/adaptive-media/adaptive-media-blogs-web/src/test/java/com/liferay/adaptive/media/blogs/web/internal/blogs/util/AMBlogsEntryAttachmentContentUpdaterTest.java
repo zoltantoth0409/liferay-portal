@@ -69,9 +69,9 @@ public class AMBlogsEntryAttachmentContentUpdaterTest extends PowerMockito {
 			imgTag);
 	}
 
-	private static final long _IMAGE_FILE_ENTRY_ID = 1989L;
-
 	private static final String _FILE_ENTRY_IMAGE_URL = "theUrl";
+
+	private static final long _IMAGE_FILE_ENTRY_ID = 1989L;
 
 	private AMBlogsEntryAttachmentContentUpdater
 		_amBlogsEntryAttachmentContentUpdater;
