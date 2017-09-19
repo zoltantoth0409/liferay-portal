@@ -20,7 +20,7 @@
 page import="com.liferay.adaptive.media.content.transformer.ContentTransformerHandler" %><%@
 page import="com.liferay.adaptive.media.content.transformer.constants.ContentTransformerContentTypes" %>
 
-<liferay-util:buffer var="fullContent">
+<liferay-util:buffer var="html">
 	<liferay-util:include page="/blogs/asset/full_content.portal.jsp" servletContext="<%= application %>" />
 </liferay-util:buffer>
 
@@ -28,8 +28,8 @@ page import="com.liferay.adaptive.media.content.transformer.constants.ContentTra
 ContentTransformerHandler contentTransformerHandler = ContentTransformerUtil.getContentTransformerHandler();
 
 if (contentTransformerHandler != null) {
-	fullContent = contentTransformerHandler.transform(ContentTransformerContentTypes.HTML, fullContent);
+	html = contentTransformerHandler.transform(ContentTransformerContentTypes.HTML, html);
 }
 %>
 
-<%= fullContent %>
+<%= html %>
