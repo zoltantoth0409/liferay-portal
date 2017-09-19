@@ -227,7 +227,6 @@ public class FileEntryStagedModelDataHandlerTest
 		Assert.assertEquals(
 			importedRepository.getDlFolderId(),
 			importedFolder.getParentFolderId());
-
 		Assert.assertEquals(
 			repositoryFolder.getRepositoryId(),
 			importedRepository.getRepositoryId());
