@@ -79,9 +79,8 @@ public class BlogsAMImageOptimizer implements AMImageOptimizer {
 	public void optimize(long companyId, String configurationEntryUuid) {
 		int total = _amImageCounter.countExpectedAMImageEntries(companyId);
 
-		final AtomicInteger atomicCounter = new AtomicInteger(0);
-
-		_optimize(companyId, configurationEntryUuid, total, atomicCounter);
+		_optimize(
+			companyId, configurationEntryUuid, total, new AtomicInteger(0));
 	}
 
 	private void _optimize(
