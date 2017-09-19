@@ -92,7 +92,7 @@
 			<var name="notificationCount" value="0" />
 		</execute>
 
-		<execute macro="IFrame#selectConfigurationFrame" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute macro="NotificationsPortlet#disableUserDeliveries">
 			<var name="actionType" value="Adds" />
@@ -169,7 +169,7 @@
 			<var name="notificationCount" value="0" />
 		</execute>
 
-		<execute macro="IFrame#selectConfigurationFrame" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute macro="NotificationsPortlet#disableUserDeliveries">
 			<var name="actionType" value="Updates" />

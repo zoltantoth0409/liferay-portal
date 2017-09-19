@@ -314,7 +314,7 @@
 
 		<execute function="AssertElementPresent" locator1="IFrame#DIALOG" />
 
-		<execute macro="IFrame#selectConfigurationFrame" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute macro="NotificationsPortlet#disableUserDeliveries">
 			<var name="actionType" value="Add" />

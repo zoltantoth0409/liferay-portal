@@ -26,7 +26,7 @@
 		<execute function="SelectFrame" locator1="IFrame#SELECT_CATEGORY" />
 	</command>
 
-	<command name="selectConfigurationFrame">
+	<command name="selectDialogFrame">
 		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
 	</command>
 

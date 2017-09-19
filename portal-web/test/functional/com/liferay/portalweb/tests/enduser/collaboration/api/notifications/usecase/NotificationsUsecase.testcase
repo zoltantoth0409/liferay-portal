@@ -199,7 +199,7 @@
 
 		<execute macro="NotificationsPortlet#gotoNotificationDelivery" />
 
-		<execute macro="IFrame#selectConfigurationFrame" />
+		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute macro="NotificationsPortlet#viewDefaultNotificationDeliveries" />
 	</command>
