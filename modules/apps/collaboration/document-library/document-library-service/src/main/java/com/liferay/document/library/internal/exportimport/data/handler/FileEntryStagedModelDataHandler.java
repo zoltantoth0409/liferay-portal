@@ -382,11 +382,9 @@ public class FileEntryStagedModelDataHandler
 			fileEntry);
 
 		String binPath = fileEntryElement.attributeValue("bin-path");
-
-		String version = fileEntryElement.attributeValue("version");
-
 		String fileVersionUuid = fileEntryElement.attributeValue(
 			"fileVersionUuid");
+		String version = fileEntryElement.attributeValue("version");
 
 		InputStream is = null;
 
@@ -455,7 +453,6 @@ public class FileEntryStagedModelDataHandler
 
 					serviceContext.setAttribute(
 						"fileVersionUuid", fileVersionUuid);
-
 					serviceContext.setUuid(fileEntry.getUuid());
 
 					String fileEntryTitle =
