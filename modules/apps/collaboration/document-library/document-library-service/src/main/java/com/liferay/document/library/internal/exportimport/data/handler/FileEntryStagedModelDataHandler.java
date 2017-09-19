@@ -256,8 +256,8 @@ public class FileEntryStagedModelDataHandler
 
 		FileVersion fileVersion = fileEntry.getFileVersion();
 
-		fileEntryElement.addAttribute("version", fileEntry.getVersion());
 		fileEntryElement.addAttribute("fileVersionUuid", fileVersion.getUuid());
+		fileEntryElement.addAttribute("version", fileEntry.getVersion());
 
 		LiferayFileEntry liferayFileEntry = (LiferayFileEntry)fileEntry;
 
