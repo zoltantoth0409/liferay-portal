@@ -64,7 +64,7 @@ public class BlogsAMImageOptimizer implements AMImageOptimizer {
 
 		int total = count * amImageConfigurationEntries.size();
 
-		final AtomicInteger atomicCounter = new AtomicInteger(0);
+		AtomicInteger atomicCounter = new AtomicInteger(0);
 
 		for (AMImageConfigurationEntry amImageConfigurationEntry :
 				amImageConfigurationEntries) {
