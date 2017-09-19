@@ -610,7 +610,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 			wsrpAuth = _wsrpUrlUtil.encodeWSRPAuth(companyId, url);
 		}
 		catch (Exception e) {
-			throw new SystemException("Unable to encode url " + url, e);
+			throw new SystemException("Unable to encode URL " + url, e);
 		}
 
 		StringBundler sb = new StringBundler(6);
