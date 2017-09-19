@@ -257,10 +257,6 @@ public class BlogsEntryStagedModelDataHandler
 
 		BlogsEntry importedEntry = null;
 
-		Map<Long, Long> fileEntryIds =
-			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
-				FileEntry.class);
-
 		if (portletDataContext.isDataStrategyMirror()) {
 			BlogsEntry existingEntry = fetchStagedModelByUuidAndGroupId(
 				entry.getUuid(), portletDataContext.getScopeGroupId());
@@ -300,6 +296,9 @@ public class BlogsEntryStagedModelDataHandler
 
 		ImageSelector coverImageSelector = null;
 
+		Map<Long, Long> fileEntryIds =
+			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
+				FileEntry.class);
 		List<Element> attachmentElements =
 			portletDataContext.getReferenceDataElements(
 				entry, DLFileEntry.class,
