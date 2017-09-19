@@ -9,7 +9,7 @@ import org.kt3k.gradle.plugin.CoverallsPlugin
 
 buildscript {
 	dependencies {
-		classpath group: "com.liferay", name: "com.liferay.gradle.plugins.app.docker", version: "1.0.0"
+		classpath group: "com.liferay", name: "com.liferay.gradle.plugins.app.docker", version: "1.0.1"
 		classpath group: "org.kt3k.gradle.plugin", name: "coveralls-gradle-plugin", version: "2.6.3"
 	}
 
