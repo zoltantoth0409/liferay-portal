@@ -90,9 +90,6 @@ public class BlogsAMImageOptimizer implements AMImageOptimizer {
 		ActionableDynamicQuery actionableDynamicQuery =
 			_dlFileEntryLocalService.getActionableDynamicQuery();
 
-		long classNameId = _classNameLocalService.getClassNameId(
-			BlogsEntry.class.getName());
-
 		actionableDynamicQuery.setAddCriteriaMethod(
 			new ActionableDynamicQuery.AddCriteriaMethod() {
 
@@ -106,6 +103,9 @@ public class BlogsAMImageOptimizer implements AMImageOptimizer {
 					Property classNameIdProperty = PropertyFactoryUtil.forName(
 						"classNameId");
 
+					long classNameId = _classNameLocalService.getClassNameId(
+						BlogsEntry.class.getName());
+
 					dynamicQuery.add(classNameIdProperty.eq(classNameId));
 
 					Property mimeTypeProperty = PropertyFactoryUtil.forName(
@@ -117,7 +117,6 @@ public class BlogsAMImageOptimizer implements AMImageOptimizer {
 				}
 
 			});
-
 		actionableDynamicQuery.setPerformActionMethod(
 			new ActionableDynamicQuery.PerformActionMethod<DLFileEntry>() {
 
