@@ -398,7 +398,9 @@
 
 		<execute macro="BlogsConfiguration#uncheckSocialBookmarks" />
 
-		<execute macro="IFrame#saveConfiguration" />
+		<execute macro="PortletEntry#save" />
+
+		<execute macro="IFrame#selectTopFrame" />
 	</command>
 
 	<command name="editDraftPG">
@@ -458,7 +460,9 @@
 			</execute>
 		</for>
 
-		<execute macro="IFrame#saveConfiguration" />
+		<execute macro="PortletEntry#save" />
+
+		<execute macro="IFrame#selectTopFrame" />
 	</command>
 
 	<command name="publishDraftCP">
@@ -492,7 +496,9 @@
 			<var name="displayTemplate" value="Abstract" />
 		</execute>
 
-		<execute macro="IFrame#saveConfiguration" />
+		<execute macro="PortletEntry#save" />
+
+		<execute macro="IFrame#selectTopFrame" />
 	</command>
 
 	<command name="tearDownConfigurationScopePG">

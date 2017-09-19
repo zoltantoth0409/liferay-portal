@@ -17,11 +17,6 @@
 		<execute function="Click" locator1="Icon#CLOSE" />
 	</command>
 
-	<command name="saveConfiguration">
-		<execute macro="PortletEntry#save" />
-		<execute function="SelectFrame" value1="relative=top" />
-	</command>
-
 	<command name="selectCategoryFrame">
 		<execute function="SelectFrame" locator1="IFrame#SELECT_CATEGORY" />
 	</command>

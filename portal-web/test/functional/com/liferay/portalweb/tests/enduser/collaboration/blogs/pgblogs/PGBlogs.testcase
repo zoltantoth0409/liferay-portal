@@ -1937,7 +1937,9 @@
 
 		<execute function="Check" locator1="Checkbox#ENABLE_VIEW_COUNT" />
 
-		<execute macro="IFrame#saveConfiguration" />
+		<execute macro="PortletEntry#save" />
+
+		<execute macro="IFrame#selectTopFrame" />
 
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
@@ -1997,7 +1999,9 @@
 			<var name="displayTemplate" value="Abstract" />
 		</execute>
 
-		<execute macro="IFrame#saveConfiguration" />
+		<execute macro="PortletEntry#save" />
+
+		<execute macro="IFrame#selectTopFrame" />
 
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
@@ -2128,7 +2132,9 @@
 			<var name="displayTemplate" value="Full Content" />
 		</execute>
 
-		<execute macro="IFrame#saveConfiguration" />
+		<execute macro="PortletEntry#save" />
+
+		<execute macro="IFrame#selectTopFrame" />
 
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
@@ -2217,7 +2223,9 @@
 			<var name="displayTemplate" value="Title" />
 		</execute>
 
-		<execute macro="IFrame#saveConfiguration" />
+		<execute macro="PortletEntry#save" />
+
+		<execute macro="IFrame#selectTopFrame" />
 
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
