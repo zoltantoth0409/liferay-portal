@@ -61,7 +61,8 @@ public interface WorkflowDefinitionManager {
 			OrderByComparator<WorkflowDefinition> orderByComparator)
 		throws WorkflowException {
 
-		Map<String, WorkflowDefinition> workflowDefinitionsMap = new HashMap<>();
+		Map<String, WorkflowDefinition> workflowDefinitionsMap =
+			new HashMap<>();
 
 		List<WorkflowDefinition> workflowDefinitions = getWorkflowDefinitions(
 			companyId, start, end, orderByComparator);
@@ -69,9 +70,12 @@ public interface WorkflowDefinitionManager {
 		for (WorkflowDefinition workflowDefinition : workflowDefinitions) {
 			String name = workflowDefinition.getName();
 
-			if (workflowDefinitionsMap.containsKey(name)) {
+			WorkflowDefinition latestWorkflowDefinition =
+				workflowDefinitionsMap.get(name);
+
+			if (latestWorkflowDefinition != null) {
 				if (workflowDefinition.getVersion() >
-						workflowDefinitionsMap.get(name).getVersion()) {
+						latestWorkflowDefinition.getVersion()) {
 
 					workflowDefinitionsMap.put(name, workflowDefinition);
 				}
