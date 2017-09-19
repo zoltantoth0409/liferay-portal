@@ -21,7 +21,7 @@
 				<equals arg1="${searchScope}" arg2="This Site" />
 			</or>
 			<then>
-				<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+				<execute macro="IFrame#selectConfigurationFrame" />
 
 				<execute function="Select" locator1="Select#SCOPE" value1="${searchScope}" />
 			</then>
@@ -73,7 +73,7 @@
 			<var name="key_menuItem" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<execute function="Uncheck" locator1="SearchConfiguration#BASIC_DISPLAY_USER_FACET_CHECKBOX" />
 

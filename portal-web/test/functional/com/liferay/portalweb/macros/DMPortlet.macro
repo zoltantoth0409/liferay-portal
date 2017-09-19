@@ -5,7 +5,7 @@
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<if>
 			<condition function="IsElementPresent" locator1="DocumentsAndMediaConfiguration#DISPLAY_SETTINGS_DROPDOWN_COLLAPSED" />
@@ -97,7 +97,7 @@
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<execute function="AssertClick" locator1="DocumentsAndMediaConfiguration#DISPLAY_SETTINGS_ROOT_FOLDER_SELECT_BUTTON" value1="Select" />
 
@@ -113,7 +113,7 @@
 
 		<execute function="SelectFrame" value1="relative=top" />
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<execute function="AssertTextEquals" locator1="DocumentsAndMediaConfiguration#DISPLAY_SETTINGS_ROOT_FOLDER_FIELD" value1="${dmFolderName}" />
 
@@ -130,7 +130,7 @@
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<execute macro="Navigator#gotoNavItem">
 			<var name="navItem" value="Scope" />
@@ -169,7 +169,7 @@
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<if>
 			<condition function="IsElementPresent" locator1="DocumentsAndMediaConfiguration#DISPLAY_SETTINGS_DROPDOWN_COLLAPSED" />
@@ -205,7 +205,7 @@
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<execute function="AssertTextEquals" locator1="DocumentsAndMediaConfiguration#DISPLAY_SETTINGS_ROOT_FOLDER_FIELD" value1="${dmFolderName}" />
 

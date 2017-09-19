@@ -1,6 +1,6 @@
 <definition>
 	<command name="configureCampaignRule">
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<var method="selenium#getNumberDecrement('${rowNumber}')" name="rowIndexNumber" />
 
@@ -37,7 +37,7 @@
 	</command>
 
 	<command name="configureOtherwiseRule">
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<execute function="ClickNoError" locator1="ContentTargeting#OTHERWISE_PANEL" />
 
@@ -62,7 +62,7 @@
 	</command>
 
 	<command name="savePG">
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<execute function="ClickNoError" locator1="Button#SAVE" />
 

@@ -10,7 +10,7 @@
 	</command>
 
 	<command name="selectAndSaveConfiguration">
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<execute function="Select" locator1="Select#DISPLAY_TEMPLATE" value1="${displayTemplate}" />
 

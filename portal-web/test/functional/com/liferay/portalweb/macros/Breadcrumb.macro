@@ -1,6 +1,6 @@
 <definition>
 	<command name="configureBreadcrumb">
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<if>
 			<isset var="checkSetupName" />
@@ -46,7 +46,7 @@
 	</command>
 
 	<command name="displayTemplatePreview">
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<execute function="Select" locator1="Select#DISPLAY_TEMPLATE" value1="${displayStyle}" />
 
@@ -54,7 +54,7 @@
 	</command>
 
 	<command name="saveDisplayPreview">
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<execute macro="PortletEntry#save" />
 
@@ -74,7 +74,7 @@
 	</command>
 
 	<command name="viewConfigurationCheckboxes">
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<if>
 			<isset var="checkSetupName" />
@@ -102,7 +102,7 @@
 	</command>
 
 	<command name="viewConfigurationPreview">
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<if>
 			<isset var="breadcrumbListVisible" />

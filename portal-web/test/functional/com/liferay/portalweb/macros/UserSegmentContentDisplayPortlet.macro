@@ -66,7 +66,7 @@
 
 		<execute function="Click" locator1="Icon#CLOSE" />
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<execute function="Click" locator1="UserSegmentContentDisplay#RULE_PANEL_DISPLAY_CONTENT_SELECT" />
 
@@ -86,13 +86,13 @@
 
 		<execute function="SelectFrame" value1="relative=top" />
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<execute function="SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="configureOtherwiseContentDisplayRule">
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<if>
 			<isset var="otherwiseContentType" />
@@ -130,7 +130,7 @@
 	</command>
 
 	<command name="savePG">
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<execute function="ClickNoError" locator1="Button#SAVE" />
 
@@ -145,7 +145,7 @@
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<var name="key_rowNumber" value="${rowNumber}" />
 

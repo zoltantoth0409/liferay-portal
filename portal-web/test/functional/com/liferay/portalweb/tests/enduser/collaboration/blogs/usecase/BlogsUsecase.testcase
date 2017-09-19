@@ -2118,7 +2118,7 @@
 
 		<execute function="AssertTextPresent" locator1="Portlet#TITLE" value1="Blogs Aggregator" />
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<execute function="AssertClick" locator1="NavBar#SETUP" value1="Setup" />
 

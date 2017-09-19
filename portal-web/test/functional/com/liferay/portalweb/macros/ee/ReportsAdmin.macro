@@ -231,7 +231,7 @@
 			<var name="key_menuItem" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 	</command>
 
 	<command name="gotoDefinitions">

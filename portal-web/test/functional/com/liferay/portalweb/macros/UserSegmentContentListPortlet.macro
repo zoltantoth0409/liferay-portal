@@ -5,7 +5,7 @@
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<execute macro="Panel#expandPanel">
 			<var name="panelHeading" value="Source" />

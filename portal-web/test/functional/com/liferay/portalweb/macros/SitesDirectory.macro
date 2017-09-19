@@ -5,7 +5,7 @@
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<if>
 			<isset var="directorySites" />
@@ -31,7 +31,7 @@
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<execute function="AssertTextEquals" locator1="Select#SITES" value1="Top Level Parent Level Siblings Children" />
 		<execute function="AssertTextEquals" locator1="Select#DISPLAY_STYLE" value1="Icon Descriptive List List Hierarchy" />

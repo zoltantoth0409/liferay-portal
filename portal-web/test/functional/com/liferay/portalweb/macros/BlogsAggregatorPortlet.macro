@@ -5,7 +5,7 @@
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<execute function="Select" locator1="Configuration#SELECTION_METHOD_SELECT" value1="${selectionMethod}" />
 
@@ -28,7 +28,7 @@
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<execute function="AssertClick" locator1="Button#SELECT" value1="Select" />
 

@@ -12,7 +12,7 @@
 	</command>
 
 	<command name="configureSharingAllowUsersToAddWikiToAnyWebsite">
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<execute function="AssertClick" locator1="NavBar#SHARING" value1="Sharing" />
 
@@ -94,7 +94,7 @@
 	</command>
 
 	<command name="viewConfigureSharingAllowUsersToAddWikiToAnyWebsite">
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<execute function="AssertClick" locator1="NavBar#SHARING" value1="Sharing" />
 

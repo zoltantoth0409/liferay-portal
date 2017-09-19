@@ -14,7 +14,7 @@
 
 		<execute function="Pause" locator1="10000" />
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<if>
 			<equals arg1="${anonymousPostingEnabled}" arg2="true" />
@@ -49,7 +49,7 @@
 
 		<execute function="Pause" locator1="10000" />
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<if>
 			<equals arg1="${threadAsQuestionByDefaultEnabled}" arg2="true" />
@@ -74,7 +74,7 @@
 			<var name="key_menuItem" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<execute function="AssertClick" locator1="MessageBoardsAdminConfiguration#SETUP_NAVIGATION_MESSAGE_ADDED_EMAIL" value1="Message Added Email" />
 
@@ -106,7 +106,7 @@
 			<var name="key_menuItem" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<execute function="AssertClick" locator1="MessageBoardsAdminConfiguration#SETUP_NAVIGATION_EMAIL_FROM" value1="Email From" />
 
@@ -142,7 +142,7 @@
 			<var name="key_menuItem" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<execute function="AssertClick" locator1="MessageBoardsAdminConfiguration#SETUP_NAVIGATION_MESSAGE_UPDATED_EMAIL" value1="Message Updated Email" />
 
@@ -166,7 +166,7 @@
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<execute function="AssertClick" locator1="MessageBoardsConfiguration#NAVIGATION_SCOPE" value1="Scope" />
 
@@ -209,7 +209,7 @@
 			<var name="key_menuItem" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<execute function="AssertClick" locator1="MessageBoardsAdminConfiguration#SETUP_NAVIGATION_MESSAGE_ADDED_EMAIL" value1="Message Added Email" />
 
@@ -241,7 +241,7 @@
 			<var name="key_menuItem" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<execute function="Check" locator1="MessageBoardsAdminConfiguration#GENERAL_ALLOW_ANONYMOUS_POSTING_CHECKBOX" />
 
@@ -263,7 +263,7 @@
 	</command>
 
 	<command name="viewAnonymousPostingConfigurationCP">
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<if>
 			<equals arg1="${anonymousPostingEnabled}" arg2="true" />
@@ -326,7 +326,7 @@
 			<var name="key_menuItem" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<execute function="AssertClick" locator1="MessageBoardsAdminConfiguration#SETUP_NAVIGATION_EMAIL_FROM" value1="Email From" />
 

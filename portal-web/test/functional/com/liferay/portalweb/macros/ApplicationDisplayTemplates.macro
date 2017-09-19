@@ -65,7 +65,7 @@
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<execute function="Pause" locator1="5000" />
 
@@ -118,7 +118,7 @@
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<execute function="Pause" locator1="3000" />
 
@@ -149,7 +149,7 @@
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<var name="key_tab" value="Display Settings" />
 
@@ -180,7 +180,7 @@
 					<var name="portletOption" value="Configuration" />
 				</execute>
 
-				<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+				<execute macro="IFrame#selectConfigurationFrame" />
 
 				<if>
 					<condition function="IsElementPresent" locator1="Configuration#SETUP_DISPLAY_SETTINGS" />
@@ -206,7 +206,7 @@
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+		<execute macro="IFrame#selectConfigurationFrame" />
 
 		<if>
 			<condition function="IsElementPresent" locator1="Configuration#SETUP_DISPLAY_SETTINGS" />
@@ -246,7 +246,7 @@
 					<var name="portletOption" value="Configuration" />
 				</execute>
 
-				<execute function="SelectFrame" locator1="IFrame#CONFIGURATION" />
+				<execute macro="IFrame#selectConfigurationFrame" />
 
 				<if>
 					<condition function="IsElementPresent" locator1="Configuration#SETUP_DISPLAY_SETTINGS" />
