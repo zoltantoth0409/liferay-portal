@@ -54,6 +54,8 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.TimeZoneUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.test.mail.MailMessage;
+import com.liferay.portal.test.mail.MailServiceTestUtil;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.SynchronousMailTestRule;
 
@@ -195,6 +197,52 @@ public class CalendarBookingLocalServiceTest {
 		long calendarBookingId = calendarBooking.getCalendarBookingId();
 
 		assertCalendarBookingInstancesCount(calendarBookingId, 1);
+	}
+
+	@Test
+	public void testDeleteCalendarBookingRecurringInstanceNotifiesInvitees()
+		throws Exception {
+
+		ServiceContext serviceContext = createServiceContext();
+
+		User invitingUser = UserTestUtil.addUser();
+
+		Calendar invitingcalendar = CalendarTestUtil.addCalendar(invitingUser);
+
+		Calendar invitedCalendar = CalendarTestUtil.addCalendar(_user);
+
+		CalendarBooking calendarBooking =
+			CalendarBookingTestUtil.addRecurringCalendarBooking(
+				invitingcalendar, invitedCalendar,
+				RecurrenceTestUtil.getDailyRecurrence(2), serviceContext);
+
+		long calendarBookingId = calendarBooking.getCalendarBookingId();
+
+		CalendarBookingLocalServiceUtil.deleteCalendarBookingInstance(
+			invitingUser.getUserId(), calendarBooking, 0, false);
+
+		calendarBooking = CalendarBookingLocalServiceUtil.fetchCalendarBooking(
+			calendarBookingId);
+
+		Assert.assertNotNull(calendarBooking);
+
+		String mailMessageSubject =
+			"Calendar: Event Deletion for " + StringPool.QUOTE +
+				calendarBooking.getTitle(LocaleUtil.getDefault()) +
+					StringPool.QUOTE;
+
+		List<MailMessage> mailMessages = MailServiceTestUtil.getMailMessages(
+			"Subject", mailMessageSubject);
+
+		Assert.assertEquals(mailMessages.toString(), 1, mailMessages.size());
+
+		CalendarBookingLocalServiceUtil.deleteCalendarBookingInstance(
+			_user.getUserId(), calendarBooking, 0, false);
+
+		calendarBooking = CalendarBookingLocalServiceUtil.fetchCalendarBooking(
+			calendarBookingId);
+
+		Assert.assertNull(calendarBooking);
 	}
 
 	@Test
