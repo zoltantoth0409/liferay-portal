@@ -52,7 +52,7 @@ public class AMBlogsEntryAttachmentContentUpdaterTest extends PowerMockito {
 		when(
 			_fileEntry.getFileEntryId()
 		).thenReturn(
-			_FILE_ENTRY_IMAGE_ID
+			_IMAGE_FILE_ENTRY_ID
 		);
 	}
 
@@ -63,13 +63,13 @@ public class AMBlogsEntryAttachmentContentUpdaterTest extends PowerMockito {
 				getBlogsEntryAttachmentFileEntryImgTag(_fileEntry);
 
 		Assert.assertEquals(
-			"<img data-fileEntryId=\"" + _FILE_ENTRY_IMAGE_ID + "\" src=\"" +
+			"<img data-fileEntryId=\"" + _IMAGE_FILE_ENTRY_ID + "\" src=\"" +
 				_FILE_ENTRY_IMAGE_URL +
 					"\" />",
 			imgTag);
 	}
 
-	private static final long _FILE_ENTRY_IMAGE_ID = 1989L;
+	private static final long _IMAGE_FILE_ENTRY_ID = 1989L;
 
 	private static final String _FILE_ENTRY_IMAGE_URL = "theUrl";
 
