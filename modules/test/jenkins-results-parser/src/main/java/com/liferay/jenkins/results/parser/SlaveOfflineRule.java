@@ -131,15 +131,13 @@ public class SlaveOfflineRule {
 			if (value.isEmpty()) {
 				continue;
 			}
-
-			if (name.equals("notificationList")) {
-				notificationList = value;
+			else if (name.equals("console")) {
+				consolePattern = Pattern.compile(value);
 
 				continue;
 			}
-
-			if (name.equals("console")) {
-				consolePattern = Pattern.compile(value);
+			else if (name.equals("notificationList")) {
+				notificationList = value;
 
 				continue;
 			}
