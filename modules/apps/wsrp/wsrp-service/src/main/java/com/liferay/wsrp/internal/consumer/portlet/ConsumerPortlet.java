@@ -315,21 +315,19 @@ public class ConsumerPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		long companyId = themeDisplay.getCompanyId();
+		String expectedWSRPAuth = _wsrpURLUtil.encodeWSRPAuth(
+			themeDisplay.getCompanyId(), sb.toString());
 
-		String expectedWsrpAuth = _wsrpUrlUtil.encodeWSRPAuth(
-			companyId, sb.toString());
-
-		if (wsrpAuth.equals(expectedWsrpAuth)) {
+		if (wsrpAuth.equals(expectedWSRPAuth)) {
 			return true;
 		}
 
 		sb.append(AuthTokenUtil.getToken(request));
 
-		expectedWsrpAuth = _wsrpUrlUtil.encodeWSRPAuth(
-			companyId, sb.toString());
+		expectedWSRPAuth = _wsrpURLUtil.encodeWSRPAuth(
+			themeDisplay.getCompanyId(), sb.toString());
 
-		if (wsrpAuth.equals(expectedWsrpAuth)) {
+		if (wsrpAuth.equals(expectedWSRPAuth)) {
 			return true;
 		}
 
@@ -2066,7 +2064,7 @@ public class ConsumerPortlet extends MVCPortlet {
 			sb.append(AuthTokenUtil.getToken(request));
 		}
 
-		String wsrpAuth = _wsrpUrlUtil.encodeWSRPAuth(
+		String wsrpAuth = _wsrpURLUtil.encodeWSRPAuth(
 			themeDisplay.getCompanyId(), sb.toString());
 
 		parameterMap.put(WebKeys.WSRP_AUTH, wsrpAuth);
@@ -2174,6 +2172,6 @@ public class ConsumerPortlet extends MVCPortlet {
 	private WSRPConsumerPortletLocalService _wsrpConsumerPortletLocalService;
 
 	@ServiceReference(type = WSRPURLUtil.class)
-	private WSRPURLUtil _wsrpUrlUtil;
+	private WSRPURLUtil _wsrpURLUtil;
 
 }
