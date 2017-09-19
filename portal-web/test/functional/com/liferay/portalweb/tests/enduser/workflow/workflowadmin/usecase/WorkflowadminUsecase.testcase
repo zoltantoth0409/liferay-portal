@@ -868,7 +868,7 @@
 		</execute>
 
 		<execute macro="Category#addCP">
-			<var name="categoryName" value="other" />
+			<var name="categoryName" value="outlook" />
 			<var name="vocabularyName" value="Vocabulary Name" />
 		</execute>
 
@@ -923,7 +923,7 @@
 		</execute>
 
 		<execute macro="WebContent#selectCategory">
-			<var name="categoryName" value="other" />
+			<var name="categoryName" value="outlook" />
 			<var name="vocabularyName" value="Vocabulary Name" />
 		</execute>
 
@@ -946,12 +946,12 @@
 		<execute macro="WebContentNavigator#gotoAddCP" />
 
 		<execute macro="WebContent#addCP">
-			<var name="webContentContent" value="other category" />
-			<var name="webContentTitle" value="WC With Other Category" />
+			<var name="webContentContent" value="outlook category" />
+			<var name="webContentTitle" value="WC With Outlook Category" />
 		</execute>
 
 		<execute macro="WebContent#selectCategory">
-			<var name="categoryName" value="other" />
+			<var name="categoryName" value="outlook" />
 			<var name="vocabularyName" value="Vocabulary Name" />
 		</execute>
 
@@ -960,8 +960,8 @@
 		<execute macro="Alert#viewSuccessMessage" />
 
 		<execute macro="WebContent#viewWithWorkflowCP">
-			<var name="webContentContent" value="other category" />
-			<var name="webContentTitle" value="WC With Other Category" />
+			<var name="webContentContent" value="outlook category" />
+			<var name="webContentTitle" value="WC With Outlook Category" />
 			<var name="workflowTask" value="content-review" />
 		</execute>
 
@@ -1001,7 +1001,7 @@
 		</execute>
 
 		<execute macro="Workflow#viewTaskAssignedToMyRoles">
-			<var name="workflowAssetTitle" value="WC With Other Category" />
+			<var name="workflowAssetTitle" value="WC With Outlook Category" />
 			<var name="workflowAssetType" value="Web Content Article" />
 			<var name="workflowTask" value="content-review" />
 		</execute>

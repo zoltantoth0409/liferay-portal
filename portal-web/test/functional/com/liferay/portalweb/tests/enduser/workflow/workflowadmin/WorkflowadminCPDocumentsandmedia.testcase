@@ -843,7 +843,7 @@
 		</execute>
 
 		<execute macro="Category#addCP">
-			<var name="categoryName" value="Other" />
+			<var name="categoryName" value="Outlook" />
 			<var name="vocabularyName" value="Vocabulary Name" />
 		</execute>
 
@@ -884,7 +884,7 @@
 		</execute>
 
 		<execute macro="DMDocument#addCategories">
-			<var name="categoryNameList" value="legal,Other" />
+			<var name="categoryNameList" value="legal,Outlook" />
 			<var name="vocabularyName" value="Vocabulary Name" />
 		</execute>
 
@@ -924,7 +924,7 @@
 		</execute>
 
 		<execute macro="DMDocument#viewCategories">
-			<var name="categoryNameList" value="legal,Other" />
+			<var name="categoryNameList" value="legal,Outlook" />
 		</execute>
 
 		<execute macro="Button#clickSaveAsDraft" />
@@ -936,7 +936,7 @@
 		</execute>
 
 		<execute macro="DMDocument#viewCategories">
-			<var name="categoryNameList" value="legal,Other" />
+			<var name="categoryNameList" value="legal,Outlook" />
 		</execute>
 
 		<execute macro="Button#clickSubmitForPublication" />
@@ -946,7 +946,7 @@
 		</execute>
 
 		<execute macro="DMDocument#viewCategories">
-			<var name="categoryNameList" value="legal,Other" />
+			<var name="categoryNameList" value="legal,Outlook" />
 		</execute>
 
 		<execute macro="Page#gotoMyAccount">
@@ -969,7 +969,7 @@
 		<execute macro="Workflow#gotoPreviewEdit" />
 
 		<execute macro="DMDocument#viewCategories">
-			<var name="categoryNameList" value="legal,Other" />
+			<var name="categoryNameList" value="legal,Outlook" />
 		</execute>
 	</command>
 </definition>
