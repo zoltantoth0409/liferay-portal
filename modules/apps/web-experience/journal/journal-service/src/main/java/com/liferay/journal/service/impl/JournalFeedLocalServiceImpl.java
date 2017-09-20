@@ -75,10 +75,6 @@ public class JournalFeedLocalServiceImpl
 			user.getCompanyId(), groupId, feedId, autoFeedId, name,
 			ddmStructureKey, targetLayoutFriendlyUrl, contentField);
 
-		if (Validator.isNull(ddmTemplateKey)) {
-			ddmTemplateKey = null;
-		}
-
 		if (autoFeedId) {
 			feedId = String.valueOf(counterLocalService.increment());
 		}
