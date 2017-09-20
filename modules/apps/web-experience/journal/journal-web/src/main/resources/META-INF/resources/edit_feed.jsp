@@ -187,6 +187,10 @@ renderResponse.setTitle((feed == null) ? LanguageUtil.get(request, "new-feed") :
 				</c:when>
 				<c:otherwise>
 					<aui:field-wrapper label="template">
+						<div>
+							<aui:input checked="<%= ddmTemplateKey.equals(StringPool.BLANK) %>" label="<%= LanguageUtil.get(request, "all-templates") %>" name="ddmTemplateKey" type="radio" value="" />
+						</div>
+
 						<liferay-ui:table-iterator
 							list="<%= ddmTemplates %>"
 							listType="com.liferay.dynamic.data.mapping.model.DDMTemplate"
