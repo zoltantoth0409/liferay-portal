@@ -15,8 +15,8 @@
 package com.liferay.adaptive.media.content.transformer;
 
 import com.liferay.adaptive.media.exception.AMException;
-import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
+import com.liferay.portal.kernel.test.util.RandomTestUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -56,7 +56,7 @@ public class ContentTransformerTest {
 		ContentTransformerContentType<String> contentTransformerContentTypeA =
 			new TestContentTransformerContentType<>();
 
-		String transformedContentA = RandomTestUtil.randomString();";
+		String transformedContentA = RandomTestUtil.randomString();
 
 		_registerContentTransformer(
 			contentTransformerContentTypeA, _ORIGINAL_CONTENT,
