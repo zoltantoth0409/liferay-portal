@@ -102,7 +102,7 @@ public class ContentTransformerTest {
 	}
 
 	@Test
-	public void testReturnsTheContentTransformedByATransformerForAContentType()
+	public void testReturnsTheContentTransformedByAContentTransformerForAContentType()
 		throws Exception {
 
 		String transformedContent = "transformedContent";
@@ -118,7 +118,7 @@ public class ContentTransformerTest {
 	}
 
 	@Test
-	public void testReturnsTheSameContentIfATransformerThrowsAnException()
+	public void testReturnsTheSameContentIfAContentTransformerThrowsAnException()
 		throws Exception {
 
 		_registerFailingContentTransformer(
@@ -139,7 +139,7 @@ public class ContentTransformerTest {
 	}
 
 	@Test
-	public void testRunsTheOtherTransformersEvenIfOneOfThemFails()
+	public void testRunsTheOtherContentTransformersEvenIfOneOfThemFails()
 		throws Exception {
 
 		String transformedContent = "transformedContent";
