@@ -196,7 +196,7 @@ public class ContentTransformerTest {
 		Mockito.when(
 			invalidContentTransformer.transform(originalContent)
 		).thenThrow(
-			new AMException("Do not worry :), this is an expected exception")
+			new AMException("This is expected")
 		);
 	}
 
