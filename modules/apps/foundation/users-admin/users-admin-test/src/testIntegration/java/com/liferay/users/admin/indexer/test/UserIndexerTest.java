@@ -443,16 +443,6 @@ public class UserIndexerTest {
 		return documentOptional.get();
 	}
 
-	protected User getUser(List<User> users, long userId) {
-		for (User user : users) {
-			if (user.getUserId() == userId) {
-				return user;
-			}
-		}
-
-		return null;
-	}
-
 	protected List<String> getScreenNames(List<User> users) {
 		List<String> screenNames = new ArrayList<>(users.size());
 
@@ -476,6 +466,16 @@ public class UserIndexerTest {
 		long userId = GetterUtil.getLong(document.get(Field.USER_ID));
 
 		return _userLocalService.getUser(userId);
+	}
+
+	protected User getUser(List<User> users, long userId) {
+		for (User user : users) {
+			if (user.getUserId() == userId) {
+				return user;
+			}
+		}
+
+		return null;
 	}
 
 	protected List<User> getUsers(Hits hits) throws Exception {
