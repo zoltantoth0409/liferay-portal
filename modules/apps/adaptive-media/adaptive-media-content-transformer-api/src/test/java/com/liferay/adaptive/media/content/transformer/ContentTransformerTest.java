@@ -41,7 +41,7 @@ public class ContentTransformerTest {
 
 	@Before
 	public void setUp() throws BundleException {
-		_contentTransformerHandler.setServiceTrackerMap(_serviceTrackerMap);
+		_contentTransformerHandler.setServiceTrackerMap(_mockServiceTrackerMap);
 	}
 
 	@After
@@ -179,7 +179,7 @@ public class ContentTransformerTest {
 			transformedContent
 		);
 
-		_serviceTrackerMap.register(contentTransformer);
+		_mockServiceTrackerMap.register(contentTransformer);
 
 		return contentTransformer;
 	}
@@ -208,7 +208,7 @@ public class ContentTransformerTest {
 			new TestContentTransformerContentType<>();
 	private final ContentTransformerHandler _contentTransformerHandler =
 		new ContentTransformerHandler();
-	private final MockServiceTrackerMap _serviceTrackerMap =
+	private final MockServiceTrackerMap _mockServiceTrackerMap =
 		new MockServiceTrackerMap();
 
 	private static class TestContentTransformerContentType<T>
