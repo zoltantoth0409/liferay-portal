@@ -227,14 +227,14 @@ public class ContentTransformerTest {
 
 		@Override
 		public void close() {
-			_contentTransformerMap.clear();
+			_contentTransformers.clear();
 		}
 
 		@Override
 		public boolean containsKey(
 			ContentTransformerContentType contentTransformerContentType) {
 
-			return _contentTransformerMap.containsKey(
+			return _contentTransformers.containsKey(
 				contentTransformerContentType);
 		}
 
@@ -242,12 +242,12 @@ public class ContentTransformerTest {
 		public List<ContentTransformer> getService(
 			ContentTransformerContentType contentTransformerContentType) {
 
-			return _contentTransformerMap.get(contentTransformerContentType);
+			return _contentTransformers.get(contentTransformerContentType);
 		}
 
 		@Override
 		public Set<ContentTransformerContentType> keySet() {
-			return _contentTransformerMap.keySet();
+			return _contentTransformers.keySet();
 		}
 
 		@Override
@@ -256,7 +256,7 @@ public class ContentTransformerTest {
 
 		public void register(ContentTransformer contentTransformer) {
 			List<ContentTransformer> contentTransformers =
-				_contentTransformerMap.computeIfAbsent(
+				_contentTransformers.computeIfAbsent(
 					contentTransformer.getContentTransformerContentType(),
 					key -> new ArrayList<>());
 
@@ -265,11 +265,11 @@ public class ContentTransformerTest {
 
 		@Override
 		public Collection<List<ContentTransformer>> values() {
-			return _contentTransformerMap.values();
+			return _contentTransformers.values();
 		}
 
 		private final Map<ContentTransformerContentType,
-			List<ContentTransformer>> _contentTransformerMap = new HashMap<>();
+			List<ContentTransformer>> _contentTransformers = new HashMap<>();
 
 	}
 
