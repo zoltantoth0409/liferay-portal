@@ -15,6 +15,7 @@
 package com.liferay.adaptive.media.content.transformer;
 
 import com.liferay.adaptive.media.exception.AMException;
+import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
 
 import java.util.ArrayList;
@@ -55,7 +56,7 @@ public class ContentTransformerTest {
 		ContentTransformerContentType<String> contentTransformerContentTypeA =
 			new TestContentTransformerContentType<>();
 
-		String transformedContentA = "transformedContentA";
+		String transformedContentA = RandomTestUtil.randomString();";
 
 		_registerContentTransformer(
 			contentTransformerContentTypeA, _ORIGINAL_CONTENT,
@@ -64,7 +65,7 @@ public class ContentTransformerTest {
 		ContentTransformerContentType<String> contentTransformerContentTypeB =
 			new TestContentTransformerContentType<>();
 
-		String transformedContentB = "transformedContentB";
+		String transformedContentB = RandomTestUtil.randomString();
 
 		_registerContentTransformer(
 			contentTransformerContentTypeB, _ORIGINAL_CONTENT,
@@ -84,9 +85,8 @@ public class ContentTransformerTest {
 	public void testReturnsTheContentTransformedByAChainOfContentTransformers()
 		throws Exception {
 
-		String intermediateTransformedContent =
-			"intermediateTransformedContent";
-		String finalTransformedContent = "finalTransformedContent";
+		String intermediateTransformedContent = RandomTestUtil.randomString();
+		String finalTransformedContent = RandomTestUtil.randomString();
 
 		_registerContentTransformer(
 			_contentTransfomerContentType, _ORIGINAL_CONTENT,
@@ -106,7 +106,7 @@ public class ContentTransformerTest {
 	public void testReturnsTheContentTransformedByAContentTransformerForAContentType()
 		throws Exception {
 
-		String transformedContent = "transformedContent";
+		String transformedContent = RandomTestUtil.randomString();
 
 		_registerContentTransformer(
 			_contentTransfomerContentType, _ORIGINAL_CONTENT,
@@ -143,7 +143,7 @@ public class ContentTransformerTest {
 	public void testRunsTheOtherContentTransformersEvenIfOneOfThemFails()
 		throws Exception {
 
-		String transformedContent = "transformedContent";
+		String transformedContent = RandomTestUtil.randomString();
 
 		_registerFailingContentTransformer(
 			_contentTransfomerContentType, _ORIGINAL_CONTENT);
@@ -199,7 +199,8 @@ public class ContentTransformerTest {
 		);
 	}
 
-	private static final String _ORIGINAL_CONTENT = "originalContent";
+	private static final String _ORIGINAL_CONTENT =
+		RandomTestUtil.randomString();
 
 	private final ContentTransformerContentType<String>
 		_contentTransfomerContentType =
