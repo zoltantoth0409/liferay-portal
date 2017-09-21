@@ -255,12 +255,12 @@ public class ContentTransformerTest {
 		}
 
 		public void register(ContentTransformer contentTransformer) {
-			List<ContentTransformer> formNavigatorEntryConfigurationParsers =
+			List<ContentTransformer> contentTransformers =
 				_contentTransformerMap.computeIfAbsent(
 					contentTransformer.getContentTransformerContentType(),
 					key -> new ArrayList<>());
 
-			formNavigatorEntryConfigurationParsers.add(contentTransformer);
+			contentTransformers.add(contentTransformer);
 		}
 
 		@Override
