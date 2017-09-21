@@ -86,11 +86,12 @@ public class ContentTransformerTest {
 		throws Exception {
 
 		String intermediateTransformedContent = RandomTestUtil.randomString();
-		String finalTransformedContent = RandomTestUtil.randomString();
 
 		_registerContentTransformer(
 			_contentTransfomerContentType, _ORIGINAL_CONTENT,
 			intermediateTransformedContent);
+
+		String finalTransformedContent = RandomTestUtil.randomString();
 
 		_registerContentTransformer(
 			_contentTransfomerContentType, intermediateTransformedContent,
@@ -143,10 +144,10 @@ public class ContentTransformerTest {
 	public void testRunsTheOtherContentTransformersEvenIfOneOfThemFails()
 		throws Exception {
 
-		String transformedContent = RandomTestUtil.randomString();
-
 		_registerFailingContentTransformer(
 			_contentTransfomerContentType, _ORIGINAL_CONTENT);
+
+		String transformedContent = RandomTestUtil.randomString();
 
 		_registerContentTransformer(
 			_contentTransfomerContentType, _ORIGINAL_CONTENT,
