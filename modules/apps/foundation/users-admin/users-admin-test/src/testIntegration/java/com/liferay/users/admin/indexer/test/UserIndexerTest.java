@@ -308,12 +308,14 @@ public class UserIndexerTest {
 
 	@Test
 	public void testSummaryHighlight() throws Exception {
-		String firstName = "First";
-		String lastName = "Last";
-
 		_expectedUser = UserTestUtil.addUser();
 
+		String firstName = "First";
+
 		_expectedUser.setFirstName(firstName);
+
+		String lastName = "Last";
+
 		_expectedUser.setLastName(lastName);
 
 		_expectedUser = _userLocalService.updateUser(_expectedUser);
@@ -323,7 +325,6 @@ public class UserIndexerTest {
 			concat(
 				HighlightUtil.HIGHLIGHT_TAG_OPEN, firstName,
 				HighlightUtil.HIGHLIGHT_TAG_CLOSE, StringPool.SPACE, lastName));
-
 		assertSummary(
 			StringUtil.toLowerCase(firstName + " " + lastName),
 			concat(
@@ -331,7 +332,6 @@ public class UserIndexerTest {
 				HighlightUtil.HIGHLIGHT_TAG_CLOSE, StringPool.SPACE,
 				HighlightUtil.HIGHLIGHT_TAG_OPEN, lastName,
 				HighlightUtil.HIGHLIGHT_TAG_CLOSE));
-
 		assertSummary(
 			lastName + " " + firstName,
 			concat(
