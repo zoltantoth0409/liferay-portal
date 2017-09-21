@@ -51,7 +51,7 @@ public class CalendarWorkflowTestUtil {
 	public static void completeWorkflow(Group group) throws Exception {
 		try (CaptureAppender captureAppender =
 				Log4JLoggerTestUtil.configureLog4JLogger(
-					_MAIL_ENGINE_CLASS_NAME, Level.OFF)) {
+					"com.liferay.util.mail.MailEngine", Level.OFF)) {
 
 			List<WorkflowTask> workflowTasks =
 				WorkflowTaskManagerUtil.getWorkflowTasksByUserRoles(
@@ -79,8 +79,5 @@ public class CalendarWorkflowTestUtil {
 				StringPool.BLANK, null);
 		}
 	}
-
-	private static final String _MAIL_ENGINE_CLASS_NAME =
-		"com.liferay.util.mail.MailEngine";
 
 }
