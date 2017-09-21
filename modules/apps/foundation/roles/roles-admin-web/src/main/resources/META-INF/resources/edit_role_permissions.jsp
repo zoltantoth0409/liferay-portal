@@ -421,10 +421,10 @@ if (!portletName.equals(PortletKeys.SERVER_ADMIN)) {
 </aui:script>
 
 <aui:script>
-	function <portlet:namespace />updateActions(selected, unselected) {
+	function <portlet:namespace />updateActions(oldResourceBlockSelectedString, oldResourceBlockUnselectedString) {
 		var form = AUI.$(document.<portlet:namespace />fm);
-		var oldSelectedPermissions = selected.split(',');
-		var oldUnselectedPermissions = unselected.split(',');
+		var oldSelectedResourceBlockPermissions = oldResourceBlockSelectedString.split(',');
+		var oldUnselectedResourceBlockPermissions = oldResourceBlockUnselectedString.split(',');
 		var selectedPermissionsString = Liferay.Util.listCheckedExcept(form, '<portlet:namespace />allRowIds');
 		var unselectedPermissionsString = Liferay.Util.listUncheckedExcept(form, '<portlet:namespace />allRowIds');
 
@@ -435,7 +435,8 @@ if (!portletName.equals(PortletKeys.SERVER_ADMIN)) {
 			return AUI._.compact(AUI._.intersection(arr1, arr2)).length > 0;
 		}
 
-		if (!(hasCommonItems(selectedPermissions, oldUnselectedPermissions) || hasCommonItems(unselectedPermissions, oldSelectedPermissions)) ||
+		if (!(hasCommonItems(selectedPermissions, oldUnselectedResourceBlockPermissions) ||
+			hasCommonItems(unselectedPermissions, oldSelectedResourceBlockPermissions)) ||
 			confirm('<liferay-ui:message key="updating-the-chosen-permissions-will-overwrite-the-respective-individually-defined-permissions-for-one-or-more-of-these-resource-types" />')) {
 
 			form.fm('redirect').val('<%= HtmlUtil.escapeJS(portletURL.toString()) %>');
