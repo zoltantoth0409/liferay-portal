@@ -392,7 +392,7 @@ public class UserIndexerTest {
 
 		List<User> actualUsers = assertSearch(hits, user);
 
-		return findByUserId(actualUsers, user.getUserId());
+		return getUser(actualUsers, user.getUserId());
 	}
 
 	protected User assertSearchOneUser(String keywords, User user)
@@ -400,7 +400,7 @@ public class UserIndexerTest {
 
 		List<User> actualUsers = assertSearch(keywords, user);
 
-		return findByUserId(actualUsers, user.getUserId());
+		return getUser(actualUsers, user.getUserId());
 	}
 
 	protected void assertSummary(String keywords, String title)
@@ -416,7 +416,7 @@ public class UserIndexerTest {
 
 		Hits hits = search(searchContext);
 
-		Document document = findByUserId(
+		Document document = getDocument(
 			hits.getDocs(), _expectedUser.getUserId());
 
 		Summary summary = _indexer.getSummary(document, null, null, null);
@@ -431,7 +431,7 @@ public class UserIndexerTest {
 		return sb.toString();
 	}
 
-	protected Document findByUserId(Document[] documents, long userId) {
+	protected Document getDocument(Document[] documents, long userId) {
 		String userIdString = String.valueOf(userId);
 
 		Stream<Document> documentsStream = Stream.of(documents);
@@ -443,7 +443,7 @@ public class UserIndexerTest {
 		return documentOptional.get();
 	}
 
-	protected User findByUserId(List<User> users, long userId) {
+	protected User getUser(List<User> users, long userId) {
 		for (User user : users) {
 			if (user.getUserId() == userId) {
 				return user;
