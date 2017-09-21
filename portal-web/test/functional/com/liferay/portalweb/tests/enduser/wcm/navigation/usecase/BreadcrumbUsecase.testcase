@@ -83,9 +83,14 @@
 			<var name="uncheckSetupName" value="Show Current Site,Show Page,Show Parent Sites" />
 		</execute>
 
+		<execute macro="TestCase#getSiteName">
+			<return from="siteName" name="siteName" />
+			<var name="siteName" value="${siteName}" />
+		</execute>
+
 		<execute macro="Breadcrumb#viewConfigurationPreview">
 			<var name="breadcrumbListNotVisible" value="Site Name,Parent Page Name,Child Page Name" />
-			<var name="breadcrumbListVisible" value="Liferay DXP" />
+			<var name="breadcrumbListVisible" value="${siteName}" />
 		</execute>
 
 		<execute macro="Navigator#openSiteURL">
@@ -99,7 +104,7 @@
 
 		<execute macro="Breadcrumb#viewPG">
 			<var name="breadcrumbListNotVisible" value="Site Name,Parent Page Name,Child Page Name" />
-			<var name="breadcrumbListVisible" value="Liferay DXP" />
+			<var name="breadcrumbListVisible" value="${siteName}" />
 			<var name="pathLocator" value="PAGE" />
 		</execute>
 
@@ -139,7 +144,7 @@
 		</execute>
 
 		<execute macro="Breadcrumb#viewConfigurationPreview">
-			<var name="breadcrumbListVisible" value="Liferay DXP,Site Name,Parent Page Name,Child Page Name" />
+			<var name="breadcrumbListVisible" value="${siteName},Site Name,Parent Page Name,Child Page Name" />
 		</execute>
 
 		<execute macro="Navigator#openSiteURL">
@@ -152,7 +157,7 @@
 		</execute>
 
 		<execute macro="Breadcrumb#viewPG">
-			<var name="breadcrumbListVisible" value="Liferay DXP,Site Name,Parent Page Name,Child Page Name" />
+			<var name="breadcrumbListVisible" value="${siteName},Site Name,Parent Page Name,Child Page Name" />
 			<var name="pathLocator" value="PAGE" />
 		</execute>
 	</command>
@@ -203,8 +208,13 @@
 
 		<execute function="AssertLocation" value1="http://127.0.0.1:8080/web/site-name" />
 
+		<execute macro="TestCase#getSiteName">
+			<return from="siteName" name="siteName" />
+			<var name="siteName" value="${siteName}" />
+		</execute>
+
 		<execute macro="Breadcrumb#viewPG">
-			<var name="breadcrumbListVisible" value="Liferay DXP,Site Name,Site Page Name" />
+			<var name="breadcrumbListVisible" value="${siteName},Site Name,Site Page Name" />
 			<var name="pathLocator" value="PAGE" />
 		</execute>
 
@@ -212,6 +222,8 @@
 		<execute function="AssertElementNotPresent" locator1="BreadcrumbPortlet#BREADCRUMB_PAGE_LINK" />
 
 		<var name="key_URL" value="/web/guest" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="BreadcrumbPortlet#BREADCRUMB_PAGE_LINK" value1="LIFERAY DXP" />
+		<var method="StringUtil#toUpperCase('${siteName}')" name="siteName" />
+
+		<execute function="AssertTextEquals#assertPartialText" locator1="BreadcrumbPortlet#BREADCRUMB_PAGE_LINK" value1="${siteName}" />
 	</command>
 </definition>
