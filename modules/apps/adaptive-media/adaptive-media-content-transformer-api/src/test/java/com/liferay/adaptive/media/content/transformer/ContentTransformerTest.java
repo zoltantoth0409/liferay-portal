@@ -123,7 +123,7 @@ public class ContentTransformerTest {
 	public void testReturnsTheSameContentIfAContentTransformerThrowsAnException()
 		throws Exception {
 
-		_registerFailingContentTransformer(
+		_registerInvalidContentTransformer(
 			_contentTransfomerContentType, _ORIGINAL_CONTENT);
 
 		Assert.assertSame(
@@ -144,7 +144,7 @@ public class ContentTransformerTest {
 	public void testRunsTheOtherContentTransformersEvenIfOneOfThemFails()
 		throws Exception {
 
-		_registerFailingContentTransformer(
+		_registerInvalidContentTransformer(
 			_contentTransfomerContentType, _ORIGINAL_CONTENT);
 
 		String transformedContent = RandomTestUtil.randomString();
@@ -184,17 +184,17 @@ public class ContentTransformerTest {
 		return contentTransformer;
 	}
 
-	private void _registerFailingContentTransformer(
+	private void _registerInvalidContentTransformer(
 			ContentTransformerContentType<String> contentTransformerContentType,
 			String originalContent)
 		throws Exception {
 
-		ContentTransformer<String> failingContentTransformer =
+		ContentTransformer<String> invalidContentTransformer =
 			_registerContentTransformer(
 				contentTransformerContentType, originalContent, "");
 
 		Mockito.when(
-			failingContentTransformer.transform(originalContent)
+			invalidContentTransformer.transform(originalContent)
 		).thenThrow(
 			new AMException("Do not worry :), this is an expected exception")
 		);
