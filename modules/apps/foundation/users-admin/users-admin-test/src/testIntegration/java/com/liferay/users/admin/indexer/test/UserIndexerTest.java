@@ -432,13 +432,13 @@ public class UserIndexerTest {
 	protected Document getDocument(Document[] documents, long userId) {
 		String userIdString = String.valueOf(userId);
 
-		Stream<Document> documentsStream = Stream.of(documents);
+		Stream<Document> stream = Stream.of(documents);
 
-		Optional<Document> documentOptional = documentsStream.filter(
+		Optional<Document> optional = stream.filter(
 			document -> userIdString.equals(document.get("userId"))
 		).findAny();
 
-		return documentOptional.get();
+		return optional.get();
 	}
 
 	protected List<String> getScreenNames(List<User> users) {
