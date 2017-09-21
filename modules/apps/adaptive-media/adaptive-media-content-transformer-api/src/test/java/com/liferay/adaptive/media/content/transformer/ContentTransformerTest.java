@@ -54,15 +54,17 @@ public class ContentTransformerTest {
 
 		ContentTransformerContentType<String> contentTransformerContentTypeA =
 			new TestContentTransformerContentType<>();
-		ContentTransformerContentType<String> contentTransformerContentTypeB =
-			new TestContentTransformerContentType<>();
 
 		String transformedContentA = "transformedContentA";
-		String transformedContentB = "transformedContentB";
 
 		_registerContentTransformer(
 			contentTransformerContentTypeA, _ORIGINAL_CONTENT,
 			transformedContentA);
+
+		ContentTransformerContentType<String> contentTransformerContentTypeB =
+			new TestContentTransformerContentType<>();
+
+		String transformedContentB = "transformedContentB";
 
 		_registerContentTransformer(
 			contentTransformerContentTypeB, _ORIGINAL_CONTENT,
@@ -72,7 +74,6 @@ public class ContentTransformerTest {
 			transformedContentA,
 			_contentTransformerHandler.transform(
 				contentTransformerContentTypeA, _ORIGINAL_CONTENT));
-
 		Assert.assertEquals(
 			transformedContentB,
 			_contentTransformerHandler.transform(
