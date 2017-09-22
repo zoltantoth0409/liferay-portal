@@ -1208,7 +1208,7 @@ public class ThemeDisplay
 	public boolean isPortletEmbedded(
 		long groupId, Layout layout, String portletId) {
 
-		return _embeddedPortletsCache.computeIfAbsent(
+		return _portletEmbeddedMap.computeIfAbsent(
 			new EmbeddedPortletCacheKey(groupId, layout.getPlid(), portletId),
 			(key) -> layout.isPortletEmbedded(portletId, groupId));
 	}
@@ -2007,7 +2007,7 @@ public class ThemeDisplay
 	private long _doAsGroupId;
 	private String _doAsUserId = StringPool.BLANK;
 	private String _doAsUserLanguageId = StringPool.BLANK;
-	private Map<EmbeddedPortletCacheKey, Boolean> _embeddedPortletsCache =
+	private Map<EmbeddedPortletCacheKey, Boolean> _portletEmbeddedMap =
 		new HashMap<>();
 
 	/**
