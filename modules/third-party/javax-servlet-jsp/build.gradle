@@ -19,13 +19,13 @@ patch {
 		autoClean = false
 	}
 
+	fileNames "**/org/apache/jasper/JspCompilationContext.java"
 	fileNames "**/org/apache/jasper/compiler/Jsr199JavaCompiler.java"
 	fileNames "**/org/apache/jasper/compiler/Node.java"
 	fileNames "**/org/apache/jasper/runtime/JspContextWrapper.java"
 	fileNames "**/org/apache/jasper/runtime/JspWriterImpl.java"
 	fileNames "**/org/apache/jasper/runtime/PageContextImpl.java"
 	fileNames "**/org/apache/jasper/runtime/TldScanner.java"
-	fileNames "**/org/apache/jasper/JspCompilationContext.java"
 
 	originalLibModuleName = "javax.servlet.jsp"
 }
