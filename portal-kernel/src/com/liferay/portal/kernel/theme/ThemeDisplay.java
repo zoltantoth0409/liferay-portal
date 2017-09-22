@@ -2011,8 +2011,6 @@ public class ThemeDisplay
 	private long _doAsGroupId;
 	private String _doAsUserId = StringPool.BLANK;
 	private String _doAsUserLanguageId = StringPool.BLANK;
-	private Map<EmbeddedPortletCacheKey, Boolean> _portletEmbeddedMap =
-		new HashMap<>();
 	private boolean _facebook;
 	private String _facebookCanvasPageURL;
 	private boolean _freeformLayout;
@@ -2058,6 +2056,8 @@ public class ThemeDisplay
 	private String _portalDomain = StringPool.BLANK;
 	private String _portalURL = StringPool.BLANK;
 	private PortletDisplay _portletDisplay = new PortletDisplay();
+	private Map<EmbeddedPortletCacheKey, Boolean> _portletEmbeddedMap =
+		new HashMap<>();
 	private String _ppid = StringPool.BLANK;
 	private String _realCompanyLogo = StringPool.BLANK;
 	private int _realCompanyLogoHeight;
