@@ -727,8 +727,8 @@ public class BaseTextExportImportContentProcessor
 
 				urlSB.append(DATA_HANDLER_GROUP_FRIENDLY_URL);
 
-				// Append uuid so we can resolve during import regardless of
-				// it's this group or a different one
+				// Append UUID. This information will be used by import when
+				// looking up the proper group for the link
 
 				urlSB.append(StringPool.AT);
 
@@ -1053,7 +1053,7 @@ public class BaseTextExportImportContentProcessor
 
 		// Group friendly URLs
 
-		do {
+		while (true) {
 			int groupFriendlyUrlPos = content.indexOf(
 				DATA_HANDLER_GROUP_FRIENDLY_URL);
 
@@ -1074,7 +1074,7 @@ public class BaseTextExportImportContentProcessor
 
 			if (groupFriendlyUrlGroup == null) {
 
-				// Group not found fall back to the current one
+				// If group not found let's fall back to the current one
 
 				content = StringUtil.replaceFirst(
 					content, DATA_HANDLER_GROUP_FRIENDLY_URL,
@@ -1095,7 +1095,6 @@ public class BaseTextExportImportContentProcessor
 				content, StringPool.AT + groupUuid + StringPool.AT,
 				groupFriendlyUrlGroup.getFriendlyURL(), groupFriendlyUrlPos);
 		}
-		while (true);
 
 		content = StringUtil.replace(
 			content, DATA_HANDLER_PATH_CONTEXT, PortalUtil.getPathContext());
