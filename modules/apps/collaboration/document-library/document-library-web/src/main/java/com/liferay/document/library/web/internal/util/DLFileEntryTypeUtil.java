@@ -45,14 +45,14 @@ public class DLFileEntryTypeUtil {
 		}
 
 		for (DDMStructure ddmStructure : dlFileEntryType.getDDMStructures()) {
-			DLFileEntryMetadata fileEntryMetadata =
+			DLFileEntryMetadata dlFileEntryMetadata =
 				DLFileEntryMetadataLocalServiceUtil.getFileEntryMetadata(
 					ddmStructure.getStructureId(),
 					fileVersion.getFileVersionId());
 
 			DDMFormValues ddmFormValues =
 				dlEditFileEntryDisplayContext.getDDMFormValues(
-					fileEntryMetadata.getDDMStorageId());
+					dlFileEntryMetadata.getDDMStorageId());
 
 			if (ddmFormValues != null) {
 				Set<Locale> availableLocalesSet =
