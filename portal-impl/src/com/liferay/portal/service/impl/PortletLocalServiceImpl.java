@@ -16,6 +16,7 @@ package com.liferay.portal.service.impl;
 
 import com.liferay.admin.kernel.util.PortalMyAccountApplicationType;
 import com.liferay.expando.kernel.model.CustomAttributesDisplay;
+import com.liferay.petra.content.ContentUtil;
 import com.liferay.petra.lang.ClassLoaderPool;
 import com.liferay.portal.kernel.application.type.ApplicationType;
 import com.liferay.portal.kernel.cluster.Clusterable;
@@ -92,7 +93,6 @@ import com.liferay.portal.util.PropsValues;
 import com.liferay.portal.util.WebAppPool;
 import com.liferay.portlet.PortletBagFactory;
 import com.liferay.portlet.UndeployedPortlet;
-import com.liferay.util.ContentUtil;
 
 import java.net.URL;
 

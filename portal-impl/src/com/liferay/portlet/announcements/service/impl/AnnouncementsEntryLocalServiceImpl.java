@@ -21,6 +21,7 @@ import com.liferay.announcements.kernel.exception.EntryTitleException;
 import com.liferay.announcements.kernel.exception.EntryURLException;
 import com.liferay.announcements.kernel.model.AnnouncementsDelivery;
 import com.liferay.announcements.kernel.model.AnnouncementsEntry;
+import com.liferay.petra.content.ContentUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.interval.IntervalActionProcessor;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -48,7 +49,6 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.util.PrefsPropsUtil;
 import com.liferay.portal.util.PropsValues;
 import com.liferay.portlet.announcements.service.base.AnnouncementsEntryLocalServiceBaseImpl;
-import com.liferay.util.ContentUtil;
 
 import java.io.Serializable;
 
