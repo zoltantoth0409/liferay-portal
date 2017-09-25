@@ -569,7 +569,11 @@ public class AnnouncementsEntryLocalServiceImpl
 			return;
 		}
 
-		String body = ContentUtil.get(PropsValues.ANNOUNCEMENTS_EMAIL_BODY);
+		Class<?> clazz = getClass();
+
+		String body = ContentUtil.get(
+			clazz.getClassLoader(), PropsValues.ANNOUNCEMENTS_EMAIL_BODY);
+
 		String fromAddress = PrefsPropsUtil.getStringFromNames(
 			entry.getCompanyId(), PropsKeys.ANNOUNCEMENTS_EMAIL_FROM_ADDRESS,
 			PropsKeys.ADMIN_EMAIL_FROM_ADDRESS);
@@ -577,7 +581,7 @@ public class AnnouncementsEntryLocalServiceImpl
 			entry.getCompanyId(), PropsKeys.ANNOUNCEMENTS_EMAIL_FROM_NAME,
 			PropsKeys.ADMIN_EMAIL_FROM_NAME);
 		String subject = ContentUtil.get(
-			PropsValues.ANNOUNCEMENTS_EMAIL_SUBJECT);
+			clazz.getClassLoader(), PropsValues.ANNOUNCEMENTS_EMAIL_SUBJECT);
 
 		subscriptionSender.setBody(body);
 		subscriptionSender.setCompanyId(entry.getCompanyId());
