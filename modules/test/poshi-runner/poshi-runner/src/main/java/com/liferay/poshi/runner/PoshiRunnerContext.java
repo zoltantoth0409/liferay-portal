@@ -209,12 +209,11 @@ public class PoshiRunnerContext {
 		if ((pathLocator == null) &&
 			_pathExtensions.containsKey(namespace + "." + className)) {
 
+			String pathExtension = _pathExtensions.get(
+				namespace + "." + className);
 			String commandName =
 				PoshiRunnerGetterUtil.getCommandNameFromClassCommandName(
 					pathLocatorKey);
-
-			String pathExtension = _pathExtensions.get(
-				namespace + "." + className);
 
 			return getPathLocator(pathExtension + "#" + commandName, namespace);
 		}
