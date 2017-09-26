@@ -326,8 +326,13 @@ public class ServletResponseUtil {
 
 				response.setStatus(HttpServletResponse.SC_PARTIAL_CONTENT);
 
+				Range previousRange = null;
+
+				final boolean rangesSortedAndNotOverlapped =
+					rangesSortedAndNotOverlapped(ranges);
+
 				for (int i = 0; i < ranges.size(); i++) {
-					Range range = ranges.get(i);
+					Range curRange = ranges.get(i);
 
 					servletOutputStream.println();
 					servletOutputStream.println(
@@ -336,12 +341,29 @@ public class ServletResponseUtil {
 						HttpHeaders.CONTENT_TYPE + ": " + contentType);
 					servletOutputStream.println(
 						HttpHeaders.CONTENT_RANGE + ": " +
-							range.getContentRange());
+							curRange.getContentRange());
 					servletOutputStream.println();
 
-					inputStream = copyRange(
-						inputStream, outputStream, range.getStart(),
-						range.getLength());
+					if (rangesSortedAndNotOverlapped) {
+						long offset = curRange.getStart();
+
+						if (previousRange != null) {
+							offset =
+								curRange.getStart() -
+									previousRange.getEnd() - 1;
+						}
+
+						previousRange = curRange;
+
+						inputStream = copyRange(
+							offset, inputStream, servletOutputStream, false,
+							curRange.getLength());
+					}
+					else {
+						inputStream = copyRange(
+							inputStream, servletOutputStream,
+							curRange.getStart(), curRange.getLength());
+					}
 				}
 
 				servletOutputStream.println();
@@ -635,6 +657,22 @@ public class ServletResponseUtil {
 			inputStream, outputStream, StreamUtil.BUFFER_SIZE, cleanUp, length);
 
 		return inputStream;
+	}
+
+	protected static boolean rangesSortedAndNotOverlapped(List<Range> ranges) {
+		Range previousRange = null;
+
+		for (Range range : ranges) {
+			if ((previousRange != null) &&
+				(range.getStart() <= previousRange.getEnd())) {
+
+				return false;
+			}
+
+			previousRange = range;
+		}
+
+		return true;
 	}
 
 	protected static void setContentLength(
