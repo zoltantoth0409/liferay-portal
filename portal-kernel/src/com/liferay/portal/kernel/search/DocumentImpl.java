@@ -130,13 +130,14 @@ public class DocumentImpl implements Document {
 			return;
 		}
 
-		Format dateFormat = _getDateFormat();
-
 		String[] datesString = new String[values.length];
 		Long[] datesTime = new Long[values.length];
 
 		for (int i = 0; i < values.length; i++) {
+			Format dateFormat = _getDateFormat();
+
 			datesString[i] = dateFormat.format(values[i]);
+
 			datesTime[i] = values[i].getTime();
 		}
 
@@ -162,13 +163,14 @@ public class DocumentImpl implements Document {
 			return;
 		}
 
-		Format dateFormat = _getDateFormat();
-
 		String[] datesString = new String[values.length];
 		Long[] datesTime = new Long[values.length];
 
 		for (int i = 0; i < values.length; i++) {
+			Format dateFormat = _getDateFormat();
+
 			datesString[i] = dateFormat.format(values[i]);
+
 			datesTime[i] = values[i].getTime();
 		}
 
