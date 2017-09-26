@@ -448,6 +448,7 @@
 
 		<for list="Meet and Greet,Orientation,Physicals" param="webContentTitle">
 			<execute macro="WebContent#viewTitle">
+				<var name="onLive" value="true" />
 				<var name="webContentTitle" value="${webContentTitle}" />
 			</execute>
 		</for>
@@ -503,6 +504,7 @@
 
 		<for list="Meet and Greet,Orientation,Physicals,Enrollment Features,The SPACE Family" param="webContentTitle">
 			<execute macro="WebContent#viewTitle">
+				<var name="onLive" value="true" />
 				<var name="webContentTitle" value="${webContentTitle}" />
 			</execute>
 		</for>
