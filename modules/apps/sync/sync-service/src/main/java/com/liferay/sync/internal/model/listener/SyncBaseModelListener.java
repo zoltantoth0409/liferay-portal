@@ -170,14 +170,10 @@ public abstract class SyncBaseModelListener<T extends BaseModel<T>>
 
 				@Override
 				public void addCriteria(DynamicQuery dynamicQuery) {
-					Property nameProperty = PropertyFactoryUtil.forName("name");
-					Property roleIdProperty = PropertyFactoryUtil.forName(
-						"roleId");
-					Property viewActionIdProperty = PropertyFactoryUtil.forName(
-						"viewActionId");
-
 					Disjunction disjunction =
 						RestrictionsFactoryUtil.disjunction();
+
+					Property nameProperty = PropertyFactoryUtil.forName("name");
 
 					disjunction.add(
 						nameProperty.eq(DLFileEntry.class.getName()));
@@ -185,7 +181,14 @@ public abstract class SyncBaseModelListener<T extends BaseModel<T>>
 
 					dynamicQuery.add(disjunction);
 
+					Property roleIdProperty = PropertyFactoryUtil.forName(
+						"roleId");
+
 					dynamicQuery.add(roleIdProperty.eq(roleId));
+
+					Property viewActionIdProperty = PropertyFactoryUtil.forName(
+						"viewActionId");
+
 					dynamicQuery.add(viewActionIdProperty.eq(true));
 				}
 
