@@ -1081,7 +1081,6 @@ public class BaseTextExportImportContentProcessor
 				content = StringUtil.replaceFirst(
 					content, DATA_HANDLER_GROUP_FRIENDLY_URL,
 					group.getFriendlyURL(), groupFriendlyUrlPos);
-
 				content = StringUtil.replaceFirst(
 					content, StringPool.AT + groupUuid + StringPool.AT,
 					StringPool.BLANK, content.indexOf(group.getFriendlyURL()));
@@ -1092,7 +1091,6 @@ public class BaseTextExportImportContentProcessor
 			content = StringUtil.replaceFirst(
 				content, DATA_HANDLER_GROUP_FRIENDLY_URL, StringPool.BLANK,
 				groupFriendlyUrlPos);
-
 			content = StringUtil.replaceFirst(
 				content, StringPool.AT + groupUuid + StringPool.AT,
 				groupFriendlyUrlGroup.getFriendlyURL(), groupFriendlyUrlPos);
