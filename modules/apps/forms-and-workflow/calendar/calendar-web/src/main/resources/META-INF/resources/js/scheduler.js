@@ -1360,6 +1360,9 @@ AUI.add(
 									destroyOnHide: true,
 									modal: true
 								},
+								dialogIframe: {
+									bodyCssClass: 'dialog-with-footer'
+								},
 								refreshWindow: window,
 								title: Liferay.Language.get('edit-calendar-booking'),
 								uri: CalendarUtil.fillURLParameters(editCalendarBookingURL, data)
