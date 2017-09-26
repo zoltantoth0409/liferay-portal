@@ -724,8 +724,8 @@ public class DefaultTextExportImportContentProcessor
 
 				urlSB.append(_DATA_HANDLER_GROUP_FRIENDLY_URL);
 
-				// Append UUID. This information will be used by import when
-				// looking up the proper group for the link
+				// Append the UUID. This information will be used during the
+				// import process when looking up the proper group for the link.
 
 				urlSB.append(StringPool.AT);
 
@@ -1071,7 +1071,7 @@ public class DefaultTextExportImportContentProcessor
 
 			if (groupFriendlyUrlGroup == null) {
 
-				// If group not found let's fall back to the current one
+				// Fall back to the current group if the group is not found
 
 				content = StringUtil.replaceFirst(
 					content, _DATA_HANDLER_GROUP_FRIENDLY_URL,
