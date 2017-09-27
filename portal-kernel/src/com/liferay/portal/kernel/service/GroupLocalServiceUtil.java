@@ -537,6 +537,10 @@ public class GroupLocalServiceUtil {
 		return getService().getActionableDynamicQuery();
 	}
 
+	public static java.util.List<java.lang.Long> getActiveGroupIds(long userId) {
+		return getService().getActiveGroupIds(userId);
+	}
+
 	/**
 	* Returns all the active or inactive groups associated with the company.
 	*
@@ -1074,11 +1078,6 @@ public class GroupLocalServiceUtil {
 		long liveGroupId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getStagingGroup(liveGroupId);
-	}
-
-	public static java.util.List<java.lang.Long> getUserActiveGroupIds(
-		long userId) {
-		return getService().getUserActiveGroupIds(userId);
 	}
 
 	/**

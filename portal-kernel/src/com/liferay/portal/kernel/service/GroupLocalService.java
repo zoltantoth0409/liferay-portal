@@ -395,6 +395,9 @@ public interface GroupLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<java.lang.Long> getActiveGroupIds(long userId);
+
 	/**
 	* Returns all the active or inactive groups associated with the company.
 	*
@@ -850,9 +853,6 @@ public interface GroupLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Group getStagingGroup(long liveGroupId) throws PortalException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<java.lang.Long> getUserActiveGroupIds(long userId);
 
 	/**
 	* Returns the group directly associated with the user.
