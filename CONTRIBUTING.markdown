@@ -1,4 +1,3 @@
-
 # How to Contribute
 
 Liferay Portal is developed by its community consisting of users, enthusiasts, employees, customers, partners, and others. We strongly encourage you to contribute to Liferay's open source projects by implementing new features, enhancing existing features, and fixing bugs. We also welcome your participation in our forums, chat, writing documentation, and translating existing documentation.
@@ -50,7 +49,7 @@ A module can be built from within liferay-portal without recompiling the whole p
 
 * The platform must be completely compiled once using the method above.  This is due to the fact that the initial build initializes the build environment.
 
-* To build a module located in: **liferay-portal/modules/apps/collaboration/comment/comment-web** run: 
+* To build a module located in: **liferay-portal/modules/apps/collaboration/comment/comment-web** run:
 
       cd liferay-portal/modules
       ../gradlew :apps:collaboration:comment:comment-web:deploy
@@ -63,7 +62,7 @@ A module can be built from within liferay-portal without recompiling the whole p
 
 # Making Changes
 
-When making changes, it’s best to start off by creating a ticket in JIRA and referencing the ticket number from within any commits and pull requests.  
+When making changes, it’s best to start off by creating a ticket in JIRA and referencing the ticket number from within any commits and pull requests.
 
 ## JIRA
 
@@ -87,7 +86,7 @@ Submit your custom changes to Github using the following process:
 
 * Create a topic branch to hold your changes based on upstream/master:
 
-      git fetch upstream 
+      git fetch upstream
       git checkout -b my-custom-change upstream/master
 
 * Commit logical units of work including a reference to your ticket in JIRA.  For example:
@@ -101,7 +100,7 @@ Submit your custom changes to Github using the following process:
       git fetch upstream
       git rebase upstream/master
 
-* Push changes in your branch to your fork: 
+* Push changes in your branch to your fork:
 
       git push origin my-custom-change
 
@@ -117,7 +116,7 @@ Install the following tools to aid in development:
 
 * Blade Tools - [https://dev.liferay.com/develop/tutorials/-/knowledge_base/7-0/installing-blade-cli](https://dev.liferay.com/develop/tutorials/-/knowledge_base/7-0/installing-blade-cli)
 
-* Liferay IDE - [https://dev.liferay.com/develop/tutorials/-/knowledge_base/7-0/liferay-ide](https://dev.liferay.com/develop/tutorials/-/knowledge_base/7-0/liferay-ide).   Use the [generate-modules-classpath](https://web.liferay.com/web/jorge.diaz/blog/-/blogs/debugging-liferay-7-0-generate-modules-classpath-in-eclipse-using-generate_modules_classpath-sh) script to import Portal Core and all of the modules located in liferay-portal.  
+* Liferay IDE - [https://dev.liferay.com/develop/tutorials/-/knowledge_base/7-0/liferay-ide](https://dev.liferay.com/develop/tutorials/-/knowledge_base/7-0/liferay-ide).   Use the [generate-modules-classpath](https://web.liferay.com/web/jorge.diaz/blog/-/blogs/debugging-liferay-7-0-generate-modules-classpath-in-eclipse-using-generate_modules_classpath-sh) script to import Portal Core and all of the modules located in liferay-portal.
 
 * IntelliJ -  Use [liferay-intellij](https://github.com/holatuwol/liferay-intellij) to help configure the environment.
 
