@@ -32,6 +32,8 @@ public interface GroupFinder {
 		java.util.LinkedHashMap<java.lang.String, java.lang.Object> params,
 		boolean andOperator);
 
+	public java.util.List<java.lang.Long> findByActiveGroupIds(long userId);
+
 	public java.util.List<com.liferay.portal.kernel.model.Group> findByCompanyId(
 		long companyId,
 		java.util.LinkedHashMap<java.lang.String, java.lang.Object> params,
@@ -54,8 +56,6 @@ public interface GroupFinder {
 
 	public java.util.List<com.liferay.portal.kernel.model.Group> findBySystem(
 		long companyId);
-
-	public java.util.List<java.lang.Long> findByUserActiveGroupIds(long userId);
 
 	public java.util.List<java.lang.Long> findByC_P(long companyId,
 		long parentGroupId, long previousGroupId, int size);
