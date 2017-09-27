@@ -61,11 +61,11 @@ public class GroupLocalServiceTest {
 	}
 
 	@Test
-	public void testGetGroupDescendantSites() throws Exception {
-		_assertDescendantSites(_group1, _group2, _group3, _group4);
-		_assertDescendantSites(_group2, _group3);
-		_assertDescendantSites(_group3);
-		_assertDescendantSites(_group4);
+	public void testGetDescendantGroups() throws Exception {
+		_assertDescendantGroups(_group1, _group2, _group3, _group4);
+		_assertDescendantGroups(_group2, _group3);
+		_assertDescendantGroups(_group3);
+		_assertDescendantGroups(_group4);
 	}
 
 	@Test
@@ -75,19 +75,19 @@ public class GroupLocalServiceTest {
 		Assert.assertTrue(groups.isEmpty());
 	}
 
-	private void _assertDescendantSites(
-		Group parentGroup, Group... expectedDescendants) {
+	private void _assertDescendantGroups(
+		Group parentGroup, Group... expectedDescendantGroups) {
 
-		List<Group> actualDescendants = parentGroup.getDescendants(true);
+		List<Group> actualDescendantGroups = parentGroup.getDescendants(true);
 
 		Assert.assertEquals(
-			actualDescendants.toString(), expectedDescendants.length,
-			actualDescendants.size());
+			actualDescendantGroups.toString(), expectedDescendantGroups.length,
+			actualDescendantGroups.size());
 
-		for (Group expectedDescendant : expectedDescendants) {
+		for (Group expectedDescendantGroup : expectedDescendantGroups) {
 			Assert.assertTrue(
-				"Missing descendant: " + expectedDescendant.toString(),
-				actualDescendants.contains(expectedDescendant));
+				"Missing descendant: " + expectedDescendantGroup.toString(),
+				actualDescendantGroups.contains(expectedDescendantGroup));
 		}
 	}
 
