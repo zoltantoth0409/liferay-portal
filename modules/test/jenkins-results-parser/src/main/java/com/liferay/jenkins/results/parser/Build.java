@@ -60,11 +60,11 @@ public interface Build {
 
 	public int getDownstreamBuildCount(String status);
 
-	public int getDownstreamBuildCountByJobVariants(List<String> jobVariants);
+	public int getJobVariantsDownstreamBuildCount(List<String> jobVariants);
 
 	public List<Build> getDownstreamBuilds(String status);
 
-	public List<Build> getDownstreamBuildsByJobVariants(
+	public List<Build> getJobVariantsDownstreamBuilds(
 		List<String> jobVariants);
 
 	public long getDuration();
