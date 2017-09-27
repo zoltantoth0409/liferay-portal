@@ -660,9 +660,9 @@ AUI.add(
 					_preventNameRequiredChecking: function() {
 						var instance = this;
 
-						var isNameRequiredNode = instance.byId('isNameRequired');
+						var nameRequiredNode = instance.byId('nameRequired');
 
-						isNameRequiredNode.val("0");
+						nameRequiredNode.val("0");
 					},
 
 					_rangeEndsInPast: function(today) {

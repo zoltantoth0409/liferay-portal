@@ -19,12 +19,12 @@
 <aui:fieldset cssClass="options-group" label="<%= label %>" markupView="lexicon">
 	<aui:model-context bean="<%= exportImportConfiguration %>" model="<%= ExportImportConfiguration.class %>" />
 
-	<aui:input name="isNameRequired" type="hidden" value="1" />
+	<aui:input name="nameRequired" type="hidden" value="1" />
 
 	<aui:input label="title" name="name" showRequiredLabel="<%= true %>">
 		<aui:validator name="required">
 			function() {
-				return (AUI.$('#<portlet:namespace />isNameRequired').prop('value') === "1");
+				return (AUI.$('#<portlet:namespace />nameRequired').prop('value') === "1");
 			}
 		</aui:validator>
 	</aui:input>
