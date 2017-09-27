@@ -992,7 +992,7 @@
 		</execute>
 	</command>
 
-	<command ignore="true" name="AssignRolePermissionsCompleteFormPG" priority="4">
+	<command name="AssignRolePermissionsCompleteFormPG" priority="4">
 		<execute macro="ProductMenu#gotoControlPanelUsers">
 			<var name="portlet" value="Roles" />
 		</execute>
