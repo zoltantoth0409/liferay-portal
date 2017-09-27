@@ -48,13 +48,14 @@ public class CentralizedThreadLocal<T> extends ThreadLocal<T> {
 	}
 
 	public static void setThreadLocals(
-		Map<CentralizedThreadLocal<?>, Object> longLivedThreadLocals,
-		Map<CentralizedThreadLocal<?>, Object> shortLivedThreadLocals) {
+		Map<CentralizedThreadLocal<?>, Object> longLivedCentralizedThreadLocals,
+		Map<CentralizedThreadLocal<?>, Object>
+			shortLivedCentralizedThreadLocals) {
 
 		ThreadLocalMap threadLocalMap = _longLivedThreadLocals.get();
 
 		for (Map.Entry<CentralizedThreadLocal<?>, Object> entry :
-				longLivedThreadLocals.entrySet()) {
+				longLivedCentralizedThreadLocals.entrySet()) {
 
 			threadLocalMap.putEntry(entry.getKey(), entry.getValue());
 		}
@@ -62,7 +63,7 @@ public class CentralizedThreadLocal<T> extends ThreadLocal<T> {
 		threadLocalMap = _shortLivedThreadLocals.get();
 
 		for (Map.Entry<CentralizedThreadLocal<?>, Object> entry :
-				shortLivedThreadLocals.entrySet()) {
+				shortLivedCentralizedThreadLocals.entrySet()) {
 
 			threadLocalMap.putEntry(entry.getKey(), entry.getValue());
 		}
