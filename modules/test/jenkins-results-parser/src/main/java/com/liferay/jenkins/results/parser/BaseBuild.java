@@ -556,8 +556,8 @@ public abstract class BaseBuild implements Build {
 
 	@Override
 	public int getJobVariantsDownstreamBuildCount(List<String> jobVariants) {
-		List<Build> jobVariantsDownstreamBuilds = getJobVariantsDownstreamBuilds(
-			jobVariants);
+		List<Build> jobVariantsDownstreamBuilds =
+			getJobVariantsDownstreamBuilds(jobVariants);
 
 		return jobVariantsDownstreamBuilds.size();
 	}
