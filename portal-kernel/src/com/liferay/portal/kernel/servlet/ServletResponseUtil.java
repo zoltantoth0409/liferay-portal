@@ -260,11 +260,7 @@ public class ServletResponseUtil {
 			long fullLength, String contentType)
 		throws IOException {
 
-		OutputStream outputStream = null;
-
-		try {
-			outputStream = response.getOutputStream();
-
+		try (OutputStream outputStream = response.getOutputStream()) {
 			Range fullRange = new Range(0, fullLength - 1, fullLength);
 
 			Range firstRange = null;
@@ -368,11 +364,7 @@ public class ServletResponseUtil {
 			}
 		}
 		finally {
-			try {
-				inputStream.close();
-			}
-			catch (IOException ioe) {
-			}
+			StreamUtil.cleanUp(inputStream);
 		}
 	}
 
@@ -772,7 +764,9 @@ public class ServletResponseUtil {
 
 			byteArrayInputStream.skip(start);
 
-			StreamUtil.transfer(byteArrayInputStream, outputStream, length);
+			StreamUtil.transfer(
+				byteArrayInputStream, outputStream, StreamUtil.BUFFER_SIZE,
+				false, length);
 
 			return byteArrayInputStream;
 		}
