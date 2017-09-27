@@ -60,12 +60,7 @@ public interface Build {
 
 	public int getDownstreamBuildCount(String status);
 
-	public int getJobVariantsDownstreamBuildCount(List<String> jobVariants);
-
 	public List<Build> getDownstreamBuilds(String status);
-
-	public List<Build> getJobVariantsDownstreamBuilds(
-		List<String> jobVariants);
 
 	public long getDuration();
 
@@ -84,6 +79,10 @@ public interface Build {
 	public String getJobURL();
 
 	public String getJobVariant();
+
+	public int getJobVariantsDownstreamBuildCount(List<String> jobVariants);
+
+	public List<Build> getJobVariantsDownstreamBuilds(List<String> jobVariants);
 
 	public Long getLatestStartTimestamp();
 

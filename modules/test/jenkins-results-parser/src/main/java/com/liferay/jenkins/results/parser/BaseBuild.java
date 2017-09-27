@@ -350,14 +350,6 @@ public abstract class BaseBuild implements Build {
 	}
 
 	@Override
-	public int getJobVariantsDownstreamBuildCount(List<String> jobVariants) {
-		List<Build> filteredDownstreamBuilds = getJobVariantsDownstreamBuilds(
-			jobVariants);
-
-		return filteredDownstreamBuilds.size();
-	}
-
-	@Override
 	public List<Build> getDownstreamBuilds(String status) {
 		if (status == null) {
 			return downstreamBuilds;
@@ -368,27 +360,6 @@ public abstract class BaseBuild implements Build {
 		for (Build downstreamBuild : downstreamBuilds) {
 			if (status.equals(downstreamBuild.getStatus())) {
 				filteredDownstreamBuilds.add(downstreamBuild);
-			}
-		}
-
-		return filteredDownstreamBuilds;
-	}
-
-	@Override
-	public List<Build> getJobVariantsDownstreamBuilds(
-		List<String> jobVariants) {
-
-		List<Build> filteredDownstreamBuilds = new ArrayList<>();
-
-		for (Build downstreamBuild : downstreamBuilds) {
-			String downstreamBuildJobVariant = downstreamBuild.getJobVariant();
-
-			for (String jobVariant : jobVariants) {
-				if (downstreamBuildJobVariant.contains(jobVariant)) {
-					filteredDownstreamBuilds.add(downstreamBuild);
-
-					break;
-				}
 			}
 		}
 
@@ -581,6 +552,35 @@ public abstract class BaseBuild implements Build {
 		}
 
 		return batchName;
+	}
+
+	@Override
+	public int getJobVariantsDownstreamBuildCount(List<String> jobVariants) {
+		List<Build> filteredDownstreamBuilds = getJobVariantsDownstreamBuilds(
+			jobVariants);
+
+		return filteredDownstreamBuilds.size();
+	}
+
+	@Override
+	public List<Build> getJobVariantsDownstreamBuilds(
+		List<String> jobVariants) {
+
+		List<Build> filteredDownstreamBuilds = new ArrayList<>();
+
+		for (Build downstreamBuild : downstreamBuilds) {
+			String downstreamBuildJobVariant = downstreamBuild.getJobVariant();
+
+			for (String jobVariant : jobVariants) {
+				if (downstreamBuildJobVariant.contains(jobVariant)) {
+					filteredDownstreamBuilds.add(downstreamBuild);
+
+					break;
+				}
+			}
+		}
+
+		return filteredDownstreamBuilds;
 	}
 
 	@Override
