@@ -1062,6 +1062,11 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 			companyId, classNameId, defaultUserId);
 	}
 
+	@Override
+	public List<Long> getActiveGroupIds(long userId) {
+		return groupFinder.findByActiveGroupIds(userId);
+	}
+
 	/**
 	 * Returns all the active or inactive groups associated with the company.
 	 *
@@ -1610,11 +1615,6 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	@Override
 	public Group getStagingGroup(long liveGroupId) throws PortalException {
 		return groupPersistence.findByLiveGroupId(liveGroupId);
-	}
-
-	@Override
-	public List<Long> getUserActiveGroupIds(long userId) {
-		return groupFinder.findByUserActiveGroupIds(userId);
 	}
 
 	/**
@@ -4170,7 +4170,6 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 
 				dynamicQuery.add(userId.in(userIds));
 			});
-
 		indexableActionableDynamicQuery.setCompanyId(companyId);
 		indexableActionableDynamicQuery.setPerformActionMethod(
 			new ActionableDynamicQuery.PerformActionMethod<User>() {

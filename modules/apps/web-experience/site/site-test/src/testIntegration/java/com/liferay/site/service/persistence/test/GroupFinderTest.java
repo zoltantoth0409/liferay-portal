@@ -123,6 +123,14 @@ public class GroupFinderTest {
 	}
 
 	@Test
+	public void testFindByActiveGroupIds() throws Exception {
+		List<Long> groups = GroupFinderUtil.findByActiveGroupIds(
+			TestPropsValues.getUserId());
+
+		Assert.assertFalse(groups.isEmpty());
+	}
+
+	@Test
 	public void testFindByC_C_N_DJoinByRoleResourcePermissions()
 		throws Exception {
 
@@ -283,14 +291,6 @@ public class GroupFinderTest {
 		groups = findByLayouts(childGroup1.getGroupId());
 
 		Assert.assertTrue(groups.isEmpty());
-	}
-
-	@Test
-	public void testFindByUserActiveGroupIds() throws Exception {
-		List<Long> groups = GroupFinderUtil.findByUserActiveGroupIds(
-			TestPropsValues.getUserId());
-
-		Assert.assertFalse(groups.isEmpty());
 	}
 
 	protected static ResourceAction getModelResourceAction()
