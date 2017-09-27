@@ -268,7 +268,6 @@ public class UserIndexer extends BaseIndexer<User> {
 		long[] organizationIds = user.getOrganizationIds();
 
 		document.addKeyword(Field.COMPANY_ID, user.getCompanyId());
-
 		document.addKeyword(
 			Field.GROUP_ID, getActiveGroupIds(user.getUserId()));
 		document.addDate(Field.MODIFIED_DATE, user.getModifiedDate());
@@ -373,7 +372,7 @@ public class UserIndexer extends BaseIndexer<User> {
 	}
 
 	protected long[] getActiveGroupIds(long userId) {
-		List<Long> groupIds = groupLocalService.getUserActiveGroupIds(userId);
+		List<Long> groupIds = groupLocalService.getActiveGroupIds(userId);
 
 		return ArrayUtil.toArray(groupIds.toArray(new Long[groupIds.size()]));
 	}
