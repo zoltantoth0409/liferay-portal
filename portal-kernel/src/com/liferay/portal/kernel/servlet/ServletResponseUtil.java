@@ -283,8 +283,8 @@ public class ServletResponseUtil {
 				setHeaders(
 					request, response, fileName, contentType, null, fullRange);
 
-				copyRange(
-					fullRange.getStart(), inputStream, outputStream, true,
+				_copyRange(
+					inputStream, outputStream, fullRange.getStart(),
 					fullRange.getLength());
 			}
 			else if (ranges.size() == 1) {
@@ -301,8 +301,8 @@ public class ServletResponseUtil {
 
 				response.setStatus(HttpServletResponse.SC_PARTIAL_CONTENT);
 
-				copyRange(
-					range.getStart(), inputStream, outputStream, true,
+				_copyRange(
+					inputStream, outputStream, range.getStart(),
 					range.getLength());
 			}
 			else if (ranges.size() > 1) {
@@ -348,26 +348,19 @@ public class ServletResponseUtil {
 							curRange.getContentRange());
 					servletOutputStream.println();
 
-					if (rangesSortedAndNotOverlapped) {
-						long offset = curRange.getStart();
+					long offset = curRange.getStart();
 
+					if (rangesSortedAndNotOverlapped) {
 						if (previousRange != null) {
-							offset =
-								curRange.getStart() -
-									previousRange.getEnd() - 1;
+							offset -= previousRange.getEnd() + 1;
 						}
 
 						previousRange = curRange;
+					}
 
-						inputStream = copyRange(
-							offset, inputStream, servletOutputStream, false,
-							curRange.getLength());
-					}
-					else {
-						inputStream = _copyRange(
-							inputStream, servletOutputStream,
-							curRange.getStart(), curRange.getLength());
-					}
+					inputStream = _copyRange(
+						inputStream, servletOutputStream, offset,
+						curRange.getLength());
 				}
 
 				servletOutputStream.println();
@@ -620,18 +613,6 @@ public class ServletResponseUtil {
 			length);
 	}
 
-	protected static InputStream copyRange(
-			long offset, InputStream inputStream, OutputStream outputStream,
-			boolean cleanUp, long length)
-		throws IOException {
-
-		inputStream.skip(offset);
-		StreamUtil.transfer(
-			inputStream, outputStream, StreamUtil.BUFFER_SIZE, cleanUp, length);
-
-		return inputStream;
-	}
-
 	protected static boolean rangesSortedAndNotOverlapped(List<Range> ranges) {
 		Range previousRange = null;
 
@@ -809,8 +790,12 @@ public class ServletResponseUtil {
 			return randomAccessInputStream;
 		}
 
-		throw new IllegalArgumentException(
-			"InputStream must support random access");
+		inputStream.skip(start);
+
+		StreamUtil.transfer(
+			inputStream, outputStream, StreamUtil.BUFFER_SIZE, false, length);
+
+		return inputStream;
 	}
 
 	private static InputStream _toRandomAccessInputStream(
