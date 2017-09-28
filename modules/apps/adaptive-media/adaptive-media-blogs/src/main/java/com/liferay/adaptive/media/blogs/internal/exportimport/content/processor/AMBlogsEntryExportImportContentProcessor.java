@@ -80,7 +80,7 @@ public class AMBlogsEntryExportImportContentProcessor
 	}
 
 	@Reference(
-		target = "(objectClass=com.liferay.blogs.internal.exportimport.content.processor.BlogsEntryExportImportContentProcessor)",
+		target = "(&(model.class.name=com.liferay.blogs.kernel.model.BlogsEntry)(!(component.name=com.liferay.adaptive.media.blogs.internal.exportimport.content.processor.AMBlogsEntryExportImportContentProcessor)))",
 		unbind = "-"
 	)
 	protected void setBlogsEntryExportImportContentProcessor(

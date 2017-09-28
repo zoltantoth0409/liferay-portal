@@ -112,7 +112,7 @@ public class AMJournalArticleExportImportContentProcessor
 	}
 
 	@Reference(
-		target = "(objectClass=com.liferay.journal.internal.exportimport.content.processor.JournalArticleExportImportContentProcessor)",
+		target = "(&(model.class.name=com.liferay.journal.model.JournalArticle)(!(component.name=com.liferay.adaptive.media.journal.web.internal.exportimport.content.processor.AMJournalArticleExportImportContentProcessor)))",
 		unbind = "-"
 	)
 	protected void setJournalArticleExportImportContentProcessor(
