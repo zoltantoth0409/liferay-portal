@@ -272,7 +272,7 @@ public class JenkinsResultsParserUtil {
 
 				if (duration >= timeout) {
 					throw new TimeoutException(
-						"Timeout occurred while executing bash commands: " +
+						"Timeout occurred while executing Bash commands: " +
 							Arrays.toString(commands));
 				}
 
