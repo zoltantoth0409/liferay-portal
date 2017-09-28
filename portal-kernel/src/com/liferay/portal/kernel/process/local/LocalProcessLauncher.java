@@ -235,9 +235,9 @@ public class LocalProcessLauncher {
 	private static URL[] _getClassPathURLs(String classPath)
 		throws MalformedURLException {
 
-		String[] paths = StringUtil.split(classPath, File.pathSeparatorChar);
-
 		Set<URL> urls = new LinkedHashSet<>();
+
+		String[] paths = StringUtil.split(classPath, File.pathSeparatorChar);
 
 		for (String path : paths) {
 			File file = new File(path);
