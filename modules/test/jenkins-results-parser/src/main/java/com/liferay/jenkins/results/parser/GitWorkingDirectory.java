@@ -515,7 +515,7 @@ public class GitWorkingDirectory {
 		if (executionResult.getExitValue() != 0) {
 			throw new RuntimeException(
 				JenkinsResultsParserUtil.combine(
-					"Unable to read git config property ",
+					"Unable to read Git config property ",
 					gitConfigPropertyName, "\n",
 					executionResult.getStandardError()));
 		}
