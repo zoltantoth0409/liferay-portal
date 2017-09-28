@@ -49,7 +49,7 @@
 
 		<execute macro="WebContent#addLocale">
 			<var name="language" value="Hebrew (Israel)" />
-			<var name="locale" value="iw-IL" />
+			<var name="locale" value="iw_IL" />
 		</execute>
 
 		<execute macro="WebContent#viewRTLLayout" />
