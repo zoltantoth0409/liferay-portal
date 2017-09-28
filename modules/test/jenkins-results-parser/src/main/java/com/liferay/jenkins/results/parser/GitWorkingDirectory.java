@@ -893,7 +893,7 @@ public class GitWorkingDirectory {
 
 				if (!matcher.matches()) {
 					throw new IllegalArgumentException(
-						"Invalid git remote input line " + remoteInputLine);
+						"Invalid Git remote input line " + remoteInputLine);
 				}
 
 				if (name == null) {
@@ -1025,7 +1025,7 @@ public class GitWorkingDirectory {
 		}
 
 		throw new RuntimeException(
-			"Real git directory could not be found in " + gitFile.getPath());
+			"Real Git directory could not be found in " + gitFile.getPath());
 	}
 
 	protected Remote getRemote(boolean createUpstreamPublic, String name) {
