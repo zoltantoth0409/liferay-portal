@@ -1477,8 +1477,8 @@
 	</command>
 
 	<command name="selectLocale">
-		<execute macro="Navigator#gotoNavTab">
-			<var name="navTab" value="${locale}" />
+		<execute function="Click" locator1="Translation#CURRENT_LOCALE">
+			<var name="key_localizedLanguage" value="${locale}" />
 		</execute>
 	</command>
 
