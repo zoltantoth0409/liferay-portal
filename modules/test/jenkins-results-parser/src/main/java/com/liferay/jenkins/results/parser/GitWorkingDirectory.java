@@ -867,7 +867,7 @@ public class GitWorkingDirectory {
 
 			if (remoteInputLines.length != 2) {
 				throw new IllegalArgumentException(
-					"\"remoteInputLines\" but be an array of 2 strings");
+					"\"remoteInputLines\" must be an array of 2 strings");
 			}
 
 			if (remoteInputLines[0].equals(remoteInputLines[1])) {
