@@ -872,16 +872,17 @@ public class GitWorkingDirectory {
 
 			if (remoteInputLines[0].equals(remoteInputLines[1])) {
 				throw new IllegalArgumentException(
-					"Duplicate remote input lines detected. " +
-						remoteInputLines[0]);
+					"\"remoteInputLines[0]\" and \"remoteInputLines[1]\" " +
+						"are identical: " + remoteInputLines[0]);
 			}
 
 			if ((remoteInputLines[0] == null) ||
 				(remoteInputLines[1] == null)) {
 
 				throw new IllegalArgumentException(
-					"Neither of the strings of \"remoteInputLines\" may be " +
-						"NULL" + Arrays.toString(remoteInputLines));
+					"Neither \"remoteInputLines[0]\" nor " +
+						"\"remoteInputLines[1]\" may be NULL: " +
+							Arrays.toString(remoteInputLines));
 			}
 
 			String name = null;
