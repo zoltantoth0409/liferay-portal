@@ -457,7 +457,7 @@ public class GitWorkingDirectory {
 		if (executionResult.getExitValue() != 0) {
 			throw new RuntimeException(
 				JenkinsResultsParserUtil.combine(
-					"Unable to get branches with sha ", sha, "\n",
+					"Unable to get branches with SHA ", sha, "\n",
 					executionResult.getStandardError()));
 		}
 
