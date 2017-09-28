@@ -867,7 +867,7 @@ public class GitWorkingDirectory {
 
 			if (remoteInputLines.length != 2) {
 				throw new IllegalArgumentException(
-					"remoteInputLines but be an array of 2 Strings");
+					"\"remoteInputLines\" but be an array of 2 strings");
 			}
 
 			if (remoteInputLines[0].equals(remoteInputLines[1])) {
@@ -880,8 +880,8 @@ public class GitWorkingDirectory {
 				(remoteInputLines[1] == null)) {
 
 				throw new IllegalArgumentException(
-					"Neither of the remoteInputLines may be NULL" +
-						Arrays.toString(remoteInputLines));
+					"Neither of the strings of \"remoteInputLines\" may be " +
+						"NULL" + Arrays.toString(remoteInputLines));
 			}
 
 			String name = null;
