@@ -1279,11 +1279,11 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			modelClassName.substring(0, pos) + ".service." + simpleClassName +
 				"LocalService";
 
-		IdentifiableOSGiService service =
+		IdentifiableOSGiService identifiableOSGiService =
 			IdentifiableOSGiServiceUtil.getIdentifiableOSGiService(
 				serviceClassName);
 
-		Class<?> serviceClass = service.getClass();
+		Class<?> serviceClass = identifiableOSGiService.getClass();
 
 		Method createModelMethod = serviceClass.getMethod(
 			"create" + simpleClassName, new Class<?>[] {long.class});

@@ -43,10 +43,11 @@ public class AlloyServiceInvoker {
 				"LocalService";
 
 		try {
-			service = IdentifiableOSGiServiceUtil.getIdentifiableOSGiService(
-				serviceClassName);
+			identifiableOSGiService =
+				IdentifiableOSGiServiceUtil.getIdentifiableOSGiService(
+					serviceClassName);
 
-			Class<?> serviceClass = service.getClass();
+			Class<?> serviceClass = identifiableOSGiService.getClass();
 
 			createModelMethod = serviceClass.getMethod(
 				"create" + simpleClassName, new Class<?>[] {long.class});
@@ -95,11 +96,13 @@ public class AlloyServiceInvoker {
 	}
 
 	public BaseModel addModel(BaseModel baseModel) throws Exception {
-		return (BaseModel<?>)addModelMethod.invoke(service, baseModel);
+		return (BaseModel<?>)addModelMethod.invoke(
+			identifiableOSGiService, baseModel);
 	}
 
 	public DynamicQuery buildDynamicQuery() throws Exception {
-		return (DynamicQuery)dynamicQueryMethod1.invoke(service);
+		return (DynamicQuery)dynamicQueryMethod1.invoke(
+			identifiableOSGiService);
 	}
 
 	public DynamicQuery buildDynamicQuery(Object[] properties)
@@ -126,16 +129,18 @@ public class AlloyServiceInvoker {
 	}
 
 	public BaseModel createModel(long id) throws Exception {
-		return (BaseModel<?>)createModelMethod.invoke(service, id);
+		return (BaseModel<?>)createModelMethod.invoke(
+			identifiableOSGiService, id);
 	}
 
 	public BaseModel<?> deleteModel(BaseModel<?> baseModel) throws Exception {
 		return (BaseModel<?>)deleteModelMethod.invoke(
-			service, baseModel.getPrimaryKeyObj());
+			identifiableOSGiService, baseModel.getPrimaryKeyObj());
 	}
 
 	public BaseModel<?> deleteModel(long classPK) throws Exception {
-		return (BaseModel<?>)deleteModelMethod.invoke(service, classPK);
+		return (BaseModel<?>)deleteModelMethod.invoke(
+			identifiableOSGiService, classPK);
 	}
 
 	/**
@@ -161,7 +166,8 @@ public class AlloyServiceInvoker {
 	public List executeDynamicQuery(DynamicQuery dynamicQuery)
 		throws Exception {
 
-		return (List)dynamicQueryMethod2.invoke(service, dynamicQuery);
+		return (List)dynamicQueryMethod2.invoke(
+			identifiableOSGiService, dynamicQuery);
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -170,7 +176,7 @@ public class AlloyServiceInvoker {
 		throws Exception {
 
 		return (List)dynamicQueryMethod3.invoke(
-			service, dynamicQuery, start, end);
+			identifiableOSGiService, dynamicQuery, start, end);
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -180,7 +186,7 @@ public class AlloyServiceInvoker {
 		throws Exception {
 
 		return (List)dynamicQueryMethod4.invoke(
-			service, dynamicQuery, start, end, obc);
+			identifiableOSGiService, dynamicQuery, start, end, obc);
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -207,7 +213,8 @@ public class AlloyServiceInvoker {
 	public long executeDynamicQueryCount(DynamicQuery dynamicQuery)
 		throws Exception {
 
-		return (Long)dynamicQueryCountMethod1.invoke(service, dynamicQuery);
+		return (Long)dynamicQueryCountMethod1.invoke(
+			identifiableOSGiService, dynamicQuery);
 	}
 
 	public long executeDynamicQueryCount(
@@ -215,7 +222,7 @@ public class AlloyServiceInvoker {
 		throws Exception {
 
 		return (Long)dynamicQueryCountMethod2.invoke(
-			service, dynamicQuery, projection);
+			identifiableOSGiService, dynamicQuery, projection);
 	}
 
 	public long executeDynamicQueryCount(Object[] properties) throws Exception {
@@ -223,24 +230,28 @@ public class AlloyServiceInvoker {
 	}
 
 	public BaseModel<?> fetchModel(long classPK) throws Exception {
-		return (BaseModel<?>)fetchModelMethod.invoke(service, classPK);
+		return (BaseModel<?>)fetchModelMethod.invoke(
+			identifiableOSGiService, classPK);
 	}
 
 	public BaseModel<?> getModel(long classPK) throws Exception {
-		return (BaseModel<?>)getModelMethod.invoke(service, classPK);
+		return (BaseModel<?>)getModelMethod.invoke(
+			identifiableOSGiService, classPK);
 	}
 
 	@SuppressWarnings("rawtypes")
 	public List getModels(int start, int end) throws Exception {
-		return (List)getModelsMethod.invoke(service, start, end);
+		return (List)getModelsMethod.invoke(
+			identifiableOSGiService, start, end);
 	}
 
 	public int getModelsCount() throws Exception {
-		return (Integer)getModelsCountMethod.invoke(service);
+		return (Integer)getModelsCountMethod.invoke(identifiableOSGiService);
 	}
 
 	public BaseModel<?> updateModel(BaseModel baseModel) throws Exception {
-		return (BaseModel<?>)updateModelMethod.invoke(service, baseModel);
+		return (BaseModel<?>)updateModelMethod.invoke(
+			identifiableOSGiService, baseModel);
 	}
 
 	protected Method addModelMethod;
@@ -256,7 +267,7 @@ public class AlloyServiceInvoker {
 	protected Method getModelMethod;
 	protected Method getModelsCountMethod;
 	protected Method getModelsMethod;
-	protected IdentifiableOSGiService service;
+	protected IdentifiableOSGiService identifiableOSGiService;
 	protected Method updateModelMethod;
 
 }
