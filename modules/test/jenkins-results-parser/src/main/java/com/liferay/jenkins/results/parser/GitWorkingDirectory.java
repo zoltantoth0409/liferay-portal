@@ -234,7 +234,7 @@ public class GitWorkingDirectory {
 
 	public void commitFileToCurrentBranch(String fileName, String message) {
 		String commitCommand = JenkinsResultsParserUtil.combine(
-			"git commit -m \'", message, "\' ", fileName);
+			"git commit -m \"", message, "\" ", fileName);
 
 		ExecutionResult executionResult = executeBashCommands(commitCommand);
 
@@ -248,7 +248,7 @@ public class GitWorkingDirectory {
 
 	public void commitStagedFilesToCurrentBranch(String message) {
 		String commitCommand = JenkinsResultsParserUtil.combine(
-			"git commit -m \'", message, "\' ");
+			"git commit -m \"", message, "\" ");
 
 		ExecutionResult executionResult = executeBashCommands(commitCommand);
 
@@ -990,7 +990,7 @@ public class GitWorkingDirectory {
 
 	protected List<String> getLocalBranchNames() {
 		ExecutionResult executionResult = executeBashCommands(
-			"git for-each-ref refs/heads --format=\'%(refname)\'");
+			"git for-each-ref refs/heads --format=\"%(refname)\"");
 
 		if (executionResult.getExitValue() != 0) {
 			throw new RuntimeException(
