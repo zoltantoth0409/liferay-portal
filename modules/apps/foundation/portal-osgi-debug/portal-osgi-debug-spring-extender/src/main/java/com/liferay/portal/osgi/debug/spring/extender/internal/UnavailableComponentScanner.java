@@ -141,7 +141,7 @@ public class UnavailableComponentScanner {
 						List<ComponentDependencyDeclaration>> entry :
 							unavailableComponentDeclarations.entrySet()) {
 
-					sb.append("\tComponent with id ");
+					sb.append("\tComponent with ID ");
 
 					ComponentDeclaration componentDeclaration = entry.getKey();
 
