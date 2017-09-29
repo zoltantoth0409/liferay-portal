@@ -144,7 +144,7 @@ public class WabGenerator
 
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Waiting on startup required bundles to become active : " +
+					"Waiting on startup required bundles to activate: " +
 						requiredForStartupLocations);
 			}
 		}
@@ -152,7 +152,7 @@ public class WabGenerator
 		bundleTracker.close();
 
 		if (_log.isDebugEnabled()) {
-			_log.debug("All startup required bundles are active now.");
+			_log.debug("All startup required bundles are active");
 		}
 	}
 
