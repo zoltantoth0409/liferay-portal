@@ -70,18 +70,11 @@ public class EchoPoshiElement extends BasePoshiElement {
 	protected String createReadableBlock(String content) {
 		StringBuilder sb = new StringBuilder();
 
-		String blockName = getBlockName();
-		String pad = getPad();
-
 		sb.append("\n\n");
-		sb.append(pad);
-		sb.append(blockName);
+		sb.append(getPad());
+		sb.append(getBlockName());
 		sb.append("(\"");
-
-		String trimmedContent = content.trim();
-
-		sb.append(trimmedContent);
-
+		sb.append(content.trim());
 		sb.append("\");");
 
 		return sb.toString();
