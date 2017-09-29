@@ -150,17 +150,17 @@
 		</execute>
 
 		<execute macro="Notifications#viewBadgeCount">
- 			<var name="notificationCount" value="1" />
- 		</execute>
+			<var name="notificationCount" value="1" />
+		</execute>
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
 		</execute>
 
 		<execute macro="Workflow#viewNoDuplicateTaskAssignedToMyRoles">
- 			<var name="workflowAssetTitle" value="MB Thread Message Subject" />
- 			<var name="workflowTask" value="Review" />
- 		</execute>
+			<var name="workflowAssetTitle" value="MB Thread Message Subject" />
+			<var name="workflowTask" value="Review" />
+		</execute>
 
 		<execute macro="Workflow#assignToMeTaskByActions">
 			<var name="workflowAssetTitle" value="MB Thread Message Subject" />
