@@ -160,7 +160,7 @@ public class ReleaseInfo {
 
 	private static final int _BUILD_NUMBER = GetterUtil.getInteger(_BUILD);
 
-	private static final String _CODE_NAME = "Wilberforce";
+	private static final String _CODE_NAME = "Judson";
 
 	private static final String _DATE = "September 15, 2017";
 
