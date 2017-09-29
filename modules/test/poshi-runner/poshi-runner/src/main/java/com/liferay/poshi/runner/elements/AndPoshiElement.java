@@ -59,9 +59,7 @@ public class AndPoshiElement extends BasePoshiElement {
 			poshiElement.toReadableSyntax();
 
 			sb.append("(");
-
 			sb.append(poshiElement.toReadableSyntax());
-
 			sb.append(") && ");
 		}
 
