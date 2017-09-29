@@ -109,6 +109,11 @@
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
 
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
+
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
@@ -218,6 +223,11 @@
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
 
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="review" />
+		</execute>
+
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Review Task Form" />
 		</execute>
@@ -234,6 +244,11 @@
 		</execute>
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
+
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
 
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
@@ -351,6 +366,11 @@
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
 
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
+
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
@@ -369,6 +389,11 @@
 		</execute>
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
+
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="review" />
+		</execute>
 
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Review Task Form" />
@@ -507,6 +532,11 @@
 		</execute>
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
+
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms 1 Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
 
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
@@ -773,6 +803,11 @@
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
 
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
+
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
@@ -903,6 +938,11 @@
 		</execute>
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
+
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
 
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
@@ -1303,6 +1343,11 @@
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
 
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
+
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
@@ -1553,6 +1598,11 @@
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
 
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
+
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
@@ -1747,6 +1797,11 @@
 		</execute>
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
+
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
 
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
@@ -1991,6 +2046,11 @@
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
 
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
+
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
@@ -2009,6 +2069,11 @@
 		</execute>
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
+
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="review" />
+		</execute>
 
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Review Task Form" />
@@ -2197,6 +2262,11 @@
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
 
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
+
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
@@ -2344,6 +2414,11 @@
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
 
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
+
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
@@ -2486,6 +2561,11 @@
 		</execute>
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
+
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
 
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
@@ -2642,6 +2722,11 @@
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
 
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process Predefined" />
+			<var name="workflowTask" value="create" />
+		</execute>
+
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
@@ -2769,6 +2854,11 @@
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
 
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
+
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
@@ -2840,6 +2930,11 @@
 		</execute>
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
+
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
 
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Edited Create Task Form" />
@@ -2941,6 +3036,11 @@
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
 
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
+
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
@@ -2960,6 +3060,11 @@
 		</execute>
 
 		<execute macro="KaleoFormsAdmin#saveForm">
+			<var name="workflowTask" value="review" />
+		</execute>
+
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowTask" value="review" />
 		</execute>
 
@@ -3049,6 +3154,11 @@
 		</execute>
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
+
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="review" />
+		</execute>
 
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="New Review Task Form" />
@@ -3148,6 +3258,11 @@
 		</execute>
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
+
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
 
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
@@ -3300,6 +3415,11 @@
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
 
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
+
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
@@ -3361,6 +3481,11 @@
 		</execute>
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
+
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
 
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
@@ -3498,6 +3623,11 @@
 		</execute>
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
+
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
 
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
@@ -3657,6 +3787,11 @@
 		</execute>
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
+
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
 
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
@@ -3834,6 +3969,11 @@
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
 
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
+
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
@@ -3937,6 +4077,11 @@
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
 
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
+
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
@@ -4027,6 +4172,11 @@
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
 
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
+
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
@@ -4088,6 +4238,11 @@
 		</execute>
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
+
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
 
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
@@ -4232,6 +4387,11 @@
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
 
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
+
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
@@ -4250,6 +4410,11 @@
 		</execute>
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
+
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="review" />
+		</execute>
 
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Review Task Form" />
@@ -4466,6 +4631,11 @@
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
 
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
+
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
@@ -4593,6 +4763,11 @@
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
 
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
+
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
@@ -4611,6 +4786,11 @@
 		</execute>
 
 		<execute macro="KaleoFormsAdmin#saveForm">
+			<var name="workflowTask" value="review" />
+		</execute>
+
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
 			<var name="workflowTask" value="review" />
 		</execute>
 
@@ -4778,6 +4958,11 @@
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
 
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
+
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
@@ -4911,6 +5096,11 @@
 		</execute>
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
+
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
 
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
@@ -5087,6 +5277,11 @@
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
 
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
+
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
@@ -5206,6 +5401,11 @@
 		</execute>
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
+
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
 
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
@@ -5338,6 +5538,11 @@
 		</execute>
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
+
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
 
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
@@ -5510,6 +5715,11 @@
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
 
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
+
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
@@ -5637,6 +5847,11 @@
 		</execute>
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
+
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
 
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
@@ -5801,6 +6016,11 @@
 		</execute>
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
+
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
 
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
@@ -6020,6 +6240,11 @@
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
 
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
+
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
@@ -6207,6 +6432,11 @@
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
 
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
+
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
@@ -6339,6 +6569,11 @@
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
 
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
+
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
@@ -6456,6 +6691,11 @@
 		</execute>
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
+
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
 
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
@@ -6619,6 +6859,11 @@
 		</execute>
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
+
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
 
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />

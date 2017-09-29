@@ -65,6 +65,11 @@
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
 
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
+
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
