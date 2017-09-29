@@ -56,12 +56,8 @@ public class OrPoshiElement extends BasePoshiElement {
 		StringBuilder sb = new StringBuilder();
 
 		for (PoshiElement poshiElement : toPoshiElements(elements())) {
-			poshiElement.toReadableSyntax();
-
 			sb.append("(");
-
 			sb.append(poshiElement.toReadableSyntax());
-
 			sb.append(") || ");
 		}
 
