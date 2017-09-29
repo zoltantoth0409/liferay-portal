@@ -1278,7 +1278,12 @@ AUI.add(
 								}
 
 								var portletDecoratorId = objectData.portletData.portletDecoratorId;
-								var selectedPortletDecoratorId = instance._portletDecorator.one('option:selected').val();
+								var selectedPortletDecorator = instance._portletDecorator.one('option:selected');
+								var selectedPortletDecoratorId = '';
+
+								if (selectedPortletDecorator) {
+									selectedPortletDecoratorId = selectedPortletDecorator.val();
+								}
 
 								instance._portletDecorator.defaultPortletDecoratorId = portletDecoratorId !== '' ? portletDecoratorId : selectedPortletDecoratorId;
 
