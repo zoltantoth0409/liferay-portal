@@ -745,9 +745,9 @@ public abstract class DLPreviewableProcessor implements DLProcessor {
 
 		String prefix = tempFileId + StringPool.DASH;
 
-		Predicate<File> fileFilter = File::isFile;
+		Predicate<File> filePredicate = File::isFile;
 
-		fileFilter = fileFilter.and(
+		filePredicate = filePredicate.and(
 			file -> {
 				String fileName = file.getName();
 
@@ -757,7 +757,7 @@ public abstract class DLPreviewableProcessor implements DLProcessor {
 		if (Validator.isNotNull(type)) {
 			String suffix = StringPool.PERIOD + type;
 
-			fileFilter = fileFilter.and(
+			filePredicate = filePredicate.and(
 				file -> {
 					String fileName = file.getName();
 
@@ -767,7 +767,7 @@ public abstract class DLPreviewableProcessor implements DLProcessor {
 
 		File dir = new File(PREVIEW_TMP_PATH);
 
-		File[] files = dir.listFiles(fileFilter::test);
+		File[] files = dir.listFiles(filePredicate::test);
 
 		if (_log.isDebugEnabled()) {
 			for (File file : files) {
