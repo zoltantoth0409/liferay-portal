@@ -2179,7 +2179,7 @@ running the `uploadArchives` task with `-Psnapshot`.
 ## 5.1.3 - 2017-10-02
 
 ### Fixed
-- [LPS-63943]: Always print the status message after eecuting the
+- [LPS-63943]: Always print the status message after executing the
 `mergeArtifactsPublishCommands` task.
 
 [Find Security Bugs]: https://github.com/liferay/liferay-portal/tree/master/modules/third-party/com-h3xstream-findsecbugs
