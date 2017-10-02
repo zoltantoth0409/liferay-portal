@@ -107,7 +107,7 @@ public class AutoDeployDir {
 				}
 			}
 
-			Matcher matcher = _VERSION_PATTERN.matcher(fileName);
+			Matcher matcher = _versionPattern.matcher(fileName);
 
 			if (matcher.find()) {
 				fileName = matcher.replaceFirst(".war");
@@ -329,14 +329,13 @@ public class AutoDeployDir {
 		}
 	}
 
-	private static final Pattern _VERSION_PATTERN = Pattern.compile(
-		"-[\\d]+((\\.[\\d]+)+(-SNAPSHOT)?)\\.war$");
-
 	private static final Log _log = LogFactoryUtil.getLog(AutoDeployDir.class);
 
 	private static AutoDeployScanner _autoDeployScanner;
 	private static final ServiceTracker<AutoDeployListener, AutoDeployListener>
 		_serviceTracker;
+	private static final Pattern _versionPattern = Pattern.compile(
+		"-[\\d]+((\\.[\\d]+)+(-SNAPSHOT)?)\\.war$");
 
 	static {
 		Registry registry = RegistryUtil.getRegistry();
