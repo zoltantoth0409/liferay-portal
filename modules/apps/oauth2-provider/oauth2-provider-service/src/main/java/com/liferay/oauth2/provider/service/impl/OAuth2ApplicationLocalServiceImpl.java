@@ -267,11 +267,8 @@ public class OAuth2ApplicationLocalServiceImpl
 			oAuth2ApplicationPersistence.findByPrimaryKey(oAuth2ApplicationId);
 
 		clientId = StringUtil.trim(clientId);
-
 		homePageURL = StringUtil.trim(homePageURL);
-
 		name = StringUtil.trim(name);
-
 		privacyPolicyURL = StringUtil.trim(privacyPolicyURL);
 
 		if (redirectURIsList == null) {
