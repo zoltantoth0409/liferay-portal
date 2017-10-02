@@ -12,21 +12,21 @@
  * details.
  */
 
-package com.liferay.portal.upgrade.v7_0_4;
+package com.liferay.portal.upgrade.v7_0_5;
 
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.portal.upgrade.v7_0_4.util.VirtualHostTable;
+import com.liferay.portal.upgrade.v7_0_5.util.UserTable;
 
 /**
- * @author Jose A. Jimenez Campoy
+ * @author Ugurcan Cetin
  */
-public class UpgradeVirtualHost extends UpgradeProcess {
+public class UpgradeUser extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
 		alter(
-			VirtualHostTable.class,
-			new AlterColumnType("hostname", "VARCHAR(200) null"));
+			UserTable.class,
+			new AlterColumnType("emailAddress", "VARCHAR(254) null"));
 	}
 
 }

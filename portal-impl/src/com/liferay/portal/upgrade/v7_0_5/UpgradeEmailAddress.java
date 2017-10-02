@@ -12,20 +12,21 @@
  * details.
  */
 
-package com.liferay.portal.upgrade.v7_0_4;
+package com.liferay.portal.upgrade.v7_0_5;
 
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.portal.upgrade.v7_0_4.util.CompanyTable;
+import com.liferay.portal.upgrade.v7_0_5.util.EmailAddressTable;
 
 /**
- * @author Jose A. Jimenez Campoy
+ * @author Ugurcan Cetin
  */
-public class UpgradeCompany extends UpgradeProcess {
+public class UpgradeEmailAddress extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
 		alter(
-			CompanyTable.class, new AlterColumnType("mx", "VARCHAR(200) null"));
+			EmailAddressTable.class,
+			new AlterColumnType("address", "VARCHAR(254) null"));
 	}
 
 }
