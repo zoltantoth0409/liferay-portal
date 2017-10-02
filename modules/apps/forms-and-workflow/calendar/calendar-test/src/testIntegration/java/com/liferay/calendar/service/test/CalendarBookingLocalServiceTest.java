@@ -208,13 +208,13 @@ public class CalendarBookingLocalServiceTest {
 
 		User invitingUser = UserTestUtil.addUser();
 
-		Calendar invitingcalendar = CalendarTestUtil.addCalendar(invitingUser);
+		Calendar invitingCalendar = CalendarTestUtil.addCalendar(invitingUser);
 
 		Calendar invitedCalendar = CalendarTestUtil.addCalendar(_user);
 
 		CalendarBooking calendarBooking =
 			CalendarBookingTestUtil.addRecurringCalendarBooking(
-				invitingcalendar, invitedCalendar,
+				invitingCalendar, invitedCalendar,
 				RecurrenceTestUtil.getDailyRecurrence(5), serviceContext);
 
 		long calendarBookingId = calendarBooking.getCalendarBookingId();
