@@ -1,7 +1,3 @@
-copyLibs {
-	enabled = true
-}
-
 dependencies {
 	provided group: "com.liferay", name: "com.liferay.portal.security.wedeploy.auth.api", version: "1.0.0"
 	provided group: "com.liferay", name: "com.liferay.portal.security.wedeploy.auth.service", version: "1.0.0"
