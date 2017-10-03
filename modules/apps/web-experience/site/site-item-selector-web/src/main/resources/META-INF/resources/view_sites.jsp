@@ -144,13 +144,15 @@ GroupSearch groupSearch = siteItemSelectorViewDisplayContext.getGroupSearch();
 									showCheckbox="<%= false %>"
 								>
 									<liferay-frontend:vertical-card-header>
-										<h5>
-											<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
-												<%= HtmlUtil.escape(siteItemSelectorViewDisplayContext.getGroupName(group)) %>
-											</aui:a>
+										<div class="flex-container">
+											<h5 class="flex-item-expand truncate-text">
+												<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
+													<%= HtmlUtil.escape(siteItemSelectorViewDisplayContext.getGroupName(group)) %>
+												</aui:a>
+											</h5>
 
-											<aui:a href="<%= groupURLProvider.getGroupURL(group, liferayPortletRequest) %>" target="_blank" />
-										</h5>
+											<aui:a cssClass="flex-item-center" href="<%= groupURLProvider.getGroupURL(group, liferayPortletRequest) %>" target="_blank" />
+										</div>
 									</liferay-frontend:vertical-card-header>
 
 									<c:if test="<%= siteItemSelectorViewDisplayContext.isShowChildSitesLink() %>">
@@ -170,13 +172,15 @@ GroupSearch groupSearch = siteItemSelectorViewDisplayContext.getGroupSearch();
 									showCheckbox="<%= false %>"
 								>
 									<liferay-frontend:vertical-card-header>
-										<h5>
-											<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
-												<%= HtmlUtil.escape(siteItemSelectorViewDisplayContext.getGroupName(group)) %>
-											</aui:a>
+										<div class="flex-container">
+											<h5 class="flex-item-expand truncate-text">
+												<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
+													<%= HtmlUtil.escape(siteItemSelectorViewDisplayContext.getGroupName(group)) %>
+												</aui:a>
+											</h5>
 
-											<aui:a href="<%= groupURLProvider.getGroupURL(group, liferayPortletRequest) %>" target="_blank" />
-										</h5>
+											<aui:a cssClass="flex-item-center" href="<%= groupURLProvider.getGroupURL(group, liferayPortletRequest) %>" target="_blank" />
+										</div>
 									</liferay-frontend:vertical-card-header>
 
 									<liferay-frontend:vertical-card-footer>
