@@ -501,9 +501,9 @@ public class AssetCategoryLocalServiceUtil {
 		return getService().getChildCategoriesCount(parentCategoryId);
 	}
 
-	public static java.util.List<com.liferay.asset.kernel.model.AssetCategory> getDescendants(
+	public static java.util.List<com.liferay.asset.kernel.model.AssetCategory> getDescendantCategories(
 		com.liferay.asset.kernel.model.AssetCategory category) {
-		return getService().getDescendants(category);
+		return getService().getDescendantCategories(category);
 	}
 
 	public static java.util.List<com.liferay.asset.kernel.model.AssetCategory> getEntryCategories(

@@ -400,7 +400,7 @@ public interface AssetCategoryLocalService extends BaseLocalService,
 	public int getChildCategoriesCount(long parentCategoryId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<AssetCategory> getDescendants(AssetCategory category);
+	public List<AssetCategory> getDescendantCategories(AssetCategory category);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<AssetCategory> getEntryCategories(long entryId);
