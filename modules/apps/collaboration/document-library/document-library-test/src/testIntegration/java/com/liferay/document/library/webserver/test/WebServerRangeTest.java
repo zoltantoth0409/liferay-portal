@@ -14,19 +14,17 @@
 
 package com.liferay.document.library.webserver.test;
 
+import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.document.library.kernel.service.DLAppLocalServiceUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
-import com.liferay.portal.kernel.test.rule.Sync;
-import com.liferay.portal.kernel.test.rule.SynchronousDestinationTestRule;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -46,21 +44,20 @@ import org.junit.Assert;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import org.springframework.mock.web.MockHttpServletResponse;
 
 /**
  * @author Alexander Chow
  */
-@Sync
+@RunWith(Arquillian.class)
 public class WebServerRangeTest extends BaseWebServerTestCase {
 
 	@ClassRule
 	@Rule
 	public static final AggregateTestRule aggregateTestRule =
-		new AggregateTestRule(
-			new LiferayIntegrationTestRule(),
-			SynchronousDestinationTestRule.INSTANCE);
+		new LiferayIntegrationTestRule();
 
 	@Test
 	public void testBasic() throws Exception {
@@ -198,9 +195,9 @@ public class WebServerRangeTest extends BaseWebServerTestCase {
 			parentFolder.getFolderId(), fileName, ContentTypes.TEXT_PLAIN,
 			_SAMPLE_DATA.getBytes(), serviceContext);
 
-		String path = StringBundler.concat(
-			String.valueOf(fileEntry.getGroupId()), "/",
-			String.valueOf(fileEntry.getFolderId()), "/", fileEntry.getTitle());
+		String path =
+			fileEntry.getGroupId() + "/" + fileEntry.getFolderId() + "/" +
+				fileEntry.getTitle();
 
 		Map<String, String> headers = new HashMap<>();
 
