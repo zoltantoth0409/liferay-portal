@@ -471,7 +471,7 @@ public class AssetCategoryLocalServiceImpl
 	}
 
 	@Override
-	public List<AssetCategory> getDescendants(AssetCategory category) {
+	public List<AssetCategory> getDescendantCategories(AssetCategory category) {
 		return assetCategoryPersistence.getDescendants(category);
 	}
 

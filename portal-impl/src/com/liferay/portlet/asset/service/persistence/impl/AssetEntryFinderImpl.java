@@ -773,7 +773,8 @@ public class AssetEntryFinderImpl
 		}
 
 		return ListUtil.toList(
-			AssetCategoryLocalServiceUtil.getDescendants(parentAssetCategory),
+			AssetCategoryLocalServiceUtil.getDescendantCategories(
+				parentAssetCategory),
 			AssetCategory.CATEGORY_ID_ACCESSOR);
 	}
 
