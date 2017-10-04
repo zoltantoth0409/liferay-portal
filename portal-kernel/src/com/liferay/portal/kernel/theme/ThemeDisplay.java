@@ -1434,7 +1434,10 @@ public class ThemeDisplay
 	}
 
 	public void setLanguageId(String languageId) {
+
 		_languageId = languageId;
+
+		_layoutFriendlyURLs= null;
 	}
 
 	public void setLayout(Layout layout) {
@@ -1481,6 +1484,8 @@ public class ThemeDisplay
 		_locale = locale;
 
 		LocaleThreadLocal.setThemeDisplayLocale(locale);
+
+		_layoutFriendlyURLs = null;
 	}
 
 	public void setLookAndFeel(Theme theme, ColorScheme colorScheme) {
