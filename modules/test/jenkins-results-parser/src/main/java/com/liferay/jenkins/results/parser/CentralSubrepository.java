@@ -55,8 +55,8 @@ public class CentralSubrepository {
 		GitWorkingDirectory gitWorkingDirectory = new GitWorkingDirectory(
 			"master", _subrepositoryDirectory);
 
-		GitWorkingDirectory.Branch tempBranch = null;
 		GitWorkingDirectory.Branch localMasterBranch = null;
+		GitWorkingDirectory.Branch tempBranch = null;
 
 		try {
 			tempBranch = gitWorkingDirectory.createLocalBranch(tempBranchName);
