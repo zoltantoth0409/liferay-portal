@@ -56,6 +56,8 @@ public class AlloyEditorConfigContributor
 			jsonObject, inputEditorTaglibAttributes, themeDisplay,
 			requestBackedPortletURLFactory);
 
+		jsonObject.put("entities", Boolean.FALSE);
+
 		String extraPlugins = jsonObject.getString("extraPlugins");
 
 		if (Validator.isNotNull(extraPlugins)) {
@@ -69,8 +71,6 @@ public class AlloyEditorConfigContributor
 
 		jsonObject.put(
 			"toolbars", getToolbarsJSONObject(themeDisplay.getLocale()));
-
-		jsonObject.put("entities", Boolean.FALSE);
 	}
 
 	protected JSONObject getStyleFormatJSONObject(
