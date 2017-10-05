@@ -1024,8 +1024,7 @@ public abstract class BaseJSONWebServiceClientImpl
 
 		StringBuffer sb = new StringBuffer();
 
-		sb.append("Not able to serialize  ");
-		sb.append("object with type ");
+		sb.append("Unable to serialize object with type ");
 		sb.append(object.getClass());
 
 		return new JSONWebServiceSerializeException(sb.toString());
@@ -1036,7 +1035,7 @@ public abstract class BaseJSONWebServiceClientImpl
 
 		StringBuffer sb = new StringBuffer();
 
-		sb.append("Not able to deserialize ");
+		sb.append("Unable to deserialize ");
 		sb.append(json);
 		sb.append(" into object with type ");
 		sb.append(clazz.getName());
