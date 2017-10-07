@@ -23,6 +23,7 @@ import org.dom4j.Node;
 import org.dom4j.Text;
 import org.dom4j.util.NodeComparator;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -53,6 +54,7 @@ public class PoshiElementFactoryTest {
 		}
 	}
 
+	@Ignore
 	@Test
 	public void testPoshiToReadableToXML() throws Exception {
 		PoshiElement poshiElement = PoshiElementFactory.newPoshiElementFromFile(
