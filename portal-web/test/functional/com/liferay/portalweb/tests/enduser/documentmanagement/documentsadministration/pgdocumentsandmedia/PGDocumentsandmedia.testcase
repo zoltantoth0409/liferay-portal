@@ -532,6 +532,9 @@
 	</command>
 
 	<command name="AddGoogleDoc" priority="5">
+		<property name="osgi.app.includes" value="document-library-google-docs" />
+		<property name="plugins.deployment.type" value="osgi" />
+
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
@@ -914,6 +917,9 @@
 	</command>
 
 	<command name="DeleteGoogleDoc" priority="5">
+		<property name="osgi.app.includes" value="document-library-google-docs" />
+		<property name="plugins.deployment.type" value="osgi" />
+
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
@@ -1047,6 +1053,9 @@
 	</command>
 
 	<command name="EditAndDeleteGoogleDoc" priority="5">
+		<property name="osgi.app.includes" value="document-library-google-docs" />
+		<property name="plugins.deployment.type" value="osgi" />
+
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
@@ -1241,6 +1250,9 @@
 	</command>
 
 	<command name="EditGoogleDoc" priority="5">
+		<property name="osgi.app.includes" value="document-library-google-docs" />
+		<property name="plugins.deployment.type" value="osgi" />
+
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
@@ -1513,6 +1525,9 @@
 	</command>
 
 	<command name="MoveGoogleDocToFolder" priority="5">
+		<property name="osgi.app.includes" value="document-library-google-docs" />
+		<property name="plugins.deployment.type" value="osgi" />
+
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Instance Settings" />
 		</execute>
