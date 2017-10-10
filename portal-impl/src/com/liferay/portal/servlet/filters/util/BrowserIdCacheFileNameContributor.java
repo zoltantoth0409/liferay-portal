@@ -35,14 +35,14 @@ public class BrowserIdCacheFileNameContributor
 	public String getParameterValue(HttpServletRequest request) {
 		String browserId = ParamUtil.getString(request, "browserId");
 
-		if (ArrayUtil.contains(_validBrowserIds, browserId)) {
+		if (ArrayUtil.contains(_BROWSER_IDS, browserId)) {
 			return browserId;
 		}
 
 		return null;
 	}
 
-	private static final String[] _validBrowserIds = {
+	private static final String[] _BROWSER_IDS = {
 		BrowserSniffer.BROWSER_ID_EDGE, BrowserSniffer.BROWSER_ID_FIREFOX,
 		BrowserSniffer.BROWSER_ID_IE, BrowserSniffer.BROWSER_ID_OTHER
 	};
