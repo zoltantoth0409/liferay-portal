@@ -199,11 +199,6 @@ public class PollsQuestionLocalServiceImpl
 
 		pollsQuestionPersistence.remove(question);
 
-		Indexer<PollsQuestion> indexer = IndexerRegistryUtil.getIndexer(
-			PollsQuestion.class.getName());
-
-		indexer.delete(question);
-
 		// Resources
 
 		resourceLocalService.deleteResource(
@@ -217,6 +212,13 @@ public class PollsQuestionLocalServiceImpl
 		// Votes
 
 		pollsVotePersistence.removeByQuestionId(question.getQuestionId());
+
+		// Indexer
+
+		Indexer<PollsQuestion> indexer = IndexerRegistryUtil.getIndexer(
+			PollsQuestion.class.getName());
+
+		indexer.delete(question);
 	}
 
 	@Override
