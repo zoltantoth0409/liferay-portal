@@ -116,7 +116,7 @@ iteratorURL.setParameter("resourcePrimKey", resourcePrimKey);
 iteratorURL.setParameter("roleTypes", roleTypesParam);
 iteratorURL.setWindowState(LiferayWindowState.POP_UP);
 
-SearchContainer roleSearchContainer = new RoleSearch(renderRequest, iteratorURL);
+SearchContainer<Role> roleSearchContainer = new RoleSearch(renderRequest, iteratorURL);
 
 RoleSearchTerms searchTerms = (RoleSearchTerms)roleSearchContainer.getSearchTerms();
 %>
