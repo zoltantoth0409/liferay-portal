@@ -489,22 +489,21 @@ public class GroupServiceTest {
 			GroupLocalServiceUtil.fetchFriendlyURLGroup(
 				companyId, defaultNewGroupFriendlyURL));
 
-		long groupId = _group.getGroupId();
-
-		GroupLocalServiceUtil.updateFriendlyURL(groupId, null);
+		GroupLocalServiceUtil.updateFriendlyURL(_group.getGroupId(), null);
 
 		Assert.assertNull(
 			GroupLocalServiceUtil.fetchFriendlyURLGroup(
 				companyId, defaultNewGroupFriendlyURL));
 
-		String defaultFriendlyURL = "/group-" + groupId;
+		String defaultFriendlyURL = "/group-" + _group.getGroupId();
 
 		Assert.assertNotNull(
 			GroupLocalServiceUtil.fetchFriendlyURLGroup(
 				companyId, defaultFriendlyURL));
 
 		GroupLocalServiceUtil.updateFriendlyURL(
-			groupId, StringPool.SLASH + RandomTestUtil.randomString());
+			_group.getGroupId(),
+			StringPool.SLASH + RandomTestUtil.randomString());
 
 		Group group = GroupTestUtil.addGroup();
 
@@ -512,7 +511,7 @@ public class GroupServiceTest {
 			GroupLocalServiceUtil.updateFriendlyURL(
 				group.getGroupId(), defaultFriendlyURL);
 
-			GroupLocalServiceUtil.updateFriendlyURL(groupId, null);
+			GroupLocalServiceUtil.updateFriendlyURL(_group.getGroupId(), null);
 
 			Assert.assertNotNull(
 				GroupLocalServiceUtil.fetchFriendlyURLGroup(

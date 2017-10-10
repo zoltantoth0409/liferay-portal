@@ -135,13 +135,12 @@ public class UserServiceTest {
 		public void shouldInheritDefaultSiteRolesFromDefaultSite()
 			throws Exception {
 
-			long groupId = _group.getGroupId();
-
-			Assert.assertTrue(ArrayUtil.contains(_user.getGroupIds(), groupId));
+			Assert.assertTrue(
+				ArrayUtil.contains(_user.getGroupIds(), _group.getGroupId()));
 
 			List<UserGroupRole> userGroupRoles =
 				UserGroupRoleLocalServiceUtil.getUserGroupRoles(
-					_user.getUserId(), groupId);
+					_user.getUserId(), _group.getGroupId());
 
 			Assert.assertEquals(
 				userGroupRoles.toString(), 1, userGroupRoles.size());
@@ -189,11 +188,10 @@ public class UserServiceTest {
 
 			_group = GroupTestUtil.addGroup();
 
-			long groupId = _group.getGroupId();
+			_user = UserTestUtil.addUser(String.valueOf(_group.getGroupId()));
 
-			_user = UserTestUtil.addUser(String.valueOf(groupId));
-
-			Assert.assertEquals(String.valueOf(groupId), _user.getScreenName());
+			Assert.assertEquals(
+				String.valueOf(_group.getGroupId()), _user.getScreenName());
 		}
 
 		@Test(expected = UserScreenNameException.MustNotBeNumeric.class)
