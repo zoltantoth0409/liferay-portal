@@ -47,8 +47,7 @@ public class DefaultDLViewFileEntryHistoryDisplayContext
 		_dlPortletInstanceSettingsHelper = new DLPortletInstanceSettingsHelper(
 			dlRequestHelper);
 
-		_uiItemsBuilder = new UIItemsBuilder(
-			request, fileVersion, _resourceBundle);
+		_uiItemsBuilder = new UIItemsBuilder(request, fileVersion);
 	}
 
 	@Override
