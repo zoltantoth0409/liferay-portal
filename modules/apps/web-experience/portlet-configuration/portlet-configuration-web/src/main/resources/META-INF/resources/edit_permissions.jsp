@@ -214,23 +214,17 @@ RoleSearchTerms searchTerms = (RoleSearchTerms)roleSearchContainer.getSearchTerm
 				}
 				else {
 					if (group != null) {
-						Group parentOrActualGroup = null;
+						Group parentGroup = null;
 
 						if (group.isLayout()) {
-							parentOrActualGroup = GroupLocalServiceUtil.fetchGroup(group.getParentGroupId());
+							parentGroup = GroupLocalServiceUtil.fetchGroup(group.getParentGroupId());
 						}
 
-						if (parentOrActualGroup == null) {
-							parentOrActualGroup = group;
+						if (parentGroup != null) {
+							roleTypes = getGroupRoleTypes(parentGroup, roleTypes);
 						}
-
-						if (parentOrActualGroup.isOrganization()) {
-							roleTypes = RoleConstants.TYPES_ORGANIZATION_AND_REGULAR_AND_SITE;
-						}
-						else if (parentOrActualGroup.isCompany() ||
-								 parentOrActualGroup.isUser() ||
-								 parentOrActualGroup.isUserGroup()) {
-							roleTypes = RoleConstants.TYPES_REGULAR;
+						else {
+							roleTypes = getGroupRoleTypes(group, roleTypes);
 						}
 					}
 				}
@@ -449,3 +443,21 @@ RoleSearchTerms searchTerms = (RoleSearchTerms)roleSearchContainer.getSearchTerm
 		}
 	);
 </aui:script>
+
+<%!
+private int[] getGroupRoleTypes(Group group, int[] defaultRoleTypes) {
+	if (group == null) {
+		return defaultRoleTypes;
+	}
+
+	if (group.isOrganization()) {
+		return RoleConstants.TYPES_ORGANIZATION_AND_REGULAR_AND_SITE;
+	}
+
+	if (group.isCompany() || group.isUser() || group.isUserGroup()) {
+		return RoleConstants.TYPES_REGULAR;
+	}
+
+	return defaultRoleTypes;
+}
+%>
