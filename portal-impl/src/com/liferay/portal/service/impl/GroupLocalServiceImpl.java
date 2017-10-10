@@ -3931,7 +3931,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 
 		friendlyURL = StringPool.SLASH + getFriendlyURL(friendlyName);
 
-		long i = 0;
+		int i = 0;
 
 		while (true) {
 			try {
