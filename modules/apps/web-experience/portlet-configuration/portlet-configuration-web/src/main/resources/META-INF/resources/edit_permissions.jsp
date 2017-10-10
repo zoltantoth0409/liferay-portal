@@ -214,27 +214,21 @@ RoleSearchTerms searchTerms = (RoleSearchTerms)roleSearchContainer.getSearchTerm
 				}
 				else {
 					if (group != null) {
-						Group parentGroup = null;
+						Group parentOrActualGroup = null;
 
 						if (group.isLayout()) {
-							parentGroup = GroupLocalServiceUtil.fetchGroup(group.getParentGroupId());
+							parentOrActualGroup = GroupLocalServiceUtil.fetchGroup(group.getParentGroupId());
 						}
 
-						if (parentGroup == null) {
-							if (group.isOrganization()) {
-								roleTypes = RoleConstants.TYPES_ORGANIZATION_AND_REGULAR_AND_SITE;
-							}
-							else if (group.isUser()) {
-								roleTypes = RoleConstants.TYPES_REGULAR;
-							}
+						if (parentOrActualGroup == null) {
+							parentOrActualGroup = group;
 						}
-						else {
-							if (parentGroup.isOrganization()) {
-								roleTypes = RoleConstants.TYPES_ORGANIZATION_AND_REGULAR_AND_SITE;
-							}
-							else if (parentGroup.isUser()) {
-								roleTypes = RoleConstants.TYPES_REGULAR;
-							}
+
+						if (parentOrActualGroup.isOrganization()) {
+							roleTypes = RoleConstants.TYPES_ORGANIZATION_AND_REGULAR_AND_SITE;
+						}
+						else if (parentOrActualGroup.isUser()) {
+							roleTypes = RoleConstants.TYPES_REGULAR;
 						}
 					}
 				}
