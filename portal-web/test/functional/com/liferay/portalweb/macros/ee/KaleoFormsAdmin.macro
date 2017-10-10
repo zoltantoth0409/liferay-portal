@@ -136,6 +136,10 @@
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
 
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="workflowTask" value="${workflowTask}" />
+		</execute>
+
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="${kfFormNameNew}" />
 		</execute>

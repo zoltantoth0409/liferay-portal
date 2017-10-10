@@ -1139,6 +1139,11 @@
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
 
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
+
 		<execute macro="KaleoFormsAdmin#chooseForm">
 			<var name="kfFormName" value="Created Task Form" />
 		</execute>
@@ -4505,7 +4510,11 @@
 			<var name="workflowTask" value="review" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveForm" />
+		<execute macro="DynamicDataMapping#selectDynamicDataMappingFrame" />
+
+		<execute macro="Button#clickSave" />
+
+		<execute macro="Alert#viewSuccessMessage" />
 
 		<execute macro="Navigator#openURL" />
 
@@ -6180,6 +6189,13 @@
 		<execute macro="KaleoFormsAdmin#saveAndContinueForm" />
 
 		<execute macro="KaleoFormsAdmin#saveForm" />
+
+		<execute macro="KaleoFormsAdmin#assignForm">
+			<var name="kfProcessName" value="Kaleo Forms Process" />
+			<var name="workflowTask" value="create" />
+		</execute>
+
+		<execute macro="DynamicDataMapping#selectDynamicDataMappingFrame" />
 
 		<execute macro="KaleoFormsAdmin#viewNoDuplicateForms">
 			<var name="kfFormName" value="Created Task Form" />
