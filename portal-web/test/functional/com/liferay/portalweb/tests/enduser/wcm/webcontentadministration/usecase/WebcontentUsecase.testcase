@@ -1137,7 +1137,7 @@
 		<execute function="AssertTextNotPresent" locator1="WCD#WEB_CONTENT_CONTENT" value1="WC WebContent Content" />
 	</command>
 
-	<command name="AddWebContentViaSourceEditorAndLocalization" priority="5">
+	<command name="AddLocalizedWebContentViaSourceEditor" priority="5">
 		<property name="portal.acceptance" value="pending" />
 		<property name="testray.component.names" value="Training,Web Content Administration" />
 
