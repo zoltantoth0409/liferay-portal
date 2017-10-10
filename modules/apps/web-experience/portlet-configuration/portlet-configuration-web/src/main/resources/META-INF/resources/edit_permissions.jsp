@@ -228,8 +228,8 @@ RoleSearchTerms searchTerms = (RoleSearchTerms)roleSearchContainer.getSearchTerm
 							roleTypes = RoleConstants.TYPES_ORGANIZATION_AND_REGULAR_AND_SITE;
 						}
 						else if (parentOrActualGroup.isCompany() ||
-								parentOrActualGroup.isUser() ||
-								parentOrActualGroup.isUserGroup()) {
+								 parentOrActualGroup.isUser() ||
+								 parentOrActualGroup.isUserGroup()) {
 							roleTypes = RoleConstants.TYPES_REGULAR;
 						}
 					}
