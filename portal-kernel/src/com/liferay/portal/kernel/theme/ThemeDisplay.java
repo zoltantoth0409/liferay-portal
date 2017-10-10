@@ -1208,7 +1208,7 @@ public class ThemeDisplay
 
 		return _portletEmbeddedMap.computeIfAbsent(
 			new EmbeddedPortletCacheKey(groupId, layout.getPlid(), portletId),
-			(key) -> layout.isPortletEmbedded(portletId, groupId));
+			key -> layout.isPortletEmbedded(portletId, groupId));
 	}
 
 	public boolean isPortletEmbedded(String portletId) {
