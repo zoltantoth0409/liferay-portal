@@ -81,7 +81,7 @@ public class AddRecordMVCActionCommand extends BaseMVCActionCommand {
 			WebKeys.THEME_DISPLAY);
 
 		_addRecordMVCCommandHelper.updateRequiredFieldsAccordingToVisibility(
-			actionRequest, ddmForm, ddmFormValues, themeDisplay.getLocale());
+			ddmForm, ddmFormValues, themeDisplay.getLocale());
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			DDLRecord.class.getName(), actionRequest);

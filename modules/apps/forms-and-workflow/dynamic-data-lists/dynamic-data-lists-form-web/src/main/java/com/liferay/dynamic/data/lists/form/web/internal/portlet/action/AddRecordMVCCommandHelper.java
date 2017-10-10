@@ -16,12 +16,10 @@ package com.liferay.dynamic.data.lists.form.web.internal.portlet.action;
 
 import com.liferay.dynamic.data.mapping.form.evaluator.DDMFormEvaluationResult;
 import com.liferay.dynamic.data.mapping.form.evaluator.DDMFormEvaluator;
-import com.liferay.dynamic.data.mapping.form.evaluator.DDMFormEvaluatorContext;
 import com.liferay.dynamic.data.mapping.form.evaluator.DDMFormFieldEvaluationResult;
 import com.liferay.dynamic.data.mapping.model.DDMForm;
 import com.liferay.dynamic.data.mapping.model.DDMFormField;
 import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
-import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
 
 import java.util.Collection;
@@ -31,8 +29,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import javax.portlet.ActionRequest;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -44,8 +40,7 @@ import org.osgi.service.component.annotations.Reference;
 public class AddRecordMVCCommandHelper {
 
 	public void updateRequiredFieldsAccordingToVisibility(
-			ActionRequest actionRequest, DDMForm ddmForm,
-			DDMFormValues ddmFormValues, Locale locale)
+			DDMForm ddmForm, DDMFormValues ddmFormValues, Locale locale)
 		throws Exception {
 
 		List<DDMFormField> requiredFields = getRequiredFields(ddmForm);
@@ -55,7 +50,7 @@ public class AddRecordMVCCommandHelper {
 		}
 
 		DDMFormEvaluationResult ddmFormEvaluationResult = evaluate(
-			actionRequest, ddmForm, ddmFormValues, locale);
+			ddmForm, ddmFormValues, locale);
 
 		Set<String> invisibleFields = getInvisibleFields(
 			ddmFormEvaluationResult);
@@ -68,19 +63,10 @@ public class AddRecordMVCCommandHelper {
 	}
 
 	protected DDMFormEvaluationResult evaluate(
-			ActionRequest actionRequest, DDMForm ddmForm,
-			DDMFormValues ddmFormValues, Locale locale)
+			DDMForm ddmForm, DDMFormValues ddmFormValues, Locale locale)
 		throws Exception {
 
-		DDMFormEvaluatorContext ddmFormEvaluatorContext =
-			new DDMFormEvaluatorContext(ddmForm, ddmFormValues, locale);
-
-		ddmFormEvaluatorContext.addProperty(
-			"groupId", ParamUtil.getLong(actionRequest, "groupId"));
-		ddmFormEvaluatorContext.addProperty(
-			"request", _portal.getHttpServletRequest(actionRequest));
-
-		return _ddmFormEvaluator.evaluate(ddmFormEvaluatorContext);
+		return _ddmFormEvaluator.evaluate(ddmForm, ddmFormValues, locale);
 	}
 
 	protected Set<String> getInvisibleFields(
