@@ -726,17 +726,7 @@ public class ServletResponseUtil {
 			long length)
 		throws IOException {
 
-		if (inputStream instanceof FileInputStream) {
-			FileInputStream fileInputStream = (FileInputStream)inputStream;
-
-			FileChannel fileChannel = fileInputStream.getChannel();
-
-			fileChannel.transferTo(
-				start, length, Channels.newChannel(outputStream));
-
-			return fileInputStream;
-		}
-		else if (inputStream instanceof ByteArrayInputStream) {
+		if (inputStream instanceof ByteArrayInputStream) {
 			ByteArrayInputStream byteArrayInputStream =
 				(ByteArrayInputStream)inputStream;
 
@@ -749,6 +739,16 @@ public class ServletResponseUtil {
 				false, length);
 
 			return byteArrayInputStream;
+		}
+		else if (inputStream instanceof FileInputStream) {
+			FileInputStream fileInputStream = (FileInputStream)inputStream;
+
+			FileChannel fileChannel = fileInputStream.getChannel();
+
+			fileChannel.transferTo(
+				start, length, Channels.newChannel(outputStream));
+
+			return fileInputStream;
 		}
 		else if (inputStream instanceof RandomAccessInputStream) {
 			RandomAccessInputStream randomAccessInputStream =
