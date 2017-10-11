@@ -131,6 +131,14 @@ AUI.add(
 							content = A.Node.create('<div class="loading-animation" />');
 						}
 
+						if (instance._currentPopup) {
+							var popupPortletId = instance._currentPopup._getAttr("portletId");
+
+							if (popupPortletId != instance._portletId) {
+								instance._currentPopup.destroy();
+							}
+						}
+
 						if (!instance._currentPopup) {
 							instance._currentPopup = Liferay.Util.Window.getWindow(
 								{
@@ -181,6 +189,8 @@ AUI.add(
 									title: Liferay.Language.get('look-and-feel')
 								}
 							);
+
+							instance._currentPopup._setAttr("portletId", instance._portletId);
 
 							var viewURL = new Liferay.PortletURL.createURL(instance._baseRenderPortletURL);
 
