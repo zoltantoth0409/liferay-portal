@@ -53,7 +53,7 @@
 
 		<execute function="Pause" locator1="5000" />
 
-		<var locator="UsersAndOrganizationsEditUser#DETAILS_USER_ID_FIELD" name="userId" />
+		<var method="selenium#getText('UsersAndOrganizationsEditUser#DETAILS_USER_ID_FIELD')" name="userId" />
 
 		<execute macro="ProductMenu#gotoControlPanelConfiguration">
 			<var name="portlet" value="Audit" />
