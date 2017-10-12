@@ -2778,6 +2778,8 @@
 
 		<execute macro="FormPortlet#clickSubmit" />
 
+		<execute function="WaitForSPARefresh" />
+
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">

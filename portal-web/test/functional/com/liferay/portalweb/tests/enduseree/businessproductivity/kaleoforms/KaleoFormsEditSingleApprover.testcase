@@ -484,6 +484,8 @@
 	</command>
 
 	<command name="ViewApprovedProcessNotificationWithComments" priority="3">
+		<execute function="WaitForSPARefresh" />
+
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoSitesContent">
