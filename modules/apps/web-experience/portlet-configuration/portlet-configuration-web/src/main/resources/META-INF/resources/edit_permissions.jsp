@@ -221,10 +221,10 @@ RoleSearchTerms searchTerms = (RoleSearchTerms)roleSearchContainer.getSearchTerm
 						}
 
 						if (parentGroup != null) {
-							roleTypes = getGroupRoleTypes(parentGroup, roleTypes);
+							roleTypes = _getGroupRoleTypes(parentGroup, roleTypes);
 						}
 						else {
-							roleTypes = getGroupRoleTypes(group, roleTypes);
+							roleTypes = _getGroupRoleTypes(group, roleTypes);
 						}
 					}
 				}
@@ -445,7 +445,7 @@ RoleSearchTerms searchTerms = (RoleSearchTerms)roleSearchContainer.getSearchTerm
 </aui:script>
 
 <%!
-private int[] getGroupRoleTypes(Group group, int[] defaultRoleTypes) {
+private int[] _getGroupRoleTypes(Group group, int[] defaultRoleTypes) {
 	if (group == null) {
 		return defaultRoleTypes;
 	}
