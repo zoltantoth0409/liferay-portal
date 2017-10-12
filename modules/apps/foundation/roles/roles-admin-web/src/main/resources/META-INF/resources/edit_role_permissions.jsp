@@ -421,11 +421,11 @@ if (!portletName.equals(PortletKeys.SERVER_ADMIN)) {
 </aui:script>
 
 <aui:script>
-	function <portlet:namespace />updateActions(oldResourceBlockSelectedString, oldResourceBlockUnselectedString) {
+	function <portlet:namespace />updateActions(oldSelectedResourceBlockPermissionString, oldUnselectedResourceBlockPermissionString) {
 		var form = AUI.$(document.<portlet:namespace />fm);
 
-		var oldSelectedResourceBlockPermissions = oldResourceBlockSelectedString.split(',');
-		var oldUnselectedResourceBlockPermissions = oldResourceBlockUnselectedString.split(',');
+		var oldSelectedResourceBlockPermissions = oldSelectedResourceBlockPermissionString.split(',');
+		var oldUnselectedResourceBlockPermissions = oldUnselectedResourceBlockPermissionString.split(',');
 
 		var selectedPermissionsString = Liferay.Util.listCheckedExcept(form, '<portlet:namespace />allRowIds');
 		var unselectedPermissionsString = Liferay.Util.listUncheckedExcept(form, '<portlet:namespace />allRowIds');
