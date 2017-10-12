@@ -680,7 +680,7 @@
 			<var name="pageName" value="Knowledge Base Display Page" />
 		</execute>
 
-		<var attribute="href" locator="//div[@class='kbarticle-navigation']/ul/li/a[contains(.,'Knowledge Base Article2 Title')]" name="kbAricleFriendlyURL" />
+		<var method="selenium#getAttribute('//div[@class='kbarticle-navigation']/ul/li/a[contains(.,'Knowledge Base Article2 Title')]@href')" name="kbAricleFriendlyURL" />
 
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Welcome" />
@@ -793,7 +793,7 @@
 			<var name="pageName" value="Knowledge Base Display Page" />
 		</execute>
 
-		<var attribute="href" locator="//div[@class='kbarticle-navigation']/ul/li/a[contains(.,'Knowledge Base Article2 Title')]" name="kbAricleFriendlyURL" />
+		<var method="selenium#getAttribute('//div[@class='kbarticle-navigation']/ul/li/a[contains(.,'Knowledge Base Article2 Title')]@href')" name="kbAricleFriendlyURL" />
 
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Welcome" />
