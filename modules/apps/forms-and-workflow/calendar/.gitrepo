@@ -4,8 +4,8 @@
 [subrepo]
 	autopull = false
 	cmdver = liferay
-	commit = d6e87bd43d41bfcaad4c04693c080e903be3778e
+	commit = 4ca51e21bdf02f1b9fdf433c0697b8ad051af663
 	mergebuttonmergecommits = false
 	mode = push
-	parent = eee97121b39b720e3d7b5071c570e45a2deb5be4
+	parent = ffa5792948b84a5ef990690b662f63a6b7862cd1
 	remote = git@github.com:liferay/com-liferay-calendar.git
