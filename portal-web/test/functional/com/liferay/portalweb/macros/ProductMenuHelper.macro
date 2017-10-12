@@ -66,6 +66,29 @@
 		<execute function="AssertElementNotPresent" locator1="ProductMenu#PAGE_PLUS_ICON_COLLAPSED" />
 	</command>
 
+	<command name="expandPanel">
+		<execute macro="ProductMenuHelper#openProductMenu" />
+
+		<var method="StringUtil#toLowerCase('${panel}')" name="key_panel" />
+		<var method="StringUtil#replace('${key_panel}', ' ', '_')" name="key_panel" />
+
+		<if>
+			<condition function="IsElementPresent" locator1="ProductMenu#PANEL_COLLAPSED">
+				<var name="key_panel" value="${key_panel}" />
+			</condition>
+
+			<then>
+				<execute function="Click" locator1="ProductMenu#PANEL_COLLAPSED">
+					<var name="key_panel" value="${key_panel}" />
+				</execute>
+			</then>
+		</if>
+
+		<execute function="AssertElementPresent" locator1="ProductMenu#PANEL_EXPANDED">
+			<var name="key_panel" value="${key_panel}" />
+		</execute>
+	</command>
+
 	<command name="expandPanelControlPanel">
 		<execute macro="ProductMenuHelper#openProductMenu" />
 

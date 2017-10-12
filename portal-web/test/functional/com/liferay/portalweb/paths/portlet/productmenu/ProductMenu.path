@@ -14,6 +14,16 @@
 	<td></td>
 </tr>
 <tr>
+	<td>PANEL_COLLAPSED</td>
+	<td>//div[contains(@id,'ProductMenuPortlet_${key_panel}Heading')]/div/a[@aria-expanded='false']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PANEL_EXPANDED</td>
+	<td>//div[contains(@id,'ProductMenuPortlet_${key_panel}Heading')]/div/a[@aria-expanded='true']</td>
+	<td></td>
+</tr>
+<tr>
 	<td>PRODUCT_MENU_BODY</td>
 	<td>//*[@data-qa-id='productMenuBody']</td>
 	<td></td>
