@@ -22,21 +22,21 @@ String deleteApplicationDataBeforeImportingLabelWarning = LanguageUtil.get(reque
 String deleteApplicationDataBeforeImportingLabelSuggestion = LanguageUtil.get(request, "delete-content-before-importing-suggestion");
 
 String individualDeletionsTitle = StringPool.BLANK;
-String individualDeletionsDesc = StringPool.BLANK;
+String individualDeletionsDescription = StringPool.BLANK;
 
 if (cmd.equals(Constants.EXPORT)) {
 	individualDeletionsTitle = LanguageUtil.get(request, "export-individual-deletions");
-	individualDeletionsDesc = LanguageUtil.get(request, "deletions-help-export");
+	individualDeletionsDescription = LanguageUtil.get(request, "deletions-help-export");
 }
 else {
 	individualDeletionsTitle = LanguageUtil.get(request, "replicate-individual-deletions");
-	individualDeletionsDesc = LanguageUtil.get(request, "deletions-help");
+	individualDeletionsDescription = LanguageUtil.get(request, "deletions-help");
 }
 
 String deleteApplicationDataBeforeImportingLabel =
 	"<span style='font-weight: bold;'>" + deleteApplicationDataBeforeImportingLabelTitle + ":</span> " +
 		deleteApplicationDataBeforeImportingLabelWarning + " " + deleteApplicationDataBeforeImportingLabelSuggestion;
-String individualDeletionsLabel = "<span style='font-weight: bold;'>" + individualDeletionsTitle + ":</span> " + individualDeletionsDesc;
+String individualDeletionsLabel = "<span style='font-weight: bold;'>" + individualDeletionsTitle + ":</span> " + individualDeletionsDescription;
 %>
 
 <c:if test="<%= cmd.equals(Constants.EXPORT) || cmd.equals(Constants.IMPORT) || cmd.equals(Constants.PUBLISH) %>">

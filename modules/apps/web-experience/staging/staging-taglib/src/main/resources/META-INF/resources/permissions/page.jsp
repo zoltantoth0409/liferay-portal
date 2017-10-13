@@ -18,7 +18,7 @@
 
 <%
 String inputTitle = StringPool.BLANK;
-String inputDesc = StringPool.BLANK;
+String inputDescription = StringPool.BLANK;
 
 if (action.equals("publish")) {
 	inputTitle = "publish-permissions";
@@ -31,13 +31,13 @@ else {
 }
 
 if (global) {
-	inputDesc = "publish-global-permissions-help";
+	inputDescription = "publish-global-permissions-help";
 }
 else {
-	inputDesc = "export-import-permissions-help";
+	inputDescription = "export-import-permissions-help";
 }
 
-String inputLabel = "<span style='font-weight: bold;'>" + LanguageUtil.get(request, inputTitle) + ":</span> " + LanguageUtil.get(request, inputDesc);
+String inputLabel = "<span style='font-weight: bold;'>" + LanguageUtil.get(request, inputTitle) + ":</span> " + LanguageUtil.get(request, inputDescription);
 %>
 
 <aui:fieldset collapsed="<%= true %>" collapsible="<%= true %>" cssClass="options-group" label="permissions" markupView="lexicon">
