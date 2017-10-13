@@ -18,6 +18,8 @@ import com.liferay.dynamic.data.mapping.model.DDMForm;
 import com.liferay.dynamic.data.mapping.model.DDMFormField;
 import com.liferay.dynamic.data.mapping.model.DDMFormFieldOptions;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
+import com.liferay.dynamic.data.mapping.model.DDMStructureLink;
+import com.liferay.dynamic.data.mapping.service.DDMStructureLinkLocalService;
 import com.liferay.dynamic.data.mapping.service.DDMStructureLocalService;
 import com.liferay.journal.exception.DuplicateFeedIdException;
 import com.liferay.journal.exception.FeedContentFieldException;
@@ -114,6 +116,10 @@ public class JournalFeedLocalServiceImpl
 
 		journalFeedPersistence.update(feed);
 
+		// DDM Structure Link
+
+		addDDMStructureLink(feed);
+
 		// Resources
 
 		if (serviceContext.isAddGroupPermissions() ||
@@ -184,6 +190,10 @@ public class JournalFeedLocalServiceImpl
 		// Feed
 
 		journalFeedPersistence.remove(feed);
+
+		// DDM Structure Link
+
+		deleteDDMStructureLink(feed);
 
 		// Resources
 
@@ -325,7 +335,44 @@ public class JournalFeedLocalServiceImpl
 
 		journalFeedPersistence.update(feed);
 
+		//DDM Structure Link
+
+		updateDDMStructureLink(feed);
+
 		return feed;
+	}
+
+	protected void addDDMStructureLink(JournalFeed feed)
+		throws PortalException {
+
+		long classNameId = classNameLocalService.getClassNameId(
+			JournalFeed.class);
+
+		DDMStructure ddmStructure = getDDMStructure(feed);
+
+		ddmStructureLinkLocalService.addStructureLink(
+			classNameId, feed.getPrimaryKey(), ddmStructure.getStructureId());
+	}
+
+	protected void deleteDDMStructureLink(JournalFeed feed)
+		throws PortalException {
+
+		long classNameId = classNameLocalService.getClassNameId(
+			JournalFeed.class);
+
+		DDMStructure ddmStructure = getDDMStructure(feed);
+
+		ddmStructureLinkLocalService.deleteStructureLink(
+			classNameId, feed.getPrimaryKey(), ddmStructure.getStructureId());
+	}
+
+	protected DDMStructure getDDMStructure(JournalFeed feed)
+		throws PortalException {
+
+		return ddmStructureLocalService.getStructure(
+			feed.getGroupId(),
+			classNameLocalService.getClassNameId(JournalArticle.class),
+			feed.getDDMStructureKey(), true);
 	}
 
 	protected boolean isValidStructureOptionValue(
@@ -354,6 +401,23 @@ public class JournalFeedLocalServiceImpl
 		}
 
 		return false;
+	}
+
+	protected void updateDDMStructureLink(JournalFeed feed)
+		throws PortalException {
+
+		long classNameId = classNameLocalService.getClassNameId(
+			JournalFeed.class);
+
+		DDMStructure ddmStructure = getDDMStructure(feed);
+
+		DDMStructureLink ddmStructureLink =
+			ddmStructureLinkLocalService.getUniqueStructureLink(
+				classNameId, feed.getPrimaryKey());
+
+		ddmStructureLink.setStructureId(ddmStructure.getStructureId());
+
+		ddmStructureLinkLocalService.updateDDMStructureLink(ddmStructureLink);
 	}
 
 	protected void validate(
@@ -438,6 +502,9 @@ public class JournalFeedLocalServiceImpl
 				"Invalid content field " + contentField);
 		}
 	}
+
+	@ServiceReference(type = DDMStructureLinkLocalService.class)
+	protected DDMStructureLinkLocalService ddmStructureLinkLocalService;
 
 	@ServiceReference(type = DDMStructureLocalService.class)
 	protected DDMStructureLocalService ddmStructureLocalService;
