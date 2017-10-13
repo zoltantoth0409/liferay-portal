@@ -257,7 +257,7 @@
 		</execute>
 	</command>
 
-	<command ignore="true" name="RecycleBinMBAttachment" priority="3">
+	<command name="RecycleBinMBAttachment" priority="3">
 		<execute macro="ProductMenu#gotoSite">
 			<var name="site" value="Site Name" />
 		</execute>
