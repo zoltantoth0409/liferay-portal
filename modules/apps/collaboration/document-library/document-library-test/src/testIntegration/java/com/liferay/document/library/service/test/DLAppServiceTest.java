@@ -192,6 +192,7 @@ public class DLAppServiceTest extends BaseDLAppTestCase {
 			addFileEntry(group.getGroupId(), parentFolder.getFolderId());
 		}
 
+		@Ignore
 		@Test(expected = FileSizeException.class)
 		public void shouldFailIfSizeLimitExceeded() throws Exception {
 			try (PrefsPropsTemporarySwapper prefsPropsReplacement =
@@ -240,6 +241,7 @@ public class DLAppServiceTest extends BaseDLAppTestCase {
 				group.getGroupId(), parentFolder.getFolderId(), sourceFileName);
 		}
 
+		@Ignore
 		@Test(expected = FileExtensionException.class)
 		public void shouldFailIfSourceFileNameExtensionNotSupported()
 			throws Exception {
@@ -1401,6 +1403,7 @@ public class DLAppServiceTest extends BaseDLAppTestCase {
 			}
 		}
 
+		@Ignore
 		@Test(expected = FileSizeException.class)
 		public void shouldFailIfSizeLimitExceeded() throws Exception {
 			String fileName = RandomTestUtil.randomString();
