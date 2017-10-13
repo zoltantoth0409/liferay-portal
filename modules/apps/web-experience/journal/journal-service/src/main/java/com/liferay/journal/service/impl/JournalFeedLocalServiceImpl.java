@@ -118,7 +118,13 @@ public class JournalFeedLocalServiceImpl
 
 		// DDM Structure Link
 
-		addDDMStructureLink(feed);
+		DDMStructure ddmStructure = ddmStructureLocalService.getStructure(
+			groupId, classNameLocalService.getClassNameId(JournalArticle.class),
+			ddmStructureKey, true);
+
+		ddmStructureLinkLocalService.addStructureLink(
+			classNameLocalService.getClassNameId(JournalFeed.class),
+			feed.getPrimaryKey(), ddmStructure.getStructureId());
 
 		// Resources
 
@@ -193,7 +199,14 @@ public class JournalFeedLocalServiceImpl
 
 		// DDM Structure Link
 
-		deleteDDMStructureLink(feed);
+		DDMStructure ddmStructure = ddmStructureLocalService.getStructure(
+			feed.getGroupId(),
+			classNameLocalService.getClassNameId(JournalArticle.class),
+			feed.getDDMStructureKey(), true);
+
+		ddmStructureLinkLocalService.deleteStructureLink(
+			classNameLocalService.getClassNameId(JournalFeed.class),
+			feed.getPrimaryKey(), ddmStructure.getStructureId());
 
 		// Resources
 
@@ -337,42 +350,22 @@ public class JournalFeedLocalServiceImpl
 
 		//DDM Structure Link
 
-		updateDDMStructureLink(feed);
+		long classNameId = classNameLocalService.getClassNameId(
+			JournalFeed.class);
+
+		DDMStructureLink ddmStructureLink =
+			ddmStructureLinkLocalService.getUniqueStructureLink(
+				classNameId, feed.getPrimaryKey());
+
+		DDMStructure ddmStructure = ddmStructureLocalService.getStructure(
+			groupId, classNameLocalService.getClassNameId(JournalArticle.class),
+			ddmStructureKey, true);
+
+		ddmStructureLinkLocalService.updateStructureLink(
+			ddmStructureLink.getStructureLinkId(), classNameId,
+			feed.getPrimaryKey(), ddmStructure.getStructureId());
 
 		return feed;
-	}
-
-	protected void addDDMStructureLink(JournalFeed feed)
-		throws PortalException {
-
-		long classNameId = classNameLocalService.getClassNameId(
-			JournalFeed.class);
-
-		DDMStructure ddmStructure = getDDMStructure(feed);
-
-		ddmStructureLinkLocalService.addStructureLink(
-			classNameId, feed.getPrimaryKey(), ddmStructure.getStructureId());
-	}
-
-	protected void deleteDDMStructureLink(JournalFeed feed)
-		throws PortalException {
-
-		long classNameId = classNameLocalService.getClassNameId(
-			JournalFeed.class);
-
-		DDMStructure ddmStructure = getDDMStructure(feed);
-
-		ddmStructureLinkLocalService.deleteStructureLink(
-			classNameId, feed.getPrimaryKey(), ddmStructure.getStructureId());
-	}
-
-	protected DDMStructure getDDMStructure(JournalFeed feed)
-		throws PortalException {
-
-		return ddmStructureLocalService.getStructure(
-			feed.getGroupId(),
-			classNameLocalService.getClassNameId(JournalArticle.class),
-			feed.getDDMStructureKey(), true);
 	}
 
 	protected boolean isValidStructureOptionValue(
@@ -401,23 +394,6 @@ public class JournalFeedLocalServiceImpl
 		}
 
 		return false;
-	}
-
-	protected void updateDDMStructureLink(JournalFeed feed)
-		throws PortalException {
-
-		long classNameId = classNameLocalService.getClassNameId(
-			JournalFeed.class);
-
-		DDMStructure ddmStructure = getDDMStructure(feed);
-
-		DDMStructureLink ddmStructureLink =
-			ddmStructureLinkLocalService.getUniqueStructureLink(
-				classNameId, feed.getPrimaryKey());
-
-		ddmStructureLink.setStructureId(ddmStructure.getStructureId());
-
-		ddmStructureLinkLocalService.updateDDMStructureLink(ddmStructureLink);
 	}
 
 	protected void validate(
