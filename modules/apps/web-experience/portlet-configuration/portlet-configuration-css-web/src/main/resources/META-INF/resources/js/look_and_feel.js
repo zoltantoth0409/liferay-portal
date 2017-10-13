@@ -132,9 +132,9 @@ AUI.add(
 						}
 
 						if (instance._currentPopup) {
-							var popupPortletId = instance._currentPopup.get("portletId");
+							var popupPortletId = instance._currentPopup.get('portletId');
 
-							if (popupPortletId != instance._portletId) {
+							if (popupPortletId !== instance._portletId) {
 								instance._currentPopup.destroy();
 							}
 						}
@@ -190,7 +190,7 @@ AUI.add(
 								}
 							);
 
-							instance._currentPopup.set("portletId", instance._portletId);
+							instance._currentPopup.set('portletId', instance._portletId);
 
 							var viewURL = new Liferay.PortletURL.createURL(instance._baseRenderPortletURL);
 
