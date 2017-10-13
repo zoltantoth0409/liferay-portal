@@ -443,7 +443,7 @@
 
 		<execute macro="Role#removePermissionPG">
 			<var name="permissionDefinitionKey" value="CONTENT_PERMISSIONS_VIEW_CHECKBOX" />
-			<var name="roleTitle" value="Guest" />
+			<var name="roleName" value="Guest" />
 		</execute>
 
 		<execute macro="User#logoutPG" />
