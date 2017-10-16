@@ -420,7 +420,7 @@ public class GitWorkingDirectory {
 				return null;
 			}
 
-			return new Branch(branchName, null, getBranchSha(branchName));
+			return new Branch(branchName, null, getBranchSHA(branchName));
 		}
 
 		List<Branch> branches = getBranches(remote);
@@ -444,7 +444,7 @@ public class GitWorkingDirectory {
 			for (String localBranchName : localBranchNames) {
 				localBranches.add(
 					new Branch(
-						localBranchName, null, getBranchSha(localBranchName)));
+						localBranchName, null, getBranchSHA(localBranchName)));
 			}
 
 			return localBranches;
@@ -461,7 +461,7 @@ public class GitWorkingDirectory {
 		return getRemoteBranchNames(remote);
 	}
 
-	public List<String> getBranchNamesContainingSha(String sha) {
+	public List<String> getBranchNamesContainingSHA(String sha) {
 		ExecutionResult executionResult = executeBashCommands(
 			1, 1000 * 60 * 2, "git branch --contains " + sha);
 
@@ -499,7 +499,7 @@ public class GitWorkingDirectory {
 		return branchNamesList;
 	}
 
-	public String getBranchSha(String localBranchName) {
+	public String getBranchSHA(String localBranchName) {
 		ExecutionResult executionResult = executeBashCommands(
 			1, 1000 * 60 * 2, "git rev-parse " + localBranchName);
 
@@ -860,7 +860,7 @@ public class GitWorkingDirectory {
 			return _remote;
 		}
 
-		public String getSha() {
+		public String getSHA() {
 			return _sha;
 		}
 
