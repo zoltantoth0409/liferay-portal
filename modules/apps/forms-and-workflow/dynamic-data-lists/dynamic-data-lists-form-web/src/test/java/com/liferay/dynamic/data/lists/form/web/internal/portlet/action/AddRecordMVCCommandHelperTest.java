@@ -16,7 +16,6 @@ package com.liferay.dynamic.data.lists.form.web.internal.portlet.action;
 
 import com.liferay.dynamic.data.mapping.form.evaluator.DDMFormEvaluationResult;
 import com.liferay.dynamic.data.mapping.form.evaluator.DDMFormEvaluator;
-import com.liferay.dynamic.data.mapping.form.evaluator.DDMFormEvaluatorContext;
 import com.liferay.dynamic.data.mapping.form.evaluator.DDMFormFieldEvaluationResult;
 import com.liferay.dynamic.data.mapping.model.DDMForm;
 import com.liferay.dynamic.data.mapping.model.DDMFormField;
@@ -75,7 +74,7 @@ public class AddRecordMVCCommandHelperTest extends PowerMockito {
 		ddmFormFieldEvaluationResult.setVisible(false);
 
 		_addRecordMVCCommandHelper.updateRequiredFieldsAccordingToVisibility(
-			_actionRequest, _ddmForm, _ddmFormValues, LocaleUtil.US);
+			_ddmForm, _ddmFormValues, LocaleUtil.US);
 
 		Assert.assertFalse(_ddmFormField.isRequired());
 	}
@@ -90,7 +89,7 @@ public class AddRecordMVCCommandHelperTest extends PowerMockito {
 		ddmFormFieldEvaluationResult.setVisible(true);
 
 		_addRecordMVCCommandHelper.updateRequiredFieldsAccordingToVisibility(
-			_actionRequest, _ddmForm, _ddmFormValues, LocaleUtil.US);
+			_ddmForm, _ddmFormValues, LocaleUtil.US);
 
 		Assert.assertFalse(_ddmFormField.isRequired());
 	}
@@ -103,7 +102,7 @@ public class AddRecordMVCCommandHelperTest extends PowerMockito {
 		ddmFormFieldEvaluationResult.setVisible(false);
 
 		_addRecordMVCCommandHelper.updateRequiredFieldsAccordingToVisibility(
-			_actionRequest, _ddmForm, _ddmFormValues, LocaleUtil.US);
+			_ddmForm, _ddmFormValues, LocaleUtil.US);
 
 		Assert.assertFalse(_ddmFormField.isRequired());
 	}
@@ -116,7 +115,7 @@ public class AddRecordMVCCommandHelperTest extends PowerMockito {
 		ddmFormFieldEvaluationResult.setVisible(true);
 
 		_addRecordMVCCommandHelper.updateRequiredFieldsAccordingToVisibility(
-			_actionRequest, _ddmForm, _ddmFormValues, LocaleUtil.US);
+			_ddmForm, _ddmFormValues, LocaleUtil.US);
 
 		Assert.assertTrue(_ddmFormField.isRequired());
 	}
@@ -178,7 +177,8 @@ public class AddRecordMVCCommandHelperTest extends PowerMockito {
 
 		when(
 			_ddmFormEvaluator, "evaluate",
-			Matchers.any(DDMFormEvaluatorContext.class)
+			(DDMForm)Matchers.any(), (DDMFormValues)Matchers.any(),
+			(Locale)Matchers.any()
 		).thenReturn(
 			ddmFormEvaluationResult
 		);
