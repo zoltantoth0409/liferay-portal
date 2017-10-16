@@ -125,7 +125,7 @@ public abstract class BaseOverridingRepositoryDefiner
 
 		_overridenRepositoryDefiner = repositoryDefinerOptional.orElseThrow(
 			() -> new RepositoryException(
-				"No repository found with className " + className));
+				"No repository found with class name " + className));
 	}
 
 	protected void restoreOverridenRepositoryDefiner(String className) {
