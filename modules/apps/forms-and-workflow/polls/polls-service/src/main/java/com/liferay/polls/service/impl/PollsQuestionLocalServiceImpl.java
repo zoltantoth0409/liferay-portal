@@ -36,6 +36,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author Brian Wing Shun Chan
@@ -301,25 +303,7 @@ public class PollsQuestionLocalServiceImpl
 			return question;
 		}
 
-		List<PollsChoice> oldChoices = pollsChoicePersistence.findByQuestionId(
-			questionId);
-
-		if (oldChoices.size() > choices.size()) {
-			List<String> choiceNames = new ArrayList<>(choices.size());
-
-			for (PollsChoice choice : choices) {
-				choiceNames.add(choice.getName());
-			}
-
-			for (PollsChoice oldChoice : oldChoices) {
-				if (!choiceNames.contains(oldChoice.getName())) {
-					pollsVotePersistence.removeByChoiceId(
-						oldChoice.getChoiceId());
-
-					pollsChoicePersistence.remove(oldChoice);
-				}
-			}
-		}
+		deleteRemovedPollsChoices(questionId, choices);
 
 		for (PollsChoice choice : choices) {
 			String choiceName = choice.getName();
@@ -340,6 +324,34 @@ public class PollsQuestionLocalServiceImpl
 		}
 
 		return question;
+	}
+
+	protected void deletePollsChoice(PollsChoice pollsChoice) {
+		pollsVotePersistence.removeByChoiceId(pollsChoice.getChoiceId());
+
+		pollsChoicePersistence.remove(pollsChoice);
+	}
+
+	protected void deleteRemovedPollsChoices(
+		long questionId, List<PollsChoice> choices) {
+
+		Stream<PollsChoice> stream = choices.stream();
+
+		Stream<String> choiceNamesStream = stream.map(
+			choice -> choice.getName());
+
+		List<String> choiceNames = choiceNamesStream.collect(
+			Collectors.toList());
+
+		List<PollsChoice> oldChoices = pollsChoicePersistence.findByQuestionId(
+			questionId);
+
+		Stream<PollsChoice> oldStream = oldChoices.stream();
+
+		oldStream = oldStream.filter(
+			oldChoice -> !choiceNames.contains(oldChoice.getName()));
+
+		oldStream.forEach(this::deletePollsChoice);
 	}
 
 	protected void validate(
