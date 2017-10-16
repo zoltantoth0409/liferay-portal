@@ -53,9 +53,11 @@ if (Validator.isNotNull(portletResource)) {
 }
 
 List<String> selectedResourceBlockPermissions = new ArrayList<>();
-List<String> unselectedResourceBlockPermissions = new ArrayList<>();
 
 request.setAttribute("edit_role_permissions_form.jsp-selectedResourceBlockPermissions", selectedResourceBlockPermissions);
+
+List<String> unselectedResourceBlockPermissions = new ArrayList<>();
+
 request.setAttribute("edit_role_permissions_form.jsp-unselectedResourceBlockPermissions", unselectedResourceBlockPermissions);
 %>
 
