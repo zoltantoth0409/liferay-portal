@@ -68,8 +68,6 @@ public class DLFileRankDLAppHelperLocalServiceWrapper
 			return;
 		}
 
-		// File rank
-
 		if (userId > 0) {
 			TransactionCommitCallbackUtil.registerCallback(
 				() -> {
@@ -166,8 +164,6 @@ public class DLFileRankDLAppHelperLocalServiceWrapper
 		throws PortalException {
 
 		super.restoreFolderFromTrash(userId, folder);
-
-		// File rank
 
 		_dlFileRankLocalService.enableFileRanksByFolderId(folder.getFolderId());
 	}
