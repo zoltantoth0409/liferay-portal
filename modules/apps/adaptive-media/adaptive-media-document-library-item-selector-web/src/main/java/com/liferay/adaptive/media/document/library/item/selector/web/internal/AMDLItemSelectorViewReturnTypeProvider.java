@@ -41,7 +41,6 @@ public class AMDLItemSelectorViewReturnTypeProvider
 
 		supportedItemSelectorReturnTypes.add(
 			new AMImageFileEntryItemSelectorReturnType());
-
 		supportedItemSelectorReturnTypes.add(
 			new AMImageURLItemSelectorReturnType());
 

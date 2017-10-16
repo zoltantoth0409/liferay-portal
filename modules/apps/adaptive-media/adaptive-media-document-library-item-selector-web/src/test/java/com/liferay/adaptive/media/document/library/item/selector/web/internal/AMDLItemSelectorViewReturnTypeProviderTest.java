@@ -35,7 +35,7 @@ import org.powermock.api.mockito.PowerMockito;
 public class AMDLItemSelectorViewReturnTypeProviderTest extends PowerMockito {
 
 	@Test
-	public void testAddAMImageItemSelectorReturnTypesWithNonEmptyList()
+	public void testAddAMImageItemSelectorReturnTypesWithNonemptyList()
 		throws Exception {
 
 		List<ItemSelectorReturnType> supportedItemSelectorReturnTypes =
@@ -57,7 +57,6 @@ public class AMDLItemSelectorViewReturnTypeProviderTest extends PowerMockito {
 		Assert.assertEquals(
 			itemSelectorReturnTypes.toString(), 4,
 			itemSelectorReturnTypes.size());
-
 		Assert.assertTrue(
 			itemSelectorReturnTypes.get(0) instanceof
 				FileEntryItemSelectorReturnType);
@@ -91,11 +90,9 @@ public class AMDLItemSelectorViewReturnTypeProviderTest extends PowerMockito {
 		Assert.assertEquals(
 			itemSelectorReturnTypes.toString(), 2,
 			itemSelectorReturnTypes.size());
-
 		Assert.assertTrue(
 			itemSelectorReturnTypes.get(0) instanceof
 				AMImageFileEntryItemSelectorReturnType);
-
 		Assert.assertTrue(
 			itemSelectorReturnTypes.get(1) instanceof
 				AMImageURLItemSelectorReturnType);
