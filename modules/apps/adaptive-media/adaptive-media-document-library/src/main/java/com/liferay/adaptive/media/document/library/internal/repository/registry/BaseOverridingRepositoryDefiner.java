@@ -209,14 +209,12 @@ public abstract class BaseOverridingRepositoryDefiner
 			repositoryEventRegistry.registerRepositoryEventListener(
 				RepositoryEventType.Add.class, FileEntry.class,
 				BaseOverridingRepositoryDefiner.this::_updateAdaptiveMedia);
-
-			repositoryEventRegistry.registerRepositoryEventListener(
-				RepositoryEventType.Update.class, FileEntry.class,
-				BaseOverridingRepositoryDefiner.this::_updateAdaptiveMedia);
-
 			repositoryEventRegistry.registerRepositoryEventListener(
 				RepositoryEventType.Delete.class, FileEntry.class,
 				BaseOverridingRepositoryDefiner.this::_deleteAdaptiveMedia);
+			repositoryEventRegistry.registerRepositoryEventListener(
+				RepositoryEventType.Update.class, FileEntry.class,
+				BaseOverridingRepositoryDefiner.this::_updateAdaptiveMedia);
 		}
 
 	}
