@@ -34,26 +34,10 @@ import com.liferay.portal.spring.extender.service.ServiceReference;
 import java.util.List;
 
 /**
- * The implementation of the document library file rank local service.
- *
- * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.document.library.file.rank.service.DLFileRankLocalService} interface.
- *
- * <p>
- * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
- * </p>
- *
  * @author Brian Wing Shun Chan
- * @see DLFileRankLocalServiceBaseImpl
- * @see com.liferay.document.library.file.rank.service.DLFileRankLocalServiceUtil
  */
 public class DLFileRankLocalServiceImpl extends DLFileRankLocalServiceBaseImpl {
 
-	/**
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. Always use {@link com.liferay.document.library.file.rank.service.DLFileRankLocalServiceUtil} to access the document library file rank local service.
-	 */
 	@Override
 	public DLFileRank addFileRank(
 		long groupId, long companyId, long userId, long fileEntryId,
