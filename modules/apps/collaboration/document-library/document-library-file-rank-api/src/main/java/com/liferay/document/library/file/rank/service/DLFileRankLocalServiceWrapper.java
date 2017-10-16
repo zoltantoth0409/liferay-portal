@@ -45,11 +45,6 @@ public class DLFileRankLocalServiceWrapper implements DLFileRankLocalService,
 		return _dlFileRankLocalService.addDLFileRank(dlFileRank);
 	}
 
-	/**
-	* NOTE FOR DEVELOPERS:
-	*
-	* Never reference this class directly. Always use {@link DLFileRankLocalServiceUtil} to access the document library file rank local service.
-	*/
 	@Override
 	public com.liferay.document.library.file.rank.model.DLFileRank addFileRank(
 		long groupId, long companyId, long userId, long fileEntryId,

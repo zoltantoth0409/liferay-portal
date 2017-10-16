@@ -73,11 +73,6 @@ public interface DLFileRankLocalService extends BaseLocalService,
 	@Indexable(type = IndexableType.REINDEX)
 	public DLFileRank addDLFileRank(DLFileRank dlFileRank);
 
-	/**
-	* NOTE FOR DEVELOPERS:
-	*
-	* Never reference this class directly. Always use {@link DLFileRankLocalServiceUtil} to access the document library file rank local service.
-	*/
 	public DLFileRank addFileRank(long groupId, long companyId, long userId,
 		long fileEntryId, ServiceContext serviceContext);
 

@@ -53,11 +53,6 @@ public class DLFileRankLocalServiceUtil {
 		return getService().addDLFileRank(dlFileRank);
 	}
 
-	/**
-	* NOTE FOR DEVELOPERS:
-	*
-	* Never reference this class directly. Always use {@link DLFileRankLocalServiceUtil} to access the document library file rank local service.
-	*/
 	public static com.liferay.document.library.file.rank.model.DLFileRank addFileRank(
 		long groupId, long companyId, long userId, long fileEntryId,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext) {
