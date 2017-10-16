@@ -193,7 +193,8 @@ public class LocalProcessLauncher {
 		}
 
 		public static boolean isAttached() {
-			HeartbeatThread attachThread = _heartbeatThreadAtomicReference.get();
+			HeartbeatThread attachThread =
+				_heartbeatThreadAtomicReference.get();
 
 			if (attachThread != null) {
 				return true;
