@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.adaptive.media.document.library.item.selector.web.internal.provider;
+package com.liferay.adaptive.media.document.library.item.selector.web.internal;
 
 import com.liferay.adaptive.media.image.item.selector.AMImageFileEntryItemSelectorReturnType;
 import com.liferay.adaptive.media.image.item.selector.AMImageURLItemSelectorReturnType;
