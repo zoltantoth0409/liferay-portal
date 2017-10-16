@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.wiki.editor.configuration.internal.item.selector.provider;
+package com.liferay.wiki.editor.configuration.internal.item.selector;
 
 import com.liferay.item.selector.ItemSelectorReturnType;
 import com.liferay.item.selector.ItemSelectorView;
