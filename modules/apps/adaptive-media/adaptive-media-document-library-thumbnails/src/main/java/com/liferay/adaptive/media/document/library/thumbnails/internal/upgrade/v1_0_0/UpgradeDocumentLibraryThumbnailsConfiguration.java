@@ -106,13 +106,11 @@ public class UpgradeDocumentLibraryThumbnailsConfiguration
 
 		for (Company company : companies) {
 			_amImageConfigurationHelper.addAMImageConfigurationEntry(
-				company.getCompanyId(), name, _DEFAULT_DESCRIPTION, name,
+				company.getCompanyId(), name,
+				"This image resolution has been added automatically.", name,
 				properties);
 		}
 	}
-
-	private static final String _DEFAULT_DESCRIPTION =
-		"This image resolution has been added automatically.";
 
 	private static final String _DEFAULT_NAME = "Thumbnail";
 
