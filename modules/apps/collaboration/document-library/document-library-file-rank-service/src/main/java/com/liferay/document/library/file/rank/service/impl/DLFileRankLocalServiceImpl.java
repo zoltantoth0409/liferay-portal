@@ -253,7 +253,10 @@ public class DLFileRankLocalServiceImpl extends DLFileRankLocalServiceBaseImpl {
 			maxSize = dlFileRankServiceConfiguration.maxSize();
 		}
 		catch (ConfigurationException ce) {
-			_log.error("Unable to get dl file rank service configuration", ce);
+			_log.error(
+				"Unable to get document library file rank service " +
+					"configuration",
+				ce);
 		}
 
 		return maxSize;
