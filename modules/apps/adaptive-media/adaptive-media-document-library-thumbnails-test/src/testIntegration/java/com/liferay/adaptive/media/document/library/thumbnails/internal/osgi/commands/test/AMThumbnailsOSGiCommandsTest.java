@@ -116,8 +116,8 @@ public class AMThumbnailsOSGiCommandsTest {
 		registry.ungetService(_amImageConfigurationHelperServiceReference);
 		registry.ungetService(_amImageFinderServiceReference);
 
-		_enableDocumentLibraryAM();
 		_enableAMThumbnails();
+		_enableDocumentLibraryAM();
 	}
 
 	@Before
