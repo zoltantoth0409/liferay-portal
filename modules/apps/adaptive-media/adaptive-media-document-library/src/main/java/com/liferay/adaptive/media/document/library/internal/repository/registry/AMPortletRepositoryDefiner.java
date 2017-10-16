@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.adaptive.media.document.library.internal.repository;
+package com.liferay.adaptive.media.document.library.internal.repository.registry;
 
 import com.liferay.portal.kernel.repository.registry.RepositoryDefiner;
 
