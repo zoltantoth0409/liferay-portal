@@ -100,13 +100,13 @@ public class CalendarStagingTestUtil {
 
 		addStagingAttribute(parameters, PortletDataHandlerKeys.DELETIONS, true);
 		addStagingAttribute(
+			parameters, PortletDataHandlerKeys.PORTLET_CONFIGURATION_ALL,
+			false);
+		addStagingAttribute(
 			parameters,
 			PortletDataHandlerKeys.PORTLET_DATA + StringPool.UNDERLINE +
 				CalendarPortletKeys.CALENDAR,
 			enableCalendarStaging);
-		addStagingAttribute(
-			parameters, PortletDataHandlerKeys.PORTLET_CONFIGURATION_ALL,
-			false);
 		addStagingAttribute(
 			parameters, PortletDataHandlerKeys.PORTLET_DATA_ALL, false);
 		addStagingAttribute(
