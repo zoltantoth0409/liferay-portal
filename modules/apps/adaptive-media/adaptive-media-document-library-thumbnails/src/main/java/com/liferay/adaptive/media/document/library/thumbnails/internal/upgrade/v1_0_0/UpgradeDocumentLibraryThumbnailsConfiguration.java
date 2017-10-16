@@ -107,7 +107,7 @@ public class UpgradeDocumentLibraryThumbnailsConfiguration
 		for (Company company : companies) {
 			_amImageConfigurationHelper.addAMImageConfigurationEntry(
 				company.getCompanyId(), name,
-				"This image resolution has been added automatically.", name,
+				"This image resolution was automatically added.", name,
 				properties);
 		}
 	}
