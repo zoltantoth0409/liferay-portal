@@ -95,7 +95,7 @@ public class UpgradeDocumentLibraryThumbnailsConfiguration
 		throws AMImageConfigurationException, IOException {
 
 		String name = String.format(
-			"%s %dx%d", _DEFAULT_NAME, maxWidth, maxHeight);
+			"%s %dx%d", "Thumbnail", maxWidth, maxHeight);
 
 		Map<String, String> properties = new HashMap<>();
 
@@ -111,8 +111,6 @@ public class UpgradeDocumentLibraryThumbnailsConfiguration
 				properties);
 		}
 	}
-
-	private static final String _DEFAULT_NAME = "Thumbnail";
 
 	private final AMImageConfigurationHelper _amImageConfigurationHelper;
 	private final CompanyLocalService _companyLocalService;
