@@ -95,15 +95,15 @@ public class AMImageEntryLocalServiceImpl
 		AMImageEntry amImageEntry = amImageEntryPersistence.create(
 			imageEntryId);
 
-		amImageEntry.setCompanyId(fileVersion.getCompanyId());
 		amImageEntry.setGroupId(fileVersion.getGroupId());
+		amImageEntry.setCompanyId(fileVersion.getCompanyId());
 		amImageEntry.setCreateDate(new Date());
+		amImageEntry.setConfigurationUuid(amImageConfigurationEntry.getUUID());
 		amImageEntry.setFileVersionId(fileVersion.getFileVersionId());
 		amImageEntry.setMimeType(fileVersion.getMimeType());
 		amImageEntry.setHeight(height);
 		amImageEntry.setWidth(width);
 		amImageEntry.setSize(size);
-		amImageEntry.setConfigurationUuid(amImageConfigurationEntry.getUUID());
 
 		imageStorage.save(
 			fileVersion, amImageConfigurationEntry.getUUID(), inputStream);
