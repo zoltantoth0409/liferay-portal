@@ -66,7 +66,7 @@ public class AMImageFinderImpl implements AMImageFinder {
 
 		if (amImageQueryBuilderFunction == null) {
 			throw new IllegalArgumentException(
-				"amImageQueryBuilder must be non null");
+				"Adaptive media image query builder is null");
 		}
 
 		AMImageQueryBuilderImpl amImageQueryBuilderImpl =
