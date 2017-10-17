@@ -90,7 +90,8 @@ public class AMImageAttributeMapping {
 		AMAttribute<AMImageProcessor, V> amAttribute) {
 
 		if (amAttribute == null) {
-			throw new IllegalArgumentException("attribute cannot be null");
+			throw new IllegalArgumentException(
+				"Adaptive media attribute is null");
 		}
 
 		return (Optional<V>)_optionals.get(amAttribute);
