@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.adaptive.media.image.item.selector.internal.resolver.test;
+package com.liferay.adaptive.media.image.item.selector.internal.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.document.library.kernel.model.DLFolderConstants;
@@ -113,7 +113,7 @@ public class FileEntryAMImageFileEntryItemSelectorReturnTypeResolverTest {
 		return FileUtil.getBytes(
 			FileEntryAMImageFileEntryItemSelectorReturnTypeResolverTest.class,
 			"/com/liferay/adaptive/media/image/item/selector/internal" +
-				"/resolver/test/dependencies/image.jpg");
+				"/test/dependencies/image.jpg");
 	}
 
 	private <T> T _getService(Class<T> clazz) {
@@ -142,7 +142,7 @@ public class FileEntryAMImageFileEntryItemSelectorReturnTypeResolverTest {
 
 	private static final String _RESOLVER_FILTER =
 		"(objectClass=com.liferay.adaptive.media.image.item.selector." +
-			"internal.resolver.FileEntryAMImageFileEntryItemSelectorReturn" +
+			"internal.FileEntryAMImageFileEntryItemSelectorReturn" +
 				"TypeResolver)";
 
 	private DLAppLocalService _dlAppLocalService;

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.adaptive.media.image.item.selector.internal.resolver.test;
+package com.liferay.adaptive.media.image.item.selector.internal.test;
 
 import com.liferay.adaptive.media.image.configuration.AMImageConfigurationEntry;
 import com.liferay.adaptive.media.image.configuration.AMImageConfigurationHelper;
@@ -663,7 +663,7 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 
 	private static final String _RESOLVER_FILTER =
 		"(objectClass=com.liferay.adaptive.media.image.item.selector." +
-			"internal.resolver.FileEntryAMImageURLItemSelectorReturnType" +
+			"internal.FileEntryAMImageURLItemSelectorReturnType" +
 				"Resolver)";
 
 	private AMImageConfigurationHelper _amImageConfigurationHelper;
