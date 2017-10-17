@@ -25,8 +25,8 @@ String curPortletResource = (String)request.getAttribute("edit_role_permissions.
 String curModelResource = (String)request.getAttribute("edit_role_permissions.jsp-curModelResource");
 String curModelResourceName = (String)request.getAttribute("edit_role_permissions.jsp-curModelResourceName");
 
-List<String> selectedResourceBlockPermissions = (List<String>)request.getAttribute("edit_role_permissions_form.jsp-selectedResourceBlockPermissions");
-List<String> unselectedResourceBlockPermissions = (List<String>)request.getAttribute("edit_role_permissions_form.jsp-unselectedResourceBlockPermissions");
+List<String> selectedResourceBlockPermissionActionIds = (List<String>)request.getAttribute("edit_role_permissions_form.jsp-selectedResourceBlockPermissionActionIds");
+List<String> unselectedResourceBlockPermissionActionIds = (List<String>)request.getAttribute("edit_role_permissions_form.jsp-unselectedResourceBlockPermissionActionIds");
 
 Portlet curPortlet = null;
 String curPortletId = StringPool.BLANK;
@@ -104,10 +104,10 @@ for (int i = 0; i < results.size(); i++) {
 
 	if (ResourceBlockLocalServiceUtil.isSupported(curResource)) {
 		if (ResourceTypePermissionLocalServiceUtil.hasEitherScopePermission(role.getCompanyId(), curModelResource, role.getRoleId(), actionId)) {
-			selectedResourceBlockPermissions.add(target);
+			selectedResourceBlockPermissionActionIds.add(target);
 		}
 		else {
-			unselectedResourceBlockPermissions.add(target);
+			unselectedResourceBlockPermissionActionIds.add(target);
 		}
 	}
 
