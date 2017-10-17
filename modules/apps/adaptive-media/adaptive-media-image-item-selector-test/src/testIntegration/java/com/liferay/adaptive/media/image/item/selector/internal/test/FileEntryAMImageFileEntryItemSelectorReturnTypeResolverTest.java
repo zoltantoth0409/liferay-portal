@@ -83,7 +83,8 @@ public class FileEntryAMImageFileEntryItemSelectorReturnTypeResolverTest {
 
 		final FileEntry fileEntry = _addImageFileEntry(serviceContext);
 
-		String value = _itemSelectorReturnTypeResolver.getValue(fileEntry, null);
+		String value = _itemSelectorReturnTypeResolver.getValue(
+			fileEntry, null);
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(value);
 
