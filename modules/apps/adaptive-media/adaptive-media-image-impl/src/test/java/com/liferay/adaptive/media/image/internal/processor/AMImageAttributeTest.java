@@ -50,7 +50,7 @@ public class AMImageAttributeTest {
 	}
 
 	@Test(expected = AMRuntimeException.AMAttributeFormatException.class)
-	public void testImageHeightFailsForNonIntegers() {
+	public void testImageHeightFailsForNonintegers() {
 		AMImageAttribute.AM_IMAGE_ATTRIBUTE_HEIGHT.convert("xyz");
 	}
 
@@ -62,7 +62,7 @@ public class AMImageAttributeTest {
 	}
 
 	@Test(expected = AMRuntimeException.AMAttributeFormatException.class)
-	public void testImageWidthFailsForNonIntegers() {
+	public void testImageWidthFailsForNonintegers() {
 		AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH.convert("xyz");
 	}
 
