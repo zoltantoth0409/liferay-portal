@@ -795,7 +795,9 @@
 
 		<execute macro="UserBar#gotoMyAccount" />
 
-		<execute macro="ProductMenu#gotoUserMyAccount">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="My Account" />
+			<var name="panel" value="User" />
 			<var name="portlet" value="My Workflow Tasks" />
 		</execute>
 
@@ -817,7 +819,9 @@
 
 		<execute macro="UserBar#gotoMyAccount" />
 
-		<execute macro="ProductMenu#gotoUserMyAccount">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="My Account" />
+			<var name="panel" value="User" />
 			<var name="portlet" value="My Workflow Tasks" />
 		</execute>
 
@@ -839,7 +843,9 @@
 
 		<execute macro="UserBar#gotoMyAccount" />
 
-		<execute macro="ProductMenu#gotoUserMyAccount">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="My Account" />
+			<var name="panel" value="User" />
 			<var name="portlet" value="My Workflow Tasks" />
 		</execute>
 
@@ -862,7 +868,9 @@
 
 		<execute macro="UserBar#gotoMyAccount" />
 
-		<execute macro="ProductMenu#gotoUserMyAccount">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="My Account" />
+			<var name="panel" value="User" />
 			<var name="portlet" value="My Workflow Tasks" />
 		</execute>
 
@@ -1214,7 +1222,9 @@
 
 		<execute macro="UserBar#gotoMyAccount" />
 
-		<execute macro="ProductMenu#gotoUserMyAccount">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="My Account" />
+			<var name="panel" value="User" />
 			<var name="portlet" value="My Submissions" />
 		</execute>
 
