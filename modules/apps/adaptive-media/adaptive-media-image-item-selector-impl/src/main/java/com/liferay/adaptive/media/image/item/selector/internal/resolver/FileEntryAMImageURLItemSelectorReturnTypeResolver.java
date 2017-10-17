@@ -15,9 +15,9 @@
 package com.liferay.adaptive.media.image.item.selector.internal.resolver;
 
 import com.liferay.adaptive.media.image.item.selector.AMImageURLItemSelectorReturnType;
-import com.liferay.adaptive.media.image.mediaquery.Condition;
-import com.liferay.adaptive.media.image.mediaquery.MediaQuery;
-import com.liferay.adaptive.media.image.mediaquery.MediaQueryProvider;
+import com.liferay.adaptive.media.image.media.query.Condition;
+import com.liferay.adaptive.media.image.media.query.MediaQuery;
+import com.liferay.adaptive.media.image.media.query.MediaQueryProvider;
 import com.liferay.document.library.kernel.util.DLUtil;
 import com.liferay.item.selector.ItemSelectorReturnTypeResolver;
 import com.liferay.portal.kernel.json.JSONArray;

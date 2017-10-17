@@ -1,3 +1,1 @@
-1.) Rename the package mediaquery to media.query
-
 2.) AMImageAttribute#IMAGE_HEIGHT should match AMAttribute#_AM_ATTRIBUTE_CONFIGURATION_UUID, so it should be #AM_IMAGE_ATTRIBUT_HEIGHT

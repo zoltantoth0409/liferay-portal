@@ -12,29 +12,27 @@
  * details.
  */
 
-package com.liferay.adaptive.media.image.mediaquery;
-
-import java.util.List;
+package com.liferay.adaptive.media.image.media.query;
 
 /**
  * @author Alejandro Tardín
  */
-public class MediaQuery {
+public class Condition {
 
-	public MediaQuery(List<Condition> conditions, String src) {
-		_conditions = conditions;
-		_src = src;
+	public Condition(String attribute, String value) {
+		_attribute = attribute;
+		_value = value;
 	}
 
-	public List<Condition> getConditions() {
-		return _conditions;
+	public String getAttribute() {
+		return _attribute;
 	}
 
-	public String getSrc() {
-		return _src;
+	public String getValue() {
+		return _value;
 	}
 
-	private final List<Condition> _conditions;
-	private final String _src;
+	private final String _attribute;
+	private final String _value;
 
 }

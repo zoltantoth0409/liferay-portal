@@ -12,27 +12,19 @@
  * details.
  */
 
-package com.liferay.adaptive.media.image.mediaquery;
+package com.liferay.adaptive.media.image.media.query;
+
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.repository.model.FileEntry;
+
+import java.util.List;
 
 /**
  * @author Alejandro Tardín
  */
-public class Condition {
+public interface MediaQueryProvider {
 
-	public Condition(String attribute, String value) {
-		_attribute = attribute;
-		_value = value;
-	}
-
-	public String getAttribute() {
-		return _attribute;
-	}
-
-	public String getValue() {
-		return _value;
-	}
-
-	private final String _attribute;
-	private final String _value;
+	public List<MediaQuery> getMediaQueries(FileEntry fileEntry)
+		throws PortalException;
 
 }
