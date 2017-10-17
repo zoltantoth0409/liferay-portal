@@ -61,6 +61,12 @@ public class MediaQueryProviderImplTest {
 	@Before
 	public void setUp() throws PortalException {
 		Mockito.when(
+			_amImageFinder.getAdaptiveMediaStream(Mockito.any(Function.class))
+		).thenAnswer(
+			invocation -> Stream.empty()
+		);
+
+		Mockito.when(
 			_fileEntry.getCompanyId()
 		).thenReturn(
 			_COMPANY_ID
@@ -72,18 +78,10 @@ public class MediaQueryProviderImplTest {
 			_fileVersion
 		);
 
-		Mockito.when(
-			_amImageFinder.getAdaptiveMediaStream(Mockito.any(Function.class))
-		).thenAnswer(
-			invocation -> Stream.empty()
-		);
-
-		_mediaQueryProvider.setAMImageURLFactory(_amURLFactory);
-
 		_mediaQueryProvider.setAMImageConfigurationHelper(
 			_amImageConfigurationHelper);
-
 		_mediaQueryProvider.setAMImageFinder(_amImageFinder);
+		_mediaQueryProvider.setAMImageURLFactory(_amURLFactory);
 	}
 
 	@Test
