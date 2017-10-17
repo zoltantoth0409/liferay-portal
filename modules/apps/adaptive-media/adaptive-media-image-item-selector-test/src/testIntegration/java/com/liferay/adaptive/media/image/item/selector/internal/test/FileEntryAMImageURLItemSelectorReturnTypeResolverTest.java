@@ -78,7 +78,7 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 			AMImageConfigurationHelper.class);
 		_dlAppLocalService = _getService(DLAppLocalService.class);
 
-		_resolver = _getService(
+		_itemSelectorReturnTypeResolver = _getService(
 			ItemSelectorReturnTypeResolver.class, _RESOLVER_FILTER);
 
 		ServiceTestUtil.setUser(TestPropsValues.getUser());
@@ -125,7 +125,7 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 
 		final FileEntry fileEntry = _addImageFileEntry(serviceContext);
 
-		String value = _resolver.getValue(fileEntry, null);
+		String value = _itemSelectorReturnTypeResolver.getValue(fileEntry, null);
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(value);
 
@@ -169,7 +169,7 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 
 		final FileEntry fileEntry = _addImageFileEntry(serviceContext);
 
-		String value = _resolver.getValue(fileEntry, null);
+		String value = _itemSelectorReturnTypeResolver.getValue(fileEntry, null);
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(value);
 
@@ -217,7 +217,7 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 		_addTestVariant("small", "uuid0", 50, 50);
 		_addTestVariant("small.hd", "uuid1", 99, 100);
 
-		String value = _resolver.getValue(fileEntry, null);
+		String value = _itemSelectorReturnTypeResolver.getValue(fileEntry, null);
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(value);
 
@@ -257,7 +257,7 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 
 		final FileEntry fileEntry = _addImageFileEntry(serviceContext);
 
-		String value = _resolver.getValue(fileEntry, null);
+		String value = _itemSelectorReturnTypeResolver.getValue(fileEntry, null);
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(value);
 
@@ -297,7 +297,7 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 
 		final FileEntry fileEntry = _addImageFileEntry(serviceContext);
 
-		String value = _resolver.getValue(fileEntry, null);
+		String value = _itemSelectorReturnTypeResolver.getValue(fileEntry, null);
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(value);
 
@@ -337,7 +337,7 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 		_addTestVariant("small", "uuid0", 50, 50);
 		_addTestVariant("small.hd", "uuid1", 100, 101);
 
-		String value = _resolver.getValue(fileEntry, null);
+		String value = _itemSelectorReturnTypeResolver.getValue(fileEntry, null);
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(value);
 
@@ -377,7 +377,7 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 		_addTestVariant("small", "uuid0", 50, 50);
 		_addTestVariant("small.hd", "uuid1", 98, 200);
 
-		String value = _resolver.getValue(fileEntry, null);
+		String value = _itemSelectorReturnTypeResolver.getValue(fileEntry, null);
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(value);
 
@@ -417,7 +417,7 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 		_addTestVariant("small", "uuid0", 50, 50);
 		_addTestVariant("small.hd", "uuid1", 102, 200);
 
-		String value = _resolver.getValue(fileEntry, null);
+		String value = _itemSelectorReturnTypeResolver.getValue(fileEntry, null);
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(value);
 
@@ -457,7 +457,7 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 
 		final FileEntry fileEntry = _addImageFileEntry(serviceContext);
 
-		String value = _resolver.getValue(fileEntry, null);
+		String value = _itemSelectorReturnTypeResolver.getValue(fileEntry, null);
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(value);
 
@@ -497,7 +497,7 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 
 		final FileEntry fileEntry = _addImageFileEntry(serviceContext);
 
-		String value = _resolver.getValue(fileEntry, null);
+		String value = _itemSelectorReturnTypeResolver.getValue(fileEntry, null);
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(value);
 
@@ -672,6 +672,6 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 	@DeleteAfterTestRun
 	private Group _group;
 
-	private ItemSelectorReturnTypeResolver _resolver;
+	private ItemSelectorReturnTypeResolver _itemSelectorReturnTypeResolver;
 
 }

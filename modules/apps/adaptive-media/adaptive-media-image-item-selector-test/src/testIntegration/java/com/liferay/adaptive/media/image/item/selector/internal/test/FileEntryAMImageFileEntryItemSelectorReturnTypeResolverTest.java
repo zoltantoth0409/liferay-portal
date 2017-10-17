@@ -69,7 +69,7 @@ public class FileEntryAMImageFileEntryItemSelectorReturnTypeResolverTest {
 
 		_dlAppLocalService = _getService(DLAppLocalService.class);
 
-		_resolver = _getService(
+		_itemSelectorReturnTypeResolver = _getService(
 			ItemSelectorReturnTypeResolver.class, _RESOLVER_FILTER);
 
 		ServiceTestUtil.setUser(TestPropsValues.getUser());
@@ -83,7 +83,7 @@ public class FileEntryAMImageFileEntryItemSelectorReturnTypeResolverTest {
 
 		final FileEntry fileEntry = _addImageFileEntry(serviceContext);
 
-		String value = _resolver.getValue(fileEntry, null);
+		String value = _itemSelectorReturnTypeResolver.getValue(fileEntry, null);
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(value);
 
@@ -150,6 +150,6 @@ public class FileEntryAMImageFileEntryItemSelectorReturnTypeResolverTest {
 	@DeleteAfterTestRun
 	private Group _group;
 
-	private ItemSelectorReturnTypeResolver _resolver;
+	private ItemSelectorReturnTypeResolver _itemSelectorReturnTypeResolver;
 
 }
