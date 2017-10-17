@@ -47,7 +47,7 @@ public class PathInterpreter {
 				throw new IllegalArgumentException("Path information is null");
 			}
 
-			Matcher matcher = _URL_PATTERN.matcher(pathInfo);
+			Matcher matcher = _pattern.matcher(pathInfo);
 
 			if (!matcher.matches()) {
 				return Optional.empty();
@@ -128,7 +128,7 @@ public class PathInterpreter {
 		return Long.valueOf(matcher.group(2));
 	}
 
-	private static final Pattern _URL_PATTERN = Pattern.compile(
+	private static final Pattern _pattern = Pattern.compile(
 		"/image/(\\d+)(?:/(\\d+))?/([^/]+)/(?:[^/]+)");
 
 	private AMImageConfigurationHelper _amImageConfigurationHelper;
