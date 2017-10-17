@@ -156,7 +156,7 @@ public final class AMAttribute<T, V> {
 
 	private static final AMAttribute<?, String>
 		_AM_ATTRIBUTE_CONFIGURATION_UUID = new AMAttribute<>(
-			"configuration-uuid", (s) -> s, String::compareTo);
+			"configuration-uuid", s -> s, String::compareTo);
 
 	private static final AMAttribute<?, Long> _AM_ATTRIBUTE_CONTENT_LENGTH =
 		new AMAttribute<>(
@@ -164,10 +164,10 @@ public final class AMAttribute<T, V> {
 			(Long value1, Long value2) -> value1 - value2);
 
 	private static final AMAttribute<?, String> _AM_ATTRIBUTE_CONTENT_TYPE =
-		new AMAttribute<>("content-type", (value) -> value, String::compareTo);
+		new AMAttribute<>("content-type", value -> value, String::compareTo);
 
 	private static final AMAttribute<?, String> _AM_ATTRIBUTE_FILE_NAME =
-		new AMAttribute<>("file-name", (value) -> value, String::compareTo);
+		new AMAttribute<>("file-name", value -> value, String::compareTo);
 
 	private static final Map<String, AMAttribute<?, ?>> _allowedAMAttributes =
 		new HashMap<>();
