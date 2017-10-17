@@ -58,6 +58,8 @@ public class FileEntryAMImageFileEntryItemSelectorReturnTypeResolver
 
 		JSONObject fileEntryJSONObject = JSONFactoryUtil.createJSONObject();
 
+		fileEntryJSONObject.put("fileEntryId", fileEntry.getFileEntryId());
+
 		String previewURL = null;
 
 		if (fileEntry.getGroupId() == fileEntry.getRepositoryId()) {
@@ -70,7 +72,6 @@ public class FileEntryAMImageFileEntryItemSelectorReturnTypeResolver
 				themeDisplay, fileEntry, StringPool.BLANK, false);
 		}
 
-		fileEntryJSONObject.put("fileEntryId", fileEntry.getFileEntryId());
 		fileEntryJSONObject.put("url", previewURL);
 
 		return fileEntryJSONObject.toString();
