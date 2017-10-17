@@ -44,7 +44,7 @@ public class PathInterpreter {
 
 		try {
 			if (pathInfo == null) {
-				throw new IllegalArgumentException("pathInfo cannot be null");
+				throw new IllegalArgumentException("Path information is null");
 			}
 
 			Matcher matcher = _URL_PATTERN.matcher(pathInfo);

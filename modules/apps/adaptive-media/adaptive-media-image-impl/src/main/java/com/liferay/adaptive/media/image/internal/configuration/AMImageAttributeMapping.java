@@ -44,7 +44,7 @@ public class AMImageAttributeMapping {
 		Map<String, String> properties) {
 
 		if (properties == null) {
-			throw new IllegalArgumentException("properties map cannot be null");
+			throw new IllegalArgumentException("Properties map is null");
 		}
 
 		Map<AMAttribute<AMImageProcessor, ?>, Optional<?>> optionals =
