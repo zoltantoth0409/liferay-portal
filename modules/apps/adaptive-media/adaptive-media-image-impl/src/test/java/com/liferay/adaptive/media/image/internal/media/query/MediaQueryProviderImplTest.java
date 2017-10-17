@@ -83,12 +83,12 @@ public class MediaQueryProviderImplTest {
 		_mediaQueryProvider.setAMImageConfigurationHelper(
 			_amImageConfigurationHelper);
 		_mediaQueryProvider.setAMImageFinder(_amImageFinder);
-		_mediaQueryProvider.setAMImageURLFactory(_amURLFactory);
+		_mediaQueryProvider.setAMImageURLFactory(_amImageURLFactory);
 	}
 
 	@Test
 	public void testCreatesAMediaQuery() throws Exception {
-		_addConfigs(_createConfig("uuid", 800, 1989, "adaptiveURL"));
+		_addConfigs(_createAMImageConfigurationEntry("uuid", 800, 1989, "adaptiveURL"));
 
 		List<MediaQuery> mediaQueries = _mediaQueryProvider.getMediaQueries(
 			_fileEntry);
@@ -109,8 +109,8 @@ public class MediaQueryProviderImplTest {
 	@Test
 	public void testCreatesSeveralMediaQueries() throws Exception {
 		_addConfigs(
-			_createConfig("uuid1", 800, 1986, "adaptiveURL1"),
-			_createConfig("uuid2", 800, 1989, "adaptiveURL2"));
+			_createAMImageConfigurationEntry("uuid1", 800, 1986, "adaptiveURL1"),
+			_createAMImageConfigurationEntry("uuid2", 800, 1989, "adaptiveURL2"));
 
 		List<MediaQuery> mediaQueries = _mediaQueryProvider.getMediaQueries(
 			_fileEntry);
@@ -142,8 +142,8 @@ public class MediaQueryProviderImplTest {
 	@Test
 	public void testCreatesSeveralMediaQueriesSortedByWidth() throws Exception {
 		_addConfigs(
-			_createConfig("uuid2", 800, 1989, "adaptiveURL2"),
-			_createConfig("uuid1", 800, 1986, "adaptiveURL1"));
+			_createAMImageConfigurationEntry("uuid2", 800, 1989, "adaptiveURL2"),
+			_createAMImageConfigurationEntry("uuid1", 800, 1986, "adaptiveURL1"));
 
 		List<MediaQuery> mediaQueries = _mediaQueryProvider.getMediaQueries(
 			_fileEntry);
@@ -177,8 +177,8 @@ public class MediaQueryProviderImplTest {
 		int auto = 0;
 
 		_addConfigs(
-			_createConfig("normal", 2048, 1024, StringPool.BLANK),
-			_createConfig("wauto", 900, auto, StringPool.BLANK));
+			_createAMImageConfigurationEntry("normal", 2048, 1024, StringPool.BLANK),
+			_createAMImageConfigurationEntry("wauto", 900, auto, StringPool.BLANK));
 
 		_addAdaptiveMedias(
 			_fileEntry, _createAdaptiveMedia("normal", 1334, 750, "normalURL"));
@@ -194,9 +194,9 @@ public class MediaQueryProviderImplTest {
 	@Test
 	public void testHDMediaQueriesApplies() throws Exception {
 		_addConfigs(
-			_createConfig("uuid1", 450, 800, "http://small.adaptive.com"),
-			_createConfig("uuid2", 900, 1600, "http://small.hd.adaptive.com"),
-			_createConfig("uuid3", 1900, 2500, "http://big.adaptive.com"));
+			_createAMImageConfigurationEntry("uuid1", 450, 800, "http://small.adaptive.com"),
+			_createAMImageConfigurationEntry("uuid2", 900, 1600, "http://small.hd.adaptive.com"),
+			_createAMImageConfigurationEntry("uuid3", 1900, 2500, "http://big.adaptive.com"));
 
 		List<MediaQuery> mediaQueries = _mediaQueryProvider.getMediaQueries(
 			_fileEntry);
@@ -244,8 +244,8 @@ public class MediaQueryProviderImplTest {
 		throws Exception {
 
 		_addConfigs(
-			_createConfig("uuid1", 450, 800, "http://small.adaptive.com"),
-			_createConfig("uuid2", 899, 1600, "http://small.hd.adaptive.com"));
+			_createAMImageConfigurationEntry("uuid1", 450, 800, "http://small.adaptive.com"),
+			_createAMImageConfigurationEntry("uuid2", 899, 1600, "http://small.hd.adaptive.com"));
 
 		List<MediaQuery> mediaQueries = _mediaQueryProvider.getMediaQueries(
 			_fileEntry);
@@ -282,8 +282,8 @@ public class MediaQueryProviderImplTest {
 		throws Exception {
 
 		_addConfigs(
-			_createConfig("uuid1", 450, 800, "http://small.adaptive.com"),
-			_createConfig("uuid2", 901, 1600, "http://small.hd.adaptive.com"));
+			_createAMImageConfigurationEntry("uuid1", 450, 800, "http://small.adaptive.com"),
+			_createAMImageConfigurationEntry("uuid2", 901, 1600, "http://small.hd.adaptive.com"));
 
 		List<MediaQuery> mediaQueries = _mediaQueryProvider.getMediaQueries(
 			_fileEntry);
@@ -320,8 +320,8 @@ public class MediaQueryProviderImplTest {
 		throws Exception {
 
 		_addConfigs(
-			_createConfig("uuid1", 450, 800, "http://small.adaptive.com"),
-			_createConfig("uuid2", 900, 1599, "http://small.hd.adaptive.com"));
+			_createAMImageConfigurationEntry("uuid1", 450, 800, "http://small.adaptive.com"),
+			_createAMImageConfigurationEntry("uuid2", 900, 1599, "http://small.hd.adaptive.com"));
 
 		List<MediaQuery> mediaQueries = _mediaQueryProvider.getMediaQueries(
 			_fileEntry);
@@ -363,8 +363,8 @@ public class MediaQueryProviderImplTest {
 		throws Exception {
 
 		_addConfigs(
-			_createConfig("uuid", 450, 800, "http://small.adaptive.com"),
-			_createConfig("uuid", 900, 1601, "http://small.hd.adaptive.com"));
+			_createAMImageConfigurationEntry("uuid", 450, 800, "http://small.adaptive.com"),
+			_createAMImageConfigurationEntry("uuid", 900, 1601, "http://small.hd.adaptive.com"));
 
 		List<MediaQuery> mediaQueries = _mediaQueryProvider.getMediaQueries(
 			_fileEntry);
@@ -401,8 +401,8 @@ public class MediaQueryProviderImplTest {
 		throws Exception {
 
 		_addConfigs(
-			_createConfig("uuid", 450, 800, "http://small.adaptive.com"),
-			_createConfig("uuid", 898, 1600, "http://small.hd.adaptive.com"));
+			_createAMImageConfigurationEntry("uuid", 450, 800, "http://small.adaptive.com"),
+			_createAMImageConfigurationEntry("uuid", 898, 1600, "http://small.hd.adaptive.com"));
 
 		List<MediaQuery> mediaQueries = _mediaQueryProvider.getMediaQueries(
 			_fileEntry);
@@ -437,8 +437,8 @@ public class MediaQueryProviderImplTest {
 		throws Exception {
 
 		_addConfigs(
-			_createConfig("uuid", 450, 800, "http://small.adaptive.com"),
-			_createConfig("uuid", 902, 1600, "http://small.hd.adaptive.com"));
+			_createAMImageConfigurationEntry("uuid", 450, 800, "http://small.adaptive.com"),
+			_createAMImageConfigurationEntry("uuid", 902, 1600, "http://small.hd.adaptive.com"));
 
 		List<MediaQuery> mediaQueries = _mediaQueryProvider.getMediaQueries(
 			_fileEntry);
@@ -473,8 +473,8 @@ public class MediaQueryProviderImplTest {
 		throws Exception {
 
 		_addConfigs(
-			_createConfig("uuid", 450, 800, "http://small.adaptive.com"),
-			_createConfig("uuid", 900, 1598, "http://small.hd.adaptive.com"));
+			_createAMImageConfigurationEntry("uuid", 450, 800, "http://small.adaptive.com"),
+			_createAMImageConfigurationEntry("uuid", 900, 1598, "http://small.hd.adaptive.com"));
 
 		List<MediaQuery> mediaQueries = _mediaQueryProvider.getMediaQueries(
 			_fileEntry);
@@ -509,8 +509,8 @@ public class MediaQueryProviderImplTest {
 		throws Exception {
 
 		_addConfigs(
-			_createConfig("uuid", 450, 800, "http://small.adaptive.com"),
-			_createConfig("uuid", 900, 1602, "http://small.hd.adaptive.com"));
+			_createAMImageConfigurationEntry("uuid", 450, 800, "http://small.adaptive.com"),
+			_createAMImageConfigurationEntry("uuid", 900, 1602, "http://small.hd.adaptive.com"));
 
 		List<MediaQuery> mediaQueries = _mediaQueryProvider.getMediaQueries(
 			_fileEntry);
@@ -559,10 +559,10 @@ public class MediaQueryProviderImplTest {
 		int auto = 0;
 
 		_addConfigs(
-			_createConfig("hauto", auto, 600, "hautoURL"),
-			_createConfig("low", 300, 300, "lowURL"),
-			_createConfig("normal", 2048, 1024, "normalURL"),
-			_createConfig("wauto", 900, auto, "wautoURL"));
+			_createAMImageConfigurationEntry("hauto", auto, 600, "hautoURL"),
+			_createAMImageConfigurationEntry("low", 300, 300, "lowURL"),
+			_createAMImageConfigurationEntry("normal", 2048, 1024, "normalURL"),
+			_createAMImageConfigurationEntry("wauto", 900, auto, "wautoURL"));
 
 		List<MediaQuery> mediaQueries = _mediaQueryProvider.getMediaQueries(
 			_fileEntry);
@@ -581,10 +581,10 @@ public class MediaQueryProviderImplTest {
 		int auto = 0;
 
 		_addConfigs(
-			_createConfig("hauto", auto, 600, StringPool.BLANK),
-			_createConfig("low", 300, 300, StringPool.BLANK),
-			_createConfig("normal", 2048, 1024, StringPool.BLANK),
-			_createConfig("wauto", 900, auto, StringPool.BLANK));
+			_createAMImageConfigurationEntry("hauto", auto, 600, StringPool.BLANK),
+			_createAMImageConfigurationEntry("low", 300, 300, StringPool.BLANK),
+			_createAMImageConfigurationEntry("normal", 2048, 1024, StringPool.BLANK),
+			_createAMImageConfigurationEntry("wauto", 900, auto, StringPool.BLANK));
 
 		_addAdaptiveMedias(
 			_fileEntry, _createAdaptiveMedia("low", 300, 169, "lowURL"),
@@ -717,7 +717,7 @@ public class MediaQueryProviderImplTest {
 			URI.create(url));
 	}
 
-	private AMImageConfigurationEntry _createConfig(
+	private AMImageConfigurationEntry _createAMImageConfigurationEntry(
 			final String uuid, final int height, final int width, String url)
 		throws Exception {
 
@@ -757,7 +757,7 @@ public class MediaQueryProviderImplTest {
 			};
 
 		Mockito.when(
-			_amURLFactory.createFileEntryURL(
+			_amImageURLFactory.createFileEntryURL(
 				_fileEntry.getFileVersion(), amImageConfigurationEntry)
 		).thenReturn(
 			URI.create(url)
@@ -775,7 +775,7 @@ public class MediaQueryProviderImplTest {
 	private AMImageFinder _amImageFinder;
 
 	@Mock
-	private AMImageURLFactory _amURLFactory;
+	private AMImageURLFactory _amImageURLFactory;
 
 	@Mock
 	private FileEntry _fileEntry;
