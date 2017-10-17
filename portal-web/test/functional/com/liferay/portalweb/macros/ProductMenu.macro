@@ -1,12 +1,16 @@
 <definition>
 	<command name="gotoLiveSite" summary="Navigate to the Live site">
-		<execute macro="ProductMenuHelper#expandPanelSites" />
+		<execute macro="ProductMenuHelper#expandPanel">
+			<var name="panel" value="Site Administration" />
+		</execute>
 
 		<execute function="AssertClick" locator1="ProductMenu#LIVE_LINK" value1="Live" />
 	</command>
 
 	<command name="gotoLocalizedEditPage" summary="Navigate to Navigate to Product Menu > Sites > ${category} > ${page}">
-		<execute macro="ProductMenuHelper#expandPanelSites" />
+		<execute macro="ProductMenuHelper#expandPanel">
+			<var name="panel" value="Site Administration" />
+		</execute>
 
 		<execute macro="ProductMenuHelper#expandCategory">
 			<var name="category" value="${category}" />
@@ -20,7 +24,9 @@
 	</command>
 
 	<command name="gotoLocalizedSite" summary="Navigate to Product Menu > Sites > Sites Modal > ${site}">
-		<execute macro="ProductMenuHelper#expandPanelSites" />
+		<execute macro="ProductMenuHelper#expandPanel">
+			<var name="panel" value="Site Administration" />
+		</execute>
 
 		<execute macro="ProductMenuHelper#openSitesPopup" />
 
@@ -34,13 +40,17 @@
 			<var name="site" value="${site}" />
 		</execute>
 
-		<execute macro="ProductMenuHelper#expandPanelSites" />
+		<execute macro="ProductMenuHelper#expandPanel">
+			<var name="panel" value="Site Administration" />
+		</execute>
 
 		<execute function="AssertTextEquals#assertPartialText" locator1="ProductMenu#PRODUCT_MENU_PANEL_SITE_ADMINISTRATION_SITE_NAME" value1="${site}" />
 	</command>
 
 	<command name="gotoPersonalSite" summary="Navigate to Product Menu > Profile">
-		<execute macro="ProductMenuHelper#expandPanelUser" />
+		<execute macro="ProductMenuHelper#expandPanel">
+			<var name="panel" value="User" />
+		</execute>
 
 		<execute function="Click" locator1="ProductMenu#USER_PROFILE" />
 	</command>
@@ -60,7 +70,9 @@
 	</command>
 
 	<command name="gotoPrivatePages" summary="Navigate to Product Menu > Sites > Navigation > Private Pages">
-		<execute macro="ProductMenuHelper#expandPanelSites" />
+		<execute macro="ProductMenuHelper#expandPanel">
+			<var name="panel" value="Site Administration" />
+		</execute>
 
 		<execute macro="ProductMenuHelper#expandCategory">
 			<var name="category" value="Navigation" />
@@ -83,7 +95,9 @@
 	</command>
 
 	<command name="gotoPublicPages" summary="Navigate to Product Menu > Sites > Navigation > Public Pages > ${page}">
-		<execute macro="ProductMenuHelper#expandPanelSites" />
+		<execute macro="ProductMenuHelper#expandPanel">
+			<var name="panel" value="Site Administration" />
+		</execute>
 
 		<execute macro="ProductMenuHelper#expandCategory">
 			<var name="category" value="Navigation" />
@@ -104,7 +118,9 @@
 	</command>
 
 	<command name="gotoPublicSite" summary="Navigate to Product Menu > Sites > Site Popup > ${site}">
-		<execute macro="ProductMenuHelper#expandPanelSites" />
+		<execute macro="ProductMenuHelper#expandPanel">
+			<var name="panel" value="Site Administration" />
+		</execute>
 
 		<execute macro="ProductMenuHelper#openSitesPopup" />
 
@@ -114,7 +130,9 @@
 	</command>
 
 	<command name="gotoSite" summary="Navigate to Product Menu > Sites > Sites Modal > ${site}">
-		<execute macro="ProductMenuHelper#expandPanelSites" />
+		<execute macro="ProductMenuHelper#expandPanel">
+			<var name="panel" value="Site Administration" />
+		</execute>
 
 		<execute macro="ProductMenuHelper#openSitesPopup" />
 
@@ -128,13 +146,17 @@
 			<var name="site" value="${site}" />
 		</execute>
 
-		<execute macro="ProductMenuHelper#expandPanelSites" />
+		<execute macro="ProductMenuHelper#expandPanel">
+			<var name="panel" value="Site Administration" />
+		</execute>
 
 		<execute function="AssertTextEquals#assertPartialText" locator1="ProductMenu#PRODUCT_MENU_PANEL_SITE_ADMINISTRATION_SITE_NAME" value1="${site}" />
 	</command>
 
 	<command name="gotoSiteViaLink" summary="Navigate to ${site} via the 'Go to Site' link">
-		<execute macro="ProductMenuHelper#expandPanelSites" />
+		<execute macro="ProductMenuHelper#expandPanel">
+			<var name="panel" value="Site Administration" />
+		</execute>
 
 		<execute function="AssertClick" locator1="ProductMenu#GO_TO_SITES_LINK" value1="Go to Site" />
 	</command>
@@ -143,7 +165,9 @@
 		<if>
 			<condition function="IsElementNotPresent" locator1="ProductMenu#STAGING_SELECTED" />
 			<then>
-				<execute macro="ProductMenuHelper#expandPanelSites" />
+				<execute macro="ProductMenuHelper#expandPanel">
+					<var name="panel" value="Site Administration" />
+				</execute>
 
 				<execute function="AssertClick" locator1="ProductMenu#STAGING_LINK" value1="Staging" />
 			</then>
@@ -153,7 +177,9 @@
 	</command>
 
 	<command name="viewNoSite" summary="View ${site} is not available in the product menu.">
-		<execute macro="ProductMenuHelper#expandPanelSites" />
+		<execute macro="ProductMenuHelper#expandPanel">
+			<var name="panel" value="Site Administration" />
+		</execute>
 
 		<if>
 			<and>
@@ -171,7 +197,9 @@
 	</command>
 
 	<command name="viewSite" summary="View ${site} is available in the product menu.">
-		<execute macro="ProductMenuHelper#expandPanelSites" />
+		<execute macro="ProductMenuHelper#expandPanel">
+			<var name="panel" value="Site Administration" />
+		</execute>
 
 		<if>
 			<and>
