@@ -58,12 +58,12 @@ public class AMImageFinderImplTest {
 
 	@Before
 	public void setUp() {
-		_amImageFinderImpl.setAMImageURLFactory(_amImageURLFactory);
 		_amImageFinderImpl.setAMImageConfigurationHelper(
 			_amImageConfigurationHelper);
-		_amImageFinderImpl.setImageProcessor(_imageProcessor);
 		_amImageFinderImpl.setAMImageEntryLocalService(
 			_amImageEntryLocalService);
+		_amImageFinderImpl.setAMImageURLFactory(_amImageURLFactory);
+		_amImageFinderImpl.setImageProcessor(_imageProcessor);
 	}
 
 	@Test(expected = PortalException.class)
