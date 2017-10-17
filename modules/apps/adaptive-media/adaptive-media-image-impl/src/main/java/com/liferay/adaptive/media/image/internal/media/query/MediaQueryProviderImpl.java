@@ -176,7 +176,7 @@ public class MediaQueryProviderImpl implements MediaQueryProvider {
 		return adaptiveMedias;
 	}
 
-	private Optional<Integer> _getAttribute(
+	private Optional<Integer> _getPropertiesValue(
 		AMImageConfigurationEntry amImageConfigurationEntry, String name) {
 
 		try {
@@ -257,7 +257,7 @@ public class MediaQueryProviderImpl implements MediaQueryProvider {
 	private Optional<Integer> _getHeight(
 		AMImageConfigurationEntry originalAMImageConfigurationEntry) {
 
-		return _getAttribute(originalAMImageConfigurationEntry, "max-height");
+		return _getPropertiesValue(originalAMImageConfigurationEntry, "max-height");
 	}
 
 	private MediaQuery _getMediaQuery(
@@ -293,7 +293,7 @@ public class MediaQueryProviderImpl implements MediaQueryProvider {
 	private Optional<Integer> _getWidth(
 		AMImageConfigurationEntry amImageConfigurationEntry) {
 
-		return _getAttribute(amImageConfigurationEntry, "max-width");
+		return _getPropertiesValue(amImageConfigurationEntry, "max-width");
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
