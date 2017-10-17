@@ -40,6 +40,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
@@ -338,8 +340,10 @@ public class MediaQueryProviderImplTest {
 
 		_assertCondition(conditions1.get(0), "max-width", "800px");
 
-		Assert.assertEquals("max-width", conditions1.get(0).getAttribute());
-		Assert.assertEquals("800px", conditions1.get(0).getValue());
+		Condition condition = conditions1.get(0);
+
+		Assert.assertEquals("max-width", condition.getAttribute());
+		Assert.assertEquals("800px", condition.getValue());
 
 		MediaQuery mediaQuery2 = mediaQueries.get(1);
 
@@ -625,10 +629,13 @@ public class MediaQueryProviderImplTest {
 				for (AdaptiveMedia<AMImageProcessor>
 						adaptiveMedia : adaptiveMedias) {
 
-					String configurationUuid = adaptiveMedia.getValueOptional(
-						AMAttribute.getConfigurationUuidAMAttribute()).get();
+					Optional<String> optional = adaptiveMedia.getValueOptional(
+						AMAttribute.getConfigurationUuidAMAttribute());
 
-					if (fileEntry.getFileVersion().equals(
+					String configurationUuid = optional.get();
+
+					if (Objects.equals(
+							fileEntry.getFileVersion(),
 							amImageQueryBuilderImpl.getFileVersion()) &&
 						configurationUuid.equals(
 							amImageQueryBuilderImpl.getConfigurationUuid())) {
