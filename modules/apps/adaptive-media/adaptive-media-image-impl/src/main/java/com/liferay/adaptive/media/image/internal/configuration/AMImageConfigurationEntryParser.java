@@ -160,8 +160,7 @@ public class AMImageConfigurationEntryParser {
 		Map<String, String> properties = new HashMap<>();
 
 		for (String attribute : attributes) {
-			String[] keyValuePair = _keyValueSeparatorPattern.split(
-				attribute);
+			String[] keyValuePair = _keyValueSeparatorPattern.split(attribute);
 
 			properties.put(keyValuePair[0], keyValuePair[1]);
 		}
@@ -192,13 +191,10 @@ public class AMImageConfigurationEntryParser {
 
 	private static final Pattern _attributeSeparatorPattern = Pattern.compile(
 		"\\s*;\\s*");
-
 	private static final Pattern _disabledSeparatorPattern = Pattern.compile(
 		"enabled=(true|false)");
-
 	private static final Pattern _fieldSeparatorPattern = Pattern.compile(
 		"\\s*:\\s*");
-
 	private static final Pattern _keyValueSeparatorPattern = Pattern.compile(
 		"\\s*=\\s*");
 
