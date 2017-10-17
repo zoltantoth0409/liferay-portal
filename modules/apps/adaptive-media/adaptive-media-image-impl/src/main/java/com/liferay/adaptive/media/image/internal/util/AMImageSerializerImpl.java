@@ -82,8 +82,6 @@ public class AMImageSerializerImpl implements AMImageSerializer {
 	public String serialize(AdaptiveMedia<AMImageProcessor> media) {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		jsonObject.put("uri", media.getURI());
-
 		JSONObject attributesJSONObject = JSONFactoryUtil.createJSONObject();
 
 		Map<String, AMAttribute<?, ?>> allowedAMAttributes =
@@ -100,6 +98,8 @@ public class AMImageSerializerImpl implements AMImageSerializer {
 			});
 
 		jsonObject.put("attributes", attributesJSONObject);
+
+		jsonObject.put("uri", media.getURI());
 
 		return jsonObject.toString();
 	}
