@@ -72,11 +72,11 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 
 	@Before
 	public void setUp() throws Exception {
-		_group = GroupTestUtil.addGroup();
-
 		_amImageConfigurationHelper = _getService(
 			AMImageConfigurationHelper.class);
 		_dlAppLocalService = _getService(DLAppLocalService.class);
+
+		_group = GroupTestUtil.addGroup();
 
 		_itemSelectorReturnTypeResolver = _getService(
 			ItemSelectorReturnTypeResolver.class, _RESOLVER_FILTER);

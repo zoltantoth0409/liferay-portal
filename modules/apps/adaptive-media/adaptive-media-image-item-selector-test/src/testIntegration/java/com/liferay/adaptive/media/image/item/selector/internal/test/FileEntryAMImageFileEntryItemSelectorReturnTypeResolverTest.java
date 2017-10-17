@@ -65,9 +65,9 @@ public class FileEntryAMImageFileEntryItemSelectorReturnTypeResolverTest {
 
 	@Before
 	public void setUp() throws Exception {
-		_group = GroupTestUtil.addGroup();
-
 		_dlAppLocalService = _getService(DLAppLocalService.class);
+
+		_group = GroupTestUtil.addGroup();
 
 		_itemSelectorReturnTypeResolver = _getService(
 			ItemSelectorReturnTypeResolver.class, _RESOLVER_FILTER);
