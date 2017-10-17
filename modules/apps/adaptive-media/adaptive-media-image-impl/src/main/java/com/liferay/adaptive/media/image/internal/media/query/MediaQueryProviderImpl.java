@@ -136,11 +136,11 @@ public class MediaQueryProviderImpl implements MediaQueryProvider {
 		Map<String, String> properties = new HashMap<>();
 
 		properties.put(
-			AMImageAttribute.IMAGE_WIDTH.getName(),
+			AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH.getName(),
 			String.valueOf(widthOptional.orElse(0)));
 
 		properties.put(
-			AMImageAttribute.IMAGE_HEIGHT.getName(),
+			AMImageAttribute.AM_IMAGE_ATTRIBUTE_HEIGHT.getName(),
 			String.valueOf(heightOptional.orElse(0)));
 
 		return new AMImage(
@@ -251,7 +251,7 @@ public class MediaQueryProviderImpl implements MediaQueryProvider {
 
 	private Integer _getHeight(AdaptiveMedia<AMImageProcessor> adaptiveMedia) {
 		return adaptiveMedia.getValueOptional(
-			AMImageAttribute.IMAGE_HEIGHT).orElse(0);
+			AMImageAttribute.AM_IMAGE_ATTRIBUTE_HEIGHT).orElse(0);
 	}
 
 	private Optional<Integer> _getHeight(
@@ -285,7 +285,7 @@ public class MediaQueryProviderImpl implements MediaQueryProvider {
 
 	private Integer _getWidth(AdaptiveMedia<AMImageProcessor> adaptiveMedia) {
 		Optional<Integer> attributeValue = adaptiveMedia.getValueOptional(
-			AMImageAttribute.IMAGE_WIDTH);
+			AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH);
 
 		return attributeValue.orElse(0);
 	}

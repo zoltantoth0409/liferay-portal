@@ -321,10 +321,10 @@ public class AMImageRequestHandlerTest {
 			amImageConfigurationEntry.getProperties();
 
 		properties.put(
-			AMImageAttribute.IMAGE_WIDTH.getName(),
+			AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH.getName(),
 			configurationEntryProperties.get("max-width"));
 		properties.put(
-			AMImageAttribute.IMAGE_HEIGHT.getName(),
+			AMImageAttribute.AM_IMAGE_ATTRIBUTE_HEIGHT.getName(),
 			configurationEntryProperties.get("max-height"));
 
 		return new AMImage(
@@ -450,10 +450,10 @@ public class AMImageRequestHandlerTest {
 						amImageQueryBuilderImpl.getAMAttributes();
 
 				Object queryBuilderWidth = amAttributes.get(
-					AMImageAttribute.IMAGE_WIDTH);
+					AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH);
 
 				Object queryBuilderHeight = amAttributes.get(
-					AMImageAttribute.IMAGE_HEIGHT);
+					AMImageAttribute.AM_IMAGE_ATTRIBUTE_HEIGHT);
 
 				Map<String, String> properties =
 					amImageConfigurationEntry.getProperties();

@@ -169,14 +169,14 @@ public class AMImageFinderImpl implements AMImageFinder {
 
 		if (amImageEntry != null) {
 			AMAttribute<AMImageProcessor, Integer> imageHeightAMAttribute =
-				AMImageAttribute.IMAGE_HEIGHT;
+				AMImageAttribute.AM_IMAGE_ATTRIBUTE_HEIGHT;
 
 			properties.put(
 				imageHeightAMAttribute.getName(),
 				String.valueOf(amImageEntry.getHeight()));
 
 			AMAttribute<AMImageProcessor, Integer> imageWidthAMAttribute =
-				AMImageAttribute.IMAGE_WIDTH;
+				AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH;
 
 			properties.put(
 				imageWidthAMAttribute.getName(),

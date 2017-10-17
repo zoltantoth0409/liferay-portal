@@ -696,10 +696,12 @@ public class MediaQueryProviderImplTest {
 		Map<String, String> properties = new HashMap<>();
 
 		properties.put(
-			AMImageAttribute.IMAGE_HEIGHT.getName(), String.valueOf(height));
+			AMImageAttribute.AM_IMAGE_ATTRIBUTE_HEIGHT.getName(),
+			String.valueOf(height));
 
 		properties.put(
-			AMImageAttribute.IMAGE_WIDTH.getName(), String.valueOf(width));
+			AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH.getName(),
+			String.valueOf(width));
 
 		properties.put(
 			AMAttribute.getConfigurationUuidAMAttribute().getName(),

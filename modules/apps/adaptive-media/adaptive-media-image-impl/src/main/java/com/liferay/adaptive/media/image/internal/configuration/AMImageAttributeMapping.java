@@ -67,11 +67,13 @@ public class AMImageAttributeMapping {
 			_getValueOptional(
 				properties, AMAttribute.getFileNameAMAttribute()));
 		amAttributes.put(
-			AMImageAttribute.IMAGE_HEIGHT,
-			_getValueOptional(properties, AMImageAttribute.IMAGE_HEIGHT));
+			AMImageAttribute.AM_IMAGE_ATTRIBUTE_HEIGHT,
+			_getValueOptional(
+				properties, AMImageAttribute.AM_IMAGE_ATTRIBUTE_HEIGHT));
 		amAttributes.put(
-			AMImageAttribute.IMAGE_WIDTH,
-			_getValueOptional(properties, AMImageAttribute.IMAGE_WIDTH));
+			AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH,
+			_getValueOptional(
+				properties, AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH));
 
 		return new AMImageAttributeMapping(amAttributes);
 	}
