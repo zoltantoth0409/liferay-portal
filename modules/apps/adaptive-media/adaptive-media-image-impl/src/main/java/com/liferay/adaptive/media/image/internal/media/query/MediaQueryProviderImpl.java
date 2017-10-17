@@ -42,7 +42,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Properties;
 import java.util.stream.IntStream;
 
 import org.osgi.service.component.annotations.Component;
@@ -177,22 +176,6 @@ public class MediaQueryProviderImpl implements MediaQueryProvider {
 		return adaptiveMedias;
 	}
 
-	private Optional<Integer> _getPropertiesValue(
-		AMImageConfigurationEntry amImageConfigurationEntry, String name) {
-
-		try {
-			Map<String, String> properties =
-				amImageConfigurationEntry.getProperties();
-
-			Integer height = Integer.valueOf(properties.get(name));
-
-			return Optional.of(height);
-		}
-		catch (NumberFormatException nfe) {
-			return Optional.empty();
-		}
-	}
-
 	private List<Condition> _getConditions(
 		AdaptiveMedia<AMImageProcessor> adaptiveMedia,
 		AdaptiveMedia<AMImageProcessor> previousAdaptiveMedia) {
@@ -262,7 +245,8 @@ public class MediaQueryProviderImpl implements MediaQueryProvider {
 	private Optional<Integer> _getHeight(
 		AMImageConfigurationEntry originalAMImageConfigurationEntry) {
 
-		return _getPropertiesValue(originalAMImageConfigurationEntry, "max-height");
+		return _getPropertiesValue(
+			originalAMImageConfigurationEntry, "max-height");
 	}
 
 	private MediaQuery _getMediaQuery(
@@ -286,6 +270,22 @@ public class MediaQueryProviderImpl implements MediaQueryProvider {
 			});
 
 		return new MediaQuery(conditions, src.toString());
+	}
+
+	private Optional<Integer> _getPropertiesValue(
+		AMImageConfigurationEntry amImageConfigurationEntry, String name) {
+
+		try {
+			Map<String, String> properties =
+				amImageConfigurationEntry.getProperties();
+
+			Integer height = Integer.valueOf(properties.get(name));
+
+			return Optional.of(height);
+		}
+		catch (NumberFormatException nfe) {
+			return Optional.empty();
+		}
 	}
 
 	private Integer _getWidth(AdaptiveMedia<AMImageProcessor> adaptiveMedia) {

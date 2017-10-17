@@ -196,8 +196,7 @@ public class AMImageQueryBuilderImpl
 		ConfigurationStatus configurationStatus) {
 
 		if (configurationStatus == null) {
-			throw new IllegalArgumentException(
-				"Configuration status is null");
+			throw new IllegalArgumentException("Configuration status is null");
 		}
 
 		_configurationStatus = configurationStatus;
