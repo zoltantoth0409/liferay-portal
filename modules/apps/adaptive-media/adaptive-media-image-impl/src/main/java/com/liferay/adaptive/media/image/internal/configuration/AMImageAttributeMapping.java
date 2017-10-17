@@ -47,35 +47,35 @@ public class AMImageAttributeMapping {
 			throw new IllegalArgumentException("properties map cannot be null");
 		}
 
-		Map<AMAttribute<AMImageProcessor, ?>, Optional<?>> amAttributes =
+		Map<AMAttribute<AMImageProcessor, ?>, Optional<?>> optionals =
 			new HashMap<>();
 
-		amAttributes.put(
+		optionals.put(
 			AMAttribute.getConfigurationUuidAMAttribute(),
 			_getValueOptional(
 				properties, AMAttribute.getConfigurationUuidAMAttribute()));
-		amAttributes.put(
+		optionals.put(
 			AMAttribute.getContentLengthAMAttribute(),
 			_getValueOptional(
 				properties, AMAttribute.getContentLengthAMAttribute()));
-		amAttributes.put(
+		optionals.put(
 			AMAttribute.getContentTypeAMAttribute(),
 			_getValueOptional(
 				properties, AMAttribute.getContentTypeAMAttribute()));
-		amAttributes.put(
+		optionals.put(
 			AMAttribute.getFileNameAMAttribute(),
 			_getValueOptional(
 				properties, AMAttribute.getFileNameAMAttribute()));
-		amAttributes.put(
+		optionals.put(
 			AMImageAttribute.AM_IMAGE_ATTRIBUTE_HEIGHT,
 			_getValueOptional(
 				properties, AMImageAttribute.AM_IMAGE_ATTRIBUTE_HEIGHT));
-		amAttributes.put(
+		optionals.put(
 			AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH,
 			_getValueOptional(
 				properties, AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH));
 
-		return new AMImageAttributeMapping(amAttributes);
+		return new AMImageAttributeMapping(optionals);
 	}
 
 	/**
@@ -93,13 +93,13 @@ public class AMImageAttributeMapping {
 			throw new IllegalArgumentException("attribute cannot be null");
 		}
 
-		return (Optional<V>)_amAttributes.get(amAttribute);
+		return (Optional<V>)_optionals.get(amAttribute);
 	}
 
 	protected AMImageAttributeMapping(
-		Map<AMAttribute<AMImageProcessor, ?>, Optional<?>> amAttributes) {
+		Map<AMAttribute<AMImageProcessor, ?>, Optional<?>> optionals) {
 
-		_amAttributes = amAttributes;
+		_optionals = optionals;
 	}
 
 	private static <V> Optional<V> _getValueOptional(
@@ -116,6 +116,6 @@ public class AMImageAttributeMapping {
 	}
 
 	private final Map
-		<AMAttribute<AMImageProcessor, ?>, Optional<?>> _amAttributes;
+		<AMAttribute<AMImageProcessor, ?>, Optional<?>> _optionals;
 
 }
