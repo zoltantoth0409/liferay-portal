@@ -12,11 +12,15 @@
  * details.
  */
 
-package com.liferay.adaptive.media.image.item.selector.internal.resolver;
+package com.liferay.adaptive.media.image.item.selector.internal;
 
-import com.liferay.adaptive.media.image.item.selector.AMImageFileEntryItemSelectorReturnType;
+import com.liferay.adaptive.media.image.item.selector.AMImageURLItemSelectorReturnType;
+import com.liferay.adaptive.media.image.media.query.Condition;
+import com.liferay.adaptive.media.image.media.query.MediaQuery;
+import com.liferay.adaptive.media.image.media.query.MediaQueryProvider;
 import com.liferay.document.library.kernel.util.DLUtil;
 import com.liferay.item.selector.ItemSelectorReturnTypeResolver;
+import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.portletfilerepository.PortletFileRepositoryUtil;
@@ -24,7 +28,11 @@ import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.StringPool;
 
+import java.util.List;
+import java.util.stream.Stream;
+
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Roberto Díaz
@@ -32,19 +40,19 @@ import org.osgi.service.component.annotations.Component;
 @Component(
 	immediate = true, property = {"service.ranking:Integer=100"},
 	service = {
-		FileEntryAMImageFileEntryItemSelectorReturnTypeResolver.class,
+		FileEntryAMImageURLItemSelectorReturnTypeResolver.class,
 		ItemSelectorReturnTypeResolver.class
 	}
 )
-public class FileEntryAMImageFileEntryItemSelectorReturnTypeResolver
+public class FileEntryAMImageURLItemSelectorReturnTypeResolver
 	implements ItemSelectorReturnTypeResolver
-		<AMImageFileEntryItemSelectorReturnType, FileEntry> {
+		<AMImageURLItemSelectorReturnType, FileEntry> {
 
 	@Override
-	public Class<AMImageFileEntryItemSelectorReturnType>
+	public Class<AMImageURLItemSelectorReturnType>
 		getItemSelectorReturnTypeClass() {
 
-		return AMImageFileEntryItemSelectorReturnType.class;
+		return AMImageURLItemSelectorReturnType.class;
 	}
 
 	@Override
@@ -58,6 +66,8 @@ public class FileEntryAMImageFileEntryItemSelectorReturnTypeResolver
 
 		JSONObject fileEntryJSONObject = JSONFactoryUtil.createJSONObject();
 
+		fileEntryJSONObject.put("fileEntryId", fileEntry.getFileEntryId());
+
 		String previewURL = null;
 
 		if (fileEntry.getGroupId() == fileEntry.getRepositoryId()) {
@@ -70,10 +80,42 @@ public class FileEntryAMImageFileEntryItemSelectorReturnTypeResolver
 				themeDisplay, fileEntry, StringPool.BLANK, false);
 		}
 
-		fileEntryJSONObject.put("fileEntryId", fileEntry.getFileEntryId());
-		fileEntryJSONObject.put("url", previewURL);
+		fileEntryJSONObject.put("defaultSource", previewURL);
+
+		JSONArray sourcesArray = JSONFactoryUtil.createJSONArray();
+
+		List<MediaQuery> mediaQueries = _mediaQueryProvider.getMediaQueries(
+			fileEntry);
+
+		Stream<MediaQuery> mediaQueryStream = mediaQueries.stream();
+
+		mediaQueryStream.map(
+			this::_getSourceJSONObject
+		).forEach(
+			sourcesArray::put
+		);
+
+		fileEntryJSONObject.put("sources", sourcesArray);
 
 		return fileEntryJSONObject.toString();
 	}
+
+	private JSONObject _getSourceJSONObject(MediaQuery mediaQuery) {
+		JSONObject sourceJSONObject = JSONFactoryUtil.createJSONObject();
+
+		sourceJSONObject.put("src", mediaQuery.getSrc());
+
+		JSONObject attributesJSONObject = JSONFactoryUtil.createJSONObject();
+
+		for (Condition condition : mediaQuery.getConditions()) {
+			attributesJSONObject.put(
+				condition.getAttribute(), condition.getValue());
+		}
+
+		return sourceJSONObject.put("attributes", attributesJSONObject);
+	}
+
+	@Reference
+	private MediaQueryProvider _mediaQueryProvider;
 
 }
