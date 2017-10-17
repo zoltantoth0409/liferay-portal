@@ -15,7 +15,9 @@
 	</tear-down>
 
 	<command name="AddAMIWithHighDensityResolution" priority="5">
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Control Panel" />
 			<var name="portlet" value="Adaptive Media" />
 		</execute>
 
@@ -42,7 +44,9 @@
 	</command>
 
 	<command name="AddAMIWithZeroPixels" priority="5">
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Control Panel" />
 			<var name="portlet" value="Adaptive Media" />
 		</execute>
 
@@ -53,7 +57,9 @@
 			<var name="zero" value="true" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Control Panel" />
 			<var name="portlet" value="Adaptive Media" />
 		</execute>
 
@@ -63,7 +69,9 @@
 	</command>
 
 	<command name="AddAndEditEntriesWithSpecialCharacters" priority="4">
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Control Panel" />
 			<var name="portlet" value="Adaptive Media" />
 		</execute>
 
@@ -91,7 +99,9 @@
 	</command>
 
 	<command name="AddAndUpdateAMIWithImagesInDM" priority="5">
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Control Panel" />
 			<var name="portlet" value="Adaptive Media" />
 		</execute>
 
@@ -120,7 +130,9 @@
 			<var name="dmDocumentTitle" value="Document_1.jpg" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Control Panel" />
 			<var name="portlet" value="Adaptive Media" />
 		</execute>
 
@@ -167,7 +179,9 @@
 	</command>
 
 	<command name="AddDuplicateImageResolution" priority="4">
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Control Panel" />
 			<var name="portlet" value="Adaptive Media" />
 		</execute>
 
@@ -180,7 +194,9 @@
 
 		<execute macro="Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Control Panel" />
 			<var name="portlet" value="Adaptive Media" />
 		</execute>
 
@@ -194,7 +210,9 @@
 
 		<execute macro="Navigator#openURL" />
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Control Panel" />
 			<var name="portlet" value="Adaptive Media" />
 		</execute>
 
@@ -202,7 +220,9 @@
 	</command>
 
 	<command name="AddImageVariantsForBlogEntry" priority="5">
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Control Panel" />
 			<var name="portlet" value="Adaptive Media" />
 		</execute>
 
@@ -246,7 +266,9 @@
 
 		<execute function="Pause" locator1="3000" />
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Control Panel" />
 			<var name="portlet" value="Adaptive Media" />
 		</execute>
 
@@ -302,7 +324,9 @@
 	</command>
 
 	<command name="CannotAddNonNumericWidthOrHeight" priority="5">
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Control Panel" />
 			<var name="portlet" value="Adaptive Media" />
 		</execute>
 
@@ -312,7 +336,9 @@
 			<var name="maxWidth" value="notallowed" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Control Panel" />
 			<var name="portlet" value="Adaptive Media" />
 		</execute>
 
@@ -320,7 +346,9 @@
 	</command>
 
 	<command name="EditAndDeleteDisabledAMI" priority="5">
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Control Panel" />
 			<var name="portlet" value="Adaptive Media" />
 		</execute>
 
@@ -364,7 +392,9 @@
 	</command>
 
 	<command name="EditImageResolutionWithAdaptedImages" priority="5">
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Control Panel" />
 			<var name="portlet" value="Adaptive Media" />
 		</execute>
 
@@ -394,7 +424,9 @@
 			<var name="dmDocumentTitle" value="Document_1.jpg" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Control Panel" />
 			<var name="portlet" value="Adaptive Media" />
 		</execute>
 
@@ -412,7 +444,9 @@
 	</command>
 
 	<command name="EditImageResolutionWithoutAdaptedImage" priority="5">
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Control Panel" />
 			<var name="portlet" value="Adaptive Media" />
 		</execute>
 
@@ -460,7 +494,9 @@
 			<var name="dmDocumentTitle" value="Document_1.jpg" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Control Panel" />
 			<var name="portlet" value="Adaptive Media" />
 		</execute>
 
@@ -486,7 +522,9 @@
 	</command>
 
 	<command name="ViewAutomaticAndCustomImageVariantIDs" priority="4">
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Control Panel" />
 			<var name="portlet" value="Adaptive Media" />
 		</execute>
 
@@ -504,7 +542,9 @@
 			<var name="imageVariantID" value="small-image-variant" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Control Panel" />
 			<var name="portlet" value="Adaptive Media" />
 		</execute>
 
@@ -521,7 +561,9 @@
 			<var name="imageVariantID" value="edited-small-image-variant" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Control Panel" />
 			<var name="portlet" value="Adaptive Media" />
 		</execute>
 
@@ -540,7 +582,9 @@
 			<var name="imageVariantID" value="custom-id" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Control Panel" />
 			<var name="portlet" value="Adaptive Media" />
 		</execute>
 
@@ -559,7 +603,9 @@
 	</command>
 
 	<command name="ViewAutomaticOptimizationForImageResolution" priority="4">
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Control Panel" />
 			<var name="portlet" value="Adaptive Media" />
 		</execute>
 
@@ -588,7 +634,9 @@
 			<var name="dmDocumentTitle" value="Document_1.jpg" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Control Panel" />
 			<var name="portlet" value="Adaptive Media" />
 		</execute>
 
@@ -601,7 +649,9 @@
 	</command>
 
 	<command name="ViewImageResolutionAcrossSites" priority="4">
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Control Panel" />
 			<var name="portlet" value="Adaptive Media" />
 		</execute>
 
@@ -611,7 +661,9 @@
 			<var name="maxWidth" value="300" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Sites" />
+			<var name="panel" value="Control Panel" />
 			<var name="portlet" value="Sites" />
 		</execute>
 
@@ -623,7 +675,9 @@
 			<var name="site" value="New Site with AM" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Control Panel" />
 			<var name="portlet" value="Adaptive Media" />
 		</execute>
 
@@ -638,7 +692,9 @@
 	<command name="ViewNoImageResolutionInNewVirtualInstance" priority="4">
 		<property name="test.name.skip.portal.instance" value="AdaptiveMedia#ViewNoImageResolutionInNewVirtualInstance" />
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Control Panel" />
 			<var name="portlet" value="Virtual Instances" />
 		</execute>
 
@@ -652,7 +708,9 @@
 			<var name="virtualHost" value="www.able.com" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Control Panel" />
 			<var name="portlet" value="Adaptive Media" />
 		</execute>
 
@@ -672,7 +730,9 @@
 			<var name="url" value="http://www.able.com:8080" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Control Panel" />
 			<var name="portlet" value="Adaptive Media" />
 		</execute>
 
@@ -682,7 +742,9 @@
 	</command>
 
 	<command name="ViewNumberOfAdaptedImagesAfterAdaptingImages" priority="5">
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Control Panel" />
 			<var name="portlet" value="Adaptive Media" />
 		</execute>
 
@@ -713,7 +775,9 @@
 			</execute>
 		</for>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Control Panel" />
 			<var name="portlet" value="Adaptive Media" />
 		</execute>
 
@@ -727,7 +791,9 @@
 			<var name="imageState" value="Disabled" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelSites">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Sites" />
+			<var name="panel" value="Control Panel" />
 			<var name="portlet" value="Sites" />
 		</execute>
 
@@ -757,7 +823,9 @@
 			<var name="site" value="Liferay" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoControlPanelConfiguration">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Control Panel" />
 			<var name="portlet" value="Adaptive Media" />
 		</execute>
 
