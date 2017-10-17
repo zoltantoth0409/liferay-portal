@@ -66,8 +66,6 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolver
 
 		JSONObject fileEntryJSONObject = JSONFactoryUtil.createJSONObject();
 
-		fileEntryJSONObject.put("fileEntryId", fileEntry.getFileEntryId());
-
 		String previewURL = null;
 
 		if (fileEntry.getGroupId() == fileEntry.getRepositoryId()) {
@@ -81,6 +79,8 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolver
 		}
 
 		fileEntryJSONObject.put("defaultSource", previewURL);
+
+		fileEntryJSONObject.put("fileEntryId", fileEntry.getFileEntryId());
 
 		JSONArray sourcesArray = JSONFactoryUtil.createJSONArray();
 
