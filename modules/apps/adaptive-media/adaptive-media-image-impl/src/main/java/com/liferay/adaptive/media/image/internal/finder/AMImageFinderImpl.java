@@ -77,7 +77,7 @@ public class AMImageFinderImpl implements AMImageFinder {
 
 		if (amQuery != AMImageQueryBuilderImpl.AM_QUERY) {
 			throw new IllegalArgumentException(
-				"Only queries built by the provided query builder are valid.");
+				"Only queries built by the provided query builder are valid");
 		}
 
 		FileVersion fileVersion = amImageQueryBuilderImpl.getFileVersion();
