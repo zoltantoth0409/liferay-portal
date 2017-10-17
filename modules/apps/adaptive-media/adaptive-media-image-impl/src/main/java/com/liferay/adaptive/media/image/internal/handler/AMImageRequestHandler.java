@@ -337,7 +337,7 @@ public class AMImageRequestHandler
 		}
 		catch (PortalException pe) {
 			_log.error(
-				"Unable to create lazy adaptive media for file version id " +
+				"Unable to create lazy adaptive media for file version " +
 					fileVersion.getFileVersionId(),
 				pe);
 		}
