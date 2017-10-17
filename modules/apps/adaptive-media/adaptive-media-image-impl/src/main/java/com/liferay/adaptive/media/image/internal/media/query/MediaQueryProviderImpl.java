@@ -42,6 +42,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Properties;
 import java.util.stream.IntStream;
 
 import org.osgi.service.component.annotations.Component;
@@ -180,8 +181,10 @@ public class MediaQueryProviderImpl implements MediaQueryProvider {
 		AMImageConfigurationEntry amImageConfigurationEntry, String name) {
 
 		try {
-			Integer height = Integer.valueOf(
-				amImageConfigurationEntry.getProperties().get(name));
+			Map<String, String> properties =
+				amImageConfigurationEntry.getProperties();
+
+			Integer height = Integer.valueOf(properties.get(name));
 
 			return Optional.of(height);
 		}
@@ -250,8 +253,10 @@ public class MediaQueryProviderImpl implements MediaQueryProvider {
 	}
 
 	private Integer _getHeight(AdaptiveMedia<AMImageProcessor> adaptiveMedia) {
-		return adaptiveMedia.getValueOptional(
-			AMImageAttribute.AM_IMAGE_ATTRIBUTE_HEIGHT).orElse(0);
+		Optional<Integer> optional = adaptiveMedia.getValueOptional(
+			AMImageAttribute.AM_IMAGE_ATTRIBUTE_HEIGHT);
+
+		return optional.orElse(0);
 	}
 
 	private Optional<Integer> _getHeight(
