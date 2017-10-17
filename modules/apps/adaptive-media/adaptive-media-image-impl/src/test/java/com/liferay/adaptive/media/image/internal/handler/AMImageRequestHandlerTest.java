@@ -63,8 +63,6 @@ public class AMImageRequestHandlerTest {
 
 	@Before
 	public void setUp() throws PortalException {
-		_fileVersion = _getFileVersion();
-
 		Mockito.doReturn(
 			_amAsyncProcessor
 		).when(
@@ -75,10 +73,12 @@ public class AMImageRequestHandlerTest {
 
 		_amImageRequestHandler.setAMAsyncProcessorLocator(
 			_amAsyncProcessorLocator);
-		_amImageRequestHandler.setAMImageFinder(_amImageFinder);
-		_amImageRequestHandler.setPathInterpreter(_pathInterpreter);
 		_amImageRequestHandler.setAMImageConfigurationHelper(
 			_amImageConfigurationHelper);
+		_amImageRequestHandler.setAMImageFinder(_amImageFinder);
+		_amImageRequestHandler.setPathInterpreter(_pathInterpreter);
+
+		_fileVersion = _getFileVersion();
 	}
 
 	@Test(expected = AMRuntimeException.class)
