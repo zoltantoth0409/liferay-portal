@@ -56,7 +56,7 @@ public class AMImageQueryBuilderImpl
 	@Override
 	public FinalStep forConfiguration(String configurationUuid) {
 		if (Validator.isNull(configurationUuid)) {
-			throw new IllegalArgumentException("Configuration uuid is null");
+			throw new IllegalArgumentException("Configuration UUID is null");
 		}
 
 		_configurationUuid = configurationUuid;
