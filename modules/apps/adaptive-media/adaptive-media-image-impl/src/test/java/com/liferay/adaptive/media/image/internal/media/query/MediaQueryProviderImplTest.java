@@ -708,9 +708,9 @@ public class MediaQueryProviderImplTest {
 			AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH.getName(),
 			String.valueOf(width));
 
-		properties.put(
-			AMAttribute.getConfigurationUuidAMAttribute().getName(),
-			amImageConfigurationEntryUuid);
+		AMAttribute amAttribute = AMAttribute.getConfigurationUuidAMAttribute();
+
+		properties.put(amAttribute.getName(), amImageConfigurationEntryUuid);
 
 		return new AMImage(
 			() -> null, AMImageAttributeMapping.fromProperties(properties),
