@@ -99,8 +99,7 @@ public class AMImageSerializerImplTest {
 
 		InputStream inputStream = Mockito.mock(InputStream.class);
 
-		AdaptiveMedia<AMImageProcessor> adaptiveMedia =
-			amImageSerializer.deserialize(invalidString, () -> inputStream);
+		amImageSerializer.deserialize(invalidString, () -> inputStream);
 	}
 
 	@Test
