@@ -382,9 +382,10 @@ public class VideoProcessorImpl
 			catch (CancellationException ce) {
 				if (_log.isInfoEnabled()) {
 					_log.info(
-						"Cancellation received for " +
-							fileVersion.getFileVersionId() + " " +
-								fileVersion.getTitle());
+						StringBundler.concat(
+							"Cancellation received for ",
+							String.valueOf(fileVersion.getFileVersionId()), " ",
+							fileVersion.getTitle()));
 				}
 			}
 			catch (Exception e) {
@@ -395,9 +396,10 @@ public class VideoProcessorImpl
 
 			if (_log.isInfoEnabled()) {
 				_log.info(
-					"Xuggler generated a thumbnail for " +
-						fileVersion.getTitle() + " in " + stopWatch.getTime() +
-							" ms");
+					StringBundler.concat(
+						"Xuggler generated a thumbnail for ",
+						fileVersion.getTitle(), " in ",
+						String.valueOf(stopWatch.getTime()), " ms"));
 			}
 		}
 		catch (Exception e) {
@@ -569,9 +571,10 @@ public class VideoProcessorImpl
 
 		if (_log.isInfoEnabled()) {
 			_log.info(
-				"Xuggler generated a " + containerType + " preview video for " +
-					fileVersion.getTitle() + " in " + stopWatch.getTime() +
-						" ms");
+				StringBundler.concat(
+					"Xuggler generated a ", containerType,
+					" preview video for ", fileVersion.getTitle(), " in ",
+					String.valueOf(stopWatch.getTime()), " ms"));
 		}
 	}
 
@@ -588,9 +591,10 @@ public class VideoProcessorImpl
 		catch (CancellationException ce) {
 			if (_log.isInfoEnabled()) {
 				_log.info(
-					"Cancellation received for " +
-						fileVersion.getFileVersionId() + " " +
-							fileVersion.getTitle());
+					StringBundler.concat(
+						"Cancellation received for ",
+						String.valueOf(fileVersion.getFileVersionId()), " ",
+						fileVersion.getTitle()));
 			}
 		}
 		catch (Exception e) {

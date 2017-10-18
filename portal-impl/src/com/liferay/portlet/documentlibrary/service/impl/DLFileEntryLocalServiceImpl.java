@@ -2779,8 +2779,9 @@ public class DLFileEntryLocalServiceImpl
 		}
 
 		throw new InvalidFileEntryTypeException(
-			"Invalid file entry type " + fileEntryTypeId + " for folder " +
-				folderId);
+			StringBundler.concat(
+				"Invalid file entry type ", String.valueOf(fileEntryTypeId),
+				" for folder ", String.valueOf(folderId)));
 	}
 
 	protected void validateFileExtension(String extension)

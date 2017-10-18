@@ -139,8 +139,9 @@ public class VerifyOrganization extends VerifyProcess {
 
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"Processing " + organizations.size() + " organizations " +
-						"with no asset");
+					StringBundler.concat(
+						"Processing ", String.valueOf(organizations.size()),
+						" organizations with no asset"));
 			}
 
 			for (Organization organization : organizations) {
@@ -151,9 +152,11 @@ public class VerifyOrganization extends VerifyProcess {
 				catch (Exception e) {
 					if (_log.isWarnEnabled()) {
 						_log.warn(
-							"Unable to update asset for organization " +
-								organization.getOrganizationId() + ": " +
-									e.getMessage());
+							StringBundler.concat(
+								"Unable to update asset for organization ",
+								String.valueOf(
+									organization.getOrganizationId()),
+								": ", e.getMessage()));
 					}
 				}
 			}
