@@ -262,7 +262,9 @@ public class NotificationUtil {
 
 		long intervalEnd = intervalStart + _CHECK_INTERVAL;
 
-		if ((intervalStart <= deltaTime) && (deltaTime < intervalEnd)) {
+		if ((intervalStart > 0) && (intervalStart <= deltaTime) &&
+			(deltaTime < intervalEnd)) {
+
 			return true;
 		}
 
