@@ -885,8 +885,6 @@
 			<var name="siteName" value="Child Site" />
 		</execute>
 
-		</execute>
-
 		<execute macro="Portlet#addPG">
 			<var name="portletName" value="Web Content Display" />
 		</execute>
