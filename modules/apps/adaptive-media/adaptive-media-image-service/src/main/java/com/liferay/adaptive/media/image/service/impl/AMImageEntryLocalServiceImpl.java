@@ -70,8 +70,8 @@ public class AMImageEntryLocalServiceImpl
 	 *         adaptive media image
 	 * @param  fileVersion the file version used to create the adaptive media
 	 *         image
-	 * @param  width the adaptive media image's width
 	 * @param  height the adaptive media image's height
+	 * @param  width the adaptive media image's width
 	 * @param  inputStream the adaptive media image's input stream to store in
 	 *         the file store
 	 * @param  size the adaptive media image's size
@@ -82,7 +82,7 @@ public class AMImageEntryLocalServiceImpl
 	@Override
 	public AMImageEntry addAMImageEntry(
 			AMImageConfigurationEntry amImageConfigurationEntry,
-			FileVersion fileVersion, int width, int height,
+			FileVersion fileVersion, int height, int width,
 			InputStream inputStream, long size)
 		throws PortalException {
 
