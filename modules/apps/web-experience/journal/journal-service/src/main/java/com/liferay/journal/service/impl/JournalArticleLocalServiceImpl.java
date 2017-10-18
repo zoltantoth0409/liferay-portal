@@ -8418,10 +8418,10 @@ public class JournalArticleLocalServiceImpl
 			validate(articleId);
 		}
 
-		JournalArticle article = journalArticlePersistence.fetchByG_A_V(
-			groupId, articleId, version);
+		List<JournalArticle> articles = journalArticlePersistence.findByG_A(
+			groupId, articleId);
 
-		if (article != null) {
+		if (!articles.isEmpty()) {
 			StringBundler sb = new StringBundler(7);
 
 			sb.append("{groupId=");
