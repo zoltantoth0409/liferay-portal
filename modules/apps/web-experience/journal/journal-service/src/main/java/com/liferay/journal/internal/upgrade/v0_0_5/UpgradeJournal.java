@@ -523,6 +523,14 @@ public class UpgradeJournal extends UpgradeProcess {
 		Map<String, String> invalidDDMFormFieldNamesMap =
 			getInvalidDDMFormFieldNamesMap(content);
 
+		StringBundler sb = new StringBundler(2);
+
+		int xmlEndIndex = content.indexOf("?>") + 2;
+
+		sb.append(content.substring(0, xmlEndIndex));
+
+		content = content.substring(xmlEndIndex);
+
 		for (Map.Entry<String, String> entry :
 				invalidDDMFormFieldNamesMap.entrySet()) {
 
@@ -530,7 +538,9 @@ public class UpgradeJournal extends UpgradeProcess {
 				content, entry.getKey(), entry.getValue());
 		}
 
-		return content;
+		sb.append(content);
+
+		return sb.toString();
 	}
 
 	protected void updateJournalArticle(
