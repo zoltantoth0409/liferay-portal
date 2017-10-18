@@ -478,12 +478,12 @@ public class CalendarBookingLocalServiceImpl
 			boolean allFollowing, boolean deleteRecurringCalendarBookings)
 		throws PortalException {
 
-		NotificationTemplateType notificationTemplateType =
-			NotificationTemplateType.INSTANCE_DELETED;
-		Date now = new Date();
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setUserId(userId);
+
+		NotificationTemplateType notificationTemplateType =
+			NotificationTemplateType.INSTANCE_DELETED;
 
 		java.util.Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(
 			startTime, calendarBooking.getTimeZone());
@@ -534,7 +534,7 @@ public class CalendarBookingLocalServiceImpl
 
 		String recurrence = RecurrenceSerializer.serialize(recurrenceObj);
 
-		updateChildCalendarBookings(calendarBooking, now, recurrence);
+		updateChildCalendarBookings(calendarBooking, new Date(), recurrence);
 
 		serviceContext.setAttribute("instanceStartTime", startTime);
 
