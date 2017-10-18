@@ -8313,21 +8313,25 @@ public class JournalArticleLocalServiceImpl
 			validate(articleId);
 		}
 
-		List<JournalArticle> articles = journalArticlePersistence.findByG_A(
-			groupId, articleId);
-		
-		if (!articles.isEmpty()) {
-			StringBundler sb = new StringBundler(7);
+		boolean imported = ExportImportThreadLocal.isImportInProcess();
 
-			sb.append("{groupId=");
-			sb.append(groupId);
-			sb.append(", articleId=");
-			sb.append(articleId);
-			sb.append(", version=");
-			sb.append(version);
-			sb.append("}");
+		if (!imported || autoArticleId) {
+			List<JournalArticle> articles = journalArticlePersistence.findByG_A(
+				groupId, articleId);
 
-			throw new DuplicateArticleIdException(sb.toString());
+			if (!articles.isEmpty()) {
+				StringBundler sb = new StringBundler(7);
+
+				sb.append("{groupId=");
+				sb.append(groupId);
+				sb.append(", articleId=");
+				sb.append(articleId);
+				sb.append(", version=");
+				sb.append(version);
+				sb.append("}");
+
+				throw new DuplicateArticleIdException(sb.toString());
+			}
 		}
 
 		validate(
