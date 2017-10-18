@@ -315,7 +315,13 @@ public class CalendarBookingLocalServiceImpl
 				Company company = companyLocalService.getCompany(
 					calendarBooking.getCompanyId());
 
-				if (company.isActive()) {
+				boolean calendarResourceStaging = false;
+
+				if (isCalendarResourceStaging(calendarBooking)) {
+					calendarResourceStaging = true;
+				}
+
+				if (company.isActive() && !calendarResourceStaging) {
 					NotificationUtil.notifyCalendarBookingReminders(
 						calendarBooking, now.getTime());
 				}
@@ -2074,6 +2080,20 @@ public class CalendarBookingLocalServiceImpl
 		return stagingGroup.isInStagingPortlet(CalendarPortletKeys.CALENDAR);
 	}
 
+	protected boolean isCalendarResourceStaging(CalendarBooking calendarBooking)
+		throws PortalException {
+
+		CalendarBooking parentCalendarBooking =
+			calendarBooking.getParentCalendarBooking();
+
+		CalendarResource calendarResource =
+			parentCalendarBooking.getCalendarResource();
+
+		Group group = groupLocalService.getGroup(calendarResource.getGroupId());
+
+		return group.isStagingGroup();
+	}
+
 	protected boolean isCustomCalendarResource(
 		CalendarResource calendarResource) {
 
@@ -2133,16 +2153,13 @@ public class CalendarBookingLocalServiceImpl
 			serviceContext, "sendNotification", true);
 
 		try {
-			CalendarBooking parentCalendarBooking =
-				calendarBooking.getParentCalendarBooking();
+			boolean calendarResourceStaging = false;
 
-			CalendarResource calendarResource =
-				parentCalendarBooking.getCalendarResource();
+			if (isCalendarResourceStaging(calendarBooking)) {
+				calendarResourceStaging = true;
+			}
 
-			Group group = groupLocalService.getGroup(
-				calendarResource.getGroupId());
-
-			if (!sendNotification || group.isStagingGroup()) {
+			if (!sendNotification || calendarResourceStaging) {
 				return;
 			}
 
