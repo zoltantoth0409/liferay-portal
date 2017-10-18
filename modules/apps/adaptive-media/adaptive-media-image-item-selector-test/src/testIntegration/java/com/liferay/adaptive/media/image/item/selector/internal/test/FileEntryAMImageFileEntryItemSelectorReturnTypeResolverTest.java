@@ -113,8 +113,8 @@ public class FileEntryAMImageFileEntryItemSelectorReturnTypeResolverTest {
 	private byte[] _getImageBytes() throws Exception {
 		return FileUtil.getBytes(
 			FileEntryAMImageFileEntryItemSelectorReturnTypeResolverTest.class,
-			"/com/liferay/adaptive/media/image/item/selector/internal" +
-				"/test/dependencies/image.jpg");
+			"/com/liferay/adaptive/media/image/item/selector/internal/test" +
+				"/dependencies/image.jpg");
 	}
 
 	private <T> T _getService(Class<T> clazz) {
