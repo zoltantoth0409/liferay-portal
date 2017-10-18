@@ -227,7 +227,10 @@ task jacocoRootReport(type: org.gradle.testing.jacoco.tasks.JacocoReport) {
 							'**/service/persistence/impl/*PersistenceImpl*',
 							'**/service/persistence/impl/*FinderBaseImpl*',
 							'**/service/util/*',
-							'**/test/util/*'
+							'**/test/util/*',
+							'adaptive-media-demo/**',
+							'adaptive-media-demo-data-creator-api/**',
+							'adaptive-media-demo-data-creator-impl/**',
 					])
 		})
 	}
