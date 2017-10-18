@@ -31,7 +31,6 @@ import com.liferay.journal.configuration.JournalServiceConfiguration;
 import com.liferay.journal.internal.exportimport.content.processor.JournalArticleExportImportContentProcessor;
 import com.liferay.journal.internal.exportimport.creation.strategy.JournalCreationStrategy;
 import com.liferay.journal.model.JournalArticle;
-import com.liferay.journal.model.JournalArticleConstants;
 import com.liferay.journal.model.JournalArticleImage;
 import com.liferay.journal.model.JournalArticleResource;
 import com.liferay.journal.model.JournalFolder;
@@ -502,12 +501,10 @@ public class JournalArticleStagedModelDataHandler
 
 		boolean autoArticleId = false;
 
-		JournalArticle scopeJournalArticle =
-			_journalArticleLocalService.fetchArticle(
-				portletDataContext.getScopeGroupId(), articleId,
-				JournalArticleConstants.VERSION_DEFAULT);
+		if (Validator.isNumber(articleId) ||
+			!_journalArticleLocalService.getArticles(
+				portletDataContext.getScopeGroupId(), articleId).isEmpty()) {
 
-		if (scopeJournalArticle != null) {
 			autoArticleId = true;
 		}
 
