@@ -15,5 +15,6 @@ dependencies {
 	provided project(":apps:adaptive-media:adaptive-media-api")
 	provided project(":apps:adaptive-media:adaptive-media-image-api")
 
+	testCompile group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "2.0.0"
 	testCompile group: "org.mockito", name: "mockito-core", version: "1.10.8", transitive: true
 }
