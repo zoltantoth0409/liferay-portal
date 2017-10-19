@@ -86,7 +86,7 @@ public class AMImageEntryLocalServiceImpl
 			InputStream inputStream, long size)
 		throws PortalException {
 
-		_checkDuplicates(
+		_checkDuplicateAMImageEntry(
 			amImageConfigurationEntry.getUUID(),
 			fileVersion.getFileVersionId());
 
@@ -316,7 +316,8 @@ public class AMImageEntryLocalServiceImpl
 	@ServiceReference(type = ImageStorage.class)
 	protected ImageStorage imageStorage;
 
-	private void _checkDuplicates(String configurationUuid, long fileVersionId)
+	private void _checkDuplicateAMImageEntry(
+			String configurationUuid, long fileVersionId)
 		throws DuplicateAMImageEntryException {
 
 		AMImageEntry amImageEntry = amImageEntryPersistence.fetchByC_F(
