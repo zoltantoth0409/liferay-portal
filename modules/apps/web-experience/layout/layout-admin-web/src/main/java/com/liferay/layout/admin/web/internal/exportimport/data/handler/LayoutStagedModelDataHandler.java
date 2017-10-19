@@ -397,8 +397,6 @@ public class LayoutStagedModelDataHandler
 			if (existingLayout == null) {
 				layoutId = _layoutLocalService.getNextLayoutId(
 					groupId, privateLayout);
-
-				friendlyURL = getFriendlyURL(friendlyURL, layoutId);
 			}
 		}
 		else if (layoutsImportMode.equals(
@@ -459,8 +457,6 @@ public class LayoutStagedModelDataHandler
 			if (existingLayout == null) {
 				layoutId = _layoutLocalService.getNextLayoutId(
 					groupId, privateLayout);
-
-				friendlyURL = getFriendlyURL(friendlyURL, layoutId);
 			}
 		}
 
@@ -499,8 +495,6 @@ public class LayoutStagedModelDataHandler
 
 				layoutId = _layoutLocalService.getNextLayoutId(
 					groupId, privateLayout);
-
-				friendlyURL = getFriendlyURL(friendlyURL, layoutId);
 			}
 			else {
 				importedLayout.setCreateDate(layout.getCreateDate());
@@ -925,14 +919,6 @@ public class LayoutStagedModelDataHandler
 		typeSettings.setProperty(
 			"url",
 			url.substring(0, x) + group.getFriendlyURL() + url.substring(y));
-	}
-
-	protected String getFriendlyURL(String friendlyURL, long layoutId) {
-		if (!Validator.isNumber(friendlyURL.substring(1))) {
-			return friendlyURL;
-		}
-
-		return StringPool.SLASH + layoutId;
 	}
 
 	protected String getUniqueFriendlyURL(
