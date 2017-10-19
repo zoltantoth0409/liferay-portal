@@ -15,14 +15,28 @@
 package com.liferay.chart.taglib.servlet.taglib.soy;
 
 import com.liferay.chart.taglib.servlet.taglib.soy.base.BaseChartTag;
+import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.WebKeys;
+
+import java.util.Map;
 
 /**
  * @author Chema Balsas
  */
 public class SplineChartTag extends BaseChartTag {
 
-	public SplineChartTag() {
-		super("SplineChart");
+	@Override
+	public int doStartTag() {
+        Map<String, Object> context = getContext();
+		
+        setTemplateNamespace("SplineChart.render");
+
+		return super.doStartTag();
 	}
 
+	@Override
+	public String getModule() {
+		return "metal-charts@1.0.0-alpha.0/lib/SplineChart";
+	}
 }
