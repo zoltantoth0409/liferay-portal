@@ -294,16 +294,18 @@ public class AMImageEntryLocalServiceImpl
 	 */
 	@Override
 	public int getPercentage(long companyId, String configurationUuid) {
-		int expectedEntriesCount = getExpectedAMImageEntriesCount(companyId);
+		int expectedAMImageEntriesCount = getExpectedAMImageEntriesCount(
+			companyId);
 
-		if (expectedEntriesCount == 0) {
+		if (expectedAMImageEntriesCount == 0) {
 			return 0;
 		}
 
-		int actualEntriesCount = getAMImageEntriesCount(
+		int actualAMImageEntriesCount = getAMImageEntriesCount(
 			companyId, configurationUuid);
 
-		int percentage = (actualEntriesCount * 100) / expectedEntriesCount;
+		int percentage =
+			(actualAMImageEntriesCount * 100) / expectedAMImageEntriesCount;
 
 		return Math.min(percentage, 100);
 	}
