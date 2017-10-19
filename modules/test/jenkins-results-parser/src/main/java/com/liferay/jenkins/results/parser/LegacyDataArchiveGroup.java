@@ -73,8 +73,8 @@ public class LegacyDataArchiveGroup {
 		return true;
 	}
 
-	private final LegacyDataArchiveUtil _legacyDataArchiveUtil;
 	private List<LegacyDataArchive> _legacyDataArchives = new ArrayList<>();
 	private final String _legacyDataArchiveType;
+	private final LegacyDataArchiveUtil _legacyDataArchiveUtil;
 
 }
