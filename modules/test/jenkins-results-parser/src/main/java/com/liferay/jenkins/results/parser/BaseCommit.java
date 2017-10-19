@@ -30,8 +30,8 @@ public class BaseCommit implements Commit {
 	}
 
 	@Override
-	public boolean equals(Object o) {
-		if (o.hashCode() == hashCode()) {
+	public boolean equals(Object object) {
+		if (object.hashCode() == hashCode()) {
 			return true;
 		}
 
