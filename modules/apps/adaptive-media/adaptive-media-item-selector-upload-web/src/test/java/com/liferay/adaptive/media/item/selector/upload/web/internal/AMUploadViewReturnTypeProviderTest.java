@@ -38,11 +38,11 @@ public class AMUploadViewReturnTypeProviderTest extends PowerMockito {
 	public void testAddAMImageURLItemSelectorReturnTypeWithEmptyList()
 		throws Exception {
 
-		List<ItemSelectorReturnType> supportedItemSelectorReturnTypes =
-			new ArrayList<>();
-
 		ItemSelectorViewReturnTypeProvider itemSelectorViewReturnTypeProvider =
 			new AMUploadViewReturnTypeProvider();
+
+		List<ItemSelectorReturnType> supportedItemSelectorReturnTypes =
+			new ArrayList<>();
 
 		List<ItemSelectorReturnType> itemSelectorReturnTypes =
 			itemSelectorViewReturnTypeProvider.
@@ -52,11 +52,9 @@ public class AMUploadViewReturnTypeProviderTest extends PowerMockito {
 		Assert.assertEquals(
 			itemSelectorReturnTypes.toString(), 2,
 			itemSelectorReturnTypes.size());
-
 		Assert.assertTrue(
 			itemSelectorReturnTypes.get(0) instanceof
 				AMImageFileEntryItemSelectorReturnType);
-
 		Assert.assertTrue(
 			itemSelectorReturnTypes.get(1) instanceof
 				AMImageURLItemSelectorReturnType);
@@ -66,15 +64,15 @@ public class AMUploadViewReturnTypeProviderTest extends PowerMockito {
 	public void testAddAMImageURLItemSelectorReturnTypeWithNonEmptyList()
 		throws Exception {
 
+		ItemSelectorViewReturnTypeProvider itemSelectorViewReturnTypeProvider =
+			new AMUploadViewReturnTypeProvider();
+
 		List<ItemSelectorReturnType> supportedItemSelectorReturnTypes =
 			new ArrayList<>();
 
 		supportedItemSelectorReturnTypes.add(
 			new FileEntryItemSelectorReturnType());
 		supportedItemSelectorReturnTypes.add(new URLItemSelectorReturnType());
-
-		ItemSelectorViewReturnTypeProvider itemSelectorViewReturnTypeProvider =
-			new AMUploadViewReturnTypeProvider();
 
 		List<ItemSelectorReturnType> itemSelectorReturnTypes =
 			itemSelectorViewReturnTypeProvider.
@@ -84,7 +82,6 @@ public class AMUploadViewReturnTypeProviderTest extends PowerMockito {
 		Assert.assertEquals(
 			itemSelectorReturnTypes.toString(), 4,
 			itemSelectorReturnTypes.size());
-
 		Assert.assertTrue(
 			itemSelectorReturnTypes.get(0) instanceof
 				FileEntryItemSelectorReturnType);

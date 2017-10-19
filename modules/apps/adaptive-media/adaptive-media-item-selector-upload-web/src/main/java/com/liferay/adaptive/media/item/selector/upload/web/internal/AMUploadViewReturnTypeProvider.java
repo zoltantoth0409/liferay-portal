@@ -39,7 +39,6 @@ public class AMUploadViewReturnTypeProvider
 
 		supportedItemSelectorReturnTypes.add(
 			new AMImageFileEntryItemSelectorReturnType());
-
 		supportedItemSelectorReturnTypes.add(
 			new AMImageURLItemSelectorReturnType());
 
