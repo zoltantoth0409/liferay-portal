@@ -84,12 +84,12 @@ public class AMImageEntryLocalServiceImplTest {
 		_amImageConfigurationHelper = registry.getService(
 			AMImageConfigurationHelper.class);
 
-		deleteAllConfigurationEntries();
+		deleteAllAMImageConfigurationEntries();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		deleteAllConfigurationEntries();
+		deleteAllAMImageConfigurationEntries();
 	}
 
 	@Test
@@ -401,7 +401,7 @@ public class AMImageEntryLocalServiceImplTest {
 				amImageConfigurationEntry2.getUUID()));
 	}
 
-	protected void deleteAllConfigurationEntries()
+	protected void deleteAllAMImageConfigurationEntries()
 		throws IOException, PortalException {
 
 		Collection<AMImageConfigurationEntry> amImageConfigurationEntries =
