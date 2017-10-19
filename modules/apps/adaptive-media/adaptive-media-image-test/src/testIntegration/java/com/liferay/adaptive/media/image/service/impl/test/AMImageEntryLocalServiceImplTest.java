@@ -77,12 +77,12 @@ public class AMImageEntryLocalServiceImplTest {
 
 	@Before
 	public void setUp() throws Exception {
-		_group = GroupTestUtil.addGroup();
-
 		Registry registry = RegistryUtil.getRegistry();
 
 		_amImageConfigurationHelper = registry.getService(
 			AMImageConfigurationHelper.class);
+
+		_group = GroupTestUtil.addGroup();
 
 		deleteAllAMImageConfigurationEntries();
 	}
