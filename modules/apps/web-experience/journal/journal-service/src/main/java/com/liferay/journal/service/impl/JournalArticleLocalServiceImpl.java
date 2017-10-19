@@ -8418,9 +8418,7 @@ public class JournalArticleLocalServiceImpl
 			validate(articleId);
 		}
 
-		boolean imported = ExportImportThreadLocal.isImportInProcess();
-
-		if (!imported || autoArticleId) {
+		if (!ExportImportThreadLocal.isImportInProcess() || autoArticleId) {
 			List<JournalArticle> articles = journalArticlePersistence.findByG_A(
 				groupId, articleId);
 

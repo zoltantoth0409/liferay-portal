@@ -501,10 +501,10 @@ public class JournalArticleStagedModelDataHandler
 
 		boolean autoArticleId = false;
 
-		if (Validator.isNumber(articleId) ||
-			!_journalArticleLocalService.getArticles(
-				portletDataContext.getScopeGroupId(), articleId).isEmpty()) {
+		List<JournalArticle> articles = _journalArticleLocalService.getArticles(
+			portletDataContext.getScopeGroupId(), articleId);
 
+		if (Validator.isNumber(articleId) || !articles.isEmpty()) {
 			autoArticleId = true;
 		}
 
