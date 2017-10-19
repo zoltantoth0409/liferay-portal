@@ -56,15 +56,17 @@ int totalEntries = 0;
 double totalScore = 0.0;
 
 if (ratingsStats != null) {
-	averageScore = ratingsStats.getAverageScore();
+	averageScore = ratingsStats.getAverageScore() * numberOfStars;
 	totalEntries = ratingsStats.getTotalEntries();
 	totalScore = ratingsStats.getTotalScore();
 }
 
-int averageIndex = (int)Math.round(averageScore * numberOfStars);
+double formattedAverageScore = MathUtil.format(averageScore, 1, 1);
+
+int averageIndex = (int)Math.round(formattedAverageScore);
 
 if (!round) {
-	averageIndex = (int)Math.floor(averageScore * numberOfStars);
+	averageIndex = (int)Math.floor(formattedAverageScore);
 }
 
 double yourScore = -1.0;
@@ -121,10 +123,9 @@ if (ratingsEntry != null) {
 
 							<%
 							for (int i = 1; i <= numberOfStars; i++) {
-								double averageNumberOfStars = averageScore * numberOfStars;
 							%>
 
-								<span class="rating-element <%= (i <= averageIndex) ? "icon-star" : "icon-star-empty" %>" title="<%= TrashUtil.isInTrash(className, classPK) ? LanguageUtil.get(resourceBundle, "ratings-are-disabled-because-this-entry-is-in-the-recycle-bin") : ((i == 1) ? LanguageUtil.format(request, ((averageNumberOfStars == 1.0) ? "the-average-rating-is-x-star-out-of-x" : "the-average-rating-is-x-stars-out-of-x"), new Object[] {averageNumberOfStars, numberOfStars}, false) : StringPool.BLANK) %>"></span>
+								<span class="rating-element <%= (i <= averageIndex) ? "icon-star" : "icon-star-empty" %>" title="<%= TrashUtil.isInTrash(className, classPK) ? LanguageUtil.get(resourceBundle, "ratings-are-disabled-because-this-entry-is-in-the-recycle-bin") : ((i == 1) ? LanguageUtil.format(request, ((formattedAverageScore == 1.0) ? "the-average-rating-is-x-star-out-of-x" : "the-average-rating-is-x-stars-out-of-x"), new Object[] {formattedAverageScore, numberOfStars}, false) : StringPool.BLANK) %>"></span>
 
 							<%
 							}
@@ -223,7 +224,7 @@ if (ratingsEntry != null) {
 		<aui:script position="inline" use="liferay-ratings">
 			Liferay.Ratings.register(
 				{
-					averageScore: <%= MathUtil.format(averageScore, 1, 1) %>,
+					averageScore: <%= formattedAverageScore %>,
 					className: '<%= HtmlUtil.escapeJS(className) %>',
 					classPK: '<%= classPK %>',
 					containerId: '<%= randomNamespace %>ratingContainer',
