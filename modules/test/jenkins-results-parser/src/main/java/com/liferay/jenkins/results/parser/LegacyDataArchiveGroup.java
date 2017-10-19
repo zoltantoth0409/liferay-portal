@@ -25,10 +25,10 @@ import java.util.List;
 public class LegacyDataArchiveGroup {
 
 	public LegacyDataArchiveGroup(
-		LegacyDataArchiveUtil legacyDataArchiveBranch,
+		LegacyDataArchiveUtil legacyDataArchiveUtil,
 		String legacyDataArchiveType) {
 
-		_legacyDataArchiveBranch = legacyDataArchiveBranch;
+		_legacyDataArchiveUtil = legacyDataArchiveUtil;
 		_legacyDataArchiveType = legacyDataArchiveType;
 	}
 
@@ -44,13 +44,13 @@ public class LegacyDataArchiveGroup {
 		}
 
 		GitWorkingDirectory legacyDataGitWorkingDirectory =
-			_legacyDataArchiveBranch.getLegacyDataGitWorkingDirectory();
+			_legacyDataArchiveUtil.getLegacyDataGitWorkingDirectory();
 
 		String gitStatus = legacyDataGitWorkingDirectory.status();
 
 		if (!gitStatus.contains("nothing to commit, working directory clean")) {
 			ManualCommit latestManualCommit =
-				_legacyDataArchiveBranch.getLatestManualCommit();
+				_legacyDataArchiveUtil.getLatestManualCommit();
 
 			legacyDataGitWorkingDirectory.commitStagedFilesToCurrentBranch(
 				JenkinsResultsParserUtil.combine(
@@ -73,7 +73,7 @@ public class LegacyDataArchiveGroup {
 		return true;
 	}
 
-	private final LegacyDataArchiveUtil _legacyDataArchiveBranch;
+	private final LegacyDataArchiveUtil _legacyDataArchiveUtil;
 	private List<LegacyDataArchive> _legacyDataArchives = new ArrayList<>();
 	private final String _legacyDataArchiveType;
 
