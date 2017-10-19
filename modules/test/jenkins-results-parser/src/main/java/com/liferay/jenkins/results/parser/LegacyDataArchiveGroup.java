@@ -46,9 +46,9 @@ public class LegacyDataArchiveGroup {
 		GitWorkingDirectory legacyDataGitWorkingDirectory =
 			_legacyDataArchiveUtil.getLegacyDataGitWorkingDirectory();
 
-		String gitStatus = legacyDataGitWorkingDirectory.status();
+		String status = legacyDataGitWorkingDirectory.status();
 
-		if (!gitStatus.contains("nothing to commit, working directory clean")) {
+		if (!status.contains("nothing to commit, working directory clean")) {
 			ManualCommit latestManualCommit =
 				_legacyDataArchiveUtil.getLatestManualCommit();
 
