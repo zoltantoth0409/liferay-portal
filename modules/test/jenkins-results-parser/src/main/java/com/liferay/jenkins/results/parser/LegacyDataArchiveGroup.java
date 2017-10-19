@@ -55,7 +55,7 @@ public class LegacyDataArchiveGroup {
 			legacyDataGitWorkingDirectory.commitStagedFilesToCurrentBranch(
 				JenkinsResultsParserUtil.combine(
 					"archive:ignore Update '", _legacyDataArchiveType, "' at ",
-					latestManualCommit.getAbbreviatedSha(), "."));
+					latestManualCommit.getAbbreviatedSHA(), "."));
 		}
 	}
 

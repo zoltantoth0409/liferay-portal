@@ -22,10 +22,10 @@ public interface Commit {
 	@Override
 	public boolean equals(Object o);
 
-	public String getAbbreviatedSha();
+	public String getAbbreviatedSHA();
 
 	public String getMessage();
 
-	public String getSha();
+	public String getSHA();
 
 }
