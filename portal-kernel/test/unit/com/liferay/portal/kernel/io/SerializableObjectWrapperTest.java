@@ -213,7 +213,7 @@ public class SerializableObjectWrapperTest {
 
 			_testEquals();
 
-			// Test hashCode
+			// Test hash code
 
 			_testHashCode();
 		}
