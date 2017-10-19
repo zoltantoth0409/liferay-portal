@@ -959,6 +959,7 @@
 	<command name="EditAndDeleteGoogleDoc" priority="5">
 		<property name="osgi.app.includes" value="document-library-google-docs" />
 		<property name="plugins.deployment.type" value="osgi" />
+		<property name="test.name.skip.portal.instance" value="PGDocumentsandmedia#EditAndDeleteGoogleDoc" />
 
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Configuration" />
@@ -1366,6 +1367,7 @@
 	<command name="MoveGoogleDocToFolder" priority="5">
 		<property name="osgi.app.includes" value="document-library-google-docs" />
 		<property name="plugins.deployment.type" value="osgi" />
+		<property name="test.name.skip.portal.instance" value="PGDocumentsandmedia#MoveGoogleDocToFolder" />
 
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Configuration" />
