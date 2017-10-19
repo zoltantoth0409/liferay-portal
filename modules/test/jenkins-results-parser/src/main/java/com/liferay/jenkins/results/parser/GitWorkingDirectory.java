@@ -719,7 +719,7 @@ public class GitWorkingDirectory {
 
 				for (String gitLogItem : gitLogItems) {
 					if (!gitLogItem.matches("([0-9a-f]{40}) (.*)")) {
-						throw new RuntimeException("Unable to run git log");
+						throw new RuntimeException("Unable to run: git log");
 					}
 				}
 
@@ -732,7 +732,7 @@ public class GitWorkingDirectory {
 			}
 		}
 
-		throw new RuntimeException("Unable to run git log");
+		throw new RuntimeException("Unable to run: git log");
 	}
 
 	public boolean pushToRemote(boolean force, Branch remoteBranch) {
@@ -900,7 +900,7 @@ public class GitWorkingDirectory {
 					"Finished executing Bash commands.", "");
 
 				if (!gitStatus.startsWith("On branch")) {
-					throw new RuntimeException("Unable to run git status");
+					throw new RuntimeException("Unable to run: git status");
 				}
 
 				return gitStatus;
@@ -912,7 +912,7 @@ public class GitWorkingDirectory {
 			}
 		}
 
-		throw new RuntimeException("Unable to run git status");
+		throw new RuntimeException("Unable to run: git status");
 	}
 
 	public static class Branch {
@@ -1409,7 +1409,7 @@ public class GitWorkingDirectory {
 		ExecutionResult result = executeBashCommands(sb.toString());
 
 		if (result.getExitValue() != 0) {
-			throw new RuntimeException("Unable to run git log");
+			throw new RuntimeException("Unable to run: git log");
 		}
 
 		return result.getStandardOut();
@@ -1421,7 +1421,7 @@ public class GitWorkingDirectory {
 		ExecutionResult result = executeBashCommands(command);
 
 		if (result.getExitValue() != 0) {
-			throw new RuntimeException("Unable to run git status");
+			throw new RuntimeException("Unable to run: git status");
 		}
 
 		return result.getStandardOut();
