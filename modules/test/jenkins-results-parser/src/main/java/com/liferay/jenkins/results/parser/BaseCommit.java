@@ -38,7 +38,7 @@ public class BaseCommit implements Commit {
 		return false;
 	}
 
-	public String getAbbreviatedSha() {
+	public String getAbbreviatedSHA() {
 		return _sha.substring(0, 7);
 	}
 
@@ -46,7 +46,7 @@ public class BaseCommit implements Commit {
 		return _message;
 	}
 
-	public String getSha() {
+	public String getSHA() {
 		return _sha;
 	}
 
