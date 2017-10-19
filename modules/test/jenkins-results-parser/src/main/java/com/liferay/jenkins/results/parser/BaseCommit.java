@@ -54,9 +54,9 @@ public class BaseCommit implements Commit {
 	public int hashCode() {
 		JSONObject jsonObject = _toJSONObject();
 
-		String jsonObjectString = jsonObject.toString();
+		String json = jsonObject.toString();
 
-		return jsonObjectString.hashCode();
+		return json.hashCode();
 	}
 
 	private JSONObject _toJSONObject() {
