@@ -42,11 +42,10 @@ public class CustomScriptTest {
 
 	@Test
 	public void test() throws Exception {
-		String testResult = System.getProperty("actual");
-
 		String expectedResult = System.getProperty("expected");
+		String actualResult = System.getProperty("actual");
 
-		Assert.assertEquals(expectedResult, testResult);
+		Assert.assertEquals(expectedResult, actualResult);
 	}
 
 }
