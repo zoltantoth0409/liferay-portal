@@ -63,8 +63,12 @@
 			<var name="templateName" value="Split Button Dropdowns" />
 		</execute>
 
-		<execute macro="Navigator#gotoPage">
-			<var name="pageName" value="Navigation Test Page1" />
+		<execute macro="Navigator#openURL" />
+
+		<var name="pageName" value="Navigation Test Page1" />
+
+		<execute function="AssertClick" locator1="Home#PAGE_SPLIT_BUTTON_DROPDOWNS" value1="${pageName}">
+			<var name="key_pageName" value="${pageName}" />
 		</execute>
 
 		<execute macro="ApplicationDisplayTemplates#selectPortletADT">
