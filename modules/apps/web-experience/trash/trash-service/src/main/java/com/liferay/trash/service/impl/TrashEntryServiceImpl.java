@@ -295,10 +295,8 @@ public class TrashEntryServiceImpl extends TrashEntryServiceBaseImpl {
 		filteredEntries = filteredEntries.subList(start, end);
 
 		trashEntriesList.setArray(TrashEntrySoap.toSoapModels(filteredEntries));
-
-		trashEntriesList.setOriginalTrashEntries(filteredEntries);
-
 		trashEntriesList.setCount(total);
+		trashEntriesList.setOriginalTrashEntries(filteredEntries);
 
 		return trashEntriesList;
 	}
