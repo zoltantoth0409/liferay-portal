@@ -51,11 +51,10 @@ if (reminderAttempts == null) {
 
 		<%
 		UserLockoutException.PasswordPolicyLockout ule = (UserLockoutException.PasswordPolicyLockout)errorException;
-		boolean isRequireUnlock = ule.passwordPolicy.isRequireUnlock();
 		%>
 
 		<c:choose>
-			<c:when test="<%= isRequireUnlock %>">
+			<c:when test="<%= ule.passwordPolicy.isRequireUnlock() %>">
 				<liferay-ui:message key="this-account-is-locked" />
 			</c:when>
 			<c:otherwise>
