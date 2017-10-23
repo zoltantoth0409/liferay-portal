@@ -271,7 +271,7 @@ public class CalendarBookingLocalServiceImpl
 
 				boolean calendarResourceStaging = false;
 
-				if (isCalendarResourceStaging(calendarBooking)) {
+				if (isStagingCalendarBooking(calendarBooking)) {
 					calendarResourceStaging = true;
 				}
 
@@ -1573,20 +1573,6 @@ public class CalendarBookingLocalServiceImpl
 		return stagingGroup.isInStagingPortlet(CalendarPortletKeys.CALENDAR);
 	}
 
-	protected boolean isCalendarResourceStaging(CalendarBooking calendarBooking)
-		throws PortalException {
-
-		CalendarBooking parentCalendarBooking =
-			calendarBooking.getParentCalendarBooking();
-
-		CalendarResource calendarResource =
-			parentCalendarBooking.getCalendarResource();
-
-		Group group = groupLocalService.getGroup(calendarResource.getGroupId());
-
-		return group.isStagingGroup();
-	}
-
 	protected boolean isCustomCalendarResource(
 		CalendarResource calendarResource) {
 
@@ -1648,7 +1634,7 @@ public class CalendarBookingLocalServiceImpl
 		try {
 			boolean calendarResourceStaging = false;
 
-			if (isCalendarResourceStaging(calendarBooking)) {
+			if (isStagingCalendarBooking(calendarBooking)) {
 				calendarResourceStaging = true;
 			}
 
