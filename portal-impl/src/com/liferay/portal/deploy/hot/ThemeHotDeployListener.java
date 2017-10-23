@@ -158,7 +158,6 @@ public class ThemeHotDeployListener extends BaseHotDeployListener {
 
 			TemplateResourceLoaderUtil.clearCache(
 				TemplateConstants.LANG_TYPE_FTL);
-
 			TemplateResourceLoaderUtil.clearCache(
 				TemplateConstants.LANG_TYPE_VM);
 		}
