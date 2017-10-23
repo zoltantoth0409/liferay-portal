@@ -22,7 +22,7 @@ import org.junit.runner.JUnitCore;
 public class PoshiRunnerCommandExecutor {
 
 	public static void main(String[] args) throws Exception {
-		String command;
+		String command = null;
 
 		if (args.length < 1) {
 			command = "help";
@@ -33,37 +33,24 @@ public class PoshiRunnerCommandExecutor {
 
 		if (command.equals("evaluatePoshiConsole")) {
 			evaluatePoshiConsole();
-
-			return;
 		}
-
-		if (command.equals("help")) {
+		else if (command.equals("help")) {
 			taskHelp();
-
-			return;
 		}
-
-		if (command.equals("runPoshi")) {
+		else if (command.equals("runPoshi")) {
 			runPoshi(args);
-
-			return;
 		}
-
-		if (command.equals("validatePoshi")) {
+		else if (command.equals("validatePoshi")) {
 			validatePoshi();
-
-			return;
 		}
-
-		if (command.equals("writePoshiProperties")) {
+		else if (command.equals("writePoshiProperties")) {
 			writePoshiProperties();
-
-			return;
 		}
+		else {
+			System.out.println("ERROR: Unrecognized task name: " + command);
 
-		System.out.println("ERROR: Unrecognized task name: " + command);
-
-		taskHelp();
+			taskHelp();
+		}
 	}
 
 	protected static void evaluatePoshiConsole() throws Exception {
