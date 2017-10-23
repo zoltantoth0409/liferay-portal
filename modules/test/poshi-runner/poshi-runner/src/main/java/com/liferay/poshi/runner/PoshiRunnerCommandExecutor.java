@@ -47,7 +47,7 @@ public class PoshiRunnerCommandExecutor {
 			writePoshiProperties();
 		}
 		else {
-			System.out.println("ERROR: Unrecognized task name: " + command);
+			System.out.println("Unrecognized task name: " + command);
 
 			taskHelp();
 		}
