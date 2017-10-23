@@ -143,6 +143,8 @@
 			<var name="title" value="${categoryName}" />
 		</execute>
 
+		<execute function="Click" locator1="TextArea#DESCRIPTION" />
+
 		<if>
 			<isset var="categoryDescription" />
 			<then>
