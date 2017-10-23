@@ -19,8 +19,6 @@ import com.liferay.calendar.exception.CalendarBookingRecurrenceException;
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.model.CalendarResource;
-import com.liferay.calendar.model.CalendarNotificationTemplate;
-import com.liferay.calendar.model.CalendarNotificationTemplateConstants;
 import com.liferay.calendar.notification.NotificationTemplateType;
 import com.liferay.calendar.notification.NotificationType;
 import com.liferay.calendar.recurrence.Recurrence;
@@ -28,9 +26,9 @@ import com.liferay.calendar.recurrence.RecurrenceSerializer;
 import com.liferay.calendar.service.CalendarBookingLocalService;
 import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
 import com.liferay.calendar.service.CalendarLocalServiceUtil;
-import com.liferay.calendar.service.CalendarNotificationTemplateLocalServiceUtil;
 import com.liferay.calendar.service.CalendarResourceLocalServiceUtil;
 import com.liferay.calendar.test.util.CalendarBookingTestUtil;
+import com.liferay.calendar.test.util.CalendarNotificationTemplateTestUtil;
 import com.liferay.calendar.test.util.CalendarStagingTestUtil;
 import com.liferay.calendar.test.util.CalendarTestUtil;
 import com.liferay.calendar.test.util.CalendarWorkflowTestUtil;
@@ -59,7 +57,6 @@ import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.TimeZoneUtil;
-import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.test.mail.MailMessage;
 import com.liferay.portal.test.mail.MailServiceTestUtil;
@@ -1013,8 +1010,6 @@ public class CalendarBookingLocalServiceTest {
 	public void testNotificationIsSendWithLastPublishedEmailTemplate()
 		throws Exception {
 
-		ServiceContext serviceContext = createServiceContext();
-
 		_liveGroup = GroupTestUtil.addGroup();
 
 		Calendar liveCalendar = CalendarTestUtil.getDefaultCalendar(_liveGroup);
@@ -1024,64 +1019,23 @@ public class CalendarBookingLocalServiceTest {
 		Calendar stagingCalendar = CalendarStagingTestUtil.getStagingCalendar(
 			_liveGroup, liveCalendar);
 
-		Assert.assertNotNull(stagingCalendar);
-
 		Calendar invitedCalendar = CalendarTestUtil.addCalendar(_user);
 
-		CalendarBooking calendarBooking =
-			CalendarBookingTestUtil.addMasterCalendarBookingWithWorkflow(
-				stagingCalendar, invitedCalendar,
-				WorkflowConstants.ACTION_PUBLISH);
+		CalendarBookingTestUtil.addMasterCalendarBookingWithWorkflow(
+			stagingCalendar, invitedCalendar, WorkflowConstants.ACTION_PUBLISH);
 
-		String mailSubject = "Invitation";
 		String mailBody = "You have been invited";
+		String mailSubject = "Invitation";
 
-		String fromAddress = "test@liferay.com";
-		String fromName = "Test Test";
-
-		UnicodeProperties notificationTypeSettingsProperties =
-			new UnicodeProperties(true);
-
-		notificationTypeSettingsProperties.put(
-			CalendarNotificationTemplateConstants.PROPERTY_FROM_ADDRESS,
-			fromAddress);
-		notificationTypeSettingsProperties.put(
-			CalendarNotificationTemplateConstants.PROPERTY_FROM_NAME, fromName);
-
-		CalendarNotificationTemplate calendarNotificationTemplate =
-			CalendarNotificationTemplateLocalServiceUtil.
-				addCalendarNotificationTemplate(
-					stagingCalendar.getUserId(),
-					stagingCalendar.getCalendarId(), NotificationType.EMAIL,
-					notificationTypeSettingsProperties.toString(),
-					NotificationTemplateType.INVITE, mailSubject, mailBody,
-					serviceContext);
-
-		String templateBody = calendarNotificationTemplate.getBody();
-
-		templateBody = "Hi, " + templateBody;
-
-		calendarNotificationTemplate.setBody(templateBody);
-
-		CalendarNotificationTemplateLocalServiceUtil.
-			updateCalendarNotificationTemplate(calendarNotificationTemplate);
-
-		CalendarBookingLocalServiceUtil.updateStatus(
-			_user.getUserId(), calendarBooking,
-			WorkflowConstants.STATUS_APPROVED, serviceContext);
+		CalendarNotificationTemplateTestUtil.addCalendarNotificationTemplate(
+			stagingCalendar, NotificationTemplateType.INVITE,
+			"test@liferay.com", "Test Test", mailSubject, mailBody);
 
 		CalendarStagingTestUtil.publishLayouts(_liveGroup, true);
 
 		CalendarBookingLocalServiceUtil.checkCalendarBookings();
 
-		List<MailMessage> mailMessages = MailServiceTestUtil.getMailMessages(
-			"Subject", mailSubject);
-
-		Assert.assertFalse(mailMessages.isEmpty());
-
-		Assert.assertEquals(
-			mailMessages.toString(), mailMessages.get(0).getBody(),
-			templateBody);
+		assertMailBody(mailSubject, mailBody);
 	}
 
 	@Test
@@ -2119,6 +2073,18 @@ public class CalendarBookingLocalServiceTest {
 			mailMessages.toString(), count, mailMessages.size());
 	}
 
+	protected void assertMailBody(String subject, String expectedBody) {
+		List<MailMessage> mailMessages = MailServiceTestUtil.getMailMessages(
+			"Subject", subject);
+
+		Assert.assertFalse(mailMessages.isEmpty());
+
+		MailMessage mailMessage = mailMessages.get(0);
+
+		Assert.assertEquals(
+			mailMessages.toString(), mailMessage.getBody(), expectedBody);
+	}
+	
 	protected void assertSameDay(
 		java.util.Calendar expectedJCalendar,
 		java.util.Calendar actualJCalendar) {
