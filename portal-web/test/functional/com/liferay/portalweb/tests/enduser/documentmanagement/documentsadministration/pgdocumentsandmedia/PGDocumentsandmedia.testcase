@@ -981,6 +981,11 @@
 		<property name="plugins.deployment.type" value="osgi" />
 		<property name="test.name.skip.portal.instance" value="PGDocumentsandmedia#EditAndDeleteGoogleDoc" />
 
+		<execute macro="TestCase#getSiteName">
+			<return from="siteName" name="siteName" />
+			<var name="siteName" value="${siteName}" />
+		</execute>
+
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Configuration" />
 			<var name="panel" value="Control Panel" />
@@ -1011,7 +1016,7 @@
 		<execute macro="GoogleDoc#gotoDrive">
 			<var method="TestPropsUtil#get('email.address.3')" name="userEmailAddress" />
 			<var method="TestPropsUtil#get('email.password.3')" name="userPassword" />
-			<var name="windowTitle" value="Documents and Media Page - Liferay" />
+			<var name="windowTitle" value="Documents and Media Page - ${siteName}" />
 		</execute>
 
 		<execute macro="GoogleDoc#selectDocument">
@@ -1397,6 +1402,11 @@
 		<property name="plugins.deployment.type" value="osgi" />
 		<property name="test.name.skip.portal.instance" value="PGDocumentsandmedia#MoveGoogleDocToFolder" />
 
+		<execute macro="TestCase#getSiteName">
+			<return from="siteName" name="siteName" />
+			<var name="siteName" value="${siteName}" />
+		</execute>
+
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Configuration" />
 			<var name="panel" value="Control Panel" />
@@ -1427,7 +1437,7 @@
 		<execute macro="GoogleDoc#gotoDrive">
 			<var method="TestPropsUtil#get('email.address.3')" name="userEmailAddress" />
 			<var method="TestPropsUtil#get('email.password.3')" name="userPassword" />
-			<var name="windowTitle" value="Documents and Media Page - Liferay" />
+			<var name="windowTitle" value="Documents and Media Page - ${siteName}" />
 		</execute>
 
 		<execute macro="GoogleDoc#selectDocument">
