@@ -53,8 +53,8 @@ public class ThemeResourceParser extends URLResourceParser {
 
 			StringBundler sb = new StringBundler(4);
 
-			sb.append("Support of Velocity has been dropped for themes. ");
-			sb.append("Please update template ");
+			sb.append("Velocity is no longer supported for themes. Please ");
+			sb.append("update template ");
 			sb.append(templateId);
 			sb.append(" to use FreeMarker.");
 
