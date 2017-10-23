@@ -347,7 +347,8 @@ public class NoticeableThreadPoolExecutorTest {
 			0, noticeableThreadPoolExecutor.getPendingTaskCount());
 		Assert.assertEquals(0, noticeableThreadPoolExecutor.getPoolSize());
 
-		BlockingQueue<Object> runningBlockingTaskQueue = new LinkedBlockingQueue<>();
+		BlockingQueue<Object> runningBlockingTaskQueue =
+			new LinkedBlockingQueue<>();
 
 		Semaphore semaphore = new Semaphore(0);
 
