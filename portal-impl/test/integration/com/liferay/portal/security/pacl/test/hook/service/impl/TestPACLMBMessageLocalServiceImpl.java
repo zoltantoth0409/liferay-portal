@@ -14,24 +14,24 @@
 
 package com.liferay.portal.security.pacl.test.hook.service.impl;
 
-import com.liferay.document.library.kernel.service.DLFolderLocalService;
-import com.liferay.document.library.kernel.service.DLFolderLocalServiceWrapper;
+import com.liferay.message.boards.kernel.service.MBMessageLocalService;
+import com.liferay.message.boards.kernel.service.MBMessageLocalServiceWrapper;
 
 /**
  * @author Brian Wing Shun Chan
  */
-public class TestPACLDLFolderLocalServiceImpl
-	extends DLFolderLocalServiceWrapper {
+public class TestPACLMBMessageLocalServiceImpl
+	extends MBMessageLocalServiceWrapper {
 
-	public TestPACLDLFolderLocalServiceImpl(
-		DLFolderLocalService dlFolderLocalService) {
+	public TestPACLMBMessageLocalServiceImpl(
+		MBMessageLocalService mbMessageLocalService) {
 
-		super(dlFolderLocalService);
+		super(mbMessageLocalService);
 	}
 
 	@Override
-	public int getDLFoldersCount() {
-		return -456;
+	public int getMBMessagesCount() {
+		return -123;
 	}
 
 }
