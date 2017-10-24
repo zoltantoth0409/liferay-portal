@@ -38,11 +38,8 @@ import java.util.Date;
  * @see MBStatsUser
  * @see com.liferay.portlet.messageboards.model.impl.MBStatsUserImpl
  * @see com.liferay.portlet.messageboards.model.impl.MBStatsUserModelImpl
- * @deprecated As of 7.0.0, replaced by {@link
-            com.liferay.message.boards.model.impl.MBStatsUserImpl}
  * @generated
  */
-@Deprecated
 @ProviderType
 public interface MBStatsUserModel extends BaseModel<MBStatsUser>, ShardedModel {
 	/*
