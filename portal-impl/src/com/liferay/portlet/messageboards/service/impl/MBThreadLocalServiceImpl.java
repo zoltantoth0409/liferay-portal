@@ -255,7 +255,7 @@ public class MBThreadLocalServiceImpl extends MBThreadLocalServiceBaseImpl {
 	public void deleteThreads(long groupId, long categoryId)
 		throws PortalException {
 
-		mbThreadLocalService.deleteThreads(groupId, categoryId, true);
+		deleteThreads(groupId, categoryId, true);
 	}
 
 	@Override
@@ -685,8 +685,7 @@ public class MBThreadLocalServiceImpl extends MBThreadLocalServiceBaseImpl {
 
 			// Messages
 
-			mbThreadLocalService.restoreDependentsFromTrash(
-				thread.getGroupId(), threadId);
+			restoreDependentsFromTrash(thread.getGroupId(), threadId);
 		}
 
 		return moveThread(thread.getGroupId(), categoryId, threadId);
@@ -748,7 +747,7 @@ public class MBThreadLocalServiceImpl extends MBThreadLocalServiceBaseImpl {
 
 		// Messages
 
-		mbThreadLocalService.moveDependentsToTrash(
+		moveDependentsToTrash(
 			thread.getGroupId(), thread.getThreadId(), trashEntry.getEntryId());
 
 		// Social
@@ -839,7 +838,7 @@ public class MBThreadLocalServiceImpl extends MBThreadLocalServiceBaseImpl {
 			long groupId, long threadId, long trashEntryId)
 		throws PortalException {
 
-		mbThreadLocalService.restoreDependentsFromTrash(groupId, threadId);
+		restoreDependentsFromTrash(groupId, threadId);
 	}
 
 	@Override
@@ -868,8 +867,7 @@ public class MBThreadLocalServiceImpl extends MBThreadLocalServiceBaseImpl {
 
 		// Messages
 
-		mbThreadLocalService.restoreDependentsFromTrash(
-			thread.getGroupId(), threadId);
+		restoreDependentsFromTrash(thread.getGroupId(), threadId);
 
 		// Trash
 
