@@ -129,7 +129,7 @@ public class DefaultAnnouncementsDisplayContext
 
 	@Override
 	public String getTabs1Names() {
-		String tabs1Names = "new,previous";
+		String tabs1Names = "unread,read";
 
 		if (AnnouncementsEntryPermission.contains(
 				_announcementsRequestHelper.getPermissionChecker(),
@@ -225,10 +225,10 @@ public class DefaultAnnouncementsDisplayContext
 	}
 
 	@Override
-	public boolean isShowPreviousEntries() {
+	public boolean isShowReadEntries() {
 		String tabs1 = _announcementsRequestHelper.getTabs1();
 
-		return tabs1.equals("previous");
+		return tabs1.equals("read");
 	}
 
 	@Override
