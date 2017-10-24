@@ -154,6 +154,10 @@ public class StringFieldRenderer extends BaseFieldRenderer {
 		String dataSourceType = GetterUtil.getString(
 			ddmFormField.getProperty("dataSourceType"), "manual");
 
+		if (Objects.equals(dataSourceType, StringPool.BLANK)) {
+			dataSourceType = "manual";
+		}
+
 		if (Objects.equals(dataSourceType, "manual")) {
 			return true;
 		}
