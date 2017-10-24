@@ -14,24 +14,24 @@
 
 package com.liferay.portal.security.pacl.test.hook.service.impl;
 
-import com.liferay.document.library.kernel.service.DLFileEntryLocalService;
-import com.liferay.document.library.kernel.service.DLFileEntryLocalServiceWrapper;
+import com.liferay.message.boards.kernel.service.MBStatsUserLocalService;
+import com.liferay.message.boards.kernel.service.MBStatsUserLocalServiceWrapper;
 
 /**
  * @author Brian Wing Shun Chan
  */
-public class TestPACLDLFileEntryLocalServiceImpl
-	extends DLFileEntryLocalServiceWrapper {
+public class TestPACLMBStatsUserLocalServiceImpl
+	extends MBStatsUserLocalServiceWrapper {
 
-	public TestPACLDLFileEntryLocalServiceImpl(
-		DLFileEntryLocalService dlFileEntryLocalService) {
+	public TestPACLMBStatsUserLocalServiceImpl(
+		MBStatsUserLocalService mbStatsUserLocalService) {
 
-		super(dlFileEntryLocalService);
+		super(mbStatsUserLocalService);
 	}
 
 	@Override
-	public int getDLFileEntriesCount() {
-		return -123;
+	public int getMBStatsUsersCount() {
+		return -456;
 	}
 
 }
