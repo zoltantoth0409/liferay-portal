@@ -122,12 +122,14 @@ public class StringFieldRenderer extends BaseFieldRenderer {
 		DDMFormField ddmFormField = ddmStructure.getDDMFormField(
 			field.getName());
 
+		boolean manualDataSourceType = isManualDataSourceType(ddmFormField);
+
 		StringBundler sb = new StringBundler(jsonArray.length() * 2);
 
 		for (int i = 0; i < jsonArray.length(); i++) {
 			String optionValue = jsonArray.getString(i);
 
-			if (isManualDataSourceType(ddmFormField)) {
+			if (manualDataSourceType) {
 				LocalizedValue label = getFieldOptionLabel(field, optionValue);
 
 				if (label == null) {
