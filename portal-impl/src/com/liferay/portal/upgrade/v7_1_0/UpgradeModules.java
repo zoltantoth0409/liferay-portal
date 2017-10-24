@@ -33,7 +33,6 @@ public class UpgradeModules
 	private static final String[] _BUNDLE_SYMBOLIC_NAMES = {
 		"com.liferay.document.library.file.rank.service",
 		"com.liferay.document.library.sync.service",
-		"com.liferay.message.boards.service",
 		"com.liferay.subscription.service", "com.liferay.trash.service"
 	};
 
