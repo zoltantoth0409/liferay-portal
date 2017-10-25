@@ -37,6 +37,7 @@ import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.Portal;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.WebKeys;
 
 import java.util.ArrayList;
@@ -430,8 +431,10 @@ public class DLPortletToolbarContributor extends BasePortletToolbarContributor {
 			}
 			catch (PortalException pe) {
 				_log.error(
-					"Unable to get file entry types for group " + groupId +
-						" and folder " + folderId,
+					StringBundler.concat(
+						"Unable to get file entry types for group ",
+						String.valueOf(groupId), " and folder ",
+						String.valueOf(folderId)),
 					pe);
 			}
 		}

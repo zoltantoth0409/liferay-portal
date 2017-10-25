@@ -133,8 +133,9 @@ public class DLServiceVerifyProcess extends VerifyProcess {
 				int size = mismatchedCompanyIdDLFileEntryMetadatas.size();
 
 				_log.debug(
-					"Deleting " + size + " file entry metadatas with " +
-						"mismatched company IDs");
+					StringBundler.concat(
+						"Deleting ", String.valueOf(size),
+						" file entry metadatas with mismatched company IDs"));
 			}
 
 			for (DLFileEntryMetadata dlFileEntryMetadata :
@@ -296,8 +297,10 @@ public class DLServiceVerifyProcess extends VerifyProcess {
 			long count = actionableDynamicQuery.performCount();
 
 			_log.debug(
-				"Processing " + count + " file versions with mime types: " +
-					StringUtil.merge(originalMimeTypes, StringPool.COMMA));
+				StringBundler.concat(
+					"Processing ", String.valueOf(count),
+					" file versions with mime types: ",
+					StringUtil.merge(originalMimeTypes, StringPool.COMMA)));
 		}
 
 		actionableDynamicQuery.performActions();
@@ -489,9 +492,10 @@ public class DLServiceVerifyProcess extends VerifyProcess {
 				catch (Exception e) {
 					if (_log.isWarnEnabled()) {
 						_log.warn(
-							"Unable to remove file entry " +
-								dlFileEntry.getFileEntryId() + ": " +
-									e.getMessage());
+							StringBundler.concat(
+								"Unable to remove file entry ",
+								String.valueOf(dlFileEntry.getFileEntryId()),
+								": ", e.getMessage()));
 					}
 				}
 			}
@@ -572,8 +576,10 @@ public class DLServiceVerifyProcess extends VerifyProcess {
 
 		if (_log.isDebugEnabled()) {
 			_log.debug(
-				"Invalid title " + title + " renamed to " + newTitle +
-					" for file entry " + dlFileEntry.getFileEntryId());
+				StringBundler.concat(
+					"Invalid title ", title, " renamed to ", newTitle,
+					" for file entry ",
+					String.valueOf(dlFileEntry.getFileEntryId())));
 		}
 
 		return renamedDLFileEntry;
@@ -704,9 +710,10 @@ public class DLServiceVerifyProcess extends VerifyProcess {
 				catch (Exception e) {
 					if (_log.isWarnEnabled()) {
 						_log.warn(
-							"Unable to update asset for file entry " +
-								dlFileEntry.getFileEntryId() + ": " +
-									e.getMessage());
+							StringBundler.concat(
+								"Unable to update asset for file entry ",
+								String.valueOf(dlFileEntry.getFileEntryId()),
+								": ", e.getMessage()));
 					}
 				}
 			}
@@ -738,8 +745,10 @@ public class DLServiceVerifyProcess extends VerifyProcess {
 				catch (Exception e) {
 					if (_log.isWarnEnabled()) {
 						_log.warn(
-							"Unable to update asset for folder " +
-								dlFolder.getFolderId() + ": " + e.getMessage());
+							StringBundler.concat(
+								"Unable to update asset for folder ",
+								String.valueOf(dlFolder.getFolderId()), ": ",
+								e.getMessage()));
 					}
 				}
 			}

@@ -585,8 +585,9 @@ public class CMISRepository extends BaseCmisRepository {
 		}
 		catch (CmisObjectNotFoundException confe) {
 			throw new NoSuchFileEntryException(
-				"No CMIS file entry with {folderId=" + folderId + ", title=" +
-					title + "}",
+				StringBundler.concat(
+					"No CMIS file entry with {folderId=",
+					String.valueOf(folderId), ", title=", title, "}"),
 				confe);
 		}
 		catch (PortalException | SystemException e) {
@@ -599,8 +600,9 @@ public class CMISRepository extends BaseCmisRepository {
 		}
 
 		throw new NoSuchFileEntryException(
-			"No CMIS file entry with {folderId=" + folderId + ", title=" +
-				title + "}");
+			StringBundler.concat(
+				"No CMIS file entry with {folderId=", String.valueOf(folderId),
+				", title=", title, "}"));
 	}
 
 	@Override
@@ -693,8 +695,9 @@ public class CMISRepository extends BaseCmisRepository {
 		}
 		catch (CmisObjectNotFoundException confe) {
 			throw new NoSuchFolderException(
-				"No CMIS folder with {parentFolderId=" + parentFolderId +
-					", name=" + name + "}",
+				StringBundler.concat(
+					"No CMIS folder with {parentFolderId=",
+					String.valueOf(parentFolderId), ", name=", name, "}"),
 				confe);
 		}
 		catch (PortalException | SystemException e) {
@@ -707,8 +710,9 @@ public class CMISRepository extends BaseCmisRepository {
 		}
 
 		throw new NoSuchFolderException(
-			"No CMIS folder with {parentFolderId=" + parentFolderId +
-				", name=" + name + "}");
+			StringBundler.concat(
+				"No CMIS folder with {parentFolderId=",
+				String.valueOf(parentFolderId), ", name=", name, "}"));
 	}
 
 	@Override
@@ -962,8 +966,9 @@ public class CMISRepository extends BaseCmisRepository {
 			processException(e);
 
 			throw new RepositoryException(
-				"Unable to initialize CMIS session for repository with " +
-					"{repositoryId=" + getRepositoryId() + "}",
+				StringBundler.concat(
+					"Unable to initialize CMIS session for repository with ",
+					"{repositoryId=", String.valueOf(getRepositoryId()), "}"),
 				e);
 		}
 	}

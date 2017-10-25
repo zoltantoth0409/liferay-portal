@@ -145,7 +145,9 @@ public class UIItemsBuilder {
 		JavaScriptToolbarItem javaScriptToolbarItem = _addJavaScriptUIItem(
 			new JavaScriptToolbarItem(), toolbarItems, DLUIItemKeys.CHECKIN,
 			LanguageUtil.get(_request, "checkin"),
-			getNamespace() + "showVersionDetailsDialog('" + portletURL + "');");
+			StringBundler.concat(
+				getNamespace(), "showVersionDetailsDialog('",
+				String.valueOf(portletURL), "');"));
 
 		String javaScript =
 			"/com/liferay/document/library/web/display/context/dependencies" +
@@ -303,7 +305,8 @@ public class UIItemsBuilder {
 		String label = TextFormatter.formatStorageSize(
 			_fileEntry.getSize(), _themeDisplay.getLocale());
 
-		label = _themeDisplay.translate("download") + " (" + label + ")";
+		label = StringBundler.concat(
+			_themeDisplay.translate("download"), " (", label, ")");
 
 		String url = DLUtil.getDownloadURL(
 			_fileEntry, _fileVersion, _themeDisplay, StringPool.BLANK, false,
@@ -485,7 +488,8 @@ public class UIItemsBuilder {
 				DL_FILE_ENTRY_OPEN_IN_MS_OFFICE_MANUAL_CHECK_IN_REQUIRED,
 			true);
 
-		String onClick = getNamespace() + "openDocument('" + webDavURL + "');";
+		String onClick = StringBundler.concat(
+			getNamespace(), "openDocument('", webDavURL, "');");
 
 		JavaScriptMenuItem javascriptMenuItem = _addJavaScriptUIItem(
 			new JavaScriptMenuItem(), menuItems, DLUIItemKeys.OPEN_IN_MS_OFFICE,
@@ -635,7 +639,9 @@ public class UIItemsBuilder {
 		javascriptMenuItem.setKey(DLUIItemKeys.CHECKIN);
 		javascriptMenuItem.setLabel("checkin");
 		javascriptMenuItem.setOnClick(
-			getNamespace() + "showVersionDetailsDialog('" + portletURL + "');");
+			StringBundler.concat(
+				getNamespace(), "showVersionDetailsDialog('",
+				String.valueOf(portletURL), "');"));
 
 		String javaScript =
 			"/com/liferay/document/library/web/display/context/dependencies" +
