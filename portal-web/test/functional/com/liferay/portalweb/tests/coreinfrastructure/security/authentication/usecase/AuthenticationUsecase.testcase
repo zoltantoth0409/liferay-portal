@@ -52,6 +52,8 @@
 
 		<execute function="Refresh" />
 
+		<execute function="ScrollWebElementIntoView" locator1="Button#SAVE" />
+
 		<for list="ENABLED,IMPORT_ENABLED,IMPORT_ON_STARTUP_ENABLED,USE_LDAP_PASSWORD_POLICY" param="enableCheckboxKey">
 			<execute macro="PortalSettingsNavigator#gotoLDAP" />
 
