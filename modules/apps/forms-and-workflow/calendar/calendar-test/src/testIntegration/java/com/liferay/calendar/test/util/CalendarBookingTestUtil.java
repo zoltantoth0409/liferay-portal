@@ -360,7 +360,7 @@ public class CalendarBookingTestUtil {
 
 		User user = UserLocalServiceUtil.getUser(calendar.getUserId());
 
-		return CalendarBookingTestUtil.addCalendarBooking(
+		return addCalendarBooking(
 			user, calendar, new long[0], RandomTestUtil.randomLocaleStringMap(),
 			RandomTestUtil.randomLocaleStringMap(), startTime, endTime, null,
 			firstReminder, NotificationType.EMAIL, secondReminder,
