@@ -362,7 +362,6 @@ public class CalendarBookingTestUtil {
 
 		return CalendarBookingTestUtil.addCalendarBooking(
 			user, calendar, new long[0], RandomTestUtil.randomLocaleStringMap(),
-
 			RandomTestUtil.randomLocaleStringMap(), startTime, endTime, null,
 			firstReminder, NotificationType.EMAIL, secondReminder,
 			NotificationType.EMAIL, createServiceContext(user));
