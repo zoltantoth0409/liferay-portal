@@ -572,7 +572,7 @@
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Configuración" />
 			<var name="panel" value="Control Panel" />
-			<var name="portlet" value="Configuración de la instancia" />
+			<var name="portlet" value="Instance Settings" />
 		</execute>
 
 		<execute macro="PortalSettings#viewCurrentDefaultPortalLanguageCP">
