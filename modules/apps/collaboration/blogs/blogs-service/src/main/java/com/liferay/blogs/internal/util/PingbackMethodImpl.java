@@ -165,10 +165,10 @@ public class PingbackMethodImpl implements Method {
 		String className = BlogsEntry.class.getName();
 		long classPK = entry.getEntryId();
 
-		String body =
-			"[...] " + getExcerpt() + " [...] [url=" + _sourceURI + "]" +
-				LanguageUtil.get(LocaleUtil.getSiteDefault(), "read-more") +
-					"[/url]";
+		String body = StringBundler.concat(
+			"[...] ", getExcerpt(), " [...] [url=", _sourceURI, "]",
+			LanguageUtil.get(LocaleUtil.getSiteDefault(), "read-more"),
+			"[/url]");
 
 		ServiceContext serviceContext = buildServiceContext(
 			companyId, groupId, entry.getUrlTitle());
