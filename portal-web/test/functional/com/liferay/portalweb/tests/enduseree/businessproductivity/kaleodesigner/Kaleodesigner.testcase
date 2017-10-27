@@ -869,7 +869,7 @@
 
 		<execute macro="KaleoDesigner#editSourceXML">
 			<var name="kdSourceXML"><![CDATA[<name>NAME EDIT]]></var>
-			<var name="line" value="3" />
+			<var name="line" value="4" />
 		</execute>
 
 		<execute macro="KaleoDesigner#publishWorkflowDefinitionViaKDCP" />
@@ -891,7 +891,7 @@
 
 		<execute macro="KaleoDesigner#viewSourceXMLLine">
 			<var name="kdSourceXML"><![CDATA[<name>NAME EDIT</name>]]></var>
-			<var name="line" value="3" />
+			<var name="line" value="4" />
 		</execute>
 	</command>
 
