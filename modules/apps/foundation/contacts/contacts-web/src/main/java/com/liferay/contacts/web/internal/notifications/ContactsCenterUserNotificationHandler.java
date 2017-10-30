@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.ResourceBundleLoader;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.language.LanguageResources;
@@ -187,8 +188,9 @@ public class ContactsCenterUserNotificationHandler
 			String userDisplayURL = user.getDisplayURL(
 				serviceContext.getThemeDisplay());
 
-			return "<a href=\"" + userDisplayURL + "\">" +
-				HtmlUtil.escape(userName) + "</a>";
+			return StringBundler.concat(
+				"<a href=\"", userDisplayURL, "\">", HtmlUtil.escape(userName),
+				"</a>");
 		}
 		catch (Exception e) {
 			return StringPool.BLANK;
