@@ -18,7 +18,9 @@
 
 <%
 String displayStyle = ddlFormAdminDisplayContext.getDisplayStyle();
+
 PortletURL portletURL = ddlFormAdminDisplayContext.getPortletURL();
+
 portletURL.setParameter("displayStyle", displayStyle);
 %>
 
