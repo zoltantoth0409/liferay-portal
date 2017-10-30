@@ -502,7 +502,6 @@
 		<echo message="Booking Number ${bookingNumber}" />
 
 		<execute macro="SampleLARPortlet#viewSampleBookingNumber">
-			<var name="${bookingNumber}" value="${bookingNumber}" />
 			<var name="bookingNumber" value="${bookingNumber}" />
 		</execute>
 
@@ -550,7 +549,6 @@
 		</execute>
 
 		<execute macro="SampleLARPortlet#viewSampleBookingNumber">
-			<var name="${bookingNumber}" value="${bookingNumber}" />
 			<var name="bookingNumber" value="${bookingNumber}" />
 		</execute>
 	</command>
