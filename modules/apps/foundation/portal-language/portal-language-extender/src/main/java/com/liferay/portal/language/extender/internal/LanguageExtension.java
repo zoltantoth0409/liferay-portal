@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.util.CacheResourceBundleLoader;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ResourceBundleLoader;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.util.ArrayList;
@@ -115,8 +116,9 @@ public class LanguageExtension implements Extension {
 			else {
 				_logger.log(
 					Logger.LOG_WARNING,
-					"Unable to handle " + bundleCapability + " in " +
-						_bundle.getSymbolicName());
+					StringBundler.concat(
+						"Unable to handle ", String.valueOf(bundleCapability),
+						" in ", _bundle.getSymbolicName()));
 			}
 		}
 	}
@@ -133,9 +135,9 @@ public class LanguageExtension implements Extension {
 		for (String filterString : filterStrings) {
 			Filter filter = null;
 
-			filterString =
-				"(&(objectClass=" + ResourceBundleLoader.class.getName() + ")" +
-					filterString + ")";
+			filterString = StringBundler.concat(
+				"(&(objectClass=", ResourceBundleLoader.class.getName(), ")",
+				filterString, ")");
 
 			try {
 				filter = _bundleContext.createFilter(filterString);
