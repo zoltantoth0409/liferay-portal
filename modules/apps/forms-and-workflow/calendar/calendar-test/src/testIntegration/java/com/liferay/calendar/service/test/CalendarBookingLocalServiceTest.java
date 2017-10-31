@@ -33,6 +33,7 @@ import com.liferay.calendar.test.util.CalendarWorkflowTestUtil;
 import com.liferay.calendar.test.util.RecurrenceTestUtil;
 import com.liferay.calendar.util.CalendarResourceUtil;
 import com.liferay.calendar.util.JCalendarUtil;
+import com.liferay.calendar.util.RecurrenceUtil;
 import com.liferay.calendar.workflow.CalendarBookingWorkflowConstants;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
@@ -214,12 +215,16 @@ public class CalendarBookingLocalServiceTest {
 		CalendarBooking calendarBooking =
 			CalendarBookingTestUtil.addRecurringCalendarBooking(
 				invitingcalendar, invitedCalendar,
-				RecurrenceTestUtil.getDailyRecurrence(2), serviceContext);
+				RecurrenceTestUtil.getDailyRecurrence(5), serviceContext);
 
 		long calendarBookingId = calendarBooking.getCalendarBookingId();
 
+		CalendarBooking calendarBookingInstance =
+			RecurrenceUtil.getCalendarBookingInstance(calendarBooking, 3);
+
 		CalendarBookingLocalServiceUtil.deleteCalendarBookingInstance(
-			invitingUser.getUserId(), calendarBooking, 0, false);
+			invitingUser.getUserId(), calendarBooking,
+			calendarBookingInstance.getStartTime(), true, false);
 
 		calendarBooking = CalendarBookingLocalServiceUtil.fetchCalendarBooking(
 			calendarBookingId);
@@ -227,7 +232,7 @@ public class CalendarBookingLocalServiceTest {
 		Assert.assertNotNull(calendarBooking);
 
 		String mailMessageSubject =
-			"Calendar: Event Deletion for " + StringPool.QUOTE +
+			"Calendar: Event Update for " + StringPool.QUOTE +
 				calendarBooking.getTitle(LocaleUtil.getDefault()) +
 					StringPool.QUOTE;
 
@@ -235,6 +240,27 @@ public class CalendarBookingLocalServiceTest {
 			"Subject", mailMessageSubject);
 
 		Assert.assertEquals(mailMessages.toString(), 1, mailMessages.size());
+
+		CalendarBookingLocalServiceUtil.deleteCalendarBookingInstance(
+			invitingUser.getUserId(), calendarBooking, 2, true);
+
+		CalendarBookingLocalServiceUtil.deleteCalendarBookingInstance(
+			invitingUser.getUserId(), calendarBooking, 1, false);
+
+		calendarBooking = CalendarBookingLocalServiceUtil.fetchCalendarBooking(
+			calendarBookingId);
+
+		Assert.assertNotNull(calendarBooking);
+
+		mailMessageSubject =
+			"Calendar: Event Deletion for " + StringPool.QUOTE +
+			calendarBooking.getTitle(LocaleUtil.getDefault()) +
+			StringPool.QUOTE;
+
+		mailMessages = MailServiceTestUtil.getMailMessages(
+			"Subject", mailMessageSubject);
+
+		Assert.assertEquals(mailMessages.toString(), 2, mailMessages.size());
 
 		CalendarBookingLocalServiceUtil.deleteCalendarBookingInstance(
 			_user.getUserId(), calendarBooking, 0, false);
