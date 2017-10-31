@@ -635,6 +635,10 @@ public class SitesImpl implements Sites {
 		Map<String, String[]> parameterMap = getLayoutSetPrototypeParameters(
 			serviceContext);
 
+		parameterMap.put(
+			PortletDataHandlerKeys.PERFORM_DIRECT_BINARY_IMPORT,
+			new String[] {Boolean.FALSE.toString()});
+
 		Map<String, Serializable> exportLayoutSettingsMap =
 			ExportImportConfigurationSettingsMapFactory.
 				buildExportLayoutSettingsMap(
@@ -877,6 +881,10 @@ public class SitesImpl implements Sites {
 
 		Map<String, String[]> parameterMap = getLayoutSetPrototypeParameters(
 			serviceContext);
+
+		parameterMap.put(
+			PortletDataHandlerKeys.PERFORM_DIRECT_BINARY_IMPORT,
+			new String[] {Boolean.FALSE.toString()});
 
 		setLayoutSetPrototypeLinkEnabledParameter(
 			parameterMap, layoutSet, serviceContext);
