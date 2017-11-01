@@ -305,7 +305,6 @@ public class MemberRequestLocalServiceImpl
 
 			redirectURL = addParameterWithPortletNamespace(
 				redirectURL, "actionRequired", StringPool.TRUE);
-
 			redirectURL = addParameterWithPortletNamespace(
 				redirectURL, "key", memberRequest.getKey());
 
@@ -329,7 +328,6 @@ public class MemberRequestLocalServiceImpl
 
 		redirectURL = addParameterWithPortletNamespace(
 			redirectURL, "actionRequired", StringPool.TRUE);
-
 		redirectURL = addParameterWithPortletNamespace(
 			redirectURL, "key", memberRequest.getKey());
 
