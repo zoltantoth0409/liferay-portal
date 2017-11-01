@@ -736,6 +736,7 @@
 		<execute macro="Staging#gotoPublishToLive" />
 
 		<execute macro="Staging#configurePublishToLive">
+			<var name="checkContentNameList" value="Web Content" />
 			<var name="contentDateRange" value="Last" />
 		</execute>
 
