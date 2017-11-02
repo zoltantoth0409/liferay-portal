@@ -153,6 +153,20 @@
 		<execute function="AssertTextEquals#assertPartialText" locator1="ProductMenu#PRODUCT_MENU_PANEL_SITE_ADMINISTRATION_SITE_NAME" value1="${site}" />
 	</command>
 
+	<command name="gotoSitesContent" summary="Navigate to Product Menu > Sites > Content > ${portlet}">
+		<execute macro="ProductMenuHelper#expandPanel">
+			<var name="panel" value="Site Administration" />
+		</execute>
+
+		<execute macro="ProductMenuHelper#expandCategory">
+			<var name="category" value="Content" />
+		</execute>
+
+		<execute macro="ProductMenuHelper#gotoPortlet">
+			<var name="portlet" value="${portlet}" />
+		</execute>
+	</command>
+
 	<command name="gotoSiteViaLink" summary="Navigate to ${site} via the 'Go to Site' link">
 		<execute macro="ProductMenuHelper#expandPanel">
 			<var name="panel" value="Site Administration" />
