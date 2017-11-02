@@ -90,6 +90,7 @@ public class ScriptData implements Mergeable<ScriptData>, Serializable {
 		}
 
 		_writeEs6ModulesTo(writer);
+
 		_writeAuiModulesTo(writer);
 	}
 
