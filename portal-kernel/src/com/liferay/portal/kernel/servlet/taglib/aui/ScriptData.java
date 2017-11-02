@@ -250,11 +250,11 @@ public class ScriptData implements Mergeable<ScriptData>, Serializable {
 	}
 
 	private void _writeEs6ModulesTo(Writer writer) throws IOException {
+		StringBundler es6CallbacksSB = new StringBundler(
+			_portletDataMap.size());
 		List<String> es6Modules = new ArrayList<>();
 		List<String> es6Variables = new ArrayList<>();
 		Set<String> variableNames = new HashSet<>();
-		StringBundler es6CallbacksSB = new StringBundler(
-			_portletDataMap.size());
 
 		for (PortletData portletData : _portletDataMap.values()) {
 			if (!portletData._es6ModulesSet.isEmpty()) {
