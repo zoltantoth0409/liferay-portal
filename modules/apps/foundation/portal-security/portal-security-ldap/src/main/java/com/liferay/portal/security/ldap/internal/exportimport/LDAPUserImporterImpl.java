@@ -539,7 +539,9 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 			stopWatch.start();
 
 			_log.debug(
-				"Adding LDAP user " + ldapUser + " to company " + companyId);
+				StringBundler.concat(
+					"Adding LDAP user ", String.valueOf(ldapUser),
+					" to company ", String.valueOf(companyId)));
 		}
 
 		boolean autoPassword = ldapUser.isAutoPassword();
@@ -596,8 +598,10 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 
 		if (_log.isDebugEnabled()) {
 			_log.debug(
-				"Finished adding LDAP user " + ldapUser + " as user " + user +
-					" in " + stopWatch.getTime() + "ms");
+				StringBundler.concat(
+					"Finished adding LDAP user ", String.valueOf(ldapUser),
+					" as user ", String.valueOf(user), " in ",
+					String.valueOf(stopWatch.getTime()), "ms"));
 		}
 
 		return user;
@@ -897,7 +901,10 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 		}
 
 		if (_log.isDebugEnabled()) {
-			_log.debug("Adding user " + user + " to user group " + userGroupId);
+			_log.debug(
+				StringBundler.concat(
+					"Adding user ", String.valueOf(user), " to user group ",
+					String.valueOf(userGroupId)));
 		}
 
 		newUserGroupIds.add(userGroupId);
@@ -1142,9 +1149,11 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 
 				if (_log.isDebugEnabled()) {
 					_log.debug(
-						"Finished adding LDAP group " + ldapGroup +
-							" as user group " + userGroup + " in " +
-								stopWatch.getTime() + "ms");
+						StringBundler.concat(
+							"Finished adding LDAP group ",
+							String.valueOf(ldapGroup), " as user group ",
+							String.valueOf(userGroup), " in ",
+							String.valueOf(stopWatch.getTime()), "ms"));
 				}
 			}
 			catch (Exception e) {
@@ -1182,9 +1191,12 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 			int size = usersLdapAttribute.size();
 
 			_log.debug(
-				"Importing " + size + " users from LDAP server " +
-					ldapImportContext.getLdapServerId() + " to company " +
-						ldapImportContext.getCompanyId());
+				StringBundler.concat(
+					"Importing ", String.valueOf(size),
+					" users from LDAP server ",
+					String.valueOf(ldapImportContext.getLdapServerId()),
+					" to company ",
+					String.valueOf(ldapImportContext.getCompanyId())));
 		}
 
 		Set<Long> newUserIds = new LinkedHashSet<>(usersLdapAttribute.size());
@@ -1221,8 +1233,10 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 					if (user != null) {
 						if (_log.isDebugEnabled()) {
 							_log.debug(
-								"Adding user " + user + " to user group " +
-									userGroupId);
+								StringBundler.concat(
+									"Adding user ", String.valueOf(user),
+									" to user group ",
+									String.valueOf(userGroupId)));
 						}
 
 						newUserIds.add(user.getUserId());
@@ -1260,8 +1274,9 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 
 				if (_log.isDebugEnabled()) {
 					_log.debug(
-						"Removing user " + user + " from user group " +
-							userGroupId);
+						StringBundler.concat(
+							"Removing user ", String.valueOf(user),
+							" from user group ", String.valueOf(userGroupId)));
 				}
 
 				deletedUserIds.add(user.getUserId());
@@ -1490,13 +1505,17 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 
 			if (isNew) {
 				_log.debug(
-					"Updating new user " + user + " from LDAP server " +
-						ldapServerId + " to company " + companyId);
+					StringBundler.concat(
+						"Updating new user ", String.valueOf(user),
+						" from LDAP server ", String.valueOf(ldapServerId),
+						" to company ", String.valueOf(companyId)));
 			}
 			else {
 				_log.debug(
-					"Updating existing user " + user + " from LDAP server " +
-						ldapServerId + " to company " + companyId);
+					StringBundler.concat(
+						"Updating existing user ", String.valueOf(user),
+						" from LDAP server ", String.valueOf(ldapServerId),
+						" to company ", String.valueOf(companyId)));
 			}
 		}
 
@@ -1526,9 +1545,10 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 
 					if (_log.isDebugEnabled()) {
 						_log.debug(
-							"User " + user.getEmailAddress() +
-								" is already synchronized, but updated " +
-									"password to avoid a blank value");
+							StringBundler.concat(
+								"User ", user.getEmailAddress(),
+								" is already synchronized, but updated ",
+								"password to avoid a blank value"));
 					}
 
 					return user;
@@ -1621,8 +1641,9 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 
 		if (_log.isDebugEnabled()) {
 			_log.debug(
-				"Finished update for user " + user + " in " +
-					stopWatch.getTime() + "ms");
+				StringBundler.concat(
+					"Finished update for user ", String.valueOf(user), " in ",
+					String.valueOf(stopWatch.getTime()), "ms"));
 		}
 
 		return user;
