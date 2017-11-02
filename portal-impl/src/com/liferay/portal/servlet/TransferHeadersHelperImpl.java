@@ -56,7 +56,14 @@ public class TransferHeadersHelperImpl implements TransferHeadersHelper {
 				String name = entry.getKey();
 				Object values = entry.getValue();
 
-				if (values instanceof Integer[]) {
+				if (values instanceof Cookie[]) {
+					Cookie[] cookies = (Cookie[])values;
+
+					for (Cookie cookie : cookies) {
+						httpServletResponse.addCookie(cookie);
+					}
+				}
+				else if (values instanceof Integer[]) {
 					Integer[] intValues = (Integer[])values;
 
 					for (int value : intValues) {
@@ -90,13 +97,6 @@ public class TransferHeadersHelperImpl implements TransferHeadersHelper {
 						else {
 							httpServletResponse.setHeader(name, value);
 						}
-					}
-				}
-				else if (values instanceof Cookie[]) {
-					Cookie[] cookies = (Cookie[])values;
-
-					for (Cookie cookie : cookies) {
-						httpServletResponse.addCookie(cookie);
 					}
 				}
 			}
