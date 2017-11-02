@@ -53,6 +53,7 @@ dependencies {
 	testLibs project(":core:petra:petra-executor")
 	testLibs project(":core:petra:petra-nio")
 	testLibs project(":core:petra:petra-reflect")
+	testLibs project(":core:petra:petra-string")
 }
 
 testIntegration {
