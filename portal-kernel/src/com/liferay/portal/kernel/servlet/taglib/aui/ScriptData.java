@@ -265,13 +265,16 @@ public class ScriptData implements Mergeable<ScriptData>, Serializable {
 
 					String rawVariable = _generateVariable(
 						es6Module, variableNames, false);
-					String aliasedVariable = _generateVariable(
-						es6Module, variableNames, true);
 
 					es6Variables.add(rawVariable);
 
 					es6CallbacksSB.append("var ");
+
+					String aliasedVariable = _generateVariable(
+						es6Module, variableNames, true);
+
 					es6CallbacksSB.append(aliasedVariable);
+
 					es6CallbacksSB.append(" = ");
 					es6CallbacksSB.append(rawVariable);
 					es6CallbacksSB.append(";\n");
@@ -299,8 +302,8 @@ public class ScriptData implements Mergeable<ScriptData>, Serializable {
 
 			for (String es6Variable : es6Variables) {
 				writer.write(delimiter);
-
 				writer.write(es6Variable);
+
 				delimiter = StringPool.COMMA_AND_SPACE;
 			}
 
