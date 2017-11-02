@@ -98,8 +98,8 @@ public class FriendlyURLEntryStagedModelDataHandler
 
 		String className = friendlyURLEntryElement.attributeValue(
 			"resource-class-name");
-		boolean mainEntry = GetterUtil.get(
-			friendlyURLEntryElement.attributeValue("mainEntry"), false);
+		boolean mainEntry = GetterUtil.getBoolean(
+			friendlyURLEntryElement.attributeValue("mainEntry"));
 
 		long classNameId = _classNameLocalService.getClassNameId(className);
 
