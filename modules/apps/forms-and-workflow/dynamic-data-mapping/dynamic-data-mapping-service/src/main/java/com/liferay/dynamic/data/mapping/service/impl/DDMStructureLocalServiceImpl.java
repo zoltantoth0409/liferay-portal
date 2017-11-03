@@ -65,6 +65,7 @@ import com.liferay.portal.kernel.util.GroupThreadLocal;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.SetUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -1845,8 +1846,10 @@ public class DDMStructureLocalServiceImpl
 
 			LocaleException le = new LocaleException(
 				LocaleException.TYPE_CONTENT,
-				"The locale " + contentDefaultLocale +
-					" is not available in company " + companyId);
+				StringBundler.concat(
+					"The locale ", String.valueOf(contentDefaultLocale),
+					" is not available in company ",
+					String.valueOf(companyId)));
 
 			le.setSourceAvailableLocales(
 				Collections.singleton(contentDefaultLocale));
