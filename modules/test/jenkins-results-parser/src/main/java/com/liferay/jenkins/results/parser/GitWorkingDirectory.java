@@ -227,7 +227,7 @@ public class GitWorkingDirectory {
 		if (executionResult.getExitValue() != 0) {
 			throw new RuntimeException(
 				JenkinsResultsParserUtil.combine(
-					"Unable to cherry-pick commit ", commit.getSHA(), "\n",
+					"Unable to cherry pick commit ", commit.getSHA(), "\n",
 					executionResult.getStandardError()));
 		}
 	}

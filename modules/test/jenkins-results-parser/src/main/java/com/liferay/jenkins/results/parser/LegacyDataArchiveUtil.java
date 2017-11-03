@@ -154,7 +154,7 @@ public class LegacyDataArchiveUtil {
 
 			if (!commitMatcher.matches()) {
 				throw new RuntimeException(
-					"Invalid commit message. " + message);
+					"Invalid commit message: " + message);
 			}
 
 			String dataArchiveType = commitMatcher.group(1);
