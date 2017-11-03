@@ -1406,8 +1406,10 @@ public class PortletImportController implements ImportController {
 
 		if (buildNumber != importBuildNumber) {
 			throw new LayoutImportException(
-				"LAR build number " + importBuildNumber + " does not match " +
-					"portal build number " + buildNumber);
+				StringBundler.concat(
+					"LAR build number ", String.valueOf(importBuildNumber),
+					" does not match portal build number ",
+					String.valueOf(buildNumber)));
 		}
 
 		// Type
@@ -1447,8 +1449,10 @@ public class PortletImportController implements ImportController {
 
 					LocaleException le = new LocaleException(
 						LocaleException.TYPE_EXPORT_IMPORT,
-						"Locale " + sourceAvailableLocale + " is not " +
-							"available in company " + companyId);
+						StringBundler.concat(
+							"Locale ", String.valueOf(sourceAvailableLocale),
+							" is not available in company ",
+							String.valueOf(companyId)));
 
 					le.setSourceAvailableLocales(sourceAvailableLocales);
 					le.setTargetAvailableLocales(
