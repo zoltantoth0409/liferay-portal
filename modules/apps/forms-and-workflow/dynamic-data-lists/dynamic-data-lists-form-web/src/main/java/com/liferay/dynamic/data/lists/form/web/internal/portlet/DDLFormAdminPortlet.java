@@ -55,6 +55,7 @@ import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowDefinition;
@@ -157,7 +158,8 @@ public class DDLFormAdminPortlet extends MVCPortlet {
 				themeDisplay.getLocale(), "version-x",
 				workflowDefinition.getVersion(), false);
 
-			String label = workflowDefinition.getName() + " (" + version + ")";
+			String label = StringBundler.concat(
+				workflowDefinition.getName(), " (", version, ")");
 
 			ddmFormFieldOptions.addOptionLabel(
 				value, themeDisplay.getLocale(), label);
