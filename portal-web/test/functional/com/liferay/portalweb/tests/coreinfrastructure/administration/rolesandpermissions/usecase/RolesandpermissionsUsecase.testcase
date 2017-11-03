@@ -316,8 +316,10 @@
 		</execute>
 
 		<execute macro="Role#definePermissionCmdCP">
+			<var name="confirmation" value="true" />
 			<var name="permissionDefinitionKey" value="SITE_ADMIN_APPLICATIONS_BOOKMARKS_RESOURCE_PERMISSIONS_BOOKMARKS_ENTRY_VIEW_CHECKBOX" />
 			<var name="permissionDefinitionValue" value="View" />
+			<var name="removeLink" value="true" />
 			<var name="roleName" value="Group Scope Role Name" />
 			<var name="siteNameScope" value="Liferay" />
 		</execute>
@@ -2163,8 +2165,10 @@
 		</execute>
 
 		<execute macro="Role#definePermissionCmdCP">
+			<var name="confirmation" value="true" />
 			<var name="permissionDefinitionKey" value="SITE_ADMIN_APPLICATIONS_BOOKMARKS_RESOURCE_PERMISSIONS_BOOKMARKS_ENTRY_VIEW_CHECKBOX" />
 			<var name="permissionDefinitionValue" value="View" />
+			<var name="removeLink" value="true" />
 			<var name="roleName" value="Roles Siterole Name" />
 			<var name="roleType" value="Site" />
 		</execute>
