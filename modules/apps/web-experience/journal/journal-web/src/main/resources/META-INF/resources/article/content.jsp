@@ -182,7 +182,7 @@ if (!searchRestriction) {
 	}
 
 	function initJournalContent(translationManager) {
-		var journalContent = new Liferay.Portlet.JournalContent(
+		new Liferay.Portlet.JournalContent(
 			{
 				'ddm.basePortletURL': '<%= PortletURLFactoryUtil.create(request, PortletProviderUtil.getPortletId(DDMStructure.class.getName(), PortletProvider.Action.VIEW), PortletRequest.RENDER_PHASE) %>',
 				'ddm.classNameId': '<%= PortalUtil.getClassNameId(DDMStructure.class) %>',
@@ -209,7 +209,7 @@ if (!searchRestriction) {
 				'urls.editTemplate': '<%= editTemplateURL %>'
 			}
 		);
-	};
+	}
 
 	Liferay.Util.disableToggleBoxes('<portlet:namespace />autoArticleId', '<portlet:namespace />newArticleId', true);
 </aui:script>
