@@ -154,20 +154,19 @@ public class ExportArticleUtil {
 
 		String contentType = ContentTypes.TEXT_HTML;
 
+		StringBundler id = new StringBundler(3);
+
+		id.append(PrincipalThreadLocal.getUserId());
+		id.append(StringPool.UNDERLINE);
+
 		String tempFileId = DLUtil.getTempFileId(
 			articleDisplay.getId(), String.valueOf(articleDisplay.getVersion()),
 			languageId);
 
-		StringBundler stringBundler = new StringBundler(3);
-
-		stringBundler.append(PrincipalThreadLocal.getUserId());
-		stringBundler.append(StringPool.UNDERLINE);
-		stringBundler.append(tempFileId);
-
-		String id = stringBundler.toString();
+		id.append(tempFileId);
 
 		File convertedFile = DocumentConversionUtil.convert(
-			id, is, sourceExtension, targetExtension);
+			id.toString(), is, sourceExtension, targetExtension);
 
 		if (convertedFile != null) {
 			targetExtension = StringUtil.toLowerCase(targetExtension);
