@@ -458,8 +458,8 @@ public class DefaultWikiListPagesDisplayContext
 
 		if (!wikiPage.isDraft() &&
 			WikiPagePermissionChecker.contains(
-				_wikiRequestHelper.getPermissionChecker(), wikiPage.getNodeId(),
-				HtmlUtil.unescape(wikiPage.getTitle()), ActionKeys.DELETE)) {
+				_wikiRequestHelper.getPermissionChecker(), wikiPage,
+				ActionKeys.DELETE)) {
 
 			DeleteMenuItem deleteMenuItem = new DeleteMenuItem();
 
