@@ -757,7 +757,8 @@
 			<var name="portlet" value="Web Content" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoEditCP">
+		<execute macro="WebContent#viewTitle">
+			<var name="onLive" value="true" />
 			<var name="webContentTitle" value="Web Content Title" />
 		</execute>
 	</command>
