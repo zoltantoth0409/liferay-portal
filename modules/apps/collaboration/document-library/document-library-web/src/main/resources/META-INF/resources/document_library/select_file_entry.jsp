@@ -95,7 +95,7 @@ dlSearchContainer.setResults(foldersAndFileEntriesAndFileShortcuts);
 						FileVersion fileVersion = fileEntry.getFileVersion();
 						%>
 
-						<c:if test="<%= fileVersion.getStatus() == WorkflowConstants.STATUS_APPROVED %>">
+						<c:if test="<%= fileVersion.isApproved() %>">
 							<liferay-ui:search-container-column-text
 								name="title"
 							>
