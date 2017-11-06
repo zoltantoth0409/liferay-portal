@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0"?>
+
 <mime-info>
 	<mime-type type="application/zip">
 		<glob pattern="*.lar" />

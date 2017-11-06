@@ -233,9 +233,9 @@ public class MimeTypesImpl implements MimeTypes, MimeTypesReaderMetKeys {
 		for (Map.Entry<String, Set<String>> entry :
 				_customExtensionsMap.entrySet()) {
 
-			Set<String> valueSet = entry.getValue();
+			Set<String> set = entry.getValue();
 
-			if (valueSet.contains(".".concat(extension))) {
+			if (set.contains(".".concat(extension))) {
 				return entry.getKey();
 			}
 		}
