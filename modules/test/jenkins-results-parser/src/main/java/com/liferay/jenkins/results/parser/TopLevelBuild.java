@@ -757,7 +757,7 @@ public class TopLevelBuild extends BaseBuild {
 
 		Element scriptElement = Dom4JUtil.getNewElement("script");
 
-		scriptElement.addAttribute("src", _CHART_JS_FILE);
+		scriptElement.addAttribute("src", _URL_CHART_JS);
 		scriptElement.addText("");
 
 		BaseBuild.TimelineData timelineData = getTimelineData();
@@ -1116,9 +1116,6 @@ public class TopLevelBuild extends BaseBuild {
 	protected static final Pattern gitRepositoryTempMapNamePattern =
 		Pattern.compile("git\\.(?<repositoryType>.*)\\.properties");
 
-	private static final String _CHART_JS_FILE =
-		"https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js";
-
 	private static final long _DOWNSTREAM_BUILDS_LISTING_INTERVAL =
 		1000 * 60 * 5;
 
@@ -1132,6 +1129,9 @@ public class TopLevelBuild extends BaseBuild {
 
 			new GenericFailureMessageGenerator()
 		};
+
+	private static final String _URL_CHART_JS =
+		"https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js";
 
 	private boolean _compareToUpstream = true;
 	private long _lastDownstreamBuildsListingTimestamp = -1L;
