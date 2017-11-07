@@ -26,14 +26,13 @@ public class ConfigurationPidUtil {
 
 	public static String getConfigurationPid(Class<?> configurationBeanClass) {
 		for (Annotation annotation : configurationBeanClass.getAnnotations()) {
-			Class<? extends Annotation> annotationType =
-				annotation.annotationType();
+			Class<? extends Annotation> clazz = annotation.annotationType();
 
-			String name = annotationType.getName();
+			String name = clazz.getName();
 
 			if (name.equals(Meta.OCD.class.getName())) {
 				try {
-					Method method = annotationType.getMethod("id");
+					Method method = clazz.getMethod("id");
 
 					method.setAccessible(true);
 
