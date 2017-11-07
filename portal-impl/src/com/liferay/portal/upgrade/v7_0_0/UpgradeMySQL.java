@@ -88,14 +88,14 @@ public class UpgradeMySQL extends UpgradeProcess {
 					continue;
 				}
 
-				upgradeDatetimePrecisionForTable(
+				upgradeDatetimePrecision(
 					databaseMetaData, statement, rs.getString("TABLE_CAT"),
 					rs.getString("TABLE_SCHEM"), tableName);
 			}
 		}
 	}
 
-	protected void upgradeDatetimePrecisionForTable(
+	protected void upgradeDatetimePrecision(
 			DatabaseMetaData databaseMetaData, Statement statement,
 			String catalog, String schemaPattern, String tableName)
 		throws SQLException {
