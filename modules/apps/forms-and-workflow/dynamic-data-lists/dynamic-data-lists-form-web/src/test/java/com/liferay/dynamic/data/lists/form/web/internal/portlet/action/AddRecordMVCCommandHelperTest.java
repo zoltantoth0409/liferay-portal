@@ -176,9 +176,8 @@ public class AddRecordMVCCommandHelperTest extends PowerMockito {
 				}));
 
 		when(
-			_ddmFormEvaluator, "evaluate",
-			(DDMForm)Matchers.any(), (DDMFormValues)Matchers.any(),
-			(Locale)Matchers.any()
+			_ddmFormEvaluator, "evaluate", (DDMForm)Matchers.any(),
+			(DDMFormValues)Matchers.any(), (Locale)Matchers.any()
 		).thenReturn(
 			ddmFormEvaluationResult
 		);
