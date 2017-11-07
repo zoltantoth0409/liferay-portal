@@ -330,7 +330,9 @@
 			</then>
 		</if>
 
-		<execute function="AssertClick#pauseAssertTextClickAt" locator1="Button#DONE" value1="Done" />
+		<execute function="AssertElementPresent" locator1="Button#DONE" />
+
+		<execute function="Click" locator1="Button#DONE" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 	</command>
