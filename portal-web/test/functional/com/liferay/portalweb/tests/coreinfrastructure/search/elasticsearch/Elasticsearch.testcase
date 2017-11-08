@@ -52,6 +52,7 @@ networkHost=&quot;&quot;
 transportAddresses=&quot;localhost:9300&quot;
 clusterName=&quot;LiferayElasticsearchCluster1&quot;
 discoveryZenPingUnicastHostsPort=&quot;9300-9400&quot;" />
+		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Navigator#openSpecificURL">
 			<var name="url" value="http://localhost:9200" />
@@ -67,6 +68,7 @@ discoveryZenPingUnicastHostsPort=&quot;9300-9400&quot;" />
 	<command name="AssertIndexOnStartupViaRemote" priority="5">
 		<description message="This test asserts that index on startup works consistently on remote Elasticsearch." />
 
+		<property name="portal.acceptance" value="true" />
 		<property name="remote.elasticsearch.enabled" value="true" />
 
 		<execute macro="ProductMenu#gotoPortlet">
