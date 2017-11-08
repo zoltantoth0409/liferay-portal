@@ -104,7 +104,7 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 	@Override
 	protected void doSend(PollerRequest pollerRequest) throws Exception {
 		if (pollerRequest.isStartPolling()) {
-			_processedEntriesSet.clear();
+			_processedEntryIds.clear();
 		}
 
 		addEntry(pollerRequest);
@@ -195,6 +195,10 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 			PollerRequest pollerRequest, PollerResponse pollerResponse)
 		throws Exception {
 
+		JSONArray entriesJSONArray = JSONFactoryUtil.createJSONArray();
+
+		boolean hasProcessedEntry = false;
+
 		Status status = StatusLocalServiceUtil.getUserStatus(
 			pollerRequest.getUserId());
 
@@ -212,15 +216,10 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 
 		Collections.reverse(entries);
 
-		JSONArray entriesJSONArray = JSONFactoryUtil.createJSONArray();
-
-		boolean hasProcessedEntry = false;
-
 		for (Entry entry : entries) {
-			hasProcessedEntry = _processedEntriesSet.contains(
-				entry.getEntryId());
+			hasProcessedEntry = _processedEntryIds.contains(entry.getEntryId());
 
-			_processedEntriesSet.add(entry.getEntryId());
+			_processedEntryIds.add(entry.getEntryId());
 
 			JSONObject entryJSONObject = JSONFactoryUtil.createJSONObject();
 
@@ -329,7 +328,7 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 	@Reference
 	private Portal _portal;
 
-	private final Set<Long> _processedEntriesSet = new HashSet<>();
+	private final Set<Long> _processedEntryIds = new HashSet<>();
 	private UserLocalService _userLocalService;
 
 }
