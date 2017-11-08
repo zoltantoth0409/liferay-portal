@@ -46,18 +46,18 @@ public class AutoCloseRule {
 	public List<Build> evaluate(List<Build> downstreamBuilds) {
 		downstreamBuilds = getMatchingBuilds(downstreamBuilds);
 
-		List<Build> downstreamBuildsFailingInUpstreamJob = new ArrayList<>(
+		List<Build> failingInUpstreamJobDownstreamBuilds = new ArrayList<>(
 			downstreamBuilds.size());
 
 		for (Build downstreamBuild : downstreamBuilds) {
 			if (UpstreamFailureUtil.isBuildFailingInUpstreamJob(
 					downstreamBuild)) {
 
-				downstreamBuildsFailingInUpstreamJob.add(downstreamBuild);
+				failingInUpstreamJobDownstreamBuilds.add(downstreamBuild);
 			}
 		}
 
-		downstreamBuilds.removeAll(downstreamBuildsFailingInUpstreamJob);
+		downstreamBuilds.removeAll(failingInUpstreamJobDownstreamBuilds);
 
 		if (downstreamBuilds.isEmpty()) {
 			return Collections.emptyList();
