@@ -8,6 +8,8 @@ AUI.add(
 
 		var Workflow = Liferay.Workflow;
 
+		var MessageUtil = Liferay.CalendarMessageUtil;
+
 		var isDate = Lang.isDate;
 
 		var toInt = function(value) {
@@ -191,6 +193,8 @@ AUI.add(
 			deleteEvent: function(schedulerEvent, success) {
 				var instance = this;
 
+				var container = instance._getCalendarPortletContainer(schedulerEvent);
+
 				instance.invokeService(
 					{
 						'/calendar.calendarbooking/move-calendar-booking-to-trash': {
@@ -201,6 +205,7 @@ AUI.add(
 						success: function(data) {
 							if (success) {
 								success.call(instance, data);
+								MessageUtil.showSuccessMessage(container);
 							}
 						}
 					}
@@ -209,6 +214,8 @@ AUI.add(
 
 			deleteEventInstance: function(schedulerEvent, allFollowing, success) {
 				var instance = this;
+
+				var container = instance._getCalendarPortletContainer(schedulerEvent);
 
 				instance.invokeService(
 					{
@@ -222,6 +229,7 @@ AUI.add(
 						success: function(data) {
 							if (success) {
 								success.call(instance, data);
+								MessageUtil.showSuccessMessage(container);
 							}
 						}
 					}
@@ -758,6 +766,8 @@ AUI.add(
 				var endDate = schedulerEvent.get('endDate');
 				var startDate = schedulerEvent.get('startDate');
 
+				var container = instance._getCalendarPortletContainer(schedulerEvent);
+
 				instance.invokeActionURL(
 					{
 						actionName: 'updateSchedulerCalendarBooking',
@@ -779,6 +789,7 @@ AUI.add(
 
 									if (success) {
 										success.call(instance, data);
+										MessageUtil.showSuccessMessage(container);
 									}
 								}
 							}
@@ -825,6 +836,14 @@ AUI.add(
 						}
 					}
 				);
+			},
+
+			_getCalendarPortletContainer: function(schedulerEvent) {
+				var scheduler = schedulerEvent.get('scheduler');
+
+				var boundingBox = scheduler.get('boundingBox');
+
+				return boundingBox.ancestor('.portlet-column');
 			}
 		};
 
@@ -840,6 +859,6 @@ AUI.add(
 	},
 	'',
 	{
-		requires: ['aui-datatype', 'aui-io', 'aui-scheduler', 'aui-toolbar', 'autocomplete', 'autocomplete-highlighters', 'liferay-portlet-url']
+		requires: ['aui-datatype', 'aui-io', 'aui-scheduler', 'aui-toolbar', 'autocomplete', 'autocomplete-highlighters', 'liferay-calendar-message-util', 'liferay-portlet-url']
 	}
 );
