@@ -42,13 +42,11 @@ import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
  * @author Drew Brokke
  */
-@Ignore
 public class LanguagePropertyTest {
 
 	@BeforeClass
