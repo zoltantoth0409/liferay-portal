@@ -561,9 +561,9 @@ public class TopLevelBuild extends BaseBuild {
 			"h1", null, "Jenkins report for ",
 			Dom4JUtil.getNewAnchorElement(buildURL, buildURL));
 
-		JSONObject jobJSONObject = getBuildJSONObject();
-
 		Element subheadingElement = null;
+
+		JSONObject jobJSONObject = getBuildJSONObject();
 
 		String description = jobJSONObject.optString("description");
 
