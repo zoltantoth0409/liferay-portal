@@ -969,6 +969,8 @@ public class PortletURLImpl
 			mergeRenderParameters();
 		}
 
+		int previousSbIndex = sb.index();
+
 		for (Map.Entry<String, String[]> entry : _params.entrySet()) {
 			String name = entry.getKey();
 			String[] values = entry.getValue();
@@ -993,15 +995,15 @@ public class PortletURLImpl
 			}
 		}
 
-		if (_encrypt) {
-			sb.append(WebKeys.ENCRYPT);
-			sb.append("=1");
-		}
-		else {
+		if (sb.index() > previousSbIndex) {
 			sb.setIndex(sb.index() - 1);
 		}
 
-		String result = sb.toString();
+		if (_encrypt) {
+			sb.append(StringPool.AMPERSAND);
+			sb.append(WebKeys.ENCRYPT);
+			sb.append("=1");
+		}
 
 		if (PropsValues.PORTLET_URL_ANCHOR_ENABLE) {
 			if (_anchor && (_windowStateString != null) &&
@@ -1011,15 +1013,34 @@ public class PortletURLImpl
 				!_windowStateString.equals(
 					LiferayWindowState.POP_UP.toString())) {
 
-				sb.setIndex(0);
+				String lastString = sb.stringAt(sb.index() - 1);
 
-				sb.append(result);
+				char lastChar = lastString.charAt(lastString.length() - 1);
+
+				if ((lastChar != CharPool.AMPERSAND) &&
+					(lastChar != CharPool.QUESTION)) {
+
+					sb.append(StringPool.AMPERSAND);
+				}
+
 				sb.append("#p_");
 				sb.append(URLCodec.encodeURL(_portlet.getPortletId()));
-
-				result = sb.toString();
 			}
 		}
+
+		String lastString = sb.stringAt(sb.index() - 1);
+
+		char lastChar = lastString.charAt(lastString.length() - 1);
+
+		if ((lastChar == CharPool.AMPERSAND) ||
+			(lastChar == CharPool.QUESTION)) {
+
+			sb.setStringAt(
+				lastString.substring(0, lastString.length() - 1),
+				sb.index() - 1);
+		}
+
+		String result = sb.toString();
 
 		if (themeDisplay.isFacebook()) {
 
