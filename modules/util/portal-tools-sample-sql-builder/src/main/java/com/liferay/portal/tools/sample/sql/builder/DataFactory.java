@@ -1853,9 +1853,6 @@ public class DataFactory {
 		FriendlyURLEntryLocalizationModel friendlyURLEntryLocalizationModel =
 			new FriendlyURLEntryLocalizationModelImpl();
 
-		String languageId = LocaleUtil.toLanguageId(
-			LocaleUtil.getSiteDefault());
-
 		friendlyURLEntryLocalizationModel.setFriendlyURLEntryLocalizationId(
 			_counter.get());
 		friendlyURLEntryLocalizationModel.setFriendlyURLEntryId(
@@ -1868,7 +1865,12 @@ public class DataFactory {
 			friendlyURLEntryModel.getClassNameId());
 		friendlyURLEntryLocalizationModel.setClassPK(
 			friendlyURLEntryModel.getClassPK());
+
+		String languageId = LocaleUtil.toLanguageId(
+			LocaleUtil.getSiteDefault());
+
 		friendlyURLEntryLocalizationModel.setLanguageId(languageId);
+
 		friendlyURLEntryLocalizationModel.setUrlTitle(
 			blogsEntryModel.getUrlTitle());
 
