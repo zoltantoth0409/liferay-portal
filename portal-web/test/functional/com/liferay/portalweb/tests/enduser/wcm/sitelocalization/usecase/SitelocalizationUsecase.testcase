@@ -871,7 +871,7 @@
 		<execute macro="User#loginPG" />
 	</command>
 
-	<command name="ViewEditURLLocale" priority="4">
+	<command ignore="true" name="ViewEditURLLocale" priority="4">
 		<property name="test.name.skip.portal.instance" value="SitelocalizationUsecase#ViewEditURLLocale" />
 
 		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
