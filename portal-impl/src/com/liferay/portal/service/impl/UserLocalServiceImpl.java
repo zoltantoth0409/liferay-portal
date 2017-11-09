@@ -5064,7 +5064,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		Group group = groupLocalService.getUserGroup(
 			user.getCompanyId(), userId);
 
-		group.setFriendlyURL(_getFriendlyURL(StringPool.SLASH + screenName));
+		group.setFriendlyURL(
+			FriendlyURLNormalizerUtil.normalize(StringPool.SLASH + screenName));
 
 		groupPersistence.update(group);
 
@@ -5367,7 +5368,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		Group group = groupLocalService.getUserGroup(
 			user.getCompanyId(), userId);
 
-		group.setFriendlyURL(_getFriendlyURL(StringPool.SLASH + screenName));
+		group.setFriendlyURL(
+			FriendlyURLNormalizerUtil.normalize(StringPool.SLASH + screenName));
 
 		groupPersistence.update(group);
 
@@ -6862,7 +6864,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 				user.getUserId(), screenName);
 		}
 
-		String friendlyURL = _getFriendlyURL(StringPool.SLASH + screenName);
+		String friendlyURL = FriendlyURLNormalizerUtil.normalize(
+			StringPool.SLASH + screenName);
 
 		Group group = groupPersistence.fetchByC_F(companyId, friendlyURL);
 
@@ -6912,10 +6915,6 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		}
 
 		return user;
-	}
-
-	private String _getFriendlyURL(String friendlyURL) {
-		return FriendlyURLNormalizerUtil.normalize(friendlyURL);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
