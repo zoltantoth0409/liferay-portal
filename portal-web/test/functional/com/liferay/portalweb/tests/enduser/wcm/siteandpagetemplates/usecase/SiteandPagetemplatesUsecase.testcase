@@ -177,7 +177,7 @@
 			<var name="portlet" value="Site Templates" />
 		</execute>
 
-		<execute macro="SiteTemplatesNavigator#gotoSiteTemplatesPage">
+		<execute macro="SiteTemplatesNavigator#gotoSiteTemplatesPageLowercase">
 			<var name="pageName" value="Page1 Name" />
 			<var name="siteName" value="${siteName}" />
 			<var name="siteTemplateName" value="Site Template Name" />
