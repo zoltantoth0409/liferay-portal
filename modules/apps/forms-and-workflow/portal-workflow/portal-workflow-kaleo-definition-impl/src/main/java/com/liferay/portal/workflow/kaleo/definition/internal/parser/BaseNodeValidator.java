@@ -53,10 +53,8 @@ public abstract class BaseNodeValidator<T extends Node>
 		if (notifications.stream().anyMatch(
 				notification -> Validator.isNull(notification.getTemplate()))) {
 
-			throw new KaleoDefinitionValidationException(
-				String.format(
-					"The %s node has a empty notification template",
-					node.getName()));
+			throw new KaleoDefinitionValidationException.
+				EmptyNotificationTemplate(node.getName());
 		}
 	}
 
