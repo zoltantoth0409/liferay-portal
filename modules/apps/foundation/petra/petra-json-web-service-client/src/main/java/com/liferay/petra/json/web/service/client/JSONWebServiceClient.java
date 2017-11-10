@@ -44,11 +44,11 @@ public interface JSONWebServiceClient {
 
 	public String doDelete(String url, String... parametersArray)
 		throws JSONWebServiceInvocationException,
-			JSONWebServiceTransportException;
+			   JSONWebServiceTransportException;
 
 	public String doGet(String url, Map<String, String> parameters)
 		throws JSONWebServiceInvocationException,
-			JSONWebServiceTransportException;
+			   JSONWebServiceTransportException;
 
 	public String doGet(
 			String url, Map<String, String> parameters,
@@ -58,23 +58,26 @@ public interface JSONWebServiceClient {
 
 	public String doGet(String url, String... parametersArray)
 		throws JSONWebServiceInvocationException,
-			JSONWebServiceTransportException;
+			   JSONWebServiceTransportException;
 
 	public <V, T> List<V> doGetToList(
 			Class<T> clazz, String url, Map<String, String> parameters,
 			Map<String, String> headers)
 		throws JSONWebServiceInvocationException,
-			JSONWebServiceSerializeException, JSONWebServiceTransportException;
+			   JSONWebServiceSerializeException,
+			   JSONWebServiceTransportException;
 
 	public <V, T> List<V> doGetToList(
 			Class<T> clazz, String url, String... parametersArray)
 		throws JSONWebServiceInvocationException,
-			JSONWebServiceSerializeException, JSONWebServiceTransportException;
+			   JSONWebServiceSerializeException,
+			   JSONWebServiceTransportException;
 
 	public <T> T doGetToObject(
 			Class<T> clazz, String url, String... parametersArray)
 		throws JSONWebServiceInvocationException,
-			JSONWebServiceSerializeException, JSONWebServiceTransportException;
+			   JSONWebServiceSerializeException,
+			   JSONWebServiceTransportException;
 
 	public String doPost(String url, Map<String, String> parameters)
 		throws JSONWebServiceInvocationException,
@@ -121,7 +124,7 @@ public interface JSONWebServiceClient {
 
 	public String doPut(String url, String... parametersArray)
 		throws JSONWebServiceInvocationException,
-			JSONWebServiceTransportException;
+			   JSONWebServiceTransportException;
 
 	public String getHostName();
 
