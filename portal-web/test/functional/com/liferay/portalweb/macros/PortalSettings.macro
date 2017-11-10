@@ -181,6 +181,8 @@
 	</command>
 
 	<command name="configureGoogleApps">
+		<execute function="ScrollWebElementIntoView" locator1="//div[contains(@class,'panel') and contains(@role,'tablist')]//a[normalize-space(text())='Google Apps']" />
+
 		<execute macro="Panel#expandPanel">
 			<var name="panelHeading" value="Google Apps" />
 		</execute>
