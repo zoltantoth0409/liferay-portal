@@ -91,7 +91,7 @@ public interface JSONWebServiceClient {
 
 	public String doPost(String url, String... parametersArray)
 		throws JSONWebServiceInvocationException,
-			JSONWebServiceTransportException;
+			   JSONWebServiceTransportException;
 
 	public String doPostAsJSON(String url, Object object)
 		throws JSONWebServiceInvocationException,
@@ -110,7 +110,8 @@ public interface JSONWebServiceClient {
 	public <T> T doPostToObject(
 			Class<T> clazz, String url, String... parametersArray)
 		throws JSONWebServiceInvocationException,
-			JSONWebServiceSerializeException, JSONWebServiceTransportException;
+			   JSONWebServiceSerializeException,
+			   JSONWebServiceTransportException;
 
 	public String doPut(String url, Map<String, String> parameters)
 		throws JSONWebServiceInvocationException,
