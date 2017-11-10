@@ -66,17 +66,23 @@ String referringPortletResource = ParamUtil.getString(request, "referringPortlet
 				row.setData(rowData);
 
 				row.setPrimaryKey(HtmlUtil.escape(curArticle.getArticleId()));
-				%>
 
-				<portlet:renderURL var="editURL">
-					<portlet:param name="mvcPath" value="/edit_article.jsp" />
-					<portlet:param name="redirect" value="<%= currentURL %>" />
-					<portlet:param name="referringPortletResource" value="<%= referringPortletResource %>" />
-					<portlet:param name="groupId" value="<%= String.valueOf(curArticle.getGroupId()) %>" />
-					<portlet:param name="folderId" value="<%= String.valueOf(curArticle.getFolderId()) %>" />
-					<portlet:param name="articleId" value="<%= curArticle.getArticleId() %>" />
-					<portlet:param name="version" value="<%= String.valueOf(curArticle.getVersion()) %>" />
-				</portlet:renderURL>
+				String editURL = StringPool.BLANK;
+
+				if (JournalArticlePermission.contains(permissionChecker, curArticle, ActionKeys.UPDATE)) {
+					PortletURL editArticleURL = liferayPortletResponse.createRenderURL();
+
+					editArticleURL.setParameter("mvcPath", "/edit_article.jsp");
+					editArticleURL.setParameter("redirect", currentURL);
+					editArticleURL.setParameter("referringPortletResource", referringPortletResource);
+					editArticleURL.setParameter("groupId", String.valueOf(curArticle.getGroupId()));
+					editArticleURL.setParameter("folderId", String.valueOf(curArticle.getFolderId()));
+					editArticleURL.setParameter("articleId", curArticle.getArticleId());
+					editArticleURL.setParameter("version", String.valueOf(curArticle.getVersion()));
+
+					editURL = editArticleURL.toString();
+				}
+				%>
 
 				<c:choose>
 					<c:when test='<%= displayStyle.equals("descriptive") %>'>
