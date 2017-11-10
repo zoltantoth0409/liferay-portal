@@ -98,14 +98,14 @@ public class AssetTagServiceImpl extends AssetTagServiceBaseImpl {
 
 	@Override
 	public List<AssetTag> getGroupTags(long groupId) {
-		return stripUserInformation(assetTagPersistence.findByGroupId(groupId));
+		return sanitize(assetTagPersistence.findByGroupId(groupId));
 	}
 
 	@Override
 	public List<AssetTag> getGroupTags(
 		long groupId, int start, int end, OrderByComparator<AssetTag> obc) {
 
-		return stripUserInformation(
+		return sanitize(
 			assetTagPersistence.findByGroupId(groupId, start, end, obc));
 	}
 
@@ -137,12 +137,12 @@ public class AssetTagServiceImpl extends AssetTagServiceBaseImpl {
 
 	@Override
 	public AssetTag getTag(long tagId) throws PortalException {
-		return stripUserInformation(assetTagLocalService.getTag(tagId));
+		return sanitize(assetTagLocalService.getTag(tagId));
 	}
 
 	@Override
 	public List<AssetTag> getTags(long groupId, long classNameId, String name) {
-		return stripUserInformation(
+		return sanitize(
 			assetTagFinder.findByG_C_N(
 				groupId, classNameId, name, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, null));
@@ -153,7 +153,7 @@ public class AssetTagServiceImpl extends AssetTagServiceBaseImpl {
 		long groupId, long classNameId, String name, int start, int end,
 		OrderByComparator<AssetTag> obc) {
 
-		return stripUserInformation(
+		return sanitize(
 			assetTagFinder.findByG_C_N(
 				groupId, classNameId, name, start, end, obc));
 	}
@@ -187,17 +187,17 @@ public class AssetTagServiceImpl extends AssetTagServiceBaseImpl {
 		OrderByComparator<AssetTag> obc) {
 
 		if (Validator.isNull(name)) {
-			return stripUserInformation(
+			return sanitize(
 				assetTagPersistence.findByGroupId(groupIds, start, end, obc));
 		}
 
-		return stripUserInformation(
+		return sanitize(
 			assetTagPersistence.findByG_LikeN(groupIds, name, start, end, obc));
 	}
 
 	@Override
 	public List<AssetTag> getTags(String className, long classPK) {
-		return stripUserInformation(
+		return sanitize(
 			assetTagLocalService.getTags(className, classPK));
 	}
 
@@ -263,7 +263,7 @@ public class AssetTagServiceImpl extends AssetTagServiceBaseImpl {
 			getUserId(), tagId, name, serviceContext);
 	}
 
-	protected AssetTag stripUserInformation(AssetTag tag) {
+	protected AssetTag sanitize(AssetTag tag) {
 		if (tag == null) {
 			return null;
 		}
@@ -288,9 +288,9 @@ public class AssetTagServiceImpl extends AssetTagServiceBaseImpl {
 		return tag;
 	}
 
-	protected List<AssetTag> stripUserInformation(List<AssetTag> tags) {
+	protected List<AssetTag> sanitize(List<AssetTag> tags) {
 		for (AssetTag tag : tags) {
-			stripUserInformation(tag);
+			sanitize(tag);
 		}
 
 		return tags;
