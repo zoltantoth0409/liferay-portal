@@ -211,7 +211,7 @@ public abstract class BaseJSONWebServiceClientImpl
 	@Override
 	public String doDelete(String url, String... parametersArray)
 		throws JSONWebServiceInvocationException,
-			JSONWebServiceTransportException {
+			   JSONWebServiceTransportException {
 
 		Map<String, String> parameters = new HashMap<String, String>();
 
@@ -269,7 +269,7 @@ public abstract class BaseJSONWebServiceClientImpl
 	@Override
 	public String doGet(String url, String... parametersArray)
 		throws JSONWebServiceInvocationException,
-			JSONWebServiceTransportException {
+			   JSONWebServiceTransportException {
 
 		Map<String, String> parameters = new HashMap<String, String>();
 
@@ -285,7 +285,8 @@ public abstract class BaseJSONWebServiceClientImpl
 			Class<T> clazz, String url, Map<String, String> parameters,
 			Map<String, String> headers)
 		throws JSONWebServiceInvocationException,
-			JSONWebServiceSerializeException, JSONWebServiceTransportException {
+			   JSONWebServiceSerializeException,
+			   JSONWebServiceTransportException {
 
 		String json = doGet(url, parameters, headers);
 
@@ -312,7 +313,8 @@ public abstract class BaseJSONWebServiceClientImpl
 	public <V, T> List<V> doGetToList(
 			Class<T> clazz, String url, String... parametersArray)
 		throws JSONWebServiceInvocationException,
-			JSONWebServiceSerializeException, JSONWebServiceTransportException {
+			   JSONWebServiceSerializeException,
+			   JSONWebServiceTransportException {
 
 		Map<String, String> parameters = new HashMap<String, String>();
 
@@ -328,7 +330,8 @@ public abstract class BaseJSONWebServiceClientImpl
 	public <T> T doGetToObject(
 			Class<T> clazz, String url, String... parametersArray)
 		throws JSONWebServiceInvocationException,
-			JSONWebServiceSerializeException, JSONWebServiceTransportException {
+			   JSONWebServiceSerializeException,
+			   JSONWebServiceTransportException {
 
 		String json = doGet(url, parametersArray);
 
@@ -388,7 +391,7 @@ public abstract class BaseJSONWebServiceClientImpl
 	@Override
 	public String doPost(String url, String... parametersArray)
 		throws JSONWebServiceInvocationException,
-			JSONWebServiceTransportException {
+			   JSONWebServiceTransportException {
 
 		Map<String, String> parameters = new HashMap<String, String>();
 
@@ -401,7 +404,8 @@ public abstract class BaseJSONWebServiceClientImpl
 
 	public String doPostAsJSON(String url, Object object)
 		throws JSONWebServiceInvocationException,
-			JSONWebServiceSerializeException, JSONWebServiceTransportException {
+			   JSONWebServiceSerializeException,
+			   JSONWebServiceTransportException {
 
 		try {
 			String json = _objectMapper.writeValueAsString(object);
@@ -444,7 +448,8 @@ public abstract class BaseJSONWebServiceClientImpl
 	public <T> T doPostToObject(
 			Class<T> clazz, String url, String... parametersArray)
 		throws JSONWebServiceInvocationException,
-			JSONWebServiceSerializeException, JSONWebServiceTransportException {
+			   JSONWebServiceSerializeException,
+			   JSONWebServiceTransportException {
 
 		String json = doPost(url, parametersArray);
 
@@ -504,7 +509,7 @@ public abstract class BaseJSONWebServiceClientImpl
 	@Override
 	public String doPut(String url, String... parametersArray)
 		throws JSONWebServiceInvocationException,
-			JSONWebServiceTransportException {
+			   JSONWebServiceTransportException {
 
 		Map<String, String> parameters = new HashMap<String, String>();
 
