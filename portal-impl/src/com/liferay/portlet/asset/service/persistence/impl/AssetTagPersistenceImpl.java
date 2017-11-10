@@ -21,8 +21,6 @@ import com.liferay.asset.kernel.model.AssetTag;
 import com.liferay.asset.kernel.service.persistence.AssetEntryPersistence;
 import com.liferay.asset.kernel.service.persistence.AssetTagPersistence;
 
-import com.liferay.petra.string.CharPool;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
@@ -3162,8 +3160,7 @@ public class AssetTagPersistenceImpl extends BasePersistenceImpl<AssetTag>
 				for (AssetTag assetTag : list) {
 					if ((groupId != assetTag.getGroupId()) ||
 							!StringUtil.wildcardMatches(assetTag.getName(),
-								name, CharPool.UNDERLINE, CharPool.PERCENT,
-								CharPool.BACK_SLASH, true)) {
+								name, '_', '%', '\\', true)) {
 						list = null;
 
 						break;
@@ -4163,8 +4160,7 @@ public class AssetTagPersistenceImpl extends BasePersistenceImpl<AssetTag>
 				for (AssetTag assetTag : list) {
 					if (!ArrayUtil.contains(groupIds, assetTag.getGroupId()) ||
 							!StringUtil.wildcardMatches(assetTag.getName(),
-								name, CharPool.UNDERLINE, CharPool.PERCENT,
-								CharPool.BACK_SLASH, true)) {
+								name, '_', '%', '\\', true)) {
 						list = null;
 
 						break;
