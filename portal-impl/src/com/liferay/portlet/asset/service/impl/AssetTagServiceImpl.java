@@ -197,8 +197,7 @@ public class AssetTagServiceImpl extends AssetTagServiceBaseImpl {
 
 	@Override
 	public List<AssetTag> getTags(String className, long classPK) {
-		return sanitize(
-			assetTagLocalService.getTags(className, classPK));
+		return sanitize(assetTagLocalService.getTags(className, classPK));
 	}
 
 	@Override
