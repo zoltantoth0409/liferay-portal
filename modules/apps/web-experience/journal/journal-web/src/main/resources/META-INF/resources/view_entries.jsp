@@ -17,13 +17,13 @@
 <%@ include file="/init.jsp" %>
 
 <%
+String referringPortletResource = ParamUtil.getString(request, "referringPortletResource");
+
 SearchContainer articleSearchContainer = journalDisplayContext.getSearchContainer(false);
 
 String displayStyle = journalDisplayContext.getDisplayStyle();
 
 String searchContainerId = ParamUtil.getString(request, "searchContainerId");
-
-String referringPortletResource = ParamUtil.getString(request, "referringPortletResource");
 %>
 
 <liferay-ui:search-container
