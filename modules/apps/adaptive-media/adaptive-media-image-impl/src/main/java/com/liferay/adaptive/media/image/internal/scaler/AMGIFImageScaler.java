@@ -49,7 +49,7 @@ import org.osgi.service.component.annotations.Component;
  */
 @Component(
 	immediate = true, property = {"mime.type=image/gif"},
-	service = AMImageScaler.class
+	service = {AMGIFImageScaler.class, AMImageScaler.class}
 )
 public class AMGIFImageScaler implements AMImageScaler {
 
