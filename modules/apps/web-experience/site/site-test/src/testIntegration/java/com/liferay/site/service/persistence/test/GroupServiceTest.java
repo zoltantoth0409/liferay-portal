@@ -16,6 +16,7 @@ package com.liferay.site.service.persistence.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.asset.kernel.service.AssetTagLocalServiceUtil;
+import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.GroupParentException;
 import com.liferay.portal.kernel.exception.LocaleException;
@@ -57,6 +58,7 @@ import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.impl.UserImpl;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PermissionCheckerTestRule;
 import com.liferay.portal.util.test.LayoutTestUtil;
@@ -405,6 +407,76 @@ public class GroupServiceTest {
 			0,
 			GroupLocalServiceUtil.searchCount(
 				TestPropsValues.getCompanyId(), null, "cabina14", groupParams));
+	}
+
+	@Test
+	public void testGetGlobalSiteDefaultLocale() throws Exception {
+		Company company = CompanyLocalServiceUtil.fetchCompany(
+			_group.getCompanyId());
+
+		Assert.assertEquals(
+			company.getLocale(),
+			PortalUtil.getSiteDefaultLocale(company.getGroupId()));
+	}
+
+	@Test
+	public void testGetGlobalSiteDefaultLocaleWhenCompanyLocaleModified()
+		throws Exception {
+
+		Company company = CompanyLocalServiceUtil.fetchCompany(
+			_group.getCompanyId());
+
+		try {
+			Locale locale = RandomTestUtil.randomNonDefaultLocale(company);
+
+			setDefaultLocale(locale);
+
+			Assert.assertEquals(
+				locale, PortalUtil.getSiteDefaultLocale(company.getGroupId()));
+		}
+		finally {
+			EntityCacheUtil.clearCache(UserImpl.class);
+		}
+	}
+
+	@Test
+	public void testGetSiteDefaultInheritLocale() throws Exception {
+		Company company = CompanyLocalServiceUtil.fetchCompany(
+			_group.getCompanyId());
+
+		Assert.assertEquals(
+			company.getLocale(),
+			PortalUtil.getSiteDefaultLocale(_group.getGroupId()));
+	}
+
+	@Test
+	public void testGetSiteDefaultInheritLocaleWhenCompanyLocaleModified()
+		throws Exception {
+
+		try {
+			Locale locale = RandomTestUtil.randomNonDefaultLocale(
+				CompanyLocalServiceUtil.fetchCompany(_group.getCompanyId()));
+
+			setDefaultLocale(locale);
+
+			Assert.assertEquals(
+				locale, PortalUtil.getSiteDefaultLocale(_group.getGroupId()));
+		}
+		finally {
+			EntityCacheUtil.clearCache(UserImpl.class);
+		}
+	}
+
+	@Test
+	public void testGetSiteDefaultLocaleWhenCompanyLocaleModified()
+		throws Exception {
+
+		Company company = CompanyLocalServiceUtil.fetchCompany(
+			_group.getCompanyId());
+
+		Assert.assertEquals(
+			company.getLocale(),
+			PortalUtil.getSiteDefaultLocale(_group.getGroupId()));
 	}
 
 	@Test
@@ -848,6 +920,15 @@ public class GroupServiceTest {
 		ThemeDisplay themeDisplay = new ThemeDisplay();
 
 		return themeDisplay.getLocale();
+	}
+
+	protected void setDefaultLocale(Locale locale) throws Exception {
+		Company company = CompanyLocalServiceUtil.fetchCompany(
+			_group.getCompanyId());
+
+		User defaultUser = company.getDefaultUser();
+
+		defaultUser.setLanguageId(LocaleUtil.toLanguageId(locale));
 	}
 
 	protected void testSelectableParentSites(boolean staging) throws Exception {
