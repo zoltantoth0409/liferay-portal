@@ -15,14 +15,39 @@
 package com.liferay.adaptive.media.image.scaler;
 
 /**
+ * Represents an image scaled by Adaptive Media.
+ *
+ * @review
+ *
  * @author Sergio González
  */
 public interface AMImageScaled {
 
+	/**
+	 * Returns the image bytes data.
+	 *
+	 * @return the image bytes data
+	 *
+	 * @review
+	 */
 	public byte[] getBytes();
 
+	/**
+	 * Returns the image height.
+	 *
+	 * @return the image height
+	 *
+	 * @review
+	 */
 	public int getHeight();
 
+	/**
+	 * Returns the image width.
+	 *
+	 * @return the image width
+	 *
+	 * @review
+	 */
 	public int getWidth();
 
 }
