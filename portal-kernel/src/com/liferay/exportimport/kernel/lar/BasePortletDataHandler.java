@@ -256,6 +256,15 @@ public abstract class BasePortletDataHandler implements PortletDataHandler {
 	}
 
 	@Override
+	public PortletDataHandlerControl[] getStagingControls() {
+		if (ArrayUtil.isNotEmpty(_stagingControls)) {
+			return _stagingControls;
+		}
+
+		return _exportControls;
+	}
+
+	@Override
 	public PortletDataHandlerControl[] getExportMetadataControls() {
 		return _exportMetadataControls;
 	}
@@ -803,6 +812,12 @@ public abstract class BasePortletDataHandler implements PortletDataHandler {
 		setImportControls(exportControls);
 	}
 
+	protected void setStagingControls(
+		PortletDataHandlerControl... stagingControls) {
+
+		_stagingControls = stagingControls;
+	}
+
 	protected void setExportMetadataControls(
 		PortletDataHandlerControl... exportMetadataControls) {
 
@@ -845,6 +860,8 @@ public abstract class BasePortletDataHandler implements PortletDataHandler {
 	private StagedModelType[] _deletionSystemEventStagedModelTypes =
 		new StagedModelType[0];
 	private PortletDataHandlerControl[] _exportControls =
+		new PortletDataHandlerControl[0];
+	private PortletDataHandlerControl[] _stagingControls =
 		new PortletDataHandlerControl[0];
 	private PortletDataHandlerControl[] _exportMetadataControls =
 		new PortletDataHandlerControl[0];
