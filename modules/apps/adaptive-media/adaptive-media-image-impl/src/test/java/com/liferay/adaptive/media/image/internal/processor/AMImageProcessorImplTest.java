@@ -45,18 +45,12 @@ import org.mockito.Mockito;
 /**
  * @author Adolfo Pérez
  */
-public class AMDefaultImageScalerTest {
+public class AMImageProcessorImplTest {
 
 	@Before
 	public void setUp() {
 		_amImageProcessorImpl.setAMImageEntryLocalService(
 			_amImageEntryLocalService);
-
-		Mockito.when(
-			_amImageScalerTracker.getAMImageScaler(Mockito.anyString())
-		).thenReturn(
-			_amImageScaler
-		);
 
 		_amImageProcessorImpl.setAMImageScalerTracker(_amImageScalerTracker);
 
@@ -232,6 +226,12 @@ public class AMDefaultImageScalerTest {
 		);
 
 		Mockito.when(
+			_amImageScalerTracker.getAMImageScaler(Mockito.anyString())
+		).thenReturn(
+			_amImageScaler
+		);
+
+		Mockito.when(
 			_amImageScaler.scaleImage(
 				Mockito.any(FileVersion.class),
 				Mockito.any(AMImageConfigurationEntry.class))
@@ -253,6 +253,53 @@ public class AMDefaultImageScalerTest {
 		).scaleImage(
 			Mockito.any(FileVersion.class),
 			Mockito.any(AMImageConfigurationEntry.class)
+		);
+	}
+
+	@Test
+	public void testProcessConfigurationWhenNoAMImageScalerAvailable()
+		throws Exception {
+
+		Mockito.when(
+			_amImageMimeTypeProvider.isMimeTypeSupported(Mockito.anyString())
+		).thenReturn(
+			true
+		);
+
+		AMImageConfigurationEntry amImageConfigurationEntry =
+			new AMImageConfigurationEntryImpl(
+				RandomTestUtil.randomString(), RandomTestUtil.randomString(),
+				Collections.emptyMap());
+
+		Mockito.when(
+			_amImageConfigurationHelper.getAMImageConfigurationEntries(
+				Mockito.anyLong())
+		).thenReturn(
+			Collections.singleton(amImageConfigurationEntry)
+		);
+
+		Mockito.when(
+			_amImageConfigurationHelper.getAMImageConfigurationEntry(
+				Mockito.anyLong(), Mockito.anyString())
+		).thenReturn(
+			Optional.of(amImageConfigurationEntry)
+		);
+
+		Mockito.when(
+			_amImageScalerTracker.getAMImageScaler(Mockito.anyString())
+		).thenReturn(
+			null
+		);
+
+		_amImageProcessorImpl.process(
+			_fileVersion, RandomTestUtil.randomString());
+
+		Mockito.verify(
+			_amImageEntryLocalService, Mockito.never()
+		).addAMImageEntry(
+			Mockito.any(AMImageConfigurationEntry.class),
+			Mockito.any(FileVersion.class), Mockito.anyInt(), Mockito.anyInt(),
+			Mockito.any(InputStream.class), Mockito.anyLong()
 		);
 	}
 
@@ -331,6 +378,12 @@ public class AMDefaultImageScalerTest {
 		);
 
 		Mockito.when(
+			_amImageScalerTracker.getAMImageScaler(Mockito.anyString())
+		).thenReturn(
+			_amImageScaler
+		);
+
+		Mockito.when(
 			_amImageScaler.scaleImage(_fileVersion, amImageConfigurationEntry)
 		).thenReturn(
 			new AMImageScaledImpl(new byte[100], 150, 200)
@@ -374,6 +427,12 @@ public class AMDefaultImageScalerTest {
 				Mockito.anyLong(), Mockito.anyString())
 		).thenReturn(
 			Optional.of(amImageConfigurationEntry)
+		);
+
+		Mockito.when(
+			_amImageScalerTracker.getAMImageScaler(Mockito.anyString())
+		).thenReturn(
+			_amImageScaler
 		);
 
 		Mockito.when(
@@ -445,6 +504,12 @@ public class AMDefaultImageScalerTest {
 			Optional.of(amImageConfigurationEntry)
 		);
 
+		Mockito.when(
+			_amImageScalerTracker.getAMImageScaler(Mockito.anyString())
+		).thenReturn(
+			_amImageScaler
+		);
+
 		Mockito.doThrow(
 			AMRuntimeException.IOException.class
 		).when(
@@ -481,6 +546,12 @@ public class AMDefaultImageScalerTest {
 				Mockito.anyLong(), Mockito.anyString())
 		).thenReturn(
 			Optional.of(amImageConfigurationEntry)
+		);
+
+		Mockito.when(
+			_amImageScalerTracker.getAMImageScaler(Mockito.anyString())
+		).thenReturn(
+			_amImageScaler
 		);
 
 		Mockito.when(
