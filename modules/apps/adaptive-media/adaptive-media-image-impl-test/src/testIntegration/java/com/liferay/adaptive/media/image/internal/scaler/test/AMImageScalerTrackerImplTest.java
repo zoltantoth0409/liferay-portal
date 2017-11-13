@@ -217,6 +217,6 @@ public class AMImageScalerTrackerImplTest {
 			"AMImageScalerTrackerImpl";
 
 	@Inject
-	private static AMImageScalerTracker _amImageScalerTracker;
+	private AMImageScalerTracker _amImageScalerTracker;
 
 }
