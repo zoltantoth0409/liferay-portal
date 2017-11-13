@@ -43,6 +43,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Assert;
+import org.junit.Assume;
 import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Rule;
@@ -65,6 +66,8 @@ public class AMGIFImageScalerTest {
 
 	@Before
 	public void setUp() throws Exception {
+		Assume.assumeTrue(_amImageScaler.isEnabled());
+
 		_group = GroupTestUtil.addGroup();
 
 		ServiceTestUtil.setUser(TestPropsValues.getUser());

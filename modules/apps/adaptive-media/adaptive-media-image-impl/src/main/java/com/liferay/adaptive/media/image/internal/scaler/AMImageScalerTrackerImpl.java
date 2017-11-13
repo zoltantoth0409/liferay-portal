@@ -16,10 +16,15 @@ package com.liferay.adaptive.media.image.internal.scaler;
 
 import com.liferay.adaptive.media.image.scaler.AMImageScaler;
 import com.liferay.adaptive.media.image.scaler.AMImageScalerTracker;
+import com.liferay.osgi.service.tracker.collections.map.PropertyServiceReferenceComparator;
+import com.liferay.osgi.service.tracker.collections.map.PropertyServiceReferenceMapper;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMapFactory;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.ListUtil;
+
+import java.util.List;
 
 import org.osgi.framework.BundleContext;
 import org.osgi.service.component.annotations.Activate;
@@ -34,8 +39,10 @@ public class AMImageScalerTrackerImpl implements AMImageScalerTracker {
 
 	@Activate
 	public void activate(BundleContext bundleContext) {
-		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
-			bundleContext, AMImageScaler.class, "mime.type");
+		_serviceTrackerMap = ServiceTrackerMapFactory.openMultiValueMap(
+			bundleContext, AMImageScaler.class, "(mime.type=*)",
+			new PropertyServiceReferenceMapper<>("mime.type"),
+			new PropertyServiceReferenceComparator<>("service.ranking"));
 	}
 
 	@Deactivate
@@ -44,24 +51,37 @@ public class AMImageScalerTrackerImpl implements AMImageScalerTracker {
 	}
 
 	public AMImageScaler getAMImageScaler(String mimeType) {
-		AMImageScaler amImageScaler = _serviceTrackerMap.getService(mimeType);
+		List<AMImageScaler> amImageScalers = _serviceTrackerMap.getService(
+			mimeType);
 
-		if (amImageScaler == null) {
-			amImageScaler = _serviceTrackerMap.getService("*");
-		}
-
-		if (amImageScaler == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn("Unable to find default image scaler");
+		if (ListUtil.isNotEmpty(amImageScalers)) {
+			for (AMImageScaler amImageScaler : amImageScalers) {
+				if (amImageScaler.isEnabled()) {
+					return amImageScaler;
+				}
 			}
 		}
 
-		return amImageScaler;
+		amImageScalers = _serviceTrackerMap.getService("*");
+
+		if (ListUtil.isNotEmpty(amImageScalers)) {
+			for (AMImageScaler amImageScaler : amImageScalers) {
+				if (amImageScaler.isEnabled()) {
+					return amImageScaler;
+				}
+			}
+		}
+
+		if (_log.isWarnEnabled()) {
+			_log.warn("Unable to find default image scaler");
+		}
+
+		return null;
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		AMImageScalerTrackerImpl.class);
 
-	private ServiceTrackerMap<String, AMImageScaler> _serviceTrackerMap;
+	private ServiceTrackerMap<String, List<AMImageScaler>> _serviceTrackerMap;
 
 }

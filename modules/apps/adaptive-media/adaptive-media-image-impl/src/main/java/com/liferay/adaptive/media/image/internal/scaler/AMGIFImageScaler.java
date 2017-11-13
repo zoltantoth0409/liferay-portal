@@ -16,10 +16,12 @@ package com.liferay.adaptive.media.image.internal.scaler;
 
 import com.liferay.adaptive.media.exception.AMRuntimeException;
 import com.liferay.adaptive.media.image.configuration.AMImageConfigurationEntry;
+import com.liferay.adaptive.media.image.internal.configuration.AMImageConfiguration;
 import com.liferay.adaptive.media.image.internal.util.RenderedImageUtil;
 import com.liferay.adaptive.media.image.internal.util.Tuple;
 import com.liferay.adaptive.media.image.scaler.AMImageScaled;
 import com.liferay.adaptive.media.image.scaler.AMImageScaler;
+import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.process.CollectorOutputProcessor;
 import com.liferay.portal.kernel.process.ProcessException;
@@ -42,16 +44,24 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Modified;
 
 /**
  * @author Sergio González
  */
 @Component(
+	configurationPid = "com.liferay.adaptive.media.image.internal.configuration.AMImageConfiguration",
 	immediate = true, property = {"mime.type=image/gif"},
 	service = {AMGIFImageScaler.class, AMImageScaler.class}
 )
 public class AMGIFImageScaler implements AMImageScaler {
+
+	@Override
+	public boolean isEnabled() {
+		return _amImageConfiguration.gifsicleEnabled();
+	}
 
 	@Override
 	public AMImageScaled scaleImage(
@@ -85,6 +95,13 @@ public class AMGIFImageScaler implements AMImageScaler {
 
 			throw new AMRuntimeException.IOException(e);
 		}
+	}
+
+	@Activate
+	@Modified
+	protected void activate(Map<String, Object> properties) {
+		_amImageConfiguration = ConfigurableUtil.createConfigurable(
+			AMImageConfiguration.class, properties);
 	}
 
 	protected Tuple<Integer, Integer> getDimension(File file)
@@ -123,5 +140,7 @@ public class AMGIFImageScaler implements AMImageScaler {
 
 		return maxWidthString.concat("x").concat(maxHeightString);
 	}
+
+	private volatile AMImageConfiguration _amImageConfiguration;
 
 }

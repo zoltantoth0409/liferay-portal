@@ -22,6 +22,10 @@ import com.liferay.portal.kernel.repository.model.FileVersion;
  */
 public interface AMImageScaler {
 
+	public default boolean isEnabled() {
+		return true;
+	}
+
 	public AMImageScaled scaleImage(
 		FileVersion fileVersion,
 		AMImageConfigurationEntry amImageConfigurationEntry);

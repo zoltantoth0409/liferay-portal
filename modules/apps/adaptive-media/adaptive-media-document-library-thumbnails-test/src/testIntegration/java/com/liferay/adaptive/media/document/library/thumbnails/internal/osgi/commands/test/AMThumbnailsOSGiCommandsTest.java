@@ -242,10 +242,6 @@ public class AMThumbnailsOSGiCommandsTest {
 
 		Object service = registry.getService(_CLASS_NAME_PROCESSOR);
 
-		if (service == null) {
-			return;
-		}
-
 		Bundle bundle = FrameworkUtil.getBundle(service.getClass());
 
 		ComponentDescriptionDTO componentDescriptionDTO =

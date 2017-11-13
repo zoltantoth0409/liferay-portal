@@ -14,9 +14,12 @@
 
 package com.liferay.adaptive.media.image.internal.scaler.test;
 
+import com.liferay.adaptive.media.image.configuration.AMImageConfigurationEntry;
+import com.liferay.adaptive.media.image.scaler.AMImageScaled;
 import com.liferay.adaptive.media.image.scaler.AMImageScaler;
 import com.liferay.adaptive.media.image.scaler.AMImageScalerTracker;
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
+import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.Sync;
 import com.liferay.portal.kernel.test.rule.SynchronousDestinationTestRule;
@@ -28,6 +31,8 @@ import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
 
+import java.util.Dictionary;
+import java.util.Hashtable;
 import java.util.List;
 
 import org.apache.log4j.Level;
@@ -40,7 +45,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
+import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.runtime.ServiceComponentRuntime;
 import org.osgi.service.component.runtime.dto.ComponentDescriptionDTO;
 import org.osgi.util.promise.Promise;
@@ -60,7 +67,7 @@ public class AMImageScalerTrackerImplTest {
 			SynchronousDestinationTestRule.INSTANCE);
 
 	@Test
-	public void testAMImageScalerTrackerLogsWhenAMDefaultImageScalerNotAvailable()
+	public void testAMImageScalerTrackerLogsWhenThereIsNoDefaultAMImageScaler()
 		throws Exception {
 
 		try (CaptureAppender captureAppender =
@@ -85,6 +92,46 @@ public class AMImageScalerTrackerImplTest {
 			Assert.assertEquals(
 				"Unable to find default image scaler",
 				loggingEvent.getMessage());
+		}
+	}
+
+	@Test
+	public void testAMImageScalerTrackerLogsWhenThereIsNoDefaultAMImageScalerEnabled()
+		throws Exception {
+
+		ServiceRegistration<AMImageScaler> amImageScalerServiceRegistration =
+			null;
+
+		try (CaptureAppender captureAppender =
+				Log4JLoggerTestUtil.configureLog4JLogger(
+					_ADAPTIVE_MEDIA_IMAGE_SCALER_TRACKER_IMPL, Level.WARN)) {
+
+			_disableAMDefaultImageScaler();
+
+			AMImageScaler disabledAMImageScaler = new TestAMImageScaler(false);
+
+			amImageScalerServiceRegistration = _registerAMImageScaler(
+				disabledAMImageScaler, "*", 10);
+
+			_amImageScalerTracker.getAMImageScaler(
+				RandomTestUtil.randomString());
+
+			List<LoggingEvent> loggingEvents =
+				captureAppender.getLoggingEvents();
+
+			Assert.assertEquals(
+				loggingEvents.toString(), 1, loggingEvents.size());
+
+			LoggingEvent loggingEvent = loggingEvents.get(0);
+
+			Assert.assertEquals(
+				"Unable to find default image scaler",
+				loggingEvent.getMessage());
+		}
+		finally {
+			_unregisterAMImageScaler(amImageScalerServiceRegistration);
+
+			_enableAMDefaultImageScaler();
 		}
 	}
 
@@ -119,28 +166,88 @@ public class AMImageScalerTrackerImplTest {
 	}
 
 	@Test
-	public void testAMImageScalerTrackerReturnsAMGIFImageScalerWhenGIFMimeType()
+	public void testAMImageScalerTrackerReturnsAMImageScalerForMimeType()
 		throws Exception {
 
-		AMImageScaler amImageScaler = _amImageScalerTracker.getAMImageScaler(
-			"image/gif");
+		AMImageScaler testAMImageScaler = new TestAMImageScaler(true);
 
-		Registry registry = RegistryUtil.getRegistry();
+		ServiceRegistration<AMImageScaler> amImageScalerServiceRegistration =
+			null;
 
-		AMImageScaler amGIFImageScaler = registry.getService(
-			_ADAPTIVE_MEDIA_GIF_IMAGE_SCALER);
+		try {
+			amImageScalerServiceRegistration = _registerAMImageScaler(
+				testAMImageScaler, "image/test", 10);
 
-		Assert.assertEquals(amGIFImageScaler, amImageScaler);
+			AMImageScaler amImageScaler =
+				_amImageScalerTracker.getAMImageScaler("image/test");
+
+			Assert.assertEquals(testAMImageScaler, amImageScaler);
+		}
+		finally {
+			_unregisterAMImageScaler(amImageScalerServiceRegistration);
+		}
 	}
 
 	@Test
-	public void testAMImageScalerTrackerReturnsNullWhenAMDefaultImageScalerNotAvailable()
+	public void testAMImageScalerTrackerReturnsAMImageScalerWithHigherServiceRankingIfEnabled()
 		throws Exception {
 
-		try (CaptureAppender captureAppender =
-				Log4JLoggerTestUtil.configureLog4JLogger(
-					_ADAPTIVE_MEDIA_IMAGE_SCALER_TRACKER_IMPL, Level.WARN)) {
+		ServiceRegistration<AMImageScaler> amImageScalerServiceRegistration1 =
+			null;
+		ServiceRegistration<AMImageScaler> amImageScalerServiceRegistration2 =
+			null;
+		ServiceRegistration<AMImageScaler> amImageScalerServiceRegistration3 =
+			null;
+		ServiceRegistration<AMImageScaler> amImageScalerServiceRegistration4 =
+			null;
+		ServiceRegistration<AMImageScaler> amImageScalerServiceRegistration5 =
+			null;
 
+		try {
+			AMImageScaler enabledAMImageScaler1 = new TestAMImageScaler(true);
+
+			amImageScalerServiceRegistration1 = _registerAMImageScaler(
+				enabledAMImageScaler1, "image/test", 10);
+
+			AMImageScaler disabledAMImageScaler2 = new TestAMImageScaler(false);
+
+			amImageScalerServiceRegistration2 = _registerAMImageScaler(
+				disabledAMImageScaler2, "image/test", 20);
+
+			AMImageScaler enabledAMImageScaler3 = new TestAMImageScaler(true);
+
+			amImageScalerServiceRegistration3 = _registerAMImageScaler(
+				enabledAMImageScaler3, "image/test", 50);
+
+			AMImageScaler disabledAMImageScaler4 = new TestAMImageScaler(false);
+
+			amImageScalerServiceRegistration4 = _registerAMImageScaler(
+				disabledAMImageScaler4, "image/test", 30);
+
+			AMImageScaler enabledAMImageScaler5 = new TestAMImageScaler(true);
+
+			amImageScalerServiceRegistration5 = _registerAMImageScaler(
+				enabledAMImageScaler5, "image/test", 40);
+
+			AMImageScaler amImageScaler =
+				_amImageScalerTracker.getAMImageScaler("image/test");
+
+			Assert.assertEquals(enabledAMImageScaler3, amImageScaler);
+		}
+		finally {
+			_unregisterAMImageScaler(amImageScalerServiceRegistration1);
+			_unregisterAMImageScaler(amImageScalerServiceRegistration2);
+			_unregisterAMImageScaler(amImageScalerServiceRegistration3);
+			_unregisterAMImageScaler(amImageScalerServiceRegistration4);
+			_unregisterAMImageScaler(amImageScalerServiceRegistration5);
+		}
+	}
+
+	@Test
+	public void testAMImageScalerTrackerReturnsNullWhenNoThereIsNoDefaultImageScaler()
+		throws Exception {
+
+		try {
 			_disableAMDefaultImageScaler();
 
 			AMImageScaler amImageScaler =
@@ -148,6 +255,35 @@ public class AMImageScalerTrackerImplTest {
 					RandomTestUtil.randomString());
 
 			Assert.assertNull(amImageScaler);
+		}
+		finally {
+			_enableAMDefaultImageScaler();
+		}
+	}
+
+	@Test
+	public void testAMImageScalerTrackerReturnsNullWhenNoThereIsNoDefaultImageScalerEnabled()
+		throws Exception {
+
+		ServiceRegistration<AMImageScaler> amImageScalerServiceRegistration =
+			null;
+
+		try {
+			_disableAMDefaultImageScaler();
+
+			AMImageScaler disabledAMImageScaler = new TestAMImageScaler(false);
+
+			amImageScalerServiceRegistration = _registerAMImageScaler(
+				disabledAMImageScaler, "*", 10);
+
+			AMImageScaler amImageScaler =
+				_amImageScalerTracker.getAMImageScaler(
+					RandomTestUtil.randomString());
+
+			Assert.assertNull(amImageScaler);
+		}
+		finally {
+			_unregisterAMImageScaler(amImageScalerServiceRegistration);
 
 			_enableAMDefaultImageScaler();
 		}
@@ -161,10 +297,6 @@ public class AMImageScalerTrackerImplTest {
 
 		Object service = registry.getService(
 			_ADAPTIVE_MEDIA_IMAGE_SCALER_TRACKER);
-
-		if (service == null) {
-			return;
-		}
 
 		Bundle bundle = FrameworkUtil.getBundle(service.getClass());
 
@@ -187,10 +319,6 @@ public class AMImageScalerTrackerImplTest {
 		Object service = registry.getService(
 			_ADAPTIVE_MEDIA_IMAGE_SCALER_TRACKER);
 
-		if (service == null) {
-			return;
-		}
-
 		Bundle bundle = FrameworkUtil.getBundle(service.getClass());
 
 		ComponentDescriptionDTO componentDescriptionDTO =
@@ -203,11 +331,40 @@ public class AMImageScalerTrackerImplTest {
 		voidPromise.getValue();
 	}
 
+	private ServiceRegistration<AMImageScaler> _registerAMImageScaler(
+			AMImageScaler amImageScaler, String mimeType, int serviceRanking)
+		throws Exception {
+
+		Registry registry = RegistryUtil.getRegistry();
+
+		Object service = registry.getService(
+			_ADAPTIVE_MEDIA_IMAGE_SCALER_TRACKER);
+
+		Bundle bundle = FrameworkUtil.getBundle(service.getClass());
+
+		BundleContext bundleContext = bundle.getBundleContext();
+
+		Dictionary<String, Object> properties = new Hashtable<>();
+
+		properties.put("mime.type", mimeType);
+		properties.put("service.ranking", serviceRanking);
+
+		return bundleContext.registerService(
+			AMImageScaler.class, amImageScaler, properties);
+	}
+
+	private void _unregisterAMImageScaler(
+		ServiceRegistration<AMImageScaler> amImageScalerServiceRegistration) {
+
+		if (amImageScalerServiceRegistration == null) {
+			return;
+		}
+
+		amImageScalerServiceRegistration.unregister();
+	}
+
 	private static final String _ADAPTIVE_MEDIA_DEFAULT_IMAGE_SCALER =
 		"com.liferay.adaptive.media.image.internal.scaler.AMDefaultImageScaler";
-
-	private static final String _ADAPTIVE_MEDIA_GIF_IMAGE_SCALER =
-		"com.liferay.adaptive.media.image.internal.scaler.AMGIFImageScaler";
 
 	private static final String _ADAPTIVE_MEDIA_IMAGE_SCALER_TRACKER =
 		"com.liferay.adaptive.media.image.scaler.AMImageScalerTracker";
@@ -218,5 +375,28 @@ public class AMImageScalerTrackerImplTest {
 
 	@Inject
 	private AMImageScalerTracker _amImageScalerTracker;
+
+	private class TestAMImageScaler implements AMImageScaler {
+
+		public TestAMImageScaler(boolean enabled) {
+			_enabled = enabled;
+		}
+
+		@Override
+		public boolean isEnabled() {
+			return _enabled;
+		}
+
+		@Override
+		public AMImageScaled scaleImage(
+			FileVersion fileVersion,
+			AMImageConfigurationEntry amImageConfigurationEntry) {
+
+			return null;
+		}
+
+		private final boolean _enabled;
+
+	};
 
 }
