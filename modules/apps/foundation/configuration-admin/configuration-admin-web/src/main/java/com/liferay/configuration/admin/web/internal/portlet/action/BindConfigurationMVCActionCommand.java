@@ -210,6 +210,9 @@ public class BindConfigurationMVCActionCommand implements MVCActionCommand {
 			// LPS-69521
 
 			if (configurationModel.isFactory()) {
+				configuredProperties.put(
+					"configuration.cleaner.ignore", "true");
+
 				String pid = configuration.getPid();
 
 				int index = pid.lastIndexOf('.');
@@ -228,9 +231,6 @@ public class BindConfigurationMVCActionCommand implements MVCActionCommand {
 
 				configuredProperties.put(
 					"felix.fileinstall.filename", sb.toString());
-
-				configuredProperties.put(
-					"configuration.cleaner.ignore", "true");
 			}
 
 			configuration.update(configuredProperties);
