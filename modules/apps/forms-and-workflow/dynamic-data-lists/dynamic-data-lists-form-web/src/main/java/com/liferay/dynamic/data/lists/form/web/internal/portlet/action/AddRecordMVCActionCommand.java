@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.Validator;
@@ -72,11 +73,13 @@ public class AddRecordMVCActionCommand extends BaseMVCActionCommand {
 		long recordSetId = ParamUtil.getLong(actionRequest, "recordSetId");
 
 		if (groupId == 0) {
-			groupId = (long)portletSession.getAttribute("groupId");
+			groupId = GetterUtil.getLong(
+				portletSession.getAttribute("groupId"));
 		}
 
 		if (recordSetId == 0) {
-			recordSetId = (long)portletSession.getAttribute("recordSetId");
+			recordSetId = GetterUtil.getLong(
+				portletSession.getAttribute("recordSetId"));
 		}
 
 		DDLRecordSet recordSet = _ddlRecordSetService.getRecordSet(recordSetId);
