@@ -1,5 +1,13 @@
+copyLibs {
+	enabled = true
+}
+
 deploy {
 	deleteAllActions()
 
 	dependsOn = []
+}
+
+dependencies {
+	provided group: "com.liferay", name: "org.freemarker", version: "2.3.23.LIFERAY-PATCHED-4"
 }

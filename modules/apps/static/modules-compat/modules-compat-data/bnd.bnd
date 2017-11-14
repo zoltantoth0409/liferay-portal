@@ -14,3 +14,10 @@ Export-Package:\
 	\
 	freemarker.template,\
 	freemarker.template.utility
+-includeresource:\
+	@lib/org.freemarker.jar!/freemarker/*.class,\
+	@lib/org.freemarker.jar!/freemarker/cache/*.class,\
+	@lib/org.freemarker.jar!/freemarker/core/*.class,\
+	@lib/org.freemarker.jar!/freemarker/ext/beans/*.class,\
+	@lib/org.freemarker.jar!/freemarker/ext/jsp/*.class,\
+	@lib/org.freemarker.jar!/freemarker/ext/servlet/*.class
