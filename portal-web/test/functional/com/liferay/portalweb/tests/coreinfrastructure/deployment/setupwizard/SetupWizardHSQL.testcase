@@ -7,7 +7,7 @@
 	<command name="HSQLtoDB2" priority="4">
 		<execute function="AntCommand" locator1="build-test.xml" value1="rebuild-database -Ddatabase.type=db2 -Ddelete.liferay.home=false" />
 
-		<execute function="AntCommand" locator1="build-test.xml" value1="copy-optional-jars -Ddatabase.type=db2 -Dtodir=${app.server.lib.global.dir}" />
+		<execute function="AntCommand" locator1="build-test.xml" value1="copy-optional-jars -Ddatabase.type=db2" />
 
 		<execute macro="Portlet#shutdownServer" />
 
@@ -37,7 +37,7 @@
 	<command name="HSQLtoDB2SampleDataDisabled" priority="4">
 		<execute function="AntCommand" locator1="build-test.xml" value1="rebuild-database -Ddatabase.type=db2 -Ddelete.liferay.home=false" />
 
-		<execute function="AntCommand" locator1="build-test.xml" value1="copy-optional-jars -Ddatabase.type=db2 -Dtodir=${app.server.lib.global.dir}" />
+		<execute function="AntCommand" locator1="build-test.xml" value1="copy-optional-jars -Ddatabase.type=db2" />
 
 		<execute macro="Portlet#shutdownServer" />
 
@@ -152,7 +152,7 @@
 	<command name="HSQLtoOracle" priority="4">
 		<execute function="AntCommand" locator1="build-test.xml" value1="rebuild-database -Ddatabase.type=oracle -Ddelete.liferay.home=false" />
 
-		<execute function="AntCommand" locator1="build-test.xml" value1="copy-optional-jars -Ddatabase.type=oracle -Ddatabase.version=11 -Dtodir=${app.server.lib.global.dir}" />
+		<execute function="AntCommand" locator1="build-test.xml" value1="copy-optional-jars -Ddatabase.type=oracle -Ddatabase.version=11" />
 
 		<execute macro="Portlet#shutdownServer" />
 
@@ -182,7 +182,7 @@
 	<command name="HSQLtoOracleSampleDataDisabled" priority="4">
 		<execute function="AntCommand" locator1="build-test.xml" value1="rebuild-database -Ddatabase.type=oracle -Ddelete.liferay.home=false" />
 
-		<execute function="AntCommand" locator1="build-test.xml" value1="copy-optional-jars -Ddatabase.type=oracle -Ddatabase.version=11 -Dtodir=${app.server.lib.global.dir}" />
+		<execute function="AntCommand" locator1="build-test.xml" value1="copy-optional-jars -Ddatabase.type=oracle -Ddatabase.version=11" />
 
 		<execute macro="Portlet#shutdownServer" />
 
@@ -252,7 +252,7 @@
 	<command name="HSQLtoSybase" priority="4">
 		<execute function="AntCommand" locator1="build-test.xml" value1="rebuild-database -Ddatabase.type=sybase -Ddelete.liferay.home=false" />
 
-		<execute function="AntCommand" locator1="build-test.xml" value1="copy-optional-jars -Ddatabase.type=sybase -Dtodir=${app.server.lib.global.dir}" />
+		<execute function="AntCommand" locator1="build-test.xml" value1="copy-optional-jars -Ddatabase.type=sybase" />
 
 		<execute macro="Portlet#shutdownServer" />
 
@@ -282,7 +282,7 @@
 	<command name="HSQLtoSybaseSampleDataDisabled" priority="4">
 		<execute function="AntCommand" locator1="build-test.xml" value1="rebuild-database -Ddatabase.type=sybase -Ddelete.liferay.home=false" />
 
-		<execute function="AntCommand" locator1="build-test.xml" value1="copy-optional-jars -Ddatabase.type=sybase -Dtodir=${app.server.lib.global.dir}" />
+		<execute function="AntCommand" locator1="build-test.xml" value1="copy-optional-jars -Ddatabase.type=sybase" />
 
 		<execute macro="Portlet#shutdownServer" />
 
