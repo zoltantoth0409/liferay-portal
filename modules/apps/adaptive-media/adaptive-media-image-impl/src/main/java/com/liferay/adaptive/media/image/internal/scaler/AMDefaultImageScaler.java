@@ -59,13 +59,14 @@ public class AMDefaultImageScaler implements AMImageScaler {
 			int maxHeight = GetterUtil.getInteger(properties.get("max-height"));
 			int maxWidth = GetterUtil.getInteger(properties.get("max-width"));
 
-			renderedImage = ImageToolUtil.scale(
+			RenderedImage scaledRenderedImage = ImageToolUtil.scale(
 				renderedImage, maxHeight, maxWidth);
 
 			return new AMImageScaledImpl(
 				RenderedImageUtil.getRenderedImageContentStream(
-					renderedImage, fileVersion.getMimeType()),
-				renderedImage.getHeight(), renderedImage.getWidth());
+					scaledRenderedImage, fileVersion.getMimeType()),
+				scaledRenderedImage.getHeight(),
+				scaledRenderedImage.getWidth());
 		}
 		catch (IOException | PortalException e) {
 			throw new AMRuntimeException.IOException(e);
