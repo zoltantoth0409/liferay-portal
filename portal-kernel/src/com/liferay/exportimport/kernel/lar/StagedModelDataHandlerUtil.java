@@ -154,7 +154,9 @@ public class StagedModelDataHandlerUtil {
 			PortletDataContext portletDataContext, T stagedModel)
 		throws PortletDataException {
 
-		if(!ExportImportHelperUtil.isReferenceWithinExportScope(portletDataContext, stagedModel)){
+		if (!ExportImportHelperUtil.isReferenceWithinExportScope(
+				portletDataContext, stagedModel)) {
+
 			return;
 		}
 
