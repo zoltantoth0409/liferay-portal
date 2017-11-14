@@ -1,0 +1,17 @@
+Bundle-Name: Liferay Modules Compat Data
+Bundle-SymbolicName: com.liferay.modules.compat.data
+Bundle-Version: 1.0.0
+Export-Package:\
+	freemarker,\
+	\
+	freemarker.cache,\
+	\
+	freemarker.core,\
+	\
+	freemarker.ext.beans,\
+	freemarker.ext.jsp,\
+	freemarker.ext.servlet,\
+	\
+	freemarker.template,\
+	freemarker.template.utility
+Fragment-Host: com.liferay.portal.template.freemarker
