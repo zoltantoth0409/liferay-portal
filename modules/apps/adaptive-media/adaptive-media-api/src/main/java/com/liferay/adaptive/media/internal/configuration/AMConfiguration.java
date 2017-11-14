@@ -34,7 +34,7 @@ public interface AMConfiguration {
 	 */
 	@Meta.AD(
 		deflt = "10", description = "workers-max-size-key-description",
-		required = false
+		name = "workers-max-size", required = false
 	)
 	public int workersMaxSize();
 
@@ -43,7 +43,7 @@ public interface AMConfiguration {
 	 */
 	@Meta.AD(
 		deflt = "5", description = "workers-core-size-key-description",
-		required = false
+		name = "workers-core-size", required = false
 	)
 	public int workersCoreSize();
 
