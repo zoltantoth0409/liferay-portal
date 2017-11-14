@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.adaptive.media.web.constants;
+package com.liferay.adaptive.media.constants;
 
 /**
  * @author Sergio González
