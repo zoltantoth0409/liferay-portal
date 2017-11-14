@@ -166,6 +166,34 @@ public class AMImageScalerTrackerImplTest {
 	}
 
 	@Test
+	public void testAMImageScalerTrackerReturnsAMDefaultImageScalerWhenThereIsNoAMImageScalerEnabled()
+		throws Exception {
+
+		ServiceRegistration<AMImageScaler> amImageScalerServiceRegistration =
+			null;
+
+		try {
+			AMImageScaler disabledAMImageScaler = new TestAMImageScaler(false);
+
+			amImageScalerServiceRegistration = _registerAMImageScaler(
+				disabledAMImageScaler, "image/test", 10);
+
+			AMImageScaler amImageScaler =
+				_amImageScalerTracker.getAMImageScaler("image/test");
+
+			Registry registry = RegistryUtil.getRegistry();
+
+			AMImageScaler amDefaultImageScaler = registry.getService(
+				_ADAPTIVE_MEDIA_DEFAULT_IMAGE_SCALER);
+
+			Assert.assertEquals(amDefaultImageScaler, amImageScaler);
+		}
+		finally {
+			_unregisterAMImageScaler(amImageScalerServiceRegistration);
+		}
+	}
+
+	@Test
 	public void testAMImageScalerTrackerReturnsAMImageScalerForMimeType()
 		throws Exception {
 
