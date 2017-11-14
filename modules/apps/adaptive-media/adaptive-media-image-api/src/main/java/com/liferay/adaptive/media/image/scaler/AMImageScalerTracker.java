@@ -57,7 +57,6 @@ public interface AMImageScalerTracker {
 	 * @return the image scaler
 	 *
 	 * @review
-	 *
 	 */
 	public AMImageScaler getAMImageScaler(String mimeType);
 

@@ -51,7 +51,6 @@ public interface AMImageScaler {
 	 * @return <code>true</code> if the image scaler is enabled to scale images
 	 *
 	 * @review
-	 *
 	 */
 	public default boolean isEnabled() {
 		return true;
@@ -67,7 +66,6 @@ public interface AMImageScaler {
 	 * @return the scaled image
 	 *
 	 * @review
-	 *
 	 */
 	public AMImageScaled scaleImage(
 		FileVersion fileVersion,
