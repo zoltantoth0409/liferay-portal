@@ -23,6 +23,7 @@ import com.liferay.adaptive.media.image.scaler.AMImageScaledImage;
 import com.liferay.adaptive.media.image.scaler.AMImageScaler;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.portal.kernel.process.CollectorOutputProcessor;
 import com.liferay.portal.kernel.process.ProcessException;
 import com.liferay.portal.kernel.process.ProcessUtil;
@@ -36,7 +37,6 @@ import com.liferay.portal.repository.liferayrepository.model.LiferayFileVersion;
 import java.awt.image.RenderedImage;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -81,9 +81,7 @@ public class AMGIFImageScaler implements AMImageScaler {
 
 			byte[] bytes = objectValuePair.getKey();
 
-			File tempFile = FileUtil.createTempFile(bytes);
-
-			Tuple<Integer, Integer> dimension = getDimension(tempFile);
+			Tuple<Integer, Integer> dimension = getDimension(bytes);
 
 			return new AMImageScaledImageImpl(
 				bytes, dimension.second, dimension.first);
@@ -102,10 +100,10 @@ public class AMGIFImageScaler implements AMImageScaler {
 			AMImageConfiguration.class, properties);
 	}
 
-	protected Tuple<Integer, Integer> getDimension(File file)
+	protected Tuple<Integer, Integer> getDimension(byte[] bytes)
 		throws IOException {
 
-		try (InputStream inputStream = new FileInputStream(file)) {
+		try (InputStream inputStream = new UnsyncByteArrayInputStream(bytes)) {
 			RenderedImage renderedImage = RenderedImageUtil.readImage(
 				inputStream);
 
