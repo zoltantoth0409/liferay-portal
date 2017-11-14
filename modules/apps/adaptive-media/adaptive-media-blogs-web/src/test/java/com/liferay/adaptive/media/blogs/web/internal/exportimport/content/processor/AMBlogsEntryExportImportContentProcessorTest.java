@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.adaptive.media.blogs.internal.exportimport.content.processor;
+package com.liferay.adaptive.media.blogs.web.internal.exportimport.content.processor;
 
 import com.liferay.blogs.kernel.model.BlogsEntry;
 import com.liferay.exportimport.content.processor.ExportImportContentProcessor;
