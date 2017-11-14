@@ -1240,9 +1240,7 @@ public class LayoutStagedModelDataHandler
 
 		if (portletsElement == null) {
 
-			// This null check should make the code more robust in case older
-			// LARs, normally we are always adding the portlets element to the
-			// XML
+			// See LPS-75448
 
 			return;
 		}
