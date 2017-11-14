@@ -14,4 +14,3 @@ Export-Package:\
 	\
 	freemarker.template,\
 	freemarker.template.utility
-Fragment-Host: com.liferay.portal.template.freemarker
