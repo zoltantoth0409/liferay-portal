@@ -14,6 +14,8 @@
 
 package com.liferay.adaptive.media.image.scaler;
 
+import java.io.InputStream;
+
 /**
  * Represents an image scaled by Adaptive Media.
  *
@@ -24,13 +26,13 @@ package com.liferay.adaptive.media.image.scaler;
 public interface AMImageScaledImage {
 
 	/**
-	 * Returns the image bytes data.
+	 * Returns an InputStream with the image data.
 	 *
-	 * @return the image bytes data
+	 * @return an InputStream with the image data
 	 *
 	 * @review
 	 */
-	public byte[] getBytes();
+	public InputStream getInputStream();
 
 	/**
 	 * Returns the image height.
@@ -49,5 +51,14 @@ public interface AMImageScaledImage {
 	 * @review
 	 */
 	public int getWidth();
+
+	/**
+	 * Returns the size in bytes of this image.
+	 *
+	 * @return the size in bytes of this image
+	 *
+	 * @review
+	 */
+	public long getSize();
 
 }

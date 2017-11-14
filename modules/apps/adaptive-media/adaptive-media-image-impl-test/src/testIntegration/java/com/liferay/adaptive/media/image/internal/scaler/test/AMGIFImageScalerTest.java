@@ -106,7 +106,7 @@ public class AMGIFImageScalerTest {
 		Assert.assertArrayEquals(
 			FileUtil.getBytes(
 				AMGIFImageScalerTest.class, _SCALED_IMAGE_FILE_PATH),
-			amImageScaledImage.getBytes());
+			FileUtil.getBytes(amImageScaledImage.getInputStream()));
 	}
 
 	private FileEntry _addFileEntry() throws Exception {

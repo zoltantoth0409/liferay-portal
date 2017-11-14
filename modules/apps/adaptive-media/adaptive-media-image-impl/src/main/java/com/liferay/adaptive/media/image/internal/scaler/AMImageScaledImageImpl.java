@@ -15,6 +15,9 @@
 package com.liferay.adaptive.media.image.internal.scaler;
 
 import com.liferay.adaptive.media.image.scaler.AMImageScaledImage;
+import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
+
+import java.io.InputStream;
 
 /**
  * @author Sergio González
@@ -28,8 +31,8 @@ public class AMImageScaledImageImpl implements AMImageScaledImage {
 	}
 
 	@Override
-	public byte[] getBytes() {
-		return _bytes;
+	public InputStream getInputStream() {
+		return new UnsyncByteArrayInputStream(_bytes);
 	}
 
 	@Override
@@ -40,6 +43,11 @@ public class AMImageScaledImageImpl implements AMImageScaledImage {
 	@Override
 	public int getWidth() {
 		return _width;
+	}
+
+	@Override
+	public long getSize() {
+		return _bytes.length;
 	}
 
 	private final byte[] _bytes;

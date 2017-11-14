@@ -26,10 +26,11 @@ import com.liferay.adaptive.media.image.scaler.AMImageScalerTracker;
 import com.liferay.adaptive.media.image.service.AMImageEntryLocalService;
 import com.liferay.adaptive.media.processor.AMProcessor;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Optional;
 
 import org.osgi.service.component.annotations.Component;
@@ -127,15 +128,18 @@ public final class AMImageProcessorImpl implements AMImageProcessor {
 			AMImageScaledImage amImageScaledImage = amImageScaler.scaleImage(
 				fileVersion, amImageConfigurationEntry);
 
-			byte[] bytes = amImageScaledImage.getBytes();
+			try (InputStream inputStream =
+					 amImageScaledImage.getInputStream()) {
 
-			_amImageEntryLocalService.addAMImageEntry(
-				amImageConfigurationEntry, fileVersion,
-				amImageScaledImage.getHeight(), amImageScaledImage.getWidth(),
-				new UnsyncByteArrayInputStream(bytes), bytes.length);
+				_amImageEntryLocalService.addAMImageEntry(
+					amImageConfigurationEntry, fileVersion,
+					amImageScaledImage.getHeight(),
+					amImageScaledImage.getWidth(),
+					inputStream, amImageScaledImage.getSize());
+			}
 		}
-		catch (PortalException pe) {
-			throw new AMRuntimeException.IOException(pe);
+		catch (IOException | PortalException e) {
+			throw new AMRuntimeException.IOException(e);
 		}
 	}
 
