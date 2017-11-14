@@ -31,6 +31,7 @@ import com.liferay.portal.kernel.repository.model.FileVersion;
 
 import java.io.IOException;
 import java.io.InputStream;
+
 import java.util.Optional;
 
 import org.osgi.service.component.annotations.Component;
@@ -129,13 +130,13 @@ public final class AMImageProcessorImpl implements AMImageProcessor {
 				fileVersion, amImageConfigurationEntry);
 
 			try (InputStream inputStream =
-					 amImageScaledImage.getInputStream()) {
+					amImageScaledImage.getInputStream()) {
 
 				_amImageEntryLocalService.addAMImageEntry(
 					amImageConfigurationEntry, fileVersion,
 					amImageScaledImage.getHeight(),
-					amImageScaledImage.getWidth(),
-					inputStream, amImageScaledImage.getSize());
+					amImageScaledImage.getWidth(), inputStream,
+					amImageScaledImage.getSize());
 			}
 		}
 		catch (IOException | PortalException e) {

@@ -26,15 +26,6 @@ import java.io.InputStream;
 public interface AMImageScaledImage {
 
 	/**
-	 * Returns an InputStream with the image data.
-	 *
-	 * @return an InputStream with the image data
-	 *
-	 * @review
-	 */
-	public InputStream getInputStream();
-
-	/**
 	 * Returns the image height.
 	 *
 	 * @return the image height
@@ -44,13 +35,13 @@ public interface AMImageScaledImage {
 	public int getHeight();
 
 	/**
-	 * Returns the image width.
+	 * Returns an InputStream with the image data.
 	 *
-	 * @return the image width
+	 * @return an InputStream with the image data
 	 *
 	 * @review
 	 */
-	public int getWidth();
+	public InputStream getInputStream();
 
 	/**
 	 * Returns the size in bytes of this image.
@@ -60,5 +51,14 @@ public interface AMImageScaledImage {
 	 * @review
 	 */
 	public long getSize();
+
+	/**
+	 * Returns the image width.
+	 *
+	 * @return the image width
+	 *
+	 * @review
+	 */
+	public int getWidth();
 
 }

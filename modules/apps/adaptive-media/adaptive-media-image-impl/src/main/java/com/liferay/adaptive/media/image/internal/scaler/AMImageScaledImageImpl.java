@@ -31,23 +31,23 @@ public class AMImageScaledImageImpl implements AMImageScaledImage {
 	}
 
 	@Override
-	public InputStream getInputStream() {
-		return new UnsyncByteArrayInputStream(_bytes);
-	}
-
-	@Override
 	public int getHeight() {
 		return _height;
 	}
 
 	@Override
-	public int getWidth() {
-		return _width;
+	public InputStream getInputStream() {
+		return new UnsyncByteArrayInputStream(_bytes);
 	}
 
 	@Override
 	public long getSize() {
 		return _bytes.length;
+	}
+
+	@Override
+	public int getWidth() {
+		return _width;
 	}
 
 	private final byte[] _bytes;
