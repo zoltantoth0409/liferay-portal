@@ -68,10 +68,8 @@ public class AMGIFImageScaler implements AMImageScaler {
 		FileVersion fileVersion,
 		AMImageConfigurationEntry amImageConfigurationEntry) {
 
-		LiferayFileVersion liferayFileVersion = (LiferayFileVersion)fileVersion;
-
 		try {
-			File file = liferayFileVersion.getFile(false);
+			File file = _getFile(fileVersion);
 
 			Future<ObjectValuePair<byte[], byte[]>> future =
 				ProcessUtil.execute(
@@ -139,6 +137,21 @@ public class AMGIFImageScaler implements AMImageScaler {
 		}
 
 		return maxWidthString.concat("x").concat(maxHeightString);
+	}
+
+	private File _getFile(FileVersion fileVersion)
+		throws IOException, PortalException {
+
+		if (fileVersion instanceof LiferayFileVersion) {
+			LiferayFileVersion liferayFileVersion =
+				(LiferayFileVersion)fileVersion;
+
+			return liferayFileVersion.getFile(false);
+		}
+
+		try (InputStream inputStream = fileVersion.getContentStream(false)) {
+			return FileUtil.createTempFile(inputStream);
+		}
 	}
 
 	private volatile AMImageConfiguration _amImageConfiguration;
