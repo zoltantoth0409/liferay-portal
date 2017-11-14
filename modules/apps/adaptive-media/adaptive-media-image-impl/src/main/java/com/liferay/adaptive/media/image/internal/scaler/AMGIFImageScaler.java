@@ -19,7 +19,7 @@ import com.liferay.adaptive.media.image.configuration.AMImageConfigurationEntry;
 import com.liferay.adaptive.media.image.internal.configuration.AMImageConfiguration;
 import com.liferay.adaptive.media.image.internal.util.RenderedImageUtil;
 import com.liferay.adaptive.media.image.internal.util.Tuple;
-import com.liferay.adaptive.media.image.scaler.AMImageScaled;
+import com.liferay.adaptive.media.image.scaler.AMImageScaledImage;
 import com.liferay.adaptive.media.image.scaler.AMImageScaler;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -64,7 +64,7 @@ public class AMGIFImageScaler implements AMImageScaler {
 	}
 
 	@Override
-	public AMImageScaled scaleImage(
+	public AMImageScaledImage scaleImage(
 		FileVersion fileVersion,
 		AMImageConfigurationEntry amImageConfigurationEntry) {
 
@@ -87,7 +87,7 @@ public class AMGIFImageScaler implements AMImageScaler {
 
 			Tuple<Integer, Integer> dimension = getDimension(tempFile);
 
-			return new AMImageScaledImpl(
+			return new AMImageScaledImageImpl(
 				bytes, dimension.second, dimension.first);
 		}
 		catch (ExecutionException | InterruptedException | IOException |

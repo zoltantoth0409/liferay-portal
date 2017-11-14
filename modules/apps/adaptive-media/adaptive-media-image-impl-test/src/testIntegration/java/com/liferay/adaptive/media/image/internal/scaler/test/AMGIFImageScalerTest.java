@@ -16,7 +16,7 @@ package com.liferay.adaptive.media.image.internal.scaler.test;
 
 import com.liferay.adaptive.media.image.configuration.AMImageConfigurationEntry;
 import com.liferay.adaptive.media.image.configuration.AMImageConfigurationHelper;
-import com.liferay.adaptive.media.image.scaler.AMImageScaled;
+import com.liferay.adaptive.media.image.scaler.AMImageScaledImage;
 import com.liferay.adaptive.media.image.scaler.AMImageScaler;
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.document.library.kernel.model.DLFolderConstants;
@@ -97,16 +97,16 @@ public class AMGIFImageScalerTest {
 
 		FileEntry fileEntry = _addFileEntry();
 
-		AMImageScaled amImageScaled = _amImageScaler.scaleImage(
+		AMImageScaledImage amImageScaledImage = _amImageScaler.scaleImage(
 			fileEntry.getFileVersion(), _amImageConfigurationEntry);
 
-		Assert.assertEquals(25, amImageScaled.getHeight());
-		Assert.assertEquals(100, amImageScaled.getWidth());
+		Assert.assertEquals(25, amImageScaledImage.getHeight());
+		Assert.assertEquals(100, amImageScaledImage.getWidth());
 
 		Assert.assertArrayEquals(
 			FileUtil.getBytes(
 				AMGIFImageScalerTest.class, _SCALED_IMAGE_FILE_PATH),
-			amImageScaled.getBytes());
+			amImageScaledImage.getBytes());
 	}
 
 	private FileEntry _addFileEntry() throws Exception {

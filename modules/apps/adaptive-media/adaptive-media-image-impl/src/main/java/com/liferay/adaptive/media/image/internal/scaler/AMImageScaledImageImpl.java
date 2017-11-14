@@ -12,42 +12,38 @@
  * details.
  */
 
-package com.liferay.adaptive.media.image.scaler;
+package com.liferay.adaptive.media.image.internal.scaler;
+
+import com.liferay.adaptive.media.image.scaler.AMImageScaledImage;
 
 /**
- * Represents an image scaled by Adaptive Media.
- *
- * @review
- *
  * @author Sergio González
  */
-public interface AMImageScaled {
+public class AMImageScaledImageImpl implements AMImageScaledImage {
 
-	/**
-	 * Returns the image bytes data.
-	 *
-	 * @return the image bytes data
-	 *
-	 * @review
-	 */
-	public byte[] getBytes();
+	public AMImageScaledImageImpl(byte[] bytes, int height, int width) {
+		_bytes = bytes;
+		_height = height;
+		_width = width;
+	}
 
-	/**
-	 * Returns the image height.
-	 *
-	 * @return the image height
-	 *
-	 * @review
-	 */
-	public int getHeight();
+	@Override
+	public byte[] getBytes() {
+		return _bytes;
+	}
 
-	/**
-	 * Returns the image width.
-	 *
-	 * @return the image width
-	 *
-	 * @review
-	 */
-	public int getWidth();
+	@Override
+	public int getHeight() {
+		return _height;
+	}
+
+	@Override
+	public int getWidth() {
+		return _width;
+	}
+
+	private final byte[] _bytes;
+	private final int _height;
+	private final int _width;
 
 }

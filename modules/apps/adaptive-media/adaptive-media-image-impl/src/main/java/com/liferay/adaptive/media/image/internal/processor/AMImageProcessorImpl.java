@@ -20,7 +20,7 @@ import com.liferay.adaptive.media.image.configuration.AMImageConfigurationHelper
 import com.liferay.adaptive.media.image.mime.type.AMImageMimeTypeProvider;
 import com.liferay.adaptive.media.image.model.AMImageEntry;
 import com.liferay.adaptive.media.image.processor.AMImageProcessor;
-import com.liferay.adaptive.media.image.scaler.AMImageScaled;
+import com.liferay.adaptive.media.image.scaler.AMImageScaledImage;
 import com.liferay.adaptive.media.image.scaler.AMImageScaler;
 import com.liferay.adaptive.media.image.scaler.AMImageScalerTracker;
 import com.liferay.adaptive.media.image.service.AMImageEntryLocalService;
@@ -124,14 +124,14 @@ public final class AMImageProcessorImpl implements AMImageProcessor {
 				return;
 			}
 
-			AMImageScaled amImageScaled = amImageScaler.scaleImage(
+			AMImageScaledImage amImageScaledImage = amImageScaler.scaleImage(
 				fileVersion, amImageConfigurationEntry);
 
-			byte[] bytes = amImageScaled.getBytes();
+			byte[] bytes = amImageScaledImage.getBytes();
 
 			_amImageEntryLocalService.addAMImageEntry(
 				amImageConfigurationEntry, fileVersion,
-				amImageScaled.getHeight(), amImageScaled.getWidth(),
+				amImageScaledImage.getHeight(), amImageScaledImage.getWidth(),
 				new UnsyncByteArrayInputStream(bytes), bytes.length);
 		}
 		catch (PortalException pe) {

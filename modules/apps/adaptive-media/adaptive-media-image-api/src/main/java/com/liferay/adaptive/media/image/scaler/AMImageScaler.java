@@ -67,7 +67,7 @@ public interface AMImageScaler {
 	 *
 	 * @review
 	 */
-	public AMImageScaled scaleImage(
+	public AMImageScaledImage scaleImage(
 		FileVersion fileVersion,
 		AMImageConfigurationEntry amImageConfigurationEntry);
 

@@ -18,7 +18,7 @@ import com.liferay.adaptive.media.exception.AMRuntimeException;
 import com.liferay.adaptive.media.image.configuration.AMImageConfigurationEntry;
 import com.liferay.adaptive.media.image.internal.processor.util.TiffOrientationTransformer;
 import com.liferay.adaptive.media.image.internal.util.RenderedImageUtil;
-import com.liferay.adaptive.media.image.scaler.AMImageScaled;
+import com.liferay.adaptive.media.image.scaler.AMImageScaledImage;
 import com.liferay.adaptive.media.image.scaler.AMImageScaler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.image.ImageToolUtil;
@@ -45,7 +45,7 @@ import org.osgi.service.component.annotations.Reference;
 public class AMDefaultImageScaler implements AMImageScaler {
 
 	@Override
-	public AMImageScaled scaleImage(
+	public AMImageScaledImage scaleImage(
 		FileVersion fileVersion,
 		AMImageConfigurationEntry amImageConfigurationEntry) {
 
@@ -62,7 +62,7 @@ public class AMDefaultImageScaler implements AMImageScaler {
 			RenderedImage scaledRenderedImage = ImageToolUtil.scale(
 				renderedImage, maxHeight, maxWidth);
 
-			return new AMImageScaledImpl(
+			return new AMImageScaledImageImpl(
 				RenderedImageUtil.getRenderedImageContentStream(
 					scaledRenderedImage, fileVersion.getMimeType()),
 				scaledRenderedImage.getHeight(),

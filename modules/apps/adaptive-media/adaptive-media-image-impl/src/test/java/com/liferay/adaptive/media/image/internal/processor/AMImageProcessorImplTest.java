@@ -19,7 +19,7 @@ import com.liferay.adaptive.media.image.configuration.AMImageConfigurationEntry;
 import com.liferay.adaptive.media.image.configuration.AMImageConfigurationHelper;
 import com.liferay.adaptive.media.image.exception.DuplicateAMImageEntryException;
 import com.liferay.adaptive.media.image.internal.configuration.AMImageConfigurationEntryImpl;
-import com.liferay.adaptive.media.image.internal.scaler.AMImageScaledImpl;
+import com.liferay.adaptive.media.image.internal.scaler.AMImageScaledImageImpl;
 import com.liferay.adaptive.media.image.mime.type.AMImageMimeTypeProvider;
 import com.liferay.adaptive.media.image.model.AMImageEntry;
 import com.liferay.adaptive.media.image.scaler.AMImageScaler;
@@ -236,7 +236,7 @@ public class AMImageProcessorImplTest {
 				Mockito.any(FileVersion.class),
 				Mockito.any(AMImageConfigurationEntry.class))
 		).thenReturn(
-			new AMImageScaledImpl(new byte[100], 100, 100)
+			new AMImageScaledImageImpl(new byte[100], 100, 100)
 		);
 
 		_amImageProcessorImpl.process(
@@ -386,7 +386,7 @@ public class AMImageProcessorImplTest {
 		Mockito.when(
 			_amImageScaler.scaleImage(_fileVersion, amImageConfigurationEntry)
 		).thenReturn(
-			new AMImageScaledImpl(new byte[100], 150, 200)
+			new AMImageScaledImageImpl(new byte[100], 150, 200)
 		);
 
 		Mockito.doThrow(
@@ -438,7 +438,7 @@ public class AMImageProcessorImplTest {
 		Mockito.when(
 			_amImageScaler.scaleImage(_fileVersion, amImageConfigurationEntry)
 		).thenReturn(
-			new AMImageScaledImpl(new byte[100], 150, 200)
+			new AMImageScaledImageImpl(new byte[100], 150, 200)
 		);
 
 		_amImageProcessorImpl.process(_fileVersion);
@@ -557,7 +557,7 @@ public class AMImageProcessorImplTest {
 		Mockito.when(
 			_amImageScaler.scaleImage(_fileVersion, amImageConfigurationEntry)
 		).thenReturn(
-			new AMImageScaledImpl(new byte[100], 150, 200)
+			new AMImageScaledImageImpl(new byte[100], 150, 200)
 		);
 
 		Mockito.doThrow(

@@ -15,7 +15,7 @@
 package com.liferay.adaptive.media.image.internal.scaler.test;
 
 import com.liferay.adaptive.media.image.configuration.AMImageConfigurationEntry;
-import com.liferay.adaptive.media.image.scaler.AMImageScaled;
+import com.liferay.adaptive.media.image.scaler.AMImageScaledImage;
 import com.liferay.adaptive.media.image.scaler.AMImageScaler;
 import com.liferay.adaptive.media.image.scaler.AMImageScalerTracker;
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
@@ -416,7 +416,7 @@ public class AMImageScalerTrackerImplTest {
 		}
 
 		@Override
-		public AMImageScaled scaleImage(
+		public AMImageScaledImage scaleImage(
 			FileVersion fileVersion,
 			AMImageConfigurationEntry amImageConfigurationEntry) {
 
