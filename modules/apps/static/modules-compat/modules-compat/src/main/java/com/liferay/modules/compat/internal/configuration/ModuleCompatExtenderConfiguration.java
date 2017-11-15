@@ -29,7 +29,7 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
 )
 public interface ModuleCompatExtenderConfiguration {
 
-	@Meta.AD(deflt = "false", name = "enabled")
+	@Meta.AD(deflt = "false", name = "enabled", required = false)
 	public boolean enabled();
 
 	@Meta.AD(deflt = ".*", name = "modules-white-list", required = false)
