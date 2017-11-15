@@ -71,7 +71,7 @@ public class ModuleCompatExtender {
 
 	@Activate
 	protected void activate(
-			final BundleContext bundleContext, Map<String, String> properties)
+			BundleContext bundleContext, Map<String, String> properties)
 		throws IOException {
 
 		ModuleCompatExtenderConfiguration moduleCompatExtenderConfiguration =
@@ -88,15 +88,15 @@ public class ModuleCompatExtender {
 
 		Pattern pattern = Pattern.compile(regex);
 
-		final Matcher matcher = pattern.matcher("");
+		Matcher matcher = pattern.matcher("");
 
 		_uninstallBundles(bundleContext, matcher);
 
-		final Bundle moduleCompatBundle = bundleContext.getBundle();
+		Bundle moduleCompatBundle = bundleContext.getBundle();
 
 		URL url = moduleCompatBundle.getEntry("META-INF/compat.properties");
 
-		final Properties compatProperties = new Properties();
+		Properties compatProperties = new Properties();
 
 		try (InputStream inputStream = url.openStream()) {
 			compatProperties.load(inputStream);
