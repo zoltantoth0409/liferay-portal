@@ -72,7 +72,7 @@ public class ModuleCompatExtender {
 	@Activate
 	protected void activate(
 			final BundleContext bundleContext, Map<String, String> properties)
-		throws Exception {
+		throws IOException {
 
 		ModuleCompatExtenderConfiguration moduleCompatExtenderConfiguration =
 			ConfigurableUtil.createConfigurable(
