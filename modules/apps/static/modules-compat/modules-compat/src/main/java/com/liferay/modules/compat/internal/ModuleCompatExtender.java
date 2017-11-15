@@ -74,9 +74,9 @@ public class ModuleCompatExtender {
 			BundleContext bundleContext, Map<String, String> properties)
 		throws IOException {
 
-		Bundle moduleCompatBundle = bundleContext.getBundle();
+		Bundle modulesCompatBundle = bundleContext.getBundle();
 
-		URL url = moduleCompatBundle.getEntry("META-INF/compat.properties");
+		URL url = modulesCompatBundle.getEntry("META-INF/compat.properties");
 
 		Properties compatProperties = new Properties();
 
@@ -94,9 +94,8 @@ public class ModuleCompatExtender {
 			return;
 		}
 
-		String regex = moduleCompatExtenderConfiguration.modulesWhitelist();
-
-		Pattern pattern = Pattern.compile(regex);
+		Pattern pattern = Pattern.compile(
+			moduleCompatExtenderConfiguration.modulesWhitelist());
 
 		Matcher matcher = pattern.matcher("");
 
@@ -104,7 +103,7 @@ public class ModuleCompatExtender {
 			bundleContext, ~Bundle.UNINSTALLED, null) {
 
 			@Override
-			public Void addingBundle(Bundle bundle, BundleEvent event) {
+			public Void addingBundle(Bundle bundle, BundleEvent bundleEvent) {
 				String location = bundle.getLocation();
 
 				Bundle compatBundle = bundleContext.getBundle(
@@ -119,17 +118,17 @@ public class ModuleCompatExtender {
 				matcher.reset(symbolicName);
 
 				if (matcher.matches()) {
-					String exportBundles = compatProperties.getProperty(
+					String exportedPackages = compatProperties.getProperty(
 						symbolicName);
 
-					if (Validator.isNull(exportBundles)) {
+					if (Validator.isNull(exportedPackages)) {
 						return null;
 					}
 
 					_installCompatBundle(
 						bundle, bundleContext,
 						_generateExportString(
-							moduleCompatBundle, exportBundles));
+							modulesCompatBundle, exportedPackages));
 				}
 
 				return null;
