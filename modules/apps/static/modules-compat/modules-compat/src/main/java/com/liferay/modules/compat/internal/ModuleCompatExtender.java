@@ -161,6 +161,10 @@ public class ModuleCompatExtender {
 
 		String[] exports = StringUtil.split(exportedPackages);
 
+		if (exports.length == 0) {
+			return StringPool.BLANK;
+		}
+
 		StringBundler sb = new StringBundler(exports.length * 4);
 
 		for (String export : exports) {
@@ -187,9 +191,9 @@ public class ModuleCompatExtender {
 			sb.append("\",");
 		}
 
-		String exportString = sb.toString();
+		sb.setStringAt(StringPool.QUOTE, sb.index() - 1);
 
-		return exportString.substring(0, exportString.length() - 1);
+		return sb.toString();
 	}
 
 	private void _installCompatBundle(
