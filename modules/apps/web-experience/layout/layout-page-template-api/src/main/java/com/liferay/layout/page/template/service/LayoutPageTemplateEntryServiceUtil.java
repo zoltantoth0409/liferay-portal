@@ -138,12 +138,12 @@ public class LayoutPageTemplateEntryServiceUtil {
 	}
 
 	public static com.liferay.layout.page.template.model.LayoutPageTemplateEntry updateLayoutPageTemplateEntry(
-		long layoutPageTemplateEntryId, long[] fragmentEntriesIds,
+		long layoutPageTemplateEntryId, long[] fragmentEntryIds,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .updateLayoutPageTemplateEntry(layoutPageTemplateEntryId,
-			fragmentEntriesIds, serviceContext);
+			fragmentEntryIds, serviceContext);
 	}
 
 	public static com.liferay.layout.page.template.model.LayoutPageTemplateEntry updateLayoutPageTemplateEntry(

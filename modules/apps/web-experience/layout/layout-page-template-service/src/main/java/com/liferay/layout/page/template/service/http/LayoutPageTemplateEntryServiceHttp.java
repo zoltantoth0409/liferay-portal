@@ -410,7 +410,7 @@ public class LayoutPageTemplateEntryServiceHttp {
 
 	public static com.liferay.layout.page.template.model.LayoutPageTemplateEntry updateLayoutPageTemplateEntry(
 		HttpPrincipal httpPrincipal, long layoutPageTemplateEntryId,
-		long[] fragmentEntriesIds,
+		long[] fragmentEntryIds,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
@@ -419,8 +419,7 @@ public class LayoutPageTemplateEntryServiceHttp {
 					_updateLayoutPageTemplateEntryParameterTypes11);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey,
-					layoutPageTemplateEntryId, fragmentEntriesIds,
-					serviceContext);
+					layoutPageTemplateEntryId, fragmentEntryIds, serviceContext);
 
 			Object returnObj = null;
 

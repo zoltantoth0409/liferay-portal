@@ -133,11 +133,11 @@ public class LayoutPageTemplateEntryServiceWrapper
 
 	@Override
 	public com.liferay.layout.page.template.model.LayoutPageTemplateEntry updateLayoutPageTemplateEntry(
-		long layoutPageTemplateEntryId, long[] fragmentEntriesIds,
+		long layoutPageTemplateEntryId, long[] fragmentEntryIds,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _layoutPageTemplateEntryService.updateLayoutPageTemplateEntry(layoutPageTemplateEntryId,
-			fragmentEntriesIds, serviceContext);
+			fragmentEntryIds, serviceContext);
 	}
 
 	@Override

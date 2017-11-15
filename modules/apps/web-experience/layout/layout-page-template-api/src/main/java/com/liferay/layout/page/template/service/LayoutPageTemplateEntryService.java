@@ -114,7 +114,7 @@ public interface LayoutPageTemplateEntryService extends BaseService {
 	public java.lang.String getOSGiServiceIdentifier();
 
 	public LayoutPageTemplateEntry updateLayoutPageTemplateEntry(
-		long layoutPageTemplateEntryId, long[] fragmentEntriesIds,
+		long layoutPageTemplateEntryId, long[] fragmentEntryIds,
 		ServiceContext serviceContext) throws PortalException;
 
 	public LayoutPageTemplateEntry updateLayoutPageTemplateEntry(
