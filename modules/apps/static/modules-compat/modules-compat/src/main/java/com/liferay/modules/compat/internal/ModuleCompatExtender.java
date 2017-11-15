@@ -29,6 +29,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Reader;
 
 import java.net.URL;
 
@@ -166,10 +167,9 @@ public class ModuleCompatExtender {
 
 			URL url = bundle.getEntry(packageInfoPath.concat("/packageinfo"));
 
-			try (InputStreamReader inputStreamReader = new InputStreamReader(
-					url.openStream());
-				BufferedReader bufferedReader =
-					new BufferedReader(inputStreamReader)) {
+			try (InputStream inputStream = url.openStream();
+				Reader reader = new InputStreamReader(inputStream);
+				BufferedReader bufferedReader = new BufferedReader(reader)) {
 
 				String versionLine = bufferedReader.readLine();
 
