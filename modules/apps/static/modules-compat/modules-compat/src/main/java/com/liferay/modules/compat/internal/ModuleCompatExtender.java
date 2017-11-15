@@ -98,7 +98,7 @@ public class ModuleCompatExtender {
 
 		Matcher matcher = pattern.matcher("");
 
-		BundleTracker<Void> bundleTracker = new BundleTracker<Void>(
+		_bundleTracker = new BundleTracker<Void>(
 			bundleContext, ~Bundle.UNINSTALLED, null) {
 
 			@Override
@@ -135,11 +135,15 @@ public class ModuleCompatExtender {
 
 		};
 
-		bundleTracker.open();
+		_bundleTracker.open();
 	}
 
 	@Deactivate
 	protected void deactivate(BundleContext bundleContext) {
+		if (_bundleTracker != null) {
+			_bundleTracker.close();
+		}
+
 		_uninstallBundles(bundleContext, Collections.emptySet());
 	}
 
@@ -280,5 +284,7 @@ public class ModuleCompatExtender {
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		ModuleCompatExtender.class.getName());
+
+	private BundleTracker<Void> _bundleTracker;
 
 }
