@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.ReflectionUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
@@ -125,10 +124,18 @@ public class ModuleCompatExtender {
 						return null;
 					}
 
-					_installCompatBundle(
-						bundle, bundleContext,
-						_generateExportString(
-							modulesCompatBundle, exportedPackages));
+					try {
+						_installCompatBundle(
+							bundle, bundleContext,
+							_generateExportString(
+								modulesCompatBundle, exportedPackages));
+					}
+					catch (Exception e) {
+						_log.error(
+							"Unable to install compat fragment bundle for " +
+								bundle,
+							e);
+					}
 				}
 
 				return null;
@@ -148,8 +155,8 @@ public class ModuleCompatExtender {
 		_uninstallBundles(bundleContext, Collections.emptySet());
 	}
 
-	private String _generateExportString(
-		Bundle bundle, String exportedPackages) {
+	private String _generateExportString(Bundle bundle, String exportedPackages)
+		throws IOException {
 
 		String[] exports = exportedPackages.split(",");
 
@@ -175,9 +182,6 @@ public class ModuleCompatExtender {
 
 				sb.append(versionLine.substring(8));
 			}
-			catch (IOException ioe) {
-				ReflectionUtil.throwException(ioe);
-			}
 
 			sb.append("\",");
 		}
@@ -188,7 +192,8 @@ public class ModuleCompatExtender {
 	}
 
 	private void _installCompatBundle(
-		Bundle bundle, BundleContext bundleContext, String exportBundles) {
+			Bundle bundle, BundleContext bundleContext, String exportBundles)
+		throws Exception {
 
 		String symbolicName = bundle.getSymbolicName();
 
@@ -235,9 +240,6 @@ public class ModuleCompatExtender {
 
 			_refreshBundles(
 				bundleContext, Collections.<Bundle>singleton(compatBundle));
-		}
-		catch (Exception e) {
-			_log.error("Unable to install compat fragment for " + bundle, e);
 		}
 	}
 
