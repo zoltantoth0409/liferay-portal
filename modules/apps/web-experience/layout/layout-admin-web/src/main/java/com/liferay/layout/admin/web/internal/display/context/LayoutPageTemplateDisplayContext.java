@@ -124,14 +124,14 @@ public class LayoutPageTemplateDisplayContext {
 				JSONFactoryUtil.createJSONArray();
 
 			for (FragmentEntry fragmentEntry : fragmentEntries) {
-				JSONObject jsonFragmentEntry =
+				JSONObject fragmentEntryJSONObject =
 					JSONFactoryUtil.createJSONObject();
 
-				jsonFragmentEntry.put(
+				fragmentEntryJSONObject.put(
 					"fragmentEntryId", fragmentEntry.getFragmentEntryId());
-				jsonFragmentEntry.put("name", fragmentEntry.getName());
+				fragmentEntryJSONObject.put("name", fragmentEntry.getName());
 
-				fragmentEntriesJSONArray.put(jsonFragmentEntry);
+				fragmentEntriesJSONArray.put(fragmentEntryJSONObject);
 			}
 
 			fragmentCollectionJSONObject.put(
