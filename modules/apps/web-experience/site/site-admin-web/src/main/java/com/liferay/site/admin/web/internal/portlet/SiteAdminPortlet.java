@@ -429,17 +429,16 @@ public class SiteAdminPortlet extends MVCPortlet {
 	protected PortletURL getSiteAdministrationURL(
 		ActionRequest actionRequest, Group group) {
 
-		String portletKey = SiteAdminPortletKeys.SITE_ADMIN;
+		String portletId = SiteAdminPortletKeys.SITE_ADMIN;
 
 		long liveGroupId = ParamUtil.getLong(actionRequest, "liveGroupId");
 
 		if (liveGroupId <= 0) {
-			portletKey = SiteAdminPortletKeys.SITE_SETTINGS;
+			portletId = SiteAdminPortletKeys.SITE_SETTINGS;
 		}
 
 		return portal.getControlPanelPortletURL(
-			actionRequest, group, portletKey, 0, 0,
-			PortletRequest.RENDER_PHASE);
+			actionRequest, group, portletId, 0, 0, PortletRequest.RENDER_PHASE);
 	}
 
 	protected List<Team> getTeams(PortletRequest portletRequest)
