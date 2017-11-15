@@ -35,11 +35,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Properties;
+import java.util.Set;
 import java.util.jar.Attributes;
 import java.util.jar.JarFile;
 import java.util.jar.JarOutputStream;
@@ -56,7 +56,6 @@ import org.osgi.framework.Constants;
 import org.osgi.framework.wiring.FrameworkWiring;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.util.tracker.BundleTracker;
 
@@ -74,24 +73,6 @@ public class ModuleCompatExtender {
 			BundleContext bundleContext, Map<String, String> properties)
 		throws IOException {
 
-		ModuleCompatExtenderConfiguration moduleCompatExtenderConfiguration =
-			ConfigurableUtil.createConfigurable(
-				ModuleCompatExtenderConfiguration.class, properties);
-
-		if (!moduleCompatExtenderConfiguration.enabled()) {
-			_uninstallBundles(bundleContext, null);
-
-			return;
-		}
-
-		String regex = moduleCompatExtenderConfiguration.modulesWhitelist();
-
-		Pattern pattern = Pattern.compile(regex);
-
-		Matcher matcher = pattern.matcher("");
-
-		_uninstallBundles(bundleContext, matcher);
-
 		Bundle moduleCompatBundle = bundleContext.getBundle();
 
 		URL url = moduleCompatBundle.getEntry("META-INF/compat.properties");
@@ -102,12 +83,33 @@ public class ModuleCompatExtender {
 			compatProperties.load(inputStream);
 		}
 
+		_uninstallBundles(bundleContext, compatProperties.propertyNames());
+
+		ModuleCompatExtenderConfiguration moduleCompatExtenderConfiguration =
+			ConfigurableUtil.createConfigurable(
+				ModuleCompatExtenderConfiguration.class, properties);
+
+		if (!moduleCompatExtenderConfiguration.enabled()) {
+			return;
+		}
+
+		String regex = moduleCompatExtenderConfiguration.modulesWhitelist();
+
+		Pattern pattern = Pattern.compile(regex);
+
+		Matcher matcher = pattern.matcher("");
+
 		BundleTracker<Void> bundleTracker = new BundleTracker<Void>(
 			bundleContext, ~Bundle.UNINSTALLED, null) {
 
 			@Override
 			public Void addingBundle(Bundle bundle, BundleEvent event) {
-				if (_compatBundles.containsKey(bundle)) {
+				String location = bundle.getLocation();
+
+				Bundle compatBundle = bundleContext.getBundle(
+					location.concat("-compat"));
+
+				if (compatBundle != null) {
 					return null;
 				}
 
@@ -230,8 +232,6 @@ public class ModuleCompatExtender {
 
 			_refreshBundles(
 				bundleContext, Collections.<Bundle>singleton(compatBundle));
-
-			_compatBundles.put(bundle, compatBundle);
 		}
 		catch (Exception e) {
 			_log.error("Unable to install compat fragment for " + bundle, e);
@@ -250,37 +250,40 @@ public class ModuleCompatExtender {
 	}
 
 	private void _uninstallBundles(
-		BundleContext bundleContext, Matcher matcher) {
+		BundleContext bundleContext, Enumeration<?> names) {
 
-		if (_compatBundles.isEmpty()) {
-			return;
+		Set<String> symbolicNames = _compatSymbolicNames;
+
+		if (symbolicNames == null) {
+			while (names.hasMoreElements()) {
+				symbolicNames.add((String)names.nextElement());
+			}
+
+			_compatSymbolicNames = symbolicNames;
 		}
 
 		List<Bundle> bundles = new ArrayList<>();
 
-		for (Entry<Bundle, Bundle> entry : _compatBundles.entrySet()) {
-			Bundle bundle = entry.getKey();
+		for (Bundle bundle : bundleContext.getBundles()) {
+			String symbolicName = bundle.getSymbolicName();
 
-			if (matcher != null) {
-				matcher.reset(bundle.getSymbolicName());
+			if (symbolicNames.contains(symbolicName)) {
+				bundles.add(bundle);
 
-				if (matcher.matches()) {
-					continue;
+				continue;
+			}
+
+			if (symbolicName.endsWith(".compat") &&
+				symbolicNames.contains(
+					symbolicName.substring(0, symbolicName.length() - 7))) {
+
+				try {
+					bundle.uninstall();
+				}
+				catch (BundleException be) {
+					_log.error("Unable to uninstall " + bundle, be);
 				}
 			}
-
-			Bundle compatBundle = entry.getValue();
-
-			try {
-				compatBundle.uninstall();
-
-				_compatBundles.remove(bundle);
-			}
-			catch (BundleException be) {
-				_log.error("Unable to uninstall " + compatBundle, be);
-			}
-
-			bundles.add(bundle);
 		}
 
 		_refreshBundles(bundleContext, bundles);
@@ -289,6 +292,6 @@ public class ModuleCompatExtender {
 	private static final Log _log = LogFactoryUtil.getLog(
 		ModuleCompatExtender.class.getName());
 
-	private static final Map<Bundle, Bundle> _compatBundles = new HashMap<>();
+	private Set<String> _compatSymbolicNames;
 
 }
