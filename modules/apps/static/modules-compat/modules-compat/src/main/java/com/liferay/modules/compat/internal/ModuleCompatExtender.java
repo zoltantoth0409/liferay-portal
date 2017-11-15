@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.io.BufferedReader;
@@ -96,7 +97,7 @@ public class ModuleCompatExtender {
 		Pattern pattern = Pattern.compile(
 			moduleCompatExtenderConfiguration.modulesWhitelist());
 
-		Matcher matcher = pattern.matcher("");
+		Matcher matcher = pattern.matcher(StringPool.BLANK);
 
 		_bundleTracker = new BundleTracker<Void>(
 			bundleContext, ~Bundle.UNINSTALLED, null) {
@@ -158,7 +159,7 @@ public class ModuleCompatExtender {
 	private String _generateExportString(Bundle bundle, String exportedPackages)
 		throws IOException {
 
-		String[] exports = exportedPackages.split(",");
+		String[] exports = StringUtil.split(exportedPackages);
 
 		StringBundler sb = new StringBundler(exports.length * 4);
 
