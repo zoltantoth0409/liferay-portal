@@ -169,4 +169,8 @@ public class ExternalRepositoryDLAppHelperLocalServiceWrapper
 	@Reference
 	private RepositoryLocalService _repositoryLocalService;
 
+	@Reference
+	private DLAppHelperLocalService _dlAppHelperLocalService;
+
+
 }
