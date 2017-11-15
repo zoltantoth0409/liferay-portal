@@ -185,7 +185,7 @@ public class LayoutPageTemplateEntryServiceImpl
 
 	@Override
 	public LayoutPageTemplateEntry updateLayoutPageTemplateEntry(
-			long layoutPageTemplateEntryId, long[] fragmentEntriesIds,
+			long layoutPageTemplateEntryId, long[] fragmentEntryIds,
 			ServiceContext serviceContext)
 		throws PortalException {
 
@@ -194,7 +194,7 @@ public class LayoutPageTemplateEntryServiceImpl
 
 		List<FragmentEntry> fragmentEntries = new ArrayList<>();
 
-		for (long fragmentEntryId : fragmentEntriesIds) {
+		for (long fragmentEntryId : fragmentEntryIds) {
 			FragmentEntry fragmentEntry =
 				_fragmentEntryService.fetchFragmentEntry(fragmentEntryId);
 
