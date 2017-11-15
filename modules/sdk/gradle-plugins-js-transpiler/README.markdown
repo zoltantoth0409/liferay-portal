@@ -34,7 +34,7 @@ compiles Soy files, and transpiles ES6 to ES5:
 	```
 
 - [*JS Transpiler Base Plugin*](#js-transpiler-base-plugin): provides a way to
-use Gradle dependencies (such as an [external module](https://docs.gradle.org/current/userguide/dependency_management.html#sub:module_dependencies)
+use Gradle dependencies (such as [external modules](https://docs.gradle.org/current/userguide/dependency_management.html#sub:module_dependencies)
 or [project dependencies](https://docs.gradle.org/current/userguide/dependency_management.html#sub:project_dependencies))
 in Node.js scripts:
 
