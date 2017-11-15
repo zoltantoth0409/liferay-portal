@@ -15,6 +15,7 @@
 package com.liferay.modules.compat.internal.configuration;
 
 import aQute.bnd.annotation.metatype.Meta;
+
 import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClassDefinition;
 
 /**
@@ -28,10 +29,10 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
 )
 public interface ModuleCompatExtenderConfiguration {
 
-	@Meta.AD(deflt = "false")
+	@Meta.AD(deflt = "false", name = "enabled")
 	public boolean enabled();
 
-	@Meta.AD(deflt = ".*", required = false)
+	@Meta.AD(deflt = ".*", name = "modules-white-list", required = false)
 	public String modulesWhitelist();
 
 }
