@@ -86,8 +86,9 @@ public class ModuleCompatExtender {
 			compatProperties.load(inputStream);
 		}
 
-		_uninstallBundles(
-			bundleContext, compatProperties.stringPropertyNames());
+		_compatSymbolicNames = compatProperties.stringPropertyNames();
+
+		_uninstallBundles(bundleContext);
 
 		ModuleCompatExtenderConfiguration moduleCompatExtenderConfiguration =
 			ConfigurableUtil.createConfigurable(
@@ -168,7 +169,7 @@ public class ModuleCompatExtender {
 			_bundleTracker.close();
 		}
 
-		_uninstallBundles(bundleContext, Collections.emptySet());
+		_uninstallBundles(bundleContext);
 	}
 
 	private String _generateExportString(Bundle bundle, String exportedPackages)
@@ -318,22 +319,22 @@ public class ModuleCompatExtender {
 		frameworkWiring.refreshBundles(bundles);
 	}
 
-	private void _uninstallBundles(
-		BundleContext bundleContext, Set<String> symbolicNames) {
-
+	private void _uninstallBundles(BundleContext bundleContext) {
 		List<Bundle> bundles = new ArrayList<>();
+
+		Set<String> compatSymbolicNames = _compatSymbolicNames;
 
 		for (Bundle bundle : bundleContext.getBundles()) {
 			String symbolicName = bundle.getSymbolicName();
 
-			if (symbolicNames.contains(symbolicName)) {
+			if (compatSymbolicNames.contains(symbolicName)) {
 				bundles.add(bundle);
 
 				continue;
 			}
 
 			if (symbolicName.endsWith(".compat") &&
-				symbolicNames.contains(
+				compatSymbolicNames.contains(
 					symbolicName.substring(0, symbolicName.length() - 7))) {
 
 				try {
@@ -352,5 +353,6 @@ public class ModuleCompatExtender {
 		ModuleCompatExtender.class.getName());
 
 	private BundleTracker<List<ServiceAdaptor<?, ?>>> _bundleTracker;
+	private Set<String> _compatSymbolicNames;
 
 }
