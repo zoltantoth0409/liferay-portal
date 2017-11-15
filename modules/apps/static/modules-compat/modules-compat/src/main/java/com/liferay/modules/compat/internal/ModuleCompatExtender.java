@@ -14,7 +14,9 @@
 
 package com.liferay.modules.compat.internal;
 
+import com.liferay.modules.compat.internal.adaptor.ServiceAdaptor;
 import com.liferay.modules.compat.internal.configuration.ModuleCompatExtenderConfiguration;
+import com.liferay.petra.string.CharPool;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
@@ -36,6 +38,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Dictionary;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -99,11 +102,13 @@ public class ModuleCompatExtender {
 
 		Matcher matcher = pattern.matcher(StringPool.BLANK);
 
-		_bundleTracker = new BundleTracker<Void>(
+		_bundleTracker = new BundleTracker<List<ServiceAdaptor<?, ?>>>(
 			bundleContext, ~Bundle.UNINSTALLED, null) {
 
 			@Override
-			public Void addingBundle(Bundle bundle, BundleEvent bundleEvent) {
+			public List<ServiceAdaptor<?, ?>> addingBundle(
+				Bundle bundle, BundleEvent bundleEvent) {
+
 				String location = bundle.getLocation();
 
 				Bundle compatBundle = bundleContext.getBundle(
@@ -126,7 +131,7 @@ public class ModuleCompatExtender {
 					}
 
 					try {
-						_installCompatBundle(
+						return _installCompatBundle(
 							bundle, bundleContext,
 							_generateExportString(
 								modulesCompatBundle, exportedPackages));
@@ -140,6 +145,16 @@ public class ModuleCompatExtender {
 				}
 
 				return null;
+			}
+
+			@Override
+			public void removedBundle(
+				Bundle bundle, BundleEvent event,
+				List<ServiceAdaptor<?, ?>> serviceAdaptors) {
+
+				for (ServiceAdaptor<?, ?> serviceAdaptor : serviceAdaptors) {
+					serviceAdaptor.close();
+				}
 			}
 
 		};
@@ -196,7 +211,7 @@ public class ModuleCompatExtender {
 		return sb.toString();
 	}
 
-	private void _installCompatBundle(
+	private List<ServiceAdaptor<?, ?>> _installCompatBundle(
 			Bundle bundle, BundleContext bundleContext, String exportBundles)
 		throws Exception {
 
@@ -246,6 +261,50 @@ public class ModuleCompatExtender {
 			_refreshBundles(
 				bundleContext, Collections.<Bundle>singleton(compatBundle));
 		}
+
+		Dictionary<String, String> headers = bundle.getHeaders();
+
+		List<ServiceAdaptor<?, ?>> serviceAdaptors = new ArrayList<>();
+
+		for (String adaptorLine : StringUtil.split(
+				headers.get("Liferay-Modules-Compat-Adaptors"))) {
+
+			String[] classNames = StringUtil.split(adaptorLine, CharPool.COLON);
+
+			if (classNames.length != 2) {
+				_log.error(
+					StringBundler.concat(
+						"Invalid format in bundle: ", String.valueOf(bundle),
+						"'s Liferay-Modules-Compat-Adaptors line : ",
+						adaptorLine));
+			}
+
+			try {
+				Class<?> fromClass = bundle.loadClass(
+					StringUtil.trim(classNames[0]));
+
+				Class<?> toClass = bundle.loadClass(
+					StringUtil.trim(classNames[1]));
+
+				serviceAdaptors.add(
+					new ServiceAdaptor<>(bundleContext, fromClass, toClass));
+			}
+			catch (ClassNotFoundException cnfe) {
+				_log.error(
+					StringBundler.concat(
+						"Invalid class name in bundle: ",
+						String.valueOf(bundle),
+						"'s Liferay-Modules-Compat-Adaptors line : ",
+						adaptorLine),
+					cnfe);
+			}
+		}
+
+		if (serviceAdaptors.isEmpty()) {
+			return null;
+		}
+
+		return serviceAdaptors;
 	}
 
 	private void _refreshBundles(
@@ -292,6 +351,6 @@ public class ModuleCompatExtender {
 	private static final Log _log = LogFactoryUtil.getLog(
 		ModuleCompatExtender.class.getName());
 
-	private BundleTracker<Void> _bundleTracker;
+	private BundleTracker<List<ServiceAdaptor<?, ?>>> _bundleTracker;
 
 }
