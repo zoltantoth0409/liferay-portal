@@ -64,8 +64,8 @@ import org.osgi.util.tracker.BundleTracker;
  * @author Matthew Tambara
  */
 @Component(
-	configurationPid = "com.liferay.module.compat.activator.internal.configuration.ModuleCompatActivatorConfiguration",
-	configurationPolicy = ConfigurationPolicy.REQUIRE, immediate = true
+	configurationPid = "com.liferay.modules.compat.internal.configuration.ModuleCompatExtenderConfiguration",
+	immediate = true
 )
 public class ModuleCompatExtender {
 

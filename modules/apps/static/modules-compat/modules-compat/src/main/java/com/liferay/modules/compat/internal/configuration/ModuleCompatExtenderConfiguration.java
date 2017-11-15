@@ -23,7 +23,7 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
  */
 @ExtendedObjectClassDefinition(category = "foundation")
 @Meta.OCD(
-	id = "com.liferay.module.compat.activator.internal.configuration.ModuleCompatExtenderConfiguration",
+	id = "com.liferay.modules.compat.internal.configuration.ModuleCompatExtenderConfiguration",
 	localization = "content/Language",
 	name = "module-compat-extender-configuration-name"
 )
