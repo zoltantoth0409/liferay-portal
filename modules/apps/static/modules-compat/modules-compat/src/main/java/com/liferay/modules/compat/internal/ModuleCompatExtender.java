@@ -78,15 +78,29 @@ public class ModuleCompatExtender {
 
 		Bundle modulesCompatBundle = bundleContext.getBundle();
 
-		URL url = modulesCompatBundle.getEntry("META-INF/compat.properties");
+		URL url = modulesCompatBundle.getEntry(
+			"META-INF/compat-fragment.properties");
 
-		Properties compatProperties = new Properties();
+		Properties compatFragmentProperties = new Properties();
 
 		try (InputStream inputStream = url.openStream()) {
-			compatProperties.load(inputStream);
+			compatFragmentProperties.load(inputStream);
 		}
 
-		_compatSymbolicNames = compatProperties.stringPropertyNames();
+		_compatFragmentSymbolicNames =
+			compatFragmentProperties.stringPropertyNames();
+
+		url = modulesCompatBundle.getEntry(
+			"META-INF/compat-install.properties");
+
+		Properties compatInstallProperties = new Properties();
+
+		try (InputStream inputStream = url.openStream()) {
+			compatInstallProperties.load(inputStream);
+		}
+
+		_compatInstallSymbolicNames =
+			compatInstallProperties.stringPropertyNames();
 
 		_uninstallBundles(bundleContext);
 
@@ -102,6 +116,33 @@ public class ModuleCompatExtender {
 			moduleCompatExtenderConfiguration.modulesWhitelist());
 
 		Matcher matcher = pattern.matcher(StringPool.BLANK);
+
+		for (String compatInstallSymbolicName : _compatInstallSymbolicNames) {
+			matcher.reset(compatInstallSymbolicName);
+
+			if (matcher.matches()) {
+				url = modulesCompatBundle.getEntry(
+					compatInstallProperties.getProperty(
+						compatInstallSymbolicName));
+
+				try (InputStream inputStream = url.openStream()) {
+					String location = url.toString();
+
+					try {
+						Bundle bundle = bundleContext.installBundle(
+							location.concat("-compat"), inputStream);
+
+						bundle.start();
+					}
+					catch (BundleException be) {
+						_log.error(
+							"Unable to install comapt bundle " +
+								compatInstallSymbolicName,
+							be);
+					}
+				}
+			}
+		}
 
 		_bundleTracker = new BundleTracker<List<ServiceAdaptor<?, ?>>>(
 			bundleContext, ~Bundle.UNINSTALLED, null) {
@@ -124,8 +165,8 @@ public class ModuleCompatExtender {
 				matcher.reset(symbolicName);
 
 				if (matcher.matches()) {
-					String exportedPackages = compatProperties.getProperty(
-						symbolicName);
+					String exportedPackages =
+						compatFragmentProperties.getProperty(symbolicName);
 
 					if (Validator.isNull(exportedPackages)) {
 						return null;
@@ -322,20 +363,26 @@ public class ModuleCompatExtender {
 	private void _uninstallBundles(BundleContext bundleContext) {
 		List<Bundle> bundles = new ArrayList<>();
 
-		Set<String> compatSymbolicNames = _compatSymbolicNames;
+		Set<String> compatFragmentSymbolicNames = _compatFragmentSymbolicNames;
+
+		Set<String> compatInstallSymbolicNames = _compatInstallSymbolicNames;
 
 		for (Bundle bundle : bundleContext.getBundles()) {
 			String symbolicName = bundle.getSymbolicName();
 
-			if (compatSymbolicNames.contains(symbolicName)) {
+			if (compatFragmentSymbolicNames.contains(symbolicName)) {
 				bundles.add(bundle);
 
 				continue;
 			}
 
-			if (symbolicName.endsWith(".compat") &&
-				compatSymbolicNames.contains(
-					symbolicName.substring(0, symbolicName.length() - 7))) {
+			String location = bundle.getLocation();
+
+			if ((symbolicName.endsWith(".compat") &&
+				 compatFragmentSymbolicNames.contains(
+					 symbolicName.substring(0, symbolicName.length() - 7))) ||
+				(location.endsWith("-compat") &&
+				 compatInstallSymbolicNames.contains(symbolicName))) {
 
 				try {
 					bundle.uninstall();
@@ -353,6 +400,7 @@ public class ModuleCompatExtender {
 		ModuleCompatExtender.class.getName());
 
 	private BundleTracker<List<ServiceAdaptor<?, ?>>> _bundleTracker;
-	private Set<String> _compatSymbolicNames;
+	private Set<String> _compatFragmentSymbolicNames;
+	private Set<String> _compatInstallSymbolicNames;
 
 }

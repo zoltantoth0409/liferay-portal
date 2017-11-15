@@ -3,4 +3,4 @@ Bundle-SymbolicName: com.liferay.modules.compat
 Bundle-Version: 2.0.0
 -includeresource:\
 	@lib/com.liferay.modules.compat.data.jar!/*/packageinfo,\
-	@lib/com.liferay.modules.compat.data.jar!/META-INF/compat.properties
+	@lib/com.liferay.modules.compat.data.jar!/META-INF/compat-fragment.properties
