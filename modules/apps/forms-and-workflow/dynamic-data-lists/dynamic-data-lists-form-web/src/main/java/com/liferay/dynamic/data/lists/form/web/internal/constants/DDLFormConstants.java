@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.dynamic.data.lists.form.web.constants;
+package com.liferay.dynamic.data.lists.form.web.internal.constants;
 
 /**
  * @author Lino Alves
