@@ -1454,8 +1454,6 @@
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="Alert#viewSuccessMessage" />
-
 		<execute macro="CalendarNavigator#gotoView">
 			<var name="viewType" value="Month" />
 		</execute>
@@ -3561,12 +3559,6 @@
 			<var name="saveButton" value="Guardar" />
 			<var name="viewType" value="Week" />
 		</execute>
-
-		<execute macro="Navigator#gotoPage">
-			<var name="pageName" value="Calendar Page" />
-		</execute>
-
-		<execute macro="Alert#viewSuccessMessage" />
 
 		<execute macro="CalendarScheduler#viewLocalizedEvent">
 			<var name="eventTitle" value="Calendar Event Title" />
