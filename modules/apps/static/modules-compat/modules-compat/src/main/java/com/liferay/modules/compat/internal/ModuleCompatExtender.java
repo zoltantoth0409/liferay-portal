@@ -35,8 +35,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Enumeration;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -84,7 +82,8 @@ public class ModuleCompatExtender {
 			compatProperties.load(inputStream);
 		}
 
-		_uninstallBundles(bundleContext, compatProperties.propertyNames());
+		_uninstallBundles(
+			bundleContext, compatProperties.stringPropertyNames());
 
 		ModuleCompatExtenderConfiguration moduleCompatExtenderConfiguration =
 			ConfigurableUtil.createConfigurable(
@@ -141,7 +140,7 @@ public class ModuleCompatExtender {
 
 	@Deactivate
 	protected void deactivate(BundleContext bundleContext) {
-		_uninstallBundles(bundleContext, null);
+		_uninstallBundles(bundleContext, Collections.emptySet());
 	}
 
 	private String _generateExportString(
@@ -250,19 +249,7 @@ public class ModuleCompatExtender {
 	}
 
 	private void _uninstallBundles(
-		BundleContext bundleContext, Enumeration<?> names) {
-
-		Set<String> symbolicNames = _compatSymbolicNames;
-
-		if (symbolicNames == null) {
-			symbolicNames = new HashSet<>();
-
-			while (names.hasMoreElements()) {
-				symbolicNames.add((String)names.nextElement());
-			}
-
-			_compatSymbolicNames = symbolicNames;
-		}
+		BundleContext bundleContext, Set<String> symbolicNames) {
 
 		List<Bundle> bundles = new ArrayList<>();
 
@@ -293,7 +280,5 @@ public class ModuleCompatExtender {
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		ModuleCompatExtender.class.getName());
-
-	private Set<String> _compatSymbolicNames;
 
 }
