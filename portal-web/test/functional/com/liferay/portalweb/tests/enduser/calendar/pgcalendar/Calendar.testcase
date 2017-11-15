@@ -1049,8 +1049,6 @@
 	</command>
 
 	<command name="AddEventRepeatingMonthly2Times" priority="5">
-		<property name="portal.acceptance" value="true" />
-
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
@@ -1760,8 +1758,6 @@
 	</command>
 
 	<command name="AddResourceCalendarToOtherCalendars" priority="5">
-		<property name="portal.acceptance" value="true" />
-
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
@@ -2434,7 +2430,6 @@
 	</command>
 
 	<command name="DeleteEventRegular"  priority="5">
-		<property name="portal.acceptance" value="true" />
 		<property name="test.name.skip.portal.instance" value="Calendar#DeleteEventRegular" />
 
 		<execute macro="TestCase#getSiteName">
@@ -4691,7 +4686,6 @@
 	</command>
 
 	<command name="ViewCalendarTimeZoneDefaults" priority="5">
-		<property name="portal.acceptance" value="true" />
 		<property name="test.name.skip.portal.instance" value="Calendar#ViewCalendarTimeZoneDefaults" />
 
 		<execute macro="UserBar#gotoMyAccount" />
@@ -5807,8 +5801,6 @@
 	</command>
 
 	<command name="ViewWeekStartMonday" priority="5">
-		<property name="portal.acceptance" value="true" />
-
 		<description message="This is a use case for 51127." />
 
 		<execute macro="Navigator#gotoPage">
