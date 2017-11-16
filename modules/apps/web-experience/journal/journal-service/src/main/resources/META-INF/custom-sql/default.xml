@@ -180,13 +180,11 @@
 			LEFT JOIN
 				(
 					SELECT
-						JournalArticleLocalization.companyId, JournalArticleLocalization.articlePK,
-						JournalArticleLocalization.title
+						JournalArticleLocalization.companyId, JournalArticleLocalization.articlePK, JournalArticleLocalization.title
 					FROM
 						JournalArticleLocalization
 					GROUP BY
-						JournalArticleLocalization.companyId, JournalArticleLocalization.articlePK,
-						JournalArticleLocalization.title
+						JournalArticleLocalization.companyId, JournalArticleLocalization.articlePK, JournalArticleLocalization.title
 				) JournalArticleLocalization
 				ON
 					(JournalArticle.companyId = JournalArticleLocalization.companyId) AND
@@ -215,13 +213,11 @@
 			LEFT JOIN
 				(
 					SELECT
-						JournalArticleLocalization.companyId, JournalArticleLocalization.articlePK,
-						JournalArticleLocalization.title
+						JournalArticleLocalization.companyId, JournalArticleLocalization.articlePK, JournalArticleLocalization.title
 					FROM
 						JournalArticleLocalization
 					GROUP BY
-						JournalArticleLocalization.companyId, JournalArticleLocalization.articlePK,
-						JournalArticleLocalization.title
+						JournalArticleLocalization.companyId, JournalArticleLocalization.articlePK, JournalArticleLocalization.title
 				) JournalArticleLocalization
 				ON
 					(JournalArticle.companyId = JournalArticleLocalization.companyId) AND
@@ -251,13 +247,11 @@
 			LEFT JOIN
 				(
 					SELECT
-						JournalArticleLocalization.companyId, JournalArticleLocalization.articlePK,
-						JournalArticleLocalization.title
+						JournalArticleLocalization.companyId, JournalArticleLocalization.articlePK, JournalArticleLocalization.title
 					FROM
 						JournalArticleLocalization
 					GROUP BY
-						JournalArticleLocalization.companyId, JournalArticleLocalization.articlePK,
-						JournalArticleLocalization.title
+						JournalArticleLocalization.companyId, JournalArticleLocalization.articlePK, JournalArticleLocalization.title
 				) JournalArticleLocalization
 				ON
 					(JournalArticle.companyId = JournalArticleLocalization.companyId) AND
@@ -287,16 +281,14 @@
 			LEFT JOIN
 				(
 					SELECT
-						JournalArticleLocalization.companyId, JournalArticleLocalization.articlePK,
-						JournalArticleLocalization.title, JournalArticleLocalization.description
+						JournalArticleLocalization.companyId, JournalArticleLocalization.articlePK, JournalArticleLocalization.title, JournalArticleLocalization.description
 					FROM
 						JournalArticleLocalization
 					WHERE
 						(LOWER(JournalArticleLocalization.title) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
 						(JournalArticleLocalization.description LIKE ? [$AND_OR_NULL_CHECK$])
 					GROUP BY
-						JournalArticleLocalization.companyId, JournalArticleLocalization.articlePK,
-						JournalArticleLocalization.title, JournalArticleLocalization.description
+						JournalArticleLocalization.companyId, JournalArticleLocalization.articlePK, JournalArticleLocalization.title, JournalArticleLocalization.description
 				) JournalArticleLocalization
 				ON
 					(JournalArticle.companyId = JournalArticleLocalization.companyId) AND
