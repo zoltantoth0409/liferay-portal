@@ -125,10 +125,10 @@ public abstract class BasePortletLayoutFinder implements PortletLayoutFinder {
 		throws PortalException {
 
 		for (String portletId : portletIds) {
-			ObjectValuePair<Long, String> plidAndPortletId =
+			ObjectValuePair<Long, String> plidAndPortletIdObjectValuePair =
 				_getPlidPortletIdObjectValuePair(groupId, portletId);
 
-			long plid = plidAndPortletId.getKey();
+			long plid = plidAndPortletIdObjectValuePair.getKey();
 
 			if (plid == LayoutConstants.DEFAULT_PLID) {
 				continue;
@@ -142,7 +142,9 @@ public abstract class BasePortletLayoutFinder implements PortletLayoutFinder {
 				continue;
 			}
 
-			return new Object[] {plid, plidAndPortletId.getValue()};
+			return new Object[] {
+				plid, plidAndPortletIdObjectValuePair.getValue()
+			};
 		}
 
 		return null;
