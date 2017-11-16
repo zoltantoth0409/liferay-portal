@@ -102,7 +102,7 @@ public class BNDSourceUtil {
 		"Can-Redefine-Classes", "Can-Retransform-Classes",
 		"Eclipse-PlatformFilter", "Implementation-Version", "JPM-Command",
 		"Liferay-Configuration-Path", "Liferay-Export-JS-Submodules",
-		"Liferay-JS-Config", "Liferay-Modules-Compat-Adaptor",
+		"Liferay-JS-Config", "Liferay-Modules-Compat-Adapters",
 		"Liferay-Releng-App-Description",
 		"Liferay-Releng-Module-Group-Description",
 		"Liferay-Releng-Module-Group-Title", "Liferay-Require-SchemaVersion",
