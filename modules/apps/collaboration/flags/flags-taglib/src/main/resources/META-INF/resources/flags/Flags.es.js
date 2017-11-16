@@ -1,4 +1,6 @@
 import {Config} from 'metal-state';
+import dom from 'metal-dom';
+import Modal from 'metal-modal';
 import PortletBase from 'frontend-js-web/liferay/PortletBase.es';
 import Soy from 'metal-soy';
 
@@ -84,9 +86,7 @@ class Flags extends PortletBase {
 		let formData = new FormData();
 
 		for (let name in this.formData) {
-			if (Object.prototype.hasOwnProperty.call(this.formData, name)) {
-				formData.append(name, this.formData[name]);
-			}
+			formData.append(name, this.formData[name]);
 		}
 
 		fetch(this.uri, {
