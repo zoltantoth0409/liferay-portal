@@ -9,6 +9,7 @@ deploy {
 }
 
 dependencies {
+	provided group: "com.liferay", name: "com.liferay.petra.collection", version: "1.0.2"
 	provided group: "com.liferay", name: "org.freemarker", version: "2.3.23.LIFERAY-PATCHED-4"
 	provided project(":apps:foundation:portal-scripting:portal-scripting-executor")
 }

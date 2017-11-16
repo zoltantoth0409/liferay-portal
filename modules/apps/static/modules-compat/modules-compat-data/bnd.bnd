@@ -2,6 +2,7 @@ Bundle-Name: Liferay Modules Compat Data
 Bundle-SymbolicName: com.liferay.modules.compat.data
 Bundle-Version: 1.0.0
 Export-Package:\
+	com.liferay.petra.collection.stack,\
 	com.liferay.portal.scripting.executor.provider,\
 	\
 	freemarker,\
@@ -16,5 +17,9 @@ Export-Package:\
 	\
 	freemarker.template,\
 	freemarker.template.utility
--includeresource: @lib/org.freemarker.jar!/freemarker/*.class,\
-	@lib/com.liferay.portal.scripting.executor.jar!/com/liferay/portal/scripting/executor/provider/ScriptBundleProvider.class
+-includeresource:\
+	lib/com.liferay.petra.collection.jar,\
+	@lib/com.liferay.petra.collection.jar!/com/liferay/petra/collection/stack/FiniteStack.class,\
+	@lib/com.liferay.petra.collection.jar!/com/liferay/petra/collection/stack/FiniteUniqueStack.class,\
+	@lib/com.liferay.portal.scripting.executor.jar!/com/liferay/portal/scripting/executor/provider/ScriptBundleProvider.class,\
+	@lib/org.freemarker.jar!/freemarker/*.class
