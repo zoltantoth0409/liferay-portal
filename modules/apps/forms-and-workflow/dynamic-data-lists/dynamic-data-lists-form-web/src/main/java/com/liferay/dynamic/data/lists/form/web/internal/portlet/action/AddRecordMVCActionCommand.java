@@ -71,16 +71,18 @@ public class AddRecordMVCActionCommand extends BaseMVCActionCommand {
 		PortletSession portletSession = actionRequest.getPortletSession();
 
 		long groupId = ParamUtil.getLong(actionRequest, "groupId");
-		long recordSetId = ParamUtil.getLong(actionRequest, "recordSetId");
 
 		if (groupId == 0) {
 			groupId = GetterUtil.getLong(
 				portletSession.getAttribute(DDLFormWebKeys.GROUP_ID));
 		}
 
+		long recordSetId = ParamUtil.getLong(actionRequest, "recordSetId");
+
 		if (recordSetId == 0) {
 			recordSetId = GetterUtil.getLong(
-				portletSession.getAttribute(DDLFormWebKeys.RECORD_SET_ID));
+				portletSession.getAttribute(
+					DDLFormWebKeys.DYNAMIC_DATA_LISTS_RECORD_SET_ID));
 		}
 
 		DDLRecordSet recordSet = _ddlRecordSetService.getRecordSet(recordSetId);
@@ -123,9 +125,9 @@ public class AddRecordMVCActionCommand extends BaseMVCActionCommand {
 				actionRequest, portletId,
 				SessionMessages.KEY_SUFFIX_HIDE_DEFAULT_SUCCESS_MESSAGE);
 
-			portletSession.setAttribute(DDLFormWebKeys.GROUP_ID, groupId);
 			portletSession.setAttribute(
-				DDLFormWebKeys.RECORD_SET_ID, recordSetId);
+				DDLFormWebKeys.DYNAMIC_DATA_LISTS_RECORD_SET_ID, recordSetId);
+			portletSession.setAttribute(DDLFormWebKeys.GROUP_ID, groupId);
 
 			actionResponse.sendRedirect(redirectURL);
 		}
