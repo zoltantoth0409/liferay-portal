@@ -25,13 +25,21 @@ AssetRendererFactory assetRendererFactory = workflowTaskDisplayContext.getAssetR
 
 request.setAttribute(WebKeys.WORKFLOW_ASSET_PREVIEW, Boolean.TRUE);
 
+String languageId = LanguageUtil.getLanguageId(request);
+
+String[] availableLanguageIds = assetRenderer.getAvailableLanguageIds();
+
 portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(redirect);
 
-renderResponse.setTitle(assetRenderer.getTitle(locale));
+renderResponse.setTitle(assetRenderer.getTitle(workflowTaskDisplayContext.getTaskContentPreviewLocale()));
 %>
 
 <c:if test="<%= assetEntry != null %>">
+	<div class="locale-actions">
+		<liferay-ui:language formAction="<%= currentURL %>" languageId="<%= languageId %>" languageIds="<%= availableLanguageIds %>" />
+	</div>
+
 	<liferay-asset:asset-display
 		assetEntry="<%= assetEntry %>"
 		assetRenderer="<%= assetRenderer %>"

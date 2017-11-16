@@ -41,6 +41,7 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.PortletKeys;
@@ -71,6 +72,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
@@ -534,6 +536,21 @@ public class WorkflowTaskDisplayContext {
 		};
 	}
 
+	public Locale getTaskContentPreviewLocale() {
+		Locale locale = null;
+
+		String languageId = LanguageUtil.getLanguageId(_request);
+
+		if (Validator.isNotNull(languageId)) {
+			locale = LocaleUtil.fromLanguageId(languageId);
+		}
+		else {
+			locale = _workflowTaskRequestHelper.getLocale();
+		}
+
+		return locale;
+	}
+
 	public String getTaskContentTitle(WorkflowTask workflowTask)
 		throws PortalException {
 
@@ -542,8 +559,7 @@ public class WorkflowTaskDisplayContext {
 		long classPK = getWorkflowContextEntryClassPK(workflowTask);
 
 		return HtmlUtil.escape(
-			workflowHandler.getTitle(
-				classPK, _workflowTaskRequestHelper.getLocale()));
+			workflowHandler.getTitle(classPK, getTaskContentPreviewLocale()));
 	}
 
 	public String getTaskInitiallyAssignedMessageArguments(
