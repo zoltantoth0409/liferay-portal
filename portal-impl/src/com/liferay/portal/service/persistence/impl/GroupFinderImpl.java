@@ -155,12 +155,27 @@ public class GroupFinderImpl
 	public int countByLayouts(
 		long companyId, long parentGroupId, boolean site) {
 
+		return countByLayouts(companyId, parentGroupId, site, null);
+	}
+
+	@Override
+	public int countByLayouts(
+		long companyId, long parentGroupId, boolean site, Boolean active) {
+
 		Session session = null;
 
 		try {
 			session = openSession();
 
 			String sql = CustomSQLUtil.get(COUNT_BY_LAYOUTS);
+
+			if (active != null) {
+				sql = StringUtil.replace(
+					sql, "[$ACTIVE$]", "AND (Group_.active_ = ?)");
+			}
+			else {
+				sql = StringUtil.replace(sql, "[$ACTIVE$]", StringPool.BLANK);
+			}
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
@@ -171,6 +186,10 @@ public class GroupFinderImpl
 			qPos.add(companyId);
 			qPos.add(parentGroupId);
 			qPos.add(site);
+
+			if (active != null) {
+				qPos.add(active);
+			}
 
 			Iterator<Long> itr = q.iterate();
 
@@ -481,21 +500,10 @@ public class GroupFinderImpl
 		}
 	}
 
-	/**
-	 * @deprecated As of 7.0.0
-	 */
-	@Deprecated
 	@Override
 	public List<Group> findByLayouts(
-		long companyId, long parentGroupId, boolean site, int start, int end) {
-
-		return findByLayouts(companyId, parentGroupId, site, start, end, null);
-	}
-
-	@Override
-	public List<Group> findByLayouts(
-		long companyId, long parentGroupId, boolean site, int start, int end,
-		OrderByComparator<Group> obc) {
+		long companyId, long parentGroupId, boolean site, Boolean active,
+		int start, int end, OrderByComparator<Group> obc) {
 
 		Session session = null;
 
@@ -505,6 +513,14 @@ public class GroupFinderImpl
 			String sql = CustomSQLUtil.get(FIND_BY_LAYOUTS);
 
 			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
+
+			if (active != null) {
+				sql = StringUtil.replace(
+					sql, "[$ACTIVE$]", "AND (Group_.active_ = ?)");
+			}
+			else {
+				sql = StringUtil.replace(sql, "[$ACTIVE$]", StringPool.BLANK);
+			}
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
@@ -516,6 +532,10 @@ public class GroupFinderImpl
 			qPos.add(parentGroupId);
 			qPos.add(site);
 
+			if (active != null) {
+				qPos.add(active);
+			}
+
 			return q.list(true);
 		}
 		catch (Exception e) {
@@ -524,6 +544,27 @@ public class GroupFinderImpl
 		finally {
 			closeSession(session);
 		}
+	}
+
+	/**
+	 * @deprecated As of 7.0.0
+	 */
+	@Deprecated
+	@Override
+	public List<Group> findByLayouts(
+		long companyId, long parentGroupId, boolean site, int start, int end) {
+
+		return findByLayouts(
+			companyId, parentGroupId, site, null, start, end, null);
+	}
+
+	@Override
+	public List<Group> findByLayouts(
+		long companyId, long parentGroupId, boolean site, int start, int end,
+		OrderByComparator<Group> obc) {
+
+		return findByLayouts(
+			companyId, parentGroupId, site, null, start, end, obc);
 	}
 
 	@Override
