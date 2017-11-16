@@ -133,7 +133,7 @@
 	</command>
 
 	<command name="EditDocument" priority="5">
-		<property name="portal.acceptance" value="ture" />
+		<property name="portal.acceptance" value="true" />
 
 		<execute macro="Navigator#openURL" />
 
@@ -499,7 +499,7 @@
 	</command>
 
 	<command name="ViewImageEditorControls" priority="5">
-		<property name="portal.acceptance" value="true" />
+		<property name="portal.acceptance" value="false" />
 
 		<execute macro="Navigator#openURL" />
 
