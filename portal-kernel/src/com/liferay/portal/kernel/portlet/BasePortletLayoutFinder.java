@@ -189,7 +189,7 @@ public abstract class BasePortletLayoutFinder implements PortletLayoutFinder {
 
 	}
 
-	private ObjectValuePair<Long, String> _doGetPlidPortletIdObjectValuePair(
+	private ObjectValuePair<Long, String> _getPlidPortletIdObjectValuePair(
 			long groupId, long scopeGroupId, String portletId)
 		throws PortalException {
 
@@ -222,7 +222,7 @@ public abstract class BasePortletLayoutFinder implements PortletLayoutFinder {
 		Layout scopeLayout = LayoutLocalServiceUtil.getLayout(
 			group.getClassPK());
 
-		return _doGetPlidPortletIdObjectValuePair(
+		return _getPlidPortletIdObjectValuePair(
 			scopeLayout.getGroupId(), groupId, portletId);
 	}
 
