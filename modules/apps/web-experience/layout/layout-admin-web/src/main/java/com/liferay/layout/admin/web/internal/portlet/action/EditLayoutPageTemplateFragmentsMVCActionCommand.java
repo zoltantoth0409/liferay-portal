@@ -50,13 +50,13 @@ public class EditLayoutPageTemplateFragmentsMVCActionCommand
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			actionRequest);
-
 		long layoutPageTemplateId = ParamUtil.getLong(
 			actionRequest, "layoutPageTemplateId");
 		long[] fragmentIds = ParamUtil.getLongValues(
 			actionRequest, "fragmentIds");
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			actionRequest);
 
 		_layoutPageTemplateEntryService.updateLayoutPageTemplateEntry(
 			layoutPageTemplateId, fragmentIds, serviceContext);
