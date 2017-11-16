@@ -100,11 +100,11 @@ public class LayoutPageTemplateDisplayContext {
 	}
 
 	public JSONArray getFragmentCollectionsJSONArray() throws PortalException {
-		ThemeDisplay themeDisplay = (ThemeDisplay)_request.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		JSONArray fragmentCollectionsJSONArray =
 			JSONFactoryUtil.createJSONArray();
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)_request.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
 		List<FragmentCollection> fragmentCollections =
 			FragmentCollectionServiceUtil.getFragmentCollections(
