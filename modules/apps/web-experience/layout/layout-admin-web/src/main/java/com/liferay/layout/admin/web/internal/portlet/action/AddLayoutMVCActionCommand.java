@@ -169,8 +169,7 @@ public class AddLayoutMVCActionCommand extends BaseMVCActionCommand {
 				LayoutConstants.TYPE_PORTLET, typeSettingsProperties.toString(),
 				hidden, friendlyURLMap, serviceContext);
 
-			// Force propagation from page template to page.
-			// See LPS-48430.
+			// Force propagation from page template to page. See LPS-48430.
 
 			SitesUtil.mergeLayoutPrototypeLayout(layout.getGroup(), layout);
 		}
