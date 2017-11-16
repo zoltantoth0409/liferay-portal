@@ -87,7 +87,7 @@ public class ModuleCompatExtender {
 			compatFragmentProperties.load(inputStream);
 		}
 
-		_compatFragmentSymbolicNames =
+		_compatHostBundleSymbolicNames =
 			compatFragmentProperties.stringPropertyNames();
 
 		url = modulesCompatBundle.getEntry(
@@ -363,14 +363,15 @@ public class ModuleCompatExtender {
 	private void _uninstallBundles(BundleContext bundleContext) {
 		List<Bundle> bundles = new ArrayList<>();
 
-		Set<String> compatFragmentSymbolicNames = _compatFragmentSymbolicNames;
+		Set<String> compatHostBundleSymbolicNames =
+			_compatHostBundleSymbolicNames;
 
 		Set<String> compatInstallSymbolicNames = _compatInstallSymbolicNames;
 
 		for (Bundle bundle : bundleContext.getBundles()) {
 			String symbolicName = bundle.getSymbolicName();
 
-			if (compatFragmentSymbolicNames.contains(symbolicName)) {
+			if (compatHostBundleSymbolicNames.contains(symbolicName)) {
 				bundles.add(bundle);
 
 				continue;
@@ -379,7 +380,7 @@ public class ModuleCompatExtender {
 			String location = bundle.getLocation();
 
 			if ((symbolicName.endsWith(".compat") &&
-				 compatFragmentSymbolicNames.contains(
+				 compatHostBundleSymbolicNames.contains(
 					 symbolicName.substring(0, symbolicName.length() - 7))) ||
 				(location.endsWith("-compat") &&
 				 compatInstallSymbolicNames.contains(symbolicName))) {
@@ -400,7 +401,7 @@ public class ModuleCompatExtender {
 		ModuleCompatExtender.class.getName());
 
 	private BundleTracker<List<ServiceAdaptor<?, ?>>> _bundleTracker;
-	private Set<String> _compatFragmentSymbolicNames;
+	private Set<String> _compatHostBundleSymbolicNames;
 	private Set<String> _compatInstallSymbolicNames;
 
 }
