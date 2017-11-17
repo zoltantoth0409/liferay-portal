@@ -743,7 +743,7 @@ public class TopLevelBuild extends BaseBuild {
 	protected Element getJenkinsReportDownstreamTableElement(
 		String result, String status, String captionText) {
 
-		List<Element> tableRowElements = getJenkinsReportTableRowsElements(
+		List<Element> tableRowElements = getJenkinsReportTableRowElements(
 			result, status);
 
 		if (tableRowElements.isEmpty()) {

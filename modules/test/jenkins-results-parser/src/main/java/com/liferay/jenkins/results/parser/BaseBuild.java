@@ -1748,7 +1748,7 @@ public abstract class BaseBuild implements Build {
 		return buildInfoElement;
 	}
 
-	protected List<Element> getJenkinsReportTableRowsElements(
+	protected List<Element> getJenkinsReportTableRowElements(
 		String result, String status) {
 
 		List<Element> tableRowElements = new ArrayList<>();
@@ -1773,7 +1773,7 @@ public abstract class BaseBuild implements Build {
 			BaseBuild downstreamBaseBuild = (BaseBuild)downstreamBuild;
 
 			tableRowElements.addAll(
-				downstreamBaseBuild.getJenkinsReportTableRowsElements(
+				downstreamBaseBuild.getJenkinsReportTableRowElements(
 					result, status));
 		}
 
