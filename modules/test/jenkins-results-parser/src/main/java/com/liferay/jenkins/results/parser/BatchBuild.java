@@ -418,7 +418,7 @@ public class BatchBuild extends BaseBuild {
 	}
 
 	@Override
-	protected List<Element> getJenkinsReportTableRowsElements(
+	protected List<Element> getJenkinsReportTableRowElements(
 		String result, String status) {
 
 		List<Element> tableRowElements = new ArrayList<>();

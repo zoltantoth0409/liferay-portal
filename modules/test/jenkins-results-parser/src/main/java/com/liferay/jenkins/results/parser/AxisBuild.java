@@ -402,7 +402,7 @@ public class AxisBuild extends BaseBuild {
 	}
 
 	@Override
-	protected List<Element> getJenkinsReportTableRowsElements(
+	protected List<Element> getJenkinsReportTableRowElements(
 		String result, String status) {
 
 		return Collections.emptyList();
