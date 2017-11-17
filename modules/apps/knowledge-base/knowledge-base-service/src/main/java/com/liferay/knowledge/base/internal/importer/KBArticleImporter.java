@@ -167,6 +167,39 @@ public class KBArticleImporter {
 		}
 	}
 
+	protected double getKBArchiveResourcePriority(
+			KBArchive.Resource kbArchiveResource)
+		throws KBArticleImportException {
+
+		String fileName = kbArchiveResource.getName();
+
+		int slashIndex = fileName.lastIndexOf(StringPool.SLASH);
+
+		String shortFileName = StringPool.BLANK;
+
+		if ((slashIndex > -1) && (fileName.length() > (slashIndex + 1))) {
+			shortFileName = fileName.substring(slashIndex + 1);
+		}
+
+		String leadingDigits = StringUtil.extractLeadingDigits(shortFileName);
+
+		double priority;
+
+		try {
+			priority = Double.parseDouble(leadingDigits);
+		}
+		catch (NumberFormatException nfe) {
+			throw new KBArticleImportException(
+				"Invalid numerical prefix of file: " + fileName, nfe);
+		}
+
+		if (priority < 1.0) {
+			priority = 1.0;
+		}
+
+		return priority;
+	}
+
 	protected Map<String, String> getMetadata(ZipReader zipReader)
 		throws KBArticleImportException {
 
@@ -202,38 +235,6 @@ public class KBArticleImporter {
 		finally {
 			StreamUtil.cleanUp(inputStream);
 		}
-	}
-
-	protected double getNonIntroFilePriority(KBArchive.Resource nonIntroFile)
-		throws KBArticleImportException {
-
-		String fileName = nonIntroFile.getName();
-
-		int slashIndex = fileName.lastIndexOf(StringPool.SLASH);
-
-		String shortFileName = StringPool.BLANK;
-
-		if ((slashIndex > -1) && (fileName.length() > (slashIndex + 1))) {
-			shortFileName = fileName.substring(slashIndex + 1);
-		}
-
-		String leadingDigits = StringUtil.extractLeadingDigits(shortFileName);
-
-		double priority;
-
-		try {
-			priority = Double.parseDouble(leadingDigits);
-		}
-		catch (NumberFormatException nfe) {
-			throw new KBArticleImportException(
-				"Invalid numerical prefix of file: " + fileName, nfe);
-		}
-
-		if (priority < 1.0) {
-			priority = 1.0;
-		}
-
-		return priority;
 	}
 
 	protected int processKBArticleFiles(
@@ -281,7 +282,8 @@ public class KBArticleImporter {
 				introFileNameKBArticleMap.put(introFile, introKBArticle);
 
 				if (prioritizeByNumericalPrefix) {
-					double introFilePriority = getNonIntroFilePriority(folder);
+					double introFilePriority = getKBArchiveResourcePriority(
+						folder);
 
 					KBArticleLocalServiceUtil.moveKBArticle(
 						userId, introKBArticle.getResourcePrimKey(),
@@ -319,7 +321,8 @@ public class KBArticleImporter {
 				importedKBArticlesCount++;
 
 				if (prioritizeByNumericalPrefix) {
-					double nonIntroFilePriority = getNonIntroFilePriority(file);
+					double nonIntroFilePriority = getKBArchiveResourcePriority(
+						file);
 
 					KBArticleLocalServiceUtil.moveKBArticle(
 						userId, kbArticle.getResourcePrimKey(),
