@@ -2214,7 +2214,7 @@ public abstract class BaseBuild implements Build {
 	}
 
 	protected void setResult(String result) {
-		if (_changed(result, _result)) {
+		if (_isDifferent(result, _result)) {
 			_result = result;
 
 			if (_result == null) {
@@ -2227,7 +2227,7 @@ public abstract class BaseBuild implements Build {
 	}
 
 	protected void setStatus(String status) {
-		if (_changed(status, _status)) {
+		if (_isDifferent(status, _status)) {
 			_status = status;
 
 			statusModifiedTime = System.currentTimeMillis();
@@ -2392,7 +2392,7 @@ public abstract class BaseBuild implements Build {
 
 	}
 
-	private boolean _changed(String newValue, String oldValue) {
+	private boolean _isDifferent(String newValue, String oldValue) {
 		if (oldValue == null) {
 			if (newValue != null) {
 				return true;
