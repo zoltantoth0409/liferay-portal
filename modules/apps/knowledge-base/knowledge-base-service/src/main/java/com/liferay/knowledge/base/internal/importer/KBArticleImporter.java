@@ -76,8 +76,8 @@ public class KBArticleImporter {
 			Map<String, String> metadata = getMetadata(zipReader);
 
 			return processKBArticleFiles(
-				userId, groupId, parentKBFolderId, zipReader, metadata,
-				prioritizeByNumericalPrefix, serviceContext);
+				userId, groupId, parentKBFolderId, prioritizeByNumericalPrefix,
+				zipReader, metadata, serviceContext);
 		}
 		catch (IOException ioe) {
 			throw new KBArticleImportException(ioe);
@@ -271,8 +271,8 @@ public class KBArticleImporter {
 
 	protected int processKBArticleFiles(
 			long userId, long groupId, long parentKBFolderId,
-			ZipReader zipReader, Map<String, String> metadata,
-			boolean prioritizeByNumericalPrefix, ServiceContext serviceContext)
+			boolean prioritizeByNumericalPrefix, ZipReader zipReader,
+			Map<String, String> metadata, ServiceContext serviceContext)
 		throws PortalException {
 
 		int importedKBArticlesCount = 0;
