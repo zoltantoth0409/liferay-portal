@@ -676,7 +676,7 @@ public class TopLevelBuild extends BaseBuild {
 			}
 			catch (DocumentException de) {
 				throw new RuntimeException(
-					"Unable to parse description html " + description, de);
+					"Unable to parse description HTML " + description, de);
 			}
 		}
 
