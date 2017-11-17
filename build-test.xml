@@ -1685,7 +1685,9 @@ war.path=${app.server.weblogic.portal.dir}/</echo>
 						replace=""
 					/>
 
-					<echo append="true" file="portal-impl/src/portal-ext.properties" />
+					<echo append="true" file="portal-impl/src/portal-ext.properties">
+
+ @{property}</echo>
 				</sequential>
 			</for>
 		</sequential>
