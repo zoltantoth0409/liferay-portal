@@ -136,7 +136,6 @@ gradle.beforeProject {
 			node {
 				global = false
 				nodeVersion = "6.6.0"
-				npmArgs "--no-package-lock"
 			}
 		}
 
