@@ -979,7 +979,7 @@ public class PortletURLImpl
 				continue;
 			}
 
-			if (!resourcePhase) {
+			if (!_lifecycle.equals(PortletRequest.RESOURCE_PHASE)) {
 				String publicRenderParameterName = getPublicRenderParameterName(
 					name);
 
@@ -1148,7 +1148,7 @@ public class PortletURLImpl
 				continue;
 			}
 
-			if (resourcePhase) {
+			if (_lifecycle.equals(PortletRequest.RESOURCE_PHASE)) {
 				String publicRenderParameterName = getPublicRenderParameterName(
 					name);
 
