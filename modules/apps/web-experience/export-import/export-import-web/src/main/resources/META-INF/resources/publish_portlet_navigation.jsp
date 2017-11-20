@@ -16,14 +16,13 @@
 
 <%@ include file="/init.jsp" %>
 
-<liferay-staging:defineObjects />
-
 <%
-	String tabs3 = ParamUtil.getString(request, "tabs3", "new-publication-process");
+String tabs3 = ParamUtil.getString(request, "tabs3", "new-publication-process");
 
-	PortletURL portletURL = renderResponse.createRenderURL();
-	portletURL.setParameter("mvcRenderCommandName", "publishPortlet");
-	portletURL.setParameter("portletResource", portletResource);
+PortletURL portletURL = renderResponse.createRenderURL();
+
+portletURL.setParameter("mvcRenderCommandName", "publishPortlet");
+portletURL.setParameter("portletResource", portletResource);
 %>
 
 <c:if test="<%= (themeDisplay.getURLPublishToLive() != null) || layout.isTypeControlPanel() %>">
@@ -31,35 +30,22 @@
 		<aui:nav cssClass="navbar-nav">
 
 			<%
-				portletURL.setParameter("tabs3", "new-publication-process");
+			portletURL.setParameter("tabs3", "new-publication-process");
 			%>
 
-			<aui:nav-item
-				href="<%= portletURL.toString() %>"
-				label="new-publication-process"
-				selected='<%= tabs3.equals("new-publication-process") %>'
-			/>
+			<aui:nav-item href="<%= portletURL.toString() %>" label="new-publication-process" selected='<%= tabs3.equals("new-publication-process") %>' />
 
 			<%
-				portletURL.setParameter("tabs3", "copy-from-live");
+			portletURL.setParameter("tabs3", "copy-from-live");
 			%>
 
-			<aui:nav-item
-				href="<%= portletURL.toString() %>"
-				label="copy-from-live"
-				selected='<%= tabs3.equals("copy-from-live") %>'
-			/>
+			<aui:nav-item href="<%= portletURL.toString() %>" label="copy-from-live" selected='<%= tabs3.equals("copy-from-live") %>' />
 
 			<%
-				portletURL.setParameter("tabs3", "current-and-previous");
+			portletURL.setParameter("tabs3", "current-and-previous");
 			%>
 
-			<aui:nav-item
-				href="<%= portletURL.toString() %>"
-				label="current-and-previous"
-				selected='<%= tabs3.equals("current-and-previous") %>'
-			/>
-
+			<aui:nav-item href="<%= portletURL.toString() %>" label="current-and-previous" selected='<%= tabs3.equals("current-and-previous") %>' />
 		</aui:nav>
 	</aui:nav-bar>
 </c:if>
