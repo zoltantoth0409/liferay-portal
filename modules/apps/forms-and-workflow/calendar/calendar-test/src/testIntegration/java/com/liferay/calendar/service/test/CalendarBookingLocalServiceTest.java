@@ -2084,7 +2084,7 @@ public class CalendarBookingLocalServiceTest {
 		Assert.assertEquals(
 			mailMessages.toString(), mailMessage.getBody(), expectedBody);
 	}
-	
+
 	protected void assertSameDay(
 		java.util.Calendar expectedJCalendar,
 		java.util.Calendar actualJCalendar) {
