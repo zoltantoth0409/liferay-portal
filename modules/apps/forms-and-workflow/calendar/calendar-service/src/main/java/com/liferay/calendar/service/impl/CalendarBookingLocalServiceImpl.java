@@ -60,6 +60,7 @@ import com.liferay.portal.kernel.sanitizer.SanitizerUtil;
 import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.SystemEventLocalService;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
@@ -75,6 +76,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.workflow.WorkflowHandlerRegistryUtil;
+import com.liferay.portal.spring.extender.service.ServiceReference;
 import com.liferay.social.kernel.model.SocialActivityConstants;
 import com.liferay.trash.kernel.exception.RestoreEntryException;
 import com.liferay.trash.kernel.exception.TrashEntryException;
@@ -978,6 +980,24 @@ public class CalendarBookingLocalServiceImpl
 		CalendarBooking calendarBooking =
 			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
 
+		boolean calendarChanged = false;
+
+		if (calendarId != calendarBooking.getCalendarId()) {
+			calendarChanged = true;
+		}
+
+		if (calendarChanged &&
+			(calendarLocalService.isStagingCalendar(calendar) ||
+			 isStagingCalendarBooking(calendarBooking))) {
+
+			systemEventLocalService.addSystemEvent(
+				userId, calendarBooking.getGroupId(),
+				CalendarBooking.class.getName(),
+				calendarBooking.getCalendarBookingId(),
+				calendarBooking.getUuid(), null,
+				SystemEventConstants.TYPE_DELETE, StringPool.BLANK);
+		}
+
 		for (Map.Entry<Locale, String> entry : descriptionMap.entrySet()) {
 			String sanitizedDescription = SanitizerUtil.sanitize(
 				calendar.getCompanyId(), calendar.getGroupId(), userId,
@@ -1690,6 +1710,9 @@ public class CalendarBookingLocalServiceImpl
 			throw new CalendarBookingRecurrenceException();
 		}
 	}
+
+	@ServiceReference(type = SystemEventLocalService.class)
+	protected SystemEventLocalService systemEventLocalService;
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		CalendarBookingLocalServiceImpl.class);
