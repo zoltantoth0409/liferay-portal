@@ -119,6 +119,10 @@ public class LayoutPageTemplateDisplayContext {
 				continue;
 			}
 
+			fragmentCollectionJSONObject.put(
+				"fragmentCollectionId",
+				fragmentCollection.getFragmentCollectionId());
+
 			JSONObject fragmentCollectionJSONObject =
 				JSONFactoryUtil.createJSONObject();
 
@@ -139,9 +143,6 @@ public class LayoutPageTemplateDisplayContext {
 			fragmentCollectionJSONObject.put(
 				"fragmentEntries", fragmentEntriesJSONArray);
 
-			fragmentCollectionJSONObject.put(
-				"fragmentCollectionId",
-				fragmentCollection.getFragmentCollectionId());
 			fragmentCollectionJSONObject.put(
 				"name", fragmentCollection.getName());
 
