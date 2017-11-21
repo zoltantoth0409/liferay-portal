@@ -43,15 +43,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
-
 /**
  * @author James Hinkey
  * @author Sergio González
  * @author Jesse Rao
  */
-@Component(service = KBArticleImporter.class)
 public class KBArticleImporter {
 
 	public KBArticleImporter(KBArchiveFactory kbArchiveFactory, Portal portal) {
@@ -325,17 +321,10 @@ public class KBArticleImporter {
 		return importedKBArticlesCount;
 	}
 
-	@Reference(unbind = "-")
-	protected void setKBArchiveFactory(KBArchiveFactory kbArchiveFactory) {
-		_kbArchiveFactory = kbArchiveFactory;
-	}
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		KBArticleImporter.class);
 
-	private KBArchiveFactory _kbArchiveFactory;
-
-	@Reference
-	private Portal _portal;
+	private final KBArchiveFactory _kbArchiveFactory;
+	private final Portal _portal;
 
 }
