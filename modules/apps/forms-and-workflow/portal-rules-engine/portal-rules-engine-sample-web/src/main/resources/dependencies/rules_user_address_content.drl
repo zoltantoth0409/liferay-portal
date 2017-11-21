@@ -197,3 +197,4 @@ rule "Get Indian Content"
 		};
 
 		retract(userAddress);
+end
