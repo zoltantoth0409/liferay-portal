@@ -86,7 +86,6 @@ public class CalendarActivityInterpreter extends BaseSocialActivityInterpreter {
 		portletURL.setParameter("backURL", serviceContext.getCurrentURL());
 		portletURL.setParameter(
 			"calendarBookingId", String.valueOf(activity.getClassPK()));
-
 		portletURL.setWindowState(WindowState.MAXIMIZED);
 
 		return portletURL.toString();
