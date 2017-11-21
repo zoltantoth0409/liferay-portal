@@ -10,8 +10,8 @@ dependencies {
 	provided group: "com.liferay", name: "com.liferay.petra.collection", version: "1.0.2"
 	provided group: "com.liferay", name: "com.liferay.portal.scripting.executor", version: "3.0.0"
 	provided group: "com.liferay", name: "org.freemarker", version: "2.3.23.LIFERAY-PATCHED-4"
+	provided project(":apps:collaboration:wiki:wiki-engine-input-editor-common")
 }
-
 updateFileVersions {
 	exactVersion = true
 }

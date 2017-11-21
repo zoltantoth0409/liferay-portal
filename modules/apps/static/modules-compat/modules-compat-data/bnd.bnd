@@ -4,6 +4,7 @@ Bundle-Version: 1.0.3
 Export-Package:\
 	com.liferay.petra.collection.stack,\
 	com.liferay.portal.scripting.executor.provider,\
+	com.liferay.wiki.engine.input.editor.common,\
 	\
 	freemarker,\
 	\
@@ -22,4 +23,5 @@ Export-Package:\
 	@lib/com.liferay.petra.collection.jar!/com/liferay/petra/collection/stack/FiniteStack.class,\
 	@lib/com.liferay.petra.collection.jar!/com/liferay/petra/collection/stack/FiniteUniqueStack.class,\
 	@lib/com.liferay.portal.scripting.executor.jar!/com/liferay/portal/scripting/executor/provider/ScriptBundleProvider.class,\
+	@lib/com.liferay.wiki.engine.input.editor.common.jar!/com/liferay/wiki/engine/input/editor/common/BaseInputEditorWikiEngine.class,\
 	@lib/org.freemarker.jar!/freemarker/*.class
