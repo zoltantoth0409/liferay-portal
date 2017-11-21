@@ -66,7 +66,6 @@ function List getAssetEntries(
 	SearchContext searchContext = new SearchContext();
 
 	searchContext.setAndSearch(true);
-
 	searchContext.setAssetTagNames(new String[]{assetTagName});
 	searchContext.setAttribute("paginationType", "regular");
 	searchContext.setCompanyId(user.getCompanyId());
