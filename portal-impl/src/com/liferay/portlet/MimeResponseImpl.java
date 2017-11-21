@@ -144,7 +144,7 @@ public abstract class MimeResponseImpl
 
 	@Override
 	public void setContentType(String contentType) {
-		if (_calledGetWriter || _calledGetPortletOutputStream) {
+		if (_calledGetPortletOutputStream || _calledGetWriter) {
 			return;
 		}
 
