@@ -79,7 +79,7 @@ import org.osgi.framework.ServiceRegistration;
  */
 @RunWith(Arquillian.class)
 @Sync
-public class AMImageEntryLocalServiceImplTest {
+public class AMImageEntryLocalServiceTest {
 
 	@ClassRule
 	@Rule
@@ -95,7 +95,7 @@ public class AMImageEntryLocalServiceImplTest {
 		deleteAllAMImageConfigurationEntries();
 
 		Bundle bundle = FrameworkUtil.getBundle(
-			AMImageEntryLocalServiceImplTest.class);
+			AMImageEntryLocalServiceTest.class);
 
 		_bundleContext = bundle.getBundleContext();
 	}
@@ -652,7 +652,7 @@ public class AMImageEntryLocalServiceImplTest {
 
 	private byte[] _getImageBytes() throws Exception {
 		return FileUtil.getBytes(
-			AMImageEntryLocalServiceImplTest.class,
+			AMImageEntryLocalServiceTest.class,
 			"/com/liferay/adaptive/media/image/dependencies/image.jpg");
 	}
 
