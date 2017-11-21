@@ -137,7 +137,7 @@
 	</command>
 
 	<command name="viewFormTableEntry">
-		<var method="StringUtil#toLowerCase('${fieldLabel}')" name="key_fieldLabel" />
+		<var method="StringUtil#lowerCase('${fieldLabel}')" name="key_fieldLabel" />
 		<var method="StringUtil#replace('${key_fieldLabel}', ' ', '-')" name="key_fieldLabel" />
 		<var name="key_fieldValue" value="${fieldValue}" />
 
@@ -145,7 +145,7 @@
 	</command>
 
 	<command name="viewFormTableEntryNotPresent">
-		<var method="StringUtil#toLowerCase('${fieldLabel}')" name="key_fieldLabel" />
+		<var method="StringUtil#lowerCase('${fieldLabel}')" name="key_fieldLabel" />
 		<var method="StringUtil#replace('${key_fieldLabel}', ' ', '-')" name="key_fieldLabel" />
 		<var name="key_fieldValue" value="${fieldValue}" />
 
@@ -207,7 +207,7 @@
 	</command>
 
 	<command name="viewTableEntryNotPresent">
-		<var method="StringUtil#toLowerCase('${fieldLabel}')" name="key_fieldLabel" />
+		<var method="StringUtil#lowerCase('${fieldLabel}')" name="key_fieldLabel" />
 		<var method="StringUtil#replace('${key_fieldLabel}', ' ', '-')" name="key_fieldLabel" />
 		<var name="key_fieldValue" value="${fieldValue}" />
 
