@@ -49,7 +49,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.ClassRule;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -89,7 +88,6 @@ public class FindActionTest {
 		};
 	}
 
-	@Ignore
 	@Test
 	public void testGetPlidAndPortletIdViewInContext() throws Exception {
 		addLayouts(true, false);
