@@ -103,20 +103,13 @@ public class FindActionTest {
 		Assert.assertEquals(portletId, result.getPortletId());
 	}
 
-	@Test
+	@Test(expected = NoSuchLayoutException.class)
 	public void testGetPlidAndPortletIdWhenPortletDoesNotExist()
 		throws Exception {
 
 		addLayouts(false, false);
 
-		try {
-			_portletLayoutFinder.find(
-				getThemeDisplay(), _blogsEntry.getGroupId());
-
-			Assert.fail();
-		}
-		catch (NoSuchLayoutException nsle) {
-		}
+		_portletLayoutFinder.find(getThemeDisplay(), _blogsEntry.getGroupId());
 	}
 
 	@Test
