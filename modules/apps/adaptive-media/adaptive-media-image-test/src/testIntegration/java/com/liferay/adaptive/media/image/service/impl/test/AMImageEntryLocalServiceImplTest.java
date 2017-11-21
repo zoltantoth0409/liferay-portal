@@ -51,8 +51,6 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.repository.liferayrepository.model.LiferayFileEntry;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.registry.Registry;
-import com.liferay.registry.RegistryUtil;
 
 import java.io.IOException;
 
@@ -92,11 +90,6 @@ public class AMImageEntryLocalServiceImplTest {
 
 	@Before
 	public void setUp() throws Exception {
-		Registry registry = RegistryUtil.getRegistry();
-
-		_amImageConfigurationHelper = registry.getService(
-			AMImageConfigurationHelper.class);
-
 		_group = GroupTestUtil.addGroup();
 
 		deleteAllAMImageConfigurationEntries();
@@ -682,7 +675,9 @@ public class AMImageEntryLocalServiceImplTest {
 		}
 	}
 
+	@Inject
 	private AMImageConfigurationHelper _amImageConfigurationHelper;
+
 	private BundleContext _bundleContext;
 
 	@Inject
