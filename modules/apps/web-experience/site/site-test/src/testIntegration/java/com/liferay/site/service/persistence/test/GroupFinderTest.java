@@ -224,7 +224,7 @@ public class GroupFinderTest {
 	}
 
 	@Test
-	public void testFindByLayouts() throws Exception {
+	public void testFindByLayouts1() throws Exception {
 		List<Group> groups = findByLayouts(
 			GroupConstants.DEFAULT_PARENT_GROUP_ID);
 
@@ -259,7 +259,7 @@ public class GroupFinderTest {
 	}
 
 	@Test
-	public void testFindByLayoutsAndActiveGroup() throws Exception {
+	public void testFindByLayouts2() throws Exception {
 		int initialGroupCount = GroupFinderUtil.countByLayouts(
 			TestPropsValues.getCompanyId(),
 			GroupConstants.DEFAULT_PARENT_GROUP_ID, true, true);
