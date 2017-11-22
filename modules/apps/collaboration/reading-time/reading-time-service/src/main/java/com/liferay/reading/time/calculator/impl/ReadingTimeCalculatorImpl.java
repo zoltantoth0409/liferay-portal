@@ -74,12 +74,13 @@ public class ReadingTimeCalculatorImpl implements ReadingTimeCalculator {
 		Document document = Jsoup.parseBodyFragment(content);
 
 		String rawText = document.text();
-		List<Element> images = document.getElementsByTag("img");
 
 		String[] words = rawText.split("(?:\\h|\\v)+");
 
 		Duration readingTimeDuration = Duration.ofSeconds(
 			Math.round(60 * words.length / 265F));
+
+		List<Element> images = document.getElementsByTag("img");
 
 		readingTimeDuration = readingTimeDuration.plus(
 			Duration.ofSeconds(3 * images.size()));
