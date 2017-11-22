@@ -73,9 +73,9 @@ public class ReadingTimeCalculatorImpl implements ReadingTimeCalculator {
 
 		Document document = Jsoup.parseBodyFragment(content);
 
-		String rawText = document.text();
+		String text = document.text();
 
-		String[] words = rawText.split("(?:\\h|\\v)+");
+		String[] words = text.split("(?:\\h|\\v)+");
 
 		Duration readingTimeDuration = Duration.ofSeconds(
 			Math.round(60 * words.length / 265F));
