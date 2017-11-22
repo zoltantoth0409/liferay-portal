@@ -131,7 +131,7 @@ public class ReadingTimeCalculatorImplTest {
 	}
 
 	@Test
-	public void testDoesNotAcceptNonLatinLanguages() {
+	public void testDoesNotAcceptNonlatinLanguages() {
 		ReadingTimeCalculator readingTimeCalculator =
 			new ReadingTimeCalculatorImpl();
 
