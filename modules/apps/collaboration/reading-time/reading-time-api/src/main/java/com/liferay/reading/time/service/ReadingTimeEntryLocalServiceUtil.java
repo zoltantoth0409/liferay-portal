@@ -43,16 +43,17 @@ public class ReadingTimeEntryLocalServiceUtil {
 	 */
 	public static com.liferay.reading.time.model.ReadingTimeEntry addReadingTimeEntry(
 		com.liferay.portal.kernel.model.GroupedModel groupedModel,
-		java.time.Duration readingTime) {
-		return getService().addReadingTimeEntry(groupedModel, readingTime);
+		java.time.Duration readingTimeDuration) {
+		return getService()
+				   .addReadingTimeEntry(groupedModel, readingTimeDuration);
 	}
 
 	public static com.liferay.reading.time.model.ReadingTimeEntry addReadingTimeEntry(
 		long groupId, long classNameId, long classPK,
-		java.time.Duration readingTime) {
+		java.time.Duration readingTimeDuration) {
 		return getService()
 				   .addReadingTimeEntry(groupId, classNameId, classPK,
-			readingTime);
+			readingTimeDuration);
 	}
 
 	/**
@@ -348,10 +349,10 @@ public class ReadingTimeEntryLocalServiceUtil {
 
 	public static com.liferay.reading.time.model.ReadingTimeEntry updateReadingTimeEntry(
 		long groupId, long classNameId, long classPK,
-		java.time.Duration readingTime) {
+		java.time.Duration readingTimeDuration) {
 		return getService()
 				   .updateReadingTimeEntry(groupId, classNameId, classPK,
-			readingTime);
+			readingTimeDuration);
 	}
 
 	/**

@@ -67,10 +67,10 @@ public interface ReadingTimeEntryLocalService extends BaseLocalService,
 	 * Never modify or reference this interface directly. Always use {@link ReadingTimeEntryLocalServiceUtil} to access the reading time entry local service. Add custom service methods to {@link com.liferay.reading.time.service.impl.ReadingTimeEntryLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	public ReadingTimeEntry addReadingTimeEntry(GroupedModel groupedModel,
-		Duration readingTime);
+		Duration readingTimeDuration);
 
 	public ReadingTimeEntry addReadingTimeEntry(long groupId, long classNameId,
-		long classPK, Duration readingTime);
+		long classPK, Duration readingTimeDuration);
 
 	/**
 	* Adds the reading time entry to the database. Also notifies the appropriate model listeners.
@@ -303,7 +303,7 @@ public interface ReadingTimeEntryLocalService extends BaseLocalService,
 	public ReadingTimeEntry updateReadingTimeEntry(GroupedModel groupedModel);
 
 	public ReadingTimeEntry updateReadingTimeEntry(long groupId,
-		long classNameId, long classPK, Duration readingTime);
+		long classNameId, long classPK, Duration readingTimeDuration);
 
 	/**
 	* Updates the reading time entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.

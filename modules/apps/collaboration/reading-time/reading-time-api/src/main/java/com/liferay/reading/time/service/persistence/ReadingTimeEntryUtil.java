@@ -186,11 +186,11 @@ public class ReadingTimeEntryUtil {
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching reading time entry
-	* @throws NoSuchReadingTimeEntryException if a matching reading time entry could not be found
+	* @throws NoSuchEntryException if a matching reading time entry could not be found
 	*/
 	public static ReadingTimeEntry findByUuid_First(java.lang.String uuid,
 		OrderByComparator<ReadingTimeEntry> orderByComparator)
-		throws com.liferay.reading.time.exception.NoSuchReadingTimeEntryException {
+		throws com.liferay.reading.time.exception.NoSuchEntryException {
 		return getPersistence().findByUuid_First(uuid, orderByComparator);
 	}
 
@@ -212,11 +212,11 @@ public class ReadingTimeEntryUtil {
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching reading time entry
-	* @throws NoSuchReadingTimeEntryException if a matching reading time entry could not be found
+	* @throws NoSuchEntryException if a matching reading time entry could not be found
 	*/
 	public static ReadingTimeEntry findByUuid_Last(java.lang.String uuid,
 		OrderByComparator<ReadingTimeEntry> orderByComparator)
-		throws com.liferay.reading.time.exception.NoSuchReadingTimeEntryException {
+		throws com.liferay.reading.time.exception.NoSuchEntryException {
 		return getPersistence().findByUuid_Last(uuid, orderByComparator);
 	}
 
@@ -239,12 +239,12 @@ public class ReadingTimeEntryUtil {
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next reading time entry
-	* @throws NoSuchReadingTimeEntryException if a reading time entry with the primary key could not be found
+	* @throws NoSuchEntryException if a reading time entry with the primary key could not be found
 	*/
 	public static ReadingTimeEntry[] findByUuid_PrevAndNext(
 		long readingTimeEntryId, java.lang.String uuid,
 		OrderByComparator<ReadingTimeEntry> orderByComparator)
-		throws com.liferay.reading.time.exception.NoSuchReadingTimeEntryException {
+		throws com.liferay.reading.time.exception.NoSuchEntryException {
 		return getPersistence()
 				   .findByUuid_PrevAndNext(readingTimeEntryId, uuid,
 			orderByComparator);
@@ -270,16 +270,16 @@ public class ReadingTimeEntryUtil {
 	}
 
 	/**
-	* Returns the reading time entry where uuid = &#63; and groupId = &#63; or throws a {@link NoSuchReadingTimeEntryException} if it could not be found.
+	* Returns the reading time entry where uuid = &#63; and groupId = &#63; or throws a {@link NoSuchEntryException} if it could not be found.
 	*
 	* @param uuid the uuid
 	* @param groupId the group ID
 	* @return the matching reading time entry
-	* @throws NoSuchReadingTimeEntryException if a matching reading time entry could not be found
+	* @throws NoSuchEntryException if a matching reading time entry could not be found
 	*/
 	public static ReadingTimeEntry findByUUID_G(java.lang.String uuid,
 		long groupId)
-		throws com.liferay.reading.time.exception.NoSuchReadingTimeEntryException {
+		throws com.liferay.reading.time.exception.NoSuchEntryException {
 		return getPersistence().findByUUID_G(uuid, groupId);
 	}
 
@@ -317,7 +317,7 @@ public class ReadingTimeEntryUtil {
 	*/
 	public static ReadingTimeEntry removeByUUID_G(java.lang.String uuid,
 		long groupId)
-		throws com.liferay.reading.time.exception.NoSuchReadingTimeEntryException {
+		throws com.liferay.reading.time.exception.NoSuchEntryException {
 		return getPersistence().removeByUUID_G(uuid, groupId);
 	}
 
@@ -414,11 +414,11 @@ public class ReadingTimeEntryUtil {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching reading time entry
-	* @throws NoSuchReadingTimeEntryException if a matching reading time entry could not be found
+	* @throws NoSuchEntryException if a matching reading time entry could not be found
 	*/
 	public static ReadingTimeEntry findByUuid_C_First(java.lang.String uuid,
 		long companyId, OrderByComparator<ReadingTimeEntry> orderByComparator)
-		throws com.liferay.reading.time.exception.NoSuchReadingTimeEntryException {
+		throws com.liferay.reading.time.exception.NoSuchEntryException {
 		return getPersistence()
 				   .findByUuid_C_First(uuid, companyId, orderByComparator);
 	}
@@ -444,11 +444,11 @@ public class ReadingTimeEntryUtil {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching reading time entry
-	* @throws NoSuchReadingTimeEntryException if a matching reading time entry could not be found
+	* @throws NoSuchEntryException if a matching reading time entry could not be found
 	*/
 	public static ReadingTimeEntry findByUuid_C_Last(java.lang.String uuid,
 		long companyId, OrderByComparator<ReadingTimeEntry> orderByComparator)
-		throws com.liferay.reading.time.exception.NoSuchReadingTimeEntryException {
+		throws com.liferay.reading.time.exception.NoSuchEntryException {
 		return getPersistence()
 				   .findByUuid_C_Last(uuid, companyId, orderByComparator);
 	}
@@ -475,12 +475,12 @@ public class ReadingTimeEntryUtil {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next reading time entry
-	* @throws NoSuchReadingTimeEntryException if a reading time entry with the primary key could not be found
+	* @throws NoSuchEntryException if a reading time entry with the primary key could not be found
 	*/
 	public static ReadingTimeEntry[] findByUuid_C_PrevAndNext(
 		long readingTimeEntryId, java.lang.String uuid, long companyId,
 		OrderByComparator<ReadingTimeEntry> orderByComparator)
-		throws com.liferay.reading.time.exception.NoSuchReadingTimeEntryException {
+		throws com.liferay.reading.time.exception.NoSuchEntryException {
 		return getPersistence()
 				   .findByUuid_C_PrevAndNext(readingTimeEntryId, uuid,
 			companyId, orderByComparator);
@@ -508,17 +508,17 @@ public class ReadingTimeEntryUtil {
 	}
 
 	/**
-	* Returns the reading time entry where groupId = &#63; and classNameId = &#63; and classPK = &#63; or throws a {@link NoSuchReadingTimeEntryException} if it could not be found.
+	* Returns the reading time entry where groupId = &#63; and classNameId = &#63; and classPK = &#63; or throws a {@link NoSuchEntryException} if it could not be found.
 	*
 	* @param groupId the group ID
 	* @param classNameId the class name ID
 	* @param classPK the class pk
 	* @return the matching reading time entry
-	* @throws NoSuchReadingTimeEntryException if a matching reading time entry could not be found
+	* @throws NoSuchEntryException if a matching reading time entry could not be found
 	*/
 	public static ReadingTimeEntry findByG_C_C(long groupId, long classNameId,
 		long classPK)
-		throws com.liferay.reading.time.exception.NoSuchReadingTimeEntryException {
+		throws com.liferay.reading.time.exception.NoSuchEntryException {
 		return getPersistence().findByG_C_C(groupId, classNameId, classPK);
 	}
 
@@ -561,7 +561,7 @@ public class ReadingTimeEntryUtil {
 	*/
 	public static ReadingTimeEntry removeByG_C_C(long groupId,
 		long classNameId, long classPK)
-		throws com.liferay.reading.time.exception.NoSuchReadingTimeEntryException {
+		throws com.liferay.reading.time.exception.NoSuchEntryException {
 		return getPersistence().removeByG_C_C(groupId, classNameId, classPK);
 	}
 
@@ -610,10 +610,10 @@ public class ReadingTimeEntryUtil {
 	*
 	* @param readingTimeEntryId the primary key of the reading time entry
 	* @return the reading time entry that was removed
-	* @throws NoSuchReadingTimeEntryException if a reading time entry with the primary key could not be found
+	* @throws NoSuchEntryException if a reading time entry with the primary key could not be found
 	*/
 	public static ReadingTimeEntry remove(long readingTimeEntryId)
-		throws com.liferay.reading.time.exception.NoSuchReadingTimeEntryException {
+		throws com.liferay.reading.time.exception.NoSuchEntryException {
 		return getPersistence().remove(readingTimeEntryId);
 	}
 
@@ -622,14 +622,14 @@ public class ReadingTimeEntryUtil {
 	}
 
 	/**
-	* Returns the reading time entry with the primary key or throws a {@link NoSuchReadingTimeEntryException} if it could not be found.
+	* Returns the reading time entry with the primary key or throws a {@link NoSuchEntryException} if it could not be found.
 	*
 	* @param readingTimeEntryId the primary key of the reading time entry
 	* @return the reading time entry
-	* @throws NoSuchReadingTimeEntryException if a reading time entry with the primary key could not be found
+	* @throws NoSuchEntryException if a reading time entry with the primary key could not be found
 	*/
 	public static ReadingTimeEntry findByPrimaryKey(long readingTimeEntryId)
-		throws com.liferay.reading.time.exception.NoSuchReadingTimeEntryException {
+		throws com.liferay.reading.time.exception.NoSuchEntryException {
 		return getPersistence().findByPrimaryKey(readingTimeEntryId);
 	}
 

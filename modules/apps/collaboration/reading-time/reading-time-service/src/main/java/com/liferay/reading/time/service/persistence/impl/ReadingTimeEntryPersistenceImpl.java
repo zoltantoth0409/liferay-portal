@@ -39,7 +39,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.spring.extender.service.ServiceReference;
 
-import com.liferay.reading.time.exception.NoSuchReadingTimeEntryException;
+import com.liferay.reading.time.exception.NoSuchEntryException;
 import com.liferay.reading.time.model.ReadingTimeEntry;
 import com.liferay.reading.time.model.impl.ReadingTimeEntryImpl;
 import com.liferay.reading.time.model.impl.ReadingTimeEntryModelImpl;
@@ -301,12 +301,12 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching reading time entry
-	 * @throws NoSuchReadingTimeEntryException if a matching reading time entry could not be found
+	 * @throws NoSuchEntryException if a matching reading time entry could not be found
 	 */
 	@Override
 	public ReadingTimeEntry findByUuid_First(String uuid,
 		OrderByComparator<ReadingTimeEntry> orderByComparator)
-		throws NoSuchReadingTimeEntryException {
+		throws NoSuchEntryException {
 		ReadingTimeEntry readingTimeEntry = fetchByUuid_First(uuid,
 				orderByComparator);
 
@@ -323,7 +323,7 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 
 		msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-		throw new NoSuchReadingTimeEntryException(msg.toString());
+		throw new NoSuchEntryException(msg.toString());
 	}
 
 	/**
@@ -351,12 +351,12 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching reading time entry
-	 * @throws NoSuchReadingTimeEntryException if a matching reading time entry could not be found
+	 * @throws NoSuchEntryException if a matching reading time entry could not be found
 	 */
 	@Override
 	public ReadingTimeEntry findByUuid_Last(String uuid,
 		OrderByComparator<ReadingTimeEntry> orderByComparator)
-		throws NoSuchReadingTimeEntryException {
+		throws NoSuchEntryException {
 		ReadingTimeEntry readingTimeEntry = fetchByUuid_Last(uuid,
 				orderByComparator);
 
@@ -373,7 +373,7 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 
 		msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-		throw new NoSuchReadingTimeEntryException(msg.toString());
+		throw new NoSuchEntryException(msg.toString());
 	}
 
 	/**
@@ -409,12 +409,12 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next reading time entry
-	 * @throws NoSuchReadingTimeEntryException if a reading time entry with the primary key could not be found
+	 * @throws NoSuchEntryException if a reading time entry with the primary key could not be found
 	 */
 	@Override
 	public ReadingTimeEntry[] findByUuid_PrevAndNext(long readingTimeEntryId,
 		String uuid, OrderByComparator<ReadingTimeEntry> orderByComparator)
-		throws NoSuchReadingTimeEntryException {
+		throws NoSuchEntryException {
 		ReadingTimeEntry readingTimeEntry = findByPrimaryKey(readingTimeEntryId);
 
 		Session session = null;
@@ -656,16 +656,16 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 			new String[] { String.class.getName(), Long.class.getName() });
 
 	/**
-	 * Returns the reading time entry where uuid = &#63; and groupId = &#63; or throws a {@link NoSuchReadingTimeEntryException} if it could not be found.
+	 * Returns the reading time entry where uuid = &#63; and groupId = &#63; or throws a {@link NoSuchEntryException} if it could not be found.
 	 *
 	 * @param uuid the uuid
 	 * @param groupId the group ID
 	 * @return the matching reading time entry
-	 * @throws NoSuchReadingTimeEntryException if a matching reading time entry could not be found
+	 * @throws NoSuchEntryException if a matching reading time entry could not be found
 	 */
 	@Override
 	public ReadingTimeEntry findByUUID_G(String uuid, long groupId)
-		throws NoSuchReadingTimeEntryException {
+		throws NoSuchEntryException {
 		ReadingTimeEntry readingTimeEntry = fetchByUUID_G(uuid, groupId);
 
 		if (readingTimeEntry == null) {
@@ -685,7 +685,7 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 				_log.debug(msg.toString());
 			}
 
-			throw new NoSuchReadingTimeEntryException(msg.toString());
+			throw new NoSuchEntryException(msg.toString());
 		}
 
 		return readingTimeEntry;
@@ -818,7 +818,7 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 */
 	@Override
 	public ReadingTimeEntry removeByUUID_G(String uuid, long groupId)
-		throws NoSuchReadingTimeEntryException {
+		throws NoSuchEntryException {
 		ReadingTimeEntry readingTimeEntry = findByUUID_G(uuid, groupId);
 
 		return remove(readingTimeEntry);
@@ -1124,12 +1124,12 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching reading time entry
-	 * @throws NoSuchReadingTimeEntryException if a matching reading time entry could not be found
+	 * @throws NoSuchEntryException if a matching reading time entry could not be found
 	 */
 	@Override
 	public ReadingTimeEntry findByUuid_C_First(String uuid, long companyId,
 		OrderByComparator<ReadingTimeEntry> orderByComparator)
-		throws NoSuchReadingTimeEntryException {
+		throws NoSuchEntryException {
 		ReadingTimeEntry readingTimeEntry = fetchByUuid_C_First(uuid,
 				companyId, orderByComparator);
 
@@ -1149,7 +1149,7 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 
 		msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-		throw new NoSuchReadingTimeEntryException(msg.toString());
+		throw new NoSuchEntryException(msg.toString());
 	}
 
 	/**
@@ -1180,12 +1180,12 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching reading time entry
-	 * @throws NoSuchReadingTimeEntryException if a matching reading time entry could not be found
+	 * @throws NoSuchEntryException if a matching reading time entry could not be found
 	 */
 	@Override
 	public ReadingTimeEntry findByUuid_C_Last(String uuid, long companyId,
 		OrderByComparator<ReadingTimeEntry> orderByComparator)
-		throws NoSuchReadingTimeEntryException {
+		throws NoSuchEntryException {
 		ReadingTimeEntry readingTimeEntry = fetchByUuid_C_Last(uuid, companyId,
 				orderByComparator);
 
@@ -1205,7 +1205,7 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 
 		msg.append(StringPool.CLOSE_CURLY_BRACE);
 
-		throw new NoSuchReadingTimeEntryException(msg.toString());
+		throw new NoSuchEntryException(msg.toString());
 	}
 
 	/**
@@ -1243,13 +1243,13 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next reading time entry
-	 * @throws NoSuchReadingTimeEntryException if a reading time entry with the primary key could not be found
+	 * @throws NoSuchEntryException if a reading time entry with the primary key could not be found
 	 */
 	@Override
 	public ReadingTimeEntry[] findByUuid_C_PrevAndNext(
 		long readingTimeEntryId, String uuid, long companyId,
 		OrderByComparator<ReadingTimeEntry> orderByComparator)
-		throws NoSuchReadingTimeEntryException {
+		throws NoSuchEntryException {
 		ReadingTimeEntry readingTimeEntry = findByPrimaryKey(readingTimeEntryId);
 
 		Session session = null;
@@ -1507,17 +1507,17 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 			});
 
 	/**
-	 * Returns the reading time entry where groupId = &#63; and classNameId = &#63; and classPK = &#63; or throws a {@link NoSuchReadingTimeEntryException} if it could not be found.
+	 * Returns the reading time entry where groupId = &#63; and classNameId = &#63; and classPK = &#63; or throws a {@link NoSuchEntryException} if it could not be found.
 	 *
 	 * @param groupId the group ID
 	 * @param classNameId the class name ID
 	 * @param classPK the class pk
 	 * @return the matching reading time entry
-	 * @throws NoSuchReadingTimeEntryException if a matching reading time entry could not be found
+	 * @throws NoSuchEntryException if a matching reading time entry could not be found
 	 */
 	@Override
 	public ReadingTimeEntry findByG_C_C(long groupId, long classNameId,
-		long classPK) throws NoSuchReadingTimeEntryException {
+		long classPK) throws NoSuchEntryException {
 		ReadingTimeEntry readingTimeEntry = fetchByG_C_C(groupId, classNameId,
 				classPK);
 
@@ -1541,7 +1541,7 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 				_log.debug(msg.toString());
 			}
 
-			throw new NoSuchReadingTimeEntryException(msg.toString());
+			throw new NoSuchEntryException(msg.toString());
 		}
 
 		return readingTimeEntry;
@@ -1669,7 +1669,7 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 */
 	@Override
 	public ReadingTimeEntry removeByG_C_C(long groupId, long classNameId,
-		long classPK) throws NoSuchReadingTimeEntryException {
+		long classPK) throws NoSuchEntryException {
 		ReadingTimeEntry readingTimeEntry = findByG_C_C(groupId, classNameId,
 				classPK);
 
@@ -1954,11 +1954,11 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 *
 	 * @param readingTimeEntryId the primary key of the reading time entry
 	 * @return the reading time entry that was removed
-	 * @throws NoSuchReadingTimeEntryException if a reading time entry with the primary key could not be found
+	 * @throws NoSuchEntryException if a reading time entry with the primary key could not be found
 	 */
 	@Override
 	public ReadingTimeEntry remove(long readingTimeEntryId)
-		throws NoSuchReadingTimeEntryException {
+		throws NoSuchEntryException {
 		return remove((Serializable)readingTimeEntryId);
 	}
 
@@ -1967,11 +1967,11 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 *
 	 * @param primaryKey the primary key of the reading time entry
 	 * @return the reading time entry that was removed
-	 * @throws NoSuchReadingTimeEntryException if a reading time entry with the primary key could not be found
+	 * @throws NoSuchEntryException if a reading time entry with the primary key could not be found
 	 */
 	@Override
 	public ReadingTimeEntry remove(Serializable primaryKey)
-		throws NoSuchReadingTimeEntryException {
+		throws NoSuchEntryException {
 		Session session = null;
 
 		try {
@@ -1985,13 +1985,13 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 					_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 				}
 
-				throw new NoSuchReadingTimeEntryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				throw new NoSuchEntryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
 					primaryKey);
 			}
 
 			return remove(readingTimeEntry);
 		}
-		catch (NoSuchReadingTimeEntryException nsee) {
+		catch (NoSuchEntryException nsee) {
 			throw nsee;
 		}
 		catch (Exception e) {
@@ -2200,11 +2200,11 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 *
 	 * @param primaryKey the primary key of the reading time entry
 	 * @return the reading time entry
-	 * @throws NoSuchReadingTimeEntryException if a reading time entry with the primary key could not be found
+	 * @throws NoSuchEntryException if a reading time entry with the primary key could not be found
 	 */
 	@Override
 	public ReadingTimeEntry findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchReadingTimeEntryException {
+		throws NoSuchEntryException {
 		ReadingTimeEntry readingTimeEntry = fetchByPrimaryKey(primaryKey);
 
 		if (readingTimeEntry == null) {
@@ -2212,7 +2212,7 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 				_log.debug(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + primaryKey);
 			}
 
-			throw new NoSuchReadingTimeEntryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+			throw new NoSuchEntryException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
 				primaryKey);
 		}
 
@@ -2220,15 +2220,15 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	}
 
 	/**
-	 * Returns the reading time entry with the primary key or throws a {@link NoSuchReadingTimeEntryException} if it could not be found.
+	 * Returns the reading time entry with the primary key or throws a {@link NoSuchEntryException} if it could not be found.
 	 *
 	 * @param readingTimeEntryId the primary key of the reading time entry
 	 * @return the reading time entry
-	 * @throws NoSuchReadingTimeEntryException if a reading time entry with the primary key could not be found
+	 * @throws NoSuchEntryException if a reading time entry with the primary key could not be found
 	 */
 	@Override
 	public ReadingTimeEntry findByPrimaryKey(long readingTimeEntryId)
-		throws NoSuchReadingTimeEntryException {
+		throws NoSuchEntryException {
 		return findByPrimaryKey((Serializable)readingTimeEntryId);
 	}
 

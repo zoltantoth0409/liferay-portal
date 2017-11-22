@@ -35,7 +35,7 @@ import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PersistenceTestRule;
 import com.liferay.portal.test.rule.TransactionalTestRule;
 
-import com.liferay.reading.time.exception.NoSuchReadingTimeEntryException;
+import com.liferay.reading.time.exception.NoSuchEntryException;
 import com.liferay.reading.time.model.ReadingTimeEntry;
 import com.liferay.reading.time.service.ReadingTimeEntryLocalServiceUtil;
 import com.liferay.reading.time.service.persistence.ReadingTimeEntryPersistence;
@@ -211,7 +211,7 @@ public class ReadingTimeEntryPersistenceTest {
 		Assert.assertEquals(existingReadingTimeEntry, newReadingTimeEntry);
 	}
 
-	@Test(expected = NoSuchReadingTimeEntryException.class)
+	@Test(expected = NoSuchEntryException.class)
 	public void testFindByPrimaryKeyMissing() throws Exception {
 		long pk = RandomTestUtil.nextLong();
 

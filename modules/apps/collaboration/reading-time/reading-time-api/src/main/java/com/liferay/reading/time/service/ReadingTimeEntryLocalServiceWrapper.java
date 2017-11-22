@@ -37,17 +37,17 @@ public class ReadingTimeEntryLocalServiceWrapper
 	@Override
 	public com.liferay.reading.time.model.ReadingTimeEntry addReadingTimeEntry(
 		com.liferay.portal.kernel.model.GroupedModel groupedModel,
-		java.time.Duration readingTime) {
+		java.time.Duration readingTimeDuration) {
 		return _readingTimeEntryLocalService.addReadingTimeEntry(groupedModel,
-			readingTime);
+			readingTimeDuration);
 	}
 
 	@Override
 	public com.liferay.reading.time.model.ReadingTimeEntry addReadingTimeEntry(
 		long groupId, long classNameId, long classPK,
-		java.time.Duration readingTime) {
+		java.time.Duration readingTimeDuration) {
 		return _readingTimeEntryLocalService.addReadingTimeEntry(groupId,
-			classNameId, classPK, readingTime);
+			classNameId, classPK, readingTimeDuration);
 	}
 
 	/**
@@ -379,9 +379,9 @@ public class ReadingTimeEntryLocalServiceWrapper
 	@Override
 	public com.liferay.reading.time.model.ReadingTimeEntry updateReadingTimeEntry(
 		long groupId, long classNameId, long classPK,
-		java.time.Duration readingTime) {
+		java.time.Duration readingTimeDuration) {
 		return _readingTimeEntryLocalService.updateReadingTimeEntry(groupId,
-			classNameId, classPK, readingTime);
+			classNameId, classPK, readingTimeDuration);
 	}
 
 	/**

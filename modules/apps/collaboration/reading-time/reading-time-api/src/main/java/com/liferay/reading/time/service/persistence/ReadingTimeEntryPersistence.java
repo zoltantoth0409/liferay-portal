@@ -18,7 +18,7 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
 
-import com.liferay.reading.time.exception.NoSuchReadingTimeEntryException;
+import com.liferay.reading.time.exception.NoSuchEntryException;
 import com.liferay.reading.time.model.ReadingTimeEntry;
 
 /**
@@ -106,11 +106,11 @@ public interface ReadingTimeEntryPersistence extends BasePersistence<ReadingTime
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching reading time entry
-	* @throws NoSuchReadingTimeEntryException if a matching reading time entry could not be found
+	* @throws NoSuchEntryException if a matching reading time entry could not be found
 	*/
 	public ReadingTimeEntry findByUuid_First(java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<ReadingTimeEntry> orderByComparator)
-		throws NoSuchReadingTimeEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns the first reading time entry in the ordered set where uuid = &#63;.
@@ -128,11 +128,11 @@ public interface ReadingTimeEntryPersistence extends BasePersistence<ReadingTime
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching reading time entry
-	* @throws NoSuchReadingTimeEntryException if a matching reading time entry could not be found
+	* @throws NoSuchEntryException if a matching reading time entry could not be found
 	*/
 	public ReadingTimeEntry findByUuid_Last(java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<ReadingTimeEntry> orderByComparator)
-		throws NoSuchReadingTimeEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns the last reading time entry in the ordered set where uuid = &#63;.
@@ -151,12 +151,12 @@ public interface ReadingTimeEntryPersistence extends BasePersistence<ReadingTime
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next reading time entry
-	* @throws NoSuchReadingTimeEntryException if a reading time entry with the primary key could not be found
+	* @throws NoSuchEntryException if a reading time entry with the primary key could not be found
 	*/
 	public ReadingTimeEntry[] findByUuid_PrevAndNext(long readingTimeEntryId,
 		java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<ReadingTimeEntry> orderByComparator)
-		throws NoSuchReadingTimeEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Removes all the reading time entries where uuid = &#63; from the database.
@@ -174,15 +174,15 @@ public interface ReadingTimeEntryPersistence extends BasePersistence<ReadingTime
 	public int countByUuid(java.lang.String uuid);
 
 	/**
-	* Returns the reading time entry where uuid = &#63; and groupId = &#63; or throws a {@link NoSuchReadingTimeEntryException} if it could not be found.
+	* Returns the reading time entry where uuid = &#63; and groupId = &#63; or throws a {@link NoSuchEntryException} if it could not be found.
 	*
 	* @param uuid the uuid
 	* @param groupId the group ID
 	* @return the matching reading time entry
-	* @throws NoSuchReadingTimeEntryException if a matching reading time entry could not be found
+	* @throws NoSuchEntryException if a matching reading time entry could not be found
 	*/
 	public ReadingTimeEntry findByUUID_G(java.lang.String uuid, long groupId)
-		throws NoSuchReadingTimeEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns the reading time entry where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -212,7 +212,7 @@ public interface ReadingTimeEntryPersistence extends BasePersistence<ReadingTime
 	* @return the reading time entry that was removed
 	*/
 	public ReadingTimeEntry removeByUUID_G(java.lang.String uuid, long groupId)
-		throws NoSuchReadingTimeEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns the number of reading time entries where uuid = &#63; and groupId = &#63;.
@@ -294,12 +294,12 @@ public interface ReadingTimeEntryPersistence extends BasePersistence<ReadingTime
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching reading time entry
-	* @throws NoSuchReadingTimeEntryException if a matching reading time entry could not be found
+	* @throws NoSuchEntryException if a matching reading time entry could not be found
 	*/
 	public ReadingTimeEntry findByUuid_C_First(java.lang.String uuid,
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<ReadingTimeEntry> orderByComparator)
-		throws NoSuchReadingTimeEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns the first reading time entry in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -320,12 +320,12 @@ public interface ReadingTimeEntryPersistence extends BasePersistence<ReadingTime
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching reading time entry
-	* @throws NoSuchReadingTimeEntryException if a matching reading time entry could not be found
+	* @throws NoSuchEntryException if a matching reading time entry could not be found
 	*/
 	public ReadingTimeEntry findByUuid_C_Last(java.lang.String uuid,
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<ReadingTimeEntry> orderByComparator)
-		throws NoSuchReadingTimeEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns the last reading time entry in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -347,12 +347,12 @@ public interface ReadingTimeEntryPersistence extends BasePersistence<ReadingTime
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next reading time entry
-	* @throws NoSuchReadingTimeEntryException if a reading time entry with the primary key could not be found
+	* @throws NoSuchEntryException if a reading time entry with the primary key could not be found
 	*/
 	public ReadingTimeEntry[] findByUuid_C_PrevAndNext(
 		long readingTimeEntryId, java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<ReadingTimeEntry> orderByComparator)
-		throws NoSuchReadingTimeEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Removes all the reading time entries where uuid = &#63; and companyId = &#63; from the database.
@@ -372,16 +372,16 @@ public interface ReadingTimeEntryPersistence extends BasePersistence<ReadingTime
 	public int countByUuid_C(java.lang.String uuid, long companyId);
 
 	/**
-	* Returns the reading time entry where groupId = &#63; and classNameId = &#63; and classPK = &#63; or throws a {@link NoSuchReadingTimeEntryException} if it could not be found.
+	* Returns the reading time entry where groupId = &#63; and classNameId = &#63; and classPK = &#63; or throws a {@link NoSuchEntryException} if it could not be found.
 	*
 	* @param groupId the group ID
 	* @param classNameId the class name ID
 	* @param classPK the class pk
 	* @return the matching reading time entry
-	* @throws NoSuchReadingTimeEntryException if a matching reading time entry could not be found
+	* @throws NoSuchEntryException if a matching reading time entry could not be found
 	*/
 	public ReadingTimeEntry findByG_C_C(long groupId, long classNameId,
-		long classPK) throws NoSuchReadingTimeEntryException;
+		long classPK) throws NoSuchEntryException;
 
 	/**
 	* Returns the reading time entry where groupId = &#63; and classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -415,7 +415,7 @@ public interface ReadingTimeEntryPersistence extends BasePersistence<ReadingTime
 	* @return the reading time entry that was removed
 	*/
 	public ReadingTimeEntry removeByG_C_C(long groupId, long classNameId,
-		long classPK) throws NoSuchReadingTimeEntryException;
+		long classPK) throws NoSuchEntryException;
 
 	/**
 	* Returns the number of reading time entries where groupId = &#63; and classNameId = &#63; and classPK = &#63;.
@@ -454,22 +454,22 @@ public interface ReadingTimeEntryPersistence extends BasePersistence<ReadingTime
 	*
 	* @param readingTimeEntryId the primary key of the reading time entry
 	* @return the reading time entry that was removed
-	* @throws NoSuchReadingTimeEntryException if a reading time entry with the primary key could not be found
+	* @throws NoSuchEntryException if a reading time entry with the primary key could not be found
 	*/
 	public ReadingTimeEntry remove(long readingTimeEntryId)
-		throws NoSuchReadingTimeEntryException;
+		throws NoSuchEntryException;
 
 	public ReadingTimeEntry updateImpl(ReadingTimeEntry readingTimeEntry);
 
 	/**
-	* Returns the reading time entry with the primary key or throws a {@link NoSuchReadingTimeEntryException} if it could not be found.
+	* Returns the reading time entry with the primary key or throws a {@link NoSuchEntryException} if it could not be found.
 	*
 	* @param readingTimeEntryId the primary key of the reading time entry
 	* @return the reading time entry
-	* @throws NoSuchReadingTimeEntryException if a reading time entry with the primary key could not be found
+	* @throws NoSuchEntryException if a reading time entry with the primary key could not be found
 	*/
 	public ReadingTimeEntry findByPrimaryKey(long readingTimeEntryId)
-		throws NoSuchReadingTimeEntryException;
+		throws NoSuchEntryException;
 
 	/**
 	* Returns the reading time entry with the primary key or returns <code>null</code> if it could not be found.
