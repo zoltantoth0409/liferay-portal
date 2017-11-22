@@ -1714,6 +1714,24 @@ war.path=${app.server.weblogic.portal.dir}/</echo>
 						replace=""
 					/>
 
+					<propertyregex
+						global="true"
+						input="${propertyName}"
+						override="true"
+						property="propertyName"
+						regexp="\["
+						replace="\\\\["
+					/>
+
+					<propertyregex
+						global="true"
+						input="${propertyName}"
+						override="true"
+						property="propertyName"
+						regexp="\]"
+						replace="\\\\]"
+					/>
+
 					<replaceregexp file="portal-impl/src/portal-ext.properties"
 						flags="g"
 						match="${propertyName}=.*"
