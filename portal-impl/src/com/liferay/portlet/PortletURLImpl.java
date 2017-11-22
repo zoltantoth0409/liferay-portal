@@ -1185,8 +1185,7 @@ public class PortletURLImpl
 			}
 		}
 
-		String navigationalState = Base64.toURLSafe(
-			Base64.encode(parameterBytes));
+		String navigationalState = Base64.encodeToURL(parameterBytes);
 
 		sb.append(navigationalState);
 
