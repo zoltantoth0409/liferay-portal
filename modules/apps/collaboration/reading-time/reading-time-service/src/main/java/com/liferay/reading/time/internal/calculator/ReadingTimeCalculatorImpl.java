@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.reading.time.calculator.impl;
+package com.liferay.reading.time.internal.calculator;
 
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMapFactory;
