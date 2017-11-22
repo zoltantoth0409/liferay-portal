@@ -17,25 +17,8 @@ package com.liferay.reading.time.service.impl;
 import com.liferay.reading.time.service.base.ReadingTimeEntryServiceBaseImpl;
 
 /**
- * The implementation of the reading time entry remote service.
- *
- * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.reading.time.service.ReadingTimeEntryService} interface.
- *
- * <p>
- * This is a remote service. Methods of this service are expected to have security checks based on the propagated JAAS credentials because this service can be accessed remotely.
- * </p>
- *
  * @author Brian Wing Shun Chan
- * @see ReadingTimeEntryServiceBaseImpl
- * @see com.liferay.reading.time.service.ReadingTimeEntryServiceUtil
  */
 public class ReadingTimeEntryServiceImpl
 	extends ReadingTimeEntryServiceBaseImpl {
-
-	/**
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. Always use {@link com.liferay.reading.time.service.ReadingTimeEntryServiceUtil} to access the reading time entry remote service.
-	 */
 }
