@@ -50,7 +50,7 @@ public class EditLayoutPageTemplateFragmentsMVCActionCommand
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		long layoutPageTemplateId = ParamUtil.getLong(
+		long layoutPageTemplateEntryId = ParamUtil.getLong(
 			actionRequest, "layoutPageTemplateEntryId");
 		long[] fragmentIds = ParamUtil.getLongValues(
 			actionRequest, "fragmentIds");
@@ -59,7 +59,7 @@ public class EditLayoutPageTemplateFragmentsMVCActionCommand
 			actionRequest);
 
 		_layoutPageTemplateEntryService.updateLayoutPageTemplateEntry(
-			layoutPageTemplateId, fragmentIds, serviceContext);
+			layoutPageTemplateEntryId, fragmentIds, serviceContext);
 
 		hideDefaultSuccessMessage(actionRequest);
 
