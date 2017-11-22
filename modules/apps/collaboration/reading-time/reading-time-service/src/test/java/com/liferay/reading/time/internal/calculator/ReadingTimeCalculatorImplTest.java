@@ -65,26 +65,26 @@ public class ReadingTimeCalculatorImplTest {
 		sb.append("<img src=\"img2\"/>");
 		sb.append("<img src=\"img3\"/>");
 
-		Duration readingTime = _calculateReadingTime(
+		Duration readingTimeDuration = _calculateReadingTime(
 			sb.toString(), "text/html", Locale.getDefault());
 
-		Assert.assertEquals(60 + 3 * 3, readingTime.getSeconds());
+		Assert.assertEquals(60 + 3 * 3, readingTimeDuration.getSeconds());
 	}
 
 	@Test
 	public void testCounts0ForEmptyContent() {
-		Duration readingTime = _calculateReadingTime(
+		Duration readingTimeDuration = _calculateReadingTime(
 			StringPool.BLANK, "text/html", Locale.getDefault());
 
-		Assert.assertEquals(0, readingTime.getSeconds());
+		Assert.assertEquals(0, readingTimeDuration.getSeconds());
 	}
 
 	@Test
 	public void testCounts0ForNullContent() {
-		Duration readingTime = _calculateReadingTime(
+		Duration readingTimeDuration = _calculateReadingTime(
 			null, "text/html", Locale.getDefault());
 
-		Assert.assertEquals(0, readingTime.getSeconds());
+		Assert.assertEquals(0, readingTimeDuration.getSeconds());
 	}
 
 	@Test
@@ -95,10 +95,10 @@ public class ReadingTimeCalculatorImplTest {
 			sb.append("<span class=\"random\">word</span>&nbsp;");
 		}
 
-		Duration readingTime = _calculateReadingTime(
+		Duration readingTimeDuration = _calculateReadingTime(
 			sb.toString(), "text/html", Locale.getDefault());
 
-		Assert.assertEquals(60, readingTime.getSeconds());
+		Assert.assertEquals(60, readingTimeDuration.getSeconds());
 	}
 
 	@Test
@@ -109,10 +109,10 @@ public class ReadingTimeCalculatorImplTest {
 			sb.append("word ");
 		}
 
-		Duration readingTime = _calculateReadingTime(
+		Duration readingTimeDuration = _calculateReadingTime(
 			sb.toString(), "text/plain", Locale.getDefault());
 
-		Assert.assertEquals(60, readingTime.getSeconds());
+		Assert.assertEquals(60, readingTimeDuration.getSeconds());
 	}
 
 	@Test

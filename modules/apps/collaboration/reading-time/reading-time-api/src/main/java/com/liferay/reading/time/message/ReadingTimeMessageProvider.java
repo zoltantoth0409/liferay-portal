@@ -25,7 +25,7 @@ import java.util.Locale;
  */
 public interface ReadingTimeMessageProvider {
 
-	public String provide(Duration readingTime, Locale locale);
+	public String provide(Duration readingTimeDuration, Locale locale);
 
 	public String provide(ReadingTimeEntry readingTimeEntry, Locale locale);
 

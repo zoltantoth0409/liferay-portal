@@ -33,17 +33,18 @@ public class ReadingTimeEntryLocalServiceImpl
 
 	@Override
 	public ReadingTimeEntry addReadingTimeEntry(
-		GroupedModel groupedModel, Duration readingTime) {
+		GroupedModel groupedModel, Duration readingTimeDuration) {
 
 		return addReadingTimeEntry(
 			groupedModel.getGroupId(),
 			_classNameLocalService.getClassNameId(groupedModel.getModelClass()),
-			(Long)groupedModel.getPrimaryKeyObj(), readingTime);
+			(Long)groupedModel.getPrimaryKeyObj(), readingTimeDuration);
 	}
 
 	@Override
 	public ReadingTimeEntry addReadingTimeEntry(
-		long groupId, long classNameId, long classPK, Duration readingTime) {
+		long groupId, long classNameId, long classPK,
+		Duration readingTimeDuration) {
 
 		long entryId = counterLocalService.increment();
 
@@ -52,7 +53,7 @@ public class ReadingTimeEntryLocalServiceImpl
 		entry.setClassNameId(classNameId);
 		entry.setClassPK(classPK);
 		entry.setGroupId(groupId);
-		entry.setReadingTime(readingTime.toMillis());
+		entry.setReadingTime(readingTimeDuration.toMillis());
 
 		return readingTimeEntryPersistence.update(entry);
 	}
@@ -130,17 +131,18 @@ public class ReadingTimeEntryLocalServiceImpl
 
 	@Override
 	public ReadingTimeEntry updateReadingTimeEntry(
-		long groupId, long classNameId, long classPK, Duration readingTime) {
+		long groupId, long classNameId, long classPK,
+		Duration readingTimeDuration) {
 
 		ReadingTimeEntry readingTimeEntry = fetchReadingTimeEntry(
 			groupId, classNameId, classPK);
 
 		if (readingTimeEntry == null) {
 			return addReadingTimeEntry(
-				groupId, classNameId, classPK, readingTime);
+				groupId, classNameId, classPK, readingTimeDuration);
 		}
 		else {
-			readingTimeEntry.setReadingTime(readingTime.toMillis());
+			readingTimeEntry.setReadingTime(readingTimeDuration.toMillis());
 
 			return updateReadingTimeEntry(readingTimeEntry);
 		}

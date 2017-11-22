@@ -78,12 +78,13 @@ public class ReadingTimeCalculatorImpl implements ReadingTimeCalculator {
 
 		String[] words = rawText.split("(?:\\h|\\v)+");
 
-		Duration readingTime = Duration.ofSeconds(
+		Duration readingTimeDuration = Duration.ofSeconds(
 			Math.round(60 * words.length / 265F));
 
-		readingTime = readingTime.plus(Duration.ofSeconds(3 * images.size()));
+		readingTimeDuration = readingTimeDuration.plus(
+			Duration.ofSeconds(3 * images.size()));
 
-		return Optional.of(readingTime);
+		return Optional.of(readingTimeDuration);
 	}
 
 	@Activate
