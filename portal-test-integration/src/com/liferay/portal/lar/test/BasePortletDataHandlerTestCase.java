@@ -227,15 +227,21 @@ public abstract class BasePortletDataHandlerTestCase {
 	}
 
 	protected boolean isDataPortalLevel() {
-		return getDataLevel().equals(DataLevel.PORTAL);
+		DataLevel dataLevel = getDataLevel();
+
+		return dataLevel.equals(DataLevel.PORTAL);
 	}
 
 	protected boolean isDataPortletInstanceLevel() {
-		return getDataLevel().equals(DataLevel.PORTLET_INSTANCE);
+		DataLevel dataLevel = getDataLevel();
+
+		return dataLevel.equals(DataLevel.PORTLET_INSTANCE);
 	}
 
 	protected boolean isDataSiteLevel() {
-		return getDataLevel().equals(DataLevel.SITE);
+		DataLevel dataLevel = getDataLevel();
+
+		return dataLevel.equals(DataLevel.SITE);
 	}
 
 	protected Element missingReferencesElement;
