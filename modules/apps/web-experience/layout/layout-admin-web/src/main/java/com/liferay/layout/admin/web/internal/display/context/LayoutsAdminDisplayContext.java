@@ -17,6 +17,7 @@ package com.liferay.layout.admin.web.internal.display.context;
 import com.liferay.exportimport.kernel.staging.LayoutStagingUtil;
 import com.liferay.exportimport.kernel.staging.StagingUtil;
 import com.liferay.layout.admin.web.internal.constants.LayoutAdminPortletKeys;
+import com.liferay.layout.util.comparator.LayoutCreateDateComparator;
 import com.liferay.portal.kernel.dao.search.EmptyOnClickRowChecker;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -35,6 +36,7 @@ import com.liferay.portal.kernel.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.kernel.service.permission.GroupPermissionUtil;
 import com.liferay.portal.kernel.service.permission.LayoutPermissionUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -182,6 +184,14 @@ public class LayoutsAdminDisplayContext {
 				"taglib-empty-result-message-header-has-plus-btn");
 		}
 
+		layoutsSearchContainer.setOrderByCol(getOrderByCol());
+
+		OrderByComparator orderByComparator = _getOrderByComparator();
+
+		layoutsSearchContainer.setOrderByComparator(orderByComparator);
+
+		layoutsSearchContainer.setOrderByType(getOrderByType());
+
 		EmptyOnClickRowChecker emptyOnClickRowChecker =
 			new EmptyOnClickRowChecker(_liferayPortletResponse);
 
@@ -190,7 +200,9 @@ public class LayoutsAdminDisplayContext {
 		int layoutsCount = LayoutLocalServiceUtil.getLayoutsCount(
 			getSelGroup(), isPrivatePages());
 		List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
-			getSelGroupId(), isPrivatePages());
+			getSelGroupId(), isPrivatePages(),
+			layoutsSearchContainer.getStart(), layoutsSearchContainer.getEnd(),
+			orderByComparator);
 
 		layoutsSearchContainer.setTotal(layoutsCount);
 		layoutsSearchContainer.setResults(layouts);
@@ -532,6 +544,22 @@ public class LayoutsAdminDisplayContext {
 
 		return LayoutPermissionUtil.contains(
 			_themeDisplay.getPermissionChecker(), layout, ActionKeys.UPDATE);
+	}
+
+	private OrderByComparator _getOrderByComparator() {
+		boolean orderByAsc = false;
+
+		if (Objects.equals(getOrderByType(), "asc")) {
+			orderByAsc = true;
+		}
+
+		OrderByComparator<Layout> orderByComparator = null;
+
+		if (Objects.equals(getOrderByCol(), "create-date")) {
+			orderByComparator = new LayoutCreateDateComparator(orderByAsc);
+		}
+
+		return orderByComparator;
 	}
 
 	private String _displayStyle;
