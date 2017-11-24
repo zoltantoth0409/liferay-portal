@@ -1,6 +1,6 @@
 <definition component-name="portal-mobile-device-rules">
 	<property name="blacklist.portal.profile.names.remove" value="com.liferay.portal.mobile.device.detection.fiftyonedegrees,com.liferay.portal.mobile.device.detection.fiftyonedegrees.enterprise" />
-	<property name="osgi.app.includes" value="portal-mobile-device-detection-fiftyonedegrees,portal-mobile-device-detection-fiftyonedegrees-enterprise" />
+	<property name="osgi.app.includes" value="portal-mobile-device-detection-fiftyonedegrees" />
 	<property name="plugins.deployment.type" value="osgi" />
 	<property name="portal.release" value="true" />
 	<property name="portal.upstream" value="true" />
