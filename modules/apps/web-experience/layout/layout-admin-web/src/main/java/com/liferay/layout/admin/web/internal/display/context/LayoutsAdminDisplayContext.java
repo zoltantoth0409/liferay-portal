@@ -21,6 +21,10 @@ import com.liferay.layout.util.comparator.LayoutCreateDateComparator;
 import com.liferay.portal.kernel.dao.search.EmptyOnClickRowChecker;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.json.JSONArray;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.LayoutConstants;
@@ -48,6 +52,7 @@ import com.liferay.portal.util.LayoutDescription;
 import com.liferay.portal.util.LayoutListUtil;
 import com.liferay.portlet.layoutsadmin.display.context.GroupDisplayContextHelper;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -105,6 +110,40 @@ public class LayoutsAdminDisplayContext {
 				PortalUtil.getHttpServletRequest(_liferayPortletRequest)));
 
 		return addLayoutURL;
+	}
+
+	public JSONArray getBreadcrumbEntriesJSONArray() throws PortalException {
+		JSONArray breadcrumbEntriesJSONArray =
+			JSONFactoryUtil.createJSONArray();
+
+		breadcrumbEntriesJSONArray.put(
+			_getBreadcrumbEntryJSONObject(
+				LayoutConstants.DEFAULT_PLID,
+				LanguageUtil.get(_themeDisplay.getLocale(), "home")));
+
+		if (getSelPlid() == LayoutConstants.DEFAULT_PLID) {
+			return breadcrumbEntriesJSONArray;
+		}
+
+		Layout selLayout = getSelLayout();
+
+		List<Layout> ancestors = selLayout.getAncestors();
+
+		Collections.reverse(ancestors);
+
+		for (Layout layout : ancestors) {
+			breadcrumbEntriesJSONArray.put(
+				_getBreadcrumbEntryJSONObject(
+					layout.getPlid(),
+					layout.getName(_themeDisplay.getLocale())));
+		}
+
+		breadcrumbEntriesJSONArray.put(
+			_getBreadcrumbEntryJSONObject(
+				selLayout.getPlid(),
+				selLayout.getName(_themeDisplay.getLocale())));
+
+		return breadcrumbEntriesJSONArray;
 	}
 
 	public String getDisplayStyle() {
@@ -544,6 +583,23 @@ public class LayoutsAdminDisplayContext {
 
 		return LayoutPermissionUtil.contains(
 			_themeDisplay.getPermissionChecker(), layout, ActionKeys.UPDATE);
+	}
+
+	private JSONObject _getBreadcrumbEntryJSONObject(long plid, String title)
+		throws PortalException {
+
+		JSONObject breadcrumbEntryJSONObject =
+			JSONFactoryUtil.createJSONObject();
+
+		breadcrumbEntryJSONObject.put("title", title);
+
+		PortletURL portletURL = getPortletURL();
+
+		portletURL.setParameter("selPlid", String.valueOf(plid));
+
+		breadcrumbEntryJSONObject.put("url", portletURL.toString());
+
+		return breadcrumbEntryJSONObject;
 	}
 
 	private OrderByComparator _getOrderByComparator() {
