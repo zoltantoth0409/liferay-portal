@@ -4,6 +4,10 @@
  * Layout
  */
 {template .render}
+	{@param breadcrumbEntries: list<[
+		title: string,
+		url: string
+	]>}
 	{@param layoutBlocks: list<?>}
 	{@param pathThemeImages: string}
 	{@param portletNamespace: string}
@@ -11,9 +15,7 @@
 
 	<div class="container-fluid-1280" ref="layout">
 		{call LayoutBreadcrumbs.render}
-			{param layoutBlocks: $layoutBlocks /}
-			{param portletNamespace: $portletNamespace /}
-			{param portletURL: $portletURL /}
+			{param breadcrumbEntries: $breadcrumbEntries /}
 		{/call}
 
 		<div class="bg-light page-list row" ref="layoutColumns">

@@ -4,53 +4,24 @@
  * LayoutBreadcrumbs
  */
 {template .render}
-	{@param layoutBlocks: list<?>}
-	{@param portletNamespace: string}
-	{@param portletURL: string}
+	{@param breadcrumbEntries: list<[
+		title: string,
+		url: string
+	]>}
 
-	<ol class="breadcrumb mt-3">
-		{call .breadcrumbItem}
-			{param portletNamespace: $portletNamespace /}
-			{param portletURL: $portletURL /}
-		{/call}
-		{foreach $layoutBlock in $layoutBlocks}
-			{foreach $layout in $layoutBlock}
-				{if $layout.active}
-					{call .breadcrumbItem}
-						{param layout: $layout /}
-						{param portletNamespace: $portletNamespace /}
-						{param portletURL: $portletURL /}
-					{/call}
-				{/if}
-			{/foreach}
+	<ol class="breadcrumb">
+		{foreach $breadcrumbEntry in $breadcrumbEntries}
+			{if isLast($breadcrumbEntry)}
+				<li class="active breadcrumb-item">
+					<span class="breadcrumb-text-truncate">{$breadcrumbEntry.title}</span>
+				</li>
+			{else}
+				<li class="breadcrumb-item">
+					<a class="breadcrumb-link" href="{$breadcrumbEntry.url}">
+						<span class="breadcrumb-text-truncate">{$breadcrumbEntry.title}</span>
+					</a>
+				</li>
+			{/if}
 		{/foreach}
 	</ol>
-{/template}
-
-/**
- *	Breadcrumb item
- */
-{template .breadcrumbItem}
-	{@param portletNamespace: string}
-	{@param portletURL: string}
-	{@param? layout: ?}
-
-	{let $breadcrumbItemHref kind="text"}
-		{$portletURL}&{$portletNamespace}selectedLayoutId=
-		{if $layout}
-			{$layout.layoutId}
-		{else}
-			0
-		{/if}
-	{/let}
-
-	<li class="breadcrumb-item">
-		<a class="breadcrumb-link" href="{$breadcrumbItemHref}">
-			{if $layout}
-				{$layout.title}
-			{else}
-				{msg desc=""}home{/msg}
-			{/if}
-		</a>
-	</li>
 {/template}

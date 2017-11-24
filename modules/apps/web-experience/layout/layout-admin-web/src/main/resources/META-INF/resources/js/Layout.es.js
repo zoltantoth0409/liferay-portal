@@ -64,6 +64,19 @@ class Layout extends Component {
  */
 Layout.STATE = {
 	/**
+	 * Breadcrumb Entries
+	 * @instance
+	 * @memberof Layout
+	 * @type {!Array}
+	 */
+	breadcrumbEntries: Config.arrayOf(
+		Config.shapeOf({
+			title: Config.string().required(),
+			url: Config.string().required(),
+		})
+	).required(),
+
+	/**
 	 * Layout blocks
 	 * @instance
 	 * @memberof Layout

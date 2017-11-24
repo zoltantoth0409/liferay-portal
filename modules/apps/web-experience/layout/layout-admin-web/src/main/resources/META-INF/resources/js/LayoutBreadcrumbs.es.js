@@ -16,43 +16,18 @@ class LayoutBreadcrumbs extends Component {}
  */
 LayoutBreadcrumbs.STATE = {
 	/**
-	 * Layout blocks
+	 * Breadcrumb entries
 	 * @default undefined
 	 * @instance
 	 * @memberof LayoutBreadcrumbs
 	 * @type {!Array}
 	 */
-	layoutBlocks: Config.arrayOf(
-		Config.arrayOf(
-			Config.shapeOf({
-				active: Config.bool().required(),
-				hasChild: Config.bool().required(),
-				icon: Config.string().required(),
-				layoutId: Config.string().required(),
-				parentLayoutId: Config.string().required(),
-				selected: Config.bool().required(),
-				title: Config.string().required(),
-			})
-		)
+	breadcrumbEntries: Config.arrayOf(
+		Config.shapeOf({
+			title: Config.string().required(),
+			url: Config.string().required(),
+		})
 	).required(),
-
-	/**
-	 * Namespace of portlet to prefix parameters names
-	 * @default undefined
-	 * @instance
-	 * @memberof LayoutBreadcrumbs
-	 * @type {!string}
-	 */
-	portletNamespace: Config.string().required(),
-
-	/**
-	 * URL of portlet to prefix block links
-	 * @default undefined
-	 * @instance
-	 * @memberof LayoutBreadcrumbs
-	 * @type {!string}
-	 */
-	portletURL: Config.string().required(),
 };
 
 Soy.register(LayoutBreadcrumbs, templates);
