@@ -457,7 +457,8 @@ public class DLServiceVerifyProcess extends VerifyProcess {
 		}
 
 		if (dlFileVersions.isEmpty()) {
-			DLStoreUtil.addFile(companyId, dataRepositoryId, name, new byte[0]);
+			DLStoreUtil.addFile(
+				companyId, dataRepositoryId, name, false, new byte[0]);
 
 			return;
 		}
