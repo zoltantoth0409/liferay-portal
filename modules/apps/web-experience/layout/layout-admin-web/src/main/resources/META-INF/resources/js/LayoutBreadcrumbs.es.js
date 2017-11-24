@@ -2,24 +2,24 @@ import Component from 'metal-component';
 import {Config} from 'metal-state';
 import Soy from 'metal-soy';
 
-import templates from './PageListBreadcrumbs.soy';
+import templates from './LayoutBreadcrumbs.soy';
 
 /**
- * PageListBreadcrumbs
+ * LayoutBreadcrumbs
  */
-class PageListBreadcrumbs extends Component {}
+class LayoutBreadcrumbs extends Component {}
 
 /**
  * State definition.
  * @type {!Object}
  * @static
  */
-PageListBreadcrumbs.STATE = {
+LayoutBreadcrumbs.STATE = {
 	/**
 	 * Layout blocks
 	 * @default undefined
 	 * @instance
-	 * @memberof PageListBreadcrumbs
+	 * @memberof LayoutBreadcrumbs
 	 * @type {!Array}
 	 */
 	layoutBlocks: Config.arrayOf(
@@ -40,7 +40,7 @@ PageListBreadcrumbs.STATE = {
 	 * Namespace of portlet to prefix parameters names
 	 * @default undefined
 	 * @instance
-	 * @memberof PageListBreadcrumbs
+	 * @memberof LayoutBreadcrumbs
 	 * @type {!string}
 	 */
 	portletNamespace: Config.string().required(),
@@ -49,13 +49,13 @@ PageListBreadcrumbs.STATE = {
 	 * URL of portlet to prefix block links
 	 * @default undefined
 	 * @instance
-	 * @memberof PageListBreadcrumbs
+	 * @memberof LayoutBreadcrumbs
 	 * @type {!string}
 	 */
 	portletURL: Config.string().required(),
 };
 
-Soy.register(PageListBreadcrumbs, templates);
+Soy.register(LayoutBreadcrumbs, templates);
 
-export {PageListBreadcrumbs};
-export default PageListBreadcrumbs;
+export {LayoutBreadcrumbs};
+export default LayoutBreadcrumbs;

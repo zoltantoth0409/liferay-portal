@@ -1,7 +1,7 @@
-{namespace PageListColumn}
+{namespace LayoutColumn}
 
 /**
- * PageListColumn
+ * LayoutColumn
  */
 {template .render}
 	{@param layouts: list<?>}
@@ -9,9 +9,9 @@
 	{@param portletNamespace: string}
 	{@param portletURL: string}
 
-	<div class="bg-light border col-11 col-md-6 col-lg-4 list-group p-0 page-list-block">
+	<div class="bg-light border col-11 col-md-6 col-lg-4 layout-block list-group p-0">
 		{foreach $layout in $layouts}
-			{call .pageListColumnItem}
+			{call .layoutColumnItem}
 				{param active: $layout.active /}
 				{param hasChild: $layout.hasChild /}
 				{param layoutId: $layout.layoutId /}
@@ -40,7 +40,7 @@
 /**
  * Renders a Lexicon Horizontal Card
  */
-{template .pageListColumnItem}
+{template .layoutColumnItem}
 	{@param active: bool}
 	{@param hasChild: bool}
 	{@param layoutId: string}
@@ -53,7 +53,7 @@
 	{let $listGroupItemClasses kind="text"}
 		list-group-item
 		{sp}list-group-item-flex
-		{sp}page-list-group-item
+		{sp}layout-group-item
 
 		{if $selected or $active}
 			{sp}active

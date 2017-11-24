@@ -3,16 +3,16 @@ import {Config} from 'metal-state';
 import Soy from 'metal-soy';
 import 'metal-dropdown';
 
-import './PageListBreadcrumbs.es';
-import './PageListColumn.es';
-import templates from './PageList.soy';
+import './LayoutBreadcrumbs.es';
+import './LayoutColumn.es';
+import templates from './Layout.soy';
 
 /**
  * Component that allows to show layouts tree in form of three dependent blocks.
- * It integrates three <PageListBlock /> components for N-th, N-th + 2 and
+ * It integrates three <LayoutBlock /> components for N-th, N-th + 2 and
  * N-th + 3 levels of layouts tree.
  */
-class PageList extends Component {
+class Layout extends Component {
 	/**
 	 * @inheritDoc
 	 */
@@ -33,7 +33,7 @@ class PageList extends Component {
 				});
 
 				const searchContainer = new Liferay.SearchContainer({
-					contentBox: A.one(this.refs.pageList),
+					contentBox: A.one(this.refs.layout),
 					id:
 						this.getInitialConfig().portletNamespace +
 						this.getInitialConfig().searchContainerId,
@@ -53,7 +53,7 @@ class PageList extends Component {
 	 * @inheritDoc
 	 */
 	rendered() {
-		this.refs.pageList.scrollLeft = this.refs.pageList.scrollWidth;
+		this.refs.layout.scrollLeft = this.refs.layout.scrollWidth;
 	}
 }
 
@@ -62,11 +62,11 @@ class PageList extends Component {
  * @type {!Object}
  * @static
  */
-PageList.STATE = {
+Layout.STATE = {
 	/**
 	 * Layout blocks
 	 * @instance
-	 * @memberof PageList
+	 * @memberof Layout
 	 * @type {!Array}
 	 */
 	layoutBlocks: Config.arrayOf(
@@ -86,7 +86,7 @@ PageList.STATE = {
 	/**
 	 * URL for using icons
 	 * @instance
-	 * @memberof PageList
+	 * @memberof Layout
 	 * @type {!string}
 	 */
 	pathThemeImages: Config.string().required(),
@@ -94,7 +94,7 @@ PageList.STATE = {
 	/**
 	 * Namespace of portlet to prefix parameters names
 	 * @instance
-	 * @memberof PageList
+	 * @memberof Layout
 	 * @type {!string}
 	 */
 	portletNamespace: Config.string().required(),
@@ -102,13 +102,13 @@ PageList.STATE = {
 	/**
 	 * URL of portlet to prefix block links
 	 * @instance
-	 * @memberof PageList
+	 * @memberof Layout
 	 * @type {!string}
 	 */
 	portletURL: Config.string().required(),
 };
 
-Soy.register(PageList, templates);
+Soy.register(Layout, templates);
 
-export {PageList};
-export default PageList;
+export {Layout};
+export default Layout;

@@ -2,24 +2,24 @@ import Component from 'metal-component';
 import {Config} from 'metal-state';
 import Soy from 'metal-soy';
 
-import templates from './PageListColumn.soy';
+import templates from './LayoutColumn.soy';
 
 /**
- * PageListColumn
+ * LayoutColumn
  */
-class PageListColumn extends Component {}
+class LayoutColumn extends Component {}
 
 /**
  * State definition.
  * @type {!Object}
  * @static
  */
-PageListColumn.STATE = {
+LayoutColumn.STATE = {
 	/**
 	 * List of layouts in the current column
 	 * @default undefined
 	 * @instance
-	 * @memberof PageListColumn
+	 * @memberof LayoutColumn
 	 * @type {!Array}
 	 */
 	layouts: Config.arrayOf(
@@ -38,7 +38,7 @@ PageListColumn.STATE = {
 	 * URL for using icons
 	 * @default undefined
 	 * @instance
-	 * @memberof PageListColumn
+	 * @memberof LayoutColumn
 	 * @type {!string}
 	 */
 	pathThemeImages: Config.string().required(),
@@ -47,7 +47,7 @@ PageListColumn.STATE = {
 	 * Namespace of portlet to prefix parameters names
 	 * @default undefined
 	 * @instance
-	 * @memberof PageListColumn
+	 * @memberof LayoutColumn
 	 * @type {!string}
 	 */
 	portletNamespace: Config.string().required(),
@@ -56,13 +56,13 @@ PageListColumn.STATE = {
 	 * URL of portlet to prefix block links
 	 * @default undefined
 	 * @instance
-	 * @memberof PageListColumn
+	 * @memberof LayoutColumn
 	 * @type {!string}
 	 */
 	portletURL: Config.string().required(),
 };
 
-Soy.register(PageListColumn, templates);
+Soy.register(LayoutColumn, templates);
 
-export {PageListColumn};
-export default PageListColumn;
+export {LayoutColumn};
+export default LayoutColumn;
