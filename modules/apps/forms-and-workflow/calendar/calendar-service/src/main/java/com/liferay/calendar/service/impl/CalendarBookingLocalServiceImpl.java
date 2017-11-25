@@ -1871,9 +1871,9 @@ public class CalendarBookingLocalServiceImpl
 		}
 
 		if ((newParentStatus ==
-				CalendarBookingWorkflowConstants.STATUS_MAYBE) ||
+				CalendarBookingWorkflowConstants.STATUS_DENIED) ||
 			(newParentStatus ==
-				CalendarBookingWorkflowConstants.STATUS_DENIED)) {
+				CalendarBookingWorkflowConstants.STATUS_MAYBE)) {
 
 			return oldChildStatus;
 		}
