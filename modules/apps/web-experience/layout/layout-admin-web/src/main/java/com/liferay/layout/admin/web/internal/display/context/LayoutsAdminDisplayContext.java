@@ -511,6 +511,17 @@ public class LayoutsAdminDisplayContext {
 		return _tabs1;
 	}
 
+	public boolean isMillerColumnsEnabled() {
+		if (_millerColumnsEnabled != null) {
+			return _millerColumnsEnabled;
+		}
+
+		_millerColumnsEnabled = ParamUtil.getBoolean(
+			_liferayPortletRequest, "millerColumns");
+
+		return _millerColumnsEnabled;
+	}
+
 	public boolean isPrivateLayout() {
 		if (_privateLayout != null) {
 			return _privateLayout;
@@ -707,6 +718,7 @@ public class LayoutsAdminDisplayContext {
 	private SearchContainer _layoutsSearchContainer;
 	private final LiferayPortletRequest _liferayPortletRequest;
 	private final LiferayPortletResponse _liferayPortletResponse;
+	private Boolean _millerColumnsEnabled;
 	private String _navigation;
 	private String[] _navigationKeys;
 	private String _orderByCol;
