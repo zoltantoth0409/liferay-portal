@@ -13,12 +13,12 @@
 	{@param portletNamespace: string}
 	{@param portletURL: string}
 
-	<div class="container-fluid-1280" ref="layout">
+	<div ref="layout">
 		{call LayoutBreadcrumbs.render}
 			{param breadcrumbEntries: $breadcrumbEntries /}
 		{/call}
 
-		<div class="bg-light page-list row" ref="layoutColumns">
+		<div class="bg-light row" ref="layoutColumns">
 			{foreach $layoutBlock in $layoutBlocks}
 				{call LayoutColumn.render}
 					{param layouts: $layoutBlock /}
