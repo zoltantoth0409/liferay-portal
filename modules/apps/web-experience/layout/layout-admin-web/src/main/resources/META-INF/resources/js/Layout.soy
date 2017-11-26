@@ -8,7 +8,7 @@
 		title: string,
 		url: string
 	]>}
-	{@param layoutBlocks: list<?>}
+	{@param layoutColumns: list<?>}
 	{@param pathThemeImages: string}
 	{@param portletNamespace: string}
 	{@param portletURL: string}
@@ -19,9 +19,9 @@
 		{/call}
 
 		<div class="bg-light row" ref="layoutColumns">
-			{foreach $layoutBlock in $layoutBlocks}
+			{foreach $layoutColumn in $layoutColumns}
 				{call LayoutColumn.render}
-					{param layouts: $layoutBlock /}
+					{param layoutColumn: $layoutColumn /}
 					{param pathThemeImages: $pathThemeImages /}
 					{param portletNamespace: $portletNamespace /}
 					{param portletURL: $portletURL /}

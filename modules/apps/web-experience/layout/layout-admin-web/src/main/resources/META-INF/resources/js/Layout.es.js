@@ -8,9 +8,9 @@ import './LayoutColumn.es';
 import templates from './Layout.soy';
 
 /**
- * Component that allows to show layouts tree in form of three dependent blocks.
- * It integrates three <LayoutBlock /> components for N-th, N-th + 2 and
- * N-th + 3 levels of layouts tree.
+ * Component that allows to show layouts tree in form of three dependent
+ * columns. It integrates three <LayoutColumn /> components for N-th, N-th + 2
+ * and N-th + 3 levels of layouts tree.
  */
 class Layout extends Component {
 	/**
@@ -27,7 +27,7 @@ class Layout extends Component {
 
 				plugins.push({
 					cfg: {
-						rowSelector: '.page-list-block',
+						rowSelector: '.layout-column',
 					},
 					fn: A.Plugin.SearchContainerSelect,
 				});
@@ -82,7 +82,7 @@ Layout.STATE = {
 	 * @memberof Layout
 	 * @type {!Array}
 	 */
-	layoutBlocks: Config.arrayOf(
+	layoutColumns: Config.arrayOf(
 		Config.arrayOf(
 			Config.shapeOf({
 				active: Config.bool().required(),

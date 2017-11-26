@@ -4,22 +4,22 @@
  * LayoutColumn
  */
 {template .render}
-	{@param layouts: list<?>}
+	{@param layoutColumn: list<?>}
 	{@param pathThemeImages: string}
 	{@param portletNamespace: string}
 	{@param portletURL: string}
 
-	<ul class="border col-11 col-md-6 col-lg-4 layout-block list-group p-0">
-		{foreach $layout in $layouts}
+	<ul class="border col-11 col-md-6 col-lg-4 layout-column list-group p-0">
+		{foreach $layoutColumnItem in $layoutColumn}
 			{call .layoutColumnItem}
-				{param active: $layout.active /}
-				{param hasChild: $layout.hasChild /}
-				{param layoutId: $layout.layoutId /}
+				{param active: $layoutColumnItem.active /}
+				{param hasChild: $layoutColumnItem.hasChild /}
+				{param layoutId: $layoutColumnItem.layoutId /}
 				{param pathThemeImages: $pathThemeImages /}
 				{param portletNamespace: $portletNamespace /}
 				{param portletURL: $portletURL /}
-				{param selected: $layout.selected /}
-				{param title: $layout.title /}
+				{param selected: $layoutColumnItem.selected /}
+				{param title: $layoutColumnItem.title /}
 			{/call}
 		{/foreach}
 	</ul>

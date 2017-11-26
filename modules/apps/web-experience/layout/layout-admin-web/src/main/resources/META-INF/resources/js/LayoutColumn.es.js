@@ -22,7 +22,7 @@ LayoutColumn.STATE = {
 	 * @memberof LayoutColumn
 	 * @type {!Array}
 	 */
-	layouts: Config.arrayOf(
+	layoutColumn: Config.arrayOf(
 		Config.shapeOf({
 			active: Config.bool().required(),
 			hasChild: Config.bool().required(),
