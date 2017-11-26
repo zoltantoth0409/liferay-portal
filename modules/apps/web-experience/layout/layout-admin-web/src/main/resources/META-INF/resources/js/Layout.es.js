@@ -19,34 +19,30 @@ class Layout extends Component {
 	attached() {
 		const A = new AUI();
 
-		A.use(
-			'liferay-search-container',
-			'liferay-search-container-select',
-			A => {
-				const plugins = [];
+		A.use('liferay-search-container', 'liferay-search-container-select', A => {
+			const plugins = [];
 
-				plugins.push({
-					cfg: {
-						rowSelector: '.layout-column',
-					},
-					fn: A.Plugin.SearchContainerSelect,
-				});
+			plugins.push({
+				cfg: {
+					rowSelector: '.layout-column',
+				},
+				fn: A.Plugin.SearchContainerSelect,
+			});
 
-				const searchContainer = new Liferay.SearchContainer({
-					contentBox: A.one(this.refs.layout),
-					id:
-						this.getInitialConfig().portletNamespace +
-						this.getInitialConfig().searchContainerId,
-					plugins: plugins,
-				});
+			const searchContainer = new Liferay.SearchContainer({
+				contentBox: A.one(this.refs.layout),
+				id:
+					this.getInitialConfig().portletNamespace +
+					this.getInitialConfig().searchContainerId,
+				plugins: plugins,
+			});
 
-				this.searchContainer_ = searchContainer;
+			this.searchContainer_ = searchContainer;
 
-				Liferay.fire('search-container:registered', {
-					searchContainer: searchContainer,
-				});
-			}
-		);
+			Liferay.fire('search-container:registered', {
+				searchContainer: searchContainer,
+			});
+		});
 	}
 
 	/**
