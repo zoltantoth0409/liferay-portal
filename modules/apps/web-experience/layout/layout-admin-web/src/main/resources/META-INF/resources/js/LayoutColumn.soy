@@ -7,19 +7,17 @@
 	{@param layoutColumn: list<?>}
 	{@param pathThemeImages: string}
 	{@param portletNamespace: string}
-	{@param portletURL: string}
 
 	<ul class="border col-11 col-md-6 col-lg-4 layout-column list-group p-0">
 		{foreach $layoutColumnItem in $layoutColumn}
 			{call .layoutColumnItem}
 				{param active: $layoutColumnItem.active /}
 				{param hasChild: $layoutColumnItem.hasChild /}
-				{param layoutId: $layoutColumnItem.layoutId /}
 				{param pathThemeImages: $pathThemeImages /}
+				{param plid: $layoutColumnItem.plid /}
 				{param portletNamespace: $portletNamespace /}
-				{param portletURL: $portletURL /}
-				{param selected: $layoutColumnItem.selected /}
 				{param title: $layoutColumnItem.title /}
+				{param url: $layoutColumnItem.url /}
 			{/call}
 		{/foreach}
 	</ul>
@@ -43,18 +41,17 @@
 {template .layoutColumnItem}
 	{@param active: bool}
 	{@param hasChild: bool}
-	{@param layoutId: string}
 	{@param pathThemeImages: string}
+	{@param plid: string}
 	{@param portletNamespace: string}
-	{@param portletURL: string}
-	{@param selected: bool}
 	{@param title: string}
+	{@param url: string}
 
 	{let $listGroupItemClasses kind="text"}
 		list-group-item
 		{sp}list-group-item-flex
 
-		{if $selected or $active}
+		{if $active}
 			{sp}active
 		{/if}
 	{/let}
@@ -63,7 +60,7 @@
 		<div class="flex-col">
 			<div class="custom-control custom-checkbox">
 				<label>
-					<input class="custom-control-input" name="{$portletNamespace}rowIds" type="checkbox" value="{$layoutId}"/>
+					<input class="custom-control-input" name="{$portletNamespace}rowIds" type="checkbox" value="{$plid}"/>
 
 					<span class="custom-control-indicator"></span>
 				</label>
@@ -78,7 +75,7 @@
 
 		{if $hasChild}
 			<div class="flex-col">
-				<a href="{$portletURL}&{$portletNamespace}selectedLayoutId={$layoutId}">
+				<a href="{$url}">
 					{call .lexiconIcon}
 						{param name: 'angle-right' /}
 						{param pathThemeImages: $pathThemeImages /}

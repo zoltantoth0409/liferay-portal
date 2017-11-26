@@ -87,10 +87,8 @@ Layout.STATE = {
 			Config.shapeOf({
 				active: Config.bool().required(),
 				hasChild: Config.bool().required(),
-				icon: Config.string().required(),
-				layoutId: Config.string().required(),
-				parentLayoutId: Config.string().required(),
-				selected: Config.bool().required(),
+				plid: Config.string().required(),
+				url: Config.string().required(),
 				title: Config.string().required(),
 			})
 		)
@@ -111,14 +109,6 @@ Layout.STATE = {
 	 * @type {!string}
 	 */
 	portletNamespace: Config.string().required(),
-
-	/**
-	 * URL of portlet to prefix block links
-	 * @instance
-	 * @memberof Layout
-	 * @type {!string}
-	 */
-	portletURL: Config.string().required(),
 };
 
 Soy.register(Layout, templates);
