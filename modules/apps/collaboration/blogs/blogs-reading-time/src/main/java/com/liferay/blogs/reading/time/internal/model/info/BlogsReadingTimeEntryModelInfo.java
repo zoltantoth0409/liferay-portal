@@ -35,17 +35,17 @@ public class BlogsReadingTimeEntryModelInfo
 	implements ReadingTimeModelInfo<BlogsEntry> {
 
 	@Override
-	public String getContent(BlogsEntry model) {
-		return model.getContent();
+	public String getContent(BlogsEntry blogsEntry) {
+		return blogsEntry.getContent();
 	}
 
 	@Override
-	public String getContentType(BlogsEntry model) {
+	public String getContentType(BlogsEntry blogsEntry) {
 		return ContentTypes.TEXT_HTML;
 	}
 
 	@Override
-	public Locale getLocale(BlogsEntry model) {
+	public Locale getLocale(BlogsEntry blogsEntry) {
 		return LocaleUtil.getDefault();
 	}
 
