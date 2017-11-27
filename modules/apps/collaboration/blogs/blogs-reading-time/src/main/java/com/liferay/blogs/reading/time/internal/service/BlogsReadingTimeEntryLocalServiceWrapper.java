@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.blogs.reading.time.internal.service.wrapper;
+package com.liferay.blogs.reading.time.internal.service;
 
 import com.liferay.blogs.model.BlogsEntry;
 import com.liferay.blogs.service.BlogsEntryLocalService;
