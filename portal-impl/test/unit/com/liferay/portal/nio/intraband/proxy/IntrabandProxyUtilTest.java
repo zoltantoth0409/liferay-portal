@@ -2485,14 +2485,6 @@ public class IntrabandProxyUtilTest {
 	};
 
 	static {
-		try {
-			_getVisibleMethodsMethod = ReflectionUtil.getDeclaredMethod(
-				IntrabandProxyUtil.class, "_getVisibleMethods", Class.class);
-		}
-		catch (Exception e) {
-			throw new ExceptionInInitializerError(e);
-		}
-
 		_autoboxingMap.put(boolean.class, Boolean.class);
 		_autoboxingMap.put(byte.class, Number.class);
 		_autoboxingMap.put(char.class, Character.class);
@@ -2514,6 +2506,14 @@ public class IntrabandProxyUtilTest {
 		_defaultValueMap.put(Date.class, null);
 		_defaultValueMap.put(Object.class, null);
 		_defaultValueMap.put(void.class, null);
+
+		try {
+			_getVisibleMethodsMethod = ReflectionUtil.getDeclaredMethod(
+				IntrabandProxyUtil.class, "_getVisibleMethods", Class.class);
+		}
+		catch (Exception e) {
+			throw new ExceptionInInitializerError(e);
+		}
 
 		_sampleValueMap.put(boolean.class, Boolean.TRUE);
 		_sampleValueMap.put(byte.class, (byte)11);
