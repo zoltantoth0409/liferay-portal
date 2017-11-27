@@ -128,11 +128,11 @@ public class LayoutsAdminDisplayContext {
 
 		Layout selLayout = getSelLayout();
 
-		List<Layout> ancestors = selLayout.getAncestors();
+		List<Layout> layouts = selLayout.getAncestors();
 
-		Collections.reverse(ancestors);
+		Collections.reverse(layouts);
 
-		for (Layout layout : ancestors) {
+		for (Layout layout : layouts) {
 			breadcrumbEntriesJSONArray.put(
 				_getBreadcrumbEntryJSONObject(
 					layout.getPlid(),
@@ -185,11 +185,11 @@ public class LayoutsAdminDisplayContext {
 
 		Layout selLayout = getSelLayout();
 
-		List<Layout> ancestors = selLayout.getAncestors();
+		List<Layout> layouts = selLayout.getAncestors();
 
-		Collections.reverse(ancestors);
+		Collections.reverse(layouts);
 
-		for (Layout layout : ancestors) {
+		for (Layout layout : layouts) {
 			layoutBlocksJSONArray.put(
 				_getLayoutsJSONArray(layout.getLayoutId()));
 		}
