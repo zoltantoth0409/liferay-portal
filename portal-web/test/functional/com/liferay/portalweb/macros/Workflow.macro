@@ -1240,7 +1240,7 @@
 			<var name="key_menuItem" value="Withdraw Submission" />
 		</execute>
 
-		<execute macro="Alert#waitForSuccessMessageHide" />
+		<execute macro="Alert#viewSuccessMessage" />
 	</command>
 
 	<command name="withdrawTaskCompletedNoByDetails">
