@@ -59,7 +59,7 @@ public class ServiceTrackerUtil {
 		}
 
 		throw new IllegalArgumentException(
-			"Filter string and clazz can not both be null.");
+			"Filter string and class are both null");
 	}
 
 	public static <T> T throwException(Throwable throwable) {
