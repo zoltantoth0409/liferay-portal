@@ -71,8 +71,8 @@ public class ReadingTimeTag extends AttributesTagSupport {
 		_id = id;
 	}
 
-	public void setModel(GroupedModel model) {
-		_model = model;
+	public void setModel(GroupedModel groupedModel) {
+		_groupedModel = groupedModel;
 	}
 
 	private Optional<String> _buildTag(Duration readingTimeDuration) {
@@ -111,12 +111,13 @@ public class ReadingTimeTag extends AttributesTagSupport {
 	}
 
 	private Optional<Duration> _getReadingTimeDurationOptional() {
-		if (_model == null) {
+		if (_groupedModel == null) {
 			return Optional.of(Duration.ZERO);
 		}
 
 		ReadingTimeEntry readingTimeEntry =
-			ReadingTimeEntryLocalServiceUtil.fetchOrAddReadingTimeEntry(_model);
+			ReadingTimeEntryLocalServiceUtil.fetchOrAddReadingTimeEntry(
+				_groupedModel);
 
 		if (readingTimeEntry != null) {
 			return Optional.of(
@@ -149,6 +150,6 @@ public class ReadingTimeTag extends AttributesTagSupport {
 	}
 
 	private String _id;
-	private GroupedModel _model;
+	private GroupedModel _groupedModel;
 
 }
