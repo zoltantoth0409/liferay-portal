@@ -14,7 +14,7 @@
 
 package com.liferay.modules.compat.internal;
 
-import com.liferay.modules.compat.internal.adaptor.ServiceAdaptor;
+import com.liferay.modules.compat.internal.adapter.ServiceAdapter;
 import com.liferay.modules.compat.internal.configuration.ModuleCompatExtenderConfiguration;
 import com.liferay.petra.string.CharPool;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
@@ -144,11 +144,11 @@ public class ModuleCompatExtender {
 			}
 		}
 
-		_bundleTracker = new BundleTracker<List<ServiceAdaptor<?, ?>>>(
+		_bundleTracker = new BundleTracker<List<ServiceAdapter<?, ?>>>(
 			bundleContext, ~Bundle.UNINSTALLED, null) {
 
 			@Override
-			public List<ServiceAdaptor<?, ?>> addingBundle(
+			public List<ServiceAdapter<?, ?>> addingBundle(
 				Bundle bundle, BundleEvent bundleEvent) {
 
 				String location = bundle.getLocation();
@@ -192,10 +192,10 @@ public class ModuleCompatExtender {
 			@Override
 			public void removedBundle(
 				Bundle bundle, BundleEvent event,
-				List<ServiceAdaptor<?, ?>> serviceAdaptors) {
+				List<ServiceAdapter<?, ?>> serviceAdapters) {
 
-				for (ServiceAdaptor<?, ?> serviceAdaptor : serviceAdaptors) {
-					serviceAdaptor.close();
+				for (ServiceAdapter<?, ?> serviceAdapter : serviceAdapters) {
+					serviceAdapter.close();
 				}
 			}
 
@@ -253,7 +253,7 @@ public class ModuleCompatExtender {
 		return sb.toString();
 	}
 
-	private List<ServiceAdaptor<?, ?>> _installCompatBundle(
+	private List<ServiceAdapter<?, ?>> _installCompatBundle(
 			Bundle bundle, BundleContext bundleContext, String exportBundles)
 		throws Exception {
 
@@ -306,19 +306,19 @@ public class ModuleCompatExtender {
 
 		Dictionary<String, String> headers = bundle.getHeaders();
 
-		List<ServiceAdaptor<?, ?>> serviceAdaptors = new ArrayList<>();
+		List<ServiceAdapter<?, ?>> serviceAdaptors = new ArrayList<>();
 
-		for (String adaptorLine : StringUtil.split(
+		for (String adapterLine : StringUtil.split(
 				headers.get("Liferay-Modules-Compat-Adaptors"))) {
 
-			String[] classNames = StringUtil.split(adaptorLine, CharPool.COLON);
+			String[] classNames = StringUtil.split(adapterLine, CharPool.COLON);
 
 			if (classNames.length != 2) {
 				_log.error(
 					StringBundler.concat(
 						"Invalid format in bundle: ", String.valueOf(bundle),
 						"'s Liferay-Modules-Compat-Adaptors line : ",
-						adaptorLine));
+						adapterLine));
 			}
 
 			try {
@@ -328,8 +328,8 @@ public class ModuleCompatExtender {
 				Class<?> toClass = bundle.loadClass(
 					StringUtil.trim(classNames[1]));
 
-				serviceAdaptors.add(
-					new ServiceAdaptor<>(bundleContext, fromClass, toClass));
+				serviceAdapters.add(
+					new ServiceAdapter<>(bundleContext, fromClass, toClass));
 			}
 			catch (ClassNotFoundException cnfe) {
 				_log.error(
@@ -337,16 +337,16 @@ public class ModuleCompatExtender {
 						"Invalid class name in bundle: ",
 						String.valueOf(bundle),
 						"'s Liferay-Modules-Compat-Adaptors line : ",
-						adaptorLine),
+						adapterLine),
 					cnfe);
 			}
 		}
 
-		if (serviceAdaptors.isEmpty()) {
+		if (serviceAdapters.isEmpty()) {
 			return null;
 		}
 
-		return serviceAdaptors;
+		return serviceAdapters;
 	}
 
 	private void _refreshBundles(
@@ -400,7 +400,7 @@ public class ModuleCompatExtender {
 	private static final Log _log = LogFactoryUtil.getLog(
 		ModuleCompatExtender.class.getName());
 
-	private BundleTracker<List<ServiceAdaptor<?, ?>>> _bundleTracker;
+	private BundleTracker<List<ServiceAdapter<?, ?>>> _bundleTracker;
 	private Set<String> _compatHostBundleSymbolicNames;
 	private Set<String> _compatInstallSymbolicNames;
 

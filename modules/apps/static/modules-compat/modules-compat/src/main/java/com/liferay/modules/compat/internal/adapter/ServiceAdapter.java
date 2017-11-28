@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.modules.compat.internal.adaptor;
+package com.liferay.modules.compat.internal.adapter;
 
 import com.liferay.petra.lang.CentralizedThreadLocal;
 import com.liferay.portal.kernel.log.Log;
@@ -40,9 +40,9 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
 /**
  * @author Shuyang Zhou
  */
-public class ServiceAdaptor<F, T> implements Closeable {
+public class ServiceAdapter<F, T> implements Closeable {
 
-	public ServiceAdaptor(
+	public ServiceAdapter(
 		BundleContext bundleContext, Class<F> fromClass, Class<T> toClass) {
 
 		_bundleContext = bundleContext;
@@ -67,7 +67,7 @@ public class ServiceAdaptor<F, T> implements Closeable {
 		_toServiceTracker.close();
 	}
 
-	private static final Log _log = LogFactoryUtil.getLog(ServiceAdaptor.class);
+	private static final Log _log = LogFactoryUtil.getLog(ServiceAdapter.class);
 
 	private final BundleContext _bundleContext;
 	private final ServiceTracker<F, ServiceRegistration<T>> _fromServiceTracker;
