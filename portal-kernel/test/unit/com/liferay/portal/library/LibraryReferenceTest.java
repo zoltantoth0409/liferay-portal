@@ -79,7 +79,7 @@ public class LibraryReferenceTest {
 			documentBuilderFactory.newDocumentBuilder();
 
 		_initEclipse(documentBuilder);
-		_initIntellij(documentBuilder);
+		_initIntelliJ(documentBuilder);
 		_initNetBeans(documentBuilder);
 		_initVersionsJars(documentBuilder, _VERSIONS_FILE_NAME, _versionsJars);
 		_initVersionsJars(
@@ -98,7 +98,7 @@ public class LibraryReferenceTest {
 	}
 
 	@Test
-	public void testIntellijLibPreModules() {
+	public void testIntelliJLibPreModules() {
 		for (Map.Entry<String, List<String>> entry :
 				_intelliJModuleSourceModules.entrySet()) {
 
@@ -307,7 +307,7 @@ public class LibraryReferenceTest {
 		}
 	}
 
-	private static void _initIntellij(DocumentBuilder documentBuilder)
+	private static void _initIntelliJ(DocumentBuilder documentBuilder)
 		throws Exception {
 
 		for (String fileName : _intelliJFileNames) {
