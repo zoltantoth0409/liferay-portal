@@ -308,9 +308,10 @@ public class ModuleCompatExtender {
 
 		List<ServiceAdapter<?, ?>> serviceAdapters = new ArrayList<>();
 
-		for (String adapterLine : StringUtil.split(
-				headers.get("Liferay-Modules-Compat-Adapters"))) {
+		String[] adapterLines = StringUtil.split(
+			headers.get("Liferay-Modules-Compat-Adapters"));
 
+		for (String adapterLine : adapterLines) {
 			String[] classNames = StringUtil.split(adapterLine, CharPool.COLON);
 
 			if (classNames.length != 2) {
