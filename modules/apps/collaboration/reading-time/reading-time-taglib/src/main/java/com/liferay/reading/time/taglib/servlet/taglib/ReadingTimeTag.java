@@ -149,7 +149,7 @@ public class ReadingTimeTag extends AttributesTagSupport {
 		return null;
 	}
 
-	private String _id;
 	private GroupedModel _groupedModel;
+	private String _id;
 
 }

@@ -26,7 +26,6 @@ import com.liferay.reading.time.web.internal.constants.ReadingTimePortletKeys;
 
 import java.time.Duration;
 
-import java.util.Locale;
 import java.util.Optional;
 
 import javax.portlet.ResourceRequest;
