@@ -1216,7 +1216,9 @@ public abstract class BaseBuild implements Build {
 							getDownstreamBuildCount("completed")) &&
 						(result != null)) {
 
-						setStatus("completed");
+						if (_isDifferent(_result, result)) {
+							setResult(result);
+						}
 					}
 
 					findDownstreamBuilds();
@@ -2085,7 +2087,7 @@ public abstract class BaseBuild implements Build {
 	}
 
 	protected void reset() {
-		_result = null;
+		setResult(null);
 
 		badBuildNumbers.add(getBuildNumber());
 
