@@ -5008,6 +5008,7 @@ public class PortalImpl implements Portal {
 			group, ppid, params);
 	}
 
+	@Override
 	public String getSiteAdminURL(
 			ThemeDisplay themeDisplay, String ppid,
 			Map<String, String[]> params)

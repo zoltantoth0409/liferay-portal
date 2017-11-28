@@ -740,6 +740,7 @@ public class CalendarBookingLocalServiceImpl
 		return childCalendarIds;
 	}
 
+	@Override
 	public boolean isStagingCalendarBooking(CalendarBooking calendarBooking)
 		throws PortalException {
 
