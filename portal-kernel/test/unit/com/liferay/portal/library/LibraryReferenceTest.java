@@ -100,9 +100,9 @@ public class LibraryReferenceTest {
 	@Test
 	public void testIntellijLibPreModules() {
 		for (Map.Entry<String, List<String>> entry :
-				_intellijModuleSourceModules.entrySet()) {
+				_intelliJModuleSourceModules.entrySet()) {
 
-			String intellijFileName = entry.getKey();
+			String intelliJFileName = entry.getKey();
 			List<String> modules = entry.getValue();
 
 			List<String> missingModules = new ArrayList<>();
@@ -120,7 +120,7 @@ public class LibraryReferenceTest {
 			}
 
 			Assert.assertTrue(
-				intellijFileName +
+				intelliJFileName +
 					" is missing orderEntry elements for modules " +
 						missingModules,
 				missingModules.isEmpty());
@@ -310,24 +310,24 @@ public class LibraryReferenceTest {
 	private static void _initIntellij(DocumentBuilder documentBuilder)
 		throws Exception {
 
-		for (String fileName : _intellijFileNames) {
+		for (String fileName : _intelliJFileNames) {
 			Document document = documentBuilder.parse(new File(fileName));
 
 			NodeList nodeList = document.getElementsByTagName("orderEntry");
 
-			List<String> intellijModuleSourceModules = new ArrayList<>();
+			List<String> intelliJModuleSourceModules = new ArrayList<>();
 
 			for (int i = 0; i < nodeList.getLength(); i++) {
 				Element element = (Element)nodeList.item(i);
 
 				if (Objects.equals("module", element.getAttribute("type"))) {
-					intellijModuleSourceModules.add(
+					intelliJModuleSourceModules.add(
 						element.getAttribute("module-name"));
 				}
 			}
 
-			_intellijModuleSourceModules.put(
-				fileName, intellijModuleSourceModules);
+			_intelliJModuleSourceModules.put(
+				fileName, intelliJModuleSourceModules);
 		}
 	}
 
@@ -532,14 +532,14 @@ public class LibraryReferenceTest {
 	private static final Set<String> _eclipseModuleSourceDirs = new HashSet<>();
 	private static final Set<String> _excludeJars = new HashSet<>();
 	private static final Set<String> _gitIgnoreJars = new HashSet<>();
-	private static final List<String> _intellijFileNames = Arrays.asList(
+	private static final List<String> _intelliJFileNames = Arrays.asList(
 		"portal-impl/portal-impl.iml", "portal-kernel/portal-kernel.iml",
 		"portal-test-integration/portal-test-integration.iml",
 		"portal-test/portal-test.iml", "portal-web/portal-web.iml",
 		"util-bridges/util-bridges.iml", "util-java/util-java.iml",
 		"util-slf4j/util-slf4j.iml", "util-taglib/util-taglib.iml");
 	private static final Map<String, List<String>>
-		_intellijModuleSourceModules = new HashMap<>();
+		_intelliJModuleSourceModules = new HashMap<>();
 	private static final Set<String> _libDependencyJars = new HashSet<>();
 	private static final Set<String> _libJars = new HashSet<>();
 	private static final Set<String> _moduleSourceDirs = new HashSet<>();
