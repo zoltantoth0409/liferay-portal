@@ -4,5 +4,5 @@ Bundle-Version: 2.0.0
 -includeresource:\
 	@lib/com.liferay.modules.compat.data.jar!/*.jar,\
 	@lib/com.liferay.modules.compat.data.jar!/*/packageinfo,\
-	@lib/com.liferay.modules.compat.data.jar!/META-INF/compat-fragment.properties,\
-	@lib/com.liferay.modules.compat.data.jar!/META-INF/compat-install.properties
+	@lib/com.liferay.modules.compat.data.jar!/META-INF/modules-compat-fragment.properties,\
+	@lib/com.liferay.modules.compat.data.jar!/META-INF/modules-compat-install.properties
