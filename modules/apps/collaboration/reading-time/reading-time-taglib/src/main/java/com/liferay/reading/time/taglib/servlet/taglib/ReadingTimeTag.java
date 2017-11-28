@@ -50,9 +50,10 @@ public class ReadingTimeTag extends AttributesTagSupport {
 		try {
 			JspWriter jspWriter = pageContext.getOut();
 
-			Optional<Duration> readingTimeOptional = _getReadingTime();
+			Optional<Duration> readingTimeDurationOptional =
+				_getReadingTimeDurationOptional();
 
-			Optional<String> tagOptional = readingTimeOptional.flatMap(
+			Optional<String> tagOptional = readingTimeDurationOptional.flatMap(
 				this::_buildTag);
 
 			if (tagOptional.isPresent()) {
@@ -109,7 +110,7 @@ public class ReadingTimeTag extends AttributesTagSupport {
 		return renderResponse.getNamespace();
 	}
 
-	private Optional<Duration> _getReadingTime() {
+	private Optional<Duration> _getReadingTimeDurationOptional() {
 		if (_model == null) {
 			return Optional.of(Duration.ZERO);
 		}
