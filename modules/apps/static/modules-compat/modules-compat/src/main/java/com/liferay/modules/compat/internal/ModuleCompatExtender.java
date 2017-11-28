@@ -306,10 +306,10 @@ public class ModuleCompatExtender {
 
 		Dictionary<String, String> headers = bundle.getHeaders();
 
-		List<ServiceAdapter<?, ?>> serviceAdaptors = new ArrayList<>();
+		List<ServiceAdapter<?, ?>> serviceAdapters = new ArrayList<>();
 
 		for (String adapterLine : StringUtil.split(
-				headers.get("Liferay-Modules-Compat-Adaptors"))) {
+				headers.get("Liferay-Modules-Compat-Adapters"))) {
 
 			String[] classNames = StringUtil.split(adapterLine, CharPool.COLON);
 
@@ -317,7 +317,7 @@ public class ModuleCompatExtender {
 				_log.error(
 					StringBundler.concat(
 						"Invalid format in bundle: ", String.valueOf(bundle),
-						"'s Liferay-Modules-Compat-Adaptors line : ",
+						"'s Liferay-Modules-Compat-Adapters line : ",
 						adapterLine));
 			}
 
@@ -336,7 +336,7 @@ public class ModuleCompatExtender {
 					StringBundler.concat(
 						"Invalid class name in bundle: ",
 						String.valueOf(bundle),
-						"'s Liferay-Modules-Compat-Adaptors line : ",
+						"'s Liferay-Modules-Compat-Adapters line : ",
 						adapterLine),
 					cnfe);
 			}
