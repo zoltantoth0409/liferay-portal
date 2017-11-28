@@ -59,10 +59,10 @@ public class CalculateReadingTimeMVCResourceCommand
 		String content = ParamUtil.getString(resourceRequest, "content");
 		String contentType = ParamUtil.getString(
 			resourceRequest, "contentType");
-		Locale locale = resourceRequest.getLocale();
 
 		Optional<Duration> readingTimeDurationOptional =
-			_readingTimeCalculator.calculate(content, contentType, locale);
+			_readingTimeCalculator.calculate(
+				content, contentType, resourceRequest.getLocale());
 
 		readingTimeDurationOptional.ifPresent(
 			readingTimeDuration -> {
@@ -73,7 +73,7 @@ public class CalculateReadingTimeMVCResourceCommand
 				jsonObject.put(
 					"readingTimeMessage",
 					_readingTimeMessageProvider.provide(
-						readingTimeDuration, locale));
+						readingTimeDuration, resourceRequest.getLocale()));
 			});
 
 		JSONPortletResponseUtil.writeJSON(
