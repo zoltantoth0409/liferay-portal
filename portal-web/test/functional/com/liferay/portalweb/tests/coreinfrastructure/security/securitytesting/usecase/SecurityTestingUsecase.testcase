@@ -48,12 +48,9 @@
 			<var name="webContentContent" value="WC WebContent Content" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
-			<var name="portletName" value="Web Content Display" />
-			<var name="portletOption" value="Edit Web Content" />
+		<execute macro="WebContentNavigator#gotoEditPGViaWCD">
+			<var name="webContentTitle" value="WebContent Title" />
 		</execute>
-
-		<execute macro="IFrame#selectDialogFrame" />
 
 		<var method="selenium#getText(WCEditWebContent#ARTICLE_ID)" name="articleID" />
 
