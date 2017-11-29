@@ -49,7 +49,7 @@ public interface PortletContainer {
 		HttpServletRequest request, Layout layout);
 
 	public void processPublicRenderParameters(
-		HttpServletRequest request, Layout layout, Portlet targetPortlet);
+		HttpServletRequest request, Layout layout, Portlet portlet);
 
 	public void render(
 			HttpServletRequest request, HttpServletResponse response,

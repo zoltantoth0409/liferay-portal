@@ -147,7 +147,7 @@ public class PortletContainerImpl implements PortletContainer {
 
 	@Override
 	public void processPublicRenderParameters(
-		HttpServletRequest request, Layout layout, Portlet targetPortlet) {
+		HttpServletRequest request, Layout layout, Portlet portlet) {
 
 		LayoutType layoutType = layout.getLayoutType();
 
@@ -159,7 +159,7 @@ public class PortletContainerImpl implements PortletContainer {
 
 		List<Portlet> portlets = layoutTypePortlet.getPortlets();
 
-		portlets.remove(targetPortlet);
+		portlets.remove(portlet);
 
 		_processPublicRenderParameters(request, layout, portlets, false);
 	}

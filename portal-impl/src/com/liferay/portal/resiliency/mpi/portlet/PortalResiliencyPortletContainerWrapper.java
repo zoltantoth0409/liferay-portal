@@ -158,10 +158,10 @@ public class PortalResiliencyPortletContainerWrapper
 
 	@Override
 	public void processPublicRenderParameters(
-		HttpServletRequest request, Layout layout, Portlet targetPortlet) {
+		HttpServletRequest request, Layout layout, Portlet portlet) {
 
 		_portletContainer.processPublicRenderParameters(
-			request, layout, targetPortlet);
+			request, layout, portlet);
 	}
 
 	@Override
