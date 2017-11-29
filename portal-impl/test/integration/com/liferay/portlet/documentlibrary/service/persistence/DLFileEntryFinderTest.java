@@ -132,8 +132,9 @@ public class DLFileEntryFinderTest {
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 			RandomTestUtil.randomString(), "FE.txt", false, serviceContext);
 
-		DLFileEntry dlFileEntry =
-			((LiferayFileEntry)fileEntry).getDLFileEntry();
+		LiferayFileEntry liferayFileEntry = (LiferayFileEntry)fileEntry;
+
+		DLFileEntry dlFileEntry = liferayFileEntry.getDLFileEntry();
 
 		DLFileVersion dlFileVersion = dlFileEntry.getLatestFileVersion(true);
 
@@ -975,8 +976,9 @@ public class DLFileEntryFinderTest {
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 			RandomTestUtil.randomString(), "FE.txt", false, serviceContext);
 
-		DLFileEntry dlFileEntry =
-			((LiferayFileEntry)fileEntry).getDLFileEntry();
+		LiferayFileEntry liferayFileEntry = (LiferayFileEntry)fileEntry;
+
+		DLFileEntry dlFileEntry = liferayFileEntry.getDLFileEntry();
 
 		DLFileVersion dlFileVersion = dlFileEntry.getLatestFileVersion(true);
 
@@ -1379,7 +1381,9 @@ public class DLFileEntryFinderTest {
 			RandomTestUtil.randomBytes(TikaSafeRandomizerBumper.INSTANCE),
 			serviceContext);
 
-		dlFileEntry = ((LiferayFileEntry)fileEntry).getDLFileEntry();
+		liferayFileEntry = (LiferayFileEntry)fileEntry;
+
+		dlFileEntry = liferayFileEntry.getDLFileEntry();
 
 		dlFileEntry.setDescription("FE3.txt");
 
