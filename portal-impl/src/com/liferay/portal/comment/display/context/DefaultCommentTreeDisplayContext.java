@@ -106,7 +106,7 @@ public class DefaultCommentTreeDisplayContext
 
 	@Override
 	public boolean isEditActionControlVisible() throws PortalException {
-		if (_isStagingGroup() || !hasUpdatePermission()) {
+		if (!hasUpdatePermission() || _isStagingGroup()) {
 			return false;
 		}
 
