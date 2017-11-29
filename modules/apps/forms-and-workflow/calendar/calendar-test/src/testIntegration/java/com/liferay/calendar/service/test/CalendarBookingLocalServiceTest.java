@@ -2065,14 +2065,6 @@ public class CalendarBookingLocalServiceTest {
 		Assert.assertEquals(minute, jCalendar.get(java.util.Calendar.MINUTE));
 	}
 
-	protected void assertMailSubjectCount(String messageSubject, int count) {
-		List<MailMessage> mailMessages = MailServiceTestUtil.getMailMessages(
-			"Subject", messageSubject);
-
-		Assert.assertEquals(
-			mailMessages.toString(), count, mailMessages.size());
-	}
-
 	protected void assertMailBody(String subject, String expectedBody) {
 		List<MailMessage> mailMessages = MailServiceTestUtil.getMailMessages(
 			"Subject", subject);
@@ -2083,6 +2075,14 @@ public class CalendarBookingLocalServiceTest {
 
 		Assert.assertEquals(
 			mailMessages.toString(), mailMessage.getBody(), expectedBody);
+	}
+
+	protected void assertMailSubjectCount(String messageSubject, int count) {
+		List<MailMessage> mailMessages = MailServiceTestUtil.getMailMessages(
+			"Subject", messageSubject);
+
+		Assert.assertEquals(
+			mailMessages.toString(), count, mailMessages.size());
 	}
 
 	protected void assertSameDay(
