@@ -128,11 +128,11 @@ public class ServletPaths {
 		}
 
 		if (path.contains("./")) {
-			Path downPath = Paths.get(_resourcePath, path);
+			Path downPathObject = Paths.get(_resourcePath, path);
 
-			downPath = downPath.normalize();
+			downPathObject = downPathObject.normalize();
 
-			path = downPath.toString();
+			path = downPathObject.toString();
 
 			path = path.replace(CharPool.BACK_SLASH, CharPool.SLASH);
 		}
