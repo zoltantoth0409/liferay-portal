@@ -45,10 +45,10 @@ public class ServletPaths {
 			resourcePath = resourcePath.substring(0, resourcePath.length() - 1);
 		}
 
-		int pos = resourcePath.lastIndexOf(CharPool.SLASH);
+		int index = resourcePath.lastIndexOf(CharPool.SLASH);
 
-		if (pos != -1) {
-			resourcePath = resourcePath.substring(0, pos);
+		if (index != -1) {
+			resourcePath = resourcePath.substring(0, index);
 		}
 
 		return resourcePath;
@@ -110,10 +110,10 @@ public class ServletPaths {
 			return StringPool.BLANK;
 		}
 
-		int pos = path.indexOf(CharPool.QUESTION);
+		int index = path.indexOf(CharPool.QUESTION);
 
-		if (pos != -1) {
-			path = path.substring(0, pos);
+		if (index != -1) {
+			path = path.substring(0, index);
 		}
 
 		if (path.charAt(path.length() - 1) == CharPool.SLASH) {

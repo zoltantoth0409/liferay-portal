@@ -133,9 +133,10 @@ public class AggregateFilter extends IgnoreModuleRequestFilter {
 				String importContent = null;
 
 				if (Validator.isUrl(importFileName)) {
-					ServletPaths downPath = servletPaths.down(importFileName);
+					ServletPaths downServletPaths = servletPaths.down(
+						importFileName);
 
-					importContent = downPath.getContent();
+					importContent = downServletPaths.getContent();
 				}
 				else {
 					int queryPos = importFileName.indexOf(CharPool.QUESTION);
