@@ -619,7 +619,7 @@ public class BlogsEntryLocalServiceTest {
 		ClassLoader classLoader = clazz.getClassLoader();
 
 		InputStream inputStream = classLoader.getResourceAsStream(
-			"com/liferay/portal/util/dependencies/test.jpg");
+			"com/liferay/blogs/dependencies/test.jpg");
 
 		return TempFileEntryUtil.addTempFileEntry(
 			groupId, userId, BlogsEntry.class.getName(), title, inputStream,
