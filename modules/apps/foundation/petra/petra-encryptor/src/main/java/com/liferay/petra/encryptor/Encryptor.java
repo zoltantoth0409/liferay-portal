@@ -254,7 +254,8 @@ public class Encryptor {
 
 				if (providerClass == null) {
 					throw new IllegalStateException(
-						"Cannot find provider class: " + PROVIDER_CLASS, cnfe);
+						"Unable to find provider class: " + PROVIDER_CLASS,
+						cnfe);
 				}
 			}
 
