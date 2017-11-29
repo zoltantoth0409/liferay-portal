@@ -1,5 +1,5 @@
-create table OAuthTwo_Application (
-	id_ LONG not null primary key,
+create table OAuth2Application (
+	oAuth2ApplicationId LONG not null primary key,
 	groupId LONG,
 	companyId LONG,
 	userId LONG,
@@ -8,17 +8,4 @@ create table OAuthTwo_Application (
 	modifiedDate DATE null,
 	name VARCHAR(75) null,
 	description VARCHAR(75) null
-);
-
-create table OAuthTwo_Client (
-	clientId VARCHAR(75) not null primary key,
-	applicationPK LONG,
-	clientSecret VARCHAR(75) null
-);
-
-create table OAuthTwo_RefreshToken (
-	value VARCHAR(75) not null primary key,
-	clientId VARCHAR(75) null,
-	issuedAt LONG,
-	lifetime LONG
 );

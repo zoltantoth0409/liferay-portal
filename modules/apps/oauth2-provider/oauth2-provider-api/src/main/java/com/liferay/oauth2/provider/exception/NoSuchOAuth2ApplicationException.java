@@ -11,8 +11,7 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-
-package com.liferay.oauth2.provider.service.exception;
+package com.liferay.oauth2.provider.exception;
 
 import aQute.bnd.annotation.ProviderType;
 
@@ -22,20 +21,20 @@ import com.liferay.portal.kernel.exception.NoSuchModelException;
  * @author Brian Wing Shun Chan
  */
 @ProviderType
-public class NoSuchApplicationException extends NoSuchModelException {
+public class NoSuchOAuth2ApplicationException extends NoSuchModelException {
 
-	public NoSuchApplicationException() {
+	public NoSuchOAuth2ApplicationException() {
 	}
 
-	public NoSuchApplicationException(String msg) {
+	public NoSuchOAuth2ApplicationException(String msg) {
 		super(msg);
 	}
 
-	public NoSuchApplicationException(String msg, Throwable cause) {
+	public NoSuchOAuth2ApplicationException(String msg, Throwable cause) {
 		super(msg, cause);
 	}
 
-	public NoSuchApplicationException(Throwable cause) {
+	public NoSuchOAuth2ApplicationException(Throwable cause) {
 		super(cause);
 	}
 

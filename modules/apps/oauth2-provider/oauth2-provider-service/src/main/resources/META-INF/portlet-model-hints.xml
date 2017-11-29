@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 
 <model-hints>
-	<model name="com.liferay.oauth2.provider.service.model.Application">
-		<field name="id" type="long" />
+	<model name="com.liferay.oauth2.provider.model.OAuth2Application">
+		<field name="oAuth2ApplicationId" type="long" />
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.oauth2.provider.service.model;
+package com.liferay.oauth2.provider.model;
 
 import aQute.bnd.annotation.ProviderType;
 
@@ -29,11 +29,11 @@ import java.util.List;
  * @generated
  */
 @ProviderType
-public class ApplicationSoap implements Serializable {
-	public static ApplicationSoap toSoapModel(Application model) {
-		ApplicationSoap soapModel = new ApplicationSoap();
+public class OAuth2ApplicationSoap implements Serializable {
+	public static OAuth2ApplicationSoap toSoapModel(OAuth2Application model) {
+		OAuth2ApplicationSoap soapModel = new OAuth2ApplicationSoap();
 
-		soapModel.setId(model.getId());
+		soapModel.setOAuth2ApplicationId(model.getOAuth2ApplicationId());
 		soapModel.setGroupId(model.getGroupId());
 		soapModel.setCompanyId(model.getCompanyId());
 		soapModel.setUserId(model.getUserId());
@@ -46,8 +46,9 @@ public class ApplicationSoap implements Serializable {
 		return soapModel;
 	}
 
-	public static ApplicationSoap[] toSoapModels(Application[] models) {
-		ApplicationSoap[] soapModels = new ApplicationSoap[models.length];
+	public static OAuth2ApplicationSoap[] toSoapModels(
+		OAuth2Application[] models) {
+		OAuth2ApplicationSoap[] soapModels = new OAuth2ApplicationSoap[models.length];
 
 		for (int i = 0; i < models.length; i++) {
 			soapModels[i] = toSoapModel(models[i]);
@@ -56,14 +57,15 @@ public class ApplicationSoap implements Serializable {
 		return soapModels;
 	}
 
-	public static ApplicationSoap[][] toSoapModels(Application[][] models) {
-		ApplicationSoap[][] soapModels = null;
+	public static OAuth2ApplicationSoap[][] toSoapModels(
+		OAuth2Application[][] models) {
+		OAuth2ApplicationSoap[][] soapModels = null;
 
 		if (models.length > 0) {
-			soapModels = new ApplicationSoap[models.length][models[0].length];
+			soapModels = new OAuth2ApplicationSoap[models.length][models[0].length];
 		}
 		else {
-			soapModels = new ApplicationSoap[0][0];
+			soapModels = new OAuth2ApplicationSoap[0][0];
 		}
 
 		for (int i = 0; i < models.length; i++) {
@@ -73,33 +75,34 @@ public class ApplicationSoap implements Serializable {
 		return soapModels;
 	}
 
-	public static ApplicationSoap[] toSoapModels(List<Application> models) {
-		List<ApplicationSoap> soapModels = new ArrayList<ApplicationSoap>(models.size());
+	public static OAuth2ApplicationSoap[] toSoapModels(
+		List<OAuth2Application> models) {
+		List<OAuth2ApplicationSoap> soapModels = new ArrayList<OAuth2ApplicationSoap>(models.size());
 
-		for (Application model : models) {
+		for (OAuth2Application model : models) {
 			soapModels.add(toSoapModel(model));
 		}
 
-		return soapModels.toArray(new ApplicationSoap[soapModels.size()]);
+		return soapModels.toArray(new OAuth2ApplicationSoap[soapModels.size()]);
 	}
 
-	public ApplicationSoap() {
+	public OAuth2ApplicationSoap() {
 	}
 
 	public long getPrimaryKey() {
-		return _id;
+		return _oAuth2ApplicationId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setId(pk);
+		setOAuth2ApplicationId(pk);
 	}
 
-	public long getId() {
-		return _id;
+	public long getOAuth2ApplicationId() {
+		return _oAuth2ApplicationId;
 	}
 
-	public void setId(long id) {
-		_id = id;
+	public void setOAuth2ApplicationId(long oAuth2ApplicationId) {
+		_oAuth2ApplicationId = oAuth2ApplicationId;
 	}
 
 	public long getGroupId() {
@@ -166,7 +169,7 @@ public class ApplicationSoap implements Serializable {
 		_description = description;
 	}
 
-	private long _id;
+	private long _oAuth2ApplicationId;
 	private long _groupId;
 	private long _companyId;
 	private long _userId;

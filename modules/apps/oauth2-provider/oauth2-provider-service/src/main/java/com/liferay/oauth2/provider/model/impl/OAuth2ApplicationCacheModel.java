@@ -12,11 +12,11 @@
  * details.
  */
 
-package com.liferay.oauth2.provider.service.model.impl;
+package com.liferay.oauth2.provider.model.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.oauth2.provider.service.model.Application;
+import com.liferay.oauth2.provider.model.OAuth2Application;
 
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.util.HashUtil;
@@ -30,14 +30,14 @@ import java.io.ObjectOutput;
 import java.util.Date;
 
 /**
- * The cache model class for representing Application in entity cache.
+ * The cache model class for representing OAuth2Application in entity cache.
  *
  * @author Brian Wing Shun Chan
- * @see Application
+ * @see OAuth2Application
  * @generated
  */
 @ProviderType
-public class ApplicationCacheModel implements CacheModel<Application>,
+public class OAuth2ApplicationCacheModel implements CacheModel<OAuth2Application>,
 	Externalizable {
 	@Override
 	public boolean equals(Object obj) {
@@ -45,13 +45,13 @@ public class ApplicationCacheModel implements CacheModel<Application>,
 			return true;
 		}
 
-		if (!(obj instanceof ApplicationCacheModel)) {
+		if (!(obj instanceof OAuth2ApplicationCacheModel)) {
 			return false;
 		}
 
-		ApplicationCacheModel applicationCacheModel = (ApplicationCacheModel)obj;
+		OAuth2ApplicationCacheModel oAuth2ApplicationCacheModel = (OAuth2ApplicationCacheModel)obj;
 
-		if (id == applicationCacheModel.id) {
+		if (oAuth2ApplicationId == oAuth2ApplicationCacheModel.oAuth2ApplicationId) {
 			return true;
 		}
 
@@ -60,15 +60,15 @@ public class ApplicationCacheModel implements CacheModel<Application>,
 
 	@Override
 	public int hashCode() {
-		return HashUtil.hash(0, id);
+		return HashUtil.hash(0, oAuth2ApplicationId);
 	}
 
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);
 
-		sb.append("{id=");
-		sb.append(id);
+		sb.append("{oAuth2ApplicationId=");
+		sb.append(oAuth2ApplicationId);
 		sb.append(", groupId=");
 		sb.append(groupId);
 		sb.append(", companyId=");
@@ -91,57 +91,57 @@ public class ApplicationCacheModel implements CacheModel<Application>,
 	}
 
 	@Override
-	public Application toEntityModel() {
-		ApplicationImpl applicationImpl = new ApplicationImpl();
+	public OAuth2Application toEntityModel() {
+		OAuth2ApplicationImpl oAuth2ApplicationImpl = new OAuth2ApplicationImpl();
 
-		applicationImpl.setId(id);
-		applicationImpl.setGroupId(groupId);
-		applicationImpl.setCompanyId(companyId);
-		applicationImpl.setUserId(userId);
+		oAuth2ApplicationImpl.setOAuth2ApplicationId(oAuth2ApplicationId);
+		oAuth2ApplicationImpl.setGroupId(groupId);
+		oAuth2ApplicationImpl.setCompanyId(companyId);
+		oAuth2ApplicationImpl.setUserId(userId);
 
 		if (userName == null) {
-			applicationImpl.setUserName("");
+			oAuth2ApplicationImpl.setUserName("");
 		}
 		else {
-			applicationImpl.setUserName(userName);
+			oAuth2ApplicationImpl.setUserName(userName);
 		}
 
 		if (createDate == Long.MIN_VALUE) {
-			applicationImpl.setCreateDate(null);
+			oAuth2ApplicationImpl.setCreateDate(null);
 		}
 		else {
-			applicationImpl.setCreateDate(new Date(createDate));
+			oAuth2ApplicationImpl.setCreateDate(new Date(createDate));
 		}
 
 		if (modifiedDate == Long.MIN_VALUE) {
-			applicationImpl.setModifiedDate(null);
+			oAuth2ApplicationImpl.setModifiedDate(null);
 		}
 		else {
-			applicationImpl.setModifiedDate(new Date(modifiedDate));
+			oAuth2ApplicationImpl.setModifiedDate(new Date(modifiedDate));
 		}
 
 		if (name == null) {
-			applicationImpl.setName("");
+			oAuth2ApplicationImpl.setName("");
 		}
 		else {
-			applicationImpl.setName(name);
+			oAuth2ApplicationImpl.setName(name);
 		}
 
 		if (description == null) {
-			applicationImpl.setDescription("");
+			oAuth2ApplicationImpl.setDescription("");
 		}
 		else {
-			applicationImpl.setDescription(description);
+			oAuth2ApplicationImpl.setDescription(description);
 		}
 
-		applicationImpl.resetOriginalValues();
+		oAuth2ApplicationImpl.resetOriginalValues();
 
-		return applicationImpl;
+		return oAuth2ApplicationImpl;
 	}
 
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
-		id = objectInput.readLong();
+		oAuth2ApplicationId = objectInput.readLong();
 
 		groupId = objectInput.readLong();
 
@@ -158,7 +158,7 @@ public class ApplicationCacheModel implements CacheModel<Application>,
 	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
-		objectOutput.writeLong(id);
+		objectOutput.writeLong(oAuth2ApplicationId);
 
 		objectOutput.writeLong(groupId);
 
@@ -191,7 +191,7 @@ public class ApplicationCacheModel implements CacheModel<Application>,
 		}
 	}
 
-	public long id;
+	public long oAuth2ApplicationId;
 	public long groupId;
 	public long companyId;
 	public long userId;
