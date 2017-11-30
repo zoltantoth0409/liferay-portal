@@ -113,7 +113,9 @@ public class JspAnalyzerPlugin implements AnalyzerPlugin {
 		return false;
 	}
 
-	protected void addApiUses(Analyzer analyzer, String content) {
+	protected void addApiUses(Analyzer analyzer, String originalContent) {
+		String content = originalContent.replaceAll("<%--[\\s\\S]*?--%>","");
+
 		int contentX = -1;
 		int contentY = content.length();
 
