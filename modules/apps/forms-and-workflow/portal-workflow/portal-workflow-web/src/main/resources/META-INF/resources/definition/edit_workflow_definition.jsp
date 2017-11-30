@@ -137,6 +137,7 @@ renderResponse.setTitle((workflowDefinition == null) ? LanguageUtil.get(request,
 							</liferay-util:buffer>
 
 							<liferay-ui:message arguments="<%= importFileMark %>" key="write-your-definition-or-x" translateArguments="<%= false %>" />
+
 							<input class="workflow-definition-upload-source" id="<portlet:namespace />upload" type="file" />
 						</aui:col>
 
