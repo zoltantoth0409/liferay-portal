@@ -102,11 +102,11 @@ public class JspAnalyzerPluginTest {
 	}
 
 	@Test
-	public void testImportsWithMulitplesAndStatics() throws Exception {
+	public void testImportsWithMultiplesAndStatics() throws Exception {
 		JspAnalyzerPlugin jspAnalyzerPlugin = new JspAnalyzerPlugin();
 
 		URL url = getResource(
-			"dependencies/imports_without_mutlipackages_and_statics.jsp");
+			"dependencies/imports_without_multipackages_and_statics.jsp");
 
 		InputStream inputStream = url.openStream();
 
