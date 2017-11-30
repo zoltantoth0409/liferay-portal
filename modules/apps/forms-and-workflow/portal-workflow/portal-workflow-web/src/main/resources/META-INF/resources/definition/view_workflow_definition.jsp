@@ -136,11 +136,7 @@ boolean previewBeforeRestore = WorkflowWebKeys.WORKFLOW_PREVIEW_BEFORE_RESTORE_S
 		{
 			boundingBox: '#<portlet:namespace />contentEditor',
 			height: 600,
-
-			<c:if test="<%= !previewBeforeRestore %>">
-				mode: 'xml',
-			</c:if>
-
+			mode: 'xml',
 			readOnly: 'true',
 			tabSize: 4,
 			width: '100%'
