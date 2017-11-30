@@ -96,7 +96,7 @@ public class PanelAppMyAccountPermissionsTest {
 
 		_testCompany = addCompany();
 
-		_registerFakePortlet(_testPortletId);
+		_registerTestPortlet(_testPortletId);
 
 		long defaultCompanyId = TestPropsValues.getCompanyId();
 
@@ -108,7 +108,7 @@ public class PanelAppMyAccountPermissionsTest {
 		Assert.assertFalse(
 			_hasMyAccountPermission(testCompanyId, _testPortletId));
 
-		_registerFakePanelApp(_testPortletId);
+		_registerTestPanelApp(_testPortletId);
 
 		Assert.assertTrue(
 			_hasMyAccountPermission(defaultCompanyId, _testPortletId));
@@ -121,8 +121,8 @@ public class PanelAppMyAccountPermissionsTest {
 	public void testPermissionsAddedForPanelAppFromNewCompany()
 		throws Exception {
 
-		_registerFakePortlet(_testPortletId);
-		_registerFakePanelApp(_testPortletId);
+		_registerTestPortlet(_testPortletId);
+		_registerTestPanelApp(_testPortletId);
 
 		_testCompany = addCompany();
 
@@ -153,7 +153,7 @@ public class PanelAppMyAccountPermissionsTest {
 			ActionKeys.ACCESS_IN_CONTROL_PANEL);
 	}
 
-	private void _registerFakePanelApp(String portletId) {
+	private void _registerTestPanelApp(String portletId) {
 		_serviceRegistrations.add(
 			_bundleContext.registerService(
 				PanelApp.class, new TestPanelApp(portletId),
@@ -166,7 +166,7 @@ public class PanelAppMyAccountPermissionsTest {
 				}));
 	}
 
-	private void _registerFakePortlet(final String portletId) throws Exception {
+	private void _registerTestPortlet(final String portletId) throws Exception {
 		_serviceRegistrations.add(
 			_bundleContext.registerService(
 				Portlet.class, new TestPortlet(),
