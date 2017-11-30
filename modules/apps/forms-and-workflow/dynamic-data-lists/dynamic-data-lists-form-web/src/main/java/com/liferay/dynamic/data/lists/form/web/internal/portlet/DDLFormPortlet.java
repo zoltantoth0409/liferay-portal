@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Layout;
+import com.liferay.portal.kernel.model.LayoutConstants;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.service.WorkflowDefinitionLinkLocalService;
@@ -199,17 +200,9 @@ public class DDLFormPortlet extends MVCPortlet {
 
 		Layout layout = themeDisplay.getLayout();
 
-		if (layout.getFriendlyURL().equals("/shared")) {
-			Group group = themeDisplay.getSiteGroup();
+		String type = layout.getType();
 
-			String friendlyURL = group.getFriendlyURL();
-
-			if (friendlyURL.equals("/forms")) {
-				return true;
-			}
-		}
-
-		return false;
+		return type.equals(LayoutConstants.TYPE_SHARED_PORTLET);
 	}
 
 	protected void saveParametersInSession(ActionRequest actionRequest) {
