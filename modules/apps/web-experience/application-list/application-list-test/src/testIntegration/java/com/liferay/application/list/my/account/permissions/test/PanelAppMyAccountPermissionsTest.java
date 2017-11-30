@@ -122,6 +122,7 @@ public class PanelAppMyAccountPermissionsTest {
 		throws Exception {
 
 		_registerTestPortlet(_testPortletId);
+
 		_registerTestPanelApp(_testPortletId);
 
 		_testCompany = addCompany();
