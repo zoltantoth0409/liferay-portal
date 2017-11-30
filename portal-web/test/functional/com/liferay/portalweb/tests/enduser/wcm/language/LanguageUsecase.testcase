@@ -230,9 +230,8 @@
 			<var name="webContentContent" value="WC Contenido" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
-			<var name="portletName" value="Visor de contenido web" />
-			<var name="portletOption" value="Editar contenido web" />
+		<execute macro="WebContentNavigator#gotoLocalizedEditPGViaWCD">
+			<var name="localizedPortletOption" value="Editar contenido web" />
 		</execute>
 
 		<execute macro="WebContent#viewTranslationPGViaWCD">

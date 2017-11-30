@@ -3159,9 +3159,8 @@
 			<var name="webContentContent" value="WC contenu WebContent" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
-			<var name="portletName" value="Affichage de contenus web" />
-			<var name="portletOption" value="Modifier le contenu de Web" />
+		<execute macro="WebContentNavigator#gotoLocalizedEditPGViaWCD">
+			<var name="localizedPortletOption" value="Modifier le contenu de Web" />
 		</execute>
 
 		<execute macro="WebContent#viewTranslationPGViaWCD">
@@ -3187,9 +3186,8 @@
 			<var name="webContentContent" value="WC WebContent Text" />
 		</execute>
 
-		<execute macro="Portlet#gotoPortletOptions">
-			<var name="portletName" value="网页内容展示" />
-			<var name="portletOption" value="编辑网页内容" />
+		<execute macro="WebContentNavigator#gotoLocalizedEditPGViaWCD">
+			<var name="localizedPortletOption" value="编辑网页内容" />
 		</execute>
 
 		<execute macro="WebContent#viewTranslationPGViaWCD">

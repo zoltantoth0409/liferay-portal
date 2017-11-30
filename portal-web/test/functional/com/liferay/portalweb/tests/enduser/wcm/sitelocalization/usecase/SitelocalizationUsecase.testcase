@@ -619,6 +619,8 @@
 			<var name="localizedPortletOption" value="Editar contenido web" />
 		</execute>
 
+		<execute function="SelectFrame" locator1="IFrame#MODAL_IFRAME" />
+
 		<execute macro="WebContent#viewAvailableLanguagesPGViaWCD">
 			<var name="webContentTranslationLanguage1" value="alemán (Alemania)" />
 			<var name="webContentTranslationLanguage2" value="inglés (Estados Unidos)" />
