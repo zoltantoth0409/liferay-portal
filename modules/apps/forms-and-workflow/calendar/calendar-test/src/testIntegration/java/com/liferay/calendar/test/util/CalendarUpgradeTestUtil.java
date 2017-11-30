@@ -32,7 +32,8 @@ public class CalendarUpgradeTestUtil {
 		String upgradeStepClassName) {
 
 		return getUpgradeStep(
-			_UPGRADE_SERVICE_CLASS_NAME, upgradeStepClassName);
+			"com.liferay.calendar.internal.upgrade.CalendarServiceUpgrade",
+			upgradeStepClassName);
 	}
 
 	public static UpgradeDatabaseTestHelper getUpgradeDatabaseTestHelper()
@@ -61,14 +62,10 @@ public class CalendarUpgradeTestUtil {
 	public static UpgradeProcess getWebUpgradeStep(
 		String upgradeStepClassName) {
 
-		return getUpgradeStep(_UPGRADE_WEB_CLASS_NAME, upgradeStepClassName);
+		return getUpgradeStep(
+			"com.liferay.calendar.web.internal.upgrade.CalendarWebUpgrade",
+			upgradeStepClassName);
 	}
-
-	private static final String _UPGRADE_SERVICE_CLASS_NAME =
-		"com.liferay.calendar.internal.upgrade.CalendarServiceUpgrade";
-
-	private static final String _UPGRADE_WEB_CLASS_NAME =
-		"com.liferay.calendar.web.internal.upgrade.CalendarWebUpgrade";
 
 	private static class SearchRegistry
 		implements UpgradeStepRegistrator.Registry {
