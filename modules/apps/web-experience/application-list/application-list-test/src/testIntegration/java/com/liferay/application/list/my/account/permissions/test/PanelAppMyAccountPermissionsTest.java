@@ -112,7 +112,6 @@ public class PanelAppMyAccountPermissionsTest {
 
 		Assert.assertTrue(
 			_hasMyAccountPermission(defaultCompanyId, _testPortletId));
-
 		Assert.assertTrue(
 			_hasMyAccountPermission(testCompanyId, _testPortletId));
 	}
