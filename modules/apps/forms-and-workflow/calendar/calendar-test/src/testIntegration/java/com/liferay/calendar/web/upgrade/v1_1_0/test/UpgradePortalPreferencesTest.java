@@ -72,7 +72,7 @@ public class UpgradePortalPreferencesTest {
 		long color = RandomTestUtil.randomLong();
 
 		String preferencesXML = getPreferences(
-			_OLD_SESSION_CLICKS_NAMESPACE,
+			_NAMESPACE_OLD_SESSION_CLICKS,
 			"calendar-portlet-calendar-" + calendarId + "-color", color);
 
 		_portalPreferences.setPreferences(preferencesXML);
@@ -86,7 +86,7 @@ public class UpgradePortalPreferencesTest {
 			_portalPreferences);
 
 		String value = getPreference(
-			portalPreferences.getPreferences(), _NEW_SESSION_CLICKS_NAMESPACE,
+			portalPreferences.getPreferences(), _NAMESPACE_NEW_SESSION_CLICKS,
 			"com.liferay.calendar.web_calendar" + calendarId + "Color");
 
 		Assert.assertEquals(String.valueOf(color), value);
@@ -98,7 +98,7 @@ public class UpgradePortalPreferencesTest {
 		boolean visible = RandomTestUtil.randomBoolean();
 
 		String preferencesXML = getPreferences(
-			_OLD_SESSION_CLICKS_NAMESPACE,
+			_NAMESPACE_OLD_SESSION_CLICKS,
 			"calendar-portlet-calendar-" + calendarId + "-visible", visible);
 
 		_portalPreferences.setPreferences(preferencesXML);
@@ -112,7 +112,7 @@ public class UpgradePortalPreferencesTest {
 			_portalPreferences);
 
 		String value = getPreference(
-			portalPreferences.getPreferences(), _NEW_SESSION_CLICKS_NAMESPACE,
+			portalPreferences.getPreferences(), _NAMESPACE_NEW_SESSION_CLICKS,
 			"com.liferay.calendar.web_calendar" + calendarId + "Visible");
 
 		Assert.assertEquals(String.valueOf(visible), value);
@@ -123,7 +123,7 @@ public class UpgradePortalPreferencesTest {
 		boolean visible = RandomTestUtil.randomBoolean();
 
 		String preferencesXML = getPreferences(
-			_OLD_SESSION_CLICKS_NAMESPACE,
+			_NAMESPACE_OLD_SESSION_CLICKS,
 			"calendar-portlet-column-options-visible", visible);
 
 		_portalPreferences.setPreferences(preferencesXML);
@@ -137,7 +137,7 @@ public class UpgradePortalPreferencesTest {
 			_portalPreferences);
 
 		String value = getPreference(
-			portalPreferences.getPreferences(), _NEW_SESSION_CLICKS_NAMESPACE,
+			portalPreferences.getPreferences(), _NAMESPACE_NEW_SESSION_CLICKS,
 			"com.liferay.calendar.web_columnOptionsVisible");
 
 		Assert.assertEquals(String.valueOf(visible), value);
@@ -150,7 +150,7 @@ public class UpgradePortalPreferencesTest {
 		String view = views[RandomTestUtil.randomInt(0, views.length - 1)];
 
 		String preferencesXML = getPreferences(
-			_OLD_SESSION_CLICKS_NAMESPACE, "calendar-portlet-default-view",
+			_NAMESPACE_OLD_SESSION_CLICKS, "calendar-portlet-default-view",
 			view);
 
 		_portalPreferences.setPreferences(preferencesXML);
@@ -164,7 +164,7 @@ public class UpgradePortalPreferencesTest {
 			_portalPreferences);
 
 		String value = getPreference(
-			portalPreferences.getPreferences(), _NEW_SESSION_CLICKS_NAMESPACE,
+			portalPreferences.getPreferences(), _NAMESPACE_NEW_SESSION_CLICKS,
 			"com.liferay.calendar.web_defaultView");
 
 		Assert.assertEquals(view, value);
@@ -175,7 +175,7 @@ public class UpgradePortalPreferencesTest {
 		long otherCalendarId = RandomTestUtil.randomLong();
 
 		String preferencesXML = getPreferences(
-			_OLD_SESSION_CLICKS_NAMESPACE, "calendar-portlet-other-calendars",
+			_NAMESPACE_OLD_SESSION_CLICKS, "calendar-portlet-other-calendars",
 			otherCalendarId);
 
 		_portalPreferences.setPreferences(preferencesXML);
@@ -189,7 +189,7 @@ public class UpgradePortalPreferencesTest {
 			_portalPreferences);
 
 		String value = getPreference(
-			portalPreferences.getPreferences(), _NEW_SESSION_CLICKS_NAMESPACE,
+			portalPreferences.getPreferences(), _NAMESPACE_NEW_SESSION_CLICKS,
 			"com.liferay.calendar.web_otherCalendars");
 
 		Assert.assertEquals(String.valueOf(otherCalendarId), value);
@@ -260,10 +260,10 @@ public class UpgradePortalPreferencesTest {
 			"UpgradePortalPreferences");
 	}
 
-	private static final String _NEW_SESSION_CLICKS_NAMESPACE =
+	private static final String _NAMESPACE_NEW_SESSION_CLICKS =
 		"com.liferay.portal.kernel.util.SessionClicks";
 
-	private static final String _OLD_SESSION_CLICKS_NAMESPACE =
+	private static final String _NAMESPACE_OLD_SESSION_CLICKS =
 		"com.liferay.portal.util.SessionClicks";
 
 	@DeleteAfterTestRun
