@@ -185,14 +185,12 @@ public class DDLFormPortlet extends MVCPortlet {
 
 		Layout layout = themeDisplay.getLayout();
 
-		String layoutFriendlyURL = layout.getFriendlyURL();
-
-		if (layoutFriendlyURL.equals("/shared")) {
+		if (layout.getFriendlyURL().equals("/shared")) {
 			Group group = themeDisplay.getSiteGroup();
 
-			String groupFriendlyURL = group.getFriendlyURL();
+			String friendlyURL = group.getFriendlyURL();
 
-			if (groupFriendlyURL.equals("/forms")) {
+			if (friendlyURL.equals("/forms")) {
 				return true;
 			}
 		}
