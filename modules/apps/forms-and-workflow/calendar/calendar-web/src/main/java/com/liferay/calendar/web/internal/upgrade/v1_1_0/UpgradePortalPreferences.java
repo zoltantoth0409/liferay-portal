@@ -38,6 +38,11 @@ public class UpgradePortalPreferences extends RenameUpgradePortalPreferences {
 
 	public UpgradePortalPreferences() {
 		_preferenceNamesMap.put(
+			_NAMESPACE_OLD_SESSION_CLICKS +
+				"calendar-portlet-column-options-visible",
+			_NAMESPACE_NEW_SESSION_CLICKS +
+				"com.liferay.calendar.web_columnOptionsVisible");
+		_preferenceNamesMap.put(
 			_NAMESPACE_OLD_SESSION_CLICKS + "calendar-portlet-default-view",
 			_NAMESPACE_NEW_SESSION_CLICKS +
 				"com.liferay.calendar.web_defaultView");
@@ -45,11 +50,6 @@ public class UpgradePortalPreferences extends RenameUpgradePortalPreferences {
 			_NAMESPACE_OLD_SESSION_CLICKS + "calendar-portlet-other-calendars",
 			_NAMESPACE_NEW_SESSION_CLICKS +
 				"com.liferay.calendar.web_otherCalendars");
-		_preferenceNamesMap.put(
-			_NAMESPACE_OLD_SESSION_CLICKS +
-				"calendar-portlet-column-options-visible",
-			_NAMESPACE_NEW_SESSION_CLICKS +
-				"com.liferay.calendar.web_columnOptionsVisible");
 	}
 
 	@Override
