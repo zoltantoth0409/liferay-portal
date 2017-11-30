@@ -164,7 +164,7 @@ public class ModuleCompatExtender {
 
 				String symbolicName = bundle.getSymbolicName();
 
-				matcher.reset(symbolicName);
+				Matcher matcher = pattern.matcher(symbolicName);
 
 				if (matcher.matches()) {
 					String exportedPackages =
