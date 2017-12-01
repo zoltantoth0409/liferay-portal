@@ -29,8 +29,6 @@ import com.liferay.portal.kernel.backgroundtask.BackgroundTaskManagerUtil;
 import com.liferay.portal.kernel.exception.LocaleException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
-import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceMode;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.Portlet;
 import com.liferay.portal.kernel.model.User;
@@ -53,21 +51,6 @@ import java.util.Map;
 public class ExportImportLocalServiceImpl
 	extends ExportImportLocalServiceBaseImpl {
 
-	public File exportLayoutsAsFile(
-			long userId, long groupId, boolean privateLayout,
-			Map<String, String[]> parameterMap)
-		throws PortalException {
-
-		User user = userLocalService.getUser(userId);
-
-		ExportImportConfiguration exportImportConfiguration =
-			ExportImportConfigurationFactory.
-				buildDefaultLocalPublishingExportImportConfiguration(
-					user, groupId, 0, privateLayout, parameterMap);
-
-		return exportLayoutsAsFile(exportImportConfiguration);
-	}
-
 	@Override
 	public File exportLayoutsAsFile(
 			ExportImportConfiguration exportImportConfiguration)
@@ -86,6 +69,21 @@ public class ExportImportLocalServiceImpl
 		catch (Exception e) {
 			throw new SystemException(e);
 		}
+	}
+
+	public File exportLayoutsAsFile(
+			long userId, long groupId, boolean privateLayout,
+			Map<String, String[]> parameterMap)
+		throws PortalException {
+
+		User user = userLocalService.getUser(userId);
+
+		ExportImportConfiguration exportImportConfiguration =
+			ExportImportConfigurationFactory.
+				buildDefaultLocalPublishingExportImportConfiguration(
+					user, groupId, 0, privateLayout, parameterMap);
+
+		return exportLayoutsAsFile(exportImportConfiguration);
 	}
 
 	@Override
@@ -191,21 +189,6 @@ public class ExportImportLocalServiceImpl
 			userId, exportImportConfiguration);
 	}
 
-	public void importLayouts(
-			long userId, long groupId, boolean privateLayout,
-			Map<String, String[]> parameterMap, File file)
-		throws PortalException {
-
-		User user = userLocalService.getUser(userId);
-
-		ExportImportConfiguration exportImportConfiguration =
-			ExportImportConfigurationFactory.
-				buildDefaultLocalPublishingExportImportConfiguration(
-					user, 0, groupId, privateLayout, parameterMap);
-
-		importLayouts(exportImportConfiguration, file);
-	}
-
 	@Override
 	public void importLayouts(
 			ExportImportConfiguration exportImportConfiguration, File file)
@@ -259,6 +242,21 @@ public class ExportImportLocalServiceImpl
 		finally {
 			FileUtil.delete(file);
 		}
+	}
+
+	public void importLayouts(
+			long userId, long groupId, boolean privateLayout,
+			Map<String, String[]> parameterMap, File file)
+		throws PortalException {
+
+		User user = userLocalService.getUser(userId);
+
+		ExportImportConfiguration exportImportConfiguration =
+			ExportImportConfigurationFactory.
+				buildDefaultLocalPublishingExportImportConfiguration(
+					user, 0, groupId, privateLayout, parameterMap);
+
+		importLayouts(exportImportConfiguration, file);
 	}
 
 	@Override
