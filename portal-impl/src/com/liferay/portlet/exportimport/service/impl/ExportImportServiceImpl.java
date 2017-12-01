@@ -35,18 +35,6 @@ import java.util.Map;
  */
 public class ExportImportServiceImpl extends ExportImportServiceBaseImpl {
 
-	public File exportLayoutsAsFile(
-			long userId, long groupId, boolean privateLayout,
-			Map<String, String[]> parameterMap)
-		throws PortalException {
-
-		GroupPermissionUtil.check(
-			getPermissionChecker(), groupId, ActionKeys.EXPORT_IMPORT_LAYOUTS);
-
-		return exportImportLocalService.exportLayoutsAsFile(
-			userId, groupId, privateLayout, parameterMap);
-	}
-
 	@Override
 	public File exportLayoutsAsFile(
 			ExportImportConfiguration exportImportConfiguration)
@@ -63,6 +51,18 @@ public class ExportImportServiceImpl extends ExportImportServiceBaseImpl {
 
 		return exportImportLocalService.exportLayoutsAsFile(
 			exportImportConfiguration);
+	}
+
+	public File exportLayoutsAsFile(
+			long userId, long groupId, boolean privateLayout,
+			Map<String, String[]> parameterMap)
+		throws PortalException {
+
+		GroupPermissionUtil.check(
+			getPermissionChecker(), groupId, ActionKeys.EXPORT_IMPORT_LAYOUTS);
+
+		return exportImportLocalService.exportLayoutsAsFile(
+			userId, groupId, privateLayout, parameterMap);
 	}
 
 	@Override
@@ -137,19 +137,6 @@ public class ExportImportServiceImpl extends ExportImportServiceBaseImpl {
 
 	@Override
 	public void importLayouts(
-			long userId, long groupId, boolean privateLayout,
-			Map<String, String[]> parameterMap, File file)
-		throws PortalException {
-
-		GroupPermissionUtil.check(
-			getPermissionChecker(), groupId, ActionKeys.EXPORT_IMPORT_LAYOUTS);
-
-		exportImportLocalService.importLayouts(
-			userId, groupId, privateLayout, parameterMap, file);
-	}
-
-	@Override
-	public void importLayouts(
 			ExportImportConfiguration exportImportConfiguration, File file)
 		throws PortalException {
 
@@ -182,6 +169,19 @@ public class ExportImportServiceImpl extends ExportImportServiceBaseImpl {
 
 		exportImportLocalService.importLayouts(
 			exportImportConfiguration, inputStream);
+	}
+
+	@Override
+	public void importLayouts(
+			long userId, long groupId, boolean privateLayout,
+			Map<String, String[]> parameterMap, File file)
+		throws PortalException {
+
+		GroupPermissionUtil.check(
+			getPermissionChecker(), groupId, ActionKeys.EXPORT_IMPORT_LAYOUTS);
+
+		exportImportLocalService.importLayouts(
+			userId, groupId, privateLayout, parameterMap, file);
 	}
 
 	@Override
