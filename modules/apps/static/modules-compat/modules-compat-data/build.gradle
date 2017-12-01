@@ -2,10 +2,8 @@ copyLibs {
 	enabled = true
 }
 
-deploy {
-	deleteAllActions()
-
-	dependsOn = []
+liferay {
+	deployDir = file("${liferayHome}/osgi/compat")
 }
 
 dependencies {
