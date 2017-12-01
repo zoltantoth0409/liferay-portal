@@ -310,13 +310,13 @@ public class KBArticleImporter {
 				importedKBArticlesCount++;
 
 				if (prioritizeByNumericalPrefix) {
-					double nonIntroFilePriority = getKBArchiveResourcePriority(
+					double nonintroFilePriority = getKBArchiveResourcePriority(
 						file);
 
 					_kbArticleLocalService.moveKBArticle(
 						userId, kbArticle.getResourcePrimKey(),
 						sectionResourceClassNameId, sectionResourcePrimaryKey,
-						nonIntroFilePriority);
+						nonintroFilePriority);
 				}
 			}
 		}
