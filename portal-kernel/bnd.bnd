@@ -12,4 +12,4 @@ Include-Resource:\
 	@../tmp/lib-pre/com.liferay.portal.kernel.concurrent.compat.jar,\
 	@../tmp/lib-pre/com.liferay.portal.kernel.memory.compat.jar,\
 	@../tmp/lib-pre/com.liferay.portal.kernel.util.compat.jar
--baseline: *;file=${project.dir}.bnd/ant-baseline-cache/com.liferay.portal.kernel-2.54.0.jar
+-baseline: *;file=${project.dir}/.bnd/ant-baseline-cache/com.liferay.portal.kernel-2.54.0.jar
