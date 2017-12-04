@@ -166,17 +166,18 @@ public class LayoutsAdminDisplayContext {
 			"redirect", _themeDisplay.getURLCurrent());
 		configureLayoutURL.setParameter(
 			"backURL", _themeDisplay.getURLCurrent());
+
+		PortletDisplay portletDisplay = _themeDisplay.getPortletDisplay();
+
+		configureLayoutURL.setParameter(
+			"portletResource", portletDisplay.getId());
+
 		configureLayoutURL.setParameter(
 			"groupId", String.valueOf(layout.getGroupId()));
 		configureLayoutURL.setParameter(
 			"selPlid", String.valueOf(layout.getPlid()));
 		configureLayoutURL.setParameter(
 			"privateLayout", String.valueOf(layout.isPrivateLayout()));
-
-		PortletDisplay portletDisplay = _themeDisplay.getPortletDisplay();
-
-		configureLayoutURL.setParameter(
-			"portletResource", portletDisplay.getId());
 
 		return configureLayoutURL.toString();
 	}
