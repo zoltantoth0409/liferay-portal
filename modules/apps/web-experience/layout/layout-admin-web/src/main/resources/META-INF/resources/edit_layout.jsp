@@ -21,11 +21,11 @@ String redirect = ParamUtil.getString(request, "redirect");
 
 String backURL = ParamUtil.getString(request, "backURL");
 
-String portletResource = ParamUtil.getString(request, "portletResource");
-
 if (Validator.isNull(backURL)) {
 	backURL = PortalUtil.getLayoutFullURL(layoutsAdminDisplayContext.getSelLayout(), themeDisplay);
 }
+
+String portletResource = ParamUtil.getString(request, "portletResource");
 
 Group selGroup = (Group)request.getAttribute(WebKeys.GROUP);
 
