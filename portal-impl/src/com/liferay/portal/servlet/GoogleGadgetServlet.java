@@ -100,7 +100,7 @@ public class GoogleGadgetServlet extends HttpServlet {
 			PropsValues.GOOGLE_GADGET_SERVLET_MAPPING,
 			PropsValues.WIDGET_SERVLET_MAPPING);
 
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(14);
 
 		sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 		sb.append("<Module>");

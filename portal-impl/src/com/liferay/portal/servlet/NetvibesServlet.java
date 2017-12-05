@@ -108,7 +108,7 @@ public class NetvibesServlet extends HttpServlet {
 			PropsValues.WIDGET_SERVLET_MAPPING);
 		widgetURL = HtmlUtil.escapeJS(widgetURL);
 
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(26);
 
 		sb.append("<!DOCTYPE html>");
 		sb.append("<html>");
