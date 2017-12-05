@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.layout.item.selector.web;
+package com.liferay.layout.item.selector.web.internal;
 
 import com.liferay.item.selector.ItemSelectorReturnType;
 import com.liferay.item.selector.ItemSelectorView;
@@ -38,10 +38,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Roberto Díaz
- * @deprecated As of 1.2.0, replaced by {@link
- *             com.liferay.layout.item.selector.web.internal.BaseLayoutsItemSelectorView}
  */
-@Deprecated
 public abstract class BaseLayoutsItemSelectorView
 	implements ItemSelectorView<LayoutItemSelectorCriterion> {
 
