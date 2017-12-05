@@ -60,6 +60,7 @@ import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -535,7 +536,9 @@ public class DDLFormAdminDisplayContext {
 
 		ServletContext servletContext = servletConfig.getServletContext();
 
-		return servletContext.getContextPath();
+		String proxyPath = _portal.getPathProxy();
+
+		return proxyPath.concat(servletContext.getContextPath());
 	}
 
 	protected int getTotal() throws PortalException {
@@ -632,6 +635,7 @@ public class DDLFormAdminDisplayContext {
 	private final DDMStructureLocalService _ddmStructureLocalService;
 	private String _displayStyle;
 	private final JSONFactory _jsonFactory;
+	private Portal _portal;
 	private DDLRecordSet _recordSet;
 	private final RenderRequest _renderRequest;
 	private final RenderResponse _renderResponse;
