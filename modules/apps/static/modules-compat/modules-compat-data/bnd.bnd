@@ -1,6 +1,6 @@
 Bundle-Name: Liferay Modules Compat Data
 Bundle-SymbolicName: com.liferay.modules.compat.data
-Bundle-Version: 1.0.3
+Bundle-Version: 1.1.0
 Export-Package:\
 	com.liferay.petra.collection.stack,\
 	com.liferay.portal.scripting.executor.provider,\
