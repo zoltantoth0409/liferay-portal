@@ -88,10 +88,12 @@
 	<command name="addDraftPGViaWCD">
 		<execute macro="WebContent#_gotoAddPGViaWCD" />
 
-		<execute macro="WebContent#addDraft">
+		<execute macro="WebContent#addCP">
 			<var name="webContentContent" value="${webContentContent}" />
 			<var name="webContentTitle" value="${webContentTitle}" />
 		</execute>
+
+		<execute macro="Button#clickSaveAsDraft" />
 	</command>
 
 	<command name="addExistingRelatedAssetCP">
