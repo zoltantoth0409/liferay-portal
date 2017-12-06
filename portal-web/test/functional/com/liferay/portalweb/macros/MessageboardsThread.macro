@@ -332,7 +332,7 @@
 					<var name="panelHeading" value="Attachments" />
 				</execute>
 
-				<execute function="AssertTextEquals" locator1="MessageBoardsEditMessage#ATTACHMENTS_NAME" value1="${mbAttachmentFile}" />
+				<execute function="AssertTextEquals#assertPartialText" locator1="MessageBoardsEditMessage#ATTACHMENTS_NAME" value1="${mbAttachmentFile}" />
 
 				<execute function="AssertClick" locator1="MessageBoardsEditMessage#ATTACHMENTS_REMOVE_LINK" value1="Remove" />
 			</then>
@@ -876,7 +876,7 @@
 
 		<execute function="AssertTextEquals#assertPartialText" locator1="MessageBoardsThread#MESSAGE_ANSWER_1" value1="Answer" />
 
-		<execute function="AssertClick" locator1="MessageBoardsThread#THREAD_CONTROLS_BACK" value1="Back" />
+		<execute function="AssertClick#assertPartialTextClickAt" locator1="MessageBoardsThread#THREAD_CONTROLS_BACK" value1="Back" />
 	</command>
 
 	<command name="viewAsWorkflowAsset">
