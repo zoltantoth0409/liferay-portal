@@ -356,10 +356,8 @@ public class LocalGitSyncUtil {
 					gitWorkingDirectory.getRepositoryName(), ".git"));
 		}
 
-		List<String> validURLs = validateLocalGitRemoteURLs(
+		return validateLocalGitRemoteURLs(
 			localGitRemoteURLs, gitWorkingDirectory);
-
-		return validURLs;
 	}
 
 	protected static GitWorkingDirectory.Remote getRandomRemote(
