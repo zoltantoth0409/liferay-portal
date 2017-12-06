@@ -6374,8 +6374,21 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			user.getScreenName());
 		subscriptionSender.setFrom(fromAddress, fromName);
 		subscriptionSender.setHtmlFormat(true);
-		subscriptionSender.setLocalizedBodyMap(localizedBodyMap);
-		subscriptionSender.setLocalizedSubjectMap(localizedSubjectMap);
+
+		if (Validator.isNull(body)) {
+			subscriptionSender.setLocalizedBodyMap(localizedBodyMap);
+		}
+		else {
+			subscriptionSender.setBody(body);
+		}
+
+		if (Validator.isNull(subject)) {
+			subscriptionSender.setLocalizedSubjectMap(localizedSubjectMap);
+		}
+		else {
+			subscriptionSender.setSubject(subject);
+		}
+
 		subscriptionSender.setMailId("user", user.getUserId());
 		subscriptionSender.setServiceContext(serviceContext);
 
