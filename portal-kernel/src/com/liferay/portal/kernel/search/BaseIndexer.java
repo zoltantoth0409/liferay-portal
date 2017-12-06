@@ -1872,8 +1872,8 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 		String defaultValue = map.get(
 			LocaleUtil.fromLanguageId(assetEntry.getDefaultLanguageId()));
 
-		for (Locale availableLocale : LanguageUtil.getAvailableLocales(
-				assetEntry.getGroupId())) {
+		for (Locale availableLocale :
+				LanguageUtil.getAvailableLocales(assetEntry.getGroupId())) {
 
 			if (!map.containsKey(availableLocale) ||
 				Validator.isNull(map.get(availableLocale))) {
