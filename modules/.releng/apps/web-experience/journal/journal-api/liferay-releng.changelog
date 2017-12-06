@@ -97,3 +97,8 @@ de0badc3d789c4455655ec92aae8e243a3bfb354^..0a68cb7b4e6e980f2de8b83bf69232130bcca
 # Bundle Version 2.12.0
 #
 64bedefae2de221236d7a84cccafeb50caec2eed^..26ff5cd6f4add2c51bdfcafbfcca4183badd3b5e=LPS-76036
+
+#
+# Bundle Version 2.12.1
+#
+26ff5cd6f4add2c51bdfcafbfcca4183badd3b5e^..85aabe4b1b1685192e4ada2e169ceb7613b4168d=LPS-76036 LPS-76226
