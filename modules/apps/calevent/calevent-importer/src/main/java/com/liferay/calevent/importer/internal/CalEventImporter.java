@@ -985,6 +985,10 @@ public class CalEventImporter {
 		importAssets(
 			uuid, companyId, groupId, userId, type, eventId, calendarBookingId);
 
+		// Expando
+
+		importExpando(companyId, eventId, calendarBookingId);
+
 		// Message boards
 
 		importMBDiscussion(eventId, calendarBookingId);
@@ -998,10 +1002,6 @@ public class CalEventImporter {
 		// Social
 
 		importSocialActivities(eventId, calendarBookingId);
-
-		// Expando custom fileds
-
-		importExpando(companyId, eventId, calendarBookingId);
 
 		return calendarBooking;
 	}
