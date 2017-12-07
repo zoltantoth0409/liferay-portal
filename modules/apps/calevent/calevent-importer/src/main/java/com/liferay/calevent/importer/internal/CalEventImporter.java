@@ -1001,7 +1001,7 @@ public class CalEventImporter {
 
 		// Expando custom fileds
 
-		importExpandoAttributes(companyId, eventId, calendarBookingId);
+		importExpando(companyId, eventId, calendarBookingId);
 
 		return calendarBooking;
 	}
@@ -1058,7 +1058,7 @@ public class CalEventImporter {
 		}
 	}
 
-	protected void importExpandoAttributes(
+	protected void importExpando(
 			long companyId, long eventId, long calendarBookingId)
 		throws PortalException {
 
