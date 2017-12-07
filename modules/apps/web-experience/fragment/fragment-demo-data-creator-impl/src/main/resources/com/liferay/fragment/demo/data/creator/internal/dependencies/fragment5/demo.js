@@ -3,9 +3,11 @@
 
 	form.classList.add('parsed');
 
-	form.addEventListener('submit', (event) => {
-		event.preventDefault();
+	form.addEventListener(
+		'submit',
+		(event) => {
+			event.preventDefault();
 
-		alert('Form submitted');
-	});
+			alert('Form submitted');
+		});
 }
