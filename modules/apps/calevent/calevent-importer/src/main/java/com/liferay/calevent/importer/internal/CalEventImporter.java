@@ -1071,6 +1071,14 @@ public class CalEventImporter {
 		ExpandoRow expandoRow = _expandoRowLocalService.fetchRow(
 			expandoTable.getTableId(), eventId);
 
+		expandoRow.setClassPK(calendarBookingId);
+
+		_expandoRowLocalService.updateExpandoRow(expandoRow);
+
+		expandoTable.setClassNameId(calendarBookingClassNameId);
+
+		_expandoTableLocalService.updateExpandoTable(expandoTable);
+
 		List<ExpandoValue> expandoValues =
 			_expandoValueLocalService.getRowValues(expandoRow.getRowId());
 
@@ -1084,14 +1092,6 @@ public class CalEventImporter {
 
 			_expandoValueLocalService.updateExpandoValue(expandoValue);
 		}
-
-		expandoRow.setClassPK(calendarBookingId);
-
-		_expandoRowLocalService.updateExpandoRow(expandoRow);
-
-		expandoTable.setClassNameId(calendarBookingClassNameId);
-
-		_expandoTableLocalService.updateExpandoTable(expandoTable);
 	}
 
 	protected void importMBDiscussion(long eventId, long calendarBookingId)
