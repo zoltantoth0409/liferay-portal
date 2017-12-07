@@ -243,7 +243,7 @@
 		</execute>
 	</command>
 
-	<command name="RenameChildPageNameCP" priority="4">
+	<command name="RenameChildPageNameCP" priority="5">
 		<description message="This is a use case for LPS-73471." />
 
 		<execute macro="Navigator#gotoStagedSitePage">
