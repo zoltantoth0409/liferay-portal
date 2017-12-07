@@ -70,7 +70,7 @@ public class ReflectionUtilTest {
 		Assert.assertArrayEquals((long[])object, (long[])clone);
 
 		Field field = ReflectionUtil.getDeclaredField(
-			ReflectionUtil.class, "_CLONE_METHOD");
+			ReflectionUtil.class, "_cloneMethod");
 
 		field.set(null, null);
 

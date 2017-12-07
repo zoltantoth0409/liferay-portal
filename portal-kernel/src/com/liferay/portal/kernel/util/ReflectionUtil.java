@@ -43,7 +43,7 @@ public class ReflectionUtil {
 		}
 
 		try {
-			return _CLONE_METHOD.invoke(array);
+			return _cloneMethod.invoke(array);
 		}
 		catch (Exception e) {
 			return throwException(e);
@@ -257,7 +257,7 @@ public class ReflectionUtil {
 		int modifiers = field.getModifiers();
 
 		if ((modifiers & Modifier.FINAL) == Modifier.FINAL) {
-			_MODIFIERS_FIELD.setInt(field, modifiers & ~Modifier.FINAL);
+			_modifiersField.setInt(field, modifiers & ~Modifier.FINAL);
 		}
 
 		return field;
@@ -294,19 +294,18 @@ public class ReflectionUtil {
 		throw (E)throwable;
 	}
 
-	private static final Method _CLONE_METHOD;
-
-	private static final Field _MODIFIERS_FIELD;
+	private static final Method _cloneMethod;
+	private static final Field _modifiersField;
 
 	static {
 		try {
-			_CLONE_METHOD = Object.class.getDeclaredMethod("clone");
+			_cloneMethod = Object.class.getDeclaredMethod("clone");
 
-			_CLONE_METHOD.setAccessible(true);
+			_cloneMethod.setAccessible(true);
 
-			_MODIFIERS_FIELD = Field.class.getDeclaredField("modifiers");
+			_modifiersField = Field.class.getDeclaredField("modifiers");
 
-			_MODIFIERS_FIELD.setAccessible(true);
+			_modifiersField.setAccessible(true);
 		}
 		catch (Exception e) {
 			throw new ExceptionInInitializerError(e);
