@@ -4,8 +4,8 @@
 [subrepo]
 	autopull = false
 	cmdver = liferay
-	commit = 3d4f1447f0d0e4c6586385acd03be5a0b9fd5102
+	commit = a578b267f5489835593b56e81c2328580b031e14
 	mergebuttonmergecommits = false
 	mode = push
-	parent = 3802359ecca5ec6911963bfa38c7f1b9e850e393
+	parent = 23f30169e3e72865523642a578c473f42243d5ff
 	remote = git@github.com:liferay/com-liferay-dynamic-data-mapping.git
