@@ -479,8 +479,6 @@ public class EditUserMVCActionCommand extends BaseMVCActionCommand {
 				actionRequest, "announcementsType" + type + "Email");
 			boolean sms = ParamUtil.getBoolean(
 				actionRequest, "announcementsType" + type + "Sms");
-			boolean website = ParamUtil.getBoolean(
-				actionRequest, "announcementsType" + type + "Website");
 
 			AnnouncementsDelivery announcementsDelivery =
 				new AnnouncementsDeliveryImpl();
@@ -488,7 +486,6 @@ public class EditUserMVCActionCommand extends BaseMVCActionCommand {
 			announcementsDelivery.setType(type);
 			announcementsDelivery.setEmail(email);
 			announcementsDelivery.setSms(sms);
-			announcementsDelivery.setWebsite(website);
 
 			announcementsDeliveries.add(announcementsDelivery);
 		}
