@@ -358,16 +358,10 @@
 			<var name="wikiNodeName" value="Main" />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="Wiki#DESCRIPTIVE_VIEW_ENTRY_TITLE">
-			<var name="key_wikiPageTitle" value="Child Page Title" />
-		</execute>
-
-		<execute function="AssertElementPresent" locator1="Wiki#DESCRIPTIVE_VIEW_ENTRY_TITLE">
-			<var name="key_wikiPageTitle" value="Child Page Title Rename" />
-		</execute>
-
-		<execute function="AssertElementPresent" locator1="Wiki#DESCRIPTIVE_VIEW_ENTRY_TITLE">
-			<var name="key_wikiPageTitle" value="Child Page Title Rename 1" />
-		</execute>
+		<for list="Child Page Title,Child Page Title Rename, Child Page Title Rename 1" param="wikiPageTitle">
+			<execute macro="LexiconEntry#viewEntryName">
+				<var name="rowEntry" value="${wikiPageTitle}" />
+			</execute>
+		</for>
 	</command>
 </definition>
