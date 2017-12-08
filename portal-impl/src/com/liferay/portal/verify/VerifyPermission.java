@@ -198,13 +198,8 @@ public class VerifyPermission extends VerifyProcess {
 
 		Role powerUserRole = RoleLocalServiceUtil.getRole(
 			companyId, RoleConstants.POWER_USER);
-
-		long powerUserRoleId = powerUserRole.getRoleId();
-
 		Role userRole = RoleLocalServiceUtil.getRole(
 			companyId, RoleConstants.USER);
-
-		long userRoleId = userRole.getRoleId();
 
 		String userPagePermissionsTableName = "TMP_VERIFY_1";
 		String userPagePermissionsConflictsTableName = "TMP_VERIFY_2";
@@ -256,8 +251,9 @@ public class VerifyPermission extends VerifyProcess {
 					String.valueOf(companyId),
 					" and primKey LIKE '%_LAYOUT_%' and scope = ",
 					String.valueOf(ResourceConstants.SCOPE_INDIVIDUAL),
-					" and roleId in (", String.valueOf(powerUserRoleId), ", ",
-					String.valueOf(userRoleId), ")"));
+					" and roleId in (",
+					String.valueOf(powerUserRole.getRoleId()), ", ",
+					String.valueOf(userRole.getRoleId()), ")"));
 
 			if (_log.isInfoEnabled()) {
 				_log.info("Deriving plid for portlet permissions");
@@ -311,7 +307,7 @@ public class VerifyPermission extends VerifyProcess {
 			runSQL(
 				StringBundler.concat(
 					"delete from ", userPagePermissionsTableName,
-					" where roleId = ", String.valueOf(userRoleId)));
+					" where roleId = ", String.valueOf(userRole.getRoleId())));
 
 			runSQL(
 				StringBundler.concat(
@@ -345,7 +341,8 @@ public class VerifyPermission extends VerifyProcess {
 			runSQL(
 				StringBundler.concat(
 					"update ResourcePermission set roleId = ",
-					String.valueOf(userRoleId), " where resourcePermissionId ",
+					String.valueOf(userRole.getRoleId()),
+					" where resourcePermissionId ",
 					"in (select resourcePermissionId from ",
 					userPagePermissionsTableName, " where conflict = FALSE)"));
 		}
