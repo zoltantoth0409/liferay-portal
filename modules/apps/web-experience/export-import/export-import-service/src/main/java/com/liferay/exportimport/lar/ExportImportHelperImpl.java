@@ -459,10 +459,10 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 			Layout layout = new LayoutImpl();
 
 			if (plid == 0) {
+				layout.setPlid(LayoutConstants.DEFAULT_PLID);
 				layout.setLayoutId(LayoutConstants.DEFAULT_PLID);
 				layout.setParentLayoutId(
 					LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
-				layout.setPlid(LayoutConstants.DEFAULT_PLID);
 			}
 			else {
 				layout = _layoutLocalService.getLayout(plid);
