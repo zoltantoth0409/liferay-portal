@@ -712,11 +712,11 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 			populateLayoutsJSON(jsonArray, layout, selectedPlids);
 		}
 
-		if (ArrayUtil.contains(selectedPlids, 0L)) {
+		if (ArrayUtil.contains(selectedPlids, 0)) {
 			JSONObject layoutJSONObject = JSONFactoryUtil.createJSONObject();
 
 			layoutJSONObject.put("includeChildren", true);
-			layoutJSONObject.put("plid", 0L);
+			layoutJSONObject.put("plid", 0);
 
 			jsonArray.put(layoutJSONObject);
 		}

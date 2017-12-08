@@ -422,7 +422,7 @@ public class LayoutExportController implements ExportController {
 		long[] layoutIds = GetterUtil.getLongValues(
 			settingsMap.get("layoutIds"));
 
-		if (ArrayUtil.contains(layoutIds, 0L)) {
+		if (ArrayUtil.contains(layoutIds, 0)) {
 			layoutIds = _exportImportHelper.getAllLayoutIds(
 				sourceGroupId, privateLayout);
 		}
