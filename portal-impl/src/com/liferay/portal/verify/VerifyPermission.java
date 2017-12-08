@@ -201,8 +201,8 @@ public class VerifyPermission extends VerifyProcess {
 		Role userRole = RoleLocalServiceUtil.getRole(
 			companyId, RoleConstants.USER);
 
-		String userPagePermissionsTableName = "TMP_VERIFY_1";
-		String userPagePermissionsConflictsTableName = "TMP_VERIFY_2";
+		String userPagePermissionsTableName = "TEMP_VERIFY_1";
+		String userPagePermissionsConflictsTableName = "TEMP_VERIFY_2";
 
 		try (AutoCloseable dropUserPagePermissionsTable = () -> runSQL(
 				"drop table " + userPagePermissionsTableName);
