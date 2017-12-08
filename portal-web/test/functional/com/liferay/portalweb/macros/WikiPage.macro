@@ -1456,8 +1456,6 @@
 	</command>
 
 	<command name="viewPageNoAttachment">
-		<var name="key_attachmentFileName" value="${attachmentFileName}" />
-
 		<execute macro="WikiPage#viewPG">
 			<var name="wikiPageContent" value="${wikiPageContent}" />
 			<var name="wikiPageTitle" value="${wikiPageTitle}" />
@@ -1465,7 +1463,9 @@
 
 		<execute function="AssertElementNotPresent" locator1="WikiEntry#ATTACHMENTS_LABEL" />
 
-		<execute function="AssertElementNotPresent" locator1="WikiEntry#ATTACHMENT_FILE_NAME" />
+		<execute function="AssertElementNotPresent" locator1="WikiEntry#ATTACHMENT_FILE_NAME">
+			<var name="key_attachmentFileName" value="${attachmentFileName}" />
+		</execute>
 	</command>
 
 	<command name="viewPagePG">
