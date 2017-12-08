@@ -57,9 +57,7 @@
 
 		<execute function="SikuliUploadCommonFile" locator1="OS#FILE_DIALOG_BOX_FILE_NAME_FIELD_PNG" value1="${attachmentFileName}" />
 
-		<execute function="Click" locator1="Button#PUBLISH" />
-
-		<execute macro="Alert#viewSuccessMessage" />
+		<execute macro="PortletEntry#publish" />
 	</command>
 
 	<command name="addChildPagePG">
@@ -1009,9 +1007,7 @@
 
 		<execute function="Click" locator1="Wiki#ATTACHMENT_TABLE_MOVE_TO_THE_RECYCLE_BIN" />
 
-		<execute function="Click" locator1="Button#PUBLISH" />
-
-		<execute macro="Alert#viewSuccessMessage" />
+		<execute macro="PortletEntry#publish" />
 	</command>
 
 	<command name="removeRedirectWikiPagePG">
