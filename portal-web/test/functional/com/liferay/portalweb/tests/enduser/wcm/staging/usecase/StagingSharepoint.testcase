@@ -84,7 +84,36 @@
 				<execute macro="PortalInstances#tearDownCP" />
 			</then>
 			<else>
+				<execute macro="DMRepository#tearDownCP" />
+
+				<execute macro="DMDocument#tearDownCP" />
+
 				<execute macro="Site#tearDownCP" />
+
+				<execute macro="Page#gotoMyAccount">
+					<var name="portletName" value="Account Settings" />
+				</execute>
+
+				<execute macro="User#editDetailsViaMyAccount">
+					<var name="userScreenNameEdit" value="test" />
+				</execute>
+
+				<execute macro="Page#gotoMyAccount">
+					<var name="portletName" value="Account Settings" />
+				</execute>
+
+				<execute macro="User#editPasswordViaMyAccount">
+					<var name="currentPassword" value="password" />
+					<var name="newPassword" value="test" />
+				</execute>
+
+				<execute macro="User#logoutPG" />
+
+				<execute macro="User#loginPG">
+					<var name="authenticationMethod" value="By Screen Name" />
+					<var name="password" value="test" />
+					<var name="userScreenName" value="test" />
+				</execute>
 			</else>
 		</if>
 	</tear-down>
