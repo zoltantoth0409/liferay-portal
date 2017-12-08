@@ -89,10 +89,10 @@
 		</if>
 	</tear-down>
 
-	<command name="StagingDocumentsAndMediaPG" priority="5">
-		<description message="This is a use case for LPS-72304." />
+	<command name="StagingSharepointRepositoryPG" priority="4">
+		<description message="This is a use case for LPS-72304 and LPS-72866." />
 
-		<property name="test.name.skip.portal.instance" value="StagingSharepoint#StagingDocumentsAndMediaPG" />
+		<property name="test.name.skip.portal.instance" value="StagingSharepoint#StagingSharepointRepositoryPG" />
 
 		<execute macro="Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Test Page" />
