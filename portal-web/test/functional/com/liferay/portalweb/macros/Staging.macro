@@ -192,7 +192,7 @@
 		<execute function="Click" locator1="Button#PLUS" />
 
 		<execute function="Type" locator1="StagingPublishToLive#PUBLISH_TEMPLATES_NAME_FIELD" value1="${publishTemplateName}" />
-		<execute function="Type" locator1="StagingPublishToLive#PUBLISH_TEMPLATES_DESCRIPTION_FIELD" value1="${publishTemplateDescription}" />
+		<execute function="Type" locator1="TextArea#DESCRIPTION" value1="${publishTemplateDescription}" />
 	</command>
 
 	<command name="addSitePagesVariationPG">
@@ -451,7 +451,7 @@
 				<if>
 					<condition function="IsElementPresent" locator1="PagesConfiguration#PAGES_ALL_PUBLIC_PAGES_CHECKBOX" />
 					<then>
-						<execute function="Click" locator1="StagingPublishToLive#PAGES_CHANGE_PRIVATE_BUTTON" />
+						<execute function="Click" locator1="PagesConfiguration#CHANGE_TO_PRIVATE_PAGES" />
 					</then>
 				</if>
 
@@ -480,7 +480,7 @@
 				<if>
 					<condition function="IsElementPresent" locator1="PagesConfiguration#PAGES_ALL_PRIVATE_PAGES_CHECKBOX" />
 					<then>
-						<execute function="Click" locator1="StagingPublishToLive#PAGES_CHANGE_PUBLIC_BUTTON" />
+						<execute function="Click" locator1="PagesConfiguration#CHANGE_TO_PUBLIC_PAGES" />
 					</then>
 				</if>
 
@@ -526,7 +526,7 @@
 
 		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
 
-		<execute function="ClickNoError" locator1="Button#COPY_FROM_LIVE" />
+		<execute function="ClickNoError" locator1="Staging#COPY_FROM_LIVE" />
 
 		<execute function="Confirm" value1="Are you sure you want to copy from live and update the existing staging portlet information?" />
 
@@ -638,7 +638,7 @@
 		<execute function="AssertClick" locator1="StagingPublishToLive#PUBLISH_TEMPLATES_TABLE_NAME" value1="${publishTemplateName}" />
 
 		<execute function="Type" locator1="StagingPublishToLive#PUBLISH_TEMPLATES_NAME_FIELD" value1="${publishTemplateNameEdit}" />
-		<execute function="Type" locator1="StagingPublishToLive#PUBLISH_TEMPLATES_DESCRIPTION_FIELD" value1="${publishTemplateDescriptionEdit}" />
+		<execute function="Type" locator1="TextArea#DESCRIPTION" value1="${publishTemplateDescriptionEdit}" />
 	</command>
 
 	<command name="editSitePageVariationPG">
@@ -839,7 +839,7 @@
 	<command name="publishCustomPublication">
 		<execute function="Click" locator1="Button#PLUS" />
 
-		<execute function="AssertClickNoError" locator1="Button#PUBLISH_TO_LIVE" value1="Publish to Live" />
+		<execute function="AssertClickNoError" locator1="Staging#STAGING_PUBLISH_TO_LIVE_BUTTON" value1="Publish to Live" />
 
 		<execute function="Pause" locator1="30000" />
 
@@ -893,7 +893,7 @@
 
 		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION_DIALOG" />
 
-		<execute function="AssertClickNoError" locator1="Button#PUBLISH_TO_LIVE" value1="Publish to Live" />
+		<execute function="AssertClickNoError" locator1="Staging#STAGING_PUBLISH_TO_LIVE_BUTTON" value1="Publish to Live" />
 
 		<execute function="Confirm" value1="Are you sure you want to publish to live and update the existing portlet data?" />
 
@@ -924,7 +924,7 @@
 			</then>
 		</if>
 
-		<execute function="AssertClickNoError" locator1="Button#PUBLISH_TO_LIVE" value1="Publish to Live" />
+		<execute function="AssertClickNoError" locator1="Staging#STAGING_PUBLISH_TO_LIVE_BUTTON" value1="Publish to Live" />
 
 		<execute function="Confirm" value1="Are you sure you want to publish to live and update the existing portlet data?" />
 
@@ -951,7 +951,7 @@
 
 		<execute function="Click" locator1="StagingPublishToLive#PUBLISH_TEMPLATES_TABLE_PUBLISH_TO_LIVE_ARROW_BUTTON" />
 
-		<execute function="AssertClick" locator1="Button#PUBLISH_TO_LIVE" value1="Publish to Live" />
+		<execute function="AssertClick" locator1="Staging#STAGING_PUBLISH_TO_LIVE_BUTTON" value1="Publish to Live" />
 
 		<execute function="Pause" locator1="5000" />
 
