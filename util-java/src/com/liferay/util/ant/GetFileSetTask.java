@@ -81,6 +81,22 @@ public class GetFileSetTask extends Task {
 
 		Project project = getProject();
 
+		FileSet classFileSet = new FileSet();
+
+		classFileSet.setDir(baseDir);
+
+		for (Path classPath : classPaths) {
+			String classPathString = String.valueOf(classPath);
+
+			classPathString = classPathString.substring(_rootDir.length() + 1);
+
+			classFileSet.setIncludes(classPathString);
+		}
+
+		classFileSet.setProject(getProject());
+
+		project.addReference("get.file.set.class.set", classFileSet);
+
 		DirSet srcDirSet = new DirSet();
 
 		srcDirSet.setDir(baseDir);
@@ -114,22 +130,6 @@ public class GetFileSetTask extends Task {
 		srcDirSet.setProject(project);
 
 		project.addReference("get.file.set.src.set", srcDirSet);
-
-		FileSet classFileSet = new FileSet();
-
-		classFileSet.setDir(baseDir);
-
-		for (Path classPath : classPaths) {
-			String classPathString = String.valueOf(classPath);
-
-			classPathString = classPathString.substring(_rootDir.length() + 1);
-
-			classFileSet.setIncludes(classPathString);
-		}
-
-		classFileSet.setProject(getProject());
-
-		project.addReference("get.file.set.class.set", classFileSet);
 	}
 
 	public void setClassNames(String classNames) {
