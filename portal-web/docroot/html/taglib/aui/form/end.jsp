@@ -68,7 +68,7 @@
 				}
 			</c:if>
 
-			, validateOnBlur: '<%= validateOnBlur %>'
+			, validateOnBlur: <%= validateOnBlur %>
 		}
 	);
 
