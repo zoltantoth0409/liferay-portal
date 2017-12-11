@@ -198,7 +198,7 @@ public class GetFileSetTask extends Task {
 
 						String fileName = fileNamePath.toString();
 
-						if (_skipDirectory(fileName)) {
+						if (_isSkipDirectory(fileName)) {
 							return FileVisitResult.SKIP_SUBTREE;
 						}
 
@@ -253,13 +253,12 @@ public class GetFileSetTask extends Task {
 		return false;
 	}
 
-	private boolean _skipDirectory(String fileName) {
+	private boolean _isSkipDirectory(String fileName) {
 		if (fileName.startsWith(".") || _skipList.contains(fileName)) {
 			return true;
 		}
-		else {
-			return false;
-		}
+
+		return false;
 	}
 
 	private static final Logger _LOGGER = Logger.getLogger(
