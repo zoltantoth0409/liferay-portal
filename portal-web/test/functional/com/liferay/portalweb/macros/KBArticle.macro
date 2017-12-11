@@ -662,13 +662,6 @@
 		<execute function="AssertClick" locator1="KnowledgeBaseConfiguration#NAVIGATION_TAB_DISPLAY_SETTINGS" value1="Display Settings" />
 
 		<if>
-			<condition function="IsNotVisible" locator1="Select#DISPLAY_STYLE" />
-			<then>
-				<execute function="Check#toggleSwitch" locator1="Checkbox#ENABLE_SOCIAL_BOOKMARKS" />
-			</then>
-		</if>
-
-		<if>
 			<isset var="enableSocialBookmarkSites" />
 			<then>
 				<execute macro="KBArticle#enableSocialBookmarkSites">
