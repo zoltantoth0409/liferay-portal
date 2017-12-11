@@ -254,7 +254,7 @@ public class GetFileSetTask extends Task {
 	}
 
 	private boolean _isSkipDirectory(String fileName) {
-		if (fileName.startsWith(".") || _skipList.contains(fileName)) {
+		if (fileName.startsWith(".") || _skipFileNames.contains(fileName)) {
 			return true;
 		}
 
@@ -267,7 +267,7 @@ public class GetFileSetTask extends Task {
 	private static final String _MODULE_SRC_PARAMETER = String.valueOf(
 		Paths.get("src", "main", "java"));
 
-	private static final List<String> _skipList = Arrays.asList(
+	private static final List<String> _skipFileNames = Arrays.asList(
 		"benchmarks", "definitions", "gradle", "lib", "nbproject",
 		"node_modules", "oss-licenses", "portal-client", "readme", "sql",
 		"tools");
