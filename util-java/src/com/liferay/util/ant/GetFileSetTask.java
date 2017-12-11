@@ -66,13 +66,13 @@ public class GetFileSetTask extends Task {
 
 		File baseDir = new File(_rootDir);
 
-		Set<String> notFoundClassNames = _findFiles(
+		Set<String> missingClassNames = _getMissingClassNames(
 			baseDir, classNames, classPaths, srcPaths);
 
-		if (!notFoundClassNames.isEmpty()) {
+		if (!missingClassNames.isEmpty()) {
 			_LOGGER.log(
 				Level.WARNING, "No class files found for: {0}",
-				notFoundClassNames.toString());
+				missingClassNames.toString());
 
 			if (classPaths.isEmpty()) {
 				return;
@@ -172,7 +172,7 @@ public class GetFileSetTask extends Task {
 		return true;
 	}
 
-	private Set<String> _findFiles(
+	private Set<String> _getMissingClassNames(
 		File baseDir, List<String> classNames, List<Path> classFileList,
 		List<Path> srcFileList) {
 
@@ -180,9 +180,9 @@ public class GetFileSetTask extends Task {
 			throw new BuildException();
 		}
 
-		Set<String> notFoundClassNames = new HashSet<>();
+		Set<String> missingClassNames = new HashSet<>();
 
-		notFoundClassNames.addAll(classNames);
+		missingClassNames.addAll(classNames);
 
 		try {
 			Files.walkFileTree(
@@ -218,7 +218,7 @@ public class GetFileSetTask extends Task {
 							if (_matchClassName(className, fileName)) {
 								classFileList.add(path);
 
-								notFoundClassNames.remove(className);
+								missingClassNames.remove(className);
 							}
 							else if (fileName.equals(
 										className.concat(".java"))) {
@@ -236,7 +236,7 @@ public class GetFileSetTask extends Task {
 			throw new BuildException(ioe);
 		}
 
-		return notFoundClassNames;
+		return missingClassNames;
 	}
 
 	private boolean _matchClassName(String className, String fileName) {
