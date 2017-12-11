@@ -55,8 +55,7 @@ public class GetFileSetTask extends Task {
 		if (!_checkClassNames(classNames, improperClassName)) {
 			_LOGGER.log(
 				Level.WARNING,
-				"Please input class names instead of test class names!" +
-					"Please check:{0}",
+				"Input class names instead of test class names: {0}",
 				improperClassName.toString());
 
 			return;
@@ -72,7 +71,7 @@ public class GetFileSetTask extends Task {
 
 		if (!notFoundClassNames.isEmpty()) {
 			_LOGGER.log(
-				Level.WARNING, "Class files for {0} were not found!",
+				Level.WARNING, "No class files found for: {0}",
 				notFoundClassNames.toString());
 
 			if (classResultList.isEmpty()) {
@@ -93,7 +92,7 @@ public class GetFileSetTask extends Task {
 			if (!_checkSrcPath(srcResult, improperClassName)) {
 				_LOGGER.log(
 					Level.WARNING,
-					"Input incorrect class name! Please check:{0}",
+					"Invalid class name: {0}",
 					improperClassName.toString());
 
 				return;
