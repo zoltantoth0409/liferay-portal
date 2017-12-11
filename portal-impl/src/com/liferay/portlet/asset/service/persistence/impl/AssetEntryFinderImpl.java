@@ -215,7 +215,6 @@ public class AssetEntryFinderImpl
 			QueryPos qPos = QueryPos.getInstance(q);
 
 			qPos.add(classNameId);
-
 			qPos.add(classPK);
 
 			Iterator<Long> itr = q.iterate();
