@@ -83,7 +83,6 @@ public class GetFileSetTask extends Task {
 
 		DirSet srcDirSet = new DirSet();
 
-		srcDirSet.setProject(project);
 		srcDirSet.setDir(baseDir);
 
 		for (Path srcPath : srcPaths) {
@@ -112,11 +111,12 @@ public class GetFileSetTask extends Task {
 			srcDirSet.setIncludes(srcPathString);
 		}
 
+		srcDirSet.setProject(project);
+
 		project.addReference("get.file.set.src.set", srcDirSet);
 
 		FileSet classFileSet = new FileSet();
 
-		classFileSet.setProject(getProject());
 		classFileSet.setDir(baseDir);
 
 		for (Path classPath : classPaths) {
@@ -126,6 +126,8 @@ public class GetFileSetTask extends Task {
 
 			classFileSet.setIncludes(classPathString);
 		}
+
+		classFileSet.setProject(getProject());
 
 		project.addReference("get.file.set.class.set", classFileSet);
 	}
