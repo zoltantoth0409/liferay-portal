@@ -98,16 +98,16 @@ public class GetFileSetTask extends Task {
 				return;
 			}
 
-			int srcDirIndex = srcPathString.indexOf("src") + 3;
+			int index = srcPathString.indexOf("src") + 3;
 
 			if (srcPathString.contains(_MODULE_SRC_PARAMETER)) {
-				srcDirIndex =
+				index =
 					srcPathString.indexOf(_MODULE_SRC_PARAMETER) +
 						_MODULE_SRC_PARAMETER.length();
 			}
 
 			srcPathString = srcPathString.substring(
-				_rootDir.length() + 1, srcDirIndex);
+				_rootDir.length() + 1, index);
 
 			srcDirSet.setIncludes(srcPathString);
 		}
