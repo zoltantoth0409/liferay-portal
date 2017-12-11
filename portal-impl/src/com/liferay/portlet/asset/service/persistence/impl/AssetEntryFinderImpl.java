@@ -200,7 +200,7 @@ public class AssetEntryFinderImpl
 	}
 
 	@Override
-	public long findPriorityByC_C(long classNameId, long classPK) {
+	public double findPriorityByC_C(long classNameId, long classPK) {
 		Session session = null;
 
 		try {
@@ -217,17 +217,17 @@ public class AssetEntryFinderImpl
 			qPos.add(classNameId);
 			qPos.add(classPK);
 
-			Iterator<Long> itr = q.iterate();
+			Iterator<Double> itr = q.iterate();
 
 			if (itr.hasNext()) {
-				Long count = itr.next();
+				Double priority = itr.next();
 
-				if (count != null) {
-					return count;
+				if (priority != null) {
+					return priority;
 				}
 			}
 
-			return 0L;
+			return 0;
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
