@@ -557,7 +557,7 @@ public class PortalImpl implements Portal {
 						portalInetSocketAddressEventListenerServiceTracker =
 							registry.trackServices(
 								PortalInetSocketAddressEventListener.class,
-								new PortalInetSocketAddressEventListenerServiceTrackerCustomizer());
+								new PortalInetSocketAddressEventListenerSTC());
 
 			portalInetSocketAddressEventListenerServiceTracker.open();
 		}
@@ -8897,7 +8897,7 @@ public class PortalImpl implements Portal {
 
 	}
 
-	private class PortalInetSocketAddressEventListenerServiceTrackerCustomizer
+	private class PortalInetSocketAddressEventListenerSTC
 		implements ServiceTrackerCustomizer
 			<PortalInetSocketAddressEventListener,
 				PortalInetSocketAddressEventListener> {
