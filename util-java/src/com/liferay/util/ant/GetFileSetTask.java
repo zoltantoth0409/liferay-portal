@@ -52,7 +52,7 @@ public class GetFileSetTask extends Task {
 
 		Set<String> invalidClassName = new HashSet<>();
 
-		if (!_checkClassNames(classNames, invalidClassName)) {
+		if (!_hasInvalidClassNames(classNames, invalidClassName)) {
 			_LOGGER.log(
 				Level.WARNING,
 				"Input class names instead of test class names: {0}",
@@ -137,7 +137,7 @@ public class GetFileSetTask extends Task {
 		_rootDir = rootDir;
 	}
 
-	private boolean _checkClassNames(
+	private boolean _hasInvalidClassNames(
 		List<String> classNames, Set<String> invalidClassName) {
 
 		for (String className : classNames) {
