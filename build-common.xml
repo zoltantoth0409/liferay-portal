@@ -1662,8 +1662,9 @@ rerun your task.
 		<if>
 			<isset property="class.names" />
 			<then>
-				<taskdef classname="com.liferay.util.ant.GetFileSetTask" classpath="${project.dir}/util-java/util-java.jar" name="getFileSet" />
-				<getFileSet classNames="${class.names}" rootDir="${project.dir}" />
+				<taskdef classname="com.liferay.util.ant.GetFileSetTask" classpath="${project.dir}/util-java/util-java.jar" name="get-file-set" />
+
+				<get-file-set classNames="${class.names}" rootDir="${project.dir}" />
 			</then>
 			<else>
 				<fileset dir="${project.dir}" id="classSet">
