@@ -115,10 +115,10 @@ public class GetFileSetTask extends Task {
 
 			int index = srcPathString.indexOf("src") + 3;
 
-			if (srcPathString.contains(_MODULE_SRC_PARAMETER)) {
+			if (srcPathString.contains(_PATH_STRING_SRC_MAIN_JAVA)) {
 				index =
-					srcPathString.indexOf(_MODULE_SRC_PARAMETER) +
-						_MODULE_SRC_PARAMETER.length();
+					srcPathString.indexOf(_PATH_STRING_SRC_MAIN_JAVA) +
+						_PATH_STRING_SRC_MAIN_JAVA.length();
 			}
 
 			srcPathString = srcPathString.substring(
@@ -264,7 +264,7 @@ public class GetFileSetTask extends Task {
 	private static final Logger _logger = Logger.getLogger(
 		GetFileSetTask.class.getName());
 
-	private static final String _MODULE_SRC_PARAMETER = String.valueOf(
+	private static final String _PATH_STRING_SRC_MAIN_JAVA = String.valueOf(
 		Paths.get("src", "main", "java"));
 
 	private static final List<String> _skipFileNames = Arrays.asList(
