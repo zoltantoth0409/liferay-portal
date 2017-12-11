@@ -268,8 +268,9 @@ public class GetFileSetTask extends Task {
 		Paths.get("src", "main", "java"));
 
 	private static final List<String> _skipList = Arrays.asList(
-		"node_modules", "benchmarks", "definitions", "gradle", "lib",
-		"nbproject", "oss-licenses", "portal-client", "readme", "sql", "tools");
+		"benchmarks", "definitions", "gradle", "lib", "nbproject",
+		"node_modules", "oss-licenses", "portal-client", "readme", "sql",
+		"tools");
 
 	private String _classNames;
 	private String _rootDir;
