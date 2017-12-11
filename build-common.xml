@@ -1667,11 +1667,11 @@ rerun your task.
 				<get-file-set classNames="${class.names}" rootDir="${project.dir}" />
 			</then>
 			<else>
-				<fileset dir="${project.dir}" id="classSet">
+				<fileset dir="${project.dir}" id="get.file.set.class.set">
 					<include name="**/classes/com/liferay/**/*.class" />
 				</fileset>
 
-				<dirset dir="${project.dir}" id="srcSet">
+				<dirset dir="${project.dir}" id="get.file.set.src.set">
 					<include name="**/src" />
 					<include name="**/src/main/java" />
 				</dirset>
@@ -1709,7 +1709,7 @@ rerun your task.
 						<file file="${jacoco.merged.jar}" />
 					</class.files>
 					<source.files>
-						<dirset refid="srcSet" />
+						<dirset refid="get.file.set.src.set" />
 					</source.files>
 				</jacoco-report>
 			</then>
@@ -1718,10 +1718,10 @@ rerun your task.
 					exec.file="${exec.file}"
 				>
 					<class.files>
-						<fileset refid="classSet" />
+						<fileset refid="get.file.set.class.set" />
 					</class.files>
 					<source.files>
-						<dirset refid="srcSet" />
+						<dirset refid="get.file.set.src.set" />
 					</source.files>
 				</jacoco-report>
 			</else>
