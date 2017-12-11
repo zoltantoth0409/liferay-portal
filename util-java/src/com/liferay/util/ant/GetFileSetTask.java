@@ -173,8 +173,8 @@ public class GetFileSetTask extends Task {
 	}
 
 	private Set<String> _getMissingClassNames(
-		File baseDir, List<String> classNames, List<Path> classFileList,
-		List<Path> srcFileList) {
+		File baseDir, List<String> classNames, List<Path> classPaths,
+		List<Path> srcPaths) {
 
 		if (!baseDir.exists() || !baseDir.isDirectory()) {
 			throw new BuildException();
@@ -216,14 +216,14 @@ public class GetFileSetTask extends Task {
 
 						for (String className : classNames) {
 							if (_matchClassName(className, fileName)) {
-								classFileList.add(path);
+								classPaths.add(path);
 
 								missingClassNames.remove(className);
 							}
 							else if (fileName.equals(
 										className.concat(".java"))) {
 
-								srcFileList.add(path);
+								srcPaths.add(path);
 							}
 						}
 
