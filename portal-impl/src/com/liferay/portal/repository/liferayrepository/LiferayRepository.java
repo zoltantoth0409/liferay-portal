@@ -636,7 +636,7 @@ public class LiferayRepository
 
 	@Override
 	public List<RepositoryEntry> getFoldersAndFileEntriesAndFileShortcuts(
-			long folderId, int status, String[] mimetypes,
+			long folderId, int status, String[] mimeTypes,
 			boolean includeMountFolders, boolean includeOwner, int start,
 			int end, OrderByComparator<?> obc)
 		throws PortalException {
@@ -653,7 +653,7 @@ public class LiferayRepository
 
 		List<Object> dlFoldersAndDLFileEntriesAndDLFileShortcuts =
 			dlFolderService.getFoldersAndFileEntriesAndFileShortcuts(
-				getGroupId(), toFolderId(folderId), mimetypes,
+				getGroupId(), toFolderId(folderId), mimeTypes,
 				includeMountFolders, queryDefinition);
 
 		return RepositoryModelUtil.toRepositoryEntries(

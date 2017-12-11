@@ -152,33 +152,33 @@ public interface Repository extends DocumentRepository {
 
 	public default List<RepositoryEntry>
 			getFoldersAndFileEntriesAndFileShortcuts(
-				long folderId, int status, String[] mimetypes,
+				long folderId, int status, String[] mimeTypes,
 				boolean includeMountFolders, boolean includeOwner, int start,
 				int end, OrderByComparator<?> obc)
 		throws PortalException {
 
 		return getFoldersAndFileEntriesAndFileShortcuts(
-			folderId, status, mimetypes, includeMountFolders, start, end, obc);
+			folderId, status, mimeTypes, includeMountFolders, start, end, obc);
 	}
 
 	public List<RepositoryEntry> getFoldersAndFileEntriesAndFileShortcuts(
-			long folderId, int status, String[] mimetypes,
+			long folderId, int status, String[] mimeTypes,
 			boolean includeMountFolders, int start, int end,
 			OrderByComparator<?> obc)
 		throws PortalException;
 
 	public int getFoldersAndFileEntriesAndFileShortcutsCount(
-			long folderId, int status, String[] mimetypes,
+			long folderId, int status, String[] mimeTypes,
 			boolean includeMountFolders)
 		throws PortalException;
 
 	public default int getFoldersAndFileEntriesAndFileShortcutsCount(
-			long folderId, int status, String[] mimetypes,
+			long folderId, int status, String[] mimeTypes,
 			boolean includeMountFolders, boolean includeOwner)
 		throws PortalException {
 
 		return getFoldersAndFileEntriesAndFileShortcutsCount(
-			folderId, status, mimetypes, includeMountFolders);
+			folderId, status, mimeTypes, includeMountFolders);
 	}
 
 	public int getFoldersFileEntriesCount(List<Long> folderIds, int status)
