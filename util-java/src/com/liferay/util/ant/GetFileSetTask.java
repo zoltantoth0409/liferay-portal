@@ -215,7 +215,7 @@ public class GetFileSetTask extends Task {
 						String fileName = fileNamePath.toString();
 
 						for (String className : classNames) {
-							if (_matchClassName(className, fileName)) {
+							if (_isClass(className, fileName)) {
 								classPaths.add(path);
 
 								missingClassNames.remove(className);
@@ -239,7 +239,7 @@ public class GetFileSetTask extends Task {
 		return missingClassNames;
 	}
 
-	private boolean _matchClassName(String className, String fileName) {
+	private boolean _isClass(String className, String fileName) {
 		if (fileName.equals(className.concat(".class"))) {
 			return true;
 		}
