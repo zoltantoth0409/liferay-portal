@@ -697,7 +697,7 @@ Error-Prone was automatically installed. Please rerun your task.
 					</classfiles>
 
 					<sourcefiles if:true="${jacoco.report.include.source.file}">
-						<source.files/>
+						<source.files />
 					</sourcefiles>
 				</structure>
 
