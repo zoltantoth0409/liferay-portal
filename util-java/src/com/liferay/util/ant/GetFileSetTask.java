@@ -106,8 +106,7 @@ public class GetFileSetTask extends Task {
 
 			if (!_isInvalidClassName(srcPathString, invalidClassNames)) {
 				_logger.log(
-					Level.WARNING,
-					"Invalid class name: {0}",
+					Level.WARNING, "Invalid class name: {0}",
 					invalidClassNames.toString());
 
 				return;
@@ -138,38 +137,6 @@ public class GetFileSetTask extends Task {
 
 	public void setRootDir(String rootDir) {
 		_rootDir = rootDir;
-	}
-
-	private boolean _hasInvalidClassNames(
-		List<String> classNames, Set<String> invalidClassNames) {
-
-		for (String className : classNames) {
-			if (className.endsWith("Test")) {
-				invalidClassNames.add(className);
-			}
-		}
-
-		if (!invalidClassNames.isEmpty()) {
-			return false;
-		}
-
-		return true;
-	}
-
-	private boolean _isInvalidClassName(
-		String absoluteFileName, Set<String> invalidClassNames) {
-
-		if (!absoluteFileName.contains("src")) {
-			int x = absoluteFileName.lastIndexOf(File.separator);
-			int y = absoluteFileName.lastIndexOf(".");
-
-			invalidClassNames.add(
-				absoluteFileName.substring(x + 1, y));
-
-			return false;
-		}
-
-		return true;
 	}
 
 	private Set<String> _getMissingClassNames(
@@ -239,6 +206,22 @@ public class GetFileSetTask extends Task {
 		return missingClassNames;
 	}
 
+	private boolean _hasInvalidClassNames(
+		List<String> classNames, Set<String> invalidClassNames) {
+
+		for (String className : classNames) {
+			if (className.endsWith("Test")) {
+				invalidClassNames.add(className);
+			}
+		}
+
+		if (!invalidClassNames.isEmpty()) {
+			return false;
+		}
+
+		return true;
+	}
+
 	private boolean _isClass(String className, String fileName) {
 		if (fileName.equals(className.concat(".class"))) {
 			return true;
@@ -253,6 +236,21 @@ public class GetFileSetTask extends Task {
 		return false;
 	}
 
+	private boolean _isInvalidClassName(
+		String absoluteFileName, Set<String> invalidClassNames) {
+
+		if (!absoluteFileName.contains("src")) {
+			int x = absoluteFileName.lastIndexOf(File.separator);
+			int y = absoluteFileName.lastIndexOf(".");
+
+			invalidClassNames.add(absoluteFileName.substring(x + 1, y));
+
+			return false;
+		}
+
+		return true;
+	}
+
 	private boolean _isSkip(String fileName) {
 		if (fileName.startsWith(".") || _skipFileNames.contains(fileName)) {
 			return true;
@@ -261,11 +259,11 @@ public class GetFileSetTask extends Task {
 		return false;
 	}
 
-	private static final Logger _logger = Logger.getLogger(
-		GetFileSetTask.class.getName());
-
 	private static final String _PATH_STRING_SRC_MAIN_JAVA = String.valueOf(
 		Paths.get("src", "main", "java"));
+
+	private static final Logger _logger = Logger.getLogger(
+		GetFileSetTask.class.getName());
 
 	private static final List<String> _skipFileNames = Arrays.asList(
 		"benchmarks", "definitions", "gradle", "lib", "nbproject",
