@@ -100,7 +100,7 @@
 </tr>
 <tr>
 	<td>ENABLE_COMMENT_RATINGS</td>
-	<td>//label[contains(.,'Enable Comment Ratings')]/input[@type='checkbox']</td>
+	<td>//label[contains(.,'Enable Ratings for Comments')]/input[@type='checkbox']</td>
 	<td></td>
 </tr>
 <tr>
