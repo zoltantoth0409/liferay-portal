@@ -53,7 +53,7 @@ public class GetFileSetTask extends Task {
 		Set<String> invalidClassName = new HashSet<>();
 
 		if (!_hasInvalidClassNames(classNames, invalidClassName)) {
-			_LOGGER.log(
+			_logger.log(
 				Level.WARNING,
 				"Input class names instead of test class names: {0}",
 				invalidClassName.toString());
@@ -70,7 +70,7 @@ public class GetFileSetTask extends Task {
 			baseDir, classNames, classPaths, srcPaths);
 
 		if (!missingClassNames.isEmpty()) {
-			_LOGGER.log(
+			_logger.log(
 				Level.WARNING, "No class files found for: {0}",
 				missingClassNames.toString());
 
@@ -105,7 +105,7 @@ public class GetFileSetTask extends Task {
 			String srcPathString = String.valueOf(srcPath);
 
 			if (!_checkSrcPath(srcPathString, invalidClassName)) {
-				_LOGGER.log(
+				_logger.log(
 					Level.WARNING,
 					"Invalid class name: {0}",
 					invalidClassName.toString());
@@ -261,7 +261,7 @@ public class GetFileSetTask extends Task {
 		return false;
 	}
 
-	private static final Logger _LOGGER = Logger.getLogger(
+	private static final Logger _logger = Logger.getLogger(
 		GetFileSetTask.class.getName());
 
 	private static final String _MODULE_SRC_PARAMETER = String.valueOf(
