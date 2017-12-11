@@ -104,7 +104,7 @@ public class GetFileSetTask extends Task {
 		for (Path srcPath : srcPaths) {
 			String srcPathString = String.valueOf(srcPath);
 
-			if (!_checkSrcPath(srcPathString, invalidClassNames)) {
+			if (!_isInvalidClassName(srcPathString, invalidClassNames)) {
 				_logger.log(
 					Level.WARNING,
 					"Invalid class name: {0}",
@@ -156,7 +156,7 @@ public class GetFileSetTask extends Task {
 		return true;
 	}
 
-	private boolean _checkSrcPath(
+	private boolean _isInvalidClassName(
 		String absoluteFileName, Set<String> invalidClassNames) {
 
 		if (!absoluteFileName.contains("src")) {
