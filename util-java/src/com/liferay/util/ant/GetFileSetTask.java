@@ -61,20 +61,20 @@ public class GetFileSetTask extends Task {
 			return;
 		}
 
-		List<Path> classResultList = new ArrayList<>();
-		List<Path> srcResultList = new ArrayList<>();
+		List<Path> classPaths = new ArrayList<>();
+		List<Path> srcPaths = new ArrayList<>();
 
 		File baseDir = new File(_rootDir);
 
 		Set<String> notFoundClassNames = _findFiles(
-			baseDir, classNames, classResultList, srcResultList);
+			baseDir, classNames, classPaths, srcPaths);
 
 		if (!notFoundClassNames.isEmpty()) {
 			_LOGGER.log(
 				Level.WARNING, "No class files found for: {0}",
 				notFoundClassNames.toString());
 
-			if (classResultList.isEmpty()) {
+			if (classPaths.isEmpty()) {
 				return;
 			}
 		}
@@ -86,10 +86,10 @@ public class GetFileSetTask extends Task {
 		srcDirSet.setProject(project);
 		srcDirSet.setDir(baseDir);
 
-		for (Path srcFilePath : srcResultList) {
-			String srcResult = String.valueOf(srcFilePath);
+		for (Path srcPath : srcPaths) {
+			String srcPathString = String.valueOf(srcPath);
 
-			if (!_checkSrcPath(srcResult, invalidClassName)) {
+			if (!_checkSrcPath(srcPathString, invalidClassName)) {
 				_LOGGER.log(
 					Level.WARNING,
 					"Invalid class name: {0}",
@@ -98,17 +98,18 @@ public class GetFileSetTask extends Task {
 				return;
 			}
 
-			int srcDirIndex = srcResult.indexOf("src") + 3;
+			int srcDirIndex = srcPathString.indexOf("src") + 3;
 
-			if (srcResult.contains(_MODULE_SRC_PARAMETER)) {
+			if (srcPathString.contains(_MODULE_SRC_PARAMETER)) {
 				srcDirIndex =
-					srcResult.indexOf(_MODULE_SRC_PARAMETER) +
+					srcPathString.indexOf(_MODULE_SRC_PARAMETER) +
 						_MODULE_SRC_PARAMETER.length();
 			}
 
-			srcResult = srcResult.substring(_rootDir.length() + 1, srcDirIndex);
+			srcPathString = srcPathString.substring(
+				_rootDir.length() + 1, srcDirIndex);
 
-			srcDirSet.setIncludes(srcResult);
+			srcDirSet.setIncludes(srcPathString);
 		}
 
 		project.addReference("get.file.set.src.set", srcDirSet);
@@ -118,12 +119,12 @@ public class GetFileSetTask extends Task {
 		classFileSet.setProject(getProject());
 		classFileSet.setDir(baseDir);
 
-		for (Path classFilePath : classResultList) {
-			String filePath = String.valueOf(classFilePath);
+		for (Path classPath : classPaths) {
+			String classPathString = String.valueOf(classPath);
 
-			filePath = filePath.substring(_rootDir.length() + 1);
+			classPathString = classPathString.substring(_rootDir.length() + 1);
 
-			classFileSet.setIncludes(filePath);
+			classFileSet.setIncludes(classPathString);
 		}
 
 		project.addReference("get.file.set.class.set", classFileSet);
