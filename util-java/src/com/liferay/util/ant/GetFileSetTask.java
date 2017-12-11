@@ -111,7 +111,7 @@ public class GetFileSetTask extends Task {
 			srcDirSet.setIncludes(srcResult);
 		}
 
-		project.addReference("srcSet", srcDirSet);
+		project.addReference("get.file.set.src.set", srcDirSet);
 
 		FileSet classFileSet = new FileSet();
 
@@ -126,7 +126,7 @@ public class GetFileSetTask extends Task {
 			classFileSet.setIncludes(filePath);
 		}
 
-		project.addReference("classSet", classFileSet);
+		project.addReference("get.file.set.class.set", classFileSet);
 	}
 
 	public void setClassNames(String classNames) {
