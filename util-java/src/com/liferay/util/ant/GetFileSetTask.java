@@ -50,13 +50,13 @@ public class GetFileSetTask extends Task {
 
 		Collections.addAll(classNames, _classNames.split(","));
 
-		Set<String> invalidClassName = new HashSet<>();
+		Set<String> invalidClassNames = new HashSet<>();
 
-		if (!_hasInvalidClassNames(classNames, invalidClassName)) {
+		if (!_hasInvalidClassNames(classNames, invalidClassNames)) {
 			_logger.log(
 				Level.WARNING,
 				"Input class names instead of test class names: {0}",
-				invalidClassName.toString());
+				invalidClassNames.toString());
 
 			return;
 		}
@@ -104,11 +104,11 @@ public class GetFileSetTask extends Task {
 		for (Path srcPath : srcPaths) {
 			String srcPathString = String.valueOf(srcPath);
 
-			if (!_checkSrcPath(srcPathString, invalidClassName)) {
+			if (!_checkSrcPath(srcPathString, invalidClassNames)) {
 				_logger.log(
 					Level.WARNING,
 					"Invalid class name: {0}",
-					invalidClassName.toString());
+					invalidClassNames.toString());
 
 				return;
 			}
@@ -141,15 +141,15 @@ public class GetFileSetTask extends Task {
 	}
 
 	private boolean _hasInvalidClassNames(
-		List<String> classNames, Set<String> invalidClassName) {
+		List<String> classNames, Set<String> invalidClassNames) {
 
 		for (String className : classNames) {
 			if (className.endsWith("Test")) {
-				invalidClassName.add(className);
+				invalidClassNames.add(className);
 			}
 		}
 
-		if (!invalidClassName.isEmpty()) {
+		if (!invalidClassNames.isEmpty()) {
 			return false;
 		}
 
@@ -157,14 +157,14 @@ public class GetFileSetTask extends Task {
 	}
 
 	private boolean _checkSrcPath(
-		String absoluteFileName, Set<String> invalidClassName) {
+		String absoluteFileName, Set<String> invalidClassNames) {
 
 		if (!absoluteFileName.contains("src")) {
-			int startIndex = absoluteFileName.lastIndexOf(File.separator);
-			int endIndex = absoluteFileName.lastIndexOf(".");
+			int x = absoluteFileName.lastIndexOf(File.separator);
+			int y = absoluteFileName.lastIndexOf(".");
 
-			invalidClassName.add(
-				absoluteFileName.substring(startIndex + 1, endIndex));
+			invalidClassNames.add(
+				absoluteFileName.substring(x + 1, y));
 
 			return false;
 		}
