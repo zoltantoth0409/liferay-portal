@@ -532,11 +532,11 @@ public class DDLFormAdminDisplayContext {
 	}
 
 	protected String getServletContextPath(Servlet servlet) {
+		String proxyPath = _portal.getPathProxy();
+
 		ServletConfig servletConfig = servlet.getServletConfig();
 
 		ServletContext servletContext = servletConfig.getServletContext();
-
-		String proxyPath = _portal.getPathProxy();
 
 		return proxyPath.concat(servletContext.getContextPath());
 	}
