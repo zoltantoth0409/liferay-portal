@@ -2411,7 +2411,7 @@ public abstract class BaseBuild implements Build {
 		}
 
 		_jenkinsReportTimeZoneName = properties.getProperty(
-			"jenkins.report.timezone");
+			"jenkins.report.time.zone");
 	};
 
 	private int _buildNumber = -1;
