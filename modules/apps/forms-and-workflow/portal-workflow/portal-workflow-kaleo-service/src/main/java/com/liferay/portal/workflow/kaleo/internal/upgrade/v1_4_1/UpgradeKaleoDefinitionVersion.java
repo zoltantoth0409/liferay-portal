@@ -26,6 +26,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Inácio Nery
  */
@@ -200,102 +203,38 @@ public class UpgradeKaleoDefinitionVersion extends UpgradeProcess {
 		sb2.append("content, version, startKaleoNodeId, status) values (?, ");
 		sb2.append("?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )");
 
+		List<PreparedStatement> preparedStatements = new ArrayList<>(17);
+
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement ps1 = connection.prepareStatement(sb1.toString());
 			PreparedStatement ps2 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 					connection, sb2.toString());
-			PreparedStatement ps3 =
-				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection,
-					"update KaleoAction set kaleoDefinitionVersionId = ? " +
-						"where kaleoDefinitionId = ?");
-			PreparedStatement ps4 =
-				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection,
-					"update KaleoCondition set kaleoDefinitionVersionId = ? " +
-						"where kaleoDefinitionId = ?");
-			PreparedStatement ps5 =
-				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection,
-					"update KaleoInstance set kaleoDefinitionVersionId = ? " +
-						"where kaleoDefinitionId = ?");
-			PreparedStatement ps6 =
-				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection,
-					"update KaleoInstanceToken set kaleoDefinitionVersionId " +
-						"= ? where kaleoDefinitionId = ?");
-			PreparedStatement ps7 =
-				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection,
-					"update KaleoLog set kaleoDefinitionVersionId = ? where " +
-						"kaleoDefinitionId = ?");
-			PreparedStatement ps8 =
-				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection,
-					"update KaleoNode set kaleoDefinitionVersionId = ? where " +
-						"kaleoDefinitionId = ?");
-			PreparedStatement ps9 =
-				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection,
-					"update KaleoNotification set kaleoDefinitionVersionId = " +
-						"? where kaleoDefinitionId = ?");
-			PreparedStatement ps10 =
-				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection,
-					"update KaleoNotificationRecipient set " +
-						"kaleoDefinitionVersionId = ? where " +
-							"kaleoDefinitionId = ?");
-			PreparedStatement ps11 =
-				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection,
-					"update KaleoTask set kaleoDefinitionVersionId = ? where " +
-						"kaleoDefinitionId = ?");
-			PreparedStatement ps12 =
-				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection,
-					"update KaleoTaskAssignment set kaleoDefinitionVersionId " +
-						"= ? where kaleoDefinitionId = ?");
-			PreparedStatement ps13 =
-				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection,
-					"update KaleoTaskAssignmentInstance set " +
-						"kaleoDefinitionVersionId = ? where " +
-							"kaleoDefinitionId = ?");
-			PreparedStatement ps14 =
-				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection,
-					"update KaleoTaskForm set kaleoDefinitionVersionId = ? " +
-						"where kaleoDefinitionId = ?");
-			PreparedStatement ps15 =
-				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection,
-					"update KaleoTaskFormInstance set " +
-						"kaleoDefinitionVersionId = ? where kaleoDefinitionId" +
-							"= ?");
-			PreparedStatement ps16 =
-				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection,
-					"update KaleoTaskInstanceToken set " +
-						"kaleoDefinitionVersionId = ? where kaleoDefinitionId" +
-							"= ?");
-			PreparedStatement ps17 =
-				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection,
-					"update KaleoTimer set kaleoDefinitionVersionId = ? " +
-						"where kaleoDefinitionId = ?");
-			PreparedStatement ps18 =
-				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection,
-					"update KaleoTimerInstanceToken set " +
-						"kaleoDefinitionVersionId = ? where kaleoDefinitionId" +
-							"= ?");
-			PreparedStatement ps19 =
-				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection,
-					"update KaleoTransition set kaleoDefinitionVersionId = ? " +
-						"where kaleoDefinitionId = ?");
 			ResultSet rs = ps1.executeQuery()) {
+
+			String[] tableNames = {
+				"KaleoAction", "KaleoCondition", "KaleoInstance",
+				"KaleoInstanceToken", "KaleoLog", "KaleoNode",
+				"KaleoNotification", "KaleoNotificationRecipient", "KaleoTask",
+				"KaleoTaskAssignment", "KaleoTaskAssignmentInstance",
+				"KaleoTaskForm", "KaleoTaskFormInstance",
+				"KaleoTaskInstanceToken", "KaleoTimer",
+				"KaleoTimerInstanceToken", "KaleoTransition"
+			};
+
+			for (String tableName : tableNames) {
+				if (hasColumn(tableName, "kaleoDefinitionId")) {
+					StringBundler statement = new StringBundler(3);
+
+					statement.append("update " + tableName + " ");
+					statement.append("set kaleoDefinitionVersionId = ? ");
+					statement.append("where kaleoDefinitionId = ? ");
+
+					preparedStatements.add(
+						AutoBatchPreparedStatementUtil.concurrentAutoBatch(
+							connection, statement.toString()));
+				}
+			}
 
 			while (rs.next()) {
 				long kaleoDefinitionId = rs.getLong("kaleoDefinitionId");
@@ -335,43 +274,25 @@ public class UpgradeKaleoDefinitionVersion extends UpgradeProcess {
 
 				ps2.addBatch();
 
-				addBatch(ps3, kaleoDefinitionId, kaleoDefinitionVersionId);
-				addBatch(ps4, kaleoDefinitionId, kaleoDefinitionVersionId);
-				addBatch(ps5, kaleoDefinitionId, kaleoDefinitionVersionId);
-				addBatch(ps6, kaleoDefinitionId, kaleoDefinitionVersionId);
-				addBatch(ps7, kaleoDefinitionId, kaleoDefinitionVersionId);
-				addBatch(ps8, kaleoDefinitionId, kaleoDefinitionVersionId);
-				addBatch(ps9, kaleoDefinitionId, kaleoDefinitionVersionId);
-				addBatch(ps10, kaleoDefinitionId, kaleoDefinitionVersionId);
-				addBatch(ps11, kaleoDefinitionId, kaleoDefinitionVersionId);
-				addBatch(ps12, kaleoDefinitionId, kaleoDefinitionVersionId);
-				addBatch(ps13, kaleoDefinitionId, kaleoDefinitionVersionId);
-				addBatch(ps14, kaleoDefinitionId, kaleoDefinitionVersionId);
-				addBatch(ps15, kaleoDefinitionId, kaleoDefinitionVersionId);
-				addBatch(ps16, kaleoDefinitionId, kaleoDefinitionVersionId);
-				addBatch(ps17, kaleoDefinitionId, kaleoDefinitionVersionId);
-				addBatch(ps18, kaleoDefinitionId, kaleoDefinitionVersionId);
-				addBatch(ps19, kaleoDefinitionId, kaleoDefinitionVersionId);
+				for (PreparedStatement preparedStatement : preparedStatements) {
+					addBatch(
+						preparedStatement, kaleoDefinitionId,
+						kaleoDefinitionVersionId);
+				}
 			}
 
 			ps2.executeBatch();
-			ps3.executeBatch();
-			ps4.executeBatch();
-			ps5.executeBatch();
-			ps6.executeBatch();
-			ps7.executeBatch();
-			ps8.executeBatch();
-			ps9.executeBatch();
-			ps10.executeBatch();
-			ps11.executeBatch();
-			ps12.executeBatch();
-			ps13.executeBatch();
-			ps14.executeBatch();
-			ps15.executeBatch();
-			ps16.executeBatch();
-			ps17.executeBatch();
-			ps18.executeBatch();
-			ps19.executeBatch();
+
+			for (PreparedStatement preparedStatement : preparedStatements) {
+				preparedStatement.executeBatch();
+			}
+		}
+		catch (Exception e) {
+		}
+		finally {
+			for (PreparedStatement preparedStatement : preparedStatements) {
+				preparedStatement.close();
+			}
 		}
 	}
 
