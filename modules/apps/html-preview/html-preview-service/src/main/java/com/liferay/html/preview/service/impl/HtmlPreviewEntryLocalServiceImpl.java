@@ -60,8 +60,6 @@ public class HtmlPreviewEntryLocalServiceImpl
 
 		htmlPreviewEntryPersistence.update(htmlPreviewEntry);
 
-		// Preview
-
 		_sendMessage(userId, groupId, htmlPreviewEntryId, content, mimeType);
 
 		return htmlPreviewEntry;
@@ -72,11 +70,7 @@ public class HtmlPreviewEntryLocalServiceImpl
 			HtmlPreviewEntry htmlPreviewEntry)
 		throws PortalException {
 
-		// HTML Preview
-
 		htmlPreviewEntryPersistence.remove(htmlPreviewEntry);
-
-		// Portlet File Entry
 
 		PortletFileRepositoryUtil.deletePortletFileEntry(
 			htmlPreviewEntry.getFileEntryId());
@@ -107,8 +101,6 @@ public class HtmlPreviewEntryLocalServiceImpl
 			serviceContext.getModifiedDate(new Date()));
 
 		htmlPreviewEntryPersistence.update(htmlPreviewEntry);
-
-		// Preview
 
 		_sendMessage(
 			htmlPreviewEntry.getUserId(), htmlPreviewEntry.getGroupId(),
