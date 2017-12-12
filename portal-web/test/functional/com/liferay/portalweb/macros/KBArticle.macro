@@ -729,9 +729,11 @@
 
 	<command name="disableSocialBookmarkSites">
 		<for list="${disableSocialBookmarkSites}" param="socialBookmarkSite">
-			<execute function="Uncheck" locator1="SocialBookmarks#SOCIAL_BOOKMARKS_CONFIGURATION_CHECKBOX">
-				<var name="key_socialBookmarkSite" value="${socialBookmarkSite}" />
-			</execute>
+			<execute function="AddSelection" locator1="SocialBookmarks#ENABLE_SOCIAL_BOOKMARK_CURRENT_SELECT" value1="${socialBookmarkSite}" />
+
+			<execute function="Click" locator1="Button#MOVE_CURRENT_TO_AVAILABLE" />
+
+			<execute function="AssertTextEquals#assertPartialText" locator1="SocialBookmarks#ENABLE_SOCIAL_BOOKMARK_AVAILABLE_SELECT" value1="${socialBookmarkSite}" />
 		</for>
 	</command>
 
@@ -872,9 +874,11 @@
 
 	<command name="enableSocialBookmarkSites">
 		<for list="${enableSocialBookmarkSites}" param="socialBookmarkSite">
-			<execute function="Check" locator1="SocialBookmarks#SOCIAL_BOOKMARKS_CONFIGURATION_CHECKBOX">
-				<var name="key_socialBookmarkSite" value="${socialBookmarkSite}" />
-			</execute>
+			<execute function="AddSelection" locator1="SocialBookmarks#ENABLE_SOCIAL_BOOKMARK_AVAILABLE_SELECT" value1="${socialBookmarkSite}" />
+
+			<execute function="Click" locator1="Button#MOVE_AVAILABLE_TO_CURRENT" />
+
+			<execute function="AssertTextEquals#assertPartialText" locator1="SocialBookmarks#ENABLE_SOCIAL_BOOKMARK_CURRENT_SELECT" value1="${socialBookmarkSite}" />
 		</for>
 	</command>
 
