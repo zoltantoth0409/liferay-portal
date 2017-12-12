@@ -410,7 +410,7 @@
 	</command>
 
 	<command name="AddDDLRecordWithDoubleApproverDefinition" priority="5">
-		<property name="portal.acceptance" value="true" />
+		<property name="portal.acceptance" value="false" />
 		<property name="testray.component.names" value="Training" />
 
 		<execute macro="ProductMenu#gotoPortlet">
