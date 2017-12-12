@@ -23,10 +23,9 @@ public class FragmentEntryImpl extends FragmentEntryBaseImpl {
 
 	@Override
 	public String getContent() {
-		StringBundler sb = new StringBundler(8);
+		StringBundler sb = new StringBundler(7);
 
-		sb.append("<html><head>");
-		sb.append("<style>");
+		sb.append("<html><head><style>");
 		sb.append(getCss());
 		sb.append("</style><script>");
 		sb.append(getJs());
