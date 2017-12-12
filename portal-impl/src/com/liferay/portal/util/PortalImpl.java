@@ -4702,7 +4702,8 @@ public class PortalImpl implements Portal {
 
 				if ((group != null) && group.hasStagingGroup()) {
 					try {
-						Group stagingGroup = group.getStagingGroup();
+						Group stagingGroup =
+							StagingUtil.getPermissionStagingGroup(group);
 
 						scopeGroupId = stagingGroup.getGroupId();
 					}
