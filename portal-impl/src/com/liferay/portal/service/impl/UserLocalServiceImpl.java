@@ -6335,9 +6335,6 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		PortletPreferences companyPortletPreferences =
 			PrefsPropsUtil.getPreferences(companyId, true);
 
-		Map<Locale, String> localizedSubjectMap = null;
-		Map<Locale, String> localizedBodyMap = null;
-
 		String bodyProperty = null;
 		String prefix = null;
 		String subjectProperty = null;
@@ -6353,16 +6350,6 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			subjectProperty = PropsKeys.ADMIN_EMAIL_PASSWORD_SENT_SUBJECT;
 		}
 
-		if (Validator.isNull(body)) {
-			localizedBodyMap = LocalizationUtil.getLocalizationMap(
-				companyPortletPreferences, prefix + "Body", bodyProperty);
-		}
-
-		if (Validator.isNull(subject)) {
-			localizedSubjectMap = LocalizationUtil.getLocalizationMap(
-				companyPortletPreferences, prefix + "Subject", subjectProperty);
-		}
-
 		SubscriptionSender subscriptionSender = new SubscriptionSender();
 
 		subscriptionSender.setCompanyId(companyId);
@@ -6376,6 +6363,10 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		subscriptionSender.setHtmlFormat(true);
 
 		if (Validator.isNull(body)) {
+			Map<Locale, String> localizedBodyMap =
+				LocalizationUtil.getLocalizationMap(
+					companyPortletPreferences, prefix + "Body", bodyProperty);
+
 			subscriptionSender.setLocalizedBodyMap(localizedBodyMap);
 		}
 		else {
@@ -6383,6 +6374,11 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		}
 
 		if (Validator.isNull(subject)) {
+			Map<Locale, String> localizedSubjectMap =
+				LocalizationUtil.getLocalizationMap(
+					companyPortletPreferences, prefix + "Subject",
+					subjectProperty);
+
 			subscriptionSender.setLocalizedSubjectMap(localizedSubjectMap);
 		}
 		else {
