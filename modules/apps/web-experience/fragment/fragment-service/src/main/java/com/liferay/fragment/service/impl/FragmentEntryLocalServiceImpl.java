@@ -69,7 +69,7 @@ public class FragmentEntryLocalServiceImpl
 		fragmentEntry.setHtml(html);
 		fragmentEntry.setJs(js);
 
-		// HTML Preview
+		// HTML preview
 
 		HtmlPreviewEntry htmlPreviewEntry = _updateHtmlPreviewEntry(
 			fragmentEntry, serviceContext);
