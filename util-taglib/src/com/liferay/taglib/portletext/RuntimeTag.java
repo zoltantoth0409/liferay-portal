@@ -175,9 +175,11 @@ public class RuntimeTag extends TagSupport implements DirectTag {
 				PortletIdCodec.decodeUserId(portletName), instanceId);
 		}
 
+		HttpServletRequest originalRequest =
+			PortalUtil.getOriginalServletRequest(request);
+
 		RestrictPortletServletRequest restrictPortletServletRequest =
-			new RestrictPortletServletRequest(
-				PortalUtil.getOriginalServletRequest(request));
+			new RestrictPortletServletRequest(originalRequest);
 
 		queryString = PortletParameterUtil.addNamespace(
 			portletInstanceKey, queryString);
@@ -190,6 +192,14 @@ public class RuntimeTag extends TagSupport implements DirectTag {
 			parameterMap = MapUtil.filterByKeys(
 				parameterMap, new PrefixPredicateFilter("p_p_"));
 		}
+
+		String portletNamespace = PortalUtil.getPortletNamespace(
+			portletInstanceKey);
+
+		parameterMap.putAll(
+			MapUtil.filterByKeys(
+				originalRequest.getParameterMap(),
+				key -> key.startsWith(portletNamespace)));
 
 		request = DynamicServletRequest.addQueryString(
 			restrictPortletServletRequest, parameterMap, queryString, false);
