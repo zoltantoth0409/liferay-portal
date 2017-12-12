@@ -661,7 +661,7 @@ public abstract class BaseBuild implements Build {
 
 	@Override
 	public Long getLatestStartTimestamp() {
-		Long latestStartTimestamp = getStartTimestamp();
+		Long latestStartTimestamp = getStartTime();
 
 		if (latestStartTimestamp == null) {
 			return null;
@@ -763,7 +763,7 @@ public abstract class BaseBuild implements Build {
 	}
 
 	@Override
-	public Long getStartTimestamp() {
+	public Long getStartTime() {
 		JSONObject buildJSONObject = getBuildJSONObject("timestamp");
 
 		if (buildJSONObject == null) {
@@ -1698,8 +1698,7 @@ public abstract class BaseBuild implements Build {
 			Dom4JUtil.getNewElement(
 				cellElementTagName, null,
 				JenkinsResultsParserUtil.toDateString(
-					new Date(getStartTimestamp()),
-					getJenkinsReportTimeZoneName())),
+					new Date(getStartTime()), getJenkinsReportTimeZoneName())),
 			Dom4JUtil.getNewElement(
 				cellElementTagName, null,
 				JenkinsResultsParserUtil.toDurationString(getDuration())));
@@ -2272,7 +2271,7 @@ public abstract class BaseBuild implements Build {
 	protected String repositoryName;
 	protected List<SlaveOfflineRule> slaveOfflineRules =
 		SlaveOfflineRule.getSlaveOfflineRules();
-	protected long startTimestamp;
+	protected long startTime;
 	protected long statusModifiedTime;
 	protected Element upstreamJobFailureMessageElement;
 
@@ -2289,7 +2288,7 @@ public abstract class BaseBuild implements Build {
 			}
 
 			_duration = topLevelBuild.getDuration();
-			_startTimestamp = topLevelBuild.getStartTimestamp();
+			_startTime = topLevelBuild.getStartTime();
 			_timeline = new TimelineDataPoint[size];
 
 			for (int i = 0; i < size; i++) {
@@ -2302,8 +2301,8 @@ public abstract class BaseBuild implements Build {
 
 		protected void addTimelineData(BaseBuild build) {
 			int endIndex = _getIndex(
-				build.getStartTimestamp() + build.getDuration());
-			int startIndex = _getIndex(build.getStartTimestamp());
+				build.getStartTime() + build.getDuration());
+			int startIndex = _getIndex(build.getStartTime());
 
 			_timeline[startIndex]._invocationsCount++;
 
@@ -2344,8 +2343,7 @@ public abstract class BaseBuild implements Build {
 
 		private int _getIndex(long timestamp) {
 			int index =
-				(int)((timestamp - _startTimestamp) *
-					_timeline.length / _duration);
+				(int)((timestamp - _startTime) * _timeline.length / _duration);
 
 			if (index >= _timeline.length) {
 				return _timeline.length - 1;
@@ -2359,7 +2357,7 @@ public abstract class BaseBuild implements Build {
 		}
 
 		private final long _duration;
-		private final long _startTimestamp;
+		private final long _startTime;
 		private final TimelineDataPoint[] _timeline;
 
 		private static class TimelineDataPoint {

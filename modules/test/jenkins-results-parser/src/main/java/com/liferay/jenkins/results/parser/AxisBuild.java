@@ -329,19 +329,18 @@ public class AxisBuild extends BaseBuild {
 	}
 
 	@Override
-	public Long getStartTimestamp() {
-		if (startTimestamp == 0) {
+	public Long getStartTime() {
+		if (startTime == 0) {
 			String consoleText = getConsoleText();
 
 			Matcher matcher = _axisStartTimestampPattern.matcher(consoleText);
 
 			if (matcher.find()) {
-				startTimestamp = Long.parseLong(
-					matcher.group("startTimestamp"));
+				startTime = Long.parseLong(matcher.group("startTime"));
 			}
 		}
 
-		return startTimestamp;
+		return startTime;
 	}
 
 	public String getTestrayLogsURL() {
@@ -530,7 +529,7 @@ public class AxisBuild extends BaseBuild {
 		};
 
 	private static final Pattern _axisStartTimestampPattern = Pattern.compile(
-		"(?:startTimestamp:)(?<startTimestamp>\\d+)");
+		"(?:startTime:)(?<startTime>\\d+)");
 	private static final Pattern _axisVariablePattern = Pattern.compile(
 		"AXIS_VARIABLE=(?<axisNumber>[^,]+),.*");
 
