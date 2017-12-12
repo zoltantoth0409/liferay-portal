@@ -103,7 +103,6 @@
 
 		<execute macro="KBArticle#configureKBSocialBookmarkSites">
 			<var name="disableSocialBookmarkSites" value="twitter,newsvine,reddit,slashdot,stumbleupon,tuenti" />
-			<var name="enableSocialBookmarkSites" value="facebook,plusone,addthis,delicious,digg,evernote,linkedin" />
 		</execute>
 
 		<execute macro="Navigator#gotoPage">
