@@ -808,6 +808,11 @@ public class SubscriptionSender implements Serializable {
 				Locale defaultLocale = LocaleUtil.getDefault();
 
 				processedSubject = localizedSubjectMap.get(defaultLocale);
+
+				if (Validator.isNull(processedSubject)) {
+					processedSubject = localizedSubjectMap.get(
+						LocaleUtil.getSiteDefault());
+				}
 			}
 			else {
 				processedSubject = localizedSubject;
@@ -826,6 +831,11 @@ public class SubscriptionSender implements Serializable {
 				Locale defaultLocale = LocaleUtil.getDefault();
 
 				processedBody = localizedBodyMap.get(defaultLocale);
+
+				if (Validator.isNull(processedBody)) {
+					processedBody = localizedBodyMap.get(
+						LocaleUtil.getSiteDefault());
+				}
 			}
 			else {
 				processedBody = localizedBody;
