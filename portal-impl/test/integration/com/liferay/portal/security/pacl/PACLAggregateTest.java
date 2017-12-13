@@ -303,13 +303,12 @@ public class PACLAggregateTest extends AutoBalanceTestCase {
 			System.setProperty("catalina.base", ".");
 
 			List<CaptureAppender> captureAppenders = null;
+			IOException ioException = null;
 
 			String originalTempDirName = System.getProperty(
 				SystemProperties.TMP_DIR);
 
 			Path newTempDirPath = Paths.get(originalTempDirName, "PACL");
-
-			IOException ioException = null;
 
 			try {
 				Files.createDirectories(newTempDirPath);
