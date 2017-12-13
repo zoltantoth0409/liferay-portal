@@ -281,12 +281,6 @@
 
 	<command name="AssertAdaptedImageInWebContent" priority="5">
 		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Configuration" />
-			<var name="panel" value="Control Panel" />
-			<var name="portlet" value="Adaptive Media" />
-		</execute>
-
-		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Content" />
 			<var name="panel" value="Site Administration" />
 			<var name="portlet" value="Documents and Media" />
@@ -324,8 +318,6 @@
 		<execute macro="AdaptiveMedia#viewImageVariantURL">
 			<var name="imageName" value="high_resolution_photo.jpg" />
 		</execute>
-
-		<execute macro="Button#clickPublish" />
 	</command>
 
 	<command name="CannotAddNonNumericWidthOrHeight" priority="5">
