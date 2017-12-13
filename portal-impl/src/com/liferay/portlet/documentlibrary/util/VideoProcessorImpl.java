@@ -318,16 +318,6 @@ public class VideoProcessorImpl
 		}
 	}
 
-	private static void _destroyHangingThread() {
-		for (Thread thread : ThreadUtil.getThreads()) {
-			if ((thread != null) && !thread.isDaemon() &&
-				!StringUtil.equalsIgnoreCase(thread.getName(), "main")) {
-
-				System.exit(-1);
-			}
-		}
-	}
-
 	private void _generateThumbnailXuggler(
 			FileVersion fileVersion, File file, int height, int width)
 		throws Exception {
@@ -646,6 +636,20 @@ public class VideoProcessorImpl
 	private final Set<String> _videoMimeTypes = SetUtil.fromArray(
 		PropsValues.DL_FILE_ENTRY_PREVIEW_VIDEO_MIME_TYPES);
 
+	private static class DestroyHangingThreadHelper {
+
+		private static void _destroyHangingThread() {
+			for (Thread thread : ThreadUtil.getThreads()) {
+				if ((thread != null) && !thread.isDaemon() &&
+					!StringUtil.equalsIgnoreCase(thread.getName(), "main")) {
+
+					System.exit(-1);
+				}
+			}
+		}
+
+	}
+
 	private static class LiferayVideoProcessCallable
 		implements ProcessCallable<String> {
 
@@ -693,7 +697,7 @@ public class VideoProcessorImpl
 				throw new ProcessException(e);
 			}
 			finally {
-				_destroyHangingThread();
+				DestroyHangingThreadHelper._destroyHangingThread();
 			}
 
 			return StringPool.BLANK;
@@ -766,7 +770,7 @@ public class VideoProcessorImpl
 				throw new ProcessException(e);
 			}
 			finally {
-				_destroyHangingThread();
+				DestroyHangingThreadHelper._destroyHangingThread();
 			}
 
 			return StringPool.BLANK;
