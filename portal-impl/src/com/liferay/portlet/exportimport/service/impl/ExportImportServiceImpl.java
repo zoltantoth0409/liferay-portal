@@ -53,6 +53,10 @@ public class ExportImportServiceImpl extends ExportImportServiceBaseImpl {
 			exportImportConfiguration);
 	}
 
+	/**
+	 * @deprecated As of 7.0.0
+	 */
+	@Deprecated
 	public File exportLayoutsAsFile(
 			long userId, long groupId, boolean privateLayout,
 			Map<String, String[]> parameterMap)
@@ -171,6 +175,10 @@ public class ExportImportServiceImpl extends ExportImportServiceBaseImpl {
 			exportImportConfiguration, inputStream);
 	}
 
+	/**
+	 * @deprecated As of 7.0.0
+	 */
+	@Deprecated
 	@Override
 	public void importLayouts(
 			long userId, long groupId, boolean privateLayout,

@@ -71,6 +71,10 @@ public class ExportImportLocalServiceImpl
 		}
 	}
 
+	/**
+	 * @deprecated As of 7.0.0
+	 */
+	@Deprecated
 	public File exportLayoutsAsFile(
 			long userId, long groupId, boolean privateLayout,
 			Map<String, String[]> parameterMap)
@@ -244,6 +248,10 @@ public class ExportImportLocalServiceImpl
 		}
 	}
 
+	/**
+	 * @deprecated As of 7.0.0
+	 */
+	@Deprecated
 	public void importLayouts(
 			long userId, long groupId, boolean privateLayout,
 			Map<String, String[]> parameterMap, File file)
