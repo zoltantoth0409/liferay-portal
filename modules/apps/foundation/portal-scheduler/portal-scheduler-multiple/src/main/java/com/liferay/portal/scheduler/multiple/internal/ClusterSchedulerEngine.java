@@ -354,8 +354,8 @@ public class ClusterSchedulerEngine
 							if (schedulerResponse == null) {
 								if (_log.isInfoEnabled()) {
 									_log.info(
-										"memory clustered job hasn't been " +
-											"deployed in master yet");
+										"Memory clustered job is not yet " +
+											"deployed on master");
 								}
 							}
 							else {
@@ -363,7 +363,8 @@ public class ClusterSchedulerEngine
 							}
 						}
 						catch (Exception e) {
-							_log.error("Unable to get response from master", e);
+							_log.error(
+								"Unable to get a response from master", e);
 						}
 					}
 				}
