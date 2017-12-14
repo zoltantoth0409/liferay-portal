@@ -104,7 +104,7 @@ public class VerifyPermission extends VerifyProcess {
 		throws Exception {
 
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
-			StringBundler sb = new StringBundler(14);
+			StringBundler sb = new StringBundler(30);
 
 			sb.append("select resourcePermission1.resourcePermissionId from ");
 			sb.append("ResourcePermission resourcePermission1 inner join ");
