@@ -56,16 +56,15 @@ import com.liferay.portal.kernel.util.MethodKey;
 @ProviderType
 public class ExportImportServiceHttp {
 	public static java.io.File exportLayoutsAsFile(
-		HttpPrincipal httpPrincipal, long userId, long groupId,
-		boolean privateLayout,
-		java.util.Map<java.lang.String, java.lang.String[]> parameterMap)
+		HttpPrincipal httpPrincipal,
+		com.liferay.exportimport.kernel.model.ExportImportConfiguration exportImportConfiguration)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(ExportImportServiceUtil.class,
 					"exportLayoutsAsFile", _exportLayoutsAsFileParameterTypes0);
 
-			MethodHandler methodHandler = new MethodHandler(methodKey, userId,
-					groupId, privateLayout, parameterMap);
+			MethodHandler methodHandler = new MethodHandler(methodKey,
+					exportImportConfiguration);
 
 			Object returnObj = null;
 
@@ -90,15 +89,16 @@ public class ExportImportServiceHttp {
 	}
 
 	public static java.io.File exportLayoutsAsFile(
-		HttpPrincipal httpPrincipal,
-		com.liferay.exportimport.kernel.model.ExportImportConfiguration exportImportConfiguration)
+		HttpPrincipal httpPrincipal, long userId, long groupId,
+		boolean privateLayout,
+		java.util.Map<java.lang.String, java.lang.String[]> parameterMap)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(ExportImportServiceUtil.class,
 					"exportLayoutsAsFile", _exportLayoutsAsFileParameterTypes1);
 
-			MethodHandler methodHandler = new MethodHandler(methodKey,
-					exportImportConfiguration);
+			MethodHandler methodHandler = new MethodHandler(methodKey, userId,
+					groupId, privateLayout, parameterMap);
 
 			Object returnObj = null;
 
@@ -257,43 +257,13 @@ public class ExportImportServiceHttp {
 		}
 	}
 
-	public static void importLayouts(HttpPrincipal httpPrincipal, long userId,
-		long groupId, boolean privateLayout,
-		java.util.Map<java.lang.String, java.lang.String[]> parameterMap,
-		java.io.File file)
-		throws com.liferay.portal.kernel.exception.PortalException {
-		try {
-			MethodKey methodKey = new MethodKey(ExportImportServiceUtil.class,
-					"importLayouts", _importLayoutsParameterTypes6);
-
-			MethodHandler methodHandler = new MethodHandler(methodKey, userId,
-					groupId, privateLayout, parameterMap, file);
-
-			try {
-				TunnelUtil.invoke(httpPrincipal, methodHandler);
-			}
-			catch (Exception e) {
-				if (e instanceof com.liferay.portal.kernel.exception.PortalException) {
-					throw (com.liferay.portal.kernel.exception.PortalException)e;
-				}
-
-				throw new com.liferay.portal.kernel.exception.SystemException(e);
-			}
-		}
-		catch (com.liferay.portal.kernel.exception.SystemException se) {
-			_log.error(se, se);
-
-			throw se;
-		}
-	}
-
 	public static void importLayouts(HttpPrincipal httpPrincipal,
 		com.liferay.exportimport.kernel.model.ExportImportConfiguration exportImportConfiguration,
 		java.io.File file)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(ExportImportServiceUtil.class,
-					"importLayouts", _importLayoutsParameterTypes7);
+					"importLayouts", _importLayoutsParameterTypes6);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey,
 					exportImportConfiguration, file);
@@ -322,10 +292,40 @@ public class ExportImportServiceHttp {
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(ExportImportServiceUtil.class,
-					"importLayouts", _importLayoutsParameterTypes8);
+					"importLayouts", _importLayoutsParameterTypes7);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey,
 					exportImportConfiguration, inputStream);
+
+			try {
+				TunnelUtil.invoke(httpPrincipal, methodHandler);
+			}
+			catch (Exception e) {
+				if (e instanceof com.liferay.portal.kernel.exception.PortalException) {
+					throw (com.liferay.portal.kernel.exception.PortalException)e;
+				}
+
+				throw new com.liferay.portal.kernel.exception.SystemException(e);
+			}
+		}
+		catch (com.liferay.portal.kernel.exception.SystemException se) {
+			_log.error(se, se);
+
+			throw se;
+		}
+	}
+
+	public static void importLayouts(HttpPrincipal httpPrincipal, long userId,
+		long groupId, boolean privateLayout,
+		java.util.Map<java.lang.String, java.lang.String[]> parameterMap,
+		java.io.File file)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		try {
+			MethodKey methodKey = new MethodKey(ExportImportServiceUtil.class,
+					"importLayouts", _importLayoutsParameterTypes8);
+
+			MethodHandler methodHandler = new MethodHandler(methodKey, userId,
+					groupId, privateLayout, parameterMap, file);
 
 			try {
 				TunnelUtil.invoke(httpPrincipal, methodHandler);
@@ -683,10 +683,10 @@ public class ExportImportServiceHttp {
 
 	private static Log _log = LogFactoryUtil.getLog(ExportImportServiceHttp.class);
 	private static final Class<?>[] _exportLayoutsAsFileParameterTypes0 = new Class[] {
-			long.class, long.class, boolean.class, java.util.Map.class
+			com.liferay.exportimport.kernel.model.ExportImportConfiguration.class
 		};
 	private static final Class<?>[] _exportLayoutsAsFileParameterTypes1 = new Class[] {
-			com.liferay.exportimport.kernel.model.ExportImportConfiguration.class
+			long.class, long.class, boolean.class, java.util.Map.class
 		};
 	private static final Class<?>[] _exportLayoutsAsFileInBackgroundParameterTypes2 =
 		new Class[] {
@@ -702,16 +702,16 @@ public class ExportImportServiceHttp {
 			com.liferay.exportimport.kernel.model.ExportImportConfiguration.class
 		};
 	private static final Class<?>[] _importLayoutsParameterTypes6 = new Class[] {
-			long.class, long.class, boolean.class, java.util.Map.class,
+			com.liferay.exportimport.kernel.model.ExportImportConfiguration.class,
 			java.io.File.class
 		};
 	private static final Class<?>[] _importLayoutsParameterTypes7 = new Class[] {
 			com.liferay.exportimport.kernel.model.ExportImportConfiguration.class,
-			java.io.File.class
+			java.io.InputStream.class
 		};
 	private static final Class<?>[] _importLayoutsParameterTypes8 = new Class[] {
-			com.liferay.exportimport.kernel.model.ExportImportConfiguration.class,
-			java.io.InputStream.class
+			long.class, long.class, boolean.class, java.util.Map.class,
+			java.io.File.class
 		};
 	private static final Class<?>[] _importLayoutsInBackgroundParameterTypes9 = new Class[] {
 			com.liferay.exportimport.kernel.model.ExportImportConfiguration.class,
