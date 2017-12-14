@@ -46,6 +46,15 @@ public class ExportImportLocalServiceUtil {
 		return getService().exportLayoutsAsFile(exportImportConfiguration);
 	}
 
+	public static java.io.File exportLayoutsAsFile(long userId, long groupId,
+		boolean privateLayout,
+		java.util.Map<java.lang.String, java.lang.String[]> parameterMap)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .exportLayoutsAsFile(userId, groupId, privateLayout,
+			parameterMap);
+	}
+
 	public static long exportLayoutsAsFileInBackground(long userId,
 		com.liferay.exportimport.kernel.model.ExportImportConfiguration exportImportConfiguration)
 		throws com.liferay.portal.kernel.exception.PortalException {
@@ -105,6 +114,15 @@ public class ExportImportLocalServiceUtil {
 		java.io.InputStream inputStream)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().importLayouts(exportImportConfiguration, inputStream);
+	}
+
+	public static void importLayouts(long userId, long groupId,
+		boolean privateLayout,
+		java.util.Map<java.lang.String, java.lang.String[]> parameterMap,
+		java.io.File file)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService()
+			.importLayouts(userId, groupId, privateLayout, parameterMap, file);
 	}
 
 	public static void importLayoutsDataDeletions(

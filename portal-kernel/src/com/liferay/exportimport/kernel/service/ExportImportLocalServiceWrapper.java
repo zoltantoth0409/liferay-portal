@@ -41,6 +41,15 @@ public class ExportImportLocalServiceWrapper implements ExportImportLocalService
 	}
 
 	@Override
+	public java.io.File exportLayoutsAsFile(long userId, long groupId,
+		boolean privateLayout,
+		java.util.Map<java.lang.String, java.lang.String[]> parameterMap)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _exportImportLocalService.exportLayoutsAsFile(userId, groupId,
+			privateLayout, parameterMap);
+	}
+
+	@Override
 	public long exportLayoutsAsFileInBackground(long userId,
 		com.liferay.exportimport.kernel.model.ExportImportConfiguration exportImportConfiguration)
 		throws com.liferay.portal.kernel.exception.PortalException {
@@ -104,6 +113,15 @@ public class ExportImportLocalServiceWrapper implements ExportImportLocalService
 		throws com.liferay.portal.kernel.exception.PortalException {
 		_exportImportLocalService.importLayouts(exportImportConfiguration,
 			inputStream);
+	}
+
+	@Override
+	public void importLayouts(long userId, long groupId, boolean privateLayout,
+		java.util.Map<java.lang.String, java.lang.String[]> parameterMap,
+		java.io.File file)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_exportImportLocalService.importLayouts(userId, groupId, privateLayout,
+			parameterMap, file);
 	}
 
 	@Override
