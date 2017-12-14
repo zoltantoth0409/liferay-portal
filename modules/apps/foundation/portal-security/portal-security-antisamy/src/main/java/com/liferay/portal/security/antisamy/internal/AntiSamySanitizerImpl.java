@@ -145,9 +145,9 @@ public class AntiSamySanitizerImpl extends BaseSanitizer {
 			return item;
 		}
 
-		char lastChar = item.charAt(item.length() - 1);
+		char c = item.charAt(item.length() - 1);
 
-		if (lastChar == CharPool.STAR) {
+		if (c == CharPool.STAR) {
 			return item.substring(0, item.length() - 1);
 		}
 
