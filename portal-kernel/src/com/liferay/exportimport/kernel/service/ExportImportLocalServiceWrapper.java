@@ -40,6 +40,10 @@ public class ExportImportLocalServiceWrapper implements ExportImportLocalService
 		return _exportImportLocalService.exportLayoutsAsFile(exportImportConfiguration);
 	}
 
+	/**
+	* @deprecated As of 7.0.0
+	*/
+	@Deprecated
 	@Override
 	public java.io.File exportLayoutsAsFile(long userId, long groupId,
 		boolean privateLayout,
@@ -115,6 +119,10 @@ public class ExportImportLocalServiceWrapper implements ExportImportLocalService
 			inputStream);
 	}
 
+	/**
+	* @deprecated As of 7.0.0
+	*/
+	@Deprecated
 	@Override
 	public void importLayouts(long userId, long groupId, boolean privateLayout,
 		java.util.Map<java.lang.String, java.lang.String[]> parameterMap,

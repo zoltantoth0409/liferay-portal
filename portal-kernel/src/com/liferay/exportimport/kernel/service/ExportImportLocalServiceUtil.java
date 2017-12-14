@@ -46,6 +46,10 @@ public class ExportImportLocalServiceUtil {
 		return getService().exportLayoutsAsFile(exportImportConfiguration);
 	}
 
+	/**
+	* @deprecated As of 7.0.0
+	*/
+	@Deprecated
 	public static java.io.File exportLayoutsAsFile(long userId, long groupId,
 		boolean privateLayout,
 		java.util.Map<java.lang.String, java.lang.String[]> parameterMap)
@@ -116,6 +120,10 @@ public class ExportImportLocalServiceUtil {
 		getService().importLayouts(exportImportConfiguration, inputStream);
 	}
 
+	/**
+	* @deprecated As of 7.0.0
+	*/
+	@Deprecated
 	public static void importLayouts(long userId, long groupId,
 		boolean privateLayout,
 		java.util.Map<java.lang.String, java.lang.String[]> parameterMap,

@@ -39,6 +39,10 @@ public class ExportImportServiceWrapper implements ExportImportService,
 		return _exportImportService.exportLayoutsAsFile(exportImportConfiguration);
 	}
 
+	/**
+	* @deprecated As of 7.0.0
+	*/
+	@Deprecated
 	@Override
 	public java.io.File exportLayoutsAsFile(long userId, long groupId,
 		boolean privateLayout,
@@ -103,6 +107,10 @@ public class ExportImportServiceWrapper implements ExportImportService,
 			inputStream);
 	}
 
+	/**
+	* @deprecated As of 7.0.0
+	*/
+	@Deprecated
 	@Override
 	public void importLayouts(long userId, long groupId, boolean privateLayout,
 		java.util.Map<java.lang.String, java.lang.String[]> parameterMap,

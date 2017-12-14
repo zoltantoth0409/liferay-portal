@@ -55,6 +55,10 @@ public interface ExportImportLocalService extends BaseLocalService {
 		ExportImportConfiguration exportImportConfiguration)
 		throws PortalException;
 
+	/**
+	* @deprecated As of 7.0.0
+	*/
+	@java.lang.Deprecated
 	public File exportLayoutsAsFile(long userId, long groupId,
 		boolean privateLayout,
 		Map<java.lang.String, java.lang.String[]> parameterMap)
@@ -93,6 +97,10 @@ public interface ExportImportLocalService extends BaseLocalService {
 		ExportImportConfiguration exportImportConfiguration,
 		InputStream inputStream) throws PortalException;
 
+	/**
+	* @deprecated As of 7.0.0
+	*/
+	@java.lang.Deprecated
 	public void importLayouts(long userId, long groupId, boolean privateLayout,
 		Map<java.lang.String, java.lang.String[]> parameterMap, File file)
 		throws PortalException;
