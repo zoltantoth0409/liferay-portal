@@ -14,6 +14,7 @@
 
 package com.liferay.portal.workflow.kaleo.internal.upgrade.v1_4_1;
 
+import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.LoggingTimer;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -187,7 +188,7 @@ public class UpgradeKaleoDefinitionVersion extends UpgradeProcess {
 		}
 	}
 
-	protected void upgradeKaleoDefinitionVersion() throws SQLException {
+	protected void upgradeKaleoDefinitionVersion() throws Exception {
 		StringBundler sb1 = new StringBundler(3);
 
 		sb1.append("select * from KaleoDefinition kd where not exists ");
@@ -212,17 +213,7 @@ public class UpgradeKaleoDefinitionVersion extends UpgradeProcess {
 					connection, sb2.toString());
 			ResultSet rs = ps1.executeQuery()) {
 
-			String[] tableNames = {
-				"KaleoAction", "KaleoCondition", "KaleoInstance",
-				"KaleoInstanceToken", "KaleoLog", "KaleoNode",
-				"KaleoNotification", "KaleoNotificationRecipient", "KaleoTask",
-				"KaleoTaskAssignment", "KaleoTaskAssignmentInstance",
-				"KaleoTaskForm", "KaleoTaskFormInstance",
-				"KaleoTaskInstanceToken", "KaleoTimer",
-				"KaleoTimerInstanceToken", "KaleoTransition"
-			};
-
-			for (String tableName : tableNames) {
+			for (String tableName : _tableNames) {
 				if (hasColumn(tableName, "kaleoDefinitionId")) {
 					StringBundler statement = new StringBundler(3);
 
@@ -287,13 +278,20 @@ public class UpgradeKaleoDefinitionVersion extends UpgradeProcess {
 				preparedStatement.executeBatch();
 			}
 		}
-		catch (Exception e) {
-		}
 		finally {
 			for (PreparedStatement preparedStatement : preparedStatements) {
-				preparedStatement.close();
+				DataAccess.cleanUp(preparedStatement);
 			}
 		}
 	}
+
+	private static final String[] _tableNames = {
+		"KaleoAction", "KaleoCondition", "KaleoInstance", "KaleoInstanceToken",
+		"KaleoLog", "KaleoNode", "KaleoNotification",
+		"KaleoNotificationRecipient", "KaleoTask", "KaleoTaskAssignment",
+		"KaleoTaskAssignmentInstance", "KaleoTaskForm", "KaleoTaskFormInstance",
+		"KaleoTaskInstanceToken", "KaleoTimer", "KaleoTimerInstanceToken",
+		"KaleoTransition"
+	};
 
 }
