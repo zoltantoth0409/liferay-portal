@@ -1174,7 +1174,7 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 			double webXmlVersion, File srcFile, String displayName)
 		throws Exception {
 
-		StringBundler sb = new StringBundler();
+		StringBundler sb = new StringBundler(61);
 
 		sb.append("<display-name>");
 		sb.append(displayName);
