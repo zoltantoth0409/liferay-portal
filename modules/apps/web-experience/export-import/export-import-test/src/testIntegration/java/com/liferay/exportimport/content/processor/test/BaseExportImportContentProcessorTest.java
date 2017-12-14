@@ -371,9 +371,10 @@ public class BaseExportImportContentProcessorTest {
 			content.contains(
 				"@data_handler_group_friendly_url@@" +
 					_stagingGroup.getFriendlyURL() + "@"));
+		Assert.assertTrue(
+			content, content.contains("@data_handler_path_context@/en@"));
 		Assert.assertFalse(
-			content, content.contains(PortalUtil.getPathContext()));
-		Assert.assertFalse(content, content.contains("/en/en"));
+			content, content.contains("@data_handler_path_context@/de@"));
 
 		setFinalStaticField(
 			PropsValues.class.getDeclaredField(
