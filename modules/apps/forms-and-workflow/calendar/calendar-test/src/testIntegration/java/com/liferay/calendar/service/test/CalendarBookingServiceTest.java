@@ -144,7 +144,8 @@ public class CalendarBookingServiceTest {
 				calendar.getCalendarId(), statuses);
 		}
 
-		Assert.assertTrue(calendarBookings.isEmpty());
+		Assert.assertTrue(
+			calendarBookings.toString(), calendarBookings.isEmpty());
 	}
 
 	@Test
