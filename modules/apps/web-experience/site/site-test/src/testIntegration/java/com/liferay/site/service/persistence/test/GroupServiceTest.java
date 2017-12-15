@@ -422,7 +422,9 @@ public class GroupServiceTest {
 		String scopeDescriptiveName = scopeGroup.getScopeDescriptiveName(
 			themeDisplay);
 
-		Assert.assertTrue(scopeDescriptiveName.contains("current-page"));
+		Assert.assertTrue(
+			scopeDescriptiveName,
+			scopeDescriptiveName.contains("current-page"));
 
 		GroupLocalServiceUtil.deleteGroup(scopeGroup);
 
@@ -440,7 +442,9 @@ public class GroupServiceTest {
 		String scopeDescriptiveName = group.getScopeDescriptiveName(
 			themeDisplay);
 
-		Assert.assertTrue(scopeDescriptiveName.contains("current-site"));
+		Assert.assertTrue(
+			scopeDescriptiveName,
+			scopeDescriptiveName.contains("current-site"));
 
 		GroupLocalServiceUtil.deleteGroup(group);
 	}
@@ -458,7 +462,8 @@ public class GroupServiceTest {
 		String scopeDescriptiveName = group.getScopeDescriptiveName(
 			themeDisplay);
 
-		Assert.assertTrue(scopeDescriptiveName.contains("default"));
+		Assert.assertTrue(
+			scopeDescriptiveName, scopeDescriptiveName.contains("default"));
 
 		GroupLocalServiceUtil.deleteGroup(group);
 	}
