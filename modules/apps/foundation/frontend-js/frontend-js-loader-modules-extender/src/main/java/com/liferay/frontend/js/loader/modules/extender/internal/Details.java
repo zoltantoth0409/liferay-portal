@@ -42,4 +42,7 @@ public @interface Details {
 	@Meta.AD(deflt = "true", name = "expose-global", required = false)
 	public boolean exposeGlobal();
 
+	@Meta.AD(deflt = "false", name = "explain-resolutions", required = false)
+	public boolean explainResolutions();
+
 }
