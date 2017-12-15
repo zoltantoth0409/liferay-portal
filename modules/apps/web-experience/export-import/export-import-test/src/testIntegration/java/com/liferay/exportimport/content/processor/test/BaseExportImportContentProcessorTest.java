@@ -661,7 +661,7 @@ public class BaseExportImportContentProcessorTest {
 	protected void assertLinksToLayouts(
 		String content, Layout layout, long groupId) {
 
-		StringBundler sb = new StringBundler();
+		StringBundler sb = new StringBundler(9);
 
 		sb.append(StringPool.OPEN_BRACKET);
 		sb.append(layout.getLayoutId());
