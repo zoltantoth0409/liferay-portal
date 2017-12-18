@@ -56,14 +56,14 @@ public class FileImplExtractTest {
 
 		Map<MediaType, Parser> parsers = compositeParser.getParsers();
 
-		Set<Map.Entry<MediaType, Parser>> entrySet = parsers.entrySet();
+		Set<Map.Entry<MediaType, Parser>> set = parsers.entrySet();
 
-		Iterator<Map.Entry<MediaType, Parser>> iterator = entrySet.iterator();
+		Iterator<Map.Entry<MediaType, Parser>> iterator = set.iterator();
 
 		while (iterator.hasNext()) {
-			Map.Entry<MediaType, Parser> next = iterator.next();
+			Map.Entry<MediaType, Parser> entry = iterator.next();
 
-			Parser parser = next.getValue();
+			Parser parser = entry.getValue();
 
 			if (parser instanceof TesseractOCRParser) {
 				TesseractOCRParser tesseractOCRParser =
