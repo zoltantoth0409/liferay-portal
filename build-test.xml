@@ -1903,25 +1903,25 @@ logExceptionsOnly=B&quot;false&quot;</echo>
 		</sequential>
 	</macrodef>
 
-	<macrodef name="prepare-jboss-module-file">
+	<macrodef name="prepare-jboss-module-configuration">
 		<sequential>
-			<local name="module.file.path" />
+			<local name="module.configuration.path" />
 
 			<if>
 				<not>
 					<available file="${app.server.lib.global.dir}/module.xml" />
 				</not>
 				<then>
-					<property name="module.file.path" value="tools/servers/jboss/modules/module.xml" />
+					<property name="module.configuration.path" value="tools/servers/jboss/modules/module.xml" />
 				</then>
 				<else>
-					<property name="module.file.path" value="${app.server.lib.global.dir}/module.xml" />
+					<property name="module.configuration.path" value="${app.server.lib.global.dir}/module.xml" />
 				</else>
 			</if>
 
-			<local name="module.file.content" />
+			<local name="module.configuration.content" />
 
-			<loadfile property="module.file.content" srcFile="${module.file.path}">
+			<loadfile property="module.configuration.content" srcFile="${module.configuration.path}">
 				<filterchain>
 					<filterreader classname="org.apache.tools.ant.filters.LineContains">
 						<param type="contains" value="resource-root" />
@@ -1932,7 +1932,7 @@ logExceptionsOnly=B&quot;false&quot;</echo>
 
 			<local name="petra.jar.list" />
 
-			<antelope:stringutil property="petra.jar.list" string="${module.file.content}">
+			<antelope:stringutil property="petra.jar.list" string="${module.configuration.content}">
 				<antelope:replace regex="\s*&lt;resource-root path=&quot;" replacement="" />
 			</antelope:stringutil>
 
@@ -1951,7 +1951,7 @@ logExceptionsOnly=B&quot;false&quot;</echo>
 
 							<property name="regex" value="\s*&lt;resource-root path=&quot;@{petra.jar}&quot;\s/&gt;[\n\r]" />
 
-							<replaceregexp file="${module.file.path}" match="${regex}" replace="" />
+							<replaceregexp file="${module.configuration.path}" match="${regex}" replace="" />
 						</then>
 					</if>
 				</sequential>
@@ -8613,7 +8613,7 @@ ANT_OPTS=${env.ANT_OPTS}</echo>
 
 				<delete dir="dist" />
 
-				<prepare-jboss-module-file />
+				<prepare-jboss-module-configuration />
 
 				<ant antfile="build.xml" inheritAll="false" target="update-app-server-scripts" />
 
