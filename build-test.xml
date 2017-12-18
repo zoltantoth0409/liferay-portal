@@ -1882,8 +1882,10 @@ logExceptionsOnly=B&quot;false&quot;</echo>
 				<then>
 					<property name="selenium.ie.driver.zip" value="IEDriverServer_Win32_${selenium.ie.driver.version}.0.zip" />
 
-					<mirrors-get dest="tools/selenium/${selenium.ie.driver.zip}"
-					src="http://selenium-release.storage.googleapis.com/${selenium.ie.driver.version}/${selenium.ie.driver.zip}" />
+					<mirrors-get
+						dest="tools/selenium/${selenium.ie.driver.zip}"
+						src="http://selenium-release.storage.googleapis.com/${selenium.ie.driver.version}/${selenium.ie.driver.zip}"
+					/>
 
 					<stop-ie-driver />
 
