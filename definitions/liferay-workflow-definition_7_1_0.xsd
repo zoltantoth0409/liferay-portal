@@ -310,7 +310,7 @@
 				<xs:element name="name" type="xs:string" />
 				<xs:element minOccurs="0" name="description" type="xs:string" />
 				<xs:element name="version" type="xs:int" />
-				<xs:group ref="nodes-group" maxOccurs="unbounded" />
+				<xs:group maxOccurs="unbounded" ref="nodes-group" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
