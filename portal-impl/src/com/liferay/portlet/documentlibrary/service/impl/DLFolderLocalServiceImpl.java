@@ -202,16 +202,16 @@ public class DLFolderLocalServiceImpl extends DLFolderLocalServiceBaseImpl {
 			repositoryId);
 
 		for (DLFolder dlFolder : dlFolders) {
-			Indexer<DLFolder> indexer = IndexerRegistryUtil.nullSafeGetIndexer(
-				DLFolder.class);
-
-			indexer.delete(dlFolder);
-
 			deleteFolderDependencies(dlFolder, true);
 
 			repositoryEventTrigger.trigger(
 				RepositoryEventType.Delete.class, Folder.class,
 				new LiferayFolder(dlFolder));
+
+			Indexer<DLFolder> indexer = IndexerRegistryUtil.nullSafeGetIndexer(
+				DLFolder.class);
+
+			indexer.delete(dlFolder);
 		}
 
 		if (repository != null) {
