@@ -365,7 +365,7 @@ public class AxisBuild extends BaseBuild {
 				date = sdf.parse(matcher.group("startTime"));
 			}
 			catch (ParseException pe) {
-				throw new RuntimeException("Unable to parse startTime", pe);
+				throw new RuntimeException("Unable to get start time", pe);
 			}
 
 			startTime = date.getTime();
