@@ -1122,7 +1122,9 @@
 	</command>
 
 	<command name="editPGViaAP">
-		<execute macro="AssetPublisherPortlet#gotoEditRelatedAssets" />
+		<execute macro="AssetPublisherPortlet#gotoEditAssetPG" >
+			<var name="assetIndexNumber" value="${assetIndexNumber}" />
+		</execute>
 
 		<execute macro="IFrame#selectDialogFrame" />
 
