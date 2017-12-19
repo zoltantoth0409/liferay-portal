@@ -39,7 +39,7 @@ public class HtmlPreviewEntryImpl extends HtmlPreviewEntryBaseImpl {
 			return DLUtil.getImagePreviewURL(fileEntry, themeDisplay);
 		}
 		catch (Exception e) {
-			_log.error("Unable to get html preview entry image url ", e);
+			_log.error("Unable to get HTML preview entry image URL", e);
 		}
 
 		return StringPool.BLANK;

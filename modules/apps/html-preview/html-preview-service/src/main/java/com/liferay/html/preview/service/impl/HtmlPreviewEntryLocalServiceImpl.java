@@ -141,7 +141,7 @@ public class HtmlPreviewEntryLocalServiceImpl
 			file = htmlPreviewProcessor.generateHtmlPreview(content);
 		}
 		catch (Exception e) {
-			throw new PortalException("Unable to generate html preview", e);
+			throw new PortalException("Unable to generate HTML preview", e);
 		}
 
 		Repository repository =
