@@ -41,29 +41,29 @@ public class LayoutPageTemplateEntryImpl
 				getLayoutPageTemplateFragmentsByPageTemplate(
 					getGroupId(), getLayoutPageTemplateEntryId());
 
-		StringBundler css = new StringBundler(
+		StringBundler cssSB = new StringBundler(
 			layoutPageTemplateFragments.size());
-		StringBundler html = new StringBundler(
+		StringBundler htmlSB = new StringBundler(
 			layoutPageTemplateFragments.size());
-		StringBundler js = new StringBundler(
+		StringBundler jsSB = new StringBundler(
 			layoutPageTemplateFragments.size());
 
 		for (LayoutPageTemplateFragment layoutPageTemplateFragment :
 				layoutPageTemplateFragments) {
 
-			css.append(layoutPageTemplateFragment.getCss());
-			html.append(layoutPageTemplateFragment.getHtml());
-			js.append(layoutPageTemplateFragment.getJs());
+			cssSB.append(layoutPageTemplateFragment.getCss());
+			htmlSB.append(layoutPageTemplateFragment.getHtml());
+			jsSB.append(layoutPageTemplateFragment.getJs());
 		}
 
 		StringBundler sb = new StringBundler(7);
 
 		sb.append("<html><head><style>");
-		sb.append(css.toString());
+		sb.append(cssSB.toString());
 		sb.append("</style><script>");
-		sb.append(js.toString());
+		sb.append(jsSB.toString());
 		sb.append("</script></head><body>");
-		sb.append(html.toString());
+		sb.append(htmlSB.toString());
 		sb.append("</body></html>");
 
 		return sb.toString();
