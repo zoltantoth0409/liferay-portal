@@ -94,17 +94,17 @@ public class FragmentEntryLocalServiceImpl
 
 		fragmentEntryPersistence.remove(fragmentEntry);
 
-		// HTML preview
-
-		_htmlPreviewEntryLocalService.deleteHtmlPreviewEntry(
-			fragmentEntry.getHtmlPreviewEntryId());
-
 		// Resources
 
 		resourceLocalService.deleteResource(
 			fragmentEntry.getCompanyId(), FragmentEntry.class.getName(),
 			ResourceConstants.SCOPE_INDIVIDUAL,
 			fragmentEntry.getFragmentEntryId());
+
+		// HTML preview
+
+		_htmlPreviewEntryLocalService.deleteHtmlPreviewEntry(
+			fragmentEntry.getHtmlPreviewEntryId());
 
 		return fragmentEntry;
 	}
