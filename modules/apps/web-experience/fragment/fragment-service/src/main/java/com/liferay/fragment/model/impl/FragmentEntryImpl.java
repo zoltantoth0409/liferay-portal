@@ -50,6 +50,10 @@ public class FragmentEntryImpl extends FragmentEntryBaseImpl {
 			HtmlPreviewEntryLocalServiceUtil.fetchHtmlPreviewEntry(
 				getHtmlPreviewEntryId());
 
+		if (htmlPreviewEntry == null) {
+			return StringPool.BLANK;
+		}
+
 		return htmlPreviewEntry.getImagePreviewURL(themeDisplay);
 	}
 

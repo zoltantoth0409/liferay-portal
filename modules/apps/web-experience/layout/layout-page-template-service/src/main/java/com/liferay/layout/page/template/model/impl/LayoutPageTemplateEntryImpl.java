@@ -79,6 +79,10 @@ public class LayoutPageTemplateEntryImpl
 			HtmlPreviewEntryLocalServiceUtil.fetchHtmlPreviewEntry(
 				getHtmlPreviewEntryId());
 
+		if (htmlPreviewEntry == null) {
+			return StringPool.BLANK;
+		}
+
 		return htmlPreviewEntry.getImagePreviewURL(themeDisplay);
 	}
 
