@@ -104,20 +104,7 @@ public class SoyTemplate extends AbstractMultiResourceTemplate {
 		if (!restrictedVariables.contains(key) &&
 			!Objects.equals(value, currentValue)) {
 
-			Object soyMapValue = null;
-
-			if (value == null) {
-				soyMapValue = null;
-			}
-			else if (value instanceof SoyHTMLContextValue) {
-				SoyHTMLContextValue htmlValue = (SoyHTMLContextValue)value;
-
-				soyMapValue = UnsafeSanitizedContentOrdainer.ordainAsSafe(
-					htmlValue.toString(), SanitizedContent.ContentKind.HTML);
-			}
-			else {
-				soyMapValue = _templateContextHelper.deserializeValue(value);
-			}
+			Object soyMapValue = getSoyMapValue(value);
 
 			_soyMapData.put(key, soyMapValue);
 		}
@@ -179,6 +166,25 @@ public class SoyTemplate extends AbstractMultiResourceTemplate {
 
 	protected SoyMapData getSoyMapData() {
 		return _soyMapData;
+	}
+
+	protected Object getSoyMapValue(Object value) {
+		Object soyMapValue = null;
+
+		if (value == null) {
+			soyMapValue = null;
+		}
+		else if (value instanceof SoyHTMLContextValue) {
+			SoyHTMLContextValue htmlValue = (SoyHTMLContextValue)value;
+
+			soyMapValue = UnsafeSanitizedContentOrdainer.ordainAsSafe(
+				htmlValue.toString(), SanitizedContent.ContentKind.HTML);
+		}
+		else {
+			soyMapValue = _templateContextHelper.deserializeValue(value);
+		}
+
+		return soyMapValue;
 	}
 
 	protected Optional<SoyMsgBundle> getSoyMsgBundle(
