@@ -804,6 +804,7 @@
 		</execute>
 
 		<execute macro="WebContent#editPGViaAP">
+			<var name="assetIndexNumber" value="1" />
 			<var name="assetTitle" value="Web Content Title" />
 			<var name="webContentContentEdit" value="This is the updated version of web content test for rss feed" />
 			<var name="webContentTitleEdit" value="Web Content Title Updated Feed" />

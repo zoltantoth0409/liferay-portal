@@ -871,6 +871,7 @@
 		</execute>
 
 		<execute macro="WebContent#editPGViaAP">
+			<var name="assetIndexNumber" value="3" />
 			<var name="assetTitle" value="WebContent Title 1" />
 			<var name="webContentContentEdit" value="WebContent Content 1 Edit" />
 			<var name="webContentTitleEdit" value="WebContent Title 1 Edit" />
@@ -944,6 +945,7 @@
 		</execute>
 
 		<execute macro="WebContent#editPGViaAP">
+			<var name="assetIndexNumber" value="3" />
 			<var name="assetTitle" value="WebContent Title 1" />
 			<var name="webContentContentEdit" value="WebContent Content 1 Edit" />
 			<var name="webContentTitleEdit" value="WebContent Title 1 Edit" />

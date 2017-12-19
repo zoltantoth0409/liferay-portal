@@ -262,6 +262,7 @@
 		</execute>
 
 		<execute macro="WebContent#editPGViaAP">
+			<var name="assetIndexNumber" value="1" />
 			<var name="assetTitle" value="WC WebContent Title" />
 			<var name="webContentContentEdit" value="WC WebContent Content Edit" />
 			<var name="webContentTitleEdit" value="WC WebContent Title Edit" />
