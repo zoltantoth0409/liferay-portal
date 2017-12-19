@@ -544,11 +544,10 @@ public class DLServiceVerifyProcessTest extends BaseVerifyProcessTestCase {
 		dictionary.put(key, value);
 
 		return new ConfigurationTemporarySwapper(
-			DLValidator.class, _DL_CONFIGURATION_PID, dictionary);
+			DLValidator.class,
+			"com.liferay.document.library.configuration.DLConfiguration",
+			dictionary);
 	}
-
-	private static final String _DL_CONFIGURATION_PID =
-		"com.liferay.document.library.configuration.DLConfiguration";
 
 	@Inject
 	private static DDMFormXSDDeserializer _ddmFormXSDDeserializer;
