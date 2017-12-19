@@ -5420,7 +5420,7 @@
 		</execute>
 	</command>
 
-	<command ignore="true" name="ViewShowMoreLocalization" priority="3">
+	<command name="ViewShowMoreLocalization" priority="3">
 		<description message="This is a use case for LPS-54786." />
 
 		<property name="test.name.skip.portal.instance" value="Calendar#ViewShowMoreLocalization" />
