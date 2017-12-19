@@ -469,7 +469,8 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 				UploadPortletRequest uploadPortletRequest =
 					_portal.getUploadPortletRequest(actionRequest);
 
-				long size = uploadPortletRequest.getSize("file");
+				String sourceFileName = uploadPortletRequest.getFileName(
+					"file");
 
 				try {
 					fileEntry = updateFileEntry(
@@ -477,7 +478,9 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 						uploadPortletRequest);
 				}
 				catch (Exception e) {
-					if (!cmd.equals(Constants.ADD_DYNAMIC) && (size > 0)) {
+					if (!cmd.equals(Constants.ADD_DYNAMIC) &&
+						Validator.isNotNull(sourceFileName)) {
+
 						SessionErrors.add(
 							actionRequest, RequiredFileException.class);
 					}
