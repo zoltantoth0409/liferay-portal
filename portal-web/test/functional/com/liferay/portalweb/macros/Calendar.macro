@@ -429,10 +429,13 @@
 			<condition function="IsElementPresent" locator1="Message#SUCCESS" />
 			<then>
 				<execute macro="Alert#waitForSuccessMessageHide" />
+
 				<execute function="SelectFrame" value1="relative=top" />
 			</then>
 			<else>
 				<execute function="SelectFrame" value1="relative=top" />
+
+				<execute function="SelectFrame" locator1="IFrame#DIALOG" />
 
 				<execute macro="Alert#waitForSuccessMessageHide" />
 			</else>
