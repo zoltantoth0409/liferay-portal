@@ -36,6 +36,14 @@ public class FragmentEntryImpl extends FragmentEntryBaseImpl {
 
 	@Override
 	public String getContent() throws PortalException {
+		StringBundler sb = new StringBundler(7);
+
+		sb.append("<html><head><style>");
+		sb.append(getCss());
+		sb.append("</style><script>");
+		sb.append(getJs());
+		sb.append("</script></head><body>");
+
 		Optional<ServiceContext> serviceContextOptional = Optional.ofNullable(
 			ServiceContextThreadLocal.getServiceContext());
 
@@ -48,14 +56,8 @@ public class FragmentEntryImpl extends FragmentEntryBaseImpl {
 			getPrimaryKey(), ContentTypes.TEXT_HTML, Sanitizer.MODE_ALL,
 			getHtml(), null);
 
-		StringBundler sb = new StringBundler(7);
-
-		sb.append("<html><head><style>");
-		sb.append(getCss());
-		sb.append("</style><script>");
-		sb.append(getJs());
-		sb.append("</script></head><body>");
 		sb.append(html);
+
 		sb.append("</body></html>");
 
 		return sb.toString();

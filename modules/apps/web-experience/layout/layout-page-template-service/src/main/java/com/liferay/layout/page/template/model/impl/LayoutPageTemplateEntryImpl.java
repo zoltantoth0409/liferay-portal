@@ -63,6 +63,14 @@ public class LayoutPageTemplateEntryImpl
 			jsSB.append(layoutPageTemplateFragment.getJs());
 		}
 
+		StringBundler sb = new StringBundler(7);
+
+		sb.append("<html><head><style>");
+		sb.append(cssSB.toString());
+		sb.append("</style><script>");
+		sb.append(jsSB.toString());
+		sb.append("</script></head><body>");
+
 		Optional<ServiceContext> serviceContextOptional = Optional.ofNullable(
 			ServiceContextThreadLocal.getServiceContext());
 
@@ -75,14 +83,8 @@ public class LayoutPageTemplateEntryImpl
 			getPrimaryKey(), ContentTypes.TEXT_HTML, Sanitizer.MODE_ALL,
 			htmlSB.toString(), null);
 
-		StringBundler sb = new StringBundler(7);
-
-		sb.append("<html><head><style>");
-		sb.append(cssSB.toString());
-		sb.append("</style><script>");
-		sb.append(jsSB.toString());
-		sb.append("</script></head><body>");
 		sb.append(html);
+
 		sb.append("</body></html>");
 
 		return sb.toString();
