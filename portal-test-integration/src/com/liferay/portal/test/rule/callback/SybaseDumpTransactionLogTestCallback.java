@@ -96,7 +96,7 @@ public class SybaseDumpTransactionLogTestCallback
 							}
 						}
 					},
-					"Sybase-dumpTransactionLog-thread");
+					SybaseDumpTransactionLogTestCallback.class.getName());
 
 				_thread.setDaemon(true);
 
