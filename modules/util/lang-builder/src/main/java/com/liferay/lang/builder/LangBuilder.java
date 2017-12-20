@@ -128,15 +128,9 @@ public class LangBuilder {
 		_excludedLanguageIds = excludedLanguageIds;
 		_langDirName = langDirName;
 		_langFileName = langFileName;
-
-		if (Validator.isNull(translateSubscriptionKey)) {
-			translate = false;
-		}
-		else {
-			Translate.setSubscriptionKey(translateSubscriptionKey);
-		}
-
 		_translate = translate;
+
+		Translate.setSubscriptionKey(translateSubscriptionKey);
 
 		_initKeysWithUpdatedValues();
 
