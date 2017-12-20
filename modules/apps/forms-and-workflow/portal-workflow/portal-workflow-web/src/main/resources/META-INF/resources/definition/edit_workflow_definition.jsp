@@ -81,11 +81,15 @@ renderResponse.setTitle((workflowDefinition == null) ? LanguageUtil.get(request,
 			<div class="sidebar sidebar-light">
 				<div class="sidebar-header">
 					<aui:icon cssClass="icon-monospaced sidenav-close text-default visible-xs-inline-block" image="times" markupView="lexicon" url="javascript:;" />
+
+					<h4>
+						<%= workflowDefinition.getName() %>
+					</h4>
 				</div>
 
-				<liferay-ui:tabs cssClass="navbar-no-collapse" names="details,revision-history" refresh="<%= false %>" type="tabs">
+				<liferay-ui:tabs cssClass="navbar-no-collapse panel panel-default" names="details,revision-history" refresh="<%= false %>" type="tabs nav-tabs-default">
 					<liferay-ui:section>
-						<div class="sidebar-body">
+						<div class="sidebar-list">
 
 							<%
 							String userName = workflowDefinitionDisplayContext.getUserName(workflowDefinition);
@@ -93,36 +97,36 @@ renderResponse.setTitle((workflowDefinition == null) ? LanguageUtil.get(request,
 
 							<div class="card-row-padded created-date">
 								<div>
-									<span>
+									<span class="info-title">
 										<liferay-ui:message key="created" />
 									</span>
 								</div>
 
-								<span class="lfr-card-modified-by-text">
+								<span class="info-content lfr-card-modified-by-text">
 									<liferay-ui:message arguments="<%= new String[] {dateFormatTime.format(workflowDefinitionDisplayContext.getCreatedDate(workflowDefinition)), userName} %>" key="x-by-x" translateArguments="<%= false %>" />
 								</span>
 							</div>
 
 							<div class="card-row-padded last-modified">
 								<div>
-									<span>
+									<span class="info-title">
 										<liferay-ui:message key="last-modified" />
 									</span>
 								</div>
 
-								<span class="lfr-card-modified-by-text">
+								<span class="info-content lfr-card-modified-by-text">
 									<liferay-ui:message arguments="<%= new String[] {dateFormatTime.format(workflowDefinition.getModifiedDate()), userName} %>" key="x-by-x" translateArguments="<%= false %>" />
 								</span>
 							</div>
 
 							<div class="card-row-padded">
 								<div>
-									<span>
+									<span class="info-title">
 										<liferay-ui:message key="total-modifications" />
 									</span>
 								</div>
 
-								<span class="lfr-card-modified-by-text">
+								<span class="info-content lfr-card-modified-by-text">
 									<liferay-ui:message arguments='<%= new String[] {workflowDefinitionDisplayContext.getWorkflowDefinitionCount(workflowDefinition) + ""} %>' key="x-revisions" translateArguments="<%= false %>" />
 								</span>
 							</div>
