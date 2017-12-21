@@ -476,9 +476,7 @@ public class LangBuilder {
 						}
 					}
 
-					if (Validator.isNotNull(translatedText) &&
-						(_translate || !_isAutomatic(translatedText))) {
-
+					if (Validator.isNotNull(translatedText)) {
 						translatedText = _fixTranslation(translatedText);
 
 						if (firstLine) {
@@ -670,16 +668,6 @@ public class LangBuilder {
 		}
 	}
 
-	private boolean _isAutomatic(String value) {
-		if (value.endsWith(AUTOMATIC_COPY) ||
-			value.endsWith(AUTOMATIC_TRANSLATION)) {
-
-			return true;
-		}
-
-		return false;
-	}
-
 	private String _orderProperties(File propertiesFile) throws IOException {
 		if (!propertiesFile.exists()) {
 			return null;
@@ -708,9 +696,7 @@ public class LangBuilder {
 
 					String value = line.substring(pos + 1);
 
-					if (Validator.isNotNull(value) &&
-						(_translate || !_isAutomatic(value))) {
-
+					if (Validator.isNotNull(value)) {
 						value = _fixTranslation(line.substring(pos + 1));
 
 						value = _fixEnglishTranslation(key, value);
