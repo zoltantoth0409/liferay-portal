@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.twitter.configuration;
+package com.liferay.twitter.internal.configuration;
 
 import aQute.bnd.annotation.metatype.Meta;
 
