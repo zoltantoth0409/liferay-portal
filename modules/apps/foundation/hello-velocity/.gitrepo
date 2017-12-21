@@ -4,8 +4,8 @@
 [subrepo]
 	autopull = false
 	cmdver = liferay
-	commit = 899350730969fa1e5f367d5a926206886389d026
+	commit = bd5a274458ca4029669ccf84f3f5b40b14dc6d06
 	mergebuttonmergecommits = false
 	mode = push
-	parent = ec2f56c84889f9c5144865ea248a95cb5c2e90c1
+	parent = a9b440be6081f422111936deb6bdaa9a6c08a848
 	remote = git@github.com:liferay/com-liferay-hello-velocity.git
