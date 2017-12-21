@@ -4,8 +4,8 @@
 [subrepo]
 	autopull = false
 	cmdver = liferay
-	commit = 61d1f2ca5f04e19b493502fb0dd8d6f50b9f97bd
+	commit = 5e216c147e058183f8cae31a91a5ef603b514dc4
 	mergebuttonmergecommits = false
 	mode = push
-	parent = 158127ad11909c47415ac84a89252fc917baf0ce
+	parent = 083b5c86fb9a6a7b279a1ac7275beab0bf0a57b0
 	remote = git@github.com:liferay/com-liferay-trash.git
