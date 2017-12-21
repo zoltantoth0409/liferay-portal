@@ -4086,11 +4086,9 @@ public class ServiceBuilder {
 			for (int j = 0; j < pkList.size(); j++) {
 				EntityColumn col = pkList.get(j);
 
-				String colDBName = col.getDBName();
-
 				IndexMetadata indexMetadata =
 					IndexMetadataFactoryUtil.createIndexMetadata(
-						false, tableName, colDBName);
+						false, tableName, col.getDBName());
 
 				_addIndexMetadata(indexMetadataMap, tableName, indexMetadata);
 			}
@@ -4168,7 +4166,8 @@ public class ServiceBuilder {
 					throw new ServiceBuilderException(
 						StringBundler.concat(
 							"Unable to create entity mapping \"", tableName,
-							"\" because column name \"", colDBName, "\" exceeds ",
+							"\" because column name \"", colDBName,
+							"\" exceeds ",
 							String.valueOf(_COLUMN_NAME_MAX_LENGTH),
 							" characters"));
 				}
@@ -4248,13 +4247,11 @@ public class ServiceBuilder {
 			for (int j = 0; j < pkList.size(); j++) {
 				EntityColumn col = pkList.get(j);
 
-				String colDBName = col.getDBName();
-
 				if ((i != 1) || (j != 0)) {
 					sb.append(", ");
 				}
 
-				sb.append(colDBName);
+				sb.append(col.getDBName());
 			}
 		}
 
@@ -4292,8 +4289,6 @@ public class ServiceBuilder {
 
 		for (int i = 0; i < regularColList.size(); i++) {
 			EntityColumn col = regularColList.get(i);
-
-			String colName = col.getName();
 
 			String colDBName = col.getDBName();
 
@@ -4339,7 +4334,7 @@ public class ServiceBuilder {
 				sb.append("TEXT");
 			}
 			else if (colType.equals("String")) {
-				int maxLength = getMaxLength(entity.getName(), colName);
+				int maxLength = getMaxLength(entity.getName(), col.getName());
 
 				if (col.isLocalized() && (maxLength < 4000)) {
 					maxLength = 4000;
@@ -4380,7 +4375,7 @@ public class ServiceBuilder {
 				sb.append(" IDENTITY");
 			}
 
-			if (colName.equals("mvccVersion")) {
+			if (Objects.equals(col.getName(), "mvccVersion")) {
 				sb.append(" default 0 not null");
 			}
 
