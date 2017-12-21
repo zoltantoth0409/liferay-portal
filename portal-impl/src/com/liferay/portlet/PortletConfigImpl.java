@@ -73,8 +73,6 @@ public class PortletConfigImpl implements LiferayPortletConfig {
 		String className = LiferayPortletConfig.class.getName();
 
 		_containerRuntimeOptionPrefix = className.concat(_portletName);
-
-		_resourceBundles = new ConcurrentHashMap<>();
 	}
 
 	@Override
@@ -278,6 +276,7 @@ public class PortletConfigImpl implements LiferayPortletConfig {
 	private final PortletContext _portletContext;
 	private final Map<String, String> _portletInfos;
 	private final String _portletName;
-	private final Map<String, ResourceBundle> _resourceBundles;
+	private final Map<String, ResourceBundle> _resourceBundles =
+		new ConcurrentHashMap<>();
 
 }
