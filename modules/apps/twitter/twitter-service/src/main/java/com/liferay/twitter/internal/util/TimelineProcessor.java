@@ -12,31 +12,16 @@
  * details.
  */
 
-package com.liferay.twitter.util;
+package com.liferay.twitter.internal.util;
 
 import com.liferay.portal.kernel.json.JSONArray;
 
 /**
  * @author Shinn Lok
- * @author Peter Fellwock
  */
-public class TimelineProcessorUtil {
+public interface TimelineProcessor {
 
-	public static TimelineProcessor getInstance() {
-		if (_timelineProcessor == null) {
-			_timelineProcessor = new HttpTimelineProcessor();
-		}
-
-		return _timelineProcessor;
-	}
-
-	public static JSONArray getUserTimelineJSONArray(
-		String twitterScreenName, long sinceId) {
-
-		return getInstance().getUserTimelineJSONArray(
-			twitterScreenName, sinceId);
-	}
-
-	private static TimelineProcessor _timelineProcessor;
+	public JSONArray getUserTimelineJSONArray(
+		String twitterScreenName, long sinceId);
 
 }

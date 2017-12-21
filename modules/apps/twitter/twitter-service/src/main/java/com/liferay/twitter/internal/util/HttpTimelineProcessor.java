@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.twitter.util;
+package com.liferay.twitter.internal.util;
 
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
