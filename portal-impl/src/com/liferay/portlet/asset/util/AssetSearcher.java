@@ -246,8 +246,6 @@ public class AssetSearcher extends BaseSearcher {
 		addSearchAnyCategories(queryBooleanFilter);
 		addSearchNotAnyCategories(queryBooleanFilter);
 		addSearchNotAllCategories(queryBooleanFilter);
-
-		super.addSearchAssetCategoryIds(queryBooleanFilter, searchContext);
 	}
 
 	@Override
@@ -259,8 +257,6 @@ public class AssetSearcher extends BaseSearcher {
 		addSearchAnyTags(queryBooleanFilter);
 		addSearchNotAllTags(queryBooleanFilter);
 		addSearchNotAnyTags(queryBooleanFilter);
-
-		super.addSearchAssetTagNames(queryBooleanFilter, searchContext);
 	}
 
 	@Override
