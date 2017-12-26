@@ -260,11 +260,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>BODY_VERTICAL_ELLIPSIS_N</td>
-	<td>xpath=(//div[contains(@class,'portlet') and contains(@class,'container')]//span/*[name()='svg'][contains(@class,'icon-ellipsis')])[${key_assetIndexNumber}]</td>
-	<td></td>
-</tr>
-<tr>
 	<td>DESCRIPTIVE_HEADER_VERTICAL_ELLIPSIS</td>
 	<td>//h2[contains(.,'${key_assetHeader}')]//..//span/*[name()='svg'][contains(@class,'icon-ellipsis')]</td>
 	<td></td>
