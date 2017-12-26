@@ -215,10 +215,11 @@ public class UpgradeKaleoDefinitionVersion extends UpgradeProcess {
 
 			for (String tableName : _tableNames) {
 				if (hasColumn(tableName, "kaleoDefinitionId")) {
-					StringBundler sb3 = new StringBundler(3);
+					StringBundler sb3 = new StringBundler(4);
 
-					sb3.append("update " + tableName + " ");
-					sb3.append("set kaleoDefinitionVersionId = ? ");
+					sb3.append("update ");
+					sb3.append(tableName);
+					sb3.append(" set kaleoDefinitionVersionId = ? ");
 					sb3.append("where kaleoDefinitionId = ? ");
 
 					preparedStatements.add(
