@@ -87,13 +87,11 @@ public class UnpublishDefinitionPortletConfigurationIcon
 			(WorkflowDefinition)portletRequest.getAttribute(
 				WebKeys.WORKFLOW_DEFINITION);
 
-		boolean published = false;
-
 		if ((workflowDefinition != null) && workflowDefinition.isActive()) {
-			published = true;
+			return true;
 		}
 
-		return published;
+		return false;
 	}
 
 	@Reference(
