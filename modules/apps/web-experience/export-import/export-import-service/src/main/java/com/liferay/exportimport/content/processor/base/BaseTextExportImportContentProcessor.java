@@ -1516,17 +1516,18 @@ public class BaseTextExportImportContentProcessor
 				groupId, privateLayout, layoutId);
 
 			if (layout == null) {
-				StringBundler exceptionMessage = new StringBundler(5);
+				StringBundler sb = new StringBundler(8);
 
-				exceptionMessage.append(
-					"Unable to validate referenced page because it cannot be");
-				exceptionMessage.append(
-					"found with the following parameters: ");
-				exceptionMessage.append("groupId " + groupId);
-				exceptionMessage.append(", layoutId " + layoutId);
-				exceptionMessage.append(", privateLayout " + privateLayout);
+				sb.append("Unable to validate referenced page because it ");
+				sb.append("cannot be found with the following parameters: ");
+				sb.append("groupId ");
+				sb.append(groupId);
+				sb.append(", layoutId ");
+				sb.append(layoutId);
+				sb.append(", privateLayout ");
+				sb.append(privateLayout);
 
-				throw new NoSuchLayoutException(exceptionMessage.toString());
+				throw new NoSuchLayoutException(sb.toString());
 			}
 		}
 	}
