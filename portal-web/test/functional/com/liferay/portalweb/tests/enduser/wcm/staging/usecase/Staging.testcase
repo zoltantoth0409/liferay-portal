@@ -204,6 +204,48 @@
 		</execute>
 
 		<execute macro="Staging#viewAddButtonExists" />
+
+		<execute macro="Navigator#openSiteURL">
+			<var name="siteName" value="Site Name" />
+		</execute>
+
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Content" />
+			<var name="panel" value="Site Administration" />
+			<var name="portlet" value="Bookmarks" />
+		</execute>
+
+		<execute macro="Staging#viewNotStagedAssetMessageOnStaging" />
+
+		<execute macro="Staging#viewAddButtonExists" />
+
+		<execute macro="Navigator#openSiteURL">
+			<var name="siteName" value="Site Name" />
+		</execute>
+
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Content" />
+			<var name="panel" value="Site Administration" />
+			<var name="portlet" value="Wiki" />
+		</execute>
+
+		<execute macro="Staging#viewNotStagedAssetMessageOnStaging" />
+
+		<execute macro="Staging#viewAddButtonExists" />
+
+		<execute macro="Navigator#openSiteURL">
+			<var name="siteName" value="Site Name" />
+		</execute>
+
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Content" />
+			<var name="panel" value="Site Administration" />
+			<var name="portlet" value="Documents and Media" />
+		</execute>
+
+		<execute macro="Staging#viewNotStagedAssetMessageOnStaging" />
+
+		<execute macro="Staging#viewAddButtonExists" />
 	</command>
 
 	<command name="PublishRenamedTags" priority="4">
