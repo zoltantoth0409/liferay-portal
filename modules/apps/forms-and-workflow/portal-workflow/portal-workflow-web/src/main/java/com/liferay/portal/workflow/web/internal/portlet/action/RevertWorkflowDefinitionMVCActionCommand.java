@@ -112,20 +112,20 @@ public class RevertWorkflowDefinitionMVCActionCommand
 		String name = ParamUtil.getString(actionRequest, "name");
 		int version = ParamUtil.getInteger(actionRequest, "version");
 
-		WorkflowDefinition previousDefinitionRevision =
+		WorkflowDefinition previousWorkflowDefinition =
 			WorkflowDefinitionManagerUtil.getWorkflowDefinition(
 				themeDisplay.getCompanyId(), name, version);
 
 		actionRequest.setAttribute(
 			"previousDefinitionModifiedDate",
-			previousDefinitionRevision.getModifiedDate());
+			previousWorkflowDefinition.getModifiedDate());
 
-		String content = previousDefinitionRevision.getContent();
+		String content = previousWorkflowDefinition.getContent();
 
 		WorkflowDefinition workflowDefinition =
 			workflowDefinitionManager.deployWorkflowDefinition(
 				themeDisplay.getCompanyId(), themeDisplay.getUserId(),
-				previousDefinitionRevision.getTitle(), content.getBytes());
+				previousWorkflowDefinition.getTitle(), content.getBytes());
 
 		setRedirectAttribute(actionRequest, workflowDefinition);
 
