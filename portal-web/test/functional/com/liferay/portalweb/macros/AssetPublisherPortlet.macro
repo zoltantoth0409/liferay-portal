@@ -636,7 +636,7 @@
 
 	<command name="gotoEditWebContent">
 		<execute function="MouseOver" locator1="AP#BODY" />
-				
+
 		<execute function="Click#waitForMenuToggleJSClick" locator1="AP#ASSET_ABSTRACT_VERTICAL_ELLIPSIS">
 			<var name="key_assetTitle" value="${assetTitle}" />
 		</execute>
