@@ -733,7 +733,7 @@
 
 	<command name="searchTemplate">
 		<execute function="Type" locator1="Search#SEARCH_FIELD" value1="${exportTemplateName}" />
-		<execute function="Click" locator1="Search#SEARCH_BUTTON" />
+		<execute function="Click" locator1="NavBar#SEARCH_BUTTON" />
 
 		<var name="key_exportTemplateName" value="${exportTemplateName}" />
 
