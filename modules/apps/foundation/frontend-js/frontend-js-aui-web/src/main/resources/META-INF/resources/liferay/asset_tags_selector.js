@@ -539,7 +539,9 @@ AUI.add(
 								alertNode.remove();
 
 								contentBox.removeClass('has-error');
-							}, {}, false
+							},
+							{},
+							false
 						);
 					},
 
