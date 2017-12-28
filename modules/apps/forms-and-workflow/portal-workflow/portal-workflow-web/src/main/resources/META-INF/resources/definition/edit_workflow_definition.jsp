@@ -29,7 +29,7 @@ boolean active = BeanParamUtil.getBoolean(workflowDefinition, request, "active")
 portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(redirect);
 
-renderResponse.setTitle((workflowDefinition == null) ? LanguageUtil.get(request, "new-workflow") : workflowDefinition.getName());
+renderResponse.setTitle((workflowDefinition == null) ? LanguageUtil.get(request, "new-workflow") : workflowDefinition.getTitle(LanguageUtil.getLanguageId(request)));
 %>
 
 <liferay-ui:error exception="<%= RequiredWorkflowDefinitionException.class %>">
@@ -100,7 +100,7 @@ renderResponse.setTitle((workflowDefinition == null) ? LanguageUtil.get(request,
 					<aui:icon cssClass="icon-monospaced sidenav-close text-default visible-xs-inline-block" image="times" markupView="lexicon" url="javascript:;" />
 
 					<h4>
-						<%= workflowDefinition.getName() %>
+						<%= workflowDefinition.getTitle(LanguageUtil.getLanguageId(request)) %>
 					</h4>
 				</div>
 
