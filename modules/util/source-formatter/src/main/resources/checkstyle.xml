@@ -188,7 +188,7 @@
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.StringBundlerNaming">
 			<message key="variable.name.incorrect" value="StringBundler {0} ''{1}'' should end with either ''sb'' or ''SB''" />
-		</module>		
+		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.StringCast">
 			<message key="string.cast.unneeded" value="No need to call ''.toString()'' on type String" />
 		</module>
