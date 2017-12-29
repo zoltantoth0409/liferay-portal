@@ -166,8 +166,10 @@ public class DeclarativeServiceDependencyManagerTest {
 			sb.append(", unsatisfied references: ");
 			sb.append("{name: declarativeServiceTestReference, target: null}");
 
+			String s = sb.toString();
+
 			Assert.assertTrue(
-				message, message.contains(sb.toString().replaceAll("\\s", "")));
+				message, message.contains(s.replaceAll("\\s", "")));
 
 			Assert.assertEquals(Level.WARN, loggingEvent.getLevel());
 
