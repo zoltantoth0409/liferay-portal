@@ -519,7 +519,7 @@ public class DefaultExportImportContentProcessorTest {
 	}
 
 	@Test
-	public void testImportDLReferences() throws Exception {
+	public void testImportDLReferences1() throws Exception {
 		doTestImportDLReferences(false);
 	}
 
