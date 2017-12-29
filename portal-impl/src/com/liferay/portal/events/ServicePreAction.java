@@ -1538,9 +1538,7 @@ public class ServicePreAction extends Action {
 
 		List<Layout> accessibleLayouts = new ArrayList<>();
 
-		for (int i = 0; i < layouts.size(); i++) {
-			Layout curLayout = layouts.get(i);
-
+		for (Layout curLayout : layouts) {
 			if (!curLayout.isHidden() &&
 				hasAccessPermission(
 					permissionChecker, curLayout, doAsGroupId, false)) {

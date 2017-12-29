@@ -1294,9 +1294,7 @@ public class GroupFinderImpl
 			else if (key.equals("types")) {
 				List<Integer> values = (List<Integer>)entry.getValue();
 
-				for (int i = 0; i < values.size(); i++) {
-					Integer value = values.get(i);
-
+				for (Integer value : values) {
 					qPos.add(value);
 				}
 			}

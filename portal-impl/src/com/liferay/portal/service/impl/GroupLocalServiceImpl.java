@@ -1601,9 +1601,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 
 		List<Group> organizationGroups = new ArrayList<>();
 
-		for (int i = 0; i < organizations.size(); i++) {
-			Organization organization = organizations.get(i);
-
+		for (Organization organization : organizations) {
 			Group group = organization.getGroup();
 
 			organizationGroups.add(group);
@@ -1624,9 +1622,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 
 		List<Group> organizationGroups = new ArrayList<>();
 
-		for (int i = 0; i < organizations.size(); i++) {
-			Organization organization = organizations.get(i);
-
+		for (Organization organization : organizations) {
 			List<Group> groups = organizationPersistence.getGroups(
 				organization.getOrganizationId());
 
@@ -1787,9 +1783,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 
 		List<Group> userGroupGroups = new ArrayList<>();
 
-		for (int i = 0; i < userGroups.size(); i++) {
-			UserGroup userGroup = userGroups.get(i);
-
+		for (UserGroup userGroup : userGroups) {
 			Group group = userGroup.getGroup();
 
 			userGroupGroups.add(group);
@@ -1808,9 +1802,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	public List<Group> getUserGroupsRelatedGroups(List<UserGroup> userGroups) {
 		List<Group> userGroupGroups = new ArrayList<>();
 
-		for (int i = 0; i < userGroups.size(); i++) {
-			UserGroup userGroup = userGroups.get(i);
-
+		for (UserGroup userGroup : userGroups) {
 			List<Group> groups = userGroupPersistence.getGroups(
 				userGroup.getUserGroupId());
 
