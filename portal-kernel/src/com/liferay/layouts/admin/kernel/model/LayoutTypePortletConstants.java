@@ -92,6 +92,17 @@ public class LayoutTypePortletConstants
 
 	public static final String URL = "url";
 
+	public static boolean hasPortletIds(String typeSettingId) {
+		if (isLayoutTemplateColumnName(typeSettingId) ||
+			DEFAULT_ASSET_PUBLISHER_PORTLET_ID.equals(typeSettingId) ||
+			PANEL_SELECTED_PORTLETS.equals(typeSettingId)) {
+
+			return true;
+		}
+
+		return false;
+	}
+
 	public static boolean isLayoutTemplateColumnName(String typeSettingId) {
 		if (_typeSettingsIds.contains(typeSettingId) ||
 			typeSettingId.startsWith(PROPERTY_NAMESPACE) ||
@@ -101,17 +112,6 @@ public class LayoutTypePortletConstants
 		}
 
 		return true;
-	}
-
-	public static boolean isTypeSettingWithPortletIds(String typeSettingId) {
-		if (isLayoutTemplateColumnName(typeSettingId) ||
-			DEFAULT_ASSET_PUBLISHER_PORTLET_ID.equals(typeSettingId) ||
-			PANEL_SELECTED_PORTLETS.equals(typeSettingId)) {
-
-			return true;
-		}
-
-		return false;
 	}
 
 	private static final Set<String> _typeSettingsIds = SetUtil.fromArray(
