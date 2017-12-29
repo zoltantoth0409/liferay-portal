@@ -45,6 +45,17 @@
 				)
 		]]>
 	</sql>
+	<sql id="com.liferay.asset.kernel.service.persistence.AssetCategoryFinder.findByG_N">
+		<![CDATA[
+			SELECT
+				{AssetCategory.*}
+			FROM
+				AssetCategory
+			WHERE
+				(AssetCategory.groupId = ?) AND
+				(lower(AssetCategory.name) = ?)
+		]]>
+	</sql>
 	<sql id="com.liferay.asset.kernel.service.persistence.AssetCategoryFinder.findByC_C">
 		<![CDATA[
 			SELECT
@@ -60,17 +71,6 @@
 			WHERE
 				(AssetEntry.classNameId = ?) AND
 				(AssetEntry.classPK =  ?)
-		]]>
-	</sql>
-	<sql id="com.liferay.asset.kernel.service.persistence.AssetCategoryFinder.findByG_N">
-		<![CDATA[
-			SELECT
-				{AssetCategory.*}
-			FROM
-				AssetCategory
-			WHERE
-				(AssetCategory.groupId = ?) AND
-				(lower(AssetCategory.name) = ?)
 		]]>
 	</sql>
 	<sql id="com.liferay.asset.kernel.service.persistence.AssetCategoryFinder.findByG_N_P">
