@@ -194,7 +194,7 @@
 		<execute macro="Staging#viewAddButtonExists" />
 
 		<execute macro="Navigator#openSiteURL">
-			<var name="siteName" value="Site Name" />
+			<var name="siteName" value="Site Name Staging" />
 		</execute>
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -208,7 +208,7 @@
 		<execute macro="Staging#viewAddButtonExists" />
 
 		<execute macro="Navigator#openSiteURL">
-			<var name="siteName" value="Site Name" />
+			<var name="siteName" value="Site Name Staging" />
 		</execute>
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -222,7 +222,7 @@
 		<execute macro="Staging#viewAddButtonExists" />
 
 		<execute macro="Navigator#openSiteURL">
-			<var name="siteName" value="Site Name" />
+			<var name="siteName" value="Site Name Staging" />
 		</execute>
 
 		<execute macro="ProductMenu#gotoPortlet">
