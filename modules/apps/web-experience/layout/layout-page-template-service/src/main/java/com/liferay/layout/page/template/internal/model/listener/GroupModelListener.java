@@ -39,7 +39,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 	public void onBeforeRemove(Group group) throws ModelListenerException {
 		try {
 
-			// Layout Page Template Collections
+			// Layout page template collections
 
 			List<LayoutPageTemplateCollection> layoutPageTemplateCollections =
 				_layoutPageTemplateCollectionLocalService.
@@ -56,7 +56,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 							getLayoutPageTemplateCollectionId());
 			}
 
-			// Fragments
+			// Fragment collections
 
 			List<FragmentCollection> fragmentCollections =
 				_fragmentCollectionLocalService.getFragmentCollections(
