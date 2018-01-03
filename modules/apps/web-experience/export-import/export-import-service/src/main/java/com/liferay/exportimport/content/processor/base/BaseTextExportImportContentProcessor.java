@@ -370,7 +370,7 @@ public class BaseTextExportImportContentProcessor
 			endPos = MapUtil.getInteger(dlReferenceParameters, "endPos");
 
 			try {
-				if (exportReferencedContent) {
+				if (exportReferencedContent && !fileEntry.isInTrash()) {
 					StagedModelDataHandlerUtil.exportReferenceStagedModel(
 						portletDataContext, stagedModel, fileEntry,
 						PortletDataContext.REFERENCE_TYPE_DEPENDENCY);
@@ -378,10 +378,19 @@ public class BaseTextExportImportContentProcessor
 				else {
 					Element entityElement =
 						portletDataContext.getExportDataElement(stagedModel);
+					
+					String referenceType =
+						PortletDataContext.REFERENCE_TYPE_DEPENDENCY;
+
+					if (fileEntry.isInTrash()) {
+						referenceType =
+							PortletDataContext.
+								REFERENCE_TYPE_DEPENDENCY_DISPOSABLE;
+					}
 
 					portletDataContext.addReferenceElement(
-						stagedModel, entityElement, fileEntry,
-						PortletDataContext.REFERENCE_TYPE_DEPENDENCY, true);
+						stagedModel, entityElement, fileEntry, referenceType,
+						true);
 				}
 
 				String path = ExportImportPathUtil.getModelPath(fileEntry);
