@@ -110,7 +110,7 @@ public class CalendarBookingIndexerTest {
 		return searchContext;
 	}
 
-	protected void addCalendarBooking(String title) throws PortalException {
+	protected CalendarBooking addCalendarBooking(String title) throws PortalException {
 		ServiceContext serviceContext = new ServiceContext();
 
 		CalendarResource calendarResource =
@@ -135,7 +135,7 @@ public class CalendarBookingIndexerTest {
 
 		HashMap<Locale, String> hashMap = new HashMap<>();
 
-		CalendarBookingLocalServiceUtil.addCalendarBooking(
+		return CalendarBookingLocalServiceUtil.addCalendarBooking(
 			_user.getUserId(), calendar.getCalendarId(), new long[0],
 			CalendarBookingConstants.PARENT_CALENDAR_BOOKING_ID_DEFAULT,
 			titleMap, hashMap, null, startTime, endTime, false, null, 0,
