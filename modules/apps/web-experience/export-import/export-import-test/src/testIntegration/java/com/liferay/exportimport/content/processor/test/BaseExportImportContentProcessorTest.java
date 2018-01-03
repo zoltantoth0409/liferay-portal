@@ -514,7 +514,7 @@ public class BaseExportImportContentProcessorTest {
 	}
 
 	@Test
-	public void testImportDLReferences() throws Exception {
+	public void testImportDLReferences1() throws Exception {
 		doTestImportDLReferences(false);
 	}
 
