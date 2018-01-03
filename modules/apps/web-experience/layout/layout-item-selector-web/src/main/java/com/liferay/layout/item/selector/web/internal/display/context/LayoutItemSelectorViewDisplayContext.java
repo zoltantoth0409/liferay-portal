@@ -182,10 +182,8 @@ public class LayoutItemSelectorViewDisplayContext {
 	}
 
 	private long _getSelPlid() {
-		long selPlid = ParamUtil.getLong(
+		return ParamUtil.getLong(
 			_request, "selPlid", LayoutConstants.DEFAULT_PLID);
-
-		return selPlid;
 	}
 
 	private final String _itemSelectedEventName;
