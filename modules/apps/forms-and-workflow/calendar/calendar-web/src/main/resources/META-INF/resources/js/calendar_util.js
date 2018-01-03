@@ -574,6 +574,7 @@ AUI.add(
 
 				var url = Liferay.PortletURL.createResourceURL();
 
+				url.setDoAsUserId(Liferay.ThemeDisplay.getDoAsUserIdEncoded());
 				url.setParameters(params.queryParameters);
 				url.setPortletId('com_liferay_calendar_web_portlet_CalendarPortlet');
 				url.setResourceId(params.resourceId);
