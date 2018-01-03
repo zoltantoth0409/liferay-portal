@@ -130,14 +130,14 @@ public class AddSimpleLayoutMVCActionCommand extends BaseMVCActionCommand {
 				_log.debug(pe, pe);
 			}
 
-			String errorMessage = "an-unexpected-error-occurred";
-
 			ResourceBundle resourceBundle =
 				_resourceBundleLoader.loadResourceBundle(
 					themeDisplay.getLocale());
 
 			jsonObject.put(
-				"error", LanguageUtil.get(resourceBundle, errorMessage));
+				"error",
+				LanguageUtil.get(
+					resourceBundle, "an-unexpected-error-occurred"));
 
 			JSONPortletResponseUtil.writeJSON(
 				actionRequest, actionResponse, jsonObject);
