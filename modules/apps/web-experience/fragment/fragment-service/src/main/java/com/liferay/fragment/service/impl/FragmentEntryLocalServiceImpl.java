@@ -91,6 +91,8 @@ public class FragmentEntryLocalServiceImpl
 	public FragmentEntry deleteFragmentEntry(FragmentEntry fragmentEntry)
 		throws PortalException {
 
+		// Fragment entry
+
 		long fragmentEntryInstanceLinkCount =
 			fragmentEntryInstanceLinkPersistence.countByG_F(
 				fragmentEntry.getGroupId(), fragmentEntry.getFragmentEntryId());
@@ -98,8 +100,6 @@ public class FragmentEntryLocalServiceImpl
 		if (fragmentEntryInstanceLinkCount > 0) {
 			throw new RequiredFragmentEntryException();
 		}
-
-		// Fragment entry
 
 		fragmentEntryPersistence.remove(fragmentEntry);
 
