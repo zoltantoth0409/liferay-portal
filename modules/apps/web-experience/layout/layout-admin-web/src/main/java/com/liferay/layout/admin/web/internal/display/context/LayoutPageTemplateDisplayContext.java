@@ -159,13 +159,13 @@ public class LayoutPageTemplateDisplayContext {
 	public JSONArray getFragmentEntryInstanceLinksJSONArray()
 		throws PortalException {
 
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
 		ThemeDisplay themeDisplay = (ThemeDisplay)_request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
 		LayoutPageTemplateEntry layoutPageTemplateEntry =
 			getLayoutPageTemplateEntry();
-
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		List<FragmentEntryInstanceLink> fragmentEntryInstanceLinks =
 			FragmentEntryInstanceLinkLocalServiceUtil.
