@@ -61,6 +61,8 @@ public class LayoutItemSelectorViewDisplayContext {
 	}
 
 	public JSONArray getLayoutsJSONArray() throws Exception {
+		JSONArray layoutsJSONArray = JSONFactoryUtil.createJSONArray();
+
 		ThemeDisplay themeDisplay = (ThemeDisplay)_request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
@@ -77,8 +79,6 @@ public class LayoutItemSelectorViewDisplayContext {
 		jsonObject.put("icon", "home");
 		jsonObject.put("id", "0");
 		jsonObject.put("name", themeDisplay.getScopeGroupName());
-
-		JSONArray layoutsJSONArray = JSONFactoryUtil.createJSONArray();
 
 		layoutsJSONArray.put(jsonObject);
 
