@@ -531,7 +531,7 @@ public class BaseExportImportContentProcessorTest {
 	}
 
 	@Test
-	public void testImportDLReferencesFileEntryInTrash() throws Exception {
+	public void testImportDLReferencesFileEntryInTrash1() throws Exception {
 		DLAppHelperLocalServiceUtil.moveFileEntryToTrash(
 			TestPropsValues.getUserId(), _fileEntry);
 
