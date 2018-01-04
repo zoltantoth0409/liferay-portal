@@ -38,7 +38,7 @@ public class NullableFragmentEntryProcessor implements FragmentEntryProcessor {
 				"content.Language", getClass());
 
 			String message = LanguageUtil.get(
-				resourceBundle, "html-content-cannot-be-empty");
+				resourceBundle, "html-content-must-not-be-empty");
 
 			throw new FragmentEntryContentException(message);
 		}
