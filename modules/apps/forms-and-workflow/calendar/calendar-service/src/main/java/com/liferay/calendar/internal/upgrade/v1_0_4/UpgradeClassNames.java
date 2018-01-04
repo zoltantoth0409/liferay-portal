@@ -151,6 +151,7 @@ public class UpgradeClassNames extends UpgradeKernelPackage {
 			ps1.setString(1, _CAL_EVENT_CLASS_NAME + "%");
 
 			ResultSet rs = ps1.executeQuery();
+
 			long calEventClassNameId = 0;
 
 			if (rs.next()) {
