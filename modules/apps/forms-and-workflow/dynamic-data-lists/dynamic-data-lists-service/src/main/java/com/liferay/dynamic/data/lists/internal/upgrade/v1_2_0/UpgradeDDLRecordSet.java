@@ -147,8 +147,8 @@ public class UpgradeDDLRecordSet extends UpgradeProcess {
 	protected void updateDDMStructure(long ddmStructureId) throws Exception {
 		StringBundler sb = new StringBundler(2);
 
-		sb.append("update DDMStructure set classNameId = ? ");
-		sb.append("where structureId = ?");
+		sb.append("update DDMStructure set classNameId = ? where structureId ");
+		sb.append("= ?");
 
 		try (PreparedStatement ps = connection.prepareStatement(
 				sb.toString())) {
@@ -168,8 +168,8 @@ public class UpgradeDDLRecordSet extends UpgradeProcess {
 
 		StringBundler sb = new StringBundler(2);
 
-		sb.append("update DDMStructureLink set classNameId = ? ");
-		sb.append("where structureId = ?");
+		sb.append("update DDMStructureLink set classNameId = ? where ");
+		sb.append("structureId = ?");
 
 		try (PreparedStatement ps = connection.prepareStatement(
 				sb.toString())) {
