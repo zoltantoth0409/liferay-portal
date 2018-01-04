@@ -38,12 +38,8 @@ public class UpgradeDDLRecordVersion extends UpgradeProcess {
 	protected void deleteDDLRecordVersion(long recordVersionId)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(2);
-
-		sb.append("delete from DDLRecordVersion where recordVersionId ?");
-
 		try (PreparedStatement ps = connection.prepareStatement(
-				sb.toString())) {
+				"delete from DDLRecordVersion where recordVersionId ?")) {
 
 			ps.setLong(1, recordVersionId);
 
