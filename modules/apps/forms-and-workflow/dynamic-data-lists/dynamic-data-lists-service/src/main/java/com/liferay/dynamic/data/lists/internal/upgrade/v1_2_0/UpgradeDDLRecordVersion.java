@@ -54,7 +54,7 @@ public class UpgradeDDLRecordVersion extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		StringBundler sb = new StringBundler(2);
+		StringBundler sb = new StringBundler(3);
 
 		sb.append("select DDLRecordVersion.* from DDLRecordVersion ");
 		sb.append(
