@@ -48,7 +48,7 @@ renderResponse.setTitle(fragmentDisplayContext.getFragmentEntryTitle());
 			<%= fece.getMessage() %>
 		</c:when>
 		<c:otherwise>
-			<liferay-ui:message key="invalid-fragment-html" />
+			<liferay-ui:message key="fragment-html-is-invalid" />
 		</c:otherwise>
 	</c:choose>
 </liferay-ui:error>
