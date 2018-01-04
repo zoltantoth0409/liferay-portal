@@ -80,9 +80,9 @@ public class WikiAttachmentEditorOptionsContributor
 		portletURL.setParameter(
 			ActionRequest.ACTION_NAME, "/wiki/upload_page_attachment");
 		portletURL.setParameter(
-			"mimeTypes", PropsValues.DL_FILE_ENTRY_PREVIEW_IMAGE_MIME_TYPES);
-		portletURL.setParameter(
 			"resourcePrimKey", String.valueOf(wikiPageResourcePrimKey));
+		portletURL.setParameter(
+			"mimeTypes", PropsValues.DL_FILE_ENTRY_PREVIEW_IMAGE_MIME_TYPES);
 
 		editorOptions.setUploadURL(portletURL.toString());
 	}
