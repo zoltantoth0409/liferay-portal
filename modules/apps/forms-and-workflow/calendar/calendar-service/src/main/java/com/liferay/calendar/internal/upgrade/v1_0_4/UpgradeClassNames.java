@@ -44,23 +44,23 @@ public class UpgradeClassNames extends UpgradeKernelPackage {
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
 			runSQL(
 				"delete from Counter where name like '" +
-					_CAL_EVENT_CLASS_NAME + "%'");
+					_CLASS_NAME_CAL_EVENT + "%'");
 
 			runSQL(
 				"delete from ClassName_ where value like '" +
-					_CAL_EVENT_CLASS_NAME + "%'");
+					_CLASS_NAME_CAL_EVENT + "%'");
 
 			runSQL(
 				"delete from ResourceAction where name like '" +
-					_CAL_EVENT_CLASS_NAME + "%'");
+					_CLASS_NAME_CAL_EVENT + "%'");
 
 			runSQL(
 				"delete from ResourceBlock where name like '" +
-					_CAL_EVENT_CLASS_NAME + "%'");
+					_CLASS_NAME_CAL_EVENT + "%'");
 
 			runSQL(
 				"delete from ResourcePermission where name like '" +
-					_CAL_EVENT_CLASS_NAME + "%'");
+					_CLASS_NAME_CAL_EVENT + "%'");
 		}
 		catch (Exception e) {
 			throw new UpgradeException(e);
@@ -148,7 +148,7 @@ public class UpgradeClassNames extends UpgradeKernelPackage {
 				"update AssetVocabulary set settings_ = ? where vocabularyId " +
 					"= ?")) {
 
-			ps1.setString(1, _CAL_EVENT_CLASS_NAME + "%");
+			ps1.setString(1, _CLASS_NAME_CAL_EVENT + "%");
 
 			ResultSet rs = ps1.executeQuery();
 
@@ -161,7 +161,7 @@ public class UpgradeClassNames extends UpgradeKernelPackage {
 				return;
 			}
 
-			ps1.setString(1, _CALENDAR_BOOKING_CLASS_NAME + "%");
+			ps1.setString(1, _CLASS_NAME_CALENDAR_BOOKING + "%");
 
 			rs = ps1.executeQuery();
 
@@ -199,10 +199,10 @@ public class UpgradeClassNames extends UpgradeKernelPackage {
 		}
 	}
 
-	private static final String _CAL_EVENT_CLASS_NAME =
+	private static final String _CLASS_NAME_CAL_EVENT =
 		"com.liferay.portlet.calendar.model.CalEvent";
 
-	private static final String _CALENDAR_BOOKING_CLASS_NAME =
+	private static final String _CLASS_NAME_CALENDAR_BOOKING =
 		"com.liferay.calendar.model.CalendarBooking";
 
 	private static final String[][] _RESOURCE_NAMES = {
