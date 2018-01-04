@@ -83,7 +83,6 @@
 		</execute>
 
 		<execute macro="KaleoDesigner#viewViewTab" />
-		<execute macro="KaleoDesigner#viewSourceXMLTab" />
 
 		<execute macro="KaleoDesigner#viewSourceXMLLine">
 			<var name="invalid" value="true" />
