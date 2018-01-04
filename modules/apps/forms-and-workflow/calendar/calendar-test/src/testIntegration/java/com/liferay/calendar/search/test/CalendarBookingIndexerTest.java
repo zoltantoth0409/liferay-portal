@@ -96,22 +96,17 @@ public class CalendarBookingIndexerTest {
 
 		String title = RandomTestUtil.randomString();
 
-		CalendarBooking calendarBooking = addCalendarBooking(
-			new LocalizedValuesMap() {
-				{
-					put(LocaleUtil.US, title);
-				}
-			});
+		CalendarBooking calendarBooking = addCalendarBooking(title);
 
 		CalendarBookingLocalServiceUtil.moveCalendarBookingToTrash(
 			TestPropsValues.getUserId(), calendarBooking);
 
-		assertSearchHitsLength(title, 0, LocaleUtil.US);
+		assertSearchHitsLength(title, 0);
 
 		_searchContext.setAttribute(
 			Field.STATUS, new int[] {WorkflowConstants.STATUS_IN_TRASH});
 
-		assertSearchHitsLength(title, 1, LocaleUtil.US);
+		assertSearchHitsLength(title, 1);
 	}
 
 	@Test
