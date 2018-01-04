@@ -114,7 +114,7 @@ public abstract class BasePortletDataHandlerTestCase {
 
 		List<StagedModel> stagedModels = getStagedModels();
 
-		Assert.assertEquals(0, stagedModels.size());
+		Assert.assertEquals(stagedModels.toString(), 0, stagedModels.size());
 
 		for (String preferenceKey :
 				portletDataHandler.getDataPortletPreferences()) {
