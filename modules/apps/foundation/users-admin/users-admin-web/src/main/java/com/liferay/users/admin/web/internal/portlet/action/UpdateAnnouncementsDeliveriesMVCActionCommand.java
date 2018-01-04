@@ -99,10 +99,11 @@ public class UpdateAnnouncementsDeliveriesMVCActionCommand
 			ActionRequest actionRequest, User user)
 		throws Exception {
 
-		if (actionRequest.getParameter(
-				"announcementsType" + AnnouncementsEntryConstants.TYPES[0] +
-					"Email") == null) {
+		String email = actionRequest.getParameter(
+			"announcementsType" + AnnouncementsEntryConstants.TYPES[0] +
+				"Email");
 
+		if (email == null) {
 			return _announcementsDeliveryLocalService.getUserDeliveries(
 				user.getUserId());
 		}
