@@ -396,9 +396,9 @@ public class DDLFormEmailNotificationSender {
 			portletNamespace.concat("recordSetId"),
 			new String[] {String.valueOf(recordSet.getRecordSetId())});
 
-		return _portal.getControlPanelFullURL(
-			themeDisplay.getScopeGroupId(),
-			DDLFormPortletKeys.DYNAMIC_DATA_LISTS_FORM_ADMIN, params);
+		return _portal.getSiteAdminURL(
+			themeDisplay, DDLFormPortletKeys.DYNAMIC_DATA_LISTS_FORM_ADMIN,
+			params);
 	}
 
 	protected String getViewFormURL(
@@ -423,9 +423,9 @@ public class DDLFormEmailNotificationSender {
 			portletNamespace.concat("recordSetId"),
 			new String[] {String.valueOf(recordSet.getRecordSetId())});
 
-		return _portal.getControlPanelFullURL(
-			themeDisplay.getScopeGroupId(),
-			DDLFormPortletKeys.DYNAMIC_DATA_LISTS_FORM_ADMIN, params);
+		return _portal.getSiteAdminURL(
+			themeDisplay, DDLFormPortletKeys.DYNAMIC_DATA_LISTS_FORM_ADMIN,
+			params);
 	}
 
 	protected void populateParameters(
