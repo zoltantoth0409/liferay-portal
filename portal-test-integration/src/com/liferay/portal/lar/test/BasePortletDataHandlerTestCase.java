@@ -55,6 +55,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.portlet.PortletPreferences;
@@ -111,7 +112,9 @@ public abstract class BasePortletDataHandlerTestCase {
 		portletDataHandler.deleteData(
 			portletDataContext, portletId, portletPreferences);
 
-		Assert.assertEquals(0, getStagedModels().size());
+		List<StagedModel> stagedModels = getStagedModels();
+
+		Assert.assertEquals(0, stagedModels.size());
 
 		for (String preferenceKey :
 				portletDataHandler.getDataPortletPreferences()) {
@@ -157,11 +160,13 @@ public abstract class BasePortletDataHandlerTestCase {
 
 			for (Node node : stagedModelNodes) {
 				if (node instanceof Element) {
-					Attribute uuidAttribute = ((Element)node).attribute("uuid");
+					Element nodeElement = (Element)node;
+
+					Attribute uuidAttribute = nodeElement.attribute("uuid");
 
 					String uuid = uuidAttribute.getValue();
 
-					if (stagedModel.getUuid().equals(uuid)) {
+					if (Objects.equals(stagedModel.getUuid(), uuid)) {
 						contains = true;
 					}
 				}
@@ -551,7 +556,9 @@ public abstract class BasePortletDataHandlerTestCase {
 	}
 
 	protected long getExportModelCount() {
-		return getStagedModels().size();
+		List<StagedModel> stagedModels = getStagedModels();
+
+		return stagedModels.size();
 	}
 
 	protected PortletDataHandlerControl[] getImportControls() {
@@ -691,9 +698,11 @@ public abstract class BasePortletDataHandlerTestCase {
 			boolean contains = false;
 
 			for (PortletDataHandlerControl actualControl : actualControls) {
-				if (expectedControl.getControlName().equals(
+				if (Objects.equals(
+						expectedControl.getControlName(),
 						actualControl.getControlName()) &&
-					expectedControl.getControlLabel().equals(
+					Objects.equals(
+						expectedControl.getControlLabel(),
 						actualControl.getControlLabel()) &&
 					(expectedControl.isDisabled() ==
 						actualControl.isDisabled())) {
