@@ -274,7 +274,7 @@ public class FragmentEntryLocalServiceImpl
 	}
 
 	protected void validateContent(String html) throws PortalException {
-		_fragmentEntryProcessorRegistry.validateFragmentEntryHtml(html);
+		_fragmentEntryProcessorRegistry.validateFragmentEntryHTML(html);
 	}
 
 	private HtmlPreviewEntry _updateHtmlPreviewEntry(

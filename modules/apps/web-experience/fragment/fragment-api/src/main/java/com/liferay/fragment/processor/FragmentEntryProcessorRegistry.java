@@ -47,11 +47,11 @@ public class FragmentEntryProcessorRegistry {
 		_fragmentEntryProcessors.remove(fragmentEntryProcessor);
 	}
 
-	public void validateFragmentEntryHtml(String html) throws PortalException {
+	public void validateFragmentEntryHTML(String html) throws PortalException {
 		for (FragmentEntryProcessor fragmentEntryProcessor :
 				_fragmentEntryProcessors) {
 
-			fragmentEntryProcessor.validateFragmentEntryHtml(html);
+			fragmentEntryProcessor.validateFragmentEntryHTML(html);
 		}
 	}
 
