@@ -61,12 +61,12 @@ public class PageAttachmentWikiUploadFileEntryHandler
 			ActionKeys.ADD_ATTACHMENT);
 
 		String fileName = uploadPortletRequest.getFileName(_PARAMETER_NAME);
-		String[] mimeTypes = ParamUtil.getParameterValues(
-			uploadPortletRequest, "mimeTypes");
 		String contentType = uploadPortletRequest.getContentType(
 			_PARAMETER_NAME);
+		String[] mimeTypes = ParamUtil.getParameterValues(
+			uploadPortletRequest, "mimeTypes");
 
-		_validateFile(fileName, mimeTypes, contentType);
+		_validateFile(fileName, contentType, mimeTypes);
 
 		try (InputStream inputStream =
 				uploadPortletRequest.getFileAsStream(_PARAMETER_NAME)) {
@@ -78,7 +78,7 @@ public class PageAttachmentWikiUploadFileEntryHandler
 	}
 
 	private void _validateFile(
-			String fileName, String[] mimeTypes, String contentType)
+			String fileName, String contentType, String[] mimeTypes)
 		throws PortalException {
 
 		if (ArrayUtil.isEmpty(mimeTypes)) {
