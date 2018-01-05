@@ -932,7 +932,7 @@
 		<execute function="AssertLocation" value1="${portalURL}/en/web/site-name/language-page" />
 
 		<execute macro="Navigator#openSpecificURL">
-			<var name="url" value="${portalURL}/fr" />
+			<var name="url" value="${portalURL}/fr/web/guest/home" />
 		</execute>
 
 		<execute macro="Alert#closePortalLocalizationWarning" />
@@ -940,7 +940,7 @@
 		<execute function="AssertLocation" value1="${portalURL}/en/web/guest/home" />
 
 		<execute macro="User#loginPG">
-			<var name="specificURL" value="${portalURL}/fr" />
+			<var name="specificURL" value="${portalURL}/fr/web/guest/home" />
 		</execute>
 
 		<execute function="AssertLocation" value1="${portalURL}/web/guest/home" />
