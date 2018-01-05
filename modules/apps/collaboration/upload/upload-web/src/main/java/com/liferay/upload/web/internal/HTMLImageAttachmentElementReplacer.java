@@ -60,12 +60,12 @@ public class HTMLImageAttachmentElementReplacer
 	}
 
 	private Element _toElement(String originalImgTag) {
+		Document document = Jsoup.parseBodyFragment(originalImgTag);
+
 		Document.OutputSettings outputSettings = new Document.OutputSettings();
 
 		outputSettings.prettyPrint(false);
 		outputSettings.syntax(Document.OutputSettings.Syntax.xml);
-
-		Document document = Jsoup.parseBodyFragment(originalImgTag);
 
 		document.outputSettings(outputSettings);
 
