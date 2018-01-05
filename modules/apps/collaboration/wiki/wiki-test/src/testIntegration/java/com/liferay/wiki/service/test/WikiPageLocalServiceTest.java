@@ -897,7 +897,8 @@ public class WikiPageLocalServiceTest {
 		long[] assetCategoryIds = AssetCategoryLocalServiceUtil.getCategoryIds(
 			WikiPage.class.getName(), page.getResourcePrimKey());
 
-		_assertArrayEquals(serviceContext.getAssetCategoryIds(), assetCategoryIds);
+		_assertArrayEquals(
+			serviceContext.getAssetCategoryIds(), assetCategoryIds);
 
 		AssetEntry assetEntry = AssetEntryLocalServiceUtil.getEntry(
 			WikiPage.class.getName(), page.getResourcePrimKey());
@@ -908,7 +909,8 @@ public class WikiPageLocalServiceTest {
 		long[] assetLinkEntryIds = ListUtil.toLongArray(
 			assetLinks, AssetLink.ENTRY_ID2_ACCESSOR);
 
-		_assertArrayEquals(serviceContext.getAssetLinkEntryIds(), assetLinkEntryIds);
+		_assertArrayEquals(
+			serviceContext.getAssetLinkEntryIds(), assetLinkEntryIds);
 
 		String[] assetTagNames = AssetTagLocalServiceUtil.getTagNames(
 			WikiPage.class.getName(), page.getResourcePrimKey());
