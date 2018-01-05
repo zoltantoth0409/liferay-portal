@@ -131,7 +131,9 @@ public class CalendarBookingIndexerTest {
 		return searchContext;
 	}
 
-	protected CalendarBooking addCalendarBooking(String title) throws PortalException {
+	protected CalendarBooking addCalendarBooking(String title)
+		throws PortalException {
+
 		ServiceContext serviceContext = new ServiceContext();
 
 		CalendarResource calendarResource =
