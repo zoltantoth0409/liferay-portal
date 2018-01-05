@@ -367,7 +367,7 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 
 			_portletApps.remove(servletContextName);
 
-			ExtraPortletAppConfigRegistry.unRegisterExtraPortletAppConfig(
+			ExtraPortletAppConfigRegistry.unregisterExtraPortletAppConfig(
 				servletContextName);
 		}
 
