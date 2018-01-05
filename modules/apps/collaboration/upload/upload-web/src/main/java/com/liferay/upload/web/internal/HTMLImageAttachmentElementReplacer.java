@@ -43,12 +43,12 @@ public class HTMLImageAttachmentElementReplacer
 		String fileEntryURL = _portletFileRepository.getPortletFileEntryURL(
 			null, fileEntry, StringPool.BLANK);
 
-		Element image = _parseImgTag(originalImgHtmlElement);
+		Element element = _toElement(originalImgHtmlElement);
 
-		image.attr("src", fileEntryURL);
-		image.removeAttr(EditorConstants.ATTRIBUTE_DATA_IMAGE_ID);
+		element.attr("src", fileEntryURL);
+		element.removeAttr(EditorConstants.ATTRIBUTE_DATA_IMAGE_ID);
 
-		return image.toString();
+		return element.toString();
 	}
 
 	@Reference(unbind = "-")
@@ -58,7 +58,7 @@ public class HTMLImageAttachmentElementReplacer
 		_portletFileRepository = portletFileRepository;
 	}
 
-	private Element _parseImgTag(String originalImgTag) {
+	private Element _toElement(String originalImgTag) {
 		Document.OutputSettings outputSettings = new Document.OutputSettings();
 
 		outputSettings.prettyPrint(false);
@@ -68,7 +68,9 @@ public class HTMLImageAttachmentElementReplacer
 
 		document.outputSettings(outputSettings);
 
-		return document.body().child(0);
+		Element bodyElement = document.body();
+		
+		return bodyElement.child(0);
 	}
 
 	private PortletFileRepository _portletFileRepository;
