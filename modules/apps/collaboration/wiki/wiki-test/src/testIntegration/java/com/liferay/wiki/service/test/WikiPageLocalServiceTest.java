@@ -1043,18 +1043,20 @@ public class WikiPageLocalServiceTest {
 			serviceContext, revertedPage, hasExpandoValues);
 	}
 
-	private void _assertArrayEquals(long[] expecteds, long[] actuals) {
-		Arrays.sort(expecteds);
-		Arrays.sort(actuals);
+	private void _assertArrayEquals(long[] expectedArray, long[] actualArray) {
+		Arrays.sort(expectedArray);
+		Arrays.sort(actualArray);
 
-		Assert.assertArrayEquals(expecteds, actuals);
+		Assert.assertArrayEquals(expectedArray, actualArray);
 	}
 
-	private void _assertArrayEquals(String[] expecteds, String[] actuals) {
-		Arrays.sort(expecteds);
-		Arrays.sort(actuals);
+	private void _assertArrayEquals(
+		String[] expectedArray, String[] actualArray) {
 
-		Assert.assertArrayEquals(expecteds, actuals);
+		Arrays.sort(expectedArray);
+		Arrays.sort(actualArray);
+
+		Assert.assertArrayEquals(expectedArray, actualArray);
 	}
 
 	@DeleteAfterTestRun
