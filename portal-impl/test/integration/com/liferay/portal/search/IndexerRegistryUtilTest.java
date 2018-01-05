@@ -41,15 +41,15 @@ public class IndexerRegistryUtilTest {
 
 	@Test
 	public void testGetIndexerByIndexerClassName() throws Exception {
-		Indexer<Organization> organizationIndexer =
-			IndexerRegistryUtil.getIndexer(OrganizationIndexer.class.getName());
-
-		Assert.assertNotNull(organizationIndexer);
-
 		Indexer<Contact> contactIndexer = IndexerRegistryUtil.getIndexer(
 			ContactIndexer.class.getName());
 
 		Assert.assertNotNull(contactIndexer);
+
+		Indexer<Organization> organizationIndexer =
+			IndexerRegistryUtil.getIndexer(OrganizationIndexer.class.getName());
+
+		Assert.assertNotNull(organizationIndexer);
 	}
 
 	@Test
