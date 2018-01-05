@@ -70,7 +70,7 @@ public class HTMLImageAttachmentElementReplacer
 		document.outputSettings(outputSettings);
 
 		Element bodyElement = document.body();
-		
+
 		return bodyElement.child(0);
 	}
 
