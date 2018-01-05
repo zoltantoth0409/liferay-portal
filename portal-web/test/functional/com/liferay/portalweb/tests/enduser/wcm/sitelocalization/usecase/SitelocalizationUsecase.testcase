@@ -967,7 +967,7 @@
 		<execute macro="Site#viewVirtualHostsURLPG">
 			<var name="pageName" value="Language Page" />
 			<var name="siteName" value="Site Name" />
-			<var name="sitePageURL" value="http://www.able.com:8080/en/web/site-name" />
+			<var name="sitePageURL" value="http://www.able.com:8080/en/web/site-name/" />
 		</execute>
 	</command>
 
