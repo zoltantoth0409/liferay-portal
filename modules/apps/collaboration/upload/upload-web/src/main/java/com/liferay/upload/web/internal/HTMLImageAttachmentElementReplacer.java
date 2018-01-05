@@ -40,12 +40,13 @@ public class HTMLImageAttachmentElementReplacer
 
 	@Override
 	public String replace(String originalImgHtmlElement, FileEntry fileEntry) {
+		Element element = _toElement(originalImgHtmlElement);
+
 		String fileEntryURL = _portletFileRepository.getPortletFileEntryURL(
 			null, fileEntry, StringPool.BLANK);
 
-		Element element = _toElement(originalImgHtmlElement);
-
 		element.attr("src", fileEntryURL);
+
 		element.removeAttr(EditorConstants.ATTRIBUTE_DATA_IMAGE_ID);
 
 		return element.toString();
