@@ -31,8 +31,8 @@ public class ConfigurationScopedPidUtil {
 
 		Objects.requireNonNull(
 			basePid,
-			"The basePid must not be null. A scoped PID must correspond to a " +
-				"configuration PID");
+			"The base PID must not be null. A scoped PID must correspond to " +
+				"a configuration PID.");
 
 		if ((scope == null) || scope.equals(Scope.SYSTEM)) {
 			return basePid;
@@ -40,8 +40,8 @@ public class ConfigurationScopedPidUtil {
 
 		Objects.requireNonNull(
 			scopePrimKey,
-			"The scopePrimKey must not be null. A scoped PID must correspond " +
-				"to a primary key for its scope.");
+			"The scope primary key must not be null. A scoped PID must " +
+				"correspond to a primary key for its scope.");
 
 		return StringBundler.concat(
 			basePid, scope.getDelimiterString(), scopePrimKey);
