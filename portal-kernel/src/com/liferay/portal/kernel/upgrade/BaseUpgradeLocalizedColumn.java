@@ -36,7 +36,8 @@ public abstract class BaseUpgradeLocalizedColumn extends UpgradeProcess {
 	protected void upgradeLocalizedColumn(
 			ResourceBundleLoader resourceBundleLoader, String tableName,
 			String columnName, String originalContent,
-			String localizationMapKey, String xmlKey, long[] companyIds)
+			String localizationMapKey, String localizationXMLKey,
+			long[] companyIds)
 		throws SQLException {
 
 		Class<?> clazz = getClass();
@@ -49,13 +50,13 @@ public abstract class BaseUpgradeLocalizedColumn extends UpgradeProcess {
 		for (long companyId : companyIds) {
 			_upgrade(
 				resourceBundleLoader, tableName, columnName, originalContent,
-				localizationMapKey, xmlKey, companyId);
+				localizationMapKey, localizationXMLKey, companyId);
 		}
 	}
 
 	private String _getLocalizationXML(
-			String localizationMapKey, String xmlKey, long companyId,
-			ResourceBundleLoader resourceBundleLoader)
+			String localizationMapKey, String localizationXMLKey,
+			long companyId, ResourceBundleLoader resourceBundleLoader)
 		throws SQLException {
 
 		Long originalCompanyId = CompanyThreadLocal.getCompanyId();
@@ -71,7 +72,7 @@ public abstract class BaseUpgradeLocalizedColumn extends UpgradeProcess {
 				companyId);
 
 			return LocalizationUtil.updateLocalization(
-				localizationMap, "", xmlKey, defaultLanguageId);
+				localizationMap, "", localizationXMLKey, defaultLanguageId);
 		}
 		finally {
 			CompanyThreadLocal.setCompanyId(originalCompanyId);
@@ -81,11 +82,13 @@ public abstract class BaseUpgradeLocalizedColumn extends UpgradeProcess {
 	private void _upgrade(
 			ResourceBundleLoader resourceBundleLoader, String tableName,
 			String columnName, String originalContent,
-			String localizationMapKey, String xmlKey, long companyId)
+			String localizationMapKey, String localizationXMLKey,
+			long companyId)
 		throws SQLException {
 
 		String localizationXML = _getLocalizationXML(
-			localizationMapKey, xmlKey, companyId, resourceBundleLoader);
+			localizationMapKey, localizationXMLKey, companyId,
+			resourceBundleLoader);
 
 		String sql = StringBundler.concat(
 			"update ", tableName, " set ", columnName, " = ? where ",
