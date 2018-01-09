@@ -2715,7 +2715,6 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 
 				String locale = GetterUtil.getString(
 					localeEncodingMappingElement.elementText("locale"));
-
 				String encoding = GetterUtil.getString(
 					localeEncodingMappingElement.elementText("encoding"));
 
