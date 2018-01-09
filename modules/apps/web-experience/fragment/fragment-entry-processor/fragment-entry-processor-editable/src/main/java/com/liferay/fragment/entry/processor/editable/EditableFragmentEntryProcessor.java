@@ -74,9 +74,11 @@ public class EditableFragmentEntryProcessor implements FragmentEntryProcessor {
 
 		Collection<String> ids = idsMap.keySet();
 
-		Stream<String> idStream = ids.stream().filter(id -> idsMap.get(id) > 1);
+		Stream<String> idsStream = ids.stream();
 
-		if (idStream.count() > 0) {
+		idsStream = idsStream.filter(id -> idsMap.get(id) > 1);
+
+		if (idsStream.count() > 0) {
 			throw new FragmentEntryContentException(
 				LanguageUtil.get(
 					resourceBundle,
