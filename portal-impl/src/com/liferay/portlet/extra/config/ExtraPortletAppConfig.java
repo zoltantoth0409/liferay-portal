@@ -25,8 +25,8 @@ public class ExtraPortletAppConfig {
 		_localeEncodingMap = localeEncodingMap;
 	}
 
-	public String getEncoding(String localeString) {
-		return _localeEncodingMap.get(localeString);
+	public String getEncoding(String locale) {
+		return _localeEncodingMap.get(locale);
 	}
 
 	private final Map<String, String> _localeEncodingMap;
