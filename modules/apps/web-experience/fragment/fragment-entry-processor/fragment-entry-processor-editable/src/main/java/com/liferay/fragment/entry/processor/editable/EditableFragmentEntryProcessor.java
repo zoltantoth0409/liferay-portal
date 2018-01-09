@@ -97,17 +97,18 @@ public class EditableFragmentEntryProcessor implements FragmentEntryProcessor {
 
 		Stream<Node> editableNodesStream = editableNodes.stream();
 
-		if (!editableNodesStream.allMatch(
-				node -> {
-					Element element = (Element)node;
+		boolean match = editableNodesStream.allMatch(
+			node -> {
+				Element element = (Element)node;
 
-					if (Validator.isNotNull(element.attributeValue("id"))) {
-						return true;
-					}
+				if (Validator.isNotNull(element.attributeValue("id"))) {
+					return true;
+				}
 
-					return false;
-				})) {
+				return false;
+			});
 
+		if (!match) {
 			throw new FragmentEntryContentException(
 				LanguageUtil.get(
 					resourceBundle,
