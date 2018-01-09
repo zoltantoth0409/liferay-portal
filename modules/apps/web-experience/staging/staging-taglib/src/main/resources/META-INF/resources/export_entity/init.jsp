@@ -31,6 +31,6 @@ if (Validator.isNotNull(classNameId)) {
 	className = classNameObject.getClassName();
 }
 
-long modelGroupId = GetterUtil.getLong(request.getAttribute("liferay-staging:export-entity:groupId"));
+long exportEntityGroupId = GetterUtil.getLong(request.getAttribute("liferay-staging:export-entity:groupId"));
 String uuid = GetterUtil.getString(request.getAttribute("liferay-staging:export-entity:uuid"));
 %>
