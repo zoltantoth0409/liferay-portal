@@ -215,10 +215,10 @@ public class OrganizationIndexer extends BaseIndexer<Organization> {
 			Field.ORGANIZATION_ID, organization.getOrganizationId());
 		document.addKeyword(Field.TREE_PATH, organization.buildTreePath());
 		document.addKeyword(Field.TYPE, organization.getType());
-		document.addKeyword(
-			"parentOrganizationId", organization.getParentOrganizationId());
 		document.addTextSortable(
 			"nameTreePath", buildNameTreePath(organization));
+		document.addKeyword(
+			"parentOrganizationId", organization.getParentOrganizationId());
 
 		populateAddresses(
 			document, organization.getAddresses(), organization.getRegionId(),
