@@ -89,7 +89,9 @@ public class EditableFragmentEntryProcessor implements FragmentEntryProcessor {
 
 		List<Node> editableNodes = editableXPath.selectNodes(document);
 
-		if (!editableNodes.stream().allMatch(
+		Stream<Node> editableNodesStream = editableNodes.stream();
+
+		if (!editableNodesStream.allMatch(
 				node -> Validator.isNotNull(
 					((Element)node).attributeValue("id")))) {
 
