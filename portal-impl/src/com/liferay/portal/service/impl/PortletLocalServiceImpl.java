@@ -2730,11 +2730,11 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 	private void _readWebXML(String xml, String servletContextName)
 		throws Exception {
 
+		Map<String, String> localeEncodingMap = new HashMap<>();
+
 		Document document = UnsecureSAXReaderUtil.read(xml);
 
 		Element rootElement = document.getRootElement();
-
-		Map<String, String> localeEncodingMap = new HashMap<>();
 
 		for (Element localeEncodingMappingListElement :
 				rootElement.elements("locale-encoding-mapping-list")) {
