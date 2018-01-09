@@ -67,7 +67,9 @@ public class EditableFragmentEntryProcessor implements FragmentEntryProcessor {
 
 		List<Node> uniqueNodes = uniqueXPath.selectNodes(document);
 
-		Map<String, Long> idsMap = uniqueNodes.stream().collect(
+		Stream<Node> uniqueNodesStream = uniqueNodes.stream();
+
+		Map<String, Long> idsMap = uniqueNodesStream.collect(
 			Collectors.groupingBy(
 				node -> ((Element)node).attributeValue("id"),
 				Collectors.counting()));
