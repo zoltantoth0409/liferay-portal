@@ -58,7 +58,7 @@ public @interface ExtendedObjectClassDefinition {
 		}
 
 		public String getDelimiterString() {
-			return StringBundler.concat(_separator, name(), _separator);
+			return StringBundler.concat(_SEPARATOR, name(), _SEPARATOR);
 		}
 
 		public String getValue() {
@@ -74,7 +74,7 @@ public @interface ExtendedObjectClassDefinition {
 			_value = value;
 		}
 
-		private static final String _separator = StringPool.DOUBLE_UNDERLINE;
+		private static final String _SEPARATOR = StringPool.DOUBLE_UNDERLINE;
 
 		private final String _value;
 
