@@ -71,7 +71,11 @@ public class EditableFragmentEntryProcessor implements FragmentEntryProcessor {
 
 		Map<String, Long> idsMap = uniqueNodesStream.collect(
 			Collectors.groupingBy(
-				node -> ((Element)node).attributeValue("id"),
+				node -> {
+					Element element = (Element)node;
+
+					return element.attributeValue("id");
+				},
 				Collectors.counting()));
 
 		Collection<String> ids = idsMap.keySet();
