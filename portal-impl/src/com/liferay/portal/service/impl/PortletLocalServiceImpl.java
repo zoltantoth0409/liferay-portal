@@ -2700,7 +2700,7 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 	private void _readWebXML(String xml, String servletContextName)
 		throws Exception {
 
-		Map<String, String> localeEncodingMap = new HashMap<>();
+		Map<String, String> localeEncodings = new HashMap<>();
 
 		Document document = UnsecureSAXReaderUtil.read(xml);
 
@@ -2719,12 +2719,12 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 				String encoding = GetterUtil.getString(
 					localeEncodingMappingElement.elementText("encoding"));
 
-				localeEncodingMap.put(locale, encoding);
+				localeEncodings.put(locale, encoding);
 			}
 		}
 
 		ExtraPortletAppConfig extraPortletAppConfig = new ExtraPortletAppConfig(
-			localeEncodingMap);
+			localeEncodings);
 
 		ExtraPortletAppConfigRegistry.registerExtraPortletAppConfig(
 			servletContextName, extraPortletAppConfig);
