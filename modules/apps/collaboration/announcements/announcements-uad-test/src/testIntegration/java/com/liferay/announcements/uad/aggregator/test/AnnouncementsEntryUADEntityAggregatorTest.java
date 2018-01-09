@@ -58,15 +58,15 @@ public class AnnouncementsEntryUADEntityAggregatorTest
 
 	@Test
 	public void testCount() throws Exception {
-		addEntry(_user.getUserId());
+		addAnnouncementsEntry(_user.getUserId());
 
 		Assert.assertEquals(1, _uadEntityAggregator.count(_user.getUserId()));
 	}
 
 	@Test
 	public void testGetUADEntities() throws Exception {
-		addEntry(TestPropsValues.getUserId());
-		addEntry(_user.getUserId());
+		addAnnouncementsEntry(TestPropsValues.getUserId());
+		addAnnouncementsEntry(_user.getUserId());
 
 		List<UADEntity> uadEntities = _uadEntityAggregator.getUADEntities(
 			_user.getUserId());
@@ -88,7 +88,8 @@ public class AnnouncementsEntryUADEntityAggregatorTest
 
 	@Test
 	public void testGetUADEntity() throws Exception {
-		AnnouncementsEntry announcementsEntry = addEntry(_user.getUserId());
+		AnnouncementsEntry announcementsEntry = addAnnouncementsEntry(
+			_user.getUserId());
 
 		long entryId = announcementsEntry.getEntryId();
 

@@ -76,7 +76,8 @@ public class AnnouncementsEntryUADEntityExporterTest
 
 	@Test
 	public void testExport() throws Exception {
-		AnnouncementsEntry announcementsEntry = addEntry(_user.getUserId());
+		AnnouncementsEntry announcementsEntry = addAnnouncementsEntry(
+			_user.getUserId());
 
 		UADEntity uadEntity = _uadEntityAggregator.getUADEntity(
 			Long.toString(announcementsEntry.getEntryId()));
@@ -94,9 +95,9 @@ public class AnnouncementsEntryUADEntityExporterTest
 
 	@Test(expected = NoSuchFileEntryException.class)
 	public void testExportAll() throws Exception {
-		AnnouncementsEntry announcementsEntry = addEntry(
+		AnnouncementsEntry announcementsEntry = addAnnouncementsEntry(
 			TestPropsValues.getUserId());
-		AnnouncementsEntry announcementsEntryExported = addEntry(
+		AnnouncementsEntry announcementsEntryExported = addAnnouncementsEntry(
 			_user.getUserId());
 
 		_uadEntityExporter.exportAll(_user.getUserId());

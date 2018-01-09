@@ -65,7 +65,8 @@ public class AnnouncementsEntryUADEntityAnonymizerTest
 
 	@Test
 	public void testAutoAnonymize() throws Exception {
-		AnnouncementsEntry announcementsEntry = addEntry(_user.getUserId());
+		AnnouncementsEntry announcementsEntry = addAnnouncementsEntry(
+			_user.getUserId());
 
 		long entryId = announcementsEntry.getEntryId();
 
@@ -79,10 +80,10 @@ public class AnnouncementsEntryUADEntityAnonymizerTest
 
 	@Test
 	public void testAutoAnonymizeAll() throws Exception {
-		AnnouncementsEntry announcementsEntry = addEntry(
+		AnnouncementsEntry announcementsEntry = addAnnouncementsEntry(
 			TestPropsValues.getUserId());
-		AnnouncementsEntry announcementsEntryAutoAnonymize = addEntry(
-			_user.getUserId());
+		AnnouncementsEntry announcementsEntryAutoAnonymize =
+			addAnnouncementsEntry(_user.getUserId());
 
 		_uadEntityAnonymizer.autoAnonymizeAll(_user.getUserId());
 
@@ -103,7 +104,8 @@ public class AnnouncementsEntryUADEntityAnonymizerTest
 
 	@Test(expected = NoSuchEntryException.class)
 	public void testDelete() throws Exception {
-		AnnouncementsEntry announcementsEntry = addEntry(_user.getUserId());
+		AnnouncementsEntry announcementsEntry = addAnnouncementsEntry(
+			_user.getUserId());
 
 		long entryId = announcementsEntry.getEntryId();
 
@@ -117,9 +119,9 @@ public class AnnouncementsEntryUADEntityAnonymizerTest
 
 	@Test
 	public void testDeleteAll() throws Exception {
-		AnnouncementsEntry announcementsEntry = addEntry(
+		AnnouncementsEntry announcementsEntry = addAnnouncementsEntry(
 			TestPropsValues.getUserId());
-		addEntry(_user.getUserId());
+		addAnnouncementsEntry(_user.getUserId());
 
 		_uadEntityAnonymizer.deleteAll(_user.getUserId());
 

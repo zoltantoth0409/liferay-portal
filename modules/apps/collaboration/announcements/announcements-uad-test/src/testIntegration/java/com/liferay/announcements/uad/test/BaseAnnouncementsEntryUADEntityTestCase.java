@@ -40,7 +40,9 @@ public abstract class BaseAnnouncementsEntryUADEntityTestCase {
 		_group = GroupTestUtil.addGroup();
 	}
 
-	protected AnnouncementsEntry addEntry(long userId) throws Exception {
+	protected AnnouncementsEntry addAnnouncementsEntry(long userId)
+		throws Exception {
+
 		Calendar calendar = CalendarFactoryUtil.getCalendar();
 
 		calendar.add(Calendar.DATE, 1);
