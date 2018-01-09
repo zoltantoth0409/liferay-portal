@@ -1174,6 +1174,10 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 			double webXmlVersion, File srcFile, String displayName)
 		throws Exception {
 
+		if (displayName.startsWith(StringPool.FORWARD_SLASH)) {
+			displayName = displayName.substring(1);
+		}
+
 		StringBundler sb = new StringBundler(62);
 
 		sb.append("<display-name>");
