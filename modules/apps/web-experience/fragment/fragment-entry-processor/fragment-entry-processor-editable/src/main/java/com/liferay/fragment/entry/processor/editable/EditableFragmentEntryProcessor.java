@@ -58,7 +58,8 @@ public class EditableFragmentEntryProcessor implements FragmentEntryProcessor {
 		}
 		catch (DocumentException de) {
 			throw new FragmentEntryContentException(
-				LanguageUtil.get(resourceBundle, "invalid-fragment-entry-html"),
+				LanguageUtil.get(
+					resourceBundle, "fragment-entry-html-is-invalid"),
 				de);
 		}
 
