@@ -64,6 +64,7 @@ public class UserDisplayContext {
 			WebKeys.THEME_DISPLAY);
 
 		_permissionChecker = themeDisplay.getPermissionChecker();
+
 		_selUser = PortalUtil.getSelectedUser(request);
 		_themeDisplay = themeDisplay;
 	}
