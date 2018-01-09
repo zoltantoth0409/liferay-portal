@@ -171,12 +171,12 @@ public class ConfigurationScopedPidUtilTest {
 
 	@Test
 	public void testGetScopeSeparatorString() {
-		Assert.assertEquals("__SYSTEM__", Scope.SYSTEM.getDelimiterString());
 		Assert.assertEquals("__COMPANY__", Scope.COMPANY.getDelimiterString());
 		Assert.assertEquals("__GROUP__", Scope.GROUP.getDelimiterString());
 		Assert.assertEquals(
 			"__PORTLET_INSTANCE__",
 			Scope.PORTLET_INSTANCE.getDelimiterString());
+		Assert.assertEquals("__SYSTEM__", Scope.SYSTEM.getDelimiterString());
 	}
 
 	private String _basePid;
