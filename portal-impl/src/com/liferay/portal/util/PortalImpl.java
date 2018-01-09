@@ -8723,15 +8723,15 @@ public class PortalImpl implements Portal {
 	}
 
 	private boolean _isCustomPortletMode(PortletMode portletMode) {
-		if (LiferayPortletMode.VIEW.equals(portletMode) ||
-			LiferayPortletMode.EDIT.equals(portletMode) ||
-			LiferayPortletMode.HELP.equals(portletMode) ||
-			LiferayPortletMode.ABOUT.equals(portletMode) ||
+		if (LiferayPortletMode.ABOUT.equals(portletMode) ||
 			LiferayPortletMode.CONFIG.equals(portletMode) ||
+			LiferayPortletMode.EDIT.equals(portletMode) ||
 			LiferayPortletMode.EDIT_DEFAULTS.equals(portletMode) ||
 			LiferayPortletMode.EDIT_GUEST.equals(portletMode) ||
+			LiferayPortletMode.HELP.equals(portletMode) ||
 			LiferayPortletMode.PREVIEW.equals(portletMode) ||
-			LiferayPortletMode.PRINT.equals(portletMode)) {
+			LiferayPortletMode.PRINT.equals(portletMode) ||
+			LiferayPortletMode.VIEW.equals(portletMode)) {
 
 			return false;
 		}
