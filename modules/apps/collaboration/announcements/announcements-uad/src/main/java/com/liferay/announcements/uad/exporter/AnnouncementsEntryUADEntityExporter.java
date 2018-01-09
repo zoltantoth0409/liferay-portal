@@ -68,8 +68,6 @@ public class AnnouncementsEntryUADEntityExporter extends BaseUADEntityExporter {
 
 		Folder folder = _getFolder(announcementsEntry.getCompanyId());
 
-		String fileName = uadEntity.getUADEntityId() + ".json";
-
 		try {
 			InputStream is = new UnsyncByteArrayInputStream(
 				json.getBytes(StringPool.UTF8));
@@ -78,7 +76,8 @@ public class AnnouncementsEntryUADEntityExporter extends BaseUADEntityExporter {
 				folder.getGroupId(), announcementsEntry.getUserId(),
 				Group.class.getName(), folder.getGroupId(),
 				AnnouncementsPortletKeys.ANNOUNCEMENTS, folder.getFolderId(),
-				is, fileName, ContentTypes.APPLICATION_JSON, false);
+				is, uadEntity.getUADEntityId() + ".json",
+				ContentTypes.APPLICATION_JSON, false);
 		}
 		catch (UnsupportedEncodingException uee) {
 			throw new UADEntityExporterException(uee);
