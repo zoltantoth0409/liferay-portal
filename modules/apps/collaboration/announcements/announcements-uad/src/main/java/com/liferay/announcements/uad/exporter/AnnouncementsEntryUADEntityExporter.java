@@ -68,8 +68,7 @@ public class AnnouncementsEntryUADEntityExporter extends BaseUADEntityExporter {
 
 		Folder folder = _getFolder(announcementsEntry.getCompanyId());
 
-		String fileName =
-			uadEntity.getUADEntityId() + StringPool.PERIOD + "json";
+		String fileName = uadEntity.getUADEntityId() + ".json";
 
 		try {
 			InputStream is = new UnsyncByteArrayInputStream(
