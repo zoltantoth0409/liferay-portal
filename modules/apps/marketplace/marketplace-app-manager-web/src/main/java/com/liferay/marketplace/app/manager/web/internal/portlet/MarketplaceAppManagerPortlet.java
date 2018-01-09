@@ -535,8 +535,6 @@ public class MarketplaceAppManagerPortlet extends MVCPortlet {
 		_portletService = portletService;
 	}
 
-	private static final String _DEPLOY_TO_PREFIX = "DEPLOY_TO__";
-
 	private AppService _appService;
 
 	@Reference
