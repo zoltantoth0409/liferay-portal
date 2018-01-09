@@ -67,14 +67,14 @@ public class EditableFragmentEntryProcessor implements FragmentEntryProcessor {
 
 		List<Node> uniqueNodes = uniqueXPath.selectNodes(document);
 
-		Map<String, Long> idMap = uniqueNodes.stream().collect(
+		Map<String, Long> idsMap = uniqueNodes.stream().collect(
 			Collectors.groupingBy(
 				node -> ((Element)node).attributeValue("id"),
 				Collectors.counting()));
 
-		Collection<String> ids = idMap.keySet();
+		Collection<String> ids = idsMap.keySet();
 
-		Stream<String> idStream = ids.stream().filter(id -> idMap.get(id) > 1);
+		Stream<String> idStream = ids.stream().filter(id -> idsMap.get(id) > 1);
 
 		if (idStream.count() > 0) {
 			throw new FragmentEntryContentException(
