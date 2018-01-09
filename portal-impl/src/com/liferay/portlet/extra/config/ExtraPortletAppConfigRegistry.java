@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portlet.extraconfig;
+package com.liferay.portlet.extra.config;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;

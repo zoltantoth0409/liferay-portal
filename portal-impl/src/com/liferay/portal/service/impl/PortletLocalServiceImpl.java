@@ -94,8 +94,8 @@ import com.liferay.portal.util.PropsValues;
 import com.liferay.portal.util.WebAppPool;
 import com.liferay.portlet.PortletBagFactory;
 import com.liferay.portlet.UndeployedPortlet;
-import com.liferay.portlet.extraconfig.ExtraPortletAppConfig;
-import com.liferay.portlet.extraconfig.ExtraPortletAppConfigRegistry;
+import com.liferay.portlet.extra.config.ExtraPortletAppConfig;
+import com.liferay.portlet.extra.config.ExtraPortletAppConfigRegistry;
 
 import java.net.URL;
 
