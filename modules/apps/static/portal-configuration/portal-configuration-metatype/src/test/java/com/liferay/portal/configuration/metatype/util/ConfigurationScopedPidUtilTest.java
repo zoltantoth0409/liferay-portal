@@ -39,24 +39,20 @@ public class ConfigurationScopedPidUtilTest {
 			_basePid,
 			ConfigurationScopedPidUtil.buildConfigurationScopedPid(
 				_basePid, Scope.SYSTEM, _scopePrimKey));
-
 		Assert.assertEquals(
 			_basePid,
 			ConfigurationScopedPidUtil.buildConfigurationScopedPid(
 				_basePid, null, _scopePrimKey));
-
 		Assert.assertEquals(
 			StringBundler.concat(
 				_basePid, Scope.COMPANY.getDelimiterString(), _scopePrimKey),
 			ConfigurationScopedPidUtil.buildConfigurationScopedPid(
 				_basePid, Scope.COMPANY, _scopePrimKey));
-
 		Assert.assertEquals(
 			StringBundler.concat(
 				_basePid, Scope.GROUP.getDelimiterString(), _scopePrimKey),
 			ConfigurationScopedPidUtil.buildConfigurationScopedPid(
 				_basePid, Scope.GROUP, _scopePrimKey));
-
 		Assert.assertEquals(
 			StringBundler.concat(
 				_basePid, Scope.PORTLET_INSTANCE.getDelimiterString(),
@@ -69,7 +65,8 @@ public class ConfigurationScopedPidUtilTest {
 				null, Scope.COMPANY, _scopePrimKey);
 
 			Assert.fail(
-				"buildConfigurationScopedPid must not allow a null base PID");
+				"Build configuration scoped PID must not allow a null base " + 
+					"PID");
 		}
 		catch (NullPointerException npe) {
 		}
@@ -79,8 +76,8 @@ public class ConfigurationScopedPidUtilTest {
 				_basePid, Scope.COMPANY, null);
 
 			Assert.fail(
-				"buildConfigurationScopedPid must not allow a null " +
-					"scopePrimKey");
+				"Build configuration scoped PID must not allow a null " +
+					"scope primary key");
 		}
 		catch (NullPointerException npe) {
 		}
@@ -175,11 +172,8 @@ public class ConfigurationScopedPidUtilTest {
 	@Test
 	public void testGetScopeSeparatorString() {
 		Assert.assertEquals("__SYSTEM__", Scope.SYSTEM.getDelimiterString());
-
 		Assert.assertEquals("__COMPANY__", Scope.COMPANY.getDelimiterString());
-
 		Assert.assertEquals("__GROUP__", Scope.GROUP.getDelimiterString());
-
 		Assert.assertEquals(
 			"__PORTLET_INSTANCE__",
 			Scope.PORTLET_INSTANCE.getDelimiterString());
