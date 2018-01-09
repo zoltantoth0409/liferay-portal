@@ -34,7 +34,7 @@ public class AnnouncementsEntryUADEntityTest {
 		MockitoAnnotations.initMocks(this);
 
 		_announcementsEntryUADEntity = new AnnouncementsEntryUADEntity(
-			_userId, _uadEntityId, _announcementsEntry);
+			_USER_ID, _UAD_ENTITY_ID, _announcementsEntry);
 	}
 
 	@Test
@@ -47,7 +47,7 @@ public class AnnouncementsEntryUADEntityTest {
 	@Test
 	public void testGetUADEntityId() throws Exception {
 		Assert.assertEquals(
-			_uadEntityId, _announcementsEntryUADEntity.getUADEntityId());
+			_UAD_ENTITY_ID, _announcementsEntryUADEntity.getUADEntityId());
 	}
 
 	@Test
@@ -59,11 +59,12 @@ public class AnnouncementsEntryUADEntityTest {
 
 	@Test
 	public void testGetUserId() throws Exception {
-		Assert.assertEquals(_userId, _announcementsEntryUADEntity.getUserId());
+		Assert.assertEquals(_USER_ID, _announcementsEntryUADEntity.getUserId());
 	}
 
-	private static final String _uadEntityId = RandomTestUtil.randomString();
-	private static final long _userId = RandomTestUtil.randomLong();
+	private static final String _UAD_ENTITY_ID = RandomTestUtil.randomString();
+
+	private static final long _USER_ID = RandomTestUtil.randomLong();
 
 	@Mock
 	private AnnouncementsEntry _announcementsEntry;
