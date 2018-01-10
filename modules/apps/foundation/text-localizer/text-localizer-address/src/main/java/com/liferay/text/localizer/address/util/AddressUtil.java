@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.text.localizer.taglib.internal.util;
+package com.liferay.text.localizer.address.util;
 
 import com.liferay.portal.kernel.model.Address;
 import com.liferay.portal.kernel.model.Region;
