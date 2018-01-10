@@ -173,7 +173,7 @@ public class UpgradeClassNamesTest {
 
 		addAssetVocabulary(_calEventClassName.getClassNameId());
 
-		_upgradeProcess.upgrade();
+		_upgradeClassNames.upgrade();
 
 		assertNewClassNameIdExists();
 	}
