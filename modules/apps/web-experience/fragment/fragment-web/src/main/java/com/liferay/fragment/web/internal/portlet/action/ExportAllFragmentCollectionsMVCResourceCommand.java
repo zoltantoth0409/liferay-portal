@@ -60,14 +60,14 @@ public class ExportAllFragmentCollectionsMVCResourceCommand
 			WebKeys.THEME_DISPLAY);
 
 		try {
+			String fileName = "collections-" + Time.getTimestamp() + ".zip";
+
 			List<FragmentCollection> fragmentCollections =
 				_fragmentCollectionService.getFragmentCollections(
 					themeDisplay.getScopeGroupId());
 
 			File file = ExportUtil.exportFragmentCollections(
 				fragmentCollections);
-
-			String fileName = "collections-" + Time.getTimestamp() + ".zip";
 
 			PortletResponseUtil.sendFile(
 				resourceRequest, resourceResponse, fileName,
