@@ -246,8 +246,6 @@
 	</command>
 
 	<command name="ChangeBlogsEntryCoverImage" priority="3">
-		<property name="test.name.skip.portal.instance" value="BlogsUsecase#ChangeBlogsEntryCoverImage" />
-
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -1637,8 +1635,6 @@
 	</command>
 
 	<command name="ViewBlogsEntryWithCoverImageFromDMFolders" priority="3">
-		<property name="test.name.skip.portal.instance" value="BlogsUsecase#ViewBlogsEntryWithCoverImageFromDMFolders" />
-
 		<execute macro="Page#add">
 			<var name="pageName" value="Documents and Media Page" />
 		</execute>
@@ -1997,8 +1993,6 @@
 	</command>
 
 	<command name="ViewBlogsEntryWithImageEditedViaItemSelector" priority="4">
-		<property name="test.name.skip.portal.instance" value="BlogsUsecase#ViewBlogsEntryWithImageEditedViaItemSelector" />
-
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoPortlet">
