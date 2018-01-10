@@ -1245,6 +1245,10 @@ public class PortletURLImpl
 		_params = _mergeWithRenderParameters(_params);
 	}
 
+	/**
+	 * @deprecated As of 7.0.0, with no direct replacement
+	 */
+	@Deprecated
 	protected String prependNamespace(String name) {
 		String namespace = getNamespace();
 
