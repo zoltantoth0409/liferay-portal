@@ -72,7 +72,7 @@ public abstract class BaseUserScreenNavigationEntry
 		request.setAttribute(
 			UsersAdminWebKeys.ACTION_COMMAND_NAME, getActionCommandName());
 		request.setAttribute(
-			UsersAdminWebKeys.IS_EDITABLE, isEditable(request, response));
+			UsersAdminWebKeys.EDITABLE, isEditable(request, response));
 		request.setAttribute(UsersAdminWebKeys.JSP_PATH, getJspPath());
 
 		jspRenderer.renderJSP(request, response, "/edit_user_navigation.jsp");

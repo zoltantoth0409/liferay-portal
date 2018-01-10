@@ -18,7 +18,7 @@
 
 <%
 String actionCommandName = (String)request.getAttribute(UsersAdminWebKeys.ACTION_COMMAND_NAME);
-boolean isEditable = (boolean)request.getAttribute(UsersAdminWebKeys.IS_EDITABLE);
+boolean editable = (boolean)request.getAttribute(UsersAdminWebKeys.EDITABLE);
 String jspPath = (String)request.getAttribute(UsersAdminWebKeys.JSP_PATH);
 
 User selUser = PortalUtil.getSelectedUser(request);
@@ -47,7 +47,7 @@ if (!portletName.equals(UsersAdminPortletKeys.MY_ACCOUNT)) {
 		<aui:fieldset>
 			<liferay-util:include page="<%= jspPath %>" servletContext="<%= application %>" />
 
-			<c:if test="<%= isEditable %>">
+			<c:if test="<%= editable %>">
 				<aui:button-row>
 					<aui:button primary="<%= true %>" type="submit" />
 
