@@ -315,7 +315,6 @@ public abstract class StateAwareResponseImpl
 	protected void reset() {
 		_events.clear();
 		_params.clear();
-		_redirectLocation = null;
 
 		try {
 			setPortletMode(PortletMode.VIEW);
@@ -326,6 +325,10 @@ public abstract class StateAwareResponseImpl
 			}
 		}
 
+		_portletMode = null;
+
+		_redirectLocation = null;
+
 		try {
 			setWindowState(WindowState.NORMAL);
 		}
@@ -335,7 +338,6 @@ public abstract class StateAwareResponseImpl
 			}
 		}
 
-		_portletMode = null;
 		_windowState = null;
 
 		_calledSetRenderParameter = false;
