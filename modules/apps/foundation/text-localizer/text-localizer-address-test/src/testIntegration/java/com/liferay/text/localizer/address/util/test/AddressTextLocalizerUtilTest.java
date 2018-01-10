@@ -26,16 +26,14 @@ import com.liferay.portal.kernel.test.util.UserTestUtil;
 import com.liferay.portal.kernel.util.HashMapDictionary;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.text.localizer.address.AddressTextLocalizer;
-import com.liferay.text.localizer.taglib.servlet.taglib.AddressDisplayTag;
-
-import java.lang.reflect.Method;
+import com.liferay.text.localizer.address.USAddressTextLocalizer;
+import com.liferay.text.localizer.address.util.AddressTextLocalizerUtil;
 
 import java.util.Dictionary;
 
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
@@ -57,23 +55,6 @@ public class AddressTextLocalizerUtilTest {
 	public static final AggregateTestRule aggregateTestRule =
 		new LiferayIntegrationTestRule();
 
-	@BeforeClass
-	public static void setUpClass() throws Exception {
-		Bundle bundle = FrameworkUtil.getBundle(AddressDisplayTag.class);
-
-		Class<?> clazz = bundle.loadClass(
-			"com.liferay.text.localizer.taglib.internal.util." +
-				"AddressTextLocalizerUtil");
-
-		_getAddressTextLocalizerMethod1 = clazz.getMethod(
-			"getAddressTextLocalizer", Address.class);
-
-		_getAddressTextLocalizerMethod2 = clazz.getMethod(
-			"getAddressTextLocalizer", String.class);
-
-		_formatMethod = clazz.getMethod("format", Address.class);
-	}
-
 	@Before
 	public void setUp() throws Exception {
 		_user = UserTestUtil.addUser();
@@ -89,40 +70,31 @@ public class AddressTextLocalizerUtilTest {
 	}
 
 	@Test
-	public void testFormat() throws Exception {
+	public void testFormat() {
 		AddressTextLocalizer addressTextLocalizer =
-			(AddressTextLocalizer)_getAddressTextLocalizerMethod1.invoke(
-				null, _address);
+			AddressTextLocalizerUtil.getAddressTextLocalizer(_address);
 
 		Assert.assertEquals(
 			addressTextLocalizer.format(_address),
-			_formatMethod.invoke(null, _address));
+			AddressTextLocalizerUtil.format(_address));
 	}
 
 	@Test
-	public void testGetAddressTextLocalizerFromAddress() throws Exception {
+	public void testGetAddressTextLocalizerFromAddress() {
 		AddressTextLocalizer addressTextLocalizer =
-			(AddressTextLocalizer)_getAddressTextLocalizerMethod1.invoke(
-				null, _address);
+			AddressTextLocalizerUtil.getAddressTextLocalizer(_address);
 
-		Class<?> clazz = addressTextLocalizer.getClass();
-
-		Assert.assertEquals(
-			"com.liferay.text.localizer.taglib.internal.USAddressTextLocalizer",
-			clazz.getName());
+		Assert.assertTrue(
+			addressTextLocalizer instanceof USAddressTextLocalizer);
 	}
 
 	@Test
-	public void testGetAddressTextLocalizerFromCountryA2() throws Exception {
+	public void testGetAddressTextLocalizerFromCountryA2() {
 		AddressTextLocalizer defaultAddressTextLocalizer =
-			(AddressTextLocalizer)_getAddressTextLocalizerMethod2.invoke(
-				null, "US");
+			AddressTextLocalizerUtil.getAddressTextLocalizer("US");
 
-		Class<?> clazz = defaultAddressTextLocalizer.getClass();
-
-		Assert.assertEquals(
-			"com.liferay.text.localizer.taglib.internal.USAddressTextLocalizer",
-			clazz.getName());
+		Assert.assertTrue(
+			defaultAddressTextLocalizer instanceof USAddressTextLocalizer);
 
 		String addressText = RandomTestUtil.randomString();
 
@@ -134,8 +106,7 @@ public class AddressTextLocalizerUtilTest {
 			addressTextLocalizer, countryA2);
 
 		AddressTextLocalizer registeredAddressTextLocalizer =
-			(AddressTextLocalizer)_getAddressTextLocalizerMethod2.invoke(
-				null, countryA2);
+			AddressTextLocalizerUtil.getAddressTextLocalizer(countryA2);
 
 		Assert.assertEquals(
 			addressTextLocalizer, registeredAddressTextLocalizer);
@@ -166,9 +137,6 @@ public class AddressTextLocalizerUtilTest {
 	}
 
 	private static final BundleContext _bundleContext;
-	private static Method _formatMethod;
-	private static Method _getAddressTextLocalizerMethod1;
-	private static Method _getAddressTextLocalizerMethod2;
 
 	static {
 		Bundle bundle = FrameworkUtil.getBundle(
