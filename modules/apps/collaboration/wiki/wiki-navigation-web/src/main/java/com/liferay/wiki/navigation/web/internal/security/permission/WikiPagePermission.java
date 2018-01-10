@@ -32,7 +32,7 @@ public class WikiPagePermission {
 			PermissionChecker permissionChecker, WikiPage page, String actionId)
 		throws PortalException {
 
-		return _pageModelResourcePermission.contains(
+		return _wikiPageModelResourcePermission.contains(
 			permissionChecker, page, actionId);
 	}
 
@@ -43,10 +43,10 @@ public class WikiPagePermission {
 	protected void setModelResourcePermission(
 		ModelResourcePermission<WikiPage> modelResourcePermission) {
 
-		_pageModelResourcePermission = modelResourcePermission;
+		_wikiPageModelResourcePermission = modelResourcePermission;
 	}
 
 	private static ModelResourcePermission<WikiPage>
-		_pageModelResourcePermission;
+		_wikiPageModelResourcePermission;
 
 }
