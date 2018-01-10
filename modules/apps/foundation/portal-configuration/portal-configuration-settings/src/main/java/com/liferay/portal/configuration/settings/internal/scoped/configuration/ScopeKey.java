@@ -73,11 +73,19 @@ public class ScopeKey {
 
 	@Override
 	public boolean equals(Object obj) {
-		ScopeKey otherScopeKey = (ScopeKey)obj;
+		if (this == obj) {
+			return true;
+		}
 
-		if (_objectClass.equals(otherScopeKey.getObjectClass()) &&
-			_scope.equals(otherScopeKey.getScope()) &&
-			_scopePrimKey.equals(otherScopeKey.getScopePrimKey())) {
+		if (!(obj instanceof ScopeKey)) {
+			return false;
+		}
+
+		ScopeKey scopeKey = (ScopeKey)obj;
+
+		if (Objects.equals(_objectClass, scopeKey.getObjectClass()) &&
+			Objects.equals(_scope, scopeKey.getScope()) &&
+			Objects.equals(_scopePrimKey, scopeKey.getScopePrimKey())) {
 
 			return true;
 		}
