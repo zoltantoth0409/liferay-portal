@@ -195,8 +195,10 @@ public class TrackbackMVCActionCommand extends BaseMVCActionCommand {
 		HttpServletResponse response = _portal.getHttpServletResponse(
 			actionResponse);
 
+		String s = sb.toString();
+
 		ServletResponseUtil.sendFile(
-			request, response, null, sb.toString().getBytes(StringPool.UTF8),
+			request, response, null, s.getBytes(StringPool.UTF8),
 			ContentTypes.TEXT_XML_UTF8);
 	}
 

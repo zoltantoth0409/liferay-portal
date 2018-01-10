@@ -1758,8 +1758,10 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 
 			WikiPage page = getPage(nodeId, newTitle);
 
+			String content = page.getContent();
+
 			if (((page.getVersion() == WikiPageConstants.VERSION_DEFAULT) &&
-				 (page.getContent().length() < 200)) ||
+				 (content.length() < 200)) ||
 				!strict) {
 
 				deletePage(nodeId, newTitle);
