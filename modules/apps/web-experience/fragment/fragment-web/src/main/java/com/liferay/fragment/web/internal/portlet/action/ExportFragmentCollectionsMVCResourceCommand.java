@@ -87,7 +87,7 @@ public class ExportFragmentCollectionsMVCResourceCommand
 
 			PortletResponseUtil.sendFile(
 				resourceRequest, resourceResponse,
-				"collections-" + Time.getTimestamp() + ".zip,
+				"collections-" + Time.getTimestamp() + ".zip",
 				new FileInputStream(file), ContentTypes.APPLICATION_ZIP);
 		}
 		catch (Exception e) {
