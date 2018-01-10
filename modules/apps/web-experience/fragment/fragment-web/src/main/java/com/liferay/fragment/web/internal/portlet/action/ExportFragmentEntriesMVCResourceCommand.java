@@ -82,10 +82,9 @@ public class ExportFragmentEntriesMVCResourceCommand
 
 			File file = ExportUtil.exportFragmentEntries(fragmentEntries);
 
-			String fileName = "entries-" + Time.getTimestamp() + ".zip";
-
 			PortletResponseUtil.sendFile(
-				resourceRequest, resourceResponse, fileName,
+				resourceRequest, resourceResponse,
+				"entries-" + Time.getTimestamp() + ".zip",
 				new FileInputStream(file), ContentTypes.APPLICATION_ZIP);
 		}
 		catch (Exception e) {
