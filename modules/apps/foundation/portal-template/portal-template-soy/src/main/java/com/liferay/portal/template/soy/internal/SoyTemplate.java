@@ -25,6 +25,8 @@ import com.google.template.soy.tofu.SoyTofu;
 import com.google.template.soy.tofu.SoyTofu.Renderer;
 import com.google.template.soy.tofu.SoyTofuOptions;
 
+import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -46,12 +48,16 @@ import com.liferay.portal.template.soy.utils.SoyTemplateResourcesProvider;
 import java.io.Reader;
 import java.io.Writer;
 
+import java.lang.reflect.Array;
+
 import java.security.AccessController;
 import java.security.PrivilegedActionException;
 import java.security.PrivilegedExceptionAction;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -59,6 +65,9 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Set;
+import java.util.TreeMap;
+
+import org.apache.commons.lang3.ClassUtils;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.wiring.BundleWiring;
@@ -173,6 +182,113 @@ public class SoyTemplate extends AbstractMultiResourceTemplate {
 			return null;
 		}
 
+		Class<?> type = value.getClass();
+
+		if (ClassUtils.isPrimitiveOrWrapper(type) || value instanceof String) {
+			return value;
+		}
+
+		if (type.isArray()) {
+			List<Object> newList = new ArrayList<>();
+
+			for (int i = 0; i < Array.getLength(value); i++) {
+				Object obj = Array.get(value, i);
+
+				newList.add(getSoyMapValue(obj));
+			}
+
+			return newList;
+		}
+
+		if (value instanceof Iterable) {
+			@SuppressWarnings("unchecked")
+			Iterable<Object> iterable = (Iterable<Object>)value;
+
+			List<Object> newList = new ArrayList<>();
+
+			for (Object obj : iterable) {
+				newList.add(getSoyMapValue(obj));
+			}
+
+			return newList;
+		}
+
+		if (value instanceof org.json.JSONArray) {
+			org.json.JSONArray jsonArray = (org.json.JSONArray)value;
+
+			List<Object> newList = new ArrayList<>();
+
+			for (int i = 0; i < jsonArray.length(); i++) {
+				Object obj = jsonArray.opt(i);
+
+				newList.add(getSoyMapValue(obj));
+			}
+
+			return newList;
+		}
+
+		if (value instanceof Map) {
+			@SuppressWarnings("unchecked")
+			Map<Object, Object> map = (Map<Object, Object>)value;
+
+			Map<Object, Object> newMap = new TreeMap<>();
+
+			for (Map.Entry<Object, Object> entry : map.entrySet()) {
+				Object newKey = getSoyMapValue(entry.getKey());
+
+				if (newKey == null) {
+					continue;
+				}
+
+				Object newValue = getSoyMapValue(entry.getValue());
+
+				newMap.put(newKey, newValue);
+			}
+
+			return newMap;
+		}
+
+		if (value instanceof JSONObject) {
+			JSONObject jsonObject = (JSONObject)value;
+
+			Map<String, Object> newMap = new TreeMap<>();
+
+			Iterator<String> iterator = jsonObject.keys();
+
+			while (iterator.hasNext()) {
+				String key = iterator.next();
+
+				Object obj = jsonObject.get(key);
+
+				Object newValue = getSoyMapValue(obj);
+
+				newMap.put(key, newValue);
+			}
+
+			return newMap;
+		}
+
+		if (value instanceof org.json.JSONObject) {
+			org.json.JSONObject jsonObject = (org.json.JSONObject)value;
+
+			Map<Object, Object> newMap = new TreeMap<>();
+
+			@SuppressWarnings("unchecked")
+			Iterator<String> iterator = jsonObject.keys();
+
+			while (iterator.hasNext()) {
+				String key = iterator.next();
+
+				Object obj = jsonObject.opt(key);
+
+				Object newValue = getSoyMapValue(obj);
+
+				newMap.put(key, newValue);
+			}
+
+			return newMap;
+		}
+
 		if (value instanceof SoyHTMLContextValue) {
 			SoyHTMLContextValue htmlValue = (SoyHTMLContextValue)value;
 
@@ -180,7 +296,16 @@ public class SoyTemplate extends AbstractMultiResourceTemplate {
 				htmlValue.toString(), SanitizedContent.ContentKind.HTML);
 		}
 
-		return _templateContextHelper.deserializeValue(value);
+
+		Map<String, Object> newMap = new TreeMap<>();
+
+		BeanPropertiesUtil.copyProperties(value, newMap);
+
+		if (newMap.isEmpty()) {
+			return null;
+		}
+
+		return getSoyMapValue(newMap);
 	}
 
 	protected Optional<SoyMsgBundle> getSoyMsgBundle(
