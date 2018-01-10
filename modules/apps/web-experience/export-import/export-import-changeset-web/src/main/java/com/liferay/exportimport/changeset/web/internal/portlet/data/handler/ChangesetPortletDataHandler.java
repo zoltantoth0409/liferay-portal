@@ -25,6 +25,7 @@ import com.liferay.exportimport.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.StagedModel;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.xml.Element;
@@ -146,7 +147,7 @@ public class ChangesetPortletDataHandler extends BasePortletDataHandler {
 	}
 
 	private String _getClassName(String exportingEntity) {
-		long classNameId = Long.valueOf(
+		long classNameId = GetterUtil.getLong(
 			exportingEntity.substring(
 				0, exportingEntity.indexOf(StringPool.POUND)));
 
@@ -154,7 +155,7 @@ public class ChangesetPortletDataHandler extends BasePortletDataHandler {
 	}
 
 	private long _getGroupId(String exportingEntity) {
-		return Long.valueOf(
+		return GetterUtil.getLong(
 			exportingEntity.substring(
 				exportingEntity.indexOf(StringPool.POUND),
 				exportingEntity.lastIndexOf(StringPool.POUND)));
