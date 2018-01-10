@@ -132,10 +132,9 @@ public class ServiceComponentLocalServiceImpl
 			throw new SystemException(e);
 		}
 
-		ServiceComponent serviceComponent = null;
-		ServiceComponent previousServiceComponent = null;
-
 		long previousBuildNumber = 0;
+		ServiceComponent previousServiceComponent = null;
+		ServiceComponent serviceComponent = null;
 
 		List<ServiceComponent> serviceComponents =
 			serviceComponentPersistence.findByBuildNamespace(
