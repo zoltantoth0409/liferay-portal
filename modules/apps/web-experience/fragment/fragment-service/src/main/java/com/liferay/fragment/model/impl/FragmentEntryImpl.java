@@ -87,10 +87,10 @@ public class FragmentEntryImpl extends FragmentEntryBaseImpl {
 
 		path = path + StringPool.SLASH + getFragmentEntryId();
 
-		zipWriter.addEntry(path + "/name.txt", getName());
 		zipWriter.addEntry(path + "/css.css", getCss());
 		zipWriter.addEntry(path + "/js.js", getJs());
 		zipWriter.addEntry(path + "/html.html", getHtml());
+		zipWriter.addEntry(path + "/name.txt", getName());
 	}
 
 }
