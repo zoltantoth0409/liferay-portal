@@ -60,8 +60,6 @@ public class ExportAllFragmentCollectionsMVCResourceCommand
 			WebKeys.THEME_DISPLAY);
 
 		try {
-			String fileName = "collections-" + Time.getTimestamp() + ".zip";
-
 			List<FragmentCollection> fragmentCollections =
 				_fragmentCollectionService.getFragmentCollections(
 					themeDisplay.getScopeGroupId());
@@ -70,7 +68,8 @@ public class ExportAllFragmentCollectionsMVCResourceCommand
 				fragmentCollections);
 
 			PortletResponseUtil.sendFile(
-				resourceRequest, resourceResponse, fileName,
+				resourceRequest, resourceResponse,
+				"collections-" + Time.getTimestamp() + ".zip",
 				new FileInputStream(file), ContentTypes.APPLICATION_ZIP);
 		}
 		catch (Exception e) {
