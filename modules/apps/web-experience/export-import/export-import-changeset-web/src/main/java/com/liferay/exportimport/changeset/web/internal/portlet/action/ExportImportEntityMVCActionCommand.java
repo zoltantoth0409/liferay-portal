@@ -101,9 +101,9 @@ public class ExportImportEntityMVCActionCommand extends BaseMVCActionCommand {
 
 		renderURL.setParameter("mvcPath", "/view_export_import.jsp");
 		renderURL.setParameter(
-			"backgroundTaskId", String.valueOf(backgroundTaskId));
-		renderURL.setParameter(
 			"backURL", actionRequest.getParameter("backURL"));
+		renderURL.setParameter(
+			"backgroundTaskId", String.valueOf(backgroundTaskId));
 
 		actionRequest.setAttribute(WebKeys.REDIRECT, renderURL.toString());
 
