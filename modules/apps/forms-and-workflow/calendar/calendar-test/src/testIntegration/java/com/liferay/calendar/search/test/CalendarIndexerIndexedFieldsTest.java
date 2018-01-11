@@ -174,7 +174,6 @@ public class CalendarIndexerIndexedFieldsTest
 			Calendar calendar, Map<String, String> map)
 		throws Exception {
 
-		map.put("calendarId", String.valueOf(calendar.getCalendarId()));
 		map.put(Field.COMPANY_ID, String.valueOf(calendar.getCompanyId()));
 		map.put(Field.DEFAULT_LANGUAGE_ID, calendar.getDefaultLanguageId());
 		map.put(Field.ENTRY_CLASS_NAME, calendar.getModelClassName());
@@ -185,6 +184,7 @@ public class CalendarIndexerIndexedFieldsTest
 		map.put(Field.USER_ID, String.valueOf(calendar.getUserId()));
 		map.put(
 			Field.USER_NAME, StringUtil.toLowerCase(calendar.getUserName()));
+		map.put("calendarId", String.valueOf(calendar.getCalendarId()));
 
 		DateFormat dateFormat = DateFormatFactoryUtil.getSimpleDateFormat(
 			"yyyyMMddHHmmss");

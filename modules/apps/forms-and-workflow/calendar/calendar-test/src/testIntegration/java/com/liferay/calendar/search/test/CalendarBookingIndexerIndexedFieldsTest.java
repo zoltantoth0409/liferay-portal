@@ -201,17 +201,17 @@ public class CalendarBookingIndexerIndexedFieldsTest
 		CalendarBooking calendarBooking, Map<String, String> map) {
 
 		map.put(
-			"calendarBookingId",
-			String.valueOf(calendarBooking.getCalendarBookingId()));
-		map.put(
 			Field.CLASS_PK, String.valueOf(calendarBooking.getCalendarId()));
-		map.put("endTime", String.valueOf(calendarBooking.getEndTime()));
-		map.put(
-			"endTime_sortable", String.valueOf(calendarBooking.getEndTime()));
 		map.put(Field.ENTRY_CLASS_NAME, calendarBooking.getModelClassName());
 		map.put(
 			Field.ENTRY_CLASS_PK,
 			String.valueOf(calendarBooking.getCalendarBookingId()));
+		map.put(
+			"calendarBookingId",
+			String.valueOf(calendarBooking.getCalendarBookingId()));
+		map.put("endTime", String.valueOf(calendarBooking.getEndTime()));
+		map.put(
+			"endTime_sortable", String.valueOf(calendarBooking.getEndTime()));
 		map.put("startTime", String.valueOf(calendarBooking.getStartTime()));
 		map.put(
 			"startTime_sortable",
