@@ -54,7 +54,6 @@ public class AutoAnonymizeUADEntityMVCActionCommand
 	private void _autoAnonymizeUADEntity(ActionRequest actionRequest)
 		throws Exception {
 
-		String uadEntityId = ParamUtil.getString(actionRequest, "uadEntityId");
 		String uadRegistryKey = ParamUtil.getString(
 			actionRequest, "uadRegistryKey");
 
@@ -62,6 +61,8 @@ public class AutoAnonymizeUADEntityMVCActionCommand
 			_uadRegistry.getUADEntityAggregator(uadRegistryKey);
 		UADEntityAnonymizer uadEntityAnonymizer =
 			_uadRegistry.getUADEntityAnonymizer(uadRegistryKey);
+
+		String uadEntityId = ParamUtil.getString(actionRequest, "uadEntityId");
 
 		uadEntityAnonymizer.autoAnonymize(
 			uadEntityAggregator.getUADEntity(uadEntityId));

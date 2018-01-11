@@ -53,7 +53,6 @@ public class DeleteUADEntityMVCActionCommand extends BaseMVCActionCommand {
 	private void _deleteUADEntity(ActionRequest actionRequest)
 		throws Exception {
 
-		String uadEntityId = ParamUtil.getString(actionRequest, "uadEntityId");
 		String uadRegistryKey = ParamUtil.getString(
 			actionRequest, "uadRegistryKey");
 
@@ -61,6 +60,8 @@ public class DeleteUADEntityMVCActionCommand extends BaseMVCActionCommand {
 			_uadRegistry.getUADEntityAggregator(uadRegistryKey);
 		UADEntityAnonymizer uadEntityAnonymizer =
 			_uadRegistry.getUADEntityAnonymizer(uadRegistryKey);
+
+		String uadEntityId = ParamUtil.getString(actionRequest, "uadEntityId");
 
 		uadEntityAnonymizer.delete(
 			uadEntityAggregator.getUADEntity(uadEntityId));

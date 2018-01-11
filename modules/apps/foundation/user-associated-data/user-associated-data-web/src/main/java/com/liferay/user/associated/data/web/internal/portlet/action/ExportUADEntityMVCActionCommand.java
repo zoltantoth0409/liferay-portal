@@ -53,7 +53,6 @@ public class ExportUADEntityMVCActionCommand extends BaseMVCActionCommand {
 	private void _exportUADEntity(ActionRequest actionRequest)
 		throws Exception {
 
-		String uadEntityId = ParamUtil.getString(actionRequest, "uadEntityId");
 		String uadRegistryKey = ParamUtil.getString(
 			actionRequest, "uadRegistryKey");
 
@@ -61,6 +60,8 @@ public class ExportUADEntityMVCActionCommand extends BaseMVCActionCommand {
 			_uadRegistry.getUADEntityAggregator(uadRegistryKey);
 		UADEntityExporter uadEntityExporter = _uadRegistry.getUADEntityExporter(
 			uadRegistryKey);
+
+		String uadEntityId = ParamUtil.getString(actionRequest, "uadEntityId");
 
 		uadEntityExporter.export(uadEntityAggregator.getUADEntity(uadEntityId));
 	}
