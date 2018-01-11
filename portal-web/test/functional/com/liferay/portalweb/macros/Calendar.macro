@@ -245,9 +245,7 @@
 					<var name="name" value="${calendarNameEdit}" />
 				</execute>
 
-				<execute macro="Button#clickSave" />
-
-				<execute macro="Alert#viewSuccessMessage" />
+				<execute macro="PortletEntry#save" />
 
 				<execute function="SelectFrame" value1="relative=top" />
 			</then>
@@ -269,9 +267,7 @@
 						<var name="name" value="${calendarNameEdit}" />
 					</execute>
 
-					<execute macro="Button#clickSave" />
-
-					<execute macro="Alert#viewSuccessMessage" />
+					<execute macro="PortletEntry#save" />
 
 					<execute function="SelectFrame" value1="relative=top" />
 				</then>
@@ -290,9 +286,7 @@
 						<var name="name" value="${calendarNameEdit}" />
 					</execute>
 
-					<execute macro="Button#clickSave" />
-
-					<execute macro="Alert#viewSuccessMessage" />
+					<execute macro="PortletEntry#save" />
 
 					<execute function="SelectFrame" value1="relative=top" />
 				</then>

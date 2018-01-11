@@ -1081,7 +1081,7 @@
 
 		<execute macro="IFrame#selectDialogFrame" />
 
-		<execute macro="Button#clickSave" />
+		<execute macro="PortletEntry#save" />
 	</command>
 
 	<command name="editNullCP">

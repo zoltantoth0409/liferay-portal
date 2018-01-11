@@ -36,9 +36,7 @@
 			</then>
 		</if>
 
-		<execute function="AssertClick" locator1="DocumentsAndMediaDocumentTypes#SAVE_BUTTON" value1="Save" />
-
-		<execute macro="Alert#viewSuccessMessage" />
+		<execute macro="DDLDataDefinition#save" />
 	</command>
 
 	<command name="deletePG">
@@ -130,7 +128,7 @@
 			</then>
 		</if>
 
-		<execute function="AssertClick" locator1="DocumentsAndMediaDocumentTypes#SAVE_BUTTON" value1="Save" />
+		<execute macro="DDLDataDefinition#save" />
 
 		<if>
 			<isset var="dmDocumentTypeNameEdit" />
