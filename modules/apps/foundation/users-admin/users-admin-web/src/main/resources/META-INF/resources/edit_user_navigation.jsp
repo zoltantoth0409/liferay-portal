@@ -21,14 +21,14 @@ String actionCommandName = (String)request.getAttribute(UsersAdminWebKeys.ACTION
 boolean editable = (boolean)request.getAttribute(UsersAdminWebKeys.EDITABLE);
 String jspPath = (String)request.getAttribute(UsersAdminWebKeys.JSP_PATH);
 
-String screenNavigationCategoryKey = ParamUtil.getString(request, "screenNavigationCategoryKey");
-String screenNavigationEntryKey = ParamUtil.getString(request, "screenNavigationEntryKey");
-
 User selUser = PortalUtil.getSelectedUser(request);
 
 request.setAttribute(UsersAdminWebKeys.SELECTED_USER, selUser);
 
 long selUserId = (selUser != null) ? selUser.getUserId() : 0;
+
+String screenNavigationCategoryKey = ParamUtil.getString(request, "screenNavigationCategoryKey");
+String screenNavigationEntryKey = ParamUtil.getString(request, "screenNavigationEntryKey");
 %>
 
 <portlet:actionURL name="<%= actionCommandName %>" var="actionCommandURL" />
@@ -53,9 +53,9 @@ if (!portletName.equals(UsersAdminPortletKeys.MY_ACCOUNT)) {
 
 <aui:form action="<%= actionCommandURL %>" cssClass="container-fluid-1280 portlet-users-admin-edit-user" data-senna-off="true" method="post" name="fm">
 	<aui:input name="redirect" type="hidden" value="<%= redirect.toString() %>" />
+	<aui:input name="p_u_i_d" type="hidden" value="<%= selUserId %>" />
 	<aui:input name="screenNavigationCategoryKey" type="hidden" value="<%= screenNavigationCategoryKey %>" />
 	<aui:input name="screenNavigationEntryKey" type="hidden" value="<%= screenNavigationEntryKey %>" />
-	<aui:input name="p_u_i_d" type="hidden" value="<%= selUserId %>" />
 
 	<aui:fieldset-group markupView="lexicon">
 		<aui:fieldset>
