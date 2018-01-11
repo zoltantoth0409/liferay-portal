@@ -17,7 +17,9 @@
 		<if>
 			<isset var="dmFolderDescription" />
 			<then>
-				<execute function="Type" locator1="DocumentsAndMediaEditFolder#DESCRIPTION_FIELD" value1="${dmFolderDescription}" />
+				<execute macro="PortletEntry#inputDescription">
+					<var name="description" value="${dmFolderDescription}" />
+				</execute>
 			</then>
 		</if>
 
@@ -43,7 +45,9 @@
 		<execute macro="PortletEntry#inputName">
 			<var name="name" value="${dmFolderName}" />
 		</execute>
-		<execute function="Type" locator1="DocumentsAndMediaEditFolder#DESCRIPTION_FIELD" value1="${dmFolderDescription}" />
+		<execute macro="PortletEntry#inputDescription">
+			<var name="description" value="${dmFolderDescription}" />
+		</execute>
 
 		<if>
 			<isset var="viewableBy" />
@@ -119,7 +123,9 @@
 		<if>
 			<isset var="dmSubFolderDescription" />
 			<then>
-				<execute function="Type" locator1="DocumentsAndMediaEditFolder#DESCRIPTION_FIELD" value1="${dmSubFolderDescription}" />
+				<execute macro="PortletEntry#inputDescription">
+					<var name="description" value="${dmSubFolderDescription}" />
+				</execute>
 			</then>
 		</if>
 
@@ -164,7 +170,9 @@
 		<if>
 			<isset var="dmSubFolderDescription" />
 			<then>
-				<execute function="Type" locator1="DocumentsAndMediaEditFolder#DESCRIPTION_FIELD" value1="${dmSubFolderDescription}" />
+				<execute macro="PortletEntry#inputDescription">
+					<var name="description" value="${dmSubFolderDescription}" />
+				</execute>
 			</then>
 		</if>
 
@@ -331,7 +339,9 @@
 		<execute macro="PortletEntry#inputName">
 			<var name="name" value="${dmFolderNameEdit}" />
 		</execute>
-		<execute function="Type" locator1="DocumentsAndMediaEditFolder#DESCRIPTION_FIELD" value1="${dmFolderDescriptionEdit}" />
+		<execute macro="PortletEntry#inputDescription">
+			<var name="description" value="${dmFolderDescriptionEdit}" />
+		</execute>
 
 		<execute macro="PortletEntry#save" />
 
