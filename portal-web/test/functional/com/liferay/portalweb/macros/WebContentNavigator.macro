@@ -24,10 +24,8 @@
 
 		<execute function="Pause" locator1="3000" />
 
-		<execute function="Click" locator1="Button#PLUS" />
-
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Basic Web Content">
-			<var name="key_menuItem" value="Basic Web Content" />
+		<execute macro="LexiconEntry#gotoAddMenuItem">
+			<var name="menuItem" value="Basic Web Content" />
 		</execute>
 
 		<execute function="AssertVisible" locator1="TextInput#TITLE" />
