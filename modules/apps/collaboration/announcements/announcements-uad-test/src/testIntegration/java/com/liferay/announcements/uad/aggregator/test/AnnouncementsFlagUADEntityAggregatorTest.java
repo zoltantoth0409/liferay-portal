@@ -92,9 +92,9 @@ public class AnnouncementsFlagUADEntityAggregatorTest
 		long flagId = announcementsFlag.getFlagId();
 
 		UADEntity uadEntity = _uadEntityAggregator.getUADEntity(
-			Long.toString(flagId));
+			String.valueOf(flagId));
 
-		Assert.assertEquals(Long.toString(flagId), uadEntity.getUADEntityId());
+		Assert.assertEquals(String.valueOf(flagId), uadEntity.getUADEntityId());
 	}
 
 	@Inject(

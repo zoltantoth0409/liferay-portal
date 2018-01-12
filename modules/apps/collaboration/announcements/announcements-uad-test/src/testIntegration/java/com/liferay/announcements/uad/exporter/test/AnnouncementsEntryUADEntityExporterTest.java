@@ -80,7 +80,7 @@ public class AnnouncementsEntryUADEntityExporterTest
 			_user.getUserId());
 
 		UADEntity uadEntity = _uadEntityAggregator.getUADEntity(
-			Long.toString(announcementsEntry.getEntryId()));
+			String.valueOf(announcementsEntry.getEntryId()));
 
 		_uadEntityExporter.export(uadEntity);
 
@@ -104,7 +104,7 @@ public class AnnouncementsEntryUADEntityExporterTest
 
 		FileEntry fileEntry = _getFileEntry(
 			announcementsEntryExported.getCompanyId(),
-			Long.toString(announcementsEntryExported.getEntryId()));
+			String.valueOf(announcementsEntryExported.getEntryId()));
 
 		_verifyFileEntry(fileEntry, announcementsEntryExported);
 
@@ -113,7 +113,7 @@ public class AnnouncementsEntryUADEntityExporterTest
 
 		_getFileEntry(
 			announcementsEntry.getCompanyId(),
-			Long.toString(announcementsEntry.getEntryId()));
+			String.valueOf(announcementsEntry.getEntryId()));
 	}
 
 	@Test

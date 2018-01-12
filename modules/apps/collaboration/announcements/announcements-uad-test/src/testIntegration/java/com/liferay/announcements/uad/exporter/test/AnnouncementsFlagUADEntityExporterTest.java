@@ -78,7 +78,7 @@ public class AnnouncementsFlagUADEntityExporterTest
 			_user.getUserId());
 
 		UADEntity uadEntity = _uadEntityAggregator.getUADEntity(
-			Long.toString(announcementsFlag.getFlagId()));
+			String.valueOf(announcementsFlag.getFlagId()));
 
 		_uadEntityExporter.export(uadEntity);
 
@@ -102,7 +102,7 @@ public class AnnouncementsFlagUADEntityExporterTest
 
 		FileEntry fileEntry = _getFileEntry(
 			announcementsFlagExported.getCompanyId(),
-			Long.toString(announcementsFlagExported.getFlagId()));
+			String.valueOf(announcementsFlagExported.getFlagId()));
 
 		_verifyFileEntry(fileEntry, announcementsFlagExported);
 
@@ -111,7 +111,7 @@ public class AnnouncementsFlagUADEntityExporterTest
 
 		_getFileEntry(
 			announcementsFlag.getCompanyId(),
-			Long.toString(announcementsFlag.getFlagId()));
+			String.valueOf(announcementsFlag.getFlagId()));
 	}
 
 	@Test

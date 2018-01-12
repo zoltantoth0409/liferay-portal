@@ -66,7 +66,7 @@ public class AnnouncementsFlagUADEntityAnonymizerTest
 		long flagId = announcementsFlag.getFlagId();
 
 		UADEntity uadEntity = _uadEntityAggregator.getUADEntity(
-			Long.toString(flagId));
+			String.valueOf(flagId));
 
 		_uadEntityAnonymizer.autoAnonymize(uadEntity);
 
@@ -105,7 +105,7 @@ public class AnnouncementsFlagUADEntityAnonymizerTest
 		long flagId = announcementsFlag.getFlagId();
 
 		UADEntity uadEntity = _uadEntityAggregator.getUADEntity(
-			Long.toString(flagId));
+			String.valueOf(flagId));
 
 		_uadEntityAnonymizer.delete(uadEntity);
 

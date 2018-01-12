@@ -58,7 +58,7 @@ public class AnnouncementsFlagUADEntityAggregator
 		for (AnnouncementsFlag announcementsFlag : announcementsFlags) {
 			uadEntities.add(
 				new AnnouncementsFlagUADEntity(
-					userId, Long.toString(announcementsFlag.getFlagId()),
+					userId, String.valueOf(announcementsFlag.getFlagId()),
 					announcementsFlag));
 		}
 
