@@ -143,10 +143,9 @@ public class AnnouncementsEntryUADEntityExporterTest
 			FileEntry fileEntry, AnnouncementsEntry announcementsEntry)
 		throws Exception {
 
-		StringWriter stringWriter = new StringWriter();
-
 		InputStream is = _dlFileEntryLocalService.getFileAsStream(
 			fileEntry.getFileEntryId(), fileEntry.getVersion());
+		StringWriter stringWriter = new StringWriter();
 
 		IOUtils.copy(is, stringWriter, StringPool.UTF8);
 
