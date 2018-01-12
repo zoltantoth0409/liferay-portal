@@ -72,7 +72,8 @@ public class AnnouncementsEntryUADEntityAggregator
 
 		return new AnnouncementsEntryUADEntity(
 			announcementsEntry.getUserId(),
-			String.valueOf(announcementsEntry.getEntryId()), announcementsEntry);
+			String.valueOf(announcementsEntry.getEntryId()),
+			announcementsEntry);
 	}
 
 	@Reference

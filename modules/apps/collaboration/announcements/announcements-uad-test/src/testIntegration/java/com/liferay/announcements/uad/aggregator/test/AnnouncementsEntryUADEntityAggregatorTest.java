@@ -96,7 +96,8 @@ public class AnnouncementsEntryUADEntityAggregatorTest
 		UADEntity uadEntity = _uadEntityAggregator.getUADEntity(
 			String.valueOf(entryId));
 
-		Assert.assertEquals(String.valueOf(entryId), uadEntity.getUADEntityId());
+		Assert.assertEquals(
+			String.valueOf(entryId), uadEntity.getUADEntityId());
 	}
 
 	@Inject(
