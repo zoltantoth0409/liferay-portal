@@ -75,7 +75,7 @@
 	</command>
 
 	<command name="ViewInvalidSourceXMLNotRemainsAfterTabSwitch" priority="4">
-		<property name="test.name.skip.portal.instance" value="KaleoDesignerEditSingleApprover#ViewInvalidSourceXMLRemainsAfterTabSwitch" />
+		<property name="test.name.skip.portal.instance" value="KaleoDesignerEditSingleApprover#ViewInvalidSourceXMLNotRemainsAfterTabSwitch" />
 
 		<execute macro="KaleoDesigner#editSourceXML">
 			<var name="kdSourceXML" value="INVALID" />
