@@ -1491,6 +1491,7 @@
 		</execute>
 
 		<execute function="Click" locator1="Button#PLUS" />
+
 		<execute macro="PortletEntry#inputName">
 			<var name="name" value="Vocabulary Name" />
 		</execute>
