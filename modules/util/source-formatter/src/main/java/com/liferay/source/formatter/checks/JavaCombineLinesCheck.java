@@ -758,8 +758,9 @@ public class JavaCombineLinesCheck extends BaseFileCheck {
 							nextLine.endsWith(StringPool.SEMICOLON)) {
 
 							return _getCombinedLinesContent(
-								content, line, trimmedLine, lineLength, lineCount,
-								previousLine, null, false, true, i + 1);
+								content, line, trimmedLine, lineLength,
+								lineCount, previousLine, null, false, true,
+								i + 1);
 						}
 					}
 				}
