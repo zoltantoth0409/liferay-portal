@@ -94,6 +94,7 @@ import java.util.stream.Stream;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -530,6 +531,7 @@ public class BaseExportImportContentProcessorTest {
 		doTestImportDLReferences(false);
 	}
 
+	@Ignore
 	@Test
 	public void testImportDLReferencesFileEntryInTrash1() throws Exception {
 		DLAppHelperLocalServiceUtil.moveFileEntryToTrash(
@@ -538,6 +540,7 @@ public class BaseExportImportContentProcessorTest {
 		doTestImportDLReferences(false);
 	}
 
+	@Ignore
 	@Test
 	public void testImportDLReferencesFileEntryInTrash2() throws Exception {
 		DLAppHelperLocalServiceUtil.moveFileEntryToTrash(
