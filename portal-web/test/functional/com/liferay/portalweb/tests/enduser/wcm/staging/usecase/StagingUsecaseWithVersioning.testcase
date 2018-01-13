@@ -313,7 +313,7 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute function="IsElementNotPresent" locator1="Staging#PAGE_VARIATION" />
+		<execute function="AssertElementNotPresent" locator1="Staging#PAGE_VARIATION" />
 
 		<execute macro="Staging#changePageVariationInHistory">
 			<var name="pageVariationName" value="All Page Variations" />
@@ -332,7 +332,7 @@
 
 		<execute macro="ProductMenu#gotoLiveSite" />
 
-		<execute function="IsElementPresent" locator1="Home#PORTLET">
+		<execute function="AssertElementPresent" locator1="Home#PORTLET">
 			<var name="portletTypeKey" value="YouTube" />
 			<var name="portletTypeKey" value="Web Content Display" />
 		</execute>
@@ -401,7 +401,7 @@
 
 		<execute macro="ProductMenu#gotoLiveSite" />
 
-		<execute function="IsElementPresent" locator1="Home#PORTLET">
+		<execute function="AssertElementPresent" locator1="Home#PORTLET">
 			<var name="portletTypeKey" value="YouTube" />
 			<var name="portletTypeKey" value="Web Content Display" />
 		</execute>
@@ -620,7 +620,7 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute function="IsElementPresent" locator1="Home#PORTLET">
+		<execute function="AssertElementPresent" locator1="Home#PORTLET">
 			<var name="portletTypeKey" value="Web Content Display" />
 		</execute>
 

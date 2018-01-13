@@ -294,7 +294,7 @@
 			<var name="portlet" value="Message Boards" />
 		</execute>
 
-		<execute function="IsElementPresent" locator1="Checkbox#SELECT_ALL" />
+		<execute function="AssertElementPresent" locator1="Checkbox#SELECT_ALL" />
 
 		<execute function="Check#checkAll" locator1="Checkbox#SELECT_ALL" />
 

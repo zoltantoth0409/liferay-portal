@@ -1238,7 +1238,7 @@
 	</command>
 
 	<command name="viewAddButtonDoesNotExist">
-		<execute function="IsElementNotPresent" locator1="Button#PLUS" />
+		<execute function="AssertElementNotPresent" locator1="Button#PLUS" />
 	</command>
 
 	<command name="viewAddButtonExists">
