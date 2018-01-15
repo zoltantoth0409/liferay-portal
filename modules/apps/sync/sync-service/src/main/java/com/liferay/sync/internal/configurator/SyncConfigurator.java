@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.messaging.DestinationConfiguration;
 import com.liferay.portal.kernel.messaging.DestinationFactory;
 import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.model.Company;
-import com.liferay.portal.kernel.service.CompanyLocalService;
 import com.liferay.portal.kernel.util.HashMapDictionary;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.sync.internal.messaging.SyncMaintenanceMessageListener;
@@ -70,7 +69,7 @@ public class SyncConfigurator extends BasePortalInstanceLifecycleListener {
 
 		try {
 			if (SyncServiceConfigurationValues.SYNC_VERIFY) {
-				VerifyUtil.verify();
+				_verifyUtil.doVerify();
 			}
 		}
 		catch (Exception e) {
@@ -142,5 +141,8 @@ public class SyncConfigurator extends BasePortalInstanceLifecycleListener {
 
 	@Reference
 	private SyncUtil _syncUtil;
+
+	@Reference
+	private VerifyUtil _verifyUtil;
 
 }
