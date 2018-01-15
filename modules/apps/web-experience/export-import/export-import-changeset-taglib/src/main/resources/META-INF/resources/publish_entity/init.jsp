@@ -42,8 +42,6 @@ if (classNameModel != null) {
 long exportEntityGroupId = GetterUtil.getLong(request.getAttribute("liferay-export-import-changeset:publish-entity:groupId"));
 String uuid = GetterUtil.getString(request.getAttribute("liferay-export-import-changeset:publish-entity:uuid"));
 
-String portletId = portletDisplay.getId();
-
 boolean showMenuItem = false;
 
 try {

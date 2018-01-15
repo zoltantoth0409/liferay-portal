@@ -27,7 +27,7 @@
 	portletURL.setParameter("classNameId", String.valueOf(classNameId));
 	portletURL.setParameter("groupId", String.valueOf(exportEntityGroupId));
 	portletURL.setParameter("uuid", uuid);
-	portletURL.setParameter("portletId", portletId);
+	portletURL.setParameter("portletId", portletDisplay.getId());
 	%>
 
 	<liferay-ui:icon
