@@ -1332,6 +1332,8 @@
 			<var name="key_menuItem" value="${selectedAsset}" />
 		</execute>
 
+		<execute function="Click" locator1="AP#BODY" />
+		
 		<execute macro="AssetPublisherPortlet#gotoConfigurationPG" />
 
 		<execute macro="Panel#expandPanel">
