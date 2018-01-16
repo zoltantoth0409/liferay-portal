@@ -1040,7 +1040,9 @@ public class PortalImpl implements Portal {
 		}
 
 		if (!CookieKeys.hasSessionId(request) && url.startsWith(portalURL)) {
-			url = getURLWithSessionId(url, request.getSession().getId());
+			HttpSession session = request.getSession();
+
+			url = getURLWithSessionId(url, session.getId());
 		}
 
 		return url;
@@ -8199,7 +8201,9 @@ public class PortalImpl implements Portal {
 
 		String i18nPath = null;
 
-		if ((I18nFilter.getLanguageIds().contains(locale.toString()) &&
+		Set<String> languageIds = I18nFilter.getLanguageIds();
+
+		if ((languageIds.contains(locale.toString()) &&
 			 (PropsValues.LOCALE_PREPEND_FRIENDLY_URL_STYLE == 1) &&
 			 !locale.equals(LocaleUtil.getDefault())) ||
 			(PropsValues.LOCALE_PREPEND_FRIENDLY_URL_STYLE == 2)) {
