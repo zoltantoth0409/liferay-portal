@@ -200,11 +200,11 @@ public class UpstreamFailureUtil {
 				Properties buildProperties =
 					JenkinsResultsParserUtil.getBuildProperties();
 
-				String jenkinsDir = buildProperties.getProperty(
+				String jenkinsDirName = buildProperties.getProperty(
 					"jenkins.dir[master]");
 
 				File upstreamJobFailuresJSONFile = new File(
-					jenkinsDir, "upstream-failures.json");
+					jenkinsDirName, "upstream-failures.json");
 
 				if (upstreamJobFailuresJSONFile.exists()) {
 					String fileContent = JenkinsResultsParserUtil.read(
