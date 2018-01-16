@@ -2050,7 +2050,9 @@ public class StringUtil {
 				sb.append(delimiter);
 			}
 
-			sb.append(String.valueOf(array[i]).trim());
+			String value = String.valueOf(array[i]);
+
+			sb.append(value.trim());
 		}
 
 		return sb.toString();
@@ -2296,7 +2298,9 @@ public class StringUtil {
 				}
 			}
 
-			return sb.toString().trim();
+			String s = sb.toString();
+
+			return s.trim();
 		}
 
 		InputStream is = classLoader.getResourceAsStream(name);
@@ -3771,7 +3775,9 @@ public class StringUtil {
 			boolean value = x;
 
 			try {
-				value = Boolean.valueOf(array[i]).booleanValue();
+				Boolean booleanValue = Boolean.valueOf(array[i]);
+
+				value = booleanValue.booleanValue();
 			}
 			catch (Exception e) {
 			}
