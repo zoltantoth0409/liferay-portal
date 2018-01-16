@@ -990,19 +990,22 @@
 		</execute>
 
 		<execute macro="FormFields#viewCheckboxLabel">
+			<var name="fieldLabel" value="Explain Module Resolutions" />
+			<var name="fieldName" value="explainResolutions" />
+		</execute>
+
+		<execute macro="FormFields#viewCheckboxLabel">
 			<var name="fieldLabel" value="Expose Global" />
 			<var name="fieldName" value="exposeGlobal" />
 		</execute>
 
-		<for list="applyVersioning,exposeGlobal" param="fieldName">
-			<execute macro="FormFields#viewCheckboxChecked">
-				<var name="fieldName" value="${fieldName}" />
-			</execute>
+		<execute macro="FormFields#viewCheckboxChecked">
+			<var name="fieldName" value="applyVersioning" />
+		</execute>
 
-			<execute macro="FormFields#disableCheckbox">
-				<var name="fieldName" value="${fieldName}" />
-			</execute>
-		</for>
+		<execute macro="FormFields#disableCheckbox">
+			<var name="fieldName" value="applyVersioning" />
+		</execute>
 
 		<execute macro="SystemSettings#saveConfiguration" />
 
@@ -1010,7 +1013,7 @@
 			<var name="configurationName" value="JavaScript Loader" />
 		</execute>
 
-		<for list="applyVersioning,exposeGlobal" param="fieldName">
+		<for list="applyVersioning,explainResolutions,exposeGlobal" param="fieldName">
 			<execute macro="FormFields#viewCheckboxNotChecked">
 				<var name="fieldName" value="${fieldName}" />
 			</execute>
