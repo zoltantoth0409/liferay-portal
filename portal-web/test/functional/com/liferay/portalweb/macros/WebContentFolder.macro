@@ -49,10 +49,6 @@
 			<var name="menuItem" value="Subfolder" />
 		</execute>
 
-		<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM" value1="Subfolder">
-			<var name="key_menuItem" value="Subfolder" />
-		</execute>
-
 		<execute macro="PortletEntry#inputName">
 			<var name="name" value="${subfolderName}" />
 		</execute>
