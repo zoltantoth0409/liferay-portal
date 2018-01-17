@@ -9,7 +9,7 @@
 	</command>
 
 	<command name="gotoAddListRecord">
-		<execute function="Click" locator1="Button#PLUS" />
+		<execute macro="LexiconEntry#gotoAdd" />
 
 		<execute macro="SiteAdmin#viewPortletTitle">
 			<var name="portletTitle" value="New ${ddlDataDefinitionName}" />

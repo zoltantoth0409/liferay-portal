@@ -61,7 +61,7 @@
 	</command>
 
 	<command name="addNewDefinitionViaKDCP">
-		<execute function="Click" locator1="Button#PLUS" />
+		<execute macro="LexiconEntry#gotoAdd" />
 
 		<execute macro="PortletEntry#inputTitle">
 			<var name="title" value="${workflowDefinitionTitle}" />
@@ -69,7 +69,7 @@
 	</command>
 
 	<command name="addNewDefinitionViaWorkflowCP">
-		<execute function="Click" locator1="Button#PLUS" />
+		<execute macro="LexiconEntry#gotoAdd" />
 
 		<execute macro="PortletEntry#inputTitle">
 			<var name="title" value="${workflowDefinitionTitle}" />

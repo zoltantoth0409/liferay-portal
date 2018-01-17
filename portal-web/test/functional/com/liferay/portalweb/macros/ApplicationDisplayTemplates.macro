@@ -4,7 +4,7 @@
 
 		<execute macro="Portlet#viewEmptyMessage" />
 
-		<execute function="Click" locator1="Button#PLUS" />
+		<execute macro="LexiconEntry#gotoAdd" />
 
 		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="${adtType} Template">
 			<var name="key_menuItem" value="${adtType} Template" />
@@ -45,7 +45,7 @@
 
 		<execute function="SelectFrame" locator1="ApplicationDisplayTemplates#ADT_IFRAME" />
 
-		<execute function="Click" locator1="Button#PLUS" />
+		<execute macro="LexiconEntry#gotoAdd" />
 
 		<execute function="AssertVisible" locator1="ApplicationDisplayTemplates#RSS_FEEDS" />
 		<execute function="AssertElementPresent" locator1="ApplicationDisplayTemplates#RSS_FEEDS" />
@@ -92,7 +92,7 @@
 
 		<execute function="SelectFrame" locator1="ApplicationDisplayTemplates#ADT_IFRAME" />
 
-		<execute function="Click" locator1="Button#PLUS" />
+		<execute macro="LexiconEntry#gotoAdd" />
 
 		<var name="key_adtType" value="${adtType}" />
 
