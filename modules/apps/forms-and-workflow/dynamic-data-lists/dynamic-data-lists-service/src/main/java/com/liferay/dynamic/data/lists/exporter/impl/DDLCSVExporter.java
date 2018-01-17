@@ -37,6 +37,7 @@ import com.liferay.portal.kernel.util.StringPool;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -67,15 +68,19 @@ public class DDLCSVExporter extends BaseDDLExporter {
 
 		List<DDMFormField> ddmFormFields = getDDMFormFields(ddmStructure);
 
+		Locale locale = getLocale();
+
 		for (DDMFormField ddmFormField : ddmFormFields) {
 			LocalizedValue label = ddmFormField.getLabel();
 
-			sb.append(CSVUtil.encode(label.getString(getLocale())));
+			sb.append(CSVUtil.encode(label.getString(locale)));
 
 			sb.append(CharPool.COMMA);
 		}
 
-		sb.append(LanguageUtil.get(getLocale(), "status"));
+		sb.append(LanguageUtil.get(locale, "status"));
+		sb.append(CharPool.COMMA);
+		sb.append(LanguageUtil.get(locale, "author"));
 		sb.append(StringPool.NEW_LINE);
 
 		List<DDLRecord> records = _ddlRecordLocalService.getRecords(
@@ -101,7 +106,7 @@ public class DDLCSVExporter extends BaseDDLExporter {
 				if (fields.contains(name)) {
 					Field field = fields.get(name);
 
-					value = field.getRenderedValue(getLocale());
+					value = field.getRenderedValue(locale);
 				}
 
 				sb.append(CSVUtil.encode(value));
@@ -109,6 +114,8 @@ public class DDLCSVExporter extends BaseDDLExporter {
 			}
 
 			sb.append(getStatusMessage(recordVersion.getStatus()));
+			sb.append(CharPool.COMMA);
+			sb.append(CSVUtil.encode(recordVersion.getUserName()));
 
 			if (iterator.hasNext()) {
 				sb.append(StringPool.NEW_LINE);
