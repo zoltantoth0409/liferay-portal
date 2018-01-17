@@ -333,8 +333,11 @@
 		<execute macro="ProductMenu#gotoLiveSite" />
 
 		<execute function="AssertElementPresent" locator1="Home#PORTLET">
-			<var name="portletTypeKey" value="YouTube" />
-			<var name="portletTypeKey" value="Web Content Display" />
+			<var name="key_portletName" value="YouTube" />
+		</execute>
+
+		<execute function="AssertElementPresent" locator1="Home#PORTLET">
+			<var name="key_portletName" value="Web Content Display" />
 		</execute>
 	</command>
 
@@ -402,8 +405,11 @@
 		<execute macro="ProductMenu#gotoLiveSite" />
 
 		<execute function="AssertElementPresent" locator1="Home#PORTLET">
-			<var name="portletTypeKey" value="YouTube" />
-			<var name="portletTypeKey" value="Web Content Display" />
+			<var name="key_portletName" value="YouTube" />
+		</execute>
+
+		<execute function="AssertElementPresent" locator1="Home#PORTLET">
+			<var name="key_portletName" value="Web Content Display" />
 		</execute>
 	</command>
 
@@ -621,7 +627,7 @@
 		</execute>
 
 		<execute function="AssertElementPresent" locator1="Home#PORTLET">
-			<var name="portletTypeKey" value="Web Content Display" />
+			<var name="key_portletName" value="Web Content Display" />
 		</execute>
 
 		<execute macro="Navigator#gotoSitePage">
