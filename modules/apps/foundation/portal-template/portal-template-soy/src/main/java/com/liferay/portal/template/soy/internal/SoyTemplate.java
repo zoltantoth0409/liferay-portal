@@ -184,19 +184,19 @@ public class SoyTemplate extends AbstractMultiResourceTemplate {
 			return null;
 		}
 
-		Class<?> type = value.getClass();
+		Class<?> clazz = value.getClass();
 
-		if (ClassUtils.isPrimitiveOrWrapper(type) || value instanceof String) {
+		if (ClassUtils.isPrimitiveOrWrapper(clazz) || value instanceof String) {
 			return value;
 		}
 
-		if (type.isArray()) {
+		if (clazz.isArray()) {
 			List<Object> newList = new ArrayList<>();
 
 			for (int i = 0; i < Array.getLength(value); i++) {
-				Object obj = Array.get(value, i);
+				Object object = Array.get(value, i);
 
-				newList.add(getSoyMapValue(obj));
+				newList.add(getSoyMapValue(object));
 			}
 
 			return newList;
@@ -208,8 +208,8 @@ public class SoyTemplate extends AbstractMultiResourceTemplate {
 
 			List<Object> newList = new ArrayList<>();
 
-			for (Object obj : iterable) {
-				newList.add(getSoyMapValue(obj));
+			for (Object object : iterable) {
+				newList.add(getSoyMapValue(object));
 			}
 
 			return newList;
@@ -221,16 +221,15 @@ public class SoyTemplate extends AbstractMultiResourceTemplate {
 			List<Object> newList = new ArrayList<>();
 
 			for (int i = 0; i < jsonArray.length(); i++) {
-				Object obj = jsonArray.opt(i);
+				Object object = jsonArray.opt(i);
 
-				newList.add(getSoyMapValue(obj));
+				newList.add(getSoyMapValue(object));
 			}
 
 			return newList;
 		}
 
 		if (value instanceof Map) {
-			@SuppressWarnings("unchecked")
 			Map<Object, Object> map = (Map<Object, Object>)value;
 
 			Map<Object, Object> newMap = new TreeMap<>();
@@ -260,9 +259,9 @@ public class SoyTemplate extends AbstractMultiResourceTemplate {
 			while (iterator.hasNext()) {
 				String key = iterator.next();
 
-				Object obj = jsonObject.get(key);
+				Object object = jsonObject.get(key);
 
-				Object newValue = getSoyMapValue(obj);
+				Object newValue = getSoyMapValue(object);
 
 				newMap.put(key, newValue);
 			}
@@ -275,15 +274,14 @@ public class SoyTemplate extends AbstractMultiResourceTemplate {
 
 			Map<Object, Object> newMap = new TreeMap<>();
 
-			@SuppressWarnings("unchecked")
 			Iterator<String> iterator = jsonObject.keys();
 
 			while (iterator.hasNext()) {
 				String key = iterator.next();
 
-				Object obj = jsonObject.opt(key);
+				Object object = jsonObject.opt(key);
 
-				Object newValue = getSoyMapValue(obj);
+				Object newValue = getSoyMapValue(object);
 
 				newMap.put(key, newValue);
 			}
