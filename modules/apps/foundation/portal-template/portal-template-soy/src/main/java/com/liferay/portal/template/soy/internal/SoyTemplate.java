@@ -69,6 +69,8 @@ import java.util.TreeMap;
 
 import org.apache.commons.lang3.ClassUtils;
 
+import org.json.JSONArray;
+
 import org.osgi.framework.Bundle;
 import org.osgi.framework.wiring.BundleWiring;
 
@@ -213,8 +215,8 @@ public class SoyTemplate extends AbstractMultiResourceTemplate {
 			return newList;
 		}
 
-		if (value instanceof org.json.JSONArray) {
-			org.json.JSONArray jsonArray = (org.json.JSONArray)value;
+		if (value instanceof JSONArray) {
+			JSONArray jsonArray = (JSONArray)value;
 
 			List<Object> newList = new ArrayList<>();
 
