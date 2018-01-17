@@ -63,7 +63,7 @@ public abstract class BaseUADEntityDisplay implements UADEntityDisplay {
 			sb.append(entry.getKey());
 			sb.append(StringPool.COLON);
 			sb.append(StringPool.SPACE);
-			sb.append(entry.getValue().toString());
+			sb.append(String.valueOf(entry.getValue()));
 			sb.append(StringPool.NEW_LINE);
 		}
 
