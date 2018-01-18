@@ -626,13 +626,40 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute function="AssertElementPresent" locator1="Home#PORTLET">
+		<execute function="AssertElementNotPresent" locator1="Home#PORTLET">
 			<var name="key_portletName" value="Web Content Display" />
 		</execute>
 
 		<execute macro="Navigator#gotoSitePage">
 			<var name="pageName" value="Page 2" />
 			<var name="siteName" value="Site Name" />
+		</execute>
+
+		<execute macro="Navigator#gotoStagedSitePage">
+			<var name="pageName" value="Staging Test Page" />
+			<var name="siteName" value="Site Name" />
+		</execute>
+
+		<execute macro="Staging#changePageVariationPG">
+			<var name="pageVariationName" value="Main Variation" />
+			<var name="pageVariationNameMenulistName" value="Main Variation" />
+		</execute>
+
+		<execute macro="Staging#markAsReadyForPublication" />
+
+		<execute macro="Staging#gotoPublishToLive" />
+
+		<execute macro="Staging#publishToLive" />
+
+		<execute macro="ProductMenu#gotoLiveSite" />
+
+		<execute macro="Navigator#gotoSitePage">
+			<var name="pageName" value="Staging Test Page" />
+			<var name="siteName" value="Site Name" />
+		</execute>
+
+		<execute function="AssertElementPresent" locator1="Home#PORTLET">
+			<var name="key_portletName" value="Web Content Display" />
 		</execute>
 	</command>
 
