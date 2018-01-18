@@ -1,6 +1,6 @@
 <definition>
 	<command name="gotoAdd">
-		<execute macro="LexiconEntry#gotoAdd" />
+		<execute function="Click" locator1="Button#PLUS" />
 	</command>
 
 	<command name="gotoAddMenuItem">

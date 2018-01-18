@@ -194,7 +194,9 @@
 	</command>
 
 	<command name="saveCP">
-		<execute macro="PortletEntry#save" />
+		<execute function="AssertClick" locator1="DDMEditStructure#SAVE_BUTTON" value1="Save" />
+
+		<execute macro="Alert#viewSuccessMessage" />
 
 		<if>
 			<isset var="addRoleViewPermissions" />

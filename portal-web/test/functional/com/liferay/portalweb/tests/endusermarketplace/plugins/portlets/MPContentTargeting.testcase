@@ -13,7 +13,7 @@
 
 	<command name="MarketplacePortletContentTargetingSmoke" priority="4">
 		<description message="This is a use case for WCM-1381." />
-		
+
 		<property name="extraapps.plugins.includes" value="content-targeting" />
 
 		<execute macro="ProductMenu#gotoPortlet">
