@@ -982,7 +982,7 @@ public class UserImpl extends UserBaseImpl {
 	}
 
 	protected String getProfileFriendlyURL() {
-		if (!_hasUsersProfileFriendlyURL) {
+		if (!_HAS_USERS_PROFILE_FRIENDLY_URL) {
 			return null;
 		}
 
@@ -998,12 +998,12 @@ public class UserImpl extends UserBaseImpl {
 			});
 	}
 
+	private static final boolean _HAS_USERS_PROFILE_FRIENDLY_URL =
+		Validator.isNotNull(PropsValues.USERS_PROFILE_FRIENDLY_URL);
+
 	private static final Contact _NULL_CONTACT = new ContactImpl();
 
 	private static final Log _log = LogFactoryUtil.getLog(UserImpl.class);
-
-	private static final boolean _hasUsersProfileFriendlyURL =
-		Validator.isNotNull(PropsValues.USERS_PROFILE_FRIENDLY_URL);
 
 	private Contact _contact;
 	private Locale _locale;
