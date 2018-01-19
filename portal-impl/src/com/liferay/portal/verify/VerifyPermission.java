@@ -104,7 +104,7 @@ public class VerifyPermission extends VerifyProcess {
 		throws Exception {
 
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
-			StringBundler sb = new StringBundler(30);
+			StringBundler sb = new StringBundler(14);
 
 			sb.append("select resourcePermission1.resourcePermissionId from ");
 			sb.append("ResourcePermission resourcePermission1 inner join ");
@@ -533,10 +533,10 @@ public class VerifyPermission extends VerifyProcess {
 		return true;
 	}
 
-	private static final long _DEPRECATED_ORGANIZATION_BITWISE_VALUES;
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		VerifyPermission.class);
+
+	private static final long _DEPRECATED_ORGANIZATION_BITWISE_VALUES;
 
 	private static final Map<Long, Long> _organizationToGroupBitwiseValues =
 		new HashMap<>();
