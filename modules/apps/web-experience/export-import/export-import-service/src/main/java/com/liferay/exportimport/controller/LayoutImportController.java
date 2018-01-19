@@ -1210,6 +1210,35 @@ public class LayoutImportController implements ImportController {
 						}
 					}
 				}
+
+				if (!ExportImportThreadLocal.isStagingInProcess() &&
+					group.isStagingGroup() &&
+					!group.isStagedPortlet(portletDataContext.getPortletId())) {
+
+					scopeGroup = group.getLiveGroup();
+
+					Layout scopeLiveLayout =
+						_layoutLocalService.fetchLayoutByUuidAndGroupId(
+							scopeLayoutUuid, group.getLiveGroupId(),
+							portletDataContext.isPrivateLayout());
+
+					if (scopeLiveLayout != null) {
+						scopeGroup = _groupLocalService.checkScopeGroup(
+							scopeLiveLayout,
+							portletDataContext.getUserId(null));
+					}
+				}
+			}
+			else {
+				Group group = _groupLocalService.getGroup(
+					portletDataContext.getGroupId());
+
+				if (!ExportImportThreadLocal.isStagingInProcess() &&
+					group.isStagingGroup() &&
+					!group.isStagedPortlet(portletDataContext.getPortletId())) {
+
+					scopeGroup = group.getLiveGroup();
+				}
 			}
 
 			if (scopeGroup != null) {
