@@ -75,7 +75,7 @@
 </tr>
 <tr>
 	<td>CATEGORIES_SEARCH_FIELD</td>
-	<td>//input[contains(@class,'tag-selector-input')]</td>
+	<td>//textarea[contains(@class,'tag-selector-textarea')]</td>
 	<td></td>
 </tr>
 <tr>
@@ -125,7 +125,7 @@
 </tr>
 <tr>
 	<td>TAGS_FIELD</td>
-	<td>//input[contains(@id,'assetTagNames')]</td>
+	<td>//textarea[contains(@id,'assetTagNames')]</td>
 	<td></td>
 </tr>
 <tr>
