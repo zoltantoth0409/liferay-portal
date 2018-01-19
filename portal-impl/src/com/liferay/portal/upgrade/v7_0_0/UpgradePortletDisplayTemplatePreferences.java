@@ -55,7 +55,7 @@ public class UpgradePortletDisplayTemplatePreferences
 					companyGroupId = rs.getLong("groupId");
 				}
 				else {
-					companyGroupId = 0L;
+					companyGroupId = 0;
 				}
 
 				_companyGroupIds.put(companyId, companyGroupId);
