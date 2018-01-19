@@ -348,10 +348,10 @@ public class VerifyPermission extends VerifyProcess {
 		}
 	}
 
+	private static final long _DEPRECATED_ORGANIZATION_BITWISE_VALUES;
+
 	private static final Log _log = LogFactoryUtil.getLog(
 		VerifyPermission.class);
-
-	private static final long _DEPRECATED_ORGANIZATION_BITWISE_VALUES;
 
 	private static final Map<Long, Long> _organizationToGroupBitwiseValues =
 		new HashMap<>();
