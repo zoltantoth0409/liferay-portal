@@ -2486,8 +2486,8 @@ public class PortletDataContextImpl implements PortletDataContext {
 		catch (ClassNotFoundException cnfe) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"Unable to load class com.sybase.jdbc4.tds.SybTimestamp. " +
-						"Check if Sybase's driver is deployed");
+					"Unable to load class com.sybase.jdbc4.tds.SybTimestamp " +
+						" because the Sybase driver is not available");
 			}
 		}
 
