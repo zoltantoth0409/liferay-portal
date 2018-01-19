@@ -97,7 +97,7 @@ public class SPATopHeadJSPDynamicInclude extends BaseJSPDynamicInclude {
 		scriptData.append(
 			null,
 			StringUtil.replaceToStringBundler(
-				_initTemplate, StringPool.POUND, StringPool.POUND, values),
+				_INIT_TEMPLATE, StringPool.POUND, StringPool.POUND, values),
 			"frontend-js-spa-web/liferay/init.es", ScriptData.ModulesType.ES6);
 
 		scriptData.writeTo(response.getWriter());
@@ -137,14 +137,14 @@ public class SPATopHeadJSPDynamicInclude extends BaseJSPDynamicInclude {
 		_spaUtil = null;
 	}
 
-	private static final String _initTemplate;
+	private static final String _INIT_TEMPLATE;
 
 	static {
 		try (InputStream inputStream =
 				SPATopHeadJSPDynamicInclude.class.getResourceAsStream(
 					"/META-INF/resources/init.tmpl")) {
 
-			_initTemplate = StringUtil.read(inputStream);
+			_INIT_TEMPLATE = StringUtil.read(inputStream);
 		}
 		catch (IOException ioe) {
 			throw new ExceptionInInitializerError(ioe);
