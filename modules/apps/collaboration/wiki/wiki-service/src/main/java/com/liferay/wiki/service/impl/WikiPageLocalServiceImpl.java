@@ -1781,6 +1781,8 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 			summary = StringPool.BLANK;
 		}
 
+		populateServiceContext(serviceContext, page);
+
 		serviceContext.setCommand(Constants.RENAME);
 
 		WikiPageRenameContentProcessor wikiPageRenameContentProcessor =
