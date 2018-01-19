@@ -1,4 +1,5 @@
 <definition component-name="portal-search">
+	<property name="portal.acceptance" value="solr" />
 	<property name="portal.release" value="true" />
 	<property name="portal.upstream" value="true" />
 	<property name="solr.enabled" value="true" />
@@ -257,7 +258,7 @@
 		</execute>
 	</command>
 
-	<command name="SearchByUserFacet" priority="4">
+	<command ignore="true" name="SearchByUserFacet" priority="4">
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Users" />
 			<var name="panel" value="Control Panel" />
@@ -384,7 +385,7 @@
 		<execute function="AssertTextNotPresent" locator1="SearchResults#USER_FACET_ANY_USER" value1="Any User" />
 	</command>
 
-	<command name="SearchDeletedWebContent" priority="4">
+	<command ignore="true" name="SearchDeletedWebContent" priority="4">
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Content" />
 			<var name="panel" value="Site Administration" />
