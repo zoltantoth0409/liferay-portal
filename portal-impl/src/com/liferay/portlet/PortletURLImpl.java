@@ -958,14 +958,11 @@ public class PortletURLImpl
 				sb.append(StringPool.AMPERSAND);
 			}
 
-			String removeValue = processValue(key, "1");
-
 			for (String removedPublicParameter :
 					_removePublicRenderParameters) {
 
 				sb.append(URLCodec.encodeURL(removedPublicParameter));
 				sb.append(StringPool.EQUAL);
-				sb.append(removeValue);
 				sb.append(StringPool.AMPERSAND);
 			}
 		}
