@@ -270,9 +270,7 @@ public class PortletConfigurationPermissionsDisplayContext {
 		NavigationItem entriesNavigationItem = new NavigationItem();
 
 		entriesNavigationItem.setActive(true);
-
 		entriesNavigationItem.setHref(themeDisplay.getURLCurrent());
-
 		entriesNavigationItem.setLabel(
 			LanguageUtil.get(_request, "permissions"));
 
