@@ -18,6 +18,7 @@
 
 <%
 String randomNamespace = StringUtil.randomId() + StringPool.UNDERLINE;
+
 String redirect = ParamUtil.getString(request, "redirect");
 
 WorkflowDefinition workflowDefinition = (WorkflowDefinition)request.getAttribute(WebKeys.WORKFLOW_DEFINITION);
