@@ -1137,6 +1137,10 @@
 			<var name="pageName" value="Arenas" />
 		</execute>
 
+		<execute function="Confirm" value1="Welcome to Russia." />
+
+		<execute macro="Alert#viewSuccessMessage" />
+
 		<execute function="Open#openNoError" locator1="${portalURL}/web/russia2018" />
 
 		<execute macro="Page#viewCustomLogoPG" />
@@ -1158,6 +1162,8 @@
 			<var name="javaScript" value=" " />
 			<var name="pageName" value="Arenas" />
 		</execute>
+
+		<execute macro="Alert#viewSuccessMessage" />
 
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Users" />
