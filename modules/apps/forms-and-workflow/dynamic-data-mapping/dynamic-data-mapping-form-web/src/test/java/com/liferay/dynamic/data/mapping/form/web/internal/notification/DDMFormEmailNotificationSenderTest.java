@@ -69,13 +69,13 @@ public class DDMFormEmailNotificationSenderTest {
 
 		Assert.assertTrue(fieldLabelValueMap.containsKey("label"));
 		Assert.assertTrue(fieldLabelValueMap.containsKey("value"));
+		Assert.assertNull(fieldLabelValueMap.get("label"));
 
 		SoyHTMLContextValue soyHTMLContextValue =
 			(SoyHTMLContextValue)fieldLabelValueMap.get("value");
 
-		Assert.assertNull(fieldLabelValueMap.get("label"));
-
-		Assert.assertEquals("test", soyHTMLContextValue.getValue().toString());
+		Assert.assertEquals(
+			"test", String.valueOf(soyHTMLContextValue.getValue()));
 	}
 
 	@Test
@@ -91,14 +91,13 @@ public class DDMFormEmailNotificationSenderTest {
 
 		Assert.assertTrue(fieldLabelValueMap.containsKey("label"));
 		Assert.assertTrue(fieldLabelValueMap.containsKey("value"));
+		Assert.assertNull(fieldLabelValueMap.get("label"));
 
 		SoyHTMLContextValue soyHTMLContextValue =
 			(SoyHTMLContextValue)fieldLabelValueMap.get("value");
 
-		Assert.assertNull(fieldLabelValueMap.get("label"));
-
 		Assert.assertEquals(
-			StringPool.BLANK, soyHTMLContextValue.getValue().toString());
+			StringPool.BLANK, String.valueOf(soyHTMLContextValue.getValue()));
 	}
 
 	protected DDMFormValues createDDMFormValues(Value value) {
