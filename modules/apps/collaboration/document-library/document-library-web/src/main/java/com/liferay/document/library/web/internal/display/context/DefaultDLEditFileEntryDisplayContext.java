@@ -174,7 +174,7 @@ public class DefaultDLEditFileEntryDisplayContext
 	}
 
 	@Override
-	public boolean isPermissionsTabVisible() {
+	public boolean isPermissionsVisible() {
 		long repositoryId = ParamUtil.getLong(
 			_dlRequestHelper.getRequest(), "repositoryId");
 
