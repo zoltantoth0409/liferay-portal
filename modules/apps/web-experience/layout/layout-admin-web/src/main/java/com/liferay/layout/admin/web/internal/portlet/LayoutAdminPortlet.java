@@ -514,13 +514,14 @@ public class LayoutAdminPortlet extends MVCPortlet {
 			}
 		}
 		else {
-			layout.setTypeSettingsProperties(formTypeSettingsProperties);
+			layoutTypeSettingsProperties.putAll(formTypeSettingsProperties);
 
 			layoutTypeSettingsProperties.putAll(
 				layout.getTypeSettingsProperties());
 
 			layout = layoutService.updateLayout(
-				groupId, privateLayout, layoutId, layout.getTypeSettings());
+				groupId, privateLayout, layoutId,
+				layoutTypeSettingsProperties.toString());
 		}
 
 		HttpServletResponse response = portal.getHttpServletResponse(
