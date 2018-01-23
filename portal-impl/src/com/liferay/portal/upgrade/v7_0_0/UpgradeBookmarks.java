@@ -47,9 +47,8 @@ public class UpgradeBookmarks extends BaseUpgradePortletPreferences {
 		if (Validator.isNotNull(entryColumns) &&
 			entryColumns.contains(StringPool.COMMA)) {
 
-			String[] splitEntryColumns = entryColumns.split(StringPool.COMMA);
-
-			portletPreferences.setValues("entryColumns", splitEntryColumns);
+			portletPreferences.setValues(
+				"entryColumns", entryColumns.split(StringPool.COMMA));
 		}
 
 		String folderColumns = portletPreferences.getValue(
@@ -58,9 +57,8 @@ public class UpgradeBookmarks extends BaseUpgradePortletPreferences {
 		if (Validator.isNotNull(folderColumns) &&
 			folderColumns.contains(StringPool.COMMA)) {
 
-			String[] splitFolderColumns = folderColumns.split(StringPool.COMMA);
-
-			portletPreferences.setValues("folderColumns", splitFolderColumns);
+			portletPreferences.setValues(
+				"folderColumns", folderColumns.split(StringPool.COMMA));
 		}
 
 		return PortletPreferencesFactoryUtil.toXML(portletPreferences);
