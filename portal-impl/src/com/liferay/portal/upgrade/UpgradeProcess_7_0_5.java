@@ -20,7 +20,7 @@ import com.liferay.portal.upgrade.v7_0_5.UpgradeCompany;
 import com.liferay.portal.upgrade.v7_0_5.UpgradeContact;
 import com.liferay.portal.upgrade.v7_0_5.UpgradeEmailAddress;
 import com.liferay.portal.upgrade.v7_0_5.UpgradeExpando;
-import com.liferay.portal.upgrade.v7_0_5.UpgradeGroup;
+import com.liferay.portal.upgrade.v7_0_4.UpgradeGroup;
 import com.liferay.portal.upgrade.v7_0_5.UpgradeMBMailingList;
 import com.liferay.portal.upgrade.v7_0_5.UpgradePortalPreferences;
 import com.liferay.portal.upgrade.v7_0_5.UpgradeUser;
