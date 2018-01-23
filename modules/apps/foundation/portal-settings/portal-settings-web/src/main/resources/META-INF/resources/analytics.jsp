@@ -18,7 +18,6 @@
 
 <%
 String adminAnalyticsKey = PrefsPropsUtil.getString(company.getCompanyId(), PropsKeys.ADMIN_ANALYTICS_KEY);
-
 String adminAnalyticsTypes = PrefsPropsUtil.getString(company.getCompanyId(), PropsKeys.ADMIN_ANALYTICS_TYPES);
 %>
 
