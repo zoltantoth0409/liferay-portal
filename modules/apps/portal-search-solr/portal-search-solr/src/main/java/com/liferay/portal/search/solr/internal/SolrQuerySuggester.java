@@ -167,12 +167,12 @@ public class SolrQuerySuggester implements QuerySuggester {
 	protected List<Suggestion> doSuggest(SearchContext searchContext, int max)
 		throws SearchException {
 
+		List<Suggestion> suggestions = new ArrayList<>();
+
 		List<String> keywords = Arrays.asList(
 			StringUtils.split(
 				StringUtil.toLowerCase(
 					StringUtil.unquote(searchContext.getKeywords()))));
-
-		List<Suggestion> suggestions = new ArrayList<>();
 
 		for (String keyword : keywords) {
 			suggestions.add(
