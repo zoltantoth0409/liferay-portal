@@ -125,7 +125,7 @@ public class JenkinsResultsParserUtil {
 			File parentFile = target.getParentFile();
 
 			if ((parentFile != null) && !parentFile.exists()) {
-				target.getParentFile().mkdirs();
+				parentFile.mkdirs();
 			}
 
 			try (FileInputStream fileInputStream =
