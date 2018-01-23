@@ -28,11 +28,11 @@ import org.junit.Test;
 public class DDMFormTest {
 
 	@Test
-	public void testGetNonTransientDDMFormFields() {
+	public void testGetNontransientDDMFormFields() {
 		DDMForm ddmForm = createDDMForm();
 
 		Map<String, DDMFormField> ddmFormFieldsMap =
-			ddmForm.getNonTransientDDMFormFieldsMap(false);
+			ddmForm.getNontransientDDMFormFieldsMap(false);
 
 		Assert.assertEquals(
 			ddmFormFieldsMap.toString(), 1, ddmFormFieldsMap.size());
@@ -45,11 +45,11 @@ public class DDMFormTest {
 	}
 
 	@Test
-	public void testGetNonTransientDDMFormFieldsIncludingNestedFields() {
+	public void testGetNontransientDDMFormFieldsIncludingNestedFields() {
 		DDMForm ddmForm = createDDMForm();
 
 		Map<String, DDMFormField> ddmFormFieldsMap =
-			ddmForm.getNonTransientDDMFormFieldsMap(true);
+			ddmForm.getNontransientDDMFormFieldsMap(true);
 
 		Assert.assertEquals(
 			ddmFormFieldsMap.toString(), 2, ddmFormFieldsMap.size());

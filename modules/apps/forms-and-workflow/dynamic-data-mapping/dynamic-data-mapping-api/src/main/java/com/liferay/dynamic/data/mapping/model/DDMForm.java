@@ -128,7 +128,7 @@ public class DDMForm implements Serializable {
 		return _defaultLocale;
 	}
 
-	public Map<String, DDMFormField> getNonTransientDDMFormFieldsMap(
+	public Map<String, DDMFormField> getNontransientDDMFormFieldsMap(
 		boolean includeNestedDDMFormFields) {
 
 		Map<String, DDMFormField> ddmFormFieldsMap = new LinkedHashMap<>();
@@ -140,7 +140,7 @@ public class DDMForm implements Serializable {
 
 			if (includeNestedDDMFormFields) {
 				ddmFormFieldsMap.putAll(
-					ddmFormField.getNonTransientNestedDDMFormFieldsMap());
+					ddmFormField.getNontransientNestedDDMFormFieldsMap());
 			}
 		}
 

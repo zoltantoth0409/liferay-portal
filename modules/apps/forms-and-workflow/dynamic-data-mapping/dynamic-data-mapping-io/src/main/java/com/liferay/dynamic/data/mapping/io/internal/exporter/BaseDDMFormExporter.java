@@ -157,7 +157,7 @@ public abstract class BaseDDMFormExporter implements DDMFormExporter {
 		for (DDMStructureVersion ddmStructureVersion : ddmStructureVersions) {
 			DDMForm ddmForm = ddmStructureVersion.getDDMForm();
 
-			ddmFormFields.putAll(ddmForm.getNonTransientDDMFormFieldsMap(true));
+			ddmFormFields.putAll(ddmForm.getNontransientDDMFormFieldsMap(true));
 		}
 
 		return ddmFormFields;
