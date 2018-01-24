@@ -335,6 +335,8 @@
 		<if>
 			<isset var="threadSubjectEdit" />
 			<then>
+				<execute function="Click" locator1="TextInput#SUBJECT" value1="${threadSubjectEdit}" />
+
 				<execute function="Type" locator1="TextInput#SUBJECT" value1="${threadSubjectEdit}" />
 			</then>
 		</if>
@@ -355,6 +357,8 @@
 		<if>
 			<isset var="threadSubjectEdit" />
 			<then>
+				<execute function="Click" locator1="TextInput#SUBJECT" value1="${threadSubjectEdit}" />
+
 				<execute function="Type" locator1="TextInput#SUBJECT" value1="${threadSubjectEdit}" />
 			</then>
 		</if>
