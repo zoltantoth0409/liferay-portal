@@ -270,12 +270,6 @@ if (portletTitleBasedNavigation) {
 
 			<liferay-ui:asset-tags-error />
 
-			<aui:translation-manager
-				availableLocales="<%= availableLocales %>"
-				defaultLanguageId="<%= defaultLanguageId %>"
-				id="translationManager"
-			/>
-
 			<aui:model-context bean="<%= fileVersion %>" model="<%= DLFileVersion.class %>" />
 
 			<aui:fieldset-group markupView="lexicon">
@@ -403,6 +397,15 @@ if (portletTitleBasedNavigation) {
 							<%
 							if (fileEntryTypeId > 0) {
 								try {
+							%>
+
+									<aui:translation-manager
+										availableLocales="<%= availableLocales %>"
+										defaultLanguageId="<%= defaultLanguageId %>"
+										id="translationManager"
+									/>
+
+							<%
 									List<DDMStructure> ddmStructures = dlFileEntryType.getDDMStructures();
 
 									for (DDMStructure ddmStructure : ddmStructures) {
