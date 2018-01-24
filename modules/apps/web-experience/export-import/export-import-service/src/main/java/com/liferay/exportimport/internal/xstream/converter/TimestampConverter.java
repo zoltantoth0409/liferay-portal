@@ -37,9 +37,10 @@ public class TimestampConverter extends BaseXStreamConverter {
 
 	@Override
 	public boolean canConvert(Class<?> clazz) {
+		Class<?> superclass = clazz.getSuperclass();
+
 		if (clazz.equals(Timestamp.class) ||
-			((clazz.getSuperclass() != null) &&
-			 clazz.getSuperclass().equals(Timestamp.class))) {
+			((superclass != null) && superclass.equals(Timestamp.class))) {
 
 			return true;
 		}
