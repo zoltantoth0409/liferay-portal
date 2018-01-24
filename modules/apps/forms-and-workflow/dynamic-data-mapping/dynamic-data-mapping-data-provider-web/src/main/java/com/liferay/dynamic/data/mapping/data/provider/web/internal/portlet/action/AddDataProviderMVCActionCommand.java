@@ -90,12 +90,10 @@ public class AddDataProviderMVCActionCommand extends BaseMVCActionCommand {
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			DDMDataProviderInstance.class.getName(), actionRequest);
 
-		Locale locale = themeDisplay.getSiteDefaultLocale();
-
 		ddmDataProviderInstanceService.addDataProviderInstance(
-			groupId, getLocalizedMap(locale, name),
-			getLocalizedMap(locale, description), ddmFormValues, type,
-			serviceContext);
+			groupId, getLocalizedMap(themeDisplay.getSiteDefaultLocale(), name),
+			getLocalizedMap(themeDisplay.getSiteDefaultLocale(), description),
+			ddmFormValues, type, serviceContext);
 	}
 
 	protected Map<Locale, String> getLocalizedMap(Locale locale, String value) {

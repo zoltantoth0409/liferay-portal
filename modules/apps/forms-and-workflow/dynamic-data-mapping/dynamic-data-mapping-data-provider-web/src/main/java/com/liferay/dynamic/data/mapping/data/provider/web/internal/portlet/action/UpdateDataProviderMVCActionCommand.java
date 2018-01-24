@@ -88,9 +88,10 @@ public class UpdateDataProviderMVCActionCommand
 		Locale locale = themeDisplay.getSiteDefaultLocale();
 
 		ddmDataProviderInstanceService.updateDataProviderInstance(
-			dataProviderInstanceId, getLocalizedMap(locale, name),
-			getLocalizedMap(locale, description), ddmFormValues,
-			serviceContext);
+			dataProviderInstanceId,
+			getLocalizedMap(themeDisplay.getSiteDefaultLocale(), name),
+			getLocalizedMap(themeDisplay.getSiteDefaultLocale(), description),
+			ddmFormValues, serviceContext);
 	}
 
 	protected Optional<DDMFormFieldValue> findStoredDDMFormFieldValue(
