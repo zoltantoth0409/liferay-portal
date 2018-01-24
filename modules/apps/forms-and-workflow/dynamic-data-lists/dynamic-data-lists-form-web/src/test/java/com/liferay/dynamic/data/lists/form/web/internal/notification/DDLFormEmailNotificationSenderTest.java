@@ -74,8 +74,7 @@ public class DDLFormEmailNotificationSenderTest {
 		SoyHTMLContextValue soyHTMLContextValue = 
 			(SoyHTMLContextValue)fieldLabelValueMap.get("value");
 
-		Assert.assertEquals(
-			"test", String.valueOf(soyHTMLContextValue.getValue());
+		Assert.assertEquals("test", String.valueOf(soyHTMLContextValue));
 	}
 
 	@Test
@@ -97,7 +96,7 @@ public class DDLFormEmailNotificationSenderTest {
 			(SoyHTMLContextValue)fieldLabelValueMap.get("value");
 
 		Assert.assertEquals(
-			StringPool.BLANK, String.valueOf(soyHTMLContextValue.getValue()));
+			StringPool.BLANK, String.valueOf(soyHTMLContextValue));
 	}
 
 	protected DDMFormValues createDDMFormValues(Value value) {
