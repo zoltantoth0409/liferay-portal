@@ -22,10 +22,6 @@
 		<execute function="SelectFrame" value1="relative=top" />
 	</command>
 
-	<command name="addDescription">
-		<execute function="Type" locator1="TextInput#DESCRIPTION" value1="${structureDescription}" />
-	</command>
-
 	<command name="addLocalization">
 		<var name="key_localizationName" value="${localization1NameKey}" />
 
