@@ -474,9 +474,6 @@ public class MBMessageServiceImpl extends MBMessageServiceBaseImpl {
 			ThemeDisplay themeDisplay)
 		throws PortalException {
 
-		String name = null;
-		String description = null;
-
 		List<MBMessage> messages = new ArrayList<>();
 
 		int lastIntervalStart = 0;
@@ -506,18 +503,10 @@ public class MBMessageServiceImpl extends MBMessageServiceBaseImpl {
 			}
 		}
 
-		if (!messages.isEmpty()) {
-			MBMessage message = messages.get(messages.size() - 1);
+		Group group = groupLocalService.getGroup(groupId);
 
-			name = message.getSubject();
-			description = message.getSubject();
-		}
-		else {
-			Group group = groupLocalService.getGroup(groupId);
-
-			name = group.getDescriptiveName();
-			description = group.getDescriptiveName();
-		}
+		String name = group.getDescriptiveName();
+		String description = group.getDescriptiveName();
 
 		return exportToRSS(
 			name, description, type, version, displayStyle, feedURL, entryURL,
@@ -530,9 +519,6 @@ public class MBMessageServiceImpl extends MBMessageServiceBaseImpl {
 			double version, String displayStyle, String feedURL,
 			String entryURL, ThemeDisplay themeDisplay)
 		throws PortalException {
-
-		String name = null;
-		String description = null;
 
 		List<MBMessage> messages = new ArrayList<>();
 
@@ -563,18 +549,10 @@ public class MBMessageServiceImpl extends MBMessageServiceBaseImpl {
 			}
 		}
 
-		if (!messages.isEmpty()) {
-			MBMessage message = messages.get(messages.size() - 1);
+		Group group = groupLocalService.getGroup(groupId);
 
-			name = message.getSubject();
-			description = message.getSubject();
-		}
-		else {
-			Group group = groupLocalService.getGroup(groupId);
-
-			name = group.getDescriptiveName();
-			description = group.getDescriptiveName();
-		}
+		String name = group.getDescriptiveName();
+		String description = group.getDescriptiveName();
 
 		return exportToRSS(
 			name, description, type, version, displayStyle, feedURL, entryURL,
