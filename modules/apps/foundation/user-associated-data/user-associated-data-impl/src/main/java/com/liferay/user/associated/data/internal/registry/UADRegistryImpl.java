@@ -204,18 +204,15 @@ public class UADRegistryImpl implements UADRegistry {
 				bundleContext, UADEntityAggregator.class,
 				"(model.class.name=*)",
 				new UADEntityAggregatorReferenceMapper());
-
 		_uadEntityAnonymizerTrackerMap =
 			ServiceTrackerMapFactory.openSingleValueMap(
 				bundleContext, UADEntityAnonymizer.class,
 				"(model.class.name=*)",
 				new UADEntityAnonymizerReferenceMapper());
-
 		_uadEntityDisplayTrackerMap =
 			ServiceTrackerMapFactory.openSingleValueMap(
 				bundleContext, UADEntityDisplay.class, "(model.class.name=*)",
 				new UADEntityDisplayReferenceMapper());
-
 		_uadEntityExporterTrackerMap =
 			ServiceTrackerMapFactory.openSingleValueMap(
 				bundleContext, UADEntityExporter.class, "(model.class.name=*)",
