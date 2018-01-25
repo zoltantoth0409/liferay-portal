@@ -114,26 +114,22 @@ public class UADRegistryImpl implements UADRegistry {
 			new HashMap<>();
 
 		for (String key : getUADEntityAggregatorKeySet()) {
+			List<UADEntityTypeComposite> uadEntityTypeComposites =
+				uadEntityTypeCompositesMap.getOrDefault(
+					uadAggregator.getUADEntitySetName(),
+					new ArrayList<UADEntityTypeComposite>());
+
 			UADEntityAggregator uadAggregator = getUADEntityAggregator(key);
-
-			String uadEntitySetName = uadAggregator.getUADEntitySetName();
-
-			List<UADEntity> uadEntities = uadAggregator.getUADEntities(userId);
-
-			UADEntityDisplay uadEntityDisplay = getUADEntityDisplay(key);
 
 			UADEntityTypeComposite uadEntityTypeComposite =
 				new UADEntityTypeComposite(
-					userId, key, uadEntityDisplay, uadEntities);
-
-			List<UADEntityTypeComposite> uadEntityTypeComposites =
-				uadEntityTypeCompositesMap.getOrDefault(
-					uadEntitySetName, new ArrayList<UADEntityTypeComposite>());
+					userId, key, getUADEntityDisplay(key),
+					uadAggregator.getUADEntities(userId));
 
 			uadEntityTypeComposites.add(uadEntityTypeComposite);
 
 			uadEntityTypeCompositesMap.put(
-				uadEntitySetName, uadEntityTypeComposites);
+				uadAggregator.getUADEntitySetName(), uadEntityTypeComposites);
 		}
 
 		List<UADEntitySetComposite> uadEntitySetComposites = new ArrayList<>();
@@ -142,7 +138,6 @@ public class UADRegistryImpl implements UADRegistry {
 				uadEntityTypeCompositesMap.entrySet()) {
 
 			String uadEntitySetName = entry.getKey();
-
 			List<UADEntityTypeComposite> uadEntityTypeComposites =
 				entry.getValue();
 
@@ -164,10 +159,8 @@ public class UADRegistryImpl implements UADRegistry {
 
 		List<UADEntity> uadEntities = uadAggregator.getUADEntities(userId);
 
-		UADEntityDisplay uadEntityDisplay = getUADEntityDisplay(key);
-
 		return new UADEntityTypeComposite(
-			userId, key, uadEntityDisplay, uadEntities);
+			userId, key, getUADEntityDisplay(key), uadEntities);
 	}
 
 	@Override
@@ -181,14 +174,10 @@ public class UADRegistryImpl implements UADRegistry {
 			UADEntityAggregator uadAggregator = getUADEntityAggregator(key);
 
 			if (uadEntitySetName.equals(uadAggregator.getUADEntitySetName())) {
-				List<UADEntity> uadEntities = uadAggregator.getUADEntities(
-					userId);
-
-				UADEntityDisplay uadEntityDisplay = getUADEntityDisplay(key);
-
 				UADEntityTypeComposite uadEntityTypeComposite =
 					new UADEntityTypeComposite(
-						userId, key, uadEntityDisplay, uadEntities);
+						userId, key, getUADEntityDisplay(key),
+						uadAggregator.getUADEntities(userId));
 
 				uadEntityTypeComposites.add(uadEntityTypeComposite);
 			}
