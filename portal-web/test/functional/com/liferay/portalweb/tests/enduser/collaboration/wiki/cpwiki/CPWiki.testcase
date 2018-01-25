@@ -749,6 +749,8 @@
 			<var name="wikiPageTitle" value="Wiki Page 1 Original" />
 		</execute>
 
+		<execute function="WaitForSPARefresh" />
+
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -768,6 +770,8 @@
 		</execute>
 
 		<execute macro="Button#clickSave" />
+
+		<execute function="WaitForSPARefresh" />
 
 		<execute macro="Navigator#openURL" />
 
