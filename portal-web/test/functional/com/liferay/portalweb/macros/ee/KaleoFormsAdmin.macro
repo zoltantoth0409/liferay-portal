@@ -639,7 +639,7 @@
 	</command>
 
 	<command name="saveFieldSet">
-		<execute macro="PortletEntry#save" />
+		<execute macro="DDLDataDefinition#save" />
 
 		<execute function="SelectFrame" value1="relative=top" />
 

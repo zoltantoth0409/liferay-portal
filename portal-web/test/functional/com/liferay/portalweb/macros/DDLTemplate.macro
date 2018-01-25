@@ -342,7 +342,7 @@
 	</command>
 
 	<command name="saveFormTemplateCP">
-		<execute macro="PortletEntry#save" />
+		<execute macro="DDLDataDefinition#save" />
 	</command>
 
 	<command name="saveFormTemplateViaDDLDisplayPG">
