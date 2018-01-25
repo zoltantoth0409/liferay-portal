@@ -54,7 +54,7 @@ public class FragmentEntryRenderUtil {
 		String html, String js) {
 
 		try {
-			StringBundler sb = new StringBundler(15);
+			StringBundler sb = new StringBundler(14);
 
 			sb.append("<div class=\"fragment-");
 			sb.append(fragmentEntryId);
@@ -74,18 +74,17 @@ public class FragmentEntryRenderUtil {
 			ServiceContext serviceContext = serviceContextOptional.orElse(
 				new ServiceContext());
 
-			String sanitizedHtml = SanitizerUtil.sanitize(
+			String sanitizedHTML = SanitizerUtil.sanitize(
 				serviceContext.getCompanyId(), serviceContext.getScopeGroupId(),
 				serviceContext.getUserId(), FragmentEntry.class.getName(),
 				fragmentEntryId, ContentTypes.TEXT_HTML, Sanitizer.MODE_ALL,
 				html, null);
 
-			sb.append(sanitizedHtml);
+			sb.append(sanitizedHTML);
 
 			sb.append("<script>(function(){");
 			sb.append(js);
-			sb.append(";}());</script>");
-			sb.append("</div>");
+			sb.append(";}());</script></div>");
 
 			return sb.toString();
 		}
