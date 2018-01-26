@@ -3,7 +3,6 @@ targetCompatibility = "1.8"
 
 dependencies {
 	provided group: "com.liferay", name: "com.liferay.mentions.api", version: "2.2.0"
-	provided group: "com.liferay", name: "com.liferay.mentions.web", version: "2.0.0"
 	provided group: "com.liferay", name: "com.liferay.osgi.service.tracker.collections", version: "2.0.0"
 	provided group: "com.liferay", name: "com.liferay.petra.string", version: "1.0.0"
 	provided group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "2.18.0"
