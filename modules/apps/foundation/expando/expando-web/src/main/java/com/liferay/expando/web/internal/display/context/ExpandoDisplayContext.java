@@ -15,10 +15,10 @@
 package com.liferay.expando.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItem;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItemList;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,18 +32,18 @@ public class ExpandoDisplayContext {
 		_request = request;
 	}
 
-	public List<NavigationItem> getNavigationItems(String label) {
-		List<NavigationItem> navigationItems = new ArrayList<>();
-
-		NavigationItem entriesNavigationItem = new NavigationItem();
-
-		entriesNavigationItem.setActive(true);
-		entriesNavigationItem.setHref(StringPool.BLANK);
-		entriesNavigationItem.setLabel(LanguageUtil.get(_request, label));
-
-		navigationItems.add(entriesNavigationItem);
-
-		return navigationItems;
+	public List<NavigationItem> getNavigationItems(final String label) {
+		return new NavigationItemList() {
+			{
+				add(
+					navigationItem -> {
+						navigationItem.setActive(true);
+						navigationItem.setHref(StringPool.BLANK);
+						navigationItem.setLabel(
+							LanguageUtil.get(_request, label));
+					});
+			}
+		};
 	}
 
 	private final HttpServletRequest _request;
