@@ -476,6 +476,12 @@ public class MBMessageServiceImpl extends MBMessageServiceBaseImpl {
 			ThemeDisplay themeDisplay)
 		throws PortalException {
 
+		Group group = groupLocalService.getGroup(groupId);
+
+		String name = group.getDescriptiveName();
+		String description = group.getDescription(
+			LocaleUtil.getMostRelevantLocale());
+
 		List<MBMessage> messages = new ArrayList<>();
 
 		int lastIntervalStart = 0;
@@ -505,12 +511,6 @@ public class MBMessageServiceImpl extends MBMessageServiceBaseImpl {
 			}
 		}
 
-		Group group = groupLocalService.getGroup(groupId);
-
-		String name = group.getDescriptiveName();
-		String description = group.getDescription(
-			LocaleUtil.getMostRelevantLocale());
-
 		return exportToRSS(
 			name, description, type, version, displayStyle, feedURL, entryURL,
 			messages, themeDisplay);
@@ -522,6 +522,12 @@ public class MBMessageServiceImpl extends MBMessageServiceBaseImpl {
 			double version, String displayStyle, String feedURL,
 			String entryURL, ThemeDisplay themeDisplay)
 		throws PortalException {
+
+		Group group = groupLocalService.getGroup(groupId);
+
+		String name = group.getDescriptiveName();
+		String description = group.getDescription(
+			LocaleUtil.getMostRelevantLocale());
 
 		List<MBMessage> messages = new ArrayList<>();
 
@@ -551,12 +557,6 @@ public class MBMessageServiceImpl extends MBMessageServiceBaseImpl {
 				}
 			}
 		}
-
-		Group group = groupLocalService.getGroup(groupId);
-
-		String name = group.getDescriptiveName();
-		String description = group.getDescription(
-			LocaleUtil.getMostRelevantLocale());
 
 		return exportToRSS(
 			name, description, type, version, displayStyle, feedURL, entryURL,
