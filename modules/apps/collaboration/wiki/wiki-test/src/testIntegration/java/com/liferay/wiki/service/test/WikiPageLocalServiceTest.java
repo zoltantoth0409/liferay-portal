@@ -662,7 +662,7 @@ public class WikiPageLocalServiceTest {
 	}
 
 	@Test
-	public void testRenameNonDefaultVersionPageWithAssetCategories()
+	public void testRenameNondefaultVersionPageWithAssetCategories()
 		throws Exception {
 
 		ServiceContext defaultVersionPageServiceContext =
@@ -693,7 +693,7 @@ public class WikiPageLocalServiceTest {
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(), true,
 			defaultVersionPageServiceContext);
 
-		ServiceContext nonDefaultVersionPageServiceContext =
+		ServiceContext nondefaultVersionPageServiceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
 
 		AssetCategory assetCategory3 = AssetTestUtil.addCategory(
@@ -701,19 +701,19 @@ public class WikiPageLocalServiceTest {
 		AssetCategory assetCategory4 = AssetTestUtil.addCategory(
 			_group.getGroupId(), assetVocabulary.getVocabularyId());
 
-		long[] nonDefaultVersionPageAssetCategoryIds = new long[2];
+		long[] nondefaultVersionPageAssetCategoryIds = new long[2];
 
-		nonDefaultVersionPageAssetCategoryIds[0] =
+		nondefaultVersionPageAssetCategoryIds[0] =
 			assetCategory3.getCategoryId();
-		nonDefaultVersionPageAssetCategoryIds[1] =
+		nondefaultVersionPageAssetCategoryIds[1] =
 			assetCategory4.getCategoryId();
 
-		nonDefaultVersionPageServiceContext.setAssetCategoryIds(
-			nonDefaultVersionPageAssetCategoryIds);
+		nondefaultVersionPageServiceContext.setAssetCategoryIds(
+			nondefaultVersionPageAssetCategoryIds);
 
 		WikiTestUtil.updatePage(
 			page, TestPropsValues.getUserId(), StringUtil.randomString(),
-			nonDefaultVersionPageServiceContext);
+			nondefaultVersionPageServiceContext);
 
 		ServiceContext renamePageServiceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
@@ -730,11 +730,11 @@ public class WikiPageLocalServiceTest {
 				WikiPage.class.getName(), renamedPage.getResourcePrimKey());
 
 		_assertArrayEquals(
-			nonDefaultVersionPageAssetCategoryIds, finalAssetCategoryIds);
+			nondefaultVersionPageAssetCategoryIds, finalAssetCategoryIds);
 	}
 
 	@Test
-	public void testRenameNonDefaultVersionPageWithAssetTags()
+	public void testRenameNondefaultVersionPageWithAssetTags()
 		throws Exception {
 
 		ServiceContext defaultVersionPageServiceContext =
@@ -760,27 +760,27 @@ public class WikiPageLocalServiceTest {
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(), true,
 			defaultVersionPageServiceContext);
 
-		ServiceContext nonDefaultVersionPageServiceContext =
+		ServiceContext nondefaultVersionPageServiceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
 
-		AssetTag nonDefaultVersionPageAssetTag1 = AssetTestUtil.addTag(
+		AssetTag nondefaultVersionPageAssetTag1 = AssetTestUtil.addTag(
 			_group.getGroupId());
-		AssetTag nonDefaultVersionPageAssetTag2 = AssetTestUtil.addTag(
+		AssetTag nondefaultVersionPageAssetTag2 = AssetTestUtil.addTag(
 			_group.getGroupId());
 
-		String[] nonDefaultVersionPageAssetTagNames = new String[2];
+		String[] nondefaultVersionPageAssetTagNames = new String[2];
 
-		nonDefaultVersionPageAssetTagNames[0] =
-			nonDefaultVersionPageAssetTag1.getName();
-		nonDefaultVersionPageAssetTagNames[1] =
-			nonDefaultVersionPageAssetTag2.getName();
+		nondefaultVersionPageAssetTagNames[0] =
+			nondefaultVersionPageAssetTag1.getName();
+		nondefaultVersionPageAssetTagNames[1] =
+			nondefaultVersionPageAssetTag2.getName();
 
-		nonDefaultVersionPageServiceContext.setAssetTagNames(
-			nonDefaultVersionPageAssetTagNames);
+		nondefaultVersionPageServiceContext.setAssetTagNames(
+			nondefaultVersionPageAssetTagNames);
 
 		WikiTestUtil.updatePage(
 			page, TestPropsValues.getUserId(), StringUtil.randomString(),
-			nonDefaultVersionPageServiceContext);
+			nondefaultVersionPageServiceContext);
 
 		ServiceContext renamePageServiceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
@@ -796,7 +796,7 @@ public class WikiPageLocalServiceTest {
 			WikiPage.class.getName(), renamedPage.getResourcePrimKey());
 
 		_assertArrayEquals(
-			nonDefaultVersionPageAssetTagNames, finalAssetTagNames);
+			nondefaultVersionPageAssetTagNames, finalAssetTagNames);
 	}
 
 	@Test
