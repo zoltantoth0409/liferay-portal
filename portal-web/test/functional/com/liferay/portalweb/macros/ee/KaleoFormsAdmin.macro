@@ -660,14 +660,12 @@
 				<equals arg1="${workflowTask}" arg2="update" />
 			</or>
 			<then>
-				<execute macro="Button#clickSave" />
+				<execute macro="DDLDataDefinition#save" />
 			</then>
 			<else>
-				<execute macro="Button#clickSave" />
+				<execute macro="PortletEntry#save" />
 			</else>
 		</if>
-
-		<execute macro="Alert#viewSuccessMessage" />
 
 		<execute function="SelectFrame" value1="relative=top" />
 
