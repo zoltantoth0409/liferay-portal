@@ -18,17 +18,17 @@
 
 <clay:navigation-bar
 	inverted="<%= true %>"
-	items="<%= 
-	new JSPNavigationItemList(pageContext) {
-		{
-			add(
-			navigationItem -> {
-				navigationItem.setActive(true);
-				navigationItem.setHref(renderResponse.createRenderURL());
-				navigationItem.setLabel(LanguageUtil.get(request, "image-resolutions"));
-			});
+	items="<%=
+		new JSPNavigationItemList(pageContext) {
+			{
+				add(
+					navigationItem -> {
+						navigationItem.setActive(true);
+						navigationItem.setHref(renderResponse.createRenderURL());
+						navigationItem.setLabel(LanguageUtil.get(request, "image-resolutions"));
+					});
+			}
 		}
-	}
 	%>"
 />
 
