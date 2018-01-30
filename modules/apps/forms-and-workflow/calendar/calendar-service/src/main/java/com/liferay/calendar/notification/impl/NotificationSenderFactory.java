@@ -17,8 +17,6 @@ package com.liferay.calendar.notification.impl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.Validator;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -65,12 +63,11 @@ public class NotificationSenderFactory {
 	protected void setNotificationSender(
 		NotificationSender notificationSender, Map<String, Object> properties) {
 
-		String notificationType = GetterUtil.getString(
-			properties.get("notification.type"));
+		String notificationType = (String)properties.get("notification.type");
 
-		if (Validator.isNull(notificationType)) {
+		if (notificationType == null) {
 			throw new IllegalArgumentException(
-				"No notification.type property specified");
+				"The property \"notification.type\" is null");
 		}
 
 		NotificationSender previousNotificationSender =
@@ -78,9 +75,9 @@ public class NotificationSenderFactory {
 
 		if (_log.isWarnEnabled()) {
 			if (previousNotificationSender != null) {
-				_log.warn(
-					"Overriding NotificationSender: " +
-						previousNotificationSender.getClass());
+				Class<?> clazz = previousNotificationSender.getClass();
+
+				_log.warn("Overriding notification sender " + clazz.getName());
 			}
 		}
 	}
@@ -88,12 +85,11 @@ public class NotificationSenderFactory {
 	protected void unsetNotificationSender(
 		NotificationSender notificationSender, Map<String, Object> properties) {
 
-		String notificationType = GetterUtil.getString(
-			properties.get("notification.type"));
+		String notificationType = (String)properties.get("notification.type");
 
-		if (Validator.isNull(notificationType)) {
+		if (notificationType == null) {
 			throw new IllegalArgumentException(
-				"No notification.type property specified");
+				"The property \"notification.type\" is null");
 		}
 
 		_notificationSenders.remove(notificationType);
