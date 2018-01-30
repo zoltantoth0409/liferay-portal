@@ -17,12 +17,12 @@
 <%@ include file="/process_list_menu/init.jsp" %>
 
 <liferay-ui:icon-menu direction="left-side" icon="<%= StringPool.BLANK %>" markupView="lexicon" message="<%= StringPool.BLANK %>" showWhenSingleIcon="<%= true %>">
-	<c:if test="<%= !localPublishing || (backgroundTaskGroupId != liveGroupId) %>">
+	<c:if test="<%= !localPublishing || (backgroundTask.getGroupId() != liveGroupId) %>">
 		<portlet:actionURL name="editPublishConfiguration" var="relaunchURL">
 			<portlet:param name="mvcRenderCommandName" value="editPublishConfiguration" />
 			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.RELAUNCH %>" />
 			<portlet:param name="redirect" value="<%= currentURL.toString() %>" />
-			<portlet:param name="backgroundTaskId" value="<%= String.valueOf(backgroundTaskId) %>" />
+			<portlet:param name="backgroundTaskId" value="<%= String.valueOf(backgroundTask.getBackgroundTaskId()) %>" />
 		</portlet:actionURL>
 
 		<liferay-ui:icon
@@ -33,7 +33,7 @@
 
 	<portlet:actionURL name="deleteBackgroundTasks" var="deleteBackgroundTaskURL">
 		<portlet:param name="redirect" value="<%= currentURL.toString() %>" />
-		<portlet:param name="deleteBackgroundTaskIds" value="<%= String.valueOf(backgroundTaskId) %>" />
+		<portlet:param name="deleteBackgroundTaskIds" value="<%= String.valueOf(backgroundTask.getBackgroundTaskId()) %>" />
 	</portlet:actionURL>
 
 	<liferay-ui:icon
