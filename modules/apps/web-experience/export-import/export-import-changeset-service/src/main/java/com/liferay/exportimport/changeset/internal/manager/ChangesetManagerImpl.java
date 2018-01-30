@@ -155,9 +155,7 @@ public class ChangesetManagerImpl implements ChangesetManager {
 		}
 		catch (PortalException pe) {
 			if (_log.isWarnEnabled()) {
-				_log.warn(
-					"Changeset cannot be published due to this error " +
-						pe.getMessage());
+				_log.warn("Unable to publish changeset: " + pe.getMessage());
 			}
 
 			return 0;

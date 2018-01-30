@@ -24,7 +24,7 @@ public class ChangesetManagerUtil {
 			return _changesetManager;
 		}
 
-		throw new NullPointerException("ChangesetManager instance is not set");
+		throw new NullPointerException("Changeset manager is null");
 	}
 
 	public static void setChangesetManager(ChangesetManager changesetManager) {
