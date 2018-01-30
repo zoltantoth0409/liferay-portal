@@ -87,11 +87,11 @@ public class ChangesetManagerImpl implements ChangesetManager {
 
 	@Override
 	public long publishChangeset(
-		Changeset changeset, ChangesetEnvironment environment) {
+		Changeset changeset, ChangesetEnvironment changesetEnvironment) {
 
 		addChangeset(changeset);
 
-		long groupId = environment.getGroupId();
+		long groupId = changesetEnvironment.getGroupId();
 
 		Group scopeGroup = _groupLocalService.fetchGroup(groupId);
 
@@ -99,7 +99,7 @@ public class ChangesetManagerImpl implements ChangesetManager {
 			return 0;
 		}
 
-		String portletId = environment.getPortletId();
+		String portletId = changesetEnvironment.getPortletId();
 
 		if (!scopeGroup.isStagedPortlet(portletId)) {
 			return 0;
@@ -119,7 +119,8 @@ public class ChangesetManagerImpl implements ChangesetManager {
 
 		parameterMap.put("changesetUuid", new String[] {changeset.getUuid()});
 
-		Map<String, String> envParameterMap = environment.getParameterMap();
+		Map<String, String> envParameterMap =
+			changesetEnvironment.getParameterMap();
 
 		Set<Map.Entry<String, String>> entrySet = envParameterMap.entrySet();
 
@@ -131,14 +132,15 @@ public class ChangesetManagerImpl implements ChangesetManager {
 					entry.getKey(), new String[] {entry.getValue()});
 			});
 
-		User user = _userLocalService.fetchUser(environment.getUserId());
+		User user = _userLocalService.fetchUser(
+			changesetEnvironment.getUserId());
 
 		Map<String, Serializable> settingsMap =
 			ExportImportConfigurationSettingsMapFactory.
 				buildPublishPortletSettingsMap(
-					user, groupId, environment.getPlid(), liveGroupId,
-					environment.getPlid(), ChangesetPortletKeys.CHANGESET,
-					parameterMap);
+					user, groupId, changesetEnvironment.getPlid(), liveGroupId,
+					changesetEnvironment.getPlid(),
+					ChangesetPortletKeys.CHANGESET, parameterMap);
 
 		try {
 			ExportImportConfiguration exportImportConfiguration =

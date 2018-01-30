@@ -32,6 +32,6 @@ public interface ChangesetManager {
 	public Optional<Changeset> popChangeset(String changesetUuid);
 
 	public long publishChangeset(
-		Changeset changeset, ChangesetEnvironment environment);
+		Changeset changeset, ChangesetEnvironment changesetEnvironment);
 
 }

@@ -52,9 +52,10 @@ public class ChangesetEnvironment {
 	public static class Builder {
 
 		public Builder(
-			ChangesetEnvironment environment, long groupId, String portletId) {
+			ChangesetEnvironment changesetEnvironment, long groupId,
+			String portletId) {
 
-			_changesetEnvironment = environment;
+			_changesetEnvironment = changesetEnvironment;
 
 			_changesetEnvironment._groupId = groupId;
 			_changesetEnvironment._portletId = portletId;
