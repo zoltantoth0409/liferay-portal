@@ -57,6 +57,7 @@ import java.security.PrivilegedExceptionAction;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.IdentityHashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -179,9 +180,9 @@ public class SoyTemplate extends AbstractMultiResourceTemplate {
 		return _soyMapData;
 	}
 
-	protected Object getSoyMapValue(Object value) {
-		if (value == null) {
-			return null;
+	protected Object getSoyMapValue(IdentityHashMap cache, Object value) {
+		if (cache.containsKey(value)) {
+			return cache.get(value);
 		}
 
 		Class<?> clazz = value.getClass();
@@ -193,10 +194,12 @@ public class SoyTemplate extends AbstractMultiResourceTemplate {
 		if (clazz.isArray()) {
 			List<Object> newList = new ArrayList<>();
 
+			cache.put(value, newList);
+
 			for (int i = 0; i < Array.getLength(value); i++) {
 				Object object = Array.get(value, i);
 
-				newList.add(getSoyMapValue(object));
+				newList.add(getSoyMapValue(cache, object));
 			}
 
 			return newList;
@@ -208,8 +211,10 @@ public class SoyTemplate extends AbstractMultiResourceTemplate {
 
 			List<Object> newList = new ArrayList<>();
 
+			cache.put(value, newList);
+
 			for (Object object : iterable) {
-				newList.add(getSoyMapValue(object));
+				newList.add(getSoyMapValue(cache, object));
 			}
 
 			return newList;
@@ -220,10 +225,12 @@ public class SoyTemplate extends AbstractMultiResourceTemplate {
 
 			List<Object> newList = new ArrayList<>();
 
+			cache.put(value, newList);
+
 			for (int i = 0; i < jsonArray.length(); i++) {
 				Object object = jsonArray.opt(i);
 
-				newList.add(getSoyMapValue(object));
+				newList.add(getSoyMapValue(cache, object));
 			}
 
 			return newList;
@@ -234,14 +241,16 @@ public class SoyTemplate extends AbstractMultiResourceTemplate {
 
 			Map<Object, Object> newMap = new TreeMap<>();
 
+			cache.put(value, newMap);
+
 			for (Map.Entry<Object, Object> entry : map.entrySet()) {
-				Object newKey = getSoyMapValue(entry.getKey());
+				Object newKey = getSoyMapValue(cache, entry.getKey());
 
 				if (newKey == null) {
 					continue;
 				}
 
-				Object newValue = getSoyMapValue(entry.getValue());
+				Object newValue = getSoyMapValue(cache, entry.getValue());
 
 				newMap.put(newKey, newValue);
 			}
@@ -254,6 +263,8 @@ public class SoyTemplate extends AbstractMultiResourceTemplate {
 
 			Map<String, Object> newMap = new TreeMap<>();
 
+			cache.put(value, newMap);
+
 			Iterator<String> iterator = jsonObject.keys();
 
 			while (iterator.hasNext()) {
@@ -261,7 +272,7 @@ public class SoyTemplate extends AbstractMultiResourceTemplate {
 
 				Object object = jsonObject.get(key);
 
-				Object newValue = getSoyMapValue(object);
+				Object newValue = getSoyMapValue(cache, object);
 
 				newMap.put(key, newValue);
 			}
@@ -274,6 +285,8 @@ public class SoyTemplate extends AbstractMultiResourceTemplate {
 
 			Map<Object, Object> newMap = new TreeMap<>();
 
+			cache.put(value, newMap);
+
 			Iterator<String> iterator = jsonObject.keys();
 
 			while (iterator.hasNext()) {
@@ -281,7 +294,7 @@ public class SoyTemplate extends AbstractMultiResourceTemplate {
 
 				Object object = jsonObject.opt(key);
 
-				Object newValue = getSoyMapValue(object);
+				Object newValue = getSoyMapValue(cache, object);
 
 				newMap.put(key, newValue);
 			}
@@ -305,7 +318,17 @@ public class SoyTemplate extends AbstractMultiResourceTemplate {
 			return null;
 		}
 
-		return getSoyMapValue(newMap);
+		cache.put(value, newMap);
+
+		return getSoyMapValue(cache, newMap);
+	}
+
+	protected Object getSoyMapValue(Object value) {
+		IdentityHashMap cache = new IdentityHashMap<>();
+
+		cache.put(null, null);
+
+		return getSoyMapValue(cache, value);
 	}
 
 	protected Optional<SoyMsgBundle> getSoyMsgBundle(
