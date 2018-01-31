@@ -1483,6 +1483,10 @@
 
 		<execute macro="IFrame#closeFrame" />
 
+		<execute macro="CalendarEvent#view">
+			<var name="eventTitle" value="Calendar Event Title1" />
+		</execute>
+
 		<execute macro="CalendarNavigator#gotoAddEventViaMyCalendars">
 			<var name="key_user" value="Test Test" />
 		</execute>
@@ -1493,7 +1497,11 @@
 			<var name="pageName" value="Calendar Page" />
 		</execute>
 
-		<execute macro="CalendarEvent#view">
+		<execute macro="Navigator#gotoPage">
+			<var name="pageName" value="Calendar Page" />
+		</execute>
+
+		<execute macro="CalendarEvent#viewAllDay">
 			<var name="eventTitle" value="Calendar Event Title2" />
 		</execute>
 	</command>
