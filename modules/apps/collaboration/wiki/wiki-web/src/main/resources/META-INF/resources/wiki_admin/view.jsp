@@ -59,15 +59,12 @@ request.setAttribute("view.jsp-orderByType", orderByType);
 	items="<%=
 		new JSPNavigationItemList(pageContext) {
 			{
-				PortletURL viewNodesURL = renderResponse.createRenderURL();
-				viewNodesURL.setParameter("mvcRenderCommandName", "/wiki_admin/view");
-
 				add(
-				navigationItem -> {
-					navigationItem.setActive(true);
-					navigationItem.setHref(viewNodesURL.toString());
-					navigationItem.setLabel(LanguageUtil.get(request, "wikis"));
-				});
+					navigationItem -> {
+						navigationItem.setActive(true);
+						navigationItem.setHref(renderResponse.createRenderURL(), "mvcRenderCommandName", "/wiki_admin/view");
+						navigationItem.setLabel(LanguageUtil.get(request, "wikis"));
+					});
 			}
 		}
 	%>"

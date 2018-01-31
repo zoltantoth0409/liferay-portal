@@ -21,15 +21,12 @@
 	items="<%=
 		new JSPNavigationItemList(pageContext) {
 			{
-				PortletURL viewPagesURL = renderResponse.createRenderURL();
-				viewPagesURL.setParameter("mvcRenderCommandName", "/wiki/view_pages");
-
 				add(
-				navigationItem -> {
-					navigationItem.setActive(true);
-					navigationItem.setHref(viewPagesURL.toString());
-					navigationItem.setLabel(LanguageUtil.get(request, "pages"));
-				});
+					navigationItem -> {
+						navigationItem.setActive(true);
+						navigationItem.setHref(renderResponse.createRenderURL(), "mvcRenderCommandName", "/wiki/view_pages");
+						navigationItem.setLabel(LanguageUtil.get(request, "pages"));
+					});
 			}
 		}
 	%>"
