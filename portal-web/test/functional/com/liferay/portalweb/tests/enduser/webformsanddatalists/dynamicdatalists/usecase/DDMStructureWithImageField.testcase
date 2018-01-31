@@ -114,6 +114,12 @@
 				<var name="fieldValue" value="${language} Title" />
 			</execute>
 
+			<execute macro="ItemSelector#gotoItemSelectorViaSelectButton" />
+
+			<execute macro="ItemSelector#selectDMImage">
+ 				<var name="imageFileName" value="Document_3.png" />
+ 			</execute>
+
 			<execute macro="FormFields#editTextAlt">
 				<var name="fieldName" value="image" />
 				<var name="fieldValue" value="${language} Image Description" />

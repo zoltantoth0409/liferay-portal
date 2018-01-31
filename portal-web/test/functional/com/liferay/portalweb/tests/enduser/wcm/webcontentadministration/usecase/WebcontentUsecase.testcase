@@ -1013,7 +1013,7 @@
 		</execute>
 
 		<execute macro="WebContent#viewPGViaWCD">
-			<var name="webContentContent" value="Space Program Academy of Continuing Education Dare to Dream out of this world Space Program 大学生涯教育 地球から、宇宙の果てへ" />
+			<var name="webContentContent" value="Space Program 大学生涯教育 地球から、宇宙の果てへ" />
 		</execute>
 
 		<execute macro="Navigator#gotoPage">
@@ -1032,7 +1032,7 @@
 			<var name="webContentContent" value="Space Program Academy of Continuing Education Dare to Dream out of this world" />
 		</execute>
 
-		<execute function="AssertTextNotPresent" locator1="WCD#WEB_CONTENT_CONTENT" value1="Space Program Academy of Continuing Education Dare to Dream out of this world Space Program 大学生涯教育 地球から、宇宙の果てへ" />
+		<execute function="AssertTextNotPresent" locator1="WCD#WEB_CONTENT_CONTENT" value1="Space Program 大学生涯教育 地球から、宇宙の果てへ" />
 	</command>
 
 	<command ignore="true" name="AddVideoViaWebContent" priority="4">
@@ -3112,6 +3112,12 @@
 		<execute macro="FormFields#editText">
 			<var name="fieldName" value="title" />
 			<var name="fieldValue" value="Spanish (Spain) Title" />
+		</execute>
+
+		<execute macro="ItemSelector#gotoItemSelectorViaSelectButton" />
+
+		<execute macro="ItemSelector#selectDMImage">
+			<var name="imageFileName" value="Document_3.png" />
 		</execute>
 
 		<execute macro="FormFields#editTextAlt">
