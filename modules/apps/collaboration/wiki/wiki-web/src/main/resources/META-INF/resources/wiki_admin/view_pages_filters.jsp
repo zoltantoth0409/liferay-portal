@@ -55,7 +55,7 @@ WikiURLHelper wikiURLHelper = new WikiURLHelper(wikiRequestHelper, renderRespons
 
 <li>
 	<aui:form action="<%= wikiURLHelper.getSearchURL() %>" method="get" name="searchFm">
-		<liferay-portlet:renderURLParams portletURL="<%= searchURL %>" />
+		<liferay-portlet:renderURLParams portletURL="<%= wikiURLHelper.getSearchURL() %>" />
 		<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
 		<aui:input name="nodeId" type="hidden" value="<%= node.getNodeId() %>" />
 
