@@ -51,32 +51,32 @@ public class SiteNavigationMenuItemItemSelectorViewDisplayContext {
 	}
 
 	public JSONArray getSiteNavigationMenuItemsJSONArray() throws Exception {
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
 		long siteNavigationMenuId = ParamUtil.getLong(
 			_request, "siteNavigationMenuId");
+
+		jsonObject.put(
+			"children",
+			_getSiteNavigationMenuItemsJSONArray(siteNavigationMenuId, 0));
+
+		jsonObject.put("disabled", true);
+		jsonObject.put("icon", "blogs");
+		jsonObject.put("id", "0");
 
 		SiteNavigationMenu siteNavigationMenu =
 			SiteNavigationMenuLocalServiceUtil.fetchSiteNavigationMenu(
 				siteNavigationMenuId);
 
-		JSONArray rootJSONArray = JSONFactoryUtil.createJSONArray();
-
-		JSONArray jsonArray = _getSiteNavigationMenuItemsJSONArray(
-			siteNavigationMenuId, 0);
-
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-		jsonObject.put("children", jsonArray);
-		jsonObject.put("disabled", true);
-		jsonObject.put("icon", "blogs");
-		jsonObject.put("id", "0");
-
 		if (siteNavigationMenu != null) {
 			jsonObject.put("name", siteNavigationMenu.getName());
 		}
 
-		rootJSONArray.put(jsonObject);
+		jsonArray.put(jsonObject);
 
-		return rootJSONArray;
+		return jsonArray;
 	}
 
 	private long _getSiteNavigationMenuItemId() {
@@ -94,10 +94,10 @@ public class SiteNavigationMenuItemItemSelectorViewDisplayContext {
 			long siteNavigationMenuId, long parentSiteNavigationMenuItemId)
 		throws Exception {
 
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
 		ThemeDisplay themeDisplay = (ThemeDisplay)_request.getAttribute(
 			WebKeys.THEME_DISPLAY);
-
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		List<SiteNavigationMenuItem> siteNavigationMenuItems =
 			SiteNavigationMenuItemLocalServiceUtil.getSiteNavigationMenuItems(
