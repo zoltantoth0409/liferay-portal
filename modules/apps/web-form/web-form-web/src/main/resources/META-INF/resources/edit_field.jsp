@@ -20,6 +20,7 @@
 int lastIndex = ParamUtil.getInteger(renderRequest, "index");
 
 int index = GetterUtil.getInteger((String)request.getAttribute("configuration.jsp-index"), lastIndex + 1);
+
 int formFieldsIndex = GetterUtil.getInteger((String)request.getAttribute("configuration.jsp-formFieldsIndex"));
 boolean fieldsEditingDisabled = GetterUtil.getBoolean((String)request.getAttribute("configuration.jsp-fieldsEditingDisabled"));
 String fieldLabelXml = GetterUtil.getString(LocalizationUtil.getLocalizationXmlFromPreferences(portletPreferences, renderRequest, "fieldLabel" + formFieldsIndex));
