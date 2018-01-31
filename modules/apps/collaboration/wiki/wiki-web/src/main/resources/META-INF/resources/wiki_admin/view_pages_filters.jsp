@@ -37,8 +37,6 @@ orderColumns.put("modifiedDate", "modified-date");
 orderColumns.put("title", "title");
 
 WikiURLHelper wikiURLHelper = new WikiURLHelper(wikiRequestHelper, renderResponse, wikiGroupServiceConfiguration);
-
-PortletURL searchURL = wikiURLHelper.getSearchURL();
 %>
 
 <liferay-frontend:management-bar-navigation
@@ -56,7 +54,7 @@ PortletURL searchURL = wikiURLHelper.getSearchURL();
 </c:if>
 
 <li>
-	<aui:form action="<%= searchURL %>" method="get" name="searchFm">
+	<aui:form action="<%= wikiURLHelper.getSearchURL() %>" method="get" name="searchFm">
 		<liferay-portlet:renderURLParams portletURL="<%= searchURL %>" />
 		<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
 		<aui:input name="nodeId" type="hidden" value="<%= node.getNodeId() %>" />
