@@ -18,19 +18,19 @@
 
 <clay:navigation-bar
 	inverted="<%= true %>"
-	items="<%= 
-	new JSPNavigationItemList(pageContext) {
-		{
-			PortletURL viewPagesURL = renderResponse.createRenderURL();
-			viewPagesURL.setParameter("mvcRenderCommandName", "/wiki/view_pages");
+	items="<%=
+		new JSPNavigationItemList(pageContext) {
+			{
+				PortletURL viewPagesURL = renderResponse.createRenderURL();
+				viewPagesURL.setParameter("mvcRenderCommandName", "/wiki/view_pages");
 
-			add(
-			navigationItem -> {
-				navigationItem.setActive(true);
-				navigationItem.setHref(viewPagesURL.toString());
-				navigationItem.setLabel(LanguageUtil.get(request, "pages"));
-			});
+				add(
+				navigationItem -> {
+					navigationItem.setActive(true);
+					navigationItem.setHref(viewPagesURL.toString());
+					navigationItem.setLabel(LanguageUtil.get(request, "pages"));
+				});
+			}
 		}
-	}
 	%>"
 />
