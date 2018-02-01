@@ -277,14 +277,15 @@ public class RoleDisplayContext {
 
 		Map<String, String> tabsURLs = new HashMap<>();
 
-		PortletURL editRoleURL = _renderResponse.createRenderURL();
+		PortletURL assignMembersURL = _renderResponse.createRenderURL();
 
-		editRoleURL.setParameter("mvcPath", "/edit_role.jsp");
-		editRoleURL.setParameter("tabs1", "details");
-		editRoleURL.setParameter("redirect", backURL);
-		editRoleURL.setParameter("roleId", String.valueOf(role.getRoleId()));
+		assignMembersURL.setParameter("mvcPath", "/edit_role_assignments.jsp");
+		assignMembersURL.setParameter("tabs1", "assignees");
+		assignMembersURL.setParameter("redirect", backURL);
+		assignMembersURL.setParameter(
+			"roleId", String.valueOf(role.getRoleId()));
 
-		tabsURLs.put("details", editRoleURL.toString());
+		tabsURLs.put("assignees", assignMembersURL.toString());
 
 		PortletURL definePermissionsURL = _renderResponse.createRenderURL();
 
@@ -298,15 +299,14 @@ public class RoleDisplayContext {
 
 		tabsURLs.put("define-permissions", definePermissionsURL.toString());
 
-		PortletURL assignMembersURL = _renderResponse.createRenderURL();
+		PortletURL editRoleURL = _renderResponse.createRenderURL();
 
-		assignMembersURL.setParameter("mvcPath", "/edit_role_assignments.jsp");
-		assignMembersURL.setParameter("tabs1", "assignees");
-		assignMembersURL.setParameter("redirect", backURL);
-		assignMembersURL.setParameter(
-			"roleId", String.valueOf(role.getRoleId()));
+		editRoleURL.setParameter("mvcPath", "/edit_role.jsp");
+		editRoleURL.setParameter("tabs1", "details");
+		editRoleURL.setParameter("redirect", backURL);
+		editRoleURL.setParameter("roleId", String.valueOf(role.getRoleId()));
 
-		tabsURLs.put("assignees", assignMembersURL.toString());
+		tabsURLs.put("details", editRoleURL.toString());
 
 		return tabsURLs;
 	}
