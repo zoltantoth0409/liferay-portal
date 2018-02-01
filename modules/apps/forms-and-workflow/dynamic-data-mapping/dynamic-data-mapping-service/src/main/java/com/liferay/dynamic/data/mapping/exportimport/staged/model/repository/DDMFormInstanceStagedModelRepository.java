@@ -56,30 +56,24 @@ public class DDMFormInstanceStagedModelRepository
 	@Override
 	public DDMFormInstance addStagedModel(
 			PortletDataContext portletDataContext,
-			DDMFormInstance importedFormInstance)
+			DDMFormInstance ddmFormInstance)
 		throws PortalException {
 
 		long userId = portletDataContext.getUserId(
-			importedFormInstance.getUserUuid());
+			ddmFormInstance.getUserUuid());
 
 		ServiceContext serviceContext = portletDataContext.createServiceContext(
-			importedFormInstance);
+			ddmFormInstance);
 
 		if (portletDataContext.isDataStrategyMirror()) {
-			serviceContext.setUuid(importedFormInstance.getUuid());
+			serviceContext.setUuid(ddmFormInstance.getUuid());
 		}
 
-		DDMFormInstance formInstance =
-			_ddmFormInstanceLocalService.addFormInstance(
-				userId, importedFormInstance.getGroupId(),
-				importedFormInstance.getStructureId(),
-				importedFormInstance.getNameMap(),
-				importedFormInstance.getDescriptionMap(),
-				importedFormInstance.getSettings(), serviceContext);
-
-		formInstance.setVersion(importedFormInstance.getVersion());
-
-		return _ddmFormInstanceLocalService.updateDDMFormInstance(formInstance);
+		return _ddmFormInstanceLocalService.addFormInstance(
+			userId, ddmFormInstance.getGroupId(),
+			ddmFormInstance.getStructureId(), ddmFormInstance.getNameMap(),
+			ddmFormInstance.getDescriptionMap(), ddmFormInstance.getSettings(),
+			serviceContext);
 	}
 
 	@Override
