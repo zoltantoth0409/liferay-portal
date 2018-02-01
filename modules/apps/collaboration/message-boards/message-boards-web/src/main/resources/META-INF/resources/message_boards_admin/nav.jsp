@@ -35,7 +35,7 @@ bannedUsersURL.setParameter("mvcRenderCommandName", "/message_boards/view_banned
 
 <clay:navigation-bar
 	inverted="<%= true %>"
-	items="<%=
+	items='<%=
 		new JSPNavigationItemList(pageContext) {
 			{
 				add(
@@ -60,5 +60,5 @@ bannedUsersURL.setParameter("mvcRenderCommandName", "/message_boards/view_banned
 					});
 			}
 		}
-	%>"
+	%>'
 />
