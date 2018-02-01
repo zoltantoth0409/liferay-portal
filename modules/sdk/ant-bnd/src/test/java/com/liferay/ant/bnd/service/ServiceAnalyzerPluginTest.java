@@ -66,7 +66,7 @@ public class ServiceAnalyzerPluginTest {
 
 		InputStream inputStream =
 			ServiceAnalyzerPluginTest.class.getResourceAsStream(
-				"dependencies/com.liferay.contacts.service.jar");
+				"dependencies/com.liferay.contacts.service1.jar");
 
 		try (Jar jar = new Jar("dot", inputStream);
 			Analyzer analyzer = new Analyzer()) {
