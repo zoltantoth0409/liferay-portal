@@ -80,9 +80,15 @@ public class JSONStorageAdapter extends BaseStorageAdapter {
 			DDMStorageLink.class.getName(), null, serializedDDMFormValues,
 			serviceContext);
 
+		DDMStructure ddmStructure = _ddmStructureLocalService.getDDMStructure(
+			ddmStructureId);
+
+		DDMStructureVersion ddmStructureVersion =
+			ddmStructure.getLatestStructureVersion();
+
 		_ddmStorageLinkLocalService.addStorageLink(
-			classNameId, ddmContent.getPrimaryKey(), ddmStructureVersionId,
-			serviceContext);
+			classNameId, ddmContent.getPrimaryKey(),
+			ddmStructureVersion.getStructureVersionId(), serviceContext);
 
 		return ddmContent.getPrimaryKey();
 	}
