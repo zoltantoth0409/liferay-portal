@@ -178,14 +178,17 @@ public class DDMStructureLocalServiceImpl
 				structure, serviceContext.getModelPermissions());
 		}
 
+		// Structure version
 
-			// Structure version
+		DDMStructureVersion structureVersion = addStructureVersion(
+			user, structure, DDMStructureConstants.VERSION_DEFAULT,
+			serviceContext);
 
-			ddmStructureVersionLocalService.addStructureVersion(
-				userId, parentStructureId, nameMap, descriptionMap,
-				structure.getDefinition(),
-				DDMStructureConstants.VERSION_DEFAULT, structure, ddmFormLayout,
-				serviceContext);
+		// Structure layout
+
+		ddmStructureLayoutLocalService.addStructureLayout(
+			userId, groupId, structureVersion.getStructureVersionId(),
+			ddmFormLayout, serviceContext);
 
 		// Data provider instance links
 
@@ -512,8 +515,16 @@ public class DDMStructureLocalServiceImpl
 
 		// Structure versions
 
-		ddmStructureVersionLocalService.deleteStructureVersion(
-			structure.getStructureId());
+		List<DDMStructureVersion> structureVersions =
+			ddmStructureVersionLocalService.getStructureVersions(
+				structure.getStructureId());
+
+		for (DDMStructureVersion structureVersion : structureVersions) {
+			ddmStructureLayoutPersistence.removeByStructureVersionId(
+				structureVersion.getStructureVersionId());
+
+			ddmStructureVersionPersistence.remove(structureVersion);
+		}
 
 		// Resources
 
@@ -1508,6 +1519,44 @@ public class DDMStructureLocalServiceImpl
 		}
 	}
 
+	protected DDMStructureVersion addStructureVersion(
+		User user, DDMStructure structure, String version,
+		ServiceContext serviceContext) {
+
+		long structureVersionId = counterLocalService.increment();
+
+		DDMStructureVersion structureVersion =
+			ddmStructureVersionPersistence.create(structureVersionId);
+
+		structureVersion.setGroupId(structure.getGroupId());
+		structureVersion.setCompanyId(structure.getCompanyId());
+		structureVersion.setUserId(user.getUserId());
+		structureVersion.setUserName(user.getFullName());
+		structureVersion.setCreateDate(structure.getModifiedDate());
+		structureVersion.setStructureId(structure.getStructureId());
+		structureVersion.setVersion(version);
+		structureVersion.setParentStructureId(structure.getParentStructureId());
+		structureVersion.setName(structure.getName());
+		structureVersion.setDescription(structure.getDescription());
+		structureVersion.setDefinition(structure.getDefinition());
+		structureVersion.setStorageType(structure.getStorageType());
+		structureVersion.setType(structure.getType());
+
+		int status = GetterUtil.getInteger(
+			serviceContext.getAttribute("status"),
+			WorkflowConstants.STATUS_APPROVED);
+
+		structureVersion.setStatus(status);
+
+		structureVersion.setStatusByUserId(user.getUserId());
+		structureVersion.setStatusByUserName(user.getFullName());
+		structureVersion.setStatusDate(structure.getModifiedDate());
+
+		ddmStructureVersionPersistence.update(structureVersion);
+
+		return structureVersion;
+	}
+
 	protected Set<Long> deleteStructures(List<DDMStructure> structures)
 		throws PortalException {
 
@@ -1578,16 +1627,20 @@ public class DDMStructureLocalServiceImpl
 
 		// Structure version
 
-		DDMStructureVersion structureVersion =
-			ddmStructureVersionLocalService.addStructureVersion(
-				userId, parentStructureId, nameMap, descriptionMap,
-				structure.getDefinition(), version, structure, ddmFormLayout,
-				serviceContext);
+		DDMStructureVersion structureVersion = addStructureVersion(
+			user, structure, version, serviceContext);
+
+		// Structure layout
 
 		// Explicitly pop UUID from service context to ensure no lingering
 		// values remain there from other components (e.g. Journal)
 
 		serviceContext.getUuid();
+
+		ddmStructureLayoutLocalService.addStructureLayout(
+			structureVersion.getUserId(), structureVersion.getGroupId(),
+			structureVersion.getStructureVersionId(), ddmFormLayout,
+			serviceContext);
 
 		if (!structureVersion.isApproved()) {
 			return structure;
