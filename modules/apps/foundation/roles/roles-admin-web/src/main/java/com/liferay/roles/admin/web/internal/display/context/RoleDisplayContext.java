@@ -83,20 +83,21 @@ public class RoleDisplayContext {
 		Role role = RoleServiceUtil.fetchRole(roleId);
 
 		if (role != null) {
-			List<String> tabNames = _getTabNames();
-			Map<String, String> tabsURLMap = _getTabsURLMap();
+			List<String> tabsNames = _getTabsNames();
+			Map<String, String> tabsURLs = _getTabsURLs();
 
 			String tabs1 = ParamUtil.getString(_request, "tabs1");
 
 			return new NavigationItemList() {
 				{
-					for (String tabName : tabNames) {
+					for (String tabsName : tabsNames) {
 						add(
 							navigationItem -> {
-								navigationItem.setActive(tabName.equals(tabs1));
-								navigationItem.setHref(tabsURLMap.get(tabName));
+								navigationItem.setActive(
+									tabsName.equals(tabs1));
+								navigationItem.setHref(tabsURLs.get(tabsName));
 								navigationItem.setLabel(
-									LanguageUtil.get(_request, tabName));
+									LanguageUtil.get(_request, tabsName));
 							});
 					}
 				}
@@ -210,8 +211,8 @@ public class RoleDisplayContext {
 		return currentURLObj.toString();
 	}
 
-	private List<String> _getTabNames() throws Exception {
-		List<String> tabNames = new ArrayList<>();
+	private List<String> _getTabsNames() throws Exception {
+		List<String> tabsNames = new ArrayList<>();
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)_request.getAttribute(
 			WebKeys.THEME_DISPLAY);
@@ -226,7 +227,7 @@ public class RoleDisplayContext {
 		if (RolePermissionUtil.contains(
 				permissionChecker, role.getRoleId(), ActionKeys.UPDATE)) {
 
-			tabNames.add("details");
+			tabsNames.add("details");
 		}
 
 		String name = role.getName();
@@ -241,7 +242,7 @@ public class RoleDisplayContext {
 				permissionChecker, role.getRoleId(),
 				ActionKeys.DEFINE_PERMISSIONS)) {
 
-			tabNames.add("define-permissions");
+			tabsNames.add("define-permissions");
 		}
 
 		boolean unassignableRole = false;
@@ -259,13 +260,13 @@ public class RoleDisplayContext {
 				permissionChecker, role.getRoleId(),
 				ActionKeys.ASSIGN_MEMBERS)) {
 
-			tabNames.add("assignees");
+			tabsNames.add("assignees");
 		}
 
-		return tabNames;
+		return tabsNames;
 	}
 
-	private Map<String, String> _getTabsURLMap() throws Exception {
+	private Map<String, String> _getTabsURLs() throws Exception {
 		String redirect = ParamUtil.getString(_request, "redirect");
 
 		String backURL = ParamUtil.getString(_request, "backURL", redirect);
@@ -274,7 +275,7 @@ public class RoleDisplayContext {
 
 		Role role = RoleServiceUtil.fetchRole(roleId);
 
-		Map<String, String> tabsURLMap = new HashMap<>();
+		Map<String, String> tabsURLs = new HashMap<>();
 
 		PortletURL editRoleURL = _renderResponse.createRenderURL();
 
@@ -283,7 +284,7 @@ public class RoleDisplayContext {
 		editRoleURL.setParameter("redirect", backURL);
 		editRoleURL.setParameter("roleId", String.valueOf(role.getRoleId()));
 
-		tabsURLMap.put("details", editRoleURL.toString());
+		tabsURLs.put("details", editRoleURL.toString());
 
 		PortletURL definePermissionsURL = _renderResponse.createRenderURL();
 
@@ -295,7 +296,7 @@ public class RoleDisplayContext {
 		definePermissionsURL.setParameter(
 			"roleId", String.valueOf(role.getRoleId()));
 
-		tabsURLMap.put("define-permissions", definePermissionsURL.toString());
+		tabsURLs.put("define-permissions", definePermissionsURL.toString());
 
 		PortletURL assignMembersURL = _renderResponse.createRenderURL();
 
@@ -305,9 +306,9 @@ public class RoleDisplayContext {
 		assignMembersURL.setParameter(
 			"roleId", String.valueOf(role.getRoleId()));
 
-		tabsURLMap.put("assignees", assignMembersURL.toString());
+		tabsURLs.put("assignees", assignMembersURL.toString());
 
-		return tabsURLMap;
+		return tabsURLs;
 	}
 
 	private final RenderResponse _renderResponse;
