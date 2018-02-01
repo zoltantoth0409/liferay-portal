@@ -94,7 +94,7 @@ public class DDMStructureVersionLocalServiceImpl
 	}
 
 	@Override
-	public void deleteStructureStructureVersions(long structureId)
+	public void deleteStructureVersion(long structureId)
 		throws PortalException {
 
 		List<DDMStructureVersion> structureVersions =
