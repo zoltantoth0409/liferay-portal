@@ -123,7 +123,7 @@ public class AddFormInstanceRecordMVCActionCommand
 			ddmFormInstance.getFormInstanceVersion(
 				ddmFormInstance.getVersion());
 
-		DDMFormInstanceRecord ddmFormInstanceRecord;
+		DDMFormInstanceRecord ddmFormInstanceRecord = null;
 
 		if (ddmFormInstanceRecordVersion == null) {
 			ddmFormInstanceRecord =
