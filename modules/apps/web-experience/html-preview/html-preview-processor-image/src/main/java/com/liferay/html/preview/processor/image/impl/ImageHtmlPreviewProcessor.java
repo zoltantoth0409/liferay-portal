@@ -38,7 +38,7 @@ public class ImageHtmlPreviewProcessor implements HtmlPreviewProcessor {
 	@Override
 	public File generateContentHtmlPreview(String content) {
 		return generateContentHtmlPreview(
-			content, HtmlPreviewProcessor.DEFAULT_WIDTH);
+			content, HtmlPreviewProcessor.WIDTH_DEFAULT);
 	}
 
 	@Override
@@ -59,7 +59,7 @@ public class ImageHtmlPreviewProcessor implements HtmlPreviewProcessor {
 
 	@Override
 	public File generateURLHtmlPreview(String url) {
-		return generateURLHtmlPreview(url, HtmlPreviewProcessor.DEFAULT_WIDTH);
+		return generateURLHtmlPreview(url, HtmlPreviewProcessor.WIDTH_DEFAULT);
 	}
 
 	@Override
