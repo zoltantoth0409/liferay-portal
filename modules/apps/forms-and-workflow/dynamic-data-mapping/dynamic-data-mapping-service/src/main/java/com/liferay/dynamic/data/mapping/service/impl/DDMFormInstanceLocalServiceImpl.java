@@ -362,12 +362,17 @@ public class DDMFormInstanceLocalServiceImpl
 			ddmFormInstanceVersionLocalService.getLatestFormInstanceVersion(
 				ddmFormInstance.getFormInstanceId());
 
-		boolean updateVersion = true;
+		int status = GetterUtil.getInteger(
+			serviceContext.getAttribute("status"),
+			WorkflowConstants.STATUS_APPROVED);
 
-		if (latestDDMFormInstanceVersion.getStatus() ==
-				WorkflowConstants.STATUS_APPROVED) {
+		boolean updateVersion = false;
 
-			updateVersion = false;
+		if ((latestDDMFormInstanceVersion.getStatus() ==
+				WorkflowConstants.STATUS_DRAFT) &&
+			(status == WorkflowConstants.STATUS_DRAFT)) {
+
+			updateVersion = true;
 		}
 
 		boolean majorVersion = GetterUtil.getBoolean(
