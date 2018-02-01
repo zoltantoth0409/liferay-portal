@@ -67,10 +67,10 @@ if (!BrowserSnifferUtil.isMobile(request)) {
 	simpleDateFormatPattern = simpleDateFormatPattern.replaceAll("d", "dd");
 
 	mask = simpleDateFormatPattern;
+
 	mask = mask.replaceAll("yyyy", "%Y");
 	mask = mask.replaceAll("MM", "%m");
 	mask = mask.replaceAll("dd", "%d");
-
 }
 
 String dayAbbreviation = LanguageUtil.get(resourceBundle, "day-abbreviation");
