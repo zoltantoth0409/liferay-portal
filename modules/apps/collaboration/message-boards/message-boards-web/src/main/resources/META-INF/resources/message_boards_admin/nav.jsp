@@ -41,21 +41,21 @@ bannedUsersURL.setParameter("mvcRenderCommandName", "/message_boards/view_banned
 			add(
 			navigationItem -> {
 				navigationItem.setActive(navItemSelected.equals("threads"));
-				navigationItem.setHref(messageBoardsHomeURL.toString());
+				navigationItem.setHref(messageBoardsHomeURL);
 				navigationItem.setLabel(LanguageUtil.get(request, "threads"));
 			});
 
 			add(
 			navigationItem -> {
 				navigationItem.setActive(navItemSelected.equals("statistics"));
-				navigationItem.setHref(viewStatisticsURL.toString());
+				navigationItem.setHref(viewStatisticsURL);
 				navigationItem.setLabel(LanguageUtil.get(request, "statistics"));
 			});
 
 			add(
 			navigationItem -> {
 				navigationItem.setActive(navItemSelected.equals("banned-users"));
-				navigationItem.setHref(bannedUsersURL.toString());
+				navigationItem.setHref(bannedUsersURL);
 				navigationItem.setLabel(LanguageUtil.get(request, "banned-users"));
 			});
 		}
