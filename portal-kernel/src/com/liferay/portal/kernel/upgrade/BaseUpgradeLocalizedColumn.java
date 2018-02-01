@@ -102,7 +102,7 @@ public abstract class BaseUpgradeLocalizedColumn extends UpgradeProcess {
 			"update ", tableName, " set ", columnName, " = '",
 			_escape(localizationXML), "' where CAST_CLOB_TEXT(", columnName,
 			") = '", _escape(originalContent), "' and companyId = ",
-			Long.toString(companyId));
+			String.valueOf(companyId));
 
 		try {
 			runSQL(sql);
