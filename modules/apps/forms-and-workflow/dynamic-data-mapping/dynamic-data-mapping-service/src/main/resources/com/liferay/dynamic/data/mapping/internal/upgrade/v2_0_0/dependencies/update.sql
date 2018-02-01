@@ -70,14 +70,12 @@ create unique index IX_26623628 on DDMFormInstanceRecordVersion (formInstanceRec
 create index IX_57CA016C on DDMFormInstanceRecordVersion (userId, formInstanceId, formInstanceVersion[$COLUMN_LENGTH:75$], status);
 
 create table DDMFormInstanceVersion (
-	uuid_ VARCHAR(75) null,
 	formInstanceVersionId LONG not null primary key,
 	groupId LONG,
 	companyId LONG,
 	userId LONG,
 	userName VARCHAR(75) null,
 	createDate DATE null,
-	modifiedDate DATE null,
 	formInstanceId LONG,
 	structureVersionId LONG,
 	name STRING null,
@@ -87,8 +85,7 @@ create table DDMFormInstanceVersion (
 	status INTEGER,
 	statusByUserId LONG,
 	statusByUserName VARCHAR(75) null,
-	statusDate DATE null,
-	lastPublishDate DATE null
+	statusDate DATE null
 );
 
 create index IX_EB92EF26 on DDMFormInstanceVersion (formInstanceId, status);
