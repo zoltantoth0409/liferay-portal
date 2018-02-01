@@ -57,6 +57,11 @@ public abstract class BaseUpgradeLocalizedColumn extends UpgradeProcess {
 		}
 	}
 
+	private String _escape(String string) {
+		return string.replace(
+			StringPool.APOSTROPHE, StringPool.DOUBLE_APOSTROPHE);
+	}
+
 	private String _getLocalizationXML(
 			String localizationMapKey, String localizationXMLKey,
 			long companyId, ResourceBundleLoader resourceBundleLoader)
@@ -93,16 +98,10 @@ public abstract class BaseUpgradeLocalizedColumn extends UpgradeProcess {
 			localizationMapKey, localizationXMLKey, companyId,
 			resourceBundleLoader);
 
-		String escapedLocalizationXML = localizationXML.replace(
-			StringPool.APOSTROPHE, StringPool.DOUBLE_APOSTROPHE);
-
-		String escapedOriginalContent = originalContent.replace(
-			StringPool.APOSTROPHE, StringPool.DOUBLE_APOSTROPHE);
-
 		String sql = StringBundler.concat(
 			"update ", tableName, " set ", columnName, " = '",
-			escapedLocalizationXML, "' where CAST_CLOB_TEXT(", columnName,
-			") = '", escapedOriginalContent, "' and companyId = ",
+			_escape(localizationXML), "' where CAST_CLOB_TEXT(", columnName,
+			") = '", _escape(originalContent), "' and companyId = ",
 			Long.toString(companyId));
 
 		try {
