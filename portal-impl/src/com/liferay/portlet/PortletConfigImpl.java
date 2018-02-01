@@ -113,11 +113,6 @@ public class PortletConfigImpl implements LiferayPortletConfig {
 			}
 		}
 
-		// Java™ Portlet Specification 3.0
-		// PLT 6.8: The map returned by the getContainerRuntimeOptions method
-		// must only contain those values that are both defined for the portlet
-		// and supported by the portlet container.
-
 		Set<String> keySet = containerRuntimeOptions.keySet();
 
 		keySet.retainAll(
