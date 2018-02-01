@@ -252,7 +252,9 @@ public class DDMStructureStagedModelDataHandler
 		boolean preloaded = GetterUtil.getBoolean(
 			referenceElement.attributeValue("preloaded"));
 
-		DDMStructure existingStructure = fetchExistingStructure(
+		DDMStructure existingStructure = null;
+
+		existingStructure = fetchExistingStructure(
 			uuid, groupId, classNameId, structureKey, preloaded);
 
 		Map<Long, Long> structureIds =
@@ -354,12 +356,6 @@ public class DDMStructureStagedModelDataHandler
 					structure.getNameMap(), structure.getDescriptionMap(),
 					ddmForm, ddmFormLayout, structure.getStorageType(),
 					structure.getType(), serviceContext);
-
-				importedStructure.setVersion(structure.getVersion());
-
-				importedStructure =
-					_ddmStructureLocalService.updateDDMStructure(
-						importedStructure);
 			}
 			else if (isModifiedStructure(existingStructure, structure)) {
 				importedStructure = _ddmStructureLocalService.updateStructure(
@@ -386,11 +382,6 @@ public class DDMStructureStagedModelDataHandler
 				structure.getDescriptionMap(), ddmForm, ddmFormLayout,
 				structure.getStorageType(), structure.getType(),
 				serviceContext);
-
-			importedStructure.setVersion(structure.getVersion());
-
-			importedStructure = _ddmStructureLocalService.updateDDMStructure(
-				importedStructure);
 		}
 
 		portletDataContext.importClassedModel(structure, importedStructure);
