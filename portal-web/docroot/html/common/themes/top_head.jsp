@@ -116,18 +116,18 @@ if (layout != null) {
 		}
 	}
 
-	Iterator<Portlet> portletIterator = portlets.iterator();
+	Iterator<Portlet> portletsIterator = portlets.iterator();
 
 	LayoutTypeAccessPolicy layoutTypeAccessPolicy = LayoutTypeAccessPolicyTracker.getLayoutTypeAccessPolicy(layout);
 
-	while (portletIterator.hasNext()) {
-		Portlet portlet = portletIterator.next();
+	while (portletsIterator.hasNext()) {
+		Portlet portlet = portletsIterator.next();
 
 		try {
 			layoutTypeAccessPolicy.checkAccessAllowedToPortlet(request, layout, portlet);
 		}
 		catch (PrincipalException pe) {
-			portletIterator.remove();
+			portletsIterator.remove();
 		}
 	}
 
