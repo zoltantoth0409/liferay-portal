@@ -72,9 +72,10 @@ public class LocalizedItemSelectorRendering {
 
 				if (selectedTab.equals(title) ||
 					(Validator.isNull(selectedTab) &&
-					 (_navigationItems.size() == 0))) {
+					 _navigationItems.isEmpty())) {
 
 					navigationItem.setActive(true);
+
 					_selectedNavigationItem = navigationItem;
 				}
 			});
