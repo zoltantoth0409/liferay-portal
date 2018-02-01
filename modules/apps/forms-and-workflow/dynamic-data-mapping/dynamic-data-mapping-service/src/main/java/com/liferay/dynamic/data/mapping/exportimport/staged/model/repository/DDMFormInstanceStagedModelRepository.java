@@ -15,9 +15,7 @@
 package com.liferay.dynamic.data.mapping.exportimport.staged.model.repository;
 
 import com.liferay.dynamic.data.mapping.model.DDMFormInstance;
-import com.liferay.dynamic.data.mapping.model.DDMFormInstanceVersion;
 import com.liferay.dynamic.data.mapping.service.DDMFormInstanceLocalService;
-import com.liferay.dynamic.data.mapping.service.DDMFormInstanceVersionLocalService;
 import com.liferay.dynamic.data.mapping.service.DDMStructureLocalService;
 import com.liferay.dynamic.data.mapping.util.comparator.DDMFormInstanceNameComparator;
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
@@ -161,22 +159,6 @@ public class DDMFormInstanceStagedModelRepository
 					StagedModelDataHandlerUtil.exportStagedModel(
 						portletDataContext, ddmFormInstance);
 
-					List<DDMFormInstanceVersion> formInstanceVersions =
-						_ddmFormInstanceVersionLocalService.
-							getFormInstanceVersions(
-								ddmFormInstance.getFormInstanceId());
-
-					for (DDMFormInstanceVersion ddmFormInstanceVersion :
-							formInstanceVersions) {
-
-						StagedModelDataHandlerUtil.exportStagedModel(
-							portletDataContext, ddmFormInstanceVersion);
-
-						StagedModelDataHandlerUtil.exportStagedModel(
-							portletDataContext,
-							ddmFormInstanceVersion.getStructureVersion());
-					}
-
 					StagedModelDataHandlerUtil.exportStagedModel(
 						portletDataContext, ddmFormInstance.getStructure());
 				}
@@ -223,10 +205,6 @@ public class DDMFormInstanceStagedModelRepository
 
 	@Reference
 	private DDMFormInstanceLocalService _ddmFormInstanceLocalService;
-
-	@Reference
-	private DDMFormInstanceVersionLocalService
-		_ddmFormInstanceVersionLocalService;
 
 	@Reference
 	private DDMStructureLocalService _ddmStructureLocalService;
