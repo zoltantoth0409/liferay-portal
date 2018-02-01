@@ -119,6 +119,8 @@ public class ScreensAssetEntryServiceImpl
 			List<Layout> layouts = layoutLocalService.getLayouts(companyId);
 
 			if (!layouts.isEmpty()) {
+				Layout layout = layouts.get(0);
+
 				List<AssetEntry> assetEntries = new ArrayList<>();
 
 				assetEntries = filterAssetEntries(assetEntries);
