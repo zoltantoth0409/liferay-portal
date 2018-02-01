@@ -229,8 +229,8 @@ public class SiteNavigationMenuLocalServiceImpl
 		SiteNavigationMenu siteNavigationMenu = getSiteNavigationMenu(
 			siteNavigationMenuId);
 
-		_updateOldSiteNavigationMenuAuto(siteNavigationMenu, auto);
 		_updateOldSiteNavigationMenuType(siteNavigationMenu, type);
+		_updateOldSiteNavigationMenuAuto(siteNavigationMenu, auto);
 
 		User user = userLocalService.getUser(userId);
 
