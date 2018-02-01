@@ -27,7 +27,6 @@ public class UpgradeLayoutPrototype extends UpgradeProcess {
 		alter(
 			LayoutPrototypeTable.class,
 			new AlterColumnType("name", "TEXT null"));
-
 		alter(
 			LayoutPrototypeTable.class,
 			new AlterColumnType("description", "TEXT null"));
