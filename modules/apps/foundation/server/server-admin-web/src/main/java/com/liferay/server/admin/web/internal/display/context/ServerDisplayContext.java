@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.util.ParamUtil;
 
 import java.util.List;
 
-import javax.portlet.PortletURL;
 import javax.portlet.RenderResponse;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,12 +41,6 @@ public class ServerDisplayContext {
 		String tabs1 = ParamUtil.getString(_request, "tabs1", "resources");
 		String tabs2 = ParamUtil.getString(_request, "tabs2");
 
-		PortletURL serverURL = _renderResponse.createRenderURL();
-
-		serverURL.setParameter("mvcRenderCommandName", "/server_admin/view");
-		serverURL.setParameter("tabs1", tabs1);
-		serverURL.setParameter("tabs2", tabs2);
-
 		return new NavigationItemList() {
 			{
 				for (String tabs1Name : _TABS1_NAMES) {
@@ -55,7 +48,9 @@ public class ServerDisplayContext {
 						navigationItem -> {
 							navigationItem.setActive(tabs1.equals(tabs1Name));
 							navigationItem.setHref(
-								serverURL, "tabs1", tabs1Name);
+								_renderResponse.createRenderURL(),
+								"mvcRenderCommandName", "/server_admin/view",
+								"tabs1", tabs1Name, "tabs2", tabs2);
 							navigationItem.setLabel(
 								LanguageUtil.get(_request, tabs1Name));
 						});
