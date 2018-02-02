@@ -63,10 +63,11 @@ import org.osgi.service.component.annotations.ReferencePolicyOption;
 public class DLDisplayContextProvider {
 
 	public DLAdminDisplayContext getDLAdminDisplayContext(
-		PortletURL currentURL, LiferayPortletRequest request,
-		LiferayPortletResponse response) {
+		LiferayPortletRequest liferayPortletRequest,
+		LiferayPortletResponse liferayPortletResponse, PortletURL currentURL) {
 
-		return new DefaultDLAdminDisplayContext(currentURL, request, response);
+		return new DefaultDLAdminDisplayContext(
+			liferayPortletRequest, liferayPortletResponse, currentURL);
 	}
 
 	public DLEditFileEntryDisplayContext getDLEditFileEntryDisplayContext(
