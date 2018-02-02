@@ -25,8 +25,8 @@ portletURL.setParameter("mvcRenderCommandName", "/document_library/view_file_ent
 <liferay-util:include page="/document_library/navigation.jsp" servletContext="<%= application %>" />
 
 <liferay-frontend:management-bar
-	disabled="false"
-	includeCheckBox="false"
+	disabled="<%= false %>"
+	includeCheckBox="<%= false %>"
 >
 	<liferay-frontend:management-bar-filters>
 		<li>

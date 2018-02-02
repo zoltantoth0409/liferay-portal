@@ -150,6 +150,8 @@ public class DefaultDLAdminDisplayContext implements DLAdminDisplayContext {
 	private void _populateMetadataSetsNavigationItem(
 		NavigationItem navigationItem) {
 
+		navigationItem.setActive(false);
+
 		ThemeDisplay themeDisplay = _getThemeDisplay(
 			_request.getHttpServletRequest());
 
@@ -175,8 +177,8 @@ public class DefaultDLAdminDisplayContext implements DLAdminDisplayContext {
 		viewMetadataSetsURL.setParameter(
 			"showManageTemplates", Boolean.FALSE.toString());
 
-		navigationItem.setActive(false);
 		navigationItem.setHref(viewMetadataSetsURL.toString());
+
 		navigationItem.setLabel(
 			LanguageUtil.get(
 				_request.getHttpServletRequest(), "metadata-sets"));
