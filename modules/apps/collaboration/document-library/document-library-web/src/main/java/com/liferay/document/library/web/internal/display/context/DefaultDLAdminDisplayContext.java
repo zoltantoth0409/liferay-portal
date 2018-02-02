@@ -49,8 +49,8 @@ import javax.servlet.http.HttpServletRequest;
 public class DefaultDLAdminDisplayContext implements DLAdminDisplayContext {
 
 	public DefaultDLAdminDisplayContext(
-		PortletURL currentURL, LiferayPortletRequest liferayPortletRequest,
-		LiferayPortletResponse liferayPortletResponse) {
+		LiferayPortletRequest liferayPortletRequest,
+		LiferayPortletResponse liferayPortletResponse, PortletURL currentURL) {
 
 		_currentURL = currentURL;
 		_liferayPortletRequest = liferayPortletRequest;
