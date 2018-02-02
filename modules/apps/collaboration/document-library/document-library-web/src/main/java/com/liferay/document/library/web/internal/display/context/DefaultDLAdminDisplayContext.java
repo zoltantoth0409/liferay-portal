@@ -112,15 +112,15 @@ public class DefaultDLAdminDisplayContext implements DLAdminDisplayContext {
 	private void _populateDocumentLibraryNavigationItem(
 		NavigationItem navigationItem, String mvcRenderCommandName) {
 
+		navigationItem.setActive(
+			!mvcRenderCommandName.equals(
+				"/document_library/view_file_entry_types"));
+
 		PortletURL viewDocumentLibraryURL = _clonePortletURL();
 
 		viewDocumentLibraryURL.setParameter(
 			"mvcRenderCommandName", "/document_library/view");
 		viewDocumentLibraryURL.setParameter("redirect", _currentURL.toString());
-
-		navigationItem.setActive(
-			!mvcRenderCommandName.equals(
-				"/document_library/view_file_entry_types"));
 
 		navigationItem.setHref(viewDocumentLibraryURL.toString());
 
