@@ -50,11 +50,12 @@ public class DefaultDLAdminDisplayContext implements DLAdminDisplayContext {
 
 	public DefaultDLAdminDisplayContext(
 		LiferayPortletRequest liferayPortletRequest,
-		LiferayPortletResponse liferayPortletResponse, PortletURL currentURL) {
+		LiferayPortletResponse liferayPortletResponse,
+		PortletURL currentURLObj) {
 
 		_liferayPortletRequest = liferayPortletRequest;
 		_liferayPortletResponse = liferayPortletResponse;
-		_currentURL = currentURL;
+		_currentURLObj = currentURLObj;
 	}
 
 	@Override
@@ -93,7 +94,8 @@ public class DefaultDLAdminDisplayContext implements DLAdminDisplayContext {
 
 	private PortletURL _clonePortletURL() {
 		try {
-			return PortletURLUtil.clone(_currentURL, _liferayPortletResponse);
+			return PortletURLUtil.clone(
+				_currentURLObj, _liferayPortletResponse);
 		}
 		catch (PortletException pe) {
 			throw new RuntimeException(pe);
@@ -121,7 +123,8 @@ public class DefaultDLAdminDisplayContext implements DLAdminDisplayContext {
 
 		viewDocumentLibraryURL.setParameter(
 			"mvcRenderCommandName", "/document_library/view");
-		viewDocumentLibraryURL.setParameter("redirect", _currentURL.toString());
+		viewDocumentLibraryURL.setParameter(
+			"redirect", _currentURLObj.toString());
 
 		navigationItem.setHref(viewDocumentLibraryURL.toString());
 
@@ -142,7 +145,8 @@ public class DefaultDLAdminDisplayContext implements DLAdminDisplayContext {
 
 		viewFileEntryTypesURL.setParameter(
 			"mvcRenderCommandName", "/document_library/view_file_entry_types");
-		viewFileEntryTypesURL.setParameter("redirect", _currentURL.toString());
+		viewFileEntryTypesURL.setParameter(
+			"redirect", _currentURLObj.toString());
 
 		navigationItem.setHref(viewFileEntryTypesURL.toString());
 
@@ -190,7 +194,7 @@ public class DefaultDLAdminDisplayContext implements DLAdminDisplayContext {
 				"metadata-sets"));
 	}
 
-	private final PortletURL _currentURL;
+	private final PortletURL _currentURLObj;
 	private final LiferayPortletRequest _liferayPortletRequest;
 	private final LiferayPortletResponse _liferayPortletResponse;
 

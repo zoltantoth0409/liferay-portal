@@ -64,10 +64,11 @@ public class DLDisplayContextProvider {
 
 	public DLAdminDisplayContext getDLAdminDisplayContext(
 		LiferayPortletRequest liferayPortletRequest,
-		LiferayPortletResponse liferayPortletResponse, PortletURL currentURL) {
+		LiferayPortletResponse liferayPortletResponse,
+		PortletURL currentURLObj) {
 
 		return new DefaultDLAdminDisplayContext(
-			liferayPortletRequest, liferayPortletResponse, currentURL);
+			liferayPortletRequest, liferayPortletResponse, currentURLObj);
 	}
 
 	public DLEditFileEntryDisplayContext getDLEditFileEntryDisplayContext(
