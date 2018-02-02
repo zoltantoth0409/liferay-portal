@@ -52,15 +52,16 @@ public class DefaultDLAdminDisplayContext implements DLAdminDisplayContext {
 		LiferayPortletRequest liferayPortletRequest,
 		LiferayPortletResponse liferayPortletResponse, PortletURL currentURL) {
 
-		_currentURL = currentURL;
 		_liferayPortletRequest = liferayPortletRequest;
 		_liferayPortletResponse = liferayPortletResponse;
+		_currentURL = currentURL;
 	}
 
 	@Override
 	public List<NavigationItem> getNavigationItems() {
 		String mvcRenderCommandName = ParamUtil.getString(
-			_liferayPortletRequest, "mvcRenderCommandName", "/document_library/view");
+			_liferayPortletRequest, "mvcRenderCommandName",
+			"/document_library/view");
 
 		DLRequestHelper dlRequestHelper = new DLRequestHelper(
 			_liferayPortletRequest.getHttpServletRequest());
@@ -126,7 +127,8 @@ public class DefaultDLAdminDisplayContext implements DLAdminDisplayContext {
 
 		navigationItem.setLabel(
 			LanguageUtil.get(
-				_liferayPortletRequest.getHttpServletRequest(), "documents-and-media"));
+				_liferayPortletRequest.getHttpServletRequest(),
+				"documents-and-media"));
 	}
 
 	private void _populateFileEntryTypesNavigationItem(
@@ -146,7 +148,8 @@ public class DefaultDLAdminDisplayContext implements DLAdminDisplayContext {
 
 		navigationItem.setLabel(
 			LanguageUtil.get(
-				_liferayPortletRequest.getHttpServletRequest(), "document-types"));
+				_liferayPortletRequest.getHttpServletRequest(),
+				"document-types"));
 	}
 
 	private void _populateMetadataSetsNavigationItem(
@@ -183,7 +186,8 @@ public class DefaultDLAdminDisplayContext implements DLAdminDisplayContext {
 
 		navigationItem.setLabel(
 			LanguageUtil.get(
-				_liferayPortletRequest.getHttpServletRequest(), "metadata-sets"));
+				_liferayPortletRequest.getHttpServletRequest(),
+				"metadata-sets"));
 	}
 
 	private final PortletURL _currentURL;
