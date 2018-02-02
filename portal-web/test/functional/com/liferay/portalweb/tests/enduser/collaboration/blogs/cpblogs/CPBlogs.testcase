@@ -838,6 +838,8 @@
 
 		<execute macro="Button#clickPublish" />
 
+		<execute macro="Alert#waitForSuccessMessageHide" />
+
 		<execute function="Pause" locator1="30000" />
 
 		<execute macro="BlogsNavigator#gotoEntryCP">
