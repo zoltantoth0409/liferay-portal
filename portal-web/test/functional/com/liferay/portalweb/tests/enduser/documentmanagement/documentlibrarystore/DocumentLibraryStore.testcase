@@ -43,8 +43,6 @@
 		<property name="osgi.module.configuration.file.names" value="com.liferay.portal.store.file.system.configuration.AdvancedFileSystemStoreConfiguration.config" />
 		<property name="osgi.module.configurations" value="rootDir=&quot;data/document_library1&quot;" />
 
-		<execute macro="Navigator#openURL" />
-
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Content" />
 			<var name="panel" value="Site Administration" />
@@ -60,8 +58,6 @@
 		<execute macro="DMDocument#deleteCP">
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
-
-		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Content" />
@@ -75,8 +71,6 @@
 	<command name="DBStoreSmoke" priority="5">
 		<property name="custom.properties" value="dl.store.impl=com.liferay.portal.store.db.DBStore" />
 
-		<execute macro="Navigator#openURL" />
-
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Content" />
 			<var name="panel" value="Site Administration" />
@@ -92,8 +86,6 @@
 		<execute macro="DMDocument#deleteCP">
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
-
-		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Content" />
@@ -109,8 +101,6 @@
 		<property name="osgi.module.configuration.file.names" value="com.liferay.portal.store.file.system.configuration.FileSystemStoreConfiguration.config" />
 		<property name="osgi.module.configurations" value="rootDir=&quot;data/document_library1&quot;" />
 
-		<execute macro="Navigator#openURL" />
-
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Content" />
 			<var name="panel" value="Site Administration" />
@@ -126,8 +116,6 @@
 		<execute macro="DMDocument#deleteCP">
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
-
-		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Content" />
