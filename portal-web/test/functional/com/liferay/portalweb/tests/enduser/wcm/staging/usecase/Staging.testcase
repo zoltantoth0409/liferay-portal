@@ -2013,6 +2013,10 @@
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>
 
+		<execute function="AssertTextEquals" locator1="DocumentsAndMediaDocument#DOCUMENT_INFO_TITLE" value1="DM Document Title">
+			<var name="key_dmDocumentTitle" value="DM Document Title" />
+		</execute>
+
 		<execute macro="DMDocument#viewDocumentVersionNumberCmdPG">
 			<var name="dmDocumentVersionNumber" value="1.0" />
 		</execute>
@@ -2068,6 +2072,10 @@
 
 		<execute macro="DMNavigator#gotoDocumentCP">
 			<var name="dmDocumentTitle" value="DM Document Title Edit" />
+		</execute>
+
+		<execute function="AssertTextEquals" locator1="DocumentsAndMediaDocument#DOCUMENT_INFO_TITLE" value1="DM Document Title Edit">
+			<var name="key_dmDocumentTitle" value="DM Document Title Edit" />
 		</execute>
 
 		<execute macro="DMDocument#viewDocumentVersionNumberCmdPG">
