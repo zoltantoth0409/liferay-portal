@@ -48,14 +48,9 @@ public class ServerDisplayContext {
 		serverURL.setParameter("tabs1", tabs1);
 		serverURL.setParameter("tabs2", tabs2);
 
-		String[] tabs1Names = {
-			"resources", "log-levels", "properties", "data-migration", "mail",
-			"external-services", "script", "shutdown"
-		};
-
 		return new NavigationItemList() {
 			{
-				for (String tabs1Name : tabs1Names) {
+				for (String tabs1Name : _TABS1_NAMES) {
 					add(
 						navigationItem -> {
 							navigationItem.setActive(tabs1.equals(tabs1Name));
@@ -68,6 +63,11 @@ public class ServerDisplayContext {
 			}
 		};
 	}
+
+	private static final String[] _TABS1_NAMES = {
+		"resources", "log-levels", "properties", "data-migration", "mail",
+		"external-services", "script", "shutdown"
+	};
 
 	private final RenderResponse _renderResponse;
 	private final HttpServletRequest _request;
