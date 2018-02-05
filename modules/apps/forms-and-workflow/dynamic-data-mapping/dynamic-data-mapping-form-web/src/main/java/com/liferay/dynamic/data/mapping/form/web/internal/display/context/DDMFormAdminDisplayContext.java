@@ -385,8 +385,6 @@ public class DDMFormAdminDisplayContext {
 	}
 
 	public List<NavigationItem> getNavigationItems() {
-		PortletURL portletURL = getPortletURL();
-
 		HttpServletRequest request = PortalUtil.getHttpServletRequest(
 			_renderRequest);
 
@@ -394,23 +392,21 @@ public class DDMFormAdminDisplayContext {
 
 		return new NavigationItemList() {
 			{
-				portletURL.setParameter("currentTab", "forms");
-
 				add(
 					navigationItem -> {
 						navigationItem.setActive(currentTab.equals("forms"));
-						navigationItem.setHref(portletURL.toString());
+						navigationItem.setHref(
+							getPortletURL(), "currentTab", "forms");
 						navigationItem.setLabel(
 							LanguageUtil.get(request, "forms"));
 					});
-
-				portletURL.setParameter("currentTab", "element-set");
 
 				add(
 					navigationItem -> {
 						navigationItem.setActive(
 							currentTab.equals("element-set"));
-						navigationItem.setHref(portletURL.toString());
+						navigationItem.setHref(
+							getPortletURL(), "currentTab", "element-set");
 						navigationItem.setLabel(
 							LanguageUtil.get(request, "element-sets"));
 					});
