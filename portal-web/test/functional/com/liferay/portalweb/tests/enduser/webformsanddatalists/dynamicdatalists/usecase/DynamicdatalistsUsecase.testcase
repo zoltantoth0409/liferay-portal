@@ -3115,6 +3115,8 @@
 				</else>
 			</if>
 
+			<execute function="Pause" locator1="1000" />
+
 			<execute function="AssertClick" locator1="JavaDocs#TOOLTIP_JAVA_CLASS_LINK" value1="${fieldName}" />
 
 			<execute function="SelectWindow#selectPopUp" locator1="null" />
