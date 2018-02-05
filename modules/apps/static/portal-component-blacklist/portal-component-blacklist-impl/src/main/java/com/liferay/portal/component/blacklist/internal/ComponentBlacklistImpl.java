@@ -90,8 +90,8 @@ public class ComponentBlacklistImpl implements ComponentBlacklist {
 				if (_log.isInfoEnabled()) {
 					_log.info(
 						StringBundler.concat(
-							"Disabling: ", componentDescriptionDTO.name,
-							" from bundle: ", bundle.getSymbolicName()));
+							"Disabling ", componentDescriptionDTO.name,
+							" from bundle ", bundle.getSymbolicName()));
 				}
 
 				serviceComponentRuntime.disableComponent(
@@ -111,8 +111,8 @@ public class ComponentBlacklistImpl implements ComponentBlacklist {
 				if (_log.isInfoEnabled()) {
 					_log.info(
 						StringBundler.concat(
-							"Enabling: ", componentDescriptionDTO.name,
-							" from bundle: ", bundle.getSymbolicName()));
+							"Enabling ", componentDescriptionDTO.name,
+							" from bundle ", bundle.getSymbolicName()));
 				}
 
 				serviceComponentRuntime.enableComponent(
