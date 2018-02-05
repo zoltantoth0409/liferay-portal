@@ -160,7 +160,7 @@ public class DDMFormViewFormInstanceRecordsDisplayContext {
 			{
 				add(
 					navigationItem -> {
-						navigationItem.setActive(Boolean.TRUE);
+						navigationItem.setActive(true);
 						navigationItem.setHref(StringPool.BLANK);
 						navigationItem.setLabel(
 							HtmlUtil.escape(
