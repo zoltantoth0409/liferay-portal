@@ -21,10 +21,9 @@ String mvcPath = ParamUtil.getString(request, "mvcPath", "/view_template.jsp");
 
 long templateId = ParamUtil.getLong(request, "templateId");
 
+long groupId = ParamUtil.getLong(request, "groupId", PortalUtil.getScopeGroupId(request, refererPortletName));
 long classNameId = ParamUtil.getLong(request, "classNameId");
 long classPK = ParamUtil.getLong(request, "classPK");
-
-long groupId = ParamUtil.getLong(request, "groupId", PortalUtil.getScopeGroupId(request, refererPortletName));
 
 long resourceClassNameId = ParamUtil.getLong(request, "resourceClassNameId");
 
