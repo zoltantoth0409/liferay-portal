@@ -49,7 +49,10 @@
 		<var name="key_reportsDefinitionName" value="Reports Definition Name" />
 
 		<execute function="Click" locator1="ReportsAdmin#DEFINITIONS_DEFINITION_TABLE_ACTIONS" />
-		<execute function="AssertClick" locator1="ReportsAdmin#DEFINITIONS_DEFINITION_MENULIST_ADD_REPORT" value1="Add Report" />
+
+		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Add Report">
+			<var name="key_menuItem" value="Add Report" />
+		</execute>
 
 		<execute function="Select" locator1="ReportsAdminEditReportEntry#REPORT_FORMAT_SELECT" value1="csv" />
 		<execute function="Type" locator1="ReportsAdminEditReportEntry#EMAIL_NOTIFICATIONS_FIELD" value1="InvalidEmail" />

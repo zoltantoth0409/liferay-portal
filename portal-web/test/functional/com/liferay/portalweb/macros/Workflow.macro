@@ -82,9 +82,9 @@
 		<if>
 			<isset var="workflowDefinitionTask" />
 			<then>
-				<var name="key_menuListOption" value="${workflowDefinitionTask}" />
-
-				<execute function="AssertClick#pauseAssertTextClickAt" locator1="MyWorkflowTasks#ASSIGNED_TO_ME_MENULIST_OPTION" value1="${workflowDefinitionTask}" />
+				<execute function="AssertClick#pauseAssertTextClickAt" locator1="MenuItem#ANY_MENU_ITEM" value1="${workflowDefinitionTask}">
+					<var name="key_menuItem" value="${workflowDefinitionTask}" />
+				</execute>
 			</then>
 			<elseif>
 				<isset var="boardWorkflowTask" />

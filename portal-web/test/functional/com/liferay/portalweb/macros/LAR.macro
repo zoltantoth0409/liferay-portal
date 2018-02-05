@@ -550,7 +550,9 @@
 
 		<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#BODY_VERTICAL_ELLIPSIS" />
 
-		<execute function="Click" locator1="SitePagesExport#EXPORT_TEMPLATES_TABLE_EXPORT_BUTTON" />
+		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Export">
+			<var name="key_menuItem" value="Export" />
+		</execute>
 
 		<if>
 			<isset var="larFileName" />

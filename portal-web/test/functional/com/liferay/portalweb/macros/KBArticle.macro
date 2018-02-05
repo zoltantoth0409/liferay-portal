@@ -1153,7 +1153,7 @@
 	<command name="selectRelatedAssetCP">
 		<execute function="AssertClick" locator1="AssetRelatedAssets#RELATED_ASSETS_SELECT" value1="Select" />
 
-		<execute function="AssertClick" locator1="KnowledgeBaseArticle#EDIT_SELECT_RELATED_ASSETS" value1="${kbArticleRelatedAssetType}">
+		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="${kbArticleRelatedAssetType}">
 			<var name="key_kbArticleRelatedAssetType" value="${kbArticleRelatedAssetType}" />
 		</execute>
 
