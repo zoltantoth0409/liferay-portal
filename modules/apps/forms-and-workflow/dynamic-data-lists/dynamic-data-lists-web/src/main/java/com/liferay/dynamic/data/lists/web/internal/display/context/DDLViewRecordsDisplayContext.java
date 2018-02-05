@@ -62,12 +62,12 @@ public class DDLViewRecordsDisplayContext {
 		_ddlRecordSet = (DDLRecordSet)_liferayPortletRequest.getAttribute(
 			DDLWebKeys.DYNAMIC_DATA_LISTS_RECORD_SET);
 
-		_ddmStructure = _ddlRecordSet.getDDMStructure(formDDMTemplateId);
-
 		HttpServletRequest request =
 			liferayPortletRequest.getHttpServletRequest();
 
 		_ddlRequestHelper = new DDLRequestHelper(request);
+
+		_ddmStructure = _ddlRecordSet.getDDMStructure(formDDMTemplateId);
 	}
 
 	public OrderByComparator<DDLRecord> getDDLRecordOrderByComparator(
