@@ -17,7 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String rootItemType = siteNavigationMenuDisplayContext.getRootItemType();
+String rootLayoutType = siteNavigationMenuDisplayContext.getRootLayoutType();
 %>
 
 <liferay-portlet:actionURL portletConfiguration="<%= true %>" var="configurationActionURL" />
@@ -48,7 +48,7 @@ String rootItemType = siteNavigationMenuDisplayContext.getRootItemType();
 							<div id="<portlet:namespace />customDisplayOptions">
 								<aui:row>
 									<aui:col width="<%= 80 %>">
-										<aui:select id="rootItemType" label="start-with-menu-items-in" name="preferences--rootItemType--" value="<%= rootItemType %>">
+										<aui:select id="rootLayoutType" label="start-with-menu-items-in" name="preferences--rootLayoutType--" value="<%= rootLayoutType %>">
 											<aui:option label="level" value="absolute" />
 											<aui:option label="level-relative-to-the-current-menu-item" value="relative" />
 											<aui:option label="select" value="select" />
@@ -56,14 +56,14 @@ String rootItemType = siteNavigationMenuDisplayContext.getRootItemType();
 									</aui:col>
 
 									<aui:col width="<%= 20 %>">
-										<div class="mt-4 <%= rootItemType.equals("parent-at-level") || rootItemType.equals("relative-parent-up-by") ? StringPool.BLANK : "hide" %>" id="<portlet:namespace />rootItemLevel">
-											<aui:select label="" name="preferences--rootItemLevel--">
+										<div class="mt-4 <%= rootLayoutType.equals("parent-at-level") || rootLayoutType.equals("relative-parent-up-by") ? StringPool.BLANK : "hide" %>" id="<portlet:namespace />rootLayoutLevel">
+											<aui:select label="" name="preferences--rootLayoutLevel--">
 
 												<%
 												for (int i = 0; i <= 4; i++) {
 												%>
 
-													<aui:option label="<%= i %>" selected="<%= siteNavigationMenuDisplayContext.getRootItemLevel() == i %>" />
+													<aui:option label="<%= i %>" selected="<%= siteNavigationMenuDisplayContext.getRootLayoutLevel() == i %>" />
 
 												<%
 												}
@@ -76,9 +76,9 @@ String rootItemType = siteNavigationMenuDisplayContext.getRootItemType();
 
 								<aui:row>
 									<aui:col width="<%= 80 %>">
-										<div class="mb-3 <%= rootItemType.equals("select") ? StringPool.BLANK : "hide" %>" id="<portlet:namespace />rootItemIdPanel">
+										<div class="mb-3 <%= rootLayoutType.equals("select") ? StringPool.BLANK : "hide" %>" id="<portlet:namespace />rootLayoutUuidPanel">
 											<aui:input label="" name="rootLayoutName" type="resource" value="<%= siteNavigationMenuDisplayContext.getRootLayoutName() %>" />
-											<aui:input id="rootItemId" ignoreRequestValue="<%= true %>" name="preferences--rootItemId--" type="hidden" value="<%= siteNavigationMenuDisplayContext.getRootItemId() %>" />
+											<aui:input id="rootLayoutUuid" ignoreRequestValue="<%= true %>" name="preferences--rootLayoutUuid--" type="hidden" value="<%= siteNavigationMenuDisplayContext.getRootLayoutUuid() %>" />
 
 											<aui:button name="chooseRootPage" value="choose" />
 										</div>
@@ -104,7 +104,7 @@ String rootItemType = siteNavigationMenuDisplayContext.getRootItemType();
 									</aui:col>
 
 									<aui:col width="<%= 50 %>">
-										<aui:select label="expand-sublevels" name="preferences--expandedLevels--" value="<%= siteNavigationMenuDisplayContext.getExpandedLevels() %>">
+										<aui:select label="expand-sublevels" name="preferences--includedLayouts--" value="<%= siteNavigationMenuDisplayContext.getIncludedLayouts() %>">
 											<aui:option label="auto" />
 											<aui:option label="all" />
 										</aui:select>
@@ -135,10 +135,10 @@ String rootItemType = siteNavigationMenuDisplayContext.getRootItemType();
 
 	var selectDisplayDepth = form.fm('displayDepth');
 	var selectDisplayStyle = form.fm('displayStyle');
-	var selectExpandedLevels = form.fm('expandedLevels');
-	var selectRootItemLevel = form.fm('rootItemLevel');
-	var selectRootItemType = form.fm('rootItemType');
-	var selectRootItemId = form.fm('rootItemId');
+	var selectIncludedLayouts = form.fm('includedLayouts');
+	var selectRootLayoutLevel = form.fm('rootLayoutLevel');
+	var selectRootLayoutType = form.fm('rootLayoutType');
+	var selectRootLayoutUuid = form.fm('rootLayoutUuid');
 
 	var curPortletBoundaryId = '#p_p_id_<%= HtmlUtil.escapeJS(portletResource) %>_';
 
@@ -152,10 +152,10 @@ String rootItemType = siteNavigationMenuDisplayContext.getRootItemType();
 			};
 
 			data.displayDepth = selectDisplayDepth.val();
-			data.expandedLevels = selectExpandedLevels.val();
-			data.rootItemLevel = selectRootItemLevel.val();
-			data.rootItemType = selectRootItemType.val();
-			data.rootItemId = selectRootItemId.val();
+			data.includedLayouts = selectIncludedLayouts.val();
+			data.rootLayoutLevel = selectRootLayoutLevel.val();
+			data.rootLayoutType = selectRootLayoutType.val();
+			data.rootLayoutUuid = selectRootLayoutUuid.val();
 
 			data = Liferay.Util.ns('_<%= HtmlUtil.escapeJS(portletResource) %>_', data);
 
@@ -178,11 +178,11 @@ String rootItemType = siteNavigationMenuDisplayContext.getRootItemType();
 							var selectedItem = event.newVal;
 
 							var rootLayoutName = A.one('#<portlet:namespace />rootLayoutName');
-							var rootItemId = A.one('#<portlet:namespace />rootItemId');
+							var rootLayoutUuid = A.one('#<portlet:namespace />rootLayoutUuid');
 
 							if (selectedItem) {
 								rootLayoutName.val(selectedItem.name);
-								rootItemId.val(selectedItem.id);
+								rootLayoutUuid.val(selectedItem.id);
 							}
 						}
 					},
@@ -196,13 +196,13 @@ String rootItemType = siteNavigationMenuDisplayContext.getRootItemType();
 		}
 	);
 
-	Liferay.Util.toggleSelectBox('<portlet:namespace />rootItemType', 'select', '<portlet:namespace />rootItemIdPanel');
+	Liferay.Util.toggleSelectBox('<portlet:namespace />rootLayoutType', 'select', '<portlet:namespace />rootLayoutUuidPanel');
 
 	Liferay.Util.toggleSelectBox(
-		'<portlet:namespace />rootItemType',
+		'<portlet:namespace />rootLayoutType',
 		function(currentValue, value) {
 			return currentValue === 'absolute' || currentValue === 'relative';
 		},
-		'<portlet:namespace />rootItemLevel'
+		'<portlet:namespace />rootLayoutLevel'
 	);
 </aui:script>
