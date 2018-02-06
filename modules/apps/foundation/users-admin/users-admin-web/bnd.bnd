@@ -4,6 +4,7 @@ Bundle-Version: 2.4.22
 Export-Package:\
 	com.liferay.users.admin.web.application.list,\
 	com.liferay.users.admin.web.custom.attributes,\
+	com.liferay.users.admin.web.display.context,\
 	com.liferay.users.admin.web.portlet,\
 	com.liferay.users.admin.web.portlet.action,\
 	com.liferay.users.admin.web.portlet.configuration.icon,\
