@@ -25,6 +25,7 @@ if (portletURL == null) {
 }
 
 long assetCategoryId = ParamUtil.getLong(request, "categoryId");
+
 String assetTagName = ParamUtil.getString(request, "tag");
 
 if (Validator.isNotNull(assetTagName) && !AssetTagLocalServiceUtil.hasTag(layout.getGroupId(), assetTagName)) {
