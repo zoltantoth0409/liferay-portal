@@ -68,9 +68,9 @@ public class EditableFragmentEntryProcessor implements FragmentEntryProcessor {
 			editableElementParser.replace(element, jsonObject.getString(id));
 		}
 
-		Element body = document.body();
+		Element bodyElement = document.body();
 
-		return body.html();
+		return bodyElement.html();
 	}
 
 	@Reference(
