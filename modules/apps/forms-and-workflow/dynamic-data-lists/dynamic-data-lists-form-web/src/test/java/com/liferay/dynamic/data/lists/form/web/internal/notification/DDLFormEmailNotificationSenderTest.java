@@ -71,7 +71,7 @@ public class DDLFormEmailNotificationSenderTest {
 		Assert.assertTrue(fieldLabelValueMap.containsKey("value"));
 		Assert.assertNull(fieldLabelValueMap.get("label"));
 
-		SoyHTMLContextValue soyHTMLContextValue = 
+		SoyHTMLContextValue soyHTMLContextValue =
 			(SoyHTMLContextValue)fieldLabelValueMap.get("value");
 
 		Assert.assertEquals("test", String.valueOf(soyHTMLContextValue));
@@ -92,7 +92,7 @@ public class DDLFormEmailNotificationSenderTest {
 		Assert.assertTrue(fieldLabelValueMap.containsKey("value"));
 		Assert.assertNull(fieldLabelValueMap.get("label"));
 
-		SoyHTMLContextValue soyHTMLContextValue = 
+		SoyHTMLContextValue soyHTMLContextValue =
 			(SoyHTMLContextValue)fieldLabelValueMap.get("value");
 
 		Assert.assertEquals(
