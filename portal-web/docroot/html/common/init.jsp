@@ -38,6 +38,7 @@ page import="com.liferay.asset.kernel.model.AssetVocabulary" %><%@
 page import="com.liferay.asset.kernel.service.AssetCategoryLocalServiceUtil" %><%@
 page import="com.liferay.asset.kernel.service.AssetCategoryServiceUtil" %><%@
 page import="com.liferay.asset.kernel.service.AssetEntryLocalServiceUtil" %><%@
+page import="com.liferay.asset.kernel.service.AssetTagLocalServiceUtil" %><%@
 page import="com.liferay.asset.kernel.service.AssetTagServiceUtil" %><%@
 page import="com.liferay.asset.kernel.service.AssetVocabularyLocalServiceUtil" %><%@
 page import="com.liferay.asset.kernel.service.AssetVocabularyServiceUtil" %><%@
