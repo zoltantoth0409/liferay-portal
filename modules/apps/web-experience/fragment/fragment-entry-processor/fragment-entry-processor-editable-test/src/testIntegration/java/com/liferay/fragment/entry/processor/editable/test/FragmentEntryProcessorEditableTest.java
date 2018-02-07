@@ -91,10 +91,10 @@ public class FragmentEntryProcessorEditableTest {
 		Document document = Jsoup.parseBodyFragment(
 			_getFileAsString("processed_fragment_entry.html"));
 
-		Element body = document.body();
+		Element bodyElement = document.body();
 
 		Assert.assertEquals(
-			body.html(),
+			bodyElement.html(),
 			_fragmentEntryProcessorRegistry.processFragmentEntryHTML(
 				fragmentEntry.getHtml(), jsonObject));
 	}
