@@ -53,15 +53,15 @@ AUI.add(
 
 			_afterModalVisibleChange: function(event) {
 				var instance = this;
-				
+
 				var isOpen = A.one('.' + CSS_MODAL_OPEN);
 
-				if(event.newVal && !window['last_position_y']) {
+				if (event.newVal && !window['last_position_y']) {
 					window['last_position_y'] = window.scrollY;
-					
+
 					window.scroll(0,0);
 				}
-				
+
 				if (event.newVal && instance.get('dynamicContentHeight')) {
 					instance.syncHeight();
 				}

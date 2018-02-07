@@ -56,7 +56,7 @@ AUI.add(
 
 						FormBuilderFieldSettingsModal.superclass.hide.apply(instance, arguments);
 
-						if(restoreWindowPosition || (instance._previousSettings == settings)) {
+						if (restoreWindowPosition || (instance._previousSettings == settings)) {
 							instance._restoreWindowPosition();
 						}
 
@@ -67,13 +67,13 @@ AUI.add(
 						var instance = this;
 
 						var confirmationMessage = A.one('.' + CSS_FIELD_SETTINGS_CONFIRMATION_MESSAGE);
-						
+
 						var restoreWindowPosition = true;
-						 
-						if(confirmationMessage && confirmationMessage.hasClass('hide')) {
+
+						if (confirmationMessage && confirmationMessage.hasClass('hide')) {
 							restoreWindowPosition = false;
 						}
-						
+
 						instance.hide(event, restoreWindowPosition);
 					},
 
@@ -220,9 +220,9 @@ AUI.add(
 					},
 
 					_restoreWindowPosition: function() {
-						if((window['last_position_y'])) {
+						if ((window['last_position_y'])) {
 							window.scroll(0, window['last_position_y']);
-							
+
 							window['last_position_y'] = null;
 						}
 					},

@@ -94,12 +94,12 @@ AUI.add(
 					_onFieldTypesModalCloseClick: function() {
 						var instance = this;
 
-						if((window['last_position_y'])) {
+						if ((window['last_position_y'])) {
 							window.scroll(0, window['last_position_y']);
-						
+
 							window['last_position_y'] = null;
 						}
-						
+
 						instance.hide();
 					},
 
