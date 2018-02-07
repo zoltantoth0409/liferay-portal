@@ -74,7 +74,7 @@ public class FragmentEntryRenderUtil {
 
 			Element scriptElement = divElement.prependElement("script");
 
-			scriptElement.prependText("(function(){" + js + ";}());");
+			scriptElement.prependText("(function() {" + js + ";}());");
 
 			return divElement.toString();
 		}
