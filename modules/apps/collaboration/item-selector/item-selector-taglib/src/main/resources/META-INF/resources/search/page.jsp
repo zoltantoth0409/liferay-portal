@@ -18,6 +18,7 @@
 
 <%
 PortletURL searchURL = PortletURLUtil.clone(currentURLObj, liferayPortletResponse);
+
 searchURL.setParameter("resetCur", Boolean.TRUE.toString());
 %>
 
