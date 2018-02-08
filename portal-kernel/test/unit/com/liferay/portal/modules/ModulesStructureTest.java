@@ -471,7 +471,7 @@ public class ModulesStructureTest {
 					if (StringUtil.startsWith(fileName, ".lfrbuild-")) {
 						fileNames.add(fileName);
 
-						if (_nonEmptyMarkerFileNames.contains(fileName)) {
+						if (_nonemptyMarkerFileNames.contains(fileName)) {
 							String content = ModulesStructureTestUtil.read(
 								path);
 
@@ -1448,7 +1448,7 @@ public class ModulesStructureTest {
 		"testRuntime", "testIntegrationCompile", "testIntegrationRuntime");
 	private static boolean _masterBranch;
 	private static Path _modulesDirPath;
-	private static final Set<String> _nonEmptyMarkerFileNames =
+	private static final Set<String> _nonemptyMarkerFileNames =
 		Collections.singleton(".lfrbuild-lowest-major-version");
 
 }
