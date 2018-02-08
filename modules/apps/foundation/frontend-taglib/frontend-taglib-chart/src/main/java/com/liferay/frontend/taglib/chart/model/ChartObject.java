@@ -29,16 +29,16 @@ public abstract class ChartObject extends AbstractMap<String, Object> {
 		return _properties.entrySet();
 	}
 
-	protected <T> T get(String name, Class<T> type) {
-		return get(name, type, true);
+	protected <T> T get(String name, Class<T> clazz) {
+		return get(name, clazz, true);
 	}
 
-	protected <T> T get(String name, Class<T> type, boolean createIfNotFound) {
+	protected <T> T get(String name, Class<T> clazz, boolean createIfNotFound) {
 		T value = (T)_properties.get(name);
 
 		if ((value == null) && createIfNotFound) {
 			try {
-				value = type.newInstance();
+				value = clazz.newInstance();
 			}
 			catch (Exception e) {
 				throw new RuntimeException(e);
