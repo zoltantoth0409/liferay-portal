@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.json.JSON;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @author Iván Zaera Avellón
@@ -37,7 +38,7 @@ public class AxisX extends ChartObject {
 	}
 
 	public void addCategory(String category) {
-		ArrayList categories = get("categories", ArrayList.class);
+		List<String> categories = get("categories", ArrayList.class);
 
 		categories.add(category);
 	}
