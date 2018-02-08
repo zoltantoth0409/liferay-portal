@@ -29,29 +29,29 @@
 					portletURL.setParameter("tabs1", "users");
 
 					add(
-					navigationItem -> {
-						navigationItem.setActive(tabs1.equals("users"));
-						navigationItem.setHref(portletURL.toString());
-						navigationItem.setLabel(LanguageUtil.get(request, "users"));
-					});
+						navigationItem -> {
+							navigationItem.setActive(tabs1.equals("users"));
+							navigationItem.setHref(portletURL.toString());
+							navigationItem.setLabel(LanguageUtil.get(request, "users"));
+						});
 
 					portletURL.setParameter("tabs1", "organizations");
 
 					add(
-					navigationItem -> {
-						navigationItem.setActive(tabs1.equals("organizations"));
-						navigationItem.setHref(portletURL.toString());
-						navigationItem.setLabel(LanguageUtil.get(request, "organizations"));
-					});
+						navigationItem -> {
+							navigationItem.setActive(tabs1.equals("organizations"));
+							navigationItem.setHref(portletURL.toString());
+							navigationItem.setLabel(LanguageUtil.get(request, "organizations"));
+						});
 
 					portletURL.setParameter("tabs1", "user-groups");
 
 					add(
-					navigationItem -> {
-						navigationItem.setActive(tabs1.equals("user-groups"));
-						navigationItem.setHref(portletURL.toString());
-						navigationItem.setLabel(LanguageUtil.get(request, "user-groups"));
-					});
+						navigationItem -> {
+							navigationItem.setActive(tabs1.equals("user-groups"));
+							navigationItem.setHref(portletURL.toString());
+							navigationItem.setLabel(LanguageUtil.get(request, "user-groups"));
+						});
 				}
 			}
 		%>"
