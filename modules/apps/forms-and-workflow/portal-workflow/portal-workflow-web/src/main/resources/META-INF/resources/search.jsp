@@ -16,14 +16,8 @@
 
 <%@ include file="/init.jsp" %>
 
-<%
-PortletURL searchURL = selectedWorkflowPortletTab.getSearchURL(renderRequest, renderResponse);
-
-String searchPage = selectedWorkflowPortletTab.getSearchJspPath();
-%>
-
 <li>
-	<aui:form action="<%= searchURL %>" method="post" name="fm1">
-		<liferay-util:include page="<%= searchPage %>" servletContext="<%= selectedWorkflowPortletTab.getServletContext() %>" />
+	<aui:form action="<%= selectedWorkflowPortletTab.getSearchURL(renderRequest, renderResponse) %>" method="post" name="fm1">
+		<liferay-util:include page="<%= selectedWorkflowPortletTab.getSearchJspPath() %>" servletContext="<%= selectedWorkflowPortletTab.getServletContext() %>" />
 	</aui:form>
 </li>

@@ -71,10 +71,8 @@ public class WorkflowNavigationDisplayContext {
 								Objects.equals(
 									workflowPortletTab.getName(),
 									selectedWorkflowPortletTab.getName()));
-
 							navigationItem.setHref(
 								renderURL, "tab", workflowPortletTab.getName());
-
 							navigationItem.setLabel(
 								LanguageUtil.get(
 									resourceBundle,
