@@ -4,6 +4,7 @@ Bundle-Version: 1.2.2
 Export-Package:\
 	com.liferay.frontend.css.rtl.converter,\
 	com.liferay.petra.collection.stack,\
+	com.liferay.portal.scripting.executor.groovy,\
 	com.liferay.portal.scripting.executor.provider,\
 	com.liferay.twitter.configuration,\
 	com.liferay.twitter.util,\
