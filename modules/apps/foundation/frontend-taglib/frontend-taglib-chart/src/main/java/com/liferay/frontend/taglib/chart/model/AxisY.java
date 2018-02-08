@@ -72,7 +72,7 @@ public class AxisY extends ChartObject {
 
 	public enum Type {
 
-		TIME_SERIES("timeseries"), CATEGORY("category"), INDEXED("indexed");
+		CATEGORY("category"), INDEXED("indexed"), TIME_SERIES("timeseries");
 
 		private Type(String value) {
 			_value = value;
