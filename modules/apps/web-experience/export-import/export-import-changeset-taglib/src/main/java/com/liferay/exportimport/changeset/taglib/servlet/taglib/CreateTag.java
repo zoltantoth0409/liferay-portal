@@ -37,7 +37,7 @@ public class CreateTag extends TagSupport {
 	@Override
 	public int doStartTag() throws JspException {
 		if (Validator.isNull(_var)) {
-			throw new JspException("Var cannot be null");
+			throw new JspException("Var is null");
 		}
 
 		_rawBuilder = Changeset.createRaw();
