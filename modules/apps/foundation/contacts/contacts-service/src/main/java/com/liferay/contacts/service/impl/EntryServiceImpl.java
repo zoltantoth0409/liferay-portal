@@ -53,9 +53,9 @@ public class EntryServiceImpl extends EntryServiceBaseImpl {
 
 		if (!_enabled) {
 			throw new UnsupportedOperationException(
-				"This method was deprecated due to security reasons. To " +
-					"enable it please set contacts.entry.service.enabled=true" +
-						"in portal-ext.properties");
+				"This service is disabled by default. To enable it, set the " +
+					"property \"contacts.entry.service.enabled\" to true in " +
+						"portal.properties.");
 		}
 
 		long userId = getUserId();
