@@ -76,7 +76,6 @@
 
 	<command name="HSQLtoHSQLLportal1SampleDataDisabled" priority="4">
 		<property name="database.types" value="hypersonic" />
-		<property name="portal.acceptance" value="true" />
 		<property name="test.name.skip.portal.instance" value="SetupWizardHSQL#HSQLtoHSQLLportal1SampleDataDisabled" />
 
 		<execute macro="SetupWizard#configurePG">
@@ -99,6 +98,7 @@
 
 	<command name="HSQLtoHSQLSampleDataDisabled" priority="5">
 		<property name="database.types" value="hypersonic" />
+		<property name="portal.acceptance" value="true" />
 		<property name="test.name.skip.portal.instance" value="SetupWizardHSQL#HSQLtoHSQLSampleDataDisabled" />
 
 		<execute macro="SetupWizard#configurePG">
