@@ -622,7 +622,7 @@ public class ServiceBuilder {
 			_resourcesDirName = _normalize(resourcesDirName);
 			_springFileName = _normalize(springFileName);
 
-			_uadDirName = _apiDirName.replace("api", "uad");
+			_uadDirName = _apiDirName.replace("-api/", "-uad/");
 
 			_springNamespaces = springNamespaces;
 
@@ -743,10 +743,6 @@ public class ServiceBuilder {
 
 			for (Element entityElement : entityElements) {
 				_parseEntity(entityElement);
-
-				if (_isEntityElementUADEnabled(entityElement)) {
-					_uadEnabled = true;
-				}
 			}
 
 			List<String> exceptionList = new ArrayList<>();
@@ -765,7 +761,7 @@ public class ServiceBuilder {
 			if (build) {
 				Collections.sort(_ejbList);
 
-				if (_uadEnabled) {
+				if (_isUADEnabled(_ejbList)) {
 					_createUADConstants(_ejbList);
 				}
 
@@ -903,7 +899,7 @@ public class ServiceBuilder {
 
 				_createProps();
 
-				if (_uadEnabled) {
+				if (_isUADEnabled(_ejbList)) {
 					_createUADBnd();
 				}
 
@@ -1926,6 +1922,16 @@ public class ServiceBuilder {
 
 	private static SAXReader _getSAXReader() {
 		return SAXReaderFactory.getSAXReader(null, false, false);
+	}
+
+	private static boolean _isUADEnabled(List<Entity> ejbList) {
+		for (Entity entity : ejbList) {
+			if (entity.isUADEnabled()) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	private static void _mkdir(File dir) throws IOException {
@@ -4110,7 +4116,6 @@ public class ServiceBuilder {
 		context.put("tempMap", wrapper.wrap(new HashMap<String, Object>()));
 		context.put(
 			"textFormatter", staticModels.get(TextFormatter.class.getName()));
-		context.put("uadDir", _uadDirName);
 		context.put("validator", Validator_IW.getInstance());
 
 		return context;
@@ -4816,70 +4821,6 @@ public class ServiceBuilder {
 		return transients;
 	}
 
-	private Map<String, List<EntityColumn>> _getUADAnonymizableColumnMap(
-			Element entityElement, List<EntityColumn> columnList)
-		throws Exception {
-
-		Map<String, List<EntityColumn>> uadAnonymizableColumnMap =
-			new HashMap<>();
-
-		if (!_isEntityElementUADEnabled(entityElement)) {
-			return uadAnonymizableColumnMap;
-		}
-
-		XPath xPath = DocumentHelper.createXPath(
-			"column[ends-with(@name, 'userId') or ends-with(@name, 'UserId')]");
-
-		List<Element> elements = xPath.selectNodes(entityElement);
-
-		for (Element element : elements) {
-			String colName = GetterUtil.getString(
-				element.attributeValue("name"));
-
-			List<EntityColumn> entityColumns = new ArrayList<>();
-
-			entityColumns.add(Entity.getColumn(colName, columnList));
-
-			uadAnonymizableColumnMap.put(colName, entityColumns);
-		}
-
-		xPath = DocumentHelper.createXPath(
-			"column[ends-with(@name, 'userName') or ends-with(@name, " +
-				"'UserName')]");
-
-		elements = xPath.selectNodes(entityElement);
-
-		for (Element element : elements) {
-			String colName = GetterUtil.getString(
-				element.attributeValue("name"));
-
-			String userIdColName = StringUtil.replace(colName, "Name", "Id");
-
-			List<EntityColumn> entityColumns = uadAnonymizableColumnMap.get(
-				userIdColName);
-
-			if (entityColumns != null) {
-				entityColumns.add(Entity.getColumn(colName, columnList));
-			}
-			else {
-				String entityName = GetterUtil.getString(
-					entityElement.attributeValue("name"));
-
-				throw new ServiceBuilderException(
-					StringBundler.concat(
-						"Unable to generate UAD code for entity \"", entityName,
-						"\" because there is no corresponding column \"",
-						userIdColName, "\" to match column \"", colName,
-						"\". This can be resolved by adding column \"",
-						userIdColName, "\", removing column \"", colName,
-						"\" or removing all UAD attributes from entity \"",
-						entityName, "\"."));
-			}
-		}
-
-		return uadAnonymizableColumnMap;
-	}
-
 	private List<Path> _getUpdateSQLFilePaths() throws IOException {
 		if (!_osgiModule) {
 			final List<Path> updateSQLFilePaths = new ArrayList<>();
@@ -4957,13 +4898,6 @@ public class ServiceBuilder {
 		}
 
 		return false;
-	}
-
-	private boolean _isEntityElementUADEnabled(Element entityElement) {
-		XPath xPath = DocumentHelper.createXPath(
-			"column[@uad-anonymize-field-name or @uad-non-anonymizable]");
-
-		return xPath.booleanValueOf(entityElement);
 	}
 
 	private boolean _isStringLocaleMap(JavaParameter javaParameter) {
@@ -5223,7 +5157,6 @@ public class ServiceBuilder {
 		List<EntityColumn> blobList = new ArrayList<>();
 		List<EntityColumn> collectionList = new ArrayList<>();
 		List<EntityColumn> columnList = new ArrayList<>();
-		List<EntityColumn> uadNonAnonymizableColumnList = new ArrayList<>();
 
 		boolean permissionedModel = false;
 		boolean resourcedModel = false;
@@ -5311,7 +5244,7 @@ public class ServiceBuilder {
 				columnElement.attributeValue("parent-container-model"));
 			String uadAnonymizeFieldName = GetterUtil.getString(
 				columnElement.attributeValue("uad-anonymize-field-name"));
-			boolean uadNonAnonymizable = GetterUtil.getBoolean(
+			boolean uadNonanonymizable = GetterUtil.getBoolean(
 				columnElement.attributeValue("uad-non-anonymizable"));
 
 			if (columnName.equals("resourceBlockId") &&
@@ -5329,7 +5262,7 @@ public class ServiceBuilder {
 				filterPrimary, collectionEntity, mappingTable, idType, idParam,
 				convertNull, lazy, localized, colJsonEnabled, containerModel,
 				parentContainerModel, uadAnonymizeFieldName,
-				uadNonAnonymizable);
+				uadNonanonymizable);
 
 			if (primary) {
 				pkList.add(col);
@@ -5344,10 +5277,6 @@ public class ServiceBuilder {
 				if (columnType.equals("Blob")) {
 					blobList.add(col);
 				}
-			}
-
-			if (uadNonAnonymizable) {
-				uadNonAnonymizableColumnList.add(col);
 			}
 
 			columnList.add(col);
@@ -5426,9 +5355,6 @@ public class ServiceBuilder {
 				orderColsList.add(col);
 			}
 		}
-
-		Map<String, List<EntityColumn>> uadAnonymizableColumnMap =
-			_getUADAnonymizableColumnMap(entityElement, columnList);
 
 		List<EntityFinder> finderList = new ArrayList<>();
 
@@ -5657,8 +5583,7 @@ public class ServiceBuilder {
 			jsonEnabled, mvccEnabled, trashEnabled, deprecated, pkList,
 			regularColList, blobList, collectionList, columnList, order,
 			finderList, referenceList, unresolvedReferenceList, txRequiredList,
-			resourceActionModel, uadAnonymizableColumnMap,
-			uadNonAnonymizableColumnList);
+			resourceActionModel);
 
 		_ejbList.add(entity);
 
@@ -6360,7 +6285,6 @@ public class ServiceBuilder {
 	private String _tplUADBnd = _TPL_ROOT + "uad_bnd.ftl";
 	private String _tplUADConstants = _TPL_ROOT + "uad_constants.ftl";
 	private String _uadDirName;
-	private boolean _uadEnabled;
 	private String _uadOutputPath;
 
 }
