@@ -1,5 +1,4 @@
 <definition component-name="portal-deployment-hypersonic">
-	<property name="portal.acceptance" value="true" />
 	<property name="portal.release" value="true" />
 	<property name="portal.upstream" value="true" />
 	<property name="setup.wizard.enabled" value="true" />
@@ -77,6 +76,7 @@
 
 	<command name="HSQLtoHSQLLportal1SampleDataDisabled" priority="4">
 		<property name="database.types" value="hypersonic" />
+		<property name="portal.acceptance" value="true" />
 		<property name="test.name.skip.portal.instance" value="SetupWizardHSQL#HSQLtoHSQLLportal1SampleDataDisabled" />
 
 		<execute macro="SetupWizard#configurePG">
