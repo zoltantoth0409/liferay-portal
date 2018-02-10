@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.wsrp.internal.upgrade.v1_0_0;
+package com.liferay.wsrp.internal.upgrade.v1_1_0;
 
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
