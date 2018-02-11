@@ -1007,6 +1007,10 @@
 			<var name="fieldName" value="applyVersioning" />
 		</execute>
 
+		<execute macro="FormFields#disableCheckbox">
+			<var name="fieldName" value="exposeGlobal" />
+		</execute>
+
 		<execute macro="SystemSettings#saveConfiguration" />
 
 		<execute macro="SystemSettings#editConfiguration">
