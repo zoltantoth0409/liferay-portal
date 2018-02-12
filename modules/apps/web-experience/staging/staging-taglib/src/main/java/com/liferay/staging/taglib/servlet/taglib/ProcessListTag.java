@@ -43,6 +43,7 @@ public class ProcessListTag extends IncludeTag {
 	@Override
 	protected void cleanUp() {
 		super.cleanUp();
+
 		_resultRowSplitter = null;
 	}
 
