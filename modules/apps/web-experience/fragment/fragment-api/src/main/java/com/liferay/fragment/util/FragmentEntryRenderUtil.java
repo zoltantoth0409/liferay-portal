@@ -59,7 +59,7 @@ public class FragmentEntryRenderUtil {
 
 		divElement.attr("id", sb.toString());
 
-		divElement.prepend(_sanitize(fragmentEntryId, html));
+		divElement.prepend(html);
 
 		Element styleElement = divElement.prependElement("style");
 
