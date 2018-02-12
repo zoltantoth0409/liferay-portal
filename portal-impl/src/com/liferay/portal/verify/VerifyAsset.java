@@ -53,7 +53,6 @@ public class VerifyAsset extends VerifyProcess {
 
 	@Override
 	protected void doVerify() throws Exception {
-		deleteOrphanedAssetEntries();
 		rebuildTree();
 	}
 
