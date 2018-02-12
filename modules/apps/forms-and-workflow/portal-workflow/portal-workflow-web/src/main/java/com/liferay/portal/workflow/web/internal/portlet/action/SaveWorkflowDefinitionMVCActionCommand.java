@@ -56,9 +56,7 @@ public class SaveWorkflowDefinitionMVCActionCommand
 
 		Map<Locale, String> titleMap = LocalizationUtil.getLocalizationMap(
 			actionRequest, "title");
-
 		String name = ParamUtil.getString(actionRequest, "name");
-
 		String content = ParamUtil.getString(actionRequest, "content");
 
 		WorkflowDefinition workflowDefinition =
