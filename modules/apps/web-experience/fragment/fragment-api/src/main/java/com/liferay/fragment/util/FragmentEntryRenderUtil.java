@@ -92,12 +92,12 @@ public class FragmentEntryRenderUtil {
 			long fragmentEntryLinkId, long position)
 		throws PortalException {
 
+		FragmentEntryProcessorRegistry fragmentEntryProcessorRegistry =
+			getService();
+
 		FragmentEntryLink fragmentEntryLink =
 			FragmentEntryLinkLocalServiceUtil.fetchFragmentEntryLink(
 				fragmentEntryLinkId);
-
-		FragmentEntryProcessorRegistry fragmentEntryProcessorRegistry =
-			getService();
 
 		String html = fragmentEntryProcessorRegistry.processFragmentEntryHTML(
 			fragmentEntryLink.getHtml(),
