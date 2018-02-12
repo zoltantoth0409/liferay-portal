@@ -67,7 +67,7 @@ import com.liferay.wsrp.service.WSRPConsumerLocalService;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalService;
 import com.liferay.wsrp.util.ConsumerRequestExtensionsHelper;
 import com.liferay.wsrp.util.ExtensionHelperUtil;
-import com.liferay.wsrp.util.MarkupCharacterSetsUtil;
+import com.liferay.wsrp.util.MarkupCharacterSetsHelper;
 import com.liferay.wsrp.util.WSRPConfigurationUtil;
 import com.liferay.wsrp.util.WSRPConsumerManager;
 import com.liferay.wsrp.util.WSRPConsumerManagerFactory;
@@ -1159,7 +1159,7 @@ public class ConsumerPortlet extends MVCPortlet {
 				wsrpConsumer.getMarkupCharacterSets();
 
 			markupCharacterSetsString =
-				MarkupCharacterSetsUtil.getSupportedMarkupCharacterSets(
+				_markupCharacterSetsHelper.getSupportedMarkupCharacterSets(
 					markupCharacterSetsString);
 
 			markupCharacterSets = StringUtil.split(markupCharacterSetsString);
@@ -2165,6 +2165,9 @@ public class ConsumerPortlet extends MVCPortlet {
 
 	@ServiceReference(type = ListTypeService.class)
 	private ListTypeService _listTypeService;
+
+	@ServiceReference(type = MarkupCharacterSetsHelper.class)
+	private MarkupCharacterSetsHelper _markupCharacterSetsHelper;
 
 	@ServiceReference(type = PhoneLocalService.class)
 	private PhoneLocalService _phoneLocalService;
