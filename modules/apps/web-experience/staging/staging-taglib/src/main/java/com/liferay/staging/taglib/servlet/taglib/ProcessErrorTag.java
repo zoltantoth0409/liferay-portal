@@ -58,6 +58,7 @@ public class ProcessErrorTag extends IncludeTag {
 	@Override
 	protected void cleanUp() {
 		super.cleanUp();
+
 		_authException = false;
 		_illegalArgumentException = false;
 		_noSuchExceptions = false;
