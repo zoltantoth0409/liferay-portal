@@ -28,8 +28,8 @@ String cmd = null;
 String stagedModelName = null;
 String stagedModelType = null;
 
-int percentage = 100;
 long allProgressBarCountersTotal = 0;
+int percentage = 100;
 
 if (backgroundTaskStatus != null) {
 	cmd = ArrayUtil.toString(ExportImportConfigurationHelper.getExportImportConfigurationParameter(backgroundTask, Constants.CMD), StringPool.BLANK);
