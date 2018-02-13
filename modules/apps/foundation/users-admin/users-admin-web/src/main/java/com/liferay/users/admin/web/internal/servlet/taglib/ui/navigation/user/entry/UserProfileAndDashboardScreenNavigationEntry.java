@@ -39,7 +39,7 @@ public class UserProfileAndDashboardScreenNavigationEntry
 
 	@Override
 	public String getActionCommandName() {
-		return "/users_admin/edit_profile_and_private_area";
+		return "/users_admin/edit_profile_and_dashboard";
 	}
 
 	@Override
