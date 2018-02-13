@@ -172,6 +172,14 @@ public abstract class AuroraAmazonVMProvisioner extends VMProvisioner {
 		String dbEngine, String dbEngineVersion, String dbInstanceClass,
 		String dbInstanceId, String dbPassword, String dbUsername) {
 
+		_dbClusterId = dbClusterId;
+		_dbEngine = dbEngine;
+		_dbEngineVersion = dbEngineVersion;
+		_dbInstanceClass = dbInstanceClass;
+		_dbInstanceId = dbInstanceId;
+		_dbPassword = dbPassword;
+		_dbUsername = dbUsername;
+
 		BasicAWSCredentials basicAWSCredentials = new BasicAWSCredentials(
 			awsAccessKeyId, awsSecretAccessKey);
 
@@ -183,14 +191,6 @@ public abstract class AuroraAmazonVMProvisioner extends VMProvisioner {
 		amazonRDSClientBuilder.withRegion(Regions.US_WEST_1);
 
 		_amazonRDS = amazonRDSClientBuilder.build();
-
-		_dbClusterId = dbClusterId;
-		_dbEngine = dbEngine;
-		_dbEngineVersion = dbEngineVersion;
-		_dbInstanceClass = dbInstanceClass;
-		_dbInstanceId = dbInstanceId;
-		_dbPassword = dbPassword;
-		_dbUsername = dbUsername;
 	}
 
 	private String _getDbClusterId() {
