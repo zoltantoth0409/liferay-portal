@@ -762,10 +762,6 @@ public class ServiceBuilder {
 			if (build) {
 				Collections.sort(_entities);
 
-				if (_isUADEnabled(_entities)) {
-					_createUADConstants(_entities);
-				}
-
 				for (Entity entity : _entities) {
 					if (_isTargetEntity(entity)) {
 						System.out.println("Building " + entity.getName());
@@ -902,6 +898,7 @@ public class ServiceBuilder {
 
 				if (_isUADEnabled(_entities)) {
 					_createUADBnd();
+					_createUADConstants(_entities);
 				}
 
 				_deleteOrmXml();
