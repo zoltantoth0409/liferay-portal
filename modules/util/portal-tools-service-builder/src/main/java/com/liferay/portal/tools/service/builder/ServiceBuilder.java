@@ -5247,7 +5247,7 @@ public class ServiceBuilder {
 			String uadAnonymizeFieldName = GetterUtil.getString(
 				columnElement.attributeValue("uad-anonymize-field-name"));
 			boolean uadNonanonymizable = GetterUtil.getBoolean(
-				columnElement.attributeValue("uad-non-anonymizable"));
+				columnElement.attributeValue("uad-nonanonymizable"));
 
 			if (columnName.equals("resourceBlockId") &&
 				!ejbName.equals("ResourceBlock")) {
