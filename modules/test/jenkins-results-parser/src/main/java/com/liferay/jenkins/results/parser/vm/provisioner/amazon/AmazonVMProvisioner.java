@@ -90,7 +90,7 @@ public abstract class AmazonVMProvisioner extends VMProvisioner {
 		runInstancesRequest.withKeyName(_keyName);
 		runInstancesRequest.withMaxCount(1);
 		runInstancesRequest.withMinCount(1);
-		runInstancesRequest.withSecurityGroupIds(_securityGroups);
+		runInstancesRequest.withSecurityGroupIds("sg-9ce452fb");
 
 		RunInstancesResult runInstancesResult = _amazonEC2.runInstances(
 			runInstancesRequest);
@@ -218,7 +218,6 @@ public abstract class AmazonVMProvisioner extends VMProvisioner {
 	private String _instanceId;
 	private String _instanceType;
 	private String _keyName;
-	private String _securityGroups = "sg-9ce452fb";
 	private String _volumeId;
 
 }
