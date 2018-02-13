@@ -150,6 +150,8 @@ public abstract class AuroraAmazonVMProvisioner extends VMProvisioner {
 	protected AuroraAmazonVMProvisioner(
 		String awsAccessKeyId, String awsSecretAccessKey, String dbInstanceId) {
 
+		_dbInstanceId = dbInstanceId;
+
 		BasicAWSCredentials basicAWSCredentials = new BasicAWSCredentials(
 			awsAccessKeyId, awsSecretAccessKey);
 
@@ -161,8 +163,6 @@ public abstract class AuroraAmazonVMProvisioner extends VMProvisioner {
 		amazonRDSClientBuilder.withRegion(Regions.US_WEST_1);
 
 		_amazonRDS = amazonRDSClientBuilder.build();
-
-		_dbInstanceId = dbInstanceId;
 
 		_dbClusterId = _getDbClusterId();
 	}
