@@ -57,7 +57,7 @@ public class TemporaryFileEntryRepositoryDefiner extends BaseRepositoryDefiner {
 					StringBundler.concat(
 						"Repository definer ",
 						TemporaryFileEntryRepositoryDefiner.class.getName(),
-						" is not yet fully initialized.")));
+						" is not initialized")));
 		}
 
 		DocumentRepository documentRepository = capabilityRegistry.getTarget();
