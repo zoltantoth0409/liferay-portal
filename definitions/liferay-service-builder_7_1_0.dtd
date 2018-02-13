@@ -318,13 +318,13 @@ primary key of a parent container model.
 The uad-anonymize-field-name value specifies the anonymous user field that
 should be used to replace this column's value during auto anonymization. For
 example, if "fullName" is specified, the anonymous user's full name will replace
-this column's value during auto anonymization. uad-anonymize-field-name should
-only be used with user name columns, for example "statusByUserName".
+this column's value during auto anonymization. The uad-anonymize-field-name
+value should only be used with user name columns (e.g. "statusByUserName").
 
 The uad-nonanonymizable value specifies whether the column represents data
-associated with a specific user that should be reviewed by an admin in the event
-of a GDPR compliance request. This implies the data cannot be anonymized
-automatically.
+associated with a specific user that should be reviewed by an administrator in
+the event of a GDPR compliance request. This implies the data cannot be
+anonymized automatically.
 -->
 <!ATTLIST column
 	name CDATA #REQUIRED
