@@ -51,7 +51,7 @@ public abstract class AuroraAmazonVMProvisioner extends VMProvisioner {
 		createDBClusterRequest.withEngineVersion(_dbEngineVersion);
 		createDBClusterRequest.withMasterUsername(_dbUsername);
 		createDBClusterRequest.withMasterUserPassword(_dbPassword);
-		createDBClusterRequest.withVpcSecurityGroupIds(_vpcSecurityGroupIds);
+		createDBClusterRequest.withVpcSecurityGroupIds("sg-9ce452fb");
 
 		_amazonRDS.createDBCluster(createDBClusterRequest);
 
@@ -245,6 +245,5 @@ public abstract class AuroraAmazonVMProvisioner extends VMProvisioner {
 	private final String _dbInstanceId;
 	private String _dbPassword;
 	private String _dbUsername;
-	private String _vpcSecurityGroupIds = "sg-9ce452fb";
 
 }
