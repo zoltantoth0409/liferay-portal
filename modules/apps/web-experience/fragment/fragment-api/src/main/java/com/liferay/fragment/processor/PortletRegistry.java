@@ -51,7 +51,6 @@ public class PortletRegistry {
 	protected void setPortlet(Portlet portlet, Map<String, Object> properties) {
 		String alias = MapUtil.getString(
 			properties, "com.liferay.fragment.entry.processor.portlet.alias");
-
 		String portletName = MapUtil.getString(
 			properties, "javax.portlet.name");
 
@@ -63,7 +62,6 @@ public class PortletRegistry {
 
 		String alias = MapUtil.getString(
 			properties, "com.liferay.fragment.entry.processor.portlet.alias");
-
 		String portletName = MapUtil.getString(
 			properties, "javax.portlet.name");
 
