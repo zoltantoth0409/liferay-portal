@@ -622,8 +622,6 @@ public class ServiceBuilder {
 			_resourcesDirName = _normalize(resourcesDirName);
 			_springFileName = _normalize(springFileName);
 
-			_uadDirName = _apiDirName.replace("-api/", "-uad/");
-
 			_springNamespaces = springNamespaces;
 
 			if (!ArrayUtil.contains(
@@ -682,10 +680,13 @@ public class ServiceBuilder {
 			_serviceOutputPath =
 				_apiDirName + "/" +
 					StringUtil.replace(_apiPackagePath, '.', '/');
-			_uadOutputPath =
-				_uadDirName + "/" + StringUtil.replace(packagePath, '.', '/');
 
 			_packagePath = packagePath;
+
+			_uadDirName = _apiDirName.replace("-api/", "-uad/");
+
+			_uadOutputPath =
+				_uadDirName + "/" + StringUtil.replace(packagePath, '.', '/');
 
 			_autoImportDefaultReferences = GetterUtil.getBoolean(
 				rootElement.attributeValue("auto-import-default-references"),
