@@ -1003,13 +1003,15 @@
 			<var name="fieldName" value="applyVersioning" />
 		</execute>
 
-		<execute macro="FormFields#disableCheckbox">
-			<var name="fieldName" value="applyVersioning" />
-		</execute>
+		<for list="applyVersioning,exposeGlobal" param="fieldName">
+			<execute macro="FormFields#viewCheckboxChecked">
+				<var name="fieldName" value="${fieldName}" />
+			</execute>
 
-		<execute macro="FormFields#disableCheckbox">
-			<var name="fieldName" value="exposeGlobal" />
-		</execute>
+			<execute macro="FormFields#disableCheckbox">
+				<var name="fieldName" value="${fieldName}" />
+			</execute>
+		</for>
 
 		<execute macro="SystemSettings#saveConfiguration" />
 
