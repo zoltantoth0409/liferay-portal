@@ -87,7 +87,7 @@ public abstract class AuroraAmazonVMProvisioner extends VMProvisioner {
 
 		String dbInstanceStatus = _getDBInstanceStatus();
 
-		System.out.println("Waiting for the DB Instance to start");
+		System.out.println("Waiting for the DB instance to start");
 
 		timeout = System.currentTimeMillis() + TIMEOUT_DURATION;
 
