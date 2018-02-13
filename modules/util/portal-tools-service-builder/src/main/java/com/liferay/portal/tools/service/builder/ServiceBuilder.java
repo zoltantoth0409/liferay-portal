@@ -736,7 +736,7 @@ public class ServiceBuilder {
 				}
 			}
 
-			_ejbList = new ArrayList<>();
+			_entities = new ArrayList<>();
 			_entityMappings = new HashMap<>();
 
 			List<Element> entityElements = rootElement.elements("entity");
@@ -759,13 +759,13 @@ public class ServiceBuilder {
 			}
 
 			if (build) {
-				Collections.sort(_ejbList);
+				Collections.sort(_entities);
 
-				if (_isUADEnabled(_ejbList)) {
-					_createUADConstants(_ejbList);
+				if (_isUADEnabled(_entities)) {
+					_createUADConstants(_entities);
 				}
 
-				for (Entity entity : _ejbList) {
+				for (Entity entity : _entities) {
 					if (_isTargetEntity(entity)) {
 						System.out.println("Building " + entity.getName());
 
@@ -899,7 +899,7 @@ public class ServiceBuilder {
 
 				_createProps();
 
-				if (_isUADEnabled(_ejbList)) {
+				if (_isUADEnabled(_entities)) {
 					_createUADBnd();
 				}
 
@@ -1042,16 +1042,16 @@ public class ServiceBuilder {
 		int pos = name.lastIndexOf(".");
 
 		if (pos == -1) {
-			pos = _ejbList.indexOf(new Entity(name));
+			pos = _entities.indexOf(new Entity(name));
 
 			if (pos == -1) {
 				throw new ServiceBuilderException(
 					StringBundler.concat(
 						"Unable to find ", name, " in ",
-						ListUtil.toString(_ejbList, Entity.NAME_ACCESSOR)));
+						ListUtil.toString(_entities, Entity.NAME_ACCESSOR)));
 			}
 
-			entity = _ejbList.get(pos);
+			entity = _entities.get(pos);
 
 			_entityPool.put(name, entity);
 
@@ -1062,23 +1062,23 @@ public class ServiceBuilder {
 		String refEntity = name.substring(pos + 1);
 
 		if (refPackage.equals(_packagePath)) {
-			pos = _ejbList.indexOf(new Entity(refEntity));
+			pos = _entities.indexOf(new Entity(refEntity));
 
 			if (pos == -1) {
 				throw new ServiceBuilderException(
 					StringBundler.concat(
 						"Unable to find ", refEntity, " in ",
-						ListUtil.toString(_ejbList, Entity.NAME_ACCESSOR)));
+						ListUtil.toString(_entities, Entity.NAME_ACCESSOR)));
 			}
 
-			entity = _ejbList.get(pos);
+			entity = _entities.get(pos);
 
 			_entityPool.put(name, entity);
 
 			return entity;
 		}
 
-		Set<Entity> entities = new HashSet<>(_ejbList);
+		Set<Entity> entities = new HashSet<>(_entities);
 
 		entities.addAll(_entityPool.values());
 
@@ -1118,7 +1118,7 @@ public class ServiceBuilder {
 				throw new ServiceBuilderException(
 					StringBundler.concat(
 						"Unable to find ", refEntity, " in ",
-						ListUtil.toString(_ejbList, Entity.NAME_ACCESSOR)),
+						ListUtil.toString(_entities, Entity.NAME_ACCESSOR)),
 					ioe);
 			}
 
@@ -1924,8 +1924,8 @@ public class ServiceBuilder {
 		return SAXReaderFactory.getSAXReader(null, false, false);
 	}
 
-	private static boolean _isUADEnabled(List<Entity> ejbList) {
-		for (Entity entity : ejbList) {
+	private static boolean _isUADEnabled(List<Entity> entities) {
+		for (Entity entity : entities) {
 			if (entity.isUADEnabled()) {
 				return true;
 			}
@@ -2104,7 +2104,7 @@ public class ServiceBuilder {
 	}
 
 	private void _createExceptions(List<String> exceptions) throws Exception {
-		for (Entity entity : _ejbList) {
+		for (Entity entity : _entities) {
 			if (!_isTargetEntity(entity)) {
 				continue;
 			}
@@ -2486,7 +2486,7 @@ public class ServiceBuilder {
 
 		boolean hasDeprecated = false;
 
-		for (Entity entity : _ejbList) {
+		for (Entity entity : _entities) {
 			if (entity.hasColumns()) {
 				if (entity.isDeprecated()) {
 					hasDeprecated = true;
@@ -2658,7 +2658,7 @@ public class ServiceBuilder {
 	private void _createModelHintsXml() throws Exception {
 		Map<String, Object> context = _getContext();
 
-		context.put("entities", _ejbList);
+		context.put("entities", _entities);
 
 		// Content
 
@@ -3332,7 +3332,7 @@ public class ServiceBuilder {
 
 		Map<String, Object> context = _getContext();
 
-		context.put("entities", _ejbList);
+		context.put("entities", _entities);
 
 		// Content
 
@@ -3468,7 +3468,7 @@ public class ServiceBuilder {
 
 		// indexes.sql appending
 
-		for (Entity entity : _ejbList) {
+		for (Entity entity : _entities) {
 			if (!_isTargetEntity(entity)) {
 				continue;
 			}
@@ -3647,7 +3647,7 @@ public class ServiceBuilder {
 			}
 		}
 
-		for (Entity entity : _ejbList) {
+		for (Entity entity : _entities) {
 			if (!_isTargetEntity(entity)) {
 				continue;
 			}
@@ -3708,7 +3708,7 @@ public class ServiceBuilder {
 			_touch(sqlFile);
 		}
 
-		for (Entity entity : _ejbList) {
+		for (Entity entity : _entities) {
 			if (!_isTargetEntity(entity)) {
 				continue;
 			}
@@ -4500,7 +4500,7 @@ public class ServiceBuilder {
 	}
 
 	private Entity _getEntityByTableName(String tableName) {
-		for (Entity entity : _ejbList) {
+		for (Entity entity : _entities) {
 			if (tableName.equals(entity.getTable())) {
 				return entity;
 			}
@@ -5043,7 +5043,7 @@ public class ServiceBuilder {
 		Set<Entity> set = new LinkedHashSet<>();
 
 		if (_autoImportDefaultReferences) {
-			set.addAll(_ejbList);
+			set.addAll(_entities);
 		}
 		else {
 			set.add(entity);
@@ -5585,7 +5585,7 @@ public class ServiceBuilder {
 			finderList, referenceList, unresolvedReferenceList, txRequiredList,
 			resourceActionModel);
 
-		_ejbList.add(entity);
+		_entities.add(entity);
 
 		if (localizedEntityElement != null) {
 			_parseLocalizedEntity(entity, localizedEntityElement);
@@ -6164,7 +6164,7 @@ public class ServiceBuilder {
 				throw new ServiceBuilderException(
 					StringBundler.concat(
 						"Unable to resolve reference ", referenceName, " in ",
-						ListUtil.toString(_ejbList, Entity.NAME_ACCESSOR)));
+						ListUtil.toString(_entities, Entity.NAME_ACCESSOR)));
 			}
 
 			entity.addReference(referenceEntity);
@@ -6212,7 +6212,7 @@ public class ServiceBuilder {
 	private boolean _buildNumberIncrement;
 	private String _currentTplName;
 	private int _databaseNameMaxLength = 30;
-	private List<Entity> _ejbList;
+	private List<Entity> _entities;
 	private Map<String, EntityMapping> _entityMappings;
 	private Map<String, Entity> _entityPool = new HashMap<>();
 	private String _hbmFileName;
