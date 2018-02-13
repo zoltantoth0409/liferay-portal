@@ -57,7 +57,7 @@ public abstract class AuroraAmazonVMProvisioner extends VMProvisioner {
 
 		String dbClusterStatus = _getDBClusterStatus();
 
-		System.out.println("Waiting for the DB Cluster to start");
+		System.out.println("Waiting for the DB cluster to start");
 
 		long timeout = System.currentTimeMillis() + TIMEOUT_DURATION;
 
