@@ -244,7 +244,6 @@ public class UpgradeKernelPackage extends UpgradeProcess {
 		sb.append(columnName);
 		sb.append(" like ");
 		sb.append(StringPool.APOSTROPHE);
-
 		sb.append(wildcardMode.getLeadingWildcard());
 		sb.append(columnValue);
 		sb.append(wildcardMode.getTrailingWildcard());
