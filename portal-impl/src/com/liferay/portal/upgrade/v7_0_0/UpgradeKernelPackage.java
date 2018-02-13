@@ -39,10 +39,10 @@ public class UpgradeKernelPackage extends UpgradeProcess {
 	protected void doUpgrade() throws UpgradeException {
 		try {
 			upgradeTable(
-				"Counter", "name", getClassNames(), WildcardMode.SURROUND);
-			upgradeTable(
 				"ClassName_", "value", getClassNames(), WildcardMode.SURROUND,
 				true);
+			upgradeTable(
+				"Counter", "name", getClassNames(), WildcardMode.SURROUND);
 			upgradeTable(
 				"Lock_", "className", getClassNames(), WildcardMode.SURROUND);
 			upgradeTable(
