@@ -19,12 +19,11 @@
 	<%
 	String randomNamespace = PortalUtil.generateRandomKey(request, "portlet_document_library_view_file_entry_preview") + StringPool.UNDERLINE;
 
+	boolean emptyPreview = false;
 	int previewFileCount = 0;
 	String previewFileURL = null;
 	String[] previewFileURLs = null;
 	String videoThumbnailURL = null;
-
-	boolean emptyPreview = false;
 
 	if (hasAudio || hasImages || hasPDFImages || hasVideo) {
 		String previewQueryString = null;
@@ -53,15 +52,13 @@
 		}
 
 		if (hasAudio) {
-			previewFileURLs = new String[PropsValues.DL_FILE_ENTRY_PREVIEW_AUDIO_CONTAINERS.length];
-
 			emptyPreview = true;
+			previewFileURLs = new String[PropsValues.DL_FILE_ENTRY_PREVIEW_AUDIO_CONTAINERS.length];
 
 			for (int i = 0; i < PropsValues.DL_FILE_ENTRY_PREVIEW_AUDIO_CONTAINERS.length; i++) {
 				if (AudioProcessorUtil.getPreviewFileSize(fileVersion, PropsValues.DL_FILE_ENTRY_PREVIEW_AUDIO_CONTAINERS[i]) > 0) {
-					previewFileURLs[i] = DLUtil.getPreviewURL(fileEntry, fileVersion, themeDisplay, previewQueryString + "&type=" + PropsValues.DL_FILE_ENTRY_PREVIEW_AUDIO_CONTAINERS[i]);
-
 					emptyPreview = false;
+					previewFileURLs[i] = DLUtil.getPreviewURL(fileEntry, fileVersion, themeDisplay, previewQueryString + "&type=" + PropsValues.DL_FILE_ENTRY_PREVIEW_AUDIO_CONTAINERS[i]);
 				}
 			}
 		}
@@ -73,18 +70,17 @@
 
 				for (int i = 0; i < PropsValues.DL_FILE_ENTRY_PREVIEW_VIDEO_CONTAINERS.length; i++) {
 					if (VideoProcessorUtil.getPreviewFileSize(fileVersion, PropsValues.DL_FILE_ENTRY_PREVIEW_VIDEO_CONTAINERS[i]) > 0) {
-						previewFileURLs[i] = DLUtil.getPreviewURL(fileEntry, fileVersion, themeDisplay, previewQueryString + "&type=" + PropsValues.DL_FILE_ENTRY_PREVIEW_VIDEO_CONTAINERS[i]);
-
 						emptyPreview = false;
+						previewFileURLs[i] = DLUtil.getPreviewURL(fileEntry, fileVersion, themeDisplay, previewQueryString + "&type=" + PropsValues.DL_FILE_ENTRY_PREVIEW_VIDEO_CONTAINERS[i]);
 					}
 				}
 			}
 			else {
+				emptyPreview = false;
+
 				previewFileURLs = new String[1];
 
 				previewFileURLs[0] = videoThumbnailURL;
-
-				emptyPreview = false;
 			}
 		}
 		else {
