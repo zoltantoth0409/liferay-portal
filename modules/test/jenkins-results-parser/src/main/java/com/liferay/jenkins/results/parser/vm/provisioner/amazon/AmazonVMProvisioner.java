@@ -196,7 +196,7 @@ public abstract class AmazonVMProvisioner extends VMProvisioner {
 
 		System.out.println(
 			JenkinsResultsParserUtil.combine(
-				"Waiting for the EC2 Instance state \"", targetState, "\""));
+				"Waiting for the EC2 instance state \"", targetState, "\""));
 
 		long timeout = System.currentTimeMillis() + TIMEOUT_DURATION;
 
