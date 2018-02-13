@@ -133,10 +133,11 @@ public class EditMessageAttachmentsMVCActionCommand
 			jsonObject.put("deleted", Boolean.TRUE);
 		}
 		catch (Exception e) {
+			jsonObject.put("deleted", Boolean.FALSE);
+
 			String errorMessage = themeDisplay.translate(
 				"an-unexpected-error-occurred-while-deleting-the-file");
 
-			jsonObject.put("deleted", Boolean.FALSE);
 			jsonObject.put("errorMessage", errorMessage);
 		}
 
