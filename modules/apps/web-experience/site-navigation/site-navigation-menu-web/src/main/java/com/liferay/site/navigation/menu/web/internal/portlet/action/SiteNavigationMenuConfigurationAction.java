@@ -63,7 +63,6 @@ public class SiteNavigationMenuConfigurationAction
 
 		request.setAttribute(
 			SiteNavigationMenuWebKeys.ITEM_SELECTOR, _itemSelector);
-
 		request.setAttribute(
 			SiteNavigationMenuWebKeys.SITE_NAVIGATION_MENU_ITEM_TYPE_REGISTRY,
 			_siteNavigationMenuItemTypeRegistry);
