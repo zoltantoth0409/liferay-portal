@@ -1154,7 +1154,7 @@
 		<execute function="AssertClick" locator1="AssetRelatedAssets#RELATED_ASSETS_SELECT" value1="Select" />
 
 		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="${kbArticleRelatedAssetType}">
-			<var name="key_kbArticleRelatedAssetType" value="${kbArticleRelatedAssetType}" />
+			<var name="key_menuItem" value="${kbArticleRelatedAssetType}" />
 		</execute>
 
 		<execute function="SelectFrame" locator1="AssetRelatedAssets#SELECT_ASSET_IFRAME" />
