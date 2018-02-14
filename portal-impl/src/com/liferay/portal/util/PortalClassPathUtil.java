@@ -63,6 +63,7 @@ public class PortalClassPathUtil {
 			_portalProcessConfig.getBootstrapClassPath());
 
 		builder.setBootstrapClassPath(classpath);
+
 		builder.setProcessLogConsumer(
 			processLog -> {
 				if (Level.DEBUG == processLog.getLevel()) {
@@ -88,6 +89,7 @@ public class PortalClassPathUtil {
 						processLog.getMessage(), processLog.getThrowable());
 				}
 			});
+
 		builder.setReactClassLoader(PortalClassLoaderUtil.getClassLoader());
 		builder.setRuntimeClassPath(classpath);
 
