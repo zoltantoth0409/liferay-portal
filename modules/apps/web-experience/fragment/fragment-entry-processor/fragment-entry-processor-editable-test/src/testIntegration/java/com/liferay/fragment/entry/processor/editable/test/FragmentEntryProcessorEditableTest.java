@@ -85,15 +85,16 @@ public class FragmentEntryProcessorEditableTest {
 			"Fragment Entry", null, _getFileAsString("fragment_entry.html"),
 			null, WorkflowConstants.STATUS_APPROVED, serviceContext);
 
+		FragmentEntryLink fragmentEntryLink =
+			FragmentEntryLinkLocalServiceUtil.createFragmentEntryLink(0);
+
+		fragmentEntryLink.setHtml(fragmentEntry.getHtml());
+
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		jsonObject.put("editable_img", "sample.jpg");
 		jsonObject.put("editable_text", "test");
 
-		FragmentEntryLink fragmentEntryLink =
-			FragmentEntryLinkLocalServiceUtil.createFragmentEntryLink(0);
-
-		fragmentEntryLink.setHtml(fragmentEntry.getHtml());
 		fragmentEntryLink.setEditableValues(jsonObject.toString());
 
 		Document document = Jsoup.parseBodyFragment(
