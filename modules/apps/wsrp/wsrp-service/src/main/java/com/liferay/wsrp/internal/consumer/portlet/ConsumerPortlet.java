@@ -14,6 +14,7 @@
 
 package com.liferay.wsrp.internal.consumer.portlet;
 
+import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Address;
@@ -35,7 +36,6 @@ import com.liferay.portal.kernel.service.ListTypeService;
 import com.liferay.portal.kernel.service.PhoneLocalService;
 import com.liferay.portal.kernel.service.WebsiteLocalService;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
-import com.liferay.portal.kernel.spring.osgi.OSGiBeanProperties;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -44,10 +44,8 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Http;
-import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
-import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -55,7 +53,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TransientValue;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
-import com.liferay.portal.spring.extender.service.ServiceReference;
 import com.liferay.wsrp.configuration.WSRPGroupServiceConfiguration;
 import com.liferay.wsrp.constants.WSRPPortletKeys;
 import com.liferay.wsrp.internal.axis.WSRPHTTPSender;
@@ -63,7 +60,6 @@ import com.liferay.wsrp.internal.proxy.Stub;
 import com.liferay.wsrp.internal.servlet.ServiceHolder;
 import com.liferay.wsrp.internal.util.ConsumerRequestExtensionsHelper;
 import com.liferay.wsrp.internal.util.ExtensionHelperUtil;
-import com.liferay.wsrp.internal.util.WSRPConfigurationUtil;
 import com.liferay.wsrp.internal.util.WSRPURLUtil;
 import com.liferay.wsrp.model.WSRPConsumer;
 import com.liferay.wsrp.model.WSRPConsumerPortlet;
@@ -157,12 +153,23 @@ import oasis.names.tc.wsrp.v2.types.UserProfile;
 
 import org.apache.axis.message.MessageElement;
 
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.ConfigurationPolicy;
+import org.osgi.service.component.annotations.Modified;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.component.annotations.ReferencePolicy;
+import org.osgi.service.component.annotations.ReferencePolicyOption;
+
 /**
  * @author Brian Wing Shun Chan
  * @author Michael Young
  * @author Peter Fellwock
  */
-@OSGiBeanProperties(
+@Component(
+	configurationPid = "com.liferay.wsrp.configuration.WSRPGroupServiceConfiguration",
+	configurationPolicy = ConfigurationPolicy.OPTIONAL, immediate = true,
 	property = {
 		"com.liferay.portlet.add-default-resource=true",
 		"com.liferay.portlet.display-category=category.hidden",
@@ -263,16 +270,11 @@ public class ConsumerPortlet extends MVCPortlet {
 		}
 	}
 
-	public void setWsrpConsumerLocalService(
-		WSRPConsumerLocalService wsrpConsumerLocalService) {
-
-		_wsrpConsumerLocalService = wsrpConsumerLocalService;
-	}
-
-	public void setWsrpConsumerPortletLocalService(
-		WSRPConsumerPortletLocalService wsrpConsumerPortletLocalService) {
-
-		_wsrpConsumerPortletLocalService = wsrpConsumerPortletLocalService;
+	@Activate
+	@Modified
+	protected void activate(Map<String, Object> properties) {
+		_wsrpGroupServiceConfiguration = ConfigurableUtil.createConfigurable(
+			WSRPGroupServiceConfiguration.class, properties);
 	}
 
 	protected void addFormField(
@@ -292,12 +294,9 @@ public class ConsumerPortlet extends MVCPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
-		WSRPGroupServiceConfiguration wsrpGroupServiceConfiguration =
-			WSRPConfigurationUtil.getWSRPConfiguration();
-
-		HttpServletRequest request = PortalUtil.getHttpServletRequest(
+		HttpServletRequest request = _portal.getHttpServletRequest(
 			resourceRequest);
-		HttpServletResponse response = PortalUtil.getHttpServletResponse(
+		HttpServletResponse response = _portal.getHttpServletResponse(
 			resourceResponse);
 
 		String resourceID = GetterUtil.getString(
@@ -312,7 +311,7 @@ public class ConsumerPortlet extends MVCPortlet {
 
 		sb.append(resourceID);
 		sb.append(url);
-		sb.append(wsrpGroupServiceConfiguration.soapDebug());
+		sb.append(_wsrpGroupServiceConfiguration.soapDebug());
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
@@ -460,10 +459,7 @@ public class ConsumerPortlet extends MVCPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
-		WSRPGroupServiceConfiguration wsrpGroupServiceConfiguration =
-			WSRPConfigurationUtil.getWSRPConfiguration();
-
-		if (wsrpGroupServiceConfiguration.secureResourceUrlsEnabled()) {
+		if (_wsrpGroupServiceConfiguration.secureResourceUrlsEnabled()) {
 			if (!authorize(resourceRequest, resourceResponse)) {
 				return;
 			}
@@ -991,7 +987,7 @@ public class ConsumerPortlet extends MVCPortlet {
 
 		String wsrpConsumerPortletUuid = portletName;
 
-		if (portletName.startsWith("WSRP_")) {
+		if (portletName.startsWith(PORTLET_NAME_PREFIX)) {
 			wsrpConsumerPortletUuid = portletName.substring(5);
 		}
 
@@ -1026,7 +1022,7 @@ public class ConsumerPortlet extends MVCPortlet {
 			UserContext userContext)
 		throws Exception {
 
-		HttpServletRequest request = PortalUtil.getHttpServletRequest(
+		HttpServletRequest request = _portal.getHttpServletRequest(
 			actionRequest);
 
 		initContexts(
@@ -1087,7 +1083,7 @@ public class ConsumerPortlet extends MVCPortlet {
 
 		PortletSession portletSession = portletRequest.getPortletSession();
 
-		HttpServletRequest request = PortalUtil.getHttpServletRequest(
+		HttpServletRequest request = _portal.getHttpServletRequest(
 			portletRequest);
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
@@ -1298,7 +1294,7 @@ public class ConsumerPortlet extends MVCPortlet {
 			RuntimeContext runtimeContext, UserContext userContext)
 		throws Exception {
 
-		HttpServletRequest request = PortalUtil.getHttpServletRequest(
+		HttpServletRequest request = _portal.getHttpServletRequest(
 			resourceRequest);
 
 		initContexts(
@@ -1561,7 +1557,7 @@ public class ConsumerPortlet extends MVCPortlet {
 		List<UploadContext> uploadContexts = new ArrayList<>();
 
 		UploadPortletRequest uploadPortletRequest =
-			PortalUtil.getUploadPortletRequest(portletRequest);
+			_portal.getUploadPortletRequest(portletRequest);
 
 		Enumeration<String> enu = uploadPortletRequest.getParameterNames();
 
@@ -1836,7 +1832,7 @@ public class ConsumerPortlet extends MVCPortlet {
 			options.setHeaders(headers);
 		}
 
-		byte[] bytes = HttpUtil.URLtoByteArray(options);
+		byte[] bytes = _http.URLtoByteArray(options);
 
 		Http.Response response = options.getResponse();
 
@@ -1894,13 +1890,10 @@ public class ConsumerPortlet extends MVCPortlet {
 				(LiferayPortletURL)liferayPortletResponse.createRenderURL();
 		}
 		else if (lifecycle.equals("resource")) {
-			WSRPGroupServiceConfiguration wsrpGroupServiceConfiguration =
-				WSRPConfigurationUtil.getWSRPConfiguration();
-
 			liferayPortletURL =
 				(LiferayPortletURL)liferayPortletResponse.createResourceURL();
 
-			if (wsrpGroupServiceConfiguration.secureResourceUrlsEnabled()) {
+			if (_wsrpGroupServiceConfiguration.secureResourceUrlsEnabled()) {
 				secureResourceURL(
 					portletRequest, liferayPortletURL, parameterMap);
 			}
@@ -2005,7 +1998,7 @@ public class ConsumerPortlet extends MVCPortlet {
 						continue;
 					}
 
-					parameterMap.put(name, HttpUtil.decodeURL(value));
+					parameterMap.put(name, _http.decodeURL(value));
 				}
 
 				String rewrittenURL = rewriteURL(
@@ -2047,10 +2040,7 @@ public class ConsumerPortlet extends MVCPortlet {
 			Map<String, String> parameterMap)
 		throws Exception {
 
-		WSRPGroupServiceConfiguration wsrpGroupServiceConfiguration =
-			WSRPConfigurationUtil.getWSRPConfiguration();
-
-		HttpServletRequest request = PortalUtil.getHttpServletRequest(
+		HttpServletRequest request = _portal.getHttpServletRequest(
 			portletRequest);
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
@@ -2065,7 +2055,7 @@ public class ConsumerPortlet extends MVCPortlet {
 
 		sb.append(resourceID);
 		sb.append(url);
-		sb.append(wsrpGroupServiceConfiguration.secureResourceUrlsSalt());
+		sb.append(_wsrpGroupServiceConfiguration.secureResourceUrlsSalt());
 
 		if (themeDisplay.isSignedIn()) {
 			sb.append(AuthTokenUtil.getToken(request));
@@ -2157,35 +2147,52 @@ public class ConsumerPortlet extends MVCPortlet {
 		_RESOURCE_TEMPLATE = sb.toString();
 	}
 
-	@ServiceReference(type = AddressLocalService.class)
+	@Reference
 	private AddressLocalService _addressLocalService;
 
-	@ServiceReference(type = EmailAddressLocalService.class)
+	@Reference
 	private EmailAddressLocalService _emailAddressLocalService;
 
-	@ServiceReference(type = ListTypeService.class)
+	@Reference
+	private Http _http;
+
+	@Reference
 	private ListTypeService _listTypeService;
 
-	@ServiceReference(type = MarkupCharacterSetsHelper.class)
+	@Reference
 	private MarkupCharacterSetsHelper _markupCharacterSetsHelper;
 
-	@ServiceReference(type = PhoneLocalService.class)
+	@Reference
 	private PhoneLocalService _phoneLocalService;
 
-	@ServiceReference(type = Portal.class)
+	@Reference
 	private Portal _portal;
 
-	@ServiceReference(type = WebsiteLocalService.class)
+	@Reference
 	private WebsiteLocalService _websiteLocalService;
 
-	private WSRPConsumerLocalService _wsrpConsumerLocalService;
+	@Reference(
+		cardinality = ReferenceCardinality.OPTIONAL,
+		policy = ReferencePolicy.DYNAMIC,
+		policyOption = ReferencePolicyOption.GREEDY
+	)
+	private volatile WSRPConsumerLocalService _wsrpConsumerLocalService;
 
-	@ServiceReference(type = WSRPConsumerManagerFactory.class)
+	@Reference
 	private WSRPConsumerManagerFactory _wsrpConsumerManagerFactory;
 
-	private WSRPConsumerPortletLocalService _wsrpConsumerPortletLocalService;
+	@Reference(
+		cardinality = ReferenceCardinality.OPTIONAL,
+		policy = ReferencePolicy.DYNAMIC,
+		policyOption = ReferencePolicyOption.GREEDY
+	)
+	private volatile WSRPConsumerPortletLocalService
+		_wsrpConsumerPortletLocalService;
 
-	@ServiceReference(type = WSRPURLUtil.class)
+	private volatile WSRPGroupServiceConfiguration
+		_wsrpGroupServiceConfiguration;
+
+	@Reference
 	private WSRPURLUtil _wsrpURLUtil;
 
 }
