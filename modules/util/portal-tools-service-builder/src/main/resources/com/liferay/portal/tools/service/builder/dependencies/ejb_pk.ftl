@@ -155,7 +155,7 @@ public class ${entity.PKClassName} implements Comparable<${entity.PKClassName}>,
 		sb.append("{");
 
 		<#list entity.PKList as entityColumn>
-			<#if column?is_first>
+			<#if entityColumn?is_first>
 				sb.append("${entityColumn.name}=");
 			<#else>
 				sb.append(", ${entityColumn.name}=");
