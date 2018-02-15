@@ -79,15 +79,15 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 	import ${apiPackagePath}.model.${entity.name}Localization;
 </#if>
 
-<#list referenceList as tempEntity>
-	<#if tempEntity.hasColumns() && (stringUtil.equals(entity.name, "Counter") || !stringUtil.equals(tempEntity.name, "Counter"))>
-		import ${tempEntity.apiPackagePath}.service.persistence.${tempEntity.name}Persistence;
-		import ${tempEntity.apiPackagePath}.service.persistence.${tempEntity.name}Util;
+<#list referenceEntities as referenceEntity>
+	<#if referenceEntity.hasColumns() && (stringUtil.equals(entity.name, "Counter") || !stringUtil.equals(referenceEntity.name, "Counter"))>
+		import ${referenceEntity.apiPackagePath}.service.persistence.${referenceEntity.name}Persistence;
+		import ${referenceEntity.apiPackagePath}.service.persistence.${referenceEntity.name}Util;
 	</#if>
 
-	<#if tempEntity.hasFinderClass() && (stringUtil.equals(entity.name, "Counter") || !stringUtil.equals(tempEntity.name, "Counter"))>
-		import ${tempEntity.apiPackagePath}.service.persistence.${tempEntity.name}Finder;
-		import ${tempEntity.apiPackagePath}.service.persistence.${tempEntity.name}FinderUtil;
+	<#if referenceEntity.hasFinderClass() && (stringUtil.equals(entity.name, "Counter") || !stringUtil.equals(referenceEntity.name, "Counter"))>
+		import ${referenceEntity.apiPackagePath}.service.persistence.${referenceEntity.name}Finder;
+		import ${referenceEntity.apiPackagePath}.service.persistence.${referenceEntity.name}FinderUtil;
 	</#if>
 </#list>
 
@@ -768,9 +768,9 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 		<#list entity.entityColumns as entityColumn>
 			<#if entityColumn.isCollection() && entityColumn.isMappingManyToMany()>
 				<#assign
-					tempEntity = serviceBuilder.getEntity(entityColumn.getEJBName())
+					referenceEntity = serviceBuilder.getEntity(entityColumn.getEJBName())
 
-					serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "add" + tempEntity.name + entity.name, [tempEntity.PKClassName, entity.PKClassName], [])
+					serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "add" + referenceEntity.name + entity.name, [referenceEntity.PKClassName, entity.PKClassName], [])
 				/>
 
 				/**
@@ -779,11 +779,11 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 				</#list>
 				 */
 				@Override
-				public void add${tempEntity.name}${entity.name}(${tempEntity.PKClassName} ${tempEntity.PKVarName}, ${entity.PKClassName} ${entity.PKVarName}) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
-					${tempEntity.varName}Persistence.add${entity.name}(${tempEntity.PKVarName}, ${entity.PKVarName});
+				public void add${referenceEntity.name}${entity.name}(${referenceEntity.PKClassName} ${referenceEntity.PKVarName}, ${entity.PKClassName} ${entity.PKVarName}) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
+					${referenceEntity.varName}Persistence.add${entity.name}(${referenceEntity.PKVarName}, ${entity.PKVarName});
 				}
 
-				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "add" + tempEntity.name + entity.name, [tempEntity.PKClassName, apiPackagePath + ".model." + entity.name], []) />
+				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "add" + referenceEntity.name + entity.name, [referenceEntity.PKClassName, apiPackagePath + ".model." + entity.name], []) />
 
 				/**
 				<#list serviceBaseExceptions as exception>
@@ -791,11 +791,11 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 				</#list>
 				 */
 				@Override
-				public void add${tempEntity.name}${entity.name}(${tempEntity.PKClassName} ${tempEntity.PKVarName}, ${entity.name} ${entity.varName}) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
-					${tempEntity.varName}Persistence.add${entity.name}(${tempEntity.PKVarName}, ${entity.varName});
+				public void add${referenceEntity.name}${entity.name}(${referenceEntity.PKClassName} ${referenceEntity.PKVarName}, ${entity.name} ${entity.varName}) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
+					${referenceEntity.varName}Persistence.add${entity.name}(${referenceEntity.PKVarName}, ${entity.varName});
 				}
 
-				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "add" + tempEntity.name + entity.names, [tempEntity.PKClassName, entity.PKClassName + "[]"], []) />
+				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "add" + referenceEntity.name + entity.names, [referenceEntity.PKClassName, entity.PKClassName + "[]"], []) />
 
 				/**
 				<#list serviceBaseExceptions as exception>
@@ -803,11 +803,11 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 				</#list>
 				 */
 				@Override
-				public void add${tempEntity.name}${entity.names}(${tempEntity.PKClassName} ${tempEntity.PKVarName}, ${entity.PKClassName}[] ${entity.PKVarNames}) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
-					${tempEntity.varName}Persistence.add${entity.names}(${tempEntity.PKVarName}, ${entity.PKVarNames});
+				public void add${referenceEntity.name}${entity.names}(${referenceEntity.PKClassName} ${referenceEntity.PKVarName}, ${entity.PKClassName}[] ${entity.PKVarNames}) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
+					${referenceEntity.varName}Persistence.add${entity.names}(${referenceEntity.PKVarName}, ${entity.PKVarNames});
 				}
 
-				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "add" + tempEntity.name + entity.names, [tempEntity.PKClassName, "java.util.List<" + entity.name + ">"], []) />
+				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "add" + referenceEntity.name + entity.names, [referenceEntity.PKClassName, "java.util.List<" + entity.name + ">"], []) />
 
 				/**
 				<#list serviceBaseExceptions as exception>
@@ -815,11 +815,11 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 				</#list>
 				 */
 				@Override
-				public void add${tempEntity.name}${entity.names}(${tempEntity.PKClassName} ${tempEntity.PKVarName}, List<${entity.name}> ${entity.varNames}) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
-					${tempEntity.varName}Persistence.add${entity.names}(${tempEntity.PKVarName}, ${entity.varNames});
+				public void add${referenceEntity.name}${entity.names}(${referenceEntity.PKClassName} ${referenceEntity.PKVarName}, List<${entity.name}> ${entity.varNames}) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
+					${referenceEntity.varName}Persistence.add${entity.names}(${referenceEntity.PKVarName}, ${entity.varNames});
 				}
 
-				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "clear" + tempEntity.name + entity.names, [tempEntity.PKClassName], []) />
+				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "clear" + referenceEntity.name + entity.names, [referenceEntity.PKClassName], []) />
 
 				/**
 				<#list serviceBaseExceptions as exception>
@@ -827,11 +827,11 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 				</#list>
 				 */
 				@Override
-				public void clear${tempEntity.name}${entity.names}(${tempEntity.PKClassName} ${tempEntity.PKVarName}) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
-					${tempEntity.varName}Persistence.clear${entity.names}(${tempEntity.PKVarName});
+				public void clear${referenceEntity.name}${entity.names}(${referenceEntity.PKClassName} ${referenceEntity.PKVarName}) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
+					${referenceEntity.varName}Persistence.clear${entity.names}(${referenceEntity.PKVarName});
 				}
 
-				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "delete" + tempEntity.name + entity.name, [tempEntity.PKClassName, entity.PKClassName], []) />
+				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "delete" + referenceEntity.name + entity.name, [referenceEntity.PKClassName, entity.PKClassName], []) />
 
 				/**
 				<#list serviceBaseExceptions as exception>
@@ -839,11 +839,11 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 				</#list>
 				 */
 				@Override
-				public void delete${tempEntity.name}${entity.name}(${tempEntity.PKClassName} ${tempEntity.PKVarName}, ${entity.PKClassName} ${entity.PKVarName}) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
-					${tempEntity.varName}Persistence.remove${entity.name}(${tempEntity.PKVarName}, ${entity.PKVarName});
+				public void delete${referenceEntity.name}${entity.name}(${referenceEntity.PKClassName} ${referenceEntity.PKVarName}, ${entity.PKClassName} ${entity.PKVarName}) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
+					${referenceEntity.varName}Persistence.remove${entity.name}(${referenceEntity.PKVarName}, ${entity.PKVarName});
 				}
 
-				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "delete" + tempEntity.name + entity.name, [tempEntity.PKClassName, apiPackagePath + ".model." + entity.name], []) />
+				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "delete" + referenceEntity.name + entity.name, [referenceEntity.PKClassName, apiPackagePath + ".model." + entity.name], []) />
 
 				/**
 				<#list serviceBaseExceptions as exception>
@@ -851,11 +851,11 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 				</#list>
 				 */
 				@Override
-				public void delete${tempEntity.name}${entity.name}(${tempEntity.PKClassName} ${tempEntity.PKVarName}, ${entity.name} ${entity.varName}) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
-					${tempEntity.varName}Persistence.remove${entity.name}(${tempEntity.PKVarName}, ${entity.varName});
+				public void delete${referenceEntity.name}${entity.name}(${referenceEntity.PKClassName} ${referenceEntity.PKVarName}, ${entity.name} ${entity.varName}) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
+					${referenceEntity.varName}Persistence.remove${entity.name}(${referenceEntity.PKVarName}, ${entity.varName});
 				}
 
-				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "delete" + tempEntity.name + entity.names, [tempEntity.PKClassName, entity.PKClassName + "[]"], []) />
+				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "delete" + referenceEntity.name + entity.names, [referenceEntity.PKClassName, entity.PKClassName + "[]"], []) />
 
 				/**
 				<#list serviceBaseExceptions as exception>
@@ -863,11 +863,11 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 				</#list>
 				 */
 				@Override
-				public void delete${tempEntity.name}${entity.names}(${tempEntity.PKClassName} ${tempEntity.PKVarName}, ${entity.PKClassName}[] ${entity.PKVarNames}) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
-					${tempEntity.varName}Persistence.remove${entity.names}(${tempEntity.PKVarName}, ${entity.PKVarNames});
+				public void delete${referenceEntity.name}${entity.names}(${referenceEntity.PKClassName} ${referenceEntity.PKVarName}, ${entity.PKClassName}[] ${entity.PKVarNames}) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
+					${referenceEntity.varName}Persistence.remove${entity.names}(${referenceEntity.PKVarName}, ${entity.PKVarNames});
 				}
 
-				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "delete" + tempEntity.name + entity.names, [tempEntity.PKClassName, "java.util.List<" + entity.name + ">"], []) />
+				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "delete" + referenceEntity.name + entity.names, [referenceEntity.PKClassName, "java.util.List<" + entity.name + ">"], []) />
 
 				/**
 				<#list serviceBaseExceptions as exception>
@@ -875,22 +875,22 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 				</#list>
 				 */
 				@Override
-				public void delete${tempEntity.name}${entity.names}(${tempEntity.PKClassName} ${tempEntity.PKVarName}, List<${entity.name}> ${entity.varNames}) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
-					${tempEntity.varName}Persistence.remove${entity.names}(${tempEntity.PKVarName}, ${entity.varNames});
+				public void delete${referenceEntity.name}${entity.names}(${referenceEntity.PKClassName} ${referenceEntity.PKVarName}, List<${entity.name}> ${entity.varNames}) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
+					${referenceEntity.varName}Persistence.remove${entity.names}(${referenceEntity.PKVarName}, ${entity.varNames});
 				}
 
 				/**
-				 * Returns the ${tempEntity.PKVarName}s of the ${tempEntity.humanNames} associated with the ${entity.humanName}.
+				 * Returns the ${referenceEntity.PKVarName}s of the ${referenceEntity.humanNames} associated with the ${entity.humanName}.
 				 *
 				 * @param ${entity.PKVarName} the ${entity.PKVarName} of the ${entity.humanName}
-				 * @return long[] the ${tempEntity.PKVarName}s of ${tempEntity.humanNames} associated with the ${entity.humanName}
+				 * @return long[] the ${referenceEntity.PKVarName}s of ${referenceEntity.humanNames} associated with the ${entity.humanName}
 				 */
 				@Override
-				public long[] get${tempEntity.name}PrimaryKeys(${entity.PKClassName} ${entity.PKVarName}) {
-					return ${entity.varName}Persistence.get${tempEntity.name}PrimaryKeys(${entity.PKVarName});
+				public long[] get${referenceEntity.name}PrimaryKeys(${entity.PKClassName} ${entity.PKVarName}) {
+					return ${entity.varName}Persistence.get${referenceEntity.name}PrimaryKeys(${entity.PKVarName});
 				}
 
-				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "get" + tempEntity.name + entity.names, [tempEntity.PKClassName], []) />
+				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "get" + referenceEntity.name + entity.names, [referenceEntity.PKClassName], []) />
 
 				/**
 				<#list serviceBaseExceptions as exception>
@@ -898,11 +898,11 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 				</#list>
 				 */
 				@Override
-				public List<${entity.name}> get${tempEntity.name}${entity.names}(${tempEntity.PKClassName} ${tempEntity.PKVarName}) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
-					return ${tempEntity.varName}Persistence.get${entity.names}(${tempEntity.PKVarName});
+				public List<${entity.name}> get${referenceEntity.name}${entity.names}(${referenceEntity.PKClassName} ${referenceEntity.PKVarName}) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
+					return ${referenceEntity.varName}Persistence.get${entity.names}(${referenceEntity.PKVarName});
 				}
 
-				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "get" + tempEntity.name + entity.names, [tempEntity.PKClassName, "int", "int"], []) />
+				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "get" + referenceEntity.name + entity.names, [referenceEntity.PKClassName, "int", "int"], []) />
 
 				/**
 				<#list serviceBaseExceptions as exception>
@@ -910,11 +910,11 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 				</#list>
 				 */
 				@Override
-				public List<${entity.name}> get${tempEntity.name}${entity.names}(${tempEntity.PKClassName} ${tempEntity.PKVarName}, int start, int end) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
-					return ${tempEntity.varName}Persistence.get${entity.names}(${tempEntity.PKVarName}, start, end);
+				public List<${entity.name}> get${referenceEntity.name}${entity.names}(${referenceEntity.PKClassName} ${referenceEntity.PKVarName}, int start, int end) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
+					return ${referenceEntity.varName}Persistence.get${entity.names}(${referenceEntity.PKVarName}, start, end);
 				}
 
-				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "get" + tempEntity.name + entity.names, [tempEntity.PKClassName, "int", "int", "com.liferay.portal.kernel.util.OrderByComparator"], []) />
+				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "get" + referenceEntity.name + entity.names, [referenceEntity.PKClassName, "int", "int", "com.liferay.portal.kernel.util.OrderByComparator"], []) />
 
 				/**
 				<#list serviceBaseExceptions as exception>
@@ -922,11 +922,11 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 				</#list>
 				 */
 				@Override
-				public List<${entity.name}> get${tempEntity.name}${entity.names}(${tempEntity.PKClassName} ${tempEntity.PKVarName}, int start, int end, OrderByComparator<${entity.name}> orderByComparator) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
-					return ${tempEntity.varName}Persistence.get${entity.names}(${tempEntity.PKVarName}, start, end, orderByComparator);
+				public List<${entity.name}> get${referenceEntity.name}${entity.names}(${referenceEntity.PKClassName} ${referenceEntity.PKVarName}, int start, int end, OrderByComparator<${entity.name}> orderByComparator) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
+					return ${referenceEntity.varName}Persistence.get${entity.names}(${referenceEntity.PKVarName}, start, end, orderByComparator);
 				}
 
-				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "get" + tempEntity.name + entity.names + "Count", [tempEntity.PKClassName], []) />
+				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "get" + referenceEntity.name + entity.names + "Count", [referenceEntity.PKClassName], []) />
 
 				/**
 				<#list serviceBaseExceptions as exception>
@@ -934,11 +934,11 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 				</#list>
 				 */
 				@Override
-				public int get${tempEntity.name}${entity.names}Count(${tempEntity.PKClassName} ${tempEntity.PKVarName}) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
-					return ${tempEntity.varName}Persistence.get${entity.names}Size(${tempEntity.PKVarName});
+				public int get${referenceEntity.name}${entity.names}Count(${referenceEntity.PKClassName} ${referenceEntity.PKVarName}) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
+					return ${referenceEntity.varName}Persistence.get${entity.names}Size(${referenceEntity.PKVarName});
 				}
 
-				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "has" + tempEntity.name + entity.name, [tempEntity.PKClassName, entity.PKClassName], []) />
+				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "has" + referenceEntity.name + entity.name, [referenceEntity.PKClassName, entity.PKClassName], []) />
 
 				/**
 				<#list serviceBaseExceptions as exception>
@@ -946,11 +946,11 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 				</#list>
 				 */
 				@Override
-				public boolean has${tempEntity.name}${entity.name}(${tempEntity.PKClassName} ${tempEntity.PKVarName}, ${entity.PKClassName} ${entity.PKVarName}) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
-					return ${tempEntity.varName}Persistence.contains${entity.name}(${tempEntity.PKVarName}, ${entity.PKVarName});
+				public boolean has${referenceEntity.name}${entity.name}(${referenceEntity.PKClassName} ${referenceEntity.PKVarName}, ${entity.PKClassName} ${entity.PKVarName}) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
+					return ${referenceEntity.varName}Persistence.contains${entity.name}(${referenceEntity.PKVarName}, ${entity.PKVarName});
 				}
 
-				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "has" + tempEntity.name + entity.names, [tempEntity.PKClassName], []) />
+				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "has" + referenceEntity.name + entity.names, [referenceEntity.PKClassName], []) />
 
 				/**
 				<#list serviceBaseExceptions as exception>
@@ -958,11 +958,11 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 				</#list>
 				 */
 				@Override
-				public boolean has${tempEntity.name}${entity.names}(${tempEntity.PKClassName} ${tempEntity.PKVarName}) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
-					return ${tempEntity.varName}Persistence.contains${entity.names}(${tempEntity.PKVarName});
+				public boolean has${referenceEntity.name}${entity.names}(${referenceEntity.PKClassName} ${referenceEntity.PKVarName}) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
+					return ${referenceEntity.varName}Persistence.contains${entity.names}(${referenceEntity.PKVarName});
 				}
 
-				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "set" + tempEntity.name + entity.names, [tempEntity.PKClassName, entity.PKClassName + "[]"], []) />
+				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "set" + referenceEntity.name + entity.names, [referenceEntity.PKClassName, entity.PKClassName + "[]"], []) />
 
 				/**
 				<#list serviceBaseExceptions as exception>
@@ -970,8 +970,8 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 				</#list>
 				 */
 				@Override
-				public void set${tempEntity.name}${entity.names}(${tempEntity.PKClassName} ${tempEntity.PKVarName}, ${entity.PKClassName}[] ${entity.PKVarNames}) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
-					${tempEntity.varName}Persistence.set${entity.names}(${tempEntity.PKVarName}, ${entity.PKVarNames});
+				public void set${referenceEntity.name}${entity.names}(${referenceEntity.PKClassName} ${referenceEntity.PKVarName}, ${entity.PKClassName}[] ${entity.PKVarNames}) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
+					${referenceEntity.varName}Persistence.set${entity.names}(${referenceEntity.PKVarName}, ${entity.PKVarNames});
 				}
 			</#if>
 		</#list>
@@ -1113,104 +1113,104 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 		}
 	</#if>
 
-	<#list referenceList as tempEntity>
-		<#if tempEntity.hasLocalService()>
+	<#list referenceEntities as referenceEntity>
+		<#if referenceEntity.hasLocalService()>
 			/**
-			 * Returns the ${tempEntity.humanName} local service.
+			 * Returns the ${referenceEntity.humanName} local service.
 			 *
-			 * @return the ${tempEntity.humanName} local service
+			 * @return the ${referenceEntity.humanName} local service
 			 */
 
-			<#if !classDeprecated && tempEntity.isDeprecated()>
+			<#if !classDeprecated && referenceEntity.isDeprecated()>
 				@SuppressWarnings("deprecation")
 			</#if>
 
-			public ${tempEntity.apiPackagePath}.service.${tempEntity.name}LocalService get${tempEntity.name}LocalService() {
-				return ${tempEntity.varName}LocalService;
+			public ${referenceEntity.apiPackagePath}.service.${referenceEntity.name}LocalService get${referenceEntity.name}LocalService() {
+				return ${referenceEntity.varName}LocalService;
 			}
 
 			/**
-			 * Sets the ${tempEntity.humanName} local service.
+			 * Sets the ${referenceEntity.humanName} local service.
 			 *
-			 * @param ${tempEntity.varName}LocalService the ${tempEntity.humanName} local service
+			 * @param ${referenceEntity.varName}LocalService the ${referenceEntity.humanName} local service
 			 */
 
-			<#if !classDeprecated && tempEntity.isDeprecated()>
+			<#if !classDeprecated && referenceEntity.isDeprecated()>
 				@SuppressWarnings("deprecation")
 			</#if>
 
-			public void set${tempEntity.name}LocalService(${tempEntity.apiPackagePath}.service.${tempEntity.name}LocalService ${tempEntity.varName}LocalService) {
-				this.${tempEntity.varName}LocalService = ${tempEntity.varName}LocalService;
+			public void set${referenceEntity.name}LocalService(${referenceEntity.apiPackagePath}.service.${referenceEntity.name}LocalService ${referenceEntity.varName}LocalService) {
+				this.${referenceEntity.varName}LocalService = ${referenceEntity.varName}LocalService;
 			}
 		</#if>
 
-		<#if !stringUtil.equals(sessionTypeName, "Local") && tempEntity.hasRemoteService()>
+		<#if !stringUtil.equals(sessionTypeName, "Local") && referenceEntity.hasRemoteService()>
 			/**
-			 * Returns the ${tempEntity.humanName} remote service.
+			 * Returns the ${referenceEntity.humanName} remote service.
 			 *
-			 * @return the ${tempEntity.humanName} remote service
+			 * @return the ${referenceEntity.humanName} remote service
 			 */
 
-			<#if !classDeprecated && tempEntity.isDeprecated()>
+			<#if !classDeprecated && referenceEntity.isDeprecated()>
 				@SuppressWarnings("deprecation")
 			</#if>
 
-			public ${tempEntity.apiPackagePath}.service.${tempEntity.name}Service get${tempEntity.name}Service() {
-				return ${tempEntity.varName}Service;
+			public ${referenceEntity.apiPackagePath}.service.${referenceEntity.name}Service get${referenceEntity.name}Service() {
+				return ${referenceEntity.varName}Service;
 			}
 
 			/**
-			 * Sets the ${tempEntity.humanName} remote service.
+			 * Sets the ${referenceEntity.humanName} remote service.
 			 *
-			 * @param ${tempEntity.varName}Service the ${tempEntity.humanName} remote service
+			 * @param ${referenceEntity.varName}Service the ${referenceEntity.humanName} remote service
 			 */
 
-			<#if !classDeprecated && tempEntity.isDeprecated()>
+			<#if !classDeprecated && referenceEntity.isDeprecated()>
 				@SuppressWarnings("deprecation")
 			</#if>
 
-			public void set${tempEntity.name}Service(${tempEntity.apiPackagePath}.service.${tempEntity.name}Service ${tempEntity.varName}Service) {
-				this.${tempEntity.varName}Service = ${tempEntity.varName}Service;
+			public void set${referenceEntity.name}Service(${referenceEntity.apiPackagePath}.service.${referenceEntity.name}Service ${referenceEntity.varName}Service) {
+				this.${referenceEntity.varName}Service = ${referenceEntity.varName}Service;
 			}
 		</#if>
 
-		<#if tempEntity.hasColumns() && (stringUtil.equals(entity.name, "Counter") || !stringUtil.equals(tempEntity.name, "Counter"))>
+		<#if referenceEntity.hasColumns() && (stringUtil.equals(entity.name, "Counter") || !stringUtil.equals(referenceEntity.name, "Counter"))>
 			/**
-			 * Returns the ${tempEntity.humanName} persistence.
+			 * Returns the ${referenceEntity.humanName} persistence.
 			 *
-			 * @return the ${tempEntity.humanName} persistence
+			 * @return the ${referenceEntity.humanName} persistence
 			 */
-			public ${tempEntity.name}Persistence get${tempEntity.name}Persistence() {
-				return ${tempEntity.varName}Persistence;
+			public ${referenceEntity.name}Persistence get${referenceEntity.name}Persistence() {
+				return ${referenceEntity.varName}Persistence;
 			}
 
 			/**
-			 * Sets the ${tempEntity.humanName} persistence.
+			 * Sets the ${referenceEntity.humanName} persistence.
 			 *
-			 * @param ${tempEntity.varName}Persistence the ${tempEntity.humanName} persistence
+			 * @param ${referenceEntity.varName}Persistence the ${referenceEntity.humanName} persistence
 			 */
-			public void set${tempEntity.name}Persistence(${tempEntity.name}Persistence ${tempEntity.varName}Persistence) {
-				this.${tempEntity.varName}Persistence = ${tempEntity.varName}Persistence;
+			public void set${referenceEntity.name}Persistence(${referenceEntity.name}Persistence ${referenceEntity.varName}Persistence) {
+				this.${referenceEntity.varName}Persistence = ${referenceEntity.varName}Persistence;
 			}
 		</#if>
 
-		<#if tempEntity.hasFinderClass() && (stringUtil.equals(entity.name, "Counter") || !stringUtil.equals(tempEntity.name, "Counter"))>
+		<#if referenceEntity.hasFinderClass() && (stringUtil.equals(entity.name, "Counter") || !stringUtil.equals(referenceEntity.name, "Counter"))>
 			/**
-			 * Returns the ${tempEntity.humanName} finder.
+			 * Returns the ${referenceEntity.humanName} finder.
 			 *
-			 * @return the ${tempEntity.humanName} finder
+			 * @return the ${referenceEntity.humanName} finder
 			 */
-			public ${tempEntity.name}Finder get${tempEntity.name}Finder() {
-				return ${tempEntity.varName}Finder;
+			public ${referenceEntity.name}Finder get${referenceEntity.name}Finder() {
+				return ${referenceEntity.varName}Finder;
 			}
 
 			/**
-			 * Sets the ${tempEntity.humanName} finder.
+			 * Sets the ${referenceEntity.humanName} finder.
 			 *
-			 * @param ${tempEntity.varName}Finder the ${tempEntity.humanName} finder
+			 * @param ${referenceEntity.varName}Finder the ${referenceEntity.humanName} finder
 			 */
-			public void set${tempEntity.name}Finder(${tempEntity.name}Finder ${tempEntity.varName}Finder) {
-				this.${tempEntity.varName}Finder = ${tempEntity.varName}Finder;
+			public void set${referenceEntity.name}Finder(${referenceEntity.name}Finder ${referenceEntity.varName}Finder) {
+				this.${referenceEntity.varName}Finder = ${referenceEntity.varName}Finder;
 			}
 		</#if>
 	</#list>
@@ -1286,53 +1286,53 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 		}
 	}
 
-	<#list referenceList as tempEntity>
-		<#if tempEntity.hasLocalService()>
-			<#if osgiModule && (tempEntity.apiPackagePath != apiPackagePath)>
-				@ServiceReference(type = ${tempEntity.apiPackagePath}.service.${tempEntity.name}LocalService.class)
+	<#list referenceEntities as referenceEntity>
+		<#if referenceEntity.hasLocalService()>
+			<#if osgiModule && (referenceEntity.apiPackagePath != apiPackagePath)>
+				@ServiceReference(type = ${referenceEntity.apiPackagePath}.service.${referenceEntity.name}LocalService.class)
 			<#else>
-				@BeanReference(type = ${tempEntity.apiPackagePath}.service.${tempEntity.name}LocalService.class)
+				@BeanReference(type = ${referenceEntity.apiPackagePath}.service.${referenceEntity.name}LocalService.class)
 			</#if>
 
-			<#if !classDeprecated && tempEntity.isDeprecated()>
+			<#if !classDeprecated && referenceEntity.isDeprecated()>
 				@SuppressWarnings("deprecation")
 			</#if>
 
-			protected ${tempEntity.apiPackagePath}.service.${tempEntity.name}LocalService ${tempEntity.varName}LocalService;
+			protected ${referenceEntity.apiPackagePath}.service.${referenceEntity.name}LocalService ${referenceEntity.varName}LocalService;
 		</#if>
 
-		<#if !stringUtil.equals(sessionTypeName, "Local") && tempEntity.hasRemoteService()>
-			<#if osgiModule && (tempEntity.apiPackagePath != apiPackagePath)>
-				@ServiceReference(type = ${tempEntity.apiPackagePath}.service.${tempEntity.name}Service.class)
+		<#if !stringUtil.equals(sessionTypeName, "Local") && referenceEntity.hasRemoteService()>
+			<#if osgiModule && (referenceEntity.apiPackagePath != apiPackagePath)>
+				@ServiceReference(type = ${referenceEntity.apiPackagePath}.service.${referenceEntity.name}Service.class)
 			<#else>
-				@BeanReference(type = ${tempEntity.apiPackagePath}.service.${tempEntity.name}Service.class)
+				@BeanReference(type = ${referenceEntity.apiPackagePath}.service.${referenceEntity.name}Service.class)
 			</#if>
 
-			<#if !classDeprecated && tempEntity.isDeprecated()>
+			<#if !classDeprecated && referenceEntity.isDeprecated()>
 				@SuppressWarnings("deprecation")
 			</#if>
 
-			protected ${tempEntity.apiPackagePath}.service.${tempEntity.name}Service ${tempEntity.varName}Service;
+			protected ${referenceEntity.apiPackagePath}.service.${referenceEntity.name}Service ${referenceEntity.varName}Service;
 		</#if>
 
-		<#if tempEntity.hasColumns() && (stringUtil.equals(entity.name, "Counter") || !stringUtil.equals(tempEntity.name, "Counter"))>
-			<#if osgiModule && (tempEntity.apiPackagePath != apiPackagePath)>
-				@ServiceReference(type = ${tempEntity.name}Persistence.class)
+		<#if referenceEntity.hasColumns() && (stringUtil.equals(entity.name, "Counter") || !stringUtil.equals(referenceEntity.name, "Counter"))>
+			<#if osgiModule && (referenceEntity.apiPackagePath != apiPackagePath)>
+				@ServiceReference(type = ${referenceEntity.name}Persistence.class)
 			<#else>
-				@BeanReference(type = ${tempEntity.name}Persistence.class)
+				@BeanReference(type = ${referenceEntity.name}Persistence.class)
 			</#if>
 
-			protected ${tempEntity.name}Persistence ${tempEntity.varName}Persistence;
+			protected ${referenceEntity.name}Persistence ${referenceEntity.varName}Persistence;
 		</#if>
 
-		<#if tempEntity.hasFinderClass() && (stringUtil.equals(entity.name, "Counter") || !stringUtil.equals(tempEntity.name, "Counter"))>
-			<#if osgiModule && (tempEntity.apiPackagePath != apiPackagePath)>
-				@ServiceReference(type = ${tempEntity.name}Finder.class)
+		<#if referenceEntity.hasFinderClass() && (stringUtil.equals(entity.name, "Counter") || !stringUtil.equals(referenceEntity.name, "Counter"))>
+			<#if osgiModule && (referenceEntity.apiPackagePath != apiPackagePath)>
+				@ServiceReference(type = ${referenceEntity.name}Finder.class)
 			<#else>
-				@BeanReference(type = ${tempEntity.name}Finder.class)
+				@BeanReference(type = ${referenceEntity.name}Finder.class)
 			</#if>
 
-			protected ${tempEntity.name}Finder ${tempEntity.varName}Finder;
+			protected ${referenceEntity.name}Finder ${referenceEntity.varName}Finder;
 		</#if>
 	</#list>
 
