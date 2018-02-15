@@ -2060,9 +2060,9 @@ public class ServiceBuilder {
 	}
 
 	private void _createBlobModels(Entity entity) throws Exception {
-		List<EntityColumn> blobList = _getBlobList(entity);
+		List<EntityColumn> blobEntityColumns = _getBlobEntityColumns(entity);
 
-		if (blobList.isEmpty()) {
+		if (blobEntityColumns.isEmpty()) {
 			return;
 		}
 
@@ -2070,8 +2070,8 @@ public class ServiceBuilder {
 
 		context.put("entity", entity);
 
-		for (EntityColumn col : blobList) {
-			context.put("column", col);
+		for (EntityColumn blobEntityColumn : blobEntityColumns) {
+			context.put("column", blobEntityColumn);
 
 			// Content
 
@@ -2082,7 +2082,7 @@ public class ServiceBuilder {
 			File blobModelFile = new File(
 				StringBundler.concat(
 					_serviceOutputPath, "/model/", entity.getName(),
-					col.getMethodName(), "BlobModel.java"));
+					blobEntityColumn.getMethodName(), "BlobModel.java"));
 
 			ToolsUtil.writeFile(
 				blobModelFile, content, _author, _jalopySettings,
@@ -4066,20 +4066,20 @@ public class ServiceBuilder {
 		return xml;
 	}
 
-	private List<EntityColumn> _getBlobList(Entity entity) {
-		List<EntityColumn> blobList = new ArrayList<>(entity.getBlobEntityColumns());
+	private List<EntityColumn> _getBlobEntityColumns(Entity entity) {
+		List<EntityColumn> blobEntityColumns = new ArrayList<>(entity.getBlobEntityColumns());
 
-		Iterator<EntityColumn> itr = blobList.iterator();
+		Iterator<EntityColumn> iterator = blobEntityColumns.iterator();
 
-		while (itr.hasNext()) {
-			EntityColumn col = itr.next();
+		while (iterator.hasNext()) {
+			EntityColumn entityColumn = iterator.next();
 
-			if (!col.isLazy()) {
-				itr.remove();
+			if (!entityColumn.isLazy()) {
+				iterator.remove();
 			}
 		}
 
-		return blobList;
+		return blobEntityColumns;
 	}
 
 	private JavaField[] _getCacheFields(JavaClass javaClass) {
@@ -5207,7 +5207,7 @@ public class ServiceBuilder {
 
 		List<EntityColumn> pkList = new ArrayList<>();
 		List<EntityColumn> regularColList = new ArrayList<>();
-		List<EntityColumn> blobList = new ArrayList<>();
+		List<EntityColumn> blobEntityColumns = new ArrayList<>();
 		List<EntityColumn> collectionList = new ArrayList<>();
 		List<EntityColumn> columnList = new ArrayList<>();
 
@@ -5328,7 +5328,7 @@ public class ServiceBuilder {
 				regularColList.add(col);
 
 				if (columnType.equals("Blob")) {
-					blobList.add(col);
+					blobEntityColumns.add(col);
 				}
 			}
 
@@ -5634,7 +5634,7 @@ public class ServiceBuilder {
 			remoteService, persistenceClass, finderClass, dataSource,
 			sessionFactory, txManager, cacheEnabled, dynamicUpdateEnabled,
 			jsonEnabled, mvccEnabled, trashEnabled, deprecated, pkList,
-			regularColList, blobList, collectionList, columnList, order,
+			regularColList, blobEntityColumns, collectionList, columnList, order,
 			finderList, referenceList, unresolvedReferenceList, txRequiredList,
 			resourceActionModel);
 
@@ -5960,11 +5960,11 @@ public class ServiceBuilder {
 	}
 
 	private void _removeBlobModels(Entity entity, String outputPath) {
-		for (EntityColumn col : _getBlobList(entity)) {
+		for (EntityColumn entityColumn : _getBlobEntityColumns(entity)) {
 			_deleteFile(
 				StringBundler.concat(
 					outputPath, "/model/", entity.getName(),
-					col.getMethodName(), "BlobModel.java"));
+					entityColumn.getMethodName(), "BlobModel.java"));
 		}
 	}
 
