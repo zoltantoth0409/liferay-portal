@@ -516,16 +516,18 @@ public class JournalDisplayContext {
 	}
 
 	public String getFriendlyURLBase() {
+		StringBundler sb = new StringBundler(4);
+
 		ThemeDisplay themeDisplay = (ThemeDisplay)_request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
+		sb.append(themeDisplay.getPortalURL());
+
 		Group group = themeDisplay.getScopeGroup();
 
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(themeDisplay.getPortalURL());
 		sb.append(group.getPathFriendlyURL(false, themeDisplay));
 		sb.append(group.getFriendlyURL());
+
 		sb.append(JournalArticleConstants.CANONICAL_URL_SEPARATOR);
 
 		return sb.toString();
