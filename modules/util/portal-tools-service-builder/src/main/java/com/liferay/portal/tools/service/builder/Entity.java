@@ -135,7 +135,7 @@ public class Entity implements Comparable<Entity> {
 		_mvccEnabled = mvccEnabled;
 		_trashEnabled = trashEnabled;
 		_deprecated = deprecated;
-		_pkList = pkList;
+		_pkEntityColumns = pkList;
 		_regularColList = regularColList;
 		_blobEntityColumns = blobEntityColumns;
 		_collectionList = collectionList;
@@ -308,7 +308,7 @@ public class Entity implements Comparable<Entity> {
 			}
 		}
 
-		return _getPKColumn();
+		return _getPKEntityColumn();
 	}
 
 	public String getFinderClass() {
@@ -364,7 +364,7 @@ public class Entity implements Comparable<Entity> {
 			return _name + "PK";
 		}
 
-		EntityColumn entityColumn = _getPKColumn();
+		EntityColumn entityColumn = _getPKEntityColumn();
 
 		return entityColumn.getType();
 	}
@@ -374,13 +374,13 @@ public class Entity implements Comparable<Entity> {
 			return getVarName() + "PK";
 		}
 
-		EntityColumn entityColumn = _getPKColumn();
+		EntityColumn entityColumn = _getPKEntityColumn();
 
 		return entityColumn.getDBName();
 	}
 
 	public List<EntityColumn> getPKList() {
-		return _pkList;
+		return _pkEntityColumns;
 	}
 
 	public String getPKVarName() {
@@ -388,7 +388,7 @@ public class Entity implements Comparable<Entity> {
 			return getVarName() + "PK";
 		}
 
-		EntityColumn entityColumn = _getPKColumn();
+		EntityColumn entityColumn = _getPKEntityColumn();
 
 		return entityColumn.getName();
 	}
@@ -398,7 +398,7 @@ public class Entity implements Comparable<Entity> {
 			return getVarName() + "PKs";
 		}
 
-		EntityColumn entityColumn = _getPKColumn();
+		EntityColumn entityColumn = _getPKEntityColumn();
 
 		return entityColumn.getNames();
 	}
@@ -511,7 +511,7 @@ public class Entity implements Comparable<Entity> {
 	public boolean hasActionableDynamicQuery() {
 		if (hasColumns() && hasLocalService()) {
 			if (hasCompoundPK()) {
-				EntityColumn entityColumn = _pkList.get(0);
+				EntityColumn entityColumn = _pkEntityColumns.get(0);
 
 				return entityColumn.isPrimitiveType();
 			}
@@ -551,7 +551,7 @@ public class Entity implements Comparable<Entity> {
 	}
 
 	public boolean hasCompoundPK() {
-		if (_pkList.size() > 1) {
+		if (_pkEntityColumns.size() > 1) {
 			return true;
 		}
 		else {
@@ -614,7 +614,7 @@ public class Entity implements Comparable<Entity> {
 			return false;
 		}
 
-		EntityColumn entityColumn = _getPKColumn();
+		EntityColumn entityColumn = _getPKEntityColumn();
 
 		if (entityColumn.isPrimitiveType(includeWrappers)) {
 			return true;
@@ -726,7 +726,7 @@ public class Entity implements Comparable<Entity> {
 			return false;
 		}
 
-		EntityColumn entityColumn = _getPKColumn();
+		EntityColumn entityColumn = _getPKEntityColumn();
 
 		String methodName = entityColumn.getMethodName();
 
@@ -795,7 +795,7 @@ public class Entity implements Comparable<Entity> {
 			return false;
 		}
 
-		EntityColumn entityColumn = _getPKColumn();
+		EntityColumn entityColumn = _getPKEntityColumn();
 
 		return StringUtil.equalsIgnoreCase("long", entityColumn.getType());
 	}
@@ -948,13 +948,13 @@ public class Entity implements Comparable<Entity> {
 		_transients = transients;
 	}
 
-	private EntityColumn _getPKColumn() {
-		if (_pkList.isEmpty()) {
+	private EntityColumn _getPKEntityColumn() {
+		if (_pkEntityColumns.isEmpty()) {
 			throw new RuntimeException(
 				"There is no primary key for entity " + _name);
 		}
 
-		return _pkList.get(0);
+		return _pkEntityColumns.get(0);
 	}
 
 	private static final String _DATA_SOURCE_DEFAULT = "liferayDataSource";
@@ -989,7 +989,7 @@ public class Entity implements Comparable<Entity> {
 	private final String _packagePath;
 	private List<String> _parentTransients;
 	private final String _persistenceClass;
-	private final List<EntityColumn> _pkList;
+	private final List<EntityColumn> _pkEntityColumns;
 	private boolean _portalReference;
 	private final String _portletName;
 	private final String _portletShortName;
