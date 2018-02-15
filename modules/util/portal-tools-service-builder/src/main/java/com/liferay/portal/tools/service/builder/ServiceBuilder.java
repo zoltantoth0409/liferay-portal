@@ -4540,18 +4540,6 @@ public class ServiceBuilder {
 		return sb.toString();
 	}
 
-	private String _getDimensions(
-		DefaultJavaParameterizedType defaultJavaParameterizedType) {
-
-		String dimensions = "";
-
-		for (int i = 0; i < defaultJavaParameterizedType.getDimensions(); i++) {
-			dimensions += "[]";
-		}
-
-		return dimensions;
-	}
-
 	private Entity _getEntityByTableName(String tableName) {
 		for (Entity entity : _entities) {
 			if (tableName.equals(entity.getTable())) {
