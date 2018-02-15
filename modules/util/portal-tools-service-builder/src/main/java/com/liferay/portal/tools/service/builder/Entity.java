@@ -108,8 +108,8 @@ public class Entity implements Comparable<Entity> {
 		List<EntityColumn> blobEntityColumns, List<EntityColumn> collectionList,
 		List<EntityColumn> entityColumns, EntityOrder order,
 		List<EntityFinder> finderList, List<Entity> referenceEntities,
-		List<String> unresolvedReferenceEntityNames, List<String> txRequiredList,
-		boolean resourceActionModel) {
+		List<String> unresolvedReferenceEntityNames,
+		List<String> txRequiredList, boolean resourceActionModel) {
 
 		_packagePath = packagePath;
 		_apiPackagePath = apiPackagePath;
