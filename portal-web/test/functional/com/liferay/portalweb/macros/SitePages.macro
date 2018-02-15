@@ -111,7 +111,7 @@
 			</elseif>
 		</if>
 	</command>
-	
+
 	<command name="addPublicPage">
 		<execute macro="SitePages#togglePrivacy">
 			<var name="privacy" value="Public" />
