@@ -300,33 +300,33 @@ public class ${entity.name}PersistenceTest {
 		</#list>
 	}
 
-	<#list entity.getFinderList() as finder>
+	<#list entity.getFinderList() as entityFinder>
 		@Test
-		public void testCountBy${finder.name}() throws Exception {
-			_persistence.countBy${finder.name}(
+		public void testCountBy${entityFinder.name}() throws Exception {
+			_persistence.countBy${entityFinder.name}(
 
 			<#assign hasString = false />
 
-			<#list finder.getColumns() as finderCol>
-				<#if stringUtil.equals(finderCol.type, "boolean")>
+			<#list entityFinder.entityColumns as entityColumn>
+				<#if stringUtil.equals(entityColumn.type, "boolean")>
 					RandomTestUtil.randomBoolean()
-				<#elseif stringUtil.equals(finderCol.type, "double")>
+				<#elseif stringUtil.equals(entityColumn.type, "double")>
 					RandomTestUtil.nextDouble()
-				<#elseif stringUtil.equals(finderCol.type, "int")>
+				<#elseif stringUtil.equals(entityColumn.type, "int")>
 					RandomTestUtil.nextInt()
-				<#elseif stringUtil.equals(finderCol.type, "long")>
+				<#elseif stringUtil.equals(entityColumn.type, "long")>
 					RandomTestUtil.nextLong()
-				<#elseif stringUtil.equals(finderCol.type, "Date")>
+				<#elseif stringUtil.equals(entityColumn.type, "Date")>
 					RandomTestUtil.nextDate()
-				<#elseif stringUtil.equals(finderCol.type, "String")>
+				<#elseif stringUtil.equals(entityColumn.type, "String")>
 					<#assign hasString = true />
 
 					""
 				<#else>
-					(${finderCol.type})null
+					(${entityColumn.type})null
 				</#if>
 
-				<#if finderCol_has_next>
+				<#if entityColumn_has_next>
 					,
 				</#if>
 			</#list>
@@ -334,26 +334,26 @@ public class ${entity.name}PersistenceTest {
 			);
 
 			<#if hasString>
-				_persistence.countBy${finder.name}(
+				_persistence.countBy${entityFinder.name}(
 
-					<#list finder.getColumns() as finderCol>
-						<#if stringUtil.equals(finderCol.type, "boolean")>
+					<#list entityFinder.entityColumns as entityColumn>
+						<#if stringUtil.equals(entityColumn.type, "boolean")>
 							RandomTestUtil.randomBoolean()
-						<#elseif stringUtil.equals(finderCol.type, "double")>
+						<#elseif stringUtil.equals(entityColumn.type, "double")>
 							0D
-						<#elseif stringUtil.equals(finderCol.type, "int")>
+						<#elseif stringUtil.equals(entityColumn.type, "int")>
 							0
-						<#elseif stringUtil.equals(finderCol.type, "long")>
+						<#elseif stringUtil.equals(entityColumn.type, "long")>
 							0L
-						<#elseif stringUtil.equals(finderCol.type, "Date")>
+						<#elseif stringUtil.equals(entityColumn.type, "Date")>
 							RandomTestUtil.nextDate()
-						<#elseif stringUtil.equals(finderCol.type, "String")>
+						<#elseif stringUtil.equals(entityColumn.type, "String")>
 							"null"
 						<#else>
-							(${finderCol.type})null
+							(${entityColumn.type})null
 						</#if>
 
-						<#if finderCol_has_next>
+						<#if entityColumn_has_next>
 							,
 						</#if>
 					</#list>
@@ -361,24 +361,24 @@ public class ${entity.name}PersistenceTest {
 				);
 			</#if>
 
-			_persistence.countBy${finder.name}(
+			_persistence.countBy${entityFinder.name}(
 
-				<#list finder.getColumns() as finderCol>
-					<#if stringUtil.equals(finderCol.type, "boolean")>
+				<#list entityFinder.entityColumns as entityColumn>
+					<#if stringUtil.equals(entityColumn.type, "boolean")>
 						RandomTestUtil.randomBoolean()
-					<#elseif stringUtil.equals(finderCol.type, "double")>
+					<#elseif stringUtil.equals(entityColumn.type, "double")>
 						0D
-					<#elseif stringUtil.equals(finderCol.type, "int")>
+					<#elseif stringUtil.equals(entityColumn.type, "int")>
 						0
-					<#elseif stringUtil.equals(finderCol.type, "long")>
+					<#elseif stringUtil.equals(entityColumn.type, "long")>
 						0L
-					<#elseif stringUtil.equals(finderCol.type, "Date")>
+					<#elseif stringUtil.equals(entityColumn.type, "Date")>
 						RandomTestUtil.nextDate()
 					<#else>
-						(${finderCol.type})null
+						(${entityColumn.type})null
 					</#if>
 
-					<#if finderCol_has_next>
+					<#if entityColumn_has_next>
 						,
 					</#if>
 				</#list>
@@ -386,27 +386,27 @@ public class ${entity.name}PersistenceTest {
 			);
 		}
 
-		<#if finder.hasArrayableOperator()>
+		<#if entityFinder.hasArrayableOperator()>
 			@Test
-			public void testCountBy${finder.name}Arrayable() throws Exception {
-				_persistence.countBy${finder.name}(
+			public void testCountBy${entityFinder.name}Arrayable() throws Exception {
+				_persistence.countBy${entityFinder.name}(
 
-				<#list finder.getColumns() as finderCol>
-					<#if finderCol.hasArrayableOperator()>
-						new ${finderCol.type}[]{
+				<#list entityFinder.entityColumns as entityColumn>
+					<#if entityColumn.hasArrayableOperator()>
+						new ${entityColumn.type}[]{
 
-						<#if stringUtil.equals(finderCol.type, "boolean")>
+						<#if stringUtil.equals(entityColumn.type, "boolean")>
 							RandomTestUtil.randomBoolean()
-						<#elseif stringUtil.equals(finderCol.type, "double")>
+						<#elseif stringUtil.equals(entityColumn.type, "double")>
 							RandomTestUtil.nextDouble(), 0D
-						<#elseif stringUtil.equals(finderCol.type, "int")>
+						<#elseif stringUtil.equals(entityColumn.type, "int")>
 							RandomTestUtil.nextInt(), 0
-						<#elseif stringUtil.equals(finderCol.type, "long")>
+						<#elseif stringUtil.equals(entityColumn.type, "long")>
 							RandomTestUtil.nextLong(), 0L
-						<#elseif stringUtil.equals(finderCol.type, "Date")>
+						<#elseif stringUtil.equals(entityColumn.type, "Date")>
 							RandomTestUtil.nextDate(), null
-						<#elseif stringUtil.equals(finderCol.type, "String")>
-							<#assign maxLength = serviceBuilder.getMaxLength(entity.getName(), finderCol.getName()) />
+						<#elseif stringUtil.equals(entityColumn.type, "String")>
+							<#assign maxLength = serviceBuilder.getMaxLength(entity.getName(), entityColumn.getName()) />
 
 							<#if maxLength < 8>
 								RandomTestUtil.randomString(${maxLength}), "", "null", null, null
@@ -417,18 +417,18 @@ public class ${entity.name}PersistenceTest {
 							null
 						</#if>
 					<#else>
-						<#if stringUtil.equals(finderCol.type, "boolean")>
+						<#if stringUtil.equals(entityColumn.type, "boolean")>
 							RandomTestUtil.randomBoolean()
-						<#elseif stringUtil.equals(finderCol.type, "double")>
+						<#elseif stringUtil.equals(entityColumn.type, "double")>
 							RandomTestUtil.nextDouble()
-						<#elseif stringUtil.equals(finderCol.type, "int")>
+						<#elseif stringUtil.equals(entityColumn.type, "int")>
 							RandomTestUtil.nextInt()
-						<#elseif stringUtil.equals(finderCol.type, "long")>
+						<#elseif stringUtil.equals(entityColumn.type, "long")>
 							RandomTestUtil.nextLong()
-						<#elseif stringUtil.equals(finderCol.type, "Date")>
+						<#elseif stringUtil.equals(entityColumn.type, "Date")>
 							RandomTestUtil.nextDate()
-						<#elseif stringUtil.equals(finderCol.type, "String")>
-							<#assign maxLength = serviceBuilder.getMaxLength(entity.getName(), finderCol.getName()) />
+						<#elseif stringUtil.equals(entityColumn.type, "String")>
+							<#assign maxLength = serviceBuilder.getMaxLength(entity.getName(), entityColumn.getName()) />
 
 							<#if maxLength < 8>
 								RandomTestUtil.randomString(${maxLength})
@@ -440,11 +440,11 @@ public class ${entity.name}PersistenceTest {
 						</#if>
 					</#if>
 
-					<#if finderCol.hasArrayableOperator()>
+					<#if entityColumn.hasArrayableOperator()>
 						}
 					</#if>
 
-					<#if finderCol_has_next>
+					<#if entityColumn_has_next>
 						,
 					</#if>
 				</#list>
@@ -993,15 +993,15 @@ public class ${entity.name}PersistenceTest {
 			${entity.name} existing${entity.name} = _persistence.findByPrimaryKey(new${entity.name}.getPrimaryKey());
 
 			<#list entity.uniqueEntityFinders as uniqueEntityFinder>
-				<#assign finderColsList = uniqueEntityFinder.getColumns() />
+				<#assign entityColumns = uniqueEntityFinder.entityColumns />
 
-				<#list finderColsList as finderCol>
-					<#if stringUtil.equals(finderCol.type, "double")>
-						AssertUtils.assertEquals(existing${entity.name}.get${finderCol.methodName}(), ReflectionTestUtil.<Double>invoke(existing${entity.name}, "getOriginal${finderCol.methodName}", new Class<?>[0]));
-					<#elseif finderCol.isPrimitiveType()>
-						Assert.assertEquals(${serviceBuilder.getPrimitiveObj(finderCol.type)}.valueOf(existing${entity.name}.get${finderCol.methodName}()), ReflectionTestUtil.<${serviceBuilder.getPrimitiveObj(finderCol.type)}>invoke(existing${entity.name}, "getOriginal${finderCol.methodName}", new Class<?>[0]));
+				<#list entityColumns as entityColumn>
+					<#if stringUtil.equals(entityColumn.type, "double")>
+						AssertUtils.assertEquals(existing${entity.name}.get${entityColumn.methodName}(), ReflectionTestUtil.<Double>invoke(existing${entity.name}, "getOriginal${entityColumn.methodName}", new Class<?>[0]));
+					<#elseif entityColumn.isPrimitiveType()>
+						Assert.assertEquals(${serviceBuilder.getPrimitiveObj(entityColumn.type)}.valueOf(existing${entity.name}.get${entityColumn.methodName}()), ReflectionTestUtil.<${serviceBuilder.getPrimitiveObj(entityColumn.type)}>invoke(existing${entity.name}, "getOriginal${entityColumn.methodName}", new Class<?>[0]));
 					<#else>
-						Assert.assertTrue(Objects.equals(existing${entity.name}.get${finderCol.methodName}(), ReflectionTestUtil.invoke(existing${entity.name}, "getOriginal${finderCol.methodName}", new Class<?>[0])));
+						Assert.assertTrue(Objects.equals(existing${entity.name}.get${entityColumn.methodName}(), ReflectionTestUtil.invoke(existing${entity.name}, "getOriginal${entityColumn.methodName}", new Class<?>[0])));
 					</#if>
 				</#list>
 			</#list>

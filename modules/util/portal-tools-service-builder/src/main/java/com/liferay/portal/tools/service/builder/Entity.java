@@ -148,18 +148,18 @@ public class Entity implements Comparable<Entity> {
 		_resourceActionModel = resourceActionModel;
 
 		if (_entityFinders != null) {
-			Set<EntityColumn> finderColumns = new HashSet<>();
+			Set<EntityColumn> finderEntityColumns = new HashSet<>();
 
 			for (EntityFinder entityFinder : _entityFinders) {
-				finderColumns.addAll(entityFinder.getColumns());
+				finderEntityColumns.addAll(entityFinder.getEntityColumns());
 			}
 
-			_finderColumnsList = new ArrayList<>(finderColumns);
+			_finderEntityColumns = new ArrayList<>(finderEntityColumns);
 
-			Collections.sort(_finderColumnsList);
+			Collections.sort(_finderEntityColumns);
 		}
 		else {
-			_finderColumnsList = Collections.emptyList();
+			_finderEntityColumns = Collections.emptyList();
 		}
 
 		if ((_blobEntityColumns != null) && !_blobEntityColumns.isEmpty()) {
@@ -302,7 +302,7 @@ public class Entity implements Comparable<Entity> {
 	}
 
 	public List<EntityColumn> getFinderColumnsList() {
-		return _finderColumnsList;
+		return _finderEntityColumns;
 	}
 
 	public List<EntityFinder> getFinderList() {
@@ -963,7 +963,7 @@ public class Entity implements Comparable<Entity> {
 	private final List<EntityFinder> _entityFinders;
 	private final EntityOrder _entityOrder;
 	private final String _finderClassName;
-	private final List<EntityColumn> _finderColumnsList;
+	private final List<EntityColumn> _finderEntityColumns;
 	private final String _humanName;
 	private final boolean _jsonEnabled;
 	private List<EntityColumn> _localizedColumns;

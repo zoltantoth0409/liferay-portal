@@ -60,7 +60,7 @@ public class EntityFinder {
 		return null;
 	}
 
-	public List<EntityColumn> getColumns() {
+	public List<EntityColumn> getEntityColumns() {
 		return _entityColumns;
 	}
 

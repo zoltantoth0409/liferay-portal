@@ -239,15 +239,15 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 		entityCache.putResult(${entity.name}ModelImpl.ENTITY_CACHE_ENABLED, ${entity.name}Impl.class, ${entity.varName}.getPrimaryKey(), ${entity.varName});
 
 		<#list entity.uniqueEntityFinders as uniqueEntityFinder>
-			<#assign finderColsList = uniqueEntityFinder.getColumns() />
+			<#assign entityColumns = uniqueEntityFinder.entityColumns />
 
 			finderCache.putResult(
-				FINDER_PATH_FETCH_BY_${finder.name?upper_case},
+				FINDER_PATH_FETCH_BY_${uniqueEntityFinder.name?upper_case},
 				new Object[] {
-					<#list finderColsList as finderCol>
-						${entity.varName}.get${finderCol.methodName}()
+					<#list entityColumns as entityColumn>
+						${entity.varName}.get${entityColumn.methodName}()
 
-						<#if finderCol_has_next>
+						<#if entityColumn_has_next>
 							,
 						</#if>
 					</#list>
@@ -327,16 +327,16 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 	<#if entity.uniqueEntityFinders?size &gt; 0>
 		protected void cacheUniqueFindersCache(${entity.name}ModelImpl ${entity.varName}ModelImpl) {
 			<#list entity.uniqueEntityFinders as uniqueEntityFinder>
-				<#assign finderColsList = uniqueEntityFinder.getColumns() />
+				<#assign entityColumns = uniqueEntityFinder.entityColumns />
 
 				<#if uniqueEntityFinder_index == 0>
 					Object[]
 				</#if>
 				args = new Object[] {
-					<#list finderColsList as finderCol>
-						${entity.varName}ModelImpl.get${finderCol.methodName}()
+					<#list entityColumns as entityColumn>
+						${entity.varName}ModelImpl.get${entityColumn.methodName}()
 
-						<#if finderCol_has_next>
+						<#if entityColumn_has_next>
 							,
 						</#if>
 					</#list>
@@ -349,14 +349,14 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 
 		protected void clearUniqueFindersCache(${entity.name}ModelImpl ${entity.varName}ModelImpl, boolean clearCurrent) {
 			<#list entity.uniqueEntityFinders as uniqueEntityFinder>
-				<#assign finderColsList = uniqueEntityFinder.getColumns() />
+				<#assign entityColumns = uniqueEntityFinder.entityColumns />
 
 				if (clearCurrent) {
 					Object[] args = new Object[] {
-						<#list finderColsList as finderCol>
-							${entity.varName}ModelImpl.get${finderCol.methodName}()
+						<#list entityColumns as entityColumn>
+							${entity.varName}ModelImpl.get${entityColumn.methodName}()
 
-							<#if finderCol_has_next>
+							<#if entityColumn_has_next>
 								,
 							</#if>
 						</#list>
@@ -368,10 +368,10 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 
 				if ((${entity.varName}ModelImpl.getColumnBitmask() & FINDER_PATH_FETCH_BY_${uniqueEntityFinder.name?upper_case}.getColumnBitmask()) != 0) {
 					Object[] args = new Object[] {
-						<#list finderColsList as finderCol>
-							${entity.varName}ModelImpl.getOriginal${finderCol.methodName}()
+						<#list entityColumns as entityColumn>
+							${entity.varName}ModelImpl.getOriginal${entityColumn.methodName}()
 
-							<#if finderCol_has_next>
+							<#if entityColumn_has_next>
 								,
 							</#if>
 						</#list>
@@ -689,13 +689,13 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				<#if columnBitmaskEnabled && (collectionFinderList?size != 0)>
 					Object[]
 					<#list collectionFinderList as finder>
-						<#assign finderColsList = finder.getColumns() />
+						<#assign entityColumns = finder.entityColumns />
 
 						args = new Object[] {
-							<#list finderColsList as finderCol>
-								${entity.varName}ModelImpl.get${finderCol.methodName}()
+							<#list entityColumns as entityColumn>
+								${entity.varName}ModelImpl.get${entityColumn.methodName}()
 
-								<#if finderCol_has_next>
+								<#if entityColumn_has_next>
 									,
 								</#if>
 							</#list>
@@ -714,19 +714,19 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 		<#if collectionFinderList?size != 0>
 			else {
 				<#list collectionFinderList as finder>
-					<#assign finderColsList = finder.getColumns() />
+					<#assign entityColumns = finder.entityColumns />
 					if (
 						<#if columnBitmaskEnabled>
 							(${entity.varName}ModelImpl.getColumnBitmask() & FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_${finder.name?upper_case}.getColumnBitmask()) != 0
 						<#else>
-							<#list finderColsList as finderCol>
-								<#if finderCol.isPrimitiveType()>
-									(${entity.varName}.get${finderCol.methodName}() != ${entity.varName}ModelImpl.getOriginal${finderCol.methodName}())
+							<#list entityColumns as entityColumn>
+								<#if entityColumn.isPrimitiveType()>
+									(${entity.varName}.get${entityColumn.methodName}() != ${entity.varName}ModelImpl.getOriginal${entityColumn.methodName}())
 								<#else>
-									!Objects.equals(${entity.varName}.get${finderCol.methodName}(), ${entity.varName}ModelImpl.getOriginal${finderCol.methodName}())
+									!Objects.equals(${entity.varName}.get${entityColumn.methodName}(), ${entity.varName}ModelImpl.getOriginal${entityColumn.methodName}())
 								</#if>
 
-								<#if finderCol_has_next>
+								<#if entityColumn_has_next>
 									||
 								</#if>
 							</#list>
@@ -734,10 +734,10 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 						) {
 
 						Object[] args = new Object[] {
-							<#list finderColsList as finderCol>
-								${entity.varName}ModelImpl.getOriginal${finderCol.methodName}()
+							<#list entityColumns as entityColumn>
+								${entity.varName}ModelImpl.getOriginal${entityColumn.methodName}()
 
-								<#if finderCol_has_next>
+								<#if entityColumn_has_next>
 									,
 								</#if>
 							</#list>
@@ -747,10 +747,10 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 						finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_${finder.name?upper_case}, args);
 
 						args = new Object[] {
-							<#list finderColsList as finderCol>
-								${entity.varName}ModelImpl.get${finderCol.methodName}()
+							<#list entityColumns as entityColumn>
+								${entity.varName}ModelImpl.get${entityColumn.methodName}()
 
-								<#if finderCol_has_next>
+								<#if entityColumn_has_next>
 									,
 								</#if>
 							</#list>
@@ -1720,12 +1720,12 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				<#assign
 					referenceEntity = serviceBuilder.getEntity(entityColumn.entityName)
 
-					entityMapping = serviceBuilder.getEntityMapping(entityColumn.mappingTable)
+					entityMapping = serviceBuilder.getEntityMapping(entityColumn.mappingTableName)
 
 					companyEntity = serviceBuilder.getEntity(entityMapping.getEntityName(0))
 				/>
 
-				${entity.varName}To${referenceEntity.name}TableMapper = TableMapperFactory.getTableMapper("${entityColumn.mappingTable}", "${companyEntity.PKDBName}", "${entity.PKDBName}", "${referenceEntity.PKDBName}", this, ${referenceEntity.varName}Persistence);
+				${entity.varName}To${referenceEntity.name}TableMapper = TableMapperFactory.getTableMapper("${entityColumn.mappingTableName}", "${companyEntity.PKDBName}", "${entity.PKDBName}", "${referenceEntity.PKDBName}", this, ${referenceEntity.varName}Persistence);
 			</#if>
 		</#list>
 	}
@@ -1738,7 +1738,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 
 		<#list entity.entityColumns as entityColumn>
 			<#if entityColumn.isCollection() && entityColumn.isMappingManyToMany()>
-				TableMapperFactory.removeTableMapper("${entityColumn.mappingTable}");
+				TableMapperFactory.removeTableMapper("${entityColumn.mappingTableName}");
 			</#if>
 		</#list>
 	}
@@ -1873,9 +1873,9 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 
 }
 
-<#function bindParameter finderColsList>
-	<#list finderColsList as finderCol>
-		<#if !finderCol.hasArrayableOperator() || stringUtil.equals(finderCol.type, "String")>
+<#function bindParameter entityColumns>
+	<#list entityColumns as entityColumn>
+		<#if !entityColumn.hasArrayableOperator() || stringUtil.equals(entityColumn.type, "String")>
 			<#return true>
 		</#if>
 	</#list>
@@ -1886,27 +1886,27 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 <#macro finderQPos
 	_arrayable = false
 >
-	<#list finderColsList as finderCol>
-		<#if _arrayable && finderCol.hasArrayableOperator()>
-			<#if stringUtil.equals(finderCol.type, "String")>
-				for (String ${finderCol.name} : ${finderCol.names}) {
-					if (${finderCol.name} != null && !${finderCol.name}.isEmpty()) {
-						qPos.add(${finderCol.name});
+	<#list entityColumns as entityColumn>
+		<#if _arrayable && entityColumn.hasArrayableOperator()>
+			<#if stringUtil.equals(entityColumn.type, "String")>
+				for (String ${entityColumn.name} : ${entityColumn.names}) {
+					if (${entityColumn.name} != null && !${entityColumn.name}.isEmpty()) {
+						qPos.add(${entityColumn.name});
 					}
 				}
 			</#if>
-		<#elseif finderCol.isPrimitiveType()>
-			qPos.add(${finderCol.name}${serviceBuilder.getPrimitiveObjValue("${finderCol.type}")});
+		<#elseif entityColumn.isPrimitiveType()>
+			qPos.add(${entityColumn.name}${serviceBuilder.getPrimitiveObjValue("${entityColumn.type}")});
 
 		<#else>
-			if (bind${finderCol.methodName}) {
+			if (bind${entityColumn.methodName}) {
 				qPos.add(
-					<#if stringUtil.equals(finderCol.type, "Date")>
-						new Timestamp(${finderCol.name}.getTime())
-					<#elseif stringUtil.equals(finderCol.type, "String") && !finderCol.isCaseSensitive()>
-						StringUtil.toLowerCase(${finderCol.name})
+					<#if stringUtil.equals(entityColumn.type, "Date")>
+						new Timestamp(${entityColumn.name}.getTime())
+					<#elseif stringUtil.equals(entityColumn.type, "String") && !entityColumn.isCaseSensitive()>
+						StringUtil.toLowerCase(${entityColumn.name})
 					<#else>
-						${finderCol.name}
+						${entityColumn.name}
 					</#if>
 				);
 			}

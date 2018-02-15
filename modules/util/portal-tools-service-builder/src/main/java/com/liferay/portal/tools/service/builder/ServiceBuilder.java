@@ -3502,7 +3502,7 @@ public class ServiceBuilder {
 				if (finder.isDBIndex()) {
 					List<String> finderColsNames = new ArrayList<>();
 
-					List<EntityColumn> finderColsList = finder.getColumns();
+					List<EntityColumn> finderColsList = finder.getEntityColumns();
 
 					for (EntityColumn col : finderColsList) {
 						finderColsNames.add(col.getDBName());

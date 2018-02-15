@@ -295,14 +295,14 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 	</#if>
 
 	<#list entity.entityColumns as entityColumn>
-		<#if entityColumn.mappingTable??>
+		<#if entityColumn.mappingTableName??>
 			<#assign entityShortName = stringUtil.shorten(entity.name, 9, "") />
 
-			public static final String MAPPING_TABLE_${stringUtil.upperCase(entityColumn.mappingTable)}_NAME = "${entityColumn.mappingTable}";
+			public static final String MAPPING_TABLE_${stringUtil.upperCase(entityColumn.mappingTableName)}_NAME = "${entityColumn.mappingTableName}";
 
 			<#compress>
-				public static final Object[][] MAPPING_TABLE_${stringUtil.upperCase(entityColumn.mappingTable)}_COLUMNS = {
-					<#assign mappingEntities = serviceBuilder.getMappingEntities(entityColumn.mappingTable) />
+				public static final Object[][] MAPPING_TABLE_${stringUtil.upperCase(entityColumn.mappingTableName)}_COLUMNS = {
+					<#assign mappingEntities = serviceBuilder.getMappingEntities(entityColumn.mappingTableName) />
 
 					<#list mappingEntities?keys as mapEntityName>
 						<#list mappingEntities[mapEntityName] as mapColumn>
@@ -318,9 +318,9 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 				};
 			</#compress>
 
-			public static final String MAPPING_TABLE_${stringUtil.upperCase(entityColumn.mappingTable)}_SQL_CREATE = "${serviceBuilder.getCreateMappingTableSQL(serviceBuilder.getEntityMapping(entityColumn.mappingTable))}";
+			public static final String MAPPING_TABLE_${stringUtil.upperCase(entityColumn.mappingTableName)}_SQL_CREATE = "${serviceBuilder.getCreateMappingTableSQL(serviceBuilder.getEntityMapping(entityColumn.mappingTableName))}";
 
-			public static final boolean FINDER_CACHE_ENABLED_${stringUtil.upperCase(entityColumn.mappingTable)} = GetterUtil.getBoolean(${propsUtil}.get("value.object.finder.cache.enabled.${entityColumn.mappingTable}"), true);
+			public static final boolean FINDER_CACHE_ENABLED_${stringUtil.upperCase(entityColumn.mappingTableName)} = GetterUtil.getBoolean(${propsUtil}.get("value.object.finder.cache.enabled.${entityColumn.mappingTableName}"), true);
 		</#if>
 	</#list>
 
