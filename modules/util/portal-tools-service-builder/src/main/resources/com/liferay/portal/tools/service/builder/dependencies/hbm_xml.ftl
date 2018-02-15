@@ -95,7 +95,7 @@
 				</#if>
 
 				<#if entityColumn.name != entityColumn.DBName>
-					entityColumn="${entityColumn.DBName}"
+					column="${entityColumn.DBName}"
 				</#if>
 
 				name="${entityColumn.name}"
