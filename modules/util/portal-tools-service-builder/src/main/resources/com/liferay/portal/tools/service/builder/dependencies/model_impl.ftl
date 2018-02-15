@@ -868,12 +868,12 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 
 		public long getNestedSetsTreeNodeScopeId() {
 			<#if entity.hasColumn("groupId")>
-				<#assign scopeColumn = entity.getEntityColumn("groupId") />
+				<#assign scopeEntityColumn = entity.getEntityColumn("groupId") />
 			<#else>
-				<#assign scopeColumn = entity.getEntityColumn("companyId") />
+				<#assign scopeEntityColumn = entity.getEntityColumn("companyId") />
 			</#if>
 
-			return _${scopeColumn.name};
+			return _${scopeEntityColumn.name};
 		}
 
 		public void setNestedSetsTreeNodeLeft(long nestedSetsTreeNodeLeft) {
