@@ -463,9 +463,9 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 	protected ${entity.name} removeImpl(${entity.name} ${entity.varName}) {
 		${entity.varName} = toUnwrappedModel(${entity.varName});
 
-		<#list entity.columnList as column>
-			<#if column.isCollection() && column.isMappingManyToMany()>
-				<#assign tempEntity = serviceBuilder.getEntity(column.getEJBName()) />
+		<#list entity.entityColumns as entityColumn>
+			<#if entityColumn.isCollection() && entityColumn.isMappingManyToMany()>
+				<#assign tempEntity = serviceBuilder.getEntity(entityColumn.getEJBName()) />
 
 				${entity.varName}To${tempEntity.name}TableMapper.deleteLeftPrimaryKeyTableMappings(${entity.varName}.getPrimaryKey());
 			</#if>
@@ -1186,9 +1186,9 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 		return count.intValue();
 	}
 
-	<#list entity.columnList as column>
-		<#if column.isCollection() && column.isMappingManyToMany()>
-			<#assign tempEntity = serviceBuilder.getEntity(column.getEJBName()) />
+	<#list entity.entityColumns as entityColumn>
+		<#if entityColumn.isCollection() && entityColumn.isMappingManyToMany()>
+			<#assign tempEntity = serviceBuilder.getEntity(entityColumn.getEJBName()) />
 
 			/**
 			 * Returns the primaryKeys of ${tempEntity.humanNames} associated with the ${entity.humanName}.
@@ -1290,7 +1290,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				}
 			}
 
-			<#if column.isMappingManyToMany()>
+			<#if entityColumn.isMappingManyToMany()>
 				<#assign noSuchTempEntity = serviceBuilder.getNoSuchEntityException(tempEntity) />
 
 				/**

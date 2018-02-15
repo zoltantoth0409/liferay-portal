@@ -3671,13 +3671,13 @@ public class ServiceBuilder {
 				continue;
 			}
 
-			List<EntityColumn> columnList = entity.getEntityColumns();
+			List<EntityColumn> entityColumns = entity.getEntityColumns();
 
-			for (EntityColumn column : columnList) {
-				if ("sequence".equals(column.getIdType())) {
+			for (EntityColumn entityColumn : entityColumns) {
+				if ("sequence".equals(entityColumn.getIdType())) {
 					StringBundler sb = new StringBundler(3);
 
-					String sequenceName = column.getIdParam();
+					String sequenceName = entityColumn.getIdParam();
 
 					if (sequenceName.length() > 30) {
 						sequenceName = sequenceName.substring(0, 30);
@@ -5211,7 +5211,7 @@ public class ServiceBuilder {
 		List<EntityColumn> regularColList = new ArrayList<>();
 		List<EntityColumn> blobEntityColumns = new ArrayList<>();
 		List<EntityColumn> collectionList = new ArrayList<>();
-		List<EntityColumn> columnList = new ArrayList<>();
+		List<EntityColumn> entityColumns = new ArrayList<>();
 
 		boolean permissionedModel = false;
 		boolean resourcedModel = false;
@@ -5334,7 +5334,7 @@ public class ServiceBuilder {
 				}
 			}
 
-			columnList.add(col);
+			entityColumns.add(col);
 
 			if (Validator.isNotNull(collectionEntity) &&
 				Validator.isNotNull(mappingTable)) {
@@ -5391,14 +5391,14 @@ public class ServiceBuilder {
 					orderColByAscending = false;
 				}
 
-				int index = columnList.indexOf(new EntityColumn(orderColName));
+				int index = entityColumns.indexOf(new EntityColumn(orderColName));
 
 				if (index < 0) {
 					throw new IllegalArgumentException(
 						"Invalid order by column " + orderColName);
 				}
 
-				EntityColumn col = columnList.get(index);
+				EntityColumn col = entityColumns.get(index);
 
 				col.setOrderColumn(true);
 
@@ -5416,7 +5416,7 @@ public class ServiceBuilder {
 		List<Element> finderElements = entityElement.elements("finder");
 
 		if (uuid) {
-			if (columnList.contains(new EntityColumn("companyId"))) {
+			if (entityColumns.contains(new EntityColumn("companyId"))) {
 				Element finderElement = DocumentHelper.createElement("finder");
 
 				finderElement.addAttribute("name", "Uuid_C");
@@ -5434,7 +5434,7 @@ public class ServiceBuilder {
 				finderElements.add(0, finderElement);
 			}
 
-			if (columnList.contains(new EntityColumn("groupId"))) {
+			if (entityColumns.contains(new EntityColumn("groupId"))) {
 				Element finderElement = DocumentHelper.createElement("finder");
 
 				if (ejbName.equals("Layout")) {
@@ -5522,7 +5522,7 @@ public class ServiceBuilder {
 			String finderWhere = finderElement.attributeValue("where");
 
 			if (Validator.isNotNull(finderWhere)) {
-				for (EntityColumn column : columnList) {
+				for (EntityColumn column : entityColumns) {
 					String name = column.getName();
 
 					finderWhere = StringUtil.replace(
@@ -5548,7 +5548,7 @@ public class ServiceBuilder {
 				String finderColArrayableOperator = GetterUtil.getString(
 					finderColumnElement.attributeValue("arrayable-operator"));
 
-				EntityColumn col = Entity.getColumn(finderColName, columnList);
+				EntityColumn col = Entity.getColumn(finderColName, entityColumns);
 
 				if (!col.isFinderPath()) {
 					col.setFinderPath(true);
@@ -5636,7 +5636,7 @@ public class ServiceBuilder {
 			remoteService, persistenceClass, finderClass, dataSource,
 			sessionFactory, txManager, cacheEnabled, dynamicUpdateEnabled,
 			jsonEnabled, mvccEnabled, trashEnabled, deprecated, pkList,
-			regularColList, blobEntityColumns, collectionList, columnList, order,
+			regularColList, blobEntityColumns, collectionList, entityColumns, order,
 			finderList, referenceList, unresolvedReferenceList, txRequiredList,
 			resourceActionModel);
 

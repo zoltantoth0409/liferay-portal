@@ -765,10 +765,10 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 			</#if>
 		</#list>
 
-		<#list entity.columnList as column>
-			<#if column.isCollection() && column.isMappingManyToMany()>
+		<#list entity.entityColumns as entityColumn>
+			<#if entityColumn.isCollection() && entityColumn.isMappingManyToMany()>
 				<#assign
-					tempEntity = serviceBuilder.getEntity(column.getEJBName())
+					tempEntity = serviceBuilder.getEntity(entityColumn.getEJBName())
 
 					serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "add" + tempEntity.name + entity.name, [tempEntity.PKClassName, entity.PKClassName], [])
 				/>
