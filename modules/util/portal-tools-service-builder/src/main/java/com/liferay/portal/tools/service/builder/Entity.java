@@ -67,18 +67,18 @@ public class Entity implements Comparable<Entity> {
 	}
 
 	public static boolean hasColumn(
-		String name, List<EntityColumn> columnList) {
+		String name, List<EntityColumn> entityColumns) {
 
-		return hasColumn(name, null, columnList);
+		return hasColumn(name, null, entityColumns);
 	}
 
 	public static boolean hasColumn(
-		String name, String type, List<EntityColumn> columnList) {
+		String name, String type, List<EntityColumn> entityColumns) {
 
-		int index = columnList.indexOf(new EntityColumn(name));
+		int index = entityColumns.indexOf(new EntityColumn(name));
 
 		if (index != -1) {
-			EntityColumn entityColumn = columnList.get(index);
+			EntityColumn entityColumn = entityColumns.get(index);
 
 			if ((type == null) || type.equals(entityColumn.getType())) {
 				return true;
@@ -106,7 +106,7 @@ public class Entity implements Comparable<Entity> {
 		boolean mvccEnabled, boolean trashEnabled, boolean deprecated,
 		List<EntityColumn> pkList, List<EntityColumn> regularColList,
 		List<EntityColumn> blobEntityColumns, List<EntityColumn> collectionList,
-		List<EntityColumn> columnList, EntityOrder order,
+		List<EntityColumn> entityColumns, EntityOrder order,
 		List<EntityFinder> finderList, List<Entity> referenceList,
 		List<String> unresolvedReferenceList, List<String> txRequiredList,
 		boolean resourceActionModel) {
@@ -139,7 +139,7 @@ public class Entity implements Comparable<Entity> {
 		_regularColList = regularColList;
 		_blobEntityColumns = blobEntityColumns;
 		_collectionList = collectionList;
-		_entityColumns = columnList;
+		_entityColumns = entityColumns;
 		_entityOrder = order;
 		_entityFinders = finderList;
 		_referenceList = referenceList;

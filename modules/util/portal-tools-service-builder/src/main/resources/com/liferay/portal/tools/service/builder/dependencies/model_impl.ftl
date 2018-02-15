@@ -294,15 +294,15 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 		}
 	</#if>
 
-	<#list entity.columnList as column>
-		<#if column.mappingTable??>
+	<#list entity.entityColumns as entityColumn>
+		<#if entityColumn.mappingTable??>
 			<#assign entityShortName = stringUtil.shorten(entity.name, 9, "") />
 
-			public static final String MAPPING_TABLE_${stringUtil.upperCase(column.mappingTable)}_NAME = "${column.mappingTable}";
+			public static final String MAPPING_TABLE_${stringUtil.upperCase(entityColumn.mappingTable)}_NAME = "${entityColumn.mappingTable}";
 
 			<#compress>
-				public static final Object[][] MAPPING_TABLE_${stringUtil.upperCase(column.mappingTable)}_COLUMNS = {
-					<#assign mappingEntities = serviceBuilder.getMappingEntities(column.mappingTable) />
+				public static final Object[][] MAPPING_TABLE_${stringUtil.upperCase(entityColumn.mappingTable)}_COLUMNS = {
+					<#assign mappingEntities = serviceBuilder.getMappingEntities(entityColumn.mappingTable) />
 
 					<#list mappingEntities?keys as mapEntityName>
 						<#list mappingEntities[mapEntityName] as mapColumn>
@@ -318,9 +318,9 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 				};
 			</#compress>
 
-			public static final String MAPPING_TABLE_${stringUtil.upperCase(column.mappingTable)}_SQL_CREATE = "${serviceBuilder.getCreateMappingTableSQL(serviceBuilder.getEntityMapping(column.mappingTable))}";
+			public static final String MAPPING_TABLE_${stringUtil.upperCase(entityColumn.mappingTable)}_SQL_CREATE = "${serviceBuilder.getCreateMappingTableSQL(serviceBuilder.getEntityMapping(entityColumn.mappingTable))}";
 
-			public static final boolean FINDER_CACHE_ENABLED_${stringUtil.upperCase(column.mappingTable)} = GetterUtil.getBoolean(${propsUtil}.get("value.object.finder.cache.enabled.${column.mappingTable}"), true);
+			public static final boolean FINDER_CACHE_ENABLED_${stringUtil.upperCase(entityColumn.mappingTable)} = GetterUtil.getBoolean(${propsUtil}.get("value.object.finder.cache.enabled.${entityColumn.mappingTable}"), true);
 		</#if>
 	</#list>
 
@@ -804,30 +804,30 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 	<#if entity.isContainerModel()>
 		<#assign hasParentContainerModelId = entity.hasColumn("parentContainerModelId") />
 
-		<#list entity.columnList as column>
-			<#if column.isContainerModel() && !stringUtil.equals(column.name, "containerModelId")>
+		<#list entity.entityColumns as entityColumn>
+			<#if entityColumn.isContainerModel() && !stringUtil.equals(entityColumn.name, "containerModelId")>
 				@Override
 				public long getContainerModelId() {
-					return get${column.methodName}();
+					return get${entityColumn.methodName}();
 				}
 
 				@Override
 				public void setContainerModelId(long containerModelId) {
-					_${column.name} = containerModelId;
+					_${entityColumn.name} = containerModelId;
 				}
 			</#if>
 
-			<#if column.isParentContainerModel() && !stringUtil.equals(column.name, "parentContainerModelId")>
+			<#if entityColumn.isParentContainerModel() && !stringUtil.equals(entityColumn.name, "parentContainerModelId")>
 				<#assign hasParentContainerModelId = true />
 
 				@Override
 				public long getParentContainerModelId() {
-					return get${column.methodName}();
+					return get${entityColumn.methodName}();
 				}
 
 				@Override
 				public void setParentContainerModelId(long parentContainerModelId) {
-					_${column.name} = parentContainerModelId;
+					_${entityColumn.name} = parentContainerModelId;
 				}
 			</#if>
 		</#list>
