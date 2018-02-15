@@ -109,7 +109,7 @@ public class Entity implements Comparable<Entity> {
 		List<EntityColumn> entityColumns, EntityOrder entityOrder,
 		List<EntityFinder> finderList, List<Entity> referenceEntities,
 		List<String> unresolvedReferenceEntityNames,
-		List<String> txRequiredList, boolean resourceActionModel) {
+		List<String> txRequiredMethodNames, boolean resourceActionModel) {
 
 		_packagePath = packagePath;
 		_apiPackagePath = apiPackagePath;
@@ -144,7 +144,7 @@ public class Entity implements Comparable<Entity> {
 		_entityFinders = finderList;
 		_referenceEntities = referenceEntities;
 		_unresolvedReferenceEntityNames = unresolvedReferenceEntityNames;
-		_txRequiredList = txRequiredList;
+		_txRequiredMethodNames = txRequiredMethodNames;
 		_resourceActionModel = resourceActionModel;
 
 		if (_entityFinders != null) {
@@ -434,8 +434,8 @@ public class Entity implements Comparable<Entity> {
 		return _txManager;
 	}
 
-	public List<String> getTxRequiredList() {
-		return _txRequiredList;
+	public List<String> getTxRequiredMethodNames() {
+		return _txRequiredMethodNames;
 	}
 
 	public List<EntityColumn> getUADNonanonymizableEntityColumns() {
@@ -987,7 +987,7 @@ public class Entity implements Comparable<Entity> {
 	private List<String> _transients;
 	private final boolean _trashEnabled;
 	private final String _txManager;
-	private final List<String> _txRequiredList;
+	private final List<String> _txRequiredMethodNames;
 	private List<String> _unresolvedReferenceEntityNames;
 	private final boolean _uuid;
 	private final boolean _uuidAccessor;
