@@ -81,13 +81,7 @@
 		</#if>
 
 		<#list entity.entityColumns as entityColumn>
-			<#if entityColumn.EJBName??>
-				<#assign ejbName = true />
-			<#else>
-				<#assign ejbName = false />
-			</#if>
-
-			<#if !entityColumn.isPrimary() && !entityColumn.isCollection() && !ejbName && (!stringUtil.equals(entityColumn.type, "Blob") || (stringUtil.equals(entityColumn.type, "Blob") && !entityColumn.lazy)) && !stringUtil.equals(entityColumn.name, "mvccVersion")>
+			<#if !entityColumn.isPrimary() && !entityColumn.isCollection() && !entityColumn.entityName?? && (!stringUtil.equals(entityColumn.type, "Blob") || (stringUtil.equals(entityColumn.type, "Blob") && !entityColumn.lazy)) && !stringUtil.equals(entityColumn.name, "mvccVersion")>
 				<property
 
 				<#if serviceBuilder.isHBMCamelCasePropertyAccessor(entityColumn.name)>

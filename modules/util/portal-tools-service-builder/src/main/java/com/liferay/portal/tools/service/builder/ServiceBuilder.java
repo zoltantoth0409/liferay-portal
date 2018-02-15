@@ -5094,20 +5094,20 @@ public class ServiceBuilder {
 	}
 
 	private Entity _parseEntity(Element entityElement) throws Exception {
-		String ejbName = entityElement.attributeValue("name");
+		String entityName = entityElement.attributeValue("name");
 		String humanName = entityElement.attributeValue("human-name");
 
-		String table = entityElement.attributeValue("table");
+		String tableName = entityElement.attributeValue("table");
 
-		if (Validator.isNull(table)) {
-			table = ejbName;
+		if (Validator.isNull(tableName)) {
+			tableName = entityName;
 
-			if (_badTableNames.contains(ejbName)) {
-				table += StringPool.UNDERLINE;
+			if (_badTableNames.contains(entityName)) {
+				tableName += StringPool.UNDERLINE;
 			}
 
 			if (_autoNamespaceTables) {
-				table = _portletShortName + StringPool.UNDERLINE + ejbName;
+				tableName = _portletShortName + StringPool.UNDERLINE + entityName;
 			}
 		}
 
@@ -5122,18 +5122,18 @@ public class ServiceBuilder {
 		String persistenceClassName = GetterUtil.getString(
 			entityElement.attributeValue("persistence-class"),
 			StringBundler.concat(
-				_packagePath, ".service.persistence.impl.", ejbName,
+				_packagePath, ".service.persistence.impl.", entityName,
 				"PersistenceImpl"));
 
 		String finderClassName = "";
 
 		File originalFinderImplFile = new File(
 			StringBundler.concat(
-				_outputPath, "/service/persistence/", ejbName,
+				_outputPath, "/service/persistence/", entityName,
 				"FinderImpl.java"));
 		File newFinderImplFile = new File(
 			StringBundler.concat(
-				_outputPath, "/service/persistence/impl/", ejbName,
+				_outputPath, "/service/persistence/impl/", entityName,
 				"FinderImpl.java"));
 
 		if (originalFinderImplFile.exists()) {
@@ -5150,13 +5150,13 @@ public class ServiceBuilder {
 			sb.append("import ");
 			sb.append(_apiPackagePath);
 			sb.append(".service.persistence.");
-			sb.append(ejbName);
+			sb.append(entityName);
 			sb.append("Finder;\n");
 
 			sb.append("import ");
 			sb.append(_apiPackagePath);
 			sb.append(".service.persistence.");
-			sb.append(ejbName);
+			sb.append(entityName);
 			sb.append("Util;");
 
 			content = StringUtil.replace(
@@ -5169,7 +5169,7 @@ public class ServiceBuilder {
 
 		if (newFinderImplFile.exists()) {
 			finderClassName = StringBundler.concat(
-				_packagePath, ".service.persistence.impl.", ejbName,
+				_packagePath, ".service.persistence.impl.", entityName,
 				"FinderImpl");
 		}
 
@@ -5252,7 +5252,7 @@ public class ServiceBuilder {
 				columnElement.attributeValue("accessor"));
 			boolean filterPrimary = GetterUtil.getBoolean(
 				columnElement.attributeValue("filter-primary"));
-			String collectionEntity = columnElement.attributeValue("entity");
+			String columnEntityName = columnElement.attributeValue("entity");
 
 			String mappingTableName = columnElement.attributeValue("mapping-table");
 
@@ -5287,7 +5287,7 @@ public class ServiceBuilder {
 				columnElement.attributeValue("uad-nonanonymizable"));
 
 			if (columnName.equals("resourceBlockId") &&
-				!ejbName.equals("ResourceBlock")) {
+				!entityName.equals("ResourceBlock")) {
 
 				permissionedModel = true;
 			}
@@ -5296,35 +5296,35 @@ public class ServiceBuilder {
 				resourcedModel = true;
 			}
 
-			EntityColumn col = new EntityColumn(
+			EntityColumn entityColumn = new EntityColumn(
 				columnName, columnDBName, columnType, primary, accessor,
-				filterPrimary, collectionEntity, mappingTableName, idType, idParam,
+				filterPrimary, columnEntityName, mappingTableName, idType, idParam,
 				convertNull, lazy, localized, colJsonEnabled, containerModel,
 				parentContainerModel, uadAnonymizeFieldName,
 				uadNonanonymizable);
 
 			if (primary) {
-				pkList.add(col);
+				pkList.add(entityColumn);
 			}
 
 			if (columnType.equals("Collection")) {
-				collectionList.add(col);
+				collectionList.add(entityColumn);
 			}
 			else {
-				regularColList.add(col);
+				regularColList.add(entityColumn);
 
 				if (columnType.equals("Blob")) {
-					blobEntityColumns.add(col);
+					blobEntityColumns.add(entityColumn);
 				}
 			}
 
-			entityColumns.add(col);
+			entityColumns.add(entityColumn);
 
-			if (Validator.isNotNull(collectionEntity) &&
+			if (Validator.isNotNull(columnEntityName) &&
 				Validator.isNotNull(mappingTableName)) {
 
 				EntityMapping entityMapping = new EntityMapping(
-					mappingTableName, ejbName, collectionEntity);
+					mappingTableName, entityName, columnEntityName);
 
 				if (!_entityMappings.containsKey(mappingTableName)) {
 					_entityMappings.put(mappingTableName, entityMapping);
@@ -5334,7 +5334,7 @@ public class ServiceBuilder {
 
 		if (uuid && pkList.isEmpty()) {
 			throw new ServiceBuilderException(
-				"Unable to create entity \"" + ejbName +
+				"Unable to create entity \"" + entityName +
 					"\" with a UUID without a primary key");
 		}
 
@@ -5421,14 +5421,14 @@ public class ServiceBuilder {
 			if (entityColumns.contains(new EntityColumn("groupId"))) {
 				Element finderElement = DocumentHelper.createElement("finder");
 
-				if (ejbName.equals("Layout")) {
+				if (entityName.equals("Layout")) {
 					finderElement.addAttribute("name", "UUID_G_P");
 				}
 				else {
 					finderElement.addAttribute("name", "UUID_G");
 				}
 
-				finderElement.addAttribute("return-type", ejbName);
+				finderElement.addAttribute("return-type", entityName);
 				finderElement.addAttribute("unique", "true");
 
 				Element finderColumnElement = finderElement.addElement(
@@ -5440,7 +5440,7 @@ public class ServiceBuilder {
 
 				finderColumnElement.addAttribute("name", "groupId");
 
-				if (ejbName.equals("Layout")) {
+				if (entityName.equals("Layout")) {
 					finderColumnElement = finderElement.addElement(
 						"finder-column");
 
@@ -5491,7 +5491,7 @@ public class ServiceBuilder {
 			finderElements.add(0, finderElement);
 		}
 
-		String alias = TextFormatter.format(ejbName, TextFormatter.I);
+		String alias = TextFormatter.format(entityName, TextFormatter.I);
 
 		if (_badAliasNames.contains(StringUtil.toLowerCase(alias))) {
 			alias += StringPool.UNDERLINE;
@@ -5612,11 +5612,11 @@ public class ServiceBuilder {
 		}
 
 		boolean resourceActionModel = _resourceActionModels.contains(
-			_apiPackagePath + ".model." + ejbName);
+			_apiPackagePath + ".model." + entityName);
 
 		Entity entity = new Entity(
 			_packagePath, _apiPackagePath, _portletName, _portletShortName,
-			ejbName, humanName, table, alias, uuid, uuidAccessor, localService,
+			entityName, humanName, tableName, alias, uuid, uuidAccessor, localService,
 			remoteService, persistenceClassName, finderClassName, dataSource,
 			sessionFactory, txManager, cacheEnabled, dynamicUpdateEnabled,
 			jsonEnabled, mvccEnabled, trashEnabled, deprecated, pkList,

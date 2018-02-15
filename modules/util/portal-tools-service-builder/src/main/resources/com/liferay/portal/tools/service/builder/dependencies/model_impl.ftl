@@ -1233,14 +1233,14 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 	public Object clone() {
 		${entity.name}Impl ${entity.varName}Impl = new ${entity.name}Impl();
 
-		<#list entity.regularColList as column>
-			<#if !stringUtil.equals(column.type, "Blob")>
-				${entity.varName}Impl.set${column.methodName}(
+		<#list entity.regularColList as entityColumn>
+			<#if !stringUtil.equals(entityColumn.type, "Blob")>
+				${entity.varName}Impl.set${entityColumn.methodName}(
 
-				<#if column.EJBName??>
-					(${column.EJBName})get${column.methodName}().clone()
+				<#if entityColumn.entityName??>
+					(${entityColumn.entityName})get${entityColumn.methodName}().clone()
 				<#else>
-					get${column.methodName}()
+					get${entityColumn.methodName}()
 				</#if>
 
 				);

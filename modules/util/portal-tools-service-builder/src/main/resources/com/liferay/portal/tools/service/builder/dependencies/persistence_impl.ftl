@@ -465,7 +465,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 
 		<#list entity.entityColumns as entityColumn>
 			<#if entityColumn.isCollection() && entityColumn.isMappingManyToMany()>
-				<#assign referenceEntity = serviceBuilder.getEntity(entityColumn.getEJBName()) />
+				<#assign referenceEntity = serviceBuilder.getEntity(entityColumn.entityName) />
 
 				${entity.varName}To${referenceEntity.name}TableMapper.deleteLeftPrimaryKeyTableMappings(${entity.varName}.getPrimaryKey());
 			</#if>
@@ -1188,7 +1188,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 
 	<#list entity.entityColumns as entityColumn>
 		<#if entityColumn.isCollection() && entityColumn.isMappingManyToMany()>
-			<#assign referenceEntity = serviceBuilder.getEntity(entityColumn.getEJBName()) />
+			<#assign referenceEntity = serviceBuilder.getEntity(entityColumn.entityName) />
 
 			/**
 			 * Returns the primaryKeys of ${referenceEntity.humanNames} associated with the ${entity.humanName}.
@@ -1718,7 +1718,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 		<#list entity.entityColumns as entityColumn>
 			<#if entityColumn.isCollection() && entityColumn.isMappingManyToMany()>
 				<#assign
-					referenceEntity = serviceBuilder.getEntity(entityColumn.getEJBName())
+					referenceEntity = serviceBuilder.getEntity(entityColumn.entityName)
 
 					entityMapping = serviceBuilder.getEntityMapping(entityColumn.mappingTable)
 
@@ -1778,7 +1778,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 
 	<#list entity.entityColumns as entityColumn>
 		<#if entityColumn.isCollection() && entityColumn.isMappingManyToMany()>
-			<#assign referenceEntity = serviceBuilder.getEntity(entityColumn.getEJBName()) />
+			<#assign referenceEntity = serviceBuilder.getEntity(entityColumn.entityName) />
 
 			@BeanReference(type = ${referenceEntity.name}Persistence.class)
 			protected ${referenceEntity.name}Persistence ${referenceEntity.varName}Persistence;
