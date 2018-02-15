@@ -207,7 +207,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 	public ${entity.name}PersistenceImpl() {
 		setModelClass(${entity.name}.class);
 
-		<#if entity.badNamedColumnsList?size != 0>
+		<#if entity.badEntityColumns?size != 0>
 			try {
 				Field field = BasePersistenceImpl.class.getDeclaredField("_dbColumnNames");
 
@@ -215,8 +215,8 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 
 				Map<String, String> dbColumnNames = new HashMap<String, String>();
 
-				<#list entity.badNamedColumnsList as column>
-					dbColumnNames.put("${column.name}", "${column.DBName}");
+				<#list entity.badEntityColumns as badEntityColumn>
+					dbColumnNames.put("${badEntityColumn.name}", "${badEntityColumn.DBName}");
 				</#list>
 
 				field.set(this, dbColumnNames);
@@ -1476,7 +1476,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 		</#if>
 	</#list>
 
-	<#if entity.badNamedColumnsList?size != 0>
+	<#if entity.badEntityColumns?size != 0>
 		@Override
 		public Set<String> getBadColumnNames() {
 			return _badColumnNames;
@@ -1845,13 +1845,13 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 
 	private static final Log _log = LogFactoryUtil.getLog(${entity.name}PersistenceImpl.class);
 
-	<#if entity.badNamedColumnsList?size != 0>
+	<#if entity.badEntityColumns?size != 0>
 		private static final Set<String> _badColumnNames = SetUtil.fromArray(
 			new String[] {
-				<#list entity.badNamedColumnsList as column>
-					"${column.name}"
+				<#list entity.badEntityColumns as badEntityColumn>
+					"${badEntityColumn.name}"
 
-					<#if column_has_next>
+					<#if badEntityColumn_has_next>
 						,
 					</#if>
 				</#list>

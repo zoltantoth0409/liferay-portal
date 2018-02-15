@@ -230,10 +230,10 @@ public class Entity implements Comparable<Entity> {
 		return _apiPackagePath;
 	}
 
-	public List<EntityColumn> getBadNamedColumnsList() {
-		List<EntityColumn> badNamedColumnsList = ListUtil.copy(_entityColumns);
+	public List<EntityColumn> getBadEntityColumns() {
+		List<EntityColumn> badEntityColumns = ListUtil.copy(_entityColumns);
 
-		Iterator<EntityColumn> iterator = badNamedColumnsList.iterator();
+		Iterator<EntityColumn> iterator = badEntityColumns.iterator();
 
 		while (iterator.hasNext()) {
 			EntityColumn entityColumn = iterator.next();
@@ -245,7 +245,7 @@ public class Entity implements Comparable<Entity> {
 			}
 		}
 
-		return badNamedColumnsList;
+		return badEntityColumns;
 	}
 
 	public List<EntityColumn> getBlobEntityColumns() {
