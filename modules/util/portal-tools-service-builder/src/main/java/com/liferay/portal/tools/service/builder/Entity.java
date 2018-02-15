@@ -124,7 +124,7 @@ public class Entity implements Comparable<Entity> {
 		_uuidAccessor = uuidAccessor;
 		_localService = localService;
 		_remoteService = remoteService;
-		_persistenceClass = persistenceClass;
+		_persistenceClassName = persistenceClass;
 		_finderClass = finderClass;
 		_dataSource = GetterUtil.getString(dataSource, _DATA_SOURCE_DEFAULT);
 		_sessionFactory = GetterUtil.getString(
@@ -355,8 +355,8 @@ public class Entity implements Comparable<Entity> {
 		return _parentTransients;
 	}
 
-	public String getPersistenceClass() {
-		return _persistenceClass;
+	public String getPersistenceClassName() {
+		return _persistenceClassName;
 	}
 
 	public String getPKClassName() {
@@ -988,7 +988,7 @@ public class Entity implements Comparable<Entity> {
 	private final String _name;
 	private final String _packagePath;
 	private List<String> _parentTransients;
-	private final String _persistenceClass;
+	private final String _persistenceClassName;
 	private final List<EntityColumn> _pkEntityColumns;
 	private boolean _portalReference;
 	private final String _portletName;

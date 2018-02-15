@@ -13,7 +13,7 @@
 
 	<#if entity.hasColumns()>
 		<#if !stringUtil.equals(entity.dataSource, "liferayDataSource") || !stringUtil.equals(entity.sessionFactory, "liferaySessionFactory")>
-			<bean class="${entity.getPersistenceClass()}" id="${apiPackagePath}.service.persistence.${entity.name}Persistence" parent="basePersistence">
+			<bean class="${entity.persistenceClassName}" id="${apiPackagePath}.service.persistence.${entity.name}Persistence" parent="basePersistence">
 				<#if !stringUtil.equals(entity.dataSource, "liferayDataSource")>
 					<property name="dataSource" ref="${entity.getDataSource()}" />
 				</#if>
@@ -23,7 +23,7 @@
 				</#if>
 			</bean>
 		<#else>
-			<bean class="${entity.getPersistenceClass()}" id="${apiPackagePath}.service.persistence.${entity.name}Persistence" parent="basePersistence" />
+			<bean class="${entity.persistenceClassName}" id="${apiPackagePath}.service.persistence.${entity.name}Persistence" parent="basePersistence" />
 		</#if>
 	</#if>
 
