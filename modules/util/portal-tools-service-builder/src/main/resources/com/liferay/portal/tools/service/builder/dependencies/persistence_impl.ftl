@@ -91,9 +91,9 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-<#list referenceList as tempEntity>
-	<#if tempEntity.hasColumns() && (stringUtil.equals(entity.name, "Counter") || !stringUtil.equals(tempEntity.name, "Counter"))>
-		import ${tempEntity.apiPackagePath}.service.persistence.${tempEntity.name}Persistence;
+<#list referenceEntities as referenceEntity>
+	<#if referenceEntity.hasColumns() && (stringUtil.equals(entity.name, "Counter") || !stringUtil.equals(referenceEntity.name, "Counter"))>
+		import ${referenceEntity.apiPackagePath}.service.persistence.${referenceEntity.name}Persistence;
 	</#if>
 </#list>
 
@@ -465,9 +465,9 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 
 		<#list entity.entityColumns as entityColumn>
 			<#if entityColumn.isCollection() && entityColumn.isMappingManyToMany()>
-				<#assign tempEntity = serviceBuilder.getEntity(entityColumn.getEJBName()) />
+				<#assign referenceEntity = serviceBuilder.getEntity(entityColumn.getEJBName()) />
 
-				${entity.varName}To${tempEntity.name}TableMapper.deleteLeftPrimaryKeyTableMappings(${entity.varName}.getPrimaryKey());
+				${entity.varName}To${referenceEntity.name}TableMapper.deleteLeftPrimaryKeyTableMappings(${entity.varName}.getPrimaryKey());
 			</#if>
 		</#list>
 
@@ -1188,34 +1188,34 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 
 	<#list entity.entityColumns as entityColumn>
 		<#if entityColumn.isCollection() && entityColumn.isMappingManyToMany()>
-			<#assign tempEntity = serviceBuilder.getEntity(entityColumn.getEJBName()) />
+			<#assign referenceEntity = serviceBuilder.getEntity(entityColumn.getEJBName()) />
 
 			/**
-			 * Returns the primaryKeys of ${tempEntity.humanNames} associated with the ${entity.humanName}.
+			 * Returns the primaryKeys of ${referenceEntity.humanNames} associated with the ${entity.humanName}.
 			 *
 			 * @param pk the primary key of the ${entity.humanName}
-			 * @return long[] of the primaryKeys of ${tempEntity.humanNames} associated with the ${entity.humanName}
+			 * @return long[] of the primaryKeys of ${referenceEntity.humanNames} associated with the ${entity.humanName}
 			 */
 			@Override
-			public long[] get${tempEntity.name}PrimaryKeys(${entity.PKClassName} pk) {
-				long[] pks = ${entity.varName}To${tempEntity.name}TableMapper.getRightPrimaryKeys(pk);
+			public long[] get${referenceEntity.name}PrimaryKeys(${entity.PKClassName} pk) {
+				long[] pks = ${entity.varName}To${referenceEntity.name}TableMapper.getRightPrimaryKeys(pk);
 
 				return pks.clone();
 			}
 
 			/**
-			 * Returns all the ${tempEntity.humanNames} associated with the ${entity.humanName}.
+			 * Returns all the ${referenceEntity.humanNames} associated with the ${entity.humanName}.
 			 *
 			 * @param pk the primary key of the ${entity.humanName}
-			 * @return the ${tempEntity.humanNames} associated with the ${entity.humanName}
+			 * @return the ${referenceEntity.humanNames} associated with the ${entity.humanName}
 			 */
 			@Override
-			public List<${tempEntity.apiPackagePath}.model.${tempEntity.name}> get${tempEntity.names}(${entity.PKClassName} pk) {
-				return get${tempEntity.names}(pk, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+			public List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> get${referenceEntity.names}(${entity.PKClassName} pk) {
+				return get${referenceEntity.names}(pk, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 			}
 
 			/**
-			 * Returns a range of all the ${tempEntity.humanNames} associated with the ${entity.humanName}.
+			 * Returns a range of all the ${referenceEntity.humanNames} associated with the ${entity.humanName}.
 			 *
 			 * <p>
 			 * <#include "range_comment.ftl">
@@ -1224,15 +1224,15 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 			 * @param pk the primary key of the ${entity.humanName}
 			 * @param start the lower bound of the range of ${entity.humanNames}
 			 * @param end the upper bound of the range of ${entity.humanNames} (not inclusive)
-			 * @return the range of ${tempEntity.humanNames} associated with the ${entity.humanName}
+			 * @return the range of ${referenceEntity.humanNames} associated with the ${entity.humanName}
 			 */
 			@Override
-			public List<${tempEntity.apiPackagePath}.model.${tempEntity.name}> get${tempEntity.names}(${entity.PKClassName} pk, int start, int end) {
-				return get${tempEntity.names}(pk, start, end, null);
+			public List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> get${referenceEntity.names}(${entity.PKClassName} pk, int start, int end) {
+				return get${referenceEntity.names}(pk, start, end, null);
 			}
 
 			/**
-			 * Returns an ordered range of all the ${tempEntity.humanNames} associated with the ${entity.humanName}.
+			 * Returns an ordered range of all the ${referenceEntity.humanNames} associated with the ${entity.humanName}.
 			 *
 			 * <p>
 			 * <#include "range_comment.ftl">
@@ -1242,47 +1242,47 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 			 * @param start the lower bound of the range of ${entity.humanNames}
 			 * @param end the upper bound of the range of ${entity.humanNames} (not inclusive)
 			 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-			 * @return the ordered range of ${tempEntity.humanNames} associated with the ${entity.humanName}
+			 * @return the ordered range of ${referenceEntity.humanNames} associated with the ${entity.humanName}
 			 */
 			@Override
-			public List<${tempEntity.apiPackagePath}.model.${tempEntity.name}> get${tempEntity.names}(${entity.PKClassName} pk, int start, int end, OrderByComparator<${tempEntity.apiPackagePath}.model.${tempEntity.name}> orderByComparator) {
-				return ${entity.varName}To${tempEntity.name}TableMapper.getRightBaseModels(pk, start, end, orderByComparator);
+			public List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> get${referenceEntity.names}(${entity.PKClassName} pk, int start, int end, OrderByComparator<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> orderByComparator) {
+				return ${entity.varName}To${referenceEntity.name}TableMapper.getRightBaseModels(pk, start, end, orderByComparator);
 			}
 
 			/**
-			 * Returns the number of ${tempEntity.humanNames} associated with the ${entity.humanName}.
+			 * Returns the number of ${referenceEntity.humanNames} associated with the ${entity.humanName}.
 			 *
 			 * @param pk the primary key of the ${entity.humanName}
-			 * @return the number of ${tempEntity.humanNames} associated with the ${entity.humanName}
+			 * @return the number of ${referenceEntity.humanNames} associated with the ${entity.humanName}
 			 */
 			@Override
-			public int get${tempEntity.names}Size(${entity.PKClassName} pk) {
-				long[] pks = ${entity.varName}To${tempEntity.name}TableMapper.getRightPrimaryKeys(pk);
+			public int get${referenceEntity.names}Size(${entity.PKClassName} pk) {
+				long[] pks = ${entity.varName}To${referenceEntity.name}TableMapper.getRightPrimaryKeys(pk);
 
 				return pks.length;
 			}
 
 			/**
-			 * Returns <code>true</code> if the ${tempEntity.humanName} is associated with the ${entity.humanName}.
+			 * Returns <code>true</code> if the ${referenceEntity.humanName} is associated with the ${entity.humanName}.
 			 *
 			 * @param pk the primary key of the ${entity.humanName}
-			 * @param ${tempEntity.varName}PK the primary key of the ${tempEntity.humanName}
-			 * @return <code>true</code> if the ${tempEntity.humanName} is associated with the ${entity.humanName}; <code>false</code> otherwise
+			 * @param ${referenceEntity.varName}PK the primary key of the ${referenceEntity.humanName}
+			 * @return <code>true</code> if the ${referenceEntity.humanName} is associated with the ${entity.humanName}; <code>false</code> otherwise
 			 */
 			@Override
-			public boolean contains${tempEntity.name}(${entity.PKClassName} pk, ${tempEntity.PKClassName} ${tempEntity.varName}PK) {
-				return ${entity.varName}To${tempEntity.name}TableMapper.containsTableMapping(pk, ${tempEntity.varName}PK);
+			public boolean contains${referenceEntity.name}(${entity.PKClassName} pk, ${referenceEntity.PKClassName} ${referenceEntity.varName}PK) {
+				return ${entity.varName}To${referenceEntity.name}TableMapper.containsTableMapping(pk, ${referenceEntity.varName}PK);
 			}
 
 			/**
-			 * Returns <code>true</code> if the ${entity.humanName} has any ${tempEntity.humanNames} associated with it.
+			 * Returns <code>true</code> if the ${entity.humanName} has any ${referenceEntity.humanNames} associated with it.
 			 *
-			 * @param pk the primary key of the ${entity.humanName} to check for associations with ${tempEntity.humanNames}
-			 * @return <code>true</code> if the ${entity.humanName} has any ${tempEntity.humanNames} associated with it; <code>false</code> otherwise
+			 * @param pk the primary key of the ${entity.humanName} to check for associations with ${referenceEntity.humanNames}
+			 * @return <code>true</code> if the ${entity.humanName} has any ${referenceEntity.humanNames} associated with it; <code>false</code> otherwise
 			 */
 			@Override
-			public boolean contains${tempEntity.names}(${entity.PKClassName} pk) {
-				if (get${tempEntity.names}Size(pk)> 0) {
+			public boolean contains${referenceEntity.names}(${entity.PKClassName} pk) {
+				if (get${referenceEntity.names}Size(pk)> 0) {
 					return true;
 				}
 				else {
@@ -1291,52 +1291,52 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 			}
 
 			<#if entityColumn.isMappingManyToMany()>
-				<#assign noSuchTempEntity = serviceBuilder.getNoSuchEntityException(tempEntity) />
+				<#assign noSuchTempEntity = serviceBuilder.getNoSuchEntityException(referenceEntity) />
 
 				/**
-				 * Adds an association between the ${entity.humanName} and the ${tempEntity.humanName}. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+				 * Adds an association between the ${entity.humanName} and the ${referenceEntity.humanName}. Also notifies the appropriate model listeners and clears the mapping table finder cache.
 				 *
 				 * @param pk the primary key of the ${entity.humanName}
-				 * @param ${tempEntity.varName}PK the primary key of the ${tempEntity.humanName}
+				 * @param ${referenceEntity.varName}PK the primary key of the ${referenceEntity.humanName}
 				 */
 				@Override
-				public void add${tempEntity.name}(${entity.PKClassName} pk, ${tempEntity.PKClassName} ${tempEntity.varName}PK) {
+				public void add${referenceEntity.name}(${entity.PKClassName} pk, ${referenceEntity.PKClassName} ${referenceEntity.varName}PK) {
 					${entity.name} ${entity.varName} = fetchByPrimaryKey(pk);
 
 					if (${entity.varName} == null) {
-						${entity.varName}To${tempEntity.name}TableMapper.addTableMapping(companyProvider.getCompanyId(), pk, ${tempEntity.varName}PK);
+						${entity.varName}To${referenceEntity.name}TableMapper.addTableMapping(companyProvider.getCompanyId(), pk, ${referenceEntity.varName}PK);
 					}
 					else {
-						${entity.varName}To${tempEntity.name}TableMapper.addTableMapping(${entity.varName}.getCompanyId(), pk, ${tempEntity.varName}PK);
+						${entity.varName}To${referenceEntity.name}TableMapper.addTableMapping(${entity.varName}.getCompanyId(), pk, ${referenceEntity.varName}PK);
 					}
 				}
 
 				/**
-				 * Adds an association between the ${entity.humanName} and the ${tempEntity.humanName}. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+				 * Adds an association between the ${entity.humanName} and the ${referenceEntity.humanName}. Also notifies the appropriate model listeners and clears the mapping table finder cache.
 				 *
 				 * @param pk the primary key of the ${entity.humanName}
-				 * @param ${tempEntity.varName} the ${tempEntity.humanName}
+				 * @param ${referenceEntity.varName} the ${referenceEntity.humanName}
 				 */
 				@Override
-				public void add${tempEntity.name}(${entity.PKClassName} pk, ${tempEntity.apiPackagePath}.model.${tempEntity.name} ${tempEntity.varName}) {
+				public void add${referenceEntity.name}(${entity.PKClassName} pk, ${referenceEntity.apiPackagePath}.model.${referenceEntity.name} ${referenceEntity.varName}) {
 					${entity.name} ${entity.varName} = fetchByPrimaryKey(pk);
 
 					if (${entity.varName} == null) {
-						${entity.varName}To${tempEntity.name}TableMapper.addTableMapping(companyProvider.getCompanyId(), pk, ${tempEntity.varName}.getPrimaryKey());
+						${entity.varName}To${referenceEntity.name}TableMapper.addTableMapping(companyProvider.getCompanyId(), pk, ${referenceEntity.varName}.getPrimaryKey());
 					}
 					else {
-						${entity.varName}To${tempEntity.name}TableMapper.addTableMapping(${entity.varName}.getCompanyId(), pk, ${tempEntity.varName}.getPrimaryKey());
+						${entity.varName}To${referenceEntity.name}TableMapper.addTableMapping(${entity.varName}.getCompanyId(), pk, ${referenceEntity.varName}.getPrimaryKey());
 					}
 				}
 
 				/**
-				 * Adds an association between the ${entity.humanName} and the ${tempEntity.humanNames}. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+				 * Adds an association between the ${entity.humanName} and the ${referenceEntity.humanNames}. Also notifies the appropriate model listeners and clears the mapping table finder cache.
 				 *
 				 * @param pk the primary key of the ${entity.humanName}
-				 * @param ${tempEntity.varName}PKs the primary keys of the ${tempEntity.humanNames}
+				 * @param ${referenceEntity.varName}PKs the primary keys of the ${referenceEntity.humanNames}
 				 */
 				@Override
-				public void add${tempEntity.names}(${entity.PKClassName} pk, ${tempEntity.PKClassName}[] ${tempEntity.varName}PKs) {
+				public void add${referenceEntity.names}(${entity.PKClassName} pk, ${referenceEntity.PKClassName}[] ${referenceEntity.varName}PKs) {
 					long companyId = 0;
 
 					${entity.name} ${entity.varName} = fetchByPrimaryKey(pk);
@@ -1348,92 +1348,92 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 						companyId = ${entity.varName}.getCompanyId();
 					}
 
-					${entity.varName}To${tempEntity.name}TableMapper.addTableMappings(companyId, pk, ${tempEntity.varName}PKs);
+					${entity.varName}To${referenceEntity.name}TableMapper.addTableMappings(companyId, pk, ${referenceEntity.varName}PKs);
 				}
 
 				/**
-				 * Adds an association between the ${entity.humanName} and the ${tempEntity.humanNames}. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+				 * Adds an association between the ${entity.humanName} and the ${referenceEntity.humanNames}. Also notifies the appropriate model listeners and clears the mapping table finder cache.
 				 *
 				 * @param pk the primary key of the ${entity.humanName}
-				 * @param ${tempEntity.varNames} the ${tempEntity.humanNames}
+				 * @param ${referenceEntity.varNames} the ${referenceEntity.humanNames}
 				 */
 				@Override
-				public void add${tempEntity.names}(${entity.PKClassName} pk, List<${tempEntity.apiPackagePath}.model.${tempEntity.name}> ${tempEntity.varNames}) {
-					add${tempEntity.names}(pk, ListUtil.toLongArray(${tempEntity.varNames}, ${tempEntity.apiPackagePath}.model.${tempEntity.name}.${textFormatter.format(textFormatter.format(tempEntity.getPKVarName(), 7), 0)}_ACCESSOR));
+				public void add${referenceEntity.names}(${entity.PKClassName} pk, List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> ${referenceEntity.varNames}) {
+					add${referenceEntity.names}(pk, ListUtil.toLongArray(${referenceEntity.varNames}, ${referenceEntity.apiPackagePath}.model.${referenceEntity.name}.${textFormatter.format(textFormatter.format(referenceEntity.getPKVarName(), 7), 0)}_ACCESSOR));
 				}
 
 				/**
-				 * Clears all associations between the ${entity.humanName} and its ${tempEntity.humanNames}. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+				 * Clears all associations between the ${entity.humanName} and its ${referenceEntity.humanNames}. Also notifies the appropriate model listeners and clears the mapping table finder cache.
 				 *
-				 * @param pk the primary key of the ${entity.humanName} to clear the associated ${tempEntity.humanNames} from
+				 * @param pk the primary key of the ${entity.humanName} to clear the associated ${referenceEntity.humanNames} from
 				 */
 				@Override
-				public void clear${tempEntity.names}(${entity.PKClassName} pk) {
-					${entity.varName}To${tempEntity.name}TableMapper.deleteLeftPrimaryKeyTableMappings(pk);
+				public void clear${referenceEntity.names}(${entity.PKClassName} pk) {
+					${entity.varName}To${referenceEntity.name}TableMapper.deleteLeftPrimaryKeyTableMappings(pk);
 				}
 
 				/**
-				 * Removes the association between the ${entity.humanName} and the ${tempEntity.humanName}. Also notifies the appropriate model listeners and clears the mapping table finder cache.
-				 *
-				 * @param pk the primary key of the ${entity.humanName}
-				 * @param ${tempEntity.varName}PK the primary key of the ${tempEntity.humanName}
-				 */
-				@Override
-				public void remove${tempEntity.name}(${entity.PKClassName} pk, ${tempEntity.PKClassName} ${tempEntity.varName}PK) {
-					${entity.varName}To${tempEntity.name}TableMapper.deleteTableMapping(pk, ${tempEntity.varName}PK);
-				}
-
-				/**
-				 * Removes the association between the ${entity.humanName} and the ${tempEntity.humanName}. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+				 * Removes the association between the ${entity.humanName} and the ${referenceEntity.humanName}. Also notifies the appropriate model listeners and clears the mapping table finder cache.
 				 *
 				 * @param pk the primary key of the ${entity.humanName}
-				 * @param ${tempEntity.varName} the ${tempEntity.humanName}
+				 * @param ${referenceEntity.varName}PK the primary key of the ${referenceEntity.humanName}
 				 */
 				@Override
-				public void remove${tempEntity.name}(${entity.PKClassName} pk, ${tempEntity.apiPackagePath}.model.${tempEntity.name} ${tempEntity.varName}) {
-					${entity.varName}To${tempEntity.name}TableMapper.deleteTableMapping(pk, ${tempEntity.varName}.getPrimaryKey());
+				public void remove${referenceEntity.name}(${entity.PKClassName} pk, ${referenceEntity.PKClassName} ${referenceEntity.varName}PK) {
+					${entity.varName}To${referenceEntity.name}TableMapper.deleteTableMapping(pk, ${referenceEntity.varName}PK);
 				}
 
 				/**
-				 * Removes the association between the ${entity.humanName} and the ${tempEntity.humanNames}. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+				 * Removes the association between the ${entity.humanName} and the ${referenceEntity.humanName}. Also notifies the appropriate model listeners and clears the mapping table finder cache.
 				 *
 				 * @param pk the primary key of the ${entity.humanName}
-				 * @param ${tempEntity.varName}PKs the primary keys of the ${tempEntity.humanNames}
+				 * @param ${referenceEntity.varName} the ${referenceEntity.humanName}
 				 */
 				@Override
-				public void remove${tempEntity.names}(${entity.PKClassName} pk, ${tempEntity.PKClassName}[] ${tempEntity.varName}PKs) {
-					${entity.varName}To${tempEntity.name}TableMapper.deleteTableMappings(pk, ${tempEntity.varName}PKs);
+				public void remove${referenceEntity.name}(${entity.PKClassName} pk, ${referenceEntity.apiPackagePath}.model.${referenceEntity.name} ${referenceEntity.varName}) {
+					${entity.varName}To${referenceEntity.name}TableMapper.deleteTableMapping(pk, ${referenceEntity.varName}.getPrimaryKey());
 				}
 
 				/**
-				 * Removes the association between the ${entity.humanName} and the ${tempEntity.humanNames}. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+				 * Removes the association between the ${entity.humanName} and the ${referenceEntity.humanNames}. Also notifies the appropriate model listeners and clears the mapping table finder cache.
 				 *
 				 * @param pk the primary key of the ${entity.humanName}
-				 * @param ${tempEntity.varNames} the ${tempEntity.humanNames}
+				 * @param ${referenceEntity.varName}PKs the primary keys of the ${referenceEntity.humanNames}
 				 */
 				@Override
-				public void remove${tempEntity.names}(${entity.PKClassName} pk, List<${tempEntity.apiPackagePath}.model.${tempEntity.name}> ${tempEntity.varNames}) {
-					remove${tempEntity.names}(pk, ListUtil.toLongArray(${tempEntity.varNames}, ${tempEntity.apiPackagePath}.model.${tempEntity.name}.${textFormatter.format(textFormatter.format(tempEntity.getPKVarName(), 7), 0)}_ACCESSOR));
+				public void remove${referenceEntity.names}(${entity.PKClassName} pk, ${referenceEntity.PKClassName}[] ${referenceEntity.varName}PKs) {
+					${entity.varName}To${referenceEntity.name}TableMapper.deleteTableMappings(pk, ${referenceEntity.varName}PKs);
 				}
 
 				/**
-				 * Sets the ${tempEntity.humanNames} associated with the ${entity.humanName}, removing and adding associations as necessary. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+				 * Removes the association between the ${entity.humanName} and the ${referenceEntity.humanNames}. Also notifies the appropriate model listeners and clears the mapping table finder cache.
 				 *
 				 * @param pk the primary key of the ${entity.humanName}
-				 * @param ${tempEntity.varName}PKs the primary keys of the ${tempEntity.humanNames} to be associated with the ${entity.humanName}
+				 * @param ${referenceEntity.varNames} the ${referenceEntity.humanNames}
 				 */
 				@Override
-				public void set${tempEntity.names}(${entity.PKClassName} pk, ${tempEntity.PKClassName}[] ${tempEntity.varName}PKs) {
-					Set<Long> new${tempEntity.name}PKsSet = SetUtil.fromArray(${tempEntity.varName}PKs);
-					Set<Long> old${tempEntity.name}PKsSet = SetUtil.fromArray(${entity.varName}To${tempEntity.name}TableMapper.getRightPrimaryKeys(pk));
+				public void remove${referenceEntity.names}(${entity.PKClassName} pk, List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> ${referenceEntity.varNames}) {
+					remove${referenceEntity.names}(pk, ListUtil.toLongArray(${referenceEntity.varNames}, ${referenceEntity.apiPackagePath}.model.${referenceEntity.name}.${textFormatter.format(textFormatter.format(referenceEntity.getPKVarName(), 7), 0)}_ACCESSOR));
+				}
 
-					Set<Long> remove${tempEntity.name}PKsSet = new HashSet<Long>(old${tempEntity.name}PKsSet);
+				/**
+				 * Sets the ${referenceEntity.humanNames} associated with the ${entity.humanName}, removing and adding associations as necessary. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+				 *
+				 * @param pk the primary key of the ${entity.humanName}
+				 * @param ${referenceEntity.varName}PKs the primary keys of the ${referenceEntity.humanNames} to be associated with the ${entity.humanName}
+				 */
+				@Override
+				public void set${referenceEntity.names}(${entity.PKClassName} pk, ${referenceEntity.PKClassName}[] ${referenceEntity.varName}PKs) {
+					Set<Long> new${referenceEntity.name}PKsSet = SetUtil.fromArray(${referenceEntity.varName}PKs);
+					Set<Long> old${referenceEntity.name}PKsSet = SetUtil.fromArray(${entity.varName}To${referenceEntity.name}TableMapper.getRightPrimaryKeys(pk));
 
-					remove${tempEntity.name}PKsSet.removeAll(new${tempEntity.name}PKsSet);
+					Set<Long> remove${referenceEntity.name}PKsSet = new HashSet<Long>(old${referenceEntity.name}PKsSet);
 
-					${entity.varName}To${tempEntity.name}TableMapper.deleteTableMappings(pk, ArrayUtil.toLongArray(remove${tempEntity.name}PKsSet));
+					remove${referenceEntity.name}PKsSet.removeAll(new${referenceEntity.name}PKsSet);
 
-					new${tempEntity.name}PKsSet.removeAll(old${tempEntity.name}PKsSet);
+					${entity.varName}To${referenceEntity.name}TableMapper.deleteTableMappings(pk, ArrayUtil.toLongArray(remove${referenceEntity.name}PKsSet));
+
+					new${referenceEntity.name}PKsSet.removeAll(old${referenceEntity.name}PKsSet);
 
 					long companyId = 0;
 
@@ -1446,27 +1446,27 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 						companyId = ${entity.varName}.getCompanyId();
 					}
 
-					${entity.varName}To${tempEntity.name}TableMapper.addTableMappings(companyId, pk, ArrayUtil.toLongArray(new${tempEntity.name}PKsSet));
+					${entity.varName}To${referenceEntity.name}TableMapper.addTableMappings(companyId, pk, ArrayUtil.toLongArray(new${referenceEntity.name}PKsSet));
 				}
 
 				/**
-				 * Sets the ${tempEntity.humanNames} associated with the ${entity.humanName}, removing and adding associations as necessary. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+				 * Sets the ${referenceEntity.humanNames} associated with the ${entity.humanName}, removing and adding associations as necessary. Also notifies the appropriate model listeners and clears the mapping table finder cache.
 				 *
 				 * @param pk the primary key of the ${entity.humanName}
-				 * @param ${tempEntity.varNames} the ${tempEntity.humanNames} to be associated with the ${entity.humanName}
+				 * @param ${referenceEntity.varNames} the ${referenceEntity.humanNames} to be associated with the ${entity.humanName}
 				 */
 				@Override
-				public void set${tempEntity.names}(${entity.PKClassName} pk, List<${tempEntity.apiPackagePath}.model.${tempEntity.name}> ${tempEntity.varNames}) {
+				public void set${referenceEntity.names}(${entity.PKClassName} pk, List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> ${referenceEntity.varNames}) {
 					try {
-						${tempEntity.PKClassName}[] ${tempEntity.varName}PKs = new ${tempEntity.PKClassName}[${tempEntity.varNames}.size()];
+						${referenceEntity.PKClassName}[] ${referenceEntity.varName}PKs = new ${referenceEntity.PKClassName}[${referenceEntity.varNames}.size()];
 
-						for (int i = 0; i < ${tempEntity.varNames}.size(); i++) {
-							${tempEntity.apiPackagePath}.model.${tempEntity.name} ${tempEntity.varName} = ${tempEntity.varNames}.get(i);
+						for (int i = 0; i < ${referenceEntity.varNames}.size(); i++) {
+							${referenceEntity.apiPackagePath}.model.${referenceEntity.name} ${referenceEntity.varName} = ${referenceEntity.varNames}.get(i);
 
-							${tempEntity.varName}PKs[i] = ${tempEntity.varName}.getPrimaryKey();
+							${referenceEntity.varName}PKs[i] = ${referenceEntity.varName}.getPrimaryKey();
 						}
 
-						set${tempEntity.names}(pk, ${tempEntity.varName}PKs);
+						set${referenceEntity.names}(pk, ${referenceEntity.varName}PKs);
 					}
 					catch (Exception e) {
 						throw processException(e);
@@ -1718,14 +1718,14 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 		<#list entity.entityColumns as entityColumn>
 			<#if entityColumn.isCollection() && entityColumn.isMappingManyToMany()>
 				<#assign
-					tempEntity = serviceBuilder.getEntity(entityColumn.getEJBName())
+					referenceEntity = serviceBuilder.getEntity(entityColumn.getEJBName())
 
 					entityMapping = serviceBuilder.getEntityMapping(entityColumn.mappingTable)
 
 					companyEntity = serviceBuilder.getEntity(entityMapping.getEntity(0))
 				/>
 
-				${entity.varName}To${tempEntity.name}TableMapper = TableMapperFactory.getTableMapper("${entityColumn.mappingTable}", "${companyEntity.PKDBName}", "${entity.PKDBName}", "${tempEntity.PKDBName}", this, ${tempEntity.varName}Persistence);
+				${entity.varName}To${referenceEntity.name}TableMapper = TableMapperFactory.getTableMapper("${entityColumn.mappingTable}", "${companyEntity.PKDBName}", "${entity.PKDBName}", "${referenceEntity.PKDBName}", this, ${referenceEntity.varName}Persistence);
 			</#if>
 		</#list>
 	}
@@ -1778,11 +1778,11 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 
 	<#list entity.entityColumns as entityColumn>
 		<#if entityColumn.isCollection() && entityColumn.isMappingManyToMany()>
-			<#assign tempEntity = serviceBuilder.getEntity(entityColumn.getEJBName()) />
+			<#assign referenceEntity = serviceBuilder.getEntity(entityColumn.getEJBName()) />
 
-			@BeanReference(type = ${tempEntity.name}Persistence.class)
-			protected ${tempEntity.name}Persistence ${tempEntity.varName}Persistence;
-			protected TableMapper<${entity.name}, ${tempEntity.apiPackagePath}.model.${tempEntity.name}> ${entity.varName}To${tempEntity.name}TableMapper;
+			@BeanReference(type = ${referenceEntity.name}Persistence.class)
+			protected ${referenceEntity.name}Persistence ${referenceEntity.varName}Persistence;
+			protected TableMapper<${entity.name}, ${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> ${entity.varName}To${referenceEntity.name}TableMapper;
 		</#if>
 	</#list>
 

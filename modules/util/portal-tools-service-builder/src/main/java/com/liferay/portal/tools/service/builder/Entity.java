@@ -107,8 +107,8 @@ public class Entity implements Comparable<Entity> {
 		List<EntityColumn> pkList, List<EntityColumn> regularColList,
 		List<EntityColumn> blobEntityColumns, List<EntityColumn> collectionList,
 		List<EntityColumn> entityColumns, EntityOrder order,
-		List<EntityFinder> finderList, List<Entity> referenceList,
-		List<String> unresolvedReferenceList, List<String> txRequiredList,
+		List<EntityFinder> finderList, List<Entity> referenceEntities,
+		List<String> unresolvedReferenceEntityNames, List<String> txRequiredList,
 		boolean resourceActionModel) {
 
 		_packagePath = packagePath;
@@ -142,8 +142,8 @@ public class Entity implements Comparable<Entity> {
 		_entityColumns = entityColumns;
 		_entityOrder = order;
 		_entityFinders = finderList;
-		_referenceList = referenceList;
-		_unresolvedReferenceList = unresolvedReferenceList;
+		_referenceEntities = referenceEntities;
+		_unresolvedReferenceEntityNames = unresolvedReferenceEntityNames;
 		_txRequiredList = txRequiredList;
 		_resourceActionModel = resourceActionModel;
 
@@ -192,7 +192,7 @@ public class Entity implements Comparable<Entity> {
 	}
 
 	public void addReference(Entity reference) {
-		_referenceList.add(reference);
+		_referenceEntities.add(reference);
 	}
 
 	@Override
@@ -411,8 +411,8 @@ public class Entity implements Comparable<Entity> {
 		return _portletShortName;
 	}
 
-	public List<Entity> getReferenceList() {
-		return _referenceList;
+	public List<Entity> getReferenceEntities() {
+		return _referenceEntities;
 	}
 
 	public List<EntityColumn> getRegularColList() {
@@ -492,12 +492,12 @@ public class Entity implements Comparable<Entity> {
 		return finderList;
 	}
 
-	public List<String> getUnresolvedReferenceList() {
-		if (_unresolvedReferenceList == null) {
+	public List<String> getUnresolvedResolvedReferenceEntityNames() {
+		if (_unresolvedReferenceEntityNames == null) {
 			return new ArrayList<>();
 		}
 
-		return _unresolvedReferenceList;
+		return _unresolvedReferenceEntityNames;
 	}
 
 	public String getVarName() {
@@ -814,8 +814,8 @@ public class Entity implements Comparable<Entity> {
 	}
 
 	public boolean isResolved() {
-		if ((_unresolvedReferenceList != null) &&
-			_unresolvedReferenceList.isEmpty()) {
+		if ((_unresolvedReferenceEntityNames != null) &&
+			_unresolvedReferenceEntityNames.isEmpty()) {
 
 			return true;
 		}
@@ -929,7 +929,7 @@ public class Entity implements Comparable<Entity> {
 	public void setLocalizedEntity(Entity localizedEntity) {
 		_localizedEntity = localizedEntity;
 
-		_referenceList.add(localizedEntity);
+		_referenceEntities.add(localizedEntity);
 	}
 
 	public void setParentTransients(List<String> transients) {
@@ -941,7 +941,7 @@ public class Entity implements Comparable<Entity> {
 	}
 
 	public void setResolved() {
-		_unresolvedReferenceList = null;
+		_unresolvedReferenceEntityNames = null;
 	}
 
 	public void setTransients(List<String> transients) {
@@ -993,7 +993,7 @@ public class Entity implements Comparable<Entity> {
 	private boolean _portalReference;
 	private final String _portletName;
 	private final String _portletShortName;
-	private final List<Entity> _referenceList;
+	private final List<Entity> _referenceEntities;
 	private final List<EntityColumn> _regularColList;
 	private final boolean _remoteService;
 	private final boolean _resourceActionModel;
@@ -1003,7 +1003,7 @@ public class Entity implements Comparable<Entity> {
 	private final boolean _trashEnabled;
 	private final String _txManager;
 	private final List<String> _txRequiredList;
-	private List<String> _unresolvedReferenceList;
+	private List<String> _unresolvedReferenceEntityNames;
 	private final boolean _uuid;
 	private final boolean _uuidAccessor;
 

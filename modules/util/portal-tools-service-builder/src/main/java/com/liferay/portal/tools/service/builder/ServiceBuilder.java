@@ -2863,7 +2863,7 @@ public class ServiceBuilder {
 		Map<String, Object> context = _getContext();
 
 		context.put("entity", entity);
-		context.put("referenceList", _mergeReferenceList(entity));
+		context.put("referenceEntities", _mergeReferenceEntities(entity));
 
 		JavaClass modelImplJavaClass = _getJavaClass(
 			StringBundler.concat(
@@ -3107,7 +3107,7 @@ public class ServiceBuilder {
 
 		context.put("entity", entity);
 		context.put("methods", methods);
-		context.put("referenceList", _mergeReferenceList(entity));
+		context.put("referenceEntities", _mergeReferenceEntities(entity));
 		context.put("sessionTypeName", _getSessionTypeName(sessionType));
 
 		context = _putDeprecatedKeys(context, javaClass);
@@ -5078,8 +5078,8 @@ public class ServiceBuilder {
 		return javaMethods;
 	}
 
-	private List<Entity> _mergeReferenceList(Entity entity) {
-		List<Entity> referenceList = entity.getReferenceList();
+	private List<Entity> _mergeReferenceEntities(Entity entity) {
+		List<Entity> referenceEntities = entity.getReferenceEntities();
 
 		Set<Entity> set = new LinkedHashSet<>();
 
@@ -5090,7 +5090,7 @@ public class ServiceBuilder {
 			set.add(entity);
 		}
 
-		set.addAll(referenceList);
+		set.addAll(referenceEntities);
 
 		return new ArrayList<>(set);
 	}
@@ -5557,40 +5557,40 @@ public class ServiceBuilder {
 					finderDBIndex, finderColsList));
 		}
 
-		List<Entity> referenceList = new ArrayList<>();
-		List<String> unresolvedReferenceList = new ArrayList<>();
+		List<Entity> referenceEntities = new ArrayList<>();
+		List<String> unresolvedReferenceEntityNames = new ArrayList<>();
 
 		if (_build) {
+			Set<String> referenceEntityNames = new TreeSet<>();
+
 			List<Element> referenceElements = entityElement.elements(
 				"reference");
 
-			Set<String> referenceSet = new TreeSet<>();
-
 			for (Element referenceElement : referenceElements) {
-				String referencePackage = referenceElement.attributeValue(
+				String referencePackagePath = referenceElement.attributeValue(
 					"package-path");
-				String referenceEntity = referenceElement.attributeValue(
+				String referenceEntityName = referenceElement.attributeValue(
 					"entity");
 
-				referenceSet.add(referencePackage + "." + referenceEntity);
+				referenceEntityNames.add(referencePackagePath + "." + referenceEntityName);
 			}
 
 			if (!_packagePath.equals("com.liferay.counter")) {
-				referenceSet.add("com.liferay.counter.Counter");
+				referenceEntityNames.add("com.liferay.counter.Counter");
 			}
 
 			if (_autoImportDefaultReferences) {
-				referenceSet.add("com.liferay.portal.ClassName");
-				referenceSet.add("com.liferay.portal.Resource");
-				referenceSet.add("com.liferay.portal.User");
+				referenceEntityNames.add("com.liferay.portal.ClassName");
+				referenceEntityNames.add("com.liferay.portal.Resource");
+				referenceEntityNames.add("com.liferay.portal.User");
 			}
 
-			for (String referenceName : referenceSet) {
+			for (String referenceEntityName : referenceEntityNames) {
 				try {
-					referenceList.add(getEntity(referenceName));
+					referenceEntities.add(getEntity(referenceEntityName));
 				}
 				catch (RuntimeException re) {
-					unresolvedReferenceList.add(referenceName);
+					unresolvedReferenceEntityNames.add(referenceEntityName);
 				}
 			}
 		}
@@ -5623,7 +5623,7 @@ public class ServiceBuilder {
 			sessionFactory, txManager, cacheEnabled, dynamicUpdateEnabled,
 			jsonEnabled, mvccEnabled, trashEnabled, deprecated, pkList,
 			regularColList, blobEntityColumns, collectionList, entityColumns, order,
-			finderList, referenceList, unresolvedReferenceList, txRequiredList,
+			finderList, referenceEntities, unresolvedReferenceEntityNames, txRequiredList,
 			resourceActionModel);
 
 		_entities.add(entity);
@@ -6212,13 +6212,13 @@ public class ServiceBuilder {
 			return;
 		}
 
-		for (String referenceName : entity.getUnresolvedReferenceList()) {
-			Entity referenceEntity = getEntity(referenceName);
+		for (String referenceEntityNames : entity.getUnresolvedResolvedReferenceEntityNames()) {
+			Entity referenceEntity = getEntity(referenceEntityNames);
 
 			if (referenceEntity == null) {
 				throw new ServiceBuilderException(
 					StringBundler.concat(
-						"Unable to resolve reference ", referenceName, " in ",
+						"Unable to resolve reference ", referenceEntityNames, " in ",
 						ListUtil.toString(_entities, Entity.NAME_ACCESSOR)));
 			}
 
