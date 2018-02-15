@@ -779,7 +779,7 @@ public class ServiceBuilder {
 						_removeActionableDynamicQuery(entity);
 						_removeExportActionableDynamicQuery(entity);
 
-						if (entity.hasColumns()) {
+						if (entity.hasEntityColumns()) {
 							_createHbm(entity);
 							_createHbmUtil(entity);
 
@@ -853,7 +853,7 @@ public class ServiceBuilder {
 
 							_removeServiceJson(entity);
 
-							if (entity.hasColumns()) {
+							if (entity.hasEntityColumns()) {
 								_removeServiceJsonSerializer(entity);
 							}
 
@@ -888,7 +888,7 @@ public class ServiceBuilder {
 						}
 					}
 					else {
-						if (entity.hasColumns()) {
+						if (entity.hasEntityColumns()) {
 							entity.setTransients(_getTransients(entity, false));
 							entity.setParentTransients(
 								_getTransients(entity, true));
@@ -2122,7 +2122,7 @@ public class ServiceBuilder {
 				continue;
 			}
 
-			if (entity.hasColumns()) {
+			if (entity.hasEntityColumns()) {
 				exceptions.add(getNoSuchEntityException(entity));
 			}
 		}
@@ -2500,7 +2500,7 @@ public class ServiceBuilder {
 		boolean hasDeprecated = false;
 
 		for (Entity entity : _entities) {
-			if (entity.hasColumns()) {
+			if (entity.hasEntityColumns()) {
 				if (entity.isDeprecated()) {
 					hasDeprecated = true;
 				}
@@ -4818,8 +4818,8 @@ public class ServiceBuilder {
 						property.indexOf("is") + 2, property.length() - 1);
 				}
 
-				if (!entity.hasColumn(property) &&
-					!entity.hasColumn(Introspector.decapitalize(property))) {
+				if (!entity.hasEntityColumn(property) &&
+					!entity.hasEntityColumn(Introspector.decapitalize(property))) {
 
 					property = Introspector.decapitalize(property);
 
@@ -4841,8 +4841,8 @@ public class ServiceBuilder {
 				property = property.substring(
 					property.indexOf("set") + 3, property.length() - 1);
 
-				if (!entity.hasColumn(property) &&
-					!entity.hasColumn(Introspector.decapitalize(property))) {
+				if (!entity.hasEntityColumn(property) &&
+					!entity.hasEntityColumn(Introspector.decapitalize(property))) {
 
 					property = Introspector.decapitalize(property);
 
@@ -5696,7 +5696,7 @@ public class ServiceBuilder {
 		newLocalizedColumnElement.addAttribute("primary", "true");
 		newLocalizedColumnElement.addAttribute("type", "long");
 
-		if (entity.hasColumn("companyId")) {
+		if (entity.hasEntityColumn("companyId")) {
 			newLocalizedColumnElement = newLocalizedEntityElement.addElement(
 				"column");
 
@@ -6220,7 +6220,7 @@ public class ServiceBuilder {
 						ListUtil.toString(_entities, Entity.NAME_ACCESSOR)));
 			}
 
-			entity.addReference(referenceEntity);
+			entity.addReferenceEntity(referenceEntity);
 		}
 
 		entity.setResolved();

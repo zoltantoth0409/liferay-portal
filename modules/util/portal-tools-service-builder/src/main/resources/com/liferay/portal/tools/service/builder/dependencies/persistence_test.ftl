@@ -1,7 +1,7 @@
 <#assign parentPKColumn = "" />
 
 <#if entity.isHierarchicalTree()>
-	<#if entity.hasColumn("groupId")>
+	<#if entity.hasEntityColumn("groupId")>
 		<#assign scopeEntityColumn = entity.getEntityColumn("groupId") />
 	<#else>
 		<#assign scopeEntityColumn = entity.getEntityColumn("companyId") />

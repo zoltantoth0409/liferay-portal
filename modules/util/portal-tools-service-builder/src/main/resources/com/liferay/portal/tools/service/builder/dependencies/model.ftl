@@ -504,7 +504,7 @@ public interface ${entity.name}Model extends
 	</#if>
 
 	<#if entity.isContainerModel()>
-		<#if !entity.hasColumn("containerModelId")>
+		<#if !entity.hasEntityColumn("containerModelId")>
 			/**
 			 * Returns the container model ID of this ${entity.humanName}.
 			 *
@@ -530,7 +530,7 @@ public interface ${entity.name}Model extends
 		@Override
 		public String getContainerModelName();
 
-		<#if !entity.hasColumn("parentContainerModelId")>
+		<#if !entity.hasEntityColumn("parentContainerModelId")>
 			/**
 			 * Returns the parent container model ID of this ${entity.humanName}.
 			 *
