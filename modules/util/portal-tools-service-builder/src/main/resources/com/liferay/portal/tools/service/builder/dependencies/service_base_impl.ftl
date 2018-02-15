@@ -66,9 +66,9 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 
 	import ${apiPackagePath}.model.${entity.name};
 
-	<#list entity.blobList as column>
-		<#if column.lazy>
-			import ${apiPackagePath}.model.${entity.name}${column.methodName}BlobModel;
+	<#list entity.blobEntityColumns as blobEntityColumn>
+		<#if blobEntityColumn.lazy>
+			import ${apiPackagePath}.model.${entity.name}${blobEntityColumn.methodName}BlobModel;
 		</#if>
 	</#list>
 
@@ -744,16 +744,16 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 			return ${entity.varName}Persistence.update(${entity.varName});
 		}
 
-		<#list entity.blobList as column>
-			<#if column.lazy>
+		<#list entity.blobEntityColumns as blobEntityColumn>
+			<#if blobEntityColumn.lazy>
 				@Override
-				public ${entity.name}${column.methodName}BlobModel get${column.methodName}BlobModel(Serializable primaryKey) {
+				public ${entity.name}${blobEntityColumn.methodName}BlobModel get${blobEntityColumn.methodName}BlobModel(Serializable primaryKey) {
 					Session session = null;
 
 					try {
 						session = ${entity.varName}Persistence.openSession();
 
-						return (${apiPackagePath}.model.${entity.name}${column.methodName}BlobModel)session.get(${entity.name}${column.methodName}BlobModel.class, primaryKey);
+						return (${apiPackagePath}.model.${entity.name}${blobEntityColumn.methodName}BlobModel)session.get(${entity.name}${blobEntityColumn.methodName}BlobModel.class, primaryKey);
 					}
 					catch (Exception e) {
 						throw ${entity.varName}Persistence.processException(e);

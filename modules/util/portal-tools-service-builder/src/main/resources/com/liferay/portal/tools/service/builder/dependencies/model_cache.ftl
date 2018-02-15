@@ -102,7 +102,7 @@ public class ${entity.name}CacheModel implements CacheModel<${entity.name}>, Ext
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(${(entity.regularColList?size - entity.blobList?size) * 2 + 1});
+		StringBundler sb = new StringBundler(${(entity.regularColList?size - entity.blobEntityColumns?size) * 2 + 1});
 
 		<#list entity.regularColList as column>
 			<#if !stringUtil.equals(column.type, "Blob")>
