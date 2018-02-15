@@ -253,7 +253,8 @@ public class Entity implements Comparable<Entity> {
 	}
 
 	public List<EntityFinder> getCollectionFinderList() {
-		List<EntityFinder> entityFinders = new ArrayList<>(_entityFinders.size());
+		List<EntityFinder> entityFinders = new ArrayList<>(
+			_entityFinders.size());
 
 		for (EntityFinder entityFinder : _entityFinders) {
 			if (entityFinder.isCollection() &&
@@ -288,12 +289,12 @@ public class Entity implements Comparable<Entity> {
 		return null;
 	}
 
-	public List<EntityColumn> getEntityColumns() {
-		return _entityColumns;
-	}
-
 	public String getDataSource() {
 		return _dataSource;
+	}
+
+	public List<EntityColumn> getEntityColumns() {
+		return _entityColumns;
 	}
 
 	public EntityColumn getFilterPKColumn() {
@@ -969,14 +970,15 @@ public class Entity implements Comparable<Entity> {
 	private List<EntityColumn> _blobEntityColumns;
 	private final boolean _cacheEnabled;
 	private final List<EntityColumn> _collectionList;
-	private final List<EntityColumn> _entityColumns;
 	private final boolean _containerModel;
 	private final String _dataSource;
 	private final boolean _deprecated;
 	private final boolean _dynamicUpdateEnabled;
+	private final List<EntityColumn> _entityColumns;
+	private final List<EntityFinder> _entityFinders;
+	private final EntityOrder _entityOrder;
 	private final String _finderClass;
 	private final List<EntityColumn> _finderColumnsList;
-	private final List<EntityFinder> _entityFinders;
 	private final String _humanName;
 	private final boolean _jsonEnabled;
 	private List<EntityColumn> _localizedColumns;
@@ -984,7 +986,6 @@ public class Entity implements Comparable<Entity> {
 	private final boolean _localService;
 	private final boolean _mvccEnabled;
 	private final String _name;
-	private final EntityOrder _entityOrder;
 	private final String _packagePath;
 	private List<String> _parentTransients;
 	private final String _persistenceClass;

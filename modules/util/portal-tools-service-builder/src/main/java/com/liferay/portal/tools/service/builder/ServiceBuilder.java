@@ -3533,9 +3533,7 @@ public class ServiceBuilder {
 
 		StringBundler sb = new StringBundler();
 
-		for (List<IndexMetadata> indexMetadatas :
-				indexMetadatasMap.values()) {
-
+		for (List<IndexMetadata> indexMetadatas : indexMetadatasMap.values()) {
 			Collections.sort(indexMetadatas);
 
 			for (IndexMetadata indexMetadata : indexMetadatas) {
