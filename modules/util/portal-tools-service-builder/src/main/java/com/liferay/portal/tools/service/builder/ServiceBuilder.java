@@ -685,12 +685,12 @@ public class ServiceBuilder {
 
 			_uadDirName = _apiDirName.replace("-api/", "-uad/");
 
-			_uadUnitTestDirName = _uadDirName.replace("/main/", "/test/");
+			_uadTestUnitDirName = _uadDirName.replace("/main/", "/test/");
 
 			_uadOutputPath =
 				_uadDirName + "/" + StringUtil.replace(packagePath, '.', '/');
-			_uadUnitTestOutputPath =
-				_uadUnitTestDirName + "/" +
+			_uadTestUnitOutputPath =
+				_uadTestUnitDirName + "/" +
 					StringUtil.replace(packagePath, '.', '/');
 
 			_autoImportDefaultReferences = GetterUtil.getBoolean(
@@ -728,7 +728,7 @@ public class ServiceBuilder {
 				_serviceOutputPath += "/" + _portletPackageName;
 				_testOutputPath += "/" + _portletPackageName;
 				_uadOutputPath += "/" + _portletPackageName;
-				_uadUnitTestOutputPath += "/" + _portletPackageName;
+				_uadTestUnitOutputPath += "/" + _portletPackageName;
 			}
 			else {
 				_portletShortName = namespaceElement.getText();
@@ -3906,7 +3906,7 @@ public class ServiceBuilder {
 
 		File file = new File(
 			StringBundler.concat(
-				_uadUnitTestOutputPath, "/uad/entity/", entity.getName(),
+				_uadTestUnitOutputPath, "/uad/entity/", entity.getName(),
 				"UADEntityTest.java"));
 
 		ToolsUtil.writeFile(
@@ -6215,7 +6215,7 @@ public class ServiceBuilder {
 	private void _removeUADEntityTest(Entity entity) {
 		_deleteFile(
 			StringBundler.concat(
-				_uadUnitTestOutputPath, "/uad/entity/", entity.getName(),
+				_uadTestUnitOutputPath, "/uad/entity/", entity.getName(),
 				"UADEntityTest.java"));
 	}
 
@@ -6355,7 +6355,7 @@ public class ServiceBuilder {
 	private String _tplUADEntityTest = _TPL_ROOT + "uad_entity_test.ftl";
 	private String _uadDirName;
 	private String _uadOutputPath;
-	private String _uadUnitTestDirName;
-	private String _uadUnitTestOutputPath;
+	private String _uadTestUnitDirName;
+	private String _uadTestUnitOutputPath;
 
 }
