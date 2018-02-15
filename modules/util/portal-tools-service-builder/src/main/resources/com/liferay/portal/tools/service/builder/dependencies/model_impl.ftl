@@ -20,9 +20,9 @@ import ${apiPackagePath}.model.${entity.name};
 import ${apiPackagePath}.model.${entity.name}Model;
 import ${apiPackagePath}.model.${entity.name}Soap;
 
-<#list entity.blobEntityColumns as blobEntityColumn>
-	<#if blobEntityColumn.lazy>
-		import ${apiPackagePath}.model.${entity.name}${blobEntityColumn.methodName}BlobModel;
+<#list entity.blobEntityColumns as entityColumn>
+	<#if entityColumn.lazy>
+		import ${apiPackagePath}.model.${entity.name}${entityColumn.methodName}BlobModel;
 	</#if>
 </#list>
 
@@ -114,12 +114,12 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 
 	<#compress>
 		public static final Object[][] TABLE_COLUMNS = {
-			<#list entity.getRegularColList() as column>
-				<#assign sqlType = serviceBuilder.getSqlType(entity.getName(), column.getName(), column.getType()) />
+			<#list entity.regularEntityColumns as entityColumn>
+				<#assign sqlType = serviceBuilder.getSqlType(entity.getName(), entityColumn.getName(), entityColumn.getType()) />
 
-				{"${column.DBName}", Types.${sqlType}}
+				{"${entityColumn.DBName}", Types.${sqlType}}
 
-				<#if column_has_next>
+				<#if entityColumn_has_next>
 					,
 				</#if>
 			</#list>
@@ -128,10 +128,10 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 		public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
 
 		static {
-			<#list entity.getRegularColList() as column>
-				<#assign sqlType = serviceBuilder.getSqlType(entity.getName(), column.getName(), column.getType()) />
+			<#list entity.regularEntityColumns as entityColumn>
+				<#assign sqlType = serviceBuilder.getSqlType(entity.getName(), entityColumn.getName(), entityColumn.getType()) />
 
-				TABLE_COLUMNS_MAP.put("${column.DBName}", Types.${sqlType});
+				TABLE_COLUMNS_MAP.put("${entityColumn.DBName}", Types.${sqlType});
 			</#list>
 		}
 	</#compress>
@@ -232,12 +232,12 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 		</#if>
 
 		<#if columnBitmaskEnabled>
-			public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(${propsUtil}.get("value.object.column.bitmask.enabled.${apiPackagePath}.model.${entity.name}"), true);
+			public static final boolean COLUMN_BITMASK_ENABLED = GetterUtil.getBoolean(${propsUtil}.get("value.object.entityColumn.bitmask.enabled.${apiPackagePath}.model.${entity.name}"), true);
 
 			<#assign columnBitmask = 1 />
 
-			<#list entity.finderColumnsList as column>
-				public static final long ${column.name?upper_case}_COLUMN_BITMASK = ${columnBitmask}L;
+			<#list entity.finderColumnsList as entityColumn>
+				public static final long ${entityColumn.name?upper_case}_COLUMN_BITMASK = ${columnBitmask}L;
 
 				<#assign columnBitmask = columnBitmask * 2 />
 			</#list>
@@ -266,8 +266,8 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 
 			${entity.name} model = new ${entity.name}Impl();
 
-			<#list entity.regularColList as column>
-				model.set${column.methodName}(soapModel.get${column.methodName}());
+			<#list entity.regularEntityColumns as entityColumn>
+				model.set${entityColumn.methodName}(soapModel.get${entityColumn.methodName}());
 			</#list>
 
 			return model;
@@ -334,10 +334,10 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 		<#if entity.hasCompoundPK()>
 			return new ${entity.PKClassName}(
 
-			<#list entity.PKList as column>
-				_${column.name}
+			<#list entity.PKList as entityColumn>
+				_${entityColumn.name}
 
-				<#if column_has_next>
+				<#if entityColumn_has_next>
 					,
 				</#if>
 			</#list>
@@ -351,8 +351,8 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 	@Override
 	public void setPrimaryKey(${entity.PKClassName} primaryKey) {
 		<#if entity.hasCompoundPK()>
-			<#list entity.PKList as column>
-				set${column.methodName}(primaryKey.${column.name});
+			<#list entity.PKList as entityColumn>
+				set${entityColumn.methodName}(primaryKey.${entityColumn.name});
 			</#list>
 		<#else>
 			set${entity.PKList[0].methodName}(primaryKey);
@@ -364,10 +364,10 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 		<#if entity.hasCompoundPK()>
 			return new ${entity.PKClassName}(
 
-			<#list entity.PKList as column>
-				_${column.name}
+			<#list entity.PKList as entityColumn>
+				_${entityColumn.name}
 
-				<#if column_has_next>
+				<#if entityColumn_has_next>
 					,
 				</#if>
 			</#list>
@@ -411,8 +411,8 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		<#list entity.regularColList as column>
-			attributes.put("${column.name}", get${column.methodName}());
+		<#list entity.regularEntityColumns as entityColumn>
+			attributes.put("${entityColumn.name}", get${entityColumn.methodName}());
 		</#list>
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
@@ -423,25 +423,25 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		<#list entity.regularColList as column>
-			<#if column.isPrimitiveType()>
-				${serviceBuilder.getPrimitiveObj(column.type)}
+		<#list entity.regularEntityColumns as entityColumn>
+			<#if entityColumn.isPrimitiveType()>
+				${serviceBuilder.getPrimitiveObj(entityColumn.type)}
 			<#else>
-				${column.genericizedType}
+				${entityColumn.genericizedType}
 			</#if>
 
-			${column.name} =
+			${entityColumn.name} =
 
-			<#if column.isPrimitiveType()>
-				(${serviceBuilder.getPrimitiveObj(column.type)})
+			<#if entityColumn.isPrimitiveType()>
+				(${serviceBuilder.getPrimitiveObj(entityColumn.type)})
 			<#else>
-				(${column.genericizedType})
+				(${entityColumn.genericizedType})
 			</#if>
 
-			attributes.get("${column.name}");
+			attributes.get("${entityColumn.name}");
 
-			if (${column.name} != null) {
-				set${column.methodName}(${column.name});
+			if (${entityColumn.name} != null) {
+				set${entityColumn.methodName}(${entityColumn.name});
 			}
 		</#list>
 	}
@@ -464,67 +464,67 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 			return availableLanguageIds;
 		}
 
-		<#list entity.localizedColumns as column>
+		<#list entity.localizedColumns as entityColumn>
 			@Override
-			public String get${column.methodName}() {
-				return get${column.methodName}(getDefaultLanguageId(), false);
+			public String get${entityColumn.methodName}() {
+				return get${entityColumn.methodName}(getDefaultLanguageId(), false);
 			}
 
 			@Override
-			public String get${column.methodName}(String languageId) {
-				return get${column.methodName}(languageId, true);
+			public String get${entityColumn.methodName}(String languageId) {
+				return get${entityColumn.methodName}(languageId, true);
 			}
 
 			@Override
-			public String get${column.methodName}(String languageId, boolean useDefault) {
+			public String get${entityColumn.methodName}(String languageId, boolean useDefault) {
 				if (useDefault) {
 					return LocalizationUtil.getLocalization(
 						new Function<String, String> () {
 
 							@Override
 							public String apply(String languageId) {
-								return _get${column.methodName}(languageId);
+								return _get${entityColumn.methodName}(languageId);
 							}
 
 						},
 						languageId, getDefaultLanguageId());
 				}
 
-				return _get${column.methodName}(languageId);
+				return _get${entityColumn.methodName}(languageId);
 			}
 
 			@Override
-			public String get${column.methodName}MapAsXML() {
-				return LocalizationUtil.getXml(getLanguageIdTo${column.methodName}Map(), getDefaultLanguageId(), "${column.methodName}");
+			public String get${entityColumn.methodName}MapAsXML() {
+				return LocalizationUtil.getXml(getLanguageIdTo${entityColumn.methodName}Map(), getDefaultLanguageId(), "${entityColumn.methodName}");
 			}
 
 			@Override
-			public Map<String, String> getLanguageIdTo${column.methodName}Map() {
-				Map<String, String> languageIdTo${column.methodName}Map = new HashMap<String, String>();
+			public Map<String, String> getLanguageIdTo${entityColumn.methodName}Map() {
+				Map<String, String> languageIdTo${entityColumn.methodName}Map = new HashMap<String, String>();
 
 				List<${localizedEntity.name}> ${localizedEntity.varNames} = ${entity.name}LocalServiceUtil.get${localizedEntity.names}(getPrimaryKey());
 
 				for (${localizedEntity.name} ${localizedEntity.varName} : ${localizedEntity.varNames}) {
-					languageIdTo${column.methodName}Map.put(${localizedEntity.varName}.getLanguageId(), ${localizedEntity.varName}.get${column.methodName}());
+					languageIdTo${entityColumn.methodName}Map.put(${localizedEntity.varName}.getLanguageId(), ${localizedEntity.varName}.get${entityColumn.methodName}());
 				}
 
-				return languageIdTo${column.methodName}Map;
+				return languageIdTo${entityColumn.methodName}Map;
 			}
 
-			private String _get${column.methodName}(String languageId) {
+			private String _get${entityColumn.methodName}(String languageId) {
 				${localizedEntity.name} ${localizedEntity.varName} = ${entity.name}LocalServiceUtil.fetch${localizedEntity.name}(getPrimaryKey(), languageId);
 
 				if (${localizedEntity.varName} == null) {
 					return "";
 				}
 
-				return ${localizedEntity.varName}.get${column.methodName}();
+				return ${localizedEntity.varName}.get${entityColumn.methodName}();
 			}
 		</#list>
 	</#if>
 
-	<#list entity.regularColList as column>
-		<#if stringUtil.equals(column.name, "classNameId") && !hasClassNameCacheField>
+	<#list entity.regularEntityColumns as entityColumn>
+		<#if stringUtil.equals(entityColumn.name, "classNameId") && !hasClassNameCacheField>
 			@Override
 			public String getClassName() {
 				if (getClassNameId() <= 0) {
@@ -546,26 +546,26 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 			}
 		</#if>
 
-		<#if column.jsonEnabled>
+		<#if entityColumn.jsonEnabled>
 			@JSON
 		<#elseif entity.jsonEnabled>
 			@JSON(include = false)
 		</#if>
 
 		@Override
-		public ${column.genericizedType} get${column.methodName}() {
-			<#if stringUtil.equals(column.type, "String") && column.isConvertNull()>
-				if (_${column.name} == null) {
+		public ${entityColumn.genericizedType} get${entityColumn.methodName}() {
+			<#if stringUtil.equals(entityColumn.type, "String") && entityColumn.isConvertNull()>
+				if (_${entityColumn.name} == null) {
 					return "";
 				}
 				else {
-					return _${column.name};
+					return _${entityColumn.name};
 				}
 			<#else>
-				<#if stringUtil.equals(column.type, "Blob") && column.lazy>
-					if (_${column.name}BlobModel == null) {
+				<#if stringUtil.equals(entityColumn.type, "Blob") && entityColumn.lazy>
+					if (_${entityColumn.name}BlobModel == null) {
 						try {
-							_${column.name}BlobModel = ${entity.name}LocalServiceUtil.get${column.methodName}BlobModel(getPrimaryKey());
+							_${entityColumn.name}BlobModel = ${entity.name}LocalServiceUtil.get${entityColumn.methodName}BlobModel(getPrimaryKey());
 						}
 						catch (Exception e) {
 						}
@@ -573,82 +573,82 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 
 					Blob blob = null;
 
-					if (_${column.name}BlobModel != null) {
-						blob = _${column.name}BlobModel.get${column.methodName}Blob();
+					if (_${entityColumn.name}BlobModel != null) {
+						blob = _${entityColumn.name}BlobModel.get${entityColumn.methodName}Blob();
 					}
 
 					return blob;
 				<#else>
-					return _${column.name};
+					return _${entityColumn.name};
 				</#if>
 			</#if>
 		}
 
-		<#if column.localized>
+		<#if entityColumn.localized>
 			@Override
-			public String get${column.methodName}(Locale locale) {
+			public String get${entityColumn.methodName}(Locale locale) {
 				String languageId = LocaleUtil.toLanguageId(locale);
 
-				return get${column.methodName}(languageId);
+				return get${entityColumn.methodName}(languageId);
 			}
 
 			@Override
-			public String get${column.methodName}(Locale locale, boolean useDefault) {
+			public String get${entityColumn.methodName}(Locale locale, boolean useDefault) {
 				String languageId = LocaleUtil.toLanguageId(locale);
 
-				return get${column.methodName}(languageId, useDefault);
+				return get${entityColumn.methodName}(languageId, useDefault);
 			}
 
 			@Override
-			public String get${column.methodName}(String languageId) {
-				return LocalizationUtil.getLocalization(get${column.methodName}(), languageId);
+			public String get${entityColumn.methodName}(String languageId) {
+				return LocalizationUtil.getLocalization(get${entityColumn.methodName}(), languageId);
 			}
 
 			@Override
-			public String get${column.methodName}(String languageId, boolean useDefault) {
-				return LocalizationUtil.getLocalization(get${column.methodName}(), languageId, useDefault);
+			public String get${entityColumn.methodName}(String languageId, boolean useDefault) {
+				return LocalizationUtil.getLocalization(get${entityColumn.methodName}(), languageId, useDefault);
 			}
 
 			@Override
-			public String get${column.methodName}CurrentLanguageId() {
-				return _${column.name}CurrentLanguageId;
+			public String get${entityColumn.methodName}CurrentLanguageId() {
+				return _${entityColumn.name}CurrentLanguageId;
 			}
 
 			@JSON
 			@Override
-			public String get${column.methodName}CurrentValue() {
-				Locale locale = getLocale(_${column.name}CurrentLanguageId);
+			public String get${entityColumn.methodName}CurrentValue() {
+				Locale locale = getLocale(_${entityColumn.name}CurrentLanguageId);
 
-				return get${column.methodName}(locale);
+				return get${entityColumn.methodName}(locale);
 			}
 
 			@Override
-			public Map<Locale, String> get${column.methodName}Map() {
-				return LocalizationUtil.getLocalizationMap(get${column.methodName}());
+			public Map<Locale, String> get${entityColumn.methodName}Map() {
+				return LocalizationUtil.getLocalizationMap(get${entityColumn.methodName}());
 			}
 		</#if>
 
-		<#if column.type== "boolean">
-			<#if column.jsonEnabled>
+		<#if entityColumn.type== "boolean">
+			<#if entityColumn.jsonEnabled>
 				@JSON
 			</#if>
 
 			@Override
-			public ${column.type} is${column.methodName}() {
-				return _${column.name};
+			public ${entityColumn.type} is${entityColumn.methodName}() {
+				return _${entityColumn.name};
 			}
 		</#if>
 
-		<#if entity.hasEntityColumn("createDate", "Date") && entity.hasEntityColumn("modifiedDate", "Date") && stringUtil.equals(column.name, "modifiedDate")>
+		<#if entity.hasEntityColumn("createDate", "Date") && entity.hasEntityColumn("modifiedDate", "Date") && stringUtil.equals(entityColumn.name, "modifiedDate")>
 			public boolean hasSetModifiedDate() {
 				return _setModifiedDate;
 			}
 		</#if>
 
 		@Override
-		public void set${column.methodName}(${column.genericizedType} ${column.name}) {
-			<#if stringUtil.equals(column.name, "uuid")>
-				<#if column.isFinderPath()>
+		public void set${entityColumn.methodName}(${entityColumn.genericizedType} ${entityColumn.name}) {
+			<#if stringUtil.equals(entityColumn.name, "uuid")>
+				<#if entityColumn.isFinderPath()>
 					if (_originalUuid == null) {
 						_originalUuid = _uuid;
 					}
@@ -656,102 +656,102 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 
 				_uuid = uuid;
 			<#else>
-				<#if entity.hasEntityColumn("createDate", "Date") && entity.hasEntityColumn("modifiedDate", "Date") && stringUtil.equals(column.name, "modifiedDate")>
+				<#if entity.hasEntityColumn("createDate", "Date") && entity.hasEntityColumn("modifiedDate", "Date") && stringUtil.equals(entityColumn.name, "modifiedDate")>
 					_setModifiedDate = true;
 				</#if>
 
-				<#if column.isOrderColumn() && columnBitmaskEnabled>
+				<#if entityColumn.isOrderColumn() && columnBitmaskEnabled>
 					_columnBitmask = -1L;
 				</#if>
 
-				<#if column.isFinderPath() || (validator.isNotNull(parentPKColumn) && (parentPKColumn.name == column.name))>
-					<#if !column.isOrderColumn() && columnBitmaskEnabled>
-						_columnBitmask |= ${column.name?upper_case}_COLUMN_BITMASK;
+				<#if entityColumn.isFinderPath() || (validator.isNotNull(parentPKColumn) && (parentPKColumn.name == entityColumn.name))>
+					<#if !entityColumn.isOrderColumn() && columnBitmaskEnabled>
+						_columnBitmask |= ${entityColumn.name?upper_case}_COLUMN_BITMASK;
 					</#if>
 
-					<#if column.isPrimitiveType()>
-						if (!_setOriginal${column.methodName}) {
-							_setOriginal${column.methodName} = true;
+					<#if entityColumn.isPrimitiveType()>
+						if (!_setOriginal${entityColumn.methodName}) {
+							_setOriginal${entityColumn.methodName} = true;
 					<#else>
-						if (_original${column.methodName} == null) {
+						if (_original${entityColumn.methodName} == null) {
 					</#if>
 
-						_original${column.methodName} = _${column.name};
+						_original${entityColumn.methodName} = _${entityColumn.name};
 					}
 				</#if>
 
-				<#if stringUtil.equals(column.type, "Blob") && column.lazy>
-					if (_${column.name}BlobModel == null) {
-						_${column.name}BlobModel = new ${entity.name}${column.methodName}BlobModel(getPrimaryKey(), ${column.name});
+				<#if stringUtil.equals(entityColumn.type, "Blob") && entityColumn.lazy>
+					if (_${entityColumn.name}BlobModel == null) {
+						_${entityColumn.name}BlobModel = new ${entity.name}${entityColumn.methodName}BlobModel(getPrimaryKey(), ${entityColumn.name});
 					}
 					else {
-						_${column.name}BlobModel.set${column.methodName}Blob(${column.name});
+						_${entityColumn.name}BlobModel.set${entityColumn.methodName}Blob(${entityColumn.name});
 					}
 				<#else>
-					_${column.name} = ${column.name};
+					_${entityColumn.name} = ${entityColumn.name};
 				</#if>
 			</#if>
 		}
 
-		<#if column.localized>
+		<#if entityColumn.localized>
 			@Override
-			public void set${column.methodName}(String ${column.name}, Locale locale) {
+			public void set${entityColumn.methodName}(String ${entityColumn.name}, Locale locale) {
 				<#if entity.isGroupedModel()>
-					set${column.methodName}(${column.name}, locale, LocaleUtil.getSiteDefault());
+					set${entityColumn.methodName}(${entityColumn.name}, locale, LocaleUtil.getSiteDefault());
 				<#else>
-					set${column.methodName}(${column.name}, locale, LocaleUtil.getDefault());
+					set${entityColumn.methodName}(${entityColumn.name}, locale, LocaleUtil.getDefault());
 				</#if>
 			}
 
 			@Override
-			public void set${column.methodName}(String ${column.name}, Locale locale, Locale defaultLocale) {
+			public void set${entityColumn.methodName}(String ${entityColumn.name}, Locale locale, Locale defaultLocale) {
 				String languageId = LocaleUtil.toLanguageId(locale);
 				String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
 
-				if (Validator.isNotNull(${column.name})) {
-					set${column.methodName}(LocalizationUtil.updateLocalization(get${column.methodName}(), "${column.methodName}", ${column.name}, languageId, defaultLanguageId));
+				if (Validator.isNotNull(${entityColumn.name})) {
+					set${entityColumn.methodName}(LocalizationUtil.updateLocalization(get${entityColumn.methodName}(), "${entityColumn.methodName}", ${entityColumn.name}, languageId, defaultLanguageId));
 				}
 				else {
-					set${column.methodName}(LocalizationUtil.removeLocalization(get${column.methodName}(), "${column.methodName}", languageId));
+					set${entityColumn.methodName}(LocalizationUtil.removeLocalization(get${entityColumn.methodName}(), "${entityColumn.methodName}", languageId));
 				}
 			}
 
 			@Override
-			public void set${column.methodName}CurrentLanguageId(String languageId) {
-				_${column.name}CurrentLanguageId = languageId;
+			public void set${entityColumn.methodName}CurrentLanguageId(String languageId) {
+				_${entityColumn.name}CurrentLanguageId = languageId;
 			}
 
 			@Override
-			public void set${column.methodName}Map(Map<Locale, String> ${column.name}Map) {
+			public void set${entityColumn.methodName}Map(Map<Locale, String> ${entityColumn.name}Map) {
 				<#if entity.isGroupedModel()>
-					set${column.methodName}Map(${column.name}Map, LocaleUtil.getSiteDefault());
+					set${entityColumn.methodName}Map(${entityColumn.name}Map, LocaleUtil.getSiteDefault());
 				<#else>
-					set${column.methodName}Map(${column.name}Map, LocaleUtil.getDefault());
+					set${entityColumn.methodName}Map(${entityColumn.name}Map, LocaleUtil.getDefault());
 				</#if>
 			}
 
 			@Override
-			public void set${column.methodName}Map(Map<Locale, String> ${column.name}Map, Locale defaultLocale) {
-				if (${column.name}Map == null) {
+			public void set${entityColumn.methodName}Map(Map<Locale, String> ${entityColumn.name}Map, Locale defaultLocale) {
+				if (${entityColumn.name}Map == null) {
 					return;
 				}
 
-				set${column.methodName}(LocalizationUtil.updateLocalization(${column.name}Map, get${column.methodName}(), "${column.methodName}", LocaleUtil.toLanguageId(defaultLocale)));
+				set${entityColumn.methodName}(LocalizationUtil.updateLocalization(${entityColumn.name}Map, get${entityColumn.methodName}(), "${entityColumn.methodName}", LocaleUtil.toLanguageId(defaultLocale)));
 			}
 		</#if>
 
-		<#if stringUtil.equals(column.name, "resourcePrimKey") && entity.isResourcedModel()>
+		<#if stringUtil.equals(entityColumn.name, "resourcePrimKey") && entity.isResourcedModel()>
 			@Override
 			public boolean isResourceMain() {
 				return true;
 			}
 		</#if>
 
-		<#if column.userUuid>
+		<#if entityColumn.userUuid>
 			@Override
-			public String get${column.methodUserUuidName}() {
+			public String get${entityColumn.methodUserUuidName}() {
 				try {
-					User user = UserLocalServiceUtil.getUserById(get${column.methodName}());
+					User user = UserLocalServiceUtil.getUserById(get${entityColumn.methodName}());
 
 					return user.getUuid();
 				}
@@ -761,16 +761,16 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 			}
 
 			@Override
-			public void set${column.methodUserUuidName}(String ${column.userUuidName}) {
+			public void set${entityColumn.methodUserUuidName}(String ${entityColumn.userUuidName}) {
 			}
 		</#if>
 
-		<#if column.isFinderPath() || (validator.isNotNull(parentPKColumn) && (parentPKColumn.name == column.name))>
-			public ${column.type} getOriginal${column.methodName}() {
-				<#if stringUtil.equals(column.type, "String") && column.isConvertNull()>
-					return GetterUtil.getString(_original${column.methodName});
+		<#if entityColumn.isFinderPath() || (validator.isNotNull(parentPKColumn) && (parentPKColumn.name == entityColumn.name))>
+			public ${entityColumn.type} getOriginal${entityColumn.methodName}() {
+				<#if stringUtil.equals(entityColumn.type, "String") && entityColumn.isConvertNull()>
+					return GetterUtil.getString(_original${entityColumn.methodName});
 				<#else>
-					return _original${column.methodName};
+					return _original${entityColumn.methodName};
 				</#if>
 			}
 		</#if>
@@ -1143,11 +1143,11 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 		public String[] getAvailableLanguageIds() {
 			Set<String> availableLanguageIds = new TreeSet<String>();
 
-			<#list entity.regularColList as column>
-				<#if column.localized>
-					Map<Locale, String> ${column.name}Map = get${column.methodName}Map();
+			<#list entity.regularEntityColumns as entityColumn>
+				<#if entityColumn.localized>
+					Map<Locale, String> ${entityColumn.name}Map = get${entityColumn.methodName}Map();
 
-					for (Map.Entry<Locale, String> entry : ${column.name}Map.entrySet()) {
+					for (Map.Entry<Locale, String> entry : ${entityColumn.name}Map.entrySet()) {
 						Locale locale = entry.getKey();
 						String value = entry.getValue();
 
@@ -1163,9 +1163,9 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 
 		@Override
 		public String getDefaultLanguageId() {
-			<#list entity.regularColList as column>
-				<#if column.localized>
-					String xml = get${column.methodName}();
+			<#list entity.regularEntityColumns as entityColumn>
+				<#if entityColumn.localized>
+					String xml = get${entityColumn.methodName}();
 
 					if (xml == null) {
 						return "";
@@ -1205,15 +1205,15 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 
 			String modelDefaultLanguageId = getDefaultLanguageId();
 
-			<#list entity.regularColList as column>
-				<#if column.localized>
-					String ${column.name} = get${column.methodName}(defaultLocale);
+			<#list entity.regularEntityColumns as entityColumn>
+				<#if entityColumn.localized>
+					String ${entityColumn.name} = get${entityColumn.methodName}(defaultLocale);
 
-					if (Validator.isNull(${column.name})) {
-						set${column.methodName}(get${column.methodName}(modelDefaultLanguageId), defaultLocale);
+					if (Validator.isNull(${entityColumn.name})) {
+						set${entityColumn.methodName}(get${entityColumn.methodName}(modelDefaultLanguageId), defaultLocale);
 					}
 					else {
-					  set${column.methodName}(get${column.methodName}(defaultLocale), defaultLocale, defaultLocale);
+					  set${entityColumn.methodName}(get${entityColumn.methodName}(defaultLocale), defaultLocale, defaultLocale);
 					}
 				</#if>
 			</#list>
@@ -1233,7 +1233,7 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 	public Object clone() {
 		${entity.name}Impl ${entity.varName}Impl = new ${entity.name}Impl();
 
-		<#list entity.regularColList as entityColumn>
+		<#list entity.regularEntityColumns as entityColumn>
 			<#if !stringUtil.equals(entityColumn.type, "Blob")>
 				${entity.varName}Impl.set${entityColumn.methodName}(
 
@@ -1365,8 +1365,8 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 
 	@Override
 	public void resetOriginalValues() {
-		<#list entity.regularColList as column>
-			<#if column.isFinderPath() || (validator.isNotNull(parentPKColumn) && (parentPKColumn.name == column.name)) || (stringUtil.equals(column.type, "Blob") && column.lazy) || (entity.hasEntityColumn("createDate", "Date") && entity.hasEntityColumn("modifiedDate", "Date"))>
+		<#list entity.regularEntityColumns as entityColumn>
+			<#if entityColumn.isFinderPath() || (validator.isNotNull(parentPKColumn) && (parentPKColumn.name == entityColumn.name)) || (stringUtil.equals(entityColumn.type, "Blob") && entityColumn.lazy) || (entity.hasEntityColumn("createDate", "Date") && entity.hasEntityColumn("modifiedDate", "Date"))>
 				<#if !cloneCastModelImpl??>
 					<#assign cloneCastModelImpl = true />
 
@@ -1374,19 +1374,19 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 				</#if>
 			</#if>
 
-			<#if column.isFinderPath() || (validator.isNotNull(parentPKColumn) && (parentPKColumn.name == column.name))>
-				${entity.varName}ModelImpl._original${column.methodName} = ${entity.varName}ModelImpl._${column.name};
+			<#if entityColumn.isFinderPath() || (validator.isNotNull(parentPKColumn) && (parentPKColumn.name == entityColumn.name))>
+				${entity.varName}ModelImpl._original${entityColumn.methodName} = ${entity.varName}ModelImpl._${entityColumn.name};
 
-				<#if column.isPrimitiveType()>
-					${entity.varName}ModelImpl._setOriginal${column.methodName} = false;
+				<#if entityColumn.isPrimitiveType()>
+					${entity.varName}ModelImpl._setOriginal${entityColumn.methodName} = false;
 				</#if>
 			</#if>
 
-			<#if stringUtil.equals(column.type, "Blob") && column.lazy>
-				${entity.varName}ModelImpl._${column.name}BlobModel = null;
+			<#if stringUtil.equals(entityColumn.type, "Blob") && entityColumn.lazy>
+				${entity.varName}ModelImpl._${entityColumn.name}BlobModel = null;
 			</#if>
 
-			<#if entity.hasEntityColumn("createDate", "Date") && entity.hasEntityColumn("modifiedDate", "Date") && stringUtil.equals(column.name, "modifiedDate")>
+			<#if entity.hasEntityColumn("createDate", "Date") && entity.hasEntityColumn("modifiedDate", "Date") && stringUtil.equals(entityColumn.name, "modifiedDate")>
 				${entity.varName}ModelImpl._setModifiedDate = false;
 			</#if>
 		</#list>
@@ -1413,25 +1413,25 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 			${entity.varName}CacheModel.${entity.PKVarName} = getPrimaryKey();
 		</#if>
 
-		<#list entity.regularColList as column>
-			<#if !stringUtil.equals(column.type, "Blob")>
-				<#if stringUtil.equals(column.type, "Date")>
-					Date ${column.name} = get${column.methodName}();
+		<#list entity.regularEntityColumns as entityColumn>
+			<#if !stringUtil.equals(entityColumn.type, "Blob")>
+				<#if stringUtil.equals(entityColumn.type, "Date")>
+					Date ${entityColumn.name} = get${entityColumn.methodName}();
 
-					if (${column.name} != null) {
-						${entity.varName}CacheModel.${column.name} = ${column.name}.getTime();
+					if (${entityColumn.name} != null) {
+						${entity.varName}CacheModel.${entityColumn.name} = ${entityColumn.name}.getTime();
 					}
 					else {
-						${entity.varName}CacheModel.${column.name} = Long.MIN_VALUE;
+						${entity.varName}CacheModel.${entityColumn.name} = Long.MIN_VALUE;
 					}
 				<#else>
-					${entity.varName}CacheModel.${column.name} = get${column.methodName}();
+					${entity.varName}CacheModel.${entityColumn.name} = get${entityColumn.methodName}();
 
-					<#if stringUtil.equals(column.type, "String")>
-						String ${column.name} = ${entity.varName}CacheModel.${column.name};
+					<#if stringUtil.equals(entityColumn.type, "String")>
+						String ${entityColumn.name} = ${entity.varName}CacheModel.${entityColumn.name};
 
-						if ((${column.name} != null) && (${column.name}.length() == 0)) {
-							${entity.varName}CacheModel.${column.name} = null;
+						if ((${entityColumn.name} != null) && (${entityColumn.name}.length() == 0)) {
+							${entity.varName}CacheModel.${entityColumn.name} = null;
 						}
 					</#if>
 				</#if>
@@ -1449,21 +1449,21 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 
 	@Override
 	public String toString() {
-		<#assign initialCapacity = entity.regularColList?size * 2 + 1 />
+		<#assign initialCapacity = entity.regularEntityColumns?size * 2 + 1 />
 
 		StringBundler sb = new StringBundler(${initialCapacity?c});
 
-		<#list entity.regularColList as column>
-			<#if !stringUtil.equals(column.type, "Blob") || !column.lazy>
-				<#if column_index == 0>
-					sb.append("{${column.name}=");
-					sb.append(get${column.methodName}());
-				<#elseif column_has_next>
-					sb.append(", ${column.name}=");
-					sb.append(get${column.methodName}());
+		<#list entity.regularEntityColumns as entityColumn>
+			<#if !stringUtil.equals(entityColumn.type, "Blob") || !entityColumn.lazy>
+				<#if entityColumn_index == 0>
+					sb.append("{${entityColumn.name}=");
+					sb.append(get${entityColumn.methodName}());
+				<#elseif entityColumn_has_next>
+					sb.append(", ${entityColumn.name}=");
+					sb.append(get${entityColumn.methodName}());
 				<#else>
-					sb.append(", ${column.name}=");
-					sb.append(get${column.methodName}());
+					sb.append(", ${entityColumn.name}=");
+					sb.append(get${entityColumn.methodName}());
 					sb.append("}");
 				</#if>
 			</#if>
@@ -1474,7 +1474,7 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 
 	@Override
 	public String toXmlString() {
-		<#assign initialCapacity = entity.regularColList?size * 3 + 4 />
+		<#assign initialCapacity = entity.regularEntityColumns?size * 3 + 4 />
 
 		StringBundler sb = new StringBundler(${initialCapacity?c});
 
@@ -1482,10 +1482,10 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 		sb.append("${apiPackagePath}.model.${entity.name}");
 		sb.append("</model-name>");
 
-		<#list entity.regularColList as column>
-			<#if !stringUtil.equals(column.type, "Blob") || !column.lazy>
-				sb.append("<column><column-name>${column.name}</column-name><column-value><![CDATA[");
-				sb.append(get${column.methodName}());
+		<#list entity.regularEntityColumns as entityColumn>
+			<#if !stringUtil.equals(entityColumn.type, "Blob") || !entityColumn.lazy>
+				sb.append("<column><column-name>${entityColumn.name}</column-name><column-value><![CDATA[");
+				sb.append(get${entityColumn.methodName}());
 				sb.append("]]></column-value></column>");
 			</#if>
 		</#list>
@@ -1499,25 +1499,25 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {${entity.name}.class};
 
-	<#list entity.regularColList as column>
-		<#if stringUtil.equals(column.type, "Blob") && column.lazy>
-			private ${entity.name}${column.methodName}BlobModel _${column.name}BlobModel;
+	<#list entity.regularEntityColumns as entityColumn>
+		<#if stringUtil.equals(entityColumn.type, "Blob") && entityColumn.lazy>
+			private ${entity.name}${entityColumn.methodName}BlobModel _${entityColumn.name}BlobModel;
 		<#else>
-			private ${column.genericizedType} _${column.name};
+			private ${entityColumn.genericizedType} _${entityColumn.name};
 
-			<#if column.localized>
-				private String _${column.name}CurrentLanguageId;
+			<#if entityColumn.localized>
+				private String _${entityColumn.name}CurrentLanguageId;
 			</#if>
 
-			<#if column.isFinderPath() || (validator.isNotNull(parentPKColumn) && (parentPKColumn.name == column.name))>
-				private ${column.type} _original${column.methodName};
+			<#if entityColumn.isFinderPath() || (validator.isNotNull(parentPKColumn) && (parentPKColumn.name == entityColumn.name))>
+				private ${entityColumn.type} _original${entityColumn.methodName};
 
-				<#if column.isPrimitiveType()>
-					private boolean _setOriginal${column.methodName};
+				<#if entityColumn.isPrimitiveType()>
+					private boolean _setOriginal${entityColumn.methodName};
 				</#if>
 			</#if>
 
-			<#if entity.hasEntityColumn("createDate", "Date") && entity.hasEntityColumn("modifiedDate", "Date") && stringUtil.equals(column.name, "modifiedDate")>
+			<#if entity.hasEntityColumn("createDate", "Date") && entity.hasEntityColumn("modifiedDate", "Date") && stringUtil.equals(entityColumn.name, "modifiedDate")>
 				private boolean _setModifiedDate;
 			</#if>
 		</#if>

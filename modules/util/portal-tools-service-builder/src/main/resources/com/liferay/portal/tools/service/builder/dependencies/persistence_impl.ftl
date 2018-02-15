@@ -780,13 +780,13 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 		${entity.varName}Impl.setNew(${entity.varName}.isNew());
 		${entity.varName}Impl.setPrimaryKey(${entity.varName}.getPrimaryKey());
 
-		<#list entity.regularColList as column>
-			${entity.varName}Impl.set${column.methodName}(
+		<#list entity.regularEntityColumns as entityColumn>
+			${entity.varName}Impl.set${entityColumn.methodName}(
 
-			<#if stringUtil.equals(column.type, "boolean")>
-				${entity.varName}.is${column.methodName}()
+			<#if stringUtil.equals(entityColumn.type, "boolean")>
+				${entity.varName}.is${entityColumn.methodName}()
 			<#else>
-				${entity.varName}.get${column.methodName}()
+				${entity.varName}.get${entityColumn.methodName}()
 			</#if>
 
 			);
@@ -1856,10 +1856,10 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 	<#if entity.hasCompoundPK()>
 		private static final Set<String> _compoundPKColumnNames = SetUtil.fromArray(
 			new String[] {
-				<#list entity.getPKList() as column>
-					"${column.name}"
+				<#list entity.getPKList() as entityColumn>
+					"${entityColumn.name}"
 
-					<#if column_has_next>
+					<#if entityColumn_has_next>
 						,
 					</#if>
 				</#list>

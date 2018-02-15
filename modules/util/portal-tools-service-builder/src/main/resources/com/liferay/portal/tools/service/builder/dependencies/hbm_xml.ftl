@@ -14,24 +14,24 @@
 			<composite-id class="${apiPackagePath}.service.persistence.${entity.name}PK" name="primaryKey">
 				<#assign pkList = entity.getPKList() />
 
-				<#list pkList as column>
+				<#list pkList as entityColumn>
 					<key-property
 
-					<#if serviceBuilder.isHBMCamelCasePropertyAccessor(column.name)>
+					<#if serviceBuilder.isHBMCamelCasePropertyAccessor(entityColumn.name)>
 						access="com.liferay.portal.dao.orm.hibernate.CamelCasePropertyAccessor"
 					</#if>
 
-					<#if column.name != column.DBName>
-						column="${column.DBName}"
+					<#if entityColumn.name != entityColumn.DBName>
+						column="${entityColumn.DBName}"
 					</#if>
 
-					name="${column.name}"
+					name="${entityColumn.name}"
 
-					<#if column.isPrimitiveType() || stringUtil.equals(column.type, "Map") || stringUtil.equals(column.type, "String")>
-						type="com.liferay.portal.dao.orm.hibernate.${serviceBuilder.getPrimitiveObj("${column.type}")}Type"
+					<#if entityColumn.isPrimitiveType() || stringUtil.equals(entityColumn.type, "Map") || stringUtil.equals(entityColumn.type, "String")>
+						type="com.liferay.portal.dao.orm.hibernate.${serviceBuilder.getPrimitiveObj("${entityColumn.type}")}Type"
 					</#if>
 
-					<#if stringUtil.equals(column.type, "Date")>
+					<#if stringUtil.equals(entityColumn.type, "Date")>
 						type="org.hibernate.type.TimestampType"
 					</#if>
 
@@ -39,27 +39,27 @@
 				</#list>
 			</composite-id>
 		<#else>
-			<#assign column = entity.getPKList()?first />
+			<#assign entityColumn = entity.getPKList()?first />
 
 			<id
-				<#if serviceBuilder.isHBMCamelCasePropertyAccessor(column.name)>
+				<#if serviceBuilder.isHBMCamelCasePropertyAccessor(entityColumn.name)>
 					access="com.liferay.portal.dao.orm.hibernate.CamelCasePropertyAccessor"
 				</#if>
 
-				<#if column.name != column.DBName>
-					column="${column.DBName}"
+				<#if entityColumn.name != entityColumn.DBName>
+					column="${entityColumn.DBName}"
 				</#if>
 
-				name="${column.name}"
-				type="<#if !entity.hasPrimitivePK()>java.lang.</#if>${column.type}"
+				name="${entityColumn.name}"
+				type="<#if !entity.hasPrimitivePK()>java.lang.</#if>${entityColumn.type}"
 
 				>
 
-				<#if column.idType??>
-					<#assign class = serviceBuilder.getGeneratorClass("${column.idType}") />
+				<#if entityColumn.idType??>
+					<#assign class = serviceBuilder.getGeneratorClass("${entityColumn.idType}") />
 
 					<#if stringUtil.equals(class, "class")>
-						<#assign class = column.idParam />
+						<#assign class = entityColumn.idParam />
 					</#if>
 				<#else>
 					<#assign class = "assigned" />
@@ -68,7 +68,7 @@
 				<generator class="${class}"
 
 				<#if stringUtil.equals(class, "sequence")>
-						><param name="sequence">${column.idParam}</param>
+						><param name="sequence">${entityColumn.idParam}</param>
 					</generator>
 				<#else>
 					/>
@@ -115,24 +115,24 @@
 		</#list>
 	</class>
 
-	<#list entity.blobEntityColumns as blobEntityColumn>
-		<#if blobEntityColumn.lazy>
+	<#list entity.blobEntityColumns as entityColumn>
+		<#if entityColumn.lazy>
 			<class
 				<#if entity.isDynamicUpdateEnabled()>
 					dynamic-update="true"
 				</#if>
 
-				lazy="true" name="${apiPackagePath}.model.${entity.name}${blobEntityColumn.methodName}BlobModel" table="${entity.table}"
+				lazy="true" name="${apiPackagePath}.model.${entity.name}${entityColumn.methodName}BlobModel" table="${entity.table}"
 			>
-				<#assign column = entity.getPKList()?first />
+				<#assign entityColumn = entity.getPKList()?first />
 
-				<id column="${column.DBName}" name="${column.name}">
+				<id column="${entityColumn.DBName}" name="${entityColumn.name}">
 					<generator class="foreign">
 						<param name="property">${packagePath}.model.impl.${entity.name}Impl</param>
 					</generator>
 				</id>
 
-				<property column="${blobEntityColumn.DBName}" name="${blobEntityColumn.name}Blob" type="blob" />
+				<property column="${entityColumn.DBName}" name="${entityColumn.name}Blob" type="blob" />
 			</class>
 		</#if>
 	</#list>

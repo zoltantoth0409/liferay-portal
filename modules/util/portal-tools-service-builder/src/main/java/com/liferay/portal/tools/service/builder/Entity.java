@@ -104,7 +104,7 @@ public class Entity implements Comparable<Entity> {
 		String dataSource, String sessionFactory, String txManager,
 		boolean cacheEnabled, boolean dynamicUpdateEnabled, boolean jsonEnabled,
 		boolean mvccEnabled, boolean trashEnabled, boolean deprecated,
-		List<EntityColumn> pkList, List<EntityColumn> regularColList,
+		List<EntityColumn> pkList, List<EntityColumn> regularEntityColumns,
 		List<EntityColumn> blobEntityColumns, List<EntityColumn> collectionEntityColumns,
 		List<EntityColumn> entityColumns, EntityOrder entityOrder,
 		List<EntityFinder> entityFinders, List<Entity> referenceEntities,
@@ -136,7 +136,7 @@ public class Entity implements Comparable<Entity> {
 		_trashEnabled = trashEnabled;
 		_deprecated = deprecated;
 		_pkEntityColumns = pkList;
-		_regularColList = regularColList;
+		_regularEntityColumns = regularEntityColumns;
 		_blobEntityColumns = blobEntityColumns;
 		_collectionEntityColumns = collectionEntityColumns;
 		_entityColumns = entityColumns;
@@ -401,8 +401,8 @@ public class Entity implements Comparable<Entity> {
 		return _referenceEntities;
 	}
 
-	public List<EntityColumn> getRegularColList() {
-		return _regularColList;
+	public List<EntityColumn> getRegularEntityColumns() {
+		return _regularEntityColumns;
 	}
 
 	public String getSessionFactory() {
@@ -980,7 +980,7 @@ public class Entity implements Comparable<Entity> {
 	private final String _portletName;
 	private final String _portletShortName;
 	private final List<Entity> _referenceEntities;
-	private final List<EntityColumn> _regularColList;
+	private final List<EntityColumn> _regularEntityColumns;
 	private final boolean _remoteService;
 	private final boolean _resourceActionModel;
 	private final String _sessionFactory;
