@@ -482,9 +482,9 @@ public class Entity implements Comparable<Entity> {
 		Iterator<EntityFinder> iterator = finderList.iterator();
 
 		while (iterator.hasNext()) {
-			EntityFinder finder = iterator.next();
+			EntityFinder entityFinder = iterator.next();
 
-			if (finder.isCollection() && !finder.isUnique()) {
+			if (entityFinder.isCollection() && !entityFinder.isUnique()) {
 				iterator.remove();
 			}
 		}
