@@ -1260,7 +1260,7 @@ public class ServiceBuilder {
 		EntityMapping entityMapping = _entityMappings.get(mappingTable);
 
 		for (int i = 0; i < 3; i++) {
-			Entity entity = getEntity(entityMapping.getEntity(i));
+			Entity entity = getEntity(entityMapping.getEntityName(i));
 
 			if (entity == null) {
 				return null;
@@ -3572,7 +3572,7 @@ public class ServiceBuilder {
 		String content = _read(sqlFile);
 
 		int x = content.indexOf(
-			_SQL_CREATE_TABLE + entityMapping.getTable() + " (");
+			_SQL_CREATE_TABLE + entityMapping.getTableName() + " (");
 
 		int y = content.indexOf(");", x);
 
@@ -3604,7 +3604,7 @@ public class ServiceBuilder {
 
 						String tableName = line.substring(x, y);
 
-						if (tableName.compareTo(entityMapping.getTable()) > 0) {
+						if (tableName.compareTo(entityMapping.getTableName()) > 0) {
 							sb.append(newCreateTableString);
 							sb.append("\n\n");
 
@@ -4180,14 +4180,14 @@ public class ServiceBuilder {
 		Entity[] entities = new Entity[3];
 
 		for (int i = 0; i < entities.length; i++) {
-			entities[i] = getEntity(entityMapping.getEntity(i));
+			entities[i] = getEntity(entityMapping.getEntityName(i));
 
 			if (entities[i] == null) {
 				return;
 			}
 		}
 
-		String tableName = entityMapping.getTable();
+		String tableName = entityMapping.getTableName();
 
 		for (Entity entity : entities) {
 			List<EntityColumn> pkList = entity.getPKList();
@@ -4208,7 +4208,7 @@ public class ServiceBuilder {
 		Entity[] entities = new Entity[3];
 
 		for (int i = 0; i < entities.length; i++) {
-			entities[i] = getEntity(entityMapping.getEntity(i));
+			entities[i] = getEntity(entityMapping.getEntityName(i));
 
 			if (entities[i] == null) {
 				return null;
@@ -4247,7 +4247,7 @@ public class ServiceBuilder {
 
 		sb.append(_SQL_CREATE_TABLE);
 
-		String tableName = entityMapping.getTable();
+		String tableName = entityMapping.getTableName();
 
 		if ((_databaseNameMaxLength > 0) &&
 			(tableName.length() > _databaseNameMaxLength)) {
@@ -5254,16 +5254,16 @@ public class ServiceBuilder {
 				columnElement.attributeValue("filter-primary"));
 			String collectionEntity = columnElement.attributeValue("entity");
 
-			String mappingTable = columnElement.attributeValue("mapping-table");
+			String mappingTableName = columnElement.attributeValue("mapping-table");
 
-			if (Validator.isNotNull(mappingTable)) {
-				if (_badTableNames.contains(mappingTable)) {
-					mappingTable += StringPool.UNDERLINE;
+			if (Validator.isNotNull(mappingTableName)) {
+				if (_badTableNames.contains(mappingTableName)) {
+					mappingTableName += StringPool.UNDERLINE;
 				}
 
 				if (_autoNamespaceTables) {
-					mappingTable =
-						_portletShortName + StringPool.UNDERLINE + mappingTable;
+					mappingTableName =
+						_portletShortName + StringPool.UNDERLINE + mappingTableName;
 				}
 			}
 
@@ -5298,7 +5298,7 @@ public class ServiceBuilder {
 
 			EntityColumn col = new EntityColumn(
 				columnName, columnDBName, columnType, primary, accessor,
-				filterPrimary, collectionEntity, mappingTable, idType, idParam,
+				filterPrimary, collectionEntity, mappingTableName, idType, idParam,
 				convertNull, lazy, localized, colJsonEnabled, containerModel,
 				parentContainerModel, uadAnonymizeFieldName,
 				uadNonanonymizable);
@@ -5321,13 +5321,13 @@ public class ServiceBuilder {
 			entityColumns.add(col);
 
 			if (Validator.isNotNull(collectionEntity) &&
-				Validator.isNotNull(mappingTable)) {
+				Validator.isNotNull(mappingTableName)) {
 
 				EntityMapping entityMapping = new EntityMapping(
-					mappingTable, ejbName, collectionEntity);
+					mappingTableName, ejbName, collectionEntity);
 
-				if (!_entityMappings.containsKey(mappingTable)) {
-					_entityMappings.put(mappingTable, entityMapping);
+				if (!_entityMappings.containsKey(mappingTableName)) {
+					_entityMappings.put(mappingTableName, entityMapping);
 				}
 			}
 		}

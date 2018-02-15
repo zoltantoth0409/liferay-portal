@@ -1722,7 +1722,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 
 					entityMapping = serviceBuilder.getEntityMapping(entityColumn.mappingTable)
 
-					companyEntity = serviceBuilder.getEntity(entityMapping.getEntity(0))
+					companyEntity = serviceBuilder.getEntity(entityMapping.getEntityName(0))
 				/>
 
 				${entity.varName}To${referenceEntity.name}TableMapper = TableMapperFactory.getTableMapper("${entityColumn.mappingTable}", "${companyEntity.PKDBName}", "${entity.PKDBName}", "${referenceEntity.PKDBName}", this, ${referenceEntity.varName}Persistence);
