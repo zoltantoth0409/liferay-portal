@@ -45,11 +45,12 @@ public class EntityColumn implements Cloneable, Comparable<EntityColumn> {
 
 	public EntityColumn(
 		String name, String dbName, String type, boolean primary,
-		boolean accessor, boolean filterPrimary, String ejbName,
-		String mappingTableName, boolean caseSensitive, boolean orderByAscending,
-		boolean orderColumn, String comparator, String arrayableOperator,
-		String idType, String idParam, boolean convertNull, boolean lazy,
-		boolean localized, boolean jsonEnabled, boolean containerModel,
+		boolean accessor, boolean filterPrimary, String entityName,
+		String mappingTableName, boolean caseSensitive,
+		boolean orderByAscending, boolean orderColumn, String comparator,
+		String arrayableOperator, String idType, String idParam,
+		boolean convertNull, boolean lazy, boolean localized,
+		boolean jsonEnabled, boolean containerModel,
 		boolean parentContainerModel, String uadAnonymizeFieldName,
 		boolean uadNonanonymizable) {
 
@@ -59,7 +60,7 @@ public class EntityColumn implements Cloneable, Comparable<EntityColumn> {
 		_primary = primary;
 		_accessor = accessor;
 		_filterPrimary = filterPrimary;
-		_ejbName = ejbName;
+		_entityName = entityName;
 		_mappingTableName = mappingTableName;
 		_caseSensitive = caseSensitive;
 		_orderByAscending = orderByAscending;
@@ -100,7 +101,7 @@ public class EntityColumn implements Cloneable, Comparable<EntityColumn> {
 	public Object clone() {
 		return new EntityColumn(
 			getName(), getDBName(), getType(), isPrimary(), isAccessor(),
-			isFilterPrimary(), getEJBName(), getMappingTableName(),
+			isFilterPrimary(), getEntityName(), getMappingTableName(),
 			isCaseSensitive(), isOrderByAscending(), isOrderColumn(),
 			getComparator(), getArrayableOperator(), getIdType(), getIdParam(),
 			isConvertNull(), isLazy(), isLocalized(), isJsonEnabled(),
@@ -160,8 +161,8 @@ public class EntityColumn implements Cloneable, Comparable<EntityColumn> {
 		return _dbName;
 	}
 
-	public String getEJBName() {
-		return _ejbName;
+	public String getEntityName() {
+		return _entityName;
 	}
 
 	public String getGenericizedType() {
@@ -547,7 +548,7 @@ public class EntityColumn implements Cloneable, Comparable<EntityColumn> {
 	private boolean _containerModel;
 	private boolean _convertNull;
 	private String _dbName;
-	private final String _ejbName;
+	private final String _entityName;
 	private final boolean _filterPrimary;
 	private boolean _finderPath;
 	private final String _humanName;

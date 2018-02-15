@@ -768,7 +768,7 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 		<#list entity.entityColumns as entityColumn>
 			<#if entityColumn.isCollection() && entityColumn.isMappingManyToMany()>
 				<#assign
-					referenceEntity = serviceBuilder.getEntity(entityColumn.getEJBName())
+					referenceEntity = serviceBuilder.getEntity(entityColumn.entityName)
 
 					serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "add" + referenceEntity.name + entity.name, [referenceEntity.PKClassName, entity.PKClassName], [])
 				/>
