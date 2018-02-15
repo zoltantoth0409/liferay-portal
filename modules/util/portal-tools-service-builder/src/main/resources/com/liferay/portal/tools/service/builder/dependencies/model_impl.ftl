@@ -6,7 +6,7 @@
 	<#assign
 		pkColumn = entity.getPKList()?first
 
-		parentPKColumn = entity.getColumn("parent" + pkColumn.methodName)
+		parentPKColumn = entity.getEntityColumn("parent" + pkColumn.methodName)
 	/>
 </#if>
 
@@ -837,7 +837,7 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 			<#if entity.hasColumn("name")>
 				return String.valueOf(getName());
 			<#elseif entity.hasColumn("title")>
-				<#assign titleColumn = entity.getColumn("title") />
+				<#assign titleColumn = entity.getEntityColumn("title") />
 
 				return String.valueOf(getTitle(<#if titleColumn.isLocalized()>LocaleThreadLocal.getThemeDisplayLocale()</#if>));
 			<#else>
@@ -868,9 +868,9 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 
 		public long getNestedSetsTreeNodeScopeId() {
 			<#if entity.hasColumn("groupId")>
-				<#assign scopeColumn = entity.getColumn("groupId") />
+				<#assign scopeColumn = entity.getEntityColumn("groupId") />
 			<#else>
-				<#assign scopeColumn = entity.getColumn("companyId") />
+				<#assign scopeColumn = entity.getEntityColumn("companyId") />
 			</#if>
 
 			return _${scopeColumn.name};

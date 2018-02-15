@@ -54,7 +54,7 @@ public class Entity implements Comparable<Entity> {
 
 		};
 
-	public static EntityColumn getColumn(
+	public static EntityColumn getEntityColumn(
 		String name, List<EntityColumn> entityColumns) {
 
 		for (EntityColumn entityColumn : entityColumns) {
@@ -271,8 +271,8 @@ public class Entity implements Comparable<Entity> {
 		return _collectionList;
 	}
 
-	public EntityColumn getColumn(String name) {
-		return getColumn(name, _entityColumns);
+	public EntityColumn getEntityColumn(String name) {
+		return getEntityColumn(name, _entityColumns);
 	}
 
 	public String getDataSource() {
@@ -627,9 +627,9 @@ public class Entity implements Comparable<Entity> {
 		}
 
 		if (hasColumn("classPK")) {
-			EntityColumn classPKCol = getColumn("classPK");
+			EntityColumn classPKEntityColumn = getEntityColumn("classPK");
 
-			String classPKColType = classPKCol.getType();
+			String classPKColType = classPKEntityColumn.getType();
 
 			if (classPKColType.equals("long")) {
 				return true;
@@ -874,7 +874,7 @@ public class Entity implements Comparable<Entity> {
 
 	public boolean isTypedModel() {
 		if (hasColumn("classNameId")) {
-			EntityColumn classNameIdEntityColumn = getColumn("classNameId");
+			EntityColumn classNameIdEntityColumn = getEntityColumn("classNameId");
 
 			String classNameIdColType = classNameIdEntityColumn.getType();
 

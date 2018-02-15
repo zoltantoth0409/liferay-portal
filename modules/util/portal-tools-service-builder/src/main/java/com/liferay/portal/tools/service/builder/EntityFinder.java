@@ -50,10 +50,10 @@ public class EntityFinder {
 		}
 	}
 
-	public EntityColumn getColumn(String name) {
-		for (EntityColumn entityColumns : _entityColumns) {
-			if (name.equals(entityColumns.getName())) {
-				return entityColumns;
+	public EntityColumn getEntityColumn(String name) {
+		for (EntityColumn entityColumn : _entityColumns) {
+			if (name.equals(entityColumn.getName())) {
+				return entityColumn;
 			}
 		}
 

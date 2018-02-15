@@ -5534,7 +5534,7 @@ public class ServiceBuilder {
 				String finderColArrayableOperator = GetterUtil.getString(
 					finderColumnElement.attributeValue("arrayable-operator"));
 
-				EntityColumn entityColumn = Entity.getColumn(finderColumnName, entityColumns);
+				EntityColumn entityColumn = Entity.getEntityColumn(finderColumnName, entityColumns);
 
 				if (!entityColumn.isFinderPath()) {
 					entityColumn.setFinderPath(true);
