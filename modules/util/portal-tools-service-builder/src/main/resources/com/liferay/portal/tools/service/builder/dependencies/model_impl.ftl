@@ -20,9 +20,9 @@ import ${apiPackagePath}.model.${entity.name};
 import ${apiPackagePath}.model.${entity.name}Model;
 import ${apiPackagePath}.model.${entity.name}Soap;
 
-<#list entity.blobList as column>
-	<#if column.lazy>
-		import ${apiPackagePath}.model.${entity.name}${column.methodName}BlobModel;
+<#list entity.blobEntityColumns as blobEntityColumn>
+	<#if blobEntityColumn.lazy>
+		import ${apiPackagePath}.model.${entity.name}${blobEntityColumn.methodName}BlobModel;
 	</#if>
 </#list>
 

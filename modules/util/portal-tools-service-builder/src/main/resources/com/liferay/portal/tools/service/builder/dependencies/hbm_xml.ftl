@@ -121,14 +121,14 @@
 		</#list>
 	</class>
 
-	<#list entity.blobList as blobColumn>
-		<#if blobColumn.lazy>
+	<#list entity.blobEntityColumns as blobEntityColumn>
+		<#if blobEntityColumn.lazy>
 			<class
 				<#if entity.isDynamicUpdateEnabled()>
 					dynamic-update="true"
 				</#if>
 
-				lazy="true" name="${apiPackagePath}.model.${entity.name}${blobColumn.methodName}BlobModel" table="${entity.table}"
+				lazy="true" name="${apiPackagePath}.model.${entity.name}${blobEntityColumn.methodName}BlobModel" table="${entity.table}"
 			>
 				<#assign column = entity.getPKList()?first />
 
@@ -138,7 +138,7 @@
 					</generator>
 				</id>
 
-				<property column="${blobColumn.DBName}" name="${blobColumn.name}Blob" type="blob" />
+				<property column="${blobEntityColumn.DBName}" name="${blobEntityColumn.name}Blob" type="blob" />
 			</class>
 		</#if>
 	</#list>
