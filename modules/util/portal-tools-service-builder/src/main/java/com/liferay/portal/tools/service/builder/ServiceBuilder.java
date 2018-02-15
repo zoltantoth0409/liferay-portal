@@ -3669,7 +3669,7 @@ public class ServiceBuilder {
 				continue;
 			}
 
-			List<EntityColumn> columnList = entity.getColumnList();
+			List<EntityColumn> columnList = entity.getEntityColumns();
 
 			for (EntityColumn column : columnList) {
 				if ("sequence".equals(column.getIdType())) {
@@ -4067,7 +4067,7 @@ public class ServiceBuilder {
 	}
 
 	private List<EntityColumn> _getBlobList(Entity entity) {
-		List<EntityColumn> blobList = new ArrayList<>(entity.getBlobList());
+		List<EntityColumn> blobList = new ArrayList<>(entity.getBlobEntityColumns());
 
 		Iterator<EntityColumn> itr = blobList.iterator();
 
@@ -5657,7 +5657,7 @@ public class ServiceBuilder {
 					" must have a local service to use localized entity");
 		}
 
-		for (EntityColumn entityColumn : entity.getColumnList()) {
+		for (EntityColumn entityColumn : entity.getEntityColumns()) {
 			if (entityColumn.isLocalized()) {
 				throw new IllegalArgumentException(
 					StringBundler.concat(
