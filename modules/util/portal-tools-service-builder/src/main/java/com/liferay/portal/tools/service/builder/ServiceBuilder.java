@@ -1753,7 +1753,7 @@ public class ServiceBuilder {
 	}
 
 	public boolean isReadOnlyMethod(
-		JavaMethod javaMethod, List<String> txRequiredList, String[] prefixes) {
+		JavaMethod javaMethod, List<String> txRequiredMethodNames, String[] prefixes) {
 
 		List<JavaAnnotation> javaAnnotations = javaMethod.getAnnotations();
 
@@ -1771,7 +1771,7 @@ public class ServiceBuilder {
 
 		String methodName = javaMethod.getName();
 
-		if (isTxRequiredMethod(javaMethod, txRequiredList)) {
+		if (isTxRequiredMethod(javaMethod, txRequiredMethodNames)) {
 			return false;
 		}
 
@@ -1785,9 +1785,9 @@ public class ServiceBuilder {
 	}
 
 	public boolean isServiceReadOnlyMethod(
-		JavaMethod method, List<String> txRequiredList) {
+		JavaMethod method, List<String> txRequiredMethodNames) {
 
-		return isReadOnlyMethod(method, txRequiredList, _readOnlyPrefixes);
+		return isReadOnlyMethod(method, txRequiredMethodNames, _readOnlyPrefixes);
 	}
 
 	public boolean isSoapMethod(JavaMethod method) {
@@ -1858,13 +1858,13 @@ public class ServiceBuilder {
 	}
 
 	public boolean isTxRequiredMethod(
-		JavaMethod javaMethod, List<String> txRequiredList) {
+		JavaMethod javaMethod, List<String> txRequiredMethodNames) {
 
-		if (txRequiredList == null) {
+		if (txRequiredMethodNames == null) {
 			return false;
 		}
 
-		if (txRequiredList.contains(javaMethod.getName())) {
+		if (txRequiredMethodNames.contains(javaMethod.getName())) {
 			return true;
 		}
 
@@ -5593,7 +5593,7 @@ public class ServiceBuilder {
 			}
 		}
 
-		List<String> txRequiredList = new ArrayList<>();
+		List<String> txRequiredMethodNames = new ArrayList<>();
 
 		List<Element> txRequiredElements = entityElement.elements(
 			"tx-required");
@@ -5607,7 +5607,7 @@ public class ServiceBuilder {
 			for (Element txRequiredElement : txRequiredElements) {
 				String txRequired = txRequiredElement.getText();
 
-				txRequiredList.add(txRequired);
+				txRequiredMethodNames.add(txRequired);
 			}
 		}
 
@@ -5621,7 +5621,7 @@ public class ServiceBuilder {
 			sessionFactory, txManager, cacheEnabled, dynamicUpdateEnabled,
 			jsonEnabled, mvccEnabled, trashEnabled, deprecated, pkList,
 			regularColList, blobEntityColumns, collectionList, entityColumns, entityOrder,
-			entityFinders, referenceEntities, unresolvedReferenceEntityNames, txRequiredList,
+			entityFinders, referenceEntities, unresolvedReferenceEntityNames, txRequiredMethodNames,
 			resourceActionModel);
 
 		_entities.add(entity);
