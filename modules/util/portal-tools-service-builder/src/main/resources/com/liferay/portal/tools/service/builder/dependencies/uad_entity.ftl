@@ -31,13 +31,13 @@ public class ${entity.name}UADEntity extends BaseUADEntity {
 		return _${entity.varName};
 	}
 
-	<#if entity.UADNonanonymizableColumnList?has_content>
+	<#if entity.UADNonanonymizableEntityColumns?has_content>
 		@Override
 		public Map<String, Object> getEntityNonanonymizableFieldValues() {
 			Map<String, Object> entityNonanonymizableFieldValues = new HashMap<String, Object>();
 
-			<#list entity.UADNonanonymizableColumnList as uadNonanonymizableColumn>
-				entityNonanonymizableFieldValues.put("${uadNonanonymizableColumn.name}", _${entity.varName}.get${textFormatter.format(uadNonanonymizableColumn.name, 6)}());
+			<#list entity.UADNonanonymizableEntityColumns as uadNonanonymizableEntityColumn>
+				entityNonanonymizableFieldValues.put("${uadNonanonymizableEntityColumn.name}", _${entity.varName}.get${textFormatter.format(uadNonanonymizableEntityColumn.name, 6)}());
 			</#list>
 
 			return entityNonanonymizableFieldValues;
