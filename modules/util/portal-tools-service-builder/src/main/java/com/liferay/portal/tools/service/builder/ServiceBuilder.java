@@ -2241,17 +2241,17 @@ public class ServiceBuilder {
 
 		Set<Map.Entry<String, JavaMethod>> entrySet = methods.entrySet();
 
-		Iterator<Map.Entry<String, JavaMethod>> itr = entrySet.iterator();
+		Iterator<Map.Entry<String, JavaMethod>> iterator = entrySet.iterator();
 
-		while (itr.hasNext()) {
-			Map.Entry<String, JavaMethod> entry = itr.next();
+		while (iterator.hasNext()) {
+			Map.Entry<String, JavaMethod> entry = iterator.next();
 
 			JavaMethod method = entry.getValue();
 
 			String methodName = method.getName();
 
 			if (methodName.equals("getStagedModelType")) {
-				itr.remove();
+				iterator.remove();
 			}
 		}
 
