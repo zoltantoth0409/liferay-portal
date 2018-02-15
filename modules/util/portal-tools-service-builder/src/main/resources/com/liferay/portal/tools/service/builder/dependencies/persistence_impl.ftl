@@ -650,7 +650,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				${entity.varName}.setNew(false);
 			}
 			else {
-				<#if entity.hasLazyBlobColumn()>
+				<#if entity.hasLazyBlobEntityColumn()>
 
 					<#-- Workaround for HHH-2680 -->
 
@@ -661,7 +661,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				</#if>
 			}
 
-			<#if entity.hasLazyBlobColumn()>
+			<#if entity.hasLazyBlobEntityColumn()>
 				session.flush();
 				session.clear();
 			</#if>

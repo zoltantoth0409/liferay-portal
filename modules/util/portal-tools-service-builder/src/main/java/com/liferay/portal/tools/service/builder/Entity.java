@@ -564,8 +564,8 @@ public class Entity implements Comparable<Entity> {
 			return false;
 		}
 
-		for (EntityColumn col : _blobEntityColumns) {
-			if (!col.isLazy()) {
+		for (EntityColumn blobEntityColumns : _blobEntityColumns) {
+			if (!blobEntityColumns.isLazy()) {
 				return true;
 			}
 		}
@@ -587,13 +587,13 @@ public class Entity implements Comparable<Entity> {
 		return _name.hashCode();
 	}
 
-	public boolean hasLazyBlobColumn() {
+	public boolean hasLazyBlobEntityColumn() {
 		if ((_blobEntityColumns == null) || _blobEntityColumns.isEmpty()) {
 			return false;
 		}
 
-		for (EntityColumn entityColumn : _blobEntityColumns) {
-			if (entityColumn.isLazy()) {
+		for (EntityColumn blobEntityColumns : _blobEntityColumns) {
+			if (blobEntityColumns.isLazy()) {
 				return true;
 			}
 		}
@@ -889,9 +889,9 @@ public class Entity implements Comparable<Entity> {
 
 	public boolean isTypedModel() {
 		if (hasColumn("classNameId")) {
-			EntityColumn classNameIdCol = getColumn("classNameId");
+			EntityColumn classNameIdEntityColumn = getColumn("classNameId");
 
-			String classNameIdColType = classNameIdCol.getType();
+			String classNameIdColType = classNameIdEntityColumn.getType();
 
 			if (classNameIdColType.equals("long")) {
 				return true;
@@ -902,8 +902,8 @@ public class Entity implements Comparable<Entity> {
 	}
 
 	public boolean isUADEnabled() {
-		for (EntityColumn col : _entityColumns) {
-			if (col.isUADEnabled()) {
+		for (EntityColumn entityColumn : _entityColumns) {
+			if (entityColumn.isUADEnabled()) {
 				return true;
 			}
 		}
