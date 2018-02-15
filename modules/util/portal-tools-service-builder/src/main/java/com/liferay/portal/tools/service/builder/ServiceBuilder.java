@@ -4500,9 +4500,7 @@ public class ServiceBuilder {
 				sb.append(" null");
 			}
 
-			if (Validator.isNotNull(idType) &&
-				idType.equals("identity")) {
-
+			if (Validator.isNotNull(idType) && idType.equals("identity")) {
 				sb.append(" IDENTITY");
 			}
 
