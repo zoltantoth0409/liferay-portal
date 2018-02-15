@@ -140,8 +140,8 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 
 	public static final String TABLE_SQL_DROP = "drop table ${entity.table}";
 
-	<#if entity.getOrder()??>
-		<#assign orderList = entity.getOrder().getColumns() />
+	<#if entity.entityOrder??>
+		<#assign orderList = entity.entityOrder.entityColumns />
 	<#else>
 		<#assign orderList = entity.getPKList() />
 	</#if>
@@ -1257,15 +1257,15 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 		<#if entity.isOrdered()>
 			int value = 0;
 
-			<#list entity.order.columns as column>
-				<#if column.isPrimitiveType()>
-					<#if stringUtil.equals(column.type, "boolean")>
-						value = Boolean.compare(get${column.methodName}(), ${entity.varName}.get${column.methodName}());
+			<#list entity.entityOrder.entityColumns as entityColumn>
+				<#if entityColumn.isPrimitiveType()>
+					<#if stringUtil.equals(entityColumn.type, "boolean")>
+						value = Boolean.compare(get${entityColumn.methodName}(), ${entity.varName}.get${entityColumn.methodName}());
 					<#else>
-						if (get${column.methodName}() < ${entity.varName}.get${column.methodName}()) {
+						if (get${entityColumn.methodName}() < ${entity.varName}.get${entityColumn.methodName}()) {
 							value = -1;
 						}
-						else if (get${column.methodName}() > ${entity.varName}.get${column.methodName}()) {
+						else if (get${entityColumn.methodName}() > ${entity.varName}.get${entityColumn.methodName}()) {
 							value = 1;
 						}
 						else {
@@ -1273,18 +1273,18 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 						}
 					</#if>
 				<#else>
-					<#if stringUtil.equals(column.type, "Date")>
-						value = DateUtil.compareTo(get${column.methodName}(), ${entity.varName}.get${column.methodName}());
+					<#if stringUtil.equals(entityColumn.type, "Date")>
+						value = DateUtil.compareTo(get${entityColumn.methodName}(), ${entity.varName}.get${entityColumn.methodName}());
 					<#else>
-						<#if column.isCaseSensitive()>
-							value = get${column.methodName}().compareTo(${entity.varName}.get${column.methodName}());
+						<#if entityColumn.isCaseSensitive()>
+							value = get${entityColumn.methodName}().compareTo(${entity.varName}.get${entityColumn.methodName}());
 						<#else>
-							value = get${column.methodName}().compareToIgnoreCase(${entity.varName}.get${column.methodName}());
+							value = get${entityColumn.methodName}().compareToIgnoreCase(${entity.varName}.get${entityColumn.methodName}());
 						</#if>
 					</#if>
 				</#if>
 
-				<#if !column.isOrderByAscending()>
+				<#if !entityColumn.isOrderByAscending()>
 					value = value * -1;
 				</#if>
 

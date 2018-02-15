@@ -106,7 +106,7 @@ public class Entity implements Comparable<Entity> {
 		boolean mvccEnabled, boolean trashEnabled, boolean deprecated,
 		List<EntityColumn> pkList, List<EntityColumn> regularColList,
 		List<EntityColumn> blobEntityColumns, List<EntityColumn> collectionList,
-		List<EntityColumn> entityColumns, EntityOrder order,
+		List<EntityColumn> entityColumns, EntityOrder entityOrder,
 		List<EntityFinder> finderList, List<Entity> referenceEntities,
 		List<String> unresolvedReferenceEntityNames,
 		List<String> txRequiredList, boolean resourceActionModel) {
@@ -140,7 +140,7 @@ public class Entity implements Comparable<Entity> {
 		_blobEntityColumns = blobEntityColumns;
 		_collectionList = collectionList;
 		_entityColumns = entityColumns;
-		_entityOrder = order;
+		_entityOrder = entityOrder;
 		_entityFinders = finderList;
 		_referenceEntities = referenceEntities;
 		_unresolvedReferenceEntityNames = unresolvedReferenceEntityNames;
@@ -297,6 +297,10 @@ public class Entity implements Comparable<Entity> {
 		return _entityColumns;
 	}
 
+	public EntityOrder getEntityOrder() {
+		return _entityOrder;
+	}
+
 	public EntityColumn getFilterPKColumn() {
 		for (EntityColumn entityColumn : _entityColumns) {
 			if (entityColumn.isFilterPrimary()) {
@@ -341,10 +345,6 @@ public class Entity implements Comparable<Entity> {
 
 	public String getNames() {
 		return TextFormatter.formatPlural(_name);
-	}
-
-	public EntityOrder getOrder() {
-		return _entityOrder;
 	}
 
 	public String getPackagePath() {
