@@ -46,7 +46,7 @@ public class EntityColumn implements Cloneable, Comparable<EntityColumn> {
 	public EntityColumn(
 		String name, String dbName, String type, boolean primary,
 		boolean accessor, boolean filterPrimary, String ejbName,
-		String mappingTable, boolean caseSensitive, boolean orderByAscending,
+		String mappingTableName, boolean caseSensitive, boolean orderByAscending,
 		boolean orderColumn, String comparator, String arrayableOperator,
 		String idType, String idParam, boolean convertNull, boolean lazy,
 		boolean localized, boolean jsonEnabled, boolean containerModel,
@@ -59,10 +59,8 @@ public class EntityColumn implements Cloneable, Comparable<EntityColumn> {
 		_primary = primary;
 		_accessor = accessor;
 		_filterPrimary = filterPrimary;
-		_humanName = ServiceBuilder.toHumanName(name);
-		_methodName = TextFormatter.format(name, TextFormatter.G);
 		_ejbName = ejbName;
-		_mappingTable = mappingTable;
+		_mappingTableName = mappingTableName;
 		_caseSensitive = caseSensitive;
 		_orderByAscending = orderByAscending;
 		_orderColumn = orderColumn;
@@ -78,6 +76,9 @@ public class EntityColumn implements Cloneable, Comparable<EntityColumn> {
 		_parentContainerModel = parentContainerModel;
 		_uadAnonymizeFieldName = uadAnonymizeFieldName;
 		_uadNonanonymizable = uadNonanonymizable;
+
+		_humanName = ServiceBuilder.toHumanName(name);
+		_methodName = TextFormatter.format(name, TextFormatter.G);
 	}
 
 	public EntityColumn(
@@ -122,9 +123,9 @@ public class EntityColumn implements Cloneable, Comparable<EntityColumn> {
 			return false;
 		}
 
-		EntityColumn col = (EntityColumn)obj;
+		EntityColumn entityColumn = (EntityColumn)obj;
 
-		String name = col.getName();
+		String name = entityColumn.getName();
 
 		if (_name.equals(name)) {
 			return true;
@@ -210,7 +211,7 @@ public class EntityColumn implements Cloneable, Comparable<EntityColumn> {
 	}
 
 	public String getMappingTableName() {
-		return _mappingTable;
+		return _mappingTableName;
 	}
 
 	public String getMethodName() {
@@ -322,7 +323,7 @@ public class EntityColumn implements Cloneable, Comparable<EntityColumn> {
 	}
 
 	public boolean isMappingManyToMany() {
-		return Validator.isNotNull(_mappingTable);
+		return Validator.isNotNull(_mappingTableName);
 	}
 
 	public boolean isOrderByAscending() {
@@ -555,7 +556,7 @@ public class EntityColumn implements Cloneable, Comparable<EntityColumn> {
 	private final boolean _jsonEnabled;
 	private boolean _lazy;
 	private boolean _localized;
-	private final String _mappingTable;
+	private final String _mappingTableName;
 	private final String _methodName;
 	private final String _name;
 	private boolean _orderByAscending;
