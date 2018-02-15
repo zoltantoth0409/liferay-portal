@@ -105,9 +105,9 @@ public class Entity implements Comparable<Entity> {
 		boolean cacheEnabled, boolean dynamicUpdateEnabled, boolean jsonEnabled,
 		boolean mvccEnabled, boolean trashEnabled, boolean deprecated,
 		List<EntityColumn> pkList, List<EntityColumn> regularColList,
-		List<EntityColumn> blobEntityColumns, List<EntityColumn> collectionList,
+		List<EntityColumn> blobEntityColumns, List<EntityColumn> collectionEntityColumns,
 		List<EntityColumn> entityColumns, EntityOrder entityOrder,
-		List<EntityFinder> finderList, List<Entity> referenceEntities,
+		List<EntityFinder> entityFinders, List<Entity> referenceEntities,
 		List<String> unresolvedReferenceEntityNames,
 		List<String> txRequiredMethodNames, boolean resourceActionModel) {
 
@@ -138,10 +138,10 @@ public class Entity implements Comparable<Entity> {
 		_pkEntityColumns = pkList;
 		_regularColList = regularColList;
 		_blobEntityColumns = blobEntityColumns;
-		_collectionList = collectionList;
+		_collectionEntityColumns = collectionEntityColumns;
 		_entityColumns = entityColumns;
 		_entityOrder = entityOrder;
-		_entityFinders = finderList;
+		_entityFinders = entityFinders;
 		_referenceEntities = referenceEntities;
 		_unresolvedReferenceEntityNames = unresolvedReferenceEntityNames;
 		_txRequiredMethodNames = txRequiredMethodNames;
@@ -252,7 +252,7 @@ public class Entity implements Comparable<Entity> {
 		return _blobEntityColumns;
 	}
 
-	public List<EntityFinder> getCollectionFinderList() {
+	public List<EntityFinder> getCollectionEntityFinders() {
 		List<EntityFinder> entityFinders = new ArrayList<>(
 			_entityFinders.size());
 
@@ -267,8 +267,8 @@ public class Entity implements Comparable<Entity> {
 		return entityFinders;
 	}
 
-	public List<EntityColumn> getCollectionList() {
-		return _collectionList;
+	public List<EntityColumn> getCollectionEntityColumns() {
+		return _collectionEntityColumns;
 	}
 
 	public String getDataSource() {
@@ -955,7 +955,7 @@ public class Entity implements Comparable<Entity> {
 	private final String _apiPackagePath;
 	private List<EntityColumn> _blobEntityColumns;
 	private final boolean _cacheEnabled;
-	private final List<EntityColumn> _collectionList;
+	private final List<EntityColumn> _collectionEntityColumns;
 	private final boolean _containerModel;
 	private final String _dataSource;
 	private final boolean _deprecated;

@@ -5196,7 +5196,7 @@ public class ServiceBuilder {
 		List<EntityColumn> pkList = new ArrayList<>();
 		List<EntityColumn> regularColList = new ArrayList<>();
 		List<EntityColumn> blobEntityColumns = new ArrayList<>();
-		List<EntityColumn> collectionList = new ArrayList<>();
+		List<EntityColumn> collectionEntityColumns = new ArrayList<>();
 		List<EntityColumn> entityColumns = new ArrayList<>();
 
 		boolean permissionedModel = false;
@@ -5310,7 +5310,7 @@ public class ServiceBuilder {
 			}
 
 			if (columnType.equals("Collection")) {
-				collectionList.add(entityColumn);
+				collectionEntityColumns.add(entityColumn);
 			}
 			else {
 				regularColList.add(entityColumn);
@@ -5622,7 +5622,7 @@ public class ServiceBuilder {
 			remoteService, persistenceClassName, finderClassName, dataSource,
 			sessionFactory, txManager, cacheEnabled, dynamicUpdateEnabled,
 			jsonEnabled, mvccEnabled, trashEnabled, deprecated, pkList,
-			regularColList, blobEntityColumns, collectionList, entityColumns, entityOrder,
+			regularColList, blobEntityColumns, collectionEntityColumns, entityColumns, entityOrder,
 			entityFinders, referenceEntities, unresolvedReferenceEntityNames, txRequiredMethodNames,
 			resourceActionModel);
 
