@@ -66,13 +66,13 @@ public class Entity implements Comparable<Entity> {
 		throw new RuntimeException("Entity column " + name + " not found");
 	}
 
-	public static boolean hasColumn(
+	public static boolean hasEntityColumn(
 		String name, List<EntityColumn> entityColumns) {
 
-		return hasColumn(name, null, entityColumns);
+		return hasEntityColumn(name, null, entityColumns);
 	}
 
-	public static boolean hasColumn(
+	public static boolean hasEntityColumn(
 		String name, String type, List<EntityColumn> entityColumns) {
 
 		int index = entityColumns.indexOf(new EntityColumn(name));
@@ -191,8 +191,8 @@ public class Entity implements Comparable<Entity> {
 		_containerModel = containerModel;
 	}
 
-	public void addReference(Entity reference) {
-		_referenceEntities.add(reference);
+	public void addReferenceEntity(Entity referenceEntity) {
+		_referenceEntities.add(referenceEntity);
 	}
 
 	@Override
@@ -271,12 +271,12 @@ public class Entity implements Comparable<Entity> {
 		return _collectionList;
 	}
 
-	public EntityColumn getEntityColumn(String name) {
-		return getEntityColumn(name, _entityColumns);
-	}
-
 	public String getDataSource() {
 		return _dataSource;
+	}
+
+	public EntityColumn getEntityColumn(String name) {
+		return getEntityColumn(name, _entityColumns);
 	}
 
 	public List<EntityColumn> getEntityColumns() {
@@ -495,7 +495,7 @@ public class Entity implements Comparable<Entity> {
 	}
 
 	public boolean hasActionableDynamicQuery() {
-		if (hasColumns() && hasLocalService()) {
+		if (hasEntityColumns() && hasLocalService()) {
 			if (hasCompoundPK()) {
 				EntityColumn entityColumn = _pkEntityColumns.get(0);
 
@@ -519,30 +519,12 @@ public class Entity implements Comparable<Entity> {
 		return false;
 	}
 
-	public boolean hasColumn(String name) {
-		return hasColumn(name, _entityColumns);
-	}
-
-	public boolean hasColumn(String name, String type) {
-		return hasColumn(name, type, _entityColumns);
-	}
-
-	public boolean hasColumns() {
-		if (ListUtil.isEmpty(_entityColumns)) {
-			return false;
-		}
-		else {
-			return true;
-		}
-	}
-
 	public boolean hasCompoundPK() {
 		if (_pkEntityColumns.size() > 1) {
 			return true;
 		}
-		else {
-			return false;
-		}
+
+		return false;
 	}
 
 	public boolean hasEagerBlobColumn() {
@@ -557,6 +539,22 @@ public class Entity implements Comparable<Entity> {
 		}
 
 		return false;
+	}
+
+	public boolean hasEntityColumn(String name) {
+		return hasEntityColumn(name, _entityColumns);
+	}
+
+	public boolean hasEntityColumn(String name, String type) {
+		return hasEntityColumn(name, type, _entityColumns);
+	}
+
+	public boolean hasEntityColumns() {
+		if (ListUtil.isEmpty(_entityColumns)) {
+			return false;
+		}
+
+		return true;
 	}
 
 	public boolean hasFinderClassName() {
@@ -626,7 +624,7 @@ public class Entity implements Comparable<Entity> {
 			return false;
 		}
 
-		if (hasColumn("classPK")) {
+		if (hasEntityColumn("classPK")) {
 			EntityColumn classPKEntityColumn = getEntityColumn("classPK");
 
 			String classPKColType = classPKEntityColumn.getType();
@@ -640,9 +638,10 @@ public class Entity implements Comparable<Entity> {
 	}
 
 	public boolean isAuditedModel() {
-		if (hasColumn("companyId") && hasColumn("createDate", "Date") &&
-			hasColumn("modifiedDate", "Date") && hasColumn("userId") &&
-			hasColumn("userName")) {
+		if (hasEntityColumn("companyId") &&
+			hasEntityColumn("createDate", "Date") &&
+			hasEntityColumn("modifiedDate", "Date") &&
+			hasEntityColumn("userId") && hasEntityColumn("userName")) {
 
 			return true;
 		}
@@ -696,7 +695,7 @@ public class Entity implements Comparable<Entity> {
 	public boolean isGroupedModel() {
 		String pkVarName = getPKVarName();
 
-		if (isAuditedModel() && hasColumn("groupId") &&
+		if (isAuditedModel() && hasEntityColumn("groupId") &&
 			!pkVarName.equals("groupId")) {
 
 			return true;
@@ -776,7 +775,7 @@ public class Entity implements Comparable<Entity> {
 			return false;
 		}
 
-		if (hasColumn("groupId") && !finder.hasColumn("groupId")) {
+		if (hasEntityColumn("groupId") && !finder.hasEntityColumn("groupId")) {
 			return false;
 		}
 
@@ -786,7 +785,7 @@ public class Entity implements Comparable<Entity> {
 	}
 
 	public boolean isPermissionedModel() {
-		if (hasColumn("resourceBlockId")) {
+		if (hasEntityColumn("resourceBlockId")) {
 			return true;
 		}
 		else {
@@ -811,7 +810,7 @@ public class Entity implements Comparable<Entity> {
 	public boolean isResourcedModel() {
 		String pkVarName = getPKVarName();
 
-		if (hasColumn("resourcePrimKey") &&
+		if (hasEntityColumn("resourcePrimKey") &&
 			!pkVarName.equals("resourcePrimKey")) {
 
 			return true;
@@ -828,7 +827,7 @@ public class Entity implements Comparable<Entity> {
 			return false;
 		}
 
-		return hasColumn("companyId");
+		return hasEntityColumn("companyId");
 	}
 
 	public boolean isStagedAuditedModel() {
@@ -841,7 +840,7 @@ public class Entity implements Comparable<Entity> {
 
 	public boolean isStagedGroupedModel() {
 		if (isGroupedModel() && isStagedModel() &&
-			hasColumn("lastPublishDate", "Date")) {
+			hasEntityColumn("lastPublishDate", "Date")) {
 
 			return true;
 		}
@@ -850,9 +849,9 @@ public class Entity implements Comparable<Entity> {
 	}
 
 	public boolean isStagedModel() {
-		if (hasUuid() && hasColumn("companyId") &&
-			hasColumn("createDate", "Date") &&
-			hasColumn("modifiedDate", "Date")) {
+		if (hasUuid() && hasEntityColumn("companyId") &&
+			hasEntityColumn("createDate", "Date") &&
+			hasEntityColumn("modifiedDate", "Date")) {
 
 			return true;
 		}
@@ -865,7 +864,7 @@ public class Entity implements Comparable<Entity> {
 	}
 
 	public boolean isTreeModel() {
-		if (hasColumn("treePath")) {
+		if (hasEntityColumn("treePath")) {
 			return true;
 		}
 
@@ -873,8 +872,9 @@ public class Entity implements Comparable<Entity> {
 	}
 
 	public boolean isTypedModel() {
-		if (hasColumn("classNameId")) {
-			EntityColumn classNameIdEntityColumn = getEntityColumn("classNameId");
+		if (hasEntityColumn("classNameId")) {
+			EntityColumn classNameIdEntityColumn = getEntityColumn(
+				"classNameId");
 
 			String classNameIdColType = classNameIdEntityColumn.getType();
 
@@ -897,8 +897,9 @@ public class Entity implements Comparable<Entity> {
 	}
 
 	public boolean isWorkflowEnabled() {
-		if (hasColumn("status") && hasColumn("statusByUserId") &&
-			hasColumn("statusByUserName") && hasColumn("statusDate")) {
+		if (hasEntityColumn("status") && hasEntityColumn("statusByUserId") &&
+			hasEntityColumn("statusByUserName") &&
+			hasEntityColumn("statusDate")) {
 
 			return true;
 		}

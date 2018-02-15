@@ -1,5 +1,5 @@
 <#if entity.isHierarchicalTree()>
-	<#if entity.hasColumn("groupId")>
+	<#if entity.hasEntityColumn("groupId")>
 		<#assign scopeEntityColumn = entity.getEntityColumn("groupId") />
 	<#else>
 		<#assign scopeEntityColumn = entity.getEntityColumn("companyId") />
@@ -92,7 +92,7 @@ import java.util.Objects;
 import java.util.Set;
 
 <#list referenceEntities as referenceEntity>
-	<#if referenceEntity.hasColumns() && (stringUtil.equals(entity.name, "Counter") || !stringUtil.equals(referenceEntity.name, "Counter"))>
+	<#if referenceEntity.hasEntityColumns() && (stringUtil.equals(entity.name, "Counter") || !stringUtil.equals(referenceEntity.name, "Counter"))>
 		import ${referenceEntity.apiPackagePath}.service.persistence.${referenceEntity.name}Persistence;
 	</#if>
 </#list>
@@ -523,7 +523,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 			uniqueFinderList = entity.uniqueEntityFinders
 		/>
 
-		<#if entity.isHierarchicalTree() || (collectionFinderList?size != 0) || (uniqueFinderList?size &gt; 0) || (entity.hasColumn("createDate", "Date") && entity.hasColumn("modifiedDate", "Date"))>
+		<#if entity.isHierarchicalTree() || (collectionFinderList?size != 0) || (uniqueFinderList?size &gt; 0) || (entity.hasEntityColumn("createDate", "Date") && entity.hasEntityColumn("modifiedDate", "Date"))>
 			${entity.name}ModelImpl ${entity.varName}ModelImpl = (${entity.name}ModelImpl)${entity.varName};
 		</#if>
 
@@ -535,7 +535,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 			}
 		</#if>
 
-		<#if entity.hasColumn("createDate", "Date") && entity.hasColumn("modifiedDate", "Date")>
+		<#if entity.hasEntityColumn("createDate", "Date") && entity.hasEntityColumn("modifiedDate", "Date")>
 			ServiceContext serviceContext = ServiceContextThreadLocal.getServiceContext();
 
 			Date now = new Date();
@@ -567,13 +567,13 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 			if (userId > 0) {
 				<#assign companyId = 0 />
 
-				<#if entity.hasColumn("companyId")>
+				<#if entity.hasEntityColumn("companyId")>
 					long companyId = ${entity.varName}.getCompanyId();
 				<#else>
 					long companyId = 0;
 				</#if>
 
-				<#if entity.hasColumn("groupId")>
+				<#if entity.hasEntityColumn("groupId")>
 					long groupId = ${entity.varName}.getGroupId();
 				<#else>
 					long groupId = 0;
@@ -1811,7 +1811,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 		private static final String _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN = "${entity.alias}.${entity.filterPKEntityColumn.DBName}";
 
 		<#if entity.isPermissionedModel()>
-			<#if entity.hasColumn("userId")>
+			<#if entity.hasEntityColumn("userId")>
 				private static final String _FILTER_ENTITY_TABLE_FILTER_USERID_COLUMN = "${entity.alias}.userId";
 			<#else>
 				private static final String _FILTER_ENTITY_TABLE_FILTER_USERID_COLUMN = null;

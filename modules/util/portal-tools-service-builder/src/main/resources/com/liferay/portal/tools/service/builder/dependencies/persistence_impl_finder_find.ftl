@@ -473,7 +473,7 @@ that may or may not be enforced with a unique index at the database level. Case
 		return null;
 	}
 
-	<#if !finder.hasColumn(entity.PKVarName)>
+	<#if !finder.hasEntityColumn(entity.PKVarName)>
 		/**
 		 * Returns the ${entity.humanNames} before and after the current ${entity.humanName} in the ordered set where ${finder.getHumanConditions(false)}.
 		 *
@@ -659,9 +659,9 @@ that may or may not be enforced with a unique index at the database level. Case
 		</#list>
 
 		int start, int end, OrderByComparator<${entity.name}> orderByComparator) {
-			<#if finder.hasColumn("groupId")>
+			<#if finder.hasEntityColumn("groupId")>
 				if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			<#elseif finder.hasColumn("companyId")>
+			<#elseif finder.hasEntityColumn("companyId")>
 				if (!InlineSQLHelperUtil.isEnabled(companyId, 0)) {
 			<#else>
 				if (!InlineSQLHelperUtil.isEnabled()) {
@@ -679,7 +679,7 @@ that may or may not be enforced with a unique index at the database level. Case
 			<#if entity.isPermissionedModel()>
 				<#include "persistence_impl_find_by_query.ftl">
 
-				String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(), ${entity.name}.class.getName(), _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, _FILTER_ENTITY_TABLE_FILTER_USERID_COLUMN<#if finder.hasColumn("groupId")>, groupId</#if>);
+				String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(), ${entity.name}.class.getName(), _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, _FILTER_ENTITY_TABLE_FILTER_USERID_COLUMN<#if finder.hasEntityColumn("groupId")>, groupId</#if>);
 
 				Session session = null;
 
@@ -744,7 +744,7 @@ that may or may not be enforced with a unique index at the database level. Case
 					}
 				}
 
-				String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(), ${entity.name}.class.getName(), _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN<#if finder.hasColumn("groupId")>, groupId</#if>);
+				String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(), ${entity.name}.class.getName(), _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN<#if finder.hasEntityColumn("groupId")>, groupId</#if>);
 
 				Session session = null;
 
@@ -775,7 +775,7 @@ that may or may not be enforced with a unique index at the database level. Case
 			</#if>
 		}
 
-		<#if !finder.hasColumn(entity.PKVarName)>
+		<#if !finder.hasEntityColumn(entity.PKVarName)>
 			/**
 			 * Returns the ${entity.humanNames} before and after the current ${entity.humanName} in the ordered set of ${entity.humanNames} that the user has permission to view where ${finder.getHumanConditions(false)}.
 			 *
@@ -795,9 +795,9 @@ that may or may not be enforced with a unique index at the database level. Case
 			</#list>
 
 			OrderByComparator<${entity.name}> orderByComparator) throws ${noSuchEntity}Exception {
-				<#if finder.hasColumn("groupId")>
+				<#if finder.hasEntityColumn("groupId")>
 					if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-				<#elseif finder.hasColumn("companyId")>
+				<#elseif finder.hasEntityColumn("companyId")>
 					if (!InlineSQLHelperUtil.isEnabled(companyId, 0)) {
 				<#else>
 					if (!InlineSQLHelperUtil.isEnabled()) {
@@ -865,7 +865,7 @@ that may or may not be enforced with a unique index at the database level. Case
 				<#if entity.isPermissionedModel()>
 					<#include "persistence_impl_get_by_prev_and_next_query.ftl">
 
-					String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(), ${entity.name}.class.getName(), _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, _FILTER_ENTITY_TABLE_FILTER_USERID_COLUMN<#if finder.hasColumn("groupId")>, groupId</#if>);
+					String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(), ${entity.name}.class.getName(), _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, _FILTER_ENTITY_TABLE_FILTER_USERID_COLUMN<#if finder.hasEntityColumn("groupId")>, groupId</#if>);
 
 					Query q = session.createQuery(sql);
 
@@ -995,7 +995,7 @@ that may or may not be enforced with a unique index at the database level. Case
 						}
 					}
 
-					String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(), ${entity.name}.class.getName(), _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN<#if finder.hasColumn("groupId")>, groupId</#if>);
+					String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(), ${entity.name}.class.getName(), _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN<#if finder.hasEntityColumn("groupId")>, groupId</#if>);
 
 					SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
@@ -1149,7 +1149,7 @@ that may or may not be enforced with a unique index at the database level. Case
 			</#list>
 
 			int start, int end, OrderByComparator<${entity.name}> orderByComparator) {
-				<#if finder.hasColumn("groupId")>
+				<#if finder.hasEntityColumn("groupId")>
 					if (!InlineSQLHelperUtil.isEnabled(
 						<#if finder.getEntityColumn("groupId").hasArrayableOperator()>
 							groupIds
@@ -1157,7 +1157,7 @@ that may or may not be enforced with a unique index at the database level. Case
 							groupId
 						</#if>
 					)) {
-				<#elseif finder.hasColumn("companyId")>
+				<#elseif finder.hasEntityColumn("companyId")>
 					if (!InlineSQLHelperUtil.isEnabled(companyId, 0)) {
 				<#else>
 					if (!InlineSQLHelperUtil.isEnabled()) {
@@ -1203,7 +1203,7 @@ that may or may not be enforced with a unique index at the database level. Case
 
 					String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(), ${entity.name}.class.getName(), _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, _FILTER_ENTITY_TABLE_FILTER_USERID_COLUMN
 
-					<#if finder.hasColumn("groupId")>,
+					<#if finder.hasEntityColumn("groupId")>,
 						<#if finder.getEntityColumn("groupId").hasArrayableOperator()>
 							groupIds
 						<#else>
@@ -1271,7 +1271,7 @@ that may or may not be enforced with a unique index at the database level. Case
 
 					String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(), ${entity.name}.class.getName(), _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN
 
-					<#if finder.hasColumn("groupId")>,
+					<#if finder.hasEntityColumn("groupId")>,
 						<#if finder.getEntityColumn("groupId").hasArrayableOperator()>
 							groupIds
 						<#else>

@@ -1,7 +1,7 @@
 <#list entities as entity>
 	<#assign modelName = apiPackagePath + ".model." + entity.name />
 
-	<#if entity.hasColumns()>
+	<#if entity.hasEntityColumns()>
 		<model name="${modelName}">
 			<#if modelHintsUtil.getDefaultHints(modelName)??>
 				<#assign defaultHints = modelHintsUtil.getDefaultHints(modelName) />

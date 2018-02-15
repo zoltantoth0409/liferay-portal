@@ -34,7 +34,7 @@ public interface ${entity.name} extends
 
 	<#assign overrideColumnNames = [] />
 
-	<#if entity.hasLocalService() && entity.hasColumns()>
+	<#if entity.hasLocalService() && entity.hasEntityColumns()>
 		<#if entity.isHierarchicalTree()>
 			, NestedSetsTreeNodeModel
 		</#if>

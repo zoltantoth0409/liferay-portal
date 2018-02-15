@@ -59,7 +59,7 @@ import java.util.Map;
 import javax.sql.DataSource;
 import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 
-<#if entity.hasColumns()>
+<#if entity.hasEntityColumns()>
 	<#if entity.hasCompoundPK()>
 		import ${apiPackagePath}.service.persistence.${entity.name}PK;
 	</#if>
@@ -80,7 +80,7 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 </#if>
 
 <#list referenceEntities as referenceEntity>
-	<#if referenceEntity.hasColumns() && (stringUtil.equals(entity.name, "Counter") || !stringUtil.equals(referenceEntity.name, "Counter"))>
+	<#if referenceEntity.hasEntityColumns() && (stringUtil.equals(entity.name, "Counter") || !stringUtil.equals(referenceEntity.name, "Counter"))>
 		import ${referenceEntity.apiPackagePath}.service.persistence.${referenceEntity.name}Persistence;
 		import ${referenceEntity.apiPackagePath}.service.persistence.${referenceEntity.name}Util;
 	</#if>
@@ -150,7 +150,7 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 		 */
 </#if>
 
-	<#if stringUtil.equals(sessionTypeName, "Local") && entity.hasColumns()>
+	<#if stringUtil.equals(sessionTypeName, "Local") && entity.hasEntityColumns()>
 		<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "add" + entity.name, [apiPackagePath + ".model." + entity.name], []) />
 
 		/**
@@ -302,7 +302,7 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 			return ${entity.varName}Persistence.fetchByPrimaryKey(${entity.PKVarName});
 		}
 
-		<#if entity.hasUuid() && entity.hasColumn("companyId") && (!entity.hasColumn("groupId") || stringUtil.equals(entity.name, "Group"))>
+		<#if entity.hasUuid() && entity.hasEntityColumn("companyId") && (!entity.hasEntityColumn("groupId") || stringUtil.equals(entity.name, "Group"))>
 			/**
 			 * Returns the ${entity.humanName} with the matching UUID and company.
 			 *
@@ -319,7 +319,7 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 			}
 		</#if>
 
-		<#if entity.hasUuid() && entity.hasColumn("groupId") && !stringUtil.equals(entity.name, "Group")>
+		<#if entity.hasUuid() && entity.hasEntityColumn("groupId") && !stringUtil.equals(entity.name, "Group")>
 			<#if stringUtil.equals(entity.name, "Layout")>
 				/**
 				 * Returns the ${entity.humanName} matching the UUID, group, and privacy.
@@ -608,8 +608,8 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 			}
 		</#if>
 
-		<#if entity.hasUuid() && entity.hasColumn("companyId")>
-			<#if entity.hasColumn("groupId") && !stringUtil.equals(entity.name, "Group")>
+		<#if entity.hasUuid() && entity.hasEntityColumn("companyId")>
+			<#if entity.hasEntityColumn("groupId") && !stringUtil.equals(entity.name, "Group")>
 				/**
 				 * Returns all the ${entity.humanNames} matching the UUID and company.
 				 *
@@ -658,7 +658,7 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 			</#if>
 		</#if>
 
-		<#if entity.hasUuid() && entity.hasColumn("groupId") && !stringUtil.equals(entity.name, "Group")>
+		<#if entity.hasUuid() && entity.hasEntityColumn("groupId") && !stringUtil.equals(entity.name, "Group")>
 			<#if stringUtil.equals(entity.name, "Layout")>
 				/**
 				 * Returns the ${entity.humanName} matching the UUID, group, and privacy.
@@ -1022,7 +1022,7 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 			}
 
 			<#list entity.entityColumns as entityColumn>
-				<#if localizedEntity.hasColumn(entityColumn.name) && !stringUtil.equals(entityColumn.name, "mvccVersion") && !stringUtil.equals(entityColumn.name, pkColumn.name)>
+				<#if localizedEntity.hasEntityColumn(entityColumn.name) && !stringUtil.equals(entityColumn.name, "mvccVersion") && !stringUtil.equals(entityColumn.name, pkColumn.name)>
 					${localizedEntity.varName}.set${entityColumn.methodName}(${entity.varName}.get${entityColumn.methodName}());
 				</#if>
 			</#list>
@@ -1073,7 +1073,7 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 				}
 				else {
 					<#list entity.entityColumns as entityColumn>
-						<#if localizedEntity.hasColumn(entityColumn.name) && !stringUtil.equals(entityColumn.name, "mvccVersion") && !stringUtil.equals(entityColumn.name, pkColumn.name)>
+						<#if localizedEntity.hasEntityColumn(entityColumn.name) && !stringUtil.equals(entityColumn.name, "mvccVersion") && !stringUtil.equals(entityColumn.name, pkColumn.name)>
 							${localizedEntity.varName}.set${entityColumn.methodName}(${entity.varName}.get${entityColumn.methodName}());
 						</#if>
 					</#list>
@@ -1095,7 +1095,7 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 				${localizedEntity.name} ${localizedEntity.varName} = ${localizedEntity.varName}Persistence.create(${localizedEntity.PKVarName});
 
 				<#list entity.entityColumns as entityColumn>
-					<#if localizedEntity.hasColumn(entityColumn.name) && !stringUtil.equals(entityColumn.name, "mvccVersion")>
+					<#if localizedEntity.hasEntityColumn(entityColumn.name) && !stringUtil.equals(entityColumn.name, "mvccVersion")>
 						${localizedEntity.varName}.set${entityColumn.methodName}(${entity.varName}.get${entityColumn.methodName}());
 					</#if>
 				</#list>
@@ -1174,7 +1174,7 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 			}
 		</#if>
 
-		<#if referenceEntity.hasColumns() && (stringUtil.equals(entity.name, "Counter") || !stringUtil.equals(referenceEntity.name, "Counter"))>
+		<#if referenceEntity.hasEntityColumns() && (stringUtil.equals(entity.name, "Counter") || !stringUtil.equals(referenceEntity.name, "Counter"))>
 			/**
 			 * Returns the ${referenceEntity.humanName} persistence.
 			 *
@@ -1216,7 +1216,7 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 	</#list>
 
 	public void afterPropertiesSet() {
-		<#if stringUtil.equals(sessionTypeName, "Local") && entity.hasColumns()>
+		<#if stringUtil.equals(sessionTypeName, "Local") && entity.hasEntityColumns()>
 			<#if validator.isNotNull(pluginName)>
 				PersistedModelLocalServiceRegistryUtil.register("${apiPackagePath}.model.${entity.name}", ${entity.varName}LocalService);
 			<#else>
@@ -1226,7 +1226,7 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 	}
 
 	public void destroy() {
-		<#if stringUtil.equals(sessionTypeName, "Local") && entity.hasColumns()>
+		<#if stringUtil.equals(sessionTypeName, "Local") && entity.hasEntityColumns()>
 			<#if validator.isNotNull(pluginName)>
 				PersistedModelLocalServiceRegistryUtil.unregister("${apiPackagePath}.model.${entity.name}");
 			<#else>
@@ -1249,7 +1249,7 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 		</#if>
 	}
 
-	<#if entity.hasColumns()>
+	<#if entity.hasEntityColumns()>
 		protected Class<?> getModelClass() {
 			return ${entity.name}.class;
 		}
@@ -1266,7 +1266,7 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 	 */
 	protected void runSQL(String sql) {
 		try {
-			<#if entity.hasColumns()>
+			<#if entity.hasEntityColumns()>
 				DataSource dataSource = ${entity.varName}Persistence.getDataSource();
 			<#else>
 				DataSource dataSource = InfrastructureUtil.getDataSource();
@@ -1315,7 +1315,7 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 			protected ${referenceEntity.apiPackagePath}.service.${referenceEntity.name}Service ${referenceEntity.varName}Service;
 		</#if>
 
-		<#if referenceEntity.hasColumns() && (stringUtil.equals(entity.name, "Counter") || !stringUtil.equals(referenceEntity.name, "Counter"))>
+		<#if referenceEntity.hasEntityColumns() && (stringUtil.equals(entity.name, "Counter") || !stringUtil.equals(referenceEntity.name, "Counter"))>
 			<#if osgiModule && (referenceEntity.apiPackagePath != apiPackagePath)>
 				@ServiceReference(type = ${referenceEntity.name}Persistence.class)
 			<#else>
@@ -1336,7 +1336,7 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 		</#if>
 	</#list>
 
-	<#if stringUtil.equals(sessionTypeName, "Local") && entity.hasColumns()>
+	<#if stringUtil.equals(sessionTypeName, "Local") && entity.hasEntityColumns()>
 		<#if validator.isNull(pluginName)>
 			<#if osgiModule>
 				@ServiceReference(type = PersistedModelLocalServiceRegistry.class)

@@ -11,7 +11,7 @@
 		<#include "spring_xml_session.ftl">
 	</#if>
 
-	<#if entity.hasColumns()>
+	<#if entity.hasEntityColumns()>
 		<#if !stringUtil.equals(entity.dataSource, "liferayDataSource") || !stringUtil.equals(entity.sessionFactory, "liferaySessionFactory")>
 			<bean class="${entity.persistenceClassName}" id="${apiPackagePath}.service.persistence.${entity.name}Persistence" parent="basePersistence">
 				<#if !stringUtil.equals(entity.dataSource, "liferayDataSource")>

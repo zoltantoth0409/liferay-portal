@@ -639,7 +639,7 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 			}
 		</#if>
 
-		<#if entity.hasColumn("createDate", "Date") && entity.hasColumn("modifiedDate", "Date") && stringUtil.equals(column.name, "modifiedDate")>
+		<#if entity.hasEntityColumn("createDate", "Date") && entity.hasEntityColumn("modifiedDate", "Date") && stringUtil.equals(column.name, "modifiedDate")>
 			public boolean hasSetModifiedDate() {
 				return _setModifiedDate;
 			}
@@ -656,7 +656,7 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 
 				_uuid = uuid;
 			<#else>
-				<#if entity.hasColumn("createDate", "Date") && entity.hasColumn("modifiedDate", "Date") && stringUtil.equals(column.name, "modifiedDate")>
+				<#if entity.hasEntityColumn("createDate", "Date") && entity.hasEntityColumn("modifiedDate", "Date") && stringUtil.equals(column.name, "modifiedDate")>
 					_setModifiedDate = true;
 				</#if>
 
@@ -802,7 +802,7 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 	</#list>
 
 	<#if entity.isContainerModel()>
-		<#assign hasParentContainerModelId = entity.hasColumn("parentContainerModelId") />
+		<#assign hasParentContainerModelId = entity.hasEntityColumn("parentContainerModelId") />
 
 		<#list entity.entityColumns as entityColumn>
 			<#if entityColumn.isContainerModel() && !stringUtil.equals(entityColumn.name, "containerModelId")>
@@ -834,9 +834,9 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 
 		@Override
 		public String getContainerModelName() {
-			<#if entity.hasColumn("name")>
+			<#if entity.hasEntityColumn("name")>
 				return String.valueOf(getName());
-			<#elseif entity.hasColumn("title")>
+			<#elseif entity.hasEntityColumn("title")>
 				<#assign titleColumn = entity.getEntityColumn("title") />
 
 				return String.valueOf(getTitle(<#if titleColumn.isLocalized()>LocaleThreadLocal.getThemeDisplayLocale()</#if>));
@@ -867,7 +867,7 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 		}
 
 		public long getNestedSetsTreeNodeScopeId() {
-			<#if entity.hasColumn("groupId")>
+			<#if entity.hasEntityColumn("groupId")>
 				<#assign scopeEntityColumn = entity.getEntityColumn("groupId") />
 			<#else>
 				<#assign scopeEntityColumn = entity.getEntityColumn("companyId") />
@@ -1121,7 +1121,7 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 		public ExpandoBridge getExpandoBridge() {
 			return ExpandoBridgeFactoryUtil.getExpandoBridge(
 
-				<#if entity.hasColumn("companyId")>
+				<#if entity.hasEntityColumn("companyId")>
 					getCompanyId(),
 				<#else>
 					0,
@@ -1366,7 +1366,7 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 	@Override
 	public void resetOriginalValues() {
 		<#list entity.regularColList as column>
-			<#if column.isFinderPath() || (validator.isNotNull(parentPKColumn) && (parentPKColumn.name == column.name)) || (stringUtil.equals(column.type, "Blob") && column.lazy) || (entity.hasColumn("createDate", "Date") && entity.hasColumn("modifiedDate", "Date"))>
+			<#if column.isFinderPath() || (validator.isNotNull(parentPKColumn) && (parentPKColumn.name == column.name)) || (stringUtil.equals(column.type, "Blob") && column.lazy) || (entity.hasEntityColumn("createDate", "Date") && entity.hasEntityColumn("modifiedDate", "Date"))>
 				<#if !cloneCastModelImpl??>
 					<#assign cloneCastModelImpl = true />
 
@@ -1386,7 +1386,7 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 				${entity.varName}ModelImpl._${column.name}BlobModel = null;
 			</#if>
 
-			<#if entity.hasColumn("createDate", "Date") && entity.hasColumn("modifiedDate", "Date") && stringUtil.equals(column.name, "modifiedDate")>
+			<#if entity.hasEntityColumn("createDate", "Date") && entity.hasEntityColumn("modifiedDate", "Date") && stringUtil.equals(column.name, "modifiedDate")>
 				${entity.varName}ModelImpl._setModifiedDate = false;
 			</#if>
 		</#list>
@@ -1517,7 +1517,7 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 				</#if>
 			</#if>
 
-			<#if entity.hasColumn("createDate", "Date") && entity.hasColumn("modifiedDate", "Date") && stringUtil.equals(column.name, "modifiedDate")>
+			<#if entity.hasEntityColumn("createDate", "Date") && entity.hasEntityColumn("modifiedDate", "Date") && stringUtil.equals(column.name, "modifiedDate")>
 				private boolean _setModifiedDate;
 			</#if>
 		</#if>

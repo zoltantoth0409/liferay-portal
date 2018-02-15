@@ -111,10 +111,6 @@ public class EntityFinder {
 		return false;
 	}
 
-	public boolean hasColumn(String name) {
-		return Entity.hasColumn(name, _entityColumns);
-	}
-
 	public boolean hasCustomComparator() {
 		for (EntityColumn column : _entityColumns) {
 			String comparator = column.getComparator();
@@ -125,6 +121,10 @@ public class EntityFinder {
 		}
 
 		return false;
+	}
+
+	public boolean hasEntityColumn(String name) {
+		return Entity.hasEntityColumn(name, _entityColumns);
 	}
 
 	public boolean isCollection() {
