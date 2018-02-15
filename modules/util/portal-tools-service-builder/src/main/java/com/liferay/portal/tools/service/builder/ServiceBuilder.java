@@ -1753,9 +1753,9 @@ public class ServiceBuilder {
 	}
 
 	public boolean isReadOnlyMethod(
-		JavaMethod method, List<String> txRequiredList, String[] prefixes) {
+		JavaMethod javaMethod, List<String> txRequiredList, String[] prefixes) {
 
-		List<JavaAnnotation> javaAnnotations = method.getAnnotations();
+		List<JavaAnnotation> javaAnnotations = javaMethod.getAnnotations();
 
 		if (javaAnnotations != null) {
 			for (JavaAnnotation javaAnnotation : javaAnnotations) {
@@ -1769,9 +1769,9 @@ public class ServiceBuilder {
 			}
 		}
 
-		String methodName = method.getName();
+		String methodName = javaMethod.getName();
 
-		if (isTxRequiredMethod(method, txRequiredList)) {
+		if (isTxRequiredMethod(javaMethod, txRequiredList)) {
 			return false;
 		}
 
@@ -1858,13 +1858,13 @@ public class ServiceBuilder {
 	}
 
 	public boolean isTxRequiredMethod(
-		JavaMethod method, List<String> txRequiredList) {
+		JavaMethod javaMethod, List<String> txRequiredList) {
 
 		if (txRequiredList == null) {
 			return false;
 		}
 
-		if (txRequiredList.contains(method.getName())) {
+		if (txRequiredList.contains(javaMethod.getName())) {
 			return true;
 		}
 
@@ -5338,7 +5338,7 @@ public class ServiceBuilder {
 					"\" with a UUID without a primary key");
 		}
 
-		EntityOrder order = null;
+		EntityOrder entityOrder = null;
 
 		Element orderElement = entityElement.element("order");
 
@@ -5351,22 +5351,22 @@ public class ServiceBuilder {
 				asc = false;
 			}
 
-			List<EntityColumn> orderColsList = new ArrayList<>();
+			List<EntityColumn> orderEntityColumns = new ArrayList<>();
 
-			order = new EntityOrder(asc, orderColsList);
+			entityOrder = new EntityOrder(asc, orderEntityColumns);
 
 			List<Element> orderColumnElements = orderElement.elements(
 				"order-column");
 
-			for (Element orderColElement : orderColumnElements) {
-				String orderColName = orderColElement.attributeValue("name");
+			for (Element orderColumnElement : orderColumnElements) {
+				String orderColName = orderColumnElement.attributeValue("name");
 				boolean orderColCaseSensitive = GetterUtil.getBoolean(
-					orderColElement.attributeValue("case-sensitive"), true);
+					orderColumnElement.attributeValue("case-sensitive"), true);
 
 				boolean orderColByAscending = asc;
 
 				String orderColBy = GetterUtil.getString(
-					orderColElement.attributeValue("order-by"));
+					orderColumnElement.attributeValue("order-by"));
 
 				if (orderColBy.equals("asc")) {
 					orderColByAscending = true;
@@ -5382,20 +5382,20 @@ public class ServiceBuilder {
 						"Invalid order by column " + orderColName);
 				}
 
-				EntityColumn col = entityColumns.get(index);
+				EntityColumn entityColumn = entityColumns.get(index);
 
-				col.setOrderColumn(true);
+				entityColumn.setOrderColumn(true);
 
-				col = (EntityColumn)col.clone();
+				entityColumn = (EntityColumn)entityColumn.clone();
 
-				col.setCaseSensitive(orderColCaseSensitive);
-				col.setOrderByAscending(orderColByAscending);
+				entityColumn.setCaseSensitive(orderColCaseSensitive);
+				entityColumn.setOrderByAscending(orderColByAscending);
 
-				orderColsList.add(col);
+				orderEntityColumns.add(entityColumn);
 			}
 		}
 
-		List<EntityFinder> finderList = new ArrayList<>();
+		List<EntityFinder> entityFinders = new ArrayList<>();
 
 		List<Element> finderElements = entityElement.elements("finder");
 
@@ -5517,13 +5517,13 @@ public class ServiceBuilder {
 			boolean finderDBIndex = GetterUtil.getBoolean(
 				finderElement.attributeValue("db-index"), true);
 
-			List<EntityColumn> finderColsList = new ArrayList<>();
+			List<EntityColumn> finderEntityColumns = new ArrayList<>();
 
 			List<Element> finderColumnElements = finderElement.elements(
 				"finder-column");
 
 			for (Element finderColumnElement : finderColumnElements) {
-				String finderColName = finderColumnElement.attributeValue(
+				String finderColumnName = finderColumnElement.attributeValue(
 					"name");
 				boolean finderColCaseSensitive = GetterUtil.getBoolean(
 					finderColumnElement.attributeValue("case-sensitive"), true);
@@ -5532,27 +5532,27 @@ public class ServiceBuilder {
 				String finderColArrayableOperator = GetterUtil.getString(
 					finderColumnElement.attributeValue("arrayable-operator"));
 
-				EntityColumn col = Entity.getColumn(finderColName, entityColumns);
+				EntityColumn entityColumn = Entity.getColumn(finderColumnName, entityColumns);
 
-				if (!col.isFinderPath()) {
-					col.setFinderPath(true);
+				if (!entityColumn.isFinderPath()) {
+					entityColumn.setFinderPath(true);
 				}
 
-				col = (EntityColumn)col.clone();
+				entityColumn = (EntityColumn)entityColumn.clone();
 
-				col.setCaseSensitive(finderColCaseSensitive);
-				col.setComparator(finderColComparator);
-				col.setArrayableOperator(finderColArrayableOperator);
+				entityColumn.setCaseSensitive(finderColCaseSensitive);
+				entityColumn.setComparator(finderColComparator);
+				entityColumn.setArrayableOperator(finderColArrayableOperator);
 
-				col.validate();
+				entityColumn.validate();
 
-				finderColsList.add(col);
+				finderEntityColumns.add(entityColumn);
 			}
 
-			finderList.add(
+			entityFinders.add(
 				new EntityFinder(
 					finderName, finderReturn, finderUnique, finderWhere,
-					finderDBIndex, finderColsList));
+					finderDBIndex, finderEntityColumns));
 		}
 
 		List<Entity> referenceEntities = new ArrayList<>();
@@ -5604,8 +5604,8 @@ public class ServiceBuilder {
 					"the service impl method with " +
 						"com.liferay.portal.kernel.transaction.Transactional");
 
-			for (Element txRequiredEl : txRequiredElements) {
-				String txRequired = txRequiredEl.getText();
+			for (Element txRequiredElement : txRequiredElements) {
+				String txRequired = txRequiredElement.getText();
 
 				txRequiredList.add(txRequired);
 			}
@@ -5620,8 +5620,8 @@ public class ServiceBuilder {
 			remoteService, persistenceClassName, finderClassName, dataSource,
 			sessionFactory, txManager, cacheEnabled, dynamicUpdateEnabled,
 			jsonEnabled, mvccEnabled, trashEnabled, deprecated, pkList,
-			regularColList, blobEntityColumns, collectionList, entityColumns, order,
-			finderList, referenceEntities, unresolvedReferenceEntityNames, txRequiredList,
+			regularColList, blobEntityColumns, collectionList, entityColumns, entityOrder,
+			entityFinders, referenceEntities, unresolvedReferenceEntityNames, txRequiredList,
 			resourceActionModel);
 
 		_entities.add(entity);
