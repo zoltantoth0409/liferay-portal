@@ -231,9 +231,9 @@ public class Entity implements Comparable<Entity> {
 	}
 
 	public List<EntityColumn> getBadEntityColumns() {
-		List<EntityColumn> badEntityColumns = ListUtil.copy(_entityColumns);
+		List<EntityColumn> entityColumns = ListUtil.copy(_entityColumns);
 
-		Iterator<EntityColumn> iterator = badEntityColumns.iterator();
+		Iterator<EntityColumn> iterator = entityColumns.iterator();
 
 		while (iterator.hasNext()) {
 			EntityColumn entityColumn = iterator.next();
@@ -245,7 +245,7 @@ public class Entity implements Comparable<Entity> {
 			}
 		}
 
-		return badEntityColumns;
+		return entityColumns;
 	}
 
 	public List<EntityColumn> getBlobEntityColumns() {
@@ -462,10 +462,10 @@ public class Entity implements Comparable<Entity> {
 		return uadUserIdColumnNames;
 	}
 
-	public List<EntityFinder> getUniqueFinderList() {
-		List<EntityFinder> finderList = ListUtil.copy(_entityFinders);
+	public List<EntityFinder> getUniqueEntityFinders() {
+		List<EntityFinder> entityFinders = ListUtil.copy(_entityFinders);
 
-		Iterator<EntityFinder> iterator = finderList.iterator();
+		Iterator<EntityFinder> iterator = entityFinders.iterator();
 
 		while (iterator.hasNext()) {
 			EntityFinder entityFinder = iterator.next();
@@ -475,7 +475,7 @@ public class Entity implements Comparable<Entity> {
 			}
 		}
 
-		return finderList;
+		return entityFinders;
 	}
 
 	public List<String> getUnresolvedResolvedReferenceEntityNames() {
