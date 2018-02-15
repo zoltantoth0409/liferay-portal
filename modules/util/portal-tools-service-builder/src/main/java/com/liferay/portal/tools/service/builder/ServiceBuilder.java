@@ -2348,7 +2348,7 @@ public class ServiceBuilder {
 	}
 
 	private void _createFinder(Entity entity) throws Exception {
-		if (!entity.hasFinderClass()) {
+		if (!entity.hasFinderClassName()) {
 			_removeFinder(entity, _serviceOutputPath);
 
 			return;
@@ -2382,7 +2382,7 @@ public class ServiceBuilder {
 	}
 
 	private void _createFinderBaseImpl(Entity entity) throws Exception {
-		if (!entity.hasFinderClass() ||
+		if (!entity.hasFinderClassName() ||
 			_packagePath.equals("com.liferay.counter")) {
 
 			_removeFinderBaseImpl(entity);
@@ -2435,7 +2435,7 @@ public class ServiceBuilder {
 	}
 
 	private void _createFinderUtil(Entity entity) throws Exception {
-		if (!entity.hasFinderClass() || _osgiModule) {
+		if (!entity.hasFinderClassName() || _osgiModule) {
 			_removeFinderUtil(entity, _serviceOutputPath);
 
 			return;
@@ -5127,7 +5127,7 @@ public class ServiceBuilder {
 				_packagePath, ".service.persistence.impl.", ejbName,
 				"PersistenceImpl"));
 
-		String finderClass = "";
+		String finderClassName = "";
 
 		File originalFinderImplFile = new File(
 			StringBundler.concat(
@@ -5170,7 +5170,7 @@ public class ServiceBuilder {
 		}
 
 		if (newFinderImplFile.exists()) {
-			finderClass = StringBundler.concat(
+			finderClassName = StringBundler.concat(
 				_packagePath, ".service.persistence.impl.", ejbName,
 				"FinderImpl");
 		}
@@ -5619,7 +5619,7 @@ public class ServiceBuilder {
 		Entity entity = new Entity(
 			_packagePath, _apiPackagePath, _portletName, _portletShortName,
 			ejbName, humanName, table, alias, uuid, uuidAccessor, localService,
-			remoteService, persistenceClassName, finderClass, dataSource,
+			remoteService, persistenceClassName, finderClassName, dataSource,
 			sessionFactory, txManager, cacheEnabled, dynamicUpdateEnabled,
 			jsonEnabled, mvccEnabled, trashEnabled, deprecated, pkList,
 			regularColList, blobEntityColumns, collectionList, entityColumns, order,

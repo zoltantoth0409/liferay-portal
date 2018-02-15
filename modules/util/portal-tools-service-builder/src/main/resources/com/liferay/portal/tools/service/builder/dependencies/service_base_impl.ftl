@@ -85,7 +85,7 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 		import ${referenceEntity.apiPackagePath}.service.persistence.${referenceEntity.name}Util;
 	</#if>
 
-	<#if referenceEntity.hasFinderClass() && (stringUtil.equals(entity.name, "Counter") || !stringUtil.equals(referenceEntity.name, "Counter"))>
+	<#if referenceEntity.hasFinderClassName() && (stringUtil.equals(entity.name, "Counter") || !stringUtil.equals(referenceEntity.name, "Counter"))>
 		import ${referenceEntity.apiPackagePath}.service.persistence.${referenceEntity.name}Finder;
 		import ${referenceEntity.apiPackagePath}.service.persistence.${referenceEntity.name}FinderUtil;
 	</#if>
@@ -1194,7 +1194,7 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 			}
 		</#if>
 
-		<#if referenceEntity.hasFinderClass() && (stringUtil.equals(entity.name, "Counter") || !stringUtil.equals(referenceEntity.name, "Counter"))>
+		<#if referenceEntity.hasFinderClassName() && (stringUtil.equals(entity.name, "Counter") || !stringUtil.equals(referenceEntity.name, "Counter"))>
 			/**
 			 * Returns the ${referenceEntity.humanName} finder.
 			 *
@@ -1325,7 +1325,7 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 			protected ${referenceEntity.name}Persistence ${referenceEntity.varName}Persistence;
 		</#if>
 
-		<#if referenceEntity.hasFinderClass() && (stringUtil.equals(entity.name, "Counter") || !stringUtil.equals(referenceEntity.name, "Counter"))>
+		<#if referenceEntity.hasFinderClassName() && (stringUtil.equals(entity.name, "Counter") || !stringUtil.equals(referenceEntity.name, "Counter"))>
 			<#if osgiModule && (referenceEntity.apiPackagePath != apiPackagePath)>
 				@ServiceReference(type = ${referenceEntity.name}Finder.class)
 			<#else>
