@@ -518,12 +518,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 
 		boolean isNew = ${entity.varName}.isNew();
 
-		<#assign
-			collectionFinderList = entity.getCollectionFinderList()
-			uniqueFinderList = entity.uniqueEntityFinders
-		/>
-
-		<#if entity.isHierarchicalTree() || (collectionFinderList?size != 0) || (uniqueFinderList?size &gt; 0) || (entity.hasEntityColumn("createDate", "Date") && entity.hasEntityColumn("modifiedDate", "Date"))>
+		<#if entity.isHierarchicalTree() || (entity.collectionEntityFinders?size != 0) || (entity.uniqueEntityFinders?size &gt; 0) || (entity.hasEntityColumn("createDate", "Date") && entity.hasEntityColumn("modifiedDate", "Date"))>
 			${entity.name}ModelImpl ${entity.varName}ModelImpl = (${entity.name}ModelImpl)${entity.varName};
 		</#if>
 
@@ -686,9 +681,9 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 			<#if entity.finderColumnsList?size &gt; 64>
 				finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 			<#else>
-				<#if columnBitmaskEnabled && (collectionFinderList?size != 0)>
+				<#if columnBitmaskEnabled && (entity.collectionEntityFinders?size != 0)>
 					Object[]
-					<#list collectionFinderList as finder>
+					<#list entity.collectionEntityFinders as finder>
 						<#assign entityColumns = finder.entityColumns />
 
 						args = new Object[] {
@@ -711,9 +706,9 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 			</#if>
 		}
 
-		<#if collectionFinderList?size != 0>
+		<#if entity.collectionEntityFinders?size != 0>
 			else {
-				<#list collectionFinderList as finder>
+				<#list entity.collectionEntityFinders as finder>
 					<#assign entityColumns = finder.entityColumns />
 					if (
 						<#if columnBitmaskEnabled>
@@ -765,7 +760,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 
 		entityCache.putResult(${entity.name}ModelImpl.ENTITY_CACHE_ENABLED, ${entity.name}Impl.class, ${entity.varName}.getPrimaryKey(), ${entity.varName}, false);
 
-		<#if uniqueFinderList?size &gt; 0>
+		<#if entity.uniqueEntityFinders?size &gt; 0>
 			clearUniqueFindersCache(${entity.varName}ModelImpl, false);
 			cacheUniqueFindersCache(${entity.varName}ModelImpl);
 		</#if>
