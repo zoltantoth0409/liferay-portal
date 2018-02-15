@@ -2022,18 +2022,18 @@ public class ServiceBuilder {
 	}
 
 	private void _addIndexMetadata(
-		Map<String, List<IndexMetadata>> indexMetadataMap, String tableName,
+		Map<String, List<IndexMetadata>> indexMetadatasMap, String tableName,
 		IndexMetadata indexMetadata) {
 
-		List<IndexMetadata> indexMetadataList = indexMetadataMap.get(tableName);
+		List<IndexMetadata> indexMetadatas = indexMetadatasMap.get(tableName);
 
-		if (indexMetadataList == null) {
-			indexMetadataList = new ArrayList<>();
+		if (indexMetadatas == null) {
+			indexMetadatas = new ArrayList<>();
 
-			indexMetadataMap.put(tableName, indexMetadataList);
+			indexMetadatasMap.put(tableName, indexMetadatas);
 		}
 
-		Iterator<IndexMetadata> iterator = indexMetadataList.iterator();
+		Iterator<IndexMetadata> iterator = indexMetadatas.iterator();
 
 		while (iterator.hasNext()) {
 			IndexMetadata currentIndexMetadata = iterator.next();
@@ -2055,7 +2055,7 @@ public class ServiceBuilder {
 		}
 
 		if (indexMetadata != null) {
-			indexMetadataList.add(indexMetadata);
+			indexMetadatas.add(indexMetadata);
 		}
 	}
 
@@ -3442,7 +3442,7 @@ public class ServiceBuilder {
 			_touch(sqlFile);
 		}
 
-		Map<String, List<IndexMetadata>> indexMetadataMap = new TreeMap<>();
+		Map<String, List<IndexMetadata>> indexMetadatasMap = new TreeMap<>();
 
 		try (UnsyncBufferedReader unsyncBufferedReader =
 				new UnsyncBufferedReader(new FileReader(sqlFile))) {
@@ -3474,7 +3474,7 @@ public class ServiceBuilder {
 				}
 
 				_addIndexMetadata(
-					indexMetadataMap, indexMetadata.getTableName(),
+					indexMetadatasMap, indexMetadata.getTableName(),
 					indexMetadata);
 			}
 		}
@@ -3517,7 +3517,7 @@ public class ServiceBuilder {
 								new String[finderColsNames.size()]));
 
 					_addIndexMetadata(
-						indexMetadataMap, indexMetadata.getTableName(),
+						indexMetadatasMap, indexMetadata.getTableName(),
 						indexMetadata);
 				}
 			}
@@ -3528,17 +3528,17 @@ public class ServiceBuilder {
 
 			EntityMapping entityMapping = entry.getValue();
 
-			_getCreateMappingTableIndex(entityMapping, indexMetadataMap);
+			_getCreateMappingTableIndex(entityMapping, indexMetadatasMap);
 		}
 
 		StringBundler sb = new StringBundler();
 
-		for (List<IndexMetadata> indexMetadataList :
-				indexMetadataMap.values()) {
+		for (List<IndexMetadata> indexMetadatas :
+				indexMetadatasMap.values()) {
 
-			Collections.sort(indexMetadataList);
+			Collections.sort(indexMetadatas);
 
-			for (IndexMetadata indexMetadata : indexMetadataList) {
+			for (IndexMetadata indexMetadata : indexMetadatas) {
 				sb.append(
 					indexMetadata.getCreateSQL(
 						_getColumnLengths(indexMetadata)));
@@ -3549,7 +3549,7 @@ public class ServiceBuilder {
 			sb.append(StringPool.NEW_LINE);
 		}
 
-		if (!indexMetadataMap.isEmpty()) {
+		if (!indexMetadatasMap.isEmpty()) {
 			sb.setIndex(sb.index() - 2);
 		}
 
@@ -4135,9 +4135,9 @@ public class ServiceBuilder {
 	}
 
 	private Map<String, Object> _getContext() throws TemplateModelException {
-		BeansWrapper wrapper = BeansWrapper.getDefaultInstance();
+		BeansWrapper beansWrapper = BeansWrapper.getDefaultInstance();
 
-		TemplateHashModel staticModels = wrapper.getStaticModels();
+		TemplateHashModel staticModels = beansWrapper.getStaticModels();
 
 		Map<String, Object> context = new HashMap<>();
 
@@ -4166,7 +4166,7 @@ public class ServiceBuilder {
 		context.put("sqlFileName", _sqlFileName);
 		context.put("stringUtil", StringUtil_IW.getInstance());
 		context.put("system", staticModels.get("java.lang.System"));
-		context.put("tempMap", wrapper.wrap(new HashMap<String, Object>()));
+		context.put("tempMap", beansWrapper.wrap(new HashMap<String, Object>()));
 		context.put(
 			"textFormatter", staticModels.get(TextFormatter.class.getName()));
 		context.put("validator", Validator_IW.getInstance());
@@ -4176,7 +4176,7 @@ public class ServiceBuilder {
 
 	private void _getCreateMappingTableIndex(
 			EntityMapping entityMapping,
-			Map<String, List<IndexMetadata>> indexMetadataMap)
+			Map<String, List<IndexMetadata>> indexMetadatasMap)
 		throws Exception {
 
 		Entity[] entities = new Entity[3];
@@ -4194,12 +4194,12 @@ public class ServiceBuilder {
 		for (Entity entity : entities) {
 			List<EntityColumn> pkList = entity.getPKList();
 
-			for (EntityColumn col : pkList) {
+			for (EntityColumn entityColumn : pkList) {
 				IndexMetadata indexMetadata =
 					IndexMetadataFactoryUtil.createIndexMetadata(
-						false, tableName, col.getDBName());
+						false, tableName, entityColumn.getDBName());
 
-				_addIndexMetadata(indexMetadataMap, tableName, indexMetadata);
+				_addIndexMetadata(indexMetadatasMap, tableName, indexMetadata);
 			}
 		}
 	}
