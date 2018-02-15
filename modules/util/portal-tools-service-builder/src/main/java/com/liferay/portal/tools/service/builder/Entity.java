@@ -233,15 +233,15 @@ public class Entity implements Comparable<Entity> {
 	public List<EntityColumn> getBadNamedColumnsList() {
 		List<EntityColumn> badNamedColumnsList = ListUtil.copy(_entityColumns);
 
-		Iterator<EntityColumn> itr = badNamedColumnsList.iterator();
+		Iterator<EntityColumn> iterator = badNamedColumnsList.iterator();
 
-		while (itr.hasNext()) {
-			EntityColumn entityColumn = itr.next();
+		while (iterator.hasNext()) {
+			EntityColumn entityColumn = iterator.next();
 
 			String name = entityColumn.getName();
 
 			if (name.equals(entityColumn.getDBName())) {
-				itr.remove();
+				iterator.remove();
 			}
 		}
 
@@ -479,13 +479,13 @@ public class Entity implements Comparable<Entity> {
 	public List<EntityFinder> getUniqueFinderList() {
 		List<EntityFinder> finderList = ListUtil.copy(_entityFinders);
 
-		Iterator<EntityFinder> itr = finderList.iterator();
+		Iterator<EntityFinder> iterator = finderList.iterator();
 
-		while (itr.hasNext()) {
-			EntityFinder finder = itr.next();
+		while (iterator.hasNext()) {
+			EntityFinder finder = iterator.next();
 
 			if (finder.isCollection() && !finder.isUnique()) {
-				itr.remove();
+				iterator.remove();
 			}
 		}
 
