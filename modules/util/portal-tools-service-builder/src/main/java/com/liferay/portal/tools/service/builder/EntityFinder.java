@@ -144,8 +144,8 @@ public class EntityFinder {
 		return _unique;
 	}
 
-	private final List<EntityColumn> _entityColumns;
 	private final boolean _dbIndex;
+	private final List<EntityColumn> _entityColumns;
 	private final String _name;
 	private final String _returnType;
 	private final boolean _unique;
