@@ -1151,7 +1151,7 @@ that may or may not be enforced with a unique index at the database level. Case
 			int start, int end, OrderByComparator<${entity.name}> orderByComparator) {
 				<#if finder.hasColumn("groupId")>
 					if (!InlineSQLHelperUtil.isEnabled(
-						<#if finder.getColumn("groupId").hasArrayableOperator()>
+						<#if finder.getEntityColumn("groupId").hasArrayableOperator()>
 							groupIds
 						<#else>
 							groupId
@@ -1204,7 +1204,7 @@ that may or may not be enforced with a unique index at the database level. Case
 					String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(), ${entity.name}.class.getName(), _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, _FILTER_ENTITY_TABLE_FILTER_USERID_COLUMN
 
 					<#if finder.hasColumn("groupId")>,
-						<#if finder.getColumn("groupId").hasArrayableOperator()>
+						<#if finder.getEntityColumn("groupId").hasArrayableOperator()>
 							groupIds
 						<#else>
 							groupId
@@ -1272,7 +1272,7 @@ that may or may not be enforced with a unique index at the database level. Case
 					String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(), ${entity.name}.class.getName(), _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN
 
 					<#if finder.hasColumn("groupId")>,
-						<#if finder.getColumn("groupId").hasArrayableOperator()>
+						<#if finder.getEntityColumn("groupId").hasArrayableOperator()>
 							groupIds
 						<#else>
 							groupId

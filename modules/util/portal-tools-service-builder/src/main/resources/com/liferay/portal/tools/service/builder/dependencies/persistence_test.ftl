@@ -2,15 +2,15 @@
 
 <#if entity.isHierarchicalTree()>
 	<#if entity.hasColumn("groupId")>
-		<#assign scopeColumn = entity.getColumn("groupId") />
+		<#assign scopeColumn = entity.getEntityColumn("groupId") />
 	<#else>
-		<#assign scopeColumn = entity.getColumn("companyId") />
+		<#assign scopeColumn = entity.getEntityColumn("companyId") />
 	</#if>
 
 	<#assign
 		pkColumn = entity.getPKList()?first
 
-		parentPKColumn = entity.getColumn("parent" + pkColumn.methodName)
+		parentPKColumn = entity.getEntityColumn("parent" + pkColumn.methodName)
 	/>
 </#if>
 
