@@ -100,7 +100,7 @@ public class Entity implements Comparable<Entity> {
 		String packagePath, String apiPackagePath, String portletName,
 		String portletShortName, String name, String humanName, String table,
 		String alias, boolean uuid, boolean uuidAccessor, boolean localService,
-		boolean remoteService, String persistenceClass, String finderClass,
+		boolean remoteService, String persistenceClass, String finderClassName,
 		String dataSource, String sessionFactory, String txManager,
 		boolean cacheEnabled, boolean dynamicUpdateEnabled, boolean jsonEnabled,
 		boolean mvccEnabled, boolean trashEnabled, boolean deprecated,
@@ -125,7 +125,7 @@ public class Entity implements Comparable<Entity> {
 		_localService = localService;
 		_remoteService = remoteService;
 		_persistenceClassName = persistenceClass;
-		_finderClass = finderClass;
+		_finderClassName = finderClassName;
 		_dataSource = GetterUtil.getString(dataSource, _DATA_SOURCE_DEFAULT);
 		_sessionFactory = GetterUtil.getString(
 			sessionFactory, _SESSION_FACTORY_DEFAULT);
@@ -297,8 +297,8 @@ public class Entity implements Comparable<Entity> {
 		return _getPKEntityColumn();
 	}
 
-	public String getFinderClass() {
-		return _finderClass;
+	public String getFinderClassName() {
+		return _finderClassName;
 	}
 
 	public List<EntityColumn> getFinderColumnsList() {
@@ -559,13 +559,12 @@ public class Entity implements Comparable<Entity> {
 		return false;
 	}
 
-	public boolean hasFinderClass() {
-		if (Validator.isNull(_finderClass)) {
+	public boolean hasFinderClassName() {
+		if (Validator.isNull(_finderClassName)) {
 			return false;
 		}
-		else {
-			return true;
-		}
+
+		return true;
 	}
 
 	@Override
@@ -963,7 +962,7 @@ public class Entity implements Comparable<Entity> {
 	private final List<EntityColumn> _entityColumns;
 	private final List<EntityFinder> _entityFinders;
 	private final EntityOrder _entityOrder;
-	private final String _finderClass;
+	private final String _finderClassName;
 	private final List<EntityColumn> _finderColumnsList;
 	private final String _humanName;
 	private final boolean _jsonEnabled;
