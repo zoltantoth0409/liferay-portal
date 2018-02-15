@@ -1715,17 +1715,17 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 	 */
 	public void afterPropertiesSet() {
 
-		<#list entity.columnList as column>
-			<#if column.isCollection() && column.isMappingManyToMany()>
+		<#list entity.entityColumns as entityColumn>
+			<#if entityColumn.isCollection() && entityColumn.isMappingManyToMany()>
 				<#assign
-					tempEntity = serviceBuilder.getEntity(column.getEJBName())
+					tempEntity = serviceBuilder.getEntity(entityColumn.getEJBName())
 
-					entityMapping = serviceBuilder.getEntityMapping(column.mappingTable)
+					entityMapping = serviceBuilder.getEntityMapping(entityColumn.mappingTable)
 
 					companyEntity = serviceBuilder.getEntity(entityMapping.getEntity(0))
 				/>
 
-				${entity.varName}To${tempEntity.name}TableMapper = TableMapperFactory.getTableMapper("${column.mappingTable}", "${companyEntity.PKDBName}", "${entity.PKDBName}", "${tempEntity.PKDBName}", this, ${tempEntity.varName}Persistence);
+				${entity.varName}To${tempEntity.name}TableMapper = TableMapperFactory.getTableMapper("${entityColumn.mappingTable}", "${companyEntity.PKDBName}", "${entity.PKDBName}", "${tempEntity.PKDBName}", this, ${tempEntity.varName}Persistence);
 			</#if>
 		</#list>
 	}
@@ -1736,9 +1736,9 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
-		<#list entity.columnList as column>
-			<#if column.isCollection() && column.isMappingManyToMany()>
-				TableMapperFactory.removeTableMapper("${column.mappingTable}");
+		<#list entity.entityColumns as entityColumn>
+			<#if entityColumn.isCollection() && entityColumn.isMappingManyToMany()>
+				TableMapperFactory.removeTableMapper("${entityColumn.mappingTable}");
 			</#if>
 		</#list>
 	}
@@ -1751,8 +1751,8 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 		</#if>
 		protected CompanyProvider companyProvider;
 	<#else>
-		<#list entity.columnList as column>
-			<#if column.isCollection() && column.isMappingManyToMany()>
+		<#list entity.entityColumns as entityColumn>
+			<#if entityColumn.isCollection() && entityColumn.isMappingManyToMany()>
 				<#if osgiModule>
 					@ServiceReference(type = CompanyProvider.class)
 				<#else>
@@ -1776,9 +1776,9 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 		protected FinderCache finderCache = FinderCacheUtil.getFinderCache();
 	</#if>
 
-	<#list entity.columnList as column>
-		<#if column.isCollection() && column.isMappingManyToMany()>
-			<#assign tempEntity = serviceBuilder.getEntity(column.getEJBName()) />
+	<#list entity.entityColumns as entityColumn>
+		<#if entityColumn.isCollection() && entityColumn.isMappingManyToMany()>
+			<#assign tempEntity = serviceBuilder.getEntity(entityColumn.getEJBName()) />
 
 			@BeanReference(type = ${tempEntity.name}Persistence.class)
 			protected ${tempEntity.name}Persistence ${tempEntity.varName}Persistence;

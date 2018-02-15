@@ -1021,7 +1021,7 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 				${localizedEntity.varName}.setLanguageId(languageId);
 			}
 
-			<#list entity.columnList as entityColumn>
+			<#list entity.entityColumns as entityColumn>
 				<#if localizedEntity.hasColumn(entityColumn.name) && !stringUtil.equals(entityColumn.name, "mvccVersion") && !stringUtil.equals(entityColumn.name, pkColumn.name)>
 					${localizedEntity.varName}.set${entityColumn.methodName}(${entity.varName}.get${entityColumn.methodName}());
 				</#if>
@@ -1072,7 +1072,7 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 					${localizedEntity.varName}Persistence.remove(${localizedEntity.varName});
 				}
 				else {
-					<#list entity.columnList as entityColumn>
+					<#list entity.entityColumns as entityColumn>
 						<#if localizedEntity.hasColumn(entityColumn.name) && !stringUtil.equals(entityColumn.name, "mvccVersion") && !stringUtil.equals(entityColumn.name, pkColumn.name)>
 							${localizedEntity.varName}.set${entityColumn.methodName}(${entity.varName}.get${entityColumn.methodName}());
 						</#if>
@@ -1094,7 +1094,7 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 
 				${localizedEntity.name} ${localizedEntity.varName} = ${localizedEntity.varName}Persistence.create(${localizedEntity.PKVarName});
 
-				<#list entity.columnList as entityColumn>
+				<#list entity.entityColumns as entityColumn>
 					<#if localizedEntity.hasColumn(entityColumn.name) && !stringUtil.equals(entityColumn.name, "mvccVersion")>
 						${localizedEntity.varName}.set${entityColumn.methodName}(${entity.varName}.get${entityColumn.methodName}());
 					</#if>
