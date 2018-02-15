@@ -105,7 +105,8 @@ public class Entity implements Comparable<Entity> {
 		boolean cacheEnabled, boolean dynamicUpdateEnabled, boolean jsonEnabled,
 		boolean mvccEnabled, boolean trashEnabled, boolean deprecated,
 		List<EntityColumn> pkList, List<EntityColumn> regularEntityColumns,
-		List<EntityColumn> blobEntityColumns, List<EntityColumn> collectionEntityColumns,
+		List<EntityColumn> blobEntityColumns,
+		List<EntityColumn> collectionEntityColumns,
 		List<EntityColumn> entityColumns, EntityOrder entityOrder,
 		List<EntityFinder> entityFinders, List<Entity> referenceEntities,
 		List<String> unresolvedReferenceEntityNames,
@@ -252,6 +253,10 @@ public class Entity implements Comparable<Entity> {
 		return _blobEntityColumns;
 	}
 
+	public List<EntityColumn> getCollectionEntityColumns() {
+		return _collectionEntityColumns;
+	}
+
 	public List<EntityFinder> getCollectionEntityFinders() {
 		List<EntityFinder> entityFinders = new ArrayList<>(
 			_entityFinders.size());
@@ -265,10 +270,6 @@ public class Entity implements Comparable<Entity> {
 		}
 
 		return entityFinders;
-	}
-
-	public List<EntityColumn> getCollectionEntityColumns() {
-		return _collectionEntityColumns;
 	}
 
 	public String getDataSource() {
