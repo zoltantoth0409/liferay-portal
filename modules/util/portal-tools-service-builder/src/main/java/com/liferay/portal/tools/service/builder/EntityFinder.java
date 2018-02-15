@@ -66,9 +66,9 @@ public class EntityFinder {
 
 	public String getHumanConditions(boolean arrayable) {
 		if (_entityColumns.size() == 1) {
-			EntityColumn column = _entityColumns.get(0);
+			EntityColumn entityColumn = _entityColumns.get(0);
 
-			return column.getHumanCondition(arrayable);
+			return entityColumn.getHumanCondition(arrayable);
 		}
 
 		StringBundler sb = new StringBundler(_entityColumns.size() * 2);

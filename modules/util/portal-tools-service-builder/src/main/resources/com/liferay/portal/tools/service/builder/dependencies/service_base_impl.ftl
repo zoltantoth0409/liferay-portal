@@ -66,9 +66,9 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 
 	import ${apiPackagePath}.model.${entity.name};
 
-	<#list entity.blobEntityColumns as blobEntityColumn>
-		<#if blobEntityColumn.lazy>
-			import ${apiPackagePath}.model.${entity.name}${blobEntityColumn.methodName}BlobModel;
+	<#list entity.blobEntityColumns as entityColumn>
+		<#if entityColumn.lazy>
+			import ${apiPackagePath}.model.${entity.name}${entityColumn.methodName}BlobModel;
 		</#if>
 	</#list>
 
@@ -744,16 +744,16 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 			return ${entity.varName}Persistence.update(${entity.varName});
 		}
 
-		<#list entity.blobEntityColumns as blobEntityColumn>
-			<#if blobEntityColumn.lazy>
+		<#list entity.blobEntityColumns as entityColumn>
+			<#if entityColumn.lazy>
 				@Override
-				public ${entity.name}${blobEntityColumn.methodName}BlobModel get${blobEntityColumn.methodName}BlobModel(Serializable primaryKey) {
+				public ${entity.name}${entityColumn.methodName}BlobModel get${entityColumn.methodName}BlobModel(Serializable primaryKey) {
 					Session session = null;
 
 					try {
 						session = ${entity.varName}Persistence.openSession();
 
-						return (${apiPackagePath}.model.${entity.name}${blobEntityColumn.methodName}BlobModel)session.get(${entity.name}${blobEntityColumn.methodName}BlobModel.class, primaryKey);
+						return (${apiPackagePath}.model.${entity.name}${entityColumn.methodName}BlobModel)session.get(${entity.name}${entityColumn.methodName}BlobModel.class, primaryKey);
 					}
 					catch (Exception e) {
 						throw ${entity.varName}Persistence.processException(e);
@@ -1001,8 +1001,8 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 
 		protected ${localizedEntity.name} update${localizedEntity.name}(
 			${entity.name} ${entity.varName}, String languageId,
-			<#list localizedColumns as column>
-				String ${column.name}
+			<#list localizedColumns as entityColumn>
+				String ${entityColumn.name}
 
 				<#if column?has_next>
 					,
@@ -1027,8 +1027,8 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 				</#if>
 			</#list>
 
-			<#list localizedColumns as column>
-				${localizedEntity.varName}.set${column.methodName}(${column.name});
+			<#list localizedColumns as entityColumn>
+				${localizedEntity.varName}.set${entityColumn.methodName}(${entityColumn.name});
 			</#list>
 
 			return ${localizedEntity.varName}Persistence.update(${localizedEntity.varName});
@@ -1036,8 +1036,8 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 
 		protected List<${localizedEntity.name}> update${localizedEntity.names}(
 			${entity.name} ${entity.varName},
-			<#list localizedColumns as column>
-				Map<String, String> ${column.name}Map
+			<#list localizedColumns as entityColumn>
+				Map<String, String> ${entityColumn.name}Map
 
 				<#if column?has_next>
 					,
@@ -1047,8 +1047,8 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 
 			Map<String, String[]> localizedValuesMap = new HashMap<String, String[]>();
 
-			<#list localizedColumns as column>
-				for (Map.Entry<String, String> entry : ${column.name}Map.entrySet()) {
+			<#list localizedColumns as entityColumn>
+				for (Map.Entry<String, String> entry : ${entityColumn.name}Map.entrySet()) {
 					String languageId = entry.getKey();
 
 					String[] localizedValues = localizedValuesMap.get(languageId);
@@ -1078,8 +1078,8 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 						</#if>
 					</#list>
 
-					<#list localizedColumns as column>
-						${localizedEntity.varName}.set${column.methodName}(localizedValues[${column?index}]);
+					<#list localizedColumns as entityColumn>
+						${localizedEntity.varName}.set${entityColumn.methodName}(localizedValues[${column?index}]);
 					</#list>
 
 					${localizedEntity.varNames}.add(${localizedEntity.varName}Persistence.update(${localizedEntity.varName}));
@@ -1102,8 +1102,8 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 
 				${localizedEntity.varName}.setLanguageId(languageId);
 
-				<#list localizedColumns as column>
-					${localizedEntity.varName}.set${column.methodName}(localizedValues[${column?index}]);
+				<#list localizedColumns as entityColumn>
+					${localizedEntity.varName}.set${entityColumn.methodName}(localizedValues[${column?index}]);
 				</#list>
 
 				${localizedEntity.varNames}.add(${localizedEntity.varName}Persistence.update(${localizedEntity.varName}));

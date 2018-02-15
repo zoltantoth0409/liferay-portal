@@ -4383,9 +4383,9 @@ public class ServiceBuilder {
 
 	private String _getCreateTableSQL(Entity entity) {
 		List<EntityColumn> pkList = entity.getPKList();
-		List<EntityColumn> regularColList = entity.getRegularColList();
+		List<EntityColumn> regularEntityColumns = entity.getRegularEntityColumns();
 
-		if (regularColList.isEmpty()) {
+		if (regularEntityColumns.isEmpty()) {
 			return null;
 		}
 
@@ -4414,18 +4414,18 @@ public class ServiceBuilder {
 
 		sb.append(" (\n");
 
-		for (int i = 0; i < regularColList.size(); i++) {
-			EntityColumn col = regularColList.get(i);
+		for (int i = 0; i < regularEntityColumns.size(); i++) {
+			EntityColumn entityColumn = regularEntityColumns.get(i);
 
-			String colDBName = col.getDBName();
+			String dbName = entityColumn.getDBName();
 
 			if ((_databaseNameMaxLength > 0) &&
-				(colDBName.length() > _databaseNameMaxLength)) {
+				(dbName.length() > _databaseNameMaxLength)) {
 
 				throw new ServiceBuilderException(
 					StringBundler.concat(
 						"Unable to create entity \"", tableName,
-						"\" because column name \"", colDBName, "\" exceeds ",
+						"\" because column name \"", dbName, "\" exceeds ",
 						String.valueOf(_databaseNameMaxLength), " characters. ",
 						"Some databases do not allow column names longer than ",
 						"30 characters. To disable this warning set the ",
@@ -4434,42 +4434,42 @@ public class ServiceBuilder {
 						"your database supports"));
 			}
 
-			String colType = col.getType();
-			String colIdType = col.getIdType();
+			String type = entityColumn.getType();
+			String idType = entityColumn.getIdType();
 
 			sb.append("\t");
-			sb.append(colDBName);
+			sb.append(dbName);
 			sb.append(" ");
 
-			if (StringUtil.equalsIgnoreCase(colType, "boolean")) {
+			if (StringUtil.equalsIgnoreCase(type, "boolean")) {
 				sb.append("BOOLEAN");
 			}
-			else if (StringUtil.equalsIgnoreCase(colType, "double") ||
-					 StringUtil.equalsIgnoreCase(colType, "float")) {
+			else if (StringUtil.equalsIgnoreCase(type, "double") ||
+					 StringUtil.equalsIgnoreCase(type, "float")) {
 
 				sb.append("DOUBLE");
 			}
-			else if (colType.equals("int") || colType.equals("Integer") ||
-					 StringUtil.equalsIgnoreCase(colType, "short")) {
+			else if (type.equals("int") || type.equals("Integer") ||
+					 StringUtil.equalsIgnoreCase(type, "short")) {
 
 				sb.append("INTEGER");
 			}
-			else if (StringUtil.equalsIgnoreCase(colType, "long")) {
+			else if (StringUtil.equalsIgnoreCase(type, "long")) {
 				sb.append("LONG");
 			}
-			else if (colType.equals("Blob")) {
+			else if (type.equals("Blob")) {
 				sb.append("BLOB");
 			}
-			else if (colType.equals("Date")) {
+			else if (type.equals("Date")) {
 				sb.append("DATE");
 			}
-			else if (colType.equals("Map")) {
+			else if (type.equals("Map")) {
 				sb.append("TEXT");
 			}
-			else if (colType.equals("String")) {
-				int maxLength = getMaxLength(entity.getName(), col.getName());
+			else if (type.equals("String")) {
+				int maxLength = getMaxLength(entity.getName(), entityColumn.getName());
 
-				if (col.isLocalized() && (maxLength < 4000)) {
+				if (entityColumn.isLocalized() && (maxLength < 4000)) {
 					maxLength = 4000;
 				}
 
@@ -4489,30 +4489,30 @@ public class ServiceBuilder {
 				sb.append("invalid");
 			}
 
-			if (col.isPrimary()) {
+			if (entityColumn.isPrimary()) {
 				sb.append(" not null");
 
 				if (!entity.hasCompoundPK()) {
 					sb.append(" primary key");
 				}
 			}
-			else if (colType.equals("Date") || colType.equals("Map") ||
-					 colType.equals("String")) {
+			else if (type.equals("Date") || type.equals("Map") ||
+					 type.equals("String")) {
 
 				sb.append(" null");
 			}
 
-			if (Validator.isNotNull(colIdType) &&
-				colIdType.equals("identity")) {
+			if (Validator.isNotNull(idType) &&
+				idType.equals("identity")) {
 
 				sb.append(" IDENTITY");
 			}
 
-			if (Objects.equals(col.getName(), "mvccVersion")) {
+			if (Objects.equals(entityColumn.getName(), "mvccVersion")) {
 				sb.append(" default 0 not null");
 			}
 
-			if (((i + 1) != regularColList.size()) || entity.hasCompoundPK()) {
+			if (((i + 1) != regularEntityColumns.size()) || entity.hasCompoundPK()) {
 				sb.append(",");
 			}
 
@@ -5194,7 +5194,7 @@ public class ServiceBuilder {
 			mvccEnabled);
 
 		List<EntityColumn> pkList = new ArrayList<>();
-		List<EntityColumn> regularColList = new ArrayList<>();
+		List<EntityColumn> regularEntityColumns = new ArrayList<>();
 		List<EntityColumn> blobEntityColumns = new ArrayList<>();
 		List<EntityColumn> collectionEntityColumns = new ArrayList<>();
 		List<EntityColumn> entityColumns = new ArrayList<>();
@@ -5313,7 +5313,7 @@ public class ServiceBuilder {
 				collectionEntityColumns.add(entityColumn);
 			}
 			else {
-				regularColList.add(entityColumn);
+				regularEntityColumns.add(entityColumn);
 
 				if (columnType.equals("Blob")) {
 					blobEntityColumns.add(entityColumn);
@@ -5622,7 +5622,7 @@ public class ServiceBuilder {
 			remoteService, persistenceClassName, finderClassName, dataSource,
 			sessionFactory, txManager, cacheEnabled, dynamicUpdateEnabled,
 			jsonEnabled, mvccEnabled, trashEnabled, deprecated, pkList,
-			regularColList, blobEntityColumns, collectionEntityColumns, entityColumns, entityOrder,
+			regularEntityColumns, blobEntityColumns, collectionEntityColumns, entityColumns, entityOrder,
 			entityFinders, referenceEntities, unresolvedReferenceEntityNames, txRequiredMethodNames,
 			resourceActionModel);
 
