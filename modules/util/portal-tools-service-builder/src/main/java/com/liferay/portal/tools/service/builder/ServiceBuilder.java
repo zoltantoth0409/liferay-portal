@@ -5119,7 +5119,7 @@ public class ServiceBuilder {
 			entityElement.attributeValue("local-service"));
 		boolean remoteService = GetterUtil.getBoolean(
 			entityElement.attributeValue("remote-service"), true);
-		String persistenceClass = GetterUtil.getString(
+		String persistenceClassName = GetterUtil.getString(
 			entityElement.attributeValue("persistence-class"),
 			StringBundler.concat(
 				_packagePath, ".service.persistence.impl.", ejbName,
@@ -5617,7 +5617,7 @@ public class ServiceBuilder {
 		Entity entity = new Entity(
 			_packagePath, _apiPackagePath, _portletName, _portletShortName,
 			ejbName, humanName, table, alias, uuid, uuidAccessor, localService,
-			remoteService, persistenceClass, finderClass, dataSource,
+			remoteService, persistenceClassName, finderClass, dataSource,
 			sessionFactory, txManager, cacheEnabled, dynamicUpdateEnabled,
 			jsonEnabled, mvccEnabled, trashEnabled, deprecated, pkList,
 			regularColList, blobEntityColumns, collectionList, entityColumns, order,
