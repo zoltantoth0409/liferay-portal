@@ -99,7 +99,7 @@ public class EntityColumn implements Cloneable, Comparable<EntityColumn> {
 	public Object clone() {
 		return new EntityColumn(
 			getName(), getDBName(), getType(), isPrimary(), isAccessor(),
-			isFilterPrimary(), getEJBName(), getMappingTable(),
+			isFilterPrimary(), getEJBName(), getMappingTableName(),
 			isCaseSensitive(), isOrderByAscending(), isOrderColumn(),
 			getComparator(), getArrayableOperator(), getIdType(), getIdParam(),
 			isConvertNull(), isLazy(), isLocalized(), isJsonEnabled(),
@@ -209,7 +209,7 @@ public class EntityColumn implements Cloneable, Comparable<EntityColumn> {
 		return _idType;
 	}
 
-	public String getMappingTable() {
+	public String getMappingTableName() {
 		return _mappingTable;
 	}
 

@@ -275,12 +275,12 @@ public class Entity implements Comparable<Entity> {
 		return getColumn(name, _entityColumns);
 	}
 
-	public EntityColumn getColumnByMappingTable(String mappingTable) {
+	public EntityColumn getColumnByMappingTable(String mappingTableName) {
 		for (EntityColumn entityColumn : _entityColumns) {
-			String entityColumnMappingTable = entityColumn.getMappingTable();
+			String entityColumnMappingTableName = entityColumn.getMappingTableName();
 
-			if ((entityColumnMappingTable != null) &&
-				entityColumnMappingTable.equals(mappingTable)) {
+			if ((entityColumnMappingTableName != null) &&
+				entityColumnMappingTableName.equals(mappingTableName)) {
 
 				return entityColumn;
 			}
