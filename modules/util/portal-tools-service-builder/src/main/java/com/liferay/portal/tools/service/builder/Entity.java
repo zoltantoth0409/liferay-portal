@@ -301,7 +301,7 @@ public class Entity implements Comparable<Entity> {
 		return _entityOrder;
 	}
 
-	public EntityColumn getFilterPKColumn() {
+	public EntityColumn getFilterPKEntityColumn() {
 		for (EntityColumn entityColumn : _entityColumns) {
 			if (entityColumn.isFilterPrimary()) {
 				return entityColumn;
