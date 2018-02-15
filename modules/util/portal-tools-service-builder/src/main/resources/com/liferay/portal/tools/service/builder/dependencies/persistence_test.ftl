@@ -983,9 +983,7 @@ public class ${entity.name}PersistenceTest {
 		Assert.assertEquals(0, result.size());
 	}
 
-	<#assign uniqueFinderList = entity.getUniqueFinderList() />
-
-	<#if uniqueFinderList?size != 0>
+	<#if entity.uniqueEntityFinders?size != 0>
 		@Test
 		public void testResetOriginalValues() throws Exception {
 			${entity.name} new${entity.name} = add${entity.name}();
@@ -994,8 +992,8 @@ public class ${entity.name}PersistenceTest {
 
 			${entity.name} existing${entity.name} = _persistence.findByPrimaryKey(new${entity.name}.getPrimaryKey());
 
-			<#list uniqueFinderList as finder>
-				<#assign finderColsList = finder.getColumns() />
+			<#list entity.uniqueEntityFinders as uniqueEntityFinder>
+				<#assign finderColsList = uniqueEntityFinder.getColumns() />
 
 				<#list finderColsList as finderCol>
 					<#if stringUtil.equals(finderCol.type, "double")>
