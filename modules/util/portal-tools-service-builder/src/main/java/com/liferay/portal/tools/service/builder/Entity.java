@@ -451,16 +451,16 @@ public class Entity implements Comparable<Entity> {
 		return _txRequiredList;
 	}
 
-	public List<EntityColumn> getUADNonanonymizableColumnList() {
-		List<EntityColumn> uadNonanonymizableColumnList = new ArrayList<>();
+	public List<EntityColumn> getUADNonanonymizableEntityColumns() {
+		List<EntityColumn> uadNonanonymizableEntityColumns = new ArrayList<>();
 
 		for (EntityColumn entityColumn : _entityColumns) {
 			if (entityColumn.isUADNonanonymizable()) {
-				uadNonanonymizableColumnList.add(entityColumn);
+				uadNonanonymizableEntityColumns.add(entityColumn);
 			}
 		}
 
-		return uadNonanonymizableColumnList;
+		return uadNonanonymizableEntityColumns;
 	}
 
 	public List<String> getUADUserIdColumnNames() {
