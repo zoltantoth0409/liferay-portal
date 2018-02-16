@@ -20,5 +20,6 @@
 	<c:if test="<%= !listView %>">
 		<liferay-ui:message key="duration" />:
 	</c:if>
+
 	<%= timeDescription %>
 </c:if>
