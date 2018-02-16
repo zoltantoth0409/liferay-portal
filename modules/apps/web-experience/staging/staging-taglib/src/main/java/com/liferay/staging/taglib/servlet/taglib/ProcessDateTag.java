@@ -52,6 +52,8 @@ public class ProcessDateTag extends IncludeTag {
 
 	@Override
 	protected void cleanUp() {
+		super.cleanUp();
+
 		_date = null;
 		_labelKey = StringPool.BLANK;
 		_listView = false;
