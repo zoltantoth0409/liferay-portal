@@ -80,6 +80,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 import org.apache.chemistry.opencmis.client.api.CmisObject;
@@ -1579,11 +1580,8 @@ public class CMISRepository extends BaseCmisRepository {
 					Boolean privateWorkingCopy =
 						document.isPrivateWorkingCopy();
 
-					String versionLabel = document.getVersionLabel();
-
 					if (((privateWorkingCopy != null) && privateWorkingCopy) ||
-						((versionLabel != null) &&
-						 versionLabel.equals("pwc"))) {
+						Objects.equals(document.getVersionLabel(), "pwc")) {
 
 						foldersAndFileEntries.remove(cmisFileEntry);
 						fileEntries.remove(cmisFileEntry);
