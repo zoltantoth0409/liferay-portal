@@ -883,8 +883,8 @@ public class ServiceBuilder {
 							_createUADEntityTest(entity);
 						}
 						else {
-							_removeUADEntity(entity);
-							_removeUADEntityTest(entity);
+							//_removeUADEntity(entity);
+							//_removeUADEntityTest(entity);
 						}
 					}
 					else {
