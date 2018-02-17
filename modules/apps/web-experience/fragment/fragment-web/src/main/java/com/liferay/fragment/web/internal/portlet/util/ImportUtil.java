@@ -68,6 +68,7 @@ public class ImportUtil {
 				collectionPath.lastIndexOf(CharPool.SLASH) + 1);
 
 			String fragmentCollectionName = fragmentCollectionKey;
+
 			String fragmentCollectionDescription = StringPool.BLANK;
 
 			String collectionJSON = zipReader.getEntryAsString(entry);
