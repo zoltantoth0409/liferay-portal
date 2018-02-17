@@ -136,6 +136,7 @@ public class ImportUtil {
 				fragmentEntryPath.lastIndexOf(CharPool.SLASH) + 1);
 
 			String fragmentEntryName = fragmentEntryKey;
+
 			String fragmentCssPath = fragmentEntryPath + "/src/index.css";
 			String fragmentHtmlPath = fragmentEntryPath + "/src/index.html";
 			String fragmentJsPath = fragmentEntryPath + "/src/index.js";
