@@ -192,7 +192,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 			new String[] {Long.class.getName(), Long.class.getName(), Long.class.getName()});
 	</#if>
 
-	<#list entity.getFinderList() as finder>
+	<#list entity.entityFinders as finder>
 		<#include "persistence_impl_finder_finder_path.ftl">
 
 		<#include "persistence_impl_finder_find.ftl">
@@ -1792,13 +1792,13 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 		private static final String _SQL_SELECT_${entity.alias?upper_case}_WHERE_PKS_IN = "SELECT ${entity.alias} FROM ${entity.name} ${entity.alias} WHERE ${entity.PKDBName} IN (";
 	</#if>
 
-	<#if entity.getFinderList()?size != 0>
+	<#if entity.entityFinders?size != 0>
 		private static final String _SQL_SELECT_${entity.alias?upper_case}_WHERE = "SELECT ${entity.alias} FROM ${entity.name} ${entity.alias} WHERE ";
 	</#if>
 
 	private static final String _SQL_COUNT_${entity.alias?upper_case} = "SELECT COUNT(${entity.alias}) FROM ${entity.name} ${entity.alias}";
 
-	<#if entity.getFinderList()?size != 0>
+	<#if entity.entityFinders?size != 0>
 		private static final String _SQL_COUNT_${entity.alias?upper_case}_WHERE = "SELECT COUNT(${entity.alias}) FROM ${entity.name} ${entity.alias} WHERE ";
 	</#if>
 
@@ -1834,7 +1834,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No ${entity.name} exists with the primary key ";
 
-	<#if entity.getFinderList()?size != 0>
+	<#if entity.entityFinders?size != 0>
 		private static final String _NO_SUCH_ENTITY_WITH_KEY = "No ${entity.name} exists with the key {";
 	</#if>
 

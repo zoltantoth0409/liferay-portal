@@ -3496,27 +3496,26 @@ public class ServiceBuilder {
 				continue;
 			}
 
-			List<EntityFinder> finderList = entity.getFinderList();
+			List<EntityFinder> entityFinders = entity.getEntityFinders();
 
-			for (EntityFinder finder : finderList) {
-				if (finder.isDBIndex()) {
-					List<String> finderColsNames = new ArrayList<>();
+			for (EntityFinder entityFinder : entityFinders) {
+				if (entityFinder.isDBIndex()) {
+					List<String> dbNames = new ArrayList<>();
 
-					List<EntityColumn> finderColsList = finder.getEntityColumns();
+					List<EntityColumn> entityColumns = entityFinder.getEntityColumns();
 
-					for (EntityColumn col : finderColsList) {
-						finderColsNames.add(col.getDBName());
+					for (EntityColumn entityColumn : entityColumns) {
+						dbNames.add(entityColumn.getDBName());
 					}
 
-					if (finderColsNames.isEmpty()) {
+					if (dbNames.isEmpty()) {
 						continue;
 					}
 
 					IndexMetadata indexMetadata =
 						IndexMetadataFactoryUtil.createIndexMetadata(
-							finder.isUnique(), entity.getTable(),
-							finderColsNames.toArray(
-								new String[finderColsNames.size()]));
+							entityFinder.isUnique(), entity.getTable(),
+							dbNames.toArray(new String[dbNames.size()]));
 
 					_addIndexMetadata(
 						indexMetadatasMap, indexMetadata.getTableName(),
