@@ -132,7 +132,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 
 	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY + ".List2";
 
-	<#assign columnBitmaskEnabled = (entity.finderColumnsList?size &gt; 0) && (entity.finderColumnsList?size &lt; 64) />
+	<#assign columnBitmaskEnabled = (entity.finderEntityColumns?size &gt; 0) && (entity.finderEntityColumns?size &lt; 64) />
 
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(
 		${entity.name}ModelImpl.ENTITY_CACHE_ENABLED,
@@ -678,7 +678,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 		</#if>
 
 		if (isNew) {
-			<#if entity.finderColumnsList?size &gt; 64>
+			<#if entity.finderEntityColumns?size &gt; 64>
 				finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 			<#else>
 				<#if columnBitmaskEnabled && (entity.collectionEntityFinders?size != 0)>

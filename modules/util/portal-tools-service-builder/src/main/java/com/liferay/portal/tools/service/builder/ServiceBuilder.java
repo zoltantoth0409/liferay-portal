@@ -4727,7 +4727,7 @@ public class ServiceBuilder {
 	private EntityColumn _getEntityColumnByColumnDBName(
 		Entity entity, String columnDBName) {
 
-		for (EntityColumn entityColumn : entity.getFinderColumnsList()) {
+		for (EntityColumn entityColumn : entity.getFinderEntityColumns()) {
 			if (columnDBName.equals(entityColumn.getDBName())) {
 				return entityColumn;
 			}
