@@ -520,8 +520,8 @@ public class ${entity.name}PersistenceTest {
 			_persistence.findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, getOrderByComparator());
 		}
 
-		<#list entity.entityFinders as finder>
-			<#if stringUtil.equals(finder.name, "GroupId") && entity.isPermissionCheckEnabled(finder)>
+		<#list entity.entityFinders as entityFinder>
+			<#if stringUtil.equals(entityFinder.name, "GroupId") && entity.isPermissionCheckEnabled(entityFinder)>
 				@Test
 				public void testFilterFindByGroupId() throws Exception {
 					_persistence.filterFindByGroupId(0, QueryUtil.ALL_POS, QueryUtil.ALL_POS, getOrderByComparator());
