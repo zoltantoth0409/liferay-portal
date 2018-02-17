@@ -314,7 +314,7 @@ public class Entity implements Comparable<Entity> {
 		return _finderEntityColumns;
 	}
 
-	public List<EntityFinder> getFinderList() {
+	public List<EntityFinder> getEntityFinders() {
 		return _entityFinders;
 	}
 

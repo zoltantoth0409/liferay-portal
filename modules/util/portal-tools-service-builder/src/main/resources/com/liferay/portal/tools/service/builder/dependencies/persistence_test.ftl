@@ -300,7 +300,7 @@ public class ${entity.name}PersistenceTest {
 		</#list>
 	}
 
-	<#list entity.getFinderList() as entityFinder>
+	<#list entity.entityFinders as entityFinder>
 		@Test
 		public void testCountBy${entityFinder.name}() throws Exception {
 			_persistence.countBy${entityFinder.name}(
@@ -520,7 +520,7 @@ public class ${entity.name}PersistenceTest {
 			_persistence.findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, getOrderByComparator());
 		}
 
-		<#list entity.getFinderList() as finder>
+		<#list entity.entityFinders as finder>
 			<#if stringUtil.equals(finder.name, "GroupId") && entity.isPermissionCheckEnabled(finder)>
 				@Test
 				public void testFilterFindByGroupId() throws Exception {
