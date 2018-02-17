@@ -52,6 +52,7 @@ public class EditLayoutPageTemplateFragmentsMVCActionCommand
 
 		long layoutPageTemplateEntryId = ParamUtil.getLong(
 			actionRequest, "classPK");
+
 		long[] fragmentIds = ParamUtil.getLongValues(
 			actionRequest, "fragmentIds");
 		String editableValues = ParamUtil.getString(
