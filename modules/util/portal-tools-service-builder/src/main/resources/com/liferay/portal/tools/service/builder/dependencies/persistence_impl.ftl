@@ -192,7 +192,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 			new String[] {Long.class.getName(), Long.class.getName(), Long.class.getName()});
 	</#if>
 
-	<#list entity.entityFinders as finder>
+	<#list entity.entityFinders as entityFinder>
 		<#include "persistence_impl_finder_finder_path.ftl">
 
 		<#include "persistence_impl_finder_find.ftl">
@@ -683,8 +683,8 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 			<#else>
 				<#if columnBitmaskEnabled && (entity.collectionEntityFinders?size != 0)>
 					Object[]
-					<#list entity.collectionEntityFinders as finder>
-						<#assign entityColumns = finder.entityColumns />
+					<#list entity.collectionEntityFinders as entityFinder>
+						<#assign entityColumns = entityFinder.entityColumns />
 
 						args = new Object[] {
 							<#list entityColumns as entityColumn>
@@ -696,8 +696,8 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 							</#list>
 						};
 
-						finderCache.removeResult(FINDER_PATH_COUNT_BY_${finder.name?upper_case}, args);
-						finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_${finder.name?upper_case}, args);
+						finderCache.removeResult(FINDER_PATH_COUNT_BY_${entityFinder.name?upper_case}, args);
+						finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_${entityFinder.name?upper_case}, args);
 					</#list>
 				</#if>
 
@@ -708,11 +708,11 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 
 		<#if entity.collectionEntityFinders?size != 0>
 			else {
-				<#list entity.collectionEntityFinders as finder>
-					<#assign entityColumns = finder.entityColumns />
+				<#list entity.collectionEntityFinders as entityFinder>
+					<#assign entityColumns = entityFinder.entityColumns />
 					if (
 						<#if columnBitmaskEnabled>
-							(${entity.varName}ModelImpl.getColumnBitmask() & FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_${finder.name?upper_case}.getColumnBitmask()) != 0
+							(${entity.varName}ModelImpl.getColumnBitmask() & FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_${entityFinder.name?upper_case}.getColumnBitmask()) != 0
 						<#else>
 							<#list entityColumns as entityColumn>
 								<#if entityColumn.isPrimitiveType()>
@@ -738,8 +738,8 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 							</#list>
 						};
 
-						finderCache.removeResult(FINDER_PATH_COUNT_BY_${finder.name?upper_case}, args);
-						finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_${finder.name?upper_case}, args);
+						finderCache.removeResult(FINDER_PATH_COUNT_BY_${entityFinder.name?upper_case}, args);
+						finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_${entityFinder.name?upper_case}, args);
 
 						args = new Object[] {
 							<#list entityColumns as entityColumn>
@@ -751,8 +751,8 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 							</#list>
 						};
 
-						finderCache.removeResult(FINDER_PATH_COUNT_BY_${finder.name?upper_case}, args);
-						finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_${finder.name?upper_case}, args);
+						finderCache.removeResult(FINDER_PATH_COUNT_BY_${entityFinder.name?upper_case}, args);
+						finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_${entityFinder.name?upper_case}, args);
 					}
 				</#list>
 			}

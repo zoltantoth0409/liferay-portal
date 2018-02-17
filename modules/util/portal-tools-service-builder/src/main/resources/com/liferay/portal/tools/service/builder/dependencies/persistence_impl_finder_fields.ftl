@@ -1,4 +1,4 @@
-<#assign entityColumns = finder.entityColumns />
+<#assign entityColumns = entityFinder.entityColumns />
 
 <#list entityColumns as entityColumn>
 	<#assign entityColumnName = entityColumn.name finderFieldSuffix = "" />
