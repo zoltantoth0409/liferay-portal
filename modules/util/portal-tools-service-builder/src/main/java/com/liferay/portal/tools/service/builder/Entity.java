@@ -302,7 +302,7 @@ public class Entity implements Comparable<Entity> {
 		return _finderClassName;
 	}
 
-	public List<EntityColumn> getFinderColumnsList() {
+	public List<EntityColumn> getFinderEntityColumns() {
 		return _finderEntityColumns;
 	}
 
