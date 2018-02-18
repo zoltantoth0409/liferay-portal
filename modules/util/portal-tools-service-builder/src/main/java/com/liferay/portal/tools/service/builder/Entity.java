@@ -284,6 +284,10 @@ public class Entity implements Comparable<Entity> {
 		return _entityColumns;
 	}
 
+	public List<EntityFinder> getEntityFinders() {
+		return _entityFinders;
+	}
+
 	public EntityOrder getEntityOrder() {
 		return _entityOrder;
 	}
@@ -304,10 +308,6 @@ public class Entity implements Comparable<Entity> {
 
 	public List<EntityColumn> getFinderEntityColumns() {
 		return _finderEntityColumns;
-	}
-
-	public List<EntityFinder> getEntityFinders() {
-		return _entityFinders;
 	}
 
 	public String getHumanName() {
@@ -757,8 +757,8 @@ public class Entity implements Comparable<Entity> {
 	}
 
 	public boolean isPermissionCheckEnabled() {
-		for (EntityFinder finder : _entityFinders) {
-			if (isPermissionCheckEnabled(finder)) {
+		for (EntityFinder entityFinder : _entityFinders) {
+			if (isPermissionCheckEnabled(entityFinder)) {
 				return true;
 			}
 		}
@@ -766,17 +766,19 @@ public class Entity implements Comparable<Entity> {
 		return false;
 	}
 
-	public boolean isPermissionCheckEnabled(EntityFinder finder) {
-		String finderName = finder.getName();
+	public boolean isPermissionCheckEnabled(EntityFinder entityFinder) {
+		String entityFinderName = entityFinder.getName();
 
 		if (_name.equals("Group") || _name.equals("User") ||
-			finderName.equals("UUID_G") || !finder.isCollection() ||
+			entityFinderName.equals("UUID_G") || !entityFinder.isCollection() ||
 			!hasPrimitivePK() || !_resourceActionModel) {
 
 			return false;
 		}
 
-		if (hasEntityColumn("groupId") && !finder.hasEntityColumn("groupId")) {
+		if (hasEntityColumn("groupId") &&
+			!entityFinder.hasEntityColumn("groupId")) {
+
 			return false;
 		}
 
