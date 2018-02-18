@@ -4,9 +4,9 @@
 
 <#if entity.isHierarchicalTree()>
 	<#assign
-		pkColumn = entity.getPKList()?first
+		pkEntityColumn = entity.PKEntityColumns?first
 
-		parentPKColumn = entity.getEntityColumn("parent" + pkColumn.methodName)
+		parentPKColumn = entity.getEntityColumn("parent" + pkEntityColumn.methodName)
 	/>
 </#if>
 
@@ -143,7 +143,7 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 	<#if entity.entityOrder??>
 		<#assign orderList = entity.entityOrder.entityColumns />
 	<#else>
-		<#assign orderList = entity.getPKList() />
+		<#assign orderList = entity.PKEntityColumns />
 	</#if>
 
 	<#assign orderByJPQL = "" />
@@ -859,11 +859,11 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 
 	<#if entity.isHierarchicalTree()>
 		public long getNestedSetsTreeNodeLeft() {
-			return _left${pkColumn.methodName};
+			return _left${pkEntityColumn.methodName};
 		}
 
 		public long getNestedSetsTreeNodeRight() {
-			return _right${pkColumn.methodName};
+			return _right${pkEntityColumn.methodName};
 		}
 
 		public long getNestedSetsTreeNodeScopeId() {
@@ -877,11 +877,11 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 		}
 
 		public void setNestedSetsTreeNodeLeft(long nestedSetsTreeNodeLeft) {
-			_left${pkColumn.methodName} = nestedSetsTreeNodeLeft;
+			_left${pkEntityColumn.methodName} = nestedSetsTreeNodeLeft;
 		}
 
 		public void setNestedSetsTreeNodeRight(long nestedSetsTreeNodeRight) {
-			_right${pkColumn.methodName} = nestedSetsTreeNodeRight;
+			_right${pkEntityColumn.methodName} = nestedSetsTreeNodeRight;
 		}
 	</#if>
 

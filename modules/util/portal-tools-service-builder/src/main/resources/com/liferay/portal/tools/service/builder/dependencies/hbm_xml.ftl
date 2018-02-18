@@ -12,9 +12,7 @@
 	>
 		<#if entity.hasCompoundPK()>
 			<composite-id class="${apiPackagePath}.service.persistence.${entity.name}PK" name="primaryKey">
-				<#assign pkList = entity.getPKList() />
-
-				<#list pkList as entityColumn>
+				<#list entity.PKEntityColumns as entityColumn>
 					<key-property
 
 					<#if serviceBuilder.isHBMCamelCasePropertyAccessor(entityColumn.name)>
@@ -39,7 +37,7 @@
 				</#list>
 			</composite-id>
 		<#else>
-			<#assign entityColumn = entity.getPKList()?first />
+			<#assign entityColumn = entity.PKEntityColumns?first />
 
 			<id
 				<#if serviceBuilder.isHBMCamelCasePropertyAccessor(entityColumn.name)>
@@ -124,7 +122,7 @@
 
 				lazy="true" name="${apiPackagePath}.model.${entity.name}${blobEntityColumn.methodName}BlobModel" table="${entity.table}"
 			>
-				<#assign entityColumn = entity.getPKList()?first />
+				<#assign entityColumn = entity.PKEntityColumns?first />
 
 				<id column="${entityColumn.DBName}" name="${entityColumn.name}">
 					<generator class="foreign">

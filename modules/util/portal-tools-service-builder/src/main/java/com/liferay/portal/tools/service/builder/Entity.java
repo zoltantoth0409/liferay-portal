@@ -374,7 +374,7 @@ public class Entity implements Comparable<Entity> {
 		return entityColumn.getDBName();
 	}
 
-	public List<EntityColumn> getPKList() {
+	public List<EntityColumn> getPKEntityColumns() {
 		return _pkEntityColumns;
 	}
 

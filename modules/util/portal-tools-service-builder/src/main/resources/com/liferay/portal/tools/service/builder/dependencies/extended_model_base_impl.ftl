@@ -56,9 +56,9 @@ public abstract class ${entity.name}BaseImpl extends ${entity.name}ModelImpl imp
 		}
 
 		<#if entity.isTreeModel()>
-			<#assign pkColumn = entity.getPKList()?first />
+			<#assign pkEntityColumn = entity.PKEntityColumns?first />
 
-			<#if entity.hasEntityColumn("parent" + pkColumn.methodName)>
+			<#if entity.hasEntityColumn("parent" + pkEntityColumn.methodName)>
 				@Override
 				@SuppressWarnings("unused")
 				public String buildTreePath() throws PortalException {
@@ -69,7 +69,7 @@ public abstract class ${entity.name}BaseImpl extends ${entity.name}ModelImpl imp
 					while (${entity.varName} != null) {
 						${entity.varNames}.add(${entity.varName});
 
-						${entity.varName} = ${entity.name}LocalServiceUtil.fetch${entity.name}(${entity.varName}.getParent${pkColumn.methodName}());
+						${entity.varName} = ${entity.name}LocalServiceUtil.fetch${entity.name}(${entity.varName}.getParent${pkEntityColumn.methodName}());
 					}
 
 					StringBundler sb = new StringBundler(${entity.varNames}.size() * 2 + 1);
