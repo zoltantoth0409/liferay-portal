@@ -175,7 +175,7 @@ public int countBy${entityFinder.name}(
 	}
 </#if>
 
-<#if entity.isPermissionCheckEnabled(finder)>
+<#if entity.isPermissionCheckEnabled(entityFinder)>
 	/**
 	 * Returns the number of ${entity.humanNames} that the user has permission to view where ${entityFinder.getHumanConditions(false)}.
 	 *
