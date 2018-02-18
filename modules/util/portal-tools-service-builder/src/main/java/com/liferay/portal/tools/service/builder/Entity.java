@@ -326,8 +326,8 @@ public class Entity implements Comparable<Entity> {
 		return TextFormatter.formatPlural(_humanName);
 	}
 
-	public List<EntityColumn> getLocalizedColumns() {
-		return _localizedColumns;
+	public List<EntityColumn> getLocalizedEntityColumns() {
+		return _localizedEntityColumns;
 	}
 
 	public Entity getLocalizedEntity() {
@@ -952,8 +952,8 @@ public class Entity implements Comparable<Entity> {
 		}
 	}
 
-	public void setLocalizedColumns(List<EntityColumn> localizedColumns) {
-		_localizedColumns = localizedColumns;
+	public void setLocalizedEntityColumns(List<EntityColumn> localizedEntityColumns) {
+		_localizedEntityColumns = localizedEntityColumns;
 	}
 
 	public void setLocalizedEntity(Entity localizedEntity) {
@@ -1011,7 +1011,7 @@ public class Entity implements Comparable<Entity> {
 	private final List<EntityColumn> _finderEntityColumns;
 	private final String _humanName;
 	private final boolean _jsonEnabled;
-	private List<EntityColumn> _localizedColumns;
+	private List<EntityColumn> _localizedEntityColumns;
 	private Entity _localizedEntity;
 	private final boolean _localService;
 	private final boolean _mvccEnabled;
