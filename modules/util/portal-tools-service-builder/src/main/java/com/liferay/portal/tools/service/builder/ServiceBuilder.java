@@ -1266,7 +1266,7 @@ public class ServiceBuilder {
 				return null;
 			}
 
-			mappingEntities.put(entity.getName(), entity.getPKList());
+			mappingEntities.put(entity.getName(), entity.getPKEntityColumns());
 		}
 
 		return mappingEntities;
@@ -2093,7 +2093,7 @@ public class ServiceBuilder {
 	}
 
 	private void _createEJBPK(Entity entity) throws Exception {
-		List<EntityColumn> pkList = entity.getPKList();
+		List<EntityColumn> pkList = entity.getPKEntityColumns();
 
 		if (pkList.size() <= 1) {
 			return;
@@ -4191,7 +4191,7 @@ public class ServiceBuilder {
 		String tableName = entityMapping.getTableName();
 
 		for (Entity entity : entities) {
-			List<EntityColumn> pkList = entity.getPKList();
+			List<EntityColumn> pkList = entity.getPKEntityColumns();
 
 			for (EntityColumn entityColumn : pkList) {
 				IndexMetadata indexMetadata =
@@ -4270,7 +4270,7 @@ public class ServiceBuilder {
 		sb.append(" (\n");
 
 		for (Entity entity : entities) {
-			List<EntityColumn> pkList = entity.getPKList();
+			List<EntityColumn> pkList = entity.getPKEntityColumns();
 
 			for (EntityColumn col : pkList) {
 				String colDBName = col.getDBName();
@@ -4361,7 +4361,7 @@ public class ServiceBuilder {
 		for (int i = 1; i < entities.length; i++) {
 			Entity entity = entities[i];
 
-			List<EntityColumn> pkList = entity.getPKList();
+			List<EntityColumn> pkList = entity.getPKEntityColumns();
 
 			for (int j = 0; j < pkList.size(); j++) {
 				EntityColumn col = pkList.get(j);
@@ -4381,7 +4381,7 @@ public class ServiceBuilder {
 	}
 
 	private String _getCreateTableSQL(Entity entity) {
-		List<EntityColumn> pkList = entity.getPKList();
+		List<EntityColumn> pkList = entity.getPKEntityColumns();
 		List<EntityColumn> regularEntityColumns = entity.getRegularEntityColumns();
 
 		if (regularEntityColumns.isEmpty()) {
@@ -5703,7 +5703,7 @@ public class ServiceBuilder {
 			newLocalizedColumnElement.addAttribute("type", "long");
 		}
 
-		List<EntityColumn> pkList = entity.getPKList();
+		List<EntityColumn> pkList = entity.getPKEntityColumns();
 
 		if (pkList.size() > 1) {
 			throw new IllegalArgumentException(
@@ -5954,7 +5954,7 @@ public class ServiceBuilder {
 	}
 
 	private void _removeEJBPK(Entity entity, String outputPath) {
-		List<EntityColumn> pkList = entity.getPKList();
+		List<EntityColumn> pkList = entity.getPKEntityColumns();
 
 		if (pkList.size() <= 1) {
 			return;

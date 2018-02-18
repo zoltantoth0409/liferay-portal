@@ -45,9 +45,7 @@
 
 				<#if entity.entityOrder??>
 					<#list entity.entityOrder.entityColumns as entityColumn>
-						<#assign pkList = entity.getPKList() />
-
-						<#if !entityColumns?seq_contains(entityColumn) && !pkList?seq_contains(entityColumn)>
+						<#if !entityColumns?seq_contains(entityColumn) && !entity.PKEntityColumns?seq_contains(entityColumn)>
 							| ${entity.name}ModelImpl.${entityColumn.name?upper_case}_COLUMN_BITMASK
 						</#if>
 					</#list>

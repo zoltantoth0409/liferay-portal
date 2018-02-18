@@ -387,15 +387,13 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 					actionableDynamicQuery.setPrimaryKeyPropertyName("${entity.PKVarName}");
 				<#else>
 					<#assign
-						pkList = entity.getPKList()
-
-						pkColumn = pkList?first
+						pkEntityColumn = entity.PKEntityColumns?first
 					/>
 
-					actionableDynamicQuery.setPrimaryKeyPropertyName("primaryKey.${pkColumn.name}");
+					actionableDynamicQuery.setPrimaryKeyPropertyName("primaryKey.${pkEntityColumn.name}");
 
-					<#list entity.getPKList() as pkColumn>
-						<#if stringUtil.equals(pkColumn.name, "groupId")>
+					<#list entity.PKEntityColumns as pkEntityColumn>
+						<#if stringUtil.equals(pkEntityColumn.name, "groupId")>
 							actionableDynamicQuery.setGroupIdPropertyName("primaryKey.groupId");
 						</#if>
 					</#list>
@@ -416,15 +414,13 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 					indexableActionableDynamicQuery.setPrimaryKeyPropertyName("${entity.PKVarName}");
 				<#else>
 					<#assign
-						pkList = entity.getPKList()
-
-						pkColumn = pkList?first
+						pkEntityColumn = entity.PKEntityColumns?first
 					/>
 
-					indexableActionableDynamicQuery.setPrimaryKeyPropertyName("primaryKey.${pkColumn.name}");
+					indexableActionableDynamicQuery.setPrimaryKeyPropertyName("primaryKey.${pkEntityColumn.name}");
 
-					<#list entity.getPKList() as pkColumn>
-						<#if stringUtil.equals(pkColumn.name, "groupId")>
+					<#list entity.PKEntityColumns as pkEntityColumn>
+						<#if stringUtil.equals(pkEntityColumn.name, "groupId")>
 							indexableActionableDynamicQuery.setGroupIdPropertyName("primaryKey.groupId");
 						</#if>
 					</#list>
@@ -442,15 +438,13 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 					actionableDynamicQuery.setPrimaryKeyPropertyName("${entity.PKVarName}");
 				<#else>
 					<#assign
-						pkList = entity.getPKList()
-
-						pkColumn = pkList?first
+						pkEntityColumn = entity.PKEntityColumns?first
 					/>
 
-					actionableDynamicQuery.setPrimaryKeyPropertyName("primaryKey.${pkColumn.name}");
+					actionableDynamicQuery.setPrimaryKeyPropertyName("primaryKey.${pkEntityColumn.name}");
 
-					<#list entity.getPKList() as pkColumn>
-						<#if stringUtil.equals(pkColumn.name, "groupId")>
+					<#list entity.PKEntityColumns as pkEntityColumn>
+						<#if stringUtil.equals(pkEntityColumn.name, "groupId")>
 							actionableDynamicQuery.setGroupIdPropertyName("primaryKey.groupId");
 						</#if>
 					</#list>
@@ -981,22 +975,22 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 		<#assign
 			localizedEntity = entity.localizedEntity
 			localizedEntityColumns = entity.localizedEntityColumns
-			pkColumn = entity.getPKList()?first
+			pkEntityColumn = entity.PKEntityColumns?first
 		/>
 
 		@Override
 		public ${localizedEntity.name} fetch${localizedEntity.name}(${entity.PKClassName} ${entity.PKVarName}, String languageId) {
-			return ${localizedEntity.varName}Persistence.fetchBy${pkColumn.methodName}_LanguageId(${entity.PKVarName}, languageId);
+			return ${localizedEntity.varName}Persistence.fetchBy${pkEntityColumn.methodName}_LanguageId(${entity.PKVarName}, languageId);
 		}
 
 		@Override
 		public ${localizedEntity.name} get${localizedEntity.name}(${entity.PKClassName} ${entity.PKVarName}, String languageId) throws PortalException {
-			return ${localizedEntity.varName}Persistence.findBy${pkColumn.methodName}_LanguageId(${entity.PKVarName}, languageId);
+			return ${localizedEntity.varName}Persistence.findBy${pkEntityColumn.methodName}_LanguageId(${entity.PKVarName}, languageId);
 		}
 
 		@Override
 		public List<${localizedEntity.name}> get${localizedEntity.names}(${entity.PKClassName} ${entity.PKVarName}) {
-			return ${localizedEntity.varName}Persistence.findBy${pkColumn.methodName}(${entity.PKVarName});
+			return ${localizedEntity.varName}Persistence.findBy${pkEntityColumn.methodName}(${entity.PKVarName});
 		}
 
 		protected ${localizedEntity.name} update${localizedEntity.name}(
@@ -1010,19 +1004,19 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 			</#list>
 			) throws PortalException {
 
-			${localizedEntity.name} ${localizedEntity.varName} = ${localizedEntity.varName}Persistence.fetchBy${pkColumn.methodName}_LanguageId(${entity.varName}.get${pkColumn.methodName}(), languageId);
+			${localizedEntity.name} ${localizedEntity.varName} = ${localizedEntity.varName}Persistence.fetchBy${pkEntityColumn.methodName}_LanguageId(${entity.varName}.get${pkEntityColumn.methodName}(), languageId);
 
 			if (${localizedEntity.varName} == null) {
 				long ${localizedEntity.varName}Id = counterLocalService.increment();
 
 				${localizedEntity.varName} = ${localizedEntity.varName}Persistence.create(${localizedEntity.varName}Id);
 
-				${localizedEntity.varName}.set${pkColumn.methodName}(${entity.varName}.get${pkColumn.methodName}());
+				${localizedEntity.varName}.set${pkEntityColumn.methodName}(${entity.varName}.get${pkEntityColumn.methodName}());
 				${localizedEntity.varName}.setLanguageId(languageId);
 			}
 
 			<#list entity.entityColumns as entityColumn>
-				<#if localizedEntity.hasEntityColumn(entityColumn.name) && !stringUtil.equals(entityColumn.name, "mvccVersion") && !stringUtil.equals(entityColumn.name, pkColumn.name)>
+				<#if localizedEntity.hasEntityColumn(entityColumn.name) && !stringUtil.equals(entityColumn.name, "mvccVersion") && !stringUtil.equals(entityColumn.name, pkEntityColumn.name)>
 					${localizedEntity.varName}.set${entityColumn.methodName}(${entity.varName}.get${entityColumn.methodName}());
 				</#if>
 			</#list>
@@ -1065,7 +1059,7 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 
 			List<${localizedEntity.name}> ${localizedEntity.varNames} = new ArrayList<${localizedEntity.name}>(localizedValuesMap.size());
 
-			for (${localizedEntity.name} ${localizedEntity.varName} : ${localizedEntity.varName}Persistence.findBy${pkColumn.methodName}(${entity.varName}.get${pkColumn.methodName}())) {
+			for (${localizedEntity.name} ${localizedEntity.varName} : ${localizedEntity.varName}Persistence.findBy${pkEntityColumn.methodName}(${entity.varName}.get${pkEntityColumn.methodName}())) {
 				String[] localizedValues = localizedValuesMap.remove(${localizedEntity.varName}.getLanguageId());
 
 				if (localizedValues == null) {
@@ -1073,7 +1067,7 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 				}
 				else {
 					<#list entity.entityColumns as entityColumn>
-						<#if localizedEntity.hasEntityColumn(entityColumn.name) && !stringUtil.equals(entityColumn.name, "mvccVersion") && !stringUtil.equals(entityColumn.name, pkColumn.name)>
+						<#if localizedEntity.hasEntityColumn(entityColumn.name) && !stringUtil.equals(entityColumn.name, "mvccVersion") && !stringUtil.equals(entityColumn.name, pkEntityColumn.name)>
 							${localizedEntity.varName}.set${entityColumn.methodName}(${entity.varName}.get${entityColumn.methodName}());
 						</#if>
 					</#list>

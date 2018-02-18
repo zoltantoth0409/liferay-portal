@@ -8,9 +8,9 @@
 	</#if>
 
 	<#assign
-		pkColumn = entity.getPKList()?first
+		pkEntityColumn = entity.PKEntityColumns?first
 
-		parentPKColumn = entity.getEntityColumn("parent" + pkColumn.methodName)
+		parentPKColumn = entity.getEntityColumn("parent" + pkEntityColumn.methodName)
 	/>
 </#if>
 
@@ -1109,17 +1109,17 @@ public class ${entity.name}PersistenceTest {
 
 			${entity.name} root${entity.name} = add${entity.name}(${scopeEntityColumn.name}, null);
 
-			long previousRootLeft${pkColumn.methodName} = root${entity.name}.getLeft${pkColumn.methodName}();
-			long previousRootRight${pkColumn.methodName} = root${entity.name}.getRight${pkColumn.methodName}();
+			long previousRootLeft${pkEntityColumn.methodName} = root${entity.name}.getLeft${pkEntityColumn.methodName}();
+			long previousRootRight${pkEntityColumn.methodName} = root${entity.name}.getRight${pkEntityColumn.methodName}();
 
-			${entity.name} child${entity.name} = add${entity.name}(${scopeEntityColumn.name}, root${entity.name}.get${pkColumn.methodName}());
+			${entity.name} child${entity.name} = add${entity.name}(${scopeEntityColumn.name}, root${entity.name}.get${pkEntityColumn.methodName}());
 
 			root${entity.name} = _persistence.fetchByPrimaryKey(root${entity.name}.getPrimaryKey());
 
-			Assert.assertEquals(previousRootLeft${pkColumn.methodName}, root${entity.name}.getLeft${pkColumn.methodName}());
-			Assert.assertEquals(previousRootRight${pkColumn.methodName} + 2, root${entity.name}.getRight${pkColumn.methodName}());
-			Assert.assertEquals(root${entity.name}.getLeft${pkColumn.methodName}() + 1, child${entity.name}.getLeft${pkColumn.methodName}());
-			Assert.assertEquals(root${entity.name}.getRight${pkColumn.methodName}() - 1, child${entity.name}.getRight${pkColumn.methodName}());
+			Assert.assertEquals(previousRootLeft${pkEntityColumn.methodName}, root${entity.name}.getLeft${pkEntityColumn.methodName}());
+			Assert.assertEquals(previousRootRight${pkEntityColumn.methodName} + 2, root${entity.name}.getRight${pkEntityColumn.methodName}());
+			Assert.assertEquals(root${entity.name}.getLeft${pkEntityColumn.methodName}() + 1, child${entity.name}.getLeft${pkEntityColumn.methodName}());
+			Assert.assertEquals(root${entity.name}.getRight${pkEntityColumn.methodName}() - 1, child${entity.name}.getRight${pkEntityColumn.methodName}());
 		}
 
 		@Test
@@ -1128,28 +1128,28 @@ public class ${entity.name}PersistenceTest {
 
 			${entity.name} parent${entity.name} = add${entity.name}(${scopeEntityColumn.name}, null);
 
-			${entity.name} child${entity.name} = add${entity.name}(${scopeEntityColumn.name}, parent${entity.name}.get${pkColumn.methodName}());
+			${entity.name} child${entity.name} = add${entity.name}(${scopeEntityColumn.name}, parent${entity.name}.get${pkEntityColumn.methodName}());
 
 			parent${entity.name} = _persistence.fetchByPrimaryKey(parent${entity.name}.getPrimaryKey());
 
 			${entity.name} root${entity.name} = add${entity.name}(${scopeEntityColumn.name}, null);
 
-			long previousRootLeft${pkColumn.methodName} = root${entity.name}.getLeft${pkColumn.methodName}();
-			long previousRootRight${pkColumn.methodName} = root${entity.name}.getRight${pkColumn.methodName}();
+			long previousRootLeft${pkEntityColumn.methodName} = root${entity.name}.getLeft${pkEntityColumn.methodName}();
+			long previousRootRight${pkEntityColumn.methodName} = root${entity.name}.getRight${pkEntityColumn.methodName}();
 
-			parent${entity.name}.setParent${pkColumn.methodName}(root${entity.name}.get${pkColumn.methodName}());
+			parent${entity.name}.setParent${pkEntityColumn.methodName}(root${entity.name}.get${pkEntityColumn.methodName}());
 
 			_persistence.update(parent${entity.name});
 
 			root${entity.name} = _persistence.fetchByPrimaryKey(root${entity.name}.getPrimaryKey());
 			child${entity.name} = _persistence.fetchByPrimaryKey(child${entity.name}.getPrimaryKey());
 
-			Assert.assertEquals(previousRootLeft${pkColumn.methodName} - 4, root${entity.name}.getLeft${pkColumn.methodName}());
-			Assert.assertEquals(previousRootRight${pkColumn.methodName}, root${entity.name}.getRight${pkColumn.methodName}());
-			Assert.assertEquals(root${entity.name}.getLeft${pkColumn.methodName}() + 1, parent${entity.name}.getLeft${pkColumn.methodName}());
-			Assert.assertEquals(root${entity.name}.getRight${pkColumn.methodName}() - 1, parent${entity.name}.getRight${pkColumn.methodName}());
-			Assert.assertEquals(parent${entity.name}.getLeft${pkColumn.methodName}() + 1, child${entity.name}.getLeft${pkColumn.methodName}());
-			Assert.assertEquals(parent${entity.name}.getRight${pkColumn.methodName}() - 1, child${entity.name}.getRight${pkColumn.methodName}());
+			Assert.assertEquals(previousRootLeft${pkEntityColumn.methodName} - 4, root${entity.name}.getLeft${pkEntityColumn.methodName}());
+			Assert.assertEquals(previousRootRight${pkEntityColumn.methodName}, root${entity.name}.getRight${pkEntityColumn.methodName}());
+			Assert.assertEquals(root${entity.name}.getLeft${pkEntityColumn.methodName}() + 1, parent${entity.name}.getLeft${pkEntityColumn.methodName}());
+			Assert.assertEquals(root${entity.name}.getRight${pkEntityColumn.methodName}() - 1, parent${entity.name}.getRight${pkEntityColumn.methodName}());
+			Assert.assertEquals(parent${entity.name}.getLeft${pkEntityColumn.methodName}() + 1, child${entity.name}.getLeft${pkEntityColumn.methodName}());
+			Assert.assertEquals(parent${entity.name}.getRight${pkEntityColumn.methodName}() - 1, child${entity.name}.getRight${pkEntityColumn.methodName}());
 		}
 
 		@Test
@@ -1158,28 +1158,28 @@ public class ${entity.name}PersistenceTest {
 
 			${entity.name} root${entity.name} = add${entity.name}(${scopeEntityColumn.name}, null);
 
-			long previousRootLeft${pkColumn.methodName} = root${entity.name}.getLeft${pkColumn.methodName}();
-			long previousRootRight${pkColumn.methodName} = root${entity.name}.getRight${pkColumn.methodName}();
+			long previousRootLeft${pkEntityColumn.methodName} = root${entity.name}.getLeft${pkEntityColumn.methodName}();
+			long previousRootRight${pkEntityColumn.methodName} = root${entity.name}.getRight${pkEntityColumn.methodName}();
 
 			${entity.name} parent${entity.name} = add${entity.name}(${scopeEntityColumn.name}, null);
 
-			${entity.name} child${entity.name} = add${entity.name}(${scopeEntityColumn.name}, parent${entity.name}.get${pkColumn.methodName}());
+			${entity.name} child${entity.name} = add${entity.name}(${scopeEntityColumn.name}, parent${entity.name}.get${pkEntityColumn.methodName}());
 
 			parent${entity.name} = _persistence.fetchByPrimaryKey(parent${entity.name}.getPrimaryKey());
 
-			parent${entity.name}.setParent${pkColumn.methodName}(root${entity.name}.get${pkColumn.methodName}());
+			parent${entity.name}.setParent${pkEntityColumn.methodName}(root${entity.name}.get${pkEntityColumn.methodName}());
 
 			_persistence.update(parent${entity.name});
 
 			root${entity.name} = _persistence.fetchByPrimaryKey(root${entity.name}.getPrimaryKey());
 			child${entity.name} = _persistence.fetchByPrimaryKey(child${entity.name}.getPrimaryKey());
 
-			Assert.assertEquals(previousRootLeft${pkColumn.methodName}, root${entity.name}.getLeft${pkColumn.methodName}());
-			Assert.assertEquals(previousRootRight${pkColumn.methodName} + 4, root${entity.name}.getRight${pkColumn.methodName}());
-			Assert.assertEquals(root${entity.name}.getLeft${pkColumn.methodName}() + 1, parent${entity.name}.getLeft${pkColumn.methodName}());
-			Assert.assertEquals(root${entity.name}.getRight${pkColumn.methodName}() - 1, parent${entity.name}.getRight${pkColumn.methodName}());
-			Assert.assertEquals(parent${entity.name}.getLeft${pkColumn.methodName}() + 1, child${entity.name}.getLeft${pkColumn.methodName}());
-			Assert.assertEquals(parent${entity.name}.getRight${pkColumn.methodName}() - 1, child${entity.name}.getRight${pkColumn.methodName}());
+			Assert.assertEquals(previousRootLeft${pkEntityColumn.methodName}, root${entity.name}.getLeft${pkEntityColumn.methodName}());
+			Assert.assertEquals(previousRootRight${pkEntityColumn.methodName} + 4, root${entity.name}.getRight${pkEntityColumn.methodName}());
+			Assert.assertEquals(root${entity.name}.getLeft${pkEntityColumn.methodName}() + 1, parent${entity.name}.getLeft${pkEntityColumn.methodName}());
+			Assert.assertEquals(root${entity.name}.getRight${pkEntityColumn.methodName}() - 1, parent${entity.name}.getRight${pkEntityColumn.methodName}());
+			Assert.assertEquals(parent${entity.name}.getLeft${pkEntityColumn.methodName}() + 1, child${entity.name}.getLeft${pkEntityColumn.methodName}());
+			Assert.assertEquals(parent${entity.name}.getRight${pkEntityColumn.methodName}() - 1, child${entity.name}.getRight${pkEntityColumn.methodName}());
 		}
 
 		@Test
@@ -1188,24 +1188,24 @@ public class ${entity.name}PersistenceTest {
 
 			${entity.name} parent${entity.name} = add${entity.name}(${scopeEntityColumn.name}, null);
 
-			${entity.name} parentChild${entity.name} = add${entity.name}(${scopeEntityColumn.name}, parent${entity.name}.get${pkColumn.methodName}());
+			${entity.name} parentChild${entity.name} = add${entity.name}(${scopeEntityColumn.name}, parent${entity.name}.get${pkEntityColumn.methodName}());
 
 			parent${entity.name} = _persistence.fetchByPrimaryKey(parent${entity.name}.getPrimaryKey());
 
 			${entity.name} root${entity.name} = add${entity.name}(${scopeEntityColumn.name}, null);
 
-			${entity.name} leftRootChild${entity.name} = add${entity.name}(${scopeEntityColumn.name}, root${entity.name}.get${pkColumn.methodName}());
+			${entity.name} leftRootChild${entity.name} = add${entity.name}(${scopeEntityColumn.name}, root${entity.name}.get${pkEntityColumn.methodName}());
 
 			root${entity.name} = _persistence.fetchByPrimaryKey(root${entity.name}.getPrimaryKey());
 
-			${entity.name} rightRootChild${entity.name} = add${entity.name}(${scopeEntityColumn.name}, root${entity.name}.get${pkColumn.methodName}());
+			${entity.name} rightRootChild${entity.name} = add${entity.name}(${scopeEntityColumn.name}, root${entity.name}.get${pkEntityColumn.methodName}());
 
 			root${entity.name} = _persistence.fetchByPrimaryKey(root${entity.name}.getPrimaryKey());
 
-			long previousRootLeft${pkColumn.methodName} = root${entity.name}.getLeft${pkColumn.methodName}();
-			long previousRootRight${pkColumn.methodName} = root${entity.name}.getRight${pkColumn.methodName}();
+			long previousRootLeft${pkEntityColumn.methodName} = root${entity.name}.getLeft${pkEntityColumn.methodName}();
+			long previousRootRight${pkEntityColumn.methodName} = root${entity.name}.getRight${pkEntityColumn.methodName}();
 
-			parent${entity.name}.setParent${pkColumn.methodName}(rightRootChild${entity.name}.get${pkColumn.methodName}());
+			parent${entity.name}.setParent${pkEntityColumn.methodName}(rightRootChild${entity.name}.get${pkEntityColumn.methodName}());
 
 			_persistence.update(parent${entity.name});
 
@@ -1214,16 +1214,16 @@ public class ${entity.name}PersistenceTest {
 			rightRootChild${entity.name} = _persistence.fetchByPrimaryKey(rightRootChild${entity.name}.getPrimaryKey());
 			parentChild${entity.name} = _persistence.fetchByPrimaryKey(parentChild${entity.name}.getPrimaryKey());
 
-			Assert.assertEquals(previousRootLeft${pkColumn.methodName} - 4, root${entity.name}.getLeft${pkColumn.methodName}());
-			Assert.assertEquals(previousRootRight${pkColumn.methodName}, root${entity.name}.getRight${pkColumn.methodName}());
-			Assert.assertEquals(root${entity.name}.getLeft${pkColumn.methodName}() + 1, leftRootChild${entity.name}.getLeft${pkColumn.methodName}());
-			Assert.assertEquals(root${entity.name}.getRight${pkColumn.methodName}() - 7, leftRootChild${entity.name}.getRight${pkColumn.methodName}());
-			Assert.assertEquals(root${entity.name}.getLeft${pkColumn.methodName}() + 3, rightRootChild${entity.name}.getLeft${pkColumn.methodName}());
-			Assert.assertEquals(root${entity.name}.getRight${pkColumn.methodName}() - 1, rightRootChild${entity.name}.getRight${pkColumn.methodName}());
-			Assert.assertEquals(rightRootChild${entity.name}.getLeft${pkColumn.methodName}() + 1, parent${entity.name}.getLeft${pkColumn.methodName}());
-			Assert.assertEquals(rightRootChild${entity.name}.getRight${pkColumn.methodName}() - 1, parent${entity.name}.getRight${pkColumn.methodName}());
-			Assert.assertEquals(parent${entity.name}.getLeft${pkColumn.methodName}() + 1, parentChild${entity.name}.getLeft${pkColumn.methodName}());
-			Assert.assertEquals(parent${entity.name}.getRight${pkColumn.methodName}() - 1, parentChild${entity.name}.getRight${pkColumn.methodName}());
+			Assert.assertEquals(previousRootLeft${pkEntityColumn.methodName} - 4, root${entity.name}.getLeft${pkEntityColumn.methodName}());
+			Assert.assertEquals(previousRootRight${pkEntityColumn.methodName}, root${entity.name}.getRight${pkEntityColumn.methodName}());
+			Assert.assertEquals(root${entity.name}.getLeft${pkEntityColumn.methodName}() + 1, leftRootChild${entity.name}.getLeft${pkEntityColumn.methodName}());
+			Assert.assertEquals(root${entity.name}.getRight${pkEntityColumn.methodName}() - 7, leftRootChild${entity.name}.getRight${pkEntityColumn.methodName}());
+			Assert.assertEquals(root${entity.name}.getLeft${pkEntityColumn.methodName}() + 3, rightRootChild${entity.name}.getLeft${pkEntityColumn.methodName}());
+			Assert.assertEquals(root${entity.name}.getRight${pkEntityColumn.methodName}() - 1, rightRootChild${entity.name}.getRight${pkEntityColumn.methodName}());
+			Assert.assertEquals(rightRootChild${entity.name}.getLeft${pkEntityColumn.methodName}() + 1, parent${entity.name}.getLeft${pkEntityColumn.methodName}());
+			Assert.assertEquals(rightRootChild${entity.name}.getRight${pkEntityColumn.methodName}() - 1, parent${entity.name}.getRight${pkEntityColumn.methodName}());
+			Assert.assertEquals(parent${entity.name}.getLeft${pkEntityColumn.methodName}() + 1, parentChild${entity.name}.getLeft${pkEntityColumn.methodName}());
+			Assert.assertEquals(parent${entity.name}.getRight${pkEntityColumn.methodName}() - 1, parentChild${entity.name}.getRight${pkEntityColumn.methodName}());
 		}
 
 		@Test
@@ -1232,24 +1232,24 @@ public class ${entity.name}PersistenceTest {
 
 			${entity.name} root${entity.name} = add${entity.name}(${scopeEntityColumn.name}, null);
 
-			${entity.name} leftRootChild${entity.name} = add${entity.name}(${scopeEntityColumn.name}, root${entity.name}.get${pkColumn.methodName}());
+			${entity.name} leftRootChild${entity.name} = add${entity.name}(${scopeEntityColumn.name}, root${entity.name}.get${pkEntityColumn.methodName}());
 
 			root${entity.name} = _persistence.fetchByPrimaryKey(root${entity.name}.getPrimaryKey());
 
-			${entity.name} rightRootChild${entity.name} = add${entity.name}(${scopeEntityColumn.name}, root${entity.name}.get${pkColumn.methodName}());
+			${entity.name} rightRootChild${entity.name} = add${entity.name}(${scopeEntityColumn.name}, root${entity.name}.get${pkEntityColumn.methodName}());
 
 			root${entity.name} = _persistence.fetchByPrimaryKey(root${entity.name}.getPrimaryKey());
 
-			long previousRootLeft${pkColumn.methodName} = root${entity.name}.getLeft${pkColumn.methodName}();
-			long previousRootRight${pkColumn.methodName} = root${entity.name}.getRight${pkColumn.methodName}();
+			long previousRootLeft${pkEntityColumn.methodName} = root${entity.name}.getLeft${pkEntityColumn.methodName}();
+			long previousRootRight${pkEntityColumn.methodName} = root${entity.name}.getRight${pkEntityColumn.methodName}();
 
 			${entity.name} parent${entity.name} = add${entity.name}(${scopeEntityColumn.name}, null);
 
-			${entity.name} parentChild${entity.name} = add${entity.name}(${scopeEntityColumn.name}, parent${entity.name}.get${pkColumn.methodName}());
+			${entity.name} parentChild${entity.name} = add${entity.name}(${scopeEntityColumn.name}, parent${entity.name}.get${pkEntityColumn.methodName}());
 
 			parent${entity.name} = _persistence.fetchByPrimaryKey(parent${entity.name}.getPrimaryKey());
 
-			parent${entity.name}.setParent${pkColumn.methodName}(leftRootChild${entity.name}.get${pkColumn.methodName}());
+			parent${entity.name}.setParent${pkEntityColumn.methodName}(leftRootChild${entity.name}.get${pkEntityColumn.methodName}());
 
 			_persistence.update(parent${entity.name});
 
@@ -1258,19 +1258,19 @@ public class ${entity.name}PersistenceTest {
 			rightRootChild${entity.name} = _persistence.fetchByPrimaryKey(rightRootChild${entity.name}.getPrimaryKey());
 			parentChild${entity.name} = _persistence.fetchByPrimaryKey(parentChild${entity.name}.getPrimaryKey());
 
-			Assert.assertEquals(previousRootLeft${pkColumn.methodName}, root${entity.name}.getLeft${pkColumn.methodName}());
-			Assert.assertEquals(previousRootRight${pkColumn.methodName} + 4, root${entity.name}.getRight${pkColumn.methodName}());
-			Assert.assertEquals(root${entity.name}.getLeft${pkColumn.methodName}() + 1, leftRootChild${entity.name}.getLeft${pkColumn.methodName}());
-			Assert.assertEquals(root${entity.name}.getRight${pkColumn.methodName}() - 3, leftRootChild${entity.name}.getRight${pkColumn.methodName}());
-			Assert.assertEquals(root${entity.name}.getLeft${pkColumn.methodName}() + 7, rightRootChild${entity.name}.getLeft${pkColumn.methodName}());
-			Assert.assertEquals(root${entity.name}.getRight${pkColumn.methodName}() - 1, rightRootChild${entity.name}.getRight${pkColumn.methodName}());
-			Assert.assertEquals(leftRootChild${entity.name}.getLeft${pkColumn.methodName}() + 1, parent${entity.name}.getLeft${pkColumn.methodName}());
-			Assert.assertEquals(leftRootChild${entity.name}.getRight${pkColumn.methodName}() - 1, parent${entity.name}.getRight${pkColumn.methodName}());
-			Assert.assertEquals(parent${entity.name}.getLeft${pkColumn.methodName}() + 1, parentChild${entity.name}.getLeft${pkColumn.methodName}());
-			Assert.assertEquals(parent${entity.name}.getRight${pkColumn.methodName}() - 1, parentChild${entity.name}.getRight${pkColumn.methodName}());
+			Assert.assertEquals(previousRootLeft${pkEntityColumn.methodName}, root${entity.name}.getLeft${pkEntityColumn.methodName}());
+			Assert.assertEquals(previousRootRight${pkEntityColumn.methodName} + 4, root${entity.name}.getRight${pkEntityColumn.methodName}());
+			Assert.assertEquals(root${entity.name}.getLeft${pkEntityColumn.methodName}() + 1, leftRootChild${entity.name}.getLeft${pkEntityColumn.methodName}());
+			Assert.assertEquals(root${entity.name}.getRight${pkEntityColumn.methodName}() - 3, leftRootChild${entity.name}.getRight${pkEntityColumn.methodName}());
+			Assert.assertEquals(root${entity.name}.getLeft${pkEntityColumn.methodName}() + 7, rightRootChild${entity.name}.getLeft${pkEntityColumn.methodName}());
+			Assert.assertEquals(root${entity.name}.getRight${pkEntityColumn.methodName}() - 1, rightRootChild${entity.name}.getRight${pkEntityColumn.methodName}());
+			Assert.assertEquals(leftRootChild${entity.name}.getLeft${pkEntityColumn.methodName}() + 1, parent${entity.name}.getLeft${pkEntityColumn.methodName}());
+			Assert.assertEquals(leftRootChild${entity.name}.getRight${pkEntityColumn.methodName}() - 1, parent${entity.name}.getRight${pkEntityColumn.methodName}());
+			Assert.assertEquals(parent${entity.name}.getLeft${pkEntityColumn.methodName}() + 1, parentChild${entity.name}.getLeft${pkEntityColumn.methodName}());
+			Assert.assertEquals(parent${entity.name}.getRight${pkEntityColumn.methodName}() - 1, parentChild${entity.name}.getRight${pkEntityColumn.methodName}());
 		}
 
-		protected ${entity.name} add${entity.name}(long ${scopeEntityColumn.name}, Long parent${pkColumn.methodName}) throws Exception {
+		protected ${entity.name} add${entity.name}(long ${scopeEntityColumn.name}, Long parent${pkEntityColumn.methodName}) throws Exception {
 			<#if entity.hasCompoundPK()>
 				${entity.PKClassName} pk = new ${entity.PKClassName}(
 
@@ -1363,8 +1363,8 @@ public class ${entity.name}PersistenceTest {
 				</#if>
 			</#list>
 
-			if (parent${pkColumn.methodName} != null) {
-				${entity.varName}.setParent${pkColumn.methodName}(parent${pkColumn.methodName});
+			if (parent${pkEntityColumn.methodName} != null) {
+				${entity.varName}.setParent${pkEntityColumn.methodName}(parent${pkEntityColumn.methodName});
 			}
 
 			_persistence.update(${entity.varName});
