@@ -318,12 +318,12 @@ public class Entity implements Comparable<Entity> {
 		return TextFormatter.formatPlural(_humanName);
 	}
 
-	public List<EntityColumn> getLocalizedEntityColumns() {
-		return _localizedEntityColumns;
-	}
-
 	public Entity getLocalizedEntity() {
 		return _localizedEntity;
+	}
+
+	public List<EntityColumn> getLocalizedEntityColumns() {
+		return _localizedEntityColumns;
 	}
 
 	public String getName() {
@@ -911,14 +911,16 @@ public class Entity implements Comparable<Entity> {
 		}
 	}
 
-	public void setLocalizedEntityColumns(List<EntityColumn> localizedEntityColumns) {
-		_localizedEntityColumns = localizedEntityColumns;
-	}
-
 	public void setLocalizedEntity(Entity localizedEntity) {
 		_localizedEntity = localizedEntity;
 
 		_referenceEntities.add(localizedEntity);
+	}
+
+	public void setLocalizedEntityColumns(
+		List<EntityColumn> localizedEntityColumns) {
+
+		_localizedEntityColumns = localizedEntityColumns;
 	}
 
 	public void setParentTransients(List<String> transients) {
@@ -970,8 +972,8 @@ public class Entity implements Comparable<Entity> {
 	private final List<EntityColumn> _finderEntityColumns;
 	private final String _humanName;
 	private final boolean _jsonEnabled;
-	private List<EntityColumn> _localizedEntityColumns;
 	private Entity _localizedEntity;
+	private List<EntityColumn> _localizedEntityColumns;
 	private final boolean _localService;
 	private final boolean _mvccEnabled;
 	private final String _name;
