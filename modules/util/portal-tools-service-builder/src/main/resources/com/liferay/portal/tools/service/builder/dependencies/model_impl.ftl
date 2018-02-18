@@ -334,7 +334,7 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 		<#if entity.hasCompoundPK()>
 			return new ${entity.PKClassName}(
 
-			<#list entity.PKList as entityColumn>
+			<#list entity.PKEntityColumns as entityColumn>
 				_${entityColumn.name}
 
 				<#if entityColumn_has_next>
@@ -344,18 +344,18 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 
 			);
 		<#else>
-			return _${entity.PKList[0].name};
+			return _${entity.PKEntityColumns[0].name};
 		</#if>
 	}
 
 	@Override
 	public void setPrimaryKey(${entity.PKClassName} primaryKey) {
 		<#if entity.hasCompoundPK()>
-			<#list entity.PKList as entityColumn>
+			<#list entity.PKEntityColumns as entityColumn>
 				set${entityColumn.methodName}(primaryKey.${entityColumn.name});
 			</#list>
 		<#else>
-			set${entity.PKList[0].methodName}(primaryKey);
+			set${entity.PKEntityColumns[0].methodName}(primaryKey);
 		</#if>
 	}
 
@@ -364,7 +364,7 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 		<#if entity.hasCompoundPK()>
 			return new ${entity.PKClassName}(
 
-			<#list entity.PKList as entityColumn>
+			<#list entity.PKEntityColumns as entityColumn>
 				_${entityColumn.name}
 
 				<#if entityColumn_has_next>
@@ -374,7 +374,7 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 
 			);
 		<#else>
-			return _${entity.PKList[0].name};
+			return _${entity.PKEntityColumns[0].name};
 		</#if>
 	}
 

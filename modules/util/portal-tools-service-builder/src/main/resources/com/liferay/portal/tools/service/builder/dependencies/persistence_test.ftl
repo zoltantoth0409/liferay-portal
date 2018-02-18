@@ -125,7 +125,7 @@ public class ${entity.name}PersistenceTest {
 		<#if entity.hasCompoundPK()>
 			${entity.PKClassName} pk = new ${entity.PKClassName}(
 
-			<#list entity.PKList as entityColumn>
+			<#list entity.PKEntityColumns as entityColumn>
 				<#if stringUtil.equals(entityColumn.type, "int")>
 					RandomTestUtil.nextInt()
 				<#elseif stringUtil.equals(entityColumn.type, "long")>
@@ -147,7 +147,7 @@ public class ${entity.name}PersistenceTest {
 
 			);
 		<#else>
-			<#assign entityColumn = entity.PKList[0] />
+			<#assign entityColumn = entity.PKEntityColumns[0] />
 
 			${entityColumn.type} pk =
 
@@ -196,7 +196,7 @@ public class ${entity.name}PersistenceTest {
 		<#if entity.hasCompoundPK()>
 			${entity.PKClassName} pk = new ${entity.PKClassName}(
 
-			<#list entity.PKList as entityColumn>
+			<#list entity.PKEntityColumns as entityColumn>
 				<#if stringUtil.equals(entityColumn.type, "int")>
 					RandomTestUtil.nextInt()
 				<#elseif stringUtil.equals(entityColumn.type, "long")>
@@ -218,7 +218,7 @@ public class ${entity.name}PersistenceTest {
 
 			);
 		<#else>
-			<#assign entityColumn = entity.PKList[0] />
+			<#assign entityColumn = entity.PKEntityColumns[0] />
 
 			${entityColumn.type} pk =
 
@@ -468,7 +468,7 @@ public class ${entity.name}PersistenceTest {
 		<#if entity.hasCompoundPK()>
 			${entity.PKClassName} pk = new ${entity.PKClassName}(
 
-			<#list entity.PKList as entityColumn>
+			<#list entity.PKEntityColumns as entityColumn>
 				<#if stringUtil.equals(entityColumn.type, "int")>
 					RandomTestUtil.nextInt()
 				<#elseif stringUtil.equals(entityColumn.type, "long")>
@@ -490,7 +490,7 @@ public class ${entity.name}PersistenceTest {
 
 			);
 		<#else>
-			<#assign entityColumn = entity.PKList[0] />
+			<#assign entityColumn = entity.PKEntityColumns[0] />
 
 			${entityColumn.type} pk =
 
@@ -569,7 +569,7 @@ public class ${entity.name}PersistenceTest {
 		<#if entity.hasCompoundPK()>
 			${entity.PKClassName} pk = new ${entity.PKClassName}(
 
-			<#list entity.PKList as entityColumn>
+			<#list entity.PKEntityColumns as entityColumn>
 				<#if stringUtil.equals(entityColumn.type, "int")>
 					RandomTestUtil.nextInt()
 				<#elseif stringUtil.equals(entityColumn.type, "long")>
@@ -591,7 +591,7 @@ public class ${entity.name}PersistenceTest {
 
 			);
 		<#else>
-			<#assign entityColumn = entity.PKList[0] />
+			<#assign entityColumn = entity.PKEntityColumns[0] />
 
 			${entityColumn.type} pk =
 
@@ -639,7 +639,7 @@ public class ${entity.name}PersistenceTest {
 		<#if entity.hasCompoundPK()>
 			${entity.PKClassName} pk1 = new ${entity.PKClassName}(
 
-			<#list entity.PKList as entityColumn>
+			<#list entity.PKEntityColumns as entityColumn>
 				<#if stringUtil.equals(entityColumn.type, "int")>
 					RandomTestUtil.nextInt()
 				<#elseif stringUtil.equals(entityColumn.type, "long")>
@@ -663,7 +663,7 @@ public class ${entity.name}PersistenceTest {
 
 			${entity.PKClassName} pk2 = new ${entity.PKClassName}(
 
-			<#list entity.PKList as entityColumn>
+			<#list entity.PKEntityColumns as entityColumn>
 				<#if stringUtil.equals(entityColumn.type, "int")>
 					RandomTestUtil.nextInt()
 				<#elseif stringUtil.equals(entityColumn.type, "long")>
@@ -685,7 +685,7 @@ public class ${entity.name}PersistenceTest {
 
 			);
 		<#else>
-			<#assign entityColumn = entity.PKList[0] />
+			<#assign entityColumn = entity.PKEntityColumns[0] />
 
 			${entityColumn.type} pk1 =
 
@@ -741,7 +741,7 @@ public class ${entity.name}PersistenceTest {
 		<#if entity.hasCompoundPK()>
 			${entity.PKClassName} pk = new ${entity.PKClassName}(
 
-			<#list entity.PKList as entityColumn>
+			<#list entity.PKEntityColumns as entityColumn>
 				<#if stringUtil.equals(entityColumn.type, "int")>
 					RandomTestUtil.nextInt()
 				<#elseif stringUtil.equals(entityColumn.type, "long")>
@@ -848,11 +848,11 @@ public class ${entity.name}PersistenceTest {
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(${entity.name}.class, _dynamicQueryClassLoader);
 
 		<#if entity.hasCompoundPK()>
-			<#list entity.PKList as entityColumn>
+			<#list entity.PKEntityColumns as entityColumn>
 				dynamicQuery.add(RestrictionsFactoryUtil.eq("id.${entityColumn.name}", new${entity.name}.get${entityColumn.methodName}()));
 			</#list>
 		<#else>
-			<#assign entityColumn = entity.PKList[0] />
+			<#assign entityColumn = entity.PKEntityColumns[0] />
 
 			dynamicQuery.add(RestrictionsFactoryUtil.eq("${entityColumn.name}", new${entity.name}.get${entityColumn.methodName}()));
 		</#if>
@@ -871,7 +871,7 @@ public class ${entity.name}PersistenceTest {
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(${entity.name}.class, _dynamicQueryClassLoader);
 
 		<#if entity.hasCompoundPK()>
-			<#list entity.PKList as entityColumn>
+			<#list entity.PKEntityColumns as entityColumn>
 				dynamicQuery.add(RestrictionsFactoryUtil.eq("id.${entityColumn.name}",
 
 				<#if stringUtil.equals(entityColumn.type, "int")>
@@ -891,7 +891,7 @@ public class ${entity.name}PersistenceTest {
 				));
 			</#list>
 		<#else>
-			<#assign entityColumn = entity.PKList[0] />
+			<#assign entityColumn = entity.PKEntityColumns[0] />
 
 			dynamicQuery.add(RestrictionsFactoryUtil.eq("${entityColumn.name}",
 
@@ -923,7 +923,7 @@ public class ${entity.name}PersistenceTest {
 
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(${entity.name}.class, _dynamicQueryClassLoader);
 
-		<#assign entityColumn = entity.PKList[0] />
+		<#assign entityColumn = entity.PKEntityColumns[0] />
 
 		<#if entity.hasCompoundPK()>
 			<#assign propertyName = "id.${entityColumn.name}" />
@@ -950,7 +950,7 @@ public class ${entity.name}PersistenceTest {
 	public void testDynamicQueryByProjectionMissing() throws Exception {
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(${entity.name}.class, _dynamicQueryClassLoader);
 
-		<#assign entityColumn = entity.PKList[0] />
+		<#assign entityColumn = entity.PKEntityColumns[0] />
 
 		<#if entity.hasCompoundPK()>
 			<#assign propertyName = "id.${entityColumn.name}" />
@@ -1012,7 +1012,7 @@ public class ${entity.name}PersistenceTest {
 		<#if entity.hasCompoundPK()>
 			${entity.PKClassName} pk = new ${entity.PKClassName}(
 
-			<#list entity.PKList as entityColumn>
+			<#list entity.PKEntityColumns as entityColumn>
 				<#if stringUtil.equals(entityColumn.type, "int")>
 					RandomTestUtil.nextInt()
 				<#elseif stringUtil.equals(entityColumn.type, "long")>
@@ -1034,7 +1034,7 @@ public class ${entity.name}PersistenceTest {
 
 			);
 		<#else>
-			<#assign entityColumn = entity.PKList[0] />
+			<#assign entityColumn = entity.PKEntityColumns[0] />
 
 			${entityColumn.type} pk =
 
@@ -1274,7 +1274,7 @@ public class ${entity.name}PersistenceTest {
 			<#if entity.hasCompoundPK()>
 				${entity.PKClassName} pk = new ${entity.PKClassName}(
 
-				<#list entity.PKList as entityColumn>
+				<#list entity.PKEntityColumns as entityColumn>
 					<#if stringUtil.equals(entityColumn.type, "int")>
 						RandomTestUtil.nextInt()
 					<#elseif stringUtil.equals(entityColumn.type, "long")>
@@ -1296,7 +1296,7 @@ public class ${entity.name}PersistenceTest {
 
 				);
 			<#else>
-				<#assign entityColumn = entity.PKList[0] />
+				<#assign entityColumn = entity.PKEntityColumns[0] />
 
 				${entityColumn.type} pk =
 

@@ -79,7 +79,7 @@ public abstract class ${entity.name}BaseImpl extends ${entity.name}ModelImpl imp
 					for (int i = ${entity.varNames}.size() - 1; i >= 0; i--) {
 						${entity.varName} = ${entity.varNames}.get(i);
 
-						sb.append(${entity.varName}.get${entity.PKList[0].methodName}());
+						sb.append(${entity.varName}.get${entity.PKEntityColumns[0].methodName}());
 						sb.append("/");
 					}
 
