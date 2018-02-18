@@ -5710,13 +5710,13 @@ public class ServiceBuilder {
 				"Unable to use localized entity with compound primary key");
 		}
 
-		EntityColumn pkColumn = pkList.get(0);
+		EntityColumn pkEntityColumn = pkList.get(0);
 
 		newLocalizedColumnElement = newLocalizedEntityElement.addElement(
 			"column");
 
-		newLocalizedColumnElement.addAttribute("name", pkColumn.getName());
-		newLocalizedColumnElement.addAttribute("type", pkColumn.getType());
+		newLocalizedColumnElement.addAttribute("name", pkEntityColumn.getName());
+		newLocalizedColumnElement.addAttribute("type", pkEntityColumn.getType());
 
 		newLocalizedColumnElement = newLocalizedEntityElement.addElement(
 			"column");
@@ -5735,7 +5735,7 @@ public class ServiceBuilder {
 					"columns");
 		}
 
-		List<EntityColumn> localizedColumns = new ArrayList<>(
+		List<EntityColumn> localizedEntityColumns = new ArrayList<>(
 			localizedColumnElements.size());
 
 		for (Element localizedColumnElement : localizedColumnElements) {
@@ -5752,7 +5752,7 @@ public class ServiceBuilder {
 				}
 			}
 
-			localizedColumns.add(new EntityColumn(columnName, columnDBName));
+			localizedEntityColumns.add(new EntityColumn(columnName, columnDBName));
 
 			newLocalizedColumnElement = newLocalizedEntityElement.addElement(
 				"column");
@@ -5768,7 +5768,7 @@ public class ServiceBuilder {
 			newLocalizedEntityElement.addElement("finder");
 
 		String finderName = TextFormatter.format(
-			pkColumn.getName(), TextFormatter.G);
+			pkEntityColumn.getName(), TextFormatter.G);
 
 		newLocalizedFinderElement.addAttribute("name", finderName);
 
@@ -5778,7 +5778,7 @@ public class ServiceBuilder {
 			newLocalizedFinderElement.addElement("finder-column");
 
 		newLocalizedFinderColumnElement.addAttribute(
-			"name", pkColumn.getName());
+			"name", pkEntityColumn.getName());
 
 		newLocalizedFinderElement = newLocalizedEntityElement.addElement(
 			"finder");
@@ -5795,7 +5795,7 @@ public class ServiceBuilder {
 			"finder-column");
 
 		newLocalizedFinderColumnElement.addAttribute(
-			"name", pkColumn.getName());
+			"name", pkEntityColumn.getName());
 
 		newLocalizedFinderColumnElement = newLocalizedFinderElement.addElement(
 			"finder-column");
@@ -5882,7 +5882,7 @@ public class ServiceBuilder {
 
 		Entity localizedEntity = _parseEntity(newLocalizedEntityElement);
 
-		entity.setLocalizedColumns(localizedColumns);
+		entity.setLocalizedEntityColumns(localizedEntityColumns);
 		entity.setLocalizedEntity(localizedEntity);
 	}
 

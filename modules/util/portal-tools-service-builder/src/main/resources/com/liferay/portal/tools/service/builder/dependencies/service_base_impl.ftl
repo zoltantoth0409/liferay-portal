@@ -980,7 +980,7 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 	<#if stringUtil.equals(sessionTypeName, "Local") && (entity.localizedEntity??)>
 		<#assign
 			localizedEntity = entity.localizedEntity
-			localizedColumns = entity.localizedColumns
+			localizedEntityColumns = entity.localizedEntityColumns
 			pkColumn = entity.getPKList()?first
 		/>
 
@@ -1001,7 +1001,7 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 
 		protected ${localizedEntity.name} update${localizedEntity.name}(
 			${entity.name} ${entity.varName}, String languageId,
-			<#list localizedColumns as entityColumn>
+			<#list localizedEntityColumns as entityColumn>
 				String ${entityColumn.name}
 
 				<#if entityColumn?has_next>
@@ -1027,7 +1027,7 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 				</#if>
 			</#list>
 
-			<#list localizedColumns as entityColumn>
+			<#list localizedEntityColumns as entityColumn>
 				${localizedEntity.varName}.set${entityColumn.methodName}(${entityColumn.name});
 			</#list>
 
@@ -1036,7 +1036,7 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 
 		protected List<${localizedEntity.name}> update${localizedEntity.names}(
 			${entity.name} ${entity.varName},
-			<#list localizedColumns as entityColumn>
+			<#list localizedEntityColumns as entityColumn>
 				Map<String, String> ${entityColumn.name}Map
 
 				<#if entityColumn?has_next>
@@ -1047,14 +1047,14 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 
 			Map<String, String[]> localizedValuesMap = new HashMap<String, String[]>();
 
-			<#list localizedColumns as entityColumn>
+			<#list localizedEntityColumns as entityColumn>
 				for (Map.Entry<String, String> entry : ${entityColumn.name}Map.entrySet()) {
 					String languageId = entry.getKey();
 
 					String[] localizedValues = localizedValuesMap.get(languageId);
 
 					if (localizedValues == null) {
-						localizedValues = new String[${localizedColumns?size}];
+						localizedValues = new String[${localizedEntityColumns?size}];
 
 						localizedValuesMap.put(languageId, localizedValues);
 					}
@@ -1078,7 +1078,7 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 						</#if>
 					</#list>
 
-					<#list localizedColumns as entityColumn>
+					<#list localizedEntityColumns as entityColumn>
 						${localizedEntity.varName}.set${entityColumn.methodName}(localizedValues[${entityColumn?index}]);
 					</#list>
 
@@ -1102,7 +1102,7 @@ import ${apiPackagePath}.service.${entity.name}${sessionTypeName}Service;
 
 				${localizedEntity.varName}.setLanguageId(languageId);
 
-				<#list localizedColumns as entityColumn>
+				<#list localizedEntityColumns as entityColumn>
 					${localizedEntity.varName}.set${entityColumn.methodName}(localizedValues[${entityColumn?index}]);
 				</#list>
 

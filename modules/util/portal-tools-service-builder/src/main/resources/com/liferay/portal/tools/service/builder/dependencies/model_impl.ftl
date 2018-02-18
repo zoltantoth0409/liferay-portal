@@ -464,7 +464,7 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 			return availableLanguageIds;
 		}
 
-		<#list entity.localizedColumns as entityColumn>
+		<#list entity.localizedEntityColumns as entityColumn>
 			@Override
 			public String get${entityColumn.methodName}() {
 				return get${entityColumn.methodName}(getDefaultLanguageId(), false);
