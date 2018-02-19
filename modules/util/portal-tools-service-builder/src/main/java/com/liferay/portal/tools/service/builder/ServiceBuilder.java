@@ -2112,9 +2112,9 @@ public class ServiceBuilder {
 	}
 
 	private void _createEJBPK(Entity entity) throws Exception {
-		List<EntityColumn> pkList = entity.getPKEntityColumns();
+		List<EntityColumn> pkEntityColumns = entity.getPKEntityColumns();
 
-		if (pkList.size() <= 1) {
+		if (pkEntityColumns.size() <= 1) {
 			return;
 		}
 
@@ -4343,9 +4343,9 @@ public class ServiceBuilder {
 		String tableName = entityMapping.getTableName();
 
 		for (Entity entity : entities) {
-			List<EntityColumn> pkList = entity.getPKEntityColumns();
+			List<EntityColumn> pkEntityColumns = entity.getPKEntityColumns();
 
-			for (EntityColumn entityColumn : pkList) {
+			for (EntityColumn entityColumn : pkEntityColumns) {
 				IndexMetadata indexMetadata =
 					IndexMetadataFactoryUtil.createIndexMetadata(
 						false, tableName, entityColumn.getDBName());
@@ -4422,9 +4422,9 @@ public class ServiceBuilder {
 		sb.append(" (\n");
 
 		for (Entity entity : entities) {
-			List<EntityColumn> pkList = entity.getPKEntityColumns();
+			List<EntityColumn> pkEntityColumns = entity.getPKEntityColumns();
 
-			for (EntityColumn col : pkList) {
+			for (EntityColumn col : pkEntityColumns) {
 				String colDBName = col.getDBName();
 
 				if ((_databaseNameMaxLength > 0) &&
@@ -4513,10 +4513,10 @@ public class ServiceBuilder {
 		for (int i = 1; i < entities.length; i++) {
 			Entity entity = entities[i];
 
-			List<EntityColumn> pkList = entity.getPKEntityColumns();
+			List<EntityColumn> pkEntityColumns = entity.getPKEntityColumns();
 
-			for (int j = 0; j < pkList.size(); j++) {
-				EntityColumn col = pkList.get(j);
+			for (int j = 0; j < pkEntityColumns.size(); j++) {
+				EntityColumn col = pkEntityColumns.get(j);
 
 				if ((i != 1) || (j != 0)) {
 					sb.append(", ");
@@ -4533,7 +4533,7 @@ public class ServiceBuilder {
 	}
 
 	private String _getCreateTableSQL(Entity entity) {
-		List<EntityColumn> pkList = entity.getPKEntityColumns();
+		List<EntityColumn> pkEntityColumns = entity.getPKEntityColumns();
 		List<EntityColumn> regularEntityColumns = entity.getRegularEntityColumns();
 
 		if (regularEntityColumns.isEmpty()) {
@@ -4671,12 +4671,12 @@ public class ServiceBuilder {
 		if (entity.hasCompoundPK()) {
 			sb.append("\tprimary key (");
 
-			for (int j = 0; j < pkList.size(); j++) {
-				EntityColumn pk = pkList.get(j);
+			for (int j = 0; j < pkEntityColumns.size(); j++) {
+				EntityColumn pk = pkEntityColumns.get(j);
 
 				sb.append(pk.getDBName());
 
-				if ((j + 1) != pkList.size()) {
+				if ((j + 1) != pkEntityColumns.size()) {
 					sb.append(", ");
 				}
 			}
@@ -5373,7 +5373,7 @@ public class ServiceBuilder {
 			entityElement.attributeValue("dynamic-update-enabled"),
 			mvccEnabled);
 
-		List<EntityColumn> pkList = new ArrayList<>();
+		List<EntityColumn> pkEntityColumns = new ArrayList<>();
 		List<EntityColumn> regularEntityColumns = new ArrayList<>();
 		List<EntityColumn> blobEntityColumns = new ArrayList<>();
 		List<EntityColumn> collectionEntityColumns = new ArrayList<>();
@@ -5486,7 +5486,7 @@ public class ServiceBuilder {
 				uadNonanonymizable);
 
 			if (primary) {
-				pkList.add(entityColumn);
+				pkEntityColumns.add(entityColumn);
 			}
 
 			if (columnType.equals("Collection")) {
@@ -5514,7 +5514,7 @@ public class ServiceBuilder {
 			}
 		}
 
-		if (uuid && pkList.isEmpty()) {
+		if (uuid && pkEntityColumns.isEmpty()) {
 			throw new ServiceBuilderException(
 				"Unable to create entity \"" + entityName +
 					"\" with a UUID without a primary key");
@@ -5801,7 +5801,7 @@ public class ServiceBuilder {
 			entityName, humanName, tableName, alias, uuid, uuidAccessor, localService,
 			remoteService, persistenceClassName, finderClassName, dataSource,
 			sessionFactory, txManager, cacheEnabled, dynamicUpdateEnabled,
-			jsonEnabled, mvccEnabled, trashEnabled, deprecated, pkList,
+			jsonEnabled, mvccEnabled, trashEnabled, deprecated, pkEntityColumns,
 			regularEntityColumns, blobEntityColumns, collectionEntityColumns, entityColumns, entityOrder,
 			entityFinders, referenceEntities, unresolvedReferenceEntityNames, txRequiredMethodNames,
 			resourceActionModel);
@@ -5886,14 +5886,14 @@ public class ServiceBuilder {
 			newLocalizedColumnElement.addAttribute("type", "long");
 		}
 
-		List<EntityColumn> pkList = entity.getPKEntityColumns();
+		List<EntityColumn> pkEntityColumns = entity.getPKEntityColumns();
 
-		if (pkList.size() > 1) {
+		if (pkEntityColumns.size() > 1) {
 			throw new IllegalArgumentException(
 				"Unable to use localized entity with compound primary key");
 		}
 
-		EntityColumn pkEntityColumn = pkList.get(0);
+		EntityColumn pkEntityColumn = pkEntityColumns.get(0);
 
 		newLocalizedColumnElement = newLocalizedEntityElement.addElement(
 			"column");
@@ -6137,9 +6137,9 @@ public class ServiceBuilder {
 	}
 
 	private void _removeEJBPK(Entity entity, String outputPath) {
-		List<EntityColumn> pkList = entity.getPKEntityColumns();
+		List<EntityColumn> pkEntityColumns = entity.getPKEntityColumns();
 
-		if (pkList.size() <= 1) {
+		if (pkEntityColumns.size() <= 1) {
 			return;
 		}
 
