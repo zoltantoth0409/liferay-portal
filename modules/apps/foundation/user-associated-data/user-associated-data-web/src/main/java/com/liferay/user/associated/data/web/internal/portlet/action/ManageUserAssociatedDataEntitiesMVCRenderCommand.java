@@ -96,7 +96,6 @@ public class ManageUserAssociatedDataEntitiesMVCRenderCommand
 
 		manageUserAssociatedDataEntitiesDisplay.setUADEntitySetName(
 			uadEntityAggregator.getUADEntitySetName());
-
 		manageUserAssociatedDataEntitiesDisplay.setUADRegistryKey(
 			uadRegistryKey);
 
