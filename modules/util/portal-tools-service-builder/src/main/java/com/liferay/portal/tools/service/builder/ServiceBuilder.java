@@ -4272,16 +4272,16 @@ public class ServiceBuilder {
 		for (Entity entity : entities) {
 			List<EntityColumn> pkEntityColumns = entity.getPKEntityColumns();
 
-			for (EntityColumn col : pkEntityColumns) {
-				String colDBName = col.getDBName();
+			for (EntityColumn entityColumn : pkEntityColumns) {
+				String dbName = entityColumn.getDBName();
 
 				if ((_databaseNameMaxLength > 0) &&
-					(colDBName.length() > _databaseNameMaxLength)) {
+					(dbName.length() > _databaseNameMaxLength)) {
 
 					throw new ServiceBuilderException(
 						StringBundler.concat(
 							"Unable to create entity mapping \"", tableName,
-							"\" because column name \"", colDBName,
+							"\" because column name \"", dbName,
 							"\" exceeds ",
 							String.valueOf(_databaseNameMaxLength),
 							" characters. Some databases do not allow column ",
@@ -4291,36 +4291,36 @@ public class ServiceBuilder {
 							"that your database supports."));
 				}
 
-				String colType = col.getType();
+				String type = entityColumn.getType();
 
 				sb.append("\t");
-				sb.append(colDBName);
+				sb.append(dbName);
 				sb.append(" ");
 
-				if (StringUtil.equalsIgnoreCase(colType, "boolean")) {
+				if (StringUtil.equalsIgnoreCase(type, "boolean")) {
 					sb.append("BOOLEAN");
 				}
-				else if (StringUtil.equalsIgnoreCase(colType, "double") ||
-						 StringUtil.equalsIgnoreCase(colType, "float")) {
+				else if (StringUtil.equalsIgnoreCase(type, "double") ||
+						 StringUtil.equalsIgnoreCase(type, "float")) {
 
 					sb.append("DOUBLE");
 				}
-				else if (colType.equals("int") || colType.equals("Integer") ||
-						 StringUtil.equalsIgnoreCase(colType, "short")) {
+				else if (type.equals("int") || type.equals("Integer") ||
+						 StringUtil.equalsIgnoreCase(type, "short")) {
 
 					sb.append("INTEGER");
 				}
-				else if (StringUtil.equalsIgnoreCase(colType, "long")) {
+				else if (StringUtil.equalsIgnoreCase(type, "long")) {
 					sb.append("LONG");
 				}
-				else if (colType.equals("Map")) {
+				else if (type.equals("Map")) {
 					sb.append("TEXT");
 				}
-				else if (colType.equals("String")) {
+				else if (type.equals("String")) {
 					int maxLength = getMaxLength(
-						entity.getName(), col.getName());
+						entity.getName(), entityColumn.getName());
 
-					if (col.isLocalized()) {
+					if (entityColumn.isLocalized()) {
 						maxLength = 4000;
 					}
 
@@ -4336,18 +4336,18 @@ public class ServiceBuilder {
 						sb.append("TEXT");
 					}
 				}
-				else if (colType.equals("Date")) {
+				else if (type.equals("Date")) {
 					sb.append("DATE");
 				}
 				else {
 					sb.append("invalid");
 				}
 
-				if (col.isPrimary()) {
+				if (entityColumn.isPrimary()) {
 					sb.append(" not null");
 				}
-				else if (colType.equals("Date") || colType.equals("Map") ||
-						 colType.equals("String")) {
+				else if (type.equals("Date") || type.equals("Map") ||
+						 type.equals("String")) {
 
 					sb.append(" null");
 				}
@@ -4364,13 +4364,13 @@ public class ServiceBuilder {
 			List<EntityColumn> pkEntityColumns = entity.getPKEntityColumns();
 
 			for (int j = 0; j < pkEntityColumns.size(); j++) {
-				EntityColumn col = pkEntityColumns.get(j);
+				EntityColumn entityColumn = pkEntityColumns.get(j);
 
 				if ((i != 1) || (j != 0)) {
 					sb.append(", ");
 				}
 
-				sb.append(col.getDBName());
+				sb.append(entityColumn.getDBName());
 			}
 		}
 
