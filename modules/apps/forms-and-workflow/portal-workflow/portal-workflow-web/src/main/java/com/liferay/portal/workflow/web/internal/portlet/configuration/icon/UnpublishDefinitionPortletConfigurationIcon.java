@@ -78,9 +78,9 @@ public class UnpublishDefinitionPortletConfigurationIcon
 			ActionRequest.ACTION_NAME, "deactivateWorkflowDefinition");
 		portletURL.setParameter(
 			"mvcPath", portletRequest.getParameter("mvcPath"));
-		portletURL.setParameter("name", portletRequest.getParameter("name"));
 		portletURL.setParameter(
 			"redirect", ParamUtil.getString(portletRequest, "redirect"));
+		portletURL.setParameter("name", portletRequest.getParameter("name"));
 		portletURL.setParameter(
 			"version", portletRequest.getParameter("version"));
 
