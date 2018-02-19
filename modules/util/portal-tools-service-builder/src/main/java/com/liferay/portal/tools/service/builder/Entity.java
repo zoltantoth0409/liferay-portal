@@ -104,7 +104,8 @@ public class Entity implements Comparable<Entity> {
 		String dataSource, String sessionFactory, String txManager,
 		boolean cacheEnabled, boolean dynamicUpdateEnabled, boolean jsonEnabled,
 		boolean mvccEnabled, boolean trashEnabled, boolean deprecated,
-		List<EntityColumn> pkList, List<EntityColumn> regularEntityColumns,
+		List<EntityColumn> pkEntityColumns,
+		List<EntityColumn> regularEntityColumns,
 		List<EntityColumn> blobEntityColumns,
 		List<EntityColumn> collectionEntityColumns,
 		List<EntityColumn> entityColumns, EntityOrder entityOrder,
@@ -136,7 +137,7 @@ public class Entity implements Comparable<Entity> {
 		_mvccEnabled = mvccEnabled;
 		_trashEnabled = trashEnabled;
 		_deprecated = deprecated;
-		_pkEntityColumns = pkList;
+		_pkEntityColumns = pkEntityColumns;
 		_regularEntityColumns = regularEntityColumns;
 		_blobEntityColumns = blobEntityColumns;
 		_collectionEntityColumns = collectionEntityColumns;
