@@ -4433,8 +4433,7 @@ public class ServiceBuilder {
 					throw new ServiceBuilderException(
 						StringBundler.concat(
 							"Unable to create entity mapping \"", tableName,
-							"\" because column name \"", dbName,
-							"\" exceeds ",
+							"\" because column name \"", dbName, "\" exceeds ",
 							String.valueOf(_databaseNameMaxLength),
 							" characters. Some databases do not allow column ",
 							"names longer than 30 characters. To disable this ",
