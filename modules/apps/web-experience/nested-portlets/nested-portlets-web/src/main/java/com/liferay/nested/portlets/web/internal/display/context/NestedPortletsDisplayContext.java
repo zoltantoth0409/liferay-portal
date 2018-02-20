@@ -160,8 +160,8 @@ public class NestedPortletsDisplayContext {
 				layoutTemplatesUnsupported());
 	}
 
-	private boolean _isVirtualHostRequest(HttpServletRequest nextRequest) {
-		LayoutSet layoutSet = (LayoutSet)nextRequest.getAttribute(
+	private boolean _isVirtualHostRequest(HttpServletRequest request) {
+		LayoutSet layoutSet = (LayoutSet)request.getAttribute(
 			WebKeys.VIRTUAL_HOST_LAYOUT_SET);
 
 		if ((layoutSet != null) &&
