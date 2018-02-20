@@ -314,6 +314,7 @@ AUI.add(
 								field.set('context.settingsContext', settingsForm.get('context'));
 
 								instance.updateFieldName(field);
+
 								field.saveSettings();
 
 								instance._saveCurrentContext();
