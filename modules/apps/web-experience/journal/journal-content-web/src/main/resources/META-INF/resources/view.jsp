@@ -74,7 +74,6 @@ AssetRendererFactory<JournalArticle> assetRendererFactory = AssetRendererFactory
 
 									<portlet:actionURL name="restoreJournalArticle" var="restoreJournalArticleURL">
 										<portlet:param name="classPK" value="<%= String.valueOf(assetRenderer.getClassPK()) %>" />
-
 										<portlet:param name="redirect" value="<%= currentURL %>" />
 									</portlet:actionURL>
 
