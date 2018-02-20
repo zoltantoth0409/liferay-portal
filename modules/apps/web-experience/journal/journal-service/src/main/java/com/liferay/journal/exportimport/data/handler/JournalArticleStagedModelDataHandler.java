@@ -838,7 +838,7 @@ public class JournalArticleStagedModelDataHandler
 					serviceContext);
 			}
 
-			// Initial publication cleanup
+			// Clean up initial publication
 
 			if (ExportImportThreadLocal.isInitialLayoutStagingInProcess() &&
 				(article.getStatus() == WorkflowConstants.STATUS_DRAFT)) {
