@@ -21,6 +21,8 @@ WikiNode node = (WikiNode)request.getAttribute(WikiWebKeys.WIKI_NODE);
 
 String navigation = ParamUtil.getString(request, "navigation", "all-pages");
 
+String keywords = ParamUtil.getString(request, "keywords");
+
 String orderByCol = GetterUtil.getString((String)request.getAttribute("view_pages.jsp-orderByCol"));
 String orderByType = GetterUtil.getString((String)request.getAttribute("view_pages.jsp-orderByType"));
 
@@ -37,8 +39,6 @@ orderColumns.put("modifiedDate", "modified-date");
 orderColumns.put("title", "title");
 
 WikiURLHelper wikiURLHelper = new WikiURLHelper(wikiRequestHelper, renderResponse, wikiGroupServiceConfiguration);
-
-String keywords = ParamUtil.getString(request, "keywords");
 %>
 
 <c:if test="<%= Validator.isNull(keywords) %>">
