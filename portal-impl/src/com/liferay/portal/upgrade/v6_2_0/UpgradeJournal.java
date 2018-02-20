@@ -799,7 +799,7 @@ public class UpgradeJournal extends BaseUpgradePortletPreferences {
 					"JournalArticle");
 			ResultSet rs = ps1.executeQuery()) {
 
-			Map<String, String> normalizedURLTitleCache = new HashMap<>();
+			Map<String, String> processedArticleIds = new HashMap<>();
 
 			try (PreparedStatement ps2 =
 					AutoBatchPreparedStatementUtil.autoBatch(
@@ -823,7 +823,7 @@ public class UpgradeJournal extends BaseUpgradePortletPreferences {
 
 					normalizedURLTitle = _getUniqueUrlTitle(
 						groupId, articleId, normalizedURLTitle,
-						normalizedURLTitleCache);
+						processedArticleIds);
 
 					ps2.setString(1, normalizedURLTitle);
 					ps2.setString(2, urlTitle);
@@ -838,19 +838,19 @@ public class UpgradeJournal extends BaseUpgradePortletPreferences {
 
 	private String _getUniqueUrlTitle(
 			long groupId, String articleId, String urlTitle,
-			Map<String, String> normalizedURLTitleCache)
+			Map<String, String> processedArticleIds)
 		throws Exception {
 
 		for (int i = 1;; i++) {
 			String key = groupId + StringPool.UNDERLINE + urlTitle;
 
-			String articleIdCache = normalizedURLTitleCache.get(key);
+			String processedArticleId = processedArticleIds.get(key);
 
-			if (((articleIdCache == null) ||
-				 articleIdCache.equals(articleId)) &&
+			if (((processedArticleId == null) ||
+				 processedArticleId.equals(articleId)) &&
 				_isValidUrlTitle(groupId, articleId, urlTitle)) {
 
-				normalizedURLTitleCache.put(key, articleId);
+				processedArticleIds.put(key, articleId);
 
 				return urlTitle;
 			}
