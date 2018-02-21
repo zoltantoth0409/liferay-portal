@@ -167,11 +167,11 @@ public class LiferayTemplateClassResolver implements TemplateClassResolver {
 		for (BundleCapability bundleCapability : bundleCapabilities) {
 			Map<String, Object> attributes = bundleCapability.getAttributes();
 
-			String exportPackage = (String)attributes.get(
+			String packageName = (String)attributes.get(
 				BundleRevision.PACKAGE_NAMESPACE);
 
 			if (clazz.endsWith(StringPool.STAR)) {
-				if (exportPackage.regionMatches(
+				if (packageName.regionMatches(
 						0, clazz, 0, clazz.length() - 1)) {
 
 					BundleRevision bundleRevision =
@@ -185,7 +185,7 @@ public class LiferayTemplateClassResolver implements TemplateClassResolver {
 					return bundleRevisionBundleWiring.getClassLoader();
 				}
 			}
-			else if (clazz.equals(exportPackage)) {
+			else if (clazz.equals(packageName)) {
 				BundleRevision bundleRevision = bundleCapability.getRevision();
 
 				Bundle bundleRevisionBundle = bundleRevision.getBundle();
@@ -196,10 +196,10 @@ public class LiferayTemplateClassResolver implements TemplateClassResolver {
 				return bundleRevisionBundleWiring.getClassLoader();
 			}
 			else {
-				int pos = clazz.lastIndexOf('.');
+				int index = clazz.lastIndexOf('.');
 
-				if ((exportPackage.length() == pos) &&
-					exportPackage.regionMatches(0, clazz, 0, pos)) {
+				if ((packageName.length() == index) &&
+					packageName.regionMatches(0, clazz, 0, index)) {
 
 					BundleRevision bundleRevision =
 						bundleCapability.getRevision();
@@ -266,10 +266,10 @@ public class LiferayTemplateClassResolver implements TemplateClassResolver {
 			return true;
 		}
 		else {
-			int pos = className.lastIndexOf('.');
+			int index = className.lastIndexOf('.');
 
-			if ((className.length() == pos) &&
-				className.regionMatches(0, matchedClassName, 0, pos)) {
+			if ((className.length() == index) &&
+				className.regionMatches(0, matchedClassName, 0, index)) {
 
 				return true;
 			}
