@@ -212,15 +212,13 @@ public class FlagsTag extends TemplateRendererTag {
 			ConfigurationProviderUtil.getCompanyConfiguration(
 				FlagsGroupServiceConfiguration.class, companyId);
 
-		String[] reasons = flagsGroupServiceConfiguration.reasons();
+		Map<String, String> reasons = new HashMap<>();
 
-		Map<String, String> reasonsMap = new HashMap<>();
-
-		for (String reason : reasons) {
-			reasonsMap.put(reason, LanguageUtil.get(request, reason));
+		for (String reason : flagsGroupServiceConfiguration.reasons()) {
+			reasons.put(reason, LanguageUtil.get(request, reason));
 		}
 
-		return reasonsMap;
+		return reasons;
 	}
 
 	private String _getURI() throws WindowStateException {
