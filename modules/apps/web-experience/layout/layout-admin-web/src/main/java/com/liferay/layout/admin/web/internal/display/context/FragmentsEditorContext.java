@@ -51,9 +51,10 @@ public class FragmentsEditorContext {
 
 		_request = request;
 		_renderResponse = renderResponse;
-		_classNameId = PortalUtil.getClassNameId(className);
 		_classPK = classPK;
 		_updateURL = updateURL;
+
+		_classNameId = PortalUtil.getClassNameId(className);
 	}
 
 	public Map<String, Object> getEditorContext() throws PortalException {
