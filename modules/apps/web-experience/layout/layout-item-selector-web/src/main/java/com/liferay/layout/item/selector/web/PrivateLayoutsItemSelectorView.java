@@ -34,6 +34,7 @@ import org.osgi.service.component.annotations.Reference;
  *             com.liferay.layout.item.selector.web.internal.PrivateLayoutsItemSelectorView}
  */
 @Component(
+	enabled = false,
 	service = {ItemSelectorView.class, PrivateLayoutsItemSelectorView.class}
 )
 @Deprecated
