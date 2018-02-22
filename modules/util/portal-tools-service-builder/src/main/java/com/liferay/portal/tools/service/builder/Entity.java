@@ -117,8 +117,6 @@ public class Entity implements Comparable<Entity> {
 		_portletName = portletName;
 		_portletShortName = portletShortName;
 		_name = name;
-		_humanName = GetterUtil.getString(
-			humanName, ServiceBuilder.toHumanName(name));
 		_table = table;
 		_alias = alias;
 		_uuid = uuid;
@@ -127,10 +125,6 @@ public class Entity implements Comparable<Entity> {
 		_remoteService = remoteService;
 		_persistenceClassName = persistenceClass;
 		_finderClassName = finderClassName;
-		_dataSource = GetterUtil.getString(dataSource, _DATA_SOURCE_DEFAULT);
-		_sessionFactory = GetterUtil.getString(
-			sessionFactory, _SESSION_FACTORY_DEFAULT);
-		_txManager = GetterUtil.getString(txManager, _TX_MANAGER_DEFAULT);
 		_dynamicUpdateEnabled = dynamicUpdateEnabled;
 		_jsonEnabled = jsonEnabled;
 		_mvccEnabled = mvccEnabled;
@@ -147,6 +141,13 @@ public class Entity implements Comparable<Entity> {
 		_unresolvedReferenceEntityNames = unresolvedReferenceEntityNames;
 		_txRequiredMethodNames = txRequiredMethodNames;
 		_resourceActionModel = resourceActionModel;
+
+		_humanName = GetterUtil.getString(
+			humanName, ServiceBuilder.toHumanName(name));
+		_dataSource = GetterUtil.getString(dataSource, _DATA_SOURCE_DEFAULT);
+		_sessionFactory = GetterUtil.getString(
+			sessionFactory, _SESSION_FACTORY_DEFAULT);
+		_txManager = GetterUtil.getString(txManager, _TX_MANAGER_DEFAULT);
 
 		if (_entityFinders != null) {
 			Set<EntityColumn> finderEntityColumns = new HashSet<>();
