@@ -195,11 +195,6 @@
 </tr>
 <tr>
 	<td>CHANGE_LOGO</td>
-	<td>//button[contains(@class,'edit-logo')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>CHANGE_LOGO</td>
 	<td>//button[contains(@class,'edit-logo') and contains(.,'Change')]</td>
 	<td></td>
 </tr>
