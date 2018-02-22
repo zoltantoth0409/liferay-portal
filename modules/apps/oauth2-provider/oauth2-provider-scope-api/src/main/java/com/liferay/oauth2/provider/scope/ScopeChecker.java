@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.oauth2.provider.scopes;
+package com.liferay.oauth2.provider.scope;
 
 import aQute.bnd.annotation.ProviderType;
 
