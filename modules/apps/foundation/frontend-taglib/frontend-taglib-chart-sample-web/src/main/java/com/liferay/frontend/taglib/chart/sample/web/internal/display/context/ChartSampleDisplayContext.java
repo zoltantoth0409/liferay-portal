@@ -183,8 +183,8 @@ public class ChartSampleDisplayContext {
 		sb.append(StringPool.SLASH);
 		sb.append("geomap.geo.json");
 
-		_geomapConfig1.setDataUrl(sb.toString());
-		_geomapConfig2.setDataUrl(sb.toString());
+		_geomapConfig1.setDataHREF(sb.toString());
+		_geomapConfig2.setDataHREF(sb.toString());
 	}
 
 	private void _initLineChartConfig() {

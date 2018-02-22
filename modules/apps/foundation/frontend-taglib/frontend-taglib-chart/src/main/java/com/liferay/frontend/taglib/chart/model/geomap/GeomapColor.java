@@ -33,8 +33,8 @@ public class GeomapColor extends ChartObject {
 		return get("value", String.class);
 	}
 
-	public void setGeomapColorRange(GeomapColorRange range) {
-		set("range", range);
+	public void setGeomapColorRange(GeomapColorRange geomapColorRange) {
+		set("range", geomapColorRange);
 	}
 
 	public void setSelected(String selected) {

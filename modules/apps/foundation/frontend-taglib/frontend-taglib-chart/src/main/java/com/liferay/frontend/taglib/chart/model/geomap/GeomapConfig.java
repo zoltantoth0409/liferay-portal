@@ -36,8 +36,8 @@ public class GeomapConfig extends ChartObject {
 		return data;
 	}
 
-	public void setColor(GeomapColor color) {
-		set("color", color);
+	public void setColor(GeomapColor geomapColor) {
+		set("color", geomapColor);
 	}
 
 	public void setDataObject(Object dataObject) {
@@ -51,15 +51,15 @@ public class GeomapConfig extends ChartObject {
 		set("data", dataObject);
 	}
 
-	public void setDataUrl(String dataUrl) {
+	public void setDataHREF(String dataHREF) {
 		Object data = get("data", Object.class, false);
 
 		if ((data != null) && !(data instanceof String)) {
 			throw new IllegalStateException(
-				"Unable to set data URL because is has been set as Object");
+				"Unable to set data HREF because is has been set as Object");
 		}
 
-		set("data", dataUrl);
+		set("data", dataHREF);
 	}
 
 }
