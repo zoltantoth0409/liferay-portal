@@ -157,14 +157,15 @@ public class ChartSampleDisplayContext {
 	}
 
 	private void _initGeomapConfig() {
+		GeomapColor geomapColor = new GeomapColor();
+
 		GeomapColorRange geomapColorRange = new GeomapColorRange();
 
 		geomapColorRange.setMax("#b2150a");
 		geomapColorRange.setMin("#ee3e32");
 
-		GeomapColor geomapColor = new GeomapColor();
-
 		geomapColor.setGeomapColorRange(geomapColorRange);
+
 		geomapColor.setSelected("#a9615c");
 		geomapColor.setValue("name_len");
 
