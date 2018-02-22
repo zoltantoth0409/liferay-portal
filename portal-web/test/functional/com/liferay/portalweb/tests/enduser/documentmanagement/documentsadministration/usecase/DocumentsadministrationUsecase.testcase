@@ -2117,6 +2117,8 @@
 			<var name="portlet" value="Documents and Media" />
 		</execute>
 
+		<execute function="AssertVisible" locator1="Portlet#HEADER" value1="Documents and Media" />
+
 		<execute macro="DMDocument#checkDocumentCheckboxCP">
 			<var name="dmDocumentTitle" value="DM Document1 Title" />
 		</execute>
