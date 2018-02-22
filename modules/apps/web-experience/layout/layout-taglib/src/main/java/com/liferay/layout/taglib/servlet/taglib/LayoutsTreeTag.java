@@ -130,6 +130,8 @@ public class LayoutsTreeTag extends IncludeTag {
 
 	@Override
 	protected void cleanUp() {
+		super.cleanUp();
+
 		_checkContentDisplayPage = false;
 		_defaultStateChecked = false;
 		_draggableTree = true;

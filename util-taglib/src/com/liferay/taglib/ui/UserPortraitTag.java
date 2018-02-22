@@ -104,6 +104,8 @@ public class UserPortraitTag extends IncludeTag {
 
 	@Override
 	protected void cleanUp() {
+		super.cleanUp();
+
 		_cssClass = StringPool.BLANK;
 		_user = null;
 		_userName = StringPool.BLANK;

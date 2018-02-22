@@ -116,6 +116,8 @@ public class SocialActivitiesTag extends IncludeTag {
 
 	@Override
 	protected void cleanUp() {
+		super.cleanUp();
+
 		_activityDescriptors = null;
 		_className = StringPool.BLANK;
 		_classPK = 0;

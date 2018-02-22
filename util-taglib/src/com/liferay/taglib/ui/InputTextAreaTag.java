@@ -43,6 +43,8 @@ public class InputTextAreaTag extends IncludeTag {
 
 	@Override
 	protected void cleanUp() {
+		super.cleanUp();
+
 		_cssClass = null;
 		_defaultValue = StringPool.BLANK;
 		_disabled = false;
