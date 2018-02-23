@@ -436,7 +436,7 @@ public abstract class UpgradeProcess
 			catch (SQLException sqle) {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
-						"Applying fallback consisting on recreating the " +
+						"Applying fallback consisting in recreating the " +
 							"table due to: " + sqle.getMessage());
 				}
 
