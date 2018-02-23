@@ -38,7 +38,7 @@
 
 	<command name="DeleteTaskNode" priority="5">
 		<execute macro="PortletEntry#inputTitle">
-			<var name="title" value="${workflowDefinitionTitle}" />
+			<var name="title" value="Edited Workflow Definition" />
 		</execute>
 
 		<execute macro="KaleoDesigner#selectNode">
