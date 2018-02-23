@@ -436,8 +436,10 @@ public abstract class UpgradeProcess
 			catch (SQLException sqle) {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
-						"Applying fallback consisting in recreating the " +
-							"table due to: " + sqle.getMessage());
+						StringBundler.concat(
+							"Attempting to upgrade table ", tableName,
+							" by recreating the table due to: ",
+							sqle.getMessage()));
 				}
 
 				Field tableColumnsField = tableClass.getField("TABLE_COLUMNS");
@@ -453,8 +455,8 @@ public abstract class UpgradeProcess
 
 				if (_log.isWarnEnabled()) {
 					_log.warn(
-						"Fallback applied successfully. Table upgraded " +
-							"correctly.");
+						"Successfully recreated and upgraded table " +
+							tableName);
 				}
 			}
 		}
