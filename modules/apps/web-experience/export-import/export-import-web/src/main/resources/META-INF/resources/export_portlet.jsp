@@ -24,10 +24,10 @@ PortletURL portletURL = renderResponse.createRenderURL();
 portletURL.setParameter("mvcRenderCommandName", "exportImport");
 portletURL.setParameter("portletResource", portletResource);
 
-JSONArray blacklistedCharacters = JSONFactoryUtil.createJSONArray();
+JSONArray blacklistCharJSONArray = JSONFactoryUtil.createJSONArray();
 
 for (String s : PropsValues.DL_CHAR_BLACKLIST) {
-	blacklistedCharacters.put(s);
+	blacklistCharJSONArray.put(s);
 }
 %>
 
@@ -479,10 +479,10 @@ for (String s : PropsValues.DL_CHAR_BLACKLIST) {
 			var fieldRules = [
 				{
 					body: function(val, fieldNode, ruleValue) {
-						var blacklistedCharacters = <%= blacklistedCharacters.toJSONString() %>;
+						var blacklistCharJSONArray = <%= blacklistCharJSONArray.toJSONString() %>;
 
-						for (var i = 0; i < blacklistedCharacters.length; i++) {
-							if (val.indexOf(blacklistedCharacters[i]) !== -1) {
+						for (var i = 0; i < blacklistCharJSONArray.length; i++) {
+							if (val.indexOf(blacklistCharJSONArray[i]) !== -1) {
 								return false;
 							}
 						};
