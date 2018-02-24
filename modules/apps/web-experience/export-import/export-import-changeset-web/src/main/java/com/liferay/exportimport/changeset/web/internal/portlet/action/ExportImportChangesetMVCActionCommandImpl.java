@@ -82,12 +82,11 @@ public class ExportImportChangesetMVCActionCommandImpl
 			Changeset changeset)
 		throws Exception {
 
-		String changesetUuid = changeset.getUuid();
-
 		_changesetManager.addChangeset(changeset);
 
 		_processExportAndPublishAction(
-			actionRequest, actionResponse, Constants.EXPORT, changesetUuid);
+			actionRequest, actionResponse, Constants.EXPORT,
+			changeset.getUuid());
 	}
 
 	@Override
@@ -96,12 +95,11 @@ public class ExportImportChangesetMVCActionCommandImpl
 			Changeset changeset)
 		throws Exception {
 
-		String changesetUuid = changeset.getUuid();
-
 		_changesetManager.addChangeset(changeset);
 
 		_processExportAndPublishAction(
-			actionRequest, actionResponse, Constants.PUBLISH, changesetUuid);
+			actionRequest, actionResponse, Constants.PUBLISH,
+			changeset.getUuid());
 	}
 
 	@Override
