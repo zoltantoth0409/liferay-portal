@@ -13,7 +13,7 @@
 		<if>
 			<equals arg1="${pageTemplateActive}" arg2="No" />
 			<then>
-				<execute function="Click" locator1="PageTemplates#ACTIVE_TOGGLE_SWITCH" />
+				<execute function="Click" locator1="ToggleSwitch#ACTIVE" />
 			</then>
 		</if>
 
@@ -38,7 +38,7 @@
 		<if>
 			<isset var="pageTemplateStatus" />
 			<then>
-				<execute function="Click" locator1="PageTemplates#ACTIVE_TOGGLE_SWITCH" />
+				<execute function="Click" locator1="ToggleSwitch#ACTIVE" />
 			</then>
 		</if>
 
@@ -75,7 +75,7 @@
 		<if>
 			<equals arg1="${pageTemplateActive}" arg2="No" />
 			<then>
-				<execute function="Click" locator1="PageTemplates#ACTIVE_TOGGLE_SWITCH" />
+				<execute function="Click" locator1="ToggleSwitch#ACTIVE" />
 			</then>
 		</if>
 
@@ -124,10 +124,10 @@
 			<var name="portlet" value="Page Templates" />
 		</execute>
 
-		<var name="key_pageTemplateName" value="Page Template Name" />
+		<var name="key_rowEntry" value="Page Template Name" />
 
 		<while>
-			<condition function="IsElementPresent" locator1="PageTemplates#PAGE_TEMPLATE_TABLE_ACTIONS" />
+			<condition function="IsElementPresent" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
 			<then>
 				<execute macro="LexiconEntry#gotoEntryMenuItem">
 					<var name="menuItem" value="Delete" />
