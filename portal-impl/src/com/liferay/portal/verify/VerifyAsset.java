@@ -31,6 +31,10 @@ import java.sql.ResultSet;
  */
 public class VerifyAsset extends VerifyProcess {
 
+	/**
+	 * @deprecated As of 7.0.0
+	 */
+	@Deprecated
 	protected void deleteOrphanedAssetEntries() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
 			long classNameId = PortalUtil.getClassNameId(
