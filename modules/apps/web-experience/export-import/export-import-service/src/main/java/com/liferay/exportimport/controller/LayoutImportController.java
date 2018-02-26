@@ -1387,7 +1387,8 @@ public class LayoutImportController implements ImportController {
 						return true;
 					}
 
-					return false;
+					return Objects.equals(
+						currentVersion.getMajor(), importVersion.getMajor());
 				};
 
 			BiPredicate<Version, Version> majorVersionBiPredicate =
@@ -1401,6 +1402,16 @@ public class LayoutImportController implements ImportController {
 						currentVersion.getMinor(), -1);
 					int importedMinorVersion = GetterUtil.getInteger(
 						importVersion.getMinor(), -1);
+
+					if (Objects.equals(
+							currentVersion.getMajor(),
+							_VERSION_400.getMajor()) &&
+						Objects.equals(
+							importVersion.getMajor(),
+							_VERSION_300.getMajor())) {
+
+						return true;
+					}
 
 					if (((currentMinorVersion == -1) &&
 						 (importedMinorVersion == -1)) ||
