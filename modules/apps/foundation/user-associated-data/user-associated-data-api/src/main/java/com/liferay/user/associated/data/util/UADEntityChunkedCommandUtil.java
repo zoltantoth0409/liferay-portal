@@ -29,8 +29,8 @@ public class UADEntityChunkedCommandUtil {
 			UnsafeConsumer<UADEntity, PortalException> uadEntityUnsafeConsumer)
 		throws PortalException {
 
-		int end = _CHUNK_SIZE;
 		int count = uadEntityAggregator.count(userId);
+		int end = _CHUNK_SIZE;
 		int start = 0;
 
 		while (start < count) {
@@ -45,6 +45,7 @@ public class UADEntityChunkedCommandUtil {
 			}
 
 			start = end;
+
 			end += _CHUNK_SIZE;
 		}
 	}
