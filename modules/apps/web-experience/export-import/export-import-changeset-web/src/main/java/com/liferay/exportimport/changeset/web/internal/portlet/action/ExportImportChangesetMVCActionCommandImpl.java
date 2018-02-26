@@ -150,16 +150,12 @@ public class ExportImportChangesetMVCActionCommandImpl
 			String cmd, String changesetUuid)
 		throws IOException, PortalException {
 
-		String changesetUuidString = StringPool.BLANK;
-
 		if (Validator.isNotNull(changesetUuid)) {
-			changesetUuidString = changesetUuid;
 		}
 		else if (Validator.isNotNull(
 					actionRequest.getParameter("changesetUuid"))) {
 
-			changesetUuidString = ParamUtil.getString(
-				actionRequest, "changesetUuid");
+			changesetUuid = ParamUtil.getString(actionRequest, "changesetUuid");
 		}
 		else {
 			SessionErrors.add(
@@ -173,7 +169,7 @@ public class ExportImportChangesetMVCActionCommandImpl
 		Map<String, String[]> parameterMap =
 			ExportImportConfigurationParameterMapFactory.buildParameterMap();
 
-		parameterMap.put("changesetUuid", new String[] {changesetUuidString});
+		parameterMap.put("changesetUuid", new String[] {changesetUuid});
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
