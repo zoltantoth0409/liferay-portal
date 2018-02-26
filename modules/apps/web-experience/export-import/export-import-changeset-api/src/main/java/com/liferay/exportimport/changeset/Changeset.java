@@ -82,7 +82,7 @@ public class Changeset implements Serializable {
 			Collectors.toList()
 		);
 
-		List<StagedModel> hierarchyModels = new ArrayList<>();
+		List<StagedModel> hierarchyStagedModels = new ArrayList<>();
 
 		for (Map.Entry
 				<Supplier<? extends StagedModel>,
@@ -96,13 +96,13 @@ public class Changeset implements Serializable {
 			String stagedModelClassName =
 				ExportImportClassedModelUtil.getClassName(stagedModel);
 
-			hierarchyModels.addAll(
+			hierarchyStagedModels.addAll(
 				_getChildrenStagedModels(
 					stagedModel, stagedModelClassName, entry.getValue()));
 		}
 
 		return Stream.concat(
-			hierarchyModels.stream(),
+			hierarchyStagedModels.stream(),
 			Stream.concat(stagedModels.stream(), multiStagedModels.stream()));
 	}
 
@@ -208,15 +208,13 @@ public class Changeset implements Serializable {
 	}
 
 	private List<StagedModel> _getChildrenStagedModels(
-		final StagedModel parent, final String parentClassName,
+		final StagedModel parentStagedModel, final String parentClassName,
 		Function<StagedModel, Collection<?>> hierarchyFunction) {
 
 		List<StagedModel> stagedModels = new ArrayList<>();
 
-		Collection<?> children = hierarchyFunction.apply(parent);
-
-		for (Object child : children) {
-			StagedModel stagedModel = (StagedModel)child;
+		for (Object object : hierarchyFunction.apply(parentStagedModel)) {
+			StagedModel stagedModel = (StagedModel)object;
 
 			String stagedModelClassName = stagedModel.getModelClassName();
 
