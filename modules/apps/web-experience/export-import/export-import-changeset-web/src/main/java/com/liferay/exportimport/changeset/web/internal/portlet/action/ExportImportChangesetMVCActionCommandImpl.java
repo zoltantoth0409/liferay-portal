@@ -155,7 +155,9 @@ public class ExportImportChangesetMVCActionCommandImpl
 		if (Validator.isNotNull(changesetUuid)) {
 			changesetUuidString = changesetUuid;
 		}
-		else if (Validator.isNotNull(actionRequest.getParameter("changesetUuid"))) {
+		else if (Validator.isNotNull(
+					actionRequest.getParameter("changesetUuid"))) {
+
 			changesetUuidString = ParamUtil.getString(
 				actionRequest, "changesetUuid");
 		}
