@@ -29,6 +29,8 @@
 	</tear-down>
 
 	<command name="AssertMobileDeviceRuleActionOnSitePage" priority="5">
+		<description message="This is a use case for LPS-42381." />
+
 		<property name="test.name.skip.portal.instance" value="MobileDeviceFamilies#AssertMobileDeviceRuleActionOnSitePage" />
 
 		<execute macro="ProductMenu#gotoPortlet">
