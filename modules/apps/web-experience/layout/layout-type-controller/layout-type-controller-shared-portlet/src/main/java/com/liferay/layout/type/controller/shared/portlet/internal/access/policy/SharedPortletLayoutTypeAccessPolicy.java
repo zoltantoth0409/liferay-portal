@@ -28,6 +28,7 @@ import org.osgi.service.component.annotations.Component;
 	property = {"layout.type=" + SharedPortletLayoutTypeControllerConstants.LAYOUT_TYPE_SHARED_PORTLET},
 	service = LayoutTypeAccessPolicy.class
 )
+@Deprecated
 public class SharedPortletLayoutTypeAccessPolicy
 	extends DefaultLayoutTypeAccessPolicyImpl {
 }
