@@ -121,12 +121,6 @@
 		</execute>
 	</command>
 
-	<command name="subscribePG">
-		<execute function="AssertClick" locator1="Comments#SUBSCRIBE_TO_COMMENTS_LINK" value1="Subscribe to Comments" />
-
-		<execute macro="Alert#viewSuccessMessage" />
-	</command>
-
 	<command name="viewCP">
 		<var name="key_entryComment" value="${entryComment}" />
 
