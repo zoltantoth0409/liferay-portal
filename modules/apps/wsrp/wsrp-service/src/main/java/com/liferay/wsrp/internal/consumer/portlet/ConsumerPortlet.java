@@ -32,7 +32,7 @@ import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.security.auth.AuthTokenUtil;
 import com.liferay.portal.kernel.service.AddressLocalService;
 import com.liferay.portal.kernel.service.EmailAddressLocalService;
-import com.liferay.portal.kernel.service.ListTypeService;
+import com.liferay.portal.kernel.service.ListTypeLocalService;
 import com.liferay.portal.kernel.service.PhoneLocalService;
 import com.liferay.portal.kernel.service.WebsiteLocalService;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
@@ -155,12 +155,7 @@ import org.apache.axis.message.MessageElement;
 
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.component.annotations.Modified;
-import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.component.annotations.ReferenceCardinality;
-import org.osgi.service.component.annotations.ReferencePolicy;
-import org.osgi.service.component.annotations.ReferencePolicyOption;
 
 /**
  * @author Brian Wing Shun Chan
@@ -168,8 +163,7 @@ import org.osgi.service.component.annotations.ReferencePolicyOption;
  * @author Peter Fellwock
  */
 @Component(
-	configurationPid = "com.liferay.wsrp.configuration.WSRPGroupServiceConfiguration",
-	configurationPolicy = ConfigurationPolicy.OPTIONAL, immediate = true,
+	immediate = true,
 	property = {
 		"com.liferay.portlet.add-default-resource=true",
 		"com.liferay.portlet.display-category=category.hidden",
@@ -268,6 +262,76 @@ public class ConsumerPortlet extends MVCPortlet {
 		catch (Exception e) {
 			throw new PortletException(e);
 		}
+	}
+
+	public void setAddressLocalService(
+		AddressLocalService addressLocalService) {
+
+		_addressLocalService = addressLocalService;
+	}
+
+	public void setEmailAddressLocalService(
+		EmailAddressLocalService emailAddressLocalService) {
+
+		_emailAddressLocalService = emailAddressLocalService;
+	}
+
+	public void setHttp(Http http) {
+		_http = http;
+	}
+
+	public void setListTypeLocalService(
+		ListTypeLocalService listTypeLocalService) {
+
+		_listTypeLocalService = listTypeLocalService;
+	}
+
+	public void setMarkupCharacterSetsHelper(
+		MarkupCharacterSetsHelper markupCharacterSetsHelper) {
+
+		_markupCharacterSetsHelper = markupCharacterSetsHelper;
+	}
+
+	public void setPhoneLocalService(PhoneLocalService phoneLocalService) {
+		_phoneLocalService = phoneLocalService;
+	}
+
+	public void setPortal(Portal portal) {
+		_portal = portal;
+	}
+
+	public void setWebsiteLocalService(
+		WebsiteLocalService websiteLocalService) {
+
+		_websiteLocalService = websiteLocalService;
+	}
+
+	public void setWSRPConsumerLocalService(
+		WSRPConsumerLocalService wsrpConsumerLocalService) {
+
+		_wsrpConsumerLocalService = wsrpConsumerLocalService;
+	}
+
+	public void setWSRPConsumerManagerFactory(
+		WSRPConsumerManagerFactory wsrpConsumerManagerFactory) {
+
+		_wsrpConsumerManagerFactory = wsrpConsumerManagerFactory;
+	}
+
+	public void setWSRPConsumerPortletLocalService(
+		WSRPConsumerPortletLocalService wsrpConsumerPortletLocalService) {
+
+		_wsrpConsumerPortletLocalService = wsrpConsumerPortletLocalService;
+	}
+
+	public void setWSRPGroupServiceConfiguration(
+		WSRPGroupServiceConfiguration wsrpGroupServiceConfiguration) {
+
+		_wsrpGroupServiceConfiguration = wsrpGroupServiceConfiguration;
+	}
+
+	public void setWSRPURLUtil(WSRPURLUtil wsrpURLUtil) {
+		_wsrpURLUtil = wsrpURLUtil;
 	}
 
 	@Activate
@@ -684,7 +748,7 @@ public class ConsumerPortlet extends MVCPortlet {
 		com.liferay.portal.kernel.model.Contact contact = user.getContact();
 
 		try {
-			ListType listType = _listTypeService.getListType(
+			ListType listType = _listTypeLocalService.getListType(
 				contact.getPrefixId());
 
 			personName.setPrefix(listType.getName());
@@ -696,7 +760,7 @@ public class ConsumerPortlet extends MVCPortlet {
 		}
 
 		try {
-			ListType listType = _listTypeService.getListType(
+			ListType listType = _listTypeLocalService.getListType(
 				contact.getSuffixId());
 
 			personName.setSuffix(listType.getName());
@@ -2147,52 +2211,18 @@ public class ConsumerPortlet extends MVCPortlet {
 		_RESOURCE_TEMPLATE = sb.toString();
 	}
 
-	@Reference
 	private AddressLocalService _addressLocalService;
-
-	@Reference
 	private EmailAddressLocalService _emailAddressLocalService;
-
-	@Reference
 	private Http _http;
-
-	@Reference
-	private ListTypeService _listTypeService;
-
-	@Reference
+	private ListTypeLocalService _listTypeLocalService;
 	private MarkupCharacterSetsHelper _markupCharacterSetsHelper;
-
-	@Reference
 	private PhoneLocalService _phoneLocalService;
-
-	@Reference
 	private Portal _portal;
-
-	@Reference
 	private WebsiteLocalService _websiteLocalService;
-
-	@Reference(
-		cardinality = ReferenceCardinality.OPTIONAL,
-		policy = ReferencePolicy.DYNAMIC,
-		policyOption = ReferencePolicyOption.GREEDY
-	)
-	private volatile WSRPConsumerLocalService _wsrpConsumerLocalService;
-
-	@Reference
+	private WSRPConsumerLocalService _wsrpConsumerLocalService;
 	private WSRPConsumerManagerFactory _wsrpConsumerManagerFactory;
-
-	@Reference(
-		cardinality = ReferenceCardinality.OPTIONAL,
-		policy = ReferencePolicy.DYNAMIC,
-		policyOption = ReferencePolicyOption.GREEDY
-	)
-	private volatile WSRPConsumerPortletLocalService
-		_wsrpConsumerPortletLocalService;
-
-	private volatile WSRPGroupServiceConfiguration
-		_wsrpGroupServiceConfiguration;
-
-	@Reference
+	private WSRPConsumerPortletLocalService _wsrpConsumerPortletLocalService;
+	private WSRPGroupServiceConfiguration _wsrpGroupServiceConfiguration;
 	private WSRPURLUtil _wsrpURLUtil;
 
 }
