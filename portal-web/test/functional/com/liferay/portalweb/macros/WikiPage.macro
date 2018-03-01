@@ -70,7 +70,7 @@
 			<var name="title" value="${wikiChildPageTitle}" />
 		</execute>
 
-		<execute function="Click" locator1="Button#PUBLISH" value1="Publish" />
+		<execute function="Click" locator1="Button#PUBLISH" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 	</command>
@@ -85,7 +85,7 @@
 			<var name="title" value="${wikiChildPageTitle}" />
 		</execute>
 
-		<execute function="Click" locator1="Button#PUBLISH" value1="Publish" />
+		<execute function="Click" locator1="Button#PUBLISH" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 	</command>

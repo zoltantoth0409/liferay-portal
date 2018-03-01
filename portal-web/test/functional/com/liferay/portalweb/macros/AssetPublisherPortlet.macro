@@ -33,7 +33,7 @@
 			<then>
 				<execute function="Click" locator1="Configuration#SOURCE_SCOPE_SELECT" />
 
-				<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM" value1="Global">
+				<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM">
 					<var name="key_menuItem" value="Global" />
 				</execute>
 			</then>
@@ -44,7 +44,7 @@
 			<then>
 				<execute function="Click" locator1="Configuration#SOURCE_SCOPE_SELECT" />
 
-				<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM" value1="Other Site...">
+				<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM">
 					<var name="key_menuItem" value="Other Site..." />
 				</execute>
 
@@ -1060,7 +1060,7 @@
 		<execute function="AssertElementPresent" locator1="Comments#SUBSCRIBE_TO_COMMENTS_LINK" />
 		<execute function="AssertElementPresent" locator1="Icon#CUSTOM_EDIT" />
 
-		<execute function="Click" locator1="Icon#SHARE" value1="Share" />
+		<execute function="Click" locator1="Icon#SHARE" />
 
 		<execute function="AssertElementPresent" locator1="Icon#TWITTER" />
 		<execute function="AssertElementPresent" locator1="Icon#FACEBOOK" />

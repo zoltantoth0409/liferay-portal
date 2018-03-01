@@ -408,7 +408,7 @@
 
 		<execute function="AssertTextEquals" locator1="//tr[contains(.,'${roleName}')]/td[1]/span/a" value1="${roleName}" />
 
-		<execute function="Click" locator1="//tr[contains(.,'${roleName}')]/td[1]/span/a" value1="${roleName}" />
+		<execute function="Click" locator1="//tr[contains(.,'${roleName}')]/td[1]/span/a" />
 
 		<execute macro="Navigator#gotoNavItem">
 			<var name="navItem" value="Available" />
@@ -719,7 +719,7 @@
 		<while>
 			<condition function="IsElementPresent" locator1="UsersAndOrganizations#ORGANIZATION_TABLE_NAME_GENERIC" value1="${orgName}" />
 			<then>
-				<execute function="Click" locator1="UsersAndOrganizations#ORGANIZATION_TABLE_NAME_GENERIC" value1="${orgName}" />
+				<execute function="Click" locator1="UsersAndOrganizations#ORGANIZATION_TABLE_NAME_GENERIC" />
 
 				<execute function="AssertClick" locator1="UsersAndOrganizationsOrganization#MENU_ASSIGN_USERS" value1="Assign Users" />
 

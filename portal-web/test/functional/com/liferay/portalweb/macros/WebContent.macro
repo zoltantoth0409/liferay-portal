@@ -987,7 +987,7 @@
 			<var name="key_rowEntry" value="${entryTitle}" />
 		</execute>
 
-		<execute function="ClickNoError" locator1="MenuItem#ANY_MENU_ITEM" value1="Delete">
+		<execute function="ClickNoError" locator1="MenuItem#ANY_MENU_ITEM">
 			<var name="key_menuItem" value="Delete" />
 		</execute>
 
@@ -1152,7 +1152,7 @@
 			<var name="content" value="${webContentContentEdit}" />
 		</execute>
 
-		<execute function="Click" locator1="Button#PUBLISH" value1="Publish" />
+		<execute function="Click" locator1="Button#PUBLISH" />
 	</command>
 
 	<command name="editPGViaAP">
@@ -1170,7 +1170,7 @@
 			<var name="content" value="${webContentContentEdit}" />
 		</execute>
 
-		<execute function="Click" locator1="Button#PUBLISH" value1="Publish" />
+		<execute function="Click" locator1="Button#PUBLISH" />
 	</command>
 
 	<command name="editPGViaWCD">
@@ -1192,7 +1192,7 @@
 			</else>
 		</if>
 
-		<execute function="Click" locator1="Button#PUBLISH" value1="Publish" />
+		<execute function="Click" locator1="Button#PUBLISH" />
 
 		<execute function="SelectFrame" value1="relative=top" />
 
@@ -1288,7 +1288,7 @@
 			</execute>
 		</for>
 
-		<execute function="Click" locator1="WC#TOOLBAR_MOVE_BUTTON" value1="Move" />
+		<execute function="Click" locator1="WC#TOOLBAR_MOVE_BUTTON" />
 
 		<execute function="AssertTextEquals" locator1="Portlet#HEADER" value1="Move Web Content" />
 

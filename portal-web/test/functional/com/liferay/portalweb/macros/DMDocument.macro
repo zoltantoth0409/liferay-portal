@@ -162,12 +162,12 @@
 				</execute>
 
 				<for list="${tagNameList}" param="tagName">
-					<execute function="Click#clickAt" locator1="AssetCategorization#TAGS_ADD_BUTTON" value1="Add" />
+					<execute function="Click#clickAt" locator1="AssetCategorization#TAGS_ADD_BUTTON" />
 
 					<execute function="Type" locator1="AssetCategorization#TAGS_FIELD" value1="${tagName}" />
 				</for>
 
-				<execute function="Click#clickAt" locator1="AssetCategorization#TAGS_ADD_BUTTON" value1="Add" />
+				<execute function="Click#clickAt" locator1="AssetCategorization#TAGS_ADD_BUTTON" />
 			</then>
 		</if>
 
@@ -1323,7 +1323,7 @@
 
 		<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#BODY_VERTICAL_ELLIPSIS" />
 
-		<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM" value1="Edit">
+		<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM">
 			<var name="key_menuItem" value="Edit" />
 		</execute>
 

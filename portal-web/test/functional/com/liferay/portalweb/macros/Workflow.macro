@@ -27,7 +27,7 @@
 			<then>
 				<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
 
-				<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM" value1="Edit">
+				<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM">
 					<var name="key_menuItem" value="Edit" />
 				</execute>
 
@@ -44,7 +44,7 @@
 
 			<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
 
-			<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM" value1="Edit">
+			<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM">
 				<var name="key_menuItem" value="Edit" />
 			</execute>
 
@@ -278,7 +278,7 @@
 
 		<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
 
-		<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM" value1="Edit">
+		<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM">
 			<var name="key_menuItem" value="Edit" />
 		</execute>
 
@@ -630,7 +630,7 @@
 
 		<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
 
-		<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM" value1="Edit">
+		<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM">
 			<var name="key_menuItem" value="Edit" />
 		</execute>
 
@@ -749,9 +749,9 @@
 
 		<execute function="AssertElementPresent" locator1="Calendar#SMALL_CALENDAR_NEXT" />
 
-		<execute function="Click" locator1="Calendar#SMALL_CALENDAR_NEXT" value1="Next Month" />
+		<execute function="Click" locator1="Calendar#SMALL_CALENDAR_NEXT" />
 
-		<execute function="Click" locator1="Calendar#SMALL_CALENDAR_SPECIFIC_DAY" value1="15">
+		<execute function="Click" locator1="Calendar#SMALL_CALENDAR_SPECIFIC_DAY">
 			<var name="key_dateNumber" value="15" />
 		</execute>
 
@@ -802,9 +802,9 @@
 
 		<execute function="AssertElementPresent" locator1="Calendar#SMALL_CALENDAR_NEXT" />
 
-		<execute function="Click" locator1="Calendar#SMALL_CALENDAR_NEXT" value1="Next Month" />
+		<execute function="Click" locator1="Calendar#SMALL_CALENDAR_NEXT" />
 
-		<execute function="Click" locator1="Calendar#SMALL_CALENDAR_SPECIFIC_DAY" value1="15">
+		<execute function="Click" locator1="Calendar#SMALL_CALENDAR_SPECIFIC_DAY">
 			<var name="key_dateNumber" value="15" />
 		</execute>
 

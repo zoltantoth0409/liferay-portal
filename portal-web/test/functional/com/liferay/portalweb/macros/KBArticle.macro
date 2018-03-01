@@ -1092,7 +1092,7 @@
 	<command name="selectParentArticleCP">
 		<execute function="SelectFrame" locator1="KnowledgeBaseSelectParent#IFRAME" />
 
-		<execute function="Click" locator1="KnowledgeBaseSelectParent#CHOOSE_BUTTON" value1="Choose">
+		<execute function="Click" locator1="KnowledgeBaseSelectParent#CHOOSE_BUTTON">
 			<var name="key_kbArticleTitle" value="${kbArticleTitle}" />
 		</execute>
 
@@ -1108,7 +1108,7 @@
 	<command name="selectParentViaKBDisplayPG">
 		<execute function="SelectFrame" locator1="KnowledgeBaseSelectParent#IFRAME" />
 
-		<execute function="Click" locator1="KnowledgeBaseSelectParent#CHOOSE_BUTTON" value1="Choose">
+		<execute function="Click" locator1="KnowledgeBaseSelectParent#CHOOSE_BUTTON">
 			<var name="key_kbArticleTitle" value="${kbArticleTitle}" />
 		</execute>
 

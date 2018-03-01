@@ -425,7 +425,7 @@
 			<var name="name" value="Child SiteName2" />
 		</execute>
 
-		<execute function="Click" locator1="Button#SAVE" value1="Save" />
+		<execute function="Click" locator1="Button#SAVE" />
 
 		<execute macro="PortletEntry#save" />
 

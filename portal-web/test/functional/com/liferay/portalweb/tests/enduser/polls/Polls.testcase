@@ -353,7 +353,7 @@
 
 		<execute function="Type" locator1="TextInput#EMAIL_ADDRESS" value1="test@liferay.com" />
 		<execute function="Type" locator1="TextInput#PASSWORD" value1="test" />
-		<execute function="Click" locator1="Button#SIGN_IN" value1="Sign In" />
+		<execute function="Click" locator1="Button#SIGN_IN" />
 
 		<execute macro="Navigator#openURL" />
 

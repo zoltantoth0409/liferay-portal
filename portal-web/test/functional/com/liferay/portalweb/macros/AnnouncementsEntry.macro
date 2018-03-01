@@ -123,7 +123,7 @@
 
 		<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#BODY_VERTICAL_ELLIPSIS" />
 
-		<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM" value1="Edit">
+		<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM">
 			<var name="key_menuItem" value="Edit" />
 		</execute>
 
@@ -223,7 +223,7 @@
 	</command>
 
 	<command name="viewReadPG">
-		<execute function="Click" locator1="Announcements#NAVIGATION_ENTRIES_READ" value1="Read" />
+		<execute function="Click" locator1="Announcements#NAVIGATION_ENTRIES_READ" />
 
 		<execute macro="AnnouncementsEntry#viewPG">
 			<var name="announcementType" value="${announcementType}" />

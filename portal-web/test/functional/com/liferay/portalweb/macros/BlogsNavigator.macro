@@ -174,7 +174,7 @@
 				<execute function="AssertLocation" value1="${blogEntryURL}" />
 			</then>
 			<else>
-				<execute function="Click" locator1="BlogsEntry#TITLE_LINK" value1="${entryTitle}" />
+				<execute function="Click" locator1="BlogsEntry#TITLE_LINK" />
 			</else>
 		</if>
 

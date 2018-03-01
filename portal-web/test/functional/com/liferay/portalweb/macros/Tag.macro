@@ -179,7 +179,7 @@
 		<if>
 			<isset var="selectTagName" />
 			<then>
-				<execute function="Click" locator1="Button#SELECT" value1="Select" />
+				<execute function="Click" locator1="Button#SELECT" />
 
 				<execute macro="IFrame#selectDialogFrame" />
 

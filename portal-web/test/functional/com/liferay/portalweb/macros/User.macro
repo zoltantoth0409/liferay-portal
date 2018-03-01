@@ -1744,7 +1744,7 @@
 
 		<take-screenshot />
 
-		<execute function="Click" locator1="Button#SIGN_IN" value1="Sign In" />
+		<execute function="Click" locator1="Button#SIGN_IN" />
 
 		<execute function="AssertElementNotPresent" locator1="Button#SIGN_IN" />
 

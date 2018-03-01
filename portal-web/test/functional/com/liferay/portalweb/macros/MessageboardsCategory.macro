@@ -58,7 +58,7 @@
 			</elseif>
 		</if>
 
-		<execute function="Click" locator1="Button#SAVE" value1="Save" />
+		<execute function="Click" locator1="Button#SAVE" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 	</command>
@@ -199,7 +199,7 @@
 
 		<execute function="Click" locator1="MessageBoards#CATEGORY_LIST_ACTIONS" />
 
-		<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM" value1="Edit">
+		<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM">
 			<var name="key_menuItem" value="Edit" />
 		</execute>
 
@@ -207,7 +207,7 @@
 			<var name="name" value="${categoryNameEdit}" />
 		</execute>
 
-		<execute function="Click" locator1="Button#SAVE" value1="Save" />
+		<execute function="Click" locator1="Button#SAVE" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 		<execute function="AssertTextEquals" locator1="MessageBoards#CATEGORY_LIST_CATEGORY" value1="${categoryNameEdit}" />
@@ -244,7 +244,7 @@
 			<then>
 				<var name="key_categoryName" value="${subCategoryName}" />
 
-				<execute function="Click" locator1="MessageBoards#CATEGORY_LIST_CATEGORY" value1="${subCategoryName}" />
+				<execute function="Click" locator1="MessageBoards#CATEGORY_LIST_CATEGORY" />
 			</then>
 		</if>
 	</command>
@@ -462,7 +462,7 @@
 		<execute function="AssertTextEquals" locator1="MessageBoards#CATEGORY_TABLE_ADMIN_POSTS" value1="0" />
 		<execute function="AssertElementPresent" locator1="MessageBoards#CATEGORY_TABLE_ADMIN_ACTIONS" />
 
-		<execute function="Click" locator1="MessageBoards#CATEGORY_TABLE_ADMIN_CATEGORY" value1="${subCategoryName} ${subCategoryDescription}" />
+		<execute function="Click" locator1="MessageBoards#CATEGORY_TABLE_ADMIN_CATEGORY" />
 
 		<execute function="AssertTextEquals" locator1="MessageBoards#CATEGORIES_NAME_HEADER" value1="${subCategoryName}" />
 	</command>

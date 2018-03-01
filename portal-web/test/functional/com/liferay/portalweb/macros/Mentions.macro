@@ -83,7 +83,7 @@
 
 		<execute function="Click#clickNoMouseOver" locator1="Mentions#MENTIONS_USER_DISPLAY_OPTION" />
 
-		<execute function="Click" locator1="Button#PUBLISH" value1="Publish" />
+		<execute function="Click" locator1="Button#PUBLISH" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 	</command>

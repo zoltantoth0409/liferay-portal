@@ -41,7 +41,7 @@
 			<var name="displayStyle" value="Descriptive" />
 		</execute>
 
-		<execute function="Click" locator1="WC#ENTRY_DESCRIPTIVE_TITLE" value1="${folderName}" />
+		<execute function="Click" locator1="WC#ENTRY_DESCRIPTIVE_TITLE" />
 
 		<execute function="AssertTextEquals" locator1="Portlet#HEADER" value1="${folderName}" />
 
@@ -73,7 +73,7 @@
 			<var name="displayStyle" value="Descriptive" />
 		</execute>
 
-		<execute function="Click" locator1="WC#ENTRY_DESCRIPTIVE_TITLE" value1="${folderName}" />
+		<execute function="Click" locator1="WC#ENTRY_DESCRIPTIVE_TITLE" />
 
 		<execute function="AssertTextEquals" locator1="Portlet#HEADER" value1="${folderName}" />
 

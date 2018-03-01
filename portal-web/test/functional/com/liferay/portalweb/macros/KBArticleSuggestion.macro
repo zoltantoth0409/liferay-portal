@@ -31,7 +31,7 @@
 	<command name="gotoArticleCP">
 		<var name="key_kbArticleTitle" value="${kbArticleTitle}" />
 
-		<execute function="Click" locator1="KnowledgeBaseSuggestions#TITLE" value1="${kbSuggestionBody}" />
+		<execute function="Click" locator1="KnowledgeBaseSuggestions#TITLE" />
 	</command>
 
 	<command name="gotoSuggestionStatusInProgress">

@@ -2,9 +2,9 @@
 	<command name="addChildPageViaSiteTemplateCP">
 		<var name="key_siteTemplateName" value="${siteTemplateName}" />
 
-		<execute function="Click" locator1="SiteTemplates#SITE_TEMPLATE_TABLE_ACTIONS" value1="${siteTemplateName}" />
+		<execute function="Click" locator1="SiteTemplates#SITE_TEMPLATE_TABLE_ACTIONS" />
 
-		<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM" value1="Manage">
+		<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM">
 			<var name="key_menuItem" value="Manage" />
 		</execute>
 
@@ -53,9 +53,9 @@
 	<command name="addSitePageViaSiteTemplateCP">
 		<var name="key_siteTemplateName" value="${siteTemplateName}" />
 
-		<execute function="Click" locator1="SiteTemplates#SITE_TEMPLATE_TABLE_ACTIONS" value1="${siteTemplateName}" />
+		<execute function="Click" locator1="SiteTemplates#SITE_TEMPLATE_TABLE_ACTIONS" />
 
-		<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM" value1="Manage">
+		<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM">
 			<var name="key_menuItem" value="Manage" />
 		</execute>
 
@@ -110,7 +110,7 @@
 	<command name="allowChangesToPageTemplateCP">
 		<var name="key_page" value="${pageName}" />
 
-		<execute function="Click" locator1="SitePages#PAGE_TREE_PAGE_SPECIFIC_PAGE" value1="sitePageName" />
+		<execute function="Click" locator1="SitePages#PAGE_TREE_PAGE_SPECIFIC_PAGE" />
 
 		<if>
 			<equals arg1="${allow}" arg2="true" />
@@ -130,7 +130,7 @@
 	<command name="allowSiteAdminsToEditThisPageCP">
 		<var name="key_page" value="${pageName}" />
 
-		<execute function="Click" locator1="SitePages#PAGE_TREE_PAGE_SPECIFIC_PAGE" value1="sitePageName" />
+		<execute function="Click" locator1="SitePages#PAGE_TREE_PAGE_SPECIFIC_PAGE" />
 
 		<execute function="Check" locator1="Checkbox#ALLOW_SITE_ADMIN_MODIFY_PAGES" />
 

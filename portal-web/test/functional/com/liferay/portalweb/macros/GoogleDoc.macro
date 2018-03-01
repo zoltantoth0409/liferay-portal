@@ -62,9 +62,9 @@
 	<command name="selectDocument">
 		<var name="key_googleDocName" value="${googleDocName}" />
 
-		<execute function="Click#clickAt" locator1="GoogleDrive#LIST_VIEW_DOCUMENT" value1="${googleDocName}" />
+		<execute function="Click#clickAt" locator1="GoogleDrive#LIST_VIEW_DOCUMENT" />
 
-		<execute function="Click#clickAt" locator1="GoogleDrive#SELECT_BUTTON" value1="Select" />
+		<execute function="Click#clickAt" locator1="GoogleDrive#SELECT_BUTTON" />
 
 		<execute function="SelectFrameTop" />
 

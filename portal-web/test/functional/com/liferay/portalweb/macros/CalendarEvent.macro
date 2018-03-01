@@ -901,7 +901,7 @@
 
 		<execute function="Pause" value1="1000" />
 
-		<execute function="ClickNoError" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_DELETE_BUTTON" value1="Delete" />
+		<execute function="ClickNoError" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_DELETE_BUTTON" />
 
 		<if>
 			<equals arg1="${deleteOptionSet}" arg2="Entire Series" />
@@ -1313,7 +1313,7 @@
 
 			<var name="key_resource" value="${resourceName}" />
 
-			<execute function="Click" locator1="CalendarEditEvent#INVITATIONS_INVITE_RESOURCE_FIELD_LIST" value1="${resourceName}" />
+			<execute function="Click" locator1="CalendarEditEvent#INVITATIONS_INVITE_RESOURCE_FIELD_LIST" />
 
 			<execute macro="CalendarEvent#viewRSVPPending">
 				<var name="resourceName" value="${resourceName}" />

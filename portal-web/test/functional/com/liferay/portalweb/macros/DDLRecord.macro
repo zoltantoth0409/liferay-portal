@@ -352,7 +352,7 @@
 
 		<execute function="Select" locator1="DDLSpreadsheet#CELL_EDITOR_SELECT" value1="${ddlRecordFieldData}" />
 
-		<execute function="Click" locator1="Button#SAVE" value1="Save" />
+		<execute function="Click" locator1="Button#SAVE" />
 
 		<execute function="AssertTextEquals" locator1="DDLSpreadsheet#RECORD_TABLE_FIELD_ENTRY" value1="${ddlRecordFieldData}" />
 	</command>
@@ -401,7 +401,7 @@
 
 		<execute function="Type" locator1="DDLSpreadsheet#CELL_EDITOR_FIELD" value1="${ddlRecordFieldData}" />
 
-		<execute function="Click" locator1="Button#SAVE" value1="Save" />
+		<execute function="Click" locator1="Button#SAVE" />
 
 		<execute function="AssertTextEquals" locator1="DDLSpreadsheet#RECORD_TABLE_FIELD_ENTRY" value1="${ddlRecordFieldData}" />
 	</command>
@@ -753,7 +753,7 @@
 
 		<execute function="Click" locator1="DDL#RECORD_TABLE_ELLIPSIS_1" />
 
-		<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM" value1="View">
+		<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM">
 			<var name="key_menuItem" value="View" />
 		</execute>
 

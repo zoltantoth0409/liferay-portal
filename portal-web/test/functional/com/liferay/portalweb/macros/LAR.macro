@@ -161,7 +161,7 @@
 
 				<var name="key_lastDateRange" value="${lastDateRange}" />
 
-				<execute function="Click" locator1="Select#LAST_TIME" value1="${lastDateRange}" />
+				<execute function="Click" locator1="Select#LAST_TIME" />
 				<execute function="Click" locator1="Link#REFRESH_COUNTS" />
 			</then>
 		</if>
