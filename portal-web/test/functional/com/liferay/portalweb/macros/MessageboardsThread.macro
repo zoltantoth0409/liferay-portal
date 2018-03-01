@@ -261,10 +261,6 @@
 		<execute macro="Alert#viewSuccessMessage" />
 	</command>
 
-	<command name="assertAlertNotPresent">
-		<execute function="AssertAlertNotPresent" />
-	</command>
-
 	<command name="banUser">
 		<execute function="AssertClick" locator1="MessageBoardsThread#MESSAGE_BAN_THIS_USER" value1="Ban This User">
 			<var name="key_userName" value="${userName}" />
@@ -890,7 +886,7 @@
 		<var name="key_threadSubject" value="${threadSubject}" />
 		<var name="key_userName" value="${userName}" />
 
-		<execute macro="MessageboardsThread#assertAlertNotPresent" />
+		<execute function="AssertAlertNotPresent" />
 
 		<execute function="AssertTextEquals#assertPartialText" locator1="MessageBoards#THREAD_LIST_LAST_POST" value1="${userName}" />
 		<execute function="AssertTextEquals" locator1="MessageBoardsThread#THREAD_REPLY_SUBJECT" value1="${threadSubject}" />

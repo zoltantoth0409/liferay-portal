@@ -480,7 +480,7 @@
 			<var name="threadSubject" value="New Thread Subject" />
 		</execute>
 
-		<execute macro="MessageboardsThread#assertAlertNotPresent" />
+		<execute function="AssertAlertNotPresent" />
 
 		<execute macro="Navigator#openURL" />
 
