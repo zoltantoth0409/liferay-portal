@@ -172,7 +172,7 @@
 		<for list="Home,Documents and Media,News" param="sitePageName">
 			<var name="key_pageName" value="${sitePageName}" />
 
-			<execute function="AssertElementPresent" locator1="Home#PAGE" value1="${sitePageName}" />
+			<execute function="AssertElementPresent" locator1="Home#PAGE" />
 		</for>
 
 		<execute macro="Navigator#openSpecificURL">

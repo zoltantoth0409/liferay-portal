@@ -126,7 +126,7 @@
 	<command name="gotoMetadataSets">
 		<execute function="Click" locator1="Icon#HEADER_VERTICAL_ELLIPSIS" />
 
-		<execute function="AssertElementPresent" locator1="MenuItem#ANY_MENU_ITEM" value1="Metadata Sets">
+		<execute function="AssertElementPresent" locator1="MenuItem#ANY_MENU_ITEM">
 			<var name="key_menuItem" value="Metadata Sets" />
 		</execute>
 

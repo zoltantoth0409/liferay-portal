@@ -614,7 +614,7 @@
 
 		<var name="key_siteName" value="${siteName}" />
 
-		<execute function="AssertElementPresent" locator1="SitePages#SITE_NAME" value1="${siteName}" />
+		<execute function="AssertElementPresent" locator1="SitePages#SITE_NAME" />
 
 		<execute macro="Navigator#openURL" />
 
@@ -630,7 +630,7 @@
 
 		<var name="key_siteName" value="Site Name" />
 
-		<execute function="AssertElementPresent" locator1="SitePages#SITE_NAME" value1="Site Name" />
+		<execute function="AssertElementPresent" locator1="SitePages#SITE_NAME" />
 
 		<execute macro="Permissions#removePermissionLoginUserCP">
 			<var name="permissionDefinitionKey" value="CONTROL_PANEL_SITES_SITES_RESOURCE_PERMISSIONS_SITE_MANAGE_PAGES_CHECKBOX" />
