@@ -210,7 +210,9 @@
 			</then>
 		</if>
 
-		<execute function="AssertClick#assertTextClickAtAndPause" locator1="Wiki#FRONTPAGE_DEFAULT_MESSAGE" value1="This page is empty. Edit it to add some text." />
+		<execute function="AssertClick" locator1="Wiki#FRONTPAGE_DEFAULT_MESSAGE" value1="This page is empty. Edit it to add some text." />
+
+		<execute function="Pause" locator1="1000" />
 
 		<execute function="AssertElementPresent" locator1="AlloyEditor#CONTENT_FIELD" />
 

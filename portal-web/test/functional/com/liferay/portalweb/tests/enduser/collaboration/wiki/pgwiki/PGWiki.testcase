@@ -317,7 +317,9 @@
 			<var name="wikiPageTitle" value="FrontPage" />
 		</execute>
 
-		<execute function="AssertClick#assertTextClickAtAndPause" locator1="Link#ADD_CHILD_PAGE" value1="Add Child Page" />
+		<execute function="AssertClick" locator1="Link#ADD_CHILD_PAGE" value1="Add Child Page" />
+
+		<execute function="Pause" locator1="1000" />
 
 		<execute macro="WikiEntry#selectPageFormat">
 			<var name="pageFormat" value="HTML" />
