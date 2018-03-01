@@ -153,6 +153,18 @@ AUI.add(
 						var managementBarContainer = instance.get('secondaryBar').ancestor('.management-bar-container');
 
 						managementBarContainer.toggleClass(STR_SECONDARY_BAR_OPEN, show);
+
+						var searchField = document.getElementsByClassName('basic-search')[0];
+
+						if (searchField) {
+							if (show) {
+								searchField.style.pointerEvents = "none";
+								searchField.style.opacity = '0.3';
+							}
+							else {
+								searchField.removeAttribute("style");
+							}
+						}
 					},
 
 					_toggleSelectAll: function(event) {
