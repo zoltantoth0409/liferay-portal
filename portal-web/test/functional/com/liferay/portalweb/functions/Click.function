@@ -146,32 +146,6 @@
 		<execute selenium="assertLiferayErrors" />
 	</command>
 
-	<command name="pauseMakeVisibleClickAt">
-		<execute function="WaitForSPARefresh" />
-
-		<execute argument1="1000" selenium="pause" />
-
-		<execute function="Click#makeVisibleClickAt" />
-
-		<execute selenium="assertJavaScriptErrors" />
-
-		<execute selenium="assertLiferayErrors" />
-	</command>
-
-	<command name="textClickAtClickDockbar">
-		<execute function="WaitForSPARefresh" />
-
-		<execute argument1="//div[@id='_145_dockbar']" selenium="click" />
-
-		<execute argument1="//script[contains(@src,'/liferay/node.js')]" selenium="waitForElementPresent" />
-
-		<execute function="AssertClick#assertTextClickAt" />
-
-		<execute selenium="assertJavaScriptErrors" />
-
-		<execute selenium="assertLiferayErrors" />
-	</command>
-
 	<command name="waitForMenuToggleJSClick">
 		<execute function="WaitForSPARefresh" />
 
@@ -180,18 +154,6 @@
 		<execute argument1="3000" selenium="pause" />
 
 		<execute function="Click" />
-
-		<execute selenium="assertJavaScriptErrors" />
-
-		<execute selenium="assertLiferayErrors" />
-	</command>
-
-	<command name="waitForNavigationInteractionTouchScriptTap">
-		<execute function="WaitForSPARefresh" />
-
-		<execute argument1="//script[contains(@src,'liferay/dockbar_keyboard_interaction.js')]" selenium="waitForElementPresent" />
-
-		<execute function="Click#clickAt" />
 
 		<execute selenium="assertJavaScriptErrors" />
 
