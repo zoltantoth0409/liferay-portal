@@ -857,9 +857,9 @@
 	<command name="viewDeletedPage">
 		<var name="key_page" value="${pageName}" />
 
-		<execute function="AssertElementNotPresent" locator1="Home#PAGE" value1="${pageName}" />
+		<execute function="AssertElementNotPresent" locator1="Home#PAGE" />
 
-		<execute function="AssertElementNotPresent" locator1="SitePages#PAGE_TREE_PAGE_LINK" value1="${pageName}">
+		<execute function="AssertElementNotPresent" locator1="SitePages#PAGE_TREE_PAGE_LINK">
 			<var name="key_page" value="${pageName}" />
 		</execute>
 	</command>
@@ -955,7 +955,7 @@
 	<command name="viewNoPG">
 		<var name="key_pageName" value="${pageName}" />
 
-		<execute function="AssertElementNotPresent" locator1="Home#PAGE" value1="${pageName}" />
+		<execute function="AssertElementNotPresent" locator1="Home#PAGE" />
 	</command>
 
 	<command name="viewNoSelectCategory">

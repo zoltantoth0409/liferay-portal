@@ -764,7 +764,7 @@
 	<command name="viewDeletedFormNotPresent">
 		<var name="key_kfFormName" value="${kfFormName}" />
 
-		<execute function="AssertElementNotPresent" locator1="KaleoFormsAdminEditProcessForm#FORM_TABLE_NAME_LINK" value1="${kfFormName}" />
+		<execute function="AssertElementNotPresent" locator1="KaleoFormsAdminEditProcessForm#FORM_TABLE_NAME_LINK" />
 	</command>
 
 	<command name="viewFormEdit">
@@ -829,7 +829,7 @@
 		<var name="key_kfFormName" value="${kfFormName}" />
 
 		<execute function="AssertTextEquals" locator1="KaleoFormsAdminEditProcessForm#FORM_TABLE_NAME" value1="${kfFormName}" />
-		<execute function="AssertElementNotPresent" locator1="KaleoFormsAdminEditProcessForm#FORM_TABLE_NAME_2" value1="${kfFormName}" />
+		<execute function="AssertElementNotPresent" locator1="KaleoFormsAdminEditProcessForm#FORM_TABLE_NAME_2" />
 	</command>
 
 	<command name="viewNoPublishedWorkflowDefinitions">
@@ -917,7 +917,7 @@
 
 		<var name="key_kfFormName" value="${kfFormName}" />
 
-		<execute function="AssertElementNotPresent" locator1="KaleoFormsAdminEditProcessForm#FORM_TABLE_NAME_LINK" value1="${kfFormName}" />
+		<execute function="AssertElementNotPresent" locator1="KaleoFormsAdminEditProcessForm#FORM_TABLE_NAME_LINK" />
 	</command>
 
 	<command name="viewProcessNoRecords">
