@@ -167,20 +167,6 @@
 		<execute selenium="assertLiferayErrors" />
 	</command>
 
-	<command name="partialTextClickAt">
-		<execute function="WaitForSPARefresh" />
-
-		<execute function="AssertTextEquals#assertPartialText" />
-
-		<execute selenium="mouseOver" />
-
-		<execute selenium="clickAt" />
-
-		<execute selenium="assertJavaScriptErrors" />
-
-		<execute selenium="assertLiferayErrors" />
-	</command>
-
 	<command name="pauseClickAt">
 		<execute function="WaitForSPARefresh" />
 
