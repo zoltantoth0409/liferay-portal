@@ -1534,10 +1534,10 @@
 		</execute>
 
 		<execute macro="User#addCP">
-			<var method="TestPropsUtil#get('email.address.2')" name="userEmailAddress" />
-			<var name="userFirstName" value="userfn1" />
-			<var name="userLastName" value="userln1" />
-			<var name="userScreenName" value="usersn1" />
+			<var name="userEmailAddress" value="userea@liferay.com" />
+			<var name="userFirstName" value="userfn" />
+			<var name="userLastName" value="userln" />
+			<var name="userScreenName" value="usersn" />
 		</execute>
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -1548,7 +1548,7 @@
 
 		<execute macro="Role#assignRegRoleCP">
 			<var name="roleName" value="Administrator" />
-			<var name="userScreenName" value="usersn1" />
+			<var name="userScreenName" value="usersn" />
 		</execute>
 
 		<execute macro="Navigator#gotoPage">
@@ -1568,7 +1568,7 @@
 		<execute macro="BlogsEntry#flagPG">
 			<var name="flagReason" value="Spam" />
 			<var name="siteName" value="${siteName}" />
-			<var method="TestPropsUtil#get('email.address.2')" name="userEmailAddress" />
+			<var name="userEmailAddress" value="userea@liferay.com" />
 		</execute>
 
 		<execute macro="MockMock#viewMail">
