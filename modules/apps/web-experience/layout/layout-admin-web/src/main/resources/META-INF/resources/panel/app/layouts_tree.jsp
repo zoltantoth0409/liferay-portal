@@ -305,6 +305,7 @@ LayoutsTreeDisplayContext layoutsTreeDisplayContext = new LayoutsTreeDisplayCont
 		portletURLs="<%= layoutsTreeDisplayContext.getPortletURLs() %>"
 		privateLayout="<%= layoutsTreeDisplayContext.isPrivateLayout() %>"
 		rootNodeName="<%= StringPool.BLANK %>"
+		scriptPosition="auto"
 		selPlid="<%= layoutsTreeDisplayContext.getCurSelPlid() %>"
 		treeId="layoutsTree"
 	/>
