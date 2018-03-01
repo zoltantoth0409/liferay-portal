@@ -34,6 +34,11 @@
 	<td></td>
 </tr>
 <tr>
+	<td>DDM_DATA_PROVIDER</td>
+	<td>//iframe[contains(@id,'ddmDataProvider_iframe_')]</td>
+	<td></td>
+</tr>
+<tr>
 	<td>DIALOG</td>
 	<td>//iframe[contains(@class,'dialog-iframe-node')]</td>
 	<td></td>
