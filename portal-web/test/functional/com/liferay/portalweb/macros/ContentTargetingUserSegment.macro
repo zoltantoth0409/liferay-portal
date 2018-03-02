@@ -296,7 +296,15 @@
 			<var name="userSegmentRule" value="User Group Member" />
 		</execute>
 
-		<execute function="Select" locator1="EditUserSegment#USER_SEGMENT_RULE_USER_ATTRIBUTES_USERGROUP_MEMBER_SELECT" value1="${userGroupName}" />
+		<execute function="Click" locator1="EditUserSegment#USER_SEGMENT_RULE_USER_ATTRIBUTES_USERGROUP_MEMBER_SELECT_BUTTON" />
+
+		<execute function="SelectFrame" locator1="EditUserSegment#USER_SEGMENT_RULE_USER_ATTRIBUTES_USERGROUP_MEMBER_SELECT_IFRAME" />
+
+		<var name="key_userGroupName" value="${userGroupName}" />
+
+		<execute function="Click" locator1="EditUserSegment#USER_SEGMENT_RULE_USER_ATTRIBUTES_USERGROUP_MEMBER_CHOOSE_BUTTON" />
+
+		<execute function="SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="addUserAttributesUserSignedInRuleCP">
