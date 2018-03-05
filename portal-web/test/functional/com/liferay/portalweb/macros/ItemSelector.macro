@@ -27,6 +27,14 @@
 		<execute function="Click" locator1="AlloyEditor#CONTENT_ADD_MENUBAR_IMAGE" />
 	</command>
 
+	<command name="gotoItemSelectorViaLinkBrowse">
+		<execute function="SelectFieldText" locator1="AlloyEditor#CONTENT_FIELD" />
+
+		<execute function="Click" locator1="AlloyEditor#TEXT_FORMATTING_LINK" />
+
+		<execute function="Click" locator1="AlloyEditor#TEXT_FORMATTING_LINK_BROWSE_BUTTON" />
+	</command>
+
 	<command name="gotoItemSelectorViaSelectButton">
 		<execute function="Click" locator1="Button#SELECT" />
 	</command>
