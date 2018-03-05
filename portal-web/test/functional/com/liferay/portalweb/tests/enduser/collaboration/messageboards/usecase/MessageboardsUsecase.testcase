@@ -1378,7 +1378,9 @@
 			<var name="gmailReplyMessage" value="MB Thread Message Subject G7MB1 Reply" />
 		</execute>
 
-		<execute function="Open" locator1="${portalURL}" />
+		<execute macro="Navigator#openSpecificURL">
+			<var name="url" value="${portalURL}" />
+		</execute>
 
 		<execute function="Pause" locator1="60000" />
 
