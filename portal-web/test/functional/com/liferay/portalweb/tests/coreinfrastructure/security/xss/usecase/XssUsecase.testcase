@@ -173,6 +173,7 @@
 		<execute macro="Navigator#openSpecificURL">
 			<var name="url" value="${portalURL}/api/jsonws?contextPath=%22%3E%3Cimg%20src=x%20onerror=alert%28/contextPath/%29%3E" />
 		</execute>
+
 		<execute function="AssertAlertNotPresent" />
 	</command>
 
@@ -389,11 +390,13 @@
 		<execute macro="Navigator#openSpecificURL">
 			<var name="url" value="${maliciousURL1}" />
 		</execute>
+
 		<execute function="AssertAlertNotPresent" />
 
 		<execute macro="Navigator#openSpecificURL">
 			<var name="url" value="${maliciousURL2}" />
 		</execute>
+
 		<execute function="AssertAlertNotPresent" />
 
 		<execute macro="Page#gotoMyAccount">
@@ -403,16 +406,19 @@
 		<execute macro="Navigator#openSpecificURL">
 			<var name="url" value="${maliciousURL3}" />
 		</execute>
+
 		<execute function="AssertAlertNotPresent" />
 
 		<execute macro="Navigator#openSpecificURL">
 			<var name="url" value="${maliciousURL4}" />
 		</execute>
+
 		<execute function="AssertAlertNotPresent" />
 
 		<execute macro="Navigator#openSpecificURL">
 			<var name="url" value="${maliciousURL5}" />
 		</execute>
+
 		<execute function="AssertAlertNotPresent" />
 	</command>
 
