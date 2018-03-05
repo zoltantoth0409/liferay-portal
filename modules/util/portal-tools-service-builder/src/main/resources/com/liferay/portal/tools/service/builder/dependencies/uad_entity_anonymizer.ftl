@@ -80,13 +80,13 @@ public class ${entity.name}UADEntityAnonymizer extends BaseUADEntityAnonymizer {
 	}
 
 	@Override
-	public List<String> getUADEntityNonanonymizableFieldNames() {
-		return Arrays.asList(<#list entity.UADNonanonymizableEntityColumns as uadNonanonymizableEntityColumn>"${uadNonanonymizableEntityColumn.name}"<#sep>, </#sep></#list>);
+	protected UADEntityAggregator getUADEntityAggregator() {
+		return _uadEntityAggregator;
 	}
 
 	@Override
-	protected UADEntityAggregator getUADEntityAggregator() {
-		return _uadEntityAggregator;
+	public List<String> getUADEntityNonanonymizableFieldNames() {
+		return Arrays.asList(<#list entity.UADNonanonymizableEntityColumns as uadNonanonymizableEntityColumn>"${uadNonanonymizableEntityColumn.name}"<#sep>, </#sep></#list>);
 	}
 
 	private void _autoAnonymize(${entity.name} ${entity.varName}, long userId) throws PortalException {
