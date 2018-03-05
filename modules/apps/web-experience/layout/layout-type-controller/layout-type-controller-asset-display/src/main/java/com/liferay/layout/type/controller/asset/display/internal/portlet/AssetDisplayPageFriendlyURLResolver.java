@@ -88,16 +88,16 @@ public class AssetDisplayPageFriendlyURLResolver
 	private Layout _createAssetDisplayLayout(long groupId)
 		throws PortalException {
 
+		Group group = _groupLocalService.fetchGroup(groupId);
+
+		long defaultUserId = _userLocalService.getDefaultUserId(
+			group.getCompanyId());
+
 		ServiceContext serviceContext =
 			ServiceContextThreadLocal.getServiceContext();
 
 		serviceContext.setAttribute(
 			"layout.instanceable.allowed", Boolean.TRUE);
-
-		Group group = _groupLocalService.fetchGroup(groupId);
-
-		long defaultUserId = _userLocalService.getDefaultUserId(
-			group.getCompanyId());
 
 		return _layoutLocalService.addLayout(
 			defaultUserId, groupId, false, 0, "Asset Display Page", null, null,
