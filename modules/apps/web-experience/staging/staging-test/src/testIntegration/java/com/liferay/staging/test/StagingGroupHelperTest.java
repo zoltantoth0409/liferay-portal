@@ -425,59 +425,59 @@ public class StagingGroupHelperTest {
 	public void testIsStagedPortlet() {
 		Assert.assertFalse(
 			_stagingGroupHelper.isStagedPortlet(
-				_localStagingGroup, _BOOKMARKS_PORTLET_KEY));
+				_localStagingGroup, _PORTLET_ID_BOOKMARKS));
 		Assert.assertFalse(
 			_stagingGroupHelper.isStagedPortlet(
-				_localStagingScopeGroup, _BOOKMARKS_PORTLET_KEY));
+				_localStagingScopeGroup, _PORTLET_ID_BOOKMARKS));
 
 		Assert.assertFalse(
 			_stagingGroupHelper.isStagedPortlet(
-				_remoteStagingGroup, _BOOKMARKS_PORTLET_KEY));
+				_remoteStagingGroup, _PORTLET_ID_BOOKMARKS));
 		Assert.assertFalse(
 			_stagingGroupHelper.isStagedPortlet(
-				_remoteStagingScopeGroup, _BOOKMARKS_PORTLET_KEY));
-
-		Assert.assertTrue(
-			_stagingGroupHelper.isStagedPortlet(
-				_localLiveGroup, _BOOKMARKS_PORTLET_KEY));
-		Assert.assertTrue(
-			_stagingGroupHelper.isStagedPortlet(
-				_localLiveScopeGroup, _BOOKMARKS_PORTLET_KEY));
+				_remoteStagingScopeGroup, _PORTLET_ID_BOOKMARKS));
 
 		Assert.assertTrue(
 			_stagingGroupHelper.isStagedPortlet(
-				_remoteLiveGroup, _BOOKMARKS_PORTLET_KEY));
+				_localLiveGroup, _PORTLET_ID_BOOKMARKS));
 		Assert.assertTrue(
 			_stagingGroupHelper.isStagedPortlet(
-				_remoteLiveScopeGroup, _BOOKMARKS_PORTLET_KEY));
+				_localLiveScopeGroup, _PORTLET_ID_BOOKMARKS));
+
+		Assert.assertTrue(
+			_stagingGroupHelper.isStagedPortlet(
+				_remoteLiveGroup, _PORTLET_ID_BOOKMARKS));
+		Assert.assertTrue(
+			_stagingGroupHelper.isStagedPortlet(
+				_remoteLiveScopeGroup, _PORTLET_ID_BOOKMARKS));
 
 		Assert.assertFalse(
 			_stagingGroupHelper.isStagedPortlet(
-				_localStagingGroup, _BLOGS_PORTLET_KEY));
+				_localStagingGroup, _PORTLET_ID_BLOGS));
 		Assert.assertFalse(
 			_stagingGroupHelper.isStagedPortlet(
-				_localStagingScopeGroup, _BLOGS_PORTLET_KEY));
+				_localStagingScopeGroup, _PORTLET_ID_BLOGS));
 
 		Assert.assertFalse(
 			_stagingGroupHelper.isStagedPortlet(
-				_remoteStagingGroup, _BLOGS_PORTLET_KEY));
+				_remoteStagingGroup, _PORTLET_ID_BLOGS));
 		Assert.assertFalse(
 			_stagingGroupHelper.isStagedPortlet(
-				_remoteStagingScopeGroup, _BLOGS_PORTLET_KEY));
+				_remoteStagingScopeGroup, _PORTLET_ID_BLOGS));
 
 		Assert.assertFalse(
 			_stagingGroupHelper.isStagedPortlet(
-				_localLiveGroup, _BLOGS_PORTLET_KEY));
+				_localLiveGroup, _PORTLET_ID_BLOGS));
 		Assert.assertFalse(
 			_stagingGroupHelper.isStagedPortlet(
-				_localLiveScopeGroup, _BLOGS_PORTLET_KEY));
+				_localLiveScopeGroup, _PORTLET_ID_BLOGS));
 
 		Assert.assertFalse(
 			_stagingGroupHelper.isStagedPortlet(
-				_remoteLiveGroup, _BLOGS_PORTLET_KEY));
+				_remoteLiveGroup, _PORTLET_ID_BLOGS));
 		Assert.assertFalse(
 			_stagingGroupHelper.isStagedPortlet(
-				_remoteLiveScopeGroup, _BLOGS_PORTLET_KEY));
+				_remoteLiveScopeGroup, _PORTLET_ID_BLOGS));
 	}
 
 	@Test
@@ -534,59 +534,59 @@ public class StagingGroupHelperTest {
 	public void testIsStagingPortlet() {
 		Assert.assertTrue(
 			_stagingGroupHelper.isStagingPortlet(
-				_localStagingGroup, _BOOKMARKS_PORTLET_KEY));
+				_localStagingGroup, _PORTLET_ID_BOOKMARKS));
 		Assert.assertTrue(
 			_stagingGroupHelper.isStagingPortlet(
-				_localStagingScopeGroup, _BOOKMARKS_PORTLET_KEY));
+				_localStagingScopeGroup, _PORTLET_ID_BOOKMARKS));
 
 		Assert.assertTrue(
 			_stagingGroupHelper.isStagingPortlet(
-				_remoteStagingGroup, _BOOKMARKS_PORTLET_KEY));
+				_remoteStagingGroup, _PORTLET_ID_BOOKMARKS));
 		Assert.assertTrue(
 			_stagingGroupHelper.isStagingPortlet(
-				_remoteStagingScopeGroup, _BOOKMARKS_PORTLET_KEY));
+				_remoteStagingScopeGroup, _PORTLET_ID_BOOKMARKS));
 
 		Assert.assertFalse(
 			_stagingGroupHelper.isStagingPortlet(
-				_localLiveGroup, _BOOKMARKS_PORTLET_KEY));
+				_localLiveGroup, _PORTLET_ID_BOOKMARKS));
 		Assert.assertFalse(
 			_stagingGroupHelper.isStagingPortlet(
-				_localLiveScopeGroup, _BOOKMARKS_PORTLET_KEY));
+				_localLiveScopeGroup, _PORTLET_ID_BOOKMARKS));
 
 		Assert.assertFalse(
 			_stagingGroupHelper.isStagingPortlet(
-				_remoteLiveGroup, _BOOKMARKS_PORTLET_KEY));
+				_remoteLiveGroup, _PORTLET_ID_BOOKMARKS));
 		Assert.assertFalse(
 			_stagingGroupHelper.isStagingPortlet(
-				_remoteLiveScopeGroup, _BOOKMARKS_PORTLET_KEY));
+				_remoteLiveScopeGroup, _PORTLET_ID_BOOKMARKS));
 
 		Assert.assertFalse(
 			_stagingGroupHelper.isStagingPortlet(
-				_localStagingGroup, _BLOGS_PORTLET_KEY));
+				_localStagingGroup, _PORTLET_ID_BLOGS));
 		Assert.assertFalse(
 			_stagingGroupHelper.isStagingPortlet(
-				_localStagingScopeGroup, _BLOGS_PORTLET_KEY));
+				_localStagingScopeGroup, _PORTLET_ID_BLOGS));
 
 		Assert.assertFalse(
 			_stagingGroupHelper.isStagingPortlet(
-				_remoteStagingGroup, _BLOGS_PORTLET_KEY));
+				_remoteStagingGroup, _PORTLET_ID_BLOGS));
 		Assert.assertFalse(
 			_stagingGroupHelper.isStagingPortlet(
-				_remoteStagingScopeGroup, _BLOGS_PORTLET_KEY));
+				_remoteStagingScopeGroup, _PORTLET_ID_BLOGS));
 
 		Assert.assertFalse(
 			_stagingGroupHelper.isStagingPortlet(
-				_localLiveGroup, _BLOGS_PORTLET_KEY));
+				_localLiveGroup, _PORTLET_ID_BLOGS));
 		Assert.assertFalse(
 			_stagingGroupHelper.isStagingPortlet(
-				_localLiveScopeGroup, _BLOGS_PORTLET_KEY));
+				_localLiveScopeGroup, _PORTLET_ID_BLOGS));
 
 		Assert.assertFalse(
 			_stagingGroupHelper.isStagingPortlet(
-				_remoteLiveGroup, _BLOGS_PORTLET_KEY));
+				_remoteLiveGroup, _PORTLET_ID_BLOGS));
 		Assert.assertFalse(
 			_stagingGroupHelper.isStagingPortlet(
-				_remoteLiveScopeGroup, _BLOGS_PORTLET_KEY));
+				_remoteLiveScopeGroup, _PORTLET_ID_BLOGS));
 	}
 
 	private void _addLocalStagingGroups() throws Exception {
@@ -595,9 +595,9 @@ public class StagingGroupHelperTest {
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setAttribute(
-			"staged--staged-portlet_" + _BLOGS_PORTLET_KEY + "--", "false");
+			"staged--staged-portlet_" + _PORTLET_ID_BLOGS + "--", "false");
 		serviceContext.setAttribute(
-			"staged--staged-portlet_" + _BOOKMARKS_PORTLET_KEY + "--", "true");
+			"staged--staged-portlet_" + _PORTLET_ID_BOOKMARKS + "--", "true");
 
 		StagingLocalServiceUtil.enableLocalStaging(
 			TestPropsValues.getUserId(), _localLiveGroup, false, false,
@@ -627,9 +627,9 @@ public class StagingGroupHelperTest {
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setAttribute(
-			"staged--staged-portlet_" + _BLOGS_PORTLET_KEY + "--", "false");
+			"staged--staged-portlet_" + _PORTLET_ID_BLOGS + "--", "false");
 		serviceContext.setAttribute(
-			"staged--staged-portlet_" + _BOOKMARKS_PORTLET_KEY + "--", "true");
+			"staged--staged-portlet_" + _PORTLET_ID_BOOKMARKS + "--", "true");
 
 		StagingLocalServiceUtil.enableRemoteStaging(
 			TestPropsValues.getUserId(), _remoteStagingGroup, false, false,
@@ -673,10 +673,10 @@ public class StagingGroupHelperTest {
 		field.set(null, value);
 	}
 
-	private static final String _BLOGS_PORTLET_KEY =
+	private static final String _PORTLET_ID_BLOGS =
 		"com_liferay_blogs_web_portlet_BlogsPortlet";
 
-	private static final String _BOOKMARKS_PORTLET_KEY =
+	private static final String _PORTLET_ID_BOOKMARKS =
 		"com_liferay_bookmarks_web_portlet_BookmarksPortlet";
 
 	private Group _localLiveGroup;
