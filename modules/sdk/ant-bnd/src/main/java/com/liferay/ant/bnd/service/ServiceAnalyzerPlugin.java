@@ -67,8 +67,8 @@ public class ServiceAnalyzerPlugin implements AnalyzerPlugin {
 
 		processProvideCapability(analyzer);
 
-		// Use the api jar if available, otherwise fallback to spring extender
-		// itself.
+		// Use the API JAR if available, otherwise fallback to Spring Extender
+		// itself
 
 		Jar jar = getClasspathJar(
 			analyzer, "com.liferay.portal.spring.extender.api");
