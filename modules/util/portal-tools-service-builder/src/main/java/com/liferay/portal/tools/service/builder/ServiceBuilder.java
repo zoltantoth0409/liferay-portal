@@ -3871,10 +3871,12 @@ public class ServiceBuilder {
 
 		// Write file
 
-		File bndFile = new File(
+		File file = new File(
 			StringBundler.concat(_uadDirName, "/../../../bnd.bnd"));
 
-		ToolsUtil.writeFileRaw(bndFile, content, _modifiedFileNames);
+		if (!file.exists()) {
+			ToolsUtil.writeFileRaw(file, content, _modifiedFileNames);
+		}
 	}
 
 	private void _createUADConstants(List<Entity> entities) throws Exception {
@@ -4124,11 +4126,13 @@ public class ServiceBuilder {
 
 		// Write file
 
-		File bndFile = new File(
+		File file = new File(
 			StringBundler.concat(
 				_uadTestIntegrationDirName, "/../../../bnd.bnd"));
 
-		ToolsUtil.writeFileRaw(bndFile, content, _modifiedFileNames);
+		if (!file.exists()) {
+			ToolsUtil.writeFileRaw(file, content, _modifiedFileNames);
+		}
 	}
 
 	private void _deleteFile(String fileName) {
