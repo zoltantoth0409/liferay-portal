@@ -24,9 +24,15 @@
 
 		<var name="key_menuItem" value="${menuItem}" />
 
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="${menuItem}">
-			<var name="key_menuItem" value="${menuItem}" />
-		</execute>
+		<if>
+			<equals arg1="${menuItem}" arg2="Delete" />
+			<then>
+				<execute function="AssertClickNoError" locator1="MenuItem#ANY_MENU_ITEM" value1="${menuItem}" />
+			</then>
+			<else>
+				<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="${menuItem}" />
+			</else>
+		</if>
 	</command>
 
 	<command name="selectEntry">
