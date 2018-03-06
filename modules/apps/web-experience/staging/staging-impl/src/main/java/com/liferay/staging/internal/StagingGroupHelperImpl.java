@@ -129,7 +129,7 @@ public class StagingGroupHelperImpl implements StagingGroupHelper {
 		catch (PortalException pe) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Cannot retrieve remote live group: " + pe.getMessage());
+					"Unable to get remote live group: " + pe.getMessage());
 			}
 
 			return null;
