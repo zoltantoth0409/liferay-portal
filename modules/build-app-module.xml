@@ -352,6 +352,12 @@
 			</filterchain>
 		</loadfile>
 
+		<property file="../subsystem.bnd" />
+
+		<condition property="artifact.location.dest" value="${osgi.dir}/marketplace/${Liferay-Releng-Subsystem-Title} Impl/${artifact.name}-${artifact.version}.war">
+			<isset property="Liferay-Releng-Subsystem-Title" />
+		</condition>
+
 		<property name="artifact.location.dest" value="${osgi.dir}/marketplace/${artifact.name}-${artifact.version}.war" />
 
 		<condition property="artifact.location.src" value="${osgi.dir}/war/${artifact.name}.war">
