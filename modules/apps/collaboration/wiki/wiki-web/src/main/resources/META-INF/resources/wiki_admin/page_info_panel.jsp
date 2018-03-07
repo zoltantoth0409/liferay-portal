@@ -208,16 +208,12 @@ if (wikiPageInfoPanelDisplayContext.isSinglePageSelection()) {
 				List<WikiPage> pages = WikiPageLocalServiceUtil.getPages(wikiPage.getNodeId(), wikiPage.getTitle(), QueryUtil.ALL_POS, QueryUtil.ALL_POS, new PageVersionComparator());
 
 				for (WikiPage curPage : pages) {
-						Date curDate = new Date();
-						Date modifiedDate = curPage.getStatusDate();
-
-						Date lastModified = new Date(curDate.getTime() - (curDate.getTime() - modifiedDate.getTime()));
 				%>
 
 					<div>
 						<ul class="sidebar-header-actions">
 							<li>
-									<liferay-ui:message arguments='<%= new Object[] {HtmlUtil.escape(Validator.isNotNull(curPage.getUserName()) ? curPage.getUserName() : "Liferay"), dateFormatDateTime.format(lastModified)} %>' key="by-x-on-x" />
+									<liferay-ui:message arguments='<%= new Object[] {HtmlUtil.escape(Validator.isNotNull(curPage.getUserName()) ? curPage.getUserName() : "Liferay"), dateFormatDateTime.format(curPage.getStatusDate())} %>' key="by-x-on-x" />
 
 								<%
 								request.setAttribute("page_info_panel.jsp-wikiPage", curPage);
