@@ -13,6 +13,7 @@ AUI.add(
 		var isBoolean = Lang.isBoolean;
 		var isFunction = Lang.isFunction;
 		var isObject = Lang.isObject;
+		var isString = Lang.isString;
 		var isValue = Lang.isValue;
 
 		var toInitialCap = A.cached(
@@ -1303,6 +1304,11 @@ AUI.add(
 					calendarId: {
 						setter: toInt,
 						value: 0
+					},
+
+					dateFormat: {
+						validator: isString,
+						value: Liferay.Language.get('a-b-d')
 					},
 
 					editCalendarBookingURL: {
