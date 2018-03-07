@@ -57,12 +57,19 @@
 	</target>
 
 	<target depends="dist-module-artifacts-lpkg" name="build-app-lpkg" unless="module.dirs.null">
-		<antcall target="write-lpkg-marketplace-properties">
-			<param name="lpkg.dir" value="${osgi.dir}/marketplace" />
-			<param name="title" value="${Liferay-Releng-App-Title}" />
-		</antcall>
+		<if>
+			<resourcecount count="0" when="greater">
+				<fileset dir="${osgi.dir}/marketplace" includes="*.jar,*.war" />
+			</resourcecount>
+			<then>
+				<antcall target="write-lpkg-marketplace-properties">
+					<param name="lpkg.dir" value="${osgi.dir}/marketplace" />
+					<param name="title" value="${Liferay-Releng-App-Title}" />
+				</antcall>
 
-		<zip basedir="${osgi.dir}/marketplace" destfile="${osgi.dir}/marketplace/${Liferay-Releng-App-Title}.lpkg" includes="*.jar,*.war,liferay-marketplace.properties" />
+				<zip basedir="${osgi.dir}/marketplace" destfile="${osgi.dir}/marketplace/${Liferay-Releng-App-Title}.lpkg" includes="*.jar,*.war,liferay-marketplace.properties" />
+			</then>
+		</if>
 
 		<for param="lpkg.dir" >
 			<path>
