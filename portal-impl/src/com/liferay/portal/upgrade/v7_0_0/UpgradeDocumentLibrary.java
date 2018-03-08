@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.LoggingTimer;
 import com.liferay.portal.kernel.util.PortalUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -511,13 +512,17 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 									0, availableLength);
 						}
 
-						title =
-							titleWithoutExtension + StringPool.UNDERLINE +
-								count;
+						StringBundler sb = new StringBundler(4);
+
+						sb.append(titleWithoutExtension);
+						sb.append(StringPool.UNDERLINE);
+						sb.append(count);
 
 						if (Validator.isNotNull(titleExtension)) {
-							title = title.concat(titleExtension);
+							sb.append(titleExtension);
 						}
+
+						title = sb.toString();
 
 						uniqueFileName = DLUtil.getSanitizedFileName(
 							title, extension);
