@@ -154,16 +154,12 @@ AUI.add(
 
 						managementBarContainer.toggleClass(STR_SECONDARY_BAR_OPEN, show);
 
-						var searchField = document.getElementsByClassName('basic-search')[0];
+						var basicSearch = A.one('.basic-search');
 
-						if (searchField) {
-							if (show) {
-								searchField.style.pointerEvents = "none";
-								searchField.style.opacity = '0.3';
-							}
-							else {
-								searchField.removeAttribute("style");
-							}
+						if (basicSearch) {
+							var inputs = basicSearch.all('button[type=submit], input.search-query');
+
+							Liferay.Util.toggleDisabled(inputs, show);
 						}
 					},
 
