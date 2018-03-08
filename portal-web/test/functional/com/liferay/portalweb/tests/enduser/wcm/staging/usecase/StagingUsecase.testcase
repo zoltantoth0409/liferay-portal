@@ -1269,7 +1269,7 @@
 		</execute>
 	</command>
 
-	<command name="ViewBlogsEntryWithImageViaItemSelector" priority="4">
+	<command name="ViewBlogsEntryWithImageViaItemSelector" priority="5">
 		<description message="This is a use case for LPS-46117." />
 
 		<execute macro="Navigator#gotoStagedSitePage">
