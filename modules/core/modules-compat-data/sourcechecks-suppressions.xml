@@ -1,5 +1,0 @@
-<?xml version="1.0"?>
-
-<suppressions>
-	<suppress checks="BNDExportsCheck" files="modules/core/modules-compat-data/bnd\.bnd" />
-</suppressions>
