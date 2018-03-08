@@ -273,8 +273,6 @@
 	</command>
 
 	<command name="ViewDefaultLandingPageAsGuestUser" priority="5">
-		<property name="portal.acceptance" value="true" />
-
 		<execute macro="SignOut#signOut" />
 
 		<execute function="AssertAccessible" />
