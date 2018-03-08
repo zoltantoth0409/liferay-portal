@@ -1768,7 +1768,7 @@
 		</execute>
 
 		<execute macro="User#logoutAndLoginPG">
-			<var name="userEmailAddress" value="userea@liferay.com" />
+			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
 		</execute>
 
