@@ -243,7 +243,7 @@
 			var placeholder = '#<portlet:namespace /><%= id + HtmlUtil.getAUICompatibleId(fieldSuffix) %>';
 
 			<c:if test='<%= type.equals("editor") %>'>
-					placeholder = placeholder + '<%= HtmlUtil.escapeJS(editorName) %>';
+				placeholder = placeholder + '<%= HtmlUtil.escapeJS(editorName) %>';
 			</c:if>
 
 			Liferay.InputLocalized.register(
