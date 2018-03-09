@@ -143,9 +143,7 @@
 			<var name="pageName" value="Test" />
 		</execute>
 
-		<execute macro="Navigator#openSpecificURL">
-			<var name="url" value="${portalURL}/html/common/forward_jsp.jsp?FORWARD_URL=${portalURL}/web/guest/test" />
-		</execute>
+		<execute function="Open" locator1="${portalURL}/html/common/forward_jsp.jsp?FORWARD_URL=${portalURL}/web/guest/test" />
 
 		<var name="key_pageName" value="Test" />
 
