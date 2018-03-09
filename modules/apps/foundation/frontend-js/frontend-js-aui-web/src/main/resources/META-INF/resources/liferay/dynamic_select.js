@@ -113,7 +113,7 @@ AUI.add(
 				var selectOptions = [];
 
 				if (selectNullable) {
-					selectOptions.push('<option value="0"></option>');
+					selectOptions.push('<option selected value="0"></option>');
 				}
 
 				list.forEach(
