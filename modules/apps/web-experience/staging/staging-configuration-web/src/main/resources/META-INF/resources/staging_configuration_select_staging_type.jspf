@@ -35,6 +35,7 @@
 				<span class="staging-configuration-radio-label">
 					<span class="staging-configuration-radio-text">
 						<%= LanguageUtil.get(request, "local-live") %>:
+
 						<span class="staging-configuration-radio-help-message">
 							<%= LanguageUtil.get(request, "staging-type-local") %>
 						</span>
@@ -50,6 +51,7 @@
 				<span class="staging-configuration-radio-label">
 					<span class="staging-configuration-radio-text">
 						<%= LanguageUtil.get(request, "remote-live") %>:
+
 						<span class="staging-configuration-radio-help-message">
 							<%= LanguageUtil.get(request, "staging-type-remote") %>
 						</span>
