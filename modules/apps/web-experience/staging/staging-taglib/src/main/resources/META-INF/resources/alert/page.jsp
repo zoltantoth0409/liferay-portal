@@ -66,7 +66,9 @@
 <div class="alert alert-<%= type %><%= dismissible ? " alert-dismissible" : "" %><%= fluid ? " alert-fluid" : "" %>">
 	<div class="container">
 		<%= icon %>
+
 		<span><%= bodyContentString %></span>
+
 		<%= close %>
 	</div>
 </div>
