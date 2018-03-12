@@ -60,9 +60,9 @@ public class AlertTag extends IncludeTag implements BodyTag {
 	protected void cleanUp() {
 		super.cleanUp();
 
-		_type = AlertType.INFO.getAlertCode();
 		_dismissible = false;
 		_fluid = false;
+		_type = AlertType.INFO.getAlertCode();
 	}
 
 	@Override
