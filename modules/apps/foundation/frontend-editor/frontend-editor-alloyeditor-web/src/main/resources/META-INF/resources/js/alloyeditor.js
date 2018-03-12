@@ -286,6 +286,8 @@ AUI.add(
 
 						var contents = instance.get('contents');
 
+						var editorNamespace = instance.get('namespace');
+
 						if (contents) {
 							instance.getNativeEditor().setData(contents);
 						}
@@ -298,7 +300,9 @@ AUI.add(
 
 						instance.instanceReady = true;
 
-						window[instance.get('namespace')].instanceReady = true;
+						window[editorNamespace].instanceReady = true;
+
+						Liferay.component(editorNamespace, window[editorNamespace]);
 
 						// LPS-73775
 
