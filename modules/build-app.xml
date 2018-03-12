@@ -71,7 +71,7 @@
 			</then>
 		</if>
 
-		<for param="lpkg.dir" >
+		<for param="lpkg.dir">
 			<path>
 				<dirset dir="${osgi.dir}/marketplace">
 					<include name="*/**" />
@@ -300,7 +300,7 @@
 		<set-artifact-versions-previous-release app.version.previous.release="${app.version.previous.release}" />
 	</target>
 
-	<target name="get-lpkg-artifacts-list" >
+	<target name="get-lpkg-artifacts-list">
 		<pathconvert pathsep="," property="lpkg.artifacts.list">
 			<chainedmapper>
 				<flattenmapper />
