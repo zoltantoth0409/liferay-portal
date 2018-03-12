@@ -150,6 +150,12 @@ public class LayoutExportController implements ExportController {
 			portletDataContext = getPortletDataContext(
 				exportImportConfiguration);
 
+			if (ArrayUtil.contains(layoutIds, 0)) {
+				layoutIds = _exportImportHelper.getAllLayoutIds(
+					portletDataContext.getGroupId(),
+					portletDataContext.isPrivateLayout());
+			}
+
 			_exportImportLifecycleManager.fireExportImportLifecycleEvent(
 				EVENT_LAYOUT_EXPORT_STARTED, getProcessFlag(),
 				portletDataContext.getExportImportProcessId(),
