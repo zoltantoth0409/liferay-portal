@@ -18,6 +18,13 @@
 
 <liferay-util:buffer var="icon">
 	<c:choose>
+		<c:when test="<%= type == AlertType.ERROR.getAlertCode() %>">
+			<svg aria-hidden="true" class="lexicon-icon lexicon-icon-exclamation-full">
+				<use xlink:href="<%= themeDisplayPath %>/lexicon/icons.svg#exclamation-full" />
+			</svg>
+
+			<strong class="lead"><%= LanguageUtil.get(request, "alert-helper-error") %>: </strong>
+		</c:when>
 		<c:when test="<%= type == AlertType.INFO.getAlertCode() %>">
 			<svg aria-hidden="true" class="lexicon-icon lexicon-icon-info-circle">
 				<use xlink:href="<%= themeDisplayPath %>/lexicon/icons.svg#info-circle" />
@@ -25,20 +32,13 @@
 
 			<strong class="lead"><%= LanguageUtil.get(request, "alert-helper-info") %>: </strong>
 		</c:when>
-		<c:when test="<%= type == AlertType.WARNING.getAlertCode() %>">
-			<i class="icon-warning-sign"></i>
-			<strong class="lead"><%= LanguageUtil.get(request, "alert-helper-warning") %>: </strong>
-		</c:when>
 		<c:when test="<%= type == AlertType.SUCCESS.getAlertCode() %>">
 			<i class="icon-ok-sign"></i>
 			<strong class="lead"><%= LanguageUtil.get(request, "alert-helper-success") %>: </strong>
 		</c:when>
-		<c:when test="<%= type == AlertType.ERROR.getAlertCode() %>">
-			<svg aria-hidden="true" class="lexicon-icon lexicon-icon-exclamation-full">
-				<use xlink:href="<%= themeDisplayPath %>/lexicon/icons.svg#exclamation-full" />
-			</svg>
-
-			<strong class="lead"><%= LanguageUtil.get(request, "alert-helper-error") %>: </strong>
+		<c:when test="<%= type == AlertType.WARNING.getAlertCode() %>">
+			<i class="icon-warning-sign"></i>
+			<strong class="lead"><%= LanguageUtil.get(request, "alert-helper-warning") %>: </strong>
 		</c:when>
 	</c:choose>
 </liferay-util:buffer>
