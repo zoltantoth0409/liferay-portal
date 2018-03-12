@@ -57,7 +57,7 @@ public class DefaultKeywordQueryContributor implements KeywordQueryContributor {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					DefaultKeywordQueryContributor.class.getName() +
-						" is disabled for: " + entryClassName);
+						" is disabled for " + entryClassName);
 			}
 
 			return;

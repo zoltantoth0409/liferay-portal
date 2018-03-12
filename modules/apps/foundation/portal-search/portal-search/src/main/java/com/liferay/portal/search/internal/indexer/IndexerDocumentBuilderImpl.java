@@ -83,7 +83,7 @@ public class IndexerDocumentBuilderImpl implements IndexerDocumentBuilder {
 				catch (Exception e) {
 					if (_log.isWarnEnabled()) {
 						_log.warn(
-							"Error post processing document: " + document, e);
+							"Unable to post process document " + document, e);
 					}
 				}
 			});

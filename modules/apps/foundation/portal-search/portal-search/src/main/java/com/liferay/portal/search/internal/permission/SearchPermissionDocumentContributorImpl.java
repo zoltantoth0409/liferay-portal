@@ -141,8 +141,8 @@ public class SearchPermissionDocumentContributorImpl
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					StringBundler.concat(
-						"Error retrieving permission fields for className = ",
-						className, ", classPK = ", String.valueOf(classPK)),
+						"Unable to get permission fields for class name ",
+						className, " and class PK ", String.valueOf(classPK)),
 					e);
 			}
 		}

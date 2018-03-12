@@ -157,7 +157,7 @@ public class ExpandoKeywordQueryContributor implements KeywordQueryContributor {
 		}
 		catch (ParseException pe) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("Error parsing field: " + fieldName, pe);
+				_log.warn("Unable to parse field " + fieldName, pe);
 			}
 		}
 	}

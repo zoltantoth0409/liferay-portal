@@ -250,7 +250,7 @@ public class IndexerWriterImpl<T extends BaseModel<?>>
 		}
 		else if (indexerWriterMode == IndexerWriterMode.SKIP) {
 			if (_log.isDebugEnabled()) {
-				_log.debug("Skipping model: " + baseModel);
+				_log.debug("Skipping model " + baseModel);
 			}
 		}
 

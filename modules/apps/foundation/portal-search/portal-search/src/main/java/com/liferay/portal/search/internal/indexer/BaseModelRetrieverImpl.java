@@ -48,7 +48,7 @@ public class BaseModelRetrieverImpl implements BaseModelRetriever {
 
 		if (!(persistModel instanceof BaseModel)) {
 			if (_log.isWarnEnabled()) {
-				_log.warn(persistModel + " is not a BaseModel");
+				_log.warn(persistModel + " is not a base model");
 			}
 
 			return Optional.empty();
@@ -86,7 +86,8 @@ public class BaseModelRetrieverImpl implements BaseModelRetriever {
 
 		if (persistedModelLocalService == null) {
 			throw new SystemException(
-				"No PersistedModelLocalService found for class " + className);
+				"No persisted model local service found for class " +
+					className);
 		}
 
 		return persistedModelLocalService;
