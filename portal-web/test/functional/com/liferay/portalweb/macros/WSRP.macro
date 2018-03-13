@@ -38,7 +38,7 @@
 	<command name="addProducerCP">
 		<execute function="AssertClick" locator1="NavTab#PRODUCERS" value1="Producers" />
 
-		<execute function="AssertClick" locator1="Button#ADD_PRODUCER" value1="Add Producer" />
+		<execute function="Click" locator1="Button#PLUS" />
 
 		<execute macro="PortletEntry#inputName">
 			<var name="name" value="${producerName}" />
