@@ -32,12 +32,12 @@ import org.json.JSONObject;
 public class PullRequest {
 
 	public PullRequest(String htmlURL) {
-		this(htmlURL, _DEFAULT_TEST_SUITE_NAME);
+		this(htmlURL, _TEST_SUITE_NAME_DEFAULT);
 	}
 
 	public PullRequest(String htmlURL, String testSuiteName) {
 		if ((testSuiteName == null) || testSuiteName.isEmpty()) {
-			testSuiteName = _DEFAULT_TEST_SUITE_NAME;
+			testSuiteName = _TEST_SUITE_NAME_DEFAULT;
 		}
 
 		_testSuiteName = testSuiteName;
@@ -115,7 +115,7 @@ public class PullRequest {
 
 		sb.append("ci:test");
 
-		if (!_testSuiteName.equals(_DEFAULT_TEST_SUITE_NAME)) {
+		if (!_testSuiteName.equals(_TEST_SUITE_NAME_DEFAULT)) {
 			sb.append(":");
 			sb.append(_testSuiteName);
 		}
@@ -183,7 +183,7 @@ public class PullRequest {
 			String testSuiteName = matcher.group("testSuiteName");
 
 			if (testSuiteName == null) {
-				testSuiteName = _DEFAULT_TEST_SUITE_NAME;
+				testSuiteName = _TEST_SUITE_NAME_DEFAULT;
 			}
 
 			if (!testSuiteName.equals(_testSuiteName)) {
@@ -230,7 +230,7 @@ public class PullRequest {
 		}
 	}
 
-	private static final String _DEFAULT_TEST_SUITE_NAME = "default";
+	private static final String _TEST_SUITE_NAME_DEFAULT = "default";
 
 	private static final Pattern _htmlURLPattern = Pattern.compile(
 		"https://github.com/(?<owner>[^/]+)/(?<repository>[^/]+)/pull/" +
