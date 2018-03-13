@@ -57,28 +57,26 @@ public class ConfigurationCleaner {
 				continue;
 			}
 
-			String fileString = (String)dictionary.get(
+			String fileName = (String)dictionary.get(
 				"felix.fileinstall.filename");
 
-			if (fileString == null) {
+			if (fileName == null) {
 				continue;
 			}
 
 			try {
-				File file = new File(new URI(fileString));
-
-				String fileName = file.getName();
+				File file = new File(new URI(fileName));
 
 				File localConfigFile = new File(
-					PropsValues.MODULE_FRAMEWORK_CONFIGS_DIR, fileName);
+					PropsValues.MODULE_FRAMEWORK_CONFIGS_DIR, file.getName());
 
 				if (!localConfigFile.exists()) {
 					configuration.delete();
 
 					if (_log.isInfoEnabled()) {
 						_log.info(
-							"Configuration was reset because " + fileName +
-								" being deleted");
+							"Configuration was reset because " +
+								file.getName() + " being deleted");
 					}
 				}
 			}
