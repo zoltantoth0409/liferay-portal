@@ -7,7 +7,7 @@
 		<execute function="Copy" locator1="WSRPAdmin#PRODUCER_TABLE_URL" />
 		<execute function="AssertClick" locator1="NavTab#CONSUMERS" value1="Consumers" />
 
-		<execute function="AssertClick" locator1="Button#ADD_CONSUMER" value1="Add Consumer" />
+		<execute function="Click" locator1="Button#PLUS" />
 
 		<execute macro="PortletEntry#inputName">
 			<var name="name" value="${consumerName}" />
@@ -25,7 +25,7 @@
 			<var name="key_menuItem" value="Manage Portlets" />
 		</execute>
 
-		<execute function="AssertClick" locator1="Button#ADD_PORTLET" value1="Add Portlet" />
+		<execute function="Click" locator1="Button#PLUS" />
 
 		<execute macro="PortletEntry#inputName">
 			<var name="name" value="${consumerPortletName}" />

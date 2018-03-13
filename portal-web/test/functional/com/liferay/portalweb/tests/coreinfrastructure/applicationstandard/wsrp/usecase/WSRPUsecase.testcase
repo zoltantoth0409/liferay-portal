@@ -38,6 +38,8 @@
 			<var name="producerName" value="Producer Demo" />
 		</execute>
 
+		<execute macro="Navigator#openURL" />
+
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Configuration" />
 			<var name="panel" value="Control Panel" />
@@ -48,6 +50,8 @@
 			<var name="consumerName" value="Consumer Demo" />
 			<var name="producerName" value="Producer Demo" />
 		</execute>
+
+		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Configuration" />

@@ -60,7 +60,7 @@
 </tr>
 <tr>
 	<td>CONSUMERS</td>
-	<td>//ul[contains(@class,'nav-tabs')]/li/a[contains(.,'Consumers')]</td>
+	<td>//span[@class='nav-item-label' and contains(.,'Consumers')]</td>
 	<td></td>
 </tr>
 <tr>
