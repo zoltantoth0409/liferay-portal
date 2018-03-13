@@ -152,11 +152,7 @@ if (Validator.isNotNull(keywords)) {
 			<liferay-ui:search-container-column-text
 				name=""
 			>
-				<liferay-ui:icon-menu
-					direction="right"
-					markupView="lexicon"
-					showWhenSingleIcon="<%= true %>"
-				>
+				<liferay-ui:icon-menu direction="right" markupView="lexicon" showWhenSingleIcon="<%= true %>">
 					<c:choose>
 						<c:when test="<%= configurationModel.isFactory() && !configurationModel.isCompanyFactory() %>">
 							<liferay-ui:icon

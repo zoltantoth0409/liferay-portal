@@ -52,10 +52,7 @@ renderResponse.setTitle(factoryConfigurationModelName);
 		<portlet:param name="factoryPid" value="<%= factoryConfigurationModel.getID() %>" />
 	</portlet:renderURL>
 
-	<liferay-frontend:add-menu-item
-		title='<%= LanguageUtil.get(resourceBundle, "add-entry") %>'
-		url="<%= createFactoryConfigURL %>"
-	/>
+	<liferay-frontend:add-menu-item title='<%= LanguageUtil.get(resourceBundle, "add-entry") %>' url="<%= createFactoryConfigURL %>" />
 </liferay-frontend:add-menu>
 
 <div class="container-fluid-1280">
@@ -102,11 +99,7 @@ renderResponse.setTitle(factoryConfigurationModelName);
 				cssClass="entry-action"
 				name=""
 			>
-				<liferay-ui:icon-menu
-					direction="down"
-					markupView="lexicon"
-					showWhenSingleIcon="<%= true %>"
-				>
+				<liferay-ui:icon-menu direction="down" markupView="lexicon" showWhenSingleIcon="<%= true %>">
 					<liferay-ui:icon
 						message="edit"
 						method="post"

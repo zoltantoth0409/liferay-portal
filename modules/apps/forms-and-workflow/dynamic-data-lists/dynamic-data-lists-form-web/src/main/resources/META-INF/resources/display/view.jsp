@@ -68,11 +68,7 @@ long recordSetId = ddlFormDisplayContext.getRecordSetId();
 							for (DDMFormFieldEvaluationResult ddmFormFieldEvaluationResult : ddmFormFieldEvaluationResults) {
 							%>
 
-								<liferay-ui:message
-									arguments="<%= new Object[] {ddmFormFieldEvaluationResult.getName(), ddmFormFieldEvaluationResult.getErrorMessage()} %>"
-									key="validation-failed-for-field-x"
-									translateArguments="<%= false %>"
-								/>
+								<liferay-ui:message arguments="<%= new Object[] {ddmFormFieldEvaluationResult.getName(), ddmFormFieldEvaluationResult.getErrorMessage()} %>" key="validation-failed-for-field-x" translateArguments="<%= false %>" />
 
 								<br />
 
