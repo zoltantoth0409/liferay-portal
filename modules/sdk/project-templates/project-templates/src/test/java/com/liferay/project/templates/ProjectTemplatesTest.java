@@ -1804,7 +1804,7 @@ public class ProjectTemplatesTest {
 		_executeGradle(gradleProjectDir, gradleTaskPath);
 
 		Path gradleOutputPath = FileTestUtil.getFile(
-			gradleOutputDir.toPath(), _OUTPUT_FILENAME_GLOB_PATTERN);
+			gradleOutputDir.toPath(), _OUTPUT_FILENAME_GLOB_REGEX);
 
 		Assert.assertNotNull(gradleOutputPath);
 
@@ -1817,7 +1817,7 @@ public class ProjectTemplatesTest {
 		_executeMaven(mavenProjectDir, _MAVEN_GOAL_PACKAGE);
 
 		Path mavenOutputPath = FileTestUtil.getFile(
-			mavenOutputDir.toPath(), _OUTPUT_FILENAME_GLOB_PATTERN);
+			mavenOutputDir.toPath(), _OUTPUT_FILENAME_GLOB_REGEX);
 
 		Assert.assertNotNull(mavenOutputPath);
 
@@ -3006,7 +3006,7 @@ public class ProjectTemplatesTest {
 		".mvn/wrapper/maven-wrapper.properties"
 	};
 
-	private static final String _OUTPUT_FILENAME_GLOB_PATTERN = "*.{jar,war}";
+	private static final String _OUTPUT_FILENAME_GLOB_REGEX = "*.{jar,war}";
 
 	private static final String _REPOSITORY_CDN_URL =
 		"https://cdn.lfrs.sl/repository.liferay.com/nexus/content/groups" +
