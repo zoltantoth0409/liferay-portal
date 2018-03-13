@@ -14,7 +14,7 @@
  */
 --%>
 
-<%@ include file="/com.liferay.document.library.analytics/init.jsp" %>
+<%@ include file="/dynamic_include/init.jsp" %>
 
 <script data-senna-track="temporary" type="text/javascript">
 	if (window.Analytics) {

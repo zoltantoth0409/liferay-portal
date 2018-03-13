@@ -14,20 +14,21 @@
  */
 --%>
 
-<%@ include file="/com.liferay.ratings.analytics/init.jsp" %>
+<%@ include file="/dynamic_include/init.jsp" %>
 
 <aui:script>
 	Liferay.on(
-		'ratings:vote',
+		'messagePosted',
 		function(event) {
 			if (window.Analytics) {
 				Analytics.send(
-					'VOTE',
-					'Ratings',
+					'POST',
+					'Comment',
 					{
 						className: event.className,
 						classPK: event.classPK,
-						score: event.score
+						commentId: event.commentId,
+						text: event.text
 					}
 				);
 			}
