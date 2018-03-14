@@ -59,7 +59,7 @@ import java.util.Map;
 </#if>
 
 @ProviderType
-public interface ${entity.name}Model extends ${entity.getModelBaseInterfaces()} {
+public interface ${entity.name}Model extends ${entity.getModelBaseInterfaceNames()} {
 	<#assign overrideColumnNames = entity.getOverrideColumnNames() />
 
 	/*
