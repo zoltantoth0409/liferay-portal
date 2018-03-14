@@ -597,7 +597,7 @@
 			<var name="maxHeightEdit" value="" />
 		</execute>
 
-		<execute macro="AdaptiveMedia#viewImageResolutionTableEntry" >
+		<execute macro="AdaptiveMedia#viewImageResolutionTableEntry">
 			<var name="imageName" value="testResolutionWidthEdit" />
 			<var name="maxHeight" value="Auto" />
 			<var name="maxWidth" value="1000" />
