@@ -29,15 +29,18 @@ import com.liferay.dynamic.data.mapping.storage.StorageEngine;
 import com.liferay.portal.kernel.bean.BeanParamUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.model.Repository;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
+import com.liferay.portal.kernel.service.RepositoryLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.portal.util.RepositoryUtil;
+import com.liferay.portal.repository.registry.RepositoryClassDefinitionCatalogUtil;
 
+import java.util.Collection;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -178,9 +181,7 @@ public class DefaultDLEditFileEntryDisplayContext
 		long repositoryId = ParamUtil.getLong(
 			_dlRequestHelper.getRequest(), "repositoryId");
 
-		if ((_fileEntry == null) &&
-			!RepositoryUtil.isExternalRepository(repositoryId)) {
-
+		if ((_fileEntry == null) && !_isExternalRepository(repositoryId)) {
 			return true;
 		}
 
@@ -291,6 +292,21 @@ public class DefaultDLEditFileEntryDisplayContext
 			throw new SystemException(
 				"Unable to check if folder has workflow definition link", e);
 		}
+	}
+
+	private boolean _isExternalRepository(long repositoryId) {
+		Repository repository = RepositoryLocalServiceUtil.fetchRepository(
+			repositoryId);
+
+		if (repository == null) {
+			return false;
+		}
+
+		Collection<String> externalRepositoryClassNames =
+			RepositoryClassDefinitionCatalogUtil.
+				getExternalRepositoryClassNames();
+
+		return externalRepositoryClassNames.contains(repository.getClassName());
 	}
 
 	private static final UUID _UUID = UUID.fromString(
