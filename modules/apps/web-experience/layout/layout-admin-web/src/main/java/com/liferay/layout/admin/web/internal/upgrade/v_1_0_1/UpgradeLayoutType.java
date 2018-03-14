@@ -51,10 +51,11 @@ public class UpgradeLayoutType extends UpgradeProcess {
 
 	protected void addPortletPreferences(
 			long companyId, long groupId, long plid, String portletId,
-			String articleId)
+			String journalArticleId)
 		throws Exception {
 
-		String portletPreferences = getPortletPreferences(groupId, articleId);
+		String portletPreferences = getPortletPreferences(
+			groupId, journalArticleId);
 
 		PortletPreferencesLocalServiceUtil.addPortletPreferences(
 			companyId, 0, PortletKeys.PREFS_OWNER_TYPE_LAYOUT, plid, portletId,
@@ -64,14 +65,6 @@ public class UpgradeLayoutType extends UpgradeProcess {
 	@Override
 	protected void doUpgrade() throws Exception {
 		updateLayouts();
-	}
-
-	protected String getArticleId(String typeSettings) throws Exception {
-		UnicodeProperties typeSettingsProperties = new UnicodeProperties(true);
-
-		typeSettingsProperties.fastLoad(typeSettings);
-
-		return typeSettingsProperties.getProperty("article-id");
 	}
 
 	protected long getAssetEntryId(long resourcePrimKey) throws Exception {
@@ -87,32 +80,42 @@ public class UpgradeLayoutType extends UpgradeProcess {
 		return assetEntry.getEntryId();
 	}
 
+	protected String getJournalArticleId(String typeSettings) throws Exception {
+		UnicodeProperties typeSettingsProperties = new UnicodeProperties(true);
+
+		typeSettingsProperties.fastLoad(typeSettings);
+
+		return typeSettingsProperties.getProperty("article-id");
+	}
+
 	protected String getPortletId() {
 		return PortletIdCodec.encode(_PORTLET_ID_JOURNAL_CONTENT);
 	}
 
-	protected String getPortletPreferences(long groupId, String articleId)
+	protected String getPortletPreferences(
+			long groupId, String journalArticleId)
 		throws Exception {
 
-		if (Validator.isNull(articleId)) {
+		if (Validator.isNull(journalArticleId)) {
 			return null;
 		}
 
 		PortletPreferences portletPreferences = new PortletPreferencesImpl();
 
-		portletPreferences.setValue("articleId", articleId);
+		portletPreferences.setValue("articleId", journalArticleId);
 		portletPreferences.setValue("groupId", String.valueOf(groupId));
 
 		JournalArticleResource journalArticleResource =
 			_journalArticleResourceLocalService.fetchArticleResource(
-				groupId, articleId);
+				groupId, journalArticleId);
 
 		if (journalArticleResource == null) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					StringBundler.concat(
-						"Unable to locate article ", String.valueOf(articleId),
-						" in group ", String.valueOf(groupId)));
+						"Unable to locate journal article ",
+						String.valueOf(journalArticleId), " in group ",
+						String.valueOf(groupId)));
 			}
 		}
 		else {
@@ -164,10 +167,10 @@ public class UpgradeLayoutType extends UpgradeProcess {
 					String typeSettings = rs.getString("typeSettings");
 
 					String portletId = getPortletId();
-					String articleId = getArticleId(typeSettings);
+					String journalArticleId = getJournalArticleId(typeSettings);
 
 					addPortletPreferences(
-						companyId, groupId, plid, portletId, articleId);
+						companyId, groupId, plid, portletId, journalArticleId);
 
 					updateLayout(plid, portletId);
 				}
