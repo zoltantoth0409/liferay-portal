@@ -337,7 +337,7 @@ public class Entity implements Comparable<Entity> {
 		return _localizedEntityColumns;
 	}
 
-	public String getModelBaseInterfaces() {
+	public String getModelBaseInterfaceNames() {
 		List<String> interfaceNames = new ArrayList<>();
 
 		if (isAttachedModel()) {
@@ -403,8 +403,8 @@ public class Entity implements Comparable<Entity> {
 
 		StringBundler sb = new StringBundler(2 * interfaceNames.size());
 
-		for (String name : interfaceNames) {
-			sb.append(name);
+		for (String interfaceName : interfaceNames) {
+			sb.append(interfaceName);
 			sb.append(", ");
 		}
 
