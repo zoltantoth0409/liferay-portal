@@ -1023,7 +1023,7 @@ public class TopLevelBuild extends BaseBuild {
 		sb.append(Integer.toString(successCount));
 		sb.append(" out of ");
 		sb.append(Integer.toString(getDownstreamBuildCountByResult(null) + 1));
-		sb.append(" jobs passed - ");
+		sb.append(" jobs passed in ");
 		sb.append(JenkinsResultsParserUtil.toDurationString(getDuration()));
 
 		return Dom4JUtil.getNewElement("h3", null, sb.toString());
