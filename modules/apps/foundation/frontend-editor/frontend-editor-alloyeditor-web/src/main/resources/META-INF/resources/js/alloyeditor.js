@@ -328,14 +328,16 @@ AUI.add(
 						// LPS-71967
 
 						if (UA.edge && parseInt(UA.edge) >= 14) {
-							A.soon(
-								function() {
-									var nativeEditor = instance.getNativeEditor();
+							if (contents) {
+								A.soon(
+									function() {
+										var nativeEditor = instance.getNativeEditor();
 
-									nativeEditor.once('focus', A.bind('_onFocusFix', instance, document.activeElement, nativeEditor));
-									nativeEditor.focus();
-								}
-							);
+										nativeEditor.once('focus', A.bind('_onFocusFix', instance, document.activeElement, nativeEditor));
+										nativeEditor.focus();
+									}
+								);
+							}
 						}
 					},
 
