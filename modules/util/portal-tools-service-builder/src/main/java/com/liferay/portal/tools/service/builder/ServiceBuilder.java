@@ -4023,6 +4023,10 @@ public class ServiceBuilder {
 	}
 
 	private void _createUADEntityDisplay(Entity entity) throws Exception {
+		if (ListUtil.isEmpty(entity.getUADNonanonymizableEntityColumns())) {
+			return;
+		}
+
 		Map<String, Object> context = _getContext();
 
 		context.put("entity", entity);
@@ -4043,6 +4047,10 @@ public class ServiceBuilder {
 	}
 
 	private void _createUADEntityDisplayHelper(Entity entity) throws Exception {
+		if (ListUtil.isEmpty(entity.getUADNonanonymizableEntityColumns())) {
+			return;
+		}
+
 		Map<String, Object> context = _getContext();
 
 		context.put("entity", entity);
@@ -4065,6 +4073,10 @@ public class ServiceBuilder {
 	}
 
 	private void _createUADEntityDisplayTest(Entity entity) throws Exception {
+		if (ListUtil.isEmpty(entity.getUADNonanonymizableEntityColumns())) {
+			return;
+		}
+
 		Map<String, Object> context = _getContext();
 
 		context.put("entity", entity);
