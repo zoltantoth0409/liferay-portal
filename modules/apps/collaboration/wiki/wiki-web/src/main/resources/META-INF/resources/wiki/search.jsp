@@ -121,7 +121,7 @@ portletURL.setParameter("keywords", keywords);
 				commentRelatedSearchResults="<%= searchResult.getCommentRelatedSearchResults() %>"
 				containerName="<%= curNode.getName() %>"
 				cssClass='<%= MathUtil.isEven(index) ? "search" : "search alt" %>'
-				description="<%= (summary != null) ? summary.getContent() : wikiPage.getSummary() %>"
+				description="<%= (summary != null) ? HtmlUtil.stripHtml(summary.getContent()) : HtmlUtil.stripHtml(wikiPage.getSummary()) %>"
 				fileEntryRelatedSearchResults="<%= searchResult.getFileEntryRelatedSearchResults() %>"
 				highlightEnabled="<%= queryConfig.isHighlightEnabled() %>"
 				queryTerms="<%= hits.getQueryTerms() %>"
