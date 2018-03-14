@@ -18,6 +18,7 @@ import com.liferay.exportimport.kernel.lar.BasePortletDataHandler;
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
 import com.liferay.exportimport.kernel.lar.PortletDataHandler;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.user.associated.data.constants.UserAssociatedDataPortletKeys;
 import com.liferay.user.associated.data.exporter.UADEntityExporter;
@@ -58,10 +59,11 @@ public class UserAssociatedDataPortletDataHandler
 			return null;
 		}
 
-		String[] uadRegistryKeys = parameterMap.get("uadRegistryKey");
 		String userIdString = parameterMap.get("userId")[0];
 
-		long userId = Long.valueOf(userIdString);
+		long userId = GetterUtil.getLong(userIdString);
+
+		String[] uadRegistryKeys = parameterMap.get("uadRegistryKey");
 
 		for (String uadRegistryKey : uadRegistryKeys) {
 			ActionableDynamicQuery actionableDynamicQuery =
@@ -91,10 +93,11 @@ public class UserAssociatedDataPortletDataHandler
 			return;
 		}
 
-		String[] uadRegistryKeys = parameterMap.get("uadRegistryKey");
 		String userIdString = parameterMap.get("userId")[0];
 
-		long userId = Long.valueOf(userIdString);
+		long userId = GetterUtil.getLong(userIdString);
+
+		String[] uadRegistryKeys = parameterMap.get("uadRegistryKey");
 
 		for (String uadRegistryKey : uadRegistryKeys) {
 			ActionableDynamicQuery actionableDynamicQuery =
