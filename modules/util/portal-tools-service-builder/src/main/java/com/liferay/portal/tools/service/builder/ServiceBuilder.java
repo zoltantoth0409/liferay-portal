@@ -900,13 +900,24 @@ public class ServiceBuilder {
 							_createUADEntity(entity);
 							_createUADEntityAggregator(entity);
 							_createUADEntityAnonymizer(entity);
-							_createUADEntityDisplay(entity);
-							_createUADEntityDisplayHelper(entity);
 							_createUADEntityTest(entity);
 							_createUADEntityTestHelper(entity);
 							_createUADEntityAggregatorTest(entity);
 							_createUADEntityAnonymizerTest(entity);
-							_createUADEntityDisplayTest(entity);
+
+							if (ListUtil.isEmpty(
+									entity.
+										getUADNonanonymizableEntityColumns())) {
+
+								_removeUADEntityDisplay(entity);
+								_removeUADEntityDisplayHelper(entity);
+								_removeUADEntityDisplayTest(entity);
+							}
+							else {
+								_createUADEntityDisplay(entity);
+								_createUADEntityDisplayHelper(entity);
+								_createUADEntityDisplayTest(entity);
+							}
 						}
 						else {
 							//_removeUADEntity(entity);
@@ -4025,10 +4036,6 @@ public class ServiceBuilder {
 	}
 
 	private void _createUADEntityDisplay(Entity entity) throws Exception {
-		if (ListUtil.isEmpty(entity.getUADNonanonymizableEntityColumns())) {
-			return;
-		}
-
 		Map<String, Object> context = _getContext();
 
 		context.put("entity", entity);
@@ -4049,10 +4056,6 @@ public class ServiceBuilder {
 	}
 
 	private void _createUADEntityDisplayHelper(Entity entity) throws Exception {
-		if (ListUtil.isEmpty(entity.getUADNonanonymizableEntityColumns())) {
-			return;
-		}
-
 		Map<String, Object> context = _getContext();
 
 		context.put("entity", entity);
@@ -4075,10 +4078,6 @@ public class ServiceBuilder {
 	}
 
 	private void _createUADEntityDisplayTest(Entity entity) throws Exception {
-		if (ListUtil.isEmpty(entity.getUADNonanonymizableEntityColumns())) {
-			return;
-		}
-
 		Map<String, Object> context = _getContext();
 
 		context.put("entity", entity);
