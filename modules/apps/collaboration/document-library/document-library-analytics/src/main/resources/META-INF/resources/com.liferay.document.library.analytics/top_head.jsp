@@ -46,9 +46,9 @@
 						'DOWNLOAD',
 						'DocumentLibrary',
 						{
-							preview: !!window.<%= DocumentLibraryAnalyticsConstants.JS_PREFIX %>isViewFileEntry,
 							groupId: match[1],
 							fileEntryUUID: match[4],
+							preview: !!window.<%= DocumentLibraryAnalyticsConstants.JS_PREFIX %>isViewFileEntry,
 							version: uri.getParameterValue('version')
 						}
 					);
