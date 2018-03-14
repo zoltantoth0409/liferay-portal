@@ -35,7 +35,7 @@ public class AmazonVMFactory {
 				awsAccessKeyId, awsSecretAccessKey, instanceSize, keyName);
 		}
 
-		throw new IllegalArgumentException("instanceType is required");
+		throw new IllegalArgumentException("Invalid instance type");
 	}
 
 	public static enum InstanceType {
