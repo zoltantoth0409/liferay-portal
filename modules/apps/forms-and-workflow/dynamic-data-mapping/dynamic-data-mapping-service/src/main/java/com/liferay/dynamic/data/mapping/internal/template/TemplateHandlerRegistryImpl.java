@@ -266,13 +266,11 @@ public class TemplateHandlerRegistryImpl implements TemplateHandlerRegistry {
 					continue;
 				}
 
+				ResourceBundleLoader resourceBundleLoader = null;
+
 				Class<?> clazz = _templateHandler.getClass();
 
-				ClassLoader classLoader = clazz.getClassLoader();
-
 				Bundle bundle = FrameworkUtil.getBundle(clazz);
-
-				ResourceBundleLoader resourceBundleLoader = null;
 
 				if (bundle != null) {
 					resourceBundleLoader =
@@ -282,7 +280,7 @@ public class TemplateHandlerRegistryImpl implements TemplateHandlerRegistry {
 				else {
 					resourceBundleLoader = new AggregateResourceBundleLoader(
 						ResourceBundleUtil.getResourceBundleLoader(
-							"content.Language", classLoader),
+							"content.Language", clazz.getClassLoader()),
 						LanguageResources.RESOURCE_BUNDLE_LOADER);
 				}
 
@@ -304,7 +302,8 @@ public class TemplateHandlerRegistryImpl implements TemplateHandlerRegistry {
 				String scriptFileName = templateElement.elementText(
 					"script-file");
 
-				String script = StringUtil.read(classLoader, scriptFileName);
+				String script = StringUtil.read(
+					clazz.getClassLoader(), scriptFileName);
 
 				boolean cacheable = GetterUtil.getBoolean(
 					templateElement.elementText("cacheable"));
