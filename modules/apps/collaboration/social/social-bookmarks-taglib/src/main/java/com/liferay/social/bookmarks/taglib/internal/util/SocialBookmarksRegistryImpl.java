@@ -57,8 +57,7 @@ public class SocialBookmarksRegistryImpl implements SocialBookmarksRegistry {
 		if (socialBookmark == null) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					String.format(
-						"Social bookmark '%s' is not available", type));
+					String.format("Social bookmark %s is not available", type));
 			}
 		}
 
@@ -134,15 +133,13 @@ public class SocialBookmarksRegistryImpl implements SocialBookmarksRegistry {
 	private boolean _isValidDeprecatedSocialBookmark(String type) {
 		String icon = PropsUtil.get(
 			PropsKeys.SOCIAL_BOOKMARK_ICON, new Filter(type));
-
 		String jspPath = PropsUtil.get(
 			PropsKeys.SOCIAL_BOOKMARK_JSP, new Filter(type));
-
 		String postUrl = PropsUtil.get(
 			PropsKeys.SOCIAL_BOOKMARK_POST_URL, new Filter(type));
 
 		if (Validator.isNotNull(postUrl) &&
-			(Validator.isNotNull(jspPath) || Validator.isNotNull(icon))) {
+			(Validator.isNotNull(icon) || Validator.isNotNull(jspPath))) {
 
 			return true;
 		}
