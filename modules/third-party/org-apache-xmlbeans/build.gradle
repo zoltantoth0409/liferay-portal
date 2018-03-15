@@ -1,3 +1,0 @@
-dependencies {
-	provided group: "org.apache.xmlbeans", name: "xmlbeans", transitive: false, version: "2.5.0"
-}
