@@ -124,8 +124,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "search-results"));
 				}
 				%>
 
-				<liferay-ui:message key="<%= categorySection %>" /> &gt;
-				<liferay-ui:message key="<%= category %>" />
+				<liferay-ui:message key="<%= categorySection %>" /> &gt; <liferay-ui:message key="<%= category %>" />
 			</liferay-ui:search-container-column-text>
 
 			<liferay-ui:search-container-column-text
