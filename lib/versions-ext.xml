@@ -1774,9 +1774,7 @@
 					</license>
 				</licenses>
 				<comments>
-					Removed org.json.* because it json-java.jar.
-					Change JSONSerializer.getClassFromHint to protected,
-					see LPS-78517.
+					Removed org.json.* because it json-java.jar. See LPS-78517.
 				</comments>
 			</library>
 			<library>
