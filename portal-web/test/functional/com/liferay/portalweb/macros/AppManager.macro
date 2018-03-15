@@ -1,8 +1,8 @@
 <definition>
 	<command name="deactivateAppCP">
-		<var name="key_appName" value="${appName}" />
-
-		<execute function="Click" locator1="AppManager#APP_ACTIONS" />
+		<execute function="Click" locator1="AppManager#APP_ACTIONS">
+			<var name="key_appName" value="${appName}" />
+		</execute>
 
 		<execute function="AssertClickNoError" locator1="MenuItem#ANY_MENU_ITEM" value1="Deactivate">
 			<var name="key_menuItem" value="Deactivate" />
@@ -25,13 +25,13 @@
 	</command>
 
 	<command name="uninstallAppCP">
-		<var name="key_appName" value="${appName}" />
-
 		<execute macro="Search#searchCP">
 			<var name="searchTerm" value="${appName}" />
 		</execute>
 
-		<execute function="Click" locator1="AppManager#APP_ACTIONS" />
+		<execute function="Click" locator1="AppManager#APP_ACTIONS">
+			<var name="key_appName" value="${appName}" />
+		</execute>
 
 		<execute function="AssertClickNoError" locator1="MenuItem#ANY_MENU_ITEM" value1="Uninstall">
 			<var name="key_menuItem" value="Uninstall" />
@@ -43,8 +43,6 @@
 	</command>
 
 	<command name="uploadAppCP">
-		<var name="key_appName" value="${appName}" />
-
 		<execute function="Click" locator1="Portlet#OPTIONS_ICON" />
 
 		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Upload">
@@ -81,13 +79,13 @@
 	</command>
 
 	<command name="viewAppCP">
-		<var name="key_appName" value="${appName}" />
-
 		<execute macro="Search#searchCP">
 			<var name="searchTerm" value="${appName}" />
 		</execute>
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="AppManager#APP_NAME" value1="${appName}" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="AppManager#APP_NAME" value1="${appName}">
+			<var name="key_appName" value="${appName}" />
+		</execute>
 
 		<if>
 			<isset var="appStatus" />
@@ -116,19 +114,19 @@
 	</command>
 
 	<command name="viewStatus">
-		<var name="key_appName" value="${appName}" />
-		<var name="key_appStatus" value="${appStatus}" />
-
-		<execute function="AssertTextEquals#assertPartialText" locator1="AppManager#APP_STATUS" value1="${appStatus}" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="AppManager#APP_STATUS" value1="${appStatus}">
+			<var name="key_appName" value="${appName}" />
+			<var name="key_appStatus" value="${appStatus}" />
+		</execute>
 	</command>
 
 	<command name="viewUninstallAppCP">
-		<var name="key_appName" value="${appName}" />
-
 		<execute macro="Search#searchCP">
 			<var name="searchTerm" value="${appName}" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="AppManager#APP_NAME" />
+		<execute function="AssertElementNotPresent" locator1="AppManager#APP_NAME">
+			<var name="key_appName" value="${appName}" />
+		</execute>
 	</command>
 </definition>
