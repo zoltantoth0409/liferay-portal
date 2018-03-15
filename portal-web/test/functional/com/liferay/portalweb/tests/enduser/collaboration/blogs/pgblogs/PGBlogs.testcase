@@ -161,7 +161,7 @@
 		</execute>
 
 		<execute macro="Blogs#addWithInvalidContent">
-			<var name="entryInvalidContent" value=""  />
+			<var name="entryInvalidContent" value="" />
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 

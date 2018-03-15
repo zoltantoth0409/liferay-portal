@@ -827,7 +827,7 @@
 
 								<execute function="ClickNoError" locator1="Calendar#SCHEDULER_EVENT_DIALOG_BOX_DELETE_BUTTON" />
 
-								<execute function="AssertClick" locator1="CalendarEditEvent#ENTIRE_SERIES_BUTTON" value1="Entire Series"  />
+								<execute function="AssertClick" locator1="CalendarEditEvent#ENTIRE_SERIES_BUTTON" value1="Entire Series" />
 
 								<execute function="Pause" value1="10000" />
 							</else>
@@ -1135,7 +1135,7 @@
 		<if>
 			<condition function="IsElementPresent" locator1="CalendarEditEvent#ENTIRE_SERIES_BUTTON" />
 			<then>
-				<execute function="AssertClick" locator1="CalendarEditEvent#ENTIRE_SERIES_BUTTON" value1="Entire Series"  />
+				<execute function="AssertClick" locator1="CalendarEditEvent#ENTIRE_SERIES_BUTTON" value1="Entire Series" />
 			</then>
 		</if>
 
@@ -1844,7 +1844,7 @@
 		<if>
 			<equals arg1="${yourRating}" arg2="false" />
 			<then>
-				<execute function="AssertTextEquals" locator1="Ratings#YOUR_RATING_LABEL"  value1="Your Rating" />
+				<execute function="AssertTextEquals" locator1="Ratings#YOUR_RATING_LABEL" value1="Your Rating" />
 				<execute function="AssertElementNotPresent" locator1="Ratings#YOUR_RATING_STAR_1" />
 				<execute function="AssertElementNotPresent" locator1="Ratings#YOUR_RATING_STAR_2" />
 				<execute function="AssertElementNotPresent" locator1="Ratings#YOUR_RATING_STAR_3" />
@@ -1857,7 +1857,7 @@
 				<execute function="AssertElementPresent" locator1="Ratings#YOUR_RATING_STAR_EMPTY_5" />
 			</then>
 			<else>
-				<execute function="AssertTextEquals" locator1="Ratings#YOUR_RATING_LABEL"  value1="Your Rating" />
+				<execute function="AssertTextEquals" locator1="Ratings#YOUR_RATING_LABEL" value1="Your Rating" />
 				<execute function="AssertElementPresent" locator1="Ratings#YOUR_RATING_STAR_1" />
 				<execute function="AssertElementPresent" locator1="Ratings#YOUR_RATING_STAR_2" />
 				<execute function="AssertElementPresent" locator1="Ratings#YOUR_RATING_STAR_3" />
@@ -1871,7 +1871,7 @@
 			</else>
 		</if>
 
-		<execute function="AssertTextEquals" locator1="Ratings#AVERAGE_LABEL"  value1="Average (1 Vote)" />
+		<execute function="AssertTextEquals" locator1="Ratings#AVERAGE_LABEL" value1="Average (1 Vote)" />
 		<execute function="AssertElementPresent" locator1="Ratings#AVERAGE_STAR_1" />
 		<execute function="AssertElementPresent" locator1="Ratings#AVERAGE_STAR_2" />
 		<execute function="AssertElementPresent" locator1="Ratings#AVERAGE_STAR_3" />

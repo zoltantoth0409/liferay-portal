@@ -85,7 +85,7 @@
 
 						<execute function="MouseOver" locator1="Icon#INHERIT_CHANGES_TOOLTIP" />
 
-						<execute function="AssertTextEquals" locator1="Message#TOOLTIP"  value1="Automatically apply changes done to the page template." />
+						<execute function="AssertTextEquals" locator1="Message#TOOLTIP" value1="Automatically apply changes done to the page template." />
 						<execute function="Check#checkToggleSwitch" locator1="SitePagesEditPage#PAGE_TYPE_TEMPLATE_AUTOMATICALLY_APPLY_CHANGES_CHECKBOX" value1="${pageType}" />
 					</then>
 				</if>

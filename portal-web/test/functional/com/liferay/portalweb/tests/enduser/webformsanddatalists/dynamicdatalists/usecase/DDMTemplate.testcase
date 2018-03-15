@@ -134,7 +134,7 @@
 			<var name="pageName" value="Test Page" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoLocalizedEditPGViaWCD" >
+		<execute macro="WebContentNavigator#gotoLocalizedEditPGViaWCD">
 			<var name="localizedPortletOption" value="Edit Template" />
 		</execute>
 

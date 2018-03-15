@@ -1799,7 +1799,7 @@
 			<var name="dmFolderName" value="DM Folder Name" />
 		</execute>
 
-		<execute macro="DMDocumentComment#addPG" >
+		<execute macro="DMDocumentComment#addPG">
 			<var name="commentBody" value="DM Document Comment Body" />
 			<var name="dmDocumentTitle" value="DM Document Title" />
 		</execute>

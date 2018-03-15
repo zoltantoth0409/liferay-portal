@@ -2465,7 +2465,7 @@
 		<execute macro="Navigator#closeWindow" />
 	</command>
 
-	<command name="DeleteEventRegular"  priority="5">
+	<command name="DeleteEventRegular" priority="5">
 		<property name="test.name.skip.portal.instance" value="Calendar#DeleteEventRegular" />
 
 		<execute macro="TestCase#getSiteName">

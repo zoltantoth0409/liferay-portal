@@ -79,7 +79,7 @@
 		<if>
 			<equals arg1="${editTemplateButton}" arg2="true" />
 			<then>
-				<execute macro="WebContentNavigator#gotoLocalizedEditPGViaWCD" >
+				<execute macro="WebContentNavigator#gotoLocalizedEditPGViaWCD">
 					<var name="localizedPortletOption" value="Edit Template" />
 				</execute>
 			</then>
