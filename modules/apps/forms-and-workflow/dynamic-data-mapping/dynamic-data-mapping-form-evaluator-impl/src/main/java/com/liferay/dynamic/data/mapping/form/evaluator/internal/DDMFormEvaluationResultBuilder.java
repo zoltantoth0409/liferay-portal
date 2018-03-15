@@ -37,7 +37,6 @@ public class DDMFormEvaluationResultBuilder {
 
 		ddmFormEvaluationResult.setDDMFormFieldEvaluationResults(
 			ddmFormFieldEvaluationResults);
-
 		ddmFormEvaluationResult.setDDMFormFieldEvaluationResultsMap(
 			createDDMFormFieldEvaluationResultsMap(
 				ddmFormFieldEvaluationResults));
