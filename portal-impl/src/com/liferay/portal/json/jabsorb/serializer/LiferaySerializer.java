@@ -204,26 +204,25 @@ public class LiferaySerializer extends AbstractSerializer {
 		}
 
 		try {
-			ClassLoader loader = null;
+			ClassLoader classLoader = null;
 
 			if (jsonObject.has("contextName")) {
 				String contextName = jsonObject.getString("contextName");
 
-				loader = ClassLoaderPool.getClassLoader(contextName);
+				classLoader = ClassLoaderPool.getClassLoader(contextName);
 
-				if (loader == null) {
+				if (classLoader == null) {
 					if (_log.isWarnEnabled()) {
 						_log.warn(
 							StringBundler.concat(
-								"Unable to load classLoader for javaClass: ",
-								javaClassName, " in contextName: ",
-								contextName));
+								"Unable to get class loader for class ",
+								javaClassName, " in context ", contextName));
 					}
 				}
 			}
 
-			if (loader != null) {
-				Class.forName(javaClassName, true, loader);
+			if (classLoader != null) {
+				Class.forName(javaClassName, true, classLoader);
 			}
 			else {
 				Class.forName(javaClassName);
@@ -231,7 +230,7 @@ public class LiferaySerializer extends AbstractSerializer {
 		}
 		catch (Exception e) {
 			throw new UnmarshallException(
-				"Unable to load javaClass " + javaClassName, e);
+				"Unable to get class " + javaClassName, e);
 		}
 
 		JSONObject serializableJSONObject = null;
@@ -303,26 +302,25 @@ public class LiferaySerializer extends AbstractSerializer {
 		Object javaClassInstance = null;
 
 		try {
-			ClassLoader loader = null;
+			ClassLoader classLoader = null;
 
 			if (jsonObject.has("contextName")) {
 				String contextName = jsonObject.getString("contextName");
 
-				loader = ClassLoaderPool.getClassLoader(contextName);
+				classLoader = ClassLoaderPool.getClassLoader(contextName);
 
-				if (loader == null) {
+				if (classLoader == null) {
 					if (_log.isWarnEnabled()) {
 						_log.warn(
 							StringBundler.concat(
-								"Unable to load classLoader for javaClass: ",
-								javaClassName, " in contextName: ",
-								contextName));
+								"Unable to get class loader for class ",
+								javaClassName, " in context ", contextName));
 					}
 				}
 			}
 
-			if (loader != null) {
-				javaClass = Class.forName(javaClassName, true, loader);
+			if (classLoader != null) {
+				javaClass = Class.forName(javaClassName, true, classLoader);
 			}
 			else {
 				javaClass = Class.forName(javaClassName);
@@ -332,7 +330,7 @@ public class LiferaySerializer extends AbstractSerializer {
 		}
 		catch (Exception e) {
 			throw new UnmarshallException(
-				"Unable to load javaClass " + javaClassName, e);
+				"Unable to get class " + javaClassName, e);
 		}
 
 		JSONObject serializableJSONObject = null;

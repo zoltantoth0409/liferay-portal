@@ -59,45 +59,44 @@ public class LiferayJSONSerializer extends JSONSerializer {
 	}
 
 	@Override
-	protected Class getClassFromHint(Object o) throws UnmarshallException {
-		if (o == null) {
+	protected Class getClassFromHint(Object object) throws UnmarshallException {
+		if (object == null) {
 			return null;
 		}
 
-		if (o instanceof JSONObject) {
+		if (object instanceof JSONObject) {
 			String className = StringPool.BLANK;
 
 			try {
-				JSONObject jsonObject = (JSONObject)o;
+				JSONObject jsonObject = (JSONObject)object;
 
 				className = jsonObject.getString("javaClass");
 
 				if (jsonObject.has("contextName")) {
 					String contextName = jsonObject.getString("contextName");
 
-					ClassLoader loader = ClassLoaderPool.getClassLoader(
+					ClassLoader classLoader = ClassLoaderPool.getClassLoader(
 						contextName);
 
-					if (loader != null) {
-						return Class.forName(className, true, loader);
+					if (classLoader != null) {
+						return Class.forName(className, true, classLoader);
 					}
 
 					if (_log.isWarnEnabled()) {
 						_log.warn(
 							StringBundler.concat(
-								"Unable to load classLoader for javaClass: ",
-								className, " in contextName: ", contextName));
+								"Unable to get class loader for class ",
+								className, " in context ", contextName));
 					}
 				}
 			}
 			catch (Exception e) {
 				throw new UnmarshallException(
-					"Class specified in javaClass hint not found: " + className,
-					e);
+					"Unable to get class " + className, e);
 			}
 		}
 
-		return super.getClassFromHint(o);
+		return super.getClassFromHint(object);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
