@@ -27,6 +27,10 @@
 	<command name="uninstallAppCP">
 		<var name="key_appName" value="${appName}" />
 
+		<execute macro="Search#searchCP">
+			<var name="searchTerm" value="${appName}" />
+		</execute>
+
 		<execute function="Click" locator1="AppManager#APP_ACTIONS" />
 
 		<execute function="AssertClickNoError" locator1="MenuItem#ANY_MENU_ITEM" value1="Uninstall">
