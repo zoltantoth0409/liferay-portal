@@ -3713,14 +3713,6 @@ dependency to version 2.1.27.
 - [LPS-78741]: Update the [Liferay Gradle Plugins JS Transpiler] dependency to
 version 2.4.6.
 
-## 3.8.20 - 2018-03-16
-
-### Changed
-- [LPS-78023]: Update the [Liferay Gradle Plugins Service Builder] dependency to
-version 2.1.0.
-- [LPS-78023]: Update the [Liferay Portal Tools Service Builder] dependency to
-version 2.0.0.
-
 [Gradle Bundle Plugin]: https://github.com/TomDmitriev/gradle-bundle-plugin
 [Liferay Alloy Taglib]: https://github.com/liferay/alloy-taglibs
 [Liferay Ant BND]: https://github.com/liferay/liferay-portal/tree/master/modules/sdk/ant-bnd
@@ -4029,7 +4021,6 @@ version 2.0.0.
 [LPS-77916]: https://issues.liferay.com/browse/LPS-77916
 [LPS-77968]: https://issues.liferay.com/browse/LPS-77968
 [LPS-77996]: https://issues.liferay.com/browse/LPS-77996
-[LPS-78023]: https://issues.liferay.com/browse/LPS-78023
 [LPS-78033]: https://issues.liferay.com/browse/LPS-78033
 [LPS-78038]: https://issues.liferay.com/browse/LPS-78038
 [LPS-78050]: https://issues.liferay.com/browse/LPS-78050
