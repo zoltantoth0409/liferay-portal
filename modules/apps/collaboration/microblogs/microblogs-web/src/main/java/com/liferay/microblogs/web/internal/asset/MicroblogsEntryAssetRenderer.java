@@ -113,9 +113,7 @@ public class MicroblogsEntryAssetRenderer
 		String noSuchEntryRedirect) {
 
 		try {
-			long userId = _entry.getUserId();
-
-			User user = UserLocalServiceUtil.getUser(userId);
+			User user = UserLocalServiceUtil.getUser(_entry.getUserId());
 
 			long portletPlid = PortalUtil.getPlidFromPortletId(
 				user.getGroupId(), true, MicroblogsPortletKeys.MICROBLOGS);
