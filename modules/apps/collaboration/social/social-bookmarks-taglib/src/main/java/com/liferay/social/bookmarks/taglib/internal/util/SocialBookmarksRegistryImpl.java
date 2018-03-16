@@ -131,10 +131,8 @@ public class SocialBookmarksRegistryImpl implements SocialBookmarksRegistry {
 	private boolean _isValidDeprecatedSocialBookmark(String type) {
 		String icon = PropsUtil.get(
 			PropsKeys.SOCIAL_BOOKMARK_ICON, new Filter(type));
-
 		String jspPath = PropsUtil.get(
 			PropsKeys.SOCIAL_BOOKMARK_JSP, new Filter(type));
-
 		String postUrl = PropsUtil.get(
 			PropsKeys.SOCIAL_BOOKMARK_POST_URL, new Filter(type));
 
@@ -166,12 +164,12 @@ public class SocialBookmarksRegistryImpl implements SocialBookmarksRegistry {
 
 		@Override
 		public void modifiedService(
-			ServiceReference<SocialBookmark> serviceReference, String s) {
+			ServiceReference<SocialBookmark> serviceReference, String service) {
 		}
 
 		@Override
 		public void removedService(
-			ServiceReference<SocialBookmark> serviceReference, String s) {
+			ServiceReference<SocialBookmark> serviceReference, String service) {
 		}
 
 	}
