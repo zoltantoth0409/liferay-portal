@@ -653,7 +653,7 @@ public class JenkinsResultsParserUtil {
 
 		if (!matcher.find()) {
 			throw new RuntimeException(
-				"Unable to determine java version number");
+				"Unable to determine Java version number");
 		}
 
 		return Float.parseFloat(matcher.group(1));
@@ -1387,7 +1387,7 @@ public class JenkinsResultsParserUtil {
 							   NoSuchAlgorithmException e) {
 
 							throw new RuntimeException(
-								"Unable to set sslContext to TLSv1.2", e);
+								"Unable to set SSL context to TLS v1.2", e);
 						}
 					}
 
