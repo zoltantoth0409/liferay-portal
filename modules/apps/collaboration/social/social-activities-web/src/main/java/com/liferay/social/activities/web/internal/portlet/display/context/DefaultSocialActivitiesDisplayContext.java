@@ -59,12 +59,13 @@ public class DefaultSocialActivitiesDisplayContext
 
 		PortletURL portletURL = liferayPortletResponse.createRenderURL();
 
+		portletURL.setParameter("tabs1", getSelectedTabName());
+
 		int end =
 			_socialActivitiesRequestHelper.getEnd() +
 				_socialActivitiesRequestHelper.getMax();
 
 		portletURL.setParameter("end", String.valueOf(end));
-		portletURL.setParameter("tabs1", getSelectedTabName());
 
 		return portletURL.toString();
 	}
