@@ -284,3 +284,11 @@ body {
 		top: auto;
 	}
 }
+
+.autofit-row {
+	display: flex;
+}
+
+.autofit-col-expand {
+	flex-grow: 1;
+}
