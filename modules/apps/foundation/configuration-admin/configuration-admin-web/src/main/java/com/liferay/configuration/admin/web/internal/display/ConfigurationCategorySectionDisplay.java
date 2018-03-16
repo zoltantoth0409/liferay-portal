@@ -57,13 +57,12 @@ public class ConfigurationCategorySectionDisplay {
 			ConfigurationCategoryDisplay configurationCategoryDisplay1,
 			ConfigurationCategoryDisplay configurationCategoryDisplay2) {
 
-			String configurationCategoryDisplayKey1 =
+			String categoryKey1 =
 				configurationCategoryDisplay1.getCategoryKey();
-			String configurationCategoryDisplayKey2 =
+			String categoryKey2 =
 				configurationCategoryDisplay2.getCategoryKey();
 
-			return configurationCategoryDisplayKey1.compareTo(
-				configurationCategoryDisplayKey2);
+			return categoryKey1.compareTo(categoryKey2);
 		}
 
 	}
