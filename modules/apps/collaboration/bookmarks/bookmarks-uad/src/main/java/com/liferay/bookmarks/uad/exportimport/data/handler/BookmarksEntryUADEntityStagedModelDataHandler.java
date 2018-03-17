@@ -42,10 +42,10 @@ public class BookmarksEntryUADEntityStagedModelDataHandler
 
 	@Override
 	public String getDisplayName(UADEntity uadEntity) {
-		BookmarksEntry entry = _getBookmarksEntry(uadEntity);
+		BookmarksEntry bookmarksEntry = _getBookmarksEntry(uadEntity);
 
-		if (entry != null) {
-			return entry.getName();
+		if (bookmarksEntry != null) {
+			return bookmarksEntry.getName();
 		}
 
 		return null;
@@ -56,9 +56,9 @@ public class BookmarksEntryUADEntityStagedModelDataHandler
 			PortletDataContext portletDataContext, UADEntity uadEntity)
 		throws Exception {
 
-		BookmarksEntry entry = _getBookmarksEntry(uadEntity);
+		BookmarksEntry bookmarksEntry = _getBookmarksEntry(uadEntity);
 
-		if (entry == null) {
+		if (bookmarksEntry == null) {
 			return;
 		}
 
@@ -70,7 +70,7 @@ public class BookmarksEntryUADEntityStagedModelDataHandler
 
 		portletDataContext.addClassedModel(
 			element, ExportImportPathUtil.getModelPath(bookmarksEntryUADEntity),
-			entry);
+			bookmarksEntry);
 	}
 
 	@Override
