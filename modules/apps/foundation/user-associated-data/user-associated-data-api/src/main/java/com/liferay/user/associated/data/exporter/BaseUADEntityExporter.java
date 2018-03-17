@@ -53,7 +53,7 @@ public abstract class BaseUADEntityExporter implements UADEntityExporter {
 	}
 
 	@Override
-	public long getCount(long userId) throws PortalException {
+	public long count(long userId) throws PortalException {
 		return getUADEntityAggregator().count(userId);
 	}
 
@@ -78,7 +78,7 @@ public abstract class BaseUADEntityExporter implements UADEntityExporter {
 			getUADEntityName());
 
 		manifestSummary.addModelAdditionCount(
-			stagedModelType, getCount(userId));
+			stagedModelType, count(userId));
 	}
 
 	protected Folder getFolder(

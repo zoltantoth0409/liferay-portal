@@ -32,7 +32,7 @@ public interface UADEntityExporter {
 	public void exportAll(long userId, PortletDataContext portletDataContext)
 		throws PortalException;
 
-	public long getCount(long userId) throws PortalException;
+	public long count(long userId) throws PortalException;
 
 	public <T extends UADEntity> StagedModelDataHandler<T>
 		getStagedModelDataHandler();
