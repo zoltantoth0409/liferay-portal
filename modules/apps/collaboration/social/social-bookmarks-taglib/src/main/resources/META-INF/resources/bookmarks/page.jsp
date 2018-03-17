@@ -84,6 +84,7 @@ String randomNamespace = PortalUtil.generateRandomKey(request, "taglib_ui_social
 							{
 								for (int i = maxInlineElements; i < types.length; i++) {
 									SocialBookmark socialBookmark = SocialBookmarksRegistryUtil.getSocialBookmark(types[i]);
+
 									if (socialBookmark != null) {
 										add(
 											navigationItem -> {
