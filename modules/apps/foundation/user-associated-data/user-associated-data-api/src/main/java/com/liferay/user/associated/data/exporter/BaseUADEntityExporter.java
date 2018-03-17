@@ -77,10 +77,8 @@ public abstract class BaseUADEntityExporter implements UADEntityExporter {
 		StagedModelType stagedModelType = new StagedModelType(
 			getUADEntityName());
 
-		long modelAdditionCount = getCount(userId);
-
 		manifestSummary.addModelAdditionCount(
-			stagedModelType, modelAdditionCount);
+			stagedModelType, getCount(userId));
 	}
 
 	protected Folder getFolder(
