@@ -54,10 +54,8 @@ String randomNamespace = PortalUtil.generateRandomKey(request, "taglib_ui_social
 			<ul class="list-unstyled <%= displayStyle %>">
 
 				<%
-				final int maxInlineElements = 3;
-				%>
+				int maxInlineElements = 3;
 
-				<%
 				for (int i = 0; i < Math.min(types.length, maxInlineElements); i++) {
 					String styleClass = "taglib-social-bookmark-" + types[i];
 					SocialBookmark socialBookmark = SocialBookmarksRegistryUtil.getSocialBookmark(types[i]);
