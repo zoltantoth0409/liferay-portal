@@ -99,20 +99,20 @@ public class SocialBookmarksRegistryImpl implements SocialBookmarksRegistry {
 
 	@Activate
 	protected void activate(BundleContext bundleContext) {
-		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
-			bundleContext, SocialBookmark.class, "social.bookmarks.type");
-
 		_serviceTrackerList = ServiceTrackerListFactory.open(
 			bundleContext, SocialBookmark.class, null,
 			new SocialBookmarkTypeServiceTrackerCustomizer(),
 			new PropertyServiceReferenceComparator<>(
 				"social.bookmarks.priority"));
+
+		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
+			bundleContext, SocialBookmark.class, "social.bookmarks.type");
 	}
 
 	@Deactivate
 	protected void deactivate() {
-		_serviceTrackerMap.close();
 		_serviceTrackerList.close();
+		_serviceTrackerMap.close();
 	}
 
 	private boolean _isDeprecatedSocialBookmark(String type) {
