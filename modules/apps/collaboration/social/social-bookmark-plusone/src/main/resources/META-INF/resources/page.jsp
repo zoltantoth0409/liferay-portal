@@ -18,7 +18,6 @@
 
 <%
 String contentId = GetterUtil.getString((String)request.getAttribute("liferay-social-bookmarks:bookmark:contentId"));
-String icon = "../aui/google-plus-sign";
 SocialBookmark socialBookmark = (SocialBookmark)request.getAttribute("liferay-social-bookmarks:bookmark:socialBookmark");
 String title = GetterUtil.getString((String)request.getAttribute("liferay-social-bookmarks:bookmark:title"));
 String url = GetterUtil.getString((String)request.getAttribute("liferay-social-bookmarks:bookmark:url"));
@@ -26,6 +25,8 @@ String url = GetterUtil.getString((String)request.getAttribute("liferay-social-b
 Map<String, Object> data = new HashMap<>();
 
 data.put("contentid", contentId);
+
+String icon = "../aui/google-plus-sign";
 %>
 
 <liferay-ui:icon data="<%= data %>" image="<%= icon %>" label="<%= false %>" linkCssClass="btn btn-borderless btn-outline-borderless btn-outline-secondary btn-sm" message="<%= socialBookmark.getName(locale) %>" method="get" src="<%= icon %>" url="<%= socialBookmark.getPostURL(title, url) %>" />
