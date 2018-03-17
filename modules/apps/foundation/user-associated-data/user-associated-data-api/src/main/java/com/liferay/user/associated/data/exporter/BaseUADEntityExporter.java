@@ -45,16 +45,16 @@ import org.osgi.service.component.annotations.Reference;
 public abstract class BaseUADEntityExporter implements UADEntityExporter {
 
 	@Override
+	public long count(long userId) throws PortalException {
+		return getUADEntityAggregator().count(userId);
+	}
+
+	@Override
 	public void exportAll(long userId, PortletDataContext portletDataContext)
 		throws PortalException {
 
 		UADEntityChunkedCommandUtil.executeChunkedCommand(
 			userId, getUADEntityAggregator(), this::export);
-	}
-
-	@Override
-	public long count(long userId) throws PortalException {
-		return getUADEntityAggregator().count(userId);
 	}
 
 	@Override
@@ -77,8 +77,7 @@ public abstract class BaseUADEntityExporter implements UADEntityExporter {
 		StagedModelType stagedModelType = new StagedModelType(
 			getUADEntityName());
 
-		manifestSummary.addModelAdditionCount(
-			stagedModelType, count(userId));
+		manifestSummary.addModelAdditionCount(stagedModelType, count(userId));
 	}
 
 	protected Folder getFolder(
