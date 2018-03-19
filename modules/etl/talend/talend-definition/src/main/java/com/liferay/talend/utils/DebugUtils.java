@@ -31,21 +31,20 @@ public class DebugUtils {
 		if (logger.isDebugEnabled()) {
 			Throwable throwable = new Throwable();
 
-			ArrayList<StackTraceElement> stackTrace = new ArrayList<>(
+			List<StackTraceElement> stackTraceElements = new ArrayList<>(
 				Arrays.asList(throwable.getStackTrace()));
 
-			Stream<StackTraceElement> stream = stackTrace.stream();
+			Stream<StackTraceElement> stream = stackTraceElements.stream();
 
-			List<String> stackTraceList = stream.map(
+			List<String> stackTraces = stream.map(
 				element -> element.toString()
 			).collect(
 				Collectors.toList()
 			);
 
-			String stackTraceString = String.join(
-				System.lineSeparator(), stackTraceList);
-
-			logger.debug("Actual thread's stacktrace: " + stackTraceString);
+			logger.debug(
+				"Actual thread's stacktrace: " +
+					String.join(System.lineSeparator(), stackTraces));
 		}
 	}
 
