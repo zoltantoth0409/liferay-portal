@@ -97,7 +97,7 @@ public class LiferaySourceOrSink
 		JsonNode jsonNode = NullNode.getInstance();
 
 		try {
-			jsonNode = _deserializeJsonContent(apioResult);
+			jsonNode = _toJsonNode(apioResult);
 		}
 		catch (JsonMappingException jme) {
 			if (_log.isDebugEnabled()) {
@@ -138,7 +138,7 @@ public class LiferaySourceOrSink
 			throw new IOException(ae);
 		}
 
-		return _deserializeJsonContent(apioResult);
+		return _toJsonNode(apioResult);
 	}
 
 	public JsonNode doApioGetRequest(String resourceURL) throws IOException {
@@ -173,7 +173,7 @@ public class LiferaySourceOrSink
 			throw new IOException(ae);
 		}
 
-		return _deserializeJsonContent(apioResult);
+		return _toJsonNode(apioResult);
 	}
 
 	public JsonNode doApioPostRequest(String resourceURL, JsonNode apioForm)
@@ -210,7 +210,7 @@ public class LiferaySourceOrSink
 			throw new IOException(ae);
 		}
 
-		return _deserializeJsonContent(apioResult);
+		return _toJsonNode(apioResult);
 	}
 
 	public JsonNode doApioPutRequest(String resourceURL, JsonNode apioForm)
@@ -557,7 +557,7 @@ public class LiferaySourceOrSink
 	protected final ObjectMapper objectMapper = new ObjectMapper();
 	protected RestClient restClient;
 
-	private JsonNode _deserializeJsonContent(ApioResult apioResult)
+	private JsonNode _toJsonNode(ApioResult apioResult)
 		throws IOException {
 
 		JsonNode jsonNode = null;
