@@ -141,6 +141,9 @@ implementations.
 The uad-package-path value specifies the package path for the generated UAD
 classes.
 
+If the versioned value is true, then the service will generate a version table,
+columns, and methods to version the entity.
+
 The deprecated value specifies whether the entity's services are deprecated.
 -->
 <!ATTLIST entity
@@ -164,6 +167,7 @@ The deprecated value specifies whether the entity's services are deprecated.
 	uad-auto-delete CDATA #IMPLIED
 	uad-dir-path CDATA #IMPLIED
 	uad-package-path CDATA #IMPLIED
+	versioned CDATA #IMPLIED
 	deprecated CDATA #IMPLIED
 >
 
