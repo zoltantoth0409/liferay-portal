@@ -17,26 +17,8 @@ package com.liferay.oauth2.provider.service.impl;
 import com.liferay.oauth2.provider.service.base.OAuth2ApplicationServiceBaseImpl;
 
 /**
- * The implementation of the o auth2 application remote service.
- *
- * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.oauth2.provider.service.OAuth2ApplicationService} interface.
- *
- * <p>
- * This is a remote service. Methods of this service are expected to have security checks based on the propagated JAAS credentials because this service can be accessed remotely.
- * </p>
- *
  * @author Brian Wing Shun Chan
- * @see OAuth2ApplicationServiceBaseImpl
- * @see com.liferay.oauth2.provider.service.OAuth2ApplicationServiceUtil
  */
 public class OAuth2ApplicationServiceImpl
 	extends OAuth2ApplicationServiceBaseImpl {
-
-	/**
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. Always use {@link com.liferay.oauth2.provider.service.OAuth2ApplicationServiceUtil} to access the o auth2 application remote service.
-	 */
-
 }

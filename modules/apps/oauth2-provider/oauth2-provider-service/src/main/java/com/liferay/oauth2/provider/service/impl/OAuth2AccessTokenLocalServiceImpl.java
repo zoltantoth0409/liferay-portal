@@ -17,26 +17,8 @@ package com.liferay.oauth2.provider.service.impl;
 import com.liferay.oauth2.provider.service.base.OAuth2AccessTokenLocalServiceBaseImpl;
 
 /**
- * The implementation of the o auth2 access token local service.
- *
- * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.oauth2.provider.service.OAuth2AccessTokenLocalService} interface.
- *
- * <p>
- * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
- * </p>
- *
  * @author Brian Wing Shun Chan
- * @see OAuth2AccessTokenLocalServiceBaseImpl
- * @see com.liferay.oauth2.provider.service.OAuth2AccessTokenLocalServiceUtil
  */
 public class OAuth2AccessTokenLocalServiceImpl
 	extends OAuth2AccessTokenLocalServiceBaseImpl {
-
-	/**
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. Always use {@link com.liferay.oauth2.provider.service.OAuth2AccessTokenLocalServiceUtil} to access the o auth2 access token local service.
-	 */
-
 }

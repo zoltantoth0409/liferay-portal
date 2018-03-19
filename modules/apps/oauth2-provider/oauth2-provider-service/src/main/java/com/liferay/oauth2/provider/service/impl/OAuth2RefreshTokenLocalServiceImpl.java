@@ -17,26 +17,8 @@ package com.liferay.oauth2.provider.service.impl;
 import com.liferay.oauth2.provider.service.base.OAuth2RefreshTokenLocalServiceBaseImpl;
 
 /**
- * The implementation of the o auth2 refresh token local service.
- *
- * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.oauth2.provider.service.OAuth2RefreshTokenLocalService} interface.
- *
- * <p>
- * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
- * </p>
- *
  * @author Brian Wing Shun Chan
- * @see OAuth2RefreshTokenLocalServiceBaseImpl
- * @see com.liferay.oauth2.provider.service.OAuth2RefreshTokenLocalServiceUtil
  */
 public class OAuth2RefreshTokenLocalServiceImpl
 	extends OAuth2RefreshTokenLocalServiceBaseImpl {
-
-	/**
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. Always use {@link com.liferay.oauth2.provider.service.OAuth2RefreshTokenLocalServiceUtil} to access the o auth2 refresh token local service.
-	 */
-
 }
