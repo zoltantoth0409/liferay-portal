@@ -469,7 +469,7 @@
 		</execute>
 	</command>
 
-	<command ignore="true" name="ViewSecureContentAndPageAsGuest" priority="3">
+	<command name="ViewSecureContentAndPageAsGuest" priority="3">
 		<property name="test.name.skip.portal.instance" value="SitepagesUsecase#ViewSecureContentAndPageAsGuest" />
 
 		<execute macro="TestCase#getSiteName">
@@ -702,7 +702,7 @@
 		<execute function="AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="You do not have the required permissions." />
 	</command>
 
-	<command ignore="true" name="ViewSecureContentAndPageAsSiteMember" priority="3">
+	<command name="ViewSecureContentAndPageAsSiteMember" priority="3">
 		<property name="test.name.skip.portal.instance" value="SitepagesUsecase#ViewSecureContentAndPageAsSiteMember" />
 
 		<execute macro="TestCase#getSiteName">
@@ -975,7 +975,7 @@
 		</execute>
 	</command>
 
-	<command ignore="true" name="ViewSecureContentAndPageAsUser" priority="5">
+	<command name="ViewSecureContentAndPageAsUser" priority="5">
 		<property name="test.name.skip.portal.instance" value="SitepagesUsecase#ViewSecureContentAndPageAsUser" />
 		<property name="testray.component.names" value="Training" />
 
