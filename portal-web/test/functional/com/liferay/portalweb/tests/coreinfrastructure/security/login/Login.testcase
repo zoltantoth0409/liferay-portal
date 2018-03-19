@@ -297,7 +297,7 @@
 
 		<var name="pauseCount" value="0" />
 
-		<while>
+		<while max-iterations="30">
 			<and>
 				<condition function="IsElementNotPresent" locator1="OpenAM#USER_NAME" />
 				<not>

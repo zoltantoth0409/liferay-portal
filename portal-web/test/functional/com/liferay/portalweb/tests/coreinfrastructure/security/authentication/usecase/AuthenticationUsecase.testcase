@@ -210,7 +210,7 @@
 
 		<var name="pauseCount" value="0" />
 
-		<while>
+		<while max-iterations="30">
 			<and>
 				<condition function="IsElementNotPresent" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME">
 					<var name="key_userScreenName" value="ldapusercn" />

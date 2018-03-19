@@ -138,7 +138,7 @@
 		<if>
 			<equals arg1="${actionsDescription}" arg2="Reindex all search indexes." />
 			<then>
-				<while>
+				<while max-iterations="30">
 					<and>
 						<condition function="IsElementPresent" locator1="ControlMenu#RELOAD_TOOLTIP" />
 						<not>
