@@ -82,21 +82,13 @@ portletURL.setParameter("tabs3", "current-and-previous");
 			portletURL.setParameter("tabs3", "new-publication-process");
 			%>
 
-			<aui:nav-item
-				href="<%= portletURL.toString() %>"
-				label="new-publication-process"
-				selected='<%= tabs3.equals("new-publication-process") %>'
-			/>
+			<aui:nav-item href="<%= portletURL.toString() %>" label="new-publication-process" selected='<%= tabs3.equals("new-publication-process") %>' />
 
 			<%
 			portletURL.setParameter("tabs3", "current-and-previous");
 			%>
 
-			<aui:nav-item
-				href="<%= portletURL.toString() %>"
-				label="current-and-previous"
-				selected='<%= tabs3.equals("current-and-previous") %>'
-			/>
+			<aui:nav-item href="<%= portletURL.toString() %>" label="current-and-previous" selected='<%= tabs3.equals("current-and-previous") %>' />
 		</aui:nav>
 	</aui:nav-bar>
 </c:if>

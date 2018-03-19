@@ -27,11 +27,7 @@ String mvcPath = ParamUtil.getString(request, "mvcPath");
 				<portlet:param name="mvcPath" value="/admin/view.jsp" />
 			</portlet:renderURL>
 
-			<aui:nav-item
-				href="<%= viewKBObjectsURL %>"
-				label="articles"
-				selected='<%= !mvcPath.equals("/admin/view_suggestions.jsp") %>'
-			/>
+			<aui:nav-item href="<%= viewKBObjectsURL %>" label="articles" selected='<%= !mvcPath.equals("/admin/view_suggestions.jsp") %>' />
 		</c:if>
 
 		<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, KBActionKeys.VIEW_SUGGESTIONS) %>">
@@ -39,11 +35,7 @@ String mvcPath = ParamUtil.getString(request, "mvcPath");
 				<portlet:param name="mvcPath" value="/admin/view_suggestions.jsp" />
 			</portlet:renderURL>
 
-			<aui:nav-item
-				href="<%= viewKBSuggestionsURL %>"
-				label="suggestions"
-				selected='<%= mvcPath.equals("/admin/view_suggestions.jsp") %>'
-			/>
+			<aui:nav-item href="<%= viewKBSuggestionsURL %>" label="suggestions" selected='<%= mvcPath.equals("/admin/view_suggestions.jsp") %>' />
 		</c:if>
 	</aui:nav>
 

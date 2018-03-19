@@ -59,11 +59,7 @@ List<String> titles = localizedItemSelectorRendering.getTitles();
 					PortletURL portletURL = curItemSelectorViewRenderer.getPortletURL();
 				%>
 
-					<aui:nav-item
-						href="<%= portletURL.toString() %>"
-						label="<%= title %>"
-						selected="<%= selectedTab.equals(title) %>"
-					/>
+					<aui:nav-item href="<%= portletURL.toString() %>" label="<%= title %>" selected="<%= selectedTab.equals(title) %>" />
 
 				<%
 				}

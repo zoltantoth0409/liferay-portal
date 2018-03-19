@@ -38,11 +38,7 @@ boolean showEditPluginHREF = true;
 		portletsURL.setParameter("tabs2", "portlets");
 		%>
 
-		<aui:nav-item
-			href="<%= portletsURL.toString() %>"
-			label="portlets"
-			selected='<%= tabs2.equals("portlets") %>'
-		/>
+		<aui:nav-item href="<%= portletsURL.toString() %>" label="portlets" selected='<%= tabs2.equals("portlets") %>' />
 
 		<%
 		PortletURL themesURL = renderResponse.createRenderURL();
@@ -50,11 +46,7 @@ boolean showEditPluginHREF = true;
 		themesURL.setParameter("tabs2", "themes");
 		%>
 
-		<aui:nav-item
-			href="<%= themesURL.toString() %>"
-			label="themes"
-			selected='<%= tabs2.equals("themes") %>'
-		/>
+		<aui:nav-item href="<%= themesURL.toString() %>" label="themes" selected='<%= tabs2.equals("themes") %>' />
 
 		<%
 		PortletURL layoutTemplatesURL = renderResponse.createRenderURL();
@@ -62,11 +54,7 @@ boolean showEditPluginHREF = true;
 		layoutTemplatesURL.setParameter("tabs2", "layout-templates");
 		%>
 
-		<aui:nav-item
-			href="<%= layoutTemplatesURL.toString() %>"
-			label="layout-templates"
-			selected='<%= tabs2.equals("layout-templates") %>'
-		/>
+		<aui:nav-item href="<%= layoutTemplatesURL.toString() %>" label="layout-templates" selected='<%= tabs2.equals("layout-templates") %>' />
 	</aui:nav>
 </aui:nav-bar>
 

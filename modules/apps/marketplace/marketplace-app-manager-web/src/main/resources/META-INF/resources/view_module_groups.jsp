@@ -61,11 +61,7 @@ MarketplaceAppManagerUtil.addPortletBreadcrumbEntry(appDisplay, request, renderR
 			<portlet:param name="mvcPath" value="/view_module_groups.jsp" />
 		</portlet:renderURL>
 
-		<aui:nav-item
-			href="<%= viewURL %>"
-			label="apps"
-			selected="<%= true %>"
-		/>
+		<aui:nav-item href="<%= viewURL %>" label="apps" selected="<%= true %>" />
 	</aui:nav>
 
 	<aui:nav-bar-search>

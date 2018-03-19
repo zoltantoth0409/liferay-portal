@@ -29,7 +29,10 @@ if (Validator.isNotNull(searchTerms.getKeywords())) {
 Indexer<?> indexer = IndexerRegistryUtil.nullSafeGetIndexer(UserGroup.class);
 %>
 
-<liferay-ui:search-container id="<%= userGroupSearchContainer.getId(request, namespace) %>" searchContainer="<%= userGroupSearchContainer %>">
+<liferay-ui:search-container
+	id="<%= userGroupSearchContainer.getId(request, namespace) %>"
+	searchContainer="<%= userGroupSearchContainer %>"
+>
 	<liferay-ui:search-container-results>
 		<c:choose>
 			<c:when test="<%= useIndexer && indexer.isIndexerEnabled() && PropsValues.USER_GROUPS_SEARCH_WITH_INDEX %>">

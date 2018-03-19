@@ -399,11 +399,7 @@ if (portletTitleBasedNavigation) {
 								try {
 							%>
 
-									<aui:translation-manager
-										availableLocales="<%= availableLocales %>"
-										defaultLanguageId="<%= defaultLanguageId %>"
-										id="translationManager"
-									/>
+									<aui:translation-manager availableLocales="<%= availableLocales %>" defaultLanguageId="<%= defaultLanguageId %>" id="translationManager" />
 
 							<%
 									List<DDMStructure> ddmStructures = dlFileEntryType.getDDMStructures();

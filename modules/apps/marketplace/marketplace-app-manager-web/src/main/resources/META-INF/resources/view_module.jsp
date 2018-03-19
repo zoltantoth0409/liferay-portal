@@ -105,11 +105,7 @@ else {
 			<portlet:param name="orderByType" value="<%= orderByType %>" />
 		</portlet:renderURL>
 
-		<aui:nav-item
-			href="<%= viewModuleComponentsURL %>"
-			label="components"
-			selected='<%= pluginType.equals("components") %>'
-		/>
+		<aui:nav-item href="<%= viewModuleComponentsURL %>" label="components" selected='<%= pluginType.equals("components") %>' />
 
 		<portlet:renderURL var="viewModulePortletsURL">
 			<portlet:param name="mvcPath" value="/view_module.jsp" />
@@ -121,11 +117,7 @@ else {
 			<portlet:param name="orderByType" value="<%= orderByType %>" />
 		</portlet:renderURL>
 
-		<aui:nav-item
-			href="<%= viewModulePortletsURL %>"
-			label="portlets"
-			selected='<%= pluginType.equals("portlets") %>'
-		/>
+		<aui:nav-item href="<%= viewModulePortletsURL %>" label="portlets" selected='<%= pluginType.equals("portlets") %>' />
 	</aui:nav>
 
 	<aui:nav-bar-search>

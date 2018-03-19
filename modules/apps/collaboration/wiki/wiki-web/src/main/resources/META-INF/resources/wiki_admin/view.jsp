@@ -60,11 +60,7 @@ request.setAttribute("view.jsp-orderByType", orderByType);
 			<portlet:param name="mvcRenderCommandName" value="/wiki_admin/view" />
 		</portlet:renderURL>
 
-		<aui:nav-item
-			href="<%= viewNodesURL %>"
-			label="wikis"
-			selected="<%= true %>"
-		/>
+		<aui:nav-item href="<%= viewNodesURL %>" label="wikis" selected="<%= true %>" />
 	</aui:nav>
 </aui:nav-bar>
 

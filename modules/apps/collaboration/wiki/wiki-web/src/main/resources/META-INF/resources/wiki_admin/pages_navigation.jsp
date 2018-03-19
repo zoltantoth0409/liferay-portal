@@ -28,11 +28,7 @@ WikiURLHelper wikiURLHelper = new WikiURLHelper(wikiRequestHelper, renderRespons
 			<portlet:param name="mvcRenderCommandName" value="/wiki/view_pages" />
 		</portlet:renderURL>
 
-		<aui:nav-item
-			href="<%= viewPagesURL %>"
-			label="pages"
-			selected="<%= true %>"
-		/>
+		<aui:nav-item href="<%= viewPagesURL %>" label="pages" selected="<%= true %>" />
 	</aui:nav>
 
 	<%

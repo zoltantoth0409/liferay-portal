@@ -53,7 +53,9 @@ if (portletTitleBasedNavigation) {
 }
 %>
 
-<liferay-util:buffer var="saveStatus">
+<liferay-util:buffer
+	var="saveStatus"
+>
 	<small class="text-capitalize text-muted" id="<portlet:namespace />saveStatus">
 		<c:if test="<%= entry != null %>">
 			<aui:workflow-status markupView="lexicon" showHelpMessage="<%= false %>" showIcon="<%= false %>" showLabel="<%= false %>" status="<%= entry.getStatus() %>" />

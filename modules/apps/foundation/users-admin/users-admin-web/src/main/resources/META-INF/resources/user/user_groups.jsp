@@ -23,11 +23,16 @@ List<UserGroup> userGroups = (List<UserGroup>)request.getAttribute("user.userGro
 currentURLObj.setParameter("historyKey", renderResponse.getNamespace() + "userGroups");
 %>
 
-<liferay-ui:error-marker key="<%= WebKeys.ERROR_SECTION %>" value="user-groups" />
+<liferay-ui:error-marker
+	key="<%= WebKeys.ERROR_SECTION %>"
+	value="user-groups"
+/>
 
 <liferay-ui:membership-policy-error />
 
-<liferay-util:buffer var="removeUserGroupIcon">
+<liferay-util:buffer
+	var="removeUserGroupIcon"
+>
 	<liferay-ui:icon
 		icon="times"
 		markupView="lexicon"

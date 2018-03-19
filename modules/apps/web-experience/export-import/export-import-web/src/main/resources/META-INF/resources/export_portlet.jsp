@@ -32,21 +32,13 @@ portletURL.setParameter("portletResource", portletResource);
 		portletURL.setParameter("tabs3", "new-export-process");
 		%>
 
-		<aui:nav-item
-			href="<%= portletURL.toString() %>"
-			label="new-export-process"
-			selected='<%= tabs3.equals("new-export-process") %>'
-		/>
+		<aui:nav-item href="<%= portletURL.toString() %>" label="new-export-process" selected='<%= tabs3.equals("new-export-process") %>' />
 
 		<%
 		portletURL.setParameter("tabs3", "current-and-previous");
 		%>
 
-		<aui:nav-item
-			href="<%= portletURL.toString() %>"
-			label="current-and-previous"
-			selected='<%= tabs3.equals("current-and-previous") %>'
-		/>
+		<aui:nav-item href="<%= portletURL.toString() %>" label="current-and-previous" selected='<%= tabs3.equals("current-and-previous") %>' />
 	</aui:nav>
 </aui:nav-bar>
 

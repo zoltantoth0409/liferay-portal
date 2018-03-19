@@ -29,21 +29,13 @@ portletURL.setParameter("navigation", navigation);
 	<aui:nav cssClass="navbar-nav">
 		<portlet:renderURL var="viewEntriesURL" />
 
-		<aui:nav-item
-			href="<%= viewEntriesURL %>"
-			label="entries"
-			selected='<%= navigation.equals("entries") %>'
-		/>
+		<aui:nav-item href="<%= viewEntriesURL %>" label="entries" selected='<%= navigation.equals("entries") %>' />
 
 		<portlet:renderURL var="viewImagesURL">
 			<portlet:param name="navigation" value="images" />
 		</portlet:renderURL>
 
-		<aui:nav-item
-			href="<%= viewImagesURL %>"
-			label="images"
-			selected='<%= navigation.equals("images") %>'
-		/>
+		<aui:nav-item href="<%= viewImagesURL %>" label="images" selected='<%= navigation.equals("images") %>' />
 	</aui:nav>
 
 	<aui:form action="<%= portletURL.toString() %>" name="searchFm">

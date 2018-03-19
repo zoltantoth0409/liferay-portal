@@ -38,7 +38,9 @@ for (String key : keys) {
 }
 %>
 
-<liferay-util:buffer var="alertMessage">
+<liferay-util:buffer
+	var="alertMessage"
+>
 	<aui:form action="<%= portletURL %>" cssClass="alert-trash-form" name="undoForm">
 		<liferay-util:buffer var="trashLink">
 			<c:choose>

@@ -24,11 +24,7 @@ portletURL.setParameter("mvcRenderCommandName", "/wedeploy_auth_admin/view");
 
 <aui:nav-bar cssClass="collapse-basic-search" markupView="lexicon">
 	<aui:nav cssClass="navbar-nav">
-		<aui:nav-item
-			href="<%= portletURL.toString() %>"
-			label="wedeploy-app"
-			selected="<%= true %>"
-		/>
+		<aui:nav-item href="<%= portletURL.toString() %>" label="wedeploy-app" selected="<%= true %>" />
 	</aui:nav>
 </aui:nav-bar>
 

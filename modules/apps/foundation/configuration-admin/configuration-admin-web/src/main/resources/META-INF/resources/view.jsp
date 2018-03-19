@@ -50,11 +50,7 @@ if (Validator.isNotNull(keywords)) {
 					<portlet:param name="configurationCategory" value="<%= curConfigurationCategory %>" />
 				</portlet:renderURL>
 
-				<aui:nav-item
-					href="<%= configurationCategoryURL %>"
-					label="<%= curConfigurationCategory %>"
-					selected="<%= curConfigurationCategory.equals(configurationCategory) %>"
-				/>
+				<aui:nav-item href="<%= configurationCategoryURL %>" label="<%= curConfigurationCategory %>" selected="<%= curConfigurationCategory.equals(configurationCategory) %>" />
 
 			<%
 			}

@@ -25,7 +25,10 @@ Permission permission = (Permission)objArray[0];
 Role role = (Role)objArray[1];
 %>
 
-<liferay-ui:icon-menu icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>">
+<liferay-ui:icon-menu
+	icon="<%= StringPool.BLANK %>"
+	message="<%= StringPool.BLANK %>"
+>
 
 	<%
 	String confirmation = "are-you-sure-you-want-to-remove-this-permission";

@@ -29,7 +29,9 @@ else if (displayStyle.equals("vertical")) {
 }
 %>
 
-<liferay-util:html-bottom outputKey="taglib_ui_social_bookmark_facebook">
+<liferay-util:html-bottom
+	outputKey="taglib_ui_social_bookmark_facebook"
+>
 	<script data-senna-track="temporary" type="text/javascript">
 		(function(doc, scriptTagName, id) {
 			if (doc.getElementById(id)) {

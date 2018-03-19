@@ -20,7 +20,10 @@
 Group liveGroup = (Group)request.getAttribute("site.liveGroup");
 %>
 
-<liferay-ui:error-marker key="<%= WebKeys.ERROR_SECTION %>" value="categorization" />
+<liferay-ui:error-marker
+	key="<%= WebKeys.ERROR_SECTION %>"
+	value="categorization"
+/>
 
 <aui:model-context bean="<%= liveGroup %>" model="<%= Group.class %>" />
 

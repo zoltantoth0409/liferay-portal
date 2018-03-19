@@ -38,11 +38,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "templates"));
 			<portlet:param name="mvcPath" value="/admin/view_templates.jsp" />
 		</portlet:renderURL>
 
-		<aui:nav-item
-			href="<%= viewTemplatesURL %>"
-			label="templates"
-			selected="<%= true %>"
-		/>
+		<aui:nav-item href="<%= viewTemplatesURL %>" label="templates" selected="<%= true %>" />
 	</aui:nav>
 
 	<aui:nav-bar-search>

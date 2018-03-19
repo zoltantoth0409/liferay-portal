@@ -39,11 +39,7 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "search-
 	<aui:nav cssClass="navbar-nav">
 		<portlet:renderURL var="viewURL" />
 
-		<aui:nav-item
-			href="<%= viewURL %>"
-			label="search"
-			selected="<%= true %>"
-		/>
+		<aui:nav-item href="<%= viewURL %>" label="search" selected="<%= true %>" />
 	</aui:nav>
 
 	<aui:nav-bar-search>

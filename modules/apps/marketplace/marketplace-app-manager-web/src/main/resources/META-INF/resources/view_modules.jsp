@@ -77,11 +77,7 @@ MarketplaceAppManagerUtil.addPortletBreadcrumbEntry(appDisplay, moduleGroupDispl
 			<portlet:param name="app" value="<%= app %>" />
 		</portlet:renderURL>
 
-		<aui:nav-item
-			href="<%= viewURL %>"
-			label="modules"
-			selected="<%= true %>"
-		/>
+		<aui:nav-item href="<%= viewURL %>" label="modules" selected="<%= true %>" />
 	</aui:nav>
 
 	<aui:nav-bar-search>

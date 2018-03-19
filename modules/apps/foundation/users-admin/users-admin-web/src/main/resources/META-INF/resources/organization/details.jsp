@@ -46,7 +46,9 @@ if (organization != null) {
 User selUser = (User)request.getAttribute("user.selUser");
 %>
 
-<liferay-util:buffer var="removeOrganizationIcon">
+<liferay-util:buffer
+	var="removeOrganizationIcon"
+>
 	<liferay-ui:icon
 		iconCssClass="icon-remove"
 		label="<%= true %>"
@@ -54,7 +56,10 @@ User selUser = (User)request.getAttribute("user.selUser");
 	/>
 </liferay-util:buffer>
 
-<liferay-ui:error-marker key="<%= WebKeys.ERROR_SECTION %>" value="details" />
+<liferay-ui:error-marker
+	key="<%= WebKeys.ERROR_SECTION %>"
+	value="details"
+/>
 
 <aui:model-context bean="<%= organization %>" model="<%= Organization.class %>" />
 

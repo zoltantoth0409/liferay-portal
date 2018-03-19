@@ -70,7 +70,11 @@ if (wikiPageInfoPanelDisplayContext.isSinglePageSelection()) {
 }
 %>
 
-<liferay-ui:tabs names="<%= sections %>" refresh="<%= false %>" type="dropdown">
+<liferay-ui:tabs
+	names="<%= sections %>"
+	refresh="<%= false %>"
+	type="dropdown"
+>
 	<liferay-ui:section>
 		<div class="sidebar-body">
 			<c:choose>

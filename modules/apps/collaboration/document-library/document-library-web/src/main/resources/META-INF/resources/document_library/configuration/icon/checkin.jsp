@@ -26,4 +26,6 @@ UIItemsBuilder uiItemsBuilder = new UIItemsBuilder(request, fileVersion);
 JavaScriptMenuItem javaScriptMenuItem = uiItemsBuilder.getJavacriptCheckinMenuItem();
 %>
 
-<liferay-ui:menu-item menuItem="<%= javaScriptMenuItem %>" />
+<liferay-ui:menu-item
+	menuItem="<%= javaScriptMenuItem %>"
+/>

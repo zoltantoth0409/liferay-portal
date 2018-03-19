@@ -40,11 +40,7 @@ Map<String, String> requestParams = (Map<String, String>)request.getAttribute("l
 							displayStyleURL.setParameter("displayStyle", curDisplayStyle);
 							%>
 
-							<aui:nav-item
-								href="<%= displayStyleURL.toString() %>"
-								iconCssClass='<%= "icon-" + HtmlUtil.escapeAttribute(_getIcon(curDisplayStyle)) %>'
-								label="<%= HtmlUtil.escape(curDisplayStyle) %>"
-							/>
+							<aui:nav-item href="<%= displayStyleURL.toString() %>" iconCssClass='<%= "icon-" + HtmlUtil.escapeAttribute(_getIcon(curDisplayStyle)) %>' label="<%= HtmlUtil.escape(curDisplayStyle) %>" />
 						</c:when>
 						<c:otherwise>
 
@@ -54,12 +50,7 @@ Map<String, String> requestParams = (Map<String, String>)request.getAttribute("l
 							data.put("displayStyle", curDisplayStyle);
 							%>
 
-							<aui:nav-item
-								anchorData="<%= data %>"
-								href="javascript:;"
-								iconCssClass='<%= "icon-" + HtmlUtil.escapeAttribute(_getIcon(curDisplayStyle)) %>'
-								label="<%= HtmlUtil.escape(curDisplayStyle) %>"
-							/>
+							<aui:nav-item anchorData="<%= data %>" href="javascript:;" iconCssClass='<%= "icon-" + HtmlUtil.escapeAttribute(_getIcon(curDisplayStyle)) %>' label="<%= HtmlUtil.escape(curDisplayStyle) %>" />
 						</c:otherwise>
 					</c:choose>
 

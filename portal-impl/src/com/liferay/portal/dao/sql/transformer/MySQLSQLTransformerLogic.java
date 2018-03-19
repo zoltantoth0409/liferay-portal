@@ -16,7 +16,6 @@ package com.liferay.portal.dao.sql.transformer;
 
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.StringPool;
 
 import java.util.function.Function;
 import java.util.regex.Matcher;

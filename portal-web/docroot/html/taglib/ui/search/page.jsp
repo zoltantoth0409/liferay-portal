@@ -16,4 +16,6 @@
 
 <%@ include file="/html/taglib/init.jsp" %>
 
-<liferay-portlet:runtime portletName="com_liferay_search_web_SearchPortlet" />
+<liferay-portlet:runtime
+	portletName="com_liferay_search_web_SearchPortlet"
+/>
