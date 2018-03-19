@@ -276,7 +276,7 @@ public class LiferayConnectionProperties
 		referencedComponent = new ComponentReferenceProperties<>(
 			"referencedComponent", TLiferayConnectionDefinition.COMPONENT_NAME);
 	public PresentationItem testConnection = new PresentationItem(
-		"testConnection", "Test connection");
+		"testConnection", "Test Connection");
 	public Property<String> userId = PropertyFactory.newString("userId");
 
 	protected SandboxedInstance getRuntimeSandboxedInstance() {

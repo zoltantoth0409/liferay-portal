@@ -304,7 +304,7 @@ public class TLiferayOutputProperties
 	}
 
 	public transient PresentationItem calculateSchema = new PresentationItem(
-		"calculateSchema", "Calculate schema");
+		"calculateSchema", "Calculate Schema");
 	public Property<Action> operations = PropertyFactory.newEnum(
 		"operations", Action.class);
 	public SchemaProperties schemaReject = new SchemaProperties("schemaReject");

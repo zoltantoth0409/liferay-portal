@@ -141,7 +141,7 @@ public class TLiferayInputProperties
 	}
 
 	public transient PresentationItem guessSchema = new PresentationItem(
-		"guessSchema", "Guess schema");
+		"guessSchema", "Guess Schema");
 	public Property<String> queryString = PropertyFactory.newProperty(
 		"queryString");
 
