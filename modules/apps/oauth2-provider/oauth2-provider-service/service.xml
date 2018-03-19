@@ -13,8 +13,6 @@
 
 		<column name="companyId" type="long" />
 		<column name="createDate" type="Date" />
-		<column name="expirationDate" type="Date" />
-		<column name="remoteIPInfo" type="String" />
 		<column name="userId" type="long" />
 		<column name="userName" type="String" />
 
@@ -22,6 +20,8 @@
 
 		<column name="oAuth2ApplicationId" type="long" />
 		<column name="oAuth2RefreshTokenId" type="long" />
+		<column name="expirationDate" type="Date" />
+		<column name="remoteIPInfo" type="String" />
 		<column name="scopeAliases" type="String" />
 		<column name="tokenContent" type="String" />
 		<column name="tokenType" type="String" />
