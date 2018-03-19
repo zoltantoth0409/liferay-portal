@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.url.builder.impl;
+package com.liferay.portal.url.builder.internal;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;

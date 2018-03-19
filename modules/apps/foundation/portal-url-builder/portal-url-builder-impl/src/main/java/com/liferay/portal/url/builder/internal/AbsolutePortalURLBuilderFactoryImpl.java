@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.url.builder.impl;
+package com.liferay.portal.url.builder.internal;
 
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.url.builder.AbsolutePortalURLBuilder;
