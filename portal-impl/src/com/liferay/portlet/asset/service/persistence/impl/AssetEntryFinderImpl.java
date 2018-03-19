@@ -475,7 +475,8 @@ public class AssetEntryFinderImpl
 			sb.append("TEMP_TABLE.entryId = AssetEntry.entryId ORDER BY ");
 
 			if (orderByCol1.equals("ratings")) {
-				sb.append("TEMP_TABLE.averageScore");
+				sb.append("CASE WHEN TEMP_TABLE.averageScore IS NULL THEN 0 ");
+				sb.append("ELSE TEMP_TABLE.averageScore END");
 			}
 			else {
 				sb.append("AssetEntry.");
@@ -489,7 +490,9 @@ public class AssetEntryFinderImpl
 				!orderByCol1.equals(orderByCol2)) {
 
 				if (orderByCol2.equals("ratings")) {
-					sb.append(", TEMP_TABLE.averageScore");
+					sb.append(
+						", CASE WHEN TEMP_TABLE.averageScore IS NULL THEN 0 ");
+					sb.append("ELSE TEMP_TABLE.averageScore END");
 				}
 				else {
 					sb.append(", AssetEntry.");
