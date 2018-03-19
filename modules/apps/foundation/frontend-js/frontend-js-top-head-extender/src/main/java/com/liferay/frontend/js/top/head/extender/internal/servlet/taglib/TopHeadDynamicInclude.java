@@ -284,7 +284,9 @@ public class TopHeadDynamicInclude implements DynamicInclude {
 					request);
 
 			printWriter.print(
-				absolutePortalURLBuilder.forResource(url).build());
+				absolutePortalURLBuilder.forResource(
+					url
+				).build());
 
 			printWriter.println("\" type=\"text/javascript\"></script>");
 		}
