@@ -178,7 +178,10 @@ subjectKeyIdentifier = hash</echo>
 				<arg value="pass:liferay" />
 			</exec>
 
-			<move file="${elastic.shield.ca.dir}/certs/01.pem" tofile="${elastic.shield.ca.dir}/certs/es-ssl.keystore.pem" />
+			<move
+				file="${elastic.shield.ca.dir}/certs/01.pem"
+				tofile="${elastic.shield.ca.dir}/certs/es-ssl.keystore.pem"
+			/>
 
 			<exec dir="${elastic.shield.ca.dir}" executable="keytool" failonerror="true">
 				<arg value="-importcert" />
@@ -208,7 +211,10 @@ shield.transport.ssl: true</echo>
 
 	<macrodef name="prepare-elasticsearch">
 		<sequential>
-			<chmod file="${elasticsearch.dir}/bin/**" perm="a+x" />
+			<chmod
+				file="${elasticsearch.dir}/bin/**"
+				perm="a+x"
+			/>
 
 			<if>
 				<not>
@@ -325,7 +331,10 @@ shield.transport.ssl: true</echo>
 				</then>
 			</if>
 
-			<chmod file="${elastic.kibana.dir}/bin/**" perm="a+x" />
+			<chmod
+				file="${elastic.kibana.dir}/bin/**"
+				perm="a+x"
+			/>
 
 			<if>
 				<os family="unix" />
@@ -522,18 +531,27 @@ shield.transport.ssl: true</echo>
 			<if>
 				<os family="mac" />
 				<then>
-					<move file="${app.server.parent.dir}/kibana-${elastic.kibana.version}-darwin-x64" tofile="${elastic.kibana.dir}" />
+					<move
+						file="${app.server.parent.dir}/kibana-${elastic.kibana.version}-darwin-x64"
+						tofile="${elastic.kibana.dir}"
+					/>
 				</then>
 				<elseif>
 					<os family="unix" />
 					<then>
-						<move file="${app.server.parent.dir}/kibana-${elastic.kibana.version}-linux-x64" tofile="${elastic.kibana.dir}" />
+						<move
+							file="${app.server.parent.dir}/kibana-${elastic.kibana.version}-linux-x64"
+							tofile="${elastic.kibana.dir}"
+						/>
 					</then>
 				</elseif>
 				<elseif>
 					<os family="windows" />
 					<then>
-						<move file="${app.server.parent.dir}/kibana-${elastic.kibana.version}-windows" tofile="${elastic.kibana.dir}" />
+						<move
+							file="${app.server.parent.dir}/kibana-${elastic.kibana.version}-windows"
+							tofile="${elastic.kibana.dir}"
+						/>
 					</then>
 				</elseif>
 			</if>
@@ -567,7 +585,9 @@ username=&quot;liferay&quot;</echo>
 			</then>
 		</if>
 
-		<replace file="${elasticsearch.dir}/config/elasticsearch.yml">
+		<replace
+			file="${elasticsearch.dir}/config/elasticsearch.yml"
+		>
 			<replacetoken><![CDATA[# cluster.name: my-application]]></replacetoken>
 			<replacevalue><![CDATA[cluster.name: LiferayElasticsearchCluster]]></replacevalue>
 		</replace>
@@ -678,7 +698,9 @@ username=&quot;liferay&quot;</echo>
 
 		<prepare-kibana />
 
-		<replace file="${elastic.kibana.dir}/config/kibana.yml">
+		<replace
+			file="${elastic.kibana.dir}/config/kibana.yml"
+		>
 			<replacetoken><![CDATA[# server.basePath: ""]]></replacetoken>
 			<replacevalue><![CDATA[server.basePath: "/o/portal-search-elasticsearch-marvel-web/marvel-proxy"]]></replacevalue>
 		</replace>
@@ -694,19 +716,27 @@ username=&quot;liferay&quot;</echo>
 		<if>
 			<equals arg1="${elastic.shield.enabled}" arg2="true" />
 			<then>
-				<replace file="${elastic.kibana.dir}/config/kibana.yml">
+				<replace
+					file="${elastic.kibana.dir}/config/kibana.yml"
+				>
 					<replacetoken><![CDATA[# elasticsearch.username: "user"
 # elasticsearch.password: "pass"]]></replacetoken>
 					<replacevalue><![CDATA[elasticsearch.username: "liferay"
 elasticsearch.password: "liferay"]]></replacevalue>
 				</replace>
 
-				<replace file="${elastic.kibana.dir}/config/kibana.yml">
+				<replace
+					file="${elastic.kibana.dir}/config/kibana.yml"
+				>
 					<replacetoken><![CDATA[# elasticsearch.url: "http://localhost:9200"]]></replacetoken>
 					<replacevalue><![CDATA[elasticsearch.url: "https://localhost:9200"]]></replacevalue>
 				</replace>
 
-				<replace file="${elastic.kibana.dir}/config/kibana.yml" token="# elasticsearch.ssl.ca: /path/to/your/CA.pem" value="elasticsearch.ssl.ca: ${elastic.shield.ca.dir}/certs/cacert.pem" />
+				<replace
+					file="${elastic.kibana.dir}/config/kibana.yml"
+					token="# elasticsearch.ssl.ca: /path/to/your/CA.pem"
+					value="elasticsearch.ssl.ca: ${elastic.shield.ca.dir}/certs/cacert.pem"
+				/>
 			</then>
 		</if>
 
@@ -756,7 +786,10 @@ elasticsearch.password: "liferay"]]></replacevalue>
 			<if>
 				<os family="unix" />
 				<then>
-					<loadfile property="pid-elasticsearch" srcFile="${elasticsearch.dir}/bin/pid-elasticsearch-${elasticsearch.pid.file.count}">
+					<loadfile
+						property="pid-elasticsearch"
+						srcFile="${elasticsearch.dir}/bin/pid-elasticsearch-${elasticsearch.pid.file.count}"
+					>
 						<filterchain>
 							<linecontainsregexp>
 								<regexp pattern="[0-9]*" />
@@ -788,7 +821,10 @@ elasticsearch.password: "liferay"]]></replacevalue>
 		<if>
 			<os family="unix" />
 			<then>
-				<loadfile property="pid-kibana" srcFile="${elastic.kibana.dir}/bin/pid-kibana">
+				<loadfile
+					property="pid-kibana"
+					srcFile="${elastic.kibana.dir}/bin/pid-kibana"
+				>
 					<filterchain>
 						<linecontainsregexp>
 							<regexp pattern="[0-9]*" />
