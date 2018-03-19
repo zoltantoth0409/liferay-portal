@@ -12,9 +12,9 @@
 		<!-- Audit fields -->
 
 		<column name="companyId" type="long" />
-		<column name="createDate" type="Date" />
 		<column name="userId" type="long" />
 		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
 
 		<!-- Other fields -->
 
@@ -53,10 +53,10 @@
 		<!-- Audit fields -->
 
 		<column name="companyId" type="long" />
-		<column name="createDate" type="Date" />
-		<column name="modifiedDate" type="Date" />
 		<column name="userId" type="long" />
 		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
 
 		<!-- Other fields -->
 
@@ -109,15 +109,15 @@
 		<!-- Audit fields -->
 
 		<column name="companyId" type="long" />
-		<column name="createDate" type="Date" />
-		<column name="expirationDate" type="Date" />
-		<column name="remoteIPInfo" type="String" />
 		<column name="userId" type="long" />
 		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
 
 		<!-- Other fields -->
 
 		<column name="oAuth2ApplicationId" type="long" />
+		<column name="expirationDate" type="Date" />
+		<column name="remoteIPInfo" type="String" />
 		<column name="scopeAliases" type="String" />
 		<column name="tokenContent" type="String" />
 
@@ -140,8 +140,6 @@
 		<!-- PK fields -->
 
 		<column name="oAuth2ScopeGrantId" primary="true" type="long" />
-
-		<!-- Audit fields -->
 
 		<!-- Other fields -->
 
