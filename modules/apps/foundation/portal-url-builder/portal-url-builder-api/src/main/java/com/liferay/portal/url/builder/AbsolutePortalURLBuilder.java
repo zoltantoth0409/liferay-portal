@@ -26,7 +26,7 @@ public interface AbsolutePortalURLBuilder {
 	 * live in {@link com.liferay.portal.kernel.util.Portal#getPathImage()}.
 	 * @param relativeURL the relative URL of the image
 	 * @return a builder that returns image URLs
-	 * @see AbsolutePortalBuildableURLBuilder
+	 * @see BuildableAbsolutePortalURLBuilder
 	 * @review
 	 */
 	public ImageAbsolutePortalURLBuilder forImage(String relativeURL);
@@ -36,7 +36,7 @@ public interface AbsolutePortalURLBuilder {
 	 * resources live in {@link com.liferay.portal.kernel.util.Portal#getPathMain()}.
 	 * @param relativeURL the relative URL of the resource
 	 * @return a builder that returns main resource URLs
-	 * @see AbsolutePortalBuildableURLBuilder
+	 * @see BuildableAbsolutePortalURLBuilder
 	 * @review
 	 */
 	public MainAbsolutePortalURLBuilder forMain(String relativeURL);
@@ -46,7 +46,7 @@ public interface AbsolutePortalURLBuilder {
 	 * resources live in {@link com.liferay.portal.kernel.util.Portal#getPathModule()}.
 	 * @param relativeURL the relative URL of the resource
 	 * @return a builder that returns module resource URLs
-	 * @see AbsolutePortalBuildableURLBuilder
+	 * @see BuildableAbsolutePortalURLBuilder
 	 * @review
 	 */
 	public ModuleAbsolutePortalURLBuilder forModule(String relativeURL);
@@ -56,7 +56,7 @@ public interface AbsolutePortalURLBuilder {
 	 * resources live in the root path of the portal.
 	 * @param relativeURL the relative URL of the resource
 	 * @return a builder that returns arbitrary resource URLs
-	 * @see AbsolutePortalBuildableURLBuilder
+	 * @see BuildableAbsolutePortalURLBuilder
 	 * @review
 	 */
 	public ResourceAbsolutePortalURLBuilder forResource(String relativeURL);

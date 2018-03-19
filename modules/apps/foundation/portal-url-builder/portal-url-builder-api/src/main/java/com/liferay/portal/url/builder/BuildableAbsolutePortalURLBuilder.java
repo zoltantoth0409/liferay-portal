@@ -19,7 +19,7 @@ package com.liferay.portal.url.builder;
  * @author Iván Zaera Avellón
  * @review
  */
-public interface AbsolutePortalBuildableURLBuilder {
+public interface BuildableAbsolutePortalURLBuilder {
 
 	/**
 	 * Return the URL according to the builder configuration.

@@ -21,5 +21,5 @@ package com.liferay.portal.url.builder;
  * @review
  */
 public interface ModuleAbsolutePortalURLBuilder
-	extends AbsolutePortalBuildableURLBuilder {
+	extends BuildableAbsolutePortalURLBuilder {
 }
