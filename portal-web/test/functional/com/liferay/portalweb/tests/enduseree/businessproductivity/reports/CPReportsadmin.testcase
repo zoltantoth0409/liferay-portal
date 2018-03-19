@@ -616,6 +616,7 @@
 	</command>
 
 	<command name="ViewEmailNotificationDelivery" priority="4">
+		<property name="dummy.socket.proxy.disabled" value="true" />
 		<property name="test.assert.javascript.errors" value="false" />
 		<property name="test.name.skip.portal.instance" value="CPReportsadmin#ViewEmailNotificationDelivery" />
 
@@ -707,6 +708,7 @@
 	</command>
 
 	<command name="ViewEmailRecipientDelivery" priority="4">
+		<property name="dummy.socket.proxy.disabled" value="true" />
 		<property name="test.name.skip.portal.instance" value="CPReportsadmin#ViewEmailRecipientDelivery" />
 
 		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />

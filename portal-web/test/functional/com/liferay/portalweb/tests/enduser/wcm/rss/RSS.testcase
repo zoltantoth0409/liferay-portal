@@ -218,6 +218,7 @@
 	</command>
 
 	<command name="AddWebContentFeed" priority="3">
+		<property name="dummy.socket.proxy.disabled" value="true" />
 		<property name="test.name.skip.portal.instance" value="RSS#AddWebContentFeed" />
 
 		<execute macro="Navigator#openURL" />
@@ -563,6 +564,7 @@
 	</command>
 
 	<command name="EnableRSSFeedFromAssetpublisher" priority="3">
+		<property name="dummy.socket.proxy.disabled" value="true" />
 		<property name="test.name.skip.portal.instance" value="RSS#AddWebContentFeed" />
 
 		<execute macro="TestCase#getSiteName">

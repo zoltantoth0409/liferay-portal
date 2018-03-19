@@ -470,6 +470,7 @@
 	</command>
 
 	<command name="ViewSecureContentAndPageAsGuest" priority="3">
+		<property name="dummy.socket.proxy.disabled" value="true" />
 		<property name="test.name.skip.portal.instance" value="SitepagesUsecase#ViewSecureContentAndPageAsGuest" />
 
 		<execute macro="TestCase#getSiteName">
@@ -703,6 +704,7 @@
 	</command>
 
 	<command name="ViewSecureContentAndPageAsSiteMember" priority="3">
+		<property name="dummy.socket.proxy.disabled" value="true" />
 		<property name="test.name.skip.portal.instance" value="SitepagesUsecase#ViewSecureContentAndPageAsSiteMember" />
 
 		<execute macro="TestCase#getSiteName">
@@ -976,6 +978,7 @@
 	</command>
 
 	<command name="ViewSecureContentAndPageAsUser" priority="5">
+		<property name="dummy.socket.proxy.disabled" value="true" />
 		<property name="test.name.skip.portal.instance" value="SitepagesUsecase#ViewSecureContentAndPageAsUser" />
 		<property name="testray.component.names" value="Training" />
 
