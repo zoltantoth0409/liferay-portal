@@ -563,6 +563,26 @@ shield.transport.ssl: true</echo>
 logExceptionsOnly=&quot;false&quot;</echo>
 	</target>
 
+	<target name="configure-kibana-properties">
+		<echo append="true" file="${elastic.kibana.dir}/config/kibana.yml">${line.separator}pid.file: ${elastic.kibana.dir}/bin/pid-kibana</echo>
+
+		<if>
+			<contains string="${elasticsearch.version}" substring="2.4." />
+			<then>
+				<replace file="${elastic.kibana.dir}/config/kibana.yml">
+					<replacetoken><![CDATA[# server.basePath: ""]]></replacetoken>
+					<replacevalue><![CDATA[server.basePath: "/o/portal-search-elasticsearch-marvel-web/marvel-proxy"]]></replacevalue>
+				</replace>
+			</then>
+			<else>
+				<replace file="${elastic.kibana.dir}/config/kibana.yml">
+					<replacetoken><![CDATA[#server.basePath: ""]]></replacetoken>
+					<replacevalue><![CDATA[server.basePath: "/o/portal-search-elasticsearch-xpack-monitoring/xpack-monitoring-proxy"]]></replacevalue>
+				</replace>
+			</else>
+		</if>
+	</target>
+
 	<target name="configure-shield-osgi-bundle-properties">
 		<echo file="${liferay.home}/osgi/configs/com.liferay.portal.search.elasticsearch.shield.configuration.ShieldConfiguration.config">password=&quot;liferay&quot;
 requiresAuthentication=&quot;true&quot;
@@ -698,18 +718,7 @@ username=&quot;liferay&quot;</echo>
 
 		<prepare-kibana />
 
-		<replace
-			file="${elastic.kibana.dir}/config/kibana.yml"
-		>
-			<replacetoken><![CDATA[# server.basePath: ""]]></replacetoken>
-			<replacevalue><![CDATA[server.basePath: "/o/portal-search-elasticsearch-marvel-web/marvel-proxy"]]></replacevalue>
-		</replace>
-
-		<replace
-			file="${elastic.kibana.dir}/config/kibana.yml"
-			token="# pid.file: /var/run/kibana.pid"
-			value="pid_file: ${elastic.kibana.dir}/bin/pid-kibana"
-		/>
+		<configure-kibana-properties />
 
 		<get-testcase-property property.name="elastic.shield.enabled" />
 
