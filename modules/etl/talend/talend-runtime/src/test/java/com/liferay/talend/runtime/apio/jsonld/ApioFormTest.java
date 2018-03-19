@@ -46,11 +46,11 @@ public class ApioFormTest {
 
 	@BeforeClass
 	public static void setUpClass() throws Exception {
-		String jsonString = read("SampleForm.json");
+		String json = read("SampleForm.json");
 
 		ObjectMapper objectMapper = new ObjectMapper();
 
-		JsonNode jsonNode = objectMapper.readTree(jsonString);
+		JsonNode jsonNode = objectMapper.readTree(json);
 
 		_apioForm = new ApioForm(jsonNode);
 	}
@@ -98,11 +98,11 @@ public class ApioFormTest {
 		expectedException.expect(IOException.class);
 		expectedException.expectMessage("The given resource is not a from");
 
-		String jsonString = read("SampleResource.json");
+		String json = read("SampleResource.json");
 
 		ObjectMapper objectMapper = new ObjectMapper();
 
-		JsonNode jsonNode = objectMapper.readTree(jsonString);
+		JsonNode jsonNode = objectMapper.readTree(json);
 
 		new ApioForm(jsonNode);
 	}

@@ -45,11 +45,11 @@ public class ApioResourceCollectionTest {
 
 	@BeforeClass
 	public static void setUpClass() throws Exception {
-		String jsonString = read("SampleResourceCollection.json");
+		String json = read("SampleResourceCollection.json");
 
 		ObjectMapper objectMapper = new ObjectMapper();
 
-		JsonNode jsonNode = objectMapper.readTree(jsonString);
+		JsonNode jsonNode = objectMapper.readTree(json);
 
 		_apioJsonLDResource = new ApioResourceCollection(jsonNode);
 	}
@@ -155,11 +155,11 @@ public class ApioResourceCollectionTest {
 		expectedException.expectMessage(
 			"The type of the given resource is not a Collection");
 
-		String jsonString = read("SampleResource.json");
+		String json = read("SampleResource.json");
 
 		ObjectMapper objectMapper = new ObjectMapper();
 
-		JsonNode jsonNode = objectMapper.readTree(jsonString);
+		JsonNode jsonNode = objectMapper.readTree(json);
 
 		new ApioResourceCollection(jsonNode);
 	}

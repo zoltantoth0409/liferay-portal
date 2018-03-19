@@ -316,13 +316,13 @@ public class RestClient {
 	private String _jsonNodeToPrettyString(JsonNode jsonNode)
 		throws ApioException {
 
-		String jsonString;
+		String json;
 
 		try {
 			ObjectWriter objectWriter =
 				objectMapper.writerWithDefaultPrettyPrinter();
 
-			jsonString = objectWriter.writeValueAsString(jsonNode);
+			json = objectWriter.writeValueAsString(jsonNode);
 		}
 		catch (JsonProcessingException jpe) {
 			if (_log.isDebugEnabled()) {
@@ -333,7 +333,7 @@ public class RestClient {
 			throw new ApioException(jpe);
 		}
 
-		return jsonString;
+		return json;
 	}
 
 	private String _replaceHttpSchemeWithHttps(String url) {

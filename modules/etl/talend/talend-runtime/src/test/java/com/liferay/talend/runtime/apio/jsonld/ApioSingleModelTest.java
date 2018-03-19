@@ -40,11 +40,11 @@ public class ApioSingleModelTest {
 
 	@BeforeClass
 	public static void setUpClass() throws Exception {
-		String jsonString = read("SampleResource.json");
+		String json = read("SampleResource.json");
 
 		ObjectMapper objectMapper = new ObjectMapper();
 
-		JsonNode jsonNode = objectMapper.readTree(jsonString);
+		JsonNode jsonNode = objectMapper.readTree(json);
 
 		_apioJsonLDResource = new ApioSingleModel(jsonNode);
 	}
