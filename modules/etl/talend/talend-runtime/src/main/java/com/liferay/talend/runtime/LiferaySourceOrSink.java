@@ -557,29 +557,6 @@ public class LiferaySourceOrSink
 	protected final ObjectMapper objectMapper = new ObjectMapper();
 	protected RestClient restClient;
 
-	private JsonNode _toJsonNode(ApioResult apioResult)
-		throws IOException {
-
-		JsonNode jsonNode = null;
-
-		if (_log.isDebugEnabled()) {
-			_log.debug(apioResult.getBody());
-		}
-
-		try {
-			jsonNode = objectMapper.readTree(apioResult.getBody());
-		}
-		catch (IOException ioe) {
-			if (_log.isDebugEnabled()) {
-				_log.debug("Unable to read JSON object", ioe);
-			}
-
-			throw ioe;
-		}
-
-		return jsonNode;
-	}
-
 	private Schema _getResourceCollectionSchema(String resourceURL)
 		throws IOException {
 
@@ -615,6 +592,29 @@ public class LiferaySourceOrSink
 		}
 
 		return resourcesMap;
+	}
+
+	private JsonNode _toJsonNode(ApioResult apioResult)
+		throws IOException {
+
+		JsonNode jsonNode = null;
+
+		if (_log.isDebugEnabled()) {
+			_log.debug(apioResult.getBody());
+		}
+
+		try {
+			jsonNode = objectMapper.readTree(apioResult.getBody());
+		}
+		catch (IOException ioe) {
+			if (_log.isDebugEnabled()) {
+				_log.debug("Unable to read JSON object", ioe);
+			}
+
+			throw ioe;
+		}
+
+		return jsonNode;
 	}
 
 	private void _validateCredentials(
