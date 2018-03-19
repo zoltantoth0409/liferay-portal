@@ -25,8 +25,7 @@ public class Property {
 		String name, boolean required, boolean readable, boolean writeable) {
 
 		if (name == null) {
-			throw new IllegalArgumentException(
-				"'Name' parameter must not be NULL");
+			throw new IllegalArgumentException("Name is NULL");
 		}
 
 		_name = name;

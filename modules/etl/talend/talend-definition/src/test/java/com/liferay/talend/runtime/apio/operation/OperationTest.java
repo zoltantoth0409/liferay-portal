@@ -82,7 +82,7 @@ public class OperationTest {
 	@Test
 	public void testOperation3() {
 		expectedException.expect(IllegalArgumentException.class);
-		expectedException.expectMessage("'Method'".concat(_MESSAGE));
+		expectedException.expectMessage("Method".concat(_MESSAGE));
 
 		new Operation(null, _DEFAULT_ID, "http://example.com", true);
 	}
@@ -90,7 +90,7 @@ public class OperationTest {
 	@Test
 	public void testOperation4() {
 		expectedException.expect(IllegalArgumentException.class);
-		expectedException.expectMessage("'Expects'".concat(_MESSAGE));
+		expectedException.expectMessage("Expects".concat(_MESSAGE));
 
 		new Operation("GET", _DEFAULT_ID, null, true);
 	}
@@ -98,7 +98,7 @@ public class OperationTest {
 	@Test
 	public void testOperation5() {
 		expectedException.expect(IllegalArgumentException.class);
-		expectedException.expectMessage("'Id'".concat(_MESSAGE));
+		expectedException.expectMessage("ID".concat(_MESSAGE));
 
 		new Operation("GET", null, "http://example.com", true);
 	}
@@ -117,6 +117,6 @@ public class OperationTest {
 
 	private static final String _DEFAULT_ID = "_:people/create";
 
-	private static final String _MESSAGE = " parameter must not be NULL";
+	private static final String _MESSAGE = " is NULL";
 
 }
