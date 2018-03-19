@@ -470,10 +470,10 @@ public class LiferaySourceOrSink
 
 		if (_log.isDebugEnabled()) {
 			_log.debug(
-				"Validate Endpoint: {}",
+				"Validate endpoint: {}",
 				liferayConnectionProperties.endpoint.getValue());
 			_log.debug(
-				"Validate UserID: {}",
+				"Validate user ID: {}",
 				liferayConnectionProperties.userId.getValue());
 		}
 

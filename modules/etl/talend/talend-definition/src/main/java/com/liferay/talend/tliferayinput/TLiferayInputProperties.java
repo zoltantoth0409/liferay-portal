@@ -171,7 +171,7 @@ public class TLiferayInputProperties
 			if (_log.isDebugEnabled()) {
 				_log.debug("Using a reference connection properties.");
 				_log.debug(
-					"UserID: " +
+					"User ID: " +
 						referencedLiferayConnectionProperties.userId.
 							getValue());
 				_log.debug(
@@ -185,7 +185,7 @@ public class TLiferayInputProperties
 
 		if (_log.isDebugEnabled()) {
 			_log.debug(
-				"UserID: " + liferayConnectionProperties.userId.getValue());
+				"User ID: " + liferayConnectionProperties.userId.getValue());
 			_log.debug(
 				"Endpoint: " + liferayConnectionProperties.endpoint.getValue());
 		}
