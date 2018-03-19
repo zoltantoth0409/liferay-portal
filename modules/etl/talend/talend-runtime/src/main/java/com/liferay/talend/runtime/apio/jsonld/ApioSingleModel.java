@@ -111,7 +111,7 @@ public class ApioSingleModel extends ApioBaseResponse {
 
 		if (contextJsonNode.isMissingNode()) {
 			throw new IOException(
-				"The given resource does not have Context node");
+				"The given resource does not have context node");
 		}
 	}
 
