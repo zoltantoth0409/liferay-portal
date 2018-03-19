@@ -29,7 +29,7 @@ public interface AbsolutePortalURLBuilder {
 	 * @see AbsolutePortalBuildableURLBuilder
 	 * @review
 	 */
-	public AbsolutePortalImageURLBuilder forImage(String relativeURL);
+	public ImageAbsolutePortalURLBuilder forImage(String relativeURL);
 
 	/**
 	 * Configure this builder to return URLs for portal main resources. Main
@@ -39,7 +39,7 @@ public interface AbsolutePortalURLBuilder {
 	 * @see AbsolutePortalBuildableURLBuilder
 	 * @review
 	 */
-	public AbsolutePortalMainURLBuilder forMain(String relativeURL);
+	public MainAbsolutePortalURLBuilder forMain(String relativeURL);
 
 	/**
 	 * Configure this builder to return URLs for module resources. Module
@@ -49,7 +49,7 @@ public interface AbsolutePortalURLBuilder {
 	 * @see AbsolutePortalBuildableURLBuilder
 	 * @review
 	 */
-	public AbsolutePortalModuleURLBuilder forModule(String relativeURL);
+	public ModuleAbsolutePortalURLBuilder forModule(String relativeURL);
 
 	/**
 	 * Configure this builder to return URLs for arbitrary resources. Arbitrary
@@ -59,7 +59,7 @@ public interface AbsolutePortalURLBuilder {
 	 * @see AbsolutePortalBuildableURLBuilder
 	 * @review
 	 */
-	public AbsolutePortalResourceURLBuilder forResource(String relativeURL);
+	public ResourceAbsolutePortalURLBuilder forResource(String relativeURL);
 
 	/**
 	 * Configure this builder to return absolute URLs without the CDN part.

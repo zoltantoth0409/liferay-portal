@@ -21,10 +21,10 @@ import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.url.builder.AbsolutePortalImageURLBuilder;
-import com.liferay.portal.url.builder.AbsolutePortalMainURLBuilder;
-import com.liferay.portal.url.builder.AbsolutePortalModuleURLBuilder;
-import com.liferay.portal.url.builder.AbsolutePortalResourceURLBuilder;
+import com.liferay.portal.url.builder.ImageAbsolutePortalURLBuilder;
+import com.liferay.portal.url.builder.MainAbsolutePortalURLBuilder;
+import com.liferay.portal.url.builder.ModuleAbsolutePortalURLBuilder;
+import com.liferay.portal.url.builder.ResourceAbsolutePortalURLBuilder;
 import com.liferay.portal.url.builder.AbsolutePortalURLBuilder;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,8 +42,8 @@ public class AbsolutePortalURLBuilderImpl implements AbsolutePortalURLBuilder {
 	}
 
 	@Override
-	public AbsolutePortalImageURLBuilder forImage(String relativeURL) {
-		return new AbsolutePortalImageURLBuilder() {
+	public ImageAbsolutePortalURLBuilder forImage(String relativeURL) {
+		return new ImageAbsolutePortalURLBuilder() {
 
 			@Override
 			public String build() {
@@ -54,8 +54,8 @@ public class AbsolutePortalURLBuilderImpl implements AbsolutePortalURLBuilder {
 	}
 
 	@Override
-	public AbsolutePortalMainURLBuilder forMain(String relativeURL) {
-		return new AbsolutePortalMainURLBuilder() {
+	public MainAbsolutePortalURLBuilder forMain(String relativeURL) {
+		return new MainAbsolutePortalURLBuilder() {
 
 			@Override
 			public String build() {
@@ -66,8 +66,8 @@ public class AbsolutePortalURLBuilderImpl implements AbsolutePortalURLBuilder {
 	}
 
 	@Override
-	public AbsolutePortalModuleURLBuilder forModule(String relativeURL) {
-		return new AbsolutePortalModuleURLBuilder() {
+	public ModuleAbsolutePortalURLBuilder forModule(String relativeURL) {
+		return new ModuleAbsolutePortalURLBuilder() {
 
 			@Override
 			public String build() {
@@ -78,8 +78,8 @@ public class AbsolutePortalURLBuilderImpl implements AbsolutePortalURLBuilder {
 	}
 
 	@Override
-	public AbsolutePortalResourceURLBuilder forResource(String relativeURL) {
-		return new AbsolutePortalResourceURLBuilder() {
+	public ResourceAbsolutePortalURLBuilder forResource(String relativeURL) {
+		return new ResourceAbsolutePortalURLBuilder() {
 
 			@Override
 			public String build() {
