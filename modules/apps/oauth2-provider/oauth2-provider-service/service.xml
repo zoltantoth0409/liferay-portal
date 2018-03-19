@@ -28,10 +28,10 @@
 
 		<!-- Finder methods -->
 
-		<finder name="A" return-type="Collection">
+		<finder name="OAuth2ApplicationId" return-type="Collection">
 			<finder-column name="oAuth2ApplicationId" />
 		</finder>
-		<finder name="RefreshToken" return-type="Collection">
+		<finder name="OAuth2RefreshTokenId" return-type="Collection">
 			<finder-column name="oAuth2RefreshTokenId" />
 		</finder>
 		<finder name="TokenContent" return-type="OAuth2AccessToken">
@@ -123,7 +123,7 @@
 
 		<!-- Finder methods -->
 
-		<finder name="A" return-type="Collection">
+		<finder name="OAuth2ApplicationId" return-type="Collection">
 			<finder-column name="oAuth2ApplicationId" />
 		</finder>
 		<finder name="TokenContent" return-type="OAuth2RefreshToken">
@@ -151,7 +151,7 @@
 
 		<!-- Finder methods -->
 
-		<finder name="Token" return-type="Collection">
+		<finder name="OAuth2AccessTokenId" return-type="Collection">
 			<finder-column name="oAuth2AccessTokenId" />
 		</finder>
 		<finder name="A_B_C_T_S" return-type="OAuth2ScopeGrant">
