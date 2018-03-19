@@ -141,12 +141,15 @@
 
 		<column name="oAuth2ScopeGrantId" primary="true" type="long" />
 
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+
 		<!-- Other fields -->
 
 		<column name="oAuth2AccessTokenId" type="long" />
 		<column name="applicationName" type="String" />
 		<column name="bundleSymbolicName" type="String" />
-		<column name="companyId" type="long" />
 		<column name="scope" type="String" />
 
 		<!-- Finder methods -->
