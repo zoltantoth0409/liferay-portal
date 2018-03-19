@@ -730,6 +730,8 @@
 	<command name="ViewWebContentViaAPAsGuestWithViewPermission" priority="5">
 		<description message="This is a use case for LPS-49853." />
 
+		<property name="test.name.skip.portal.instance" value="PGAssetpublisherWebcontent#ViewWebContentViaAPAsGuestWithViewPermission" />
+
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Users" />
 			<var name="panel" value="Control Panel" />
