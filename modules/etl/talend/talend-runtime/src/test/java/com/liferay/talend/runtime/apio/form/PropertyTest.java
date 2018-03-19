@@ -93,7 +93,7 @@ public class PropertyTest {
 	@Test
 	public void testProperty() {
 		expectedException.expect(IllegalArgumentException.class);
-		expectedException.expectMessage("'Name' parameter must be non-null");
+		expectedException.expectMessage("'Name' parameter must not be NULL");
 
 		new Property(null, true, true, true);
 	}

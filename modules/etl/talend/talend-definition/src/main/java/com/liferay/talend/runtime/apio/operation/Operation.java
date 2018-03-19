@@ -80,7 +80,7 @@ public class Operation {
 	}
 
 	private void _validateParameters(String method, String id, String expects) {
-		final String message = " parameter must be non-null";
+		final String message = " parameter must not be NULL";
 
 		if (method == null) {
 			throw new IllegalArgumentException("'Method'".concat(message));

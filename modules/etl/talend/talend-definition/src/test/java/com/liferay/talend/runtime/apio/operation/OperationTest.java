@@ -117,6 +117,6 @@ public class OperationTest {
 
 	private static final String _DEFAULT_ID = "_:people/create";
 
-	private static final String _MESSAGE = " parameter must be non-null";
+	private static final String _MESSAGE = " parameter must not be NULL";
 
 }

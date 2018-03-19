@@ -26,7 +26,7 @@ public class Property {
 
 		if (name == null) {
 			throw new IllegalArgumentException(
-				"'Name' parameter must be non-null");
+				"'Name' parameter must not be NULL");
 		}
 
 		_name = name;
