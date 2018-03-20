@@ -37,11 +37,9 @@ public class EntryUADEntityDisplayHelper {
 			LiferayPortletResponse liferayPortletResponse)
 		throws Exception {
 
-		String portletId = ContactsPortletKeys.CONCTACTS_CENTER;
-
 		PortletURL portletURL = liferayPortletResponse.createLiferayPortletURL(
-			portal.getControlPanelPlid(liferayPortletRequest), portletId,
-			PortletRequest.RENDER_PHASE);
+			portal.getControlPanelPlid(liferayPortletRequest),
+			ContactsPortletKeys.CONCTACTS_CENTER, PortletRequest.RENDER_PHASE);
 
 		portletURL.setParameter("mvcPath", "/contacts_center/edit_entry");
 		portletURL.setParameter(
