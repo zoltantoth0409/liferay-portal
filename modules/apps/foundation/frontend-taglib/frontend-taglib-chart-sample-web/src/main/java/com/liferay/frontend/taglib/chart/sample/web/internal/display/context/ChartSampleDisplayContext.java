@@ -52,11 +52,11 @@ public class ChartSampleDisplayContext {
 		_initGaugeChartConfig();
 		_initGeomapConfig();
 		_initLineChartConfig();
+		_initLineChartWithPollingIntervalConfig();
 		_initPieChartConfig();
 		_initScatterChartConfig();
 		_initSplineChartConfig();
 		_initStepChartConfig();
-		_initLineChartWithPollingIntervalConfig();
 	}
 
 	public AreaSplineChartConfig getAreaSplineChartConfig() {
