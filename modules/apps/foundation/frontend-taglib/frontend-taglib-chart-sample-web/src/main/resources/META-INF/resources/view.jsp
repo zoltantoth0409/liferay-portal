@@ -161,11 +161,11 @@
 				return Promise.resolve(
 					[
 						{
-							data: [Math.random()*100, Math.random()*100, Math.random()*100],
+							data: [Math.random() * 100, Math.random() * 100, Math.random() * 100],
 							id: 'data1'
 						},
 						{
-							data: [Math.random()*100, Math.random()*100, Math.random()*100],
+							data: [Math.random() * 100, Math.random() * 100, Math.random() * 100],
 							id: 'data2'
 						}
 					]
