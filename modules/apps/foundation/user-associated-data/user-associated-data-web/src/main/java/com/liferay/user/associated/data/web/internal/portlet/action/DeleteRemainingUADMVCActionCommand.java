@@ -49,10 +49,10 @@ public class DeleteRemainingUADMVCActionCommand extends BaseMVCActionCommand {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
+		User selectedUser = _portal.getSelectedUser(actionRequest);
+
 		Collection<UADEntityAnonymizer> uadEntityAnonymizers =
 			_uadRegistry.getUADEntityAnonymizers();
-
-		User selectedUser = _portal.getSelectedUser(actionRequest);
 
 		for (UADEntityAnonymizer uadEntityAnonymizer : uadEntityAnonymizers) {
 			uadEntityAnonymizer.autoAnonymizeAll(selectedUser.getUserId());
