@@ -146,16 +146,16 @@
 	<div class="row">
 		<div class="col polling-interval">
 			<chart:line
-				componentId="line-chart-with-polling-interval"
-				config="<%= chartSampleDisplayContext.getLineChartWithPollingIntervalConfig() %>"
-				id="line-chart-with-polling-interval"
+				componentId="polling-interval-line-chart"
+				config="<%= chartSampleDisplayContext.getPollingIntervalLineChartConfig() %>"
+				id="polling-interval-line-chart"
 			/>
 		</div>
 	</div>
 </div>
 
 <aui:script>
-	Liferay.componentReady('line-chart-with-polling-interval').then(
+	Liferay.componentReady('polling-interval-line-chart').then(
 		function(chart) {
 			chart.data = function() {
 				return Promise.resolve(
