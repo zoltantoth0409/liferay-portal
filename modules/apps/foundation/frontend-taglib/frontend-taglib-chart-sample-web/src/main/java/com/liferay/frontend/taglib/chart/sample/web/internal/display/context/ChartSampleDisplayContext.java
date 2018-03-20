@@ -52,8 +52,8 @@ public class ChartSampleDisplayContext {
 		_initGaugeChartConfig();
 		_initGeomapConfig();
 		_initLineChartConfig();
-		_initPollingIntervalLineChartConfig();
 		_initPieChartConfig();
+		_initPollingIntervalLineChartConfig();
 		_initScatterChartConfig();
 		_initSplineChartConfig();
 		_initStepChartConfig();
