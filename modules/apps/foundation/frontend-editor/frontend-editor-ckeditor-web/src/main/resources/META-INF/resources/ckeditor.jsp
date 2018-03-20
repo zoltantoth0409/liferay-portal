@@ -562,7 +562,7 @@ name = HtmlUtil.escapeJS(name);
 				<c:if test="<%= !(inlineEdit && Validator.isNotNull(inlineEditSaveURL)) %>">
 					var initialEditor = CKEDITOR.instances['<%= name %>'].id;
 
-					A.getWin().on(
+					eventHandles.push(A.getWin().on(
 						'resize',
 						A.debounce(
 							function() {
@@ -594,7 +594,7 @@ name = HtmlUtil.escapeJS(name);
 							},
 							250
 						)
-					);
+					));
 				</c:if>
 
 				var destroyInstance = function(event) {
