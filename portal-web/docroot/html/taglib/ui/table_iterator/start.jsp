@@ -16,12 +16,14 @@
 
 <%@ include file="/html/taglib/ui/table_iterator/init.jsp" %>
 
-<table border="0" cellpadding="0" cellspacing="0"
+<table
+	border="0"
+	cellpadding="0"
+	cellspacing="0"
 
-<c:if test="<%= Validator.isNotNull(width) %>">
-	width="<%= width %>"
-</c:if>
-
+	<c:if test="<%= Validator.isNotNull(width) %>">
+		width="<%= width %>"
+	</c:if>
 >
 <tr>
 	<td class="lrf-<%= rowValign %>">

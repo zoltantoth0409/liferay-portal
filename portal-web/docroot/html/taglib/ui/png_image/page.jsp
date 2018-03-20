@@ -22,14 +22,17 @@ String height = (String)request.getAttribute("liferay-ui:png_image:height");
 String width = (String)request.getAttribute("liferay-ui:png_image:width");
 %>
 
-<div style="
-		<c:choose>
-			<c:when test="<%= BrowserSnifferUtil.isIe(request) && (BrowserSnifferUtil.getMajorVersion(request) >= 5.5) %>">
-				filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='<%= image %>', sizingMethod='scale');
-			</c:when>
-			<c:otherwise>
-				background-image: url(<%= image %>);
-			</c:otherwise>
-		</c:choose>
+<div
+	style="
+	<c:choose>
+		<c:when test="<%= BrowserSnifferUtil.isIe(request) && (BrowserSnifferUtil.getMajorVersion(request) >= 5.5) %>">
+			filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='<%= image %>', sizingMethod='scale');
+		</c:when>
+		<c:otherwise>
+			background-image: url(<%= image %>);
+		</c:otherwise>
+	</c:choose>
 
-		height: <%= height %>px; width: <%= width %>px;"></div>
+	height: <%= height %>px; width: <%= width %>px;"
+>
+</div>

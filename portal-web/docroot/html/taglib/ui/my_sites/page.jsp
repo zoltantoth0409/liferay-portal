@@ -248,18 +248,18 @@ List<Group> mySiteGroups = user.getMySiteGroups(classNames, max);
 									<ul>
 										<c:if test="<%= showPublicSite %>">
 											<li>
-												<a href="<%= (mySiteGroup.getPublicLayoutsPageCount() > 0) ? HtmlUtil.escape(mySiteGroup.getDisplayURL(themeDisplay, false)) : "javascript:;" %>"
+												<a
+													href="<%= (mySiteGroup.getPublicLayoutsPageCount() > 0) ? HtmlUtil.escape(mySiteGroup.getDisplayURL(themeDisplay, false)) : "javascript:;" %>"
 
-												<c:if test="<%= mySiteGroup.isUser() %>">
-													id="my-site-public-pages"
-												</c:if>
+													<c:if test="<%= mySiteGroup.isUser() %>">
+														id="my-site-public-pages"
+													</c:if>
 
-												<c:if test="<%= mySiteGroup.getPublicLayoutsPageCount() > 0 %>">
-													onclick="Liferay.Util.forcePost(this); return false;"
-												</c:if>
+													<c:if test="<%= mySiteGroup.getPublicLayoutsPageCount() > 0 %>">
+														onclick="Liferay.Util.forcePost(this); return false;"
+													</c:if>
 
-												role="menuitem"
-
+													role="menuitem"
 												><liferay-ui:message key="public-pages" /> <span class="page-count">(<%= mySiteGroup.getPublicLayoutsPageCount() %>)</span></a>
 
 												<c:if test="<%= publicAddPageHREF != null %>">
@@ -270,18 +270,18 @@ List<Group> mySiteGroups = user.getMySiteGroups(classNames, max);
 
 										<c:if test="<%= showPrivateSite %>">
 											<li>
-												<a href="<%= (mySiteGroup.getPrivateLayoutsPageCount() > 0) ? HtmlUtil.escape(mySiteGroup.getDisplayURL(themeDisplay, true)) : "javascript:;" %>"
+												<a
+													href="<%= (mySiteGroup.getPrivateLayoutsPageCount() > 0) ? HtmlUtil.escape(mySiteGroup.getDisplayURL(themeDisplay, true)) : "javascript:;" %>"
 
-												<c:if test="<%= mySiteGroup.isUser() %>">
-													id="my-site-private-pages"
-												</c:if>
+													<c:if test="<%= mySiteGroup.isUser() %>">
+														id="my-site-private-pages"
+													</c:if>
 
-												<c:if test="<%= mySiteGroup.getPrivateLayoutsPageCount() > 0 %>">
-													onclick="Liferay.Util.forcePost(this); return false;"
-												</c:if>
+													<c:if test="<%= mySiteGroup.getPrivateLayoutsPageCount() > 0 %>">
+														onclick="Liferay.Util.forcePost(this); return false;"
+													</c:if>
 
-												role="menuitem"
-
+													role="menuitem"
 												><liferay-ui:message key="private-pages" /> <span class="page-count">(<%= mySiteGroup.getPrivateLayoutsPageCount() %>)</span></a>
 
 												<c:if test="<%= privateAddPageHREF != null %>">
