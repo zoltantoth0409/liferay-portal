@@ -103,6 +103,7 @@ public class SocialBookmarksTag extends IncludeTag {
 		super.cleanUp();
 
 		_className = null;
+		_classPK = 0;
 		_displayStyle = null;
 		_target = null;
 		_title = null;
