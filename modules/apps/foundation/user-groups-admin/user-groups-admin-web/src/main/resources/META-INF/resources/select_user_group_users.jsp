@@ -60,7 +60,9 @@ RowChecker rowChecker = new SetUserUserGroupChecker(renderResponse, userGroup);
 
 	<aui:nav-bar-search>
 		<aui:form action="<%= portletURL.toString() %>" name="searchFm">
-			<liferay-ui:input-search markupView="lexicon" />
+			<liferay-ui:input-search
+				markupView="lexicon"
+			/>
 		</aui:form>
 	</aui:nav-bar-search>
 </aui:nav-bar>
@@ -100,7 +102,9 @@ RowChecker rowChecker = new SetUserUserGroupChecker(renderResponse, userGroup);
 		rowChecker="<%= rowChecker %>"
 		searchContainer="<%= userSearchContainer %>"
 	>
-		<liferay-ui:user-search-container-results userParams="<%= userParams %>" />
+		<liferay-ui:user-search-container-results
+			userParams="<%= userParams %>"
+		/>
 
 		<liferay-ui:search-container-row
 			className="com.liferay.portal.kernel.model.User"
@@ -117,7 +121,10 @@ RowChecker rowChecker = new SetUserUserGroupChecker(renderResponse, userGroup);
 			<%@ include file="/user_search_columns.jspf" %>
 		</liferay-ui:search-container-row>
 
-		<liferay-ui:search-iterator displayStyle="<%= displayStyle %>" markupView="lexicon" />
+		<liferay-ui:search-iterator
+			displayStyle="<%= displayStyle %>"
+			markupView="lexicon"
+		/>
 	</liferay-ui:search-container>
 </aui:form>
 

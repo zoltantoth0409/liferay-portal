@@ -196,7 +196,11 @@ renderResponse.setTitle(ruleGroup.getName(locale));
 			</c:choose>
 		</liferay-ui:search-container-row>
 
-		<liferay-ui:search-iterator displayStyle="<%= displayStyle %>" markupView="lexicon" type="more" />
+		<liferay-ui:search-iterator
+			displayStyle="<%= displayStyle %>"
+			markupView="lexicon"
+			type="more"
+		/>
 	</liferay-ui:search-container>
 </div>
 
@@ -207,5 +211,8 @@ renderResponse.setTitle(ruleGroup.getName(locale));
 </liferay-portlet:renderURL>
 
 <liferay-frontend:add-menu>
-	<liferay-frontend:add-menu-item title='<%= LanguageUtil.get(resourceBundle, "add-classification-rule") %>' url="<%= addURL.toString() %>" />
+	<liferay-frontend:add-menu-item
+		title='<%= LanguageUtil.get(resourceBundle, "add-classification-rule") %>'
+		url="<%= addURL.toString() %>"
+	/>
 </liferay-frontend:add-menu>

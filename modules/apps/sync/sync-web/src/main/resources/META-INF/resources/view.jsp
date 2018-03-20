@@ -56,7 +56,9 @@ portletURL.setParameter("tabs1", tabs1);
 		<c:when test='<%= !tabs1.equals("settings") %>'>
 			<aui:form action="<%= portletURL.toString() %>" name="searchFm">
 				<aui:nav-bar-search>
-					<liferay-ui:input-search markupView="lexicon" />
+					<liferay-ui:input-search
+						markupView="lexicon"
+					/>
 				</aui:nav-bar-search>
 			</aui:form>
 		</c:when>

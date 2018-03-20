@@ -63,7 +63,9 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "user-gr
 
 	<aui:nav-bar-search>
 		<aui:form action="<%= portletURLString %>" name="searchFm">
-			<liferay-ui:input-search markupView="lexicon" />
+			<liferay-ui:input-search
+				markupView="lexicon"
+			/>
 		</aui:form>
 	</aui:nav-bar-search>
 </aui:nav-bar>
@@ -96,7 +98,12 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "user-gr
 
 	<c:if test="<%= PortalPermissionUtil.contains(permissionChecker, ActionKeys.ADD_USER_GROUP) %>">
 		<liferay-frontend:management-bar-action-buttons>
-			<liferay-frontend:management-bar-button href="javascript:;" icon="trash" id="deleteUserGroups" label="delete" />
+			<liferay-frontend:management-bar-button
+				href="javascript:;"
+				icon="trash"
+				id="deleteUserGroups"
+				label="delete"
+			/>
 		</liferay-frontend:management-bar-action-buttons>
 	</c:if>
 </liferay-frontend:management-bar>
@@ -107,7 +114,12 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "user-gr
 	<aui:input name="deleteUserGroupIds" type="hidden" />
 
 	<div id="breadcrumb">
-		<liferay-ui:breadcrumb showCurrentGroup="<%= false %>" showGuestGroup="<%= false %>" showLayout="<%= false %>" showPortletBreadcrumb="<%= true %>" />
+		<liferay-ui:breadcrumb
+			showCurrentGroup="<%= false %>"
+			showGuestGroup="<%= false %>"
+			showLayout="<%= false %>"
+			showPortletBreadcrumb="<%= true %>"
+		/>
 	</div>
 
 	<%@ include file="/view_flat_user_groups.jspf" %>

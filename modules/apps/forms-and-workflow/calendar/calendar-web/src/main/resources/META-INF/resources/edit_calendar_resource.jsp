@@ -59,8 +59,18 @@ String code = BeanParamUtil.getString(calendarResource, request, "code");
 	<aui:fieldset>
 		<aui:input name="name" />
 
-		<liferay-ui:panel-container extended="<%= true %>" id="calendarResourceDetailsPanelContainer" persistState="<%= true %>">
-			<liferay-ui:panel defaultState="closed" extended="<%= false %>" id="calendarResourceDetailsPanel" persistState="<%= true %>" title="details">
+		<liferay-ui:panel-container
+			extended="<%= true %>"
+			id="calendarResourceDetailsPanelContainer"
+			persistState="<%= true %>"
+		>
+			<liferay-ui:panel
+				defaultState="closed"
+				extended="<%= false %>"
+				id="calendarResourceDetailsPanel"
+				persistState="<%= true %>"
+				title="details"
+			>
 				<c:choose>
 					<c:when test="<%= calendarResource == null %>">
 						<c:if test="<%= !CalendarServiceConfigurationValues.CALENDAR_RESOURCE_FORCE_AUTOGENERATE_CODE %>">
@@ -93,7 +103,13 @@ String code = BeanParamUtil.getString(calendarResource, request, "code");
 				<aui:input inlineLabel="left" name="active" type="checkbox" value="<%= (calendarResource == null) ? true : calendarResource.isActive() %>" />
 			</liferay-ui:panel>
 
-			<liferay-ui:panel defaultState="closed" extended="<%= false %>" id="calendarResourceCategorizationPanel" persistState="<%= true %>" title="categorization">
+			<liferay-ui:panel
+				defaultState="closed"
+				extended="<%= false %>"
+				id="calendarResourceCategorizationPanel"
+				persistState="<%= true %>"
+				title="categorization"
+			>
 				<aui:input classPK="<%= calendarResourceId %>" name="categories" type="assetCategories" />
 
 				<aui:input classPK="<%= calendarResourceId %>" name="tags" type="assetTags" />
@@ -102,7 +118,9 @@ String code = BeanParamUtil.getString(calendarResource, request, "code");
 
 		<c:if test="<%= calendarResource == null %>">
 			<aui:field-wrapper label="permissions">
-				<liferay-ui:input-permissions modelName="<%= CalendarResource.class.getName() %>" />
+				<liferay-ui:input-permissions
+					modelName="<%= CalendarResource.class.getName() %>"
+				/>
 			</aui:field-wrapper>
 		</c:if>
 

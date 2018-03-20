@@ -35,7 +35,9 @@ List<Menu> menus = bookmarksPortletToolbarContributor.getPortletTitleMenus(rende
 		}
 	%>
 
-		<liferay-frontend:add-menu addMenuItems="<%= addMenuItems %>" />
+		<liferay-frontend:add-menu
+			addMenuItems="<%= addMenuItems %>"
+		/>
 
 	<%
 	}

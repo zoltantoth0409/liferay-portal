@@ -51,7 +51,10 @@ DDLRecordSet selRecordSet = DDLRecordSetServiceUtil.fetchRecordSet(recordSetId);
 					total="<%= DDLRecordSetServiceUtil.searchCount(company.getCompanyId(), scopeGroupId, keywords, DDLRecordSetConstants.SCOPE_FORMS) %>"
 				>
 					<div class="form-search input-append">
-						<liferay-ui:input-search autoFocus="<%= true %>" placeholder='<%= LanguageUtil.get(request, "keywords") %>' />
+						<liferay-ui:input-search
+							autoFocus="<%= true %>"
+							placeholder='<%= LanguageUtil.get(request, "keywords") %>'
+						/>
 					</div>
 
 					<liferay-ui:search-container-results

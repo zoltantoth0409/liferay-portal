@@ -160,7 +160,12 @@ DLPortletInstanceSettingsHelper dlPortletInstanceSettingsHelper = new DLPortletI
 		</c:choose>
 	</liferay-ui:search-container-row>
 
-	<liferay-ui:search-iterator displayStyle="icon" markupView="lexicon" resultRowSplitter="<%= new IGResultRowSplitter() %>" searchContainer="<%= igSearchContainer %>" />
+	<liferay-ui:search-iterator
+		displayStyle="icon"
+		markupView="lexicon"
+		resultRowSplitter="<%= new IGResultRowSplitter() %>"
+		searchContainer="<%= igSearchContainer %>"
+	/>
 </liferay-ui:search-container>
 
 <%

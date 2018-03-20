@@ -98,7 +98,10 @@ long categoryId = MBUtil.getCategoryId(request, category);
 				<aui:input name="breadcrumbsCategoryId" type="hidden" value="<%= categoryId %>" />
 				<aui:input name="searchCategoryId" type="hidden" value="<%= categoryId %>" />
 
-				<liferay-ui:input-search id="keywords1" markupView="lexicon" />
+				<liferay-ui:input-search
+					id="keywords1"
+					markupView="lexicon"
+				/>
 			</aui:form>
 		</aui:nav-bar-search>
 	</c:if>
@@ -107,5 +110,10 @@ long categoryId = MBUtil.getCategoryId(request, category);
 <div class="lfr-alert-container"></div>
 
 <div id="breadcrumb">
-	<liferay-ui:breadcrumb showCurrentGroup="<%= false %>" showGuestGroup="<%= false %>" showLayout="<%= false %>" showPortletBreadcrumb="<%= true %>" />
+	<liferay-ui:breadcrumb
+		showCurrentGroup="<%= false %>"
+		showGuestGroup="<%= false %>"
+		showLayout="<%= false %>"
+		showPortletBreadcrumb="<%= true %>"
+	/>
 </div>

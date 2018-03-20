@@ -84,7 +84,9 @@ SiteAdministrationPanelCategoryDisplayContext siteAdministrationPanelCategoryDis
 	</div>
 
 	<c:if test="<%= siteAdministrationPanelCategoryDisplayContext.isShowSiteAdministration() %>">
-		<liferay-application-list:panel-category-body panelCategory="<%= panelCategory %>" />
+		<liferay-application-list:panel-category-body
+			panelCategory="<%= panelCategory %>"
+		/>
 	</c:if>
 </c:if>
 

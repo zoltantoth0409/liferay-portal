@@ -104,7 +104,9 @@ AssetEntry layoutAssetEntry = AssetEntryLocalServiceUtil.getEntry(CalendarBookin
 				</c:if>
 			</dl>
 
-			<liferay-expando:custom-attributes-available className="<%= CalendarBooking.class.getName() %>">
+			<liferay-expando:custom-attributes-available
+				className="<%= CalendarBooking.class.getName() %>"
+			>
 				<liferay-expando:custom-attribute-list
 					className="<%= CalendarBooking.class.getName() %>"
 					classPK="<%= calendarBooking.getCalendarBookingId() %>"
@@ -150,8 +152,18 @@ AssetEntry layoutAssetEntry = AssetEntryLocalServiceUtil.getEntry(CalendarBookin
 		</aui:fieldset>
 
 		<c:if test="<%= calendar.isEnableComments() %>">
-			<liferay-ui:panel-container extended="<%= false %>" id="calendarBookingPanelContainer" persistState="<%= true %>">
-				<liferay-ui:panel collapsible="<%= true %>" extended="<%= false %>" id="calendarBookingCommentsPanel" persistState="<%= true %>" title="comments">
+			<liferay-ui:panel-container
+				extended="<%= false %>"
+				id="calendarBookingPanelContainer"
+				persistState="<%= true %>"
+			>
+				<liferay-ui:panel
+					collapsible="<%= true %>"
+					extended="<%= false %>"
+					id="calendarBookingCommentsPanel"
+					persistState="<%= true %>"
+					title="comments"
+				>
 					<liferay-ui:discussion
 						className="<%= CalendarBooking.class.getName() %>"
 						classPK="<%= calendarBooking.getCalendarBookingId() %>"

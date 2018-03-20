@@ -118,7 +118,10 @@ List<String> attributeNames = Collections.list(expandoBridge.getAttributeNames()
 			<%@ include file="/attribute_columns.jspf" %>
 		</liferay-ui:search-container-row>
 
-		<liferay-ui:search-iterator markupView="lexicon" paginate="<%= false %>" />
+		<liferay-ui:search-iterator
+			markupView="lexicon"
+			paginate="<%= false %>"
+		/>
 	</liferay-ui:search-container>
 </aui:form>
 
@@ -130,7 +133,10 @@ List<String> attributeNames = Collections.list(expandoBridge.getAttributeNames()
 	</portlet:renderURL>
 
 	<liferay-frontend:add-menu>
-		<liferay-frontend:add-menu-item title='<%= LanguageUtil.get(request, "add-custom-field") %>' url="<%= addExpandoURL.toString() %>" />
+		<liferay-frontend:add-menu-item
+			title='<%= LanguageUtil.get(request, "add-custom-field") %>'
+			url="<%= addExpandoURL.toString() %>"
+		/>
 	</liferay-frontend:add-menu>
 </c:if>
 

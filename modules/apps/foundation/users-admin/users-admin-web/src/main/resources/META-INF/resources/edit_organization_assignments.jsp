@@ -83,7 +83,9 @@ renderResponse.setTitle(organization.getName());
 		}
 		%>
 
-		<liferay-ui:user-search-container-results userParams="<%= userParams %>" />
+		<liferay-ui:user-search-container-results
+			userParams="<%= userParams %>"
+		/>
 
 		<liferay-ui:search-container-row
 			className="com.liferay.portal.kernel.model.User"
@@ -113,7 +115,9 @@ renderResponse.setTitle(organization.getName());
 
 		<aui:button onClick="<%= taglibOnClick %>" value="update-associations" />
 
-		<liferay-ui:search-iterator markupView="lexicon" />
+		<liferay-ui:search-iterator
+			markupView="lexicon"
+		/>
 	</liferay-ui:search-container>
 </aui:form>
 

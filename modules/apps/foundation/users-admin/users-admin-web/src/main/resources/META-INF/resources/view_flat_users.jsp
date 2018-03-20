@@ -97,7 +97,12 @@ boolean showRestoreButton = (searchTerms.getStatus() != WorkflowConstants.STATUS
 			String taglibOnClick = "javascript:" + renderResponse.getNamespace() + "deleteUsers('" + Constants.RESTORE + "');";
 			%>
 
-			<liferay-frontend:management-bar-button href="<%= taglibOnClick %>" iconCssClass="icon-undo" id="restoreUsers" label="restore" />
+			<liferay-frontend:management-bar-button
+				href="<%= taglibOnClick %>"
+				iconCssClass="icon-undo"
+				id="restoreUsers"
+				label="restore"
+			/>
 		</c:if>
 
 		<c:if test="<%= showDeleteButton %>">
@@ -106,7 +111,12 @@ boolean showRestoreButton = (searchTerms.getStatus() != WorkflowConstants.STATUS
 			String taglibOnClick = "javascript:" + renderResponse.getNamespace() + "deleteUsers('" + (searchTerms.isActive() ? Constants.DEACTIVATE : Constants.DELETE) + "');";
 			%>
 
-			<liferay-frontend:management-bar-button href="<%= taglibOnClick %>" icon="trash" id="deleteUsers" label="<%= searchTerms.isActive() ? Constants.DEACTIVATE : Constants.DELETE %>" />
+			<liferay-frontend:management-bar-button
+				href="<%= taglibOnClick %>"
+				icon="trash"
+				id="deleteUsers"
+				label="<%= searchTerms.isActive() ? Constants.DEACTIVATE : Constants.DELETE %>"
+			/>
 		</c:if>
 	</liferay-frontend:management-bar-action-buttons>
 </liferay-frontend:management-bar>
@@ -210,7 +220,12 @@ boolean showRestoreButton = (searchTerms.getStatus() != WorkflowConstants.STATUS
 
 			<c:if test="<%= layout.isTypeControlPanel() %>">
 				<div id="breadcrumb">
-					<liferay-ui:breadcrumb showCurrentGroup="<%= false %>" showGuestGroup="<%= false %>" showLayout="<%= false %>" showPortletBreadcrumb="<%= true %>" />
+					<liferay-ui:breadcrumb
+						showCurrentGroup="<%= false %>"
+						showGuestGroup="<%= false %>"
+						showLayout="<%= false %>"
+						showPortletBreadcrumb="<%= true %>"
+					/>
 				</div>
 			</c:if>
 		</c:if>
@@ -285,7 +300,9 @@ boolean showRestoreButton = (searchTerms.getStatus() != WorkflowConstants.STATUS
 		}
 		%>
 
-		<liferay-ui:user-search-container-results userParams="<%= userParams %>" />
+		<liferay-ui:user-search-container-results
+			userParams="<%= userParams %>"
+		/>
 
 		<liferay-ui:search-container-row
 			className="com.liferay.portal.kernel.model.User"
@@ -330,7 +347,9 @@ boolean showRestoreButton = (searchTerms.getStatus() != WorkflowConstants.STATUS
 		}
 		%>
 
-		<liferay-ui:search-iterator markupView="lexicon" />
+		<liferay-ui:search-iterator
+			markupView="lexicon"
+		/>
 	</liferay-ui:search-container>
 </aui:form>
 
@@ -346,6 +365,9 @@ boolean showRestoreButton = (searchTerms.getStatus() != WorkflowConstants.STATUS
 			<portlet:param name="redirect" value="<%= viewUsersURL %>" />
 		</portlet:renderURL>
 
-		<liferay-frontend:add-menu-item title='<%= LanguageUtil.get(request, "user") %>' url="<%= addUserURL.toString() %>" />
+		<liferay-frontend:add-menu-item
+			title='<%= LanguageUtil.get(request, "user") %>'
+			url="<%= addUserURL.toString() %>"
+		/>
 	</liferay-frontend:add-menu>
 </c:if>

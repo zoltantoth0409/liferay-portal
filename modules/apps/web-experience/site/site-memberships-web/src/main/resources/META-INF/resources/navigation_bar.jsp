@@ -53,7 +53,10 @@
 	<c:if test="<%= searchEnabled %>">
 		<aui:nav-bar-search>
 			<aui:form action="<%= siteMembershipsDisplayContext.getPortletURL() %>" name="searchFm">
-				<liferay-ui:input-search autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" markupView="lexicon" />
+				<liferay-ui:input-search
+					autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>"
+					markupView="lexicon"
+				/>
 			</aui:form>
 		</aui:nav-bar-search>
 	</c:if>

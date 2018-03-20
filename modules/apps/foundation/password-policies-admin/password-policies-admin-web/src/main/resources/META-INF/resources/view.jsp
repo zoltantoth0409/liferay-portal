@@ -52,7 +52,10 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "passwor
 
 		<aui:nav-bar-search searchContainer="<%= searchContainer %>">
 			<aui:form action="<%= searchURL %>" name="searchFm">
-				<liferay-ui:input-search autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" markupView="lexicon" />
+				<liferay-ui:input-search
+					autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>"
+					markupView="lexicon"
+				/>
 			</aui:form>
 		</aui:nav-bar-search>
 	</c:if>
@@ -94,7 +97,12 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "passwor
 	<aui:input name="passwordPolicyIds" type="hidden" />
 
 	<div id="breadcrumb">
-		<liferay-ui:breadcrumb showCurrentGroup="<%= false %>" showGuestGroup="<%= false %>" showLayout="<%= false %>" showPortletBreadcrumb="<%= true %>" />
+		<liferay-ui:breadcrumb
+			showCurrentGroup="<%= false %>"
+			showGuestGroup="<%= false %>"
+			showLayout="<%= false %>"
+			showPortletBreadcrumb="<%= true %>"
+		/>
 	</div>
 
 	<c:if test="<%= passwordPolicyEnabled %>">
@@ -160,7 +168,10 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "passwor
 				/>
 			</liferay-ui:search-container-row>
 
-			<liferay-ui:search-iterator markupView="lexicon" searchContainer="<%= passwordPolicySearchContainer %>" />
+			<liferay-ui:search-iterator
+				markupView="lexicon"
+				searchContainer="<%= passwordPolicySearchContainer %>"
+			/>
 		</liferay-ui:search-container>
 	</c:if>
 </aui:form>
@@ -194,6 +205,9 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "passwor
 	</portlet:renderURL>
 
 	<liferay-frontend:add-menu>
-		<liferay-frontend:add-menu-item title='<%= LanguageUtil.get(request, "add") %>' url="<%= addPasswordPolicyURL.toString() %>" />
+		<liferay-frontend:add-menu-item
+			title='<%= LanguageUtil.get(request, "add") %>'
+			url="<%= addPasswordPolicyURL.toString() %>"
+		/>
 	</liferay-frontend:add-menu>
 </c:if>

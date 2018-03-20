@@ -48,7 +48,9 @@ renderResponse.setTitle(LanguageUtil.get(request, "organizations"));
 
 	<aui:nav-bar-search>
 		<aui:form action="<%= portletURL.toString() %>" name="searchFm">
-			<liferay-ui:input-search markupView="lexicon" />
+			<liferay-ui:input-search
+				markupView="lexicon"
+			/>
 		</aui:form>
 	</aui:nav-bar-search>
 </aui:nav-bar>
@@ -86,7 +88,10 @@ renderResponse.setTitle(LanguageUtil.get(request, "organizations"));
 		}
 		%>
 
-		<liferay-ui:organization-search-container-results organizationParams="<%= organizationParams %>" parentOrganizationId="<%= parentOrganizationId %>" />
+		<liferay-ui:organization-search-container-results
+			organizationParams="<%= organizationParams %>"
+			parentOrganizationId="<%= parentOrganizationId %>"
+		/>
 
 		<liferay-ui:search-container-row
 			className="com.liferay.portal.kernel.model.Organization"
@@ -159,7 +164,9 @@ renderResponse.setTitle(LanguageUtil.get(request, "organizations"));
 			</liferay-ui:search-container-column-text>
 		</liferay-ui:search-container-row>
 
-		<liferay-ui:search-iterator markupView="lexicon" />
+		<liferay-ui:search-iterator
+			markupView="lexicon"
+		/>
 	</liferay-ui:search-container>
 </aui:form>
 

@@ -52,7 +52,9 @@ portletURL.setParameter("mvcRenderCommandName", "/directory/view");
 				<liferay-util:include page="/organization_search.jsp" servletContext="<%= application %>" />
 			</c:when>
 			<c:when test='<%= tabs1.equals("user-groups") %>'>
-				<liferay-ui:input-search markupView="lexicon" />
+				<liferay-ui:input-search
+					markupView="lexicon"
+				/>
 			</c:when>
 			<c:when test='<%= tabs1.equals("users") || portletName.equals(PortletKeys.FRIENDS_DIRECTORY) %>'>
 				<liferay-util:include page="/user_search.jsp" servletContext="<%= application %>" />

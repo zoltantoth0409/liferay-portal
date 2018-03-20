@@ -63,7 +63,9 @@ Boolean showSearchFm = GetterUtil.getBoolean(ParamUtil.getString(request, "showS
 				<aui:input name="breadcrumbsCategoryId" type="hidden" value="<%= categoryId %>" />
 				<aui:input name="searchCategoryId" type="hidden" value="<%= categoryId %>" />
 
-				<liferay-ui:input-search markupView="lexicon" />
+				<liferay-ui:input-search
+					markupView="lexicon"
+				/>
 			</aui:nav-bar-search>
 		</aui:form>
 	</c:if>

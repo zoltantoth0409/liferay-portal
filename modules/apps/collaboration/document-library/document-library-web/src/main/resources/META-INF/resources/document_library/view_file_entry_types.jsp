@@ -36,7 +36,9 @@ renderResponse.setTitle(LanguageUtil.get(request, "document-types"));
 
 	<aui:nav-bar-search>
 		<aui:form action="<%= searchURL.toString() %>" method="post" name="fm">
-			<liferay-ui:input-search markupView="lexicon" />
+			<liferay-ui:input-search
+				markupView="lexicon"
+			/>
 		</aui:form>
 	</aui:nav-bar-search>
 </aui:nav-bar>
@@ -94,7 +96,9 @@ renderResponse.setTitle(LanguageUtil.get(request, "document-types"));
 			/>
 		</liferay-ui:search-container-row>
 
-		<liferay-ui:search-iterator markupView="lexicon" />
+		<liferay-ui:search-iterator
+			markupView="lexicon"
+		/>
 	</liferay-ui:search-container>
 
 	<c:if test="<%= DLPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_DOCUMENT_TYPE) %>">
@@ -104,7 +108,10 @@ renderResponse.setTitle(LanguageUtil.get(request, "document-types"));
 		</portlet:renderURL>
 
 		<liferay-frontend:add-menu>
-			<liferay-frontend:add-menu-item title='<%= LanguageUtil.get(request, "add") %>' url="<%= addFileEntryTypeURL %>" />
+			<liferay-frontend:add-menu-item
+				title='<%= LanguageUtil.get(request, "add") %>'
+				url="<%= addFileEntryTypeURL %>"
+			/>
 		</liferay-frontend:add-menu>
 	</c:if>
 </div>

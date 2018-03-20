@@ -104,7 +104,12 @@ organizationSearch.setResults(organizations);
 			label="info"
 		/>
 
-		<liferay-frontend:management-bar-button href="javascript:;" icon="trash" id="deleteSelectedOrganizations" label="remove-membership" />
+		<liferay-frontend:management-bar-button
+			href="javascript:;"
+			icon="trash"
+			id="deleteSelectedOrganizations"
+			label="remove-membership"
+		/>
 	</liferay-frontend:management-bar-action-buttons>
 </liferay-frontend:management-bar>
 
@@ -148,7 +153,10 @@ organizationSearch.setResults(organizations);
 					<%@ include file="/organization_columns.jspf" %>
 				</liferay-ui:search-container-row>
 
-				<liferay-ui:search-iterator displayStyle="<%= displayStyle %>" markupView="lexicon" />
+				<liferay-ui:search-iterator
+					displayStyle="<%= displayStyle %>"
+					markupView="lexicon"
+				/>
 			</liferay-ui:search-container>
 		</aui:form>
 	</div>
@@ -162,7 +170,11 @@ organizationSearch.setResults(organizations);
 
 <c:if test="<%= hasAssignMembersPermission %>">
 	<liferay-frontend:add-menu>
-		<liferay-frontend:add-menu-item id="selectOrganizations" title='<%= LanguageUtil.get(request, "assign-organizations") %>' url="javascript:;" />
+		<liferay-frontend:add-menu-item
+			id="selectOrganizations"
+			title='<%= LanguageUtil.get(request, "assign-organizations") %>'
+			url="javascript:;"
+		/>
 	</liferay-frontend:add-menu>
 </c:if>
 

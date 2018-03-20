@@ -72,7 +72,11 @@ boolean search = mvcRenderCommandName.equals("/document_library/search");
 				<portlet:param name="folderId" value="<%= String.valueOf(rootFolderId) %>" />
 			</portlet:renderURL>
 
-			<liferay-frontend:management-bar-filter-item active='<%= ((navigation.equals("home")) && (folderId == rootFolderId) && (fileEntryTypeId == -1)) %>' label="all" url="<%= viewDocumentsHomeURL.toString() %>" />
+			<liferay-frontend:management-bar-filter-item
+				active='<%= ((navigation.equals("home")) && (folderId == rootFolderId) && (fileEntryTypeId == -1)) %>'
+				label="all"
+				url="<%= viewDocumentsHomeURL.toString() %>"
+			/>
 
 			<portlet:renderURL var="viewRecentDocumentsURL">
 				<portlet:param name="mvcRenderCommandName" value="/document_library/view" />
@@ -80,7 +84,11 @@ boolean search = mvcRenderCommandName.equals("/document_library/search");
 				<portlet:param name="folderId" value="<%= String.valueOf(rootFolderId) %>" />
 			</portlet:renderURL>
 
-			<liferay-frontend:management-bar-filter-item active='<%= navigation.equals("recent") %>' label="recent" url="<%= viewRecentDocumentsURL.toString() %>" />
+			<liferay-frontend:management-bar-filter-item
+				active='<%= navigation.equals("recent") %>'
+				label="recent"
+				url="<%= viewRecentDocumentsURL.toString() %>"
+			/>
 
 			<c:if test="<%= themeDisplay.isSignedIn() %>">
 				<portlet:renderURL var="viewMyDocumentsURL">
@@ -89,10 +97,19 @@ boolean search = mvcRenderCommandName.equals("/document_library/search");
 					<portlet:param name="folderId" value="<%= String.valueOf(rootFolderId) %>" />
 				</portlet:renderURL>
 
-				<liferay-frontend:management-bar-filter-item active='<%= navigation.equals("mine") %>' label="mine" url="<%= viewMyDocumentsURL.toString() %>" />
+				<liferay-frontend:management-bar-filter-item
+					active='<%= navigation.equals("mine") %>'
+					label="mine"
+					url="<%= viewMyDocumentsURL.toString() %>"
+				/>
 			</c:if>
 
-			<liferay-frontend:management-bar-filter-item active="<%= fileEntryTypeId != -1 %>" id="fileEntryTypes" label="document-types" url="javascript:;" />
+			<liferay-frontend:management-bar-filter-item
+				active="<%= fileEntryTypeId != -1 %>"
+				id="fileEntryTypes"
+				label="document-types"
+				url="javascript:;"
+			/>
 		</liferay-frontend:management-bar-navigation>
 
 		<c:if test='<%= !search && !navigation.equals("recent") %>'>
@@ -116,22 +133,39 @@ boolean search = mvcRenderCommandName.equals("/document_library/search");
 			String taglibURL = "javascript:Liferay.fire('" + renderResponse.getNamespace() + "editEntry', {action: '" + Constants.CHECKIN + "'}); void(0);";
 			%>
 
-			<liferay-frontend:management-bar-button href="<%= taglibURL %>" icon="unlock" label="unlock" />
+			<liferay-frontend:management-bar-button
+				href="<%= taglibURL %>"
+				icon="unlock"
+				label="unlock"
+			/>
 
 			<%
 			taglibURL = "javascript:Liferay.fire('" + renderResponse.getNamespace() + "editEntry', {action: '" + Constants.CHECKOUT + "'}); void(0);";
 			%>
 
-			<liferay-frontend:management-bar-button href="<%= taglibURL %>" icon="lock" label="lock" />
+			<liferay-frontend:management-bar-button
+				href="<%= taglibURL %>"
+				icon="lock"
+				label="lock"
+			/>
 
 			<%
 			taglibURL = "javascript:Liferay.fire('" + renderResponse.getNamespace() + "editEntry', {action: '" + Constants.MOVE + "'}); void(0);";
 			%>
 
-			<liferay-frontend:management-bar-button href="<%= taglibURL %>" icon="change" label="move" />
+			<liferay-frontend:management-bar-button
+				href="<%= taglibURL %>"
+				icon="change"
+				label="move"
+			/>
 		</c:if>
 
-		<liferay-frontend:management-bar-button href='<%= "javascript:" + renderResponse.getNamespace() + "deleteEntries();" %>' icon='<%= DLTrashUtil.isTrashEnabled(scopeGroupId, repositoryId) ? "trash" : "times" %>' id="deleteAction" label='<%= DLTrashUtil.isTrashEnabled(scopeGroupId, repositoryId) ? "recycle-bin" : "delete" %>' />
+		<liferay-frontend:management-bar-button
+			href='<%= "javascript:" + renderResponse.getNamespace() + "deleteEntries();" %>'
+			icon='<%= DLTrashUtil.isTrashEnabled(scopeGroupId, repositoryId) ? "trash" : "times" %>'
+			id="deleteAction"
+			label='<%= DLTrashUtil.isTrashEnabled(scopeGroupId, repositoryId) ? "recycle-bin" : "delete" %>'
+		/>
 	</liferay-frontend:management-bar-action-buttons>
 </liferay-frontend:management-bar>
 

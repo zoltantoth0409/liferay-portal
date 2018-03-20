@@ -43,7 +43,9 @@ String[] metadataFields = (String[])request.getAttribute("liferay-ui:asset-metad
 				<liferay-util:include page="/html/taglib/ui/asset_metadata/metadata_entry.jsp" />
 			</c:if>
 
-			<liferay-util:buffer var="metadataPanelContent">
+			<liferay-util:buffer
+				var="metadataPanelContent"
+			>
 
 				<%
 				for (String metadataField : metadataFields) {
@@ -59,7 +61,15 @@ String[] metadataFields = (String[])request.getAttribute("liferay-ui:asset-metad
 			</liferay-util:buffer>
 
 			<c:if test="<%= Validator.isNotNull(metadataPanelContent) %>">
-				<liferay-ui:panel collapsible="<%= true %>" cssClass="asset-metadata-panel" defaultState="closed" extended="<%= false %>" id='<%= "metadataPanel" + assetEntry.getEntryId() %>' persistState="<%= false %>" title="more-details">
+				<liferay-ui:panel
+					collapsible="<%= true %>"
+					cssClass="asset-metadata-panel"
+					defaultState="closed"
+					extended="<%= false %>"
+					id='<%= "metadataPanel" + assetEntry.getEntryId() %>'
+					persistState="<%= false %>"
+					title="more-details"
+				>
 					<%= metadataPanelContent %>
 				</liferay-ui:panel>
 			</c:if>

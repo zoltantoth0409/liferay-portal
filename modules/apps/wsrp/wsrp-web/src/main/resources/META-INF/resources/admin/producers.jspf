@@ -74,7 +74,9 @@
 			/>
 		</liferay-ui:search-container-row>
 
-		<liferay-ui:search-iterator markupView="lexicon" />
+		<liferay-ui:search-iterator
+			markupView="lexicon"
+		/>
 	</liferay-ui:search-container>
 </div>
 
@@ -84,7 +86,10 @@
 </portlet:renderURL>
 
 <liferay-frontend:add-menu>
-	<liferay-frontend:add-menu-item title='<%= LanguageUtil.get(request, "add-producer") %>' url="<%= addProducerURL.toString() %>" />
+	<liferay-frontend:add-menu-item
+		title='<%= LanguageUtil.get(request, "add-producer") %>'
+		url="<%= addProducerURL.toString() %>"
+	/>
 </liferay-frontend:add-menu>
 
 <%

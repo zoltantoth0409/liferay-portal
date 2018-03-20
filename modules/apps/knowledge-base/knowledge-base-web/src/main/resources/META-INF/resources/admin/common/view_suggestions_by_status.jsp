@@ -44,7 +44,9 @@ KBCommentResultRowSplitter resultRowSplitter = (KBCommentResultRowSplitter)reque
 				userId="<%= kbComment.getUserId() %>"
 			/>
 
-			<liferay-ui:search-container-column-text colspan="<%= 2 %>">
+			<liferay-ui:search-container-column-text
+				colspan="<%= 2 %>"
+			>
 
 				<%
 				Date modifiedDate = kbComment.getModifiedDate();
@@ -94,6 +96,10 @@ KBCommentResultRowSplitter resultRowSplitter = (KBCommentResultRowSplitter)reque
 			/>
 		</liferay-ui:search-container-row>
 
-		<liferay-ui:search-iterator displayStyle="descriptive" markupView="lexicon" resultRowSplitter="<%= resultRowSplitter %>" />
+		<liferay-ui:search-iterator
+			displayStyle="descriptive"
+			markupView="lexicon"
+			resultRowSplitter="<%= resultRowSplitter %>"
+		/>
 	</liferay-ui:search-container>
 </aui:form>

@@ -54,7 +54,9 @@
 				<aui:input name="organizationId" type="hidden" value="<%= organizationId %>" />
 			</c:if>
 
-			<liferay-ui:input-search markupView="lexicon" />
+			<liferay-ui:input-search
+				markupView="lexicon"
+			/>
 		</aui:form>
 	</aui:nav-bar-search>
 </aui:nav-bar>

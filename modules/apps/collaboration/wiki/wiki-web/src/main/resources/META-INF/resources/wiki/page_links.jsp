@@ -31,7 +31,12 @@ boolean hasOutgoingLinkPages = ListUtil.isNotEmpty(outgoingLinkPages);
 <div>
 	<c:choose>
 		<c:when test="<%= hasIncomingLinkPages || hasOutgoingLinkPages %>">
-			<liferay-ui:panel collapsible="<%= true %>" extended="<%= hasIncomingLinkPages %>" markupView="lexicon" title="incoming-links">
+			<liferay-ui:panel
+				collapsible="<%= true %>"
+				extended="<%= hasIncomingLinkPages %>"
+				markupView="lexicon"
+				title="incoming-links"
+			>
 				<c:choose>
 					<c:when test="<%= hasIncomingLinkPages %>">
 
@@ -68,7 +73,12 @@ boolean hasOutgoingLinkPages = ListUtil.isNotEmpty(outgoingLinkPages);
 				</c:choose>
 			</liferay-ui:panel>
 
-			<liferay-ui:panel collapsible="<%= true %>" extended="<%= hasOutgoingLinkPages %>" markupView="lexicon" title="outgoing-links">
+			<liferay-ui:panel
+				collapsible="<%= true %>"
+				extended="<%= hasOutgoingLinkPages %>"
+				markupView="lexicon"
+				title="outgoing-links"
+			>
 				<c:choose>
 					<c:when test="<%= hasOutgoingLinkPages %>">
 

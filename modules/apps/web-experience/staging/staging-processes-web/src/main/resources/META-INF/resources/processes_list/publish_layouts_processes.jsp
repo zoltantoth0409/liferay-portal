@@ -272,7 +272,13 @@ OrderByComparator<BackgroundTask> orderByComparator = BackgroundTaskComparatorFa
 			<liferay-ui:search-container-column-text
 				align="right"
 			>
-				<liferay-ui:icon-menu direction="left-side" icon="<%= StringPool.BLANK %>" markupView="lexicon" message="<%= StringPool.BLANK %>" showWhenSingleIcon="<%= true %>">
+				<liferay-ui:icon-menu
+					direction="left-side"
+					icon="<%= StringPool.BLANK %>"
+					markupView="lexicon"
+					message="<%= StringPool.BLANK %>"
+					showWhenSingleIcon="<%= true %>"
+				>
 					<c:if test="<%= !localPublishing || (backgroundTask.getGroupId() != liveGroupId) %>">
 						<portlet:actionURL name="editPublishConfiguration" var="relaunchURL">
 							<portlet:param name="mvcRenderCommandName" value="editPublishConfiguration" />
@@ -304,7 +310,11 @@ OrderByComparator<BackgroundTask> orderByComparator = BackgroundTaskComparatorFa
 			</liferay-ui:search-container-column-text>
 		</liferay-ui:search-container-row>
 
-		<liferay-ui:search-iterator displayStyle="<%= displayStyle %>" markupView="lexicon" resultRowSplitter="<%= new PublishResultRowSplitter() %>" />
+		<liferay-ui:search-iterator
+			displayStyle="<%= displayStyle %>"
+			markupView="lexicon"
+			resultRowSplitter="<%= new PublishResultRowSplitter() %>"
+		/>
 	</liferay-ui:search-container>
 </aui:form>
 

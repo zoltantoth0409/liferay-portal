@@ -59,7 +59,12 @@ portletURL.setParameter("mvcPath", "/orphan_portlets.jsp");
 	</liferay-frontend:management-bar-buttons>
 
 	<liferay-frontend:management-bar-action-buttons>
-		<liferay-frontend:management-bar-button href="javascript:;" icon="trash" id="deleteOrphanPortlets" label="delete" />
+		<liferay-frontend:management-bar-button
+			href="javascript:;"
+			icon="trash"
+			id="deleteOrphanPortlets"
+			label="delete"
+		/>
 	</liferay-frontend:management-bar-action-buttons>
 </liferay-frontend:management-bar>
 
@@ -171,7 +176,11 @@ portletURL.setParameter("mvcPath", "/orphan_portlets.jsp");
 				</c:choose>
 			</liferay-ui:search-container-row>
 
-			<liferay-ui:search-iterator displayStyle="<%= orphanPortletsDisplayContext.getDisplayStyle() %>" markupView="lexicon" type="none" />
+			<liferay-ui:search-iterator
+				displayStyle="<%= orphanPortletsDisplayContext.getDisplayStyle() %>"
+				markupView="lexicon"
+				type="none"
+			/>
 		</liferay-ui:search-container>
 	</aui:form>
 </div>

@@ -223,7 +223,9 @@ ManifestSummary manifestSummary = ExportImportHelperUtil.getManifestSummary(user
 
 											<c:if test="<%= (importModelCount != 0) || (modelDeletionCount != 0) %>">
 												<li class="tree-item">
-													<liferay-util:buffer var="badgeHTML">
+													<liferay-util:buffer
+														var="badgeHTML"
+													>
 														<span class="badge badge-info"><%= importModelCount > 0 ? importModelCount : StringPool.BLANK %></span>
 														<span class="badge badge-warning deletions"><%= modelDeletionCount > 0 ? (modelDeletionCount + StringPool.SPACE + LanguageUtil.get(request, "deletions")) : StringPool.BLANK %></span>
 													</liferay-util:buffer>
@@ -354,9 +356,16 @@ ManifestSummary manifestSummary = ExportImportHelperUtil.getManifestSummary(user
 				</aui:fieldset>
 			</c:if>
 
-			<liferay-staging:deletions cmd="<%= Constants.IMPORT %>" />
+			<liferay-staging:deletions
+				cmd="<%= Constants.IMPORT %>"
+			/>
 
-			<liferay-staging:permissions action="<%= Constants.IMPORT %>" descriptionCSSClass="permissions-description" global="<%= group.isCompany() %>" labelCSSClass="permissions-label" />
+			<liferay-staging:permissions
+				action="<%= Constants.IMPORT %>"
+				descriptionCSSClass="permissions-description"
+				global="<%= group.isCompany() %>"
+				labelCSSClass="permissions-label"
+			/>
 
 			<aui:fieldset collapsed="<%= true %>" collapsible="<%= true %>" cssClass="options-group" label="update-data">
 				<aui:input checked="<%= true %>" helpMessage="import-data-strategy-mirror-help" id="mirror" label="mirror" name="<%= PortletDataHandlerKeys.DATA_STRATEGY %>" type="radio" value="<%= PortletDataHandlerKeys.DATA_STRATEGY_MIRROR %>" />

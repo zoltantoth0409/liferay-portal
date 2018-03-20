@@ -49,7 +49,9 @@ renderResponse.setTitle(LanguageUtil.get(request, "templates"));
 		<aui:form action="<%= searchURL %>" method="get" name="fm2">
 			<liferay-portlet:renderURLParams varImpl="searchURL" />
 
-			<liferay-ui:input-search markupView="lexicon" />
+			<liferay-ui:input-search
+				markupView="lexicon"
+			/>
 		</aui:form>
 	</aui:nav-bar-search>
 </aui:nav-bar>
@@ -102,7 +104,11 @@ String keywords = ParamUtil.getString(request, "keywords");
 	</c:if>
 
 	<liferay-frontend:management-bar-action-buttons>
-		<liferay-frontend:management-bar-button href='<%= "javascript:" + renderResponse.getNamespace() + "deleteKBTemplates();" %>' icon="times" label="delete" />
+		<liferay-frontend:management-bar-button
+			href='<%= "javascript:" + renderResponse.getNamespace() + "deleteKBTemplates();" %>'
+			icon="times"
+			label="delete"
+		/>
 	</liferay-frontend:management-bar-action-buttons>
 </liferay-frontend:management-bar>
 
@@ -138,7 +144,9 @@ String keywords = ParamUtil.getString(request, "keywords");
 						userId="<%= kbTemplate.getUserId() %>"
 					/>
 
-					<liferay-ui:search-container-column-text colspan="<%= 2 %>">
+					<liferay-ui:search-container-column-text
+						colspan="<%= 2 %>"
+					>
 
 						<%
 						Date modifiedDate = kbTemplate.getModifiedDate();
@@ -168,7 +176,10 @@ String keywords = ParamUtil.getString(request, "keywords");
 					/>
 				</liferay-ui:search-container-row>
 
-				<liferay-ui:search-iterator displayStyle="descriptive" markupView="lexicon" />
+				<liferay-ui:search-iterator
+					displayStyle="descriptive"
+					markupView="lexicon"
+				/>
 			</liferay-ui:search-container>
 		</aui:fieldset>
 	</aui:form>
@@ -181,7 +192,10 @@ String keywords = ParamUtil.getString(request, "keywords");
 	</liferay-portlet:renderURL>
 
 	<liferay-frontend:add-menu>
-		<liferay-frontend:add-menu-item title='<%= LanguageUtil.get(request, "add-template") %>' url="<%= addKBTemplateURL %>" />
+		<liferay-frontend:add-menu-item
+			title='<%= LanguageUtil.get(request, "add-template") %>'
+			url="<%= addKBTemplateURL %>"
+		/>
 	</liferay-frontend:add-menu>
 </c:if>
 

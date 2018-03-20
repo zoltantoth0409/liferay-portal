@@ -44,7 +44,9 @@ teamSearch.setTotal(teamsCount);
 	<c:if test="<%= (teamsCount > 0) || searchTerms.isSearch() %>">
 		<aui:nav-bar-search>
 			<aui:form action="<%= portletURL %>" name="searchFm">
-				<liferay-ui:input-search markupView="lexicon" />
+				<liferay-ui:input-search
+					markupView="lexicon"
+				/>
 			</aui:form>
 		</aui:nav-bar-search>
 	</c:if>
@@ -184,7 +186,10 @@ teamSearch.setTotal(teamsCount);
 			</c:choose>
 		</liferay-ui:search-container-row>
 
-		<liferay-ui:search-iterator displayStyle="<%= displayStyle %>" markupView="lexicon" />
+		<liferay-ui:search-iterator
+			displayStyle="<%= displayStyle %>"
+			markupView="lexicon"
+		/>
 	</liferay-ui:search-container>
 </aui:form>
 

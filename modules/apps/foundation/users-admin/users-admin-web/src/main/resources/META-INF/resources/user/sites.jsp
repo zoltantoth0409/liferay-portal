@@ -93,7 +93,9 @@ currentURLObj.setParameter("historyKey", renderResponse.getNamespace() + "sites"
 		</c:if>
 	</liferay-ui:search-container-row>
 
-	<liferay-ui:search-iterator markupView="lexicon" />
+	<liferay-ui:search-iterator
+		markupView="lexicon"
+	/>
 </liferay-ui:search-container>
 
 <c:if test="<%= !portletName.equals(myAccountPortletId) %>">
@@ -284,5 +286,7 @@ currentURLObj.setParameter("historyKey", renderResponse.getNamespace() + "sites"
 		/>
 	</liferay-ui:search-container-row>
 
-	<liferay-ui:search-iterator markupView="lexicon" />
+	<liferay-ui:search-iterator
+		markupView="lexicon"
+	/>
 </liferay-ui:search-container>

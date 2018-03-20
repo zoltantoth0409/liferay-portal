@@ -48,7 +48,9 @@ boolean includeBasicFileEntryType = ParamUtil.getBoolean(request, "includeBasicF
 			</liferay-portlet:renderURL>
 
 			<aui:form action="<%= searchURL.toString() %>" method="post" name="fm">
-				<liferay-ui:input-search markupView="lexicon" />
+				<liferay-ui:input-search
+					markupView="lexicon"
+				/>
 			</aui:form>
 		</div>
 	</aui:nav-bar-search>

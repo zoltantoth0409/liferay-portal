@@ -22,7 +22,12 @@
 	<aui:form action="<%= configurationActionURL %>" method="post" name="fm">
 		<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 
-		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="display-options">
+		<liferay-ui:panel
+			collapsible="<%= true %>"
+			extended="<%= true %>"
+			persistState="<%= true %>"
+			title="display-options"
+		>
 			<aui:fieldset>
 				<aui:select label="how-many-days-to-display" name="preferences--maxDaysDisplayed--" value="<%= maxDaysDisplayed %>">
 					<aui:option label="1" value="<%= 1 %>" />

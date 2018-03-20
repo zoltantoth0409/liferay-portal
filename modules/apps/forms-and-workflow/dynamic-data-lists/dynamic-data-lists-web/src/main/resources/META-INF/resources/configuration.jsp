@@ -61,7 +61,11 @@ String orderByType = ParamUtil.getString(request, "orderByType", "asc");
 
 					<aui:nav-bar cssClass="collapse-basic-search" markupView="lexicon">
 						<aui:nav-bar-search>
-							<liferay-ui:input-search autoFocus="<%= true %>" markupView="lexicon" placeholder='<%= LanguageUtil.get(request, "keywords") %>' />
+							<liferay-ui:input-search
+								autoFocus="<%= true %>"
+								markupView="lexicon"
+								placeholder='<%= LanguageUtil.get(request, "keywords") %>'
+							/>
 						</aui:nav-bar-search>
 					</aui:nav-bar>
 
@@ -135,7 +139,9 @@ String orderByType = ParamUtil.getString(request, "orderByType", "asc");
 							/>
 						</liferay-ui:search-container-row>
 
-						<liferay-ui:search-iterator markupView="lexicon" />
+						<liferay-ui:search-iterator
+							markupView="lexicon"
+						/>
 					</liferay-ui:search-container>
 				</div>
 			</liferay-ui:section>

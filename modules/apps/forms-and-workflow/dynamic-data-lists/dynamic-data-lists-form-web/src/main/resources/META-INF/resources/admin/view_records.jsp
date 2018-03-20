@@ -37,7 +37,10 @@ renderResponse.setTitle(LanguageUtil.get(request, "form-entries"));
 
 	<aui:nav-bar-search>
 		<aui:form action="<%= searchURL %>" method="post" name="fm">
-			<liferay-ui:input-search autoFocus="<%= true %>" markupView="lexicon" />
+			<liferay-ui:input-search
+				autoFocus="<%= true %>"
+				markupView="lexicon"
+			/>
 		</aui:form>
 	</aui:nav-bar-search>
 </aui:nav-bar>
@@ -61,7 +64,11 @@ renderResponse.setTitle(LanguageUtil.get(request, "form-entries"));
 	</liferay-frontend:management-bar-filters>
 
 	<liferay-frontend:management-bar-action-buttons>
-		<liferay-frontend:management-bar-button href='<%= "javascript:" + renderResponse.getNamespace() + "deleteRecords();" %>' icon="trash" label="delete" />
+		<liferay-frontend:management-bar-button
+			href='<%= "javascript:" + renderResponse.getNamespace() + "deleteRecords();" %>'
+			icon="trash"
+			label="delete"
+		/>
 	</liferay-frontend:management-bar-action-buttons>
 </liferay-frontend:management-bar>
 
@@ -118,13 +125,20 @@ renderResponse.setTitle(LanguageUtil.get(request, "form-entries"));
 				/>
 			</liferay-ui:search-container-row>
 
-			<liferay-ui:search-iterator displayStyle="<%= ddlFormViewRecordsDisplayContext.getDisplayStyle() %>" markupView="lexicon" paginate="<%= false %>" searchContainer="<%= ddlFormViewRecordsDisplayContext.getRecordSearchContainer() %>" />
+			<liferay-ui:search-iterator
+				displayStyle="<%= ddlFormViewRecordsDisplayContext.getDisplayStyle() %>"
+				markupView="lexicon"
+				paginate="<%= false %>"
+				searchContainer="<%= ddlFormViewRecordsDisplayContext.getRecordSearchContainer() %>"
+			/>
 		</liferay-ui:search-container>
 	</aui:form>
 </div>
 
 <div class="container-fluid-1280">
-	<liferay-ui:search-paginator searchContainer="<%= ddlFormViewRecordsDisplayContext.getRecordSearchContainer() %>" />
+	<liferay-ui:search-paginator
+		searchContainer="<%= ddlFormViewRecordsDisplayContext.getRecordSearchContainer() %>"
+	/>
 </div>
 
 <%@ include file="/admin/export_record_set.jspf" %>

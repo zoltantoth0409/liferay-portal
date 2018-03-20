@@ -35,7 +35,10 @@ MBThread thread = (MBThread)request.getAttribute("edit_message.jsp-thread");
 		<div class="card-row card-row-padded">
 			<div class="card-col-field">
 				<div class="list-group-card-icon">
-					<liferay-ui:user-portrait cssClass="user-icon-lg" userId="<%= !message.isAnonymous() ? message.getUserId() : 0 %>" />
+					<liferay-ui:user-portrait
+						cssClass="user-icon-lg"
+						userId="<%= !message.isAnonymous() ? message.getUserId() : 0 %>"
+					/>
 				</div>
 			</div>
 
@@ -209,7 +212,13 @@ MBThread thread = (MBThread)request.getAttribute("edit_message.jsp-thread");
 					%>
 
 					<c:if test="<%= showAnswerFlag || hasReplyPermission || hasUpdatePermission || hasPermissionsPermission || hasMoveThreadPermission || hasDeletePermission %>">
-						<liferay-ui:icon-menu direction="left-side" icon="<%= StringPool.BLANK %>" markupView="lexicon" message="<%= StringPool.BLANK %>" showWhenSingleIcon="<%= true %>">
+						<liferay-ui:icon-menu
+							direction="left-side"
+							icon="<%= StringPool.BLANK %>"
+							markupView="lexicon"
+							message="<%= StringPool.BLANK %>"
+							showWhenSingleIcon="<%= true %>"
+						>
 							<c:if test="<%= showAnswerFlag %>">
 								<c:choose>
 									<c:when test="<%= !message.isAnswer() %>">
@@ -383,7 +392,9 @@ MBThread thread = (MBThread)request.getAttribute("edit_message.jsp-thread");
 			/>
 		</div>
 
-		<liferay-expando:custom-attributes-available className="<%= MBMessage.class.getName() %>">
+		<liferay-expando:custom-attributes-available
+			className="<%= MBMessage.class.getName() %>"
+		>
 			<div class="custom-attributes">
 				<liferay-expando:custom-attribute-list
 					className="<%= MBMessage.class.getName() %>"

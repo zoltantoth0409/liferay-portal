@@ -103,11 +103,20 @@ if (organization != null) {
 
 			<c:if test="<%= (portletName.equals(UsersAdminPortletKeys.USERS_ADMIN) && usersListView.equals(UserConstants.LIST_VIEW_TREE)) || portletName.equals(UsersAdminPortletKeys.MY_ORGANIZATIONS) %>">
 				<div id="breadcrumb">
-					<liferay-ui:breadcrumb showCurrentGroup="<%= false %>" showGuestGroup="<%= false %>" showLayout="<%= false %>" showPortletBreadcrumb="<%= true %>" />
+					<liferay-ui:breadcrumb
+						showCurrentGroup="<%= false %>"
+						showGuestGroup="<%= false %>"
+						showLayout="<%= false %>"
+						showPortletBreadcrumb="<%= true %>"
+					/>
 				</div>
 			</c:if>
 
-			<liferay-ui:panel-container extended="<%= false %>" id="usersAdminOrganizationPanelContainer" persistState="<%= true %>">
+			<liferay-ui:panel-container
+				extended="<%= false %>"
+				id="usersAdminOrganizationPanelContainer"
+				persistState="<%= true %>"
+			>
 
 				<%
 				boolean showOrganizations = false;
@@ -140,7 +149,9 @@ if (organization != null) {
 				<aui:input name="deleteOrganizationIds" type="hidden" />
 
 				<c:if test="<%= showOrganizations %>">
-					<liferay-util:buffer var="organizationsPanelTitle">
+					<liferay-util:buffer
+						var="organizationsPanelTitle"
+					>
 
 						<%
 						String organizationsTitle = null;
@@ -162,7 +173,14 @@ if (organization != null) {
 						<%= organizationsTitle %>
 					</liferay-util:buffer>
 
-					<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="usersAdminOrganizationsPanel" markupView="lexicon" persistState="<%= true %>" title="<%= organizationsPanelTitle %>">
+					<liferay-ui:panel
+						collapsible="<%= true %>"
+						extended="<%= true %>"
+						id="usersAdminOrganizationsPanel"
+						markupView="lexicon"
+						persistState="<%= true %>"
+						title="<%= organizationsPanelTitle %>"
+					>
 
 						<%
 						SearchContainer searchContainer = new OrganizationSearch(renderRequest, "cur1", currentURLObj);
@@ -233,7 +251,10 @@ if (organization != null) {
 									}
 									%>
 
-									<liferay-ui:organization-search-container-results organizationParams="<%= organizationParams %>" parentOrganizationId="<%= parentOrganizationId %>" />
+									<liferay-ui:organization-search-container-results
+										organizationParams="<%= organizationParams %>"
+										parentOrganizationId="<%= parentOrganizationId %>"
+									/>
 								</c:otherwise>
 							</c:choose>
 
@@ -267,13 +288,17 @@ if (organization != null) {
 								<%@ include file="/organization/organization_columns.jspf" %>
 							</liferay-ui:search-container-row>
 
-							<liferay-ui:search-iterator markupView="lexicon" />
+							<liferay-ui:search-iterator
+								markupView="lexicon"
+							/>
 						</liferay-ui:search-container>
 					</liferay-ui:panel>
 				</c:if>
 
 				<c:if test="<%= showUsers %>">
-					<liferay-util:buffer var="usersPanelTitle">
+					<liferay-util:buffer
+						var="usersPanelTitle"
+					>
 
 						<%
 						boolean active = false;
@@ -307,7 +332,14 @@ if (organization != null) {
 					</liferay-util:buffer>
 
 					<c:if test="<%= (organization != null) || (usersCount != 0) || (inactiveUsersCount == 0) %>">
-						<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="usersAdminUsersPanel" markupView="lexicon" persistState="<%= true %>" title="<%= usersPanelTitle %>">
+						<liferay-ui:panel
+							collapsible="<%= true %>"
+							extended="<%= true %>"
+							id="usersAdminUsersPanel"
+							markupView="lexicon"
+							persistState="<%= true %>"
+							title="<%= usersPanelTitle %>"
+						>
 							<liferay-util:include page="/view_flat_users.jsp" servletContext="<%= application %>" />
 						</liferay-ui:panel>
 					</c:if>

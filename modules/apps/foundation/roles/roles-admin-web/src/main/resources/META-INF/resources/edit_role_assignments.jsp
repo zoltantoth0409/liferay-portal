@@ -79,7 +79,11 @@ PortalUtil.addPortletBreadcrumbEntry(request, role.getName(), currentURL);
 %>
 
 <liferay-frontend:add-menu>
-	<liferay-frontend:add-menu-item id="addUsers" title='<%= LanguageUtil.get(request, "add-assignees") %>' url="javascript:;" />
+	<liferay-frontend:add-menu-item
+		id="addUsers"
+		title='<%= LanguageUtil.get(request, "add-assignees") %>'
+		url="javascript:;"
+	/>
 </liferay-frontend:add-menu>
 
 <aui:nav-bar cssClass="collapse-basic-search" markupView="lexicon">
@@ -89,7 +93,10 @@ PortalUtil.addPortletBreadcrumbEntry(request, role.getName(), currentURL);
 
 	<aui:nav-bar-search>
 		<aui:form action="<%= portletURL.toString() %>" name="searchFm">
-			<liferay-ui:input-search autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" markupView="lexicon" />
+			<liferay-ui:input-search
+				autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>"
+				markupView="lexicon"
+			/>
 		</aui:form>
 	</aui:nav-bar-search>
 </aui:nav-bar>
@@ -122,7 +129,12 @@ PortalUtil.addPortletBreadcrumbEntry(request, role.getName(), currentURL);
 	</liferay-frontend:management-bar-buttons>
 
 	<liferay-frontend:management-bar-action-buttons>
-		<liferay-frontend:management-bar-button href="javascript:;" icon="trash" id="unsetRoleAssignments" label="delete" />
+		<liferay-frontend:management-bar-button
+			href="javascript:;"
+			icon="trash"
+			id="unsetRoleAssignments"
+			label="delete"
+		/>
 	</liferay-frontend:management-bar-action-buttons>
 </liferay-frontend:management-bar>
 

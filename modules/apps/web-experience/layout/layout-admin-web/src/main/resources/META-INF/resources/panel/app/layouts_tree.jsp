@@ -243,7 +243,9 @@ LayoutsTreeDisplayContext layoutsTreeDisplayContext = new LayoutsTreeDisplayCont
 		</ul>
 	</c:if>
 
-	<liferay-util:buffer var="linkTemplate">
+	<liferay-util:buffer
+		var="linkTemplate"
+	>
 		<a class="{cssClass}" data-plid="{plid}" data-regularurl="{regularURL}" data-url="{url}" data-uuid="{uuid}" href="{regularURL}" id="{id}" title="{label}">{label}</a>
 
 		<div class="dropdown dropdown-menu-no-arrow layout-tree-options" data-deleteable="{deleteable}" data-parentable="{parentable}" data-updateable="{updateable}">

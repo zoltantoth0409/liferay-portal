@@ -96,7 +96,11 @@ int nodesCount = WikiNodeServiceUtil.getNodesCount(scopeGroupId);
 			label="info"
 		/>
 
-		<liferay-frontend:management-bar-button href='<%= "javascript:" + renderResponse.getNamespace() + "deleteNodes();" %>' icon='<%= TrashUtil.isTrashEnabled(scopeGroupId) ? "trash" : "times" %>' label='<%= TrashUtil.isTrashEnabled(scopeGroupId) ? "recycle-bin" : "delete" %>' />
+		<liferay-frontend:management-bar-button
+			href='<%= "javascript:" + renderResponse.getNamespace() + "deleteNodes();" %>'
+			icon='<%= TrashUtil.isTrashEnabled(scopeGroupId) ? "trash" : "times" %>'
+			label='<%= TrashUtil.isTrashEnabled(scopeGroupId) ? "recycle-bin" : "delete" %>'
+		/>
 	</liferay-frontend:management-bar-action-buttons>
 </liferay-frontend:management-bar>
 
@@ -168,7 +172,9 @@ int nodesCount = WikiNodeServiceUtil.getNodesCount(scopeGroupId);
 								toggleRowChecker="<%= true %>"
 							/>
 
-							<liferay-ui:search-container-column-text colspan="<%= 2 %>">
+							<liferay-ui:search-container-column-text
+								colspan="<%= 2 %>"
+							>
 								<h4>
 									<aui:a href="<%= rowURL.toString() %>">
 										<%= HtmlUtil.escape(node.getName()) %>
@@ -209,7 +215,10 @@ int nodesCount = WikiNodeServiceUtil.getNodesCount(scopeGroupId);
 					</c:choose>
 				</liferay-ui:search-container-row>
 
-				<liferay-ui:search-iterator displayStyle="<%= displayStyle %>" markupView="lexicon" />
+				<liferay-ui:search-iterator
+					displayStyle="<%= displayStyle %>"
+					markupView="lexicon"
+				/>
 			</liferay-ui:search-container>
 		</aui:form>
 	</div>
@@ -230,7 +239,10 @@ boolean showAddNodeButton = WikiResourcePermissionChecker.contains(permissionChe
 	</portlet:renderURL>
 
 	<liferay-frontend:add-menu>
-		<liferay-frontend:add-menu-item title='<%= LanguageUtil.get(request, "add-wiki") %>' url="<%= addNodeURL %>" />
+		<liferay-frontend:add-menu-item
+			title='<%= LanguageUtil.get(request, "add-wiki") %>'
+			url="<%= addNodeURL %>"
+		/>
 	</liferay-frontend:add-menu>
 </c:if>
 

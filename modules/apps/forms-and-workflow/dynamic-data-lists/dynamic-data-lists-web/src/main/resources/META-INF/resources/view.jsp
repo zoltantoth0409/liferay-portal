@@ -99,7 +99,10 @@ RecordSetSearch recordSetSearch = ddlDisplayContext.getRecordSetSearch(portletUR
 				</c:choose>
 			</liferay-ui:search-container-row>
 
-			<liferay-ui:search-iterator displayStyle="<%= displayStyle %>" markupView="lexicon" />
+			<liferay-ui:search-iterator
+				displayStyle="<%= displayStyle %>"
+				markupView="lexicon"
+			/>
 		</liferay-ui:search-container>
 	</aui:form>
 </div>
@@ -111,7 +114,10 @@ RecordSetSearch recordSetSearch = ddlDisplayContext.getRecordSetSearch(portletUR
 	</portlet:renderURL>
 
 	<liferay-frontend:add-menu>
-		<liferay-frontend:add-menu-item title='<%= LanguageUtil.get(request, "add") %>' url="<%= addRecordSetURL.toString() %>" />
+		<liferay-frontend:add-menu-item
+			title='<%= LanguageUtil.get(request, "add") %>'
+			url="<%= addRecordSetURL.toString() %>"
+		/>
 	</liferay-frontend:add-menu>
 </c:if>
 

@@ -32,7 +32,14 @@ if (bodyContent != null) {
 	markupView="lexicon"
 	persistState="<%= true %>"
 >
-	<liferay-ui:panel collapsible="<%= collapsible %>" extended="<%= !collapsed %>" id="<%= id %>" markupView="lexicon" persistState="<%= true %>" title="<%= localizeLabel ? LanguageUtil.get(request, label) : label %>">
+	<liferay-ui:panel
+		collapsible="<%= collapsible %>"
+		extended="<%= !collapsed %>"
+		id="<%= id %>"
+		markupView="lexicon"
+		persistState="<%= true %>"
+		title="<%= localizeLabel ? LanguageUtil.get(request, label) : label %>"
+	>
 		<%= bodyContentString %>
 	</liferay-ui:panel>
 </liferay-ui:panel-container>

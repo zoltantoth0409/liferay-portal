@@ -121,7 +121,10 @@ BackgroundTask lastCompletedInitialPublicationBackgroundTask = BackgroundTaskMan
 					</aui:script>
 				</c:if>
 
-				<liferay-ui:error-marker key="<%= WebKeys.ERROR_SECTION %>" value="staging" />
+				<liferay-ui:error-marker
+					key="<%= WebKeys.ERROR_SECTION %>"
+					value="staging"
+				/>
 
 				<c:if test="<%= privateLayoutSet.isLayoutSetPrototypeLinkActive() || publicLayoutSet.isLayoutSetPrototypeLinkActive() %>">
 					<div class="alert alert-info">

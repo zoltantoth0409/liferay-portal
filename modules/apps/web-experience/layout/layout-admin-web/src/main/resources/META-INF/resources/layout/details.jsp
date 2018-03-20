@@ -105,7 +105,12 @@ StringBuilder friendlyURLBase = new StringBuilder();
 							<span class="input-group-constrain"><liferay-ui:message key="<%= StringUtil.shorten(friendlyURLBase.toString(), 40) %>" /></span>
 						</span>
 
-						<liferay-ui:input-localized cssClass="form-control" defaultLanguageId="<%= LocaleUtil.toLanguageId(themeDisplay.getSiteDefaultLocale()) %>" name="friendlyURL" xml="<%= HttpUtil.decodeURL(selLayout.getFriendlyURLsXML()) %>" />
+						<liferay-ui:input-localized
+							cssClass="form-control"
+							defaultLanguageId="<%= LocaleUtil.toLanguageId(themeDisplay.getSiteDefaultLocale()) %>"
+							name="friendlyURL"
+							xml="<%= HttpUtil.decodeURL(selLayout.getFriendlyURLsXML()) %>"
+						/>
 					</div>
 				</div>
 			</c:when>

@@ -52,10 +52,20 @@ if (Validator.isNotNull(languageId)) {
 					<div class="pull-right">
 						<c:choose>
 							<c:when test="<%= diffVersions.size() <= 2 %>">
-								<liferay-ui:icon label="<%= true %>" message='<%= LanguageUtil.format(request, "version-x", sourceVersion) %>' />
+								<liferay-ui:icon
+									label="<%= true %>"
+									message='<%= LanguageUtil.format(request, "version-x", sourceVersion) %>'
+								/>
 							</c:when>
 							<c:otherwise>
-								<liferay-ui:icon-menu direction="down" extended="<%= false %>" message='<%= LanguageUtil.format(request, "version-x", sourceVersion) %>' showArrow="<%= true %>" showWhenSingleIcon="<%= true %>" useIconCaret="<%= true %>">
+								<liferay-ui:icon-menu
+									direction="down"
+									extended="<%= false %>"
+									message='<%= LanguageUtil.format(request, "version-x", sourceVersion) %>'
+									showArrow="<%= true %>"
+									showWhenSingleIcon="<%= true %>"
+									useIconCaret="<%= true %>"
+								>
 
 									<%
 									PortletURL sourceURL = PortletURLUtil.clone(portletURL, renderResponse);
@@ -93,10 +103,20 @@ if (Validator.isNotNull(languageId)) {
 				<aui:col cssClass="diff-target-selector" width="<%= 70 %>">
 					<c:choose>
 						<c:when test="<%= diffVersions.size() <= 2 %>">
-							<liferay-ui:icon label="<%= true %>" message='<%= LanguageUtil.format(request, "version-x", targetVersion) %>' />
+							<liferay-ui:icon
+								label="<%= true %>"
+								message='<%= LanguageUtil.format(request, "version-x", targetVersion) %>'
+							/>
 						</c:when>
 						<c:otherwise>
-							<liferay-ui:icon-menu direction="down" extended="<%= false %>" message='<%= LanguageUtil.format(request, "version-x", targetVersion) %>' showArrow="<%= true %>" showWhenSingleIcon="<%= true %>" useIconCaret="<%= true %>">
+							<liferay-ui:icon-menu
+								direction="down"
+								extended="<%= false %>"
+								message='<%= LanguageUtil.format(request, "version-x", targetVersion) %>'
+								showArrow="<%= true %>"
+								showWhenSingleIcon="<%= true %>"
+								useIconCaret="<%= true %>"
+							>
 
 								<%
 								PortletURL targetURL = PortletURLUtil.clone(portletURL, renderResponse);

@@ -96,7 +96,11 @@ String keywords = ParamUtil.getString(request, "keywords");
 	</c:if>
 
 	<liferay-frontend:management-bar-action-buttons>
-		<liferay-frontend:management-bar-button href='<%= "javascript:" + renderResponse.getNamespace() + "deleteEntries();" %>' icon='<%= TrashUtil.isTrashEnabled(scopeGroupId) ? "trash" : "times" %>' label='<%= TrashUtil.isTrashEnabled(scopeGroupId) ? "recycle-bin" : "delete" %>' />
+		<liferay-frontend:management-bar-button
+			href='<%= "javascript:" + renderResponse.getNamespace() + "deleteEntries();" %>'
+			icon='<%= TrashUtil.isTrashEnabled(scopeGroupId) ? "trash" : "times" %>'
+			label='<%= TrashUtil.isTrashEnabled(scopeGroupId) ? "recycle-bin" : "delete" %>'
+		/>
 	</liferay-frontend:management-bar-action-buttons>
 </liferay-frontend:management-bar>
 
@@ -145,7 +149,10 @@ String keywords = ParamUtil.getString(request, "keywords");
 				<%@ include file="/blogs_admin/entry_search_columns.jspf" %>
 			</liferay-ui:search-container-row>
 
-			<liferay-ui:search-iterator displayStyle="<%= displayStyle %>" markupView="lexicon" />
+			<liferay-ui:search-iterator
+				displayStyle="<%= displayStyle %>"
+				markupView="lexicon"
+			/>
 		</liferay-ui:search-container>
 	</aui:form>
 </div>
@@ -157,7 +164,10 @@ String keywords = ParamUtil.getString(request, "keywords");
 	</portlet:renderURL>
 
 	<liferay-frontend:add-menu>
-		<liferay-frontend:add-menu-item title='<%= LanguageUtil.get(request, "add-blog-entry") %>' url="<%= addEntryURL %>" />
+		<liferay-frontend:add-menu-item
+			title='<%= LanguageUtil.get(request, "add-blog-entry") %>'
+			url="<%= addEntryURL %>"
+		/>
 	</liferay-frontend:add-menu>
 </c:if>
 

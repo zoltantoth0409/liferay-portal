@@ -47,7 +47,10 @@
 		<%@ include file="/search_columns.jspf" %>
 	</liferay-ui:search-container-row>
 
-	<liferay-ui:search-iterator displayStyle="<%= displayStyle %>" markupView="lexicon" />
+	<liferay-ui:search-iterator
+		displayStyle="<%= displayStyle %>"
+		markupView="lexicon"
+	/>
 </liferay-ui:search-container>
 
 <c:if test="<%= hasAddUserGroupPermission %>">
@@ -59,6 +62,9 @@
 	</portlet:renderURL>
 
 	<liferay-frontend:add-menu>
-		<liferay-frontend:add-menu-item title='<%= LanguageUtil.get(request, "add") %>' url="<%= addUsergroupURL.toString() %>" />
+		<liferay-frontend:add-menu-item
+			title='<%= LanguageUtil.get(request, "add") %>'
+			url="<%= addUsergroupURL.toString() %>"
+		/>
 	</liferay-frontend:add-menu>
 </c:if>

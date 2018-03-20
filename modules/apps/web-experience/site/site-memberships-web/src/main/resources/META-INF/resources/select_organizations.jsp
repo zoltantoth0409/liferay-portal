@@ -55,7 +55,10 @@ organizationSearch.setResults(organizations);
 	<c:if test="<%= (organizationsCount > 0) || searchTerms.isSearch() %>">
 		<aui:nav-bar-search>
 			<aui:form action="<%= viewOrganizationsURL.toString() %>" name="searchFm">
-				<liferay-ui:input-search autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" markupView="lexicon" />
+				<liferay-ui:input-search
+					autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>"
+					markupView="lexicon"
+				/>
 			</aui:form>
 		</aui:nav-bar-search>
 	</c:if>
@@ -114,7 +117,10 @@ organizationSearch.setResults(organizations);
 			<%@ include file="/organization_columns.jspf" %>
 		</liferay-ui:search-container-row>
 
-		<liferay-ui:search-iterator displayStyle="<%= displayStyle %>" markupView="lexicon" />
+		<liferay-ui:search-iterator
+			displayStyle="<%= displayStyle %>"
+			markupView="lexicon"
+		/>
 	</liferay-ui:search-container>
 </aui:form>
 

@@ -95,7 +95,10 @@ Map<Long, Integer> groupUsersCounts = UserLocalServiceUtil.searchCounts(company.
 		<aui:form action="<%= portletURL %>" name="searchFm">
 			<liferay-portlet:renderURLParams varImpl="portletURL" />
 
-			<liferay-ui:input-search autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" markupView="lexicon" />
+			<liferay-ui:input-search
+				autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>"
+				markupView="lexicon"
+			/>
 		</aui:form>
 	</aui:nav-bar-search>
 </aui:nav-bar>
@@ -300,6 +303,9 @@ Map<Long, Integer> groupUsersCounts = UserLocalServiceUtil.searchCounts(company.
 			</c:choose>
 		</liferay-ui:search-container-row>
 
-		<liferay-ui:search-iterator displayStyle="<%= displayStyle %>" markupView="lexicon" />
+		<liferay-ui:search-iterator
+			displayStyle="<%= displayStyle %>"
+			markupView="lexicon"
+		/>
 	</liferay-ui:search-container>
 </aui:form>

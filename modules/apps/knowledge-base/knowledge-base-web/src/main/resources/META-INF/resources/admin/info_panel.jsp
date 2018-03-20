@@ -126,7 +126,11 @@ boolean showSidebarHeader = ParamUtil.getBoolean(request, "showSidebarHeader", G
 			</div>
 		</div>
 
-		<liferay-ui:tabs names="details,versions" refresh="<%= false %>" type="dropdown">
+		<liferay-ui:tabs
+			names="details,versions"
+			refresh="<%= false %>"
+			type="dropdown"
+		>
 			<liferay-ui:section>
 				<div class="sidebar-body">
 					<dl>

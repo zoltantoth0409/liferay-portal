@@ -84,7 +84,12 @@ RowChecker rowChecker = new EmptyOnClickRowChecker(renderResponse);
 	</liferay-frontend:management-bar-buttons>
 
 	<liferay-frontend:management-bar-action-buttons>
-		<liferay-frontend:management-bar-button href="javascript:;" icon="trash" id="deleteUserGroups" label="delete" />
+		<liferay-frontend:management-bar-button
+			href="javascript:;"
+			icon="trash"
+			id="deleteUserGroups"
+			label="delete"
+		/>
 	</liferay-frontend:management-bar-action-buttons>
 </liferay-frontend:management-bar>
 
@@ -116,7 +121,10 @@ RowChecker rowChecker = new EmptyOnClickRowChecker(renderResponse);
 			<%@ include file="/user_group_columns.jspf" %>
 		</liferay-ui:search-container-row>
 
-		<liferay-ui:search-iterator displayStyle="<%= displayStyle %>" markupView="lexicon" />
+		<liferay-ui:search-iterator
+			displayStyle="<%= displayStyle %>"
+			markupView="lexicon"
+		/>
 	</liferay-ui:search-container>
 </aui:form>
 
@@ -129,7 +137,11 @@ RowChecker rowChecker = new EmptyOnClickRowChecker(renderResponse);
 </aui:form>
 
 <liferay-frontend:add-menu>
-	<liferay-frontend:add-menu-item id="addUserGroups" title='<%= LanguageUtil.get(request, "add-team-members") %>' url="javascript:;" />
+	<liferay-frontend:add-menu-item
+		id="addUserGroups"
+		title='<%= LanguageUtil.get(request, "add-team-members") %>'
+		url="javascript:;"
+	/>
 </liferay-frontend:add-menu>
 
 <aui:script use="liferay-item-selector-dialog">

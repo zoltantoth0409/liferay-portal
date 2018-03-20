@@ -21,7 +21,9 @@ renderResponse.setTitle(layoutsAdminDisplayContext.getRootNodeName());
 %>
 
 <div class="container-fluid-1280 text-center">
-	<liferay-ui:empty-result-message message='<%= layoutsAdminDisplayContext.isPrivateLayout() ? "there-are-no-private-pages" : "there-are-no-public-pages" %>'>
+	<liferay-ui:empty-result-message
+		message='<%= layoutsAdminDisplayContext.isPrivateLayout() ? "there-are-no-private-pages" : "there-are-no-public-pages" %>'
+	>
 		<p class="text-center text-muted">
 			<liferay-ui:message key='<%= layoutsAdminDisplayContext.isPrivateLayout() ? "private-pages-help" : "public-pages-help" %>' />
 		</p>
@@ -34,7 +36,10 @@ renderResponse.setTitle(layoutsAdminDisplayContext.getRootNodeName());
 		%>
 
 		<liferay-frontend:add-menu>
-			<liferay-frontend:add-menu-item title='<%= LanguageUtil.get(request, layoutsAdminDisplayContext.isPrivateLayout() ? "add-private-page" : "add-public-page") %>' url="<%= addLayoutURL.toString() %>" />
+			<liferay-frontend:add-menu-item
+				title='<%= LanguageUtil.get(request, layoutsAdminDisplayContext.isPrivateLayout() ? "add-private-page" : "add-public-page") %>'
+				url="<%= addLayoutURL.toString() %>"
+			/>
 		</liferay-frontend:add-menu>
 	</c:if>
 </div>

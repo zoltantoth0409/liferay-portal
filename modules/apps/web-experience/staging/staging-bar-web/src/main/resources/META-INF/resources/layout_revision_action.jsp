@@ -66,7 +66,9 @@ if (layoutRevision.getLayoutRevisionId() == layoutRevisionId) {
 				<portlet:param name="updateRecentLayoutRevisionId" value="<%= String.valueOf(updateRecentLayoutRevisionId) %>" />
 			</portlet:actionURL>
 
-			<liferay-ui:icon-delete url="<%= deleteURL %>" />
+			<liferay-ui:icon-delete
+				url="<%= deleteURL %>"
+			/>
 		</c:if>
 	</c:if>
 </liferay-ui:icon-menu>

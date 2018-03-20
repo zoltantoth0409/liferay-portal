@@ -121,9 +121,18 @@ userSearch.setResults(users);
 			viewAllURL.setParameter("roleId", "0");
 			%>
 
-			<liferay-frontend:management-bar-filter-item active='<%= Objects.equals(navigation, "all") %>' label="all" url="<%= viewAllURL.toString() %>" />
+			<liferay-frontend:management-bar-filter-item
+				active='<%= Objects.equals(navigation, "all") %>'
+				label="all"
+				url="<%= viewAllURL.toString() %>"
+			/>
 
-			<liferay-frontend:management-bar-filter-item active='<%= Objects.equals(navigation, "roles") %>' id="roles" label="roles" url="javascript:;" />
+			<liferay-frontend:management-bar-filter-item
+				active='<%= Objects.equals(navigation, "roles") %>'
+				id="roles"
+				label="roles"
+				url="javascript:;"
+			/>
 		</liferay-frontend:management-bar-navigation>
 
 		<liferay-frontend:management-bar-sort
@@ -141,7 +150,12 @@ userSearch.setResults(users);
 		/>
 
 		<c:if test="<%= GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.ASSIGN_USER_ROLES) %>">
-			<liferay-frontend:management-bar-button href="javascript:;" icon="add-role" id="selectSiteRole" label="assign-site-roles" />
+			<liferay-frontend:management-bar-button
+				href="javascript:;"
+				icon="add-role"
+				id="selectSiteRole"
+				label="assign-site-roles"
+			/>
 
 			<c:if test="<%= role != null %>">
 
@@ -149,11 +163,21 @@ userSearch.setResults(users);
 				String label = LanguageUtil.format(request, "remove-site-role-x", role.getTitle(themeDisplay.getLocale()), false);
 				%>
 
-				<liferay-frontend:management-bar-button href="javascript:;" icon="remove-role" id="removeUserSiteRole" label="<%= label %>" />
+				<liferay-frontend:management-bar-button
+					href="javascript:;"
+					icon="remove-role"
+					id="removeUserSiteRole"
+					label="<%= label %>"
+				/>
 			</c:if>
 		</c:if>
 
-		<liferay-frontend:management-bar-button href="javascript:;" icon="trash" id="deleteSelectedUsers" label="remove-membership" />
+		<liferay-frontend:management-bar-button
+			href="javascript:;"
+			icon="trash"
+			id="deleteSelectedUsers"
+			label="remove-membership"
+		/>
 	</liferay-frontend:management-bar-action-buttons>
 </liferay-frontend:management-bar>
 
@@ -202,7 +226,10 @@ userSearch.setResults(users);
 					<%@ include file="/user_columns.jspf" %>
 				</liferay-ui:search-container-row>
 
-				<liferay-ui:search-iterator displayStyle="<%= displayStyle %>" markupView="lexicon" />
+				<liferay-ui:search-iterator
+					displayStyle="<%= displayStyle %>"
+					markupView="lexicon"
+				/>
 			</liferay-ui:search-container>
 		</aui:form>
 	</div>
@@ -223,7 +250,11 @@ userSearch.setResults(users);
 
 <c:if test="<%= hasAssignMembersPermission %>">
 	<liferay-frontend:add-menu>
-		<liferay-frontend:add-menu-item id="selectUsers" title='<%= LanguageUtil.get(request, "assign-users") %>' url="javascript:;" />
+		<liferay-frontend:add-menu-item
+			id="selectUsers"
+			title='<%= LanguageUtil.get(request, "assign-users") %>'
+			url="javascript:;"
+		/>
 	</liferay-frontend:add-menu>
 </c:if>
 

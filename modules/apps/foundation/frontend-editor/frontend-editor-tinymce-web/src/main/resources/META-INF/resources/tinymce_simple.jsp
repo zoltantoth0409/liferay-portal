@@ -58,7 +58,9 @@ boolean skipEditorLoading = GetterUtil.getBoolean((String)request.getAttribute("
 </liferay-util:buffer>
 
 <c:if test="<%= !skipEditorLoading %>">
-	<liferay-util:html-top outputKey="js_editor_tinymce">
+	<liferay-util:html-top
+		outputKey="js_editor_tinymce"
+	>
 
 		<%
 		long javaScriptLastModified = PortalWebResourcesUtil.getLastModified(PortalWebResourceConstants.RESOURCE_TYPE_EDITOR_TINYMCEEDITOR);

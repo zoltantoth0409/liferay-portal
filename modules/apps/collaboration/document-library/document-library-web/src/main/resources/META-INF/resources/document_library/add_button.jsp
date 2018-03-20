@@ -35,7 +35,9 @@ List<Menu> menus = dlPortletToolbarContributor.getPortletTitleMenus(renderReques
 		}
 	%>
 
-		<liferay-frontend:add-menu addMenuItems="<%= addMenuItems %>" />
+		<liferay-frontend:add-menu
+			addMenuItems="<%= addMenuItems %>"
+		/>
 
 	<%
 	}

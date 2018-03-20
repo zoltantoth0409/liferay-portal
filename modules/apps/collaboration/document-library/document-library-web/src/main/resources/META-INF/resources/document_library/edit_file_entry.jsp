@@ -462,7 +462,9 @@ if (portletTitleBasedNavigation) {
 				</aui:fieldset>
 
 				<c:if test="<%= (folder == null) || folder.isSupportsMetadata() %>">
-					<liferay-expando:custom-attributes-available className="<%= DLFileEntryConstants.getClassName() %>">
+					<liferay-expando:custom-attributes-available
+						className="<%= DLFileEntryConstants.getClassName() %>"
+					>
 						<aui:fieldset collapsed="<%= true %>" collapsible="<%= true %>" label="custom-fields">
 							<liferay-expando:custom-attribute-list
 								className="<%= DLFileEntryConstants.getClassName() %>"

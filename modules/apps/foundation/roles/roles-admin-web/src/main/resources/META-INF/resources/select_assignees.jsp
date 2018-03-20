@@ -90,7 +90,10 @@ request.setAttribute("edit_role_assignments.jsp-portletURL", portletURL);
 
 	<aui:nav-bar-search>
 		<aui:form action="<%= portletURL.toString() %>" name="searchFm">
-			<liferay-ui:input-search autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" markupView="lexicon" />
+			<liferay-ui:input-search
+				autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>"
+				markupView="lexicon"
+			/>
 		</aui:form>
 	</aui:nav-bar-search>
 </aui:nav-bar>

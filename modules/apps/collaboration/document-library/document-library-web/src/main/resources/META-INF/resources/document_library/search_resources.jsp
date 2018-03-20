@@ -65,7 +65,9 @@ SearchContainer searchContainer = new SearchContainer(liferayPortletRequest, por
 <aui:input name="searchRepositoryId" type="hidden" value="<%= searchRepositoryId %>" />
 
 <c:if test="<%= showSearchInfo %>">
-	<liferay-util:buffer var="searchInfo">
+	<liferay-util:buffer
+		var="searchInfo"
+	>
 		<div class="search-info">
 			<span class="keywords">
 
@@ -108,7 +110,13 @@ SearchContainer searchContainer = new SearchContainer(liferayPortletRequest, por
 				<portlet:param name="mvcRenderCommandName" value="/document_library/view" />
 			</portlet:renderURL>
 
-			<liferay-ui:icon cssClass="close-search" iconCssClass="icon-remove" id="closeSearch" message="remove" url="<%= closeSearchURL %>" />
+			<liferay-ui:icon
+				cssClass="close-search"
+				iconCssClass="icon-remove"
+				id="closeSearch"
+				message="remove"
+				url="<%= closeSearchURL %>"
+			/>
 		</div>
 
 		<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
@@ -380,7 +388,9 @@ request.setAttribute("view.jsp-folderId", String.valueOf(folderId));
 %>
 
 <div class="document-entries-pagination">
-	<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" />
+	<liferay-ui:search-paginator
+		searchContainer="<%= searchContainer %>"
+	/>
 </div>
 
 <%!

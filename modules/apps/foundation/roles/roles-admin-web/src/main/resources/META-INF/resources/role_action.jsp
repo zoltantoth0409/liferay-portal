@@ -83,7 +83,10 @@ String name = role.getName();
 			<portlet:param name="roleId" value="<%= String.valueOf(role.getRoleId()) %>" />
 		</portlet:renderURL>
 
-		<liferay-ui:icon message="define-permissions" url="<%= editRolePermissionsURL %>" />
+		<liferay-ui:icon
+			message="define-permissions"
+			url="<%= editRolePermissionsURL %>"
+		/>
 	</c:if>
 
 	<c:if test="<%= !role.isSystem() && RolePermissionUtil.contains(permissionChecker, role.getRoleId(), ActionKeys.DELETE) %>">
@@ -93,6 +96,8 @@ String name = role.getName();
 			<portlet:param name="roleId" value="<%= String.valueOf(role.getRoleId()) %>" />
 		</portlet:actionURL>
 
-		<liferay-ui:icon-delete url="<%= deleteRoleURL %>" />
+		<liferay-ui:icon-delete
+			url="<%= deleteRoleURL %>"
+		/>
 	</c:if>
 </liferay-ui:icon-menu>

@@ -61,7 +61,9 @@ ruleGroupSearch.setResults(mdrRuleGroups);
 	<c:if test="<%= (mdrRuleGroupsCount > 0) || searchTerms.isSearch() %>">
 		<aui:nav-bar-search>
 			<aui:form action="<%= portletURL.toString() %>" name="searchFm">
-				<liferay-ui:input-search markupView="lexicon" />
+				<liferay-ui:input-search
+					markupView="lexicon"
+				/>
 			</aui:form>
 		</aui:nav-bar-search>
 	</c:if>
@@ -106,7 +108,12 @@ ruleGroupSearch.setResults(mdrRuleGroups);
 	</liferay-frontend:management-bar-filters>
 
 	<liferay-frontend:management-bar-action-buttons>
-		<liferay-frontend:management-bar-button href="javascript:;" icon="trash" id="deleteSelectedDeviceFamilies" label="delete" />
+		<liferay-frontend:management-bar-button
+			href="javascript:;"
+			icon="trash"
+			id="deleteSelectedDeviceFamilies"
+			label="delete"
+		/>
 	</liferay-frontend:management-bar-action-buttons>
 </liferay-frontend:management-bar>
 
@@ -210,7 +217,11 @@ ruleGroupSearch.setResults(mdrRuleGroups);
 			</c:choose>
 		</liferay-ui:search-container-row>
 
-		<liferay-ui:search-iterator displayStyle="<%= displayStyle %>" markupView="lexicon" type="more" />
+		<liferay-ui:search-iterator
+			displayStyle="<%= displayStyle %>"
+			markupView="lexicon"
+			type="more"
+		/>
 	</liferay-ui:search-container>
 </aui:form>
 
@@ -230,7 +241,10 @@ ruleGroupSearch.setResults(mdrRuleGroups);
 	</liferay-portlet:renderURL>
 
 	<liferay-frontend:add-menu>
-		<liferay-frontend:add-menu-item title='<%= LanguageUtil.get(resourceBundle, "add-device-family") %>' url="<%= addRuleGroupURL %>" />
+		<liferay-frontend:add-menu-item
+			title='<%= LanguageUtil.get(resourceBundle, "add-device-family") %>'
+			url="<%= addRuleGroupURL %>"
+		/>
 	</liferay-frontend:add-menu>
 </c:if>
 

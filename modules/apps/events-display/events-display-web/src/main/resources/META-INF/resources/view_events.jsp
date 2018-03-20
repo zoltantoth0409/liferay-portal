@@ -95,5 +95,8 @@ List<CalendarBooking> calendarBookings = (List<CalendarBooking>)request.getAttri
 		</liferay-ui:search-container-column-text>
 	</liferay-ui:search-container-row>
 
-	<liferay-ui:search-iterator markupView="lexicon" type="article" />
+	<liferay-ui:search-iterator
+		markupView="lexicon"
+		type="article"
+	/>
 </liferay-ui:search-container>

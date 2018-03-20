@@ -156,7 +156,9 @@ if (portletTitleBasedNavigation) {
 					<aui:input name="description" />
 				</aui:fieldset>
 
-				<liferay-expando:custom-attributes-available className="<%= BookmarksEntry.class.getName() %>">
+				<liferay-expando:custom-attributes-available
+					className="<%= BookmarksEntry.class.getName() %>"
+				>
 					<aui:fieldset collapsed="<%= true %>" collapsible="<%= true %>" label="custom-fields">
 						<liferay-expando:custom-attribute-list
 							className="<%= BookmarksEntry.class.getName() %>"

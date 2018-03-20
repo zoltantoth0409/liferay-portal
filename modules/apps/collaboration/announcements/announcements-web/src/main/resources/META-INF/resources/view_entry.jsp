@@ -35,7 +35,9 @@ if (flagValue != AnnouncementsFlagConstants.HIDDEN) {
 		<div class="card-row">
 			<div class="card-col-field">
 				<div class="list-group-card-icon">
-					<liferay-ui:user-portrait userId="<%= entry.getUserId() %>" />
+					<liferay-ui:user-portrait
+						userId="<%= entry.getUserId() %>"
+					/>
 				</div>
 			</div>
 

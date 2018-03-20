@@ -80,7 +80,9 @@ PortalUtil.addPortletBreadcrumbEntry(request, userGroup.getName(), null);
 
 	<aui:nav-bar-search>
 		<aui:form action="<%= portletURL.toString() %>" name="searchFm">
-			<liferay-ui:input-search markupView="lexicon" />
+			<liferay-ui:input-search
+				markupView="lexicon"
+			/>
 		</aui:form>
 	</aui:nav-bar-search>
 </aui:nav-bar>
@@ -112,7 +114,12 @@ PortalUtil.addPortletBreadcrumbEntry(request, userGroup.getName(), null);
 	</liferay-frontend:management-bar-filters>
 
 	<liferay-frontend:management-bar-action-buttons>
-		<liferay-frontend:management-bar-button href="javascript:;" icon="trash" id="removeUsers" label="remove" />
+		<liferay-frontend:management-bar-button
+			href="javascript:;"
+			icon="trash"
+			id="removeUsers"
+			label="remove"
+		/>
 	</liferay-frontend:management-bar-action-buttons>
 </liferay-frontend:management-bar>
 
@@ -124,7 +131,12 @@ PortalUtil.addPortletBreadcrumbEntry(request, userGroup.getName(), null);
 	<aui:input name="removeUserIds" type="hidden" />
 
 	<div id="breadcrumb">
-		<liferay-ui:breadcrumb showCurrentGroup="<%= false %>" showGuestGroup="<%= false %>" showLayout="<%= false %>" showPortletBreadcrumb="<%= true %>" />
+		<liferay-ui:breadcrumb
+			showCurrentGroup="<%= false %>"
+			showGuestGroup="<%= false %>"
+			showLayout="<%= false %>"
+			showPortletBreadcrumb="<%= true %>"
+		/>
 	</div>
 
 	<liferay-ui:search-container
@@ -132,7 +144,9 @@ PortalUtil.addPortletBreadcrumbEntry(request, userGroup.getName(), null);
 		rowChecker="<%= rowChecker %>"
 		searchContainer="<%= userSearchContainer %>"
 	>
-		<liferay-ui:user-search-container-results userParams="<%= userParams %>" />
+		<liferay-ui:user-search-container-results
+			userParams="<%= userParams %>"
+		/>
 
 		<liferay-ui:search-container-row
 			className="com.liferay.portal.kernel.model.User"
@@ -149,12 +163,19 @@ PortalUtil.addPortletBreadcrumbEntry(request, userGroup.getName(), null);
 			<%@ include file="/user_search_columns.jspf" %>
 		</liferay-ui:search-container-row>
 
-		<liferay-ui:search-iterator displayStyle="<%= displayStyle %>" markupView="lexicon" />
+		<liferay-ui:search-iterator
+			displayStyle="<%= displayStyle %>"
+			markupView="lexicon"
+		/>
 	</liferay-ui:search-container>
 </aui:form>
 
 <liferay-frontend:add-menu>
-	<liferay-frontend:add-menu-item id="addUsers" title='<%= LanguageUtil.get(request, "add-users") %>' url="javascript:;" />
+	<liferay-frontend:add-menu-item
+		id="addUsers"
+		title='<%= LanguageUtil.get(request, "add-users") %>'
+		url="javascript:;"
+	/>
 </liferay-frontend:add-menu>
 
 <aui:script use="liferay-item-selector-dialog">

@@ -125,7 +125,9 @@ PortletURL portletURL = renderResponse.createRenderURL();
 			/>
 		</liferay-ui:search-container-row>
 
-		<liferay-ui:search-iterator markupView="lexicon" />
+		<liferay-ui:search-iterator
+			markupView="lexicon"
+		/>
 	</liferay-ui:search-container>
 </div>
 
@@ -136,6 +138,9 @@ PortletURL portletURL = renderResponse.createRenderURL();
 	</portlet:renderURL>
 
 	<liferay-frontend:add-menu>
-		<liferay-frontend:add-menu-item title='<%= LanguageUtil.get(request, "add") %>' url="<%= addSAPEntryURL %>" />
+		<liferay-frontend:add-menu-item
+			title='<%= LanguageUtil.get(request, "add") %>'
+			url="<%= addSAPEntryURL %>"
+		/>
 	</liferay-frontend:add-menu>
 </c:if>

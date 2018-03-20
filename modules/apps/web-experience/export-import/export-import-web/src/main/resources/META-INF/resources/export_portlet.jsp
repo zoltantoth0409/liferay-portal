@@ -187,7 +187,10 @@ portletURL.setParameter("portletResource", portletResource);
 													</div>
 
 													<div class="flex-item-center range-options">
-														<liferay-ui:icon icon="reload" markupView="lexicon" />
+														<liferay-ui:icon
+															icon="reload"
+															markupView="lexicon"
+														/>
 
 														<aui:a cssClass="modify-link" href="javascript:;" id="rangeLink" method="get">
 															<liferay-ui:message key="refresh-counts" />
@@ -297,7 +300,9 @@ portletURL.setParameter("portletResource", portletResource);
 
 														<aui:input name="<%= PortletDataHandlerKeys.PORTLET_DATA %>" type="hidden" value="<%= true %>" />
 
-														<liferay-util:buffer var="badgeHTML">
+														<liferay-util:buffer
+															var="badgeHTML"
+														>
 															<span class="badge badge-info"><%= exportModelCount > 0 ? exportModelCount : StringPool.BLANK %></span>
 															<span class="badge badge-warning deletions"><%= modelDeletionCount > 0 ? (modelDeletionCount + StringPool.SPACE + LanguageUtil.get(request, "deletions")) : StringPool.BLANK %></span>
 														</liferay-util:buffer>
@@ -414,13 +419,20 @@ portletURL.setParameter("portletResource", portletResource);
 								</aui:fieldset>
 							</c:if>
 
-							<liferay-staging:deletions cmd="<%= Constants.EXPORT %>" />
+							<liferay-staging:deletions
+								cmd="<%= Constants.EXPORT %>"
+							/>
 
 							<%
 							Group group = themeDisplay.getScopeGroup();
 							%>
 
-							<liferay-staging:permissions action="<%= Constants.EXPORT %>" descriptionCSSClass="permissions-description" global="<%= group.isCompany() %>" labelCSSClass="permissions-label" />
+							<liferay-staging:permissions
+								action="<%= Constants.EXPORT %>"
+								descriptionCSSClass="permissions-description"
+								global="<%= group.isCompany() %>"
+								labelCSSClass="permissions-label"
+							/>
 						</c:if>
 					</aui:fieldset-group>
 				</div>

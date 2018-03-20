@@ -76,7 +76,11 @@ if (ListUtil.isEmpty(folders) && ListUtil.isEmpty(fileEntries) && ListUtil.isEmp
 			</h5>
 		</div>
 
-		<liferay-ui:tabs names="details" refresh="<%= false %>" type="dropdown">
+		<liferay-ui:tabs
+			names="details"
+			refresh="<%= false %>"
+			type="dropdown"
+		>
 			<liferay-ui:section>
 				<div class="sidebar-body">
 					<dl>
@@ -133,7 +137,11 @@ if (ListUtil.isEmpty(folders) && ListUtil.isEmpty(fileEntries) && ListUtil.isEmp
 			</h5>
 		</div>
 
-		<liferay-ui:tabs names="details,versions" refresh="<%= false %>" type="dropdown">
+		<liferay-ui:tabs
+			names="details,versions"
+			refresh="<%= false %>"
+			type="dropdown"
+		>
 			<liferay-ui:section>
 				<div class="sidebar-body">
 
@@ -249,7 +257,9 @@ if (ListUtil.isEmpty(folders) && ListUtil.isEmpty(fileEntries) && ListUtil.isEmp
 						inTrash="<%= fileEntry.isInTrash() %>"
 					/>
 
-					<liferay-expando:custom-attributes-available className="<%= DLFileEntryConstants.getClassName() %>">
+					<liferay-expando:custom-attributes-available
+						className="<%= DLFileEntryConstants.getClassName() %>"
+					>
 						<liferay-expando:custom-attribute-list
 							className="<%= DLFileEntryConstants.getClassName() %>"
 							classPK="<%= fileVersion.getFileVersionId() %>"
@@ -308,7 +318,11 @@ if (ListUtil.isEmpty(folders) && ListUtil.isEmpty(fileEntries) && ListUtil.isEmp
 			</h5>
 		</div>
 
-		<liferay-ui:tabs names="details" refresh="<%= false %>" type="dropdown">
+		<liferay-ui:tabs
+			names="details"
+			refresh="<%= false %>"
+			type="dropdown"
+		>
 			<liferay-ui:section>
 				<div class="sidebar-body">
 
@@ -410,7 +424,11 @@ if (ListUtil.isEmpty(folders) && ListUtil.isEmpty(fileEntries) && ListUtil.isEmp
 			</ul>
 		</div>
 
-		<liferay-ui:tabs names="details" refresh="<%= false %>" type="dropdown">
+		<liferay-ui:tabs
+			names="details"
+			refresh="<%= false %>"
+			type="dropdown"
+		>
 			<liferay-ui:section>
 				<div class="sidebar-body">
 					<h5 class="text-default">

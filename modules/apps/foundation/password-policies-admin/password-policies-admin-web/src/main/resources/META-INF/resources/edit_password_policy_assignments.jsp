@@ -91,7 +91,9 @@ PortalUtil.addPortletBreadcrumbEntry(request, passwordPolicy.getName(), null);
 
 	<aui:nav-bar-search>
 		<aui:form action="<%= portletURL.toString() %>" name="searchFm">
-			<liferay-ui:input-search markupView="lexicon" />
+			<liferay-ui:input-search
+				markupView="lexicon"
+			/>
 		</aui:form>
 	</aui:nav-bar-search>
 </aui:nav-bar>
@@ -135,7 +137,11 @@ PortalUtil.addPortletBreadcrumbEntry(request, passwordPolicy.getName(), null);
 		}
 		%>
 
-		<liferay-frontend:management-bar-button href="<%= taglibURL %>" icon="trash" label="delete" />
+		<liferay-frontend:management-bar-button
+			href="<%= taglibURL %>"
+			icon="trash"
+			label="delete"
+		/>
 	</liferay-frontend:management-bar-action-buttons>
 </liferay-frontend:management-bar>
 
@@ -148,7 +154,12 @@ PortalUtil.addPortletBreadcrumbEntry(request, passwordPolicy.getName(), null);
 	<aui:input name="passwordPolicyId" type="hidden" value="<%= String.valueOf(passwordPolicy.getPasswordPolicyId()) %>" />
 
 	<div id="breadcrumb">
-		<liferay-ui:breadcrumb showCurrentGroup="<%= false %>" showGuestGroup="<%= false %>" showLayout="<%= false %>" showPortletBreadcrumb="<%= true %>" />
+		<liferay-ui:breadcrumb
+			showCurrentGroup="<%= false %>"
+			showGuestGroup="<%= false %>"
+			showLayout="<%= false %>"
+			showPortletBreadcrumb="<%= true %>"
+		/>
 	</div>
 
 	<c:choose>
@@ -177,7 +188,10 @@ PortalUtil.addPortletBreadcrumbEntry(request, passwordPolicy.getName(), null);
 
 				<%@ include file="/user_search_columns.jspf" %>
 
-				<liferay-ui:search-iterator displayStyle="<%= displayStyle %>" markupView="lexicon" />
+				<liferay-ui:search-iterator
+					displayStyle="<%= displayStyle %>"
+					markupView="lexicon"
+				/>
 			</liferay-ui:search-container>
 		</c:when>
 		<c:when test='<%= tabs2.equals("organizations") %>'>
@@ -205,14 +219,21 @@ PortalUtil.addPortletBreadcrumbEntry(request, passwordPolicy.getName(), null);
 
 				<%@ include file="/organization_search_columns.jspf" %>
 
-				<liferay-ui:search-iterator displayStyle="<%= displayStyle %>" markupView="lexicon" />
+				<liferay-ui:search-iterator
+					displayStyle="<%= displayStyle %>"
+					markupView="lexicon"
+				/>
 			</liferay-ui:search-container>
 		</c:when>
 	</c:choose>
 </aui:form>
 
 <liferay-frontend:add-menu>
-	<liferay-frontend:add-menu-item id="addMembers" title='<%= LanguageUtil.get(request, "add-members") %>' url="javascript:;" />
+	<liferay-frontend:add-menu-item
+		id="addMembers"
+		title='<%= LanguageUtil.get(request, "add-members") %>'
+		url="javascript:;"
+	/>
 </liferay-frontend:add-menu>
 
 <aui:script use="liferay-item-selector-dialog">

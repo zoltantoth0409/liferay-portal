@@ -142,21 +142,42 @@ if (portletTitleBasedNavigation) {
 						String coverImageSelectedItemEventName = liferayPortletResponse.getNamespace() + "coverImageSelectedItem";
 						%>
 
-						<liferay-item-selector:image-selector draggableImage="vertical" fileEntryId="<%= coverImageFileEntryId %>" itemSelectorEventName="<%= coverImageSelectedItemEventName %>" itemSelectorURL="<%= blogsItemSelectorHelper.getItemSelectorURL(requestBackedPortletURLFactory, themeDisplay, coverImageSelectedItemEventName) %>" maxFileSize="<%= PropsValues.BLOGS_IMAGE_MAX_SIZE %>" paramName="coverImageFileEntry" uploadURL="<%= uploadCoverImageURL %>" validExtensions='<%= StringUtil.merge(imageExtensions, ", ") %>' />
+						<liferay-item-selector:image-selector
+							draggableImage="vertical"
+							fileEntryId="<%= coverImageFileEntryId %>"
+							itemSelectorEventName="<%= coverImageSelectedItemEventName %>"
+							itemSelectorURL="<%= blogsItemSelectorHelper.getItemSelectorURL(requestBackedPortletURLFactory, themeDisplay, coverImageSelectedItemEventName) %>"
+							maxFileSize="<%= PropsValues.BLOGS_IMAGE_MAX_SIZE %>"
+							paramName="coverImageFileEntry"
+							uploadURL="<%= uploadCoverImageURL %>"
+							validExtensions='<%= StringUtil.merge(imageExtensions, ", ") %>'
+						/>
 					</div>
 
 					<aui:input name="coverImageCaption" type="hidden" />
 
 					<div class="cover-image-caption <%= (coverImageFileEntryId == 0) ? "invisible" : "" %>">
 						<small>
-							<liferay-ui:input-editor contents="<%= coverImageCaption %>" editorName="alloyeditor" name="coverImageCaptionEditor" placeholder="caption" showSource="<%= false %>" />
+							<liferay-ui:input-editor
+								contents="<%= coverImageCaption %>"
+								editorName="alloyeditor"
+								name="coverImageCaptionEditor"
+								placeholder="caption"
+								showSource="<%= false %>"
+							/>
 						</small>
 					</div>
 
 					<div class="col-md-8 col-md-offset-2">
 						<div class="entry-title form-group">
 							<h1>
-								<liferay-ui:input-editor contents="<%= HtmlUtil.escape(title) %>" editorName="alloyeditor" name="titleEditor" placeholder="title" showSource="<%= false %>" />
+								<liferay-ui:input-editor
+									contents="<%= HtmlUtil.escape(title) %>"
+									editorName="alloyeditor"
+									name="titleEditor"
+									placeholder="title"
+									showSource="<%= false %>"
+								/>
 							</h1>
 						</div>
 
@@ -169,7 +190,14 @@ if (portletTitleBasedNavigation) {
 						<aui:input name="subtitle" type="hidden" />
 
 						<div class="entry-content form-group">
-							<liferay-ui:input-editor contents="<%= content %>" editorName='<%= PropsUtil.get("editor.wysiwyg.portal-web.docroot.html.portlet.blogs.edit_entry.jsp") %>' name="contentEditor" onChangeMethod="OnChangeEditor" placeholder="content" required="<%= true %>">
+							<liferay-ui:input-editor
+								contents="<%= content %>"
+								editorName='<%= PropsUtil.get("editor.wysiwyg.portal-web.docroot.html.portlet.blogs.edit_entry.jsp") %>'
+								name="contentEditor"
+								onChangeMethod="OnChangeEditor"
+								placeholder="content"
+								required="<%= true %>"
+							>
 								<aui:validator name="required" />
 							</liferay-ui:input-editor>
 						</div>
@@ -227,7 +255,15 @@ if (portletTitleBasedNavigation) {
 							String smallImageSelectedItemEventName = liferayPortletResponse.getNamespace() + "smallImageSelectedItem";
 							%>
 
-							<liferay-item-selector:image-selector fileEntryId="<%= smallImageFileEntryId %>" itemSelectorEventName="<%= smallImageSelectedItemEventName %>" itemSelectorURL="<%= blogsItemSelectorHelper.getItemSelectorURL(requestBackedPortletURLFactory, themeDisplay, smallImageSelectedItemEventName) %>" maxFileSize="<%= PropsValues.BLOGS_IMAGE_MAX_SIZE %>" paramName="smallImageFileEntry" uploadURL="<%= uploadSmallImageURL %>" validExtensions='<%= StringUtil.merge(imageExtensions, ", ") %>' />
+							<liferay-item-selector:image-selector
+								fileEntryId="<%= smallImageFileEntryId %>"
+								itemSelectorEventName="<%= smallImageSelectedItemEventName %>"
+								itemSelectorURL="<%= blogsItemSelectorHelper.getItemSelectorURL(requestBackedPortletURLFactory, themeDisplay, smallImageSelectedItemEventName) %>"
+								maxFileSize="<%= PropsValues.BLOGS_IMAGE_MAX_SIZE %>"
+								paramName="smallImageFileEntry"
+								uploadURL="<%= uploadSmallImageURL %>"
+								validExtensions='<%= StringUtil.merge(imageExtensions, ", ") %>'
+							/>
 						</div>
 					</div>
 
@@ -277,7 +313,9 @@ if (portletTitleBasedNavigation) {
 					</c:if>
 				</aui:fieldset>
 
-				<liferay-expando:custom-attributes-available className="<%= BlogsEntry.class.getName() %>">
+				<liferay-expando:custom-attributes-available
+					className="<%= BlogsEntry.class.getName() %>"
+				>
 					<aui:fieldset collapsed="<%= true %>" collapsible="<%= true %>" label="custom-fields">
 						<liferay-expando:custom-attribute-list
 							className="<%= BlogsEntry.class.getName() %>"

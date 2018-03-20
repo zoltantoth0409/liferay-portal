@@ -35,7 +35,13 @@ for (KBArticle curKBArticle : kbArticles) {
 		<aui:col width="<%= 100 %>">
 			<ul class="sidebar-header-actions">
 				<li>
-					<liferay-ui:icon-menu direction="left-side" icon="<%= StringPool.BLANK %>" markupView="lexicon" message="<%= StringPool.BLANK %>" showWhenSingleIcon="<%= true %>">
+					<liferay-ui:icon-menu
+						direction="left-side"
+						icon="<%= StringPool.BLANK %>"
+						markupView="lexicon"
+						message="<%= StringPool.BLANK %>"
+						showWhenSingleIcon="<%= true %>"
+					>
 						<c:if test="<%= (kbArticle.getStatus() == WorkflowConstants.STATUS_APPROVED) && KBArticlePermission.contains(permissionChecker, kbArticle, KBActionKeys.UPDATE) %>">
 							<liferay-portlet:actionURL name="updateKBArticle" varImpl="revertURL">
 								<portlet:param name="redirect" value="<%= currentURL %>" />

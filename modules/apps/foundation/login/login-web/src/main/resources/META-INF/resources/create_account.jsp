@@ -193,7 +193,9 @@ birthdayCalendar.set(Calendar.YEAR, 1970);
 			<c:if test="<%= PropsValues.CAPTCHA_CHECK_PORTAL_CREATE_ACCOUNT %>">
 				<portlet:resourceURL id="/login/captcha" var="captchaURL" />
 
-				<liferay-captcha:captcha url="<%= captchaURL %>" />
+				<liferay-captcha:captcha
+					url="<%= captchaURL %>"
+				/>
 			</c:if>
 		</aui:col>
 	</aui:fieldset>

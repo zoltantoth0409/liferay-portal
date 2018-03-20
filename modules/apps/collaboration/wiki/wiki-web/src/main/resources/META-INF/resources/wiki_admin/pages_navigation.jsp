@@ -41,7 +41,10 @@ WikiURLHelper wikiURLHelper = new WikiURLHelper(wikiRequestHelper, renderRespons
 			<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
 			<aui:input name="nodeId" type="hidden" value="<%= node.getNodeId() %>" />
 
-			<liferay-ui:input-search id="keywords1" markupView="lexicon" />
+			<liferay-ui:input-search
+				id="keywords1"
+				markupView="lexicon"
+			/>
 		</aui:form>
 	</aui:nav-bar-search>
 </aui:nav-bar>

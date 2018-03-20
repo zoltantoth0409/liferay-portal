@@ -49,7 +49,10 @@ renderResponse.setTitle(factoryConfigurationModelName);
 		<portlet:param name="factoryPid" value="<%= factoryConfigurationModel.getID() %>" />
 	</portlet:renderURL>
 
-	<liferay-frontend:add-menu-item title='<%= LanguageUtil.get(resourceBundle, "add-entry") %>' url="<%= createFactoryConfigURL %>" />
+	<liferay-frontend:add-menu-item
+		title='<%= LanguageUtil.get(resourceBundle, "add-entry") %>'
+		url="<%= createFactoryConfigURL %>"
+	/>
 </liferay-frontend:add-menu>
 
 <div class="container-fluid-1280">
@@ -87,7 +90,9 @@ renderResponse.setTitle(factoryConfigurationModelName);
 			}
 			%>
 
-			<liferay-ui:search-container-column-text name="<%= columnLabel %>">
+			<liferay-ui:search-container-column-text
+				name="<%= columnLabel %>"
+			>
 				<aui:a href="<%= editURL %>"><strong><%= configurationModel.getLabel() %></strong></aui:a>
 			</liferay-ui:search-container-column-text>
 
@@ -96,7 +101,11 @@ renderResponse.setTitle(factoryConfigurationModelName);
 				cssClass="entry-action"
 				name=""
 			>
-				<liferay-ui:icon-menu direction="down" markupView="lexicon" showWhenSingleIcon="<%= true %>">
+				<liferay-ui:icon-menu
+					direction="down"
+					markupView="lexicon"
+					showWhenSingleIcon="<%= true %>"
+				>
 					<liferay-ui:icon
 						message="edit"
 						method="post"
@@ -131,6 +140,8 @@ renderResponse.setTitle(factoryConfigurationModelName);
 			</liferay-ui:search-container-column-text>
 		</liferay-ui:search-container-row>
 
-		<liferay-ui:search-iterator markupView="lexicon" />
+		<liferay-ui:search-iterator
+			markupView="lexicon"
+		/>
 	</liferay-ui:search-container>
 </div>

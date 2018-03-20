@@ -48,7 +48,10 @@ String mvcPath = ParamUtil.getString(request, "mvcPath");
 			<liferay-portlet:renderURLParams varImpl="searchURL" />
 			<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
 
-			<liferay-ui:input-search id="keywords" markupView="lexicon" />
+			<liferay-ui:input-search
+				id="keywords"
+				markupView="lexicon"
+			/>
 		</aui:form>
 	</aui:nav-bar-search>
 </aui:nav-bar>

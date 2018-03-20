@@ -104,7 +104,9 @@ renderResponse.setTitle(LanguageUtil.get(request, "manage-portlets"));
 			/>
 		</liferay-ui:search-container-row>
 
-		<liferay-ui:search-iterator markupView="lexicon" />
+		<liferay-ui:search-iterator
+			markupView="lexicon"
+		/>
 	</liferay-ui:search-container>
 </div>
 
@@ -115,7 +117,10 @@ renderResponse.setTitle(LanguageUtil.get(request, "manage-portlets"));
 </portlet:renderURL>
 
 <liferay-frontend:add-menu>
-	<liferay-frontend:add-menu-item title='<%= LanguageUtil.get(request, "add-portlet") %>' url="<%= addPortletURL.toString() %>" />
+	<liferay-frontend:add-menu-item
+		title='<%= LanguageUtil.get(request, "add-portlet") %>'
+		url="<%= addPortletURL.toString() %>"
+	/>
 </liferay-frontend:add-menu>
 
 <%

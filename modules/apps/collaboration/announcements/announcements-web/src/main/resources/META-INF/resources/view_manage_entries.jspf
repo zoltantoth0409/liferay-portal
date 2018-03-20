@@ -125,7 +125,9 @@ if ((classNameId == 0) && (classPK == 0) && !PortalPermissionUtil.contains(permi
 		}
 		%>
 
-		<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" />
+		<liferay-ui:search-iterator
+			searchContainer="<%= searchContainer %>"
+		/>
 	</c:if>
 </aui:form>
 
