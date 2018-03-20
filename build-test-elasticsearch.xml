@@ -321,7 +321,7 @@ shield.transport.ssl: true</echo>
 					<mirrors-get
 						dest="${elasticsearch.dir}/${elastic.x-pack.zip.name}"
 						skipChecksum="true"
-						src="${elasticsearch.x-pack.zip.url}"
+						src="${elastic.x-pack.zip.url}"
 					/>
 				</then>
 			</if>
