@@ -770,7 +770,7 @@ username=&quot;liferay&quot;</echo>
 			</then>
 		</if>
 
-		<echo append="true" file="${elasticsearch.dir}/config/elasticsearch.yml">action.auto_create_index: .marvel-*,.security</echo>
+		<echo append="true" file="${elasticsearch.dir}/config/elasticsearch.yml">${line.separator}action.auto_create_index: .marvel-*,.security</echo>
 
 		<antcall target="configure-elasticsearch-osgi-bundle-properties" />
 
