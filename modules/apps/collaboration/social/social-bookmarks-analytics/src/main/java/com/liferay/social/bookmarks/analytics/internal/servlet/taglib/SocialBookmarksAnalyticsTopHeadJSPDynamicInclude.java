@@ -39,7 +39,7 @@ public class SocialBookmarksAnalyticsTopHeadJSPDynamicInclude
 
 	@Override
 	protected String getJspPath() {
-		return "/dynamic_include/share.jsp";
+		return "/dynamic_include/top_head.jsp";
 	}
 
 	@Override
