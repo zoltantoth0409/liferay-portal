@@ -2151,7 +2151,7 @@
 		</execute>
 	</command>
 
-	<command name="ExpireMultipleWebContent" priority="4">
+	<command ignore="true" name="ExpireMultipleWebContent" priority="4">
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Content" />
 			<var name="panel" value="Site Administration" />

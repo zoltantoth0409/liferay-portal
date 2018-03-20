@@ -262,7 +262,7 @@
 		</execute>
 	</command>
 
-	<command name="SiteAdminCannotDeletePagesThatWereCreatedBySiteTemplates" priority="3">
+	<command ignore="true" name="SiteAdminCannotDeletePagesThatWereCreatedBySiteTemplates" priority="3">
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Users" />
 			<var name="panel" value="Control Panel" />
