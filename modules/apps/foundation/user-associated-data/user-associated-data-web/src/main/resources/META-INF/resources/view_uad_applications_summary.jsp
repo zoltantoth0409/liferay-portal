@@ -21,15 +21,14 @@ ViewUADApplicationsSummaryDisplay viewUADApplicationsSummaryDisplay = (ViewUADAp
 
 int totalCount = viewUADApplicationsSummaryDisplay.getTotalCount();
 
+portletDisplay.setShowBackIcon(true);
+
 PortletURL backURL = renderResponse.createRenderURL();
 
 backURL.setParameter("mvcRenderCommandName", "/view_uad_summary");
 backURL.setParameter("p_u_i_d", String.valueOf(selectedUser.getUserId()));
 
-String backURLString = backURL.toString();
-
-portletDisplay.setShowBackIcon(true);
-portletDisplay.setURLBack(backURLString);
+portletDisplay.setURLBack(backURL.toString());
 
 renderResponse.setTitle(StringBundler.concat(selectedUser.getFullName(), " - ", LanguageUtil.get(request, "personal-data-erasure")));
 %>
@@ -53,7 +52,7 @@ renderResponse.setTitle(StringBundler.concat(selectedUser.getFullName(), " - ", 
 				</div>
 
 				<div class="autofit-col">
-					<aui:button cssClass="btn-sm" disabled="<%= totalCount > 0 %>" href="<%= backURLString %>" primary="true" value="complete-step" />
+					<aui:button cssClass="btn-sm" disabled="<%= totalCount > 0 %>" href="<%= backURL.toString() %>" primary="true" value="complete-step" />
 				</div>
 			</div>
 		</div>
