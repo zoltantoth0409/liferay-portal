@@ -19,9 +19,10 @@
 <%
 int step = (int)request.getAttribute(UADWebKeys.VIEW_UAD_SUMMARY_STEP);
 
+portletDisplay.setShowBackIcon(true);
+
 LiferayPortletURL usersAdminURL = liferayPortletResponse.createLiferayPortletURL(UsersAdminPortletKeys.USERS_ADMIN, PortletRequest.RENDER_PHASE);
 
-portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(usersAdminURL.toString());
 
 renderResponse.setTitle(StringBundler.concat(selectedUser.getFullName(), " - ", LanguageUtil.get(request, "personal-data-erasure")));
