@@ -78,12 +78,9 @@
 		<if>
 			<equals arg1="${deleteMethod}" arg2="From List" />
 			<then>
-				<var name="key_rowEntry" value="${tagName}" />
-
-				<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
-
-				<execute function="AssertClickNoError" locator1="MenuItem#ANY_MENU_ITEM" value1="Delete">
-					<var name="key_menuItem" value="Delete" />
+				<execute macro="LexiconEntry#gotoEntryMenuItemNoError">
+					<var name="menuItem" value="Delete" />
+					<var name="rowEntry" value="${tagName}" />
 				</execute>
 			</then>
 			<elseif>

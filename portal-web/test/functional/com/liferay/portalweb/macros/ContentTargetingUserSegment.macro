@@ -342,12 +342,9 @@
 	</command>
 
 	<command name="editGenderRule">
-		<var name="key_rowEntry" value="${userSegmentName}" />
-
-		<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
-
-		<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM">
-			<var name="key_menuItem" value="Edit" />
+		<execute macro="LexiconEntry#gotoEntryMenuItem">
+			<var name="menuItem" value="Edit" />
+			<var name="rowEntry" value="${userSegmentName}" />
 		</execute>
 
 		<execute macro="ContentTargetingUserSegment#openFormField">
@@ -358,13 +355,9 @@
 	</command>
 
 	<command name="editUserSegmentCP">
-		<var name="key_rowEntry" value="${userSegmentName}" />
-		<var name="key_userSegment" value="${userSegmentName}" />
-
-		<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
-
-		<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM">
-			<var name="key_menuItem" value="Edit" />
+		<execute macro="LexiconEntry#gotoEntryMenuItem">
+			<var name="menuItem" value="Edit" />
+			<var name="rowEntry" value="${userSegmentName}" />
 		</execute>
 
 		<execute macro="PortletEntry#inputName">
@@ -379,9 +372,9 @@
 			<isset var="userSegmentRuleDeleteList" />
 			<then>
 				<for list="${userSegmentRuleDeleteList}" param="userSegmentRuleDelete">
-					<var name="key_userSegmentRuleDelete" value="${userSegmentRuleDelete}" />
-
-					<execute function="ClickNoError" locator1="EditUserSegment#USER_SEGMENT_RULE_DELETE" />
+					<execute function="ClickNoError" locator1="EditUserSegment#USER_SEGMENT_RULE_DELETE">
+						<var name="key_userSegmentRuleDelete" value="${userSegmentRuleDelete}" />
+					</execute>
 
 					<execute function="Confirm" value1="Are you sure you want to delete the selected field(s)?" />
 				</for>

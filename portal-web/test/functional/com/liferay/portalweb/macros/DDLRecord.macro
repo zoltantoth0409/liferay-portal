@@ -541,20 +541,17 @@
 			</then>
 		</if>
 
-		<var name="key_ddlRecordFieldData" value="${ddlRecordFieldData}" />
-		<var name="key_fieldFieldLabel" value="${fieldFieldLabel}" />
-		<var name="key_rowEntry" value="${ddlRecordFieldData}" />
-
-		<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
-
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="View">
-			<var name="key_menuItem" value="View" />
+		<execute macro="LexiconEntry#gotoEntryMenuItem">
+			<var name="menuItem" value="View" />
+			<var name="rowEntry" value="${ddlRecordFieldData}" />
 		</execute>
 
 		<if>
 			<equals arg1="${ddlRecordFieldData}" arg2="" />
 			<then>
-				<execute function="AssertTextEquals#assertPartialText" locator1="DDLRecord#FIELD" value1="${fieldFieldLabel}${ddlRecordFieldData}" />
+				<execute function="AssertTextEquals#assertPartialText" locator1="DDLRecord#FIELD" value1="${fieldFieldLabel}${ddlRecordFieldData}">
+					<var name="key_ddlRecordFieldData" value="${ddlRecordFieldData}" />
+				</execute>
 			</then>
 			<else>
 				<execute macro="DDLRecord#viewPopulatedField">
@@ -886,12 +883,9 @@
 
 		<execute function="AssertTextEquals" locator1="DDL#RECORD_TABLE_ENTRY_2" value1="${ddlRecordFieldData}" />
 
-		<var name="key_rowEntry" value="${ddlRecordFieldData}" />
-
-		<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
-
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="View">
-			<var name="key_menuItem" value="View" />
+		<execute macro="LexiconEntry#gotoEntryMenuItem">
+			<var name="menuItem" value="View" />
+			<var name="rowEntry" value="${ddlRecordFieldData}" />
 		</execute>
 
 		<if>
