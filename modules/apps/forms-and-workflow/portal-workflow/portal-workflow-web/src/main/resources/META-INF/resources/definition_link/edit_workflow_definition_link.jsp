@@ -26,7 +26,6 @@ WorkflowDefinitionLinkSearchEntry workflowDefinitionLinkSearchEntry = (WorkflowD
 String randomNamespace = (String)row.getParameter("randomNamespace");
 
 String className = workflowDefinitionLinkSearchEntry.getClassName();
-
 String resource = workflowDefinitionLinkSearchEntry.getResource();
 %>
 
