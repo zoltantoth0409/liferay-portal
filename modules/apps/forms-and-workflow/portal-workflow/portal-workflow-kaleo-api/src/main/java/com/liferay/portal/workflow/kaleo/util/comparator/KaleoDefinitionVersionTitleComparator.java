@@ -59,7 +59,6 @@ public class KaleoDefinitionVersionTitleComparator
 
 		String title1 = StringUtil.toLowerCase(
 			kaleoDefinitionVersion1.getTitle(_locale));
-
 		String title2 = StringUtil.toLowerCase(
 			kaleoDefinitionVersion2.getTitle(_locale));
 
