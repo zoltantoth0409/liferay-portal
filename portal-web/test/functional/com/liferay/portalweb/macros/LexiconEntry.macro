@@ -18,21 +18,13 @@
 	</command>
 
 	<command name="gotoEntryMenuItem">
-		<var name="key_rowEntry" value="${rowEntry}" />
+		<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#ROW_VERTICAL_ELLIPSIS">
+			<var name="key_rowEntry" value="${rowEntry}" />
+		</execute>
 
-		<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
-
-		<var name="key_menuItem" value="${menuItem}" />
-
-		<if>
-			<equals arg1="${menuItem}" arg2="Delete" />
-			<then>
-				<execute function="AssertClickNoError" locator1="MenuItem#ANY_MENU_ITEM" value1="Delete" />
-			</then>
-			<else>
-				<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="${menuItem}" />
-			</else>
-		</if>
+		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="${menuItem}">
+			<var name="key_menuItem" value="${menuItem}" />
+		</execute>
 	</command>
 
 	<command name="gotoEntryMenuItemNoError">

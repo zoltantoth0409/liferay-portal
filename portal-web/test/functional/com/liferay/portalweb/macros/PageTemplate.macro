@@ -46,9 +46,7 @@
 	</command>
 
 	<command name="deleteCP">
-		<var name="key_pageTemplateName" value="${pageTemplateName}" />
-
-		<execute macro="LexiconEntry#gotoEntryMenuItem">
+		<execute macro="LexiconEntry#gotoEntryMenuItemNoError">
 			<var name="menuItem" value="Delete" />
 			<var name="rowEntry" value="${pageTemplateName}" />
 		</execute>
@@ -59,9 +57,9 @@
 	</command>
 
 	<command name="editCP">
-		<var name="key_pageTemplateName" value="${pageTemplateName}" />
-
-		<execute function="AssertTextEquals#assertPartialText" locator1="PageTemplates#PAGE_TEMPLATE_TABLE_NAME" value1="${pageTemplateName}" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="PageTemplates#PAGE_TEMPLATE_TABLE_NAME" value1="${pageTemplateName}">
+			<var name="key_pageTemplateName" value="${pageTemplateName}" />
+		</execute>
 
 		<execute macro="LexiconEntry#gotoEntryMenuItem">
 			<var name="menuItem" value="Edit" />
@@ -129,7 +127,7 @@
 		<while>
 			<condition function="IsElementPresent" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
 			<then>
-				<execute macro="LexiconEntry#gotoEntryMenuItem">
+				<execute macro="LexiconEntry#gotoEntryMenuItemNoError">
 					<var name="menuItem" value="Delete" />
 					<var name="rowEntry" value="Page Template Name" />
 				</execute>
