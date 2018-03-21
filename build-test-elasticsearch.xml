@@ -285,7 +285,7 @@ shield.transport.ssl: true</echo>
 			<if>
 				<os family="unix" />
 				<then>
-					<for list="${elasticsearch.analysis-icu.zip.name},${elasticsearch.analysis-kuromoji.zip.name},${elasticsearch.analysis-smartcn.zip.name},${elasticsearch.analysis-stempel.zip.name}" param="elasticsearch.plugin.name" >
+					<for list="${elasticsearch.analysis-icu.zip.name},${elasticsearch.analysis-kuromoji.zip.name},${elasticsearch.analysis-smartcn.zip.name},${elasticsearch.analysis-stempel.zip.name}" param="elasticsearch.plugin.name">
 						<sequential>
 							<exec dir="${elasticsearch.dir}/bin" executable="/bin/bash">
 								<arg value="-c" />
@@ -297,7 +297,7 @@ shield.transport.ssl: true</echo>
 				<elseif>
 					<os family="windows" />
 					<then>
-						<for list="${elasticsearch.analysis-icu.zip.name},${elasticsearch.analysis-kuromoji.zip.name},${elasticsearch.analysis-smartcn.zip.name},${elasticsearch.analysis-stempel.zip.name}" param="elasticsearch.plugin.name" >
+						<for list="${elasticsearch.analysis-icu.zip.name},${elasticsearch.analysis-kuromoji.zip.name},${elasticsearch.analysis-smartcn.zip.name},${elasticsearch.analysis-stempel.zip.name}" param="elasticsearch.plugin.name">
 							<sequential>
 								<exec dir="${elasticsearch.dir}/bin" executable="cmd">
 									<arg value="/c" />
@@ -639,13 +639,17 @@ logExceptionsOnly=&quot;false&quot;</echo>
 		<if>
 			<contains string="${elasticsearch.version}" substring="2.4." />
 			<then>
-				<replace file="${elastic.kibana.dir}/config/kibana.yml">
+				<replace
+					file="${elastic.kibana.dir}/config/kibana.yml"
+				>
 					<replacetoken><![CDATA[# server.basePath: ""]]></replacetoken>
 					<replacevalue><![CDATA[server.basePath: "/o/portal-search-elasticsearch-marvel-web/marvel-proxy"]]></replacevalue>
 				</replace>
 			</then>
 			<else>
-				<replace file="${elastic.kibana.dir}/config/kibana.yml">
+				<replace
+					file="${elastic.kibana.dir}/config/kibana.yml"
+				>
 					<replacetoken><![CDATA[#server.basePath: ""]]></replacetoken>
 					<replacevalue><![CDATA[server.basePath: "/o/portal-search-elasticsearch-xpack-monitoring/xpack-monitoring-proxy"]]></replacevalue>
 				</replace>
@@ -675,8 +679,12 @@ username=&quot;liferay&quot;</echo>
 
 			<delete dir="${elasticsearch.dir}-${elasticsearch.node.number}" />
 
-			<copy todir="${elasticsearch.dir}-${elasticsearch.node.number}">
-				<fileset dir="${elasticsearch.dir}" />
+			<copy
+				todir="${elasticsearch.dir}-${elasticsearch.node.number}"
+			>
+				<fileset
+					dir="${elasticsearch.dir}"
+				/>
 			</copy>
 		</antelope:repeat>
 
@@ -710,8 +718,13 @@ username=&quot;liferay&quot;</echo>
 					result="elasticsearch.node.number"
 				/>
 
-				<chmod perm="a+rwx" type="both">
-					<fileset dir="${elasticsearch.dir}-${elasticsearch.node.number}" />
+				<chmod
+					perm="a+rwx"
+					type="both"
+				>
+					<fileset
+						dir="${elasticsearch.dir}-${elasticsearch.node.number}"
+					/>
 				</chmod>
 
 				<if>
@@ -719,7 +732,7 @@ username=&quot;liferay&quot;</echo>
 					<then>
 						<exec dir="${elasticsearch.dir}-${elasticsearch.node.number}/bin" executable="/bin/bash">
 							<arg value="-c" />
-							<arg value="./elasticsearch -d -p pid-elasticsearch'" />
+							<arg value="./elasticsearch -d -p pid-elasticsearch" />
 						</exec>
 					</then>
 					<elseif>
