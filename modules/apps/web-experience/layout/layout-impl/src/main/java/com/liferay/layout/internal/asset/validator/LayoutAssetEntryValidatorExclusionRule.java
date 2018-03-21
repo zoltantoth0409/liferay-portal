@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.layout.internal.asset.categories.validator;
+package com.liferay.layout.internal.asset.validator;
 
 import com.liferay.asset.kernel.validator.AssetEntryValidatorExclusionRule;
 import com.liferay.portal.kernel.model.Layout;
