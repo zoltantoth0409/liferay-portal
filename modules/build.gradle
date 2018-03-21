@@ -137,6 +137,10 @@ gradle.beforeProject {
 				global = false
 				nodeVersion = "6.6.0"
 			}
+
+			npmInstall {
+				useNpmCI = false
+			}
 		}
 
 		pluginManager.withPlugin("com.liferay.osgi.plugin") {
