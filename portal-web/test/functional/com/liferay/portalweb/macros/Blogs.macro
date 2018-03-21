@@ -209,13 +209,9 @@
 	</command>
 
 	<command name="addViaAP">
-		<execute function="Click#makeVisibleClickAt" locator1="AP#ADD_ASSET_PLUS_ICON" />
-
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Blogs Entry">
-			<var name="key_menuItem" value="Blogs Entry" />
+		<execute macro="AssetPublisherPortlet#addAsset">
+			<var name="assetType" value="Blogs Entry" />
 		</execute>
-
-		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute macro="AlloyEditor#addTitleAndContent">
 			<var name="content" value="${entryContent}" />
@@ -235,11 +231,9 @@
 	</command>
 
 	<command name="addViaAPSelectScope">
-		<execute function="Click#makeVisibleClickAt" locator1="AP#ADD_ASSET_PLUS_ICON" />
-
-		<execute function="Click" locator1="AP#ADD_ASSET_SCOPED" />
-
-		<execute function="SelectFrame" locator1="IFrame#MODAL_IFRAME" />
+		<execute macro="AssetPublisherPortlet#addAsset">
+			<var name="assetType" value="Basic Document" />
+		</execute>
 
 		<execute function="Select" locator1="Select#TYPE" value1="Blogs Entry" />
 
@@ -383,13 +377,9 @@
 	</command>
 
 	<command name="addWithWorkflowViaAP">
-		<execute function="Click#makeVisibleClickAt" locator1="AP#ADD_ASSET_PLUS_ICON" />
-
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Blogs Entry">
-			<var name="key_menuItem" value="Blogs Entry" />
+		<execute macro="AssetPublisherPortlet#addAsset">
+			<var name="assetType" value="Blogs Entry" />
 		</execute>
-
-		<execute macro="IFrame#selectDialogFrame" />
 
 		<execute macro="AlloyEditor#addTitleAndContent">
 			<var name="content" value="${entryContent}" />

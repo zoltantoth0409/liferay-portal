@@ -507,12 +507,9 @@
 	</command>
 
 	<command name="deleteCurrentAndPreviousProcess">
-		<execute function="Click" locator1="Icon#ROW_VERTICAL_ELLIPSIS">
-			<var name="key_rowEntry" value="${larFileName}" />
-		</execute>
-
-		<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM">
-			<var name="key_menuItem" value="Clear" />
+		<execute macro="LexiconEntry#gotoEntryMenuItem">
+			<var name="menuItem" value="Clear" />
+			<var name="rowEntry" value="${larFileName}" />
 		</execute>
 	</command>
 
@@ -716,11 +713,9 @@
 	</command>
 
 	<command name="relaunchExport">
-		<var name="key_rowEntry" value="${larFileName}" />
-
-		<execute function="Click" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
-		<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM">
-			<var name="key_menuItem" value="Relaunch" />
+		<execute macro="LexiconEntry#gotoEntryMenuItem">
+			<var name="menuItem" value="Relaunch" />
+			<var name="rowEntry" value="${larFileName}" />
 		</execute>
 	</command>
 

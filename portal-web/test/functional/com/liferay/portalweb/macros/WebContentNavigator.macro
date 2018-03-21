@@ -118,12 +118,9 @@
 	</command>
 
 	<command name="gotoEditTemplate">
-		<var name="key_rowEntry" value="${templateName}" />
-
-		<execute function="Click" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
-
-		<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM">
-			<var name="key_menuItem" value="Edit" />
+		<execute macro="LexiconEntry#gotoEntryMenuItem">
+			<var name="menuItem" value="Edit" />
+			<var name="rowEntry" value="${templateName}" />
 		</execute>
 	</command>
 
