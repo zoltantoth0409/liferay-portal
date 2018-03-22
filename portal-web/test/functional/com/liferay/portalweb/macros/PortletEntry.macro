@@ -39,12 +39,26 @@
 		<execute function="Click" locator1="TextInput#NAME" />
 
 		<execute function="Type" locator1="TextInput#NAME" value1="${name}" />
+
+		<if>
+			<condition function="IsElementPresent" locator1="TextInput#NAME_INVALID" />
+			<then>
+				<execute function="Click" locator1="TextInput#NAME_MARGIN" />
+			</then>
+		</if>
 	</command>
 
 	<command name="inputTitle">
 		<execute function="Click" locator1="TextInput#TITLE" />
 
 		<execute function="Type" locator1="TextInput#TITLE" value1="${title}" />
+
+		<if>
+			<condition function="IsElementPresent" locator1="TextInput#TITLE_INVALID" />
+			<then>
+				<execute function="Click" locator1="TextInput#TITLE_MARGIN" />
+			</then>
+		</if>
 	</command>
 
 	<command name="publish">

@@ -314,6 +314,16 @@
 	<td></td>
 </tr>
 <tr>
+	<td>NAME_INVALID</td>
+	<td>//div[label[contains(.,'Name')]]//input[@type='text' and contains(@aria-invalid,'true')] | //input[contains(@id,'name') and contains(@aria-invalid,'true')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>NAME_MARGIN</td>
+	<td>//div[label[contains(.,'Name')]]//input[@type='text'] | //input[contains(@id,'name')]/..</td>
+	<td></td>
+</tr>
+<tr>
 	<td>NEW_PARENT</td>
 	<td>//input[contains(@id,'newParent')]</td>
 	<td></td>
@@ -474,8 +484,18 @@
 	<td></td>
 </tr>
 <tr>
+	<td>TITLE_INVALID</td>
+	<td>//input[contains(@id,'title') and contains(@aria-invalid,'true')]</td>
+	<td></td>
+</tr>
+<tr>
 	<td>TITLE_LOCALIZED</td>
 	<td>//input[contains(@id,'title')]/../div[contains(.,'${key_languageName} Translation')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>TITLE_MARGIN</td>
+	<td>//input[contains(@id,'title')]/../..</td>
 	<td></td>
 </tr>
 <tr>
