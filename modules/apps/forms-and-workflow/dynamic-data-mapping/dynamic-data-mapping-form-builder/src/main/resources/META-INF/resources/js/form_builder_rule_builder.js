@@ -424,6 +424,7 @@ AUI.add(
 						var instance = this;
 
 						instance.renderRule();
+
 						instance._hideAddRuleButton();
 					},
 
@@ -431,6 +432,7 @@ AUI.add(
 						var instance = this;
 
 						instance.syncUI();
+
 						instance._showAddRuleButton();
 					},
 
