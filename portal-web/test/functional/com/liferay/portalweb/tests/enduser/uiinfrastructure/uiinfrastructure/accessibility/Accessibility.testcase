@@ -49,6 +49,11 @@
 	</command>
 
 	<command name="ViewCollaborationPortlets" priority="4">
+		<property name="osgi.app.includes" value="invitation" />
+		<property name="osgi.app.includes" value="knowledge-base" />
+		<property name="osgi.app.includes" value="twitter" />
+		<property name="plugins.deployment.type" value="osgi" />
+		
 		<execute macro="Page#add">
 			<var name="pageName" value="Collaboration Page" />
 		</execute>
