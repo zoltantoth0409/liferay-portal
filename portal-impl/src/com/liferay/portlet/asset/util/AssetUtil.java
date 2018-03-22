@@ -841,7 +841,8 @@ public class AssetUtil {
 
 		searchContext.setClassTypeIds(assetEntryQuery.getClassTypeIds());
 		searchContext.setEnd(end);
-		searchContext.setGroupIds(assetEntryQuery.getGroupIds());
+		searchContext.setGroupIds(
+			ArrayUtil.clone(assetEntryQuery.getGroupIds()));
 
 		if (Validator.isNull(assetEntryQuery.getKeywords())) {
 			QueryConfig queryConfig = searchContext.getQueryConfig();
