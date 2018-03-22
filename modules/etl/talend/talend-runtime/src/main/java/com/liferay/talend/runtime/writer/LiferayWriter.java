@@ -195,7 +195,7 @@ public class LiferayWriter
 							indexedRecordDatum.toString());
 				}
 				else {
-					_log.debug("Data row is null, skipping it.");
+					_log.debug("Skipping NULL data row");
 				}
 			}
 
