@@ -55,8 +55,8 @@ public class MBMessageActivityInterpreter
 
 	@Override
 	protected String addNoSuchEntryRedirect(
-		String url, String className, long classPK,
-		ServiceContext serviceContext)
+			String url, String className, long classPK,
+			ServiceContext serviceContext)
 		throws Exception {
 
 		String viewEntryURL = getViewEntryURL(
