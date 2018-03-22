@@ -220,7 +220,7 @@
 	</command>
 
 	<command name="deactivateWorkflow">
-		<execute macro="LexiconEntry#gotoEntryMenuItem">
+		<execute macro="LexiconEntry#gotoEntryMenuItemNoError">
 			<var name="menuItem" value="Deactivate" />
 			<var name="rowEntry" value="${workflowDefinitionTitle}" />
 		</execute>

@@ -721,7 +721,7 @@
 						<var name="key_itemName" value="${siteName}" />
 					</execute>
 
-					<execute macro="LexiconEntry#gotoEntryMenuItem">
+					<execute macro="LexiconEntry#gotoEntryMenuItemNoError">
 						<var name="menuItem" value="Request Membership" />
 						<var name="rowEntry" value="${siteName}" />
 					</execute>
@@ -748,7 +748,7 @@
 					<var name="key_itemName" value="${siteName}" />
 				</execute>
 
-				<execute macro="LexiconEntry#gotoEntryMenuItem">
+				<execute macro="LexiconEntry#gotoEntryMenuItemNoError">
 					<var name="menuItem" value="Join" />
 					<var name="rowEntry" value="${siteName}" />
 				</execute>
@@ -881,7 +881,7 @@
 
 		<execute function="AssertTextEquals" locator1="Card#SPECIFIC_TEXT" value1="${userScreenName}" />
 
-		<execute macro="LexiconEntry#gotoEntryMenuItem">
+		<execute macro="LexiconEntry#gotoEntryMenuItemNoError">
 			<var name="menuItem" value="Remove Membership" />
 			<var name="rowEntry" value="${userScreenName}" />
 		</execute>

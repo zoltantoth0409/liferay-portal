@@ -646,7 +646,7 @@
 				<execute function="ClickNoError" locator1="Icon#DELETE" />
 			</then>
 			<else>
-				<execute macro="LexiconEntry#gotoEntryMenuItem">
+				<execute macro="LexiconEntry#gotoEntryMenuItemNoError">
 					<var name="menuItem" value="Delete" />
 					<var name="rowEntry" value="${kbArticleTitle}" />
 				</execute>

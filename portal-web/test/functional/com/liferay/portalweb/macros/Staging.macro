@@ -602,7 +602,7 @@
 			<var name="key_menuItem" value="Publish Templates" />
 		</execute>
 
-		<execute macro="LexiconEntry#gotoEntryMenuItem">
+		<execute macro="LexiconEntry#gotoEntryMenuItemNoError">
 			<var name="menuItem" value="Delete" />
 			<var name="rowEntry" value="${publishTemplateName}" />
 		</execute>
