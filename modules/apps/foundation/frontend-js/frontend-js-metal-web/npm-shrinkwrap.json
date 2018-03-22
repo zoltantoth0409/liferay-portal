@@ -5649,17 +5649,6 @@
 				"metal-events": "2.13.2"
 			}
 		},
-		"metal-drag-drop": {
-			"version": "2.0.1",
-			"resolved": "https://registry.npmjs.org/metal-drag-drop/-/metal-drag-drop-2.0.1.tgz",
-			"integrity": "sha1-YtQi9n/b80qNCdHEoFEKMw8dSlQ=",
-			"requires": {
-				"metal": "2.13.2",
-				"metal-events": "2.13.2",
-				"metal-position": "2.1.0",
-				"metal-state": "2.13.2"
-			}
-		},
 		"metal-dropdown": {
 			"version": "2.0.0",
 			"resolved": "https://registry.npmjs.org/metal-dropdown/-/metal-dropdown-2.0.0.tgz",
@@ -5858,20 +5847,6 @@
 						"metal-soy": "2.13.2"
 					}
 				}
-			}
-		},
-		"metal-slider": {
-			"version": "1.1.0",
-			"resolved": "https://registry.npmjs.org/metal-slider/-/metal-slider-2.1.1.tgz",
-			"integrity": "sha1-OxfbixpCbACcHdYrN/+OuYj0+HY=",
-			"requires": {
-				"bootstrap": "3.3.7",
-				"metal": "2.13.2",
-				"metal-component": "2.13.2",
-				"metal-dom": "2.13.2",
-				"metal-drag-drop": "2.0.1",
-				"metal-position": "2.1.0",
-				"metal-soy": "2.13.2"
 			}
 		},
 		"metal-soy": {
