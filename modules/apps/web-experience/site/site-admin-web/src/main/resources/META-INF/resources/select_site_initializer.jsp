@@ -66,6 +66,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "select-site-template"));
 					String siteInitializerType = siteInitializerItem.getType();
 
 					addLayoutData.put("creation-type", siteInitializerType);
+
 					addLayoutData.put("group-initializer-key", siteInitializerItem.getGroupInitializerKey());
 					addLayoutData.put("layout-set-prototype-id", siteInitializerItem.getLayoutSetPrototypeId());
 
