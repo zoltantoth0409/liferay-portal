@@ -75,12 +75,6 @@ public class UpgradeClient {
 
 			String jvmOpts = null;
 
-			if (commandLine.hasOption("debug")) {
-				jvmOpts = jvmOpts.concat(
-					"-agentlib:jdwp=transport=dt_socket,address=8001,server=" +
-						"y,suspend=y");
-			}
-
 			if (commandLine.hasOption("jvm-opts")) {
 				jvmOpts = commandLine.getOptionValue("jvm-opts");
 			}
@@ -88,6 +82,12 @@ public class UpgradeClient {
 				jvmOpts =
 					"-Dfile.encoding=UTF8 -Duser.country=US " +
 						"-Duser.language=en -Duser.timezone=GMT -Xmx2048m ";
+			}
+
+			if (commandLine.hasOption("debug")) {
+				jvmOpts = jvmOpts.concat(
+					"-agentlib:jdwp=transport=dt_socket,address=8001,server=" +
+						"y,suspend=y");
 			}
 
 			File logFile = null;
