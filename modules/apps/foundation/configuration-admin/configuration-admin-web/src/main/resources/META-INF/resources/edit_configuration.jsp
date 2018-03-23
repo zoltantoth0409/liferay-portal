@@ -25,19 +25,14 @@ if (Validator.isNull(redirect)) {
 	redirect = portletURL.toString();
 }
 
-ConfigurationModel configurationModel = (ConfigurationModel)request.getAttribute(ConfigurationAdminWebKeys.CONFIGURATION_MODEL);
-String ddmFormHTML = (String)request.getAttribute(ConfigurationAdminWebKeys.CONFIGURATION_MODEL_FORM_HTML);
-ResourceBundleLoaderProvider resourceBundleLoaderProvider = (ResourceBundleLoaderProvider)request.getAttribute(ConfigurationAdminWebKeys.RESOURCE_BUNDLE_LOADER_PROVIDER);
-
-ResourceBundleLoader resourceBundleLoader = resourceBundleLoaderProvider.getResourceBundleLoader(configurationModel.getBundleSymbolicName());
-
-ResourceBundle componentResourceBundle = resourceBundleLoader.loadResourceBundle(PortalUtil.getLocale(request));
-
 String bindRedirectURL = currentURL;
 
 PortletURL viewFactoryInstancesURL = renderResponse.createRenderURL();
 
 viewFactoryInstancesURL.setParameter("mvcRenderCommandName", "/view_factory_instances");
+
+ConfigurationModel configurationModel = (ConfigurationModel)request.getAttribute(ConfigurationAdminWebKeys.CONFIGURATION_MODEL);
+
 viewFactoryInstancesURL.setParameter("factoryPid", configurationModel.getFactoryPid());
 
 if (configurationModel.isFactory()) {
@@ -54,6 +49,12 @@ viewCategoryURL.setParameter("mvcRenderCommandName", "/view_category");
 viewCategoryURL.setParameter("configurationCategory", configurationModel.getCategory());
 
 PortalUtil.addPortletBreadcrumbEntry(request, categoryDisplayName, viewCategoryURL.toString());
+
+ResourceBundleLoaderProvider resourceBundleLoaderProvider = (ResourceBundleLoaderProvider)request.getAttribute(ConfigurationAdminWebKeys.RESOURCE_BUNDLE_LOADER_PROVIDER);
+
+ResourceBundleLoader resourceBundleLoader = resourceBundleLoaderProvider.getResourceBundleLoader(configurationModel.getBundleSymbolicName());
+
+ResourceBundle componentResourceBundle = resourceBundleLoader.loadResourceBundle(PortalUtil.getLocale(request));
 
 String configurationModelName = (componentResourceBundle != null) ? LanguageUtil.get(componentResourceBundle, configurationModel.getName()) : configurationModel.getName();
 
@@ -182,7 +183,7 @@ renderResponse.setTitle(categoryDisplayName);
 						</p>
 					</c:if>
 
-					<%= ddmFormHTML %>
+					<%= request.getAttribute(ConfigurationAdminWebKeys.CONFIGURATION_MODEL_FORM_HTML) %>
 
 					<aui:button-row>
 						<c:choose>
