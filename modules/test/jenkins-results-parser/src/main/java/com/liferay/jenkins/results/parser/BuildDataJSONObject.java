@@ -34,8 +34,8 @@ public class BuildDataJSONObject extends JSONObject {
 	public BuildDataJSONObject() {
 	}
 
-	public BuildDataJSONObject(String jsonString) {
-		super(jsonString);
+	public BuildDataJSONObject(String json) {
+		super(json);
 	}
 
 	public void addPropertiesToBuildData(String key, Properties properties) {
