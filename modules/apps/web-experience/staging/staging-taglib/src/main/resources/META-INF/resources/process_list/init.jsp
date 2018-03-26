@@ -27,8 +27,6 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 
 OrderByComparator<BackgroundTask> orderByComparator = BackgroundTaskComparatorFactoryUtil.getBackgroundTaskOrderByComparator(orderByCol, orderByType);
 
-boolean duration = orderByCol.equals("duration");
-
 String processListListViewCss = "process-list";
 
 if ("list".equals(displayStyle)) {
