@@ -32,10 +32,6 @@ if (subscriptionId > 0) {
 		subscriptionId = 0;
 	}
 }
-
-Map<String, Object> rowData = row.getData();
-
-UserNotificationFeedEntry userNotificationFeedEntry = (UserNotificationFeedEntry)rowData.get("userNotificationFeedEntry");
 %>
 
 <liferay-ui:icon-menu
@@ -83,6 +79,12 @@ UserNotificationFeedEntry userNotificationFeedEntry = (UserNotificationFeedEntry
 			url="<%= unsubscribeURL.toString() %>"
 		/>
 	</c:if>
+
+	<%
+	Map<String, Object> rowData = row.getData();
+
+	UserNotificationFeedEntry userNotificationFeedEntry = (UserNotificationFeedEntry)rowData.get("userNotificationFeedEntry");
+	%>
 
 	<c:if test="<%= !userNotificationFeedEntry.isActionable() %>">
 		<portlet:actionURL name="deleteUserNotificationEvent" var="deleteURL">
