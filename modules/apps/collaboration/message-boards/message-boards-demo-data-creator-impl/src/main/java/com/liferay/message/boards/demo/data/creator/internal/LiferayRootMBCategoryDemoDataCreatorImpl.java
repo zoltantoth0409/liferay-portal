@@ -43,11 +43,11 @@ public class LiferayRootMBCategoryDemoDataCreatorImpl
 	public MBCategory create(long userId, long groupId)
 		throws IOException, PortalException {
 
-		int randomElement = RandomUtil.nextInt(
+		int randomIndex = RandomUtil.nextInt(
 			Math.min(_names.size(), _descriptions.size()));
 
-		String name = _names.get(randomElement);
-		String description = _descriptions.get(randomElement);
+		String name = _names.get(randomIndex);
+		String description = _descriptions.get(randomIndex);
 
 		return createCategory(
 			userId, groupId, MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID,
