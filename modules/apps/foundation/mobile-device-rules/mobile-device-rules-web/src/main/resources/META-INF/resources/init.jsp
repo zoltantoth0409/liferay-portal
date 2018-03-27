@@ -120,8 +120,8 @@ page import="javax.portlet.WindowState" %>
 <%
 long groupId = ParamUtil.getLong(request, "groupId", themeDisplay.getSiteGroupId());
 
-portletDisplay.setShowStagingIcon(false);
 portletDisplay.setShowExportImportIcon(false);
+portletDisplay.setShowStagingIcon(false);
 %>
 
 <%@ include file="/init-ext.jsp" %>
