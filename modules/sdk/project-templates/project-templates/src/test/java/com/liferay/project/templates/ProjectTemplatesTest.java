@@ -1733,8 +1733,15 @@ public class ProjectTemplatesTest {
 			"mvc-portlet", "foo-portlet", "com.test", "-DclassName=Foo",
 			"-Dpackage=foo.portlet", "-DprojectType=workspace");
 
+		_executeGradle(
+			gradleWorkspaceProjectDir,
+			":modules:foo-portlet" + _GRADLE_TASK_PATH_BUILD);
+
 		_testExists(
-			gradleModulesDir, "foo-portlet/build/libs/com.test-1.0.0.jar");
+			gradleModulesDir, "foo-portlet/build/libs/foo.portlet-1.0.0.jar");
+
+		_executeMaven(mavenModulesDir, _MAVEN_GOAL_PACKAGE);
+
 		_testExists(
 			mavenModulesDir, "foo-portlet/target/foo-portlet-1.0.0.jar");
 	}
