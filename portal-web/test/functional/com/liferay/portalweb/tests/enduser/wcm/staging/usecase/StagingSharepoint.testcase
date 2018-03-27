@@ -123,6 +123,8 @@
 
 		<property name="test.name.skip.portal.instance" value="StagingSharepoint#StagingSharepointRepositoryPG" />
 
+		<var method="TestPropsUtil#get('cmis.repository.vm.host.name')" name="sharepointVMHostName" />
+
 		<execute macro="Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
