@@ -203,7 +203,7 @@
 
 	<command name="editSubfolderCP">
 		<execute function="AssertClick" locator1="Bookmarks#DESCRIPTIVE_ENTRY_TITLE" value1="${folderName}">
-			<var name="key_rowEntry" value="${folderName}" />
+			<var name="key_assetName" value="${folderName}" />
 		</execute>
 
 		<execute function="AssertTextEquals" locator1="Portlet#HEADER" value1="${folderName}" />
