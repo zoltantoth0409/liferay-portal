@@ -77,6 +77,14 @@
 					<execute function="Select" locator1="SitePagesEditPage#PAGE_TYPE_SELECT" value1="Page Set" />
 				</then>
 			</elseif>
+			<elseif>
+				<equals arg1="${sitePageType}" arg2="Link to a Page of This Site" />
+				<then>
+					<execute function="Select" locator1="SitePagesEditPage#PAGE_TYPE_SELECT" value1="Link to a Page of This Site" />
+
+					<execute function="Select" locator1="SitePagesEditPage#PAGE_TYPE_LINK_TO_PAGE_PAGE_SELECT" value1="regexp:.*${linkToPage}.*" />
+				</then>
+			</elseif>
 		</if>
 	</command>
 
@@ -124,6 +132,7 @@
 				<execute macro="Page#_selectPageTypeRadio">
 					<var name="columnName" value="${columnName}" />
 					<var name="componentName" value="${componentName}" />
+					<var name="linkToPage" value="${linkToPage}" />
 					<var name="pageTypeDescription" value="${pageTypeDescription}" />
 					<var name="pageTypeURL" value="${pageTypeURL}" />
 					<var name="portlet" value="${portlet}" />
@@ -356,10 +365,6 @@
 		<execute function="Click" locator1="SitePagesEditPage#COPY_APPLICATIONS_COPY_FROM_PAGE_SELECT" />
 
 		<execute function="AssertClick" locator1="SitePagesEditPage#COPY_APPLICATIONS_COPY_BUTTON" value1="Copy" />
-
-		<var name="key_portletName" value="Blogs" />
-
-		<execute function="AssertTextNotPresent" locator1="Portlet#TITLE" value1="Blogs" />
 	</command>
 
 	<command name="deleteFriendlyURLPG">
