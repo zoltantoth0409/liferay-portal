@@ -18,6 +18,7 @@ import com.liferay.document.library.kernel.service.DLAppHelperLocalService;
 import com.liferay.document.library.kernel.service.DLAppHelperLocalServiceWrapper;
 import com.liferay.document.library.kernel.util.DLAppHelperThreadLocal;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.Repository;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.repository.model.Folder;
@@ -152,8 +153,8 @@ public class ExternalRepositoryDLAppHelperLocalServiceWrapper
 	}
 
 	private boolean _isExternalRepository(long repositoryId) {
-		com.liferay.portal.kernel.model.Repository repository =
-			_repositoryLocalService.fetchRepository(repositoryId);
+		Repository repository = _repositoryLocalService.fetchRepository(
+			repositoryId);
 
 		if (repository == null) {
 			return false;
@@ -167,10 +168,9 @@ public class ExternalRepositoryDLAppHelperLocalServiceWrapper
 	}
 
 	@Reference
-	private RepositoryLocalService _repositoryLocalService;
-
-	@Reference
 	private DLAppHelperLocalService _dlAppHelperLocalService;
 
+	@Reference
+	private RepositoryLocalService _repositoryLocalService;
 
 }
