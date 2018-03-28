@@ -16,7 +16,8 @@ package com.liferay.contacts.service;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.osgi.util.ServiceTrackerFactory;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
 
 import org.osgi.util.tracker.ServiceTracker;
 
@@ -62,5 +63,16 @@ public class EntryServiceUtil {
 		return _serviceTracker.getService();
 	}
 
-	private static ServiceTracker<EntryService, EntryService> _serviceTracker = ServiceTrackerFactory.open(EntryService.class);
+	private static ServiceTracker<EntryService, EntryService> _serviceTracker;
+
+	static {
+		Bundle bundle = FrameworkUtil.getBundle(EntryService.class);
+
+		ServiceTracker<EntryService, EntryService> serviceTracker = new ServiceTracker<EntryService, EntryService>(bundle.getBundleContext(),
+				EntryService.class, null);
+
+		serviceTracker.open();
+
+		_serviceTracker = serviceTracker;
+	}
 }
