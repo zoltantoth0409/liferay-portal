@@ -270,7 +270,7 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 		boolean hasStagingGroup = liveGroup.hasStagingGroup();
 
 		if (!hasStagingGroup) {
-			serviceContext.setAttribute("staging", String.valueOf(true));
+			serviceContext.setAttribute("staging", Boolean.TRUE.toString());
 
 			addStagingGroup(userId, liveGroup, serviceContext);
 		}
@@ -291,7 +291,7 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 			typeSettingsProperties.setProperty(
 				"staged", Boolean.TRUE.toString());
 			typeSettingsProperties.setProperty(
-				"stagedRemotely", String.valueOf(false));
+				"stagedRemotely", Boolean.FALSE.toString());
 
 			setCommonStagingOptions(typeSettingsProperties, serviceContext);
 		}
