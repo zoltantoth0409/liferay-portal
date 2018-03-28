@@ -1316,34 +1316,6 @@ public class LayoutAdminPortlet extends MVCPortlet {
 		groupService.updateGroup(liveGroupId, liveGroup.getTypeSettings());
 	}
 
-	protected String updateRobots(
-			ActionRequest actionRequest, long liveGroupId,
-			boolean privateLayout)
-		throws Exception {
-
-		Group liveGroup = groupLocalService.getGroup(liveGroupId);
-
-		UnicodeProperties typeSettingsProperties =
-			liveGroup.getTypeSettingsProperties();
-
-		String propertyName = "false-robots.txt";
-
-		if (privateLayout) {
-			propertyName = "true-robots.txt";
-		}
-
-		String robots = ParamUtil.getString(
-			actionRequest, "robots",
-			liveGroup.getTypeSettingsProperty(propertyName));
-
-		typeSettingsProperties.setProperty(propertyName, robots);
-
-		groupService.updateGroup(
-			liveGroup.getGroupId(), typeSettingsProperties.toString());
-
-		return robots;
-	}
-
 	protected void updateSettings(
 			ActionRequest actionRequest, long liveGroupId, long stagingGroupId,
 			boolean privateLayout, UnicodeProperties settingsProperties)
@@ -1360,16 +1332,6 @@ public class LayoutAdminPortlet extends MVCPortlet {
 		if (stagingGroupId > 0) {
 			groupId = stagingGroupId;
 		}
-
-		String robots = updateRobots(actionRequest, liveGroupId, privateLayout);
-
-		String robotsPropertyName = "false-robots.txt";
-
-		if (privateLayout) {
-			robotsPropertyName = "true-robots.txt";
-		}
-
-		settingsProperties.put(robotsPropertyName, robots);
 
 		layoutSetService.updateSettings(
 			groupId, privateLayout, settingsProperties.toString());

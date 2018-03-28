@@ -30,6 +30,7 @@ if (Validator.isNull(virtualHostName) && scopeGroup.isStagingGroup()) {
 }
 
 String robots = ParamUtil.getString(request, "robots", RobotsUtil.getRobots(layoutsAdminDisplayContext.getSelLayoutSet()));
+String robotsFieldName = "TypeSettingsProperties--" + layoutSet.isPrivateLayout() + "-robots.txt--";
 %>
 
 <liferay-ui:error-marker
@@ -39,7 +40,7 @@ String robots = ParamUtil.getString(request, "robots", RobotsUtil.getRobots(layo
 
 <c:choose>
 	<c:when test="<%= Validator.isNotNull(virtualHostName) %>">
-		<aui:input label="set-the-robots-txt" name="robots" placeholder="robots" type="textarea" value="<%= robots %>" />
+		<aui:input label="set-the-robots-txt" name="<%= robotsFieldName %>" placeholder="robots" type="textarea" value="<%= robots %>" />
 	</c:when>
 	<c:otherwise>
 		<div class="alert alert-info">
