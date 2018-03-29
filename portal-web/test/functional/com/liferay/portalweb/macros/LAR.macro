@@ -543,12 +543,8 @@
 	</command>
 
 	<command name="exportExportTemplateCP">
-		<var name="key_exportTemplateName" value="${exportTemplateName}" />
-
-		<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#BODY_VERTICAL_ELLIPSIS" />
-
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Export">
-			<var name="key_menuItem" value="Export" />
+		<execute macro="LexiconEntry#gotoEllipsisMenuItem">
+			<var name="menuItem" value="Export" />
 		</execute>
 
 		<if>
@@ -695,9 +691,9 @@
 	<command name="moveToTheRecycleBinExportTemplate">
 		<var name="key_exportTemplateName" value="${exportTemplateName}" />
 
-		<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#BODY_VERTICAL_ELLIPSIS" />
-
-		<execute function="Click" locator1="Link#MOVE_TO_THE_RECYCLING_BIN" />
+		<execute macro="LexiconEntry#gotoEllipsisMenuItem">
+			<var name="menuItem" value="Move to the Recycle Bin" />
+		</execute>
 
 		<execute function="AssertElementPresent" locator1="Message#SUCCESS" />
 	</command>
