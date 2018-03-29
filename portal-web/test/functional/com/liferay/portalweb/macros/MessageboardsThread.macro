@@ -281,7 +281,9 @@
 	</command>
 
 	<command name="cancelEdit">
-		<execute macro="PortletEntry#clickEditFromEllipsis" />
+		<execute macro="LexiconEntry#gotoEllipsisMenuItem">
+			<var name="menuItem" value="Edit" />
+		</execute>
 
 		<execute function="Click" locator1="TextInput#SUBJECT" />
 
@@ -313,7 +315,9 @@
 	</command>
 
 	<command name="editCP">
-		<execute macro="PortletEntry#clickEditFromEllipsis" />
+		<execute macro="LexiconEntry#gotoEllipsisMenuItem">
+			<var name="menuItem" value="Edit" />
+		</execute>
 
 		<if>
 			<equals arg1="${threadAttachmentRemove}" arg2="true" />
@@ -348,7 +352,9 @@
 	</command>
 
 	<command name="editPG">
-		<execute macro="PortletEntry#clickEditFromEllipsis" />
+		<execute macro="LexiconEntry#gotoEllipsisMenuItem">
+			<var name="menuItem" value="Edit" />
+		</execute>
 
 		<if>
 			<isset var="threadSubjectEdit" />

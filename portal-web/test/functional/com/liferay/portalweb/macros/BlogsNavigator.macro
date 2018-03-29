@@ -118,7 +118,9 @@
 
 		<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="${entryTitle}" />
 
-		<execute macro="PortletEntry#clickEditFromEllipsis" />
+		<execute macro="LexiconEntry#gotoEllipsisMenuItem">
+			<var name="menuItem" value="Edit" />
+		</execute>
 
 		<execute function="AssertVisible" locator1="BlogsEntry#ENTRY_COVER_IMAGE_SELECT_FILE" />
 	</command>
