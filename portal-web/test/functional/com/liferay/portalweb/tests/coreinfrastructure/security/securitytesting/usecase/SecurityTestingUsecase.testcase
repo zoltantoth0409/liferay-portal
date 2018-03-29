@@ -48,9 +48,7 @@
 			<var name="webContentContent" value="WC WebContent Content" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoEditPGViaWCD">
-			<var name="webContentTitle" value="WebContent Title" />
-		</execute>
+		<execute macro="WebContentNavigator#gotoEditPGViaWCD" />
 
 		<var method="selenium#getText(WCEditWebContent#ARTICLE_ID)" name="articleID" />
 
