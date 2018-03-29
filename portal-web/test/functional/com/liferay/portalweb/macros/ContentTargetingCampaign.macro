@@ -431,10 +431,8 @@
 		<if>
 			<isset var="userSegmentSelect" />
 			<then>
-				<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#BODY_VERTICAL_ELLIPSIS" />
-
-				<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM">
-					<var name="key_menuItem" value="Edit" />
+				<execute macro="LexiconEntry#gotoEllipsisMenuItem">
+					<var name="menuItem" value="Edit" />
 				</execute>
 
 				<execute function="AssertTextEquals" locator1="EditCampaign#CAMPAIGN_USER_SEGMENT_APPLIED" value1="${userSegmentSelect}" />
