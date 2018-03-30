@@ -88,6 +88,8 @@ public class StagingLocalizationTest {
 	public void tearDown() throws Exception {
 		CompanyTestUtil.resetCompanyLocales(
 			TestPropsValues.getCompanyId(), _availableLocales, _defaultLocale);
+
+		LocaleThreadLocal.setDefaultLocale(_defaultLocale);
 	}
 
 	@Test(expected = LocaleException.class)
