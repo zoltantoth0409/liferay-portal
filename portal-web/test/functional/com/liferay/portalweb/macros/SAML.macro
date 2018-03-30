@@ -147,7 +147,7 @@
 
 		<execute function="Pause" locator1="5000" />
 
-		<execute function="AssertLocation" value1="${spURL}" />
+		<execute function="AssertLocation" value1="${spURL}web/guest" />
 	</command>
 
 	<command name="executeSPInitiatedSSO">
@@ -166,6 +166,6 @@
 
 		<execute function="Pause" locator1="5000" />
 
-		<execute function="AssertLocation" value1="${spURL}" />
+		<execute function="AssertLocation" value1="${spURL}web/guest" />
 	</command>
 </definition>
