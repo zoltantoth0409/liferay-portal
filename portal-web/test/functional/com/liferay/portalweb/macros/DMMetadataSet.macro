@@ -110,7 +110,9 @@
 			<var name="portlet" value="Documents and Media" />
 		</execute>
 
-		<execute macro="DMNavigator#gotoMetadataSets" />
+		<execute macro="LexiconEntry#gotoHeaderMenuItem">
+			<var name="menuItem" value="Metadata Sets" />
+		</execute>
 
 		<execute macro="DMMetadataSet#selectMetadataSetsFrame" />
 

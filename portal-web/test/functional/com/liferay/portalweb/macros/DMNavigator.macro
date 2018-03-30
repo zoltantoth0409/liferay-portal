@@ -112,12 +112,6 @@
 		<execute function="AssertClick" locator1="DocumentsAndMedia#BREADCRUMB_HOME" value1="HOME" />
 	</command>
 
-	<command name="gotoMetadataSets">
-		<execute macro="LexiconEntry#gotoHeaderMenuItem">
-			<var name="menuItem" value="Metadata Sets" />
-		</execute>
-	</command>
-
 	<command name="gotoRelatedAssetPG">
 		<var name="key_dmDocumentTitle" value="${dmDocumentTitle}" />
 
