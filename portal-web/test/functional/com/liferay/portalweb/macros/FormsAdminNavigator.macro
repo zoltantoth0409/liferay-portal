@@ -8,10 +8,8 @@
 	</command>
 
 	<command name="gotoDataProviders">
-		<execute function="Click" locator1="Icon#HEADER_VERTICAL_ELLIPSIS" />
-
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Data Providers">
-			<var name="key_menuItem" value="Data Providers" />
+		<execute macro="LexiconEntry#gotoHeaderMenuItem">
+			<var name="menuItem" value="Data Providers" />
 		</execute>
 	</command>
 
@@ -64,20 +62,16 @@
 	<command name="gotoPublish">
 		<execute function="AssertElementPresent" locator1="Form#NAME_FIELD" />
 
-		<execute function="Click" locator1="Icon#HEADER_VERTICAL_ELLIPSIS" />
-
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Publish">
-			<var name="key_menuItem" value="Publish" />
+		<execute macro="LexiconEntry#gotoHeaderMenuItem">
+			<var name="menuItem" value="Publish" />
 		</execute>
 	</command>
 
 	<command name="gotoSettings">
 		<execute function="AssertElementPresent" locator1="Form#NAME_FIELD" />
 
-		<execute function="Click" locator1="Icon#HEADER_VERTICAL_ELLIPSIS" />
-
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Settings">
-			<var name="key_menuItem" value="Settings" />
+		<execute macro="LexiconEntry#gotoHeaderMenuItem">
+			<var name="menuItem" value="Settings" />
 		</execute>
 	</command>
 
