@@ -325,7 +325,7 @@ AUI.add(
 							doc.designMode = 'off';
 						}
 
-						// LPS-71967 && LPS-75512
+						// LPS-71967 and LPS-75512
 
 						if (contents && UA.edge && parseInt(UA.edge) >= 14) {
 							A.soon(
