@@ -199,7 +199,7 @@
 	<command name="ShutdownAndStartupNodes" priority="5">
 		<property name="test.name.skip.portal.instance" value="ClusteringCE#ShutdownAndStartupNodes" />
 
-		<execute macro="Clustering#viewClusterStatusInConsole" />
+		<execute macro="Clustering#viewClusterStatusInConsoleCE" />
 
 		<execute macro="Page#assertNodePortPG">
 			<var name="nodePort" value="8080" />
