@@ -176,7 +176,9 @@
 			<var name="portlet" value="Documents and Media" />
 		</execute>
 
-		<execute macro="DMNavigator#gotoDocumentType" />
+		<execute macro="LexiconEntry#gotoHeaderMenuItem">
+			<var name="menuItem" value="Document Types" />
+		</execute>
 
 		<execute macro="DMDocumentType#selectDocumentTypeFrame" />
 
@@ -211,7 +213,9 @@
 	</command>
 
 	<command name="viewNoAvailableActionsViaDocumentTypesPG">
-		<execute macro="DMNavigator#gotoDocumentType" />
+		<execute macro="LexiconEntry#gotoHeaderMenuItem">
+			<var name="menuItem" value="Document Types" />
+		</execute>
 
 		<execute function="AssertElementNotPresent" locator1="DocumentsAndMediaDocumentTypes#DOCUMENT_TYPES_TABLE_ACTIONS_1" />
 	</command>

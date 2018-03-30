@@ -60,7 +60,9 @@
 			<var name="portlet" value="Documents and Media" />
 		</execute>
 
-		<execute macro="DMNavigator#gotoDocumentType" />
+		<execute macro="LexiconEntry#gotoHeaderMenuItem">
+			<var name="menuItem" value="Document Types" />
+		</execute>
 
 		<execute macro="DMDocumentType#add">
 			<var name="dmDocumentTypeDescription" value="DM Document Type Description" />
@@ -75,7 +77,9 @@
 			<var name="portlet" value="Documents and Media" />
 		</execute>
 
-		<execute macro="DMNavigator#gotoDocumentType" />
+		<execute macro="LexiconEntry#gotoHeaderMenuItem">
+			<var name="menuItem" value="Document Types" />
+		</execute>
 
 		<execute macro="DMDocumentType#edit">
 			<var name="dmDocumentTypeName" value="DM Document Type Name" />
@@ -109,7 +113,9 @@
 			<var name="portlet" value="Documents and Media" />
 		</execute>
 
-		<execute macro="DMNavigator#gotoDocumentType" />
+		<execute macro="LexiconEntry#gotoHeaderMenuItem">
+			<var name="menuItem" value="Document Types" />
+		</execute>
 
 		<execute macro="DMDocumentType#add">
 			<var name="dmDocumentTypeDescription" value="DM Document Type Description" />
@@ -1248,7 +1254,9 @@
 			<var name="portlet" value="Documents and Media" />
 		</execute>
 
-		<execute macro="DMNavigator#gotoDocumentType" />
+		<execute macro="LexiconEntry#gotoHeaderMenuItem">
+			<var name="menuItem" value="Document Types" />
+		</execute>
 
 		<execute macro="DMDocumentType#add">
 			<var name="dmDocumentTypeDescription" value="Images" />
@@ -1463,7 +1471,9 @@
 
 		<execute function="AssertVisible" locator1="Portlet#HEADER" value1="Documents and Media" />
 
-		<execute macro="DMNavigator#gotoDocumentType" />
+		<execute macro="LexiconEntry#gotoHeaderMenuItem">
+			<var name="menuItem" value="Document Types" />
+		</execute>
 
 		<execute macro="DMDocumentType#edit">
 			<var name="dmDocumentTypeFieldNames" value="Radio" />
@@ -1501,7 +1511,9 @@
 			<var name="portlet" value="Documents and Media" />
 		</execute>
 
-		<execute macro="DMNavigator#gotoDocumentType" />
+		<execute macro="LexiconEntry#gotoHeaderMenuItem">
+			<var name="menuItem" value="Document Types" />
+		</execute>
 
 		<execute macro="DMDocumentType#edit">
 			<var name="dmDocumentTypeFieldRequiredEdit" value="Effective Date" />

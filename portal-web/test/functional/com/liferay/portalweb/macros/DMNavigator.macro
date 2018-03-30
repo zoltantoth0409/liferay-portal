@@ -70,12 +70,6 @@
 		<execute function="AssertClick" locator1="DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE" value1="${dmDocumentTitle}" />
 	</command>
 
-	<command name="gotoDocumentType">
-		<execute macro="LexiconEntry#gotoHeaderMenuItem">
-			<var name="menuItem" value="Document Types" />
-		</execute>
-	</command>
-
 	<command name="gotoDocumentVersion">
 		<execute macro="DMNavigator#gotoDocumentDetails" />
 
