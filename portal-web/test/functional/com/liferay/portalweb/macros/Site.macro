@@ -641,12 +641,6 @@
 		<execute function="AssertClick" locator1="SitesExport#DOWNLOAD_FILE" value1="${fileDownload}" />
 	</command>
 
-	<command name="gotoManageSitesTemplatesViaAddDropdown">
-		<execute macro="LexiconEntry#gotoHeaderMenuItem">
-			<var name="menuItem" value="Manage Sites Templates" />
-		</execute>
-	</command>
-
 	<command name="gotoSiteViaMySitesPG">
 		<execute function="AssertClick" locator1="ListGroupItem#ITEM_NAME_LINK" value1="${siteName}">
 			<var name="key_itemName" value="${siteName}" />
