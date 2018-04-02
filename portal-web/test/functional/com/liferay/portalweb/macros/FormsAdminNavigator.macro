@@ -7,12 +7,6 @@
 		<execute function="Click" locator1="FormsAdmin#DATA_PROVIDER_PLUS_BUTTON" />
 	</command>
 
-	<command name="gotoDataProviders">
-		<execute macro="LexiconEntry#gotoHeaderMenuItem">
-			<var name="menuItem" value="Data Providers" />
-		</execute>
-	</command>
-
 	<command name="gotoDeleteField">
 		<var name="key_fieldName" value="${fieldName}" />
 
