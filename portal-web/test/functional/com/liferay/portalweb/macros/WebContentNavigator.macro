@@ -32,7 +32,9 @@
 	</command>
 
 	<command name="gotoAddFeed">
-		<execute macro="WebContentNavigator#gotoFeeds" />
+		<execute macro="LexiconEntry#gotoHeaderMenuItem">
+			<var name="menuItem" value="Feeds" />
+		</execute>
 
 		<execute macro="LexiconEntry#gotoAdd" />
 	</command>
@@ -87,7 +89,9 @@
 	</command>
 
 	<command name="gotoEditFeed">
-		<execute macro="WebContentNavigator#gotoFeeds" />
+		<execute macro="LexiconEntry#gotoHeaderMenuItem">
+			<var name="menuItem" value="Feeds" />
+		</execute>
 
 		<execute macro="LexiconEntry#gotoEntryMenuItem">
 			<var name="menuItem" value="Edit" />
@@ -119,12 +123,6 @@
 		<execute macro="LexiconEntry#gotoEntryMenuItem">
 			<var name="menuItem" value="Edit" />
 			<var name="rowEntry" value="${templateName}" />
-		</execute>
-	</command>
-
-	<command name="gotoFeeds">
-		<execute macro="LexiconEntry#gotoHeaderMenuItem">
-			<var name="menuItem" value="Feeds" />
 		</execute>
 	</command>
 
