@@ -311,33 +311,6 @@ shield.transport.ssl: true</echo>
 		</sequential>
 	</macrodef>
 
-	<macrodef name="prepare-elasticsearch-x-pack">
-		<sequential>
-			<if>
-				<not>
-					<available file="${elasticsearch.dir}/${elastic.x-pack.zip.name}" />
-				</not>
-				<then>
-					<mirrors-get
-						dest="${elasticsearch.dir}/${elastic.x-pack.zip.name}"
-						skipChecksum="true"
-						src="${elastic.x-pack.zip.url}"
-					/>
-				</then>
-			</if>
-
-			<if>
-				<os family="unix" />
-				<then>
-					<exec dir="${elasticsearch.dir}/bin" executable="/bin/bash">
-						<arg value="-c" />
-						<arg value="./elasticsearch-plugin install file:///${elasticsearch.dir}/${elastic.x-pack.zip.name}" />
-					</exec>
-				</then>
-			</if>
-		</sequential>
-	</macrodef>
-
 	<macrodef name="prepare-kibana">
 		<sequential>
 			<if>
@@ -604,26 +577,6 @@ shield.transport.ssl: true</echo>
 		</sequential>
 	</macrodef>
 
-	<target name="configure-elasticsearch-cluster-properties">
-		<math
-			datatype="int"
-			operand1="${remote.elasticsearch.cluster.size}"
-			operand2="2"
-			operation="/"
-			result="elasticsearch.master-eligible.nodes.quorum"
-		/>
-
-		<math
-			datatype="int"
-			operand1="${elasticsearch.master-eligible.nodes.quorum}"
-			operand2="1"
-			operation="+"
-			result="elasticsearch.master-eligible.nodes.quorum"
-		/>
-
-		<echo append="true" file="${elasticsearch.dir}/config/elasticsearch.yml">${line.separator}discovery.zen.minimum_master_nodes: ${elasticsearch.master-eligible.nodes.quorum}</echo>
-	</target>
-
 	<target name="configure-elasticsearch-osgi-bundle-properties">
 		<echo file="${liferay.home}/osgi/configs/com.liferay.portal.search.elasticsearch.configuration.ElasticsearchConfiguration.config">operationMode=&quot;REMOTE&quot;
 logExceptionsOnly=&quot;false&quot;</echo>
@@ -665,32 +618,6 @@ sslKeystorePath=&quot;${elastic.shield.ca.dir}/es-ssl.keystore.jks&quot;
 username=&quot;liferay&quot;</echo>
 	</target>
 
-	<target name="prepare-additional-elasticsearch-dirs">
-		<var name="elasticsearch.node.number" value="0" />
-
-		<antelope:repeat count="${remote.elasticsearch.cluster.size}">
-			<math
-				datatype="int"
-				operand1="${elasticsearch.node.number}"
-				operand2="1"
-				operation="+"
-				result="elasticsearch.node.number"
-			/>
-
-			<delete dir="${elasticsearch.dir}-${elasticsearch.node.number}" />
-
-			<copy
-				todir="${elasticsearch.dir}-${elasticsearch.node.number}"
-			>
-				<fileset
-					dir="${elasticsearch.dir}"
-				/>
-			</copy>
-		</antelope:repeat>
-
-		<delete dir="${elasticsearch.dir}" />
-	</target>
-
 	<target name="start-elasticsearch">
 		<if>
 			<contains string="${elasticsearch.version}" substring="2.4." />
@@ -701,61 +628,6 @@ username=&quot;liferay&quot;</echo>
 				<ant antfile="build-test-elasticsearch6.xml" target="start-elasticsearch6" />
 			</else>
 		</if>
-	</target>
-
-	<target name="start-elasticsearch-node">
-		<sequential>
-			<var name="elasticsearch.node.number" value="0" />
-
-			<get-java-jdk-home />
-
-			<antelope:repeat count="${remote.elasticsearch.cluster.size}">
-				<math
-					datatype="int"
-					operand1="${elasticsearch.node.number}"
-					operand2="1"
-					operation="+"
-					result="elasticsearch.node.number"
-				/>
-
-				<chmod
-					perm="a+rwx"
-					type="both"
-				>
-					<fileset
-						dir="${elasticsearch.dir}-${elasticsearch.node.number}"
-					/>
-				</chmod>
-
-				<if>
-					<os family="mac" />
-					<then>
-						<exec dir="${elasticsearch.dir}-${elasticsearch.node.number}/bin" executable="/bin/bash">
-							<arg value="-c" />
-							<arg value="./elasticsearch -d -p pid-elasticsearch" />
-						</exec>
-					</then>
-					<elseif>
-						<os family="unix" />
-						<then>
-							<exec dir="${elasticsearch.dir}-${elasticsearch.node.number}/bin" executable="/bin/bash">
-								<arg value="-c" />
-								<arg value="sudo -H -u shutdown bash -c 'export JAVA_HOME=${java.jdk.home} &amp;&amp; ./elasticsearch -d -p pid-elasticsearch'" />
-							</exec>
-						</then>
-					</elseif>
-					<elseif>
-						<os family="windows" />
-						<then>
-							<exec dir="${elasticsearch.dir}-${elasticsearch.node.number}/bin" executable="cmd" spawn="true">
-								<arg value="/c" />
-								<arg value="elasticsearch -d -p pid-elasticsearch" />
-							</exec>
-						</then>
-					</elseif>
-				</if>
-			</antelope:repeat>
-		</sequential>
 	</target>
 
 	<target name="start-elasticsearch2">
@@ -873,48 +745,6 @@ username=&quot;liferay&quot;</echo>
 				<fail if="elasticsearch.server.not.started" message="Elasticsearch server failed to initialize." />
 			</else>
 		</if>
-	</target>
-
-	<target name="start-elasticsearch6">
-		<unzip-elasticsearch />
-
-		<prepare-elasticsearch />
-
-		<get-testcase-property property.name="elastic.xpack.enabled" />
-
-		<if>
-			<equals arg1="${elastic.xpack.enabled}" arg2="true" />
-			<then>
-				<prepare-elasticsearch-x-pack />
-			</then>
-		</if>
-
-		<antcall target="configure-elasticsearch-properties" />
-
-		<antcall target="configure-elasticsearch-osgi-bundle-properties" />
-
-		<get-testcase-property property.name="remote.elasticsearch.cluster.size" />
-
-		<if>
-			<not>
-				<isset property="remote.elasticsearch.cluster.size" />
-			</not>
-			<then>
-				<property name="remote.elasticsearch.cluster.size" value="1" />
-			</then>
-		</if>
-
-		<antcall target="configure-elasticsearch-cluster-properties" />
-
-		<antcall target="prepare-additional-elasticsearch-dirs" />
-
-		<antcall target="start-elasticsearch-node" />
-
-		<waitfor maxwait="30" maxwaitunit="second" timeoutproperty="elasticsearch.cluster.not.started">
-			<http url="http://localhost:9200/" />
-		</waitfor>
-
-		<fail if="elasticsearch.cluster.not.started" message="Elasticsearch cluster failed to start." />
 	</target>
 
 	<target name="start-kibana">
