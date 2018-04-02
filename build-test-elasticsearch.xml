@@ -835,6 +835,8 @@ elasticsearch.password: "liferay"]]></replacevalue>
 				</elseif>
 			</if>
 		</antelope:repeat>
+
+		<print-file file.name="${elasticsearch.dir}/logs/LiferayElasticsearchCluster.log" />
 	</target>
 
 	<target name="stop-kibana">
