@@ -567,11 +567,6 @@ shield.transport.ssl: true</echo>
 		</sequential>
 	</macrodef>
 
-	<target name="configure-elasticsearch-osgi-bundle-properties">
-		<echo file="${liferay.home}/osgi/configs/com.liferay.portal.search.elasticsearch.configuration.ElasticsearchConfiguration.config">${line.separator}logExceptionsOnly=&quot;false&quot;
-operationMode=&quot;REMOTE&quot;</echo>
-	</target>
-
 	<target name="configure-elasticsearch-properties">
 		<echo append="true" file="${elasticsearch.dir}/config/elasticsearch.yml">${line.separator}cluster.name: LiferayElasticsearchCluster</echo>
 	</target>
@@ -587,7 +582,12 @@ operationMode=&quot;REMOTE&quot;</echo>
 		</replace>
 	</target>
 
-	<target name="configure-shield-osgi-bundle-properties">
+	<target name="configure-portal-elasticsearch-osgi-properties">
+		<echo file="${liferay.home}/osgi/configs/com.liferay.portal.search.elasticsearch.configuration.ElasticsearchConfiguration.config">${line.separator}logExceptionsOnly=&quot;false&quot;
+operationMode=&quot;REMOTE&quot;</echo>
+	</target>
+
+	<target name="configure-portal-shield-osgi-properties">
 		<echo file="${liferay.home}/osgi/configs/com.liferay.portal.search.elasticsearch.shield.configuration.ShieldConfiguration.config">password=&quot;liferay&quot;
 requiresAuthentication=&quot;true&quot;
 requiresSSL=&quot;true&quot;
@@ -634,14 +634,14 @@ username=&quot;liferay&quot;</echo>
 
 		<echo append="true" file="${elasticsearch.dir}/config/elasticsearch.yml">${line.separator}action.auto_create_index: .marvel-*,.security</echo>
 
-		<antcall target="configure-elasticsearch-osgi-bundle-properties" />
+		<antcall target="configure-portal-elasticsearch-osgi-properties" />
 
 		<get-testcase-property property.name="elastic.shield.enabled" />
 
 		<if>
 			<equals arg1="${elastic.shield.enabled}" arg2="true" />
 			<then>
-				<antcall target="configure-shield-osgi-bundle-properties" />
+				<antcall target="configure-portal-shield-osgi-properties" />
 
 				<prepare-shield />
 
