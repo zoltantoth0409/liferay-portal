@@ -273,23 +273,13 @@ shield.transport.ssl: true</echo>
 			</if>
 
 			<if>
-				<contains string="${elasticsearch.version}" substring="2.4." />
-				<then>
-					<var name="plugin.script" value="plugin" />
-				</then>
-				<else>
-					<var name="plugin.script" value="elasticsearch-plugin" />
-				</else>
-			</if>
-
-			<if>
 				<os family="unix" />
 				<then>
 					<for list="${elasticsearch.analysis-icu.zip.name},${elasticsearch.analysis-kuromoji.zip.name},${elasticsearch.analysis-smartcn.zip.name},${elasticsearch.analysis-stempel.zip.name}" param="elasticsearch.plugin.name">
 						<sequential>
 							<exec dir="${elasticsearch.dir}/bin" executable="/bin/bash">
 								<arg value="-c" />
-								<arg value="./${plugin.script} install file:///${elasticsearch.dir}/@{elasticsearch.plugin.name}" />
+								<arg value="./plugin install file:///${elasticsearch.dir}/@{elasticsearch.plugin.name}" />
 							</exec>
 						</sequential>
 					</for>
@@ -301,7 +291,7 @@ shield.transport.ssl: true</echo>
 							<sequential>
 								<exec dir="${elasticsearch.dir}/bin" executable="cmd">
 									<arg value="/c" />
-									<arg value="${plugin.script} install file:///${elasticsearch.dir}/@{elasticsearch.plugin.name}" />
+									<arg value="plugin install file:///${elasticsearch.dir}/@{elasticsearch.plugin.name}" />
 								</exec>
 							</sequential>
 						</for>
@@ -589,25 +579,12 @@ logExceptionsOnly=&quot;false&quot;</echo>
 	<target name="configure-kibana-properties">
 		<echo append="true" file="${elastic.kibana.dir}/config/kibana.yml">${line.separator}pid.file: ${elastic.kibana.dir}/bin/pid-kibana</echo>
 
-		<if>
-			<contains string="${elasticsearch.version}" substring="2.4." />
-			<then>
-				<replace
-					file="${elastic.kibana.dir}/config/kibana.yml"
-				>
-					<replacetoken><![CDATA[# server.basePath: ""]]></replacetoken>
-					<replacevalue><![CDATA[server.basePath: "/o/portal-search-elasticsearch-marvel-web/marvel-proxy"]]></replacevalue>
-				</replace>
-			</then>
-			<else>
-				<replace
-					file="${elastic.kibana.dir}/config/kibana.yml"
-				>
-					<replacetoken><![CDATA[#server.basePath: ""]]></replacetoken>
-					<replacevalue><![CDATA[server.basePath: "/o/portal-search-elasticsearch-xpack-monitoring/xpack-monitoring-proxy"]]></replacevalue>
-				</replace>
-			</else>
-		</if>
+		<replace
+			file="${elastic.kibana.dir}/config/kibana.yml"
+		>
+			<replacetoken><![CDATA[# server.basePath: ""]]></replacetoken>
+			<replacevalue><![CDATA[server.basePath: "/o/portal-search-elasticsearch-marvel-web/marvel-proxy"]]></replacevalue>
+		</replace>
 	</target>
 
 	<target name="configure-shield-osgi-bundle-properties">
