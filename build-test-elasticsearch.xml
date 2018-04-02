@@ -698,7 +698,7 @@ username=&quot;liferay&quot;</echo>
 				<antcall target="start-elasticsearch2" />
 			</then>
 			<else>
-				<antcall target="start-elasticsearch6" />
+				<ant antfile="build-test-elasticsearch6.xml" target="start-elasticsearch6" />
 			</else>
 		</if>
 	</target>
