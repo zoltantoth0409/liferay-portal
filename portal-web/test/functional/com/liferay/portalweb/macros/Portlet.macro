@@ -227,7 +227,15 @@
 	<command name="configureCustomTitleViaLookandfeelPG">
 		<execute function="Check#checkToggleSwitch" locator1="ToggleSwitch#USE_CUSTOM_TITLE" />
 
-		<execute function="Type" locator1="Portlet#CONFIGURATION_CUSTOM_TITLE_FIELD" value1="${portletName} Custom" />
+		<if>
+			<isset var="customPortletTitle" />
+			<then>
+				<execute function="Type" locator1="Portlet#CONFIGURATION_CUSTOM_TITLE_FIELD" value1="${customPortletTitle}" />
+			</then>
+			<else>
+				<execute function="Type" locator1="Portlet#CONFIGURATION_CUSTOM_TITLE_FIELD" value1="${portletName} Custom" />
+			</else>
+		</if>
 
 		<execute function="AssertClick" locator1="Button#SAVE" value1="Save" />
 
@@ -267,12 +275,34 @@
 
 	<command name="gotoPortletOptions">
 		<if>
-			<isset var="portletName" />
+			<and>
+				<equals arg1="${portletName}" arg2="Web Content Display" />
+				<isset var="order" />
+			</and>
 			<then>
-				<var name="key_portletName" value="${portletName}" />
+				<var name="key_order" value="${order}" />
 
-				<execute function="Click#makeVisibleClickAt" locator1="Portlet#SPECIFIC_BORDERLESS_ELLIPSIS_ICON" />
+				<execute function="Click#makeVisibleClickAt" locator1="WCD#SPECIFIC_BORDERLESS_ELLIPSIS_ICON" />
 			</then>
+			<elseif>
+				<and>
+					<equals arg1="${portletName}" arg2="Asset Publisher" />
+					<isset var="order" />
+				</and>
+				<then>
+					<var name="key_order" value="${order}" />
+
+					<execute function="Click#makeVisibleClickAt" locator1="AP#SPECIFIC_BORDERLESS_ELLIPSIS_ICON" />
+				</then>
+			</elseif>
+			<elseif>
+				<isset var="portletName" />
+				<then>
+					<var name="key_portletName" value="${portletName}" />
+
+					<execute function="Click#makeVisibleClickAt" locator1="Portlet#SPECIFIC_BORDERLESS_ELLIPSIS_ICON" />
+				</then>
+			</elseif>
 			<else>
 				<execute function="Click#makeVisibleClickAt" locator1="Portlet#OPTIONS_ICON" />
 			</else>
