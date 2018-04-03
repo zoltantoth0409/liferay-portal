@@ -23,7 +23,7 @@
 
 				<execute macro="DMDocument#tearDownCP" />
 
-				<execute macro="Page#tearDownCP" />
+				<execute macro="Page#tearDownPG" />
 			</else>
 		</if>
 	</tear-down>
@@ -57,14 +57,16 @@
 			<var name="portlet" value="System Settings" />
 		</execute>
 
-		<execute macro="SystemSettings#gotoConfiguration">
-			<var name="configurationCategory" value="Search" />
-			<var name="configurationName" value="Elasticsearch 6" />
-			<var name="configurationScope" value="System Scope" />
+		<execute macro="SystemSettings#gotoCategory">
+			<var name="category" value="Foundation" />
+		</execute>
+
+		<execute macro="SystemSettings#viewConfiguration">
+			<var name="configurationName" value="Elasticsearch" />
 		</execute>
 
 		<execute macro="SystemSettings#editTextAreaSetting">
-			<var name="settingName" value="Cluster Name" />
+			<var name="settingName" value="clusterName" />
 			<var name="settingValue" value="LiferayElasticsearchCluster1" />
 		</execute>
 
