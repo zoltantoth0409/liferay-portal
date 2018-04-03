@@ -343,6 +343,18 @@
 			<then>
 				<execute function="AssertTextEquals" locator1="Card#SPECIFIC_LARGE_TEXT" value1="${userFirstName} ${userMiddleName} ${userLastName}" />
 			</then>
+			<elseif>
+				<condition function="IsElementNotPresent" locator1="Card#SPECIFIC_LARGE_TEXT"  />
+				<then>
+					<var name="searchTerm" value="${userFirstName}" />
+
+					<execute macro="Search#searchCP">
+						<var name="searchTerm" value="${searchTerm}" />
+					</execute>
+
+					<execute function="AssertTextEquals" locator1="Card#SPECIFIC_LARGE_TEXT" value1="${userFirstName} ${userLastName}" />
+				</then>
+			</elseif>
 			<else>
 				<execute function="AssertTextEquals" locator1="Card#SPECIFIC_LARGE_TEXT" value1="${userFirstName} ${userLastName}" />
 			</else>

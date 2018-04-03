@@ -140,6 +140,15 @@
 
 		<var name="key_userScreenName" value="${userScreenName}" />
 
+		<if>
+			<condition function="IsElementNotPresent" locator1="UsersAndOrganizationsAssignUsers#USER_TABLE_SCREEN_NAME" />
+			<then>
+				<execute function="Type" locator1="TextInput#SITE_SEARCH_KEYWORDS" value1="${userScreenName}" />
+
+				<execute function="AssertClick" locator1="Button#SEARCH" value1="Search" />
+			</then>
+		</if>
+
 		<execute function="AssertTextEquals" locator1="UsersAndOrganizationsAssignUsers#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
 		<execute function="Check" locator1="UsersAndOrganizationsAssignUsers#USER_TABLE_CHECKBOX" />
 
@@ -272,6 +281,59 @@
 
 		<if>
 			<condition function="IsElementPresent" locator1="UsersAndOrganizationsEditOrganization#ORGANIZATION_SITE_PUBLIC_PAGES_SELECT" />
+			<then>
+				<execute function="AssertChecked" locator1="UsersAndOrganizationsEditOrganization#ORGANIZATION_SITE_CREATE_SITE_CHECKBOX" />
+			</then>
+		</if>
+	</command>
+
+	<command name="addSiteCPWithPrivatePage">
+		<execute macro="Organization#gotoActionsCmd">
+			<var name="orgName" value="${orgName}" />
+		</execute>
+
+		<var name="key_orgName" value="${orgName}" />
+
+		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Edit">
+			<var name="key_menuItem" value="Edit" />
+		</execute>
+
+		<execute function="Pause" locator1="3000" />
+
+		<execute macro="Panel#expandPanel">
+			<var name="panelHeading" value="Organization Site" />
+		</execute>
+
+		<execute function="Check" locator1="UsersAndOrganizationsEditOrganization#ORGANIZATION_SITE_CREATE_SITE_CHECKBOX" />
+
+		<if>
+			<or>
+				<equals arg1="${organizationSite}" arg2="Community Site" />
+				<equals arg1="${organizationSite}" arg2="Intranet Site" />
+			</or>
+			<then>
+				<execute function="Select" locator1="UsersAndOrganizationsEditOrganization#ORGANIZATION_SITE_PRIVATE_PAGES_SELECT" value1="${organizationSite}" />
+
+				<if>
+					<equals arg1="${checkEnablePropagationCheckbox}" arg2="true" />
+					<then>
+						<execute function="AssertChecked" locator1="UsersAndOrganizationsEditOrganization#ENABLE_PROPAGATION_PRIVATE_PAGE_CHECKBOX" />
+					</then>
+					<else>
+						<execute function="Uncheck" locator1="UsersAndOrganizationsEditOrganization#ENABLE_PROPAGATION_PRIVATE_PAGE_CHECKBOX" />
+					</else>
+				</if>
+			</then>
+		</if>
+
+		<execute macro="PortletEntry#save" />
+
+		<execute macro="Panel#expandPanel">
+			<var name="panelHeading" value="Organization Site" />
+		</execute>
+
+		<if>
+			<condition function="IsElementPresent" locator1="UsersAndOrganizationsEditOrganization#ORGANIZATION_SITE_PRIVATE_PAGES_SELECT" />
 			<then>
 				<execute function="AssertChecked" locator1="UsersAndOrganizationsEditOrganization#ORGANIZATION_SITE_CREATE_SITE_CHECKBOX" />
 			</then>
@@ -557,6 +619,15 @@
 		<execute function="AssertVisible" locator1="UsersAndOrganizations#ORGANIZATION_TABLE_NAME_GENERIC" />
 
 		<var name="key_orgName" value="${orgName}" />
+
+		<if>
+			<condition function="IsElementNotPresent" locator1="UsersAndOrganizations#ORGANIZATION_TABLE_NAME" />
+			<then>
+				<execute macro="Pagination#changePagination">
+					<var name="itemsPerPage" value="30" />
+				</execute>
+			</then>
+		</if>
 
 		<execute function="AssertTextEquals" locator1="UsersAndOrganizations#ORGANIZATION_TABLE_NAME" value1="${orgName}" />
 
