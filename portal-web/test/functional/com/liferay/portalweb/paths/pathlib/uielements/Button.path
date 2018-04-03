@@ -359,6 +359,11 @@
 	<td></td>
 </tr>
 <tr>
+	<td>EDITOR_FORMAT</td>
+	<td>//button[contains(@id,'EditorSwitch')]/span/*[name()='svg'][contains(@class,'lexicon-icon-format')]</td>
+	<td></td>
+</tr>
+<tr>
 	<td>EDITOR_SWITCH</td>
 	<td>//button[contains(@id,'EditorSwitch')]/span/*[name()='svg'][contains(@class,'lexicon-icon-code')]</td>
 	<td></td>

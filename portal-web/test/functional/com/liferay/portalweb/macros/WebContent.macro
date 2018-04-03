@@ -583,6 +583,22 @@
 		</if>
 	</command>
 
+	<command name="addWithImage">
+		<execute macro="ItemSelector#gotoItemSelectorViaAlloyEditor" />
+
+		<execute function="SelectFrame" locator1="IFrame#METADATA_SETS_IFRAME" />
+
+		<execute function="AssertClick" locator1="ItemSelector#SELECT_FILE_UPLOAD_IMAGE" value1="Select File" />
+
+		<execute function="SikuliUploadCommonFile" locator1="OS#FILE_DIALOG_BOX_FILE_NAME_FIELD_PNG" value1="${uploadFileName}" />
+
+		<execute function="SelectFrame" locator1="ItemSelector#ITEM_SELECTOR_MODAL_FOOTER" />
+
+		<execute function="AssertClick" locator1="ItemSelector#ADD_BUTTON" value1="Add" />
+
+		<execute function="SelectFrameTop" value1="relative=top" />
+	</command>
+
 	<command name="addWithMultipleCategories">
 		<execute macro="WebContent#addCP">
 			<var name="webContentContent" value="${webContentContent}" />
@@ -635,10 +651,21 @@
 		</if>
 
 		<if>
-			<isset var="webContentDate" />
+			<and>
+				<isset var="dateFieldName" />
+				<isset var="webContentDate" />
+			</and>
 			<then>
-				<execute function="Type" locator1="DDMField#DATE" value1="${webContentDate}" />
+				<execute function="Type" locator1="DDMField#DATE" value1="${webContentDate}">
+					<var name="key_fieldName" value="${dateFieldName}" />
+				</execute>
 			</then>
+			<elseif>
+				<isset var="webContentDate" />
+				<then>
+					<execute function="Type" locator1="DDMField#DATE" value1="${webContentDate}" />
+				</then>
+			</elseif>
 		</if>
 
 		<if>
@@ -741,12 +768,23 @@
 		</if>
 
 		<if>
-			<isset var="webContentText" />
+			<and>
+				<isset var="webContentText" />
+				<isset var="textFieldName" />
+			</and>
 			<then>
 				<execute function="Type" locator1="DDMField#TEXT" value1="${webContentText}">
-					<var name="key_fieldName" value="Text" />
+					<var name="key_fieldName" value="${textFieldName}" />
 				</execute>
 			</then>
+			<elseif>
+				<isset var="webContentText" />
+				<then>
+					<execute function="Type" locator1="DDMField#TEXT" value1="${webContentText}">
+						<var name="key_fieldName" value="Text" />
+					</execute>
+				</then>
+			</elseif>
 		</if>
 
 		<if>
@@ -796,6 +834,33 @@
 			<isset var="abstractSummary" />
 			<then>
 				<execute function="Type" locator1="TextArea#SUMMARY" value1="${abstractSummary}" />
+			</then>
+		</if>
+
+		<if>
+			<isset var="pageName" />
+			<then>
+				<execute macro="Panel#expandPanel">
+					<var name="panelHeading" value="Display Page" />
+				</execute>
+
+				<execute function="AssertClick" locator1="Button#CHOOSE" value1="Choose" />
+
+				<execute function="Pause" locator1="5000" />
+
+				<execute function="SelectFrame" locator1="WCSelectDisplayPage#DISPLAY_PAGE_CONFIGURATION_IFRAME" />
+
+				<execute function="AssertClick" locator1="WCSelectDisplayPage#PUBLIC_PAGES_SELECTION" value1="${pageName}">
+					<var name="key_pageName" value="${pageName}" />
+				</execute>
+
+				<execute function="SelectFrame" value1="relative=top" />
+
+				<execute macro="Button#clickDone" />
+
+				<execute function="SelectFrame" value1="relative=top" />
+
+				<execute function="AssertTextEquals" locator1="WCEditWebContent#DISPLAY_PAGE_SELECTION" value1="Public Pages > ${pageName}" />
 			</then>
 		</if>
 

@@ -143,7 +143,12 @@
 
 		<execute function="SelectFrame" locator1="ItemSelector#ITEM_SELECTOR_IFRAME" />
 
-		<execute function="AssertClick" locator1="ItemSelector#NAVIGATION_SPECIFIC_TAB" value1="${navTab}" />
+		<if>
+			<condition function="IsElementPresent" locator1="ItemSelector#NAVIGATION_SPECIFIC_TAB" value1="${navTab}" />
+			<then>
+				<execute function="AssertClick" locator1="ItemSelector#NAVIGATION_SPECIFIC_TAB" value1="${navTab}" />
+			</then>
+		</if>
 
 		<execute function="AssertClick" locator1="ItemSelector#SELECT_FILE_UPLOAD_IMAGE" value1="Select File" />
 
