@@ -1,4 +1,32 @@
 <definition>
+	<command name="changeWebContent">
+		<execute macro="Portlet#gotoPortletOptions">
+			<var name="order" value="${order}" />
+			<var name="portletName" value="Web Content Display" />
+			<var name="portletOption" value="Configuration" />
+		</execute>
+
+		<execute macro="IFrame#selectDialogFrame" />
+
+		<execute function="Click" locator1="Button#CHANGE" />
+
+		<execute function="SelectFrame" value1="relative=top" />
+
+		<execute macro="IFrame#selectDialogFrame" />
+
+		<var name="key_webContentTitle" value="${webContentTitle}" />
+
+		<execute function="AssertClick" locator1="Link#WEB_CONTENT_ARTICLE" value1="${webContentTitle}" />
+
+		<execute function="SelectFrame" value1="relative=top" />
+
+		<execute macro="IFrame#selectDialogFrame" />
+
+		<execute macro="PortletEntry#save" />
+
+		<execute function="SelectFrame" value1="relative=top" />
+	</command>
+
 	<command name="configureScopePG">
 		<execute macro="Portlet#gotoPortletOptions">
 			<var name="portletName" value="${portletName}" />
@@ -274,6 +302,7 @@
 
 	<command name="selectWebContent">
 		<execute macro="Portlet#gotoPortletOptions">
+			<var name="order" value="${order}" />
 			<var name="portletName" value="Web Content Display" />
 			<var name="portletOption" value="Configuration" />
 		</execute>

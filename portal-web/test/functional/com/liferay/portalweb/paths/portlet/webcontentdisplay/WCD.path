@@ -49,6 +49,17 @@
 	<td></td>
 	<td></td>
 </tr>
+<!--WCD_PORTLET_BORDERLESS-->
+<tr>
+	<td>SPECIFIC_BORDERLESS_ELLIPSIS_ICON</td>
+	<td>//div[contains(@id,'JournalContentPortlet')][${key_order}]//div[contains(@class,'portlet-options')]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
 <!--WEB_CONTENT-->
 <tr>
 	<td>WEB_CONTENT_CONTENT</td>
