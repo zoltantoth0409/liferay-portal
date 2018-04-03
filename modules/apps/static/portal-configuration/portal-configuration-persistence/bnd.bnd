@@ -4,6 +4,7 @@ Bundle-SymbolicName: com.liferay.portal.configuration.persistence
 Bundle-Version: 2.1.3
 Export-Package:\
 	com.liferay.portal.configuration.persistence,\
-	com.liferay.portal.configuration.persistence.listener
+	com.liferay.portal.configuration.persistence.listener,\
+	com.liferay.portal.configuration.persistence.upgrade
 Liferay-Releng-Module-Group-Description:
 Liferay-Releng-Module-Group-Title: Configuration Framework
