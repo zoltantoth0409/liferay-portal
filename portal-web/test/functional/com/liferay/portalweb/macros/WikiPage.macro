@@ -193,9 +193,19 @@
 
 		<execute function="AssertElementPresent" locator1="AlloyEditor#CONTENT_FIELD" />
 
-		<execute macro="AlloyEditor#addContent">
-			<var name="content" value="${wikiFrontPageContent}" />
-		</execute>
+		<if>
+			<isset var="sourceCode" />
+			<then>
+				<execute macro="AlloyEditor#addSourceContent">
+					<var name="content" value="${wikiFrontPageContent}" />
+				</execute>
+			</then>
+			<else>
+				<execute macro="AlloyEditor#addContent">
+					<var name="content" value="${wikiFrontPageContent}" />
+				</execute>
+			</else>
+		</if>
 
 		<execute macro="PortletEntry#publish" />
 	</command>
