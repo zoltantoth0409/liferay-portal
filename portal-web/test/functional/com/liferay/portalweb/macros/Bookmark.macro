@@ -74,6 +74,8 @@
 		<execute macro="Bookmark#viewBookmark">
 			<var name="bookmarkName" value="${bookmarkName}" />
 			<var name="bookmarkURL" value="${bookmarkURL}" />
+			<var name="key_assetName" value="${bookmarkName}" />
+			<var name="trailingSlash" value="${trailingSlash}" />
 		</execute>
 	</command>
 
@@ -498,7 +500,15 @@
 			<var name="key_assetName" value="${bookmarkName}" />
 		</execute>
 
-		<execute function="AssertLocation" value1="${bookmarkURL}/" />
+		<if>
+			<equals arg1="${trailingSlash}" arg2="false" />
+			<then>
+				<execute function="AssertLocation" value1="${bookmarkURL}" />
+			</then>
+			<else>
+				<execute function="AssertLocation" value1="${bookmarkURL}/" />
+			</else>
+		</if>
 	</command>
 
 	<command name="viewBookmarkViaAP">
