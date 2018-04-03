@@ -3,3 +3,4 @@ Bundle-SymbolicName: com.liferay.portal.security.sso.token.impl
 Bundle-Version: 1.0.4
 Liferay-Releng-Module-Group-Description:
 Liferay-Releng-Module-Group-Title: Security Frameworks
+Liferay-Require-SchemaVersion: 1.0.0
