@@ -120,9 +120,19 @@
 			<then>
 				<execute function="Select" locator1="SitePagesEditPage#PAGE_TYPE_SELECT" value1="${pageTemplateName}" />
 
-				<execute macro="Page#togglePageTemplateInheritChanges">
-					<var name="toggleValue" value="enable" />
-				</execute>
+				<if>
+					<isset var="inheritChanges" />
+					<then>
+						<execute macro="Page#togglePageTemplateInheritChanges">
+							<var name="toggleValue" value="${inheritChanges}" />
+						</execute>
+					</then>
+					<else>
+						<execute macro="Page#togglePageTemplateInheritChanges">
+							<var name="toggleValue" value="enable" />
+						</execute>
+					</else>
+				</if>
 			</then>
 		</if>
 
