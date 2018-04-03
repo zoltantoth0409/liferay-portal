@@ -105,11 +105,32 @@
 				</execute>
 
 				<for list="${dmDocumentTypeFieldNames}" param="dmDocumentTypeFieldName">
+					<if>
+						<not>
+							<isset var="dmDocumentTypeFieldLabel" />
+						</not>
+						<then>
+							<var name="dmDocumentTypeFieldLabel" value="${dmDocumentTypeFieldName}" />
+						</then>
+					</if>
+
 					<execute macro="DynamicDataMapping#addField">
 						<var name="field" value="${dmDocumentTypeFieldName}" />
-						<var name="fieldFieldLabel" value="${dmDocumentTypeFieldName}" />
-						<var method="StringUtil#replace('${dmDocumentTypeFieldName}', ' ', '')" name="fieldName" />
+						<var name="fieldFieldLabel" value="${dmDocumentTypeFieldLabel}" />
+						<var method="StringUtil#replace('${dmDocumentTypeFieldLabel}', ' ', '')" name="fieldName" />
 					</execute>
+
+					<if>
+						<isset var="fieldPredefinedValue" />
+						<then>
+							<execute macro="DynamicDataMapping#editFieldPredefinedValue">
+								<var name="field" value="${dmDocumentTypeFieldName}" />
+								<var name="fieldFieldLabel" value="${dmDocumentTypeFieldLabel}" />
+								<var name="fieldName" value="${dmDocumentTypeFieldLabel}" />
+								<var name="fieldPredefinedValue" value="${fieldPredefinedValue}" />
+							</execute>
+						</then>
+					</if>
 				</for>
 			</then>
 		</if>

@@ -277,10 +277,50 @@
 		</execute>
 
 		<if>
+			<and>
+				<isset var="date" />
+				<isset var="dateFieldName" />
+			</and>
+			<then>
+				<var name="key_fieldName" value="${dateFieldName}" />
+
+				<execute function="Type" locator1="DocumentsAndMediaEditCustomDocumentType#DATE_FIELD" value1="${date}" />
+			</then>
+			<elseif>
+				<isset var="date" />
+				<then>
+					<var name="key_fieldName" value="date" />
+
+					<execute function="Type" locator1="DocumentsAndMediaEditCustomDocumentType#DATE_FIELD" value1="${date}" />
+				</then>
+			</elseif>
+		</if>
+
+		<if>
 			<isset var="selectOption" />
 			<then>
 				<execute function="Select" locator1="DocumentsAndMediaEditCustomDocumentType#SELECT_OPTIONS_SELECT" value1="${selectOption}" />
 			</then>
+		</if>
+
+		<if>
+			<and>
+				<isset var="textBox" />
+				<isset var="textBoxFieldName" />
+			</and>
+			<then>
+				<var name="key_fieldName" value="${textBoxFieldName}" />
+
+				<execute function="Type" locator1="DocumentsAndMediaEditCustomDocumentType#TEXT_BOX_FIELD" value1="${textBox}" />
+			</then>
+			<elseif>
+				<isset var="textBox" />
+				<then>
+					<var name="key_fieldName" value="textBox" />
+
+				<execute function="Type" locator1="DocumentsAndMediaEditCustomDocumentType#TEXT_BOX_FIELD" value1="${textBox}" />
+				</then>
+			</elseif>
 		</if>
 
 		<if>
@@ -314,12 +354,16 @@
 	<command name="addDocumentTypeCP">
 		<execute macro="DMDocument#addDocumentTypeCmdCP">
 			<var name="booleanField" value="${booleanField}" />
+			<var name="date" value="${date}" />
+			<var name="dateFieldName" value="${dateFieldName}" />
 			<var name="dmDocumentDescription" value="${dmDocumentDescription}" />
 			<var name="dmDocumentFile" value="${dmDocumentFile}" />
 			<var name="dmDocumentTitle" value="${dmDocumentTitle}" />
 			<var name="dmDocumentTypeName" value="${dmDocumentTypeName}" />
 			<var name="numberField" value="${numberField}" />
 			<var name="selectOption" value="${selectOption}" />
+			<var name="textBox" value="${textBox}" />
+			<var name="textBoxFieldName" value="${textBoxFieldName}" />
 			<var name="textField" value="${textField}" />
 		</execute>
 
@@ -399,6 +443,52 @@
 		<execute function="AssertClick" locator1="Button#SUBMIT_FOR_PUBLICATION" value1="Submit for Publication" />
 
 		<execute macro="Alert#viewSuccessMessage" />
+	</command>
+
+	<command name="addMultipleCP">
+		<execute macro="LexiconEntry#gotoAdd" />
+
+		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Multiple Documents">
+			<var name="key_menuItem" value="Multiple Documents" />
+		</execute>
+
+		<if>
+			<isset var="dmDocumentFileList" />
+			<then>
+				<for list="${dmDocumentFileList}" param="dmDocumentFile">
+					<var name="key_dmDocumentFile" value="${dmDocumentFile}" />
+
+					<execute function="AssertClick" locator1="DynamicUploader#SELECT_FILES_BUTTON" value1="Select Files" />
+
+					<if>
+						<equals arg1="${uploadTempFile}" arg2="true" />
+						<then>
+							<execute function="SikuliUploadTempFile" locator1="OS#FILE_DIALOG_BOX_FILE_NAME_FIELD_PNG" value1="${dmDocumentFile}" />
+						</then>
+						<else>
+							<execute function="SikuliUploadCommonFile" locator1="OS#FILE_DIALOG_BOX_FILE_NAME_FIELD_PNG" value1="${dmDocumentFile}" />
+						</else>
+					</if>
+
+					<execute function="AssertChecked" locator1="DynamicUploader#SELECT_ALL_CHECKBOX" />
+
+					<var name="key_documentName" value="${dmDocumentFile}" />
+
+					<execute function="AssertElementPresent" locator1="DynamicUploader#ALL_FILES_READY_TO_BE_SAVED_DOCUMENT_TITLE" />
+				</for>
+			</then>
+		</if>
+
+		<if>
+			<isset var="viewableBy" />
+			<then>
+				<execute function="Select" locator1="DocumentsAndMediaEditFolder#PERMISSIONS_SELECT" value1="${viewableBy}" />
+			</then>
+		</if>
+
+		<execute function="AssertClick" locator1="Button#PUBLISH" value1="Publish" />
+
+		<execute function="AssertTextEquals" locator1="Message#SUCCESS" value1="Your request completed successfully." />
 	</command>
 
 	<command name="addMultiplePG">
