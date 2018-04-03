@@ -136,6 +136,11 @@
 	<td></td>
 </tr>
 <tr>
+	<td>INLINE_PERMISSIONS_ACCESS_CHECKBOX</td>
+	<td>//input[@id='${key_roleName}_ACTION_ACCESS']</td>
+	<td></td>
+</tr>
+<tr>
 	<td></td>
 	<td></td>
 	<td></td>
@@ -229,6 +234,11 @@
 <tr>
 	<td>CONTENT_PERMISSIONS_PREFERENCES_CHECKBOX</td>
 	<td>//input[contains(@id,'${key_roleName}_ACTION_PREFERENCES')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CONTENT_PERMISSIONS_SUBSCRIBE_CHECKBOX</td>
+	<td>//tr[contains(.,'${key_roleName}')]//input[contains(@id,'ACTION_SUBSCRIBE')]</td>
 	<td></td>
 </tr>
 <tr>
