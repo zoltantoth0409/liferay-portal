@@ -1298,13 +1298,24 @@
 
 		<execute macro="User#logoutPG" />
 
-		<execute macro="User#loginPG">
-			<var name="authenticationMethod" value="${authenticationMethod}" />
-			<var name="nodePort" value="${nodePort}" />
-			<var name="password" value="test" />
-			<var name="userEmailAddress" value="test@liferay.com" />
-			<var name="userScreenName" value="${userScreenName}" />
-		</execute>
+		<if>
+			<isset var="administratorEmail" />
+			<then>
+				<execute macro="User#loginPG">
+					<var name="userEmailAddress" value="${administratorEmail}" />
+					<var name="password" value="test" />
+				</execute>
+			</then>
+			<else>
+				<execute macro="User#loginPG">
+					<var name="authenticationMethod" value="${authenticationMethod}" />
+					<var name="nodePort" value="${nodePort}" />
+					<var name="password" value="test" />
+					<var name="userEmailAddress" value="test@liferay.com" />
+					<var name="userScreenName" value="${userScreenName}" />
+				</execute>
+			</else>
+		</if>
 	</command>
 
 	<command name="editPasswordInvalidCP">
