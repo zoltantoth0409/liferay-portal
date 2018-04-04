@@ -203,6 +203,11 @@
 	<td>//iframe[contains(@id,'changeLogo_iframe')]</td>
 	<td></td>
 </tr>
+<tr>
+	<td>XPACK_MONITORING</td>
+	<td>//iframe[contains(@id,'XPackMonitoringPortlet')]</td>
+	<td></td>
+</tr>
 </tbody>
 </table>
 </body>
