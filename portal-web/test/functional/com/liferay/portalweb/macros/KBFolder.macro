@@ -1,12 +1,8 @@
 <definition>
-	<command name="_gotoAddFolder">
+	<command name="addCP">
 		<execute macro="LexiconEntry#gotoAddMenuItem">
 			<var name="menuItem" value="Folder" />
 		</execute>
-	</command>
-
-	<command name="addCP">
-		<execute macro="KBFolder#_gotoAddFolder" />
 
 		<execute macro="PortletEntry#inputName">
 			<var name="name" value="${kbFolderName}" />

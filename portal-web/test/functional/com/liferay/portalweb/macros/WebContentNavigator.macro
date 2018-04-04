@@ -119,13 +119,6 @@
 		<execute function="SelectFrame" value1="relative=top" />
 	</command>
 
-	<command name="gotoEditTemplate">
-		<execute macro="LexiconEntry#gotoEntryMenuItem">
-			<var name="menuItem" value="Edit" />
-			<var name="rowEntry" value="${templateName}" />
-		</execute>
-	</command>
-
 	<command name="gotoLocalizedEditPGViaWCD">
 		<execute function="MouseOver" locator1="WC#BODY" />
 

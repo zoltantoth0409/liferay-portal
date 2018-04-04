@@ -1568,8 +1568,9 @@
 
 		<execute macro="WebContentNavigator#gotoManageTemplates" />
 
-		<execute macro="WebContentNavigator#gotoEditTemplate">
-			<var name="templateName" value="Basic Web Content" />
+		<execute macro="LexiconEntry#gotoEntryMenuItem">
+			<var name="menuItem" value="Edit" />
+			<var name="rowEntry" value="Basic Web Content" />
 		</execute>
 
 		<execute macro="PortletEntry#inputName">

@@ -17,13 +17,6 @@
 		<execute function="Click" locator1="Form#FIELD_DELETE_BUTTON" />
 	</command>
 
-	<command name="gotoEdit">
-		<execute macro="LexiconEntry#gotoEntryMenuItem">
-			<var name="menuItem" value="Edit" />
-			<var name="rowEntry" value="${formName}" />
-		</execute>
-	</command>
-
 	<command name="gotoEditField">
 		<var name="key_fieldName" value="${fieldName}" />
 
