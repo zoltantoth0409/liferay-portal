@@ -260,7 +260,7 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="WebContentNavigator#gotoEditPGViaWCD">
+		<execute macro="WebContentNavigator#gotoEditPGViaWCD" />
 
 		<execute macro="WebContent#addTagPGViaWCD">
 			<var name="tagName" value="tag name" />

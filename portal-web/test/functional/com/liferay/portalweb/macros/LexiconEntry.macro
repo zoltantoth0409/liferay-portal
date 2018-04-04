@@ -11,12 +11,6 @@
 		</execute>
 	</command>
 
-	<command name="gotoEntry">
-		<var name="key_rowEntry" value="${rowEntry}" />
-
-		<execute function="AssertClick" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK" value1="${rowEntry}" />
-	</command>
-
 	<command name="gotoEllipsisMenuItem">
 		<execute function="Click#waitForMenuToggleJSClick" locator1="Icon#BODY_VERTICAL_ELLIPSIS" />
 
@@ -31,6 +25,12 @@
 		<execute function="AssertClickNoError" locator1="MenuItem#ANY_MENU_ITEM" value1="${menuItem}">
 			<var name="key_menuItem" value="${menuItem}" />
 		</execute>
+	</command>
+
+	<command name="gotoEntry">
+		<var name="key_rowEntry" value="${rowEntry}" />
+
+		<execute function="AssertClick" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK" value1="${rowEntry}" />
 	</command>
 
 	<command name="gotoEntryMenuItem">
