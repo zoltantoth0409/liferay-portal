@@ -79,7 +79,7 @@ public class OAuth2AuthorizationLocalServiceImpl
 				oAuth2ScopeGrant);
 		}
 
-		return super.deleteOAuth2Authorization(oAuth2AuthorizationId);
+		return oAuth2AuthorizationPersistence.remove(oAuth2AuthorizationId);
 	}
 
 	@Override
