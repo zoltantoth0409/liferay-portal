@@ -232,7 +232,7 @@
 
 	<command name="addViaAPSelectScope">
 		<execute macro="AssetPublisherPortlet#addAsset">
-			<var name="assetType" value="Basic Document" />
+			<var name="assetType" value="Add Content (Select Scope and Type)" />
 		</execute>
 
 		<execute function="Select" locator1="Select#TYPE" value1="Blogs Entry" />
