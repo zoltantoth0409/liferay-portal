@@ -137,7 +137,7 @@ public class OAuth2ScopeGrantLocalServiceImpl
 			}
 		}
 
-		oAuth2ScopeGrantLocalService.addOAuth2AuthorizationOAuth2ScopeGrants(
+		addOAuth2AuthorizationOAuth2ScopeGrants(
 			oAuth2AuthorizationId, resultOAuth2ScopeGrants);
 
 		return resultOAuth2ScopeGrants;
