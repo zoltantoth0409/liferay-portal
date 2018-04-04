@@ -52,12 +52,10 @@ public class OAuth2AuthorizationLocalServiceImpl
 		oAuth2Authorization.setOAuth2ApplicationId(oAuth2ApplicationId);
 		oAuth2Authorization.setOAuth2ApplicationScopeAliasesId(
 			oAuth2ApplicationScopeAliasesId);
-
 		oAuth2Authorization.setAccessTokenContent(accessTokenContent);
 		oAuth2Authorization.setAccessTokenCreateDate(accessTokenCreateDate);
 		oAuth2Authorization.setAccessTokenExpirationDate(
 			accessTokenExpirationDate);
-
 		oAuth2Authorization.setRemoteIPInfo(remoteIPInfo);
 		oAuth2Authorization.setRefreshTokenContent(refreshTokenContent);
 		oAuth2Authorization.setRefreshTokenCreateDate(refreshTokenCreateDate);
