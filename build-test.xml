@@ -9386,15 +9386,25 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 		<if>
 			<equals arg1="${remote.elasticsearch.enabled}" arg2="true" />
 			<then>
-				<ant antfile="build-test-elasticsearch.xml" target="start-elasticsearch" />
-
-				<get-testcase-property property.name="elastic.kibana.enabled" />
+				<get-testcase-property property.name="deploy.elasticsearch6" />
 
 				<if>
-					<equals arg1="${elastic.kibana.enabled}" arg2="true" />
+					<equals arg1="${deploy.elasticsearch6}" arg2="true" />
 					<then>
-						<ant antfile="build-test-elasticsearch.xml" target="start-kibana" />
+						<ant antfile="build-test-elasticsearch6.xml" target="start-elasticsearch" />
 					</then>
+					<else>
+						<ant antfile="build-test-elasticsearch.xml" target="start-elasticsearch" />
+
+						<get-testcase-property property.name="elastic.kibana.enabled" />
+
+						<if>
+							<equals arg1="${elastic.kibana.enabled}" arg2="true" />
+							<then>
+								<ant antfile="build-test-elasticsearch.xml" target="start-kibana" />
+							</then>
+						</if>
+					</else>
 				</if>
 			</then>
 		</if>
