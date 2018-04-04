@@ -118,17 +118,17 @@ public class OAuth2AuthorizationLocalServiceImpl
 
 	@Override
 	public List<OAuth2Authorization> getOAuth2Authorizations(
-		long applicationId, int start, int end,
+		long oAuth2ApplicationId, int start, int end,
 		OrderByComparator<OAuth2Authorization> orderByComparator) {
 
 		return oAuth2AuthorizationPersistence.findByOAuth2ApplicationId(
-			applicationId, start, end, orderByComparator);
+			oAuth2ApplicationId, start, end, orderByComparator);
 	}
 
 	@Override
-	public int getOAuth2AuthorizationsCount(long applicationId) {
+	public int getOAuth2AuthorizationsCount(long oAuth2ApplicationId) {
 		return oAuth2AuthorizationPersistence.countByOAuth2ApplicationId(
-			applicationId);
+			oAuth2ApplicationId);
 	}
 
 	@Override
