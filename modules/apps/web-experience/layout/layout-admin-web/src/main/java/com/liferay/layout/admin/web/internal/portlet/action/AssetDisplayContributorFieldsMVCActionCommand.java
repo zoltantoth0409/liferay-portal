@@ -57,8 +57,6 @@ public class AssetDisplayContributorFieldsMVCActionCommand
 
 		String className = ParamUtil.getString(actionRequest, "className");
 
-		long classTypeId = ParamUtil.getLong(actionRequest, "classTypeId");
-
 		AssetDisplayContributor assetDisplayContributor =
 			_assetDisplayContributorTracker.getAssetDisplayContributor(
 				className);
@@ -72,6 +70,8 @@ public class AssetDisplayContributorFieldsMVCActionCommand
 		}
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
+		long classTypeId = ParamUtil.getLong(actionRequest, "classTypeId");
 
 		for (AssetDisplayField assetDisplayField :
 				assetDisplayContributor.getAssetEntryFields(
