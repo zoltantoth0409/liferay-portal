@@ -50,7 +50,7 @@ public abstract class BaseAssetDisplayContributor<T>
 
 		// Default fields for asset entry
 
-		for (String assetEntryModelField : _DEFAULT_ASSET_ENTRY_MODEL_FIELDS) {
+		for (String assetEntryModelField : _ASSET_ENTRY_MODEL_FIELDS) {
 			assetDisplayFields.add(
 				new AssetDisplayField(
 					assetEntryModelField,
@@ -139,7 +139,7 @@ public abstract class BaseAssetDisplayContributor<T>
 		return parameterMap;
 	}
 
-	private static final String[] _DEFAULT_ASSET_ENTRY_MODEL_FIELDS = {
+	private static final String[] _ASSET_ENTRY_MODEL_FIELDS = {
 		"categoryIds", "description", "publishDate", "summary", "tagNames",
 		"title"
 	};
