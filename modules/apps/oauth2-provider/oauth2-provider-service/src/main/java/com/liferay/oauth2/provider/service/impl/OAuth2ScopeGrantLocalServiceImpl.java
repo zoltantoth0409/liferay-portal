@@ -86,7 +86,7 @@ public class OAuth2ScopeGrantLocalServiceImpl
 	}
 
 	@Override
-	public Collection<OAuth2ScopeGrant> grantScopesToAuthorization(
+	public Collection<OAuth2ScopeGrant> grantLiferayOAuth2Scopes(
 			long oAuth2AuthorizationId,
 			Collection<LiferayOAuth2Scope> liferayOAuth2Scopes)
 		throws PortalException {
