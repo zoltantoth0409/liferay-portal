@@ -1,4 +1,4 @@
-/**
+	/**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -219,7 +219,7 @@ public class SynchronousDestinationTestCallback
 
 				schedulerDestination.unregister(schedulerMessageListener);
 
-				_schedulerMessageListeners.add(invokerMessageListener);
+				_schedulerInvokerMessageListeners.add(invokerMessageListener);
 			}
 
 			CountDownLatch startCountDownLatch = new CountDownLatch(
@@ -304,7 +304,7 @@ public class SynchronousDestinationTestCallback
 			}
 
 			for (InvokerMessageListener invokerMessageListener :
-					_schedulerMessageListeners) {
+					_schedulerInvokerMessageListeners) {
 
 				destination.register(
 					invokerMessageListener.getMessageListener(),
@@ -333,8 +333,8 @@ public class SynchronousDestinationTestCallback
 		private final List<Destination> _asyncServiceDestinations =
 			new ArrayList<>();
 		private boolean _forceSync;
-		private final List<InvokerMessageListener> _schedulerMessageListeners =
-			new ArrayList<>();
+		private final List<InvokerMessageListener>
+			_schedulerInvokerMessageListeners = new ArrayList<>();
 		private Sync _sync;
 
 	}
