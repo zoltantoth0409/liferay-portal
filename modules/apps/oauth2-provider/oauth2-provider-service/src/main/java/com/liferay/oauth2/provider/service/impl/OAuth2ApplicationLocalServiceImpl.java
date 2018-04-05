@@ -386,9 +386,7 @@ public class OAuth2ApplicationLocalServiceImpl
 			String name, String privacyPolicyURL, List<String> redirectURIsList)
 		throws PortalException {
 
-		boolean clientConfidential = !Validator.isBlank(clientSecret);
-
-		if (clientConfidential) {
+		if (!Validator.isBlank(clientSecret)) {
 			for (GrantType grantType : allowedGrantTypesList) {
 				if (!grantType.isSupportsConfidentialClients()) {
 					throw new
