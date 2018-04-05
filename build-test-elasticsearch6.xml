@@ -571,9 +571,9 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 	</target>
 
 	<target name="deploy-elasticsearch6">
-		<gradle-execute dir="${project.dir}/modules/apps/portal-search-elasticsearch6/portal-search-elasticsearch6-api" task="deploy" />
-
-		<gradle-execute dir="${project.dir}/modules/apps/portal-search-elasticsearch6/portal-search-elasticsearch6-impl" task="deploy" />
+		<gradle-execute dir="${project.dir}/modules/apps/portal-search-elasticsearch6" task="deploy">
+			<arg value="clean" />
+		</gradle-execute>
 
 		<echo file="${liferay.home}/osgi/configs/com.liferay.portal.bundle.blacklist.internal.BundleBlacklistConfiguration.config">blacklistBundleSymbolicNames=["com.liferay.portal.search.elasticsearch,com.liferay.portal.search.elasticsearch.shield,com.liferay.portal.search.elasticsearch.shield.fragment,com.liferay.portal.search.elasticsearch.marvel.web"]</echo>
 	</target>
