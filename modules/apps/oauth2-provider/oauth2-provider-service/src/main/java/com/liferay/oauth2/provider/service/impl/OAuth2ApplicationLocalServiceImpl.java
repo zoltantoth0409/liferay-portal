@@ -405,11 +405,11 @@ public class OAuth2ApplicationLocalServiceImpl
 			}
 		}
 
-		OAuth2Application duplicateApplication =
+		OAuth2Application existingOAuth2Application =
 			oAuth2ApplicationPersistence.fetchByC_C(companyId, clientId);
 
-		if ((duplicateApplication != null) &&
-			(duplicateApplication.getOAuth2ApplicationId() !=
+		if ((existingOAuth2Application != null) &&
+			(existingOAuth2Application.getOAuth2ApplicationId() !=
 				oAuth2ApplicationId)) {
 
 			throw new DuplicateOAuth2ApplicationClientIdException();
