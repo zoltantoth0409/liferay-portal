@@ -74,11 +74,8 @@ public class OAuth2ApplicationServiceImpl
 		_oAuth2ApplicationModelResourcePermission.check(
 			getPermissionChecker(), oAuth2Application, ActionKeys.DELETE);
 
-		oAuth2Application =
-			oAuth2ApplicationLocalService.deleteOAuth2Application(
-				oAuth2ApplicationId);
-
-		return oAuth2Application;
+		return oAuth2ApplicationLocalService.deleteOAuth2Application(
+			oAuth2ApplicationId);
 	}
 
 	@Override
