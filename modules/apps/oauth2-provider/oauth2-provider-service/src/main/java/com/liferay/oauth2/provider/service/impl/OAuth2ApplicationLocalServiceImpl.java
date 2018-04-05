@@ -125,8 +125,6 @@ public class OAuth2ApplicationLocalServiceImpl
 		oAuth2Application.setPrivacyPolicyURL(privacyPolicyURL);
 		oAuth2Application.setRedirectURIsList(redirectURIsList);
 
-		// OAuth2ScopeAliases
-
 		if ((scopeAliasesList != null) && !scopeAliasesList.isEmpty()) {
 			OAuth2ApplicationScopeAliases oAuth2ApplicationScopeAliases =
 				oAuth2ApplicationScopeAliasesLocalService.
@@ -138,8 +136,6 @@ public class OAuth2ApplicationLocalServiceImpl
 				oAuth2ApplicationScopeAliases.
 					getOAuth2ApplicationScopeAliasesId());
 		}
-
-		// Resources
 
 		resourceLocalService.addResources(
 			oAuth2Application.getCompanyId(), 0, oAuth2Application.getUserId(),
