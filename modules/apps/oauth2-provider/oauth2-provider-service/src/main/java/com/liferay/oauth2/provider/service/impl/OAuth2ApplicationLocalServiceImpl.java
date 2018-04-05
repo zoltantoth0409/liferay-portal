@@ -186,7 +186,7 @@ public class OAuth2ApplicationLocalServiceImpl
 						getOAuth2ApplicationScopeAliasesId());
 		}
 
-		return super.deleteOAuth2Application(oAuth2ApplicationId);
+		return oAuth2ApplicationPersistence.remove(oAuth2ApplicationId);
 	}
 
 	@Override
