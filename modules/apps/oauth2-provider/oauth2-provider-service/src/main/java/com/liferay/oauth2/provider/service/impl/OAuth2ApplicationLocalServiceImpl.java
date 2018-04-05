@@ -214,10 +214,8 @@ public class OAuth2ApplicationLocalServiceImpl
 
 		long oldIconFileEntryId = oAuth2Application.getIconFileEntryId();
 
-		long companyId = oAuth2Application.getCompanyId();
-
-		Group group = groupLocalService.getCompanyGroup(companyId);
-		long defaultUserId = userLocalService.getDefaultUserId(companyId);
+		Group group = groupLocalService.getCompanyGroup(
+			oAuth2Application.getCompanyId());
 
 		ServiceContext serviceContext = new ServiceContext();
 
@@ -228,7 +226,8 @@ public class OAuth2ApplicationLocalServiceImpl
 			serviceContext);
 
 		Folder folder = PortletFileRepositoryUtil.addPortletFolder(
-			defaultUserId, repository.getRepositoryId(),
+			userLocalService.getDefaultUserId(oAuth2Application.getCompanyId()),
+			repository.getRepositoryId(),
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "icons",
 			serviceContext);
 
