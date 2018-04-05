@@ -4,8 +4,8 @@
 [subrepo]
 	autopull = false
 	cmdver = liferay
-	commit = 493c1bae871806140c0dd19b9b561d91fee3ea43
+	commit = 9137fa80848ffa9a962b5014382ccc95b7a0a154
 	mergebuttonmergecommits = false
 	mode = push
-	parent = 853a30d53b41b1a988fd2448f366b15add2cf905
+	parent = 3ca8f4c2d9fa0808a6e9db444fcd095a145683dc
 	remote = git@github.com:liferay/com-liferay-microblogs.git
