@@ -104,13 +104,13 @@ public abstract class BaseAlloyEditorConfigContributor
 		RequestBackedPortletURLFactory requestBackedPortletURLFactory,
 		String eventName) {
 
+		ItemSelectorCriterion fileItemSelectorCriterion =
+			new FileItemSelectorCriterion();
+
 		List<ItemSelectorReturnType> desiredItemSelectorReturnTypes =
 			new ArrayList<>();
 
 		desiredItemSelectorReturnTypes.add(new URLItemSelectorReturnType());
-
-		ItemSelectorCriterion fileItemSelectorCriterion =
-			new FileItemSelectorCriterion();
 
 		fileItemSelectorCriterion.setDesiredItemSelectorReturnTypes(
 			desiredItemSelectorReturnTypes);
