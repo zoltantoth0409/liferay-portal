@@ -50,7 +50,7 @@
 		</sequential>
 	</macrodef>
 
-	<macrodef name="multi-line-replace">
+	<macrodef name="replace-multilines">
 		<attribute name="file" />
 		<element name="replace-elements" />
 		<sequential>
@@ -1375,7 +1375,7 @@ this task.
 			</replacevalue>
 		</replace>
 
-		<multi-line-replace
+		<replace-multilines
 			file="${app.server.jboss.dir}/standalone/configuration/standalone.xml"
 		>
 			<replace-elements>
@@ -1385,7 +1385,7 @@ this task.
                 <formatter>
                     <named-formatter name="COLOR-PATTERN"]]></replacevalue>
 			</replace-elements>
-		</multi-line-replace>
+		</replace-multilines>
 
 		<echo file="${app.server.jboss.bin.dir}/server.policy">
 			grant {
@@ -3226,7 +3226,7 @@ this task.
 			<replacevalue><![CDATA[<deployment-scanner deployment-timeout="360" ]]></replacevalue>
 		</replace>
 
-		<multi-line-replace
+		<replace-multilines
 			file="${app.server.wildfly.dir}/standalone/configuration/standalone.xml"
 		>
 			<replace-elements>
@@ -3240,7 +3240,7 @@ this task.
 					</authentication>
 				</security-domain>]]></replacevalue>
 			</replace-elements>
-		</multi-line-replace>
+		</replace-multilines>
 
 		<replace
 			file="${app.server.wildfly.dir}/standalone/configuration/standalone.xml"
@@ -3255,7 +3255,7 @@ this task.
 			replace=""
 		/>
 
-		<multi-line-replace
+		<replace-multilines
 			file="${app.server.wildfly.dir}/standalone/configuration/standalone.xml"
 		>
 			<replace-elements>
@@ -3265,7 +3265,7 @@ this task.
                 <formatter>
                     <named-formatter name="COLOR-PATTERN"]]></replacevalue>
 			</replace-elements>
-		</multi-line-replace>
+		</replace-multilines>
 
 		<echo file="${app.server.wildfly.bin.dir}/server.policy">
 			grant {
