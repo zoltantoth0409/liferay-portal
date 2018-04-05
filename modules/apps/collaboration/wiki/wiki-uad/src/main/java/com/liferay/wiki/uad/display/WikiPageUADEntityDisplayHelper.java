@@ -75,10 +75,7 @@ public class WikiPageUADEntityDisplayHelper {
 		portletURL.setParameter(
 			"redirect", portal.getCurrentURL(liferayPortletRequest));
 		portletURL.setParameter("title", String.valueOf(wikiPage.getTitle()));
-
-		WikiNode wikiNode = wikiPage.getNode();
-
-		portletURL.setParameter("nodeId", String.valueOf(wikiNode.getNodeId()));
+		portletURL.setParameter("nodeId", String.valueOf(wikiPage.getNodeId()));
 
 		return portletURL.toString();
 	}
