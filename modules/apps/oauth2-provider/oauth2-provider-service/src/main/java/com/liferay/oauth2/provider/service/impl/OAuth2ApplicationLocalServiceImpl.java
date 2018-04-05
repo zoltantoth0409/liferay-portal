@@ -45,6 +45,7 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.PropsUtil;
+import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 
@@ -496,10 +497,8 @@ public class OAuth2ApplicationLocalServiceImpl
 		}
 	}
 
-	private static Set<String> _ianaRegisteredUriSchemes;
-
-	static {
-		String[] schemesArray = {
+	private static Set<String> _ianaRegisteredUriSchemes = SetUtil.fromArray(
+		new String[] {
 			"aaa", "aaas", "about", "acap", "acct", "acr", "adiumxtra", "afp",
 			"afs", "aim", "appdata", "apt", "attachment", "aw", "barion",
 			"beshare", "bitcoin", "blob", "bolo", "browserext", "callto", "cap",
@@ -552,11 +551,6 @@ public class OAuth2ApplicationLocalServiceImpl
 			"wss", "wtai", "wyciwyg", "xcon", "xcon-userid", "xfire",
 			"xmlrpc.beep", "xmlrpc.beeps", "xmpp", "xri", "ymsgr", "z39.50",
 			"z39.50r", "z39.50s"
-		};
-
-		_ianaRegisteredUriSchemes = new HashSet<>(schemesArray.length);
-
-		Collections.addAll(_ianaRegisteredUriSchemes, schemesArray);
-	}
+		});
 
 }
