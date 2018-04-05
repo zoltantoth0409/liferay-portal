@@ -83,11 +83,8 @@ public class OAuth2ApplicationLocalServiceImpl
 		}
 
 		clientId = StringUtil.trim(clientId);
-
 		homePageURL = StringUtil.trim(homePageURL);
-
 		name = StringUtil.trim(name);
-
 		privacyPolicyURL = StringUtil.trim(privacyPolicyURL);
 
 		if (redirectURIsList == null) {
