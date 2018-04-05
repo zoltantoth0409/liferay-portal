@@ -74,8 +74,8 @@ public class WikiPageUADEntityDisplayHelper {
 		portletURL.setParameter("mvcRenderCommandName", "/wiki/edit_page");
 		portletURL.setParameter(
 			"redirect", portal.getCurrentURL(liferayPortletRequest));
-		portletURL.setParameter("title", String.valueOf(wikiPage.getTitle()));
 		portletURL.setParameter("nodeId", String.valueOf(wikiPage.getNodeId()));
+		portletURL.setParameter("title", String.valueOf(wikiPage.getTitle()));
 
 		return portletURL.toString();
 	}
