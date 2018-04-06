@@ -25,7 +25,7 @@ import org.osgi.service.component.annotations.Component;
  * @author Gergely Mathe
  */
 @Component(
-	property = {"model.class.name=com.liferay.wiki.model.WikiPage"},
+	property = "model.class.name=com.liferay.wiki.model.WikiPage",
 	service = {
 		ExportImportContentProcessor.class,
 		WikiPageExportImportContentProcessor.class

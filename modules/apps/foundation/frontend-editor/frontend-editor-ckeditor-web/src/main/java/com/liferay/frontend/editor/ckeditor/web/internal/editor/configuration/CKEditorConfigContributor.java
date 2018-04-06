@@ -44,7 +44,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Ambrin Chaudhary
  */
 @Component(
-	property = {"editor.name=ckeditor"}, service = EditorConfigContributor.class
+	property = "editor.name=ckeditor", service = EditorConfigContributor.class
 )
 public class CKEditorConfigContributor extends BaseCKEditorConfigContributor {
 

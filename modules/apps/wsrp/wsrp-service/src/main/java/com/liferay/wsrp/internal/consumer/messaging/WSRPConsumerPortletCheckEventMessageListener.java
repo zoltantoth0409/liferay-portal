@@ -42,7 +42,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	configurationPid = "com.liferay.twitter.configuration.TwitterConfiguration",
 	configurationPolicy = ConfigurationPolicy.OPTIONAL, immediate = true,
-	property = {"destination.name=" + DestinationNames.WSRP},
+	property = "destination.name=" + DestinationNames.WSRP,
 	service = MessageListener.class
 )
 public class WSRPConsumerPortletCheckEventMessageListener

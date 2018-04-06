@@ -150,7 +150,7 @@ import org.osgi.service.component.annotations.Reference;
 		"javax.portlet.security-role-ref=administrator",
 		"javax.portlet.supports.mime-type=text/html"
 	},
-	service = {Portlet.class}
+	service = Portlet.class
 )
 public class LayoutAdminPortlet extends MVCPortlet {
 

@@ -34,9 +34,7 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	immediate = true,
-	property = {
-		"javax.portlet.name=" + DDLFormPortletKeys.DYNAMIC_DATA_LISTS_FORM
-	},
+	property = "javax.portlet.name=" + DDLFormPortletKeys.DYNAMIC_DATA_LISTS_FORM,
 	service = PortletDataHandler.class
 )
 public class DDLFormPortletDataHandler extends BasePortletDataHandler {

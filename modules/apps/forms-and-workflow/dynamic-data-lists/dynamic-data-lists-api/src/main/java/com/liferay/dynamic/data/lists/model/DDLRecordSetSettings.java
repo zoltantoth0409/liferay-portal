@@ -97,32 +97,32 @@ public interface DDLRecordSetSettings {
 
 	@DDMFormField(
 		label = "%redirect-url-on-success",
-		properties = {"placeholder=%enter-a-valid-url"},
+		properties = "placeholder=%enter-a-valid-url",
 		validationErrorMessage = "%please-enter-a-valid-url",
 		validationExpression = "isURL(redirectURL)"
 	)
 	public String redirectURL();
 
 	@DDMFormField(
-		label = "%require-captcha", properties = {"showAsSwitcher=true"},
+		label = "%require-captcha", properties = "showAsSwitcher=true",
 		type = "checkbox"
 	)
 	public boolean requireCaptcha();
 
 	@DDMFormField(
 		label = "%send-an-email-notification-for-each-entry",
-		properties = {"showAsSwitcher=true"}, type = "checkbox"
+		properties = "showAsSwitcher=true", type = "checkbox"
 	)
 	public boolean sendEmailNotification();
 
 	@DDMFormField(
-		label = "%select-a-storage-type",
-		properties = {"dataSourceType=manual"}, type = "select"
+		label = "%select-a-storage-type", properties = "dataSourceType=manual",
+		type = "select"
 	)
 	public String storageType();
 
 	@DDMFormField(
-		label = "%select-a-workflow", properties = {"dataSourceType=manual"},
+		label = "%select-a-workflow", properties = "dataSourceType=manual",
 		type = "select"
 	)
 	public String workflowDefinition();

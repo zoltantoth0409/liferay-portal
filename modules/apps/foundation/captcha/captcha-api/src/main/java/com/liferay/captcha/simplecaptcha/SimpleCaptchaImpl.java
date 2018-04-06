@@ -57,9 +57,7 @@ import org.osgi.service.component.annotations.Component;
  */
 @Component(
 	immediate = true,
-	property = {
-		"captcha.engine.impl=com.liferay.captcha.simplecaptcha.SimpleCaptchaImpl"
-	},
+	property = "captcha.engine.impl=com.liferay.captcha.simplecaptcha.SimpleCaptchaImpl",
 	service = Captcha.class
 )
 public class SimpleCaptchaImpl implements Captcha {

@@ -43,7 +43,7 @@ import org.osgi.service.component.annotations.Component;
 /**
  * @author Alejandro Tardín
  */
-@Component(property = {"upload.response.handler.system.default=true"})
+@Component(property = "upload.response.handler.system.default=true")
 public class DefaultUploadResponseHandler implements UploadResponseHandler {
 
 	@Override

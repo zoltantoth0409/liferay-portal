@@ -48,9 +48,7 @@ import com.liferay.portal.util.PropsValues;
  * @author Charles May
  */
 @OSGiBeanProperties(
-	property = {
-		"model.class.name=com.liferay.document.library.kernel.model.DLFileEntry"
-	}
+	property = "model.class.name=com.liferay.document.library.kernel.model.DLFileEntry"
 )
 public class DLFileEntryPermission implements BaseModelPermissionChecker {
 

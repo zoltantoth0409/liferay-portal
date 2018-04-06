@@ -43,7 +43,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Marcellus Tavares
  */
 @Component(
-	property = {"javax.portlet.name=" + CalendarPortletKeys.CALENDAR},
+	property = "javax.portlet.name=" + CalendarPortletKeys.CALENDAR,
 	service = SocialActivityInterpreter.class
 )
 public class CalendarActivityInterpreter extends BaseSocialActivityInterpreter {

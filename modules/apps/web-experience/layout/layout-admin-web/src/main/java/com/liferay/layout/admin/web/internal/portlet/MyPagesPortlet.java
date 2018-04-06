@@ -56,7 +56,7 @@ import org.osgi.service.component.annotations.Reference;
 		"javax.portlet.resource-bundle=content.Language",
 		"javax.portlet.supports.mime-type=text/html"
 	},
-	service = {Portlet.class}
+	service = Portlet.class
 )
 public class MyPagesPortlet extends LayoutAdminPortlet {
 

@@ -40,9 +40,7 @@ import java.util.List;
  * @author Sergio González
  */
 @OSGiBeanProperties(
-	property = {
-		"model.class.name=com.liferay.message.boards.kernel.model.MBDiscussion"
-	}
+	property = "model.class.name=com.liferay.message.boards.kernel.model.MBDiscussion"
 )
 public class MBDiscussionPermission implements BaseModelPermissionChecker {
 

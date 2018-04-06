@@ -48,8 +48,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Sergio González
  */
 @Component(
-	immediate = true,
-	property = {"javax.portlet.name=" + BlogsPortletKeys.BLOGS},
+	immediate = true, property = "javax.portlet.name=" + BlogsPortletKeys.BLOGS,
 	service = AssetRendererFactory.class
 )
 public class BlogsEntryAssetRendererFactory

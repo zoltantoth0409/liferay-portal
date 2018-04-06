@@ -36,7 +36,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Zsolt Berentey
  */
 @Component(
-	property = {"javax.portlet.name=" + BookmarksPortletKeys.BOOKMARKS},
+	property = "javax.portlet.name=" + BookmarksPortletKeys.BOOKMARKS,
 	service = SocialActivityInterpreter.class
 )
 public class BookmarksEntryActivityInterpreter

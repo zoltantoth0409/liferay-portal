@@ -31,7 +31,7 @@ import org.osgi.service.component.annotations.Component;
  * @author Roberto Díaz
  */
 @Component(
-	property = {"javax.portlet.name=" + PortletKeys.DOCUMENT_LIBRARY},
+	property = "javax.portlet.name=" + PortletKeys.DOCUMENT_LIBRARY,
 	service = DDMDisplay.class
 )
 public class DLDDMDisplay extends BaseDDMDisplay {
