@@ -78,14 +78,13 @@ public class ViewUADEntitiesMVCRenderCommand implements MVCRenderCommand {
 			ViewUADEntitiesDisplay viewUADEntitiesDisplay =
 				new ViewUADEntitiesDisplay();
 
+			PortletRequest portletRequest =
+				(PortletRequest)renderRequest.getAttribute(
+					JavaConstants.JAVAX_PORTLET_REQUEST);
 			LiferayPortletResponse liferayPortletResponse =
 				_portal.getLiferayPortletResponse(
 					(PortletResponse)renderRequest.getAttribute(
 						JavaConstants.JAVAX_PORTLET_RESPONSE));
-
-			PortletRequest portletRequest =
-				(PortletRequest)renderRequest.getAttribute(
-					JavaConstants.JAVAX_PORTLET_REQUEST);
 
 			PortletURL currentURL = PortletURLUtil.getCurrent(
 				_portal.getLiferayPortletRequest(portletRequest),
