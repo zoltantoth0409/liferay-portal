@@ -4,8 +4,8 @@
 [subrepo]
 	autopull = false
 	cmdver = liferay
-	commit = 4f245520442049309d6ed1543bad147a8d99ad7e
+	commit = 16e1b3c0ccfb31f334a9bbaf523ded183d09452c
 	mergebuttonmergecommits = false
 	mode = push
-	parent = accbc1cdca846428bc3ab9558a16c79639cdd560
+	parent = 3b89d1562d931923bb62339ee1a9d35ceb666f99
 	remote = git@github.com:liferay/com-liferay-frontend-editor.git
