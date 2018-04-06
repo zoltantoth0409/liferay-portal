@@ -63,23 +63,25 @@ export default (entryId, blogsEntryBodyId) => {
 			}
 		);
 
-		entry.addEventListener('click', event => {
-			var element = event.target;
-			var tagName = element.tagName.toLowerCase();
-			var payload = {
-				entryId,
-				tagName
-			};
+		entry.addEventListener(
+			'click',
+			event => {
+				var element = event.target;
+				var tagName = element.tagName.toLowerCase();
+				var payload = {
+					entryId,
+					tagName
+				};
 
-			if (tagName === 'a') {
-				payload.href = element.href;
-				payload.text = element.innerText;
-			}
-			else if (tagName === 'img') {
-				payload.src = element.src;
-			}
+				if (tagName === 'a') {
+					payload.href = element.href;
+					payload.text = element.innerText;
+				}
+				else if (tagName === 'img') {
+					payload.src = element.src;
+				}
 
-			Analytics.send('CLICK', applicationId, payload);
-		});
+				Analytics.send('CLICK', applicationId, payload);
+			});
 	}
 };
