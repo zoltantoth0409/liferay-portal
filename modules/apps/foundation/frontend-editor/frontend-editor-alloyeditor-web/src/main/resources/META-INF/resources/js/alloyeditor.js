@@ -272,10 +272,8 @@ AUI.add(
 
 						setTimeout(
 							function() {
-								if (activeElement) {
-									nativeEditor.focusManager.blur(true);
-									activeElement.focus();
-								}
+								nativeEditor.focusManager.blur(true);
+								activeElement.focus();
 							},
 							100
 						);
@@ -308,6 +306,22 @@ AUI.add(
 
 						instance.getNativeEditor().editable().$.addEventListener('compositionend', A.bind('_onChange', instance));
 
+						// LPS-71967 and LPS-75512
+
+						if (contents && UA.edge && parseInt(UA.edge, 10) >= 14) {
+							A.soon(
+								function() {
+									if (document.activeElement && document.activeElement != document.body) {
+										var nativeEditor = instance.getNativeEditor();
+
+										nativeEditor.once('focus', A.bind('_onFocusFix', instance, document.activeElement, nativeEditor));
+
+										nativeEditor.focus();
+									}
+								}
+							);
+						}
+
 						// LPS-72963
 
 						var editorConfig = instance.getNativeEditor().config;
@@ -323,19 +337,6 @@ AUI.add(
 							doc.execCommand('enableInlineTableEditing', false, false);
 
 							doc.designMode = 'off';
-						}
-
-						// LPS-71967 and LPS-75512
-
-						if (contents && UA.edge && parseInt(UA.edge) >= 14) {
-							A.soon(
-								function() {
-									var nativeEditor = instance.getNativeEditor();
-
-									nativeEditor.once('focus', A.bind('_onFocusFix', instance, document.activeElement, nativeEditor));
-									nativeEditor.focus();
-								}
-							);
 						}
 					},
 
