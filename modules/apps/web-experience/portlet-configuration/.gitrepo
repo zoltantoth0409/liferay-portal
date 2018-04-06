@@ -4,8 +4,8 @@
 [subrepo]
 	autopull = false
 	cmdver = liferay
-	commit = 1ee1402593f948cac93d3befa1e278861844cd3e
+	commit = 4640d9128cbc19c8aa3d02716e0ffc47c48da07a
 	mergebuttonmergecommits = false
 	mode = push
-	parent = 996be54329587a2729db65bec63ee6935bbe792e
+	parent = 45e1119794f80e46d10d59ea83aeb6906f20a144
 	remote = git@github.com:liferay/com-liferay-portlet-configuration.git
