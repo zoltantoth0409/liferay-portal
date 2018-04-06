@@ -4,8 +4,8 @@
 [subrepo]
 	autopull = false
 	cmdver = liferay
-	commit = 297fffbe9bcc3ffe4525b82c2d335aa51b313013
+	commit = c554555236ef1cb8f72e7005e4974e329f95cfff
 	mergebuttonmergecommits = false
 	mode = push
-	parent = c0a9710bb2c0e6ecd097e8461d73e55acace0d60
+	parent = 652f924bf5706e88adc0b48c586338554bcd7f9c
 	remote = git@github.com:liferay/com-liferay-iframe.git
