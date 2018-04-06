@@ -842,9 +842,11 @@ AUI.add(
 							var portletURL = Liferay.PortletURL.createURL(form.get('action'));
 
 							instance._setDisabledCheckboxParameters(portletURL);
+
 							form.set('action', portletURL.toString());
 
 							var currentURL = instance.byId('currentURL');
+
 							redirectNode.val(currentURL);
 
 							cmdNode.val(STR_EMPTY);
