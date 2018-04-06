@@ -47,16 +47,17 @@ public class AssetCategorySegmentService
 	@Override
 	public Collection<AssetCategorySegment> getSegments(long groupId) {
 		try {
-			AssetVocabulary vocabulary =
+			AssetVocabulary assetVocabulary =
 				_assetVocabularyLocalService.getGroupVocabulary(
 					groupId, _ASSET_VOCABULARY_NAME);
 
-			List<AssetCategory> categories = vocabulary.getCategories();
+			List<AssetCategory> assetCategories =
+				assetVocabulary.getCategories();
 
-			Stream<AssetCategory> categoriesStream = categories.stream();
+			Stream<AssetCategory> stream = assetCategories.stream();
 
-			return categoriesStream.map(
-				category -> new AssetCategorySegment(category)
+			return stream.map(
+				assetCategory -> new AssetCategorySegment(assetCategory)
 			).collect(
 				Collectors.toList()
 			);
@@ -64,7 +65,7 @@ public class AssetCategorySegmentService
 		catch (PortalException pe) {
 			_log.error(
 				String.format(
-					"Vocabulary %s not found in group %s",
+					"Asset vocabulary %s not found in group %s",
 					_ASSET_VOCABULARY_NAME, groupId),
 				pe);
 
