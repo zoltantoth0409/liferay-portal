@@ -67,14 +67,14 @@ public class AssetCategorySegmentServiceTest {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
 
-		AssetVocabulary vocabulary =
+		AssetVocabulary assetVocabulary =
 			AssetVocabularyLocalServiceUtil.addVocabulary(
 				TestPropsValues.getUserId(), serviceContext.getScopeGroupId(),
 				_ASSET_VOCABULARY_NAME, serviceContext);
 
 		AssetCategory assetCategory = AssetCategoryLocalServiceUtil.addCategory(
 			TestPropsValues.getUserId(), serviceContext.getScopeGroupId(),
-			RandomTestUtil.randomString(), vocabulary.getVocabularyId(),
+			RandomTestUtil.randomString(), assetVocabulary.getVocabularyId(),
 			serviceContext);
 
 		_user = UserTestUtil.addUser();
