@@ -48,11 +48,11 @@ public class ManagementToolbarTag extends BaseClayTag {
 
 			CreationMenu creationMenu = (CreationMenu)creationMenuObj;
 
-			DropdownItemList primaryItems = (DropdownItemList)creationMenu.get(
-				"primaryItems");
+			DropdownItemList dropdownItemList =
+				(DropdownItemList)creationMenu.get("primaryItems");
 
-			if ((primaryItems != null) && (primaryItems.size() == 1)) {
-				DropdownItem dropdownItem = primaryItems.get(0);
+			if ((dropdownItemList != null) && (dropdownItemList.size() == 1)) {
+				DropdownItem dropdownItem = dropdownItemList.get(0);
 
 				setCreationMenu(dropdownItem.get("href"));
 
