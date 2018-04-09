@@ -311,7 +311,7 @@ AUI.add(
 						if (contents && UA.edge && parseInt(UA.edge, 10) >= 14) {
 							A.soon(
 								function() {
-									if (document.activeElement && document.activeElement != document.body) {
+									if (document.activeElement && document.activeElement !== document.body) {
 										var nativeEditor = instance.getNativeEditor();
 
 										nativeEditor.once('focus', A.bind('_onFocusFix', instance, document.activeElement, nativeEditor));
