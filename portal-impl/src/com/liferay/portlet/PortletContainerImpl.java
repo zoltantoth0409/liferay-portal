@@ -600,8 +600,6 @@ public class PortletContainerImpl implements PortletContainer {
 	private void _processGroupId(HttpServletRequest request, Portlet portlet)
 		throws Exception {
 
-		Layout layout = (Layout)request.getAttribute(WebKeys.LAYOUT);
-
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
@@ -611,6 +609,8 @@ public class PortletContainerImpl implements PortletContainer {
 		themeDisplay.setScopeGroupId(scopeGroupId);
 
 		long siteGroupId = 0;
+
+		Layout layout = (Layout)request.getAttribute(WebKeys.LAYOUT);
 
 		if (layout.isTypeControlPanel()) {
 			siteGroupId = PortalUtil.getSiteGroupId(scopeGroupId);
