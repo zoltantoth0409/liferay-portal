@@ -42,8 +42,7 @@ class AceEditor extends Component {
 
 				this._editorDocument.on('change', this._handleDocumentChanged);
 
-				editor.getSession().on(
-					'changeAnnotation', this._handleDocumentChanged);
+				editor.getSession().on('changeAnnotation', this._handleDocumentChanged);
 
 				if (this.initialContent) {
 					this._editorDocument.setValue(this.initialContent);
