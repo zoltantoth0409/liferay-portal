@@ -911,6 +911,15 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 					<arg value="kill ${pid-kibana}" />
 				</exec>
 			</then>
+			<elseif>
+				<os family="windows" />
+				<then>
+					<exec dir="${elastic.kibana.dir}/bin" executable="cmd" spawn="true">
+						<arg value="/c" />
+						<arg value="for /f %x in (pid-kibana) do taskkill /f /pid %x" />
+					</exec>
+				</then>
+			</elseif>
 		</if>
 
 		<print-file file.name="${elastic.kibana.dir}/bin/kibana.log" />
