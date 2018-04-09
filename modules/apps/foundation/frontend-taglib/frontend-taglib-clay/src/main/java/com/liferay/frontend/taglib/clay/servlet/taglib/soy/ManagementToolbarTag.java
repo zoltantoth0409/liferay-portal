@@ -41,6 +41,25 @@ public class ManagementToolbarTag extends BaseClayTag {
 	public int doStartTag() {
 		Map<String, Object> context = getContext();
 
+		Object creationMenuObj = context.get("creationMenu");
+
+		if ((creationMenuObj != null) &&
+			(creationMenuObj instanceof CreationMenu)) {
+
+			CreationMenu creationMenu = (CreationMenu)creationMenuObj;
+
+			DropdownItemList primaryItems = (DropdownItemList)creationMenu.get(
+				"primaryItems");
+
+			if ((primaryItems != null) && (primaryItems.size() == 1)) {
+				DropdownItem dropdownItem = primaryItems.get(0);
+
+				setCreationMenu(dropdownItem.get("href"));
+
+				creationMenu.remove("primaryItems");
+			}
+		}
+
 		String searchInputName = (String)context.get("searchInputName");
 
 		if (Validator.isNull(searchInputName)) {
@@ -68,25 +87,6 @@ public class ManagementToolbarTag extends BaseClayTag {
 
 		if (showFiltersDoneButton == null) {
 			setShowFiltersDoneButton(false);
-		}
-
-		Object creationMenuObj = context.get("creationMenu");
-
-		if ((creationMenuObj != null) &&
-			(creationMenuObj instanceof CreationMenu)) {
-
-			CreationMenu creationMenu = (CreationMenu)creationMenuObj;
-
-			DropdownItemList primaryItems = (DropdownItemList)creationMenu.get(
-				"primaryItems");
-
-			if ((primaryItems != null) && (primaryItems.size() == 1)) {
-				DropdownItem dropdownItem = primaryItems.get(0);
-
-				setCreationMenu(dropdownItem.get("href"));
-
-				creationMenu.remove("primaryItems");
-			}
 		}
 
 		return super.doStartTag();
