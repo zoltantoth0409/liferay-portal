@@ -28,9 +28,9 @@ String productMenuState = SessionClicks.get(request, ProductNavigationProductMen
 
 				<span class="company-name"><%= HtmlUtil.escape(company.getName()) %></span>
 			</span>
-
-			<aui:icon cssClass="icon-monospaced sidenav-close visible-xs-block" image="times" markupView="lexicon" url="javascript:;" />
 		</a>
+
+		<aui:icon cssClass="icon-monospaced sidenav-close visible-xs-block" image="times" markupView="lexicon" url="javascript:;" />
 	</div>
 
 	<div class="sidebar-body">
