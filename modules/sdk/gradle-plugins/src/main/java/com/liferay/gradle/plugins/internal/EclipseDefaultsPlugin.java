@@ -135,12 +135,12 @@ public class EclipseDefaultsPlugin extends BaseDefaultsPlugin<EclipsePlugin> {
 
 				Node argumentsNode = matcherNode.appendNode("arguments");
 
-				for (String filteredDirectory : _FILTERED_DIRECTORIES) {
+				for (String filteredDirName : _FILTERED_DIR_NAMES) {
 					Node curMatcherNode = argumentsNode.appendNode("matcher");
 
 					curMatcherNode.appendNode(
 						"arguments",
-						"1.0-name-matches-false-false-" + filteredDirectory);
+						"1.0-name-matches-false-false-" + filteredDirName);
 					curMatcherNode.appendNode(
 						"id", "org.eclipse.ui.ide.multiFilter");
 				}
@@ -159,7 +159,7 @@ public class EclipseDefaultsPlugin extends BaseDefaultsPlugin<EclipsePlugin> {
 		task.dependsOn(eclipsePlugin.getCleanTask());
 	}
 
-	private static final String[] _FILTERED_DIRECTORIES =
+	private static final String[] _FILTERED_DIR_NAMES =
 		{".git", ".gradle", "build", "node_modules", "tmp"};
 
 }
