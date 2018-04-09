@@ -886,8 +886,6 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 		<if>
 			<equals arg1="${elastic.xpack.enabled}" arg2="true" />
 			<then>
-				<print-file file.name="${elastic.kibana.dir}/bin/kibana.log" />
-
 				<antcall target="stop-kibana" />
 			</then>
 		</if>
@@ -914,5 +912,7 @@ ${line.separator}CATALINA_OPTS="${CATALINA_OPTS} -Djavax.net.ssl.trustStore=${el
 				</exec>
 			</then>
 		</if>
+
+		<print-file file.name="${elastic.kibana.dir}/bin/kibana.log" />
 	</target>
 </project>
