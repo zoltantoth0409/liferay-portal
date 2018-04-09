@@ -218,9 +218,9 @@ JournalWebRequestHelper journalWebRequestHelper = new JournalWebRequestHelper(re
 
 JournalGroupServiceConfiguration journalGroupServiceConfiguration = journalWebRequestHelper.getJournalGroupServiceConfiguration();
 
-Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
-
 StagingGroupHelper stagingGroupHelper = StagingGroupHelperUtil.getStagingGroupHelper();
+
+Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
 %>
 
 <%@ include file="/init-ext.jsp" %>
