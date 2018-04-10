@@ -32,16 +32,16 @@ public class DynamicDataMappingConfigurationCategory
 
 	@Override
 	public String getCategoryKey() {
-		return _KEY;
+		return _CATEGORY_KEY;
 	}
 
 	@Override
 	public String getCategorySection() {
-		return _CATEGORY_SET_KEY;
+		return _CATEGORY_SECTION;
 	}
 
-	private static final String _CATEGORY_SET_KEY = "content-management";
+	private static final String _CATEGORY_KEY = "dynamic-data-mapping";
 
-	private static final String _KEY = "dynamic-data-mapping";
+	private static final String _CATEGORY_SECTION = "content-management";
 
 }
