@@ -44,8 +44,8 @@ public class SelectTag extends BaseClayTag {
 		putValue("name", name);
 	}
 
-	public void setOptions(List<SelectOption> options) {
-		putValue("options", options);
+	public void setOptions(List<SelectOption> selectOptions) {
+		putValue("options", selectOptions);
 	}
 
 	public void setWrapperType(String wrapperType) {

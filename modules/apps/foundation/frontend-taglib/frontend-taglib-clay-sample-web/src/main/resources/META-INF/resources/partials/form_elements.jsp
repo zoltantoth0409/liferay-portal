@@ -89,31 +89,31 @@
 <blockquote><p>Selectors are frequently used as a part of forms. This elements are used when we need to select one or more within several options. These options are displayed in the button once selected.</p></blockquote>
 
 <%
-List<SelectOption> options = new ArrayList<>();
+List<SelectOption> selectOptions = new ArrayList<>();
 
 for (int i = 0; i < 8; i++) {
-	options.add(new SelectOption("Sample " + i, String.valueOf(i)));
+	selectOptions.add(new SelectOption("Sample " + i, String.valueOf(i)));
 }
 %>
 
 <clay:select
 	label="Regular Select Element"
 	name="name"
-	options="<%= options %>"
+	options="<%= selectOptions %>"
 />
 
 <clay:select
 	disabled="<%= true %>"
 	label="Disabled Regular Select Element"
 	name="name"
-	options="<%= options %>"
+	options="<%= selectOptions %>"
 />
 
 <clay:select
 	label="Multiple Select Element"
 	multiple="<%= true %>"
 	name="name"
-	options="<%= options %>"
+	options="<%= selectOptions %>"
 />
 
 <clay:select
@@ -121,5 +121,5 @@ for (int i = 0; i < 8; i++) {
 	label="Disabled Multiple Select Element"
 	multiple="<%= true %>"
 	name="name"
-	options="<%= options %>"
+	options="<%= selectOptions %>"
 />
