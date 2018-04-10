@@ -26,7 +26,7 @@ public class FormsConfigurationCategory implements ConfigurationCategory {
 
 	@Override
 	public String getCategoryIcon() {
-		return "forms";
+		return _CATEGORY_ICON;
 	}
 
 	@Override
@@ -38,6 +38,8 @@ public class FormsConfigurationCategory implements ConfigurationCategory {
 	public String getCategorySection() {
 		return _CATEGORY_SECTION;
 	}
+
+	private static final String _CATEGORY_ICON = "forms";
 
 	private static final String _CATEGORY_KEY = "forms";
 

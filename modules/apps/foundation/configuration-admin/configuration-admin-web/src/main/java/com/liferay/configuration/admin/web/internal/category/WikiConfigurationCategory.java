@@ -26,7 +26,7 @@ public class WikiConfigurationCategory implements ConfigurationCategory {
 
 	@Override
 	public String getCategoryIcon() {
-		return "wiki";
+		return _CATEGORY_ICON;
 	}
 
 	@Override
@@ -38,6 +38,8 @@ public class WikiConfigurationCategory implements ConfigurationCategory {
 	public String getCategorySection() {
 		return _CATEGORY_SECTION;
 	}
+
+	private static final String _CATEGORY_ICON = "wiki";
 
 	private static final String _CATEGORY_KEY = "wiki";
 

@@ -27,7 +27,7 @@ public class UserAuthenticationConfigurationCategory
 
 	@Override
 	public String getCategoryIcon() {
-		return "password-policies";
+		return _CATEGORY_ICON;
 	}
 
 	@Override
@@ -39,6 +39,8 @@ public class UserAuthenticationConfigurationCategory
 	public String getCategorySection() {
 		return _CATEGORY_SECTION;
 	}
+
+	private static final String _CATEGORY_ICON = "password-policies";
 
 	private static final String _CATEGORY_KEY = "user-authentication";
 

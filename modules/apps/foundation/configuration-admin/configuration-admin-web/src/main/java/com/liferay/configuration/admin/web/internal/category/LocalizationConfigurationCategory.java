@@ -27,7 +27,7 @@ public class LocalizationConfigurationCategory
 
 	@Override
 	public String getCategoryIcon() {
-		return "vocabulary";
+		return _CATEGORY_ICON;
 	}
 
 	@Override
@@ -39,6 +39,8 @@ public class LocalizationConfigurationCategory
 	public String getCategorySection() {
 		return _CATEGORY_SECTION;
 	}
+
+	private static final String _CATEGORY_ICON = "vocabulary";
 
 	private static final String _CATEGORY_KEY = "localization";
 

@@ -26,7 +26,7 @@ public class WorkflowConfigurationCategory implements ConfigurationCategory {
 
 	@Override
 	public String getCategoryIcon() {
-		return "workflow";
+		return _CATEGORY_ICON;
 	}
 
 	@Override
@@ -38,6 +38,8 @@ public class WorkflowConfigurationCategory implements ConfigurationCategory {
 	public String getCategorySection() {
 		return _CATEGORY_SECTION;
 	}
+
+	private static final String _CATEGORY_ICON = "workflow";
 
 	private static final String _CATEGORY_KEY = "workflow";
 

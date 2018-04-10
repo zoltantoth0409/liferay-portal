@@ -26,7 +26,7 @@ public class WebContentConfigurationCategory implements ConfigurationCategory {
 
 	@Override
 	public String getCategoryIcon() {
-		return "web-content";
+		return _CATEGORY_ICON;
 	}
 
 	@Override
@@ -38,6 +38,8 @@ public class WebContentConfigurationCategory implements ConfigurationCategory {
 	public String getCategorySection() {
 		return _CATEGORY_SECTION;
 	}
+
+	private static final String _CATEGORY_ICON = "web-content";
 
 	private static final String _CATEGORY_KEY = "web-content";
 

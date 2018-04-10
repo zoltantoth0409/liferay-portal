@@ -26,7 +26,7 @@ public class ApacheFelixConfigurationCategory implements ConfigurationCategory {
 
 	@Override
 	public String getCategoryIcon() {
-		return "camera";
+		return _CATEGORY_ICON;
 	}
 
 	@Override
@@ -38,6 +38,8 @@ public class ApacheFelixConfigurationCategory implements ConfigurationCategory {
 	public String getCategorySection() {
 		return _CATEGORY_SECTION;
 	}
+
+	private static final String _CATEGORY_ICON = "camera";
 
 	private static final String _CATEGORY_KEY = "apache-felix";
 

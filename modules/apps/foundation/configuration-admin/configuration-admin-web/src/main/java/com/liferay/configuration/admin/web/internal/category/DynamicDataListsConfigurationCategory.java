@@ -27,7 +27,7 @@ public class DynamicDataListsConfigurationCategory
 
 	@Override
 	public String getCategoryIcon() {
-		return "dynamic-data-list";
+		return _CATEGORY_ICON;
 	}
 
 	@Override
@@ -39,6 +39,8 @@ public class DynamicDataListsConfigurationCategory
 	public String getCategorySection() {
 		return _CATEGORY_SECTION;
 	}
+
+	private static final String _CATEGORY_ICON = "dynamic-data-list";
 
 	private static final String _CATEGORY_KEY = "dynamic-data-lists";
 

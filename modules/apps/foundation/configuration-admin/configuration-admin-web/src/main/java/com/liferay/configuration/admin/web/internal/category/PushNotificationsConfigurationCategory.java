@@ -27,7 +27,7 @@ public class PushNotificationsConfigurationCategory
 
 	@Override
 	public String getCategoryIcon() {
-		return "info-circle";
+		return _CATEGORY_ICON;
 	}
 
 	@Override
@@ -39,6 +39,8 @@ public class PushNotificationsConfigurationCategory
 	public String getCategorySection() {
 		return _CATEGORY_SECTION;
 	}
+
+	private static final String _CATEGORY_ICON = "info-circle";
 
 	private static final String _CATEGORY_KEY = "push-notifications";
 

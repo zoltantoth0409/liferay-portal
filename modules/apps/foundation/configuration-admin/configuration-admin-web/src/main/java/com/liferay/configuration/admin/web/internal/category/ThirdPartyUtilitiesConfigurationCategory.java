@@ -27,7 +27,7 @@ public class ThirdPartyUtilitiesConfigurationCategory
 
 	@Override
 	public String getCategoryIcon() {
-		return "magic";
+		return _CATEGORY_ICON;
 	}
 
 	@Override
@@ -39,6 +39,8 @@ public class ThirdPartyUtilitiesConfigurationCategory
 	public String getCategorySection() {
 		return _CATEGORY_SECTION;
 	}
+
+	private static final String _CATEGORY_ICON = "magic";
 
 	private static final String _CATEGORY_KEY = "third-party-utilities";
 
