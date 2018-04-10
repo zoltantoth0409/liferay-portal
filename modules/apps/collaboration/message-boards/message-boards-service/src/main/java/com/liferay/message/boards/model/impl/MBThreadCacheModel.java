@@ -88,6 +88,8 @@ public class MBThreadCacheModel implements CacheModel<MBThread>, Externalizable 
 		sb.append(rootMessageId);
 		sb.append(", rootMessageUserId=");
 		sb.append(rootMessageUserId);
+		sb.append(", title=");
+		sb.append(title);
 		sb.append(", messageCount=");
 		sb.append(messageCount);
 		sb.append(", viewCount=");
@@ -96,14 +98,12 @@ public class MBThreadCacheModel implements CacheModel<MBThread>, Externalizable 
 		sb.append(lastPostByUserId);
 		sb.append(", lastPostDate=");
 		sb.append(lastPostDate);
-		sb.append(", lastPublishDate=");
-		sb.append(lastPublishDate);
 		sb.append(", priority=");
 		sb.append(priority);
 		sb.append(", question=");
 		sb.append(question);
-		sb.append(", title=");
-		sb.append(title);
+		sb.append(", lastPublishDate=");
+		sb.append(lastPublishDate);
 		sb.append(", status=");
 		sb.append(status);
 		sb.append(", statusByUserId=");
@@ -157,6 +157,14 @@ public class MBThreadCacheModel implements CacheModel<MBThread>, Externalizable 
 		mbThreadImpl.setCategoryId(categoryId);
 		mbThreadImpl.setRootMessageId(rootMessageId);
 		mbThreadImpl.setRootMessageUserId(rootMessageUserId);
+
+		if (title == null) {
+			mbThreadImpl.setTitle("");
+		}
+		else {
+			mbThreadImpl.setTitle(title);
+		}
+
 		mbThreadImpl.setMessageCount(messageCount);
 		mbThreadImpl.setViewCount(viewCount);
 		mbThreadImpl.setLastPostByUserId(lastPostByUserId);
@@ -168,21 +176,14 @@ public class MBThreadCacheModel implements CacheModel<MBThread>, Externalizable 
 			mbThreadImpl.setLastPostDate(new Date(lastPostDate));
 		}
 
+		mbThreadImpl.setPriority(priority);
+		mbThreadImpl.setQuestion(question);
+
 		if (lastPublishDate == Long.MIN_VALUE) {
 			mbThreadImpl.setLastPublishDate(null);
 		}
 		else {
 			mbThreadImpl.setLastPublishDate(new Date(lastPublishDate));
-		}
-
-		mbThreadImpl.setPriority(priority);
-		mbThreadImpl.setQuestion(question);
-
-		if (title == null) {
-			mbThreadImpl.setTitle("");
-		}
-		else {
-			mbThreadImpl.setTitle(title);
 		}
 
 		mbThreadImpl.setStatus(status);
@@ -227,6 +228,7 @@ public class MBThreadCacheModel implements CacheModel<MBThread>, Externalizable 
 		rootMessageId = objectInput.readLong();
 
 		rootMessageUserId = objectInput.readLong();
+		title = objectInput.readUTF();
 
 		messageCount = objectInput.readInt();
 
@@ -234,12 +236,11 @@ public class MBThreadCacheModel implements CacheModel<MBThread>, Externalizable 
 
 		lastPostByUserId = objectInput.readLong();
 		lastPostDate = objectInput.readLong();
-		lastPublishDate = objectInput.readLong();
 
 		priority = objectInput.readDouble();
 
 		question = objectInput.readBoolean();
-		title = objectInput.readUTF();
+		lastPublishDate = objectInput.readLong();
 
 		status = objectInput.readInt();
 
@@ -282,24 +283,24 @@ public class MBThreadCacheModel implements CacheModel<MBThread>, Externalizable 
 
 		objectOutput.writeLong(rootMessageUserId);
 
-		objectOutput.writeInt(messageCount);
-
-		objectOutput.writeInt(viewCount);
-
-		objectOutput.writeLong(lastPostByUserId);
-		objectOutput.writeLong(lastPostDate);
-		objectOutput.writeLong(lastPublishDate);
-
-		objectOutput.writeDouble(priority);
-
-		objectOutput.writeBoolean(question);
-
 		if (title == null) {
 			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(title);
 		}
+
+		objectOutput.writeInt(messageCount);
+
+		objectOutput.writeInt(viewCount);
+
+		objectOutput.writeLong(lastPostByUserId);
+		objectOutput.writeLong(lastPostDate);
+
+		objectOutput.writeDouble(priority);
+
+		objectOutput.writeBoolean(question);
+		objectOutput.writeLong(lastPublishDate);
 
 		objectOutput.writeInt(status);
 
@@ -326,14 +327,14 @@ public class MBThreadCacheModel implements CacheModel<MBThread>, Externalizable 
 	public long categoryId;
 	public long rootMessageId;
 	public long rootMessageUserId;
+	public String title;
 	public int messageCount;
 	public int viewCount;
 	public long lastPostByUserId;
 	public long lastPostDate;
-	public long lastPublishDate;
 	public double priority;
 	public boolean question;
-	public String title;
+	public long lastPublishDate;
 	public int status;
 	public long statusByUserId;
 	public String statusByUserName;

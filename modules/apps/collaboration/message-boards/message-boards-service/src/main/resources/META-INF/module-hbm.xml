@@ -148,14 +148,14 @@
 		<property name="categoryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="rootMessageId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="rootMessageUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="messageCount" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="viewCount" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="lastPostByUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="lastPostDate" type="org.hibernate.type.TimestampType" />
-		<property name="lastPublishDate" type="org.hibernate.type.TimestampType" />
 		<property name="priority" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
 		<property name="question" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="lastPublishDate" type="org.hibernate.type.TimestampType" />
 		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="statusByUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="statusByUserName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
