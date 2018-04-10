@@ -140,6 +140,18 @@
 			</else>
 		</if>
 
+		<if>
+			<condition function="IsElementNotPresent" locator1="Button#I_AGREE" value1="I Agree" />
+			<then>
+				<execute function="AssertClick" locator1="UserBar#USER_SIGN_IN" value1="Sign In" />
+
+				<execute function="Type" locator1="TextInput#EMAIL_ADDRESS" value1="${administratorEmail}" />
+				<execute function="Type" locator1="TextInput#PASSWORD" value1="test" />
+
+				<execute function="Click" locator1="Button#SIGN_IN" />
+			</then>
+		</if>
+
 		<execute macro="User#acceptEndUserLicenseAgreement" />
 
 		<execute macro="User#resetPassword">
