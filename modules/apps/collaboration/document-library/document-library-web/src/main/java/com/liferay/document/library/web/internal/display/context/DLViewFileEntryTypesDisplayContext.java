@@ -59,14 +59,14 @@ public class DLViewFileEntryTypesDisplayContext {
 				themeDisplay.getPermissionChecker(),
 				themeDisplay.getScopeGroupId(), ActionKeys.ADD_DOCUMENT_TYPE)) {
 
+			CreationMenu creationMenu = new CreationMenu(request);
+
 			PortletURL creationURL = renderResponse.createRenderURL();
 
 			creationURL.setParameter(
 				"mvcPath", "/document_library/edit_file_entry_type.jsp");
 			creationURL.setParameter(
 				"redirect", PortalUtil.getCurrentURL(request));
-
-			CreationMenu creationMenu = new CreationMenu(request);
 
 			creationMenu.addPrimaryDropdownItem(
 				dropdownItem -> dropdownItem.setHref(creationURL.toString()));
