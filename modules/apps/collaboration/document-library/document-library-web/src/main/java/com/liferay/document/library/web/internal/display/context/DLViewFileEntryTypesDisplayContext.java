@@ -68,8 +68,8 @@ public class DLViewFileEntryTypesDisplayContext {
 
 			CreationMenu creationMenu = new CreationMenu(request);
 
-			creationMenu.addPrimaryDropdownItem(dropdownItem ->
-				dropdownItem.setHref(creationURL.toString()));
+			creationMenu.addPrimaryDropdownItem(
+				dropdownItem -> dropdownItem.setHref(creationURL.toString()));
 
 			return creationMenu;
 		}
