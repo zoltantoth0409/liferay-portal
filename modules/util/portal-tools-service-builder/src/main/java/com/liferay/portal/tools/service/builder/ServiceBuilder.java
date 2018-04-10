@@ -6055,14 +6055,25 @@ public class ServiceBuilder {
 		newLocalizedEntityElement.addAttribute("local-service", "false");
 		newLocalizedEntityElement.addAttribute("mvcc-enabled", "true");
 
-		newLocalizedEntityElement.addAttribute(
-			"name", entity.getName() + "Localization");
+		String localizedEntityName = GetterUtil.getString(
+			localizedEntityElement.attributeValue("name"),
+			entity.getName() + "Localization");
+
+		newLocalizedEntityElement.addAttribute("name", localizedEntityName);
 
 		newLocalizedEntityElement.addAttribute("remote-service", "false");
 
 		if (Validator.isNotNull(entity.getSessionFactory())) {
 			newLocalizedEntityElement.addAttribute(
 				"session-factory", entity.getSessionFactory());
+		}
+
+		String localizedEntityTableName = localizedEntityElement.attributeValue(
+			"table");
+
+		if (Validator.isNotNull(localizedEntityTableName)) {
+			newLocalizedEntityElement.addAttribute(
+				"table", localizedEntityTableName);
 		}
 
 		if (Validator.isNotNull(entity.getTXManager())) {
@@ -6078,7 +6089,8 @@ public class ServiceBuilder {
 			newLocalizedEntityElement.addElement("column");
 
 		newLocalizedColumnElement.addAttribute(
-			"name", entity.getVarName() + "LocalizationId");
+			"name",
+			TextFormatter.format(localizedEntityName + "Id", TextFormatter.I));
 		newLocalizedColumnElement.addAttribute("primary", "true");
 		newLocalizedColumnElement.addAttribute("type", "long");
 
@@ -6177,7 +6189,7 @@ public class ServiceBuilder {
 			"name", finderName + "_LanguageId");
 
 		newLocalizedFinderElement.addAttribute(
-			"return-type", entity.getName() + "Localization");
+			"return-type", localizedEntityName);
 
 		newLocalizedFinderElement.addAttribute("unique", "true");
 
