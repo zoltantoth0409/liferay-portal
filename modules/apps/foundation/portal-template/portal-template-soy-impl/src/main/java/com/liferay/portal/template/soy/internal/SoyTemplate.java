@@ -165,7 +165,6 @@ public class SoyTemplate extends AbstractMultiResourceTemplate {
 
 	protected SoyTemplateRecord getInjectedSoyTemplateRecord() {
 		if (containsKey(SoyTemplateConstants.INJECTED_DATA)) {
-			@SuppressWarnings("unchecked")
 			Map<String, Object> injectedData = (Map<String, Object>)get(
 				SoyTemplateConstants.INJECTED_DATA);
 
