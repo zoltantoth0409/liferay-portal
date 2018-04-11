@@ -351,7 +351,6 @@ public class JournalDisplayContext {
 				setHelpText(
 					"you-can-customize-this-menu-or-see-all-you-have-by-" +
 						"clicking-more");
-
 				setViewMoreURL(
 					"javascript:" + _liferayPortletResponse.getNamespace() +
 						"openViewMoreStructuresSelector();");
