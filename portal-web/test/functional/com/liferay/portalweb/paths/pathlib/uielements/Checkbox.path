@@ -219,6 +219,11 @@
 	<td></td>
 </tr>
 <tr>
+	<td>FORCE_AUTHN</td>
+	<td>//label[contains(.,'Force Authn')]/input[@type='checkbox']</td>
+	<td></td>
+</tr>
+<tr>
 	<td>GOOGLE_PLUS</td>
 	<td>//input[contains(@id,'plusone')]</td>
 	<td></td>

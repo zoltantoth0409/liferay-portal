@@ -46,6 +46,16 @@
 			</else>
 		</if>
 
+		<if>
+			<equals arg1="${enableForceAuthn}" arg2="true" />
+			<then>
+				<execute function="Check" locator1="Checkbox#FORCE_AUTHN" />
+			</then>
+			<else>
+				<execute function="Uncheck" locator1="Checkbox#FORCE_AUTHN" />
+			</else>
+		</if>
+
 		<execute macro="PortletEntry#save" />
 	</command>
 </definition>
