@@ -36,14 +36,17 @@
 
 		<execute macro="User#viewLoggedOutPG" />
 
+		<execute macro="User#logoutPG">
+			<var name="specificURL" value="http://www.able.com:9080/" />
+		</execute>
+
+		<execute macro="User#viewLoggedOutPG" />
+
 		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
 
 		<execute macro="SAML#executeIdPInitiatedSSO">
 			<var name="idpInitiatedSSOURL" value="${portalURL}/c/portal/saml/sso?entityId=samlsp&amp;RelayState=http://www.able.com:9080" />
 			<var name="password" value="test" />
-			<var name="rememberMeChecked" value="false" />
-			<var name="samlEnabled" value="true" />
-			<var name="spURL" value="http://www.able.com:9080/" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
@@ -80,9 +83,6 @@
 		<execute macro="SAML#executeIdPInitiatedSSO">
 			<var name="idpInitiatedSSOURL" value="${portalURL}/c/portal/saml/sso?entityId=samlsp&amp;RelayState=http://www.able.com:9080" />
 			<var name="password" value="test" />
-			<var name="rememberMeChecked" value="false" />
-			<var name="samlEnabled" value="true" />
-			<var name="spURL" value="http://www.able.com:9080/" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
@@ -115,13 +115,17 @@
 
 		<execute macro="User#viewLoggedOutPG" />
 
+		<execute macro="User#logoutPG">
+			<var name="specificURL" value="http://www.able.com:9080/" />
+		</execute>
+
+		<execute macro="User#viewLoggedOutPG" />
+
 		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
 
 		<execute macro="SAML#executeIdPInitiatedSSO">
 			<var name="idpInitiatedSSOURL" value="${portalURL}/c/portal/saml/sso?entityId=samlsp&amp;RelayState=http://www.able.com:9080" />
 			<var name="password" value="test" />
-			<var name="rememberMeChecked" value="false" />
-			<var name="spURL" value="http://www.able.com:9080/" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
@@ -164,14 +168,17 @@
 
 		<execute macro="User#viewLoggedOutPG" />
 
+		<execute macro="User#logoutPG">
+			<var name="specificURL" value="http://www.able.com:9080/" />
+		</execute>
+
+		<execute macro="User#viewLoggedOutPG" />
+
 		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
 
 		<execute macro="SAML#executeIdPInitiatedSSO">
 			<var name="idpInitiatedSSOURL" value="${portalURL}/c/portal/saml/sso?entityId=samlsp&amp;RelayState=http://www.able.com:9080" />
 			<var name="password" value="test" />
-			<var name="rememberMeChecked" value="false" />
-			<var name="samlEnabled" value="true" />
-			<var name="spURL" value="http://www.able.com:9080/" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
@@ -222,16 +229,19 @@
 			<var name="categoryPriority" value="DEBUG" />
 		</execute>
 
+		<execute macro="User#logoutPG" />
+
+		<execute macro="User#viewLoggedOutPG" />
+
 		<execute macro="User#logoutPG">
-			<var name="specificURL" value="http://www.able.com:9080" />
+			<var name="specificURL" value="http://www.able.com:9080/" />
 		</execute>
 
 		<execute macro="User#viewLoggedOutPG" />
 
 		<execute macro="SAML#executeSPInitiatedSSO">
 			<var name="password" value="test" />
-			<var name="specificURL" value="http://www.able.com:9080" />
-			<var name="spURL" value="http://www.able.com:9080/" />
+			<var name="spURL" value="http://www.able.com:9080" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
@@ -262,10 +272,15 @@
 
 		<execute macro="User#viewLoggedOutPG" />
 
+		<execute macro="User#logoutPG">
+			<var name="specificURL" value="http://www.able.com:9080/" />
+		</execute>
+
+		<execute macro="User#viewLoggedOutPG" />
+
 		<execute macro="SAML#executeSPInitiatedSSO">
 			<var name="password" value="test" />
-			<var name="specificURL" value="http://www.able.com:9080" />
-			<var name="spURL" value="http://www.able.com:9080/" />
+			<var name="spURL" value="http://www.able.com:9080" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
@@ -359,6 +374,12 @@
 
 		<execute macro="User#viewLoggedOutPG" />
 
+		<execute macro="User#logoutPG">
+			<var name="specificURL" value="http://www.able.com:9080/" />
+		</execute>
+
+		<execute macro="User#viewLoggedOutPG" />
+
 		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
 
 		<!-- Verify SP is logged in -->
@@ -366,8 +387,6 @@
 		<execute macro="SAML#executeIdPInitiatedSSO">
 			<var name="idpInitiatedSSOURL" value="${portalURL}/c/portal/saml/sso?entityId=samlsp&amp;RelayState=http://www.able.com:9080" />
 			<var name="password" value="test" />
-			<var name="rememberMeChecked" value="false" />
-			<var name="spURL" value="http://www.able.com:9080/" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
@@ -419,6 +438,12 @@
 
 		<execute macro="User#viewLoggedOutPG" />
 
+		<execute macro="User#logoutPG">
+			<var name="specificURL" value="http://www.able.com:9080/" />
+		</execute>
+
+		<execute macro="User#viewLoggedOutPG" />
+
 		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
 
 		<!-- Verify SP is logged in -->
@@ -427,7 +452,6 @@
 			<var name="idpInitiatedSSOURL" value="${portalURL}/c/portal/saml/sso?entityId=samlsp&amp;RelayState=http://www.able.com:9080" />
 			<var name="password" value="test" />
 			<var name="rememberMeChecked" value="true" />
-			<var name="spURL" value="http://www.able.com:9080/" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
@@ -490,13 +514,17 @@
 
 		<execute macro="User#viewLoggedOutPG" />
 
+		<execute macro="User#logoutPG">
+			<var name="specificURL" value="http://www.able.com:9080/" />
+		</execute>
+
+		<execute macro="User#viewLoggedOutPG" />
+
 		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
 
 		<execute macro="SAML#executeIdPInitiatedSSO">
 			<var name="idpInitiatedSSOURL" value="${portalURL}/c/portal/saml/sso?entityId=samlsp&amp;RelayState=http://www.able.com:9080" />
 			<var name="password" value="test" />
-			<var name="rememberMeChecked" value="true" />
-			<var name="spURL" value="http://www.able.com:9080/" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
@@ -536,10 +564,33 @@
 
 		<execute macro="User#viewLoggedOutPG" />
 
+		<execute macro="User#logoutPG">
+			<var name="specificURL" value="http://www.able.com:9080/" />
+		</execute>
+
+		<execute macro="User#viewLoggedOutPG" />
+
+		<execute macro="User#logoutPG">
+			<var name="specificURL" value="http://www.baker.com:10080/" />
+		</execute>
+
+		<execute macro="User#viewLoggedOutPG" />
+
 		<execute macro="SAML#executeSPInitiatedSSO">
 			<var name="password" value="test" />
-			<var name="specificURL" value="http://www.able.com:9080" />
-			<var name="spURL" value="http://www.able.com:9080/" />
+			<var name="spURL" value="http://www.able.com:9080" />
+			<var name="userEmailAddress" value="test@liferay.com" />
+		</execute>
+
+		<execute macro="User#viewLoggedInPG">
+			<var name="userFirstName" value="Test" />
+			<var name="userLastName" value="Test" />
+		</execute>
+
+		<execute macro="SAML#executeSPInitiatedSSO">
+			<var name="idpLoggedIn" value="true" />
+			<var name="password" value="test" />
+			<var name="spURL" value="http://www.baker.com:10080" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
@@ -557,18 +608,7 @@
 			<var name="userLastName" value="Test" />
 		</execute>
 
-		<execute macro="Navigator#openSpecificURL">
-			<var name="url" value="http://www.baker.com:10080" />
-		</execute>
-
-		<execute macro="Navigator#gotoLoginPage" />
-
-		<execute macro="User#viewLoggedInPG">
-			<var name="userFirstName" value="Test" />
-			<var name="userLastName" value="Test" />
-		</execute>
-
-		<!-- Initiate Single Logout for first SP -->
+		<!-- Initiate Single Logout from first SP -->
 
 		<execute macro="User#logoutPG">
 			<var name="specificURL" value="http://www.able.com:9080" />
@@ -610,12 +650,17 @@
 
 		<execute macro="User#viewLoggedOutPG" />
 
+		<execute macro="User#logoutPG">
+			<var name="specificURL" value="http://www.able.com:9080/" />
+		</execute>
+
+		<execute macro="User#viewLoggedOutPG" />
+
 		<!-- Verify SP is logged in -->
 
 		<execute macro="SAML#executeSPInitiatedSSO">
 			<var name="password" value="test" />
-			<var name="specificURL" value="http://www.able.com:9080" />
-			<var name="spURL" value="http://www.able.com:9080/" />
+			<var name="spURL" value="http://www.able.com:9080" />
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
