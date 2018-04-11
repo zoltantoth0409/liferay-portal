@@ -49,6 +49,13 @@ Organization organization = null;
 if (organizationId != 0) {
 	organization = OrganizationServiceUtil.getOrganization(organizationId);
 }
+
+if (!usersListView.equals(UserConstants.LIST_VIEW_FLAT_USERS)) {
+	portletDisplay.setShowExportImportIcon(true);
+}
+else {
+	portletDisplay.setShowExportImportIcon(false);
+}
 %>
 
 <liferay-ui:error exception="<%= CompanyMaxUsersException.class %>" message="unable-to-activate-user-because-that-would-exceed-the-maximum-number-of-users-allowed" />
