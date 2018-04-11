@@ -91,14 +91,10 @@ searchContainer.setResults(results);
 							navigationItem.setLabel(LanguageUtil.get(request, "published"));
 						});
 
-					PortletURL viewNotPublishedEntriesURL = renderResponse.createRenderURL();
-
-					viewNotPublishedEntriesURL.setParameter("mvcRenderCommandName", "/blogs/view_not_published_entries");
-
 					add(
 						navigationItem -> {
 							navigationItem.setActive(mvcRenderCommandName.equals("/blogs/view_not_published_entries"));
-							navigationItem.setHref(viewNotPublishedEntriesURL);
+							navigationItem.setHref(renderResponse.createRenderURL(), "mvcRenderCommandName", "/blogs/view_not_published_entries");
 							navigationItem.setLabel(LanguageUtil.format(request, "not-published-x", notPublishedEntriesCount, false));
 						});
 				}
