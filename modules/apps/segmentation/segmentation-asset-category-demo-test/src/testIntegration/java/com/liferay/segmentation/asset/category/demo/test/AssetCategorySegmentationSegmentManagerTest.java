@@ -90,7 +90,7 @@ public class AssetCategorySegmentationSegmentManagerTest {
 	@Test
 	public void testMatches() throws Exception {
 		Collection<SegmentationSegment> segmentationSegments =
-			_segmentationManager.getSegmentationSegments(_group.getGroupId());
+			_segmentationSegmentManager.getSegmentationSegments(_group.getGroupId());
 
 		Assert.assertFalse(
 			"Segmentation segments is empty", segmentationSegments.isEmpty());
@@ -102,14 +102,14 @@ public class AssetCategorySegmentationSegmentManagerTest {
 
 		Assert.assertTrue(
 			"User does not match the segmentation segment",
-			_segmentationManager.matches(
+			_segmentationSegmentManager.matches(
 				_user.getUserId(), segmentationSegment, new HashMap<>()));
 	}
 
 	private static final String _ASSET_VOCABULARY_NAME = "Segments";
 
 	@Inject
-	private static SegmentationSegmentManager _segmentationManager;
+	private static SegmentationSegmentManager _segmentationSegmentManager;
 
 	@DeleteAfterTestRun
 	private Group _group;
