@@ -19,38 +19,28 @@
 			<var name="samlKeyPassword" value="${samlEntityID}" />
 		</execute>
 
+		<execute macro="SAMLNavigation#gotoIdentityProvider" />
+
+		<execute macro="SAMLPortlet#configureIdentityProvider" />
+
 		<if>
 			<or>
 				<isset var="idpSessionIdleTimeout" />
 				<isset var="idpSessionMaximumAge" />
 			</or>
 			<then>
-				<execute macro="SAMLNavigation#gotoIdentityProvider" />
-
 				<execute macro="SAMLRole#configureIdentityProvider">
 					<var name="idpSessionIdleTimeout" value="${idpSessionIdleTimeout}" />
 					<var name="idpSessionMaximumAge" value="${idpSessionMaximumAge}" />
 				</execute>
-
-				<execute macro="SAMLNavigation#gotoGeneral" />
 			</then>
 		</if>
+
+		<execute macro="SAMLNavigation#gotoGeneral" />
 
 		<execute macro="SAMLRole#enable">
 			<var name="samlEntityID" value="${samlEntityID}" />
 		</execute>
-
-		<!-- Navigate away from SAML portlet after enabling SAML in order to avoid LPS-65869 -->
-
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Configuration" />
-			<var name="panel" value="Control Panel" />
-			<var name="portlet" value="SAML Admin" />
-		</execute>
-
-		<execute macro="SAMLNavigation#gotoIdentityProvider" />
-
-		<execute macro="SAMLPortlet#configureIdentityProvider" />
 	</command>
 
 	<command name="configureLiferaySAMLAsSP">
