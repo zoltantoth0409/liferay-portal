@@ -51,8 +51,8 @@ public class UADExportBackgroundTaskStatusMessageSender {
 		message.put(
 			BackgroundTaskConstants.BACKGROUND_TASK_ID,
 			BackgroundTaskThreadLocal.getBackgroundTaskId());
-		message.put("applicationName", applicationName);
 		message.put("applicationDataTotal", total);
+		message.put("applicationName", applicationName);
 		message.put("messageType", messageType);
 
 		_backgroundTaskStatusMessageSender.sendBackgroundTaskStatusMessage(
