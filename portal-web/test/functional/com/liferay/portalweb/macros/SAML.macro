@@ -95,11 +95,6 @@
 			<var name="samlEntityID" value="${samlEntityID}" />
 		</execute>
 
-		<execute macro="User#logoutPG">
-			<var name="nodePort" value="${nodePort}" />
-			<var name="specificURL" value="${spURL}" />
-		</execute>
-
 		<!-- Add the configured SP connection to the IdP -->
 
 		<execute macro="Navigator#openURL" />
@@ -124,38 +119,72 @@
 	<command name="executeIdPInitiatedSSO">
 		<description message="Sign into portal by executing a IdP initiated SSO login. The IdP will redirect to the SP. If the same users with the same email address are present on both instances, it will authenticate and show the SP. SAML can authenticate across major portal versions, that is, the IdP can be Portal 6.1 EE GA3 and the SP can be Portal 6.2. EE GA1. For testing purposes, it is obvious if the authentication succeeds or fails if the IdP and SP are different portal versions." />
 
-		<execute macro="User#loginPG">
-			<var name="authenticationMethod" value="${authenticationMethod}" />
-			<var name="nodePort" value="${nodePort}" />
-			<var name="password" value="${password}" />
-			<var name="samlEnabled" value="true" />
-			<var name="specificURL" value="${idpInitiatedSSOURL}" />
-			<var name="syntaxCheckingEnabled" value="${syntaxCheckingEnabled}" />
-			<var name="userEmailAddress" value="${userEmailAddress}" />
-			<var name="userScreenName" value="${userScreenName}" />
+		<execute macro="Navigator#openSpecificURL">
+			<var name="url" value="${idpInitiatedSSOURL}" />
 		</execute>
 
-		<execute function="Pause" locator1="5000" />
+		<execute function="Type" locator1="TextInput#EMAIL_ADDRESS" value1="test@liferay.com" />
 
-		<execute function="AssertLocation" value1="${spURL}web/guest" />
+		<execute function="Type" locator1="TextInput#PASSWORD" value1="test" />
+
+		<if>
+			<and>
+				<equals arg1="${rememberMeChecked}" arg2="true" />
+				<isset var="rememberMeChecked" />
+			</and>
+			<then>
+				<execute function="Check" locator1="Checkbox#REMEMBER_ME" />
+			</then>
+		</if>
+
+		<execute function="Click" locator1="Button#SIGN_IN" />
+
+		<execute function="AssertElementPresent" locator1="UserBar#USER_AVATAR_IMAGE" />
+
+		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
+
+		<var method="StringUtil#replace('${idpInitiatedSSOURL}', '${portalURL}/c/portal/saml/sso?entityId=samlsp&amp;RelayState=', '')" name="spURL" />
+
+		<execute function="AssertLocation#assertPartialLocation" value1="${spURL}" />
 	</command>
 
 	<command name="executeSPInitiatedSSO">
 		<description message="Sign into portal by executing a SP initiated SSO login. In the SP, click on the Sign In button to." />
 
-		<execute macro="User#loginPG">
-			<var name="authenticationMethod" value="${authenticationMethod}" />
-			<var name="nodePort" value="${nodePort}" />
-			<var name="password" value="${password}" />
-			<var name="rememberMeChecked" value="${rememberMeChecked}" />
-			<var name="specificURL" value="${specificURL}" />
-			<var name="syntaxCheckingEnabled" value="${syntaxCheckingEnabled}" />
-			<var name="userEmailAddress" value="test@liferay.com" />
-			<var name="userScreenName" value="${userScreenName}" />
+		<execute macro="Navigator#openSpecificURL">
+			<var name="url" value="${spURL}" />
 		</execute>
 
-		<execute function="Pause" locator1="5000" />
+		<execute function="AssertClick" locator1="UserBar#USER_SIGN_IN" value1="Sign In" />
 
-		<execute function="AssertLocation" value1="${spURL}web/guest" />
+		<if>
+			<not>
+				<and>
+					<equals arg1="${idpLoggedIn}" arg2="true" />
+					<isset var="idpLoggedIn" />
+				</and>
+			</not>
+			<then>
+				<execute function="Type" locator1="TextInput#EMAIL_ADDRESS" value1="test@liferay.com" />
+
+				<execute function="Type" locator1="TextInput#PASSWORD" value1="test" />
+
+				<if>
+					<and>
+						<equals arg1="${rememberMeChecked}" arg2="true" />
+						<isset var="rememberMeChecked" />
+					</and>
+					<then>
+						<execute function="Check" locator1="Checkbox#REMEMBER_ME" />
+					</then>
+				</if>
+
+				<execute function="Click" locator1="Button#SIGN_IN" />
+
+				<execute function="AssertElementPresent" locator1="UserBar#USER_AVATAR_IMAGE" />
+
+				<execute function="AssertLocation#assertPartialLocation" value1="${spURL}" />
+			</then>
+		</if>
 	</command>
 </definition>

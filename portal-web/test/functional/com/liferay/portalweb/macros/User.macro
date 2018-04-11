@@ -1590,7 +1590,6 @@
 			<else>
 				<execute macro="User#loginPG">
 					<var name="localization" value="${localization}" />
-					<var name="samlEnabled" value="${samlEnabled}" />
 					<var name="setupWizardEnabled" value="${setupWizardEnabled}" />
 					<var name="specificURL" value="${virtualHostsURL}" />
 					<var name="userEmailAddress" value="${userEmailAddress}" />
@@ -1701,16 +1700,9 @@
 			</then>
 		</if>
 
-		<if>
-			<not>
-				<equals arg1="${samlEnabled}" arg2="true" />
-			</not>
-			<then>
-				<execute macro="User#loginLocalizationPG">
-					<var name="localization" value="${localization}" />
-				</execute>
-			</then>
-		</if>
+		<execute macro="User#loginLocalizationPG">
+			<var name="localization" value="${localization}" />
+		</execute>
 
 		<if>
 			<and>
