@@ -19,7 +19,7 @@
 <script>
 	var NAMESPACE = 'LFR_FRAGMENT_RENDER';
 
-	function handleIframeMessage (event) {
+	function handleIframeMessage(event) {
 		var data = event.data;
 		var prevData = localStorage.getItem(NAMESPACE) || '';
 
@@ -29,7 +29,7 @@
 		}
 	}
 
-	function updatePreview () {
+	function updatePreview() {
 		window.addEventListener('message', handleIframeMessage);
 		window[NAMESPACE] = true;
 
@@ -38,6 +38,7 @@
 		).data || '';
 
 		document.open();
+
 		document.write(content);
 	}
 
