@@ -37,6 +37,10 @@ public class EditFormFooterTag extends IncludeTag {
 
 	@Override
 	protected int processStartTag() throws Exception {
+		JspWriter jspWriter = pageContext.getOut();
+
+		jspWriter.write("<div class=\"");
+
 		String cssClass = "sheet-footer";
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
@@ -46,10 +50,8 @@ public class EditFormFooterTag extends IncludeTag {
 			cssClass = cssClass + StringPool.SPACE + "dialog-footer";
 		}
 
-		JspWriter jspWriter = pageContext.getOut();
-
-		jspWriter.write("<div class=\"");
 		jspWriter.write(cssClass);
+
 		jspWriter.write("\">");
 
 		return EVAL_BODY_INCLUDE;
