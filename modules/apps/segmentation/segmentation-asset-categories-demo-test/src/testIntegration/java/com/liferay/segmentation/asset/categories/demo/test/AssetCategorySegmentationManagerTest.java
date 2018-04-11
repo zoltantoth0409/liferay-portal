@@ -88,7 +88,7 @@ public class AssetCategorySegmentationManagerTest {
 
 	@Test
 	public void testMatches() throws Exception {
-		Collection segments = _segmentationManager.getSegments(
+		Collection segments = _segmentationManager.getSegmentationSegments(
 			_group.getGroupId());
 
 		Assert.assertFalse("Segments list is empty", segments.isEmpty());

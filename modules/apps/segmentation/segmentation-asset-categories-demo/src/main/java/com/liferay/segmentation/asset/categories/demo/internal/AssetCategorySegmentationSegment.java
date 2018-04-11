@@ -44,7 +44,7 @@ public class AssetCategorySegmentationSegment implements SegmentationSegment {
 	}
 
 	@Override
-	public String getSegmentId() {
+	public String getSegmentationSegmentId() {
 		return GetterUtil.getString(_assetCategory.getCategoryId());
 	}
 

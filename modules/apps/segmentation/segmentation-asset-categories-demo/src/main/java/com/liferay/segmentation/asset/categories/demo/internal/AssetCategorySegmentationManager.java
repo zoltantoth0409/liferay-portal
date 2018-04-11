@@ -44,7 +44,7 @@ public class AssetCategorySegmentationManager
 	implements SegmentationManager<AssetCategorySegmentationSegment> {
 
 	@Override
-	public Collection<AssetCategorySegmentationSegment> getSegments(
+	public Collection<AssetCategorySegmentationSegment> getSegmentationSegments(
 		long groupId) {
 
 		try {
@@ -77,7 +77,8 @@ public class AssetCategorySegmentationManager
 
 	@Override
 	public boolean matches(
-		long userId, AssetCategorySegmentationSegment segment,
+		long userId,
+		AssetCategorySegmentationSegment assetCategorySegmentationSegment,
 		Map<String, Object> context) {
 
 		AssetEntry assetEntry = _assetEntryLocalService.fetchEntry(
@@ -88,7 +89,8 @@ public class AssetCategorySegmentationManager
 		}
 
 		return _assetCategoryLocalService.hasAssetEntryAssetCategory(
-			assetEntry.getEntryId(), segment.getAssetCategoryId());
+			assetEntry.getEntryId(),
+			assetCategorySegmentationSegment.getAssetCategoryId());
 	}
 
 	private static final String _ASSET_VOCABULARY_NAME = "Segments";

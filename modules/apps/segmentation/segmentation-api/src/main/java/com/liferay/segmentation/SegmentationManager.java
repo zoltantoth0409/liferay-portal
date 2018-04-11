@@ -27,8 +27,9 @@ import java.util.Map;
 @ProviderType
 public interface SegmentationManager<T extends SegmentationSegment> {
 
-	public Collection<T> getSegments(long groupId);
+	public Collection<T> getSegmentationSegments(long groupId);
 
-	public boolean matches(long userId, T segment, Map<String, Object> context);
+	public boolean matches(
+		long userId, T segmentationSegment, Map<String, Object> context);
 
 }

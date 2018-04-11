@@ -30,6 +30,6 @@ public interface SegmentationSegment {
 
 	public String getName(Locale locale);
 
-	public String getSegmentId();
+	public String getSegmentationSegmentId();
 
 }
