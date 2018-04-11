@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.segmentation.asset.categories.demo.internal;
+package com.liferay.segmentation.asset.category.demo.internal;
 
 import com.liferay.asset.kernel.model.AssetCategory;
 import com.liferay.portal.kernel.util.GetterUtil;

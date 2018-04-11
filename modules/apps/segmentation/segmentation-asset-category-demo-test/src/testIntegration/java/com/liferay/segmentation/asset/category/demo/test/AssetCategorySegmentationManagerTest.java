@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.segmentation.asset.categories.demo.test;
+package com.liferay.segmentation.asset.category.demo.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.asset.kernel.model.AssetCategory;
