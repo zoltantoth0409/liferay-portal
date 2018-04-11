@@ -172,6 +172,7 @@ public class FragmentEntryDisplayContext {
 
 		soyContext.put(
 			"editFragmentEntryLinkURL", editFragmentEntryLinkURL.toString());
+		soyContext.put("fragmentEntryLink", _getSoyContextFragmentEntryLink());
 
 		PortletURL itemSelectorURL = _itemSelector.getItemSelectorURL(
 			RequestBackedPortletURLFactoryUtil.create(_renderRequest),
@@ -180,7 +181,6 @@ public class FragmentEntryDisplayContext {
 
 		soyContext.put("imageSelectorURL", itemSelectorURL.toString());
 
-		soyContext.put("fragmentEntryLink", _getSoyContextFragmentEntryLink());
 		soyContext.put("portletNamespace", _renderResponse.getNamespace());
 		soyContext.put(
 			"spritemap",
