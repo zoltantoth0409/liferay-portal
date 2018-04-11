@@ -39,6 +39,7 @@ import com.liferay.segmentation.SegmentationSegment;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -88,14 +89,16 @@ public class AssetCategorySegmentationSegmentManagerTest {
 
 	@Test
 	public void testMatches() throws Exception {
-		Collection<?> segmentationSegments =
+		Collection<SegmentationSegment> segmentationSegments =
 			_segmentationManager.getSegmentationSegments(_group.getGroupId());
 
 		Assert.assertFalse(
 			"Segments list is empty", segmentationSegments.isEmpty());
 
-		SegmentationSegment segmentationSegment =
-			(SegmentationSegment)segmentationSegments.iterator().next();
+		Iterator<SegmentationSegment> iterator =
+			segmentationSegments.iterator();
+
+		SegmentationSegment segmentationSegment = iterator.next();
 
 		Assert.assertTrue(
 			"User does not match the segment",
