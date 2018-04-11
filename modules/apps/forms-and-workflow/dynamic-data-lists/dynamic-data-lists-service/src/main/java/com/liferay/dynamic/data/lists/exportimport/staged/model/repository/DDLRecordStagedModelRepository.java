@@ -96,10 +96,10 @@ public class DDLRecordStagedModelRepository
 			String uuid, long groupId, String className, String extraData)
 		throws PortalException {
 
-		DDLRecord ddlRrecord = fetchStagedModelByUuidAndGroupId(uuid, groupId);
+		DDLRecord ddlRecord = fetchStagedModelByUuidAndGroupId(uuid, groupId);
 
-		if (ddlRrecord != null) {
-			deleteStagedModel(ddlRrecord);
+		if (ddlRecord != null) {
+			deleteStagedModel(ddlRecord);
 		}
 	}
 
