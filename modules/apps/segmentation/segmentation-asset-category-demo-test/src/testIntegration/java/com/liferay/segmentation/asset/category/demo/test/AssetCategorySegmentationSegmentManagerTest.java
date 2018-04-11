@@ -93,7 +93,7 @@ public class AssetCategorySegmentationSegmentManagerTest {
 			_segmentationManager.getSegmentationSegments(_group.getGroupId());
 
 		Assert.assertFalse(
-			"Segments list is empty", segmentationSegments.isEmpty());
+			"Segmentation segments is empty", segmentationSegments.isEmpty());
 
 		Iterator<SegmentationSegment> iterator =
 			segmentationSegments.iterator();
@@ -101,7 +101,7 @@ public class AssetCategorySegmentationSegmentManagerTest {
 		SegmentationSegment segmentationSegment = iterator.next();
 
 		Assert.assertTrue(
-			"User does not match the segment",
+			"User does not match the segmentation segment",
 			_segmentationManager.matches(
 				_user.getUserId(), segmentationSegment, new HashMap<>()));
 	}
