@@ -24,7 +24,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
-import com.liferay.segmentation.SegmentationManager;
+import com.liferay.segmentation.SegmentationSegmentManager;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -39,9 +39,9 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Eduardo Garcia
  */
-@Component(immediate = true, service = SegmentationManager.class)
-public class AssetCategorySegmentationManager
-	implements SegmentationManager<AssetCategorySegmentationSegment> {
+@Component(immediate = true, service = SegmentationSegmentManager.class)
+public class AssetCategorySegmentationSegmentManager
+	implements SegmentationSegmentManager<AssetCategorySegmentationSegment> {
 
 	@Override
 	public Collection<AssetCategorySegmentationSegment> getSegmentationSegments(
@@ -96,7 +96,7 @@ public class AssetCategorySegmentationManager
 	private static final String _ASSET_VOCABULARY_NAME = "Segments";
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		AssetCategorySegmentationManager.class);
+		AssetCategorySegmentationSegmentManager.class);
 
 	@Reference
 	private AssetCategoryLocalService _assetCategoryLocalService;

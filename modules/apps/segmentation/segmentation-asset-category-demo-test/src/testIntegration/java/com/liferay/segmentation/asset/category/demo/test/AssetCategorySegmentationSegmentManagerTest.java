@@ -34,7 +34,7 @@ import com.liferay.portal.kernel.test.util.UserTestUtil;
 import com.liferay.portal.service.test.ServiceTestUtil;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
-import com.liferay.segmentation.SegmentationManager;
+import com.liferay.segmentation.SegmentationSegmentManager;
 import com.liferay.segmentation.SegmentationSegment;
 
 import java.util.Collection;
@@ -51,7 +51,7 @@ import org.junit.runner.RunWith;
  * @author Eduardo Garcia
  */
 @RunWith(Arquillian.class)
-public class AssetCategorySegmentationManagerTest {
+public class AssetCategorySegmentationSegmentManagerTest {
 
 	@ClassRule
 	@Rule
@@ -105,7 +105,7 @@ public class AssetCategorySegmentationManagerTest {
 	private static final String _ASSET_VOCABULARY_NAME = "Segments";
 
 	@Inject
-	private static SegmentationManager _segmentationManager;
+	private static SegmentationSegmentManager _segmentationManager;
 
 	@DeleteAfterTestRun
 	private Group _group;

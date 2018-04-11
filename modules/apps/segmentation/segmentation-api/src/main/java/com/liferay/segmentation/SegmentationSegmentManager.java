@@ -25,7 +25,7 @@ import java.util.Map;
  * @author Eduardo Garcia
  */
 @ProviderType
-public interface SegmentationManager<T extends SegmentationSegment> {
+public interface SegmentationSegmentManager<T extends SegmentationSegment> {
 
 	public Collection<T> getSegmentationSegments(long groupId);
 
