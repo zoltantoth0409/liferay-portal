@@ -2519,7 +2519,7 @@
 		</execute>
 	</command>
 
-	<command name="ViewPublishedContentAfterStagingUndo" priority="4">
+	<command name="ViewPublishedContentAfterStagingUndo" priority="3">
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="Site Name" />
 		</execute>
