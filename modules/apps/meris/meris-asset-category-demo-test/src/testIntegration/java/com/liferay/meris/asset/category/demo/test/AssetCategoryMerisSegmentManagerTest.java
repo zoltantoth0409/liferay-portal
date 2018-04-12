@@ -122,7 +122,7 @@ public class AssetCategoryMerisSegmentManagerTest {
 				new HashMap<>(), 0, 1, merisSegmentNameComparator);
 
 		Assert.assertFalse(
-			"Meris profile does not contain any meris segment",
+			"Meris profile does not contain a meris segment",
 			merisSegments.isEmpty());
 	}
 
@@ -133,7 +133,7 @@ public class AssetCategoryMerisSegmentManagerTest {
 			QueryUtil.ALL_POS, null);
 
 		Assert.assertFalse(
-			"Meris segment does not contain any meris profile",
+			"Meris segment does not contain a meris profile",
 			merisProfiles.isEmpty());
 	}
 
@@ -151,7 +151,7 @@ public class AssetCategoryMerisSegmentManagerTest {
 			0, 1, merisRuleNameComparator);
 
 		Assert.assertFalse(
-			"Meris segment does not contain any meris rule",
+			"Meris segment does not contain a meris rule",
 			merisRules.isEmpty());
 	}
 
