@@ -201,14 +201,14 @@ public class AssetCategoryMerisSegmentManager
 			return false;
 		}
 
-		context.put(
-			"assetCategoryIds",
-			assetCategoryMerisProfile.getAssetCategoryIds());
-
 		List<MerisRule> merisRules = assetCategoryMerisSegment.getMerisRules(
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 		Stream<MerisRule> stream = merisRules.stream();
+
+		context.put(
+			"assetCategoryIds",
+			assetCategoryMerisProfile.getAssetCategoryIds());
 
 		return stream.allMatch(merisRule -> merisRule.matches(context));
 	}
