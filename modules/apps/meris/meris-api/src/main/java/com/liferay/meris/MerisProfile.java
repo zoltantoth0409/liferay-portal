@@ -17,8 +17,6 @@ package com.liferay.meris;
 import aQute.bnd.annotation.ProviderType;
 
 /**
- * Models a Profile.
- *
  * @author Eduardo Garcia
  */
 @ProviderType

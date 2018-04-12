@@ -21,8 +21,6 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Models a Segment.
- *
  * @author Eduardo Garcia
  */
 @ProviderType

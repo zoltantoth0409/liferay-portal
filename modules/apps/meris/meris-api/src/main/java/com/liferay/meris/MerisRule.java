@@ -20,8 +20,6 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * Models a Rule.
- *
  * @author Eduardo Garcia
  */
 @ProviderType
