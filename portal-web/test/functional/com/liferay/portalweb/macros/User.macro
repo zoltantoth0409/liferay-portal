@@ -1302,8 +1302,8 @@
 			<isset var="administratorEmail" />
 			<then>
 				<execute macro="User#loginPG">
-					<var name="userEmailAddress" value="${administratorEmail}" />
 					<var name="password" value="test" />
+					<var name="userEmailAddress" value="${administratorEmail}" />
 				</execute>
 			</then>
 			<else>
