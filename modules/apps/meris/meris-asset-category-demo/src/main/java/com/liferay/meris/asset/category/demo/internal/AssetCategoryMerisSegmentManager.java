@@ -109,7 +109,8 @@ public class AssetCategoryMerisSegmentManager
 		}
 		catch (PortalException pe) {
 			_log.error(
-				String.format("Vocabulary with vocabularyId %s was not found"),
+				String.format(
+				"No asset vocabulary found with asset vocabulary ID %s"),
 				pe);
 		}
 
@@ -142,7 +143,8 @@ public class AssetCategoryMerisSegmentManager
 		}
 		catch (PortalException pe) {
 			_log.error(
-				String.format("Error getting segments for scopeId %s", scopeId),
+				String.format(
+					"Unable to get meris segments for scope ID %s", scopeId),
 				pe);
 
 			return Collections.emptyList();
