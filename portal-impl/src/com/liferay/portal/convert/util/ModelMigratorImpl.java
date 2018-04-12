@@ -55,7 +55,6 @@ public class ModelMigratorImpl implements ModelMigrator {
 	 */
 	@Deprecated
 	protected Map<String, Tuple> getModelTableDetails(Class<?> implClass) {
-
 		throw new UnsupportedOperationException();
 	}
 
