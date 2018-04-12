@@ -56,10 +56,10 @@ public class AssetCategoryMerisSegmentManager
 		User user = _userLocalService.fetchUser(userId);
 
 		if (user != null) {
-			long[] categoryIds = _assetCategoryLocalService.getCategoryIds(
+			long[] assetCategoryIds = _assetCategoryLocalService.getCategoryIds(
 				user.getModelClassName(), user.getUserId());
 
-			return new AssetCategoryMerisProfile(user, categoryIds);
+			return new AssetCategoryMerisProfile(user, assetCategoryIds);
 		}
 
 		return null;
@@ -199,7 +199,9 @@ public class AssetCategoryMerisSegmentManager
 			return false;
 		}
 
-		context.put("categoryIds", assetCategoryMerisProfile.getCategoryIds());
+		context.put(
+			"assetCategoryIds",
+			assetCategoryMerisProfile.getAssetCategoryIds());
 
 		List<MerisRule> rules = assetCategoryMerisSegment.getMerisRules(
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);

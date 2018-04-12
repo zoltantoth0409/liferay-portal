@@ -56,9 +56,11 @@ public class AssetCategoryMerisRule
 
 	@Override
 	public boolean matches(Map<String, Object> context) {
-		long[] categoryIds = (long[])context.get("categoryIds");
+		long[] assetCategoryIds = (long[])context.get("assetCategoryIds");
 
-		if (ArrayUtil.contains(categoryIds, _assetCategory.getCategoryId())) {
+		if (ArrayUtil.contains(
+				assetCategoryIds, _assetCategory.getCategoryId())) {
+
 			return true;
 		}
 

@@ -25,9 +25,9 @@ import java.util.Objects;
 public class AssetCategoryMerisProfile
 	implements MerisProfile, Comparable<AssetCategoryMerisProfile> {
 
-	public AssetCategoryMerisProfile(User user, long[] categoryIds) {
+	public AssetCategoryMerisProfile(User user, long[] assetCategoryIds) {
 		_user = user;
-		_categoryIds = categoryIds;
+		_assetCategoryIds = assetCategoryIds;
 	}
 
 	@Override
@@ -38,8 +38,8 @@ public class AssetCategoryMerisProfile
 			assetCategoryMerisProfile.getMerisProfileId());
 	}
 
-	public long[] getCategoryIds() {
-		return _categoryIds;
+	public long[] getAssetCategoryIds() {
+		return _assetCategoryIds;
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class AssetCategoryMerisProfile
 		return Objects.toString(_user.getUserId());
 	}
 
-	private final long[] _categoryIds;
+	private final long[] _assetCategoryIds;
 	private final User _user;
 
 }
