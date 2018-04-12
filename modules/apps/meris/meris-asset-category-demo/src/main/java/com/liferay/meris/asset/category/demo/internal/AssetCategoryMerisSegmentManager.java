@@ -164,10 +164,12 @@ public class AssetCategoryMerisSegmentManager
 			return Collections.emptyList();
 		}
 
-		Collection<AssetCategoryMerisSegment> segments = getMerisSegments(
-			scopeId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+		Collection<AssetCategoryMerisSegment> assetCategoryMerisSegments =
+			getMerisSegments(
+				scopeId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
-		Stream<AssetCategoryMerisSegment> stream = segments.stream();
+		Stream<AssetCategoryMerisSegment> stream =
+			assetCategoryMerisSegments.stream();
 
 		return stream.filter(
 			merisSegment -> matches(
