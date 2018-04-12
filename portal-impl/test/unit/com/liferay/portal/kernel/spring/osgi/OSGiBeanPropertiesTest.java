@@ -62,12 +62,13 @@ public class OSGiBeanPropertiesTest {
 		class C implements Serializable {
 		}
 
-		Set<String> interfaceClasses = OSGiBeanProperties.Service.interfaces(
+		Set<String> interfaceNames =
+			OSGiBeanProperties.Service.interfaceNames(
 			new C(), C.class.getAnnotation(OSGiBeanProperties.class),
 			StringPool.EMPTY_ARRAY);
 
 		Assert.assertEquals(
-			interfaceClasses.toString(), 2, interfaceClasses.size());
+			interfaceNames.toString(), 2, interfaceNames.size());
 	}
 
 	@Test
@@ -79,12 +80,12 @@ public class OSGiBeanPropertiesTest {
 		class C extends B {
 		}
 
-		Set<String> interfaceClasses = OSGiBeanProperties.Service.interfaces(
+		Set<String> interfaceNames = OSGiBeanProperties.Service.interfaceNames(
 			new C(), C.class.getAnnotation(OSGiBeanProperties.class),
 			StringPool.EMPTY_ARRAY);
 
 		Assert.assertEquals(
-			interfaceClasses.toString(), 2, interfaceClasses.size());
+			interfaceNames.toString(), 2, interfaceNames.size());
 	}
 
 	@Test
@@ -96,12 +97,12 @@ public class OSGiBeanPropertiesTest {
 		class C extends B {
 		}
 
-		Set<String> interfaceClasses = OSGiBeanProperties.Service.interfaces(
+		Set<String> interfaceNames = OSGiBeanProperties.Service.interfaceNames(
 			new C(), C.class.getAnnotation(OSGiBeanProperties.class),
 			StringPool.EMPTY_ARRAY);
 
 		Assert.assertEquals(
-			interfaceClasses.toString(), 2, interfaceClasses.size());
+			interfaceNames.toString(), 2, interfaceNames.size());
 	}
 
 	@Test
@@ -110,12 +111,12 @@ public class OSGiBeanPropertiesTest {
 		class C implements Serializable {
 		}
 
-		Set<String> interfaceClasses = OSGiBeanProperties.Service.interfaces(
+		Set<String> interfaceNames = OSGiBeanProperties.Service.interfaceNames(
 			new C(), C.class.getAnnotation(OSGiBeanProperties.class),
 			StringPool.EMPTY_ARRAY);
 
 		Assert.assertEquals(
-			interfaceClasses.toString(), 2, interfaceClasses.size());
+			interfaceNames.toString(), 2, interfaceNames.size());
 	}
 
 	@Test
@@ -124,12 +125,12 @@ public class OSGiBeanPropertiesTest {
 		class C implements EventListener, Serializable {
 		}
 
-		Set<String> interfaceClasses = OSGiBeanProperties.Service.interfaces(
+		Set<String> interfaceNames = OSGiBeanProperties.Service.interfaceNames(
 			new C(), C.class.getAnnotation(OSGiBeanProperties.class),
 			StringPool.EMPTY_ARRAY);
 
 		Assert.assertEquals(
-			interfaceClasses.toString(), 2, interfaceClasses.size());
+			interfaceNames.toString(), 2, interfaceNames.size());
 	}
 
 	@Test(expected = ClassCastException.class)
@@ -138,12 +139,12 @@ public class OSGiBeanPropertiesTest {
 		class C {
 		}
 
-		Set<String> interfaceClasses = OSGiBeanProperties.Service.interfaces(
+		Set<String> interfaceNames = OSGiBeanProperties.Service.interfaceNames(
 			new C(), C.class.getAnnotation(OSGiBeanProperties.class),
 			StringPool.EMPTY_ARRAY);
 
 		Assert.assertEquals(
-			interfaceClasses.toString(), 1, interfaceClasses.size());
+			interfaceNames.toString(), 1, interfaceNames.size());
 	}
 
 	@Test(expected = ClassCastException.class)
@@ -152,12 +153,12 @@ public class OSGiBeanPropertiesTest {
 		class C implements Serializable {
 		}
 
-		Set<String> interfaceClasses = OSGiBeanProperties.Service.interfaces(
+		Set<String> interfaceNames = OSGiBeanProperties.Service.interfaceNames(
 			new C(), C.class.getAnnotation(OSGiBeanProperties.class),
 			StringPool.EMPTY_ARRAY);
 
 		Assert.assertEquals(
-			interfaceClasses.toString(), 1, interfaceClasses.size());
+			interfaceNames.toString(), 1, interfaceNames.size());
 	}
 
 	@Test
@@ -166,12 +167,12 @@ public class OSGiBeanPropertiesTest {
 		class C {
 		}
 
-		Set<String> interfaceClasses = OSGiBeanProperties.Service.interfaces(
+		Set<String> interfaceNames = OSGiBeanProperties.Service.interfaceNames(
 			new C(), C.class.getAnnotation(OSGiBeanProperties.class),
 			StringPool.EMPTY_ARRAY);
 
 		Assert.assertEquals(
-			interfaceClasses.toString(), 1, interfaceClasses.size());
+			interfaceNames.toString(), 1, interfaceNames.size());
 	}
 
 	@Test
@@ -183,12 +184,12 @@ public class OSGiBeanPropertiesTest {
 		class C extends B {
 		}
 
-		Set<String> interfaceClasses = OSGiBeanProperties.Service.interfaces(
+		Set<String> interfaceNames = OSGiBeanProperties.Service.interfaceNames(
 			new C(), C.class.getAnnotation(OSGiBeanProperties.class),
 			StringPool.EMPTY_ARRAY);
 
 		Assert.assertEquals(
-			interfaceClasses.toString(), 2, interfaceClasses.size());
+			interfaceNames.toString(), 2, interfaceNames.size());
 	}
 
 	@Test
@@ -200,12 +201,12 @@ public class OSGiBeanPropertiesTest {
 		class C extends B {
 		}
 
-		Set<String> interfaceClasses = OSGiBeanProperties.Service.interfaces(
+		Set<String> interfaceNames = OSGiBeanProperties.Service.interfaceNames(
 			new C(), C.class.getAnnotation(OSGiBeanProperties.class),
 			StringPool.EMPTY_ARRAY);
 
 		Assert.assertEquals(
-			interfaceClasses.toString(), 3, interfaceClasses.size());
+			interfaceNames.toString(), 3, interfaceNames.size());
 	}
 
 	@Test
@@ -214,12 +215,12 @@ public class OSGiBeanPropertiesTest {
 		class C implements Serializable {
 		}
 
-		Set<String> interfaceClasses = OSGiBeanProperties.Service.interfaces(
+		Set<String> interfaceNames = OSGiBeanProperties.Service.interfaceNames(
 			new C(), C.class.getAnnotation(OSGiBeanProperties.class),
 			StringPool.EMPTY_ARRAY);
 
 		Assert.assertEquals(
-			interfaceClasses.toString(), 2, interfaceClasses.size());
+			interfaceNames.toString(), 2, interfaceNames.size());
 	}
 
 	@Test
@@ -228,12 +229,12 @@ public class OSGiBeanPropertiesTest {
 		class C implements EventListener, Serializable {
 		}
 
-		Set<String> interfaceClasses = OSGiBeanProperties.Service.interfaces(
+		Set<String> interfaceNames = OSGiBeanProperties.Service.interfaceNames(
 			new C(), C.class.getAnnotation(OSGiBeanProperties.class),
 			StringPool.EMPTY_ARRAY);
 
 		Assert.assertEquals(
-			interfaceClasses.toString(), 3, interfaceClasses.size());
+			interfaceNames.toString(), 3, interfaceNames.size());
 	}
 
 	@Test
@@ -241,12 +242,12 @@ public class OSGiBeanPropertiesTest {
 		class C {
 		}
 
-		Set<String> interfaceClasses = OSGiBeanProperties.Service.interfaces(
+		Set<String> interfaceNames = OSGiBeanProperties.Service.interfaceNames(
 			new C(), C.class.getAnnotation(OSGiBeanProperties.class),
 			StringPool.EMPTY_ARRAY);
 
 		Assert.assertEquals(
-			interfaceClasses.toString(), 1, interfaceClasses.size());
+			interfaceNames.toString(), 1, interfaceNames.size());
 	}
 
 	@Test
@@ -257,12 +258,12 @@ public class OSGiBeanPropertiesTest {
 		class C extends B {
 		}
 
-		Set<String> interfaceClasses = OSGiBeanProperties.Service.interfaces(
+		Set<String> interfaceNames = OSGiBeanProperties.Service.interfaceNames(
 			new C(), C.class.getAnnotation(OSGiBeanProperties.class),
 			StringPool.EMPTY_ARRAY);
 
 		Assert.assertEquals(
-			interfaceClasses.toString(), 2, interfaceClasses.size());
+			interfaceNames.toString(), 2, interfaceNames.size());
 	}
 
 	@Test
@@ -273,12 +274,12 @@ public class OSGiBeanPropertiesTest {
 		class C extends B {
 		}
 
-		Set<String> interfaceClasses = OSGiBeanProperties.Service.interfaces(
+		Set<String> interfaceNames = OSGiBeanProperties.Service.interfaceNames(
 			new C(), C.class.getAnnotation(OSGiBeanProperties.class),
 			StringPool.EMPTY_ARRAY);
 
 		Assert.assertEquals(
-			interfaceClasses.toString(), 3, interfaceClasses.size());
+			interfaceNames.toString(), 3, interfaceNames.size());
 	}
 
 	@Test
@@ -286,12 +287,12 @@ public class OSGiBeanPropertiesTest {
 		class C implements Serializable {
 		}
 
-		Set<String> interfaceClasses = OSGiBeanProperties.Service.interfaces(
+		Set<String> interfaceNames = OSGiBeanProperties.Service.interfaceNames(
 			new C(), C.class.getAnnotation(OSGiBeanProperties.class),
 			StringPool.EMPTY_ARRAY);
 
 		Assert.assertEquals(
-			interfaceClasses.toString(), 2, interfaceClasses.size());
+			interfaceNames.toString(), 2, interfaceNames.size());
 	}
 
 	@Test
@@ -299,12 +300,12 @@ public class OSGiBeanPropertiesTest {
 		class C implements EventListener, Serializable {
 		}
 
-		Set<String> interfaceClasses = OSGiBeanProperties.Service.interfaces(
+		Set<String> interfaceNames = OSGiBeanProperties.Service.interfaceNames(
 			new C(), C.class.getAnnotation(OSGiBeanProperties.class),
 			StringPool.EMPTY_ARRAY);
 
 		Assert.assertEquals(
-			interfaceClasses.toString(), 3, interfaceClasses.size());
+			interfaceNames.toString(), 3, interfaceNames.size());
 	}
 
 	@Test

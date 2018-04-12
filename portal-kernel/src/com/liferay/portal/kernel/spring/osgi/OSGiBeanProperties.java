@@ -203,24 +203,26 @@ public @interface OSGiBeanProperties {
 			OSGiBeanProperties osgiBeanProperties = clazz.getAnnotation(
 				OSGiBeanProperties.class);
 
-			return _interfaces(
+			return _interfaceNames(
 				object, osgiBeanProperties, StringPool.EMPTY_ARRAY,
 				Function.identity());
 		}
 
-		public static Set<String> interfaces(
+		public static Set<String> interfaceNames(
 			Object object, OSGiBeanProperties osgiBeanProperties,
-			String[] ignoredInterfaces) {
+			String[] ignoredInterfaceNames) {
 
-			return _interfaces(
-				object, osgiBeanProperties, ignoredInterfaces, Class::getName);
+			return _interfaceNames(
+				object, osgiBeanProperties, ignoredInterfaceNames,
+				Class::getName);
 		}
 
-		private static <T> Set<T> _interfaces(
+		private static <T> Set<T> _interfaceNames(
 			Object object, OSGiBeanProperties osgiBeanProperties,
-			String[] ignoredInterfaces, Function<Class<?>, T> mappingFunction) {
+			String[] ignoredInterfaceNames,
+			Function<Class<?>, T> mappingFunction) {
 
-			Set<T> interfaces = new LinkedHashSet<>();
+			Set<T> interfaceNames = new LinkedHashSet<>();
 
 			Class<?>[] serviceClasses = null;
 
@@ -238,8 +240,8 @@ public @interface OSGiBeanProperties {
 
 					for (Class<?> interfaceClass : clazz.getInterfaces()) {
 						_optionallyCollectInterface(
-							interfaceClass, interfaces, ignoredInterfaces,
-							mappingFunction);
+							interfaceClass, interfaceNames,
+							ignoredInterfaceNames, mappingFunction);
 
 						queue.add(interfaceClass);
 					}
@@ -249,7 +251,7 @@ public @interface OSGiBeanProperties {
 					if (clazz != null) {
 						if (clazz.isInterface()) {
 							_optionallyCollectInterface(
-								clazz, interfaces, ignoredInterfaces,
+								clazz, interfaceNames, ignoredInterfaceNames,
 								mappingFunction);
 						}
 
@@ -262,25 +264,26 @@ public @interface OSGiBeanProperties {
 					serviceClazz.cast(object);
 
 					_optionallyCollectInterface(
-						serviceClazz, interfaces, ignoredInterfaces,
+						serviceClazz, interfaceNames, ignoredInterfaceNames,
 						mappingFunction);
 				}
 			}
 
 			_optionallyCollectInterface(
-				object.getClass(), interfaces, ignoredInterfaces,
+				object.getClass(), interfaceNames, ignoredInterfaceNames,
 				mappingFunction);
 
-			return interfaces;
+			return interfaceNames;
 		}
 
 		private static <T> void _optionallyCollectInterface(
-			Class<?> clazz, Set<T> interfaces, String[] ignoredInterfaces,
+			Class<?> clazz, Set<T> interfaceNames,
+			String[] ignoredInterfaceNames,
 			Function<Class<?>, T> mappingFunction) {
 
 			String interfaceClassName = clazz.getName();
 
-			for (String ignoredInterface : ignoredInterfaces) {
+			for (String ignoredInterface : ignoredInterfaceNames) {
 				if (!ignoredInterface.startsWith(StringPool.EXCLAMATION) &&
 					(ignoredInterface.equals(interfaceClassName) ||
 					 (ignoredInterface.endsWith(StringPool.STAR) &&
@@ -292,7 +295,7 @@ public @interface OSGiBeanProperties {
 				}
 			}
 
-			interfaces.add(mappingFunction.apply(clazz));
+			interfaceNames.add(mappingFunction.apply(clazz));
 		}
 
 	}

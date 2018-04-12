@@ -23,6 +23,7 @@ import com.liferay.portal.spring.aop.ServiceBeanAopProxy;
 import com.liferay.portal.util.PropsValues;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
 import java.util.List;
 import java.util.Set;
 
@@ -68,8 +69,7 @@ public class ApplicationContextServicePublisher {
 
 		Bundle bundle = _bundleContext.getBundle();
 
-		HashMapDictionary<String, Object> properties =
-			new HashMapDictionary<>();
+		Dictionary<String, Object> properties = new HashMapDictionary<>();
 
 		properties.put(
 			"org.springframework.context.service.name",
@@ -118,7 +118,7 @@ public class ApplicationContextServicePublisher {
 				"Unable to unwrap service during registration " + bean, e);
 		}
 
-		Set<String> names = OSGiBeanProperties.Service.interfaces(
+		Set<String> names = OSGiBeanProperties.Service.interfaceNames(
 			bean, osgiBeanProperties,
 			PropsValues.MODULE_FRAMEWORK_SERVICES_IGNORED_INTERFACES);
 
