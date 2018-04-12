@@ -80,7 +80,6 @@ public class AssetCategoryMerisSegmentManagerTest {
 			AssetCategoryLocalServiceUtil.addCategory(
 				TestPropsValues.getUserId(), serviceContext.getScopeGroupId(),
 				"Soccer", assetVocabulary.getVocabularyId(), serviceContext);
-
 		AssetCategory tennisAssetCategory =
 			AssetCategoryLocalServiceUtil.addCategory(
 				TestPropsValues.getUserId(), serviceContext.getScopeGroupId(),
@@ -93,15 +92,12 @@ public class AssetCategoryMerisSegmentManagerTest {
 
 		AssetCategoryLocalServiceUtil.addAssetEntryAssetCategory(
 			assetEntry.getEntryId(), soccerAssetCategory.getCategoryId());
-
 		AssetCategoryLocalServiceUtil.addAssetEntryAssetCategory(
 			assetEntry.getEntryId(), tennisAssetCategory.getCategoryId());
 
-		_merisSegmentId = String.valueOf(assetVocabulary.getVocabularyId());
-
-		_merisScopeId = String.valueOf(_group.getGroupId());
-
 		_merisProfileId = String.valueOf(_user.getUserId());
+		_merisScopeId = String.valueOf(_group.getGroupId());
+		_merisSegmentId = String.valueOf(assetVocabulary.getVocabularyId());
 	}
 
 	@Test
