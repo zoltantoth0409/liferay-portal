@@ -57,11 +57,6 @@ public class GroupModelListener extends BaseModelListener<Group> {
 							getLayoutPageTemplateCollectionId());
 			}
 
-			// Fragment entry links
-
-			_fragmentEntryLinkLocalService.deleteFragmentEntryLinks(
-				group.getGroupId());
-
 			// Fragment collections
 
 			List<FragmentCollection> fragmentCollections =
@@ -72,6 +67,11 @@ public class GroupModelListener extends BaseModelListener<Group> {
 				_fragmentCollectionLocalService.deleteFragmentCollection(
 					fragmentCollection);
 			}
+
+			// Fragment entry links
+
+			_fragmentEntryLinkLocalService.deleteFragmentEntryLinks(
+				group.getGroupId());
 		}
 		catch (Exception e) {
 			throw new ModelListenerException(e);
