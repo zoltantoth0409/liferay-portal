@@ -205,10 +205,10 @@ public class AssetCategoryMerisSegmentManager
 			"assetCategoryIds",
 			assetCategoryMerisProfile.getAssetCategoryIds());
 
-		List<MerisRule> rules = assetCategoryMerisSegment.getMerisRules(
+		List<MerisRule> merisRules = assetCategoryMerisSegment.getMerisRules(
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
-		Stream<MerisRule> stream = rules.stream();
+		Stream<MerisRule> stream = merisRules.stream();
 
 		return stream.allMatch(merisRule -> merisRule.matches(context));
 	}
