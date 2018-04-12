@@ -67,7 +67,7 @@ public class AssetCategoryMerisSegment
 
 	@Override
 	public String getMerisSegmentId() {
-		return Objects.toString(_assetVocabulary.getVocabularyId());
+		return String.valueOf(_assetVocabulary.getVocabularyId());
 	}
 
 	@Override
@@ -77,7 +77,7 @@ public class AssetCategoryMerisSegment
 
 	@Override
 	public String getScopeId() {
-		return Objects.toString(_assetVocabulary.getGroupId());
+		return String.valueOf(_assetVocabulary.getGroupId());
 	}
 
 	private final AssetVocabulary _assetVocabulary;

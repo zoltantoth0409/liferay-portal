@@ -46,7 +46,7 @@ public class AssetCategoryMerisRule
 
 	@Override
 	public String getMerisRuleId() {
-		return Objects.toString(_assetCategory.getCategoryId());
+		return String.valueOf(_assetCategory.getCategoryId());
 	}
 
 	@Override

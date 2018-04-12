@@ -44,7 +44,7 @@ public class AssetCategoryMerisProfile
 
 	@Override
 	public String getMerisProfileId() {
-		return Objects.toString(_user.getUserId());
+		return String.valueOf(_user.getUserId());
 	}
 
 	private final long[] _assetCategoryIds;

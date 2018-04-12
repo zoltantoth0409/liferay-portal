@@ -97,11 +97,11 @@ public class AssetCategoryMerisSegmentManagerTest {
 		AssetCategoryLocalServiceUtil.addAssetEntryAssetCategory(
 			assetEntry.getEntryId(), tennisAssetCategory.getCategoryId());
 
-		_merisSegmentId = Objects.toString(assetVocabulary.getVocabularyId());
+		_merisSegmentId = String.valueOf(assetVocabulary.getVocabularyId());
 
-		_merisScopeId = Objects.toString(_group.getGroupId());
+		_merisScopeId = String.valueOf(_group.getGroupId());
 
-		_merisProfileId = Objects.toString(_user.getUserId());
+		_merisProfileId = String.valueOf(_user.getUserId());
 	}
 
 	@Test

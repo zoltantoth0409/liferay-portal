@@ -83,7 +83,7 @@ public class AssetCategoryMerisSegmentManager
 		Stream<User> stream = users.stream();
 
 		return stream.map(
-			user -> getMerisProfile(Objects.toString(user.getUserId()))
+			user -> getMerisProfile(String.valueOf(user.getUserId()))
 		).filter(
 			merisProfile -> matches(
 				merisProfile.getMerisProfileId(), merisSegmentId, context)
