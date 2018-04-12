@@ -62,8 +62,7 @@ public class OSGiBeanPropertiesTest {
 		class C implements Serializable {
 		}
 
-		Set<String> interfaceNames =
-			OSGiBeanProperties.Service.interfaceNames(
+		Set<String> interfaceNames = OSGiBeanProperties.Service.interfaceNames(
 			new C(), C.class.getAnnotation(OSGiBeanProperties.class),
 			StringPool.EMPTY_ARRAY);
 

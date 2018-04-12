@@ -185,6 +185,15 @@ public @interface OSGiBeanProperties {
 	 */
 	public static class Service {
 
+		public static Set<String> interfaceNames(
+			Object object, OSGiBeanProperties osgiBeanProperties,
+			String[] ignoredInterfaceNames) {
+
+			return _interfaceNames(
+				object, osgiBeanProperties, ignoredInterfaceNames,
+				Class::getName);
+		}
+
 		/**
 		 * Returns the types under which the bean is published as a service. If
 		 * no types are specified, they are calculated through class
@@ -206,15 +215,6 @@ public @interface OSGiBeanProperties {
 			return _interfaceNames(
 				object, osgiBeanProperties, StringPool.EMPTY_ARRAY,
 				Function.identity());
-		}
-
-		public static Set<String> interfaceNames(
-			Object object, OSGiBeanProperties osgiBeanProperties,
-			String[] ignoredInterfaceNames) {
-
-			return _interfaceNames(
-				object, osgiBeanProperties, ignoredInterfaceNames,
-				Class::getName);
 		}
 
 		private static <T> Set<T> _interfaceNames(
