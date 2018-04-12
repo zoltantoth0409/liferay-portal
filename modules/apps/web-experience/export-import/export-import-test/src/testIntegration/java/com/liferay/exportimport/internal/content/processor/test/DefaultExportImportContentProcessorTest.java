@@ -144,10 +144,9 @@ public class DefaultExportImportContentProcessorTest {
 		_defaultLocale = LocaleUtil.getDefault();
 		_nonDefaultLocale = getNonDefaultLocale();
 
+		_externalGroup = GroupTestUtil.addGroup();
 		_liveGroup = GroupTestUtil.addGroup();
 		_stagingGroup = GroupTestUtil.addGroup();
-
-		_externalGroup = GroupTestUtil.addGroup();
 
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(
