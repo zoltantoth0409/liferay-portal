@@ -1457,7 +1457,6 @@ public class StagingImpl implements Staging {
 				"upload-request-reached-the-maximum-permitted-size-of-x-bytes",
 				String.valueOf(
 					UploadServletRequestConfigurationHelperUtil.getMaxSize()));
-
 			errorType = ServletResponseConstants.SC_FILE_SIZE_EXCEPTION;
 		}
 		else {
