@@ -79,7 +79,7 @@ public class WorkflowTaskModifiedDateComparator
 
 	@Override
 	public boolean isAscending(String field) {
-		if ("completed".equals(field)) {
+		if (field.equals("completed")) {
 			return true;
 		}
 
