@@ -57,11 +57,10 @@ public class MirrorsGetTask extends Task {
 			Project project = getProject();
 
 			_dest = new File(project.replaceProperties(destPath));
-
-			return;
 		}
-
-		_dest = dest;
+		else {
+			_dest = dest;
+		}
 	}
 
 	public void setForce(boolean force) {
