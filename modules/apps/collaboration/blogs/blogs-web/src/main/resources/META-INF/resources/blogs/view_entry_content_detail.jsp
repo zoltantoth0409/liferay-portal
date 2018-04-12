@@ -91,7 +91,10 @@ RatingsStats ratingsStats = (RatingsStats)request.getAttribute("view_entry_conte
 										<span class="hide-accessible"><liferay-ui:message key="published-date" /></span><liferay-ui:message arguments="<%= LanguageUtil.getTimeDescription(request, System.currentTimeMillis() - entry.getStatusDate().getTime(), true) %>" key="x-ago" translateArguments="<%= false %>" />
 
 										<c:if test="<%= blogsPortletInstanceConfiguration.enableViewCount() %>">
-											<% AssetEntry assetEntry = _getAssetEntry(request, entry); %>
+
+											<%
+											AssetEntry assetEntry = _getAssetEntry(request, entry);
+											%>
 
 											- <liferay-ui:message arguments="<%= assetEntry.getViewCount() %>" key='<%= assetEntry.getViewCount() == 1 ? "x-view" : "x-views" %>' />
 										</c:if>
@@ -229,7 +232,10 @@ RatingsStats ratingsStats = (RatingsStats)request.getAttribute("view_entry_conte
 				</liferay-asset:asset-tags-available>
 
 				<c:if test="<%= blogsPortletInstanceConfiguration.enableRelatedAssets() %>">
-					<% AssetEntry assetEntry = _getAssetEntry(request, entry); %>
+
+					<%
+					AssetEntry assetEntry = _getAssetEntry(request, entry);
+					%>
 
 					<div class="entry-links">
 						<liferay-asset:asset-links
