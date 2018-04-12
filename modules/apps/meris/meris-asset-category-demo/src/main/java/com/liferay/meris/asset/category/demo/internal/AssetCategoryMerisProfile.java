@@ -17,8 +17,6 @@ package com.liferay.meris.asset.category.demo.internal;
 import com.liferay.meris.MerisProfile;
 import com.liferay.portal.kernel.model.User;
 
-import java.util.Objects;
-
 /**
  * @author Eduardo Garcia
  */

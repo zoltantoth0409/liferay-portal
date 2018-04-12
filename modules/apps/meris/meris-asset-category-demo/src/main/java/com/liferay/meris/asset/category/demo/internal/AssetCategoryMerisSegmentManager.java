@@ -34,7 +34,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -110,7 +109,7 @@ public class AssetCategoryMerisSegmentManager
 		catch (PortalException pe) {
 			_log.error(
 				String.format(
-				"No asset vocabulary found with asset vocabulary ID %s"),
+					"No asset vocabulary found with asset vocabulary ID %s"),
 				pe);
 		}
 
