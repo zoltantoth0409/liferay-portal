@@ -630,9 +630,7 @@
 	<command name="gotoEditRelatedAssets">
 		<execute function="MouseOver" locator1="AP#BODY" />
 
-		<execute macro="LexiconEntry#gotoEllipsisMenuItem">
-			<var name="menuItem" value="Edit" />
-		</execute>
+		<execute macro="LexiconEntry#gotoEllipsisMenuEditAP" />
 	</command>
 
 	<command name="gotoEditWebContent">
