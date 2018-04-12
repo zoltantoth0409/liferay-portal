@@ -12,29 +12,21 @@
  * details.
  */
 
-package com.liferay.portal.upgrade;
+package com.liferay.portal.upgrade.v7_0_6;
 
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.portal.kernel.util.ReleaseInfo;
-import com.liferay.portal.upgrade.v7_0_6.UpgradeRepository;
-import com.liferay.portal.upgrade.v7_0_6.UpgradeThemeId;
+import com.liferay.portal.upgrade.v7_0_6.util.RepositoryTable;
 
 /**
- * @author Alberto Chaparro
+ * @author Alec Shay
  */
-public class UpgradeProcess_7_0_6 extends UpgradeProcess {
+public class UpgradeRepository extends UpgradeProcess {
 
 	@Override
-	public int getThreshold() {
-		return ReleaseInfo.RELEASE_7_0_6_BUILD_NUMBER;
-	}
-
-	@Override
-	protected void doUpgrade() throws Exception {
-		upgrade(UpgradeRepository.class);
-		upgrade(UpgradeThemeId.class);
-
-		clearIndexesCache();
+	public void doUpgrade() throws Exception {
+		alter(
+			RepositoryTable.class,
+			new AlterColumnType("name", "VARCHAR(200) null"));
 	}
 
 }
