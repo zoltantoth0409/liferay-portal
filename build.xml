@@ -940,7 +940,7 @@ message.
 		>
 			<mapper>
 				<globmapper
-					from="${nightly.bundle.parent.dir}/*"
+					from="liferay-portal-${git.working.branch.name}/*"
 					to="*"
 				/>
 			</mapper>
