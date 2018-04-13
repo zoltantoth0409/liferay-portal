@@ -947,6 +947,16 @@ message.
 		</unzip>
 
 		<if>
+			<os family="unix" />
+			<then>
+				<chmod
+					file="${app.server.tomcat.bin.dir}/*.sh"
+					perm="a+x"
+				/>
+			</then>
+		</if>
+
+		<if>
 			<available file="${liferay.home}/work" />
 			<then>
 				<touch>
@@ -954,16 +964,6 @@ message.
 						dir="${liferay.home}/work"
 					/>
 				</touch>
-			</then>
-		</if>
-
-		<if>
-			<os family="unix" />
-			<then>
-				<chmod
-					file="${app.server.tomcat.bin.dir}/*.sh"
-					perm="a+x"
-				/>
 			</then>
 		</if>
 	</target>
