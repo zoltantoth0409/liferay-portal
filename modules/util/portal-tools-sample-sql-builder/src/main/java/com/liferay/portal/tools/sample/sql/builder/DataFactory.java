@@ -135,6 +135,8 @@ import com.liferay.portal.kernel.model.SubscriptionConstants;
 import com.liferay.portal.kernel.model.SubscriptionModel;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.model.UserModel;
+import com.liferay.portal.kernel.model.UserNotificationDeliveryConstants;
+import com.liferay.portal.kernel.model.UserNotificationDeliveryModel;
 import com.liferay.portal.kernel.model.VirtualHostModel;
 import com.liferay.portal.kernel.portlet.PortletIdCodec;
 import com.liferay.portal.kernel.portlet.PortletPreferencesFactory;
@@ -172,6 +174,7 @@ import com.liferay.portal.model.impl.ResourcePermissionModelImpl;
 import com.liferay.portal.model.impl.RoleModelImpl;
 import com.liferay.portal.model.impl.SubscriptionModelImpl;
 import com.liferay.portal.model.impl.UserModelImpl;
+import com.liferay.portal.model.impl.UserNotificationDeliveryModelImpl;
 import com.liferay.portal.model.impl.VirtualHostModelImpl;
 import com.liferay.portal.util.PropsValues;
 import com.liferay.portlet.PortletPreferencesFactoryImpl;
@@ -2697,6 +2700,24 @@ public class DataFactory {
 		}
 
 		return userModels;
+	}
+
+	public UserNotificationDeliveryModel newUserNotificationDeliveryModel(
+		String portletId) {
+
+		UserNotificationDeliveryModel userNotificationDeliveryModel =
+			new UserNotificationDeliveryModelImpl();
+
+		userNotificationDeliveryModel.setUserNotificationDeliveryId(
+			_counter.get());
+		userNotificationDeliveryModel.setCompanyId(_companyId);
+		userNotificationDeliveryModel.setUserId(_sampleUserId);
+		userNotificationDeliveryModel.setPortletId(portletId);
+		userNotificationDeliveryModel.setDeliveryType(
+			UserNotificationDeliveryConstants.TYPE_WEBSITE);
+		userNotificationDeliveryModel.setDeliver(true);
+
+		return userNotificationDeliveryModel;
 	}
 
 	public List<WikiNodeModel> newWikiNodeModels(long groupId) {
