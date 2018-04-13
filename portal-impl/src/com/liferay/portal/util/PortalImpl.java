@@ -1160,7 +1160,7 @@ public class PortalImpl implements Portal {
 	public long[] getAncestorSiteGroupIds(long groupId) {
 		int i = 0;
 
-		Set<Group> groups = doGetAncestorSiteGroups(groupId, false);
+		Set<Group> groups = getAncestorSiteGroups(groupId, false);
 
 		long[] groupIds = new long[groups.size()];
 
@@ -1859,14 +1859,14 @@ public class PortalImpl implements Portal {
 
 		Set<Group> groups = new LinkedHashSet<>();
 
-		Group siteGroup = doGetCurrentSiteGroup(groupId);
+		Group siteGroup = getCurrentSiteGroup(groupId);
 
 		if (siteGroup != null) {
 			groups.add(siteGroup);
 		}
 
 		groups.addAll(
-			doGetAncestorSiteGroups(
+			getAncestorSiteGroups(
 				groupId, checkContentSharingWithChildrenEnabled));
 
 		return new ArrayList<>(groups);
@@ -4899,7 +4899,7 @@ public class PortalImpl implements Portal {
 
 		Set<Group> groups = new LinkedHashSet<>();
 
-		Group siteGroup = doGetCurrentSiteGroup(groupId);
+		Group siteGroup = getCurrentSiteGroup(groupId);
 
 		if (siteGroup != null) {
 
@@ -4937,7 +4937,7 @@ public class PortalImpl implements Portal {
 		if (sitesContentSharingWithChildrenEnabled !=
 				Sites.CONTENT_SHARING_WITH_CHILDREN_DISABLED) {
 
-			groups.addAll(doGetAncestorSiteGroups(groupId, true));
+			groups.addAll(getAncestorSiteGroups(groupId, true));
 		}
 
 		Iterator<Group> iterator = groups.iterator();
@@ -7472,7 +7472,7 @@ public class PortalImpl implements Portal {
 		return _buildI18NPath(languageId, locale);
 	}
 
-	protected Set<Group> doGetAncestorSiteGroups(
+	protected Set<Group> getAncestorSiteGroups(
 		long groupId, boolean checkContentSharingWithChildrenEnabled) {
 
 		Group siteGroup = _getSiteGroup(groupId);
@@ -7531,7 +7531,7 @@ public class PortalImpl implements Portal {
 		return groups;
 	}
 
-	protected Group doGetCurrentSiteGroup(long groupId) throws PortalException {
+	protected Group getCurrentSiteGroup(long groupId) throws PortalException {
 		Group siteGroup = _getSiteGroup(groupId);
 
 		if (!siteGroup.isLayoutPrototype()) {
@@ -7541,7 +7541,7 @@ public class PortalImpl implements Portal {
 		return null;
 	}
 
-	protected long doGetPlidFromPortletId(
+	protected long getPlidFromPortletId(
 		List<Layout> layouts, String portletId, long scopeGroupId) {
 
 		for (Layout layout : layouts) {
@@ -7579,7 +7579,7 @@ public class PortalImpl implements Portal {
 		List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
 			groupId, privateLayout, LayoutConstants.TYPE_PORTLET);
 
-		long plid = doGetPlidFromPortletId(layouts, portletId, scopeGroupId);
+		long plid = getPlidFromPortletId(layouts, portletId, scopeGroupId);
 
 		if (plid != LayoutConstants.DEFAULT_PLID) {
 			return plid;
@@ -7588,7 +7588,7 @@ public class PortalImpl implements Portal {
 		layouts = LayoutLocalServiceUtil.getLayouts(
 			groupId, privateLayout, LayoutConstants.TYPE_FULL_PAGE_APPLICATION);
 
-		plid = doGetPlidFromPortletId(layouts, portletId, scopeGroupId);
+		plid = getPlidFromPortletId(layouts, portletId, scopeGroupId);
 
 		if (plid != LayoutConstants.DEFAULT_PLID) {
 			return plid;
@@ -7597,7 +7597,7 @@ public class PortalImpl implements Portal {
 		layouts = LayoutLocalServiceUtil.getLayouts(
 			groupId, privateLayout, LayoutConstants.TYPE_PANEL);
 
-		return doGetPlidFromPortletId(layouts, portletId, scopeGroupId);
+		return getPlidFromPortletId(layouts, portletId, scopeGroupId);
 	}
 
 	protected List<Portlet> filterControlPanelPortlets(
