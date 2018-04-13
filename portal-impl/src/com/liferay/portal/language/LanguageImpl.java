@@ -1524,6 +1524,10 @@ public class LanguageImpl implements Language, Serializable {
 
 	@Override
 	public boolean isSameLanguage(Locale locale1, Locale locale2) {
+		if ((locale1 == null) || (locale2 == null)) {
+			return false;
+		}
+
 		String language1 = locale1.getLanguage();
 		String language2 = locale2.getLanguage();
 
