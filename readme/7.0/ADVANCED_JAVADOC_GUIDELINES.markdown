@@ -346,7 +346,6 @@ description sentence will appear in the *method summary* table. But the
 sentences that follow the initial method description will show in the method
 details.
 
-
 ## Method Javadoc Tags
 
 ### @param tags
