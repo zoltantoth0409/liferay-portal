@@ -898,11 +898,11 @@ public class ServiceBuilder {
 
 						if (entity.isUADEnabled()) {
 							_createUADAggregator(entity);
-							_createUADAnonymizer(entity);
-							_createUADExporter(entity);
-							_createUADEntityTestHelper(entity);
 							_createUADAggregatorTest(entity);
+							_createUADAnonymizer(entity);
 							_createUADAnonymizerTest(entity);
+							_createUADEntityTestHelper(entity);
+							_createUADExporter(entity);
 
 							if (ListUtil.isEmpty(
 									entity.
@@ -920,15 +920,15 @@ public class ServiceBuilder {
 						}
 						else {
 							//_removeUADAggregator(entity);
+							//_removeUADAggregatorTest(entity);
 							//_removeUADAnonymizer(entity);
-							//_removeUADExporter(entity);
+							//_removeUADAnonymizerTest(entity);
 							//_removeUADEntityDisplay(entity);
 							//_removeUADEntityDisplayHelper(entity);
-							//_removeUADEntityTestHelper(entity);
-							//_removeUADAggregatorTest(entity);
-							//_removeUADAnonymizerTest(entity);
 							//_removeUADEntityDisplayTest(entity);
-						}
+							//_removeUADEntityTestHelper(entity);
+							//_removeUADExporter(entity);
+					}
 					}
 					else {
 						if (entity.hasEntityColumns()) {
