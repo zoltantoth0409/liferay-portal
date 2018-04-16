@@ -95,7 +95,7 @@ public class CreationMenu extends HashMap {
 	}
 
 	private List<DropdownItem> _buildSecondaryDropdownItems() {
-		DropdownItemList secondaryDropdownItemList = new DropdownItemList(
+		List<DropdownItem> secondaryDropdownItemList = new DropdownItemList(
 			_request);
 
 		if (!_favoriteDropdownItems.isEmpty()) {
