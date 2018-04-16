@@ -99,6 +99,9 @@ public class FreeMarkerPortlet extends MVCPortlet {
 					"userInfo",
 					portletRequest.getAttribute(PortletRequest.USER_INFO));
 
+				template.prepare(
+					PortalUtil.getHttpServletRequest(portletRequest));
+
 				Writer writer = null;
 
 				if (portletResponse instanceof MimeResponse) {
@@ -110,9 +113,6 @@ public class FreeMarkerPortlet extends MVCPortlet {
 				else {
 					writer = new UnsyncStringWriter();
 				}
-
-				template.prepare(
-					PortalUtil.getHttpServletRequest(portletRequest));
 
 				template.processTemplate(writer);
 			}
