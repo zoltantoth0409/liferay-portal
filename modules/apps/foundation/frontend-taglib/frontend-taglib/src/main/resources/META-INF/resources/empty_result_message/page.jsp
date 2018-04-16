@@ -50,8 +50,8 @@
 
 						<clay:link
 							buttonStyle="secondary"
-							href='<%= dropdownItem.get("href") %>'
-							label='<%= dropdownItem.get("label") %>'
+							href='<%= String.valueOf(dropdownItem.get("href")) %>'
+							label='<%= String.valueOf(dropdownItem.get("label")) %>'
 						/>
 					</c:otherwise>
 				</c:choose>
