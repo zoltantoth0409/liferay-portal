@@ -22,6 +22,7 @@
 		<span class="custom-control-label">
 			<span class="custom-control-label-text">
 				<%= HtmlUtil.escape(label) %><%= separator %>
+
 				<liferay-staging:popover
 					id="<%= popoverName %>"
 					text="<%= popoverText %>"
