@@ -188,6 +188,28 @@
 		}
 	}
 
+	.portlet-configuration-edit-permissions {
+		.portlet-configuration-body-content {
+			overflow: visible;
+
+			> form {
+				height: calc(100% - #{$management-bar-height});
+				max-width: none;
+				overflow: auto;
+
+				@include sm {
+					height: calc(100% - #{$management-bar-desktop-height});
+				}
+			}
+
+			.table-responsive {
+				float: left;
+				overflow: visible;
+				width: auto;
+			}
+		}
+	}
+
 	.lfr-dynamic-uploader.hide-dialog-footer {
 		bottom: 0;
 
