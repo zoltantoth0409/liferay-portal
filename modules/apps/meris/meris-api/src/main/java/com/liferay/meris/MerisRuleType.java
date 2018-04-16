@@ -22,9 +22,9 @@ import java.util.Map;
  */
 public interface MerisRuleType {
 
-	public String getDescription(Locale locale);
-
 	public Map<String, Object> getDefaultMerisRuleTypeSettings();
+
+	public String getDescription(Locale locale);
 
 	public String getMerisRuleTypeId();
 

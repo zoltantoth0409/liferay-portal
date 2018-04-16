@@ -43,18 +43,18 @@ public class AssetCategoryMerisRuleType
 	}
 
 	@Override
-	public String getDescription(Locale locale) {
-		return ResourceActionsUtil.getModelResource(
-			locale, getMerisRuleTypeId() + ".description");
-	}
-
-	@Override
 	public Map<String, Object> getDefaultMerisRuleTypeSettings() {
 		Map<String, Object> merisRuleTypeDefaultSetting = new HashMap<>();
 
 		merisRuleTypeDefaultSetting.put("assetCategoryId", 0);
 
 		return Collections.unmodifiableMap(merisRuleTypeDefaultSetting);
+	}
+
+	@Override
+	public String getDescription(Locale locale) {
+		return ResourceActionsUtil.getModelResource(
+			locale, getMerisRuleTypeId() + ".description");
 	}
 
 	@Override
@@ -70,7 +70,8 @@ public class AssetCategoryMerisRuleType
 
 	@Override
 	public boolean matches(
-		Map<String, Object> context, Map<String, Object> merisRuleTypeSettings) {
+		Map<String, Object> context,
+		Map<String, Object> merisRuleTypeSettings) {
 
 		long[] assetCategoryIds = GetterUtil.getLongValues(
 			context.get("assetCategoryIds"));
