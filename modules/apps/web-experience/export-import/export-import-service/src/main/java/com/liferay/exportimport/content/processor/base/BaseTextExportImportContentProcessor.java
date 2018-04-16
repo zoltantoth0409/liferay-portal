@@ -775,7 +775,7 @@ public class BaseTextExportImportContentProcessor
 						urlSB.append(remoteGroupUuid);
 					}
 				}
-				else if (group.getGroupId() == urlGroup.getGroupId()) {
+				else if (!urlGroup.isControlPanel()) {
 					urlSB.append(urlGroup.getFriendlyURL());
 				}
 				else {
@@ -1145,9 +1145,13 @@ public class BaseTextExportImportContentProcessor
 				GroupLocalServiceUtil.fetchGroupByUuidAndCompanyId(
 					groupUuid, portletDataContext.getCompanyId());
 
-			if ((groupFriendlyUrlGroup == null) ||
-				groupUuid.startsWith(StringPool.SLASH)) {
+			if (groupFriendlyUrlGroup == null) {
+				groupFriendlyUrlGroup =
+					GroupLocalServiceUtil.fetchFriendlyURLGroup(
+						portletDataContext.getCompanyId(), groupUuid);
+			}
 
+			if (groupFriendlyUrlGroup == null) {
 				content = StringUtil.replaceFirst(
 					content, DATA_HANDLER_GROUP_FRIENDLY_URL,
 					group.getFriendlyURL(), groupFriendlyUrlPos);
