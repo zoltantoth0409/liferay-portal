@@ -14,6 +14,7 @@
 
 package com.liferay.site.navigation.admin.web.internal.display.context;
 
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItem;
 import com.liferay.petra.string.StringPool;
@@ -81,7 +82,7 @@ public class SiteNavigationAdminDisplayContext {
 					SITE_NAVIGATION_MENU_ITEM_TYPE_REGISTRY);
 	}
 
-	public DropdownItemList getAddSiteNavigationMenuItemDropdownItemList() {
+	public List<DropdownItem> getAddSiteNavigationMenuItemDropdownItems() {
 		ThemeDisplay themeDisplay = (ThemeDisplay)_request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
