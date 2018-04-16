@@ -14,10 +14,12 @@
 
 package com.liferay.frontend.taglib.servlet.taglib;
 
-import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.frontend.taglib.internal.servlet.ServletContextUtil;
 import com.liferay.frontend.taglib.servlet.taglib.util.EmptyResultMessageKeys;
 import com.liferay.taglib.util.IncludeTag;
+
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.PageContext;
@@ -27,7 +29,7 @@ import javax.servlet.jsp.PageContext;
  */
 public class EmptyResultMessageTag extends IncludeTag {
 
-	public void setActions(DropdownItemList actions) {
+	public void setActions(List<DropdownItem> actions) {
 		_actions = actions;
 	}
 
@@ -82,7 +84,7 @@ public class EmptyResultMessageTag extends IncludeTag {
 
 	private static final String _PAGE = "/empty_result_message/page.jsp";
 
-	private DropdownItemList _actions;
+	private List<DropdownItem> _actions;
 	private EmptyResultMessageKeys.AnimationType _animationType =
 		EmptyResultMessageKeys.AnimationType.EMPTY;
 	private String _description;
