@@ -24,13 +24,13 @@ public interface MerisRuleType {
 
 	public String getDescription(Locale locale);
 
-	public Map<String, Object> getMerisRuleTypeDefaultSettings();
+	public Map<String, Object> getDefaultMerisRuleTypeSettings();
 
 	public String getMerisRuleTypeId();
 
 	public String getName(Locale locale);
 
 	public boolean matches(
-		Map<String, Object> context, Map<String, Object> merisRuleSettings);
+		Map<String, Object> context, Map<String, Object> merisRuleTypeSettings);
 
 }

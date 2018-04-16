@@ -49,7 +49,7 @@ public class AssetCategoryMerisRuleType
 	}
 
 	@Override
-	public Map<String, Object> getMerisRuleTypeDefaultSettings() {
+	public Map<String, Object> getDefaultMerisRuleTypeSettings() {
 		Map<String, Object> merisRuleTypeDefaultSetting = new HashMap<>();
 
 		merisRuleTypeDefaultSetting.put("assetCategoryId", 0);
@@ -70,7 +70,7 @@ public class AssetCategoryMerisRuleType
 
 	@Override
 	public boolean matches(
-		Map<String, Object> context, Map<String, Object> merisRuleSettings) {
+		Map<String, Object> context, Map<String, Object> merisRuleTypeSettings) {
 
 		long[] assetCategoryIds = GetterUtil.getLongValues(
 			context.get("assetCategoryIds"));
@@ -80,7 +80,7 @@ public class AssetCategoryMerisRuleType
 		}
 
 		long assetCategoryId = MapUtil.getLong(
-			merisRuleSettings, "assetCategoryId");
+			merisRuleTypeSettings, "assetCategoryId");
 
 		if (ArrayUtil.contains(assetCategoryIds, assetCategoryId)) {
 			return true;
