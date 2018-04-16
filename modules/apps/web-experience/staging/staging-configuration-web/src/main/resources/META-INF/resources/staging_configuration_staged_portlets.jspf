@@ -59,6 +59,7 @@
 	<aui:fieldset markupView="lexicon">
 		<div class="staging-configuration-section-title-holder">
 			<span class="staging-configuration-section-title"><%= LanguageUtil.get(request, "staged-content") %></span>
+
 			<liferay-staging:popover
 				id="stagedportlets"
 				text="staged-portlets-help"
