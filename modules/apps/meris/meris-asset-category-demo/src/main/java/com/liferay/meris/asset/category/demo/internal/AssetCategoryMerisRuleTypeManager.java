@@ -65,7 +65,7 @@ public class AssetCategoryMerisRuleTypeManager implements MerisRuleTypeManager {
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				String.format(
-					"Adding meris rule type with ID %s",
+					"Adding meris rule type %s",
 					merisRuleType.getMerisRuleTypeId()));
 		}
 
@@ -76,7 +76,7 @@ public class AssetCategoryMerisRuleTypeManager implements MerisRuleTypeManager {
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				String.format(
-					"Removing meris rule type with ID %s",
+					"Removing meris rule type %s",
 					merisRuleType.getMerisRuleTypeId()));
 		}
 
