@@ -30,12 +30,12 @@
 			</p>
 		</c:if>
 
-		<c:if test="<%= Validator.isNotNull(actions) %>">
-			<div class="taglib-empty-result-message-actions">
+		<c:if test="<%= Validator.isNotNull(actionDropdownItems) %>">
+			<div class="taglib-empty-result-message-actionDropdownItems">
 				<c:choose>
-					<c:when test="<%= actions.size() > 1 %>">
+					<c:when test="<%= actionDropdownItems.size() > 1 %>">
 						<clay:dropdown-menu
-							items="<%= actions %>"
+							items="<%= actionDropdownItems %>"
 							itemsIconAlignment="top"
 							label='<%= LanguageUtil.get(request, "new") %>'
 							style="secondary"
@@ -45,13 +45,13 @@
 					<c:otherwise>
 
 						<%
-						DropdownItem dropdownItem = actions.get(0);
+						DropdownItem actionDropdownItem = actionDropdownItems.get(0);
 						%>
 
 						<clay:link
 							buttonStyle="secondary"
-							href='<%= String.valueOf(dropdownItem.get("href")) %>'
-							label='<%= String.valueOf(dropdownItem.get("label")) %>'
+							href='<%= String.valueOf(actionDropdownItem.get("href")) %>'
+							label='<%= String.valueOf(actionDropdownItem.get("label")) %>'
 						/>
 					</c:otherwise>
 				</c:choose>

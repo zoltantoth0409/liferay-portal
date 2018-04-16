@@ -29,8 +29,8 @@ import javax.servlet.jsp.PageContext;
  */
 public class EmptyResultMessageTag extends IncludeTag {
 
-	public void setActions(List<DropdownItem> actions) {
-		_actions = actions;
+	public void setActionDropdownItems(List<DropdownItem> actionDropdownItems) {
+		_actionDropdownItems = actionDropdownItems;
 	}
 
 	public void setAnimationType(
@@ -58,7 +58,7 @@ public class EmptyResultMessageTag extends IncludeTag {
 	protected void cleanUp() {
 		super.cleanUp();
 
-		_actions = null;
+		_actionDropdownItems = null;
 		_animationType = EmptyResultMessageKeys.AnimationType.EMPTY;
 		_elementType = "element";
 		_description = null;
@@ -72,7 +72,8 @@ public class EmptyResultMessageTag extends IncludeTag {
 	@Override
 	protected void setAttributes(HttpServletRequest request) {
 		request.setAttribute(
-			"liferay-frontend:empty-result-message:actions", _actions);
+			"liferay-frontend:empty-result-message:actionDropdownItems",
+			_actionDropdownItems);
 		request.setAttribute(
 			"liferay-frontend:empty-result-message:animationTypeCssClass",
 			EmptyResultMessageKeys.getAnimationTypeCssClass(_animationType));
@@ -84,7 +85,7 @@ public class EmptyResultMessageTag extends IncludeTag {
 
 	private static final String _PAGE = "/empty_result_message/page.jsp";
 
-	private List<DropdownItem> _actions;
+	private List<DropdownItem> _actionDropdownItems;
 	private EmptyResultMessageKeys.AnimationType _animationType =
 		EmptyResultMessageKeys.AnimationType.EMPTY;
 	private String _description;

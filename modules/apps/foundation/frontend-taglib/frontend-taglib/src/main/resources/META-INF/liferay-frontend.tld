@@ -394,7 +394,7 @@
 		<tag-class>com.liferay.frontend.taglib.servlet.taglib.EmptyResultMessageTag</tag-class>
 		<body-content>JSP</body-content>
 		<attribute>
-			<name>actions</name>
+			<name>actionDropdownItems</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>

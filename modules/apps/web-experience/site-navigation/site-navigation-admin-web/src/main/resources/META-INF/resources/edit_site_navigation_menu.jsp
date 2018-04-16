@@ -97,7 +97,7 @@ renderResponse.setTitle(siteNavigationAdminDisplayContext.getSiteNavigationMenuN
 			</c:when>
 			<c:otherwise>
 				<liferay-frontend:empty-result-message
-					actions="<%= siteNavigationAdminDisplayContext.getAddSiteNavigationMenuItemDropdownItemList() %>"
+					actionDropdownItems="<%= siteNavigationAdminDisplayContext.getAddSiteNavigationMenuItemDropdownItemList() %>"
 					description='<%= LanguageUtil.get(request, "fortunately-it-is-very-easy-to-add-new-ones") %>'
 				/>
 			</c:otherwise>
