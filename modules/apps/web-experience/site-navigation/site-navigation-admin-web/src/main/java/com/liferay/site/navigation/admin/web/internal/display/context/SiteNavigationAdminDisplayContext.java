@@ -424,6 +424,10 @@ public class SiteNavigationAdminDisplayContext {
 
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
+		PortletURL addURL = _liferayPortletResponse.createRenderURL();
+
+		addURL.setParameter("mvcPath", "/add_site_navigation_menu_item.jsp");
+
 		PortletURL addSiteNavigationMenuItemRedirectURL =
 			_liferayPortletResponse.createRenderURL();
 
@@ -432,11 +436,9 @@ public class SiteNavigationAdminDisplayContext {
 		addSiteNavigationMenuItemRedirectURL.setParameter(
 			"portletResource", portletDisplay.getId());
 
-		PortletURL addURL = _liferayPortletResponse.createRenderURL();
-
-		addURL.setParameter("mvcPath", "/add_site_navigation_menu_item.jsp");
 		addURL.setParameter(
 			"redirect", addSiteNavigationMenuItemRedirectURL.toString());
+
 		addURL.setParameter(
 			"siteNavigationMenuId", String.valueOf(getSiteNavigationMenuId()));
 		addURL.setParameter("type", siteNavigationMenuItemType.getType());
