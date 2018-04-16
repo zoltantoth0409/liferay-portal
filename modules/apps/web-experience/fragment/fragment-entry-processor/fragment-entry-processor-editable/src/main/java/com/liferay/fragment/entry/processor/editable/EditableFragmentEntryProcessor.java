@@ -108,8 +108,8 @@ public class EditableFragmentEntryProcessor implements FragmentEntryProcessor {
 
 	@Override
 	public void validateFragmentEntryHTML(String html) throws PortalException {
-		_validateDuplicatedIds(html);
 		_validateAttributes(html);
+		_validateDuplicatedIds(html);
 	}
 
 	private Document _getDocument(String html) {
