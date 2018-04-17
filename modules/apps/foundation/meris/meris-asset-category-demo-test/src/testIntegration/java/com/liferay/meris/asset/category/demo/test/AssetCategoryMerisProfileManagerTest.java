@@ -65,12 +65,11 @@ public class AssetCategoryMerisProfileManagerTest {
 
 	@Test
 	public void testGetMerisProfiles() {
-		Comparator<MerisProfile> merisProfileIdComparator =
-			Comparator.comparing(p -> p.getMerisProfileId());
+		Comparator<MerisProfile> comparator = Comparator.comparing(
+			p -> p.getMerisProfileId());
 
 		List<MerisProfile> merisProfiles =
-			_merisProfileManager.getMerisProfiles(
-				0, 1, merisProfileIdComparator);
+			_merisProfileManager.getMerisProfiles(0, 1, comparator);
 
 		Assert.assertFalse(
 			"No meris profiles were found", merisProfiles.isEmpty());
