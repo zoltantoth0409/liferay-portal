@@ -55,7 +55,7 @@ public abstract class RepositoryJob extends BaseJob {
 		catch (IOException ioe) {
 			throw new RuntimeException(
 				JenkinsResultsParserUtil.combine(
-					"Unable to create git working directory for branch ",
+					"Unable to create Git working directory for branch ",
 					getBranchName(), " in repository ",
 					repositoryDir.getAbsolutePath()),
 				ioe);
