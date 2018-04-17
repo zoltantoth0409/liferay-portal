@@ -1,5 +1,4 @@
 <definition component-name="portal-search">
-	<property name="portal.acceptance" value="solr" />
 	<property name="portal.release" value="true" />
 	<property name="portal.suite.search.engine" value="solr" />
 	<property name="portal.upstream" value="true" />
