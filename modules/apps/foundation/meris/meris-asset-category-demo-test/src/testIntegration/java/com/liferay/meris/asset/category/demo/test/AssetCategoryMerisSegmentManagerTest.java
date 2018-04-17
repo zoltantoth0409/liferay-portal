@@ -74,7 +74,7 @@ public class AssetCategoryMerisSegmentManagerTest {
 		AssetVocabulary assetVocabulary =
 			AssetVocabularyLocalServiceUtil.addVocabulary(
 				TestPropsValues.getUserId(), serviceContext.getScopeGroupId(),
-				_ASSET_VOCABULARY_NAME, serviceContext);
+				"Segments", serviceContext);
 
 		AssetCategory assetCategory = AssetCategoryLocalServiceUtil.addCategory(
 			TestPropsValues.getUserId(), serviceContext.getScopeGroupId(),
@@ -149,8 +149,6 @@ public class AssetCategoryMerisSegmentManagerTest {
 			_merisSegmentManager.matches(
 				_merisProfileId, _merisSegmentId, new HashMap<>()));
 	}
-
-	private static final String _ASSET_VOCABULARY_NAME = "Segments";
 
 	@Inject
 	private static MerisSegmentManager _merisSegmentManager;

@@ -45,7 +45,7 @@ public class AssetCategoryMerisProfileManager
 
 		if (user != null) {
 			long[] assetCategoryIds = _assetCategoryLocalService.getCategoryIds(
-				user.getModelClassName(), user.getUserId());
+				user.getModelClassName(), userId);
 
 			return new AssetCategoryMerisProfile(user, assetCategoryIds);
 		}
