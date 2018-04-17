@@ -137,7 +137,7 @@ public class SoyTemplateRecord extends SoyAbstractValue implements SoyRecord {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(_map, _computedValues);
+		return Objects.hash(_computedValues, _map);
 	}
 
 	public Set<String> keys() {
