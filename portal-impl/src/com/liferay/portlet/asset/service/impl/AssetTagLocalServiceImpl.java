@@ -824,7 +824,8 @@ public class AssetTagLocalServiceImpl extends AssetTagLocalServiceBaseImpl {
 
 	protected void validate(String name) throws PortalException {
 		if (Validator.isNull(name)) {
-			throw new AssetTagNameException("Tag name cannot be empty string");
+			throw new AssetTagNameException(
+				"Tag name cannot be an empty string");
 		}
 
 		if (!AssetUtil.isValidWord(name)) {
