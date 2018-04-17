@@ -380,6 +380,8 @@ public class AlloyControllerInvokerManager {
 
 		Class<?> enclosingClass = controllerClass.getEnclosingClass();
 
+		String controllerClassName = controllerClass.getName();
+
 		if (enclosingClass != null) {
 			prefix = enclosingClass.getName();
 
@@ -398,8 +400,18 @@ public class AlloyControllerInvokerManager {
 
 			simpleName = simpleName.concat(_BASE_CLASS_NAME);
 		}
+		else if (StringUtil.endsWith(controllerClassName, "Controller")) {
+			Package pkg = controllerClass.getPackage();
+
+			prefix = pkg.getName();
+
+			simpleName = controllerClass.getSimpleName();
+
+			simpleName = simpleName.substring(
+				0, simpleName.indexOf("Controller")) + _BASE_CLASS_NAME;
+		}
 		else {
-			prefix = controllerClass.getName();
+			prefix = controllerClassName;
 
 			simpleName = _BASE_CLASS_NAME + _counter.getAndIncrement();
 		}
