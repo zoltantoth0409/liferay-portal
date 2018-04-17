@@ -54,7 +54,7 @@ renderResponse.setTitle(assetTagsDisplayContext.getAssetTitle());
 			</c:if>
 		</liferay-ui:error>
 
-		<liferay-ui:error exception="<%= AssetTagNameException.class %>" message="tag-name-cannot-be-empty-string" />
+		<liferay-ui:error exception="<%= AssetTagNameException.class %>" message="tag-name-cannot-be-an-empty-string" />
 
 		<liferay-ui:error exception="<%= DuplicateTagException.class %>" message="a-tag-with-that-name-already-exists" />
 
