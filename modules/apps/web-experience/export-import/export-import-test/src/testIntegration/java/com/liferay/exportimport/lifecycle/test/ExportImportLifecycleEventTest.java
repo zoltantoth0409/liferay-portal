@@ -268,7 +268,7 @@ public class ExportImportLifecycleEventTest {
 	public void testFailedPortletLocalPublishing() throws Exception {
 		User user = TestPropsValues.getUser();
 
-		try (CaptureAppender captureAppender1 =
+		try (CaptureAppender captureAppender =
 				Log4JLoggerTestUtil.configureLog4JLogger(
 					"com.liferay.portal.background.task.internal.messaging." +
 						"BackgroundTaskMessageListener",
@@ -279,7 +279,7 @@ public class ExportImportLifecycleEventTest {
 				0, 0, StringPool.BLANK, _parameterMap);
 
 			List<LoggingEvent> loggingEvents =
-				captureAppender1.getLoggingEvents();
+				captureAppender.getLoggingEvents();
 
 			LoggingEvent loggingEvent = loggingEvents.get(0);
 
