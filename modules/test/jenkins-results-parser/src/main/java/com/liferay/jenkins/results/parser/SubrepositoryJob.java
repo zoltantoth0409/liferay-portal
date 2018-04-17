@@ -69,7 +69,7 @@ public abstract class SubrepositoryJob extends RepositoryJob {
 		}
 		catch (IOException ioe) {
 			throw new RuntimeException(
-				"Unable to create GitWorkingDirectory " +
+				"Unable to create Git working directory " +
 					repositoryDir.getPath(),
 				ioe);
 		}
