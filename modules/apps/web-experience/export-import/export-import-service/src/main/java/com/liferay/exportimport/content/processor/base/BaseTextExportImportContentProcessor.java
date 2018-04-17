@@ -696,12 +696,12 @@ public class BaseTextExportImportContentProcessor
 
 					privateLayout = layoutSet.isPrivateLayout();
 
-					LayoutFriendlyURL layoutFriendlyUrl =
+					LayoutFriendlyURL layoutFriendlyURL =
 						LayoutFriendlyURLLocalServiceUtil.
 							fetchFirstLayoutFriendlyURL(
 								group.getGroupId(), privateLayout, url);
 
-					if (layoutFriendlyUrl == null) {
+					if (layoutFriendlyURL == null) {
 						continue;
 					}
 
