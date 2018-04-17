@@ -396,6 +396,14 @@ if (portletTitleBasedNavigation && (folderId != DLFolderConstants.DEFAULT_PARENT
 								</liferay-ui:search-container-column-text>
 							</c:if>
 
+							<c:if test='<%= ArrayUtil.contains(entryColumns, "description") %>'>
+								<liferay-ui:search-container-column-text
+									cssClass="table-cell-content"
+									name="description"
+									value="<%= StringUtil.shorten(HtmlUtil.stripHtml(fileEntry.getDescription()), 200) %>"
+								/>
+							</c:if>
+
 							<c:if test='<%= ArrayUtil.contains(entryColumns, "size") %>'>
 								<liferay-ui:search-container-column-text
 									name="size"
@@ -532,6 +540,14 @@ if (portletTitleBasedNavigation && (folderId != DLFolderConstants.DEFAULT_PARENT
 									href="<%= rowURL %>"
 									name="title"
 									value="<%= curFolder.getName() %>"
+								/>
+							</c:if>
+
+							<c:if test='<%= ArrayUtil.contains(entryColumns, "description") %>'>
+								<liferay-ui:search-container-column-text
+									cssClass="table-cell-content"
+									name="description"
+									value="<%= StringUtil.shorten(HtmlUtil.stripHtml(curFolder.getDescription()), 200) %>"
 								/>
 							</c:if>
 
