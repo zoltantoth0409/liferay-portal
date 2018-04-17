@@ -63,17 +63,17 @@ public class ManagementToolbarTag extends BaseClayTag {
 
 		setSelectable(selectable);
 
-		boolean showFiltersDoneButton = GetterUtil.getBoolean(
-			context.get("showFiltersDoneButton"));
-
-		setShowFiltersDoneButton(showFiltersDoneButton);
-
 		CreationMenu creationMenu = (CreationMenu)context.get("creationMenu");
 
 		boolean showCreationMenu = GetterUtil.getBoolean(
 			context.get("showCreationMenu"), Validator.isNotNull(creationMenu));
 
 		setShowCreationMenu(showCreationMenu);
+
+		boolean showFiltersDoneButton = GetterUtil.getBoolean(
+			context.get("showFiltersDoneButton"));
+
+		setShowFiltersDoneButton(showFiltersDoneButton);
 
 		String infoPanelId = (String)context.get("infoPanelId");
 
