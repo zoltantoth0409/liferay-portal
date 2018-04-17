@@ -80,7 +80,7 @@ public abstract class PortalRepositoryJob extends RepositoryJob {
 		}
 		catch (IOException ioe) {
 			throw new RuntimeException(
-				"Unable to create PortalGitWorkingDirectory " +
+				"Unable to create portal Git working directory " +
 					repositoryDir.getPath(),
 				ioe);
 		}
