@@ -43,7 +43,7 @@ public class MBThreadUADEntityTestHelper {
 				TestPropsValues.getGroupId());
 
 		MBCategory mbCategory = _mbCategoryLocalService.addCategory(
-			userId, 0L, RandomTestUtil.randomString(),
+			userId, 0, RandomTestUtil.randomString(),
 			RandomTestUtil.randomString(), serviceContext);
 
 		MBMessage mbMessage = _mbMessageLocalService.addMessage(

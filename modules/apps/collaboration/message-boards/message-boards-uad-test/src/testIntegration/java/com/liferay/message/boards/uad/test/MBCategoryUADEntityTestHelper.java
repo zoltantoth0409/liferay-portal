@@ -39,7 +39,7 @@ public class MBCategoryUADEntityTestHelper {
 				TestPropsValues.getGroupId());
 
 		return _mbCategoryLocalService.addCategory(
-			userId, 0L, RandomTestUtil.randomString(),
+			userId, 0, RandomTestUtil.randomString(),
 			RandomTestUtil.randomString(), serviceContext);
 	}
 
