@@ -36,7 +36,6 @@ page import="com.liferay.exportimport.kernel.lar.PortletDataHandlerKeys" %><%@
 page import="com.liferay.exportimport.kernel.staging.LayoutStagingUtil" %><%@
 page import="com.liferay.exportimport.kernel.staging.StagingUtil" %><%@
 page import="com.liferay.frontend.taglib.clay.servlet.taglib.util.JSPNavigationItemList" %><%@
-page import="com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItem" %><%@
 page import="com.liferay.layout.admin.web.internal.display.context.DisplayPageDisplayContext" %><%@
 page import="com.liferay.layout.admin.web.internal.display.context.FragmentsEditorContext" %><%@
 page import="com.liferay.layout.admin.web.internal.display.context.LayoutPageTemplateDisplayContext" %><%@
