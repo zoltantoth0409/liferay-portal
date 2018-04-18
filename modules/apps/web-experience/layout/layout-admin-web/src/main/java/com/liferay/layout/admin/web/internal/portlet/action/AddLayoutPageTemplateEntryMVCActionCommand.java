@@ -105,6 +105,11 @@ public class AddLayoutPageTemplateEntryMVCActionCommand
 
 		portletURL.setParameter(
 			"mvcPath", "/edit_layout_page_template_entry.jsp");
+
+		String redirect = ParamUtil.getString(actionRequest, "redirect");
+
+		portletURL.setParameter("redirect", redirect);
+
 		portletURL.setParameter(
 			"layoutPageTemplateCollectionId",
 			String.valueOf(
@@ -113,10 +118,6 @@ public class AddLayoutPageTemplateEntryMVCActionCommand
 			"layoutPageTemplateEntryId",
 			String.valueOf(
 				layoutPageTemplateEntry.getLayoutPageTemplateEntryId()));
-
-		String redirect = ParamUtil.getString(actionRequest, "redirect");
-
-		portletURL.setParameter("redirect", redirect);
 
 		return portletURL.toString();
 	}
