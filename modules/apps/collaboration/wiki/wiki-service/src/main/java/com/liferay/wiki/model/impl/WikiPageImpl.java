@@ -104,18 +104,8 @@ public class WikiPageImpl extends WikiPageBaseImpl {
 	public List<FileEntry> getAttachmentsFileEntries(int start, int end)
 		throws PortalException {
 
-		List<FileEntry> fileEntries = new ArrayList<>();
-
-		long attachmentsFolderId = getAttachmentsFolderId();
-
-		if (attachmentsFolderId != DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
-			fileEntries = PortletFileRepositoryUtil.getPortletFileEntries(
-				getGroupId(), attachmentsFolderId,
-				WorkflowConstants.STATUS_APPROVED, start, end,
-				new RepositoryModelTitleComparator<>());
-		}
-
-		return fileEntries;
+		return getAttachmentsFileEntries(
+			start, end, new RepositoryModelTitleComparator());
 	}
 
 	@Override
@@ -123,17 +113,16 @@ public class WikiPageImpl extends WikiPageBaseImpl {
 			int start, int end, OrderByComparator obc)
 		throws PortalException {
 
-		List<FileEntry> fileEntries = new ArrayList<>();
-
 		long attachmentsFolderId = getAttachmentsFolderId();
 
-		if (attachmentsFolderId != DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
-			fileEntries = PortletFileRepositoryUtil.getPortletFileEntries(
-				getGroupId(), attachmentsFolderId,
-				WorkflowConstants.STATUS_APPROVED, start, end, obc);
+		if (attachmentsFolderId == DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+			return Collections.emptyList();
 		}
 
-		return fileEntries;
+		return PortletFileRepositoryUtil.getPortletFileEntries(
+			getGroupId(), attachmentsFolderId,
+			WorkflowConstants.STATUS_APPROVED, start, end,
+			(OrderByComparator<FileEntry>)obc);
 	}
 
 	@Override
@@ -216,33 +205,29 @@ public class WikiPageImpl extends WikiPageBaseImpl {
 	public List<FileEntry> getDeletedAttachmentsFileEntries(int start, int end)
 		throws PortalException {
 
-		List<FileEntry> fileEntries = new ArrayList<>();
-
 		long attachmentsFolderId = getAttachmentsFolderId();
 
-		if (attachmentsFolderId != 0) {
-			fileEntries = PortletFileRepositoryUtil.getPortletFileEntries(
-				getGroupId(), attachmentsFolderId,
-				WorkflowConstants.STATUS_IN_TRASH, start, end,
-				new RepositoryModelTitleComparator<>());
+		if (attachmentsFolderId == DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+			return Collections.emptyList();
 		}
 
-		return fileEntries;
+		return PortletFileRepositoryUtil.getPortletFileEntries(
+			getGroupId(), attachmentsFolderId,
+			WorkflowConstants.STATUS_IN_TRASH, start, end,
+			new RepositoryModelTitleComparator<>());
 	}
 
 	@Override
 	public int getDeletedAttachmentsFileEntriesCount() throws PortalException {
-		int deletedAttachmentsFileEntriesCount = 0;
-
 		long attachmentsFolderId = getAttachmentsFolderId();
 
-		if (attachmentsFolderId != DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
-			return PortletFileRepositoryUtil.getPortletFileEntriesCount(
-				getGroupId(), attachmentsFolderId,
-				WorkflowConstants.STATUS_IN_TRASH);
+		if (attachmentsFolderId == DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+			return 0;
 		}
 
-		return deletedAttachmentsFileEntriesCount;
+		return PortletFileRepositoryUtil.getPortletFileEntriesCount(
+			getGroupId(), attachmentsFolderId,
+			WorkflowConstants.STATUS_IN_TRASH);
 	}
 
 	@Override
@@ -275,14 +260,16 @@ public class WikiPageImpl extends WikiPageBaseImpl {
 
 	@Override
 	public List<WikiPage> getParentPages() {
-		List<WikiPage> parentPages = new ArrayList<>();
-
 		WikiPage parentPage = fetchParentPage();
 
-		if (parentPage != null) {
-			parentPages.addAll(parentPage.getParentPages());
-			parentPages.add(parentPage);
+		if (parentPage == null) {
+			return Collections.emptyList();
 		}
+
+		List<WikiPage> parentPages = new ArrayList<>();
+
+		parentPages.addAll(parentPage.getParentPages());
+		parentPages.add(parentPage);
 
 		return parentPages;
 	}
@@ -334,14 +321,16 @@ public class WikiPageImpl extends WikiPageBaseImpl {
 
 	@Override
 	public List<WikiPage> getViewableParentPages() {
-		List<WikiPage> pages = new ArrayList<>();
-
 		WikiPage page = getViewableParentPage();
 
-		if (page != null) {
-			pages.addAll(page.getViewableParentPages());
-			pages.add(page);
+		if (page == null) {
+			return Collections.emptyList();
 		}
+
+		List<WikiPage> pages = new ArrayList<>();
+
+		pages.addAll(page.getViewableParentPages());
+		pages.add(page);
 
 		return pages;
 	}
