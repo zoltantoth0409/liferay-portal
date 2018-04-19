@@ -52,7 +52,7 @@ portletURL.setParameter("displayStyle", displayStyle);
 				</portlet:renderURL>
 
 				<%
-				if (!ddmFormAdminDisplayContext.isShowEditFormInstanceIcon(formInstance)) {
+				if (!ddlFormAdminDisplayContext.isShowEditRecordSetIcon(recordSet)) {
 					rowURL = null;
 				}
 				%>
