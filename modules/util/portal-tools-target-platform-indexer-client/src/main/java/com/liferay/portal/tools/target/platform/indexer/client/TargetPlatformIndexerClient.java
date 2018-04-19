@@ -80,7 +80,6 @@ public class TargetPlatformIndexerClient {
 					".zip");
 		long stopWaitTimeout = Long.parseLong(
 			System.getProperty("stop.wait.timeout", "30000"));
-
 		String moduleFrameworkStaticDirName = System.getProperty(
 			"module.framework.static.dir", liferayHome.concat("/osgi/static"));
 		String moduleFrameworkModulesDirName = System.getProperty(
