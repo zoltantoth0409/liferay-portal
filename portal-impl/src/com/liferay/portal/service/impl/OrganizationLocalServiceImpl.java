@@ -1805,6 +1805,8 @@ public class OrganizationLocalServiceImpl
 
 		if (group.isSite() != site) {
 			groupLocalService.updateSite(group.getGroupId(), site);
+
+			reindexUsers(organizationId);
 		}
 
 		// Organizations
