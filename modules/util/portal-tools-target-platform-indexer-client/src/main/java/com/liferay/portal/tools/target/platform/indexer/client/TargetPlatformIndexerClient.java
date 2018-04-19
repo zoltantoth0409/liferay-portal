@@ -44,7 +44,6 @@ import java.nio.file.StandardOpenOption;
 import java.nio.file.attribute.BasicFileAttributes;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -81,6 +80,7 @@ public class TargetPlatformIndexerClient {
 					".zip");
 		long stopWaitTimeout = Long.parseLong(
 			System.getProperty("stop.wait.timeout", "30000"));
+
 		String moduleFrameworkStaticDirName = System.getProperty(
 			"module.framework.static.dir", liferayHome.concat("/osgi/static"));
 		String moduleFrameworkModulesDirName = System.getProperty(
@@ -92,12 +92,24 @@ public class TargetPlatformIndexerClient {
 			"module.framework.marketplace.dir",
 			liferayHome.concat("/osgi/marketplace"));
 
+		List<File> additionalJars = new ArrayList<>();
+
+		additionalJars.add(new File(portalLibDirName, "util-taglib.jar"));
+
+		File file = new File(
+			System.getProperty(
+				"module.framework.compat.dir",
+				liferayHome.concat("/osgi/compat")),
+			"com.liferay.modules.compat.data.jar");
+
+		if (file.exists()) {
+			additionalJars.add(file);
+		}
+
 		List<URI> uris = _index(
-			indexesFileName,
-			Arrays.asList(new File(portalLibDirName, "util-taglib.jar")),
-			stopWaitTimeout, moduleFrameworkStaticDirName,
-			moduleFrameworkModulesDirName, moduleFrameworkPortalDirName,
-			moduleFrameworkMarketplaceDir);
+			indexesFileName, additionalJars, stopWaitTimeout,
+			moduleFrameworkStaticDirName, moduleFrameworkModulesDirName,
+			moduleFrameworkPortalDirName, moduleFrameworkMarketplaceDir);
 
 		if (_validate(uris)) {
 			String integrityPropertiesFileName = System.getProperty(
