@@ -22,6 +22,7 @@ Export-Package:\
 	\
 	freemarker.template,\
 	freemarker.template.utility
+Import-Package: !*
 -includeresource:\
 	lib/com.liferay.frontend.css.rtl.converter.jar,\
 	lib/com.liferay.petra.collection.jar,\
