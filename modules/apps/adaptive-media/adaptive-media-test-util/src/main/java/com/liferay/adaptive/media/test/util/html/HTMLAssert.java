@@ -39,12 +39,13 @@ public class HTMLAssert {
 		Assert.assertEquals(
 			expectedElement.attributes(), actualElement.attributes());
 
-		Elements expectedChildren = expectedElement.children();
-		Elements actualChildren = actualElement.children();
+		Elements expectedChildrenElements = expectedElement.children();
+		Elements actualChildrenElements = actualElement.children();
 
-		Assert.assertEquals(expectedChildren.size(), actualChildren.size());
+		Assert.assertEquals(
+			expectedChildrenElements.size(), actualChildrenElements.size());
 
-		for (int i = 0; i < expectedChildren.size(); i++) {
+		for (int i = 0; i < expectedChildrenElements.size(); i++) {
 			_assertEquals(expectedElement.child(i), actualElement.child(i));
 		}
 	}
