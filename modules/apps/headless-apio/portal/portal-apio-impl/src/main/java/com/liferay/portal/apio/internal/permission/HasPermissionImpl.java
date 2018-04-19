@@ -180,10 +180,10 @@ public class HasPermissionImpl implements HasPermission {
 
 	@Activate
 	protected void activate(BundleContext bundleContext) {
-		_portletResourcePermissions = openSingleValueMap(
-			bundleContext, PortletResourcePermission.class, "resource.name");
 		_modelResourcePermissions = openSingleValueMap(
 			bundleContext, ModelResourcePermission.class, "model.class.name");
+		_portletResourcePermissions = openSingleValueMap(
+			bundleContext, PortletResourcePermission.class, "resource.name");
 	}
 
 	private ServiceTrackerMap<String, ModelResourcePermission>
