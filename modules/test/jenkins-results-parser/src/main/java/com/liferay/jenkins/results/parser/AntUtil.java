@@ -26,7 +26,7 @@ import org.apache.tools.ant.Task;
 public class AntUtil {
 
 	public static void callMacrodef(
-		Map<String, String> attributes, String name, Project project) {
+		Project project, String name, Map<String, String> attributes) {
 
 		Task task = project.createTask(name);
 
