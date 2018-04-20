@@ -130,7 +130,7 @@ public abstract class BaseJSONWebServiceClientImpl
 			closeableHttpAsyncClient.start();
 
 			_asyncHttpClient = new AsyncHttpClient(
-				_maxRetryCount, closeableHttpAsyncClient);
+				closeableHttpAsyncClient, _maxRetryCount);
 
 			_idleConnectionMonitorThread = new IdleConnectionMonitorThread(
 				nHttpClientConnectionManager);
