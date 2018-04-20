@@ -43,7 +43,7 @@ public class AsyncHttpClient implements Closeable {
 		if (maxAttempts < 1) {
 			_maxAttempts = 1;
 		}
-		else  {
+		else {
 			_maxAttempts = maxAttempts;
 		}
 	}
