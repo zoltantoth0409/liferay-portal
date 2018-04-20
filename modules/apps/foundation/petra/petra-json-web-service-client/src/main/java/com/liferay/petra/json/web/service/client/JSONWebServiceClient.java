@@ -145,7 +145,7 @@ public interface JSONWebServiceClient {
 
 	public void setLogin(String login);
 
-	public void setMaxRetryCount(int maxRetryCount);
+	public void setMaxAttempts(int maxAttempts);
 
 	public void setOAuthAccessSecret(String oAuthAccessSecret);
 

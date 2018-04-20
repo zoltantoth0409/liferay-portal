@@ -130,7 +130,7 @@ public abstract class BaseJSONWebServiceClientImpl
 			closeableHttpAsyncClient.start();
 
 			_asyncHttpClient = new AsyncHttpClient(
-				closeableHttpAsyncClient, _maxRetryCount);
+				closeableHttpAsyncClient, _maxAttempts);
 
 			_idleConnectionMonitorThread = new IdleConnectionMonitorThread(
 				nHttpClientConnectionManager);
@@ -619,8 +619,8 @@ public abstract class BaseJSONWebServiceClientImpl
 	}
 
 	@Override
-	public void setMaxRetryCount(int maxRetryCount) {
-		_maxRetryCount = maxRetryCount;
+	public void setMaxAttempts(int maxAttempts) {
+		_maxAttempts = maxAttempts;
 	}
 
 	@Override
@@ -1106,7 +1106,7 @@ public abstract class BaseJSONWebServiceClientImpl
 	private IdleConnectionMonitorThread _idleConnectionMonitorThread;
 	private KeyStore _keyStore;
 	private String _login;
-	private int _maxRetryCount;
+	private int _maxAttempts;
 	private String _oAuthAccessSecret;
 	private String _oAuthAccessToken;
 	private String _oAuthConsumerKey;
