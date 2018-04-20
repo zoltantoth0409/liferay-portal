@@ -71,7 +71,7 @@ public class JSONWebServiceClientImplGetTest
 		Map<String, Object> properties = getBaseProperties();
 
 		properties.put("hostPort", 5555);
-		properties.put("maxRetryCount", 5);
+		properties.put("maxAttempts", 5);
 
 		jsonWebServiceClientImpl.activate(properties);
 
@@ -116,7 +116,7 @@ public class JSONWebServiceClientImplGetTest
 
 		properties.put(
 			"headers", "headerKey1=headerValue1;Accept=application/json;");
-		properties.put("maxRetryCount", 5);
+		properties.put("maxAttempts", 5);
 
 		jsonWebServiceClientImpl.activate(properties);
 

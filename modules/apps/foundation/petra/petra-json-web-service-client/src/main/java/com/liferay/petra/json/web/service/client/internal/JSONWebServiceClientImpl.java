@@ -50,9 +50,9 @@ public class JSONWebServiceClientImpl extends BaseJSONWebServiceClientImpl {
 		setKeyStore((KeyStore)properties.get("keyStore"));
 		setLogin(_getString("login", properties));
 
-		if (properties.containsKey("maxRetryCount")) {
-			setMaxRetryCount(
-				Integer.parseInt(_getString("maxRetryCount", properties)));
+		if (properties.containsKey("maxAttempts")) {
+			setMaxAttempts(
+				Integer.parseInt(_getString("maxAttempts", properties)));
 		}
 
 		setPassword(_getString("password", properties));

@@ -36,10 +36,10 @@ import org.slf4j.LoggerFactory;
 public class AsyncHttpClient implements Closeable {
 
 	public AsyncHttpClient(
-		CloseableHttpAsyncClient closeableHttpAsyncClient, int maxRetryCount) {
+		CloseableHttpAsyncClient closeableHttpAsyncClient, int maxAttempts) {
 
 		_closeableHttpAsyncClient = closeableHttpAsyncClient;
-		_maxRetryCount = maxRetryCount;
+		_maxAttempts = maxAttempts;
 	}
 
 	@Override
@@ -57,8 +57,8 @@ public class AsyncHttpClient implements Closeable {
 		final HttpHost httpHost, HttpRequest httpRequest,
 		HttpContext httpContext) {
 
-		for (int i = 0; i <= _maxRetryCount; i++) {
-			if ((_maxRetryCount == 0) || (_maxRetryCount == i)) {
+		for (int i = 0; i <= _maxAttempts; i++) {
+			if ((_maxAttempts == 0) || (_maxAttempts == i)) {
 				return _closeableHttpAsyncClient.execute(
 					httpHost, httpRequest, httpContext, null);
 			}
@@ -86,21 +86,21 @@ public class AsyncHttpClient implements Closeable {
 
 					if (_logger.isInfoEnabled()) {
 						_logger.info(
-							"Aborting executing after " + i + " retries");
+							"Aborting executing after " + i + " attempts");
 					}
 				}
 			}
 		}
 
 		throw new RuntimeException(
-			"Unable to execute HTTP request after " + _maxRetryCount +
-				" retries");
+			"Unable to execute HTTP request after " + _maxAttempts +
+				" attempts");
 	}
 
 	private static final Logger _logger = LoggerFactory.getLogger(
 		AsyncHttpClient.class);
 
 	private final CloseableHttpAsyncClient _closeableHttpAsyncClient;
-	private final int _maxRetryCount;
+	private final int _maxAttempts;
 
 }
