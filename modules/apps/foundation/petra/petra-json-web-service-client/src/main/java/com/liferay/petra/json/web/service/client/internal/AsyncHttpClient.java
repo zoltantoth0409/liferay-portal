@@ -36,10 +36,10 @@ import org.slf4j.LoggerFactory;
 public class AsyncHttpClient implements Closeable {
 
 	public AsyncHttpClient(
-		int maxRetryCount, CloseableHttpAsyncClient closeableHttpAsyncClient) {
+		CloseableHttpAsyncClient closeableHttpAsyncClient, int maxRetryCount) {
 
-		_maxRetryCount = maxRetryCount;
 		_closeableHttpAsyncClient = closeableHttpAsyncClient;
+		_maxRetryCount = maxRetryCount;
 	}
 
 	@Override
