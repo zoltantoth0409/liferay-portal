@@ -58,7 +58,7 @@ public class AsyncHttpClient implements Closeable {
 		HttpContext httpContext) {
 
 		for (int i = 0; i <= _maxRetryCount; i++) {
-			if ((_maxRetryCount == 0) || (i == _maxRetryCount)) {
+			if ((_maxRetryCount == 0) || (_maxRetryCount == i)) {
 				return _closeableHttpAsyncClient.execute(
 					httpHost, httpRequest, httpContext, null);
 			}
