@@ -100,6 +100,7 @@ public class MBThreadLocalServiceImpl extends MBThreadLocalServiceBaseImpl {
 		thread.setCategoryId(categoryId);
 		thread.setRootMessageId(message.getMessageId());
 		thread.setRootMessageUserId(message.getUserId());
+		thread.setTitle(message.getSubject());
 
 		if (message.isAnonymous()) {
 			thread.setLastPostByUserId(0);
@@ -118,7 +119,6 @@ public class MBThreadLocalServiceImpl extends MBThreadLocalServiceBaseImpl {
 		thread.setStatusByUserId(message.getStatusByUserId());
 		thread.setStatusByUserName(message.getStatusByUserName());
 		thread.setStatusDate(message.getStatusDate());
-		thread.setTitle(message.getSubject());
 
 		mbThreadPersistence.update(thread);
 
