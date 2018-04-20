@@ -1219,7 +1219,7 @@ public class BackgroundTaskPersistenceImpl extends BasePersistenceImpl<Backgroun
 
 			if ((list != null) && !list.isEmpty()) {
 				for (BackgroundTask backgroundTask : list) {
-					if ((completed != backgroundTask.getCompleted())) {
+					if ((completed != backgroundTask.isCompleted())) {
 						list = null;
 
 						break;
@@ -5770,7 +5770,7 @@ public class BackgroundTaskPersistenceImpl extends BasePersistenceImpl<Backgroun
 					if ((groupId != backgroundTask.getGroupId()) ||
 							!Objects.equals(taskExecutorClassName,
 								backgroundTask.getTaskExecutorClassName()) ||
-							(completed != backgroundTask.getCompleted())) {
+							(completed != backgroundTask.isCompleted())) {
 						list = null;
 
 						break;
@@ -6312,7 +6312,7 @@ public class BackgroundTaskPersistenceImpl extends BasePersistenceImpl<Backgroun
 								backgroundTask.getGroupId()) ||
 							!ArrayUtil.contains(taskExecutorClassNames,
 								backgroundTask.getTaskExecutorClassName()) ||
-							(completed != backgroundTask.getCompleted())) {
+							(completed != backgroundTask.isCompleted())) {
 						list = null;
 
 						break;
@@ -7824,7 +7824,7 @@ public class BackgroundTaskPersistenceImpl extends BasePersistenceImpl<Backgroun
 							!Objects.equals(name, backgroundTask.getName()) ||
 							!Objects.equals(taskExecutorClassName,
 								backgroundTask.getTaskExecutorClassName()) ||
-							(completed != backgroundTask.getCompleted())) {
+							(completed != backgroundTask.isCompleted())) {
 						list = null;
 
 						break;
@@ -8412,7 +8412,7 @@ public class BackgroundTaskPersistenceImpl extends BasePersistenceImpl<Backgroun
 							!Objects.equals(name, backgroundTask.getName()) ||
 							!Objects.equals(taskExecutorClassName,
 								backgroundTask.getTaskExecutorClassName()) ||
-							(completed != backgroundTask.getCompleted())) {
+							(completed != backgroundTask.isCompleted())) {
 						list = null;
 
 						break;
@@ -9035,7 +9035,7 @@ public class BackgroundTaskPersistenceImpl extends BasePersistenceImpl<Backgroun
 			finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
 				args);
 
-			args = new Object[] { backgroundTaskModelImpl.getCompleted() };
+			args = new Object[] { backgroundTaskModelImpl.isCompleted() };
 
 			finderCache.removeResult(FINDER_PATH_COUNT_BY_COMPLETED, args);
 			finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPLETED,
@@ -9087,7 +9087,7 @@ public class BackgroundTaskPersistenceImpl extends BasePersistenceImpl<Backgroun
 			args = new Object[] {
 					backgroundTaskModelImpl.getGroupId(),
 					backgroundTaskModelImpl.getTaskExecutorClassName(),
-					backgroundTaskModelImpl.getCompleted()
+					backgroundTaskModelImpl.isCompleted()
 				};
 
 			finderCache.removeResult(FINDER_PATH_COUNT_BY_G_T_C, args);
@@ -9108,7 +9108,7 @@ public class BackgroundTaskPersistenceImpl extends BasePersistenceImpl<Backgroun
 					backgroundTaskModelImpl.getGroupId(),
 					backgroundTaskModelImpl.getName(),
 					backgroundTaskModelImpl.getTaskExecutorClassName(),
-					backgroundTaskModelImpl.getCompleted()
+					backgroundTaskModelImpl.isCompleted()
 				};
 
 			finderCache.removeResult(FINDER_PATH_COUNT_BY_G_N_T_C, args);

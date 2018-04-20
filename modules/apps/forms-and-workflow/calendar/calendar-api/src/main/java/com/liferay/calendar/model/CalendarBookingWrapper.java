@@ -78,7 +78,7 @@ public class CalendarBookingWrapper implements CalendarBooking,
 		attributes.put("location", getLocation());
 		attributes.put("startTime", getStartTime());
 		attributes.put("endTime", getEndTime());
-		attributes.put("allDay", getAllDay());
+		attributes.put("allDay", isAllDay());
 		attributes.put("recurrence", getRecurrence());
 		attributes.put("firstReminder", getFirstReminder());
 		attributes.put("firstReminderType", getFirstReminderType());

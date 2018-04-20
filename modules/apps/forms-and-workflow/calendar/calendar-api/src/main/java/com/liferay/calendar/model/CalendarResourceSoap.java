@@ -49,7 +49,7 @@ public class CalendarResourceSoap implements Serializable {
 		soapModel.setCode(model.getCode());
 		soapModel.setName(model.getName());
 		soapModel.setDescription(model.getDescription());
-		soapModel.setActive(model.getActive());
+		soapModel.setActive(model.isActive());
 		soapModel.setLastPublishDate(model.getLastPublishDate());
 
 		return soapModel;

@@ -200,8 +200,8 @@ public class MBMailingListPersistenceTest {
 			newMBMailingList.getInServerName());
 		Assert.assertEquals(existingMBMailingList.getInServerPort(),
 			newMBMailingList.getInServerPort());
-		Assert.assertEquals(existingMBMailingList.getInUseSSL(),
-			newMBMailingList.getInUseSSL());
+		Assert.assertEquals(existingMBMailingList.isInUseSSL(),
+			newMBMailingList.isInUseSSL());
 		Assert.assertEquals(existingMBMailingList.getInUserName(),
 			newMBMailingList.getInUserName());
 		Assert.assertEquals(existingMBMailingList.getInPassword(),
@@ -210,22 +210,22 @@ public class MBMailingListPersistenceTest {
 			newMBMailingList.getInReadInterval());
 		Assert.assertEquals(existingMBMailingList.getOutEmailAddress(),
 			newMBMailingList.getOutEmailAddress());
-		Assert.assertEquals(existingMBMailingList.getOutCustom(),
-			newMBMailingList.getOutCustom());
+		Assert.assertEquals(existingMBMailingList.isOutCustom(),
+			newMBMailingList.isOutCustom());
 		Assert.assertEquals(existingMBMailingList.getOutServerName(),
 			newMBMailingList.getOutServerName());
 		Assert.assertEquals(existingMBMailingList.getOutServerPort(),
 			newMBMailingList.getOutServerPort());
-		Assert.assertEquals(existingMBMailingList.getOutUseSSL(),
-			newMBMailingList.getOutUseSSL());
+		Assert.assertEquals(existingMBMailingList.isOutUseSSL(),
+			newMBMailingList.isOutUseSSL());
 		Assert.assertEquals(existingMBMailingList.getOutUserName(),
 			newMBMailingList.getOutUserName());
 		Assert.assertEquals(existingMBMailingList.getOutPassword(),
 			newMBMailingList.getOutPassword());
-		Assert.assertEquals(existingMBMailingList.getAllowAnonymous(),
-			newMBMailingList.getAllowAnonymous());
-		Assert.assertEquals(existingMBMailingList.getActive(),
-			newMBMailingList.getActive());
+		Assert.assertEquals(existingMBMailingList.isAllowAnonymous(),
+			newMBMailingList.isAllowAnonymous());
+		Assert.assertEquals(existingMBMailingList.isActive(),
+			newMBMailingList.isActive());
 	}
 
 	@Test

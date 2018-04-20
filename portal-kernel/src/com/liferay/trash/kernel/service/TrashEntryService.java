@@ -63,9 +63,7 @@ public interface TrashEntryService extends BaseService {
 	*
 	* @param groupId the primary key of the group
 	*/
-	@Transactional(noRollbackFor =  {
-		TrashPermissionException.class}
-	)
+	@Transactional(noRollbackFor = TrashPermissionException.class)
 	public void deleteEntries(long groupId) throws PortalException;
 
 	/**
@@ -73,9 +71,7 @@ public interface TrashEntryService extends BaseService {
 	*
 	* @param entryIds the primary keys of the trash entries
 	*/
-	@Transactional(noRollbackFor =  {
-		TrashPermissionException.class}
-	)
+	@Transactional(noRollbackFor = TrashPermissionException.class)
 	public void deleteEntries(long[] entryIds) throws PortalException;
 
 	/**
