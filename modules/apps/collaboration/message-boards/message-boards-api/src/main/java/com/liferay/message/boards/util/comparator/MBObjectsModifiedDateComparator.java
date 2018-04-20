@@ -16,39 +16,41 @@ package com.liferay.message.boards.util.comparator;
 
 import com.liferay.message.boards.model.MBCategory;
 import com.liferay.message.boards.model.MBThread;
+import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.StringUtil;
+
+import java.util.Date;
 
 /**
  * @author Adolfo Pérez
  */
-public class MBEntryTitleComparator<T> extends OrderByComparator<T> {
+public class MBObjectsModifiedDateComparator<T> extends OrderByComparator<T> {
 
 	public static final String ORDER_BY_ASC =
-		"modelCategory ASC, priority DESC, name ASC, modifiedDate DESC, " +
+		"modelCategory ASC, priority DESC, modifiedDate ASC, name ASC, " +
 			"modelId ASC";
 
 	public static final String ORDER_BY_DESC =
-		"modelCategory ASC, priority DESC, name DESC, modifiedDate DESC, " +
+		"modelCategory ASC, priority DESC, modifiedDate DESC, name ASC, " +
 			"modelId ASC";
 
 	public static final String[] ORDER_BY_FIELDS =
-		{"modelCategory", "priority", "name", "modifiedDate", "modelId"};
+		{"modelCategory", "priority", "modifiedDate", "name", "modelId"};
 
-	public MBEntryTitleComparator() {
+	public MBObjectsModifiedDateComparator() {
 		this(false);
 	}
 
-	public MBEntryTitleComparator(boolean ascending) {
+	public MBObjectsModifiedDateComparator(boolean ascending) {
 		_ascending = ascending;
 	}
 
 	@Override
 	public int compare(T t1, T t2) {
-		String name1 = StringUtil.toLowerCase(getMBEntryTitle(t1));
-		String name2 = StringUtil.toLowerCase(getMBEntryTitle(t2));
+		Date modifiedDate1 = getMBObjectsModifiedDate(t1);
+		Date modifiedDate2 = getMBObjectsModifiedDate(t2);
 
-		int value = name1.compareTo(name2);
+		int value = DateUtil.compareTo(modifiedDate1, modifiedDate2);
 
 		if (_ascending) {
 			return value;
@@ -78,17 +80,17 @@ public class MBEntryTitleComparator<T> extends OrderByComparator<T> {
 		return _ascending;
 	}
 
-	protected String getMBEntryTitle(Object obj) {
+	protected Date getMBObjectsModifiedDate(Object obj) {
 		if (obj instanceof MBCategory) {
 			MBCategory mbCategory = (MBCategory)obj;
 
-			return mbCategory.getName();
+			return mbCategory.getModifiedDate();
 		}
 
 		if (obj instanceof MBThread) {
 			MBThread mbThread = (MBThread)obj;
 
-			return mbThread.getTitle();
+			return mbThread.getModifiedDate();
 		}
 
 		return null;
