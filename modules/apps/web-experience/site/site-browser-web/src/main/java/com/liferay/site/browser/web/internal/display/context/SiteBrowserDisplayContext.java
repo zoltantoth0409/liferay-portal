@@ -316,8 +316,6 @@ public class SiteBrowserDisplayContext {
 		portletURL.setParameter("type", getType());
 		portletURL.setParameter("types", _getTypes());
 		portletURL.setParameter("displayStyle", getDisplayStyle());
-		portletURL.setParameter("orderByCol", _getOrderByCol());
-		portletURL.setParameter("orderByType", getOrderByType());
 		portletURL.setParameter("filter", _getFilter());
 		portletURL.setParameter(
 			"includeCompany", String.valueOf(includeCompany));
@@ -328,6 +326,8 @@ public class SiteBrowserDisplayContext {
 		portletURL.setParameter(
 			"manualMembership", String.valueOf(_isManualMembership()));
 		portletURL.setParameter("eventName", eventName);
+		portletURL.setParameter("orderByCol", _getOrderByCol());
+		portletURL.setParameter("orderByType", getOrderByType());
 		portletURL.setParameter("target", target);
 
 		return portletURL;
