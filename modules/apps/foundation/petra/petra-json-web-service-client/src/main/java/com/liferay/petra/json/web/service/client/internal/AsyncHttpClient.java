@@ -39,7 +39,13 @@ public class AsyncHttpClient implements Closeable {
 		CloseableHttpAsyncClient closeableHttpAsyncClient, int maxAttempts) {
 
 		_closeableHttpAsyncClient = closeableHttpAsyncClient;
-		_maxAttempts = maxAttempts;
+
+		if (maxAttempts < 1) {
+			_maxAttempts = 1;
+		}
+		else  {
+			_maxAttempts = maxAttempts;
+		}
 	}
 
 	@Override
@@ -57,8 +63,8 @@ public class AsyncHttpClient implements Closeable {
 		final HttpHost httpHost, HttpRequest httpRequest,
 		HttpContext httpContext) {
 
-		for (int i = 0; i <= _maxAttempts; i++) {
-			if ((_maxAttempts == 0) || (_maxAttempts == i)) {
+		for (int i = 1; i <= _maxAttempts; i++) {
+			if ((_maxAttempts == 1) || (_maxAttempts == i)) {
 				return _closeableHttpAsyncClient.execute(
 					httpHost, httpRequest, httpContext, null);
 			}
