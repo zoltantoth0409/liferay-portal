@@ -181,9 +181,9 @@ public class FilePropagator {
 	private int _executeBashCommands(List<String> commands, String targetSlave)
 		throws IOException, TimeoutException {
 
-		StringBuffer sb = new StringBuffer("ssh -o NumberOfPasswordPrompts=0 ");
+		StringBuffer sb = new StringBuffer(
+			"ssh -o ConnectTimeout=10 -o NumberOfPasswordPrompts=0 ");
 
-		sb.append("-o ConnectTimeout=10 ");
 		sb.append(targetSlave);
 		sb.append(" '");
 
