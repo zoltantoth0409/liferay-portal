@@ -2803,7 +2803,7 @@ public class PortalImpl implements Portal {
 
 		if ((layoutSet == null) ||
 			(layoutSet.getGroupId() != layout.getGroupId()) ||
-			(layoutSet.getPrivateLayout() != layout.getPrivateLayout())) {
+			(layoutSet.isPrivateLayout() != layout.isPrivateLayout())) {
 
 			layoutSet = layout.getLayoutSet();
 		}
@@ -7651,7 +7651,7 @@ public class PortalImpl implements Portal {
 		}
 
 		long defaultPlid = LayoutLocalServiceUtil.getDefaultPlid(
-			layout.getGroupId(), layout.getPrivateLayout());
+			layout.getGroupId(), layout.isPrivateLayout());
 
 		return LayoutLocalServiceUtil.fetchLayout(defaultPlid);
 	}
@@ -8423,7 +8423,7 @@ public class PortalImpl implements Portal {
 			boolean canonicalURL, boolean controlPanel)
 		throws PortalException {
 
-		boolean privateLayoutSet = layoutSet.getPrivateLayout();
+		boolean privateLayoutSet = layoutSet.isPrivateLayout();
 
 		String portalURL = themeDisplay.getPortalURL();
 

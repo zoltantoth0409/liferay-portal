@@ -514,7 +514,7 @@ public class StagingImpl implements Staging {
 			}
 
 			_layoutLocalService.updateLayout(
-				layout.getGroupId(), layout.getPrivateLayout(),
+				layout.getGroupId(), layout.isPrivateLayout(),
 				layout.getLayoutId(), typeSettingsProperties.toString());
 		}
 	}
@@ -1104,7 +1104,7 @@ public class StagingImpl implements Staging {
 
 		HttpPrincipal httpPrincipal = new HttpPrincipal(
 			buildRemoteURL(typeSettingsProperties), user.getLogin(),
-			user.getPassword(), user.getPasswordEncrypted());
+			user.getPassword(), user.isPasswordEncrypted());
 
 		long remoteGroupId = GetterUtil.getLong(
 			typeSettingsProperties.getProperty("remoteGroupId"));
@@ -2476,7 +2476,7 @@ public class StagingImpl implements Staging {
 
 		HttpPrincipal httpPrincipal = new HttpPrincipal(
 			remoteURL, user.getLogin(), user.getPassword(),
-			user.getPasswordEncrypted());
+			user.isPasswordEncrypted());
 
 		taskContextMap.put("httpPrincipal", httpPrincipal);
 
@@ -3031,7 +3031,7 @@ public class StagingImpl implements Staging {
 
 		HttpPrincipal httpPrincipal = new HttpPrincipal(
 			remoteURL, user.getLogin(), user.getPassword(),
-			user.getPasswordEncrypted());
+			user.isPasswordEncrypted());
 
 		try {
 			currentThread.setContextClassLoader(

@@ -371,7 +371,7 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 
 		HttpPrincipal httpPrincipal = new HttpPrincipal(
 			remoteURL, user.getLogin(), user.getPassword(),
-			user.getPasswordEncrypted());
+			user.isPasswordEncrypted());
 
 		if (!stagedRemotely) {
 			enableRemoteStaging(httpPrincipal, remoteGroupId);
@@ -692,7 +692,7 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 
 		HttpPrincipal httpPrincipal = new HttpPrincipal(
 			remoteURL, user.getLogin(), user.getPassword(),
-			user.getPasswordEncrypted());
+			user.isPasswordEncrypted());
 
 		try {
 			GroupServiceHttp.disableStaging(httpPrincipal, remoteGroupId);
@@ -975,7 +975,7 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 		layout.setUserName(layoutRevision.getUserName());
 		layout.setCreateDate(layoutRevision.getCreateDate());
 		layout.setModifiedDate(layoutRevision.getModifiedDate());
-		layout.setPrivateLayout(layoutRevision.getPrivateLayout());
+		layout.setPrivateLayout(layoutRevision.isPrivateLayout());
 		layout.setName(layoutRevision.getName());
 		layout.setTitle(layoutRevision.getTitle());
 		layout.setDescription(layoutRevision.getDescription());
@@ -1021,7 +1021,7 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 
 		HttpPrincipal httpPrincipal = new HttpPrincipal(
 			remoteURL, user.getLogin(), user.getPassword(),
-			user.getPasswordEncrypted());
+			user.isPasswordEncrypted());
 
 		Map<String, String> stagedPortletIds = new HashMap<>();
 

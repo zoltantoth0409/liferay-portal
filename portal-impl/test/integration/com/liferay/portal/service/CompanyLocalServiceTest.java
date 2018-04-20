@@ -752,7 +752,7 @@ public class CompanyLocalServiceTest {
 
 			CompanyLocalServiceUtil.updateCompany(
 				company.getCompanyId(), company.getVirtualHostname(), mx,
-				company.getMaxUsers(), company.getActive());
+				company.getMaxUsers(), company.isActive());
 
 			company = CompanyLocalServiceUtil.getCompany(
 				company.getCompanyId());
@@ -787,7 +787,7 @@ public class CompanyLocalServiceTest {
 			try {
 				CompanyLocalServiceUtil.updateCompany(
 					company.getCompanyId(), virtualHostName, company.getMx(),
-					company.getMaxUsers(), company.getActive());
+					company.getMaxUsers(), company.isActive());
 
 				Assert.assertFalse(expectFailure);
 			}
