@@ -75,7 +75,7 @@ public class AsyncHttpClient implements Closeable {
 			catch (Exception e) {
 				if (_logger.isTraceEnabled()) {
 					_logger.trace(
-						"Failed to execute http request in attempt " + i, e);
+						"Unable to execute HTTP request in attempt " + i, e);
 				}
 
 				try {
@@ -86,13 +86,15 @@ public class AsyncHttpClient implements Closeable {
 
 					if (_logger.isInfoEnabled()) {
 						_logger.info(
-							"Exiting execute loop after " + i + " retries");
+							"Aborting executing after " + i + " retries");
 					}
 				}
 			}
 		}
 
-		throw new RuntimeException("Unexpected execution state reached");
+		throw new RuntimeException(
+			"Unable to execute HTTP request after " + _maxRetryCount +
+				" retries");
 	}
 
 	private static final Logger _logger = LoggerFactory.getLogger(
