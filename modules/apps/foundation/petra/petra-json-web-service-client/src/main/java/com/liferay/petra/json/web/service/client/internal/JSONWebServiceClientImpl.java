@@ -49,6 +49,12 @@ public class JSONWebServiceClientImpl extends BaseJSONWebServiceClientImpl {
 		setHostPort(Integer.parseInt(_getString("hostPort", properties)));
 		setKeyStore((KeyStore)properties.get("keyStore"));
 		setLogin(_getString("login", properties));
+
+		if (properties.containsKey("maxRetryCount")) {
+			setMaxRetryCount(
+				Integer.parseInt(_getString("maxRetryCount", properties)));
+		}
+
 		setPassword(_getString("password", properties));
 		setProtocol(_getString("protocol", properties));
 
@@ -64,11 +70,6 @@ public class JSONWebServiceClientImpl extends BaseJSONWebServiceClientImpl {
 				Integer.parseInt(_getString("proxyHostPort", properties)));
 			setProxyLogin(_getString("proxyLogin", properties));
 			setProxyPassword(_getString("proxyPassword", properties));
-		}
-
-		if (properties.containsKey("maxRetryCount")) {
-			setMaxRetryCount(
-				Integer.parseInt(_getString("maxRetryCount", properties)));
 		}
 
 		afterPropertiesSet();
