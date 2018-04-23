@@ -314,33 +314,33 @@ public class InvokerFilterContainerImpl
 				}
 			}
 
-			Set<String> declaredLifecycles =
+			Set<String> lifecycles =
 				(Set<String>)serviceReference.getProperty("filter.lifecycles");
 
 			if ((portletFilter instanceof ActionFilter) &&
 				_isDeclaredLifecycles(
-					PortletRequest.ACTION_PHASE, declaredLifecycles)) {
+					PortletRequest.ACTION_PHASE, lifecycles)) {
 
 				_actionFilters.add((ActionFilter)portletFilter);
 			}
 
 			if ((portletFilter instanceof EventFilter) &&
 				_isDeclaredLifecycles(
-					PortletRequest.EVENT_PHASE, declaredLifecycles)) {
+					PortletRequest.EVENT_PHASE, lifecycles)) {
 
 				_eventFilters.add((EventFilter)portletFilter);
 			}
 
 			if ((portletFilter instanceof RenderFilter) &&
 				_isDeclaredLifecycles(
-					PortletRequest.RENDER_PHASE, declaredLifecycles)) {
+					PortletRequest.RENDER_PHASE, lifecycles)) {
 
 				_renderFilters.add((RenderFilter)portletFilter);
 			}
 
 			if ((portletFilter instanceof ResourceFilter) &&
 				_isDeclaredLifecycles(
-					PortletRequest.RESOURCE_PHASE, declaredLifecycles)) {
+					PortletRequest.RESOURCE_PHASE, lifecycles)) {
 
 				_resourceFilters.add((ResourceFilter)portletFilter);
 			}
@@ -379,13 +379,13 @@ public class InvokerFilterContainerImpl
 		}
 
 		private boolean _isDeclaredLifecycles(
-			String lifecycle, Set<String> declaredLifecycles) {
+			String lifecycle, Set<String> lifecycles) {
 
-			if ((declaredLifecycles == null) || declaredLifecycles.isEmpty()) {
+			if ((lifecycles == null) || lifecycles.isEmpty()) {
 				return true;
 			}
 
-			return declaredLifecycles.contains(lifecycle);
+			return lifecycles.contains(lifecycle);
 		}
 
 		private final PortletContext _portletContext;
