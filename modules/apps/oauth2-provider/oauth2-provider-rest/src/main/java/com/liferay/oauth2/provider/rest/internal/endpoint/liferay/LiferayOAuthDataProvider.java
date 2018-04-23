@@ -829,7 +829,7 @@ public class LiferayOAuthDataProvider
 			}
 		}
 
-		// CXF considers no allowed grant types as allow all!
+		// CXF considers no allowed grant types as allow all
 
 		if (clientGrantTypes.isEmpty()) {
 			clientGrantTypes.add(StringPool.BLANK);
