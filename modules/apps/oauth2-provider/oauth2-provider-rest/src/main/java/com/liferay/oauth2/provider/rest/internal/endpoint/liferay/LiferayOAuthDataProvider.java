@@ -255,7 +255,7 @@ public class LiferayOAuthDataProvider
 		if (oAuth2Authorization == null) {
 
 			// TODO: Inform the audit service that the user is trying to use a
-			// deleted token or brute-force token
+			// deleted token or brute force token
 
 			return null;
 		}
