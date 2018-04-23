@@ -734,10 +734,11 @@ public class LiferayOAuthDataProvider
 		}
 
 		Client client = getClient(oAuth2Application.getClientId());
-		long issuedAt = toCXFTime(
-			oAuth2Authorization.getAccessTokenCreateDate());
+
 		long expires = toCXFTime(
 			oAuth2Authorization.getAccessTokenExpirationDate());
+		long issuedAt = toCXFTime(
+			oAuth2Authorization.getAccessTokenCreateDate());
 
 		long lifetime = expires - issuedAt;
 
@@ -760,6 +761,7 @@ public class LiferayOAuthDataProvider
 			client, oAuth2ApplicationScopeAliases.getScopeAliasesList());
 
 		serverAccessToken.setScopes(oAuth2Permissions);
+
 		Map<String, String> extraProperties =
 			serverAccessToken.getExtraProperties();
 
