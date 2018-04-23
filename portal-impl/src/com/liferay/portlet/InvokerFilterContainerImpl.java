@@ -314,26 +314,23 @@ public class InvokerFilterContainerImpl
 				}
 			}
 
-			Set<String> lifecycles =
-				(Set<String>)serviceReference.getProperty("filter.lifecycles");
+			Set<String> lifecycles = (Set<String>)serviceReference.getProperty(
+				"filter.lifecycles");
 
 			if ((portletFilter instanceof ActionFilter) &&
-				_isDeclaredLifecycle(
-					PortletRequest.ACTION_PHASE, lifecycles)) {
+				_isDeclaredLifecycle(PortletRequest.ACTION_PHASE, lifecycles)) {
 
 				_actionFilters.add((ActionFilter)portletFilter);
 			}
 
 			if ((portletFilter instanceof EventFilter) &&
-				_isDeclaredLifecycle(
-					PortletRequest.EVENT_PHASE, lifecycles)) {
+				_isDeclaredLifecycle(PortletRequest.EVENT_PHASE, lifecycles)) {
 
 				_eventFilters.add((EventFilter)portletFilter);
 			}
 
 			if ((portletFilter instanceof RenderFilter) &&
-				_isDeclaredLifecycle(
-					PortletRequest.RENDER_PHASE, lifecycles)) {
+				_isDeclaredLifecycle(PortletRequest.RENDER_PHASE, lifecycles)) {
 
 				_renderFilters.add((RenderFilter)portletFilter);
 			}
