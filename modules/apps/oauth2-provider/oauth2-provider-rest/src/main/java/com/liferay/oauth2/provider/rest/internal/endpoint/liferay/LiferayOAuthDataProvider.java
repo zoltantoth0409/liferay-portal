@@ -1021,10 +1021,10 @@ public class LiferayOAuthDataProvider
 
 		Set<LiferayOAuth2Scope> liferayOAuth2Scopes = new HashSet<>();
 
-		List<String> scopeList = OAuthUtils.convertPermissionsToScopeList(
+		List<String> scopesList = OAuthUtils.convertPermissionsToScopeList(
 			serverAccessToken.getScopes());
 
-		for (String scope : scopeList) {
+		for (String scope : scopesList) {
 			liferayOAuth2Scopes.addAll(
 				_scopeFinderLocator.getLiferayOAuth2Scopes(
 					oAuth2Application.getCompanyId(), scope));
