@@ -234,6 +234,8 @@ public class SendmailHook implements Hook {
 			String virtusertableRefreshCmd = PropsUtil.get(
 				PropsKeys.MAIL_HOOK_SENDMAIL_VIRTUSERTABLE_REFRESH);
 
+			String[] arguments = StringUtil.split(virtusertableRefreshCmd, StringPool.SPACE);
+
 			Future<?> future = ProcessUtil.execute(
 				new LoggingOutputProcessor(
 					(stdErr, line) -> {
@@ -244,7 +246,7 @@ public class SendmailHook implements Hook {
 							_log.info(line);
 						}
 					}),
-				virtusertableRefreshCmd);
+				arguments);
 
 			future.get();
 		}
