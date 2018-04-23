@@ -860,12 +860,12 @@ public class LiferayOAuthDataProvider
 			populateUserSubject(
 				oAuth2Application.getCompanyId(), oAuth2Application.getUserId(),
 				oAuth2Application.getUserName()));
-		long companyId = oAuth2Application.getCompanyId();
+
 		Map<String, String> properties = client.getProperties();
 
 		properties.put(
 			OAuth2ProviderRestEndpointConstants.PROPERTY_KEY_COMPANY_ID,
-			GetterUtil.getString(companyId));
+			GetterUtil.getString(oAuth2Application.getCompanyId()));
 		properties.put(
 			OAuth2ProviderRestEndpointConstants.PROPERTY_KEY_CLIENT_FEATURES,
 			oAuth2Application.getFeatures());
