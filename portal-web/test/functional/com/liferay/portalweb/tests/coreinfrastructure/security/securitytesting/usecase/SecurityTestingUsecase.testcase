@@ -169,14 +169,12 @@
 
 		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
 
-		<var name="undeployedPortletURL">
-			<![CDATA[
-				${portalURL}/?p_p_id=asdf&p_p_lifecycle=0&p_p_state=maximized&_asdf_mvcPath=/html/portlet/portal_settings/edit_company.jsp
-			]]>
-		</var>
-
 		<execute macro="Navigator#openSpecificURL">
-			<var name="url" value="${undeployedPortletURL}" />
+			<var name="url">
+				<![CDATA[
+					${portalURL}/?p_p_id=asdf&p_p_lifecycle=0&p_p_state=maximized&_asdf_mvcPath=/html/portlet/portal_settings/edit_company.jsp
+				]]>
+			</var>
 		</execute>
 
 		<execute function="AssertTextEquals" locator1="Message#INFO" value1="This portlet has been undeployed. Please redeploy it or remove it from the page." />
