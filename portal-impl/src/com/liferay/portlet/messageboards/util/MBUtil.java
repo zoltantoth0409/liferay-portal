@@ -598,7 +598,7 @@ public class MBUtil {
 
 		sb.append(themeDisplay.getPortalURL());
 		sb.append(themeDisplay.getPathMain());
-		sb.append("/message_boards/rss?p_l_id=");
+		sb.append("/message_boards/rss?plid=");
 		sb.append(plid);
 
 		if (categoryId > 0) {
