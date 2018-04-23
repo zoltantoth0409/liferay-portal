@@ -2446,23 +2446,22 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 
 		portletApp.addServletURLPatterns(servletURLPatterns);
 		portletApp.setServletContext(servletContext);
-
 		portletApp.setSpecMajorVersion(2);
 		portletApp.setSpecMinorVersion(0);
 
-		Attribute specVersion = rootElement.attribute("version");
+		Attribute versionAttribute = rootElement.attribute("version");
 
-		if (specVersion != null) {
-			String[] specVersionParts = StringUtil.split(
-				specVersion.getValue(), CharPool.PERIOD);
+		if (versionAttribute != null) {
+			String[] versionAttributeParts = StringUtil.split(
+				versionAttribute.getValue(), CharPool.PERIOD);
 
-			if (specVersionParts.length > 0) {
+			if (versionAttributeParts.length > 0) {
 				portletApp.setSpecMajorVersion(
-					GetterUtil.getInteger(specVersionParts[0], 2));
+					GetterUtil.getInteger(versionAttributeParts[0], 2));
 
-				if (specVersionParts.length > 1) {
+				if (versionAttributeParts.length > 1) {
 					portletApp.setSpecMinorVersion(
-						GetterUtil.getInteger(specVersionParts[1]));
+						GetterUtil.getInteger(versionAttributeParts[1]));
 				}
 			}
 		}
