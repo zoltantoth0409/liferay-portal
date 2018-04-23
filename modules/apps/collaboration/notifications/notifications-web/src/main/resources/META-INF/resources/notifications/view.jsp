@@ -43,9 +43,6 @@ NotificationsUtil.populateResults(themeDisplay.getUserId(), actionRequired, navi
 PortletURL navigationURL = PortletURLUtil.clone(currentURLObj, renderResponse);
 
 navigationURL.setParameter(SearchContainer.DEFAULT_CUR_PARAM, "0");
-
-int notificationsCount = UserNotificationEventLocalServiceUtil.getDeliveredUserNotificationEventsCount(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, true, false);
-int requestsCount = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, true, false);
 %>
 
 <clay:navigation-bar
@@ -57,7 +54,7 @@ int requestsCount = UserNotificationEventLocalServiceUtil.getArchivedUserNotific
 					navigationItem -> {
 						navigationItem.setActive(!actionRequired);
 						navigationItem.setHref(renderResponse.createRenderURL(), "actionRequired", StringPool.FALSE);
-						navigationItem.setLabel(LanguageUtil.format(request, "notifications-list-x", String.valueOf(notificationsCount)));
+						navigationItem.setLabel(LanguageUtil.format(request, "notifications-list-x", UserNotificationEventLocalServiceUtil.getDeliveredUserNotificationEventsCount(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, true, false)));
 					});
 
 				add(
@@ -65,7 +62,7 @@ int requestsCount = UserNotificationEventLocalServiceUtil.getArchivedUserNotific
 
 						navigationItem.setActive(actionRequired);
 						navigationItem.setHref(renderResponse.createRenderURL(), "actionRequired", StringPool.TRUE);
-						navigationItem.setLabel(LanguageUtil.format(request, "requests-list-x", String.valueOf(requestsCount)));
+						navigationItem.setLabel(LanguageUtil.format(request, "requests-list-x", String.valueOf(UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), UserNotificationDeliveryConstants.TYPE_WEBSITE, true, false))));
 					});
 			}
 		}
