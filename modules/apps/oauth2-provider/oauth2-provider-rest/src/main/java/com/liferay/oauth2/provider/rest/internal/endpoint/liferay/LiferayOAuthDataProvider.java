@@ -730,8 +730,7 @@ public class LiferayOAuthDataProvider
 
 		if (oAuth2Application == null) {
 			throw new SystemException(
-				"Inconsistent DB state! No application found for " +
-					"authorization " + oAuth2Authorization);
+				"No application found for authorization " + oAuth2Authorization);
 		}
 
 		Client client = getClient(oAuth2Application.getClientId());
