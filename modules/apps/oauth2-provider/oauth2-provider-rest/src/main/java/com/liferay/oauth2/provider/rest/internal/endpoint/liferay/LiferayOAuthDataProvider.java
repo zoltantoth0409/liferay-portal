@@ -1019,9 +1019,10 @@ public class LiferayOAuthDataProvider
 				serverAccessToken.getTokenKey(), createDate, expirationDate,
 				remoteAddr + ", " + remoteHost, null, null, null);
 
+		Set<LiferayOAuth2Scope> liferayOAuth2Scopes = new HashSet<>();
+
 		List<String> scopeList = OAuthUtils.convertPermissionsToScopeList(
 			serverAccessToken.getScopes());
-		Set<LiferayOAuth2Scope> liferayOAuth2Scopes = new HashSet<>();
 
 		for (String scope : scopeList) {
 			liferayOAuth2Scopes.addAll(
