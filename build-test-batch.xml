@@ -1066,6 +1066,15 @@ app.server.type=@{app.server.type}]]></echo>
 						</else>
 					</if>
 				</test-set-up>
+
+				<test-tear-down>
+					<if>
+						<isset property="env.DIST_PATH" />
+						<then>
+							<stop-search-engine />
+						</then>
+					</if>
+				</test-tear-down>
 			</run-batch-test>
 		</sequential>
 	</macrodef>
@@ -1638,6 +1647,15 @@ app.server.type=@{app.server.type}]]></echo>
 						</else>
 					</if>
 				</test-set-up>
+
+				<test-tear-down>
+					<if>
+						<isset property="env.DIST_PATH" />
+						<then>
+							<stop-search-engine />
+						</then>
+					</if>
+				</test-tear-down>
 			</run-batch-test>
 		</sequential>
 	</macrodef>
