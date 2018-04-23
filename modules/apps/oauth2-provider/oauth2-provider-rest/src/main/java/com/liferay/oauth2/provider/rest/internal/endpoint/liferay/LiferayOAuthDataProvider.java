@@ -915,10 +915,6 @@ public class LiferayOAuthDataProvider
 			throw new OAuthServiceException("Unable to find granted token");
 		}
 
-		Date createDate = fromCXFTime(refreshToken.getIssuedAt());
-		Date expirationDate = fromCXFTime(
-			refreshToken.getIssuedAt() + refreshToken.getExpiresIn());
-
 		Iterator<String> iterator = accessTokens.iterator();
 
 		String accessTokenContent = iterator.next();
@@ -929,8 +925,16 @@ public class LiferayOAuthDataProvider
 					accessTokenContent);
 
 		oAuth2Authorization.setRefreshTokenContent(refreshToken.getTokenKey());
+
+		Date createDate = fromCXFTime(refreshToken.getIssuedAt());
+
 		oAuth2Authorization.setRefreshTokenCreateDate(createDate);
+
+		Date expirationDate = fromCXFTime(
+			refreshToken.getIssuedAt() + refreshToken.getExpiresIn());
+
 		oAuth2Authorization.setRefreshTokenExpirationDate(expirationDate);
+
 		_oAuth2AuthorizationLocalService.updateOAuth2Authorization(
 			oAuth2Authorization);
 	}
