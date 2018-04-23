@@ -192,6 +192,7 @@ public class LiferayOAuthDataProvider
 
 		oAuth2Authorization.setRefreshTokenContent(
 			OAuth2ProviderConstants.EXPIRED_TOKEN);
+
 		_oAuth2AuthorizationLocalService.updateOAuth2Authorization(
 			oAuth2Authorization);
 	}
