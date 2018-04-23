@@ -100,8 +100,9 @@ public class LiferayOAuthDataProvider
 	public List<OAuthPermission> convertScopeToPermissions(
 		Client client, List<String> requestedScopes) {
 
-		List<String> invisibleToClientScopes = getInvisibleToClientScopes();
 		List<OAuthPermission> oAuth2Permissions = new ArrayList<>();
+
+		List<String> invisibleToClientScopes = getInvisibleToClientScopes();
 
 		for (String requestedScope : requestedScopes) {
 			OAuthPermission oAuthPermission = new OAuthPermission(
