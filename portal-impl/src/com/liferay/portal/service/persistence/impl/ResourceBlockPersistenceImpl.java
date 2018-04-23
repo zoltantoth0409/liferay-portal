@@ -1855,8 +1855,6 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 
 	@Override
 	protected ResourceBlock removeImpl(ResourceBlock resourceBlock) {
-		resourceBlock = toUnwrappedModel(resourceBlock);
-
 		Session session = null;
 
 		try {
@@ -1887,8 +1885,6 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 
 	@Override
 	public ResourceBlock updateImpl(ResourceBlock resourceBlock) {
-		resourceBlock = toUnwrappedModel(resourceBlock);
-
 		boolean isNew = resourceBlock.isNew();
 
 		ResourceBlockModelImpl resourceBlockModelImpl = (ResourceBlockModelImpl)resourceBlock;
@@ -2001,27 +1997,6 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 		resourceBlock.resetOriginalValues();
 
 		return resourceBlock;
-	}
-
-	protected ResourceBlock toUnwrappedModel(ResourceBlock resourceBlock) {
-		if (resourceBlock instanceof ResourceBlockImpl) {
-			return resourceBlock;
-		}
-
-		ResourceBlockImpl resourceBlockImpl = new ResourceBlockImpl();
-
-		resourceBlockImpl.setNew(resourceBlock.isNew());
-		resourceBlockImpl.setPrimaryKey(resourceBlock.getPrimaryKey());
-
-		resourceBlockImpl.setMvccVersion(resourceBlock.getMvccVersion());
-		resourceBlockImpl.setResourceBlockId(resourceBlock.getResourceBlockId());
-		resourceBlockImpl.setCompanyId(resourceBlock.getCompanyId());
-		resourceBlockImpl.setGroupId(resourceBlock.getGroupId());
-		resourceBlockImpl.setName(resourceBlock.getName());
-		resourceBlockImpl.setPermissionsHash(resourceBlock.getPermissionsHash());
-		resourceBlockImpl.setReferenceCount(resourceBlock.getReferenceCount());
-
-		return resourceBlockImpl;
 	}
 
 	/**

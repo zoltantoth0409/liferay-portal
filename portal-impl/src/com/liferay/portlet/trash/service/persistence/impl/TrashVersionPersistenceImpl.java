@@ -1549,8 +1549,6 @@ public class TrashVersionPersistenceImpl extends BasePersistenceImpl<TrashVersio
 
 	@Override
 	protected TrashVersion removeImpl(TrashVersion trashVersion) {
-		trashVersion = toUnwrappedModel(trashVersion);
-
 		Session session = null;
 
 		try {
@@ -1581,8 +1579,6 @@ public class TrashVersionPersistenceImpl extends BasePersistenceImpl<TrashVersio
 
 	@Override
 	public TrashVersion updateImpl(TrashVersion trashVersion) {
-		trashVersion = toUnwrappedModel(trashVersion);
-
 		boolean isNew = trashVersion.isNew();
 
 		TrashVersionModelImpl trashVersionModelImpl = (TrashVersionModelImpl)trashVersion;
@@ -1685,27 +1681,6 @@ public class TrashVersionPersistenceImpl extends BasePersistenceImpl<TrashVersio
 		trashVersion.resetOriginalValues();
 
 		return trashVersion;
-	}
-
-	protected TrashVersion toUnwrappedModel(TrashVersion trashVersion) {
-		if (trashVersion instanceof TrashVersionImpl) {
-			return trashVersion;
-		}
-
-		TrashVersionImpl trashVersionImpl = new TrashVersionImpl();
-
-		trashVersionImpl.setNew(trashVersion.isNew());
-		trashVersionImpl.setPrimaryKey(trashVersion.getPrimaryKey());
-
-		trashVersionImpl.setVersionId(trashVersion.getVersionId());
-		trashVersionImpl.setCompanyId(trashVersion.getCompanyId());
-		trashVersionImpl.setEntryId(trashVersion.getEntryId());
-		trashVersionImpl.setClassNameId(trashVersion.getClassNameId());
-		trashVersionImpl.setClassPK(trashVersion.getClassPK());
-		trashVersionImpl.setTypeSettings(trashVersion.getTypeSettings());
-		trashVersionImpl.setStatus(trashVersion.getStatus());
-
-		return trashVersionImpl;
 	}
 
 	/**

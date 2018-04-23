@@ -2076,8 +2076,6 @@ public class MBStatsUserPersistenceImpl extends BasePersistenceImpl<MBStatsUser>
 
 	@Override
 	protected MBStatsUser removeImpl(MBStatsUser mbStatsUser) {
-		mbStatsUser = toUnwrappedModel(mbStatsUser);
-
 		Session session = null;
 
 		try {
@@ -2108,8 +2106,6 @@ public class MBStatsUserPersistenceImpl extends BasePersistenceImpl<MBStatsUser>
 
 	@Override
 	public MBStatsUser updateImpl(MBStatsUser mbStatsUser) {
-		mbStatsUser = toUnwrappedModel(mbStatsUser);
-
 		boolean isNew = mbStatsUser.isNew();
 
 		MBStatsUserModelImpl mbStatsUserModelImpl = (MBStatsUserModelImpl)mbStatsUser;
@@ -2205,26 +2201,6 @@ public class MBStatsUserPersistenceImpl extends BasePersistenceImpl<MBStatsUser>
 		mbStatsUser.resetOriginalValues();
 
 		return mbStatsUser;
-	}
-
-	protected MBStatsUser toUnwrappedModel(MBStatsUser mbStatsUser) {
-		if (mbStatsUser instanceof MBStatsUserImpl) {
-			return mbStatsUser;
-		}
-
-		MBStatsUserImpl mbStatsUserImpl = new MBStatsUserImpl();
-
-		mbStatsUserImpl.setNew(mbStatsUser.isNew());
-		mbStatsUserImpl.setPrimaryKey(mbStatsUser.getPrimaryKey());
-
-		mbStatsUserImpl.setStatsUserId(mbStatsUser.getStatsUserId());
-		mbStatsUserImpl.setGroupId(mbStatsUser.getGroupId());
-		mbStatsUserImpl.setCompanyId(mbStatsUser.getCompanyId());
-		mbStatsUserImpl.setUserId(mbStatsUser.getUserId());
-		mbStatsUserImpl.setMessageCount(mbStatsUser.getMessageCount());
-		mbStatsUserImpl.setLastPostDate(mbStatsUser.getLastPostDate());
-
-		return mbStatsUserImpl;
 	}
 
 	/**
