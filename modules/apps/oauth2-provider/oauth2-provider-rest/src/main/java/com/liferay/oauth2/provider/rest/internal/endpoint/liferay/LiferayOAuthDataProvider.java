@@ -656,6 +656,7 @@ public class LiferayOAuthDataProvider
 				serverAccessToken.getClient(), refreshToken.getScopes()));
 		cxfRefreshToken.setTokenKey(refreshToken.getTokenKey());
 		cxfRefreshToken.setTokenType(refreshToken.getTokenType());
+
 		UserSubject userSubject = cxfRefreshToken.getSubject();
 
 		userSubject.setId(GetterUtil.getString(refreshToken.getUserId()));
