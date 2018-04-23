@@ -982,8 +982,6 @@ public class LiferayOAuthDataProvider
 
 		OAuth2Application oAuth2Application = resolveOAuth2Application(client);
 
-		long companyId = oAuth2Application.getCompanyId();
-
 		UserSubject userSubject = serverAccessToken.getSubject();
 		long userId = 0;
 		String userName = StringPool.BLANK;
@@ -1013,7 +1011,7 @@ public class LiferayOAuthDataProvider
 
 		OAuth2Authorization oAuth2Authorization =
 			_oAuth2AuthorizationLocalService.addOAuth2Authorization(
-				companyId, userId, userName,
+				oAuth2Application.getCompanyId(), userId, userName,
 				oAuth2Application.getOAuth2ApplicationId(),
 				oAuth2Application.getOAuth2ApplicationScopeAliasesId(),
 				serverAccessToken.getTokenKey(), createDate, expirationDate,
@@ -1025,7 +1023,8 @@ public class LiferayOAuthDataProvider
 
 		for (String scope : scopeList) {
 			liferayOAuth2Scopes.addAll(
-				_scopeFinderLocator.getLiferayOAuth2Scopes(companyId, scope));
+				_scopeFinderLocator.getLiferayOAuth2Scopes(
+					oAuth2Application.getCompanyId(), scope));
 		}
 
 		try {
