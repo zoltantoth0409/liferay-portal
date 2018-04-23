@@ -95,16 +95,17 @@ public class InvokerFilterContainerImpl
 			PortletFilter portletFilter = PortletFilterFactory.create(
 				portletFilterModel, portletContext);
 
-			Map<String, Object> filterProperties = new HashMap<>();
+			Map<String, Object> portletFilterProperties = new HashMap<>();
 
-			filterProperties.putAll(properties);
+			portletFilterProperties.putAll(properties);
 
-			filterProperties.put(
+			portletFilterProperties.put(
 				"filter.lifecycles", portletFilterModel.getLifecycles());
 
 			ServiceRegistration<PortletFilter> serviceRegistration =
 				registry.registerService(
-					PortletFilter.class, portletFilter, filterProperties);
+					PortletFilter.class, portletFilter,
+					portletFilterProperties);
 
 			ServiceRegistrationTuple serviceRegistrationTuple =
 				new ServiceRegistrationTuple(
