@@ -946,7 +946,6 @@ message.
 					to="*"
 				/>
 			</mapper>
-
 			<patternset
 				excludes="${nightly.bundle.excludes}"
 			/>
