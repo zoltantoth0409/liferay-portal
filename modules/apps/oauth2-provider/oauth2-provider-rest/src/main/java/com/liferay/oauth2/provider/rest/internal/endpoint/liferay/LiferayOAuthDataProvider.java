@@ -974,6 +974,7 @@ public class LiferayOAuthDataProvider
 				serverAccessToken.getTokenKey());
 			oAuth2Authorization.setAccessTokenCreateDate(createDate);
 			oAuth2Authorization.setAccessTokenExpirationDate(expirationDate);
+
 			_oAuth2AuthorizationLocalService.updateOAuth2Authorization(
 				oAuth2Authorization);
 			return;
