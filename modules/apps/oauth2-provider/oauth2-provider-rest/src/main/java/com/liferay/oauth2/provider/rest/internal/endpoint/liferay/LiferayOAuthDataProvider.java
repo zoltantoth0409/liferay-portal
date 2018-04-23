@@ -1037,6 +1037,7 @@ public class LiferayOAuthDataProvider
 		}
 		catch (PortalException pe) {
 			_log.error("Unable to find authorization " + oAuth2Authorization);
+
 			throw new OAuthServiceException(
 				"Unable to grant scope for token", pe);
 		}
