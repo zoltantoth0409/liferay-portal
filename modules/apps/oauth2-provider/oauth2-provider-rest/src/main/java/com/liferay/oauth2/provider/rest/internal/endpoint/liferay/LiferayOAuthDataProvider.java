@@ -730,7 +730,8 @@ public class LiferayOAuthDataProvider
 
 		if (oAuth2Application == null) {
 			throw new SystemException(
-				"No application found for authorization " + oAuth2Authorization);
+				"No application found for authorization " +
+					oAuth2Authorization);
 		}
 
 		Client client = getClient(oAuth2Application.getClientId());
@@ -783,11 +784,12 @@ public class LiferayOAuthDataProvider
 			oAuth2Application.getClientId(), clientSecret,
 			!Validator.isBlank(clientSecret), oAuth2Application.getName(),
 			oAuth2Application.getHomePageURL());
-		List<GrantType> allowedGrantTypes =
-			oAuth2Application.getAllowedGrantTypesList();
+
 		List<String> clientGrantTypes = client.getAllowedGrantTypes();
 
-		for (GrantType allowedGrantType : allowedGrantTypes) {
+		for (GrantType allowedGrantType :
+				oAuth2Application.getAllowedGrantTypesList()) {
+
 			if (_oAuth2ProviderConfiguration.allowAuthorizationCodeGrant() &&
 				(allowedGrantType == GrantType.AUTHORIZATION_CODE)) {
 
