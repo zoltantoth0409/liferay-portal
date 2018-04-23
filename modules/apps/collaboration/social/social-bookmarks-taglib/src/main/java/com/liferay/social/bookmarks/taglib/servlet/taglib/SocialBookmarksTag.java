@@ -103,11 +103,11 @@ public class SocialBookmarksTag extends IncludeTag {
 		_className = null;
 		_classPK = 0;
 		_displayStyle = null;
+		_maxInlineItems = 3;
 		_target = null;
 		_title = null;
 		_types = null;
 		_url = null;
-		_maxInlineItems = 3;
 	}
 
 	@Override
