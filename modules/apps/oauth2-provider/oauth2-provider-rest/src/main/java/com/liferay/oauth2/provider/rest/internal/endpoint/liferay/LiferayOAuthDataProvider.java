@@ -304,7 +304,7 @@ public class LiferayOAuthDataProvider
 		if (oAuth2Application == null) {
 
 			// TODO: Inform the audit service that the user is trying a
-			// non-existent or removed clientId
+			// nonexistent or removed clientId
 
 			return null;
 		}
