@@ -982,9 +982,10 @@ public class LiferayOAuthDataProvider
 
 		OAuth2Application oAuth2Application = resolveOAuth2Application(client);
 
-		UserSubject userSubject = serverAccessToken.getSubject();
 		long userId = 0;
 		String userName = StringPool.BLANK;
+
+		UserSubject userSubject = serverAccessToken.getSubject();
 
 		if (userSubject != null) {
 			try {
