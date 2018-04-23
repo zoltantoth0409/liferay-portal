@@ -117,15 +117,6 @@ public class SocialBookmarksTag extends IncludeTag {
 
 	@Override
 	protected void setAttributes(HttpServletRequest request) {
-		String[] types = _types;
-
-		if (types == null) {
-			List<String> allTypes =
-				SocialBookmarksRegistryUtil.getSocialBookmarksTypes();
-
-			types = allTypes.toArray(new String[0]);
-		}
-
 		request.setAttribute(
 			"liferay-social-bookmarks:bookmarks:className", _className);
 		request.setAttribute(
@@ -139,7 +130,18 @@ public class SocialBookmarksTag extends IncludeTag {
 			"liferay-social-bookmarks:bookmarks:target", _target);
 		request.setAttribute(
 			"liferay-social-bookmarks:bookmarks:title", _title);
+
+		String[] types = _types;
+
+		if (types == null) {
+			List<String> allTypes =
+				SocialBookmarksRegistryUtil.getSocialBookmarksTypes();
+
+			types = allTypes.toArray(new String[0]);
+		}
+
 		request.setAttribute("liferay-social-bookmarks:bookmarks:types", types);
+
 		request.setAttribute("liferay-social-bookmarks:bookmarks:url", _url);
 	}
 
