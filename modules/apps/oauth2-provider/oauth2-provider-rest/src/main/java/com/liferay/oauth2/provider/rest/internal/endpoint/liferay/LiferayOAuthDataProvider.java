@@ -334,9 +334,10 @@ public class LiferayOAuthDataProvider
 			Client client, UserSubject subject)
 		throws OAuthServiceException {
 
-		List<String> keys = _codeGrantsPortalCache.getKeys();
 		List<ServerAuthorizationCodeGrant> serverAuthorizationCodeGrants =
 			new ArrayList<>();
+
+		List<String> keys = _codeGrantsPortalCache.getKeys();
 
 		for (String key : keys) {
 			ServerAuthorizationCodeGrant serverAuthorizationCodeGrant =
