@@ -505,6 +505,7 @@ public class LiferayOAuthDataProvider
 			client, oldRefreshToken, Collections.emptyList());
 
 		accessToken.setRefreshToken(oldRefreshToken.getTokenKey());
+
 		RefreshToken newRefreshToken = doCreateNewRefreshToken(accessToken);
 
 		List<String> accessTokens = newRefreshToken.getAccessTokens();
