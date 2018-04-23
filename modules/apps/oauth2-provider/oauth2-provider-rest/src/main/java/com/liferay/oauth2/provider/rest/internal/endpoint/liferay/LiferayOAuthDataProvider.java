@@ -997,6 +997,7 @@ public class LiferayOAuthDataProvider
 			}
 			catch (Exception e) {
 				_log.error("Unable to load user " + userSubject.getId(), e);
+
 				throw new RuntimeException(e);
 			}
 		}
