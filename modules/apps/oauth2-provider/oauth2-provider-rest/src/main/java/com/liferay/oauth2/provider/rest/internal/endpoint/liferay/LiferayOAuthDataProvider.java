@@ -918,6 +918,7 @@ public class LiferayOAuthDataProvider
 		Date createDate = fromCXFTime(refreshToken.getIssuedAt());
 		Date expirationDate = fromCXFTime(
 			refreshToken.getIssuedAt() + refreshToken.getExpiresIn());
+
 		Iterator<String> iterator = accessTokens.iterator();
 
 		String accessTokenContent = iterator.next();
