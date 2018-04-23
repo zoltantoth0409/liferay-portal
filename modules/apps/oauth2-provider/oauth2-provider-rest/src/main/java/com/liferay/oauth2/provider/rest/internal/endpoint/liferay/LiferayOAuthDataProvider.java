@@ -415,6 +415,7 @@ public class LiferayOAuthDataProvider
 				oAuth2Authorization.getAccessTokenContent());
 
 			refreshToken.setAccessTokens(accessTokens);
+
 			OAuth2ApplicationScopeAliases oAuth2ApplicationScopeAliases =
 				_oAuth2ApplicationScopeAliasesLocalService.
 					getOAuth2ApplicationScopeAliases(
