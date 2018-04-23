@@ -537,6 +537,7 @@ public class LiferayOAuthDataProvider
 
 		ServerAuthorizationCodeGrant serverAuthorizationCodeGrant =
 			_codeGrantsPortalCache.get(code);
+
 		_codeGrantsPortalCache.remove(code);
 
 		return serverAuthorizationCodeGrant;
