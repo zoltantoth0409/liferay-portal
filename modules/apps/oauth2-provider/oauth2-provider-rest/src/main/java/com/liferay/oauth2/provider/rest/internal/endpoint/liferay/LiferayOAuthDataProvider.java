@@ -393,10 +393,11 @@ public class LiferayOAuthDataProvider
 			OAuth2Application oAuth2Application =
 				_oAuth2ApplicationLocalService.getOAuth2Application(
 					oAuth2Authorization.getOAuth2ApplicationId());
-			long issuedAt = toCXFTime(
-				oAuth2Authorization.getRefreshTokenCreateDate());
+
 			long expires = toCXFTime(
 				oAuth2Authorization.getRefreshTokenExpirationDate());
+			long issuedAt = toCXFTime(
+				oAuth2Authorization.getRefreshTokenCreateDate());
 
 			long lifetime = expires - issuedAt;
 
