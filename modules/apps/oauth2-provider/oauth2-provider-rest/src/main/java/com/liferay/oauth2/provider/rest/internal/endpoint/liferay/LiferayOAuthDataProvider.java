@@ -618,6 +618,7 @@ public class LiferayOAuthDataProvider
 				serverAccessToken.getClient(), accessToken.getScopes()));
 		serverAccessToken.setTokenKey(accessToken.getTokenKey());
 		serverAccessToken.setTokenType(accessToken.getTokenType());
+
 		UserSubject userSubject = serverAccessToken.getSubject();
 
 		userSubject.setId(GetterUtil.getString(accessToken.getUserId()));
