@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.service.PersistedModelLocalServiceRegistry;
 import com.liferay.portal.kernel.service.persistence.ClassNamePersistence;
 import com.liferay.portal.kernel.service.persistence.UserFinder;
 import com.liferay.portal.kernel.service.persistence.UserPersistence;
+import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PortalUtil;
 
@@ -95,6 +96,7 @@ public abstract class TrashVersionLocalServiceBaseImpl
 	 * @return the new trash version
 	 */
 	@Override
+	@Transactional(enabled = false)
 	public TrashVersion createTrashVersion(long versionId) {
 		return trashVersionPersistence.create(versionId);
 	}

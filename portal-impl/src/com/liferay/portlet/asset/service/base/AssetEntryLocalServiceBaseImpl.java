@@ -52,6 +52,7 @@ import com.liferay.portal.kernel.service.persistence.GroupPersistence;
 import com.liferay.portal.kernel.service.persistence.SystemEventPersistence;
 import com.liferay.portal.kernel.service.persistence.UserFinder;
 import com.liferay.portal.kernel.service.persistence.UserPersistence;
+import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PortalUtil;
 
@@ -109,6 +110,7 @@ public abstract class AssetEntryLocalServiceBaseImpl
 	 * @return the new asset entry
 	 */
 	@Override
+	@Transactional(enabled = false)
 	public AssetEntry createAssetEntry(long entryId) {
 		return assetEntryPersistence.create(entryId);
 	}

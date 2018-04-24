@@ -50,6 +50,7 @@ import com.liferay.portal.kernel.service.persistence.PhonePersistence;
 import com.liferay.portal.kernel.service.persistence.PortletPersistence;
 import com.liferay.portal.kernel.service.persistence.UserPersistence;
 import com.liferay.portal.kernel.service.persistence.WebsitePersistence;
+import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.spring.extender.service.ServiceReference;
@@ -110,6 +111,7 @@ public abstract class WSRPConsumerPortletLocalServiceBaseImpl
 	 * @return the new wsrp consumer portlet
 	 */
 	@Override
+	@Transactional(enabled = false)
 	public WSRPConsumerPortlet createWSRPConsumerPortlet(
 		long wsrpConsumerPortletId) {
 		return wsrpConsumerPortletPersistence.create(wsrpConsumerPortletId);

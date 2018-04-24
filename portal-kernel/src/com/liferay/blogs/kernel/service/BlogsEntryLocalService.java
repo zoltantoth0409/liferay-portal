@@ -159,6 +159,7 @@ public interface BlogsEntryLocalService extends BaseLocalService,
 	* @param entryId the primary key for the new blogs entry
 	* @return the new blogs entry
 	*/
+	@Transactional(enabled = false)
 	public BlogsEntry createBlogsEntry(long entryId);
 
 	/**

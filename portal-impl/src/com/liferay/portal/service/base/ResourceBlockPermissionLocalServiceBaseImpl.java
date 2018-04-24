@@ -40,6 +40,7 @@ import com.liferay.portal.kernel.service.ResourceBlockPermissionLocalService;
 import com.liferay.portal.kernel.service.persistence.ResourceBlockFinder;
 import com.liferay.portal.kernel.service.persistence.ResourceBlockPermissionPersistence;
 import com.liferay.portal.kernel.service.persistence.ResourceBlockPersistence;
+import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PortalUtil;
 
@@ -93,6 +94,7 @@ public abstract class ResourceBlockPermissionLocalServiceBaseImpl
 	 * @return the new resource block permission
 	 */
 	@Override
+	@Transactional(enabled = false)
 	public ResourceBlockPermission createResourceBlockPermission(
 		long resourceBlockPermissionId) {
 		return resourceBlockPermissionPersistence.create(resourceBlockPermissionId);

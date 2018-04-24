@@ -75,6 +75,7 @@ import com.liferay.portal.kernel.service.persistence.SubscriptionPersistence;
 import com.liferay.portal.kernel.service.persistence.UserFinder;
 import com.liferay.portal.kernel.service.persistence.UserPersistence;
 import com.liferay.portal.kernel.service.persistence.WorkflowInstanceLinkPersistence;
+import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -133,6 +134,7 @@ public abstract class BlogsEntryLocalServiceBaseImpl
 	 * @return the new blogs entry
 	 */
 	@Override
+	@Transactional(enabled = false)
 	public BlogsEntry createBlogsEntry(long entryId) {
 		return blogsEntryPersistence.create(entryId);
 	}

@@ -70,6 +70,7 @@ import com.liferay.portal.kernel.service.persistence.SubscriptionPersistence;
 import com.liferay.portal.kernel.service.persistence.UserFinder;
 import com.liferay.portal.kernel.service.persistence.UserPersistence;
 import com.liferay.portal.kernel.service.persistence.WorkflowInstanceLinkPersistence;
+import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -128,6 +129,7 @@ public abstract class MBThreadLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the new message boards thread
 	 */
 	@Override
+	@Transactional(enabled = false)
 	public MBThread createMBThread(long threadId) {
 		return mbThreadPersistence.create(threadId);
 	}

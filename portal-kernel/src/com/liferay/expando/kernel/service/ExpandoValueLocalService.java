@@ -178,6 +178,7 @@ public interface ExpandoValueLocalService extends BaseLocalService,
 	* @param valueId the primary key for the new expando value
 	* @return the new expando value
 	*/
+	@Transactional(enabled = false)
 	public ExpandoValue createExpandoValue(long valueId);
 
 	public void deleteColumnValues(long columnId);

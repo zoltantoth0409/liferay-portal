@@ -154,6 +154,7 @@ public interface MBMessageLocalService extends BaseLocalService,
 	* @param messageId the primary key for the new message-boards message
 	* @return the new message-boards message
 	*/
+	@Transactional(enabled = false)
 	public MBMessage createMBMessage(long messageId);
 
 	@Indexable(type = IndexableType.DELETE)

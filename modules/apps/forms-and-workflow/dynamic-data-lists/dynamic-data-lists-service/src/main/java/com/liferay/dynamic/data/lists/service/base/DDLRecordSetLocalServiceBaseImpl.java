@@ -52,6 +52,7 @@ import com.liferay.portal.kernel.service.PersistedModelLocalServiceRegistry;
 import com.liferay.portal.kernel.service.persistence.ClassNamePersistence;
 import com.liferay.portal.kernel.service.persistence.UserPersistence;
 import com.liferay.portal.kernel.service.persistence.WorkflowDefinitionLinkPersistence;
+import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.spring.extender.service.ServiceReference;
@@ -105,6 +106,7 @@ public abstract class DDLRecordSetLocalServiceBaseImpl
 	 * @return the new ddl record set
 	 */
 	@Override
+	@Transactional(enabled = false)
 	public DDLRecordSet createDDLRecordSet(long recordSetId) {
 		return ddlRecordSetPersistence.create(recordSetId);
 	}
