@@ -59,7 +59,6 @@ public class ViewUADApplicationsSummaryMVCRenderCommand
 			viewUADApplicationsSummaryDisplay.setManagementBarFilterItems(
 				_uadApplicationSummaryHelper.createManagementBarFilterItems(
 					renderRequest, renderResponse));
-
 			viewUADApplicationsSummaryDisplay.setSearchContainer(
 				_uadApplicationSummaryHelper.createSearchContainer(
 					renderRequest, renderResponse, selectedUser.getUserId()));
