@@ -3242,6 +3242,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 
 	@Override
 	protected DDLRecord removeImpl(DDLRecord ddlRecord) {
+		ddlRecord = toUnwrappedModel(ddlRecord);
+
 		Session session = null;
 
 		try {
@@ -3272,6 +3274,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 
 	@Override
 	public DDLRecord updateImpl(DDLRecord ddlRecord) {
+		ddlRecord = toUnwrappedModel(ddlRecord);
+
 		boolean isNew = ddlRecord.isNew();
 
 		DDLRecordModelImpl ddlRecordModelImpl = (DDLRecordModelImpl)ddlRecord;
@@ -3477,6 +3481,35 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		ddlRecord.resetOriginalValues();
 
 		return ddlRecord;
+	}
+
+	protected DDLRecord toUnwrappedModel(DDLRecord ddlRecord) {
+		if (ddlRecord instanceof DDLRecordImpl) {
+			return ddlRecord;
+		}
+
+		DDLRecordImpl ddlRecordImpl = new DDLRecordImpl();
+
+		ddlRecordImpl.setNew(ddlRecord.isNew());
+		ddlRecordImpl.setPrimaryKey(ddlRecord.getPrimaryKey());
+
+		ddlRecordImpl.setUuid(ddlRecord.getUuid());
+		ddlRecordImpl.setRecordId(ddlRecord.getRecordId());
+		ddlRecordImpl.setGroupId(ddlRecord.getGroupId());
+		ddlRecordImpl.setCompanyId(ddlRecord.getCompanyId());
+		ddlRecordImpl.setUserId(ddlRecord.getUserId());
+		ddlRecordImpl.setUserName(ddlRecord.getUserName());
+		ddlRecordImpl.setVersionUserId(ddlRecord.getVersionUserId());
+		ddlRecordImpl.setVersionUserName(ddlRecord.getVersionUserName());
+		ddlRecordImpl.setCreateDate(ddlRecord.getCreateDate());
+		ddlRecordImpl.setModifiedDate(ddlRecord.getModifiedDate());
+		ddlRecordImpl.setDDMStorageId(ddlRecord.getDDMStorageId());
+		ddlRecordImpl.setRecordSetId(ddlRecord.getRecordSetId());
+		ddlRecordImpl.setVersion(ddlRecord.getVersion());
+		ddlRecordImpl.setDisplayIndex(ddlRecord.getDisplayIndex());
+		ddlRecordImpl.setLastPublishDate(ddlRecord.getLastPublishDate());
+
+		return ddlRecordImpl;
 	}
 
 	/**
