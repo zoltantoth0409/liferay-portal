@@ -36,6 +36,7 @@ import com.liferay.portal.test.rule.PermissionCheckerTestRule;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -171,7 +172,7 @@ public class DLFolderIndexerIndexedFieldsTest extends BaseDLIndexerTestCase {
 	protected void populateTreePath(
 		DLFolder dlFolder, Map<String, String> map) {
 
-		ArrayList<String> treePathValues = new ArrayList<>(
+		List<String> treePathValues = new ArrayList<>(
 			Arrays.asList(
 				StringUtil.split(dlFolder.getTreePath(), CharPool.SLASH)));
 
