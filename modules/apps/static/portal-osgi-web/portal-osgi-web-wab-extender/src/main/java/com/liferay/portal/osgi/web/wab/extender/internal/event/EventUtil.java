@@ -104,7 +104,6 @@ public class EventUtil
 
 		if (collision) {
 			List<Long> collidedBundleIds = new ArrayList<>();
-
 			List<String> collidedBundleNames = new ArrayList<>();
 
 			BundleContext bundleContext = bundle.getBundleContext();
