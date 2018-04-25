@@ -5125,7 +5125,7 @@ go]]></replacevalue>
 
 		<get-testcase-property property.name="osgi.module.configurations" />
 
-		<for list="${osgi.module.configurations}" param="configuration">
+		<for delimiter=":" list="${osgi.module.configurations}" param="configuration">
 			<sequential>
 				<echo file="${liferay.home}/osgi/configs/${osgi.module.configurations.index}">@{configuration}</echo>
 
@@ -5143,7 +5143,7 @@ go]]></replacevalue>
 
 		<get-testcase-property property.name="osgi.module.configuration.file.names" />
 
-		<for list="${osgi.module.configuration.file.names}" param="file.names">
+		<for delimiter=":" list="${osgi.module.configuration.file.names}" param="file.names">
 			<sequential>
 				<if>
 					<available file="${liferay.home}/osgi/configs/${osgi.module.configuration.file.names.index}" />
