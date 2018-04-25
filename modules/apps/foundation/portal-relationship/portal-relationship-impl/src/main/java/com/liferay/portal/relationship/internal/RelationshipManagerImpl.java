@@ -113,10 +113,10 @@ public class RelationshipManagerImpl implements RelationshipManager {
 	private <T extends ClassedModel> List<Relationship<T>> _getRelationships(
 		Class<T> modelClass) {
 
+		List<Relationship<T>> relationships = new ArrayList<>();
+
 		List<RelationshipResource> relationshipResources =
 			_serviceTrackerMap.getService(modelClass.getName());
-
-		List<Relationship<T>> relationships = new ArrayList<>();
 
 		for (RelationshipResource relationshipResource :
 				relationshipResources) {
