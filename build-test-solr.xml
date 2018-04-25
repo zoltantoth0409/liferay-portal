@@ -293,6 +293,7 @@ schema=schema.xml</echo>
 				<then>
 					<mirrors-get
 						dest="${app.server.parent.dir}/${solr.zip.name}"
+						skipChecksum="true"
 						src="${solr.zip.url}"
 						verbose="true"
 					/>
