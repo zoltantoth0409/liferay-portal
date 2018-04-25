@@ -262,7 +262,7 @@ public class SendmailHook implements Hook {
 		String changePasswordCmd = PropsUtil.get(
 			PropsKeys.MAIL_HOOK_SENDMAIL_CHANGE_PASSWORD);
 
-		// Replace userId and password
+		// Replace user ID and password
 
 		String[] arguments = StringUtil.split(
 			changePasswordCmd, StringPool.SPACE);
