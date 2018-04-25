@@ -108,7 +108,7 @@ public abstract class BaseAccessTokenGrantHandler
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"Unable to create PermissionChecker for user " + userId);
+					"Unable to create permission checker for user " + userId);
 			}
 
 			return false;
