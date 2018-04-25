@@ -89,8 +89,6 @@ public class SendmailHook implements Hook {
 		addUserCmd = StringUtil.replace(
 			addUserCmd, "%1%", String.valueOf(userId));
 
-		String[] arguments = StringUtil.split(addUserCmd, StringPool.SPACE);
-
 		try {
 			Future<?> future = ProcessUtil.execute(
 				new LoggingOutputProcessor(
@@ -102,7 +100,7 @@ public class SendmailHook implements Hook {
 							_log.info(line);
 						}
 					}),
-				arguments);
+				StringUtil.split(addUserCmd, StringPool.SPACE));
 
 			future.get();
 		}
@@ -139,8 +137,6 @@ public class SendmailHook implements Hook {
 		deleteUserCmd = StringUtil.replace(
 			deleteUserCmd, "%1%", String.valueOf(userId));
 
-		String[] arguments = StringUtil.split(deleteUserCmd, StringPool.SPACE);
-
 		try {
 			Future<?> future = ProcessUtil.execute(
 				new LoggingOutputProcessor(
@@ -152,7 +148,7 @@ public class SendmailHook implements Hook {
 							_log.info(line);
 						}
 					}),
-				arguments);
+				StringUtil.split(deleteUserCmd, StringPool.SPACE));
 
 			future.get();
 		}
@@ -239,9 +235,6 @@ public class SendmailHook implements Hook {
 			String virtusertableRefreshCmd = PropsUtil.get(
 				PropsKeys.MAIL_HOOK_SENDMAIL_VIRTUSERTABLE_REFRESH);
 
-			String[] arguments = StringUtil.split(
-				virtusertableRefreshCmd, StringPool.SPACE);
-
 			Future<?> future = ProcessUtil.execute(
 				new LoggingOutputProcessor(
 					(stdErr, line) -> {
@@ -252,7 +245,7 @@ public class SendmailHook implements Hook {
 							_log.info(line);
 						}
 					}),
-				arguments);
+				StringUtil.split(virtusertableRefreshCmd, StringPool.SPACE));
 
 			future.get();
 		}
@@ -269,10 +262,10 @@ public class SendmailHook implements Hook {
 		String changePasswordCmd = PropsUtil.get(
 			PropsKeys.MAIL_HOOK_SENDMAIL_CHANGE_PASSWORD);
 
+		// Replace userId and password
+
 		String[] arguments = StringUtil.split(
 			changePasswordCmd, StringPool.SPACE);
-
-		// Replace userId and password
 
 		for (int i = 0; i < arguments.length; i++) {
 			if (arguments[i].equals("%1%")) {
