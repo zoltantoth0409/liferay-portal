@@ -54,13 +54,13 @@ public class AutoCloseUtil {
 			return false;
 		}
 
-		List<AutoCloseRule> rules = getAutoCloseRules(project);
+		List<AutoCloseRule> autoCloseRules = getAutoCloseRules(project);
 
-		for (AutoCloseRule rule : rules) {
+		for (AutoCloseRule autoCloseRule : autoCloseRules) {
 			List<Build> downstreamBuilds = topLevelBuild.getDownstreamBuilds(
 				null);
 
-			List<Build> failedDownstreamBuilds = rule.evaluate(
+			List<Build> failedDownstreamBuilds = autoCloseRule.evaluate(
 				downstreamBuilds);
 
 			if (failedDownstreamBuilds.isEmpty()) {
