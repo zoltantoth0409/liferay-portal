@@ -903,8 +903,6 @@ public class LayoutsAdminDisplayContext {
 			jsonObject.put("deleteURL", getDeleteLayoutURL(layout));
 		}
 
-		jsonObject.put("viewLayoutURL", getViewLayoutURL(layout));
-
 		if (showOrphanPortletsAction(layout)) {
 			jsonObject.put("orphanPortletsURL", getOrphanPortletsURL(layout));
 		}
@@ -912,6 +910,8 @@ public class LayoutsAdminDisplayContext {
 		if (showPermissionsAction(layout)) {
 			jsonObject.put("permissionsURL", getPermissionsURL(layout));
 		}
+
+		jsonObject.put("viewLayoutURL", getViewLayoutURL(layout));
 
 		return jsonObject;
 	}
