@@ -122,7 +122,7 @@ public class AutoCloseUtil {
 			sb.append("<p auto-close=\"false\"><strong><em>*This pull will ");
 			sb.append("no longer automatically close if this comment is ");
 			sb.append("available. If you believe this is a mistake please ");
-			sb.append("re-open this pull by entering the following command ");
+			sb.append("reopen this pull by entering the following command ");
 			sb.append("as a comment.</em></strong></p><pre>ci&#58;reopen");
 			sb.append("</pre><hr /><h3>Critical Failure Details:</h3>");
 
@@ -298,7 +298,7 @@ public class AutoCloseUtil {
 			sb.append("<p auto-close=\"false\"><strong><em>*This pull will ");
 			sb.append("no longer automatically close if this comment is ");
 			sb.append("available. If you believe this is a mistake please ");
-			sb.append("re-open this pull by entering the following command ");
+			sb.append("reopen this pull by entering the following command ");
 			sb.append("as a comment.</em></strong></p><pre>ci&#58;reopen");
 			sb.append("</pre><hr /><h3>Critical Failure Details:</h3>");
 
