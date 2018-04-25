@@ -782,7 +782,9 @@ AUI.add(
 
 							if ((instance.get('pagesQuantity') == 1) && (activePageNumber == 1)) {
 								instance._onAddLastPageClick();
+
 								pagination.prev();
+
 								instance.set('activePageNumber', activePageNumber + 1);
 							}
 							else {
