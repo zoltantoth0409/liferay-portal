@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.osgi.debug.internal;
+package com.liferay.portal.osgi.debug.internal.osgi.commands;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
