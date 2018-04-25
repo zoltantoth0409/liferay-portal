@@ -151,17 +151,6 @@ SOLR_SSL_WANT_CLIENT_AUTH=true</echo>
 		</sequential>
 	</macrodef>
 
-	<macrodef name="delete-elasticseach-osgi-bundle">
-		<sequential>
-			<delete failonerror="false">
-				<fileset
-					dir="${liferay.home}/osgi/portal"
-					includes="com.liferay.portal.search.elasticsearch*.jar"
-				/>
-			</delete>
-		</sequential>
-	</macrodef>
-
 	<macrodef name="prepare-solr-configurations">
 		<sequential>
 			<copy
@@ -319,8 +308,6 @@ schema=schema.xml</echo>
 		<unzip-solr />
 
 		<prepare-solr-configurations />
-
-		<delete-elasticseach-osgi-bundle />
 
 		<configure-liferay-solr-adapter-osgi-configs />
 
