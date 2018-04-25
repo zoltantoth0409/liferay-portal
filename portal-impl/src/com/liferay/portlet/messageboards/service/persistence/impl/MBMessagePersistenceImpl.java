@@ -20274,7 +20274,7 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 
 				args = new Object[] {
 						mbMessageModelImpl.getThreadId(),
-						mbMessageModelImpl.getAnswer()
+						mbMessageModelImpl.isAnswer()
 					};
 
 				finderCache.removeResult(FINDER_PATH_COUNT_BY_T_A, args);
@@ -20479,7 +20479,7 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 						mbMessageModelImpl.getGroupId(),
 						mbMessageModelImpl.getCategoryId(),
 						mbMessageModelImpl.getThreadId(),
-						mbMessageModelImpl.getAnswer()
+						mbMessageModelImpl.isAnswer()
 					};
 
 				finderCache.removeResult(FINDER_PATH_COUNT_BY_G_C_T_A, args);

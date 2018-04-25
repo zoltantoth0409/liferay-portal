@@ -9165,7 +9165,7 @@ public class BackgroundTaskPersistenceImpl extends BasePersistenceImpl<Backgroun
 				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPLETED,
 					args);
 
-				args = new Object[] { backgroundTaskModelImpl.getCompleted() };
+				args = new Object[] { backgroundTaskModelImpl.isCompleted() };
 
 				finderCache.removeResult(FINDER_PATH_COUNT_BY_COMPLETED, args);
 				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPLETED,
@@ -9290,7 +9290,7 @@ public class BackgroundTaskPersistenceImpl extends BasePersistenceImpl<Backgroun
 				args = new Object[] {
 						backgroundTaskModelImpl.getGroupId(),
 						backgroundTaskModelImpl.getTaskExecutorClassName(),
-						backgroundTaskModelImpl.getCompleted()
+						backgroundTaskModelImpl.isCompleted()
 					};
 
 				finderCache.removeResult(FINDER_PATH_COUNT_BY_G_T_C, args);
@@ -9338,7 +9338,7 @@ public class BackgroundTaskPersistenceImpl extends BasePersistenceImpl<Backgroun
 						backgroundTaskModelImpl.getGroupId(),
 						backgroundTaskModelImpl.getName(),
 						backgroundTaskModelImpl.getTaskExecutorClassName(),
-						backgroundTaskModelImpl.getCompleted()
+						backgroundTaskModelImpl.isCompleted()
 					};
 
 				finderCache.removeResult(FINDER_PATH_COUNT_BY_G_N_T_C, args);

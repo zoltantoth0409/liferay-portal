@@ -738,7 +738,7 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 
 			if (!Objects.equals(uuid, layout.getUuid()) ||
 					(groupId != layout.getGroupId()) ||
-					(privateLayout != layout.getPrivateLayout())) {
+					(privateLayout != layout.isPrivateLayout())) {
 				result = null;
 			}
 		}
@@ -801,7 +801,7 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 					if ((layout.getUuid() == null) ||
 							!layout.getUuid().equals(uuid) ||
 							(layout.getGroupId() != groupId) ||
-							(layout.getPrivateLayout() != privateLayout)) {
+							(layout.isPrivateLayout() != privateLayout)) {
 						finderCache.putResult(FINDER_PATH_FETCH_BY_UUID_G_P,
 							finderArgs, layout);
 					}
@@ -5810,7 +5810,7 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 		if (result instanceof Layout) {
 			Layout layout = (Layout)result;
 
-			if ((privateLayout != layout.getPrivateLayout()) ||
+			if ((privateLayout != layout.isPrivateLayout()) ||
 					(iconImageId != layout.getIconImageId())) {
 				result = null;
 			}
@@ -5864,7 +5864,7 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 
 					cacheResult(layout);
 
-					if ((layout.getPrivateLayout() != privateLayout) ||
+					if ((layout.isPrivateLayout() != privateLayout) ||
 							(layout.getIconImageId() != iconImageId)) {
 						finderCache.putResult(FINDER_PATH_FETCH_BY_P_I,
 							finderArgs, layout);
@@ -6059,7 +6059,7 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 			Layout layout = (Layout)result;
 
 			if ((groupId != layout.getGroupId()) ||
-					(privateLayout != layout.getPrivateLayout()) ||
+					(privateLayout != layout.isPrivateLayout()) ||
 					(layoutId != layout.getLayoutId())) {
 				result = null;
 			}
@@ -6107,7 +6107,7 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 					cacheResult(layout);
 
 					if ((layout.getGroupId() != groupId) ||
-							(layout.getPrivateLayout() != privateLayout) ||
+							(layout.isPrivateLayout() != privateLayout) ||
 							(layout.getLayoutId() != layoutId)) {
 						finderCache.putResult(FINDER_PATH_FETCH_BY_G_P_L,
 							finderArgs, layout);
@@ -8909,7 +8909,7 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 			Layout layout = (Layout)result;
 
 			if ((groupId != layout.getGroupId()) ||
-					(privateLayout != layout.getPrivateLayout()) ||
+					(privateLayout != layout.isPrivateLayout()) ||
 					!Objects.equals(friendlyURL, layout.getFriendlyURL())) {
 				result = null;
 			}
@@ -8971,7 +8971,7 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 					cacheResult(layout);
 
 					if ((layout.getGroupId() != groupId) ||
-							(layout.getPrivateLayout() != privateLayout) ||
+							(layout.isPrivateLayout() != privateLayout) ||
 							(layout.getFriendlyURL() == null) ||
 							!layout.getFriendlyURL().equals(friendlyURL)) {
 						finderCache.putResult(FINDER_PATH_FETCH_BY_G_P_F,
@@ -9195,7 +9195,7 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 			Layout layout = (Layout)result;
 
 			if ((groupId != layout.getGroupId()) ||
-					(privateLayout != layout.getPrivateLayout()) ||
+					(privateLayout != layout.isPrivateLayout()) ||
 					!Objects.equals(sourcePrototypeLayoutUuid,
 						layout.getSourcePrototypeLayoutUuid())) {
 				result = null;
@@ -9269,7 +9269,7 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 					cacheResult(layout);
 
 					if ((layout.getGroupId() != groupId) ||
-							(layout.getPrivateLayout() != privateLayout) ||
+							(layout.isPrivateLayout() != privateLayout) ||
 							(layout.getSourcePrototypeLayoutUuid() == null) ||
 							!layout.getSourcePrototypeLayoutUuid()
 									   .equals(sourcePrototypeLayoutUuid)) {
@@ -10468,31 +10468,31 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 
 		finderCache.putResult(FINDER_PATH_FETCH_BY_UUID_G_P,
 			new Object[] {
-				layout.getUuid(), layout.getGroupId(), layout.getPrivateLayout()
+				layout.getUuid(), layout.getGroupId(), layout.isPrivateLayout()
 			}, layout);
 
 		finderCache.putResult(FINDER_PATH_FETCH_BY_ICONIMAGEID,
 			new Object[] { layout.getIconImageId() }, layout);
 
 		finderCache.putResult(FINDER_PATH_FETCH_BY_P_I,
-			new Object[] { layout.getPrivateLayout(), layout.getIconImageId() },
+			new Object[] { layout.isPrivateLayout(), layout.getIconImageId() },
 			layout);
 
 		finderCache.putResult(FINDER_PATH_FETCH_BY_G_P_L,
 			new Object[] {
-				layout.getGroupId(), layout.getPrivateLayout(),
+				layout.getGroupId(), layout.isPrivateLayout(),
 				layout.getLayoutId()
 			}, layout);
 
 		finderCache.putResult(FINDER_PATH_FETCH_BY_G_P_F,
 			new Object[] {
-				layout.getGroupId(), layout.getPrivateLayout(),
+				layout.getGroupId(), layout.isPrivateLayout(),
 				layout.getFriendlyURL()
 			}, layout);
 
 		finderCache.putResult(FINDER_PATH_FETCH_BY_G_P_SPLU,
 			new Object[] {
-				layout.getGroupId(), layout.getPrivateLayout(),
+				layout.getGroupId(), layout.isPrivateLayout(),
 				layout.getSourcePrototypeLayoutUuid()
 			}, layout);
 
@@ -10567,7 +10567,7 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 	protected void cacheUniqueFindersCache(LayoutModelImpl layoutModelImpl) {
 		Object[] args = new Object[] {
 				layoutModelImpl.getUuid(), layoutModelImpl.getGroupId(),
-				layoutModelImpl.getPrivateLayout()
+				layoutModelImpl.isPrivateLayout()
 			};
 
 		finderCache.putResult(FINDER_PATH_COUNT_BY_UUID_G_P, args,
@@ -10583,7 +10583,7 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 			layoutModelImpl, false);
 
 		args = new Object[] {
-				layoutModelImpl.getPrivateLayout(),
+				layoutModelImpl.isPrivateLayout(),
 				layoutModelImpl.getIconImageId()
 			};
 
@@ -10593,7 +10593,7 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 			false);
 
 		args = new Object[] {
-				layoutModelImpl.getGroupId(), layoutModelImpl.getPrivateLayout(),
+				layoutModelImpl.getGroupId(), layoutModelImpl.isPrivateLayout(),
 				layoutModelImpl.getLayoutId()
 			};
 
@@ -10603,7 +10603,7 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 			layoutModelImpl, false);
 
 		args = new Object[] {
-				layoutModelImpl.getGroupId(), layoutModelImpl.getPrivateLayout(),
+				layoutModelImpl.getGroupId(), layoutModelImpl.isPrivateLayout(),
 				layoutModelImpl.getFriendlyURL()
 			};
 
@@ -10613,7 +10613,7 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 			layoutModelImpl, false);
 
 		args = new Object[] {
-				layoutModelImpl.getGroupId(), layoutModelImpl.getPrivateLayout(),
+				layoutModelImpl.getGroupId(), layoutModelImpl.isPrivateLayout(),
 				layoutModelImpl.getSourcePrototypeLayoutUuid()
 			};
 
@@ -10628,7 +10628,7 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 		if (clearCurrent) {
 			Object[] args = new Object[] {
 					layoutModelImpl.getUuid(), layoutModelImpl.getGroupId(),
-					layoutModelImpl.getPrivateLayout()
+					layoutModelImpl.isPrivateLayout()
 				};
 
 			finderCache.removeResult(FINDER_PATH_COUNT_BY_UUID_G_P, args);
@@ -10666,7 +10666,7 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 
 		if (clearCurrent) {
 			Object[] args = new Object[] {
-					layoutModelImpl.getPrivateLayout(),
+					layoutModelImpl.isPrivateLayout(),
 					layoutModelImpl.getIconImageId()
 				};
 
@@ -10688,7 +10688,7 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 		if (clearCurrent) {
 			Object[] args = new Object[] {
 					layoutModelImpl.getGroupId(),
-					layoutModelImpl.getPrivateLayout(),
+					layoutModelImpl.isPrivateLayout(),
 					layoutModelImpl.getLayoutId()
 				};
 
@@ -10711,7 +10711,7 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 		if (clearCurrent) {
 			Object[] args = new Object[] {
 					layoutModelImpl.getGroupId(),
-					layoutModelImpl.getPrivateLayout(),
+					layoutModelImpl.isPrivateLayout(),
 					layoutModelImpl.getFriendlyURL()
 				};
 
@@ -10734,7 +10734,7 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 		if (clearCurrent) {
 			Object[] args = new Object[] {
 					layoutModelImpl.getGroupId(),
-					layoutModelImpl.getPrivateLayout(),
+					layoutModelImpl.isPrivateLayout(),
 					layoutModelImpl.getSourcePrototypeLayoutUuid()
 				};
 
@@ -11129,7 +11129,7 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 
 				args = new Object[] {
 						layoutModelImpl.getGroupId(),
-						layoutModelImpl.getPrivateLayout()
+						layoutModelImpl.isPrivateLayout()
 					};
 
 				finderCache.removeResult(FINDER_PATH_COUNT_BY_G_P, args);
@@ -11172,7 +11172,7 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 
 				args = new Object[] {
 						layoutModelImpl.getGroupId(),
-						layoutModelImpl.getPrivateLayout(),
+						layoutModelImpl.isPrivateLayout(),
 						layoutModelImpl.getParentLayoutId()
 					};
 
@@ -11195,7 +11195,7 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 
 				args = new Object[] {
 						layoutModelImpl.getGroupId(),
-						layoutModelImpl.getPrivateLayout(),
+						layoutModelImpl.isPrivateLayout(),
 						layoutModelImpl.getType()
 					};
 
