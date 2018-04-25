@@ -46,13 +46,14 @@ public class LiferayResourceOwnerLoginHandler
 	implements ResourceOwnerLoginHandler {
 
 	public User authenticateUser(String login, String password) {
+		int authResult = Authenticator.FAILURE;
+		String authType = company.getAuthType();
+
 		Long companyId = CompanyThreadLocal.getCompanyId();
 
 		Company company = _companyLocalService.fetchCompany(companyId);
 
-		int authResult = Authenticator.FAILURE;
 		Map<String, Object> resultsMap = new HashMap<>();
-		String authType = company.getAuthType();
 
 		try {
 			if (authType.equals(CompanyConstants.AUTH_TYPE_EA)) {
