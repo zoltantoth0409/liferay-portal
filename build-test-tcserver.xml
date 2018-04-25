@@ -25,6 +25,7 @@
 			set JAVA_OPTS=
 
 			call ${app.server.tcserver.developer.dir}/tcserver stop liferay
+
 			call ${app.server.tcserver.developer.dir}/tcserver uninstall liferay
 
 			set JAVA_OPTS=%JAVA_OPTS_TEMP%
@@ -44,6 +45,7 @@
 			set JAVA_OPTS=
 
 			call ${app.server.tcserver.developer.dir}/tcserver install liferay
+
 			call ${app.server.tcserver.developer.dir}/tcserver run liferay
 
 			set JAVA_OPTS=%JAVA_OPTS_TEMP%
