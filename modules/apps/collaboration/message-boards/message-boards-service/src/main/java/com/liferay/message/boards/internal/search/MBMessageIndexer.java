@@ -290,7 +290,6 @@ public class MBMessageIndexer
 			document.addText(
 				LocalizationUtil.getLocalizedName(Field.CONTENT, languageId),
 				processContent(mbMessage));
-
 			document.addText(
 				LocalizationUtil.getLocalizedName(Field.TITLE, languageId),
 				mbMessage.getSubject());
