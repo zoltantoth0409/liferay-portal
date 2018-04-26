@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.LayoutRevision;
 import com.liferay.portal.kernel.model.LayoutSet;
 import com.liferay.portal.kernel.model.LayoutStagingHandler;
+import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.model.SystemEventConstants;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.security.auth.PrincipalThreadLocal;
@@ -545,7 +546,7 @@ public class LayoutLocalServiceStagingAdvice implements MethodInterceptor {
 
 				proxiedLayout = ProxyUtil.newProxyInstance(
 					ClassLoaderUtil.getPortalClassLoader(),
-					new Class<?>[] {Layout.class},
+					new Class<?>[] {Layout.class, ModelWrapper.class},
 					new LayoutStagingHandler(layout));
 
 				proxiedLayouts.put(layout, proxiedLayout);
@@ -556,7 +557,8 @@ public class LayoutLocalServiceStagingAdvice implements MethodInterceptor {
 
 		Object proxiedLayout = ProxyUtil.newProxyInstance(
 			ClassLoaderUtil.getPortalClassLoader(),
-			new Class<?>[] {Layout.class}, new LayoutStagingHandler(layout));
+			new Class<?>[] {Layout.class, ModelWrapper.class},
+			new LayoutStagingHandler(layout));
 
 		Map<Layout, Object> proxiedLayouts = new HashMap<>();
 
