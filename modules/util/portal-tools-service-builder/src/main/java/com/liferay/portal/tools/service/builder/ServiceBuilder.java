@@ -906,9 +906,9 @@ public class ServiceBuilder {
 							_createUADAggregatorTest(entity);
 							_createUADAnonymizer(entity);
 							_createUADAnonymizerTest(entity);
-							_createUADTestHelper(entity);
 							_createUADExporter(entity);
 							_createUADExporterTest(entity);
+							_createUADTestHelper(entity);
 
 							if (ListUtil.isEmpty(
 									entity.
@@ -932,9 +932,9 @@ public class ServiceBuilder {
 							//_removeUADDisplay(entity);
 							//_removeUADDisplayHelper(entity);
 							//_removeUADDisplayTest(entity);
-							//_removeUADTestHelper(entity);
 							//_removeUADExporter(entity);
 							//_removeUADExporterTest(entity);
+							//_removeUADTestHelper(entity);
 						}
 					}
 					else {
