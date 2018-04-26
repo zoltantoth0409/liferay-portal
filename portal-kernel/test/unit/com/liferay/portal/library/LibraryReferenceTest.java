@@ -341,8 +341,8 @@ public class LibraryReferenceTest {
 		}
 	}
 
-	private static void _initLibJars(String lib) throws IOException {
-		Path libDirPath = Paths.get(lib);
+	private static void _initLibJars(String dirName) throws IOException {
+		Path libDirPath = Paths.get(dirName);
 
 		_readLines(_excludeJars, libDirPath.resolve("versions-ignore.txt"));
 		_readLines(_ideExcludeJars, libDirPath.resolve("ide-ignore.txt"));
