@@ -65,9 +65,8 @@ import java.rmi.RemoteException;
  */
 @ProviderType
 public class EntryServiceSoap {
-	public static java.lang.String searchUsersAndContacts(long companyId,
-		java.lang.String keywords, int start, int end)
-		throws RemoteException {
+	public static String searchUsersAndContacts(long companyId,
+		String keywords, int start, int end) throws RemoteException {
 		try {
 			com.liferay.portal.kernel.json.JSONArray returnValue = EntryServiceUtil.searchUsersAndContacts(companyId,
 					keywords, start, end);

@@ -105,10 +105,9 @@ public interface DDLRecordSetLocalService extends BaseLocalService,
 	* @throws PortalException if a portal exception occurred
 	*/
 	public DDLRecordSet addRecordSet(long userId, long groupId,
-		long ddmStructureId, java.lang.String recordSetKey,
-		Map<Locale, java.lang.String> nameMap,
-		Map<Locale, java.lang.String> descriptionMap, int minDisplayRows,
-		int scope, ServiceContext serviceContext) throws PortalException;
+		long ddmStructureId, String recordSetKey, Map<Locale, String> nameMap,
+		Map<Locale, String> descriptionMap, int minDisplayRows, int scope,
+		ServiceContext serviceContext) throws PortalException;
 
 	/**
 	* Adds the resources to the record set.
@@ -131,7 +130,7 @@ public interface DDLRecordSetLocalService extends BaseLocalService,
 	* @throws PortalException if a portal exception occurred
 	*/
 	public void addRecordSetResources(DDLRecordSet recordSet,
-		java.lang.String[] groupPermissions, java.lang.String[] guestPermissions)
+		String[] groupPermissions, String[] guestPermissions)
 		throws PortalException;
 
 	/**
@@ -200,7 +199,7 @@ public interface DDLRecordSetLocalService extends BaseLocalService,
 	* @param recordSetKey the record set's mnemonic primary key
 	* @throws PortalException if a portal exception occurred
 	*/
-	public void deleteRecordSet(long groupId, java.lang.String recordSetKey)
+	public void deleteRecordSet(long groupId, String recordSetKey)
 		throws PortalException;
 
 	/**
@@ -281,8 +280,8 @@ public interface DDLRecordSetLocalService extends BaseLocalService,
 	* @return the matching ddl record set, or <code>null</code> if a matching ddl record set could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public DDLRecordSet fetchDDLRecordSetByUuidAndGroupId(
-		java.lang.String uuid, long groupId);
+	public DDLRecordSet fetchDDLRecordSetByUuidAndGroupId(String uuid,
+		long groupId);
 
 	/**
 	* Returns the record set with the ID.
@@ -303,8 +302,7 @@ public interface DDLRecordSetLocalService extends BaseLocalService,
 	<code>null</code> if a matching record set could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public DDLRecordSet fetchRecordSet(long groupId,
-		java.lang.String recordSetKey);
+	public DDLRecordSet fetchRecordSet(long groupId, String recordSetKey);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();
@@ -329,7 +327,7 @@ public interface DDLRecordSetLocalService extends BaseLocalService,
 	* @throws PortalException if a matching ddl record set could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public DDLRecordSet getDDLRecordSetByUuidAndGroupId(java.lang.String uuid,
+	public DDLRecordSet getDDLRecordSetByUuidAndGroupId(String uuid,
 		long groupId) throws PortalException;
 
 	/**
@@ -354,8 +352,8 @@ public interface DDLRecordSetLocalService extends BaseLocalService,
 	* @return the matching ddl record sets, or an empty list if no matches were found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<DDLRecordSet> getDDLRecordSetsByUuidAndCompanyId(
-		java.lang.String uuid, long companyId);
+	public List<DDLRecordSet> getDDLRecordSetsByUuidAndCompanyId(String uuid,
+		long companyId);
 
 	/**
 	* Returns a range of ddl record sets matching the UUID and company.
@@ -368,8 +366,8 @@ public interface DDLRecordSetLocalService extends BaseLocalService,
 	* @return the range of matching ddl record sets, or an empty list if no matches were found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<DDLRecordSet> getDDLRecordSetsByUuidAndCompanyId(
-		java.lang.String uuid, long companyId, int start, int end,
+	public List<DDLRecordSet> getDDLRecordSetsByUuidAndCompanyId(String uuid,
+		long companyId, int start, int end,
 		OrderByComparator<DDLRecordSet> orderByComparator);
 
 	/**
@@ -392,7 +390,7 @@ public interface DDLRecordSetLocalService extends BaseLocalService,
 	*
 	* @return the OSGi service identifier
 	*/
-	public java.lang.String getOSGiServiceIdentifier();
+	public String getOSGiServiceIdentifier();
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -419,7 +417,7 @@ public interface DDLRecordSetLocalService extends BaseLocalService,
 	* @throws PortalException if the the matching record set could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public DDLRecordSet getRecordSet(long groupId, java.lang.String recordSetKey)
+	public DDLRecordSet getRecordSet(long groupId, String recordSetKey)
 		throws PortalException;
 
 	/**
@@ -498,7 +496,7 @@ public interface DDLRecordSetLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<DDLRecordSet> search(long companyId, long groupId,
-		java.lang.String keywords, int scope, int start, int end,
+		String keywords, int scope, int start, int end,
 		OrderByComparator<DDLRecordSet> orderByComparator);
 
 	/**
@@ -538,9 +536,8 @@ public interface DDLRecordSetLocalService extends BaseLocalService,
 	* @return the range of matching record sets ordered by the comparator
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<DDLRecordSet> search(long companyId, long groupId,
-		java.lang.String name, java.lang.String description, int scope,
-		boolean andOperator, int start, int end,
+	public List<DDLRecordSet> search(long companyId, long groupId, String name,
+		String description, int scope, boolean andOperator, int start, int end,
 		OrderByComparator<DDLRecordSet> orderByComparator);
 
 	/**
@@ -562,8 +559,8 @@ public interface DDLRecordSetLocalService extends BaseLocalService,
 	* @return the number of matching record sets
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int searchCount(long companyId, long groupId,
-		java.lang.String keywords, int scope);
+	public int searchCount(long companyId, long groupId, String keywords,
+		int scope);
 
 	/**
 	* Returns the number of all record sets matching the parameters. name and
@@ -590,8 +587,8 @@ public interface DDLRecordSetLocalService extends BaseLocalService,
 	* @return the number of matching record sets
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int searchCount(long companyId, long groupId, java.lang.String name,
-		java.lang.String description, int scope, boolean andOperator);
+	public int searchCount(long companyId, long groupId, String name,
+		String description, int scope, boolean andOperator);
 
 	/**
 	* Updates the ddl record set in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
@@ -648,9 +645,9 @@ public interface DDLRecordSetLocalService extends BaseLocalService,
 	* @throws PortalException if a portal exception occurred
 	*/
 	public DDLRecordSet updateRecordSet(long recordSetId, long ddmStructureId,
-		Map<Locale, java.lang.String> nameMap,
-		Map<Locale, java.lang.String> descriptionMap, int minDisplayRows,
-		ServiceContext serviceContext) throws PortalException;
+		Map<Locale, String> nameMap, Map<Locale, String> descriptionMap,
+		int minDisplayRows, ServiceContext serviceContext)
+		throws PortalException;
 
 	/**
 	* Updates the DDM strucutre, name, description, and minimum number of
@@ -670,7 +667,7 @@ public interface DDLRecordSetLocalService extends BaseLocalService,
 	* @throws PortalException if a portal exception occurred
 	*/
 	public DDLRecordSet updateRecordSet(long groupId, long ddmStructureId,
-		java.lang.String recordSetKey, Map<Locale, java.lang.String> nameMap,
-		Map<Locale, java.lang.String> descriptionMap, int minDisplayRows,
+		String recordSetKey, Map<Locale, String> nameMap,
+		Map<Locale, String> descriptionMap, int minDisplayRows,
 		ServiceContext serviceContext) throws PortalException;
 }

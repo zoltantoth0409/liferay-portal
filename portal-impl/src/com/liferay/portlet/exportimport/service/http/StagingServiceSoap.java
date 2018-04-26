@@ -66,8 +66,8 @@ public class StagingServiceSoap {
 		}
 	}
 
-	public static long createStagingRequest(long groupId,
-		java.lang.String checksum) throws RemoteException {
+	public static long createStagingRequest(long groupId, String checksum)
+		throws RemoteException {
 		try {
 			long returnValue = StagingServiceUtil.createStagingRequest(groupId,
 					checksum);
@@ -82,7 +82,7 @@ public class StagingServiceSoap {
 	}
 
 	public static void propagateExportImportLifecycleEvent(int code,
-		int processFlag, java.lang.String processId,
+		int processFlag, String processId,
 		java.util.List<java.io.Serializable> arguments)
 		throws RemoteException {
 		try {
@@ -115,7 +115,7 @@ public class StagingServiceSoap {
 	}
 
 	public static void updateStagingRequest(long stagingRequestId,
-		java.lang.String fileName, byte[] bytes) throws RemoteException {
+		String fileName, byte[] bytes) throws RemoteException {
 		try {
 			StagingServiceUtil.updateStagingRequest(stagingRequestId, fileName,
 				bytes);

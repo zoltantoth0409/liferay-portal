@@ -97,7 +97,7 @@ public interface DDLRecordService extends BaseService {
 	* @deprecated As of 1.1.0, replaced by {@link #addRecord(long, long, int,
 	DDMFormValues, ServiceContext)}
 	*/
-	@java.lang.Deprecated
+	@Deprecated
 	public DDLRecord addRecord(long groupId, long recordSetId,
 		int displayIndex, Fields fields, ServiceContext serviceContext)
 		throws PortalException;
@@ -119,9 +119,9 @@ public interface DDLRecordService extends BaseService {
 	* @deprecated As of 1.1.0, replaced by {@link #addRecord(long, long, int,
 	DDMFormValues, ServiceContext)}
 	*/
-	@java.lang.Deprecated
+	@Deprecated
 	public DDLRecord addRecord(long groupId, long recordSetId,
-		int displayIndex, Map<java.lang.String, Serializable> fieldsMap,
+		int displayIndex, Map<String, Serializable> fieldsMap,
 		ServiceContext serviceContext) throws PortalException;
 
 	/**
@@ -144,7 +144,7 @@ public interface DDLRecordService extends BaseService {
 	* @deprecated As of 1.1.0, replaced by {@link #updateRecord(long, boolean,
 	int, DDMFormValues, ServiceContext)}
 	*/
-	@java.lang.Deprecated
+	@Deprecated
 	public DDLRecord deleteRecordLocale(long recordId, Locale locale,
 		ServiceContext serviceContext) throws PortalException;
 
@@ -153,7 +153,7 @@ public interface DDLRecordService extends BaseService {
 	*
 	* @return the OSGi service identifier
 	*/
-	public java.lang.String getOSGiServiceIdentifier();
+	public String getOSGiServiceIdentifier();
 
 	/**
 	* Returns the record with the ID.
@@ -174,15 +174,15 @@ public interface DDLRecordService extends BaseService {
 	the record modified date.
 	* @throws PortalException if a portal exception occurred
 	*/
-	public void revertRecord(long recordId, java.lang.String version,
+	public void revertRecord(long recordId, String version,
 		ServiceContext serviceContext) throws PortalException;
 
 	/**
 	* @deprecated As of 1.1.0, replaced by {@link #revertRecord(long, String,
 	ServiceContext)}
 	*/
-	@java.lang.Deprecated
-	public void revertRecordVersion(long recordId, java.lang.String version,
+	@Deprecated
+	public void revertRecordVersion(long recordId, String version,
 		ServiceContext serviceContext) throws PortalException;
 
 	/**
@@ -223,7 +223,7 @@ public interface DDLRecordService extends BaseService {
 	* @deprecated As of 1.1.0, replaced by {@link #updateRecord(long, boolean,
 	int, DDMFormValues, ServiceContext)}
 	*/
-	@java.lang.Deprecated
+	@Deprecated
 	public DDLRecord updateRecord(long recordId, boolean majorVersion,
 		int displayIndex, Fields fields, boolean mergeFields,
 		ServiceContext serviceContext) throws PortalException;
@@ -245,8 +245,8 @@ public interface DDLRecordService extends BaseService {
 	* @deprecated As of 1.1.0, replaced by {@link #updateRecord(long, boolean,
 	int, DDMFormValues, ServiceContext)}
 	*/
-	@java.lang.Deprecated
+	@Deprecated
 	public DDLRecord updateRecord(long recordId, int displayIndex,
-		Map<java.lang.String, Serializable> fieldsMap, boolean mergeFields,
+		Map<String, Serializable> fieldsMap, boolean mergeFields,
 		ServiceContext serviceContext) throws PortalException;
 }

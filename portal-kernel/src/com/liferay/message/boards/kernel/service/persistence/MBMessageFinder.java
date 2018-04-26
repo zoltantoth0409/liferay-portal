@@ -39,14 +39,14 @@ public interface MBMessageFinder {
 	public int filterCountByG_U_C_A_S(long groupId, long userId,
 		long[] categoryIds, boolean anonymous, int status);
 
-	public java.util.List<java.lang.Long> filterFindByG_U_C_S(long groupId,
-		long userId, long[] categoryIds, int status, int start, int end);
+	public java.util.List<Long> filterFindByG_U_C_S(long groupId, long userId,
+		long[] categoryIds, int status, int start, int end);
 
-	public java.util.List<java.lang.Long> filterFindByG_U_MD_C_S(long groupId,
+	public java.util.List<Long> filterFindByG_U_MD_C_S(long groupId,
 		long userId, java.util.Date modifiedDate, long[] categoryIds,
 		int status, int start, int end);
 
-	public java.util.List<java.lang.Long> filterFindByG_U_C_A_S(long groupId,
+	public java.util.List<Long> filterFindByG_U_C_A_S(long groupId,
 		long userId, long[] categoryIds, boolean anonymous, int status,
 		int start, int end);
 
@@ -56,10 +56,9 @@ public interface MBMessageFinder {
 		long threadId,
 		com.liferay.portal.kernel.dao.orm.QueryDefinition<com.liferay.message.boards.kernel.model.MBMessage> queryDefinition);
 
-	public java.util.List<java.lang.Long> findByG_U_C_S(long groupId,
-		long userId, long[] categoryIds, int status, int start, int end);
+	public java.util.List<Long> findByG_U_C_S(long groupId, long userId,
+		long[] categoryIds, int status, int start, int end);
 
-	public java.util.List<java.lang.Long> findByG_U_C_A_S(long groupId,
-		long userId, long[] categoryIds, boolean anonymous, int status,
-		int start, int end);
+	public java.util.List<Long> findByG_U_C_A_S(long groupId, long userId,
+		long[] categoryIds, boolean anonymous, int status, int start, int end);
 }

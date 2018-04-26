@@ -25,7 +25,7 @@ import com.liferay.portal.kernel.util.ReferenceRegistry;
  */
 @ProviderType
 public class DLFileRankFinderUtil {
-	public static java.util.List<java.lang.Object[]> findByStaleRanks(int count) {
+	public static java.util.List<Object[]> findByStaleRanks(int count) {
 		return getFinder().findByStaleRanks(count);
 	}
 

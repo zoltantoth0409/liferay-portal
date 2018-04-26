@@ -138,7 +138,7 @@ public class WSRPProducerWrapper implements WSRPProducer,
 	}
 
 	@Override
-	public java.lang.Object clone() {
+	public Object clone() {
 		return new WSRPProducerWrapper((WSRPProducer)_wsrpProducer.clone());
 	}
 
@@ -208,7 +208,7 @@ public class WSRPProducerWrapper implements WSRPProducer,
 	* @return the name of this wsrp producer
 	*/
 	@Override
-	public java.lang.String getName() {
+	public String getName() {
 		return _wsrpProducer.getName();
 	}
 
@@ -218,7 +218,7 @@ public class WSRPProducerWrapper implements WSRPProducer,
 	* @return the portlet IDs of this wsrp producer
 	*/
 	@Override
-	public java.lang.String getPortletIds() {
+	public String getPortletIds() {
 		return _wsrpProducer.getPortletIds();
 	}
 
@@ -238,7 +238,7 @@ public class WSRPProducerWrapper implements WSRPProducer,
 	}
 
 	@Override
-	public java.lang.String getURL(java.lang.String prefixURL) {
+	public String getURL(String prefixURL) {
 		return _wsrpProducer.getURL(prefixURL);
 	}
 
@@ -248,7 +248,7 @@ public class WSRPProducerWrapper implements WSRPProducer,
 	* @return the uuid of this wsrp producer
 	*/
 	@Override
-	public java.lang.String getUuid() {
+	public String getUuid() {
 		return _wsrpProducer.getUuid();
 	}
 
@@ -258,7 +258,7 @@ public class WSRPProducerWrapper implements WSRPProducer,
 	* @return the version of this wsrp producer
 	*/
 	@Override
-	public java.lang.String getVersion() {
+	public String getVersion() {
 		return _wsrpProducer.getVersion();
 	}
 
@@ -374,7 +374,7 @@ public class WSRPProducerWrapper implements WSRPProducer,
 	* @param name the name of this wsrp producer
 	*/
 	@Override
-	public void setName(java.lang.String name) {
+	public void setName(String name) {
 		_wsrpProducer.setName(name);
 	}
 
@@ -389,7 +389,7 @@ public class WSRPProducerWrapper implements WSRPProducer,
 	* @param portletIds the portlet IDs of this wsrp producer
 	*/
 	@Override
-	public void setPortletIds(java.lang.String portletIds) {
+	public void setPortletIds(String portletIds) {
 		_wsrpProducer.setPortletIds(portletIds);
 	}
 
@@ -414,7 +414,7 @@ public class WSRPProducerWrapper implements WSRPProducer,
 	* @param uuid the uuid of this wsrp producer
 	*/
 	@Override
-	public void setUuid(java.lang.String uuid) {
+	public void setUuid(String uuid) {
 		_wsrpProducer.setUuid(uuid);
 	}
 
@@ -424,7 +424,7 @@ public class WSRPProducerWrapper implements WSRPProducer,
 	* @param version the version of this wsrp producer
 	*/
 	@Override
-	public void setVersion(java.lang.String version) {
+	public void setVersion(String version) {
 		_wsrpProducer.setVersion(version);
 	}
 
@@ -449,7 +449,7 @@ public class WSRPProducerWrapper implements WSRPProducer,
 	}
 
 	@Override
-	public java.lang.String toString() {
+	public String toString() {
 		return _wsrpProducer.toString();
 	}
 
@@ -459,7 +459,7 @@ public class WSRPProducerWrapper implements WSRPProducer,
 	}
 
 	@Override
-	public java.lang.String toXmlString() {
+	public String toXmlString() {
 		return _wsrpProducer.toXmlString();
 	}
 

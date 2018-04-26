@@ -90,7 +90,7 @@ public class TrashEntryServiceUtil {
 	* @param className the class name of the entity
 	* @param classPK the primary key of the entity
 	*/
-	public static void deleteEntry(java.lang.String className, long classPK)
+	public static void deleteEntry(String className, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().deleteEntry(className, classPK);
 	}
@@ -127,7 +127,7 @@ public class TrashEntryServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.trash.kernel.model.TrashEntry> getEntries(
-		long groupId, java.lang.String className)
+		long groupId, String className)
 		throws com.liferay.portal.kernel.security.auth.PrincipalException {
 		return getService().getEntries(groupId, className);
 	}
@@ -137,7 +137,7 @@ public class TrashEntryServiceUtil {
 	*
 	* @return the OSGi service identifier
 	*/
-	public static java.lang.String getOSGiServiceIdentifier() {
+	public static String getOSGiServiceIdentifier() {
 		return getService().getOSGiServiceIdentifier();
 	}
 
@@ -170,7 +170,7 @@ public class TrashEntryServiceUtil {
 	* @param serviceContext the service context to be applied (optionally
 	<code>null</code>)
 	*/
-	public static void moveEntry(java.lang.String className, long classPK,
+	public static void moveEntry(String className, long classPK,
 		long destinationContainerModelId,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
@@ -220,20 +220,19 @@ public class TrashEntryServiceUtil {
 	* @return the restored trash entry
 	*/
 	public static com.liferay.trash.kernel.model.TrashEntry restoreEntry(
-		long entryId, long overrideClassPK, java.lang.String name)
+		long entryId, long overrideClassPK, String name)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().restoreEntry(entryId, overrideClassPK, name);
 	}
 
 	public static com.liferay.trash.kernel.model.TrashEntry restoreEntry(
-		java.lang.String className, long classPK)
+		String className, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().restoreEntry(className, classPK);
 	}
 
 	public static com.liferay.trash.kernel.model.TrashEntry restoreEntry(
-		java.lang.String className, long classPK, long overrideClassPK,
-		java.lang.String name)
+		String className, long classPK, long overrideClassPK, String name)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .restoreEntry(className, classPK, overrideClassPK, name);

@@ -210,7 +210,7 @@ public class MBDiscussionLocalServiceWrapper implements MBDiscussionLocalService
 
 	@Override
 	public com.liferay.message.boards.kernel.model.MBDiscussion fetchDiscussion(
-		java.lang.String className, long classPK) {
+		String className, long classPK) {
 		return _mbDiscussionLocalService.fetchDiscussion(className, classPK);
 	}
 
@@ -229,7 +229,7 @@ public class MBDiscussionLocalServiceWrapper implements MBDiscussionLocalService
 	*/
 	@Override
 	public com.liferay.message.boards.kernel.model.MBDiscussion fetchMBDiscussionByUuidAndGroupId(
-		java.lang.String uuid, long groupId) {
+		String uuid, long groupId) {
 		return _mbDiscussionLocalService.fetchMBDiscussionByUuidAndGroupId(uuid,
 			groupId);
 	}
@@ -254,7 +254,7 @@ public class MBDiscussionLocalServiceWrapper implements MBDiscussionLocalService
 
 	@Override
 	public com.liferay.message.boards.kernel.model.MBDiscussion getDiscussion(
-		java.lang.String className, long classPK)
+		String className, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _mbDiscussionLocalService.getDiscussion(className, classPK);
 	}
@@ -294,7 +294,7 @@ public class MBDiscussionLocalServiceWrapper implements MBDiscussionLocalService
 	*/
 	@Override
 	public com.liferay.message.boards.kernel.model.MBDiscussion getMBDiscussionByUuidAndGroupId(
-		java.lang.String uuid, long groupId)
+		String uuid, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _mbDiscussionLocalService.getMBDiscussionByUuidAndGroupId(uuid,
 			groupId);
@@ -326,7 +326,7 @@ public class MBDiscussionLocalServiceWrapper implements MBDiscussionLocalService
 	*/
 	@Override
 	public java.util.List<com.liferay.message.boards.kernel.model.MBDiscussion> getMBDiscussionsByUuidAndCompanyId(
-		java.lang.String uuid, long companyId) {
+		String uuid, long companyId) {
 		return _mbDiscussionLocalService.getMBDiscussionsByUuidAndCompanyId(uuid,
 			companyId);
 	}
@@ -343,7 +343,7 @@ public class MBDiscussionLocalServiceWrapper implements MBDiscussionLocalService
 	*/
 	@Override
 	public java.util.List<com.liferay.message.boards.kernel.model.MBDiscussion> getMBDiscussionsByUuidAndCompanyId(
-		java.lang.String uuid, long companyId, int start, int end,
+		String uuid, long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.message.boards.kernel.model.MBDiscussion> orderByComparator) {
 		return _mbDiscussionLocalService.getMBDiscussionsByUuidAndCompanyId(uuid,
 			companyId, start, end, orderByComparator);
@@ -365,7 +365,7 @@ public class MBDiscussionLocalServiceWrapper implements MBDiscussionLocalService
 	* @return the OSGi service identifier
 	*/
 	@Override
-	public java.lang.String getOSGiServiceIdentifier() {
+	public String getOSGiServiceIdentifier() {
 		return _mbDiscussionLocalService.getOSGiServiceIdentifier();
 	}
 
@@ -385,14 +385,14 @@ public class MBDiscussionLocalServiceWrapper implements MBDiscussionLocalService
 
 	@Override
 	public void subscribeDiscussion(long userId, long groupId,
-		java.lang.String className, long classPK)
+		String className, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		_mbDiscussionLocalService.subscribeDiscussion(userId, groupId,
 			className, classPK);
 	}
 
 	@Override
-	public void unsubscribeDiscussion(long userId, java.lang.String className,
+	public void unsubscribeDiscussion(long userId, String className,
 		long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		_mbDiscussionLocalService.unsubscribeDiscussion(userId, className,

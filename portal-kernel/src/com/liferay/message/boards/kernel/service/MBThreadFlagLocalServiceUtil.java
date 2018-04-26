@@ -212,7 +212,7 @@ public class MBThreadFlagLocalServiceUtil {
 	* @return the matching message boards thread flag, or <code>null</code> if a matching message boards thread flag could not be found
 	*/
 	public static com.liferay.message.boards.kernel.model.MBThreadFlag fetchMBThreadFlagByUuidAndGroupId(
-		java.lang.String uuid, long groupId) {
+		String uuid, long groupId) {
 		return getService().fetchMBThreadFlagByUuidAndGroupId(uuid, groupId);
 	}
 
@@ -251,7 +251,7 @@ public class MBThreadFlagLocalServiceUtil {
 	* @throws PortalException if a matching message boards thread flag could not be found
 	*/
 	public static com.liferay.message.boards.kernel.model.MBThreadFlag getMBThreadFlagByUuidAndGroupId(
-		java.lang.String uuid, long groupId)
+		String uuid, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getMBThreadFlagByUuidAndGroupId(uuid, groupId);
 	}
@@ -280,7 +280,7 @@ public class MBThreadFlagLocalServiceUtil {
 	* @return the matching message boards thread flags, or an empty list if no matches were found
 	*/
 	public static java.util.List<com.liferay.message.boards.kernel.model.MBThreadFlag> getMBThreadFlagsByUuidAndCompanyId(
-		java.lang.String uuid, long companyId) {
+		String uuid, long companyId) {
 		return getService().getMBThreadFlagsByUuidAndCompanyId(uuid, companyId);
 	}
 
@@ -295,7 +295,7 @@ public class MBThreadFlagLocalServiceUtil {
 	* @return the range of matching message boards thread flags, or an empty list if no matches were found
 	*/
 	public static java.util.List<com.liferay.message.boards.kernel.model.MBThreadFlag> getMBThreadFlagsByUuidAndCompanyId(
-		java.lang.String uuid, long companyId, int start, int end,
+		String uuid, long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.message.boards.kernel.model.MBThreadFlag> orderByComparator) {
 		return getService()
 				   .getMBThreadFlagsByUuidAndCompanyId(uuid, companyId, start,
@@ -316,7 +316,7 @@ public class MBThreadFlagLocalServiceUtil {
 	*
 	* @return the OSGi service identifier
 	*/
-	public static java.lang.String getOSGiServiceIdentifier() {
+	public static String getOSGiServiceIdentifier() {
 		return getService().getOSGiServiceIdentifier();
 	}
 

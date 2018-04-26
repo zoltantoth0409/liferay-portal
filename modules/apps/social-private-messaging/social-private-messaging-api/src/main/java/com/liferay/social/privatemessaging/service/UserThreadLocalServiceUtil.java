@@ -43,9 +43,8 @@ public class UserThreadLocalServiceUtil {
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.social.privatemessaging.service.impl.UserThreadLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
 	public static com.liferay.message.boards.kernel.model.MBMessage addPrivateMessage(
-		long userId, long mbThreadId, java.lang.String to,
-		java.lang.String subject, java.lang.String body,
-		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<java.lang.String, java.io.InputStream>> inputStreamOVPs,
+		long userId, long mbThreadId, String to, String subject, String body,
+		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<String, java.io.InputStream>> inputStreamOVPs,
 		com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
@@ -54,8 +53,8 @@ public class UserThreadLocalServiceUtil {
 	}
 
 	public static com.liferay.message.boards.kernel.model.MBMessage addPrivateMessageBranch(
-		long userId, long parentMBMessageId, java.lang.String body,
-		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<java.lang.String, java.io.InputStream>> inputStreamOVPs,
+		long userId, long parentMBMessageId, String body,
+		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<String, java.io.InputStream>> inputStreamOVPs,
 		com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
@@ -242,7 +241,7 @@ public class UserThreadLocalServiceUtil {
 	*
 	* @return the OSGi service identifier
 	*/
-	public static java.lang.String getOSGiServiceIdentifier() {
+	public static String getOSGiServiceIdentifier() {
 		return getService().getOSGiServiceIdentifier();
 	}
 

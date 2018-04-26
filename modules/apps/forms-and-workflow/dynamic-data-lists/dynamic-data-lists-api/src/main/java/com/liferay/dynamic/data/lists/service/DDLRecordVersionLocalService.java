@@ -225,7 +225,7 @@ public interface DDLRecordVersionLocalService extends BaseLocalService,
 	*
 	* @return the OSGi service identifier
 	*/
-	public java.lang.String getOSGiServiceIdentifier();
+	public String getOSGiServiceIdentifier();
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -252,8 +252,8 @@ public interface DDLRecordVersionLocalService extends BaseLocalService,
 	* @throws PortalException if a matching record set could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public DDLRecordVersion getRecordVersion(long recordId,
-		java.lang.String version) throws PortalException;
+	public DDLRecordVersion getRecordVersion(long recordId, String version)
+		throws PortalException;
 
 	/**
 	* Returns an ordered range of record versions matching the record's ID.

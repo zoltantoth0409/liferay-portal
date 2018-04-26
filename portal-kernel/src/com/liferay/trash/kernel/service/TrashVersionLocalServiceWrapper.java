@@ -35,8 +35,7 @@ public class TrashVersionLocalServiceWrapper implements TrashVersionLocalService
 
 	@Override
 	public com.liferay.trash.kernel.model.TrashVersion addTrashVersion(
-		long trashEntryId, java.lang.String className, long classPK,
-		int status,
+		long trashEntryId, String className, long classPK, int status,
 		com.liferay.portal.kernel.util.UnicodeProperties typeSettingsProperties) {
 		return _trashVersionLocalService.addTrashVersion(trashEntryId,
 			className, classPK, status, typeSettingsProperties);
@@ -92,7 +91,7 @@ public class TrashVersionLocalServiceWrapper implements TrashVersionLocalService
 
 	@Override
 	public com.liferay.trash.kernel.model.TrashVersion deleteTrashVersion(
-		java.lang.String className, long classPK) {
+		String className, long classPK) {
 		return _trashVersionLocalService.deleteTrashVersion(className, classPK);
 	}
 
@@ -205,14 +204,14 @@ public class TrashVersionLocalServiceWrapper implements TrashVersionLocalService
 	@Deprecated
 	@Override
 	public com.liferay.trash.kernel.model.TrashVersion fetchVersion(
-		long entryId, java.lang.String className, long classPK) {
+		long entryId, String className, long classPK) {
 		return _trashVersionLocalService.fetchVersion(entryId, className,
 			classPK);
 	}
 
 	@Override
 	public com.liferay.trash.kernel.model.TrashVersion fetchVersion(
-		java.lang.String className, long classPK) {
+		String className, long classPK) {
 		return _trashVersionLocalService.fetchVersion(className, classPK);
 	}
 
@@ -232,7 +231,7 @@ public class TrashVersionLocalServiceWrapper implements TrashVersionLocalService
 	* @return the OSGi service identifier
 	*/
 	@Override
-	public java.lang.String getOSGiServiceIdentifier() {
+	public String getOSGiServiceIdentifier() {
 		return _trashVersionLocalService.getOSGiServiceIdentifier();
 	}
 
@@ -292,7 +291,7 @@ public class TrashVersionLocalServiceWrapper implements TrashVersionLocalService
 
 	@Override
 	public java.util.List<com.liferay.trash.kernel.model.TrashVersion> getVersions(
-		long entryId, java.lang.String className) {
+		long entryId, String className) {
 		return _trashVersionLocalService.getVersions(entryId, className);
 	}
 

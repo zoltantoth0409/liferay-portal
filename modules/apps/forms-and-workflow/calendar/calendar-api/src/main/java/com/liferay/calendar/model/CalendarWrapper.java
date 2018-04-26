@@ -193,7 +193,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	}
 
 	@Override
-	public java.lang.Object clone() {
+	public Object clone() {
 		return new CalendarWrapper((Calendar)_calendar.clone());
 	}
 
@@ -203,7 +203,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	}
 
 	@Override
-	public java.lang.String[] getAvailableLanguageIds() {
+	public String[] getAvailableLanguageIds() {
 		return _calendar.getAvailableLanguageIds();
 	}
 
@@ -274,7 +274,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	}
 
 	@Override
-	public java.lang.String getDefaultLanguageId() {
+	public String getDefaultLanguageId() {
 		return _calendar.getDefaultLanguageId();
 	}
 
@@ -284,7 +284,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @return the description of this calendar
 	*/
 	@Override
-	public java.lang.String getDescription() {
+	public String getDescription() {
 		return _calendar.getDescription();
 	}
 
@@ -295,7 +295,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @return the localized description of this calendar
 	*/
 	@Override
-	public java.lang.String getDescription(java.util.Locale locale) {
+	public String getDescription(java.util.Locale locale) {
 		return _calendar.getDescription(locale);
 	}
 
@@ -307,8 +307,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @return the localized description of this calendar. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
 	*/
 	@Override
-	public java.lang.String getDescription(java.util.Locale locale,
-		boolean useDefault) {
+	public String getDescription(java.util.Locale locale, boolean useDefault) {
 		return _calendar.getDescription(locale, useDefault);
 	}
 
@@ -319,7 +318,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @return the localized description of this calendar
 	*/
 	@Override
-	public java.lang.String getDescription(java.lang.String languageId) {
+	public String getDescription(String languageId) {
 		return _calendar.getDescription(languageId);
 	}
 
@@ -331,18 +330,17 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @return the localized description of this calendar
 	*/
 	@Override
-	public java.lang.String getDescription(java.lang.String languageId,
-		boolean useDefault) {
+	public String getDescription(String languageId, boolean useDefault) {
 		return _calendar.getDescription(languageId, useDefault);
 	}
 
 	@Override
-	public java.lang.String getDescriptionCurrentLanguageId() {
+	public String getDescriptionCurrentLanguageId() {
 		return _calendar.getDescriptionCurrentLanguageId();
 	}
 
 	@Override
-	public java.lang.String getDescriptionCurrentValue() {
+	public String getDescriptionCurrentValue() {
 		return _calendar.getDescriptionCurrentValue();
 	}
 
@@ -352,7 +350,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @return the locales and localized descriptions of this calendar
 	*/
 	@Override
-	public Map<java.util.Locale, java.lang.String> getDescriptionMap() {
+	public Map<java.util.Locale, String> getDescriptionMap() {
 		return _calendar.getDescriptionMap();
 	}
 
@@ -417,7 +415,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @return the name of this calendar
 	*/
 	@Override
-	public java.lang.String getName() {
+	public String getName() {
 		return _calendar.getName();
 	}
 
@@ -428,7 +426,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @return the localized name of this calendar
 	*/
 	@Override
-	public java.lang.String getName(java.util.Locale locale) {
+	public String getName(java.util.Locale locale) {
 		return _calendar.getName(locale);
 	}
 
@@ -440,7 +438,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @return the localized name of this calendar. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
 	*/
 	@Override
-	public java.lang.String getName(java.util.Locale locale, boolean useDefault) {
+	public String getName(java.util.Locale locale, boolean useDefault) {
 		return _calendar.getName(locale, useDefault);
 	}
 
@@ -451,7 +449,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @return the localized name of this calendar
 	*/
 	@Override
-	public java.lang.String getName(java.lang.String languageId) {
+	public String getName(String languageId) {
 		return _calendar.getName(languageId);
 	}
 
@@ -463,18 +461,17 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @return the localized name of this calendar
 	*/
 	@Override
-	public java.lang.String getName(java.lang.String languageId,
-		boolean useDefault) {
+	public String getName(String languageId, boolean useDefault) {
 		return _calendar.getName(languageId, useDefault);
 	}
 
 	@Override
-	public java.lang.String getNameCurrentLanguageId() {
+	public String getNameCurrentLanguageId() {
 		return _calendar.getNameCurrentLanguageId();
 	}
 
 	@Override
-	public java.lang.String getNameCurrentValue() {
+	public String getNameCurrentValue() {
 		return _calendar.getNameCurrentValue();
 	}
 
@@ -484,7 +481,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @return the locales and localized names of this calendar
 	*/
 	@Override
-	public Map<java.util.Locale, java.lang.String> getNameMap() {
+	public Map<java.util.Locale, String> getNameMap() {
 		return _calendar.getNameMap();
 	}
 
@@ -524,7 +521,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @return the time zone ID of this calendar
 	*/
 	@Override
-	public java.lang.String getTimeZoneId() {
+	public String getTimeZoneId() {
 		return _calendar.getTimeZoneId();
 	}
 
@@ -544,7 +541,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @return the user name of this calendar
 	*/
 	@Override
-	public java.lang.String getUserName() {
+	public String getUserName() {
 		return _calendar.getUserName();
 	}
 
@@ -554,7 +551,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @return the user uuid of this calendar
 	*/
 	@Override
-	public java.lang.String getUserUuid() {
+	public String getUserUuid() {
 		return _calendar.getUserUuid();
 	}
 
@@ -564,7 +561,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @return the uuid of this calendar
 	*/
 	@Override
-	public java.lang.String getUuid() {
+	public String getUuid() {
 		return _calendar.getUuid();
 	}
 
@@ -707,7 +704,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @param description the description of this calendar
 	*/
 	@Override
-	public void setDescription(java.lang.String description) {
+	public void setDescription(String description) {
 		_calendar.setDescription(description);
 	}
 
@@ -718,8 +715,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @param locale the locale of the language
 	*/
 	@Override
-	public void setDescription(java.lang.String description,
-		java.util.Locale locale) {
+	public void setDescription(String description, java.util.Locale locale) {
 		_calendar.setDescription(description, locale);
 	}
 
@@ -731,13 +727,13 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @param defaultLocale the default locale
 	*/
 	@Override
-	public void setDescription(java.lang.String description,
-		java.util.Locale locale, java.util.Locale defaultLocale) {
+	public void setDescription(String description, java.util.Locale locale,
+		java.util.Locale defaultLocale) {
 		_calendar.setDescription(description, locale, defaultLocale);
 	}
 
 	@Override
-	public void setDescriptionCurrentLanguageId(java.lang.String languageId) {
+	public void setDescriptionCurrentLanguageId(String languageId) {
 		_calendar.setDescriptionCurrentLanguageId(languageId);
 	}
 
@@ -747,8 +743,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @param descriptionMap the locales and localized descriptions of this calendar
 	*/
 	@Override
-	public void setDescriptionMap(
-		Map<java.util.Locale, java.lang.String> descriptionMap) {
+	public void setDescriptionMap(Map<java.util.Locale, String> descriptionMap) {
 		_calendar.setDescriptionMap(descriptionMap);
 	}
 
@@ -760,7 +755,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	*/
 	@Override
 	public void setDescriptionMap(
-		Map<java.util.Locale, java.lang.String> descriptionMap,
+		Map<java.util.Locale, String> descriptionMap,
 		java.util.Locale defaultLocale) {
 		_calendar.setDescriptionMap(descriptionMap, defaultLocale);
 	}
@@ -837,7 +832,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @param name the name of this calendar
 	*/
 	@Override
-	public void setName(java.lang.String name) {
+	public void setName(String name) {
 		_calendar.setName(name);
 	}
 
@@ -848,7 +843,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @param locale the locale of the language
 	*/
 	@Override
-	public void setName(java.lang.String name, java.util.Locale locale) {
+	public void setName(String name, java.util.Locale locale) {
 		_calendar.setName(name, locale);
 	}
 
@@ -860,13 +855,13 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @param defaultLocale the default locale
 	*/
 	@Override
-	public void setName(java.lang.String name, java.util.Locale locale,
+	public void setName(String name, java.util.Locale locale,
 		java.util.Locale defaultLocale) {
 		_calendar.setName(name, locale, defaultLocale);
 	}
 
 	@Override
-	public void setNameCurrentLanguageId(java.lang.String languageId) {
+	public void setNameCurrentLanguageId(String languageId) {
 		_calendar.setNameCurrentLanguageId(languageId);
 	}
 
@@ -876,7 +871,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @param nameMap the locales and localized names of this calendar
 	*/
 	@Override
-	public void setNameMap(Map<java.util.Locale, java.lang.String> nameMap) {
+	public void setNameMap(Map<java.util.Locale, String> nameMap) {
 		_calendar.setNameMap(nameMap);
 	}
 
@@ -887,7 +882,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @param defaultLocale the default locale
 	*/
 	@Override
-	public void setNameMap(Map<java.util.Locale, java.lang.String> nameMap,
+	public void setNameMap(Map<java.util.Locale, String> nameMap,
 		java.util.Locale defaultLocale) {
 		_calendar.setNameMap(nameMap, defaultLocale);
 	}
@@ -928,7 +923,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @param timeZoneId the time zone ID of this calendar
 	*/
 	@Override
-	public void setTimeZoneId(java.lang.String timeZoneId) {
+	public void setTimeZoneId(String timeZoneId) {
 		_calendar.setTimeZoneId(timeZoneId);
 	}
 
@@ -948,7 +943,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @param userName the user name of this calendar
 	*/
 	@Override
-	public void setUserName(java.lang.String userName) {
+	public void setUserName(String userName) {
 		_calendar.setUserName(userName);
 	}
 
@@ -958,7 +953,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @param userUuid the user uuid of this calendar
 	*/
 	@Override
-	public void setUserUuid(java.lang.String userUuid) {
+	public void setUserUuid(String userUuid) {
 		_calendar.setUserUuid(userUuid);
 	}
 
@@ -968,7 +963,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	* @param uuid the uuid of this calendar
 	*/
 	@Override
-	public void setUuid(java.lang.String uuid) {
+	public void setUuid(String uuid) {
 		_calendar.setUuid(uuid);
 	}
 
@@ -983,7 +978,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	}
 
 	@Override
-	public java.lang.String toString() {
+	public String toString() {
 		return _calendar.toString();
 	}
 
@@ -993,7 +988,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	}
 
 	@Override
-	public java.lang.String toXmlString() {
+	public String toXmlString() {
 		return _calendar.toXmlString();
 	}
 

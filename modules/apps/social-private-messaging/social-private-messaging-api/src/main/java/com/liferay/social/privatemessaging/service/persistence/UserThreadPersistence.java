@@ -778,5 +778,5 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	public int countAll();
 
 	@Override
-	public java.util.Set<java.lang.String> getBadColumnNames();
+	public java.util.Set<String> getBadColumnNames();
 }

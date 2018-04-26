@@ -142,7 +142,7 @@ public class SubscriptionWrapper implements Subscription,
 	}
 
 	@Override
-	public java.lang.Object clone() {
+	public Object clone() {
 		return new SubscriptionWrapper((Subscription)_subscription.clone());
 	}
 
@@ -157,7 +157,7 @@ public class SubscriptionWrapper implements Subscription,
 	* @return the fully qualified class name of this subscription
 	*/
 	@Override
-	public java.lang.String getClassName() {
+	public String getClassName() {
 		return _subscription.getClassName();
 	}
 
@@ -212,7 +212,7 @@ public class SubscriptionWrapper implements Subscription,
 	* @return the frequency of this subscription
 	*/
 	@Override
-	public java.lang.String getFrequency() {
+	public String getFrequency() {
 		return _subscription.getFrequency();
 	}
 
@@ -287,7 +287,7 @@ public class SubscriptionWrapper implements Subscription,
 	* @return the user name of this subscription
 	*/
 	@Override
-	public java.lang.String getUserName() {
+	public String getUserName() {
 		return _subscription.getUserName();
 	}
 
@@ -297,7 +297,7 @@ public class SubscriptionWrapper implements Subscription,
 	* @return the user uuid of this subscription
 	*/
 	@Override
-	public java.lang.String getUserUuid() {
+	public String getUserUuid() {
 		return _subscription.getUserUuid();
 	}
 
@@ -332,7 +332,7 @@ public class SubscriptionWrapper implements Subscription,
 	}
 
 	@Override
-	public void setClassName(java.lang.String className) {
+	public void setClassName(String className) {
 		_subscription.setClassName(className);
 	}
 
@@ -397,7 +397,7 @@ public class SubscriptionWrapper implements Subscription,
 	* @param frequency the frequency of this subscription
 	*/
 	@Override
-	public void setFrequency(java.lang.String frequency) {
+	public void setFrequency(String frequency) {
 		_subscription.setFrequency(frequency);
 	}
 
@@ -477,7 +477,7 @@ public class SubscriptionWrapper implements Subscription,
 	* @param userName the user name of this subscription
 	*/
 	@Override
-	public void setUserName(java.lang.String userName) {
+	public void setUserName(String userName) {
 		_subscription.setUserName(userName);
 	}
 
@@ -487,7 +487,7 @@ public class SubscriptionWrapper implements Subscription,
 	* @param userUuid the user uuid of this subscription
 	*/
 	@Override
-	public void setUserUuid(java.lang.String userUuid) {
+	public void setUserUuid(String userUuid) {
 		_subscription.setUserUuid(userUuid);
 	}
 
@@ -502,7 +502,7 @@ public class SubscriptionWrapper implements Subscription,
 	}
 
 	@Override
-	public java.lang.String toString() {
+	public String toString() {
 		return _subscription.toString();
 	}
 
@@ -512,7 +512,7 @@ public class SubscriptionWrapper implements Subscription,
 	}
 
 	@Override
-	public java.lang.String toXmlString() {
+	public String toXmlString() {
 		return _subscription.toXmlString();
 	}
 

@@ -35,8 +35,7 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 
 	@Override
 	public com.liferay.wsrp.model.WSRPProducer addWSRPProducer(long userId,
-		long groupId, java.lang.String name, java.lang.String version,
-		java.lang.String portletIds,
+		long groupId, String name, String version, String portletIds,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _wsrpProducerLocalService.addWSRPProducer(userId, groupId, name,
@@ -45,8 +44,7 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 
 	@Override
 	public com.liferay.wsrp.model.WSRPProducer addWSRPProducer(long userId,
-		java.lang.String name, java.lang.String version,
-		java.lang.String portletIds,
+		String name, String version, String portletIds,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _wsrpProducerLocalService.addWSRPProducer(userId, name, version,
@@ -221,7 +219,7 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 	*/
 	@Override
 	public com.liferay.wsrp.model.WSRPProducer fetchWSRPProducerByUuidAndGroupId(
-		java.lang.String uuid, long groupId) {
+		String uuid, long groupId) {
 		return _wsrpProducerLocalService.fetchWSRPProducerByUuidAndGroupId(uuid,
 			groupId);
 	}
@@ -248,7 +246,7 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 	* @return the OSGi service identifier
 	*/
 	@Override
-	public java.lang.String getOSGiServiceIdentifier() {
+	public String getOSGiServiceIdentifier() {
 		return _wsrpProducerLocalService.getOSGiServiceIdentifier();
 	}
 
@@ -275,7 +273,7 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 
 	@Override
 	public com.liferay.wsrp.model.WSRPProducer getWSRPProducer(
-		java.lang.String wsrpProducerUuid)
+		String wsrpProducerUuid)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _wsrpProducerLocalService.getWSRPProducer(wsrpProducerUuid);
 	}
@@ -290,7 +288,7 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 	*/
 	@Override
 	public com.liferay.wsrp.model.WSRPProducer getWSRPProducerByUuidAndGroupId(
-		java.lang.String uuid, long groupId)
+		String uuid, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _wsrpProducerLocalService.getWSRPProducerByUuidAndGroupId(uuid,
 			groupId);
@@ -328,7 +326,7 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 	*/
 	@Override
 	public java.util.List<com.liferay.wsrp.model.WSRPProducer> getWSRPProducersByUuidAndCompanyId(
-		java.lang.String uuid, long companyId) {
+		String uuid, long companyId) {
 		return _wsrpProducerLocalService.getWSRPProducersByUuidAndCompanyId(uuid,
 			companyId);
 	}
@@ -345,7 +343,7 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 	*/
 	@Override
 	public java.util.List<com.liferay.wsrp.model.WSRPProducer> getWSRPProducersByUuidAndCompanyId(
-		java.lang.String uuid, long companyId, int start, int end,
+		String uuid, long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPProducer> orderByComparator) {
 		return _wsrpProducerLocalService.getWSRPProducersByUuidAndCompanyId(uuid,
 			companyId, start, end, orderByComparator);
@@ -368,8 +366,7 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 
 	@Override
 	public com.liferay.wsrp.model.WSRPProducer updateWSRPProducer(
-		long wsrpProducerId, java.lang.String name, java.lang.String version,
-		java.lang.String portletIds)
+		long wsrpProducerId, String name, String version, String portletIds)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _wsrpProducerLocalService.updateWSRPProducer(wsrpProducerId,
 			name, version, portletIds);

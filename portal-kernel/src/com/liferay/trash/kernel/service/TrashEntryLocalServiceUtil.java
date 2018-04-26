@@ -59,10 +59,9 @@ public class TrashEntryLocalServiceUtil {
 	* @return the trashEntry
 	*/
 	public static com.liferay.trash.kernel.model.TrashEntry addTrashEntry(
-		long userId, long groupId, java.lang.String className, long classPK,
-		java.lang.String classUuid, java.lang.String referrerClassName,
-		int status,
-		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<java.lang.Long, java.lang.Integer>> statusOVPs,
+		long userId, long groupId, String className, long classPK,
+		String classUuid, String referrerClassName, int status,
+		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<Long, Integer>> statusOVPs,
 		com.liferay.portal.kernel.util.UnicodeProperties typeSettingsProperties)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
@@ -125,7 +124,7 @@ public class TrashEntryLocalServiceUtil {
 	* @return the trash entry with the entity class name and primary key
 	*/
 	public static com.liferay.trash.kernel.model.TrashEntry deleteEntry(
-		java.lang.String className, long classPK) {
+		String className, long classPK) {
 		return getService().deleteEntry(className, classPK);
 	}
 
@@ -264,7 +263,7 @@ public class TrashEntryLocalServiceUtil {
 	* @return the trash entry with the entity class name and primary key
 	*/
 	public static com.liferay.trash.kernel.model.TrashEntry fetchEntry(
-		java.lang.String className, long classPK) {
+		String className, long classPK) {
 		return getService().fetchEntry(className, classPK);
 	}
 
@@ -321,7 +320,7 @@ public class TrashEntryLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.trash.kernel.model.TrashEntry> getEntries(
-		long groupId, java.lang.String className) {
+		long groupId, String className) {
 		return getService().getEntries(groupId, className);
 	}
 
@@ -355,7 +354,7 @@ public class TrashEntryLocalServiceUtil {
 	* @return the trash entry with the entity class name and primary key
 	*/
 	public static com.liferay.trash.kernel.model.TrashEntry getEntry(
-		java.lang.String className, long classPK)
+		String className, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getEntry(className, classPK);
 	}
@@ -369,7 +368,7 @@ public class TrashEntryLocalServiceUtil {
 	*
 	* @return the OSGi service identifier
 	*/
-	public static java.lang.String getOSGiServiceIdentifier() {
+	public static String getOSGiServiceIdentifier() {
 		return getService().getOSGiServiceIdentifier();
 	}
 
@@ -418,16 +417,16 @@ public class TrashEntryLocalServiceUtil {
 	}
 
 	public static com.liferay.portal.kernel.search.Hits search(long companyId,
-		long groupId, long userId, java.lang.String keywords, int start,
-		int end, com.liferay.portal.kernel.search.Sort sort) {
+		long groupId, long userId, String keywords, int start, int end,
+		com.liferay.portal.kernel.search.Sort sort) {
 		return getService()
 				   .search(companyId, groupId, userId, keywords, start, end,
 			sort);
 	}
 
 	public static com.liferay.portal.kernel.search.BaseModelSearchResult<com.liferay.trash.kernel.model.TrashEntry> searchTrashEntries(
-		long companyId, long groupId, long userId, java.lang.String keywords,
-		int start, int end, com.liferay.portal.kernel.search.Sort sort) {
+		long companyId, long groupId, long userId, String keywords, int start,
+		int end, com.liferay.portal.kernel.search.Sort sort) {
 		return getService()
 				   .searchTrashEntries(companyId, groupId, userId, keywords,
 			start, end, sort);

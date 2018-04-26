@@ -61,25 +61,24 @@ public class MBMessageFinderUtil {
 			anonymous, status);
 	}
 
-	public static java.util.List<java.lang.Long> filterFindByG_U_C_S(
-		long groupId, long userId, long[] categoryIds, int status, int start,
-		int end) {
+	public static java.util.List<Long> filterFindByG_U_C_S(long groupId,
+		long userId, long[] categoryIds, int status, int start, int end) {
 		return getFinder()
 				   .filterFindByG_U_C_S(groupId, userId, categoryIds, status,
 			start, end);
 	}
 
-	public static java.util.List<java.lang.Long> filterFindByG_U_MD_C_S(
-		long groupId, long userId, java.util.Date modifiedDate,
-		long[] categoryIds, int status, int start, int end) {
+	public static java.util.List<Long> filterFindByG_U_MD_C_S(long groupId,
+		long userId, java.util.Date modifiedDate, long[] categoryIds,
+		int status, int start, int end) {
 		return getFinder()
 				   .filterFindByG_U_MD_C_S(groupId, userId, modifiedDate,
 			categoryIds, status, start, end);
 	}
 
-	public static java.util.List<java.lang.Long> filterFindByG_U_C_A_S(
-		long groupId, long userId, long[] categoryIds, boolean anonymous,
-		int status, int start, int end) {
+	public static java.util.List<Long> filterFindByG_U_C_A_S(long groupId,
+		long userId, long[] categoryIds, boolean anonymous, int status,
+		int start, int end) {
 		return getFinder()
 				   .filterFindByG_U_C_A_S(groupId, userId, categoryIds,
 			anonymous, status, start, end);
@@ -95,14 +94,14 @@ public class MBMessageFinderUtil {
 		return getFinder().findByThreadId(threadId, queryDefinition);
 	}
 
-	public static java.util.List<java.lang.Long> findByG_U_C_S(long groupId,
-		long userId, long[] categoryIds, int status, int start, int end) {
+	public static java.util.List<Long> findByG_U_C_S(long groupId, long userId,
+		long[] categoryIds, int status, int start, int end) {
 		return getFinder()
 				   .findByG_U_C_S(groupId, userId, categoryIds, status, start,
 			end);
 	}
 
-	public static java.util.List<java.lang.Long> findByG_U_C_A_S(long groupId,
+	public static java.util.List<Long> findByG_U_C_A_S(long groupId,
 		long userId, long[] categoryIds, boolean anonymous, int status,
 		int start, int end) {
 		return getFinder()

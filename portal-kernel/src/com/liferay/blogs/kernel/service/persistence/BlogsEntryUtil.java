@@ -116,7 +116,7 @@ public class BlogsEntryUtil {
 	* @param uuid the uuid
 	* @return the matching blogs entries
 	*/
-	public static List<BlogsEntry> findByUuid(java.lang.String uuid) {
+	public static List<BlogsEntry> findByUuid(String uuid) {
 		return getPersistence().findByUuid(uuid);
 	}
 
@@ -132,8 +132,7 @@ public class BlogsEntryUtil {
 	* @param end the upper bound of the range of blogs entries (not inclusive)
 	* @return the range of matching blogs entries
 	*/
-	public static List<BlogsEntry> findByUuid(java.lang.String uuid, int start,
-		int end) {
+	public static List<BlogsEntry> findByUuid(String uuid, int start, int end) {
 		return getPersistence().findByUuid(uuid, start, end);
 	}
 
@@ -150,8 +149,8 @@ public class BlogsEntryUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching blogs entries
 	*/
-	public static List<BlogsEntry> findByUuid(java.lang.String uuid, int start,
-		int end, OrderByComparator<BlogsEntry> orderByComparator) {
+	public static List<BlogsEntry> findByUuid(String uuid, int start, int end,
+		OrderByComparator<BlogsEntry> orderByComparator) {
 		return getPersistence().findByUuid(uuid, start, end, orderByComparator);
 	}
 
@@ -169,8 +168,8 @@ public class BlogsEntryUtil {
 	* @param retrieveFromCache whether to retrieve from the finder cache
 	* @return the ordered range of matching blogs entries
 	*/
-	public static List<BlogsEntry> findByUuid(java.lang.String uuid, int start,
-		int end, OrderByComparator<BlogsEntry> orderByComparator,
+	public static List<BlogsEntry> findByUuid(String uuid, int start, int end,
+		OrderByComparator<BlogsEntry> orderByComparator,
 		boolean retrieveFromCache) {
 		return getPersistence()
 				   .findByUuid(uuid, start, end, orderByComparator,
@@ -185,7 +184,7 @@ public class BlogsEntryUtil {
 	* @return the first matching blogs entry
 	* @throws NoSuchEntryException if a matching blogs entry could not be found
 	*/
-	public static BlogsEntry findByUuid_First(java.lang.String uuid,
+	public static BlogsEntry findByUuid_First(String uuid,
 		OrderByComparator<BlogsEntry> orderByComparator)
 		throws com.liferay.blogs.kernel.exception.NoSuchEntryException {
 		return getPersistence().findByUuid_First(uuid, orderByComparator);
@@ -198,7 +197,7 @@ public class BlogsEntryUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching blogs entry, or <code>null</code> if a matching blogs entry could not be found
 	*/
-	public static BlogsEntry fetchByUuid_First(java.lang.String uuid,
+	public static BlogsEntry fetchByUuid_First(String uuid,
 		OrderByComparator<BlogsEntry> orderByComparator) {
 		return getPersistence().fetchByUuid_First(uuid, orderByComparator);
 	}
@@ -211,7 +210,7 @@ public class BlogsEntryUtil {
 	* @return the last matching blogs entry
 	* @throws NoSuchEntryException if a matching blogs entry could not be found
 	*/
-	public static BlogsEntry findByUuid_Last(java.lang.String uuid,
+	public static BlogsEntry findByUuid_Last(String uuid,
 		OrderByComparator<BlogsEntry> orderByComparator)
 		throws com.liferay.blogs.kernel.exception.NoSuchEntryException {
 		return getPersistence().findByUuid_Last(uuid, orderByComparator);
@@ -224,7 +223,7 @@ public class BlogsEntryUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching blogs entry, or <code>null</code> if a matching blogs entry could not be found
 	*/
-	public static BlogsEntry fetchByUuid_Last(java.lang.String uuid,
+	public static BlogsEntry fetchByUuid_Last(String uuid,
 		OrderByComparator<BlogsEntry> orderByComparator) {
 		return getPersistence().fetchByUuid_Last(uuid, orderByComparator);
 	}
@@ -239,7 +238,7 @@ public class BlogsEntryUtil {
 	* @throws NoSuchEntryException if a blogs entry with the primary key could not be found
 	*/
 	public static BlogsEntry[] findByUuid_PrevAndNext(long entryId,
-		java.lang.String uuid, OrderByComparator<BlogsEntry> orderByComparator)
+		String uuid, OrderByComparator<BlogsEntry> orderByComparator)
 		throws com.liferay.blogs.kernel.exception.NoSuchEntryException {
 		return getPersistence()
 				   .findByUuid_PrevAndNext(entryId, uuid, orderByComparator);
@@ -250,7 +249,7 @@ public class BlogsEntryUtil {
 	*
 	* @param uuid the uuid
 	*/
-	public static void removeByUuid(java.lang.String uuid) {
+	public static void removeByUuid(String uuid) {
 		getPersistence().removeByUuid(uuid);
 	}
 
@@ -260,7 +259,7 @@ public class BlogsEntryUtil {
 	* @param uuid the uuid
 	* @return the number of matching blogs entries
 	*/
-	public static int countByUuid(java.lang.String uuid) {
+	public static int countByUuid(String uuid) {
 		return getPersistence().countByUuid(uuid);
 	}
 
@@ -272,7 +271,7 @@ public class BlogsEntryUtil {
 	* @return the matching blogs entry
 	* @throws NoSuchEntryException if a matching blogs entry could not be found
 	*/
-	public static BlogsEntry findByUUID_G(java.lang.String uuid, long groupId)
+	public static BlogsEntry findByUUID_G(String uuid, long groupId)
 		throws com.liferay.blogs.kernel.exception.NoSuchEntryException {
 		return getPersistence().findByUUID_G(uuid, groupId);
 	}
@@ -284,7 +283,7 @@ public class BlogsEntryUtil {
 	* @param groupId the group ID
 	* @return the matching blogs entry, or <code>null</code> if a matching blogs entry could not be found
 	*/
-	public static BlogsEntry fetchByUUID_G(java.lang.String uuid, long groupId) {
+	public static BlogsEntry fetchByUUID_G(String uuid, long groupId) {
 		return getPersistence().fetchByUUID_G(uuid, groupId);
 	}
 
@@ -296,7 +295,7 @@ public class BlogsEntryUtil {
 	* @param retrieveFromCache whether to retrieve from the finder cache
 	* @return the matching blogs entry, or <code>null</code> if a matching blogs entry could not be found
 	*/
-	public static BlogsEntry fetchByUUID_G(java.lang.String uuid, long groupId,
+	public static BlogsEntry fetchByUUID_G(String uuid, long groupId,
 		boolean retrieveFromCache) {
 		return getPersistence().fetchByUUID_G(uuid, groupId, retrieveFromCache);
 	}
@@ -308,7 +307,7 @@ public class BlogsEntryUtil {
 	* @param groupId the group ID
 	* @return the blogs entry that was removed
 	*/
-	public static BlogsEntry removeByUUID_G(java.lang.String uuid, long groupId)
+	public static BlogsEntry removeByUUID_G(String uuid, long groupId)
 		throws com.liferay.blogs.kernel.exception.NoSuchEntryException {
 		return getPersistence().removeByUUID_G(uuid, groupId);
 	}
@@ -320,7 +319,7 @@ public class BlogsEntryUtil {
 	* @param groupId the group ID
 	* @return the number of matching blogs entries
 	*/
-	public static int countByUUID_G(java.lang.String uuid, long groupId) {
+	public static int countByUUID_G(String uuid, long groupId) {
 		return getPersistence().countByUUID_G(uuid, groupId);
 	}
 
@@ -331,8 +330,7 @@ public class BlogsEntryUtil {
 	* @param companyId the company ID
 	* @return the matching blogs entries
 	*/
-	public static List<BlogsEntry> findByUuid_C(java.lang.String uuid,
-		long companyId) {
+	public static List<BlogsEntry> findByUuid_C(String uuid, long companyId) {
 		return getPersistence().findByUuid_C(uuid, companyId);
 	}
 
@@ -349,8 +347,8 @@ public class BlogsEntryUtil {
 	* @param end the upper bound of the range of blogs entries (not inclusive)
 	* @return the range of matching blogs entries
 	*/
-	public static List<BlogsEntry> findByUuid_C(java.lang.String uuid,
-		long companyId, int start, int end) {
+	public static List<BlogsEntry> findByUuid_C(String uuid, long companyId,
+		int start, int end) {
 		return getPersistence().findByUuid_C(uuid, companyId, start, end);
 	}
 
@@ -368,9 +366,8 @@ public class BlogsEntryUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching blogs entries
 	*/
-	public static List<BlogsEntry> findByUuid_C(java.lang.String uuid,
-		long companyId, int start, int end,
-		OrderByComparator<BlogsEntry> orderByComparator) {
+	public static List<BlogsEntry> findByUuid_C(String uuid, long companyId,
+		int start, int end, OrderByComparator<BlogsEntry> orderByComparator) {
 		return getPersistence()
 				   .findByUuid_C(uuid, companyId, start, end, orderByComparator);
 	}
@@ -390,9 +387,8 @@ public class BlogsEntryUtil {
 	* @param retrieveFromCache whether to retrieve from the finder cache
 	* @return the ordered range of matching blogs entries
 	*/
-	public static List<BlogsEntry> findByUuid_C(java.lang.String uuid,
-		long companyId, int start, int end,
-		OrderByComparator<BlogsEntry> orderByComparator,
+	public static List<BlogsEntry> findByUuid_C(String uuid, long companyId,
+		int start, int end, OrderByComparator<BlogsEntry> orderByComparator,
 		boolean retrieveFromCache) {
 		return getPersistence()
 				   .findByUuid_C(uuid, companyId, start, end,
@@ -408,8 +404,8 @@ public class BlogsEntryUtil {
 	* @return the first matching blogs entry
 	* @throws NoSuchEntryException if a matching blogs entry could not be found
 	*/
-	public static BlogsEntry findByUuid_C_First(java.lang.String uuid,
-		long companyId, OrderByComparator<BlogsEntry> orderByComparator)
+	public static BlogsEntry findByUuid_C_First(String uuid, long companyId,
+		OrderByComparator<BlogsEntry> orderByComparator)
 		throws com.liferay.blogs.kernel.exception.NoSuchEntryException {
 		return getPersistence()
 				   .findByUuid_C_First(uuid, companyId, orderByComparator);
@@ -423,8 +419,8 @@ public class BlogsEntryUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching blogs entry, or <code>null</code> if a matching blogs entry could not be found
 	*/
-	public static BlogsEntry fetchByUuid_C_First(java.lang.String uuid,
-		long companyId, OrderByComparator<BlogsEntry> orderByComparator) {
+	public static BlogsEntry fetchByUuid_C_First(String uuid, long companyId,
+		OrderByComparator<BlogsEntry> orderByComparator) {
 		return getPersistence()
 				   .fetchByUuid_C_First(uuid, companyId, orderByComparator);
 	}
@@ -438,8 +434,8 @@ public class BlogsEntryUtil {
 	* @return the last matching blogs entry
 	* @throws NoSuchEntryException if a matching blogs entry could not be found
 	*/
-	public static BlogsEntry findByUuid_C_Last(java.lang.String uuid,
-		long companyId, OrderByComparator<BlogsEntry> orderByComparator)
+	public static BlogsEntry findByUuid_C_Last(String uuid, long companyId,
+		OrderByComparator<BlogsEntry> orderByComparator)
 		throws com.liferay.blogs.kernel.exception.NoSuchEntryException {
 		return getPersistence()
 				   .findByUuid_C_Last(uuid, companyId, orderByComparator);
@@ -453,8 +449,8 @@ public class BlogsEntryUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching blogs entry, or <code>null</code> if a matching blogs entry could not be found
 	*/
-	public static BlogsEntry fetchByUuid_C_Last(java.lang.String uuid,
-		long companyId, OrderByComparator<BlogsEntry> orderByComparator) {
+	public static BlogsEntry fetchByUuid_C_Last(String uuid, long companyId,
+		OrderByComparator<BlogsEntry> orderByComparator) {
 		return getPersistence()
 				   .fetchByUuid_C_Last(uuid, companyId, orderByComparator);
 	}
@@ -470,7 +466,7 @@ public class BlogsEntryUtil {
 	* @throws NoSuchEntryException if a blogs entry with the primary key could not be found
 	*/
 	public static BlogsEntry[] findByUuid_C_PrevAndNext(long entryId,
-		java.lang.String uuid, long companyId,
+		String uuid, long companyId,
 		OrderByComparator<BlogsEntry> orderByComparator)
 		throws com.liferay.blogs.kernel.exception.NoSuchEntryException {
 		return getPersistence()
@@ -484,7 +480,7 @@ public class BlogsEntryUtil {
 	* @param uuid the uuid
 	* @param companyId the company ID
 	*/
-	public static void removeByUuid_C(java.lang.String uuid, long companyId) {
+	public static void removeByUuid_C(String uuid, long companyId) {
 		getPersistence().removeByUuid_C(uuid, companyId);
 	}
 
@@ -495,7 +491,7 @@ public class BlogsEntryUtil {
 	* @param companyId the company ID
 	* @return the number of matching blogs entries
 	*/
-	public static int countByUuid_C(java.lang.String uuid, long companyId) {
+	public static int countByUuid_C(String uuid, long companyId) {
 		return getPersistence().countByUuid_C(uuid, companyId);
 	}
 
@@ -896,7 +892,7 @@ public class BlogsEntryUtil {
 	* @return the matching blogs entry
 	* @throws NoSuchEntryException if a matching blogs entry could not be found
 	*/
-	public static BlogsEntry findByG_UT(long groupId, java.lang.String urlTitle)
+	public static BlogsEntry findByG_UT(long groupId, String urlTitle)
 		throws com.liferay.blogs.kernel.exception.NoSuchEntryException {
 		return getPersistence().findByG_UT(groupId, urlTitle);
 	}
@@ -908,7 +904,7 @@ public class BlogsEntryUtil {
 	* @param urlTitle the url title
 	* @return the matching blogs entry, or <code>null</code> if a matching blogs entry could not be found
 	*/
-	public static BlogsEntry fetchByG_UT(long groupId, java.lang.String urlTitle) {
+	public static BlogsEntry fetchByG_UT(long groupId, String urlTitle) {
 		return getPersistence().fetchByG_UT(groupId, urlTitle);
 	}
 
@@ -920,8 +916,8 @@ public class BlogsEntryUtil {
 	* @param retrieveFromCache whether to retrieve from the finder cache
 	* @return the matching blogs entry, or <code>null</code> if a matching blogs entry could not be found
 	*/
-	public static BlogsEntry fetchByG_UT(long groupId,
-		java.lang.String urlTitle, boolean retrieveFromCache) {
+	public static BlogsEntry fetchByG_UT(long groupId, String urlTitle,
+		boolean retrieveFromCache) {
 		return getPersistence().fetchByG_UT(groupId, urlTitle, retrieveFromCache);
 	}
 
@@ -932,8 +928,7 @@ public class BlogsEntryUtil {
 	* @param urlTitle the url title
 	* @return the blogs entry that was removed
 	*/
-	public static BlogsEntry removeByG_UT(long groupId,
-		java.lang.String urlTitle)
+	public static BlogsEntry removeByG_UT(long groupId, String urlTitle)
 		throws com.liferay.blogs.kernel.exception.NoSuchEntryException {
 		return getPersistence().removeByG_UT(groupId, urlTitle);
 	}
@@ -945,7 +940,7 @@ public class BlogsEntryUtil {
 	* @param urlTitle the url title
 	* @return the number of matching blogs entries
 	*/
-	public static int countByG_UT(long groupId, java.lang.String urlTitle) {
+	public static int countByG_UT(long groupId, String urlTitle) {
 		return getPersistence().countByG_UT(groupId, urlTitle);
 	}
 
@@ -6272,7 +6267,7 @@ public class BlogsEntryUtil {
 		return getPersistence().countAll();
 	}
 
-	public static java.util.Set<java.lang.String> getBadColumnNames() {
+	public static java.util.Set<String> getBadColumnNames() {
 		return getPersistence().getBadColumnNames();
 	}
 

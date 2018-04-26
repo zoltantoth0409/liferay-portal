@@ -30,7 +30,7 @@ public class BlogsStatsUserFinderUtil {
 	}
 
 	public static int countByOrganizationIds(
-		java.util.List<java.lang.Long> organizationIds) {
+		java.util.List<Long> organizationIds) {
 		return getFinder().countByOrganizationIds(organizationIds);
 	}
 
@@ -46,7 +46,7 @@ public class BlogsStatsUserFinderUtil {
 	}
 
 	public static java.util.List<com.liferay.blogs.kernel.model.BlogsStatsUser> findByOrganizationIds(
-		java.util.List<java.lang.Long> organizationIds, int start, int end,
+		java.util.List<Long> organizationIds, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.blogs.kernel.model.BlogsStatsUser> obc) {
 		return getFinder()
 				   .findByOrganizationIds(organizationIds, start, end, obc);

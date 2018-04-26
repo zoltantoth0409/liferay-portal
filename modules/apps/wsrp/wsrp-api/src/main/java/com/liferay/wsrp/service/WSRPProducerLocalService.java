@@ -66,14 +66,13 @@ public interface WSRPProducerLocalService extends BaseLocalService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link WSRPProducerLocalServiceUtil} to access the wsrp producer local service. Add custom service methods to {@link com.liferay.wsrp.service.impl.WSRPProducerLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public WSRPProducer addWSRPProducer(long userId, long groupId,
-		java.lang.String name, java.lang.String version,
-		java.lang.String portletIds, ServiceContext serviceContext)
+	public WSRPProducer addWSRPProducer(long userId, long groupId, String name,
+		String version, String portletIds, ServiceContext serviceContext)
 		throws PortalException;
 
-	public WSRPProducer addWSRPProducer(long userId, java.lang.String name,
-		java.lang.String version, java.lang.String portletIds,
-		ServiceContext serviceContext) throws PortalException;
+	public WSRPProducer addWSRPProducer(long userId, String name,
+		String version, String portletIds, ServiceContext serviceContext)
+		throws PortalException;
 
 	/**
 	* Adds the wsrp producer to the database. Also notifies the appropriate model listeners.
@@ -195,8 +194,8 @@ public interface WSRPProducerLocalService extends BaseLocalService,
 	* @return the matching wsrp producer, or <code>null</code> if a matching wsrp producer could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public WSRPProducer fetchWSRPProducerByUuidAndGroupId(
-		java.lang.String uuid, long groupId);
+	public WSRPProducer fetchWSRPProducerByUuidAndGroupId(String uuid,
+		long groupId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();
@@ -213,7 +212,7 @@ public interface WSRPProducerLocalService extends BaseLocalService,
 	*
 	* @return the OSGi service identifier
 	*/
-	public java.lang.String getOSGiServiceIdentifier();
+	public String getOSGiServiceIdentifier();
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -232,7 +231,7 @@ public interface WSRPProducerLocalService extends BaseLocalService,
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public WSRPProducer getWSRPProducer(java.lang.String wsrpProducerUuid)
+	public WSRPProducer getWSRPProducer(String wsrpProducerUuid)
 		throws PortalException;
 
 	/**
@@ -244,7 +243,7 @@ public interface WSRPProducerLocalService extends BaseLocalService,
 	* @throws PortalException if a matching wsrp producer could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public WSRPProducer getWSRPProducerByUuidAndGroupId(java.lang.String uuid,
+	public WSRPProducer getWSRPProducerByUuidAndGroupId(String uuid,
 		long groupId) throws PortalException;
 
 	/**
@@ -273,8 +272,8 @@ public interface WSRPProducerLocalService extends BaseLocalService,
 	* @return the matching wsrp producers, or an empty list if no matches were found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<WSRPProducer> getWSRPProducersByUuidAndCompanyId(
-		java.lang.String uuid, long companyId);
+	public List<WSRPProducer> getWSRPProducersByUuidAndCompanyId(String uuid,
+		long companyId);
 
 	/**
 	* Returns a range of wsrp producers matching the UUID and company.
@@ -287,8 +286,8 @@ public interface WSRPProducerLocalService extends BaseLocalService,
 	* @return the range of matching wsrp producers, or an empty list if no matches were found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<WSRPProducer> getWSRPProducersByUuidAndCompanyId(
-		java.lang.String uuid, long companyId, int start, int end,
+	public List<WSRPProducer> getWSRPProducersByUuidAndCompanyId(String uuid,
+		long companyId, int start, int end,
 		OrderByComparator<WSRPProducer> orderByComparator);
 
 	/**
@@ -302,9 +301,8 @@ public interface WSRPProducerLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getWSRPProducersCount(long companyId);
 
-	public WSRPProducer updateWSRPProducer(long wsrpProducerId,
-		java.lang.String name, java.lang.String version,
-		java.lang.String portletIds) throws PortalException;
+	public WSRPProducer updateWSRPProducer(long wsrpProducerId, String name,
+		String version, String portletIds) throws PortalException;
 
 	/**
 	* Updates the wsrp producer in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.

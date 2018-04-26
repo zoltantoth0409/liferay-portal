@@ -174,7 +174,7 @@ public interface LayoutSetLocalService extends BaseLocalService,
 	public LayoutSet fetchLayoutSet(long layoutSetId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public LayoutSet fetchLayoutSet(java.lang.String virtualHostname);
+	public LayoutSet fetchLayoutSet(String virtualHostname);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public LayoutSet fetchLayoutSetByLogoId(boolean privateLayout, long logoId)
@@ -201,7 +201,7 @@ public interface LayoutSetLocalService extends BaseLocalService,
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public LayoutSet getLayoutSet(java.lang.String virtualHostname)
+	public LayoutSet getLayoutSet(String virtualHostname)
 		throws PortalException;
 
 	/**
@@ -220,7 +220,7 @@ public interface LayoutSetLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<LayoutSet> getLayoutSetsByLayoutSetPrototypeUuid(
-		java.lang.String layoutSetPrototypeUuid);
+		String layoutSetPrototypeUuid);
 
 	/**
 	* Returns the number of layout sets.
@@ -235,7 +235,7 @@ public interface LayoutSetLocalService extends BaseLocalService,
 	*
 	* @return the OSGi service identifier
 	*/
-	public java.lang.String getOSGiServiceIdentifier();
+	public String getOSGiServiceIdentifier();
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -263,7 +263,7 @@ public interface LayoutSetLocalService extends BaseLocalService,
 	*/
 	public void updateLayoutSetPrototypeLinkEnabled(long groupId,
 		boolean privateLayout, boolean layoutSetPrototypeLinkEnabled,
-		java.lang.String layoutSetPrototypeUuid) throws PortalException;
+		String layoutSetPrototypeUuid) throws PortalException;
 
 	public LayoutSet updateLogo(long groupId, boolean privateLayout,
 		boolean logo, byte[] bytes) throws PortalException;
@@ -279,19 +279,18 @@ public interface LayoutSetLocalService extends BaseLocalService,
 		throws PortalException;
 
 	public LayoutSet updateLookAndFeel(long groupId, boolean privateLayout,
-		java.lang.String themeId, java.lang.String colorSchemeId,
-		java.lang.String css) throws PortalException;
-
-	public void updateLookAndFeel(long groupId, java.lang.String themeId,
-		java.lang.String colorSchemeId, java.lang.String css)
+		String themeId, String colorSchemeId, String css)
 		throws PortalException;
+
+	public void updateLookAndFeel(long groupId, String themeId,
+		String colorSchemeId, String css) throws PortalException;
 
 	public LayoutSet updatePageCount(long groupId, boolean privateLayout)
 		throws PortalException;
 
 	public LayoutSet updateSettings(long groupId, boolean privateLayout,
-		java.lang.String settings) throws PortalException;
+		String settings) throws PortalException;
 
 	public LayoutSet updateVirtualHost(long groupId, boolean privateLayout,
-		java.lang.String virtualHostname) throws PortalException;
+		String virtualHostname) throws PortalException;
 }

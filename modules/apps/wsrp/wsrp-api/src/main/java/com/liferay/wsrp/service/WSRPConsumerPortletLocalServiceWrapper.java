@@ -36,8 +36,7 @@ public class WSRPConsumerPortletLocalServiceWrapper
 
 	@Override
 	public com.liferay.wsrp.model.WSRPConsumerPortlet addWSRPConsumerPortlet(
-		long wsrpConsumerId, java.lang.String name,
-		java.lang.String portletHandle,
+		long wsrpConsumerId, String name, String portletHandle,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _wsrpConsumerPortletLocalService.addWSRPConsumerPortlet(wsrpConsumerId,
@@ -46,8 +45,7 @@ public class WSRPConsumerPortletLocalServiceWrapper
 
 	@Override
 	public com.liferay.wsrp.model.WSRPConsumerPortlet addWSRPConsumerPortlet(
-		java.lang.String wsrpConsumerUuid, java.lang.String name,
-		java.lang.String portletHandle,
+		String wsrpConsumerUuid, String name, String portletHandle,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _wsrpConsumerPortletLocalService.addWSRPConsumerPortlet(wsrpConsumerUuid,
@@ -103,8 +101,7 @@ public class WSRPConsumerPortletLocalServiceWrapper
 	}
 
 	@Override
-	public void deleteWSRPConsumerPortlet(
-		java.lang.String wsrpConsumerPortletUuid)
+	public void deleteWSRPConsumerPortlet(String wsrpConsumerPortletUuid)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		_wsrpConsumerPortletLocalService.deleteWSRPConsumerPortlet(wsrpConsumerPortletUuid);
 	}
@@ -131,7 +128,7 @@ public class WSRPConsumerPortletLocalServiceWrapper
 
 	@Override
 	public void destroyWSRPConsumerPortlet(long wsrpConsumerPortletId,
-		java.lang.String wsrpConsumerPortletUuid, java.lang.String url) {
+		String wsrpConsumerPortletUuid, String url) {
 		_wsrpConsumerPortletLocalService.destroyWSRPConsumerPortlet(wsrpConsumerPortletId,
 			wsrpConsumerPortletUuid, url);
 	}
@@ -243,7 +240,7 @@ public class WSRPConsumerPortletLocalServiceWrapper
 	*/
 	@Override
 	public com.liferay.wsrp.model.WSRPConsumerPortlet fetchWSRPConsumerPortletByUuidAndCompanyId(
-		java.lang.String uuid, long companyId) {
+		String uuid, long companyId) {
 		return _wsrpConsumerPortletLocalService.fetchWSRPConsumerPortletByUuidAndCompanyId(uuid,
 			companyId);
 	}
@@ -270,7 +267,7 @@ public class WSRPConsumerPortletLocalServiceWrapper
 	* @return the OSGi service identifier
 	*/
 	@Override
-	public java.lang.String getOSGiServiceIdentifier() {
+	public String getOSGiServiceIdentifier() {
 		return _wsrpConsumerPortletLocalService.getOSGiServiceIdentifier();
 	}
 
@@ -297,7 +294,7 @@ public class WSRPConsumerPortletLocalServiceWrapper
 
 	@Override
 	public com.liferay.wsrp.model.WSRPConsumerPortlet getWSRPConsumerPortlet(
-		long wsrpConsumerId, java.lang.String portletHandle)
+		long wsrpConsumerId, String portletHandle)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _wsrpConsumerPortletLocalService.getWSRPConsumerPortlet(wsrpConsumerId,
 			portletHandle);
@@ -305,7 +302,7 @@ public class WSRPConsumerPortletLocalServiceWrapper
 
 	@Override
 	public com.liferay.wsrp.model.WSRPConsumerPortlet getWSRPConsumerPortlet(
-		java.lang.String wsrpConsumerPortletUuid)
+		String wsrpConsumerPortletUuid)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _wsrpConsumerPortletLocalService.getWSRPConsumerPortlet(wsrpConsumerPortletUuid);
 	}
@@ -320,7 +317,7 @@ public class WSRPConsumerPortletLocalServiceWrapper
 	*/
 	@Override
 	public com.liferay.wsrp.model.WSRPConsumerPortlet getWSRPConsumerPortletByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
+		String uuid, long companyId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _wsrpConsumerPortletLocalService.getWSRPConsumerPortletByUuidAndCompanyId(uuid,
 			companyId);
@@ -373,8 +370,8 @@ public class WSRPConsumerPortletLocalServiceWrapper
 
 	@Override
 	public void initWSRPConsumerPortlet(long companyId, long wsrpConsumerId,
-		long wsrpConsumerPortletId, java.lang.String wsrpConsumerPortletUuid,
-		java.lang.String name, java.lang.String portletHandle)
+		long wsrpConsumerPortletId, String wsrpConsumerPortletUuid,
+		String name, String portletHandle)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		_wsrpConsumerPortletLocalService.initWSRPConsumerPortlet(companyId,
 			wsrpConsumerId, wsrpConsumerPortletId, wsrpConsumerPortletUuid,
@@ -388,7 +385,7 @@ public class WSRPConsumerPortletLocalServiceWrapper
 
 	@Override
 	public com.liferay.wsrp.model.WSRPConsumerPortlet updateWSRPConsumerPortlet(
-		long wsrpConsumerPortletId, java.lang.String name)
+		long wsrpConsumerPortletId, String name)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _wsrpConsumerPortletLocalService.updateWSRPConsumerPortlet(wsrpConsumerPortletId,
 			name);

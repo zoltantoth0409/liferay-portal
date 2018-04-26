@@ -57,10 +57,9 @@ public interface EntryService extends BaseService {
 	*
 	* @return the OSGi service identifier
 	*/
-	public java.lang.String getOSGiServiceIdentifier();
+	public String getOSGiServiceIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public JSONArray searchUsersAndContacts(long companyId,
-		java.lang.String keywords, int start, int end)
-		throws PortalException;
+	public JSONArray searchUsersAndContacts(long companyId, String keywords,
+		int start, int end) throws PortalException;
 }

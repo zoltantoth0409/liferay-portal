@@ -47,7 +47,7 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	* @param uuid the uuid
 	* @return the matching ddl records
 	*/
-	public java.util.List<DDLRecord> findByUuid(java.lang.String uuid);
+	public java.util.List<DDLRecord> findByUuid(String uuid);
 
 	/**
 	* Returns a range of all the ddl records where uuid = &#63;.
@@ -61,8 +61,7 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	* @param end the upper bound of the range of ddl records (not inclusive)
 	* @return the range of matching ddl records
 	*/
-	public java.util.List<DDLRecord> findByUuid(java.lang.String uuid,
-		int start, int end);
+	public java.util.List<DDLRecord> findByUuid(String uuid, int start, int end);
 
 	/**
 	* Returns an ordered range of all the ddl records where uuid = &#63;.
@@ -77,8 +76,8 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching ddl records
 	*/
-	public java.util.List<DDLRecord> findByUuid(java.lang.String uuid,
-		int start, int end,
+	public java.util.List<DDLRecord> findByUuid(String uuid, int start,
+		int end,
 		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord> orderByComparator);
 
 	/**
@@ -95,8 +94,8 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	* @param retrieveFromCache whether to retrieve from the finder cache
 	* @return the ordered range of matching ddl records
 	*/
-	public java.util.List<DDLRecord> findByUuid(java.lang.String uuid,
-		int start, int end,
+	public java.util.List<DDLRecord> findByUuid(String uuid, int start,
+		int end,
 		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord> orderByComparator,
 		boolean retrieveFromCache);
 
@@ -108,7 +107,7 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	* @return the first matching ddl record
 	* @throws NoSuchRecordException if a matching ddl record could not be found
 	*/
-	public DDLRecord findByUuid_First(java.lang.String uuid,
+	public DDLRecord findByUuid_First(String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord> orderByComparator)
 		throws NoSuchRecordException;
 
@@ -119,7 +118,7 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching ddl record, or <code>null</code> if a matching ddl record could not be found
 	*/
-	public DDLRecord fetchByUuid_First(java.lang.String uuid,
+	public DDLRecord fetchByUuid_First(String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord> orderByComparator);
 
 	/**
@@ -130,7 +129,7 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	* @return the last matching ddl record
 	* @throws NoSuchRecordException if a matching ddl record could not be found
 	*/
-	public DDLRecord findByUuid_Last(java.lang.String uuid,
+	public DDLRecord findByUuid_Last(String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord> orderByComparator)
 		throws NoSuchRecordException;
 
@@ -141,7 +140,7 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching ddl record, or <code>null</code> if a matching ddl record could not be found
 	*/
-	public DDLRecord fetchByUuid_Last(java.lang.String uuid,
+	public DDLRecord fetchByUuid_Last(String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord> orderByComparator);
 
 	/**
@@ -153,8 +152,7 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	* @return the previous, current, and next ddl record
 	* @throws NoSuchRecordException if a ddl record with the primary key could not be found
 	*/
-	public DDLRecord[] findByUuid_PrevAndNext(long recordId,
-		java.lang.String uuid,
+	public DDLRecord[] findByUuid_PrevAndNext(long recordId, String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord> orderByComparator)
 		throws NoSuchRecordException;
 
@@ -163,7 +161,7 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	*
 	* @param uuid the uuid
 	*/
-	public void removeByUuid(java.lang.String uuid);
+	public void removeByUuid(String uuid);
 
 	/**
 	* Returns the number of ddl records where uuid = &#63;.
@@ -171,7 +169,7 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	* @param uuid the uuid
 	* @return the number of matching ddl records
 	*/
-	public int countByUuid(java.lang.String uuid);
+	public int countByUuid(String uuid);
 
 	/**
 	* Returns the ddl record where uuid = &#63; and groupId = &#63; or throws a {@link NoSuchRecordException} if it could not be found.
@@ -181,7 +179,7 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	* @return the matching ddl record
 	* @throws NoSuchRecordException if a matching ddl record could not be found
 	*/
-	public DDLRecord findByUUID_G(java.lang.String uuid, long groupId)
+	public DDLRecord findByUUID_G(String uuid, long groupId)
 		throws NoSuchRecordException;
 
 	/**
@@ -191,7 +189,7 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	* @param groupId the group ID
 	* @return the matching ddl record, or <code>null</code> if a matching ddl record could not be found
 	*/
-	public DDLRecord fetchByUUID_G(java.lang.String uuid, long groupId);
+	public DDLRecord fetchByUUID_G(String uuid, long groupId);
 
 	/**
 	* Returns the ddl record where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -201,7 +199,7 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	* @param retrieveFromCache whether to retrieve from the finder cache
 	* @return the matching ddl record, or <code>null</code> if a matching ddl record could not be found
 	*/
-	public DDLRecord fetchByUUID_G(java.lang.String uuid, long groupId,
+	public DDLRecord fetchByUUID_G(String uuid, long groupId,
 		boolean retrieveFromCache);
 
 	/**
@@ -211,7 +209,7 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	* @param groupId the group ID
 	* @return the ddl record that was removed
 	*/
-	public DDLRecord removeByUUID_G(java.lang.String uuid, long groupId)
+	public DDLRecord removeByUUID_G(String uuid, long groupId)
 		throws NoSuchRecordException;
 
 	/**
@@ -221,7 +219,7 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	* @param groupId the group ID
 	* @return the number of matching ddl records
 	*/
-	public int countByUUID_G(java.lang.String uuid, long groupId);
+	public int countByUUID_G(String uuid, long groupId);
 
 	/**
 	* Returns all the ddl records where uuid = &#63; and companyId = &#63;.
@@ -230,8 +228,7 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	* @param companyId the company ID
 	* @return the matching ddl records
 	*/
-	public java.util.List<DDLRecord> findByUuid_C(java.lang.String uuid,
-		long companyId);
+	public java.util.List<DDLRecord> findByUuid_C(String uuid, long companyId);
 
 	/**
 	* Returns a range of all the ddl records where uuid = &#63; and companyId = &#63;.
@@ -246,8 +243,8 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	* @param end the upper bound of the range of ddl records (not inclusive)
 	* @return the range of matching ddl records
 	*/
-	public java.util.List<DDLRecord> findByUuid_C(java.lang.String uuid,
-		long companyId, int start, int end);
+	public java.util.List<DDLRecord> findByUuid_C(String uuid, long companyId,
+		int start, int end);
 
 	/**
 	* Returns an ordered range of all the ddl records where uuid = &#63; and companyId = &#63;.
@@ -263,8 +260,8 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching ddl records
 	*/
-	public java.util.List<DDLRecord> findByUuid_C(java.lang.String uuid,
-		long companyId, int start, int end,
+	public java.util.List<DDLRecord> findByUuid_C(String uuid, long companyId,
+		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord> orderByComparator);
 
 	/**
@@ -282,8 +279,8 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	* @param retrieveFromCache whether to retrieve from the finder cache
 	* @return the ordered range of matching ddl records
 	*/
-	public java.util.List<DDLRecord> findByUuid_C(java.lang.String uuid,
-		long companyId, int start, int end,
+	public java.util.List<DDLRecord> findByUuid_C(String uuid, long companyId,
+		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord> orderByComparator,
 		boolean retrieveFromCache);
 
@@ -296,7 +293,7 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	* @return the first matching ddl record
 	* @throws NoSuchRecordException if a matching ddl record could not be found
 	*/
-	public DDLRecord findByUuid_C_First(java.lang.String uuid, long companyId,
+	public DDLRecord findByUuid_C_First(String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord> orderByComparator)
 		throws NoSuchRecordException;
 
@@ -308,7 +305,7 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching ddl record, or <code>null</code> if a matching ddl record could not be found
 	*/
-	public DDLRecord fetchByUuid_C_First(java.lang.String uuid, long companyId,
+	public DDLRecord fetchByUuid_C_First(String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord> orderByComparator);
 
 	/**
@@ -320,7 +317,7 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	* @return the last matching ddl record
 	* @throws NoSuchRecordException if a matching ddl record could not be found
 	*/
-	public DDLRecord findByUuid_C_Last(java.lang.String uuid, long companyId,
+	public DDLRecord findByUuid_C_Last(String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord> orderByComparator)
 		throws NoSuchRecordException;
 
@@ -332,7 +329,7 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching ddl record, or <code>null</code> if a matching ddl record could not be found
 	*/
-	public DDLRecord fetchByUuid_C_Last(java.lang.String uuid, long companyId,
+	public DDLRecord fetchByUuid_C_Last(String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord> orderByComparator);
 
 	/**
@@ -345,8 +342,8 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	* @return the previous, current, and next ddl record
 	* @throws NoSuchRecordException if a ddl record with the primary key could not be found
 	*/
-	public DDLRecord[] findByUuid_C_PrevAndNext(long recordId,
-		java.lang.String uuid, long companyId,
+	public DDLRecord[] findByUuid_C_PrevAndNext(long recordId, String uuid,
+		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<DDLRecord> orderByComparator)
 		throws NoSuchRecordException;
 
@@ -356,7 +353,7 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	* @param uuid the uuid
 	* @param companyId the company ID
 	*/
-	public void removeByUuid_C(java.lang.String uuid, long companyId);
+	public void removeByUuid_C(String uuid, long companyId);
 
 	/**
 	* Returns the number of ddl records where uuid = &#63; and companyId = &#63;.
@@ -365,7 +362,7 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	* @param companyId the company ID
 	* @return the number of matching ddl records
 	*/
-	public int countByUuid_C(java.lang.String uuid, long companyId);
+	public int countByUuid_C(String uuid, long companyId);
 
 	/**
 	* Returns all the ddl records where companyId = &#63;.
@@ -894,5 +891,5 @@ public interface DDLRecordPersistence extends BasePersistence<DDLRecord> {
 	public int countAll();
 
 	@Override
-	public java.util.Set<java.lang.String> getBadColumnNames();
+	public java.util.Set<String> getBadColumnNames();
 }

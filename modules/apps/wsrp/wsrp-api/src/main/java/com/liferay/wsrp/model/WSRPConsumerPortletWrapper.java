@@ -132,7 +132,7 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet,
 	}
 
 	@Override
-	public java.lang.Object clone() {
+	public Object clone() {
 		return new WSRPConsumerPortletWrapper((WSRPConsumerPortlet)_wsrpConsumerPortlet.clone());
 	}
 
@@ -192,7 +192,7 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet,
 	* @return the name of this wsrp consumer portlet
 	*/
 	@Override
-	public java.lang.String getName() {
+	public String getName() {
 		return _wsrpConsumerPortlet.getName();
 	}
 
@@ -202,7 +202,7 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet,
 	* @return the portlet handle of this wsrp consumer portlet
 	*/
 	@Override
-	public java.lang.String getPortletHandle() {
+	public String getPortletHandle() {
 		return _wsrpConsumerPortlet.getPortletHandle();
 	}
 
@@ -227,7 +227,7 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet,
 	* @return the uuid of this wsrp consumer portlet
 	*/
 	@Override
-	public java.lang.String getUuid() {
+	public String getUuid() {
 		return _wsrpConsumerPortlet.getUuid();
 	}
 
@@ -343,7 +343,7 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet,
 	* @param name the name of this wsrp consumer portlet
 	*/
 	@Override
-	public void setName(java.lang.String name) {
+	public void setName(String name) {
 		_wsrpConsumerPortlet.setName(name);
 	}
 
@@ -358,7 +358,7 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet,
 	* @param portletHandle the portlet handle of this wsrp consumer portlet
 	*/
 	@Override
-	public void setPortletHandle(java.lang.String portletHandle) {
+	public void setPortletHandle(String portletHandle) {
 		_wsrpConsumerPortlet.setPortletHandle(portletHandle);
 	}
 
@@ -383,7 +383,7 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet,
 	* @param uuid the uuid of this wsrp consumer portlet
 	*/
 	@Override
-	public void setUuid(java.lang.String uuid) {
+	public void setUuid(String uuid) {
 		_wsrpConsumerPortlet.setUuid(uuid);
 	}
 
@@ -418,7 +418,7 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet,
 	}
 
 	@Override
-	public java.lang.String toString() {
+	public String toString() {
 		return _wsrpConsumerPortlet.toString();
 	}
 
@@ -428,7 +428,7 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet,
 	}
 
 	@Override
-	public java.lang.String toXmlString() {
+	public String toXmlString() {
 		return _wsrpConsumerPortlet.toXmlString();
 	}
 

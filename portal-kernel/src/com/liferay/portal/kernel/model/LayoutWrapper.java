@@ -281,7 +281,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	}
 
 	@Override
-	public java.lang.Object clone() {
+	public Object clone() {
 		return new LayoutWrapper((Layout)_layout.clone());
 	}
 
@@ -340,7 +340,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	}
 
 	@Override
-	public java.lang.String[] getAvailableLanguageIds() {
+	public String[] getAvailableLanguageIds() {
 		return _layout.getAvailableLanguageIds();
 	}
 
@@ -391,7 +391,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the color scheme ID of this layout
 	*/
 	@Override
-	public java.lang.String getColorSchemeId() {
+	public String getColorSchemeId() {
 		return _layout.getColorSchemeId();
 	}
 
@@ -421,7 +421,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the css of this layout
 	*/
 	@Override
-	public java.lang.String getCss() {
+	public String getCss() {
 		return _layout.getCss();
 	}
 
@@ -438,19 +438,19 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	CSS text is configured in the current layout
 	*/
 	@Override
-	public java.lang.String getCssText()
+	public String getCssText()
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _layout.getCssText();
 	}
 
 	@Override
-	public java.lang.String getDefaultLanguageId() {
+	public String getDefaultLanguageId() {
 		return _layout.getDefaultLanguageId();
 	}
 
 	@Override
-	public java.lang.String getDefaultThemeSetting(java.lang.String key,
-		java.lang.String device, boolean inheritLookAndFeel) {
+	public String getDefaultThemeSetting(String key, String device,
+		boolean inheritLookAndFeel) {
 		return _layout.getDefaultThemeSetting(key, device, inheritLookAndFeel);
 	}
 
@@ -460,7 +460,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the description of this layout
 	*/
 	@Override
-	public java.lang.String getDescription() {
+	public String getDescription() {
 		return _layout.getDescription();
 	}
 
@@ -471,7 +471,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the localized description of this layout
 	*/
 	@Override
-	public java.lang.String getDescription(java.util.Locale locale) {
+	public String getDescription(java.util.Locale locale) {
 		return _layout.getDescription(locale);
 	}
 
@@ -483,8 +483,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the localized description of this layout. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
 	*/
 	@Override
-	public java.lang.String getDescription(java.util.Locale locale,
-		boolean useDefault) {
+	public String getDescription(java.util.Locale locale, boolean useDefault) {
 		return _layout.getDescription(locale, useDefault);
 	}
 
@@ -495,7 +494,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the localized description of this layout
 	*/
 	@Override
-	public java.lang.String getDescription(java.lang.String languageId) {
+	public String getDescription(String languageId) {
 		return _layout.getDescription(languageId);
 	}
 
@@ -507,18 +506,17 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the localized description of this layout
 	*/
 	@Override
-	public java.lang.String getDescription(java.lang.String languageId,
-		boolean useDefault) {
+	public String getDescription(String languageId, boolean useDefault) {
 		return _layout.getDescription(languageId, useDefault);
 	}
 
 	@Override
-	public java.lang.String getDescriptionCurrentLanguageId() {
+	public String getDescriptionCurrentLanguageId() {
 		return _layout.getDescriptionCurrentLanguageId();
 	}
 
 	@Override
-	public java.lang.String getDescriptionCurrentValue() {
+	public String getDescriptionCurrentValue() {
 		return _layout.getDescriptionCurrentValue();
 	}
 
@@ -528,7 +526,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the locales and localized descriptions of this layout
 	*/
 	@Override
-	public Map<java.util.Locale, java.lang.String> getDescriptionMap() {
+	public Map<java.util.Locale, String> getDescriptionMap() {
 		return _layout.getDescriptionMap();
 	}
 
@@ -553,7 +551,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the friendly url of this layout
 	*/
 	@Override
-	public java.lang.String getFriendlyURL() {
+	public String getFriendlyURL() {
 		return _layout.getFriendlyURL();
 	}
 
@@ -564,7 +562,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the layout's friendly URL for the given locale
 	*/
 	@Override
-	public java.lang.String getFriendlyURL(java.util.Locale locale) {
+	public String getFriendlyURL(java.util.Locale locale) {
 		return _layout.getFriendlyURL(locale);
 	}
 
@@ -574,12 +572,12 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the friendly URLs for all configured locales
 	*/
 	@Override
-	public Map<java.util.Locale, java.lang.String> getFriendlyURLMap() {
+	public Map<java.util.Locale, String> getFriendlyURLMap() {
 		return _layout.getFriendlyURLMap();
 	}
 
 	@Override
-	public java.lang.String getFriendlyURLsXML() {
+	public String getFriendlyURLsXML() {
 		return _layout.getFriendlyURLsXML();
 	}
 
@@ -629,7 +627,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	configured
 	*/
 	@Override
-	public java.lang.String getHTMLTitle(java.util.Locale locale) {
+	public String getHTMLTitle(java.util.Locale locale) {
 		return _layout.getHTMLTitle(locale);
 	}
 
@@ -643,7 +641,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	or the current layout's name if no HTML title is configured
 	*/
 	@Override
-	public java.lang.String getHTMLTitle(java.lang.String localeLanguageId) {
+	public String getHTMLTitle(String localeLanguageId) {
 		return _layout.getHTMLTitle(localeLanguageId);
 	}
 
@@ -674,7 +672,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the keywords of this layout
 	*/
 	@Override
-	public java.lang.String getKeywords() {
+	public String getKeywords() {
 		return _layout.getKeywords();
 	}
 
@@ -685,7 +683,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the localized keywords of this layout
 	*/
 	@Override
-	public java.lang.String getKeywords(java.util.Locale locale) {
+	public String getKeywords(java.util.Locale locale) {
 		return _layout.getKeywords(locale);
 	}
 
@@ -697,8 +695,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the localized keywords of this layout. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
 	*/
 	@Override
-	public java.lang.String getKeywords(java.util.Locale locale,
-		boolean useDefault) {
+	public String getKeywords(java.util.Locale locale, boolean useDefault) {
 		return _layout.getKeywords(locale, useDefault);
 	}
 
@@ -709,7 +706,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the localized keywords of this layout
 	*/
 	@Override
-	public java.lang.String getKeywords(java.lang.String languageId) {
+	public String getKeywords(String languageId) {
 		return _layout.getKeywords(languageId);
 	}
 
@@ -721,18 +718,17 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the localized keywords of this layout
 	*/
 	@Override
-	public java.lang.String getKeywords(java.lang.String languageId,
-		boolean useDefault) {
+	public String getKeywords(String languageId, boolean useDefault) {
 		return _layout.getKeywords(languageId, useDefault);
 	}
 
 	@Override
-	public java.lang.String getKeywordsCurrentLanguageId() {
+	public String getKeywordsCurrentLanguageId() {
 		return _layout.getKeywordsCurrentLanguageId();
 	}
 
 	@Override
-	public java.lang.String getKeywordsCurrentValue() {
+	public String getKeywordsCurrentValue() {
 		return _layout.getKeywordsCurrentValue();
 	}
 
@@ -742,7 +738,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the locales and localized keywordses of this layout
 	*/
 	@Override
-	public Map<java.util.Locale, java.lang.String> getKeywordsMap() {
+	public Map<java.util.Locale, String> getKeywordsMap() {
 		return _layout.getKeywordsMap();
 	}
 
@@ -782,7 +778,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the layout prototype uuid of this layout
 	*/
 	@Override
-	public java.lang.String getLayoutPrototypeUuid() {
+	public String getLayoutPrototypeUuid() {
 		return _layout.getLayoutPrototypeUuid();
 	}
 
@@ -844,7 +840,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the name of this layout
 	*/
 	@Override
-	public java.lang.String getName() {
+	public String getName() {
 		return _layout.getName();
 	}
 
@@ -855,7 +851,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the localized name of this layout
 	*/
 	@Override
-	public java.lang.String getName(java.util.Locale locale) {
+	public String getName(java.util.Locale locale) {
 		return _layout.getName(locale);
 	}
 
@@ -867,7 +863,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the localized name of this layout. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
 	*/
 	@Override
-	public java.lang.String getName(java.util.Locale locale, boolean useDefault) {
+	public String getName(java.util.Locale locale, boolean useDefault) {
 		return _layout.getName(locale, useDefault);
 	}
 
@@ -878,7 +874,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the localized name of this layout
 	*/
 	@Override
-	public java.lang.String getName(java.lang.String languageId) {
+	public String getName(String languageId) {
 		return _layout.getName(languageId);
 	}
 
@@ -890,18 +886,17 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the localized name of this layout
 	*/
 	@Override
-	public java.lang.String getName(java.lang.String languageId,
-		boolean useDefault) {
+	public String getName(String languageId, boolean useDefault) {
 		return _layout.getName(languageId, useDefault);
 	}
 
 	@Override
-	public java.lang.String getNameCurrentLanguageId() {
+	public String getNameCurrentLanguageId() {
 		return _layout.getNameCurrentLanguageId();
 	}
 
 	@Override
-	public java.lang.String getNameCurrentValue() {
+	public String getNameCurrentValue() {
 		return _layout.getNameCurrentValue();
 	}
 
@@ -911,7 +906,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the locales and localized names of this layout
 	*/
 	@Override
-	public Map<java.util.Locale, java.lang.String> getNameMap() {
+	public Map<java.util.Locale, String> getNameMap() {
 		return _layout.getNameMap();
 	}
 
@@ -983,21 +978,20 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	}
 
 	@Override
-	public java.lang.String getRegularURL(
-		javax.servlet.http.HttpServletRequest request)
+	public String getRegularURL(javax.servlet.http.HttpServletRequest request)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _layout.getRegularURL(request);
 	}
 
 	@Override
-	public java.lang.String getResetLayoutURL(
+	public String getResetLayoutURL(
 		javax.servlet.http.HttpServletRequest request)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _layout.getResetLayoutURL(request);
 	}
 
 	@Override
-	public java.lang.String getResetMaxStateURL(
+	public String getResetMaxStateURL(
 		javax.servlet.http.HttpServletRequest request)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _layout.getResetMaxStateURL(request);
@@ -1009,7 +1003,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the robots of this layout
 	*/
 	@Override
-	public java.lang.String getRobots() {
+	public String getRobots() {
 		return _layout.getRobots();
 	}
 
@@ -1020,7 +1014,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the localized robots of this layout
 	*/
 	@Override
-	public java.lang.String getRobots(java.util.Locale locale) {
+	public String getRobots(java.util.Locale locale) {
 		return _layout.getRobots(locale);
 	}
 
@@ -1032,8 +1026,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the localized robots of this layout. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
 	*/
 	@Override
-	public java.lang.String getRobots(java.util.Locale locale,
-		boolean useDefault) {
+	public String getRobots(java.util.Locale locale, boolean useDefault) {
 		return _layout.getRobots(locale, useDefault);
 	}
 
@@ -1044,7 +1037,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the localized robots of this layout
 	*/
 	@Override
-	public java.lang.String getRobots(java.lang.String languageId) {
+	public String getRobots(String languageId) {
 		return _layout.getRobots(languageId);
 	}
 
@@ -1056,18 +1049,17 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the localized robots of this layout
 	*/
 	@Override
-	public java.lang.String getRobots(java.lang.String languageId,
-		boolean useDefault) {
+	public String getRobots(String languageId, boolean useDefault) {
 		return _layout.getRobots(languageId, useDefault);
 	}
 
 	@Override
-	public java.lang.String getRobotsCurrentLanguageId() {
+	public String getRobotsCurrentLanguageId() {
 		return _layout.getRobotsCurrentLanguageId();
 	}
 
 	@Override
-	public java.lang.String getRobotsCurrentValue() {
+	public String getRobotsCurrentValue() {
 		return _layout.getRobotsCurrentValue();
 	}
 
@@ -1077,7 +1069,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the locales and localized robotses of this layout
 	*/
 	@Override
-	public Map<java.util.Locale, java.lang.String> getRobotsMap() {
+	public Map<java.util.Locale, String> getRobotsMap() {
 		return _layout.getRobotsMap();
 	}
 
@@ -1093,12 +1085,12 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the source prototype layout uuid of this layout
 	*/
 	@Override
-	public java.lang.String getSourcePrototypeLayoutUuid() {
+	public String getSourcePrototypeLayoutUuid() {
 		return _layout.getSourcePrototypeLayoutUuid();
 	}
 
 	@Override
-	public java.lang.String getTarget() {
+	public String getTarget() {
 		return _layout.getTarget();
 	}
 
@@ -1121,19 +1113,18 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the theme ID of this layout
 	*/
 	@Override
-	public java.lang.String getThemeId() {
+	public String getThemeId() {
 		return _layout.getThemeId();
 	}
 
 	@Override
-	public java.lang.String getThemeSetting(java.lang.String key,
-		java.lang.String device) {
+	public String getThemeSetting(String key, String device) {
 		return _layout.getThemeSetting(key, device);
 	}
 
 	@Override
-	public java.lang.String getThemeSetting(java.lang.String key,
-		java.lang.String device, boolean inheritLookAndFeel) {
+	public String getThemeSetting(String key, String device,
+		boolean inheritLookAndFeel) {
 		return _layout.getThemeSetting(key, device, inheritLookAndFeel);
 	}
 
@@ -1143,7 +1134,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the title of this layout
 	*/
 	@Override
-	public java.lang.String getTitle() {
+	public String getTitle() {
 		return _layout.getTitle();
 	}
 
@@ -1154,7 +1145,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the localized title of this layout
 	*/
 	@Override
-	public java.lang.String getTitle(java.util.Locale locale) {
+	public String getTitle(java.util.Locale locale) {
 		return _layout.getTitle(locale);
 	}
 
@@ -1166,7 +1157,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the localized title of this layout. If <code>useDefault</code> is <code>false</code> and no localization exists for the requested language, an empty string will be returned.
 	*/
 	@Override
-	public java.lang.String getTitle(java.util.Locale locale, boolean useDefault) {
+	public String getTitle(java.util.Locale locale, boolean useDefault) {
 		return _layout.getTitle(locale, useDefault);
 	}
 
@@ -1177,7 +1168,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the localized title of this layout
 	*/
 	@Override
-	public java.lang.String getTitle(java.lang.String languageId) {
+	public String getTitle(String languageId) {
 		return _layout.getTitle(languageId);
 	}
 
@@ -1189,18 +1180,17 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the localized title of this layout
 	*/
 	@Override
-	public java.lang.String getTitle(java.lang.String languageId,
-		boolean useDefault) {
+	public String getTitle(String languageId, boolean useDefault) {
 		return _layout.getTitle(languageId, useDefault);
 	}
 
 	@Override
-	public java.lang.String getTitleCurrentLanguageId() {
+	public String getTitleCurrentLanguageId() {
 		return _layout.getTitleCurrentLanguageId();
 	}
 
 	@Override
-	public java.lang.String getTitleCurrentValue() {
+	public String getTitleCurrentValue() {
 		return _layout.getTitleCurrentValue();
 	}
 
@@ -1210,7 +1200,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the locales and localized titles of this layout
 	*/
 	@Override
-	public Map<java.util.Locale, java.lang.String> getTitleMap() {
+	public Map<java.util.Locale, String> getTitleMap() {
 		return _layout.getTitleMap();
 	}
 
@@ -1220,7 +1210,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the type of this layout
 	*/
 	@Override
-	public java.lang.String getType() {
+	public String getType() {
 		return _layout.getType();
 	}
 
@@ -1230,7 +1220,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the type settings of this layout
 	*/
 	@Override
-	public java.lang.String getTypeSettings() {
+	public String getTypeSettings() {
 		return _layout.getTypeSettings();
 	}
 
@@ -1240,13 +1230,12 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	}
 
 	@Override
-	public java.lang.String getTypeSettingsProperty(java.lang.String key) {
+	public String getTypeSettingsProperty(String key) {
 		return _layout.getTypeSettingsProperty(key);
 	}
 
 	@Override
-	public java.lang.String getTypeSettingsProperty(java.lang.String key,
-		java.lang.String defaultValue) {
+	public String getTypeSettingsProperty(String key, String defaultValue) {
 		return _layout.getTypeSettingsProperty(key, defaultValue);
 	}
 
@@ -1266,7 +1255,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the user name of this layout
 	*/
 	@Override
-	public java.lang.String getUserName() {
+	public String getUserName() {
 		return _layout.getUserName();
 	}
 
@@ -1276,7 +1265,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the user uuid of this layout
 	*/
 	@Override
-	public java.lang.String getUserUuid() {
+	public String getUserUuid() {
 		return _layout.getUserUuid();
 	}
 
@@ -1286,7 +1275,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @return the uuid of this layout
 	*/
 	@Override
-	public java.lang.String getUuid() {
+	public String getUuid() {
 		return _layout.getUuid();
 	}
 
@@ -1337,7 +1326,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	public boolean includeLayoutContent(
 		javax.servlet.http.HttpServletRequest request,
 		javax.servlet.http.HttpServletResponse response)
-		throws java.lang.Exception {
+		throws Exception {
 		return _layout.includeLayoutContent(request, response);
 	}
 
@@ -1460,7 +1449,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	}
 
 	@Override
-	public boolean isPortletEmbedded(java.lang.String portletId, long groupId) {
+	public boolean isPortletEmbedded(String portletId, long groupId) {
 		return _layout.isPortletEmbedded(portletId, groupId);
 	}
 
@@ -1570,7 +1559,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 
 	@Override
 	public boolean matches(javax.servlet.http.HttpServletRequest request,
-		java.lang.String friendlyURL) {
+		String friendlyURL) {
 		return _layout.matches(request, friendlyURL);
 	}
 
@@ -1603,7 +1592,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @param colorSchemeId the color scheme ID of this layout
 	*/
 	@Override
-	public void setColorSchemeId(java.lang.String colorSchemeId) {
+	public void setColorSchemeId(String colorSchemeId) {
 		_layout.setColorSchemeId(colorSchemeId);
 	}
 
@@ -1633,7 +1622,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @param css the css of this layout
 	*/
 	@Override
-	public void setCss(java.lang.String css) {
+	public void setCss(String css) {
 		_layout.setCss(css);
 	}
 
@@ -1643,7 +1632,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @param description the description of this layout
 	*/
 	@Override
-	public void setDescription(java.lang.String description) {
+	public void setDescription(String description) {
 		_layout.setDescription(description);
 	}
 
@@ -1654,8 +1643,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @param locale the locale of the language
 	*/
 	@Override
-	public void setDescription(java.lang.String description,
-		java.util.Locale locale) {
+	public void setDescription(String description, java.util.Locale locale) {
 		_layout.setDescription(description, locale);
 	}
 
@@ -1667,13 +1655,13 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @param defaultLocale the default locale
 	*/
 	@Override
-	public void setDescription(java.lang.String description,
-		java.util.Locale locale, java.util.Locale defaultLocale) {
+	public void setDescription(String description, java.util.Locale locale,
+		java.util.Locale defaultLocale) {
 		_layout.setDescription(description, locale, defaultLocale);
 	}
 
 	@Override
-	public void setDescriptionCurrentLanguageId(java.lang.String languageId) {
+	public void setDescriptionCurrentLanguageId(String languageId) {
 		_layout.setDescriptionCurrentLanguageId(languageId);
 	}
 
@@ -1683,8 +1671,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @param descriptionMap the locales and localized descriptions of this layout
 	*/
 	@Override
-	public void setDescriptionMap(
-		Map<java.util.Locale, java.lang.String> descriptionMap) {
+	public void setDescriptionMap(Map<java.util.Locale, String> descriptionMap) {
 		_layout.setDescriptionMap(descriptionMap);
 	}
 
@@ -1696,7 +1683,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	*/
 	@Override
 	public void setDescriptionMap(
-		Map<java.util.Locale, java.lang.String> descriptionMap,
+		Map<java.util.Locale, String> descriptionMap,
 		java.util.Locale defaultLocale) {
 		_layout.setDescriptionMap(descriptionMap, defaultLocale);
 	}
@@ -1722,7 +1709,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @param friendlyURL the friendly url of this layout
 	*/
 	@Override
-	public void setFriendlyURL(java.lang.String friendlyURL) {
+	public void setFriendlyURL(String friendlyURL) {
 		_layout.setFriendlyURL(friendlyURL);
 	}
 
@@ -1762,7 +1749,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @param keywords the keywords of this layout
 	*/
 	@Override
-	public void setKeywords(java.lang.String keywords) {
+	public void setKeywords(String keywords) {
 		_layout.setKeywords(keywords);
 	}
 
@@ -1773,7 +1760,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @param locale the locale of the language
 	*/
 	@Override
-	public void setKeywords(java.lang.String keywords, java.util.Locale locale) {
+	public void setKeywords(String keywords, java.util.Locale locale) {
 		_layout.setKeywords(keywords, locale);
 	}
 
@@ -1785,13 +1772,13 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @param defaultLocale the default locale
 	*/
 	@Override
-	public void setKeywords(java.lang.String keywords, java.util.Locale locale,
+	public void setKeywords(String keywords, java.util.Locale locale,
 		java.util.Locale defaultLocale) {
 		_layout.setKeywords(keywords, locale, defaultLocale);
 	}
 
 	@Override
-	public void setKeywordsCurrentLanguageId(java.lang.String languageId) {
+	public void setKeywordsCurrentLanguageId(String languageId) {
 		_layout.setKeywordsCurrentLanguageId(languageId);
 	}
 
@@ -1801,8 +1788,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @param keywordsMap the locales and localized keywordses of this layout
 	*/
 	@Override
-	public void setKeywordsMap(
-		Map<java.util.Locale, java.lang.String> keywordsMap) {
+	public void setKeywordsMap(Map<java.util.Locale, String> keywordsMap) {
 		_layout.setKeywordsMap(keywordsMap);
 	}
 
@@ -1813,8 +1799,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @param defaultLocale the default locale
 	*/
 	@Override
-	public void setKeywordsMap(
-		Map<java.util.Locale, java.lang.String> keywordsMap,
+	public void setKeywordsMap(Map<java.util.Locale, String> keywordsMap,
 		java.util.Locale defaultLocale) {
 		_layout.setKeywordsMap(keywordsMap, defaultLocale);
 	}
@@ -1856,7 +1841,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @param layoutPrototypeUuid the layout prototype uuid of this layout
 	*/
 	@Override
-	public void setLayoutPrototypeUuid(java.lang.String layoutPrototypeUuid) {
+	public void setLayoutPrototypeUuid(String layoutPrototypeUuid) {
 		_layout.setLayoutPrototypeUuid(layoutPrototypeUuid);
 	}
 
@@ -1891,7 +1876,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @param name the name of this layout
 	*/
 	@Override
-	public void setName(java.lang.String name) {
+	public void setName(String name) {
 		_layout.setName(name);
 	}
 
@@ -1902,7 +1887,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @param locale the locale of the language
 	*/
 	@Override
-	public void setName(java.lang.String name, java.util.Locale locale) {
+	public void setName(String name, java.util.Locale locale) {
 		_layout.setName(name, locale);
 	}
 
@@ -1914,13 +1899,13 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @param defaultLocale the default locale
 	*/
 	@Override
-	public void setName(java.lang.String name, java.util.Locale locale,
+	public void setName(String name, java.util.Locale locale,
 		java.util.Locale defaultLocale) {
 		_layout.setName(name, locale, defaultLocale);
 	}
 
 	@Override
-	public void setNameCurrentLanguageId(java.lang.String languageId) {
+	public void setNameCurrentLanguageId(String languageId) {
 		_layout.setNameCurrentLanguageId(languageId);
 	}
 
@@ -1930,7 +1915,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @param nameMap the locales and localized names of this layout
 	*/
 	@Override
-	public void setNameMap(Map<java.util.Locale, java.lang.String> nameMap) {
+	public void setNameMap(Map<java.util.Locale, String> nameMap) {
 		_layout.setNameMap(nameMap);
 	}
 
@@ -1941,7 +1926,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @param defaultLocale the default locale
 	*/
 	@Override
-	public void setNameMap(Map<java.util.Locale, java.lang.String> nameMap,
+	public void setNameMap(Map<java.util.Locale, String> nameMap,
 		java.util.Locale defaultLocale) {
 		_layout.setNameMap(nameMap, defaultLocale);
 	}
@@ -2012,7 +1997,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @param robots the robots of this layout
 	*/
 	@Override
-	public void setRobots(java.lang.String robots) {
+	public void setRobots(String robots) {
 		_layout.setRobots(robots);
 	}
 
@@ -2023,7 +2008,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @param locale the locale of the language
 	*/
 	@Override
-	public void setRobots(java.lang.String robots, java.util.Locale locale) {
+	public void setRobots(String robots, java.util.Locale locale) {
 		_layout.setRobots(robots, locale);
 	}
 
@@ -2035,13 +2020,13 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @param defaultLocale the default locale
 	*/
 	@Override
-	public void setRobots(java.lang.String robots, java.util.Locale locale,
+	public void setRobots(String robots, java.util.Locale locale,
 		java.util.Locale defaultLocale) {
 		_layout.setRobots(robots, locale, defaultLocale);
 	}
 
 	@Override
-	public void setRobotsCurrentLanguageId(java.lang.String languageId) {
+	public void setRobotsCurrentLanguageId(String languageId) {
 		_layout.setRobotsCurrentLanguageId(languageId);
 	}
 
@@ -2051,7 +2036,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @param robotsMap the locales and localized robotses of this layout
 	*/
 	@Override
-	public void setRobotsMap(Map<java.util.Locale, java.lang.String> robotsMap) {
+	public void setRobotsMap(Map<java.util.Locale, String> robotsMap) {
 		_layout.setRobotsMap(robotsMap);
 	}
 
@@ -2062,8 +2047,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @param defaultLocale the default locale
 	*/
 	@Override
-	public void setRobotsMap(
-		Map<java.util.Locale, java.lang.String> robotsMap,
+	public void setRobotsMap(Map<java.util.Locale, String> robotsMap,
 		java.util.Locale defaultLocale) {
 		_layout.setRobotsMap(robotsMap, defaultLocale);
 	}
@@ -2074,8 +2058,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @param sourcePrototypeLayoutUuid the source prototype layout uuid of this layout
 	*/
 	@Override
-	public void setSourcePrototypeLayoutUuid(
-		java.lang.String sourcePrototypeLayoutUuid) {
+	public void setSourcePrototypeLayoutUuid(String sourcePrototypeLayoutUuid) {
 		_layout.setSourcePrototypeLayoutUuid(sourcePrototypeLayoutUuid);
 	}
 
@@ -2085,7 +2068,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @param themeId the theme ID of this layout
 	*/
 	@Override
-	public void setThemeId(java.lang.String themeId) {
+	public void setThemeId(String themeId) {
 		_layout.setThemeId(themeId);
 	}
 
@@ -2095,7 +2078,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @param title the title of this layout
 	*/
 	@Override
-	public void setTitle(java.lang.String title) {
+	public void setTitle(String title) {
 		_layout.setTitle(title);
 	}
 
@@ -2106,7 +2089,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @param locale the locale of the language
 	*/
 	@Override
-	public void setTitle(java.lang.String title, java.util.Locale locale) {
+	public void setTitle(String title, java.util.Locale locale) {
 		_layout.setTitle(title, locale);
 	}
 
@@ -2118,13 +2101,13 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @param defaultLocale the default locale
 	*/
 	@Override
-	public void setTitle(java.lang.String title, java.util.Locale locale,
+	public void setTitle(String title, java.util.Locale locale,
 		java.util.Locale defaultLocale) {
 		_layout.setTitle(title, locale, defaultLocale);
 	}
 
 	@Override
-	public void setTitleCurrentLanguageId(java.lang.String languageId) {
+	public void setTitleCurrentLanguageId(String languageId) {
 		_layout.setTitleCurrentLanguageId(languageId);
 	}
 
@@ -2134,7 +2117,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @param titleMap the locales and localized titles of this layout
 	*/
 	@Override
-	public void setTitleMap(Map<java.util.Locale, java.lang.String> titleMap) {
+	public void setTitleMap(Map<java.util.Locale, String> titleMap) {
 		_layout.setTitleMap(titleMap);
 	}
 
@@ -2145,7 +2128,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @param defaultLocale the default locale
 	*/
 	@Override
-	public void setTitleMap(Map<java.util.Locale, java.lang.String> titleMap,
+	public void setTitleMap(Map<java.util.Locale, String> titleMap,
 		java.util.Locale defaultLocale) {
 		_layout.setTitleMap(titleMap, defaultLocale);
 	}
@@ -2156,7 +2139,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @param type the type of this layout
 	*/
 	@Override
-	public void setType(java.lang.String type) {
+	public void setType(String type) {
 		_layout.setType(type);
 	}
 
@@ -2166,7 +2149,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @param typeSettings the type settings of this layout
 	*/
 	@Override
-	public void setTypeSettings(java.lang.String typeSettings) {
+	public void setTypeSettings(String typeSettings) {
 		_layout.setTypeSettings(typeSettings);
 	}
 
@@ -2192,7 +2175,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @param userName the user name of this layout
 	*/
 	@Override
-	public void setUserName(java.lang.String userName) {
+	public void setUserName(String userName) {
 		_layout.setUserName(userName);
 	}
 
@@ -2202,7 +2185,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @param userUuid the user uuid of this layout
 	*/
 	@Override
-	public void setUserUuid(java.lang.String userUuid) {
+	public void setUserUuid(String userUuid) {
 		_layout.setUserUuid(userUuid);
 	}
 
@@ -2212,7 +2195,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	* @param uuid the uuid of this layout
 	*/
 	@Override
-	public void setUuid(java.lang.String uuid) {
+	public void setUuid(String uuid) {
 		_layout.setUuid(uuid);
 	}
 
@@ -2227,7 +2210,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	}
 
 	@Override
-	public java.lang.String toString() {
+	public String toString() {
 		return _layout.toString();
 	}
 
@@ -2237,7 +2220,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	}
 
 	@Override
-	public java.lang.String toXmlString() {
+	public String toXmlString() {
 		return _layout.toXmlString();
 	}
 

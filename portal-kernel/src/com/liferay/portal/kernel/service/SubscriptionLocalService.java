@@ -80,7 +80,7 @@ public interface SubscriptionLocalService extends BaseLocalService,
 	* @return the subscription
 	*/
 	public Subscription addSubscription(long userId, long groupId,
-		java.lang.String className, long classPK) throws PortalException;
+		String className, long classPK) throws PortalException;
 
 	/**
 	* Subscribes the user to the entity, notifying him at the given frequency.
@@ -104,7 +104,7 @@ public interface SubscriptionLocalService extends BaseLocalService,
 	* @return the subscription
 	*/
 	public Subscription addSubscription(long userId, long groupId,
-		java.lang.String className, long classPK, java.lang.String frequency)
+		String className, long classPK, String frequency)
 		throws PortalException;
 
 	/**
@@ -151,8 +151,8 @@ public interface SubscriptionLocalService extends BaseLocalService,
 	* @param className the entity's class name
 	* @param classPK the primary key of the entity's instance
 	*/
-	public void deleteSubscription(long userId, java.lang.String className,
-		long classPK) throws PortalException;
+	public void deleteSubscription(long userId, String className, long classPK)
+		throws PortalException;
 
 	/**
 	* Deletes the subscription from the database. Also notifies the appropriate model listeners.
@@ -182,7 +182,7 @@ public interface SubscriptionLocalService extends BaseLocalService,
 	* @param className the entity's class name
 	* @param classPK the primary key of the entity's instance
 	*/
-	public void deleteSubscriptions(long companyId, java.lang.String className,
+	public void deleteSubscriptions(long companyId, String className,
 		long classPK) throws PortalException;
 
 	public DynamicQuery dynamicQuery();
@@ -249,7 +249,7 @@ public interface SubscriptionLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Subscription fetchSubscription(long companyId, long userId,
-		java.lang.String className, long classPK);
+		String className, long classPK);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();
@@ -262,7 +262,7 @@ public interface SubscriptionLocalService extends BaseLocalService,
 	*
 	* @return the OSGi service identifier
 	*/
-	public java.lang.String getOSGiServiceIdentifier();
+	public String getOSGiServiceIdentifier();
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -291,7 +291,7 @@ public interface SubscriptionLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Subscription getSubscription(long companyId, long userId,
-		java.lang.String className, long classPK) throws PortalException;
+		String className, long classPK) throws PortalException;
 
 	/**
 	* Returns a range of all the subscriptions.
@@ -318,7 +318,7 @@ public interface SubscriptionLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Subscription> getSubscriptions(long companyId, long userId,
-		java.lang.String className, long[] classPKs);
+		String className, long[] classPKs);
 
 	/**
 	* Returns all the subscriptions to the entity.
@@ -330,7 +330,7 @@ public interface SubscriptionLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Subscription> getSubscriptions(long companyId,
-		java.lang.String className, long classPK);
+		String className, long classPK);
 
 	/**
 	* Returns the number of subscriptions.
@@ -362,8 +362,7 @@ public interface SubscriptionLocalService extends BaseLocalService,
 	* @return the subscriptions of the user to the entities with the class name
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Subscription> getUserSubscriptions(long userId,
-		java.lang.String className);
+	public List<Subscription> getUserSubscriptions(long userId, String className);
 
 	/**
 	* Returns the number of subscriptions of the user.
@@ -385,8 +384,8 @@ public interface SubscriptionLocalService extends BaseLocalService,
 	<code>false</code> otherwise
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public boolean isSubscribed(long companyId, long userId,
-		java.lang.String className, long classPK);
+	public boolean isSubscribed(long companyId, long userId, String className,
+		long classPK);
 
 	/**
 	* Returns <code>true</code> if the user is subscribed to any of the
@@ -400,8 +399,8 @@ public interface SubscriptionLocalService extends BaseLocalService,
 	entities; <code>false</code> otherwise
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public boolean isSubscribed(long companyId, long userId,
-		java.lang.String className, long[] classPKs);
+	public boolean isSubscribed(long companyId, long userId, String className,
+		long[] classPKs);
 
 	/**
 	* Updates the subscription in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.

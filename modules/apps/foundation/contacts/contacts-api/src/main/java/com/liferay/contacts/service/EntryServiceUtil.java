@@ -48,12 +48,12 @@ public class EntryServiceUtil {
 	*
 	* @return the OSGi service identifier
 	*/
-	public static java.lang.String getOSGiServiceIdentifier() {
+	public static String getOSGiServiceIdentifier() {
 		return getService().getOSGiServiceIdentifier();
 	}
 
 	public static com.liferay.portal.kernel.json.JSONArray searchUsersAndContacts(
-		long companyId, java.lang.String keywords, int start, int end)
+		long companyId, String keywords, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .searchUsersAndContacts(companyId, keywords, start, end);

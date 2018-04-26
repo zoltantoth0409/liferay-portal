@@ -66,8 +66,7 @@ import java.rmi.RemoteException;
 @ProviderType
 public class AssetCategoryPropertyServiceSoap {
 	public static com.liferay.asset.kernel.model.AssetCategoryPropertySoap addCategoryProperty(
-		long entryId, java.lang.String key, java.lang.String value)
-		throws RemoteException {
+		long entryId, String key, String value) throws RemoteException {
 		try {
 			com.liferay.asset.kernel.model.AssetCategoryProperty returnValue = AssetCategoryPropertyServiceUtil.addCategoryProperty(entryId,
 					key, value);
@@ -109,7 +108,7 @@ public class AssetCategoryPropertyServiceSoap {
 	}
 
 	public static com.liferay.asset.kernel.model.AssetCategoryPropertySoap[] getCategoryPropertyValues(
-		long companyId, java.lang.String key) throws RemoteException {
+		long companyId, String key) throws RemoteException {
 		try {
 			java.util.List<com.liferay.asset.kernel.model.AssetCategoryProperty> returnValue =
 				AssetCategoryPropertyServiceUtil.getCategoryPropertyValues(companyId,
@@ -125,8 +124,8 @@ public class AssetCategoryPropertyServiceSoap {
 	}
 
 	public static com.liferay.asset.kernel.model.AssetCategoryPropertySoap updateCategoryProperty(
-		long userId, long categoryPropertyId, java.lang.String key,
-		java.lang.String value) throws RemoteException {
+		long userId, long categoryPropertyId, String key, String value)
+		throws RemoteException {
 		try {
 			com.liferay.asset.kernel.model.AssetCategoryProperty returnValue = AssetCategoryPropertyServiceUtil.updateCategoryProperty(userId,
 					categoryPropertyId, key, value);
@@ -141,7 +140,7 @@ public class AssetCategoryPropertyServiceSoap {
 	}
 
 	public static com.liferay.asset.kernel.model.AssetCategoryPropertySoap updateCategoryProperty(
-		long categoryPropertyId, java.lang.String key, java.lang.String value)
+		long categoryPropertyId, String key, String value)
 		throws RemoteException {
 		try {
 			com.liferay.asset.kernel.model.AssetCategoryProperty returnValue = AssetCategoryPropertyServiceUtil.updateCategoryProperty(categoryPropertyId,

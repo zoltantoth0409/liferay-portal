@@ -40,14 +40,12 @@ public class BlogsEntryServiceWrapper implements BlogsEntryService,
 	*/
 	@Deprecated
 	@Override
-	public com.liferay.blogs.kernel.model.BlogsEntry addEntry(
-		java.lang.String title, java.lang.String description,
-		java.lang.String content, int displayDateMonth, int displayDateDay,
-		int displayDateYear, int displayDateHour, int displayDateMinute,
-		boolean allowPingbacks, boolean allowTrackbacks,
-		java.lang.String[] trackbacks, boolean smallImage,
-		java.lang.String smallImageURL, java.lang.String smallImageFileName,
-		java.io.InputStream smallImageInputStream,
+	public com.liferay.blogs.kernel.model.BlogsEntry addEntry(String title,
+		String description, String content, int displayDateMonth,
+		int displayDateDay, int displayDateYear, int displayDateHour,
+		int displayDateMinute, boolean allowPingbacks, boolean allowTrackbacks,
+		String[] trackbacks, boolean smallImage, String smallImageURL,
+		String smallImageFileName, java.io.InputStream smallImageInputStream,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _blogsEntryService.addEntry(title, description, content,
@@ -58,13 +56,11 @@ public class BlogsEntryServiceWrapper implements BlogsEntryService,
 	}
 
 	@Override
-	public com.liferay.blogs.kernel.model.BlogsEntry addEntry(
-		java.lang.String title, java.lang.String subtitle,
-		java.lang.String description, java.lang.String content,
+	public com.liferay.blogs.kernel.model.BlogsEntry addEntry(String title,
+		String subtitle, String description, String content,
 		int displayDateMonth, int displayDateDay, int displayDateYear,
 		int displayDateHour, int displayDateMinute, boolean allowPingbacks,
-		boolean allowTrackbacks, java.lang.String[] trackbacks,
-		java.lang.String coverImageCaption,
+		boolean allowTrackbacks, String[] trackbacks, String coverImageCaption,
 		com.liferay.portal.kernel.servlet.taglib.ui.ImageSelector coverImageImageSelector,
 		com.liferay.portal.kernel.servlet.taglib.ui.ImageSelector smallImageImageSelector,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
@@ -91,10 +87,9 @@ public class BlogsEntryServiceWrapper implements BlogsEntryService,
 	}
 
 	@Override
-	public java.lang.String getCompanyEntriesRSS(long companyId,
-		java.util.Date displayDate, int status, int max, java.lang.String type,
-		double version, java.lang.String displayStyle,
-		java.lang.String feedURL, java.lang.String entryURL,
+	public String getCompanyEntriesRSS(long companyId,
+		java.util.Date displayDate, int status, int max, String type,
+		double version, String displayStyle, String feedURL, String entryURL,
 		com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _blogsEntryService.getCompanyEntriesRSS(companyId, displayDate,
@@ -110,7 +105,7 @@ public class BlogsEntryServiceWrapper implements BlogsEntryService,
 
 	@Override
 	public com.liferay.blogs.kernel.model.BlogsEntry getEntry(long groupId,
-		java.lang.String urlTitle)
+		String urlTitle)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _blogsEntryService.getEntry(groupId, urlTitle);
 	}
@@ -162,10 +157,9 @@ public class BlogsEntryServiceWrapper implements BlogsEntryService,
 	}
 
 	@Override
-	public java.lang.String getGroupEntriesRSS(long groupId,
-		java.util.Date displayDate, int status, int max, java.lang.String type,
-		double version, java.lang.String displayStyle,
-		java.lang.String feedURL, java.lang.String entryURL,
+	public String getGroupEntriesRSS(long groupId, java.util.Date displayDate,
+		int status, int max, String type, double version, String displayStyle,
+		String feedURL, String entryURL,
 		com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _blogsEntryService.getGroupEntriesRSS(groupId, displayDate,
@@ -219,10 +213,9 @@ public class BlogsEntryServiceWrapper implements BlogsEntryService,
 	}
 
 	@Override
-	public java.lang.String getOrganizationEntriesRSS(long organizationId,
-		java.util.Date displayDate, int status, int max, java.lang.String type,
-		double version, java.lang.String displayStyle,
-		java.lang.String feedURL, java.lang.String entryURL,
+	public String getOrganizationEntriesRSS(long organizationId,
+		java.util.Date displayDate, int status, int max, String type,
+		double version, String displayStyle, String feedURL, String entryURL,
 		com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _blogsEntryService.getOrganizationEntriesRSS(organizationId,
@@ -236,7 +229,7 @@ public class BlogsEntryServiceWrapper implements BlogsEntryService,
 	* @return the OSGi service identifier
 	*/
 	@Override
-	public java.lang.String getOSGiServiceIdentifier() {
+	public String getOSGiServiceIdentifier() {
 		return _blogsEntryService.getOSGiServiceIdentifier();
 	}
 
@@ -274,13 +267,11 @@ public class BlogsEntryServiceWrapper implements BlogsEntryService,
 	@Deprecated
 	@Override
 	public com.liferay.blogs.kernel.model.BlogsEntry updateEntry(long entryId,
-		java.lang.String title, java.lang.String description,
-		java.lang.String content, int displayDateMonth, int displayDateDay,
-		int displayDateYear, int displayDateHour, int displayDateMinute,
-		boolean allowPingbacks, boolean allowTrackbacks,
-		java.lang.String[] trackbacks, boolean smallImage,
-		java.lang.String smallImageURL, java.lang.String smallImageFileName,
-		java.io.InputStream smallImageInputStream,
+		String title, String description, String content, int displayDateMonth,
+		int displayDateDay, int displayDateYear, int displayDateHour,
+		int displayDateMinute, boolean allowPingbacks, boolean allowTrackbacks,
+		String[] trackbacks, boolean smallImage, String smallImageURL,
+		String smallImageFileName, java.io.InputStream smallImageInputStream,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _blogsEntryService.updateEntry(entryId, title, description,
@@ -292,12 +283,10 @@ public class BlogsEntryServiceWrapper implements BlogsEntryService,
 
 	@Override
 	public com.liferay.blogs.kernel.model.BlogsEntry updateEntry(long entryId,
-		java.lang.String title, java.lang.String subtitle,
-		java.lang.String description, java.lang.String content,
+		String title, String subtitle, String description, String content,
 		int displayDateMonth, int displayDateDay, int displayDateYear,
 		int displayDateHour, int displayDateMinute, boolean allowPingbacks,
-		boolean allowTrackbacks, java.lang.String[] trackbacks,
-		java.lang.String coverImageCaption,
+		boolean allowTrackbacks, String[] trackbacks, String coverImageCaption,
 		com.liferay.portal.kernel.servlet.taglib.ui.ImageSelector coverImageImageSelector,
 		com.liferay.portal.kernel.servlet.taglib.ui.ImageSelector smallImageImageSelector,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)

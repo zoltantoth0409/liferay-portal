@@ -181,7 +181,7 @@ public interface DDLRecordVersionPersistence extends BasePersistence<DDLRecordVe
 	* @return the matching ddl record version
 	* @throws NoSuchRecordVersionException if a matching ddl record version could not be found
 	*/
-	public DDLRecordVersion findByR_V(long recordId, java.lang.String version)
+	public DDLRecordVersion findByR_V(long recordId, String version)
 		throws NoSuchRecordVersionException;
 
 	/**
@@ -191,7 +191,7 @@ public interface DDLRecordVersionPersistence extends BasePersistence<DDLRecordVe
 	* @param version the version
 	* @return the matching ddl record version, or <code>null</code> if a matching ddl record version could not be found
 	*/
-	public DDLRecordVersion fetchByR_V(long recordId, java.lang.String version);
+	public DDLRecordVersion fetchByR_V(long recordId, String version);
 
 	/**
 	* Returns the ddl record version where recordId = &#63; and version = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -201,7 +201,7 @@ public interface DDLRecordVersionPersistence extends BasePersistence<DDLRecordVe
 	* @param retrieveFromCache whether to retrieve from the finder cache
 	* @return the matching ddl record version, or <code>null</code> if a matching ddl record version could not be found
 	*/
-	public DDLRecordVersion fetchByR_V(long recordId, java.lang.String version,
+	public DDLRecordVersion fetchByR_V(long recordId, String version,
 		boolean retrieveFromCache);
 
 	/**
@@ -211,7 +211,7 @@ public interface DDLRecordVersionPersistence extends BasePersistence<DDLRecordVe
 	* @param version the version
 	* @return the ddl record version that was removed
 	*/
-	public DDLRecordVersion removeByR_V(long recordId, java.lang.String version)
+	public DDLRecordVersion removeByR_V(long recordId, String version)
 		throws NoSuchRecordVersionException;
 
 	/**
@@ -221,7 +221,7 @@ public interface DDLRecordVersionPersistence extends BasePersistence<DDLRecordVe
 	* @param version the version
 	* @return the number of matching ddl record versions
 	*/
-	public int countByR_V(long recordId, java.lang.String version);
+	public int countByR_V(long recordId, String version);
 
 	/**
 	* Returns all the ddl record versions where recordId = &#63; and status = &#63;.

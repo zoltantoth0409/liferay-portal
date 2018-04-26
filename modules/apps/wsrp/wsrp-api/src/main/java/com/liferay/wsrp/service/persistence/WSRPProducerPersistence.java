@@ -47,7 +47,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param uuid the uuid
 	* @return the matching wsrp producers
 	*/
-	public java.util.List<WSRPProducer> findByUuid(java.lang.String uuid);
+	public java.util.List<WSRPProducer> findByUuid(String uuid);
 
 	/**
 	* Returns a range of all the wsrp producers where uuid = &#63;.
@@ -61,8 +61,8 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param end the upper bound of the range of wsrp producers (not inclusive)
 	* @return the range of matching wsrp producers
 	*/
-	public java.util.List<WSRPProducer> findByUuid(java.lang.String uuid,
-		int start, int end);
+	public java.util.List<WSRPProducer> findByUuid(String uuid, int start,
+		int end);
 
 	/**
 	* Returns an ordered range of all the wsrp producers where uuid = &#63;.
@@ -77,8 +77,8 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching wsrp producers
 	*/
-	public java.util.List<WSRPProducer> findByUuid(java.lang.String uuid,
-		int start, int end,
+	public java.util.List<WSRPProducer> findByUuid(String uuid, int start,
+		int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPProducer> orderByComparator);
 
 	/**
@@ -95,8 +95,8 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param retrieveFromCache whether to retrieve from the finder cache
 	* @return the ordered range of matching wsrp producers
 	*/
-	public java.util.List<WSRPProducer> findByUuid(java.lang.String uuid,
-		int start, int end,
+	public java.util.List<WSRPProducer> findByUuid(String uuid, int start,
+		int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPProducer> orderByComparator,
 		boolean retrieveFromCache);
 
@@ -108,7 +108,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @return the first matching wsrp producer
 	* @throws NoSuchProducerException if a matching wsrp producer could not be found
 	*/
-	public WSRPProducer findByUuid_First(java.lang.String uuid,
+	public WSRPProducer findByUuid_First(String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPProducer> orderByComparator)
 		throws NoSuchProducerException;
 
@@ -119,7 +119,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching wsrp producer, or <code>null</code> if a matching wsrp producer could not be found
 	*/
-	public WSRPProducer fetchByUuid_First(java.lang.String uuid,
+	public WSRPProducer fetchByUuid_First(String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPProducer> orderByComparator);
 
 	/**
@@ -130,7 +130,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @return the last matching wsrp producer
 	* @throws NoSuchProducerException if a matching wsrp producer could not be found
 	*/
-	public WSRPProducer findByUuid_Last(java.lang.String uuid,
+	public WSRPProducer findByUuid_Last(String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPProducer> orderByComparator)
 		throws NoSuchProducerException;
 
@@ -141,7 +141,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching wsrp producer, or <code>null</code> if a matching wsrp producer could not be found
 	*/
-	public WSRPProducer fetchByUuid_Last(java.lang.String uuid,
+	public WSRPProducer fetchByUuid_Last(String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPProducer> orderByComparator);
 
 	/**
@@ -154,7 +154,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @throws NoSuchProducerException if a wsrp producer with the primary key could not be found
 	*/
 	public WSRPProducer[] findByUuid_PrevAndNext(long wsrpProducerId,
-		java.lang.String uuid,
+		String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPProducer> orderByComparator)
 		throws NoSuchProducerException;
 
@@ -163,7 +163,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	*
 	* @param uuid the uuid
 	*/
-	public void removeByUuid(java.lang.String uuid);
+	public void removeByUuid(String uuid);
 
 	/**
 	* Returns the number of wsrp producers where uuid = &#63;.
@@ -171,7 +171,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param uuid the uuid
 	* @return the number of matching wsrp producers
 	*/
-	public int countByUuid(java.lang.String uuid);
+	public int countByUuid(String uuid);
 
 	/**
 	* Returns the wsrp producer where uuid = &#63; and groupId = &#63; or throws a {@link NoSuchProducerException} if it could not be found.
@@ -181,7 +181,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @return the matching wsrp producer
 	* @throws NoSuchProducerException if a matching wsrp producer could not be found
 	*/
-	public WSRPProducer findByUUID_G(java.lang.String uuid, long groupId)
+	public WSRPProducer findByUUID_G(String uuid, long groupId)
 		throws NoSuchProducerException;
 
 	/**
@@ -191,7 +191,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param groupId the group ID
 	* @return the matching wsrp producer, or <code>null</code> if a matching wsrp producer could not be found
 	*/
-	public WSRPProducer fetchByUUID_G(java.lang.String uuid, long groupId);
+	public WSRPProducer fetchByUUID_G(String uuid, long groupId);
 
 	/**
 	* Returns the wsrp producer where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -201,7 +201,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param retrieveFromCache whether to retrieve from the finder cache
 	* @return the matching wsrp producer, or <code>null</code> if a matching wsrp producer could not be found
 	*/
-	public WSRPProducer fetchByUUID_G(java.lang.String uuid, long groupId,
+	public WSRPProducer fetchByUUID_G(String uuid, long groupId,
 		boolean retrieveFromCache);
 
 	/**
@@ -211,7 +211,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param groupId the group ID
 	* @return the wsrp producer that was removed
 	*/
-	public WSRPProducer removeByUUID_G(java.lang.String uuid, long groupId)
+	public WSRPProducer removeByUUID_G(String uuid, long groupId)
 		throws NoSuchProducerException;
 
 	/**
@@ -221,7 +221,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param groupId the group ID
 	* @return the number of matching wsrp producers
 	*/
-	public int countByUUID_G(java.lang.String uuid, long groupId);
+	public int countByUUID_G(String uuid, long groupId);
 
 	/**
 	* Returns all the wsrp producers where uuid = &#63; and companyId = &#63;.
@@ -230,8 +230,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param companyId the company ID
 	* @return the matching wsrp producers
 	*/
-	public java.util.List<WSRPProducer> findByUuid_C(java.lang.String uuid,
-		long companyId);
+	public java.util.List<WSRPProducer> findByUuid_C(String uuid, long companyId);
 
 	/**
 	* Returns a range of all the wsrp producers where uuid = &#63; and companyId = &#63;.
@@ -246,7 +245,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param end the upper bound of the range of wsrp producers (not inclusive)
 	* @return the range of matching wsrp producers
 	*/
-	public java.util.List<WSRPProducer> findByUuid_C(java.lang.String uuid,
+	public java.util.List<WSRPProducer> findByUuid_C(String uuid,
 		long companyId, int start, int end);
 
 	/**
@@ -263,7 +262,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching wsrp producers
 	*/
-	public java.util.List<WSRPProducer> findByUuid_C(java.lang.String uuid,
+	public java.util.List<WSRPProducer> findByUuid_C(String uuid,
 		long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPProducer> orderByComparator);
 
@@ -282,7 +281,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param retrieveFromCache whether to retrieve from the finder cache
 	* @return the ordered range of matching wsrp producers
 	*/
-	public java.util.List<WSRPProducer> findByUuid_C(java.lang.String uuid,
+	public java.util.List<WSRPProducer> findByUuid_C(String uuid,
 		long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPProducer> orderByComparator,
 		boolean retrieveFromCache);
@@ -296,8 +295,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @return the first matching wsrp producer
 	* @throws NoSuchProducerException if a matching wsrp producer could not be found
 	*/
-	public WSRPProducer findByUuid_C_First(java.lang.String uuid,
-		long companyId,
+	public WSRPProducer findByUuid_C_First(String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPProducer> orderByComparator)
 		throws NoSuchProducerException;
 
@@ -309,8 +307,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching wsrp producer, or <code>null</code> if a matching wsrp producer could not be found
 	*/
-	public WSRPProducer fetchByUuid_C_First(java.lang.String uuid,
-		long companyId,
+	public WSRPProducer fetchByUuid_C_First(String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPProducer> orderByComparator);
 
 	/**
@@ -322,8 +319,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @return the last matching wsrp producer
 	* @throws NoSuchProducerException if a matching wsrp producer could not be found
 	*/
-	public WSRPProducer findByUuid_C_Last(java.lang.String uuid,
-		long companyId,
+	public WSRPProducer findByUuid_C_Last(String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPProducer> orderByComparator)
 		throws NoSuchProducerException;
 
@@ -335,8 +331,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching wsrp producer, or <code>null</code> if a matching wsrp producer could not be found
 	*/
-	public WSRPProducer fetchByUuid_C_Last(java.lang.String uuid,
-		long companyId,
+	public WSRPProducer fetchByUuid_C_Last(String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPProducer> orderByComparator);
 
 	/**
@@ -350,7 +345,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @throws NoSuchProducerException if a wsrp producer with the primary key could not be found
 	*/
 	public WSRPProducer[] findByUuid_C_PrevAndNext(long wsrpProducerId,
-		java.lang.String uuid, long companyId,
+		String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPProducer> orderByComparator)
 		throws NoSuchProducerException;
 
@@ -360,7 +355,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param uuid the uuid
 	* @param companyId the company ID
 	*/
-	public void removeByUuid_C(java.lang.String uuid, long companyId);
+	public void removeByUuid_C(String uuid, long companyId);
 
 	/**
 	* Returns the number of wsrp producers where uuid = &#63; and companyId = &#63;.
@@ -369,7 +364,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param companyId the company ID
 	* @return the number of matching wsrp producers
 	*/
-	public int countByUuid_C(java.lang.String uuid, long companyId);
+	public int countByUuid_C(String uuid, long companyId);
 
 	/**
 	* Returns all the wsrp producers where companyId = &#63;.
@@ -624,5 +619,5 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	public int countAll();
 
 	@Override
-	public java.util.Set<java.lang.String> getBadColumnNames();
+	public java.util.Set<String> getBadColumnNames();
 }

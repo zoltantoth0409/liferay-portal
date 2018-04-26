@@ -65,7 +65,7 @@ public interface Group extends GroupModel, PersistedModel, TreeModel {
 	#getChildrenWithLayouts(boolean, int, int,
 	OrderByComparator)}
 	*/
-	@java.lang.Deprecated()
+	@Deprecated()
 	public java.util.List<Group> getChildrenWithLayouts(boolean site,
 		int start, int end);
 
@@ -82,33 +82,32 @@ public interface Group extends GroupModel, PersistedModel, TreeModel {
 	public java.util.List<Group> getDescendants(boolean site);
 
 	@com.liferay.portal.kernel.json.JSON()
-	public java.lang.String getDescriptiveName()
+	public String getDescriptiveName()
 		throws com.liferay.portal.kernel.exception.PortalException;
 
-	public java.lang.String getDescriptiveName(java.util.Locale locale)
+	public String getDescriptiveName(java.util.Locale locale)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
-	public java.lang.String getDisplayURL(
+	public String getDisplayURL(
 		com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay);
 
-	public java.lang.String getDisplayURL(
+	public String getDisplayURL(
 		com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay,
 		boolean privateLayout);
 
-	public java.lang.String getIconCssClass();
+	public String getIconCssClass();
 
-	public java.lang.String getIconURL(
+	public String getIconURL(
 		com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay);
 
-	public java.lang.String getLayoutRootNodeName(boolean privateLayout,
+	public String getLayoutRootNodeName(boolean privateLayout,
 		java.util.Locale locale);
 
 	public Group getLiveGroup();
 
-	public java.lang.String getLiveParentTypeSettingsProperty(
-		java.lang.String key);
+	public String getLiveParentTypeSettingsProperty(String key);
 
-	public java.lang.String getLogoURL(
+	public String getLogoURL(
 		com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay,
 		boolean useDefault);
 
@@ -119,7 +118,7 @@ public interface Group extends GroupModel, PersistedModel, TreeModel {
 
 	public com.liferay.portal.kernel.util.UnicodeProperties getParentLiveGroupTypeSettingsProperties();
 
-	public java.lang.String getPathFriendlyURL(boolean privateLayout,
+	public String getPathFriendlyURL(boolean privateLayout,
 		com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay);
 
 	public LayoutSet getPrivateLayoutSet();
@@ -132,23 +131,22 @@ public interface Group extends GroupModel, PersistedModel, TreeModel {
 
 	public long getRemoteLiveGroupId();
 
-	public java.lang.String getScopeDescriptiveName(
+	public String getScopeDescriptiveName(
 		com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
-	public java.lang.String getScopeLabel(
+	public String getScopeLabel(
 		com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay);
 
 	public Group getStagingGroup();
 
-	public java.lang.String getTypeLabel();
+	public String getTypeLabel();
 
 	public com.liferay.portal.kernel.util.UnicodeProperties getTypeSettingsProperties();
 
-	public java.lang.String getTypeSettingsProperty(java.lang.String key);
+	public String getTypeSettingsProperty(String key);
 
-	public java.lang.String getUnambiguousName(java.lang.String name,
-		java.util.Locale locale);
+	public String getUnambiguousName(String name, java.util.Locale locale);
 
 	public boolean hasAncestor(long groupId);
 
@@ -165,7 +163,7 @@ public interface Group extends GroupModel, PersistedModel, TreeModel {
 	/**
 	* @deprecated As of 7.0.0, replaced by {@link #hasAncestor}
 	*/
-	@java.lang.Deprecated()
+	@Deprecated()
 	public boolean isChild(long groupId);
 
 	public boolean isCompany();
@@ -176,7 +174,7 @@ public interface Group extends GroupModel, PersistedModel, TreeModel {
 
 	public boolean isGuest();
 
-	public boolean isInStagingPortlet(java.lang.String portletId);
+	public boolean isInStagingPortlet(String portletId);
 
 	public boolean isLayout();
 
@@ -199,7 +197,7 @@ public interface Group extends GroupModel, PersistedModel, TreeModel {
 
 	public boolean isStaged();
 
-	public boolean isStagedPortlet(java.lang.String portletId);
+	public boolean isStagedPortlet(String portletId);
 
 	public boolean isStagedRemotely();
 

@@ -203,7 +203,7 @@ public class MBDiscussionLocalServiceUtil {
 	}
 
 	public static com.liferay.message.boards.kernel.model.MBDiscussion fetchDiscussion(
-		java.lang.String className, long classPK) {
+		String className, long classPK) {
 		return getService().fetchDiscussion(className, classPK);
 	}
 
@@ -220,7 +220,7 @@ public class MBDiscussionLocalServiceUtil {
 	* @return the matching message boards discussion, or <code>null</code> if a matching message boards discussion could not be found
 	*/
 	public static com.liferay.message.boards.kernel.model.MBDiscussion fetchMBDiscussionByUuidAndGroupId(
-		java.lang.String uuid, long groupId) {
+		String uuid, long groupId) {
 		return getService().fetchMBDiscussionByUuidAndGroupId(uuid, groupId);
 	}
 
@@ -240,7 +240,7 @@ public class MBDiscussionLocalServiceUtil {
 	}
 
 	public static com.liferay.message.boards.kernel.model.MBDiscussion getDiscussion(
-		java.lang.String className, long classPK)
+		String className, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getDiscussion(className, classPK);
 	}
@@ -276,7 +276,7 @@ public class MBDiscussionLocalServiceUtil {
 	* @throws PortalException if a matching message boards discussion could not be found
 	*/
 	public static com.liferay.message.boards.kernel.model.MBDiscussion getMBDiscussionByUuidAndGroupId(
-		java.lang.String uuid, long groupId)
+		String uuid, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getMBDiscussionByUuidAndGroupId(uuid, groupId);
 	}
@@ -305,7 +305,7 @@ public class MBDiscussionLocalServiceUtil {
 	* @return the matching message boards discussions, or an empty list if no matches were found
 	*/
 	public static java.util.List<com.liferay.message.boards.kernel.model.MBDiscussion> getMBDiscussionsByUuidAndCompanyId(
-		java.lang.String uuid, long companyId) {
+		String uuid, long companyId) {
 		return getService().getMBDiscussionsByUuidAndCompanyId(uuid, companyId);
 	}
 
@@ -320,7 +320,7 @@ public class MBDiscussionLocalServiceUtil {
 	* @return the range of matching message boards discussions, or an empty list if no matches were found
 	*/
 	public static java.util.List<com.liferay.message.boards.kernel.model.MBDiscussion> getMBDiscussionsByUuidAndCompanyId(
-		java.lang.String uuid, long companyId, int start, int end,
+		String uuid, long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.message.boards.kernel.model.MBDiscussion> orderByComparator) {
 		return getService()
 				   .getMBDiscussionsByUuidAndCompanyId(uuid, companyId, start,
@@ -341,7 +341,7 @@ public class MBDiscussionLocalServiceUtil {
 	*
 	* @return the OSGi service identifier
 	*/
-	public static java.lang.String getOSGiServiceIdentifier() {
+	public static String getOSGiServiceIdentifier() {
 		return getService().getOSGiServiceIdentifier();
 	}
 
@@ -358,13 +358,13 @@ public class MBDiscussionLocalServiceUtil {
 	}
 
 	public static void subscribeDiscussion(long userId, long groupId,
-		java.lang.String className, long classPK)
+		String className, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().subscribeDiscussion(userId, groupId, className, classPK);
 	}
 
-	public static void unsubscribeDiscussion(long userId,
-		java.lang.String className, long classPK)
+	public static void unsubscribeDiscussion(long userId, String className,
+		long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().unsubscribeDiscussion(userId, className, classPK);
 	}

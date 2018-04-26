@@ -60,8 +60,8 @@ public class MBCategoryFinderUtil {
 			queryDefinition);
 	}
 
-	public static java.util.List<java.lang.Object> filterFindC_T_ByG_C(
-		long groupId, long categoryId,
+	public static java.util.List<Object> filterFindC_T_ByG_C(long groupId,
+		long categoryId,
 		com.liferay.portal.kernel.dao.orm.QueryDefinition<?> queryDefinition) {
 		return getFinder()
 				   .filterFindC_T_ByG_C(groupId, categoryId, queryDefinition);
@@ -75,7 +75,7 @@ public class MBCategoryFinderUtil {
 			queryDefinition);
 	}
 
-	public static java.util.List<java.lang.Object> findC_T_ByG_C(long groupId,
+	public static java.util.List<Object> findC_T_ByG_C(long groupId,
 		long categoryId,
 		com.liferay.portal.kernel.dao.orm.QueryDefinition<?> queryDefinition) {
 		return getFinder().findC_T_ByG_C(groupId, categoryId, queryDefinition);

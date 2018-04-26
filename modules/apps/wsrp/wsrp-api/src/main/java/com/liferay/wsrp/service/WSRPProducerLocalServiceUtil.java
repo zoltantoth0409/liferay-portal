@@ -43,8 +43,8 @@ public class WSRPProducerLocalServiceUtil {
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.wsrp.service.impl.WSRPProducerLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
 	public static com.liferay.wsrp.model.WSRPProducer addWSRPProducer(
-		long userId, long groupId, java.lang.String name,
-		java.lang.String version, java.lang.String portletIds,
+		long userId, long groupId, String name, String version,
+		String portletIds,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
@@ -53,8 +53,7 @@ public class WSRPProducerLocalServiceUtil {
 	}
 
 	public static com.liferay.wsrp.model.WSRPProducer addWSRPProducer(
-		long userId, java.lang.String name, java.lang.String version,
-		java.lang.String portletIds,
+		long userId, String name, String version, String portletIds,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
@@ -215,7 +214,7 @@ public class WSRPProducerLocalServiceUtil {
 	* @return the matching wsrp producer, or <code>null</code> if a matching wsrp producer could not be found
 	*/
 	public static com.liferay.wsrp.model.WSRPProducer fetchWSRPProducerByUuidAndGroupId(
-		java.lang.String uuid, long groupId) {
+		String uuid, long groupId) {
 		return getService().fetchWSRPProducerByUuidAndGroupId(uuid, groupId);
 	}
 
@@ -237,7 +236,7 @@ public class WSRPProducerLocalServiceUtil {
 	*
 	* @return the OSGi service identifier
 	*/
-	public static java.lang.String getOSGiServiceIdentifier() {
+	public static String getOSGiServiceIdentifier() {
 		return getService().getOSGiServiceIdentifier();
 	}
 
@@ -261,7 +260,7 @@ public class WSRPProducerLocalServiceUtil {
 	}
 
 	public static com.liferay.wsrp.model.WSRPProducer getWSRPProducer(
-		java.lang.String wsrpProducerUuid)
+		String wsrpProducerUuid)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getWSRPProducer(wsrpProducerUuid);
 	}
@@ -275,7 +274,7 @@ public class WSRPProducerLocalServiceUtil {
 	* @throws PortalException if a matching wsrp producer could not be found
 	*/
 	public static com.liferay.wsrp.model.WSRPProducer getWSRPProducerByUuidAndGroupId(
-		java.lang.String uuid, long groupId)
+		String uuid, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getWSRPProducerByUuidAndGroupId(uuid, groupId);
 	}
@@ -309,7 +308,7 @@ public class WSRPProducerLocalServiceUtil {
 	* @return the matching wsrp producers, or an empty list if no matches were found
 	*/
 	public static java.util.List<com.liferay.wsrp.model.WSRPProducer> getWSRPProducersByUuidAndCompanyId(
-		java.lang.String uuid, long companyId) {
+		String uuid, long companyId) {
 		return getService().getWSRPProducersByUuidAndCompanyId(uuid, companyId);
 	}
 
@@ -324,7 +323,7 @@ public class WSRPProducerLocalServiceUtil {
 	* @return the range of matching wsrp producers, or an empty list if no matches were found
 	*/
 	public static java.util.List<com.liferay.wsrp.model.WSRPProducer> getWSRPProducersByUuidAndCompanyId(
-		java.lang.String uuid, long companyId, int start, int end,
+		String uuid, long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.wsrp.model.WSRPProducer> orderByComparator) {
 		return getService()
 				   .getWSRPProducersByUuidAndCompanyId(uuid, companyId, start,
@@ -345,8 +344,7 @@ public class WSRPProducerLocalServiceUtil {
 	}
 
 	public static com.liferay.wsrp.model.WSRPProducer updateWSRPProducer(
-		long wsrpProducerId, java.lang.String name, java.lang.String version,
-		java.lang.String portletIds)
+		long wsrpProducerId, String name, String version, String portletIds)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .updateWSRPProducer(wsrpProducerId, name, version, portletIds);

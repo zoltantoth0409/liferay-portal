@@ -280,8 +280,7 @@ public class DDLRecordVersionUtil {
 	* @return the matching ddl record version
 	* @throws NoSuchRecordVersionException if a matching ddl record version could not be found
 	*/
-	public static DDLRecordVersion findByR_V(long recordId,
-		java.lang.String version)
+	public static DDLRecordVersion findByR_V(long recordId, String version)
 		throws com.liferay.dynamic.data.lists.exception.NoSuchRecordVersionException {
 		return getPersistence().findByR_V(recordId, version);
 	}
@@ -293,8 +292,7 @@ public class DDLRecordVersionUtil {
 	* @param version the version
 	* @return the matching ddl record version, or <code>null</code> if a matching ddl record version could not be found
 	*/
-	public static DDLRecordVersion fetchByR_V(long recordId,
-		java.lang.String version) {
+	public static DDLRecordVersion fetchByR_V(long recordId, String version) {
 		return getPersistence().fetchByR_V(recordId, version);
 	}
 
@@ -306,8 +304,8 @@ public class DDLRecordVersionUtil {
 	* @param retrieveFromCache whether to retrieve from the finder cache
 	* @return the matching ddl record version, or <code>null</code> if a matching ddl record version could not be found
 	*/
-	public static DDLRecordVersion fetchByR_V(long recordId,
-		java.lang.String version, boolean retrieveFromCache) {
+	public static DDLRecordVersion fetchByR_V(long recordId, String version,
+		boolean retrieveFromCache) {
 		return getPersistence().fetchByR_V(recordId, version, retrieveFromCache);
 	}
 
@@ -318,8 +316,7 @@ public class DDLRecordVersionUtil {
 	* @param version the version
 	* @return the ddl record version that was removed
 	*/
-	public static DDLRecordVersion removeByR_V(long recordId,
-		java.lang.String version)
+	public static DDLRecordVersion removeByR_V(long recordId, String version)
 		throws com.liferay.dynamic.data.lists.exception.NoSuchRecordVersionException {
 		return getPersistence().removeByR_V(recordId, version);
 	}
@@ -331,7 +328,7 @@ public class DDLRecordVersionUtil {
 	* @param version the version
 	* @return the number of matching ddl record versions
 	*/
-	public static int countByR_V(long recordId, java.lang.String version) {
+	public static int countByR_V(long recordId, String version) {
 		return getPersistence().countByR_V(recordId, version);
 	}
 

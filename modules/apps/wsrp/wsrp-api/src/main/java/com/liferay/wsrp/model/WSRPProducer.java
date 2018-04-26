@@ -54,5 +54,5 @@ public interface WSRPProducer extends WSRPProducerModel, PersistedModel {
 			}
 		};
 
-	public java.lang.String getURL(java.lang.String prefixURL);
+	public String getURL(String prefixURL);
 }

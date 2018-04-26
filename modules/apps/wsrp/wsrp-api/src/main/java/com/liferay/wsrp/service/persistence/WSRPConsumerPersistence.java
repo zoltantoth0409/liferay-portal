@@ -47,7 +47,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	* @param uuid the uuid
 	* @return the matching wsrp consumers
 	*/
-	public java.util.List<WSRPConsumer> findByUuid(java.lang.String uuid);
+	public java.util.List<WSRPConsumer> findByUuid(String uuid);
 
 	/**
 	* Returns a range of all the wsrp consumers where uuid = &#63;.
@@ -61,8 +61,8 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	* @param end the upper bound of the range of wsrp consumers (not inclusive)
 	* @return the range of matching wsrp consumers
 	*/
-	public java.util.List<WSRPConsumer> findByUuid(java.lang.String uuid,
-		int start, int end);
+	public java.util.List<WSRPConsumer> findByUuid(String uuid, int start,
+		int end);
 
 	/**
 	* Returns an ordered range of all the wsrp consumers where uuid = &#63;.
@@ -77,8 +77,8 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching wsrp consumers
 	*/
-	public java.util.List<WSRPConsumer> findByUuid(java.lang.String uuid,
-		int start, int end,
+	public java.util.List<WSRPConsumer> findByUuid(String uuid, int start,
+		int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumer> orderByComparator);
 
 	/**
@@ -95,8 +95,8 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	* @param retrieveFromCache whether to retrieve from the finder cache
 	* @return the ordered range of matching wsrp consumers
 	*/
-	public java.util.List<WSRPConsumer> findByUuid(java.lang.String uuid,
-		int start, int end,
+	public java.util.List<WSRPConsumer> findByUuid(String uuid, int start,
+		int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumer> orderByComparator,
 		boolean retrieveFromCache);
 
@@ -108,7 +108,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	* @return the first matching wsrp consumer
 	* @throws NoSuchConsumerException if a matching wsrp consumer could not be found
 	*/
-	public WSRPConsumer findByUuid_First(java.lang.String uuid,
+	public WSRPConsumer findByUuid_First(String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumer> orderByComparator)
 		throws NoSuchConsumerException;
 
@@ -119,7 +119,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching wsrp consumer, or <code>null</code> if a matching wsrp consumer could not be found
 	*/
-	public WSRPConsumer fetchByUuid_First(java.lang.String uuid,
+	public WSRPConsumer fetchByUuid_First(String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumer> orderByComparator);
 
 	/**
@@ -130,7 +130,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	* @return the last matching wsrp consumer
 	* @throws NoSuchConsumerException if a matching wsrp consumer could not be found
 	*/
-	public WSRPConsumer findByUuid_Last(java.lang.String uuid,
+	public WSRPConsumer findByUuid_Last(String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumer> orderByComparator)
 		throws NoSuchConsumerException;
 
@@ -141,7 +141,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching wsrp consumer, or <code>null</code> if a matching wsrp consumer could not be found
 	*/
-	public WSRPConsumer fetchByUuid_Last(java.lang.String uuid,
+	public WSRPConsumer fetchByUuid_Last(String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumer> orderByComparator);
 
 	/**
@@ -154,7 +154,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	* @throws NoSuchConsumerException if a wsrp consumer with the primary key could not be found
 	*/
 	public WSRPConsumer[] findByUuid_PrevAndNext(long wsrpConsumerId,
-		java.lang.String uuid,
+		String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumer> orderByComparator)
 		throws NoSuchConsumerException;
 
@@ -163,7 +163,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	*
 	* @param uuid the uuid
 	*/
-	public void removeByUuid(java.lang.String uuid);
+	public void removeByUuid(String uuid);
 
 	/**
 	* Returns the number of wsrp consumers where uuid = &#63;.
@@ -171,7 +171,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	* @param uuid the uuid
 	* @return the number of matching wsrp consumers
 	*/
-	public int countByUuid(java.lang.String uuid);
+	public int countByUuid(String uuid);
 
 	/**
 	* Returns all the wsrp consumers where uuid = &#63; and companyId = &#63;.
@@ -180,8 +180,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	* @param companyId the company ID
 	* @return the matching wsrp consumers
 	*/
-	public java.util.List<WSRPConsumer> findByUuid_C(java.lang.String uuid,
-		long companyId);
+	public java.util.List<WSRPConsumer> findByUuid_C(String uuid, long companyId);
 
 	/**
 	* Returns a range of all the wsrp consumers where uuid = &#63; and companyId = &#63;.
@@ -196,7 +195,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	* @param end the upper bound of the range of wsrp consumers (not inclusive)
 	* @return the range of matching wsrp consumers
 	*/
-	public java.util.List<WSRPConsumer> findByUuid_C(java.lang.String uuid,
+	public java.util.List<WSRPConsumer> findByUuid_C(String uuid,
 		long companyId, int start, int end);
 
 	/**
@@ -213,7 +212,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching wsrp consumers
 	*/
-	public java.util.List<WSRPConsumer> findByUuid_C(java.lang.String uuid,
+	public java.util.List<WSRPConsumer> findByUuid_C(String uuid,
 		long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumer> orderByComparator);
 
@@ -232,7 +231,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	* @param retrieveFromCache whether to retrieve from the finder cache
 	* @return the ordered range of matching wsrp consumers
 	*/
-	public java.util.List<WSRPConsumer> findByUuid_C(java.lang.String uuid,
+	public java.util.List<WSRPConsumer> findByUuid_C(String uuid,
 		long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumer> orderByComparator,
 		boolean retrieveFromCache);
@@ -246,8 +245,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	* @return the first matching wsrp consumer
 	* @throws NoSuchConsumerException if a matching wsrp consumer could not be found
 	*/
-	public WSRPConsumer findByUuid_C_First(java.lang.String uuid,
-		long companyId,
+	public WSRPConsumer findByUuid_C_First(String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumer> orderByComparator)
 		throws NoSuchConsumerException;
 
@@ -259,8 +257,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching wsrp consumer, or <code>null</code> if a matching wsrp consumer could not be found
 	*/
-	public WSRPConsumer fetchByUuid_C_First(java.lang.String uuid,
-		long companyId,
+	public WSRPConsumer fetchByUuid_C_First(String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumer> orderByComparator);
 
 	/**
@@ -272,8 +269,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	* @return the last matching wsrp consumer
 	* @throws NoSuchConsumerException if a matching wsrp consumer could not be found
 	*/
-	public WSRPConsumer findByUuid_C_Last(java.lang.String uuid,
-		long companyId,
+	public WSRPConsumer findByUuid_C_Last(String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumer> orderByComparator)
 		throws NoSuchConsumerException;
 
@@ -285,8 +281,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching wsrp consumer, or <code>null</code> if a matching wsrp consumer could not be found
 	*/
-	public WSRPConsumer fetchByUuid_C_Last(java.lang.String uuid,
-		long companyId,
+	public WSRPConsumer fetchByUuid_C_Last(String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumer> orderByComparator);
 
 	/**
@@ -300,7 +295,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	* @throws NoSuchConsumerException if a wsrp consumer with the primary key could not be found
 	*/
 	public WSRPConsumer[] findByUuid_C_PrevAndNext(long wsrpConsumerId,
-		java.lang.String uuid, long companyId,
+		String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator<WSRPConsumer> orderByComparator)
 		throws NoSuchConsumerException;
 
@@ -310,7 +305,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	* @param uuid the uuid
 	* @param companyId the company ID
 	*/
-	public void removeByUuid_C(java.lang.String uuid, long companyId);
+	public void removeByUuid_C(String uuid, long companyId);
 
 	/**
 	* Returns the number of wsrp consumers where uuid = &#63; and companyId = &#63;.
@@ -319,7 +314,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	* @param companyId the company ID
 	* @return the number of matching wsrp consumers
 	*/
-	public int countByUuid_C(java.lang.String uuid, long companyId);
+	public int countByUuid_C(String uuid, long companyId);
 
 	/**
 	* Returns all the wsrp consumers where companyId = &#63;.
@@ -574,5 +569,5 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	public int countAll();
 
 	@Override
-	public java.util.Set<java.lang.String> getBadColumnNames();
+	public java.util.Set<String> getBadColumnNames();
 }

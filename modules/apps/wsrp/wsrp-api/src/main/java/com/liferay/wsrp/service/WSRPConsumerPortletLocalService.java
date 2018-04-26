@@ -68,12 +68,11 @@ public interface WSRPConsumerPortletLocalService extends BaseLocalService,
 	 * Never modify or reference this interface directly. Always use {@link WSRPConsumerPortletLocalServiceUtil} to access the wsrp consumer portlet local service. Add custom service methods to {@link com.liferay.wsrp.service.impl.WSRPConsumerPortletLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	public WSRPConsumerPortlet addWSRPConsumerPortlet(long wsrpConsumerId,
-		java.lang.String name, java.lang.String portletHandle,
-		ServiceContext serviceContext) throws PortalException;
+		String name, String portletHandle, ServiceContext serviceContext)
+		throws PortalException;
 
-	public WSRPConsumerPortlet addWSRPConsumerPortlet(
-		java.lang.String wsrpConsumerUuid, java.lang.String name,
-		java.lang.String portletHandle, ServiceContext serviceContext)
+	public WSRPConsumerPortlet addWSRPConsumerPortlet(String wsrpConsumerUuid,
+		String name, String portletHandle, ServiceContext serviceContext)
 		throws PortalException;
 
 	/**
@@ -114,8 +113,8 @@ public interface WSRPConsumerPortletLocalService extends BaseLocalService,
 	public WSRPConsumerPortlet deleteWSRPConsumerPortlet(
 		long wsrpConsumerPortletId) throws PortalException;
 
-	public void deleteWSRPConsumerPortlet(
-		java.lang.String wsrpConsumerPortletUuid) throws PortalException;
+	public void deleteWSRPConsumerPortlet(String wsrpConsumerPortletUuid)
+		throws PortalException;
 
 	/**
 	* Deletes the wsrp consumer portlet from the database. Also notifies the appropriate model listeners.
@@ -134,7 +133,7 @@ public interface WSRPConsumerPortletLocalService extends BaseLocalService,
 
 	@Clusterable
 	public void destroyWSRPConsumerPortlet(long wsrpConsumerPortletId,
-		java.lang.String wsrpConsumerPortletUuid, java.lang.String url);
+		String wsrpConsumerPortletUuid, String url);
 
 	public void destroyWSRPConsumerPortlets() throws PortalException;
 
@@ -210,7 +209,7 @@ public interface WSRPConsumerPortletLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public WSRPConsumerPortlet fetchWSRPConsumerPortletByUuidAndCompanyId(
-		java.lang.String uuid, long companyId);
+		String uuid, long companyId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();
@@ -227,7 +226,7 @@ public interface WSRPConsumerPortletLocalService extends BaseLocalService,
 	*
 	* @return the OSGi service identifier
 	*/
-	public java.lang.String getOSGiServiceIdentifier();
+	public String getOSGiServiceIdentifier();
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -247,11 +246,11 @@ public interface WSRPConsumerPortletLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public WSRPConsumerPortlet getWSRPConsumerPortlet(long wsrpConsumerId,
-		java.lang.String portletHandle) throws PortalException;
+		String portletHandle) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public WSRPConsumerPortlet getWSRPConsumerPortlet(
-		java.lang.String wsrpConsumerPortletUuid) throws PortalException;
+		String wsrpConsumerPortletUuid) throws PortalException;
 
 	/**
 	* Returns the wsrp consumer portlet with the matching UUID and company.
@@ -263,7 +262,7 @@ public interface WSRPConsumerPortletLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public WSRPConsumerPortlet getWSRPConsumerPortletByUuidAndCompanyId(
-		java.lang.String uuid, long companyId) throws PortalException;
+		String uuid, long companyId) throws PortalException;
 
 	/**
 	* Returns a range of all the wsrp consumer portlets.
@@ -301,16 +300,14 @@ public interface WSRPConsumerPortletLocalService extends BaseLocalService,
 	@Clusterable
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public void initWSRPConsumerPortlet(long companyId, long wsrpConsumerId,
-		long wsrpConsumerPortletId, java.lang.String wsrpConsumerPortletUuid,
-		java.lang.String name, java.lang.String portletHandle)
-		throws PortalException;
+		long wsrpConsumerPortletId, String wsrpConsumerPortletUuid,
+		String name, String portletHandle) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public void initWSRPConsumerPortlets();
 
 	public WSRPConsumerPortlet updateWSRPConsumerPortlet(
-		long wsrpConsumerPortletId, java.lang.String name)
-		throws PortalException;
+		long wsrpConsumerPortletId, String name) throws PortalException;
 
 	/**
 	* Updates the wsrp consumer portlet in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.

@@ -171,7 +171,7 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 	}
 
 	@Override
-	public java.lang.Object clone() {
+	public Object clone() {
 		return new WSRPConsumerWrapper((WSRPConsumer)_wsrpConsumer.clone());
 	}
 
@@ -211,7 +211,7 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 	* @return the forward cookies of this wsrp consumer
 	*/
 	@Override
-	public java.lang.String getForwardCookies() {
+	public String getForwardCookies() {
 		return _wsrpConsumer.getForwardCookies();
 	}
 
@@ -221,7 +221,7 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 	* @return the forward headers of this wsrp consumer
 	*/
 	@Override
-	public java.lang.String getForwardHeaders() {
+	public String getForwardHeaders() {
 		return _wsrpConsumer.getForwardHeaders();
 	}
 
@@ -241,7 +241,7 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 	* @return the markup character sets of this wsrp consumer
 	*/
 	@Override
-	public java.lang.String getMarkupCharacterSets() {
+	public String getMarkupCharacterSets() {
 		return _wsrpConsumer.getMarkupCharacterSets();
 	}
 
@@ -261,7 +261,7 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 	* @return the name of this wsrp consumer
 	*/
 	@Override
-	public java.lang.String getName() {
+	public String getName() {
 		return _wsrpConsumer.getName();
 	}
 
@@ -291,7 +291,7 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 	* @return the registration context string of this wsrp consumer
 	*/
 	@Override
-	public java.lang.String getRegistrationContextString() {
+	public String getRegistrationContextString() {
 		return _wsrpConsumer.getRegistrationContextString();
 	}
 
@@ -306,7 +306,7 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 	* @return the registration properties string of this wsrp consumer
 	*/
 	@Override
-	public java.lang.String getRegistrationPropertiesString() {
+	public String getRegistrationPropertiesString() {
 		return _wsrpConsumer.getRegistrationPropertiesString();
 	}
 
@@ -316,7 +316,7 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 	* @return the url of this wsrp consumer
 	*/
 	@Override
-	public java.lang.String getUrl() {
+	public String getUrl() {
 		return _wsrpConsumer.getUrl();
 	}
 
@@ -326,7 +326,7 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 	* @return the uuid of this wsrp consumer
 	*/
 	@Override
-	public java.lang.String getUuid() {
+	public String getUuid() {
 		return _wsrpConsumer.getUuid();
 	}
 
@@ -336,7 +336,7 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 	* @return the wsdl of this wsrp consumer
 	*/
 	@Override
-	public java.lang.String getWsdl() {
+	public String getWsdl() {
 		return _wsrpConsumer.getWsdl();
 	}
 
@@ -422,7 +422,7 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 	* @param forwardCookies the forward cookies of this wsrp consumer
 	*/
 	@Override
-	public void setForwardCookies(java.lang.String forwardCookies) {
+	public void setForwardCookies(String forwardCookies) {
 		_wsrpConsumer.setForwardCookies(forwardCookies);
 	}
 
@@ -432,7 +432,7 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 	* @param forwardHeaders the forward headers of this wsrp consumer
 	*/
 	@Override
-	public void setForwardHeaders(java.lang.String forwardHeaders) {
+	public void setForwardHeaders(String forwardHeaders) {
 		_wsrpConsumer.setForwardHeaders(forwardHeaders);
 	}
 
@@ -452,7 +452,7 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 	* @param markupCharacterSets the markup character sets of this wsrp consumer
 	*/
 	@Override
-	public void setMarkupCharacterSets(java.lang.String markupCharacterSets) {
+	public void setMarkupCharacterSets(String markupCharacterSets) {
 		_wsrpConsumer.setMarkupCharacterSets(markupCharacterSets);
 	}
 
@@ -472,7 +472,7 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 	* @param name the name of this wsrp consumer
 	*/
 	@Override
-	public void setName(java.lang.String name) {
+	public void setName(String name) {
 		_wsrpConsumer.setName(name);
 	}
 
@@ -508,8 +508,7 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 	* @param registrationContextString the registration context string of this wsrp consumer
 	*/
 	@Override
-	public void setRegistrationContextString(
-		java.lang.String registrationContextString) {
+	public void setRegistrationContextString(String registrationContextString) {
 		_wsrpConsumer.setRegistrationContextString(registrationContextString);
 	}
 
@@ -526,7 +525,7 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 	*/
 	@Override
 	public void setRegistrationPropertiesString(
-		java.lang.String registrationPropertiesString) {
+		String registrationPropertiesString) {
 		_wsrpConsumer.setRegistrationPropertiesString(registrationPropertiesString);
 	}
 
@@ -536,7 +535,7 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 	* @param url the url of this wsrp consumer
 	*/
 	@Override
-	public void setUrl(java.lang.String url) {
+	public void setUrl(String url) {
 		_wsrpConsumer.setUrl(url);
 	}
 
@@ -546,7 +545,7 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 	* @param uuid the uuid of this wsrp consumer
 	*/
 	@Override
-	public void setUuid(java.lang.String uuid) {
+	public void setUuid(String uuid) {
 		_wsrpConsumer.setUuid(uuid);
 	}
 
@@ -556,7 +555,7 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 	* @param wsdl the wsdl of this wsrp consumer
 	*/
 	@Override
-	public void setWsdl(java.lang.String wsdl) {
+	public void setWsdl(String wsdl) {
 		_wsrpConsumer.setWsdl(wsdl);
 	}
 
@@ -581,7 +580,7 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 	}
 
 	@Override
-	public java.lang.String toString() {
+	public String toString() {
 		return _wsrpConsumer.toString();
 	}
 
@@ -591,7 +590,7 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 	}
 
 	@Override
-	public java.lang.String toXmlString() {
+	public String toXmlString() {
 		return _wsrpConsumer.toXmlString();
 	}
 

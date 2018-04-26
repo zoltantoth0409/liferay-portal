@@ -115,7 +115,7 @@ public class MBDiscussionUtil {
 	* @param uuid the uuid
 	* @return the matching message boards discussions
 	*/
-	public static List<MBDiscussion> findByUuid(java.lang.String uuid) {
+	public static List<MBDiscussion> findByUuid(String uuid) {
 		return getPersistence().findByUuid(uuid);
 	}
 
@@ -131,8 +131,7 @@ public class MBDiscussionUtil {
 	* @param end the upper bound of the range of message boards discussions (not inclusive)
 	* @return the range of matching message boards discussions
 	*/
-	public static List<MBDiscussion> findByUuid(java.lang.String uuid,
-		int start, int end) {
+	public static List<MBDiscussion> findByUuid(String uuid, int start, int end) {
 		return getPersistence().findByUuid(uuid, start, end);
 	}
 
@@ -149,8 +148,8 @@ public class MBDiscussionUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching message boards discussions
 	*/
-	public static List<MBDiscussion> findByUuid(java.lang.String uuid,
-		int start, int end, OrderByComparator<MBDiscussion> orderByComparator) {
+	public static List<MBDiscussion> findByUuid(String uuid, int start,
+		int end, OrderByComparator<MBDiscussion> orderByComparator) {
 		return getPersistence().findByUuid(uuid, start, end, orderByComparator);
 	}
 
@@ -168,8 +167,8 @@ public class MBDiscussionUtil {
 	* @param retrieveFromCache whether to retrieve from the finder cache
 	* @return the ordered range of matching message boards discussions
 	*/
-	public static List<MBDiscussion> findByUuid(java.lang.String uuid,
-		int start, int end, OrderByComparator<MBDiscussion> orderByComparator,
+	public static List<MBDiscussion> findByUuid(String uuid, int start,
+		int end, OrderByComparator<MBDiscussion> orderByComparator,
 		boolean retrieveFromCache) {
 		return getPersistence()
 				   .findByUuid(uuid, start, end, orderByComparator,
@@ -184,7 +183,7 @@ public class MBDiscussionUtil {
 	* @return the first matching message boards discussion
 	* @throws NoSuchDiscussionException if a matching message boards discussion could not be found
 	*/
-	public static MBDiscussion findByUuid_First(java.lang.String uuid,
+	public static MBDiscussion findByUuid_First(String uuid,
 		OrderByComparator<MBDiscussion> orderByComparator)
 		throws com.liferay.message.boards.kernel.exception.NoSuchDiscussionException {
 		return getPersistence().findByUuid_First(uuid, orderByComparator);
@@ -197,7 +196,7 @@ public class MBDiscussionUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching message boards discussion, or <code>null</code> if a matching message boards discussion could not be found
 	*/
-	public static MBDiscussion fetchByUuid_First(java.lang.String uuid,
+	public static MBDiscussion fetchByUuid_First(String uuid,
 		OrderByComparator<MBDiscussion> orderByComparator) {
 		return getPersistence().fetchByUuid_First(uuid, orderByComparator);
 	}
@@ -210,7 +209,7 @@ public class MBDiscussionUtil {
 	* @return the last matching message boards discussion
 	* @throws NoSuchDiscussionException if a matching message boards discussion could not be found
 	*/
-	public static MBDiscussion findByUuid_Last(java.lang.String uuid,
+	public static MBDiscussion findByUuid_Last(String uuid,
 		OrderByComparator<MBDiscussion> orderByComparator)
 		throws com.liferay.message.boards.kernel.exception.NoSuchDiscussionException {
 		return getPersistence().findByUuid_Last(uuid, orderByComparator);
@@ -223,7 +222,7 @@ public class MBDiscussionUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching message boards discussion, or <code>null</code> if a matching message boards discussion could not be found
 	*/
-	public static MBDiscussion fetchByUuid_Last(java.lang.String uuid,
+	public static MBDiscussion fetchByUuid_Last(String uuid,
 		OrderByComparator<MBDiscussion> orderByComparator) {
 		return getPersistence().fetchByUuid_Last(uuid, orderByComparator);
 	}
@@ -238,7 +237,7 @@ public class MBDiscussionUtil {
 	* @throws NoSuchDiscussionException if a message boards discussion with the primary key could not be found
 	*/
 	public static MBDiscussion[] findByUuid_PrevAndNext(long discussionId,
-		java.lang.String uuid, OrderByComparator<MBDiscussion> orderByComparator)
+		String uuid, OrderByComparator<MBDiscussion> orderByComparator)
 		throws com.liferay.message.boards.kernel.exception.NoSuchDiscussionException {
 		return getPersistence()
 				   .findByUuid_PrevAndNext(discussionId, uuid, orderByComparator);
@@ -249,7 +248,7 @@ public class MBDiscussionUtil {
 	*
 	* @param uuid the uuid
 	*/
-	public static void removeByUuid(java.lang.String uuid) {
+	public static void removeByUuid(String uuid) {
 		getPersistence().removeByUuid(uuid);
 	}
 
@@ -259,7 +258,7 @@ public class MBDiscussionUtil {
 	* @param uuid the uuid
 	* @return the number of matching message boards discussions
 	*/
-	public static int countByUuid(java.lang.String uuid) {
+	public static int countByUuid(String uuid) {
 		return getPersistence().countByUuid(uuid);
 	}
 
@@ -271,7 +270,7 @@ public class MBDiscussionUtil {
 	* @return the matching message boards discussion
 	* @throws NoSuchDiscussionException if a matching message boards discussion could not be found
 	*/
-	public static MBDiscussion findByUUID_G(java.lang.String uuid, long groupId)
+	public static MBDiscussion findByUUID_G(String uuid, long groupId)
 		throws com.liferay.message.boards.kernel.exception.NoSuchDiscussionException {
 		return getPersistence().findByUUID_G(uuid, groupId);
 	}
@@ -283,7 +282,7 @@ public class MBDiscussionUtil {
 	* @param groupId the group ID
 	* @return the matching message boards discussion, or <code>null</code> if a matching message boards discussion could not be found
 	*/
-	public static MBDiscussion fetchByUUID_G(java.lang.String uuid, long groupId) {
+	public static MBDiscussion fetchByUUID_G(String uuid, long groupId) {
 		return getPersistence().fetchByUUID_G(uuid, groupId);
 	}
 
@@ -295,8 +294,8 @@ public class MBDiscussionUtil {
 	* @param retrieveFromCache whether to retrieve from the finder cache
 	* @return the matching message boards discussion, or <code>null</code> if a matching message boards discussion could not be found
 	*/
-	public static MBDiscussion fetchByUUID_G(java.lang.String uuid,
-		long groupId, boolean retrieveFromCache) {
+	public static MBDiscussion fetchByUUID_G(String uuid, long groupId,
+		boolean retrieveFromCache) {
 		return getPersistence().fetchByUUID_G(uuid, groupId, retrieveFromCache);
 	}
 
@@ -307,8 +306,7 @@ public class MBDiscussionUtil {
 	* @param groupId the group ID
 	* @return the message boards discussion that was removed
 	*/
-	public static MBDiscussion removeByUUID_G(java.lang.String uuid,
-		long groupId)
+	public static MBDiscussion removeByUUID_G(String uuid, long groupId)
 		throws com.liferay.message.boards.kernel.exception.NoSuchDiscussionException {
 		return getPersistence().removeByUUID_G(uuid, groupId);
 	}
@@ -320,7 +318,7 @@ public class MBDiscussionUtil {
 	* @param groupId the group ID
 	* @return the number of matching message boards discussions
 	*/
-	public static int countByUUID_G(java.lang.String uuid, long groupId) {
+	public static int countByUUID_G(String uuid, long groupId) {
 		return getPersistence().countByUUID_G(uuid, groupId);
 	}
 
@@ -331,8 +329,7 @@ public class MBDiscussionUtil {
 	* @param companyId the company ID
 	* @return the matching message boards discussions
 	*/
-	public static List<MBDiscussion> findByUuid_C(java.lang.String uuid,
-		long companyId) {
+	public static List<MBDiscussion> findByUuid_C(String uuid, long companyId) {
 		return getPersistence().findByUuid_C(uuid, companyId);
 	}
 
@@ -349,8 +346,8 @@ public class MBDiscussionUtil {
 	* @param end the upper bound of the range of message boards discussions (not inclusive)
 	* @return the range of matching message boards discussions
 	*/
-	public static List<MBDiscussion> findByUuid_C(java.lang.String uuid,
-		long companyId, int start, int end) {
+	public static List<MBDiscussion> findByUuid_C(String uuid, long companyId,
+		int start, int end) {
 		return getPersistence().findByUuid_C(uuid, companyId, start, end);
 	}
 
@@ -368,9 +365,8 @@ public class MBDiscussionUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching message boards discussions
 	*/
-	public static List<MBDiscussion> findByUuid_C(java.lang.String uuid,
-		long companyId, int start, int end,
-		OrderByComparator<MBDiscussion> orderByComparator) {
+	public static List<MBDiscussion> findByUuid_C(String uuid, long companyId,
+		int start, int end, OrderByComparator<MBDiscussion> orderByComparator) {
 		return getPersistence()
 				   .findByUuid_C(uuid, companyId, start, end, orderByComparator);
 	}
@@ -390,9 +386,8 @@ public class MBDiscussionUtil {
 	* @param retrieveFromCache whether to retrieve from the finder cache
 	* @return the ordered range of matching message boards discussions
 	*/
-	public static List<MBDiscussion> findByUuid_C(java.lang.String uuid,
-		long companyId, int start, int end,
-		OrderByComparator<MBDiscussion> orderByComparator,
+	public static List<MBDiscussion> findByUuid_C(String uuid, long companyId,
+		int start, int end, OrderByComparator<MBDiscussion> orderByComparator,
 		boolean retrieveFromCache) {
 		return getPersistence()
 				   .findByUuid_C(uuid, companyId, start, end,
@@ -408,8 +403,8 @@ public class MBDiscussionUtil {
 	* @return the first matching message boards discussion
 	* @throws NoSuchDiscussionException if a matching message boards discussion could not be found
 	*/
-	public static MBDiscussion findByUuid_C_First(java.lang.String uuid,
-		long companyId, OrderByComparator<MBDiscussion> orderByComparator)
+	public static MBDiscussion findByUuid_C_First(String uuid, long companyId,
+		OrderByComparator<MBDiscussion> orderByComparator)
 		throws com.liferay.message.boards.kernel.exception.NoSuchDiscussionException {
 		return getPersistence()
 				   .findByUuid_C_First(uuid, companyId, orderByComparator);
@@ -423,8 +418,8 @@ public class MBDiscussionUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching message boards discussion, or <code>null</code> if a matching message boards discussion could not be found
 	*/
-	public static MBDiscussion fetchByUuid_C_First(java.lang.String uuid,
-		long companyId, OrderByComparator<MBDiscussion> orderByComparator) {
+	public static MBDiscussion fetchByUuid_C_First(String uuid, long companyId,
+		OrderByComparator<MBDiscussion> orderByComparator) {
 		return getPersistence()
 				   .fetchByUuid_C_First(uuid, companyId, orderByComparator);
 	}
@@ -438,8 +433,8 @@ public class MBDiscussionUtil {
 	* @return the last matching message boards discussion
 	* @throws NoSuchDiscussionException if a matching message boards discussion could not be found
 	*/
-	public static MBDiscussion findByUuid_C_Last(java.lang.String uuid,
-		long companyId, OrderByComparator<MBDiscussion> orderByComparator)
+	public static MBDiscussion findByUuid_C_Last(String uuid, long companyId,
+		OrderByComparator<MBDiscussion> orderByComparator)
 		throws com.liferay.message.boards.kernel.exception.NoSuchDiscussionException {
 		return getPersistence()
 				   .findByUuid_C_Last(uuid, companyId, orderByComparator);
@@ -453,8 +448,8 @@ public class MBDiscussionUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching message boards discussion, or <code>null</code> if a matching message boards discussion could not be found
 	*/
-	public static MBDiscussion fetchByUuid_C_Last(java.lang.String uuid,
-		long companyId, OrderByComparator<MBDiscussion> orderByComparator) {
+	public static MBDiscussion fetchByUuid_C_Last(String uuid, long companyId,
+		OrderByComparator<MBDiscussion> orderByComparator) {
 		return getPersistence()
 				   .fetchByUuid_C_Last(uuid, companyId, orderByComparator);
 	}
@@ -470,7 +465,7 @@ public class MBDiscussionUtil {
 	* @throws NoSuchDiscussionException if a message boards discussion with the primary key could not be found
 	*/
 	public static MBDiscussion[] findByUuid_C_PrevAndNext(long discussionId,
-		java.lang.String uuid, long companyId,
+		String uuid, long companyId,
 		OrderByComparator<MBDiscussion> orderByComparator)
 		throws com.liferay.message.boards.kernel.exception.NoSuchDiscussionException {
 		return getPersistence()
@@ -484,7 +479,7 @@ public class MBDiscussionUtil {
 	* @param uuid the uuid
 	* @param companyId the company ID
 	*/
-	public static void removeByUuid_C(java.lang.String uuid, long companyId) {
+	public static void removeByUuid_C(String uuid, long companyId) {
 		getPersistence().removeByUuid_C(uuid, companyId);
 	}
 
@@ -495,7 +490,7 @@ public class MBDiscussionUtil {
 	* @param companyId the company ID
 	* @return the number of matching message boards discussions
 	*/
-	public static int countByUuid_C(java.lang.String uuid, long companyId) {
+	public static int countByUuid_C(String uuid, long companyId) {
 		return getPersistence().countByUuid_C(uuid, companyId);
 	}
 
@@ -924,7 +919,7 @@ public class MBDiscussionUtil {
 		return getPersistence().countAll();
 	}
 
-	public static java.util.Set<java.lang.String> getBadColumnNames() {
+	public static java.util.Set<String> getBadColumnNames() {
 		return getPersistence().getBadColumnNames();
 	}
 

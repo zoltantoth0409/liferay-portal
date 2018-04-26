@@ -66,14 +66,14 @@ public interface UserThreadLocalService extends BaseLocalService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link UserThreadLocalServiceUtil} to access the user thread local service. Add custom service methods to {@link com.liferay.social.privatemessaging.service.impl.UserThreadLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public MBMessage addPrivateMessage(long userId, long mbThreadId,
-		java.lang.String to, java.lang.String subject, java.lang.String body,
-		List<ObjectValuePair<java.lang.String, InputStream>> inputStreamOVPs,
+	public MBMessage addPrivateMessage(long userId, long mbThreadId, String to,
+		String subject, String body,
+		List<ObjectValuePair<String, InputStream>> inputStreamOVPs,
 		ThemeDisplay themeDisplay) throws PortalException;
 
 	public MBMessage addPrivateMessageBranch(long userId,
-		long parentMBMessageId, java.lang.String body,
-		List<ObjectValuePair<java.lang.String, InputStream>> inputStreamOVPs,
+		long parentMBMessageId, String body,
+		List<ObjectValuePair<String, InputStream>> inputStreamOVPs,
 		ThemeDisplay themeDisplay) throws PortalException;
 
 	public void addUserThread(long userId, long mbThreadId,
@@ -210,7 +210,7 @@ public interface UserThreadLocalService extends BaseLocalService,
 	*
 	* @return the OSGi service identifier
 	*/
-	public java.lang.String getOSGiServiceIdentifier();
+	public String getOSGiServiceIdentifier();
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

@@ -281,7 +281,7 @@ public class DLFileShortcutLocalServiceWrapper
 	*/
 	@Override
 	public com.liferay.document.library.kernel.model.DLFileShortcut fetchDLFileShortcutByUuidAndGroupId(
-		java.lang.String uuid, long groupId) {
+		String uuid, long groupId) {
 		return _dlFileShortcutLocalService.fetchDLFileShortcutByUuidAndGroupId(uuid,
 			groupId);
 	}
@@ -315,7 +315,7 @@ public class DLFileShortcutLocalServiceWrapper
 	*/
 	@Override
 	public com.liferay.document.library.kernel.model.DLFileShortcut getDLFileShortcutByUuidAndGroupId(
-		java.lang.String uuid, long groupId)
+		String uuid, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _dlFileShortcutLocalService.getDLFileShortcutByUuidAndGroupId(uuid,
 			groupId);
@@ -347,7 +347,7 @@ public class DLFileShortcutLocalServiceWrapper
 	*/
 	@Override
 	public java.util.List<com.liferay.document.library.kernel.model.DLFileShortcut> getDLFileShortcutsByUuidAndCompanyId(
-		java.lang.String uuid, long companyId) {
+		String uuid, long companyId) {
 		return _dlFileShortcutLocalService.getDLFileShortcutsByUuidAndCompanyId(uuid,
 			companyId);
 	}
@@ -364,7 +364,7 @@ public class DLFileShortcutLocalServiceWrapper
 	*/
 	@Override
 	public java.util.List<com.liferay.document.library.kernel.model.DLFileShortcut> getDLFileShortcutsByUuidAndCompanyId(
-		java.lang.String uuid, long companyId, int start, int end,
+		String uuid, long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.document.library.kernel.model.DLFileShortcut> orderByComparator) {
 		return _dlFileShortcutLocalService.getDLFileShortcutsByUuidAndCompanyId(uuid,
 			companyId, start, end, orderByComparator);
@@ -425,7 +425,7 @@ public class DLFileShortcutLocalServiceWrapper
 	* @return the OSGi service identifier
 	*/
 	@Override
-	public java.lang.String getOSGiServiceIdentifier() {
+	public String getOSGiServiceIdentifier() {
 		return _dlFileShortcutLocalService.getOSGiServiceIdentifier();
 	}
 
@@ -443,7 +443,7 @@ public class DLFileShortcutLocalServiceWrapper
 	}
 
 	@Override
-	public void setTreePaths(long folderId, java.lang.String treePath)
+	public void setTreePaths(long folderId, String treePath)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		_dlFileShortcutLocalService.setTreePaths(folderId, treePath);
 	}
@@ -451,7 +451,7 @@ public class DLFileShortcutLocalServiceWrapper
 	@Override
 	public void updateAsset(long userId,
 		com.liferay.document.library.kernel.model.DLFileShortcut fileShortcut,
-		long[] assetCategoryIds, java.lang.String[] assetTagNames)
+		long[] assetCategoryIds, String[] assetTagNames)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		_dlFileShortcutLocalService.updateAsset(userId, fileShortcut,
 			assetCategoryIds, assetTagNames);

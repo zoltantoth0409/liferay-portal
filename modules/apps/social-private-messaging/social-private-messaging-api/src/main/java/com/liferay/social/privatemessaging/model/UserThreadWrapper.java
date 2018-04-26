@@ -135,7 +135,7 @@ public class UserThreadWrapper implements UserThread, ModelWrapper<UserThread> {
 	}
 
 	@Override
-	public java.lang.Object clone() {
+	public Object clone() {
 		return new UserThreadWrapper((UserThread)_userThread.clone());
 	}
 
@@ -250,7 +250,7 @@ public class UserThreadWrapper implements UserThread, ModelWrapper<UserThread> {
 	* @return the user name of this user thread
 	*/
 	@Override
-	public java.lang.String getUserName() {
+	public String getUserName() {
 		return _userThread.getUserName();
 	}
 
@@ -270,7 +270,7 @@ public class UserThreadWrapper implements UserThread, ModelWrapper<UserThread> {
 	* @return the user uuid of this user thread
 	*/
 	@Override
-	public java.lang.String getUserUuid() {
+	public String getUserUuid() {
 		return _userThread.getUserUuid();
 	}
 
@@ -446,7 +446,7 @@ public class UserThreadWrapper implements UserThread, ModelWrapper<UserThread> {
 	* @param userName the user name of this user thread
 	*/
 	@Override
-	public void setUserName(java.lang.String userName) {
+	public void setUserName(String userName) {
 		_userThread.setUserName(userName);
 	}
 
@@ -466,7 +466,7 @@ public class UserThreadWrapper implements UserThread, ModelWrapper<UserThread> {
 	* @param userUuid the user uuid of this user thread
 	*/
 	@Override
-	public void setUserUuid(java.lang.String userUuid) {
+	public void setUserUuid(String userUuid) {
 		_userThread.setUserUuid(userUuid);
 	}
 
@@ -481,7 +481,7 @@ public class UserThreadWrapper implements UserThread, ModelWrapper<UserThread> {
 	}
 
 	@Override
-	public java.lang.String toString() {
+	public String toString() {
 		return _userThread.toString();
 	}
 
@@ -491,7 +491,7 @@ public class UserThreadWrapper implements UserThread, ModelWrapper<UserThread> {
 	}
 
 	@Override
-	public java.lang.String toXmlString() {
+	public String toXmlString() {
 		return _userThread.toXmlString();
 	}
 

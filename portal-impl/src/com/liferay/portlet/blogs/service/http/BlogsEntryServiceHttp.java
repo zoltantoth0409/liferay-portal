@@ -56,13 +56,11 @@ import com.liferay.portal.kernel.util.MethodKey;
 @ProviderType
 public class BlogsEntryServiceHttp {
 	public static com.liferay.blogs.kernel.model.BlogsEntry addEntry(
-		HttpPrincipal httpPrincipal, java.lang.String title,
-		java.lang.String description, java.lang.String content,
-		int displayDateMonth, int displayDateDay, int displayDateYear,
-		int displayDateHour, int displayDateMinute, boolean allowPingbacks,
-		boolean allowTrackbacks, java.lang.String[] trackbacks,
-		boolean smallImage, java.lang.String smallImageURL,
-		java.lang.String smallImageFileName,
+		HttpPrincipal httpPrincipal, String title, String description,
+		String content, int displayDateMonth, int displayDateDay,
+		int displayDateYear, int displayDateHour, int displayDateMinute,
+		boolean allowPingbacks, boolean allowTrackbacks, String[] trackbacks,
+		boolean smallImage, String smallImageURL, String smallImageFileName,
 		java.io.InputStream smallImageInputStream,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
@@ -100,12 +98,11 @@ public class BlogsEntryServiceHttp {
 	}
 
 	public static com.liferay.blogs.kernel.model.BlogsEntry addEntry(
-		HttpPrincipal httpPrincipal, java.lang.String title,
-		java.lang.String subtitle, java.lang.String description,
-		java.lang.String content, int displayDateMonth, int displayDateDay,
-		int displayDateYear, int displayDateHour, int displayDateMinute,
-		boolean allowPingbacks, boolean allowTrackbacks,
-		java.lang.String[] trackbacks, java.lang.String coverImageCaption,
+		HttpPrincipal httpPrincipal, String title, String subtitle,
+		String description, String content, int displayDateMonth,
+		int displayDateDay, int displayDateYear, int displayDateHour,
+		int displayDateMinute, boolean allowPingbacks, boolean allowTrackbacks,
+		String[] trackbacks, String coverImageCaption,
 		com.liferay.portal.kernel.servlet.taglib.ui.ImageSelector coverImageImageSelector,
 		com.liferay.portal.kernel.servlet.taglib.ui.ImageSelector smallImageImageSelector,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
@@ -202,11 +199,10 @@ public class BlogsEntryServiceHttp {
 		}
 	}
 
-	public static java.lang.String getCompanyEntriesRSS(
-		HttpPrincipal httpPrincipal, long companyId,
-		java.util.Date displayDate, int status, int max, java.lang.String type,
-		double version, java.lang.String displayStyle,
-		java.lang.String feedURL, java.lang.String entryURL,
+	public static String getCompanyEntriesRSS(HttpPrincipal httpPrincipal,
+		long companyId, java.util.Date displayDate, int status, int max,
+		String type, double version, String displayStyle, String feedURL,
+		String entryURL,
 		com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
@@ -230,7 +226,7 @@ public class BlogsEntryServiceHttp {
 				throw new com.liferay.portal.kernel.exception.SystemException(e);
 			}
 
-			return (java.lang.String)returnObj;
+			return (String)returnObj;
 		}
 		catch (com.liferay.portal.kernel.exception.SystemException se) {
 			_log.error(se, se);
@@ -271,7 +267,7 @@ public class BlogsEntryServiceHttp {
 	}
 
 	public static com.liferay.blogs.kernel.model.BlogsEntry getEntry(
-		HttpPrincipal httpPrincipal, long groupId, java.lang.String urlTitle)
+		HttpPrincipal httpPrincipal, long groupId, String urlTitle)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(BlogsEntryServiceUtil.class,
@@ -498,11 +494,10 @@ public class BlogsEntryServiceHttp {
 		}
 	}
 
-	public static java.lang.String getGroupEntriesRSS(
-		HttpPrincipal httpPrincipal, long groupId, java.util.Date displayDate,
-		int status, int max, java.lang.String type, double version,
-		java.lang.String displayStyle, java.lang.String feedURL,
-		java.lang.String entryURL,
+	public static String getGroupEntriesRSS(HttpPrincipal httpPrincipal,
+		long groupId, java.util.Date displayDate, int status, int max,
+		String type, double version, String displayStyle, String feedURL,
+		String entryURL,
 		com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
@@ -526,7 +521,7 @@ public class BlogsEntryServiceHttp {
 				throw new com.liferay.portal.kernel.exception.SystemException(e);
 			}
 
-			return (java.lang.String)returnObj;
+			return (String)returnObj;
 		}
 		catch (com.liferay.portal.kernel.exception.SystemException se) {
 			_log.error(se, se);
@@ -716,11 +711,10 @@ public class BlogsEntryServiceHttp {
 		}
 	}
 
-	public static java.lang.String getOrganizationEntriesRSS(
+	public static String getOrganizationEntriesRSS(
 		HttpPrincipal httpPrincipal, long organizationId,
-		java.util.Date displayDate, int status, int max, java.lang.String type,
-		double version, java.lang.String displayStyle,
-		java.lang.String feedURL, java.lang.String entryURL,
+		java.util.Date displayDate, int status, int max, String type,
+		double version, String displayStyle, String feedURL, String entryURL,
 		com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
@@ -745,7 +739,7 @@ public class BlogsEntryServiceHttp {
 				throw new com.liferay.portal.kernel.exception.SystemException(e);
 			}
 
-			return (java.lang.String)returnObj;
+			return (String)returnObj;
 		}
 		catch (com.liferay.portal.kernel.exception.SystemException se) {
 			_log.error(se, se);
@@ -866,14 +860,12 @@ public class BlogsEntryServiceHttp {
 	}
 
 	public static com.liferay.blogs.kernel.model.BlogsEntry updateEntry(
-		HttpPrincipal httpPrincipal, long entryId, java.lang.String title,
-		java.lang.String description, java.lang.String content,
-		int displayDateMonth, int displayDateDay, int displayDateYear,
-		int displayDateHour, int displayDateMinute, boolean allowPingbacks,
-		boolean allowTrackbacks, java.lang.String[] trackbacks,
-		boolean smallImage, java.lang.String smallImageURL,
-		java.lang.String smallImageFileName,
-		java.io.InputStream smallImageInputStream,
+		HttpPrincipal httpPrincipal, long entryId, String title,
+		String description, String content, int displayDateMonth,
+		int displayDateDay, int displayDateYear, int displayDateHour,
+		int displayDateMinute, boolean allowPingbacks, boolean allowTrackbacks,
+		String[] trackbacks, boolean smallImage, String smallImageURL,
+		String smallImageFileName, java.io.InputStream smallImageInputStream,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
@@ -910,12 +902,11 @@ public class BlogsEntryServiceHttp {
 	}
 
 	public static com.liferay.blogs.kernel.model.BlogsEntry updateEntry(
-		HttpPrincipal httpPrincipal, long entryId, java.lang.String title,
-		java.lang.String subtitle, java.lang.String description,
-		java.lang.String content, int displayDateMonth, int displayDateDay,
-		int displayDateYear, int displayDateHour, int displayDateMinute,
-		boolean allowPingbacks, boolean allowTrackbacks,
-		java.lang.String[] trackbacks, java.lang.String coverImageCaption,
+		HttpPrincipal httpPrincipal, long entryId, String title,
+		String subtitle, String description, String content,
+		int displayDateMonth, int displayDateDay, int displayDateYear,
+		int displayDateHour, int displayDateMinute, boolean allowPingbacks,
+		boolean allowTrackbacks, String[] trackbacks, String coverImageCaption,
 		com.liferay.portal.kernel.servlet.taglib.ui.ImageSelector coverImageImageSelector,
 		com.liferay.portal.kernel.servlet.taglib.ui.ImageSelector smallImageImageSelector,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
@@ -955,18 +946,16 @@ public class BlogsEntryServiceHttp {
 
 	private static Log _log = LogFactoryUtil.getLog(BlogsEntryServiceHttp.class);
 	private static final Class<?>[] _addEntryParameterTypes0 = new Class[] {
-			java.lang.String.class, java.lang.String.class,
-			java.lang.String.class, int.class, int.class, int.class, int.class,
-			int.class, boolean.class, boolean.class, java.lang.String[].class,
-			boolean.class, java.lang.String.class, java.lang.String.class,
+			String.class, String.class, String.class, int.class, int.class,
+			int.class, int.class, int.class, boolean.class, boolean.class,
+			String[].class, boolean.class, String.class, String.class,
 			java.io.InputStream.class,
 			com.liferay.portal.kernel.service.ServiceContext.class
 		};
 	private static final Class<?>[] _addEntryParameterTypes1 = new Class[] {
-			java.lang.String.class, java.lang.String.class,
-			java.lang.String.class, java.lang.String.class, int.class, int.class,
-			int.class, int.class, int.class, boolean.class, boolean.class,
-			java.lang.String[].class, java.lang.String.class,
+			String.class, String.class, String.class, String.class, int.class,
+			int.class, int.class, int.class, int.class, boolean.class,
+			boolean.class, String[].class, String.class,
 			com.liferay.portal.kernel.servlet.taglib.ui.ImageSelector.class,
 			com.liferay.portal.kernel.servlet.taglib.ui.ImageSelector.class,
 			com.liferay.portal.kernel.service.ServiceContext.class
@@ -978,16 +967,15 @@ public class BlogsEntryServiceHttp {
 			long.class, java.util.Date.class, int.class, int.class
 		};
 	private static final Class<?>[] _getCompanyEntriesRSSParameterTypes4 = new Class[] {
-			long.class, java.util.Date.class, int.class, int.class,
-			java.lang.String.class, double.class, java.lang.String.class,
-			java.lang.String.class, java.lang.String.class,
+			long.class, java.util.Date.class, int.class, int.class, String.class,
+			double.class, String.class, String.class, String.class,
 			com.liferay.portal.kernel.theme.ThemeDisplay.class
 		};
 	private static final Class<?>[] _getEntryParameterTypes5 = new Class[] {
 			long.class
 		};
 	private static final Class<?>[] _getEntryParameterTypes6 = new Class[] {
-			long.class, java.lang.String.class
+			long.class, String.class
 		};
 	private static final Class<?>[] _getGroupEntriesParameterTypes7 = new Class[] {
 			long.class, java.util.Date.class, int.class, int.class
@@ -1012,9 +1000,8 @@ public class BlogsEntryServiceHttp {
 			long.class, int.class
 		};
 	private static final Class<?>[] _getGroupEntriesRSSParameterTypes14 = new Class[] {
-			long.class, java.util.Date.class, int.class, int.class,
-			java.lang.String.class, double.class, java.lang.String.class,
-			java.lang.String.class, java.lang.String.class,
+			long.class, java.util.Date.class, int.class, int.class, String.class,
+			double.class, String.class, String.class, String.class,
 			com.liferay.portal.kernel.theme.ThemeDisplay.class
 		};
 	private static final Class<?>[] _getGroupsEntriesParameterTypes15 = new Class[] {
@@ -1038,9 +1025,8 @@ public class BlogsEntryServiceHttp {
 			long.class, java.util.Date.class, int.class, int.class
 		};
 	private static final Class<?>[] _getOrganizationEntriesRSSParameterTypes21 = new Class[] {
-			long.class, java.util.Date.class, int.class, int.class,
-			java.lang.String.class, double.class, java.lang.String.class,
-			java.lang.String.class, java.lang.String.class,
+			long.class, java.util.Date.class, int.class, int.class, String.class,
+			double.class, String.class, String.class, String.class,
 			com.liferay.portal.kernel.theme.ThemeDisplay.class
 		};
 	private static final Class<?>[] _moveEntryToTrashParameterTypes22 = new Class[] {
@@ -1056,18 +1042,16 @@ public class BlogsEntryServiceHttp {
 			long.class
 		};
 	private static final Class<?>[] _updateEntryParameterTypes26 = new Class[] {
-			long.class, java.lang.String.class, java.lang.String.class,
-			java.lang.String.class, int.class, int.class, int.class, int.class,
-			int.class, boolean.class, boolean.class, java.lang.String[].class,
-			boolean.class, java.lang.String.class, java.lang.String.class,
-			java.io.InputStream.class,
+			long.class, String.class, String.class, String.class, int.class,
+			int.class, int.class, int.class, int.class, boolean.class,
+			boolean.class, String[].class, boolean.class, String.class,
+			String.class, java.io.InputStream.class,
 			com.liferay.portal.kernel.service.ServiceContext.class
 		};
 	private static final Class<?>[] _updateEntryParameterTypes27 = new Class[] {
-			long.class, java.lang.String.class, java.lang.String.class,
-			java.lang.String.class, java.lang.String.class, int.class, int.class,
-			int.class, int.class, int.class, boolean.class, boolean.class,
-			java.lang.String[].class, java.lang.String.class,
+			long.class, String.class, String.class, String.class, String.class,
+			int.class, int.class, int.class, int.class, int.class, boolean.class,
+			boolean.class, String[].class, String.class,
 			com.liferay.portal.kernel.servlet.taglib.ui.ImageSelector.class,
 			com.liferay.portal.kernel.servlet.taglib.ui.ImageSelector.class,
 			com.liferay.portal.kernel.service.ServiceContext.class

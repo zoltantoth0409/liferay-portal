@@ -34,8 +34,7 @@ public class BlogsEntryFinderUtil {
 	}
 
 	public static int countByOrganizationIds(
-		java.util.List<java.lang.Long> organizationIds,
-		java.util.Date displayDate,
+		java.util.List<Long> organizationIds, java.util.Date displayDate,
 		com.liferay.portal.kernel.dao.orm.QueryDefinition<com.liferay.blogs.kernel.model.BlogsEntry> queryDefinition) {
 		return getFinder()
 				   .countByOrganizationIds(organizationIds, displayDate,
@@ -59,8 +58,7 @@ public class BlogsEntryFinderUtil {
 	}
 
 	public static java.util.List<com.liferay.blogs.kernel.model.BlogsEntry> findByOrganizationIds(
-		java.util.List<java.lang.Long> organizationIds,
-		java.util.Date displayDate,
+		java.util.List<Long> organizationIds, java.util.Date displayDate,
 		com.liferay.portal.kernel.dao.orm.QueryDefinition<com.liferay.blogs.kernel.model.BlogsEntry> queryDefinition) {
 		return getFinder()
 				   .findByOrganizationIds(organizationIds, displayDate,

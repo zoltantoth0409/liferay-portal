@@ -67,11 +67,10 @@ public interface WSRPConsumerLocalService extends BaseLocalService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link WSRPConsumerLocalServiceUtil} to access the wsrp consumer local service. Add custom service methods to {@link com.liferay.wsrp.service.impl.WSRPConsumerLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public WSRPConsumer addWSRPConsumer(long companyId,
-		java.lang.String adminPortletId, java.lang.String name,
-		java.lang.String url, java.lang.String forwardCookies,
-		java.lang.String forwardHeaders, java.lang.String markupCharacterSets,
-		ServiceContext serviceContext) throws PortalException;
+	public WSRPConsumer addWSRPConsumer(long companyId, String adminPortletId,
+		String name, String url, String forwardCookies, String forwardHeaders,
+		String markupCharacterSets, ServiceContext serviceContext)
+		throws PortalException;
 
 	/**
 	* Adds the wsrp consumer to the database. Also notifies the appropriate model listeners.
@@ -193,8 +192,8 @@ public interface WSRPConsumerLocalService extends BaseLocalService,
 	* @return the matching wsrp consumer, or <code>null</code> if a matching wsrp consumer could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public WSRPConsumer fetchWSRPConsumerByUuidAndCompanyId(
-		java.lang.String uuid, long companyId);
+	public WSRPConsumer fetchWSRPConsumerByUuidAndCompanyId(String uuid,
+		long companyId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();
@@ -211,7 +210,7 @@ public interface WSRPConsumerLocalService extends BaseLocalService,
 	*
 	* @return the OSGi service identifier
 	*/
-	public java.lang.String getOSGiServiceIdentifier();
+	public String getOSGiServiceIdentifier();
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -230,7 +229,7 @@ public interface WSRPConsumerLocalService extends BaseLocalService,
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public WSRPConsumer getWSRPConsumer(java.lang.String wsrpConsumerUuid)
+	public WSRPConsumer getWSRPConsumer(String wsrpConsumerUuid)
 		throws PortalException;
 
 	/**
@@ -242,8 +241,8 @@ public interface WSRPConsumerLocalService extends BaseLocalService,
 	* @throws PortalException if a matching wsrp consumer could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public WSRPConsumer getWSRPConsumerByUuidAndCompanyId(
-		java.lang.String uuid, long companyId) throws PortalException;
+	public WSRPConsumer getWSRPConsumerByUuidAndCompanyId(String uuid,
+		long companyId) throws PortalException;
 
 	/**
 	* Returns a range of all the wsrp consumers.
@@ -275,9 +274,8 @@ public interface WSRPConsumerLocalService extends BaseLocalService,
 	public int getWSRPConsumersCount(long companyId);
 
 	public WSRPConsumer registerWSRPConsumer(long wsrpConsumerId,
-		java.lang.String adminPortletId,
-		UnicodeProperties registrationProperties,
-		java.lang.String registrationHandle) throws PortalException;
+		String adminPortletId, UnicodeProperties registrationProperties,
+		String registrationHandle) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public void restartConsumer(long wsrpConsumerId) throws PortalException;
@@ -286,9 +284,8 @@ public interface WSRPConsumerLocalService extends BaseLocalService,
 		throws PortalException;
 
 	public WSRPConsumer updateWSRPConsumer(long wsrpConsumerId,
-		java.lang.String adminPortletId, java.lang.String name,
-		java.lang.String url, java.lang.String forwardCookies,
-		java.lang.String forwardHeaders, java.lang.String markupCharacterSets)
+		String adminPortletId, String name, String url, String forwardCookies,
+		String forwardHeaders, String markupCharacterSets)
 		throws PortalException;
 
 	/**

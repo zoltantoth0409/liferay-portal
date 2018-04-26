@@ -115,7 +115,7 @@ public class MBCategoryUtil {
 	* @param uuid the uuid
 	* @return the matching message boards categories
 	*/
-	public static List<MBCategory> findByUuid(java.lang.String uuid) {
+	public static List<MBCategory> findByUuid(String uuid) {
 		return getPersistence().findByUuid(uuid);
 	}
 
@@ -131,8 +131,7 @@ public class MBCategoryUtil {
 	* @param end the upper bound of the range of message boards categories (not inclusive)
 	* @return the range of matching message boards categories
 	*/
-	public static List<MBCategory> findByUuid(java.lang.String uuid, int start,
-		int end) {
+	public static List<MBCategory> findByUuid(String uuid, int start, int end) {
 		return getPersistence().findByUuid(uuid, start, end);
 	}
 
@@ -149,8 +148,8 @@ public class MBCategoryUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching message boards categories
 	*/
-	public static List<MBCategory> findByUuid(java.lang.String uuid, int start,
-		int end, OrderByComparator<MBCategory> orderByComparator) {
+	public static List<MBCategory> findByUuid(String uuid, int start, int end,
+		OrderByComparator<MBCategory> orderByComparator) {
 		return getPersistence().findByUuid(uuid, start, end, orderByComparator);
 	}
 
@@ -168,8 +167,8 @@ public class MBCategoryUtil {
 	* @param retrieveFromCache whether to retrieve from the finder cache
 	* @return the ordered range of matching message boards categories
 	*/
-	public static List<MBCategory> findByUuid(java.lang.String uuid, int start,
-		int end, OrderByComparator<MBCategory> orderByComparator,
+	public static List<MBCategory> findByUuid(String uuid, int start, int end,
+		OrderByComparator<MBCategory> orderByComparator,
 		boolean retrieveFromCache) {
 		return getPersistence()
 				   .findByUuid(uuid, start, end, orderByComparator,
@@ -184,7 +183,7 @@ public class MBCategoryUtil {
 	* @return the first matching message boards category
 	* @throws NoSuchCategoryException if a matching message boards category could not be found
 	*/
-	public static MBCategory findByUuid_First(java.lang.String uuid,
+	public static MBCategory findByUuid_First(String uuid,
 		OrderByComparator<MBCategory> orderByComparator)
 		throws com.liferay.message.boards.kernel.exception.NoSuchCategoryException {
 		return getPersistence().findByUuid_First(uuid, orderByComparator);
@@ -197,7 +196,7 @@ public class MBCategoryUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching message boards category, or <code>null</code> if a matching message boards category could not be found
 	*/
-	public static MBCategory fetchByUuid_First(java.lang.String uuid,
+	public static MBCategory fetchByUuid_First(String uuid,
 		OrderByComparator<MBCategory> orderByComparator) {
 		return getPersistence().fetchByUuid_First(uuid, orderByComparator);
 	}
@@ -210,7 +209,7 @@ public class MBCategoryUtil {
 	* @return the last matching message boards category
 	* @throws NoSuchCategoryException if a matching message boards category could not be found
 	*/
-	public static MBCategory findByUuid_Last(java.lang.String uuid,
+	public static MBCategory findByUuid_Last(String uuid,
 		OrderByComparator<MBCategory> orderByComparator)
 		throws com.liferay.message.boards.kernel.exception.NoSuchCategoryException {
 		return getPersistence().findByUuid_Last(uuid, orderByComparator);
@@ -223,7 +222,7 @@ public class MBCategoryUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching message boards category, or <code>null</code> if a matching message boards category could not be found
 	*/
-	public static MBCategory fetchByUuid_Last(java.lang.String uuid,
+	public static MBCategory fetchByUuid_Last(String uuid,
 		OrderByComparator<MBCategory> orderByComparator) {
 		return getPersistence().fetchByUuid_Last(uuid, orderByComparator);
 	}
@@ -238,7 +237,7 @@ public class MBCategoryUtil {
 	* @throws NoSuchCategoryException if a message boards category with the primary key could not be found
 	*/
 	public static MBCategory[] findByUuid_PrevAndNext(long categoryId,
-		java.lang.String uuid, OrderByComparator<MBCategory> orderByComparator)
+		String uuid, OrderByComparator<MBCategory> orderByComparator)
 		throws com.liferay.message.boards.kernel.exception.NoSuchCategoryException {
 		return getPersistence()
 				   .findByUuid_PrevAndNext(categoryId, uuid, orderByComparator);
@@ -249,7 +248,7 @@ public class MBCategoryUtil {
 	*
 	* @param uuid the uuid
 	*/
-	public static void removeByUuid(java.lang.String uuid) {
+	public static void removeByUuid(String uuid) {
 		getPersistence().removeByUuid(uuid);
 	}
 
@@ -259,7 +258,7 @@ public class MBCategoryUtil {
 	* @param uuid the uuid
 	* @return the number of matching message boards categories
 	*/
-	public static int countByUuid(java.lang.String uuid) {
+	public static int countByUuid(String uuid) {
 		return getPersistence().countByUuid(uuid);
 	}
 
@@ -271,7 +270,7 @@ public class MBCategoryUtil {
 	* @return the matching message boards category
 	* @throws NoSuchCategoryException if a matching message boards category could not be found
 	*/
-	public static MBCategory findByUUID_G(java.lang.String uuid, long groupId)
+	public static MBCategory findByUUID_G(String uuid, long groupId)
 		throws com.liferay.message.boards.kernel.exception.NoSuchCategoryException {
 		return getPersistence().findByUUID_G(uuid, groupId);
 	}
@@ -283,7 +282,7 @@ public class MBCategoryUtil {
 	* @param groupId the group ID
 	* @return the matching message boards category, or <code>null</code> if a matching message boards category could not be found
 	*/
-	public static MBCategory fetchByUUID_G(java.lang.String uuid, long groupId) {
+	public static MBCategory fetchByUUID_G(String uuid, long groupId) {
 		return getPersistence().fetchByUUID_G(uuid, groupId);
 	}
 
@@ -295,7 +294,7 @@ public class MBCategoryUtil {
 	* @param retrieveFromCache whether to retrieve from the finder cache
 	* @return the matching message boards category, or <code>null</code> if a matching message boards category could not be found
 	*/
-	public static MBCategory fetchByUUID_G(java.lang.String uuid, long groupId,
+	public static MBCategory fetchByUUID_G(String uuid, long groupId,
 		boolean retrieveFromCache) {
 		return getPersistence().fetchByUUID_G(uuid, groupId, retrieveFromCache);
 	}
@@ -307,7 +306,7 @@ public class MBCategoryUtil {
 	* @param groupId the group ID
 	* @return the message boards category that was removed
 	*/
-	public static MBCategory removeByUUID_G(java.lang.String uuid, long groupId)
+	public static MBCategory removeByUUID_G(String uuid, long groupId)
 		throws com.liferay.message.boards.kernel.exception.NoSuchCategoryException {
 		return getPersistence().removeByUUID_G(uuid, groupId);
 	}
@@ -319,7 +318,7 @@ public class MBCategoryUtil {
 	* @param groupId the group ID
 	* @return the number of matching message boards categories
 	*/
-	public static int countByUUID_G(java.lang.String uuid, long groupId) {
+	public static int countByUUID_G(String uuid, long groupId) {
 		return getPersistence().countByUUID_G(uuid, groupId);
 	}
 
@@ -330,8 +329,7 @@ public class MBCategoryUtil {
 	* @param companyId the company ID
 	* @return the matching message boards categories
 	*/
-	public static List<MBCategory> findByUuid_C(java.lang.String uuid,
-		long companyId) {
+	public static List<MBCategory> findByUuid_C(String uuid, long companyId) {
 		return getPersistence().findByUuid_C(uuid, companyId);
 	}
 
@@ -348,8 +346,8 @@ public class MBCategoryUtil {
 	* @param end the upper bound of the range of message boards categories (not inclusive)
 	* @return the range of matching message boards categories
 	*/
-	public static List<MBCategory> findByUuid_C(java.lang.String uuid,
-		long companyId, int start, int end) {
+	public static List<MBCategory> findByUuid_C(String uuid, long companyId,
+		int start, int end) {
 		return getPersistence().findByUuid_C(uuid, companyId, start, end);
 	}
 
@@ -367,9 +365,8 @@ public class MBCategoryUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching message boards categories
 	*/
-	public static List<MBCategory> findByUuid_C(java.lang.String uuid,
-		long companyId, int start, int end,
-		OrderByComparator<MBCategory> orderByComparator) {
+	public static List<MBCategory> findByUuid_C(String uuid, long companyId,
+		int start, int end, OrderByComparator<MBCategory> orderByComparator) {
 		return getPersistence()
 				   .findByUuid_C(uuid, companyId, start, end, orderByComparator);
 	}
@@ -389,9 +386,8 @@ public class MBCategoryUtil {
 	* @param retrieveFromCache whether to retrieve from the finder cache
 	* @return the ordered range of matching message boards categories
 	*/
-	public static List<MBCategory> findByUuid_C(java.lang.String uuid,
-		long companyId, int start, int end,
-		OrderByComparator<MBCategory> orderByComparator,
+	public static List<MBCategory> findByUuid_C(String uuid, long companyId,
+		int start, int end, OrderByComparator<MBCategory> orderByComparator,
 		boolean retrieveFromCache) {
 		return getPersistence()
 				   .findByUuid_C(uuid, companyId, start, end,
@@ -407,8 +403,8 @@ public class MBCategoryUtil {
 	* @return the first matching message boards category
 	* @throws NoSuchCategoryException if a matching message boards category could not be found
 	*/
-	public static MBCategory findByUuid_C_First(java.lang.String uuid,
-		long companyId, OrderByComparator<MBCategory> orderByComparator)
+	public static MBCategory findByUuid_C_First(String uuid, long companyId,
+		OrderByComparator<MBCategory> orderByComparator)
 		throws com.liferay.message.boards.kernel.exception.NoSuchCategoryException {
 		return getPersistence()
 				   .findByUuid_C_First(uuid, companyId, orderByComparator);
@@ -422,8 +418,8 @@ public class MBCategoryUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching message boards category, or <code>null</code> if a matching message boards category could not be found
 	*/
-	public static MBCategory fetchByUuid_C_First(java.lang.String uuid,
-		long companyId, OrderByComparator<MBCategory> orderByComparator) {
+	public static MBCategory fetchByUuid_C_First(String uuid, long companyId,
+		OrderByComparator<MBCategory> orderByComparator) {
 		return getPersistence()
 				   .fetchByUuid_C_First(uuid, companyId, orderByComparator);
 	}
@@ -437,8 +433,8 @@ public class MBCategoryUtil {
 	* @return the last matching message boards category
 	* @throws NoSuchCategoryException if a matching message boards category could not be found
 	*/
-	public static MBCategory findByUuid_C_Last(java.lang.String uuid,
-		long companyId, OrderByComparator<MBCategory> orderByComparator)
+	public static MBCategory findByUuid_C_Last(String uuid, long companyId,
+		OrderByComparator<MBCategory> orderByComparator)
 		throws com.liferay.message.boards.kernel.exception.NoSuchCategoryException {
 		return getPersistence()
 				   .findByUuid_C_Last(uuid, companyId, orderByComparator);
@@ -452,8 +448,8 @@ public class MBCategoryUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching message boards category, or <code>null</code> if a matching message boards category could not be found
 	*/
-	public static MBCategory fetchByUuid_C_Last(java.lang.String uuid,
-		long companyId, OrderByComparator<MBCategory> orderByComparator) {
+	public static MBCategory fetchByUuid_C_Last(String uuid, long companyId,
+		OrderByComparator<MBCategory> orderByComparator) {
 		return getPersistence()
 				   .fetchByUuid_C_Last(uuid, companyId, orderByComparator);
 	}
@@ -469,7 +465,7 @@ public class MBCategoryUtil {
 	* @throws NoSuchCategoryException if a message boards category with the primary key could not be found
 	*/
 	public static MBCategory[] findByUuid_C_PrevAndNext(long categoryId,
-		java.lang.String uuid, long companyId,
+		String uuid, long companyId,
 		OrderByComparator<MBCategory> orderByComparator)
 		throws com.liferay.message.boards.kernel.exception.NoSuchCategoryException {
 		return getPersistence()
@@ -483,7 +479,7 @@ public class MBCategoryUtil {
 	* @param uuid the uuid
 	* @param companyId the company ID
 	*/
-	public static void removeByUuid_C(java.lang.String uuid, long companyId) {
+	public static void removeByUuid_C(String uuid, long companyId) {
 		getPersistence().removeByUuid_C(uuid, companyId);
 	}
 
@@ -494,7 +490,7 @@ public class MBCategoryUtil {
 	* @param companyId the company ID
 	* @return the number of matching message boards categories
 	*/
-	public static int countByUuid_C(java.lang.String uuid, long companyId) {
+	public static int countByUuid_C(String uuid, long companyId) {
 		return getPersistence().countByUuid_C(uuid, companyId);
 	}
 
@@ -3218,7 +3214,7 @@ public class MBCategoryUtil {
 		return getPersistence().countAll();
 	}
 
-	public static java.util.Set<java.lang.String> getBadColumnNames() {
+	public static java.util.Set<String> getBadColumnNames() {
 		return getPersistence().getBadColumnNames();
 	}
 

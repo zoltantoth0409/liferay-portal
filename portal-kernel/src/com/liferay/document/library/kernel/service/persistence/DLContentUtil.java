@@ -291,7 +291,7 @@ public class DLContentUtil {
 	* @return the matching document library contents
 	*/
 	public static List<DLContent> findByC_R_P(long companyId,
-		long repositoryId, java.lang.String path) {
+		long repositoryId, String path) {
 		return getPersistence().findByC_R_P(companyId, repositoryId, path);
 	}
 
@@ -310,7 +310,7 @@ public class DLContentUtil {
 	* @return the range of matching document library contents
 	*/
 	public static List<DLContent> findByC_R_P(long companyId,
-		long repositoryId, java.lang.String path, int start, int end) {
+		long repositoryId, String path, int start, int end) {
 		return getPersistence()
 				   .findByC_R_P(companyId, repositoryId, path, start, end);
 	}
@@ -331,7 +331,7 @@ public class DLContentUtil {
 	* @return the ordered range of matching document library contents
 	*/
 	public static List<DLContent> findByC_R_P(long companyId,
-		long repositoryId, java.lang.String path, int start, int end,
+		long repositoryId, String path, int start, int end,
 		OrderByComparator<DLContent> orderByComparator) {
 		return getPersistence()
 				   .findByC_R_P(companyId, repositoryId, path, start, end,
@@ -355,7 +355,7 @@ public class DLContentUtil {
 	* @return the ordered range of matching document library contents
 	*/
 	public static List<DLContent> findByC_R_P(long companyId,
-		long repositoryId, java.lang.String path, int start, int end,
+		long repositoryId, String path, int start, int end,
 		OrderByComparator<DLContent> orderByComparator,
 		boolean retrieveFromCache) {
 		return getPersistence()
@@ -374,7 +374,7 @@ public class DLContentUtil {
 	* @throws NoSuchContentException if a matching document library content could not be found
 	*/
 	public static DLContent findByC_R_P_First(long companyId,
-		long repositoryId, java.lang.String path,
+		long repositoryId, String path,
 		OrderByComparator<DLContent> orderByComparator)
 		throws com.liferay.document.library.kernel.exception.NoSuchContentException {
 		return getPersistence()
@@ -392,7 +392,7 @@ public class DLContentUtil {
 	* @return the first matching document library content, or <code>null</code> if a matching document library content could not be found
 	*/
 	public static DLContent fetchByC_R_P_First(long companyId,
-		long repositoryId, java.lang.String path,
+		long repositoryId, String path,
 		OrderByComparator<DLContent> orderByComparator) {
 		return getPersistence()
 				   .fetchByC_R_P_First(companyId, repositoryId, path,
@@ -410,7 +410,7 @@ public class DLContentUtil {
 	* @throws NoSuchContentException if a matching document library content could not be found
 	*/
 	public static DLContent findByC_R_P_Last(long companyId, long repositoryId,
-		java.lang.String path, OrderByComparator<DLContent> orderByComparator)
+		String path, OrderByComparator<DLContent> orderByComparator)
 		throws com.liferay.document.library.kernel.exception.NoSuchContentException {
 		return getPersistence()
 				   .findByC_R_P_Last(companyId, repositoryId, path,
@@ -427,7 +427,7 @@ public class DLContentUtil {
 	* @return the last matching document library content, or <code>null</code> if a matching document library content could not be found
 	*/
 	public static DLContent fetchByC_R_P_Last(long companyId,
-		long repositoryId, java.lang.String path,
+		long repositoryId, String path,
 		OrderByComparator<DLContent> orderByComparator) {
 		return getPersistence()
 				   .fetchByC_R_P_Last(companyId, repositoryId, path,
@@ -446,7 +446,7 @@ public class DLContentUtil {
 	* @throws NoSuchContentException if a document library content with the primary key could not be found
 	*/
 	public static DLContent[] findByC_R_P_PrevAndNext(long contentId,
-		long companyId, long repositoryId, java.lang.String path,
+		long companyId, long repositoryId, String path,
 		OrderByComparator<DLContent> orderByComparator)
 		throws com.liferay.document.library.kernel.exception.NoSuchContentException {
 		return getPersistence()
@@ -462,7 +462,7 @@ public class DLContentUtil {
 	* @param path the path
 	*/
 	public static void removeByC_R_P(long companyId, long repositoryId,
-		java.lang.String path) {
+		String path) {
 		getPersistence().removeByC_R_P(companyId, repositoryId, path);
 	}
 
@@ -475,7 +475,7 @@ public class DLContentUtil {
 	* @return the number of matching document library contents
 	*/
 	public static int countByC_R_P(long companyId, long repositoryId,
-		java.lang.String path) {
+		String path) {
 		return getPersistence().countByC_R_P(companyId, repositoryId, path);
 	}
 
@@ -488,7 +488,7 @@ public class DLContentUtil {
 	* @return the matching document library contents
 	*/
 	public static List<DLContent> findByC_R_LikeP(long companyId,
-		long repositoryId, java.lang.String path) {
+		long repositoryId, String path) {
 		return getPersistence().findByC_R_LikeP(companyId, repositoryId, path);
 	}
 
@@ -507,7 +507,7 @@ public class DLContentUtil {
 	* @return the range of matching document library contents
 	*/
 	public static List<DLContent> findByC_R_LikeP(long companyId,
-		long repositoryId, java.lang.String path, int start, int end) {
+		long repositoryId, String path, int start, int end) {
 		return getPersistence()
 				   .findByC_R_LikeP(companyId, repositoryId, path, start, end);
 	}
@@ -528,7 +528,7 @@ public class DLContentUtil {
 	* @return the ordered range of matching document library contents
 	*/
 	public static List<DLContent> findByC_R_LikeP(long companyId,
-		long repositoryId, java.lang.String path, int start, int end,
+		long repositoryId, String path, int start, int end,
 		OrderByComparator<DLContent> orderByComparator) {
 		return getPersistence()
 				   .findByC_R_LikeP(companyId, repositoryId, path, start, end,
@@ -552,7 +552,7 @@ public class DLContentUtil {
 	* @return the ordered range of matching document library contents
 	*/
 	public static List<DLContent> findByC_R_LikeP(long companyId,
-		long repositoryId, java.lang.String path, int start, int end,
+		long repositoryId, String path, int start, int end,
 		OrderByComparator<DLContent> orderByComparator,
 		boolean retrieveFromCache) {
 		return getPersistence()
@@ -571,7 +571,7 @@ public class DLContentUtil {
 	* @throws NoSuchContentException if a matching document library content could not be found
 	*/
 	public static DLContent findByC_R_LikeP_First(long companyId,
-		long repositoryId, java.lang.String path,
+		long repositoryId, String path,
 		OrderByComparator<DLContent> orderByComparator)
 		throws com.liferay.document.library.kernel.exception.NoSuchContentException {
 		return getPersistence()
@@ -589,7 +589,7 @@ public class DLContentUtil {
 	* @return the first matching document library content, or <code>null</code> if a matching document library content could not be found
 	*/
 	public static DLContent fetchByC_R_LikeP_First(long companyId,
-		long repositoryId, java.lang.String path,
+		long repositoryId, String path,
 		OrderByComparator<DLContent> orderByComparator) {
 		return getPersistence()
 				   .fetchByC_R_LikeP_First(companyId, repositoryId, path,
@@ -607,7 +607,7 @@ public class DLContentUtil {
 	* @throws NoSuchContentException if a matching document library content could not be found
 	*/
 	public static DLContent findByC_R_LikeP_Last(long companyId,
-		long repositoryId, java.lang.String path,
+		long repositoryId, String path,
 		OrderByComparator<DLContent> orderByComparator)
 		throws com.liferay.document.library.kernel.exception.NoSuchContentException {
 		return getPersistence()
@@ -625,7 +625,7 @@ public class DLContentUtil {
 	* @return the last matching document library content, or <code>null</code> if a matching document library content could not be found
 	*/
 	public static DLContent fetchByC_R_LikeP_Last(long companyId,
-		long repositoryId, java.lang.String path,
+		long repositoryId, String path,
 		OrderByComparator<DLContent> orderByComparator) {
 		return getPersistence()
 				   .fetchByC_R_LikeP_Last(companyId, repositoryId, path,
@@ -644,7 +644,7 @@ public class DLContentUtil {
 	* @throws NoSuchContentException if a document library content with the primary key could not be found
 	*/
 	public static DLContent[] findByC_R_LikeP_PrevAndNext(long contentId,
-		long companyId, long repositoryId, java.lang.String path,
+		long companyId, long repositoryId, String path,
 		OrderByComparator<DLContent> orderByComparator)
 		throws com.liferay.document.library.kernel.exception.NoSuchContentException {
 		return getPersistence()
@@ -660,7 +660,7 @@ public class DLContentUtil {
 	* @param path the path
 	*/
 	public static void removeByC_R_LikeP(long companyId, long repositoryId,
-		java.lang.String path) {
+		String path) {
 		getPersistence().removeByC_R_LikeP(companyId, repositoryId, path);
 	}
 
@@ -673,7 +673,7 @@ public class DLContentUtil {
 	* @return the number of matching document library contents
 	*/
 	public static int countByC_R_LikeP(long companyId, long repositoryId,
-		java.lang.String path) {
+		String path) {
 		return getPersistence().countByC_R_LikeP(companyId, repositoryId, path);
 	}
 
@@ -688,7 +688,7 @@ public class DLContentUtil {
 	* @throws NoSuchContentException if a matching document library content could not be found
 	*/
 	public static DLContent findByC_R_P_V(long companyId, long repositoryId,
-		java.lang.String path, java.lang.String version)
+		String path, String version)
 		throws com.liferay.document.library.kernel.exception.NoSuchContentException {
 		return getPersistence()
 				   .findByC_R_P_V(companyId, repositoryId, path, version);
@@ -704,7 +704,7 @@ public class DLContentUtil {
 	* @return the matching document library content, or <code>null</code> if a matching document library content could not be found
 	*/
 	public static DLContent fetchByC_R_P_V(long companyId, long repositoryId,
-		java.lang.String path, java.lang.String version) {
+		String path, String version) {
 		return getPersistence()
 				   .fetchByC_R_P_V(companyId, repositoryId, path, version);
 	}
@@ -720,8 +720,7 @@ public class DLContentUtil {
 	* @return the matching document library content, or <code>null</code> if a matching document library content could not be found
 	*/
 	public static DLContent fetchByC_R_P_V(long companyId, long repositoryId,
-		java.lang.String path, java.lang.String version,
-		boolean retrieveFromCache) {
+		String path, String version, boolean retrieveFromCache) {
 		return getPersistence()
 				   .fetchByC_R_P_V(companyId, repositoryId, path, version,
 			retrieveFromCache);
@@ -737,7 +736,7 @@ public class DLContentUtil {
 	* @return the document library content that was removed
 	*/
 	public static DLContent removeByC_R_P_V(long companyId, long repositoryId,
-		java.lang.String path, java.lang.String version)
+		String path, String version)
 		throws com.liferay.document.library.kernel.exception.NoSuchContentException {
 		return getPersistence()
 				   .removeByC_R_P_V(companyId, repositoryId, path, version);
@@ -753,7 +752,7 @@ public class DLContentUtil {
 	* @return the number of matching document library contents
 	*/
 	public static int countByC_R_P_V(long companyId, long repositoryId,
-		java.lang.String path, java.lang.String version) {
+		String path, String version) {
 		return getPersistence()
 				   .countByC_R_P_V(companyId, repositoryId, path, version);
 	}
@@ -906,7 +905,7 @@ public class DLContentUtil {
 		return getPersistence().countAll();
 	}
 
-	public static java.util.Set<java.lang.String> getBadColumnNames() {
+	public static java.util.Set<String> getBadColumnNames() {
 		return getPersistence().getBadColumnNames();
 	}
 

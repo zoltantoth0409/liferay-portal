@@ -35,9 +35,8 @@ public class WSRPConsumerLocalServiceWrapper implements WSRPConsumerLocalService
 
 	@Override
 	public com.liferay.wsrp.model.WSRPConsumer addWSRPConsumer(long companyId,
-		java.lang.String adminPortletId, java.lang.String name,
-		java.lang.String url, java.lang.String forwardCookies,
-		java.lang.String forwardHeaders, java.lang.String markupCharacterSets,
+		String adminPortletId, String name, String url, String forwardCookies,
+		String forwardHeaders, String markupCharacterSets,
 		com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _wsrpConsumerLocalService.addWSRPConsumer(companyId,
@@ -213,7 +212,7 @@ public class WSRPConsumerLocalServiceWrapper implements WSRPConsumerLocalService
 	*/
 	@Override
 	public com.liferay.wsrp.model.WSRPConsumer fetchWSRPConsumerByUuidAndCompanyId(
-		java.lang.String uuid, long companyId) {
+		String uuid, long companyId) {
 		return _wsrpConsumerLocalService.fetchWSRPConsumerByUuidAndCompanyId(uuid,
 			companyId);
 	}
@@ -240,7 +239,7 @@ public class WSRPConsumerLocalServiceWrapper implements WSRPConsumerLocalService
 	* @return the OSGi service identifier
 	*/
 	@Override
-	public java.lang.String getOSGiServiceIdentifier() {
+	public String getOSGiServiceIdentifier() {
 		return _wsrpConsumerLocalService.getOSGiServiceIdentifier();
 	}
 
@@ -267,7 +266,7 @@ public class WSRPConsumerLocalServiceWrapper implements WSRPConsumerLocalService
 
 	@Override
 	public com.liferay.wsrp.model.WSRPConsumer getWSRPConsumer(
-		java.lang.String wsrpConsumerUuid)
+		String wsrpConsumerUuid)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _wsrpConsumerLocalService.getWSRPConsumer(wsrpConsumerUuid);
 	}
@@ -282,7 +281,7 @@ public class WSRPConsumerLocalServiceWrapper implements WSRPConsumerLocalService
 	*/
 	@Override
 	public com.liferay.wsrp.model.WSRPConsumer getWSRPConsumerByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
+		String uuid, long companyId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _wsrpConsumerLocalService.getWSRPConsumerByUuidAndCompanyId(uuid,
 			companyId);
@@ -328,9 +327,9 @@ public class WSRPConsumerLocalServiceWrapper implements WSRPConsumerLocalService
 
 	@Override
 	public com.liferay.wsrp.model.WSRPConsumer registerWSRPConsumer(
-		long wsrpConsumerId, java.lang.String adminPortletId,
+		long wsrpConsumerId, String adminPortletId,
 		com.liferay.portal.kernel.util.UnicodeProperties registrationProperties,
-		java.lang.String registrationHandle)
+		String registrationHandle)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _wsrpConsumerLocalService.registerWSRPConsumer(wsrpConsumerId,
 			adminPortletId, registrationProperties, registrationHandle);
@@ -350,10 +349,8 @@ public class WSRPConsumerLocalServiceWrapper implements WSRPConsumerLocalService
 
 	@Override
 	public com.liferay.wsrp.model.WSRPConsumer updateWSRPConsumer(
-		long wsrpConsumerId, java.lang.String adminPortletId,
-		java.lang.String name, java.lang.String url,
-		java.lang.String forwardCookies, java.lang.String forwardHeaders,
-		java.lang.String markupCharacterSets)
+		long wsrpConsumerId, String adminPortletId, String name, String url,
+		String forwardCookies, String forwardHeaders, String markupCharacterSets)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _wsrpConsumerLocalService.updateWSRPConsumer(wsrpConsumerId,
 			adminPortletId, name, url, forwardCookies, forwardHeaders,

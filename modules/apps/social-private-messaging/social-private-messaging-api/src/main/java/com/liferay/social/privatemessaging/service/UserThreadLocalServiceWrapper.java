@@ -35,9 +35,8 @@ public class UserThreadLocalServiceWrapper implements UserThreadLocalService,
 
 	@Override
 	public com.liferay.message.boards.kernel.model.MBMessage addPrivateMessage(
-		long userId, long mbThreadId, java.lang.String to,
-		java.lang.String subject, java.lang.String body,
-		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<java.lang.String, java.io.InputStream>> inputStreamOVPs,
+		long userId, long mbThreadId, String to, String subject, String body,
+		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<String, java.io.InputStream>> inputStreamOVPs,
 		com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _userThreadLocalService.addPrivateMessage(userId, mbThreadId,
@@ -46,8 +45,8 @@ public class UserThreadLocalServiceWrapper implements UserThreadLocalService,
 
 	@Override
 	public com.liferay.message.boards.kernel.model.MBMessage addPrivateMessageBranch(
-		long userId, long parentMBMessageId, java.lang.String body,
-		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<java.lang.String, java.io.InputStream>> inputStreamOVPs,
+		long userId, long parentMBMessageId, String body,
+		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<String, java.io.InputStream>> inputStreamOVPs,
 		com.liferay.portal.kernel.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _userThreadLocalService.addPrivateMessageBranch(userId,
@@ -254,7 +253,7 @@ public class UserThreadLocalServiceWrapper implements UserThreadLocalService,
 	* @return the OSGi service identifier
 	*/
 	@Override
-	public java.lang.String getOSGiServiceIdentifier() {
+	public String getOSGiServiceIdentifier() {
 		return _userThreadLocalService.getOSGiServiceIdentifier();
 	}
 

@@ -227,7 +227,7 @@ public class MBThreadWrapper implements MBThread, ModelWrapper<MBThread> {
 	}
 
 	@Override
-	public java.lang.Object clone() {
+	public Object clone() {
 		return new MBThreadWrapper((MBThread)_mbThread.clone());
 	}
 
@@ -283,7 +283,7 @@ public class MBThreadWrapper implements MBThread, ModelWrapper<MBThread> {
 	* @return the container name of this message boards thread
 	*/
 	@Override
-	public java.lang.String getContainerModelName() {
+	public String getContainerModelName() {
 		return _mbThread.getContainerModelName();
 	}
 
@@ -328,7 +328,7 @@ public class MBThreadWrapper implements MBThread, ModelWrapper<MBThread> {
 	* @return the last post by user uuid of this message boards thread
 	*/
 	@Override
-	public java.lang.String getLastPostByUserUuid() {
+	public String getLastPostByUserUuid() {
 		return _mbThread.getLastPostByUserUuid();
 	}
 
@@ -453,7 +453,7 @@ public class MBThreadWrapper implements MBThread, ModelWrapper<MBThread> {
 	* @return the root message user uuid of this message boards thread
 	*/
 	@Override
-	public java.lang.String getRootMessageUserUuid() {
+	public String getRootMessageUserUuid() {
 		return _mbThread.getRootMessageUserUuid();
 	}
 
@@ -483,7 +483,7 @@ public class MBThreadWrapper implements MBThread, ModelWrapper<MBThread> {
 	* @return the status by user name of this message boards thread
 	*/
 	@Override
-	public java.lang.String getStatusByUserName() {
+	public String getStatusByUserName() {
 		return _mbThread.getStatusByUserName();
 	}
 
@@ -493,7 +493,7 @@ public class MBThreadWrapper implements MBThread, ModelWrapper<MBThread> {
 	* @return the status by user uuid of this message boards thread
 	*/
 	@Override
-	public java.lang.String getStatusByUserUuid() {
+	public String getStatusByUserUuid() {
 		return _mbThread.getStatusByUserUuid();
 	}
 
@@ -566,7 +566,7 @@ public class MBThreadWrapper implements MBThread, ModelWrapper<MBThread> {
 	* @return the user name of this message boards thread
 	*/
 	@Override
-	public java.lang.String getUserName() {
+	public String getUserName() {
 		return _mbThread.getUserName();
 	}
 
@@ -576,7 +576,7 @@ public class MBThreadWrapper implements MBThread, ModelWrapper<MBThread> {
 	* @return the user uuid of this message boards thread
 	*/
 	@Override
-	public java.lang.String getUserUuid() {
+	public String getUserUuid() {
 		return _mbThread.getUserUuid();
 	}
 
@@ -586,7 +586,7 @@ public class MBThreadWrapper implements MBThread, ModelWrapper<MBThread> {
 	* @return the uuid of this message boards thread
 	*/
 	@Override
-	public java.lang.String getUuid() {
+	public String getUuid() {
 		return _mbThread.getUuid();
 	}
 
@@ -842,7 +842,7 @@ public class MBThreadWrapper implements MBThread, ModelWrapper<MBThread> {
 	* @param lastPostByUserUuid the last post by user uuid of this message boards thread
 	*/
 	@Override
-	public void setLastPostByUserUuid(java.lang.String lastPostByUserUuid) {
+	public void setLastPostByUserUuid(String lastPostByUserUuid) {
 		_mbThread.setLastPostByUserUuid(lastPostByUserUuid);
 	}
 
@@ -962,7 +962,7 @@ public class MBThreadWrapper implements MBThread, ModelWrapper<MBThread> {
 	* @param rootMessageUserUuid the root message user uuid of this message boards thread
 	*/
 	@Override
-	public void setRootMessageUserUuid(java.lang.String rootMessageUserUuid) {
+	public void setRootMessageUserUuid(String rootMessageUserUuid) {
 		_mbThread.setRootMessageUserUuid(rootMessageUserUuid);
 	}
 
@@ -992,7 +992,7 @@ public class MBThreadWrapper implements MBThread, ModelWrapper<MBThread> {
 	* @param statusByUserName the status by user name of this message boards thread
 	*/
 	@Override
-	public void setStatusByUserName(java.lang.String statusByUserName) {
+	public void setStatusByUserName(String statusByUserName) {
 		_mbThread.setStatusByUserName(statusByUserName);
 	}
 
@@ -1002,7 +1002,7 @@ public class MBThreadWrapper implements MBThread, ModelWrapper<MBThread> {
 	* @param statusByUserUuid the status by user uuid of this message boards thread
 	*/
 	@Override
-	public void setStatusByUserUuid(java.lang.String statusByUserUuid) {
+	public void setStatusByUserUuid(String statusByUserUuid) {
 		_mbThread.setStatusByUserUuid(statusByUserUuid);
 	}
 
@@ -1042,7 +1042,7 @@ public class MBThreadWrapper implements MBThread, ModelWrapper<MBThread> {
 	* @param userName the user name of this message boards thread
 	*/
 	@Override
-	public void setUserName(java.lang.String userName) {
+	public void setUserName(String userName) {
 		_mbThread.setUserName(userName);
 	}
 
@@ -1052,7 +1052,7 @@ public class MBThreadWrapper implements MBThread, ModelWrapper<MBThread> {
 	* @param userUuid the user uuid of this message boards thread
 	*/
 	@Override
-	public void setUserUuid(java.lang.String userUuid) {
+	public void setUserUuid(String userUuid) {
 		_mbThread.setUserUuid(userUuid);
 	}
 
@@ -1062,7 +1062,7 @@ public class MBThreadWrapper implements MBThread, ModelWrapper<MBThread> {
 	* @param uuid the uuid of this message boards thread
 	*/
 	@Override
-	public void setUuid(java.lang.String uuid) {
+	public void setUuid(String uuid) {
 		_mbThread.setUuid(uuid);
 	}
 
@@ -1087,7 +1087,7 @@ public class MBThreadWrapper implements MBThread, ModelWrapper<MBThread> {
 	}
 
 	@Override
-	public java.lang.String toString() {
+	public String toString() {
 		return _mbThread.toString();
 	}
 
@@ -1097,7 +1097,7 @@ public class MBThreadWrapper implements MBThread, ModelWrapper<MBThread> {
 	}
 
 	@Override
-	public java.lang.String toXmlString() {
+	public String toXmlString() {
 		return _mbThread.toXmlString();
 	}
 

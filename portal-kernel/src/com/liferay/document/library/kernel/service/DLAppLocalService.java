@@ -57,9 +57,8 @@ public interface DLAppLocalService extends BaseLocalService {
 	 * Never modify or reference this interface directly. Always use {@link DLAppLocalServiceUtil} to access the dl app local service. Add custom service methods to {@link com.liferay.portlet.documentlibrary.service.impl.DLAppLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	public FileEntry addFileEntry(long userId, long repositoryId,
-		long folderId, java.lang.String sourceFileName,
-		java.lang.String mimeType, byte[] bytes, ServiceContext serviceContext)
-		throws PortalException;
+		long folderId, String sourceFileName, String mimeType, byte[] bytes,
+		ServiceContext serviceContext) throws PortalException;
 
 	/**
 	* Adds a file entry and associated metadata based on a byte array.
@@ -92,9 +91,8 @@ public interface DLAppLocalService extends BaseLocalService {
 	* @return the file entry
 	*/
 	public FileEntry addFileEntry(long userId, long repositoryId,
-		long folderId, java.lang.String sourceFileName,
-		java.lang.String mimeType, java.lang.String title,
-		java.lang.String description, java.lang.String changeLog, byte[] bytes,
+		long folderId, String sourceFileName, String mimeType, String title,
+		String description, String changeLog, byte[] bytes,
 		ServiceContext serviceContext) throws PortalException;
 
 	/**
@@ -128,9 +126,8 @@ public interface DLAppLocalService extends BaseLocalService {
 	* @return the file entry
 	*/
 	public FileEntry addFileEntry(long userId, long repositoryId,
-		long folderId, java.lang.String sourceFileName,
-		java.lang.String mimeType, java.lang.String title,
-		java.lang.String description, java.lang.String changeLog, File file,
+		long folderId, String sourceFileName, String mimeType, String title,
+		String description, String changeLog, File file,
 		ServiceContext serviceContext) throws PortalException;
 
 	/**
@@ -166,11 +163,9 @@ public interface DLAppLocalService extends BaseLocalService {
 	* @return the file entry
 	*/
 	public FileEntry addFileEntry(long userId, long repositoryId,
-		long folderId, java.lang.String sourceFileName,
-		java.lang.String mimeType, java.lang.String title,
-		java.lang.String description, java.lang.String changeLog,
-		InputStream is, long size, ServiceContext serviceContext)
-		throws PortalException;
+		long folderId, String sourceFileName, String mimeType, String title,
+		String description, String changeLog, InputStream is, long size,
+		ServiceContext serviceContext) throws PortalException;
 
 	/**
 	* Adds the file rank to the existing file entry. This method is only
@@ -218,9 +213,8 @@ public interface DLAppLocalService extends BaseLocalService {
 	* @return the folder
 	*/
 	public Folder addFolder(long userId, long repositoryId,
-		long parentFolderId, java.lang.String name,
-		java.lang.String description, ServiceContext serviceContext)
-		throws PortalException;
+		long parentFolderId, String name, String description,
+		ServiceContext serviceContext) throws PortalException;
 
 	/**
 	* Delete all data associated to the given repository. This method is only
@@ -307,8 +301,8 @@ public interface DLAppLocalService extends BaseLocalService {
 	* @return the file entry with the title in the folder
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public FileEntry getFileEntry(long groupId, long folderId,
-		java.lang.String title) throws PortalException;
+	public FileEntry getFileEntry(long groupId, long folderId, String title)
+		throws PortalException;
 
 	/**
 	* Returns the file entry with the UUID and group.
@@ -318,8 +312,8 @@ public interface DLAppLocalService extends BaseLocalService {
 	* @return the file entry with the UUID and group
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public FileEntry getFileEntryByUuidAndGroupId(java.lang.String uuid,
-		long groupId) throws PortalException;
+	public FileEntry getFileEntryByUuidAndGroupId(String uuid, long groupId)
+		throws PortalException;
 
 	/**
 	* Returns the file ranks from the user. This method is only supported by
@@ -371,8 +365,8 @@ public interface DLAppLocalService extends BaseLocalService {
 	* @return the folder with the name in the parent folder
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Folder getFolder(long repositoryId, long parentFolderId,
-		java.lang.String name) throws PortalException;
+	public Folder getFolder(long repositoryId, long parentFolderId, String name)
+		throws PortalException;
 
 	/**
 	* Returns the mount folder of the repository with the primary key. This
@@ -389,7 +383,7 @@ public interface DLAppLocalService extends BaseLocalService {
 	*
 	* @return the OSGi service identifier
 	*/
-	public java.lang.String getOSGiServiceIdentifier();
+	public String getOSGiServiceIdentifier();
 
 	/**
 	* Moves the file entry to the new folder.
@@ -464,7 +458,7 @@ public interface DLAppLocalService extends BaseLocalService {
 	*/
 	public void updateAsset(long userId, FileEntry fileEntry,
 		FileVersion fileVersion, long[] assetCategoryIds,
-		java.lang.String[] assetTagNames, long[] assetLinkEntryIds)
+		String[] assetTagNames, long[] assetLinkEntryIds)
 		throws PortalException;
 
 	/**
@@ -502,10 +496,9 @@ public interface DLAppLocalService extends BaseLocalService {
 	* @return the file entry
 	*/
 	public FileEntry updateFileEntry(long userId, long fileEntryId,
-		java.lang.String sourceFileName, java.lang.String mimeType,
-		java.lang.String title, java.lang.String description,
-		java.lang.String changeLog, boolean majorVersion, byte[] bytes,
-		ServiceContext serviceContext) throws PortalException;
+		String sourceFileName, String mimeType, String title,
+		String description, String changeLog, boolean majorVersion,
+		byte[] bytes, ServiceContext serviceContext) throws PortalException;
 
 	/**
 	* Updates a file entry and associated metadata based on a {@link File}
@@ -542,9 +535,8 @@ public interface DLAppLocalService extends BaseLocalService {
 	* @return the file entry
 	*/
 	public FileEntry updateFileEntry(long userId, long fileEntryId,
-		java.lang.String sourceFileName, java.lang.String mimeType,
-		java.lang.String title, java.lang.String description,
-		java.lang.String changeLog, boolean majorVersion, File file,
+		String sourceFileName, String mimeType, String title,
+		String description, String changeLog, boolean majorVersion, File file,
 		ServiceContext serviceContext) throws PortalException;
 
 	/**
@@ -583,10 +575,10 @@ public interface DLAppLocalService extends BaseLocalService {
 	* @return the file entry
 	*/
 	public FileEntry updateFileEntry(long userId, long fileEntryId,
-		java.lang.String sourceFileName, java.lang.String mimeType,
-		java.lang.String title, java.lang.String description,
-		java.lang.String changeLog, boolean majorVersion, InputStream is,
-		long size, ServiceContext serviceContext) throws PortalException;
+		String sourceFileName, String mimeType, String title,
+		String description, String changeLog, boolean majorVersion,
+		InputStream is, long size, ServiceContext serviceContext)
+		throws PortalException;
 
 	/**
 	* Updates a file rank to the existing file entry. This method is only
@@ -633,7 +625,7 @@ public interface DLAppLocalService extends BaseLocalService {
 	* @deprecated As of 7.0.0, replaced by {@link #updateFileShortcuts(long,
 	long)}
 	*/
-	@java.lang.Deprecated
+	@Deprecated
 	public void updateFileShortcuts(long toRepositoryId, long oldToFileEntryId,
 		long newToFileEntryId) throws PortalException;
 
@@ -658,7 +650,7 @@ public interface DLAppLocalService extends BaseLocalService {
 	</ul>
 	* @return the folder
 	*/
-	public Folder updateFolder(long folderId, long parentFolderId,
-		java.lang.String name, java.lang.String description,
-		ServiceContext serviceContext) throws PortalException;
+	public Folder updateFolder(long folderId, long parentFolderId, String name,
+		String description, ServiceContext serviceContext)
+		throws PortalException;
 }

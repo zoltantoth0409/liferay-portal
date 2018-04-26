@@ -115,8 +115,7 @@ public class ResourceBlockUtil {
 	* @param name the name
 	* @return the matching resource blocks
 	*/
-	public static List<ResourceBlock> findByC_N(long companyId,
-		java.lang.String name) {
+	public static List<ResourceBlock> findByC_N(long companyId, String name) {
 		return getPersistence().findByC_N(companyId, name);
 	}
 
@@ -133,8 +132,8 @@ public class ResourceBlockUtil {
 	* @param end the upper bound of the range of resource blocks (not inclusive)
 	* @return the range of matching resource blocks
 	*/
-	public static List<ResourceBlock> findByC_N(long companyId,
-		java.lang.String name, int start, int end) {
+	public static List<ResourceBlock> findByC_N(long companyId, String name,
+		int start, int end) {
 		return getPersistence().findByC_N(companyId, name, start, end);
 	}
 
@@ -152,9 +151,8 @@ public class ResourceBlockUtil {
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching resource blocks
 	*/
-	public static List<ResourceBlock> findByC_N(long companyId,
-		java.lang.String name, int start, int end,
-		OrderByComparator<ResourceBlock> orderByComparator) {
+	public static List<ResourceBlock> findByC_N(long companyId, String name,
+		int start, int end, OrderByComparator<ResourceBlock> orderByComparator) {
 		return getPersistence()
 				   .findByC_N(companyId, name, start, end, orderByComparator);
 	}
@@ -174,9 +172,8 @@ public class ResourceBlockUtil {
 	* @param retrieveFromCache whether to retrieve from the finder cache
 	* @return the ordered range of matching resource blocks
 	*/
-	public static List<ResourceBlock> findByC_N(long companyId,
-		java.lang.String name, int start, int end,
-		OrderByComparator<ResourceBlock> orderByComparator,
+	public static List<ResourceBlock> findByC_N(long companyId, String name,
+		int start, int end, OrderByComparator<ResourceBlock> orderByComparator,
 		boolean retrieveFromCache) {
 		return getPersistence()
 				   .findByC_N(companyId, name, start, end, orderByComparator,
@@ -192,8 +189,7 @@ public class ResourceBlockUtil {
 	* @return the first matching resource block
 	* @throws NoSuchResourceBlockException if a matching resource block could not be found
 	*/
-	public static ResourceBlock findByC_N_First(long companyId,
-		java.lang.String name,
+	public static ResourceBlock findByC_N_First(long companyId, String name,
 		OrderByComparator<ResourceBlock> orderByComparator)
 		throws com.liferay.portal.kernel.exception.NoSuchResourceBlockException {
 		return getPersistence()
@@ -208,8 +204,7 @@ public class ResourceBlockUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching resource block, or <code>null</code> if a matching resource block could not be found
 	*/
-	public static ResourceBlock fetchByC_N_First(long companyId,
-		java.lang.String name,
+	public static ResourceBlock fetchByC_N_First(long companyId, String name,
 		OrderByComparator<ResourceBlock> orderByComparator) {
 		return getPersistence()
 				   .fetchByC_N_First(companyId, name, orderByComparator);
@@ -224,8 +219,7 @@ public class ResourceBlockUtil {
 	* @return the last matching resource block
 	* @throws NoSuchResourceBlockException if a matching resource block could not be found
 	*/
-	public static ResourceBlock findByC_N_Last(long companyId,
-		java.lang.String name,
+	public static ResourceBlock findByC_N_Last(long companyId, String name,
 		OrderByComparator<ResourceBlock> orderByComparator)
 		throws com.liferay.portal.kernel.exception.NoSuchResourceBlockException {
 		return getPersistence()
@@ -240,8 +234,7 @@ public class ResourceBlockUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching resource block, or <code>null</code> if a matching resource block could not be found
 	*/
-	public static ResourceBlock fetchByC_N_Last(long companyId,
-		java.lang.String name,
+	public static ResourceBlock fetchByC_N_Last(long companyId, String name,
 		OrderByComparator<ResourceBlock> orderByComparator) {
 		return getPersistence()
 				   .fetchByC_N_Last(companyId, name, orderByComparator);
@@ -258,7 +251,7 @@ public class ResourceBlockUtil {
 	* @throws NoSuchResourceBlockException if a resource block with the primary key could not be found
 	*/
 	public static ResourceBlock[] findByC_N_PrevAndNext(long resourceBlockId,
-		long companyId, java.lang.String name,
+		long companyId, String name,
 		OrderByComparator<ResourceBlock> orderByComparator)
 		throws com.liferay.portal.kernel.exception.NoSuchResourceBlockException {
 		return getPersistence()
@@ -272,7 +265,7 @@ public class ResourceBlockUtil {
 	* @param companyId the company ID
 	* @param name the name
 	*/
-	public static void removeByC_N(long companyId, java.lang.String name) {
+	public static void removeByC_N(long companyId, String name) {
 		getPersistence().removeByC_N(companyId, name);
 	}
 
@@ -283,7 +276,7 @@ public class ResourceBlockUtil {
 	* @param name the name
 	* @return the number of matching resource blocks
 	*/
-	public static int countByC_N(long companyId, java.lang.String name) {
+	public static int countByC_N(long companyId, String name) {
 		return getPersistence().countByC_N(companyId, name);
 	}
 
@@ -296,7 +289,7 @@ public class ResourceBlockUtil {
 	* @return the matching resource blocks
 	*/
 	public static List<ResourceBlock> findByC_G_N(long companyId, long groupId,
-		java.lang.String name) {
+		String name) {
 		return getPersistence().findByC_G_N(companyId, groupId, name);
 	}
 
@@ -315,7 +308,7 @@ public class ResourceBlockUtil {
 	* @return the range of matching resource blocks
 	*/
 	public static List<ResourceBlock> findByC_G_N(long companyId, long groupId,
-		java.lang.String name, int start, int end) {
+		String name, int start, int end) {
 		return getPersistence().findByC_G_N(companyId, groupId, name, start, end);
 	}
 
@@ -335,7 +328,7 @@ public class ResourceBlockUtil {
 	* @return the ordered range of matching resource blocks
 	*/
 	public static List<ResourceBlock> findByC_G_N(long companyId, long groupId,
-		java.lang.String name, int start, int end,
+		String name, int start, int end,
 		OrderByComparator<ResourceBlock> orderByComparator) {
 		return getPersistence()
 				   .findByC_G_N(companyId, groupId, name, start, end,
@@ -359,7 +352,7 @@ public class ResourceBlockUtil {
 	* @return the ordered range of matching resource blocks
 	*/
 	public static List<ResourceBlock> findByC_G_N(long companyId, long groupId,
-		java.lang.String name, int start, int end,
+		String name, int start, int end,
 		OrderByComparator<ResourceBlock> orderByComparator,
 		boolean retrieveFromCache) {
 		return getPersistence()
@@ -378,8 +371,7 @@ public class ResourceBlockUtil {
 	* @throws NoSuchResourceBlockException if a matching resource block could not be found
 	*/
 	public static ResourceBlock findByC_G_N_First(long companyId, long groupId,
-		java.lang.String name,
-		OrderByComparator<ResourceBlock> orderByComparator)
+		String name, OrderByComparator<ResourceBlock> orderByComparator)
 		throws com.liferay.portal.kernel.exception.NoSuchResourceBlockException {
 		return getPersistence()
 				   .findByC_G_N_First(companyId, groupId, name,
@@ -396,7 +388,7 @@ public class ResourceBlockUtil {
 	* @return the first matching resource block, or <code>null</code> if a matching resource block could not be found
 	*/
 	public static ResourceBlock fetchByC_G_N_First(long companyId,
-		long groupId, java.lang.String name,
+		long groupId, String name,
 		OrderByComparator<ResourceBlock> orderByComparator) {
 		return getPersistence()
 				   .fetchByC_G_N_First(companyId, groupId, name,
@@ -414,8 +406,7 @@ public class ResourceBlockUtil {
 	* @throws NoSuchResourceBlockException if a matching resource block could not be found
 	*/
 	public static ResourceBlock findByC_G_N_Last(long companyId, long groupId,
-		java.lang.String name,
-		OrderByComparator<ResourceBlock> orderByComparator)
+		String name, OrderByComparator<ResourceBlock> orderByComparator)
 		throws com.liferay.portal.kernel.exception.NoSuchResourceBlockException {
 		return getPersistence()
 				   .findByC_G_N_Last(companyId, groupId, name, orderByComparator);
@@ -431,8 +422,7 @@ public class ResourceBlockUtil {
 	* @return the last matching resource block, or <code>null</code> if a matching resource block could not be found
 	*/
 	public static ResourceBlock fetchByC_G_N_Last(long companyId, long groupId,
-		java.lang.String name,
-		OrderByComparator<ResourceBlock> orderByComparator) {
+		String name, OrderByComparator<ResourceBlock> orderByComparator) {
 		return getPersistence()
 				   .fetchByC_G_N_Last(companyId, groupId, name,
 			orderByComparator);
@@ -450,8 +440,7 @@ public class ResourceBlockUtil {
 	* @throws NoSuchResourceBlockException if a resource block with the primary key could not be found
 	*/
 	public static ResourceBlock[] findByC_G_N_PrevAndNext(
-		long resourceBlockId, long companyId, long groupId,
-		java.lang.String name,
+		long resourceBlockId, long companyId, long groupId, String name,
 		OrderByComparator<ResourceBlock> orderByComparator)
 		throws com.liferay.portal.kernel.exception.NoSuchResourceBlockException {
 		return getPersistence()
@@ -466,8 +455,7 @@ public class ResourceBlockUtil {
 	* @param groupId the group ID
 	* @param name the name
 	*/
-	public static void removeByC_G_N(long companyId, long groupId,
-		java.lang.String name) {
+	public static void removeByC_G_N(long companyId, long groupId, String name) {
 		getPersistence().removeByC_G_N(companyId, groupId, name);
 	}
 
@@ -479,8 +467,7 @@ public class ResourceBlockUtil {
 	* @param name the name
 	* @return the number of matching resource blocks
 	*/
-	public static int countByC_G_N(long companyId, long groupId,
-		java.lang.String name) {
+	public static int countByC_G_N(long companyId, long groupId, String name) {
 		return getPersistence().countByC_G_N(companyId, groupId, name);
 	}
 
@@ -495,7 +482,7 @@ public class ResourceBlockUtil {
 	* @throws NoSuchResourceBlockException if a matching resource block could not be found
 	*/
 	public static ResourceBlock findByC_G_N_P(long companyId, long groupId,
-		java.lang.String name, java.lang.String permissionsHash)
+		String name, String permissionsHash)
 		throws com.liferay.portal.kernel.exception.NoSuchResourceBlockException {
 		return getPersistence()
 				   .findByC_G_N_P(companyId, groupId, name, permissionsHash);
@@ -511,7 +498,7 @@ public class ResourceBlockUtil {
 	* @return the matching resource block, or <code>null</code> if a matching resource block could not be found
 	*/
 	public static ResourceBlock fetchByC_G_N_P(long companyId, long groupId,
-		java.lang.String name, java.lang.String permissionsHash) {
+		String name, String permissionsHash) {
 		return getPersistence()
 				   .fetchByC_G_N_P(companyId, groupId, name, permissionsHash);
 	}
@@ -527,8 +514,7 @@ public class ResourceBlockUtil {
 	* @return the matching resource block, or <code>null</code> if a matching resource block could not be found
 	*/
 	public static ResourceBlock fetchByC_G_N_P(long companyId, long groupId,
-		java.lang.String name, java.lang.String permissionsHash,
-		boolean retrieveFromCache) {
+		String name, String permissionsHash, boolean retrieveFromCache) {
 		return getPersistence()
 				   .fetchByC_G_N_P(companyId, groupId, name, permissionsHash,
 			retrieveFromCache);
@@ -544,7 +530,7 @@ public class ResourceBlockUtil {
 	* @return the resource block that was removed
 	*/
 	public static ResourceBlock removeByC_G_N_P(long companyId, long groupId,
-		java.lang.String name, java.lang.String permissionsHash)
+		String name, String permissionsHash)
 		throws com.liferay.portal.kernel.exception.NoSuchResourceBlockException {
 		return getPersistence()
 				   .removeByC_G_N_P(companyId, groupId, name, permissionsHash);
@@ -559,8 +545,8 @@ public class ResourceBlockUtil {
 	* @param permissionsHash the permissions hash
 	* @return the number of matching resource blocks
 	*/
-	public static int countByC_G_N_P(long companyId, long groupId,
-		java.lang.String name, java.lang.String permissionsHash) {
+	public static int countByC_G_N_P(long companyId, long groupId, String name,
+		String permissionsHash) {
 		return getPersistence()
 				   .countByC_G_N_P(companyId, groupId, name, permissionsHash);
 	}

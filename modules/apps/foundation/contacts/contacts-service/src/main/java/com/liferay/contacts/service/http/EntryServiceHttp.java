@@ -56,7 +56,7 @@ import com.liferay.portal.kernel.util.MethodKey;
 @ProviderType
 public class EntryServiceHttp {
 	public static com.liferay.portal.kernel.json.JSONArray searchUsersAndContacts(
-		HttpPrincipal httpPrincipal, long companyId, java.lang.String keywords,
+		HttpPrincipal httpPrincipal, long companyId, String keywords,
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
@@ -91,6 +91,6 @@ public class EntryServiceHttp {
 
 	private static Log _log = LogFactoryUtil.getLog(EntryServiceHttp.class);
 	private static final Class<?>[] _searchUsersAndContactsParameterTypes1 = new Class[] {
-			long.class, java.lang.String.class, int.class, int.class
+			long.class, String.class, int.class, int.class
 		};
 }

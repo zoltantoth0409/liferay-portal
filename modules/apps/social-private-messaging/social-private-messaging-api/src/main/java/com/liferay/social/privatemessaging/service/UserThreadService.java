@@ -66,7 +66,7 @@ public interface UserThreadService extends BaseService {
 	*
 	* @return the OSGi service identifier
 	*/
-	public java.lang.String getOSGiServiceIdentifier();
+	public String getOSGiServiceIdentifier();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<MBMessage> getThreadMessages(long mbThreadId, int start,
