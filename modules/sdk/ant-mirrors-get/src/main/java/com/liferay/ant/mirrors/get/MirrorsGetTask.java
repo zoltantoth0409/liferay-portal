@@ -207,7 +207,7 @@ public class MirrorsGetTask extends Task {
 
 					System.out.println(
 						"Unable to connect to " + sourceURL +
-							" defaulting to " + defaultURL);
+							", defaulting to " + defaultURL);
 
 					downloadFile(defaultURL, localCacheFile);
 				}
