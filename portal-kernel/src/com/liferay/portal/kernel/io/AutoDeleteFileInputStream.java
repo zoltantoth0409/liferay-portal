@@ -24,6 +24,7 @@ import java.io.IOException;
  * @deprecated As of 7.0.0, replaced by {@link com.liferay.petra.io.
  * 		   AutoDeleteFileInputStream}
  */
+@Deprecated
 public class AutoDeleteFileInputStream extends FileInputStream {
 
 	public AutoDeleteFileInputStream(File file) throws FileNotFoundException {
