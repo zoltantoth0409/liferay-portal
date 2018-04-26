@@ -9337,6 +9337,7 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 			</then>
 		</if>
 
+		<get-testcase-property property.name="portal.suite.search.engine" />
 		<get-testcase-property property.name="remote.elasticsearch.enabled" />
 
 		<if>
@@ -9345,7 +9346,7 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 				<get-testcase-property property.name="deploy.elasticsearch6" />
 
 				<if>
-					<equals arg1="${deploy.elasticsearch6}" arg2="true" />
+					<contains string="${portal.suite.search.engine}" substring="elasticsearch6" 
 					<then>
 						<ant antfile="build-test-elasticsearch6.xml" target="start-elasticsearch" />
 					</then>
