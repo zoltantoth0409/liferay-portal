@@ -15,7 +15,7 @@
 package com.liferay.oauth2.provider.rest.internal.endpoint.introspect;
 
 import com.liferay.oauth2.provider.rest.internal.endpoint.constants.OAuth2ProviderRestEndpointConstants;
-import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 
@@ -146,7 +146,7 @@ public class TokenIntrospectionJSONProviderMessageBodyWriter
 
 		Map<String, String> extensions = tokenIntrospection.getExtensions();
 
-		if (ListUtil.isNotEmpty(extensions)) {
+		if (MapUtil.isNotEmpty(extensions)) {
 			StringBundler extensionSB = new StringBundler(
 				extensions.size() * 7);
 
