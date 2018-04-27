@@ -120,7 +120,7 @@ AUI.add(
 					TPL_PAGE_CONTROL_TRIGGER:
 						'<div class="' + CSS_FORM_BUILDER_CONTROLS_TRIGGER + '">' +
 						'<div class="dropdown dropdown-action">' +
-						'<a class="component-action dropdown-toggle btn btn-unstyled" data-position="{position}" href="javascript:;">' +
+						'<a class="btn btn-unstyled component-action dropdown-toggle" data-position="{position}" href="javascript:;">' +
 							Liferay.Util.getLexiconIconTpl('ellipsis-v') +
 						'</a>' +
 						'</div>' +
