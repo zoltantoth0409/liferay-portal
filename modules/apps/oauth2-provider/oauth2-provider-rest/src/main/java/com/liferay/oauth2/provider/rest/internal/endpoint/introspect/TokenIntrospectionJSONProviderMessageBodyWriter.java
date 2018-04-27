@@ -76,7 +76,7 @@ public class TokenIntrospectionJSONProviderMessageBodyWriter
 			TokenIntrospection tokenIntrospection, Class<?> clazz,
 			Type genericType, Annotation[] annotations, MediaType mediaType,
 			MultivaluedMap<String, Object> httpHeaders,
-			OutputStream entityStream)
+			OutputStream outputStream)
 		throws IOException, WebApplicationException {
 
 		if (!tokenIntrospection.isActive()) {
@@ -90,9 +90,9 @@ public class TokenIntrospectionJSONProviderMessageBodyWriter
 
 			String result = sb.toString();
 
-			entityStream.write(result.getBytes(StandardCharsets.UTF_8));
+			outputStream.write(result.getBytes(StandardCharsets.UTF_8));
 
-			entityStream.flush();
+			outputStream.flush();
 
 			return;
 		}
@@ -161,9 +161,9 @@ public class TokenIntrospectionJSONProviderMessageBodyWriter
 
 		String result = sb.toString();
 
-		entityStream.write(result.getBytes(StandardCharsets.UTF_8));
+		outputStream.write(result.getBytes(StandardCharsets.UTF_8));
 
-		entityStream.flush();
+		outputStream.flush();
 	}
 
 	protected void append(StringBundler sb, String key, List<String> value) {
