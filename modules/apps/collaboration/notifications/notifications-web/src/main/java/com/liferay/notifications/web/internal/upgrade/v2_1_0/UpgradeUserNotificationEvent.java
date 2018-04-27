@@ -55,8 +55,8 @@ public class UpgradeUserNotificationEvent extends UpgradeProcess {
 			sb.append("update UserNotificationEvent set actionRequired = ");
 			sb.append("TRUE where userNotificationEventId in (select ");
 			sb.append("userNotificationEventId from ");
-			sb.append("Notifications_UserNotificationEvent ");
-			sb.append("where actionRequired = TRUE)");
+			sb.append("Notifications_UserNotificationEvent where ");
+			sb.append("actionRequired = TRUE)");
 
 			runSQL(sb.toString());
 
