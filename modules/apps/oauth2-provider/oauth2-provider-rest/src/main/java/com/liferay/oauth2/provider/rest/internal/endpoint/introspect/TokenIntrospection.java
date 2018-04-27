@@ -19,6 +19,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Field names correspond to RFC.
+ *
  * @author Tomas Polesovsky
  */
 public class TokenIntrospection {
@@ -133,8 +135,6 @@ public class TokenIntrospection {
 	public void setUsername(String username) {
 		_username = username;
 	}
-
-	/* Field names correspond to RFC */
 
 	private boolean _active;
 	private List<String> _aud;

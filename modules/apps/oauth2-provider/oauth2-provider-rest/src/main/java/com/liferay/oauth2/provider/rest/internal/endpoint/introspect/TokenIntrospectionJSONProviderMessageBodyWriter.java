@@ -88,9 +88,9 @@ public class TokenIntrospectionJSONProviderMessageBodyWriter
 
 			sb.append("}");
 
-			String result = sb.toString();
+			String string = sb.toString();
 
-			outputStream.write(result.getBytes(StandardCharsets.UTF_8));
+			outputStream.write(string.getBytes(StandardCharsets.UTF_8));
 
 			outputStream.flush();
 
