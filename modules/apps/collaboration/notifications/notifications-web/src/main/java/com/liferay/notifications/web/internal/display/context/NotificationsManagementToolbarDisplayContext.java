@@ -67,12 +67,9 @@ public class NotificationsManagementToolbarDisplayContext {
 										"javascript:",
 										_liferayPortletResponse.getNamespace(),
 										"markNotificationsAsRead();"));
-
 								dropdownItem.setIcon("envelope-open");
-
 								dropdownItem.setLabel(
 									LanguageUtil.get(_request, "mark-as-read"));
-
 								dropdownItem.setQuickAction(true);
 							}));
 
@@ -84,13 +81,10 @@ public class NotificationsManagementToolbarDisplayContext {
 										"javascript:",
 										_liferayPortletResponse.getNamespace(),
 										"markNotificationsAsUnread();"));
-
 								dropdownItem.setIcon("envelope-closed");
-
 								dropdownItem.setLabel(
 									LanguageUtil.get(
 										_request, "mark-as-unread"));
-
 								dropdownItem.setQuickAction(true);
 							}));
 				}
@@ -103,12 +97,9 @@ public class NotificationsManagementToolbarDisplayContext {
 									"javascript:",
 									_liferayPortletResponse.getNamespace(),
 									"deleteAllNotifications();"));
-
 							dropdownItem.setIcon("times");
-
 							dropdownItem.setLabel(
 								LanguageUtil.get(_request, "delete"));
-
 							dropdownItem.setQuickAction(true);
 						}));
 			}
@@ -148,9 +139,7 @@ public class NotificationsManagementToolbarDisplayContext {
 			_currentURLObj, _liferayPortletResponse);
 
 		sortingURL.setParameter(SearchContainer.DEFAULT_CUR_PARAM, "0");
-
 		sortingURL.setParameter("orderByCol", "date");
-
 		sortingURL.setParameter(
 			"orderByType",
 			Objects.equals(getOrderByType(), "asc") ? "desc" : "asc");

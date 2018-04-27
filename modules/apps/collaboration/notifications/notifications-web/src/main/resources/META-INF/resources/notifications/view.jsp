@@ -25,8 +25,6 @@ if (actionRequired) {
 	navigation = "unread";
 }
 
-NotificationsManagementToolbarDisplayContext notificationsManagementToolbarDisplayContext = new NotificationsManagementToolbarDisplayContext(liferayPortletRequest, liferayPortletResponse, currentURLObj);
-
 SearchContainer notificationsSearchContainer = new SearchContainer(renderRequest, currentURLObj, null, actionRequired ? "you-do-not-have-any-requests" : "you-do-not-have-any-notifications");
 
 String searchContainerId = "userNotificationEvents";
@@ -36,6 +34,8 @@ if (actionRequired) {
 }
 
 notificationsSearchContainer.setId(searchContainerId);
+
+NotificationsManagementToolbarDisplayContext notificationsManagementToolbarDisplayContext = new NotificationsManagementToolbarDisplayContext(liferayPortletRequest, liferayPortletResponse, currentURLObj);
 
 NotificationsUtil.populateResults(themeDisplay.getUserId(), actionRequired, navigation, notificationsManagementToolbarDisplayContext.getOrderByType(), notificationsSearchContainer);
 
