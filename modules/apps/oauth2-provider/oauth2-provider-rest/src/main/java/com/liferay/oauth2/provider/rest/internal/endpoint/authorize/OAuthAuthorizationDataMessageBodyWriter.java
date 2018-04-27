@@ -119,13 +119,11 @@ public class OAuthAuthorizationDataMessageBodyWriter
 		if (!_http.hasDomain(authorizeScreenURL)) {
 			String portalURL = _portal.getPortalURL(httpServletRequest);
 
-			authorizeScreenURL =
-				portalURL + authorizeScreenURL;
+			authorizeScreenURL = portalURL + authorizeScreenURL;
 		}
 
 		authorizeScreenURL = setParameter(
-			authorizeScreenURL,
-			OAuthConstants.AUTHORIZATION_CODE_CHALLENGE,
+			authorizeScreenURL, OAuthConstants.AUTHORIZATION_CODE_CHALLENGE,
 			oAuthAuthorizationData.getClientCodeChallenge());
 		authorizeScreenURL = setParameter(
 			authorizeScreenURL, OAuthConstants.CLIENT_AUDIENCE,
