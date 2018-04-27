@@ -161,28 +161,27 @@ public class FragmentsEditorContext {
 			_getFragmentEntryActionURL(
 				"/layout/update_layout_page_template_entry_asset_type"));
 
-		String[] languageIds = LocaleUtil.toLanguageIds(
-			LanguageUtil.getAvailableLocales(_themeDisplay.getSiteGroupId()));
-
 		SoyContext availableLanguagesSoyContext =
 			SoyContextFactoryUtil.createSoyContext();
 
-		for (String curLanguageId : languageIds) {
-			SoyContext curLanguageSoyContext =
+		String[] languageIds = LocaleUtil.toLanguageIds(
+			LanguageUtil.getAvailableLocales(_themeDisplay.getSiteGroupId()));
+
+		for (String languageId : languageIds) {
+			SoyContext languageSoyContext =
 				SoyContextFactoryUtil.createSoyContext();
 
-			String curLanguageIcon = StringUtil.toLowerCase(
-				curLanguageId.replace(StringPool.UNDERLINE, StringPool.DASH));
+			String languageIcon = StringUtil.toLowerCase(
+				languageId.replace(StringPool.UNDERLINE, StringPool.DASH));
 
-			curLanguageSoyContext.put("languageIcon", curLanguageIcon);
+			languageSoyContext.put("languageIcon", languageIcon);
 
-			String curLanguageLabel = curLanguageId.replace(
+			String languageLabel = languageId.replace(
 				StringPool.UNDERLINE, StringPool.DASH);
 
-			curLanguageSoyContext.put("languageLabel", curLanguageLabel);
+			languageSoyContext.put("languageLabel", languageLabel);
 
-			availableLanguagesSoyContext.put(
-				curLanguageId, curLanguageSoyContext);
+			availableLanguagesSoyContext.put(languageId, languageSoyContext);
 		}
 
 		soyContext.put("availableLanguages", availableLanguagesSoyContext);
