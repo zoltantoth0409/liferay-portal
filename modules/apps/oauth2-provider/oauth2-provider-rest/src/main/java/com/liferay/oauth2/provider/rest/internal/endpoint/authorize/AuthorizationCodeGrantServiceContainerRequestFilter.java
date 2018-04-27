@@ -110,7 +110,7 @@ public class AuthorizationCodeGrantServiceContainerRequestFilter
 			return;
 		}
 
-		String loginURL;
+		String loginURL = null;
 
 		try {
 			loginURL = getLoginURL();

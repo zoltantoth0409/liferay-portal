@@ -26,7 +26,7 @@ import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.Props;
 import com.liferay.portal.kernel.util.PropsKeys;
-import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.Util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.io.OutputStream;
@@ -101,10 +101,10 @@ public class OAuthAuthorizationDataMessageBodyWriter
 		HttpServletRequest httpServletRequest =
 			_messageContext.getHttpServletRequest();
 
-		String authorizeScreenURLString = null;
+		String authorizeScreenURL = null;
 
 		try {
-			authorizeScreenURLString = getAuthorizeScreenURL(
+			authorizeScreenURL = getAuthorizeScreenURL(
 				_portal.getCompanyId(httpServletRequest));
 		}
 		catch (ConfigurationException ce) {
@@ -116,55 +116,55 @@ public class OAuthAuthorizationDataMessageBodyWriter
 				).build());
 		}
 
-		if (!_http.hasDomain(authorizeScreenURLString)) {
-			String portalURLString = _portal.getPortalURL(httpServletRequest);
+		if (!_http.hasDomain(authorizeScreenURL)) {
+			String portalURL = _portal.getPortalURL(httpServletRequest);
 
-			authorizeScreenURLString =
-				portalURLString + authorizeScreenURLString;
+			authorizeScreenURL =
+				portalURL + authorizeScreenURL;
 		}
 
-		authorizeScreenURLString = setParameter(
-			authorizeScreenURLString,
+		authorizeScreenURL = setParameter(
+			authorizeScreenURL,
 			OAuthConstants.AUTHORIZATION_CODE_CHALLENGE,
 			oAuthAuthorizationData.getClientCodeChallenge());
-		authorizeScreenURLString = setParameter(
-			authorizeScreenURLString, OAuthConstants.CLIENT_AUDIENCE,
+		authorizeScreenURL = setParameter(
+			authorizeScreenURL, OAuthConstants.CLIENT_AUDIENCE,
 			oAuthAuthorizationData.getAudience());
-		authorizeScreenURLString = setParameter(
-			authorizeScreenURLString, OAuthConstants.CLIENT_ID,
+		authorizeScreenURL = setParameter(
+			authorizeScreenURL, OAuthConstants.CLIENT_ID,
 			oAuthAuthorizationData.getClientId());
-		authorizeScreenURLString = setParameter(
-			authorizeScreenURLString, OAuthConstants.NONCE,
+		authorizeScreenURL = setParameter(
+			authorizeScreenURL, OAuthConstants.NONCE,
 			oAuthAuthorizationData.getNonce());
-		authorizeScreenURLString = setParameter(
-			authorizeScreenURLString, OAuthConstants.REDIRECT_URI,
+		authorizeScreenURL = setParameter(
+			authorizeScreenURL, OAuthConstants.REDIRECT_URI,
 			oAuthAuthorizationData.getRedirectUri());
-		authorizeScreenURLString = setParameter(
-			authorizeScreenURLString, OAuthConstants.RESPONSE_TYPE,
+		authorizeScreenURL = setParameter(
+			authorizeScreenURL, OAuthConstants.RESPONSE_TYPE,
 			oAuthAuthorizationData.getResponseType());
-		authorizeScreenURLString = setParameter(
-			authorizeScreenURLString, OAuthConstants.SCOPE,
+		authorizeScreenURL = setParameter(
+			authorizeScreenURL, OAuthConstants.SCOPE,
 			oAuthAuthorizationData.getProposedScope());
-		authorizeScreenURLString = setParameter(
-			authorizeScreenURLString, OAuthConstants.SESSION_AUTHENTICITY_TOKEN,
+		authorizeScreenURL = setParameter(
+			authorizeScreenURL, OAuthConstants.SESSION_AUTHENTICITY_TOKEN,
 			oAuthAuthorizationData.getAuthenticityToken());
-		authorizeScreenURLString = setParameter(
-			authorizeScreenURLString, OAuthConstants.STATE,
+		authorizeScreenURL = setParameter(
+			authorizeScreenURL, OAuthConstants.STATE,
 			oAuthAuthorizationData.getState());
-		authorizeScreenURLString = setParameter(
-			authorizeScreenURLString, "reply_to",
+		authorizeScreenURL = setParameter(
+			authorizeScreenURL, "reply_to",
 			oAuthAuthorizationData.getReplyTo());
 
-		if (authorizeScreenURLString.length() > _invokerFilterURIMaxLength) {
-			authorizeScreenURLString = removeParameter(
-				authorizeScreenURLString, OAuthConstants.SCOPE);
+		if (authorizeScreenURL.length() > _invokerFilterURIMaxLength) {
+			authorizeScreenURL = removeParameter(
+				authorizeScreenURL, OAuthConstants.SCOPE);
 		}
 
 		throw new WebApplicationException(
 			Response.status(
 				Response.Status.FOUND
 			).location(
-				URI.create(authorizeScreenURLString)
+				URI.create(authorizeScreenURL)
 			).build());
 	}
 
@@ -187,16 +187,16 @@ public class OAuthAuthorizationDataMessageBodyWriter
 		return authorizeScreenConfiguration.authorizeScreenURL();
 	}
 
-	protected String removeParameter(String urlString, String name) {
-		return _http.removeParameter(urlString, "oauth2_" + name);
+	protected String removeParameter(String url, String name) {
+		return _http.removeParameter(url, "oauth2_" + name);
 	}
 
-	protected String setParameter(String urlString, String name, String value) {
+	protected String setParameter(String url, String name, String value) {
 		if (Validator.isBlank(value)) {
-			return urlString;
+			return url;
 		}
 
-		return _http.addParameter(urlString, "oauth2_" + name, value);
+		return _http.addParameter(url, "oauth2_" + name, value);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
