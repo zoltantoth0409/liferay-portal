@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.service.persistence.CompanyProvider;
 import com.liferay.portal.kernel.service.persistence.CompanyProviderWrapper;
 import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.spring.extender.service.ServiceReference;
 
@@ -39,6 +40,8 @@ import com.liferay.shopping.model.impl.ShoppingOrderItemModelImpl;
 import com.liferay.shopping.service.persistence.ShoppingOrderItemPersistence;
 
 import java.io.Serializable;
+
+import java.lang.reflect.InvocationHandler;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -747,8 +750,6 @@ public class ShoppingOrderItemPersistenceImpl extends BasePersistenceImpl<Shoppi
 
 	@Override
 	protected ShoppingOrderItem removeImpl(ShoppingOrderItem shoppingOrderItem) {
-		shoppingOrderItem = toUnwrappedModel(shoppingOrderItem);
-
 		Session session = null;
 
 		try {
@@ -779,9 +780,23 @@ public class ShoppingOrderItemPersistenceImpl extends BasePersistenceImpl<Shoppi
 
 	@Override
 	public ShoppingOrderItem updateImpl(ShoppingOrderItem shoppingOrderItem) {
-		shoppingOrderItem = toUnwrappedModel(shoppingOrderItem);
-
 		boolean isNew = shoppingOrderItem.isNew();
+
+		if (!(shoppingOrderItem instanceof ShoppingOrderItemModelImpl)) {
+			InvocationHandler invocationHandler = null;
+
+			if (ProxyUtil.isProxyClass(shoppingOrderItem.getClass())) {
+				invocationHandler = ProxyUtil.getInvocationHandler(shoppingOrderItem);
+
+				throw new IllegalArgumentException(
+					"Implement ModelWrapper in shoppingOrderItem proxy " +
+					invocationHandler.getClass());
+			}
+
+			throw new IllegalArgumentException(
+				"Implement ModelWrapper in custom ShoppingOrderItem implementation " +
+				shoppingOrderItem.getClass());
+		}
 
 		ShoppingOrderItemModelImpl shoppingOrderItemModelImpl = (ShoppingOrderItemModelImpl)shoppingOrderItem;
 
@@ -850,32 +865,6 @@ public class ShoppingOrderItemPersistenceImpl extends BasePersistenceImpl<Shoppi
 		shoppingOrderItem.resetOriginalValues();
 
 		return shoppingOrderItem;
-	}
-
-	protected ShoppingOrderItem toUnwrappedModel(
-		ShoppingOrderItem shoppingOrderItem) {
-		if (shoppingOrderItem instanceof ShoppingOrderItemImpl) {
-			return shoppingOrderItem;
-		}
-
-		ShoppingOrderItemImpl shoppingOrderItemImpl = new ShoppingOrderItemImpl();
-
-		shoppingOrderItemImpl.setNew(shoppingOrderItem.isNew());
-		shoppingOrderItemImpl.setPrimaryKey(shoppingOrderItem.getPrimaryKey());
-
-		shoppingOrderItemImpl.setOrderItemId(shoppingOrderItem.getOrderItemId());
-		shoppingOrderItemImpl.setCompanyId(shoppingOrderItem.getCompanyId());
-		shoppingOrderItemImpl.setOrderId(shoppingOrderItem.getOrderId());
-		shoppingOrderItemImpl.setItemId(shoppingOrderItem.getItemId());
-		shoppingOrderItemImpl.setSku(shoppingOrderItem.getSku());
-		shoppingOrderItemImpl.setName(shoppingOrderItem.getName());
-		shoppingOrderItemImpl.setDescription(shoppingOrderItem.getDescription());
-		shoppingOrderItemImpl.setProperties(shoppingOrderItem.getProperties());
-		shoppingOrderItemImpl.setPrice(shoppingOrderItem.getPrice());
-		shoppingOrderItemImpl.setQuantity(shoppingOrderItem.getQuantity());
-		shoppingOrderItemImpl.setShippedDate(shoppingOrderItem.getShippedDate());
-
-		return shoppingOrderItemImpl;
 	}
 
 	/**

@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.service.persistence.CompanyProvider;
 import com.liferay.portal.kernel.service.persistence.CompanyProviderWrapper;
 import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -47,6 +48,7 @@ import com.liferay.shopping.service.persistence.ShoppingItemPersistence;
 import java.io.Serializable;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationHandler;
 
 import java.util.Collections;
 import java.util.Date;
@@ -2209,8 +2211,6 @@ public class ShoppingItemPersistenceImpl extends BasePersistenceImpl<ShoppingIte
 
 	@Override
 	protected ShoppingItem removeImpl(ShoppingItem shoppingItem) {
-		shoppingItem = toUnwrappedModel(shoppingItem);
-
 		Session session = null;
 
 		try {
@@ -2241,9 +2241,23 @@ public class ShoppingItemPersistenceImpl extends BasePersistenceImpl<ShoppingIte
 
 	@Override
 	public ShoppingItem updateImpl(ShoppingItem shoppingItem) {
-		shoppingItem = toUnwrappedModel(shoppingItem);
-
 		boolean isNew = shoppingItem.isNew();
+
+		if (!(shoppingItem instanceof ShoppingItemModelImpl)) {
+			InvocationHandler invocationHandler = null;
+
+			if (ProxyUtil.isProxyClass(shoppingItem.getClass())) {
+				invocationHandler = ProxyUtil.getInvocationHandler(shoppingItem);
+
+				throw new IllegalArgumentException(
+					"Implement ModelWrapper in shoppingItem proxy " +
+					invocationHandler.getClass());
+			}
+
+			throw new IllegalArgumentException(
+				"Implement ModelWrapper in custom ShoppingItem implementation " +
+				shoppingItem.getClass());
+		}
 
 		ShoppingItemModelImpl shoppingItemModelImpl = (ShoppingItemModelImpl)shoppingItem;
 
@@ -2344,54 +2358,6 @@ public class ShoppingItemPersistenceImpl extends BasePersistenceImpl<ShoppingIte
 		shoppingItem.resetOriginalValues();
 
 		return shoppingItem;
-	}
-
-	protected ShoppingItem toUnwrappedModel(ShoppingItem shoppingItem) {
-		if (shoppingItem instanceof ShoppingItemImpl) {
-			return shoppingItem;
-		}
-
-		ShoppingItemImpl shoppingItemImpl = new ShoppingItemImpl();
-
-		shoppingItemImpl.setNew(shoppingItem.isNew());
-		shoppingItemImpl.setPrimaryKey(shoppingItem.getPrimaryKey());
-
-		shoppingItemImpl.setItemId(shoppingItem.getItemId());
-		shoppingItemImpl.setGroupId(shoppingItem.getGroupId());
-		shoppingItemImpl.setCompanyId(shoppingItem.getCompanyId());
-		shoppingItemImpl.setUserId(shoppingItem.getUserId());
-		shoppingItemImpl.setUserName(shoppingItem.getUserName());
-		shoppingItemImpl.setCreateDate(shoppingItem.getCreateDate());
-		shoppingItemImpl.setModifiedDate(shoppingItem.getModifiedDate());
-		shoppingItemImpl.setCategoryId(shoppingItem.getCategoryId());
-		shoppingItemImpl.setSku(shoppingItem.getSku());
-		shoppingItemImpl.setName(shoppingItem.getName());
-		shoppingItemImpl.setDescription(shoppingItem.getDescription());
-		shoppingItemImpl.setProperties(shoppingItem.getProperties());
-		shoppingItemImpl.setFields(shoppingItem.isFields());
-		shoppingItemImpl.setFieldsQuantities(shoppingItem.getFieldsQuantities());
-		shoppingItemImpl.setMinQuantity(shoppingItem.getMinQuantity());
-		shoppingItemImpl.setMaxQuantity(shoppingItem.getMaxQuantity());
-		shoppingItemImpl.setPrice(shoppingItem.getPrice());
-		shoppingItemImpl.setDiscount(shoppingItem.getDiscount());
-		shoppingItemImpl.setTaxable(shoppingItem.isTaxable());
-		shoppingItemImpl.setShipping(shoppingItem.getShipping());
-		shoppingItemImpl.setUseShippingFormula(shoppingItem.isUseShippingFormula());
-		shoppingItemImpl.setRequiresShipping(shoppingItem.isRequiresShipping());
-		shoppingItemImpl.setStockQuantity(shoppingItem.getStockQuantity());
-		shoppingItemImpl.setFeatured(shoppingItem.isFeatured());
-		shoppingItemImpl.setSale(shoppingItem.isSale());
-		shoppingItemImpl.setSmallImage(shoppingItem.isSmallImage());
-		shoppingItemImpl.setSmallImageId(shoppingItem.getSmallImageId());
-		shoppingItemImpl.setSmallImageURL(shoppingItem.getSmallImageURL());
-		shoppingItemImpl.setMediumImage(shoppingItem.isMediumImage());
-		shoppingItemImpl.setMediumImageId(shoppingItem.getMediumImageId());
-		shoppingItemImpl.setMediumImageURL(shoppingItem.getMediumImageURL());
-		shoppingItemImpl.setLargeImage(shoppingItem.isLargeImage());
-		shoppingItemImpl.setLargeImageId(shoppingItem.getLargeImageId());
-		shoppingItemImpl.setLargeImageURL(shoppingItem.getLargeImageURL());
-
-		return shoppingItemImpl;
 	}
 
 	/**

@@ -36,12 +36,15 @@ import com.liferay.portal.kernel.service.persistence.CompanyProvider;
 import com.liferay.portal.kernel.service.persistence.CompanyProviderWrapper;
 import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 
 import com.liferay.portlet.blogs.model.impl.BlogsStatsUserImpl;
 import com.liferay.portlet.blogs.model.impl.BlogsStatsUserModelImpl;
 
 import java.io.Serializable;
+
+import java.lang.reflect.InvocationHandler;
 
 import java.sql.Timestamp;
 
@@ -3166,8 +3169,6 @@ public class BlogsStatsUserPersistenceImpl extends BasePersistenceImpl<BlogsStat
 
 	@Override
 	protected BlogsStatsUser removeImpl(BlogsStatsUser blogsStatsUser) {
-		blogsStatsUser = toUnwrappedModel(blogsStatsUser);
-
 		Session session = null;
 
 		try {
@@ -3198,9 +3199,23 @@ public class BlogsStatsUserPersistenceImpl extends BasePersistenceImpl<BlogsStat
 
 	@Override
 	public BlogsStatsUser updateImpl(BlogsStatsUser blogsStatsUser) {
-		blogsStatsUser = toUnwrappedModel(blogsStatsUser);
-
 		boolean isNew = blogsStatsUser.isNew();
+
+		if (!(blogsStatsUser instanceof BlogsStatsUserModelImpl)) {
+			InvocationHandler invocationHandler = null;
+
+			if (ProxyUtil.isProxyClass(blogsStatsUser.getClass())) {
+				invocationHandler = ProxyUtil.getInvocationHandler(blogsStatsUser);
+
+				throw new IllegalArgumentException(
+					"Implement ModelWrapper in blogsStatsUser proxy " +
+					invocationHandler.getClass());
+			}
+
+			throw new IllegalArgumentException(
+				"Implement ModelWrapper in custom BlogsStatsUser implementation " +
+				blogsStatsUser.getClass());
+		}
 
 		BlogsStatsUserModelImpl blogsStatsUserModelImpl = (BlogsStatsUserModelImpl)blogsStatsUser;
 
@@ -3325,29 +3340,6 @@ public class BlogsStatsUserPersistenceImpl extends BasePersistenceImpl<BlogsStat
 		blogsStatsUser.resetOriginalValues();
 
 		return blogsStatsUser;
-	}
-
-	protected BlogsStatsUser toUnwrappedModel(BlogsStatsUser blogsStatsUser) {
-		if (blogsStatsUser instanceof BlogsStatsUserImpl) {
-			return blogsStatsUser;
-		}
-
-		BlogsStatsUserImpl blogsStatsUserImpl = new BlogsStatsUserImpl();
-
-		blogsStatsUserImpl.setNew(blogsStatsUser.isNew());
-		blogsStatsUserImpl.setPrimaryKey(blogsStatsUser.getPrimaryKey());
-
-		blogsStatsUserImpl.setStatsUserId(blogsStatsUser.getStatsUserId());
-		blogsStatsUserImpl.setGroupId(blogsStatsUser.getGroupId());
-		blogsStatsUserImpl.setCompanyId(blogsStatsUser.getCompanyId());
-		blogsStatsUserImpl.setUserId(blogsStatsUser.getUserId());
-		blogsStatsUserImpl.setEntryCount(blogsStatsUser.getEntryCount());
-		blogsStatsUserImpl.setLastPostDate(blogsStatsUser.getLastPostDate());
-		blogsStatsUserImpl.setRatingsTotalEntries(blogsStatsUser.getRatingsTotalEntries());
-		blogsStatsUserImpl.setRatingsTotalScore(blogsStatsUser.getRatingsTotalScore());
-		blogsStatsUserImpl.setRatingsAverageScore(blogsStatsUser.getRatingsAverageScore());
-
-		return blogsStatsUserImpl;
 	}
 
 	/**

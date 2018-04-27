@@ -31,6 +31,7 @@ import com.liferay.portal.kernel.service.persistence.CompanyProvider;
 import com.liferay.portal.kernel.service.persistence.CompanyProviderWrapper;
 import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
@@ -46,6 +47,7 @@ import com.liferay.wsrp.service.persistence.WSRPProducerPersistence;
 import java.io.Serializable;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationHandler;
 
 import java.util.Collections;
 import java.util.Date;
@@ -2202,8 +2204,6 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 
 	@Override
 	protected WSRPProducer removeImpl(WSRPProducer wsrpProducer) {
-		wsrpProducer = toUnwrappedModel(wsrpProducer);
-
 		Session session = null;
 
 		try {
@@ -2234,9 +2234,23 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 
 	@Override
 	public WSRPProducer updateImpl(WSRPProducer wsrpProducer) {
-		wsrpProducer = toUnwrappedModel(wsrpProducer);
-
 		boolean isNew = wsrpProducer.isNew();
+
+		if (!(wsrpProducer instanceof WSRPProducerModelImpl)) {
+			InvocationHandler invocationHandler = null;
+
+			if (ProxyUtil.isProxyClass(wsrpProducer.getClass())) {
+				invocationHandler = ProxyUtil.getInvocationHandler(wsrpProducer);
+
+				throw new IllegalArgumentException(
+					"Implement ModelWrapper in wsrpProducer proxy " +
+					invocationHandler.getClass());
+			}
+
+			throw new IllegalArgumentException(
+				"Implement ModelWrapper in custom WSRPProducer implementation " +
+				wsrpProducer.getClass());
+		}
 
 		WSRPProducerModelImpl wsrpProducerModelImpl = (WSRPProducerModelImpl)wsrpProducer;
 
@@ -2389,30 +2403,6 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 		wsrpProducer.resetOriginalValues();
 
 		return wsrpProducer;
-	}
-
-	protected WSRPProducer toUnwrappedModel(WSRPProducer wsrpProducer) {
-		if (wsrpProducer instanceof WSRPProducerImpl) {
-			return wsrpProducer;
-		}
-
-		WSRPProducerImpl wsrpProducerImpl = new WSRPProducerImpl();
-
-		wsrpProducerImpl.setNew(wsrpProducer.isNew());
-		wsrpProducerImpl.setPrimaryKey(wsrpProducer.getPrimaryKey());
-
-		wsrpProducerImpl.setUuid(wsrpProducer.getUuid());
-		wsrpProducerImpl.setWsrpProducerId(wsrpProducer.getWsrpProducerId());
-		wsrpProducerImpl.setGroupId(wsrpProducer.getGroupId());
-		wsrpProducerImpl.setCompanyId(wsrpProducer.getCompanyId());
-		wsrpProducerImpl.setCreateDate(wsrpProducer.getCreateDate());
-		wsrpProducerImpl.setModifiedDate(wsrpProducer.getModifiedDate());
-		wsrpProducerImpl.setName(wsrpProducer.getName());
-		wsrpProducerImpl.setVersion(wsrpProducer.getVersion());
-		wsrpProducerImpl.setPortletIds(wsrpProducer.getPortletIds());
-		wsrpProducerImpl.setLastPublishDate(wsrpProducer.getLastPublishDate());
-
-		return wsrpProducerImpl;
 	}
 
 	/**

@@ -31,6 +31,7 @@ import com.liferay.portal.kernel.service.persistence.CompanyProvider;
 import com.liferay.portal.kernel.service.persistence.CompanyProviderWrapper;
 import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -45,6 +46,7 @@ import com.liferay.social.privatemessaging.service.persistence.UserThreadPersist
 import java.io.Serializable;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationHandler;
 
 import java.util.Collections;
 import java.util.Date;
@@ -2672,8 +2674,6 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 
 	@Override
 	protected UserThread removeImpl(UserThread userThread) {
-		userThread = toUnwrappedModel(userThread);
-
 		Session session = null;
 
 		try {
@@ -2704,9 +2704,23 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 
 	@Override
 	public UserThread updateImpl(UserThread userThread) {
-		userThread = toUnwrappedModel(userThread);
-
 		boolean isNew = userThread.isNew();
+
+		if (!(userThread instanceof UserThreadModelImpl)) {
+			InvocationHandler invocationHandler = null;
+
+			if (ProxyUtil.isProxyClass(userThread.getClass())) {
+				invocationHandler = ProxyUtil.getInvocationHandler(userThread);
+
+				throw new IllegalArgumentException(
+					"Implement ModelWrapper in userThread proxy " +
+					invocationHandler.getClass());
+			}
+
+			throw new IllegalArgumentException(
+				"Implement ModelWrapper in custom UserThread implementation " +
+				userThread.getClass());
+		}
 
 		UserThreadModelImpl userThreadModelImpl = (UserThreadModelImpl)userThread;
 
@@ -2885,30 +2899,6 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		userThread.resetOriginalValues();
 
 		return userThread;
-	}
-
-	protected UserThread toUnwrappedModel(UserThread userThread) {
-		if (userThread instanceof UserThreadImpl) {
-			return userThread;
-		}
-
-		UserThreadImpl userThreadImpl = new UserThreadImpl();
-
-		userThreadImpl.setNew(userThread.isNew());
-		userThreadImpl.setPrimaryKey(userThread.getPrimaryKey());
-
-		userThreadImpl.setUserThreadId(userThread.getUserThreadId());
-		userThreadImpl.setCompanyId(userThread.getCompanyId());
-		userThreadImpl.setUserId(userThread.getUserId());
-		userThreadImpl.setUserName(userThread.getUserName());
-		userThreadImpl.setCreateDate(userThread.getCreateDate());
-		userThreadImpl.setModifiedDate(userThread.getModifiedDate());
-		userThreadImpl.setMbThreadId(userThread.getMbThreadId());
-		userThreadImpl.setTopMBMessageId(userThread.getTopMBMessageId());
-		userThreadImpl.setRead(userThread.isRead());
-		userThreadImpl.setDeleted(userThread.isDeleted());
-
-		return userThreadImpl;
 	}
 
 	/**

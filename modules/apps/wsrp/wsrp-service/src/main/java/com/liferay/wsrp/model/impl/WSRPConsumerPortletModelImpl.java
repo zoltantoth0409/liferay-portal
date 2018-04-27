@@ -23,6 +23,7 @@ import com.liferay.exportimport.kernel.lar.StagedModelType;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.model.CacheModel;
+import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.model.impl.BaseModelImpl;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -644,7 +645,7 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 
 	private static final ClassLoader _classLoader = WSRPConsumerPortlet.class.getClassLoader();
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
-			WSRPConsumerPortlet.class
+			WSRPConsumerPortlet.class, ModelWrapper.class
 		};
 	private String _uuid;
 	private String _originalUuid;

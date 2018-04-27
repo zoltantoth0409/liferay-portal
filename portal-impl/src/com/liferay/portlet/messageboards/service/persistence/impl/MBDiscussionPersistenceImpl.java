@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.service.persistence.CompanyProvider;
 import com.liferay.portal.kernel.service.persistence.CompanyProviderWrapper;
 import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
@@ -49,6 +50,7 @@ import com.liferay.portlet.messageboards.model.impl.MBDiscussionModelImpl;
 import java.io.Serializable;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationHandler;
 
 import java.util.Collections;
 import java.util.Date;
@@ -2693,8 +2695,6 @@ public class MBDiscussionPersistenceImpl extends BasePersistenceImpl<MBDiscussio
 
 	@Override
 	protected MBDiscussion removeImpl(MBDiscussion mbDiscussion) {
-		mbDiscussion = toUnwrappedModel(mbDiscussion);
-
 		Session session = null;
 
 		try {
@@ -2725,9 +2725,23 @@ public class MBDiscussionPersistenceImpl extends BasePersistenceImpl<MBDiscussio
 
 	@Override
 	public MBDiscussion updateImpl(MBDiscussion mbDiscussion) {
-		mbDiscussion = toUnwrappedModel(mbDiscussion);
-
 		boolean isNew = mbDiscussion.isNew();
+
+		if (!(mbDiscussion instanceof MBDiscussionModelImpl)) {
+			InvocationHandler invocationHandler = null;
+
+			if (ProxyUtil.isProxyClass(mbDiscussion.getClass())) {
+				invocationHandler = ProxyUtil.getInvocationHandler(mbDiscussion);
+
+				throw new IllegalArgumentException(
+					"Implement ModelWrapper in mbDiscussion proxy " +
+					invocationHandler.getClass());
+			}
+
+			throw new IllegalArgumentException(
+				"Implement ModelWrapper in custom MBDiscussion implementation " +
+				mbDiscussion.getClass());
+		}
 
 		MBDiscussionModelImpl mbDiscussionModelImpl = (MBDiscussionModelImpl)mbDiscussion;
 
@@ -2880,32 +2894,6 @@ public class MBDiscussionPersistenceImpl extends BasePersistenceImpl<MBDiscussio
 		mbDiscussion.resetOriginalValues();
 
 		return mbDiscussion;
-	}
-
-	protected MBDiscussion toUnwrappedModel(MBDiscussion mbDiscussion) {
-		if (mbDiscussion instanceof MBDiscussionImpl) {
-			return mbDiscussion;
-		}
-
-		MBDiscussionImpl mbDiscussionImpl = new MBDiscussionImpl();
-
-		mbDiscussionImpl.setNew(mbDiscussion.isNew());
-		mbDiscussionImpl.setPrimaryKey(mbDiscussion.getPrimaryKey());
-
-		mbDiscussionImpl.setUuid(mbDiscussion.getUuid());
-		mbDiscussionImpl.setDiscussionId(mbDiscussion.getDiscussionId());
-		mbDiscussionImpl.setGroupId(mbDiscussion.getGroupId());
-		mbDiscussionImpl.setCompanyId(mbDiscussion.getCompanyId());
-		mbDiscussionImpl.setUserId(mbDiscussion.getUserId());
-		mbDiscussionImpl.setUserName(mbDiscussion.getUserName());
-		mbDiscussionImpl.setCreateDate(mbDiscussion.getCreateDate());
-		mbDiscussionImpl.setModifiedDate(mbDiscussion.getModifiedDate());
-		mbDiscussionImpl.setClassNameId(mbDiscussion.getClassNameId());
-		mbDiscussionImpl.setClassPK(mbDiscussion.getClassPK());
-		mbDiscussionImpl.setThreadId(mbDiscussion.getThreadId());
-		mbDiscussionImpl.setLastPublishDate(mbDiscussion.getLastPublishDate());
-
-		return mbDiscussionImpl;
 	}
 
 	/**

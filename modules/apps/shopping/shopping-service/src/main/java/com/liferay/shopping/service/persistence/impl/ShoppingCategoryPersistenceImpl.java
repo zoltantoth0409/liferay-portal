@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.service.persistence.CompanyProvider;
 import com.liferay.portal.kernel.service.persistence.CompanyProviderWrapper;
 import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.spring.extender.service.ServiceReference;
@@ -44,6 +45,8 @@ import com.liferay.shopping.model.impl.ShoppingCategoryModelImpl;
 import com.liferay.shopping.service.persistence.ShoppingCategoryPersistence;
 
 import java.io.Serializable;
+
+import java.lang.reflect.InvocationHandler;
 
 import java.util.Collections;
 import java.util.Date;
@@ -2356,8 +2359,6 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 
 	@Override
 	protected ShoppingCategory removeImpl(ShoppingCategory shoppingCategory) {
-		shoppingCategory = toUnwrappedModel(shoppingCategory);
-
 		Session session = null;
 
 		try {
@@ -2388,9 +2389,23 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 
 	@Override
 	public ShoppingCategory updateImpl(ShoppingCategory shoppingCategory) {
-		shoppingCategory = toUnwrappedModel(shoppingCategory);
-
 		boolean isNew = shoppingCategory.isNew();
+
+		if (!(shoppingCategory instanceof ShoppingCategoryModelImpl)) {
+			InvocationHandler invocationHandler = null;
+
+			if (ProxyUtil.isProxyClass(shoppingCategory.getClass())) {
+				invocationHandler = ProxyUtil.getInvocationHandler(shoppingCategory);
+
+				throw new IllegalArgumentException(
+					"Implement ModelWrapper in shoppingCategory proxy " +
+					invocationHandler.getClass());
+			}
+
+			throw new IllegalArgumentException(
+				"Implement ModelWrapper in custom ShoppingCategory implementation " +
+				shoppingCategory.getClass());
+		}
 
 		ShoppingCategoryModelImpl shoppingCategoryModelImpl = (ShoppingCategoryModelImpl)shoppingCategory;
 
@@ -2515,31 +2530,6 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 		shoppingCategory.resetOriginalValues();
 
 		return shoppingCategory;
-	}
-
-	protected ShoppingCategory toUnwrappedModel(
-		ShoppingCategory shoppingCategory) {
-		if (shoppingCategory instanceof ShoppingCategoryImpl) {
-			return shoppingCategory;
-		}
-
-		ShoppingCategoryImpl shoppingCategoryImpl = new ShoppingCategoryImpl();
-
-		shoppingCategoryImpl.setNew(shoppingCategory.isNew());
-		shoppingCategoryImpl.setPrimaryKey(shoppingCategory.getPrimaryKey());
-
-		shoppingCategoryImpl.setCategoryId(shoppingCategory.getCategoryId());
-		shoppingCategoryImpl.setGroupId(shoppingCategory.getGroupId());
-		shoppingCategoryImpl.setCompanyId(shoppingCategory.getCompanyId());
-		shoppingCategoryImpl.setUserId(shoppingCategory.getUserId());
-		shoppingCategoryImpl.setUserName(shoppingCategory.getUserName());
-		shoppingCategoryImpl.setCreateDate(shoppingCategory.getCreateDate());
-		shoppingCategoryImpl.setModifiedDate(shoppingCategory.getModifiedDate());
-		shoppingCategoryImpl.setParentCategoryId(shoppingCategory.getParentCategoryId());
-		shoppingCategoryImpl.setName(shoppingCategory.getName());
-		shoppingCategoryImpl.setDescription(shoppingCategory.getDescription());
-
-		return shoppingCategoryImpl;
 	}
 
 	/**

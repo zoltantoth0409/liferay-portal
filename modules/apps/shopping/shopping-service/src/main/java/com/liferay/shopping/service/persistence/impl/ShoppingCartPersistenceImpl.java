@@ -31,6 +31,7 @@ import com.liferay.portal.kernel.service.persistence.CompanyProvider;
 import com.liferay.portal.kernel.service.persistence.CompanyProviderWrapper;
 import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.spring.extender.service.ServiceReference;
 
@@ -41,6 +42,8 @@ import com.liferay.shopping.model.impl.ShoppingCartModelImpl;
 import com.liferay.shopping.service.persistence.ShoppingCartPersistence;
 
 import java.io.Serializable;
+
+import java.lang.reflect.InvocationHandler;
 
 import java.util.Collections;
 import java.util.Date;
@@ -1508,8 +1511,6 @@ public class ShoppingCartPersistenceImpl extends BasePersistenceImpl<ShoppingCar
 
 	@Override
 	protected ShoppingCart removeImpl(ShoppingCart shoppingCart) {
-		shoppingCart = toUnwrappedModel(shoppingCart);
-
 		Session session = null;
 
 		try {
@@ -1540,9 +1541,23 @@ public class ShoppingCartPersistenceImpl extends BasePersistenceImpl<ShoppingCar
 
 	@Override
 	public ShoppingCart updateImpl(ShoppingCart shoppingCart) {
-		shoppingCart = toUnwrappedModel(shoppingCart);
-
 		boolean isNew = shoppingCart.isNew();
+
+		if (!(shoppingCart instanceof ShoppingCartModelImpl)) {
+			InvocationHandler invocationHandler = null;
+
+			if (ProxyUtil.isProxyClass(shoppingCart.getClass())) {
+				invocationHandler = ProxyUtil.getInvocationHandler(shoppingCart);
+
+				throw new IllegalArgumentException(
+					"Implement ModelWrapper in shoppingCart proxy " +
+					invocationHandler.getClass());
+			}
+
+			throw new IllegalArgumentException(
+				"Implement ModelWrapper in custom ShoppingCart implementation " +
+				shoppingCart.getClass());
+		}
 
 		ShoppingCartModelImpl shoppingCartModelImpl = (ShoppingCartModelImpl)shoppingCart;
 
@@ -1659,31 +1674,6 @@ public class ShoppingCartPersistenceImpl extends BasePersistenceImpl<ShoppingCar
 		shoppingCart.resetOriginalValues();
 
 		return shoppingCart;
-	}
-
-	protected ShoppingCart toUnwrappedModel(ShoppingCart shoppingCart) {
-		if (shoppingCart instanceof ShoppingCartImpl) {
-			return shoppingCart;
-		}
-
-		ShoppingCartImpl shoppingCartImpl = new ShoppingCartImpl();
-
-		shoppingCartImpl.setNew(shoppingCart.isNew());
-		shoppingCartImpl.setPrimaryKey(shoppingCart.getPrimaryKey());
-
-		shoppingCartImpl.setCartId(shoppingCart.getCartId());
-		shoppingCartImpl.setGroupId(shoppingCart.getGroupId());
-		shoppingCartImpl.setCompanyId(shoppingCart.getCompanyId());
-		shoppingCartImpl.setUserId(shoppingCart.getUserId());
-		shoppingCartImpl.setUserName(shoppingCart.getUserName());
-		shoppingCartImpl.setCreateDate(shoppingCart.getCreateDate());
-		shoppingCartImpl.setModifiedDate(shoppingCart.getModifiedDate());
-		shoppingCartImpl.setItemIds(shoppingCart.getItemIds());
-		shoppingCartImpl.setCouponCodes(shoppingCart.getCouponCodes());
-		shoppingCartImpl.setAltShipping(shoppingCart.getAltShipping());
-		shoppingCartImpl.setInsure(shoppingCart.isInsure());
-
-		return shoppingCartImpl;
 	}
 
 	/**

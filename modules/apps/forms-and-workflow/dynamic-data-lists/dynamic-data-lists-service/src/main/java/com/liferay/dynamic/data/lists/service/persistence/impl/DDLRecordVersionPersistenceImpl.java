@@ -35,10 +35,13 @@ import com.liferay.portal.kernel.service.persistence.CompanyProvider;
 import com.liferay.portal.kernel.service.persistence.CompanyProviderWrapper;
 import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.spring.extender.service.ServiceReference;
 
 import java.io.Serializable;
+
+import java.lang.reflect.InvocationHandler;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -1595,8 +1598,6 @@ public class DDLRecordVersionPersistenceImpl extends BasePersistenceImpl<DDLReco
 
 	@Override
 	protected DDLRecordVersion removeImpl(DDLRecordVersion ddlRecordVersion) {
-		ddlRecordVersion = toUnwrappedModel(ddlRecordVersion);
-
 		Session session = null;
 
 		try {
@@ -1627,9 +1628,23 @@ public class DDLRecordVersionPersistenceImpl extends BasePersistenceImpl<DDLReco
 
 	@Override
 	public DDLRecordVersion updateImpl(DDLRecordVersion ddlRecordVersion) {
-		ddlRecordVersion = toUnwrappedModel(ddlRecordVersion);
-
 		boolean isNew = ddlRecordVersion.isNew();
+
+		if (!(ddlRecordVersion instanceof DDLRecordVersionModelImpl)) {
+			InvocationHandler invocationHandler = null;
+
+			if (ProxyUtil.isProxyClass(ddlRecordVersion.getClass())) {
+				invocationHandler = ProxyUtil.getInvocationHandler(ddlRecordVersion);
+
+				throw new IllegalArgumentException(
+					"Implement ModelWrapper in ddlRecordVersion proxy " +
+					invocationHandler.getClass());
+			}
+
+			throw new IllegalArgumentException(
+				"Implement ModelWrapper in custom DDLRecordVersion implementation " +
+				ddlRecordVersion.getClass());
+		}
 
 		DDLRecordVersionModelImpl ddlRecordVersionModelImpl = (DDLRecordVersionModelImpl)ddlRecordVersion;
 
@@ -1731,36 +1746,6 @@ public class DDLRecordVersionPersistenceImpl extends BasePersistenceImpl<DDLReco
 		ddlRecordVersion.resetOriginalValues();
 
 		return ddlRecordVersion;
-	}
-
-	protected DDLRecordVersion toUnwrappedModel(
-		DDLRecordVersion ddlRecordVersion) {
-		if (ddlRecordVersion instanceof DDLRecordVersionImpl) {
-			return ddlRecordVersion;
-		}
-
-		DDLRecordVersionImpl ddlRecordVersionImpl = new DDLRecordVersionImpl();
-
-		ddlRecordVersionImpl.setNew(ddlRecordVersion.isNew());
-		ddlRecordVersionImpl.setPrimaryKey(ddlRecordVersion.getPrimaryKey());
-
-		ddlRecordVersionImpl.setRecordVersionId(ddlRecordVersion.getRecordVersionId());
-		ddlRecordVersionImpl.setGroupId(ddlRecordVersion.getGroupId());
-		ddlRecordVersionImpl.setCompanyId(ddlRecordVersion.getCompanyId());
-		ddlRecordVersionImpl.setUserId(ddlRecordVersion.getUserId());
-		ddlRecordVersionImpl.setUserName(ddlRecordVersion.getUserName());
-		ddlRecordVersionImpl.setCreateDate(ddlRecordVersion.getCreateDate());
-		ddlRecordVersionImpl.setDDMStorageId(ddlRecordVersion.getDDMStorageId());
-		ddlRecordVersionImpl.setRecordSetId(ddlRecordVersion.getRecordSetId());
-		ddlRecordVersionImpl.setRecordId(ddlRecordVersion.getRecordId());
-		ddlRecordVersionImpl.setVersion(ddlRecordVersion.getVersion());
-		ddlRecordVersionImpl.setDisplayIndex(ddlRecordVersion.getDisplayIndex());
-		ddlRecordVersionImpl.setStatus(ddlRecordVersion.getStatus());
-		ddlRecordVersionImpl.setStatusByUserId(ddlRecordVersion.getStatusByUserId());
-		ddlRecordVersionImpl.setStatusByUserName(ddlRecordVersion.getStatusByUserName());
-		ddlRecordVersionImpl.setStatusDate(ddlRecordVersion.getStatusDate());
-
-		return ddlRecordVersionImpl;
 	}
 
 	/**

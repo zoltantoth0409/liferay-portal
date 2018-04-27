@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.service.persistence.CompanyProvider;
 import com.liferay.portal.kernel.service.persistence.CompanyProviderWrapper;
 import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -46,6 +47,7 @@ import com.liferay.portlet.documentlibrary.model.impl.DLFileRankModelImpl;
 import java.io.Serializable;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationHandler;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -2702,8 +2704,6 @@ public class DLFileRankPersistenceImpl extends BasePersistenceImpl<DLFileRank>
 
 	@Override
 	protected DLFileRank removeImpl(DLFileRank dlFileRank) {
-		dlFileRank = toUnwrappedModel(dlFileRank);
-
 		Session session = null;
 
 		try {
@@ -2734,9 +2734,23 @@ public class DLFileRankPersistenceImpl extends BasePersistenceImpl<DLFileRank>
 
 	@Override
 	public DLFileRank updateImpl(DLFileRank dlFileRank) {
-		dlFileRank = toUnwrappedModel(dlFileRank);
-
 		boolean isNew = dlFileRank.isNew();
+
+		if (!(dlFileRank instanceof DLFileRankModelImpl)) {
+			InvocationHandler invocationHandler = null;
+
+			if (ProxyUtil.isProxyClass(dlFileRank.getClass())) {
+				invocationHandler = ProxyUtil.getInvocationHandler(dlFileRank);
+
+				throw new IllegalArgumentException(
+					"Implement ModelWrapper in dlFileRank proxy " +
+					invocationHandler.getClass());
+			}
+
+			throw new IllegalArgumentException(
+				"Implement ModelWrapper in custom DLFileRank implementation " +
+				dlFileRank.getClass());
+		}
 
 		DLFileRankModelImpl dlFileRankModelImpl = (DLFileRankModelImpl)dlFileRank;
 
@@ -2893,27 +2907,6 @@ public class DLFileRankPersistenceImpl extends BasePersistenceImpl<DLFileRank>
 		dlFileRank.resetOriginalValues();
 
 		return dlFileRank;
-	}
-
-	protected DLFileRank toUnwrappedModel(DLFileRank dlFileRank) {
-		if (dlFileRank instanceof DLFileRankImpl) {
-			return dlFileRank;
-		}
-
-		DLFileRankImpl dlFileRankImpl = new DLFileRankImpl();
-
-		dlFileRankImpl.setNew(dlFileRank.isNew());
-		dlFileRankImpl.setPrimaryKey(dlFileRank.getPrimaryKey());
-
-		dlFileRankImpl.setFileRankId(dlFileRank.getFileRankId());
-		dlFileRankImpl.setGroupId(dlFileRank.getGroupId());
-		dlFileRankImpl.setCompanyId(dlFileRank.getCompanyId());
-		dlFileRankImpl.setUserId(dlFileRank.getUserId());
-		dlFileRankImpl.setCreateDate(dlFileRank.getCreateDate());
-		dlFileRankImpl.setFileEntryId(dlFileRank.getFileEntryId());
-		dlFileRankImpl.setActive(dlFileRank.isActive());
-
-		return dlFileRankImpl;
 	}
 
 	/**

@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.service.persistence.CompanyProvider;
 import com.liferay.portal.kernel.service.persistence.CompanyProviderWrapper;
 import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 
@@ -45,6 +46,7 @@ import com.liferay.portlet.documentlibrary.model.impl.DLSyncEventModelImpl;
 import java.io.Serializable;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationHandler;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -991,8 +993,6 @@ public class DLSyncEventPersistenceImpl extends BasePersistenceImpl<DLSyncEvent>
 
 	@Override
 	protected DLSyncEvent removeImpl(DLSyncEvent dlSyncEvent) {
-		dlSyncEvent = toUnwrappedModel(dlSyncEvent);
-
 		Session session = null;
 
 		try {
@@ -1023,9 +1023,23 @@ public class DLSyncEventPersistenceImpl extends BasePersistenceImpl<DLSyncEvent>
 
 	@Override
 	public DLSyncEvent updateImpl(DLSyncEvent dlSyncEvent) {
-		dlSyncEvent = toUnwrappedModel(dlSyncEvent);
-
 		boolean isNew = dlSyncEvent.isNew();
+
+		if (!(dlSyncEvent instanceof DLSyncEventModelImpl)) {
+			InvocationHandler invocationHandler = null;
+
+			if (ProxyUtil.isProxyClass(dlSyncEvent.getClass())) {
+				invocationHandler = ProxyUtil.getInvocationHandler(dlSyncEvent);
+
+				throw new IllegalArgumentException(
+					"Implement ModelWrapper in dlSyncEvent proxy " +
+					invocationHandler.getClass());
+			}
+
+			throw new IllegalArgumentException(
+				"Implement ModelWrapper in custom DLSyncEvent implementation " +
+				dlSyncEvent.getClass());
+		}
 
 		DLSyncEventModelImpl dlSyncEventModelImpl = (DLSyncEventModelImpl)dlSyncEvent;
 
@@ -1072,26 +1086,6 @@ public class DLSyncEventPersistenceImpl extends BasePersistenceImpl<DLSyncEvent>
 		dlSyncEvent.resetOriginalValues();
 
 		return dlSyncEvent;
-	}
-
-	protected DLSyncEvent toUnwrappedModel(DLSyncEvent dlSyncEvent) {
-		if (dlSyncEvent instanceof DLSyncEventImpl) {
-			return dlSyncEvent;
-		}
-
-		DLSyncEventImpl dlSyncEventImpl = new DLSyncEventImpl();
-
-		dlSyncEventImpl.setNew(dlSyncEvent.isNew());
-		dlSyncEventImpl.setPrimaryKey(dlSyncEvent.getPrimaryKey());
-
-		dlSyncEventImpl.setSyncEventId(dlSyncEvent.getSyncEventId());
-		dlSyncEventImpl.setCompanyId(dlSyncEvent.getCompanyId());
-		dlSyncEventImpl.setModifiedTime(dlSyncEvent.getModifiedTime());
-		dlSyncEventImpl.setEvent(dlSyncEvent.getEvent());
-		dlSyncEventImpl.setType(dlSyncEvent.getType());
-		dlSyncEventImpl.setTypePK(dlSyncEvent.getTypePK());
-
-		return dlSyncEventImpl;
 	}
 
 	/**
