@@ -78,8 +78,7 @@ public class PublishFolderMVCActionCommand extends BaseMVCActionCommand {
 		}
 		catch (PortalException pe) {
 			if (_log.isWarnEnabled()) {
-				_log.warn(
-					"Not able to get folder with given id " + folderId, pe);
+				_log.warn("Unable to get folder " + folderId, pe);
 			}
 
 			return null;
@@ -97,8 +96,8 @@ public class PublishFolderMVCActionCommand extends BaseMVCActionCommand {
 		catch (PortalException pe) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Not able to get folders and file entries and file " +
-						"shortcuts for folder with id " + folder.getFolderId(),
+					"Unable to get folders, file entries, file shortcuts " +
+						"for folder " + folder.getFolderId(),
 					pe);
 			}
 
