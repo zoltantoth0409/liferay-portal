@@ -101,14 +101,14 @@ public class OAuthAuthorizationDataMessageBodyWriter
 		HttpServletRequest httpServletRequest =
 			_messageContext.getHttpServletRequest();
 
-		String authorizeScreenURLString;
+		String authorizeScreenURLString = null;
 
 		try {
 			authorizeScreenURLString = getAuthorizeScreenURL(
 				_portal.getCompanyId(httpServletRequest));
 		}
 		catch (ConfigurationException ce) {
-			_log.error("Unable to locate configuration", ce);
+			_log.error("Unable to get authorize screen configuration", ce);
 
 			throw new WebApplicationException(
 				Response.status(
@@ -187,16 +187,16 @@ public class OAuthAuthorizationDataMessageBodyWriter
 		return authorizeScreenConfiguration.authorizeScreenURL();
 	}
 
-	protected String removeParameter(String url, String name) {
-		return _http.removeParameter(url, "oauth2_" + name);
+	protected String removeParameter(String urlString, String name) {
+		return _http.removeParameter(urlString, "oauth2_" + name);
 	}
 
-	protected String setParameter(String url, String name, String value) {
+	protected String setParameter(String urlString, String name, String value) {
 		if (Validator.isBlank(value)) {
-			return url;
+			return urlString;
 		}
 
-		return _http.addParameter(url, "oauth2_" + name, value);
+		return _http.addParameter(urlString, "oauth2_" + name, value);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
