@@ -18,6 +18,7 @@ import com.liferay.oauth2.provider.rest.internal.endpoint.constants.OAuth2Provid
 import com.liferay.oauth2.provider.rest.internal.endpoint.liferay.LiferayOAuthDataProvider;
 import com.liferay.portal.kernel.util.MapUtil;
 
+import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.Map;
 
@@ -57,7 +58,7 @@ public class LiferayTokenIntrospectionServiceRegistrator {
 				new LiferayTokenIntrospectionService(
 					_liferayOAuthDataProvider, canSupportPublicClients);
 
-			Hashtable<String, Object> liferayTokenIntrospectionProperties =
+			Dictionary<String, Object> liferayTokenIntrospectionProperties =
 				new Hashtable<>();
 
 			liferayTokenIntrospectionProperties.put(
