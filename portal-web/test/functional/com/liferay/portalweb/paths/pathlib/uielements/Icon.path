@@ -251,7 +251,7 @@
 <!--ELLIPSIS-->
 <tr>
 	<td>BODY_VERTICAL_ELLIPSIS</td>
-	<td>//div[contains(@class,'portlet') and contains(@class,'container')]//span/*[name()='svg'][contains(@class,'icon-ellipsis')]</td>
+	<td>//div[contains(@class,'portlet') and contains(@class,'container')]//span/*[name()='svg'][contains(@class,'icon-ellipsis')] | //div[contains(@class,'autofit-row') and contains(@class,'autofit-float')]//span/*[name()='svg'][contains(@class,'icon-ellipsis')]</td>
 	<td></td>
 </tr>
 <tr>
