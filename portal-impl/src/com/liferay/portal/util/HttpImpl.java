@@ -2073,6 +2073,8 @@ public class HttpImpl implements Http {
 
 			String redirect = redirectParam.substring(pos + 1);
 
+			int encodedRedirectLength = redirect.length();
+
 			try {
 				redirect = URLCodec.decodeURL(redirect, StringPool.UTF8);
 			}
@@ -2093,7 +2095,7 @@ public class HttpImpl implements Http {
 			redirect = URLCodec.encodeURL(
 				_shortenURL(redirect, currentLength + newLength));
 
-			newLength += redirect.length();
+			newLength += encodedRedirectLength;
 
 			if ((currentLength + newLength) > URL_MAXIMUM_LENGTH) {
 				sb.setIndex(sb.index() - 2);
