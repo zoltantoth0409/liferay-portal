@@ -406,7 +406,7 @@ public class DefaultWorkflowEngineImpl
 		try {
 			Definition definition = getDefinition(bytes);
 
-			String definitionName = _getDefinitionNameOnSaving(
+			String definitionName = _getDefinitionName(
 				definition, name, serviceContext);
 
 			return _workflowDeployer.save(
@@ -762,7 +762,7 @@ public class DefaultWorkflowEngineImpl
 	@ServiceReference(type = PortalUUID.class)
 	protected PortalUUID portalUUID;
 
-	private String _getDefinitionNameOnSaving(
+	private String _getDefinitionName(
 		Definition definition, String name, ServiceContext serviceContext) {
 
 		if (Validator.isNotNull(name)) {
