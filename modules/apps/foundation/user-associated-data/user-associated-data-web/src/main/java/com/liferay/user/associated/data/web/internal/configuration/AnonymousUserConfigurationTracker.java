@@ -42,7 +42,7 @@ public class AnonymousUserConfigurationTracker {
 
 		if (_log.isInfoEnabled()) {
 			_log.info(
-				"No anonymous user configuration found for company id: " +
+				"No anonymous user configuration found for company " +
 					companyId);
 		}
 
