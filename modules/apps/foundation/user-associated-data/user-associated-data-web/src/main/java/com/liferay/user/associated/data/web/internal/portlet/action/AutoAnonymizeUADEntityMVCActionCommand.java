@@ -46,9 +46,9 @@ public class AutoAnonymizeUADEntityMVCActionCommand
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		User selectedUser = getSelectedUser(actionRequest);
-
 		UADAnonymizer uadAnonymizer = getUADAnonymizer(actionRequest);
+
+		User selectedUser = getSelectedUser(actionRequest);
 
 		uadAnonymizer.autoAnonymize(
 			getEntity(actionRequest), selectedUser.getUserId(),

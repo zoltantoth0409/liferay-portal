@@ -45,9 +45,9 @@ public class AnonymizeUADEntitiesMVCActionCommand
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		User selectedUser = getSelectedUser(actionRequest);
-
 		UADAnonymizer uadAnonymizer = getUADAnonymizer(actionRequest);
+
+		User selectedUser = getSelectedUser(actionRequest);
 
 		User anonymousUser = _uadAnonymizerHelper.getAnonymousUser(
 			selectedUser.getCompanyId());
