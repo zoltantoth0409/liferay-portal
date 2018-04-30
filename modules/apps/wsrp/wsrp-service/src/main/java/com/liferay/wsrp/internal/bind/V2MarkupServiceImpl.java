@@ -364,7 +364,7 @@ public class V2MarkupServiceImpl
 			NamedString clientAttribute = new NamedString();
 
 			clientAttribute.setName(HttpHeaders.CONTENT_LENGTH);
-			clientAttribute.setValue(Integer.toString(contentLength));
+			clientAttribute.setValue(String.valueOf(contentLength));
 
 			clientAttributes.add(clientAttribute);
 		}
