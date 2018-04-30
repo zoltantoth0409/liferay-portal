@@ -18,7 +18,9 @@
 
 <%
 DDMFormViewFormInstanceRecordsDisplayContext ddmFormViewFormInstanceRecordsDisplayContext = ddmFormAdminDisplayContext.getFormViewRecordsDisplayContext();
+
 PortletURL portletURL = ddmFormViewFormInstanceRecordsDisplayContext.getPortletURL();
+
 renderResponse.setTitle(LanguageUtil.get(request, "form-entries"));
 %>
 
