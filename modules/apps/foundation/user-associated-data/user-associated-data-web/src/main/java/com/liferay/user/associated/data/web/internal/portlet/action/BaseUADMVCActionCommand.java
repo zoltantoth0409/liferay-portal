@@ -49,14 +49,14 @@ public abstract class BaseUADMVCActionCommand extends BaseMVCActionCommand {
 	protected List<Object> getEntities(ActionRequest actionRequest)
 		throws Exception {
 
-		UADAggregator uadAggregator = getUADAggregator(actionRequest);
+		List<Object> entities = new ArrayList<>();
 
 		String[] primaryKeys = ParamUtil.getStringValues(
 			actionRequest, "primaryKeys");
 
-		List<Object> entities = new ArrayList<>();
-
 		for (String primaryKey : primaryKeys) {
+			UADAggregator uadAggregator = getUADAggregator(actionRequest);
+
 			entities.add(uadAggregator.get(primaryKey));
 		}
 
