@@ -36,7 +36,7 @@ public class SelectedUserHelper {
 
 		if (uadAnonymizerHelper.isAnonymousUser(selectedUser)) {
 			throw new PortalException(
-				"The selected user cannot be the anonymous user.");
+				"The selected user cannot be the anonymous user");
 		}
 
 		return selectedUser;
