@@ -50,6 +50,8 @@ public class LayoutExceptionRequestHandler {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
 		String errorMessage = null;
 
 		if (pe instanceof LayoutNameException) {
@@ -72,8 +74,6 @@ public class LayoutExceptionRequestHandler {
 			errorMessage = LanguageUtil.get(
 				themeDisplay.getRequest(), "an-unexpected-error-occurred");
 		}
-
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		jsonObject.put("error", errorMessage);
 

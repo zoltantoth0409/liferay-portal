@@ -49,6 +49,8 @@ public class GroupExceptionRequestHandler {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
 		String errorMessage = null;
 
 		if (pe instanceof DuplicateGroupException) {
@@ -73,8 +75,6 @@ public class GroupExceptionRequestHandler {
 			errorMessage = LanguageUtil.get(
 				themeDisplay.getRequest(), "an-unexpected-error-occurred");
 		}
-
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		jsonObject.put("error", errorMessage);
 
