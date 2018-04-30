@@ -58,6 +58,7 @@ public class AnonymizeApplicationUADEntitiesMVCActionCommand
 
 		for (UADAnonymizer uadAnonymizer : uadAnonymizers) {
 			User selectedUser = getSelectedUser(actionRequest);
+
 			User anonymousUser = _uadAnonymizerHelper.getAnonymousUser(
 				selectedUser.getCompanyId());
 
