@@ -582,7 +582,7 @@ public class CSSCompressor {
 	}
 
 	private String _replace0UnitWith0(String css) {
-		String oldCss;
+		String oldCss = null;
 
 		do {
 			oldCss = css;
@@ -604,9 +604,9 @@ public class CSSCompressor {
 	}
 
 	private String _replaceBorderNone(String css) {
-		Matcher matcher = _replaceBorderNonePattern.matcher(css);
-
 		StringBuffer sb = new StringBuffer();
+
+		Matcher matcher = _replaceBorderNonePattern.matcher(css);
 
 		while (matcher.find()) {
 			matcher.appendReplacement(
@@ -647,9 +647,9 @@ public class CSSCompressor {
 	}
 
 	private String _retainSpaceForSpecialIE6Cases(String css) {
-		Matcher matcher = _retainSpaceForSpecialIE6CasesPattern.matcher(css);
-
 		StringBuffer sb = new StringBuffer();
+
+		Matcher matcher = _retainSpaceForSpecialIE6CasesPattern.matcher(css);
 
 		while (matcher.find()) {
 			matcher.appendReplacement(
@@ -671,9 +671,9 @@ public class CSSCompressor {
 	}
 
 	private String _shortenRGBColors(String css) {
-		Matcher matcher = _shortenRGBColorsPattern.matcher(css);
-
 		StringBuffer sb = new StringBuffer();
+
+		Matcher matcher = _shortenRGBColorsPattern.matcher(css);
 
 		while (matcher.find()) {
 			String group = matcher.group(1);
@@ -727,11 +727,10 @@ public class CSSCompressor {
 	}
 
 	private String _shortenTwinComponentDigitsColors(String css) {
-		Matcher matcher = _shortenTwinComponentDigitsColorsPattern.matcher(css);
+		StringBuffer sb = new StringBuffer();
 
 		int index = 0;
-
-		StringBuffer sb = new StringBuffer();
+		Matcher matcher = _shortenTwinComponentDigitsColorsPattern.matcher(css);
 
 		while (matcher.find(index)) {
 			sb.append(css.substring(index, matcher.start()));
