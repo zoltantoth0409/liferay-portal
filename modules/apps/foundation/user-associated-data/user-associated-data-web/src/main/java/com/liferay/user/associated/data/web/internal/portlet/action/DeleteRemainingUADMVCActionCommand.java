@@ -51,11 +51,11 @@ public class DeleteRemainingUADMVCActionCommand
 
 		User selectedUser = getSelectedUser(actionRequest);
 
-		Collection<UADAnonymizer> uadAnonymizers =
-			_uadRegistry.getUADAnonymizers();
-
 		User anonymousUser = _uadAnonymizerHelper.getAnonymousUser(
 			selectedUser.getCompanyId());
+
+		Collection<UADAnonymizer> uadAnonymizers =
+			_uadRegistry.getUADAnonymizers();
 
 		for (UADAnonymizer uadAnonymizer : uadAnonymizers) {
 			uadAnonymizer.autoAnonymizeAll(

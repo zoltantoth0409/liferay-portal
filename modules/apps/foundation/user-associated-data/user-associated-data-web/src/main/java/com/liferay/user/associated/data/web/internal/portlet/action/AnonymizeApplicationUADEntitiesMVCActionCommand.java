@@ -54,12 +54,12 @@ public class AnonymizeApplicationUADEntitiesMVCActionCommand
 		String applicationName = ParamUtil.getString(
 			actionRequest, "applicationName");
 
+		User anonymousUser = _uadAnonymizerHelper.getAnonymousUser(
+			selectedUser.getCompanyId());
+
 		List<UADAnonymizer> uadAnonymizers =
 			_uadApplicationSummaryHelper.getApplicationUADAnonymizers(
 				applicationName);
-
-		User anonymousUser = _uadAnonymizerHelper.getAnonymousUser(
-			selectedUser.getCompanyId());
 
 		for (UADAnonymizer uadAnonymizer : uadAnonymizers) {
 			uadAnonymizer.autoAnonymizeAll(
