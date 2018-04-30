@@ -527,8 +527,8 @@ public class DDMFormAdminDisplayContext {
 		PortletURL portletURL = _renderResponse.createRenderURL();
 
 		portletURL.setParameter("mvcPath", "/admin/view.jsp");
-		portletURL.setParameter("groupId", String.valueOf(getScopeGroupId()));
 		portletURL.setParameter("currentTab", "forms");
+		portletURL.setParameter("groupId", String.valueOf(getScopeGroupId()));
 
 		String delta = ParamUtil.getString(_renderRequest, "delta");
 
