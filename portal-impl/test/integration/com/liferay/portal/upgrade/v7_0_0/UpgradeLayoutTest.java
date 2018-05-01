@@ -35,7 +35,7 @@ public class UpgradeLayoutTest {
 
 	@Test
 	public void testUpgrade() throws Exception {
-		UpgradeProcess UpgradeProcess = new UpgradeLayout();
+		UpgradeProcess upgradeProcess = new UpgradeLayout();
 
 		upgradeProcess.upgrade();
 	}
