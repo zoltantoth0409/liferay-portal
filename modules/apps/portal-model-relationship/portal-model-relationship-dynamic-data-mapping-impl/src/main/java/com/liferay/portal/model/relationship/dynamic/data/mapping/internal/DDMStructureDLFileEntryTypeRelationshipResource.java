@@ -56,20 +56,20 @@ public class DDMStructureDLFileEntryTypeRelationshipResource
 	private List<DLFileEntryType> _getStructureFileEntryTypes(
 		DDMStructure structure) {
 
-		List<DDMStructureLink> structureLinks =
+		List<DDMStructureLink> ddmStructureLinks =
 			_ddmStructureLinkLocalService.getStructureLinks(
 				structure.getStructureId());
 
-		Stream<DDMStructureLink> stream = structureLinks.stream();
+		Stream<DDMStructureLink> stream = ddmStructureLinks.stream();
 
 		long classNameId = _classNameLocalService.getClassNameId(
 			DLFileEntryType.class);
 
 		return stream.filter(
-			structureLink -> structureLink.getClassNameId() == classNameId
+			ddmStructureLink -> ddmStructureLink.getClassNameId() == classNameId
 		).map(
-			structureLink -> _dlFileEntryTypeLocalService.fetchFileEntryType(
-				structureLink.getClassPK())
+			ddmStructureLink -> _dlFileEntryTypeLocalService.fetchFileEntryType(
+				ddmStructureLink.getClassPK())
 		).collect(
 			Collectors.toList()
 		);
