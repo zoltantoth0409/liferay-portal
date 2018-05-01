@@ -14,6 +14,7 @@
 
 package com.liferay.portal.upgrade.v7_0_0;
 
+import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
@@ -34,7 +35,9 @@ public class UpgradeLayoutTest {
 
 	@Test
 	public void testUpgrade() throws Exception {
-		new UpgradeLayout().upgrade();
+		UpgradeProcess UpgradeProcess = new UpgradeLayout();
+
+		upgradeProcess.upgrade();
 	}
 
 }
