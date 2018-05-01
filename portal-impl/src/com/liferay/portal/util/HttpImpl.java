@@ -2028,13 +2028,10 @@ public class HttpImpl implements Http {
 
 		List<String> encodedRedirectParams = new ArrayList<>();
 
-		String backURLParam = "_backURL" + encodedEqual;
-		String redirectParam = "_redirect" + encodedEqual;
-		String returnToFullPageURLParam = "_returnToFullPageURL" + encodedEqual;
-
 		for (String param : params) {
-			if (param.contains(backURLParam) || param.contains(redirectParam) ||
-				param.contains(returnToFullPageURLParam) ||
+			if (param.contains("_backURL" + encodedEqual) ||
+				param.contains("_redirect" + encodedEqual) ||
+				param.contains("_returnToFullPageURL" + encodedEqual) ||
 				(param.startsWith("redirect") &&
 				 (param.indexOf(encodedEqual) != -1))) {
 
