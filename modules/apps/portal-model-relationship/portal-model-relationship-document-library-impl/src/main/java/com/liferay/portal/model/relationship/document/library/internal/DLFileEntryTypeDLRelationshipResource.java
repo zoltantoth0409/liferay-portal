@@ -66,9 +66,9 @@ public class DLFileEntryTypeDLRelationshipResource
 		List<DLFileEntry> dlFileEntries =
 			_dlFileEntryLocalService.getFileEntries(-1, -1);
 
-		Stream<DLFileEntry> parallelStream = dlFileEntries.parallelStream();
+		Stream<DLFileEntry> stream = dlFileEntries.parallelStream();
 
-		return parallelStream.filter(
+		return stream.filter(
 			dlFileEntry ->
 				dlFileEntry.getFileEntryTypeId() ==
 					fileEntryType.getFileEntryTypeId()
