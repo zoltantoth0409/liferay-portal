@@ -50,11 +50,6 @@ public class ${entity.name}UADDisplayTest extends BaseUADDisplayTestCase<${entit
 		return _uadDisplay;
 	}
 
-	@Override
-	protected String getTypeDescription() {
-		return "${entity.UADTypeDescription}";
-	}
-
 	@After
 	public void tearDown() throws Exception {
 		_${entity.varName}UADTestHelper.cleanUpDependencies(_${entity.varNames});
