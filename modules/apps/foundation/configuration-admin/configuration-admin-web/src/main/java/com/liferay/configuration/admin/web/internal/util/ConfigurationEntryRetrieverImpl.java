@@ -227,17 +227,15 @@ public class ConfigurationEntryRetrieverImpl
 	protected Set<ConfigurationScreen> getConfigurationScreens(
 		String configurationCategoryKey) {
 
+		Set<ConfigurationScreen> configurationCategoriesSet =
+			Collections.emptySet();
+
 		List<ConfigurationScreen> configurationCategories =
 			_configurationScreensServiceTrackerMap.getService(
 				configurationCategoryKey);
 
-		Set<ConfigurationScreen> configurationCategoriesSet;
-
 		if (configurationCategories != null) {
 			configurationCategoriesSet = new HashSet<>(configurationCategories);
-		}
-		else {
-			configurationCategoriesSet = Collections.emptySet();
 		}
 
 		return configurationCategoriesSet;
