@@ -539,7 +539,7 @@
 
 		<var method="selenium#getElementValue(TextInput#DISPLAY_DATE_HOUR)" name="displayDateHour" />
 
-		<var name="displayDateHourLength" value="${displayDateHour?length()}" />
+		<var method="StringUtil#length('${displayDateHour}')" name="displayDateHourLength" />
 
 		<if>
 			<equals arg1="${displayDateHourLength}" arg2="1" />
@@ -552,7 +552,7 @@
 
 		<var method="MathUtil#sum('${displayDateMinute}','3')" name="displayDateMinuteFuture" />
 
-		<var name="displayDateMinuteFutureLength" value="${displayDateMinuteFuture?length()}" />
+		<var method="StringUtil#length('${displayDateMinuteFuture}')" name="displayDateMinuteFutureLength" />
 
 		<if>
 			<equals arg1="${displayDateMinuteFutureLength}" arg2="1" />
