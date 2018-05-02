@@ -347,7 +347,7 @@ public class StagingImpl implements Staging {
 			new String[] {Boolean.TRUE.toString()});
 
 		Map<String, Serializable> publishLayoutLocalSettingsMap =
-			ExportImportConfigurationSettingsMapFactory.
+			_exportImportConfigurationSettingsMapFactory.
 				buildPublishLayoutLocalSettingsMap(
 					user, sourceGroupId, targetGroupId, privateLayout,
 					layoutIds, parameterMap);
@@ -517,7 +517,7 @@ public class StagingImpl implements Staging {
 		User user = permissionChecker.getUser();
 
 		Map<String, Serializable> publishLayoutRemoteSettingsMap =
-			ExportImportConfigurationSettingsMapFactory.
+			_exportImportConfigurationSettingsMapFactory.
 				buildPublishLayoutRemoteSettingsMap(
 					user.getUserId(), sourceGroupId, privateLayout, layoutIdMap,
 					parameterMap, remoteAddress, remotePort, remotePathContext,
@@ -2283,7 +2283,7 @@ public class StagingImpl implements Staging {
 		User user = _userLocalService.getUser(userId);
 
 		Map<String, Serializable> publishLayoutLocalSettingsMap =
-			ExportImportConfigurationSettingsMapFactory.
+			_exportImportConfigurationSettingsMapFactory.
 				buildPublishLayoutLocalSettingsMap(
 					user, sourceGroupId, targetGroupId, privateLayout,
 					layoutIds, parameterMap);
@@ -2460,7 +2460,7 @@ public class StagingImpl implements Staging {
 		User user = _userLocalService.getUser(userId);
 
 		Map<String, Serializable> publishPortletSettingsMap =
-			ExportImportConfigurationSettingsMapFactory.
+			_exportImportConfigurationSettingsMapFactory.
 				buildPublishPortletSettingsMap(
 					userId, sourceGroupId, sourcePlid, targetGroupId,
 					targetPlid, portletId, parameterMap, user.getLocale(),
@@ -2555,7 +2555,7 @@ public class StagingImpl implements Staging {
 				new String[] {Boolean.TRUE.toString()});
 
 			publishLayoutLocalSettingsMap =
-				ExportImportConfigurationSettingsMapFactory.
+				_exportImportConfigurationSettingsMapFactory.
 					buildPublishLayoutLocalSettingsMap(
 						user, sourceGroupId, targetGroupId, privateLayout,
 						layoutIds, parameterMap);
@@ -2696,7 +2696,7 @@ public class StagingImpl implements Staging {
 				portletRequest, "remotePrivateLayout");
 
 			publishLayoutRemoteSettingsMap =
-				ExportImportConfigurationSettingsMapFactory.
+				_exportImportConfigurationSettingsMapFactory.
 					buildPublishLayoutRemoteSettingsMap(
 						user.getUserId(), groupId, privateLayout, layoutIdMap,
 						parameterMap, remoteAddress, remotePort,
@@ -4101,6 +4101,10 @@ public class StagingImpl implements Staging {
 	@Reference
 	private ExportImportConfigurationParameterMapFactory
 		_exportImportConfigurationParameterMapFactory;
+
+	@Reference
+	private ExportImportConfigurationSettingsMapFactory
+		_exportImportConfigurationSettingsMapFactory;
 
 	@Reference
 	private ExportImportHelper _exportImportHelper;
