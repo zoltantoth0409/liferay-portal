@@ -1,13 +1,15 @@
 #!/bin/bash
 
-if [ -e /proc/$$/fd/255 ]; then
-	scriptpath=`readlink /proc/$$/fd/255 2>/dev/null`
+if [ -e /proc/$$/fd/255 ]
+then
+	DB_UPGRADE_PATH=`readlink /proc/$$/fd/255 2>/dev/null`
 fi
 
-if [ ! -n "$scriptpath" ]; then
-	scriptpath="$0"
+if [ ! -n "${DB_UPGRADE_PATH}" ]
+then
+	DB_UPGRADE_PATH="$0"
 fi
 
-cd "$(dirname "$scriptpath")"
+cd "$(dirname "${DB_UPGRADE_PATH}")"
 
 java -jar com.liferay.portal.tools.db.upgrade.client.jar "$@"
