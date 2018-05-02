@@ -1412,7 +1412,7 @@ public class GitWorkingDirectory {
 	}
 
 	protected File getRealGitDirectory(File gitFile) {
-		String gitFileContent;
+		String gitFileContent = null;
 
 		try {
 			gitFileContent = JenkinsResultsParserUtil.read(gitFile);
