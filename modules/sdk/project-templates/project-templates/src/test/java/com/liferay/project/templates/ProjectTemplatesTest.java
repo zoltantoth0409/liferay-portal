@@ -2223,6 +2223,7 @@ public class ProjectTemplatesTest {
 		}
 
 		gradleRunner.withArguments(arguments);
+
 		gradleRunner.withGradleDistribution(_gradleDistribution);
 		gradleRunner.withProjectDir(projectDir);
 
