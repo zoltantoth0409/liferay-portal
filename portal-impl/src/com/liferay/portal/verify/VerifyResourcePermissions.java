@@ -95,7 +95,7 @@ public class VerifyResourcePermissions extends VerifyProcess {
 		boolean count, VerifiableResourcedModel verifiableResourcedModel,
 		Role role) {
 
-		StringBundler sb = new StringBundler(28);
+		StringBundler sb = new StringBundler(29);
 
 		String modelName = verifiableResourcedModel.getModelName();
 
