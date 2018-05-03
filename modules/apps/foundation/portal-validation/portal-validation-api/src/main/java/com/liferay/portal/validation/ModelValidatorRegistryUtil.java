@@ -48,7 +48,6 @@ public class ModelValidatorRegistryUtil {
 		return _instance._getModelValidator(className);
 	}
 
-	@SuppressWarnings("unchecked")
 	public static <T extends ClassedModel, U extends ModelValidator<T>> U
 		getSpecificModelValidator(
 			Class<T> modelClass, Class<U> modelValidatorClass) {
@@ -58,7 +57,6 @@ public class ModelValidatorRegistryUtil {
 		return (U)modelValidator;
 	}
 
-	@SuppressWarnings("unchecked")
 	private ModelValidatorRegistryUtil() {
 		Bundle bundle = FrameworkUtil.getBundle(
 			ModelValidatorRegistryUtil.class);
@@ -74,7 +72,6 @@ public class ModelValidatorRegistryUtil {
 		_serviceTracker.open();
 	}
 
-	@SuppressWarnings("unchecked")
 	private <T extends ClassedModel> ModelValidator<T> _getModelValidator(
 		String className) {
 
