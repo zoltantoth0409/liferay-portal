@@ -76,6 +76,7 @@ public class ItemSelectorImplTest extends PowerMockito {
 
 		_itemSelectorImpl.setItemSelectorCriterionSerializer(
 			_stubItemSelectorCriterionSerializer);
+
 		ReflectionTestUtil.setFieldValue(
 			_itemSelectorImpl, "_http", new HttpImpl());
 		ReflectionTestUtil.setFieldValue(
