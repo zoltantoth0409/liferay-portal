@@ -56,19 +56,20 @@ public interface AnnouncementsEntryService extends BaseService {
 	* @deprecated As of 7.0.0, replaced by {@link #addEntry(long, long, String,
 	String, String, String, Date, Date, int, boolean)}
 	*/
-	@Deprecated
+	@java.lang.Deprecated
 	public AnnouncementsEntry addEntry(long plid, long classNameId,
-		long classPK, String title, String content, String url, String type,
-		int displayDateMonth, int displayDateDay, int displayDateYear,
-		int displayDateHour, int displayDateMinute, boolean displayImmediately,
+		long classPK, java.lang.String title, java.lang.String content,
+		java.lang.String url, java.lang.String type, int displayDateMonth,
+		int displayDateDay, int displayDateYear, int displayDateHour,
+		int displayDateMinute, boolean displayImmediately,
 		int expirationDateMonth, int expirationDateDay, int expirationDateYear,
 		int expirationDateHour, int expirationDateMinute, int priority,
 		boolean alert) throws PortalException;
 
 	public AnnouncementsEntry addEntry(long classNameId, long classPK,
-		String title, String content, String url, String type,
-		Date displayDate, Date expirationDate, int priority, boolean alert)
-		throws PortalException;
+		java.lang.String title, java.lang.String content, java.lang.String url,
+		java.lang.String type, Date displayDate, Date expirationDate,
+		int priority, boolean alert) throws PortalException;
 
 	public void deleteEntry(long entryId) throws PortalException;
 
@@ -80,21 +81,22 @@ public interface AnnouncementsEntryService extends BaseService {
 	*
 	* @return the OSGi service identifier
 	*/
-	public String getOSGiServiceIdentifier();
+	public java.lang.String getOSGiServiceIdentifier();
 
-	public AnnouncementsEntry updateEntry(long entryId, String title,
-		String content, String url, String type, Date displayDate,
-		Date expirationDate, int priority) throws PortalException;
+	public AnnouncementsEntry updateEntry(long entryId, java.lang.String title,
+		java.lang.String content, java.lang.String url, java.lang.String type,
+		Date displayDate, Date expirationDate, int priority)
+		throws PortalException;
 
 	/**
 	* @deprecated As of 7.0.0, replaced by {@link #updateEntry(long, String,
 	String, String, String, Date, Date, int)}
 	*/
-	@Deprecated
-	public AnnouncementsEntry updateEntry(long entryId, String title,
-		String content, String url, String type, int displayDateMonth,
-		int displayDateDay, int displayDateYear, int displayDateHour,
-		int displayDateMinute, boolean displayImmediately,
+	@java.lang.Deprecated
+	public AnnouncementsEntry updateEntry(long entryId, java.lang.String title,
+		java.lang.String content, java.lang.String url, java.lang.String type,
+		int displayDateMonth, int displayDateDay, int displayDateYear,
+		int displayDateHour, int displayDateMinute, boolean displayImmediately,
 		int expirationDateMonth, int expirationDateDay, int expirationDateYear,
 		int expirationDateHour, int expirationDateMinute, int priority)
 		throws PortalException;

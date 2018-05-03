@@ -54,16 +54,18 @@ public interface AnnouncementsDeliveryService extends BaseService {
 	*
 	* @return the OSGi service identifier
 	*/
-	public String getOSGiServiceIdentifier();
+	public java.lang.String getOSGiServiceIdentifier();
 
-	public AnnouncementsDelivery updateDelivery(long userId, String type,
-		boolean email, boolean sms) throws PortalException;
+	public AnnouncementsDelivery updateDelivery(long userId,
+		java.lang.String type, boolean email, boolean sms)
+		throws PortalException;
 
 	/**
 	* @deprecated As of 7.0.0, replaced by {@link
 	#updateDelivery(long, String, boolean, boolean)}
 	*/
-	@Deprecated
-	public AnnouncementsDelivery updateDelivery(long userId, String type,
-		boolean email, boolean sms, boolean website) throws PortalException;
+	@java.lang.Deprecated
+	public AnnouncementsDelivery updateDelivery(long userId,
+		java.lang.String type, boolean email, boolean sms, boolean website)
+		throws PortalException;
 }

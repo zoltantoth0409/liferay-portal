@@ -115,7 +115,7 @@ public class AnnouncementsDeliveryWrapper implements AnnouncementsDelivery,
 	}
 
 	@Override
-	public Object clone() {
+	public java.lang.Object clone() {
 		return new AnnouncementsDeliveryWrapper((AnnouncementsDelivery)_announcementsDelivery.clone());
 	}
 
@@ -190,7 +190,7 @@ public class AnnouncementsDeliveryWrapper implements AnnouncementsDelivery,
 	* @return the type of this announcements delivery
 	*/
 	@Override
-	public String getType() {
+	public java.lang.String getType() {
 		return _announcementsDelivery.getType();
 	}
 
@@ -210,7 +210,7 @@ public class AnnouncementsDeliveryWrapper implements AnnouncementsDelivery,
 	* @return the user uuid of this announcements delivery
 	*/
 	@Override
-	public String getUserUuid() {
+	public java.lang.String getUserUuid() {
 		return _announcementsDelivery.getUserUuid();
 	}
 
@@ -366,7 +366,7 @@ public class AnnouncementsDeliveryWrapper implements AnnouncementsDelivery,
 	* @param type the type of this announcements delivery
 	*/
 	@Override
-	public void setType(String type) {
+	public void setType(java.lang.String type) {
 		_announcementsDelivery.setType(type);
 	}
 
@@ -386,7 +386,7 @@ public class AnnouncementsDeliveryWrapper implements AnnouncementsDelivery,
 	* @param userUuid the user uuid of this announcements delivery
 	*/
 	@Override
-	public void setUserUuid(String userUuid) {
+	public void setUserUuid(java.lang.String userUuid) {
 		_announcementsDelivery.setUserUuid(userUuid);
 	}
 
@@ -411,7 +411,7 @@ public class AnnouncementsDeliveryWrapper implements AnnouncementsDelivery,
 	}
 
 	@Override
-	public String toString() {
+	public java.lang.String toString() {
 		return _announcementsDelivery.toString();
 	}
 
@@ -421,7 +421,7 @@ public class AnnouncementsDeliveryWrapper implements AnnouncementsDelivery,
 	}
 
 	@Override
-	public String toXmlString() {
+	public java.lang.String toXmlString() {
 		return _announcementsDelivery.toXmlString();
 	}
 

@@ -187,7 +187,7 @@ public class AnnouncementsEntryWrapper implements AnnouncementsEntry,
 	}
 
 	@Override
-	public Object clone() {
+	public java.lang.Object clone() {
 		return new AnnouncementsEntryWrapper((AnnouncementsEntry)_announcementsEntry.clone());
 	}
 
@@ -212,7 +212,7 @@ public class AnnouncementsEntryWrapper implements AnnouncementsEntry,
 	* @return the fully qualified class name of this announcements entry
 	*/
 	@Override
-	public String getClassName() {
+	public java.lang.String getClassName() {
 		return _announcementsEntry.getClassName();
 	}
 
@@ -252,7 +252,7 @@ public class AnnouncementsEntryWrapper implements AnnouncementsEntry,
 	* @return the content of this announcements entry
 	*/
 	@Override
-	public String getContent() {
+	public java.lang.String getContent() {
 		return _announcementsEntry.getContent();
 	}
 
@@ -348,7 +348,7 @@ public class AnnouncementsEntryWrapper implements AnnouncementsEntry,
 	* @return the title of this announcements entry
 	*/
 	@Override
-	public String getTitle() {
+	public java.lang.String getTitle() {
 		return _announcementsEntry.getTitle();
 	}
 
@@ -358,7 +358,7 @@ public class AnnouncementsEntryWrapper implements AnnouncementsEntry,
 	* @return the type of this announcements entry
 	*/
 	@Override
-	public String getType() {
+	public java.lang.String getType() {
 		return _announcementsEntry.getType();
 	}
 
@@ -368,7 +368,7 @@ public class AnnouncementsEntryWrapper implements AnnouncementsEntry,
 	* @return the url of this announcements entry
 	*/
 	@Override
-	public String getUrl() {
+	public java.lang.String getUrl() {
 		return _announcementsEntry.getUrl();
 	}
 
@@ -388,7 +388,7 @@ public class AnnouncementsEntryWrapper implements AnnouncementsEntry,
 	* @return the user name of this announcements entry
 	*/
 	@Override
-	public String getUserName() {
+	public java.lang.String getUserName() {
 		return _announcementsEntry.getUserName();
 	}
 
@@ -398,7 +398,7 @@ public class AnnouncementsEntryWrapper implements AnnouncementsEntry,
 	* @return the user uuid of this announcements entry
 	*/
 	@Override
-	public String getUserUuid() {
+	public java.lang.String getUserUuid() {
 		return _announcementsEntry.getUserUuid();
 	}
 
@@ -408,7 +408,7 @@ public class AnnouncementsEntryWrapper implements AnnouncementsEntry,
 	* @return the uuid of this announcements entry
 	*/
 	@Override
-	public String getUuid() {
+	public java.lang.String getUuid() {
 		return _announcementsEntry.getUuid();
 	}
 
@@ -463,7 +463,7 @@ public class AnnouncementsEntryWrapper implements AnnouncementsEntry,
 	}
 
 	@Override
-	public void setClassName(String className) {
+	public void setClassName(java.lang.String className) {
 		_announcementsEntry.setClassName(className);
 	}
 
@@ -503,7 +503,7 @@ public class AnnouncementsEntryWrapper implements AnnouncementsEntry,
 	* @param content the content of this announcements entry
 	*/
 	@Override
-	public void setContent(String content) {
+	public void setContent(java.lang.String content) {
 		_announcementsEntry.setContent(content);
 	}
 
@@ -609,7 +609,7 @@ public class AnnouncementsEntryWrapper implements AnnouncementsEntry,
 	* @param title the title of this announcements entry
 	*/
 	@Override
-	public void setTitle(String title) {
+	public void setTitle(java.lang.String title) {
 		_announcementsEntry.setTitle(title);
 	}
 
@@ -619,7 +619,7 @@ public class AnnouncementsEntryWrapper implements AnnouncementsEntry,
 	* @param type the type of this announcements entry
 	*/
 	@Override
-	public void setType(String type) {
+	public void setType(java.lang.String type) {
 		_announcementsEntry.setType(type);
 	}
 
@@ -629,7 +629,7 @@ public class AnnouncementsEntryWrapper implements AnnouncementsEntry,
 	* @param url the url of this announcements entry
 	*/
 	@Override
-	public void setUrl(String url) {
+	public void setUrl(java.lang.String url) {
 		_announcementsEntry.setUrl(url);
 	}
 
@@ -649,7 +649,7 @@ public class AnnouncementsEntryWrapper implements AnnouncementsEntry,
 	* @param userName the user name of this announcements entry
 	*/
 	@Override
-	public void setUserName(String userName) {
+	public void setUserName(java.lang.String userName) {
 		_announcementsEntry.setUserName(userName);
 	}
 
@@ -659,7 +659,7 @@ public class AnnouncementsEntryWrapper implements AnnouncementsEntry,
 	* @param userUuid the user uuid of this announcements entry
 	*/
 	@Override
-	public void setUserUuid(String userUuid) {
+	public void setUserUuid(java.lang.String userUuid) {
 		_announcementsEntry.setUserUuid(userUuid);
 	}
 
@@ -669,7 +669,7 @@ public class AnnouncementsEntryWrapper implements AnnouncementsEntry,
 	* @param uuid the uuid of this announcements entry
 	*/
 	@Override
-	public void setUuid(String uuid) {
+	public void setUuid(java.lang.String uuid) {
 		_announcementsEntry.setUuid(uuid);
 	}
 
@@ -684,7 +684,7 @@ public class AnnouncementsEntryWrapper implements AnnouncementsEntry,
 	}
 
 	@Override
-	public String toString() {
+	public java.lang.String toString() {
 		return _announcementsEntry.toString();
 	}
 
@@ -694,7 +694,7 @@ public class AnnouncementsEntryWrapper implements AnnouncementsEntry,
 	}
 
 	@Override
-	public String toXmlString() {
+	public java.lang.String toXmlString() {
 		return _announcementsEntry.toXmlString();
 	}
 

@@ -48,7 +48,7 @@ public class AnnouncementsDeliveryLocalServiceWrapper
 
 	@Override
 	public com.liferay.announcements.kernel.model.AnnouncementsDelivery addUserDelivery(
-		long userId, String type)
+		long userId, java.lang.String type)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _announcementsDeliveryLocalService.addUserDelivery(userId, type);
 	}
@@ -109,7 +109,7 @@ public class AnnouncementsDeliveryLocalServiceWrapper
 	}
 
 	@Override
-	public void deleteDelivery(long userId, String type) {
+	public void deleteDelivery(long userId, java.lang.String type) {
 		_announcementsDeliveryLocalService.deleteDelivery(userId, type);
 	}
 
@@ -280,7 +280,7 @@ public class AnnouncementsDeliveryLocalServiceWrapper
 	* @return the OSGi service identifier
 	*/
 	@Override
-	public String getOSGiServiceIdentifier() {
+	public java.lang.String getOSGiServiceIdentifier() {
 		return _announcementsDeliveryLocalService.getOSGiServiceIdentifier();
 	}
 
@@ -299,7 +299,7 @@ public class AnnouncementsDeliveryLocalServiceWrapper
 
 	@Override
 	public com.liferay.announcements.kernel.model.AnnouncementsDelivery getUserDelivery(
-		long userId, String type)
+		long userId, java.lang.String type)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _announcementsDeliveryLocalService.getUserDelivery(userId, type);
 	}
@@ -318,7 +318,7 @@ public class AnnouncementsDeliveryLocalServiceWrapper
 
 	@Override
 	public com.liferay.announcements.kernel.model.AnnouncementsDelivery updateDelivery(
-		long userId, String type, boolean email, boolean sms)
+		long userId, java.lang.String type, boolean email, boolean sms)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _announcementsDeliveryLocalService.updateDelivery(userId, type,
 			email, sms);
@@ -331,7 +331,8 @@ public class AnnouncementsDeliveryLocalServiceWrapper
 	@Deprecated
 	@Override
 	public com.liferay.announcements.kernel.model.AnnouncementsDelivery updateDelivery(
-		long userId, String type, boolean email, boolean sms, boolean website)
+		long userId, java.lang.String type, boolean email, boolean sms,
+		boolean website)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _announcementsDeliveryLocalService.updateDelivery(userId, type,
 			email, sms, website);

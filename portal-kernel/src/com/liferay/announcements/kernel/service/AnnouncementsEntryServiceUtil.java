@@ -47,10 +47,10 @@ public class AnnouncementsEntryServiceUtil {
 	*/
 	@Deprecated
 	public static com.liferay.announcements.kernel.model.AnnouncementsEntry addEntry(
-		long plid, long classNameId, long classPK, String title,
-		String content, String url, String type, int displayDateMonth,
-		int displayDateDay, int displayDateYear, int displayDateHour,
-		int displayDateMinute, boolean displayImmediately,
+		long plid, long classNameId, long classPK, java.lang.String title,
+		java.lang.String content, java.lang.String url, java.lang.String type,
+		int displayDateMonth, int displayDateDay, int displayDateYear,
+		int displayDateHour, int displayDateMinute, boolean displayImmediately,
 		int expirationDateMonth, int expirationDateDay, int expirationDateYear,
 		int expirationDateHour, int expirationDateMinute, int priority,
 		boolean alert)
@@ -64,9 +64,10 @@ public class AnnouncementsEntryServiceUtil {
 	}
 
 	public static com.liferay.announcements.kernel.model.AnnouncementsEntry addEntry(
-		long classNameId, long classPK, String title, String content,
-		String url, String type, java.util.Date displayDate,
-		java.util.Date expirationDate, int priority, boolean alert)
+		long classNameId, long classPK, java.lang.String title,
+		java.lang.String content, java.lang.String url, java.lang.String type,
+		java.util.Date displayDate, java.util.Date expirationDate,
+		int priority, boolean alert)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addEntry(classNameId, classPK, title, content, url, type,
@@ -89,12 +90,13 @@ public class AnnouncementsEntryServiceUtil {
 	*
 	* @return the OSGi service identifier
 	*/
-	public static String getOSGiServiceIdentifier() {
+	public static java.lang.String getOSGiServiceIdentifier() {
 		return getService().getOSGiServiceIdentifier();
 	}
 
 	public static com.liferay.announcements.kernel.model.AnnouncementsEntry updateEntry(
-		long entryId, String title, String content, String url, String type,
+		long entryId, java.lang.String title, java.lang.String content,
+		java.lang.String url, java.lang.String type,
 		java.util.Date displayDate, java.util.Date expirationDate, int priority)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
@@ -108,9 +110,10 @@ public class AnnouncementsEntryServiceUtil {
 	*/
 	@Deprecated
 	public static com.liferay.announcements.kernel.model.AnnouncementsEntry updateEntry(
-		long entryId, String title, String content, String url, String type,
-		int displayDateMonth, int displayDateDay, int displayDateYear,
-		int displayDateHour, int displayDateMinute, boolean displayImmediately,
+		long entryId, java.lang.String title, java.lang.String content,
+		java.lang.String url, java.lang.String type, int displayDateMonth,
+		int displayDateDay, int displayDateYear, int displayDateHour,
+		int displayDateMinute, boolean displayImmediately,
 		int expirationDateMonth, int expirationDateDay, int expirationDateYear,
 		int expirationDateHour, int expirationDateMinute, int priority)
 		throws com.liferay.portal.kernel.exception.PortalException {
