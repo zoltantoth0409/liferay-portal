@@ -35,6 +35,8 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.PortletItem;
 import com.liferay.portal.kernel.model.User;
@@ -209,6 +211,7 @@ public class ScreensAssetEntryServiceImpl
 				}
 			}
 			catch (Exception e) {
+				_log.debug(e, e);
 			}
 		}
 
@@ -378,6 +381,9 @@ public class ScreensAssetEntryServiceImpl
 
 		return jsonObject;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ScreensAssetEntryServiceImpl.class);
 
 	private static volatile ModelResourcePermission<JournalArticle>
 		_journalArticleModelResourcePermission =
