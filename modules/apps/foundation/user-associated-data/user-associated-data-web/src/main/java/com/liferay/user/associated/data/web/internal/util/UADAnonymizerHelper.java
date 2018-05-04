@@ -98,13 +98,12 @@ public class UADAnonymizerHelper {
 		boolean sendEmail = false;
 		ServiceContext serviceContext = null;
 
-		String counterName = UADAnonymizerHelper.class.getName();
-
-		long uniqueId = _counterLocalService.increment(counterName);
+		long counter = _counterLocalService.increment(
+			UADAnonymizerHelper.class.getName());
 
 		String screenName = StringBundler.concat(
 			firstName, String.valueOf(companyId), StringPool.UNDERLINE,
-			String.valueOf(uniqueId));
+			counter);
 
 		Company company = _companyLocalService.getCompany(companyId);
 
