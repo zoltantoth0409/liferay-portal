@@ -257,6 +257,11 @@ public class TicketLocalServiceUtil {
 		return getService().getTickets(start, end);
 	}
 
+	public static java.util.List<com.liferay.portal.kernel.model.Ticket> getTickets(
+		String className, long classPK, int type) {
+		return getService().getTickets(className, classPK, type);
+	}
+
 	/**
 	* Returns the number of tickets.
 	*

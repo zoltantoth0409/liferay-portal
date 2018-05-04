@@ -262,6 +262,12 @@ public class TicketLocalServiceWrapper implements TicketLocalService,
 		return _ticketLocalService.getTickets(start, end);
 	}
 
+	@Override
+	public java.util.List<com.liferay.portal.kernel.model.Ticket> getTickets(
+		String className, long classPK, int type) {
+		return _ticketLocalService.getTickets(className, classPK, type);
+	}
+
 	/**
 	* Returns the number of tickets.
 	*
