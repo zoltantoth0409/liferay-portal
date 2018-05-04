@@ -98,7 +98,7 @@ public class UADAnonymizerHelper {
 		boolean sendEmail = false;
 		ServiceContext serviceContext = null;
 
-		String counterName = "AnonymousUser" + companyId;
+		String counterName = UADAnonymizerHelper.class.getName();
 
 		long uniqueId = _counterLocalService.increment(counterName);
 
