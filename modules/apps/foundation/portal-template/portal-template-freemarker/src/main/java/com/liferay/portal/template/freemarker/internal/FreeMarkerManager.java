@@ -385,13 +385,13 @@ public class FreeMarkerManager extends BaseSingleTemplateManager {
 				bundles = new Bundle[] {_bundle};
 			}
 			else {
-				Bundle[] temp = new Bundle[bundles.length + 1];
+				Bundle[] tempBundles = new Bundle[bundles.length + 1];
 
-				temp[0] = _bundle;
+				tempBundles[0] = _bundle;
 
-				System.arraycopy(bundles, 0, temp, 1, bundles.length);
+				System.arraycopy(bundles, 0, tempBundles, 1, bundles.length);
 
-				bundles = temp;
+				bundles = tempBundles;
 			}
 
 			return _freeMarkerBundleClassloader =
