@@ -78,6 +78,19 @@ public class UADAnonymizerHelper {
 		String password1 = password;
 		String password2 = password;
 		boolean autoScreenName = false;
+
+		long counter = _counterLocalService.increment(
+			UADAnonymizerHelper.class.getName());
+
+		String screenName = StringBundler.concat(
+			firstName, String.valueOf(companyId), StringPool.UNDERLINE,
+			counter);
+
+		Company company = _companyLocalService.getCompany(companyId);
+
+		String emailAddress = StringBundler.concat(
+			screenName, StringPool.AT, company.getMx());
+
 		long facebookId = 0;
 		String openId = StringPool.BLANK;
 		Locale locale = LocaleThreadLocal.getDefaultLocale();
@@ -97,18 +110,6 @@ public class UADAnonymizerHelper {
 		long[] userGroupIds = null;
 		boolean sendEmail = false;
 		ServiceContext serviceContext = null;
-
-		long counter = _counterLocalService.increment(
-			UADAnonymizerHelper.class.getName());
-
-		String screenName = StringBundler.concat(
-			firstName, String.valueOf(companyId), StringPool.UNDERLINE,
-			counter);
-
-		Company company = _companyLocalService.getCompany(companyId);
-
-		String emailAddress = StringBundler.concat(
-			screenName, StringPool.AT, company.getMx());
 
 		User anonymousUser = _userLocalService.addUserWithWorkflow(
 			creatorUserId, companyId, autoPassword, password1, password2,
