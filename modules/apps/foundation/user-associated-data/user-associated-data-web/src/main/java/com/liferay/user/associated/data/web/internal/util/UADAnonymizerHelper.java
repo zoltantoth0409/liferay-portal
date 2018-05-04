@@ -84,7 +84,7 @@ public class UADAnonymizerHelper {
 
 		String screenName = StringBundler.concat(
 			"Anonymous", String.valueOf(companyId), StringPool.UNDERLINE,
-			counter);
+			String.valueOf(counter));
 
 		Company company = _companyLocalService.getCompany(companyId);
 
