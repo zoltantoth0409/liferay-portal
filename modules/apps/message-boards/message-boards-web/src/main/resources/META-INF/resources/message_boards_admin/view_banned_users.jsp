@@ -27,9 +27,9 @@ portletURL.setParameter("mvcRenderCommandName", "/message_boards/view_banned_use
 </liferay-util:include>
 
 <%
-int totalBannedUsers = MBBanLocalServiceUtil.getBansCount(scopeGroupId);
-
 MBBannedUsersManagementToolbarDisplayContext mbBannedUsersManagementToolbarDisplayContext = new MBBannedUsersManagementToolbarDisplayContext(liferayPortletRequest, liferayPortletResponse);
+
+int totalBannedUsers = MBBanLocalServiceUtil.getBansCount(scopeGroupId);
 %>
 
 <clay:management-toolbar
