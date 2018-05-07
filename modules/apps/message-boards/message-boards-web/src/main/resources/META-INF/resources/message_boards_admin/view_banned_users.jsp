@@ -30,8 +30,6 @@ portletURL.setParameter("mvcRenderCommandName", "/message_boards/view_banned_use
 int totalBannedUsers = MBBanLocalServiceUtil.getBansCount(scopeGroupId);
 
 MBBannedUsersManagementToolbarDisplayContext mbBannedUsersManagementToolbarDisplayContext = new MBBannedUsersManagementToolbarDisplayContext(liferayPortletRequest, liferayPortletResponse);
-
-String displayStyle = mbBannedUsersManagementToolbarDisplayContext.getDisplayStyle();
 %>
 
 <clay:management-toolbar
@@ -117,7 +115,7 @@ String displayStyle = mbBannedUsersManagementToolbarDisplayContext.getDisplaySty
 			</liferay-ui:search-container-row>
 
 			<liferay-ui:search-iterator
-				displayStyle="<%= displayStyle %>"
+				displayStyle="<%= mbBannedUsersManagementToolbarDisplayContext.getDisplayStyle() %>"
 				markupView="lexicon"
 			/>
 		</liferay-ui:search-container>
@@ -125,8 +123,9 @@ String displayStyle = mbBannedUsersManagementToolbarDisplayContext.getDisplaySty
 </div>
 
 <%
-PortalUtil.setPageSubtitle(LanguageUtil.get(request, "banned-users"), request);
 PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, TextFormatter.format("banned-users", TextFormatter.O)), portletURL.toString());
+
+PortalUtil.setPageSubtitle(LanguageUtil.get(request, "banned-users"), request);
 %>
 
 <aui:script>
