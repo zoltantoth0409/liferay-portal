@@ -59,7 +59,6 @@ public class GetMappingFieldsMVCActionCommand extends BaseMVCActionCommand {
 			WebKeys.THEME_DISPLAY);
 
 		long classNameId = ParamUtil.getLong(actionRequest, "classNameId");
-
 		long classTypeId = ParamUtil.getLong(actionRequest, "classTypeId");
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
