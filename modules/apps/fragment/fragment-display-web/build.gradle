@@ -12,14 +12,14 @@ dependencies {
 	compileOnly project(":apps:foundation:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:foundation:frontend-taglib:frontend-taglib-soy")
 	compileOnly project(":apps:foundation:portal-template:portal-template-soy-api")
+	compileOnly project(":apps:fragment:fragment-api")
+	compileOnly project(":apps:fragment:fragment-item-selector-api")
 	compileOnly project(":apps:item-selector:item-selector-api")
 	compileOnly project(":apps:item-selector:item-selector-criteria-api")
-	compileOnly project(":apps:web-experience:fragment:fragment-api")
-	compileOnly project(":apps:web-experience:fragment:fragment-item-selector-api")
 	compileOnly project(":core:petra:petra-lang")
 	compileOnly project(":core:petra:petra-string")
 
 	soyCompile project(":apps:foundation:frontend-js:frontend-js-web")
 	soyCompile project(":apps:foundation:frontend-taglib:frontend-taglib")
-	soyCompile project(":apps:web-experience:layout:layout-admin-web")
+	soyCompile project(":apps:layout:layout-admin-web")
 }

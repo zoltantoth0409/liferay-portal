@@ -7,8 +7,8 @@ copyLibs {
 
 dependencies {
 	compileOnly group: "com.liferay.portal", name: "com.liferay.util.java", version: "default"
+	compileOnly project(":apps:export-import:export-import-api")
 	compileOnly project(":apps:foundation:petra:petra-xml")
-	compileOnly project(":apps:web-experience:export-import:export-import-api")
 	compileOnly project(":core:petra:petra-lang")
 	compileOnly project(":core:petra:petra-string")
 
@@ -17,18 +17,18 @@ dependencies {
 	testCompile group: "javax.servlet", name: "javax.servlet-api", version: "3.0.1"
 	testCompile project(":apps:dynamic-data-mapping:dynamic-data-mapping-api")
 	testCompile project(":apps:foundation:portal-search:portal-search")
-	testCompile project(":apps:web-experience:journal:journal-api")
+	testCompile project(":apps:journal:journal-api")
 	testCompile project(":core:registry-api")
 
 	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "default"
+	testIntegrationCompile project(":apps:asset:asset-api")
+	testIntegrationCompile project(":apps:asset:asset-test-util")
 	testIntegrationCompile project(":apps:dynamic-data-mapping:dynamic-data-mapping-test-util")
+	testIntegrationCompile project(":apps:export-import:export-import-test-util")
 	testIntegrationCompile project(":apps:foundation:portal-search:portal-search-test-util")
+	testIntegrationCompile project(":apps:rss:rss-api")
 	testIntegrationCompile project(":apps:social:social-activity-test-util")
-	testIntegrationCompile project(":apps:web-experience:asset:asset-api")
-	testIntegrationCompile project(":apps:web-experience:asset:asset-test-util")
-	testIntegrationCompile project(":apps:web-experience:export-import:export-import-test-util")
-	testIntegrationCompile project(":apps:web-experience:rss:rss-api")
-	testIntegrationCompile project(":apps:web-experience:trash:trash-api")
-	testIntegrationCompile project(":apps:web-experience:trash:trash-test-util")
+	testIntegrationCompile project(":apps:trash:trash-api")
+	testIntegrationCompile project(":apps:trash:trash-test-util")
 	testIntegrationCompile project(":test:arquillian-extension-junit-bridge")
 }

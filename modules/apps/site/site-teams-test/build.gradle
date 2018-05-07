@@ -7,7 +7,7 @@ copyLibs {
 
 dependencies {
 	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
-	testIntegrationCompile project(":apps:web-experience:export-import:export-import-test-util")
-	testIntegrationCompile project(":apps:web-experience:site:site-teams-web")
+	testIntegrationCompile project(":apps:export-import:export-import-test-util")
+	testIntegrationCompile project(":apps:site:site-teams-web")
 	testIntegrationCompile project(":test:arquillian-extension-junit-bridge")
 }

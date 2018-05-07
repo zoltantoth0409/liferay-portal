@@ -10,8 +10,8 @@ dependencies {
 	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bndlib", version: "3.1.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "default"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
+	compileOnly project(":apps:asset:asset-tag-stats-api")
 	compileOnly project(":apps:foundation:petra:petra-model-adapter")
 	compileOnly project(":apps:foundation:portal:portal-spring-extender-api")
 	compileOnly project(":apps:foundation:portal:portal-upgrade-api")
-	compileOnly project(":apps:web-experience:asset:asset-tag-stats-api")
 }

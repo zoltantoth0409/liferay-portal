@@ -15,7 +15,7 @@ dependencies {
 	compileOnly project(":apps:foundation:portal:portal-spring-extender-api")
 	compileOnly project(":apps:foundation:portal:portal-upgrade-api")
 	compileOnly project(":apps:message-boards:message-boards-api")
-	compileOnly project(":apps:web-experience:trash:trash-api")
+	compileOnly project(":apps:trash:trash-api")
 	compileOnly project(":core:petra:petra-string")
 	compileOnly project(":core:registry-api")
 }
