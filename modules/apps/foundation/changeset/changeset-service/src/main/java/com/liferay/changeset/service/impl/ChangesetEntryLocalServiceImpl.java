@@ -57,6 +57,14 @@ public class ChangesetEntryLocalServiceImpl
 	}
 
 	@Override
+	public ChangesetEntry fetchChangesetEntry(
+		long changesetCollectionId, long classNameId, long classPK) {
+
+		return changesetEntryPersistence.fetchByC_C_C(
+			changesetCollectionId, classNameId, classPK);
+	}
+
+	@Override
 	public ChangesetEntry fetchOrAddChangesetEntry(
 			long changesetCollectionId, long classNameId, long classPK)
 		throws PortalException {
@@ -76,14 +84,6 @@ public class ChangesetEntryLocalServiceImpl
 
 		return changesetEntryLocalService.addChangesetEntry(
 			user.getUserId(), changesetCollectionId, classNameId, classPK);
-	}
-
-	@Override
-	public ChangesetEntry fetchChangesetEntry(
-		long changesetCollectionId, long classNameId, long classPK) {
-
-		return changesetEntryPersistence.fetchByC_C_C(
-			changesetCollectionId, classNameId, classPK);
 	}
 
 	@Override
