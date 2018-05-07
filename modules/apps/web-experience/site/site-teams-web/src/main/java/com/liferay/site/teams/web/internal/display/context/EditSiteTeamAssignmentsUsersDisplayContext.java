@@ -310,6 +310,7 @@ public class EditSiteTeamAssignmentsUsersDisplayContext
 						dropdownItem.setLabel(
 							LanguageUtil.get(request, "first-name"));
 					});
+
 				add(
 					dropdownItem -> {
 						dropdownItem.setActive(
