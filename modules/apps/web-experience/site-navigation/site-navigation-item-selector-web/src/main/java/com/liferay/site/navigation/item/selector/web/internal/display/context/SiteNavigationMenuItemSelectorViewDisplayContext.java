@@ -287,6 +287,7 @@ public class SiteNavigationMenuItemSelectorViewDisplayContext {
 						dropdownItem.setLabel(
 							LanguageUtil.get(_request, "create-date"));
 					});
+
 				add(
 					dropdownItem -> {
 						dropdownItem.setActive(
