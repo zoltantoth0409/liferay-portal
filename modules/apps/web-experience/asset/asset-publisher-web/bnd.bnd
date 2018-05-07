@@ -5,8 +5,6 @@ Import-Package:\
 	com.liferay.portal.kernel.portlet;version="[7.3.0,8.1)",\
 	\
 	*
-Liferay-Releng-Module-Group-Description:
-Liferay-Releng-Module-Group-Title: Asset
 Provide-Capability:\
 	soy;\
 		type="asset-publisher-web";\

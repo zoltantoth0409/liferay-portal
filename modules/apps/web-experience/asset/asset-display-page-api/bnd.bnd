@@ -6,5 +6,3 @@ Export-Package:\
 	com.liferay.asset.display.page.model,\
 	com.liferay.asset.display.page.service,\
 	com.liferay.asset.display.page.service.persistence
-Liferay-Releng-Module-Group-Description:
-Liferay-Releng-Module-Group-Title: Asset

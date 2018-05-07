@@ -56,8 +56,7 @@ public class UpgradeArticleSystemEvents extends UpgradeProcess {
 				"classNameId");
 
 			dynamicQuery.add(
-				classNameIdProperty.eq(
-					PortalUtil.getClassNameId(_CLASS_NAME)));
+				classNameIdProperty.eq(PortalUtil.getClassNameId(_CLASS_NAME)));
 
 			Property typeProperty = PropertyFactoryUtil.forName("type");
 

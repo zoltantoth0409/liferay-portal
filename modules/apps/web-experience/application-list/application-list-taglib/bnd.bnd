@@ -4,8 +4,6 @@ Bundle-Version: 3.0.0
 Export-Package:\
 	com.liferay.application.list.taglib.display.context.logic,\
 	com.liferay.application.list.taglib.servlet.taglib
-Liferay-Releng-Module-Group-Description:
-Liferay-Releng-Module-Group-Title: Product Navigation
 Provide-Capability:\
 	osgi.extender;\
 		osgi.extender="jsp.taglib";\

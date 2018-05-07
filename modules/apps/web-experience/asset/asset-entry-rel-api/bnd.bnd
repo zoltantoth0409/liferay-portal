@@ -6,5 +6,3 @@ Export-Package:\
 	com.liferay.asset.entry.rel.model,\
 	com.liferay.asset.entry.rel.service,\
 	com.liferay.asset.entry.rel.service.persistence
-Liferay-Releng-Module-Group-Description:
-Liferay-Releng-Module-Group-Title: Asset

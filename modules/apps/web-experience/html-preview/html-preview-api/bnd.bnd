@@ -7,5 +7,3 @@ Export-Package:\
 	com.liferay.html.preview.processor,\
 	com.liferay.html.preview.service,\
 	com.liferay.html.preview.service.persistence
-Liferay-Releng-Module-Group-Description:
-Liferay-Releng-Module-Group-Title: HTML Preview

@@ -8,5 +8,3 @@ Export-Package:\
 	com.liferay.exportimport.test.util.lar,\
 	com.liferay.exportimport.test.util.model,\
 	com.liferay.exportimport.test.util.model.util
-Liferay-Releng-Module-Group-Description:
-Liferay-Releng-Module-Group-Title: Data Management

@@ -3,8 +3,6 @@ Bundle-SymbolicName: com.liferay.exportimport.changeset.taglib
 Bundle-Version: 1.0.0
 Export-Package: com.liferay.exportimport.changeset.taglib.servlet.taglib
 Liferay-JS-Config: /META-INF/resources/js/config.js
-Liferay-Releng-Module-Group-Description:
-Liferay-Releng-Module-Group-Title: Data Management
 Provide-Capability:\
 	osgi.extender;\
 		osgi.extender="jsp.taglib";\

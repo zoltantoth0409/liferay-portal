@@ -9,5 +9,3 @@ Export-Package:\
 	com.liferay.trash.service.persistence,\
 	com.liferay.trash.util,\
 	com.liferay.trash.util.comparator
-Liferay-Releng-Module-Group-Description:
-Liferay-Releng-Module-Group-Title: Recycle Bin

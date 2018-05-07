@@ -8,5 +8,3 @@ Export-Package:\
 	com.liferay.application.list.deploy.hot,\
 	com.liferay.application.list.display.context.logic,\
 	com.liferay.application.list.util
-Liferay-Releng-Module-Group-Description:
-Liferay-Releng-Module-Group-Title: Product Navigation

@@ -6,5 +6,3 @@ Export-Package:\
 	com.liferay.rss.export,\
 	com.liferay.rss.model,\
 	com.liferay.rss.util
-Liferay-Releng-Module-Group-Description:
-Liferay-Releng-Module-Group-Title: Publication Tools

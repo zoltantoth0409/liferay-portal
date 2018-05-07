@@ -10,5 +10,3 @@ Export-Package:\
 	com.liferay.fragment.service.persistence,\
 	com.liferay.fragment.util,\
 	com.liferay.fragment.util.comparator
-Liferay-Releng-Module-Group-Description:
-Liferay-Releng-Module-Group-Title: Fragment

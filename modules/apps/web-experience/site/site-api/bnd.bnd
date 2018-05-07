@@ -10,5 +10,3 @@ Export-Package:\
 	com.liferay.site.service,\
 	com.liferay.site.service.persistence,\
 	com.liferay.site.util
-Liferay-Releng-Module-Group-Description:
-Liferay-Releng-Module-Group-Title: Site Management
