@@ -198,12 +198,14 @@
 				overflow: auto;
 
 				@include sm {
-					height: calc(100% - #{$management-bar-desktop-height});
+					@if (variable-exists(atlas-theme)) {
+						height: calc(100% - #{$management-bar-desktop-height});
+					}
 				}
 			}
 
 			.table-responsive {
-				float: left;
+				border-width: 0;
 				overflow: visible;
 				width: auto;
 			}
