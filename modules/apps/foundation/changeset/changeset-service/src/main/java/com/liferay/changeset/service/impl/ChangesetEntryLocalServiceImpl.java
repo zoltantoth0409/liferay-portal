@@ -57,7 +57,7 @@ public class ChangesetEntryLocalServiceImpl
 	}
 
 	@Override
-	public ChangesetEntry addChangesetEntryIfNotExists(
+	public ChangesetEntry fetchOrAddChangesetEntry(
 			long changesetCollectionId, long classNameId, long classPK)
 		throws PortalException {
 
