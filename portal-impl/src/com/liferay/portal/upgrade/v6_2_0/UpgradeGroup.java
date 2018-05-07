@@ -43,7 +43,7 @@ public class UpgradeGroup extends UpgradeProcess {
 				"update Group_ set friendlyURL= ? where classNameId = ?")) {
 
 			ps.setString(1, GroupConstants.GLOBAL_FRIENDLY_URL);
-			ps.setLong(2, _COMPANY_CLASS_NAME_ID);
+			ps.setLong(2, _CLASS_NAME_ID);
 
 			ps.execute();
 		}
@@ -53,11 +53,11 @@ public class UpgradeGroup extends UpgradeProcess {
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
 			runSQL(
 				"update Group_ set site = TRUE where classNameId = " +
-					_COMPANY_CLASS_NAME_ID);
+					_CLASS_NAME_ID);
 		}
 	}
 
-	private static final Long _COMPANY_CLASS_NAME_ID =
-		PortalUtil.getClassNameId("com.liferay.portal.model.Company");
+	private static final Long _CLASS_NAME_ID = PortalUtil.getClassNameId(
+		"com.liferay.portal.model.Company");
 
 }
