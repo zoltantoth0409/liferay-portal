@@ -57,7 +57,7 @@ public class UpgradeArticleSystemEvents extends UpgradeProcess {
 
 			dynamicQuery.add(
 				classNameIdProperty.eq(
-					PortalUtil.getClassNameId(_CLASS_NAME_JOURNAL_ARTICLE)));
+					PortalUtil.getClassNameId(_CLASS_NAME)));
 
 			Property typeProperty = PropertyFactoryUtil.forName("type");
 
@@ -135,7 +135,7 @@ public class UpgradeArticleSystemEvents extends UpgradeProcess {
 		deleteJournalArticleSystemEvents();
 	}
 
-	private static final String _CLASS_NAME_JOURNAL_ARTICLE =
+	private static final String _CLASS_NAME =
 		"com.liferay.journal.model.JournalArticle";
 
 	private static final Log _log = LogFactoryUtil.getLog(
