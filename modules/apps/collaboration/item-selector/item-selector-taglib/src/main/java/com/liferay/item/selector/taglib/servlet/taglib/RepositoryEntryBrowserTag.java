@@ -117,8 +117,8 @@ public class RepositoryEntryBrowserTag extends IncludeTag {
 		super.cleanUp();
 
 		_desiredItemSelectorReturnTypes = null;
-		_emptyResultsMessage = null;
 		_displayStyle = null;
+		_emptyResultsMessage = null;
 		_itemSelectedEventName = null;
 		_itemSelectorReturnTypeResolver = null;
 		_maxFileSize = PropsValues.UPLOAD_SERVLET_REQUEST_IMPL_MAX_SIZE;
