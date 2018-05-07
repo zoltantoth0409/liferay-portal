@@ -451,6 +451,7 @@ public class MBEntriesManagementToolbarDisplayContext {
 							dropdownItem.setLabel(
 								LanguageUtil.get(_request, "all"));
 						}));
+
 				add(
 					SafeConsumer.ignore(
 						dropdownItem -> {
@@ -468,6 +469,7 @@ public class MBEntriesManagementToolbarDisplayContext {
 							dropdownItem.setLabel(
 								LanguageUtil.get(_request, "threads"));
 						}));
+
 				add(
 					SafeConsumer.ignore(
 						dropdownItem -> {
