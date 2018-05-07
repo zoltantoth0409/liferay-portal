@@ -177,19 +177,7 @@ AUI.add(
 										else {
 											var message = Lang.sub(Liferay.Language.get('please-enter-a-file-with-a-valid-extension-x'), [mimeTypes]);
 
-											new Liferay.Alert(
-												{
-													closeable: true,
-													delay: {
-														hide: 3000,
-														show: 0
-													},
-													duration: 250,
-													icon: 'exclamation-full',
-													message: message,
-													type: 'danger'
-												}
-											).render(rootNode);
+											instance._showError(message);
 										}
  									}
 								}
