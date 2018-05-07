@@ -24,20 +24,7 @@ import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 
 /**
- * The implementation of the changeset collection local service.
- *
- * <p>
- * All custom service methods should be put in this class. Whenever methods are
- * added, rerun ServiceBuilder to copy their definitions into the {@link
- * com.liferay.changeset.service.ChangesetCollectionLocalService} interface.
- * <p> This is a local service. Methods of this service will not have security
- * checks based on the propagated JAAS credentials because this service can only
- * be accessed from within the same VM.
- * </p>
- *
  * @author Brian Wing Shun Chan
- * @see    ChangesetCollectionLocalServiceBaseImpl
- * @see    com.liferay.changeset.service.ChangesetCollectionLocalServiceUtil
  */
 public class ChangesetCollectionLocalServiceImpl
 	extends ChangesetCollectionLocalServiceBaseImpl {
