@@ -99,11 +99,11 @@ public class WebSiteCollectionResource
 			Pagination pagination, Company company)
 		throws PortalException {
 
-		int count = _groupService.getGroupsCount(
-			company.getCompanyId(), 0, true);
 		List<Group> groups = _groupService.getGroups(
 			company.getCompanyId(), 0, true, pagination.getStartPosition(),
 			pagination.getEndPosition());
+		int count = _groupService.getGroupsCount(
+			company.getCompanyId(), 0, true);
 
 		return new PageItems<>(groups, count);
 	}
