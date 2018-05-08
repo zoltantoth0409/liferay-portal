@@ -197,10 +197,9 @@ public class DLAdminManagementToolbarDisplayContext {
 		PortletURL clearResultsURL = _liferayPortletResponse.createRenderURL();
 
 		clearResultsURL.setParameter(
-			"folderId", String.valueOf(_getFolderId()));
-
-		clearResultsURL.setParameter(
 			"mvcRenderCommandName", "/document_library/view");
+		clearResultsURL.setParameter(
+			"folderId", String.valueOf(_getFolderId()));
 
 		return clearResultsURL.toString();
 	}
@@ -571,9 +570,8 @@ public class DLAdminManagementToolbarDisplayContext {
 		if (_isSearch()) {
 			return ParamUtil.getLong(_request, "folderId");
 		}
-		else {
-			return _dlAdminDisplayContext.getFolderId();
-		}
+
+		return _dlAdminDisplayContext.getFolderId();
 	}
 
 	private String _getNavigation() {
