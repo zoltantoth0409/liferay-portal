@@ -145,6 +145,8 @@ public class FormInstanceNestedCollectionResource
 			_ddmFormInstanceService.getFormInstance(ddmFormInstanceId);
 
 		if (_log.isDebugEnabled()) {
+			JSONSerializer jsonSerializer = _jsonFactory.createJSONSerializer();
+
 			DDMStructure ddmStructure = ddmFormInstance.getStructure();
 
 			DDMForm ddmForm = ddmStructure.getDDMForm();
@@ -161,8 +163,6 @@ public class FormInstanceNestedCollectionResource
 			Map<String, Object> templateContext =
 				_ddmFormTemplateContextFactory.create(
 					ddmForm, ddmFormLayout, ddmFormRenderingContext);
-
-			JSONSerializer jsonSerializer = _jsonFactory.createJSONSerializer();
 
 			String json = jsonSerializer.serializeDeep(templateContext);
 
