@@ -100,17 +100,13 @@ public class DataProviderInstanceNestedCollectionResource
 	private PageItems<DDMDataProviderInstance> _getPageItems(
 		Pagination pagination, Long groupId, Company company) {
 
-		long[] groupIds = {groupId};
-		long companyId = company.getCompanyId();
-
 		List<DDMDataProviderInstance> ddmDataProviderInstance =
 			_ddmDataProviderInstanceService.getDataProviderInstances(
-				companyId, groupIds, pagination.getStartPosition(),
-				pagination.getEndPosition());
-
+				company.getCompanyId(), new long[] {groupId},
+				pagination.getStartPosition(), pagination.getEndPosition());
 		int count =
 			_ddmDataProviderInstanceService.getDataProviderInstancesCount(
-				companyId, groupIds);
+				company.getCompanyId(), new long[] {groupId});
 
 		return new PageItems<>(ddmDataProviderInstance, count);
 	}
