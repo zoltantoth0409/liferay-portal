@@ -209,6 +209,12 @@
 				overflow: visible;
 				width: auto;
 			}
+
+			.taglib-search-iterator-page-iterator-bottom {
+				@include sm {
+					margin-bottom: 20px;
+				}
+			}
 		}
 	}
 
