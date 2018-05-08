@@ -44,6 +44,8 @@ public class FormInstanceRecordResourceHelper {
 	public static DDMFormValues getDDMFormValues(
 		String fieldValues, DDMForm ddmForm, Locale locale) {
 
+		DDMFormValues ddmFormValues = new DDMFormValues(ddmForm);
+
 		Gson gson = new Gson();
 
 		FormFieldValueListToken formFieldValueListToken =
@@ -53,8 +55,6 @@ public class FormInstanceRecordResourceHelper {
 
 		List<FormFieldValue> formFieldValues = gson.fromJson(
 			fieldValues, listType);
-
-		DDMFormValues ddmFormValues = new DDMFormValues(ddmForm);
 
 		for (FormFieldValue formFieldValue : formFieldValues) {
 			DDMFormFieldValue ddmFormFieldValue = new DDMFormFieldValue();
