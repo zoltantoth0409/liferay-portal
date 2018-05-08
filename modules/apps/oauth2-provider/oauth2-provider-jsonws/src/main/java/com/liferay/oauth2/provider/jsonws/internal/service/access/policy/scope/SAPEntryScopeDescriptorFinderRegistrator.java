@@ -88,8 +88,8 @@ public class SAPEntryScopeDescriptorFinderRegistrator {
 		}
 		catch (Exception e) {
 			_log.error(
-				"Unable to register SAPEntryScopeDescriptorFinder in company " +
-					companyId,
+				"Unable to register SAP entry scope descriptor finder for " +
+					"company " + companyId,
 				e);
 		}
 	}
