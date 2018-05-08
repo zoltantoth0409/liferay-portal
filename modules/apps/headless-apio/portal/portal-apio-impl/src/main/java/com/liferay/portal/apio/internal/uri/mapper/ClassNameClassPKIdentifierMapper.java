@@ -64,7 +64,7 @@ public class ClassNameClassPKIdentifierMapper
 			ClassName::getClassName
 		).orElseThrow(
 			() -> new BadRequestException(
-				"Unable to convert " + classNameId + " to a className")
+				"Unable to convert " + classNameId + " to a class name")
 		);
 
 		return ClassNameClassPK.create(className, classPK);
@@ -86,7 +86,7 @@ public class ClassNameClassPKIdentifierMapper
 			() -> GetterUtil.getLong(string)
 		).orElseThrow(
 			() -> new BadRequestException(
-				"Unable to convert " + string + " to long")
+				"Unable to convert " + string + " to a long")
 		);
 	}
 
