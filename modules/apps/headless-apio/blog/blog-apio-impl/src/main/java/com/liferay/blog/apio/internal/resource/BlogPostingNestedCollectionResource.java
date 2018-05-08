@@ -15,7 +15,6 @@
 package com.liferay.blog.apio.internal.resource;
 
 import static com.liferay.portal.apio.idempotent.Idempotent.idempotent;
-import static com.liferay.portal.kernel.workflow.WorkflowConstants;
 
 import com.liferay.aggregate.rating.apio.identifier.AggregateRatingIdentifier;
 import com.liferay.apio.architect.pagination.PageItems;
@@ -34,6 +33,7 @@ import com.liferay.portal.apio.identifier.ClassNameClassPK;
 import com.liferay.portal.apio.permission.HasPermission;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.site.apio.identifier.WebSiteIdentifier;
 
 import java.util.List;
