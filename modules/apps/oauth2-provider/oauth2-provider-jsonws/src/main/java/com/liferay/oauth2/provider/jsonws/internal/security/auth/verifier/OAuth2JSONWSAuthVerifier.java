@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.oauth2.provider.jsonws.internal.auth.verifier;
+package com.liferay.oauth2.provider.jsonws.internal.security.auth.verifier;
 
 import com.liferay.oauth2.provider.constants.OAuth2ProviderConstants;
 import com.liferay.oauth2.provider.jsonws.internal.constants.OAuth2JSONWSConstants;
