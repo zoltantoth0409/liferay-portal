@@ -151,8 +151,9 @@ public class FormInstanceNestedCollectionResource
 			FormInstanceRecordResourceHelper.getDDMFormValues(
 				formContextForm.getFieldValues(), ddmForm, locale);
 
-		ddmFormRenderingContext.setLocale(locale);
 		ddmFormRenderingContext.setDDMFormValues(ddmFormValues);
+
+		ddmFormRenderingContext.setLocale(locale);
 
 		Map<String, Object> templateContext =
 			_ddmFormTemplateContextFactory.create(
