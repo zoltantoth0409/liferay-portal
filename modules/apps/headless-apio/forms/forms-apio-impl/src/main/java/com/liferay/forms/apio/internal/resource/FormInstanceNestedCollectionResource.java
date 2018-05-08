@@ -38,6 +38,8 @@ import com.liferay.person.apio.identifier.PersonIdentifier;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONSerializer;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.util.LocaleThreadLocal;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -142,28 +144,30 @@ public class FormInstanceNestedCollectionResource
 		DDMFormInstance ddmFormInstance =
 			_ddmFormInstanceService.getFormInstance(ddmFormInstanceId);
 
-		DDMStructure ddmStructure = ddmFormInstance.getStructure();
+		if (_log.isDebugEnabled()) {
+			DDMStructure ddmStructure = ddmFormInstance.getStructure();
 
-		DDMForm ddmForm = ddmStructure.getDDMForm();
-		DDMFormLayout ddmFormLayout = ddmStructure.getDDMFormLayout();
+			DDMForm ddmForm = ddmStructure.getDDMForm();
+			DDMFormLayout ddmFormLayout = ddmStructure.getDDMFormLayout();
 
-		DDMFormValues ddmFormValues =
-			FormInstanceRecordResourceHelper.getDDMFormValues(
-				formContextForm.getFieldValues(), ddmForm, locale);
+			DDMFormValues ddmFormValues =
+				FormInstanceRecordResourceHelper.getDDMFormValues(
+					formContextForm.getFieldValues(), ddmForm, locale);
 
-		ddmFormRenderingContext.setDDMFormValues(ddmFormValues);
+			ddmFormRenderingContext.setDDMFormValues(ddmFormValues);
 
-		ddmFormRenderingContext.setLocale(locale);
+			ddmFormRenderingContext.setLocale(locale);
 
-		Map<String, Object> templateContext =
-			_ddmFormTemplateContextFactory.create(
-				ddmForm, ddmFormLayout, ddmFormRenderingContext);
+			Map<String, Object> templateContext =
+				_ddmFormTemplateContextFactory.create(
+					ddmForm, ddmFormLayout, ddmFormRenderingContext);
 
-		JSONSerializer jsonSerializer = _jsonFactory.createJSONSerializer();
+			JSONSerializer jsonSerializer = _jsonFactory.createJSONSerializer();
 
-		String json = jsonSerializer.serializeDeep(templateContext);
+			String json = jsonSerializer.serializeDeep(templateContext);
 
-		System.out.println(json);
+			_log.debug(json);
+		}
 
 		return ddmFormInstance;
 	}
@@ -193,6 +197,9 @@ public class FormInstanceNestedCollectionResource
 			null
 		);
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		FormInstanceNestedCollectionResource.class);
 
 	@Reference
 	private DDMFormInstanceService _ddmFormInstanceService;
