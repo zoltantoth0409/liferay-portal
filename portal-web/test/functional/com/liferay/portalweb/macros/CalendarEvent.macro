@@ -389,7 +389,7 @@
 			<var name="eventTitle" value="${eventTitle}" />
 		</execute>
 
-		<execute macro="CalendarEvent#publish" />
+		<execute macro="CalendarEvent#clickPublish" />
 	</command>
 
 	<command name="addRegular">
