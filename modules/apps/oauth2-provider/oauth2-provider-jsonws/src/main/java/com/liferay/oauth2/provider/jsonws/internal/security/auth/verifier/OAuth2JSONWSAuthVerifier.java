@@ -110,7 +110,7 @@ public class OAuth2JSONWSAuthVerifier implements AuthVerifier {
 				Collection<LiferayOAuth2Scope> liferayOAuth2Scopes =
 					_scopeLocator.getLiferayOAuth2Scopes(
 						companyId, scope,
-						OAuth2JSONWSConstants.LIFERAY_JSON_WEB_SERVICES);
+						OAuth2JSONWSConstants.APPLICATION_NAME);
 
 				for (LiferayOAuth2Scope liferayOAuth2Scope :
 						liferayOAuth2Scopes) {

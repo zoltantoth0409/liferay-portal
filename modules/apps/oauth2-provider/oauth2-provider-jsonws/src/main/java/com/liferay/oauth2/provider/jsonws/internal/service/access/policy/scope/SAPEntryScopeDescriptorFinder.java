@@ -62,7 +62,6 @@ public class SAPEntryScopeDescriptorFinder
 	private static final Log _log = LogFactoryUtil.getLog(
 		SAPEntryScopeDescriptorFinder.class);
 
-	private final Map<String, SAPEntryScope> _sapEntryScopes =
-		new HashMap<>();
+	private final Map<String, SAPEntryScope> _sapEntryScopes = new HashMap<>();
 
 }
