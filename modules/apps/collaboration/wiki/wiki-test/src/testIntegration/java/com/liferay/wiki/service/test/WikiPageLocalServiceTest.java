@@ -443,7 +443,8 @@ public class WikiPageLocalServiceTest {
 		WikiPage retrievedPage = WikiPageLocalServiceUtil.getPage(
 			page.getResourcePrimKey());
 
-		Assert.assertEquals(retrievedPage.getPageId(), page.getPageId());
+		Assert.assertEquals(
+			retrievedPage.getResourcePrimKey(), page.getResourcePrimKey());
 	}
 
 	@Test
@@ -478,7 +479,8 @@ public class WikiPageLocalServiceTest {
 
 		WikiPage recentPage = recentPages.get(0);
 
-		Assert.assertEquals(page.getPageId(), recentPage.getPageId());
+		Assert.assertEquals(
+			page.getResourcePrimKey(), recentPage.getResourcePrimKey());
 	}
 
 	@Test
@@ -536,8 +538,10 @@ public class WikiPageLocalServiceTest {
 		WikiPage recentPage1 = recentPages.get(0);
 		WikiPage recentPage2 = recentPages.get(1);
 
-		Assert.assertEquals(page2.getPageId(), recentPage1.getPageId());
-		Assert.assertEquals(page1.getPageId(), recentPage2.getPageId());
+		Assert.assertEquals(
+			page2.getResourcePrimKey(), recentPage1.getResourcePrimKey());
+		Assert.assertEquals(
+			page1.getResourcePrimKey(), recentPage2.getResourcePrimKey());
 	}
 
 	@Test
@@ -562,8 +566,10 @@ public class WikiPageLocalServiceTest {
 		WikiPage recentPage1 = recentPages.get(0);
 		WikiPage recentPage2 = recentPages.get(1);
 
-		Assert.assertEquals(page1.getPageId(), recentPage1.getPageId());
-		Assert.assertEquals(page2.getPageId(), recentPage2.getPageId());
+		Assert.assertEquals(
+			page1.getResourcePrimKey(), recentPage1.getResourcePrimKey());
+		Assert.assertEquals(
+			page2.getResourcePrimKey(), recentPage2.getResourcePrimKey());
 	}
 
 	@Test
