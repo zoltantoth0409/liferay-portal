@@ -34,15 +34,15 @@ renderResponse.setTitle(LanguageUtil.get(request, "membership-requests"));
 <clay:management-toolbar
 	componentId="siteAdminWebManagementToolbar"
 	disabled="<%= viewMembershipRequestsDisplayContext.isDisabledManagementBar() %>"
-	filterItems="<%= viewMembershipRequestsDisplayContext.getFilterDropdownItems() %>"
+	filterDropdownItems="<%= viewMembershipRequestsDisplayContext.getFilterDropdownItems() %>"
+	itemsTotal="<%= viewMembershipRequestsDisplayContext.getTotalItems() %>"
 	searchContainerId="sites"
 	searchFormName="searchFm"
 	selectable="<%= false %>"
 	showSearch="<%= false %>"
 	sortingOrder="<%= viewMembershipRequestsDisplayContext.getOrderByType() %>"
 	sortingURL="<%= viewMembershipRequestsDisplayContext.getSortingURL() %>"
-	totalItems="<%= viewMembershipRequestsDisplayContext.getTotalItems() %>"
-	viewTypes="<%= viewMembershipRequestsDisplayContext.getViewTypeItems() %>"
+	viewTypeItems="<%= viewMembershipRequestsDisplayContext.getViewTypeItems() %>"
 />
 
 <liferay-ui:success key="membershipReplySent" message="your-reply-will-be-sent-to-the-user-by-email" />
