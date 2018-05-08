@@ -14,8 +14,6 @@
 
 package com.liferay.site.apio.internal.resource;
 
-import static com.liferay.portal.kernel.workflow.WorkflowConstants.STATUS_APPROVED;
-
 import com.liferay.apio.architect.pagination.PageItems;
 import com.liferay.apio.architect.pagination.Pagination;
 import com.liferay.apio.architect.router.NestedCollectionRouter;
@@ -25,6 +23,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.UserService;
 import com.liferay.portal.kernel.util.comparator.UserLastNameComparator;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.site.apio.identifier.WebSiteIdentifier;
 
 import java.util.List;
@@ -58,9 +57,11 @@ public class PersonNestedCollectionRouter implements
 		throws PortalException {
 
 		List<User> users = _userService.getGroupUsers(
-			groupId, STATUS_APPROVED, pagination.getStartPosition(),
-			pagination.getEndPosition(), new UserLastNameComparator(true));
-		int count = _userService.getGroupUsersCount(groupId, STATUS_APPROVED);
+			groupId, WorkflowConstants.STATUS_APPROVED,
+			pagination.getStartPosition(), pagination.getEndPosition(),
+			new UserLastNameComparator(true));
+		int count = _userService.getGroupUsersCount(
+			groupId, WorkflowConstants.STATUS_APPROVED);
 
 		return new PageItems<>(users, count);
 	}
