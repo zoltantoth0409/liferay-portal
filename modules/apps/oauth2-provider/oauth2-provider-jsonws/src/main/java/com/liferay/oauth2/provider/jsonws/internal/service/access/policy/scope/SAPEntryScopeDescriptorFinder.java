@@ -35,17 +35,17 @@ public class SAPEntryScopeDescriptorFinder
 
 	public SAPEntryScopeDescriptorFinder(List<SAPEntryScope> sapEntryScopes) {
 		for (SAPEntryScope sapEntryScope : sapEntryScopes) {
-			_sapEntryScopesMap.put(sapEntryScope.getScope(), sapEntryScope);
+			_sapEntryScopes.put(sapEntryScope.getScope(), sapEntryScope);
 		}
 	}
 
 	@Override
 	public String describeScope(String scope, Locale locale) {
-		SAPEntryScope sapEntryScope = _sapEntryScopesMap.get(scope);
+		SAPEntryScope sapEntryScope = _sapEntryScopes.get(scope);
 
 		if (sapEntryScope == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("Unable to locate SAPEntry scope " + scope);
+				_log.warn("Unable to get SAP entry scope " + scope);
 			}
 
 			return StringPool.BLANK;
@@ -56,13 +56,13 @@ public class SAPEntryScopeDescriptorFinder
 
 	@Override
 	public Collection<String> findScopes() {
-		return new HashSet<>(_sapEntryScopesMap.keySet());
+		return new HashSet<>(_sapEntryScopes.keySet());
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		SAPEntryScopeDescriptorFinder.class);
 
-	private final Map<String, SAPEntryScope> _sapEntryScopesMap =
+	private final Map<String, SAPEntryScope> _sapEntryScopes =
 		new HashMap<>();
 
 }
