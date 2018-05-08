@@ -38,7 +38,6 @@ page import="java.util.Map" %>
 
 <%
 AssetEntry assetEntry = (AssetEntry)request.getAttribute(AssetDisplayLayoutTypeControllerWebKeys.ASSET_ENTRY);
-
 List<FragmentEntryLink> fragmentEntryLinks = (List<FragmentEntryLink>)request.getAttribute(AssetDisplayLayoutTypeControllerWebKeys.LAYOUT_FRAGMENTS);
 
 AssetDisplayLayoutTypeControllerDisplayContext assetDisplayLayoutTypeControllerDisplayContext = new AssetDisplayLayoutTypeControllerDisplayContext(request);
