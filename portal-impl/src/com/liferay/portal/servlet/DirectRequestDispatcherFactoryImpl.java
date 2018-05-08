@@ -130,7 +130,7 @@ public class DirectRequestDispatcherFactoryImpl
 		return _pacl.getRequestDispatcher(servletContext, requestDispatcher);
 	}
 
-	private static final String _EQUINOX_REQUEST_CLASS =
+	private static final String _EQUINOX_REQUEST_CLASS_NAME =
 		"org.eclipse.equinox.http.servlet.internal.servlet." +
 			"HttpServletRequestWrapperImpl";
 
@@ -140,9 +140,8 @@ public class DirectRequestDispatcherFactoryImpl
 	private static final PACL _pacl = new NoPACL();
 
 	/**
-	 * See LPS-79937. We need to protect against re-dispatch
-	 * from module framework back to the portal, which
-	 * means we have to unwrap the request.
+	 * See LPS-79937. We need to protect against redispatch from the module
+	 * framework back to the portal, which means we have to unwrap the request.
 	 */
 	private static class IndirectRequestDispatcher
 		implements RequestDispatcher {
@@ -157,7 +156,7 @@ public class DirectRequestDispatcherFactoryImpl
 
 			Class<?> clazz = request.getClass();
 
-			if (_EQUINOX_REQUEST_CLASS.equals(clazz.getName())) {
+			if (_EQUINOX_REQUEST_CLASS_NAME.equals(clazz.getName())) {
 				HttpServletRequestWrapper wrapper =
 					(HttpServletRequestWrapper)request;
 
@@ -173,7 +172,7 @@ public class DirectRequestDispatcherFactoryImpl
 
 			Class<?> clazz = request.getClass();
 
-			if (_EQUINOX_REQUEST_CLASS.equals(clazz.getName())) {
+			if (_EQUINOX_REQUEST_CLASS_NAME.equals(clazz.getName())) {
 				HttpServletRequestWrapper wrapper =
 					(HttpServletRequestWrapper)request;
 
