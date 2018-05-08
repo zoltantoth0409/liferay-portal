@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.oauth2.provider.jsonws.internal.application.descriptor;
+package com.liferay.oauth2.provider.jsonws.internal.scope.spi.application.descriptor;
 
 import com.liferay.oauth2.provider.jsonws.internal.configuration.OAuth2JSONWSConfiguration;
 import com.liferay.oauth2.provider.jsonws.internal.constants.OAuth2JSONWSConstants;
