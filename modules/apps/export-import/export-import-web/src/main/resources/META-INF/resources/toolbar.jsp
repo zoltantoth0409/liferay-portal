@@ -17,13 +17,13 @@
 <%@ include file="/init.jsp" %>
 
 <clay:management-toolbar
-	actionItems="<%= exportImportToolbarDisplayContext.getActionItems() %>"
+	actionDropdownItems="<%= exportImportToolbarDisplayContext.getActionDropdownItems() %>"
 	creationMenu="<%= exportImportToolbarDisplayContext.getCreationMenu() %>"
-	filterItems="<%= exportImportToolbarDisplayContext.getFilterDropdownItems() %>"
+	filterDropdownItems="<%= exportImportToolbarDisplayContext.getFilterDropdownItems() %>"
 	id="<portlet:namespace/>exportLayoutProcessesToolbar"
 	showCreationMenu="<%= true %>"
 	showSearch="<%= false %>"
 	sortingOrder="<%= exportImportToolbarDisplayContext.getSortingOrder() %>"
 	sortingURL="<%= exportImportToolbarDisplayContext.getSortingURL() %>"
-	viewTypes="<%= exportImportToolbarDisplayContext.getViewTypes() %>"
+	viewTypeItems="<%= exportImportToolbarDisplayContext.getViewTypeItems() %>"
 />

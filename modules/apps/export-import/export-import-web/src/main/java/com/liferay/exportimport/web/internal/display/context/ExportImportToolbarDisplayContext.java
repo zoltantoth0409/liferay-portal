@@ -61,7 +61,7 @@ public class ExportImportToolbarDisplayContext {
 			portlet.getRootPortletId());
 	}
 
-	public List<DropdownItem> getActionItems() {
+	public List<DropdownItem> getActionDropdownItems() {
 		return new DropdownItemList() {
 			{
 				add(
@@ -84,19 +84,20 @@ public class ExportImportToolbarDisplayContext {
 
 				String mvcRenderCommandName = ParamUtil.getString(
 					_request, "mvcRenderCommandName");
-				String mvcPath;
+
 				String cmd;
 				String label;
+				String mvcPath;
 
 				if (mvcRenderCommandName.equals("exportLayoutsView")) {
-					mvcPath = "/export/new_export/export_layouts.jsp";
 					cmd = Constants.EXPORT;
 					label = "custom-export";
+					mvcPath = "/export/new_export/export_layouts.jsp";
 				}
 				else {
-					mvcPath = "/import/new_import/import_layouts.jsp";
 					cmd = Constants.IMPORT;
 					label = "import";
+					mvcPath = "/import/new_import/import_layouts.jsp";
 				}
 
 				addPrimaryDropdownItem(
@@ -112,7 +113,6 @@ public class ExportImportToolbarDisplayContext {
 							"displayStyle",
 							ParamUtil.getString(
 								_request, "displayStyle", "descriptive"));
-
 						dropdownItem.setLabel(
 							LanguageUtil.get(_request, label));
 					});
@@ -224,7 +224,7 @@ public class ExportImportToolbarDisplayContext {
 		return sortingURL.toString();
 	}
 
-	public List<ViewTypeItem> getViewTypes() {
+	public List<ViewTypeItem> getViewTypeItems() {
 		return new ViewTypeItemList(getRenderURL(), getDisplayStyle()) {
 			{
 				addListViewTypeItem();
