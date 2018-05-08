@@ -743,7 +743,7 @@ public class JournalPortlet extends MVCPortlet {
 		Layout targetLayout = _journalHelper.getArticleLayout(
 			layoutUuid, groupId);
 
-		if ((targetLayout == null) || (assetDisplayPageId != 0)) {
+		if ((assetDisplayPageId != 0) || (targetLayout == null)) {
 			layoutUuid = null;
 		}
 
@@ -911,7 +911,7 @@ public class JournalPortlet extends MVCPortlet {
 			}
 		}
 
-		// Asset Display Page
+		// Asset display page
 
 		_updateAssetDisplayPage(article, assetDisplayPageId);
 
