@@ -60,11 +60,9 @@ public class PersonNestedCollectionRouter implements
 		List<User> users = _userService.getGroupUsers(
 			groupId, STATUS_APPROVED, pagination.getStartPosition(),
 			pagination.getEndPosition(), new UserLastNameComparator(true));
+		int count = _userService.getGroupUsersCount(groupId, STATUS_APPROVED);
 
-		int userCount = _userService.getGroupUsersCount(
-			groupId, STATUS_APPROVED);
-
-		return new PageItems<>(users, userCount);
+		return new PageItems<>(users, count);
 	}
 
 	@Reference
