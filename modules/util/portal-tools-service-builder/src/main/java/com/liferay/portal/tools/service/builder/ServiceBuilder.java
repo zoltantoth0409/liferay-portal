@@ -5532,6 +5532,7 @@ public class ServiceBuilder {
 		boolean dynamicUpdateEnabled = GetterUtil.getBoolean(
 			entityElement.attributeValue("dynamic-update-enabled"),
 			mvccEnabled);
+
 		boolean jsonEnabled = GetterUtil.getBoolean(
 			entityElement.attributeValue("json-enabled"), remoteService);
 		boolean trashEnabled = GetterUtil.getBoolean(
