@@ -5997,17 +5997,17 @@ public class ServiceBuilder {
 
 		if (entity.isUADEnabled()) {
 			if (!_uadApplicationEntities.containsKey(uadApplicationName)) {
-				List<Entity> uadApplicationEntityList = new ArrayList<>();
+				List<Entity> uadApplicationEntities = new ArrayList<>();
 
-				uadApplicationEntityList.add(entity);
+				uadApplicationEntities.add(entity);
 
-				_uadApplicationEntities.put(uadApplicationName, uadApplicationEntityList);
+				_uadApplicationEntities.put(uadApplicationName, uadApplicationEntities);
 			}
 			else {
-				List<Entity> uadApplicationEntityList =
+				List<Entity> uadApplicationEntities =
 					_uadApplicationEntities.get(uadApplicationName);
 
-				uadApplicationEntityList.add(entity);
+				uadApplicationEntities.add(entity);
 			}
 		}
 
