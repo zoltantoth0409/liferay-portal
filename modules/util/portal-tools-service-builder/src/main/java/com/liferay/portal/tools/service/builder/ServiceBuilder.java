@@ -5484,6 +5484,7 @@ public class ServiceBuilder {
 			uadDirPath + "/" + StringUtil.replace(uadPackagePath, '.', '/');
 
 		String finderClassName = "";
+
 		File originalFinderImplFile = new File(
 			StringBundler.concat(
 				_outputPath, "/service/persistence/", entityName,
