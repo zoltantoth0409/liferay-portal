@@ -33,7 +33,6 @@ public class NPMResolverImpl implements NPMResolver {
 		NPMRegistry npmRegistry) {
 
 		_jsPackageIdentifier = jsPackageIdentifier;
-
 		_jsonFactory = jsonFactory;
 		_npmRegistry = npmRegistry;
 	}
