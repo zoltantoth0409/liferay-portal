@@ -14,8 +14,6 @@
 
 package com.liferay.portal.tools.target.platform.indexer.client;
 
-import static java.util.concurrent.TimeUnit.MILLISECONDS;
-
 import com.liferay.portal.target.platform.indexer.Indexer;
 import com.liferay.portal.target.platform.indexer.TargetPlatformIndexerUtil;
 import com.liferay.portal.target.platform.indexer.internal.DefaultIndexValidator;
@@ -46,6 +44,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Shuyang Zhou
@@ -348,8 +347,9 @@ public class TargetPlatformIndexerClient {
 			long duration = System.currentTimeMillis() - start;
 
 			System.out.printf(
-				"== Time %02d:%02ds\n", MILLISECONDS.toMinutes(duration),
-				MILLISECONDS.toSeconds(duration % 60000));
+				"== Time %02d:%02ds\n",
+				TimeUnit.MILLISECONDS.toMinutes(duration),
+				TimeUnit.MILLISECONDS.toSeconds(duration % 60000));
 		}
 	}
 
