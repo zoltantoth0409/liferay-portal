@@ -73,9 +73,11 @@
 		}
 	}
 
-	.widget-mode-detail-text {
-		img {
-			max-width: 100%;
+	.widget-mode-simple-entry {
+		.widget-content {
+			img {
+				max-width: 100%;
+			}
 		}
 	}
 }
