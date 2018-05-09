@@ -67,7 +67,9 @@ if (portletTitleBasedNavigation) {
 	<aui:input name="<%= Constants.CMD %>" type="hidden" />
 	<aui:input name="entryId" type="hidden" value="<%= String.valueOf(entryId) %>" />
 
-	<liferay-util:include page="/blogs/view_entry_content.jsp" servletContext="<%= application %>" />
+	<div data-analytics-asset-id="<%= String.valueOf(entryId) %>" data-analytics-asset-title="<%= HtmlUtil.escapeAttribute(entry.getTitle()) %>" data-analytics-asset-type="blog">
+		<liferay-util:include page="/blogs/view_entry_content.jsp" servletContext="<%= application %>" />
+	</div>
 </aui:form>
 
 <div class="container-fluid">
