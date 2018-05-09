@@ -64,19 +64,23 @@ public class NPMResolverServiceFactory implements ServiceFactory<NPMResolver> {
 		}
 
 		try {
-			String content = StringUtil.read(url.openStream());
-
-			JSONObject jsonObject = _jsonFactory.createJSONObject(content);
-
-			String name = jsonObject.getString("name");
-			String version = jsonObject.getString("version");
-
 			StringBundler sb = new StringBundler(5);
 
 			sb.append(bundle.getBundleId());
 			sb.append(StringPool.SLASH);
+
+			String json = StringUtil.read(url.openStream());
+
+			JSONObject jsonObject = _jsonFactory.createJSONObject(json);
+
+			String name = jsonObject.getString("name");
+
 			sb.append(name);
+
 			sb.append(StringPool.AT);
+
+			String version = jsonObject.getString("version");
+
 			sb.append(version);
 
 			return new NPMResolverImpl(
