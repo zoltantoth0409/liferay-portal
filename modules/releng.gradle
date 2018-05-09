@@ -425,7 +425,7 @@ tagAppReleases {
 				String appGitId = appGitIdLine.replaceFirst(/app\.git\.id-.+=/, "")
 				String appVersion = appGitIdLine.replaceFirst(/app\.git\.id-(.+)=.+/, /$1/)
 
-				String appGitTagName = "marketplace-" + appName + "-" + appVersion
+				String appGitTagName = "marketplace-${appName}-${appVersion}"
 
 				String appGitIdUpstream
 
