@@ -90,7 +90,7 @@ List<FragmentCollection> fragmentCollections = FragmentCollectionServiceUtil.get
 								</p>
 
 								<h2 class="text-center">
-									<liferay-ui:message key="no-collections-yet" />
+									<liferay-ui:message key="there-are-no-collections-yet" />
 								</h2>
 
 								<p class="text-center">
