@@ -6611,8 +6611,9 @@ public class ServiceBuilder {
 	private void _removeUADAnonymizerTest(Entity entity) {
 		_deleteFile(
 			StringBundler.concat(
-				entity.getUADTestIntegrationOutputPath(), "/uad/anonymizer/test/",
-				entity.getName(), "UADAnonymizerTest.java"));
+				entity.getUADTestIntegrationOutputPath(),
+				"/uad/anonymizer/test/", entity.getName(),
+				"UADAnonymizerTest.java"));
 	}
 
 	private void _removeUADDisplay(Entity entity) {
@@ -6646,8 +6647,8 @@ public class ServiceBuilder {
 	private void _removeUADTestHelper(Entity entity) {
 		_deleteFile(
 			StringBundler.concat(
-				entity.getUADTestIntegrationOutputPath(), "/uad/test/", entity.getName(),
-				"UADTestHelper.java"));
+				entity.getUADTestIntegrationOutputPath(), "/uad/test/",
+				entity.getName(), "UADTestHelper.java"));
 	}
 
 	private void _resolveEntity(Entity entity) throws Exception {
