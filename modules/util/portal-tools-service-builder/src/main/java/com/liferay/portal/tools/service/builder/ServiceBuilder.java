@@ -5470,17 +5470,6 @@ public class ServiceBuilder {
 				_packagePath, ".service.persistence.impl.", entityName,
 				"PersistenceImpl"));
 
-		String uadApplicationName = GetterUtil.getString(
-			entityElement.attributeValue("uad-application-name"),
-			_portletShortName);
-		String uadDirPath = GetterUtil.getString(
-			entityElement.attributeValue("uad-dir-path"), _uadDirName);
-		String uadPackagePath = GetterUtil.getString(
-			entityElement.attributeValue("uad-package-path"), _packagePath);
-
-		String uadOutputPath =
-			uadDirPath + "/" + StringUtil.replace(uadPackagePath, '.', '/');
-
 		String finderClassName = "";
 
 		File originalFinderImplFile = new File(
@@ -5534,18 +5523,31 @@ public class ServiceBuilder {
 		String txManager = entityElement.attributeValue("tx-manager");
 		boolean cacheEnabled = GetterUtil.getBoolean(
 			entityElement.attributeValue("cache-enabled"), true);
-		boolean jsonEnabled = GetterUtil.getBoolean(
-			entityElement.attributeValue("json-enabled"), remoteService);
+
 		boolean mvccEnabled = GetterUtil.getBoolean(
 			entityElement.attributeValue("mvcc-enabled"), _mvccEnabled);
-		boolean trashEnabled = GetterUtil.getBoolean(
-			entityElement.attributeValue("trash-enabled"));
-		boolean deprecated = GetterUtil.getBoolean(
-			entityElement.attributeValue("deprecated"));
 
 		boolean dynamicUpdateEnabled = GetterUtil.getBoolean(
 			entityElement.attributeValue("dynamic-update-enabled"),
 			mvccEnabled);
+		boolean jsonEnabled = GetterUtil.getBoolean(
+			entityElement.attributeValue("json-enabled"), remoteService);
+		boolean trashEnabled = GetterUtil.getBoolean(
+			entityElement.attributeValue("trash-enabled"));
+
+		String uadApplicationName = GetterUtil.getString(
+			entityElement.attributeValue("uad-application-name"),
+			_portletShortName);
+		String uadDirPath = GetterUtil.getString(
+			entityElement.attributeValue("uad-dir-path"), _uadDirName);
+		String uadPackagePath = GetterUtil.getString(
+			entityElement.attributeValue("uad-package-path"), _packagePath);
+
+		String uadOutputPath =
+			uadDirPath + "/" + StringUtil.replace(uadPackagePath, '.', '/');
+
+		boolean deprecated = GetterUtil.getBoolean(
+			entityElement.attributeValue("deprecated"));
 
 		List<EntityColumn> pkEntityColumns = new ArrayList<>();
 		List<EntityColumn> regularEntityColumns = new ArrayList<>();
