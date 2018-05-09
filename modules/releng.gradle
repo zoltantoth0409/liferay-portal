@@ -427,7 +427,7 @@ tagAppReleases {
 
 				String appGitTagName = "marketplace-${appName}-${appVersion}"
 
-				String appGitIdUpstream
+				String appGitIdUpstream = null
 
 				try {
 					Tag tag = JGitUtil.resolveTag(grgit.repository, appGitTagName)
@@ -435,7 +435,6 @@ tagAppReleases {
 					appGitIdUpstream = tag.commit.id
 				}
 				catch(Exception e) {
-					appGitIdUpstream = null
 				}
 
 				int appVersionDuplicatesCount = appChangeLogTextFiltered.count("app.git.id-${appVersion}=")
