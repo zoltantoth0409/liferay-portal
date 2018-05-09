@@ -37,11 +37,6 @@ List<Folder> mountFolders = DLAppServiceUtil.getMountFolders(scopeGroupId, DLFol
 			PortletURL searchEverywhereURL = liferayPortletResponse.createRenderURL();
 
 			searchEverywhereURL.setParameter("mvcRenderCommandName", "/document_library/search");
-			searchEverywhereURL.setParameter("folderId", String.valueOf(folderId));
-
-			String keywords = ParamUtil.getString(request, "keywords");
-
-			searchEverywhereURL.setParameter("keywords", keywords);
 
 			long repositoryId = ParamUtil.getLong(request, "repositoryId");
 
@@ -50,7 +45,6 @@ List<Folder> mountFolders = DLAppServiceUtil.getMountFolders(scopeGroupId, DLFol
 			}
 
 			searchEverywhereURL.setParameter("repositoryId", String.valueOf(repositoryId));
-			searchEverywhereURL.setParameter("searchFolderId", String.valueOf(DLFolderConstants.DEFAULT_PARENT_FOLDER_ID));
 
 			long searchRepositoryId = ParamUtil.getLong(request, "searchRepositoryId");
 
@@ -59,13 +53,22 @@ List<Folder> mountFolders = DLAppServiceUtil.getMountFolders(scopeGroupId, DLFol
 			}
 
 			searchEverywhereURL.setParameter("searchRepositoryId", String.valueOf(searchRepositoryId));
+
+			searchEverywhereURL.setParameter("folderId", String.valueOf(folderId));
+
+			searchEverywhereURL.setParameter("searchFolderId", String.valueOf(DLFolderConstants.DEFAULT_PARENT_FOLDER_ID));
+
+			String keywords = ParamUtil.getString(request, "keywords");
+
+			searchEverywhereURL.setParameter("keywords", keywords);
+
 			searchEverywhereURL.setParameter("showSearchInfo", Boolean.TRUE.toString());
 
 			PortletURL searchFolderURL = PortletURLUtil.clone(searchEverywhereURL, liferayPortletResponse);
 
+			searchFolderURL.setParameter("searchRepositoryId", String.valueOf(scopeGroupId));
 			searchFolderURL.setParameter("folderId", String.valueOf(folderId));
 			searchFolderURL.setParameter("searchFolderId", String.valueOf(folderId));
-			searchFolderURL.setParameter("searchRepositoryId", String.valueOf(scopeGroupId));
 
 			long searchFolderId = ParamUtil.getLong(request, "searchFolderId");
 			%>
@@ -109,8 +112,8 @@ List<Folder> mountFolders = DLAppServiceUtil.getMountFolders(scopeGroupId, DLFol
 				<%
 				for (Folder mountFolder : mountFolders) {
 					searchRepositoryURL.setParameter("repositoryId", String.valueOf(mountFolder.getRepositoryId()));
-					searchRepositoryURL.setParameter("searchFolderId", String.valueOf(mountFolder.getFolderId()));
 					searchRepositoryURL.setParameter("searchRepositoryId", String.valueOf(mountFolder.getRepositoryId()));
+					searchRepositoryURL.setParameter("searchFolderId", String.valueOf(mountFolder.getFolderId()));
 				%>
 
 					<clay:link
