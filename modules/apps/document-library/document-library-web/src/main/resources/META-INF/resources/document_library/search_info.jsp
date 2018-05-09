@@ -36,12 +36,12 @@ List<Folder> mountFolders = DLAppServiceUtil.getMountFolders(scopeGroupId, DLFol
 			<%
 			PortletURL searchEverywhereURL = liferayPortletResponse.createRenderURL();
 
+			searchEverywhereURL.setParameter("mvcRenderCommandName", "/document_library/search");
 			searchEverywhereURL.setParameter("folderId", String.valueOf(folderId));
 
 			String keywords = ParamUtil.getString(request, "keywords");
 
 			searchEverywhereURL.setParameter("keywords", keywords);
-			searchEverywhereURL.setParameter("mvcRenderCommandName", "/document_library/search");
 
 			long repositoryId = ParamUtil.getLong(request, "repositoryId");
 
