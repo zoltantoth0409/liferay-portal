@@ -58,7 +58,6 @@ public class CalendarBookingBatchReindexerImpl
 
 				dynamicQuery.add(statusProperty.in(statuses));
 			});
-
 		batchIndexingActionable.setPerformActionMethod(
 			(CalendarBooking calendarBooking) -> {
 				Document document = indexerDocumentBuilder.getDocument(
