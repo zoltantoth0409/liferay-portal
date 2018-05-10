@@ -41,10 +41,8 @@ public class DLFolderSearchRegistrar {
 				modelSearchDefinition.setDefaultSelectedFieldNames(
 					Field.COMPANY_ID, Field.DESCRIPTION, Field.ENTRY_CLASS_NAME,
 					Field.ENTRY_CLASS_PK, Field.TITLE, Field.UID);
-
 				modelSearchDefinition.setModelIndexWriteContributor(
 					modelIndexWriterContributor);
-
 				modelSearchDefinition.setModelSummaryContributor(
 					modelSummaryContributor);
 			});
