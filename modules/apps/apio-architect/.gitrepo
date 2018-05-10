@@ -7,5 +7,5 @@
 	commit = 8565516810a7feff8c3253e0d05cfef854b6a235
 	mergebuttonmergecommits = false
 	mode = pull
-	parent = 0000000000000000000000000000000000000000
+	parent = 0000000000000000000000000000000000000001
 	remote = git@github.com:liferay/com-liferay-apio-architect.git
