@@ -45,13 +45,10 @@ public class DLFileEntrySearchRegistrar {
 					Field.ENTRY_CLASS_NAME, Field.ENTRY_CLASS_PK,
 					Field.GROUP_ID, Field.MODIFIED_DATE, Field.SCOPE_GROUP_ID,
 					Field.TITLE, Field.UID);
-
 				modelSearchDefinition.setModelIndexWriteContributor(
 					modelIndexWriterContributor);
-
 				modelSearchDefinition.setModelVisibilityContributor(
 					modelVisibilityContributor);
-
 				modelSearchDefinition.setModelSummaryContributor(
 					modelSummaryContributor);
 			});
