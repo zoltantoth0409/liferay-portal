@@ -200,7 +200,6 @@ public class CalendarIndexer extends BaseIndexer<Calendar> {
 				}
 
 			});
-
 		indexableActionableDynamicQuery.setSearchEngineId(getSearchEngineId());
 
 		indexableActionableDynamicQuery.performActions();

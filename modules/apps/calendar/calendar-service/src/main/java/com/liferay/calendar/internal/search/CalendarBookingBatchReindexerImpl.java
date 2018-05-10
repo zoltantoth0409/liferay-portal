@@ -40,8 +40,6 @@ public class CalendarBookingBatchReindexerImpl
 		BatchIndexingActionable batchIndexingActionable =
 			indexerWriter.getBatchIndexingActionable();
 
-		batchIndexingActionable.setCompanyId(companyId);
-
 		batchIndexingActionable.setAddCriteriaMethod(
 			dynamicQuery -> {
 				Property calendarIdPropery = PropertyFactoryUtil.forName(
@@ -58,6 +56,7 @@ public class CalendarBookingBatchReindexerImpl
 
 				dynamicQuery.add(statusProperty.in(statuses));
 			});
+		batchIndexingActionable.setCompanyId(companyId);
 		batchIndexingActionable.setPerformActionMethod(
 			(CalendarBooking calendarBooking) -> {
 				Document document = indexerDocumentBuilder.getDocument(
