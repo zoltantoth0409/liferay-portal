@@ -490,11 +490,13 @@ if (Validator.isNull(liferayAnalyticsKey)) {
 		})('https://analytics-js-cdn.liferay.com', function() {
 			var config = {analyticsKey: '<%= HtmlUtil.escapeJS(liferayAnalyticsKey) %>'};
 
-			Analytics.registerMiddleware(function(request) {
-				request.context.canonicalUrl = themeDisplay.getCanonicalURL();
+			Analytics.registerMiddleware(
+				function(request) {
+					request.context.canonicalUrl = themeDisplay.getCanonicalURL();
 
-				return request;
-			});
+					return request;
+				}
+			);
 
 			Analytics.send('view', 'Layout');
 
