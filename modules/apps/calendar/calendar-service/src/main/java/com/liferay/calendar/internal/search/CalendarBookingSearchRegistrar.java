@@ -41,13 +41,10 @@ public class CalendarBookingSearchRegistrar {
 				modelSearchDefinition.setDefaultSelectedFieldNames(
 					Field.COMPANY_ID, Field.ENTRY_CLASS_NAME,
 					Field.ENTRY_CLASS_PK, Field.UID);
-
 				modelSearchDefinition.setDefaultSelectedLocalizedFieldNames(
 					Field.DESCRIPTION, Field.TITLE);
-
 				modelSearchDefinition.setModelIndexWriteContributor(
 					modelIndexWriterContributor);
-
 				modelSearchDefinition.setModelSummaryContributor(
 					modelSummaryContributor);
 			});

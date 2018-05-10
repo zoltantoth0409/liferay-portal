@@ -41,17 +41,13 @@ public class CalendarSearchRegistrar {
 				modelSearchDefinition.setDefaultSelectedFieldNames(
 					Field.COMPANY_ID, Field.ENTRY_CLASS_NAME,
 					Field.ENTRY_CLASS_PK, Field.UID);
-
 				modelSearchDefinition.setDefaultSelectedLocalizedFieldNames(
 					Field.DESCRIPTION, Field.NAME, CalendarField.RESOURCE_NAME);
-
-				modelSearchDefinition.setSelectAllLocales(true);
-
 				modelSearchDefinition.setModelIndexWriteContributor(
 					modelIndexWriterContributor);
-
 				modelSearchDefinition.setModelSummaryContributor(
 					modelSummaryContributor);
+				modelSearchDefinition.setSelectAllLocales(true);
 			});
 	}
 
