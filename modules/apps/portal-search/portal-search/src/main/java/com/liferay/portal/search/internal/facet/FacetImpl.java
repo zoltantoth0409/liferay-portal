@@ -46,9 +46,9 @@ public class FacetImpl extends BaseFacet implements Facet {
 	public void setAggregationName(String aggregationName) {
 		FacetConfiguration facetConfiguration = getFacetConfiguration();
 
-		JSONObject data = facetConfiguration.getData();
+		JSONObject dataJSONObject = facetConfiguration.getData();
 
-		data.put("aggregationName", aggregationName);
+		dataJSONObject.put("aggregationName", aggregationName);
 	}
 
 	@Override
