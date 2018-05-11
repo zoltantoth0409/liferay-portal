@@ -235,7 +235,6 @@ public class ChartSampleDisplayContext {
 		_predictiveChartConfig.addDataColumn(mixedDataColumn2);
 
 		_predictiveChartConfig.setAxisXTickFormat("%b");
-
 		_predictiveChartConfig.setPredictionDate("2018-07-01");
 
 		List<String> timeseries = new ArrayList<>();
