@@ -176,11 +176,11 @@ public class ThemeDisplayProvider implements Provider<ThemeDisplay> {
 		}
 
 		@Override
-		public void sendError(int sc) {
+		public void sendError(int status) {
 		}
 
 		@Override
-		public void sendError(int sc, String msg) {
+		public void sendError(int status, String message) {
 		}
 
 		@Override
@@ -200,7 +200,7 @@ public class ThemeDisplayProvider implements Provider<ThemeDisplay> {
 		}
 
 		@Override
-		public void setContentType(String type) {
+		public void setContentType(String contentLength) {
 		}
 
 		@Override
@@ -216,15 +216,15 @@ public class ThemeDisplayProvider implements Provider<ThemeDisplay> {
 		}
 
 		@Override
-		public void setLocale(Locale loc) {
+		public void setLocale(Locale locale) {
 		}
 
 		@Override
-		public void setStatus(int sc) {
+		public void setStatus(int status) {
 		}
 
 		@Override
-		public void setStatus(int sc, String sm) {
+		public void setStatus(int status, String message) {
 		}
 
 	}
