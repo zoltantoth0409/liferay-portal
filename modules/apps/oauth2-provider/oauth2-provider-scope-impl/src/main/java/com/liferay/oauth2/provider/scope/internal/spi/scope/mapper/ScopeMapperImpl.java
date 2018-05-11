@@ -75,9 +75,7 @@ public class ScopeMapperImpl implements ScopeMapper {
 
 			if (mappingParts.length != 2) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(
-						"Invalid ConfigurableScopeMapperConfiguration " +
-							"mapping " + mapping);
+					_log.warn("Invalid mapping " + mapping);
 				}
 
 				continue;
