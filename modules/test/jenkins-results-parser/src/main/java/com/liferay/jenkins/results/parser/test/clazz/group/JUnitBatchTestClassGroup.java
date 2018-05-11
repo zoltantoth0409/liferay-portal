@@ -98,7 +98,7 @@ public class JUnitBatchTestClassGroup extends BatchTestClassGroup {
 			}
 
 			if (matchingSrcFile == null) {
-				throw new RuntimeException("No matching files found.");
+				throw new RuntimeException("No matching files found");
 			}
 
 			if (srcFiles.size() > 1) {

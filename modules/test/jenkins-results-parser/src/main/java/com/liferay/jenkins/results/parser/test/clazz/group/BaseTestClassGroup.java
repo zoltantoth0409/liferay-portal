@@ -43,7 +43,7 @@ public abstract class BaseTestClassGroup {
 		@Override
 		public int compareTo(BaseTestClass testClass) {
 			if (testClass == null) {
-				throw new NullPointerException("test class is NULL");
+				throw new NullPointerException("Test class is NULL");
 			}
 
 			return _file.compareTo(testClass.getFile());
