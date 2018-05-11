@@ -64,8 +64,8 @@ public class MixedDataColumn extends Column {
 		}
 		else {
 			throw new IllegalArgumentException(
-				"Value can only be an instance, array, or Collection of " +
-					"Numbers");
+				"Value can only be an instance, array, or collection of " +
+					"numbers");
 		}
 	}
 
