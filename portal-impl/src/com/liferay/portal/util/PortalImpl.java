@@ -1331,11 +1331,11 @@ public class PortalImpl implements Portal {
 	@Override
 	public String getCanonicalURL(
 			String completeURL, ThemeDisplay themeDisplay, Layout layout,
-			boolean forceLayoutFriendlyUR)
+			boolean forceLayoutFriendlyURL)
 		throws PortalException {
 
 		return getCanonicalURL(
-			completeURL, themeDisplay, layout, forceLayoutFriendlyUR, true);
+			completeURL, themeDisplay, layout, forceLayoutFriendlyURL, true);
 	}
 
 	@Override
