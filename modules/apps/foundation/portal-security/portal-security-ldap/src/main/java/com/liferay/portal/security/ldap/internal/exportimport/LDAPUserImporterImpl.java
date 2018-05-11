@@ -98,6 +98,7 @@ import javax.naming.directory.Attributes;
 import javax.naming.directory.SearchControls;
 import javax.naming.directory.SearchResult;
 import javax.naming.ldap.LdapContext;
+import javax.naming.ldap.Rdn;
 
 import org.apache.commons.lang.time.StopWatch;
 
@@ -702,7 +703,7 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 		sb.append(StringPool.OPEN_PARENTHESIS);
 		sb.append(groupMappings.getProperty("groupName"));
 		sb.append("=");
-		sb.append(userGroup.getName());
+		sb.append(Rdn.escapeValue(userGroup.getName()));
 		sb.append("))");
 
 		return _portalLDAP.getMultivaluedAttribute(
