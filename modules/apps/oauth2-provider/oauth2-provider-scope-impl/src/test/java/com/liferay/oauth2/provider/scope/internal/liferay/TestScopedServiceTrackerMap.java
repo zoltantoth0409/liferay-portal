@@ -24,10 +24,6 @@ public class TestScopedServiceTrackerMap<T> {
 
 	public TestScopedServiceTrackerMap(T defaultService) {
 		_defaultService = defaultService;
-
-		_servicesByCompany = new HashMap<>();
-		_servicesByKey = new HashMap<>();
-		_servicesByCompanyAndKey = new HashMap<>();
 	}
 
 	public T getService(long companyId, String key) {
@@ -86,8 +82,8 @@ public class TestScopedServiceTrackerMap<T> {
 	}
 
 	private final T _defaultService;
-	private final Map<String, T> _servicesByCompany;
-	private final Map<String, T> _servicesByCompanyAndKey;
-	private final Map<String, T> _servicesByKey;
+	private final Map<String, T> _servicesByCompany = new HashMap<>();
+	private final Map<String, T> _servicesByCompanyAndKey = new HashMap<>();
+	private final Map<String, T> _servicesByKey = new HashMap<>();
 
 }
