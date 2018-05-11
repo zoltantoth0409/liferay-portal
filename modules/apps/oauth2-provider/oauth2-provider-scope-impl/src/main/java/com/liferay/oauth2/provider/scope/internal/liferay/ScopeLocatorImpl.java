@@ -102,7 +102,7 @@ public class ScopeLocatorImpl implements ScopeLocator {
 			serviceReference::getProperty);
 		ScopeMapper scopeMapper = _scopedScopeMapper.getService(
 			companyId, applicationName);
-		ScopeMatcherFactory finalScopeMatcherFactory = getScopeMatcherFactory(
+		ScopeMatcherFactory scopeMatcherFactory = getScopeMatcherFactory(
 			companyId);
 
 		for (String scope : scopes) {
@@ -110,7 +110,7 @@ public class ScopeLocatorImpl implements ScopeLocator {
 				boolean matched = matchCache.computeIfAbsent(
 					mappedScope,
 					input -> scopeMatchesScopesAlias(
-						input, finalScopeMatcherFactory, prefixHandler,
+						input, scopeMatcherFactory, prefixHandler,
 						scopesAlias));
 
 				if (matched) {
