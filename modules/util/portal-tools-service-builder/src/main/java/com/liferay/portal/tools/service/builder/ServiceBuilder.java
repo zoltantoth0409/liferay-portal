@@ -5529,6 +5529,8 @@ public class ServiceBuilder {
 		String uadApplicationName = GetterUtil.getString(
 			entityElement.attributeValue("uad-application-name"),
 			_portletShortName);
+		boolean uadAutoDelete = GetterUtil.getBoolean(
+			entityElement.attributeValue("uad-auto-delete"));
 		String uadDirPath = GetterUtil.getString(
 			entityElement.attributeValue("uad-dir-path"), _uadDirName);
 		String uadPackagePath = GetterUtil.getString(
@@ -5983,11 +5985,11 @@ public class ServiceBuilder {
 			remoteService, persistenceClassName, finderClassName, dataSource,
 			sessionFactory, txManager, cacheEnabled, dynamicUpdateEnabled,
 			jsonEnabled, mvccEnabled, trashEnabled, uadApplicationName,
-			uadOutputPath, uadPackagePath, deprecated, pkEntityColumns,
-			regularEntityColumns, blobEntityColumns, collectionEntityColumns,
-			entityColumns, entityOrder, entityFinders, referenceEntities,
-			unresolvedReferenceEntityNames, txRequiredMethodNames,
-			resourceActionModel);
+			uadAutoDelete, uadOutputPath, uadPackagePath, deprecated,
+			pkEntityColumns, regularEntityColumns, blobEntityColumns,
+			collectionEntityColumns, entityColumns, entityOrder, entityFinders,
+			referenceEntities, unresolvedReferenceEntityNames,
+			txRequiredMethodNames, resourceActionModel);
 
 		_entities.add(entity);
 
