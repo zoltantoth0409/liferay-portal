@@ -39,7 +39,7 @@ public class ThreadLocalScopeContextScopeChecker
 	@Override
 	public boolean checkAllScopes(String... scopes) {
 		if (Validator.isNull(scopes)) {
-			throw new IllegalArgumentException("Scopes can not be null");
+			throw new IllegalArgumentException("Scopes are null");
 		}
 
 		Collection<OAuth2ScopeGrant> oAuth2ScopeGrants = new ArrayList<>(
@@ -54,7 +54,7 @@ public class ThreadLocalScopeContextScopeChecker
 
 		for (String scope : scopes) {
 			if (Validator.isNull(scope)) {
-				throw new IllegalArgumentException("Scope can't be null");
+				throw new IllegalArgumentException("Scope is null");
 			}
 
 			if (!oAuth2ScopeGrants.removeIf(o -> scope.equals(o.getScope()))) {
@@ -68,7 +68,7 @@ public class ThreadLocalScopeContextScopeChecker
 	@Override
 	public boolean checkAnyScope(String... scopes) {
 		if (Validator.isNull(scopes)) {
-			throw new IllegalArgumentException("Scopes can't be null");
+			throw new IllegalArgumentException("Scopes are null");
 		}
 
 		Collection<OAuth2ScopeGrant> oAuth2ScopeGrants =
@@ -79,7 +79,7 @@ public class ThreadLocalScopeContextScopeChecker
 
 		for (String scope : scopes) {
 			if (Validator.isNull(scope)) {
-				throw new IllegalArgumentException("Scope can't be null");
+				throw new IllegalArgumentException("Scope is null");
 			}
 
 			for (OAuth2ScopeGrant oAuth2ScopeGrant : oAuth2ScopeGrants) {
@@ -95,7 +95,7 @@ public class ThreadLocalScopeContextScopeChecker
 	@Override
 	public boolean checkScope(String scope) {
 		if (Validator.isNull(scope)) {
-			throw new IllegalArgumentException("Scope can't be null");
+			throw new IllegalArgumentException("Scope is null");
 		}
 
 		Collection<OAuth2ScopeGrant> oAuth2ScopeGrants =

@@ -58,8 +58,9 @@ public class ScopeLocatorImpl implements ScopeLocator {
 	public Collection<LiferayOAuth2Scope> getLiferayOAuth2Scopes(
 		long companyId, String scopesAlias) {
 
-		Collection<LiferayOAuth2Scope> liferayOAuth2Scopes = new ArrayList<>();
 		Set<String> names = _scopeFinderByNameServiceTrackerMap.keySet();
+
+		Collection<LiferayOAuth2Scope> liferayOAuth2Scopes = new ArrayList<>();
 
 		for (String name : names) {
 			liferayOAuth2Scopes.addAll(
