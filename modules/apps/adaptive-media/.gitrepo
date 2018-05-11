@@ -4,8 +4,8 @@
 [subrepo]
 	autopull = false
 	cmdver = liferay
-	commit = 3d13d512eb85599128f1935133d7d09d7e63b8ef
+	commit = feb9cca6d35b1d1c39934d148269edd2eeb8bea6
 	mergebuttonmergecommits = false
 	mode = push
-	parent = a4db8675f73df1f74220a58890f81396092bbed0
+	parent = a476c4b5eecb305a7949e7fae6711b47f8bc996c
 	remote = git@github.com:liferay/com-liferay-adaptive-media.git
