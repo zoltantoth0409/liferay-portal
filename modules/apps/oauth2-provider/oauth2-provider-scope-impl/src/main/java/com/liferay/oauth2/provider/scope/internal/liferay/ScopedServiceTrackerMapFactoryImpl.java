@@ -95,7 +95,6 @@ public class ScopedServiceTrackerMapFactoryImpl
 				StringBundler.concat("(&(companyId=*)(!(", property, "=*)))"),
 				new PropertyServiceReferenceMapper<>("companyId"),
 				new ServiceTrackerMapListenerImpl());
-
 			_servicesByCompanyAndKey =
 				ServiceTrackerMapFactory.openMultiValueMap(
 					bundleContext, clazz,
@@ -114,7 +113,6 @@ public class ScopedServiceTrackerMapFactoryImpl
 									String.join("-", key1, key2))));
 					},
 					new ServiceTrackerMapListenerImpl());
-
 			_servicesByKey = ServiceTrackerMapFactory.openMultiValueMap(
 				bundleContext, clazz,
 				StringBundler.concat(

@@ -358,21 +358,25 @@ public class ScopeLocatorImpl implements ScopeLocator {
 		public ServiceReferenceServiceTuple<?, ScopeFinder> addingService(
 			ServiceReference<ScopeFinder> serviceReference) {
 
-			ScopeFinder scopeFinder = _bundleContext.getService(serviceReference);
+			ScopeFinder scopeFinder = _bundleContext.getService(
+				serviceReference);
 
-			return new ServiceReferenceServiceTuple<>(serviceReference, scopeFinder);
+			return new ServiceReferenceServiceTuple<>(
+				serviceReference, scopeFinder);
 		}
 
 		@Override
 		public void modifiedService(
 			ServiceReference<ScopeFinder> serviceReference,
-			ServiceReferenceServiceTuple<?, ScopeFinder> serviceReferenceServiceTuple) {
+			ServiceReferenceServiceTuple<?, ScopeFinder>
+				serviceReferenceServiceTuple) {
 		}
 
 		@Override
 		public void removedService(
 			ServiceReference<ScopeFinder> serviceReference,
-			ServiceReferenceServiceTuple<?, ScopeFinder> serviceReferenceServiceTuple) {
+			ServiceReferenceServiceTuple<?, ScopeFinder>
+				serviceReferenceServiceTuple) {
 
 			_bundleContext.ungetService(serviceReference);
 		}
