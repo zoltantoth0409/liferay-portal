@@ -294,15 +294,15 @@ public class LiferayOAuth2OSGiFeature implements Feature {
 		}
 
 		protected void processAnnotation(
-			BundleContext bundleContext, JAXRSServiceFactoryBean jaxRSServiceFactoryBean,
+			BundleContext bundleContext, JAXRSServiceFactoryBean jaxrsServiceFactoryBean,
 			Endpoint endpoint, Dictionary<String, Object> serviceProperties) {
 
 			Collection<String> scopes = new HashSet<>();
 
-			for (Class<?> resourceClass : jaxRSServiceFactoryBean.getResourceClasses()) {
+			for (Class<?> resourceClass : jaxrsServiceFactoryBean.getResourceClasses()) {
 				scopes.addAll(
 					RequiresScopeAnnotationFinder.find(
-						resourceClass, jaxRSServiceFactoryBean.getBus()));
+						resourceClass, jaxrsServiceFactoryBean.getBus()));
 			}
 
 			ServiceRegistration<ScopeFinder> scopeFinderRegistration =
