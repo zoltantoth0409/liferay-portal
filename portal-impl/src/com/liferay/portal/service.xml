@@ -3017,7 +3017,7 @@
 			<finder-column name="externalUserId" />
 		</finder>
 	</entity>
-	<entity local-service="true" name="UserNotificationDelivery" remote-service="false">
+	<entity local-service="true" name="UserNotificationDelivery" remote-service="false" uad-application-name="Notifications" uad-auto-delete="true" uad-dir-path="../modules/apps/collaboration/notifications/notifications-uad/src/main/java" uad-package-path="com.liferay.notifications">
 
 		<!-- PK fields -->
 
@@ -3026,7 +3026,7 @@
 		<!-- Audit fields -->
 
 		<column name="companyId" type="long" />
-		<column name="userId" type="long" />
+		<column name="userId" type="long" uad-anonymize-field-name="userId" />
 
 		<!-- Other fields -->
 
@@ -3053,7 +3053,7 @@
 
 		<reference entity="User" package-path="com.liferay.portal" />
 	</entity>
-	<entity local-service="true" name="UserNotificationEvent" remote-service="false" uuid="true">
+	<entity local-service="true" name="UserNotificationEvent" remote-service="false" uad-application-name="Notifications" uad-auto-delete="true" uad-dir-path="../modules/apps/collaboration/notifications/notifications-uad/src/main/java" uad-package-path="com.liferay.notifications" uuid="true">
 
 		<!-- PK fields -->
 
@@ -3062,7 +3062,7 @@
 		<!-- Audit fields -->
 
 		<column name="companyId" type="long" />
-		<column name="userId" type="long" />
+		<column name="userId" type="long" uad-anonymize-field-name="userId" />
 
 		<!-- Other fields -->
 
