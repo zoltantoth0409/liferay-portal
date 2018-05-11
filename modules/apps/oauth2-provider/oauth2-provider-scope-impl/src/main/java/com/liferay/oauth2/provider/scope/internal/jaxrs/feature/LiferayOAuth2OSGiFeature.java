@@ -183,9 +183,9 @@ public class LiferayOAuth2OSGiFeature implements Feature {
 
 		@Override
 		public void handleEvent(
-			Event event, AbstractServiceFactoryBean factory, Object... args) {
+			Event event, AbstractServiceFactoryBean abstractServiceFactoryBean, Object... args) {
 
-			if ((factory instanceof JAXRSServiceFactoryBean) &&
+			if ((abstractServiceFactoryBean instanceof JAXRSServiceFactoryBean) &&
 				event.equals(Event.SERVER_CREATED)) {
 
 				if (!_initializedThreadLocal.get()) {
@@ -256,7 +256,7 @@ public class LiferayOAuth2OSGiFeature implements Feature {
 
 				if (oAuth2ScopeCheckerType.equals("annotations")) {
 					processAnnotation(
-						bundleContext, (JAXRSServiceFactoryBean)factory,
+						bundleContext, (JAXRSServiceFactoryBean)abstractServiceFactoryBean,
 						endpoint, serviceProperties);
 				}
 
@@ -294,15 +294,15 @@ public class LiferayOAuth2OSGiFeature implements Feature {
 		}
 
 		protected void processAnnotation(
-			BundleContext bundleContext, JAXRSServiceFactoryBean factory,
+			BundleContext bundleContext, JAXRSServiceFactoryBean jaxRSServiceFactoryBean,
 			Endpoint endpoint, Dictionary<String, Object> serviceProperties) {
 
 			Collection<String> scopes = new HashSet<>();
 
-			for (Class<?> resourceClass : factory.getResourceClasses()) {
+			for (Class<?> resourceClass : jaxRSServiceFactoryBean.getResourceClasses()) {
 				scopes.addAll(
 					RequiresScopeAnnotationFinder.find(
-						resourceClass, factory.getBus()));
+						resourceClass, jaxRSServiceFactoryBean.getBus()));
 			}
 
 			ServiceRegistration<ScopeFinder> scopeFinderRegistration =
