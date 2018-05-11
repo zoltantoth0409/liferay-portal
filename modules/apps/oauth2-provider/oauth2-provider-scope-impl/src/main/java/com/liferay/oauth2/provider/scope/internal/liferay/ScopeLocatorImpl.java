@@ -190,12 +190,10 @@ public class ScopeLocatorImpl implements ScopeLocator {
 							PrefixHandler.PASSTHROUGH_PREFIXHANDLER;
 					}
 				}));
-
 		setScopedScopeFinders(
 			_scopedServiceTrackerMapFactory.create(
 				bundleContext, ScopeFinder.class,
 				OAuth2ProviderScopeConstants.OSGI_JAXRS_NAME, () -> null));
-
 		setScopedScopeMapper(
 			_scopedServiceTrackerMapFactory.create(
 				bundleContext, ScopeMapper.class,
@@ -208,11 +206,9 @@ public class ScopeLocatorImpl implements ScopeLocator {
 						return ScopeMapper.PASSTHROUGH_SCOPEMAPPER;
 					}
 				}));
-
 		setScopedScopeMatcherFactories(
 			ServiceTrackerMapFactory.openSingleValueMap(
 				bundleContext, ScopeMatcherFactory.class, "company.id"));
-
 		setScopeFinderByNameServiceTrackerMap(
 			ServiceTrackerMapFactory.openSingleValueMap(
 				bundleContext, ScopeFinder.class,
