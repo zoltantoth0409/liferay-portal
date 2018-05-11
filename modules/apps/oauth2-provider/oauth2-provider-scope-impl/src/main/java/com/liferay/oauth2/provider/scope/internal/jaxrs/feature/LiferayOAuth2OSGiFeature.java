@@ -183,10 +183,10 @@ public class LiferayOAuth2OSGiFeature implements Feature {
 
 		@Override
 		public void handleEvent(
-			Event ev, AbstractServiceFactoryBean factory, Object... args) {
+			Event event, AbstractServiceFactoryBean factory, Object... args) {
 
 			if ((factory instanceof JAXRSServiceFactoryBean) &&
-				ev.equals(Event.SERVER_CREATED)) {
+				event.equals(Event.SERVER_CREATED)) {
 
 				if (!_initializedThreadLocal.get()) {
 					return;
