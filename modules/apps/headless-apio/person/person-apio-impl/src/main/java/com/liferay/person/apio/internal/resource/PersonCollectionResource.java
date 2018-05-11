@@ -239,9 +239,9 @@ public class PersonCollectionResource
 		user.setLastName(personUpdaterForm.getFamilyName());
 		user.setJobTitle(personUpdaterForm.getJobTitle());
 
-		User updatedUser = _userLocalService.updateUser(user);
+		user = _userLocalService.updateUser(user);
 
-		return new UserWrapper(updatedUser, themeDisplay);
+		return new UserWrapper(user, themeDisplay);
 	}
 
 	@Reference
