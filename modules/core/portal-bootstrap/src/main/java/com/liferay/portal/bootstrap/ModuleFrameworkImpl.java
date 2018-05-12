@@ -1530,8 +1530,8 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 		if (fileInstallBundle == null) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Unable to find FileInstall bundle to synchronize " +
-						"dynamic bundles starting.");
+					"Unable to find the Apache Felix File Install bundle to " +
+						"synchronize the starting of dynamic bundles");
 			}
 		}
 		else {
