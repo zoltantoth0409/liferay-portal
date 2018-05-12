@@ -57,14 +57,14 @@ public class PersonNestedCollectionRouter implements
 			Pagination pagination, long organizationId)
 		throws PortalException {
 
-		List<User> organizationUsers = _userService.getOrganizationUsers(
+		List<User> users = _userService.getOrganizationUsers(
 			organizationId, WorkflowConstants.STATUS_APPROVED,
 			pagination.getStartPosition(), pagination.getEndPosition(),
 			new UserLastNameComparator(true));
 		int count = _userService.getOrganizationUsersCount(
 			organizationId, WorkflowConstants.STATUS_APPROVED);
 
-		return new PageItems<>(organizationUsers, count);
+		return new PageItems<>(users, count);
 	}
 
 	@Reference
