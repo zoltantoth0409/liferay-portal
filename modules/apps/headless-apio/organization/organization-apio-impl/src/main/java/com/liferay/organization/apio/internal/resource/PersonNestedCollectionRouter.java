@@ -54,7 +54,7 @@ public class PersonNestedCollectionRouter implements
 	}
 
 	private PageItems<User> _getPageItems(
-			Pagination pagination, Long organizationId)
+			Pagination pagination, long organizationId)
 		throws PortalException {
 
 		List<User> organizationUsers = _userService.getOrganizationUsers(

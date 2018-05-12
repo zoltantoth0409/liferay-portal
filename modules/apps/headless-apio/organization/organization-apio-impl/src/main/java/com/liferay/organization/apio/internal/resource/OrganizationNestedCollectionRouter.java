@@ -53,7 +53,7 @@ public class OrganizationNestedCollectionRouter implements
 	}
 
 	private PageItems<Organization> _getPageItems(
-		Pagination pagination, Long parentOrganizationId, Company company) {
+		Pagination pagination, long parentOrganizationId, Company company) {
 
 		List<Organization> organizations =
 			_organizationService.getOrganizations(
