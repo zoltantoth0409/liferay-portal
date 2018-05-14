@@ -114,6 +114,14 @@ public class EditConfigurationMVCRenderCommand implements MVCRenderCommand {
 				ConfigurationAdminWebKeys.CONFIGURATION_ENTRY,
 				configurationEntry);
 
+			ConfigurationFormRenderer configurationFormRenderer =
+				_configurationFormRendererRetriever.
+					getConfigurationFormRenderer(pid);
+
+			renderRequest.setAttribute(
+				ConfigurationAdminWebKeys.CONFIGURATION_FORM_RENDERER,
+				configurationFormRenderer);
+
 			renderRequest.setAttribute(
 				ConfigurationAdminWebKeys.CONFIGURATION_MODEL,
 				configurationModel);
@@ -130,14 +138,6 @@ public class EditConfigurationMVCRenderCommand implements MVCRenderCommand {
 			renderRequest.setAttribute(
 				ConfigurationAdminWebKeys.RESOURCE_BUNDLE_LOADER_PROVIDER,
 				_resourceBundleLoaderProvider);
-
-			ConfigurationFormRenderer configurationFormRenderer =
-				_configurationFormRendererRetriever.
-					getConfigurationFormRenderer(pid);
-
-			renderRequest.setAttribute(
-				ConfigurationAdminWebKeys.CONFIGURATION_FORM_RENDERER,
-				configurationFormRenderer);
 
 			return "/edit_configuration.jsp";
 		}
