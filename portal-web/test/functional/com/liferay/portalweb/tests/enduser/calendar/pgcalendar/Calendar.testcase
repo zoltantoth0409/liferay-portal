@@ -1594,7 +1594,7 @@
 
 		<execute macro="CalendarEvent#selectEventIframe" />
 
-		<execute macro="CalendarEvent#publish" />
+		<execute macro="CalendarEvent#clickPublish" />
 
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
