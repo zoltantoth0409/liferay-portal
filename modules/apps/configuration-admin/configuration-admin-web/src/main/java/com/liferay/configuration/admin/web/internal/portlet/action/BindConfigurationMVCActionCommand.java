@@ -120,17 +120,10 @@ public class BindConfigurationMVCActionCommand implements MVCActionCommand {
 		ResourceBundle resourceBundle = resourceBundleLoader.loadResourceBundle(
 			themeDisplay.getLocale());
 
-		ConfigurationFormRenderer configurationFormRenderer =
-			_configurationFormRendererRetriever.getConfigurationFormRenderer(
-				pid);
-
-		HttpServletRequest request = _portal.getHttpServletRequest(
-			actionRequest);
-
 		Dictionary<String, Object> properties = null;
 
-		Map<String, Object> requestParameters =
-			configurationFormRenderer.getRequestParameters(request);
+		Map<String, Object> requestParameters = getRequestParameters(
+			actionRequest, pid);
 
 		if (requestParameters != null) {
 			properties = convertToDictionary(requestParameters);
@@ -330,6 +323,18 @@ public class BindConfigurationMVCActionCommand implements MVCActionCommand {
 				themeDisplay.getLocale());
 
 		return ddmFormValuesToPropertiesConverter.getProperties();
+	}
+
+	protected Map<String, Object> getRequestParameters(
+		ActionRequest actionRequest, String pid) {
+
+		ConfigurationFormRenderer configurationFormRenderer =
+			_configurationFormRendererRetriever.getConfigurationFormRenderer(
+				pid);
+		HttpServletRequest request = _portal.getHttpServletRequest(
+			actionRequest);
+
+		return configurationFormRenderer.getRequestParameters(request);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
