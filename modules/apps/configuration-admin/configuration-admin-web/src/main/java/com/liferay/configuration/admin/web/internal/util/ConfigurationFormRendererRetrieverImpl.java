@@ -35,7 +35,7 @@ public class ConfigurationFormRendererRetrieverImpl
 			_configurationFormRendererServiceTrackerMap.getService(pid);
 
 		if (configurationFormRenderer == null) {
-			configurationFormRenderer = _DEFAULT_CONFIGURATION_FORM_RENDERER;
+			configurationFormRenderer = _CONFIGURATION_FORM_RENDERER;
 		}
 
 		return configurationFormRenderer;
@@ -55,8 +55,7 @@ public class ConfigurationFormRendererRetrieverImpl
 	}
 
 	private static final ConfigurationFormRenderer
-		_DEFAULT_CONFIGURATION_FORM_RENDERER =
-			new DefaultConfigurationFormRenderer();
+		_CONFIGURATION_FORM_RENDERER = new DefaultConfigurationFormRenderer();
 
 	private ServiceTrackerMap<String, ConfigurationFormRenderer>
 		_configurationFormRendererServiceTrackerMap;

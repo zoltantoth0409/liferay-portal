@@ -47,12 +47,12 @@ public class DefaultConfigurationFormRenderer
 	public void render(HttpServletRequest request, HttpServletResponse response)
 		throws IOException {
 
-		String formHtml = (String)request.getAttribute(
+		PrintWriter printWriter = response.getWriter();
+
+		String html = (String)request.getAttribute(
 			ConfigurationAdminWebKeys.CONFIGURATION_MODEL_FORM_HTML);
 
-		PrintWriter writer = response.getWriter();
-
-		writer.print(formHtml);
+		printWriter.print(html);
 	}
 
 }
