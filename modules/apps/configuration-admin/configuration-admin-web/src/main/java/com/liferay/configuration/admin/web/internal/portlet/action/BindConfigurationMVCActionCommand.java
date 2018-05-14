@@ -126,7 +126,7 @@ public class BindConfigurationMVCActionCommand implements MVCActionCommand {
 			actionRequest, pid);
 
 		if (requestParameters != null) {
-			properties = convertToDictionary(requestParameters);
+			properties = toDictionary(requestParameters);
 		}
 		else {
 			properties = getDDMRequestParams(
@@ -282,7 +282,7 @@ public class BindConfigurationMVCActionCommand implements MVCActionCommand {
 		}
 	}
 
-	protected Dictionary<String, Object> convertToDictionary(
+	protected Dictionary<String, Object> toDictionary(
 		Map<String, Object> requestParameters) {
 
 		Dictionary<String, Object> properties = new Hashtable<>();
