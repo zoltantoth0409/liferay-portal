@@ -129,7 +129,7 @@ public class BindConfigurationMVCActionCommand implements MVCActionCommand {
 			properties = toDictionary(requestParameters);
 		}
 		else {
-			properties = getDDMRequestParams(
+			properties = getDDMRequestParameters(
 				actionRequest, configurationModel, resourceBundle);
 		}
 
@@ -300,7 +300,7 @@ public class BindConfigurationMVCActionCommand implements MVCActionCommand {
 		return _ddmFormValuesFactory.create(actionRequest, ddmForm);
 	}
 
-	protected Dictionary<String, Object> getDDMRequestParams(
+	protected Dictionary<String, Object> getDDMRequestParameters(
 		ActionRequest actionRequest, ConfigurationModel configurationModel,
 		ResourceBundle resourceBundle) {
 
