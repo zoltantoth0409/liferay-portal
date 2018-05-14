@@ -282,18 +282,6 @@ public class BindConfigurationMVCActionCommand implements MVCActionCommand {
 		}
 	}
 
-	protected Dictionary<String, Object> toDictionary(
-		Map<String, Object> requestParameters) {
-
-		Dictionary<String, Object> properties = new Hashtable<>();
-
-		for (Map.Entry<String, Object> entry : requestParameters.entrySet()) {
-			properties.put(entry.getKey(), entry.getValue());
-		}
-
-		return properties;
-	}
-
 	protected DDMFormValues getDDMFormValues(
 		ActionRequest actionRequest, DDMForm ddmForm) {
 
@@ -335,6 +323,18 @@ public class BindConfigurationMVCActionCommand implements MVCActionCommand {
 			actionRequest);
 
 		return configurationFormRenderer.getRequestParameters(request);
+	}
+
+	protected Dictionary<String, Object> toDictionary(
+		Map<String, Object> requestParameters) {
+
+		Dictionary<String, Object> properties = new Hashtable<>();
+
+		for (Map.Entry<String, Object> entry : requestParameters.entrySet()) {
+			properties.put(entry.getKey(), entry.getValue());
+		}
+
+		return properties;
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
