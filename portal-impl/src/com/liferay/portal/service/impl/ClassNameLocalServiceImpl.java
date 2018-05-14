@@ -88,10 +88,10 @@ public class ClassNameLocalServiceImpl
 				return _nullClassName;
 			}
 
-			final ClassName callBackClassName = className;
+			final ClassName callbackClassName = className;
 
 			TransactionCommitCallbackUtil.registerCallback(
-				() -> _classNames.put(value, callBackClassName));
+				() -> _classNames.put(value, callbackClassName));
 		}
 
 		return className;
@@ -113,10 +113,10 @@ public class ClassNameLocalServiceImpl
 			try {
 				className = classNameLocalService.addClassName(value);
 
-				final ClassName callBackClassName = className;
+				final ClassName callbackClassName = className;
 
 				TransactionCommitCallbackUtil.registerCallback(
-					() -> _classNames.put(value, callBackClassName));
+					() -> _classNames.put(value, callbackClassName));
 			}
 			catch (Throwable t) {
 				className = classNameLocalService.fetchClassName(value);
