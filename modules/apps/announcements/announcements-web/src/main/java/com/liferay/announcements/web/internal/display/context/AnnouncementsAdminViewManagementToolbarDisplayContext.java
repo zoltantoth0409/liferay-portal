@@ -81,6 +81,12 @@ public class AnnouncementsAdminViewManagementToolbarDisplayContext {
 						PortletURL addEntryURL =
 							_liferayPortletResponse.createRenderURL();
 
+						addEntryURL.setParameter(
+							"mvcRenderCommandName",
+							"/announcements/edit_entry");
+						addEntryURL.setParameter(
+							"redirect", PortalUtil.getCurrentURL(_request));
+
 						String navigation = _getNavigation();
 
 						addEntryURL.setParameter(
@@ -93,12 +99,6 @@ public class AnnouncementsAdminViewManagementToolbarDisplayContext {
 
 						addEntryURL.setParameter(
 							"distributionScope", distributionScope);
-
-						addEntryURL.setParameter(
-							"mvcRenderCommandName",
-							"/announcements/edit_entry");
-						addEntryURL.setParameter(
-							"redirect", PortalUtil.getCurrentURL(_request));
 
 						dropdownItem.setHref(addEntryURL);
 
@@ -174,7 +174,6 @@ public class AnnouncementsAdminViewManagementToolbarDisplayContext {
 							dropdownItem.setHref(
 								navigationURL, "distributionScope",
 								distributionScopeEntry.getValue());
-
 							dropdownItem.setLabel(
 								LanguageUtil.get(
 									_request, distributionScopeEntry.getKey()));
