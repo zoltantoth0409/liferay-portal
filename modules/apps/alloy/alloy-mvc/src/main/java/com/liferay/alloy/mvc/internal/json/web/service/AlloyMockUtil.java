@@ -168,7 +168,7 @@ public class AlloyMockUtil {
 		extends MockPortletResponse implements ActionResponse {
 
 		@Override
-		public RenderURL createRedirectURL(MimeResponse.Copy option)
+		public RenderURL createRedirectURL(MimeResponse.Copy copy)
 			throws IllegalStateException {
 
 			throw new UnsupportedOperationException();
@@ -1477,7 +1477,7 @@ public class AlloyMockUtil {
 		}
 
 		@Override
-		public ActionURL createActionURL(Copy option) {
+		public ActionURL createActionURL(Copy copy) {
 			throw new UnsupportedOperationException();
 		}
 
@@ -1487,7 +1487,7 @@ public class AlloyMockUtil {
 		}
 
 		@Override
-		public RenderURL createRenderURL(Copy option) {
+		public RenderURL createRenderURL(Copy copy) {
 			throw new UnsupportedOperationException();
 		}
 
