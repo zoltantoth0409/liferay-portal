@@ -3970,8 +3970,10 @@ public class ServiceBuilder {
 				"/uad/anonymizer/test/", entity.getName(),
 				"UADAnonymizerTest.java"));
 
-		ToolsUtil.writeFile(
-			file, content, _author, _jalopySettings, _modifiedFileNames);
+		if (!file.exists()) {
+			ToolsUtil.writeFile(
+				file, content, _author, _jalopySettings, _modifiedFileNames);
+		}
 	}
 
 	private void _createUADBnd(String uadApplicationName) throws Exception {
@@ -4070,8 +4072,10 @@ public class ServiceBuilder {
 				entity.getUADTestIntegrationOutputPath(), "/uad/display/test/",
 				entity.getName(), "UADDisplayTest.java"));
 
-		ToolsUtil.writeFile(
-			file, content, _author, _jalopySettings, _modifiedFileNames);
+		if (!file.exists()) {
+			ToolsUtil.writeFile(
+				file, content, _author, _jalopySettings, _modifiedFileNames);
+		}
 	}
 
 	private void _createUADExporter(Entity entity) throws Exception {
@@ -4112,8 +4116,10 @@ public class ServiceBuilder {
 				entity.getUADTestIntegrationOutputPath(), "/uad/exporter/test/",
 				entity.getName(), "UADExporterTest.java"));
 
-		ToolsUtil.writeFile(
-			file, content, _author, _jalopySettings, _modifiedFileNames);
+		if (!file.exists()) {
+			ToolsUtil.writeFile(
+				file, content, _author, _jalopySettings, _modifiedFileNames);
+		}
 	}
 
 	private void _createUADLanguageProperties(String uadApplicationName)
