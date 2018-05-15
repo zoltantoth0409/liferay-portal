@@ -487,7 +487,7 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 
 	@Reference(
 		policy = ReferencePolicy.DYNAMIC,
-		policyOption = ReferencePolicyOption.GREEDY, unbind = "-"
+		policyOption = ReferencePolicyOption.GREEDY
 	)
 	public void setAttributesTransformer(
 		AttributesTransformer attributesTransformer) {
@@ -497,7 +497,7 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 
 	@Reference(
 		policy = ReferencePolicy.DYNAMIC,
-		policyOption = ReferencePolicyOption.GREEDY, unbind = "-"
+		policyOption = ReferencePolicyOption.GREEDY
 	)
 	public void setLDAPToPortalConverter(
 		LDAPToPortalConverter ldapToPortalConverter) {
@@ -509,6 +509,18 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 	public void setSingleVMPool(SingleVMPool singleVMPool) {
 		_portalCache = (PortalCache<String, Long>)singleVMPool.getPortalCache(
 			UserImporter.class.getName(), false);
+	}
+
+	public void unsetAttributesTransformer(
+		AttributesTransformer attributesTransformer) {
+
+		_attributesTransformer = null;
+	}
+
+	public void unsetLDAPToPortalConverter(
+		LDAPToPortalConverter ldapToPortalConverter) {
+
+		_ldapToPortalConverter = null;
 	}
 
 	protected void addRole(
@@ -1421,7 +1433,7 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 
 	@Reference(
 		policy = ReferencePolicy.DYNAMIC,
-		policyOption = ReferencePolicyOption.GREEDY, unbind = "-"
+		policyOption = ReferencePolicyOption.GREEDY
 	)
 	protected void setPortalLDAP(PortalLDAP portalLDAP) {
 		_portalLDAP = portalLDAP;
@@ -1456,6 +1468,10 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 	@Reference(unbind = "-")
 	protected void setUserLocalService(UserLocalService userLocalService) {
 		_userLocalService = userLocalService;
+	}
+
+	protected void unsetPortalLDAP(PortalLDAP portalLDAP) {
+		_portalLDAP = null;
 	}
 
 	protected void updateExpandoAttributes(
