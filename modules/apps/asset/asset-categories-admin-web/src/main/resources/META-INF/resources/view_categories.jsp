@@ -242,8 +242,8 @@ AssetCategoryUtil.addPortletBreadcrumbEntry(assetCategoriesDisplayContext.getVoc
 	};
 
 	var ACTIONS = {
-			'deleteSelectedCategories': deleteSelectedCategories,
-			'selectCategories': selectCategory
+		'deleteSelectedCategories': deleteSelectedCategories,
+		'selectCategories': selectCategory
 	};
 
 	Liferay.componentReady('assetCategoriesManagementToolbar').then(
