@@ -78,8 +78,6 @@ public interface CommentManager {
 	public List<Comment> getChildComments(
 		long parentCommentId, int status, int start, int end);
 
-	public int getCommentsCount(String className, long classPK);
-
 	/**
 	 * Returns the total count of comments which parent is identified by the
 	 * provided {@code parentCommentId} and with the given {@code status}.
@@ -89,8 +87,9 @@ public interface CommentManager {
 	 * @return the count of matching comments
 	 * @review
 	 */
-	public int getChildCommentsCount(
-		long parentCommentId, int status);
+	public int getChildCommentsCount(long parentCommentId, int status);
+
+	public int getCommentsCount(String className, long classPK);
 
 	public Discussion getDiscussion(
 			long userId, long groupId, String className, long classPK,

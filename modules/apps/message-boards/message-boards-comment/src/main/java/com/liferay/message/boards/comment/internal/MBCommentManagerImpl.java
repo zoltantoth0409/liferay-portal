@@ -216,19 +216,17 @@ public class MBCommentManagerImpl implements CommentManager {
 	}
 
 	@Override
+	public int getChildCommentsCount(long parentCommentId, int status) {
+		return _mbMessageLocalService.getChildMessagesCount(
+			parentCommentId, status);
+	}
+
+	@Override
 	public int getCommentsCount(String className, long classPK) {
 		long classNameId = _portal.getClassNameId(className);
 
 		return _mbMessageLocalService.getDiscussionMessagesCount(
 			classNameId, classPK, WorkflowConstants.STATUS_APPROVED);
-	}
-
-	@Override
-	public int getChildCommentsCount(
-		long parentCommentId, int status) {
-
-		return _mbMessageLocalService.getChildMessagesCount(
-			parentCommentId, status);
 	}
 
 	@Override
