@@ -208,7 +208,7 @@ public class ScriptData implements Mergeable<ScriptData>, Serializable {
 	}
 
 	private String[] _splitNameAlias(String name) {
-		String[] parts = _whiteSpacePattern.split(name, 4);
+		String[] parts = _whitespacePattern.split(name, 4);
 
 		if ((parts.length == 3) &&
 			StringUtil.equalsIgnoreCase(parts[1], "as")) {
@@ -316,7 +316,7 @@ public class ScriptData implements Mergeable<ScriptData>, Serializable {
 		}
 	}
 
-	private static final Pattern _whiteSpacePattern = Pattern.compile("\\s+");
+	private static final Pattern _whitespacePattern = Pattern.compile("\\s+");
 	private static final long serialVersionUID = 1L;
 
 	private final ConcurrentMap<String, PortletData> _portletDataMap =
