@@ -84,12 +84,12 @@ public class FrameworkRestartTest {
 
 		Framework framework = frameworkFactory.newFramework(properties);
 
-		Path storagePath = frameworkStoragePath.resolve(_STORAGE_DIR);
+		Path storagePath = frameworkStoragePath.resolve("org.eclipse.osgi");
 
 		Path frameworkInfoStoragePath = storagePath.resolve("framework.info.1");
 		Path managerStoragePath = storagePath.resolve(".manager");
 
-		Path backupPath = frameworkStoragePath.resolve(_BACKUP_DIR);
+		Path backupPath = frameworkStoragePath.resolve("backup");
 
 		Files.createDirectory(backupPath);
 
@@ -262,10 +262,6 @@ public class FrameworkRestartTest {
 
 		Assert.assertEquals(FrameworkEvent.STOPPED, frameworkEvent.getType());
 	}
-
-	private static final String _BACKUP_DIR = "backup";
-
-	private static final String _STORAGE_DIR = "org.eclipse.osgi";
 
 	private static final String _TEST_EXPORT = "com.test.liferay.export";
 
