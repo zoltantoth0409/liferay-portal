@@ -216,10 +216,9 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 	}
 
 	@Override
-	public com.liferay.calendar.model.Calendar fetchGroupCalendarByName(
+	public com.liferay.calendar.model.Calendar fetchGroupCalendar(
 		long companyId, long groupId, String name) {
-		return _calendarLocalService.fetchGroupCalendarByName(companyId,
-			groupId, name);
+		return _calendarLocalService.fetchGroupCalendar(companyId, groupId, name);
 	}
 
 	@Override
