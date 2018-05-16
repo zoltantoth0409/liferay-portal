@@ -164,7 +164,7 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 	}
 
 	@Override
-	public Calendar fetchGroupCalendarByName(
+	public Calendar fetchGroupCalendar(
 		long companyId, long groupId, String name) {
 
 		List<Calendar> calendars = calendarFinder.findByC_G_C_N_D(

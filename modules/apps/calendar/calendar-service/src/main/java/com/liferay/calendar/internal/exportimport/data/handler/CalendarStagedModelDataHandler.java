@@ -237,7 +237,7 @@ public class CalendarStagedModelDataHandler
 	protected Calendar fetchExistingCalendar(
 		long companyId, long groupId, String name) {
 
-		return _calendarLocalService.fetchGroupCalendarByName(
+		return _calendarLocalService.fetchGroupCalendar(
 			companyId, groupId, name);
 	}
 
