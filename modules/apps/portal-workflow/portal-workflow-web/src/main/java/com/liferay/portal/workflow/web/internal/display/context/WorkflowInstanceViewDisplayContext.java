@@ -367,7 +367,6 @@ public class WorkflowInstanceViewDisplayContext
 		PortletURL portletURL = liferayPortletResponse.createRenderURL();
 
 		portletURL.setParameter("tab", "monitoring");
-
 		portletURL.setParameter("orderByType", getOrderByType());
 
 		return portletURL;
@@ -378,6 +377,7 @@ public class WorkflowInstanceViewDisplayContext
 
 			{
 				addListViewTypeItem();
+
 				addTableViewTypeItem();
 			}
 
@@ -537,11 +537,9 @@ public class WorkflowInstanceViewDisplayContext
 
 		return dropdownItem -> {
 			dropdownItem.setActive(Objects.equals(getNavigation(), navigation));
-
 			dropdownItem.setHref(
 				getViewPortletURL(), "navigation", navigation, "mvcPath",
 				"/view.jsp");
-
 			dropdownItem.setLabel(LanguageUtil.get(request, navigation));
 
 		};
@@ -550,9 +548,7 @@ public class WorkflowInstanceViewDisplayContext
 	private Consumer<DropdownItem> _getOrderByDropdownItem(String orderByCol) {
 		return dropdownItem -> {
 			dropdownItem.setActive(Objects.equals(getOrderByCol(), orderByCol));
-
 			dropdownItem.setHref(getViewPortletURL(), "orderByCol", orderByCol);
-
 			dropdownItem.setLabel(LanguageUtil.get(request, orderByCol));
 		};
 	}
