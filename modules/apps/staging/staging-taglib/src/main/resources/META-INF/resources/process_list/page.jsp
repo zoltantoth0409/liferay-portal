@@ -43,17 +43,17 @@
 		<liferay-ui:search-container-results>
 
 			<%
-			int tasksCount = 0;
-			List<BackgroundTask> tasks = null;
+			int backgroundTasksCount = 0;
+			List<BackgroundTask> backgroundTasks = null;
 
 			if (navigation.equals("all")) {
-				tasksCount = BackgroundTaskManagerUtil.getBackgroundTasksCount(new long[] {groupId, liveGroupId}, taskExecutorClassName);
+				backgroundTasksCount = BackgroundTaskManagerUtil.getBackgroundTasksCount(new long[] {groupId, liveGroupId}, taskExecutorClassName);
 
 				if (orderByCol.equals("duration")) {
-					tasks = BackgroundTaskManagerUtil.getBackgroundTasksByDuration(new long[] {groupId, liveGroupId}, new String[] {taskExecutorClassName}, searchContainer.getStart(), searchContainer.getEnd(), StringUtil.equalsIgnoreCase("asc", orderByType));
+					backgroundTasks = BackgroundTaskManagerUtil.getBackgroundTasksByDuration(new long[] {groupId, liveGroupId}, new String[] {taskExecutorClassName}, searchContainer.getStart(), searchContainer.getEnd(), StringUtil.equalsIgnoreCase("asc", orderByType));
 				}
 				else {
-					tasks = BackgroundTaskManagerUtil.getBackgroundTasks(new long[] {groupId, liveGroupId}, taskExecutorClassName, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
+					backgroundTasks = BackgroundTaskManagerUtil.getBackgroundTasks(new long[] {groupId, liveGroupId}, taskExecutorClassName, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
 				}
 			}
 			else {
@@ -63,18 +63,18 @@
 					completed = true;
 				}
 
-				tasksCount = BackgroundTaskManagerUtil.getBackgroundTasksCount(new long[] {groupId, liveGroupId}, taskExecutorClassName, completed);
+				backgroundTasksCount = BackgroundTaskManagerUtil.getBackgroundTasksCount(new long[] {groupId, liveGroupId}, taskExecutorClassName, completed);
 
 				if (orderByCol.equals("duration")) {
-					tasks = BackgroundTaskManagerUtil.getBackgroundTasksByDuration(new long[] {groupId, liveGroupId}, new String[] {taskExecutorClassName}, completed, searchContainer.getStart(), searchContainer.getEnd(), StringUtil.equalsIgnoreCase("asc", orderByType));
+					backgroundTasks = BackgroundTaskManagerUtil.getBackgroundTasksByDuration(new long[] {groupId, liveGroupId}, new String[] {taskExecutorClassName}, completed, searchContainer.getStart(), searchContainer.getEnd(), StringUtil.equalsIgnoreCase("asc", orderByType));
 				}
 				else {
-					tasks = BackgroundTaskManagerUtil.getBackgroundTasks(new long[] {groupId, liveGroupId}, taskExecutorClassName, completed, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
+					backgroundTasks = BackgroundTaskManagerUtil.getBackgroundTasks(new long[] {groupId, liveGroupId}, taskExecutorClassName, completed, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
 				}
 			}
 
-			searchContainer.setResults(tasks);
-			searchContainer.setTotal(tasksCount);
+			searchContainer.setResults(backgroundTasks);
+			searchContainer.setTotal(backgroundTasksCount);
 			%>
 
 		</liferay-ui:search-container-results>
