@@ -157,12 +157,12 @@ public class IncludeTag extends AttributesTagSupport {
 		HttpServletRequest request = getOriginalServletRequest();
 
 		if (isCleanUpSetAttributes()) {
-			if (_setAttributes == null) {
-				_setAttributes = new HashSet<>();
+			if (_setAttributeNames == null) {
+				_setAttributeNames = new HashSet<>();
 			}
 
 			_trackedRequest = new TrackedServletRequest(
-				request, _setAttributes);
+				request, _setAttributeNames);
 
 			request = _trackedRequest;
 		}
@@ -179,11 +179,11 @@ public class IncludeTag extends AttributesTagSupport {
 
 	protected void cleanUpSetAttributes() {
 		if (isCleanUpSetAttributes() && (_trackedRequest != null)) {
-			for (String name : _setAttributes) {
+			for (String name : _setAttributeNames) {
 				_trackedRequest.removeAttribute(name);
 			}
 
-			_setAttributes.clear();
+			_setAttributeNames.clear();
 
 			_trackedRequest = null;
 		}
@@ -517,7 +517,7 @@ public class IncludeTag extends AttributesTagSupport {
 	private static final Log _log = LogFactoryUtil.getLog(IncludeTag.class);
 
 	private String _page;
-	private Set<String> _setAttributes;
+	private Set<String> _setAttributeNames;
 	private boolean _strict;
 	private TrackedServletRequest _trackedRequest;
 	private boolean _useCustomPage = true;
@@ -527,20 +527,20 @@ public class IncludeTag extends AttributesTagSupport {
 
 		@Override
 		public void setAttribute(String name, Object obj) {
-			_setAttributes.add(name);
+			_setAttributeNames.add(name);
 
 			super.setAttribute(name, obj);
 		}
 
 		private TrackedServletRequest(
-			HttpServletRequest request, Set<String> setAttributes) {
+			HttpServletRequest request, Set<String> setAttributeNames) {
 
 			super(request);
 
-			_setAttributes = setAttributes;
+			_setAttributeNames = setAttributeNames;
 		}
 
-		private final Set<String> _setAttributes;
+		private final Set<String> _setAttributeNames;
 
 	}
 
