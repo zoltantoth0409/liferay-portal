@@ -69,10 +69,7 @@ public class PublishFileEntryMVCActionCommand extends BaseMVCActionCommand {
 		}
 		catch (PortalException pe) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(
-					"Unable to get file entry with file entry id " +
-						fileEntryId,
-					pe);
+				_log.debug("Unable to get file entry " + fileEntryId, pe);
 			}
 		}
 
