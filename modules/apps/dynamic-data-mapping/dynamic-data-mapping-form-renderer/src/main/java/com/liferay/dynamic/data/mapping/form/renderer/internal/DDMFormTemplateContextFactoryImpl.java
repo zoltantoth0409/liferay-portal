@@ -127,6 +127,12 @@ public class DDMFormTemplateContextFactoryImpl
 
 		templateContext.put("containerId", containerId);
 
+		String currentPage = ParamUtil.getString(
+			ddmFormRenderingContext.getHttpServletRequest(), "currentPage",
+			"1");
+
+		templateContext.put("currentPage", currentPage);
+
 		templateContext.put(
 			"dataProviderSettings",
 			_ddmFormTemplateContextFactoryHelper.getDataProviderSettings(
@@ -150,12 +156,6 @@ public class DDMFormTemplateContextFactoryImpl
 			ddmForm, ddmFormLayout, ddmFormRenderingContext);
 
 		templateContext.put("pages", pages);
-
-		String currentPage = ParamUtil.getString(
-			ddmFormRenderingContext.getHttpServletRequest(), "currentPage",
-			"1");
-
-		templateContext.put("currentPage", currentPage);
 
 		templateContext.put(
 			"portletNamespace", ddmFormRenderingContext.getPortletNamespace());
