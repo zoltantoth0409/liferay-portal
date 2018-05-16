@@ -513,6 +513,8 @@ public class IconTag extends IncludeTag {
 		else {
 			StringBundler sb = new StringBundler(5);
 
+			sb.append(" alt=\"");
+
 			String localizedProcessedMessage = StringPool.BLANK;
 
 			String processedMessage = getProcessedMessage();
@@ -522,8 +524,8 @@ public class IconTag extends IncludeTag {
 					_getResourceBundle(), processedMessage);
 			}
 
-			sb.append(" alt=\"");
 			sb.append(localizedProcessedMessage);
+
 			sb.append("\" title=\"");
 			sb.append(localizedProcessedMessage);
 			sb.append("\"");
