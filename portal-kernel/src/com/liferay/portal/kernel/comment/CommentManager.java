@@ -75,7 +75,7 @@ public interface CommentManager {
 	 * @return the range of matching comments
 	 * @review
 	 */
-	public List<Comment> getCommentsByParentComment(
+	public List<Comment> getChildComments(
 		long parentCommentId, int status, int start, int end);
 
 	public int getCommentsCount(String className, long classPK);
@@ -89,7 +89,7 @@ public interface CommentManager {
 	 * @return the count of matching comments
 	 * @review
 	 */
-	public int getCommentsCountByParentComment(
+	public int getChildCommentsCount(
 		long parentCommentId, int status);
 
 	public Discussion getDiscussion(
