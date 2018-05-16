@@ -493,14 +493,14 @@ public class DLAdminManagementToolbarDisplayContext {
 									_currentURLObj, _liferayPortletResponse);
 
 							viewAllDocumentsURL.setParameter(
-								"browseBy", (String)null);
-							viewAllDocumentsURL.setParameter(
-								"fileEntryTypeId", (String)null);
-							viewAllDocumentsURL.setParameter(
 								"mvcRenderCommandName",
 								"/document_library/view");
 							viewAllDocumentsURL.setParameter(
 								"navigation", "home");
+							viewAllDocumentsURL.setParameter(
+								"browseBy", (String)null);
+							viewAllDocumentsURL.setParameter(
+								"fileEntryTypeId", (String)null);
 
 							dropdownItem.setHref(viewAllDocumentsURL);
 
