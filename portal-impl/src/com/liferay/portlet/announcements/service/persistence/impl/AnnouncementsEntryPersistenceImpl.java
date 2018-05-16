@@ -7406,7 +7406,7 @@ public class AnnouncementsEntryPersistenceImpl extends BasePersistenceImpl<Annou
 				args = new Object[] {
 						announcementsEntryModelImpl.getClassNameId(),
 						announcementsEntryModelImpl.getClassPK(),
-						announcementsEntryModelImpl.getAlert()
+						announcementsEntryModelImpl.isAlert()
 					};
 
 				finderCache.removeResult(FINDER_PATH_COUNT_BY_C_C_A, args);
@@ -7431,7 +7431,7 @@ public class AnnouncementsEntryPersistenceImpl extends BasePersistenceImpl<Annou
 						announcementsEntryModelImpl.getCompanyId(),
 						announcementsEntryModelImpl.getClassNameId(),
 						announcementsEntryModelImpl.getClassPK(),
-						announcementsEntryModelImpl.getAlert()
+						announcementsEntryModelImpl.isAlert()
 					};
 
 				finderCache.removeResult(FINDER_PATH_COUNT_BY_C_C_C_A, args);
