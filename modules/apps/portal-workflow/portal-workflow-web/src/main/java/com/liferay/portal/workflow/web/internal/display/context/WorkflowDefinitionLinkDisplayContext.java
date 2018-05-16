@@ -166,7 +166,6 @@ public class WorkflowDefinitionLinkDisplayContext {
 											_getCurrentOrder(request)));
 								}
 							});
-
 						dropdownGroupItem.setLabel(
 							LanguageUtil.get(
 								_workflowDefinitionLinkRequestHelper.
@@ -395,21 +394,20 @@ public class WorkflowDefinitionLinkDisplayContext {
 	}
 
 	public String getSortingURL() throws PortletException {
-		String orderByType = ParamUtil.getString(
-			_request, "orderByType", "asc");
-
 		LiferayPortletResponse response =
 			_workflowDefinitionLinkRequestHelper.getLiferayPortletResponse();
 
 		PortletURL portletURL = response.createRenderURL();
 
 		portletURL.setParameter(
-			"orderByType", Objects.equals(orderByType, "asc") ? "desc" : "asc");
+			"tab", WorkflowWebKeys.WORKFLOW_TAB_DEFINITION_LINK);
+		portletURL.setParameter("orderByCol", getOrderByCol());
+
+		String orderByType = ParamUtil.getString(
+			_request, "orderByType", "asc");
 
 		portletURL.setParameter(
-			"tab", WorkflowWebKeys.WORKFLOW_TAB_DEFINITION_LINK);
-
-		portletURL.setParameter("orderByCol", getOrderByCol());
+			"orderByType", Objects.equals(orderByType, "asc") ? "desc" : "asc");
 
 		return portletURL.toString();
 	}
@@ -671,9 +669,7 @@ public class WorkflowDefinitionLinkDisplayContext {
 
 		return dropdownItem -> {
 			dropdownItem.setActive(Objects.equals(currentOrder, orderByCol));
-
 			dropdownItem.setHref(getPortletURL(), "orderByCol", orderByCol);
-
 			dropdownItem.setLabel(
 				LanguageUtil.get(
 					_workflowDefinitionLinkRequestHelper.getRequest(),

@@ -588,10 +588,8 @@ public class WorkflowDefinitionDisplayContext {
 
 		return dropdownItem -> {
 			dropdownItem.setActive(Objects.equals(currentOrder, orderByCol));
-
 			dropdownItem.setHref(
 				_getPortletURL(request), "orderByCol", orderByCol);
-
 			dropdownItem.setLabel(
 				LanguageUtil.get(
 					_workflowDefinitionRequestHelper.getRequest(), orderByCol));
@@ -608,10 +606,6 @@ public class WorkflowDefinitionDisplayContext {
 			return portletURL;
 		}
 
-		String orderByType = ParamUtil.getString(request, "orderByType", "asc");
-
-		portletURL.setParameter("orderByType", orderByType);
-
 		String definitionsNavigation = ParamUtil.getString(
 			request, "definitionsNavigation");
 
@@ -619,6 +613,10 @@ public class WorkflowDefinitionDisplayContext {
 			portletURL.setParameter(
 				"definitionsNavigation", definitionsNavigation);
 		}
+
+		String orderByType = ParamUtil.getString(request, "orderByType", "asc");
+
+		portletURL.setParameter("orderByType", orderByType);
 
 		return portletURL;
 	}
