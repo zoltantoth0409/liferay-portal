@@ -106,7 +106,7 @@ public class RequestDispatcherAttributeNames {
 			}
 		}
 		catch (ReflectiveOperationException roe) {
-			_log.error("Unable to get hashcode", roe);
+			_log.error("Unable to get hash code", roe);
 		}
 
 		return size;
