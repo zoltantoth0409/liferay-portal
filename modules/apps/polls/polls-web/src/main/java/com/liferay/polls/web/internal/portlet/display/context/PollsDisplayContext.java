@@ -87,7 +87,6 @@ public class PollsDisplayContext {
 							_renderResponse.createRenderURL(), "mvcPath",
 							"/polls/edit_question.jsp", "redirect",
 							PortalUtil.getCurrentURL(request));
-
 						dropdownItem.setLabel(
 							LanguageUtil.get(request, "add-poll"));
 					});
