@@ -130,10 +130,12 @@
 		<property name="dummy.socket.proxy.disabled" value="true" />
 		<property name="test.name.skip.portal.instance" value="Login#GoogleSSOSmoke" />
 
-		<var method="TestPropsUtil#get('google.client.id')" name="googleClientID" />
-		<var method="TestPropsUtil#get('google.client.secret')" name="googleClientSecret" />
-		<var method="TestPropsUtil#get('email.address.2')" name="userEmailAddress" />
-		<var method="TestPropsUtil#get('email.password.2')" name="userPassword" />
+		<var method="MathUtil#randomNumber('3')" name="googlePropertiesSet" />
+
+		<var method="TestPropsUtil#get('google.client.id.${googlePropertiesSet}')" name="googleClientID" />
+		<var method="TestPropsUtil#get('google.client.secret.${googlePropertiesSet}')" name="googleClientSecret" />
+		<var method="TestPropsUtil#get('email.address.1')" name="userEmailAddress" />
+		<var method="TestPropsUtil#get('email.password.1')" name="userPassword" />
 
 		<execute macro="User#firstLoginPG" />
 
