@@ -4,8 +4,8 @@
 [subrepo]
 	autopull = false
 	cmdver = liferay
-	commit = 08e9d9d6fab9ed7bc046d9ce5ce77f115b8e589e
+	commit = 054783f23083ac70099c0f88ef55d056dcd2e4a3
 	mergebuttonmergecommits = false
 	mode = push
-	parent = 7f6e1b81000ae156740c8c6d4a9abc283be7f42c
+	parent = 78def84dd5d678ab815cc0492210d73d79d919d5
 	remote = git@github.com:liferay/com-liferay-mobile-device-rules.git
