@@ -22,7 +22,6 @@ DLPortletInstanceSettingsHelper dlPortletInstanceSettingsHelper = new DLPortletI
 String mvcRenderCommandName = ParamUtil.getString(request, "mvcRenderCommandName");
 
 String navigation = ParamUtil.getString(request, "navigation");
-String browseBy = ParamUtil.getString(request, "browseBy");
 
 boolean defaultFolderView = dlAdminDisplayContext.isDefaultFolderView();
 
