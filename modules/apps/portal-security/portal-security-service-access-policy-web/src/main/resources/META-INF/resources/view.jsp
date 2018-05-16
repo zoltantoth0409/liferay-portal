@@ -36,7 +36,6 @@ PortletURL portletURL = renderResponse.createRenderURL();
 PortletURL sortingURL = renderResponse.createRenderURL();
 
 sortingURL.setParameter("displayStyle", displayStyle);
-
 sortingURL.setParameter("orderByType", orderByAsc ? "desc" : "asc");
 %>
 
