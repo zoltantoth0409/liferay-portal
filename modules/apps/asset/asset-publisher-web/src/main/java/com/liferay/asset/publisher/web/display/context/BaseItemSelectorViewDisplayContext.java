@@ -154,7 +154,7 @@ public abstract class BaseItemSelectorViewDisplayContext
 	}
 
 	@Override
-	public boolean showSearch() {
+	public boolean isShowSearch() {
 		return true;
 	}
 

@@ -66,7 +66,7 @@ public class ParentSitesItemSelectorViewDisplayContext
 	}
 
 	@Override
-	public boolean showSearch() {
+	public boolean isShowSearch() {
 		return false;
 	}
 
