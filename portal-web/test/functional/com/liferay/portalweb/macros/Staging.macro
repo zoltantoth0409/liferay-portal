@@ -577,7 +577,7 @@
 
 		<execute function="SelectFrame" locator1="IFrame#PAGE_VARIATION_IFRAME" />
 
-		<execute macro="LexiconEntry#gotoEntryMenuItemNoError">
+		<execute macro="LexiconEntry#gotoEntryMenuItemNoWaitNoError">
 			<var name="menuItem" value="Delete" />
 			<var name="rowEntry" value="${pageVariationName}" />
 		</execute>
