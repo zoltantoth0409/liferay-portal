@@ -307,10 +307,8 @@ public class DDMFormBrowserDisplayContext {
 				add(
 					dropdownItem -> {
 						dropdownItem.setActive(true);
-
 						dropdownItem.setHref(
 							getPortletURL(), "navigation", "all");
-
 						dropdownItem.setLabel(
 							LanguageUtil.get(
 								_formWebRequestHelper.getRequest(), "all"));

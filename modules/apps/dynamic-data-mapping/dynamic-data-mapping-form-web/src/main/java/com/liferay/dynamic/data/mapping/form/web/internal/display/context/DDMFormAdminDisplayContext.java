@@ -864,10 +864,8 @@ public class DDMFormAdminDisplayContext {
 				add(
 					dropdownItem -> {
 						dropdownItem.setActive(true);
-
 						dropdownItem.setHref(
 							getPortletURL(), "navigation", "all");
-
 						dropdownItem.setLabel(
 							LanguageUtil.get(
 								formAdminRequestHelper.getRequest(), "all"));
