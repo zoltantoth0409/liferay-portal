@@ -76,9 +76,9 @@ if (Validator.isNotNull(backURL)) {
 		>
 
 			<%
-			User backgroundTaskUser = UserLocalServiceUtil.fetchUser(backgroundTask.getUserId());
-
 			String backgroundTaskUserName = LanguageUtil.get(request, "deleted-user");
+
+			User backgroundTaskUser = UserLocalServiceUtil.fetchUser(backgroundTask.getUserId());
 
 			if (backgroundTaskUser != null) {
 				backgroundTaskUserName = backgroundTaskUser.getFullName();
