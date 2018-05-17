@@ -26,7 +26,7 @@ import java.util.Objects;
 public class AssetDisplayField {
 
 	public AssetDisplayField(String key, String label) {
-		this(key, label, _DEFAULT_TYPE);
+		this(key, label, _TYPE);
 	}
 
 	public AssetDisplayField(String key, String label, String type) {
@@ -88,7 +88,7 @@ public class AssetDisplayField {
 		return jsonObject;
 	}
 
-	private static final String _DEFAULT_TYPE = "text";
+	private static final String _TYPE = "text";
 
 	private final String _key;
 	private final String _label;
