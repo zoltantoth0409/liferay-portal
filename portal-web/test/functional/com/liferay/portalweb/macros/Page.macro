@@ -184,8 +184,8 @@
 
 				<execute function="Click" locator1="Icon#BASIC_SEARCH" />
 
-				<execute function="AssertClick" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK" value1="${siteName}">
-					<var name="key_rowEntry" value="${siteName}" />
+				<execute macro="LexiconEntry#gotoEntry">
+					<var name="rowEntry" value="${siteName}" />
 				</execute>
 			</then>
 		</if>

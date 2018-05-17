@@ -218,7 +218,9 @@
 
 		<execute function="AssertTextEquals" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK" value1="${categoryName}" />
 
-		<execute function="AssertClick" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK" value1="${categoryName}" />
+		<execute macro="LexiconEntry#gotoEntry">
+			<var name="rowEntry" value="${categoryName}" />
+		</execute>
 
 		<execute function="AssertTextEquals" locator1="Portlet#HEADER" value1="${categoryName}" />
 	</command>

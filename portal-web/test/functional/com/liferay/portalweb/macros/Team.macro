@@ -183,8 +183,8 @@
 	</command>
 
 	<command name="removeMemberCP">
-		<execute function="AssertClick" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK" value1="${teamName}">
-			<var name="key_rowEntry" value="${teamName}" />
+		<execute macro="LexiconEntry#gotoEntry">
+			<var name="rowEntry" value="${teamName}" />
 		</execute>
 
 		<execute macro="Navigator#gotoNavItem">
@@ -293,8 +293,8 @@
 	</command>
 
 	<command name="viewMemberCP">
-		<execute function="AssertClick" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK" value1="${teamName}">
-			<var name="key_rowEntry" value="${teamName}" />
+		<execute macro="LexiconEntry#gotoEntry">
+			<var name="rowEntry" value="${teamName}" />
 		</execute>
 
 		<execute macro="Navigator#gotoNavItem">
@@ -320,8 +320,8 @@
 	</command>
 
 	<command name="viewNoMembersCP">
-		<execute function="AssertClick" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK" value1="${teamName}">
-			<var name="key_rowEntry" value="${teamName}" />
+		<execute macro="LexiconEntry#gotoEntry">
+			<var name="rowEntry" value="${teamName}" />
 		</execute>
 
 		<for list="Users,User Groups" param="navItem">

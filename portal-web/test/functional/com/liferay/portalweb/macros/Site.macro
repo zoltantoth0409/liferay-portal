@@ -273,9 +273,9 @@
 			<var name="displayStyle" value="List" />
 		</execute>
 
-		<var name="key_rowEntry" value="${teamName}" />
-
-		<execute function="AssertClick" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK" value1="${teamName}" />
+		<execute macro="LexiconEntry#gotoEntry">
+			<var name="rowEntry" value="${teamName}" />
+		</execute>
 
 		<execute function="SelectFrame" value1="relative=top" />
 
@@ -283,9 +283,9 @@
 
 		<execute function="Click" locator1="SitesEditSite#MENU_ADVANCED_TAB" />
 
-		<var name="key_teamName" value="${teamName}" />
-
-		<execute function="AssertTextEquals" locator1="SiteSettingsDefaultUserAssociations#TEAMS_SELECTED" value1="${teamName}" />
+		<execute function="AssertTextEquals" locator1="SiteSettingsDefaultUserAssociations#TEAMS_SELECTED" value1="${teamName}">
+			<var name="key_teamName" value="${teamName}" />
+		</execute>
 	</command>
 
 	<command name="assignOrganizationAsMemberCP">

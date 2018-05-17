@@ -68,9 +68,9 @@
 
 		<execute function="SelectFrame" locator1="IFrame#SELECT_CONTENT" />
 
-		<var name="key_rowEntry" value="${contentTitle}" />
-
-		<execute function="Click" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK" />
+		<execute macro="LexiconEntry#gotoEntry">
+			<var name="rowEntry" value="${contentTitle}" />
+		</execute>
 
 		<execute function="SelectFrame" value1="relative=top" />
 
@@ -105,8 +105,8 @@
 			<var name="searchTerm" value="${formName}" />
 		</execute>
 
-		<execute function="Click" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME_LINK">
-			<var name="key_rowEntry" value="${formName}" />
+		<execute macro="LexiconEntry#gotoEntry">
+			<var name="rowEntry" value="${formName}" />
 		</execute>
 
 		<execute function="SelectFrameTop" />
