@@ -166,7 +166,7 @@ AUI.add(
 								else if (type === STR_DRAG_LEAVE || eventDrop) {
 									rootNode.removeClass(CSS_DROP_ACTIVE);
 
- 									if (eventDrop) {
+									if (eventDrop) {
 										var fileExtension = dataTransfer.files[0].name.split('.').pop().toLowerCase();
 
 										var validExtensions = instance.get('validExtensions');
@@ -189,7 +189,7 @@ AUI.add(
 
 											instance._showError(message);
 										}
- 									}
+									}
 								}
 							}
 						}
