@@ -76,7 +76,6 @@ public class AddFragmentEntryLinkMVCActionCommand extends BaseMVCActionCommand {
 
 			jsonObject.put(
 				"editableValues", fragmentEntryLink.getEditableValues());
-
 			jsonObject.put(
 				"fragmentEntryLinkId",
 				fragmentEntryLink.getFragmentEntryLinkId());
