@@ -16,6 +16,7 @@ package com.liferay.oauth2.provider.rest.internal.endpoint;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -91,7 +92,7 @@ public class OAuth2ProviderEndpointConfigurationsPublisher {
 		Configuration[] cxfConfigurations =
 			configurationAdmin.listConfigurations(sb.toString());
 
-		if ((cxfConfigurations != null) && (cxfConfigurations.length > 0)) {
+		if (!ArrayUtil.isNotEmpty(cxfConfigurations)) {
 			return;
 		}
 
