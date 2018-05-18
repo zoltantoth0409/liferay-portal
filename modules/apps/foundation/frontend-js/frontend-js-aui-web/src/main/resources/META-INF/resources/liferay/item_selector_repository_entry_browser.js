@@ -172,7 +172,6 @@ AUI.add(
 										var validExtensions = instance.get('validExtensions');
 
 										if (validExtensions === '*' || validExtensions.indexOf(fileExtension) != -1) {
-
 											var maxFileSize = instance.get('maxFileSize');
 
 											if (dataTransfer.files[0].size <= maxFileSize) {
