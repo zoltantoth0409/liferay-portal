@@ -283,8 +283,8 @@
 		</execute>
 	</command>
 
-	<command name="viewMenuMarkedAs">
-		<execute function="AssertTextEquals" locator1="SiteNavigationMenu#MENU_MARKED_AS" value1="${markedAs}">
+	<command name="viewMenuType">
+		<execute function="AssertTextEquals" locator1="SiteNavigationMenu#MENU_MARKED_AS" value1="${menuType}">
 			<var name="key_markedAs" value="${markedAs}" />
 			<var name="key_rowEntry" value="${rowEntry}" />
 		</execute>

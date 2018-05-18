@@ -346,8 +346,8 @@
 			<var name="navigationMenu" value="Primary Menu Name 1" />
 		</execute>
 
-		<execute macro="SiteNavigationMenu#viewMenuMarkedAs">
-			<var name="markedAs" value="Primary Navigation" />
+		<execute macro="SiteNavigationMenu#viewMenuType">
+			<var name="menuType" value="Primary Navigation" />
 			<var name="rowEntry" value="Primary Menu Name 1" />
 		</execute>
 	</command>
@@ -364,8 +364,8 @@
 			<var name="navigationMenu" value="Primary Menu Name 1" />
 		</execute>
 
-		<execute macro="SiteNavigationMenu#viewMenuMarkedAs">
-			<var name="markedAs" value="Secondary Navigation" />
+		<execute macro="SiteNavigationMenu#viewMenuType">
+			<var name="menuType" value="Secondary Navigation" />
 			<var name="rowEntry" value="Primary Menu Name 1" />
 		</execute>
 	</command>
@@ -382,8 +382,8 @@
 			<var name="navigationMenu" value="Primary Menu Name 1" />
 		</execute>
 
-		<execute macro="SiteNavigationMenu#viewMenuMarkedAs">
-			<var name="markedAs" value="Social Navigation" />
+		<execute macro="SiteNavigationMenu#viewMenuType">
+			<var name="menuType" value="Social Navigation" />
 			<var name="rowEntry" value="Primary Menu Name 1" />
 		</execute>
 	</command>
