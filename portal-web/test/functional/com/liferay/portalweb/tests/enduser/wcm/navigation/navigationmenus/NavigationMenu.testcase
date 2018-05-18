@@ -329,6 +329,62 @@
 		<execute function="AssertLocation" value1="https://liferay.com" />
 	</command>
 
+	<command name="ConfigurePrimaryNavigationMenu" priority="4">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Build" />
+			<var name="panel" value="Site Administration" />
+			<var name="portlet" value="Navigation Menus" />
+		</execute>
+
+		<execute macro="LexiconEntry#gotoEntryMenuItem">
+			<var name="menuItem" value="Primary Navigation" />
+			<var name="rowEntry" value="Primary Menu Name 1" />
+		</execute>
+
+		<execute function="Confirm" value1="Do you want to replace Primary Menu Name 1 for Default as primary navigation? This action will affect all the pages using primary navigation." />
+
+		<execute macro="SiteNavigationMenu#viewMenuMarkedAs">
+			<var name="markedAs" value="Primary Navigation" />
+			<var name="rowEntry" value="Primary Menu Name 1" />
+		</execute>
+	</command>
+
+	<command name="ConfigureSecondaryNavigationMenu" priority="4">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Build" />
+			<var name="panel" value="Site Administration" />
+			<var name="portlet" value="Navigation Menus" />
+		</execute>
+
+		<execute macro="LexiconEntry#gotoEntryMenuItem">
+			<var name="menuItem" value="Secondary Navigation" />
+			<var name="rowEntry" value="Primary Menu Name 1" />
+		</execute>
+
+		<execute macro="SiteNavigationMenu#viewMenuMarkedAs">
+			<var name="markedAs" value="Secondary Navigation" />
+			<var name="rowEntry" value="Primary Menu Name 1" />
+		</execute>
+	</command>
+
+	<command name="ConfigureSocialNavigationMenu" priority="4">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Build" />
+			<var name="panel" value="Site Administration" />
+			<var name="portlet" value="Navigation Menus" />
+		</execute>
+
+		<execute macro="LexiconEntry#gotoEntryMenuItem">
+			<var name="menuItem" value="Social Navigation" />
+			<var name="rowEntry" value="Primary Menu Name 1" />
+		</execute>
+
+		<execute macro="SiteNavigationMenu#viewMenuMarkedAs">
+			<var name="markedAs" value="Social Navigation" />
+			<var name="rowEntry" value="Primary Menu Name 1" />
+		</execute>
+	</command>
+
 	<command name="DeleteNavigationMenu" priority="5">
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Build" />
@@ -346,7 +402,7 @@
 		</execute>
 	</command>
 
-	<command name="EditNavMenuPageItemName" priority="5">
+	<command name="EditNavigationMenuPageItemName" priority="5">
 		<description message="This is a usecase for LPS-76658" />
 
 		<execute macro="ProductMenu#gotoSite">
@@ -409,7 +465,30 @@
 		<execute function="AssertLocation" value1="${portalURL}/web/test-site-name/site-page-name-2" />
 	</command>
 
-	<command name="NavigationMenuPropertiesSidebarVisible" priority="5">
+	<command name="RenameNavigationMenu" priority="5">
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Build" />
+			<var name="panel" value="Site Administration" />
+			<var name="portlet" value="Navigation Menus" />
+		</execute>
+
+		<execute macro="LexiconEntry#gotoEntryMenuItem">
+			<var name="menuItem" value="Rename" />
+			<var name="rowEntry" value="Primary Menu Name 1" />
+		</execute>
+
+		<execute macro="PortletEntry#inputName">
+			<var name="name" value="Primary Menu Name 1 Edit" />
+		</execute>
+
+		<execute macro="Modal#submit" />
+
+		<execute macro="LexiconEntry#viewEntryName">
+			<var name="rowEntry" value="Primary Menu Name 1 Edit" />
+		</execute>
+	</command>
+
+	<command name="ViewNavigationMenuPropertiesSidebar" priority="5">
 		<description message="This is a use case for LPS-67191." />
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -434,85 +513,6 @@
 
 		<execute macro="SiteNavigationMenu#openItemSidebar">
 			<var name="itemName" value="Liferay" />
-		</execute>
-	</command>
-
-	<command name="PrimaryNavigationMenu" priority="4">
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Navigation Menus" />
-		</execute>
-
-		<execute macro="LexiconEntry#gotoEntryMenuItem">
-			<var name="menuItem" value="Primary Navigation" />
-			<var name="rowEntry" value="Primary Menu Name 1" />
-		</execute>
-
-		<execute function="Confirm" value1="Do you want to replace Primary Menu Name 1 for Default as primary navigation? This action will affect all the pages using primary navigation." />
-
-		<execute macro="SiteNavigationMenu#viewMenuMarkedAs">
-			<var name="markedAs" value="Primary Navigation" />
-			<var name="rowEntry" value="Primary Menu Name 1" />
-		</execute>
-	</command>
-
-	<command name="RenameNavigationMenu" priority="5">
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Navigation Menus" />
-		</execute>
-
-		<execute macro="LexiconEntry#gotoEntryMenuItem">
-			<var name="menuItem" value="Rename" />
-			<var name="rowEntry" value="Primary Menu Name 1" />
-		</execute>
-
-		<execute macro="PortletEntry#inputName">
-			<var name="name" value="Primary Menu Name 1 Edit" />
-		</execute>
-
-		<execute macro="Modal#submit" />
-
-		<execute macro="LexiconEntry#viewEntryName">
-			<var name="rowEntry" value="Primary Menu Name 1 Edit" />
-		</execute>
-	</command>
-
-	<command name="SecondaryNavigationMenu" priority="4">
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Navigation Menus" />
-		</execute>
-
-		<execute macro="LexiconEntry#gotoEntryMenuItem">
-			<var name="menuItem" value="Secondary Navigation" />
-			<var name="rowEntry" value="Primary Menu Name 1" />
-		</execute>
-
-		<execute macro="SiteNavigationMenu#viewMenuMarkedAs">
-			<var name="markedAs" value="Secondary Navigation" />
-			<var name="rowEntry" value="Primary Menu Name 1" />
-		</execute>
-	</command>
-
-	<command name="SocialNavigationMenu" priority="4">
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Navigation Menus" />
-		</execute>
-
-		<execute macro="LexiconEntry#gotoEntryMenuItem">
-			<var name="menuItem" value="Social Navigation" />
-			<var name="rowEntry" value="Primary Menu Name 1" />
-		</execute>
-
-		<execute macro="SiteNavigationMenu#viewMenuMarkedAs">
-			<var name="markedAs" value="Social Navigation" />
-			<var name="rowEntry" value="Primary Menu Name 1" />
 		</execute>
 	</command>
 </definition>
