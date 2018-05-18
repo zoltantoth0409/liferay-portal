@@ -276,6 +276,8 @@ public class StagingProcessesWebToolbarDisplayContext {
 		PortletURL renderURL = _portletResponse.createRenderURL();
 
 		renderURL.setParameter(
+			"navigation", ParamUtil.getString(_request, "navigation", "all"));
+		renderURL.setParameter(
 			"groupId", String.valueOf(ParamUtil.getLong(_request, "groupId")));
 		renderURL.setParameter(
 			"privateLayout",
@@ -287,8 +289,6 @@ public class StagingProcessesWebToolbarDisplayContext {
 			"orderByCol", ParamUtil.getString(_request, "orderByCol"));
 		renderURL.setParameter(
 			"orderByType", ParamUtil.getString(_request, "orderByType", "asc"));
-		renderURL.setParameter(
-			"navigation", ParamUtil.getString(_request, "navigation", "all"));
 		renderURL.setParameter(
 			"searchContainerId",
 			ParamUtil.getString(_request, "searchContainerId"));
