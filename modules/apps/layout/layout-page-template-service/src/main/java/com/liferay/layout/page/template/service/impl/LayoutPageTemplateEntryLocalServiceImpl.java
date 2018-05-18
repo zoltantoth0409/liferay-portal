@@ -140,6 +140,8 @@ public class LayoutPageTemplateEntryLocalServiceImpl
 			LayoutPageTemplateEntry layoutPageTemplateEntry)
 		throws PortalException {
 
+		// Layout page template entry
+
 		int assetDisplayPageEntriesCount =
 			_assetDisplayPageEntryLocalService.
 				getAssetDisplayPageEntriesCountByLayoutPageTemplateEntryId(
@@ -148,8 +150,6 @@ public class LayoutPageTemplateEntryLocalServiceImpl
 		if (assetDisplayPageEntriesCount > 0) {
 			throw new RequiredLayoutPageTemplateEntryException();
 		}
-
-		// Layout page template entry
 
 		layoutPageTemplateEntryPersistence.remove(layoutPageTemplateEntry);
 
