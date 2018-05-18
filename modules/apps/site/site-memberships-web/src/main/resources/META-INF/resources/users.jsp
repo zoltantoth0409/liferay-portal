@@ -123,8 +123,7 @@ Role role = usersDisplayContext.getRole();
 		}
 	};
 
-	var removeUserSiteRole,
-		selectSiteRole;
+	var removeUserSiteRole, selectSiteRole;
 
 	<c:if test="<%= GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.ASSIGN_USER_ROLES) %>">
 		<c:if test="<%= role != null %>">
