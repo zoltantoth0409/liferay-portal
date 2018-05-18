@@ -413,10 +413,9 @@ public class UsersDisplayContext {
 
 				add(
 					dropdownItem -> {
+						dropdownItem.putData("action", "selectRoles");
 						dropdownItem.setActive(
 							Objects.equals(getNavigation(), "roles"));
-
-						dropdownItem.putData("action", "selectRoles");
 
 						String label = LanguageUtil.get(_request, "roles");
 
