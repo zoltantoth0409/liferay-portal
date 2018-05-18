@@ -341,7 +341,10 @@
 			<var name="rowEntry" value="Primary Menu Name 1" />
 		</execute>
 
-		<execute function="Confirm" value1="Do you want to replace Primary Menu Name 1 for Default as primary navigation? This action will affect all the pages using primary navigation." />
+		<execute macro="SiteNavigationMenu#configureMenuType">
+			<var name="menuType" value="Primary Navigation" />
+			<var name="navigationMenu" value="Primary Menu Name 1" />
+		</execute>
 
 		<execute macro="SiteNavigationMenu#viewMenuMarkedAs">
 			<var name="markedAs" value="Primary Navigation" />
@@ -356,9 +359,9 @@
 			<var name="portlet" value="Navigation Menus" />
 		</execute>
 
-		<execute macro="LexiconEntry#gotoEntryMenuItem">
-			<var name="menuItem" value="Secondary Navigation" />
-			<var name="rowEntry" value="Primary Menu Name 1" />
+		<execute macro="SiteNavigationMenu#configureMenuType">
+			<var name="menuType" value="Secondary Navigation" />
+			<var name="navigationMenu" value="Primary Menu Name 1" />
 		</execute>
 
 		<execute macro="SiteNavigationMenu#viewMenuMarkedAs">
@@ -374,9 +377,9 @@
 			<var name="portlet" value="Navigation Menus" />
 		</execute>
 
-		<execute macro="LexiconEntry#gotoEntryMenuItem">
-			<var name="menuItem" value="Social Navigation" />
-			<var name="rowEntry" value="Primary Menu Name 1" />
+		<execute macro="SiteNavigationMenu#configureMenuType">
+			<var name="menuType" value="Social Navigation" />
+			<var name="navigationMenu" value="Primary Menu Name 1" />
 		</execute>
 
 		<execute macro="SiteNavigationMenu#viewMenuMarkedAs">

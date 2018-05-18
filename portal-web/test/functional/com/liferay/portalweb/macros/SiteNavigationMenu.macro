@@ -162,6 +162,20 @@
 		<execute macro="PortletEntry#save" />
 	</command>
 
+	<command name="configureMenuType">
+		<execute macro="LexiconEntry#gotoEntryMenuItem">
+			<var name="menuItem" value="${menuType}" />
+			<var name="rowEntry" value="${navigationMenu}" />
+		</execute>
+
+		<if>
+			<equals arg1="${menuType}" arg2="Primary Navigation" />
+			<then>
+				<execute function="Confirm" value1="Do you want to replace ${navigationMenu} for Default as primary navigation? This will affect all the pages using primary navigation." />
+			</then>
+		</if>
+	</command>
+
 	<command name="editItem">
 		<execute macro="SiteNavigationMenu#openItemSidebar">
 			<var name="itemName" value="${itemName}" />
