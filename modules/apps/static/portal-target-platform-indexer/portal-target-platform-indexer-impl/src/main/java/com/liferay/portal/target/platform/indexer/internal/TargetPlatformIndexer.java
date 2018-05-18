@@ -161,7 +161,7 @@ public class TargetPlatformIndexer implements Indexer {
 		StringBuilder sb = new StringBuilder(versions.length());
 
 		for (String version : versions.split(",")) {
-			if (version.compareTo(_MAX_SUPPORTED_JAVASE_VERSION) <= 0) {
+			if (version.compareTo(_MAX_SUPPORTED_JAVA_SE_VERSION) <= 0) {
 				sb.append(version);
 				sb.append(",");
 			}
@@ -404,7 +404,7 @@ public class TargetPlatformIndexer implements Indexer {
 		'e', 'f'
 	};
 
-	private static final String _MAX_SUPPORTED_JAVASE_VERSION = "1.8.0";
+	private static final String _MAX_SUPPORTED_JAVA_SE_VERSION = "1.8.0";
 
 	private static final String _PARAMETER_STRING_OS_VERSION =
 		"eclipse.platform;osgi.os=linux;osgi.arch=x86_64;osgi.ws=gtk;osgi.nl=" +
