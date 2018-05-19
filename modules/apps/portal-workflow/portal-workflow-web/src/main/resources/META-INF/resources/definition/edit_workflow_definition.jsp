@@ -30,11 +30,13 @@ boolean active = BeanParamUtil.getBoolean(workflowDefinition, request, "active")
 
 String duplicateTitle = workflowDefinitionDisplayContext.getDuplicateTitle(workflowDefinition);
 
-PortletURL backPortletURL = PortalUtil.getControlPanelPortletURL(renderRequest, WorkflowPortletKeys.CONTROL_PANEL_WORKFLOW, PortletRequest.RENDER_PHASE);
-backPortletURL.setParameter("mvcPath", "/view.jsp");
-
 portletDisplay.setShowBackIcon(true);
-portletDisplay.setURLBack(backPortletURL.toString());
+
+PortletURL portletURL = PortalUtil.getControlPanelPortletURL(renderRequest, WorkflowPortletKeys.CONTROL_PANEL_WORKFLOW, PortletRequest.RENDER_PHASE);
+
+portletURL.setParameter("mvcPath", "/view.jsp");
+
+portletDisplay.setURLBack(portletURL.toString());
 
 renderResponse.setTitle((workflowDefinition == null) ? LanguageUtil.get(request, "new-workflow") : workflowDefinition.getTitle(LanguageUtil.getLanguageId(request)));
 %>
