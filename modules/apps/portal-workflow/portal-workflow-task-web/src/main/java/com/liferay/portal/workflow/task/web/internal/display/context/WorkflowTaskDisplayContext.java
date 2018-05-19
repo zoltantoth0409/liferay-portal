@@ -319,7 +319,6 @@ public class WorkflowTaskDisplayContext {
 											"completed"));
 								}
 							});
-
 						dropdownGroupItem.setLabel(
 							LanguageUtil.get(
 								_workflowTaskRequestHelper.getRequest(),
@@ -338,7 +337,6 @@ public class WorkflowTaskDisplayContext {
 									add(_getOrderByDropdownItem("due-date"));
 								}
 							});
-
 						dropdownGroupItem.setLabel(
 							LanguageUtil.get(
 								_workflowTaskRequestHelper.getRequest(),
@@ -543,20 +541,19 @@ public class WorkflowTaskDisplayContext {
 	}
 
 	public String getSortingURL() throws PortletException {
-		String orderByType = ParamUtil.getString(
-			_request, "orderByType", "asc");
-
 		LiferayPortletResponse response =
 			_workflowTaskRequestHelper.getLiferayPortletResponse();
 
 		PortletURL portletURL = response.createRenderURL();
 
+		portletURL.setParameter("tabs1", getTabs1());
+		portletURL.setParameter("orderByCol", getOrderByCol());
+
+		String orderByType = ParamUtil.getString(
+			_request, "orderByType", "asc");
+
 		portletURL.setParameter(
 			"orderByType", Objects.equals(orderByType, "asc") ? "desc" : "asc");
-
-		portletURL.setParameter("tabs1", getTabs1());
-
-		portletURL.setParameter("orderByCol", getOrderByCol());
 
 		return portletURL.toString();
 	}
@@ -1199,11 +1196,9 @@ public class WorkflowTaskDisplayContext {
 
 		return dropdownItem -> {
 			dropdownItem.setActive(Objects.equals(getNavigation(), navigation));
-
 			dropdownItem.setHref(
 				getPortletURL(), "navigation", navigation, "mvcPath",
 				"/view.jsp", "tabs1", getTabs1());
-
 			dropdownItem.setLabel(
 				LanguageUtil.get(
 					_workflowTaskRequestHelper.getRequest(), navigation));
@@ -1214,9 +1209,7 @@ public class WorkflowTaskDisplayContext {
 	private Consumer<DropdownItem> _getOrderByDropdownItem(String orderByCol) {
 		return dropdownItem -> {
 			dropdownItem.setActive(Objects.equals(getOrderByCol(), orderByCol));
-
 			dropdownItem.setHref(getPortletURL(), "orderByCol", orderByCol);
-
 			dropdownItem.setLabel(
 				LanguageUtil.get(
 					_workflowTaskRequestHelper.getRequest(), orderByCol));
