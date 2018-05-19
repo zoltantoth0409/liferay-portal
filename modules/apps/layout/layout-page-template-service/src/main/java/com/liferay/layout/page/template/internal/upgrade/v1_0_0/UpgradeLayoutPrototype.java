@@ -55,7 +55,7 @@ public class UpgradeLayoutPrototype extends UpgradeProcess {
 	protected void upgradeLayoutPrototype() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement ps1 = connection.prepareStatement(
-				"SELECT * FROM LayoutPrototype");
+				"select * from LayoutPrototype");
 			ResultSet rs = ps1.executeQuery()) {
 
 			while (rs.next()) {
