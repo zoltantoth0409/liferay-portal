@@ -300,7 +300,7 @@ public class CalendarResourceLocalServiceImpl
 
 		calendarResourcePersistence.update(calendarResource);
 
-		// Calendars
+		// Calendar
 
 		List<Calendar> calendars = calendarPersistence.findByG_C(
 			calendarResource.getGroupId(),
