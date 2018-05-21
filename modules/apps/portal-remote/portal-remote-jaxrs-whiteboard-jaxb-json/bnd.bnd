@@ -4,7 +4,5 @@ Bundle-Version: 1.0.0
 Export-Package:\
 	org.apache.cxf.jaxrs.json.basic;version="3.2.4",\
 	org.apache.cxf.jaxrs.provider.json;version="3.2.4"
-
 Fragment-Host: org.apache.aries.jax.rs.jaxb.json
-
 -fixupmessages: Exporting an empty package...;is:=ignore

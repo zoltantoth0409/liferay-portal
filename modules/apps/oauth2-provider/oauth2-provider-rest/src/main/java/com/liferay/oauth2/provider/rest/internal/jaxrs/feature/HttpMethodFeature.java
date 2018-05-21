@@ -85,13 +85,13 @@ public class HttpMethodFeature implements Feature {
 		return true;
 	}
 
-	public void filter(ContainerRequestContext requestContext)
+	public void filter(ContainerRequestContext containerRequestContext)
 		throws IOException {
 
-		Request request = requestContext.getRequest();
+		Request request = containerRequestContext.getRequest();
 
 		if (!_scopeChecker.checkScope(request.getMethod())) {
-			requestContext.abortWith(
+			containerRequestContext.abortWith(
 				Response.status(
 					Response.Status.FORBIDDEN
 				).build());

@@ -111,7 +111,7 @@ public class AnnotationFeature implements Feature {
 	private class AnnotationContainerRequestFilter
 		implements ContainerRequestFilter {
 
-		public void filter(ContainerRequestContext requestContext) {
+		public void filter(ContainerRequestContext containerRequestContext) {
 			Method resourceMethod = _resourceInfo.getResourceMethod();
 
 			RequiresNoScope requiresNoScope = resourceMethod.getAnnotation(
@@ -139,7 +139,7 @@ public class AnnotationFeature implements Feature {
 				return;
 			}
 
-			if (checkRequiresScope(requestContext, requiresScope)) {
+			if (checkRequiresScope(containerRequestContext, requiresScope)) {
 				return;
 			}
 
@@ -165,7 +165,7 @@ public class AnnotationFeature implements Feature {
 				return;
 			}
 
-			if (checkRequiresScope(requestContext, requiresScope)) {
+			if (checkRequiresScope(containerRequestContext, requiresScope)) {
 				return;
 			}
 
@@ -189,18 +189,18 @@ public class AnnotationFeature implements Feature {
 				return;
 			}
 
-			if (checkRequiresScope(requestContext, requiresScope)) {
+			if (checkRequiresScope(containerRequestContext, requiresScope)) {
 				return;
 			}
 
-			requestContext.abortWith(
+			containerRequestContext.abortWith(
 				Response.status(
 					Response.Status.FORBIDDEN
 				).build());
 		}
 
 		protected boolean checkRequiresScope(
-			ContainerRequestContext requestContext,
+			ContainerRequestContext containerRequestContext,
 			RequiresScope requiresScope) {
 
 			if (requiresScope != null) {
@@ -219,7 +219,7 @@ public class AnnotationFeature implements Feature {
 					return true;
 				}
 				else {
-					requestContext.abortWith(
+					containerRequestContext.abortWith(
 						Response.status(
 							Response.Status.FORBIDDEN
 						).build());
