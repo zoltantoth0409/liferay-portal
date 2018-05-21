@@ -213,12 +213,11 @@ public class PortletURLFactoryImpl implements PortletURLFactory {
 		HttpServletRequest request, Portlet portlet, Layout layout,
 		String lifecycle, MimeResponse.Copy copy) {
 
-		if (PortletRequest.RENDER_PHASE.equals(lifecycle)) {
-			return new RenderURLImpl(request, portlet, layout, lifecycle, copy);
-		}
-
 		if (PortletRequest.ACTION_PHASE.equals(lifecycle)) {
 			return new ActionURLImpl(request, portlet, layout, lifecycle, copy);
+		}
+		else if (PortletRequest.RENDER_PHASE.equals(lifecycle)) {
+			return new RenderURLImpl(request, portlet, layout, lifecycle, copy);
 		}
 
 		return new PortletURLImpl(request, portlet, layout, lifecycle, copy);
@@ -228,13 +227,12 @@ public class PortletURLFactoryImpl implements PortletURLFactory {
 		PortletRequest portletRequest, Portlet portlet, Layout layout,
 		String lifecycle, MimeResponse.Copy copy) {
 
-		if (PortletRequest.RENDER_PHASE.equals(lifecycle)) {
-			return new RenderURLImpl(
-				portletRequest, portlet, layout, lifecycle, copy);
-		}
-
 		if (PortletRequest.ACTION_PHASE.equals(lifecycle)) {
 			return new ActionURLImpl(
+				portletRequest, portlet, layout, lifecycle, copy);
+		}
+		else if (PortletRequest.RENDER_PHASE.equals(lifecycle)) {
+			return new RenderURLImpl(
 				portletRequest, portlet, layout, lifecycle, copy);
 		}
 
