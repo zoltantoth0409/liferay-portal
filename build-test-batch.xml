@@ -2983,6 +2983,25 @@ app.server.type=@{app.server.type}]]></echo>
 		/>
 	</target>
 
+	<target name="functional-bundle-tomcat-oracle122-jdk8">
+		<set-tomcat-version-number liferay.portal.bundle="${test.portal.bundle.version}" />
+
+		<run-functional-test
+			app.server.type="tomcat"
+			database.type="oracle"
+			setup.proxy="false"
+			test.build.fix.pack.zip.url="${test.build.fix.pack.zip.url}"
+			test.fix.pack.base.url="${test.fix.pack.base.url}"
+			test.license.xml.url="${test.license.xml.url}"
+			test.plugin.zip.url="${test.plugin.zip.url}"
+			test.plugins.war.zip.url="${test.plugins.war.zip.url}"
+			test.portal.bundle.version="${test.portal.bundle.version}"
+			test.portal.bundle.zip.url="${test.portal.bundle.zip.url}"
+			test.portal.lpkg.name="${test.portal.lpkg.name}"
+			test.sql.zip.url="${test.sql.zip.url}"
+		/>
+	</target>
+
 	<target name="functional-bundle-tomcat-postgresql10-jdk8">
 		<set-tomcat-version-number liferay.portal.bundle="${test.portal.bundle.version}" />
 
@@ -3059,6 +3078,24 @@ app.server.type=@{app.server.type}]]></echo>
 	</target>
 
 	<target name="functional-bundle-weblogic-oracle121-jdk8">
+		<run-functional-test
+			app.server.type="weblogic"
+			database.type="oracle"
+			test.build.fix.pack.zip.url="${test.build.fix.pack.zip.url}"
+			test.fix.pack.base.url="${test.fix.pack.base.url}"
+			test.license.xml.url="${test.license.xml.url}"
+			test.plugin.zip.url="${test.plugin.zip.url}"
+			test.plugins.war.zip.url="${test.plugins.war.zip.url}"
+			test.portal.bundle.dependencies.zip.url="${test.portal.bundle.dependencies.zip.url}"
+			test.portal.bundle.osgi.zip.url="${test.portal.bundle.osgi.zip.url}"
+			test.portal.bundle.tools.zip.url="${test.portal.bundle.tools.zip.url}"
+			test.portal.bundle.war.url="${test.portal.bundle.war.url}"
+			test.portal.lpkg.name="${test.portal.lpkg.name}"
+			test.sql.zip.url="${test.sql.zip.url}"
+		/>
+	</target>
+
+	<target name="functional-bundle-weblogic-oracle122-jdk8">
 		<run-functional-test
 			app.server.type="weblogic"
 			database.type="oracle"
@@ -3161,7 +3198,7 @@ app.server.type=@{app.server.type}]]></echo>
 		<run-functional-test app.server.type="tomcat" database.type="mysql" test.portal.log.assert="true" />
 	</target>
 
-	<target name="functional-smoke-tomcat80-oracle121-jdk8">
+	<target name="functional-smoke-tomcat80-oracle122-jdk8">
 		<run-functional-test app.server.type="tomcat" database.type="oracle" test.portal.log.assert="true" />
 	</target>
 
@@ -3209,7 +3246,7 @@ app.server.type=@{app.server.type}]]></echo>
 		<antcall target="functional-tomcat80-mysql56-jdk8" />
 	</target>
 
-	<target name="functional-tomcat80-oracle121-jdk8">
+	<target name="functional-tomcat80-oracle122-jdk8">
 		<run-functional-test app.server.type="tomcat" database.type="oracle" />
 	</target>
 
@@ -3237,7 +3274,7 @@ app.server.type=@{app.server.type}]]></echo>
 		<run-functional-test app.server.type="tomcat" database.type="mysql" />
 	</target>
 
-	<target name="functional-upgrade-tomcat80-oracle121-jdk8">
+	<target name="functional-upgrade-tomcat80-oracle122-jdk8">
 		<run-functional-test app.server.type="tomcat" database.type="oracle" />
 	</target>
 
@@ -3261,7 +3298,7 @@ app.server.type=@{app.server.type}]]></echo>
 		<run-functional-test app.server.type="wildfly" database.type="mariadb" />
 	</target>
 
-	<target name="functional-weblogic121-oracle121-jdk8">
+	<target name="functional-weblogic121-oracle122-jdk8">
 		<run-functional-test app.server.type="weblogic" database.type="oracle" />
 	</target>
 
@@ -3317,6 +3354,10 @@ app.server.type=@{app.server.type}]]></echo>
 	</target>
 
 	<target name="integration-oracle121-jdk8">
+		<run-integration-test database.type="oracle" />
+	</target>
+
+	<target name="integration-oracle122-jdk8">
 		<run-integration-test database.type="oracle" />
 	</target>
 
@@ -3742,7 +3783,7 @@ app.server.type=@{app.server.type}]]></echo>
 		/>
 	</target>
 
-	<target name="modules-integration-bundle-oracle121-jdk8">
+	<target name="modules-integration-bundle-oracle122-jdk8">
 		<set-tomcat-version-number liferay.portal.bundle="${test.portal.bundle.version}" />
 
 		<run-modules-integration-test
@@ -3831,6 +3872,10 @@ app.server.type=@{app.server.type}]]></echo>
 	</target>
 
 	<target name="modules-integration-oracle121-jdk8">
+		<run-modules-integration-test database.type="oracle" />
+	</target>
+
+	<target name="modules-integration-oracle122-jdk8">
 		<run-modules-integration-test database.type="oracle" />
 	</target>
 
