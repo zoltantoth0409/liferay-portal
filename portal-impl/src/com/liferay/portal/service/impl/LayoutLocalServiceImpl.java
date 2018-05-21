@@ -427,13 +427,6 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 			friendlyURLMap, serviceContext);
 	}
 
-	/**
-	 * Deletes the layout with the plid, also deleting the layout's child
-	 * layouts, and associated resources.
-	 *
-	 * @param  layout the layout
-	 * @throws PortalException if a portal exception occurred
-	 */
 	@Override
 	public Layout deleteLayout(Layout layout) throws PortalException {
 		layoutLocalService.deleteLayout(layout, true, new ServiceContext());
