@@ -87,11 +87,11 @@ AUI.add(
 
 						var customizable = !!column.one('.portlet-column-content.customizable');
 
-						var cssClass = 'customizable-layout-column';
-
 						if (customizable && !column.hasClass('customizable')) {
 							column.addClass('customizable');
 						}
+
+						var cssClass = 'customizable-layout-column';
 
 						var overlayMask = new A.OverlayMask(
 							{
