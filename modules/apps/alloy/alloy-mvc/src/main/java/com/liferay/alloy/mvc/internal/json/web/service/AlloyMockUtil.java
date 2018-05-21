@@ -1364,7 +1364,7 @@ public class AlloyMockUtil {
 		@Override
 		public LiferayPortletURL createLiferayPortletURL(
 			long plid, String portletName, String lifecycle,
-			boolean includeLinkToLayoutUuid, MimeResponse.Copy copy) {
+			MimeResponse.Copy copy) {
 
 			throw new UnsupportedOperationException();
 		}
@@ -1372,7 +1372,7 @@ public class AlloyMockUtil {
 		@Override
 		public LiferayPortletURL createLiferayPortletURL(
 			long plid, String portletName, String lifecycle,
-			MimeResponse.Copy copy) {
+			MimeResponse.Copy copy, boolean includeLinkToLayoutUuid) {
 
 			throw new UnsupportedOperationException();
 		}
