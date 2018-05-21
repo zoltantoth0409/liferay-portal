@@ -102,8 +102,11 @@ AUI.add(
 							}
 						).render();
 
-						var columnDropzone = column.one('.portlet-dropzone');
-						columnDropzone.insertBefore(overlayMask.get(BOUNDING_BOX));
+						var columnDropZone = column.one('.portlet-dropzone');
+
+						if (columnDropZone) {
+							columnDropZone.insertBefore(overlayMask.get(BOUNDING_BOX));
+						}
 
 						if (customizable) {
 							overlayMask.get(BOUNDING_BOX).addClass('customizable');
@@ -133,7 +136,10 @@ AUI.add(
 
 						input.setData('customizationControls', overlayMask);
 						column.setData('customizationControls', overlayMask);
-						columnDropzone.setData('customizationControls', overlayMask);
+
+						if (columnDropZone) {
+							columnDropZone.setData('customizationControls', overlayMask);
+						}
 
 						return overlayMask;
 					},
@@ -147,11 +153,15 @@ AUI.add(
 
 						var boundingBox = overlayMask.get(BOUNDING_BOX);
 						var column = overlayMask.get('target');
+
 						var columnDropZone = column.one('.portlet-dropzone');
+
+						if (columnDropZone) {
+							columnDropZone.toggleClass('customizable');
+						}
 
 						boundingBox.toggleClass('customizable');
 						column.toggleClass('customizable');
-						columnDropZone.toggleClass('customizable');
 
 						var data = {
 							cmd: 'update_type_settings',
