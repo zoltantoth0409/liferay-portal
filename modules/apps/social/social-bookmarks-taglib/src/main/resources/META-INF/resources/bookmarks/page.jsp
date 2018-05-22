@@ -32,7 +32,7 @@ String dropdownMenuComponentId = randomNamespace + "socialBookmarksDropdownMenu"
 		<c:when test='<%= displayStyle.equals("menu") %>'>
 			<clay:dropdown-menu
 				componentId="<%= dropdownMenuComponentId %>"
-				dropdownItems="<%= SocialBookmarksTagUtil.getDropdownItemList(request.getLocale(), types, className, classPK, title, url) %>"
+				dropdownItems="<%= SocialBookmarksTagUtil.getDropdownItems(request.getLocale(), types, className, classPK, title, url) %>"
 				icon="share"
 				label='<%= LanguageUtil.get(request, "share") %>'
 				style="secondary"
@@ -74,7 +74,7 @@ String dropdownMenuComponentId = randomNamespace + "socialBookmarksDropdownMenu"
 
 				<clay:dropdown-menu
 					componentId="<%= dropdownMenuComponentId %>"
-					dropdownItems="<%= SocialBookmarksTagUtil.getDropdownItemList(request.getLocale(), remainingTypes, className, classPK, title, url) %>"
+					dropdownItems="<%= SocialBookmarksTagUtil.getDropdownItems(request.getLocale(), remainingTypes, className, classPK, title, url) %>"
 					icon="share"
 					style="secondary"
 					triggerCssClasses="btn-outline-borderless btn-sm"

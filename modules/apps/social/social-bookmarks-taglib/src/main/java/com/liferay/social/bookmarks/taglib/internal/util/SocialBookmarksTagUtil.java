@@ -14,10 +14,12 @@
 
 package com.liferay.social.bookmarks.taglib.internal.util;
 
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.social.bookmarks.SocialBookmark;
 
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -35,7 +37,7 @@ public class SocialBookmarksTagUtil {
 			HtmlUtil.escapeJS(postURL), HtmlUtil.escapeJS(url));
 	}
 
-	public static DropdownItemList getDropdownItemList(
+	public static List<DropdownItem> getDropdownItemLists(
 		Locale locale, String[] types, String className, long classPK,
 		String title, String url) {
 
@@ -57,7 +59,6 @@ public class SocialBookmarksTagUtil {
 									socialBookmark.getPostURL(title, url));
 								dropdownItem.putData("type", type);
 								dropdownItem.putData("url", url);
-
 								dropdownItem.setHref("#");
 								dropdownItem.setLabel(
 									socialBookmark.getName(locale));
