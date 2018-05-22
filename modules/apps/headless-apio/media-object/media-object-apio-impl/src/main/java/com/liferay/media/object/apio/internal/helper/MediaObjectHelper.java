@@ -52,6 +52,7 @@ public class MediaObjectHelper {
 		throws PortalException {
 
 		String sourceFileName = mediaObjectCreatorForm.getName();
+
 		BinaryFile binaryFile = mediaObjectCreatorForm.getBinaryFile();
 
 		String mimeType = binaryFile.getMimeType();
