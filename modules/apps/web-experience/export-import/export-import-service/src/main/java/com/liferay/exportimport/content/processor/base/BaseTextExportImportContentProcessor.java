@@ -138,7 +138,7 @@ public class BaseTextExportImportContentProcessor
 		}
 
 		int endPos = StringUtil.indexOfAny(
-			sb.toString(), DL_REFERENCE_LEGACY_STOP_CHARS, beginPos + 2);
+			sb.toString(), _DL_REFERENCE_LEGACY_STOP_STRINGS, beginPos + 2);
 
 		if (endPos == -1) {
 			return;
@@ -155,14 +155,14 @@ public class BaseTextExportImportContentProcessor
 		long groupId, String content, int beginPos, int endPos) {
 
 		boolean legacyURL = true;
-		char[] stopChars = DL_REFERENCE_LEGACY_STOP_CHARS;
+		String[] stropStrings = _DL_REFERENCE_LEGACY_STOP_STRINGS;
 
 		if (content.startsWith("/documents/", beginPos)) {
 			legacyURL = false;
-			stopChars = DL_REFERENCE_STOP_CHARS;
+			stropStrings = _DL_REFERENCE_STOP_STRINGS;
 		}
 
-		endPos = StringUtil.indexOfAny(content, stopChars, beginPos, endPos);
+		endPos = StringUtil.indexOfAny(content, stropStrings, beginPos, endPos);
 
 		if (endPos == -1) {
 			return null;
@@ -1667,6 +1667,22 @@ public class BaseTextExportImportContentProcessor
 		"\\[([\\d]+)@(private(-group|-user)?|public)(@([\\d]+))?\\]");
 	protected static final Pattern importLinksToLayoutPattern = Pattern.compile(
 		"\\[([\\d]+)@(private(-group|-user)?|public)@([\\d]+)(@([\\d]+))?\\]");
+
+	private static final String[] _DL_REFERENCE_LEGACY_STOP_STRINGS = {
+		StringPool.APOSTROPHE, StringPool.APOSTROPHE_ENCODED,
+		StringPool.CLOSE_BRACKET, StringPool.CLOSE_CURLY_BRACE,
+		StringPool.CLOSE_PARENTHESIS, StringPool.GREATER_THAN,
+		StringPool.LESS_THAN, StringPool.PIPE, StringPool.QUOTE,
+		StringPool.QUOTE_ENCODED, StringPool.SPACE
+	};
+
+	private static final String[] _DL_REFERENCE_STOP_STRINGS = {
+		StringPool.APOSTROPHE, StringPool.APOSTROPHE_ENCODED,
+		StringPool.CLOSE_BRACKET, StringPool.CLOSE_CURLY_BRACE,
+		StringPool.CLOSE_PARENTHESIS, StringPool.GREATER_THAN,
+		StringPool.LESS_THAN, StringPool.PIPE, StringPool.QUESTION,
+		StringPool.QUOTE, StringPool.QUOTE_ENCODED, StringPool.SPACE
+	};
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseTextExportImportContentProcessor.class);
