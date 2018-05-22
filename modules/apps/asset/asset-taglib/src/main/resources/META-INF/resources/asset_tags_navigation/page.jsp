@@ -153,8 +153,8 @@ private String _buildTagsNavigation(long scopeGroupId, String selectedTagName, P
 			sb.append(HtmlUtil.escape(originalPortletURLString));
 		}
 		else {
-			portletURL.setParameter("tag", tagName);
 			portletURL.setParameter("resetCur", Boolean.TRUE.toString());
+			portletURL.setParameter("tag", tagName);
 
 			sb.append("<a href=\"");
 			sb.append(HtmlUtil.escape(portletURL.toString()));
