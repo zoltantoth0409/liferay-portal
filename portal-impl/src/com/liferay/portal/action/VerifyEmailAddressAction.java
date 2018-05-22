@@ -36,6 +36,8 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.struts.ActionConstants;
 
+import java.util.List;
+
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
 
@@ -46,8 +48,6 @@ import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
-
-import java.util.List;
 
 /**
  * @author Mika Koivisto
