@@ -56,9 +56,6 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
-import org.osgi.service.component.annotations.ReferenceCardinality;
-import org.osgi.service.component.annotations.ReferencePolicy;
-import org.osgi.service.component.annotations.ReferencePolicyOption;
 
 /**
  * @author Ryan Park
@@ -299,8 +296,10 @@ public class ResourcesImporterHotDeployMessageListener
 	private BundleContext _bundleContext;
 	private CompanyLocalService _companyLocalService;
 	private Destination _destination;
+
 	@Reference
 	private DestinationFactory _destinationFactory;
+
 	private ImporterFactory _importerFactory;
 	private ServiceRegistration<Destination> _serviceRegistration;
 	private ServiceTrackerMap<String, ServletContext> _serviceTrackerMap;
