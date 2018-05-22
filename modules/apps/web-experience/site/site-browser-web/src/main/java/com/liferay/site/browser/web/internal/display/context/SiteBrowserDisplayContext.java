@@ -123,7 +123,6 @@ public class SiteBrowserDisplayContext {
 			_request, "filterManageableGroups", true);
 
 		if (permissionChecker.isCompanyAdmin()) {
-
 			filterManageableGroups = false;
 		}
 
@@ -388,10 +387,8 @@ public class SiteBrowserDisplayContext {
 
 		List<Group> filteredGroups = new ArrayList();
 
-		String type = getType();
-
 		for (Group group : groups) {
-			if (permissionChecker.isGroupAdmin(group.getGroupId()) || 
+			if (permissionChecker.isGroupAdmin(group.getGroupId()) ||
 				(!filterManageableGroups &&
 				 GroupPermissionUtil.contains(
 					 permissionChecker, group.getGroupId(),
