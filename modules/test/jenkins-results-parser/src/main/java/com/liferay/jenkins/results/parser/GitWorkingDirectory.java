@@ -1636,6 +1636,7 @@ public class GitWorkingDirectory {
 		String remoteURL = upstreamRemote.getRemoteURL();
 
 		int x = remoteURL.lastIndexOf("/") + 1;
+
 		int y = remoteURL.indexOf(".git");
 
 		if (y == -1) {
