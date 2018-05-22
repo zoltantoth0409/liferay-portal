@@ -21,8 +21,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.service.ServiceContext;
 
-import java.io.InputStream;
-
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -51,22 +49,14 @@ public class MediaObjectHelper {
 			MediaObjectCreatorForm mediaObjectCreatorForm)
 		throws PortalException {
 
-		String sourceFileName = mediaObjectCreatorForm.getName();
-
 		BinaryFile binaryFile = mediaObjectCreatorForm.getBinaryFile();
 
-		String mimeType = binaryFile.getMimeType();
-
-		String title = mediaObjectCreatorForm.getTitle();
-		String description = mediaObjectCreatorForm.getDescription();
-		String changelog = mediaObjectCreatorForm.getChangelog();
-
-		InputStream inputStream = binaryFile.getInputStream();
-		long size = binaryFile.getSize();
-
 		return _dlAppService.addFileEntry(
-			repositoryId, folderId, sourceFileName, mimeType, title,
-			description, changelog, inputStream, size, new ServiceContext());
+			repositoryId, folderId, mediaObjectCreatorForm.getName(),
+			binaryFile.getMimeType(), mediaObjectCreatorForm.getTitle(),
+			mediaObjectCreatorForm.getDescription(),
+			mediaObjectCreatorForm.getChangelog(), binaryFile.getInputStream(),
+			binaryFile.getSize(), new ServiceContext());
 	}
 
 	@Reference
