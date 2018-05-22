@@ -1056,8 +1056,8 @@ public class JenkinsResultsParserUtil {
 	public static boolean isCINode() {
 		String hostName = getHostName("");
 
-		if (hostName.startsWith("test-") ||
-			hostName.startsWith("cloud-10-0-")) {
+		if (hostName.startsWith("cloud-10-0-") ||
+			hostName.startsWith("test-")) {
 
 			return true;
 		}
