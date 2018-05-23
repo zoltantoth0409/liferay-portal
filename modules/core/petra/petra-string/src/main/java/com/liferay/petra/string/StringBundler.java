@@ -35,7 +35,7 @@ import java.lang.ref.SoftReference;
 public class StringBundler implements Serializable {
 
 	public static String concat(Object... objects) {
-		String[] strings = new Objects[objects.length];
+		String[] strings = new String[objects.length];
 
 		for (int i = 0; i < objects.length; i++) {
 			if (objects[i] == null) {
