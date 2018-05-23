@@ -248,6 +248,8 @@
 	</command>
 
 	<command name="openItemSidebar">
+		<execute function="Refresh" />
+
 		<execute function="Click" locator1="SiteNavigationMenu#ITEM_LINK">
 			<var name="key_itemName" value="${itemName}" />
 		</execute>
