@@ -434,7 +434,7 @@
 		<execute macro="SiteNavigationMenu#editItem">
 			<var name="item" value="Page" />
 			<var name="itemName" value="Site Page Name 2" />
-			<var name="title" value="Site Page Name 3" />
+			<var name="name" value="Site Page Name 3" />
 		</execute>
 
 		<execute macro="SiteNavigationMenu#viewItem">
