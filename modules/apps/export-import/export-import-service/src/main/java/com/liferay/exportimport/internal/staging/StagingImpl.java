@@ -200,7 +200,6 @@ public class StagingImpl implements Staging {
 
 		long classNameId = _classNameLocalService.getClassNameId(
 			stagedGroupedModel.getModelClassName());
-
 		long classPK = (long)stagedGroupedModel.getPrimaryKeyObj();
 
 		long groupId = stagedGroupedModel.getGroupId();
