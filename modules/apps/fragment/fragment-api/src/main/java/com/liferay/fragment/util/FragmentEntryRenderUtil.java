@@ -58,6 +58,10 @@ public class FragmentEntryRenderUtil {
 		long fragmentEntryId, long fragmentEntryInstanceId, String css,
 		String html, String js) {
 
+		StringBundler sb = new StringBundler(14);
+
+		sb.append("<div id=\"");
+
 		StringBundler fragmentIdSB = new StringBundler(4);
 
 		fragmentIdSB.append("fragment-");
@@ -65,10 +69,8 @@ public class FragmentEntryRenderUtil {
 		fragmentIdSB.append("-");
 		fragmentIdSB.append(fragmentEntryInstanceId);
 
-		StringBundler sb = new StringBundler(14);
-
-		sb.append("<div id=\"");
 		sb.append(fragmentIdSB.toString());
+
 		sb.append("\" >");
 		sb.append(html);
 		sb.append("</div>");
