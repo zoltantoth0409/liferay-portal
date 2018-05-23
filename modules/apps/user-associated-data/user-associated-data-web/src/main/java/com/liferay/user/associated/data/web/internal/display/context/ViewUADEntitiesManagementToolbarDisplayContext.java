@@ -52,6 +52,7 @@ public class ViewUADEntitiesManagementToolbarDisplayContext
 						dropdownItem.setLabel(
 							LanguageUtil.get(request, "anonymize"));
 					});
+
 				add(
 					dropdownItem -> {
 						dropdownItem.setHref(

@@ -221,7 +221,7 @@ public class BaseManagementToolbarDisplayContext
 		}
 		catch (PortletException pe) {
 			if (_log.isWarnEnabled()) {
-				_log.warn(pe);
+				_log.warn(pe, pe);
 			}
 
 			PortletURL portletURL = liferayPortletResponse.createRenderURL();
