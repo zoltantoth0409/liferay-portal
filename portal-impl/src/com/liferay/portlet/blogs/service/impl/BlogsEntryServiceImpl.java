@@ -236,7 +236,8 @@ public class BlogsEntryServiceImpl extends BlogsEntryServiceBaseImpl {
 				WorkflowConstants.STATUS_APPROVED,
 				new EntryDisplayDateComparator(true));
 
-			if (_blogsEntryFolderModelResourcePermission.contains(
+			if ((entries[0] != null) &&
+				!_blogsEntryFolderModelResourcePermission.contains(
 					getPermissionChecker(), entries[0], ActionKeys.VIEW)) {
 
 				entries[0] = null;
@@ -249,7 +250,8 @@ public class BlogsEntryServiceImpl extends BlogsEntryServiceBaseImpl {
 				WorkflowConstants.STATUS_APPROVED,
 				new EntryDisplayDateComparator(true));
 
-			if (_blogsEntryFolderModelResourcePermission.contains(
+			if ((entries[2] != null) &&
+				!_blogsEntryFolderModelResourcePermission.contains(
 					getPermissionChecker(), entries[2], ActionKeys.VIEW)) {
 
 				entries[2] = null;
