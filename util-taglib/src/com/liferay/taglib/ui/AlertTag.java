@@ -147,10 +147,10 @@ public class AlertTag extends IncludeTag {
 
 	private static final String _ATTRIBUTE_NAMESPACE = "liferay-ui:alert:";
 
-	private static final String _PAGE = "/html/taglib/ui/alert/page.jsp";
-
 	private static final String _CONTENT_TMPL = StringUtil.read(
 		AlertTag.class, "alert/alert.tmpl");
+
+	private static final String _PAGE = "/html/taglib/ui/alert/page.jsp";
 
 	private Integer _animationTime = 500;
 	private boolean _closeable = true;
