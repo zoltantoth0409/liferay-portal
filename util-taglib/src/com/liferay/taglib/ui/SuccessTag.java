@@ -108,7 +108,7 @@ public class SuccessTag extends IncludeTag implements BodyTag {
 
 		if (_embed) {
 			String result = StringUtil.replace(
-				_EMBED_TMPL_CONTENT, StringPool.DOLLAR, StringPool.DOLLAR,
+				_CONTENT_EMBED_TMPL, StringPool.DOLLAR, StringPool.DOLLAR,
 				values);
 
 			JspWriter jspWriter = pageContext.getOut();
@@ -117,7 +117,7 @@ public class SuccessTag extends IncludeTag implements BodyTag {
 		}
 		else {
 			String result = StringUtil.replace(
-				_TOAST_TMPL_CONTENT, StringPool.DOLLAR, StringPool.DOLLAR,
+				_CONTENT_TOAST_TMPL, StringPool.DOLLAR, StringPool.DOLLAR,
 				values);
 
 			ScriptTag.doTag(
@@ -190,13 +190,13 @@ public class SuccessTag extends IncludeTag implements BodyTag {
 
 	private static final boolean _CLEAN_UP_SET_ATTRIBUTES = true;
 
-	private static final String _EMBED_TMPL_CONTENT = StringUtil.read(
+	private static final String _CONTENT_EMBED_TMPL = StringUtil.read(
 		SuccessTag.class, "success/embed.tmpl");
 
-	private static final String _PAGE = "/html/taglib/ui/success/page.jsp";
-
-	private static final String _TOAST_TMPL_CONTENT = StringUtil.read(
+	private static final String _CONTENT_TOAST_TMPL = StringUtil.read(
 		SuccessTag.class, "success/toast.tmpl");
+
+	private static final String _PAGE = "/html/taglib/ui/success/page.jsp";
 
 	private boolean _embed = true;
 	private boolean _hasMessage;
