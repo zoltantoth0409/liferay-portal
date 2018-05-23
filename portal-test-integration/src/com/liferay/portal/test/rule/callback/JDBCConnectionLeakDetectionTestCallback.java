@@ -14,9 +14,9 @@
 
 package com.liferay.portal.test.rule.callback;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.dao.jdbc.pool.metrics.ConnectionPoolMetrics;
 import com.liferay.portal.kernel.test.rule.callback.BaseTestCallback;
-import com.liferay.petra.string.StringBundler;
 import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
 import com.liferay.registry.ServiceReference;
