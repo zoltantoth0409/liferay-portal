@@ -49,9 +49,9 @@
 
 	<command name="_editItemPage">
 		<if>
-			<isset var="title" />
+			<isset var="name" />
 			<then>
-				<execute function="Type" locator1="TextInput#TITLE" value1="${title}" />
+				<execute function="Type" locator1="TextInput#NAME" value1="${name}" />
 			</then>
 		</if>
 	</command>
@@ -185,7 +185,7 @@
 			<equals arg1="${item}" arg2="Page" />
 			<then>
 				<execute macro="SiteNavigationMenu#_editItemPage">
-					<var name="title" value="${title}" />
+					<var name="name" value="${name}" />
 				</execute>
 			</then>
 			<elseif>
@@ -248,7 +248,7 @@
 	</command>
 
 	<command name="openItemSidebar">
-		<execute function="Click" locator1="SiteNavigationMenu#ITEM_ENTRY">
+		<execute function="Click" locator1="SiteNavigationMenu#ITEM_LINK">
 			<var name="key_itemName" value="${itemName}" />
 		</execute>
 
