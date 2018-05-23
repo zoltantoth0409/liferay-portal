@@ -29,7 +29,7 @@ public class StagingConstants {
 		PropsUtil.get("lock.expiration.time." + Staging.class.getName()));
 
 	public static final String RANGE_FROM_LAST_PUBLISH_DATE_CHANGESET_NAME =
-		"STAGING_RANGE_FROM_LAST_PUBLISH_DATE";
+		"RANGE_FROM_LAST_PUBLISH_DATE_CHANGESET_NAME";
 
 	public static final String STAGED_PORTLET = "staged-portlet_";
 
