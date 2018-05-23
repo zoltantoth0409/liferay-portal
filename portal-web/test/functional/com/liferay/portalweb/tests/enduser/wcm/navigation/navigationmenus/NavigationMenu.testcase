@@ -233,10 +233,6 @@
 	<command ignore="true" name="AddSubmenuNavigationMenu" priority="5">
 		<description message="This is a use case for LPS-75061" />
 
-		<execute macro="ProductMenu#gotoSite">
-			<var name="site" value="Test Site Name" />
-		</execute>
-
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Build" />
 			<var name="panel" value="Site Administration" />
@@ -412,10 +408,6 @@
 	<command name="EditNavigationMenuPageItemName" priority="5">
 		<description message="This is a usecase for LPS-76658" />
 		<property name="portal.acceptance" value="pending" />
-
-		<execute macro="ProductMenu#gotoSite">
-			<var name="site" value="Test Site Name" />
-		</execute>
 
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Build" />
