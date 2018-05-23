@@ -428,15 +428,8 @@
 		</execute>
 
 		<execute macro="LexiconEntry#gotoEntry">
-			<var name="rowEntry" value="Primary Menu Name 1" />
+			<var name="rowEntry" value="Default" />
 		</execute>
-
-		<for list="1,2" param="index">
-			<execute macro="SiteNavigationMenu#addItem">
-				<var name="item" value="Page" />
-				<var name="pageName" value="Site Page Name ${index}" />
-			</execute>
-		</for>
 
 		<execute macro="SiteNavigationMenu#editItem">
 			<var name="item" value="Page" />
