@@ -837,7 +837,7 @@ if ((invokerPortlet != null) && (invokerPortlet.isStrutsPortlet() || invokerPort
 boolean portletException = GetterUtil.getBoolean(request.getAttribute(WebKeys.PARALLEL_RENDERING_TIMEOUT_ERROR));
 Boolean portletVisibility = null;
 
-if (portlet.isActive() && portlet.isReady() && portlet.isInclude() && supportsMimeType && (invokerPortlet != null)) {
+if (portlet.isActive() && portlet.isInclude() && portlet.isReady() && supportsMimeType && (invokerPortlet != null)) {
 	try {
 		if (!PortalUtil.isSkipPortletContentProcesssing(group, request, layoutTypePortlet, portletDisplay, portletDisplay.getPortletName())) {
 			invokerPortlet.render(renderRequestImpl, renderResponseImpl);
