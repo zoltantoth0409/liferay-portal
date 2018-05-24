@@ -193,10 +193,10 @@ public class JSLoaderModule {
 	}
 
 	protected String generateMapsConfiguration(
-		String configuration, String[] exportJSSubmodules) {
+		String configuration, String[] jsSubmodulesExport) {
 
 		boolean exportAll = ArrayUtil.contains(
-			exportJSSubmodules, StringPool.STAR);
+			jsSubmodulesExport, StringPool.STAR);
 
 		JSONObject mapsConfigurationJSONObject = new JSONObject();
 
@@ -232,7 +232,7 @@ public class JSLoaderModule {
 				};
 
 			if (exportAll ||
-				ArrayUtil.exists(exportJSSubmodules, wildcardPredicateFilter)) {
+				ArrayUtil.exists(jsSubmodulesExport, wildcardPredicateFilter)) {
 
 				mapsConfigurationJSONObject.put(
 					submoduleName, moduleRootPath.concat(submoduleName));
