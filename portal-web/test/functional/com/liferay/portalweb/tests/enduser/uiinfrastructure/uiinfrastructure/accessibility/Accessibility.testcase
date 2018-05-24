@@ -48,7 +48,7 @@
 		<execute function="AssertAccessible" />
 	</command>
 
-	<command name="ViewCollaborationPortlets" priority="4">
+	<command ignore="true" name="ViewCollaborationPortlets" priority="4">
 		<property name="osgi.app.includes" value="invitation, knowledge-base, twitter" />
 		<property name="plugins.deployment.type" value="osgi" />
 
