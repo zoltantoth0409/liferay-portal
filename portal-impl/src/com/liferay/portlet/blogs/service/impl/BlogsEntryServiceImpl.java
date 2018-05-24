@@ -16,7 +16,7 @@ package com.liferay.portlet.blogs.service.impl;
 
 import com.liferay.blogs.kernel.model.BlogsEntry;
 import com.liferay.blogs.kernel.util.comparator.EntryDisplayDateComparator;
-import com.liferay.blogs.util.comparator.EntryIdComparator;
+import com.liferay.blogs.kernel.util.comparator.EntryIdComparator;
 import com.liferay.portal.kernel.dao.orm.QueryDefinition;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -222,7 +222,7 @@ public class BlogsEntryServiceImpl extends BlogsEntryServiceBaseImpl {
 
 		BlogsEntry entry = blogsEntryPersistence.findByPrimaryKey(entryId);
 
-		_blogsEntryFolderModelResourcePermission.check(
+		BlogsEntryPermission.check(
 			getPermissionChecker(), entry, ActionKeys.VIEW);
 
 		BlogsEntry[] entries =
@@ -237,7 +237,7 @@ public class BlogsEntryServiceImpl extends BlogsEntryServiceBaseImpl {
 				new EntryDisplayDateComparator(true));
 
 			if ((entries[0] != null) &&
-				!_blogsEntryFolderModelResourcePermission.contains(
+				!BlogsEntryPermission.contains(
 					getPermissionChecker(), entries[0], ActionKeys.VIEW)) {
 
 				entries[0] = null;
@@ -251,7 +251,7 @@ public class BlogsEntryServiceImpl extends BlogsEntryServiceBaseImpl {
 				new EntryDisplayDateComparator(true));
 
 			if ((entries[2] != null) &&
-				!_blogsEntryFolderModelResourcePermission.contains(
+				!BlogsEntryPermission.contains(
 					getPermissionChecker(), entries[2], ActionKeys.VIEW)) {
 
 				entries[2] = null;
