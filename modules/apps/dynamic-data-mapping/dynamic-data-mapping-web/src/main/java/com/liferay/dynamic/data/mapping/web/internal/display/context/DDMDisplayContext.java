@@ -339,7 +339,6 @@ public class DDMDisplayContext {
 							"groupId",
 							String.valueOf(
 								_ddmWebRequestHelper.getScopeGroupId()));
-
 						dropdownItem.setLabel(
 							LanguageUtil.get(
 								_ddmWebRequestHelper.getRequest(), "add"));
@@ -767,10 +766,8 @@ public class DDMDisplayContext {
 				add(
 					dropdownItem -> {
 						dropdownItem.setActive(true);
-
 						dropdownItem.setHref(
 							getPortletURL(), "navigation", "all");
-
 						dropdownItem.setLabel(
 							LanguageUtil.get(
 								_ddmWebRequestHelper.getRequest(), "all"));
