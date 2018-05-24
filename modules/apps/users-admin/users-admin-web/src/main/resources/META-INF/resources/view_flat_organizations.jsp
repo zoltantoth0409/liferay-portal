@@ -58,8 +58,7 @@ if (filterManageableOrganizations) {
 	<c:when test="<%= showList %>">
 
 		<%
-		ViewOrganizationsManagementToolbarDisplayContext
-			viewOrganizationsManagementToolbarDisplayContext = new ViewOrganizationsManagementToolbarDisplayContext(request, renderRequest, renderResponse, displayStyle);
+		ViewOrganizationsManagementToolbarDisplayContext viewOrganizationsManagementToolbarDisplayContext = new ViewOrganizationsManagementToolbarDisplayContext(request, renderRequest, renderResponse, displayStyle);
 
 		SearchContainer searchContainer = viewOrganizationsManagementToolbarDisplayContext.getSearchContainer(organizationParams);
 		%>

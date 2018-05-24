@@ -69,8 +69,7 @@ if (organization != null) {
 	<c:when test="<%= showList %>">
 
 		<%
-		ViewTreeManagementToolbarDisplayContext
-			viewTreeManagementToolbarDisplayContext = new ViewTreeManagementToolbarDisplayContext(request, renderRequest, renderResponse, organization, displayStyle);
+		ViewTreeManagementToolbarDisplayContext viewTreeManagementToolbarDisplayContext = new ViewTreeManagementToolbarDisplayContext(request, renderRequest, renderResponse, organization, displayStyle);
 
 		SearchContainer searchContainer = viewTreeManagementToolbarDisplayContext.getSearchContainer();
 		%>

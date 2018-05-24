@@ -40,8 +40,7 @@ else {
 String navigation = ParamUtil.getString(request, "navigation", "active");
 String toolbarItem = ParamUtil.getString(request, "toolbarItem", "view-all-users");
 
-ViewUsersManagementToolbarDisplayContext
-	viewUsersManagementToolbarDisplayContext = new ViewUsersManagementToolbarDisplayContext(request, renderRequest, renderResponse, displayStyle, navigation, status);
+ViewUsersManagementToolbarDisplayContext viewUsersManagementToolbarDisplayContext = new ViewUsersManagementToolbarDisplayContext(request, renderRequest, renderResponse, displayStyle, navigation, status);
 
 SearchContainer searchContainer = viewUsersManagementToolbarDisplayContext.getSearchContainer();
 
