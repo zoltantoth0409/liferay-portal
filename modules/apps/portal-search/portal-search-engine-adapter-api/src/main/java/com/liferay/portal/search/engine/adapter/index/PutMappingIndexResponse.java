@@ -26,7 +26,7 @@ public class PutMappingIndexResponse implements IndexResponse {
 		_acknowledged = acknowledged;
 	}
 
-	public boolean getAcknowledged() {
+	public boolean isAcknowledged() {
 		return _acknowledged;
 	}
 
