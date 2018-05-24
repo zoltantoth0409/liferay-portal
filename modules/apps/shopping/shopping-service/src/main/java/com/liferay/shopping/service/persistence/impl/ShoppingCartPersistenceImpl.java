@@ -1215,12 +1215,6 @@ public class ShoppingCartPersistenceImpl extends BasePersistenceImpl<ShoppingCar
 					result = shoppingCart;
 
 					cacheResult(shoppingCart);
-
-					if ((shoppingCart.getGroupId() != groupId) ||
-							(shoppingCart.getUserId() != userId)) {
-						finderCache.putResult(FINDER_PATH_FETCH_BY_G_U,
-							finderArgs, shoppingCart);
-					}
 				}
 			}
 			catch (Exception e) {

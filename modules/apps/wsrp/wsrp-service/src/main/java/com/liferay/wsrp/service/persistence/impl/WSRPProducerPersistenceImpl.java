@@ -775,13 +775,6 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 					result = wsrpProducer;
 
 					cacheResult(wsrpProducer);
-
-					if ((wsrpProducer.getUuid() == null) ||
-							!wsrpProducer.getUuid().equals(uuid) ||
-							(wsrpProducer.getGroupId() != groupId)) {
-						finderCache.putResult(FINDER_PATH_FETCH_BY_UUID_G,
-							finderArgs, wsrpProducer);
-					}
 				}
 			}
 			catch (Exception e) {

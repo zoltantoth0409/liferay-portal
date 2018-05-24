@@ -1304,13 +1304,6 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 					result = calendarBooking;
 
 					cacheResult(calendarBooking);
-
-					if ((calendarBooking.getUuid() == null) ||
-							!calendarBooking.getUuid().equals(uuid) ||
-							(calendarBooking.getGroupId() != groupId)) {
-						finderCache.putResult(FINDER_PATH_FETCH_BY_UUID_G,
-							finderArgs, calendarBooking);
-					}
 				}
 			}
 			catch (Exception e) {
@@ -3705,12 +3698,6 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 					result = calendarBooking;
 
 					cacheResult(calendarBooking);
-
-					if ((calendarBooking.getCalendarId() != calendarId) ||
-							(calendarBooking.getParentCalendarBookingId() != parentCalendarBookingId)) {
-						finderCache.putResult(FINDER_PATH_FETCH_BY_C_P,
-							finderArgs, calendarBooking);
-					}
 				}
 			}
 			catch (Exception e) {
@@ -3943,13 +3930,6 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 					result = calendarBooking;
 
 					cacheResult(calendarBooking);
-
-					if ((calendarBooking.getCalendarId() != calendarId) ||
-							(calendarBooking.getVEventUid() == null) ||
-							!calendarBooking.getVEventUid().equals(vEventUid)) {
-						finderCache.putResult(FINDER_PATH_FETCH_BY_C_V,
-							finderArgs, calendarBooking);
-					}
 				}
 			}
 			catch (Exception e) {

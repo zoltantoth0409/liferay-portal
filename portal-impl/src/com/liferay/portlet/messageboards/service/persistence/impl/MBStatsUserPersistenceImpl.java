@@ -1215,12 +1215,6 @@ public class MBStatsUserPersistenceImpl extends BasePersistenceImpl<MBStatsUser>
 					result = mbStatsUser;
 
 					cacheResult(mbStatsUser);
-
-					if ((mbStatsUser.getGroupId() != groupId) ||
-							(mbStatsUser.getUserId() != userId)) {
-						finderCache.putResult(FINDER_PATH_FETCH_BY_G_U,
-							finderArgs, mbStatsUser);
-					}
 				}
 			}
 			catch (Exception e) {

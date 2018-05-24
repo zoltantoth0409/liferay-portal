@@ -723,12 +723,6 @@ public class ShoppingCouponPersistenceImpl extends BasePersistenceImpl<ShoppingC
 					result = shoppingCoupon;
 
 					cacheResult(shoppingCoupon);
-
-					if ((shoppingCoupon.getCode() == null) ||
-							!shoppingCoupon.getCode().equals(code)) {
-						finderCache.putResult(FINDER_PATH_FETCH_BY_CODE,
-							finderArgs, shoppingCoupon);
-					}
 				}
 			}
 			catch (Exception e) {

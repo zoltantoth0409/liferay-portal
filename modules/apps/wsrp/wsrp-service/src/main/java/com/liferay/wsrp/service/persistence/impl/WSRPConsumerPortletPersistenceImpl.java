@@ -1913,14 +1913,6 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 					result = wsrpConsumerPortlet;
 
 					cacheResult(wsrpConsumerPortlet);
-
-					if ((wsrpConsumerPortlet.getWsrpConsumerId() != wsrpConsumerId) ||
-							(wsrpConsumerPortlet.getPortletHandle() == null) ||
-							!wsrpConsumerPortlet.getPortletHandle()
-													.equals(portletHandle)) {
-						finderCache.putResult(FINDER_PATH_FETCH_BY_W_P,
-							finderArgs, wsrpConsumerPortlet);
-					}
 				}
 			}
 			catch (Exception e) {

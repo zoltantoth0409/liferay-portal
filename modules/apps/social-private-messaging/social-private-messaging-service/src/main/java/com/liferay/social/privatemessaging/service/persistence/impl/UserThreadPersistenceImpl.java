@@ -1233,12 +1233,6 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 					result = userThread;
 
 					cacheResult(userThread);
-
-					if ((userThread.getUserId() != userId) ||
-							(userThread.getMbThreadId() != mbThreadId)) {
-						finderCache.putResult(FINDER_PATH_FETCH_BY_U_M,
-							finderArgs, userThread);
-					}
 				}
 			}
 			catch (Exception e) {

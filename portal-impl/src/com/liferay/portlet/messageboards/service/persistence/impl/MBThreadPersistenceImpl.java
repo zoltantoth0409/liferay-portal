@@ -785,13 +785,6 @@ public class MBThreadPersistenceImpl extends BasePersistenceImpl<MBThread>
 					result = mbThread;
 
 					cacheResult(mbThread);
-
-					if ((mbThread.getUuid() == null) ||
-							!mbThread.getUuid().equals(uuid) ||
-							(mbThread.getGroupId() != groupId)) {
-						finderCache.putResult(FINDER_PATH_FETCH_BY_UUID_G,
-							finderArgs, mbThread);
-					}
 				}
 			}
 			catch (Exception e) {
@@ -2469,11 +2462,6 @@ public class MBThreadPersistenceImpl extends BasePersistenceImpl<MBThread>
 					result = mbThread;
 
 					cacheResult(mbThread);
-
-					if ((mbThread.getRootMessageId() != rootMessageId)) {
-						finderCache.putResult(FINDER_PATH_FETCH_BY_ROOTMESSAGEID,
-							finderArgs, mbThread);
-					}
 				}
 			}
 			catch (Exception e) {

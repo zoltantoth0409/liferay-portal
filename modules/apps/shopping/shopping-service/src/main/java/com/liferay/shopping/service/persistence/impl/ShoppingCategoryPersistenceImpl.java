@@ -2039,13 +2039,6 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 					result = shoppingCategory;
 
 					cacheResult(shoppingCategory);
-
-					if ((shoppingCategory.getGroupId() != groupId) ||
-							(shoppingCategory.getName() == null) ||
-							!shoppingCategory.getName().equals(name)) {
-						finderCache.putResult(FINDER_PATH_FETCH_BY_G_N,
-							finderArgs, shoppingCategory);
-					}
 				}
 			}
 			catch (Exception e) {

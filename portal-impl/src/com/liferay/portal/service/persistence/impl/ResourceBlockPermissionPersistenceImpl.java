@@ -1248,12 +1248,6 @@ public class ResourceBlockPermissionPersistenceImpl extends BasePersistenceImpl<
 					result = resourceBlockPermission;
 
 					cacheResult(resourceBlockPermission);
-
-					if ((resourceBlockPermission.getResourceBlockId() != resourceBlockId) ||
-							(resourceBlockPermission.getRoleId() != roleId)) {
-						finderCache.putResult(FINDER_PATH_FETCH_BY_R_R,
-							finderArgs, resourceBlockPermission);
-					}
 				}
 			}
 			catch (Exception e) {

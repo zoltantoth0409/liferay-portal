@@ -1084,12 +1084,6 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 					result = shoppingOrder;
 
 					cacheResult(shoppingOrder);
-
-					if ((shoppingOrder.getNumber() == null) ||
-							!shoppingOrder.getNumber().equals(number)) {
-						finderCache.putResult(FINDER_PATH_FETCH_BY_NUMBER,
-							finderArgs, shoppingOrder);
-					}
 				}
 			}
 			catch (Exception e) {
@@ -1329,12 +1323,6 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 					result = shoppingOrder;
 
 					cacheResult(shoppingOrder);
-
-					if ((shoppingOrder.getPpTxnId() == null) ||
-							!shoppingOrder.getPpTxnId().equals(ppTxnId)) {
-						finderCache.putResult(FINDER_PATH_FETCH_BY_PPTXNID,
-							finderArgs, shoppingOrder);
-					}
 				}
 			}
 			catch (Exception e) {

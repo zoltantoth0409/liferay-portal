@@ -790,13 +790,6 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 					result = mbMessage;
 
 					cacheResult(mbMessage);
-
-					if ((mbMessage.getUuid() == null) ||
-							!mbMessage.getUuid().equals(uuid) ||
-							(mbMessage.getGroupId() != groupId)) {
-						finderCache.putResult(FINDER_PATH_FETCH_BY_UUID_G,
-							finderArgs, mbMessage);
-					}
 				}
 			}
 			catch (Exception e) {
