@@ -199,7 +199,7 @@ public class PortletConfigImpl implements LiferayPortletConfig {
 
 	@Override
 	public Map<String, QName> getPublicRenderParameterDefinitions() {
-		Map<String, QName> publicRenderParameterMap = new HashMap<>();
+		Map<String, QName> publicRenderParameterDefinitions = new HashMap<>();
 
 		for (PublicRenderParameter publicRenderParameter :
 				_portlet.getPublicRenderParameters()) {
@@ -207,14 +207,14 @@ public class PortletConfigImpl implements LiferayPortletConfig {
 			com.liferay.portal.kernel.xml.QName qName =
 				publicRenderParameter.getQName();
 
-			publicRenderParameterMap.put(
+			publicRenderParameterDefinitions.put(
 				publicRenderParameter.getIdentifier(),
 				new QName(
 					qName.getNamespaceURI(), qName.getLocalPart(),
 					qName.getNamespacePrefix()));
 		}
 
-		return publicRenderParameterMap;
+		return publicRenderParameterDefinitions;
 	}
 
 	@Override
