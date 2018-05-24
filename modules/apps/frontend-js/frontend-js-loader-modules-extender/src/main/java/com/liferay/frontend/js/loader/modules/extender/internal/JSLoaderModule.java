@@ -306,10 +306,8 @@ public class JSLoaderModule {
 					_log.isWarnEnabled()) {
 
 					_log.warn(
-						StringBundler.concat(
-							"Liferay-Export-JS-Submodules is deprecated. ",
-							"Please use Liferay-JS-Submodules-Export ",
-							"instead."));
+						"Liferay-Export-JS-Submodules is deprecated and " +
+							"renamed to Liferay-JS-Submodules-Export");
 				}
 			}
 
