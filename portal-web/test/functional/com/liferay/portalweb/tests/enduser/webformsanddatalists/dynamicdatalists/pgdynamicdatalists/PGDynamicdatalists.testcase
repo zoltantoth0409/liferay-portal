@@ -1439,7 +1439,7 @@
 		</execute>
 	</command>
 
-	<command ignore="true" name="ViewDateFieldPredefinedValue" priority="3">
+	<command name="ViewDateFieldPredefinedValue" priority="3">
 		<execute macro="Navigator#openURL" />
 
 		<execute macro="ProductMenu#gotoPortlet">
