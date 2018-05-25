@@ -570,9 +570,7 @@
 			<var name="portlet" value="Knowledge Base" />
 		</execute>
 
-		<var name="entries" value="2010,2017" />
-
-		<for list="${entries}" param="kbEntry">
+		<for list="2010,2017" param="kbEntry">
 			<execute macro="Navigator#openURL" />
 
 			<execute macro="ProductMenu#gotoPortlet">
