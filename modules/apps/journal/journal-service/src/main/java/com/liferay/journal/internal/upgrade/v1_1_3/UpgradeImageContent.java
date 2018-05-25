@@ -80,11 +80,7 @@ public class UpgradeImageContent extends UpgradeProcess {
 						fileEntryId);
 				}
 				catch (PortalException pe) {
-					_log.error(
-						StringBundler.concat(
-							"Unable to get file entry with file entry id ",
-							String.valueOf(fileEntryId)),
-						pe);
+					_log.error("Unable to get file entry " + fileEntryId, pe);
 				}
 
 				if (fileEntry == null) {
