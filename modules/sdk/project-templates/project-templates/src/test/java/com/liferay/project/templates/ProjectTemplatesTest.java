@@ -85,7 +85,6 @@ import org.gradle.testkit.runner.GradleRunner;
 import org.gradle.testkit.runner.TaskOutcome;
 
 import org.junit.Assert;
-import org.junit.Assume;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Rule;
@@ -1177,8 +1176,6 @@ public class ProjectTemplatesTest {
 
 	@Test
 	public void testBuildTemplateSoyPortlet() throws Exception {
-		Assume.assumeFalse(Validator.isNotNull(System.getenv("JENKINS_HOME")));
-
 		File gradleProjectDir = _buildTemplateWithGradle(
 			"soy-portlet", "foo", "--package-name", "com.liferay.test");
 
@@ -1251,6 +1248,11 @@ public class ProjectTemplatesTest {
 			mavenPackageJsonPath,
 			mavenPackageJSON.getBytes(StandardCharsets.UTF_8));
 
+		if (Validator.isNotNull(System.getenv("JENKINS_HOME"))) {
+			_updateExecuteNpmTask(gradleProjectDir);
+			_updateNpmConfiguration(mavenProjectDir);
+		}
+
 		_buildProjects(gradleProjectDir, mavenProjectDir);
 
 		File gradleJarFile = new File(
@@ -1263,8 +1265,6 @@ public class ProjectTemplatesTest {
 
 	@Test
 	public void testBuildTemplateSoyPortlet71() throws Exception {
-		Assume.assumeFalse(Validator.isNotNull(System.getenv("JENKINS_HOME")));
-
 		File gradleProjectDir = _buildTemplateWithGradle(
 			"soy-portlet", "foo", "--package-name", "com.liferay.test",
 			"--liferayVersion", "7.1");
@@ -1339,6 +1339,11 @@ public class ProjectTemplatesTest {
 		Files.write(
 			mavenPackageJsonPath,
 			mavenPackageJSON.getBytes(StandardCharsets.UTF_8));
+
+		if (Validator.isNotNull(System.getenv("JENKINS_HOME"))) {
+			_updateExecuteNpmTask(gradleProjectDir);
+			_updateNpmConfiguration(mavenProjectDir);
+		}
 
 		_buildProjects(gradleProjectDir, mavenProjectDir);
 
