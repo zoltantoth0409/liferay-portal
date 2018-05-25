@@ -104,27 +104,34 @@ public class NPMResolverImpl implements NPMResolver {
 
 	private Map<String, String> _loadPackageNamesMap(Bundle bundle) {
 		try {
-			URL url = bundle.getResource("META-INF/resources/manifest.json");
 			Map<String, String> map = new HashMap<>();
+
+			URL url = bundle.getResource("META-INF/resources/manifest.json");
 
 			if (url != null) {
 				String content = StringUtil.read(url.openStream());
 
 				JSONObject jsonObject = _jsonFactory.createJSONObject(content);
 
-				JSONObject pkgs = jsonObject.getJSONObject("packages");
+				JSONObject packagesJSONObject = jsonObject.getJSONObject(
+					"packages");
 
-				Iterator<String> pkgIds = pkgs.keys();
+				Iterator<String> packageIds = packagesJSONObject.keys();
 
-				while (pkgIds.hasNext()) {
-					String pkgId = pkgIds.next();
+				while (packageIds.hasNext()) {
+					String packageId = packageIds.next();
 
-					JSONObject pkg = pkgs.getJSONObject(pkgId);
+					JSONObject packageJSONObject =
+						packagesJSONObject.getJSONObject(packageId);
 
-					JSONObject src = pkg.getJSONObject("src");
-					JSONObject dest = pkg.getJSONObject("dest");
+					JSONObject srcJSONObject = packageJSONObject.getJSONObject(
+						"src");
+					JSONObject destJSONObject = packageJSONObject.getJSONObject(
+						"dest");
 
-					map.put(src.getString("name"), dest.getString("name"));
+					map.put(
+						srcJSONObject.getString("name"),
+						destJSONObject.getString("name"));
 				}
 			}
 
@@ -137,6 +144,11 @@ public class NPMResolverImpl implements NPMResolver {
 
 	private String _resolveJSPackageIdentifier(Bundle bundle) {
 		try {
+			StringBundler sb = new StringBundler(5);
+
+			sb.append(bundle.getBundleId());
+			sb.append(StringPool.SLASH);
+
 			URL url = bundle.getResource("META-INF/resources/package.json");
 
 			String content = StringUtil.read(url.openStream());
@@ -144,14 +156,13 @@ public class NPMResolverImpl implements NPMResolver {
 			JSONObject jsonObject = _jsonFactory.createJSONObject(content);
 
 			String name = jsonObject.getString("name");
+
+			sb.append(name);
+
+			sb.append(StringPool.AT);
+
 			String version = jsonObject.getString("version");
 
-			StringBundler sb = new StringBundler(5);
-
-			sb.append(bundle.getBundleId());
-			sb.append(StringPool.SLASH);
-			sb.append(name);
-			sb.append(StringPool.AT);
 			sb.append(version);
 
 			return sb.toString();
