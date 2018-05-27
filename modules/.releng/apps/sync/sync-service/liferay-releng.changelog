@@ -277,3 +277,8 @@ a01aa2af7c420e8d6223be30daf1aca9100ebd16^..08bfbac638ee910192aea8d2aee0425f40fba
 # Bundle Version 1.6.9
 #
 08bfbac638ee910192aea8d2aee0425f40fba90d^..1999e34ac34b9284f67dea6f485ef4ce980ecacd=LPS-80723 LPS-81316
+
+#
+# Bundle Version 1.6.10
+#
+1999e34ac34b9284f67dea6f485ef4ce980ecacd^..c545ea2ed703d858d2cd533587e566b9abf2b00d=SYNC-1770
