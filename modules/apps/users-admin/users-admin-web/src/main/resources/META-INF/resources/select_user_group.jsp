@@ -22,13 +22,13 @@ String eventName = ParamUtil.getString(request, "eventName", liferayPortletRespo
 
 User selUser = PortalUtil.getSelectedUser(request);
 
-renderResponse.setTitle(LanguageUtil.get(request, "user-groups"));
-
 SelectUserGroupManagementToolbarDisplayContext SelectUserGroupManagementToolbarDisplayContext = new SelectUserGroupManagementToolbarDisplayContext(request, renderRequest, renderResponse);
 
 PortletURL portletURL = SelectUserGroupManagementToolbarDisplayContext.getPortletURL();
 
 SearchContainer userGroupSearch = SelectUserGroupManagementToolbarDisplayContext.getSearchContainer(filterManageableUserGroups);
+
+renderResponse.setTitle(LanguageUtil.get(request, "user-groups"));
 %>
 
 <clay:navigation-bar
