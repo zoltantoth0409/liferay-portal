@@ -73,7 +73,8 @@ class FragmentsEditor extends Component {
 				}
 			).then(
 				() => {
-					this._lastSaveDate = new Date().toLocaleTimeString();
+					this._lastSaveDate = new Date().toLocaleTimeString(
+						Liferay.ThemeDisplay.getBCP47LanguageId());
 
 					this._dirty = false;
 				}
@@ -372,7 +373,8 @@ class FragmentsEditor extends Component {
 						}
 					).then(
 						() => {
-							this._lastSaveDate = new Date().toLocaleTimeString();
+							this._lastSaveDate = new Date().toLocaleTimeString(
+								Liferay.ThemeDisplay.getBCP47LanguageId());
 
 							this._dirty = false;
 
@@ -429,7 +431,8 @@ class FragmentsEditor extends Component {
 				}
 			).then(
 				() => {
-					this._lastSaveDate = new Date().toLocaleTimeString();
+					this._lastSaveDate = new Date().toLocaleTimeString(
+						Liferay.ThemeDisplay.getBCP47LanguageId());
 
 					this._dirty = false;
 				}
@@ -722,7 +725,8 @@ class FragmentsEditor extends Component {
 				}
 			).then(
 				() => {
-					this._lastSaveDate = new Date().toLocaleTimeString();
+					this._lastSaveDate = new Date().toLocaleTimeString(
+						Liferay.ThemeDisplay.getBCP47LanguageId());
 
 					this._translationStatus = this._getTranslationStatus(
 						Object.keys(this.availableLanguages).filter(languageId => languageId !== '_INJECTED_DATA_'),
