@@ -996,7 +996,7 @@ FragmentsEditor.STATE = {
 	 * @type {!string}
 	 */
 
-	publishLayoutPageTemplateEntryURL: Config.string().required(),
+	publishLayoutPageTemplateEntryURL: Config.string(),
 
 	/**
 	 * URL for redirect.
