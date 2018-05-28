@@ -31,18 +31,17 @@ int end = startAndEnd[1];
 List repositoryEntries = null;
 int repositoryEntriesCount = 0;
 
+long groupId = dlItemSelectorViewDisplayContext.getStagingAwareGroupId(themeDisplay.getScopeGroupId());
 long folderId = dlItemSelectorViewDisplayContext.getFolderId(request);
 String[] mimeTypes = dlItemSelectorViewDisplayContext.getMimeTypes();
-
-long groupId = dlItemSelectorViewDisplayContext.getStagingAwareGroupId(themeDisplay.getScopeGroupId());
 
 if (dlItemSelectorViewDisplayContext.isSearch()) {
 	SearchContext searchContext = SearchContextFactory.getInstance(request);
 
-	searchContext.setGroupIds(new long[] {groupId});
 	searchContext.setAttribute("mimeTypes", mimeTypes);
 	searchContext.setEnd(end);
 	searchContext.setFolderIds(new long[] {dlItemSelectorViewDisplayContext.getFolderId(request)});
+	searchContext.setGroupIds(new long[] {groupId});
 	searchContext.setStart(start);
 
 	Hits hits = DLAppServiceUtil.search(groupId, searchContext);
