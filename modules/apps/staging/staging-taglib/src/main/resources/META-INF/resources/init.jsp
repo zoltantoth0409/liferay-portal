@@ -150,8 +150,6 @@ PortletRequest portletRequest = (PortletRequest)request.getAttribute(JavaConstan
 
 PortletResponse portletResponse = (PortletResponse)request.getAttribute(JavaConstants.JAVAX_PORTLET_RESPONSE);
 
-StagingGroupHelper stagingGroupHelper = StagingGroupHelperUtil.getStagingGroupHelper();
-
 if ((portletRequest == null) || (portletResponse == null)) {
 	currentURL = PortalUtil.getCurrentURL(request);
 }
