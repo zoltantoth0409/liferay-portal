@@ -399,8 +399,8 @@ public class UpgradeJournal extends BaseUpgradePortletPreferences {
 	protected void updateAssetEntryClassTypeId() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement ps1 = connection.prepareStatement(
-				"select companyId, groupId, resourcePrimKey, structureId " +
-					"from JournalArticle where structureId != ''");
+				"select distinct companyId, groupId, resourcePrimKey, " +
+					"structureId from JournalArticle where structureId != ''");
 			ResultSet rs = ps1.executeQuery()) {
 
 			long classNameId = PortalUtil.getClassNameId(
