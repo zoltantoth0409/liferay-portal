@@ -448,8 +448,8 @@ public class DLPortletInstanceSettingsHelper {
 	private static final Map<String, String> _displayViews = new HashMap();
 
 	static {
-		_displayViews.put("icon", "cards");
 		_displayViews.put("descriptive", "list");
+		_displayViews.put("icon", "cards");
 		_displayViews.put("list", "table");
 	}
 
