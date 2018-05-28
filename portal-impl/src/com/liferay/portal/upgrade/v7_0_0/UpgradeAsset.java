@@ -95,10 +95,10 @@ public class UpgradeAsset extends UpgradeProcess {
 		sb.append("JournalArticle.resourcePrimKey as primKey, ");
 		sb.append("max(JournalArticle.version) as maxVersion from ");
 		sb.append("JournalArticle group by JournalArticle.resourcePrimKey) ");
-		sb.append("temp_table inner join JournalArticle on ");
-		sb.append("(JournalArticle.resourcePrimKey = temp_table.primKey and ");
+		sb.append("TEMP_TABLE inner join JournalArticle on ");
+		sb.append("(JournalArticle.resourcePrimKey = TEMP_TABLE.primKey and ");
 		sb.append("JournalArticle.indexable = ? and JournalArticle.status = ");
-		sb.append("0 and JournalArticle.version = temp_table.maxVersion))");
+		sb.append("0 and JournalArticle.version = TEMP_TABLE.maxVersion))");
 
 		long classNameId = PortalUtil.getClassNameId(
 			"com.liferay.portlet.journal.model.JournalArticle");
