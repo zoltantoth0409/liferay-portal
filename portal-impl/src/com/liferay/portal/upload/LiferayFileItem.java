@@ -125,11 +125,11 @@ public class LiferayFileItem extends DiskFileItem implements FileItem {
 
 	@Override
 	public Collection<String> getHeaderNames() {
+		List<String> headerNames = new ArrayList<>();
+
 		FileItemHeaders fileItemHeaders = getHeaders();
 
 		Iterator<String> itr = fileItemHeaders.getHeaderNames();
-
-		List<String> headerNames = new ArrayList<>();
 
 		itr.forEachRemaining(headerNames::add);
 
@@ -138,11 +138,11 @@ public class LiferayFileItem extends DiskFileItem implements FileItem {
 
 	@Override
 	public Collection<String> getHeaders(String name) {
+		List<String> headers = new ArrayList<>();
+
 		FileItemHeaders fileItemHeaders = getHeaders();
 
 		Iterator<String> itr = fileItemHeaders.getHeaders(name);
-
-		List<String> headers = new ArrayList<>();
 
 		itr.forEachRemaining(headers::add);
 
