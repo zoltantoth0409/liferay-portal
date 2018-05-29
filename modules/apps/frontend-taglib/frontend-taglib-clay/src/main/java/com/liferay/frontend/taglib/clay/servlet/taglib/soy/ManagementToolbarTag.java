@@ -66,7 +66,7 @@ public class ManagementToolbarTag extends BaseClayTag {
 		if (searchFormMethod.equals("GET") &&
 			Validator.isNotNull(searchActionURL)) {
 
-			Map<String, Object> searchData = _getSearchDataFromURL(
+			Map<String, Object> searchData = _getSearchData(
 				searchActionURL);
 
 			putValue("searchData", searchData);
@@ -225,12 +225,12 @@ public class ManagementToolbarTag extends BaseClayTag {
 		return _NAMESPACED_PARAMS;
 	}
 
-	private Map<String, Object> _getSearchDataFromURL(String searchActionURL) {
+	private Map<String, Object> _getSearchData(String searchActionURL) {
+		Map<String, Object> searchData = new HashMap<>();
+
 		String queryString = HttpUtil.getQueryString(searchActionURL);
 
 		String[] parameters = StringUtil.split(queryString, CharPool.AMPERSAND);
-
-		Map<String, Object> searchData = new HashMap<>();
 
 		for (String parameter : parameters) {
 			if (parameter.length() == 0) {
