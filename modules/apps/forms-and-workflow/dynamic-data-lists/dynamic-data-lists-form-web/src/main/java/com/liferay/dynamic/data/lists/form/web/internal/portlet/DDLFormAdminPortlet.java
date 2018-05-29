@@ -512,6 +512,7 @@ public class DDLFormAdminPortlet extends MVCPortlet {
 
 	@Reference(
 		cardinality = ReferenceCardinality.OPTIONAL,
+		policy = ReferencePolicy.DYNAMIC,
 		policyOption = ReferencePolicyOption.GREEDY,
 		target = "(proxy.bean=false)"
 	)

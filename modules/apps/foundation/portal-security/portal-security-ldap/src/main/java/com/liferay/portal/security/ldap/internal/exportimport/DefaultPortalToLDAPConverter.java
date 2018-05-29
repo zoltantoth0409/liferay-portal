@@ -62,6 +62,7 @@ import javax.naming.ldap.Rdn;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferencePolicy;
 import org.osgi.service.component.annotations.ReferencePolicyOption;
 
 /**
@@ -620,7 +621,10 @@ public class DefaultPortalToLDAPConverter implements PortalToLDAPConverter {
 		_passwordEncryptor = passwordEncryptor;
 	}
 
-	@Reference(policyOption = ReferencePolicyOption.GREEDY, unbind = "-")
+	@Reference(
+		policy = ReferencePolicy.DYNAMIC,
+		policyOption = ReferencePolicyOption.GREEDY, unbind = "-"
+	)
 	protected void setPortalLDAP(PortalLDAP portalLDAP) {
 		_portalLDAP = portalLDAP;
 	}

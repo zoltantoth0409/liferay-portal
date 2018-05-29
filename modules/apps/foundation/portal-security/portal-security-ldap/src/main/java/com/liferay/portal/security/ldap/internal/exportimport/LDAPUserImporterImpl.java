@@ -104,6 +104,7 @@ import org.apache.commons.lang.time.StopWatch;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferencePolicy;
 import org.osgi.service.component.annotations.ReferencePolicyOption;
 
 /**
@@ -454,14 +455,20 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 		}
 	}
 
-	@Reference(policyOption = ReferencePolicyOption.GREEDY, unbind = "-")
+	@Reference(
+		policy = ReferencePolicy.DYNAMIC,
+		policyOption = ReferencePolicyOption.GREEDY, unbind = "-"
+	)
 	public void setAttributesTransformer(
 		AttributesTransformer attributesTransformer) {
 
 		_attributesTransformer = attributesTransformer;
 	}
 
-	@Reference(policyOption = ReferencePolicyOption.GREEDY, unbind = "-")
+	@Reference(
+		policy = ReferencePolicy.DYNAMIC,
+		policyOption = ReferencePolicyOption.GREEDY, unbind = "-"
+	)
 	public void setLDAPToPortalConverter(
 		LDAPToPortalConverter ldapToPortalConverter) {
 
@@ -1382,7 +1389,10 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 		_lockManager = lockManager;
 	}
 
-	@Reference(policyOption = ReferencePolicyOption.GREEDY, unbind = "-")
+	@Reference(
+		policy = ReferencePolicy.DYNAMIC,
+		policyOption = ReferencePolicyOption.GREEDY, unbind = "-"
+	)
 	protected void setPortalLDAP(PortalLDAP portalLDAP) {
 		_portalLDAP = portalLDAP;
 	}
