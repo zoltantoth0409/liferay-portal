@@ -243,16 +243,16 @@ public class ManagementToolbarTag extends BaseClayTag {
 				continue;
 			}
 
-			String key = parameterParts[0];
-			String value = StringPool.BLANK;
+			String parameterName = parameterParts[0];
+			String parameterValue = StringPool.BLANK;
 
 			if (parameterParts.length > 1) {
-				value = parameterParts[1];
+				parameterValue = parameterParts[1];
 			}
 
-			value = HttpUtil.decodeURL(value);
+			parameterValue = HttpUtil.decodeURL(parameterValue);
 
-			searchData.put(key, value);
+			searchData.put(parameterName, parameterValue);
 		}
 
 		return searchData;
