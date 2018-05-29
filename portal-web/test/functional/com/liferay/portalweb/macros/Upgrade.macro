@@ -987,7 +987,7 @@
 
 		<execute macro="DMDocument#expandInfo" />
 
-		<execute function="AssertTextEquals" locator1="DocumentsAndMediaDocument#DOCUMENT_DETAILS_VERSION" value1="1.0">
+		<!-- <execute function="AssertTextEquals" locator1="DocumentsAndMediaDocument#DOCUMENT_DETAILS_VERSION" value1="1.0">
 			<var name="key_dmDocumentVersionNumber" value="1.0" />
 		</execute>
 
@@ -996,7 +996,7 @@
 			<var name="key_dmDocumentSize" value="22KB" />
 		</execute>
 
-		<!-- <execute macro="Navigator#gotoPage">
+		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Message Boards" />
 		</execute>
 
