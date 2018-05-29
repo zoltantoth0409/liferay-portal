@@ -135,7 +135,7 @@
 </tr>
 <tr>
 	<td>WORD</td>
-	<td>//h1[@class='head-entry']/span[contains(.,'${key_dictionaryTerm}')]</td>
+	<td>//h1[contains(.,'${key_dictionaryTerm}')]</td>
 	<td></td>
 </tr>
 </tbody>
