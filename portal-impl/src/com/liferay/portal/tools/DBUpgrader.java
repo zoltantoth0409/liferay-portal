@@ -301,6 +301,20 @@ public class DBUpgrader {
 		serviceRegistrar.registerService(Release.class, release, properties);
 	}
 
+	private static void _checkClassNamesAndResourceActions() {
+		if (_log.isDebugEnabled()) {
+			_log.debug("Check class names");
+		}
+
+		ClassNameLocalServiceUtil.checkClassNames();
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("Check resource actions");
+		}
+
+		ResourceActionLocalServiceUtil.checkResourceActions();
+	}
+
 	private static void _checkPermissionAlgorithm() throws Exception {
 		long count = _getResourceCodesCount();
 
@@ -391,20 +405,6 @@ public class DBUpgrader {
 		finally {
 			DataAccess.cleanUp(con, ps, rs);
 		}
-	}
-
-	private static void _checkClassNamesAndResourceActions() {
-		if (_log.isDebugEnabled()) {
-			_log.debug("Check class names");
-		}
-
-		ClassNameLocalServiceUtil.checkClassNames();
-
-		if (_log.isDebugEnabled()) {
-			_log.debug("Check resource actions");
-		}
-
-		ResourceActionLocalServiceUtil.checkResourceActions();
 	}
 
 	private static void _registerModuleServiceLifecycle(
