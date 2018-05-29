@@ -381,7 +381,7 @@ public class EditEntryMVCActionCommand extends BaseMVCActionCommand {
 
 	@Reference(
 		policy = ReferencePolicy.DYNAMIC,
-		policyOption = ReferencePolicyOption.GREEDY, unbind = "-"
+		policyOption = ReferencePolicyOption.GREEDY
 	)
 	protected void setBlogsEntryAttachmentContentUpdater(
 		BlogsEntryAttachmentContentUpdater blogsEntryAttachmentContentUpdater) {
@@ -412,6 +412,10 @@ public class EditEntryMVCActionCommand extends BaseMVCActionCommand {
 			WebKeys.THEME_DISPLAY);
 
 		_blogsEntryService.subscribe(themeDisplay.getScopeGroupId());
+	}
+
+	protected void unsetBlogsEntryAttachmentContentUpdater(
+		BlogsEntryAttachmentContentUpdater blogsEntryAttachmentContentUpdater) {
 	}
 
 	protected void unsubscribe(ActionRequest actionRequest) throws Exception {

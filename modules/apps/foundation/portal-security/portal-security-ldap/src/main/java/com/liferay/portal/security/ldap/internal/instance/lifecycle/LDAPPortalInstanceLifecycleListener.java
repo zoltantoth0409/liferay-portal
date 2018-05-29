@@ -60,10 +60,13 @@ public class LDAPPortalInstanceLifecycleListener
 
 	@Reference(
 		policy = ReferencePolicy.DYNAMIC,
-		policyOption = ReferencePolicyOption.GREEDY, unbind = "-"
+		policyOption = ReferencePolicyOption.GREEDY
 	)
 	protected void setUserImporter(UserImporter userImporter) {
 		_userImporter = userImporter;
+	}
+
+	protected void unsetUserImporter(UserImporter userImporter) {
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

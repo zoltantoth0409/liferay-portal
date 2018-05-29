@@ -442,8 +442,7 @@ public class BlogsEntryStagedModelDataHandler
 	@Reference(
 		policy = ReferencePolicy.DYNAMIC,
 		policyOption = ReferencePolicyOption.GREEDY,
-		target = "(model.class.name=com.liferay.blogs.kernel.model.BlogsEntry)",
-		unbind = "-"
+		target = "(model.class.name=com.liferay.blogs.kernel.model.BlogsEntry)"
 	)
 	protected void setExportImportContentProcessor(
 		ExportImportContentProcessor<String> exportImportContentProcessor) {
@@ -454,6 +453,10 @@ public class BlogsEntryStagedModelDataHandler
 	@Reference(unbind = "-")
 	protected void setImageLocalService(ImageLocalService imageLocalService) {
 		_imageLocalService = imageLocalService;
+	}
+
+	protected void unsetExportImportContentProcessor(
+		ExportImportContentProcessor<String> exportImportContentProcessor) {
 	}
 
 	private ImageSelector _getImageSelector(

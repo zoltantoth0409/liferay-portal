@@ -224,6 +224,10 @@ public class ResourcesImporterHotDeployMessageListener
 	protected void setRelease(Release release) {
 	}
 
+	protected void unsetDestinationFactory(
+		DestinationFactory destinationFactory) {
+	}
+
 	private void _importResources(
 			Company company, ServletContext servletContext,
 			PluginPackageProperties pluginPackageProperties,

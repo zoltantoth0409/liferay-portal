@@ -142,7 +142,7 @@ public class UserImportMessageListener extends BaseMessageListener {
 
 	@Reference(
 		policy = ReferencePolicy.DYNAMIC,
-		policyOption = ReferencePolicyOption.GREEDY, unbind = "-"
+		policyOption = ReferencePolicyOption.GREEDY
 	)
 	protected void setLdapUserImporter(LDAPUserImporter ldapUserImporter) {
 		_ldapUserImporter = ldapUserImporter;
@@ -153,6 +153,9 @@ public class UserImportMessageListener extends BaseMessageListener {
 		SchedulerEngineHelper schedulerEngineHelper) {
 
 		_schedulerEngineHelper = schedulerEngineHelper;
+	}
+
+	protected void unsetLdapUserImporter(LDAPUserImporter ldapUserImporter) {
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

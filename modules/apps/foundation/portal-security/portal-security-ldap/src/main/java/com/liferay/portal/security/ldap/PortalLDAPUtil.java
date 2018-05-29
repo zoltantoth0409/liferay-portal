@@ -271,10 +271,13 @@ public class PortalLDAPUtil {
 
 	@Reference(
 		policy = ReferencePolicy.DYNAMIC,
-		policyOption = ReferencePolicyOption.GREEDY, unbind = "-"
+		policyOption = ReferencePolicyOption.GREEDY
 	)
 	protected void setPortalLDAP(PortalLDAP portalLDAP) {
 		_portalLDAP = portalLDAP;
+	}
+
+	protected void unsetPortalLDAP(PortalLDAP portalLDAP) {
 	}
 
 	private static PortalLDAP _portalLDAP;
