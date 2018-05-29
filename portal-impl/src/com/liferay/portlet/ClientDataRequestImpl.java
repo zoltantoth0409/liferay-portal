@@ -107,12 +107,12 @@ public abstract class ClientDataRequestImpl
 			return Collections.emptySet();
 		}
 
+		List<Part> parts = new ArrayList<>();
+
 		Map<String, FileItem[]> multipartParameterMap =
 			uploadRequest.getMultipartParameterMap();
 
 		Portlet portlet = getPortlet();
-
-		List<Part> parts = new ArrayList<>();
 
 		for (Map.Entry<String, FileItem[]> entry :
 				multipartParameterMap.entrySet()) {
@@ -174,7 +174,10 @@ public abstract class ClientDataRequestImpl
 			}
 
 			if (request instanceof ServletRequestWrapper) {
-				request = ((ServletRequestWrapper)request).getRequest();
+				ServletRequestWrapper servletRequestWrapper =
+					(ServletRequestWrapper)request;
+
+				request = servletRequestWrapper.getRequest();
 			}
 			else {
 				return null;
