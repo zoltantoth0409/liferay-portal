@@ -17,8 +17,9 @@
 <%@ include file="/action/init.jsp" %>
 
 <%
-long actionGroupId = GetterUtil.getLong(typeSettingsProperties.getProperty("groupId"));
 boolean ajax = GetterUtil.getBoolean(request.getParameter("ajax"));
+
+long actionGroupId = GetterUtil.getLong(typeSettingsProperties.getProperty("groupId"));
 %>
 
 <aui:select label="site" name="groupId" onChange='<%= liferayPortletResponse.getNamespace() + "changeDisplay();" %>' required="<%= true %>">
