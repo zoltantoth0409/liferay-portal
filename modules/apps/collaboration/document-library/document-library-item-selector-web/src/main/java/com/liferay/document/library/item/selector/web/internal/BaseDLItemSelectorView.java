@@ -17,6 +17,7 @@ package com.liferay.document.library.item.selector.web.internal;
 import com.liferay.document.library.item.selector.web.internal.display.context.DLItemSelectorViewDisplayContext;
 import com.liferay.item.selector.ItemSelectorCriterion;
 import com.liferay.item.selector.ItemSelectorReturnTypeResolverHandler;
+import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ResourceBundleLoader;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
@@ -92,13 +93,18 @@ public abstract class BaseDLItemSelectorView<T extends ItemSelectorCriterion>
 		DLItemSelectorViewDisplayContext dlItemSelectorViewDisplayContext =
 			new DLItemSelectorViewDisplayContext(
 				t, this, _itemSelectorReturnTypeResolverHandler,
-				itemSelectedEventName, search, portletURL);
+				itemSelectedEventName, search, portletURL, _groupLocalService);
 
 		request.setAttribute(
 			DL_ITEM_SELECTOR_VIEW_DISPLAY_CONTEXT,
 			dlItemSelectorViewDisplayContext);
 
 		requestDispatcher.include(request, response);
+	}
+
+	@Reference(unbind = "-")
+	public void setGroupLocalService(GroupLocalService groupLocalService) {
+		_groupLocalService = groupLocalService;
 	}
 
 	@Reference(unbind = "-")
@@ -122,6 +128,7 @@ public abstract class BaseDLItemSelectorView<T extends ItemSelectorCriterion>
 		return LanguageResources.RESOURCE_BUNDLE_LOADER;
 	}
 
+	private GroupLocalService _groupLocalService;
 	private ItemSelectorReturnTypeResolverHandler
 		_itemSelectorReturnTypeResolverHandler;
 	private ServletContext _servletContext;

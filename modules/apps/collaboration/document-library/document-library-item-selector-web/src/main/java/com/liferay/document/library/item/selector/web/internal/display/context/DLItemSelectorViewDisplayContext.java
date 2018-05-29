@@ -14,14 +14,17 @@
 
 package com.liferay.document.library.item.selector.web.internal.display.context;
 
+import com.liferay.document.library.constants.DLPortletKeys;
 import com.liferay.document.library.item.selector.web.internal.DLItemSelectorView;
 import com.liferay.document.library.kernel.model.DLFolderConstants;
 import com.liferay.item.selector.ItemSelectorCriterion;
 import com.liferay.item.selector.ItemSelectorReturnTypeResolver;
 import com.liferay.item.selector.ItemSelectorReturnTypeResolverHandler;
+import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
+import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortletKeys;
 
@@ -42,7 +45,8 @@ public class DLItemSelectorViewDisplayContext<T extends ItemSelectorCriterion> {
 		T itemSelectorCriterion, DLItemSelectorView<T> dlItemSelectorView,
 		ItemSelectorReturnTypeResolverHandler
 			itemSelectorReturnTypeResolverHandler,
-		String itemSelectedEventName, boolean search, PortletURL portletURL) {
+		String itemSelectedEventName, boolean search, PortletURL portletURL,
+		GroupLocalService groupLocalService) {
 
 		_itemSelectorCriterion = itemSelectorCriterion;
 		_dlItemSelectorView = dlItemSelectorView;
@@ -51,6 +55,7 @@ public class DLItemSelectorViewDisplayContext<T extends ItemSelectorCriterion> {
 		_itemSelectedEventName = itemSelectedEventName;
 		_search = search;
 		_portletURL = portletURL;
+		_groupLocalService = groupLocalService;
 	}
 
 	public String[] getExtensions() {
@@ -96,6 +101,20 @@ public class DLItemSelectorViewDisplayContext<T extends ItemSelectorCriterion> {
 		return portletURL;
 	}
 
+	public long getStagingAwareGroupId(long scopeGroupId) {
+		long groupId = scopeGroupId;
+
+		Group group = _groupLocalService.fetchGroup(groupId);
+
+		if ((group != null) && group.isStagingGroup() &&
+			!group.isStagedPortlet(DLPortletKeys.DOCUMENT_LIBRARY)) {
+
+			groupId = group.getLiveGroupId();
+		}
+
+		return groupId;
+	}
+
 	public String getTitle(Locale locale) {
 		return _dlItemSelectorView.getTitle(locale);
 	}
@@ -120,6 +139,7 @@ public class DLItemSelectorViewDisplayContext<T extends ItemSelectorCriterion> {
 	}
 
 	private final DLItemSelectorView<T> _dlItemSelectorView;
+	private final GroupLocalService _groupLocalService;
 	private final String _itemSelectedEventName;
 	private final T _itemSelectorCriterion;
 	private final ItemSelectorReturnTypeResolverHandler
