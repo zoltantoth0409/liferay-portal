@@ -516,7 +516,7 @@ public class DDLFormAdminPortlet extends MVCPortlet {
 		policyOption = ReferencePolicyOption.GREEDY,
 		target = "(proxy.bean=false)"
 	)
-	private WorkflowDefinitionManager _workflowDefinitionManager;
+	private volatile WorkflowDefinitionManager _workflowDefinitionManager;
 
 	private WorkflowEngineManager _workflowEngineManager;
 
