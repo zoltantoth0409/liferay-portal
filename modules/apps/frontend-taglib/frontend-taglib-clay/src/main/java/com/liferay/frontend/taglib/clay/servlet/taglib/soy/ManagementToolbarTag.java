@@ -233,22 +233,26 @@ public class ManagementToolbarTag extends BaseClayTag {
 		Map<String, Object> searchData = new HashMap<>();
 
 		for (String parameter : parameters) {
-			if (parameter.length() > 0) {
-				String[] parameterParts = StringUtil.split(parameter, CharPool.EQUAL);
-
-				if (ArrayUtil.isNotEmpty(parameterParts)) {
-					String key = parameterParts[0];
-					String value = StringPool.BLANK;
-
-					if (parameterParts.length > 1) {
-						value = parameterParts[1];
-					}
-
-					value = HttpUtil.decodeURL(value);
-
-					searchData.put(key, value);
-				}
+			if (parameter.length() == 0) {
+				continue;
 			}
+
+			String[] parameterParts = StringUtil.split(parameter, CharPool.EQUAL);
+
+			if (ArrayUtil.isEmpty(parameterParts)) {
+				continue;
+			}
+
+			String key = parameterParts[0];
+			String value = StringPool.BLANK;
+
+			if (parameterParts.length > 1) {
+				value = parameterParts[1];
+			}
+
+			value = HttpUtil.decodeURL(value);
+
+			searchData.put(key, value);
 		}
 
 		return searchData;
