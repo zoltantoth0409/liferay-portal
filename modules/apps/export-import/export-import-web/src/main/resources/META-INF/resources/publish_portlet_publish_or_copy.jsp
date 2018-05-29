@@ -145,7 +145,7 @@ else {
 
 					String range = ParamUtil.getString(renderRequest, ExportImportDateUtil.RANGE, null);
 
-					PortletDataContext portletDataContext = PortletDataContextFactoryUtil.createPreparePortletDataContext(themeDisplay.getCompanyId(), workingGroupId, range != null ? range : defaultRange, startDate, endDate);
+					PortletDataContext portletDataContext = PortletDataContextFactoryUtil.createPreparePortletDataContext(themeDisplay.getCompanyId(), workingGroupId, (range != null) ? range : defaultRange, startDate, endDate);
 
 					portletDataHandler.prepareManifestSummary(portletDataContext, portletPreferences);
 
