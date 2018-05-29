@@ -14,6 +14,7 @@
 
 package com.liferay.portal.kernel.upgrade;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBInspector;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
@@ -21,7 +22,6 @@ import com.liferay.portal.kernel.dao.db.DBType;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.LoggingTimer;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.sql.DatabaseMetaData;
@@ -119,17 +119,12 @@ public abstract class BaseUpgradeDBColumnSize extends UpgradeProcess {
 							}
 							catch (SQLException sqle) {
 								if (_log.isWarnEnabled()) {
-									StringBundler sb = new StringBundler(7);
-
-									sb.append("Unable to alter length of ");
-									sb.append("column ");
-									sb.append(columnName);
-									sb.append(" for table ");
-									sb.append(tableName);
-									sb.append(" because: ");
-									sb.append(sqle.getMessage());
-
-									_log.warn(sb.toString());
+									_log.warn(
+										StringBundler.concat(
+											"Unable to alter length of column ",
+											columnName, " for table ",
+											tableName),
+										sqle);
 								}
 							}
 						}
