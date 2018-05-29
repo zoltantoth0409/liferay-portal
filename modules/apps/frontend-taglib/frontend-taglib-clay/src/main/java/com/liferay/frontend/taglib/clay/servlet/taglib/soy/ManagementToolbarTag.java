@@ -66,8 +66,7 @@ public class ManagementToolbarTag extends BaseClayTag {
 		if (searchFormMethod.equals("GET") &&
 			Validator.isNotNull(searchActionURL)) {
 
-			Map<String, Object> searchData = _getSearchData(
-				searchActionURL);
+			Map<String, Object> searchData = _getSearchData(searchActionURL);
 
 			putValue("searchData", searchData);
 
@@ -237,7 +236,8 @@ public class ManagementToolbarTag extends BaseClayTag {
 				continue;
 			}
 
-			String[] parameterParts = StringUtil.split(parameter, CharPool.EQUAL);
+			String[] parameterParts = StringUtil.split(
+				parameter, CharPool.EQUAL);
 
 			if (ArrayUtil.isEmpty(parameterParts)) {
 				continue;
