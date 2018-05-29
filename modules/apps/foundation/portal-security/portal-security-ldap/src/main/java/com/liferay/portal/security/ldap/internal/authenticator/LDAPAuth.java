@@ -728,14 +728,6 @@ public class LDAPAuth implements Authenticator {
 		_ldapSettings = ldapSettings;
 	}
 
-	@Reference(
-		policy = ReferencePolicy.DYNAMIC,
-		policyOption = ReferencePolicyOption.GREEDY
-	)
-	protected void setLdapUserImporter(LDAPUserImporter ldapUserImporter) {
-		_ldapUserImporter = ldapUserImporter;
-	}
-
 	@Reference(unbind = "-")
 	protected void setOmniadmin(Omniadmin omniadmin) {
 		_omniadmin = omniadmin;
@@ -744,14 +736,6 @@ public class LDAPAuth implements Authenticator {
 	@Reference(unbind = "-")
 	protected void setPasswordEncryptor(PasswordEncryptor passwordEncryptor) {
 		_passwordEncryptor = passwordEncryptor;
-	}
-
-	@Reference(
-		policy = ReferencePolicy.DYNAMIC,
-		policyOption = ReferencePolicyOption.GREEDY
-	)
-	protected void setPortalLDAP(PortalLDAP portalLDAP) {
-		_portalLDAP = portalLDAP;
 	}
 
 	@Reference(unbind = "-")
@@ -775,12 +759,6 @@ public class LDAPAuth implements Authenticator {
 		_userLocalService = userLocalService;
 	}
 
-	protected void unsetLdapUserImporter(LDAPUserImporter ldapUserImporter) {
-	}
-
-	protected void unsetPortalLDAP(PortalLDAP portalLDAP) {
-	}
-
 	private static final Log _log = LogFactoryUtil.getLog(LDAPAuth.class);
 
 	private boolean _authPipelineEnableLiferayCheck;
@@ -794,10 +772,22 @@ public class LDAPAuth implements Authenticator {
 	private ConfigurationProvider<LDAPServerConfiguration>
 		_ldapServerConfigurationProvider;
 	private LDAPSettings _ldapSettings;
-	private LDAPUserImporter _ldapUserImporter;
+
+	@Reference(
+		policy = ReferencePolicy.DYNAMIC,
+		policyOption = ReferencePolicyOption.GREEDY
+	)
+	private volatile LDAPUserImporter _ldapUserImporter;
+
 	private Omniadmin _omniadmin;
 	private PasswordEncryptor _passwordEncryptor;
-	private PortalLDAP _portalLDAP;
+
+	@Reference(
+		policy = ReferencePolicy.DYNAMIC,
+		policyOption = ReferencePolicyOption.GREEDY
+	)
+	private volatile PortalLDAP _portalLDAP;
+
 	private Props _props;
 	private ConfigurationProvider<SystemLDAPConfiguration>
 		_systemLDAPConfigurationProvider;

@@ -439,24 +439,9 @@ public class BlogsEntryStagedModelDataHandler
 		_blogsEntryLocalService = blogsEntryLocalService;
 	}
 
-	@Reference(
-		policy = ReferencePolicy.DYNAMIC,
-		policyOption = ReferencePolicyOption.GREEDY,
-		target = "(model.class.name=com.liferay.blogs.kernel.model.BlogsEntry)"
-	)
-	protected void setExportImportContentProcessor(
-		ExportImportContentProcessor<String> exportImportContentProcessor) {
-
-		_exportImportContentProcessor = exportImportContentProcessor;
-	}
-
 	@Reference(unbind = "-")
 	protected void setImageLocalService(ImageLocalService imageLocalService) {
 		_imageLocalService = imageLocalService;
-	}
-
-	protected void unsetExportImportContentProcessor(
-		ExportImportContentProcessor<String> exportImportContentProcessor) {
 	}
 
 	private ImageSelector _getImageSelector(
@@ -526,7 +511,15 @@ public class BlogsEntryStagedModelDataHandler
 		BlogsEntryStagedModelDataHandler.class);
 
 	private BlogsEntryLocalService _blogsEntryLocalService;
-	private ExportImportContentProcessor<String> _exportImportContentProcessor;
+
+	@Reference(
+		policy = ReferencePolicy.DYNAMIC,
+		policyOption = ReferencePolicyOption.GREEDY,
+		target = "(model.class.name=com.liferay.blogs.kernel.model.BlogsEntry)"
+	)
+	private volatile ExportImportContentProcessor<String>
+		_exportImportContentProcessor;
+
 	private ImageLocalService _imageLocalService;
 
 }
