@@ -103,7 +103,7 @@ public class DBUpgrader {
 
 			upgrade();
 
-			_initializeResources();
+			_checkClassNamesAndResourceActions();
 
 			verify();
 
@@ -393,7 +393,7 @@ public class DBUpgrader {
 		}
 	}
 
-	private static void _initializeResources() {
+	private static void _checkClassNamesAndResourceActions() {
 		if (_log.isDebugEnabled()) {
 			_log.debug("Check class names");
 		}
