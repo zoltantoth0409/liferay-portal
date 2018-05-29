@@ -1270,15 +1270,15 @@ public class CalendarPortlet extends MVCPortlet {
 
 		String keywords = ParamUtil.getString(resourceRequest, "keywords");
 
-		Set<Calendar> calendarsSet = new LinkedHashSet<>();
-
-		Hits hits = search(themeDisplay, keywords);
-
 		PortletPreferences portletPreferences =
 			resourceRequest.getPreferences();
 
 		boolean showUserEvents = GetterUtil.getBoolean(
 			portletPreferences.getValue("showUserEvents", null), true);
+
+		Set<Calendar> calendarsSet = new LinkedHashSet<>();
+
+		Hits hits = search(themeDisplay, keywords);
 
 		for (Document document : hits.getDocs()) {
 			long calendarId = GetterUtil.getLong(
@@ -1288,30 +1288,32 @@ public class CalendarPortlet extends MVCPortlet {
 
 			CalendarResource calendarResource = calendar.getCalendarResource();
 
-			if (showUserEvents || !calendarResource.isUser()) {
-				if (calendarResource.isActive()) {
-					Group group = _groupLocalService.getGroup(
-						calendar.getGroupId());
+			if (!calendarResource.isActive()) {
+				continue;
+			}
 
-						continue;
-					}
-
-					if (group.hasStagingGroup()) {
-						Group stagingGroup = group.getStagingGroup();
-
-						long stagingGroupId = stagingGroup.getGroupId();
-
-						if (stagingGroupId == themeDisplay.getScopeGroupId()) {
-							calendar =
-								_calendarLocalService.
-									fetchCalendarByUuidAndGroupId(
-										calendar.getUuid(), stagingGroupId);
-						}
-					}
-
-					calendarsSet.add(calendar);
+			if (calendarResource.isUser()) {
+				if (!showUserEvents) {
+					continue;
 				}
 			}
+
+			Group group = _groupLocalService.getGroup(calendar.getGroupId());
+
+			if (group.hasStagingGroup()) {
+				Group stagingGroup = group.getStagingGroup();
+
+				long stagingGroupId = stagingGroup.getGroupId();
+
+				if (stagingGroupId == themeDisplay.getScopeGroupId()) {
+					calendar =
+						_calendarLocalService.
+							fetchCalendarByUuidAndGroupId(
+								calendar.getUuid(), stagingGroupId);
+				}
+			}
+
+			calendarsSet.add(calendar);
 		}
 
 		String name = StringUtil.merge(
