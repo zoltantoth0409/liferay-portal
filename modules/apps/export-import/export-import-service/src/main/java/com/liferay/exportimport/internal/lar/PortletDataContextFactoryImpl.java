@@ -197,15 +197,12 @@ public class PortletDataContextFactoryImpl
 
 		portletDataContext.setEndDate(endDate);
 
-		Map<String, String[]> parameterMap;
+		Map<String, String[]> parameterMap = Collections.emptyMap();
 
 		if (range != null) {
 			parameterMap = new HashMap<>();
 
 			parameterMap.put(ExportImportDateUtil.RANGE, new String[] {range});
-		}
-		else {
-			parameterMap = Collections.emptyMap();
 		}
 
 		portletDataContext.setParameterMap(parameterMap);

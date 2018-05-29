@@ -56,6 +56,7 @@ if (exportImportConfiguration != null) {
 }
 
 String range = ParamUtil.getString(portletRequest, ExportImportDateUtil.RANGE, null);
+
 boolean useRequestValues = false;
 
 if ((range != null) || (exportImportConfiguration == null)) {
