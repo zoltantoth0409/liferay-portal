@@ -234,14 +234,14 @@ public class ManagementToolbarTag extends BaseClayTag {
 
 		for (String parameter : parameters) {
 			if (parameter.length() > 0) {
-				String[] kvp = StringUtil.split(parameter, CharPool.EQUAL);
+				String[] parameterParts = StringUtil.split(parameter, CharPool.EQUAL);
 
-				if (ArrayUtil.isNotEmpty(kvp)) {
-					String key = kvp[0];
+				if (ArrayUtil.isNotEmpty(parameterParts)) {
+					String key = parameterParts[0];
 					String value = StringPool.BLANK;
 
-					if (kvp.length > 1) {
-						value = kvp[1];
+					if (parameterParts.length > 1) {
+						value = parameterParts[1];
 					}
 
 					value = HttpUtil.decodeURL(value);
