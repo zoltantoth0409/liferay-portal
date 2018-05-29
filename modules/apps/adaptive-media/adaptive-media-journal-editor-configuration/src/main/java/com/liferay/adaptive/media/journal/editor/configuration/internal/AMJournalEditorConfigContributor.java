@@ -102,6 +102,10 @@ public class AMJournalEditorConfigContributor
 			return;
 		}
 
+		jsonObject.put(
+			"adaptiveMediaFileEntryAttributeName",
+			AMImageHTMLConstants.FILE_ENTRY_ATTR_NAME);
+
 		String extraPlugins = jsonObject.getString("extraPlugins");
 
 		if (Validator.isNotNull(extraPlugins)) {
@@ -112,10 +116,6 @@ public class AMJournalEditorConfigContributor
 		}
 
 		jsonObject.put("extraPlugins", extraPlugins);
-
-		jsonObject.put(
-			"adaptiveMediaFileEntryAttributeName",
-			AMImageHTMLConstants.FILE_ENTRY_ATTR_NAME);
 
 		String itemSelectedEventName = _itemSelector.getItemSelectedEventName(
 			itemSelectorURL);
