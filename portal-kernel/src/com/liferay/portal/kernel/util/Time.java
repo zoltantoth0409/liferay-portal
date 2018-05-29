@@ -98,7 +98,8 @@ public class Time {
 
 				if (x == 1) {
 					s = x + " second[time]";
-				} else {
+				}
+				else {
 					s = x + " second";
 				}
 			}
