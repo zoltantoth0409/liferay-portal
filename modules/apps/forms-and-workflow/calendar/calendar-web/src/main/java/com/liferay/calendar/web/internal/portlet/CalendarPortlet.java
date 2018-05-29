@@ -1307,9 +1307,8 @@ public class CalendarPortlet extends MVCPortlet {
 
 				if (stagingGroupId == themeDisplay.getScopeGroupId()) {
 					calendar =
-						_calendarLocalService.
-							fetchCalendarByUuidAndGroupId(
-								calendar.getUuid(), stagingGroupId);
+						_calendarLocalService.fetchCalendarByUuidAndGroupId(
+							calendar.getUuid(), stagingGroupId);
 				}
 			}
 
