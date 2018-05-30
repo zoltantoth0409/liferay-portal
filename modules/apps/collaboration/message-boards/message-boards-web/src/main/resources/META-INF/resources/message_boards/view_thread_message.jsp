@@ -248,7 +248,7 @@ MBThread thread = (MBThread)request.getAttribute("edit_message.jsp-thread");
 								</c:choose>
 							</c:if>
 
-							<c:if test="<%= hasReplyPermission && !thread.isLocked() %>">
+							<c:if test="<%= hasReplyPermission && !thread.isLocked() && !thread.isDraft() %>">
 								<portlet:renderURL var="replyURL">
 									<portlet:param name="mvcRenderCommandName" value="/message_boards/edit_message" />
 									<portlet:param name="redirect" value="<%= currentURL %>" />

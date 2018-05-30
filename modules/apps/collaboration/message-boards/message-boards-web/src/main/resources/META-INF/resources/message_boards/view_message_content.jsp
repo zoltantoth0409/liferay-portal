@@ -301,7 +301,7 @@ if (portletTitleBasedNavigation) {
 	MBMessage rootMessage = treeWalker.getRoot();
 	%>
 
-	<c:if test="<%= MBCategoryPermission.contains(permissionChecker, scopeGroupId, rootMessage.getCategoryId(), ActionKeys.REPLY_TO_MESSAGE) && !thread.isLocked() %>">
+	<c:if test="<%= MBCategoryPermission.contains(permissionChecker, scopeGroupId, rootMessage.getCategoryId(), ActionKeys.REPLY_TO_MESSAGE) && !thread.isLocked() && !thread.isDraft() %>">
 		<portlet:renderURL var="replyURL">
 			<portlet:param name="mvcRenderCommandName" value="/message_boards/edit_message" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
