@@ -827,9 +827,9 @@ public class ShoppingUtil {
 		List<String> names = new ArrayList<>();
 		List<String[]> values = new ArrayList<>();
 
-		for (int i = 0; i < itemFields.length; i++) {
-			names.add(itemFields[i].getName());
-			values.add(StringUtil.split(itemFields[i].getValues()));
+		for (ShoppingItemField itemField : itemFields) {
+			names.add(itemField.getName());
+			values.add(StringUtil.split(itemField.getValues()));
 		}
 
 		int numOfRows = 1;
@@ -1062,8 +1062,8 @@ public class ShoppingUtil {
 		else {
 			String[] fieldsQuantities = item.getFieldsQuantitiesArray();
 
-			for (int i = 0; i < fieldsQuantities.length; i++) {
-				if (GetterUtil.getInteger(fieldsQuantities[i]) > 0) {
+			for (String fieldsQuantity : fieldsQuantities) {
+				if (GetterUtil.getInteger(fieldsQuantity) > 0) {
 					return true;
 				}
 			}

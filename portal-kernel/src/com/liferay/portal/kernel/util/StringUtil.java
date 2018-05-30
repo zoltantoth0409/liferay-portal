@@ -968,10 +968,10 @@ public class StringUtil {
 		}
 
 		for (int i = fromIndex; i <= toIndex; i++) {
-			char c = s.charAt(i);
+			char c1 = s.charAt(i);
 
-			for (int j = 0; j < chars.length; j++) {
-				if (c == chars[j]) {
+			for (char c2 : chars) {
+				if (c1 == c2) {
 					return i;
 				}
 			}
@@ -1138,13 +1138,13 @@ public class StringUtil {
 		}
 
 		for (int i = fromIndex; i <= toIndex; i++) {
-			for (int j = 0; j < texts.length; j++) {
-				if (texts[j] == null) {
+			for (String text : texts) {
+				if (text == null) {
 					continue;
 				}
 
-				if (((i + texts[j].length()) <= (toIndex + 1)) &&
-					s.startsWith(texts[j], i)) {
+				if (((i + text.length()) <= (toIndex + 1)) &&
+					s.startsWith(text, i)) {
 
 					return i;
 				}
@@ -1401,10 +1401,10 @@ public class StringUtil {
 		}
 
 		for (int i = toIndex; i >= fromIndex; i--) {
-			char c = s.charAt(i);
+			char c1 = s.charAt(i);
 
-			for (int j = 0; j < chars.length; j++) {
-				if (c == chars[j]) {
+			for (char c2 : chars) {
+				if (c1 == c2) {
 					return i;
 				}
 			}
@@ -1570,13 +1570,13 @@ public class StringUtil {
 		}
 
 		for (int i = toIndex; i >= fromIndex; i--) {
-			for (int j = 0; j < texts.length; j++) {
-				if (texts[j] == null) {
+			for (String text : texts) {
+				if (text == null) {
 					continue;
 				}
 
-				if (((i + texts[j].length()) <= (toIndex + 1)) &&
-					s.startsWith(texts[j], i)) {
+				if (((i + text.length()) <= (toIndex + 1)) &&
+					s.startsWith(text, i)) {
 
 					return i;
 				}
@@ -2396,15 +2396,15 @@ public class StringUtil {
 
 		iterate:
 		for (int i = 0; i < s.length(); i++) {
-			char c = s.charAt(i);
+			char c1 = s.charAt(i);
 
-			for (int j = 0; j < oldSubs.length; j++) {
-				if (c == oldSubs[j]) {
+			for (char c2 : oldSubs) {
+				if (c1 == c2) {
 					continue iterate;
 				}
 			}
 
-			sb.append(c);
+			sb.append(c1);
 		}
 
 		if (s.length() == sb.length()) {

@@ -307,8 +307,8 @@ public class EditMessageMVCActionCommand extends BaseMVCActionCommand {
 			long[] threadIds = StringUtil.split(
 				ParamUtil.getString(actionRequest, "threadIds"), 0L);
 
-			for (int i = 0; i < threadIds.length; i++) {
-				_mbThreadService.lockThread(threadIds[i]);
+			for (long curThreadId : threadIds) {
+				_mbThreadService.lockThread(curThreadId);
 			}
 		}
 	}
@@ -353,8 +353,8 @@ public class EditMessageMVCActionCommand extends BaseMVCActionCommand {
 			long[] threadIds = StringUtil.split(
 				ParamUtil.getString(actionRequest, "threadIds"), 0L);
 
-			for (int i = 0; i < threadIds.length; i++) {
-				_mbThreadService.unlockThread(threadIds[i]);
+			for (long curThreadId : threadIds) {
+				_mbThreadService.unlockThread(curThreadId);
 			}
 		}
 	}
