@@ -320,15 +320,17 @@ public class FjordSiteInitializer implements SiteInitializer {
 	private ServiceContext _createServiceContext(long groupId)
 		throws PortalException {
 
-		User user = _userLocalService.getUser(PrincipalThreadLocal.getUserId());
-
-		Locale locale = LocaleUtil.getSiteDefault();
-
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setAddGroupPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
+
+		User user = _userLocalService.getUser(PrincipalThreadLocal.getUserId());
+
+		Locale locale = LocaleUtil.getSiteDefault();
+
 		serviceContext.setLanguageId(LanguageUtil.getLanguageId(locale));
+
 		serviceContext.setScopeGroupId(groupId);
 		serviceContext.setUserId(user.getUserId());
 		serviceContext.setTimeZone(user.getTimeZone());
