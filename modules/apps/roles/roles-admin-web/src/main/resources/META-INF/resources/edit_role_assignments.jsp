@@ -36,16 +36,16 @@ else {
 	request.setAttribute(WebKeys.SINGLE_PAGE_APPLICATION_CLEAR_CACHE, Boolean.TRUE);
 }
 
-portletDisplay.setShowBackIcon(true);
-portletDisplay.setURLBack(redirect);
-
-renderResponse.setTitle(role.getTitle(locale));
-
 EditRoleAssignmentsManagementToolbarDisplayContext editRoleAssignmentsManagementToolbarDisplayContext = new EditRoleAssignmentsManagementToolbarDisplayContext(request, renderRequest, renderResponse, displayStyle, "current");
 
 SearchContainer searchContainer = editRoleAssignmentsManagementToolbarDisplayContext.getSearchContainer();
 
 PortletURL portletURL = editRoleAssignmentsManagementToolbarDisplayContext.getPortletURL();
+
+portletDisplay.setShowBackIcon(true);
+portletDisplay.setURLBack(redirect);
+
+renderResponse.setTitle(role.getTitle(locale));
 %>
 
 <liferay-util:include page="/edit_role_tabs.jsp" servletContext="<%= application %>" />
