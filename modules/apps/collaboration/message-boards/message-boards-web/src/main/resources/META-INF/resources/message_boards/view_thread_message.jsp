@@ -199,9 +199,8 @@ MBThread thread = (MBThread)request.getAttribute("edit_message.jsp-thread");
 					boolean hasDeletePermission = !thread.isLocked() && (thread.getMessageCount() > 1) && MBMessagePermission.contains(permissionChecker, message, ActionKeys.DELETE);
 					boolean hasMoveThreadPermission = (message.getParentMessageId() != MBMessageConstants.DEFAULT_PARENT_MESSAGE_ID) && MBCategoryPermission.contains(permissionChecker, scopeGroupId, category.getCategoryId(), ActionKeys.MOVE_THREAD);
 					boolean hasPermissionsPermission = !thread.isLocked() && !message.isRoot() && MBMessagePermission.contains(permissionChecker, message, ActionKeys.PERMISSIONS);
-					boolean hasReplyPermission = MBCategoryPermission.contains(permissionChecker, scopeGroupId, message.getCategoryId(), ActionKeys.REPLY_TO_MESSAGE);
+					boolean hasReplyPermission = !thread.isLocked() && !thread.isDraft() && MBCategoryPermission.contains(permissionChecker, scopeGroupId, message.getCategoryId(), ActionKeys.REPLY_TO_MESSAGE);
 					boolean hasUpdatePermission = !thread.isLocked() && MBMessagePermission.contains(permissionChecker, message, ActionKeys.UPDATE);
-
 					boolean showAnswerFlag = false;
 
 					if (!message.isRoot()) {
@@ -248,7 +247,7 @@ MBThread thread = (MBThread)request.getAttribute("edit_message.jsp-thread");
 								</c:choose>
 							</c:if>
 
-							<c:if test="<%= hasReplyPermission && !thread.isLocked() && !thread.isDraft() %>">
+							<c:if test="<%= hasReplyPermission %>">
 								<portlet:renderURL var="replyURL">
 									<portlet:param name="mvcRenderCommandName" value="/message_boards/edit_message" />
 									<portlet:param name="redirect" value="<%= currentURL %>" />
