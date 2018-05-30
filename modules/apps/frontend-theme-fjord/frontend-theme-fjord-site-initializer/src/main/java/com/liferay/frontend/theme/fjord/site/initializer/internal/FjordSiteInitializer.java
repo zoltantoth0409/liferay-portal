@@ -127,38 +127,38 @@ public class FjordSiteInitializer implements SiteInitializer {
 			LayoutPageTemplateCollection layoutPageTemplateCollection =
 				_addLayoutPageTemplateCollection(serviceContext);
 
-			List<FragmentEntry> fragmentEntriesHome = _addFragmentEntries(
+			List<FragmentEntry> homeFragmentEntries = _addFragmentEntries(
 				fragmentCollection.getFragmentCollectionId(), fileEntriesMap,
 				_PATH + "/fragments/home", serviceContext);
 
-			List<FragmentEntry> fragmentEntriesDownload = _addFragmentEntries(
+			List<FragmentEntry> downloadFragmentEntries = _addFragmentEntries(
 				fragmentCollection.getFragmentCollectionId(), fileEntriesMap,
 				_PATH + "/fragments/download", serviceContext);
 
-			fragmentEntriesHome.addAll(fragmentEntriesDownload);
+			homeFragmentEntries.addAll(downloadFragmentEntries);
 
-			List<FragmentEntry> fragmentEntriesFeatures = _addFragmentEntries(
+			List<FragmentEntry> featuresFragmentEntries = _addFragmentEntries(
 				fragmentCollection.getFragmentCollectionId(), fileEntriesMap,
 				_PATH + "/fragments/features", serviceContext);
 
-			fragmentEntriesHome.addAll(fragmentEntriesFeatures);
+			homeFragmentEntries.addAll(featuresFragmentEntries);
 
 			_addLayout(
 				layoutPageTemplateCollection.
 					getLayoutPageTemplateCollectionId(),
-				"Home", fragmentEntriesHome, _PATH + "/fragments/home",
+				"Home", homeFragmentEntries, _PATH + "/fragments/home",
 				serviceContext);
 
 			_addLayout(
 				layoutPageTemplateCollection.
 					getLayoutPageTemplateCollectionId(),
-				"Features", fragmentEntriesFeatures,
+				"Features", featuresFragmentEntries,
 				_PATH + "/fragments/features", serviceContext);
 
 			_addLayout(
 				layoutPageTemplateCollection.
 					getLayoutPageTemplateCollectionId(),
-				"Download", fragmentEntriesDownload,
+				"Download", downloadFragmentEntries,
 				_PATH + "/fragments/download", serviceContext);
 		}
 		catch (Exception e) {
