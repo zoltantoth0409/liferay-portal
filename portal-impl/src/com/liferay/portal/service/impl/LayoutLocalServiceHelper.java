@@ -19,7 +19,6 @@ import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.exception.LayoutFriendlyURLException;
 import com.liferay.portal.kernel.exception.LayoutFriendlyURLsException;
 import com.liferay.portal.kernel.exception.LayoutNameException;
-import com.liferay.portal.kernel.exception.LayoutNameLengthException;
 import com.liferay.portal.kernel.exception.LayoutParentLayoutIdException;
 import com.liferay.portal.kernel.exception.LayoutTypeException;
 import com.liferay.portal.kernel.exception.NoSuchLayoutException;
@@ -35,7 +34,6 @@ import com.liferay.portal.kernel.model.LayoutSet;
 import com.liferay.portal.kernel.model.LayoutSetPrototype;
 import com.liferay.portal.kernel.model.LayoutType;
 import com.liferay.portal.kernel.model.LayoutTypeController;
-import com.liferay.portal.kernel.model.ModelHintsUtil;
 import com.liferay.portal.kernel.model.ResourceConstants;
 import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.RoleConstants;
@@ -475,13 +473,6 @@ public class LayoutLocalServiceHelper implements IdentifiableOSGiService {
 	}
 
 	public void validateName(String name) throws PortalException {
-		int maxLength = ModelHintsUtil.getMaxLength(
-			Layout.class.getName(), "friendlyURL");
-
-		if (name.length() > maxLength) {
-			throw new LayoutNameLengthException();
-		}
-
 		if (Validator.isNull(name)) {
 			throw new LayoutNameException();
 		}
