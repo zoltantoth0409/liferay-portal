@@ -453,7 +453,7 @@ AND or OR operator. For example, a finder column with the = comparator and an
 arrayable-operator of OR will act like an IN clause.
 
 The attribute arrayable-pagination is a boolean value and is used to signal if
-the entity column could be paginated.
+the entity column can be paginated.
 -->
 <!ATTLIST finder-column
 	name CDATA #REQUIRED
