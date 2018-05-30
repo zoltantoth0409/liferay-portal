@@ -527,10 +527,10 @@ public class EntityColumn implements Cloneable, Comparable<EntityColumn> {
 					comparator + "\"");
 		}
 
-		if (_arrayablePagination && !_arrayableOperator.equals("OR")) {
+		if (!_arrayableOperator.equals("OR") && _arrayablePagination) {
 			throw new IllegalArgumentException(
-				"Illegal combination. Arrayable pagination can only be used " +
-					"with \"OR\" arrayable comparator.");
+				"Illegal combination of arrayable \"OR\" and arrayable " +
+					"pagination");
 		}
 	}
 
