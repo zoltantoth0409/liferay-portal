@@ -51,12 +51,12 @@ public class UpdateFragmentEntryLinksMVCActionCommand
 		long fragmentEntryLinkId1 = ParamUtil.getLong(
 			actionRequest, "fragmentEntryLinkId1");
 
-		long fragmentEntryLinkId2 = ParamUtil.getLong(
-			actionRequest, "fragmentEntryLinkId2");
-
 		FragmentEntryLink fragmentEntryLink1 =
 			_fragmentEntryLinkLocalService.fetchFragmentEntryLink(
 				fragmentEntryLinkId1);
+
+		long fragmentEntryLinkId2 = ParamUtil.getLong(
+			actionRequest, "fragmentEntryLinkId2");
 
 		FragmentEntryLink fragmentEntryLink2 =
 			_fragmentEntryLinkLocalService.fetchFragmentEntryLink(
