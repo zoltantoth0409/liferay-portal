@@ -762,7 +762,7 @@ public class BaseTextExportImportContentProcessor
 
 				urlSB.append(StringPool.AT);
 
-				if (_stagingGroupHelper.isStagingGroup(urlGroup)) {
+				if (urlGroup.isStagingGroup()) {
 					Group liveGroup = urlGroup.getLiveGroup();
 
 					urlSB.append(liveGroup.getUuid());
@@ -776,7 +776,7 @@ public class BaseTextExportImportContentProcessor
 					}
 				}
 				else if (urlGroup.isControlPanel() ||
-						 _stagingGroupHelper.isLiveGroup(urlGroup)) {
+						 urlGroup.hasLocalOrRemoteStagingGroup()) {
 
 					urlSB.append(urlGroup.getUuid());
 				}
