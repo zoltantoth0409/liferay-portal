@@ -176,7 +176,6 @@ public class DLFileEntryUADAnonymizerTest
 			dlFileEntryId);
 
 		long userId = dlFileEntry.getUserId();
-
 		long fileEntryId = dlFileEntryId;
 		String sourceFileName = RandomTestUtil.randomString();
 		String contentType = ContentTypes.TEXT;
