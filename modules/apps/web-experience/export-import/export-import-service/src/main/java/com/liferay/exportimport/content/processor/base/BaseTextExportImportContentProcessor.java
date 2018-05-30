@@ -762,7 +762,7 @@ public class BaseTextExportImportContentProcessor
 
 				urlSB.append(StringPool.AT);
 
-				if (urlGroup.isStaged()) {
+				if (_stagingGroupHelper.isStagingGroup(urlGroup)) {
 					Group liveGroup = urlGroup.getLiveGroup();
 
 					urlSB.append(liveGroup.getUuid());
@@ -775,11 +775,13 @@ public class BaseTextExportImportContentProcessor
 						urlSB.append(remoteGroupUuid);
 					}
 				}
-				else if (!urlGroup.isControlPanel()) {
-					urlSB.append(urlGroup.getFriendlyURL());
+				else if (urlGroup.isControlPanel() ||
+						_stagingGroupHelper.isLiveGroup(urlGroup)) {
+
+					urlSB.append(urlGroup.getUuid());
 				}
 				else {
-					urlSB.append(urlGroup.getUuid());
+					urlSB.append(urlGroup.getFriendlyURL());
 				}
 
 				urlSB.append(StringPool.AT);
