@@ -95,7 +95,7 @@ public class FjordSiteInitializer implements SiteInitializer {
 
 	@Override
 	public String getName(Locale locale) {
-		return _FJORD_NAME;
+		return _THEME_NAME;
 	}
 
 	@Override
@@ -112,7 +112,7 @@ public class FjordSiteInitializer implements SiteInitializer {
 
 			Folder folder = _dlAppLocalService.addFolder(
 				serviceContext.getUserId(), serviceContext.getScopeGroupId(),
-				DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, _FJORD_NAME,
+				DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, _THEME_NAME,
 				StringPool.BLANK, serviceContext);
 
 			List<FileEntry> fileEntries = _addFileEntries(
@@ -215,7 +215,7 @@ public class FjordSiteInitializer implements SiteInitializer {
 
 		return _fragmentCollectionLocalService.addFragmentCollection(
 			serviceContext.getUserId(), serviceContext.getScopeGroupId(),
-			_FJORD_NAME, null, serviceContext);
+			_THEME_NAME, null, serviceContext);
 	}
 
 	private List<FragmentEntry> _addFragmentEntries(
@@ -297,7 +297,7 @@ public class FjordSiteInitializer implements SiteInitializer {
 		return _layoutPageTemplateCollectionLocalService.
 			addLayoutPageTemplateCollection(
 				serviceContext.getUserId(), serviceContext.getScopeGroupId(),
-				_FJORD_NAME, _FJORD_NAME, serviceContext);
+				_THEME_NAME, _THEME_NAME, serviceContext);
 	}
 
 	private LayoutPageTemplateEntry _addLayoutPageTemplateEntry(
@@ -371,7 +371,7 @@ public class FjordSiteInitializer implements SiteInitializer {
 
 		Folder folder = _dlAppLocalService.getFolder(
 			serviceContext.getScopeGroupId(),
-			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, _FJORD_NAME);
+			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, _THEME_NAME);
 
 		byte[] bytes = null;
 
@@ -391,29 +391,28 @@ public class FjordSiteInitializer implements SiteInitializer {
 		throws PortalException {
 
 		Theme theme = _themeLocalService.fetchTheme(
-			serviceContext.getCompanyId(), _FJORD_THEME_ID);
+			serviceContext.getCompanyId(), _THEME_ID);
 
 		if (theme == null) {
 			if (_log.isInfoEnabled()) {
-				_log.info(
-					"No Theme registered with themeId: " + _FJORD_THEME_ID);
+				_log.info("No theme found for " + _THEME_ID);
 			}
 
 			return;
 		}
 
 		_layoutSetLocalService.updateLookAndFeel(
-			serviceContext.getScopeGroupId(), false, _FJORD_THEME_ID,
+			serviceContext.getScopeGroupId(), false, _THEME_ID,
 			StringPool.BLANK, StringPool.BLANK);
 	}
-
-	private static final String _FJORD_NAME = "Fjord";
-
-	private static final String _FJORD_THEME_ID = "fjord_WAR_fjordtheme";
 
 	private static final String _PATH =
 		"com/liferay/frontend/theme/fjord/site/initializer/internal" +
 			"/dependencies";
+
+	private static final String _THEME_ID = "fjord_WAR_fjordtheme";
+
+	private static final String _THEME_NAME = "Fjord";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		FjordSiteInitializer.class);
