@@ -111,8 +111,8 @@ public class RenderStateUtil {
 			request, layout, portlet, PortletRequest.RESOURCE_PHASE,
 			MimeResponse.Copy.NONE);
 
-		liferayPortletURL.setParameter("p_p_mode", (String)null, false);
 		liferayPortletURL.setParameter("p_p_state", (String)null, false);
+		liferayPortletURL.setParameter("p_p_mode", (String)null, false);
 		liferayPortletURL.setParameter("p_p_cacheability", (String)null, false);
 
 		return liferayPortletURL.toString();
