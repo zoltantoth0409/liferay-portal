@@ -74,7 +74,6 @@
 		<execute macro="Bookmark#viewBookmark">
 			<var name="bookmarkName" value="${bookmarkName}" />
 			<var name="bookmarkURL" value="${bookmarkURL}" />
-			<var name="key_assetName" value="${bookmarkName}" />
 			<var name="trailingSlash" value="${trailingSlash}" />
 		</execute>
 	</command>

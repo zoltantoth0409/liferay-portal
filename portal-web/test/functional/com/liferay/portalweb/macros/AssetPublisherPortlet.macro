@@ -158,7 +158,7 @@
 
 	<command name="configureAssetTypePG">
 		<execute macro="AssetPublisherPortlet#gotoConfigurationPG">
-			<var name="key_portletName" value="${portletName}" />
+			<var name="portletName" value="${portletName}" />
 			<var name="order" value="${order}" />
 		</execute>
 
