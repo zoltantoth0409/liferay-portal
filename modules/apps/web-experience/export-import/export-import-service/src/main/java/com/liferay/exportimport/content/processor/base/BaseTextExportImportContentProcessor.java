@@ -776,7 +776,8 @@ public class BaseTextExportImportContentProcessor
 					}
 				}
 				else if (urlGroup.isControlPanel() ||
-						 urlGroup.hasLocalOrRemoteStagingGroup()) {
+						 (urlGroup.hasLocalOrRemoteStagingGroup() &&
+						  (group.getLiveGroupId() == urlGroup.getGroupId()))) {
 
 					urlSB.append(urlGroup.getUuid());
 				}
