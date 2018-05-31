@@ -41,7 +41,7 @@ public class PortalReleaseJob
 		}
 		catch (IOException ioe) {
 			throw new RuntimeException(
-				"Could not create a git working directory", ioe);
+				"Unable to not create a Git working directory", ioe);
 		}
 
 		jobProperties = JenkinsResultsParserUtil.getProperties(
