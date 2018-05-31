@@ -103,7 +103,7 @@ public class FacebookConnectImpl implements FacebookConnect {
 				_log.debug(
 					StringBundler.concat(
 						"Unable to get access token for URL ", url,
-						" Response:", content));
+						" because of response:", content));
 			}
 		}
 		catch (Exception e) {
