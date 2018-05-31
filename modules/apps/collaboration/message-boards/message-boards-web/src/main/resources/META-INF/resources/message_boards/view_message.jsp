@@ -56,7 +56,7 @@ MBBreadcrumbUtil.addPortletBreadcrumbEntries(message, request, renderResponse);
 		</c:otherwise>
 	</c:choose>
 
-	<c:if test="<%= MBCategoryPermission.contains(permissionChecker, scopeGroupId, message.getCategoryId(), ActionKeys.REPLY_TO_MESSAGE) && !thread.isLocked() %>">
+	<c:if test="<%= !thread.isLocked() && !thread.isDraft() && MBCategoryPermission.contains(permissionChecker, scopeGroupId, message.getCategoryId(), ActionKeys.REPLY_TO_MESSAGE) %>">
 		<div class="hide" id="<portlet:namespace />addQuickReplyDiv">
 			<%@ include file="/message_boards/edit_message_quick.jspf" %>
 		</div>

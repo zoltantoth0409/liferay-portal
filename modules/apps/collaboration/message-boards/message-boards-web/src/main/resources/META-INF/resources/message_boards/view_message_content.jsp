@@ -79,7 +79,7 @@ if (portletTitleBasedNavigation) {
 					/>
 				</c:if>
 
-				<c:if test="<%= !thread.isLocked() && MBMessagePermission.contains(permissionChecker, message, ActionKeys.PERMISSIONS) %>">
+				<c:if test="<%= !thread.isLocked() && !thread.isDraft() && MBMessagePermission.contains(permissionChecker, message, ActionKeys.PERMISSIONS) %>">
 
 					<%
 					MBMessage rootMessage = null;
