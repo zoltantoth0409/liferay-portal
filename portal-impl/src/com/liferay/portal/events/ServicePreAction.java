@@ -733,7 +733,7 @@ public class ServicePreAction extends Action {
 
 		lifecycle = ParamUtil.getString(request, "p_t_lifecycle", lifecycle);
 
-		String hub = ParamUtil.getString(request, "p_p_hub", StringPool.BLANK);
+		String hub = ParamUtil.getString(request, "p_p_hub");
 
 		boolean isolated = ParamUtil.getBoolean(request, "p_p_isolated");
 
