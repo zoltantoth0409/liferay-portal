@@ -65,7 +65,7 @@ public class RenderStateUtil {
 			themeDisplay.getLayoutTypePortlet();
 
 		if (layoutTypePortlet != null) {
-			JSONObject pageState = _getPageState(
+			JSONObject pageState = _getPageStateJSONObject(
 				request, themeDisplay, layoutTypePortlet, renderDataMap);
 
 			return pageState.toString();
@@ -118,7 +118,7 @@ public class RenderStateUtil {
 		return liferayPortletURL.toString();
 	}
 
-	private static JSONArray _getAllowedPortletModes(Portlet portlet) {
+	private static JSONArray _getAllowedPortletModesJSONArray(Portlet portlet) {
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		Set<String> allPortletModes = portlet.getAllPortletModes();
@@ -130,7 +130,7 @@ public class RenderStateUtil {
 		return jsonArray;
 	}
 
-	private static JSONArray _getAllowedWindowStates(Portlet portlet) {
+	private static JSONArray _getAllowedWindowStatesJSONArray(Portlet portlet) {
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		Set<String> allWindowStates = portlet.getAllWindowStates();
@@ -172,7 +172,7 @@ public class RenderStateUtil {
 		return publicRenderParameterMap;
 	}
 
-	private static JSONObject _getPageState(
+	private static JSONObject _getPageStateJSONObject(
 		HttpServletRequest request, ThemeDisplay themeDisplay,
 		LayoutTypePortlet layoutTypePortlet,
 		Map<String, RenderData> renderDataMap) {
@@ -183,7 +183,7 @@ public class RenderStateUtil {
 
 		jsonObject.put(
 			"portlets",
-			_getPortlets(
+			_getPortletsJSONObject(
 				request, themeDisplay, layoutTypePortlet, portlets,
 				renderDataMap));
 
@@ -191,12 +191,12 @@ public class RenderStateUtil {
 			"encodedCurrentURL",
 			URLCodec.encodeURL(PortalUtil.getCurrentCompleteURL(request)));
 
-		jsonObject.put("prpMap", _getPRPGroups(portlets));
+		jsonObject.put("prpMap", _getPRPGroupsJSONObject(portlets));
 
 		return jsonObject;
 	}
 
-	private static JSONObject _getPortlet(
+	private static JSONObject _getPortletJSONObject(
 		HttpServletRequest request, ThemeDisplay themeDisplay,
 		LayoutTypePortlet layoutTypePortlet, Portlet portlet,
 		RenderData renderData,
@@ -204,13 +204,13 @@ public class RenderStateUtil {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		jsonObject.put("allowedPM", _getAllowedPortletModes(portlet));
-		jsonObject.put("allowedWS", _getAllowedWindowStates(portlet));
-		jsonObject.put("pubParms", _getPortletPRP(portlet));
-		jsonObject.put("renderData", _getRenderData(renderData));
+		jsonObject.put("allowedPM", _getAllowedPortletModesJSONArray(portlet));
+		jsonObject.put("allowedWS", _getAllowedWindowStatesJSONArray(portlet));
+		jsonObject.put("pubParms", _getPortletPRPJSONObject(portlet));
+		jsonObject.put("renderData", _getRenderDataJSONObject(renderData));
 		jsonObject.put(
 			"state",
-			_getPortletState(
+			_getPortletStateJSONObject(
 				request, themeDisplay, layoutTypePortlet, portlet,
 				changedPublicRenderParameters));
 
@@ -278,7 +278,7 @@ public class RenderStateUtil {
 		return LiferayPortletMode.VIEW;
 	}
 
-	private static JSONObject _getPortletParameters(
+	private static JSONObject _getPortletParametersJSONObject(
 		HttpServletRequest request, long plid, Portlet portlet,
 		Map<String, String[]> changedPublicRenderParameters) {
 
@@ -312,7 +312,7 @@ public class RenderStateUtil {
 		return jsonObject;
 	}
 
-	private static JSONObject _getPortletPRP(Portlet portlet) {
+	private static JSONObject _getPortletPRPJSONObject(Portlet portlet) {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		Set<PublicRenderParameter> publicRenderParameters =
@@ -330,7 +330,7 @@ public class RenderStateUtil {
 		return jsonObject;
 	}
 
-	private static JSONObject _getPortlets(
+	private static JSONObject _getPortletsJSONObject(
 		HttpServletRequest request, ThemeDisplay themeDisplay,
 		LayoutTypePortlet layoutTypePortlet, List<Portlet> portlets,
 		Map<String, RenderData> renderDataMap) {
@@ -347,7 +347,7 @@ public class RenderStateUtil {
 
 			jsonObject.put(
 				portletNamespace,
-				_getPortlet(
+				_getPortletJSONObject(
 					request, themeDisplay, layoutTypePortlet, portlet,
 					renderDataMap.get(portlet.getPortletId()),
 					changedPublicRenderParameters));
@@ -356,7 +356,7 @@ public class RenderStateUtil {
 		return jsonObject;
 	}
 
-	private static JSONObject _getPortletState(
+	private static JSONObject _getPortletStateJSONObject(
 		HttpServletRequest request, ThemeDisplay themeDisplay,
 		LayoutTypePortlet layoutTypePortlet, Portlet portlet,
 		Map<String, String[]> changedPublicRenderParameters) {
@@ -365,7 +365,7 @@ public class RenderStateUtil {
 
 		jsonObject.put(
 			"parameters",
-			_getPortletParameters(
+			_getPortletParametersJSONObject(
 				request, themeDisplay.getPlid(), portlet,
 				changedPublicRenderParameters));
 		jsonObject.put(
@@ -378,7 +378,7 @@ public class RenderStateUtil {
 		return jsonObject;
 	}
 
-	private static JSONObject _getPRPGroups(List<Portlet> portlets) {
+	private static JSONObject _getPRPGroupsJSONObject(List<Portlet> portlets) {
 		Map<String, PRPGroup> map = new LinkedHashMap<>();
 
 		for (Portlet portlet : portlets) {
@@ -427,7 +427,7 @@ public class RenderStateUtil {
 		return jsonObject;
 	}
 
-	private static JSONObject _getRenderData(RenderData renderData) {
+	private static JSONObject _getRenderDataJSONObject(RenderData renderData) {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		if (renderData == null) {
