@@ -1421,8 +1421,8 @@ public class ThemeDisplay
 		_hubAction = hubAction;
 	}
 
-	public void setHubPartialAction(boolean partialAction) {
-		_hubPartialAction = partialAction;
+	public void setHubPartialAction(boolean hubPartialAction) {
+		_hubPartialAction = hubPartialAction;
 	}
 
 	public void setHubResource(boolean resource) {

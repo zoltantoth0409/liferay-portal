@@ -176,7 +176,9 @@ StringBundler pageTopSB = OutputTag.getData(request, WebKeys.PAGE_TOP);
 
 <script type="text/javascript">
 	var portlet = portlet || {};
+
 	portlet.impl = portlet.impl || {};
+
 	portlet.impl.getInitData = function() {
 		return <%= RenderStateUtil.generateJSON(request, themeDisplay) %>;
 	}
