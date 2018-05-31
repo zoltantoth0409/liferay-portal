@@ -733,6 +733,8 @@ public class ServicePreAction extends Action {
 
 		lifecycle = ParamUtil.getString(request, "p_t_lifecycle", lifecycle);
 
+		String hub = ParamUtil.getString(request, "p_p_hub", StringPool.BLANK);
+
 		boolean isolated = ParamUtil.getBoolean(request, "p_p_isolated");
 
 		boolean widget = false;
@@ -742,8 +744,6 @@ public class ServicePreAction extends Action {
 		if (widgetObj != null) {
 			widget = widgetObj.booleanValue();
 		}
-
-		String hub = ParamUtil.getString(request, "p_p_hub", StringPool.BLANK);
 
 		// Theme display
 
