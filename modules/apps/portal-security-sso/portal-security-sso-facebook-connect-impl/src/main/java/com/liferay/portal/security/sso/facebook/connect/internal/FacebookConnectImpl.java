@@ -67,11 +67,11 @@ public class FacebookConnectImpl implements FacebookConnect {
 		url = _http.addParameter(
 			url, "client_id", facebookConnectConfiguration.appId());
 		url = _http.addParameter(
-			url, "redirect_uri",
-			facebookConnectConfiguration.oauthRedirectURL());
-		url = _http.addParameter(
 			url, "client_secret", facebookConnectConfiguration.appSecret());
 		url = _http.addParameter(url, "code", code);
+		url = _http.addParameter(
+			url, "redirect_uri",
+			facebookConnectConfiguration.oauthRedirectURL());
 
 		Http.Options options = new Http.Options();
 
