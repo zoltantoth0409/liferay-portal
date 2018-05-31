@@ -237,28 +237,22 @@ public class LayoutAction extends Action {
 
 		Map<String, RenderData> renderDataMap = new HashMap<>();
 
-		List<Portlet> allPortlets =
-			layoutTypePortlet.getAllPortlets();
+		List<Portlet> allPortlets = layoutTypePortlet.getAllPortlets();
 
 		for (Portlet curPortlet : allPortlets) {
-			BufferCacheServletResponse
-				bufferCacheServletResponse =
-					new BufferCacheServletResponse(
-						response);
+			BufferCacheServletResponse bufferCacheServletResponse =
+				new BufferCacheServletResponse(response);
 
-			PortletContainerUtil.preparePortlet(
-				request, curPortlet);
+			PortletContainerUtil.preparePortlet(request, curPortlet);
 
 			PortletContainerUtil.serveResource(
-				request, bufferCacheServletResponse,
-				curPortlet);
+				request, bufferCacheServletResponse, curPortlet);
 
 			RenderData renderData = new RenderData(
 				bufferCacheServletResponse.getContentType(),
 				bufferCacheServletResponse.getString());
 
-			renderDataMap.put(
-				curPortlet.getPortletId(), renderData);
+			renderDataMap.put(curPortlet.getPortletId(), renderData);
 		}
 
 		return RenderStateUtil.generateJSON(
