@@ -179,6 +179,10 @@ public class RenderStateUtil {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
+		jsonObject.put(
+			"encodedCurrentURL",
+			URLCodec.encodeURL(PortalUtil.getCurrentCompleteURL(request)));
+
 		List<Portlet> portlets = layoutTypePortlet.getAllPortlets();
 
 		jsonObject.put(
@@ -186,11 +190,6 @@ public class RenderStateUtil {
 			_getPortletsJSONObject(
 				request, themeDisplay, layoutTypePortlet, portlets,
 				renderDataMap));
-
-		jsonObject.put(
-			"encodedCurrentURL",
-			URLCodec.encodeURL(PortalUtil.getCurrentCompleteURL(request)));
-
 		jsonObject.put("prpMap", _getPRPGroupsJSONObject(portlets));
 
 		return jsonObject;
@@ -206,6 +205,19 @@ public class RenderStateUtil {
 
 		jsonObject.put("allowedPM", _getAllowedPortletModesJSONArray(portlet));
 		jsonObject.put("allowedWS", _getAllowedWindowStatesJSONArray(portlet));
+		jsonObject.put(
+			"encodedActionURL",
+			URLCodec.encodeURL(
+				_createActionURL(request, themeDisplay.getLayout(), portlet)));
+		jsonObject.put(
+			"encodedRenderURL",
+			URLCodec.encodeURL(
+				_createRenderURL(request, themeDisplay.getLayout(), portlet)));
+		jsonObject.put(
+			"encodedResourceURL",
+			URLCodec.encodeURL(
+				_createResourceURL(
+					request, themeDisplay.getLayout(), portlet)));
 		jsonObject.put("pubParms", _getPortletPRPJSONObject(portlet));
 		jsonObject.put("renderData", _getRenderDataJSONObject(renderData));
 		jsonObject.put(
@@ -213,22 +225,6 @@ public class RenderStateUtil {
 			_getPortletStateJSONObject(
 				request, themeDisplay, layoutTypePortlet, portlet,
 				changedPublicRenderParameters));
-
-		jsonObject.put(
-			"encodedActionURL",
-			URLCodec.encodeURL(
-				_createActionURL(request, themeDisplay.getLayout(), portlet)));
-
-		jsonObject.put(
-			"encodedRenderURL",
-			URLCodec.encodeURL(
-				_createRenderURL(request, themeDisplay.getLayout(), portlet)));
-
-		jsonObject.put(
-			"encodedResourceURL",
-			URLCodec.encodeURL(
-				_createResourceURL(
-					request, themeDisplay.getLayout(), portlet)));
 
 		return jsonObject;
 	}
