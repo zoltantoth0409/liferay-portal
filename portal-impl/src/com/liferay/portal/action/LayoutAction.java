@@ -359,9 +359,9 @@ public class LayoutAction extends Action {
 					response.setContentLength(renderStateJSON.length());
 					response.setContentType(ContentTypes.APPLICATION_JSON);
 
-					PrintWriter writer = response.getWriter();
+					PrintWriter printWriter = response.getWriter();
 
-					writer.write(renderStateJSON);
+					printWriter.write(renderStateJSON);
 
 					return null;
 				}
