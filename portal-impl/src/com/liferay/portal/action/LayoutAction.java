@@ -331,18 +331,21 @@ public class LayoutAction extends Action {
 								layoutTypePortlet.getAllPortlets();
 
 							for (Portlet curPortlet : allPortlets) {
-								BufferCacheServletResponse bufferedResponse =
-									new BufferCacheServletResponse(response);
+								BufferCacheServletResponse
+									bufferCacheServletResponse =
+										new BufferCacheServletResponse(
+											response);
 
 								PortletContainerUtil.preparePortlet(
 									request, curPortlet);
 
 								PortletContainerUtil.serveResource(
-									request, bufferedResponse, curPortlet);
+									request, bufferCacheServletResponse,
+									curPortlet);
 
 								RenderData renderData = new RenderData(
-									bufferedResponse.getContentType(),
-									bufferedResponse.getString());
+									bufferCacheServletResponse.getContentType(),
+									bufferCacheServletResponse.getString());
 
 								renderDataMap.put(
 									curPortlet.getPortletId(), renderData);
