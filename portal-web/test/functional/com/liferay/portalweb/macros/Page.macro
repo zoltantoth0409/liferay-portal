@@ -874,7 +874,7 @@
 				<execute macro="PortletEntry#changeLocale">
 					<var name="fieldName" value="Friendly URL" />
 					<var name="locale" value="${friendlyUrlLocalized}" />
-				</execute>			
+				</execute>
 			</then>
 		</if>
 
