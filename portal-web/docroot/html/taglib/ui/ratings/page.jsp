@@ -191,7 +191,7 @@ if (ratingsEntry != null) {
 									<a class="glyphicon glyphicon-thumbs-up rating-element rating-thumb-up rating-<%= (thumbUp) ? "on" : "off" %>" href="javascript:;" title="<liferay-ui:message key="<%= positiveRatingMessage %>" />"><%= positiveVotes %></a>
 
 									<c:if test="<%= type.equals(RatingsType.THUMBS.getValue()) %>">
-										<a class="glyphicon glyphicon-thumbs-down rating-element rating-thumb-down rating-<%= (thumbDown) ? "on" : "off" %>" href="javascript:;" title="<liferay-ui:message key='<%= (thumbDown) ? "you-have-rated-this-as-bad" : "rate-this-as-bad" %>' />"><%= negativeVotes %></a>
+										<a class="glyphicon glyphicon-thumbs-down rating-element rating-thumb-down rating-<%= (thumbDown) ? "on" : "off" %>" href="javascript:;" title="<liferay-ui:message key='<%= thumbDown ? "you-have-rated-this-as-bad" : "rate-this-as-bad" %>' />"><%= negativeVotes %></a>
 									</c:if>
 
 									<div class="rating-input-container">

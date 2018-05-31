@@ -73,7 +73,7 @@ boolean search = mvcRenderCommandName.equals("/document_library/search");
 			</portlet:renderURL>
 
 			<liferay-frontend:management-bar-filter-item
-				active='<%= ((navigation.equals("home")) && (folderId == rootFolderId) && (fileEntryTypeId == -1)) %>'
+				active='<%= navigation.equals("home") && (folderId == rootFolderId) && (fileEntryTypeId == -1) %>'
 				label="all"
 				url="<%= viewDocumentsHomeURL.toString() %>"
 			/>
