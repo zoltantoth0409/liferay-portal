@@ -230,6 +230,41 @@ public class LayoutAction extends Action {
 		request.setAttribute(WebKeys.FORWARD_URL, forwardURL);
 	}
 
+	protected String getRenderStateJSON(
+			HttpServletRequest request, HttpServletResponse response,
+			ThemeDisplay themeDisplay, LayoutTypePortlet layoutTypePortlet)
+		throws Exception {
+
+		Map<String, RenderData> renderDataMap = new HashMap<>();
+
+		List<Portlet> allPortlets =
+			layoutTypePortlet.getAllPortlets();
+
+		for (Portlet curPortlet : allPortlets) {
+			BufferCacheServletResponse
+				bufferCacheServletResponse =
+					new BufferCacheServletResponse(
+						response);
+
+			PortletContainerUtil.preparePortlet(
+				request, curPortlet);
+
+			PortletContainerUtil.serveResource(
+				request, bufferCacheServletResponse,
+				curPortlet);
+
+			RenderData renderData = new RenderData(
+				bufferCacheServletResponse.getContentType(),
+				bufferCacheServletResponse.getString());
+
+			renderDataMap.put(
+				curPortlet.getPortletId(), renderData);
+		}
+
+		return RenderStateUtil.generateJSON(
+			request, themeDisplay, renderDataMap);
+	}
+
 	protected ActionForward processLayout(
 			ActionMapping actionMapping, HttpServletRequest request,
 			HttpServletResponse response, long plid)
@@ -323,35 +358,9 @@ public class LayoutAction extends Action {
 							themeDisplay.getLayoutTypePortlet();
 
 						if (layoutTypePortlet != null) {
-							Map<String, RenderData> renderDataMap =
-								new HashMap<>();
-
-							List<Portlet> allPortlets =
-								layoutTypePortlet.getAllPortlets();
-
-							for (Portlet curPortlet : allPortlets) {
-								BufferCacheServletResponse
-									bufferCacheServletResponse =
-										new BufferCacheServletResponse(
-											response);
-
-								PortletContainerUtil.preparePortlet(
-									request, curPortlet);
-
-								PortletContainerUtil.serveResource(
-									request, bufferCacheServletResponse,
-									curPortlet);
-
-								RenderData renderData = new RenderData(
-									bufferCacheServletResponse.getContentType(),
-									bufferCacheServletResponse.getString());
-
-								renderDataMap.put(
-									curPortlet.getPortletId(), renderData);
-							}
-
-							renderStateJSON = RenderStateUtil.generateJSON(
-								request, themeDisplay, renderDataMap);
+							renderStateJSON = getRenderStateJSON(
+								request, response, themeDisplay,
+								layoutTypePortlet);
 						}
 					}
 					else {
