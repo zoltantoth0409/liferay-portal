@@ -188,7 +188,7 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 		WikiPage page = wikiPageLocalService.getPage(nodeId, title, null);
 
 		WikiPagePermissionChecker.check(
-			getPermissionChecker(), page, ActionKeys.DELETE);
+			getPermissionChecker(), page, ActionKeys.UPDATE);
 
 		WikiNodePermissionChecker.check(
 			getPermissionChecker(), nodeId, ActionKeys.ADD_PAGE);
@@ -695,7 +695,7 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 		WikiPage page = wikiPageLocalService.fetchPage(nodeId, title);
 
 		WikiPagePermissionChecker.check(
-			getPermissionChecker(), page, ActionKeys.DELETE);
+			getPermissionChecker(), page, ActionKeys.UPDATE);
 
 		WikiNodePermissionChecker.check(
 			getPermissionChecker(), nodeId, ActionKeys.ADD_PAGE);
