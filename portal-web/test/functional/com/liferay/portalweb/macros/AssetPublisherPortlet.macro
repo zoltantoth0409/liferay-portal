@@ -174,9 +174,9 @@
 				<execute function="Select" locator1="APConfiguration#SOURCE_SCOPE_ASSET_SUBTYPE_SELECT" value1="Select More Than One..." />
 
 				<for list="${selectContent}" param="contentName">
-					<var name="key_contentName" value="${contentName}" />
-
-					<execute function="Click" locator1="APConfiguration#SELECT_MORE_THAN_ONE_ASSET_TYPE_CONTENT" />
+					<execute function="Click" locator1="APConfiguration#SELECT_MORE_THAN_ONE_ASSET_TYPE_CONTENT">
+						<var name="key_contentName" value="${contentName}" />
+					</execute>
 
 					<if>
 						<equals arg1="${moveSelected}" arg2="true" />
@@ -391,17 +391,17 @@
 
 				<execute function="Click" locator1="APConfiguration#ASSET_SELECTION_MANUAL_ASSET_ENTRIES_SELECT_BUTTON" />
 
-				<var name="key_assetType" value="${assetType}" />
-
-				<execute function="AssertClick" locator1="APConfiguration#ASSET_SELECTION_MANUAL_ASSET_ENTRIES_ASSET" value1="${assetType}" />
+				<execute function="AssertClick" locator1="APConfiguration#ASSET_SELECTION_MANUAL_ASSET_ENTRIES_ASSET" value1="${assetType}">
+					<var name="key_assetType" value="${assetType}" />
+				</execute>
 
 				<execute function="SelectFrameTop" />
 
 				<execute macro="IFrame#selectDialogFrame" />
 
-				<var name="key_assetTitle" value="${assetTitle}" />
-
-				<execute function="AssertClick" locator1="APConfiguration#ASSET_SELECTION_MANUAL_ASSET_ENTRIES_SELECT_CONTENT_LINK" value1="${assetTitle}" />
+				<execute function="AssertClick" locator1="APConfiguration#ASSET_SELECTION_MANUAL_ASSET_ENTRIES_SELECT_CONTENT_LINK" value1="${assetTitle}">
+					<var name="key_assetTitle" value="${assetTitle}" />
+				</execute>
 
 				<execute function="SelectFrameTop" />
 
@@ -488,8 +488,6 @@
 	</command>
 
 	<command name="configureSiteScopePG">
-		<var name="key_siteName" value="${siteName}" />
-
 		<execute macro="AssetPublisherPortlet#gotoConfigurationPG" />
 
 		<execute macro="Panel#expandPanel">
@@ -513,6 +511,8 @@
 				<execute function="SelectFrame" value1="relative=top" />
 
 				<execute function="SelectFrame" locator1="IFrame#SELECT_SITES" />
+
+				<var name="key_siteName" value="${siteName}" />
 
 				<execute function="AssertTextEquals" locator1="APConfigurationSites#SITES_TABLE_NAME" value1="${siteName}" />
 				<execute function="AssertTextEquals" locator1="APConfigurationSites#SITES_TABLE_TYPE" value1="${siteScopeType}" />
@@ -546,8 +546,6 @@
 	</command>
 
 	<command name="configureSiteScopeRemoveSitePG">
-		<var name="key_siteName" value="${siteName}" />
-
 		<execute macro="Portlet#gotoPortletOptions">
 			<var name="portletName" value="Asset Publisher" />
 			<var name="portletOption" value="Configuration" />
@@ -716,9 +714,9 @@
 
 		<execute macro="Button#clickSave" />
 
-		<var name="key_configurationName" value="${configurationName}" />
-
-		<execute function="AssertTextEquals" locator1="Configuration#CONFIGURATION_TEMPLATE_TABLE_NAME" value1="${configurationName}" />
+		<execute function="AssertTextEquals" locator1="Configuration#CONFIGURATION_TEMPLATE_TABLE_NAME" value1="${configurationName}">
+			<var name="key_configurationName" value="${configurationName}" />
+		</execute>
 
 		<execute macro="Alert#viewSuccessMessage" />
 
@@ -903,8 +901,6 @@
 	</command>
 
 	<command name="viewConfigureAPDisplayTemplateFullContentBookmarksPG">
-		<var name="key_assetTitle" value="${assetTitle}" />
-
 		<execute function="Click" locator1="Icon#SHARE" />
 
 		<execute function="AssertElementNotPresent" locator1="Link#READ_MORE" />
@@ -923,22 +919,21 @@
 
 	<command name="viewConfigureAPDisplayTemplateTitleListBookmarksPG">
 		<var name="key_assetTitle" value="${assetTitle}" />
-		<var name="key_bookmarkName" value="${bookmarkName}" />
 
 		<execute function="AssertElementNotPresent" locator1="Link#READ_MORE" />
 		<execute function="AssertTextNotPresent" locator1="AP#ASSET_ABSTRACT_DESCRIPTION" value1="${bookmarkDescription}" />
 	</command>
 
 	<command name="viewConfigureAPMoveToAvailablePG">
-		<var name="key_assetTitle" value="${assetTitle}" />
-
-		<execute function="AssertTextNotPresent" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${assetTitle}" />
+		<execute function="AssertTextNotPresent" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${assetTitle}">
+			<var name="key_assetTitle" value="${assetTitle}" />
+		</execute>
 	</command>
 
 	<command name="viewConfigureAPMoveToSelectedPG">
-		<var name="key_assetTitle" value="${assetTitle}" />
-
-		<execute function="AssertTextEquals" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${assetTitle}" />
+		<execute function="AssertTextEquals" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${assetTitle}">
+			<var name="key_assetTitle" value="${assetTitle}" />
+		</execute>
 	</command>
 
 	<command name="viewConfigureFlaggableDisplaySettingsPG">
@@ -1144,9 +1139,9 @@
 				<execute function="SelectFrame" locator1="IFrame#SELECT_STRUCTURE_FIELD" />
 
 				<for list="${assetSubtypeFields}" param="assetSubtypeField">
-					<var name="key_fieldName" value="${assetSubtypeField}" />
-
-					<execute function="AssertTextEquals#assertPartialText" locator1="APConfigurationFilterbyfield#FIELD_FILTER_FIELD_NAME" value1="${assetSubtypeField}" />
+					<execute function="AssertTextEquals#assertPartialText" locator1="APConfigurationFilterbyfield#FIELD_FILTER_FIELD_NAME" value1="${assetSubtypeField}">
+						<var name="key_fieldName" value="${assetSubtypeField}" />
+					</execute>
 				</for>
 			</else>
 		</if>
@@ -1190,9 +1185,9 @@
 		<execute function="Click" locator1="APConfigurationManual#ASSET_SELECTION_MANUAL_ASSET_ENTRIES_SELECT" />
 
 		<for list="${assetEntryTypes}" param="assetEntryType">
-			<var name="key_assetEntryType" value="${assetEntryType}" />
-
-			<execute function="AssertTextEquals#assertPartialText" locator1="APConfigurationManual#ASSET_SELECTION_MANUAL_ASSET_ENTRIES_MENULIST_ITEM" value1="${assetEntryType}" />
+			<execute function="AssertTextEquals#assertPartialText" locator1="APConfigurationManual#ASSET_SELECTION_MANUAL_ASSET_ENTRIES_MENULIST_ITEM" value1="${assetEntryType}">
+				<var name="key_assetEntryType" value="${assetEntryType}" />
+			</execute>
 		</for>
 
 		<execute macro="IFrame#selectTopFrame" />
@@ -1348,17 +1343,17 @@
 
 	<command name="viewTagFocusPG">
 		<for list="${assetTitleList}" param="assetTitle">
-			<var name="key_assetTitle" value="${assetTitle}" />
-
-			<execute function="AssertTextEquals" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${assetTitle}" />
+			<execute function="AssertTextEquals" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${assetTitle}">
+				<var name="key_assetTitle" value="${assetTitle}" />
+			</execute>
 		</for>
 
 		<if>
 			<isset var="nonTaggedAsset" />
 			<then>
-				<var name="key_assetTitle" value="${nonTaggedAsset}" />
-
-				<execute function="AssertTextNotPresent" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${nonTaggedAsset}" />
+				<execute function="AssertTextNotPresent" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${nonTaggedAsset}">
+					<var name="key_assetTitle" value="${nonTaggedAsset}" />
+				</execute>
 			</then>
 		</if>
 	</command>

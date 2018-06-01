@@ -71,9 +71,9 @@
 	</command>
 
 	<command name="navigateToContent">
-		<var name="key_contentBody" value="${contentBody}" />
-
-		<execute function="AssertClick#assertPartialTextClickAt" locator1="Notifications#NOTIFICATIONS_CONTENT" value1="${contentBody}" />
+		<execute function="AssertClick#assertPartialTextClickAt" locator1="Notifications#NOTIFICATIONS_CONTENT" value1="${contentBody}">
+			<var name="key_contentBody" value="${contentBody}" />
+		</execute>
 	</command>
 
 	<command name="reviewViaNotificationsEntry">

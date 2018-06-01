@@ -292,8 +292,6 @@
 			<var name="orgName" value="${orgName}" />
 		</execute>
 
-		<var name="key_orgName" value="${orgName}" />
-
 		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Edit">
 			<var name="key_menuItem" value="Edit" />
 		</execute>

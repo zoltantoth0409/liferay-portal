@@ -140,13 +140,13 @@
 		<if>
 			<equals arg1="${removeMetadataSet}" arg2="true" />
 			<then>
-				<var name="key_metadataSetName" value="${metadataSetName}" />
-
 				<execute macro="Panel#expandPanel">
 					<var name="panelHeading" value="Additional Metadata Fields" />
 				</execute>
 
-				<execute function="AssertClick" locator1="DocumentsAndMediaEditDocumentType#REMOVE_METADATA_SET_BUTTON" value1="Remove" />
+				<execute function="AssertClick" locator1="DocumentsAndMediaEditDocumentType#REMOVE_METADATA_SET_BUTTON" value1="Remove">
+					<var name="key_metadataSetName" value="${metadataSetName}" />
+				</execute>
 			</then>
 		</if>
 
@@ -158,9 +158,9 @@
 				<execute function="AssertTextEquals" locator1="DocumentsAndMediaDocumentTypes#DOCUMENT_TYPES_TABLE_NAME" value1="${dmDocumentTypeNameEdit}" />
 			</then>
 			<else>
-				<var name="key_dmDocumentTypeName" value="${dmDocumentTypeName}" />
-
-				<execute function="AssertTextEquals" locator1="DocumentsAndMediaDocumentTypes#DOCUMENT_TYPES_TABLE_NAME" value1="${dmDocumentTypeName}" />
+				<execute function="AssertTextEquals" locator1="DocumentsAndMediaDocumentTypes#DOCUMENT_TYPES_TABLE_NAME" value1="${dmDocumentTypeName}">
+					<var name="key_dmDocumentTypeName" value="${dmDocumentTypeName}" />
+				</execute>
 			</else>
 		</if>
 	</command>
@@ -224,8 +224,6 @@
 	</command>
 
 	<command name="viewMenulistOption">
-		<var name="key_dmDocumentTypeName" value="${dmDocumentTypeName}" />
-
 		<execute macro="LexiconEntry#gotoAdd" />
 
 		<execute function="AssertTextEquals" locator1="MenuItem#ANY_MENU_ITEM" value1="${dmDocumentTypeName}">

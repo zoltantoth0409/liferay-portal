@@ -4,9 +4,9 @@
 
 		<execute function="Click" locator1="Dropdown#FILTER" />
 
-		<var name="key_filterValue" value="Pending" />
-
-		<execute function="AssertClick" locator1="Dropdown#FILTER_VALUES" value1="Pending" />
+		<execute function="AssertClick" locator1="Dropdown#FILTER_VALUES" value1="Pending">
+			<var name="key_filterValue" value="Pending" />
+		</execute>
 	</command>
 
 	<command name="_openPreview">
@@ -50,9 +50,9 @@
 	</command>
 
 	<command name="_viewActivities">
-		<var name="key_workflowAssetTitle" value="${workflowAssetTitle}" />
-
-		<execute function="AssertClick" locator1="MyWorkflowTasks#ASSIGNED_TO_ME_TABLE_ASSET_TITLE" value1="${workflowAssetTitle}" />
+		<execute function="AssertClick" locator1="MyWorkflowTasks#ASSIGNED_TO_ME_TABLE_ASSET_TITLE" value1="${workflowAssetTitle}">
+			<var name="key_workflowAssetTitle" value="${workflowAssetTitle}" />
+		</execute>
 
 		<execute function="AssertClick" locator1="MyWorkflowTasksTask#ACTIVITIES" value1="Activities" />
 
@@ -355,9 +355,9 @@
 	</command>
 
 	<command name="deleteSpecificWorkflowDefinition">
-		<var name="key_workflowDefinitionTitle" value="${workflowDefinitionTitle}" />
-
-		<execute function="Click" locator1="WorkflowDefinition#DEFINITION_TABLE_SPECIFIC_DEFINITION_ELLIPSIS" />
+		<execute function="Click" locator1="WorkflowDefinition#DEFINITION_TABLE_SPECIFIC_DEFINITION_ELLIPSIS">
+			<var name="key_workflowDefinitionTitle" value="${workflowDefinitionTitle}" />
+		</execute>
 
 		<execute macro="Workflow#deleteWorkflowDefinitionCmd" />
 	</command>
@@ -379,9 +379,9 @@
 	</command>
 
 	<command name="gotoAssetViaTableTitle">
-		<var name="key_workflowAssetTitle" value="${workflowAssetTitle}" />
-
-		<execute function="AssertClick" locator1="MyWorkflowTasks#TABLE_GENERIC_ASSET_TITLE" value1="${workflowAssetTitle}" />
+		<execute function="AssertClick" locator1="MyWorkflowTasks#TABLE_GENERIC_ASSET_TITLE" value1="${workflowAssetTitle}">
+			<var name="key_workflowAssetTitle" value="${workflowAssetTitle}" />
+		</execute>
 	</command>
 
 	<command name="gotoCompletedFilter">
@@ -389,15 +389,15 @@
 
 		<execute function="Click" locator1="Dropdown#FILTER" />
 
-		<var name="key_filterValue" value="Completed" />
-
-		<execute function="AssertClick" locator1="Dropdown#FILTER_VALUES" value1="Completed" />
+		<execute function="AssertClick" locator1="Dropdown#FILTER_VALUES" value1="Completed">
+			<var name="key_filterValue" value="Completed" />
+		</execute>
 	</command>
 
 	<command name="gotoCompletedTaskAssignedToMePreview">
-		<var name="key_workflowAssetTitle" value="${workflowAssetTitle}" />
-
-		<execute function="AssertClick" locator1="MyWorkflowTasks#ASSIGNED_TO_ME_TABLE_ASSET_TITLE" value1="${workflowAssetTitle}" />
+		<execute function="AssertClick" locator1="MyWorkflowTasks#ASSIGNED_TO_ME_TABLE_ASSET_TITLE" value1="${workflowAssetTitle}">
+			<var name="key_workflowAssetTitle" value="${workflowAssetTitle}" />
+		</execute>
 
 		<execute macro="Workflow#gotoPreviewView" />
 	</command>
@@ -417,31 +417,31 @@
 	</command>
 
 	<command name="gotoTaskAssignedToMeActionsCmd">
-		<var name="key_workflowAssetTitle" value="${workflowAssetTitle}" />
-		<var name="key_workflowTask" value="${workflowTask}" />
-
-		<execute function="Click" locator1="MyWorkflowTasks#ASSIGNED_TO_ME_TABLE_ACTIONS" />
+		<execute function="Click" locator1="MyWorkflowTasks#ASSIGNED_TO_ME_TABLE_ACTIONS">
+			<var name="key_workflowAssetTitle" value="${workflowAssetTitle}" />
+			<var name="key_workflowTask" value="${workflowTask}" />
+		</execute>
 	</command>
 
 	<command name="gotoTaskAssignedToMyRolesActionsCmd">
-		<var name="key_workflowAssetTitle" value="${workflowAssetTitle}" />
-		<var name="key_workflowTask" value="${workflowTask}" />
-
-		<execute function="Click" locator1="MyWorkflowTasks#ASSIGNED_TO_MY_ROLES_TABLE_ACTIONS" />
+		<execute function="Click" locator1="MyWorkflowTasks#ASSIGNED_TO_MY_ROLES_TABLE_ACTIONS">
+			<var name="key_workflowAssetTitle" value="${workflowAssetTitle}" />
+			<var name="key_workflowTask" value="${workflowTask}" />
+		</execute>
 	</command>
 
 	<command name="gotoTaskDetails">
-		<var name="key_workflowAssetTitle" value="${workflowAssetTitle}" />
-
-		<execute function="AssertClick" locator1="MyWorkflowTasks#ASSIGNED_TO_ME_TABLE_ASSET_TITLE" value1="${workflowAssetTitle}" />
+		<execute function="AssertClick" locator1="MyWorkflowTasks#ASSIGNED_TO_ME_TABLE_ASSET_TITLE" value1="${workflowAssetTitle}">
+			<var name="key_workflowAssetTitle" value="${workflowAssetTitle}" />
+		</execute>
 	</command>
 
 	<command name="gotoViewCompletedAssetViaMySubmissions">
 		<execute macro="Workflow#gotoCompletedFilter" />
 
-		<var name="key_workflowAssetTitle" value="${workflowAssetTitle}" />
-
-		<execute function="Click" locator1="WorkflowSubmissions#COMPLETED_TABLE_ASSET_TITLE" />
+		<execute function="Click" locator1="WorkflowSubmissions#COMPLETED_TABLE_ASSET_TITLE">
+			<var name="key_workflowAssetTitle" value="${workflowAssetTitle}" />
+		</execute>
 
 		<execute macro="Workflow#gotoPreviewView" />
 	</command>
@@ -704,9 +704,6 @@
 			<var name="workflowTask" value="${workflowTask}" />
 		</execute>
 
-		<var name="key_workflowAssetTitle" value="${workflowAssetTitle}" />
-		<var name="key_workflowTask" value="${workflowTask}" />
-
 		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Update Due Date">
 			<var name="key_menuItem" value="Update Due Date" />
 		</execute>
@@ -726,9 +723,9 @@
 		<if>
 			<isset var="workflowActivityComment" />
 			<then>
-				<var name="key_workflowActivityComment" value="${workflowActivityComment}" />
-
-				<execute function="Type#clickAtType" locator1="MyWorkflowTasks#DIALOG_BOX_COMMENT_FIELD" value1="${workflowActivityComment}" />
+				<execute function="Type#clickAtType" locator1="MyWorkflowTasks#DIALOG_BOX_COMMENT_FIELD" value1="${workflowActivityComment}">
+					<var name="key_workflowActivityComment" value="${workflowActivityComment}" />
+				</execute>
 			</then>
 		</if>
 
@@ -757,9 +754,6 @@
 			<var name="workflowTask" value="${workflowTask}" />
 		</execute>
 
-		<var name="key_workflowAssetTitle" value="${workflowAssetTitle}" />
-		<var name="key_workflowTask" value="${workflowTask}" />
-
 		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Update Due Date">
 			<var name="key_menuItem" value="Update Due Date" />
 		</execute>
@@ -779,9 +773,9 @@
 		<if>
 			<isset var="workflowActivityComment" />
 			<then>
-				<var name="key_workflowActivityComment" value="${workflowActivityComment}" />
-
-				<execute function="Type#clickAtType" locator1="MyWorkflowTasks#DIALOG_BOX_COMMENT_FIELD" value1="${workflowActivityComment}" />
+				<execute function="Type#clickAtType" locator1="MyWorkflowTasks#DIALOG_BOX_COMMENT_FIELD" value1="${workflowActivityComment}">
+					<var name="key_workflowActivityComment" value="${workflowActivityComment}" />
+				</execute>
 			</then>
 		</if>
 
@@ -810,19 +804,16 @@
 	</command>
 
 	<command name="viewAssignedToMyRolesTasksCP">
-		<var name="key_workflowAssetTitle" value="${workflowAssetTitle}" />
-		<var name="key_workflowTask" value="${workflowTask}" />
-
 		<execute macro="Navigator#gotoNavTab">
 			<var name="navTab" value="Assigned to My Roles" />
 		</execute>
 
 		<execute macro="Workflow#_gotoPendingFilter" />
 
-		<execute function="AssertTextEquals" locator1="MyWorkflowTasks#ASSIGNED_TO_MY_ROLES_TABLE_TASK" value1="${workflowTask}" />
-
 		<var name="key_workflowAssetTitle" value="${workflowAssetTitle}" />
+		<var name="key_workflowTask" value="${workflowTask}" />
 
+		<execute function="AssertTextEquals" locator1="MyWorkflowTasks#ASSIGNED_TO_MY_ROLES_TABLE_TASK" value1="${workflowTask}" />
 		<execute function="AssertTextEquals#assertPartialText" locator1="MyWorkflowTasks#ASSIGNED_TO_MY_ROLES_TABLE_ASSET_TITLE" value1="${workflowAssetTitle}" />
 
 		<var name="key_workflowAssetType" value="${workflowAssetType}" />
@@ -986,14 +977,14 @@
 	</command>
 
 	<command name="viewNoDuplicateTaskAssignedToMyRoles">
-		<var name="key_workflowAssetTitle" value="${workflowAssetTitle}" />
-		<var name="key_workflowTask" value="${workflowTask}" />
-
 		<execute macro="Navigator#gotoNavTab">
 			<var name="navTab" value="Assigned to My Roles" />
 		</execute>
 
 		<execute macro="Workflow#_gotoPendingFilter" />
+
+		<var name="key_workflowAssetTitle" value="${workflowAssetTitle}" />
+		<var name="key_workflowTask" value="${workflowTask}" />
 
 		<execute function="AssertTextEquals" locator1="MyWorkflowTasks#ASSIGNED_TO_MY_ROLES_TABLE_ASSET_TITLE" value1="${workflowAssetTitle}" />
 		<execute function="AssertElementNotPresent" locator1="MyWorkflowTasks#ASSIGNED_TO_MY_ROLES_TABLE_ASSET_TITLE_DUPLICATE" />
@@ -1056,9 +1047,9 @@
 	<command name="viewSubmissionNotPresent">
 		<execute macro="Workflow#_gotoPendingFilter" />
 
-		<var name="key_workflowAssetTitle" value="${workflowAssetTitle}" />
-
-		<execute function="AssertElementNotPresent" locator1="WorkflowSubmissions#PENDING_TABLE_ASSET_TITLE" />
+		<execute function="AssertElementNotPresent" locator1="WorkflowSubmissions#PENDING_TABLE_ASSET_TITLE">
+			<var name="key_workflowAssetTitle" value="${workflowAssetTitle}" />
+		</execute>
 	</command>
 
 	<command name="viewTaskAssignedToMe">
