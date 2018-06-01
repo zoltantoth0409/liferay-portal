@@ -405,7 +405,6 @@ public abstract class BaseClientTestCase {
 		WebTarget webTarget = client.target(_url.toURI());
 
 		webTarget = webTarget.path("api");
-
 		webTarget = webTarget.path("jsonws");
 
 		for (String path : paths) {
@@ -421,9 +420,7 @@ public abstract class BaseClientTestCase {
 		WebTarget webTarget = client.target(_url.toURI());
 
 		webTarget = webTarget.path("c");
-
 		webTarget = webTarget.path("portal");
-
 		webTarget = webTarget.path("login");
 
 		return webTarget;
@@ -435,7 +432,6 @@ public abstract class BaseClientTestCase {
 		WebTarget webTarget = client.target(_url.toURI());
 
 		webTarget = webTarget.path("o");
-
 		webTarget = webTarget.path("oauth2");
 
 		return webTarget;
