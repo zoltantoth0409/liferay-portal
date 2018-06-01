@@ -447,8 +447,8 @@ public abstract class BaseClientTestCase {
 			formData.add("client_id", clientId);
 			formData.add("client_secret", "oauthTestApplicationSecret");
 			formData.add("grant_type", "password");
-			formData.add("username", userName);
 			formData.add("password", password);
+			formData.add("username", userName);
 
 			return invocationBuilder.post(Entity.form(formData));
 		};
@@ -465,9 +465,9 @@ public abstract class BaseClientTestCase {
 			formData.add("client_id", clientId);
 			formData.add("client_secret", "oauthTestApplicationSecret");
 			formData.add("grant_type", "password");
-			formData.add("username", userName);
 			formData.add("password", password);
 			formData.add("scope", scope);
+			formData.add("username", userName);
 
 			return invocationBuilder.post(Entity.form(formData));
 		};
@@ -517,7 +517,6 @@ public abstract class BaseClientTestCase {
 		WebTarget target = client.target(_url.toURI());
 
 		target = target.path("o");
-
 		target = target.path("oauth2-test");
 
 		for (String path : paths) {
