@@ -201,6 +201,7 @@ MBThread thread = (MBThread)request.getAttribute("edit_message.jsp-thread");
 					boolean hasPermissionsPermission = !thread.isLocked() && !message.isRoot() && MBMessagePermission.contains(permissionChecker, message, ActionKeys.PERMISSIONS);
 					boolean hasReplyPermission = !thread.isLocked() && !message.isDraft() && MBCategoryPermission.contains(permissionChecker, scopeGroupId, message.getCategoryId(), ActionKeys.REPLY_TO_MESSAGE);
 					boolean hasUpdatePermission = !thread.isLocked() && MBMessagePermission.contains(permissionChecker, message, ActionKeys.UPDATE);
+
 					boolean showAnswerFlag = false;
 
 					if (!message.isRoot()) {
