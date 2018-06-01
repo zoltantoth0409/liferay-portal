@@ -171,8 +171,6 @@
 
 		<execute function="Click" locator1="Icon#CLOSE" />
 
-		<var name="key_siteName" value="${siteName}" />
-
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Publishing" />
 			<var name="panel" value="Site Administration" />
@@ -711,9 +709,9 @@
 		<if>
 			<isset var="isNotEditable" />
 			<then>
-				<var name="key_contentName" value="${isNotEditable}" />
-
-				<execute function="AssertNotVisible" locator1="Checkbox#STAGED_CONTENT" />
+				<execute function="AssertNotVisible" locator1="Checkbox#STAGED_CONTENT">
+					<var name="key_contentName" value="${isNotEditable}" />
+				</execute>
 			</then>
 		</if>
 

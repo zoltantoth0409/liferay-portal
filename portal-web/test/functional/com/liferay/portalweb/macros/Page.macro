@@ -89,8 +89,6 @@
 	</command>
 
 	<command name="add" summary="Add a page named '${pageName}'">
-		<var name="key_siteName" value="${siteName}" />
-
 		<if>
 			<isset var="siteName" />
 			<then>
