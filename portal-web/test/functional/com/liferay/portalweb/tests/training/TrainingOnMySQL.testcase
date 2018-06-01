@@ -3204,7 +3204,7 @@ Brainstorming:
 
 		<execute macro="Navigator#openURL" />
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portlet#gotoSpecificPortletOptions">
 			<var name="order" value="2" />
 			<var name="portletName" value="Asset Publisher" />
 			<var name="portletOption" value="Configuration Templates" />
@@ -3235,7 +3235,7 @@ Brainstorming:
 
 		<execute macro="Navigator#openURL" />
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portlet#gotoSpecificPortletOptions">
 			<var name="order" value="2" />
 			<var name="portletName" value="Asset Publisher" />
 			<var name="portletOption" value="Look and Feel Configuration" />
@@ -4487,7 +4487,7 @@ Lead Text: Attention, incoming students: New Student Orientation begins at 2:00 
 
 		<execute macro="Navigator#openURL" />
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portlet#gotoSpecificPortletOptions">
 			<var name="order" value="2" />
 			<var name="portletName" value="Web Content Display" />
 			<var name="portletOption" value="Look and Feel Configuration" />
@@ -4499,7 +4499,7 @@ Lead Text: Attention, incoming students: New Student Orientation begins at 2:00 
 
 		<execute macro="Navigator#openURL" />
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portlet#gotoSpecificPortletOptions">
 			<var name="order" value="2" />
 			<var name="portletName" value="Asset Publisher" />
 			<var name="portletOption" value="Look and Feel Configuration" />
@@ -4520,7 +4520,7 @@ Lead Text: Attention, incoming students: New Student Orientation begins at 2:00 
 
 		<execute macro="Navigator#openURL" />
 
-		<execute macro="Portlet#gotoPortletOptions">
+		<execute macro="Portlet#gotoSpecificPortletOptions">
 			<var name="order" value="3" />
 			<var name="portletName" value="Web Content Display" />
 			<var name="portletOption" value="Look and Feel Configuration" />

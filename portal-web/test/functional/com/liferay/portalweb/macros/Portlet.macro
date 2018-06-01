@@ -275,6 +275,29 @@
 
 	<command name="gotoPortletOptions">
 		<if>
+			<isset var="portletName" />
+			<then>
+				<var name="key_portletName" value="${portletName}" />
+
+				<execute function="Click#makeVisibleClickAt" locator1="Portlet#SPECIFIC_BORDERLESS_ELLIPSIS_ICON" />
+			</then>
+			<else>
+				<execute function="Click#makeVisibleClickAt" locator1="Portlet#OPTIONS_ICON" />
+			</else>
+		</if>
+
+		<if>
+			<isset var="portletOption" />
+			<then>
+				<var name="key_menuItem" value="${portletOption}" />
+
+				<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM" />
+			</then>
+		</if>
+	</command>
+
+	<command name="gotoSpecificPortletOptions">
+		<if>
 			<and>
 				<equals arg1="${portletName}" arg2="Web Content Display" />
 				<isset var="order" />
@@ -295,17 +318,6 @@
 					<execute function="Click#makeVisibleClickAt" locator1="AP#SPECIFIC_BORDERLESS_ELLIPSIS_ICON" />
 				</then>
 			</elseif>
-			<elseif>
-				<isset var="portletName" />
-				<then>
-					<var name="key_portletName" value="${portletName}" />
-
-					<execute function="Click#makeVisibleClickAt" locator1="Portlet#SPECIFIC_BORDERLESS_ELLIPSIS_ICON" />
-				</then>
-			</elseif>
-			<else>
-				<execute function="Click#makeVisibleClickAt" locator1="Portlet#OPTIONS_ICON" />
-			</else>
 		</if>
 
 		<if>
