@@ -9,7 +9,6 @@ import {ClayToast} from 'clay-alert';
  * @param {string} title The title associated with the message
  * @param {string} type The type of notification to show. It can be one of the
  * following: 'danger', 'info', 'success', 'warning'
- * @return {ClayToast} The Alert toast created
  * @review
  */
 
@@ -52,8 +51,6 @@ function openToast(
 			dom.addClasses(clayToast.element, 'show');
 		}
 	);
-
-	return clayToast;
 }
 
 export {openToast};
