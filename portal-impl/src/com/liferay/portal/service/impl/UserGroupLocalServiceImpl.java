@@ -552,6 +552,7 @@ public class UserGroupLocalServiceImpl extends UserGroupLocalServiceBaseImpl {
 		}
 
 		String orderByCol = obc.getOrderByFields()[0];
+
 		String orderByType = "asc";
 
 		if (!obc.isAscending()) {
@@ -667,6 +668,7 @@ public class UserGroupLocalServiceImpl extends UserGroupLocalServiceBaseImpl {
 		}
 
 		String orderByCol = obc.getOrderByFields()[0];
+
 		String orderByType = "asc";
 
 		if (!obc.isAscending()) {
