@@ -231,24 +231,19 @@ public class FjordSiteInitializer implements SiteInitializer {
 		while (enumeration.hasMoreElements()) {
 			URL url = enumeration.nextElement();
 
+			String shortFileName = FileUtil.getShortFileName(url.getPath());
 			String html = StringUtil.replace(
 				StringUtil.read(url.openStream()), StringPool.DOLLAR,
 				StringPool.DOLLAR, fileEntriesMap);
-
-			String shortFileName = FileUtil.getShortFileName(url.getPath());
-
-			long previewFileEntryId = _getPreviewFileEntryId(
-				path, shortFileName, serviceContext);
-
-			String fragmentEntryTitle = StringUtil.upperCaseFirstLetter(
-				FileUtil.stripExtension(shortFileName));
 
 			FragmentEntry fragmentEntry =
 				_fragmentEntryLocalService.addFragmentEntry(
 					serviceContext.getUserId(),
 					serviceContext.getScopeGroupId(), fragmentCollectionId,
-					fragmentEntryTitle, StringPool.BLANK, html,
-					StringPool.BLANK, previewFileEntryId,
+					StringUtil.upperCaseFirstLetter(
+						FileUtil.stripExtension(shortFileName)),
+					StringPool.BLANK, html, StringPool.BLANK,
+					_getPreviewFileEntryId(path, shortFileName, serviceContext),
 					WorkflowConstants.STATUS_APPROVED, serviceContext);
 
 			fragmentEntries.add(fragmentEntry);
