@@ -48,17 +48,15 @@ if (Validator.isNotNull(jspPath) || Validator.isNotNull(message)) {
 	}
 %>
 
-	<div class="alert-notifications alert-notifications-fixed" id="portalMessageContainer">
-		<div class="alert alert-dismissible <%= cssClass %>">
-			<c:choose>
-				<c:when test="<%= Validator.isNotNull(jspPath) %>">
-					<liferay-util:include page="<%= jspPath %>" portletId="<%= portletId %>" />
-				</c:when>
-				<c:otherwise>
-					<liferay-ui:message key="<%= message %>" /><button class="close" type="button">&times;</button>
-				</c:otherwise>
-			</c:choose>
-		</div>
+	<div class="alert taglib-portal-message <%= cssClass %>" id="portalMessageContainer">
+		<c:choose>
+			<c:when test="<%= Validator.isNotNull(jspPath) %>">
+				<liferay-util:include page="<%= jspPath %>" portletId="<%= portletId %>" />
+			</c:when>
+			<c:otherwise>
+				<liferay-ui:message key="<%= message %>" /><button class="close" type="button">&times;</button>
+			</c:otherwise>
+		</c:choose>
 	</div>
 
 	<aui:script use="liferay-notice">
