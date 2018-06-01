@@ -13,9 +13,9 @@
 			<#list entries as entry>
 				<#if !entry.isSelected() && !entry.isDisabled()>
 					<#assign
+						displayName = entry.getLongDisplayName() + "-" + locale.getDisplayCountry()
 						locale = entry.getLocale()
 						normalizedDefaultLanguageId = stringUtil.toLowerCase(stringUtil.replace(entry.getLanguageId(), "_", "-"))
-						displayName = entry.getLongDisplayName() + "-" + locale.getDisplayCountry()
 					/>
 
 					<@liferay_ui["icon"]
