@@ -31,13 +31,17 @@ public class MDRActionStagingModelListener
 	extends BaseModelListener<MDRAction> {
 
 	@Override
-	public void onAfterCreate(MDRAction action) throws ModelListenerException {
-		_stagingModelListener.onAfterCreate(action);
+	public void onAfterCreate(MDRAction mdrAction)
+		throws ModelListenerException {
+
+		_stagingModelListener.onAfterCreate(mdrAction);
 	}
 
 	@Override
-	public void onAfterUpdate(MDRAction action) throws ModelListenerException {
-		_stagingModelListener.onAfterUpdate(action);
+	public void onAfterUpdate(MDRAction mdrAction)
+		throws ModelListenerException {
+
+		_stagingModelListener.onAfterUpdate(mdrAction);
 	}
 
 	@Reference
