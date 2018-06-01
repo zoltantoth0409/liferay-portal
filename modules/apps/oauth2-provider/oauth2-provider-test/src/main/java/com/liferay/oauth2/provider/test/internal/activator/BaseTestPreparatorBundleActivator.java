@@ -145,8 +145,8 @@ public abstract class BaseTestPreparatorBundleActivator
 
 					@Override
 					public String getName() {
-						return
-							"Test managedservicefactory for pid " + factoryPid;
+						return "Test managed service factory for PID " +
+							factoryPid;
 					}
 
 					@Override
