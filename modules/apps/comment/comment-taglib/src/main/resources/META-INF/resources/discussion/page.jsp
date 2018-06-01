@@ -303,7 +303,6 @@ CommentSectionDisplayContext commentSectionDisplayContext = CommentDisplayContex
 											{
 												id: randomId,
 												message: '<%= UnicodeLanguageUtil.get(resourceBundle, "your-request-completed-successfully") %>',
-												title: '<%= UnicodeLanguageUtil.get(resourceBundle, "success") %>',
 												type: 'success'
 											}
 										);
@@ -432,7 +431,6 @@ CommentSectionDisplayContext commentSectionDisplayContext = CommentDisplayContex
 									{
 										id: '<%= randomNamespace %>',
 										message: '<%= UnicodeLanguageUtil.get(resourceBundle, "your-request-failed-to-complete") %>',
-										title: '<%= UnicodeLanguageUtil.get(resourceBundle, "error") %>',
 										type: 'danger'
 									}
 								);
@@ -473,7 +471,6 @@ CommentSectionDisplayContext commentSectionDisplayContext = CommentDisplayContex
 										{
 											id: '<%= randomNamespace %>',
 											message: errorKey,
-											title: '<%= UnicodeLanguageUtil.get(resourceBundle, "error") %>',
 											type: 'danger'
 										}
 									);
@@ -506,11 +503,19 @@ CommentSectionDisplayContext commentSectionDisplayContext = CommentDisplayContex
 				}
 			);
 
-			window.<%= randomNamespace %>showStatusMessage = Liferay.lazyLoad(
-				'frontend-js-web/liferay/toast/commands/OpenToast.es',
-				function(toastCommands, data) {
-					toastCommands.openToast(data);
-				}
+			Liferay.provide(
+				window,
+				'<%= randomNamespace %>showStatusMessage',
+				function(data) {
+					new Liferay.Alert(
+						{
+							'delay.hide': 5000,
+							message: data.message,
+							type: data.type
+						}
+					).render('#' + data.id + 'discussionStatusMessages');
+				},
+				['liferay-alert']
 			);
 
 			Liferay.provide(
@@ -599,7 +604,6 @@ CommentSectionDisplayContext commentSectionDisplayContext = CommentDisplayContex
 									{
 										id: <%= randomNamespace %>,
 										message: '<%= UnicodeLanguageUtil.get(resourceBundle, "your-request-failed-to-complete") %>',
-										title: '<%= UnicodeLanguageUtil.get(resourceBundle, "error") %>',
 										type: 'danger'
 									}
 								);
