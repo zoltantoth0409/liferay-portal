@@ -17,7 +17,7 @@ package com.liferay.asset.display.page.constants;
 /**
  * @author Jürgen Kappler
  */
-public class AssetDisplayPageTypeConstants {
+public class AssetDisplayPageConstants {
 
 	public static final int TYPE_DEFAULT = 1;
 

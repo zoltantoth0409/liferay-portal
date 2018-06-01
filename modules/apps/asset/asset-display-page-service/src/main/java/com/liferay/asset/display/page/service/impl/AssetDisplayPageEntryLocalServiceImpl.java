@@ -14,7 +14,7 @@
 
 package com.liferay.asset.display.page.service.impl;
 
-import com.liferay.asset.display.page.constants.AssetDisplayPageTypeConstants;
+import com.liferay.asset.display.page.constants.AssetDisplayPageConstants;
 import com.liferay.asset.display.page.model.AssetDisplayPageEntry;
 import com.liferay.asset.display.page.service.base.AssetDisplayPageEntryLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -31,7 +31,7 @@ public class AssetDisplayPageEntryLocalServiceImpl
 
 		return addAssetDisplayPageEntry(
 			assetEntryId, layoutPageTemplateEntryId,
-			AssetDisplayPageTypeConstants.TYPE_DEFAULT);
+			AssetDisplayPageConstants.TYPE_DEFAULT);
 	}
 
 	@Override
