@@ -231,7 +231,7 @@ MailManager mailManager = MailManager.getInstance(request);
 				<li class="<%= ((messagesDisplay.getPageNumber() > 2) ? StringPool.BLANK : "disabled ") + "previous" %>">
 					<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="1" href="javascript:;">&larr; <liferay-ui:message key="newest" /></aui:a>
 				</li>
-				<li class="<%= ((messagesDisplay.getPageNumber() >) 1 ? StringPool.BLANK : "disabled ") + "previous" %>">
+				<li class="<%= ((messagesDisplay.getPageNumber() > 1) ? StringPool.BLANK : "disabled ") + "previous" %>">
 					<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber - 1 %>" href="javascript:;"><liferay-ui:message key="newer" /></aui:a>
 				</li>
 				<li class="message-count">
