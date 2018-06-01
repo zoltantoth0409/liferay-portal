@@ -276,7 +276,7 @@ String modelName = (String)request.getAttribute("liferay-ui:input-permissions:mo
 
 		<input <%= addGroupPermissions ? "checked" : "" %> name="<%= namespace %>addGroupPermissionsBox" onClick="<%= namespace %>checkGroupAndGuestPermissions();" type="checkbox" /> <liferay-ui:message key="assign-default-permissions-to-site" /><br />
 		<input <%= addGuestPermissions ? "checked" : "" %> name="<%= namespace %>addGuestPermissionsBox" onClick="<%= namespace %>checkGroupAndGuestPermissions();" type="checkbox" /> <liferay-ui:message key="assign-default-permissions-to-guest" /><br />
-		<input <%= !addGroupPermissions && !addGuestPermissions ? "checked" : "" %> name="<%= namespace %>addUserPermissionsBox" onClick="<%= namespace %>checkUserPermissions();" type="checkbox" /> <liferay-ui:message key="only-assign-permissions-to-me" />
+		<input <%= (!addGroupPermissions && !addGuestPermissions) ? "checked" : "" %> name="<%= namespace %>addUserPermissionsBox" onClick="<%= namespace %>checkUserPermissions();" type="checkbox" /> <liferay-ui:message key="only-assign-permissions-to-me" />
 
 		<aui:script>
 			function <%= namespace %>checkGroupAndGuestPermissions() {

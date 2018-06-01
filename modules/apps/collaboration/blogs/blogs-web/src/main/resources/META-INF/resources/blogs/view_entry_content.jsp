@@ -235,7 +235,7 @@ String socialBookmarksDisplayPosition = blogsPortletInstanceConfiguration.social
 							<%= dateFormatDateTime.format(entry.getDisplayDate()) %>
 
 							<c:if test="<%= blogsPortletInstanceConfiguration.enableViewCount() %>">
-								, <liferay-ui:message arguments="<%= assetEntry.getViewCount() %>" key='<%= assetEntry.getViewCount() == 1 ? "x-view" : "x-views" %>' />
+								, <liferay-ui:message arguments="<%= assetEntry.getViewCount() %>" key='<%= (assetEntry.getViewCount() == 1) ? "x-view" : "x-views" %>' />
 							</c:if>
 						</liferay-ui:user-display>
 					</div>

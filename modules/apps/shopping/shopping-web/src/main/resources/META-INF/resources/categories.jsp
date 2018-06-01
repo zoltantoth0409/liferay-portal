@@ -178,7 +178,7 @@ boolean showSearch = (categoriesAndItemsCount > 0);
 						</h6>
 
 						<h5>
-							<aui:a href="<%= rowURL != null ? rowURL.toString() : null %>">
+							<aui:a href="<%= (rowURL != null) ? rowURL.toString() : null %>">
 								<%= HtmlUtil.escape(curItem.getName()) %>
 							</aui:a>
 						</h5>
@@ -261,7 +261,7 @@ boolean showSearch = (categoriesAndItemsCount > 0);
 						</h6>
 
 						<h5>
-							<aui:a href="<%= rowURL != null ? rowURL.toString() : null %>">
+							<aui:a href="<%= (rowURL != null) ? rowURL.toString() : null %>">
 								<%= curCategory.getName() %>
 							</aui:a>
 						</h5>
