@@ -96,8 +96,10 @@ public class FacebookConnectImpl implements FacebookConnect {
 					url = _http.setParameter(
 						url, "client_secret",
 						StringBundler.concat(
-							appSecret.charAt(0), "...redacted...",
-							appSecret.charAt(appSecret.length() - 1)));
+							String.valueOf(appSecret.charAt(0)),
+							"...redacted...",
+							String.valueOf(
+								appSecret.charAt(appSecret.length() - 1))));
 				}
 
 				_log.debug(
