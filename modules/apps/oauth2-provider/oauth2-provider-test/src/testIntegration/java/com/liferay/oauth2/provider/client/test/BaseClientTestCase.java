@@ -219,8 +219,8 @@ public abstract class BaseClientTestCase {
 
 			formData.add("client_id", clientId);
 			formData.add("client_secret", "oauthTestApplicationSecret");
-			formData.add("grant_type", "authorization_code");
 			formData.add("code", authorizationCode);
+			formData.add("grant_type", "authorization_code");
 
 			return invocationBuilder.post(Entity.form(formData));
 		};
