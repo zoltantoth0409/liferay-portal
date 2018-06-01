@@ -4,10 +4,10 @@
 	<property name="test.prepare.bundle.properties" value="false" />
 	<property name="testray.main.component.name" value="Training" />
 
-	<command name="Training" priority="5">
+	<command name="TrainingDemo1" priority="5">
 		<property name="database.types" value="hypersonic" />
 		<property name="liferay.training.dependency.jars" value="src/01-liferay-fundamentals/02-integrating-identity-management/com.liferay.docs.samplecontent-1.0.0.jar" />
-		<property name="test.name.skip.portal.instance" value="TrainingOnHSQL#Training" />
+		<property name="test.name.skip.portal.instance" value="TrainingHSQL#TrainingDemo1" />
 		<property name="testray.component.names" value="Training" />
 
 		<execute macro="SetupWizard#configurePG">
@@ -1825,10 +1825,10 @@
 		</execute>
 	</command>
 
-	<command name="Training-mastering" priority="5">
+	<command name="TrainingDemo2" priority="5">
 		<property name="database.types" value="hypersonic" />
 		<property name="liferay.training.dependency.jars" value="src/01-liferay-fundamentals/02-integrating-identity-management/com.liferay.docs.samplecontent-1.0.0.jar" />
-		<property name="test.name.skip.portal.instance" value="TrainingOnHSQL#Training-mastering" />
+		<property name="test.name.skip.portal.instance" value="TrainingHSQL#TrainingDemo2" />
 		<property name="testray.component.names" value="Training" />
 
 		<execute macro="SetupWizard#configurePG">
@@ -2800,10 +2800,10 @@ Brainstorming:
 		<execute function="Pause" locator1="120000" />
 	</command>
 
-	<command name="Training-mastering-separated" priority="5">
+	<command name="TrainingDemo3" priority="5">
 		<property name="database.types" value="hypersonic" />
 		<property name="liferay.training.dependency.jars" value="src/01-liferay-fundamentals/02-integrating-identity-management/com.liferay.docs.samplecontent-1.0.0.jar" />
-		<property name="test.name.skip.portal.instance" value="TrainingOnHSQL#Training-mastering-separated" />
+		<property name="test.name.skip.portal.instance" value="TrainingHSQL#TrainingDemo3" />
 		<property name="testray.component.names" value="Training" />
 
 		<execute macro="SetupWizard#configurePG">
@@ -4220,10 +4220,10 @@ Lead Text: Attention, incoming students: New Student Orientation begins at 2:00 
 		<execute function="AssertTextEquals#assertPartialText" locator1="WCD#WEB_CONTENT_CONTENT" value1="Dream even bigger" />
 	</command>
 
-	<command name="Training-separated" priority="5">
+	<command name="TrainingDemo4" priority="5">
 		<property name="database.types" value="hypersonic" />
 		<property name="liferay.training.dependency.jars" value="src/01-liferay-fundamentals/02-integrating-identity-management/com.liferay.docs.samplecontent-1.0.0.jar" />
-		<property name="test.name.skip.portal.instance" value="Training-separated" />
+		<property name="test.name.skip.portal.instance" value="TrainingHSQL#TrainingDemo4" />
 		<property name="testray.component.names" value="Training" />
 
 		<execute macro="SetupWizard#configurePG">
