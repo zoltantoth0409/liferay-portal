@@ -99,7 +99,7 @@
 </tr>
 <tr>
 	<td>ASSET_ABSTRACT_VERTICAL_ELLIPSIS</td>
-	<td>//div[contains(@class,'portlet') and contains(@class,'container')]//div[contains(@class,'asset-abstract ')]/h4[contains(@class,'asset-title') and contains(.,'${key_assetTitle}')]/..//span/*[name()='svg'][contains(@class,'icon-ellipsis')]</td>
+	<td>//div[contains(@class,'portlet') and contains(@class,'container')]//div[contains(@class,'asset-abstract ')]/h4[contains(@class,'asset-title') and contains(.,'${key_assetTitle}')]/..//a[span/*[name()='svg'][contains(@class,'icon-ellipsis')]]</td>
 	<td></td>
 </tr>
 <tr>
@@ -178,7 +178,7 @@
 </tr>
 <tr>
 	<td>ASSET_ABSTRACT_BOOKMARK_LIFERAY_LOGO</td>
-	<td>//*[name()='svg'][*[name()='use'][contains(@class,'logo')]]</td>
+	<td>//span[*[name()='svg'][*[name()='use'][contains(@class,'logo')]]]</td>
 	<td></td>
 </tr>
 <tr>

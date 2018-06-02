@@ -265,7 +265,7 @@
 </tr>
 <tr>
 	<td>COLOR_EFFECT</td>
-	<td>//a[@class='btn']//*[name()='svg'][@data-icon='effects']</td>
+	<td>//a[@class='btn'][*[name()='svg'][@data-icon='effects']]</td>
 	<td></td>
 </tr>
 <tr>
@@ -365,7 +365,7 @@
 </tr>
 <tr>
 	<td>EDITOR_SWITCH</td>
-	<td>//button[contains(@id,'EditorSwitch')]/span/*[name()='svg'][contains(@class,'lexicon-icon-code')]</td>
+	<td>//button[contains(@id,'EditorSwitch')]//span[*[name()='svg'][contains(@class,'lexicon-icon-code')]]</td>
 	<td></td>
 </tr>
 <tr>
@@ -385,7 +385,7 @@
 </tr>
 <tr>
 	<td>FILTER_EFFECT</td>
-	<td>//a[contains(@class,'btn') and (@data-control='effects')]//*[name()='svg'][contains(@class,'lexicon-icon')]</td>
+	<td>//a[contains(@class,'btn') and (@data-control='effects')][*[name()='svg'][contains(@class,'lexicon-icon')]]</td>
 	<td></td>
 </tr>
 <tr>
@@ -750,7 +750,7 @@
 </tr>
 <tr>
 	<td>TRANSFORM</td>
-	<td>//a[@class='btn']//*[name()='svg'][@data-icon='transform']</td>
+	<td>//a[@class='btn'][*[name()='svg'][@data-icon='transform']]</td>
 	<td></td>
 </tr>
 <tr>

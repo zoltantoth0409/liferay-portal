@@ -60,7 +60,7 @@
 </tr>
 <tr>
 	<td>SITES_COMPASS</td>
-	<td>//span/*[name()='svg'][contains(@class,'sites')]</td>
+	<td>//a[span/*[name()='svg'][contains(@class,'sites')]]</td>
 	<td></td>
 </tr>
 <tr>
@@ -120,7 +120,7 @@
 </tr>
 <tr>
 	<td>ADD_PAGE_ICON</td>
-	<td>//span/*[name()='a' or 'span'][contains(.,'${key_page}')]/..//span/*[name()='svg'][contains(@class,'icon-plus')]</td>
+	<td>//span/*[name()='a' or 'span'][contains(.,'${key_page}')]/..//a[span/*[name()='svg'][contains(@class,'icon-plus')]]</td>
 	<td></td>
 </tr>
 <tr>
@@ -256,7 +256,7 @@
 </tr>
 <tr>
 	<td>PRODUCT_MENU_PANEL_SCOPE_COG</td>
-	<td>//div[contains(@class,'dropdown')]/a/span/*[name()='svg'][contains(@class,'lexicon-icon-cog')]</td>
+	<td>//div[contains(@class,'dropdown')]//a[span/*[contains(@class,'lexicon-icon-cog')]]</td>
 	<td></td>
 </tr>
 <tr>
