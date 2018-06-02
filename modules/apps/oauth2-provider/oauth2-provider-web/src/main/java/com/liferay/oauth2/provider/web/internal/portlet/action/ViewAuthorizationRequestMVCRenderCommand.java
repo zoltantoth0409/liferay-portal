@@ -72,8 +72,6 @@ public class ViewAuthorizationRequestMVCRenderCommand
 		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		long companyId = themeDisplay.getCompanyId();
-
 		HttpServletRequest request = _portal.getOriginalServletRequest(
 			_portal.getHttpServletRequest(renderRequest));
 
@@ -84,7 +82,7 @@ public class ViewAuthorizationRequestMVCRenderCommand
 		try {
 			OAuth2Application oAuth2Application =
 				_oAuth2ApplicationService.getOAuth2Application(
-					companyId, clientId);
+					themeDisplay.getCompanyId(), clientId);
 			OAuth2AuthorizePortletDisplayContext
 				oAuth2AuthorizePortletDisplayContext =
 					new OAuth2AuthorizePortletDisplayContext(themeDisplay);
@@ -114,7 +112,7 @@ public class ViewAuthorizationRequestMVCRenderCommand
 				oAuth2Parameters.get("scope"), StringPool.SPACE);
 
 			populateAssignableScopes(
-				assignableScopes, companyId, allowedScopeAliases,
+				assignableScopes, themeDisplay.getCompanyId(), allowedScopeAliases,
 				requestedScopeAliases);
 
 			oAuth2AuthorizePortletDisplayContext.setAssignableScopes(
@@ -134,7 +132,7 @@ public class ViewAuthorizationRequestMVCRenderCommand
 	protected Map<String, String> getOAuth2Parameters(
 		HttpServletRequest request) {
 
-		Map<String, String> result = new HashMap<>();
+		Map<String, String> oAuth2Parameters = new HashMap<>();
 
 		Enumeration<String> names = request.getParameterNames();
 
@@ -142,13 +140,13 @@ public class ViewAuthorizationRequestMVCRenderCommand
 			String name = names.nextElement();
 
 			if (name.startsWith("oauth2_")) {
-				result.put(
+				oAuth2Parameters.put(
 					name.substring("oauth2_".length()),
 					ParamUtil.getString(request, name));
 			}
 		}
 
-		return result;
+		return oAuth2Parameters;
 	}
 
 	protected void populateAssignableScopes(
