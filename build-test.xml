@@ -2383,9 +2383,15 @@ ${tomcat-gc-log}
 		<sequential>
 			<fail message="Please set the property ${test.batch.name}." unless="test.batch.name" />
 
+			<local name="portal.branch.name" />
+
+			<condition else="${git.working.branch.name}" property="portal.branch.name" value="${env.TEST_PORTAL_BRANCH_NAME}">
+				<isset property="env.TEST_PORTAL_BRANCH_NAME" />
+			</condition>
+
 			<local name="top.level.job.name" />
 
-			<condition else="test-portal-acceptance-upstream(${git.working.branch.name})" property="top.level.job.name" value="${env.TOP_LEVEL_JOB_NAME}">
+			<condition else="test-portal-acceptance-upstream(${portal.branch.name})" property="top.level.job.name" value="${env.TOP_LEVEL_JOB_NAME}">
 				<isset property="env.TOP_LEVEL_JOB_NAME" />
 			</condition>
 
@@ -2397,7 +2403,7 @@ ${tomcat-gc-log}
 					import com.liferay.jenkins.results.parser.test.clazz.group.BatchTestClassGroup;
 					import com.liferay.jenkins.results.parser.test.clazz.group.TestClassGroupFactory;
 
-					Job job = JobFactory.newJob(project.getProperty("top.level.job.name"),  project.getProperty("env.CI_TEST_SUITE"));
+					Job job = JobFactory.newJob(project.getProperty("top.level.job.name"), project.getProperty("env.CI_TEST_SUITE"), project.getProperty("portal.branch.name"));
 
 					BatchTestClassGroup batchTestClassGroup = TestClassGroupFactory.newBatchTestClassGroup(project.getProperty("test.batch.name"), job);
 
@@ -2442,6 +2448,8 @@ ${tomcat-gc-log}
 			</beanshell>
 
 			<echo file="test.class.file.names.properties">${test.class.file.names.properties.content}</echo>
+
+			<print-file file.name="test.class.file.names.properties" />
 		</sequential>
 	</macrodef>
 
@@ -9028,9 +9036,15 @@ if (ppstate.equals("normal")) {
 			<isset property="test.batch.name" />
 		</condition>
 
+		<local name="portal.branch.name" />
+
+		<condition else="${git.working.branch.name}" property="portal.branch.name" value="${env.TEST_PORTAL_BRANCH_NAME}">
+			<isset property="env.TEST_PORTAL_BRANCH_NAME" />
+		</condition>
+
 		<local name="top.level.job.name" />
 
-		<condition else="test-portal-acceptance-upstream(${git.working.branch.name})" property="top.level.job.name" value="${env.TOP_LEVEL_JOB_NAME}">
+		<condition else="test-portal-acceptance-upstream(${portal.branch.name})" property="top.level.job.name" value="${env.TOP_LEVEL_JOB_NAME}">
 			<isset property="env.TOP_LEVEL_JOB_NAME" />
 		</condition>
 
@@ -9042,7 +9056,7 @@ if (ppstate.equals("normal")) {
 				import com.liferay.jenkins.results.parser.test.clazz.group.BatchTestClassGroup;
 				import com.liferay.jenkins.results.parser.test.clazz.group.TestClassGroupFactory;
 
-				Job job = JobFactory.newJob(project.getProperty("top.level.job.name"),  project.getProperty("env.CI_TEST_SUITE"));
+				Job job = JobFactory.newJob(project.getProperty("top.level.job.name"), project.getProperty("env.CI_TEST_SUITE"), project.getProperty("portal.branch.name"));
 
 				BatchTestClassGroup batchTestClassGroup = TestClassGroupFactory.newBatchTestClassGroup(project.getProperty("test.batch.name"), job);
 
@@ -9087,6 +9101,8 @@ if (ppstate.equals("normal")) {
 		</beanshell>
 
 		<echo file="test.plugin.names.properties">${test.plugin.names.properties.content}</echo>
+
+		<print-file file.name="test.plugin.names.properties" />
 	</target>
 
 	<target name="remove-plugin">
