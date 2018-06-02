@@ -73,7 +73,9 @@ public class ViewConnectedApplicationsMVCRenderCommand
 
 		if (!ListUtil.exists(
 				userOAuth2Authorizations,
-				o -> o.getOAuth2AuthorizationId() == oAuth2AuthorizationId)) {
+				userOAuth2Authorization ->
+					userOAuth2Authorization.getOAuth2AuthorizationId() ==
+						oAuth2AuthorizationId)) {
 
 			OAuth2ConnectedApplicationsPortletDisplayContext
 				oAuth2ConnectedApplicationsPortletDisplayContext =
