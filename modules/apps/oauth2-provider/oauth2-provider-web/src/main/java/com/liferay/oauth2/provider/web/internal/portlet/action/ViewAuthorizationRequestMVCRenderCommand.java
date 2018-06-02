@@ -112,8 +112,8 @@ public class ViewAuthorizationRequestMVCRenderCommand
 				oAuth2Parameters.get("scope"), StringPool.SPACE);
 
 			populateAssignableScopes(
-				assignableScopes, themeDisplay.getCompanyId(), allowedScopeAliases,
-				requestedScopeAliases);
+				assignableScopes, themeDisplay.getCompanyId(),
+				allowedScopeAliases, requestedScopeAliases);
 
 			oAuth2AuthorizePortletDisplayContext.setAssignableScopes(
 				assignableScopes);
