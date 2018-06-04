@@ -57,7 +57,7 @@ public class WikiPortletUtil {
 
 		OrderByComparator<WikiPage> orderByComparator = null;
 
-		if (orderByCol.equals("modifiedDate")) {
+		if (orderByCol.equals("createDate")) {
 			orderByComparator = new PageCreateDateComparator(orderByAsc);
 		}
 		else if (orderByCol.equals("modifiedDate")) {
