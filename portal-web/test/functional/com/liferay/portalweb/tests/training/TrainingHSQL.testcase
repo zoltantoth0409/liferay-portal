@@ -1,4 +1,4 @@
-<definition component-name="training">
+<definition component-name="portal-training">
 	<property name="liferay.training.dependency.jars" value="src/01-liferay-fundamentals/02-integrating-identity-management/com.liferay.docs.samplecontent-1.0.0.jar" />
 	<property name="setup.wizard.enabled" value="true" />
 	<property name="test.prepare.bundle.properties" value="false" />
