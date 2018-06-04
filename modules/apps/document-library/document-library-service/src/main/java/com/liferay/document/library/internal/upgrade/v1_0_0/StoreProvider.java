@@ -84,6 +84,7 @@ public class StoreProvider {
 			ServiceReference<Store> serviceReference, Store store) {
 
 			removedService(serviceReference, store);
+
 			addingService(serviceReference);
 		}
 
