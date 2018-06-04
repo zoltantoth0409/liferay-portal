@@ -615,7 +615,9 @@ public class LayoutsTreeImpl implements LayoutsTree {
 			jsonObject.put("plid", layout.getPlid());
 			jsonObject.put("priority", layout.getPriority());
 			jsonObject.put("privateLayout", layout.isPrivateLayout());
-			jsonObject.put("regularURL", layout.getRegularURL(request));
+			jsonObject.put(
+				"regularURL",
+				_portal.getLayoutRelativeURL(layout, themeDisplay));
 			jsonObject.put(
 				"sortable",
 				hasManageLayoutsPermission && !mobile &&
@@ -798,6 +800,10 @@ public class LayoutsTreeImpl implements LayoutsTree {
 		}
 
 		private final List<LayoutTreeNode> _layoutTreeNodesList;
+
+		@Reference
+		private Portal _portal;
+
 		private int _total;
 
 	}
