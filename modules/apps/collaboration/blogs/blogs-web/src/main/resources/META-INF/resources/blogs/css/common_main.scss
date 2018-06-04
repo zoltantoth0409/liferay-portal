@@ -60,11 +60,11 @@
 	}
 
 	.entry-body, .portlet-body {
-		img[style~="float:"][style~="left;"] {
+		img[style*="float:"][style*="left;"] {
 			margin-right: 24px;
 		}
 
-		img[style~="float:"][style~="right;"] {
+		img[style*="float:"][style*="right;"] {
 			margin-left: 24px;
 		}
 	}
