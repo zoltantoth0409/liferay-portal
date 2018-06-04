@@ -158,8 +158,8 @@
 
 	<command name="configureAssetTypePG">
 		<execute macro="AssetPublisherPortlet#gotoConfigurationPG">
-			<var name="portletName" value="${portletName}" />
 			<var name="order" value="${order}" />
+			<var name="portletName" value="${portletName}" />
 		</execute>
 
 		<execute macro="Panel#expandPanel">
