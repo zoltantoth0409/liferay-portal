@@ -4,7 +4,7 @@
 	<property name="portal.upstream" value="false" />
 	<property name="setup.wizard.enabled" value="true" />
 	<property name="test.prepare.bundle.properties" value="false" />
-	<property name="testray.main.component.name" value="Training" />
+	<property name="testray.main.component.name" value="Setup Wizard" />
 
 	<command name="TrainingDemo1" priority="5">
 		<property name="database.types" value="mysql" />
