@@ -777,6 +777,10 @@
 			<var name="portlet" value="Site Settings" />
 		</execute>
 
+		<execute macro="Navigator#gotoNavTab">
+			<var name="navTab" value="General" />
+		</execute>
+
 		<execute macro="Site#viewSiteClonedFromSiteTemplateCP">
 			<var name="clonedFromTemplate" value="true" />
 			<var name="siteTemplateName" value="Site Template Name" />
@@ -951,6 +955,10 @@
 			<var name="category" value="Configuration" />
 			<var name="panel" value="Site Administration" />
 			<var name="portlet" value="Site Settings" />
+		</execute>
+
+		<execute macro="Navigator#gotoNavTab">
+			<var name="navTab" value="General" />
 		</execute>
 
 		<execute macro="Site#addVirtualHostsURLCP">
