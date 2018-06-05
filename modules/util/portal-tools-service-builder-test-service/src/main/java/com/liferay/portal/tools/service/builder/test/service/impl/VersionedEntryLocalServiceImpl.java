@@ -17,26 +17,8 @@ package com.liferay.portal.tools.service.builder.test.service.impl;
 import com.liferay.portal.tools.service.builder.test.service.base.VersionedEntryLocalServiceBaseImpl;
 
 /**
- * The implementation of the versioned entry local service.
- *
- * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.portal.tools.service.builder.test.service.VersionedEntryLocalService} interface.
- *
- * <p>
- * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
- * </p>
- *
  * @author Brian Wing Shun Chan
- * @see VersionedEntryLocalServiceBaseImpl
- * @see com.liferay.portal.tools.service.builder.test.service.VersionedEntryLocalServiceUtil
  */
 public class VersionedEntryLocalServiceImpl
 	extends VersionedEntryLocalServiceBaseImpl {
-
-	/**
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. Always use {@link com.liferay.portal.tools.service.builder.test.service.VersionedEntryLocalServiceUtil} to access the versioned entry local service.
-	 */
-
 }
