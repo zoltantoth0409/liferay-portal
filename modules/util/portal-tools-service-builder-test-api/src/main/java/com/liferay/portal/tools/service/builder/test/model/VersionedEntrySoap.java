@@ -33,9 +33,9 @@ public class VersionedEntrySoap implements Serializable {
 		VersionedEntrySoap soapModel = new VersionedEntrySoap();
 
 		soapModel.setMvccVersion(model.getMvccVersion());
+		soapModel.setHeadId(model.getHeadId());
 		soapModel.setVersionedEntryId(model.getVersionedEntryId());
 		soapModel.setGroupId(model.getGroupId());
-		soapModel.setHeadId(model.getHeadId());
 
 		return soapModel;
 	}
@@ -96,6 +96,14 @@ public class VersionedEntrySoap implements Serializable {
 		_mvccVersion = mvccVersion;
 	}
 
+	public long getHeadId() {
+		return _headId;
+	}
+
+	public void setHeadId(long headId) {
+		_headId = headId;
+	}
+
 	public long getVersionedEntryId() {
 		return _versionedEntryId;
 	}
@@ -112,16 +120,8 @@ public class VersionedEntrySoap implements Serializable {
 		_groupId = groupId;
 	}
 
-	public long getHeadId() {
-		return _headId;
-	}
-
-	public void setHeadId(long headId) {
-		_headId = headId;
-	}
-
 	private long _mvccVersion;
+	private long _headId;
 	private long _versionedEntryId;
 	private long _groupId;
-	private long _headId;
 }

@@ -126,10 +126,10 @@ public class LocalizedEntryPersistenceTest {
 
 		LocalizedEntry existingLocalizedEntry = _persistence.findByPrimaryKey(newLocalizedEntry.getPrimaryKey());
 
-		Assert.assertEquals(existingLocalizedEntry.getLocalizedEntryId(),
-			newLocalizedEntry.getLocalizedEntryId());
 		Assert.assertEquals(existingLocalizedEntry.getDefaultLanguageId(),
 			newLocalizedEntry.getDefaultLanguageId());
+		Assert.assertEquals(existingLocalizedEntry.getLocalizedEntryId(),
+			newLocalizedEntry.getLocalizedEntryId());
 	}
 
 	@Test
@@ -156,7 +156,7 @@ public class LocalizedEntryPersistenceTest {
 
 	protected OrderByComparator<LocalizedEntry> getOrderByComparator() {
 		return OrderByComparatorFactoryUtil.create("LocalizedEntry",
-			"localizedEntryId", true, "defaultLanguageId", true);
+			"defaultLanguageId", true, "localizedEntryId", true);
 	}
 
 	@Test

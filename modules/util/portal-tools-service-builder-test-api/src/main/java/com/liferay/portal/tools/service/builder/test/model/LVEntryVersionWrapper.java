@@ -59,9 +59,9 @@ public class LVEntryVersionWrapper implements LVEntryVersion,
 
 		attributes.put("lvEntryVersionId", getLvEntryVersionId());
 		attributes.put("version", getVersion());
+		attributes.put("defaultLanguageId", getDefaultLanguageId());
 		attributes.put("lvEntryId", getLvEntryId());
 		attributes.put("groupId", getGroupId());
-		attributes.put("defaultLanguageId", getDefaultLanguageId());
 
 		return attributes;
 	}
@@ -80,6 +80,12 @@ public class LVEntryVersionWrapper implements LVEntryVersion,
 			setVersion(version);
 		}
 
+		String defaultLanguageId = (String)attributes.get("defaultLanguageId");
+
+		if (defaultLanguageId != null) {
+			setDefaultLanguageId(defaultLanguageId);
+		}
+
 		Long lvEntryId = (Long)attributes.get("lvEntryId");
 
 		if (lvEntryId != null) {
@@ -90,12 +96,6 @@ public class LVEntryVersionWrapper implements LVEntryVersion,
 
 		if (groupId != null) {
 			setGroupId(groupId);
-		}
-
-		String defaultLanguageId = (String)attributes.get("defaultLanguageId");
-
-		if (defaultLanguageId != null) {
-			setDefaultLanguageId(defaultLanguageId);
 		}
 	}
 

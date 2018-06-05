@@ -80,6 +80,8 @@ public class LVEntryLocalizationCacheModel implements CacheModel<LVEntryLocaliza
 
 		sb.append("{mvccVersion=");
 		sb.append(mvccVersion);
+		sb.append(", headId=");
+		sb.append(headId);
 		sb.append(", lvEntryLocalizationId=");
 		sb.append(lvEntryLocalizationId);
 		sb.append(", lvEntryId=");
@@ -90,8 +92,6 @@ public class LVEntryLocalizationCacheModel implements CacheModel<LVEntryLocaliza
 		sb.append(title);
 		sb.append(", content=");
 		sb.append(content);
-		sb.append(", headId=");
-		sb.append(headId);
 		sb.append("}");
 
 		return sb.toString();
@@ -102,6 +102,7 @@ public class LVEntryLocalizationCacheModel implements CacheModel<LVEntryLocaliza
 		LVEntryLocalizationImpl lvEntryLocalizationImpl = new LVEntryLocalizationImpl();
 
 		lvEntryLocalizationImpl.setMvccVersion(mvccVersion);
+		lvEntryLocalizationImpl.setHeadId(headId);
 		lvEntryLocalizationImpl.setLvEntryLocalizationId(lvEntryLocalizationId);
 		lvEntryLocalizationImpl.setLvEntryId(lvEntryId);
 
@@ -126,8 +127,6 @@ public class LVEntryLocalizationCacheModel implements CacheModel<LVEntryLocaliza
 			lvEntryLocalizationImpl.setContent(content);
 		}
 
-		lvEntryLocalizationImpl.setHeadId(headId);
-
 		lvEntryLocalizationImpl.resetOriginalValues();
 
 		return lvEntryLocalizationImpl;
@@ -137,20 +136,22 @@ public class LVEntryLocalizationCacheModel implements CacheModel<LVEntryLocaliza
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		mvccVersion = objectInput.readLong();
 
+		headId = objectInput.readLong();
+
 		lvEntryLocalizationId = objectInput.readLong();
 
 		lvEntryId = objectInput.readLong();
 		languageId = objectInput.readUTF();
 		title = objectInput.readUTF();
 		content = objectInput.readUTF();
-
-		headId = objectInput.readLong();
 	}
 
 	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(mvccVersion);
+
+		objectOutput.writeLong(headId);
 
 		objectOutput.writeLong(lvEntryLocalizationId);
 
@@ -176,15 +177,13 @@ public class LVEntryLocalizationCacheModel implements CacheModel<LVEntryLocaliza
 		else {
 			objectOutput.writeUTF(content);
 		}
-
-		objectOutput.writeLong(headId);
 	}
 
 	public long mvccVersion;
+	public long headId;
 	public long lvEntryLocalizationId;
 	public long lvEntryId;
 	public String languageId;
 	public String title;
 	public String content;
-	public long headId;
 }

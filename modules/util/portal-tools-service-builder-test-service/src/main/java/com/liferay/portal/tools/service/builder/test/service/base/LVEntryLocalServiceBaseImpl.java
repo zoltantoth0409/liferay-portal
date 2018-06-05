@@ -908,9 +908,9 @@ public abstract class LVEntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 		throws PortalException {
 		LVEntry draftLVEntry = create();
 
-		draftLVEntry.setGroupId(publishedLVEntry.getGroupId());
 		draftLVEntry.setHeadId(publishedLVEntry.getPrimaryKey());
 		draftLVEntry.setDefaultLanguageId(publishedLVEntry.getDefaultLanguageId());
+		draftLVEntry.setGroupId(publishedLVEntry.getGroupId());
 
 		draftLVEntry.resetOriginalValues();
 

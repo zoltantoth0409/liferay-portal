@@ -68,12 +68,12 @@ public class LVEntryVersionCacheModel implements CacheModel<LVEntryVersion>,
 		sb.append(lvEntryVersionId);
 		sb.append(", version=");
 		sb.append(version);
+		sb.append(", defaultLanguageId=");
+		sb.append(defaultLanguageId);
 		sb.append(", lvEntryId=");
 		sb.append(lvEntryId);
 		sb.append(", groupId=");
 		sb.append(groupId);
-		sb.append(", defaultLanguageId=");
-		sb.append(defaultLanguageId);
 		sb.append("}");
 
 		return sb.toString();
@@ -85,8 +85,6 @@ public class LVEntryVersionCacheModel implements CacheModel<LVEntryVersion>,
 
 		lvEntryVersionImpl.setLvEntryVersionId(lvEntryVersionId);
 		lvEntryVersionImpl.setVersion(version);
-		lvEntryVersionImpl.setLvEntryId(lvEntryId);
-		lvEntryVersionImpl.setGroupId(groupId);
 
 		if (defaultLanguageId == null) {
 			lvEntryVersionImpl.setDefaultLanguageId("");
@@ -94,6 +92,9 @@ public class LVEntryVersionCacheModel implements CacheModel<LVEntryVersion>,
 		else {
 			lvEntryVersionImpl.setDefaultLanguageId(defaultLanguageId);
 		}
+
+		lvEntryVersionImpl.setLvEntryId(lvEntryId);
+		lvEntryVersionImpl.setGroupId(groupId);
 
 		lvEntryVersionImpl.resetOriginalValues();
 
@@ -105,11 +106,11 @@ public class LVEntryVersionCacheModel implements CacheModel<LVEntryVersion>,
 		lvEntryVersionId = objectInput.readLong();
 
 		version = objectInput.readInt();
+		defaultLanguageId = objectInput.readUTF();
 
 		lvEntryId = objectInput.readLong();
 
 		groupId = objectInput.readLong();
-		defaultLanguageId = objectInput.readUTF();
 	}
 
 	@Override
@@ -119,21 +120,21 @@ public class LVEntryVersionCacheModel implements CacheModel<LVEntryVersion>,
 
 		objectOutput.writeInt(version);
 
-		objectOutput.writeLong(lvEntryId);
-
-		objectOutput.writeLong(groupId);
-
 		if (defaultLanguageId == null) {
 			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(defaultLanguageId);
 		}
+
+		objectOutput.writeLong(lvEntryId);
+
+		objectOutput.writeLong(groupId);
 	}
 
 	public long lvEntryVersionId;
 	public int version;
+	public String defaultLanguageId;
 	public long lvEntryId;
 	public long groupId;
-	public String defaultLanguageId;
 }

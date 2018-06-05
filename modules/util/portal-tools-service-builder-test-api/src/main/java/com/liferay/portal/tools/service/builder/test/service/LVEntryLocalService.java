@@ -210,7 +210,7 @@ public interface LVEntryLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public LVEntryLocalizationVersion fetchLVEntryLocalizationVersion(
-		long entryId, String languageId, int version);
+		long lvEntryId, String languageId, int version);
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -275,11 +275,11 @@ public interface LVEntryLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<LVEntryLocalizationVersion> getLVEntryLocalizationVersions(
-		long entryId);
+		long lvEntryId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<LVEntryLocalizationVersion> getLVEntryLocalizationVersions(
-		long entryId, String languageId) throws PortalException;
+		long lvEntryId, String languageId) throws PortalException;
 
 	/**
 	* Returns the OSGi service identifier.

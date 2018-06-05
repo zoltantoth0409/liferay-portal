@@ -57,10 +57,10 @@ public class LVEntryWrapper implements LVEntry, ModelWrapper<LVEntry> {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("mvccVersion", getMvccVersion());
-		attributes.put("lvEntryId", getLvEntryId());
-		attributes.put("groupId", getGroupId());
 		attributes.put("headId", getHeadId());
 		attributes.put("defaultLanguageId", getDefaultLanguageId());
+		attributes.put("lvEntryId", getLvEntryId());
+		attributes.put("groupId", getGroupId());
 
 		return attributes;
 	}
@@ -73,18 +73,6 @@ public class LVEntryWrapper implements LVEntry, ModelWrapper<LVEntry> {
 			setMvccVersion(mvccVersion);
 		}
 
-		Long lvEntryId = (Long)attributes.get("lvEntryId");
-
-		if (lvEntryId != null) {
-			setLvEntryId(lvEntryId);
-		}
-
-		Long groupId = (Long)attributes.get("groupId");
-
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
-
 		Long headId = (Long)attributes.get("headId");
 
 		if (headId != null) {
@@ -95,6 +83,18 @@ public class LVEntryWrapper implements LVEntry, ModelWrapper<LVEntry> {
 
 		if (defaultLanguageId != null) {
 			setDefaultLanguageId(defaultLanguageId);
+		}
+
+		Long lvEntryId = (Long)attributes.get("lvEntryId");
+
+		if (lvEntryId != null) {
+			setLvEntryId(lvEntryId);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
 		}
 	}
 

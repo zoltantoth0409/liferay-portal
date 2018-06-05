@@ -62,20 +62,20 @@ public class VersionedEntryModelImpl extends BaseModelImpl<VersionedEntry>
 	public static final String TABLE_NAME = "VersionedEntry";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "mvccVersion", Types.BIGINT },
+			{ "headId", Types.BIGINT },
 			{ "versionedEntryId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "headId", Types.BIGINT }
+			{ "groupId", Types.BIGINT }
 		};
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("mvccVersion", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("headId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("versionedEntryId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("groupId", Types.BIGINT);
-		TABLE_COLUMNS_MAP.put("headId", Types.BIGINT);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table VersionedEntry (mvccVersion LONG default 0 not null,versionedEntryId LONG not null primary key,groupId LONG,headId LONG)";
+	public static final String TABLE_SQL_CREATE = "create table VersionedEntry (mvccVersion LONG default 0 not null,headId LONG,versionedEntryId LONG not null primary key,groupId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table VersionedEntry";
 	public static final String ORDER_BY_JPQL = " ORDER BY versionedEntry.versionedEntryId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY VersionedEntry.versionedEntryId ASC";
@@ -135,9 +135,9 @@ public class VersionedEntryModelImpl extends BaseModelImpl<VersionedEntry>
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("mvccVersion", getMvccVersion());
+		attributes.put("headId", getHeadId());
 		attributes.put("versionedEntryId", getVersionedEntryId());
 		attributes.put("groupId", getGroupId());
-		attributes.put("headId", getHeadId());
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -153,6 +153,12 @@ public class VersionedEntryModelImpl extends BaseModelImpl<VersionedEntry>
 			setMvccVersion(mvccVersion);
 		}
 
+		Long headId = (Long)attributes.get("headId");
+
+		if (headId != null) {
+			setHeadId(headId);
+		}
+
 		Long versionedEntryId = (Long)attributes.get("versionedEntryId");
 
 		if (versionedEntryId != null) {
@@ -163,12 +169,6 @@ public class VersionedEntryModelImpl extends BaseModelImpl<VersionedEntry>
 
 		if (groupId != null) {
 			setGroupId(groupId);
-		}
-
-		Long headId = (Long)attributes.get("headId");
-
-		if (headId != null) {
-			setHeadId(headId);
 		}
 	}
 
@@ -195,6 +195,28 @@ public class VersionedEntryModelImpl extends BaseModelImpl<VersionedEntry>
 	@Override
 	public void setMvccVersion(long mvccVersion) {
 		_mvccVersion = mvccVersion;
+	}
+
+	@Override
+	public long getHeadId() {
+		return _headId;
+	}
+
+	@Override
+	public void setHeadId(long headId) {
+		_columnBitmask |= HEADID_COLUMN_BITMASK;
+
+		if (!_setOriginalHeadId) {
+			_setOriginalHeadId = true;
+
+			_originalHeadId = _headId;
+		}
+
+		_headId = headId;
+	}
+
+	public long getOriginalHeadId() {
+		return _originalHeadId;
 	}
 
 	@Override
@@ -229,28 +251,6 @@ public class VersionedEntryModelImpl extends BaseModelImpl<VersionedEntry>
 		return _originalGroupId;
 	}
 
-	@Override
-	public long getHeadId() {
-		return _headId;
-	}
-
-	@Override
-	public void setHeadId(long headId) {
-		_columnBitmask |= HEADID_COLUMN_BITMASK;
-
-		if (!_setOriginalHeadId) {
-			_setOriginalHeadId = true;
-
-			_originalHeadId = _headId;
-		}
-
-		_headId = headId;
-	}
-
-	public long getOriginalHeadId() {
-		return _originalHeadId;
-	}
-
 	public long getColumnBitmask() {
 		return _columnBitmask;
 	}
@@ -283,9 +283,9 @@ public class VersionedEntryModelImpl extends BaseModelImpl<VersionedEntry>
 		VersionedEntryImpl versionedEntryImpl = new VersionedEntryImpl();
 
 		versionedEntryImpl.setMvccVersion(getMvccVersion());
+		versionedEntryImpl.setHeadId(getHeadId());
 		versionedEntryImpl.setVersionedEntryId(getVersionedEntryId());
 		versionedEntryImpl.setGroupId(getGroupId());
-		versionedEntryImpl.setHeadId(getHeadId());
 
 		versionedEntryImpl.resetOriginalValues();
 
@@ -348,13 +348,13 @@ public class VersionedEntryModelImpl extends BaseModelImpl<VersionedEntry>
 	public void resetOriginalValues() {
 		VersionedEntryModelImpl versionedEntryModelImpl = this;
 
-		versionedEntryModelImpl._originalGroupId = versionedEntryModelImpl._groupId;
-
-		versionedEntryModelImpl._setOriginalGroupId = false;
-
 		versionedEntryModelImpl._originalHeadId = versionedEntryModelImpl._headId;
 
 		versionedEntryModelImpl._setOriginalHeadId = false;
+
+		versionedEntryModelImpl._originalGroupId = versionedEntryModelImpl._groupId;
+
+		versionedEntryModelImpl._setOriginalGroupId = false;
 
 		versionedEntryModelImpl._columnBitmask = 0;
 	}
@@ -365,11 +365,11 @@ public class VersionedEntryModelImpl extends BaseModelImpl<VersionedEntry>
 
 		versionedEntryCacheModel.mvccVersion = getMvccVersion();
 
+		versionedEntryCacheModel.headId = getHeadId();
+
 		versionedEntryCacheModel.versionedEntryId = getVersionedEntryId();
 
 		versionedEntryCacheModel.groupId = getGroupId();
-
-		versionedEntryCacheModel.headId = getHeadId();
 
 		return versionedEntryCacheModel;
 	}
@@ -380,12 +380,12 @@ public class VersionedEntryModelImpl extends BaseModelImpl<VersionedEntry>
 
 		sb.append("{mvccVersion=");
 		sb.append(getMvccVersion());
+		sb.append(", headId=");
+		sb.append(getHeadId());
 		sb.append(", versionedEntryId=");
 		sb.append(getVersionedEntryId());
 		sb.append(", groupId=");
 		sb.append(getGroupId());
-		sb.append(", headId=");
-		sb.append(getHeadId());
 		sb.append("}");
 
 		return sb.toString();
@@ -405,16 +405,16 @@ public class VersionedEntryModelImpl extends BaseModelImpl<VersionedEntry>
 		sb.append(getMvccVersion());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>headId</column-name><column-value><![CDATA[");
+		sb.append(getHeadId());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>versionedEntryId</column-name><column-value><![CDATA[");
 		sb.append(getVersionedEntryId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>groupId</column-name><column-value><![CDATA[");
 		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>headId</column-name><column-value><![CDATA[");
-		sb.append(getHeadId());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -427,13 +427,13 @@ public class VersionedEntryModelImpl extends BaseModelImpl<VersionedEntry>
 			VersionedEntry.class, ModelWrapper.class
 		};
 	private long _mvccVersion;
+	private long _headId;
+	private long _originalHeadId;
+	private boolean _setOriginalHeadId;
 	private long _versionedEntryId;
 	private long _groupId;
 	private long _originalGroupId;
 	private boolean _setOriginalGroupId;
-	private long _headId;
-	private long _originalHeadId;
-	private boolean _setOriginalHeadId;
 	private long _columnBitmask;
 	private VersionedEntry _escapedModel;
 }

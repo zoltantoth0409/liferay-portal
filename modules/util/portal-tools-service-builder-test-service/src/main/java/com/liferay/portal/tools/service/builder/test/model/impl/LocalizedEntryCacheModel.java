@@ -64,10 +64,10 @@ public class LocalizedEntryCacheModel implements CacheModel<LocalizedEntry>,
 	public String toString() {
 		StringBundler sb = new StringBundler(5);
 
-		sb.append("{localizedEntryId=");
-		sb.append(localizedEntryId);
-		sb.append(", defaultLanguageId=");
+		sb.append("{defaultLanguageId=");
 		sb.append(defaultLanguageId);
+		sb.append(", localizedEntryId=");
+		sb.append(localizedEntryId);
 		sb.append("}");
 
 		return sb.toString();
@@ -77,14 +77,14 @@ public class LocalizedEntryCacheModel implements CacheModel<LocalizedEntry>,
 	public LocalizedEntry toEntityModel() {
 		LocalizedEntryImpl localizedEntryImpl = new LocalizedEntryImpl();
 
-		localizedEntryImpl.setLocalizedEntryId(localizedEntryId);
-
 		if (defaultLanguageId == null) {
 			localizedEntryImpl.setDefaultLanguageId("");
 		}
 		else {
 			localizedEntryImpl.setDefaultLanguageId(defaultLanguageId);
 		}
+
+		localizedEntryImpl.setLocalizedEntryId(localizedEntryId);
 
 		localizedEntryImpl.resetOriginalValues();
 
@@ -93,23 +93,24 @@ public class LocalizedEntryCacheModel implements CacheModel<LocalizedEntry>,
 
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
-		localizedEntryId = objectInput.readLong();
 		defaultLanguageId = objectInput.readUTF();
+
+		localizedEntryId = objectInput.readLong();
 	}
 
 	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
-		objectOutput.writeLong(localizedEntryId);
-
 		if (defaultLanguageId == null) {
 			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(defaultLanguageId);
 		}
+
+		objectOutput.writeLong(localizedEntryId);
 	}
 
-	public long localizedEntryId;
 	public String defaultLanguageId;
+	public long localizedEntryId;
 }

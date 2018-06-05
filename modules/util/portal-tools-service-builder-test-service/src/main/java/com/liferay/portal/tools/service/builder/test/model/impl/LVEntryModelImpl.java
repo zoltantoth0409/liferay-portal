@@ -67,22 +67,22 @@ public class LVEntryModelImpl extends BaseModelImpl<LVEntry>
 	public static final String TABLE_NAME = "LVEntry";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "mvccVersion", Types.BIGINT },
-			{ "lvEntryId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
 			{ "headId", Types.BIGINT },
-			{ "defaultLanguageId", Types.VARCHAR }
+			{ "defaultLanguageId", Types.VARCHAR },
+			{ "lvEntryId", Types.BIGINT },
+			{ "groupId", Types.BIGINT }
 		};
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("mvccVersion", Types.BIGINT);
-		TABLE_COLUMNS_MAP.put("lvEntryId", Types.BIGINT);
-		TABLE_COLUMNS_MAP.put("groupId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("headId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("defaultLanguageId", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("lvEntryId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("groupId", Types.BIGINT);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table LVEntry (mvccVersion LONG default 0 not null,lvEntryId LONG not null primary key,groupId LONG,headId LONG,defaultLanguageId VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table LVEntry (mvccVersion LONG default 0 not null,headId LONG,defaultLanguageId VARCHAR(75) null,lvEntryId LONG not null primary key,groupId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table LVEntry";
 	public static final String ORDER_BY_JPQL = " ORDER BY lvEntry.lvEntryId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY LVEntry.lvEntryId ASC";
@@ -142,10 +142,10 @@ public class LVEntryModelImpl extends BaseModelImpl<LVEntry>
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("mvccVersion", getMvccVersion());
-		attributes.put("lvEntryId", getLvEntryId());
-		attributes.put("groupId", getGroupId());
 		attributes.put("headId", getHeadId());
 		attributes.put("defaultLanguageId", getDefaultLanguageId());
+		attributes.put("lvEntryId", getLvEntryId());
+		attributes.put("groupId", getGroupId());
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -161,18 +161,6 @@ public class LVEntryModelImpl extends BaseModelImpl<LVEntry>
 			setMvccVersion(mvccVersion);
 		}
 
-		Long lvEntryId = (Long)attributes.get("lvEntryId");
-
-		if (lvEntryId != null) {
-			setLvEntryId(lvEntryId);
-		}
-
-		Long groupId = (Long)attributes.get("groupId");
-
-		if (groupId != null) {
-			setGroupId(groupId);
-		}
-
 		Long headId = (Long)attributes.get("headId");
 
 		if (headId != null) {
@@ -183,6 +171,18 @@ public class LVEntryModelImpl extends BaseModelImpl<LVEntry>
 
 		if (defaultLanguageId != null) {
 			setDefaultLanguageId(defaultLanguageId);
+		}
+
+		Long lvEntryId = (Long)attributes.get("lvEntryId");
+
+		if (lvEntryId != null) {
+			setLvEntryId(lvEntryId);
+		}
+
+		Long groupId = (Long)attributes.get("groupId");
+
+		if (groupId != null) {
+			setGroupId(groupId);
 		}
 	}
 
@@ -322,8 +322,8 @@ public class LVEntryModelImpl extends BaseModelImpl<LVEntry>
 
 	@Override
 	public void populateVersionModel(LVEntryVersion lvEntryVersion) {
-		lvEntryVersion.setGroupId(getGroupId());
 		lvEntryVersion.setDefaultLanguageId(getDefaultLanguageId());
+		lvEntryVersion.setGroupId(getGroupId());
 	}
 
 	@Override
@@ -334,38 +334,6 @@ public class LVEntryModelImpl extends BaseModelImpl<LVEntry>
 	@Override
 	public void setMvccVersion(long mvccVersion) {
 		_mvccVersion = mvccVersion;
-	}
-
-	@Override
-	public long getLvEntryId() {
-		return _lvEntryId;
-	}
-
-	@Override
-	public void setLvEntryId(long lvEntryId) {
-		_lvEntryId = lvEntryId;
-	}
-
-	@Override
-	public long getGroupId() {
-		return _groupId;
-	}
-
-	@Override
-	public void setGroupId(long groupId) {
-		_columnBitmask |= GROUPID_COLUMN_BITMASK;
-
-		if (!_setOriginalGroupId) {
-			_setOriginalGroupId = true;
-
-			_originalGroupId = _groupId;
-		}
-
-		_groupId = groupId;
-	}
-
-	public long getOriginalGroupId() {
-		return _originalGroupId;
 	}
 
 	@Override
@@ -405,6 +373,38 @@ public class LVEntryModelImpl extends BaseModelImpl<LVEntry>
 		_defaultLanguageId = defaultLanguageId;
 	}
 
+	@Override
+	public long getLvEntryId() {
+		return _lvEntryId;
+	}
+
+	@Override
+	public void setLvEntryId(long lvEntryId) {
+		_lvEntryId = lvEntryId;
+	}
+
+	@Override
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	@Override
+	public void setGroupId(long groupId) {
+		_columnBitmask |= GROUPID_COLUMN_BITMASK;
+
+		if (!_setOriginalGroupId) {
+			_setOriginalGroupId = true;
+
+			_originalGroupId = _groupId;
+		}
+
+		_groupId = groupId;
+	}
+
+	public long getOriginalGroupId() {
+		return _originalGroupId;
+	}
+
 	public long getColumnBitmask() {
 		return _columnBitmask;
 	}
@@ -437,10 +437,10 @@ public class LVEntryModelImpl extends BaseModelImpl<LVEntry>
 		LVEntryImpl lvEntryImpl = new LVEntryImpl();
 
 		lvEntryImpl.setMvccVersion(getMvccVersion());
-		lvEntryImpl.setLvEntryId(getLvEntryId());
-		lvEntryImpl.setGroupId(getGroupId());
 		lvEntryImpl.setHeadId(getHeadId());
 		lvEntryImpl.setDefaultLanguageId(getDefaultLanguageId());
+		lvEntryImpl.setLvEntryId(getLvEntryId());
+		lvEntryImpl.setGroupId(getGroupId());
 
 		lvEntryImpl.resetOriginalValues();
 
@@ -503,13 +503,13 @@ public class LVEntryModelImpl extends BaseModelImpl<LVEntry>
 	public void resetOriginalValues() {
 		LVEntryModelImpl lvEntryModelImpl = this;
 
-		lvEntryModelImpl._originalGroupId = lvEntryModelImpl._groupId;
-
-		lvEntryModelImpl._setOriginalGroupId = false;
-
 		lvEntryModelImpl._originalHeadId = lvEntryModelImpl._headId;
 
 		lvEntryModelImpl._setOriginalHeadId = false;
+
+		lvEntryModelImpl._originalGroupId = lvEntryModelImpl._groupId;
+
+		lvEntryModelImpl._setOriginalGroupId = false;
 
 		lvEntryModelImpl._columnBitmask = 0;
 	}
@@ -519,10 +519,6 @@ public class LVEntryModelImpl extends BaseModelImpl<LVEntry>
 		LVEntryCacheModel lvEntryCacheModel = new LVEntryCacheModel();
 
 		lvEntryCacheModel.mvccVersion = getMvccVersion();
-
-		lvEntryCacheModel.lvEntryId = getLvEntryId();
-
-		lvEntryCacheModel.groupId = getGroupId();
 
 		lvEntryCacheModel.headId = getHeadId();
 
@@ -534,6 +530,10 @@ public class LVEntryModelImpl extends BaseModelImpl<LVEntry>
 			lvEntryCacheModel.defaultLanguageId = null;
 		}
 
+		lvEntryCacheModel.lvEntryId = getLvEntryId();
+
+		lvEntryCacheModel.groupId = getGroupId();
+
 		return lvEntryCacheModel;
 	}
 
@@ -543,14 +543,14 @@ public class LVEntryModelImpl extends BaseModelImpl<LVEntry>
 
 		sb.append("{mvccVersion=");
 		sb.append(getMvccVersion());
-		sb.append(", lvEntryId=");
-		sb.append(getLvEntryId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
 		sb.append(", headId=");
 		sb.append(getHeadId());
 		sb.append(", defaultLanguageId=");
 		sb.append(getDefaultLanguageId());
+		sb.append(", lvEntryId=");
+		sb.append(getLvEntryId());
+		sb.append(", groupId=");
+		sb.append(getGroupId());
 		sb.append("}");
 
 		return sb.toString();
@@ -569,20 +569,20 @@ public class LVEntryModelImpl extends BaseModelImpl<LVEntry>
 		sb.append(getMvccVersion());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>lvEntryId</column-name><column-value><![CDATA[");
-		sb.append(getLvEntryId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>headId</column-name><column-value><![CDATA[");
 		sb.append(getHeadId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>defaultLanguageId</column-name><column-value><![CDATA[");
 		sb.append(getDefaultLanguageId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>lvEntryId</column-name><column-value><![CDATA[");
+		sb.append(getLvEntryId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>groupId</column-name><column-value><![CDATA[");
+		sb.append(getGroupId());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -595,14 +595,14 @@ public class LVEntryModelImpl extends BaseModelImpl<LVEntry>
 			LVEntry.class, ModelWrapper.class
 		};
 	private long _mvccVersion;
-	private long _lvEntryId;
-	private long _groupId;
-	private long _originalGroupId;
-	private boolean _setOriginalGroupId;
 	private long _headId;
 	private long _originalHeadId;
 	private boolean _setOriginalHeadId;
 	private String _defaultLanguageId;
+	private long _lvEntryId;
+	private long _groupId;
+	private long _originalGroupId;
+	private boolean _setOriginalGroupId;
 	private long _columnBitmask;
 	private LVEntry _escapedModel;
 }

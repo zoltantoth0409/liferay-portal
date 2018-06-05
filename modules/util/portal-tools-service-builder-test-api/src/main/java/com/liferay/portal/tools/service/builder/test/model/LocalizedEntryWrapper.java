@@ -57,24 +57,24 @@ public class LocalizedEntryWrapper implements LocalizedEntry,
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("localizedEntryId", getLocalizedEntryId());
 		attributes.put("defaultLanguageId", getDefaultLanguageId());
+		attributes.put("localizedEntryId", getLocalizedEntryId());
 
 		return attributes;
 	}
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long localizedEntryId = (Long)attributes.get("localizedEntryId");
-
-		if (localizedEntryId != null) {
-			setLocalizedEntryId(localizedEntryId);
-		}
-
 		String defaultLanguageId = (String)attributes.get("defaultLanguageId");
 
 		if (defaultLanguageId != null) {
 			setDefaultLanguageId(defaultLanguageId);
+		}
+
+		Long localizedEntryId = (Long)attributes.get("localizedEntryId");
+
+		if (localizedEntryId != null) {
+			setLocalizedEntryId(localizedEntryId);
 		}
 	}
 

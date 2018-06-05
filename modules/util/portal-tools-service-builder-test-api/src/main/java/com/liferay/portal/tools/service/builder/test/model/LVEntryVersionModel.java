@@ -95,6 +95,21 @@ public interface LVEntryVersionModel extends BaseModel<LVEntryVersion>,
 	public void setVersion(int version);
 
 	/**
+	 * Returns the default language ID of this lv entry version.
+	 *
+	 * @return the default language ID of this lv entry version
+	 */
+	@AutoEscape
+	public String getDefaultLanguageId();
+
+	/**
+	 * Sets the default language ID of this lv entry version.
+	 *
+	 * @param defaultLanguageId the default language ID of this lv entry version
+	 */
+	public void setDefaultLanguageId(String defaultLanguageId);
+
+	/**
 	 * Returns the lv entry ID of this lv entry version.
 	 *
 	 * @return the lv entry ID of this lv entry version
@@ -121,21 +136,6 @@ public interface LVEntryVersionModel extends BaseModel<LVEntryVersion>,
 	 * @param groupId the group ID of this lv entry version
 	 */
 	public void setGroupId(long groupId);
-
-	/**
-	 * Returns the default language ID of this lv entry version.
-	 *
-	 * @return the default language ID of this lv entry version
-	 */
-	@AutoEscape
-	public String getDefaultLanguageId();
-
-	/**
-	 * Sets the default language ID of this lv entry version.
-	 *
-	 * @param defaultLanguageId the default language ID of this lv entry version
-	 */
-	public void setDefaultLanguageId(String defaultLanguageId);
 
 	@Override
 	public boolean isNew();

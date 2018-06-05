@@ -739,8 +739,8 @@ public abstract class VersionedEntryLocalServiceBaseImpl
 		throws PortalException {
 		VersionedEntry draftVersionedEntry = create();
 
-		draftVersionedEntry.setGroupId(publishedVersionedEntry.getGroupId());
 		draftVersionedEntry.setHeadId(publishedVersionedEntry.getPrimaryKey());
+		draftVersionedEntry.setGroupId(publishedVersionedEntry.getGroupId());
 
 		draftVersionedEntry.resetOriginalValues();
 

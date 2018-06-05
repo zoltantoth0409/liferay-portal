@@ -33,10 +33,10 @@ public class LVEntrySoap implements Serializable {
 		LVEntrySoap soapModel = new LVEntrySoap();
 
 		soapModel.setMvccVersion(model.getMvccVersion());
-		soapModel.setLvEntryId(model.getLvEntryId());
-		soapModel.setGroupId(model.getGroupId());
 		soapModel.setHeadId(model.getHeadId());
 		soapModel.setDefaultLanguageId(model.getDefaultLanguageId());
+		soapModel.setLvEntryId(model.getLvEntryId());
+		soapModel.setGroupId(model.getGroupId());
 
 		return soapModel;
 	}
@@ -97,22 +97,6 @@ public class LVEntrySoap implements Serializable {
 		_mvccVersion = mvccVersion;
 	}
 
-	public long getLvEntryId() {
-		return _lvEntryId;
-	}
-
-	public void setLvEntryId(long lvEntryId) {
-		_lvEntryId = lvEntryId;
-	}
-
-	public long getGroupId() {
-		return _groupId;
-	}
-
-	public void setGroupId(long groupId) {
-		_groupId = groupId;
-	}
-
 	public long getHeadId() {
 		return _headId;
 	}
@@ -129,9 +113,25 @@ public class LVEntrySoap implements Serializable {
 		_defaultLanguageId = defaultLanguageId;
 	}
 
+	public long getLvEntryId() {
+		return _lvEntryId;
+	}
+
+	public void setLvEntryId(long lvEntryId) {
+		_lvEntryId = lvEntryId;
+	}
+
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+	}
+
 	private long _mvccVersion;
-	private long _lvEntryId;
-	private long _groupId;
 	private long _headId;
 	private String _defaultLanguageId;
+	private long _lvEntryId;
+	private long _groupId;
 }

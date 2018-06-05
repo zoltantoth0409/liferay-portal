@@ -58,12 +58,12 @@ public class LVEntryLocalizationWrapper implements LVEntryLocalization,
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("mvccVersion", getMvccVersion());
+		attributes.put("headId", getHeadId());
 		attributes.put("lvEntryLocalizationId", getLvEntryLocalizationId());
 		attributes.put("lvEntryId", getLvEntryId());
 		attributes.put("languageId", getLanguageId());
 		attributes.put("title", getTitle());
 		attributes.put("content", getContent());
-		attributes.put("headId", getHeadId());
 
 		return attributes;
 	}
@@ -74,6 +74,12 @@ public class LVEntryLocalizationWrapper implements LVEntryLocalization,
 
 		if (mvccVersion != null) {
 			setMvccVersion(mvccVersion);
+		}
+
+		Long headId = (Long)attributes.get("headId");
+
+		if (headId != null) {
+			setHeadId(headId);
 		}
 
 		Long lvEntryLocalizationId = (Long)attributes.get(
@@ -105,12 +111,6 @@ public class LVEntryLocalizationWrapper implements LVEntryLocalization,
 
 		if (content != null) {
 			setContent(content);
-		}
-
-		Long headId = (Long)attributes.get("headId");
-
-		if (headId != null) {
-			setHeadId(headId);
 		}
 	}
 

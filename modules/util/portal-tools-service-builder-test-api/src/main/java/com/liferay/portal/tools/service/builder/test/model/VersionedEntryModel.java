@@ -81,6 +81,22 @@ public interface VersionedEntryModel extends BaseModel<VersionedEntry>, MVCCMode
 	public void setMvccVersion(long mvccVersion);
 
 	/**
+	 * Returns the head ID of this versioned entry.
+	 *
+	 * @return the head ID of this versioned entry
+	 */
+	@Override
+	public long getHeadId();
+
+	/**
+	 * Sets the head ID of this versioned entry.
+	 *
+	 * @param headId the head ID of this versioned entry
+	 */
+	@Override
+	public void setHeadId(long headId);
+
+	/**
 	 * Returns the versioned entry ID of this versioned entry.
 	 *
 	 * @return the versioned entry ID of this versioned entry
@@ -107,22 +123,6 @@ public interface VersionedEntryModel extends BaseModel<VersionedEntry>, MVCCMode
 	 * @param groupId the group ID of this versioned entry
 	 */
 	public void setGroupId(long groupId);
-
-	/**
-	 * Returns the head ID of this versioned entry.
-	 *
-	 * @return the head ID of this versioned entry
-	 */
-	@Override
-	public long getHeadId();
-
-	/**
-	 * Sets the head ID of this versioned entry.
-	 *
-	 * @param headId the head ID of this versioned entry
-	 */
-	@Override
-	public void setHeadId(long headId);
 
 	@Override
 	public boolean isNew();

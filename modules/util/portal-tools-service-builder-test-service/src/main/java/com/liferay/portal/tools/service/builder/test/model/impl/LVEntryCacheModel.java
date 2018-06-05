@@ -80,14 +80,14 @@ public class LVEntryCacheModel implements CacheModel<LVEntry>, Externalizable,
 
 		sb.append("{mvccVersion=");
 		sb.append(mvccVersion);
-		sb.append(", lvEntryId=");
-		sb.append(lvEntryId);
-		sb.append(", groupId=");
-		sb.append(groupId);
 		sb.append(", headId=");
 		sb.append(headId);
 		sb.append(", defaultLanguageId=");
 		sb.append(defaultLanguageId);
+		sb.append(", lvEntryId=");
+		sb.append(lvEntryId);
+		sb.append(", groupId=");
+		sb.append(groupId);
 		sb.append("}");
 
 		return sb.toString();
@@ -98,8 +98,6 @@ public class LVEntryCacheModel implements CacheModel<LVEntry>, Externalizable,
 		LVEntryImpl lvEntryImpl = new LVEntryImpl();
 
 		lvEntryImpl.setMvccVersion(mvccVersion);
-		lvEntryImpl.setLvEntryId(lvEntryId);
-		lvEntryImpl.setGroupId(groupId);
 		lvEntryImpl.setHeadId(headId);
 
 		if (defaultLanguageId == null) {
@@ -108,6 +106,9 @@ public class LVEntryCacheModel implements CacheModel<LVEntry>, Externalizable,
 		else {
 			lvEntryImpl.setDefaultLanguageId(defaultLanguageId);
 		}
+
+		lvEntryImpl.setLvEntryId(lvEntryId);
+		lvEntryImpl.setGroupId(groupId);
 
 		lvEntryImpl.resetOriginalValues();
 
@@ -118,22 +119,18 @@ public class LVEntryCacheModel implements CacheModel<LVEntry>, Externalizable,
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		mvccVersion = objectInput.readLong();
 
+		headId = objectInput.readLong();
+		defaultLanguageId = objectInput.readUTF();
+
 		lvEntryId = objectInput.readLong();
 
 		groupId = objectInput.readLong();
-
-		headId = objectInput.readLong();
-		defaultLanguageId = objectInput.readUTF();
 	}
 
 	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(mvccVersion);
-
-		objectOutput.writeLong(lvEntryId);
-
-		objectOutput.writeLong(groupId);
 
 		objectOutput.writeLong(headId);
 
@@ -143,11 +140,15 @@ public class LVEntryCacheModel implements CacheModel<LVEntry>, Externalizable,
 		else {
 			objectOutput.writeUTF(defaultLanguageId);
 		}
+
+		objectOutput.writeLong(lvEntryId);
+
+		objectOutput.writeLong(groupId);
 	}
 
 	public long mvccVersion;
-	public long lvEntryId;
-	public long groupId;
 	public long headId;
 	public String defaultLanguageId;
+	public long lvEntryId;
+	public long groupId;
 }

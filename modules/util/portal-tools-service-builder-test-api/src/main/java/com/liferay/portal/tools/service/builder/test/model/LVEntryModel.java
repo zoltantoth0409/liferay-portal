@@ -84,34 +84,6 @@ public interface LVEntryModel extends BaseModel<LVEntry>, MVCCModel,
 	public void setMvccVersion(long mvccVersion);
 
 	/**
-	 * Returns the lv entry ID of this lv entry.
-	 *
-	 * @return the lv entry ID of this lv entry
-	 */
-	public long getLvEntryId();
-
-	/**
-	 * Sets the lv entry ID of this lv entry.
-	 *
-	 * @param lvEntryId the lv entry ID of this lv entry
-	 */
-	public void setLvEntryId(long lvEntryId);
-
-	/**
-	 * Returns the group ID of this lv entry.
-	 *
-	 * @return the group ID of this lv entry
-	 */
-	public long getGroupId();
-
-	/**
-	 * Sets the group ID of this lv entry.
-	 *
-	 * @param groupId the group ID of this lv entry
-	 */
-	public void setGroupId(long groupId);
-
-	/**
 	 * Returns the head ID of this lv entry.
 	 *
 	 * @return the head ID of this lv entry
@@ -141,6 +113,34 @@ public interface LVEntryModel extends BaseModel<LVEntry>, MVCCModel,
 	 * @param defaultLanguageId the default language ID of this lv entry
 	 */
 	public void setDefaultLanguageId(String defaultLanguageId);
+
+	/**
+	 * Returns the lv entry ID of this lv entry.
+	 *
+	 * @return the lv entry ID of this lv entry
+	 */
+	public long getLvEntryId();
+
+	/**
+	 * Sets the lv entry ID of this lv entry.
+	 *
+	 * @param lvEntryId the lv entry ID of this lv entry
+	 */
+	public void setLvEntryId(long lvEntryId);
+
+	/**
+	 * Returns the group ID of this lv entry.
+	 *
+	 * @return the group ID of this lv entry
+	 */
+	public long getGroupId();
+
+	/**
+	 * Sets the group ID of this lv entry.
+	 *
+	 * @param groupId the group ID of this lv entry
+	 */
+	public void setGroupId(long groupId);
 
 	public String[] getAvailableLanguageIds();
 

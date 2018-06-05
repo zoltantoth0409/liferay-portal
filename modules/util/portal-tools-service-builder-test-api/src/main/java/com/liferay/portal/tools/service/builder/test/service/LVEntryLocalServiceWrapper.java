@@ -234,8 +234,8 @@ public class LVEntryLocalServiceWrapper implements LVEntryLocalService,
 
 	@Override
 	public com.liferay.portal.tools.service.builder.test.model.LVEntryLocalizationVersion fetchLVEntryLocalizationVersion(
-		long entryId, String languageId, int version) {
-		return _lvEntryLocalService.fetchLVEntryLocalizationVersion(entryId,
+		long lvEntryId, String languageId, int version) {
+		return _lvEntryLocalService.fetchLVEntryLocalizationVersion(lvEntryId,
 			languageId, version);
 	}
 
@@ -331,15 +331,15 @@ public class LVEntryLocalServiceWrapper implements LVEntryLocalService,
 
 	@Override
 	public java.util.List<com.liferay.portal.tools.service.builder.test.model.LVEntryLocalizationVersion> getLVEntryLocalizationVersions(
-		long entryId) {
-		return _lvEntryLocalService.getLVEntryLocalizationVersions(entryId);
+		long lvEntryId) {
+		return _lvEntryLocalService.getLVEntryLocalizationVersions(lvEntryId);
 	}
 
 	@Override
 	public java.util.List<com.liferay.portal.tools.service.builder.test.model.LVEntryLocalizationVersion> getLVEntryLocalizationVersions(
-		long entryId, String languageId)
+		long lvEntryId, String languageId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return _lvEntryLocalService.getLVEntryLocalizationVersions(entryId,
+		return _lvEntryLocalService.getLVEntryLocalizationVersions(lvEntryId,
 			languageId);
 	}
 

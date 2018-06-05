@@ -63,20 +63,6 @@ public interface LocalizedEntryModel extends BaseModel<LocalizedEntry> {
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Returns the localized entry ID of this localized entry.
-	 *
-	 * @return the localized entry ID of this localized entry
-	 */
-	public long getLocalizedEntryId();
-
-	/**
-	 * Sets the localized entry ID of this localized entry.
-	 *
-	 * @param localizedEntryId the localized entry ID of this localized entry
-	 */
-	public void setLocalizedEntryId(long localizedEntryId);
-
-	/**
 	 * Returns the default language ID of this localized entry.
 	 *
 	 * @return the default language ID of this localized entry
@@ -90,6 +76,20 @@ public interface LocalizedEntryModel extends BaseModel<LocalizedEntry> {
 	 * @param defaultLanguageId the default language ID of this localized entry
 	 */
 	public void setDefaultLanguageId(String defaultLanguageId);
+
+	/**
+	 * Returns the localized entry ID of this localized entry.
+	 *
+	 * @return the localized entry ID of this localized entry
+	 */
+	public long getLocalizedEntryId();
+
+	/**
+	 * Sets the localized entry ID of this localized entry.
+	 *
+	 * @param localizedEntryId the localized entry ID of this localized entry
+	 */
+	public void setLocalizedEntryId(long localizedEntryId);
 
 	public String[] getAvailableLanguageIds();
 

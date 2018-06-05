@@ -82,6 +82,22 @@ public interface LVEntryLocalizationModel extends BaseModel<LVEntryLocalization>
 	public void setMvccVersion(long mvccVersion);
 
 	/**
+	 * Returns the head ID of this lv entry localization.
+	 *
+	 * @return the head ID of this lv entry localization
+	 */
+	@Override
+	public long getHeadId();
+
+	/**
+	 * Sets the head ID of this lv entry localization.
+	 *
+	 * @param headId the head ID of this lv entry localization
+	 */
+	@Override
+	public void setHeadId(long headId);
+
+	/**
 	 * Returns the lv entry localization ID of this lv entry localization.
 	 *
 	 * @return the lv entry localization ID of this lv entry localization
@@ -153,22 +169,6 @@ public interface LVEntryLocalizationModel extends BaseModel<LVEntryLocalization>
 	 * @param content the content of this lv entry localization
 	 */
 	public void setContent(String content);
-
-	/**
-	 * Returns the head ID of this lv entry localization.
-	 *
-	 * @return the head ID of this lv entry localization
-	 */
-	@Override
-	public long getHeadId();
-
-	/**
-	 * Sets the head ID of this lv entry localization.
-	 *
-	 * @param headId the head ID of this lv entry localization
-	 */
-	@Override
-	public void setHeadId(long headId);
 
 	@Override
 	public boolean isNew();

@@ -66,21 +66,21 @@ public class LVEntryVersionModelImpl extends BaseModelImpl<LVEntryVersion>
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "lvEntryVersionId", Types.BIGINT },
 			{ "version", Types.INTEGER },
+			{ "defaultLanguageId", Types.VARCHAR },
 			{ "lvEntryId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "defaultLanguageId", Types.VARCHAR }
+			{ "groupId", Types.BIGINT }
 		};
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("lvEntryVersionId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("version", Types.INTEGER);
+		TABLE_COLUMNS_MAP.put("defaultLanguageId", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("lvEntryId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("groupId", Types.BIGINT);
-		TABLE_COLUMNS_MAP.put("defaultLanguageId", Types.VARCHAR);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table LVEntryVersion (lvEntryVersionId LONG not null primary key,version INTEGER,lvEntryId LONG,groupId LONG,defaultLanguageId VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table LVEntryVersion (lvEntryVersionId LONG not null primary key,version INTEGER,defaultLanguageId VARCHAR(75) null,lvEntryId LONG,groupId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table LVEntryVersion";
 	public static final String ORDER_BY_JPQL = " ORDER BY lvEntryVersion.version DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY LVEntryVersion.version DESC";
@@ -141,9 +141,9 @@ public class LVEntryVersionModelImpl extends BaseModelImpl<LVEntryVersion>
 
 		attributes.put("lvEntryVersionId", getLvEntryVersionId());
 		attributes.put("version", getVersion());
+		attributes.put("defaultLanguageId", getDefaultLanguageId());
 		attributes.put("lvEntryId", getLvEntryId());
 		attributes.put("groupId", getGroupId());
-		attributes.put("defaultLanguageId", getDefaultLanguageId());
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -165,6 +165,12 @@ public class LVEntryVersionModelImpl extends BaseModelImpl<LVEntryVersion>
 			setVersion(version);
 		}
 
+		String defaultLanguageId = (String)attributes.get("defaultLanguageId");
+
+		if (defaultLanguageId != null) {
+			setDefaultLanguageId(defaultLanguageId);
+		}
+
 		Long lvEntryId = (Long)attributes.get("lvEntryId");
 
 		if (lvEntryId != null) {
@@ -176,12 +182,6 @@ public class LVEntryVersionModelImpl extends BaseModelImpl<LVEntryVersion>
 		if (groupId != null) {
 			setGroupId(groupId);
 		}
-
-		String defaultLanguageId = (String)attributes.get("defaultLanguageId");
-
-		if (defaultLanguageId != null) {
-			setDefaultLanguageId(defaultLanguageId);
-		}
 	}
 
 	@Override
@@ -191,8 +191,8 @@ public class LVEntryVersionModelImpl extends BaseModelImpl<LVEntryVersion>
 
 	@Override
 	public void populateVersionedModel(LVEntry lvEntry) {
-		lvEntry.setGroupId(getGroupId());
 		lvEntry.setDefaultLanguageId(getDefaultLanguageId());
+		lvEntry.setGroupId(getGroupId());
 	}
 
 	@Override
@@ -245,6 +245,21 @@ public class LVEntryVersionModelImpl extends BaseModelImpl<LVEntryVersion>
 	}
 
 	@Override
+	public String getDefaultLanguageId() {
+		if (_defaultLanguageId == null) {
+			return "";
+		}
+		else {
+			return _defaultLanguageId;
+		}
+	}
+
+	@Override
+	public void setDefaultLanguageId(String defaultLanguageId) {
+		_defaultLanguageId = defaultLanguageId;
+	}
+
+	@Override
 	public long getLvEntryId() {
 		return _lvEntryId;
 	}
@@ -288,21 +303,6 @@ public class LVEntryVersionModelImpl extends BaseModelImpl<LVEntryVersion>
 		return _originalGroupId;
 	}
 
-	@Override
-	public String getDefaultLanguageId() {
-		if (_defaultLanguageId == null) {
-			return "";
-		}
-		else {
-			return _defaultLanguageId;
-		}
-	}
-
-	@Override
-	public void setDefaultLanguageId(String defaultLanguageId) {
-		_defaultLanguageId = defaultLanguageId;
-	}
-
 	public long getColumnBitmask() {
 		return _columnBitmask;
 	}
@@ -336,9 +336,9 @@ public class LVEntryVersionModelImpl extends BaseModelImpl<LVEntryVersion>
 
 		lvEntryVersionImpl.setLvEntryVersionId(getLvEntryVersionId());
 		lvEntryVersionImpl.setVersion(getVersion());
+		lvEntryVersionImpl.setDefaultLanguageId(getDefaultLanguageId());
 		lvEntryVersionImpl.setLvEntryId(getLvEntryId());
 		lvEntryVersionImpl.setGroupId(getGroupId());
-		lvEntryVersionImpl.setDefaultLanguageId(getDefaultLanguageId());
 
 		lvEntryVersionImpl.resetOriginalValues();
 
@@ -432,10 +432,6 @@ public class LVEntryVersionModelImpl extends BaseModelImpl<LVEntryVersion>
 
 		lvEntryVersionCacheModel.version = getVersion();
 
-		lvEntryVersionCacheModel.lvEntryId = getLvEntryId();
-
-		lvEntryVersionCacheModel.groupId = getGroupId();
-
 		lvEntryVersionCacheModel.defaultLanguageId = getDefaultLanguageId();
 
 		String defaultLanguageId = lvEntryVersionCacheModel.defaultLanguageId;
@@ -443,6 +439,10 @@ public class LVEntryVersionModelImpl extends BaseModelImpl<LVEntryVersion>
 		if ((defaultLanguageId != null) && (defaultLanguageId.length() == 0)) {
 			lvEntryVersionCacheModel.defaultLanguageId = null;
 		}
+
+		lvEntryVersionCacheModel.lvEntryId = getLvEntryId();
+
+		lvEntryVersionCacheModel.groupId = getGroupId();
 
 		return lvEntryVersionCacheModel;
 	}
@@ -455,12 +455,12 @@ public class LVEntryVersionModelImpl extends BaseModelImpl<LVEntryVersion>
 		sb.append(getLvEntryVersionId());
 		sb.append(", version=");
 		sb.append(getVersion());
+		sb.append(", defaultLanguageId=");
+		sb.append(getDefaultLanguageId());
 		sb.append(", lvEntryId=");
 		sb.append(getLvEntryId());
 		sb.append(", groupId=");
 		sb.append(getGroupId());
-		sb.append(", defaultLanguageId=");
-		sb.append(getDefaultLanguageId());
 		sb.append("}");
 
 		return sb.toString();
@@ -484,16 +484,16 @@ public class LVEntryVersionModelImpl extends BaseModelImpl<LVEntryVersion>
 		sb.append(getVersion());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>defaultLanguageId</column-name><column-value><![CDATA[");
+		sb.append(getDefaultLanguageId());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>lvEntryId</column-name><column-value><![CDATA[");
 		sb.append(getLvEntryId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>groupId</column-name><column-value><![CDATA[");
 		sb.append(getGroupId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>defaultLanguageId</column-name><column-value><![CDATA[");
-		sb.append(getDefaultLanguageId());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -517,15 +517,15 @@ public class LVEntryVersionModelImpl extends BaseModelImpl<LVEntryVersion>
 				LVEntryVersion.class.getMethod("getVersionedModelId"));
 
 			_versionedModelMethodsMap.put(LVEntry.class.getMethod(
+					"getDefaultLanguageId"),
+				LVEntryVersion.class.getMethod("getDefaultLanguageId"));
+
+			_versionedModelMethodsMap.put(LVEntry.class.getMethod(
 					"getLvEntryId"),
 				LVEntryVersion.class.getMethod("getLvEntryId"));
 
 			_versionedModelMethodsMap.put(LVEntry.class.getMethod("getGroupId"),
 				LVEntryVersion.class.getMethod("getGroupId"));
-
-			_versionedModelMethodsMap.put(LVEntry.class.getMethod(
-					"getDefaultLanguageId"),
-				LVEntryVersion.class.getMethod("getDefaultLanguageId"));
 		}
 		catch (ReflectiveOperationException roe) {
 			throw new ExceptionInInitializerError(roe);
@@ -537,13 +537,13 @@ public class LVEntryVersionModelImpl extends BaseModelImpl<LVEntryVersion>
 	private int _version;
 	private int _originalVersion;
 	private boolean _setOriginalVersion;
+	private String _defaultLanguageId;
 	private long _lvEntryId;
 	private long _originalLvEntryId;
 	private boolean _setOriginalLvEntryId;
 	private long _groupId;
 	private long _originalGroupId;
 	private boolean _setOriginalGroupId;
-	private String _defaultLanguageId;
 	private long _columnBitmask;
 	private LVEntryVersion _escapedModel;
 }

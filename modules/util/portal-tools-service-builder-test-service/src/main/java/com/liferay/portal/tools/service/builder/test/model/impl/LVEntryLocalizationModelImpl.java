@@ -62,26 +62,26 @@ public class LVEntryLocalizationModelImpl extends BaseModelImpl<LVEntryLocalizat
 	public static final String TABLE_NAME = "LVEntryLocalization";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "mvccVersion", Types.BIGINT },
+			{ "headId", Types.BIGINT },
 			{ "lvEntryLocalizationId", Types.BIGINT },
 			{ "lvEntryId", Types.BIGINT },
 			{ "languageId", Types.VARCHAR },
 			{ "title", Types.VARCHAR },
-			{ "content", Types.VARCHAR },
-			{ "headId", Types.BIGINT }
+			{ "content", Types.VARCHAR }
 		};
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
 
 	static {
 		TABLE_COLUMNS_MAP.put("mvccVersion", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("headId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("lvEntryLocalizationId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("lvEntryId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("languageId", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("title", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("content", Types.VARCHAR);
-		TABLE_COLUMNS_MAP.put("headId", Types.BIGINT);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table LVEntryLocalization (mvccVersion LONG default 0 not null,lvEntryLocalizationId LONG not null primary key,lvEntryId LONG,languageId VARCHAR(75) null,title VARCHAR(75) null,content VARCHAR(75) null,headId LONG)";
+	public static final String TABLE_SQL_CREATE = "create table LVEntryLocalization (mvccVersion LONG default 0 not null,headId LONG,lvEntryLocalizationId LONG not null primary key,lvEntryId LONG,languageId VARCHAR(75) null,title VARCHAR(75) null,content VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table LVEntryLocalization";
 	public static final String ORDER_BY_JPQL = " ORDER BY lvEntryLocalization.lvEntryLocalizationId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY LVEntryLocalization.lvEntryLocalizationId ASC";
@@ -142,12 +142,12 @@ public class LVEntryLocalizationModelImpl extends BaseModelImpl<LVEntryLocalizat
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("mvccVersion", getMvccVersion());
+		attributes.put("headId", getHeadId());
 		attributes.put("lvEntryLocalizationId", getLvEntryLocalizationId());
 		attributes.put("lvEntryId", getLvEntryId());
 		attributes.put("languageId", getLanguageId());
 		attributes.put("title", getTitle());
 		attributes.put("content", getContent());
-		attributes.put("headId", getHeadId());
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -161,6 +161,12 @@ public class LVEntryLocalizationModelImpl extends BaseModelImpl<LVEntryLocalizat
 
 		if (mvccVersion != null) {
 			setMvccVersion(mvccVersion);
+		}
+
+		Long headId = (Long)attributes.get("headId");
+
+		if (headId != null) {
+			setHeadId(headId);
 		}
 
 		Long lvEntryLocalizationId = (Long)attributes.get(
@@ -193,12 +199,6 @@ public class LVEntryLocalizationModelImpl extends BaseModelImpl<LVEntryLocalizat
 		if (content != null) {
 			setContent(content);
 		}
-
-		Long headId = (Long)attributes.get("headId");
-
-		if (headId != null) {
-			setHeadId(headId);
-		}
 	}
 
 	@Override
@@ -227,6 +227,28 @@ public class LVEntryLocalizationModelImpl extends BaseModelImpl<LVEntryLocalizat
 	@Override
 	public void setMvccVersion(long mvccVersion) {
 		_mvccVersion = mvccVersion;
+	}
+
+	@Override
+	public long getHeadId() {
+		return _headId;
+	}
+
+	@Override
+	public void setHeadId(long headId) {
+		_columnBitmask |= HEADID_COLUMN_BITMASK;
+
+		if (!_setOriginalHeadId) {
+			_setOriginalHeadId = true;
+
+			_originalHeadId = _headId;
+		}
+
+		_headId = headId;
+	}
+
+	public long getOriginalHeadId() {
+		return _originalHeadId;
 	}
 
 	@Override
@@ -316,28 +338,6 @@ public class LVEntryLocalizationModelImpl extends BaseModelImpl<LVEntryLocalizat
 		_content = content;
 	}
 
-	@Override
-	public long getHeadId() {
-		return _headId;
-	}
-
-	@Override
-	public void setHeadId(long headId) {
-		_columnBitmask |= HEADID_COLUMN_BITMASK;
-
-		if (!_setOriginalHeadId) {
-			_setOriginalHeadId = true;
-
-			_originalHeadId = _headId;
-		}
-
-		_headId = headId;
-	}
-
-	public long getOriginalHeadId() {
-		return _originalHeadId;
-	}
-
 	public long getColumnBitmask() {
 		return _columnBitmask;
 	}
@@ -370,12 +370,12 @@ public class LVEntryLocalizationModelImpl extends BaseModelImpl<LVEntryLocalizat
 		LVEntryLocalizationImpl lvEntryLocalizationImpl = new LVEntryLocalizationImpl();
 
 		lvEntryLocalizationImpl.setMvccVersion(getMvccVersion());
+		lvEntryLocalizationImpl.setHeadId(getHeadId());
 		lvEntryLocalizationImpl.setLvEntryLocalizationId(getLvEntryLocalizationId());
 		lvEntryLocalizationImpl.setLvEntryId(getLvEntryId());
 		lvEntryLocalizationImpl.setLanguageId(getLanguageId());
 		lvEntryLocalizationImpl.setTitle(getTitle());
 		lvEntryLocalizationImpl.setContent(getContent());
-		lvEntryLocalizationImpl.setHeadId(getHeadId());
 
 		lvEntryLocalizationImpl.resetOriginalValues();
 
@@ -438,15 +438,15 @@ public class LVEntryLocalizationModelImpl extends BaseModelImpl<LVEntryLocalizat
 	public void resetOriginalValues() {
 		LVEntryLocalizationModelImpl lvEntryLocalizationModelImpl = this;
 
+		lvEntryLocalizationModelImpl._originalHeadId = lvEntryLocalizationModelImpl._headId;
+
+		lvEntryLocalizationModelImpl._setOriginalHeadId = false;
+
 		lvEntryLocalizationModelImpl._originalLvEntryId = lvEntryLocalizationModelImpl._lvEntryId;
 
 		lvEntryLocalizationModelImpl._setOriginalLvEntryId = false;
 
 		lvEntryLocalizationModelImpl._originalLanguageId = lvEntryLocalizationModelImpl._languageId;
-
-		lvEntryLocalizationModelImpl._originalHeadId = lvEntryLocalizationModelImpl._headId;
-
-		lvEntryLocalizationModelImpl._setOriginalHeadId = false;
 
 		lvEntryLocalizationModelImpl._columnBitmask = 0;
 	}
@@ -456,6 +456,8 @@ public class LVEntryLocalizationModelImpl extends BaseModelImpl<LVEntryLocalizat
 		LVEntryLocalizationCacheModel lvEntryLocalizationCacheModel = new LVEntryLocalizationCacheModel();
 
 		lvEntryLocalizationCacheModel.mvccVersion = getMvccVersion();
+
+		lvEntryLocalizationCacheModel.headId = getHeadId();
 
 		lvEntryLocalizationCacheModel.lvEntryLocalizationId = getLvEntryLocalizationId();
 
@@ -485,8 +487,6 @@ public class LVEntryLocalizationModelImpl extends BaseModelImpl<LVEntryLocalizat
 			lvEntryLocalizationCacheModel.content = null;
 		}
 
-		lvEntryLocalizationCacheModel.headId = getHeadId();
-
 		return lvEntryLocalizationCacheModel;
 	}
 
@@ -496,6 +496,8 @@ public class LVEntryLocalizationModelImpl extends BaseModelImpl<LVEntryLocalizat
 
 		sb.append("{mvccVersion=");
 		sb.append(getMvccVersion());
+		sb.append(", headId=");
+		sb.append(getHeadId());
 		sb.append(", lvEntryLocalizationId=");
 		sb.append(getLvEntryLocalizationId());
 		sb.append(", lvEntryId=");
@@ -506,8 +508,6 @@ public class LVEntryLocalizationModelImpl extends BaseModelImpl<LVEntryLocalizat
 		sb.append(getTitle());
 		sb.append(", content=");
 		sb.append(getContent());
-		sb.append(", headId=");
-		sb.append(getHeadId());
 		sb.append("}");
 
 		return sb.toString();
@@ -525,6 +525,10 @@ public class LVEntryLocalizationModelImpl extends BaseModelImpl<LVEntryLocalizat
 		sb.append(
 			"<column><column-name>mvccVersion</column-name><column-value><![CDATA[");
 		sb.append(getMvccVersion());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>headId</column-name><column-value><![CDATA[");
+		sb.append(getHeadId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>lvEntryLocalizationId</column-name><column-value><![CDATA[");
@@ -546,10 +550,6 @@ public class LVEntryLocalizationModelImpl extends BaseModelImpl<LVEntryLocalizat
 			"<column><column-name>content</column-name><column-value><![CDATA[");
 		sb.append(getContent());
 		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>headId</column-name><column-value><![CDATA[");
-		sb.append(getHeadId());
-		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -561,6 +561,9 @@ public class LVEntryLocalizationModelImpl extends BaseModelImpl<LVEntryLocalizat
 			LVEntryLocalization.class, ModelWrapper.class
 		};
 	private long _mvccVersion;
+	private long _headId;
+	private long _originalHeadId;
+	private boolean _setOriginalHeadId;
 	private long _lvEntryLocalizationId;
 	private long _lvEntryId;
 	private long _originalLvEntryId;
@@ -569,9 +572,6 @@ public class LVEntryLocalizationModelImpl extends BaseModelImpl<LVEntryLocalizat
 	private String _originalLanguageId;
 	private String _title;
 	private String _content;
-	private long _headId;
-	private long _originalHeadId;
-	private boolean _setOriginalHeadId;
 	private long _columnBitmask;
 	private LVEntryLocalization _escapedModel;
 }

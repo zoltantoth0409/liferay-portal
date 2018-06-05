@@ -123,11 +123,11 @@ public class LVEntryPersistenceTest {
 
 		newLVEntry.setMvccVersion(RandomTestUtil.nextLong());
 
-		newLVEntry.setGroupId(RandomTestUtil.nextLong());
-
 		newLVEntry.setHeadId(RandomTestUtil.nextLong());
 
 		newLVEntry.setDefaultLanguageId(RandomTestUtil.randomString());
+
+		newLVEntry.setGroupId(RandomTestUtil.nextLong());
 
 		_lvEntries.add(_persistence.update(newLVEntry));
 
@@ -135,13 +135,13 @@ public class LVEntryPersistenceTest {
 
 		Assert.assertEquals(existingLVEntry.getMvccVersion(),
 			newLVEntry.getMvccVersion());
+		Assert.assertEquals(existingLVEntry.getHeadId(), newLVEntry.getHeadId());
+		Assert.assertEquals(existingLVEntry.getDefaultLanguageId(),
+			newLVEntry.getDefaultLanguageId());
 		Assert.assertEquals(existingLVEntry.getLvEntryId(),
 			newLVEntry.getLvEntryId());
 		Assert.assertEquals(existingLVEntry.getGroupId(),
 			newLVEntry.getGroupId());
-		Assert.assertEquals(existingLVEntry.getHeadId(), newLVEntry.getHeadId());
-		Assert.assertEquals(existingLVEntry.getDefaultLanguageId(),
-			newLVEntry.getDefaultLanguageId());
 	}
 
 	@Test
@@ -182,8 +182,8 @@ public class LVEntryPersistenceTest {
 
 	protected OrderByComparator<LVEntry> getOrderByComparator() {
 		return OrderByComparatorFactoryUtil.create("LVEntry", "mvccVersion",
-			true, "lvEntryId", true, "groupId", true, "headId", true,
-			"defaultLanguageId", true);
+			true, "headId", true, "defaultLanguageId", true, "lvEntryId", true,
+			"groupId", true);
 	}
 
 	@Test
@@ -398,11 +398,11 @@ public class LVEntryPersistenceTest {
 
 		lvEntry.setMvccVersion(RandomTestUtil.nextLong());
 
-		lvEntry.setGroupId(RandomTestUtil.nextLong());
-
 		lvEntry.setHeadId(RandomTestUtil.nextLong());
 
 		lvEntry.setDefaultLanguageId(RandomTestUtil.randomString());
+
+		lvEntry.setGroupId(RandomTestUtil.nextLong());
 
 		_lvEntries.add(_persistence.update(lvEntry));
 

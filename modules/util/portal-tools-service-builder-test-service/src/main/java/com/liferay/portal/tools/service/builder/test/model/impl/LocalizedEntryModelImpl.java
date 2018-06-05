@@ -65,17 +65,17 @@ public class LocalizedEntryModelImpl extends BaseModelImpl<LocalizedEntry>
 	 */
 	public static final String TABLE_NAME = "LocalizedEntry";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "localizedEntryId", Types.BIGINT },
-			{ "defaultLanguageId", Types.VARCHAR }
+			{ "defaultLanguageId", Types.VARCHAR },
+			{ "localizedEntryId", Types.BIGINT }
 		};
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
 
 	static {
-		TABLE_COLUMNS_MAP.put("localizedEntryId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("defaultLanguageId", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("localizedEntryId", Types.BIGINT);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table LocalizedEntry (localizedEntryId LONG not null primary key,defaultLanguageId VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table LocalizedEntry (defaultLanguageId VARCHAR(75) null,localizedEntryId LONG not null primary key)";
 	public static final String TABLE_SQL_DROP = "drop table LocalizedEntry";
 	public static final String ORDER_BY_JPQL = " ORDER BY localizedEntry.localizedEntryId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY LocalizedEntry.localizedEntryId ASC";
@@ -129,8 +129,8 @@ public class LocalizedEntryModelImpl extends BaseModelImpl<LocalizedEntry>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("localizedEntryId", getLocalizedEntryId());
 		attributes.put("defaultLanguageId", getDefaultLanguageId());
+		attributes.put("localizedEntryId", getLocalizedEntryId());
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -140,16 +140,16 @@ public class LocalizedEntryModelImpl extends BaseModelImpl<LocalizedEntry>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long localizedEntryId = (Long)attributes.get("localizedEntryId");
-
-		if (localizedEntryId != null) {
-			setLocalizedEntryId(localizedEntryId);
-		}
-
 		String defaultLanguageId = (String)attributes.get("defaultLanguageId");
 
 		if (defaultLanguageId != null) {
 			setDefaultLanguageId(defaultLanguageId);
+		}
+
+		Long localizedEntryId = (Long)attributes.get("localizedEntryId");
+
+		if (localizedEntryId != null) {
+			setLocalizedEntryId(localizedEntryId);
 		}
 	}
 
@@ -279,16 +279,6 @@ public class LocalizedEntryModelImpl extends BaseModelImpl<LocalizedEntry>
 	}
 
 	@Override
-	public long getLocalizedEntryId() {
-		return _localizedEntryId;
-	}
-
-	@Override
-	public void setLocalizedEntryId(long localizedEntryId) {
-		_localizedEntryId = localizedEntryId;
-	}
-
-	@Override
 	public String getDefaultLanguageId() {
 		if (_defaultLanguageId == null) {
 			return "";
@@ -301,6 +291,16 @@ public class LocalizedEntryModelImpl extends BaseModelImpl<LocalizedEntry>
 	@Override
 	public void setDefaultLanguageId(String defaultLanguageId) {
 		_defaultLanguageId = defaultLanguageId;
+	}
+
+	@Override
+	public long getLocalizedEntryId() {
+		return _localizedEntryId;
+	}
+
+	@Override
+	public void setLocalizedEntryId(long localizedEntryId) {
+		_localizedEntryId = localizedEntryId;
 	}
 
 	@Override
@@ -330,8 +330,8 @@ public class LocalizedEntryModelImpl extends BaseModelImpl<LocalizedEntry>
 	public Object clone() {
 		LocalizedEntryImpl localizedEntryImpl = new LocalizedEntryImpl();
 
-		localizedEntryImpl.setLocalizedEntryId(getLocalizedEntryId());
 		localizedEntryImpl.setDefaultLanguageId(getDefaultLanguageId());
+		localizedEntryImpl.setLocalizedEntryId(getLocalizedEntryId());
 
 		localizedEntryImpl.resetOriginalValues();
 
@@ -398,8 +398,6 @@ public class LocalizedEntryModelImpl extends BaseModelImpl<LocalizedEntry>
 	public CacheModel<LocalizedEntry> toCacheModel() {
 		LocalizedEntryCacheModel localizedEntryCacheModel = new LocalizedEntryCacheModel();
 
-		localizedEntryCacheModel.localizedEntryId = getLocalizedEntryId();
-
 		localizedEntryCacheModel.defaultLanguageId = getDefaultLanguageId();
 
 		String defaultLanguageId = localizedEntryCacheModel.defaultLanguageId;
@@ -408,6 +406,8 @@ public class LocalizedEntryModelImpl extends BaseModelImpl<LocalizedEntry>
 			localizedEntryCacheModel.defaultLanguageId = null;
 		}
 
+		localizedEntryCacheModel.localizedEntryId = getLocalizedEntryId();
+
 		return localizedEntryCacheModel;
 	}
 
@@ -415,10 +415,10 @@ public class LocalizedEntryModelImpl extends BaseModelImpl<LocalizedEntry>
 	public String toString() {
 		StringBundler sb = new StringBundler(5);
 
-		sb.append("{localizedEntryId=");
-		sb.append(getLocalizedEntryId());
-		sb.append(", defaultLanguageId=");
+		sb.append("{defaultLanguageId=");
 		sb.append(getDefaultLanguageId());
+		sb.append(", localizedEntryId=");
+		sb.append(getLocalizedEntryId());
 		sb.append("}");
 
 		return sb.toString();
@@ -434,12 +434,12 @@ public class LocalizedEntryModelImpl extends BaseModelImpl<LocalizedEntry>
 		sb.append("</model-name>");
 
 		sb.append(
-			"<column><column-name>localizedEntryId</column-name><column-value><![CDATA[");
-		sb.append(getLocalizedEntryId());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>defaultLanguageId</column-name><column-value><![CDATA[");
 		sb.append(getDefaultLanguageId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>localizedEntryId</column-name><column-value><![CDATA[");
+		sb.append(getLocalizedEntryId());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -451,7 +451,7 @@ public class LocalizedEntryModelImpl extends BaseModelImpl<LocalizedEntry>
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
 			LocalizedEntry.class, ModelWrapper.class
 		};
-	private long _localizedEntryId;
 	private String _defaultLanguageId;
+	private long _localizedEntryId;
 	private LocalizedEntry _escapedModel;
 }

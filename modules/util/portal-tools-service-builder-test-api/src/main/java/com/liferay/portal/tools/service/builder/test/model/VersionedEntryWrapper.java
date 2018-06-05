@@ -58,9 +58,9 @@ public class VersionedEntryWrapper implements VersionedEntry,
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("mvccVersion", getMvccVersion());
+		attributes.put("headId", getHeadId());
 		attributes.put("versionedEntryId", getVersionedEntryId());
 		attributes.put("groupId", getGroupId());
-		attributes.put("headId", getHeadId());
 
 		return attributes;
 	}
@@ -73,6 +73,12 @@ public class VersionedEntryWrapper implements VersionedEntry,
 			setMvccVersion(mvccVersion);
 		}
 
+		Long headId = (Long)attributes.get("headId");
+
+		if (headId != null) {
+			setHeadId(headId);
+		}
+
 		Long versionedEntryId = (Long)attributes.get("versionedEntryId");
 
 		if (versionedEntryId != null) {
@@ -83,12 +89,6 @@ public class VersionedEntryWrapper implements VersionedEntry,
 
 		if (groupId != null) {
 			setGroupId(groupId);
-		}
-
-		Long headId = (Long)attributes.get("headId");
-
-		if (headId != null) {
-			setHeadId(headId);
 		}
 	}
 

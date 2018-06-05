@@ -32,8 +32,8 @@ public class LocalizedEntrySoap implements Serializable {
 	public static LocalizedEntrySoap toSoapModel(LocalizedEntry model) {
 		LocalizedEntrySoap soapModel = new LocalizedEntrySoap();
 
-		soapModel.setLocalizedEntryId(model.getLocalizedEntryId());
 		soapModel.setDefaultLanguageId(model.getDefaultLanguageId());
+		soapModel.setLocalizedEntryId(model.getLocalizedEntryId());
 
 		return soapModel;
 	}
@@ -86,14 +86,6 @@ public class LocalizedEntrySoap implements Serializable {
 		setLocalizedEntryId(pk);
 	}
 
-	public long getLocalizedEntryId() {
-		return _localizedEntryId;
-	}
-
-	public void setLocalizedEntryId(long localizedEntryId) {
-		_localizedEntryId = localizedEntryId;
-	}
-
 	public String getDefaultLanguageId() {
 		return _defaultLanguageId;
 	}
@@ -102,6 +94,14 @@ public class LocalizedEntrySoap implements Serializable {
 		_defaultLanguageId = defaultLanguageId;
 	}
 
-	private long _localizedEntryId;
+	public long getLocalizedEntryId() {
+		return _localizedEntryId;
+	}
+
+	public void setLocalizedEntryId(long localizedEntryId) {
+		_localizedEntryId = localizedEntryId;
+	}
+
 	private String _defaultLanguageId;
+	private long _localizedEntryId;
 }

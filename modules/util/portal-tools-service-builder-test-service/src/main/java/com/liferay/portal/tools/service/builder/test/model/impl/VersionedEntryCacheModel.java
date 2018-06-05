@@ -80,12 +80,12 @@ public class VersionedEntryCacheModel implements CacheModel<VersionedEntry>,
 
 		sb.append("{mvccVersion=");
 		sb.append(mvccVersion);
+		sb.append(", headId=");
+		sb.append(headId);
 		sb.append(", versionedEntryId=");
 		sb.append(versionedEntryId);
 		sb.append(", groupId=");
 		sb.append(groupId);
-		sb.append(", headId=");
-		sb.append(headId);
 		sb.append("}");
 
 		return sb.toString();
@@ -96,9 +96,9 @@ public class VersionedEntryCacheModel implements CacheModel<VersionedEntry>,
 		VersionedEntryImpl versionedEntryImpl = new VersionedEntryImpl();
 
 		versionedEntryImpl.setMvccVersion(mvccVersion);
+		versionedEntryImpl.setHeadId(headId);
 		versionedEntryImpl.setVersionedEntryId(versionedEntryId);
 		versionedEntryImpl.setGroupId(groupId);
-		versionedEntryImpl.setHeadId(headId);
 
 		versionedEntryImpl.resetOriginalValues();
 
@@ -109,11 +109,11 @@ public class VersionedEntryCacheModel implements CacheModel<VersionedEntry>,
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		mvccVersion = objectInput.readLong();
 
+		headId = objectInput.readLong();
+
 		versionedEntryId = objectInput.readLong();
 
 		groupId = objectInput.readLong();
-
-		headId = objectInput.readLong();
 	}
 
 	@Override
@@ -121,15 +121,15 @@ public class VersionedEntryCacheModel implements CacheModel<VersionedEntry>,
 		throws IOException {
 		objectOutput.writeLong(mvccVersion);
 
+		objectOutput.writeLong(headId);
+
 		objectOutput.writeLong(versionedEntryId);
 
 		objectOutput.writeLong(groupId);
-
-		objectOutput.writeLong(headId);
 	}
 
 	public long mvccVersion;
+	public long headId;
 	public long versionedEntryId;
 	public long groupId;
-	public long headId;
 }

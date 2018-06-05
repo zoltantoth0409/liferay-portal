@@ -123,9 +123,9 @@ public class VersionedEntryPersistenceTest {
 
 		newVersionedEntry.setMvccVersion(RandomTestUtil.nextLong());
 
-		newVersionedEntry.setGroupId(RandomTestUtil.nextLong());
-
 		newVersionedEntry.setHeadId(RandomTestUtil.nextLong());
+
+		newVersionedEntry.setGroupId(RandomTestUtil.nextLong());
 
 		_versionedEntries.add(_persistence.update(newVersionedEntry));
 
@@ -133,12 +133,12 @@ public class VersionedEntryPersistenceTest {
 
 		Assert.assertEquals(existingVersionedEntry.getMvccVersion(),
 			newVersionedEntry.getMvccVersion());
+		Assert.assertEquals(existingVersionedEntry.getHeadId(),
+			newVersionedEntry.getHeadId());
 		Assert.assertEquals(existingVersionedEntry.getVersionedEntryId(),
 			newVersionedEntry.getVersionedEntryId());
 		Assert.assertEquals(existingVersionedEntry.getGroupId(),
 			newVersionedEntry.getGroupId());
-		Assert.assertEquals(existingVersionedEntry.getHeadId(),
-			newVersionedEntry.getHeadId());
 	}
 
 	@Test
@@ -179,8 +179,8 @@ public class VersionedEntryPersistenceTest {
 
 	protected OrderByComparator<VersionedEntry> getOrderByComparator() {
 		return OrderByComparatorFactoryUtil.create("VersionedEntry",
-			"mvccVersion", true, "versionedEntryId", true, "groupId", true,
-			"headId", true);
+			"mvccVersion", true, "headId", true, "versionedEntryId", true,
+			"groupId", true);
 	}
 
 	@Test
@@ -397,9 +397,9 @@ public class VersionedEntryPersistenceTest {
 
 		versionedEntry.setMvccVersion(RandomTestUtil.nextLong());
 
-		versionedEntry.setGroupId(RandomTestUtil.nextLong());
-
 		versionedEntry.setHeadId(RandomTestUtil.nextLong());
+
+		versionedEntry.setGroupId(RandomTestUtil.nextLong());
 
 		_versionedEntries.add(_persistence.update(versionedEntry));
 

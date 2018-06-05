@@ -223,9 +223,10 @@ public class LVEntryLocalServiceUtil {
 	}
 
 	public static com.liferay.portal.tools.service.builder.test.model.LVEntryLocalizationVersion fetchLVEntryLocalizationVersion(
-		long entryId, String languageId, int version) {
+		long lvEntryId, String languageId, int version) {
 		return getService()
-				   .fetchLVEntryLocalizationVersion(entryId, languageId, version);
+				   .fetchLVEntryLocalizationVersion(lvEntryId, languageId,
+			version);
 	}
 
 	public static com.liferay.portal.tools.service.builder.test.model.LVEntry fetchPublished(
@@ -308,14 +309,14 @@ public class LVEntryLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.portal.tools.service.builder.test.model.LVEntryLocalizationVersion> getLVEntryLocalizationVersions(
-		long entryId) {
-		return getService().getLVEntryLocalizationVersions(entryId);
+		long lvEntryId) {
+		return getService().getLVEntryLocalizationVersions(lvEntryId);
 	}
 
 	public static java.util.List<com.liferay.portal.tools.service.builder.test.model.LVEntryLocalizationVersion> getLVEntryLocalizationVersions(
-		long entryId, String languageId)
+		long lvEntryId, String languageId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getLVEntryLocalizationVersions(entryId, languageId);
+		return getService().getLVEntryLocalizationVersions(lvEntryId, languageId);
 	}
 
 	/**
