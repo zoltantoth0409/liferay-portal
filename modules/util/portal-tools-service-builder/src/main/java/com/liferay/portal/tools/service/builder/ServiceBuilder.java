@@ -6091,15 +6091,16 @@ public class ServiceBuilder {
 
 		Entity entity = new Entity(
 			_packagePath, _apiPackagePath, _portletShortName, entityName,
-			humanName, tableName, alias, uuid, uuidAccessor, localService,
-			remoteService, persistenceClassName, finderClassName, dataSource,
-			sessionFactory, txManager, cacheEnabled, dynamicUpdateEnabled,
-			jsonEnabled, mvccEnabled, trashEnabled, uadApplicationName,
-			uadAutoDelete, uadOutputPath, uadPackagePath, deprecated,
-			pkEntityColumns, regularEntityColumns, blobEntityColumns,
-			collectionEntityColumns, entityColumns, entityOrder, entityFinders,
-			referenceEntities, unresolvedReferenceEntityNames,
-			txRequiredMethodNames, resourceActionModel);
+			humanName, tableName, alias, uuid, uuidAccessor,
+			externalReferenceCode, localService, remoteService,
+			persistenceClassName, finderClassName, dataSource, sessionFactory,
+			txManager, cacheEnabled, dynamicUpdateEnabled, jsonEnabled,
+			mvccEnabled, trashEnabled, uadApplicationName, uadAutoDelete,
+			uadOutputPath, uadPackagePath, deprecated, pkEntityColumns,
+			regularEntityColumns, blobEntityColumns, collectionEntityColumns,
+			entityColumns, entityOrder, entityFinders, referenceEntities,
+			unresolvedReferenceEntityNames, txRequiredMethodNames,
+			resourceActionModel);
 
 		_entities.add(entity);
 
