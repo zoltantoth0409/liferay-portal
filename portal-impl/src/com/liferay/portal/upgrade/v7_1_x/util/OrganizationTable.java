@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author	  Michael C. Han
+ * @author	  Brian Wing Shun Chan
  * @generated
  */
 public class OrganizationTable {
@@ -30,6 +30,7 @@ public class OrganizationTable {
 	public static final Object[][] TABLE_COLUMNS = {
 		{"mvccVersion", Types.BIGINT},
 		{"uuid_", Types.VARCHAR},
+		{"externalReferenceCode", Types.VARCHAR},
 		{"organizationId", Types.BIGINT},
 		{"companyId", Types.BIGINT},
 		{"userId", Types.BIGINT},
@@ -45,8 +46,7 @@ public class OrganizationTable {
 		{"countryId", Types.BIGINT},
 		{"statusId", Types.BIGINT},
 		{"comments", Types.VARCHAR},
-		{"logoId", Types.BIGINT},
-		{"externalReferenceCode", Types.VARCHAR}
+		{"logoId", Types.BIGINT}
 	};
 
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
@@ -55,6 +55,8 @@ static {
 TABLE_COLUMNS_MAP.put("mvccVersion", Types.BIGINT);
 
 TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
+
+TABLE_COLUMNS_MAP.put("externalReferenceCode", Types.VARCHAR);
 
 TABLE_COLUMNS_MAP.put("organizationId", Types.BIGINT);
 
@@ -88,15 +90,13 @@ TABLE_COLUMNS_MAP.put("comments", Types.VARCHAR);
 
 TABLE_COLUMNS_MAP.put("logoId", Types.BIGINT);
 
-TABLE_COLUMNS_MAP.put("externalReferenceCode", Types.VARCHAR);
-
 }
-	public static final String TABLE_SQL_CREATE = "create table Organization_ (mvccVersion LONG default 0 not null,uuid_ VARCHAR(75) null,organizationId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,parentOrganizationId LONG,treePath STRING null,name VARCHAR(100) null,type_ VARCHAR(75) null,recursable BOOLEAN,regionId LONG,countryId LONG,statusId LONG,comments STRING null,logoId LONG,externalReferenceCode VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table Organization_ (mvccVersion LONG default 0 not null,uuid_ VARCHAR(75) null,externalReferenceCode VARCHAR(75) null,organizationId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,parentOrganizationId LONG,treePath STRING null,name VARCHAR(100) null,type_ VARCHAR(75) null,recursable BOOLEAN,regionId LONG,countryId LONG,statusId LONG,comments STRING null,logoId LONG)";
 
 	public static final String TABLE_SQL_DROP = "drop table Organization_";
 
 	public static final String[] TABLE_SQL_ADD_INDEXES = {
-		"create unique index IX_6B83F1C7 on Organization_ (companyId, externalReferenceCode[$COLUMN_LENGTH:75$])",
+		"create index IX_6B83F1C7 on Organization_ (companyId, externalReferenceCode[$COLUMN_LENGTH:75$])",
 		"create unique index IX_E301BDF5 on Organization_ (companyId, name[$COLUMN_LENGTH:100$])",
 		"create index IX_418E4522 on Organization_ (companyId, parentOrganizationId)",
 		"create index IX_A9D85BA6 on Organization_ (uuid_[$COLUMN_LENGTH:75$], companyId)"

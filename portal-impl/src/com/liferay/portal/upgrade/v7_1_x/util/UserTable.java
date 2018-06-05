@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author	  Michael C. Han
+ * @author	  Brian Wing Shun Chan
  * @generated
  */
 public class UserTable {
@@ -30,6 +30,7 @@ public class UserTable {
 	public static final Object[][] TABLE_COLUMNS = {
 		{"mvccVersion", Types.BIGINT},
 		{"uuid_", Types.VARCHAR},
+		{"externalReferenceCode", Types.VARCHAR},
 		{"userId", Types.BIGINT},
 		{"companyId", Types.BIGINT},
 		{"createDate", Types.TIMESTAMP},
@@ -69,8 +70,7 @@ public class UserTable {
 		{"lockoutDate", Types.TIMESTAMP},
 		{"agreedToTermsOfUse", Types.BOOLEAN},
 		{"emailAddressVerified", Types.BOOLEAN},
-		{"status", Types.INTEGER},
-		{"externalReferenceCode", Types.VARCHAR}
+		{"status", Types.INTEGER}
 	};
 
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
@@ -79,6 +79,8 @@ static {
 TABLE_COLUMNS_MAP.put("mvccVersion", Types.BIGINT);
 
 TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
+
+TABLE_COLUMNS_MAP.put("externalReferenceCode", Types.VARCHAR);
 
 TABLE_COLUMNS_MAP.put("userId", Types.BIGINT);
 
@@ -160,10 +162,8 @@ TABLE_COLUMNS_MAP.put("emailAddressVerified", Types.BOOLEAN);
 
 TABLE_COLUMNS_MAP.put("status", Types.INTEGER);
 
-TABLE_COLUMNS_MAP.put("externalReferenceCode", Types.VARCHAR);
-
 }
-	public static final String TABLE_SQL_CREATE = "create table User_ (mvccVersion LONG default 0 not null,uuid_ VARCHAR(75) null,userId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,defaultUser BOOLEAN,contactId LONG,password_ VARCHAR(75) null,passwordEncrypted BOOLEAN,passwordReset BOOLEAN,passwordModifiedDate DATE null,digest VARCHAR(255) null,reminderQueryQuestion VARCHAR(75) null,reminderQueryAnswer VARCHAR(75) null,graceLoginCount INTEGER,screenName VARCHAR(75) null,emailAddress VARCHAR(254) null,facebookId LONG,googleUserId VARCHAR(75) null,ldapServerId LONG,openId VARCHAR(1024) null,portraitId LONG,languageId VARCHAR(75) null,timeZoneId VARCHAR(75) null,greeting VARCHAR(255) null,comments STRING null,firstName VARCHAR(75) null,middleName VARCHAR(75) null,lastName VARCHAR(75) null,jobTitle VARCHAR(100) null,loginDate DATE null,loginIP VARCHAR(75) null,lastLoginDate DATE null,lastLoginIP VARCHAR(75) null,lastFailedLoginDate DATE null,failedLoginAttempts INTEGER,lockout BOOLEAN,lockoutDate DATE null,agreedToTermsOfUse BOOLEAN,emailAddressVerified BOOLEAN,status INTEGER,externalReferenceCode VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table User_ (mvccVersion LONG default 0 not null,uuid_ VARCHAR(75) null,externalReferenceCode VARCHAR(75) null,userId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,defaultUser BOOLEAN,contactId LONG,password_ VARCHAR(75) null,passwordEncrypted BOOLEAN,passwordReset BOOLEAN,passwordModifiedDate DATE null,digest VARCHAR(255) null,reminderQueryQuestion VARCHAR(75) null,reminderQueryAnswer VARCHAR(75) null,graceLoginCount INTEGER,screenName VARCHAR(75) null,emailAddress VARCHAR(254) null,facebookId LONG,googleUserId VARCHAR(75) null,ldapServerId LONG,openId VARCHAR(1024) null,portraitId LONG,languageId VARCHAR(75) null,timeZoneId VARCHAR(75) null,greeting VARCHAR(255) null,comments STRING null,firstName VARCHAR(75) null,middleName VARCHAR(75) null,lastName VARCHAR(75) null,jobTitle VARCHAR(100) null,loginDate DATE null,loginIP VARCHAR(75) null,lastLoginDate DATE null,lastLoginIP VARCHAR(75) null,lastFailedLoginDate DATE null,failedLoginAttempts INTEGER,lockout BOOLEAN,lockoutDate DATE null,agreedToTermsOfUse BOOLEAN,emailAddressVerified BOOLEAN,status INTEGER)";
 
 	public static final String TABLE_SQL_DROP = "drop table User_";
 
@@ -171,7 +171,7 @@ TABLE_COLUMNS_MAP.put("externalReferenceCode", Types.VARCHAR);
 		"create index IX_BCFDA257 on User_ (companyId, createDate, modifiedDate)",
 		"create index IX_C6EA4F34 on User_ (companyId, defaultUser, status)",
 		"create unique index IX_615E9F7A on User_ (companyId, emailAddress[$COLUMN_LENGTH:254$])",
-		"create unique index IX_E1D3922F on User_ (companyId, externalReferenceCode[$COLUMN_LENGTH:75$])",
+		"create index IX_E1D3922F on User_ (companyId, externalReferenceCode[$COLUMN_LENGTH:75$])",
 		"create index IX_1D731F03 on User_ (companyId, facebookId)",
 		"create index IX_B6E3AE1 on User_ (companyId, googleUserId[$COLUMN_LENGTH:75$])",
 		"create index IX_EE8ABD19 on User_ (companyId, modifiedDate)",

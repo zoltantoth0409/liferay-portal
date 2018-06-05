@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.upgrade.v7_1_x.util; 
+package com.liferay.portal.upgrade.v7_1_x.util;
 
 import java.sql.Types;
 
@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author	  Michael C. Han
+ * @author	  Brian Wing Shun Chan
  * @generated
  */
 public class AssetCategoryTable {
@@ -29,6 +29,7 @@ public class AssetCategoryTable {
 
 	public static final Object[][] TABLE_COLUMNS = {
 		{"uuid_", Types.VARCHAR},
+		{"externalReferenceCode", Types.VARCHAR},
 		{"categoryId", Types.BIGINT},
 		{"groupId", Types.BIGINT},
 		{"companyId", Types.BIGINT},
@@ -43,14 +44,15 @@ public class AssetCategoryTable {
 		{"title", Types.VARCHAR},
 		{"description", Types.VARCHAR},
 		{"vocabularyId", Types.BIGINT},
-		{"lastPublishDate", Types.TIMESTAMP},
-		{"externalReferenceCode", Types.VARCHAR}
+		{"lastPublishDate", Types.TIMESTAMP}
 	};
 
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
 
 static {
 TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
+
+TABLE_COLUMNS_MAP.put("externalReferenceCode", Types.VARCHAR);
 
 TABLE_COLUMNS_MAP.put("categoryId", Types.BIGINT);
 
@@ -82,15 +84,13 @@ TABLE_COLUMNS_MAP.put("vocabularyId", Types.BIGINT);
 
 TABLE_COLUMNS_MAP.put("lastPublishDate", Types.TIMESTAMP);
 
-TABLE_COLUMNS_MAP.put("externalReferenceCode", Types.VARCHAR);
-
 }
-	public static final String TABLE_SQL_CREATE = "create table AssetCategory (uuid_ VARCHAR(75) null,categoryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,parentCategoryId LONG,leftCategoryId LONG,rightCategoryId LONG,name VARCHAR(75) null,title STRING null,description STRING null,vocabularyId LONG,lastPublishDate DATE null,externalReferenceCode VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table AssetCategory (uuid_ VARCHAR(75) null,externalReferenceCode VARCHAR(75) null,categoryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,parentCategoryId LONG,leftCategoryId LONG,rightCategoryId LONG,name VARCHAR(75) null,title STRING null,description STRING null,vocabularyId LONG,lastPublishDate DATE null)";
 
 	public static final String TABLE_SQL_DROP = "drop table AssetCategory";
 
 	public static final String[] TABLE_SQL_ADD_INDEXES = {
-		"create unique index IX_85E3BB49 on AssetCategory (companyId, externalReferenceCode[$COLUMN_LENGTH:75$])",
+		"create index IX_85E3BB49 on AssetCategory (companyId, externalReferenceCode[$COLUMN_LENGTH:75$])",
 		"create index IX_C7F39FCA on AssetCategory (groupId, name[$COLUMN_LENGTH:75$], vocabularyId)",
 		"create index IX_852EA801 on AssetCategory (groupId, parentCategoryId, name[$COLUMN_LENGTH:75$], vocabularyId)",
 		"create index IX_87603842 on AssetCategory (groupId, parentCategoryId, vocabularyId)",

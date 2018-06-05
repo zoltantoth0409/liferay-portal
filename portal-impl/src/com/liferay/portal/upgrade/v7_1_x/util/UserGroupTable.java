@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author	  Michael C. Han
+ * @author	  Brian Wing Shun Chan
  * @generated
  */
 public class UserGroupTable {
@@ -30,6 +30,7 @@ public class UserGroupTable {
 	public static final Object[][] TABLE_COLUMNS = {
 		{"mvccVersion", Types.BIGINT},
 		{"uuid_", Types.VARCHAR},
+		{"externalReferenceCode", Types.VARCHAR},
 		{"userGroupId", Types.BIGINT},
 		{"companyId", Types.BIGINT},
 		{"userId", Types.BIGINT},
@@ -39,8 +40,7 @@ public class UserGroupTable {
 		{"parentUserGroupId", Types.BIGINT},
 		{"name", Types.VARCHAR},
 		{"description", Types.VARCHAR},
-		{"addedByLDAPImport", Types.BOOLEAN},
-		{"externalReferenceCode", Types.VARCHAR}
+		{"addedByLDAPImport", Types.BOOLEAN}
 	};
 
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
@@ -49,6 +49,8 @@ static {
 TABLE_COLUMNS_MAP.put("mvccVersion", Types.BIGINT);
 
 TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
+
+TABLE_COLUMNS_MAP.put("externalReferenceCode", Types.VARCHAR);
 
 TABLE_COLUMNS_MAP.put("userGroupId", Types.BIGINT);
 
@@ -70,15 +72,13 @@ TABLE_COLUMNS_MAP.put("description", Types.VARCHAR);
 
 TABLE_COLUMNS_MAP.put("addedByLDAPImport", Types.BOOLEAN);
 
-TABLE_COLUMNS_MAP.put("externalReferenceCode", Types.VARCHAR);
-
 }
-	public static final String TABLE_SQL_CREATE = "create table UserGroup (mvccVersion LONG default 0 not null,uuid_ VARCHAR(75) null,userGroupId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,parentUserGroupId LONG,name VARCHAR(75) null,description STRING null,addedByLDAPImport BOOLEAN,externalReferenceCode VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table UserGroup (mvccVersion LONG default 0 not null,uuid_ VARCHAR(75) null,externalReferenceCode VARCHAR(75) null,userGroupId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,parentUserGroupId LONG,name VARCHAR(75) null,description STRING null,addedByLDAPImport BOOLEAN)";
 
 	public static final String TABLE_SQL_DROP = "drop table UserGroup";
 
 	public static final String[] TABLE_SQL_ADD_INDEXES = {
-		"create unique index IX_CB9015AF on UserGroup (companyId, externalReferenceCode[$COLUMN_LENGTH:75$])",
+		"create index IX_CB9015AF on UserGroup (companyId, externalReferenceCode[$COLUMN_LENGTH:75$])",
 		"create unique index IX_23EAD0D on UserGroup (companyId, name[$COLUMN_LENGTH:75$])",
 		"create index IX_69771487 on UserGroup (companyId, parentUserGroupId)",
 		"create index IX_72394F8E on UserGroup (uuid_[$COLUMN_LENGTH:75$], companyId)"

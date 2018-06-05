@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author	  Michael C. Han
+ * @author	  Brian Wing Shun Chan
  * @generated
  */
 public class AssetVocabularyTable {
@@ -29,6 +29,7 @@ public class AssetVocabularyTable {
 
 	public static final Object[][] TABLE_COLUMNS = {
 		{"uuid_", Types.VARCHAR},
+		{"externalReferenceCode", Types.VARCHAR},
 		{"vocabularyId", Types.BIGINT},
 		{"groupId", Types.BIGINT},
 		{"companyId", Types.BIGINT},
@@ -40,14 +41,15 @@ public class AssetVocabularyTable {
 		{"title", Types.VARCHAR},
 		{"description", Types.VARCHAR},
 		{"settings_", Types.VARCHAR},
-		{"lastPublishDate", Types.TIMESTAMP},
-		{"externalReferenceCode", Types.VARCHAR}
+		{"lastPublishDate", Types.TIMESTAMP}
 	};
 
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
 
 static {
 TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
+
+TABLE_COLUMNS_MAP.put("externalReferenceCode", Types.VARCHAR);
 
 TABLE_COLUMNS_MAP.put("vocabularyId", Types.BIGINT);
 
@@ -73,15 +75,13 @@ TABLE_COLUMNS_MAP.put("settings_", Types.VARCHAR);
 
 TABLE_COLUMNS_MAP.put("lastPublishDate", Types.TIMESTAMP);
 
-TABLE_COLUMNS_MAP.put("externalReferenceCode", Types.VARCHAR);
-
 }
-	public static final String TABLE_SQL_CREATE = "create table AssetVocabulary (uuid_ VARCHAR(75) null,vocabularyId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,title STRING null,description STRING null,settings_ STRING null,lastPublishDate DATE null,externalReferenceCode VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table AssetVocabulary (uuid_ VARCHAR(75) null,externalReferenceCode VARCHAR(75) null,vocabularyId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,title STRING null,description STRING null,settings_ STRING null,lastPublishDate DATE null)";
 
 	public static final String TABLE_SQL_DROP = "drop table AssetVocabulary";
 
 	public static final String[] TABLE_SQL_ADD_INDEXES = {
-		"create unique index IX_E5867F31 on AssetVocabulary (companyId, externalReferenceCode[$COLUMN_LENGTH:75$])",
+		"create index IX_E5867F31 on AssetVocabulary (companyId, externalReferenceCode[$COLUMN_LENGTH:75$])",
 		"create unique index IX_C0AAD74D on AssetVocabulary (groupId, name[$COLUMN_LENGTH:75$])",
 		"create index IX_C4E6FD10 on AssetVocabulary (uuid_[$COLUMN_LENGTH:75$], companyId)",
 		"create unique index IX_1B2B8792 on AssetVocabulary (uuid_[$COLUMN_LENGTH:75$], groupId)"
