@@ -5607,13 +5607,24 @@ public class ServiceBuilder {
 
 		List<Element> columnElements = entityElement.elements("column");
 
+		List<Element> derivedColumnElements = new ArrayList<>();
+
+		if (mvccEnabled && !columnElements.isEmpty()) {
+			Element columnElement = DocumentHelper.createElement("column");
+
+			columnElement.addAttribute("name", "mvccVersion");
+			columnElement.addAttribute("type", "long");
+
+			derivedColumnElements.add(columnElement);
+		}
+
 		if (uuid) {
 			Element columnElement = DocumentHelper.createElement("column");
 
 			columnElement.addAttribute("name", "uuid");
 			columnElement.addAttribute("type", "String");
 
-			columnElements.add(0, columnElement);
+			derivedColumnElements.add(columnElement);
 		}
 
 		if (externalReferenceCode) {
@@ -5622,16 +5633,7 @@ public class ServiceBuilder {
 			columnElement.addAttribute("name", "externalReferenceCode");
 			columnElement.addAttribute("type", "String");
 
-			columnElements.add(columnElement);
-		}
-
-		if (mvccEnabled && !columnElements.isEmpty()) {
-			Element columnElement = DocumentHelper.createElement("column");
-
-			columnElement.addAttribute("name", "mvccVersion");
-			columnElement.addAttribute("type", "long");
-
-			columnElements.add(0, columnElement);
+			derivedColumnElements.add(columnElement);
 		}
 
 		if (versioned) {
@@ -5640,7 +5642,7 @@ public class ServiceBuilder {
 			columnElement.addAttribute("name", "headId");
 			columnElement.addAttribute("type", "long");
 
-			columnElements.add(columnElement);
+			derivedColumnElements.add(columnElement);
 		}
 
 		Element localizedEntityElement = entityElement.element(
@@ -5652,8 +5654,10 @@ public class ServiceBuilder {
 			columnElement.addAttribute("name", "defaultLanguageId");
 			columnElement.addAttribute("type", "String");
 
-			columnElements.add(columnElement);
+			derivedColumnElements.add(columnElement);
 		}
+
+		columnElements.addAll(0, derivedColumnElements);
 
 		for (Element columnElement : columnElements) {
 			String columnName = columnElement.attributeValue("name");
