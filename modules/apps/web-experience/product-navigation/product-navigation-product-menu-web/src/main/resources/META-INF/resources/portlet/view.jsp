@@ -30,7 +30,7 @@ String productMenuState = SessionClicks.get(request, ProductNavigationProductMen
 			</span>
 		</a>
 
-		<aui:icon cssClass="icon-monospaced sidenav-close visible-xs-block" image="times" markupView="lexicon" url="javascript:;" />
+		<aui:icon cssClass="icon-monospaced sidenav-close visible-xs-inline-block" image="times" markupView="lexicon" url="javascript:;" />
 	</div>
 
 	<div class="sidebar-body">
