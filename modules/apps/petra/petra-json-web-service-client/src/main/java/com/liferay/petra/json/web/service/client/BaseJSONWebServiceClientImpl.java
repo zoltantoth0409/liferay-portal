@@ -787,8 +787,7 @@ public abstract class BaseJSONWebServiceClientImpl
 			else if (statusCode == HttpServletResponse.SC_UNAUTHORIZED) {
 				throw new JSONWebServiceTransportException.
 					AuthenticationFailure(
-						"Not authorized to access JSON web service " +
-							String.valueOf(content));
+						"Not authorized to access JSON web service " + content);
 			}
 
 			StringBuilder sb = new StringBuilder();
