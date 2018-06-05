@@ -38,7 +38,7 @@ public class UpgradeExternalReferenceCode extends UpgradeProcess {
 
 	private static final Class<?>[] _TABLE_CLASSES = {
 		AssetCategoryTable.class, AssetVocabularyTable.class,
-		OrganizationTable.class, UserTable.class, UserGroupTable.class
+		OrganizationTable.class, UserGroupTable.class, UserTable.class
 	};
 
 }
