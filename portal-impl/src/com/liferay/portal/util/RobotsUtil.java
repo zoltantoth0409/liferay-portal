@@ -42,17 +42,16 @@ public class RobotsUtil {
 				RobotsUtil.class.getClassLoader(),
 				PropsValues.ROBOTS_TXT_WITH_SITEMAP);
 
+			content = StringUtil.replace(content, "[$HOST$]", virtualHost);
+			content = StringUtil.replace(
+				content, "[$PORT$]", String.valueOf(port));
+
 			if (secure) {
 				content = StringUtil.replace(content, "[$PROTOCOL$]", "https");
 			}
 			else {
 				content = StringUtil.replace(content, "[$PROTOCOL$]", "http");
 			}
-
-			content = StringUtil.replace(content, "[$HOST$]", virtualHost);
-
-			content = StringUtil.replace(
-				content, "[$PORT$]", String.valueOf(port));
 
 			return content;
 		}
