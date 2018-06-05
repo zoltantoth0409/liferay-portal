@@ -1,4 +1,4 @@
-<%--
+%--
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
@@ -38,9 +38,6 @@ DiscussionPermission discussionPermission = CommentManagerUtil.getDiscussionPerm
 CommentTreeDisplayContext commentTreeDisplayContext = CommentDisplayContextProviderUtil.getCommentTreeDisplayContext(request, response, discussionPermission, discussionComment);
 
 Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
-
-String editReplyEditorName = randomNamespace + "editReplyBody" + index;
-String postReplyEditorName = randomNamespace + "postReplyBody" + index;
 %>
 
 <c:if test="<%= commentTreeDisplayContext.isDiscussionVisible() %>">
@@ -172,7 +169,7 @@ String postReplyEditorName = randomNamespace + "postReplyBody" + index;
 											<aui:button name='<%= randomNamespace + "editReplyButton" + index %>' onClick='<%= randomNamespace + "updateMessage(" + index + ");" %>' value="<%= commentTreeDisplayContext.getPublishButtonLabel(locale) %>" />
 
 											<%
-											String taglibCancel = randomNamespace + "showEl('" + namespace + randomNamespace + "discussionMessage" + index + "');" + randomNamespace + "hideEditor('" + editReplyEditorName + "', '" + namespace + randomNamespace + "editForm" + index + "');";
+											String taglibCancel = randomNamespace + "showEl('" + namespace + randomNamespace + "discussionMessage" + index + "');" + randomNamespace + "hideEditor('" + randomNamespace + "editReplyBody" + index + "', '" + namespace + randomNamespace + "editForm" + index + "');";
 											%>
 
 											<aui:button onClick="<%= taglibCancel %>" type="cancel" />
@@ -271,7 +268,7 @@ String postReplyEditorName = randomNamespace + "postReplyBody" + index;
 							<aui:button cssClass="btn-comment btn-primary" disabled="<%= true %>" id='<%= randomNamespace + "postReplyButton" + index %>' onClick='<%= randomNamespace + "postReply(" + index + ");" %>' value='<%= themeDisplay.isSignedIn() ? "reply" : "reply-as" %>' />
 
 							<%
-							String taglibCancel = randomNamespace + "hideEditor('" + postReplyEditorName + "', '" + namespace + randomNamespace + "postReplyForm" + index + "')";
+							String taglibCancel = randomNamespace + "hideEditor('" + randomNamespace + "postReplyBody" + index + "', '" + namespace + randomNamespace + "postReplyForm" + index + "')";
 							%>
 
 							<aui:button cssClass="btn-comment" onClick="<%= taglibCancel %>" type="cancel" />
