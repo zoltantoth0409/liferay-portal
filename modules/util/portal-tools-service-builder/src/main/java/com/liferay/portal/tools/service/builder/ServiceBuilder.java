@@ -5481,12 +5481,12 @@ public class ServiceBuilder {
 			}
 		}
 
-		boolean externalReferenceCode = GetterUtil.getBoolean(
-			entityElement.attributeValue("external-reference-code"));
 		boolean uuid = GetterUtil.getBoolean(
 			entityElement.attributeValue("uuid"));
 		boolean uuidAccessor = GetterUtil.getBoolean(
 			entityElement.attributeValue("uuid-accessor"));
+		boolean externalReferenceCode = GetterUtil.getBoolean(
+			entityElement.attributeValue("external-reference-code"));
 		boolean localService = GetterUtil.getBoolean(
 			entityElement.attributeValue("local-service"));
 		boolean remoteService = GetterUtil.getBoolean(
@@ -5607,15 +5607,6 @@ public class ServiceBuilder {
 
 		List<Element> columnElements = entityElement.elements("column");
 
-		if (externalReferenceCode) {
-			Element columnElement = DocumentHelper.createElement("column");
-
-			columnElement.addAttribute("name", "externalReferenceCode");
-			columnElement.addAttribute("type", "String");
-
-			columnElements.add(columnElement);
-		}
-
 		if (uuid) {
 			Element columnElement = DocumentHelper.createElement("column");
 
@@ -5623,6 +5614,15 @@ public class ServiceBuilder {
 			columnElement.addAttribute("type", "String");
 
 			columnElements.add(0, columnElement);
+		}
+
+		if (externalReferenceCode) {
+			Element columnElement = DocumentHelper.createElement("column");
+
+			columnElement.addAttribute("name", "externalReferenceCode");
+			columnElement.addAttribute("type", "String");
+
+			columnElements.add(columnElement);
 		}
 
 		if (mvccEnabled && !columnElements.isEmpty()) {
@@ -5834,27 +5834,6 @@ public class ServiceBuilder {
 
 		List<Element> finderElements = entityElement.elements("finder");
 
-		if (externalReferenceCode) {
-			if (entityColumns.contains(new EntityColumn("companyId"))) {
-				Element finderElement = DocumentHelper.createElement("finder");
-
-				finderElement.addAttribute("name", "C_ERC");
-				finderElement.addAttribute("return-type", entityName);
-
-				Element finderColumnElement = finderElement.addElement(
-					"finder-column");
-
-				finderColumnElement.addAttribute("name", "companyId");
-
-				finderColumnElement = finderElement.addElement("finder-column");
-
-				finderColumnElement.addAttribute(
-					"name", "externalReferenceCode");
-
-				finderElements.add(finderElement);
-			}
-		}
-
 		if (uuid) {
 			if (entityColumns.contains(new EntityColumn("companyId"))) {
 				Element finderElement = DocumentHelper.createElement("finder");
@@ -5917,6 +5896,27 @@ public class ServiceBuilder {
 			finderColumnElement.addAttribute("name", "uuid");
 
 			finderElements.add(0, finderElement);
+		}
+
+		if (externalReferenceCode) {
+			if (entityColumns.contains(new EntityColumn("companyId"))) {
+				Element finderElement = DocumentHelper.createElement("finder");
+
+				finderElement.addAttribute("name", "C_ERC");
+				finderElement.addAttribute("return-type", entityName);
+
+				Element finderColumnElement = finderElement.addElement(
+					"finder-column");
+
+				finderColumnElement.addAttribute("name", "companyId");
+
+				finderColumnElement = finderElement.addElement("finder-column");
+
+				finderColumnElement.addAttribute(
+					"name", "externalReferenceCode");
+
+				finderElements.add(finderElement);
+			}
 		}
 
 		if (permissionedModel) {
