@@ -311,7 +311,7 @@ public class DLFileEntryLocalServiceImpl
 		boolean webDAVCheckInMode = GetterUtil.getBoolean(
 			serviceContext.getAttribute(DL.WEBDAV_CHECK_IN_MODE));
 
-		boolean manualCheckInRequired = dlFileEntry.getManualCheckInRequired();
+		boolean manualCheckInRequired = dlFileEntry.isManualCheckInRequired();
 
 		if (!webDAVCheckInMode && manualCheckInRequired) {
 			dlFileEntry.setManualCheckInRequired(false);

@@ -1430,7 +1430,7 @@ public class CalendarBookingLocalServiceImpl
 				calendarBooking.getTitleMap(),
 				calendarBooking.getDescriptionMap(),
 				calendarBooking.getLocation(), calendarBooking.getStartTime(),
-				calendarBooking.getEndTime(), calendarBooking.getAllDay(),
+				calendarBooking.getEndTime(), calendarBooking.isAllDay(),
 				calendarBooking.getRecurrence(), firstReminder,
 				firstReminderType, secondReminder, secondReminderType,
 				serviceContext);

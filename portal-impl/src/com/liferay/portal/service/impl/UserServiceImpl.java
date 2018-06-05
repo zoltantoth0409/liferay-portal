@@ -2555,8 +2555,7 @@ public class UserServiceImpl extends UserServiceBaseImpl {
 
 			announcementsDeliveryService.updateDelivery(
 				userId, announcementsDelivery.getType(),
-				announcementsDelivery.getEmail(),
-				announcementsDelivery.getSms());
+				announcementsDelivery.isEmail(), announcementsDelivery.isSms());
 		}
 	}
 

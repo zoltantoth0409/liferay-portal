@@ -1224,7 +1224,7 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 		return new WikiPageDisplayImpl(
 			page.getUserId(), page.getNodeId(), page.getTitle(),
 			page.getVersion(), page.getContent(), formattedContent,
-			page.getFormat(), page.getHead(), page.getAttachmentsFileEntries());
+			page.getFormat(), page.isHead(), page.getAttachmentsFileEntries());
 	}
 
 	@Override
@@ -1808,7 +1808,7 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 		}
 
 		updatePage(
-			userId, page, 0, newTitle, content, summary, page.getMinorEdit(),
+			userId, page, 0, newTitle, content, summary, page.isMinorEdit(),
 			page.getFormat(), page.getParentTitle(), page.getRedirectTitle(),
 			serviceContext);
 	}

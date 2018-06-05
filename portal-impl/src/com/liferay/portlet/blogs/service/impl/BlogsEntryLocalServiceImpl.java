@@ -1017,8 +1017,8 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 
 		return updateEntry(
 			userId, entryId, title, entry.getSubtitle(), entry.getDescription(),
-			content, entry.getDisplayDate(), entry.getAllowPingbacks(),
-			entry.getAllowTrackbacks(), StringUtil.split(entry.getTrackbacks()),
+			content, entry.getDisplayDate(), entry.isAllowPingbacks(),
+			entry.isAllowTrackbacks(), StringUtil.split(entry.getTrackbacks()),
 			StringPool.BLANK, null, null, serviceContext);
 	}
 
