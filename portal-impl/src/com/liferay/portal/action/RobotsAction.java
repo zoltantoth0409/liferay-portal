@@ -52,8 +52,6 @@ public class RobotsAction extends Action {
 		throws Exception {
 
 		try {
-			boolean secure = request.isSecure();
-
 			String host = GetterUtil.getString(PortalUtil.getHost(request));
 
 			LayoutSet layoutSet = null;
@@ -79,7 +77,7 @@ public class RobotsAction extends Action {
 				}
 			}
 
-			String robots = RobotsUtil.getRobots(secure, layoutSet);
+			String robots = RobotsUtil.getRobots(layoutSet, request.isSecure());
 
 			ServletResponseUtil.sendFile(
 				request, response, null, robots.getBytes(StringPool.UTF8),

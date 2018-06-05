@@ -31,11 +31,11 @@ public class RobotsUtil {
 	public static String getDefaultRobots() {
 		int portalServerPort = PortalUtil.getPortalServerPort(false);
 
-		return getDefaultRobots(false, null, portalServerPort);
+		return getDefaultRobots(null, false, portalServerPort);
 	}
 
 	public static String getDefaultRobots(
-		boolean secure, String virtualHost, int port) {
+		String virtualHost, boolean secure, int port) {
 
 		if (Validator.isNotNull(virtualHost)) {
 			String content = ContentUtil.get(
@@ -62,20 +62,20 @@ public class RobotsUtil {
 			PropsValues.ROBOTS_TXT_WITHOUT_SITEMAP);
 	}
 
-	public static String getRobots(boolean secure, LayoutSet layoutSet)
+	public static String getRobots(LayoutSet layoutSet, boolean secure)
 		throws PortalException {
 
 		int portalServerPort = PortalUtil.getPortalServerPort(secure);
 
 		if (layoutSet == null) {
-			return getDefaultRobots(secure, null, portalServerPort);
+			return getDefaultRobots(null, secure, portalServerPort);
 		}
 
 		return GetterUtil.get(
 			layoutSet.getSettingsProperty(
 				layoutSet.isPrivateLayout() + "-robots.txt"),
 			getDefaultRobots(
-				secure, PortalUtil.getVirtualHostname(layoutSet),
+				PortalUtil.getVirtualHostname(layoutSet), secure,
 				portalServerPort));
 	}
 
