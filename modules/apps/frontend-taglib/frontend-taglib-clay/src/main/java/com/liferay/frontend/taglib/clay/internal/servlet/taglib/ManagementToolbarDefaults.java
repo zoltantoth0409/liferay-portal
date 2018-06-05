@@ -36,7 +36,11 @@ public class ManagementToolbarDefaults {
 	}
 
 	public static Boolean isShowCreationMenu(CreationMenu creationMenu) {
-		return Validator.isNotNull(creationMenu);
+		if (creationMenu != null) {
+			return true;
+		}
+
+		return false;
 	}
 
 	public static Boolean isShowInfoButton(String infoPanelId) {
