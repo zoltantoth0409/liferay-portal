@@ -3978,7 +3978,7 @@ public class ServiceBuilder {
 
 		String uadDirName = uadOutputPath.substring(0, index);
 
-		File file = new File(StringBundler.concat(uadDirName, "/bnd.bnd"));
+		File file = new File(uadDirName + "/bnd.bnd");
 
 		if (!file.exists()) {
 			ToolsUtil.writeFileRaw(file, content, _modifiedFileNames);
@@ -4122,8 +4122,7 @@ public class ServiceBuilder {
 		String uadDirName = uadOutputPath.substring(0, index);
 
 		File file = new File(
-			StringBundler.concat(
-				uadDirName, "/src/main/resources/content/Language.properties"));
+			uadDirName + "/src/main/resources/content/Language.properties");
 
 		if (!file.exists()) {
 			ToolsUtil.writeFileRaw(file, content, _modifiedFileNames);
@@ -4154,8 +4153,7 @@ public class ServiceBuilder {
 		String uadTestIntegrationDirName =
 			uadTestIntegrationOutputPath.substring(0, index);
 
-		File file = new File(
-			StringBundler.concat(uadTestIntegrationDirName, "/bnd.bnd"));
+		File file = new File(uadTestIntegrationDirName + "/bnd.bnd");
 
 		if (!file.exists()) {
 			ToolsUtil.writeFileRaw(file, content, _modifiedFileNames);
