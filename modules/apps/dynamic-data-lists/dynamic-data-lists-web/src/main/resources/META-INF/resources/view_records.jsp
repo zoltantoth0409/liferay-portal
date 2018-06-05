@@ -23,9 +23,9 @@ DDLViewRecordsDisplayContext ddlViewRecordsDisplayContext = new DDLViewRecordsDi
 
 PortletURL portletURL = ddlViewRecordsDisplayContext.getPortletURL();
 
-DDLRecordSet recordSet = ddlDisplayContext.getRecordSet();
-
 if (!ddlDisplayContext.isAdminPortlet()) {
+	DDLRecordSet recordSet = ddlDisplayContext.getRecordSet();
+
 	renderResponse.setTitle(recordSet.getName(locale));
 }
 %>
