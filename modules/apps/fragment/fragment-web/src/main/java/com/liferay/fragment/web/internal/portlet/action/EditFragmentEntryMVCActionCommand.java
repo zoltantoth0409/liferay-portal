@@ -69,11 +69,11 @@ public class EditFragmentEntryMVCActionCommand extends BaseMVCActionCommand {
 		String css = ParamUtil.getString(actionRequest, "cssContent");
 		String js = ParamUtil.getString(actionRequest, "jsContent");
 		String html = ParamUtil.getString(actionRequest, "htmlContent");
-		int status = ParamUtil.getInteger(actionRequest, "status");
-		String previewBase64 = ParamUtil.getString(
-			actionRequest, "previewBase64");
 		long previewFileEntryId = ParamUtil.getLong(
 			actionRequest, "previewFileEntryId");
+		String previewBase64 = ParamUtil.getString(
+			actionRequest, "previewBase64");
+		int status = ParamUtil.getInteger(actionRequest, "status");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			actionRequest);
