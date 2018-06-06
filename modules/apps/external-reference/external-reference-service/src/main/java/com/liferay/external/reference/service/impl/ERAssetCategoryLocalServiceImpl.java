@@ -32,10 +32,10 @@ public class ERAssetCategoryLocalServiceImpl
 
 	@Override
 	public AssetCategory addOrUpdateCategory(
-			long userId, long groupId, long parentCategoryId,
+			String externalReferenceCode, long userId, long groupId, long parentCategoryId,
 			Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
 			long vocabularyId, String[] categoryProperties,
-			String externalReferenceCode, ServiceContext serviceContext)
+			ServiceContext serviceContext)
 		throws PortalException {
 
 		User user = userLocalService.getUser(userId);

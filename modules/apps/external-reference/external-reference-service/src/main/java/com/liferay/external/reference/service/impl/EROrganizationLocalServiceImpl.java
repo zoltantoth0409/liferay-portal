@@ -32,10 +32,10 @@ public class EROrganizationLocalServiceImpl
 
 	@Override
 	public Organization addOrUpdateOrganization(
-			long userId, long parentOrganizationId, String name, String type,
+			String externalReferenceCode, long userId, long parentOrganizationId, String name, String type,
 			long regionId, long countryId, long statusId, String comments,
 			boolean site, boolean logo, byte[] logoBytes,
-			String externalReferenceCode, ServiceContext serviceContext)
+			ServiceContext serviceContext)
 		throws PortalException {
 
 		User user = userLocalService.getUser(userId);

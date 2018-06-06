@@ -31,9 +31,9 @@ public class ERAssetVocabularyLocalServiceImpl
 
 	@Override
 	public AssetVocabulary addOrUpdateVocabulary(
-			long userId, long groupId, String title,
-			Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
-			String settings, String externalReferenceCode,
+			String externalReferenceCode, long userId, long groupId,
+			String title, Map<Locale, String> titleMap,
+			Map<Locale, String> descriptionMap, String settings,
 			ServiceContext serviceContext)
 		throws PortalException {
 

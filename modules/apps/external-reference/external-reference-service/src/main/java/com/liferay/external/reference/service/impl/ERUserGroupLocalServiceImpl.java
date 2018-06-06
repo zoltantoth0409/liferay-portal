@@ -28,8 +28,8 @@ public class ERUserGroupLocalServiceImpl
 
 	@Override
 	public UserGroup addOrUpdateUserGroup(
-			long userId, long companyId, String name, String description,
-			String externalReferenceCode, ServiceContext serviceContext)
+			String externalReferenceCode, long userId, long companyId, String name, String description,
+			ServiceContext serviceContext)
 		throws PortalException {
 
 		UserGroup userGroup =

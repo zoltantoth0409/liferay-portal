@@ -34,7 +34,7 @@ public class ERUserLocalServiceImpl
 
 	@Override
 	public User addOrUpdateUser(
-			long creatorUserId, long companyId, boolean autoPassword,
+			String externalReferenceCode, long creatorUserId, long companyId, boolean autoPassword,
 			String password1, String password2, boolean autoScreenName,
 			String screenName, String emailAddress, Locale locale,
 			String firstName, String middleName, String lastName, long prefixId,
@@ -42,8 +42,7 @@ public class ERUserLocalServiceImpl
 			int birthdayYear, String jobTitle, long[] groupIds,
 			long[] organizationIds, long[] roleIds,
 			List<UserGroupRole> userGroupRoles, long[] userGroupIds,
-			boolean sendEmail, String externalReferenceCode,
-			ServiceContext serviceContext)
+			boolean sendEmail, ServiceContext serviceContext)
 		throws PortalException {
 
 		User user = userLocalService.fetchUserByReferenceCode(
