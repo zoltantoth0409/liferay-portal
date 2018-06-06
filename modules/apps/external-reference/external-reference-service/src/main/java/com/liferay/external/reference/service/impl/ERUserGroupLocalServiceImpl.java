@@ -26,20 +26,6 @@ import com.liferay.portal.kernel.util.Validator;
 public class ERUserGroupLocalServiceImpl
 	extends ERUserGroupLocalServiceBaseImpl {
 
-	/**
-	 * Add or update an user group.
-	 *
-	 * @param  userId the primary key of the user
-	 * @param  companyId the primary key of the user group's company
-	 * @param  name the user group's name
-	 * @param  description the user group's description
-	 * @param  externalReferenceCode the user group's external reference code
-	 * @param  serviceContext the service context to be applied (optionally
-	 *         <code>null</code>). Can set expando bridge attributes for the
-	 *         user group.
-	 * @review
-	 * @return the user group
-	 */
 	@Override
 	public UserGroup upsertUserGroup(
 			long userId, long companyId, String name, String description,

@@ -30,32 +30,6 @@ import com.liferay.users.admin.kernel.file.uploads.UserFileUploadsSettings;
 public class EROrganizationLocalServiceImpl
 	extends EROrganizationLocalServiceBaseImpl {
 
-	/**
-	 * Add or update an organization.
-	 *
-	 * @param      userId the primary key of the user
-	 * @param      parentOrganizationId the primary key of organization's parent
-	 *             organization
-	 * @param      name the organization's name
-	 * @param      type the organization's type
-	 * @param      regionId the primary key of the organization's region
-	 * @param      countryId the primary key of the organization's country
-	 * @param      statusId the organization's workflow status
-	 * @param      comments the comments about the organization
-	 * @param      site whether the organization is to be associated with a main
-	 *             site
-	 * @param      logo whether to update the ogranization's logo
-	 * @param      logoBytes the new logo image data
-	 * @param      externalReferenceCode the organization's external reference
-	 *             code
-	 * @param      serviceContext the service context to be applied (optionally
-	 *             <code>null</code>). Can set asset category IDs and asset tag
-	 *             names for the organization, and merge expando bridge
-	 *             attributes for the organization.
-	 *
-	 * @review
-	 * @return     the organization
-	 */
 	@Override
 	public Organization upsertOrganization(
 			long userId, long parentOrganizationId, String name, String type,
