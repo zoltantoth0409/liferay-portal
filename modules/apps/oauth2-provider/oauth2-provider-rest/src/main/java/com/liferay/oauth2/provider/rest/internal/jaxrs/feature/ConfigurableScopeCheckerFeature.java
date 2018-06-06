@@ -102,9 +102,8 @@ public class ConfigurableScopeCheckerFeature implements Feature {
 
 			if (split.length != 3) {
 				_log.error(
-					StringBundler.concat(
-						"Incorrect syntax of ", pattern,
-						" 3 sequences of :: are expected"));
+					"Invalid syntax " + pattern +
+						" does not match 3 sequences of ::");
 
 				return;
 			}
@@ -122,7 +121,7 @@ public class ConfigurableScopeCheckerFeature implements Feature {
 						Pattern.compile(urlPatternString), scopes));
 			}
 			catch (PatternSyntaxException pse) {
-				_log.error("Invalid pattern in " + pattern, pse);
+				_log.error("Invalid pattern " + pattern, pse);
 
 				throw new IllegalArgumentException(pse);
 			}
@@ -244,7 +243,7 @@ public class ConfigurableScopeCheckerFeature implements Feature {
 				if (requiresNoScope(scopes)) {
 					_logDebug(
 						"Path  ", path,
-						" was approved, doesn't require any scope");
+						" was approved, does not require a scope");
 
 					return;
 				}
@@ -261,14 +260,15 @@ public class ConfigurableScopeCheckerFeature implements Feature {
 
 			if (!_allowUnmatched) {
 				_logDebug(
-					"Path ", path, " was disallowed, doesn't match ",
-					"any pattern");
+					"Path ", path, " was not allowed because it does not ",
+					"match any patterns");
 
 				abortRequest(containerRequestContext);
 			}
 			else {
 				_logDebug(
-					"Path ", path, " was approved, doesn't match any pattern");
+					"Path ", path,
+					" was approved, does not match any patterns");
 			}
 		}
 
