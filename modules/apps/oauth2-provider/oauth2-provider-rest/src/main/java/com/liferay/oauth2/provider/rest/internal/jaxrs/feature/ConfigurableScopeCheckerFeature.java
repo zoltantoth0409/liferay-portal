@@ -230,10 +230,8 @@ public class ConfigurableScopeCheckerFeature implements Feature {
 		@Override
 		public void filter(ContainerRequestContext containerRequestContext) {
 			boolean anyMatch = false;
-
-			Request request = containerRequestContext.getRequest();
-
 			String path = StringPool.SLASH + _uriInfo.getPath();
+			Request request = containerRequestContext.getRequest();
 
 			for (CheckPattern checkPattern : _checkPatterns) {
 				if (matches(checkPattern, path, request)) {
