@@ -68,6 +68,9 @@ public class ViewEntryMVCRenderCommand implements MVCRenderCommand {
 		}
 
 		try {
+			boolean redirectToLastFriendlyURL = ParamUtil.getBoolean(
+				renderRequest, "redirectToLastFriendlyURL", true);
+
 			BlogsEntry entry = ActionUtil.getEntry(renderRequest);
 
 			FriendlyURLEntry mainFriendlyURLEntry =
@@ -76,12 +79,8 @@ public class ViewEntryMVCRenderCommand implements MVCRenderCommand {
 
 			String urlTitle = ParamUtil.getString(renderRequest, "urlTitle");
 
-			boolean redirectToLastFriendlyURL = ParamUtil.getBoolean(
-				renderRequest, "redirectToLastFriendlyURL", true);
-
-			if (Validator.isNotNull(urlTitle) &&
-				!urlTitle.equals(mainFriendlyURLEntry.getUrlTitle()) &&
-				redirectToLastFriendlyURL) {
+			if (redirectToLastFriendlyURL && Validator.isNotNull(urlTitle) &&
+				!urlTitle.equals(mainFriendlyURLEntry.getUrlTitle())) {
 
 				PortletURL portletURL = renderResponse.createRenderURL();
 
