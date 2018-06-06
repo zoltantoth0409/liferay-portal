@@ -168,13 +168,13 @@ public class UpgradeImageTypeContent extends UpgradeProcess {
 
 			ExecutorService executorService = Executors.newWorkStealingPool();
 
-			List<Future<Boolean>> results = executorService.invokeAll(
+			List<Future<Boolean>> futures = executorService.invokeAll(
 				saveImageFileEntryCallables);
 
 			executorService.shutdown();
 
-			for (Future<Boolean> result : results) {
-				boolean success = GetterUtil.get(result.get(), true);
+			for (Future<Boolean> future : futures) {
+				boolean success = GetterUtil.get(future.get(), true);
 
 				if (!success) {
 					throw new UpgradeException(
