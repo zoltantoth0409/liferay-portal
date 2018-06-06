@@ -127,8 +127,10 @@ public class SearchSettingsImpl implements SearchSettings {
 
 	protected String getAggregationName(Facet facet) {
 		if (facet instanceof com.liferay.portal.search.facet.Facet) {
-			return ((com.liferay.portal.search.facet.Facet)facet).
-				getAggregationName();
+			com.liferay.portal.search.facet.Facet osgiFacet =
+				(com.liferay.portal.search.facet.Facet)facet;
+
+			return osgiFacet.getAggregationName();
 		}
 
 		return facet.getFieldName();
