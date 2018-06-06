@@ -1966,6 +1966,22 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 
 		portletModel.setHeaderPortletJavaScript(headerPortletJavaScriptList);
 
+		List<String> headerRequestAttributePrefixes = new ArrayList<>();
+
+		for (Element headerRequestAttributePrefixElement :
+				portletElement.elements("header-request-attribute-prefix")) {
+
+			headerRequestAttributePrefixes.add(
+				headerRequestAttributePrefixElement.getText());
+		}
+
+		portletModel.setHeaderRequestAttributePrefixes(
+			headerRequestAttributePrefixes);
+		portletModel.setHeaderTimeout(
+			GetterUtil.getInteger(
+				portletElement.elementText("header-timeout"),
+				portletModel.getHeaderTimeout()));
+
 		List<String> footerPortalCssList = new ArrayList<>();
 
 		for (Element footerPortalCssElement :
@@ -2026,22 +2042,6 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 			GetterUtil.getBoolean(
 				portletElement.elementText("include"),
 				portletModel.isInclude()));
-
-		List<String> headerRequestAttributePrefixes = new ArrayList<>();
-
-		for (Element headerRequestAttributePrefixElement :
-				portletElement.elements("header-request-attribute-prefix")) {
-
-			headerRequestAttributePrefixes.add(
-				headerRequestAttributePrefixElement.getText());
-		}
-
-		portletModel.setHeaderRequestAttributePrefixes(
-			headerRequestAttributePrefixes);
-		portletModel.setHeaderTimeout(
-			GetterUtil.getInteger(
-				portletElement.elementText("header-timeout"),
-				portletModel.getHeaderTimeout()));
 
 		if (Validator.isNull(servletContextName)) {
 			portletModel.setReady(true);
