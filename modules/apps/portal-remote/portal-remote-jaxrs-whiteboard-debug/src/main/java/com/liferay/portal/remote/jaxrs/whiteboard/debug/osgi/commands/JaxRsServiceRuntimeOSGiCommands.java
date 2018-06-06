@@ -38,9 +38,9 @@ import org.osgi.service.jaxrs.runtime.dto.RuntimeDTO;
 @Component(
 	immediate = true,
 	property = {"osgi.command.function=check", "osgi.command.scope=jaxrs"},
-	service = JaxrsServiceRuntimeOSGiCommands.class
+	service = JaxRsServiceRuntimeOSGiCommands.class
 )
-public class JaxrsServiceRuntimeOSGiCommands {
+public class JaxRsServiceRuntimeOSGiCommands {
 
 	public void check() {
 		RuntimeDTO runtimeDTO = _jaxrsServiceRuntime.getRuntimeDTO();
