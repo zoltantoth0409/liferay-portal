@@ -142,7 +142,7 @@ public class JaxRsServiceRuntimeOSGiCommands {
 
 		StringBundler sb = new StringBundler(5);
 
-		sb.append("    Application with service id ");
+		sb.append("    Application with service ID ");
 		sb.append(failedApplicationDTO.serviceId);
 
 		if (failedApplicationDTO.failureReason ==
@@ -168,7 +168,7 @@ public class JaxRsServiceRuntimeOSGiCommands {
 		else if (failedApplicationDTO.failureReason ==
 					DTOConstants.FAILURE_REASON_SERVICE_NOT_GETTABLE) {
 
-			sb.append(" can't be retrieved by the whiteboard");
+			sb.append(" cannot be retrieved by the whiteboard");
 		}
 		else if (failedApplicationDTO.failureReason ==
 					DTOConstants.FAILURE_REASON_UNKNOWN) {
@@ -217,7 +217,7 @@ public class JaxRsServiceRuntimeOSGiCommands {
 		else if (failedExtensionDTO.failureReason ==
 					DTOConstants.FAILURE_REASON_SERVICE_NOT_GETTABLE) {
 
-			sb.append(" can't be retrieved by the whiteboard");
+			sb.append(" cannot be retrieved by the whiteboard");
 		}
 		else if (failedExtensionDTO.failureReason ==
 					DTOConstants.FAILURE_REASON_UNKNOWN) {
@@ -264,7 +264,7 @@ public class JaxRsServiceRuntimeOSGiCommands {
 		else if (failedResourceDTO.failureReason ==
 					DTOConstants.FAILURE_REASON_SERVICE_NOT_GETTABLE) {
 
-			sb.append(" can't be retrieved by the whiteboard");
+			sb.append(" cannot be retrieved by the whiteboard");
 		}
 		else if (failedResourceDTO.failureReason ==
 					DTOConstants.FAILURE_REASON_UNKNOWN) {
