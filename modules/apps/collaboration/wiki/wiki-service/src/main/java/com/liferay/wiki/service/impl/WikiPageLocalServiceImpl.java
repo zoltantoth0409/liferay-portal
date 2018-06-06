@@ -2243,8 +2243,8 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 		}
 
 		for (WikiPage versionPage : versionPages) {
-			versionPage.setRedirectTitle(page.getRedirectTitle());
 			versionPage.setTitle(newTitle);
+			versionPage.setRedirectTitle(page.getRedirectTitle());
 
 			wikiPagePersistence.update(versionPage);
 		}
@@ -2561,9 +2561,9 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 
 			// Version page
 
-			versionPage.setParentTitle(newParentTitle);
 			versionPage.setNodeId(newNodeId);
 			versionPage.setTitle(page.getTitle());
+			versionPage.setParentTitle(newParentTitle);
 
 			trashVersion = trashVersionLocalService.fetchVersion(
 				WikiPage.class.getName(), versionPage.getPageId());
@@ -2807,9 +2807,9 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 			page.getResourcePrimKey(), oldNodeId, false);
 
 		for (WikiPage pageVersion : pageVersions) {
-			pageVersion.setParentTitle(newParentTitle);
 			pageVersion.setNodeId(newNodeId);
 			pageVersion.setTitle(originalTitle);
+			pageVersion.setParentTitle(newParentTitle);
 
 			wikiPagePersistence.update(pageVersion);
 		}

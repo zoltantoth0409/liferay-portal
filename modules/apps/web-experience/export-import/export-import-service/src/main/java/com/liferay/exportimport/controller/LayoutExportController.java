@@ -538,8 +538,8 @@ public class LayoutExportController implements ExportController {
 			if (layout == null) {
 				layout = new LayoutImpl();
 
-				layout.setCompanyId(companyId);
 				layout.setGroupId(portletDataContext.getGroupId());
+				layout.setCompanyId(companyId);
 			}
 
 			portletDataContext.setPlid(plid);

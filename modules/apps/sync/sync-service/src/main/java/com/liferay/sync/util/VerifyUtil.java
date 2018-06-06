@@ -292,10 +292,10 @@ public class VerifyUtil {
 								syncDLObject.getTypePK());
 
 						if (dlFileEntry == null) {
-							syncDLObject.setEvent(
-								SyncDLObjectConstants.EVENT_DELETE);
 							syncDLObject.setModifiedTime(
 								System.currentTimeMillis());
+							syncDLObject.setEvent(
+								SyncDLObjectConstants.EVENT_DELETE);
 
 							_syncUtil.addSyncDLObject(syncDLObject);
 						}

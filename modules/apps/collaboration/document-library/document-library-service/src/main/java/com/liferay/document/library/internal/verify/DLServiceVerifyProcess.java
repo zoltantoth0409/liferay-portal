@@ -570,8 +570,8 @@ public class DLServiceVerifyProcess extends VerifyProcess {
 
 		DLFileVersion dlFileVersion = dlFileEntry.getFileVersion();
 
-		dlFileVersion.setTitle(newTitle);
 		dlFileVersion.setFileName(fileName);
+		dlFileVersion.setTitle(newTitle);
 
 		_dlFileVersionLocalService.updateDLFileVersion(dlFileVersion);
 
