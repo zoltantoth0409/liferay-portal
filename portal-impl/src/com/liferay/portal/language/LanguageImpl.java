@@ -984,7 +984,7 @@ public class LanguageImpl implements Language, Serializable {
 	}
 
 	@Override
-	public Set<Locale> getAvailableLocalesByCompany(long companyId) {
+	public Set<Locale> getCompanyAvailableLocales(long companyId) {
 		CompanyLocalesBag companyLocalesBag = _getCompanyLocalesBag(companyId);
 
 		return companyLocalesBag.getAvailableLocales();

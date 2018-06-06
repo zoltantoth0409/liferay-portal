@@ -117,7 +117,7 @@ public interface Language {
 
 	public Set<Locale> getAvailableLocales(long groupId);
 
-	public Set<Locale> getAvailableLocalesByCompany(long companyId);
+	public Set<Locale> getCompanyAvailableLocales(long companyId);
 
 	public String getBCP47LanguageId(HttpServletRequest request);
 

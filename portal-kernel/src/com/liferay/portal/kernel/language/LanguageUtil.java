@@ -206,8 +206,8 @@ public class LanguageUtil {
 		return getLanguage().getAvailableLocales(groupId);
 	}
 
-	public static Set<Locale> getAvailableLocalesByCompany(long companyId) {
-		return getLanguage().getAvailableLocalesByCompany(companyId);
+	public static Set<Locale> getCompanyAvailableLocales(long companyId) {
+		return getLanguage().getCompanyAvailableLocales(companyId);
 	}
 
 	public static String getBCP47LanguageId(HttpServletRequest request) {
