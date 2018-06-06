@@ -441,12 +441,6 @@ public class UpgradeTableBuilder {
 		return paths.get(0);
 	}
 
-	private String _read(Path path) throws IOException {
-		String s = new String(Files.readAllBytes(path), StandardCharsets.UTF_8);
-
-		return s.replace("\r\n", "\n");
-	}
-
 	private boolean _isRelevantUpgradePackage(String upgradeFileVersion)
 		throws IOException {
 
@@ -465,6 +459,13 @@ public class UpgradeTableBuilder {
 
 		return true;
 	}
+
+	private String _read(Path path) throws IOException {
+		String s = new String(Files.readAllBytes(path), StandardCharsets.UTF_8);
+
+		return s.replace("\r\n", "\n");
+	}
+
 
 	private static final String _AUTHOR = "Brian Wing Shun Chan";
 
