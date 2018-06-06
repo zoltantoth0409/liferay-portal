@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.PortalUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.spring.extender.service.ServiceReference;
 import com.liferay.users.admin.kernel.file.uploads.UserFileUploadsSettings;
 
@@ -32,10 +31,10 @@ public class EROrganizationLocalServiceImpl
 
 	@Override
 	public Organization addOrUpdateOrganization(
-			String externalReferenceCode, long userId, long parentOrganizationId, String name, String type,
-			long regionId, long countryId, long statusId, String comments,
-			boolean site, boolean logo, byte[] logoBytes,
-			ServiceContext serviceContext)
+			String externalReferenceCode, long userId,
+			long parentOrganizationId, String name, String type, long regionId,
+			long countryId, long statusId, String comments, boolean site,
+			boolean logo, byte[] logoBytes, ServiceContext serviceContext)
 		throws PortalException {
 
 		User user = userLocalService.getUser(userId);

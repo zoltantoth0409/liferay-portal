@@ -19,7 +19,6 @@ import com.liferay.external.reference.service.base.ERAssetCategoryLocalServiceBa
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ServiceContext;
-import com.liferay.portal.kernel.util.Validator;
 
 import java.util.Locale;
 import java.util.Map;
@@ -32,10 +31,10 @@ public class ERAssetCategoryLocalServiceImpl
 
 	@Override
 	public AssetCategory addOrUpdateCategory(
-			String externalReferenceCode, long userId, long groupId, long parentCategoryId,
-			Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
-			long vocabularyId, String[] categoryProperties,
-			ServiceContext serviceContext)
+			String externalReferenceCode, long userId, long groupId,
+			long parentCategoryId, Map<Locale, String> titleMap,
+			Map<Locale, String> descriptionMap, long vocabularyId,
+			String[] categoryProperties, ServiceContext serviceContext)
 		throws PortalException {
 
 		User user = userLocalService.getUser(userId);

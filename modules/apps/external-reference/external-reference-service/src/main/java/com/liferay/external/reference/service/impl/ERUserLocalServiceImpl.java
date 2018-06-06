@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.model.Contact;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.model.UserGroupRole;
 import com.liferay.portal.kernel.service.ServiceContext;
-import com.liferay.portal.kernel.util.Validator;
 
 import java.util.List;
 import java.util.Locale;
@@ -29,17 +28,16 @@ import java.util.Locale;
 /**
  * @author Dylan Rebelak
  */
-public class ERUserLocalServiceImpl
-	extends ERUserLocalServiceBaseImpl {
+public class ERUserLocalServiceImpl extends ERUserLocalServiceBaseImpl {
 
 	@Override
 	public User addOrUpdateUser(
-			String externalReferenceCode, long creatorUserId, long companyId, boolean autoPassword,
-			String password1, String password2, boolean autoScreenName,
-			String screenName, String emailAddress, Locale locale,
-			String firstName, String middleName, String lastName, long prefixId,
-			long suffixId, boolean male, int birthdayMonth, int birthdayDay,
-			int birthdayYear, String jobTitle, long[] groupIds,
+			String externalReferenceCode, long creatorUserId, long companyId,
+			boolean autoPassword, String password1, String password2,
+			boolean autoScreenName, String screenName, String emailAddress,
+			Locale locale, String firstName, String middleName, String lastName,
+			long prefixId, long suffixId, boolean male, int birthdayMonth,
+			int birthdayDay, int birthdayYear, String jobTitle, long[] groupIds,
 			long[] organizationIds, long[] roleIds,
 			List<UserGroupRole> userGroupRoles, long[] userGroupIds,
 			boolean sendEmail, ServiceContext serviceContext)

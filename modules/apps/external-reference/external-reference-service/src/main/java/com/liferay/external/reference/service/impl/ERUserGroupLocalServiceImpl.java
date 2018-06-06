@@ -18,7 +18,6 @@ import com.liferay.external.reference.service.base.ERUserGroupLocalServiceBaseIm
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.UserGroup;
 import com.liferay.portal.kernel.service.ServiceContext;
-import com.liferay.portal.kernel.util.Validator;
 
 /**
  * @author Dylan Rebelak
@@ -28,8 +27,8 @@ public class ERUserGroupLocalServiceImpl
 
 	@Override
 	public UserGroup addOrUpdateUserGroup(
-			String externalReferenceCode, long userId, long companyId, String name, String description,
-			ServiceContext serviceContext)
+			String externalReferenceCode, long userId, long companyId,
+			String name, String description, ServiceContext serviceContext)
 		throws PortalException {
 
 		UserGroup userGroup =
