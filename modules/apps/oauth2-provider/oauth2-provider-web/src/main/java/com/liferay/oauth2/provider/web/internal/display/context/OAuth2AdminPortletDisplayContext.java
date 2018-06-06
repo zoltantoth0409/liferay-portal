@@ -93,39 +93,39 @@ public class OAuth2AdminPortletDisplayContext
 		String[] oAuth2Grants = StringUtil.split(
 			portletPreferences.getValue("oAuth2Grants", StringPool.BLANK));
 
-		List<GrantType> result = new ArrayList<>();
+		List<GrantType> grantTypes = new ArrayList<>();
 
 		for (String oAuth2Grant : oAuth2Grants) {
-			result.add(GrantType.valueOf(oAuth2Grant));
+			grantTypes.add(GrantType.valueOf(oAuth2Grant));
 		}
 
-		if (result.isEmpty()) {
-			Collections.addAll(result, GrantType.values());
+		if (grantTypes.isEmpty()) {
+			Collections.addAll(grantTypes, GrantType.values());
 		}
 
 		if (!_oAuth2ProviderConfiguration.allowAuthorizationCodeGrant()) {
-			result.remove(GrantType.AUTHORIZATION_CODE);
+			grantTypes.remove(GrantType.AUTHORIZATION_CODE);
 		}
 
 		if (!_oAuth2ProviderConfiguration.allowAuthorizationCodePKCEGrant()) {
-			result.remove(GrantType.AUTHORIZATION_CODE_PKCE);
+			grantTypes.remove(GrantType.AUTHORIZATION_CODE_PKCE);
 		}
 
 		if (!_oAuth2ProviderConfiguration.allowClientCredentialsGrant()) {
-			result.remove(GrantType.CLIENT_CREDENTIALS);
+			grantTypes.remove(GrantType.CLIENT_CREDENTIALS);
 		}
 
 		if (!_oAuth2ProviderConfiguration.allowRefreshTokenGrant()) {
-			result.remove(GrantType.REFRESH_TOKEN);
+			grantTypes.remove(GrantType.REFRESH_TOKEN);
 		}
 
 		if (!_oAuth2ProviderConfiguration.
 				allowResourceOwnerPasswordCredentialsGrant()) {
 
-			result.remove(GrantType.RESOURCE_OWNER_PASSWORD);
+			grantTypes.remove(GrantType.RESOURCE_OWNER_PASSWORD);
 		}
 
-		return result;
+		return grantTypes;
 	}
 
 	public int getOAuth2AuthorizationsCount(OAuth2Application oAuth2Application)
