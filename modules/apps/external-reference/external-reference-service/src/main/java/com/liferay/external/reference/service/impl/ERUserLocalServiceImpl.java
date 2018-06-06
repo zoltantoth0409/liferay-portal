@@ -49,7 +49,7 @@ public class ERUserLocalServiceImpl
 		User user = userLocalService.fetchUserByReferenceCode(
 			companyId, externalReferenceCode);
 
-		if (Validator.isNull(user)) {
+		if (user == null) {
 			user = userLocalService.addUser(
 				creatorUserId, companyId, autoPassword, password1, password2,
 				autoScreenName, screenName, emailAddress, 0, null, locale,

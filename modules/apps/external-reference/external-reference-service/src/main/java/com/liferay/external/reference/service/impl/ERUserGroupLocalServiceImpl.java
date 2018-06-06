@@ -36,7 +36,7 @@ public class ERUserGroupLocalServiceImpl
 			userGroupLocalService.fetchUserGroupByReferenceCode(
 				companyId, externalReferenceCode);
 
-		if (Validator.isNull(userGroup)) {
+		if (userGroup == null) {
 			userGroup = userGroupLocalService.addUserGroup(
 				userId, companyId, name, description, serviceContext);
 

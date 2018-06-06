@@ -44,7 +44,7 @@ public class EROrganizationLocalServiceImpl
 			organizationLocalService.fetchOrganizationByReferenceCode(
 				user.getCompanyId(), externalReferenceCode);
 
-		if (Validator.isNull(organization)) {
+		if (organization == null) {
 			organization = organizationLocalService.addOrganization(
 				userId, parentOrganizationId, name, type, regionId, countryId,
 				statusId, comments, site, serviceContext);

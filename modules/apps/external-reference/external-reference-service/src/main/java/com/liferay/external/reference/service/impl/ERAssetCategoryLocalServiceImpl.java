@@ -44,7 +44,7 @@ public class ERAssetCategoryLocalServiceImpl
 			assetCategoryLocalService.fetchAssetCategoryByReferenceCode(
 				user.getCompanyId(), externalReferenceCode);
 
-		if (Validator.isNull(assetCategory)) {
+		if (assetCategory == null) {
 			assetCategory = assetCategoryLocalService.addCategory(
 				userId, groupId, parentCategoryId, titleMap, descriptionMap,
 				vocabularyId, categoryProperties, serviceContext);
