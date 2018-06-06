@@ -241,34 +241,45 @@ public class ConfigurableScopeCheckerFeature implements Feature {
 				String[] scopes = checkPattern.getScopes();
 
 				if (requiresNoScope(scopes)) {
-					_logDebug(
-						"Path  ", path,
-						" was approved, does not require a scope");
+					if (_log.isDebugEnabled()) {
+						_log.debug(
+							"Path  " + path +
+								" was approved, does not require a scope");
+					}
 
 					return;
 				}
 
 				if (_scopeChecker.checkAllScopes(scopes)) {
-					_logDebug(
-						"Path ", path,
-						" was approved, token includes all scopes ",
-						StringUtil.merge(scopes));
+					if (_log.isDebugEnabled()) {
+						_log.debug(
+							StringBundler.concat(
+								"Path ", path,
+								" was approved, token includes all scopes ",
+								StringUtil.merge(scopes)));
+					}
 
 					return;
 				}
 			}
 
 			if (!_allowUnmatched) {
-				_logDebug(
-					"Path ", path, " was not allowed because it does not ",
-					"match any patterns");
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						StringBundler.concat(
+							"Path ", path,
+							" was not allowed because it does not match any ",
+							"patterns"));
+				}
 
 				abortRequest(containerRequestContext);
 			}
 			else {
-				_logDebug(
-					"Path ", path,
-					" was approved, does not match any patterns");
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						"Path " + path +
+							" was approved, does not match any patterns");
+				}
 			}
 		}
 
@@ -313,14 +324,6 @@ public class ConfigurableScopeCheckerFeature implements Feature {
 			}
 
 			return false;
-		}
-
-		private void _logDebug(String... message) {
-			if (!_log.isDebugEnabled()) {
-				return;
-			}
-
-			_log.debug(new StringBundler(message));
 		}
 
 		@Context
