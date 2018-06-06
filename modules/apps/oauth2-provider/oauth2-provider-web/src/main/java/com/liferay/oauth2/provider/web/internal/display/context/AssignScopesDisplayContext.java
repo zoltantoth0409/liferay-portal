@@ -359,8 +359,8 @@ public class AssignScopesDisplayContext
 
 		// Finally merge those by identical global assignable scopes relations
 
-		for (Map.Entry<AssignableScopes, Relations>
-				entry : combinedAssignableScopesRelations.entrySet()) {
+		for (Map.Entry<AssignableScopes, Relations> entry :
+				combinedAssignableScopesRelations.entrySet()) {
 
 			relationsAssignableScopes.compute(
 				entry.getValue(),
