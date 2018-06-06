@@ -372,6 +372,12 @@ public class StagingImplTest {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
 
+		serviceContext.setAttribute(
+			StagingUtil.getStagedPortletId(JournalPortletKeys.JOURNAL),
+			stageJournal);
+
+		Map<String, Serializable> attributes = serviceContext.getAttributes();
+
 		List<String> portletIds = new ArrayList<>();
 
 		portletIds.add(JournalPortletKeys.JOURNAL);
@@ -383,12 +389,6 @@ public class StagingImplTest {
 				false, portletIds, stageJournal, false, portletIds, false,
 				portletIds, ExportImportDateUtil.RANGE_FROM_LAST_PUBLISH_DATE,
 				false, true, UserIdStrategy.CURRENT_USER_ID);
-
-		serviceContext.setAttribute(
-			StagingUtil.getStagedPortletId(JournalPortletKeys.JOURNAL),
-			stageJournal);
-
-		Map<String, Serializable> attributes = serviceContext.getAttributes();
 
 		attributes.putAll(parameters);
 
