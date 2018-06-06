@@ -33,7 +33,7 @@ public class ERAssetVocabularyLocalServiceImpl
 	public AssetVocabulary addOrUpdateVocabulary(
 			long userId, long groupId, String title,
 			Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
-			String settings, String externalReferenceId,
+			String settings, String externalReferenceCode,
 			ServiceContext serviceContext)
 		throws PortalException {
 
@@ -41,14 +41,14 @@ public class ERAssetVocabularyLocalServiceImpl
 
 		AssetVocabulary assetVocabulary =
 			assetVocabularyLocalService.fetchAssetVocabularyByReferenceCode(
-				user.getCompanyId(), externalReferenceId);
+				user.getCompanyId(), externalReferenceCode);
 
 		if (assetVocabulary == null) {
 			assetVocabulary = assetVocabularyLocalService.addVocabulary(
 				userId, groupId, title, titleMap, descriptionMap, settings,
 				serviceContext);
 
-			assetVocabulary.setExternalReferenceCode(externalReferenceId);
+			assetVocabulary.setExternalReferenceCode(externalReferenceCode);
 
 			assetVocabularyLocalService.updateAssetVocabulary(assetVocabulary);
 		}
