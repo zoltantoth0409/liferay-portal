@@ -354,10 +354,10 @@ public class AssignScopesDisplayContext
 			}
 		}
 
+		// Merge those with identical global assignable scopes relations
+
 		HashMap<Relations, AssignableScopes> relationsAssignableScopes =
 			new HashMap<>();
-
-		// Finally merge those by identical global assignable scopes relations
 
 		for (Map.Entry<AssignableScopes, Relations> entry :
 				combinedAssignableScopesRelations.entrySet()) {
