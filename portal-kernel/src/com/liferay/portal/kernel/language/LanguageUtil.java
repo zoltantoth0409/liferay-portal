@@ -206,10 +206,6 @@ public class LanguageUtil {
 		return getLanguage().getAvailableLocales(groupId);
 	}
 
-	public static Set<Locale> getCompanyAvailableLocales(long companyId) {
-		return getLanguage().getCompanyAvailableLocales(companyId);
-	}
-
 	public static String getBCP47LanguageId(HttpServletRequest request) {
 		return getLanguage().getBCP47LanguageId(request);
 	}
@@ -220,6 +216,10 @@ public class LanguageUtil {
 
 	public static String getBCP47LanguageId(PortletRequest portletRequest) {
 		return getLanguage().getBCP47LanguageId(portletRequest);
+	}
+
+	public static Set<Locale> getCompanyAvailableLocales(long companyId) {
+		return getLanguage().getCompanyAvailableLocales(companyId);
 	}
 
 	public static Language getLanguage() {

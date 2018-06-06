@@ -68,7 +68,9 @@ public class UpgradeGroup extends UpgradeProcess {
 		for (Long companyId : companyIds) {
 			LocalizedValuesMap localizedValuesMap = new LocalizedValuesMap();
 
-			for (Locale locale : LanguageUtil.getCompanyAvailableLocales(companyId)) {
+			for (Locale locale :
+					LanguageUtil.getCompanyAvailableLocales(companyId)) {
+
 				ResourceBundle resourceBundle =
 					LanguageResources.getResourceBundle(locale);
 

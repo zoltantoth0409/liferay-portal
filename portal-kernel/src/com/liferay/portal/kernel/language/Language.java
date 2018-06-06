@@ -117,13 +117,13 @@ public interface Language {
 
 	public Set<Locale> getAvailableLocales(long groupId);
 
-	public Set<Locale> getCompanyAvailableLocales(long companyId);
-
 	public String getBCP47LanguageId(HttpServletRequest request);
 
 	public String getBCP47LanguageId(Locale locale);
 
 	public String getBCP47LanguageId(PortletRequest portletRequest);
+
+	public Set<Locale> getCompanyAvailableLocales(long companyId);
 
 	public String getLanguageId(HttpServletRequest request);
 

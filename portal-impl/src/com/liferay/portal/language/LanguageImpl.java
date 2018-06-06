@@ -984,13 +984,6 @@ public class LanguageImpl implements Language, Serializable {
 	}
 
 	@Override
-	public Set<Locale> getCompanyAvailableLocales(long companyId) {
-		CompanyLocalesBag companyLocalesBag = _getCompanyLocalesBag(companyId);
-
-		return companyLocalesBag.getAvailableLocales();
-	}
-
-	@Override
 	public String getBCP47LanguageId(HttpServletRequest request) {
 		Locale locale = PortalUtil.getLocale(request);
 
@@ -1007,6 +1000,13 @@ public class LanguageImpl implements Language, Serializable {
 		Locale locale = PortalUtil.getLocale(portletRequest);
 
 		return getBCP47LanguageId(locale);
+	}
+
+	@Override
+	public Set<Locale> getCompanyAvailableLocales(long companyId) {
+		CompanyLocalesBag companyLocalesBag = _getCompanyLocalesBag(companyId);
+
+		return companyLocalesBag.getAvailableLocales();
 	}
 
 	/**
