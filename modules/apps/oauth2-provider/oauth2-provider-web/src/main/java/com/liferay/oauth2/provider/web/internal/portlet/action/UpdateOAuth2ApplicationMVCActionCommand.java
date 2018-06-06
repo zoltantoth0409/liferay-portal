@@ -220,7 +220,7 @@ public class UpdateOAuth2ApplicationMVCActionCommand
 		}
 
 		throw new IllegalArgumentException(
-			"No ClientProfile enum constant found with ID " + clientProfileId);
+			"No client profile found for " + clientProfileId);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
