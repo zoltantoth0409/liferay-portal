@@ -14,7 +14,7 @@
 
 package com.liferay.external.reference.service.impl;
 
-import com.liferay.external.reference.service.base.ExternalReferenceOrganizationLocalServiceBaseImpl;
+import com.liferay.external.reference.service.base.EROrganizationLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.model.User;
@@ -27,8 +27,8 @@ import com.liferay.users.admin.kernel.file.uploads.UserFileUploadsSettings;
 /**
  * @author Dylan Rebelak
  */
-public class ExternalReferenceOrganizationLocalServiceImpl
-	extends ExternalReferenceOrganizationLocalServiceBaseImpl {
+public class EROrganizationLocalServiceImpl
+	extends EROrganizationLocalServiceBaseImpl {
 
 	/**
 	 * Add or update an organization.

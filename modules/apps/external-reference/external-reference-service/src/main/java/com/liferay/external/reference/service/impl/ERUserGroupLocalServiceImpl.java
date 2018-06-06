@@ -14,7 +14,7 @@
 
 package com.liferay.external.reference.service.impl;
 
-import com.liferay.external.reference.service.base.ExternalReferenceUserGroupLocalServiceBaseImpl;
+import com.liferay.external.reference.service.base.ERUserGroupLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.UserGroup;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -23,8 +23,8 @@ import com.liferay.portal.kernel.util.Validator;
 /**
  * @author Dylan Rebelak
  */
-public class ExternalReferenceUserGroupLocalServiceImpl
-	extends ExternalReferenceUserGroupLocalServiceBaseImpl {
+public class ERUserGroupLocalServiceImpl
+	extends ERUserGroupLocalServiceBaseImpl {
 
 	/**
 	 * Add or update an user group.

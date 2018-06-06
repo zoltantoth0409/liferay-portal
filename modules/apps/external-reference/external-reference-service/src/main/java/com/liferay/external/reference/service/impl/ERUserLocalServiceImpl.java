@@ -14,7 +14,7 @@
 
 package com.liferay.external.reference.service.impl;
 
-import com.liferay.external.reference.service.base.ExternalReferenceUserLocalServiceBaseImpl;
+import com.liferay.external.reference.service.base.ERUserLocalServiceBaseImpl;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Contact;
@@ -29,8 +29,8 @@ import java.util.Locale;
 /**
  * @author Dylan Rebelak
  */
-public class ExternalReferenceUserLocalServiceImpl
-	extends ExternalReferenceUserLocalServiceBaseImpl {
+public class ERUserLocalServiceImpl
+	extends ERUserLocalServiceBaseImpl {
 
 	/**
 	 * Add or update an user.

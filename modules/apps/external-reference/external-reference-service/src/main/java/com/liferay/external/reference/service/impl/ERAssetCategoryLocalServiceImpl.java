@@ -15,7 +15,7 @@
 package com.liferay.external.reference.service.impl;
 
 import com.liferay.asset.kernel.model.AssetCategory;
-import com.liferay.external.reference.service.base.ExternalReferenceAssetCategoryLocalServiceBaseImpl;
+import com.liferay.external.reference.service.base.ERAssetCategoryLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -27,8 +27,8 @@ import java.util.Map;
 /**
  * @author Dylan Rebelak
  */
-public class ExternalReferenceAssetCategoryLocalServiceImpl
-	extends ExternalReferenceAssetCategoryLocalServiceBaseImpl {
+public class ERAssetCategoryLocalServiceImpl
+	extends ERAssetCategoryLocalServiceBaseImpl {
 
 	@Override
 	public AssetCategory upsertCategory(

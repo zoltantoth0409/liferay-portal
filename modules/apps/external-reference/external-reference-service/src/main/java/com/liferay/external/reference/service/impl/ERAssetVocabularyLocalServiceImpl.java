@@ -15,7 +15,7 @@
 package com.liferay.external.reference.service.impl;
 
 import com.liferay.asset.kernel.model.AssetVocabulary;
-import com.liferay.external.reference.service.base.ExternalReferenceAssetVocabularyLocalServiceBaseImpl;
+import com.liferay.external.reference.service.base.ERAssetVocabularyLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -26,8 +26,8 @@ import java.util.Map;
 /**
  * @author Dylan Rebelak
  */
-public class ExternalReferenceAssetVocabularyLocalServiceImpl
-	extends ExternalReferenceAssetVocabularyLocalServiceBaseImpl {
+public class ERAssetVocabularyLocalServiceImpl
+	extends ERAssetVocabularyLocalServiceBaseImpl {
 
 	@Override
 	public AssetVocabulary upsertVocabulary(
