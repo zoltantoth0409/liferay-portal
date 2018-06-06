@@ -131,15 +131,15 @@ public class AuthVerifierTestBundleActivator implements BundleActivator {
 				HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
 
-			PrintWriter writer = response.getWriter();
+			PrintWriter printWriter = response.getWriter();
 
 			String remoteUser = request.getRemoteUser();
 
 			if (Validator.isNull(remoteUser)) {
-				writer.write("no-remote-user");
+				printWriter.write("no-remote-user");
 			}
 			else {
-				writer.write("remote-user-set");
+				printWriter.write("remote-user-set");
 			}
 		}
 
