@@ -27,7 +27,7 @@ public class ERUserGroupLocalServiceImpl
 	extends ERUserGroupLocalServiceBaseImpl {
 
 	@Override
-	public UserGroup upsertUserGroup(
+	public UserGroup addOrUpdateUserGroup(
 			long userId, long companyId, String name, String description,
 			String externalReferenceCode, ServiceContext serviceContext)
 		throws PortalException {

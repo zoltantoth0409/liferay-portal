@@ -31,7 +31,7 @@ public class EROrganizationLocalServiceImpl
 	extends EROrganizationLocalServiceBaseImpl {
 
 	@Override
-	public Organization upsertOrganization(
+	public Organization addOrUpdateOrganization(
 			long userId, long parentOrganizationId, String name, String type,
 			long regionId, long countryId, long statusId, String comments,
 			boolean site, boolean logo, byte[] logoBytes,

@@ -31,7 +31,7 @@ public class ERAssetCategoryLocalServiceImpl
 	extends ERAssetCategoryLocalServiceBaseImpl {
 
 	@Override
-	public AssetCategory upsertCategory(
+	public AssetCategory addOrUpdateCategory(
 			long userId, long groupId, long parentCategoryId,
 			Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
 			long vocabularyId, String[] categoryProperties,

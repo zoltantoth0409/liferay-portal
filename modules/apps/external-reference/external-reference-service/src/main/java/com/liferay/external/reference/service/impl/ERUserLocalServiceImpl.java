@@ -33,7 +33,7 @@ public class ERUserLocalServiceImpl
 	extends ERUserLocalServiceBaseImpl {
 
 	@Override
-	public User upsertUser(
+	public User addOrUpdateUser(
 			long creatorUserId, long companyId, boolean autoPassword,
 			String password1, String password2, boolean autoScreenName,
 			String screenName, String emailAddress, Locale locale,

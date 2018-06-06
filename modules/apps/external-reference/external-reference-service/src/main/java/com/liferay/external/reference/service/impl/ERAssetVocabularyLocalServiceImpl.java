@@ -30,7 +30,7 @@ public class ERAssetVocabularyLocalServiceImpl
 	extends ERAssetVocabularyLocalServiceBaseImpl {
 
 	@Override
-	public AssetVocabulary upsertVocabulary(
+	public AssetVocabulary addOrUpdateVocabulary(
 			long userId, long groupId, String title,
 			Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
 			String settings, String externalReferenceId,
