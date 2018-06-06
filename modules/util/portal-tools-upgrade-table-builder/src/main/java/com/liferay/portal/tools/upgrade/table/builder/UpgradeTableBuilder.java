@@ -145,7 +145,7 @@ public class UpgradeTableBuilder {
 			_upgradeTableDirName, upgradeFileVersion, upgradeFileName);
 
 		if (Files.notExists(upgradeFilePath)) {
-			if (!_validateUpgradePackage(upgradeFileVersion)) {
+			if (!_isRelevantUpgradePackage(upgradeFileVersion)) {
 				return;
 			}
 
@@ -447,10 +447,10 @@ public class UpgradeTableBuilder {
 		return s.replace("\r\n", "\n");
 	}
 
-	private boolean _validateUpgradePackage(String upgradeFileVersion)
+	private boolean _isRelevantUpgradePackage(String upgradeFileVersion)
 		throws IOException {
 
-		String currentVersion;
+		String currentVersion = null;
 
 		if (_osgiModule) {
 			currentVersion = _getSchemaVersion();
