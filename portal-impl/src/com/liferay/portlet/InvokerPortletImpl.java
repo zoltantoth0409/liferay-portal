@@ -837,19 +837,18 @@ public class InvokerPortletImpl
 
 		_portletModel = portletModel;
 		_portlet = portlet;
-		_liferayPortletConfig = (LiferayPortletConfig)portletConfig;
-		_portletId = _portletModel.getPortletId();
-
-		_errorKey = _portletId.concat(PortletException.class.getName());
-
-		_liferayPortletContext = (LiferayPortletContext)portletContext;
 		_invokerFilterContainer = invokerFilterContainer;
 		_checkAuthToken = checkAuthToken;
 		_facesPortlet = facesPortlet;
 		_headerPortlet = headerPortlet;
 		_strutsPortlet = strutsPortlet;
 		_strutsBridgePortlet = strutsBridgePortlet;
+
+		_errorKey = _portletId.concat(PortletException.class.getName());
 		_expCache = portletModel.getExpCache();
+		_liferayPortletConfig = (LiferayPortletConfig)portletConfig;
+		_liferayPortletContext = (LiferayPortletContext)portletContext;
+		_portletId = _portletModel.getPortletId();
 
 		if (_log.isDebugEnabled()) {
 			com.liferay.portal.kernel.model.Portlet portletContextPortet =
