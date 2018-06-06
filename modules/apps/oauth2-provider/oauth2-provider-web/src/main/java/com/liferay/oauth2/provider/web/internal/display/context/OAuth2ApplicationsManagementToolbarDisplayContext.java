@@ -172,6 +172,13 @@ public class OAuth2ApplicationsManagementToolbarDisplayContext
 	public ViewTypeItemList getViewTypes() {
 		PortletURL portletURL = liferayPortletResponse.createRenderURL();
 
+		int cur = ParamUtil.getInteger(
+			httpServletRequest, SearchContainer.DEFAULT_CUR_PARAM);
+
+		if (cur > 0) {
+			portletURL.setParameter("cur", String.valueOf(cur));
+		}
+
 		int delta = ParamUtil.getInteger(
 			httpServletRequest, SearchContainer.DEFAULT_DELTA_PARAM);
 
@@ -181,13 +188,6 @@ public class OAuth2ApplicationsManagementToolbarDisplayContext
 
 		portletURL.setParameter("orderByCol", getOrderByCol());
 		portletURL.setParameter("orderByType", getOrderByType());
-
-		int cur = ParamUtil.getInteger(
-			httpServletRequest, SearchContainer.DEFAULT_CUR_PARAM);
-
-		if (cur > 0) {
-			portletURL.setParameter("cur", String.valueOf(cur));
-		}
 
 		return new ViewTypeItemList(portletURL, getDisplayStyle()) {
 			{
