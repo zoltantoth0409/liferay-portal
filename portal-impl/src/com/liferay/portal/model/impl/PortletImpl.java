@@ -188,13 +188,13 @@ public class PortletImpl extends PortletBaseImpl {
 		int renderTimeout, int renderWeight, boolean ajaxable,
 		List<String> headerPortalCss, List<String> headerPortletCss,
 		List<String> headerPortalJavaScript,
-		List<String> headerPortletJavaScript, List<String> footerPortalCss,
+		List<String> headerPortletJavaScript, List<String> headerRequestAttributePrefixes,
+		int headerTimeout, List<String> footerPortalCss,
 		List<String> footerPortletCss, List<String> footerPortalJavaScript,
-		List<String> footerPortletJavaScript, String cssClassWrapper,
-		boolean addDefaultResource, String roles, Set<String> unlinkedRoles,
-		Map<String, String> roleMappers, boolean system, boolean active,
-		boolean include, List<String> headerRequestAttributePrefixes,
-		int headerTimeout, Map<String, String> initParams, Integer expCache,
+		List<String> footerPortletJavaScript, String cssClassWrapper, boolean addDefaultResource,
+		String roles, Set<String> unlinkedRoles, Map<String, String> roleMappers,
+		boolean system, boolean active,
+		boolean include, Map<String, String> initParams, Integer expCache,
 		boolean asyncSupported, int multipartFileSizeThreshold,
 		String multipartLocation, long multipartMaxFileSize,
 		long multipartMaxRequestSize, Map<String, Set<String>> portletModes,
@@ -284,6 +284,8 @@ public class PortletImpl extends PortletBaseImpl {
 		_headerPortletCss = headerPortletCss;
 		_headerPortalJavaScript = headerPortalJavaScript;
 		_headerPortletJavaScript = headerPortletJavaScript;
+		_headerRequestAttributePrefixes = headerRequestAttributePrefixes;
+		_headerTimeout = headerTimeout;
 		_footerPortalCss = footerPortalCss;
 		_footerPortletCss = footerPortletCss;
 		_footerPortalJavaScript = footerPortalJavaScript;
@@ -294,8 +296,6 @@ public class PortletImpl extends PortletBaseImpl {
 		_roleMappers = roleMappers;
 		_system = system;
 		_include = include;
-		_headerRequestAttributePrefixes = headerRequestAttributePrefixes;
-		_headerTimeout = headerTimeout;
 		_initParams = initParams;
 		_expCache = expCache;
 		_asyncSupported = asyncSupported;
@@ -418,12 +418,12 @@ public class PortletImpl extends PortletBaseImpl {
 			getRenderTimeout(), getRenderWeight(), isAjaxable(),
 			getHeaderPortalCss(), getHeaderPortletCss(),
 			getHeaderPortalJavaScript(), getHeaderPortletJavaScript(),
+			getHeaderRequestAttributePrefixes(), getHeaderTimeout(),
 			getFooterPortalCss(), getFooterPortletCss(),
-			getFooterPortalJavaScript(), getFooterPortletJavaScript(),
-			getCssClassWrapper(), isAddDefaultResource(), getRoles(),
-			getUnlinkedRoles(), getRoleMappers(), isSystem(), isActive(),
-			isInclude(), getHeaderRequestAttributePrefixes(),
-			getHeaderTimeout(), getInitParams(), getExpCache(),
+			getFooterPortalJavaScript(), getFooterPortletJavaScript(), getCssClassWrapper(),
+			isAddDefaultResource(), getRoles(), getUnlinkedRoles(), getRoleMappers(),
+			isSystem(), isActive(),
+			isInclude(), getInitParams(), getExpCache(),
 			isAsyncSupported(), getMultipartFileSizeThreshold(),
 			getMultipartLocation(), getMultipartMaxFileSize(),
 			getMultipartMaxRequestSize(), getPortletModes(), getWindowStates(),
