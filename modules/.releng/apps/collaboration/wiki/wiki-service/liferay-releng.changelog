@@ -372,3 +372,8 @@ f636c1ce57fe0a9d19d5f93ff7bc00ecc9484d10^..bb10da5dd7168caad2b1d1c8f8e93dfde95df
 # Bundle Version 1.7.1
 #
 bb10da5dd7168caad2b1d1c8f8e93dfde95df890^..bd0454968af9b1e6791c52738cd903ace8c39f63=LPS-79919 LPS-80082
+
+#
+# Bundle Version 1.7.2
+#
+bd0454968af9b1e6791c52738cd903ace8c39f63^..10ac25c86e02c47eaf337691a1f5cd33aae9e296=LPS-81999
