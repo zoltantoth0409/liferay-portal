@@ -3774,6 +3774,11 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
+			<name>summary</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
 			<description>The total number of objects in the search container.</description>
 			<name>total</name>
 			<required>false</required>
@@ -5378,15 +5383,5 @@
 		<name>user-search-form</name>
 		<tag-class>com.liferay.taglib.ui.UserSearchFormTag</tag-class>
 		<body-content>JSP</body-content>
-	</tag>
-	<tag>
-		<name>webdav</name>
-		<tag-class>com.liferay.taglib.ui.WebDAVTag</tag-class>
-		<body-content>JSP</body-content>
-		<attribute>
-			<name>path</name>
-			<required>true</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
 	</tag>
 </taglib>

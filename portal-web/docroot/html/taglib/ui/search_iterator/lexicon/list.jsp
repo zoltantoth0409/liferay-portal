@@ -38,7 +38,12 @@ if (!resultRowSplitterEntries.isEmpty()) {
 %>
 
 <div class="table-responsive">
-	<table class="table table-autofit table-heading-nowrap table-list">
+	<table class="show-quick-actions-on-hover table table-autofit table-list">
+
+		<c:if test="<%= summary != null %>">
+			<caption class="sr-only"><%= summary %></caption>
+		</c:if>
+
 		<c:if test="<%= ListUtil.isNotNull(headerNames) %>">
 			<thead>
 				<tr>
