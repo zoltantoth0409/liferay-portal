@@ -23,13 +23,9 @@ import com.liferay.wiki.model.WikiPage;
 /**
  * @author Norbert Kocsis
  */
-public class UpgradeCreateDate extends UpgradeProcess {
+public class UpgradeWikiPage extends UpgradeProcess {
 
 	protected void doUpgrade() throws Exception {
-		upgradeCreateDate();
-	}
-
-	protected void upgradeCreateDate() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
 			long wikiPageClassNameId = PortalUtil.getClassNameId(
 				WikiPage.class.getName());
