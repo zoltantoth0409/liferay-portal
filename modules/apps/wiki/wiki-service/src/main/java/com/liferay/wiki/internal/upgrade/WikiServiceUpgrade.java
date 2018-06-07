@@ -48,8 +48,8 @@ public class WikiServiceUpgrade implements UpgradeStepRegistrator {
 		registry.register(
 			"0.0.3", "1.0.0", new UpgradeCompanyId(),
 			new UpgradeLastPublishDate(), new UpgradePortletPreferences(),
-			new UpgradePortletSettings(_settingsFactory),
-			new UpgradeWikiPage(), new UpgradeWikiPageResource());
+			new UpgradePortletSettings(_settingsFactory), new UpgradeWikiPage(),
+			new UpgradeWikiPageResource());
 
 		registry.register("1.0.0", "1.1.0", new UpgradeWikiNode());
 	}
