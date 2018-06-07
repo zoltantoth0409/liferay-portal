@@ -47,8 +47,8 @@ public class ManagementToolbarTag extends BaseClayTag {
 		setHydrate(true);
 		setModuleBaseName("management-toolbar");
 
-		if (_displayContext != null) {
-			populateContext(_displayContext);
+		if (_managementToolbarDisplayContext != null) {
+			populateContext(_managementToolbarDisplayContext);
 		}
 
 		Map<String, Object> context = getContext();
@@ -121,7 +121,7 @@ public class ManagementToolbarTag extends BaseClayTag {
 	}
 
 	public ManagementToolbarDisplayContext getDisplayContext() {
-		return _displayContext;
+		return _managementToolbarDisplayContext;
 	}
 
 	@Override
@@ -159,7 +159,7 @@ public class ManagementToolbarTag extends BaseClayTag {
 	public void setDisplayContext(
 		ManagementToolbarDisplayContext managementToolbarDisplayContext) {
 
-		_displayContext = managementToolbarDisplayContext;
+		_managementToolbarDisplayContext = managementToolbarDisplayContext;
 	}
 
 	public void setFilterDropdownItems(List<DropdownItem> filterDropdownItems) {
@@ -242,7 +242,7 @@ public class ManagementToolbarTag extends BaseClayTag {
 	protected void cleanUp() {
 		super.cleanUp();
 
-		_displayContext = null;
+		_managementToolbarDisplayContext = null;
 	}
 
 	@Override
@@ -405,6 +405,6 @@ public class ManagementToolbarTag extends BaseClayTag {
 		"infoPanelId", "searchContainerId", "searchFormName", "searchInputName"
 	};
 
-	private ManagementToolbarDisplayContext _displayContext;
+	private ManagementToolbarDisplayContext _managementToolbarDisplayContext;
 
 }
