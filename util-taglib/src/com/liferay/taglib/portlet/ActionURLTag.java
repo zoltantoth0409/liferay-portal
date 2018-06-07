@@ -34,6 +34,7 @@ import com.liferay.taglib.util.TypedParamAccessorTag;
 
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.portlet.ActionRequest;
@@ -189,7 +190,7 @@ public class ActionURLTag
 
 	@Override
 	public void addParam(String name, String type, String value) {
-		if ("render".equals(type) && Validator.isNotNull(name)) {
+		if (Objects.equals(type, "render") && Validator.isNotNull(name)) {
 			name = PortletQName.PRIVATE_RENDER_PARAMETER_NAMESPACE.concat(name);
 		}
 
