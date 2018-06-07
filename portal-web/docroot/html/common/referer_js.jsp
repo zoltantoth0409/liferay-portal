@@ -37,8 +37,8 @@ pageContext.setAttribute(WebKeys.THEME_DEFINE_OBJECTS, Boolean.FALSE);
 	</c:if>
 
 	<%
-	referer = HtmlUtil.escapeJSLink(referer);
 	referer = HtmlUtil.escapeJS(referer);
+	referer = HtmlUtil.escapeJSLink(referer);
 	%>
 
 	location.href = '<%= referer %>';
