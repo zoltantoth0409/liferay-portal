@@ -84,7 +84,7 @@ public class AddFragmentEntryLinkMVCActionCommand extends BaseMVCActionCommand {
 
 		hideDefaultSuccessMessage(actionRequest);
 
-		SessionMessages.add(actionRequest, "addFragmentEntryLink");
+		SessionMessages.add(actionRequest, "fragmentEntryLinkAdded");
 
 		JSONPortletResponseUtil.writeJSON(
 			actionRequest, actionResponse, jsonObject);

@@ -57,7 +57,7 @@ public class PublishLayoutPageTemplateEntryMVCActionCommand
 				actionRequest,
 				portletId.concat(
 					SessionMessages.KEY_SUFFIX_HIDE_DEFAULT_SUCCESS_MESSAGE)) &&
-			SessionMessages.contains(actionRequest, "addFragmentEntryLink")) {
+			SessionMessages.contains(actionRequest, "fragmentEntryLinkAdded")) {
 
 			SessionMessages.clear(actionRequest);
 		}
