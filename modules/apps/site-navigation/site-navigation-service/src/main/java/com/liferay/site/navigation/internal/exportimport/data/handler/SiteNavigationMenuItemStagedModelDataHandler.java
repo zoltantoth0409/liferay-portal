@@ -151,10 +151,10 @@ public class SiteNavigationMenuItemStagedModelDataHandler
 
 		importedSiteNavigationMenuItem.setGroupId(
 			portletDataContext.getScopeGroupId());
-		importedSiteNavigationMenuItem.setParentSiteNavigationMenuItemId(
-			parentSiteNavigationMenuItemId);
 		importedSiteNavigationMenuItem.setSiteNavigationMenuId(
 			siteNavigationMenuId);
+		importedSiteNavigationMenuItem.setParentSiteNavigationMenuItemId(
+			parentSiteNavigationMenuItemId);
 
 		SiteNavigationMenuItem existingSiteNavigationMenuItem =
 			_stagedModelRepository.fetchStagedModelByUuidAndGroupId(
