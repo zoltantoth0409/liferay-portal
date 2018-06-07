@@ -94,7 +94,7 @@ public class FragmentEntryLinkLocalServiceImpl
 			serviceContext.getCreateDate(new Date()));
 		fragmentEntryLink.setNamespace(StringUtil.randomId());
 
-		_updateBaseModel(classNameId, classPK);
+		_updateClassModel(classNameId, classPK);
 
 		fragmentEntryLinkPersistence.update(fragmentEntryLink);
 
@@ -226,7 +226,7 @@ public class FragmentEntryLinkLocalServiceImpl
 
 		fragmentEntryLink.setPosition(position);
 
-		_updateBaseModel(
+		_updateClassModel(
 			fragmentEntryLink.getClassNameId(), fragmentEntryLink.getClassPK());
 
 		fragmentEntryLinkPersistence.update(fragmentEntryLink);
@@ -277,7 +277,7 @@ public class FragmentEntryLinkLocalServiceImpl
 
 		fragmentEntryLink.setEditableValues(editableValues);
 
-		_updateBaseModel(
+		_updateClassModel(
 			fragmentEntryLink.getClassNameId(), fragmentEntryLink.getClassPK());
 
 		fragmentEntryLinkPersistence.update(fragmentEntryLink);
@@ -339,7 +339,7 @@ public class FragmentEntryLinkLocalServiceImpl
 
 			fragmentEntryLink.setLastPropagationDate(new Date());
 
-			_updateBaseModel(
+			_updateClassModel(
 				fragmentEntryLink.getClassNameId(),
 				fragmentEntryLink.getClassPK());
 
@@ -347,7 +347,7 @@ public class FragmentEntryLinkLocalServiceImpl
 		}
 	}
 
-	private void _updateBaseModel(long classNameId, long classPK)
+	private void _updateClassModel(long classNameId, long classPK)
 		throws PortalException {
 
 		if (classNameId != _portal.getClassNameId(Layout.class)) {
