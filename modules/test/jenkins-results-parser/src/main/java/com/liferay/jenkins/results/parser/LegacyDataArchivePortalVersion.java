@@ -50,7 +50,7 @@ public class LegacyDataArchivePortalVersion {
 
 		if (!_portalVersionTestDirectory.exists()) {
 			throw new RuntimeException(
-				_portalVersionDirectory + " does not exist.");
+				_portalVersionDirectory + " does not exist");
 		}
 
 		_dataArchiveTypes = _getDataArchiveTypes();
