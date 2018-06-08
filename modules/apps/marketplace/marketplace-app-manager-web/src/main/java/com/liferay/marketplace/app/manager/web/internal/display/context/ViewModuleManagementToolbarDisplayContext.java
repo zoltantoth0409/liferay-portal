@@ -177,8 +177,8 @@ public class ViewModuleManagementToolbarDisplayContext
 			ServiceReference<?>[] serviceReferenceArray =
 				(ServiceReference<?>[])bundleContext.getServiceReferences(
 					(String)null,
-					"(&(service.bundleid=" + bundle.getBundleId() +
-						")(component.id=*))");
+					"(&(component.id=*)(service.bundleid=" +
+						bundle.getBundleId() + "))");
 
 			serviceReferences = ListUtil.toList(serviceReferenceArray);
 
