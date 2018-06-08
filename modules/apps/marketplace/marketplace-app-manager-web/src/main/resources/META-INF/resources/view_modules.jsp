@@ -20,8 +20,7 @@
 String app = ParamUtil.getString(request, "app");
 String moduleGroup = ParamUtil.getString(request, "moduleGroup");
 
-ViewModulesManagementToolbarDisplayContext
-	viewModulesManagementToolbarDisplayContext = new ViewModulesManagementToolbarDisplayContext(liferayPortletRequest, liferayPortletResponse, request);
+ViewModulesManagementToolbarDisplayContext viewModulesManagementToolbarDisplayContext = new ViewModulesManagementToolbarDisplayContext(liferayPortletRequest, liferayPortletResponse, request);
 
 AppDisplay appDisplay = viewModulesManagementToolbarDisplayContext.getAppDisplay();
 

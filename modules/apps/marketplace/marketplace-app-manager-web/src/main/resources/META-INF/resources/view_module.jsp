@@ -20,15 +20,6 @@
 String app = ParamUtil.getString(request, "app");
 String moduleGroup = ParamUtil.getString(request, "moduleGroup");
 
-ViewModuleManagementToolbarDisplayContext
-	viewModuleManagementToolbarDisplayContext = new ViewModuleManagementToolbarDisplayContext(liferayPortletRequest, liferayPortletResponse, request);
-
-AppDisplay appDisplay = viewModuleManagementToolbarDisplayContext.getAppDisplay();
-Bundle bundle = viewModuleManagementToolbarDisplayContext.getBundle();
-ModuleGroupDisplay moduleGroupDisplay = viewModuleManagementToolbarDisplayContext.getModuleGroupDisplay();
-String pluginType = viewModuleManagementToolbarDisplayContext.getPluginType();
-SearchContainer searchContainer = viewModuleManagementToolbarDisplayContext.getSearchContainer();
-
 PortletURL backURL = renderResponse.createRenderURL();
 
 if (Validator.isNull(app)) {
@@ -39,6 +30,14 @@ else {
 	backURL.setParameter("app", app);
 	backURL.setParameter("moduleGroup", moduleGroup);
 }
+
+ViewModuleManagementToolbarDisplayContext viewModuleManagementToolbarDisplayContext = new ViewModuleManagementToolbarDisplayContext(liferayPortletRequest, liferayPortletResponse, request);
+
+AppDisplay appDisplay = viewModuleManagementToolbarDisplayContext.getAppDisplay();
+Bundle bundle = viewModuleManagementToolbarDisplayContext.getBundle();
+ModuleGroupDisplay moduleGroupDisplay = viewModuleManagementToolbarDisplayContext.getModuleGroupDisplay();
+String pluginType = viewModuleManagementToolbarDisplayContext.getPluginType();
+SearchContainer searchContainer = viewModuleManagementToolbarDisplayContext.getSearchContainer();
 
 portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(backURL.toString());

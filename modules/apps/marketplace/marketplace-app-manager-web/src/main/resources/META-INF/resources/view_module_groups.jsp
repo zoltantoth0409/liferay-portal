@@ -17,16 +17,15 @@
 <%@ include file="/init.jsp" %>
 
 <%
-ViewModuleGroupsManagementToolbarDisplayContext
-	viewModuleGroupsManagementToolbarDisplayContext = new ViewModuleGroupsManagementToolbarDisplayContext(liferayPortletRequest, liferayPortletResponse, request);
+PortletURL backURL = renderResponse.createRenderURL();
+
+backURL.setParameter("mvcPath", "/view.jsp");
+
+ViewModuleGroupsManagementToolbarDisplayContext viewModuleGroupsManagementToolbarDisplayContext = new ViewModuleGroupsManagementToolbarDisplayContext(liferayPortletRequest, liferayPortletResponse, request);
 
 AppDisplay appDisplay = viewModuleGroupsManagementToolbarDisplayContext.getAppDisplay();
 
 SearchContainer searchContainer = viewModuleGroupsManagementToolbarDisplayContext.getSearchContainer();
-
-PortletURL backURL = renderResponse.createRenderURL();
-
-backURL.setParameter("mvcPath", "/view.jsp");
 
 portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(backURL.toString());
