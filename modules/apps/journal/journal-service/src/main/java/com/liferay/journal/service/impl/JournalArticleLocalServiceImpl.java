@@ -1240,7 +1240,7 @@ public class JournalArticleLocalServiceImpl
 			}
 		}
 
-		// FriendlyURL
+		// Friendly URL
 
 		long classNameId = classNameLocalService.getClassNameId(
 			JournalArticle.class);
