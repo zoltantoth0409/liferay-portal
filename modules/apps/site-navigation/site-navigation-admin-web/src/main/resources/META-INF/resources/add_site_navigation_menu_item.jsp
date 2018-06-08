@@ -37,8 +37,6 @@ portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(redirect);
 
 renderResponse.setTitle(LanguageUtil.format(request, "add-x", siteNavigationMenuItemType.getLabel(locale)));
-
-Portlet selPortlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), portletDisplay.getId());
 %>
 
 <liferay-ui:error exception="<%= SiteNavigationMenuItemNameException.class %>">
@@ -94,6 +92,11 @@ Portlet selPortlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId
 						Liferay.fire(
 							'closeWindow',
 							{
+
+								<%
+								Portlet selPortlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), portletDisplay.getId());
+								%>
+
 								id: '_<%= HtmlUtil.escapeJS(selPortlet.getPortletId()) %>_addMenuItem',
 								portletAjaxable: <%= selPortlet.isAjaxable() %>,
 								refresh: '<%= HtmlUtil.escapeJS(selPortlet.getPortletId()) %>'
