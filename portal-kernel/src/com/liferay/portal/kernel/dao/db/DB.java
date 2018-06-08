@@ -77,8 +77,6 @@ public interface DB {
 
 	public boolean isSupportsAlterColumnType();
 
-	public boolean isSupportsClob();
-
 	public boolean isSupportsInlineDistinct();
 
 	public boolean isSupportsQueryingAfterException();

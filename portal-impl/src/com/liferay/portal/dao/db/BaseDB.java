@@ -232,10 +232,6 @@ public abstract class BaseDB implements DB {
 		return _SUPPORTS_ALTER_COLUMN_TYPE;
 	}
 
-	public boolean isSupportsClob() {
-		return _SUPPORTS_CLOB;
-	}
-
 	@Override
 	public boolean isSupportsInlineDistinct() {
 		return _SUPPORTS_INLINE_DISTINCT;
@@ -1188,8 +1184,6 @@ public abstract class BaseDB implements DB {
 	private static final boolean _SUPPORTS_ALTER_COLUMN_NAME = true;
 
 	private static final boolean _SUPPORTS_ALTER_COLUMN_TYPE = true;
-
-	private static final boolean _SUPPORTS_CLOB = true;
 
 	private static final boolean _SUPPORTS_INLINE_DISTINCT = true;
 
