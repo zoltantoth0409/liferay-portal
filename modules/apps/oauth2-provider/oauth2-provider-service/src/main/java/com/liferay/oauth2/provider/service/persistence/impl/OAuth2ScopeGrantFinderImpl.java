@@ -19,7 +19,6 @@ import com.liferay.oauth2.provider.model.impl.OAuth2ScopeGrantImpl;
 import com.liferay.oauth2.provider.service.persistence.OAuth2ScopeGrantFinder;
 import com.liferay.portal.dao.orm.custom.sql.CustomSQL;
 import com.liferay.portal.kernel.dao.db.DB;
-import com.liferay.portal.kernel.dao.db.DBManagerUtil;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.SQLQuery;
@@ -59,7 +58,9 @@ public class OAuth2ScopeGrantFinderImpl
 
 			q.addEntity("OAuth2ScopeGrant", OAuth2ScopeGrantImpl.class);
 
-			if (_supportsClob) {
+			DB db = getDB();
+
+			if (db.isSupportsClob()) {
 				q.addScalar("accessTokenContent", Type.MATERIALIZED_CLOB);
 			}
 			else {
@@ -94,15 +95,7 @@ public class OAuth2ScopeGrantFinderImpl
 		}
 	}
 
-	protected void afterPropertiesSet() {
-		DB db = DBManagerUtil.getDB();
-
-		_supportsClob = db.isSupportsClob();
-	}
-
 	@ServiceReference(type = CustomSQL.class)
 	private CustomSQL _customSQL;
-
-	private boolean _supportsClob = true;
 
 }
