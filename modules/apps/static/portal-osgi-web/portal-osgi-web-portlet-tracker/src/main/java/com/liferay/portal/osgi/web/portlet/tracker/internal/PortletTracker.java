@@ -675,24 +675,25 @@ public class PortletTracker
 
 		PortletApp portletApp = portletModel.getPortletApp();
 
-		List<String> listeners = StringPlus.asList(
+		List<String> listenerClassNames = StringPlus.asList(
 			serviceReference.getProperty("javax.portlet.listener"));
 
 		List<PortletURLListener> portletURLListeners = new ArrayList<>();
 
-		for (String listener : listeners) {
-			String listenerClass = listener;
+		for (String listenerClassName : listenerClassNames) {
 			int ordinal = 0;
 
-			String[] parts = StringUtil.split(listener, CharPool.SEMICOLON);
+			String[] parts = StringUtil.split(
+				listenerClassName, CharPool.SEMICOLON);
 
 			if (parts.length == 2) {
-				listenerClass = parts[0];
+				listenerClassName = parts[0];
 				ordinal = GetterUtil.getInteger(parts[1]);
 			}
 
 			portletURLListeners.add(
-				new PortletURLListenerImpl(ordinal, listenerClass, portletApp));
+				new PortletURLListenerImpl(
+					listenerClassName, ordinal, portletApp));
 		}
 
 		Collections.sort(

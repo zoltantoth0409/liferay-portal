@@ -2685,12 +2685,11 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 		for (Element listenerElement : rootElement.elements("listener")) {
 			String listenerClass = listenerElement.elementText(
 				"listener-class");
-
 			int ordinal = GetterUtil.getInteger(
 				listenerElement.elementText("ordinal"));
 
 			portletURLListeners.add(
-				new PortletURLListenerImpl(ordinal, listenerClass, portletApp));
+				new PortletURLListenerImpl(listenerClass, ordinal, portletApp));
 		}
 
 		Collections.sort(

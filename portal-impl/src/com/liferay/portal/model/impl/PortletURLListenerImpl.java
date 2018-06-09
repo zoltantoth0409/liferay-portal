@@ -23,10 +23,10 @@ import com.liferay.portal.kernel.model.PortletURLListener;
 public class PortletURLListenerImpl implements PortletURLListener {
 
 	public PortletURLListenerImpl(
-		int ordinal, String listenerClass, PortletApp portletApp) {
+		String listenerClass, int ordinal, PortletApp portletApp) {
 
-		_ordinal = ordinal;
 		_listenerClass = listenerClass;
+		_ordinal = ordinal;
 		_portletApp = portletApp;
 	}
 
