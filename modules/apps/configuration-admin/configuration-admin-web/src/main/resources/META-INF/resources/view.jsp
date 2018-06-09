@@ -56,9 +56,7 @@ ConfigurationEntryRetriever configurationEntryRetriever = (ConfigurationEntryRet
 						String viewCategoryURL = null;
 
 						if (!configurationCategoryMenuDisplay.isEmpty()) {
-							ConfigurationEntry configurationEntry =
-								configurationCategoryMenuDisplay.
-									getFirstConfigurationEntry();
+							ConfigurationEntry configurationEntry = configurationCategoryMenuDisplay.getFirstConfigurationEntry();
 
 							viewCategoryURL = configurationEntry.getEditURL(renderRequest, renderResponse);
 						}

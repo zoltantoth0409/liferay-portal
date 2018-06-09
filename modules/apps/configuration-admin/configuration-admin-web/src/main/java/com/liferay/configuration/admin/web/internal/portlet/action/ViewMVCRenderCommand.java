@@ -58,7 +58,6 @@ public class ViewMVCRenderCommand implements MVCRenderCommand {
 		renderRequest.setAttribute(
 			ConfigurationAdminWebKeys.CONFIGURATION_ENTRY_RETRIEVER,
 			_configurationEntryRetriever);
-
 		renderRequest.setAttribute(
 			ConfigurationAdminWebKeys.RESOURCE_BUNDLE_LOADER_PROVIDER,
 			_resourceBundleLoaderProvider);
