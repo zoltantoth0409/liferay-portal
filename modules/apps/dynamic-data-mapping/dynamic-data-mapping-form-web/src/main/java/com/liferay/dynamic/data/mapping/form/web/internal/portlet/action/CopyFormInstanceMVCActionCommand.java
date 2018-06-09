@@ -73,6 +73,8 @@ public class CopyFormInstanceMVCActionCommand
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
+		long groupId = ParamUtil.getLong(actionRequest, "groupId");
+
 		long formInstanceId = ParamUtil.getLong(
 			actionRequest, "formInstanceId");
 
@@ -84,13 +86,11 @@ public class CopyFormInstanceMVCActionCommand
 		Locale defaultLocale = LocaleUtil.fromLanguageId(
 			ddmStructure.getDefaultLanguageId());
 
-		long groupId = ParamUtil.getLong(actionRequest, "groupId");
+		DDMFormValues settingsDDMFormValues =
+			createFormInstanceSettingsDDMFormValues(formInstance);
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			DDMFormInstance.class.getName(), actionRequest);
-
-		DDMFormValues settingsDDMFormValues =
-			createFormInstanceSettingsDDMFormValues(formInstance);
 
 		ddmFormInstanceService.addFormInstance(
 			groupId, getNameMap(formInstance, defaultLocale),
