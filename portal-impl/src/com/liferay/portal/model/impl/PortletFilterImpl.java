@@ -26,13 +26,13 @@ import java.util.Set;
 public class PortletFilterImpl implements PortletFilter {
 
 	public PortletFilterImpl(
-		int ordinal, String filterName, String filterClass,
+		String filterName, String filterClass, int ordinal,
 		Set<String> lifecycles, Map<String, String> initParams,
 		PortletApp portletApp) {
 
-		_ordinal = ordinal;
 		_filterName = filterName;
 		_filterClass = filterClass;
+		_ordinal = ordinal;
 		_lifecycles = lifecycles;
 		_initParams = initParams;
 		_portletApp = portletApp;
@@ -42,7 +42,7 @@ public class PortletFilterImpl implements PortletFilter {
 		String filterName, String filterClass, Set<String> lifecycles,
 		Map<String, String> initParams, PortletApp portletApp) {
 
-		this(0, filterName, filterClass, lifecycles, initParams, portletApp);
+		this(filterName, filterClass, 0, lifecycles, initParams, portletApp);
 	}
 
 	@Override

@@ -2616,9 +2616,9 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 
 		for (Element filterElement : rootElement.elements("filter")) {
 			String filterName = filterElement.elementText("filter-name");
+			String filterClass = filterElement.elementText("filter-class");
 			int ordinal = GetterUtil.getInteger(
 				filterElement.elementText("ordinal"));
-			String filterClass = filterElement.elementText("filter-class");
 
 			Set<String> lifecycles = new LinkedHashSet<>();
 
@@ -2640,7 +2640,7 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 
 			portletFilters.add(
 				new PortletFilterImpl(
-					ordinal, filterName, filterClass, lifecycles, initParams,
+					filterName, filterClass, ordinal, lifecycles, initParams,
 					portletApp));
 		}
 
