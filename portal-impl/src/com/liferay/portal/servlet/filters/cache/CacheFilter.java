@@ -99,7 +99,7 @@ public class CacheFilter extends BasePortalFilter {
 
 		sb.append(request.getMethod());
 
-		// Url
+		// URL
 
 		sb.append(StringPool.POUND);
 		sb.append(request.getRequestURL());
