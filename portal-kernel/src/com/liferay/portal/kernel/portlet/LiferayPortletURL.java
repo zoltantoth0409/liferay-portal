@@ -302,7 +302,7 @@ public interface LiferayPortletURL
 	 * between maximized and normal states.
 	 *
 	 * @param windowStateRestoreCurrentView whether this portlet restores to the
-	 *        current view when toggling between maximized and normal states.
+	 *        current view when toggling between maximized and normal states
 	 */
 	public void setWindowStateRestoreCurrentView(
 		boolean windowStateRestoreCurrentView);
