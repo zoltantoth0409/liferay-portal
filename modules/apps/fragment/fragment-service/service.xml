@@ -81,11 +81,11 @@
 		<column name="html" type="String" />
 		<column name="js" type="String" />
 		<column name="previewFileEntryId" type="long" />
+		<column name="lastPublishDate" type="Date" />
 		<column name="status" type="int" />
 		<column name="statusByUserId" type="long" />
 		<column name="statusByUserName" type="String" />
 		<column name="statusDate" type="Date" />
-		<column name="lastPublishDate" type="Date" />
 
 		<!-- Order -->
 
