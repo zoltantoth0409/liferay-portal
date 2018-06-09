@@ -43,11 +43,11 @@
 			<hint name="max-length">4000</hint>
 		</field>
 		<field name="previewFileEntryId" type="long" />
+		<field name="lastPublishDate" type="Date" />
 		<field name="status" type="int" />
 		<field name="statusByUserId" type="long" />
 		<field name="statusByUserName" type="String" />
 		<field name="statusDate" type="Date" />
-		<field name="lastPublishDate" type="Date" />
 	</model>
 	<model name="com.liferay.fragment.model.FragmentEntryLink">
 		<field name="uuid" type="String" />

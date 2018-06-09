@@ -75,11 +75,11 @@ public class FragmentEntryWrapper implements FragmentEntry,
 		attributes.put("html", getHtml());
 		attributes.put("js", getJs());
 		attributes.put("previewFileEntryId", getPreviewFileEntryId());
+		attributes.put("lastPublishDate", getLastPublishDate());
 		attributes.put("status", getStatus());
 		attributes.put("statusByUserId", getStatusByUserId());
 		attributes.put("statusByUserName", getStatusByUserName());
 		attributes.put("statusDate", getStatusDate());
-		attributes.put("lastPublishDate", getLastPublishDate());
 
 		return attributes;
 	}
@@ -176,6 +176,12 @@ public class FragmentEntryWrapper implements FragmentEntry,
 			setPreviewFileEntryId(previewFileEntryId);
 		}
 
+		Date lastPublishDate = (Date)attributes.get("lastPublishDate");
+
+		if (lastPublishDate != null) {
+			setLastPublishDate(lastPublishDate);
+		}
+
 		Integer status = (Integer)attributes.get("status");
 
 		if (status != null) {
@@ -198,12 +204,6 @@ public class FragmentEntryWrapper implements FragmentEntry,
 
 		if (statusDate != null) {
 			setStatusDate(statusDate);
-		}
-
-		Date lastPublishDate = (Date)attributes.get("lastPublishDate");
-
-		if (lastPublishDate != null) {
-			setLastPublishDate(lastPublishDate);
 		}
 	}
 

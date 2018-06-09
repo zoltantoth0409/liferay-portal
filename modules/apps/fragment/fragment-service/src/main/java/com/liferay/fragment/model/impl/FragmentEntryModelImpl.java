@@ -89,11 +89,11 @@ public class FragmentEntryModelImpl extends BaseModelImpl<FragmentEntry>
 			{ "html", Types.VARCHAR },
 			{ "js", Types.VARCHAR },
 			{ "previewFileEntryId", Types.BIGINT },
+			{ "lastPublishDate", Types.TIMESTAMP },
 			{ "status", Types.INTEGER },
 			{ "statusByUserId", Types.BIGINT },
 			{ "statusByUserName", Types.VARCHAR },
-			{ "statusDate", Types.TIMESTAMP },
-			{ "lastPublishDate", Types.TIMESTAMP }
+			{ "statusDate", Types.TIMESTAMP }
 		};
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
 
@@ -113,14 +113,14 @@ public class FragmentEntryModelImpl extends BaseModelImpl<FragmentEntry>
 		TABLE_COLUMNS_MAP.put("html", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("js", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("previewFileEntryId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("lastPublishDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("status", Types.INTEGER);
 		TABLE_COLUMNS_MAP.put("statusByUserId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("statusByUserName", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("statusDate", Types.TIMESTAMP);
-		TABLE_COLUMNS_MAP.put("lastPublishDate", Types.TIMESTAMP);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table FragmentEntry (uuid_ VARCHAR(75) null,fragmentEntryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,fragmentCollectionId LONG,fragmentEntryKey VARCHAR(75) null,name VARCHAR(75) null,css STRING null,html STRING null,js STRING null,previewFileEntryId LONG,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null,lastPublishDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table FragmentEntry (uuid_ VARCHAR(75) null,fragmentEntryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,fragmentCollectionId LONG,fragmentEntryKey VARCHAR(75) null,name VARCHAR(75) null,css STRING null,html STRING null,js STRING null,previewFileEntryId LONG,lastPublishDate DATE null,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table FragmentEntry";
 	public static final String ORDER_BY_JPQL = " ORDER BY fragmentEntry.name ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY FragmentEntry.name ASC";
@@ -172,11 +172,11 @@ public class FragmentEntryModelImpl extends BaseModelImpl<FragmentEntry>
 		model.setHtml(soapModel.getHtml());
 		model.setJs(soapModel.getJs());
 		model.setPreviewFileEntryId(soapModel.getPreviewFileEntryId());
+		model.setLastPublishDate(soapModel.getLastPublishDate());
 		model.setStatus(soapModel.getStatus());
 		model.setStatusByUserId(soapModel.getStatusByUserId());
 		model.setStatusByUserName(soapModel.getStatusByUserName());
 		model.setStatusDate(soapModel.getStatusDate());
-		model.setLastPublishDate(soapModel.getLastPublishDate());
 
 		return model;
 	}
@@ -256,11 +256,11 @@ public class FragmentEntryModelImpl extends BaseModelImpl<FragmentEntry>
 		attributes.put("html", getHtml());
 		attributes.put("js", getJs());
 		attributes.put("previewFileEntryId", getPreviewFileEntryId());
+		attributes.put("lastPublishDate", getLastPublishDate());
 		attributes.put("status", getStatus());
 		attributes.put("statusByUserId", getStatusByUserId());
 		attributes.put("statusByUserName", getStatusByUserName());
 		attributes.put("statusDate", getStatusDate());
-		attributes.put("lastPublishDate", getLastPublishDate());
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -360,6 +360,12 @@ public class FragmentEntryModelImpl extends BaseModelImpl<FragmentEntry>
 			setPreviewFileEntryId(previewFileEntryId);
 		}
 
+		Date lastPublishDate = (Date)attributes.get("lastPublishDate");
+
+		if (lastPublishDate != null) {
+			setLastPublishDate(lastPublishDate);
+		}
+
 		Integer status = (Integer)attributes.get("status");
 
 		if (status != null) {
@@ -382,12 +388,6 @@ public class FragmentEntryModelImpl extends BaseModelImpl<FragmentEntry>
 
 		if (statusDate != null) {
 			setStatusDate(statusDate);
-		}
-
-		Date lastPublishDate = (Date)attributes.get("lastPublishDate");
-
-		if (lastPublishDate != null) {
-			setLastPublishDate(lastPublishDate);
 		}
 	}
 
@@ -679,6 +679,17 @@ public class FragmentEntryModelImpl extends BaseModelImpl<FragmentEntry>
 
 	@JSON
 	@Override
+	public Date getLastPublishDate() {
+		return _lastPublishDate;
+	}
+
+	@Override
+	public void setLastPublishDate(Date lastPublishDate) {
+		_lastPublishDate = lastPublishDate;
+	}
+
+	@JSON
+	@Override
 	public int getStatus() {
 		return _status;
 	}
@@ -752,17 +763,6 @@ public class FragmentEntryModelImpl extends BaseModelImpl<FragmentEntry>
 	@Override
 	public void setStatusDate(Date statusDate) {
 		_statusDate = statusDate;
-	}
-
-	@JSON
-	@Override
-	public Date getLastPublishDate() {
-		return _lastPublishDate;
-	}
-
-	@Override
-	public void setLastPublishDate(Date lastPublishDate) {
-		_lastPublishDate = lastPublishDate;
 	}
 
 	@Override
@@ -897,11 +897,11 @@ public class FragmentEntryModelImpl extends BaseModelImpl<FragmentEntry>
 		fragmentEntryImpl.setHtml(getHtml());
 		fragmentEntryImpl.setJs(getJs());
 		fragmentEntryImpl.setPreviewFileEntryId(getPreviewFileEntryId());
+		fragmentEntryImpl.setLastPublishDate(getLastPublishDate());
 		fragmentEntryImpl.setStatus(getStatus());
 		fragmentEntryImpl.setStatusByUserId(getStatusByUserId());
 		fragmentEntryImpl.setStatusByUserName(getStatusByUserName());
 		fragmentEntryImpl.setStatusDate(getStatusDate());
-		fragmentEntryImpl.setLastPublishDate(getLastPublishDate());
 
 		fragmentEntryImpl.resetOriginalValues();
 
@@ -1079,6 +1079,15 @@ public class FragmentEntryModelImpl extends BaseModelImpl<FragmentEntry>
 
 		fragmentEntryCacheModel.previewFileEntryId = getPreviewFileEntryId();
 
+		Date lastPublishDate = getLastPublishDate();
+
+		if (lastPublishDate != null) {
+			fragmentEntryCacheModel.lastPublishDate = lastPublishDate.getTime();
+		}
+		else {
+			fragmentEntryCacheModel.lastPublishDate = Long.MIN_VALUE;
+		}
+
 		fragmentEntryCacheModel.status = getStatus();
 
 		fragmentEntryCacheModel.statusByUserId = getStatusByUserId();
@@ -1098,15 +1107,6 @@ public class FragmentEntryModelImpl extends BaseModelImpl<FragmentEntry>
 		}
 		else {
 			fragmentEntryCacheModel.statusDate = Long.MIN_VALUE;
-		}
-
-		Date lastPublishDate = getLastPublishDate();
-
-		if (lastPublishDate != null) {
-			fragmentEntryCacheModel.lastPublishDate = lastPublishDate.getTime();
-		}
-		else {
-			fragmentEntryCacheModel.lastPublishDate = Long.MIN_VALUE;
 		}
 
 		return fragmentEntryCacheModel;
@@ -1146,6 +1146,8 @@ public class FragmentEntryModelImpl extends BaseModelImpl<FragmentEntry>
 		sb.append(getJs());
 		sb.append(", previewFileEntryId=");
 		sb.append(getPreviewFileEntryId());
+		sb.append(", lastPublishDate=");
+		sb.append(getLastPublishDate());
 		sb.append(", status=");
 		sb.append(getStatus());
 		sb.append(", statusByUserId=");
@@ -1154,8 +1156,6 @@ public class FragmentEntryModelImpl extends BaseModelImpl<FragmentEntry>
 		sb.append(getStatusByUserName());
 		sb.append(", statusDate=");
 		sb.append(getStatusDate());
-		sb.append(", lastPublishDate=");
-		sb.append(getLastPublishDate());
 		sb.append("}");
 
 		return sb.toString();
@@ -1230,6 +1230,10 @@ public class FragmentEntryModelImpl extends BaseModelImpl<FragmentEntry>
 		sb.append(getPreviewFileEntryId());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>lastPublishDate</column-name><column-value><![CDATA[");
+		sb.append(getLastPublishDate());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>status</column-name><column-value><![CDATA[");
 		sb.append(getStatus());
 		sb.append("]]></column-value></column>");
@@ -1244,10 +1248,6 @@ public class FragmentEntryModelImpl extends BaseModelImpl<FragmentEntry>
 		sb.append(
 			"<column><column-name>statusDate</column-name><column-value><![CDATA[");
 		sb.append(getStatusDate());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>lastPublishDate</column-name><column-value><![CDATA[");
-		sb.append(getLastPublishDate());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -1284,13 +1284,13 @@ public class FragmentEntryModelImpl extends BaseModelImpl<FragmentEntry>
 	private String _html;
 	private String _js;
 	private long _previewFileEntryId;
+	private Date _lastPublishDate;
 	private int _status;
 	private int _originalStatus;
 	private boolean _setOriginalStatus;
 	private long _statusByUserId;
 	private String _statusByUserName;
 	private Date _statusDate;
-	private Date _lastPublishDate;
 	private long _columnBitmask;
 	private FragmentEntry _escapedModel;
 }

@@ -314,6 +314,22 @@ public interface FragmentEntryModel extends BaseModel<FragmentEntry>,
 	public void setPreviewFileEntryId(long previewFileEntryId);
 
 	/**
+	 * Returns the last publish date of this fragment entry.
+	 *
+	 * @return the last publish date of this fragment entry
+	 */
+	@Override
+	public Date getLastPublishDate();
+
+	/**
+	 * Sets the last publish date of this fragment entry.
+	 *
+	 * @param lastPublishDate the last publish date of this fragment entry
+	 */
+	@Override
+	public void setLastPublishDate(Date lastPublishDate);
+
+	/**
 	 * Returns the status of this fragment entry.
 	 *
 	 * @return the status of this fragment entry
@@ -393,22 +409,6 @@ public interface FragmentEntryModel extends BaseModel<FragmentEntry>,
 	 */
 	@Override
 	public void setStatusDate(Date statusDate);
-
-	/**
-	 * Returns the last publish date of this fragment entry.
-	 *
-	 * @return the last publish date of this fragment entry
-	 */
-	@Override
-	public Date getLastPublishDate();
-
-	/**
-	 * Sets the last publish date of this fragment entry.
-	 *
-	 * @param lastPublishDate the last publish date of this fragment entry
-	 */
-	@Override
-	public void setLastPublishDate(Date lastPublishDate);
 
 	/**
 	 * Returns <code>true</code> if this fragment entry is approved.
