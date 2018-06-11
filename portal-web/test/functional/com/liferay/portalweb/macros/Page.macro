@@ -265,22 +265,6 @@
 		</execute>
 	</command>
 
-	<command name="addPageToSiteTemplates">
-		<execute macro="SiteTemplatesNavigator#gotoManageSiteTemplates">
-			<var name="siteTemplateName" value="${siteTemplateName}" />
-		</execute>
-
-		<execute macro="SitePageNavigator#gotoAddPage">
-			<var name="sitePagePrivacy" value="Private" />
-		</execute>
-
-		<execute macro="Page#addPageTitle">
-			<var name="pageName" value="${pageName}" />
-		</execute>
-
-		<execute macro="Page#saveAddPage" />
-	</command>
-
 	<command name="addPageTranslations">
 		<execute macro="SitePageNavigator#gotoEditPage">
 			<var name="page" value="${page}" />
