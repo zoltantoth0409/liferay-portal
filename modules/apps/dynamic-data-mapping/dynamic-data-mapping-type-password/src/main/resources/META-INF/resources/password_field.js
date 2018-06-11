@@ -3,9 +3,7 @@ AUI.add(
 	function(A) {
 		new A.TooltipDelegate(
 			{
-				cssClass: 'clay-tooltip',
-				opacity: 1,
-				position: 'right',
+				position: 'left',
 				trigger: '.liferay-ddm-form-field-password .trigger-tooltip',
 				triggerHideEvent: ['blur', 'mouseleave'],
 				triggerShowEvent: ['focus', 'mouseover'],
