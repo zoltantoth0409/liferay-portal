@@ -250,12 +250,8 @@ public class OAuth2ApplicationLocalServiceImpl
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, "icons",
 			serviceContext);
 
-		String fileName = PortletFileRepositoryUtil.getUniqueFileName(
-			group.getGroupId(), folder.getFolderId(),
-			oAuth2Application.getClientId());
-
-		int maxHeight = 160;
-		int maxWidth = 160;
+		UnsyncByteArrayOutputStream unsyncByteArrayOutputStream =
+			new UnsyncByteArrayOutputStream();
 
 		try {
 			ImageBag imageBag = ImageToolUtil.read(inputStream);
@@ -266,38 +262,38 @@ public class OAuth2ApplicationLocalServiceImpl
 				throw new ImageTypeException("Unable to read icon");
 			}
 
-			renderedImage = ImageToolUtil.scale(
-				renderedImage, maxHeight, maxWidth);
-
-			UnsyncByteArrayOutputStream unsyncByteArrayOutputStream =
-				new UnsyncByteArrayOutputStream();
+			renderedImage = ImageToolUtil.scale(renderedImage, 160, 160);
 
 			ImageToolUtil.write(
 				renderedImage, imageBag.getType(), unsyncByteArrayOutputStream);
-
-			FileEntry fileEntry = PortletFileRepositoryUtil.addPortletFileEntry(
-				group.getGroupId(), oAuth2Application.getUserId(),
-				OAuth2Application.class.getName(),
-				oAuth2Application.getOAuth2ApplicationId(),
-				OAuth2ProviderConstants.SERVICE_NAME, folder.getFolderId(),
-				new UnsyncByteArrayInputStream(
-					unsyncByteArrayOutputStream.toByteArray()),
-				fileName, null, false);
-
-			oAuth2Application.setIconFileEntryId(fileEntry.getFileEntryId());
-
-			oAuth2Application = updateOAuth2Application(oAuth2Application);
-
-			if (oldIconFileEntryId > 0) {
-				PortletFileRepositoryUtil.deletePortletFileEntry(
-					oldIconFileEntryId);
-			}
-
-			return oAuth2Application;
 		}
 		catch (IOException ioe) {
 			throw new PortalException(ioe);
 		}
+
+		String fileName = PortletFileRepositoryUtil.getUniqueFileName(
+			group.getGroupId(), folder.getFolderId(),
+			oAuth2Application.getClientId());
+
+		FileEntry fileEntry = PortletFileRepositoryUtil.addPortletFileEntry(
+			group.getGroupId(), oAuth2Application.getUserId(),
+			OAuth2Application.class.getName(),
+			oAuth2Application.getOAuth2ApplicationId(),
+			OAuth2ProviderConstants.SERVICE_NAME, folder.getFolderId(),
+			new UnsyncByteArrayInputStream(
+				unsyncByteArrayOutputStream.toByteArray()),
+			fileName, null, false);
+
+		oAuth2Application.setIconFileEntryId(fileEntry.getFileEntryId());
+
+		oAuth2Application = updateOAuth2Application(oAuth2Application);
+
+		if (oldIconFileEntryId > 0) {
+			PortletFileRepositoryUtil.deletePortletFileEntry(
+				oldIconFileEntryId);
+		}
+
+		return oAuth2Application;
 	}
 
 	@Override
