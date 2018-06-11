@@ -74,7 +74,7 @@ public class ViewConnectedApplicationsMVCRenderCommand
 					QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 		}
 		catch (PortalException pe) {
-			_log.error("Unable to load user OAuth2 authorizations", pe);
+			_log.error("Unable to load user OAuth 2 authorizations", pe);
 		}
 
 		long oAuth2AuthorizationId = ParamUtil.getLong(

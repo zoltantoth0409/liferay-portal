@@ -19,16 +19,15 @@
 <%
 String redirect = ParamUtil.getString(request, "redirect");
 
+AssignableScopes assignableScopes = oAuth2ConnectedApplicationsPortletDisplayContext.getAssignableScopes();
+OAuth2Authorization oAuth2Authorization = oAuth2ConnectedApplicationsPortletDisplayContext.getOAuth2Authorization();
+
 portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(redirect);
 
 OAuth2Application oAuth2Application = oAuth2ConnectedApplicationsPortletDisplayContext.getOAuth2Application();
 
 renderResponse.setTitle(oAuth2Application.getName());
-
-AssignableScopes assignableScopes = oAuth2ConnectedApplicationsPortletDisplayContext.getAssignableScopes();
-
-OAuth2Authorization oAuth2Authorization = oAuth2ConnectedApplicationsPortletDisplayContext.getOAuth2Authorization();
 %>
 
 <div class="container-fluid-1280 view-application">
