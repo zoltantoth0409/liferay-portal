@@ -64,11 +64,11 @@ public class ScopeMapperNarrowDownClientTest extends BaseClientTestCase {
 		Assert.assertEquals(
 			"everything.readonly", invocationBuilder.get(String.class));
 
-		String errorString = getToken(
+		String error = getToken(
 			"oauthTestApplication", null,
 			getClientCredentials("everything.readonly"), this::parseError);
 
-		Assert.assertEquals("invalid_grant", errorString);
+		Assert.assertEquals("invalid_grant", error);
 
 		String scopeString = getToken(
 			"oauthTestApplicationNarrowed", null,
