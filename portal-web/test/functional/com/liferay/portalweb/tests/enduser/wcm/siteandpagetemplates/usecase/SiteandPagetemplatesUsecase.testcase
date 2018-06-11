@@ -166,7 +166,7 @@
 			<var name="portlet" value="Site Templates" />
 		</execute>
 
-		<execute macro="Page#addPageToSiteTemplates">
+		<execute macro="SiteTemplates#addSitePageViaSiteTemplateCP">
 			<var name="pageName" value="Page1 Name" />
 			<var name="siteTemplateName" value="Site Template Name" />
 		</execute>
@@ -188,13 +188,15 @@
 			<var name="portletName" value="Hello World" />
 		</execute>
 
+		<execute function="Close#closeWindow" locator1="title=home - Site Template Name" />
+
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Sites" />
 			<var name="panel" value="Control Panel" />
 			<var name="portlet" value="Site Templates" />
 		</execute>
 
-		<execute macro="Page#addPageToSiteTemplates">
+		<execute macro="SiteTemplates#addSitePageViaSiteTemplateCP">
 			<var name="pageName" value="Page2 Name" />
 			<var name="siteTemplateName" value="Site Template Name" />
 		</execute>
