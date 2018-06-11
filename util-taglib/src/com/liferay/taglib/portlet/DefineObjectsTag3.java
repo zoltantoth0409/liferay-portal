@@ -75,10 +75,9 @@ public class DefineObjectsTag3 extends DefineObjectsTag {
 			pageContext.setAttribute(
 				"contextPath", portletRequest.getContextPath());
 			pageContext.setAttribute("cookies", portletRequest.getCookies());
-
 			pageContext.setAttribute("locale", portletRequest.getLocale());
 
-			ArrayList<Locale> locales = Collections.list(
+			List<Locale> locales = Collections.list(
 				portletRequest.getLocales());
 
 			pageContext.setAttribute(
