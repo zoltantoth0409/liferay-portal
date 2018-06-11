@@ -196,14 +196,13 @@ public class LayoutPageTemplateEntryLocalServiceImpl
 
 		layoutPageTemplateEntryPersistence.remove(layoutPageTemplateEntry);
 
-		// Fragment entry instance links
+		// Resources
 
-		_fragmentEntryLinkLocalService.
-			deleteLayoutPageTemplateEntryFragmentEntryLinks(
-				layoutPageTemplateEntry.getGroupId(),
-				classNameLocalService.getClassNameId(
-					LayoutPageTemplateEntry.class.getName()),
-				layoutPageTemplateEntry.getLayoutPageTemplateEntryId());
+		resourceLocalService.deleteResource(
+			layoutPageTemplateEntry.getCompanyId(),
+			LayoutPageTemplateEntry.class.getName(),
+			ResourceConstants.SCOPE_INDIVIDUAL,
+			layoutPageTemplateEntry.getLayoutPageTemplateEntryId());
 
 		// Dynamic data mapping structure link
 
@@ -222,13 +221,14 @@ public class LayoutPageTemplateEntryLocalServiceImpl
 				ddmStructureLink);
 		}
 
-		// Resources
+		// Fragment entry instance links
 
-		resourceLocalService.deleteResource(
-			layoutPageTemplateEntry.getCompanyId(),
-			LayoutPageTemplateEntry.class.getName(),
-			ResourceConstants.SCOPE_INDIVIDUAL,
-			layoutPageTemplateEntry.getLayoutPageTemplateEntryId());
+		_fragmentEntryLinkLocalService.
+			deleteLayoutPageTemplateEntryFragmentEntryLinks(
+				layoutPageTemplateEntry.getGroupId(),
+				classNameLocalService.getClassNameId(
+					LayoutPageTemplateEntry.class.getName()),
+				layoutPageTemplateEntry.getLayoutPageTemplateEntryId());
 
 		return layoutPageTemplateEntry;
 	}
@@ -431,6 +431,8 @@ public class LayoutPageTemplateEntryLocalServiceImpl
 	public LayoutPageTemplateEntry updateLayoutPageTemplateEntry(
 			long layoutPageTemplateEntryId, long classNameId, long classTypeId)
 		throws PortalException {
+
+		// Layout page template entry
 
 		LayoutPageTemplateEntry layoutPageTemplateEntry =
 			layoutPageTemplateEntryPersistence.findByPrimaryKey(
