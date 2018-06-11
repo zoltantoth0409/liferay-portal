@@ -55,7 +55,7 @@ public abstract class BaseScopeCheckerContainerRequestFilter
 		AuthVerifierResult authVerifierResult =
 			accessControlContext.getAuthVerifierResult();
 
-		if (Validator.isNotNull(authVerifierResult) &&
+		if ((authVerifierResult != null) &&
 			AuthVerifierResult.State.SUCCESS.equals(
 				authVerifierResult.getState())) {
 
