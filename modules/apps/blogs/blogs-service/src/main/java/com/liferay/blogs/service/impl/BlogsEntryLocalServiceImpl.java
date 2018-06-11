@@ -639,6 +639,7 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 	public BlogsEntry deleteEntry(BlogsEntry entry) throws PortalException {
 
 		// Order is important. See LPS-81826.
+
 		// Ratings
 
 		ratingsStatsLocalService.deleteStats(
