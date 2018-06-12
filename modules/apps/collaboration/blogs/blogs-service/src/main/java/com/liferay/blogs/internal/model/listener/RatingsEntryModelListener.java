@@ -14,10 +14,10 @@
 
 package com.liferay.blogs.internal.model.listener;
 
-import com.liferay.blogs.model.BlogsEntry;
-import com.liferay.blogs.model.BlogsStatsUser;
-import com.liferay.blogs.service.BlogsEntryLocalService;
-import com.liferay.blogs.service.BlogsStatsUserLocalService;
+import com.liferay.blogs.kernel.model.BlogsEntry;
+import com.liferay.blogs.kernel.model.BlogsStatsUser;
+import com.liferay.blogs.kernel.service.BlogsEntryLocalService;
+import com.liferay.blogs.kernel.service.BlogsStatsUserLocalService;
 import com.liferay.portal.kernel.exception.ModelListenerException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.BaseModelListener;
@@ -46,6 +46,20 @@ public class RatingsEntryModelListener extends BaseModelListener<RatingsEntry> {
 		throws ModelListenerException {
 
 		_updateBlogsStatsUser(ratingsEntry);
+	}
+
+	@Reference(unbind = "-")
+	protected void setBlogsEntrySetLocalService(
+		BlogsEntryLocalService blogsEntryLocalService) {
+
+		_blogsEntryLocalService = blogsEntryLocalService;
+	}
+
+	@Reference(unbind = "-")
+	protected void setBlogsStatsUserLocalService(
+		BlogsStatsUserLocalService blogsStatsUserLocalService) {
+
+		_blogsStatsUserLocalService = blogsStatsUserLocalService;
 	}
 
 	private void _updateBlogsStatsUser(RatingsEntry ratingsEntry)
@@ -91,10 +105,7 @@ public class RatingsEntryModelListener extends BaseModelListener<RatingsEntry> {
 		}
 	}
 
-	@Reference
 	private BlogsEntryLocalService _blogsEntryLocalService;
-
-	@Reference
 	private BlogsStatsUserLocalService _blogsStatsUserLocalService;
 
 }
