@@ -198,6 +198,7 @@ public abstract class BaseUpgradePortletId extends UpgradeProcess {
 		String sql1 =
 			"select groupId, typeSettings from Group_ where " +
 				getTypeSettingsCriteria(oldRootPortletId);
+
 		String sql2 = "update Group_ set typeSettings = ? where groupId = ?";
 
 		try (PreparedStatement ps1 = connection.prepareStatement(sql1);
