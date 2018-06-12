@@ -310,7 +310,7 @@
 
 		<execute macro="WikiPage#renameWikiPageCP">
 			<var name="wikiPageTitle" value="Child Page Title" />
-			<var name="wikiPageTitleRename" value="Child Page Title Rename" />
+			<var name="wikiPageTitleRename" value="Child Page Rename Title" />
 		</execute>
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -337,7 +337,7 @@
 
 		<execute macro="WikiPage#renameWikiPageCP">
 			<var name="wikiPageTitle" value="Child Page Title" />
-			<var name="wikiPageTitleRename" value="Child Page Title Rename 1" />
+			<var name="wikiPageTitleRename" value="Child Page Rename 1 Title" />
 		</execute>
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -360,7 +360,7 @@
 			<var name="wikiNodeName" value="Main" />
 		</execute>
 
-		<for list="Child Page Title,Child Page Title Rename,Child Page Title Rename 1" param="wikiPageTitle">
+		<for list="Child Page Title,Child Page Rename Title,Child Page Rename 1 Title" param="wikiPageTitle">
 			<execute macro="LexiconEntry#viewEntryName">
 				<var name="rowEntry" value="${wikiPageTitle}" />
 			</execute>
