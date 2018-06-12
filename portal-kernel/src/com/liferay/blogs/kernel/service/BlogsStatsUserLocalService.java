@@ -283,4 +283,8 @@ public interface BlogsStatsUserLocalService extends BaseLocalService,
 
 	public void updateStatsUser(long groupId, long userId, Date displayDate)
 		throws PortalException;
+
+	public BlogsStatsUser updateStatsUser(long groupId, long userId,
+		int ratingsTotalEntries, double ratingsTotalScore,
+		double ratingsAverageScore) throws PortalException;
 }

@@ -337,6 +337,15 @@ public class BlogsStatsUserLocalServiceUtil {
 		getService().updateStatsUser(groupId, userId, displayDate);
 	}
 
+	public static com.liferay.blogs.kernel.model.BlogsStatsUser updateStatsUser(
+		long groupId, long userId, int ratingsTotalEntries,
+		double ratingsTotalScore, double ratingsAverageScore)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .updateStatsUser(groupId, userId, ratingsTotalEntries,
+			ratingsTotalScore, ratingsAverageScore);
+	}
+
 	public static BlogsStatsUserLocalService getService() {
 		if (_service == null) {
 			_service = (BlogsStatsUserLocalService)PortalBeanLocatorUtil.locate(BlogsStatsUserLocalService.class.getName());
