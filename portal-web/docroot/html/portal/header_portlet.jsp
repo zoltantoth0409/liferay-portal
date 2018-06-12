@@ -225,6 +225,7 @@ if (portlet.isActive() && portlet.isReady() && supportsMimeType && (invokerPortl
 		if (!PortalUtil.isSkipPortletContentProcesssing(group, request, layoutTypePortlet, portletDisplay, portletDisplay.getPortletName())) {
 			if (invokerPortlet.isHeaderPortlet()) {
 				invokerPortlet.renderHeaders(liferayHeaderRequest, liferayHeaderResponse);
+
 				liferayHeaderResponse.writeToHead();
 			}
 		}

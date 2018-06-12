@@ -307,8 +307,10 @@ public class EditMessageMVCActionCommand extends BaseMVCActionCommand {
 
 		boolean preview = ParamUtil.getBoolean(actionRequest, "preview");
 
-		PortletURL portletURL =
-			((LiferayActionResponse)actionResponse).createRenderURL();
+		LiferayActionResponse liferayActionResponse =
+			(LiferayActionResponse)actionResponse;
+
+		PortletURL portletURL = liferayActionResponse.createRenderURL();
 
 		portletURL.setParameter(
 			"mvcRenderCommandName", "/message_boards/edit_message");

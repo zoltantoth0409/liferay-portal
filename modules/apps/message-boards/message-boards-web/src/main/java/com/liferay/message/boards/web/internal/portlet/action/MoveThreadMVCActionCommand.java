@@ -122,8 +122,10 @@ public class MoveThreadMVCActionCommand extends BaseMVCActionCommand {
 				serviceContext);
 		}
 
-		PortletURL portletURL =
-			((LiferayActionResponse)actionResponse).createRenderURL();
+		LiferayActionResponse liferayActionResponse =
+			(LiferayActionResponse)actionResponse;
+
+		PortletURL portletURL = liferayActionResponse.createRenderURL();
 
 		portletURL.setParameter(
 			"mvcRenderCommandName", "/message_boards/view_message");

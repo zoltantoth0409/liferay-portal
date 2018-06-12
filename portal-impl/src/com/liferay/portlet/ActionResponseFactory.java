@@ -41,7 +41,10 @@ public class ActionResponseFactory {
 		throws PortletException {
 
 		while (actionRequest instanceof ActionRequestWrapper) {
-			actionRequest = ((ActionRequestWrapper)actionRequest).getRequest();
+			ActionRequestWrapper actionRequestWrapper =
+				(ActionRequestWrapper)actionRequest;
+
+			actionRequest = actionRequestWrapper.getRequest();
 		}
 
 		ActionResponseImpl actionResponseImpl = new ActionResponseImpl();

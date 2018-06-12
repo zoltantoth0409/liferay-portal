@@ -40,7 +40,10 @@ public class RenderResponseFactory {
 		RenderRequest renderRequest, HttpServletResponse response) {
 
 		while (renderRequest instanceof RenderRequestWrapper) {
-			renderRequest = ((RenderRequestWrapper)renderRequest).getRequest();
+			RenderRequestWrapper renderRequestWrapper =
+				(RenderRequestWrapper)renderRequest;
+
+			renderRequest = renderRequestWrapper.getRequest();
 		}
 
 		RenderResponseImpl renderResponseImpl = new RenderResponseImpl();

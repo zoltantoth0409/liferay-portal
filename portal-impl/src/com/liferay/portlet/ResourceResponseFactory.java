@@ -36,8 +36,10 @@ public class ResourceResponseFactory {
 		ResourceRequest resourceRequest, HttpServletResponse response) {
 
 		while (resourceRequest instanceof ResourceRequestWrapper) {
-			resourceRequest =
-				((ResourceRequestWrapper)resourceRequest).getRequest();
+			ResourceRequestWrapper resourceRequestWrapper =
+				(ResourceRequestWrapper)resourceRequest;
+
+			resourceRequest = resourceRequestWrapper.getRequest();
 		}
 
 		ResourceResponseImpl resourceResponseImpl = new ResourceResponseImpl();

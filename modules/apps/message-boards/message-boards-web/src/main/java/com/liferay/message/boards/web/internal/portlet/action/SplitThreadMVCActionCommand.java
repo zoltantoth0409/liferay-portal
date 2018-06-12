@@ -156,8 +156,10 @@ public class SplitThreadMVCActionCommand extends BaseMVCActionCommand {
 				message.isAllowPingbacks(), serviceContext);
 		}
 
-		PortletURL portletURL =
-			((LiferayActionResponse)actionResponse).createRenderURL();
+		LiferayActionResponse liferayActionResponse =
+			(LiferayActionResponse)actionResponse;
+
+		PortletURL portletURL = liferayActionResponse.createRenderURL();
 
 		portletURL.setParameter(
 			"mvcRenderCommandName", "/message_boards/view_message");
