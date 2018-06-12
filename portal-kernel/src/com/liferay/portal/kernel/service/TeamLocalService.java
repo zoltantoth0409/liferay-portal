@@ -103,8 +103,6 @@ public interface TeamLocalService extends BaseLocalService,
 
 	public void clearUserTeams(long userId);
 
-	public int countByGroupId(long groupId);
-
 	/**
 	* Creates a new team with the primary key. Does not add the team to the database.
 	*
@@ -243,6 +241,9 @@ public interface TeamLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Team> getGroupTeams(long groupId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getGroupTeamsCount(long groupId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();

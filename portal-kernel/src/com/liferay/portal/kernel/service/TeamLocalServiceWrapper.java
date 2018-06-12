@@ -117,11 +117,6 @@ public class TeamLocalServiceWrapper implements TeamLocalService,
 		_teamLocalService.clearUserTeams(userId);
 	}
 
-	@Override
-	public int countByGroupId(long groupId) {
-		return _teamLocalService.countByGroupId(groupId);
-	}
-
 	/**
 	* Creates a new team with the primary key. Does not add the team to the database.
 	*
@@ -343,6 +338,11 @@ public class TeamLocalServiceWrapper implements TeamLocalService,
 	public java.util.List<com.liferay.portal.kernel.model.Team> getGroupTeams(
 		long groupId) {
 		return _teamLocalService.getGroupTeams(groupId);
+	}
+
+	@Override
+	public int getGroupTeamsCount(long groupId) {
+		return _teamLocalService.getGroupTeamsCount(groupId);
 	}
 
 	@Override

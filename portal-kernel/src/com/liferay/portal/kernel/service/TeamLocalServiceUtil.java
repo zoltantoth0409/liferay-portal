@@ -115,10 +115,6 @@ public class TeamLocalServiceUtil {
 		getService().clearUserTeams(userId);
 	}
 
-	public static int countByGroupId(long groupId) {
-		return getService().countByGroupId(groupId);
-	}
-
 	/**
 	* Creates a new team with the primary key. Does not add the team to the database.
 	*
@@ -315,6 +311,10 @@ public class TeamLocalServiceUtil {
 	public static java.util.List<com.liferay.portal.kernel.model.Team> getGroupTeams(
 		long groupId) {
 		return getService().getGroupTeams(groupId);
+	}
+
+	public static int getGroupTeamsCount(long groupId) {
+		return getService().getGroupTeamsCount(groupId);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
