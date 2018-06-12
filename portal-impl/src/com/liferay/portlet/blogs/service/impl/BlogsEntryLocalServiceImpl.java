@@ -537,6 +537,13 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public BlogsEntry deleteEntry(BlogsEntry entry) throws PortalException {
 
+		// Order is important. See LPS-81826.
+
+		// Ratings
+
+		ratingsStatsLocalService.deleteStats(
+			BlogsEntry.class.getName(), entry.getEntryId());
+
 		// Entry
 
 		blogsEntryPersistence.remove(entry);
@@ -590,11 +597,6 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 		// Expando
 
 		expandoRowLocalService.deleteRows(entry.getEntryId());
-
-		// Ratings
-
-		ratingsStatsLocalService.deleteStats(
-			BlogsEntry.class.getName(), entry.getEntryId());
 
 		// Trash
 
