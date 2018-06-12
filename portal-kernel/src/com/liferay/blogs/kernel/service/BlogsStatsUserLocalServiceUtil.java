@@ -197,6 +197,11 @@ public class BlogsStatsUserLocalServiceUtil {
 		return getService().fetchBlogsStatsUser(statsUserId);
 	}
 
+	public static com.liferay.blogs.kernel.model.BlogsStatsUser fetchStatsUser(
+		long groupId, long userId) {
+		return getService().fetchStatsUser(groupId, userId);
+	}
+
 	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
 		return getService().getActionableDynamicQuery();
 	}
