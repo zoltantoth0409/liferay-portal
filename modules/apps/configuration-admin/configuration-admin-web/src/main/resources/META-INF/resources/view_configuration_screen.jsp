@@ -35,9 +35,9 @@ ConfigurationCategoryDisplay configurationCategoryDisplay = configurationCategor
 
 String categoryDisplayName = HtmlUtil.escape(configurationCategoryDisplay.getCategoryLabel(locale));
 
-String viewCategoryHref = ConfigurationCategoryUtil.getHref(configurationCategoryMenuDisplay, liferayPortletResponse, renderRequest, renderResponse);
+String viewCategoryHREF = ConfigurationCategoryUtil.getHREF(configurationCategoryMenuDisplay, liferayPortletResponse, renderRequest, renderResponse);
 
-PortalUtil.addPortletBreadcrumbEntry(request, categoryDisplayName, viewCategoryHref);
+PortalUtil.addPortletBreadcrumbEntry(request, categoryDisplayName, viewCategoryHREF);
 
 portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(portletURL.toString());

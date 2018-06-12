@@ -27,7 +27,7 @@ import javax.portlet.RenderResponse;
  */
 public class ConfigurationCategoryUtil {
 
-	public static String getHref(
+	public static String getHREF(
 		ConfigurationCategoryMenuDisplay configurationCategoryMenuDisplay,
 		LiferayPortletResponse liferayPortletResponse,
 		RenderRequest renderRequest, RenderResponse renderResponse) {
