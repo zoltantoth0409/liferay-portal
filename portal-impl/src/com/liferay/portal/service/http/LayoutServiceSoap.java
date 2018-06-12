@@ -323,7 +323,7 @@ public class LayoutServiceSoap {
 	}
 
 	/**
-	* Returns primary key of the matching default layout for the group
+	* Returns primary key of the matching default layout for the group.
 	*
 	* @param groupId the primary key of the group
 	* @param privateLayout whether the layout is private to the group
