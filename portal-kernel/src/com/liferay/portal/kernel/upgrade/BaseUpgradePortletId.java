@@ -195,17 +195,12 @@ public abstract class BaseUpgradePortletId extends UpgradeProcess {
 	protected void updateGroup(String oldRootPortletId, String newRootPortletId)
 		throws Exception {
 
-		String sql1 =
+		String sql =
 			"select groupId, typeSettings from Group_ where " +
 				getTypeSettingsCriteria(oldRootPortletId);
 
-		String sql2 = "update Group_ set typeSettings = ? where groupId = ?";
-
-		try (PreparedStatement ps1 = connection.prepareStatement(sql1);
-			PreparedStatement ps2 =
-				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection, sql2);
-			ResultSet rs = ps1.executeQuery()) {
+		try (PreparedStatement ps = connection.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery()) {
 
 			while (rs.next()) {
 				long groupId = rs.getLong("groupId");
@@ -214,14 +209,8 @@ public abstract class BaseUpgradePortletId extends UpgradeProcess {
 				String newTypeSettings = getNewTypeSettings(
 					typeSettings, oldRootPortletId, newRootPortletId);
 
-				ps2.setString(1, newTypeSettings);
-
-				ps2.setLong(2, groupId);
-
-				ps2.addBatch();
+				updateGroup(groupId, newTypeSettings);
 			}
-
-			ps2.executeBatch();
 		}
 	}
 
@@ -315,19 +304,12 @@ public abstract class BaseUpgradePortletId extends UpgradeProcess {
 			boolean exactMatch)
 		throws Exception {
 
-		String sql1 =
+		String sql =
 			"select layoutRevisionId, typeSettings from LayoutRevision where " +
 				getTypeSettingsCriteria(oldRootPortletId);
 
-		String sql2 =
-			"update LayoutRevision set typeSettings = ? where " +
-				"layoutRevisionId = ?";
-
-		try (PreparedStatement ps1 = connection.prepareStatement(sql1);
-			PreparedStatement ps2 =
-				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection, sql2);
-			ResultSet rs = ps1.executeQuery()) {
+		try (PreparedStatement ps = connection.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery()) {
 
 			while (rs.next()) {
 				long layoutRevisionId = rs.getLong("layoutRevisionId");
@@ -337,14 +319,8 @@ public abstract class BaseUpgradePortletId extends UpgradeProcess {
 					typeSettings, oldRootPortletId, newRootPortletId,
 					exactMatch);
 
-				ps2.setString(1, newTypeSettings);
-
-				ps2.setLong(2, layoutRevisionId);
-
-				ps2.addBatch();
+				updateLayoutRevision(layoutRevisionId, newTypeSettings);
 			}
-
-			ps2.executeBatch();
 		}
 	}
 
@@ -353,17 +329,12 @@ public abstract class BaseUpgradePortletId extends UpgradeProcess {
 			boolean exactMatch)
 		throws Exception {
 
-		String sql1 =
+		String sql =
 			"select plid, typeSettings from Layout where " +
 				getTypeSettingsCriteria(oldRootPortletId);
 
-		String sql2 = "update Layout set typeSettings = ? where plid = ?";
-
-		try (PreparedStatement ps1 = connection.prepareStatement(sql1);
-			PreparedStatement ps2 =
-				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
-					connection, sql2);
-			ResultSet rs = ps1.executeQuery()) {
+		try (PreparedStatement ps = connection.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery()) {
 
 			while (rs.next()) {
 				long plid = rs.getLong("plid");
@@ -373,14 +344,8 @@ public abstract class BaseUpgradePortletId extends UpgradeProcess {
 					typeSettings, oldRootPortletId, newRootPortletId,
 					exactMatch);
 
-				ps2.setString(1, newTypeSettings);
-
-				ps2.setLong(2, plid);
-
-				ps2.addBatch();
+				updateLayout(plid, newTypeSettings);
 			}
-
-			ps2.executeBatch();
 		}
 	}
 
