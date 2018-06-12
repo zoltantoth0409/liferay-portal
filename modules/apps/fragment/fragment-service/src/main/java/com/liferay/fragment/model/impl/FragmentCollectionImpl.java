@@ -41,7 +41,7 @@ public class FragmentCollectionImpl extends FragmentCollectionBaseImpl {
 
 		zipWriter.addEntry(
 			path + StringPool.SLASH +
-				FragmentExportImportConstants.COLLECTION_CONFIG_FILE_NAME,
+				FragmentExportImportConstants.FILE_NAME_COLLECTION_CONFIG,
 			jsonObject.toString());
 
 		List<FragmentEntry> fragmentEntries =

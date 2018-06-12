@@ -361,7 +361,7 @@ public class ImportUtil {
 	private boolean _isFragmentCollection(String fileName) {
 		if (Objects.equals(
 				_getFileName(fileName),
-				FragmentExportImportConstants.COLLECTION_CONFIG_FILE_NAME)) {
+				FragmentExportImportConstants.FILE_NAME_COLLECTION_CONFIG)) {
 
 			return true;
 		}
@@ -372,7 +372,7 @@ public class ImportUtil {
 	private boolean _isFragmentEntry(String fileName) {
 		if (Objects.equals(
 				_getFileName(fileName),
-				FragmentExportImportConstants.FRAGMENT_CONFIG_FILE_NAME)) {
+				FragmentExportImportConstants.FILE_NAME_FRAGMENT_CONFIG)) {
 
 			return true;
 		}
