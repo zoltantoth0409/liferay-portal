@@ -93,11 +93,6 @@ public class TeamLocalServiceImpl extends TeamLocalServiceBaseImpl {
 	}
 
 	@Override
-	public int countByGroupId(long groupId) {
-		return teamPersistence.countByGroupId(groupId);
-	}
-
-	@Override
 	public Team deleteTeam(long teamId) throws PortalException {
 		Team team = teamPersistence.findByPrimaryKey(teamId);
 
@@ -143,6 +138,11 @@ public class TeamLocalServiceImpl extends TeamLocalServiceBaseImpl {
 	@Override
 	public List<Team> getGroupTeams(long groupId) {
 		return teamPersistence.findByGroupId(groupId);
+	}
+
+	@Override
+	public int getGroupTeamsCount(long groupId) {
+		return teamPersistence.countByGroupId(groupId);
 	}
 
 	@Override
