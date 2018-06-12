@@ -19,7 +19,11 @@ import com.liferay.layouts.admin.kernel.model.LayoutTypePortletConstants;
 import com.liferay.portal.kernel.dao.jdbc.AutoBatchPreparedStatementUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.PortletConstants;
+import com.liferay.portal.kernel.model.ResourceConstants;
 import com.liferay.portal.kernel.portlet.PortletIdCodec;
+import com.liferay.portal.kernel.service.permission.PortletPermissionUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LoggingTimer;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -218,24 +222,41 @@ public abstract class BaseUpgradePortletId extends UpgradeProcess {
 			String oldRootPortletId, String newRootPortletId)
 		throws Exception {
 
-		runSQL(
-			StringBundler.concat(
-				"update PortletPreferences set portletId = '", newRootPortletId,
-				"' where portletId = '", oldRootPortletId, "'"));
+		StringBundler sb = new StringBundler(8);
 
-		runSQL(
-			StringBundler.concat(
-				"update PortletPreferences set portletId = replace(portletId, ",
-				"'", oldRootPortletId, "_INSTANCE_', '", newRootPortletId,
-				"_INSTANCE_') where portletId like '", oldRootPortletId,
-				"_INSTANCE_%'"));
+		sb.append("select portletPreferencesId, portletId from ");
+		sb.append("PortletPreferences where portletId = '");
+		sb.append(oldRootPortletId);
+		sb.append("' OR portletId like '");
+		sb.append(oldRootPortletId);
+		sb.append("_INSTANCE_%' OR portletId like '");
+		sb.append(oldRootPortletId);
+		sb.append("_USER_%_INSTANCE_%'");
 
-		runSQL(
-			StringBundler.concat(
-				"update PortletPreferences set portletId = replace(portletId, ",
-				"'", oldRootPortletId, "_USER_', '", newRootPortletId,
-				"_USER_') where portletId like '", oldRootPortletId,
-				"_USER_%'"));
+		try (PreparedStatement ps1 = connection.prepareStatement(sb.toString());
+			PreparedStatement ps2 =
+				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
+					connection,
+					"update PortletPreferences set portletId = ? where " +
+						"portletPreferencesId = ?");
+			ResultSet rs = ps1.executeQuery()) {
+
+			while (rs.next()) {
+				long portletPreferencesId = rs.getLong("portletPreferencesId");
+				String portletId = rs.getString("portletId");
+
+				String newPortletId = StringUtil.replaceFirst(
+					portletId, oldRootPortletId, newRootPortletId);
+
+				ps2.setString(1, newPortletId);
+
+				ps2.setLong(2, portletPreferencesId);
+
+				ps2.addBatch();
+			}
+
+			ps2.executeBatch();
+		}
 	}
 
 	protected void updateLayout(long plid, String typeSettings)
