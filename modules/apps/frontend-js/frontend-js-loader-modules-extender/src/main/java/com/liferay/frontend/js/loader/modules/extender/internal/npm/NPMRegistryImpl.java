@@ -296,9 +296,8 @@ public class NPMRegistryImpl implements NPMRegistry {
 		for (JSBundle jsBundle : _jsBundles) {
 			for (JSPackage jsPackage : jsBundle.getJSPackages()) {
 				jsPackages.put(jsPackage.getId(), jsPackage);
-				resolvedJSPackages.put(jsPackage.getResolvedId(), jsPackage);
-
 				jsPackageVersions.add(new JSPackageVersion(jsPackage));
+				resolvedJSPackages.put(jsPackage.getResolvedId(), jsPackage);
 
 				for (JSModule jsModule : jsPackage.getJSModules()) {
 					jsModules.put(jsModule.getId(), jsModule);
