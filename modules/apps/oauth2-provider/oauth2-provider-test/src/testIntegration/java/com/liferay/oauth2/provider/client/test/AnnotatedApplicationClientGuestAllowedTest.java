@@ -86,8 +86,8 @@ public class AnnotatedApplicationClientGuestAllowedTest
 		protected void prepareTest() throws Exception {
 			Dictionary<String, Object> properties = new HashMapDictionary<>();
 
-			properties.put("oauth2.scopechecker.type", "annotations");
 			properties.put("auth.verifier.guest.allowed", false);
+			properties.put("oauth2.scopechecker.type", "annotations");
 
 			registerJaxRsApplication(
 				new TestAnnotatedApplication(), "annotated-guest-not-allowed",
@@ -95,8 +95,8 @@ public class AnnotatedApplicationClientGuestAllowedTest
 
 			properties = new HashMapDictionary<>();
 
-			properties.put("oauth2.scopechecker.type", "annotations");
 			properties.put("auth.verifier.guest.allowed", true);
+			properties.put("oauth2.scopechecker.type", "annotations");
 
 			registerJaxRsApplication(
 				new TestAnnotatedApplication(), "annotated-guest-allowed",
