@@ -82,7 +82,9 @@ AUI.add(
 
 						var nativeEditor = instance.getNativeEditor();
 
+						nativeEditor.on('dataReady', instance._onDataReady, instance);
 						nativeEditor.on('instanceReady', instance._onInstanceReady, instance);
+						nativeEditor.on('setData', instance._onSetData, instance);
 
 						if (instance.get('onBlurMethod')) {
 							nativeEditor.on('blur', instance._onBlur, instance);
@@ -174,7 +176,12 @@ AUI.add(
 					setHTML: function(value) {
 						var instance = this;
 
-						instance.getNativeEditor().setData(value);
+						if (instance._dataReady) {
+							instance.getNativeEditor().setData(value);
+						}
+						else {
+							instance._pendingData = value;
+						}
 					},
 
 					_afterGet: function(attrName) {
@@ -242,6 +249,19 @@ AUI.add(
 
 						if (Lang.isFunction(changeFn)) {
 							changeFn(instance.getText());
+						}
+					},
+
+					_onDataReady: function(event) {
+						var instance = this;
+
+						if (instance._pendingData) {
+							instance.getNativeEditor().setData(instance._pendingData);
+
+							instance._pendingData = null;
+						}
+						else {
+							instance._dataReady = true;
 						}
 					},
 
@@ -332,6 +352,12 @@ AUI.add(
 						if (event.data.keyCode === KEY_ENTER) {
 							event.cancel();
 						}
+					},
+
+					_onSetData: function(event) {
+						var instance = this;
+
+						instance._dataReady = false;
 					},
 
 					_validateEditorMethod: function(method) {

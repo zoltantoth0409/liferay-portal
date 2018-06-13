@@ -158,6 +158,11 @@ name = HtmlUtil.escapeJS(name);
 <aui:script use="<%= modules %>">
 	var UA = A.UA;
 
+	var contents = '<%= HtmlUtil.escapeJS(contents) %>';
+
+	var instanceDataReady = false;
+	var instancePendingData;
+
 	var getInitialContent = function() {
 		var data;
 
@@ -283,7 +288,12 @@ name = HtmlUtil.escapeJS(name);
 			var win = window['<%= name %>'];
 
 			var setHTML = function(data) {
-				ckEditorInstance.setData(data);
+				if (instanceDataReady) {
+					ckEditorInstance.setData(data);
+				}
+				else {
+					instancePendingData = data;
+				}
 
 				win._setStyles();
 			};
@@ -292,12 +302,7 @@ name = HtmlUtil.escapeJS(name);
 				setHTML(value);
 			}
 			else {
-				ckEditorInstance.on(
-					'instanceReady',
-					function() {
-						setHTML(value);
-					}
-				);
+				contents = value;
 			}
 		}
 	};
@@ -422,7 +427,7 @@ name = HtmlUtil.escapeJS(name);
 				if (!ckEditorContent) {
 					<c:choose>
 						<c:when test="<%= contents != null %>">
-							ckEditorContent = '<%= HtmlUtil.escapeJS(contents) %>';
+							ckEditorContent = contents;
 						</c:when>
 						<c:otherwise>
 							ckEditorContent = window['<%= HtmlUtil.escapeJS(namespace + initMethod) %>']();
@@ -628,7 +633,28 @@ name = HtmlUtil.escapeJS(name);
 			}
 		);
 
-		ckEditor.on('dataReady', window['<%= name %>']._setStyles);
+		ckEditor.on(
+			'dataReady',
+			function(event) {
+				if (instancePendingData) {
+					ckEditor.setData(instancePendingData);
+
+					instancePendingData = null;
+				}
+				else {
+					instanceDataReady = true;
+				}
+
+				window['<%= name %>']._setStyles();
+			}
+		);
+
+		ckEditor.on(
+			'setData',
+			function(event) {
+				instanceDataReady = false;
+			}
+		);
 
 		if (UA.edge && parseInt(UA.edge, 10) >= 14) {
 			var resetActiveElementValidation = function(activeElement) {
