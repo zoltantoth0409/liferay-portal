@@ -180,7 +180,7 @@ public class LiferayInputReader extends LiferayBaseReader<IndexedRecord> {
 
 		if (_log.isDebugEnabled()) {
 			_log.debug(
-				"Started to process resources. Entry point is: " +
+				"Started to process resources at entry point: " +
 					decoratedResourceUri.toString());
 		}
 
