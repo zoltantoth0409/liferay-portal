@@ -605,7 +605,7 @@ public class ServiceBuilder {
 
 			if (matcher.matches()) {
 				_dtdVersion = Version.getInstance(
-					StringUtil.replace(matcher.group(1), "_", "."));
+					StringUtil.replace(matcher.group(1), '_', '.'));
 			}
 			else {
 				throw new IllegalArgumentException(
