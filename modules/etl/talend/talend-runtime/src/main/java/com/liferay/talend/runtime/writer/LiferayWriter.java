@@ -208,14 +208,14 @@ public class LiferayWriter
 		Action action = _tLiferayOutputProperties.operations.getValue();
 
 		try {
-			if (Action.Upsert == action) {
-				doInsert(indexedRecord);
-			}
-			else if (Action.Delete == action) {
+			if (Action.Delete == action) {
 				doDelete(indexedRecord);
 			}
 			else if (Action.Update == action) {
 				doUpdate(indexedRecord);
+			}
+			else if (Action.Upsert == action) {
+				doInsert(indexedRecord);
 			}
 
 			_handleSuccessRecord(indexedRecord);
