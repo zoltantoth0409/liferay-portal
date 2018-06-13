@@ -401,7 +401,7 @@ public class PortletContainerImpl implements PortletContainer {
 					themeDisplay.setScopeGroupId(previousScopeGroupId);
 				}
 
-				if (GroupLocalServiceUtil.fetchGroup((previousSiteGroupId)
+				if (GroupLocalServiceUtil.fetchGroup(previousSiteGroupId)
 						!= null) {
 
 					themeDisplay.setSiteGroupId(previousSiteGroupId);
