@@ -48,7 +48,7 @@ public class URIUtils {
 		URI decoratedURI = updateWithQueryParameters(
 			resourceURL,
 			Collections.singletonMap(
-				ApioConstants.FILTER_QUERY_PARAM, queryCondition));
+				ApioConstants.QUERY_PARAM_FILTER, queryCondition));
 
 		return decoratedURI;
 	}
