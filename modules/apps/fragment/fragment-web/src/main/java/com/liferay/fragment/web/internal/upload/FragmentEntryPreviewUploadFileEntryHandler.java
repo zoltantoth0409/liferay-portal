@@ -56,7 +56,6 @@ public class FragmentEntryPreviewUploadFileEntryHandler
 			FragmentActionKeys.MANAGE_FRAGMENT_ENTRIES);
 
 		String fileName = uploadPortletRequest.getFileName(_PARAMETER_NAME);
-
 		String contentType = uploadPortletRequest.getContentType(
 			_PARAMETER_NAME);
 
