@@ -52,9 +52,9 @@ public class ServiceRegistrationBundleActivator implements BundleActivator {
 			context.registerService(
 				Application.class, new Greeter(), properties));
 
+		properties.put("addonable", Boolean.TRUE);
 		properties.put("liferay.auth.verifier", false);
 		properties.put("liferay.oauth2", false);
-		properties.put("addonable", Boolean.TRUE);
 		properties.put("osgi.jaxrs.application.base", "/test-rest/greeter3");
 
 		_serviceRegistrations.add(
