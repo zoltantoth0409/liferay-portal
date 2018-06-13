@@ -759,7 +759,7 @@ to the portlet's context path.
 
 <!--
 The default value of partial-action-serve-resource is false. If set to true,
-then the portlet's serveResource(ResourceRequest,ResourceResponse) method will
+then the portlet's serveResource(ResourceRequest, ResourceResponse) method will
 be invoked during a partial action triggered by a different portlet on the same
 portal page.
 -->
@@ -768,14 +768,14 @@ portal page.
 <!--
 The default value of portlet-dependency-css-enabled is true. If set to false,
 then CSS resource dependencies added via portlet.xml, @Dependency, or
-HeaderResponse.addDependency will not be added to the head of the portal page.
+HeaderResponse#addDependency will not be added to the head of the portal page.
 -->
 <!ELEMENT portlet-dependency-css-enabled (#PCDATA)>
 
 <!--
 The default value of portlet-dependency-javascript-enabled is true. If set to
 false, then JavaScript resource dependencies added via portlet.xml,
-@Dependency, or HeaderResponse.addDependency will not be added to the head of
+@Dependency, or HeaderResponse#addDependency will not be added to the head of
 the portal page.
 -->
 <!ELEMENT portlet-dependency-javascript-enabled (#PCDATA)>
