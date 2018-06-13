@@ -20,7 +20,7 @@ import com.liferay.talend.avro.ResourceEntityConverter;
 import com.liferay.talend.runtime.LiferaySource;
 import com.liferay.talend.runtime.apio.jsonld.ApioResourceCollection;
 import com.liferay.talend.tliferayinput.TLiferayInputProperties;
-import com.liferay.talend.utils.UriUtils;
+import com.liferay.talend.utils.URIUtils;
 
 import java.io.IOException;
 
@@ -89,7 +89,7 @@ public class LiferayInputReader extends LiferayBaseReader<IndexedRecord> {
 			_apioResourceCollection.getResourceNextPage();
 
 		URI decoratedNextResourceCollectionSegmentURI =
-			UriUtils.addQueryConditionToURL(
+			URIUtils.addQueryConditionToURL(
 				nextResourceCollectionSegmentURL, _queryCondition);
 
 		_apioResourceCollection = new ApioResourceCollection(
@@ -175,7 +175,7 @@ public class LiferayInputReader extends LiferayBaseReader<IndexedRecord> {
 			liferayConnectionResourceBaseProperties.resource.resource.
 				getValue();
 
-		URI decoratedResourceURI = UriUtils.addQueryConditionToURL(
+		URI decoratedResourceURI = URIUtils.addQueryConditionToURL(
 			resourceURL, _queryCondition);
 
 		if (_log.isDebugEnabled()) {

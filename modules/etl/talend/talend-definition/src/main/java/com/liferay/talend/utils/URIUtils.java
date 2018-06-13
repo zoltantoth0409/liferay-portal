@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @author Zoltán Takács
  */
-public class UriUtils {
+public class URIUtils {
 
 	public static URI addQueryConditionToURL(
 		String resourceURL, String queryCondition) {
@@ -100,6 +100,6 @@ public class UriUtils {
 		return uri;
 	}
 
-	private static final Logger _log = LoggerFactory.getLogger(UriUtils.class);
+	private static final Logger _log = LoggerFactory.getLogger(URIUtils.class);
 
 }

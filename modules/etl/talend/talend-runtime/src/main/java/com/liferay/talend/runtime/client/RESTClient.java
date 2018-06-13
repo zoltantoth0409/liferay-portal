@@ -23,7 +23,7 @@ import com.liferay.talend.connection.LiferayConnectionProperties;
 import com.liferay.talend.runtime.apio.ApioException;
 import com.liferay.talend.runtime.apio.ApioResult;
 import com.liferay.talend.runtime.apio.constants.JSONLDConstants;
-import com.liferay.talend.utils.UriUtils;
+import com.liferay.talend.utils.URIUtils;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -97,7 +97,7 @@ public class RESTClient {
 	}
 
 	public ApioResult executeGetRequest() throws ApioException {
-		URI decoratedURI = UriUtils.updateWithQueryParameters(
+		URI decoratedURI = URIUtils.updateWithQueryParameters(
 			getEndpointURI(), _getQueryParametersMap());
 
 		WebTarget webTarget = _client.target(decoratedURI);

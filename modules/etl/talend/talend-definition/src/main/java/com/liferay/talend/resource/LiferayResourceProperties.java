@@ -20,7 +20,7 @@ import com.liferay.talend.connection.LiferayConnectionPropertiesProvider;
 import com.liferay.talend.exception.ExceptionUtils;
 import com.liferay.talend.runtime.LiferaySourceOrSinkRuntime;
 import com.liferay.talend.utils.PropertiesUtils;
-import com.liferay.talend.utils.UriUtils;
+import com.liferay.talend.utils.URIUtils;
 
 import java.io.IOException;
 
@@ -342,7 +342,7 @@ public class LiferayResourceProperties
 		String endpointUrl = connection.endpoint.getValue();
 
 		try {
-			UriUtils.addQueryConditionToURL(endpointUrl, condition.getValue());
+			URIUtils.addQueryConditionToURL(endpointUrl, condition.getValue());
 		}
 		catch (Exception exception) {
 			return ExceptionUtils.exceptionToValidationResult(exception);
