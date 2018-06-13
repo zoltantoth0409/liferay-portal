@@ -42,7 +42,7 @@ public class UpgradeDDLRecordSetSettings extends UpgradeProcess {
 			"fieldValues");
 
 		JSONObject requireAuthenticationSettingJSONObject =
-			createRequireAuthenticationSetting();
+			createRequireAuthenticationSettingJSONObject();
 
 		fieldValuesJSONArray.put(requireAuthenticationSettingJSONObject);
 
@@ -51,7 +51,7 @@ public class UpgradeDDLRecordSetSettings extends UpgradeProcess {
 		return settingsJSONObject.toJSONString();
 	}
 
-	protected JSONObject createRequireAuthenticationSetting() {
+	protected JSONObject createRequireAuthenticationSettingJSONObject() {
 		JSONObject requireAuthenticationSettingJSONObject =
 			_jsonFactory.createJSONObject();
 
