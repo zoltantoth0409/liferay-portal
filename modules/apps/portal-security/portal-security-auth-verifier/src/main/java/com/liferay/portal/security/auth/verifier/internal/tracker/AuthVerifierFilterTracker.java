@@ -102,7 +102,7 @@ public class AuthVerifierFilterTracker {
 
 			if (index == -1) {
 				if (_log.isWarnEnabled()) {
-					_log.warn("Invalid property string " + property);
+					_log.warn("Invalid property " + property);
 				}
 
 				continue;
