@@ -70,7 +70,6 @@ public class AuthVerifierFilterTracker {
 
 		_defaultRegistrationProperties = toDictionary(
 			StringPlus.asList(properties.get("default.registration.property")));
-
 		_defaultWhiteboardProperties = toDictionary(
 			StringPlus.asList(properties.get("default.whiteboard.property")));
 
@@ -165,20 +164,19 @@ public class AuthVerifierFilterTracker {
 
 			Dictionary<String, Object> properties = new HashMapDictionary<>();
 
-			Enumeration<String> registrationKeys =
+			Enumeration<String> enumeration =
 				_defaultRegistrationProperties.keys();
 
-			Enumeration<String> whiteboardKeys =
-				_defaultWhiteboardProperties.keys();
-
-			while (registrationKeys.hasMoreElements()) {
-				String key = registrationKeys.nextElement();
+			while (enumeration.hasMoreElements()) {
+				String key = enumeration.nextElement();
 
 				properties.put(key, _defaultRegistrationProperties.get(key));
 			}
 
-			while (whiteboardKeys.hasMoreElements()) {
-				String key = whiteboardKeys.nextElement();
+			enumeration = _defaultWhiteboardProperties.keys();
+
+			while (enumeration.hasMoreElements()) {
+				String key = enumeration.nextElement();
 
 				properties.put(key, _defaultWhiteboardProperties.get(key));
 			}
