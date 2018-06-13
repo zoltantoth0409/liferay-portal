@@ -2454,10 +2454,8 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 
 			String name = GetterUtil.getString(
 				dependencyElement.elementText("name"));
-
 			String scope = GetterUtil.getString(
 				dependencyElement.elementText("scope"));
-
 			String version = GetterUtil.getString(
 				dependencyElement.elementText("version"));
 
