@@ -88,13 +88,13 @@ public class LiferayInputReader extends LiferayBaseReader<IndexedRecord> {
 		String nextResourceCollectionSegmentUrl =
 			_apioResourceCollection.getResourceNextPage();
 
-		URI decoratedNextResourceCollectionSegmentUri =
+		URI decoratedNextResourceCollectionSegmentURI =
 			UriUtils.addQueryConditionToURL(
 				nextResourceCollectionSegmentUrl, _queryCondition);
 
 		_apioResourceCollection = new ApioResourceCollection(
 			liferaySource.doApioGetRequest(
-				decoratedNextResourceCollectionSegmentUri.toString()));
+				decoratedNextResourceCollectionSegmentURI.toString()));
 
 		_inputRecordsJsonNode = _apioResourceCollection.getMemberJsonNode();
 
@@ -175,17 +175,17 @@ public class LiferayInputReader extends LiferayBaseReader<IndexedRecord> {
 			liferayConnectionResourceBaseProperties.resource.resource.
 				getValue();
 
-		URI decoratedResourceUri = UriUtils.addQueryConditionToURL(
+		URI decoratedResourceURI = UriUtils.addQueryConditionToURL(
 			resourceURL, _queryCondition);
 
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				"Started to process resources at entry point: " +
-					decoratedResourceUri.toString());
+					decoratedResourceURI.toString());
 		}
 
 		_apioResourceCollection = new ApioResourceCollection(
-			liferaySource.doApioGetRequest(decoratedResourceUri.toString()));
+			liferaySource.doApioGetRequest(decoratedResourceURI.toString()));
 
 		_inputRecordsJsonNode = _apioResourceCollection.getMemberJsonNode();
 
