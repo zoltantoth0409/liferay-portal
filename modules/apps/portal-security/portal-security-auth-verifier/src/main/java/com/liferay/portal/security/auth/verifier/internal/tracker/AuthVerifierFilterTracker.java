@@ -95,30 +95,25 @@ public class AuthVerifierFilterTracker {
 	protected Dictionary<String, Object> toDictionary(
 		List<String> propertiesList) {
 
-		Dictionary<String, Object> dictionary =
-			new HashMapDictionary<>();
+		Dictionary<String, Object> dictionary = new HashMapDictionary<>();
 
 		for (String property : propertiesList) {
 			int index = property.indexOf(StringPool.EQUAL);
 
 			if (index == -1) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(
-						"Invalid property string " +
-							property);
+					_log.warn("Invalid property string " + property);
 				}
 
 				continue;
 			}
 
-			String propertyKey = property.substring(
-				0, index);
+			String propertyKey = property.substring(0, index);
 
 			String propertyValue = StringPool.BLANK;
 
 			if (index < property.length()) {
-				propertyValue = property.substring(
-					index + 1);
+				propertyValue = property.substring(index + 1);
 			}
 
 			dictionary.put(propertyKey, propertyValue);
