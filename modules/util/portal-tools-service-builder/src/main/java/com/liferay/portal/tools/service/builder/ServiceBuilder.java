@@ -604,11 +604,12 @@ public class ServiceBuilder {
 				documentType.getSystemID());
 
 			if (matcher.matches()) {
-				_dtdVersionString = matcher.group(1);
+				_dtdVersion = Version.getInstance(
+					StringUtil.replace(matcher.group(1), "_", "."));
 			}
 			else {
 				throw new IllegalArgumentException(
-					"Cannot parse dtd version for " + inputFileName);
+					"Unable to parse DTD version for " + inputFileName);
 			}
 
 			Element rootElement = document.getRootElement();
@@ -1854,6 +1855,16 @@ public class ServiceBuilder {
 		}
 
 		if (txRequiredMethodNames.contains(javaMethod.getName())) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public boolean isVersionGTE_7_1_0() {
+		if (_dtdVersion.isSameVersionAs("7.1.0") ||
+			_dtdVersion.isLaterVersionThan("7.1.0")) {
+
 			return true;
 		}
 
@@ -4411,7 +4422,6 @@ public class ServiceBuilder {
 		context.put("apiPackagePath", _apiPackagePath);
 		context.put("author", _author);
 		context.put("beanLocatorUtil", _beanLocatorUtil);
-		context.put("dtdVersionString", _dtdVersionString);
 		context.put("modelHintsUtil", ModelHintsUtil.getModelHints());
 		context.put("osgiModule", _osgiModule);
 		context.put("packagePath", _packagePath);
@@ -7062,7 +7072,7 @@ public class ServiceBuilder {
 	private boolean _commercialPlugin;
 	private String _currentTplName;
 	private int _databaseNameMaxLength = 30;
-	private String _dtdVersionString;
+	private Version _dtdVersion;
 	private List<Entity> _entities;
 	private Map<String, EntityMapping> _entityMappings;
 	private Map<String, Entity> _entityPool = new HashMap<>();
