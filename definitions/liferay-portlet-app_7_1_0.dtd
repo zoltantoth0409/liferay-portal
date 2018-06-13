@@ -40,7 +40,7 @@ header-request-attribute-prefix*, header-timeout?, footer-portal-css*,
 footer-portlet-css*, footer-portal-javascript*, footer-portlet-javascript*,
 partial-action-serve-resource?, portlet-dependency-css-enabled?,
 portlet-dependency-javascript-enabled?, css-class-wrapper?,
-facebook-integration?, add-default-resource?, system?, active?, include?,)>
+facebook-integration?, add-default-resource?, system?, active?, include?)>
 
 <!--
 The portlet-name element contains the unique name of the portlet. This name must
