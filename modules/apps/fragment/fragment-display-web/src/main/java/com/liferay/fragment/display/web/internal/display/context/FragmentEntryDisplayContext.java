@@ -227,15 +227,6 @@ public class FragmentEntryDisplayContext {
 
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
-		EditorConfiguration editorConfiguration =
-			EditorConfigurationFactoryUtil.getEditorConfiguration(
-				PortletIdCodec.decodePortletName(portletDisplay.getId()),
-				"fragmenEntryLinkEditor", StringPool.BLANK,
-				new HashMap<String, Object>(), themeDisplay,
-				RequestBackedPortletURLFactoryUtil.create(_renderRequest));
-
-		configurations.put("text", editorConfiguration.getData());
-
 		EditorConfiguration richTextEditorConfiguration =
 			EditorConfigurationFactoryUtil.getEditorConfiguration(
 				PortletIdCodec.decodePortletName(portletDisplay.getId()),
@@ -244,6 +235,15 @@ public class FragmentEntryDisplayContext {
 				RequestBackedPortletURLFactoryUtil.create(_renderRequest));
 
 		configurations.put("rich-text", richTextEditorConfiguration.getData());
+
+		EditorConfiguration editorConfiguration =
+			EditorConfigurationFactoryUtil.getEditorConfiguration(
+				PortletIdCodec.decodePortletName(portletDisplay.getId()),
+				"fragmenEntryLinkEditor", StringPool.BLANK,
+				new HashMap<String, Object>(), themeDisplay,
+				RequestBackedPortletURLFactoryUtil.create(_renderRequest));
+
+		configurations.put("text", editorConfiguration.getData());
 
 		return configurations;
 	}
