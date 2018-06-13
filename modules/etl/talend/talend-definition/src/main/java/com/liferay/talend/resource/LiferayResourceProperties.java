@@ -157,7 +157,7 @@ public class LiferayResourceProperties
 				try {
 					List<NamedThing> resourceNames = null;
 
-					if (siteFilter.getValue()) {
+					if (siteFilterProperty.getValue()) {
 						resourceNames =
 							liferaySourceOrSinkRuntime.getResourceList(
 								webSite.getValue());
@@ -240,7 +240,8 @@ public class LiferayResourceProperties
 		String formName = form.getName();
 
 		if (formName.equals(Form.MAIN) || formName.equals(Form.REFERENCE)) {
-			PropertiesUtils.setHidden(form, webSite, !siteFilter.getValue());
+			PropertiesUtils.setHidden(
+				form, webSite, !siteFilterProperty.getValue());
 		}
 	}
 
@@ -256,7 +257,7 @@ public class LiferayResourceProperties
 
 		Form resourceSelectionForm = Form.create(this, Form.MAIN);
 
-		resourceSelectionForm.addRow(siteFilter);
+		resourceSelectionForm.addRow(siteFilterProperty);
 
 		Widget webSitesWidget = Widget.widget(webSite);
 
@@ -287,7 +288,7 @@ public class LiferayResourceProperties
 
 		Form referenceForm = Form.create(this, Form.REFERENCE);
 
-		referenceForm.addRow(siteFilter);
+		referenceForm.addRow(siteFilterProperty);
 
 		Widget webSitesReferenceWidget = Widget.widget(webSite);
 
@@ -329,7 +330,7 @@ public class LiferayResourceProperties
 
 		condition.setValue("");
 		resource.setValue("");
-		siteFilter.setValue(false);
+		siteFilterProperty.setValue(false);
 		webSite.setValue("");
 	}
 
@@ -367,7 +368,7 @@ public class LiferayResourceProperties
 
 	public StringProperty resource = PropertyFactory.newString("resource");
 	public ISchemaListener schemaListener;
-	public Property<Boolean> siteFilter = PropertyFactory.newBoolean(
+	public Property<Boolean> siteFilterProperty = PropertyFactory.newBoolean(
 		"siteFilter");
 	public transient PresentationItem validateCondition = new PresentationItem(
 		"validateCondition", "Validate Condition");
