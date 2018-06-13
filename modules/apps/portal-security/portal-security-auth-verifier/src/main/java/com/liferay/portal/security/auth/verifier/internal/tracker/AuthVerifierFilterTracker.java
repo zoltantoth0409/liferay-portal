@@ -68,10 +68,10 @@ public class AuthVerifierFilterTracker {
 
 		_bundleContext = bundleContext;
 
-		_defaultRegistrationProperties = processDefaultProperties(
+		_defaultRegistrationProperties = toDictionary(
 			StringPlus.asList(properties.get("default.registration.property")));
 
-		_defaultWhiteboardProperties = processDefaultProperties(
+		_defaultWhiteboardProperties = toDictionary(
 			StringPlus.asList(properties.get("default.whiteboard.property")));
 
 		String servletContextHelperSelectFilterString = MapUtil.getString(
@@ -92,42 +92,39 @@ public class AuthVerifierFilterTracker {
 		_serviceTracker.close();
 	}
 
-	protected Dictionary<String, Object> processDefaultProperties(
-		List<String> defaultProperties) {
+	protected Dictionary<String, Object> toDictionary(
+		List<String> propertiesList) {
 
-		Dictionary<String, Object> registrationProperties =
+		Dictionary<String, Object> dictionary =
 			new HashMapDictionary<>();
 
-		for (String defaultRegistrationProperty : defaultProperties) {
-			int indexOf = defaultRegistrationProperty.indexOf(StringPool.EQUAL);
+		for (String property : propertiesList) {
+			int index = property.indexOf(StringPool.EQUAL);
 
-			if (indexOf == -1) {
+			if (index == -1) {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						"Invalid property string " +
-							defaultRegistrationProperty);
+							property);
 				}
 
 				continue;
 			}
 
-			String propertyKey = defaultRegistrationProperty.substring(
-				0, indexOf);
+			String propertyKey = property.substring(
+				0, index);
 
-			String propertyValue;
+			String propertyValue = StringPool.BLANK;
 
-			if (indexOf < defaultRegistrationProperty.length()) {
-				propertyValue = defaultRegistrationProperty.substring(
-					indexOf + 1);
-			}
-			else {
-				propertyValue = StringPool.BLANK;
+			if (index < property.length()) {
+				propertyValue = property.substring(
+					index + 1);
 			}
 
-			registrationProperties.put(propertyKey, propertyValue);
+			dictionary.put(propertyKey, propertyValue);
 		}
 
-		return registrationProperties;
+		return dictionary;
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
