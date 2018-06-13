@@ -2449,6 +2449,23 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 				values.toArray(new String[values.size()]));
 		}
 
+		for (Element dependencyElement :
+				portletElement.elements("dependency")) {
+
+			String name = GetterUtil.getString(
+				dependencyElement.elementText("name"));
+
+			String scope = GetterUtil.getString(
+				dependencyElement.elementText("scope"));
+
+			String version = GetterUtil.getString(
+				dependencyElement.elementText("version"));
+
+			portletModel.addPortletDependency(
+				PortletDependencyFactoryUtil.createPortletDependency(
+					name, scope, version));
+		}
+
 		portletModel.setAsyncSupported(
 			GetterUtil.getBoolean(
 				portletElement.elementText("async-supported")));
@@ -2469,23 +2486,6 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 				GetterUtil.getLong(
 					multipartConfigElement.elementText("max-request-size"),
 					-1L));
-		}
-
-		for (Element dependencyElement :
-				portletElement.elements("dependency")) {
-
-			String name = GetterUtil.getString(
-				dependencyElement.elementText("name"));
-
-			String scope = GetterUtil.getString(
-				dependencyElement.elementText("scope"));
-
-			String version = GetterUtil.getString(
-				dependencyElement.elementText("version"));
-
-			portletModel.addPortletDependency(
-				PortletDependencyFactoryUtil.createPortletDependency(
-					name, scope, version));
 		}
 
 		portletsMap.put(portletId, portletModel);
