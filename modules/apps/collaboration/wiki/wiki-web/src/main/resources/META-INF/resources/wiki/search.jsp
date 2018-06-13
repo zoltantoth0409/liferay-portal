@@ -31,7 +31,7 @@ if (node != null) {
 
 String keywords = ParamUtil.getString(request, "keywords");
 
-boolean createNewPage = true;
+boolean createNewPage = WikiNodePermissionChecker.contains(permissionChecker, node, ActionKeys.ADD_PAGE);
 
 WikiURLHelper wikiURLHelper = new WikiURLHelper(wikiRequestHelper, renderResponse, wikiGroupServiceConfiguration);
 
