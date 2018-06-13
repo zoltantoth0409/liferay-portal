@@ -341,8 +341,6 @@ public class LayoutSiteNavigationMenuItemType
 	}
 
 	private Layout _getLayout(SiteNavigationMenuItem siteNavigationMenuItem) {
-		long groupId = siteNavigationMenuItem.getGroupId();
-
 		UnicodeProperties typeSettingsProperties = new UnicodeProperties();
 
 		typeSettingsProperties.fastLoad(
@@ -354,7 +352,7 @@ public class LayoutSiteNavigationMenuItemType
 			typeSettingsProperties.get("privateLayout"));
 
 		return _layoutLocalService.fetchLayoutByUuidAndGroupId(
-			layoutUuid, groupId, privateLayout);
+			layoutUuid, siteNavigationMenuItem.getGroupId(), privateLayout);
 	}
 
 	@Reference
