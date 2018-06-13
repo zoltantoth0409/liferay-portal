@@ -39,17 +39,17 @@ public class GuestAllowedAuthVerifierBundleActivator
 	public void doStart(BundleContext bundleContext) {
 		Dictionary<String, Object> properties = new HashMapDictionary<>();
 
-		properties.put("auth.verifier.guest.allowed", false);
 		properties.put(
 			JaxrsWhiteboardConstants.JAX_RS_NAME, "guest-no-allowed");
+		properties.put("auth.verifier.guest.allowed", false);
 
 		registerServletContextHelper(
 			"auth-verifier-guest-allowed-false-test", properties);
 
 		properties = new HashMapDictionary<>();
 
-		properties.put("auth.verifier.guest.allowed", true);
 		properties.put(JaxrsWhiteboardConstants.JAX_RS_NAME, "guest-allowed");
+		properties.put("auth.verifier.guest.allowed", true);
 
 		registerServletContextHelper(
 			"auth-verifier-guest-allowed-true-test", properties);
