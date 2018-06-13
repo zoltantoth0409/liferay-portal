@@ -134,11 +134,11 @@ public class PortletImpl extends PortletBaseImpl {
 		_headerRequestAttributePrefixes = new ArrayList<>();
 		_indexerClasses = new ArrayList<>();
 		_initParams = new HashMap<>();
-		_portletFilters = new LinkedHashMap<>();
-		_portletModes = new HashMap<>();
 		_portletDependencies = new ArrayList<>();
 		_portletDependencyCssEnabled = true;
 		_portletDependencyJavaScriptEnabled = true;
+		_portletFilters = new LinkedHashMap<>();
+		_portletModes = new HashMap<>();
 		_roleMappers = new LinkedHashMap<>();
 		_rootPortlet = this;
 		_schedulerEntries = new ArrayList<>();
@@ -196,13 +196,13 @@ public class PortletImpl extends PortletBaseImpl {
 		List<String> headerRequestAttributePrefixes, int headerTimeout,
 		List<String> footerPortalCss, List<String> footerPortletCss,
 		List<String> footerPortalJavaScript,
-		List<String> footerPortletJavaScript, String cssClassWrapper,
-		boolean addDefaultResource, String roles, Set<String> unlinkedRoles,
-		Map<String, String> roleMappers, boolean system, boolean active,
-		boolean include, boolean partialActionServeResource,
-		boolean portletDependencyCssEnabled,
-		boolean portletDependencyJavaScriptEnabled,
-		List<PortletDependency> portletDependencies,
+		List<String> footerPortletJavaScript, boolean partialActionServeResource,
+		boolean portletDependencyCssEnabled, boolean portletDependencyJavaScriptEnabled, List<PortletDependency> portletDependencies,
+		String cssClassWrapper, boolean addDefaultResource, String roles,
+		Set<String> unlinkedRoles, Map<String, String> roleMappers,
+		boolean system,
+		boolean active,
+		boolean include,
 		Map<String, String> initParams, Integer expCache,
 		boolean asyncSupported, int multipartFileSizeThreshold,
 		String multipartLocation, long multipartMaxFileSize,
@@ -299,17 +299,17 @@ public class PortletImpl extends PortletBaseImpl {
 		_footerPortletCss = footerPortletCss;
 		_footerPortalJavaScript = footerPortalJavaScript;
 		_footerPortletJavaScript = footerPortletJavaScript;
+		_partialActionServeResource = partialActionServeResource;
+		_portletDependencyCssEnabled = portletDependencyCssEnabled;
+		_portletDependencyJavaScriptEnabled =
+			portletDependencyJavaScriptEnabled;
+		_portletDependencies = portletDependencies;
 		_cssClassWrapper = cssClassWrapper;
 		_addDefaultResource = addDefaultResource;
 		_unlinkedRoles = unlinkedRoles;
 		_roleMappers = roleMappers;
 		_system = system;
 		_include = include;
-		_partialActionServeResource = partialActionServeResource;
-		_portletDependencyCssEnabled = portletDependencyCssEnabled;
-		_portletDependencyJavaScriptEnabled =
-			portletDependencyJavaScriptEnabled;
-		_portletDependencies = portletDependencies;
 		_initParams = initParams;
 		_expCache = expCache;
 		_asyncSupported = asyncSupported;
@@ -337,9 +337,9 @@ public class PortletImpl extends PortletBaseImpl {
 	}
 
 	/**
-	 * Adds a portlet JS/CSS resource dependency.
+	 * Adds a portlet CSS/JS resource dependency.
 	 *
-	 * @param portletDependency a portlet JS/CSS resource dependency
+	 * @param portletDependency a portlet CSS/JS resource dependency
 	 */
 	@Override
 	public void addPortletDependency(PortletDependency portletDependency) {
@@ -445,11 +445,11 @@ public class PortletImpl extends PortletBaseImpl {
 			getHeaderRequestAttributePrefixes(), getHeaderTimeout(),
 			getFooterPortalCss(), getFooterPortletCss(),
 			getFooterPortalJavaScript(), getFooterPortletJavaScript(),
-			getCssClassWrapper(), isAddDefaultResource(), getRoles(),
-			getUnlinkedRoles(), getRoleMappers(), isSystem(), isActive(),
-			isInclude(), isPartialActionServeResource(),
-			isPortletDependencyCssEnabled(),
-			isPortletDependencyJavaScriptEnabled(), getPortletDependencies(),
+			isPartialActionServeResource(), isPortletDependencyCssEnabled(), isPortletDependencyJavaScriptEnabled(),
+			getPortletDependencies(), getCssClassWrapper(), isAddDefaultResource(), getRoles(),
+			getUnlinkedRoles(), getRoleMappers(),
+			isSystem(),
+			isActive(), isInclude(),
 			getInitParams(), getExpCache(), isAsyncSupported(),
 			getMultipartFileSizeThreshold(), getMultipartLocation(),
 			getMultipartMaxFileSize(), getMultipartMaxRequestSize(),
@@ -1444,9 +1444,9 @@ public class PortletImpl extends PortletBaseImpl {
 	}
 
 	/**
-	 * Returns the list of portlet JS/CSS resource dependencies.
+	 * Returns the list of portlet CSS/JS resource dependencies.
 	 *
-	 * @return the list of portlet JS/CSS resource dependencies.
+	 * @return the list of portlet CSS/JS resource dependencies
 	 */
 	@Override
 	public List<PortletDependency> getPortletDependencies() {

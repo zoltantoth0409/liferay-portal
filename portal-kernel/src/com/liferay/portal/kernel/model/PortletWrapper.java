@@ -116,9 +116,9 @@ public class PortletWrapper implements Portlet, ModelWrapper<Portlet> {
 	}
 
 	/**
-	* Adds a portlet JS/CSS resource dependency.
+	* Adds a portlet CSS/JS resource dependency.
 	*
-	* @param portletDependency a portlet JS/CSS resource dependency
+	* @param portletDependency a portlet CSS/JS resource dependency
 	*/
 	@Override
 	public void addPortletDependency(
@@ -1023,9 +1023,9 @@ public class PortletWrapper implements Portlet, ModelWrapper<Portlet> {
 	}
 
 	/**
-	* Returns the list of portlet JS/CSS resource dependencies.
+	* Returns the list of portlet CSS/JS resource dependencies.
 	*
-	* @return the list of portlet JS/CSS resource dependencies.
+	* @return the list of portlet CSS/JS resource dependencies
 	*/
 	@Override
 	public java.util.List<com.liferay.portal.kernel.model.portlet.PortletDependency> getPortletDependencies() {

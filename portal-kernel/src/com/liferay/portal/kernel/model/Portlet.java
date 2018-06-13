@@ -79,9 +79,9 @@ public interface Portlet extends PortletModel, PersistedModel {
 		com.liferay.portal.kernel.application.type.ApplicationType applicationType);
 
 	/**
-	* Adds a portlet JS/CSS resource dependency.
+	* Adds a portlet CSS/JS resource dependency.
 	*
-	* @param portletDependency a portlet JS/CSS resource dependency
+	* @param portletDependency a portlet CSS/JS resource dependency
 	*/
 	public void addPortletDependency(
 		com.liferay.portal.kernel.model.portlet.PortletDependency portletDependency);
@@ -703,9 +703,9 @@ public interface Portlet extends PortletModel, PersistedModel {
 	public com.liferay.exportimport.kernel.lar.PortletDataHandler getPortletDataHandlerInstance();
 
 	/**
-	* Returns the list of portlet JS/CSS resource dependencies.
+	* Returns the list of portlet CSS/JS resource dependencies.
 	*
-	* @return the list of portlet JS/CSS resource dependencies.
+	* @return the list of portlet CSS/JS resource dependencies
 	*/
 	public java.util.List<com.liferay.portal.kernel.model.portlet.PortletDependency> getPortletDependencies();
 

@@ -2026,6 +2026,19 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 
 		portletModel.setFooterPortletJavaScript(footerPortletJavaScriptList);
 
+		portletModel.setPartialActionServeResource(
+			GetterUtil.getBoolean(
+				portletElement.elementText("partial-action-serve-resource"),
+				portletModel.isPartialActionServeResource()));
+		portletModel.setPortletDependencyCssEnabled(
+			GetterUtil.getBoolean(
+				portletElement.elementText("portlet-dependency-css-enabled"),
+				portletModel.isPortletDependencyCssEnabled()));
+		portletModel.setPortletDependencyJavaScriptEnabled(
+			GetterUtil.getBoolean(
+				portletElement.elementText(
+					"portlet-dependency-javascript-enabled"),
+				portletModel.isPortletDependencyJavaScriptEnabled()));
 		portletModel.setCssClassWrapper(
 			GetterUtil.getString(
 				portletElement.elementText("css-class-wrapper"),
@@ -2044,19 +2057,6 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 			GetterUtil.getBoolean(
 				portletElement.elementText("include"),
 				portletModel.isInclude()));
-		portletModel.setPartialActionServeResource(
-			GetterUtil.getBoolean(
-				portletElement.elementText("partial-action-serve-resource"),
-				portletModel.isPartialActionServeResource()));
-		portletModel.setPortletDependencyCssEnabled(
-			GetterUtil.getBoolean(
-				portletElement.elementText("portlet-dependency-css-enabled"),
-				portletModel.isPortletDependencyCssEnabled()));
-		portletModel.setPortletDependencyJavaScriptEnabled(
-			GetterUtil.getBoolean(
-				portletElement.elementText(
-					"portlet-dependency-javascript-enabled"),
-				portletModel.isPortletDependencyJavaScriptEnabled()));
 
 		if (Validator.isNull(servletContextName)) {
 			portletModel.setReady(true);
