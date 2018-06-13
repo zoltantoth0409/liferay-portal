@@ -39,7 +39,7 @@ header-portlet-css*, header-portal-javascript*, header-portlet-javascript*,
 header-request-attribute-prefix*, header-timeout?, footer-portal-css*,
 footer-portlet-css*, footer-portal-javascript*, footer-portlet-javascript*,
 partial-action-serve-resource?, portlet-dependency-css-enabled?,
-portlet-dependency-javascript-enabled? css-class-wrapper?,
+portlet-dependency-javascript-enabled?, css-class-wrapper?,
 facebook-integration?, add-default-resource?, system?, active?, include?,)>
 
 <!--
