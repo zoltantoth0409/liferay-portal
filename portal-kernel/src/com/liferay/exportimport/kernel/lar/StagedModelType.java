@@ -44,19 +44,20 @@ public class StagedModelType {
 		}
 
 		try {
-			int pos = stagedModelTypeString.indexOf(CharPool.POUND);
+			int index = stagedModelTypeString.indexOf(CharPool.POUND);
 
-			if (pos == -1) {
+			if (index == -1) {
 				return new StagedModelType(stagedModelTypeString);
 			}
 
-			String className = stagedModelTypeString.substring(0, pos);
+			String className = stagedModelTypeString.substring(0, index);
 
 			if (Validator.isNull(className)) {
 				return null;
 			}
 
-			String referrerClassName = stagedModelTypeString.substring(pos + 1);
+			String referrerClassName = stagedModelTypeString.substring(
+				index + 1);
 
 			return new StagedModelType(className, referrerClassName);
 		}
@@ -154,13 +155,13 @@ public class StagedModelType {
 			return StringPool.BLANK;
 		}
 
-		int pos = className.lastIndexOf(StringPool.PERIOD) + 1;
+		int index = className.lastIndexOf(StringPool.PERIOD) + 1;
 
-		if (pos <= 0) {
+		if (index <= 0) {
 			return className;
 		}
 
-		return className.substring(pos);
+		return className.substring(index);
 	}
 
 	protected void setClassName(String className) {
