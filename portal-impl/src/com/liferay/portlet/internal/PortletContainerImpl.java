@@ -325,16 +325,6 @@ public class PortletContainerImpl implements PortletContainer {
 		return new EventImpl(event.getName(), event.getQName(), value);
 	}
 
-	private boolean _isGroupExists(long groupId) {
-		Group group = GroupLocalServiceUtil.fetchGroup(groupId);
-
-		if (group == null) {
-			return true;
-		}
-
-		return false;
-	}
-
 	private void _preparePortlet(HttpServletRequest request, Portlet portlet)
 		throws Exception {
 
@@ -405,11 +395,15 @@ public class PortletContainerImpl implements PortletContainer {
 		}
 		finally {
 			if (themeDisplay != null) {
-				if (!_isGroupExists(previousScopeGroupId)) {
+				if (GroupLocalServiceUtil.fetchGroup(previousScopeGroupId)
+						!= null) {
+
 					themeDisplay.setScopeGroupId(previousScopeGroupId);
 				}
 
-				if (!_isGroupExists(previousSiteGroupId)) {
+				if (GroupLocalServiceUtil.fetchGroup((previousSiteGroupId)
+						!= null) {
+
 					themeDisplay.setSiteGroupId(previousSiteGroupId);
 				}
 			}
