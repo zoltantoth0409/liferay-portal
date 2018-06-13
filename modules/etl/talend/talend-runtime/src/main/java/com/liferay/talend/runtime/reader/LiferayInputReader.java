@@ -85,12 +85,12 @@ public class LiferayInputReader extends LiferayBaseReader<IndexedRecord> {
 
 		LiferaySource liferaySource = (LiferaySource)getCurrentSource();
 
-		String nextResourceCollectionSegmentUrl =
+		String nextResourceCollectionSegmentURL =
 			_apioResourceCollection.getResourceNextPage();
 
 		URI decoratedNextResourceCollectionSegmentURI =
 			UriUtils.addQueryConditionToURL(
-				nextResourceCollectionSegmentUrl, _queryCondition);
+				nextResourceCollectionSegmentURL, _queryCondition);
 
 		_apioResourceCollection = new ApioResourceCollection(
 			liferaySource.doApioGetRequest(
