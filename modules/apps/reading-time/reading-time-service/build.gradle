@@ -14,7 +14,7 @@ dependencies {
 	compileOnly group: "org.osgi", name: "org.osgi.core", version: "5.0.0"
 	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations", version: "1.3.0"
 	compileOnly project(":apps:portal:portal-spring-extender-api")
-	compileOnly project(":apps:reading-time:reading-time-api")
+	compileOnly group: "com.liferay", name: "com.liferay.reading.time.api", version: "1.0.0"
 	compileOnly project(":core:osgi-service-tracker-collections")
 
 	testCompile project(":core:petra:petra-lang")
