@@ -26,7 +26,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.staging.api", version: "3.0.0"
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
 	compileOnly group: "com.liferay", name: "com.liferay.trash.api", version: "1.0.0"
-	compileOnly project(":apps:xstream:xstream-configurator-api")
+	compileOnly group: "com.liferay", name: "com.liferay.xstream.configurator.api", version: "3.0.0"
 	compileOnly project(":core:petra:petra-lang")
 	compileOnly project(":core:petra:petra-string")
 }

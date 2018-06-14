@@ -6,6 +6,6 @@ dependencies {
 	compileOnly project(":apps:asset:asset-category-property-api")
 	compileOnly project(":apps:asset:asset-entry-rel-api")
 	compileOnly group: "com.liferay", name: "com.liferay.staging.api", version: "3.0.0"
-	compileOnly project(":apps:xstream:xstream-configurator-api")
+	compileOnly group: "com.liferay", name: "com.liferay.xstream.configurator.api", version: "3.0.0"
 	compileOnly project(":core:petra:petra-string")
 }

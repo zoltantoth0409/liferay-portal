@@ -40,7 +40,7 @@ dependencies {
 	compileOnly project(":apps:subscription:subscription-api")
 	compileOnly group: "com.liferay", name: "com.liferay.trash.api", version: "1.0.0"
 	compileOnly project(":apps:wiki:wiki-api")
-	compileOnly project(":apps:xstream:xstream-configurator-api")
+	compileOnly group: "com.liferay", name: "com.liferay.xstream.configurator.api", version: "3.0.0"
 	compileOnly project(":core:osgi-service-tracker-collections")
 	compileOnly project(":core:petra:petra-function")
 	compileOnly project(":core:petra:petra-lang")
