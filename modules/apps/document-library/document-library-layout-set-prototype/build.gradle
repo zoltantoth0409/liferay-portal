@@ -9,6 +9,6 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.portal.instance.lifecycle.api", version: "1.0.0"
 	compileOnly project(":apps:portal:portal-upgrade-api")
 	compileOnly project(":apps:rss:rss-api")
-	compileOnly project(":apps:site-navigation:site-navigation-language-api")
+	compileOnly group: "com.liferay", name: "com.liferay.site.navigation.language.api", version: "2.0.0"
 	compileOnly project(":apps:social:social-activities-api")
 }
