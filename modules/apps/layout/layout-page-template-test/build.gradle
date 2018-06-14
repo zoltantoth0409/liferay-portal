@@ -3,8 +3,8 @@ copyLibs {
 }
 
 dependencies {
-	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "default"
-	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
+	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "3.0.0"
+	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "3.0.0"
 	testIntegrationCompile project (":apps:asset:asset-display-page-api")
 	testIntegrationCompile project (":apps:fragment:fragment-api")
 	testIntegrationCompile project (":apps:layout:layout-page-template-api")

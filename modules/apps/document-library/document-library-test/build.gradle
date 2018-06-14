@@ -3,8 +3,8 @@ targetCompatibility = "1.8"
 
 dependencies {
 	testIntegrationCompile group: "com.liferay", name: "org.hibernate.core", version: "3.6.10.LIFERAY-PATCHED-3"
-	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "default"
-	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
+	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "3.0.0"
+	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "3.0.0"
 	testIntegrationCompile group: "org.jodd", name: "jodd-core", version: "3.6.4"
 	testIntegrationCompile project(":apps:document-library:document-library-api")
 	testIntegrationCompile project(":apps:document-library:document-library-content-api")

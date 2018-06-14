@@ -10,6 +10,6 @@ dependencies {
 	compileOnly project(":apps:portal:portal-upgrade-api")
 	compileOnly project(":core:petra:petra-string")
 
-	testCompile group: "com.liferay.portal", name: "com.liferay.util.java", version: "default"
+	testCompile group: "com.liferay.portal", name: "com.liferay.util.java", version: "3.0.0"
 	testCompile group: "easyconf", name: "easyconf", version: "0.9.5"
 }

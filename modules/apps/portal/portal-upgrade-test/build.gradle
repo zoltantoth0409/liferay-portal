@@ -2,8 +2,8 @@ sourceCompatibility = "1.8"
 targetCompatibility = "1.8"
 
 dependencies {
-	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "default"
-	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
+	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "3.0.0"
+	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "3.0.0"
 	testIntegrationCompile group: "org.osgi", name: "org.osgi.core", version: "5.0.0"
 	testIntegrationCompile project(":apps:static:osgi:osgi-util")
 	testIntegrationCompile project(":core:osgi-felix-util")

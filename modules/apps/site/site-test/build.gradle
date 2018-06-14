@@ -8,8 +8,8 @@ copyLibs {
 dependencies {
 	compileOnly group: "com.liferay.portal", name: "com.liferay.util.java", version: "3.0.0"
 
-	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "default"
-	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
+	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "3.0.0"
+	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "3.0.0"
 	testIntegrationCompile project(":apps:site:site-api")
 	testIntegrationCompile project(":apps:trash:trash-test-util")
 	testIntegrationCompile project(":core:petra:petra-string")

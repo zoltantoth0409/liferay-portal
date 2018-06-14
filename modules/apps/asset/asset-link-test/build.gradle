@@ -9,7 +9,7 @@ dependencies {
 	compileOnly project(":apps:bookmarks:bookmarks-test")
 	compileOnly project(":apps:journal:journal-test")
 
-	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
+	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "3.0.0"
 	testIntegrationCompile project(":apps:asset:asset-test-util")
 	testIntegrationCompile project(":apps:bookmarks:bookmarks-api")
 	testIntegrationCompile project(":apps:export-import:export-import-test-util")

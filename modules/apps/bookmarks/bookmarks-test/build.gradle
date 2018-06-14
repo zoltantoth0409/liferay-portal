@@ -1,6 +1,6 @@
 dependencies {
-	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "default"
-	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
+	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "3.0.0"
+	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "3.0.0"
 	testIntegrationCompile project(":apps:bookmarks:bookmarks-api")
 	testIntegrationCompile project(":apps:bookmarks:bookmarks-service")
 	testIntegrationCompile project(":apps:export-import:export-import-test-util")

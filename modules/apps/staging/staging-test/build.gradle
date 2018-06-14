@@ -5,8 +5,8 @@ copyLibs {
 dependencies {
 	compileOnly project(":apps:journal:journal-test")
 
-	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "default"
-	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
+	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "3.0.0"
+	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "3.0.0"
 	testIntegrationCompile project(":apps:export-import:export-import-changeset-api")
 	testIntegrationCompile project(":apps:journal:journal-api")
 	testIntegrationCompile project(":apps:staging:staging-api")
