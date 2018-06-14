@@ -70,7 +70,6 @@ public class FragmentEntryLinkRichTextEditorConfigContributor
 		jsonObject.put("allowedContent", sb.toString());
 
 		jsonObject.put("enterMode", 2);
-
 		jsonObject.put("extraPlugins", getExtraPluginsLists());
 
 		PortletURL itemSelectorURL = _itemSelector.getItemSelectorURL(
@@ -82,7 +81,6 @@ public class FragmentEntryLinkRichTextEditorConfigContributor
 		jsonObject.put("filebrowserImageBrowseUrl", itemSelectorURL.toString());
 
 		jsonObject.put("removePlugins", getRemovePluginsLists());
-
 		jsonObject.put("toolbars", getToolbarsJSONObject());
 	}
 
