@@ -9,7 +9,7 @@ dependencies {
 	compileOnly project(":apps:portal-workflow:portal-workflow-kaleo-api")
 	compileOnly group: "com.liferay", name: "com.liferay.portal.workflow.kaleo.definition.api", version: "3.0.0"
 	compileOnly project(":apps:portal-workflow:portal-workflow-kaleo-runtime-api")
-	compileOnly project(":apps:portal:portal-instance-lifecycle-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.instance.lifecycle.api", version: "1.0.0"
 	compileOnly project(":apps:portal:portal-spring-extender-api")
 	compileOnly project(":apps:static:osgi:osgi-util")
 }

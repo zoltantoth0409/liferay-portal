@@ -8,7 +8,7 @@ dependencies {
 	compileOnly project(":apps:blogs:blogs-api")
 	compileOnly group: "com.liferay", name: "com.liferay.blogs.recent.bloggers.api", version: "2.0.0"
 	compileOnly project(":apps:layout:layout-page-template-api")
-	compileOnly project(":apps:portal:portal-instance-lifecycle-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.instance.lifecycle.api", version: "1.0.0"
 	compileOnly project(":apps:portal:portal-upgrade-api")
 	compileOnly project(":core:petra:petra-string")
 }
