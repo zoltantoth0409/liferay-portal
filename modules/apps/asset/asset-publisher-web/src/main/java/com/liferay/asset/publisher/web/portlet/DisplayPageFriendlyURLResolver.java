@@ -191,12 +191,6 @@ public class DisplayPageFriendlyURLResolver implements FriendlyURLResolver {
 		long defaultUserId = _userLocalService.getDefaultUserId(
 			group.getCompanyId());
 
-		ServiceContext serviceContext =
-			ServiceContextThreadLocal.getServiceContext();
-
-		serviceContext.setAttribute(
-			"layout.instanceable.allowed", Boolean.TRUE);
-
 		Locale locale = LocaleUtil.getSiteDefault();
 
 		Map<Locale, String> nameMap = new HashMap<>();
@@ -206,6 +200,12 @@ public class DisplayPageFriendlyURLResolver implements FriendlyURLResolver {
 		UnicodeProperties typeSettingsProperties = new UnicodeProperties();
 
 		typeSettingsProperties.put("visible", Boolean.FALSE.toString());
+
+		ServiceContext serviceContext =
+			ServiceContextThreadLocal.getServiceContext();
+
+		serviceContext.setAttribute(
+			"layout.instanceable.allowed", Boolean.TRUE);
 
 		return _layoutLocalService.addLayout(
 			defaultUserId, groupId, false, 0, nameMap, null, null, null, null,
