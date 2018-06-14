@@ -21,7 +21,7 @@ dependencies {
 	compileOnly project(":apps:portal-background-task:portal-background-task-api")
 	compileOnly project(":apps:portal:portal-upgrade-api")
 	compileOnly project(":apps:staging:staging-taglib")
-	compileOnly project(":apps:trash:trash-api")
+	compileOnly group: "com.liferay", name: "com.liferay.trash.api", version: "1.0.0"
 	compileOnly project(":apps:trash:trash-taglib")
 	compileOnly project(":core:petra:petra-lang")
 	compileOnly project(":core:petra:petra-string")
