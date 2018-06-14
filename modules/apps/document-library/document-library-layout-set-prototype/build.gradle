@@ -10,5 +10,5 @@ dependencies {
 	compileOnly project(":apps:portal:portal-upgrade-api")
 	compileOnly project(":apps:rss:rss-api")
 	compileOnly group: "com.liferay", name: "com.liferay.site.navigation.language.api", version: "2.0.0"
-	compileOnly project(":apps:social:social-activities-api")
+	compileOnly group: "com.liferay", name: "com.liferay.social.activities.api", version: "2.0.0"
 }
