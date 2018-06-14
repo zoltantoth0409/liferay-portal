@@ -76,7 +76,6 @@ public class FragmentDisplayContext {
 		_fragmentPortletConfiguration =
 			(FragmentPortletConfiguration)_request.getAttribute(
 				FragmentPortletConfiguration.class.getName());
-
 		_itemSelector = (ItemSelector)request.getAttribute(
 			FragmentWebKeys.ITEM_SELECTOR);
 	}
