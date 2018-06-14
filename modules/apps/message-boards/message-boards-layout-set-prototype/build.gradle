@@ -11,6 +11,6 @@ dependencies {
 	compileOnly project(":apps:polls:polls-api")
 	compileOnly group: "com.liferay", name: "com.liferay.portal.instance.lifecycle.api", version: "1.0.0"
 	compileOnly project(":apps:portal:portal-upgrade-api")
-	compileOnly project(":apps:social:social-user-statistics-api")
+	compileOnly group: "com.liferay", name: "com.liferay.social.user.statistics.api", version: "2.0.0"
 	compileOnly project(":apps:wiki:wiki-api")
 }
