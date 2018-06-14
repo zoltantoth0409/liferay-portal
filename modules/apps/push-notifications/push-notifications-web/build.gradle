@@ -8,7 +8,7 @@ dependencies {
 	compileOnly project(":apps:application-list:application-list-api")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:portal:portal-upgrade-api")
-	compileOnly project(":apps:push-notifications:push-notifications-api")
+	compileOnly group: "com.liferay", name: "com.liferay.push.notifications.api", version: "2.0.0"
 	compileOnly project(":core:osgi-service-tracker-collections")
 	compileOnly project(":core:petra:petra-lang")
 	compileOnly project(":core:petra:petra-string")
