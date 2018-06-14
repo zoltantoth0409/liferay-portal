@@ -157,7 +157,7 @@ public class NPMRegistryImpl implements NPMRegistry {
 		String cacheKey = StringBundler.concat(
 			packageName, StringPool.UNDERLINE, versionConstraints);
 
-		JSPackage jsPackage = _jsPackageDependencyCache.get(cacheKey);
+		JSPackage jsPackage = _dependencyJSPackages.get(cacheKey);
 
 		if (jsPackage != null) {
 			if (jsPackage == _NULL_JS_PACKAGE) {
@@ -183,10 +183,10 @@ public class NPMRegistryImpl implements NPMRegistry {
 		}
 
 		if (jsPackage == null) {
-			_jsPackageDependencyCache.put(cacheKey, _NULL_JS_PACKAGE);
+			_dependencyJSPackages.put(cacheKey, _NULL_JS_PACKAGE);
 		}
 		else {
-			_jsPackageDependencyCache.put(cacheKey, jsPackage);
+			_dependencyJSPackages.put(cacheKey, jsPackage);
 		}
 
 		return jsPackage;
@@ -311,7 +311,7 @@ public class NPMRegistryImpl implements NPMRegistry {
 	}
 
 	private synchronized void _refreshJSModuleCaches() {
-		_jsPackageDependencyCache.clear();
+		_dependencyJSPackages.clear();
 
 		Map<String, JSModule> jsModules = new HashMap<>();
 		Map<String, JSPackage> jsPackages = new HashMap<>();
@@ -366,6 +366,8 @@ public class NPMRegistryImpl implements NPMRegistry {
 
 	private BundleContext _bundleContext;
 	private BundleTracker<JSBundle> _bundleTracker;
+	private final Map<String, JSPackage> _dependencyJSPackages =
+		new ConcurrentHashMap<>();
 	private final Map<String, String> _globalAliases = new HashMap<>();
 	private final List<JSBundleProcessor> _jsBundleProcessors =
 		new ArrayList<>();
@@ -388,8 +390,6 @@ public class NPMRegistryImpl implements NPMRegistry {
 	@Reference
 	private JSONFactory _jsonFactory;
 
-	private final Map<String, JSPackage> _jsPackageDependencyCache =
-		new ConcurrentHashMap<>();
 	private Map<String, JSPackage> _jsPackages = new HashMap<>();
 	private List<JSPackageVersion> _jsPackageVersions = new ArrayList<>();
 	private Map<String, JSModule> _resolvedJSModules = new HashMap<>();
