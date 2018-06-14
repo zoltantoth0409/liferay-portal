@@ -8,7 +8,7 @@ dependencies {
 	compileOnly project(":apps:asset:asset-api")
 	compileOnly group: "com.liferay", name: "com.liferay.asset.tag.stats.api", version: "1.0.0"
 	compileOnly project(":apps:asset:asset-taglib")
-	compileOnly project(":apps:asset:asset-tags-navigation-api")
+	compileOnly group: "com.liferay", name: "com.liferay.asset.tags.navigation.api", version: "2.0.0"
 	compileOnly project(":apps:dynamic-data-mapping:dynamic-data-mapping-taglib")
 	compileOnly project(":apps:export-import:export-import-api")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
