@@ -8,7 +8,7 @@ dependencies {
 	compileOnly project(":apps:comment:comment-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:journal:journal-api")
-	compileOnly project(":apps:journal:journal-content-asset-addon-entry:journal-content-asset-addon-entry-api")
+	compileOnly group: "com.liferay", name: "com.liferay.journal.content.asset.addon.entry.api", version: "1.0.0"
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
 	compileOnly project(":core:petra:petra-lang")
 }
