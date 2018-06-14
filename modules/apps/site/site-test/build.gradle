@@ -6,7 +6,7 @@ copyLibs {
 }
 
 dependencies {
-	compileOnly group: "com.liferay.portal", name: "com.liferay.util.java", version: "default"
+	compileOnly group: "com.liferay.portal", name: "com.liferay.util.java", version: "3.0.0"
 
 	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "default"
 	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
