@@ -122,12 +122,6 @@ public class FragmentPortlet extends MVCPortlet {
 		long defaultUserId = _userLocalService.getDefaultUserId(
 			group.getCompanyId());
 
-		ServiceContext serviceContext =
-			ServiceContextThreadLocal.getServiceContext();
-
-		serviceContext.setAttribute(
-			"layout.instanceable.allowed", Boolean.TRUE);
-
 		Locale locale = LocaleUtil.getSiteDefault();
 
 		Map<Locale, String> nameMap = new HashMap<>();
@@ -137,6 +131,12 @@ public class FragmentPortlet extends MVCPortlet {
 		UnicodeProperties typeSettingsProperties = new UnicodeProperties();
 
 		typeSettingsProperties.put("visible", Boolean.FALSE.toString());
+
+		ServiceContext serviceContext =
+			ServiceContextThreadLocal.getServiceContext();
+
+		serviceContext.setAttribute(
+			"layout.instanceable.allowed", Boolean.TRUE);
 
 		_layoutLocalService.addLayout(
 			defaultUserId, group.getGroupId(), false, 0, nameMap, null, null,
