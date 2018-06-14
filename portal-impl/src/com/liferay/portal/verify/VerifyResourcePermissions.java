@@ -130,7 +130,6 @@ public class VerifyResourcePermissions extends VerifyProcess {
 				sb.append(verifiableResourcedModel.getTableName());
 				sb.append(".");
 				sb.append(verifiableResourcedModel.getUserIdColumnName());
-				sb.append(", ResourcePermission.resourcePermissionId");
 			}
 
 			sb.append(" from ");
@@ -152,7 +151,7 @@ public class VerifyResourcePermissions extends VerifyProcess {
 			sb.append(verifiableResourcedModel.getTableName());
 			sb.append(".companyId = ");
 			sb.append(role.getCompanyId());
-			sb.append(" and ResourcePermission.resourcePermissionId is NULL");
+			sb.append(" and ResourcePermission.primKeyId is NULL");
 		}
 
 		return SQLTransformer.transform(sb.toString());
