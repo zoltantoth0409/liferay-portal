@@ -17,7 +17,7 @@ dependencies {
 	compileOnly project(":apps:changeset:changeset-api")
 	compileOnly project(":apps:changeset:changeset-service")
 	compileOnly project(":apps:export-import:export-import-api")
-	compileOnly project(":apps:export-import:export-import-changeset-api")
+	compileOnly group: "com.liferay", name: "com.liferay.exportimport.changeset.api", version: "1.0.0"
 	compileOnly project(":apps:layout:layout-api")
 	compileOnly project(":apps:petra:petra-xml")
 	compileOnly project(":apps:portal-background-task:portal-background-task-api")

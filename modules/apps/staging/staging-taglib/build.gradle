@@ -13,7 +13,7 @@ dependencies {
 	compileOnly group: "org.osgi", name: "org.osgi.service.http", version: "1.2.1"
 	compileOnly group: "org.osgi", name: "org.osgi.service.http.whiteboard", version: "1.0.0"
 	compileOnly project(":apps:export-import:export-import-api")
-	compileOnly project(":apps:export-import:export-import-changeset-api")
+	compileOnly group: "com.liferay", name: "com.liferay.exportimport.changeset.api", version: "1.0.0"
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-clay")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-soy")
