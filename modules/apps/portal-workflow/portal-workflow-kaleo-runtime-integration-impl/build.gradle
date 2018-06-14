@@ -7,6 +7,6 @@ dependencies {
 	compileOnly project(":apps:portal-workflow:portal-workflow-kaleo-api")
 	compileOnly group: "com.liferay", name: "com.liferay.portal.workflow.kaleo.definition.api", version: "3.0.0"
 	compileOnly project(":apps:portal-workflow:portal-workflow-kaleo-runtime-api")
-	compileOnly project(":apps:portal:portal-dao-orm-custom-sql-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.dao.orm.custom.sql.api", version: "1.0.0"
 	compileOnly project(":core:petra:petra-string")
 }
