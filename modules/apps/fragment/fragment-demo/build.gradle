@@ -4,5 +4,5 @@ dependencies {
 	compileOnly project(":apps:fragment:fragment-api")
 	compileOnly project(":apps:fragment:fragment-demo-data-creator-api")
 	compileOnly group: "com.liferay", name: "com.liferay.portal.instance.lifecycle.api", version: "1.0.0"
-	compileOnly project(":apps:users-admin:users-admin-demo-data-creator-api")
+	compileOnly group: "com.liferay", name: "com.liferay.users.admin.demo.data.creator.api", version: "2.0.0"
 }
