@@ -7,6 +7,6 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.asset.tag.stats.api", version: "1.0.0"
 	compileOnly project(":apps:asset:asset-tags-api")
 	compileOnly project(":apps:export-import:export-import-api")
-	compileOnly project(":apps:staging:staging-api")
+	compileOnly group: "com.liferay", name: "com.liferay.staging.api", version: "3.0.0"
 	compileOnly project(":apps:xstream:xstream-configurator-api")
 }

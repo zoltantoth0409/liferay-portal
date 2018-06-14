@@ -19,7 +19,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.site.navigation.admin.api", version: "1.0.0"
 	compileOnly project(":apps:site-navigation:site-navigation-api")
 	compileOnly group: "com.liferay", name: "com.liferay.site.navigation.menu.item.api", version: "1.0.0"
-	compileOnly project(":apps:staging:staging-api")
+	compileOnly group: "com.liferay", name: "com.liferay.staging.api", version: "3.0.0"
 	compileOnly project(":apps:xstream:xstream-configurator-api")
 	compileOnly project(":core:petra:petra-function")
 	compileOnly project(":core:petra:petra-string")
