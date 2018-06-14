@@ -1878,12 +1878,12 @@ public class SitesImpl implements Sites {
 		if (!importData) {
 			cacheFile = new File(
 				StringBundler.concat(
-					_TEMP_DIR, layoutSetPrototype.getUuid(), StringPool.DASH,
-					String.valueOf(layoutSetPrototype.getMvccVersion()),
-					".lar"));
+					_TEMP_DIR, layoutSetPrototype.getUuid(), ".lar"));
 
-			synchronized (this) {
-				if (cacheFile.exists()) {
+			if (cacheFile.exists()) {
+				Date modifiedDate = layoutSetPrototype.getModifiedDate();
+
+				if (cacheFile.lastModified() >= modifiedDate.getTime()) {
 					if (_log.isDebugEnabled()) {
 						_log.debug(
 							"Using cached layout set prototype LAR file " +
@@ -1946,17 +1946,13 @@ public class SitesImpl implements Sites {
 
 		if (!importData && newFile) {
 			try {
-				synchronized (this) {
-					if (!cacheFile.exists()) {
-						FileUtil.copyFile(file, cacheFile);
+				FileUtil.copyFile(file, cacheFile);
 
-						if (_log.isDebugEnabled()) {
-							_log.debug(
-								StringBundler.concat(
-									"Copied ", file.getAbsolutePath(), " to ",
-									cacheFile.getAbsolutePath()));
-						}
-					}
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						StringBundler.concat(
+							"Copied ", file.getAbsolutePath(), " to ",
+							cacheFile.getAbsolutePath()));
 				}
 			}
 			catch (Exception e) {
