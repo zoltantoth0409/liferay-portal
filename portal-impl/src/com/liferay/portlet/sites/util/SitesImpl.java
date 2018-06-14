@@ -1872,26 +1872,32 @@ public class SitesImpl implements Sites {
 			boolean importData)
 		throws PortalException {
 
-		File cacheFile = null;
 		File file = null;
 
-		if (!importData) {
-			cacheFile = new File(
-				StringBundler.concat(
-					_TEMP_DIR, layoutSetPrototype.getUuid(), ".lar"));
+		StringBundler sb = new StringBundler(importData ? 4 : 3);
 
-			if (cacheFile.exists()) {
-				Date modifiedDate = layoutSetPrototype.getModifiedDate();
+		sb.append(_TEMP_DIR);
+		sb.append(layoutSetPrototype.getUuid());
 
-				if (cacheFile.lastModified() >= modifiedDate.getTime()) {
-					if (_log.isDebugEnabled()) {
-						_log.debug(
-							"Using cached layout set prototype LAR file " +
-								cacheFile.getAbsolutePath());
-					}
+		if (importData) {
+			sb.append("-data");
+		}
 
-					file = cacheFile;
+		sb.append(".lar");
+
+		File cacheFile = new File(sb.toString());
+
+		if (cacheFile.exists() && !importData) {
+			Date modifiedDate = layoutSetPrototype.getModifiedDate();
+
+			if (cacheFile.lastModified() >= modifiedDate.getTime()) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						"Using cached layout set prototype LAR file " +
+							cacheFile.getAbsolutePath());
 				}
+
+				file = cacheFile;
 			}
 		}
 
@@ -1944,7 +1950,7 @@ public class SitesImpl implements Sites {
 		ExportImportLocalServiceUtil.importLayouts(
 			exportImportConfiguration, file);
 
-		if (!importData && newFile) {
+		if (newFile) {
 			try {
 				FileUtil.copyFile(file, cacheFile);
 
