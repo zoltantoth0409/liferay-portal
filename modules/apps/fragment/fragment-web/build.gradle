@@ -43,7 +43,7 @@ dependencies {
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-clay")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-soy")
-	compileOnly project(":apps:html-preview:html-preview-api")
+	compileOnly group: "com.liferay", name: "com.liferay.html.preview.api", version: "1.0.0"
 	compileOnly project(":apps:item-selector:item-selector-api")
 	compileOnly project(":apps:item-selector:item-selector-criteria-api")
 	compileOnly project(":apps:layout:layout-page-template-api")
