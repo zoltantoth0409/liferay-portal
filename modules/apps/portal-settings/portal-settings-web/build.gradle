@@ -25,7 +25,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.map.api", version: "3.0.0"
 	compileOnly project(":apps:map:map-taglib")
 	compileOnly project(":apps:staging:staging-taglib")
-	compileOnly project(":apps:users-admin:users-admin-api")
+	compileOnly group: "com.liferay", name: "com.liferay.users.admin.api", version: "3.0.0"
 	compileOnly project(":apps:users-admin:users-admin-web")
 }
 

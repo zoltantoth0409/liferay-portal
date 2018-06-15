@@ -24,5 +24,5 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.form.navigator", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.soy", version: "2.0.0"
 	compileOnly project(":apps:staging:staging-taglib")
-	compileOnly project(":apps:users-admin:users-admin-api")
+	compileOnly group: "com.liferay", name: "com.liferay.users.admin.api", version: "3.0.0"
 }

@@ -16,5 +16,5 @@ dependencies {
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:social:social-activities-taglib")
 	compileOnly group: "com.liferay", name: "com.liferay.text.localizer.taglib", version: "1.0.0"
-	compileOnly project(":apps:users-admin:users-admin-api")
+	compileOnly group: "com.liferay", name: "com.liferay.users.admin.api", version: "3.0.0"
 }
