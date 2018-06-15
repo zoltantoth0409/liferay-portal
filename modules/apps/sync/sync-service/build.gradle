@@ -34,7 +34,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.osgi.service.tracker.collections", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.concurrent", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.executor", version: "2.0.0"
-	compileOnly project(":core:petra:petra-lang")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
 	compileOnly project(":core:petra:petra-string")
 	compileOnly group: "com.liferay", name: "com.liferay.registry.api", version: "2.0.0"
 }

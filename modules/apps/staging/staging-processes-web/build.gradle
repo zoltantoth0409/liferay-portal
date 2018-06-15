@@ -20,6 +20,6 @@ dependencies {
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-soy")
 	compileOnly project(":apps:staging:staging-taglib")
 	compileOnly project(":apps:trash:trash-taglib")
-	compileOnly project(":core:petra:petra-lang")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
 	compileOnly project(":core:petra:petra-string")
 }

@@ -22,6 +22,6 @@ dependencies {
 	compileOnly project(":apps:portal:portal-upgrade-api")
 	compileOnly project(":apps:subscription:subscription-api")
 	compileOnly project(":apps:wiki:wiki-api")
-	compileOnly project(":core:petra:petra-lang")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
 	compileOnly project(":core:petra:petra-string")
 }

@@ -7,6 +7,6 @@ dependencies {
 	compileOnly project(":apps:item-selector:item-selector-api")
 	compileOnly project(":apps:item-selector:item-selector-criteria-api")
 	compileOnly project(":apps:item-selector:item-selector-taglib")
-	compileOnly project(":core:petra:petra-lang")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
 	compileOnly project(":core:petra:petra-string")
 }

@@ -51,7 +51,7 @@ dependencies {
 	compileOnly project(":apps:message-boards:message-boards-api")
 	compileOnly project(":apps:petra:petra-encryptor")
 	compileOnly group: "com.liferay", name: "com.liferay.osgi.service.tracker.collections", version: "3.0.0"
-	compileOnly project(":core:petra:petra-lang")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
 	compileOnly project(":core:petra:petra-string")
 }
 

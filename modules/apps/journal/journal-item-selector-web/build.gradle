@@ -14,5 +14,5 @@ dependencies {
 	compileOnly project(":apps:journal:journal-api")
 	compileOnly project(":apps:journal:journal-item-selector-api")
 	compileOnly project(":apps:journal:journal-web")
-	compileOnly project(":core:petra:petra-lang")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
 }

@@ -16,6 +16,6 @@ dependencies {
 	compileOnly project(":apps:dynamic-data-mapping:dynamic-data-mapping-form-field-type")
 	compileOnly project(":apps:static:osgi:osgi-util")
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
-	compileOnly project(":core:petra:petra-lang")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
 	compileOnly project(":core:petra:petra-string")
 }

@@ -9,5 +9,5 @@ dependencies {
 	compileOnly project(":apps:asset:asset-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:journal:journal-api")
-	compileOnly project(":core:petra:petra-lang")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
 }

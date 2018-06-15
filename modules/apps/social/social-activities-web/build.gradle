@@ -13,6 +13,6 @@ dependencies {
 	compileOnly project(":apps:rss:rss-api")
 	compileOnly project(":apps:rss:rss-taglib")
 	compileOnly project(":apps:social:social-activities-taglib")
-	compileOnly project(":core:petra:petra-lang")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
 	compileOnly project(":core:petra:petra-string")
 }

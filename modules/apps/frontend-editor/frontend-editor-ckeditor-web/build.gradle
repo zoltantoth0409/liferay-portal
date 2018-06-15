@@ -105,6 +105,6 @@ dependencies {
 	compileOnly project(":apps:frontend-editor:frontend-editor-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:message-boards:message-boards-api")
-	compileOnly project(":core:petra:petra-lang")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
 	compileOnly project(":core:petra:petra-string")
 }
