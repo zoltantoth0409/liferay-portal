@@ -36,7 +36,7 @@ dependencies {
 	compileOnly project(":apps:expando:expando-taglib")
 	compileOnly group: "com.liferay", name: "com.liferay.rss.taglib", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.social.bookmarks.taglib", version: "1.0.0"
-	compileOnly project(":apps:wiki:wiki-api")
+	compileOnly group: "com.liferay", name: "com.liferay.wiki.api", version: "3.0.0"
 }
 
 findSecurityBugs {
