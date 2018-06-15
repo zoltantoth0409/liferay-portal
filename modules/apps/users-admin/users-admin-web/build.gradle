@@ -21,7 +21,7 @@ dependencies {
 	compileOnly project(":apps:expando:expando-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-clay")
-	compileOnly project(":apps:frontend-taglib:frontend-taglib-form-navigator")
+	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.form.navigator", version: "2.0.0"
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-soy")
 	compileOnly project(":apps:staging:staging-taglib")
 	compileOnly project(":apps:users-admin:users-admin-api")
