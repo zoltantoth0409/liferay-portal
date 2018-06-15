@@ -9,7 +9,7 @@ dependencies {
 	compileOnly project(":apps:application-list:application-list-api")
 	compileOnly project(":apps:export-import:export-import-api")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
-	compileOnly project(":apps:layout:layout-set-prototype-api")
+	compileOnly group: "com.liferay", name: "com.liferay.layout.set.prototype.api", version: "2.0.0"
 	compileOnly project(":apps:portal:portal-upgrade-api")
 	compileOnly project(":core:petra:petra-lang")
 	compileOnly project(":core:petra:petra-string")
