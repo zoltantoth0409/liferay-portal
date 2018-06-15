@@ -14,7 +14,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.fragment.api", version: "1.0.0"
 	compileOnly project(":apps:fragment:fragment-item-selector-api")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
-	compileOnly project(":apps:frontend-taglib:frontend-taglib-soy")
+	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.soy", version: "2.0.0"
 	compileOnly project(":apps:item-selector:item-selector-api")
 	compileOnly project(":apps:item-selector:item-selector-criteria-api")
 
