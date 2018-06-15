@@ -36,7 +36,7 @@ public class CalendarStagingModelListener extends BaseModelListener<Calendar> {
 
 	@Override
 	public void onAfterCreate(Calendar calendar) throws ModelListenerException {
-		if (_skipEvent(calendar)) {
+		if (_isSkipEvent(calendar)) {
 			return;
 		}
 
@@ -50,14 +50,14 @@ public class CalendarStagingModelListener extends BaseModelListener<Calendar> {
 
 	@Override
 	public void onAfterUpdate(Calendar calendar) throws ModelListenerException {
-		if (_skipEvent(calendar)) {
+		if (_isSkipEvent(calendar)) {
 			return;
 		}
 
 		_stagingModelListener.onAfterUpdate(calendar);
 	}
 
-	private boolean _skipEvent(Calendar calendar) {
+	private boolean _isSkipEvent(Calendar calendar) {
 		CalendarResource guestCalendarResource = null;
 
 		try {

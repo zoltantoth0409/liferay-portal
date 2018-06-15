@@ -45,7 +45,7 @@ public class CalendarResourceStagingModelListener
 	public void onAfterRemove(CalendarResource calendarResource)
 		throws ModelListenerException {
 
-		if (_skipEvent(calendarResource)) {
+		if (_isSkipEvent(calendarResource)) {
 			return;
 		}
 
@@ -56,14 +56,14 @@ public class CalendarResourceStagingModelListener
 	public void onAfterUpdate(CalendarResource calendarResource)
 		throws ModelListenerException {
 
-		if (_skipEvent(calendarResource)) {
+		if (_isSkipEvent(calendarResource)) {
 			return;
 		}
 
 		_stagingModelListener.onAfterUpdate(calendarResource);
 	}
 
-	private boolean _skipEvent(CalendarResource calendarResource) {
+	private boolean _isSkipEvent(CalendarResource calendarResource) {
 		CalendarResource guestCalendarResource = null;
 
 		try {
