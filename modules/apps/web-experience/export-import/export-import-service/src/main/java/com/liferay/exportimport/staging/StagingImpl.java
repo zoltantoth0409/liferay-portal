@@ -1825,10 +1825,10 @@ public class StagingImpl implements Staging {
 					publishLayoutRemoteSettingsMap, "remotePathContext");
 				secureConnection = MapUtil.getBoolean(
 					publishLayoutRemoteSettingsMap, "secureConnection");
-				remotePrivateLayout = MapUtil.getBoolean(
-					publishLayoutRemoteSettingsMap, "remotePrivateLayout");
 				remoteGroupId = MapUtil.getLong(
 					publishLayoutRemoteSettingsMap, "targetGroupId");
+				remotePrivateLayout = MapUtil.getBoolean(
+					publishLayoutRemoteSettingsMap, "remotePrivateLayout");
 
 				if (!Validator.isBlank(name)) {
 					Map<String, String[]> parameterMap =
@@ -2011,12 +2011,11 @@ public class StagingImpl implements Staging {
 		int remotePort = 0;
 		String remotePathContext = null;
 		boolean secureConnection = false;
-		boolean remotePrivateLayout = false;
-
 		long remoteGroupId = ParamUtil.getLong(
 			portletRequest, "remoteGroupId",
 			GetterUtil.getLong(
 				groupTypeSettingsProperties.getProperty("remoteGroupId")));
+		boolean remotePrivateLayout = false;
 
 		long exportImportConfigurationId = ParamUtil.getLong(
 			portletRequest, "exportImportConfigurationId");
@@ -2040,9 +2039,9 @@ public class StagingImpl implements Staging {
 				remotePort = MapUtil.getInteger(settingsMap, "remotePort");
 				remotePathContext = MapUtil.getString(
 					settingsMap, "remotePathContext");
-				remoteGroupId = MapUtil.getLong(settingsMap, "targetGroupId");
 				secureConnection = MapUtil.getBoolean(
 					settingsMap, "secureConnection");
+				remoteGroupId = MapUtil.getLong(settingsMap, "targetGroupId");
 				remotePrivateLayout = MapUtil.getBoolean(
 					settingsMap, "remotePrivateLayout");
 			}
