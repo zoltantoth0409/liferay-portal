@@ -41,7 +41,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.portal.spring.extender.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "2.0.0"
 	compileOnly project(":apps:portlet-display-template:portlet-display-template-api")
-	compileOnly project(":apps:rss:rss-api")
+	compileOnly group: "com.liferay", name: "com.liferay.rss.api", version: "2.0.0"
 	compileOnly project(":apps:static:osgi:osgi-util")
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
 	compileOnly project(":apps:subscription:subscription-api")

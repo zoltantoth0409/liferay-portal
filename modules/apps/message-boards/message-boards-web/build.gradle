@@ -31,7 +31,7 @@ dependencies {
 	compileOnly project(":apps:message-boards:message-boards-api")
 	compileOnly project(":apps:message-boards:message-boards-service")
 	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "2.0.0"
-	compileOnly project(":apps:rss:rss-api")
+	compileOnly group: "com.liferay", name: "com.liferay.rss.api", version: "2.0.0"
 	compileOnly project(":apps:rss:rss-taglib")
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
 	compileOnly project(":apps:subscription:subscription-api")

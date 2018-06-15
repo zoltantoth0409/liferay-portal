@@ -33,6 +33,6 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.petra.mail", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.spring.extender.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "2.0.0"
-	compileOnly project(":apps:rss:rss-api")
+	compileOnly group: "com.liferay", name: "com.liferay.rss.api", version: "2.0.0"
 	compileOnly project(":apps:subscription:subscription-api")
 }
