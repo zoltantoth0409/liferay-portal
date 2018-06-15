@@ -42,7 +42,7 @@ public class DDMFormInstanceRecordStagingModelListener
 	public void onAfterCreate(DDMFormInstanceRecord ddmFormInstanceRecord)
 		throws ModelListenerException {
 
-		if (_skipEvent(ddmFormInstanceRecord)) {
+		if (_isSkipEvent(ddmFormInstanceRecord)) {
 			return;
 		}
 
@@ -60,14 +60,14 @@ public class DDMFormInstanceRecordStagingModelListener
 	public void onAfterUpdate(DDMFormInstanceRecord ddmFormInstanceRecord)
 		throws ModelListenerException {
 
-		if (_skipEvent(ddmFormInstanceRecord)) {
+		if (_isSkipEvent(ddmFormInstanceRecord)) {
 			return;
 		}
 
 		_stagingModelListener.onAfterUpdate(ddmFormInstanceRecord);
 	}
 
-	private boolean _skipEvent(DDMFormInstanceRecord ddmFormInstanceRecord) {
+	private boolean _isSkipEvent(DDMFormInstanceRecord ddmFormInstanceRecord) {
 		try {
 			StagedModelDataHandler stagedModelDataHandler =
 				StagedModelDataHandlerRegistryUtil.getStagedModelDataHandler(

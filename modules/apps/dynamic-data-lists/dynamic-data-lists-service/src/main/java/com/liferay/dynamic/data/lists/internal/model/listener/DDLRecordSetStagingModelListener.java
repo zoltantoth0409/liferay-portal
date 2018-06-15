@@ -35,7 +35,7 @@ public class DDLRecordSetStagingModelListener
 	public void onAfterCreate(DDLRecordSet ddlRecordSet)
 		throws ModelListenerException {
 
-		if (_skipEvent(ddlRecordSet)) {
+		if (_isSkipEvent(ddlRecordSet)) {
 			return;
 		}
 
@@ -53,14 +53,14 @@ public class DDLRecordSetStagingModelListener
 	public void onAfterUpdate(DDLRecordSet ddlRecordSet)
 		throws ModelListenerException {
 
-		if (_skipEvent(ddlRecordSet)) {
+		if (_isSkipEvent(ddlRecordSet)) {
 			return;
 		}
 
 		_stagingModelListener.onAfterUpdate(ddlRecordSet);
 	}
 
-	private boolean _skipEvent(DDLRecordSet ddlRecordSet) {
+	private boolean _isSkipEvent(DDLRecordSet ddlRecordSet) {
 		if (ddlRecordSet.getScope() !=
 				DDLRecordSetConstants.SCOPE_DYNAMIC_DATA_LISTS) {
 
