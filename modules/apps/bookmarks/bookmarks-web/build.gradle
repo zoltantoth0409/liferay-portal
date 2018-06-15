@@ -26,5 +26,5 @@ dependencies {
 	compileOnly project(":apps:asset:asset-taglib")
 	compileOnly project(":apps:expando:expando-taglib")
 	compileOnly project(":apps:export-import:export-import-changeset-taglib")
-	compileOnly project(":apps:frontend-taglib:frontend-taglib")
+	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib", version: "3.0.0"
 }
