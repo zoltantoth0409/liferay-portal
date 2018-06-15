@@ -116,8 +116,9 @@ public class ExportTemplatesToolbarDisplayContext
 	private SearchContainer _createSearchContainer(
 		long liveGroupId, Company company, PortletURL iteratorURL) {
 
-		ExportImportConfigurationSearchTerms exportImportConfigurationSearchTerms =
-			new ExportImportConfigurationSearchTerms(liferayPortletRequest);
+		ExportImportConfigurationSearchTerms
+			exportImportConfigurationSearchTerms =
+				new ExportImportConfigurationSearchTerms(liferayPortletRequest);
 
 		SearchContainer searchContainer = new SearchContainer(
 			liferayPortletRequest,
