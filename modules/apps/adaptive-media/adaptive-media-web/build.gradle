@@ -25,7 +25,7 @@ dependencies {
 	compileOnly group: "org.osgi", name: "org.osgi.service.http.whiteboard", version: "1.0.0"
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.clay", version: "1.0.0"
-	compileOnly project(":apps:journal:journal-api")
+	compileOnly group: "com.liferay", name: "com.liferay.journal.api", version: "3.0.0"
 
 	soyCompile project(":apps:frontend-js:frontend-js-web")
 }

@@ -33,7 +33,7 @@ dependencies {
 	compileOnly project(":apps:expando:expando-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.clay", version: "1.0.0"
-	compileOnly project(":apps:journal:journal-api")
+	compileOnly group: "com.liferay", name: "com.liferay.journal.api", version: "3.0.0"
 	compileOnly project(":apps:rss:rss-taglib")
 	compileOnly project(":apps:social:social-bookmarks-taglib")
 	compileOnly project(":apps:wiki:wiki-api")
