@@ -80,6 +80,12 @@ body.portlet {
 	}
 
 	&:active, &:hover, &:focus, &.active {
+		.visible-interaction{
+			display: inherit;
+		}
+	}
+
+	&.open {
 		.visible-interaction {
 			display: inherit;
 		}
