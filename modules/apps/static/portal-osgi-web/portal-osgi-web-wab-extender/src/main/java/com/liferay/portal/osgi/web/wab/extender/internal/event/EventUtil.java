@@ -66,9 +66,9 @@ public class EventUtil
 		}
 		else {
 			_bundleContext = null;
+			_eventAdminServiceTracker = null;
 			_logger = null;
 			_webExtenderBundle = null;
-			_eventAdminServiceTracker = null;
 		}
 	}
 
