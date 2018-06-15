@@ -17,7 +17,7 @@ dependencies {
 	compileOnly group: "org.springframework", name: "spring-context", version: "4.1.9.RELEASE"
 	compileOnly group: "org.springframework", name: "spring-core", version: "4.1.9.RELEASE"
 	compileOnly group: "org.springframework", name: "spring-web", version: "4.1.9.RELEASE"
-	compileOnly project(":apps:static:portal-osgi-web:portal-osgi-web-wab-generator-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.osgi.web.wab.generator.api", version: "1.0.0"
 	compileOnly project(":core:petra:petra-string")
 
 	testCompile group: "commons-httpclient", name: "commons-httpclient", version: "3.1"
