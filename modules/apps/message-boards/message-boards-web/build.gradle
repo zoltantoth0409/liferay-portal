@@ -34,7 +34,7 @@ dependencies {
 	compileOnly project(":apps:expando:expando-taglib")
 	compileOnly group: "com.liferay", name: "com.liferay.flags.taglib", version: "3.0.0"
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
-	compileOnly project(":apps:frontend-taglib:frontend-taglib-clay")
+	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.clay", version: "1.0.0"
 	compileOnly project(":apps:message-boards:message-boards-service")
 	compileOnly project(":apps:rss:rss-taglib")
 }
