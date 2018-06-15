@@ -1,4 +1,6 @@
 dependencies {
+	compileOnly group: "com.liferay", name: "com.liferay.portal.instance.lifecycle.api", version: "1.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.portal.workflow.kaleo.definition.api", version: "3.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "3.0.0"
 	compileOnly group: "javax.mail", name: "mail", version: "1.4"
 	compileOnly group: "org.osgi", name: "org.osgi.core", version: "5.0.0"
@@ -7,9 +9,7 @@ dependencies {
 	compileOnly group: "org.springframework", name: "spring-context", version: "4.1.9.RELEASE"
 	compileOnly project(":apps:portal-rules-engine:portal-rules-engine-api")
 	compileOnly project(":apps:portal-workflow:portal-workflow-kaleo-api")
-	compileOnly group: "com.liferay", name: "com.liferay.portal.workflow.kaleo.definition.api", version: "3.0.0"
 	compileOnly project(":apps:portal-workflow:portal-workflow-kaleo-runtime-api")
-	compileOnly group: "com.liferay", name: "com.liferay.portal.instance.lifecycle.api", version: "1.0.0"
 	compileOnly project(":apps:portal:portal-spring-extender-api")
 	compileOnly project(":apps:static:osgi:osgi-util")
 }
