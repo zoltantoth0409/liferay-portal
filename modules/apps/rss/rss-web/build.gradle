@@ -16,7 +16,7 @@ dependencies {
 	compileOnly project(":apps:portlet-display-template:portlet-display-template-api")
 	compileOnly project(":apps:rss:rss-api")
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
-	compileOnly project(":apps:static:portal-configuration:portal-configuration-persistence-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.configuration.persistence.api", version: "1.0.0"
 	compileOnly project(":core:petra:petra-lang")
 	compileOnly project(":core:petra:petra-string")
 }

@@ -8,6 +8,6 @@ dependencies {
 	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations", version: "1.3.0"
 	compileOnly project(":apps:portal:portal-upgrade-api")
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
-	compileOnly project(":apps:static:portal-configuration:portal-configuration-persistence-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.configuration.persistence.api", version: "1.0.0"
 	compileOnly project(":core:petra:petra-string")
 }

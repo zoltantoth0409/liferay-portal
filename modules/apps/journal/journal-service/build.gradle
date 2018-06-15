@@ -35,7 +35,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.staging.api", version: "3.0.0"
 	compileOnly project(":apps:static:osgi:osgi-util")
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
-	compileOnly project(":apps:static:portal-configuration:portal-configuration-persistence-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.configuration.persistence.api", version: "1.0.0"
 	compileOnly project(":apps:subscription:subscription-api")
 	compileOnly group: "com.liferay", name: "com.liferay.trash.api", version: "1.0.0"
 	compileOnly project(":apps:upload:upload-api")

@@ -15,7 +15,7 @@ dependencies {
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-soy")
 	compileOnly project(":apps:portal-background-task:portal-background-task-api")
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
-	compileOnly project(":apps:static:portal-configuration:portal-configuration-persistence-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.configuration.persistence.api", version: "1.0.0"
 	compileOnly project(":apps:user-associated-data:user-associated-data-api")
 	compileOnly project(":apps:users-admin:users-admin-api")
 	compileOnly project(":core:osgi-service-tracker-collections")
