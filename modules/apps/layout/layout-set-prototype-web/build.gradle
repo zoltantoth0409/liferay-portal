@@ -12,5 +12,5 @@ dependencies {
 	compileOnly project(":apps:application-list:application-list-api")
 	compileOnly project(":apps:export-import:export-import-api")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
-	compileOnly project(":apps:portal:portal-upgrade-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "2.0.0"
 }

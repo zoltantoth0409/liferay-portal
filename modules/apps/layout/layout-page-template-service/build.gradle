@@ -26,5 +26,5 @@ dependencies {
 	compileOnly project(":apps:fragment:fragment-api")
 	compileOnly project(":apps:layout:layout-page-template-api")
 	compileOnly group: "com.liferay", name: "com.liferay.portal.spring.extender.api", version: "3.0.0"
-	compileOnly project(":apps:portal:portal-upgrade-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "2.0.0"
 }

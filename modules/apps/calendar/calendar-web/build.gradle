@@ -16,7 +16,7 @@ dependencies {
 	compileOnly project(":apps:comment:comment-taglib")
 	compileOnly project(":apps:expando:expando-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
-	compileOnly project(":apps:portal:portal-upgrade-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "2.0.0"
 	compileOnly project(":apps:rss:rss-api")
 	compileOnly project(":apps:rss:rss-taglib")
 }

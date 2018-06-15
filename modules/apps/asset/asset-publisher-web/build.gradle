@@ -35,7 +35,7 @@ dependencies {
 	compileOnly project(":apps:item-selector:item-selector-api")
 	compileOnly project(":apps:journal:journal-api")
 	compileOnly project(":apps:layout:layout-page-template-api")
-	compileOnly project(":apps:portal:portal-upgrade-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "2.0.0"
 	compileOnly project(":apps:portlet-display-template:portlet-display-template-api")
 	compileOnly project(":apps:rss:rss-api")
 	compileOnly project(":apps:rss:rss-taglib")

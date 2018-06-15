@@ -26,7 +26,7 @@ dependencies {
 	compileOnly project(":apps:changeset:changeset-service")
 	compileOnly project(":apps:export-import:export-import-api")
 	compileOnly group: "com.liferay", name: "com.liferay.petra.xml", version: "2.0.0"
-	compileOnly project(":apps:portal:portal-upgrade-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "2.0.0"
 	compileOnly project(":apps:site:site-api")
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
 }
