@@ -6,6 +6,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.changeset.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.exportimport.changeset.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.layout.api", version: "1.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.portal.background.task.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.staging.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.trash.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.xstream.configurator.api", version: "3.0.0"
@@ -23,7 +24,6 @@ dependencies {
 	compileOnly project(":apps:changeset:changeset-service")
 	compileOnly project(":apps:export-import:export-import-api")
 	compileOnly project(":apps:petra:petra-xml")
-	compileOnly group: "com.liferay", name: "com.liferay.portal.background.task.api", version: "3.0.0"
 	compileOnly project(":apps:portal:portal-upgrade-api")
 	compileOnly project(":apps:site:site-api")
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
