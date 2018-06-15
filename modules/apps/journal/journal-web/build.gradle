@@ -41,7 +41,7 @@ dependencies {
 	compileOnly project(":apps:journal:journal-taglib")
 	compileOnly project(":apps:layout:layout-item-selector-api")
 	compileOnly project(":apps:layout:layout-page-template-api")
-	compileOnly project(":apps:message-boards:message-boards-api")
+	compileOnly group: "com.liferay", name: "com.liferay.message.boards.api", version: "4.0.0"
 	compileOnly project(":apps:subscription:subscription-api")
 
 	soyCompile project(":apps:frontend-js:frontend-js-metal-web")
