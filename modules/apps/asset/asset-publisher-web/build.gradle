@@ -9,7 +9,10 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.asset.publisher.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.asset.tag.stats.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.mapping.api", version: "4.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.exportimport.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.friendly.url.api", version: "1.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.soy", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.item.selector.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.osgi.service.tracker.collections", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.content", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.function", version: "2.0.0"
@@ -17,8 +20,11 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.configuration.metatype.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.portlet.display.template.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.registry.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.rss.api", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.site.api", version: "3.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.subscription.api", version: "1.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "3.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "3.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.util.java", version: "3.0.0"
@@ -31,18 +37,12 @@ dependencies {
 	compileOnly project(":apps:asset:asset-taglib")
 	compileOnly project(":apps:comment:comment-taglib")
 	compileOnly project(":apps:dynamic-data-mapping:dynamic-data-mapping-taglib")
-	compileOnly group: "com.liferay", name: "com.liferay.exportimport.api", version: "3.0.0"
 	compileOnly project(":apps:flags:flags-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
-	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.soy", version: "2.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.item.selector.api", version: "3.0.0"
 	compileOnly project(":apps:journal:journal-api")
 	compileOnly project(":apps:layout:layout-page-template-api")
-	compileOnly group: "com.liferay", name: "com.liferay.portlet.display.template.api", version: "1.0.0"
 	compileOnly project(":apps:rss:rss-taglib")
-	compileOnly group: "com.liferay", name: "com.liferay.site.api", version: "3.0.0"
 	compileOnly project(":apps:site:site-item-selector-api")
 	compileOnly project(":apps:site:site-taglib")
 	compileOnly project(":apps:social:social-bookmarks-taglib")
-	compileOnly group: "com.liferay", name: "com.liferay.subscription.api", version: "1.0.0"
 }

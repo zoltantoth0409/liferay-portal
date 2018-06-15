@@ -7,14 +7,19 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.asset.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.document.library.repository.authorization.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.mapping.api", version: "4.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.exportimport.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.exportimport.changeset.api", version: "1.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.soy", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.item.selector.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.osgi.service.tracker.collections", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.nio", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.configuration.metatype.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.portlet.display.template.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.staging.api", version: "3.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.subscription.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.trash.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.trash.taglib", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.upload.api", version: "2.0.0"
@@ -32,12 +37,7 @@ dependencies {
 	compileOnly project(":apps:document-library:document-library-api")
 	compileOnly project(":apps:dynamic-data-mapping:dynamic-data-mapping-taglib")
 	compileOnly project(":apps:expando:expando-taglib")
-	compileOnly group: "com.liferay", name: "com.liferay.exportimport.api", version: "3.0.0"
 	compileOnly project(":apps:export-import:export-import-changeset-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-clay")
-	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.soy", version: "2.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.item.selector.api", version: "3.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.portlet.display.template.api", version: "1.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.subscription.api", version: "1.0.0"
 }

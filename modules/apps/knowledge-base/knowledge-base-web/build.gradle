@@ -5,6 +5,11 @@ dependencies {
 	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bndlib", version: "3.1.0"
 	compileOnly group: "com.liferay", name: "com.liferay.application.list.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.blogs.api", version: "4.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.exportimport.api", version: "3.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.soy", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.item.selector.api", version: "3.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.knowledge.base.api", version: "5.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.message.boards.api", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.osgi.service.tracker.collections", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.osgi.util", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
@@ -12,6 +17,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.portal.configuration.metatype.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.registry.api", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.subscription.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.upload.api", version: "2.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "3.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "3.0.0"
@@ -25,17 +31,11 @@ dependencies {
 	compileOnly project(":apps:asset:asset-taglib")
 	compileOnly project(":apps:document-library:document-library-api")
 	compileOnly project(":apps:expando:expando-taglib")
-	compileOnly group: "com.liferay", name: "com.liferay.exportimport.api", version: "3.0.0"
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-clay")
-	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.soy", version: "2.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.item.selector.api", version: "3.0.0"
 	compileOnly project(":apps:journal:journal-api")
-	compileOnly group: "com.liferay", name: "com.liferay.knowledge.base.api", version: "5.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.message.boards.api", version: "4.0.0"
 	compileOnly project(":apps:rss:rss-taglib")
 	compileOnly project(":apps:social:social-bookmarks-taglib")
-	compileOnly group: "com.liferay", name: "com.liferay.subscription.api", version: "1.0.0"
 	compileOnly project(":apps:wiki:wiki-api")
 }
 
