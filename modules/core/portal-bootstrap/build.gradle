@@ -98,7 +98,7 @@ dependencies {
 	compileOnly project(":apps:petra:petra-xml")
 	compileOnly group: "com.liferay", name: "com.liferay.jaxws.osgi.bridge", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.osgi.felix.util", version: "2.0.0"
-	compileOnly project(":core:osgi-service-tracker-collections")
+	compileOnly group: "com.liferay", name: "com.liferay.osgi.service.tracker.collections", version: "3.0.0"
 	compileOnly project(":core:petra:petra-concurrent")
 	compileOnly project(":core:petra:petra-executor")
 	compileOnly project(":core:petra:petra-function")

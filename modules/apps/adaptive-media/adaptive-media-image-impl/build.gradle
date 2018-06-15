@@ -16,7 +16,7 @@ dependencies {
 	compileOnly project(":apps:adaptive-media:adaptive-media-api")
 	compileOnly project(":apps:adaptive-media:adaptive-media-image-api")
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
-	compileOnly project(":core:osgi-service-tracker-collections")
+	compileOnly group: "com.liferay", name: "com.liferay.osgi.service.tracker.collections", version: "3.0.0"
 	compileOnly project(":core:petra:petra-string")
 	compileOnly project(":core:registry-api")
 
