@@ -38,7 +38,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.item.selector.api", version: "3.0.0"
 	compileOnly project(":apps:journal:journal-api")
 	compileOnly project(":apps:layout:layout-page-template-api")
-	compileOnly project(":apps:portlet-display-template:portlet-display-template-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portlet.display.template.api", version: "1.0.0"
 	compileOnly project(":apps:rss:rss-taglib")
 	compileOnly project(":apps:site:site-api")
 	compileOnly project(":apps:site:site-item-selector-api")

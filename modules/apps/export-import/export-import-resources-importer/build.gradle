@@ -16,6 +16,6 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.exportimport.api", version: "3.0.0"
 	compileOnly project(":apps:journal:journal-api")
 	compileOnly group: "com.liferay", name: "com.liferay.portal.search.api", version: "2.0.0"
-	compileOnly project(":apps:portlet-display-template:portlet-display-template-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portlet.display.template.api", version: "1.0.0"
 	compileOnly project(":apps:wiki:wiki-api")
 }
