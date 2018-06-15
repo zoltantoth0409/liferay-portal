@@ -51,6 +51,10 @@ public class EventUtil
 	public static final String UNDEPLOYING = "org/osgi/service/web/UNDEPLOYING";
 
 	public EventUtil(BundleContext bundleContext) {
+
+		// See LPS-82529 for more information on the property
+		// "wab.event.enabled"
+
 		_enabled = GetterUtil.getBoolean(
 			bundleContext.getProperty("wab.event.enabled"));
 
