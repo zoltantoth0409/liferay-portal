@@ -12,7 +12,7 @@ dependencies {
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly group: "com.liferay", name: "com.liferay.item.selector.api", version: "3.0.0"
 	compileOnly project(":apps:item-selector:item-selector-criteria-api")
-	compileOnly project(":apps:product-navigation:product-navigation-product-menu-api")
+	compileOnly group: "com.liferay", name: "com.liferay.product.navigation.product.menu.api", version: "1.0.0"
 	compileOnly project(":apps:site:site-api")
 	compileOnly project(":apps:site:site-item-selector-api")
 }
