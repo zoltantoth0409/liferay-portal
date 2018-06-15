@@ -52,7 +52,7 @@ dependencies {
 	compileOnly project(":apps:upload:upload-api")
 	compileOnly project(":core:petra:petra-lang")
 	compileOnly project(":core:petra:petra-string")
-	compileOnly project(":core:registry-api")
+	compileOnly group: "com.liferay", name: "com.liferay.registry.api", version: "2.0.0"
 
 	soyCompile project(":apps:frontend-js:frontend-js-web")
 }

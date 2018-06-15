@@ -22,5 +22,5 @@ dependencies {
 	compileOnly project(":apps:site-navigation:site-navigation-api")
 	compileOnly project(":core:petra:petra-function")
 	compileOnly project(":core:petra:petra-string")
-	compileOnly project(":core:registry-api")
+	compileOnly group: "com.liferay", name: "com.liferay.registry.api", version: "2.0.0"
 }
