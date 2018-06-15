@@ -25,5 +25,5 @@ dependencies {
 	compileOnly group: "org.apache.httpcomponents", name: "httpcore", version: "4.0.1"
 	compileOnly group: "org.osgi", name: "org.osgi.core", version: "5.0.0"
 	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations", version: "1.3.0"
-	compileOnly project(":apps:portal-security-sso:portal-security-sso-google-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.security.sso.google.api", version: "2.0.0"
 }
