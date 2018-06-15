@@ -13,7 +13,7 @@ dependencies {
 	compileOnly project (":apps:export-import:export-import-api")
 	compileOnly group: "com.liferay", name: "com.liferay.asset.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.asset.category.property.api", version: "1.0.0"
-	compileOnly project(":apps:asset:asset-entry-rel-api")
+	compileOnly group: "com.liferay", name: "com.liferay.asset.entry.rel.api", version: "1.0.0"
 	compileOnly project(":apps:dynamic-data-mapping:dynamic-data-mapping-api")
 	compileOnly project(":apps:portal-security:portal-security-service-access-policy-api")
 }
