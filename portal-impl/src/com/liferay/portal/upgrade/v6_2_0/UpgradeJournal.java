@@ -196,7 +196,7 @@ public class UpgradeJournal extends BaseUpgradePortletPreferences {
 		entryElement.addCDATA(value);
 	}
 
-	protected void addResourcePermissionToBatch(
+	protected void addResourcePermission(
 		PreparedStatement ps, long companyId, String primKey, long roleId) {
 
 		try {
@@ -638,19 +638,19 @@ public class UpgradeJournal extends BaseUpgradePortletPreferences {
 					!primKey.equals(currentPrimKey)) {
 
 					if (!hasGuestResourcePermissions) {
-						addResourcePermissionToBatch(
+						addResourcePermission(
 							insertPS, currentCompanyId, currentPrimKey,
 							guestRoleId);
 					}
 
 					if (!hasOwnerResourcePermissions) {
-						addResourcePermissionToBatch(
+						addResourcePermission(
 							insertPS, currentCompanyId, currentPrimKey,
 							ownerRoleId);
 					}
 
 					if (!hasSiteMemberResourcePermissions) {
-						addResourcePermissionToBatch(
+						addResourcePermission(
 							insertPS, currentCompanyId, currentPrimKey,
 							siteMemberRoleId);
 					}
@@ -680,19 +680,19 @@ public class UpgradeJournal extends BaseUpgradePortletPreferences {
 
 			if (currentPrimKey != null) {
 				if (!hasGuestResourcePermissions) {
-					addResourcePermissionToBatch(
+					addResourcePermission(
 						insertPS, currentCompanyId, currentPrimKey,
 						guestRoleId);
 				}
 
 				if (!hasOwnerResourcePermissions) {
-					addResourcePermissionToBatch(
+					addResourcePermission(
 						insertPS, currentCompanyId, currentPrimKey,
 						ownerRoleId);
 				}
 
 				if (!hasSiteMemberResourcePermissions) {
-					addResourcePermissionToBatch(
+					addResourcePermission(
 						insertPS, currentCompanyId, currentPrimKey,
 						siteMemberRoleId);
 				}
