@@ -356,9 +356,8 @@ public class AssetPublisherExportImportPortletPreferencesProcessor
 				uuid = assetCategory.getUuid();
 				groupId = assetCategory.getGroupId();
 
-				portletDataContext.addReferenceElement(
-					portlet, rootElement, assetCategory,
-					PortletDataContext.REFERENCE_TYPE_DEPENDENCY, true);
+				StagedModelDataHandlerUtil.exportReferenceStagedModel(
+					portletDataContext, portlet.getPortletId(), assetCategory);
 			}
 		}
 		else if (className.equals(AssetVocabulary.class.getName())) {
@@ -370,9 +369,9 @@ public class AssetPublisherExportImportPortletPreferencesProcessor
 				uuid = assetVocabulary.getUuid();
 				groupId = assetVocabulary.getGroupId();
 
-				portletDataContext.addReferenceElement(
-					portlet, rootElement, assetVocabulary,
-					PortletDataContext.REFERENCE_TYPE_DEPENDENCY, true);
+				StagedModelDataHandlerUtil.exportReferenceStagedModel(
+					portletDataContext, portlet.getPortletId(),
+					assetVocabulary);
 			}
 		}
 		else if (className.equals(DDMStructure.class.getName())) {
@@ -383,9 +382,8 @@ public class AssetPublisherExportImportPortletPreferencesProcessor
 				uuid = ddmStructure.getUuid();
 				groupId = ddmStructure.getGroupId();
 
-				portletDataContext.addReferenceElement(
-					portlet, rootElement, ddmStructure,
-					PortletDataContext.REFERENCE_TYPE_DEPENDENCY, true);
+				StagedModelDataHandlerUtil.exportReferenceStagedModel(
+					portletDataContext, portlet.getPortletId(), ddmStructure);
 			}
 		}
 		else if (className.equals(DLFileEntryType.class.getName())) {
@@ -396,9 +394,9 @@ public class AssetPublisherExportImportPortletPreferencesProcessor
 				uuid = dlFileEntryType.getUuid();
 				groupId = dlFileEntryType.getGroupId();
 
-				portletDataContext.addReferenceElement(
-					portlet, rootElement, dlFileEntryType,
-					PortletDataContext.REFERENCE_TYPE_DEPENDENCY, true);
+				StagedModelDataHandlerUtil.exportReferenceStagedModel(
+					portletDataContext, portlet.getPortletId(),
+					dlFileEntryType);
 			}
 		}
 		else if (className.equals(Organization.class.getName())) {
