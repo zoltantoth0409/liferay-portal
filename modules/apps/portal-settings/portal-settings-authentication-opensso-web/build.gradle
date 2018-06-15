@@ -15,6 +15,6 @@ dependencies {
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:portal-security-sso:portal-security-sso-opensso-api")
 	compileOnly group: "com.liferay", name: "com.liferay.portal.settings.api", version: "3.0.0"
-	compileOnly project(":apps:portal-settings:portal-settings-lang")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.settings.lang", version: "2.0.0"
 	compileOnly project(":core:petra:petra-lang")
 }

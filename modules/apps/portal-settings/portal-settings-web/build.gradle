@@ -20,7 +20,7 @@ dependencies {
 	compileOnly project(":apps:map:map-taglib")
 	compileOnly group: "com.liferay", name: "com.liferay.petra.content", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.settings.api", version: "3.0.0"
-	compileOnly project(":apps:portal-settings:portal-settings-lang")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.settings.lang", version: "2.0.0"
 	compileOnly project(":apps:portal:portal-upgrade-api")
 	compileOnly project(":apps:staging:staging-taglib")
 	compileOnly project(":apps:static:osgi:osgi-util")
