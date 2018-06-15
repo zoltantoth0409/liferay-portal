@@ -18,5 +18,5 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.clay", version: "1.0.0"
 	compileOnly project(":apps:item-selector:item-selector-criteria-api")
 	compileOnly project(":apps:item-selector:item-selector-taglib")
-	compileOnly project(":apps:site:site-item-selector-api")
+	compileOnly group: "com.liferay", name: "com.liferay.site.item.selector.api", version: "2.0.0"
 }

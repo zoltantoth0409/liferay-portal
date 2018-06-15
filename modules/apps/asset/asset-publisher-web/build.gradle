@@ -42,7 +42,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.journal.api", version: "3.0.0"
 	compileOnly project(":apps:layout:layout-page-template-api")
 	compileOnly project(":apps:rss:rss-taglib")
-	compileOnly project(":apps:site:site-item-selector-api")
+	compileOnly group: "com.liferay", name: "com.liferay.site.item.selector.api", version: "2.0.0"
 	compileOnly project(":apps:site:site-taglib")
 	compileOnly project(":apps:social:social-bookmarks-taglib")
 }
