@@ -111,7 +111,7 @@ dependencies {
 	compileOnly project(":core:petra:petra-string")
 	compileOnly project(":core:portal-app-license-api")
 	compileOnly group: "com.liferay", name: "com.liferay.registry.api", version: "2.0.0"
-	compileOnly project(":core:registry-impl")
+	compileOnly group: "com.liferay", name: "com.liferay.registry.impl", version: "2.0.0"
 }
 
 liferay {
