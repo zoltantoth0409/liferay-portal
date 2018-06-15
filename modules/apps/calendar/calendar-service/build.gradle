@@ -23,7 +23,7 @@ dependencies {
 	compileOnly project(":apps:calendar:calendar-api")
 	compileOnly project(":apps:export-import:export-import-api")
 	compileOnly project(":apps:message-boards:message-boards-api")
-	compileOnly project(":apps:petra:petra-content")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.content", version: "2.0.0"
 	compileOnly project(":apps:portal-search:portal-search-api")
 	compileOnly project(":apps:portal-search:portal-search-spi")
 	compileOnly project(":apps:portal-security:portal-security-service-access-policy-api")
