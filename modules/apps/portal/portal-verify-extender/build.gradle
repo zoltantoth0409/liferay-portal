@@ -8,5 +8,5 @@ dependencies {
 	compileOnly group: "org.glassfish", name: "javax.servlet", version: "3.2-b06"
 	compileOnly group: "org.osgi", name: "org.osgi.core", version: "5.0.0"
 	compileOnly project(":apps:portal-search:portal-search-api")
-	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.configuration.metatype.api", version: "1.0.0"
 }

@@ -18,5 +18,5 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.site.navigation.api", version: "1.0.0"
 	compileOnly project(":apps:site-navigation:site-navigation-item-selector-api")
 	compileOnly project(":apps:site-navigation:site-navigation-taglib")
-	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.configuration.metatype.api", version: "1.0.0"
 }
