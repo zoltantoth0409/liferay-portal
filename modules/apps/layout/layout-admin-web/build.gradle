@@ -29,7 +29,7 @@ dependencies {
 	compileOnly project(":apps:item-selector:item-selector-criteria-api")
 	compileOnly project(":apps:journal:journal-api")
 	compileOnly group: "com.liferay", name: "com.liferay.layout.admin.api", version: "1.0.0"
-	compileOnly project(":apps:layout:layout-api")
+	compileOnly group: "com.liferay", name: "com.liferay.layout.api", version: "1.0.0"
 	compileOnly project(":apps:layout:layout-item-selector-api")
 	compileOnly project(":apps:layout:layout-page-template-api")
 	compileOnly project(":apps:layout:layout-page-template-service")
