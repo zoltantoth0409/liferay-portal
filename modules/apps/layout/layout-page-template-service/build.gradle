@@ -18,7 +18,7 @@ dependencies {
 	compileOnly project(":apps:dynamic-data-mapping:dynamic-data-mapping-api")
 	compileOnly project(":apps:fragment:fragment-api")
 	compileOnly group: "com.liferay", name: "com.liferay.html.preview.api", version: "1.0.0"
-	compileOnly project(":apps:layout:layout-admin-api")
+	compileOnly group: "com.liferay", name: "com.liferay.layout.admin.api", version: "1.0.0"
 	compileOnly project(":apps:layout:layout-page-template-api")
 	compileOnly group: "com.liferay", name: "com.liferay.portal.dao.orm.custom.sql.api", version: "1.0.0"
 	compileOnly project(":apps:portal:portal-spring-extender-api")
