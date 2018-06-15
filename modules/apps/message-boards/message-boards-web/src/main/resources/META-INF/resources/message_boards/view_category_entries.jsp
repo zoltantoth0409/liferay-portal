@@ -17,11 +17,11 @@
 <%@ include file="/message_boards/init.jsp" %>
 
 <%
-SearchContainer categoryEntriesSearchContainer = (SearchContainer)request.getAttribute("view.jsp-categoryEntriesSearchContainer");
-
 long categoryId = GetterUtil.getLong(request.getAttribute("view.jsp-categoryId"));
 
 MBCategoryDisplay categoryDisplay = new MBCategoryDisplay(scopeGroupId, categoryId);
+
+SearchContainer categoryEntriesSearchContainer = (SearchContainer)request.getAttribute("view.jsp-categoryEntriesSearchContainer");
 %>
 
 <liferay-ui:search-container
