@@ -21,7 +21,7 @@ dependencies {
 	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations", version: "1.3.0"
 	compileOnly project(":apps:bookmarks:bookmarks-api")
 	compileOnly project(":apps:export-import:export-import-api")
-	compileOnly project(":apps:portal-instances:portal-instances-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.instances.api", version: "2.0.0"
 	compileOnly project(":apps:portal:portal-spring-extender-api")
 	compileOnly project(":apps:portal:portal-upgrade-api")
 	compileOnly project(":apps:subscription:subscription-api")
