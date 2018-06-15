@@ -166,7 +166,7 @@ if (!CKEDITOR.plugins.get('embedurl')) {
 	const resizeElement = function(el, width, height) {
 		const wrapperElement = el.parentElement;
 
-		if (wrapperElement && width > 0 && height > 0) {
+		if (wrapperElement && (width > 0) && (height > 0)) {
 			const rect = wrapperElement.getBoundingClientRect();
 
 			const pwidth = width >= rect.width ? 100 : Math.floor((width / rect.width) * 100);
