@@ -12,6 +12,6 @@ dependencies {
 	compileOnly project(":apps:blogs:blogs-item-selector-api")
 	compileOnly group: "com.liferay", name: "com.liferay.document.library.api", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib", version: "3.0.0"
-	compileOnly project(":apps:item-selector:item-selector-criteria-api")
+	compileOnly group: "com.liferay", name: "com.liferay.item.selector.criteria.api", version: "3.0.0"
 	compileOnly project(":apps:item-selector:item-selector-taglib")
 }
