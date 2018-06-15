@@ -44,5 +44,5 @@ dependencies {
 	compileOnly project(":apps:site:site-item-selector-api")
 	compileOnly project(":apps:site:site-taglib")
 	compileOnly project(":apps:social:social-bookmarks-taglib")
-	compileOnly project(":apps:subscription:subscription-api")
+	compileOnly group: "com.liferay", name: "com.liferay.subscription.api", version: "1.0.0"
 }

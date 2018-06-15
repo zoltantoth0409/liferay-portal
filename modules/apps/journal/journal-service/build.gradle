@@ -45,5 +45,5 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.mobile.device.rules.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.search.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.validation.api", version: "1.0.0"
-	compileOnly project(":apps:subscription:subscription-api")
+	compileOnly group: "com.liferay", name: "com.liferay.subscription.api", version: "1.0.0"
 }

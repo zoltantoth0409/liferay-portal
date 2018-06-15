@@ -36,5 +36,5 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.message.boards.api", version: "4.0.0"
 	compileOnly project(":apps:message-boards:message-boards-service")
 	compileOnly project(":apps:rss:rss-taglib")
-	compileOnly project(":apps:subscription:subscription-api")
+	compileOnly group: "com.liferay", name: "com.liferay.subscription.api", version: "1.0.0"
 }

@@ -22,6 +22,6 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.soy", version: "2.0.0"
 	compileOnly project(":apps:journal:journal-api")
 	compileOnly group: "com.liferay", name: "com.liferay.message.boards.api", version: "4.0.0"
-	compileOnly project(":apps:subscription:subscription-api")
+	compileOnly group: "com.liferay", name: "com.liferay.subscription.api", version: "1.0.0"
 	compileOnly project(":apps:wiki:wiki-api")
 }

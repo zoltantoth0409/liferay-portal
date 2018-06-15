@@ -35,5 +35,5 @@ dependencies {
 	compileOnly project(":apps:document-library:document-library-api")
 	compileOnly group: "com.liferay", name: "com.liferay.exportimport.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.message.boards.api", version: "4.0.0"
-	compileOnly project(":apps:subscription:subscription-api")
+	compileOnly group: "com.liferay", name: "com.liferay.subscription.api", version: "1.0.0"
 }
