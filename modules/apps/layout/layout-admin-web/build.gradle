@@ -33,7 +33,7 @@ dependencies {
 	compileOnly project(":apps:asset:asset-taglib")
 	compileOnly project(":apps:expando:expando-taglib")
 	compileOnly group: "com.liferay", name: "com.liferay.exportimport.api", version: "3.0.0"
-	compileOnly project(":apps:fragment:fragment-api")
+	compileOnly group: "com.liferay", name: "com.liferay.fragment.api", version: "1.0.0"
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-clay")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-soy")
