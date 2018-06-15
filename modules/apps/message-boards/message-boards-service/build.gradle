@@ -32,7 +32,7 @@ dependencies {
 	compileOnly project(":apps:subscription:subscription-api")
 	compileOnly group: "com.liferay", name: "com.liferay.petra.function", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
-	compileOnly project(":core:petra:petra-reflect")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.reflect", version: "2.0.0"
 	compileOnly project(":core:petra:petra-string")
 	compileOnly group: "com.liferay", name: "com.liferay.registry.api", version: "2.0.0"
 }
