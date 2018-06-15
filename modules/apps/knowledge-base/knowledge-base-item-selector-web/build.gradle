@@ -12,7 +12,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.item.selector.api", version: "3.0.0"
 	compileOnly project(":apps:item-selector:item-selector-criteria-api")
 	compileOnly project(":apps:item-selector:item-selector-taglib")
-	compileOnly project(":apps:knowledge-base:knowledge-base-api")
+	compileOnly group: "com.liferay", name: "com.liferay.knowledge.base.api", version: "5.0.0"
 	compileOnly project(":apps:knowledge-base:knowledge-base-item-selector-api")
 }
 
