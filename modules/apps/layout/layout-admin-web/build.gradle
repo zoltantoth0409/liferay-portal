@@ -46,7 +46,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.site.navigation.api", version: "1.0.0"
 	compileOnly project(":apps:site:site-api")
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
-	compileOnly project(":apps:upload:upload-api")
+	compileOnly group: "com.liferay", name: "com.liferay.upload.api", version: "2.0.0"
 
 	soyCompile project(":apps:frontend-js:frontend-js-web")
 	soyCompile project(":apps:frontend-taglib:frontend-taglib")

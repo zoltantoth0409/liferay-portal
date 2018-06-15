@@ -21,7 +21,7 @@ dependencies {
 	compileOnly project(":apps:item-selector:item-selector-taglib")
 	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "2.0.0"
 	compileOnly project(":apps:static:osgi:osgi-util")
-	compileOnly project(":apps:upload:upload-api")
+	compileOnly group: "com.liferay", name: "com.liferay.upload.api", version: "2.0.0"
 
 	testCompile group: "com.liferay", name: "org.jabsorb", version: "1.3.2.LIFERAY-PATCHED-1"
 	testCompile group: "com.liferay.portal", name: "com.liferay.util.java", version: "3.0.0"
