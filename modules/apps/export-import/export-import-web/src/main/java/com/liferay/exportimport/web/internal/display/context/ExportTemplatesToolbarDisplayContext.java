@@ -28,7 +28,6 @@ import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.util.Constants;
-import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portlet.layoutsadmin.display.context.GroupDisplayContextHelper;
 
@@ -79,11 +78,9 @@ public class ExportTemplatesToolbarDisplayContext
 							getRenderURL(), "mvcRenderCommandName",
 							"editExportConfiguration", Constants.CMD,
 							Constants.ADD, "groupId",
-							String.valueOf(
-								ParamUtil.getLong(request, "groupId")),
+							ParamUtil.getLong(request, "groupId"),
 							"liveGroupId",
-							String.valueOf(
-								groupDisplayContextHelper.getLiveGroupId()),
+							groupDisplayContextHelper.getLiveGroupId(),
 							"privateLayout", Boolean.FALSE.toString());
 						dropdownItem.setLabel(LanguageUtil.get(request, "new"));
 					});
@@ -119,21 +116,20 @@ public class ExportTemplatesToolbarDisplayContext
 	private SearchContainer _createSearchContainer(
 		long liveGroupId, Company company, PortletURL iteratorURL) {
 
-		OrderByComparator orderByComparator =
-			new ExportImportConfigurationNameComparator(
-				"asc".equals(getOrderByType()));
-		ExportImportConfigurationSearchTerms searchTerms =
+		ExportImportConfigurationSearchTerms exportImportConfigurationSearchTerms =
 			new ExportImportConfigurationSearchTerms(liferayPortletRequest);
 
 		SearchContainer searchContainer = new SearchContainer(
 			liferayPortletRequest,
 			new ExportImportConfigurationDisplayTerms(liferayPortletRequest),
-			searchTerms, SearchContainer.DEFAULT_CUR_PARAM,
-			SearchContainer.DEFAULT_DELTA, iteratorURL, null,
-			"there-are-no-saved-export-templates");
+			exportImportConfigurationSearchTerms,
+			SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA,
+			iteratorURL, null, "there-are-no-saved-export-templates");
 
 		searchContainer.setOrderByCol("name");
-		searchContainer.setOrderByComparator(orderByComparator);
+		searchContainer.setOrderByComparator(
+			new ExportImportConfigurationNameComparator(
+				"asc".equals(getOrderByType())));
 		searchContainer.setOrderByType(getOrderByType());
 
 		int exportImportConfigurationType =
@@ -143,14 +139,16 @@ public class ExportTemplatesToolbarDisplayContext
 			ExportImportConfigurationLocalServiceUtil.
 				getExportImportConfigurations(
 					company.getCompanyId(), liveGroupId,
-					searchTerms.getKeywords(), exportImportConfigurationType,
-					searchContainer.getStart(), searchContainer.getEnd(),
+					exportImportConfigurationSearchTerms.getKeywords(),
+					exportImportConfigurationType, searchContainer.getStart(),
+					searchContainer.getEnd(),
 					searchContainer.getOrderByComparator());
 		int total =
 			ExportImportConfigurationLocalServiceUtil.
 				getExportImportConfigurationsCount(
 					company.getCompanyId(), liveGroupId,
-					searchTerms.getKeywords(), exportImportConfigurationType);
+					exportImportConfigurationSearchTerms.getKeywords(),
+					exportImportConfigurationType);
 
 		searchContainer.setResults(results);
 		searchContainer.setTotal(total);
