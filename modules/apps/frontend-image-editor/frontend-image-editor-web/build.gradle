@@ -8,7 +8,7 @@ dependencies {
 	compileOnly project(":apps:frontend-image-editor:frontend-image-editor-api")
 	compileOnly project(":apps:item-selector:item-selector-api")
 	compileOnly project(":apps:item-selector:item-selector-criteria-api")
-	compileOnly project(":apps:portal-portlet-bridge:portal-portlet-bridge-soy-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.portlet.bridge.soy.api", version: "1.0.0"
 	compileOnly project(":apps:static:osgi:osgi-util")
 	compileOnly project(":core:osgi-service-tracker-collections")
 	compileOnly project(":core:petra:petra-string")
