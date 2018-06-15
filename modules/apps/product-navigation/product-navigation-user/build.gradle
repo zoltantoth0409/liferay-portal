@@ -8,5 +8,5 @@ dependencies {
 	compileOnly project(":apps:application-list:application-list-taglib")
 	compileOnly project(":apps:product-navigation:product-navigation-product-menu-api")
 	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
-	compileOnly project(":core:petra:petra-string")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 }

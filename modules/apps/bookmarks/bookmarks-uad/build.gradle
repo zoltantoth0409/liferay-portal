@@ -10,7 +10,7 @@ dependencies {
 	compileOnly project(":apps:bookmarks:bookmarks-api")
 	compileOnly project(":apps:export-import:export-import-api")
 	compileOnly project(":apps:user-associated-data:user-associated-data-api")
-	compileOnly project(":core:petra:petra-string")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 }
 
 mergeLang {

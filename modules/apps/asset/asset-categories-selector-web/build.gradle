@@ -10,7 +10,7 @@ dependencies {
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-soy")
 	compileOnly project(":apps:portal:portal-upgrade-api")
 	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
-	compileOnly project(":core:petra:petra-string")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 
 	soyCompile project(":apps:frontend-js:frontend-js-metal-web")
 	soyCompile project(":apps:frontend-js:frontend-js-web")

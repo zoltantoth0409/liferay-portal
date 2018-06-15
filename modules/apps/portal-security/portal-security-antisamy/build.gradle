@@ -20,7 +20,7 @@ dependencies {
 	compileOnly group: "xerces", name: "xercesImpl", version: "2.9.1"
 	compileOnly group: "xml-apis", name: "xml-apis", version: "1.3.04"
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
-	compileOnly project(":core:petra:petra-string")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 }
 
 processResources {

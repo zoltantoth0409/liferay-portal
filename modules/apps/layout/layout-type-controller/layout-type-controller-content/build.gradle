@@ -18,7 +18,7 @@ dependencies {
 	compileOnly project(":apps:portal-template:portal-template-soy-api")
 	compileOnly project(":apps:product-navigation:product-navigation-control-menu-api")
 	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
-	compileOnly project(":core:petra:petra-string")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 
 	soyCompile project(":apps:layout:layout-admin-web")
 }

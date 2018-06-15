@@ -13,7 +13,7 @@ dependencies {
 	compileOnly project(":apps:message-boards:message-boards-api")
 	compileOnly project(":apps:message-boards:message-boards-service")
 	compileOnly project(":apps:portal-search:portal-search")
-	compileOnly project(":core:petra:petra-string")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 
 	testCompile project(":core:petra:petra-lang")
 	testCompile project(":core:registry-api")

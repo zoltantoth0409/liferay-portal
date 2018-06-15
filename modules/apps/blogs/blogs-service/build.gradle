@@ -34,6 +34,6 @@ dependencies {
 	compileOnly project(":apps:upload:upload-api")
 	compileOnly group: "com.liferay", name: "com.liferay.petra.function", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.reflect", version: "2.0.0"
-	compileOnly project(":core:petra:petra-string")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.registry.api", version: "2.0.0"
 }

@@ -8,7 +8,7 @@ dependencies {
 	compileOnly project(":apps:item-selector:item-selector-criteria-api")
 	compileOnly project(":apps:journal:journal-api")
 	compileOnly project(":apps:journal:journal-item-selector-api")
-	compileOnly project(":core:petra:petra-string")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 
 	testCompile group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "3.0.0"
 	testCompile group: "javax.servlet", name: "javax.servlet-api", version: "3.0.1"

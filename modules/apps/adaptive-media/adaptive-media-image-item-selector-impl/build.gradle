@@ -7,5 +7,5 @@ dependencies {
 	compileOnly project(":apps:adaptive-media:adaptive-media-image-api");
 	compileOnly project(":apps:adaptive-media:adaptive-media-image-item-selector-api");
 	compileOnly project(":apps:item-selector:item-selector-api")
-	compileOnly project(":core:petra:petra-string")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 }

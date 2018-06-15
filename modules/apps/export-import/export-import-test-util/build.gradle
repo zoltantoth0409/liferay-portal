@@ -15,7 +15,7 @@ dependencies {
 	compileOnly project(":apps:asset:asset-test-util")
 	compileOnly project(":apps:export-import:export-import-api")
 	compileOnly project(":apps:message-boards:message-boards-api")
-	compileOnly project(":core:petra:petra-string")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 }
 
 liferay {

@@ -7,7 +7,7 @@ dependencies {
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "3.0.0"
 	compileOnly project(":apps:adaptive-media:adaptive-media-api");
 	compileOnly project(":apps:adaptive-media:adaptive-media-image-api");
-	compileOnly project(":core:petra:petra-string")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 
 	testCompile project(":core:petra:petra-lang")
 }

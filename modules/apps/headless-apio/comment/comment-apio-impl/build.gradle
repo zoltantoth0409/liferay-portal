@@ -12,5 +12,5 @@ dependencies {
 	compileOnly project(":apps:headless-apio:media-object:media-object-apio-api")
 	compileOnly project(":apps:headless-apio:person:person-apio-api")
 	compileOnly project(":apps:headless-apio:portal:portal-apio-api")
-	compileOnly project(":core:petra:petra-string")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 }

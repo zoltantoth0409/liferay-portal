@@ -29,7 +29,7 @@ dependencies {
 	compileOnly group: "org.slf4j", name: "slf4j-api", version: "1.7.7"
 	compileOnly project(":apps:portal-search:portal-search-api")
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
-	compileOnly project(":core:petra:petra-string")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 
 	testCompile group: "commons-collections", name: "commons-collections", version: "3.2.2"
 	testCompile project(":apps:portal-search:portal-search")
