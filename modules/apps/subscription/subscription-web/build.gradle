@@ -15,7 +15,7 @@ dependencies {
 	compileOnly project(":apps:application-list:application-list-api")
 	compileOnly project(":apps:portal:portal-upgrade-api")
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
-	compileOnly project(":apps:static:portal:portal-profile-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.profile.api", version: "2.0.0"
 	compileOnly project(":apps:subscription:subscription-api")
 	compileOnly project(":core:petra:petra-lang")
 	compileOnly project(":core:petra:petra-string")
