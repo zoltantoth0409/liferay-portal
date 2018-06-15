@@ -27,7 +27,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.application.list.api", version: "3.0.0"
 	compileOnly project(":apps:asset:asset-display-page-item-selector-api")
 	compileOnly project(":apps:asset:asset-taglib")
-	compileOnly project(":apps:dynamic-data-mapping:dynamic-data-mapping-api")
+	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.mapping.api", version: "4.0.0"
 	compileOnly project(":apps:dynamic-data-mapping:dynamic-data-mapping-taglib")
 	compileOnly project(":apps:expando:expando-taglib")
 	compileOnly project(":apps:export-import:export-import-changeset-taglib")
