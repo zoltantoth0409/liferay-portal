@@ -26,7 +26,7 @@ dependencies {
 	compileOnly project(":apps:portal-search:portal-search-web-api")
 	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.product.navigation.control.menu.api", version: "4.0.0"
-	compileOnly project(":apps:static:osgi:osgi-util")
+	compileOnly group: "com.liferay", name: "com.liferay.osgi.util", version: "4.0.0"
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
 
 	testCompile group: "commons-httpclient", name: "commons-httpclient", version: "3.1"

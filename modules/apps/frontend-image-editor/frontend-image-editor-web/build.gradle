@@ -12,7 +12,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.image.editor.api", version: "2.0.0"
 	compileOnly project(":apps:item-selector:item-selector-api")
 	compileOnly project(":apps:item-selector:item-selector-criteria-api")
-	compileOnly project(":apps:static:osgi:osgi-util")
+	compileOnly group: "com.liferay", name: "com.liferay.osgi.util", version: "4.0.0"
 
 	soyCompile project(":apps:frontend-js:frontend-js-web")
 }

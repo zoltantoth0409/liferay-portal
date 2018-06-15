@@ -31,7 +31,7 @@ dependencies {
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-soy")
 	compileOnly group: "com.liferay", name: "com.liferay.portal.template.soy.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "2.0.0"
-	compileOnly project(":apps:static:osgi:osgi-util")
+	compileOnly group: "com.liferay", name: "com.liferay.osgi.util", version: "4.0.0"
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
 
 	testCompile group: "com.google.template", name: "soy", version: "2015-04-10"

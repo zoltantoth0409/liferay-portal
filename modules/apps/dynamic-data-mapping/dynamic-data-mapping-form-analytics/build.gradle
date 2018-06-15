@@ -16,6 +16,6 @@ dependencies {
 	compileOnly project(":apps:analytics:analytics-api")
 	compileOnly project(":apps:dynamic-data-mapping:dynamic-data-mapping-api")
 	compileOnly project(":apps:dynamic-data-mapping:dynamic-data-mapping-form-field-type")
-	compileOnly project(":apps:static:osgi:osgi-util")
+	compileOnly group: "com.liferay", name: "com.liferay.osgi.util", version: "4.0.0"
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
 }

@@ -16,5 +16,5 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.portal.workflow.kaleo.api", version: "3.0.0"
 	compileOnly project(":apps:portal-workflow:portal-workflow-kaleo-runtime-api")
 	compileOnly group: "com.liferay", name: "com.liferay.portal.spring.extender.api", version: "3.0.0"
-	compileOnly project(":apps:static:osgi:osgi-util")
+	compileOnly group: "com.liferay", name: "com.liferay.osgi.util", version: "4.0.0"
 }
