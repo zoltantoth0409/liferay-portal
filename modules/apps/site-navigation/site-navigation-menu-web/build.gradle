@@ -17,6 +17,6 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.mapping.taglib", version: "3.0.0"
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:item-selector:item-selector-criteria-api")
-	compileOnly project(":apps:site-navigation:site-navigation-item-selector-api")
+	compileOnly group: "com.liferay", name: "com.liferay.site.navigation.item.selector.api", version: "1.0.0"
 	compileOnly project(":apps:site-navigation:site-navigation-taglib")
 }

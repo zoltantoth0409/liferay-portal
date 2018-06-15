@@ -17,7 +17,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.clay", version: "1.0.0"
 	compileOnly project(":apps:item-selector:item-selector-criteria-api")
 	compileOnly project(":apps:item-selector:item-selector-taglib")
-	compileOnly project(":apps:site-navigation:site-navigation-item-selector-api")
+	compileOnly group: "com.liferay", name: "com.liferay.site.navigation.item.selector.api", version: "1.0.0"
 
 	soyCompile project(":apps:frontend-js:frontend-js-metal-web")
 	soyCompile project(":apps:frontend-js:frontend-js-web")
