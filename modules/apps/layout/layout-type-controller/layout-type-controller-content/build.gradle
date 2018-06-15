@@ -18,7 +18,7 @@ dependencies {
 	compileOnly project(":apps:item-selector:item-selector-criteria-api")
 	compileOnly project(":apps:layout:layout-page-template-api")
 	compileOnly group: "com.liferay", name: "com.liferay.portal.template.soy.api", version: "1.0.0"
-	compileOnly project(":apps:product-navigation:product-navigation-control-menu-api")
+	compileOnly group: "com.liferay", name: "com.liferay.product.navigation.control.menu.api", version: "4.0.0"
 
 	soyCompile project(":apps:layout:layout-admin-web")
 }

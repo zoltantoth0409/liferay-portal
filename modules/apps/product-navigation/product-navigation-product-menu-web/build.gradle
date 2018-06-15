@@ -15,6 +15,6 @@ dependencies {
 	compileOnly project(":apps:application-list:application-list-api")
 	compileOnly project(":apps:application-list:application-list-taglib")
 	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "2.0.0"
-	compileOnly project(":apps:product-navigation:product-navigation-control-menu-api")
+	compileOnly group: "com.liferay", name: "com.liferay.product.navigation.control.menu.api", version: "4.0.0"
 	compileOnly project(":apps:product-navigation:product-navigation-product-menu-api")
 }

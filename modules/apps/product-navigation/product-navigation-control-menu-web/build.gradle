@@ -11,6 +11,6 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.asset.api", version: "1.0.0"
 	compileOnly project(":apps:asset:asset-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
-	compileOnly project(":apps:product-navigation:product-navigation-control-menu-api")
+	compileOnly group: "com.liferay", name: "com.liferay.product.navigation.control.menu.api", version: "4.0.0"
 	compileOnly project(":apps:product-navigation:product-navigation-taglib")
 }
