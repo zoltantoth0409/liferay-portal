@@ -8,6 +8,6 @@ dependencies {
 	compileOnly project(":apps:portal-cache:portal-cache-ehcache-spi")
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
 	compileOnly group: "com.liferay", name: "com.liferay.petra.concurrent", version: "2.0.0"
-	compileOnly project(":core:petra:petra-executor")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.executor", version: "2.0.0"
 	compileOnly project(":core:petra:petra-reflect")
 }
