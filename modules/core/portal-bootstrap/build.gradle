@@ -110,7 +110,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.petra.encryptor", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.log4j", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.mail", version: "2.0.0"
-	compileOnly project(":apps:petra:petra-xml")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.xml", version: "2.0.0"
 	compileOnly project(":core:portal-app-license-api")
 }
 
