@@ -12,7 +12,7 @@ dependencies {
 	compileOnly project(":apps:static:osgi:osgi-util")
 	compileOnly group: "com.liferay", name: "com.liferay.portal.bundle.blacklist.api", version: "1.0.0"
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
-	compileOnly project(":apps:static:portal-lpkg-deployer:portal-lpkg-deployer-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.lpkg.deployer.api", version: "1.0.0"
 	compileOnly project(":apps:static:portal-osgi-web:portal-osgi-web-wab-generator-api")
 	compileOnly project(":core:petra:petra-reflect")
 	compileOnly project(":core:petra:petra-string")

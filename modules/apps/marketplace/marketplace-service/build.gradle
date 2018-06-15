@@ -14,6 +14,6 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.marketplace.api", version: "5.0.0";
 	compileOnly project(":apps:portal:portal-spring-extender-api")
 	compileOnly project(":apps:portal:portal-upgrade-api")
-	compileOnly project(":apps:static:portal-lpkg-deployer:portal-lpkg-deployer-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.lpkg.deployer.api", version: "1.0.0"
 	compileOnly project(":core:petra:petra-string")
 }
