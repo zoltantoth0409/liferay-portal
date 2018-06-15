@@ -16,7 +16,7 @@ dependencies {
 	compileOnly group: "org.osgi", name: "org.osgi.service.http.whiteboard", version: "1.0.0"
 	compileOnly project(":apps:oauth2-provider:oauth2-provider-api")
 	compileOnly project(":apps:oauth2-provider:oauth2-provider-rest-spi")
-	compileOnly project(":apps:oauth2-provider:oauth2-provider-scope-api")
+	compileOnly group: "com.liferay", name: "com.liferay.oauth2.provider.scope.api", version: "1.0.0"
 	compileOnly project(":apps:oauth2-provider:oauth2-provider-scope-liferay-api")
 	compileOnly project(":apps:oauth2-provider:oauth2-provider-scope-spi")
 	compileOnly project(":apps:static:osgi:osgi-util")
