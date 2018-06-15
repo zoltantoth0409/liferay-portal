@@ -20,6 +20,6 @@ dependencies {
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-clay")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-soy")
-	compileOnly project(":apps:site-navigation:site-navigation-api")
+	compileOnly group: "com.liferay", name: "com.liferay.site.navigation.api", version: "1.0.0"
 	compileOnly project(":apps:site-navigation:site-navigation-service")
 }
