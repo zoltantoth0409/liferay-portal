@@ -198,11 +198,9 @@ int timeZoneOffset = timeZone.getOffset(calendar.getTimeInMillis());
 
 Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
 
-ExportImportToolbarDisplayContext exportImportToolbarDisplayContext =
-	new ExportImportToolbarDisplayContext(request, liferayPortletResponse);
+ExportImportToolbarDisplayContext exportImportToolbarDisplayContext = new ExportImportToolbarDisplayContext(request, liferayPortletResponse);
 
-ExportTemplatesToolbarDisplayContext exportTemplatesToolbarDisplayContext =
-	new ExportTemplatesToolbarDisplayContext(request, pageContext, liferayPortletResponse);
+ExportTemplatesToolbarDisplayContext exportTemplatesToolbarDisplayContext = new ExportTemplatesToolbarDisplayContext(request, pageContext, liferayPortletResponse);
 %>
 
 <%@ include file="/init-ext.jsp" %>
