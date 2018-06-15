@@ -33,7 +33,7 @@ dependencies {
 	compileOnly project(":apps:layout:layout-item-selector-api")
 	compileOnly project(":apps:layout:layout-page-template-api")
 	compileOnly project(":apps:layout:layout-page-template-service")
-	compileOnly project(":apps:layout:layout-prototype-api")
+	compileOnly group: "com.liferay", name: "com.liferay.layout.prototype.api", version: "2.0.0"
 	compileOnly project(":apps:layout:layout-taglib")
 	compileOnly project(":apps:mobile-device-rules:mobile-device-rules-api")
 	compileOnly project(":apps:portal-template:portal-template-soy-api")
