@@ -25,7 +25,7 @@ dependencies {
 	compileOnly project(":apps:export-import:export-import-api")
 	compileOnly project(":apps:message-boards:message-boards-api")
 	compileOnly project(":apps:petra:petra-mail")
-	compileOnly project(":apps:petra:petra-model-adapter")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.model.adapter", version: "2.0.0"
 	compileOnly project(":apps:portal:portal-spring-extender-api")
 	compileOnly project(":apps:portal:portal-upgrade-api")
 	compileOnly project(":apps:rss:rss-api")

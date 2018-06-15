@@ -15,7 +15,7 @@ dependencies {
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-clay")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-soy")
-	compileOnly project(":apps:petra:petra-model-adapter")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.model.adapter", version: "2.0.0"
 	compileOnly project(":apps:portal:portal-upgrade-api")
 	compileOnly project(":apps:trash:trash-taglib")
 	compileOnly project(":core:petra:petra-lang")
