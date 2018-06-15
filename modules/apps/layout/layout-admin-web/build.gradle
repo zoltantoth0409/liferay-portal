@@ -15,7 +15,13 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.reflect", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.portal.configuration.metatype.api", version: "1.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.portal.template.soy.api", version: "1.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.product.navigation.control.menu.api", version: "4.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.site.navigation.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.staging.api", version: "3.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.upload.api", version: "2.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "3.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "3.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.util.taglib", version: "3.0.0"
@@ -28,7 +34,6 @@ dependencies {
 	compileOnly project(":apps:expando:expando-taglib")
 	compileOnly project(":apps:export-import:export-import-api")
 	compileOnly project(":apps:fragment:fragment-api")
-	compileOnly group: "com.liferay", name: "com.liferay.frontend.editor.taglib", version: "1.0.0"
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-clay")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-soy")
@@ -40,13 +45,7 @@ dependencies {
 	compileOnly project(":apps:layout:layout-page-template-service")
 	compileOnly project(":apps:layout:layout-taglib")
 	compileOnly project(":apps:mobile-device-rules:mobile-device-rules-api")
-	compileOnly group: "com.liferay", name: "com.liferay.portal.template.soy.api", version: "1.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.portal.upgrade.api", version: "2.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.product.navigation.control.menu.api", version: "4.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.site.navigation.api", version: "1.0.0"
 	compileOnly project(":apps:site:site-api")
-	compileOnly group: "com.liferay", name: "com.liferay.portal.configuration.metatype.api", version: "1.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.upload.api", version: "2.0.0"
 
 	soyCompile project(":apps:frontend-js:frontend-js-web")
 	soyCompile project(":apps:frontend-taglib:frontend-taglib")
