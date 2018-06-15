@@ -96,7 +96,7 @@ dependencies {
 	compileOnly project(":apps:petra:petra-log4j")
 	compileOnly project(":apps:petra:petra-mail")
 	compileOnly project(":apps:petra:petra-xml")
-	compileOnly project(":core:jaxws-osgi-bridge")
+	compileOnly group: "com.liferay", name: "com.liferay.jaxws.osgi.bridge", version: "2.0.0"
 	compileOnly project(":core:osgi-felix-util")
 	compileOnly project(":core:osgi-service-tracker-collections")
 	compileOnly project(":core:petra:petra-concurrent")
