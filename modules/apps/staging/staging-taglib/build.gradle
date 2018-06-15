@@ -20,5 +20,5 @@ dependencies {
 	compileOnly group: "org.osgi", name: "org.osgi.service.http", version: "1.2.1"
 	compileOnly group: "org.osgi", name: "org.osgi.service.http.whiteboard", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib", version: "3.0.0"
-	compileOnly project(":apps:layout:layout-taglib")
+	compileOnly group: "com.liferay", name: "com.liferay.layout.taglib", version: "3.0.0"
 }
