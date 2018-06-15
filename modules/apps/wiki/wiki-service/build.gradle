@@ -38,7 +38,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.asset.api", version: "1.0.0"
 	compileOnly project(":apps:export-import:export-import-api")
 	compileOnly project(":apps:item-selector:item-selector-api")
-	compileOnly project(":apps:portal:portal-spring-extender-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.spring.extender.api", version: "3.0.0"
 	compileOnly project(":apps:portal:portal-upgrade-api")
 	compileOnly project(":apps:portlet-display-template:portlet-display-template-api")
 	compileOnly project(":apps:rss:rss-api")
