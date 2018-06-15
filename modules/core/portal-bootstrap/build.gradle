@@ -102,7 +102,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.petra.concurrent", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.executor", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.function", version: "2.0.0"
-	compileOnly project(":core:petra:petra-io")
+	compileOnly group: "com.liferay", name: "com.liferay.petra.io", version: "2.0.0"
 	compileOnly project(":core:petra:petra-lang")
 	compileOnly project(":core:petra:petra-memory")
 	compileOnly project(":core:petra:petra-nio")
