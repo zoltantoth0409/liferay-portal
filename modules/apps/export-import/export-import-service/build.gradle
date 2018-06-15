@@ -23,7 +23,7 @@ dependencies {
 	compileOnly project(":apps:changeset:changeset-service")
 	compileOnly project(":apps:export-import:export-import-api")
 	compileOnly project(":apps:petra:petra-xml")
-	compileOnly project(":apps:portal-background-task:portal-background-task-api")
+	compileOnly group: "com.liferay", name: "com.liferay.portal.background.task.api", version: "3.0.0"
 	compileOnly project(":apps:portal:portal-upgrade-api")
 	compileOnly project(":apps:site:site-api")
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
