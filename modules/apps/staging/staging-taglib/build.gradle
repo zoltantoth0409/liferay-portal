@@ -4,6 +4,7 @@ dependencies {
 	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bndlib", version: "3.1.0"
 	compileOnly group: "com.liferay", name: "com.liferay.exportimport.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.exportimport.changeset.api", version: "1.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.clay", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.soy", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
@@ -19,6 +20,5 @@ dependencies {
 	compileOnly group: "org.osgi", name: "org.osgi.service.http", version: "1.2.1"
 	compileOnly group: "org.osgi", name: "org.osgi.service.http.whiteboard", version: "1.0.0"
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
-	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.clay", version: "1.0.0"
 	compileOnly project(":apps:layout:layout-taglib")
 }

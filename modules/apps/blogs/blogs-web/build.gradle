@@ -7,8 +7,11 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.asset.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.asset.display.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.blogs.api", version: "4.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.mapping.taglib", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.exportimport.api", version: "3.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.flags.taglib", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.friendly.url.api", version: "1.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.clay", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.soy", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.item.selector.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.function", version: "2.0.0"
@@ -35,12 +38,9 @@ dependencies {
 	compileOnly project(":apps:blogs:blogs-item-selector-api")
 	compileOnly project(":apps:comment:comment-taglib")
 	compileOnly project(":apps:document-library:document-library-api")
-	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.mapping.taglib", version: "3.0.0"
 	compileOnly project(":apps:expando:expando-taglib")
 	compileOnly project(":apps:export-import:export-import-changeset-taglib")
-	compileOnly group: "com.liferay", name: "com.liferay.flags.taglib", version: "3.0.0"
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
-	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.clay", version: "1.0.0"
 	compileOnly project(":apps:item-selector:item-selector-criteria-api")
 	compileOnly project(":apps:item-selector:item-selector-taglib")
 	compileOnly project(":apps:rss:rss-taglib")
