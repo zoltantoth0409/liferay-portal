@@ -19,8 +19,8 @@ package org.slf4j.impl;
  */
 public class StaticLoggerBinder {
 
-	// Class with this name must be found by
-	// org.apache.cxf.common.logging.LogUtils to initialize SL4J. See LPS-82460
-	// for more information.
+	// Class with this name must be found by CXF's
+	// org.apache.cxf.common.logging.LogUtils to init SL4J
+	// Please see https://issues.liferay.com/browse/LPS-82460
 
 }
