@@ -35,6 +35,6 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.flags.taglib", version: "3.0.0"
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.clay", version: "1.0.0"
-	compileOnly project(":apps:message-boards:message-boards-service")
+	compileOnly group: "com.liferay", name: "com.liferay.message.boards.service", version: "2.0.0"
 	compileOnly project(":apps:rss:rss-taglib")
 }
