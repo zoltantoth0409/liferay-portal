@@ -4,6 +4,7 @@ targetCompatibility = "1.8"
 dependencies {
 	compileInclude group: "com.liferay", name: "org.freemarker", version: "2.3.23.LIFERAY-PATCHED-4"
 
+	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.instance.lifecycle.api", version: "1.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "3.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "3.0.0"
@@ -15,5 +16,4 @@ dependencies {
 	compileOnly project(":apps:document-library:document-library-api")
 	compileOnly project(":apps:dynamic-data-mapping:dynamic-data-mapping-api")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
-	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
 }

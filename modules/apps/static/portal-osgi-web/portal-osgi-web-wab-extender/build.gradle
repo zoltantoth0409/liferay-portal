@@ -3,6 +3,10 @@ dependencies {
 
 	compileOnly fileTree(dir: "lib-patch", exclude: "*-sources.jar", include: "*.jar")
 	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bndlib", version: "3.1.0"
+	compileOnly group: "com.liferay", name: "com.liferay.osgi.felix.util", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.osgi.service.tracker.collections", version: "3.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.reflect", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.osgi.web.servlet.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.profile.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "org.apache.axis", version: "1.4.LIFERAY-PATCHED-2"
@@ -19,10 +23,6 @@ dependencies {
 	compileOnly project(":apps:static:osgi:osgi-util")
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
 	compileOnly project(":apps:static:portal-osgi-web:portal-osgi-web-servlet-context-helper-api")
-	compileOnly group: "com.liferay", name: "com.liferay.osgi.felix.util", version: "2.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.osgi.service.tracker.collections", version: "3.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.petra.reflect", version: "2.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 }
 
 deployDependencies {

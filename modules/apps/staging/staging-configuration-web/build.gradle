@@ -1,6 +1,8 @@
 apply plugin: "com.liferay.lang.merger"
 
 dependencies {
+	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.staging.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.trash.api", version: "1.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "3.0.0"
@@ -13,6 +15,4 @@ dependencies {
 	compileOnly project(":apps:export-import:export-import-api")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:staging:staging-taglib")
-	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 }

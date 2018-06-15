@@ -8,9 +8,15 @@ buildService {
 
 dependencies {
 	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bndlib", version: "3.1.0"
+	compileOnly group: "com.liferay", name: "com.liferay.osgi.service.tracker.collections", version: "3.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.function", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.reflect", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.configuration.persistence.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.dao.orm.custom.sql.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.instance.lifecycle.api", version: "1.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.registry.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.staging.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.trash.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.xstream.configurator.api", version: "3.0.0"
@@ -40,10 +46,4 @@ dependencies {
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
 	compileOnly project(":apps:subscription:subscription-api")
 	compileOnly project(":apps:upload:upload-api")
-	compileOnly group: "com.liferay", name: "com.liferay.osgi.service.tracker.collections", version: "3.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.petra.function", version: "2.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.petra.reflect", version: "2.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.registry.api", version: "2.0.0"
 }

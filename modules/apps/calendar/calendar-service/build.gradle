@@ -13,8 +13,11 @@ dependencies {
 	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bndlib", version: "3.1.0"
 	compileOnly group: "com.liferay", name: "com.google.ical", version: "20110304"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.content", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.function", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.dao.orm.custom.sql.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.instance.lifecycle.api", version: "1.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.registry.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.staging.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.trash.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.xstream.configurator.api", version: "3.0.0"
@@ -36,9 +39,6 @@ dependencies {
 	compileOnly project(":apps:portal:portal-upgrade-api")
 	compileOnly project(":apps:rss:rss-api")
 	compileOnly project(":apps:subscription:subscription-api")
-	compileOnly group: "com.liferay", name: "com.liferay.petra.function", version: "2.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.registry.api", version: "2.0.0"
 
 	testCompile project(":core:petra:petra-lang")
 }

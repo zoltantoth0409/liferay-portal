@@ -1,4 +1,6 @@
 dependencies {
+	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "3.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "3.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.util.taglib", version: "3.0.0"
@@ -13,6 +15,4 @@ dependencies {
 	compileOnly project(":apps:product-navigation:product-navigation-product-menu-api")
 	compileOnly project(":apps:site:site-api")
 	compileOnly project(":apps:site:site-item-selector-api")
-	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 }

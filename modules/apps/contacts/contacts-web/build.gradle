@@ -1,4 +1,6 @@
 dependencies {
+	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "3.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "3.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.util.java", version: "3.0.0"
@@ -15,6 +17,4 @@ dependencies {
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
 	compileOnly project(":apps:text-localizer:text-localizer-taglib")
 	compileOnly project(":apps:users-admin:users-admin-api")
-	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 }

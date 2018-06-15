@@ -1,6 +1,7 @@
 dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.asset.tags.navigation.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.blogs.recent.bloggers.api", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.instance.lifecycle.api", version: "1.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "3.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "3.0.0"
@@ -10,5 +11,4 @@ dependencies {
 	compileOnly project(":apps:blogs:blogs-api")
 	compileOnly project(":apps:layout:layout-page-template-api")
 	compileOnly project(":apps:portal:portal-upgrade-api")
-	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 }

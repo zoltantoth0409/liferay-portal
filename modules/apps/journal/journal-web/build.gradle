@@ -6,6 +6,9 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.asset.display.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.asset.display.page.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.exportimport.changeset.api", version: "1.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.osgi.service.tracker.collections", version: "3.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.staging.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.trash.api", version: "1.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "3.0.0"
@@ -40,9 +43,6 @@ dependencies {
 	compileOnly project(":apps:subscription:subscription-api")
 	compileOnly project(":apps:trash:trash-taglib")
 	compileOnly project(":apps:upload:upload-api")
-	compileOnly group: "com.liferay", name: "com.liferay.osgi.service.tracker.collections", version: "3.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 
 	soyCompile project(":apps:frontend-js:frontend-js-metal-web")
 	soyCompile project(":apps:frontend-js:frontend-js-web")

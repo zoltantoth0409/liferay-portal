@@ -7,7 +7,12 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.asset.display.page.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.asset.publisher.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.asset.tag.stats.api", version: "1.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.osgi.service.tracker.collections", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.content", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.function", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.registry.api", version: "2.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "3.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "3.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.util.java", version: "3.0.0"
@@ -40,9 +45,4 @@ dependencies {
 	compileOnly project(":apps:social:social-bookmarks-taglib")
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
 	compileOnly project(":apps:subscription:subscription-api")
-	compileOnly group: "com.liferay", name: "com.liferay.osgi.service.tracker.collections", version: "3.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.petra.function", version: "2.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.registry.api", version: "2.0.0"
 }

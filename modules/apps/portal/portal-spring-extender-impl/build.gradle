@@ -17,6 +17,9 @@ configurations {
 
 dependencies {
 	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bndlib", version: "3.1.0"
+	compileOnly group: "com.liferay", name: "com.liferay.osgi.felix.util", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.reflect", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "org.hibernate.core", version: "3.6.10.LIFERAY-PATCHED-3"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "3.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "3.0.0"
@@ -31,9 +34,6 @@ dependencies {
 	compileOnly group: "org.springframework", name: "spring-tx", version: "4.1.9.RELEASE"
 	compileOnly project(":apps:portal:portal-upgrade-api")
 	compileOnly project(":apps:static:portal-configuration:portal-configuration-metatype-api")
-	compileOnly group: "com.liferay", name: "com.liferay.osgi.felix.util", version: "2.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.petra.reflect", version: "2.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 
 	springExtenderApi project(":apps:portal:portal-spring-extender-api")
 

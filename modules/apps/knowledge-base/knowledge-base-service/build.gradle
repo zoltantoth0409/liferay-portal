@@ -11,7 +11,10 @@ dependencies {
 
 	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bndlib", version: "3.1.0"
 	compileOnly group: "com.liferay", name: "com.liferay.knowledge.base.markdown.converter.api", version: "1.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.function", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.dao.orm.custom.sql.api", version: "1.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.registry.api", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.staging.api", version: "3.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "3.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "3.0.0"
@@ -26,9 +29,6 @@ dependencies {
 	compileOnly project(":apps:portal:portal-upgrade-api")
 	compileOnly project(":apps:rss:rss-api")
 	compileOnly project(":apps:subscription:subscription-api")
-	compileOnly group: "com.liferay", name: "com.liferay.petra.function", version: "2.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.registry.api", version: "2.0.0"
 
 	testCompile group: "easyconf", name: "easyconf", version: "0.9.5"
 	testCompile group: "org.apache.tika", name: "tika-core", version: "1.14"

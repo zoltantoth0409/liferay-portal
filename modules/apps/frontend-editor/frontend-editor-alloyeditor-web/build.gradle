@@ -35,6 +35,9 @@ clean {
 
 dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.editor.api", version: "1.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.osgi.service.tracker.collections", version: "3.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "3.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.util.java", version: "3.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.util.taglib", version: "3.0.0"
@@ -50,9 +53,6 @@ dependencies {
 	compileOnly project(":apps:layout:layout-item-selector-api")
 	compileOnly project(":apps:message-boards:message-boards-api")
 	compileOnly project(":apps:petra:petra-encryptor")
-	compileOnly group: "com.liferay", name: "com.liferay.osgi.service.tracker.collections", version: "3.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 }
 
 transpileJS {
