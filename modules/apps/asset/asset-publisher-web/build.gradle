@@ -37,7 +37,7 @@ dependencies {
 	compileOnly project(":apps:asset:asset-taglib")
 	compileOnly project(":apps:comment:comment-taglib")
 	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.mapping.taglib", version: "3.0.0"
-	compileOnly project(":apps:flags:flags-taglib")
+	compileOnly group: "com.liferay", name: "com.liferay.flags.taglib", version: "3.0.0"
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:journal:journal-api")
 	compileOnly project(":apps:layout:layout-page-template-api")

@@ -32,7 +32,7 @@ dependencies {
 	compileOnly project(":apps:asset:asset-taglib")
 	compileOnly project(":apps:document-library:document-library-api")
 	compileOnly project(":apps:expando:expando-taglib")
-	compileOnly project(":apps:flags:flags-taglib")
+	compileOnly group: "com.liferay", name: "com.liferay.flags.taglib", version: "3.0.0"
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-clay")
 	compileOnly project(":apps:message-boards:message-boards-service")
