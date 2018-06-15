@@ -35,7 +35,7 @@ dependencies {
 	compileOnly project(":apps:asset:asset-taglib")
 	compileOnly project(":apps:comment:comment-taglib")
 	compileOnly project(":apps:document-library:document-library-api")
-	compileOnly project(":apps:dynamic-data-mapping:dynamic-data-mapping-taglib")
+	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.mapping.taglib", version: "3.0.0"
 	compileOnly project(":apps:expando:expando-taglib")
 	compileOnly project(":apps:export-import:export-import-changeset-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
