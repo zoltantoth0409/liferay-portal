@@ -58,8 +58,7 @@ if (liveGroup == null) {
 />
 
 <%
-ExportTemplatesToolbarDisplayContext exportTemplatesToolbarDisplayContext =
-	new ExportTemplatesToolbarDisplayContext(liferayPortletRequest, liferayPortletResponse, request, liveGroupId, company, portletURL);
+ExportTemplatesToolbarDisplayContext exportTemplatesToolbarDisplayContext = new ExportTemplatesToolbarDisplayContext(liferayPortletRequest, liferayPortletResponse, request, liveGroupId, company, portletURL);
 %>
 
 <clay:management-toolbar

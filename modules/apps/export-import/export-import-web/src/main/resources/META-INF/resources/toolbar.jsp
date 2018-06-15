@@ -16,6 +16,10 @@
 
 <%@ include file="/init.jsp" %>
 
+<%
+ExportImportToolbarDisplayContext exportImportToolbarDisplayContext = new ExportImportToolbarDisplayContext(request, liferayPortletResponse);
+%>
+
 <clay:management-toolbar
 	actionDropdownItems="<%= exportImportToolbarDisplayContext.getActionDropdownItems() %>"
 	creationMenu="<%= exportImportToolbarDisplayContext.getCreationMenu() %>"

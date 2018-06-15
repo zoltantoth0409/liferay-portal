@@ -196,8 +196,6 @@ Calendar calendar = CalendarFactoryUtil.getCalendar(timeZone, locale);
 int timeZoneOffset = timeZone.getOffset(calendar.getTimeInMillis());
 
 Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
-
-ExportImportToolbarDisplayContext exportImportToolbarDisplayContext = new ExportImportToolbarDisplayContext(request, liferayPortletResponse);
 %>
 
 <%@ include file="/init-ext.jsp" %>
