@@ -29,7 +29,7 @@ dependencies {
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:frontend-taglib:frontend-taglib-clay")
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib.soy", version: "2.0.0"
-	compileOnly project(":apps:item-selector:item-selector-api")
+	compileOnly group: "com.liferay", name: "com.liferay.item.selector.api", version: "3.0.0"
 	compileOnly project(":apps:journal:journal-api")
 	compileOnly project(":apps:knowledge-base:knowledge-base-api")
 	compileOnly project(":apps:message-boards:message-boards-api")
