@@ -92,8 +92,6 @@ public class DDLCSVExporter extends BaseDDLExporter {
 
 		Iterator<DDLRecord> iterator = records.iterator();
 
-		DateTimeFormatter dateTimeFormatter = getDateTimeFormatter();
-
 		while (iterator.hasNext()) {
 			DDLRecord record = iterator.next();
 
@@ -121,8 +119,12 @@ public class DDLCSVExporter extends BaseDDLExporter {
 
 			sb.append(getStatusMessage(recordVersion.getStatus()));
 			sb.append(CharPool.COMMA);
+
+			DateTimeFormatter dateTimeFormatter = getDateTimeFormatter();
+
 			sb.append(
 				formatDate(recordVersion.getStatusDate(), dateTimeFormatter));
+
 			sb.append(CharPool.COMMA);
 			sb.append(CSVUtil.encode(recordVersion.getUserName()));
 
