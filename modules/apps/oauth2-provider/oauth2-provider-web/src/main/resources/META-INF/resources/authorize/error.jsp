@@ -18,4 +18,4 @@
 
 <liferay-ui:error-header />
 
-<liferay-ui:error key="missingRedirectURI" message="missing-redirect-uri" />
+<liferay-ui:error key="redirectURIMissing" message="missing-redirect-uri" />
