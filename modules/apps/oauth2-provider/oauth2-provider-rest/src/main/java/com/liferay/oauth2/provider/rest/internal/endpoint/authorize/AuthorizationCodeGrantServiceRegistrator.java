@@ -68,8 +68,9 @@ public class AuthorizationCodeGrantServiceRegistrator {
 					OOBAuthorizationResponse oobAuthorizationResponse) {
 
 					_log.error(
-						"No redirect_uri specified in request for client " +
-							oobAuthorizationResponse.getClientId());
+						"The parameter \"redirect_uri\" was not found in the " +
+							"request for client " +
+								oobAuthorizationResponse.getClientId());
 
 					return Response.status(
 						500

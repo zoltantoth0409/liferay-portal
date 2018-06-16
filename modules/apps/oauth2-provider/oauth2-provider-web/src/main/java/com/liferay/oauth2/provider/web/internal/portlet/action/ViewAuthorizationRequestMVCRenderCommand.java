@@ -82,7 +82,7 @@ public class ViewAuthorizationRequestMVCRenderCommand
 		String redirectURI = oAuth2Parameters.get("redirect_uri");
 
 		if (Validator.isBlank(redirectURI)) {
-			SessionErrors.add(renderRequest, "missingRedirectURI");
+			SessionErrors.add(renderRequest, "redirectURIMissing");
 
 			return "/authorize/error.jsp";
 		}
