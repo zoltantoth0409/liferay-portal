@@ -109,7 +109,7 @@ public class LiferayWriter
 		}
 		catch (IOException ioe) {
 			if (_log.isDebugEnabled()) {
-				_log.debug("Unable to delete the resource: ", ioe);
+				_log.debug("Unable to delete the resource", ioe);
 			}
 
 			throw ioe;
