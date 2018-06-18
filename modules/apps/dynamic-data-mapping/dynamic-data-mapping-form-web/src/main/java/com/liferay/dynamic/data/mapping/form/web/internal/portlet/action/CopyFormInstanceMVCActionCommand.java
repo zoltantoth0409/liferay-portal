@@ -118,19 +118,17 @@ public class CopyFormInstanceMVCActionCommand
 	}
 
 	protected ResourceBundle getResourceBundle(Locale locale) {
-		Class<?> clazz = getClass();
-
 		ResourceBundleLoader portalResourceBundleLoader =
 			ResourceBundleLoaderUtil.getPortalResourceBundleLoader();
 
 		ResourceBundle portalResourceBundle =
 			portalResourceBundleLoader.loadResourceBundle(locale);
 
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, clazz);
+		ResourceBundle moduleResourceBundle = ResourceBundleUtil.getBundle(
+			"content.Language", locale, getClass());
 
 		return new AggregateResourceBundle(
-			resourceBundle, portalResourceBundle);
+			moduleResourceBundle, portalResourceBundle);
 	}
 
 	protected void setDefaultPublishedDDMFormFieldValue(
