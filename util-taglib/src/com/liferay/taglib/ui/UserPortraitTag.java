@@ -93,9 +93,9 @@ public class UserPortraitTag extends IncludeTag {
 
 	@Override
 	public int processEndTag() throws Exception {
-		User user = getUser();
-
 		JspWriter jspWriter = pageContext.getOut();
+
+		User user = getUser();
 
 		String userPortraitHTML = getUserPortraitHTML(
 			user, _cssClass, () -> getUserInitials(user),
