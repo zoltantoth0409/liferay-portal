@@ -184,19 +184,17 @@ public class DocumentLibraryDDMFormFieldTemplateContextContributor
 	}
 
 	protected ResourceBundle getResourceBundle(Locale locale) {
-		Class<?> clazz = getClass();
-
 		ResourceBundleLoader portalResourceBundleLoader =
 			ResourceBundleLoaderUtil.getPortalResourceBundleLoader();
 
 		ResourceBundle portalResourceBundle =
 			portalResourceBundleLoader.loadResourceBundle(locale);
 
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, clazz);
+		ResourceBundle portletResourceBundle = ResourceBundleUtil.getBundle(
+			"content.Language", locale, getClass());
 
 		return new AggregateResourceBundle(
-			resourceBundle, portalResourceBundle);
+			portletResourceBundle, portalResourceBundle);
 	}
 
 	@Reference
