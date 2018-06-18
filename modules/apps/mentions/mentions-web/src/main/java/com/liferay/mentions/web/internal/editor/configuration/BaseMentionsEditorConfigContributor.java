@@ -61,7 +61,7 @@ public class BaseMentionsEditorConfigContributor
 		triggerJSONObject.put("term", "@");
 		triggerJSONObject.put("tplReplace", "{mention}");
 
-		String tpl = StringBundler.concat(
+		String tplResults = StringBundler.concat(
 			"<div class=\"p-1 autofit-row autofit-row-center\">",
 			"<div class=\"autofit-col inline-item-before\">{portraitHTML}",
 			"</div><div class=\"autofit-col autofit-col-expand\">",
@@ -70,7 +70,7 @@ public class BaseMentionsEditorConfigContributor
 			"<small class=\"truncate-text\">@{screenName}</small></div></div>",
 			"</div>");
 
-		triggerJSONObject.put("tplResults", tpl);
+		triggerJSONObject.put("tplResults", tplResults);
 
 		PortletURL autoCompleteUserURL =
 			requestBackedPortletURLFactory.createResourceURL(
