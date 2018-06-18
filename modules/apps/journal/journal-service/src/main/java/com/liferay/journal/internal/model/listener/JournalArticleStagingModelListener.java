@@ -65,7 +65,7 @@ public class JournalArticleStagingModelListener
 
 		_stagingModelListener.onAfterRemove(journalArticle);
 
-		_cleanupJournalArticleResourceFromChangesetCollection(journalArticle);
+		_cleanUpJournalArticleResourceFromChangesetCollection(journalArticle);
 	}
 
 	@Override
@@ -76,10 +76,9 @@ public class JournalArticleStagingModelListener
 
 		_addJournalArticleResourceToChangesetCollection(journalArticle);
 
-		// Updates are happening when moving to trash, need to clean up after
-		// add
+		// Updates are happening when moving to trash, so clean up after add
 
-		_cleanupJournalArticleResourceFromChangesetCollection(journalArticle);
+		_cleanUpJournalArticleResourceFromChangesetCollection(journalArticle);
 	}
 
 	private void _addJournalArticleResourceToChangesetCollection(
@@ -131,7 +130,7 @@ public class JournalArticleStagingModelListener
 		}
 	}
 
-	private void _cleanupJournalArticleResourceFromChangesetCollection(
+	private void _cleanUpJournalArticleResourceFromChangesetCollection(
 		JournalArticle journalArticle) {
 
 		try {
