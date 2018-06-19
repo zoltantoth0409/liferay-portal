@@ -280,7 +280,7 @@ public class DBUpgrader {
 		}
 
 		release = ReleaseLocalServiceUtil.updateRelease(
-			release.getReleaseId(), ReleaseInfo.getVersion(),
+			release.getReleaseId(), LATEST_PORTAL_SCHEMA_VERSION_,
 			ReleaseInfo.getParentBuildNumber(), ReleaseInfo.getBuildDate(),
 			verified);
 
@@ -441,6 +441,8 @@ public class DBUpgrader {
 			DataAccess.cleanUp(con, ps);
 		}
 	}
+
+	private static final String LATEST_PORTAL_SCHEMA_VERSION_ = "0.0.6";
 
 	private static final Log _log = LogFactoryUtil.getLog(DBUpgrader.class);
 
