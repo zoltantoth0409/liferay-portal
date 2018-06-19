@@ -575,7 +575,7 @@
 		<if>
 			<equals arg1="${webContentJavascript}" arg2="true" />
 			<then>
-				<execute function="AssertTextEquals" locator1="//div[@class='journal-content-article']//span[contains(@class,'portlet-title-text')]" value1="${embeddedPortletTitle}" />
+				<execute function="AssertTextEquals" locator1="//div[contains(@class,'journal-content-article')]//span[contains(@class,'portlet-title-text')]" value1="${embeddedPortletTitle}" />
 			</then>
 			<else>
 				<execute function="AssertTextEquals" locator1="WCD#WEB_CONTENT_CONTENT" value1="${webContentContent}" />
@@ -1259,7 +1259,7 @@
 		<if>
 			<equals arg1="${webContentJavascript}" arg2="true" />
 			<then>
-				<execute function="AssertTextEquals" locator1="//div[@class='journal-content-article']//span[contains(@class,'portlet-title-text')]" value1="${embeddedPortletTitle}" />
+				<execute function="AssertTextEquals" locator1="//div[contains(@class,'journal-content-article')]//span[contains(@class,'portlet-title-text')]" value1="${embeddedPortletTitle}" />
 			</then>
 			<else>
 				<execute function="AssertTextEquals" locator1="WCD#WEB_CONTENT_CONTENT" value1="${webContentContentEdit}" />
