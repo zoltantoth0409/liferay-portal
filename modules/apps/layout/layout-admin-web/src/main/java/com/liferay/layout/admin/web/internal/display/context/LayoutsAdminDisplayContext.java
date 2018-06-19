@@ -1081,6 +1081,17 @@ public class LayoutsAdminDisplayContext {
 		return jsonObject;
 	}
 
+	private long _getHomePagePlid(boolean privateLayout) {
+		if (_homePagePlid != null) {
+			return _homePagePlid;
+		}
+
+		_homePagePlid = LayoutLocalServiceUtil.getDefaultPlid(
+			getSelGroupId(), privateLayout);
+
+		return _homePagePlid;
+	}
+
 	private String _getHomePageTitle(boolean privateLayout) {
 		if (_homePageTitle != null) {
 			return _homePageTitle;
@@ -1230,6 +1241,10 @@ public class LayoutsAdminDisplayContext {
 					_request, layoutTypeResourceBundle,
 					"layout.types." + layout.getType()));
 
+			layoutJSONObject.put(
+				"homePage",
+				_getHomePagePlid(privateLayout) == layout.getPlid());
+
 			int childLayoutsCount = LayoutLocalServiceUtil.getLayoutsCount(
 				getSelGroup(), isPrivatePages(), layout.getLayoutId());
 
@@ -1297,6 +1312,7 @@ public class LayoutsAdminDisplayContext {
 
 	private Long _activeLayoutSetBranchId;
 	private final GroupDisplayContextHelper _groupDisplayContextHelper;
+	private Long _homePagePlid;
 	private String _homePageTitle;
 	private List<LayoutDescription> _layoutDescriptions;
 	private Long _layoutId;
