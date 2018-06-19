@@ -113,6 +113,7 @@ PanelCategoryHelper panelCategoryHelper = (PanelCategoryHelper)request.getAttrib
 
 									</ul>
 							</div>
+						</div>
 
 						<liferay-application-list:panel-category-body
 							panelCategory="<%= panelCategory %>"
