@@ -27,7 +27,7 @@
 		</sequential>
 	</macrodef>
 
-	<target depends="dist-module-artifacts,update-app-marketplace-verson,write-app-change-log,zip-app-sources" name="build-app">
+	<target depends="dist-module-artifacts,update-app-marketplace-version,write-app-change-log,zip-app-sources" name="build-app">
 		<delete file="${dist.dir}/ticket.list.tmp" />
 
 		<antcall target="git-finalize" />
@@ -904,7 +904,7 @@
 		</subant>
 	</target>
 
-	<target depends="get-app-version,get-artifact-versions-previous-release" name="update-app-marketplace-verson" unless="${build.app.from.changelog}">
+	<target depends="get-app-version,get-artifact-versions-previous-release" name="update-app-marketplace-version" unless="${build.app.from.changelog}">
 		<echo message="app.version.previous.release = ${app.version.previous.release}" />
 
 		<echo message="app.version = ${app.version}" />
