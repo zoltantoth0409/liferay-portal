@@ -45,7 +45,7 @@ public class BeanShellTask extends Task {
 
 			if (path == null) {
 				throw new BuildException(
-					"Invalid beanshell classpathref: " + _classpathRef);
+					"Invalid BeanShell class path reference: " + _classpathRef);
 			}
 
 			classLoader = new AntClassLoader(getProject(), path);
