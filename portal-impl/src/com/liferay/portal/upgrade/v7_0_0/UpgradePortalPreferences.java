@@ -91,7 +91,7 @@ public class UpgradePortalPreferences extends UpgradeProcess {
 
 				String oldPreferences = rs.getString("preferences");
 
-				String newPreferences;
+				String newPreferences = null;
 
 				try {
 					newPreferences = convertStagingPreferencesToJSON(
@@ -101,7 +101,7 @@ public class UpgradePortalPreferences extends UpgradeProcess {
 					if (_log.isWarnEnabled()) {
 						_log.warn(
 							StringBundler.concat(
-								"PortalPreferences ", portalPreferencesId,
+								"Portal preferences ", portalPreferencesId,
 								" contains invalid XML, resetting to default"));
 					}
 
