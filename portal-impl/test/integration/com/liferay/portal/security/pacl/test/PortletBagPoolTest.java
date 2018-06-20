@@ -20,14 +20,12 @@ import com.liferay.portlet.internal.PortletBagImpl;
 
 import org.junit.Assert;
 import org.junit.ClassRule;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 
 /**
  * @author Raymond Augé
  */
-@Ignore
 public class PortletBagPoolTest {
 
 	@ClassRule
