@@ -7,3 +7,8 @@
 # Bundle Version 7.1.0.1
 #
 b3de86e4dc0cd5ad5b6526987e3fcdd9d939329d^..c93a3f375de91e38cd1b6347e261d03c5189a4f3=LPS-77425
+
+#
+# Bundle Version 7.1.0.2
+#
+c93a3f375de91e38cd1b6347e261d03c5189a4f3^..aad74dc4bdec507a10f3ba5f3460bc61f3c47d8c=LPS-79679
