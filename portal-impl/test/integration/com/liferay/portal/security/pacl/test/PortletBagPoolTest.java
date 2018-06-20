@@ -19,12 +19,14 @@ import com.liferay.portal.test.rule.PACLTestRule;
 
 import org.junit.Assert;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 
 /**
  * @author Raymond Augé
  */
+@Ignore
 public class PortletBagPoolTest {
 
 	@ClassRule
