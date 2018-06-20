@@ -88,13 +88,6 @@ public interface Staging {
 			ServiceContext serviceContext)
 		throws PortalException;
 
-	public boolean getRemoteLayoutHasPortletId(
-		long userId, long stagingGroupId, long plid, String portletId);
-
-	public void getRemoteLayoutPlid(
-			long userId, long stagingGroupId, long plid)
-		throws PortalException;
-
 	public long copyFromLive(PortletRequest portletRequest)
 		throws PortalException;
 
@@ -221,6 +214,12 @@ public interface Staging {
 		HttpServletRequest request, long layoutSetId);
 
 	public long getRecentLayoutSetBranchId(User user, long layoutSetId);
+
+	public boolean getRemoteLayoutHasPortletId(
+		long userId, long stagingGroupId, long plid, String portletId);
+
+	public long getRemoteLayoutPlid(long userId, long stagingGroupId, long plid)
+		throws PortalException;
 
 	public String getRemoteSiteURL(Group stagingGroup, boolean privateLayout)
 		throws PortalException;
