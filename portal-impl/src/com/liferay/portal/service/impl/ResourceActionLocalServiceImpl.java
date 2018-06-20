@@ -103,10 +103,9 @@ public class ResourceActionLocalServiceImpl
 		}
 
 		long availableBits = -2;
+		Map<String, ResourceAction> resourceActionMap = new HashMap<>();
 
 		List<ResourceAction> resourceActions = getResourceActions(name);
-
-		Map<String, ResourceAction> resourceActionMap = new HashMap<>();
 
 		for (ResourceAction resourceAction : resourceActions) {
 			availableBits &= ~resourceAction.getBitwiseValue();
