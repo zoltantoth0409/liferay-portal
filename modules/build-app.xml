@@ -542,7 +542,9 @@
 			result="app.bug.fix.version"
 		/>
 
-		<property name="app.version" value="${app.major.minor.version.previous.release}.${app.bug.fix.version}" />
+		<condition else="${app.version.previous.release}" property="app.version" value="${app.major.minor.version.previous.release}.${app.bug.fix.version}">
+			<available file="${releng.app.dir}/app.changelog" />
+		</condition>
 	</target>
 
 	<target depends="get-app-properties" name="get-artifact-versions-previous-release">
