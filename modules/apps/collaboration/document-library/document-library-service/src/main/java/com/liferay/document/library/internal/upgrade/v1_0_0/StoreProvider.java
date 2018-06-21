@@ -65,6 +65,7 @@ public class StoreProvider {
 
 			if ((storeType == null) ||
 				!storeType.equals(PropsValues.DL_STORE_IMPL)) {
+
 				return store;
 			}
 

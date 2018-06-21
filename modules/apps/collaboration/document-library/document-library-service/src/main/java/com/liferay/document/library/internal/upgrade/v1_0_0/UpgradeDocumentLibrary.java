@@ -33,7 +33,6 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-
 		_deleteChecksumDirectory();
 
 		_deleteTempDirectory();

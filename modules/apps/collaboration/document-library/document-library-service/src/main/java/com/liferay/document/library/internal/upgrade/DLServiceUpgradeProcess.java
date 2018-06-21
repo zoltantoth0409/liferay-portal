@@ -34,8 +34,9 @@ public class DLServiceUpgradeProcess implements UpgradeStepRegistrator {
 			"com.liferay.document.library.service", "0.0.0", "1.0.0",
 			new DummyUpgradeStep());
 
-		registry.register("com.liferay.document.library.service",
-			"0.0.1", "1.0.0", new UpgradeDocumentLibrary(_store));
+		registry.register(
+			"com.liferay.document.library.service", "0.0.1", "1.0.0",
+			new UpgradeDocumentLibrary(_store));
 	}
 
 	@Reference(target = "(dl.store.upgrade=true)")
