@@ -539,16 +539,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>APP_MANAGER_PORTLET_BODY</td>
-	<td>//section[contains(@id,'app_manager')]//div[contains(@class,'portlet-body')]/div</td>
-	<td></td>
-</tr>
-<tr>
-	<td>APP_MANAGER_PRTLET_CONTENT</td>
-	<td>//div[contains(@class,'list-group-item-content')]/h5/a[contains(.,'${key_contentName}')]</td>
-	<td></td>
-</tr>
-<tr>
 	<td>SIGN_IN_PORTLET</td>
 	<td>/portal/portlets/sign_in_portlet.png</td>
 	<td></td>
