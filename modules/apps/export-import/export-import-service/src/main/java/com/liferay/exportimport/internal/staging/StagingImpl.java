@@ -61,6 +61,7 @@ import com.liferay.exportimport.kernel.staging.StagingConstants;
 import com.liferay.exportimport.staged.model.repository.StagedModelRepository;
 import com.liferay.exportimport.staged.model.repository.StagedModelRepositoryHelper;
 import com.liferay.exportimport.staged.model.repository.StagedModelRepositoryRegistryUtil;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.backgroundtask.BackgroundTask;
 import com.liferay.portal.kernel.backgroundtask.BackgroundTaskManager;
@@ -134,7 +135,6 @@ import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TextFormatter;
 import com.liferay.portal.kernel.util.Tuple;
@@ -2183,9 +2183,8 @@ public class StagingImpl implements Staging {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					StringBundler.concat(
-						"Unable to decide if remote layout ",
-						String.valueOf(plid), " contains portletId ",
-						portletId),
+						"Unable to determine if remote layout ", plid,
+						" contains portlet ", portletId),
 					pe);
 			}
 		}
@@ -4035,10 +4034,9 @@ public class StagingImpl implements Staging {
 				_log.warn(
 					StringBundler.concat(
 						"Unable to set recent layout revision ID",
-						"with layout set branch ",
-						String.valueOf(layoutSetBranchId), " and PLID ",
-						String.valueOf(plid), " and layout branch ",
-						String.valueOf(layoutBranchId)),
+						"with layout set branch ", layoutSetBranchId,
+						" and PLID ", plid, " and layout branch ",
+						layoutBranchId),
 					pe);
 			}
 		}
