@@ -123,5 +123,6 @@
 		<suppress checks="JavaAPISignatureCheck" files="modules/private/apps/osb-testray/.*" />
 		<suppress checks="JavaModuleComponentCheck" files="modules/private/apps/osb-lcs/.*" />
 		<suppress checks="JavaModuleComponentCheck" files="modules/private/apps/osb-testray/.*" />
+		<suppress checks="JavaServiceObjectCheck" files="modules/private/.*" />
 	</source-check>
 </suppressions>
