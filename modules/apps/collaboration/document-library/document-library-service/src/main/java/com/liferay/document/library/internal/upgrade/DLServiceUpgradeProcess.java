@@ -38,7 +38,7 @@ public class DLServiceUpgradeProcess implements UpgradeStepRegistrator {
 			"0.0.1", "1.0.0", new UpgradeDocumentLibrary(_store));
 	}
 
-	@Reference(target = "dl.store.upgrade=true")
+	@Reference(target = "(dl.store.upgrade=true)")
 	private Store _store;
 
 }
