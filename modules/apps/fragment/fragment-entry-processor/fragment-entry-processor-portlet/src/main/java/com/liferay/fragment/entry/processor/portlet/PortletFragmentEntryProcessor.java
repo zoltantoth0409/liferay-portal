@@ -365,7 +365,7 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 			PortletIdCodec.decodePortletName(portletName),
 			PortletIdCodec.decodeUserId(portletName), instanceId);
 
-		PortletPreferences portletPreferences =
+		PortletPreferences jxPortletPreferences =
 			PortletPreferencesFactoryUtil.fromDefaultXML(defaultPreferences);
 
 		List<com.liferay.portal.kernel.model.PortletPreferences>
@@ -375,18 +375,18 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 					PortletKeys.PREFS_OWNER_TYPE_LAYOUT, portletId);
 
 		if (ListUtil.isNotEmpty(portletPreferencesList)) {
-			portletPreferences =
+			jxPortletPreferences =
 				PortletPreferencesFactoryUtil.getLayoutPortletSetup(
 					group.getCompanyId(), PortletKeys.PREFS_OWNER_ID_DEFAULT,
 					PortletKeys.PREFS_OWNER_TYPE_LAYOUT, defaultPlid, portletId,
 					defaultPreferences);
 
 			_updateLayoutPortletSetup(
-				portletPreferencesList, portletPreferences);
+				portletPreferencesList, jxPortletPreferences);
 		}
 
 		Document preferencesDocument = _getDocument(
-			PortletPreferencesFactoryUtil.toXML(portletPreferences));
+			PortletPreferencesFactoryUtil.toXML(jxPortletPreferences));
 
 		Element preferencesBody = preferencesDocument.body();
 
@@ -395,24 +395,25 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 
 	private void _updateLayoutPortletSetup(
 		List<com.liferay.portal.kernel.model.PortletPreferences>
-			portletPreferencesList, PortletPreferences portletPreferences) {
+			portletPreferencesList, PortletPreferences jxPortletPreferences) {
 
 		String portletPreferencesXml = PortletPreferencesFactoryUtil.toXML(
-			portletPreferences);
+			jxPortletPreferences);
 
-		for (com.liferay.portal.kernel.model.PortletPreferences preferences :
-				portletPreferencesList) {
+		for (com.liferay.portal.kernel.model.PortletPreferences
+				portletPreferences : portletPreferencesList) {
 
 			if (Objects.equals(
-					preferences.getPreferences(), portletPreferencesXml)) {
+					portletPreferences.getPreferences(),
+					portletPreferencesXml)) {
 
 				continue;
 			}
 
-			preferences.setPreferences(portletPreferencesXml);
+			portletPreferences.setPreferences(portletPreferencesXml);
 
 			_portletPreferencesLocalService.updatePortletPreferences(
-				preferences);
+				portletPreferences);
 		}
 	}
 
