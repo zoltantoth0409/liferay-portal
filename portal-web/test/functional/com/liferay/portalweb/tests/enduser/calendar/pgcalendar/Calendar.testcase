@@ -5926,7 +5926,7 @@
 		</execute>
 
 		<execute macro="CalendarEvent#viewRepeatWeekStartDay">
-			<var name="weekStartDay" value="MO" />
+			<var name="weekStartDay" value="Monday" />
 		</execute>
 	</command>
 
@@ -5974,7 +5974,7 @@
 		</execute>
 
 		<execute macro="CalendarEvent#viewRepeatWeekStartDay">
-			<var name="weekStartDay" value="SA" />
+			<var name="weekStartDay" value="Saturday" />
 		</execute>
 	</command>
 </definition>
