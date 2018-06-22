@@ -6075,10 +6075,13 @@ public class ServiceBuilder {
 						// See LPS-76509. Added this hack for
 						// c9c1fcef14c5cdc1325ae97fee79dbc138728c3c in 7.1.x.
 
-						String path = entity.getApiPackagePath();
+						String apiPackagePath = entity.getApiPackagePath();
 
-						if (path.equals("com.liferay.message.boards")) {
-							entity.setApiPackagePath(path + ".kernel");
+						if (apiPackagePath.equals(
+								"com.liferay.message.boards")) {
+
+							entity.setApiPackagePath(
+								apiPackagePath + ".kernel");
 						}
 					}
 
