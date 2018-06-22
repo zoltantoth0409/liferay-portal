@@ -6073,7 +6073,7 @@ public class ServiceBuilder {
 					if (_dtdVersion.isPreviousVersionThan("7.1.0")) {
 
 						// See LPS-76509. Added this hack for
-						// c9c1fcef14c5cdc1325ae97fee79dbc138728c3c.
+						// c9c1fcef14c5cdc1325ae97fee79dbc138728c3c in 7.1.x.
 
 						String path = entity.getApiPackagePath();
 
