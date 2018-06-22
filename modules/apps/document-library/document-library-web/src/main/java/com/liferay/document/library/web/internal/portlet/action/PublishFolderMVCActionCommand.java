@@ -97,14 +97,14 @@ public class PublishFolderMVCActionCommand extends BaseMVCActionCommand {
 		List<StagedModel> stagedModels = new ArrayList<>();
 
 		try {
-			List<Object> children =
+			List<Object> childObjects =
 				_dlAppService.getFoldersAndFileEntriesAndFileShortcuts(
 					folder.getGroupId(), folder.getFolderId(),
 					WorkflowConstants.STATUS_ANY, false, -1, -1);
 
-			for (Object child : children) {
-				if (child instanceof Folder) {
-					Folder childFolder = (Folder)child;
+			for (Object childObject : childObjects) {
+				if (childObject instanceof Folder) {
+					Folder childFolder = (Folder)childObject;
 
 					stagedModels.add(childFolder);
 
@@ -112,7 +112,7 @@ public class PublishFolderMVCActionCommand extends BaseMVCActionCommand {
 						_getFoldersAndFileEntriesAndFileShortcuts(childFolder));
 				}
 				else {
-					stagedModels.add((StagedModel)child);
+					stagedModels.add((StagedModel)childObject);
 				}
 			}
 		}
