@@ -52,10 +52,10 @@ public class LPKGIndependenceTest {
 
 		Object service = bundleContext.getService(serviceReference);
 
-		Path tempDir = Paths.get(
+		Path tempPath = Paths.get(
 			PropsValues.MODULE_FRAMEWORK_MARKETPLACE_DIR, "temp");
 
-		File tempFile = tempDir.toFile();
+		File tempFile = tempPath.toFile();
 
 		for (File lpkgDir : tempFile.listFiles()) {
 			List<File> files = Arrays.asList(lpkgDir.listFiles());
