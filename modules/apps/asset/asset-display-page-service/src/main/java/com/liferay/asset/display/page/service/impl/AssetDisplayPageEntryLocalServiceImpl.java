@@ -127,8 +127,9 @@ public class AssetDisplayPageEntryLocalServiceImpl
 			layoutPageTemplateEntryId);
 		assetDisplayPageEntry.setType(type);
 
-		return assetDisplayPageEntryLocalService.updateAssetDisplayPageEntry(
-			assetDisplayPageEntry);
+		assetDisplayPageEntryPersistence.update(assetDisplayPageEntry);
+
+		return assetDisplayPageEntry;
 	}
 
 }
