@@ -54,7 +54,7 @@ public class PortletRepositoryDefiner extends BaseRepositoryDefiner {
 					StringBundler.concat(
 						"Repository definer ",
 						PortletRepositoryDefiner.class.getName(),
-						" is not yet fully initialized.")));
+						" is not yet fully initialized")));
 		}
 
 		DocumentRepository documentRepository = capabilityRegistry.getTarget();
