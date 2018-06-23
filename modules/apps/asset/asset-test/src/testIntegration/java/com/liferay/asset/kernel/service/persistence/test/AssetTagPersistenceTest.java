@@ -45,13 +45,13 @@ public class AssetTagPersistenceTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testFilterFindByGroupId() throws Exception {
-		User defaultUser = UserLocalServiceUtil.getDefaultUser(
-			TestPropsValues.getCompanyId());
-
 		PermissionChecker permissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
 
 		try {
+			User defaultUser = UserLocalServiceUtil.getDefaultUser(
+				TestPropsValues.getCompanyId());
+
 			PermissionThreadLocal.setPermissionChecker(
 				PermissionCheckerFactoryUtil.create(defaultUser));
 
