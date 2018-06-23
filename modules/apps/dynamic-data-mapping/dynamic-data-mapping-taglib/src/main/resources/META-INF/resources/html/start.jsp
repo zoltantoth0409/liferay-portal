@@ -120,7 +120,7 @@
 
 		<aui:input name="<%= HtmlUtil.getAUICompatibleId(ddmFormValuesInputName) %>" type="hidden" />
 
-		<aui:script use="aui-base, liferay-ddm-form">
+		<aui:script use="aui-base,liferay-ddm-form">
 			var Lang = A.Lang;
 
 			var liferayDDMForm = new Liferay.DDM.Form(
