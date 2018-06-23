@@ -380,9 +380,9 @@ if (portletTitleBasedNavigation) {
 							<%
 							if (fileEntryTypeId > 0) {
 								try {
-									List<DDMStructure> ddmStructures = dlFileEntryType.getDDMStructures();
-
 									boolean localizable = true;
+
+									List<DDMStructure> ddmStructures = dlFileEntryType.getDDMStructures();
 
 									for (DDMStructure ddmStructure : ddmStructures) {
 										com.liferay.dynamic.data.mapping.storage.DDMFormValues ddmFormValues = null;
