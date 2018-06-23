@@ -162,6 +162,7 @@ public class PrefixHandlerFactoryImpl implements PrefixHandlerFactory {
 		}
 		else {
 			String defaultsKey = serviceProperty.substring(0, indexOfSpace);
+
 			Properties modifiers = new Properties();
 
 			try {
