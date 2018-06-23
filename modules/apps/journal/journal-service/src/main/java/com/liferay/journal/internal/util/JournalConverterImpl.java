@@ -549,7 +549,30 @@ public class JournalConverterImpl implements JournalConverter {
 
 		Serializable serializable = null;
 
-		if (DDMFormFieldType.LINK_TO_PAGE.equals(type)) {
+		if (DDMFormFieldType.JOURNAL_ARTICLE.equals(type)) {
+			try {
+				JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
+					dynamicContentElement.getText());
+
+				Long classPK = jsonObject.getLong("classPK");
+
+				if (Validator.isNotNull(classPK)) {
+					JournalArticle journalArticle =
+						_journalArticleLocalService.fetchLatestArticle(classPK);
+
+					String title = journalArticle.getTitle(defaultLocale);
+
+					jsonObject.put("title", title);
+				}
+
+				serializable = jsonObject.toString();
+			}
+			catch (JSONException jsone) {
+				serializable = FieldConstants.getSerializable(
+					dataType, dynamicContentElement.getText());
+			}
+		}
+		else if (DDMFormFieldType.LINK_TO_PAGE.equals(type)) {
 			String[] values = StringUtil.split(
 				dynamicContentElement.getText(), CharPool.AT);
 
@@ -596,29 +619,6 @@ public class JournalConverterImpl implements JournalConverter {
 			}
 
 			serializable = jsonArray.toString();
-		}
-		else if (DDMFormFieldType.JOURNAL_ARTICLE.equals(type)) {
-			try {
-				JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
-					dynamicContentElement.getText());
-
-				Long classPK = jsonObject.getLong("classPK");
-
-				if (Validator.isNotNull(classPK)) {
-					JournalArticle journalArticle =
-						_journalArticleLocalService.fetchLatestArticle(classPK);
-
-					String title = journalArticle.getTitle(defaultLocale);
-
-					jsonObject.put("title", title);
-				}
-
-				serializable = jsonObject.toString();
-			}
-			catch (JSONException jsone) {
-				serializable = FieldConstants.getSerializable(
-					dataType, dynamicContentElement.getText());
-			}
 		}
 		else {
 			serializable = FieldConstants.getSerializable(
