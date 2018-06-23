@@ -319,7 +319,6 @@ public abstract class BaseUpgradePortletId extends UpgradeProcess {
 		String sql1 =
 			"select layoutRevisionId, typeSettings from LayoutRevision where " +
 				getTypeSettingsCriteria(oldRootPortletId);
-
 		String sql2 =
 			"update LayoutRevision set typeSettings = ? where " +
 				"layoutRevisionId = ?";
@@ -357,7 +356,6 @@ public abstract class BaseUpgradePortletId extends UpgradeProcess {
 		String sql1 =
 			"select plid, typeSettings from Layout where " +
 				getTypeSettingsCriteria(oldRootPortletId);
-
 		String sql2 = "update Layout set typeSettings = ? where plid = ?";
 
 		try (PreparedStatement ps1 = connection.prepareStatement(sql1);

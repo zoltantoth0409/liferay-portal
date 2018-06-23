@@ -177,7 +177,6 @@ public class BaseUpgradePortletIdTest extends BaseUpgradePortletId {
 			role.getRoleId(), new String[] {ActionKeys.CONFIGURATION});
 
 		Portlet portlet = null;
-
 		String[][] renamePortletIdsArray = new String[_PORTLET_IDS.length][2];
 
 		for (int i = 0; i < _PORTLET_IDS.length; i++) {
