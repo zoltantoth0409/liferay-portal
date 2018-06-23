@@ -51,9 +51,8 @@ public class TagResourceHandler {
 	public TagResourceHandler(Class<?> tagClass, TagAccessor tagAccessor) {
 		_tagAccessor = tagAccessor;
 
-		_log = LogFactoryUtil.getLog(tagClass);
-
 		_bundle = FrameworkUtil.getBundle(tagClass);
+		_log = LogFactoryUtil.getLog(tagClass);
 
 		Dictionary<String, String> headers = _bundle.getHeaders(
 			StringPool.BLANK);
@@ -87,7 +86,7 @@ public class TagResourceHandler {
 			outputResource(Position.BOTTOM, StringUtil.read(url.openStream()));
 		}
 		catch (Exception e) {
-			_log.error("Unable to output npm resource " + npmResourcePath, e);
+			_log.error("Unable to output NPM resource " + npmResourcePath, e);
 		}
 	}
 
@@ -109,7 +108,7 @@ public class TagResourceHandler {
 			outputResource(Position.TOP, sb.toString());
 		}
 		catch (Exception e) {
-			_log.error("Unable to output npm style sheet " + npmCssPath, e);
+			_log.error("Unable to output NPM style sheet " + npmCssPath, e);
 		}
 	}
 
@@ -140,7 +139,7 @@ public class TagResourceHandler {
 			Long key = _nextKey.getAndIncrement();
 
 			outputData.setDataSB(
-				key.toString(), _webKeysMap.get(position),
+				key.toString(), _webKeysEnumMap.get(position),
 				new StringBundler(html));
 		}
 	}
@@ -176,12 +175,12 @@ public class TagResourceHandler {
 		return (ThemeDisplay)servletRequest.getAttribute(WebKeys.THEME_DISPLAY);
 	}
 
-	private static final EnumMap<Position, String> _webKeysMap = new EnumMap(
-		Position.class);
+	private static final EnumMap<Position, String> _webKeysEnumMap =
+		new EnumMap(Position.class);
 
 	static {
-		_webKeysMap.put(Position.BOTTOM, WebKeys.PAGE_BODY_BOTTOM);
-		_webKeysMap.put(Position.TOP, WebKeys.PAGE_BODY_TOP);
+		_webKeysEnumMap.put(Position.BOTTOM, WebKeys.PAGE_BODY_BOTTOM);
+		_webKeysEnumMap.put(Position.TOP, WebKeys.PAGE_BODY_TOP);
 	}
 
 	private final Bundle _bundle;
