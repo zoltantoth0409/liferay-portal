@@ -112,9 +112,9 @@ AUI.add(
 						var portletURL = Liferay.PortletURL.createURL(themeDisplay.getLayoutRelativeURL());
 
 						portletURL.setLifecycle(Liferay.PortletURL.ACTION_PHASE);
-						portletURL.setParameter('cmd', 'add_temp');
 						portletURL.setParameter('javax.portlet.action', '/document_library/upload_file_entry');
 						portletURL.setParameter('p_auth', Liferay.authToken);
+						portletURL.setParameter('cmd', 'add_temp');
 						portletURL.setParameter('refererGroupId', instance.get('groupId'));
 						portletURL.setPortletId(Liferay.PortletKeys.DOCUMENT_LIBRARY);
 
