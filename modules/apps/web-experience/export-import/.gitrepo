@@ -4,8 +4,8 @@
 [subrepo]
 	autopull = false
 	cmdver = liferay
-	commit = 1e11882a170fd40151b36e0f585a8b47f878354c
+	commit = 5165fff451031a88e4e6323f88c905a5cb0f17f7
 	mergebuttonmergecommits = false
 	mode = push
-	parent = 27a4441cc3d6e658af5d2385dd8f65601c5fbce0
+	parent = e0f4ca49921a1e99f6b989e06293287ded6db871
 	remote = git@github.com:liferay/com-liferay-export-import.git
