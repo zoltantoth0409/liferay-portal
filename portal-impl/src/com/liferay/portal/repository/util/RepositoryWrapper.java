@@ -70,7 +70,7 @@ public class RepositoryWrapper implements Repository {
 	}
 
 	/**
-	 * @deprecated As of 7.0.0, see {@link #addFileEntry(long, long, String,
+	 * @deprecated As of Wilberforce, see {@link #addFileEntry(long, long, String,
 	 *             String, String, String, String, File, ServiceContext)}
 	 */
 	@Deprecated
@@ -87,7 +87,7 @@ public class RepositoryWrapper implements Repository {
 	}
 
 	/**
-	 * @deprecated As of 7.0.0, see {@link #addFileEntry(long, long, String,
+	 * @deprecated As of Wilberforce, see {@link #addFileEntry(long, long, String,
 	 *             String, String, String, String, InputStream, long,
 	 *             ServiceContext)}
 	 */
@@ -125,7 +125,7 @@ public class RepositoryWrapper implements Repository {
 	}
 
 	/**
-	 * @deprecated As of 7.0.0, replaced by {@link #addFolder(long, long,
+	 * @deprecated As of Wilberforce, replaced by {@link #addFolder(long, long,
 	 *             String, String, ServiceContext)}
 	 */
 	@Deprecated
@@ -146,7 +146,7 @@ public class RepositoryWrapper implements Repository {
 	}
 
 	/**
-	 * @deprecated As of 7.0.0, replaced by {@link #checkInFileEntry(long, long,
+	 * @deprecated As of Wilberforce, replaced by {@link #checkInFileEntry(long, long,
 	 *             boolean, String, ServiceContext)}
 	 */
 	@Deprecated
@@ -182,7 +182,7 @@ public class RepositoryWrapper implements Repository {
 	}
 
 	/**
-	 * @deprecated As of 7.0.0, replaced by {@link #checkInFileEntry(long, long,
+	 * @deprecated As of Wilberforce, replaced by {@link #checkInFileEntry(long, long,
 	 *             String, ServiceContext)}
 	 */
 	@Deprecated
@@ -225,7 +225,7 @@ public class RepositoryWrapper implements Repository {
 	}
 
 	/**
-	 * @deprecated As of 7.0.0, replaced by {@link #copyFileEntry(long, long,
+	 * @deprecated As of Wilberforce, replaced by {@link #copyFileEntry(long, long,
 	 *             long, long, ServiceContext)}
 	 */
 	@Deprecated
@@ -609,7 +609,7 @@ public class RepositoryWrapper implements Repository {
 	}
 
 	/**
-	 * @deprecated As of 7.0.0, replaced by {@link #moveFileEntry(long, long,
+	 * @deprecated As of Wilberforce, replaced by {@link #moveFileEntry(long, long,
 	 *             long, ServiceContext)}
 	 */
 	@Deprecated
@@ -634,7 +634,7 @@ public class RepositoryWrapper implements Repository {
 	}
 
 	/**
-	 * @deprecated As of 7.0.0, replaced by {@link #moveFolder(long, long, long,
+	 * @deprecated As of Wilberforce, replaced by {@link #moveFolder(long, long, long,
 	 *             ServiceContext)}
 	 */
 	@Deprecated
@@ -677,7 +677,7 @@ public class RepositoryWrapper implements Repository {
 	}
 
 	/**
-	 * @deprecated As of 7.0.0, replaced by {@link #revertFileEntry(long, long,
+	 * @deprecated As of Wilberforce, replaced by {@link #revertFileEntry(long, long,
 	 *             String, ServiceContext)}
 	 */
 	@Deprecated
@@ -760,7 +760,7 @@ public class RepositoryWrapper implements Repository {
 	}
 
 	/**
-	 * @deprecated As of 7.0.0, replaced by {@link #updateFileEntry(long, long,
+	 * @deprecated As of Wilberforce, replaced by {@link #updateFileEntry(long, long,
 	 *             String, String, String, String, String, boolean, File,
 	 *             ServiceContext)}
 	 */
@@ -779,7 +779,7 @@ public class RepositoryWrapper implements Repository {
 	}
 
 	/**
-	 * @deprecated As of 7.0.0, replaced by {@link #updateFileEntry(long, long,
+	 * @deprecated As of Wilberforce, replaced by {@link #updateFileEntry(long, long,
 	 *             String, String, String, String, String, boolean, InputStream,
 	 *             long, ServiceContext)}
 	 */

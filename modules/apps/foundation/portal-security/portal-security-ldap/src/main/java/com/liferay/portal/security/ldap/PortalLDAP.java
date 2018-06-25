@@ -84,7 +84,7 @@ public interface PortalLDAP {
 		throws Exception;
 
 	/**
-	 * @deprecated As of 2.2.0
+	 * @deprecated As of Judson
 	 */
 	@Deprecated
 	public String getNameInNamespace(

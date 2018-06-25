@@ -88,7 +88,7 @@ public interface VelocityTaglib {
 		throws Exception;
 
 	/**
-	 * @deprecated As of 7.0.0, replaced by {@link #breadcrumb(long, String,
+	 * @deprecated As of Judson, replaced by {@link #breadcrumb(long, String,
 	 *             boolean, boolean, boolean, boolean)}}
 	 */
 	@Deprecated
@@ -261,7 +261,7 @@ public interface VelocityTaglib {
 		throws Exception;
 
 	/**
-	 * @deprecated As of 7.0.0, with no direct replacement
+	 * @deprecated As of Wilberforce, with no direct replacement
 	 */
 	@Deprecated
 	public void staging() throws Exception;

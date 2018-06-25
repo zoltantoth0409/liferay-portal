@@ -600,7 +600,7 @@ public class StringUtil {
 	 *             <code>s</code> that is found in the character array
 	 *             <code>chars</code>, or an empty string if the given string is
 	 *             <code>null</code>
-	 * @deprecated As of 7.0.0, with no direct replacement
+	 * @deprecated As of Judson, with no direct replacement
 	 */
 	@Deprecated
 	public static String extract(String s, char[] chars) {
@@ -808,7 +808,7 @@ public class StringUtil {
 	}
 
 	/**
-	 * @deprecated As of 7.0.0, moved to {@link HighlightUtil#highlight(String,
+	 * @deprecated As of Wilberforce, moved to {@link HighlightUtil#highlight(String,
 	 *             String[])}}
 	 */
 	@Deprecated
@@ -817,7 +817,7 @@ public class StringUtil {
 	}
 
 	/**
-	 * @deprecated As of 7.0.0, moved to {@link HighlightUtil#highlight(String,
+	 * @deprecated As of Wilberforce, moved to {@link HighlightUtil#highlight(String,
 	 *             String[], String, String)}}
 	 */
 	@Deprecated
@@ -2212,7 +2212,7 @@ public class StringUtil {
 	 * @return     a string of the same length as the string whose characters
 	 *             represent a pseudorandom permutation of the characters of the
 	 *             string
-	 * @deprecated As of 7.0.0, replaced by {@link RandomUtil#shuffle(String)}
+	 * @deprecated As of Judson, replaced by {@link RandomUtil#shuffle(String)}
 	 */
 	@Deprecated
 	public static String randomize(String s) {
@@ -2337,7 +2337,7 @@ public class StringUtil {
 	}
 
 	/**
-	 * @deprecated As of 7.0.0, replaced by {@link #removeFromList(String,
+	 * @deprecated As of Wilberforce, replaced by {@link #removeFromList(String,
 	 *             String)}
 	 */
 	@Deprecated
@@ -2346,7 +2346,7 @@ public class StringUtil {
 	}
 
 	/**
-	 * @deprecated As of 7.0.0, replaced by {@link #removeFromList(String,
+	 * @deprecated As of Wilberforce, replaced by {@link #removeFromList(String,
 	 *             String, String)}
 	 */
 	@Deprecated
@@ -3324,7 +3324,7 @@ public class StringUtil {
 	 * @param      s the original string
 	 * @return     a string representing the original string with characters in
 	 *             reverse order
-	 * @deprecated As of 7.0.0, with no direct replacement
+	 * @deprecated As of Judson, with no direct replacement
 	 */
 	@Deprecated
 	public static String reverse(String s) {
@@ -3361,7 +3361,7 @@ public class StringUtil {
 	 * @param      path the original string
 	 * @return     a string representing the original string with all double
 	 *             slashes replaced with single slashes
-	 * @deprecated As of 7.0.0, with no direct replacement
+	 * @deprecated As of Judson, with no direct replacement
 	 */
 	@Deprecated
 	public static String safePath(String path) {
@@ -4079,7 +4079,7 @@ public class StringUtil {
 	 * @return     a string representing the string <code>s</code> with all
 	 *             occurrences of the specified character removed, or
 	 *             <code>null</code> if <code>s</code> is <code>null</code>
-	 * @deprecated As of 7.0.0, replaced by {@link #removeChar(String, char)}
+	 * @deprecated As of Judson, replaced by {@link #removeChar(String, char)}
 	 */
 	@Deprecated
 	public static String strip(String s, char remove) {
@@ -4108,7 +4108,7 @@ public class StringUtil {
 	 * @return     a string representing the string <code>s</code> with all
 	 *             occurrences of the specified characters removed, or
 	 *             <code>null</code> if <code>s</code> is <code>null</code>
-	 * @deprecated As of 7.0.0, replaced by {@link #removeChars(String,
+	 * @deprecated As of Judson, replaced by {@link #removeChars(String,
 	 *             char...)}
 	 */
 	@Deprecated
@@ -4913,7 +4913,7 @@ public class StringUtil {
 	 * @param      obj the object whose string value is to be returned
 	 * @return     the string value of the object
 	 * @see        String#valueOf(Object obj)
-	 * @deprecated As of 7.0.0, with no direct replacement
+	 * @deprecated As of Judson, with no direct replacement
 	 */
 	@Deprecated
 	public static String valueOf(Object obj) {
@@ -5097,7 +5097,7 @@ public class StringUtil {
 	 * @param      text the text to wrap
 	 * @return     the wrapped text following the column width limit, or
 	 *             <code>null</code> if the text is <code>null</code>
-	 * @deprecated As of 7.0.0, with no direct replacement
+	 * @deprecated As of Judson, with no direct replacement
 	 */
 	@Deprecated
 	public static String wrap(String text) {
@@ -5114,7 +5114,7 @@ public class StringUtil {
 	 * @return     the wrapped text and line separators, following the column
 	 *             width limit, or <code>null</code> if the text is
 	 *             <code>null</code>
-	 * @deprecated As of 7.0.0, with no direct replacement
+	 * @deprecated As of Judson, with no direct replacement
 	 */
 	@Deprecated
 	public static String wrap(String text, int width, String lineSeparator) {

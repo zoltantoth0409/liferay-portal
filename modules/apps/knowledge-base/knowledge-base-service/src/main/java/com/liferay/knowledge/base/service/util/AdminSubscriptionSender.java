@@ -99,7 +99,7 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 	}
 
 	/**
-	 * @deprecated As of 1.1.0, with no direct replacement
+	 * @deprecated As of Judson, with no direct replacement
 	 */
 	@Deprecated
 	protected String getEmailKBArticleAttachments(Locale locale)

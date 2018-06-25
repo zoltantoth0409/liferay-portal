@@ -464,7 +464,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	 *             names for the group, and whether the group is for staging.
 	 * @return     the group
 	 * @throws     PortalException if a portal exception occured
-	 * @deprecated As of 7.0.0, replaced by {@link #addGroup(long, long, String,
+	 * @deprecated As of Wilberforce, replaced by {@link #addGroup(long, long, String,
 	 *             long, long, Map, Map, int, boolean, int, String, boolean,
 	 *             boolean, ServiceContext)}
 	 */
@@ -1520,7 +1520,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of 7.0.0, replaced by {@link
+	 * @deprecated As of Wilberforce, replaced by {@link
 	 *             Group#getDescriptiveName(Locale)}
 	 */
 	@Deprecated
@@ -1532,7 +1532,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of 7.0.0, replaced by {@link
+	 * @deprecated As of Wilberforce, replaced by {@link
 	 *             Group#getDescriptiveName(Locale)}
 	 */
 	@Deprecated
@@ -3684,7 +3684,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	 *             names for the group.
 	 * @return     the group
 	 * @throws     PortalException if a portal exception occurred
-	 * @deprecated As of 7.0.0, replaced by {@link #updateGroup(long, long, Map,
+	 * @deprecated As of Wilberforce, replaced by {@link #updateGroup(long, long, Map,
 	 *             Map, int, boolean, int, String, boolean, boolean,
 	 *             ServiceContext)}
 	 */

@@ -232,7 +232,7 @@ public class SubscriptionSender implements Serializable {
 	}
 
 	/**
-	 * @deprecated As of 7.0.0, replaced by {@link getCurrentUserId()}
+	 * @deprecated As of Wilberforce, replaced by {@link getCurrentUserId()}
 	 */
 	@Deprecated
 	public long getUserId() {
@@ -457,7 +457,7 @@ public class SubscriptionSender implements Serializable {
 	}
 
 	/**
-	 * @deprecated As of 7.0.0, replaced by {@link #setCurrentUserId(long)}
+	 * @deprecated As of Wilberforce, replaced by {@link #setCurrentUserId(long)}
 	 */
 	@Deprecated
 	public void setUserId(long userId) {
@@ -636,7 +636,7 @@ public class SubscriptionSender implements Serializable {
 	}
 
 	/**
-	 * @deprecated As of 7.0.0, replaced by {@link
+	 * @deprecated As of Wilberforce, replaced by {@link
 	 *             #notifyPersistedSubscriber(Subscription)}
 	 */
 	@Deprecated

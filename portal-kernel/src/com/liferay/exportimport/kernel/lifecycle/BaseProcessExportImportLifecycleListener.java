@@ -188,7 +188,7 @@ public abstract class BaseProcessExportImportLifecycleListener
 	}
 
 	/**
-	 * @deprecated As of 7.0.0
+	 * @deprecated As of Judson
 	 */
 	@Deprecated
 	protected void onProcessFailed(List<Serializable> attributes)
@@ -201,7 +201,7 @@ public abstract class BaseProcessExportImportLifecycleListener
 	}
 
 	/**
-	 * @deprecated As of 7.0.0
+	 * @deprecated As of Judson
 	 */
 	@Deprecated
 	protected void onProcessStarted(List<Serializable> attributes)
@@ -214,7 +214,7 @@ public abstract class BaseProcessExportImportLifecycleListener
 	}
 
 	/**
-	 * @deprecated As of 7.0.0
+	 * @deprecated As of Judson
 	 */
 	@Deprecated
 	protected void onProcessSucceeded(List<Serializable> attributes)

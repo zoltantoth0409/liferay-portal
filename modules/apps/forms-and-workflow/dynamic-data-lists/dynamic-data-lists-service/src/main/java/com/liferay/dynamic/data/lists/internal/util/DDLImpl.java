@@ -68,7 +68,7 @@ import org.osgi.service.component.annotations.Reference;
 public class DDLImpl implements DDL {
 
 	/**
-	 * @deprecated As of 1.1.0
+	 * @deprecated As of Judson
 	 */
 	@Deprecated
 	@Override
@@ -231,7 +231,7 @@ public class DDLImpl implements DDL {
 	}
 
 	/**
-	 * @deprecated As of 1.1.0
+	 * @deprecated As of Judson
 	 */
 	@Deprecated
 	@Override
@@ -245,7 +245,7 @@ public class DDLImpl implements DDL {
 	}
 
 	/**
-	 * @deprecated As of 1.1.0
+	 * @deprecated As of Judson
 	 */
 	@Deprecated
 	@Override
@@ -282,7 +282,7 @@ public class DDLImpl implements DDL {
 	}
 
 	/**
-	 * @deprecated As of 1.1.0, with no direct replacement
+	 * @deprecated As of Judson, with no direct replacement
 	 */
 	@Deprecated
 	@Override
@@ -295,7 +295,7 @@ public class DDLImpl implements DDL {
 	}
 
 	/**
-	 * @deprecated As of 1.1.0, with no direct replacement
+	 * @deprecated As of Judson, with no direct replacement
 	 */
 	@Deprecated
 	@Override
@@ -360,7 +360,7 @@ public class DDLImpl implements DDL {
 	}
 
 	/**
-	 * @deprecated As of 1.1.0
+	 * @deprecated As of Judson
 	 */
 	@Deprecated
 	@Override

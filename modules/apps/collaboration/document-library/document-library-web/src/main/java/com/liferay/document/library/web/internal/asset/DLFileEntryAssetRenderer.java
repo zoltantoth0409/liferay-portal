@@ -70,7 +70,7 @@ public class DLFileEntryAssetRenderer
 	extends BaseJSPAssetRenderer<FileEntry> implements TrashRenderer {
 
 	/**
-	 * @deprecated As of 1.2.0
+	 * @deprecated As of Judson
 	 */
 	@Deprecated
 	public DLFileEntryAssetRenderer(
@@ -129,7 +129,7 @@ public class DLFileEntryAssetRenderer
 	}
 
 	/**
-	 * @deprecated As of 1.1.0, with no direct replacement
+	 * @deprecated As of Judson, with no direct replacement
 	 */
 	@Deprecated
 	@Override

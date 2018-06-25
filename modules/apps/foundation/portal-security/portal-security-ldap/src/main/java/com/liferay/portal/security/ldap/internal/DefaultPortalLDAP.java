@@ -471,7 +471,7 @@ public class DefaultPortalLDAP implements PortalLDAP {
 	}
 
 	/**
-	 * @deprecated As of 2.2.0
+	 * @deprecated As of Judson
 	 */
 	@Deprecated
 	@Override
