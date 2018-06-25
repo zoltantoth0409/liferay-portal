@@ -101,8 +101,9 @@
 			<var name="portletName" value="Hello World" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSite">
-			<var name="site" value="Site Template Site Name" />
+		<execute macro="Navigator#gotoSitePage">
+			<var name="pageName" value="home" />
+			<var name="siteName" value="Site Template Site Name" />
 		</execute>
 
 		<execute macro="Portlet#viewPG">
