@@ -63,11 +63,11 @@ public class DDMDataProviderInvokeCommand
 		int timeout = GetterUtil.getInteger(
 			ddmRESTDataProviderSettings.timeout());
 
-		if ((timeout >= _MIN_TIMEOUT) && (timeout <= _MAX_TIMEOUT)) {
+		if ((timeout >= _TIMEOUT_MIN) && (timeout <= _TIMEOUT_MAX)) {
 			return timeout;
 		}
 
-		return _MIN_TIMEOUT;
+		return _TIMEOUT_MIN;
 	}
 
 	@Override
@@ -75,9 +75,9 @@ public class DDMDataProviderInvokeCommand
 		return _ddmDataProvider.getData(_ddmDataProviderRequest);
 	}
 
-	private static final int _MAX_TIMEOUT = 30000;
+	private static final int _TIMEOUT_MAX = 30000;
 
-	private static final int _MIN_TIMEOUT = 1000;
+	private static final int _TIMEOUT_MIN = 1000;
 
 	private static final HystrixCommandGroupKey _hystrixCommandGroupKey =
 		HystrixCommandGroupKey.Factory.asKey(
