@@ -492,10 +492,6 @@ public class ArrayUtil_IW {
 		ArrayUtil.reverse(array);
 	}
 
-	public java.lang.Object split(java.lang.Object array, int splitSize) {
-		return ArrayUtil.split(array, splitSize);
-	}
-
 	public boolean[] subset(boolean[] array, int start, int end) {
 		return ArrayUtil.subset(array, start, end);
 	}
