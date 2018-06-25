@@ -115,8 +115,9 @@ public class CalendarBookingLocalServiceUtil {
 	}
 
 	/**
-	* @deprecated As of 2.4.0, replaced by {@link
-	#deleteCalendarBookingInstance(long, CalendarBooking, int, boolean)}
+	* @deprecated As of Judson, replaced by {@link
+	#deleteCalendarBookingInstance(long, CalendarBooking, int,
+	boolean)}
 	*/
 	@Deprecated
 	public static void deleteCalendarBookingInstance(
@@ -129,9 +130,9 @@ public class CalendarBookingLocalServiceUtil {
 	}
 
 	/**
-	* @deprecated As of 2.4.0, replaced by {@link
-	#deleteCalendarBookingInstance(long, CalendarBooking, int, boolean,
-	boolean)}
+	* @deprecated As of Judson, replaced by {@link
+	#deleteCalendarBookingInstance(long, CalendarBooking, int,
+	boolean, boolean)}
 	*/
 	@Deprecated
 	public static void deleteCalendarBookingInstance(
@@ -145,8 +146,9 @@ public class CalendarBookingLocalServiceUtil {
 	}
 
 	/**
-	* @deprecated As of 2.4.0, replaced by {@link
-	#deleteCalendarBookingInstance(long, CalendarBooking, long, boolean)}
+	* @deprecated As of Judson, replaced by {@link
+	#deleteCalendarBookingInstance(long, CalendarBooking, long,
+	boolean)}
 	*/
 	@Deprecated
 	public static void deleteCalendarBookingInstance(
@@ -159,9 +161,9 @@ public class CalendarBookingLocalServiceUtil {
 	}
 
 	/**
-	* @deprecated As of 2.4.0, replaced by {@link
-	#deleteCalendarBookingInstance(long, CalendarBooking, long, boolean,
-	boolean)}
+	* @deprecated As of Judson, replaced by {@link
+	#deleteCalendarBookingInstance(long, CalendarBooking, long,
+	boolean, boolean)}
 	*/
 	@Deprecated
 	public static void deleteCalendarBookingInstance(
@@ -213,7 +215,7 @@ public class CalendarBookingLocalServiceUtil {
 	}
 
 	/**
-	* @deprecated As of 2.4.0, replaced by {@link
+	* @deprecated As of Judson, replaced by {@link
 	#deleteCalendarBookingInstance(long, long, long, boolean)}
 	*/
 	@Deprecated

@@ -497,7 +497,7 @@ public class DLFileEntryLocalServiceWrapper implements DLFileEntryLocalService,
 	}
 
 	/**
-	* @deprecated As of 7.0.0, replaced by {@link #getFile(long, String,
+	* @deprecated As of Wilberforce, replaced by {@link #getFile(long, String,
 	boolean)}
 	*/
 	@Deprecated
@@ -510,7 +510,7 @@ public class DLFileEntryLocalServiceWrapper implements DLFileEntryLocalService,
 	}
 
 	/**
-	* @deprecated As of 7.0.0, replaced by {@link #getFile(long, String,
+	* @deprecated As of Wilberforce, replaced by {@link #getFile(long, String,
 	boolean, int)}
 	*/
 	@Deprecated
@@ -539,7 +539,7 @@ public class DLFileEntryLocalServiceWrapper implements DLFileEntryLocalService,
 	}
 
 	/**
-	* @deprecated As of 7.0.0, replaced by {@link #getFileAsStream(long,
+	* @deprecated As of Wilberforce, replaced by {@link #getFileAsStream(long,
 	String)}
 	*/
 	@Deprecated
@@ -552,7 +552,7 @@ public class DLFileEntryLocalServiceWrapper implements DLFileEntryLocalService,
 	}
 
 	/**
-	* @deprecated As of 7.0.0, replaced by {@link #getFileAsStream(long,
+	* @deprecated As of Wilberforce, replaced by {@link #getFileAsStream(long,
 	String, boolean)}
 	*/
 	@Deprecated
@@ -565,7 +565,7 @@ public class DLFileEntryLocalServiceWrapper implements DLFileEntryLocalService,
 	}
 
 	/**
-	* @deprecated As of 7.0.0, replaced by {@link #getFileAsStream(long,
+	* @deprecated As of Wilberforce, replaced by {@link #getFileAsStream(long,
 	String, boolean, int)}
 	*/
 	@Deprecated
@@ -659,7 +659,7 @@ public class DLFileEntryLocalServiceWrapper implements DLFileEntryLocalService,
 	}
 
 	/**
-	* @deprecated As of 7.0.0, with no direct replacement
+	* @deprecated As of Wilberforce, with no direct replacement
 	*/
 	@Deprecated
 	@Override
@@ -877,8 +877,8 @@ public class DLFileEntryLocalServiceWrapper implements DLFileEntryLocalService,
 	}
 
 	/**
-	* @deprecated As of 7.0.0, replaced by {@link #isKeepFileVersionLabel(long,
-	boolean, ServiceContext)}
+	* @deprecated As of Wilberforce, replaced by {@link
+	#isKeepFileVersionLabel(long, boolean, ServiceContext)}
 	*/
 	@Deprecated
 	@Override

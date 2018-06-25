@@ -91,7 +91,7 @@ public interface MBMessageService extends BaseService {
 		throws PortalException;
 
 	/**
-	* @deprecated As of 7.0.0, replaced by {@link
+	* @deprecated As of Wilberforce, replaced by {@link
 	#deleteDiscussionMessage(long)}
 	*/
 	@Deprecated
@@ -151,8 +151,8 @@ public interface MBMessageService extends BaseService {
 		throws PortalException;
 
 	/**
-	* @deprecated As of 7.0.0, replaced by {@link #getMessageDisplay(long,
-	int)}
+	* @deprecated As of Wilberforce, replaced by {@link
+	#getMessageDisplay(long, int)}
 	*/
 	@Deprecated
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

@@ -121,17 +121,18 @@ public interface CalendarBookingLocalService extends BaseLocalService,
 		throws PortalException;
 
 	/**
-	* @deprecated As of 2.4.0, replaced by {@link
-	#deleteCalendarBookingInstance(long, CalendarBooking, int, boolean)}
+	* @deprecated As of Judson, replaced by {@link
+	#deleteCalendarBookingInstance(long, CalendarBooking, int,
+	boolean)}
 	*/
 	@Deprecated
 	public void deleteCalendarBookingInstance(CalendarBooking calendarBooking,
 		int instanceIndex, boolean allFollowing) throws PortalException;
 
 	/**
-	* @deprecated As of 2.4.0, replaced by {@link
-	#deleteCalendarBookingInstance(long, CalendarBooking, int, boolean,
-	boolean)}
+	* @deprecated As of Judson, replaced by {@link
+	#deleteCalendarBookingInstance(long, CalendarBooking, int,
+	boolean, boolean)}
 	*/
 	@Deprecated
 	public void deleteCalendarBookingInstance(CalendarBooking calendarBooking,
@@ -139,17 +140,18 @@ public interface CalendarBookingLocalService extends BaseLocalService,
 		boolean deleteRecurringCalendarBookings) throws PortalException;
 
 	/**
-	* @deprecated As of 2.4.0, replaced by {@link
-	#deleteCalendarBookingInstance(long, CalendarBooking, long, boolean)}
+	* @deprecated As of Judson, replaced by {@link
+	#deleteCalendarBookingInstance(long, CalendarBooking, long,
+	boolean)}
 	*/
 	@Deprecated
 	public void deleteCalendarBookingInstance(CalendarBooking calendarBooking,
 		long startTime, boolean allFollowing) throws PortalException;
 
 	/**
-	* @deprecated As of 2.4.0, replaced by {@link
-	#deleteCalendarBookingInstance(long, CalendarBooking, long, boolean,
-	boolean)}
+	* @deprecated As of Judson, replaced by {@link
+	#deleteCalendarBookingInstance(long, CalendarBooking, long,
+	boolean, boolean)}
 	*/
 	@Deprecated
 	public void deleteCalendarBookingInstance(CalendarBooking calendarBooking,
@@ -174,7 +176,7 @@ public interface CalendarBookingLocalService extends BaseLocalService,
 		boolean deleteRecurringCalendarBookings) throws PortalException;
 
 	/**
-	* @deprecated As of 2.4.0, replaced by {@link
+	* @deprecated As of Judson, replaced by {@link
 	#deleteCalendarBookingInstance(long, long, long, boolean)}
 	*/
 	@Deprecated

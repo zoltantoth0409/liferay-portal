@@ -96,7 +96,7 @@ public interface BlogsEntryLocalService extends BaseLocalService,
 		ServiceContext serviceContext) throws PortalException;
 
 	/**
-	* @deprecated As of 7.0.0, replaced by {@link #addEntry(long, String,
+	* @deprecated As of Wilberforce, replaced by {@link #addEntry(long, String,
 	String, String, String, int, int, int, int, int, boolean,
 	boolean, String[], String, ImageSelector, ImageSelector,
 	ServiceContext)}
@@ -476,9 +476,9 @@ public interface BlogsEntryLocalService extends BaseLocalService,
 		throws PortalException;
 
 	/**
-	* @deprecated As of 7.0.0, replaced by {@link #updateEntry(long, long,
-	String, String, String, String, int, int, int, int, int,
-	boolean, boolean, String[], String, ImageSelector,
+	* @deprecated As of Wilberforce, replaced by {@link #updateEntry(long,
+	long, String, String, String, String, int, int, int, int,
+	int, boolean, boolean, String[], String, ImageSelector,
 	ImageSelector, ServiceContext)}
 	*/
 	@Deprecated
@@ -515,8 +515,8 @@ public interface BlogsEntryLocalService extends BaseLocalService,
 		throws PortalException;
 
 	/**
-	* @deprecated As of 7.0.0, replaced by {@link #updateStatus(long, long,
-	int, ServiceContext, Map)}
+	* @deprecated As of Wilberforce, replaced by {@link #updateStatus(long,
+	long, int, ServiceContext, Map)}
 	*/
 	@Deprecated
 	public BlogsEntry updateStatus(long userId, long entryId, int status,

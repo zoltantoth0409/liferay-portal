@@ -199,7 +199,8 @@ public class TrashVersionLocalServiceWrapper implements TrashVersionLocalService
 	}
 
 	/**
-	* @deprecated As of 7.0.0, replaced by {@link #fetchVersion(String, long)}
+	* @deprecated As of Wilberforce, replaced by {@link #fetchVersion(String,
+	long)}
 	*/
 	@Deprecated
 	@Override

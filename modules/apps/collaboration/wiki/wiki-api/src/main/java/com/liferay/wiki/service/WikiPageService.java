@@ -87,7 +87,7 @@ public interface WikiPageService extends BaseService {
 		throws PortalException;
 
 	/**
-	* @deprecated As of 1.2.0, replaced by {@link #addTempFileEntry(long,
+	* @deprecated As of Wilberforce, replaced by {@link #addTempFileEntry(long,
 	String, String, InputStream, String)}
 	*/
 	@Deprecated

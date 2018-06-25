@@ -155,7 +155,7 @@ public class MBMessageServiceSoap {
 	}
 
 	/**
-	* @deprecated As of 7.0.0, replaced by {@link
+	* @deprecated As of Wilberforce, replaced by {@link
 	#deleteDiscussionMessage(long)}
 	*/
 	@Deprecated

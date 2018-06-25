@@ -70,7 +70,8 @@ public interface AssetCategoryService extends BaseService {
 	public void deleteCategories(long[] categoryIds) throws PortalException;
 
 	/**
-	* @deprecated As of 7.0.0, Replaced by {@link #deleteCategories(long[])}
+	* @deprecated As of Wilberforce, Replaced by {@link
+	#deleteCategories(long[])}
 	*/
 	@Deprecated
 	public List<AssetCategory> deleteCategories(long[] categoryIds,

@@ -33,9 +33,9 @@ public class BlogsEntryServiceWrapper implements BlogsEntryService,
 	}
 
 	/**
-	* @deprecated As of 7.0.0, replaced by {@link #addEntry(String, String,
-	String, String, int, int, int, int, int, boolean, boolean,
-	String[], String, ImageSelector, ImageSelector,
+	* @deprecated As of Wilberforce, replaced by {@link #addEntry(String,
+	String, String, String, int, int, int, int, int, boolean,
+	boolean, String[], String, ImageSelector, ImageSelector,
 	ServiceContext)}
 	*/
 	@Deprecated
@@ -266,10 +266,10 @@ public class BlogsEntryServiceWrapper implements BlogsEntryService,
 	}
 
 	/**
-	* @deprecated As of 7.0.0, replaced by {@link #updateEntry(long, String,
-	String, String, String, int, int, int, int, int, boolean,
-	boolean, String[], String, ImageSelector, ImageSelector,
-	ServiceContext)}
+	* @deprecated As of Wilberforce, replaced by {@link #updateEntry(long,
+	String, String, String, String, int, int, int, int, int,
+	boolean, boolean, String[], String, ImageSelector,
+	ImageSelector, ServiceContext)}
 	*/
 	@Deprecated
 	@Override
