@@ -36,7 +36,14 @@ long recordSetId = ddlFormDisplayContext.getRecordSetId();
 				<portlet:actionURL name="addRecord" var="addRecordActionURL" />
 
 				<div class="portlet-forms">
-					<aui:form action="<%= addRecordActionURL %>" data-DDLRecordSetId="<%= recordSetId %>" method="post" name="fm">
+
+					<%
+					DDLRecordSet recordSet = ddlFormDisplayContext.getRecordSet();
+
+					String name = recordSet.getName(locale);
+					%>
+
+					<aui:form action="<%= addRecordActionURL %>" data-DDLRecordSetId="<%= recordSetId %>" data-DDLRecordSetName="<%= HtmlUtil.escapeAttribute(name) %>" method="post" name="fm">
 
 						<%
 						String redirectURL = ddlFormDisplayContext.getRedirectURL();
@@ -45,10 +52,6 @@ long recordSetId = ddlFormDisplayContext.getRecordSetId();
 						<c:if test="<%= Validator.isNull(redirectURL) %>">
 							<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 						</c:if>
-
-						<%
-						DDLRecordSet recordSet = ddlFormDisplayContext.getRecordSet();
-						%>
 
 						<aui:input name="groupId" type="hidden" value="<%= recordSet.getGroupId() %>" />
 						<aui:input name="recordSetId" type="hidden" value="<%= recordSet.getRecordSetId() %>" />
@@ -98,7 +101,6 @@ long recordSetId = ddlFormDisplayContext.getRecordSetId();
 
 								<%
 								String description = recordSet.getDescription(locale);
-								String name = recordSet.getName(locale);
 								%>
 
 								<h1 class="ddl-form-name"><%= HtmlUtil.escape(name) %></h1>
