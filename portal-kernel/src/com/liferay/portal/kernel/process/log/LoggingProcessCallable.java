@@ -22,7 +22,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import java.io.IOException;
 
 /**
- * @author Shuyang Zhou
+ * @author     Shuyang Zhou
  * @deprecated As of Judson, with no direct replacement
  */
 @Deprecated

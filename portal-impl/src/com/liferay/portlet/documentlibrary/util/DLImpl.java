@@ -696,8 +696,8 @@ public class DLImpl implements DL {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #getThumbnailSrc(FileEntry,
-	 *             ThemeDisplay)}
+	 * @deprecated As of Wilberforce, replaced by {@link
+	 *             #getThumbnailSrc(FileEntry, ThemeDisplay)}
 	 */
 	@Deprecated
 	@Override
@@ -711,8 +711,8 @@ public class DLImpl implements DL {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #getThumbnailSrc(FileEntry,
-	 *             FileVersion, ThemeDisplay)}
+	 * @deprecated As of Wilberforce, replaced by {@link
+	 *             #getThumbnailSrc(FileEntry, FileVersion, ThemeDisplay)}
 	 */
 	@Deprecated
 	@Override

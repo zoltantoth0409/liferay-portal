@@ -19,7 +19,7 @@ import com.liferay.portal.convert.BaseConvertProcess;
 import javax.sql.DataSource;
 
 /**
- * @author Alexander Chow
+ * @author     Alexander Chow
  * @deprecated As of Judson, with no direct replacement
  */
 @Deprecated

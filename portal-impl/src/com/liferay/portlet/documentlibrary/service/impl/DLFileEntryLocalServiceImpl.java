@@ -1633,8 +1633,8 @@ public class DLFileEntryLocalServiceImpl
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #isKeepFileVersionLabel(long,
-	 *             boolean, ServiceContext)}
+	 * @deprecated As of Wilberforce, replaced by {@link
+	 *             #isKeepFileVersionLabel(long, boolean, ServiceContext)}
 	 */
 	@Deprecated
 	@Override

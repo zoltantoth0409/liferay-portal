@@ -97,8 +97,7 @@ import javax.servlet.http.HttpServletResponse;
  * <code>
  * themeDisplay = (ThemeDisplay) request.getAttribute(WebKeys.THEME_DISPLAY);
  * </code>
- * </pre>
- * </p>
+ * </pre></p>
  *
  * @author Brian Wing Shun Chan
  */
@@ -535,8 +534,7 @@ public class ThemeDisplay
 	 * returns "2" for RESOURCE phase
 	 * returns "3" for EVENT phase
 	 * </code>
-	 * </pre>
-	 * </p>
+	 * </pre></p>
 	 *
 	 * @return the numeric portlet lifecycle indicator
 	 */

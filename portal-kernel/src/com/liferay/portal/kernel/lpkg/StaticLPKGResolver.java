@@ -35,8 +35,7 @@ public class StaticLPKGResolver {
 	}
 
 	/**
-	 * @deprecated As of Judson, replaced by {@link
-	 *             #getStaticLPKGFileNames}
+	 * @deprecated As of Judson, replaced by {@link #getStaticLPKGFileNames}
 	 */
 	@Deprecated
 	public static String getStaticLPKGFileName() {

@@ -371,7 +371,8 @@ public class CalendarBookingLocalServiceImpl
 
 	/**
 	 * @deprecated As of Judson, replaced by {@link
-	 * #deleteCalendarBookingInstance(long, CalendarBooking, int, boolean)}
+	 *             #deleteCalendarBookingInstance(long, CalendarBooking, int,
+	 *             boolean)}
 	 */
 	@Deprecated
 	@Override
@@ -387,8 +388,8 @@ public class CalendarBookingLocalServiceImpl
 
 	/**
 	 * @deprecated As of Judson, replaced by {@link
-	 * #deleteCalendarBookingInstance(long, CalendarBooking, int, boolean,
-	 * boolean)}
+	 *             #deleteCalendarBookingInstance(long, CalendarBooking, int,
+	 *             boolean, boolean)}
 	 */
 	@Deprecated
 	@Override
@@ -404,7 +405,8 @@ public class CalendarBookingLocalServiceImpl
 
 	/**
 	 * @deprecated As of Judson, replaced by {@link
-	 * #deleteCalendarBookingInstance(long, CalendarBooking, long, boolean)}
+	 *             #deleteCalendarBookingInstance(long, CalendarBooking, long,
+	 *             boolean)}
 	 */
 	@Deprecated
 	@Override
@@ -420,8 +422,8 @@ public class CalendarBookingLocalServiceImpl
 
 	/**
 	 * @deprecated As of Judson, replaced by {@link
-	 * #deleteCalendarBookingInstance(long, CalendarBooking, long, boolean,
-	 * boolean)}
+	 *             #deleteCalendarBookingInstance(long, CalendarBooking, long,
+	 *             boolean, boolean)}
 	 */
 	@Deprecated
 	@Override
@@ -547,7 +549,7 @@ public class CalendarBookingLocalServiceImpl
 
 	/**
 	 * @deprecated As of Judson, replaced by {@link
-	 * #deleteCalendarBookingInstance(long, long, long, boolean)}
+	 *             #deleteCalendarBookingInstance(long, long, long, boolean)}
 	 */
 	@Deprecated
 	@Override

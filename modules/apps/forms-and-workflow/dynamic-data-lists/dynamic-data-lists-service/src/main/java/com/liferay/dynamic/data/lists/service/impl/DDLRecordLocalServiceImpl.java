@@ -180,8 +180,8 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 	 *             the record.
 	 * @return     the record
 	 * @throws     PortalException if a portal exception occurred
-	 * @deprecated As of Wilberforce, replaced by {@link #addRecord(long, long, int,
-	 *             DDMFormValues, ServiceContext)}
+	 * @deprecated As of Wilberforce, replaced by {@link #addRecord(long, long,
+	 *             int, DDMFormValues, ServiceContext)}
 	 */
 	@Deprecated
 	@Override
@@ -217,8 +217,8 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 	 *             the record.
 	 * @return     the record
 	 * @throws     PortalException if a portal exception occurred
-	 * @deprecated As of Wilberforce, replaced by {@link #addRecord(long, long, int,
-	 *             DDMFormValues, ServiceContext)}
+	 * @deprecated As of Wilberforce, replaced by {@link #addRecord(long, long,
+	 *             int, DDMFormValues, ServiceContext)}
 	 */
 	@Deprecated
 	@Override
@@ -311,8 +311,8 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 	 *             set the record modified date.
 	 * @return     the affected record
 	 * @throws     PortalException if a portal exception occurred
-	 * @deprecated As of Wilberforce, replaced by {@link #updateRecord(long, boolean,
-	 *             int, DDMFormValues, ServiceContext)}
+	 * @deprecated As of Wilberforce, replaced by {@link #updateRecord(long,
+	 *             boolean, int, DDMFormValues, ServiceContext)}
 	 */
 	@Deprecated
 	@Override
@@ -668,8 +668,8 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #revertRecord(long, long,
-	 *             String, ServiceContext)}
+	 * @deprecated As of Wilberforce, replaced by {@link #revertRecord(long,
+	 *             long, String, ServiceContext)}
 	 */
 	@Deprecated
 	@Override
@@ -925,8 +925,8 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 	 *             set the record modified date.
 	 * @return     the record
 	 * @throws     PortalException if a portal exception occurred
-	 * @deprecated As of Wilberforce, replaced by {@link #updateRecord(long, long,
-	 *             boolean, int, DDMFormValues, ServiceContext)}
+	 * @deprecated As of Wilberforce, replaced by {@link #updateRecord(long,
+	 *             long, boolean, int, DDMFormValues, ServiceContext)}
 	 */
 	@Deprecated
 	@Override
@@ -974,8 +974,8 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 	 *             set the record modified date.
 	 * @return     the record
 	 * @throws     PortalException if a portal exception occurred
-	 * @deprecated As of Wilberforce, replaced by {@link #updateRecord(long, long,
-	 *             boolean, int, DDMFormValues, ServiceContext)}
+	 * @deprecated As of Wilberforce, replaced by {@link #updateRecord(long,
+	 *             long, boolean, int, DDMFormValues, ServiceContext)}
 	 */
 	@Deprecated
 	@Override

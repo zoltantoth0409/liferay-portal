@@ -837,10 +837,10 @@ public class AssetEntryLocalServiceImpl extends AssetEntryLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #updateEntry(long, long,
-	 *             Date, Date, String, long, String, long, long[], String[],
-	 *             boolean, boolean, Date, Date, Date, Date, String, String,
-	 *             String, String, String, String, int, int, Double)}
+	 * @deprecated As of Wilberforce, replaced by {@link #updateEntry(long,
+	 *             long, Date, Date, String, long, String, long, long[],
+	 *             String[], boolean, boolean, Date, Date, Date, Date, String,
+	 *             String, String, String, String, String, int, int, Double)}
 	 */
 	@Deprecated
 	@Override
@@ -899,8 +899,8 @@ public class AssetEntryLocalServiceImpl extends AssetEntryLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #updateEntry(String, long,
-	 *             Date, Date, boolean, boolean)}
+	 * @deprecated As of Wilberforce, replaced by {@link #updateEntry(String,
+	 *             long, Date, Date, boolean, boolean)}
 	 */
 	@Deprecated
 	@Override
@@ -913,8 +913,8 @@ public class AssetEntryLocalServiceImpl extends AssetEntryLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #updateEntry(String, long,
-	 *             Date, Date, boolean, boolean)}
+	 * @deprecated As of Wilberforce, replaced by {@link #updateEntry(String,
+	 *             long, Date, Date, boolean, boolean)}
 	 */
 	@Deprecated
 	@Override
@@ -1032,8 +1032,8 @@ public class AssetEntryLocalServiceImpl extends AssetEntryLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Judson, replaced by {@link #validate(long, String, long,
-	 *             long, long[], String[])}
+	 * @deprecated As of Judson, replaced by {@link #validate(long, String,
+	 *             long, long, long[], String[])}
 	 */
 	@Deprecated
 	@Override
@@ -1046,8 +1046,8 @@ public class AssetEntryLocalServiceImpl extends AssetEntryLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #validate(long, String, long,
-	 *             long[], String[])}
+	 * @deprecated As of Wilberforce, replaced by {@link #validate(long, String,
+	 *             long, long[], String[])}
 	 */
 	@Deprecated
 	@Override

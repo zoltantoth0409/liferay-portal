@@ -44,8 +44,8 @@ public class PortletDataHandlerStatusMessageSenderImpl
 	implements PortletDataHandlerStatusMessageSender {
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #sendStatusMessage(String,
-	 *             String[], ManifestSummary)}
+	 * @deprecated As of Wilberforce, replaced by {@link
+	 *             #sendStatusMessage(String, String[], ManifestSummary)}
 	 */
 	@Deprecated
 	@Override

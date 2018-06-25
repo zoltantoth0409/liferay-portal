@@ -19,7 +19,7 @@ import com.liferay.portal.kernel.model.BaseModel;
 import java.util.List;
 
 /**
- * @author Cristina González
+ * @author     Cristina González
  * @deprecated As of Judson, with no direct replacement
  */
 @Deprecated

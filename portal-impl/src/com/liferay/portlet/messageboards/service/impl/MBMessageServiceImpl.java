@@ -583,8 +583,8 @@ public class MBMessageServiceImpl extends MBMessageServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #getMessageDisplay(long,
-	 *             int)}
+	 * @deprecated As of Wilberforce, replaced by {@link
+	 *             #getMessageDisplay(long, int)}
 	 */
 	@Deprecated
 	@Override

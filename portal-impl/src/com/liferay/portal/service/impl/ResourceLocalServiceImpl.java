@@ -76,8 +76,7 @@ import org.apache.commons.lang.time.StopWatch;
  * 		SomeWidget.class.getName(), SomeWidget.getPrimaryKey(),
  * 		serviceContext.getGroupPermissions, serviceContext.getGuestPermissions);
  * </code>
- * </pre>
- * </p>
+ * </pre></p>
  *
  * <p>
  * Just prior to deleting an entity instance, you should delete its resource at
@@ -93,8 +92,7 @@ import org.apache.commons.lang.time.StopWatch;
  * 		SomeWidget.getCompanyId(), SomeWidget.class.getName(),
  * 		ResourceConstants.SCOPE_INDIVIDUAL, SomeWidget.getPrimaryKey());
  * </code>
- * </pre>
- * </p>
+ * </pre></p>
  *
  * @author Brian Wing Shun Chan
  * @author Wilson S. Man

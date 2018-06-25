@@ -31,8 +31,8 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 /**
- * @author Cristina González
- * @author Miguel Pastor
+ * @author     Cristina González
+ * @author     Miguel Pastor
  * @deprecated As of Judson, with no direct replacement
  */
 @Deprecated

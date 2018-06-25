@@ -22,7 +22,7 @@ import java.util.List;
 import javax.sql.DataSource;
 
 /**
- * @author Cristina González
+ * @author     Cristina González
  * @deprecated As of Judson, with no direct replacement
  */
 @Deprecated

@@ -15,7 +15,7 @@
 package com.liferay.layout.type.controller.shared.portlet.internal.constants;
 
 /**
- * @author Leonardo Barros
+ * @author     Leonardo Barros
  * @deprecated As of Judson, with no direct replacement
  */
 @Deprecated

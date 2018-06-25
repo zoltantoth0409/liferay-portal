@@ -257,8 +257,8 @@ public class AnnouncementsEntryLocalServiceImpl
 	}
 
 	/**
-	 * @deprecated As of Judson, replaced by {@link #getEntries(long, long, long,
-	 *             boolean, int, int)}
+	 * @deprecated As of Judson, replaced by {@link #getEntries(long, long,
+	 *             long, boolean, int, int)}
 	 */
 	@Deprecated
 	@Override

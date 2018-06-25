@@ -2363,8 +2363,8 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 	 * @param      friendlyURL the friendly URL to be assigned
 	 * @param      languageId the primary key of the language
 	 * @return     the updated layout
-	 * @deprecated As of Wilberforce, replaced by {@link #updateFriendlyURL(long,
-	 *             long, String, String)}
+	 * @deprecated As of Wilberforce, replaced by {@link
+	 *             #updateFriendlyURL(long, long, String, String)}
 	 */
 	@Deprecated
 	@Override

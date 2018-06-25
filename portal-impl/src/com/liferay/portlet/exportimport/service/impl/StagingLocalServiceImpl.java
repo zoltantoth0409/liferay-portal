@@ -505,8 +505,8 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #publishStagingRequest(long,
-	 *             long, boolean, Map)}
+	 * @deprecated As of Wilberforce, replaced by {@link
+	 *             #publishStagingRequest(long, long, boolean, Map)}
 	 */
 	@Deprecated
 	@Override

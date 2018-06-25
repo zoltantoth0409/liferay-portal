@@ -495,8 +495,8 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #addMessage(long, String,
-	 *             long, long, String, String, ServiceContext)}
+	 * @deprecated As of Wilberforce, replaced by {@link #addMessage(long,
+	 *             String, long, long, String, String, ServiceContext)}
 	 */
 	@Deprecated
 	@Override
@@ -1187,8 +1187,8 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #getMessageDisplay(long,
-	 *             long, int)}
+	 * @deprecated As of Wilberforce, replaced by {@link
+	 *             #getMessageDisplay(long, long, int)}
 	 */
 	@Deprecated
 	@Override
@@ -1259,8 +1259,8 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #getMessageDisplay(long,
-	 *             MBMessage, int)}
+	 * @deprecated As of Wilberforce, replaced by {@link
+	 *             #getMessageDisplay(long, MBMessage, int)}
 	 */
 	@Deprecated
 	@Override
@@ -1275,8 +1275,8 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #getMessageDisplay(long,
-	 *             MBMessage, int, Comparator)} (
+	 * @deprecated As of Wilberforce, replaced by {@link
+	 *             #getMessageDisplay(long, MBMessage, int, Comparator)} (
 	 */
 	@Deprecated
 	@Override
@@ -1807,8 +1807,8 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #updateStatus(long, long,
-	 *             int, ServiceContext, Map)}
+	 * @deprecated As of Wilberforce, replaced by {@link #updateStatus(long,
+	 *             long, int, ServiceContext, Map)}
 	 */
 	@Deprecated
 	@Override

@@ -1362,9 +1362,9 @@ public class LayoutServiceImpl extends LayoutServiceBaseImpl {
 	 * @param      schedulerStartDate the scheduler start date
 	 * @param      schedulerEndDate the scheduler end date
 	 * @param      description the scheduler description
-	 * @deprecated As of Wilberforce, replaced by {@link #schedulePublishToLive(long,
-	 *             long, boolean, long[], Map, String, String, Date, Date,
-	 *             String)}
+	 * @deprecated As of Wilberforce, replaced by {@link
+	 *             #schedulePublishToLive(long, long, boolean, long[], Map,
+	 *             String, String, Date, Date, String)}
 	 */
 	@Deprecated
 	@Override
@@ -1459,9 +1459,9 @@ public class LayoutServiceImpl extends LayoutServiceBaseImpl {
 	 * @param      schedulerStartDate the scheduler start date
 	 * @param      schedulerEndDate the scheduler end date
 	 * @param      description the scheduler description
-	 * @deprecated As of Wilberforce, replaced by {@link #schedulePublishToLive(long,
-	 *             long, boolean, long[], Map, String, Date, Date, String,
-	 *             String, Date, Date, String)}
+	 * @deprecated As of Wilberforce, replaced by {@link
+	 *             #schedulePublishToLive(long, long, boolean, long[], Map,
+	 *             String, Date, Date, String, String, Date, Date, String)}
 	 */
 	@Deprecated
 	@Override

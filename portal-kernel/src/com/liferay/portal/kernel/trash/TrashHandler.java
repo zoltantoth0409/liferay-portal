@@ -100,8 +100,8 @@ public interface TrashHandler {
 		throws PortalException;
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #checkRestorableEntry(long,
-	 *             long, String)}
+	 * @deprecated As of Wilberforce, replaced by {@link
+	 *             #checkRestorableEntry(long, long, String)}
 	 */
 	@Deprecated
 	public void checkDuplicateEntry(

@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.model.impl.DefaultLayoutTypeAccessPolicyImpl;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Leonardo Barros
+ * @author     Leonardo Barros
  * @deprecated As of Judson, with no direct replacement
  */
 @Component(

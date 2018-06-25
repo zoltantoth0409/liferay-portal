@@ -1797,8 +1797,8 @@ public class PortalUtil {
 	}
 
 	/**
-	 * @deprecated As of Judson, replaced by {@link #getSiteAdminURL(
-	 *             ThemeDisplay, String, Map)}
+	 * @deprecated As of Judson, replaced by {@link
+	 *             #getSiteAdminURL(ThemeDisplay, String, Map)}
 	 */
 	@Deprecated
 	public static String getSiteAdminURL(
@@ -1810,8 +1810,8 @@ public class PortalUtil {
 	}
 
 	/**
-	 * @deprecated As of Judson, replaced by {@link #getSiteAdminURL(
-	 *             ThemeDisplay, String, Map)}
+	 * @deprecated As of Judson, replaced by {@link
+	 *             #getSiteAdminURL(ThemeDisplay, String, Map)}
 	 */
 	@Deprecated
 	public static String getSiteAdminURL(

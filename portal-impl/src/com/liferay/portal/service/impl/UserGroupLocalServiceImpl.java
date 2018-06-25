@@ -89,8 +89,8 @@ public class UserGroupLocalServiceImpl extends UserGroupLocalServiceBaseImpl {
 	/**
 	 * Adds the user group to the group.
 	 *
-	 * @param userGroupId the primary key of the user group
 	 * @param groupId the primary key of the group
+	 * @param userGroupId the primary key of the user group
 	 */
 	@Override
 	public void addGroupUserGroup(long groupId, long userGroupId) {
@@ -107,8 +107,8 @@ public class UserGroupLocalServiceImpl extends UserGroupLocalServiceBaseImpl {
 	/**
 	 * Adds the user group to the group.
 	 *
-	 * @param userGroup the user group
 	 * @param groupId the primary key of the group
+	 * @param userGroup the user group
 	 */
 	@Override
 	public void addGroupUserGroup(long groupId, UserGroup userGroup) {
@@ -125,8 +125,8 @@ public class UserGroupLocalServiceImpl extends UserGroupLocalServiceBaseImpl {
 	/**
 	 * Adds the user groups to the group.
 	 *
-	 * @param userGroups the user groups
 	 * @param groupId the primary key of the group
+	 * @param userGroups the user groups
 	 */
 	@Override
 	public void addGroupUserGroups(long groupId, List<UserGroup> userGroups) {
@@ -143,8 +143,8 @@ public class UserGroupLocalServiceImpl extends UserGroupLocalServiceBaseImpl {
 	/**
 	 * Adds the user groups to the group.
 	 *
-	 * @param userGroupIds the primary keys of the user groups
 	 * @param groupId the primary key of the group
+	 * @param userGroupIds the primary keys of the user groups
 	 */
 	@Override
 	public void addGroupUserGroups(long groupId, long[] userGroupIds) {

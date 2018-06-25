@@ -101,8 +101,8 @@ public class LanguageFilterTracker {
 		}
 
 		/**
-		 * @deprecated As of Judson, replaced by {@link #loadResourceBundle(
-		 *             Locale)}
+		 * @deprecated As of Judson, replaced by {@link
+		 *             #loadResourceBundle(Locale)}
 		 */
 		@Deprecated
 		public ResourceBundle loadResourceBundle(String languageId) {

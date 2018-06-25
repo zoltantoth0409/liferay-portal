@@ -242,8 +242,8 @@ public class LanguageExtension implements Extension {
 		}
 
 		/**
-		 * @deprecated As of Judson, replaced by {@link #loadResourceBundle(
-		 *             Locale)}
+		 * @deprecated As of Judson, replaced by {@link
+		 *             #loadResourceBundle(Locale)}
 		 */
 		@Deprecated
 		public ResourceBundle loadResourceBundle(String languageId) {
