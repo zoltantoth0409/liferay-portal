@@ -2321,7 +2321,7 @@ public class StagingImpl implements Staging {
 	}
 
 	/**
-	 * @deprecated As of 3.11.0, replaced by {@link
+	 * @deprecated As of Judson, replaced by {@link
 	 *             com.liferay.staging.configuration.web.internal.portlet.StagingConfigurationPortlet#editStagingConfiguration(
 	 *             javax.portlet.ActionRequest, javax.portlet.ActionResponse)}
 	 */

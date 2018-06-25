@@ -964,7 +964,7 @@ public abstract class PortletRequestImpl implements LiferayPortletRequest {
 	}
 
 	/**
-	 * @deprecated As of 7.0.0, replaced by {@link
+	 * @deprecated As of Judson, replaced by {@link
 	 *             #_mergePublicRenderParameters(DynamicServletRequest, Map,
 	 *             PortletPreferences, String)}
 	 */

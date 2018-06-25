@@ -48,7 +48,7 @@ public class SoyTemplateResourcesCollector {
 	}
 
 	/**
-	 * @deprecated As of 2.4.0, with no direct replacement
+	 * @deprecated As of Judson, with no direct replacement
 	 */
 	@Deprecated
 	public List<TemplateResource> getAllTemplateResources()
@@ -136,7 +136,7 @@ public class SoyTemplateResourcesCollector {
 	}
 
 	/**
-	 * @deprecated As of 2.2.0, with no direct replacement
+	 * @deprecated As of Judson, with no direct replacement
 	 */
 	@Deprecated
 	protected String getCapabilityPrefix(BundleCapability bundleCapability) {
@@ -175,7 +175,7 @@ public class SoyTemplateResourcesCollector {
 	}
 
 	/**
-	 * @deprecated As of 2.2.0, with no direct replacement
+	 * @deprecated As of Judson, with no direct replacement
 	 */
 	@Deprecated
 	protected String getTemplateId(String capabilityPrefix, URL url) {

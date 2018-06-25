@@ -38,7 +38,7 @@ public class BasicAuthHeaderAuthVerifier
 	extends BasicAuthHeaderAutoLogin implements AuthVerifier {
 
 	/**
-	 * @deprecated As of 2.0.0, replaced by {@link
+	 * @deprecated As of Judson, replaced by {@link
 	 *             #BasicAuthHeaderAuthVerifier(ConfigurationProvider, Portal)}
 	 */
 	@Deprecated

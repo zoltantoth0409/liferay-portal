@@ -31,7 +31,7 @@ import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Leonardo Barros
- * @deprecated As of 2.0.0, with no direct replacement
+ * @deprecated As of Judson, with no direct replacement
  */
 @Component(
 	property = "layout.type=" + SharedPortletLayoutTypeControllerConstants.LAYOUT_TYPE_SHARED_PORTLET,

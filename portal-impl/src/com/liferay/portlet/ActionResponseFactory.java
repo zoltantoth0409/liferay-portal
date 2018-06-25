@@ -29,7 +29,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ActionResponseFactory {
 
 	/**
-	 * @deprecated As of 7.0.0, replaced by {@link #create(ActionRequestImpl,
+	 * @deprecated As of Judson, replaced by {@link #create(ActionRequestImpl,
 	 *             HttpServletResponse, User, Layout)}
 	 */
 	@Deprecated

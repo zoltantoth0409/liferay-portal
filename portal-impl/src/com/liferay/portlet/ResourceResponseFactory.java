@@ -32,7 +32,7 @@ public class ResourceResponseFactory {
 	}
 
 	/**
-	 * @deprecated As of 7.0.0, replaced by {@link #create(ResourceRequestImpl,
+	 * @deprecated As of Judson, replaced by {@link #create(ResourceRequestImpl,
 	 *             HttpServletResponse)}
 	 */
 	@Deprecated
@@ -45,7 +45,7 @@ public class ResourceResponseFactory {
 	}
 
 	/**
-	 * @deprecated As of 7.0.0, replaced by {@link #create(ResourceRequestImpl,
+	 * @deprecated As of Judson, replaced by {@link #create(ResourceRequestImpl,
 	 *             HttpServletResponse)}
 	 */
 	@Deprecated
