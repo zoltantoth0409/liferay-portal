@@ -453,8 +453,8 @@ public class LayoutsAdminDisplayContext {
 						});
 				}
 
-				if (!group.isCompany() && !(group.isStaged() &&
-				 !group.isStagingGroup())) {
+				if (!group.isCompany() &&
+					!(group.isStaged() && !group.isStagingGroup())) {
 
 					add(
 						navigationItem -> {
