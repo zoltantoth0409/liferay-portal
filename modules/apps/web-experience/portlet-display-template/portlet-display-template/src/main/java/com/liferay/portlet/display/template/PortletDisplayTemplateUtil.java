@@ -50,7 +50,7 @@ public class PortletDisplayTemplateUtil {
 	}
 
 	/**
-	 * @deprecated As of 2.0.0
+	 * @deprecated As of Wilberforce
 	 */
 	@Deprecated
 	@SuppressWarnings("deprecation")
@@ -92,7 +92,7 @@ public class PortletDisplayTemplateUtil {
 	}
 
 	/**
-	 * @deprecated As of 2.0.0
+	 * @deprecated As of Wilberforce
 	 */
 	@Deprecated
 	@SuppressWarnings("deprecation")

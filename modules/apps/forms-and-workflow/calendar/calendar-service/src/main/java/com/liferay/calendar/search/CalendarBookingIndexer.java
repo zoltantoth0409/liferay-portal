@@ -99,7 +99,7 @@ public class CalendarBookingIndexer extends BaseIndexer<CalendarBooking> {
 	}
 
 	/**
-	 * @deprecated As of 2.1.0
+	 * @deprecated As of Wilberforce
 	 */
 	@Deprecated
 	@Override

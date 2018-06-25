@@ -50,7 +50,7 @@ public class TestTrashHandler implements TrashHandler {
 	}
 
 	/**
-	 * @deprecated As of 7.0.0
+	 * @deprecated As of Wilberforce
 	 */
 	@Deprecated
 	@Override
@@ -59,7 +59,7 @@ public class TestTrashHandler implements TrashHandler {
 	}
 
 	/**
-	 * @deprecated As of 7.0.0
+	 * @deprecated As of Wilberforce
 	 */
 	@Deprecated
 	@Override
@@ -92,7 +92,7 @@ public class TestTrashHandler implements TrashHandler {
 	}
 
 	/**
-	 * @deprecated As of 7.0.0
+	 * @deprecated As of Wilberforce
 	 */
 	@Deprecated
 	@Override
@@ -140,7 +140,7 @@ public class TestTrashHandler implements TrashHandler {
 	}
 
 	/**
-	 * @deprecated As of 7.0.0
+	 * @deprecated As of Wilberforce
 	 */
 	@Deprecated
 	@Override

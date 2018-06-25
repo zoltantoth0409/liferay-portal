@@ -270,7 +270,7 @@ public class MBMessageServiceImpl extends MBMessageServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of 7.0.0, replaced by {@link
+	 * @deprecated As of Wilberforce, replaced by {@link
 	 *             #deleteDiscussionMessage(long)}
 	 */
 	@Deprecated
@@ -583,7 +583,7 @@ public class MBMessageServiceImpl extends MBMessageServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of 7.0.0, replaced by {@link #getMessageDisplay(long,
+	 * @deprecated As of Wilberforce, replaced by {@link #getMessageDisplay(long,
 	 *             int)}
 	 */
 	@Deprecated
