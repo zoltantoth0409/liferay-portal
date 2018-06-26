@@ -19,12 +19,10 @@ import com.liferay.asset.kernel.model.BaseJSPAssetRenderer;
 import com.liferay.message.boards.kernel.model.MBCategory;
 import com.liferay.message.boards.web.constants.MBPortletKeys;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
-import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portlet.messageboards.service.permission.MBCategoryPermission;
@@ -106,10 +104,8 @@ public class MBCategoryAssetRenderer extends BaseJSPAssetRenderer<MBCategory> {
 			LiferayPortletResponse liferayPortletResponse)
 		throws Exception {
 
-		Group group = GroupLocalServiceUtil.fetchGroup(_category.getGroupId());
-
 		PortletURL portletURL = PortalUtil.getControlPanelPortletURL(
-			liferayPortletRequest, group, MBPortletKeys.MESSAGE_BOARDS, 0, 0,
+			liferayPortletRequest, null, MBPortletKeys.MESSAGE_BOARDS, 0, 0,
 			PortletRequest.RENDER_PHASE);
 
 		portletURL.setParameter(
