@@ -3603,6 +3603,10 @@
 			<var name="viewTypeLocalized" value="Semana" />
 		</execute>
 
+		<execute macro="Navigator#gotoPage">
+			<var name="pageName" value="Calendar Page" />
+		</execute>
+
 		<execute macro="LanguagePortlet#selectLanguagePG">
 			<var name="language" value="English (United States)" />
 		</execute>
