@@ -698,7 +698,7 @@ public class LayoutServiceImpl extends LayoutServiceBaseImpl {
 
 		if (ListUtil.isEmpty(layouts)) {
 			throw new NoSuchLayoutException(
-				"Could not find control panel layout");
+				"Unable to get control panel layout");
 		}
 
 		Layout layout = layouts.get(0);
