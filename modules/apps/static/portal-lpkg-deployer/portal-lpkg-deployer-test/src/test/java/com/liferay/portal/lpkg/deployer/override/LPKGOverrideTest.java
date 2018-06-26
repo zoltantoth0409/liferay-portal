@@ -90,7 +90,7 @@ public class LPKGOverrideTest {
 						String name = zipEntry.getName();
 
 						if (!(name.startsWith("com.liferay") &&
-							 name.endsWith(".jar")) &&
+							  name.endsWith(".jar")) &&
 							!name.endsWith(".war")) {
 
 							continue;

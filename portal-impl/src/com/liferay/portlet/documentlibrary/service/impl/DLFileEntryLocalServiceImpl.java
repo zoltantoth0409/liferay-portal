@@ -1534,7 +1534,7 @@ public class DLFileEntryLocalServiceImpl
 			}
 			catch (PortalException pe) {
 				if (!(pe instanceof DuplicateFolderNameException) &&
-					 !(pe instanceof DuplicateFileEntryException)) {
+					!(pe instanceof DuplicateFileEntryException)) {
 
 					throw pe;
 				}

@@ -971,7 +971,7 @@ public class PortletURLImpl
 
 		if (_copyCurrentRenderParameters &&
 			!(_lifecycle.equals(PortletRequest.RESOURCE_PHASE) &&
-			 _cacheability.equals(ResourceURL.FULL))) {
+			  _cacheability.equals(ResourceURL.FULL))) {
 
 			renderParams = _mergeWithRenderParameters(renderParams);
 		}
@@ -1144,7 +1144,7 @@ public class PortletURLImpl
 
 		if (_copyCurrentRenderParameters &&
 			!(_lifecycle.equals(PortletRequest.RESOURCE_PHASE) &&
-			 _cacheability.equals(ResourceURL.FULL))) {
+			  _cacheability.equals(ResourceURL.FULL))) {
 
 			renderParams = _mergeWithRenderParameters(renderParams);
 		}
