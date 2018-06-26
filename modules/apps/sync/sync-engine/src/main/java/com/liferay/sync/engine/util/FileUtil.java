@@ -388,6 +388,14 @@ public class FileUtil {
 			return false;
 		}
 
+		Path fileNamePath = filePath.getFileName();
+
+		String fileName = fileNamePath.toString();
+
+		if (fileName.startsWith(".")) {
+			return true;
+		}
+
 		try {
 			return Files.isHidden(filePath);
 		}
