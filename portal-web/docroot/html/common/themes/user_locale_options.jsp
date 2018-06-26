@@ -21,11 +21,11 @@ String currentURL = PortalUtil.getCurrentURL(request);
 
 Locale userLocale = user.getLocale();
 
-String localeLanguageDir = LanguageUtil.get(userLocale, "lang.dir");
+String userLocaleLanguageDir = LanguageUtil.get(userLocale, "lang.dir");
 %>
 
 <c:if test="<%= !locale.equals(user.getLocale()) %>">
-	<div dir="<%= localeLanguageDir %>">
+	<div dir="<%= userLocaleLanguageDir %>">
 		<button class="close" id="ignoreUserLocaleOptions" type="button">&times;</button>
 
 		<%= LanguageUtil.format(userLocale, "this-page-is-displayed-in-x", locale.getDisplayName(userLocale)) %>
