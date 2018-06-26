@@ -99,7 +99,7 @@ public class CategoryNestedCollectionResource
 		).identifier(
 			AssetCategory::getCategoryId
 		).addBidirectionalModel(
-			"category", "subCategories", CategoryIdentifier.class,
+			"category", "subcategories", CategoryIdentifier.class,
 			AssetCategory::getParentCategoryId
 		).addBidirectionalModel(
 			"vocabulary", "vocabularyCategories", VocabularyIdentifier.class,
