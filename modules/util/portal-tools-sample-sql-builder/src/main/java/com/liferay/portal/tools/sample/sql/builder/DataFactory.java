@@ -302,8 +302,8 @@ public class DataFactory {
 		_defaultUserId = _counter.get();
 		_globalGroupId = _counter.get();
 		_guestGroupId = _counter.get();
-		_userPersonalSiteGroupId = _counter.get();
 		_sampleUserId = _counter.get();
+		_userPersonalSiteGroupId = _counter.get();
 
 		List<String> lines = new ArrayList<>();
 
