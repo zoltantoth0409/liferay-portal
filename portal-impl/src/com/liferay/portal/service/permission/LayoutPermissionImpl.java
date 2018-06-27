@@ -246,12 +246,15 @@ public class LayoutPermissionImpl
 			// Check upward recursively to see if any pages above grant the
 			// action
 
-			long parentLayoutId = layout.getParentLayoutId();
 			long layoutGroupId = layout.getGroupId();
 
 			if (layout instanceof VirtualLayout) {
-				layoutGroupId = ((VirtualLayout)layout).getSourceGroupId();
+				VirtualLayout virtualLayout = (VirtualLayout)layout;
+
+				layoutGroupId = virtualLayout.getSourceGroupId();
 			}
+
+			long parentLayoutId = layout.getParentLayoutId();
 
 			while (parentLayoutId != LayoutConstants.DEFAULT_PARENT_LAYOUT_ID) {
 				Layout parentLayout = LayoutLocalServiceUtil.getLayout(
