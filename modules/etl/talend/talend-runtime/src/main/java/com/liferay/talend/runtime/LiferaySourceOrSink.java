@@ -778,11 +778,13 @@ public class LiferaySourceOrSink
 			contextJsonNode);
 
 		for (String typeCoercionTermKey : typeCoercionTermKeys) {
-			JsonNode idJsonNode = apioSingleModel.getIdJsonNode();
 			JsonNode resourceHrefJsonNode = jsonNode.path(typeCoercionTermKey);
 
-			String id = idJsonNode.asText();
 			String resourceHref = resourceHrefJsonNode.asText();
+
+			JsonNode idJsonNode = apioSingleModel.getIdJsonNode();
+
+			String id = idJsonNode.asText();
 
 			if (resourceHref.startsWith(id)) {
 				resourcesMap.put(
