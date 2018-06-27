@@ -82,7 +82,7 @@ public class ApioApiDocumentationTest {
 			).findFirst(
 			).orElseThrow(
 				() -> new AssertionError(
-					"Unable to find 'Commerce' Supported Class ")
+					"Unable to find 'Commerce' supported class")
 			);
 
 		List<Property> supportedProperties =
@@ -118,7 +118,7 @@ public class ApioApiDocumentationTest {
 			).findFirst(
 			).orElseThrow(
 				() -> new AssertionError(
-					"Unable to find 'BlogPosting' Supported Class ")
+					"Unable to find 'BlogPosting' supported class")
 			);
 
 		List<Property> supportedProperties =

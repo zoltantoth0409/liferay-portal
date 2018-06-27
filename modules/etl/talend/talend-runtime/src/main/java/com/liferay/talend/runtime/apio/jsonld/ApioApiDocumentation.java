@@ -53,7 +53,8 @@ public class ApioApiDocumentation extends ApioBaseResponse {
 
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"Unable to fetch the ApiDocumentation's supported classes");
+					"Unable to fetch the API documentation's supported " +
+						"classes");
 			}
 
 			return Collections.emptyList();
@@ -108,10 +109,10 @@ public class ApioApiDocumentation extends ApioBaseResponse {
 
 			try {
 				_name = Objects.requireNonNull(
-					name, "Name of the Class must not be NULL");
+					name, "Name of the class must not be null");
 				_supportedProperties = Objects.requireNonNull(
 					supportedProperties,
-					"Supported properties of a Class must not be NULL");
+					"Supported properties of a class must not be null");
 			}
 			catch (NullPointerException npe) {
 				throw new IOException(npe);
@@ -134,7 +135,8 @@ public class ApioApiDocumentation extends ApioBaseResponse {
 	private void _validateApiDocumentation() throws IOException {
 		if (!hasValueOf(FieldTypes.API_DOCUMENTATION, getTypeJsonNode())) {
 			throw new IOException(
-				"The type of the given resource is not an ApiDocumentation");
+				"The type of the given resource is not an instance of " +
+					"ApiDocumentation");
 		}
 	}
 
