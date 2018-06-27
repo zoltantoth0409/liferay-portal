@@ -18,15 +18,16 @@
 
 <%
 String currentURL = PortalUtil.getCurrentURL(request);
-
-String localeLanguageDir = LanguageUtil.get(request, "lang.dir");
-
-Locale userLocale = user.getLocale();
-
-String userLocaleLanguageDir = LanguageUtil.get(userLocale, "lang.dir");
 %>
 
 <c:if test="<%= !locale.equals(user.getLocale()) %>">
+
+	<%
+	Locale userLocale = user.getLocale();
+
+	String userLocaleLanguageDir = LanguageUtil.get(userLocale, "lang.dir");
+	%>
+
 	<div dir="<%= userLocaleLanguageDir %>">
 		<div class="d-block">
 			<button class="close" id="ignoreUserLocaleOptions" type="button">&times;</button>
@@ -46,7 +47,11 @@ String userLocaleLanguageDir = LanguageUtil.get(userLocale, "lang.dir");
 		</c:if>
 	</div>
 
-	<div dir="<%= localeLanguageDir %>">
+	<%
+	String requestLanguageDir = LanguageUtil.get(request, "lang.dir");
+	%>
+
+	<div dir="<%= requestLanguageDir %>">
 
 		<%
 		String changePreferredLanguageURLString = themeDisplay.getPathMain() + "/portal/update_language?p_l_id=" + themeDisplay.getPlid() + "&redirect=" + URLCodec.encodeURL(currentURL) + "&languageId=" + themeDisplay.getLanguageId() + "&showUserLocaleOptionsMessage=false";
