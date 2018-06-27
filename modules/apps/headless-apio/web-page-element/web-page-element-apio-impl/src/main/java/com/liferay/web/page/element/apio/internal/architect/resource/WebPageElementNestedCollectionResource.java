@@ -140,7 +140,7 @@ public class WebPageElementNestedCollectionResource
 		).addString(
 			"title", JournalArticle::getTitle
 		).addStringList(
-			"keywords", this::_getJournalArticleTags
+			"keywords", this::_getJournalArticleAssetTags
 		).build();
 	}
 
@@ -183,12 +183,12 @@ public class WebPageElementNestedCollectionResource
 	private void _deleteJournalArticle(long journalArticleId)
 		throws PortalException {
 
-		JournalArticle article = _journalArticleService.getArticle(
+		JournalArticle journalArticle = _journalArticleService.getArticle(
 			journalArticleId);
 
 		_journalArticleService.deleteArticle(
-			article.getGroupId(), article.getArticleId(),
-			article.getArticleResourceUuid(), new ServiceContext());
+			journalArticle.getGroupId(), journalArticle.getArticleId(),
+			journalArticle.getArticleResourceUuid(), new ServiceContext());
 	}
 
 	private String _getJournalArticleHtml(
@@ -209,21 +209,21 @@ public class WebPageElementNestedCollectionResource
 		return content.replaceAll("\\s+", "");
 	}
 
-	private List<String> _getJournalArticleTags(JournalArticle journalArticle) {
-		List<AssetTag> tags = _assetTagLocalService.getTags(
+	private List<String> _getJournalArticleAssetTags(JournalArticle journalArticle) {
+		List<AssetTag> assetTags = _assetTagLocalService.getTags(
 			JournalArticle.class.getName(),
 			journalArticle.getResourcePrimKey());
 
-		return ListUtil.toList(tags, AssetTagModel::getName);
+		return ListUtil.toList(assetTags, AssetTagModel::getName);
 	}
 
 	private JournalArticleWrapper _getJournalArticleWrapper(
-			long articleId, ThemeDisplay themeDisplay)
+			long journalArticleId, ThemeDisplay themeDisplay)
 		throws PortalException {
 
-		JournalArticle article = _journalArticleService.getArticle(articleId);
+		JournalArticle journalArticle = _journalArticleService.getArticle(journalArticleId);
 
-		return new JournalArticleWrapper(article, themeDisplay);
+		return new JournalArticleWrapper(journalArticle, themeDisplay);
 	}
 
 	private PageItems<JournalArticleWrapper> _getPageItems(
@@ -258,7 +258,7 @@ public class WebPageElementNestedCollectionResource
 		serviceContext.setAddGuestPermissions(true);
 		serviceContext.setScopeGroupId(webPageElementUpdaterForm.getGroup());
 
-		JournalArticle article = _journalArticleService.updateArticle(
+		JournalArticle journalArticle = _journalArticleService.updateArticle(
 			webPageElementUpdaterForm.getUser(),
 			webPageElementUpdaterForm.getGroup(), 0,
 			String.valueOf(journalArticleId),
@@ -267,7 +267,7 @@ public class WebPageElementNestedCollectionResource
 			webPageElementUpdaterForm.getDescriptionMap(),
 			webPageElementUpdaterForm.getText(), null, serviceContext);
 
-		return new JournalArticleWrapper(article, themeDisplay);
+		return new JournalArticleWrapper(journalArticle, themeDisplay);
 	}
 
 	@Reference
