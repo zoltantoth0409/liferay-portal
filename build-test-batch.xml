@@ -3520,7 +3520,9 @@ app.server.type=@{app.server.type}]]></echo>
 				<if>
 					<isset property="env.DIST_PATH" />
 					<then>
-						<prepare-test-environment />
+						<antcall inheritAll="false" target="compile" />
+
+						<antcall inheritAll="false" target="install-portal-snapshots" />
 
 						<echo>unzip -p liferay-portal-source.zip modules/core/portal-bootstrap/build/system.packages.extra.mf > modules/core/portal-bootstrap/system.packages.extra.mf</echo>
 
@@ -3549,10 +3551,6 @@ app.server.type=@{app.server.type}]]></echo>
 						<delete file="@{log.file}" />
 					</sequential>
 				</for>
-
-				<antcall inheritAll="false" target="compile" />
-
-				<antcall inheritAll="false" target="install-portal-snapshots" />
 			</test-set-up>
 		</run-batch-test>
 	</target>
