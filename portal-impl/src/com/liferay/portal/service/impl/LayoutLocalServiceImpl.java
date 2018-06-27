@@ -1242,7 +1242,7 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 	public Map<Long, List<Layout>> getLayoutChildLayouts(
 		LayoutSet layoutSet, List<Layout> parentLayouts) {
 
-		Map<LayoutSet, List<Layout>> parentLayoutMap = new HashMap<>();
+		Map<LayoutSet, List<Layout>> layoutsMap = new HashMap<>();
 
 		for (Layout parentLayout : parentLayouts) {
 			if (parentLayout instanceof VirtualLayout) {
@@ -1252,24 +1252,22 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 
 				LayoutSet sourceLayoutSet = sourceLayout.getLayoutSet();
 
-				List<Layout> layoutList = parentLayoutMap.computeIfAbsent(
+				List<Layout> layouts = layoutsMap.computeIfAbsent(
 					sourceLayoutSet, key -> new ArrayList<>());
 
-				layoutList.add(sourceLayout);
+				layouts.add(sourceLayout);
 			}
 			else {
-				List<Layout> layoutList = parentLayoutMap.computeIfAbsent(
+				List<Layout> layouts = layoutsMap.computeIfAbsent(
 					layoutSet, key -> new ArrayList<>());
 
-				layoutList.add(parentLayout);
+				layouts.add(parentLayout);
 			}
 		}
 
 		List<Layout> childLayouts = new ArrayList<>();
 
-		for (Map.Entry<LayoutSet, List<Layout>> entry :
-				parentLayoutMap.entrySet()) {
-
+		for (Map.Entry<LayoutSet, List<Layout>> entry : layoutsMap.entrySet()) {
 			List<Layout> newChildLayouts = _getChildLayouts(
 				entry.getKey(),
 				ListUtil.toLongArray(entry.getValue(), Layout::getLayoutId));
@@ -1277,25 +1275,25 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 			childLayouts.addAll(newChildLayouts);
 		}
 
-		Map<Long, List<Layout>> layoutChildLayouts = new HashMap<>();
+		Map<Long, List<Layout>> layoutChildLayoutsMap = new HashMap<>();
 
 		for (Layout childLayout : childLayouts) {
-			List<Layout> layoutChildLayoutsList =
-				layoutChildLayouts.computeIfAbsent(
+			List<Layout> layoutChildLayouts =
+				layoutChildLayoutsMap.computeIfAbsent(
 					childLayout.getParentLayoutId(),
 					parentLayoutId -> new ArrayList<>());
 
-			layoutChildLayoutsList.add(childLayout);
+			layoutChildLayouts.add(childLayout);
 		}
 
-		for (List<Layout> layoutChildLayoutsList :
-				layoutChildLayouts.values()) {
+		for (List<Layout> layoutChildLayouts :
+				layoutChildLayoutsMap.values()) {
 
-			layoutChildLayoutsList.sort(
+			layoutChildLayouts.sort(
 				Comparator.comparing(Layout::getPriority));
 		}
 
-		return layoutChildLayouts;
+		return layoutChildLayoutsMap;
 	}
 
 	@Override
@@ -1498,6 +1496,7 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 		layouts = new ArrayList<>(layouts);
 
 		Set<Long> checkedPlids = new HashSet<>();
+
 		Queue<Long> checkParentLayoutIds = new ArrayDeque<>();
 
 		checkParentLayoutIds.add(LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
