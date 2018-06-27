@@ -104,8 +104,7 @@ public abstract class BaseDLItemSelectorView<T extends ItemSelectorCriterion>
 			dlItemSelectorViewDisplayContext);
 
 		request.setAttribute(
-			DL_MIME_TYPE_DISPLAY_CONTEXT,
-			_dlMimeTypeDisplayContext);
+			DL_MIME_TYPE_DISPLAY_CONTEXT, _dlMimeTypeDisplayContext);
 
 		requestDispatcher.include(request, response);
 	}
@@ -153,8 +152,8 @@ public abstract class BaseDLItemSelectorView<T extends ItemSelectorCriterion>
 		return LanguageResources.RESOURCE_BUNDLE_LOADER;
 	}
 
-	private GroupLocalService _groupLocalService;
 	private DLMimeTypeDisplayContext _dlMimeTypeDisplayContext;
+	private GroupLocalService _groupLocalService;
 	private ItemSelectorReturnTypeResolverHandler
 		_itemSelectorReturnTypeResolverHandler;
 	private ServletContext _servletContext;

@@ -129,8 +129,8 @@ public class RepositoryEntryBrowserTag extends IncludeTag {
 
 		_desiredItemSelectorReturnTypes = null;
 		_displayStyle = null;
-		_emptyResultsMessage = null;
 		_dlMimeTypeDisplayContext = null;
+		_emptyResultsMessage = null;
 		_extensions = new ArrayList<>();
 		_itemSelectedEventName = null;
 		_itemSelectorReturnTypeResolver = null;

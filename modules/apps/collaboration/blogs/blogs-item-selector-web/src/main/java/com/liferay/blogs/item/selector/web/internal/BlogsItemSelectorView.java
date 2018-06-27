@@ -110,8 +110,7 @@ public class BlogsItemSelectorView
 			blogsItemSelectorViewDisplayContext);
 
 		request.setAttribute(
-			DL_MIME_TYPE_DISPLAY_CONTEXT,
-			_dlMimeTypeDisplayContext);
+			DL_MIME_TYPE_DISPLAY_CONTEXT, _dlMimeTypeDisplayContext);
 
 		ServletContext servletContext = getServletContext();
 
