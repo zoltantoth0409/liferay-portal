@@ -191,6 +191,16 @@ public class WebPageElementNestedCollectionResource
 			journalArticle.getArticleResourceUuid(), new ServiceContext());
 	}
 
+	private List<String> _getJournalArticleAssetTags(
+		JournalArticle journalArticle) {
+
+		List<AssetTag> assetTags = _assetTagLocalService.getTags(
+			JournalArticle.class.getName(),
+			journalArticle.getResourcePrimKey());
+
+		return ListUtil.toList(assetTags, AssetTagModel::getName);
+	}
+
 	private String _getJournalArticleHtml(
 		JournalArticleWrapper journalArticleWrapper, Locale locale) {
 
@@ -209,19 +219,12 @@ public class WebPageElementNestedCollectionResource
 		return content.replaceAll("\\s+", "");
 	}
 
-	private List<String> _getJournalArticleAssetTags(JournalArticle journalArticle) {
-		List<AssetTag> assetTags = _assetTagLocalService.getTags(
-			JournalArticle.class.getName(),
-			journalArticle.getResourcePrimKey());
-
-		return ListUtil.toList(assetTags, AssetTagModel::getName);
-	}
-
 	private JournalArticleWrapper _getJournalArticleWrapper(
 			long journalArticleId, ThemeDisplay themeDisplay)
 		throws PortalException {
 
-		JournalArticle journalArticle = _journalArticleService.getArticle(journalArticleId);
+		JournalArticle journalArticle = _journalArticleService.getArticle(
+			journalArticleId);
 
 		return new JournalArticleWrapper(journalArticle, themeDisplay);
 	}
