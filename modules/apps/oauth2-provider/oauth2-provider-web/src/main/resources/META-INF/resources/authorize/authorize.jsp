@@ -64,11 +64,13 @@ String replyTo = PortalUtil.escapeRedirect(oAuth2Parameters.get("reply_to"));
 								String[] messageArguments = new String[2];
 
 								messageArguments[0] = StringPool.BLANK;
+
 								for (String getApplicationScopeDescription : assignableScopes.getApplicationScopeDescription(applicationName)) {
 									if (Validator.isBlank(messageArguments[0])) {
 										messageArguments[0] = getApplicationScopeDescription;
 										continue;
 									}
+
 									messageArguments[1] = getApplicationScopeDescription;
 									messageArguments[0] = LanguageUtil.format(request, "x-y", messageArguments);
 								}
