@@ -55,8 +55,8 @@ public class ResourceNodeConverter
 
 		// Already used names for the fields
 
-		Set<String> normalizedJsonFieldNames = new HashSet<>();
 		int i = 0;
+		Set<String> normalizedJsonFieldNames = new HashSet<>();
 		int pos = -1;
 
 		while (jsonFields.hasNext()) {
