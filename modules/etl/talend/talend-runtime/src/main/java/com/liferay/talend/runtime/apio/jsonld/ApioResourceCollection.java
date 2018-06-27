@@ -64,7 +64,7 @@ public class ApioResourceCollection extends ApioSingleModel {
 	}
 
 	/**
-	 * Parses the actual jsonNode (Resource Collection) e.g people,
+	 * Parses the actual jsonNode (resource collection) e.g people,
 	 * blog-postings and looks for the members array node.
 	 *
 	 * @return <code>JsonNode</code> The ArrayNode which contains the resource
@@ -119,7 +119,7 @@ public class ApioResourceCollection extends ApioSingleModel {
 		}
 
 		throw new NoSuchElementException(
-			"Unable to determine the type of the Resource Collection");
+			"Unable to determine the type of the resource collection");
 	}
 
 	/**
