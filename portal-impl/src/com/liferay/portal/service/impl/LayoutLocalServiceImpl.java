@@ -1286,11 +1286,8 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 			layoutChildLayouts.add(childLayout);
 		}
 
-		for (List<Layout> layoutChildLayouts :
-				layoutChildLayoutsMap.values()) {
-
-			layoutChildLayouts.sort(
-				Comparator.comparing(Layout::getPriority));
+		for (List<Layout> layoutChildLayouts : layoutChildLayoutsMap.values()) {
+			layoutChildLayouts.sort(Comparator.comparing(Layout::getPriority));
 		}
 
 		return layoutChildLayoutsMap;
