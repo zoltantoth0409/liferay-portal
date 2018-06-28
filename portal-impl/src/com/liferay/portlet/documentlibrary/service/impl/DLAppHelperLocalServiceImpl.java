@@ -1585,9 +1585,7 @@ public class DLAppHelperLocalServiceImpl
 				dynamicQuery.add(
 					fileEntryIdProperty.in(fileVersionDynamicQuery));
 			});
-
 		fileEntryActionableDynamicQuery.setGroupId(groupId);
-
 		fileEntryActionableDynamicQuery.setPerformActionMethod(
 			(ActionableDynamicQuery.PerformActionMethod<DLFileEntry>)
 				dlFileEntry -> dlAppService.cancelCheckOut(
