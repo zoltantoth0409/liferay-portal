@@ -123,13 +123,13 @@ public class LayoutStagingBackgroundTaskExecutor
 				Group stagingGroup = sourceGroup.getStagingGroup();
 
 				if (stagingGroup.getGroupId() == targetGroupId) {
+					DLAppHelperLocalServiceUtil.cancelCheckOuts(sourceGroupId);
+
 					ExportImportThreadLocal.setInitialLayoutStagingInProcess(
 						true);
 
 					TrashEntryLocalServiceUtil.deleteEntries(
 						sourceGroupId, true);
-
-					DLAppHelperLocalServiceUtil.cancelCheckOuts(sourceGroupId);
 				}
 			}
 
