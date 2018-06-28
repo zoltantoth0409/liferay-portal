@@ -176,23 +176,23 @@ public class WesterosBankSiteInitializer implements SiteInitializer {
 				carouselJournalArticle.getArticleId());
 
 			List<Layout> personalLayoutChildren = _addLayouts(
-				personalLayout, _LAYOUT_CHILDREN_PERSONAL, fragmentEntriesMap,
-				serviceContext);
-
-			_addLayouts(
-				personalLayoutChildren.get(0), _LAYOUT_CHILDREN_CHECKING,
+				personalLayout, _LAYOUT_NAMES_CHILDREN_PERSONAL,
 				fragmentEntriesMap, serviceContext);
 
 			_addLayouts(
-				personalLayoutChildren.get(1), _LAYOUT_CHILDREN_SAVINGS,
+				personalLayoutChildren.get(0), _LAYOUT_NAMES_CHILDREN_CHECKING,
 				fragmentEntriesMap, serviceContext);
 
 			_addLayouts(
-				personalLayoutChildren.get(2), _LAYOUT_CHILDREN_LOANS,
+				personalLayoutChildren.get(1), _LAYOUT_NAMES_CHILDREN_SAVINGS,
 				fragmentEntriesMap, serviceContext);
 
 			_addLayouts(
-				personalLayoutChildren.get(3), _LAYOUT_CHILDREN_ASSURANCE,
+				personalLayoutChildren.get(2), _LAYOUT_NAMES_CHILDREN_LOANS,
+				fragmentEntriesMap, serviceContext);
+
+			_addLayouts(
+				personalLayoutChildren.get(3), _LAYOUT_NAMES_CHILDREN_ASSURANCE,
 				fragmentEntriesMap, serviceContext);
 
 			List<FragmentEntry> businessFragmentEntries = new ArrayList<>();
@@ -212,8 +212,8 @@ public class WesterosBankSiteInitializer implements SiteInitializer {
 				serviceContext);
 
 			_addLayouts(
-				businessLayout, _LAYOUT_CHILDREN_BUSINESS, fragmentEntriesMap,
-				serviceContext);
+				businessLayout, _LAYOUT_NAMES_CHILDREN_BUSINESS,
+				fragmentEntriesMap, serviceContext);
 
 			_siteNavigationMenuLocalService.addDefaultSiteNavigationMenu(
 				serviceContext.getUserId(), groupId, serviceContext);
@@ -371,11 +371,10 @@ public class WesterosBankSiteInitializer implements SiteInitializer {
 			ServiceContext serviceContext)
 		throws Exception {
 
-		long previewFileEntryId = _getPreviewFileEntryId(
-			thumbnailPath, thumbnailFileName, serviceContext);
-
 		long layoutPageTemplateCollectionId =
 			layoutPageTemplateCollection.getLayoutPageTemplateCollectionId();
+		long previewFileEntryId = _getPreviewFileEntryId(
+			thumbnailPath, thumbnailFileName, serviceContext);
 
 		LayoutPageTemplateEntry layoutPageTemplateEntry =
 			_layoutPageTemplateEntryLocalService.addLayoutPageTemplateEntry(
@@ -415,10 +414,11 @@ public class WesterosBankSiteInitializer implements SiteInitializer {
 				new HashMap<>(), new HashMap<>(), new HashMap<>(), "content",
 				StringPool.BLANK, false, new HashMap<>(), serviceContext);
 
-			int fragmentKeyId = random.nextInt(_LAYOUT_FRAGMENT_KEYS.length);
+			int fragmentKeyId = random.nextInt(
+				_LAYOUT_NAMES_FRAGMENT_KEYS.length);
 
 			FragmentEntry fragmentEntry = fragmentEntriesMap.get(
-				_LAYOUT_FRAGMENT_KEYS[fragmentKeyId]);
+				_LAYOUT_NAMES_FRAGMENT_KEYS[fragmentKeyId]);
 
 			_fragmentEntryLinkLocalService.updateFragmentEntryLinks(
 				serviceContext.getUserId(), serviceContext.getScopeGroupId(),
@@ -608,31 +608,31 @@ public class WesterosBankSiteInitializer implements SiteInitializer {
 			StringPool.BLANK, StringPool.BLANK);
 	}
 
-	private static final String[] _LAYOUT_CHILDREN_ASSURANCE =
+	private static final String[] _LAYOUT_NAMES_CHILDREN_ASSURANCE =
 		{"Travel Insurance", "Home insurance", "Life insurance"};
 
-	private static final String[] _LAYOUT_CHILDREN_BUSINESS =
+	private static final String[] _LAYOUT_NAMES_CHILDREN_BUSINESS =
 		{"Credit Cards for Business", "Assurance for Business"};
 
-	private static final String[] _LAYOUT_CHILDREN_CHECKING = {
+	private static final String[] _LAYOUT_NAMES_CHILDREN_CHECKING = {
 		"All credit cards", "Check your eligibility",
 		"Balance-transfer credit cards", "Purchase credit card"
 	};
 
-	private static final String[] _LAYOUT_CHILDREN_LOANS =
+	private static final String[] _LAYOUT_NAMES_CHILDREN_LOANS =
 		{"Mortgages", "All mortgage products", "Mortgate rates and charges"};
 
-	private static final String[] _LAYOUT_CHILDREN_PERSONAL = {
+	private static final String[] _LAYOUT_NAMES_CHILDREN_PERSONAL = {
 		"Checking and Credit Cards", "Savings and Investments",
 		"Loans and Mortgages", "Assurance"
 	};
 
-	private static final String[] _LAYOUT_CHILDREN_SAVINGS = {
+	private static final String[] _LAYOUT_NAMES_CHILDREN_SAVINGS = {
 		"Compare Savings accounts", "Everyday Saver",
 		"Children's Instant Saver", "All interest rates"
 	};
 
-	private static final String[] _LAYOUT_FRAGMENT_KEYS =
+	private static final String[] _LAYOUT_NAMES_FRAGMENT_KEYS =
 		{"features", "links", "news", "offerings", "video"};
 
 	private static final String _PATH =
