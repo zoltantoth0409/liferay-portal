@@ -125,7 +125,5 @@
 		<suppress checks="JavaModuleComponentCheck" files="modules/private/apps/osb-testray/.*" />
 		<suppress checks="JavaServiceObjectCheck" files="modules/private/.*" />
 		<suppress checks="JSPTagAttributesCheck" files="modules/private/.*" />
-		<suppress checks="PropertiesLiferayPluginPackageLiferayVersionsCheck" files="modules/private/.*" />
-		<suppress checks="XMLLookAndFeelCompatibilityVersionCheck" files="modules/private/.*" />
 	</source-check>
 </suppressions>
