@@ -56,9 +56,9 @@ public class PullRequest {
 			throw new RuntimeException("Invalid URL " + htmlURL);
 		}
 
-		_number = Integer.parseInt(matcher.group("number"));
 		_gitHubRemoteRepositoryName = matcher.group(
 			"gitHubRemoteRepositoryName");
+		_number = Integer.parseInt(matcher.group("number"));
 		_ownerUsername = matcher.group("owner");
 
 		refresh();

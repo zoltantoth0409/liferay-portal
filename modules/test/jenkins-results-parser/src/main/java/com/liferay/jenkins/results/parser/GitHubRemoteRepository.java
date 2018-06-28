@@ -52,7 +52,7 @@ public class GitHubRemoteRepository extends RemoteRepository {
 			JenkinsResultsParserUtil.toString(
 				labelsRequestURL, jsonObject.toString());
 
-			_labelsCacheMap.remove(labelsRequestURL);
+			_labelsLists.remove(labelsRequestURL);
 		}
 		catch (IOException ioe) {
 			System.out.println("Unable to add label " + name);
@@ -82,8 +82,8 @@ public class GitHubRemoteRepository extends RemoteRepository {
 	public List<Label> getLabels() {
 		String labelRequestURL = _getLabelRequestURL();
 
-		if (_labelsCacheMap.containsKey(labelRequestURL)) {
-			return _labelsCacheMap.get(labelRequestURL);
+		if (_labelsLists.containsKey(labelRequestURL)) {
+			return _labelsLists.get(labelRequestURL);
 		}
 
 		JSONArray labelsJSONArray;
@@ -117,7 +117,7 @@ public class GitHubRemoteRepository extends RemoteRepository {
 			page++;
 		}
 
-		_labelsCacheMap.put(labelRequestURL, labels);
+		_labelsLists.put(labelRequestURL, labels);
 
 		return labels;
 	}
@@ -168,7 +168,7 @@ public class GitHubRemoteRepository extends RemoteRepository {
 					jsonObject.toString());
 			}
 
-			_labelsCacheMap.remove(_getLabelRequestURL());
+			_labelsLists.remove(_getLabelRequestURL());
 		}
 		catch (IOException ioe) {
 			if (jsonObject == null) {
@@ -271,7 +271,7 @@ public class GitHubRemoteRepository extends RemoteRepository {
 			getName(), getUsername(), "/labels");
 	}
 
-	private static final Map<String, List<Label>> _labelsCacheMap =
+	private static final Map<String, List<Label>> _labelsLists =
 		new ConcurrentHashMap<>();
 
 }
