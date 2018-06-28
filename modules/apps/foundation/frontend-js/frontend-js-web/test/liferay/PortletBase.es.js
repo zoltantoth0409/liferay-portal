@@ -36,8 +36,10 @@ describe('PortletBase', () => {
 		it('should get all matching nodes within the root node tree', () => {
 			assert.strictEqual(portletBase.all('.foo').length, 2);
 			assert.strictEqual(
-				portletBase.all('.foo', '#_com_liferay_test_portlet_child_container')
-					.length,
+				portletBase.all(
+					'.foo',
+					'#_com_liferay_test_portlet_child_container'
+				).length,
 				1
 			);
 		});
@@ -69,10 +71,15 @@ describe('PortletBase', () => {
 		it('should get the first matching node within the root node tree', () => {
 			assert.strictEqual(
 				portletBase.one('.foo'),
-				document.getElementById('_com_liferay_test_portlet_child_container')
+				document.getElementById(
+					'_com_liferay_test_portlet_child_container'
+				)
 			);
 			assert.strictEqual(
-				portletBase.one('.foo', '#_com_liferay_test_portlet_child_container'),
+				portletBase.one(
+					'.foo',
+					'#_com_liferay_test_portlet_child_container'
+				),
 				document.getElementById(
 					'_com_liferay_test_portlet_grand_child_container'
 				)
