@@ -1560,6 +1560,9 @@ public class DLAppHelperLocalServiceImpl
 
 		fileEntryActionableDynamicQuery.setAddCriteriaMethod(
 			dynamicQuery -> {
+				Property fileEntryIdProperty = PropertyFactoryUtil.forName(
+					"fileEntryId");
+
 				DynamicQuery fileVersionDynamicQuery =
 					DynamicQueryFactoryUtil.forClass(
 						DLFileVersion.class, "dlFileVersion",
@@ -1578,9 +1581,6 @@ public class DLAppHelperLocalServiceImpl
 				fileVersionDynamicQuery.add(
 					versionProperty.eq(
 						DLFileEntryConstants.PRIVATE_WORKING_COPY_VERSION));
-
-				Property fileEntryIdProperty = PropertyFactoryUtil.forName(
-					"fileEntryId");
 
 				dynamicQuery.add(
 					fileEntryIdProperty.in(fileVersionDynamicQuery));
