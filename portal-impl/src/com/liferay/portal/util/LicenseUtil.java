@@ -212,7 +212,7 @@ public class LicenseUtil {
 	}
 
 	/**
-	 * @deprecated As of Judson, As of Wilberforce, with no direct replacement
+	 * @deprecated As of Judson, with no direct replacement
 	 */
 	@Deprecated
 	public static void init() {
