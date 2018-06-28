@@ -2278,7 +2278,7 @@ public class StringUtil {
 			if (is == null) {
 				throw new IOException(
 					StringBundler.concat(
-						"Unable to open resource: ", name, " in class loader ",
+						"Unable to open resource ", name, " in class loader ",
 						String.valueOf(classLoader)));
 			}
 
