@@ -16,19 +16,19 @@
 
 <%@ include file="/select_pages/init.jsp" %>
 
-<aui:input name="layoutIds" type="hidden" value="<%= ExportImportHelperUtil.getSelectedLayoutsJSON(groupIdAttribute, privateLayoutAttribute, selectedLayoutIds) %>" />
+<aui:input name="layoutIds" type="hidden" value="<%= ExportImportHelperUtil.getSelectedLayoutsJSON(selectPagesGroupId, selectPagesPrivteLayout, selectedLayoutIds) %>" />
 
 <aui:fieldset cssClass="options-group" id="pages-fieldset" markupView="lexicon">
 	<div class="sheet-section">
 		<h3 class="sheet-subtitle"><liferay-ui:message key="pages" /></h3>
 
 		<ul class="flex-container layout-selector" id="<portlet:namespace />pages">
-			<c:if test="<%= !disableInputs || LayoutStagingUtil.isBranchingLayoutSet(groupAttribute, privateLayoutAttribute) %>">
+			<c:if test="<%= !disableInputs || LayoutStagingUtil.isBranchingLayoutSet(selectPagesGroup, selectPagesPrivteLayout) %>">
 				<li class="layout-selector-options">
 					<aui:fieldset label="pages-options">
 						<c:if test="<%= !disableInputs %>">
 							<c:choose>
-								<c:when test="<%= privateLayoutAttribute %>">
+								<c:when test="<%= selectPagesPrivteLayout %>">
 									<aui:button id="changeToPublicLayoutsButton" value="change-to-public-pages" />
 								</c:when>
 								<c:otherwise>
@@ -37,7 +37,7 @@
 							</c:choose>
 						</c:if>
 
-						<c:if test="<%= LayoutStagingUtil.isBranchingLayoutSet(groupAttribute, privateLayoutAttribute) %>">
+						<c:if test="<%= LayoutStagingUtil.isBranchingLayoutSet(selectPagesGroup, selectPagesPrivteLayout) %>">
 
 							<%
 							List<LayoutSetBranch> layoutSetBranches = null;
@@ -50,7 +50,7 @@
 								layoutSetBranches.add(LayoutSetBranchLocalServiceUtil.getLayoutSetBranch(layoutSetBranchId));
 							}
 							else {
-								layoutSetBranches = LayoutSetBranchLocalServiceUtil.getLayoutSetBranches(groupIdAttribute, privateLayoutAttribute);
+								layoutSetBranches = LayoutSetBranchLocalServiceUtil.getLayoutSetBranches(selectPagesGroupId, selectPagesPrivteLayout);
 							}
 							%>
 
@@ -94,9 +94,9 @@
 								<span class="badge badge-info">
 
 									<%
-									int messageKeyLayoutsCount = LayoutLocalServiceUtil.getLayoutsCount(groupAttribute, privateLayoutAttribute, selectedLayoutIdsArray);
+									int messageKeyLayoutsCount = LayoutLocalServiceUtil.getLayoutsCount(selectPagesGroup, selectPagesPrivteLayout, selectedLayoutIdsArray);
 
-									int totalLayoutsCount = LayoutLocalServiceUtil.getLayoutsCount(groupAttribute, privateLayoutAttribute);
+									int totalLayoutsCount = LayoutLocalServiceUtil.getLayoutsCount(selectPagesGroup, selectPagesPrivteLayout);
 
 									if (messageKeyLayoutsCount > totalLayoutsCount) {
 										messageKeyLayoutsCount = totalLayoutsCount;
@@ -123,11 +123,11 @@
 								<liferay-layout:layouts-tree
 									defaultStateChecked="<%= true %>"
 									draggableTree="<%= false %>"
-									groupId="<%= groupIdAttribute %>"
+									groupId="<%= selectPagesGroupId %>"
 									incomplete="<%= false %>"
 									portletURL="<%= renderResponse.createRenderURL() %>"
-									privateLayout="<%= privateLayoutAttribute %>"
-									rootNodeName="<%= groupAttribute.getLayoutRootNodeName(privateLayoutAttribute, locale) %>"
+									privateLayout="<%= selectPagesPrivteLayout %>"
+									rootNodeName="<%= selectPagesGroup.getLayoutRootNodeName(selectPagesPrivteLayout, locale) %>"
 									selectableTree="<%= true %>"
 									selectedLayoutIds="<%= selectedLayoutIds %>"
 									selPlid="<%= selPlid %>"
