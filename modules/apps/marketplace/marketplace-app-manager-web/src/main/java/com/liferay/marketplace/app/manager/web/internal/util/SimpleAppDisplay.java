@@ -58,7 +58,6 @@ public class SimpleAppDisplay extends BaseAppDisplay {
 		PortletURL portletURL = mimeResponse.createRenderURL();
 
 		portletURL.setParameter("mvcPath", "/view_modules.jsp");
-
 		portletURL.setParameter("app", _title);
 
 		return portletURL.toString();
