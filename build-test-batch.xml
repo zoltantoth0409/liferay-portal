@@ -952,6 +952,7 @@ app.server.type=@{app.server.type}]]></echo>
 		<attribute default="false" name="test.portal.log.assert" />
 		<attribute default="" name="test.portal.bundle.dependencies.zip.url" />
 		<attribute default="" name="test.portal.bundle.osgi.zip.url" />
+		<attribute default="" name="test.portal.bundle.tools.zip.url" />
 		<attribute default="" name="test.portal.bundle.version" />
 		<attribute default="" name="test.portal.bundle.war.url" />
 		<attribute default="" name="test.portal.bundle.zip.url" />
@@ -1044,6 +1045,7 @@ app.server.type=@{app.server.type}]]></echo>
 								<param name="test.build.fix.pack.zip.url" value="@{test.build.fix.pack.zip.url}" />
 								<param name="test.build.portal.dependencies.zip.url" value="@{test.portal.bundle.dependencies.zip.url}" />
 								<param name="test.build.portal.osgi.zip.url" value="@{test.portal.bundle.osgi.zip.url}" />
+								<param name="test.build.portal.tools.zip.url" value="@{test.portal.bundle.tools.zip.url}" />
 								<param name="test.build.portal.war.url" value="@{test.portal.bundle.war.url}" />
 								<param name="test.class" value="${test.class}" />
 								<param name="test.fix.pack.base.url" value="@{test.fix.pack.base.url}" />
@@ -1867,6 +1869,7 @@ app.server.type=@{app.server.type}]]></echo>
 		<attribute default="" name="test.license.xml.url" />
 		<attribute default="" name="test.portal.bundle.dependencies.zip.url" />
 		<attribute default="" name="test.portal.bundle.osgi.zip.url" />
+		<attribute default="" name="test.portal.bundle.tools.zip.url" />
 		<attribute default="" name="test.portal.bundle.war.url" />
 		<attribute default="" name="test.portal.bundle.zip.url" />
 		<attribute default="" name="test.sql.zip.url" />
@@ -1952,6 +1955,7 @@ app.server.type=@{app.server.type}]]></echo>
 								<param name="test.build.fix.pack.zip.url" value="@{test.build.fix.pack.zip.url}" />
 								<param name="test.build.portal.dependencies.zip.url" value="@{test.portal.bundle.dependencies.zip.url}" />
 								<param name="test.build.portal.osgi.zip.url" value="@{test.portal.bundle.osgi.zip.url}" />
+								<param name="test.build.portal.tools.zip.url" value="@{test.portal.bundle.tools.zip.url}" />
 								<param name="test.build.portal.war.url" value="@{test.portal.bundle.war.url}" />
 								<param name="test.fix.pack.base.url" value="@{test.fix.pack.base.url}" />
 							</antcall>
@@ -2543,6 +2547,7 @@ app.server.type=@{app.server.type}]]></echo>
 			test.portal.bundle.version="${test.portal.bundle.version}"
 			test.portal.bundle.dependencies.zip.url="${test.portal.bundle.dependencies.zip.url}"
 			test.portal.bundle.osgi.zip.url="${test.portal.bundle.osgi.zip.url}"
+			test.portal.bundle.tools.zip.url="${test.portal.bundle.tools.zip.url}"
 			test.portal.bundle.war.url="${test.portal.bundle.war.url}"
 			test.portal.lpkg.name="${test.portal.lpkg.name}"
 			test.sql.zip.url="${test.sql.zip.url}"
@@ -2572,6 +2577,7 @@ app.server.type=@{app.server.type}]]></echo>
 			test.plugins.war.zip.url="${test.plugins.war.zip.url}"
 			test.portal.bundle.dependencies.zip.url="${test.portal.bundle.dependencies.zip.url}"
 			test.portal.bundle.osgi.zip.url="${test.portal.bundle.osgi.zip.url}"
+			test.portal.bundle.tools.zip.url="${test.portal.bundle.tools.zip.url}"
 			test.portal.bundle.war.url="${test.portal.bundle.war.url}"
 			test.portal.lpkg.name="${test.portal.lpkg.name}"
 			test.sql.zip.url="${test.sql.zip.url}"
@@ -2741,6 +2747,7 @@ app.server.type=@{app.server.type}]]></echo>
 			test.plugins.war.zip.url="${test.plugins.war.zip.url}"
 			test.portal.bundle.dependencies.zip.url="${test.portal.bundle.dependencies.zip.url}"
 			test.portal.bundle.osgi.zip.url="${test.portal.bundle.osgi.zip.url}"
+			test.portal.bundle.tools.zip.url="${test.portal.bundle.tools.zip.url}"
 			test.portal.bundle.war.url="${test.portal.bundle.war.url}"
 			test.portal.lpkg.name="${test.portal.lpkg.name}"
 			test.sql.zip.url="${test.sql.zip.url}"
@@ -2758,6 +2765,7 @@ app.server.type=@{app.server.type}]]></echo>
 			test.plugins.war.zip.url="${test.plugins.war.zip.url}"
 			test.portal.bundle.dependencies.zip.url="${test.portal.bundle.dependencies.zip.url}"
 			test.portal.bundle.osgi.zip.url="${test.portal.bundle.osgi.zip.url}"
+			test.portal.bundle.tools.zip.url="${test.portal.bundle.tools.zip.url}"
 			test.portal.bundle.war.url="${test.portal.bundle.war.url}"
 			test.portal.lpkg.name="${test.portal.lpkg.name}"
 			test.sql.zip.url="${test.sql.zip.url}"
@@ -3153,6 +3161,7 @@ app.server.type=@{app.server.type}]]></echo>
 							<param name="test.build.fix.pack.zip.url" value="${test.build.fix.pack.zip.url}" />
 							<param name="test.build.portal.dependencies.zip.url" value="${test.portal.bundle.dependencies.zip.url}" />
 							<param name="test.build.portal.osgi.zip.url" value="${test.portal.bundle.osgi.zip.url}" />
+							<param name="test.build.portal.tools.zip.url" value="${test.portal.bundle.tools.zip.url}" />
 							<param name="test.build.portal.war.url" value="${test.portal.bundle.war.url}" />
 							<param name="test.fix.pack.base.url" value="${test.fix.pack.base.url}" />
 						</antcall>
@@ -3330,6 +3339,7 @@ app.server.type=@{app.server.type}]]></echo>
 			test.license.xml.url="${test.license.xml.url}"
 			test.portal.bundle.dependencies.zip.url="${test.portal.bundle.dependencies.zip.url}"
 			test.portal.bundle.osgi.zip.url="${test.portal.bundle.osgi.zip.url}"
+			test.portal.bundle.tools.zip.url="${test.portal.bundle.tools.zip.url}"
 			test.portal.bundle.war.url="${test.portal.bundle.war.url}"
 			test.portal.bundle.zip.url="${test.portal.bundle.zip.url}"
 			test.sql.zip.url="${test.sql.zip.url}"
@@ -3346,6 +3356,7 @@ app.server.type=@{app.server.type}]]></echo>
 			test.license.xml.url="${test.license.xml.url}"
 			test.portal.bundle.dependencies.zip.url="${test.portal.bundle.dependencies.zip.url}"
 			test.portal.bundle.osgi.zip.url="${test.portal.bundle.osgi.zip.url}"
+			test.portal.bundle.tools.zip.url="${test.portal.bundle.tools.zip.url}"
 			test.portal.bundle.war.url="${test.portal.bundle.war.url}"
 			test.portal.bundle.zip.url="${test.portal.bundle.zip.url}"
 			test.sql.zip.url="${test.sql.zip.url}"
@@ -3362,6 +3373,7 @@ app.server.type=@{app.server.type}]]></echo>
 			test.license.xml.url="${test.license.xml.url}"
 			test.portal.bundle.dependencies.zip.url="${test.portal.bundle.dependencies.zip.url}"
 			test.portal.bundle.osgi.zip.url="${test.portal.bundle.osgi.zip.url}"
+			test.portal.bundle.tools.zip.url="${test.portal.bundle.tools.zip.url}"
 			test.portal.bundle.war.url="${test.portal.bundle.war.url}"
 			test.portal.bundle.zip.url="${test.portal.bundle.zip.url}"
 			test.sql.zip.url="${test.sql.zip.url}"
@@ -3378,6 +3390,7 @@ app.server.type=@{app.server.type}]]></echo>
 			test.license.xml.url="${test.license.xml.url}"
 			test.portal.bundle.dependencies.zip.url="${test.portal.bundle.dependencies.zip.url}"
 			test.portal.bundle.osgi.zip.url="${test.portal.bundle.osgi.zip.url}"
+			test.portal.bundle.tools.zip.url="${test.portal.bundle.tools.zip.url}"
 			test.portal.bundle.war.url="${test.portal.bundle.war.url}"
 			test.portal.bundle.zip.url="${test.portal.bundle.zip.url}"
 			test.sql.zip.url="${test.sql.zip.url}"
@@ -3394,6 +3407,7 @@ app.server.type=@{app.server.type}]]></echo>
 			test.license.xml.url="${test.license.xml.url}"
 			test.portal.bundle.dependencies.zip.url="${test.portal.bundle.dependencies.zip.url}"
 			test.portal.bundle.osgi.zip.url="${test.portal.bundle.osgi.zip.url}"
+			test.portal.bundle.tools.zip.url="${test.portal.bundle.tools.zip.url}"
 			test.portal.bundle.war.url="${test.portal.bundle.war.url}"
 			test.portal.bundle.zip.url="${test.portal.bundle.zip.url}"
 			test.sql.zip.url="${test.sql.zip.url}"
@@ -3410,6 +3424,7 @@ app.server.type=@{app.server.type}]]></echo>
 			test.license.xml.url="${test.license.xml.url}"
 			test.portal.bundle.dependencies.zip.url="${test.portal.bundle.dependencies.zip.url}"
 			test.portal.bundle.osgi.zip.url="${test.portal.bundle.osgi.zip.url}"
+			test.portal.bundle.tools.zip.url="${test.portal.bundle.tools.zip.url}"
 			test.portal.bundle.war.url="${test.portal.bundle.war.url}"
 			test.portal.bundle.zip.url="${test.portal.bundle.zip.url}"
 			test.sql.zip.url="${test.sql.zip.url}"
@@ -3426,6 +3441,7 @@ app.server.type=@{app.server.type}]]></echo>
 			test.license.xml.url="${test.license.xml.url}"
 			test.portal.bundle.dependencies.zip.url="${test.portal.bundle.dependencies.zip.url}"
 			test.portal.bundle.osgi.zip.url="${test.portal.bundle.osgi.zip.url}"
+			test.portal.bundle.tools.zip.url="${test.portal.bundle.tools.zip.url}"
 			test.portal.bundle.war.url="${test.portal.bundle.war.url}"
 			test.portal.bundle.zip.url="${test.portal.bundle.zip.url}"
 			test.sql.zip.url="${test.sql.zip.url}"
