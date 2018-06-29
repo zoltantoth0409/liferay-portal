@@ -7,3 +7,8 @@
 # Bundle Version 1.0.6
 #
 332802e3c31ad2f931baadc88a80625e23d723a2^..b5e2fdb7babf577adb989cfa6eb2e3f1d89904b8=OAUTH2-157 OAUTH2-174
+
+#
+# Bundle Version 1.0.7
+#
+b5e2fdb7babf577adb989cfa6eb2e3f1d89904b8^..a4fd2ef8be90844056c9be422402922f02d2c307=LPS-77699 OAUTH2-177
