@@ -20,17 +20,17 @@
 String action = GetterUtil.getString(request.getAttribute("liferay-staging:select-pages:action"));
 boolean disableInputs = GetterUtil.getBoolean(request.getAttribute("liferay-staging:select-pages:disableInputs"));
 long exportImportConfigurationId = GetterUtil.getLong(request.getAttribute("liferay-staging:select-pages:exportImportConfigurationId"));
-long groupIdAttribute = GetterUtil.getLong(request.getAttribute("liferay-staging:select-pages:groupId"));
-boolean privateLayoutAttribute = GetterUtil.getBoolean(request.getAttribute("liferay-staging:select-pages:privateLayout"));
+long selectPagesGroupId = GetterUtil.getLong(request.getAttribute("liferay-staging:select-pages:groupId"));
+boolean selectPagesPrivteLayout = GetterUtil.getBoolean(request.getAttribute("liferay-staging:select-pages:privateLayout"));
 String treeId = GetterUtil.getString(request.getAttribute("liferay-staging:select-pages:treeId"));
 
-Group groupAttribute = group;
+Group selectPagesGroup = group;
 
-if (groupId != groupIdAttribute) {
-	groupAttribute = GroupLocalServiceUtil.fetchGroup(groupId);
+if (groupId != selectPagesGroupId) {
+	selectPagesGroup = GroupLocalServiceUtil.fetchGroup(groupId);
 
-	if (groupAttribute == null) {
-		groupAttribute = group;
+	if (selectPagesGroup == null) {
+		selectPagesGroup = group;
 	}
 }
 
@@ -61,10 +61,10 @@ else {
 	String openNodes = SessionTreeJSClicks.getOpenNodes(request, treeId + "SelectedNode");
 
 	if (openNodes == null) {
-		selectedLayoutIdsArray = ExportImportHelperUtil.getAllLayoutIds(groupIdAttribute, privateLayoutAttribute);
+		selectedLayoutIdsArray = ExportImportHelperUtil.getAllLayoutIds(selectPagesGroupId, selectPagesPrivteLayout);
 
 		for (long selectedLayoutId : selectedLayoutIdsArray) {
-			SessionTreeJSClicks.openLayoutNodes(request, treeId + "SelectedNode", privateLayoutAttribute, selectedLayoutId, true);
+			SessionTreeJSClicks.openLayoutNodes(request, treeId + "SelectedNode", selectPagesPrivteLayout, selectedLayoutId, true);
 		}
 	}
 	else {
