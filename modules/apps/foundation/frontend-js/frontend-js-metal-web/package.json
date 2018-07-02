@@ -34,7 +34,7 @@
 		"metal-tooltip": "^2.0.0",
 		"metal-treeview": "^2.0.0",
 		"metal-uri": "^2.0.2",
-		"metal-useragent": "^3.0.0"
+		"metal-useragent": "3.0.0"
 	},
 	"devDependencies": {
 		"liferay-module-config-generator": "^1.2.1",
