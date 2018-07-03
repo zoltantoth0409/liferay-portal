@@ -57,9 +57,9 @@ if ((microblogsEntry != null) && !edit) {
 	}
 }
 
-boolean comment = GetterUtil.getBoolean((String)request.getAttribute("view_comments.jsp-comment"));
-
 String formId = String.valueOf(microblogsEntryId);
+
+boolean comment = GetterUtil.getBoolean((String)request.getAttribute("view_comments.jsp-comment"));
 
 if (edit) {
 	formId = "Edit" + formId;
