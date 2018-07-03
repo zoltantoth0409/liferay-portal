@@ -59,7 +59,7 @@ public interface BlogsEntry extends BlogsEntryModel, PersistedModel {
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	#getSmallImageURL(ThemeDisplay)}
 	*/
 	@Deprecated()

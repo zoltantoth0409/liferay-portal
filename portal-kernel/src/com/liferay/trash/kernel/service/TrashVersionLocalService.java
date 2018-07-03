@@ -174,8 +174,8 @@ public interface TrashVersionLocalService extends BaseLocalService,
 	public TrashVersion fetchTrashVersion(long versionId);
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link #fetchVersion(String,
-	long)}
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	#fetchVersion(String, long)}
 	*/
 	@Deprecated
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

@@ -399,7 +399,7 @@ public class BlogsEntryWrapper implements BlogsEntry, ModelWrapper<BlogsEntry> {
 	}
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	#getSmallImageURL(ThemeDisplay)}
 	*/
 	@Deprecated
@@ -617,7 +617,7 @@ public class BlogsEntryWrapper implements BlogsEntry, ModelWrapper<BlogsEntry> {
 	* Returns the trash handler for this blogs entry.
 	*
 	* @return the trash handler for this blogs entry
-	* @deprecated As of Judson (7.1.x), with no direct replacement
+	* @deprecated As of Judson, with no direct replacement
 	*/
 	@Deprecated
 	@Override

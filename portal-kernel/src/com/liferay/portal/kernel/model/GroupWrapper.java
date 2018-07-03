@@ -266,7 +266,7 @@ public class GroupWrapper implements Group, ModelWrapper<Group> {
 	}
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	#getChildrenWithLayouts(boolean, int, int,
 	OrderByComparator)}
 	*/
@@ -886,7 +886,7 @@ public class GroupWrapper implements Group, ModelWrapper<Group> {
 	}
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link #hasAncestor}
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link #hasAncestor}
 	*/
 	@Deprecated
 	@Override

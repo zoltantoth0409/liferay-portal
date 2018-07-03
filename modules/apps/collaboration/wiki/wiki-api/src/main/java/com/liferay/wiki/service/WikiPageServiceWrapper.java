@@ -88,8 +88,8 @@ public class WikiPageServiceWrapper implements WikiPageService,
 	}
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link #addTempFileEntry(long,
-	String, String, InputStream, String)}
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	#addTempFileEntry(long, String, String, InputStream, String)}
 	*/
 	@Deprecated
 	@Override

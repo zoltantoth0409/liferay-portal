@@ -42,10 +42,10 @@ public class BlogsEntryServiceUtil {
 	 */
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link #addEntry(String,
-	String, String, String, int, int, int, int, int, boolean,
-	boolean, String[], String, ImageSelector, ImageSelector,
-	ServiceContext)}
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	#addEntry(String, String, String, String, int, int, int, int,
+	int, boolean, boolean, String[], String, ImageSelector,
+	ImageSelector, ServiceContext)}
 	*/
 	@Deprecated
 	public static com.liferay.blogs.kernel.model.BlogsEntry addEntry(
@@ -250,10 +250,10 @@ public class BlogsEntryServiceUtil {
 	}
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link #updateEntry(long,
-	String, String, String, String, int, int, int, int, int,
-	boolean, boolean, String[], String, ImageSelector,
-	ImageSelector, ServiceContext)}
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	#updateEntry(long, String, String, String, String, int, int,
+	int, int, int, boolean, boolean, String[], String,
+	ImageSelector, ImageSelector, ServiceContext)}
 	*/
 	@Deprecated
 	public static com.liferay.blogs.kernel.model.BlogsEntry updateEntry(

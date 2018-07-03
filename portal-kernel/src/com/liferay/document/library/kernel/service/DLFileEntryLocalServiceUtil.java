@@ -455,8 +455,8 @@ public class DLFileEntryLocalServiceUtil {
 	}
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link #getFile(long, String,
-	boolean)}
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link #getFile(long,
+	String, boolean)}
 	*/
 	@Deprecated
 	public static java.io.File getFile(long userId, long fileEntryId,
@@ -467,8 +467,8 @@ public class DLFileEntryLocalServiceUtil {
 	}
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link #getFile(long, String,
-	boolean, int)}
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link #getFile(long,
+	String, boolean, int)}
 	*/
 	@Deprecated
 	public static java.io.File getFile(long userId, long fileEntryId,
@@ -493,8 +493,8 @@ public class DLFileEntryLocalServiceUtil {
 	}
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link #getFileAsStream(long,
-	String)}
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	#getFileAsStream(long, String)}
 	*/
 	@Deprecated
 	public static java.io.InputStream getFileAsStream(long userId,
@@ -504,8 +504,8 @@ public class DLFileEntryLocalServiceUtil {
 	}
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link #getFileAsStream(long,
-	String, boolean)}
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	#getFileAsStream(long, String, boolean)}
 	*/
 	@Deprecated
 	public static java.io.InputStream getFileAsStream(long userId,
@@ -517,8 +517,8 @@ public class DLFileEntryLocalServiceUtil {
 	}
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link #getFileAsStream(long,
-	String, boolean, int)}
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	#getFileAsStream(long, String, boolean, int)}
 	*/
 	@Deprecated
 	public static java.io.InputStream getFileAsStream(long userId,
@@ -604,7 +604,7 @@ public class DLFileEntryLocalServiceUtil {
 	}
 
 	/**
-	* @deprecated As of Wilberforce, with no direct replacement
+	* @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	*/
 	@Deprecated
 	public static int getFileEntriesCount(long groupId,
@@ -792,7 +792,7 @@ public class DLFileEntryLocalServiceUtil {
 	}
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	#isKeepFileVersionLabel(long, boolean, ServiceContext)}
 	*/
 	@Deprecated

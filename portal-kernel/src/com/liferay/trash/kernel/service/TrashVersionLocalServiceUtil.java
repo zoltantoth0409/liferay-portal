@@ -192,8 +192,8 @@ public class TrashVersionLocalServiceUtil {
 	}
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link #fetchVersion(String,
-	long)}
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	#fetchVersion(String, long)}
 	*/
 	@Deprecated
 	public static com.liferay.trash.kernel.model.TrashVersion fetchVersion(

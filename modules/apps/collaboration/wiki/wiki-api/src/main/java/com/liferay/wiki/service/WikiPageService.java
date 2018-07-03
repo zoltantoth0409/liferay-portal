@@ -87,8 +87,8 @@ public interface WikiPageService extends BaseService {
 		throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link #addTempFileEntry(long,
-	String, String, InputStream, String)}
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	#addTempFileEntry(long, String, String, InputStream, String)}
 	*/
 	@Deprecated
 	public void addTempPageAttachment(long nodeId, String fileName,

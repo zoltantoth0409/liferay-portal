@@ -51,8 +51,8 @@ public class MBDiscussionLocalServiceUtil {
 	}
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link #addDiscussion(long,
-	long, long, long, long, ServiceContext)}
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	#addDiscussion(long, long, long, long, long, ServiceContext)}
 	*/
 	@Deprecated
 	public static com.liferay.message.boards.kernel.model.MBDiscussion addDiscussion(

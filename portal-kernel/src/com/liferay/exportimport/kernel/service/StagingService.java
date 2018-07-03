@@ -72,7 +72,7 @@ public interface StagingService extends BaseService {
 		throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, with no direct replacement
+	* @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	*/
 	@Deprecated
 	public MissingReferences publishStagingRequest(long stagingRequestId,
@@ -87,7 +87,7 @@ public interface StagingService extends BaseService {
 		byte[] bytes) throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	#publishStagingRequest(long, boolean, Map)}
 	*/
 	@Deprecated

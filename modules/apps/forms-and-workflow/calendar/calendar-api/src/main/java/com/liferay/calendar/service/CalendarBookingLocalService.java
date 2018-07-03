@@ -121,7 +121,7 @@ public interface CalendarBookingLocalService extends BaseLocalService,
 		throws PortalException;
 
 	/**
-	* @deprecated As of Judson, replaced by {@link
+	* @deprecated As of Judson (7.1.x), replaced by {@link
 	#deleteCalendarBookingInstance(long, CalendarBooking, int,
 	boolean)}
 	*/
@@ -130,7 +130,7 @@ public interface CalendarBookingLocalService extends BaseLocalService,
 		int instanceIndex, boolean allFollowing) throws PortalException;
 
 	/**
-	* @deprecated As of Judson, replaced by {@link
+	* @deprecated As of Judson (7.1.x), replaced by {@link
 	#deleteCalendarBookingInstance(long, CalendarBooking, int,
 	boolean, boolean)}
 	*/
@@ -140,7 +140,7 @@ public interface CalendarBookingLocalService extends BaseLocalService,
 		boolean deleteRecurringCalendarBookings) throws PortalException;
 
 	/**
-	* @deprecated As of Judson, replaced by {@link
+	* @deprecated As of Judson (7.1.x), replaced by {@link
 	#deleteCalendarBookingInstance(long, CalendarBooking, long,
 	boolean)}
 	*/
@@ -149,7 +149,7 @@ public interface CalendarBookingLocalService extends BaseLocalService,
 		long startTime, boolean allFollowing) throws PortalException;
 
 	/**
-	* @deprecated As of Judson, replaced by {@link
+	* @deprecated As of Judson (7.1.x), replaced by {@link
 	#deleteCalendarBookingInstance(long, CalendarBooking, long,
 	boolean, boolean)}
 	*/
@@ -176,7 +176,7 @@ public interface CalendarBookingLocalService extends BaseLocalService,
 		boolean deleteRecurringCalendarBookings) throws PortalException;
 
 	/**
-	* @deprecated As of Judson, replaced by {@link
+	* @deprecated As of Judson (7.1.x), replaced by {@link
 	#deleteCalendarBookingInstance(long, long, long, boolean)}
 	*/
 	@Deprecated

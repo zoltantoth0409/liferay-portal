@@ -117,8 +117,9 @@ public interface MBMessageLocalService extends BaseLocalService,
 		throws FileNotFoundException, PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link #addMessage(long,
-	String, long, long, String, String, ServiceContext)}
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	#addMessage(long, String, long, long, String, String,
+	ServiceContext)}
 	*/
 	@Deprecated
 	public MBMessage addMessage(long userId, String userName, long categoryId,
@@ -309,7 +310,7 @@ public interface MBMessageLocalService extends BaseLocalService,
 		Comparator<MBMessage> comparator) throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	#getDiscussionMessageDisplay(long, long, String, long, int)}
 	*/
 	@Deprecated
@@ -436,7 +437,7 @@ public interface MBMessageLocalService extends BaseLocalService,
 		int status) throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	#getMessageDisplay(long, long, int)}
 	*/
 	@Deprecated
@@ -454,7 +455,7 @@ public interface MBMessageLocalService extends BaseLocalService,
 		int status, Comparator<MBMessage> comparator) throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	#getMessageDisplay(long, MBMessage, int)}
 	*/
 	@Deprecated
@@ -464,7 +465,7 @@ public interface MBMessageLocalService extends BaseLocalService,
 		throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	#getMessageDisplay(long, MBMessage, int, Comparator)} (
 	*/
 	@Deprecated
@@ -589,15 +590,15 @@ public interface MBMessageLocalService extends BaseLocalService,
 		ServiceContext serviceContext) throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, with no direct replacement
+	* @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	*/
 	@Deprecated
 	public MBMessage updateMessage(long messageId, String body)
 		throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link #updateStatus(long,
-	long, int, ServiceContext, Map)}
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	#updateStatus(long, long, int, ServiceContext, Map)}
 	*/
 	@Deprecated
 	public MBMessage updateStatus(long userId, long messageId, int status,

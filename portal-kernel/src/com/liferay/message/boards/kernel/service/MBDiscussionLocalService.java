@@ -69,8 +69,8 @@ public interface MBDiscussionLocalService extends BaseLocalService,
 		ServiceContext serviceContext) throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link #addDiscussion(long,
-	long, long, long, long, ServiceContext)}
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	#addDiscussion(long, long, long, long, long, ServiceContext)}
 	*/
 	@Deprecated
 	public MBDiscussion addDiscussion(long userId, long classNameId,

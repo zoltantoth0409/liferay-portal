@@ -95,8 +95,8 @@ public class WikiPageServiceUtil {
 	}
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link #addTempFileEntry(long,
-	String, String, InputStream, String)}
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	#addTempFileEntry(long, String, String, InputStream, String)}
 	*/
 	@Deprecated
 	public static void addTempPageAttachment(long nodeId, String fileName,

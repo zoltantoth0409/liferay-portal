@@ -190,7 +190,7 @@ public interface LayoutService extends BaseService {
 	* @param startDate the export's start date
 	* @param endDate the export's end date
 	* @return the layouts as a byte array
-	* @deprecated As of Wilberforce, with no direct replacement
+	* @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	*/
 	@Deprecated
 	public byte[] exportLayouts(long groupId, boolean privateLayout,
@@ -209,7 +209,7 @@ public interface LayoutService extends BaseService {
 	* @param startDate the export's start date
 	* @param endDate the export's end date
 	* @return the layout as a byte array
-	* @deprecated As of Wilberforce, with no direct replacement
+	* @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	*/
 	@Deprecated
 	public byte[] exportLayouts(long groupId, boolean privateLayout,
@@ -217,7 +217,7 @@ public interface LayoutService extends BaseService {
 		throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	com.liferay.exportimport.kernel.service.ExportImportService#exportLayoutsAsFile(
 	ExportImportConfiguration)}
 	*/
@@ -240,7 +240,7 @@ public interface LayoutService extends BaseService {
 	* @param startDate the export's start date
 	* @param endDate the export's end date
 	* @return the layouts as a File
-	* @deprecated As of Wilberforce, with no direct replacement
+	* @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	*/
 	@Deprecated
 	public File exportLayoutsAsFile(long groupId, boolean privateLayout,
@@ -248,7 +248,7 @@ public interface LayoutService extends BaseService {
 		Date endDate) throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	com.liferay.exportimport.kernel.service.ExportImportService#exportLayoutsAsFileInBackground(
 	ExportImportConfiguration)}
 	*/
@@ -258,7 +258,7 @@ public interface LayoutService extends BaseService {
 		throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	com.liferay.exportimport.kernel.service.ExportImportService#exportLayoutsAsFileInBackground(
 	long)}
 	*/
@@ -267,7 +267,7 @@ public interface LayoutService extends BaseService {
 		long exportImportConfigurationId) throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, with no direct replacement
+	* @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	*/
 	@Deprecated
 	public long exportLayoutsAsFileInBackground(String taskName, long groupId,
@@ -276,7 +276,7 @@ public interface LayoutService extends BaseService {
 		throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, with no direct replacement
+	* @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	*/
 	@Deprecated
 	public long exportLayoutsAsFileInBackground(String taskName, long groupId,
@@ -298,7 +298,7 @@ public interface LayoutService extends BaseService {
 	* @param startDate the export's start date
 	* @param endDate the export's end date
 	* @return the portlet information as a byte array
-	* @deprecated As of Wilberforce, with no direct replacement
+	* @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	*/
 	@Deprecated
 	public byte[] exportPortletInfo(long plid, long groupId, String portletId,
@@ -306,7 +306,7 @@ public interface LayoutService extends BaseService {
 		throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, with no direct replacement
+	* @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	*/
 	@Deprecated
 	public byte[] exportPortletInfo(long companyId, String portletId,
@@ -314,7 +314,7 @@ public interface LayoutService extends BaseService {
 		throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	com.liferay.exportimport.kernel.service.ExportImportService#exportPortletInfoAsFile(
 	ExportImportConfiguration)}
 	*/
@@ -337,7 +337,7 @@ public interface LayoutService extends BaseService {
 	* @param startDate the export's start date
 	* @param endDate the export's end date
 	* @return the portlet information as a file
-	* @deprecated As of Wilberforce, with no direct replacement
+	* @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	*/
 	@Deprecated
 	public File exportPortletInfoAsFile(long plid, long groupId,
@@ -345,7 +345,7 @@ public interface LayoutService extends BaseService {
 		Date endDate) throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, with no direct replacement
+	* @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	*/
 	@Deprecated
 	public File exportPortletInfoAsFile(String portletId,
@@ -353,7 +353,7 @@ public interface LayoutService extends BaseService {
 		throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, with no direct replacement
+	* @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	*/
 	@Deprecated
 	public long exportPortletInfoAsFileInBackground(String taskName, long plid,
@@ -362,7 +362,7 @@ public interface LayoutService extends BaseService {
 		throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, with no direct replacement
+	* @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	*/
 	@Deprecated
 	public long exportPortletInfoAsFileInBackground(String taskName,
@@ -470,7 +470,7 @@ public interface LayoutService extends BaseService {
 		throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	com.liferay.exportimport.kernel.service.ExportImportService#importLayouts(
 	ExportImportConfiguration, File)}
 	*/
@@ -480,7 +480,7 @@ public interface LayoutService extends BaseService {
 		throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	com.liferay.exportimport.kernel.service.ExportImportService#importLayouts(
 	ExportImportConfiguration, InputStream)}
 	*/
@@ -500,7 +500,7 @@ public interface LayoutService extends BaseService {
 	com.liferay.exportimport.kernel.lar.PortletDataHandlerKeys}.
 	* @param bytes the byte array with the data
 	* @see com.liferay.exportimport.kernel.lar.LayoutImporter
-	* @deprecated As of Wilberforce, with no direct replacement
+	* @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	*/
 	@Deprecated
 	public void importLayouts(long groupId, boolean privateLayout,
@@ -518,7 +518,7 @@ public interface LayoutService extends BaseService {
 	com.liferay.exportimport.kernel.lar.PortletDataHandlerKeys}.
 	* @param file the LAR file with the data
 	* @see com.liferay.exportimport.kernel.lar.LayoutImporter
-	* @deprecated As of Wilberforce, with no direct replacement
+	* @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	*/
 	@Deprecated
 	public void importLayouts(long groupId, boolean privateLayout,
@@ -536,7 +536,7 @@ public interface LayoutService extends BaseService {
 	com.liferay.exportimport.kernel.lar.PortletDataHandlerKeys}.
 	* @param is the input stream
 	* @see com.liferay.exportimport.kernel.lar.LayoutImporter
-	* @deprecated As of Wilberforce, with no direct replacement
+	* @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	*/
 	@Deprecated
 	public void importLayouts(long groupId, boolean privateLayout,
@@ -544,7 +544,7 @@ public interface LayoutService extends BaseService {
 		throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, with no direct replacement
+	* @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	*/
 	@Deprecated
 	public long importLayoutsInBackground(String taskName, long groupId,
@@ -552,7 +552,7 @@ public interface LayoutService extends BaseService {
 		throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, with no direct replacement
+	* @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	*/
 	@Deprecated
 	public long importLayoutsInBackground(String taskName, long groupId,
@@ -560,7 +560,7 @@ public interface LayoutService extends BaseService {
 		InputStream inputStream) throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	com.liferay.exportimport.kernel.service.ExportImportService#importPortletInfo(
 	ExportImportConfiguration, File)} (
 	*/
@@ -570,7 +570,7 @@ public interface LayoutService extends BaseService {
 		throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	com.liferay.exportimport.kernel.service.ExportImportService#importPortletInfo(
 	ExportImportConfiguration, InputStream)} (
 	*/
@@ -591,7 +591,7 @@ public interface LayoutService extends BaseService {
 	used in the map see {@link
 	com.liferay.exportimport.kernel.lar.PortletDataHandlerKeys}.
 	* @param file the LAR file with the data
-	* @deprecated As of Wilberforce, with no direct replacement
+	* @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	*/
 	@Deprecated
 	public void importPortletInfo(long plid, long groupId, String portletId,
@@ -610,7 +610,7 @@ public interface LayoutService extends BaseService {
 	used in the map see {@link
 	com.liferay.exportimport.kernel.lar.PortletDataHandlerKeys}.
 	* @param is the input stream
-	* @deprecated As of Wilberforce, with no direct replacement
+	* @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	*/
 	@Deprecated
 	public void importPortletInfo(long plid, long groupId, String portletId,
@@ -618,7 +618,7 @@ public interface LayoutService extends BaseService {
 		throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, with no direct replacement
+	* @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	*/
 	@Deprecated
 	public void importPortletInfo(String portletId,
@@ -626,7 +626,7 @@ public interface LayoutService extends BaseService {
 		throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, with no direct replacement
+	* @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	*/
 	@Deprecated
 	public void importPortletInfo(String portletId,
@@ -634,7 +634,7 @@ public interface LayoutService extends BaseService {
 		throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, with no direct replacement
+	* @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	*/
 	@Deprecated
 	public long importPortletInfoInBackground(String taskName, long plid,
@@ -642,7 +642,7 @@ public interface LayoutService extends BaseService {
 		File file) throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, with no direct replacement
+	* @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	*/
 	@Deprecated
 	public long importPortletInfoInBackground(String taskName, long plid,
@@ -650,7 +650,7 @@ public interface LayoutService extends BaseService {
 		InputStream is) throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, with no direct replacement
+	* @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	*/
 	@Deprecated
 	public void importPortletInfoInBackground(String taskName,
@@ -658,7 +658,7 @@ public interface LayoutService extends BaseService {
 		throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, with no direct replacement
+	* @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	*/
 	@Deprecated
 	public void importPortletInfoInBackground(String taskName,
@@ -689,7 +689,7 @@ public interface LayoutService extends BaseService {
 	* @param schedulerStartDate the scheduler start date
 	* @param schedulerEndDate the scheduler end date
 	* @param description the scheduler description
-	* @deprecated As of Wilberforce, replaced by {@link
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	#schedulePublishToLive(long, long, boolean, long[], Map,
 	String, String, Date, Date, String)}
 	*/
@@ -748,7 +748,7 @@ public interface LayoutService extends BaseService {
 	* @param schedulerStartDate the scheduler start date
 	* @param schedulerEndDate the scheduler end date
 	* @param description the scheduler description
-	* @deprecated As of Wilberforce, replaced by {@link
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	#schedulePublishToLive(long, long, boolean, long[], Map,
 	String, Date, Date, String, String, Date, Date, String)}
 	*/
@@ -1009,7 +1009,7 @@ public interface LayoutService extends BaseService {
 		throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	com.liferay.exportimport.kernel.service.ExportImportService#validateImportLayoutsFile(
 	ExportImportConfiguration, File)}
 	*/
@@ -1019,7 +1019,7 @@ public interface LayoutService extends BaseService {
 		throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	com.liferay.exportimport.kernel.service.ExportImportService#validateImportLayoutsFile(
 	ExportImportConfiguration, InputStream)}
 	*/
@@ -1029,7 +1029,7 @@ public interface LayoutService extends BaseService {
 		InputStream inputStream) throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, with no direct replacement
+	* @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	*/
 	@Deprecated
 	public MissingReferences validateImportLayoutsFile(long groupId,
@@ -1037,7 +1037,7 @@ public interface LayoutService extends BaseService {
 		throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, with no direct replacement
+	* @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	*/
 	@Deprecated
 	public MissingReferences validateImportLayoutsFile(long groupId,
@@ -1045,7 +1045,7 @@ public interface LayoutService extends BaseService {
 		InputStream inputStream) throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	com.liferay.exportimport.kernel.service.ExportImportService#validateImportPortletInfo(
 	ExportImportConfiguration, File)}
 	*/
@@ -1055,7 +1055,7 @@ public interface LayoutService extends BaseService {
 		throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	com.liferay.exportimport.kernel.service.ExportImportService#validateImportPortletInfo(
 	ExportImportConfiguration, InputStream)}
 	*/
@@ -1065,7 +1065,7 @@ public interface LayoutService extends BaseService {
 		InputStream inputStream) throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, with no direct replacement
+	* @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	*/
 	@Deprecated
 	public MissingReferences validateImportPortletInfo(long plid, long groupId,
@@ -1073,7 +1073,7 @@ public interface LayoutService extends BaseService {
 		throws PortalException;
 
 	/**
-	* @deprecated As of Wilberforce, with no direct replacement
+	* @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	*/
 	@Deprecated
 	public MissingReferences validateImportPortletInfo(long plid, long groupId,

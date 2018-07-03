@@ -104,7 +104,7 @@ public class MBMessageServiceWrapper implements MBMessageService,
 	}
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	#deleteDiscussionMessage(long)}
 	*/
 	@Deprecated
@@ -217,7 +217,7 @@ public class MBMessageServiceWrapper implements MBMessageService,
 	}
 
 	/**
-	* @deprecated As of Wilberforce, replaced by {@link
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	#getMessageDisplay(long, int)}
 	*/
 	@Deprecated
