@@ -52,13 +52,12 @@ public class MergeCentralSubrepositoryUtil {
 		}
 
 		List<String> failedGitrepoPaths = new ArrayList<>();
-
-		List<File> gitrepoFiles = JenkinsResultsParserUtil.findFiles(
-			modulesDir, ".gitrepo");
-
 		List<String> subrepoMergeBlacklist =
 			JenkinsResultsParserUtil.getBuildPropertyAsList(
 				"subrepo.merge.blacklist");
+
+		List<File> gitrepoFiles = JenkinsResultsParserUtil.findFiles(
+			modulesDir, ".gitrepo");
 
 		for (File gitrepoFile : gitrepoFiles) {
 			try {
