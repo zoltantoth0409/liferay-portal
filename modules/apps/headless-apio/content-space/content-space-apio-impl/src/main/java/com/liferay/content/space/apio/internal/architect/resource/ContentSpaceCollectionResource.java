@@ -101,7 +101,6 @@ public class ContentSpaceCollectionResource
 		List<Group> groups = _groupService.getGroups(
 			company.getCompanyId(), 0, true, pagination.getStartPosition(),
 			pagination.getEndPosition());
-
 		int count = _groupService.getGroupsCount(
 			company.getCompanyId(), 0, true);
 
