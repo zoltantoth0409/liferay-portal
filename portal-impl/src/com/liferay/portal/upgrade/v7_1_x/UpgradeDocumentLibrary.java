@@ -20,7 +20,7 @@ import com.liferay.portal.upgrade.v7_1_x.util.DLFileEntryTypeTable;
 /**
  * @author Jose Maria Munoz
  */
-public class UpgradeDocumentLibraryFileEntryTypeKey extends UpgradeProcess {
+public class UpgradeDocumentLibrary extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
