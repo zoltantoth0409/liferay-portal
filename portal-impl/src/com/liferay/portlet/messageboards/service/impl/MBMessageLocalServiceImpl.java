@@ -495,8 +495,9 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #addMessage(long,
-	 *             String, long, long, String, String, ServiceContext)}
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	 *             #addMessage(long, String, long, long, String, String,
+	 *             ServiceContext)}
 	 */
 	@Deprecated
 	@Override
@@ -1807,8 +1808,8 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #updateStatus(long,
-	 *             long, int, ServiceContext, Map)}
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	 *             #updateStatus(long, long, int, ServiceContext, Map)}
 	 */
 	@Deprecated
 	@Override

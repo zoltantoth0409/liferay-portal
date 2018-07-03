@@ -113,8 +113,9 @@ public class AnnouncementsEntryLocalServiceImpl
 	}
 
 	/**
-	 * @deprecated As of Judson (7.1.x), replaced by {@link #addEntry(long, long, long,
-	 *             String, String, String, String, Date, Date, int, boolean)}
+	 * @deprecated As of Judson (7.1.x), replaced by {@link #addEntry(long,
+	 *             long, long, String, String, String, String, Date, Date, int,
+	 *             boolean)}
 	 */
 	@Deprecated
 	@Override
@@ -257,8 +258,8 @@ public class AnnouncementsEntryLocalServiceImpl
 	}
 
 	/**
-	 * @deprecated As of Judson (7.1.x), replaced by {@link #getEntries(long, long,
-	 *             long, boolean, int, int)}
+	 * @deprecated As of Judson (7.1.x), replaced by {@link #getEntries(long,
+	 *             long, long, boolean, int, int)}
 	 */
 	@Deprecated
 	@Override
@@ -333,8 +334,8 @@ public class AnnouncementsEntryLocalServiceImpl
 	}
 
 	/**
-	 * @deprecated As of Judson (7.1.x), replaced by {@link #getEntriesCount(long, long,
-	 *             long, boolean)}
+	 * @deprecated As of Judson (7.1.x), replaced by {@link
+	 *             #getEntriesCount(long, long, long, boolean)}
 	 */
 	@Deprecated
 	@Override
@@ -401,8 +402,8 @@ public class AnnouncementsEntryLocalServiceImpl
 	}
 
 	/**
-	 * @deprecated As of Judson (7.1.x), replaced by {@link #updateEntry(long, String,
-	 *             String, String, String, Date, Date, int)}
+	 * @deprecated As of Judson (7.1.x), replaced by {@link #updateEntry(long,
+	 *             String, String, String, String, Date, Date, int)}
 	 */
 	@Deprecated
 	@Override

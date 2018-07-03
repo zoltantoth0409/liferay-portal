@@ -705,7 +705,8 @@ public class PortletDataContextImpl implements PortletDataContext {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #getAssetLinkIds()}
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	 *             #getAssetLinkIds()}
 	 */
 	@Deprecated
 	@Override

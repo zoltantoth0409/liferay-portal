@@ -237,7 +237,8 @@ public interface PortletDataContext extends Serializable {
 	public Set<Long> getAssetLinkIds();
 
 	/**
-	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #getAssetLinkIds()}
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	 *             #getAssetLinkIds()}
 	 */
 	@Deprecated
 	public Map<String, List<AssetLink>> getAssetLinksMap();

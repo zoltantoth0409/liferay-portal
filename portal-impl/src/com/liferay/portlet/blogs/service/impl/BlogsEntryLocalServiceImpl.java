@@ -188,10 +188,10 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #addEntry(long, String,
-	 *             String, String, String, int, int, int, int, int, boolean,
-	 *             boolean, String[], String, ImageSelector, ImageSelector,
-	 *             ServiceContext)}
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #addEntry(long,
+	 *             String, String, String, String, int, int, int, int, int,
+	 *             boolean, boolean, String[], String, ImageSelector,
+	 *             ImageSelector, ServiceContext)}
 	 */
 	@Deprecated
 	@Override
@@ -1025,10 +1025,10 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #updateEntry(long,
-	 *             long, String, String, String, String, int, int, int, int,
-	 *             int, boolean, boolean, String[], String, ImageSelector,
-	 *             ImageSelector, ServiceContext)}
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	 *             #updateEntry(long, long, String, String, String, String, int,
+	 *             int, int, int, int, boolean, boolean, String[], String,
+	 *             ImageSelector, ImageSelector, ServiceContext)}
 	 */
 	@Deprecated
 	@Override
@@ -1266,8 +1266,8 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #updateStatus(long,
-	 *             long, int, ServiceContext, Map)}
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	 *             #updateStatus(long, long, int, ServiceContext, Map)}
 	 */
 	@Deprecated
 	@Override

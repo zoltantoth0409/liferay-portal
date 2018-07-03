@@ -774,8 +774,9 @@ public class DLFolderLocalServiceImpl extends DLFolderLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #updateFolder(long,
-	 *             long, String, String, long, List, int, ServiceContext)}
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	 *             #updateFolder(long, long, String, String, long, List, int,
+	 *             ServiceContext)}
 	 */
 	@Deprecated
 	@Override
@@ -917,8 +918,9 @@ public class DLFolderLocalServiceImpl extends DLFolderLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce (7.0.x), replaced {@link #updateFolder(long, long,
-	 *             String, String, long, List, int, ServiceContext)}
+	 * @deprecated As of Wilberforce (7.0.x), replaced {@link
+	 *             #updateFolder(long, long, String, String, long, List, int,
+	 *             ServiceContext)}
 	 */
 	@Deprecated
 	@Override

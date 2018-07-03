@@ -337,8 +337,8 @@ public class StagingImpl implements Staging {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #publishPortlet(long,
-	 *             long, long, long, long, String, Map)}
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	 *             #publishPortlet(long, long, long, long, long, String, Map)}
 	 */
 	@Deprecated
 	@Override
@@ -1487,8 +1487,8 @@ public class StagingImpl implements Staging {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #publishLayouts(long,
-	 *             long, long, boolean, long[], Map)}
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	 *             #publishLayouts(long, long, long, boolean, long[], Map)}
 	 */
 	@Deprecated
 	@Override
@@ -1547,8 +1547,8 @@ public class StagingImpl implements Staging {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #publishLayouts(long,
-	 *             long, long, boolean, long[], Map)}
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	 *             #publishLayouts(long, long, long, boolean, long[], Map)}
 	 */
 	@Deprecated
 	@Override
@@ -1579,8 +1579,8 @@ public class StagingImpl implements Staging {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #publishLayouts(long,
-	 *             long, long, boolean, Map)}
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	 *             #publishLayouts(long, long, long, boolean, Map)}
 	 */
 	@Deprecated
 	@Override
@@ -2439,8 +2439,8 @@ public class StagingImpl implements Staging {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #validateRemote(long,
-	 *             String, int, String, boolean, long)}
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	 *             #validateRemote(long, String, int, String, boolean, long)}
 	 */
 	@Deprecated
 	@Override

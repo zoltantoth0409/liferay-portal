@@ -7454,8 +7454,8 @@ public class PortalImpl implements Portal {
 	}
 
 	/**
-	 * @deprecated As of Judson (7.1.x), replaced by {@link #addRootModelResource(long,
-	 *             long, String)}
+	 * @deprecated As of Judson (7.1.x), replaced by {@link
+	 *             #addRootModelResource(long, long, String)}
 	 */
 	@Deprecated
 	protected void addRootModelResource(

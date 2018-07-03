@@ -66,9 +66,9 @@ public class MBMessageDisplayImpl implements MBMessageDisplay {
 	}
 
 	/**
-	 * @deprecated As of Judson (7.1.x), replaced by {@link #MBMessageDisplayImpl(long,
-	 *             MBMessage, MBMessage, MBCategory, MBThread, int,
-	 *             MBMessageLocalService, Comparator)}
+	 * @deprecated As of Judson (7.1.x), replaced by {@link
+	 *             #MBMessageDisplayImpl(long, MBMessage, MBMessage, MBCategory,
+	 *             MBThread, int, MBMessageLocalService, Comparator)}
 	 */
 	@Deprecated
 	public MBMessageDisplayImpl(

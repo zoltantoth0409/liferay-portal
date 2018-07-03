@@ -191,7 +191,8 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #clearPortletsMap)}
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
+	 *             #clearPortletsMap)}
 	 */
 	@Clusterable
 	@Deprecated
