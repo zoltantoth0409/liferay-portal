@@ -104,11 +104,11 @@ for (int i = 0; i < controls.length; i++) {
 
 					String[] choices = control.getChoices();
 
-					String defaultChoice = (choices != null) ? choices[control.getDefaultChoiceIndex()] : "";
-
-					String controlValue = MapUtil.getString(parameterMap, control.getNamespacedControlName(), defaultChoice);
-
 					for (String choice : choices) {
+						String defaultChoice = (choices != null) ? choices[control.getDefaultChoiceIndex()] : "";
+
+						String controlValue = MapUtil.getString(parameterMap, control.getNamespacedControlName(), defaultChoice);
+
 						Map<String, Object> data = new HashMap<String, Object>();
 
 						String controlName = LanguageUtil.get(request, resourceBundle, choice);
