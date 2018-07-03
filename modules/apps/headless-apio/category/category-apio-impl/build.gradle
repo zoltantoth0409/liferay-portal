@@ -11,7 +11,6 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.media.object.apio.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.person.apio.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.apio.api", version: "1.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.site.apio.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.vocabulary.apio.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.web.page.element.apio.api", version: "1.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "3.0.0"
