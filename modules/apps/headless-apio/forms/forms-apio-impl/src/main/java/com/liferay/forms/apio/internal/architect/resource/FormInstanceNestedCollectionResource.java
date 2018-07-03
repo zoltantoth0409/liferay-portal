@@ -224,7 +224,6 @@ public class FormInstanceNestedCollectionResource
 			_ddmFormInstanceService.getFormInstances(
 				company.getCompanyId(), groupId, pagination.getStartPosition(),
 				pagination.getEndPosition());
-
 		int count = _ddmFormInstanceService.getFormInstancesCount(
 			company.getCompanyId(), groupId);
 
