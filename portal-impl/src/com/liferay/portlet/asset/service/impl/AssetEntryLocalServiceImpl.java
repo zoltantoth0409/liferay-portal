@@ -812,7 +812,7 @@ public class AssetEntryLocalServiceImpl extends AssetEntryLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Judson, replaced by {@link #updateEntry(long, long,
+	 * @deprecated As of Judson (7.1.x), replaced by {@link #updateEntry(long, long,
 	 *             Date, Date, String, long, String, long, long[], String[],
 	 *             boolean, boolean, Date, Date, Date, Date, String, String,
 	 *             String, String, String, String, int, int, Double)}
@@ -837,7 +837,7 @@ public class AssetEntryLocalServiceImpl extends AssetEntryLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #updateEntry(long,
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #updateEntry(long,
 	 *             long, Date, Date, String, long, String, long, long[],
 	 *             String[], boolean, boolean, Date, Date, Date, Date, String,
 	 *             String, String, String, String, String, int, int, Double)}
@@ -899,7 +899,7 @@ public class AssetEntryLocalServiceImpl extends AssetEntryLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #updateEntry(String,
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #updateEntry(String,
 	 *             long, Date, Date, boolean, boolean)}
 	 */
 	@Deprecated
@@ -913,7 +913,7 @@ public class AssetEntryLocalServiceImpl extends AssetEntryLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #updateEntry(String,
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #updateEntry(String,
 	 *             long, Date, Date, boolean, boolean)}
 	 */
 	@Deprecated
@@ -1032,7 +1032,7 @@ public class AssetEntryLocalServiceImpl extends AssetEntryLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Judson, replaced by {@link #validate(long, String,
+	 * @deprecated As of Judson (7.1.x), replaced by {@link #validate(long, String,
 	 *             long, long, long[], String[])}
 	 */
 	@Deprecated
@@ -1046,7 +1046,7 @@ public class AssetEntryLocalServiceImpl extends AssetEntryLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #validate(long, String,
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #validate(long, String,
 	 *             long, long[], String[])}
 	 */
 	@Deprecated

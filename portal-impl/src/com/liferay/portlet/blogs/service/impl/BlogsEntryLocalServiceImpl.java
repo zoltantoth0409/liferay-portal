@@ -188,7 +188,7 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #addEntry(long, String,
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #addEntry(long, String,
 	 *             String, String, String, int, int, int, int, int, boolean,
 	 *             boolean, String[], String, ImageSelector, ImageSelector,
 	 *             ServiceContext)}
@@ -1025,7 +1025,7 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #updateEntry(long,
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #updateEntry(long,
 	 *             long, String, String, String, String, int, int, int, int,
 	 *             int, boolean, boolean, String[], String, ImageSelector,
 	 *             ImageSelector, ServiceContext)}
@@ -1266,7 +1266,7 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #updateStatus(long,
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #updateStatus(long,
 	 *             long, int, ServiceContext, Map)}
 	 */
 	@Deprecated
@@ -1476,7 +1476,7 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Judson, with no direct replacement
+	 * @deprecated As of Judson (7.1.x), with no direct replacement
 	 */
 	@Deprecated
 	protected void addDiscussion(BlogsEntry entry, long userId, long groupId)

@@ -611,7 +611,7 @@ public class PortletPermissionImpl implements PortletPermission {
 	}
 
 	/**
-	 * @deprecated As of Judson, replaced by {@link
+	 * @deprecated As of Judson (7.1.x), replaced by {@link
 	 *             #hasConfigurePermission(PermissionChecker, Layout, Portlet,
 	 *             String)}
 	 */
@@ -657,7 +657,7 @@ public class PortletPermissionImpl implements PortletPermission {
 	}
 
 	/**
-	 * @deprecated As of Judson, replaced by {@link
+	 * @deprecated As of Judson (7.1.x), replaced by {@link
 	 *             #hasCustomizePermission(PermissionChecker, Layout, Portlet,
 	 *             String)}
 	 */

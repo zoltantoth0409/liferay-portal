@@ -129,7 +129,7 @@ public class BlogsEntryAttachmentFileEntryHelper {
 	}
 
 	/**
-	 * @deprecated As of Judson, replaced by {@link
+	 * @deprecated As of Judson (7.1.x), replaced by {@link
 	 *             com.liferay.blogs.util.BlogsEntryAttachmentContentUpdater#updateContent(
 	 *             String, List)}
 	 */

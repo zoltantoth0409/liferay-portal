@@ -32,7 +32,7 @@ import java.sql.ResultSet;
 public class VerifyAsset extends VerifyProcess {
 
 	/**
-	 * @deprecated As of Judson
+	 * @deprecated As of Judson (7.1.x)
 	 */
 	@Deprecated
 	protected void deleteOrphanedAssetEntries() throws Exception {

@@ -209,7 +209,7 @@ public class StagingImpl implements Staging {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	 *             #getRemoteSiteURL(Group, boolean)}
 	 */
 	@Deprecated
@@ -238,7 +238,7 @@ public class StagingImpl implements Staging {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	 *             _stagingLocalService#checkDefaultLayoutSetBranches(long,
 	 *             Group, boolean, boolean, boolean, ServiceContext)}
 	 */
@@ -337,7 +337,7 @@ public class StagingImpl implements Staging {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #publishPortlet(long,
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #publishPortlet(long,
 	 *             long, long, long, long, String, Map)}
 	 */
 	@Deprecated
@@ -415,7 +415,7 @@ public class StagingImpl implements Staging {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	 *             #copyRemoteLayouts(long, boolean, Map, Map, String, int,
 	 *             String, boolean, long, boolean)}
 	 */
@@ -544,7 +544,7 @@ public class StagingImpl implements Staging {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	 *             #deleteRecentLayoutRevisionId(long, long, long)}
 	 */
 	@Deprecated
@@ -643,7 +643,7 @@ public class StagingImpl implements Staging {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	 *             #getErrorMessagesJSONArray(Locale, Map<String,
 	 *             MissingReference>)}
 	 */
@@ -934,7 +934,7 @@ public class StagingImpl implements Staging {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	 *             #getExceptionMessagesJSONObject(Locale, Exception,
 	 *             ExportImportConfiguration)}
 	 */
@@ -990,7 +990,7 @@ public class StagingImpl implements Staging {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, moved to {@link
+	 * @deprecated As of Wilberforce (7.0.x), moved to {@link
 	 *             ExportImportHelperUtil#getMissingParentLayouts(Layout, long)}
 	 */
 	@Deprecated
@@ -1192,7 +1192,7 @@ public class StagingImpl implements Staging {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	 *             ExportImportConfigurationParameterMapFactory#buildParameterMap(
 	 *             )}
 	 */
@@ -1203,7 +1203,7 @@ public class StagingImpl implements Staging {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	 *             ExportImportConfigurationParameterMapFactory#buildParameterMap(
 	 *             PortletRequest)}
 	 */
@@ -1256,7 +1256,7 @@ public class StagingImpl implements Staging {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	 *             #getWarningMessagesJSONArray(Locale, Map<String,
 	 *             MissingReference>)}
 	 */
@@ -1374,7 +1374,7 @@ public class StagingImpl implements Staging {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, see {@link
+	 * @deprecated As of Wilberforce (7.0.x), see {@link
 	 *             com.liferay.portal.kernel.backgroundtask.BackgroundTaskExecutor#getIsolationLevel(
 	 *             )}
 	 */
@@ -1487,7 +1487,7 @@ public class StagingImpl implements Staging {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #publishLayouts(long,
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #publishLayouts(long,
 	 *             long, long, boolean, long[], Map)}
 	 */
 	@Deprecated
@@ -1547,7 +1547,7 @@ public class StagingImpl implements Staging {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #publishLayouts(long,
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #publishLayouts(long,
 	 *             long, long, boolean, long[], Map)}
 	 */
 	@Deprecated
@@ -1579,7 +1579,7 @@ public class StagingImpl implements Staging {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #publishLayouts(long,
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #publishLayouts(long,
 	 *             long, long, boolean, Map)}
 	 */
 	@Deprecated
@@ -2166,7 +2166,7 @@ public class StagingImpl implements Staging {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, see {@link
+	 * @deprecated As of Wilberforce (7.0.x), see {@link
 	 *             com.liferay.portal.kernel.backgroundtask.BackgroundTaskExecutor#getIsolationLevel(
 	 *             )}
 	 */
@@ -2292,7 +2292,7 @@ public class StagingImpl implements Staging {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	 *             ExportImportDateUtil#updateLastPublishDate(long, boolean,
 	 *             DateRange, Date)}
 	 */
@@ -2307,7 +2307,7 @@ public class StagingImpl implements Staging {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	 *             ExportImportDateUtil#updateLastPublishDate(String,
 	 *             PortletPreferences, DateRange, Date)}
 	 */
@@ -2322,7 +2322,7 @@ public class StagingImpl implements Staging {
 	}
 
 	/**
-	 * @deprecated As of Judson, replaced by {@link
+	 * @deprecated As of Judson (7.1.x), replaced by {@link
 	 *             com.liferay.staging.configuration.web.internal.portlet.StagingConfigurationPortlet#editStagingConfiguration(
 	 *             javax.portlet.ActionRequest, javax.portlet.ActionResponse)}
 	 */
@@ -2439,7 +2439,7 @@ public class StagingImpl implements Staging {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #validateRemote(long,
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #validateRemote(long,
 	 *             String, int, String, boolean, long)}
 	 */
 	@Deprecated
@@ -2720,7 +2720,7 @@ public class StagingImpl implements Staging {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, with no direct replacement
+	 * @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	 */
 	@Deprecated
 	protected long publishLayouts(
@@ -2787,7 +2787,7 @@ public class StagingImpl implements Staging {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, with no direct replacement
+	 * @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	 */
 	@Deprecated
 	protected long publishToRemote(

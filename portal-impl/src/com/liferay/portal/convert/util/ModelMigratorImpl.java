@@ -33,13 +33,13 @@ import javax.sql.DataSource;
 /**
  * @author     Cristina González
  * @author     Miguel Pastor
- * @deprecated As of Judson, with no direct replacement
+ * @deprecated As of Judson (7.1.x), with no direct replacement
  */
 @Deprecated
 public class ModelMigratorImpl implements ModelMigrator {
 
 	/**
-	 * @deprecated As of Judson, with no direct replacement
+	 * @deprecated As of Judson (7.1.x), with no direct replacement
 	 */
 	@Deprecated
 	@Override
@@ -51,7 +51,7 @@ public class ModelMigratorImpl implements ModelMigrator {
 	}
 
 	/**
-	 * @deprecated As of Judson, with no direct replacement
+	 * @deprecated As of Judson (7.1.x), with no direct replacement
 	 */
 	@Deprecated
 	protected Map<String, Tuple> getModelTableDetails(Class<?> implClass) {
@@ -59,7 +59,7 @@ public class ModelMigratorImpl implements ModelMigrator {
 	}
 
 	/**
-	 * @deprecated As of Judson, with no direct replacement
+	 * @deprecated As of Judson (7.1.x), with no direct replacement
 	 */
 	@Deprecated
 	protected Tuple getTableDetails(
@@ -69,7 +69,7 @@ public class ModelMigratorImpl implements ModelMigrator {
 	}
 
 	/**
-	 * @deprecated As of Judson, with no direct replacement
+	 * @deprecated As of Judson (7.1.x), with no direct replacement
 	 */
 	@Deprecated
 	protected void migrateModel(
@@ -80,7 +80,7 @@ public class ModelMigratorImpl implements ModelMigrator {
 	}
 
 	/**
-	 * @deprecated As of Judson, with no direct replacement
+	 * @deprecated As of Judson (7.1.x), with no direct replacement
 	 */
 	@Deprecated
 	protected void migrateTable(

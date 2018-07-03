@@ -16,7 +16,7 @@ package com.liferay.portal.kernel.util;
 
 /**
  * @author     Brian Wing Shun Chan
- * @deprecated As of Judson, replaced with {@link
+ * @deprecated As of Judson (7.1.x), replaced with {@link
  *             com.liferay.petra.string.CharPool}
  */
 @Deprecated

@@ -22,7 +22,7 @@ import com.liferay.portal.kernel.util.ReleaseInfo;
 public class StaticLPKGResolver {
 
 	/**
-	 * @deprecated As of Judson, replaced by {@link
+	 * @deprecated As of Judson (7.1.x), replaced by {@link
 	 *             #getStaticLPKGBundleSymbolicNames}
 	 */
 	@Deprecated
@@ -35,7 +35,7 @@ public class StaticLPKGResolver {
 	}
 
 	/**
-	 * @deprecated As of Judson, replaced by {@link #getStaticLPKGFileNames}
+	 * @deprecated As of Judson (7.1.x), replaced by {@link #getStaticLPKGFileNames}
 	 */
 	@Deprecated
 	public static String getStaticLPKGFileName() {

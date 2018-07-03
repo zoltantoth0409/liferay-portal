@@ -36,7 +36,7 @@ import org.osgi.service.component.annotations.Reference;
  * Represents the trash handler for bookmarks folder entity.
  *
  * @author     Eudaldo Alonso
- * @deprecated As of Judson, moved to {@link
+ * @deprecated As of Judson (7.1.x), moved to {@link
  *             com.liferay.bookmarks.internal.trash.BookmarksFolderTrashHandler}
  */
 @Deprecated

@@ -28,7 +28,7 @@ import java.util.Properties;
 public class LiferayGroupDatabase implements GroupDatabase {
 
 	/**
-	 * @deprecated As of Judson
+	 * @deprecated As of Judson (7.1.x)
 	 */
 	@Deprecated
 	@Override

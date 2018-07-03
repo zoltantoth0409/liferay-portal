@@ -73,7 +73,7 @@ import java.util.List;
 public class BlogsEntryServiceImpl extends BlogsEntryServiceBaseImpl {
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #addEntry(String,
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #addEntry(String,
 	 *             String, String, String, int, int, int, int, int, boolean,
 	 *             boolean, String[], String, ImageSelector, ImageSelector,
 	 *             ServiceContext)}
@@ -566,7 +566,7 @@ public class BlogsEntryServiceImpl extends BlogsEntryServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #updateEntry(long,
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #updateEntry(long,
 	 *             String, String, String, String, int, int, int, int, int,
 	 *             boolean, boolean, String[], String, ImageSelector,
 	 *             ImageSelector, ServiceContext)}

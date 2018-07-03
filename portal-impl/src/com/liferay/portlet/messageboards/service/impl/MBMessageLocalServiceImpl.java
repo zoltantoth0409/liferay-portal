@@ -495,7 +495,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #addMessage(long,
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #addMessage(long,
 	 *             String, long, long, String, String, ServiceContext)}
 	 */
 	@Deprecated
@@ -1037,7 +1037,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	 *             #getDiscussionMessageDisplay(long, long, String, long, int)}
 	 */
 	@Deprecated
@@ -1187,7 +1187,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	 *             #getMessageDisplay(long, long, int)}
 	 */
 	@Deprecated
@@ -1259,7 +1259,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	 *             #getMessageDisplay(long, MBMessage, int)}
 	 */
 	@Deprecated
@@ -1275,7 +1275,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	 *             #getMessageDisplay(long, MBMessage, int, Comparator)} (
 	 */
 	@Deprecated
@@ -1790,7 +1790,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, with no direct replacement
+	 * @deprecated As of Wilberforce (7.0.x), with no direct replacement
 	 */
 	@Deprecated
 	@Override
@@ -1807,7 +1807,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #updateStatus(long,
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #updateStatus(long,
 	 *             long, int, ServiceContext, Map)}
 	 */
 	@Deprecated

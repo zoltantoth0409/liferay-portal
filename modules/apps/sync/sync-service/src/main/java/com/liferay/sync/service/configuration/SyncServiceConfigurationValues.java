@@ -80,7 +80,7 @@ public class SyncServiceConfigurationValues {
 					SYNC_FILE_CHECKSUM_THRESHOLD_SIZE));
 
 	/**
-	 * @deprecated As of Judson, with no direct replacement
+	 * @deprecated As of Judson (7.1.x), with no direct replacement
 	 */
 	@Deprecated
 	public static final int SYNC_FILE_DIFF_CACHE_DELETE_INTERVAL =

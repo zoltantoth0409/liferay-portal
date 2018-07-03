@@ -28,7 +28,7 @@ import com.liferay.portal.kernel.util.StringPool;
 public class PasswordEncryptorUtil {
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	 *             #getDefaultPasswordAlgorithmType}
 	 */
 	@Deprecated

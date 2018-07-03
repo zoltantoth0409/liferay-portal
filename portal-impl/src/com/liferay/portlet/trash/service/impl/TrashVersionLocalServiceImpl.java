@@ -64,7 +64,7 @@ public class TrashVersionLocalServiceImpl
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #fetchVersion(String,
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #fetchVersion(String,
 	 *             long)}
 	 */
 	@Deprecated

@@ -1582,7 +1582,7 @@ public class LayoutImportController implements ImportController {
 	}
 
 	/**
-	 * @deprecated As of Judson, replaced by {@link
+	 * @deprecated As of Judson (7.1.x), replaced by {@link
 	 *             #validateLayoutPrototypes(long, Element, Element)}
 	 */
 	@Deprecated

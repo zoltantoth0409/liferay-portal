@@ -79,7 +79,7 @@ public class SocialActivitiesTag extends IncludeTag {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #setFeedURL(String)}
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #setFeedURL(String)}
 	 */
 	@Deprecated
 	public void setFeedLink(String feedLink) {
@@ -87,7 +87,7 @@ public class SocialActivitiesTag extends IncludeTag {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	 *             #setFeedURLMessage(String)}
 	 */
 	@Deprecated

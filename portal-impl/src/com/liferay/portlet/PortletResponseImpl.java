@@ -690,7 +690,7 @@ public abstract class PortletResponseImpl implements LiferayPortletResponse {
 	}
 
 	/**
-	 * @deprecated As of Judson, replaced by {@link #init(PortletRequestImpl,
+	 * @deprecated As of Judson (7.1.x), replaced by {@link #init(PortletRequestImpl,
 	 *             HttpServletResponse)}
 	 */
 	@Deprecated

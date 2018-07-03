@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletResponse;
 public class EventResponseFactory {
 
 	/**
-	 * @deprecated As of Judson, replaced by {@link #create(EventRequestImpl,
+	 * @deprecated As of Judson (7.1.x), replaced by {@link #create(EventRequestImpl,
 	 *             HttpServletResponse, User, Layout)}
 	 */
 	@Deprecated

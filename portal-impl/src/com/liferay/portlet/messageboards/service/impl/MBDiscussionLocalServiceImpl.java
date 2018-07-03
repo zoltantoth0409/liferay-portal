@@ -53,7 +53,7 @@ public class MBDiscussionLocalServiceImpl
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #addDiscussion(long,
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #addDiscussion(long,
 	 *             long, long, long, long, ServiceContext)}
 	 */
 	@Deprecated

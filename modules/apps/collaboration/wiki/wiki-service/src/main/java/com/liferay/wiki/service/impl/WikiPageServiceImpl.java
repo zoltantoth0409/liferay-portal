@@ -165,7 +165,7 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #addTempFileEntry(long,
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #addTempFileEntry(long,
 	 *             String, String, InputStream, String)}
 	 */
 	@Deprecated

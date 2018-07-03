@@ -32,7 +32,7 @@ public class RenderResponseFactory {
 	}
 
 	/**
-	 * @deprecated As of Judson, replaced by {@link #create(RenderRequestImpl,
+	 * @deprecated As of Judson (7.1.x), replaced by {@link #create(RenderRequestImpl,
 	 *             HttpServletResponse)}
 	 */
 	@Deprecated
@@ -45,7 +45,7 @@ public class RenderResponseFactory {
 	}
 
 	/**
-	 * @deprecated As of Judson, replaced by {@link #create(RenderRequestImpl,
+	 * @deprecated As of Judson (7.1.x), replaced by {@link #create(RenderRequestImpl,
 	 *             HttpServletResponse)}
 	 */
 	@Deprecated

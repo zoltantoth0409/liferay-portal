@@ -159,7 +159,7 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #getSearchClassNames}
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #getSearchClassNames}
 	 */
 	@Deprecated
 	@Override
@@ -270,7 +270,7 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #getClassName}
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #getClassName}
 	 */
 	@Deprecated
 	@Override
@@ -343,7 +343,7 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #getSummary(Document,
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #getSummary(Document,
 	 *             String, PortletRequest, PortletResponse)}
 	 */
 	@Deprecated
@@ -457,7 +457,7 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	 *             #postProcessContextBooleanFilter(BooleanFilter,
 	 *             SearchContext)}
 	 */
@@ -484,7 +484,7 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	 *             #postProcessSearchQuery(BooleanQuery, BooleanFilter,
 	 *             SearchContext)}
 	 */
@@ -839,7 +839,7 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce
+	 * @deprecated As of Wilberforce (7.0.x)
 	 */
 	@Deprecated
 	protected void addFacetClause(
@@ -1447,7 +1447,7 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 		throws Exception;
 
 	/**
-	 * @deprecated As of Wilberforce, added strictly to support backwards
+	 * @deprecated As of Wilberforce (7.0.x), added strictly to support backwards
 	 *             compatibility of {@link
 	 *             Indexer#postProcessSearchQuery(BooleanQuery, SearchContext)}
 	 */
@@ -1668,7 +1668,7 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce, replaced by {@link #getClassName}
+	 * @deprecated As of Wilberforce (7.0.x), replaced by {@link #getClassName}
 	 */
 	@Deprecated
 	protected String getPortletId(SearchContext searchContext) {

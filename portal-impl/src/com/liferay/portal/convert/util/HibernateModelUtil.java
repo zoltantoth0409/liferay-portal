@@ -20,13 +20,13 @@ import java.util.List;
 
 /**
  * @author     Cristina González
- * @deprecated As of Judson, with no direct replacement
+ * @deprecated As of Judson (7.1.x), with no direct replacement
  */
 @Deprecated
 public class HibernateModelUtil {
 
 	/**
-	 * @deprecated As of Judson, with no direct replacement
+	 * @deprecated As of Judson (7.1.x), with no direct replacement
 	 */
 	@Deprecated
 	public static List<Class<? extends BaseModel<?>>> getModelClassNames(
@@ -36,7 +36,7 @@ public class HibernateModelUtil {
 	}
 
 	/**
-	 * @deprecated As of Judson, with no direct replacement
+	 * @deprecated As of Judson (7.1.x), with no direct replacement
 	 */
 	@Deprecated
 	protected static Class<? extends BaseModel<?>> getImplClass(

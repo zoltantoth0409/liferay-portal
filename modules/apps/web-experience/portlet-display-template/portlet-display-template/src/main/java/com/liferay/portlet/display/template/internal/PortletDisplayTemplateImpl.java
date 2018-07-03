@@ -170,7 +170,7 @@ public class PortletDisplayTemplateImpl implements PortletDisplayTemplate {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce
+	 * @deprecated As of Wilberforce (7.0.x)
 	 */
 	@Deprecated
 	@Override
@@ -249,7 +249,7 @@ public class PortletDisplayTemplateImpl implements PortletDisplayTemplate {
 	}
 
 	/**
-	 * @deprecated As of Wilberforce
+	 * @deprecated As of Wilberforce (7.0.x)
 	 */
 	@Deprecated
 	@Override

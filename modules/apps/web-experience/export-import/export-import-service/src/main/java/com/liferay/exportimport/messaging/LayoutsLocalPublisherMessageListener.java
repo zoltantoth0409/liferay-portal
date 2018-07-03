@@ -130,7 +130,7 @@ public class LayoutsLocalPublisherMessageListener
 	}
 
 	/**
-	 * @deprecated As of Judson
+	 * @deprecated As of Judson (7.1.x)
 	 */
 	@Deprecated
 	protected void setExportImportConfigurationLocalService(
