@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author	  Jose Maria Munoz
+ * @author	  Brian Wing Shun Chan
  * @generated
  */
 public class DLFileEntryTypeTable {
