@@ -465,12 +465,10 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 			}
 			catch (NoSuchLayoutException nsle) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(
-						"Deleted layout could not be published (plid " + plid +
-							")");
+					_log.warn("Unable to publish deleted layout " + plid);
 				}
 
-				// see LPS-36174
+				// See LPS-36174
 
 				if (_log.isDebugEnabled()) {
 					_log.debug(nsle, nsle);
