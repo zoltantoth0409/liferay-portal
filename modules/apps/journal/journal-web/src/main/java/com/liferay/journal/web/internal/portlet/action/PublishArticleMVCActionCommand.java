@@ -130,12 +130,12 @@ public class PublishArticleMVCActionCommand extends BaseMVCActionCommand {
 			_journalArticleLocalService.getArticles(
 				journalArticle.getGroupId(), journalArticle.getArticleId()));
 
-		for (JournalArticle journalArticleVersion : journalArticles) {
+		for (JournalArticle curJournalArticle : journalArticles) {
 			if (ArrayUtil.contains(
 					stagedModelDataHandler.getExportableStatuses(),
-					journalArticleVersion.getStatus())) {
+					curJournalArticle.getStatus())) {
 
-				stagedModels.add(journalArticleVersion);
+				stagedModels.add(curJournalArticle);
 			}
 		}
 
