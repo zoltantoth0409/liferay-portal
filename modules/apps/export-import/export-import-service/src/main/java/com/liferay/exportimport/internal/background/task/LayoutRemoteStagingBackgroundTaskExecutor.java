@@ -217,7 +217,7 @@ public class LayoutRemoteStagingBackgroundTaskExecutor
 				}
 				catch (NoSuchLayoutException nsle) {
 
-					// see LPS-36174
+					// See LPS-36174
 
 					if (_log.isDebugEnabled()) {
 						_log.debug(nsle, nsle);
