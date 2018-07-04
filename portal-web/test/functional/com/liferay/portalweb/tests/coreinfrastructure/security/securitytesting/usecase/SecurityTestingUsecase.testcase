@@ -124,7 +124,8 @@
 			<var name="key_itemName" value="Liferay Marketplace" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="Portlet#BODY" value1="Portlet is temporarily unavailable.">
+		<execute macro="Portlet#viewBody">
+			<var name="portletBody" value="Portlet is temporarily unavailable." />
 			<var name="portletName" value="App Manager" />
 		</execute>
 
