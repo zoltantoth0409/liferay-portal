@@ -1199,7 +1199,9 @@ public class WebServerServlet extends HttpServlet {
 
 		InputStream inputStream = fileEntry.getContentStream();
 
-		ServletResponseUtil.write(response, inputStream, fileEntry.getSize());
+		ServletResponseUtil.sendFile(
+			null, response, title, inputStream, fileEntry.getSize(),
+			contentType, HttpHeaders.CONTENT_DISPOSITION_ATTACHMENT);
 	}
 
 	protected void sendGroups(
