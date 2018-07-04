@@ -3293,7 +3293,7 @@
 		</execute>
 
 		<execute macro="Portlet#addPG">
-			<var name="portletName" value="Web Content Display" />
+			<var name="portletName" value="Language Selector" />
 		</execute>
 
 		<execute macro="Navigator#gotoPage">
@@ -3301,7 +3301,7 @@
 		</execute>
 
 		<execute macro="Portlet#addPG">
-			<var name="portletName" value="Language Selector" />
+			<var name="portletName" value="Web Content Display" />
 		</execute>
 
 		<execute macro="Navigator#openURL" />

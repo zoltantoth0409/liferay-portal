@@ -102,8 +102,9 @@
 	<command name="gotoEditPGViaWCD">
 		<execute function="MouseOver" locator1="WC#BODY" />
 
-		<execute macro="LexiconEntry#gotoEllipsisMenuItem">
-			<var name="menuItem" value="Edit Web Content" />
+		<execute macro="Portlet#gotoPortletOptions">
+			<var name="portletName" value="Web Content Display" />
+			<var name="portletOption" value="Edit Web Content" />
 		</execute>
 
 		<execute function="SelectFrame" locator1="IFrame#MODAL_IFRAME" />
@@ -122,8 +123,8 @@
 	<command name="gotoLocalizedEditPGViaWCD">
 		<execute function="MouseOver" locator1="WC#BODY" />
 
-		<execute macro="LexiconEntry#gotoEllipsisMenuItem">
-			<var name="menuItem" value="${localizedPortletOption}" />
+		<execute macro="Portlet#gotoPortletOptions">
+			<var name="portletOption" value="${localizedPortletOption}" />
 		</execute>
 	</command>
 
