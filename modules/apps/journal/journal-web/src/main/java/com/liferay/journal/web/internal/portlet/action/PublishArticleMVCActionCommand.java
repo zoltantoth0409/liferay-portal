@@ -101,8 +101,8 @@ public class PublishArticleMVCActionCommand extends BaseMVCActionCommand {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					StringBundler.concat(
-						"Unable to get JournalArticle by group ",
-						String.valueOf(groupId), " and articleId ", articleId),
+						"Unable to get journal article by group ",
+						String.valueOf(groupId), " and article ID ", articleId),
 					pe);
 			}
 		}
