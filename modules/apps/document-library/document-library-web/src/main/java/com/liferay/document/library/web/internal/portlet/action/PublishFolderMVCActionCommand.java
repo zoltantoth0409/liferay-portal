@@ -139,8 +139,8 @@ public class PublishFolderMVCActionCommand extends BaseMVCActionCommand {
 		catch (PortalException pe) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Unable to get folders, file entries, file shortcuts for " +
-						"folder " +
+					"Unable to get folders, file entries, and file shortcuts " +
+						"for folder " +
 							folder.getFolderId(),
 					pe);
 			}

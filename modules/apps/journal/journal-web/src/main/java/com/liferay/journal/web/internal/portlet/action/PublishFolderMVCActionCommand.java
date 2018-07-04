@@ -141,7 +141,7 @@ public class PublishFolderMVCActionCommand extends BaseMVCActionCommand {
 		catch (PortalException pe) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Unable to get folders, articles for folder " +
+					"Unable to get folders and articles for folder " +
 						journalFolder.getFolderId(),
 					pe);
 			}
