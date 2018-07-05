@@ -355,11 +355,6 @@ public class LayoutRevisionLocalServiceImpl
 	}
 
 	@Override
-	public List<LayoutRevision> getLayoutRevisions(int status) {
-		return layoutRevisionPersistence.findByStatus(status);
-	}
-
-	@Override
 	public List<LayoutRevision> getLayoutRevisions(long plid) {
 		return layoutRevisionPersistence.findByPlid(plid);
 	}
@@ -426,6 +421,11 @@ public class LayoutRevisionLocalServiceImpl
 		return layoutRevisionPersistence.findByL_L_P(
 			layoutSetBranchId, layoutBranchId, plid, start, end,
 			orderByComparator);
+	}
+
+	@Override
+	public List<LayoutRevision> getLayoutRevisionsByStatus(int status) {
+		return layoutRevisionPersistence.findByStatus(status);
 	}
 
 	@Override
