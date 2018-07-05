@@ -327,12 +327,6 @@ public class LayoutRevisionLocalServiceWrapper
 			layoutBranchId, plid);
 	}
 
-	@Override
-	public java.util.List<com.liferay.portal.kernel.model.LayoutRevision> getLayoutRevisions(
-		int status) {
-		return _layoutRevisionLocalService.getLayoutRevisions(status);
-	}
-
 	/**
 	* Returns a range of all the layout revisions.
 	*
@@ -413,6 +407,12 @@ public class LayoutRevisionLocalServiceWrapper
 		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.kernel.model.LayoutRevision> orderByComparator) {
 		return _layoutRevisionLocalService.getLayoutRevisions(layoutSetBranchId,
 			layoutBranchId, plid, start, end, orderByComparator);
+	}
+
+	@Override
+	public java.util.List<com.liferay.portal.kernel.model.LayoutRevision> getLayoutRevisionsByStatus(
+		int status) {
+		return _layoutRevisionLocalService.getLayoutRevisionsByStatus(status);
 	}
 
 	/**
