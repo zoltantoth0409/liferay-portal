@@ -50,7 +50,7 @@ public class LayoutRevisionWorkflowDefinitionLinkUpdateHandler
 		// Workflow definition link was deleted
 
 		List<LayoutRevision> pendingLayoutRevisions =
-			_layoutRevisionLocalService.getLayoutRevisions(
+			_layoutRevisionLocalService.getLayoutRevisionsByStatus(
 				WorkflowConstants.STATUS_PENDING);
 
 		Stream<LayoutRevision> stream = pendingLayoutRevisions.stream();
