@@ -308,11 +308,6 @@ public class LayoutRevisionLocalServiceUtil {
 				   .getLayoutRevision(layoutSetBranchId, layoutBranchId, plid);
 	}
 
-	public static java.util.List<com.liferay.portal.kernel.model.LayoutRevision> getLayoutRevisions(
-		int status) {
-		return getService().getLayoutRevisions(status);
-	}
-
 	/**
 	* Returns a range of all the layout revisions.
 	*
@@ -379,6 +374,11 @@ public class LayoutRevisionLocalServiceUtil {
 		return getService()
 				   .getLayoutRevisions(layoutSetBranchId, layoutBranchId, plid,
 			start, end, orderByComparator);
+	}
+
+	public static java.util.List<com.liferay.portal.kernel.model.LayoutRevision> getLayoutRevisionsByStatus(
+		int status) {
+		return getService().getLayoutRevisionsByStatus(status);
 	}
 
 	/**
