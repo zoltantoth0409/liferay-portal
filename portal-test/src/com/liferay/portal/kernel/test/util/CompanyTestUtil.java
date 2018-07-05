@@ -79,7 +79,6 @@ public class CompanyTestUtil {
 
 		preferences.setValue(
 			PropsKeys.COMPANY_DEFAULT_LOCALE, defaultLanguageId);
-
 		preferences.setValue(PropsKeys.LOCALES, languageIds);
 
 		preferences.store();

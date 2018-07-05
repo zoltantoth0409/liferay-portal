@@ -1627,10 +1627,9 @@ public class LanguageImpl implements Language, Serializable {
 	private ObjectValuePair<HashMap<String, Locale>, HashMap<String, Locale>>
 		_createGroupLocales(long groupId) {
 
-		String[] languageIds = PropsValues.LOCALES_ENABLED;
-
 		Locale defaultLocale = LocaleUtil.fromLanguageId(
 			PropsValues.COMPANY_DEFAULT_LOCALE);
+		String[] languageIds = PropsValues.LOCALES_ENABLED;
 
 		try {
 			Group group = GroupLocalServiceUtil.getGroup(groupId);
