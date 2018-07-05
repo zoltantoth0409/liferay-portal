@@ -11,8 +11,8 @@ describe('PortletBase', () => {
 	before(() => {
 		window.Liferay = {
 			Util: {
-				ns() {},
-			},
+				ns() {}
+			}
 		};
 
 		document.body.innerHTML +=
@@ -21,7 +21,7 @@ describe('PortletBase', () => {
 
 	beforeEach(() => {
 		portletBase = new PortletBase({
-			namespace: namespace,
+			namespace: namespace
 		});
 	});
 
@@ -46,7 +46,7 @@ describe('PortletBase', () => {
 
 		it('should use the document as root node if one has not been specified or the default has not been found', () => {
 			portletBase = new PortletBase({
-				namespace: '_com_liferay_unknown_portlet',
+				namespace: '_com_liferay_unknown_portlet'
 			});
 
 			assert.strictEqual(portletBase.all('.foo').length, 4);
@@ -88,7 +88,7 @@ describe('PortletBase', () => {
 
 		it('should use the document as root node if one has not been specified or the default has not been found', () => {
 			portletBase = new PortletBase({
-				namespace: '_com_liferay_unknown_portlet',
+				namespace: '_com_liferay_unknown_portlet'
 			});
 
 			assert.strictEqual(
@@ -118,7 +118,7 @@ describe('PortletBase', () => {
 		it('should override the default root node if specified', () => {
 			portletBase = new PortletBase({
 				namespace: namespace,
-				rootNode: '#' + namespace + 'child_container',
+				rootNode: '#' + namespace + 'child_container'
 			});
 
 			assert.strictEqual(
