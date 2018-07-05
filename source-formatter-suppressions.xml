@@ -125,5 +125,9 @@
 		<suppress checks="JavaModuleComponentCheck" files="modules/private/apps/osb-testray/.*" />
 		<suppress checks="JavaServiceObjectCheck" files="modules/private/.*" />
 		<suppress checks="JSPTagAttributesCheck" files="modules/private/.*" />
+		<suppress checks="XMLLookAndFeelCompatibilityVersionCheck" files="modules/private/osb-cerebro/.*" />
+		<suppress checks="XMLLookAndFeelCompatibilityVersionCheck" files="modules/private/osb-faro/.*" />
+		<suppress checks="XMLLookAndFeelCompatibilityVersionCheck" files="modules/private/osb-lcs/.*" />
+		<suppress checks="XMLLookAndFeelCompatibilityVersionCheck" files="modules/private/osb-loop/.*" />
 	</source-check>
 </suppressions>
