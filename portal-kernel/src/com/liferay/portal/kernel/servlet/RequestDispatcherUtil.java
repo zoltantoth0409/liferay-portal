@@ -37,7 +37,7 @@ public class RequestDispatcherUtil {
 		throws Exception {
 
 		BufferCacheServletResponse bufferCacheServletResponse =
-			new LastModifiedTimeServletResponse(response);
+			new LastModifiedCacheServletResponse(response);
 
 		requestDispatcher.include(
 			new HttpServletRequestWrapper(request) {
@@ -111,7 +111,7 @@ public class RequestDispatcherUtil {
 		throws Exception {
 
 		MetaInfoCacheServletResponse metaInfoCacheServletResponse =
-			new LastModifiedTimeServletResponse(response);
+			new LastModifiedCacheServletResponse(response);
 
 		requestDispatcher.include(
 			new HttpServletRequestWrapper(request) {
@@ -129,10 +129,10 @@ public class RequestDispatcherUtil {
 			-1);
 	}
 
-	private static class LastModifiedTimeServletResponse
+	private static class LastModifiedCacheServletResponse
 		extends BufferCacheServletResponse {
 
-		public LastModifiedTimeServletResponse(HttpServletResponse response) {
+		public LastModifiedCacheServletResponse(HttpServletResponse response) {
 			super(response);
 		}
 
