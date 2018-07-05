@@ -202,7 +202,7 @@ public class ResourceBlockPermissionLocalServiceWrapper
 	}
 
 	/**
-	* @deprecated As of Judson (7.1.x), replaced by {@link
+	* @deprecated As of Wilberforce (7.0.x), replaced by {@link
 	#getAvailableResourceBlockPermissionActionIds(String, long,
 	List)}
 	*/
