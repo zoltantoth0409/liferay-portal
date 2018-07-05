@@ -41,7 +41,7 @@ public class OrganizationParentException extends PortalException {
 		public MustBeRootable(String type) {
 			super(
 				"Organization of type " + type +
-					" cannot be a root organization");
+					" must not be a root organization");
 
 			_type = type;
 		}
@@ -86,7 +86,7 @@ public class OrganizationParentException extends PortalException {
 		extends OrganizationParentException {
 
 		public MustNotHaveChildren(String type) {
-			super("Organization of type " + type + " cannot have children");
+			super("Organization of type " + type + " must not have children");
 
 			_type = type;
 		}
