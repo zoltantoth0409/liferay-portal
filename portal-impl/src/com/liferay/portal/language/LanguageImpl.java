@@ -26,13 +26,11 @@ import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.language.LanguageWrapper;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.CompanyConstants;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.GroupConstants;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
 import com.liferay.portal.kernel.security.pacl.DoPrivileged;
-import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -1629,8 +1627,7 @@ public class LanguageImpl implements Language, Serializable {
 
 		String[] languageIds = PropsValues.LOCALES_ENABLED;
 
-		Locale defaultLocale = LocaleUtil.fromLanguageId(
-			PropsValues.COMPANY_DEFAULT_LOCALE);
+		Locale defaultLocale = LocaleUtil.getDefault();
 
 		try {
 			Group group = GroupLocalServiceUtil.getGroup(groupId);
@@ -1696,8 +1693,7 @@ public class LanguageImpl implements Language, Serializable {
 		Locale locale, String pattern, Object[] formattedArguments) {
 
 		if (locale == null) {
-			locale = LocaleUtil.fromLanguageId(
-				PropsValues.COMPANY_DEFAULT_LOCALE);
+			locale = LocaleUtil.getDefault();
 		}
 
 		String value = _getFastFormattedMessage(
@@ -1858,8 +1854,7 @@ public class LanguageImpl implements Language, Serializable {
 			locale = request.getLocale();
 
 			if (!isAvailableLocale(locale)) {
-				locale = LocaleUtil.fromLanguageId(
-					PropsValues.COMPANY_DEFAULT_LOCALE);
+				locale = LocaleUtil.getDefault();
 			}
 		}
 
@@ -1954,23 +1949,16 @@ public class LanguageImpl implements Language, Serializable {
 				}
 			}
 
-			try {
-				Company company = CompanyLocalServiceUtil.getCompany(companyId);
+			Locale defaultLocale = LocaleUtil.getDefault();
 
-				Locale defaultLocale = company.getLocale();
+			String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
 
-				String defaultLanguageId = LocaleUtil.toLanguageId(
-					defaultLocale);
+			_languageCodeLocalesMap.put(
+				defaultLocale.getLanguage(), defaultLocale);
 
-				_languageCodeLocalesMap.put(
-					defaultLocale.getLanguage(), defaultLocale);
+			_languageIdLocalesMap.put(defaultLanguageId, defaultLocale);
 
-				_languageIdLocalesMap.put(defaultLanguageId, defaultLocale);
-
-				languageIds = ArrayUtil.remove(languageIds, defaultLanguageId);
-			}
-			catch (Exception e) {
-			}
+			languageIds = ArrayUtil.remove(languageIds, defaultLanguageId);
 
 			Set<String> duplicateLanguageCodes = new HashSet<>();
 
