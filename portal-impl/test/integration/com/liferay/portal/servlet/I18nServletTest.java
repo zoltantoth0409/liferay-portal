@@ -190,6 +190,7 @@ public class I18nServletTest {
 		PropsValues.LOCALE_USE_DEFAULT_IF_NOT_AVAILABLE = true;
 
 		Locale invalidLocale = LocaleUtil.CHINA;
+
 		Locale defaultLocale = LocaleUtil.fromLanguageId(
 			PropsValues.COMPANY_DEFAULT_LOCALE);
 
