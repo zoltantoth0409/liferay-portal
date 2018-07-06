@@ -49,6 +49,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Mate Thurzo
@@ -205,13 +206,24 @@ public class LayoutRemoteStagingBackgroundTaskExecutor
 		List<Layout> layouts = new ArrayList<>();
 
 		if (layoutIdMap != null) {
-			for (Map.Entry<Long, Boolean> entry : layoutIdMap.entrySet()) {
+			Set<Map.Entry<Long, Boolean>> entrySet = layoutIdMap.entrySet();
+
+			for (Map.Entry<Long, Boolean> entry : entrySet) {
 				long plid = GetterUtil.getLong(String.valueOf(entry.getKey()));
 				boolean includeChildren = entry.getValue();
 
-				Layout layout =
-					ExportImportHelperUtil.getLayoutOrCreateDummyRootLayout(
-						plid);
+				Layout layout = null;
+
+				try {
+					layout =
+						ExportImportHelperUtil.getLayoutOrCreateDummyRootLayout(
+							plid);
+				}
+				catch (NoSuchLayoutException nsle) {
+					entrySet.remove(plid);
+
+					continue;
+				}
 
 				if (!layouts.contains(layout)) {
 					layouts.add(layout);
