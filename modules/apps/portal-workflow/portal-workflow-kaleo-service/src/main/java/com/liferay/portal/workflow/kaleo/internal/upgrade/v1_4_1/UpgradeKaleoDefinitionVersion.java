@@ -70,7 +70,7 @@ public class UpgradeKaleoDefinitionVersion extends UpgradeProcess {
 	protected void doUpgrade() throws Exception {
 		upgradeKaleoDefinitionVersion();
 
-		removeDuplicatedKaleoDefinitions();
+		removeDuplicateKaleoDefinitions();
 		removeKaleoDefinitionId();
 		removeStartKaleoNodeId();
 	}
@@ -79,7 +79,7 @@ public class UpgradeKaleoDefinitionVersion extends UpgradeProcess {
 		return version + StringPool.PERIOD + 0;
 	}
 
-	protected void removeDuplicatedKaleoDefinitions()
+	protected void removeDuplicateKaleoDefinitions()
 		throws IOException, SQLException {
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
