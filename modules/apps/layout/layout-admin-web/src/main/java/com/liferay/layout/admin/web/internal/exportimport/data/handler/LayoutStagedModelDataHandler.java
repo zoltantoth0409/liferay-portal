@@ -1151,11 +1151,11 @@ public class LayoutStagedModelDataHandler
 				layout.getPlid());
 
 		for (FragmentEntryLink fragmentEntryLink : fragmentEntryLinks) {
-			List<String> portletIdList =
+			List<String> fragmentEntryLinkPortletIds =
 				_portletRegistry.getFragmentEntryLinkPortletIds(
 					fragmentEntryLink);
 
-			for (String portletId : portletIdList) {
+			for (String portletId : fragmentEntryLinkPortletIds) {
 				Settings portletInstanceSettings =
 					SettingsFactoryUtil.getSettings(
 						new PortletInstanceSettingsLocator(layout, portletId));
