@@ -1156,6 +1156,11 @@ public class LayoutStagedModelDataHandler
 					fragmentEntryLink);
 
 			for (String portletId : fragmentEntryLinkPortletIds) {
+				String key = PortletPermissionUtil.getPrimaryKey(
+					layout.getPlid(), portletId);
+
+				long scopeGroupId = portletDataContext.getScopeGroupId();
+
 				Settings portletInstanceSettings =
 					SettingsFactoryUtil.getSettings(
 						new PortletInstanceSettingsLocator(layout, portletId));
@@ -1164,11 +1169,6 @@ public class LayoutStagedModelDataHandler
 					"lfrScopeType", null);
 				String scopeLayoutUuid = portletInstanceSettings.getValue(
 					"lfrScopeLayoutUuid", null);
-
-				long scopeGroupId = portletDataContext.getScopeGroupId();
-
-				String key = PortletPermissionUtil.getPrimaryKey(
-					layout.getPlid(), portletId);
 
 				portletIds.put(
 					key,
