@@ -128,7 +128,7 @@ public class WebPageElementNestedCollectionResource
 		).addDate(
 			"lastReviewed", JournalArticle::getReviewDate
 		).addNestedList(
-			"fields", this::_getJournalArticleFields,
+			"fields", this::_getJournalArticleDDMFormFieldValues,
 			fieldValuesBuilder -> fieldValuesBuilder.types(
 				"ContentFieldValue"
 			).addLocalizedStringByLocale(
@@ -217,7 +217,7 @@ public class WebPageElementNestedCollectionResource
 		return ListUtil.toList(assetTags, AssetTagModel::getName);
 	}
 
-	private List<DDMFormFieldValue> _getJournalArticleFields(
+	private List<DDMFormFieldValue> _getJournalArticleDDMFormFieldValues(
 		JournalArticleWrapper journalArticleWrapper) {
 
 		return Try.fromFallible(
