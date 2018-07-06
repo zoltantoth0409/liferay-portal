@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.util.StringPool;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -94,11 +95,9 @@ public class JSLoaderModulesServlet extends HttpServlet {
 			HttpServletRequest request, HttpServletResponse response)
 		throws IOException {
 
-		response.setContentType(Details.CONTENT_TYPE);
+		StringWriter stringWriter = new StringWriter();
 
-		ServletOutputStream servletOutputStream = response.getOutputStream();
-
-		PrintWriter printWriter = new PrintWriter(servletOutputStream, true);
+		PrintWriter printWriter = new PrintWriter(stringWriter);
 
 		printWriter.println("(function() {");
 		printWriter.println("Liferay.PATHS = {");
@@ -351,6 +350,8 @@ public class JSLoaderModulesServlet extends HttpServlet {
 		printWriter.println("}());");
 
 		printWriter.close();
+
+		_writeResponse(response, stringWriter.toString());
 	}
 
 	protected void setDetails(Details details) {
@@ -369,10 +370,28 @@ public class JSLoaderModulesServlet extends HttpServlet {
 		_npmRegistry = npmRegistry;
 	}
 
+	private void _writeResponse(HttpServletResponse response, String content)
+		throws IOException {
+
+		response.setContentType(Details.CONTENT_TYPE);
+
+		ServletOutputStream servletOutputStream = response.getOutputStream();
+
+		PrintWriter printWriter = new PrintWriter(servletOutputStream, true);
+
+		printWriter.write(_minifier.minify("/o/js_loader_modules", content));
+
+		printWriter.close();
+	}
+
 	private ComponentContext _componentContext;
 	private volatile Details _details;
 	private JSLoaderModulesTracker _jsLoaderModulesTracker;
 	private Logger _logger;
+
+	@Reference
+	private Minifier _minifier;
+
 	private NPMRegistry _npmRegistry;
 
 	@Reference
