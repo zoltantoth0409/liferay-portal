@@ -825,10 +825,10 @@ public class PortletImpl extends PortletBaseImpl {
 	@Override
 	public String getDisplayName() {
 		if (Validator.isNull(_displayName)) {
-			return "";
-		} else {
-			return _displayName;
+			return StringPool.BLANK;
 		}
+
+		return _displayName;
 	}
 
 	/**
