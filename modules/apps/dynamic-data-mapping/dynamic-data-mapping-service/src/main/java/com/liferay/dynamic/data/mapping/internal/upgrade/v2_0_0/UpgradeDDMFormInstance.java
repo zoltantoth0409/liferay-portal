@@ -121,13 +121,13 @@ public class UpgradeDDMFormInstance extends UpgradeProcess {
 
 		StringBundler sb1 = new StringBundler(7);
 
-		sb1.append("select DDLRecordSet.*, TEMP.structureVersionId from ");
-		sb1.append("DDLRecordSet inner join (select structureId, ");
+		sb1.append("select DDLRecordSet.*, TEMP_TABLE.structureVersionId ");
+		sb1.append("from DDLRecordSet inner join (select structureId, ");
 		sb1.append("max(structureVersionId) as structureVersionId from ");
 		sb1.append("DDMStructureVersion group by ");
-		sb1.append("DDMStructureVersion.structureId) TEMP on ");
-		sb1.append("DDLRecordSet.DDMStructureId = TEMP.structureId where ");
-		sb1.append("scope = 2");
+		sb1.append("DDMStructureVersion.structureId) TEMP_TABLE on ");
+		sb1.append("DDLRecordSet.DDMStructureId = TEMP_TABLE.structureId ");
+		sb1.append("where scope = 2");
 
 		StringBundler sb2 = new StringBundler(5);
 
