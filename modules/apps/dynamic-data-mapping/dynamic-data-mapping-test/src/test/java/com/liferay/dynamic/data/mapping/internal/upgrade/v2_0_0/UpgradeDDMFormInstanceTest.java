@@ -49,7 +49,8 @@ public class UpgradeDDMFormInstanceTest extends PowerMockito {
 			"RecordSet", this::createRecorSetResourceActionList, "FormInstance",
 			this::createFormInstanceResourceActionList);
 
-		//VIEW, ADD_RECORD
+		// VIEW, ADD_RECORD
+
 		long currentNewActionIds = 9;
 
 		Assert.assertEquals(
@@ -64,7 +65,8 @@ public class UpgradeDDMFormInstanceTest extends PowerMockito {
 			"RecordSet", this::createRecorSetResourceActionList, "FormInstance",
 			this::createFormInstanceResourceActionList);
 
-		//VIEW, UPDATE, ADD_RECORD
+		// VIEW, UPDATE, ADD_RECORD
+
 		long currentNewActionIds = 25;
 
 		Assert.assertEquals(
