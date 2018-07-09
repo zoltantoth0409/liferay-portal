@@ -116,7 +116,8 @@ public class UpgradeDDMFormInstance extends UpgradeProcess {
 			_CLASS_NAME_RECORD_SET, _CLASS_NAME_FORM_INSTANCE);
 
 		upgradeRootModelResourceResourcePermission(
-			_OLD_ROOT_MODEL_RESOURCE, _NEW_ROOT_MODEL_RESOURCE);
+			"com.liferay.dynamic.data.lists",
+			"com.liferay.dynamic.data.mapping");
 
 		StringBundler sb1 = new StringBundler(7);
 
@@ -452,12 +453,6 @@ public class UpgradeDDMFormInstance extends UpgradeProcess {
 
 	private static final String _CLASS_NAME_RECORD_SET =
 		"com.liferay.dynamic.data.lists.model.DDLRecordSet";
-
-	private static final String _NEW_ROOT_MODEL_RESOURCE =
-		"com.liferay.dynamic.data.mapping";
-
-	private static final String _OLD_ROOT_MODEL_RESOURCE =
-		"com.liferay.dynamic.data.lists";
 
 	private static final Map<String, String> _resourceActionIdsMap =
 		new ConcurrentHashMap<>();
