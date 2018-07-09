@@ -68,6 +68,8 @@
 		</execute>
 
 		<execute macro="PortletEntry#save" />
+
+		<execute function="WaitForSPARefresh" />
 	</set-up>
 
 	<tear-down>
