@@ -101,7 +101,6 @@ public class ContentStructureNestedCollectionResource
 			_ddmStructureLocalService.getStructures(
 				groupId, classNameId, pagination.getStartPosition(),
 				pagination.getEndPosition(), null);
-
 		int count = _ddmStructureLocalService.getStructuresCount(
 			groupId, classNameId);
 
