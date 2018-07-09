@@ -54,6 +54,7 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.repository.LocalRepository;
 import com.liferay.portal.kernel.repository.RepositoryProviderUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
+import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.search.IndexWriterHelperUtil;
 import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
@@ -301,6 +302,40 @@ public class DLFileEntryLocalServiceTest {
 			StringPool.BLANK, StringPool.BLANK,
 			DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_BASIC_DOCUMENT,
 			ddmFormValuesMap, null, inputStream, 0, serviceContext);
+	}
+
+	@Test
+	public void testFileNameUpdatedWhenUpdatingAFileEntryKeepingFileVersionLabel()
+		throws Exception {
+
+		ServiceContext serviceContext =
+			ServiceContextTestUtil.getServiceContext(
+				_group.getGroupId(), TestPropsValues.getUserId());
+
+		FileEntry fileEntry = DLAppLocalServiceUtil.addFileEntry(
+			TestPropsValues.getUserId(), _group.getGroupId(),
+			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, StringPool.BLANK,
+			ContentTypes.TEXT_PLAIN, "FE1.exe", RandomTestUtil.randomString(),
+			RandomTestUtil.randomString(), (byte[])null, serviceContext);
+
+		Assert.assertEquals("FE1.exe", fileEntry.getFileName());
+
+		FileVersion fileVersion = fileEntry.getFileVersion();
+
+		Assert.assertEquals("FE1.exe", fileVersion.getFileName());
+
+		fileEntry = DLAppLocalServiceUtil.updateFileEntry(
+			TestPropsValues.getUserId(), fileEntry.getFileEntryId(), "FE2.txt",
+			ContentTypes.TEXT_PLAIN, "FE1.exe", fileEntry.getDescription(),
+			RandomTestUtil.randomString(), false,
+			RandomTestUtil.randomBytes(TikaSafeRandomizerBumper.INSTANCE),
+			serviceContext);
+
+		Assert.assertEquals("FE1.exe.txt", fileEntry.getFileName());
+
+		fileVersion = fileEntry.getFileVersion();
+
+		Assert.assertEquals("FE1.exe.txt", fileVersion.getFileName());
 	}
 
 	@Test
