@@ -325,7 +325,7 @@ public class StructuredContentNestedCollectionResource
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		WebPageElementNestedCollectionResource.class);
+		StructuredContentNestedCollectionResource.class);
 
 	@Reference
 	private AssetTagLocalService _assetTagLocalService;
