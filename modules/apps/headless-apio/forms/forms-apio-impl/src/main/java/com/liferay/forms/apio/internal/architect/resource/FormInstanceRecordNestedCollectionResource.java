@@ -153,16 +153,13 @@ public class FormInstanceRecordNestedCollectionResource
 
 		DDMStructure ddmStructure = ddmFormInstance.getStructure();
 
-		DDMFormValues ddmFormValues = getDDMFormValues(
-			formInstanceRecordForm.getFieldValues(), ddmStructure.getDDMForm(),
-			acceptLocale.get());
-
-		long groupId = ddmFormInstance.getGroupId();
-		long formInstanceId = ddmFormInstance.getFormInstanceId();
-
 		DDMForm ddmForm = ddmStructure.getDDMForm();
 
 		List<DDMFormField> ddmFormFields = ddmForm.getDDMFormFields();
+
+		DDMFormValues ddmFormValues = getDDMFormValues(
+			formInstanceRecordForm.getFieldValues(), ddmStructure.getDDMForm(),
+			acceptLocale.get());
 
 		_uploadFileHelper.linkFiles(
 			ddmFormFields, ddmFormValues.getDDMFormFieldValues());
@@ -171,7 +168,8 @@ public class FormInstanceRecordNestedCollectionResource
 			serviceContextWrapper, formInstanceRecordForm.isDraft());
 
 		return _ddmFormInstanceRecordService.addFormInstanceRecord(
-			groupId, formInstanceId, ddmFormValues, serviceContext);
+			ddmFormInstance.getGroupId(), ddmFormInstance.getFormInstanceId(),
+			ddmFormValues, serviceContext);
 	}
 
 	private List<DDMFormFieldValue> _getFieldValues(
