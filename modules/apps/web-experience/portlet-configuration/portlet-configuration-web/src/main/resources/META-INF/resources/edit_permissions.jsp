@@ -116,6 +116,8 @@ iteratorURL.setParameter("resourcePrimKey", resourcePrimKey);
 iteratorURL.setParameter("roleTypes", roleTypesParam);
 iteratorURL.setWindowState(LiferayWindowState.POP_UP);
 
+String actionURL = iteratorURL.toString();
+
 SearchContainer<Role> roleSearchContainer = new RoleSearch(renderRequest, iteratorURL);
 
 RoleSearchTerms searchTerms = (RoleSearchTerms)roleSearchContainer.getSearchTerms();
@@ -129,7 +131,7 @@ RoleSearchTerms searchTerms = (RoleSearchTerms)roleSearchContainer.getSearchTerm
 			</aui:nav>
 
 			<aui:nav-bar-search>
-				<aui:form action="<%= iteratorURL.toString() %>" name="searchFm">
+				<aui:form action="<%= actionURL %>" name="searchFm">
 					<liferay-ui:input-search
 						markupView="lexicon"
 					/>
