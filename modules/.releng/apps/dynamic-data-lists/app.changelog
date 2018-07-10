@@ -1,0 +1,12 @@
+#
+# Liferay App Version 1.0.0
+#
+
+app.artifacts-1.0.0=\
+	com.liferay.dynamic.data.lists.api-3.0.4.jar,\
+	com.liferay.dynamic.data.lists.service-2.0.5.jar,\
+	com.liferay.dynamic.data.lists.web-3.0.6.jar
+
+app.change.log-1.0.0=LPS-82828
+
+app.git.id-1.0.0=bf9943b93ff9473888db9fac9695168575fa3ab2

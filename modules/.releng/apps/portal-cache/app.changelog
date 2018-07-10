@@ -1,0 +1,15 @@
+#
+# Liferay App Version 1.0.0
+#
+
+app.artifacts-1.0.0=\
+	com.liferay.portal.cache.api-1.0.3.jar,\
+	com.liferay.portal.cache.ehcache.impl-1.0.1.jar,\
+	com.liferay.portal.cache.ehcache.provider-3.0.0.jar,\
+	com.liferay.portal.cache.ehcache.spi-1.0.1.jar,\
+	com.liferay.portal.cache.impl-1.0.3.jar,\
+	com.liferay.portal.cache.single-3.0.0.jar
+
+app.change.log-1.0.0=LPS-80332 LPS-81555 LPS-82828
+
+app.git.id-1.0.0=bf9943b93ff9473888db9fac9695168575fa3ab2
