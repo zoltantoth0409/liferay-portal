@@ -74,6 +74,8 @@ public class PortletURLListenerFactory {
 		}
 
 		if (portletApp.isWARFile()) {
+			ServletContext servletContext = portletApp.getServletContext();
+
 			PortletContextBag portletContextBag = PortletContextBagPool.get(
 				portletApp.getServletContextName());
 
@@ -83,11 +85,9 @@ public class PortletURLListenerFactory {
 			portletURLGenerationListener = portletURLListenersMap.get(
 				portletURLListener.getListenerClass());
 
-			ServletContext servletContext = portletApp.getServletContext();
-
 			portletURLGenerationListener = _init(
-				portletURLListener, portletURLGenerationListener,
-				servletContext.getClassLoader());
+				servletContext.getClassLoader(), portletURLListener,
+				portletURLGenerationListener);
 		}
 		else {
 			portletURLGenerationListener = _init(portletURLListener);
@@ -127,13 +127,12 @@ public class PortletURLListenerFactory {
 			PortletURLListener portletURLListener)
 		throws PortletException {
 
-		return _init(portletURLListener, null, null);
+		return _init(null, portletURLListener, null);
 	}
 
 	private PortletURLGenerationListener _init(
-			PortletURLListener portletURLListener,
-			PortletURLGenerationListener portletURLGenerationListener,
-			ClassLoader classLoader)
+			ClassLoader classLoader, PortletURLListener portletURLListener,
+			PortletURLGenerationListener portletURLGenerationListener)
 		throws PortletException {
 
 		try {
