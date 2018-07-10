@@ -225,7 +225,7 @@ public class StructuredContentNestedCollectionResource
 		String valueString = value.getString(LocaleUtil.getDefault());
 
 		try {
-			if (_isJsonObject(valueString)) {
+			if (_isJSONObject(valueString)) {
 				JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 					valueString);
 
@@ -339,7 +339,7 @@ public class StructuredContentNestedCollectionResource
 		).map(
 			value -> value.getString(locale)
 		).filter(
-			valueString -> !_isJsonObject(valueString)
+			valueString -> !_isJSONObject(valueString)
 		).orElse(
 			null
 		);
@@ -365,7 +365,7 @@ public class StructuredContentNestedCollectionResource
 		return new PageItems<>(journalArticleWrappers, count);
 	}
 
-	private boolean _isJsonObject(String json) {
+	private boolean _isJSONObject(String json) {
 		try {
 			if (json.startsWith("{") &&
 				(JSONFactoryUtil.createJSONObject(json) != null)) {
