@@ -67,7 +67,7 @@ public class LiferayBeanFactory extends DefaultListableBeanFactory {
 
 			throw new BeanCreationException(
 				rootBeanDefinition.getResourceDescription(), beanName,
-				"Cannot apply property values to null instance");
+				"Unable to apply property values to null instance");
 		}
 
 		if (!_isContinueWithPropertyPopulation(
