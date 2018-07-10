@@ -66,7 +66,6 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.SetUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -2210,8 +2209,7 @@ public class OrganizationLocalServiceImpl
 				OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID) {
 
 			if (!OrganizationImpl.isRootable(type)) {
-				throw new OrganizationParentException(
-					"Organization of type " + type + " cannot be a root");
+				throw new OrganizationParentException.MustBeRootable(type);
 			}
 		}
 		else {
@@ -2227,8 +2225,7 @@ public class OrganizationLocalServiceImpl
 				parentOrganization.getType());
 
 			if (childrenTypes.length == 0) {
-				throw new OrganizationParentException(
-					"Organization of type " + type + " cannot have children");
+				throw new OrganizationParentException.MustNotHaveChildren(type);
 			}
 
 			if ((companyId != parentOrganization.getCompanyId()) ||
@@ -2238,10 +2235,8 @@ public class OrganizationLocalServiceImpl
 			}
 
 			if (!ArrayUtil.contains(childrenTypes, type)) {
-				throw new OrganizationParentException(
-					StringBundler.concat(
-						"Type ", type, " not allowed as child of ",
-						parentOrganization.getType()));
+				throw new OrganizationParentException.InvalidChildType(
+					type, parentOrganization.getType());
 			}
 		}
 
