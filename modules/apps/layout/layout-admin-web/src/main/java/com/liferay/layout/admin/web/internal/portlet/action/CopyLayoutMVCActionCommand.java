@@ -211,10 +211,10 @@ public class CopyLayoutMVCActionCommand extends BaseMVCActionCommand {
 		List<String> portletIds =
 			_portletRegistry.getFragmentEntryLinkPortletIds(fragmentEntryLink);
 
-		long defaultPlid = _portal.getControlPanelPlid(
-			serviceContext.getCompanyId());
-
 		for (String portletId : portletIds) {
+			long defaultPlid = _portal.getControlPanelPlid(
+				serviceContext.getCompanyId());
+
 			PortletPreferences portletPreferences =
 				_portletPreferencesLocalService.fetchPreferences(
 					serviceContext.getCompanyId(),
