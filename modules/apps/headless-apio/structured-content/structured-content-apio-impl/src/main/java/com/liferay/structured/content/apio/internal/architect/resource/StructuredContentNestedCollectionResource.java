@@ -229,8 +229,8 @@ public class StructuredContentNestedCollectionResource
 				JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 					valueString);
 
-				long groupId = jsonObject.getLong("groupId");
 				String uuid = jsonObject.getString("uuid");
+				long groupId = jsonObject.getLong("groupId");
 
 				FileEntry fileEntry =
 					_dlAppService.getFileEntryByUuidAndGroupId(uuid, groupId);
