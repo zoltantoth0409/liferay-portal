@@ -793,6 +793,10 @@
 		.calendar-portlet-column-grid {
 			width: 60%;
 
+			&.col-md-12 {
+				width: 100%;
+			}
+
 			.scheduler-base-content .scheduler-base-hd {
 				.scheduler-base-controls {
 					width: 100%;
@@ -851,6 +855,10 @@
 	.calendar-portlet-column-parent {
 		.calendar-portlet-column-grid {
 			width: 65%;
+
+			&.col-md-12 {
+				width: 100%;
+			}
 
 			.scheduler-base-content .scheduler-base-hd {
 				.scheduler-base-controls {
