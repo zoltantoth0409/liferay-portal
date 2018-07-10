@@ -1422,15 +1422,15 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 		frameworkStartLevel.setStartLevel(
 			PropsValues.MODULE_FRAMEWORK_BEGINNING_START_LEVEL);
 
-		final Set<Bundle> bundleSet = new HashSet<>();
+		final Set<Bundle> bundlesSet = new HashSet<>();
 
 		for (Bundle bundle : bundles.values()) {
 			if (!_isFragmentBundle(bundle)) {
-				bundleSet.add(bundle);
+				bundlesSet.add(bundle);
 			}
 		}
 
-		if (!bundleSet.isEmpty()) {
+		if (!bundlesSet.isEmpty()) {
 			final CountDownLatch countDownLatch = new CountDownLatch(1);
 
 			BundleTracker<Void> bundleTracker = new BundleTracker<Void>(
@@ -1440,8 +1440,8 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 				public Void addingBundle(
 					Bundle trackedBundle, BundleEvent bundleEvent) {
 
-					if (bundleSet.remove(trackedBundle)) {
-						if (bundleSet.isEmpty()) {
+					if (bundlesSet.remove(trackedBundle)) {
+						if (bundlesSet.isEmpty()) {
 							countDownLatch.countDown();
 
 							close();
