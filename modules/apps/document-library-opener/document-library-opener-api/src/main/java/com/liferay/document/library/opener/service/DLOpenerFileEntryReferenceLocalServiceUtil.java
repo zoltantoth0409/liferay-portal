@@ -55,6 +55,15 @@ public class DLOpenerFileEntryReferenceLocalServiceUtil {
 				   .addDLOpenerFileEntryReference(dlOpenerFileEntryReference);
 	}
 
+	public static com.liferay.document.library.opener.model.DLOpenerFileEntryReference addDLOpenerFileEntryReference(
+		long userId, String referenceKey,
+		com.liferay.portal.kernel.repository.model.FileEntry fileEntry)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .addDLOpenerFileEntryReference(userId, referenceKey,
+			fileEntry);
+	}
+
 	/**
 	* Creates a new dl opener file entry reference with the primary key. Does not add the dl opener file entry reference to the database.
 	*
@@ -77,6 +86,12 @@ public class DLOpenerFileEntryReferenceLocalServiceUtil {
 		com.liferay.document.library.opener.model.DLOpenerFileEntryReference dlOpenerFileEntryReference) {
 		return getService()
 				   .deleteDLOpenerFileEntryReference(dlOpenerFileEntryReference);
+	}
+
+	public static void deleteDLOpenerFileEntryReference(
+		com.liferay.portal.kernel.repository.model.FileEntry fileEntry)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService().deleteDLOpenerFileEntryReference(fileEntry);
 	}
 
 	/**
@@ -181,6 +196,11 @@ public class DLOpenerFileEntryReferenceLocalServiceUtil {
 	}
 
 	public static com.liferay.document.library.opener.model.DLOpenerFileEntryReference fetchDLOpenerFileEntryReference(
+		com.liferay.portal.kernel.repository.model.FileEntry fileEntry) {
+		return getService().fetchDLOpenerFileEntryReference(fileEntry);
+	}
+
+	public static com.liferay.document.library.opener.model.DLOpenerFileEntryReference fetchDLOpenerFileEntryReference(
 		long dlOpenerFileEntryReferenceId) {
 		return getService()
 				   .fetchDLOpenerFileEntryReference(dlOpenerFileEntryReferenceId);
@@ -188,6 +208,12 @@ public class DLOpenerFileEntryReferenceLocalServiceUtil {
 
 	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
 		return getService().getActionableDynamicQuery();
+	}
+
+	public static com.liferay.document.library.opener.model.DLOpenerFileEntryReference getDLOpenerFileEntryReference(
+		com.liferay.portal.kernel.repository.model.FileEntry fileEntry)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getDLOpenerFileEntryReference(fileEntry);
 	}
 
 	/**

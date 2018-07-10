@@ -46,6 +46,15 @@ public class DLOpenerFileEntryReferenceLocalServiceWrapper
 		return _dlOpenerFileEntryReferenceLocalService.addDLOpenerFileEntryReference(dlOpenerFileEntryReference);
 	}
 
+	@Override
+	public com.liferay.document.library.opener.model.DLOpenerFileEntryReference addDLOpenerFileEntryReference(
+		long userId, String referenceKey,
+		com.liferay.portal.kernel.repository.model.FileEntry fileEntry)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _dlOpenerFileEntryReferenceLocalService.addDLOpenerFileEntryReference(userId,
+			referenceKey, fileEntry);
+	}
+
 	/**
 	* Creates a new dl opener file entry reference with the primary key. Does not add the dl opener file entry reference to the database.
 	*
@@ -68,6 +77,13 @@ public class DLOpenerFileEntryReferenceLocalServiceWrapper
 	public com.liferay.document.library.opener.model.DLOpenerFileEntryReference deleteDLOpenerFileEntryReference(
 		com.liferay.document.library.opener.model.DLOpenerFileEntryReference dlOpenerFileEntryReference) {
 		return _dlOpenerFileEntryReferenceLocalService.deleteDLOpenerFileEntryReference(dlOpenerFileEntryReference);
+	}
+
+	@Override
+	public void deleteDLOpenerFileEntryReference(
+		com.liferay.portal.kernel.repository.model.FileEntry fileEntry)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_dlOpenerFileEntryReferenceLocalService.deleteDLOpenerFileEntryReference(fileEntry);
 	}
 
 	/**
@@ -182,6 +198,12 @@ public class DLOpenerFileEntryReferenceLocalServiceWrapper
 
 	@Override
 	public com.liferay.document.library.opener.model.DLOpenerFileEntryReference fetchDLOpenerFileEntryReference(
+		com.liferay.portal.kernel.repository.model.FileEntry fileEntry) {
+		return _dlOpenerFileEntryReferenceLocalService.fetchDLOpenerFileEntryReference(fileEntry);
+	}
+
+	@Override
+	public com.liferay.document.library.opener.model.DLOpenerFileEntryReference fetchDLOpenerFileEntryReference(
 		long dlOpenerFileEntryReferenceId) {
 		return _dlOpenerFileEntryReferenceLocalService.fetchDLOpenerFileEntryReference(dlOpenerFileEntryReferenceId);
 	}
@@ -189,6 +211,13 @@ public class DLOpenerFileEntryReferenceLocalServiceWrapper
 	@Override
 	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
 		return _dlOpenerFileEntryReferenceLocalService.getActionableDynamicQuery();
+	}
+
+	@Override
+	public com.liferay.document.library.opener.model.DLOpenerFileEntryReference getDLOpenerFileEntryReference(
+		com.liferay.portal.kernel.repository.model.FileEntry fileEntry)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _dlOpenerFileEntryReferenceLocalService.getDLOpenerFileEntryReference(fileEntry);
 	}
 
 	/**
