@@ -147,13 +147,13 @@ public class AddContentLayoutMVCActionCommand
 				actionRequest, actionResponse, jsonObject);
 		}
 		catch (PortalException pe) {
-			SessionErrors.add(actionRequest, "layoutNameInvalid");
-
-			hideDefaultErrorMessage(actionRequest);
-
 			if (_log.isDebugEnabled()) {
 				_log.debug(pe, pe);
 			}
+
+			SessionErrors.add(actionRequest, "layoutNameInvalid");
+
+			hideDefaultErrorMessage(actionRequest);
 
 			_layoutExceptionRequestHandler.handlePortalException(
 				actionRequest, actionResponse, pe);
