@@ -77,11 +77,11 @@ public class SharingEntryLocalServiceImpl
 		return sharingEntryPersistence.update(sharingEntry);
 	}
 
-	public int countSharingEntriesFromUserId(long fromUserId) {
+	public int countFromUserSharingEntries(long fromUserId) {
 		return sharingEntryPersistence.countByFromUserId(fromUserId);
 	}
 
-	public int countSharingEntriesToUserId(long toUserId) {
+	public int countToUserSharingEntries(long toUserId) {
 		return sharingEntryPersistence.countByToUserId(toUserId);
 	}
 
@@ -101,15 +101,15 @@ public class SharingEntryLocalServiceImpl
 		return sharingEntryPersistence.findByCN_PK(className, classPK);
 	}
 
-	public List<SharingEntry> getSharingEntriesFromUserId(long fromUserId) {
+	public List<SharingEntry> getFromUserSharingEntries(long fromUserId) {
 		return sharingEntryPersistence.findByFromUserId(fromUserId);
 	}
 
-	public List<SharingEntry> getSharingEntriesToUserId(long toUserId) {
+	public List<SharingEntry> getToUserSharingEntries(long toUserId) {
 		return sharingEntryPersistence.findByToUserId(toUserId);
 	}
 
-	public List<SharingEntry> getSharingEntriesToUserId(
+	public List<SharingEntry> getToUserSharingEntries(
 		long toUserId, String className) {
 
 		return sharingEntryPersistence.findByTU_CN(toUserId, className);
