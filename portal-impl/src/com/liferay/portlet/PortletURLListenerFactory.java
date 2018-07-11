@@ -124,13 +124,6 @@ public class PortletURLListenerFactory {
 	}
 
 	private PortletURLGenerationListener _init(
-			PortletURLListener portletURLListener)
-		throws PortletException {
-
-		return _init(null, portletURLListener, null);
-	}
-
-	private PortletURLGenerationListener _init(
 			ClassLoader classLoader, PortletURLListener portletURLListener,
 			PortletURLGenerationListener portletURLGenerationListener)
 		throws PortletException {
@@ -147,6 +140,13 @@ public class PortletURLListenerFactory {
 		}
 
 		return portletURLGenerationListener;
+	}
+
+	private PortletURLGenerationListener _init(
+			PortletURLListener portletURLListener)
+		throws PortletException {
+
+		return _init(null, portletURLListener, null);
 	}
 
 	private static final PortletURLListenerFactory _instance =
