@@ -34,8 +34,8 @@ public class UpgradePortletId extends BaseUpgradePortletId {
 			ResultSet rs = ps.executeQuery()) {
 
 			if (rs.next()) {
-				removeDuplicatedPortletPreferences();
-				removeDuplicatedResourcePermissions();
+				removeDuplicatePortletPreferences();
+				removeDuplicateResourcePermissions();
 
 				runSQL(
 					"delete from Portlet where portletId = '" +
@@ -53,7 +53,7 @@ public class UpgradePortletId extends BaseUpgradePortletId {
 		};
 	}
 
-	protected void removeDuplicatedPortletPreferences() throws SQLException {
+	protected void removeDuplicatePortletPreferences() throws SQLException {
 		try (PreparedStatement ps = connection.prepareStatement(
 				"select ownerId, ownerType, plid from PortletPreferences " +
 					"where portletId = '176'");
@@ -81,7 +81,7 @@ public class UpgradePortletId extends BaseUpgradePortletId {
 		}
 	}
 
-	protected void removeDuplicatedResourcePermissions() throws SQLException {
+	protected void removeDuplicateResourcePermissions() throws SQLException {
 		try (PreparedStatement ps = connection.prepareStatement(
 				"select companyId, scope, primKey, roleId from " +
 					"ResourcePermission where name = '176'");
