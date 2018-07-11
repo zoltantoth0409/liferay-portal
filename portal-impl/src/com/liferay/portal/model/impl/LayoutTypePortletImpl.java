@@ -1710,11 +1710,10 @@ public class LayoutTypePortletImpl
 			if (!layout.isInheritLookAndFeel()) {
 				return layout.getThemeId();
 			}
-			else {
-				LayoutSet layoutSet = layout.getLayoutSet();
 
-				return layoutSet.getThemeId();
-			}
+			LayoutSet layoutSet = layout.getLayoutSet();
+
+			return layoutSet.getThemeId();
 		}
 		catch (Exception e) {
 			_log.error(e, e);
