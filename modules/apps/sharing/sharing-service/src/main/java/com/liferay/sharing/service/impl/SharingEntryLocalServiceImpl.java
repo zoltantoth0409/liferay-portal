@@ -100,6 +100,11 @@ public class SharingEntryLocalServiceImpl
 	}
 
 	@Override
+	public List<SharingEntry> getFromUserSharingEntries(long fromUserId) {
+		return sharingEntryPersistence.findByFromUserId(fromUserId);
+	}
+
+	@Override
 	public List<SharingEntry> getSharingEntries(
 		String className, long classPK) {
 
@@ -107,8 +112,12 @@ public class SharingEntryLocalServiceImpl
 	}
 
 	@Override
-	public List<SharingEntry> getFromUserSharingEntries(long fromUserId) {
-		return sharingEntryPersistence.findByFromUserId(fromUserId);
+	public SharingEntry getSharingEntry(
+			long toUserId, String className, long classPK)
+		throws PortalException {
+
+		return sharingEntryPersistence.findByTU_CN_PK(
+			toUserId, className, classPK);
 	}
 
 	@Override
@@ -121,15 +130,6 @@ public class SharingEntryLocalServiceImpl
 		long toUserId, String className) {
 
 		return sharingEntryPersistence.findByTU_CN(toUserId, className);
-	}
-
-	@Override
-	public SharingEntry getSharingEntry(
-			long toUserId, String className, long classPK)
-		throws PortalException {
-
-		return sharingEntryPersistence.findByTU_CN_PK(
-			toUserId, className, classPK);
 	}
 
 	@Override
