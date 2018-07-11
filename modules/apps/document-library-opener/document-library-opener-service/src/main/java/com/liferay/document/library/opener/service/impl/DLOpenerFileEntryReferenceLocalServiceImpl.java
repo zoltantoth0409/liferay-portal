@@ -29,7 +29,7 @@ public class DLOpenerFileEntryReferenceLocalServiceImpl
 	extends DLOpenerFileEntryReferenceLocalServiceBaseImpl {
 
 	@Override
-	public DLOpenerFileEntryReference addEntry(
+	public DLOpenerFileEntryReference addDLOpenerFileEntryReference(
 			long userId, String referenceKey, FileEntry fileEntry)
 		throws PortalException {
 
@@ -53,7 +53,9 @@ public class DLOpenerFileEntryReferenceLocalServiceImpl
 	}
 
 	@Override
-	public void deleteEntry(FileEntry fileEntry) throws PortalException {
+	public void deleteDLOpenerFileEntryReference(FileEntry fileEntry)
+		throws PortalException {
+
 		DLOpenerFileEntryReference dlOpenerFileEntryReference =
 			dlOpenerFileEntryReferencePersistence.findByFileEntryId(
 				fileEntry.getFileEntryId());
@@ -63,13 +65,16 @@ public class DLOpenerFileEntryReferenceLocalServiceImpl
 	}
 
 	@Override
-	public DLOpenerFileEntryReference fetchEntry(FileEntry fileEntry) {
+	public DLOpenerFileEntryReference fetchDLOpenerFileEntryReference(
+		FileEntry fileEntry) {
+
 		return dlOpenerFileEntryReferencePersistence.fetchByFileEntryId(
 			fileEntry.getFileEntryId());
 	}
 
 	@Override
-	public DLOpenerFileEntryReference getEntry(FileEntry fileEntry)
+	public DLOpenerFileEntryReference getDLOpenerFileEntryReference(
+			FileEntry fileEntry)
 		throws PortalException {
 
 		return dlOpenerFileEntryReferencePersistence.findByFileEntryId(
