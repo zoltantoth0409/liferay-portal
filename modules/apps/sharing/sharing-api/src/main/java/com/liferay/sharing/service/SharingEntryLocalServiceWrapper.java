@@ -57,13 +57,13 @@ public class SharingEntryLocalServiceWrapper implements SharingEntryLocalService
 	}
 
 	@Override
-	public int countSharingEntriesFromUserId(long fromUserId) {
-		return _sharingEntryLocalService.countSharingEntriesFromUserId(fromUserId);
+	public int countFromUserSharingEntries(long fromUserId) {
+		return _sharingEntryLocalService.countFromUserSharingEntries(fromUserId);
 	}
 
 	@Override
-	public int countSharingEntriesToUserId(long toUserId) {
-		return _sharingEntryLocalService.countSharingEntriesToUserId(toUserId);
+	public int countToUserSharingEntries(long toUserId) {
+		return _sharingEntryLocalService.countToUserSharingEntries(toUserId);
 	}
 
 	/**
@@ -239,6 +239,12 @@ public class SharingEntryLocalServiceWrapper implements SharingEntryLocalService
 	}
 
 	@Override
+	public java.util.List<com.liferay.sharing.model.SharingEntry> getFromUserSharingEntries(
+		long fromUserId) {
+		return _sharingEntryLocalService.getFromUserSharingEntries(fromUserId);
+	}
+
+	@Override
 	public com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
 		return _sharingEntryLocalService.getIndexableActionableDynamicQuery();
 	}
@@ -325,25 +331,6 @@ public class SharingEntryLocalServiceWrapper implements SharingEntryLocalService
 		return _sharingEntryLocalService.getSharingEntriesCount();
 	}
 
-	@Override
-	public java.util.List<com.liferay.sharing.model.SharingEntry> getSharingEntriesFromUserId(
-		long fromUserId) {
-		return _sharingEntryLocalService.getSharingEntriesFromUserId(fromUserId);
-	}
-
-	@Override
-	public java.util.List<com.liferay.sharing.model.SharingEntry> getSharingEntriesToUserId(
-		long toUserId) {
-		return _sharingEntryLocalService.getSharingEntriesToUserId(toUserId);
-	}
-
-	@Override
-	public java.util.List<com.liferay.sharing.model.SharingEntry> getSharingEntriesToUserId(
-		long toUserId, String className) {
-		return _sharingEntryLocalService.getSharingEntriesToUserId(toUserId,
-			className);
-	}
-
 	/**
 	* Returns the sharing entry with the primary key.
 	*
@@ -380,6 +367,19 @@ public class SharingEntryLocalServiceWrapper implements SharingEntryLocalService
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _sharingEntryLocalService.getSharingEntryByUuidAndGroupId(uuid,
 			groupId);
+	}
+
+	@Override
+	public java.util.List<com.liferay.sharing.model.SharingEntry> getToUserSharingEntries(
+		long toUserId) {
+		return _sharingEntryLocalService.getToUserSharingEntries(toUserId);
+	}
+
+	@Override
+	public java.util.List<com.liferay.sharing.model.SharingEntry> getToUserSharingEntries(
+		long toUserId, String className) {
+		return _sharingEntryLocalService.getToUserSharingEntries(toUserId,
+			className);
 	}
 
 	@Override

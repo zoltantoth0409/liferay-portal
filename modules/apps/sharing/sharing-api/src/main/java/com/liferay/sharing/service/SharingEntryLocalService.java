@@ -80,9 +80,9 @@ public interface SharingEntryLocalService extends BaseLocalService,
 	@Indexable(type = IndexableType.REINDEX)
 	public SharingEntry addSharingEntry(SharingEntry sharingEntry);
 
-	public int countSharingEntriesFromUserId(long fromUserId);
+	public int countFromUserSharingEntries(long fromUserId);
 
-	public int countSharingEntriesToUserId(long toUserId);
+	public int countToUserSharingEntries(long toUserId);
 
 	/**
 	* Creates a new sharing entry with the primary key. Does not add the sharing entry to the database.
@@ -204,6 +204,9 @@ public interface SharingEntryLocalService extends BaseLocalService,
 		PortletDataContext portletDataContext);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<SharingEntry> getFromUserSharingEntries(long fromUserId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
 
 	/**
@@ -269,16 +272,6 @@ public interface SharingEntryLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getSharingEntriesCount();
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<SharingEntry> getSharingEntriesFromUserId(long fromUserId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<SharingEntry> getSharingEntriesToUserId(long toUserId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<SharingEntry> getSharingEntriesToUserId(long toUserId,
-		String className);
-
 	/**
 	* Returns the sharing entry with the primary key.
 	*
@@ -305,6 +298,13 @@ public interface SharingEntryLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public SharingEntry getSharingEntryByUuidAndGroupId(String uuid,
 		long groupId) throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<SharingEntry> getToUserSharingEntries(long toUserId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<SharingEntry> getToUserSharingEntries(long toUserId,
+		String className);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public boolean hasSharingPermission(long toUserId, String className,

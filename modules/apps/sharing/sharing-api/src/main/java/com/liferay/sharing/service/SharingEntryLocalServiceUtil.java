@@ -64,12 +64,12 @@ public class SharingEntryLocalServiceUtil {
 		return getService().addSharingEntry(sharingEntry);
 	}
 
-	public static int countSharingEntriesFromUserId(long fromUserId) {
-		return getService().countSharingEntriesFromUserId(fromUserId);
+	public static int countFromUserSharingEntries(long fromUserId) {
+		return getService().countFromUserSharingEntries(fromUserId);
 	}
 
-	public static int countSharingEntriesToUserId(long toUserId) {
-		return getService().countSharingEntriesToUserId(toUserId);
+	public static int countToUserSharingEntries(long toUserId) {
+		return getService().countToUserSharingEntries(toUserId);
 	}
 
 	/**
@@ -226,6 +226,11 @@ public class SharingEntryLocalServiceUtil {
 		return getService().getExportActionableDynamicQuery(portletDataContext);
 	}
 
+	public static java.util.List<com.liferay.sharing.model.SharingEntry> getFromUserSharingEntries(
+		long fromUserId) {
+		return getService().getFromUserSharingEntries(fromUserId);
+	}
+
 	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
 		return getService().getIndexableActionableDynamicQuery();
 	}
@@ -305,21 +310,6 @@ public class SharingEntryLocalServiceUtil {
 		return getService().getSharingEntriesCount();
 	}
 
-	public static java.util.List<com.liferay.sharing.model.SharingEntry> getSharingEntriesFromUserId(
-		long fromUserId) {
-		return getService().getSharingEntriesFromUserId(fromUserId);
-	}
-
-	public static java.util.List<com.liferay.sharing.model.SharingEntry> getSharingEntriesToUserId(
-		long toUserId) {
-		return getService().getSharingEntriesToUserId(toUserId);
-	}
-
-	public static java.util.List<com.liferay.sharing.model.SharingEntry> getSharingEntriesToUserId(
-		long toUserId, String className) {
-		return getService().getSharingEntriesToUserId(toUserId, className);
-	}
-
 	/**
 	* Returns the sharing entry with the primary key.
 	*
@@ -351,6 +341,16 @@ public class SharingEntryLocalServiceUtil {
 		String uuid, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getSharingEntryByUuidAndGroupId(uuid, groupId);
+	}
+
+	public static java.util.List<com.liferay.sharing.model.SharingEntry> getToUserSharingEntries(
+		long toUserId) {
+		return getService().getToUserSharingEntries(toUserId);
+	}
+
+	public static java.util.List<com.liferay.sharing.model.SharingEntry> getToUserSharingEntries(
+		long toUserId, String className) {
+		return getService().getToUserSharingEntries(toUserId, className);
 	}
 
 	public static boolean hasSharingPermission(long toUserId, String className,
