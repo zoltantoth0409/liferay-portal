@@ -35,6 +35,7 @@ import java.util.stream.Stream;
 public class SharingEntryLocalServiceImpl
 	extends SharingEntryLocalServiceBaseImpl {
 
+	@Override
 	public SharingEntry addSharingEntry(
 			long fromUserId, long toUserId, String className, long classPK,
 			long groupId,
@@ -77,14 +78,17 @@ public class SharingEntryLocalServiceImpl
 		return sharingEntryPersistence.update(sharingEntry);
 	}
 
+	@Override
 	public int countFromUserSharingEntries(long fromUserId) {
 		return sharingEntryPersistence.countByFromUserId(fromUserId);
 	}
 
+	@Override
 	public int countToUserSharingEntries(long toUserId) {
 		return sharingEntryPersistence.countByToUserId(toUserId);
 	}
 
+	@Override
 	public SharingEntry deleteSharingEntry(
 			long toUserId, String className, long classPK)
 		throws PortalException {
@@ -95,26 +99,31 @@ public class SharingEntryLocalServiceImpl
 		return sharingEntryPersistence.remove(sharingEntry);
 	}
 
+	@Override
 	public List<SharingEntry> getSharingEntries(
 		String className, long classPK) {
 
 		return sharingEntryPersistence.findByCN_PK(className, classPK);
 	}
 
+	@Override
 	public List<SharingEntry> getFromUserSharingEntries(long fromUserId) {
 		return sharingEntryPersistence.findByFromUserId(fromUserId);
 	}
 
+	@Override
 	public List<SharingEntry> getToUserSharingEntries(long toUserId) {
 		return sharingEntryPersistence.findByToUserId(toUserId);
 	}
 
+	@Override
 	public List<SharingEntry> getToUserSharingEntries(
 		long toUserId, String className) {
 
 		return sharingEntryPersistence.findByTU_CN(toUserId, className);
 	}
 
+	@Override
 	public SharingEntry getSharingEntry(
 			long toUserId, String className, long classPK)
 		throws PortalException {
@@ -123,6 +132,7 @@ public class SharingEntryLocalServiceImpl
 			toUserId, className, classPK);
 	}
 
+	@Override
 	public boolean hasSharingPermission(
 		long toUserId, String className, long classPK,
 		SharingEntryActionKey sharingEntryActionKey) {
