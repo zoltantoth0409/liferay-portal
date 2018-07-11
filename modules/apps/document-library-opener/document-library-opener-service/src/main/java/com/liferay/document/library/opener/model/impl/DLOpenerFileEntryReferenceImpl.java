@@ -17,23 +17,12 @@ package com.liferay.document.library.opener.model.impl;
 import aQute.bnd.annotation.ProviderType;
 
 /**
- * The extended model implementation for the DLOpenerFileEntryReference service. Represents a row in the &quot;DLOpenerFileEntryReference&quot; database table, with each column mapped to a property of this class.
- *
- * <p>
- * Helper methods and all application logic should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.document.library.opener.model.DLOpenerFileEntryReference} interface.
- * </p>
- *
  * @author Brian Wing Shun Chan
  */
 @ProviderType
 public class DLOpenerFileEntryReferenceImpl
 	extends DLOpenerFileEntryReferenceBaseImpl {
 
-	/**
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. All methods that expect a dl opener file entry reference model instance should use the {@link com.liferay.document.library.opener.model.DLOpenerFileEntryReference} interface instead.
-	 */
 	public DLOpenerFileEntryReferenceImpl() {
 	}
 
