@@ -36,14 +36,14 @@ public enum SharingEntryActionKey {
 	}
 
 	public static SharingEntryActionKey parseFromActionId(String actionId) {
-		if (Objects.equals(VIEW.getActionId(), actionId)) {
-			return VIEW;
+		if (Objects.equals(ADD_DISCUSSION.getActionId(), actionId)) {
+			return ADD_DISCUSSION;
 		}
 		else if (Objects.equals(UPDATE.getActionId(), actionId)) {
 			return UPDATE;
 		}
-		else if (Objects.equals(ADD_DISCUSSION.getActionId(), actionId)) {
-			return ADD_DISCUSSION;
+		else if (Objects.equals(VIEW.getActionId(), actionId)) {
+			return VIEW;
 		}
 
 		throw new IllegalArgumentException("Invalid action id " + actionId);
@@ -52,16 +52,14 @@ public enum SharingEntryActionKey {
 	public static SharingEntryActionKey parseFromBitwiseValue(
 		long bitwiseValue) {
 
-		if (Objects.equals(VIEW.getBitwiseVaue(), bitwiseValue)) {
-			return VIEW;
+		if (Objects.equals(ADD_DISCUSSION.getBitwiseVaue(), bitwiseValue)) {
+			return ADD_DISCUSSION;
 		}
 		else if (Objects.equals(UPDATE.getBitwiseVaue(), bitwiseValue)) {
 			return UPDATE;
 		}
-		else if (Objects.equals(
-					ADD_DISCUSSION.getBitwiseVaue(), bitwiseValue)) {
-
-			return ADD_DISCUSSION;
+		else if (Objects.equals(VIEW.getBitwiseVaue(), bitwiseValue)) {
+			return VIEW;
 		}
 
 		throw new IllegalArgumentException(
