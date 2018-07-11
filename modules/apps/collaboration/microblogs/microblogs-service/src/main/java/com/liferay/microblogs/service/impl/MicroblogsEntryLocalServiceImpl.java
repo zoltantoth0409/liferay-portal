@@ -47,6 +47,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.Serializable;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -211,21 +212,31 @@ public class MicroblogsEntryLocalServiceImpl
 			MicroblogsEntry microblogsEntry)
 		throws PortalException {
 
-		// Microblogs entry
+		List<MicroblogsEntry> microblogsEntries = new ArrayList<>();
 
-		microblogsEntryPersistence.remove(microblogsEntry);
+		microblogsEntries.add(microblogsEntry);
 
-		// Asset
+		getAllRelatedMicroblogsEntries(
+			microblogsEntries, microblogsEntry.getMicroblogsEntryId());
 
-		assetEntryLocalService.deleteEntry(
-			MicroblogsEntry.class.getName(),
-			microblogsEntry.getMicroblogsEntryId());
+		for (MicroblogsEntry mbEntry : microblogsEntries) {
 
-		// Social
+			// Microblogs entry
 
-		socialActivityLocalService.deleteActivities(
-			MicroblogsEntry.class.getName(),
-			microblogsEntry.getMicroblogsEntryId());
+			microblogsEntryPersistence.remove(mbEntry);
+
+			// Asset
+
+			assetEntryLocalService.deleteEntry(
+				MicroblogsEntry.class.getName(),
+				mbEntry.getMicroblogsEntryId());
+
+			// Social
+
+			socialActivityLocalService.deleteActivities(
+				MicroblogsEntry.class.getName(),
+				mbEntry.getMicroblogsEntryId());
+		}
 
 		return microblogsEntry;
 	}
@@ -546,6 +557,25 @@ public class MicroblogsEntryLocalServiceImpl
 			serviceContext.getAssetTagNames());
 
 		return microblogsEntry;
+	}
+
+	protected void getAllRelatedMicroblogsEntries(
+		List<MicroblogsEntry> microblogsEntries, long microblogsEntryId) {
+
+		microblogsEntries.addAll(
+			microblogsEntryPersistence.findByT_P(
+				MicroblogsEntryConstants.TYPE_REPLY, microblogsEntryId));
+
+		List<MicroblogsEntry> repostMicroblogsEntries =
+			microblogsEntryPersistence.findByT_P(
+				MicroblogsEntryConstants.TYPE_REPOST, microblogsEntryId);
+
+		for (MicroblogsEntry microblogsEntry : repostMicroblogsEntries) {
+			microblogsEntries.add(microblogsEntry);
+
+			getAllRelatedMicroblogsEntries(
+				microblogsEntries, microblogsEntry.getMicroblogsEntryId());
+		}
 	}
 
 	protected long getSubscriptionId(
