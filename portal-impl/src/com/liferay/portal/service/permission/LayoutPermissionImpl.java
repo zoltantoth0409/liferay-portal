@@ -369,14 +369,6 @@ public class LayoutPermissionImpl
 
 		Group group = GroupLocalServiceUtil.getGroup(layout.getGroupId());
 
-		if (group.isControlPanel() && layout.isTypeControlPanel()) {
-			if (!permissionChecker.isSignedIn()) {
-				return false;
-			}
-
-			return true;
-		}
-
 		// Inactive sites are not viewable
 
 		if (!GroupLocalServiceUtil.isLiveGroupActive(group)) {
@@ -550,6 +542,14 @@ public class LayoutPermissionImpl
 			if (!layoutTypeController.isCheckLayoutViewPermission()) {
 				return true;
 			}
+		}
+
+		if (layout.isTypeControlPanel()) {
+			if (!permissionChecker.isSignedIn()) {
+				return false;
+			}
+
+			return true;
 		}
 
 		if (actionId.equals(ActionKeys.CUSTOMIZE) &&
