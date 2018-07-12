@@ -30,10 +30,6 @@
 			}
 		}
 
-		img {
-			max-width: 100%;
-		}
-
 		.cover-image-container {
 			background-position: center;
 			background-repeat: no-repeat;
@@ -66,6 +62,10 @@
 
 		img[style*="float:"][style*="right;"] {
 			margin-left: 24px;
+		}
+
+		img {
+			max-width: 100%;
 		}
 	}
 
