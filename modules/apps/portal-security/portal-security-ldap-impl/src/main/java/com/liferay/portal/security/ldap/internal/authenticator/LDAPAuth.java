@@ -242,18 +242,17 @@ public class LDAPAuth implements Authenticator {
 			Attribute userPassword = attributes.get("userPassword");
 
 			if (userPassword != null) {
+				String encryptedPassword = password;
 				String ldapPassword = new String((byte[])userPassword.get());
 
-				String algorithm =
-					ldapAuthConfiguration.passwordEncryptionAlgorithm();
+				if (Validator.isNotNull(
+						ldapAuthConfiguration.passwordEncryptionAlgorithm())) {
 
-				String encryptedPassword = password;
-
-				if (Validator.isNotNull(algorithm)) {
 					ldapPassword = removeEncryptionAlgorithm(ldapPassword);
 
 					encryptedPassword = _passwordEncryptor.encrypt(
-						algorithm, password, ldapPassword);
+						ldapAuthConfiguration.passwordEncryptionAlgorithm(),
+						password, ldapPassword);
 				}
 
 				if (ldapPassword.equals(encryptedPassword)) {
