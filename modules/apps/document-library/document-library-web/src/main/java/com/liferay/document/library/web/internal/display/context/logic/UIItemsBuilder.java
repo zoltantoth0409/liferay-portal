@@ -842,8 +842,8 @@ public class UIItemsBuilder {
 				String.valueOf(_fileShortcut.getFileShortcutId()));
 		}
 
-		portletURL.setParameter("backURL", _getCurrentURL());
 		portletURL.setParameter("redirect", StringPool.BLANK);
+		portletURL.setParameter("backURL", _getCurrentURL());
 
 		_addURLUIItem(
 			new URLMenuItem(), menuItems, DLUIItemKeys.PUBLISH,
