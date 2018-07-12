@@ -124,6 +124,7 @@ public class SocialActivityCounterLocalServiceTest
 				SocialActivityCounterConstants.NAME_CONTRIBUTION, creatorUser);
 
 		Assert.assertNotNull(contribution);
+		Assert.assertEquals(5, contribution.getCurrentValue());
 
 		SocialActivityTestUtil.addActivity(
 			actorUser, group, assetEntry,
