@@ -10,7 +10,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.asset.tag.stats.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.asset.taglib", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.comment.taglib", version: "1.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.mapping.api", version: "4.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.mapping.api", version: "4.3.0"
 	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.mapping.taglib", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.exportimport.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.flags.taglib", version: "3.0.0"
