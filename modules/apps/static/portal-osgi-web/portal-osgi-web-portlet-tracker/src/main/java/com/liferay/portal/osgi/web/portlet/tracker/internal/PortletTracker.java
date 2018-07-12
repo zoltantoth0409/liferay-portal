@@ -458,7 +458,10 @@ public class PortletTracker
 			}
 
 			String containerRuntimeOptionPrefix =
-				LiferayPortletConfig.class.getName().concat(portletName);
+				LiferayPortletConfig.class.getName();
+
+			containerRuntimeOptionPrefix = containerRuntimeOptionPrefix.concat(
+				portletName);
 
 			List<String> values = StringPlus.asList(
 				serviceReference.getProperty(servicePropertyKey));
