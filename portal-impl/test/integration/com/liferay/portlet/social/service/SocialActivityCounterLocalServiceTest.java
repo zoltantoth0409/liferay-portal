@@ -114,7 +114,8 @@ public class SocialActivityCounterLocalServiceTest
 	public void testAddThenRevokeVote() throws Exception {
 		SocialActivityTestUtil.addActivity(creatorUser, group, assetEntry, 1);
 
-		SocialActivityTestUtil.addActivity(actorUser, group, assetEntry,
+		SocialActivityTestUtil.addActivity(
+			actorUser, group, assetEntry,
 			SocialActivityConstants.TYPE_ADD_VOTE);
 
 		SocialActivityCounter contribution =
@@ -124,7 +125,8 @@ public class SocialActivityCounterLocalServiceTest
 
 		Assert.assertNotNull(contribution);
 
-		SocialActivityTestUtil.addActivity(actorUser, group, assetEntry,
+		SocialActivityTestUtil.addActivity(
+			actorUser, group, assetEntry,
 			SocialActivityConstants.TYPE_REVOKE_VOTE);
 
 		contribution = SocialActivityTestUtil.getActivityCounter(
