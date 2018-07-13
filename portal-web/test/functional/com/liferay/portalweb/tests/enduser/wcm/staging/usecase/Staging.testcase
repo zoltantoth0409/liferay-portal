@@ -949,23 +949,11 @@
 			<var name="site" value="Community Site Name" />
 		</execute>
 
-		<toggle name="LPS-73924">
-			<on>
-				<execute macro="ProductMenu#gotoPortlet">
-					<var name="category" value="Configuration" />
-					<var name="panel" value="Site Administration" />
-					<var name="portlet" value="Workflow" />
-				</execute>
-			</on>
-
-			<off>
-				<execute macro="ProductMenu#gotoPortlet">
-					<var name="category" value="Configuration" />
-					<var name="panel" value="Site Administration" />
-					<var name="portlet" value="Workflow Configuration" />
-				</execute>
-			</off>
-		</toggle>
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Site Administration" />
+			<var name="portlet" value="Workflow Configuration" />
+		</execute>
 
 		<execute macro="Workflow#configureWorkflow">
 			<var name="workflowDefinition" value="Single Approver (Version 1)" />
@@ -1013,23 +1001,11 @@
 			<var name="site" value="Site Name" />
 		</execute>
 
-		<toggle name="LPS-73924">
-			<on>
-				<execute macro="ProductMenu#gotoPortlet">
-					<var name="category" value="Configuration" />
-					<var name="panel" value="Site Administration" />
-					<var name="portlet" value="Workflow" />
-				</execute>
-			</on>
-
-			<off>
-				<execute macro="ProductMenu#gotoPortlet">
-					<var name="category" value="Configuration" />
-					<var name="panel" value="Site Administration" />
-					<var name="portlet" value="Workflow Configuration" />
-				</execute>
-			</off>
-		</toggle>
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Site Administration" />
+			<var name="portlet" value="Workflow Configuration" />
+		</execute>
 
 		<execute macro="Workflow#configureWorkflow">
 			<var name="workflowDefinition" value="Single Approver (Version 1)" />
