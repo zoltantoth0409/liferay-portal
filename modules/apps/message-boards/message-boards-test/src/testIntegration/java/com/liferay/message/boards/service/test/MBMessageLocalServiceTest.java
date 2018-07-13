@@ -164,7 +164,6 @@ public class MBMessageLocalServiceTest {
 	@Test
 	public void testAddMessageWithEmptyBody() throws Exception {
 		User user = TestPropsValues.getUser();
-
 		String subject = StringUtil.randomString();
 
 		MBMessage mbMessage = MBMessageLocalServiceUtil.addMessage(
@@ -178,7 +177,6 @@ public class MBMessageLocalServiceTest {
 	@Test
 	public void testAddMessageWithNullBody() throws Exception {
 		User user = TestPropsValues.getUser();
-
 		String subject = StringUtil.randomString();
 
 		MBMessage mbMessage = MBMessageLocalServiceUtil.addMessage(
@@ -192,7 +190,6 @@ public class MBMessageLocalServiceTest {
 	@Test
 	public void testAddMessageWithOnlyBlanksInBody() throws Exception {
 		User user = TestPropsValues.getUser();
-
 		String subject = StringUtil.randomString();
 		String body = StringPool.SPACE;
 
