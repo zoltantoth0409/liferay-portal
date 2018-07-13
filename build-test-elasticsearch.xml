@@ -728,7 +728,7 @@ username=&quot;liferay&quot;</echo>
 
 		<prepare-kibana />
 
-		<configure-kibana-properties />
+		<antcall target="configure-kibana-properties" />
 
 		<get-testcase-property property.name="elastic.shield.enabled" />
 
