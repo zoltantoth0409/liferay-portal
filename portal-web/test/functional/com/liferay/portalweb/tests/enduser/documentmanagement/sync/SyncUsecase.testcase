@@ -20,22 +20,11 @@
 			<var name="portlet" value="Sync Connector Admin" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Pages" />
-		</execute>
+		<execute macro="Navigator#openURL" />
 
-		<execute macro="SitePages#addPublicPage">
-			<var name="pageName" value="Sync Page" />
-			<var name="sitePageType" value="Widget Page" />
-		</execute>
-
-		<execute macro="SitePages#configurePage">
+		<execute macro="Page#add">
 			<var name="columnName" value="1 Column" />
 			<var name="pageName" value="Sync Page" />
-			<var name="privacy" value="Public Pages" />
-			<var name="sitePageType" value="Widget Page" />
 		</execute>
 
 		<execute macro="Navigator#gotoPage">
@@ -72,7 +61,7 @@
 
 				<execute macro="DMDocumentType#tearDownCP" />
 
-				<execute macro="Page#tearDownCP" />
+				<execute macro="Page#tearDownPG" />
 			</else>
 		</if>
 	</tear-down>
