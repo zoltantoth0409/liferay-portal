@@ -519,7 +519,6 @@ shield.transport.ssl: true</echo>
 						<untar
 							compression="gzip"
 							dest="${app.server.parent.dir}"
-							skipChecksum="true"
 							src="${app.server.parent.dir}/${elastic.kibana.tar.name.linux}"
 						/>
 					</then>
