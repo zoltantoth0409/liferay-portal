@@ -85,11 +85,11 @@ public class AssetAutoTaggerTest {
 		_serviceContext = ServiceContextTestUtil.getServiceContext(
 			_group.getGroupId(), 0);
 
+		Registry registry = RegistryUtil.getRegistry();
+
 		Map<String, Object> properties = new HashMap<>();
 
 		properties.put("model.class.name", DLFileEntryConstants.getClassName());
-
-		Registry registry = RegistryUtil.getRegistry();
 
 		_assetAutoTagProviderServiceRegistration = registry.registerService(
 			AssetAutoTagProvider.class, model -> Arrays.asList(_AUTO_TAG),
