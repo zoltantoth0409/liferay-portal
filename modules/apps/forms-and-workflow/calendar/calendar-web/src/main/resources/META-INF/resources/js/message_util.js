@@ -137,6 +137,7 @@ AUI.add(
 
 				if (alert) {
 					alert._alertsContainer._node.innerHTML = '';
+
 					alert.destroy();
 				}
 
