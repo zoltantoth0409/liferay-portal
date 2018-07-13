@@ -82,9 +82,11 @@ public class AssetAutoTaggerImpl implements AssetAutoTagger {
 			TransactionInvokerUtil.invoke(
 				_transactionConfig,
 				() -> {
-					Set<String> assetTagNames = _getAutoAssetTagNames(assetEntry);
+					Set<String> assetTagNames = _getAutoAssetTagNames(
+						assetEntry);
 
-					assetTagNames.removeAll(Arrays.asList(assetEntry.getTagNames()));
+					assetTagNames.removeAll(
+						Arrays.asList(assetEntry.getTagNames()));
 
 					List<AssetTag> assetTags = _assetTagLocalService.checkTags(
 						assetEntry.getUserId(), assetEntry.getGroupId(),

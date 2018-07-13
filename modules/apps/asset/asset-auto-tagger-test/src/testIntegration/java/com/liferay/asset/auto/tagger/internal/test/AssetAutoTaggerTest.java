@@ -92,8 +92,8 @@ public class AssetAutoTaggerTest {
 		properties.put("model.class.name", DLFileEntryConstants.getClassName());
 
 		_assetAutoTagProviderServiceRegistration = registry.registerService(
-			AssetAutoTagProvider.class, model -> Arrays.asList(_ASSET_TAG_NAME_AUTO),
-			properties);
+			AssetAutoTagProvider.class,
+			model -> Arrays.asList(_ASSET_TAG_NAME_AUTO), properties);
 	}
 
 	@After
@@ -154,7 +154,8 @@ public class AssetAutoTaggerTest {
 
 				String[] assetTagNames = assetEntry.getTagNames();
 
-				Assert.assertEquals(assetTagNames.toString(), 1, assetTagNames.length);
+				Assert.assertEquals(
+					assetTagNames.toString(), 1, assetTagNames.length);
 
 				_assertContainsAssetTagName(assetEntry, _ASSET_TAG_NAME_MANUAL);
 			});
@@ -181,7 +182,9 @@ public class AssetAutoTaggerTest {
 			ArrayUtil.append(assetEntry.getTagNames(), assetTagName));
 	}
 
-	private void _assertContainsAssetTagName(AssetEntry assetEntry, String assetTagName) {
+	private void _assertContainsAssetTagName(
+		AssetEntry assetEntry, String assetTagName) {
+
 		for (AssetTag assetTag : assetEntry.getTags()) {
 			if (StringUtil.equals(assetTag.getName(), assetTagName)) {
 				return;
@@ -208,13 +211,13 @@ public class AssetAutoTaggerTest {
 		}
 	}
 
-	private static final String _CONFIGURATION_PID =
-		"com.liferay.asset.auto.tagger.internal.configuration." +
-			"AssetAutoTaggerConfiguration";
-
 	private static final String _ASSET_TAG_NAME_AUTO = "auto tag";
 
 	private static final String _ASSET_TAG_NAME_MANUAL = "manual tag";
+
+	private static final String _CONFIGURATION_PID =
+		"com.liferay.asset.auto.tagger.internal.configuration." +
+			"AssetAutoTaggerConfiguration";
 
 	@Inject
 	private AssetAutoTagger _assetAutoTagger;
