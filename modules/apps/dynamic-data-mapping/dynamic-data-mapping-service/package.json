@@ -4,5 +4,5 @@
 		"metal-cli": "^4.2.0"
 	},
 	"name": "dynamic-data-mapping-service",
-	"version": "4.0.0"
+	"version": "3.0.16"
 }
