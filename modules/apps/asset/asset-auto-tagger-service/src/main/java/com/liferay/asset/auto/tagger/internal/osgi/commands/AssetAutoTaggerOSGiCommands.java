@@ -64,7 +64,7 @@ public class AssetAutoTaggerOSGiCommands {
 
 	public void tagAllUntagged(String... classNames) {
 		if (!_assetAutoTaggerConfiguration.enabled()) {
-			System.out.println("Asset auto tagging is disabled");
+			System.out.println("Asset auto tagger is disabled");
 
 			return;
 		}
@@ -82,17 +82,17 @@ public class AssetAutoTaggerOSGiCommands {
 		_forEachAssetEntry(
 			classNames,
 			assetEntry -> {
-				String[] tagsBefore = assetEntry.getTagNames();
+				String[] oldAssetTagNames = assetEntry.getTagNames();
 
 				_assetAutoTagger.tag(assetEntry);
 
-				String[] tagsAfter = assetEntry.getTagNames();
+				String[] newAssetTagNames = assetEntry.getTagNames();
 
-				if (tagsBefore.length != tagsAfter.length) {
+				if (oldAssetTagNames.length != newAssetTagNames.length) {
 					System.out.println(
 						String.format(
-							"Added %d tags to asset entry: %s",
-							tagsAfter.length - tagsBefore.length,
+							"Added %d tags to asset entry %s",
+							newAssetTagNames.length - oldAssetTagNames.length,
 							assetEntry.getTitle()));
 				}
 
@@ -103,21 +103,21 @@ public class AssetAutoTaggerOSGiCommands {
 		_forEachAssetEntry(
 			classNames,
 			assetEntry -> {
-				String[] tagsBefore = assetEntry.getTagNames();
+				String[] oldAssetTagNames = assetEntry.getTagNames();
 
-				if (tagsBefore.length > 0) {
+				if (oldAssetTagNames.length > 0) {
 					return;
 				}
 
 				_assetAutoTagger.untag(assetEntry);
 
-				String[] tagsAfter = assetEntry.getTagNames();
+				String[] newAssetTagNames = assetEntry.getTagNames();
 
-				if (tagsBefore.length != tagsAfter.length) {
+				if (oldAssetTagNames.length != newAssetTagNames.length) {
 					System.out.println(
 						String.format(
-							"Deleted %d tags to asset entry: %s",
-							tagsBefore.length - tagsAfter.length,
+							"Deleted %d tags to asset entry %s",
+							oldAssetTagNames.length - newAssetTagNames.length,
 							assetEntry.getTitle()));
 				}
 			});

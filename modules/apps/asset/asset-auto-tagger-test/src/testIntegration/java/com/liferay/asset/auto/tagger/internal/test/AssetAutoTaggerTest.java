@@ -92,7 +92,7 @@ public class AssetAutoTaggerTest {
 		properties.put("model.class.name", DLFileEntryConstants.getClassName());
 
 		_assetAutoTagProviderServiceRegistration = registry.registerService(
-			AssetAutoTagProvider.class, model -> Arrays.asList(_AUTO_TAG),
+			AssetAutoTagProvider.class, model -> Arrays.asList(_ASSET_TAG_NAME_AUTO),
 			properties);
 	}
 
@@ -103,11 +103,11 @@ public class AssetAutoTaggerTest {
 
 	@Test
 	public void testAutoTagsANewAssetOnCreation() throws Exception {
-		_withAutoTaggingEnabled(
+		_withAutoTaggerEnabled(
 			() -> {
 				AssetEntry assetEntry = _addFileEntryAssetEntry();
 
-				_assertContainsTag(assetEntry, _AUTO_TAG);
+				_assertContainsAssetTagName(assetEntry, _ASSET_TAG_NAME_AUTO);
 			});
 	}
 
@@ -121,20 +121,20 @@ public class AssetAutoTaggerTest {
 	}
 
 	@Test
-	public void testKeepsTagCounters() throws Exception {
-		_withAutoTaggingEnabled(
+	public void testKeepsAssetTagCount() throws Exception {
+		_withAutoTaggerEnabled(
 			() -> {
 				AssetEntry assetEntry = _addFileEntryAssetEntry();
 
 				AssetTag assetTag = _assetTagLocalService.getTag(
-					_group.getGroupId(), _AUTO_TAG);
+					_group.getGroupId(), _ASSET_TAG_NAME_AUTO);
 
 				Assert.assertEquals(1, assetTag.getAssetCount());
 
 				_assetAutoTagger.untag(assetEntry);
 
 				assetTag = _assetTagLocalService.getTag(
-					_group.getGroupId(), _AUTO_TAG);
+					_group.getGroupId(), _ASSET_TAG_NAME_AUTO);
 
 				Assert.assertEquals(0, assetTag.getAssetCount());
 			});
@@ -142,21 +142,21 @@ public class AssetAutoTaggerTest {
 
 	@Test
 	public void testRemovesAutoTags() throws Exception {
-		_withAutoTaggingEnabled(
+		_withAutoTaggerEnabled(
 			() -> {
 				AssetEntry assetEntry = _addFileEntryAssetEntry();
 
-				_assertContainsTag(assetEntry, _AUTO_TAG);
+				_assertContainsAssetTagName(assetEntry, _ASSET_TAG_NAME_AUTO);
 
-				_applyTag(assetEntry, _MANUAL_TAG);
+				_applyAssetTagName(assetEntry, _ASSET_TAG_NAME_MANUAL);
 
 				_assetAutoTagger.untag(assetEntry);
 
-				String[] tagNames = assetEntry.getTagNames();
+				String[] assetTagNames = assetEntry.getTagNames();
 
-				Assert.assertEquals(tagNames.toString(), 1, tagNames.length);
+				Assert.assertEquals(assetTagNames.toString(), 1, assetTagNames.length);
 
-				_assertContainsTag(assetEntry, _MANUAL_TAG);
+				_assertContainsAssetTagName(assetEntry, _ASSET_TAG_NAME_MANUAL);
 			});
 	}
 
@@ -171,29 +171,29 @@ public class AssetAutoTaggerTest {
 			DLFileEntryConstants.getClassName(), fileEntry.getFileEntryId());
 	}
 
-	private void _applyTag(AssetEntry assetEntry, String tag)
+	private void _applyAssetTagName(AssetEntry assetEntry, String assetTagName)
 		throws PortalException {
 
 		_assetEntryLocalService.updateEntry(
 			assetEntry.getUserId(), assetEntry.getGroupId(),
 			assetEntry.getClassName(), assetEntry.getClassPK(),
 			assetEntry.getCategoryIds(),
-			ArrayUtil.append(assetEntry.getTagNames(), tag));
+			ArrayUtil.append(assetEntry.getTagNames(), assetTagName));
 	}
 
-	private void _assertContainsTag(AssetEntry assetEntry, String tag) {
+	private void _assertContainsAssetTagName(AssetEntry assetEntry, String assetTagName) {
 		for (AssetTag assetTag : assetEntry.getTags()) {
-			if (StringUtil.equals(assetTag.getName(), tag)) {
+			if (StringUtil.equals(assetTag.getName(), assetTagName)) {
 				return;
 			}
 		}
 
 		throw new AssertionError(
 			String.format(
-				"The asset entry has not been tagged with '%s'", tag));
+				"The asset entry has not been tagged with '%s'", assetTagName));
 	}
 
-	private void _withAutoTaggingEnabled(UnsafeRunnable unsafeRunnable)
+	private void _withAutoTaggerEnabled(UnsafeRunnable unsafeRunnable)
 		throws Exception {
 
 		Dictionary<String, Object> dictionary = new HashMapDictionary<>();
@@ -208,13 +208,13 @@ public class AssetAutoTaggerTest {
 		}
 	}
 
-	private static final String _AUTO_TAG = "auto tag";
-
 	private static final String _CONFIGURATION_PID =
 		"com.liferay.asset.auto.tagger.internal.configuration." +
 			"AssetAutoTaggerConfiguration";
 
-	private static final String _MANUAL_TAG = "manual tag";
+	private static final String _ASSET_TAG_NAME_AUTO = "auto tag";
+
+	private static final String _ASSET_TAG_NAME_MANUAL = "manual tag";
 
 	@Inject
 	private AssetAutoTagger _assetAutoTagger;
