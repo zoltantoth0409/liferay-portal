@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.asset.auto.tagger.internal.listener;
+package com.liferay.asset.auto.tagger.internal.model.listener;
 
 import com.liferay.asset.auto.tagger.AssetAutoTagger;
 import com.liferay.asset.auto.tagger.internal.constants.AssetAutoTaggerDestinationNames;
