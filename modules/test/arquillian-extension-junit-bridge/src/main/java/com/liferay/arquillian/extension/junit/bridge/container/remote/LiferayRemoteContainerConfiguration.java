@@ -68,12 +68,12 @@ public class LiferayRemoteContainerConfiguration
 			setJmxServiceURL(LIFERAY_DEFAULT_JMX_SERVICE_URL);
 		}
 
-		if (jmxUsername == null) {
-			setJmxUsername(LIFERAY_DEFAULT_JMX_USERNAME);
-		}
-
 		if (jmxPassword == null) {
 			setJmxPassword(LIFERAY_DEFAULT_JMX_PASSWORD);
+		}
+
+		if (jmxUsername == null) {
+			setJmxUsername(LIFERAY_DEFAULT_JMX_USERNAME);
 		}
 	}
 
