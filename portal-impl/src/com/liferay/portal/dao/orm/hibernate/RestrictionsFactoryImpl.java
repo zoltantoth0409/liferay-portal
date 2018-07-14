@@ -127,11 +127,9 @@ public class RestrictionsFactoryImpl implements RestrictionsFactory {
 
 		if (size > _databaseInMaxParameters) {
 			Disjunction disjunction = disjunction();
-
-			int start = 0;
 			int end = _databaseInMaxParameters;
-
 			List<?> list = ListUtil.fromCollection(values);
+			int start = 0;
 
 			while (start < size) {
 				disjunction.add(
@@ -139,8 +137,8 @@ public class RestrictionsFactoryImpl implements RestrictionsFactory {
 						Restrictions.in(
 							propertyName, ListUtil.subList(list, start, end))));
 
-				start += _databaseInMaxParameters;
 				end += _databaseInMaxParameters;
+				start += _databaseInMaxParameters;
 			}
 
 			return disjunction;
