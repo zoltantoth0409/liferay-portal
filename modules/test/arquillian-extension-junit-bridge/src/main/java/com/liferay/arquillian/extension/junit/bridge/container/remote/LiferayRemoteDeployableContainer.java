@@ -36,13 +36,14 @@ public class LiferayRemoteDeployableContainer
 	public ProtocolMetaData deploy(Archive<?> archive)
 		throws DeploymentException {
 
-		LiferayRemoteContainerConfiguration config =
-			configurationInstance.get();
+		LiferayRemoteContainerConfiguration
+			liferayRemoteContainerConfiguration = configurationInstance.get();
 
 		ProtocolMetaData protocolMetaData = super.deploy(archive);
 
 		protocolMetaData.addContext(
-			new HTTPContext(config.getHttpHost(), config.getHttpPort()));
+			new HTTPContext(liferayRemoteContainerConfiguration.getHttpHost(),
+			liferayRemoteContainerConfiguration.getHttpPort()));
 
 		return protocolMetaData;
 	}
