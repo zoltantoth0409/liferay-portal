@@ -378,15 +378,15 @@ public class ConfigurationPersistenceManager
 			configurationModelListener.onBeforeSave(pid, dictionary);
 		}
 
-		Dictionary<Object, Object> dictionaryCopy = _copyDictionary(dictionary);
+		Dictionary<Object, Object> newDictionary = _copyDictionary(dictionary);
 
-		String fileName = (String)dictionaryCopy.get(
+		String fileName = (String)newDictionary.get(
 			_FELIX_FILE_INSTALL_FILENAME);
 
 		if (fileName != null) {
 			File file = new File(URI.create(fileName));
 
-			dictionaryCopy.put(_FELIX_FILE_INSTALL_FILENAME, file.getName());
+			newDictionary.put(_FELIX_FILE_INSTALL_FILENAME, file.getName());
 		}
 
 		Lock lock = _readWriteLock.writeLock();
@@ -394,13 +394,13 @@ public class ConfigurationPersistenceManager
 		try {
 			lock.lock();
 
-			storeInDatabase(pid, dictionaryCopy);
+			storeInDatabase(pid, newDictionary);
 
 			if (fileName != null) {
-				dictionaryCopy.put(_FELIX_FILE_INSTALL_FILENAME, fileName);
+				newDictionary.put(_FELIX_FILE_INSTALL_FILENAME, fileName);
 			}
 
-			_dictionaries.put(pid, dictionaryCopy);
+			_dictionaries.put(pid, newDictionary);
 		}
 		finally {
 			lock.unlock();
