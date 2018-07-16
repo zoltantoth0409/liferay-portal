@@ -122,7 +122,6 @@
 
 		<suppress checks="JavaAPISignatureCheck" files="modules/private/apps/osb-lcs/.*" />
 		<suppress checks="JavaAPISignatureCheck" files="modules/private/apps/osb-loop/.*" />
-		<suppress checks="JavaAPISignatureCheck" files="modules/private/apps/osb-pulpo/.*" />
 		<suppress checks="JavaAPISignatureCheck" files="modules/private/apps/osb-testray/.*" />
 		<suppress checks="JavaModuleComponentCheck" files="modules/private/apps/osb-lcs/.*" />
 		<suppress checks="JavaModuleComponentCheck" files="modules/private/apps/osb-testray/.*" />
