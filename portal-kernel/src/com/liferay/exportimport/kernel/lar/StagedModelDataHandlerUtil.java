@@ -19,6 +19,7 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.AuditedModel;
 import com.liferay.portal.kernel.model.Portlet;
 import com.liferay.portal.kernel.model.StagedModel;
 import com.liferay.portal.kernel.service.PortletLocalServiceUtil;
@@ -445,6 +446,14 @@ public class StagedModelDataHandlerUtil {
 
 			stagedModel = (StagedModel)portletDataContext.getZipEntryAsObject(
 				element, path);
+
+			String userUuid = element.attributeValue("user-uuid");
+
+			if ((userUuid != null) && (stagedModel instanceof AuditedModel)) {
+				AuditedModel auditedModel = (AuditedModel)stagedModel;
+
+				auditedModel.setUserId(portletDataContext.getUserId(userUuid));
+			}
 		}
 
 		return stagedModel;
