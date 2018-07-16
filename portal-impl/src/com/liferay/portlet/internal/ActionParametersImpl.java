@@ -23,7 +23,7 @@ import javax.portlet.MutableActionParameters;
  * @author Neil Griffin
  */
 public class ActionParametersImpl
-	extends BasePortletParameters<MutableActionParameters>
+	extends BasePortletParametersImpl<MutableActionParameters>
 	implements ActionParameters {
 
 	public ActionParametersImpl(

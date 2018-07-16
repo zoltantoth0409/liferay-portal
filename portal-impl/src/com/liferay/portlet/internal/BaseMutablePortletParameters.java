@@ -28,7 +28,7 @@ import javax.portlet.PortletParameters;
  */
 public abstract class BaseMutablePortletParameters
 	<T extends MutablePortletParameters>
-		extends BasePortletParameters<T>
+		extends BasePortletParametersImpl<T>
 		implements LiferayMutablePortletParameters {
 
 	public BaseMutablePortletParameters(

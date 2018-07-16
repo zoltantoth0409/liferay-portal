@@ -24,7 +24,7 @@ import javax.portlet.MutableRenderParameters;
  * @author Neil Griffin
  */
 public class RenderParametersImpl
-	extends BasePortletParameters<MutableRenderParameters>
+	extends BasePortletParametersImpl<MutableRenderParameters>
 	implements LiferayRenderParameters {
 
 	public RenderParametersImpl(
