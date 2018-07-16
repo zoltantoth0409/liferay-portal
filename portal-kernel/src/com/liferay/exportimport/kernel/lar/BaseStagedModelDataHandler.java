@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.exception.NoSuchModelException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.AuditedModel;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.LocalizedModel;
 import com.liferay.portal.kernel.model.ResourcedModel;
@@ -352,6 +353,17 @@ public abstract class BaseStagedModelDataHandler<T extends StagedModel>
 
 			PortletDataHandlerStatusMessageSenderUtil.sendStatusMessage(
 				"stagedModel", stagedModel, manifestSummary);
+
+			Element element =
+				portletDataContext.getImportDataStagedModelElement(stagedModel);
+
+			String userUuid = element.attributeValue("user-uuid");
+
+			if ((userUuid != null) && (stagedModel instanceof AuditedModel)) {
+				AuditedModel auditedModel = (AuditedModel)stagedModel;
+
+				auditedModel.setUserId(portletDataContext.getUserId(userUuid));
+			}
 
 			if (stagedModel instanceof LocalizedModel) {
 				LocalizedModel localizedModel = (LocalizedModel)stagedModel;
