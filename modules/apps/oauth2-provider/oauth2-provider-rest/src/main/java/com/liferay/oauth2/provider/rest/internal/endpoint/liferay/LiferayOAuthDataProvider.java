@@ -1025,10 +1025,8 @@ public class LiferayOAuthDataProvider
 		HttpServletRequest httpServletRequest =
 			messageContext.getHttpServletRequest();
 
-		String remoteAddr = httpServletRequest.getRemoteAddr();
-		String remoteHost = httpServletRequest.getRemoteHost();
-
-		return remoteAddr + " - " + remoteHost;
+		return httpServletRequest.getRemoteAddr() + " - " +
+			httpServletRequest.getRemoteHost();
 	}
 
 	private void _transactionalSaveServerAccessToken(
