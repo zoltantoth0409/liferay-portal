@@ -15,6 +15,8 @@
 package com.liferay.frontend.js.portlet.extender.internal.portlet;
 
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.util.StringUtil;
 
@@ -24,9 +26,6 @@ import java.io.PrintWriter;
 
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
-
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 /**
  * @author Ray Augé
@@ -40,11 +39,14 @@ public class JSPortlet extends MVCPortlet {
 	}
 
 	@Override
-	public void render(RenderRequest renderRequest, RenderResponse renderResponse) {
+	public void render(
+		RenderRequest renderRequest, RenderResponse renderResponse) {
+
 		try {
 			PrintWriter printWriter = renderResponse.getWriter();
 
-			String portletElementId = "js-portlet-" + renderResponse.getNamespace();
+			String portletElementId =
+				"js-portlet-" + renderResponse.getNamespace();
 
 			printWriter.print(
 				StringUtil.replace(
@@ -89,8 +91,7 @@ public class JSPortlet extends MVCPortlet {
 
 	private static final String _JAVA_SCRIPT_TPL;
 
-	private static final Log _log = LogFactoryUtil.getLog(
-		JSPortlet.class);
+	private static final Log _log = LogFactoryUtil.getLog(JSPortlet.class);
 
 	static {
 		_HTML_TPL = _loadTemplate("bootstrap.html.tpl");
