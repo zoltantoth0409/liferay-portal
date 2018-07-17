@@ -195,8 +195,6 @@ AUI.add(
 								image.unwrap(imageContainer);
 
 								imageContainer.remove();
-
-								editor.execCommand('enter');
 							}
 						}
 						else {
