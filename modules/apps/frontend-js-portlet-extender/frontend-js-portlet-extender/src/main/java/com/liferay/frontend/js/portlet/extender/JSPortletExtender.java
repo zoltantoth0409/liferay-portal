@@ -159,6 +159,8 @@ public class JSPortletExtender {
 					}
 
 					try (InputStream inputStream = jsonURL.openStream()) {
+						BundleContext bundleContext = bundle.getBundleContext();
+
 						String jsonString = StringUtil.read(inputStream);
 
 						JSONObject jsonObject = _jsonFactory.createJSONObject(
@@ -174,8 +176,6 @@ public class JSPortletExtender {
 
 						_addServiceProperties(
 							properties, jsonObject.getJSONObject("portlet"));
-
-						BundleContext bundleContext = bundle.getBundleContext();
 
 						ServiceRegistration<?> serviceRegistration =
 							bundleContext.registerService(
