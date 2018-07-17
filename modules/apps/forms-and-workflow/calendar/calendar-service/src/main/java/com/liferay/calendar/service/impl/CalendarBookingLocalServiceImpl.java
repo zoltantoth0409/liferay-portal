@@ -1250,7 +1250,7 @@ public class CalendarBookingLocalServiceImpl
 			}
 		}
 		else if (oldStatus ==
-					CalendarBookingWorkflowConstants.STATUS_IN_TRASH) {
+					 CalendarBookingWorkflowConstants.STATUS_IN_TRASH) {
 
 			List<CalendarBooking> childCalendarBookings =
 				calendarBooking.getChildCalendarBookings();

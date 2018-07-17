@@ -471,7 +471,8 @@ public class LayoutPermissionImpl
 				return true;
 			}
 			else if (OrganizationPermissionUtil.contains(
-						permissionChecker, organizationId, ActionKeys.UPDATE)) {
+						 permissionChecker, organizationId,
+						 ActionKeys.UPDATE)) {
 
 				return true;
 			}

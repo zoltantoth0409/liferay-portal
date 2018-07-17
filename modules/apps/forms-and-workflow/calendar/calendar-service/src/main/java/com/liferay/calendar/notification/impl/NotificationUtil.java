@@ -199,7 +199,7 @@ public class NotificationUtil {
 					calendarBooking.getFirstReminderNotificationType();
 			}
 			else if (_isInCheckInterval(
-						deltaTime, calendarBooking.getSecondReminder())) {
+						 deltaTime, calendarBooking.getSecondReminder())) {
 
 				notificationType =
 					calendarBooking.getSecondReminderNotificationType();
