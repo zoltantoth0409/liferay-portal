@@ -175,18 +175,19 @@ com.liferay.petra.string.StringBundler pageTopSB = OutputTag.getDataSB(request, 
 </c:if>
 
 <%
-	boolean portletHubRequired = false;
+boolean portletHubRequired = false;
 
-	for (Portlet portlet : portlets) {
-		List<PortletDependency> portletDependencies = portlet.getPortletDependencies();
+for (Portlet portlet : portlets) {
+	List<PortletDependency> portletDependencies = portlet.getPortletDependencies();
 
-		for (PortletDependency portletDependency : portletDependencies) {
-			if (Objects.equals(portletDependency.getName(), "PortletHub") && Objects.equals(portletDependency.getScope(), "javax.portlet")) {
-				portletHubRequired = true;
-				break;
-			}
+	for (PortletDependency portletDependency : portletDependencies) {
+		if (Objects.equals(portletDependency.getName(), "PortletHub") && Objects.equals(portletDependency.getScope(), "javax.portlet")) {
+			portletHubRequired = true;
+
+			break;
 		}
 	}
+}
 %>
 
 <c:if test="<%= portletHubRequired %>">
