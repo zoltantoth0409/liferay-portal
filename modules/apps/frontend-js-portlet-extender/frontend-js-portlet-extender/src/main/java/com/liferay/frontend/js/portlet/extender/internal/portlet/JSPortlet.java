@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.frontend.js.portlet.extender.internal;
+package com.liferay.frontend.js.portlet.extender.internal.portlet;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
