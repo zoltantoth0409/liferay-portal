@@ -14,7 +14,7 @@
 
 package com.liferay.frontend.js.portlet.extender;
 
-import com.liferay.frontend.js.portlet.extender.internal.JSPortlet;
+import com.liferay.frontend.js.portlet.extender.internal.portlet.JSPortlet;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONObject;
