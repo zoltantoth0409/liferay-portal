@@ -210,7 +210,7 @@ public class InjectTestBag {
 					StringBundler.concat(
 						"Stopped waiting for service ", className, " ",
 						filterString, " for field ", testClass.getName(), ".",
-						field.getName(), ", due to interruption."));
+						field.getName(), " due to interruption"));
 
 				break;
 			}
