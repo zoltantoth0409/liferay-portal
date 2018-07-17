@@ -516,7 +516,7 @@
 
 		<execute function="AssertElementPresent#assertElementPresent" locator1="AP#ASSET_ABSTRACT_BOOKMARK_LIFERAY_LOGO" />
 
-		<execute function="Close" locator1="title=Digital Experience Software Tailored to Your Needs | Liferay" />
+		<execute function="Close#closeWindow" locator1="title=Digital Experience Software Tailored to Your Needs | Liferay" />
 	</command>
 
 	<command name="viewEntry">
