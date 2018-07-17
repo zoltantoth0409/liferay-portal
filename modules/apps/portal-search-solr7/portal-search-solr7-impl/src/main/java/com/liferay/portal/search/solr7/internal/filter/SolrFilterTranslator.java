@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.search.solr.internal.filter;
+package com.liferay.portal.search.solr7.internal.filter;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
@@ -37,19 +37,6 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.search.filter.DateRangeFilter;
 import com.liferay.portal.search.filter.FilterVisitor;
 import com.liferay.portal.search.filter.TermsSetFilter;
-import com.liferay.portal.search.solr.filter.BooleanFilterTranslator;
-import com.liferay.portal.search.solr.filter.DateRangeTermFilterTranslator;
-import com.liferay.portal.search.solr.filter.ExistsFilterTranslator;
-import com.liferay.portal.search.solr.filter.GeoBoundingBoxFilterTranslator;
-import com.liferay.portal.search.solr.filter.GeoDistanceFilterTranslator;
-import com.liferay.portal.search.solr.filter.GeoDistanceRangeFilterTranslator;
-import com.liferay.portal.search.solr.filter.GeoPolygonFilterTranslator;
-import com.liferay.portal.search.solr.filter.MissingFilterTranslator;
-import com.liferay.portal.search.solr.filter.PrefixFilterTranslator;
-import com.liferay.portal.search.solr.filter.QueryFilterTranslator;
-import com.liferay.portal.search.solr.filter.RangeTermFilterTranslator;
-import com.liferay.portal.search.solr.filter.TermFilterTranslator;
-import com.liferay.portal.search.solr.filter.TermsFilterTranslator;
 
 import org.apache.lucene.search.Query;
 

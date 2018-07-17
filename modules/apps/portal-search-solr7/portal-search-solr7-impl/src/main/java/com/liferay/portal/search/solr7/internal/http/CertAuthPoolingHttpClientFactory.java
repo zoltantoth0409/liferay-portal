@@ -12,12 +12,10 @@
  * details.
  */
 
-package com.liferay.portal.search.solr.internal.http;
+package com.liferay.portal.search.solr7.internal.http;
 
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
-import com.liferay.portal.search.solr.configuration.SolrHttpClientFactoryConfiguration;
-import com.liferay.portal.search.solr.http.HttpClientFactory;
-import com.liferay.portal.search.solr.http.SSLSocketFactoryBuilder;
+import com.liferay.portal.search.solr7.configuration.SolrHttpClientFactoryConfiguration;
 
 import java.util.Map;
 
@@ -43,7 +41,7 @@ import org.osgi.service.component.annotations.ReferencePolicyOption;
  * @author André de Oliveira
  */
 @Component(
-	configurationPid = "com.liferay.portal.search.solr.configuration.SolrHttpClientFactoryConfiguration",
+	configurationPid = "com.liferay.portal.search.solr7.configuration.SolrHttpClientFactoryConfiguration",
 	immediate = true, property = "type=CERT", service = HttpClientFactory.class
 )
 public class CertAuthPoolingHttpClientFactory

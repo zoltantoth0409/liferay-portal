@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.portal.search.solr.internal.groupby;
+package com.liferay.portal.search.solr7.internal.groupby;
 
-import com.liferay.portal.search.solr.internal.SolrIndexingFixture;
+import com.liferay.portal.search.solr7.internal.SolrIndexingFixture;
 import com.liferay.portal.search.test.util.groupby.BaseGroupByTestCase;
 import com.liferay.portal.search.test.util.indexing.IndexingFixture;
 
