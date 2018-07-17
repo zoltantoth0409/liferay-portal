@@ -1187,11 +1187,11 @@ public class ResourcePermissionLocalServiceImpl
 			String actionId)
 		throws PortalException {
 
-		List<ResourcePermission> resourcePermissions =
-			resourcePermissionPersistence.findByC_N_S(companyId, name, scope);
-
 		ResourceAction resourceAction =
 			resourceActionLocalService.getResourceAction(name, actionId);
+
+		List<ResourcePermission> resourcePermissions =
+			resourcePermissionPersistence.findByC_N_S(companyId, name, scope);
 
 		for (ResourcePermission resourcePermission : resourcePermissions) {
 			if (resourcePermission.hasAction(resourceAction)) {
