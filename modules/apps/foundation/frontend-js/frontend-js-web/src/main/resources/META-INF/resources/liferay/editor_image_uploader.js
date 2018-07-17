@@ -195,6 +195,12 @@ AUI.add(
 								image.unwrap(imageContainer);
 
 								imageContainer.remove();
+
+								var outernode = image._node.outerHTML;
+
+								outernode += '<br><br>';
+
+								image._node.outerHTML = outernode;
 							}
 						}
 						else {
