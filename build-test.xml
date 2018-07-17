@@ -9617,8 +9617,6 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 		<if>
 			<equals arg1="${remote.elasticsearch.enabled}" arg2="true" />
 			<then>
-				<get-testcase-property property.name="deploy.elasticsearch6" />
-
 				<if>
 					<contains string="${portal.suite.search.engine}" substring="elasticsearch6" />
 					<then>
@@ -9986,17 +9984,6 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 			</then>
 		</if>
 
-		<get-testcase-property property.name="elastic.kibana.enabled" />
-
-		<if>
-			<equals arg1="${elastic.kibana.enabled}" arg2="true" />
-			<then>
-				<print-file file.name="${elastic.kibana.dir}/bin/kibana.log" />
-
-				<ant antfile="build-test-elasticsearch.xml" target="stop-kibana" />
-			</then>
-		</if>
-
 		<get-testcase-property property.name="openam.enabled" />
 
 		<if>
@@ -10006,20 +9993,30 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 			</then>
 		</if>
 
+		<get-testcase-property property.name="portal.suite.search.engine" />
 		<get-testcase-property property.name="remote.elasticsearch.enabled" />
 
 		<if>
 			<equals arg1="${remote.elasticsearch.enabled}" arg2="true" />
 			<then>
-				<get-testcase-property property.name="deploy.elasticsearch6" />
-
 				<if>
-					<equals arg1="${deploy.elasticsearch6}" arg2="true" />
+					<contains string="${portal.suite.search.engine}" substring="elasticsearch6" />
 					<then>
 						<ant antfile="build-test-elasticsearch6.xml" target="stop-elasticsearch" />
 					</then>
 					<else>
 						<ant antfile="build-test-elasticsearch.xml" target="stop-elasticsearch" />
+
+						<get-testcase-property property.name="elastic.kibana.enabled" />
+
+						<if>
+							<equals arg1="${elastic.kibana.enabled}" arg2="true" />
+							<then>
+								<print-file file.name="${elastic.kibana.dir}/bin/kibana.log" />
+
+								<ant antfile="build-test-elasticsearch.xml" target="stop-kibana" />
+							</then>
+						</if>
 					</else>
 				</if>
 			</then>
