@@ -21,6 +21,7 @@ import java.util.Map;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.search.BooleanClause;
 import org.apache.lucene.search.BooleanQuery;
+import org.apache.lucene.search.BoostQuery;
 import org.apache.lucene.search.PhraseQuery;
 import org.apache.lucene.search.PrefixQuery;
 import org.apache.lucene.search.Query;
@@ -37,47 +38,47 @@ public class MultiMatchQueryTranslatorImpl
 
 	@Override
 	public Query translate(MultiMatchQuery multiMatchQuery) {
-		BooleanQuery booleanQuery = new BooleanQuery();
-
-		MultiMatchQuery.Type multiMatchQueryType = multiMatchQuery.getType();
-
-		Map<String, Float> fieldBoosts = multiMatchQuery.getFieldsBoosts();
+		BooleanQuery.Builder builder = new BooleanQuery.Builder();
 
 		for (String field : multiMatchQuery.getFields()) {
-			Term term = new Term(field, multiMatchQuery.getValue());
-
-			Query query = null;
-
-			if (multiMatchQueryType == MultiMatchQuery.Type.PHRASE) {
-				PhraseQuery phraseQuery = new PhraseQuery();
-
-				phraseQuery.add(term);
-
-				if (multiMatchQuery.getSlop() != null) {
-					phraseQuery.setSlop(multiMatchQuery.getSlop());
-				}
-
-				query = phraseQuery;
-			}
-			else if (multiMatchQueryType ==
-						MultiMatchQuery.Type.PHRASE_PREFIX) {
-
-				query = new PrefixQuery(term);
-			}
-			else {
-				query = new TermQuery(term);
-			}
-
-			if (fieldBoosts.containsKey(field)) {
-				Float fieldBoost = fieldBoosts.get(field);
-
-				query.setBoost(fieldBoost);
-			}
-
-			booleanQuery.add(query, BooleanClause.Occur.SHOULD);
+			builder.add(
+				translate(field, multiMatchQuery), BooleanClause.Occur.SHOULD);
 		}
 
-		return booleanQuery;
+		return builder.build();
+	}
+
+	protected Query translate(String field, MultiMatchQuery multiMatchQuery) {
+		Query query = translate(
+			field, multiMatchQuery.getType(), multiMatchQuery.getValue(),
+			multiMatchQuery.getSlop());
+
+		Map<String, Float> boostMap = multiMatchQuery.getFieldsBoosts();
+
+		Float boost = boostMap.get(field);
+
+		if (boost != null) {
+			return new BoostQuery(query, boost);
+		}
+
+		return query;
+	}
+
+	protected Query translate(
+		String field, MultiMatchQuery.Type type, String value, Integer slop) {
+
+		if (type == MultiMatchQuery.Type.PHRASE) {
+			if (slop == null) {
+				return new PhraseQuery(field, value);
+			}
+
+			return new PhraseQuery(slop, field, value);
+		}
+		else if (type == MultiMatchQuery.Type.PHRASE_PREFIX) {
+			return new PrefixQuery(new Term(field, value));
+		}
+
+		return new TermQuery(new Term(field, value));
 	}
 
 }

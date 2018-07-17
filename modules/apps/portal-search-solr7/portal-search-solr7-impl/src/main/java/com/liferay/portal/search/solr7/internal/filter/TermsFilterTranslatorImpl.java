@@ -17,12 +17,14 @@ package com.liferay.portal.search.solr7.internal.filter;
 import com.liferay.portal.kernel.search.filter.TermsFilter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.lucene.index.Term;
-import org.apache.lucene.queries.TermsQuery;
 import org.apache.lucene.search.BooleanClause;
 import org.apache.lucene.search.BooleanQuery;
 import org.apache.lucene.search.Query;
+import org.apache.lucene.search.TermInSetQuery;
+import org.apache.lucene.util.BytesRef;
 import org.apache.solr.client.solrj.util.ClientUtils;
 
 import org.osgi.service.component.annotations.Component;
@@ -37,23 +39,25 @@ public class TermsFilterTranslatorImpl implements TermsFilterTranslator {
 	public Query translate(TermsFilter termsFilter) {
 		String field = termsFilter.getField();
 
-		ArrayList<Term> terms = new ArrayList<>();
+		List<BytesRef> bytesRefs = new ArrayList<>();
 
 		for (String value : termsFilter.getValues()) {
-			terms.add(new Term(field, ClientUtils.escapeQueryChars(value)));
+			Term term = new Term(field, ClientUtils.escapeQueryChars(value));
+
+			bytesRefs.add(term.bytes());
 		}
 
-		TermsQuery termsQuery = new TermsQuery(terms);
+		Query query = new TermInSetQuery(field, bytesRefs);
 
-		if (terms.size() == 1) {
-			return termsQuery;
+		if (bytesRefs.size() == 1) {
+			return query;
 		}
 
-		BooleanQuery booleanQuery = new BooleanQuery();
+		BooleanQuery.Builder builder = new BooleanQuery.Builder();
 
-		booleanQuery.add(termsQuery, BooleanClause.Occur.SHOULD);
+		builder.add(query, BooleanClause.Occur.SHOULD);
 
-		return booleanQuery;
+		return builder.build();
 	}
 
 }

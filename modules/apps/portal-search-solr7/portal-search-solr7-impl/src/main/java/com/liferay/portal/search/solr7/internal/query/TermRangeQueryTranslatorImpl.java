@@ -16,6 +16,7 @@ package com.liferay.portal.search.solr7.internal.query;
 
 import com.liferay.portal.kernel.search.TermRangeQuery;
 
+import org.apache.lucene.search.BoostQuery;
 import org.apache.lucene.search.Query;
 
 import org.osgi.service.component.annotations.Component;
@@ -29,17 +30,16 @@ public class TermRangeQueryTranslatorImpl implements TermRangeQueryTranslator {
 
 	@Override
 	public Query translate(TermRangeQuery termRangeQuery) {
-		org.apache.lucene.search.TermRangeQuery luceneTermRangeQuery =
-			org.apache.lucene.search.TermRangeQuery.newStringRange(
-				termRangeQuery.getField(), termRangeQuery.getLowerTerm(),
-				termRangeQuery.getUpperTerm(), termRangeQuery.includesLower(),
-				termRangeQuery.includesUpper());
+		Query query = org.apache.lucene.search.TermRangeQuery.newStringRange(
+			termRangeQuery.getField(), termRangeQuery.getLowerTerm(),
+			termRangeQuery.getUpperTerm(), termRangeQuery.includesLower(),
+			termRangeQuery.includesUpper());
 
 		if (!termRangeQuery.isDefaultBoost()) {
-			luceneTermRangeQuery.setBoost(termRangeQuery.getBoost());
+			return new BoostQuery(query, termRangeQuery.getBoost());
 		}
 
-		return luceneTermRangeQuery;
+		return query;
 	}
 
 }

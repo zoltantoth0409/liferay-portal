@@ -32,18 +32,16 @@ public class ExistsFilterTranslatorImpl implements ExistsFilterTranslator {
 
 	@Override
 	public Query translate(ExistsFilter existsFilter) {
-		BooleanQuery booleanQuery = new BooleanQuery();
+		BooleanQuery.Builder builder = new BooleanQuery.Builder();
 
-		MatchAllDocsQuery matchAllDocsQuery = new MatchAllDocsQuery();
+		builder.add(new MatchAllDocsQuery(), BooleanClause.Occur.SHOULD);
 
-		booleanQuery.add(matchAllDocsQuery, BooleanClause.Occur.SHOULD);
+		builder.add(
+			TermRangeQuery.newStringRange(
+				existsFilter.getField(), "*", "*", true, true),
+			BooleanClause.Occur.MUST);
 
-		TermRangeQuery termRangeQuery = TermRangeQuery.newStringRange(
-			existsFilter.getField(), "*", "*", true, true);
-
-		booleanQuery.add(termRangeQuery, BooleanClause.Occur.MUST);
-
-		return booleanQuery;
+		return builder.build();
 	}
 
 }
