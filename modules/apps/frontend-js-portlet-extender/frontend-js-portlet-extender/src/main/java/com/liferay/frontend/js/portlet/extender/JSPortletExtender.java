@@ -48,8 +48,8 @@ import org.osgi.service.component.annotations.Reference;
 import org.osgi.util.tracker.BundleTracker;
 import org.osgi.util.tracker.BundleTrackerCustomizer;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 /**
  * @author Ray Augé
@@ -134,7 +134,7 @@ public class JSPortletExtender {
 		return false;
 	}
 
-	private static final Logger _logger = LoggerFactory.getLogger(
+	private static final Log _log = LogFactoryUtil.getLog(
 		JSPortletExtender.class);
 
 	private BundleTracker<ServiceRegistration<?>> _bundleTracker;
@@ -185,7 +185,7 @@ public class JSPortletExtender {
 						return serviceRegistration;
 					}
 					catch (Exception e) {
-						_logger.error(
+						_log.error(
 							"Unable to process package.json of " +
 								bundle.getSymbolicName(),
 							e);
