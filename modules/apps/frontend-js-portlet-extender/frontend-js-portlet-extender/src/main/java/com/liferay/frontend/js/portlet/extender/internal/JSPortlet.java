@@ -48,16 +48,16 @@ public class JSPortlet extends MVCPortlet {
 
 			writer.print(
 				StringUtil.replace(
-					_HTML_TPL, new String[] {"$PORTLET_ELEMENT_ID"},
+					_HTML_TPL, new String[] {"[$PORTLET_ELEMENT_ID$]"},
 					new String[] {portletElementId}));
 
 			writer.print(
 				StringUtil.replace(
 					_JAVA_SCRIPT_TPL,
 					new String[] {
-						"$CONTEXT_PATH", "$PORTLET_ELEMENT_ID",
-						"$PORTLET_NAMESPACE", "$PACKAGE_NAME",
-						"$PACKAGE_VERSION"
+						"[$CONTEXT_PATH$]", "[$PORTLET_ELEMENT_ID$]",
+						"[$PORTLET_NAMESPACE$]", "[$PACKAGE_NAME$]",
+						"[$PACKAGE_VERSION$]"
 					},
 					new String[] {
 						request.getContextPath(), portletElementId,
