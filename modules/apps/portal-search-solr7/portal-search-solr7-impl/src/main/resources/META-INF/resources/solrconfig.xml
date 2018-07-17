@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <config>
-	<luceneMatchVersion>5.2.1</luceneMatchVersion>
+	<luceneMatchVersion>7.2.1</luceneMatchVersion>
 	<dataDir>${solr.data.dir:}</dataDir>
 	<directoryFactory class="${solr.directoryFactory:solr.NRTCachingDirectoryFactory}" name="DirectoryFactory" />
 	<codecFactory class="solr.SchemaCodecFactory" />
@@ -248,19 +248,6 @@
 		</lst>
 		<arr name="components">
 			<str>terms</str>
-		</arr>
-	</requestHandler>
-	<searchComponent class="solr.QueryElevationComponent" name="elevator">
-		<str name="queryFieldType">string</str>
-		<str name="config-file">elevate.xml</str>
-	</searchComponent>
-	<requestHandler class="solr.SearchHandler" name="/elevate" startup="lazy">
-		<lst name="defaults">
-			<str name="echoParams">explicit</str>
-			<str name="df">all</str>
-		</lst>
-		<arr name="last-components">
-			<str>elevator</str>
 		</arr>
 	</requestHandler>
 	<searchComponent class="solr.HighlightComponent" name="highlight">
