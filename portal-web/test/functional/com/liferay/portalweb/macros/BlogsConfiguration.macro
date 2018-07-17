@@ -28,10 +28,6 @@
 		<execute function="AssertClick" locator1="Configuration#NAVIGATION_RSS" value1="RSS" />
 	</command>
 
-	<command name="selectConfigurationIFrame">
-		<execute macro="IFrame#selectDialogFrame" />
-	</command>
-
 	<command name="selectDisplayTemplate">
 		<execute function="Select" locator1="Configuration#SETUP_DISPLAY_SETTINGS_DISPLAY_TEMPLATE_SELECT" value1="${displayTemplate}" />
 	</command>
