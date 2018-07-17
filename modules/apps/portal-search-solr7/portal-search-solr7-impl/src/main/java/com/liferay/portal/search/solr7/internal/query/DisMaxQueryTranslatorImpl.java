@@ -19,6 +19,10 @@ import com.liferay.portal.kernel.search.generic.DisMaxQuery;
 import com.liferay.portal.kernel.search.query.QueryVisitor;
 import com.liferay.portal.kernel.util.GetterUtil;
 
+import java.util.Collection;
+import java.util.HashSet;
+
+import org.apache.lucene.search.BoostQuery;
 import org.apache.lucene.search.DisjunctionMaxQuery;
 
 import org.osgi.service.component.annotations.Component;
@@ -34,23 +38,20 @@ public class DisMaxQueryTranslatorImpl implements DisMaxQueryTranslator {
 		DisMaxQuery disMaxQuery,
 		QueryVisitor<org.apache.lucene.search.Query> queryVisitor) {
 
-		float tieBreaker = GetterUtil.getFloat(disMaxQuery.getTieBreaker());
-
-		DisjunctionMaxQuery disjunctionMaxQuery = new DisjunctionMaxQuery(
-			tieBreaker);
-
-		if (!disMaxQuery.isDefaultBoost()) {
-			disjunctionMaxQuery.setBoost(disjunctionMaxQuery.getBoost());
-		}
+		Collection<org.apache.lucene.search.Query> queries = new HashSet<>();
 
 		for (Query query : disMaxQuery.getQueries()) {
-			org.apache.lucene.search.Query luceneQuery = query.accept(
-				queryVisitor);
-
-			disjunctionMaxQuery.add(luceneQuery);
+			queries.add(query.accept(queryVisitor));
 		}
 
-		return disjunctionMaxQuery;
+		org.apache.lucene.search.Query query = new DisjunctionMaxQuery(
+			queries, GetterUtil.getFloat(disMaxQuery.getTieBreaker()));
+
+		if (!disMaxQuery.isDefaultBoost()) {
+			return new BoostQuery(query, disMaxQuery.getBoost());
+		}
+
+		return query;
 	}
 
 }

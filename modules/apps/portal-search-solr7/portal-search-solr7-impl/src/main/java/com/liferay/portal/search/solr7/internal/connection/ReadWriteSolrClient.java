@@ -63,7 +63,6 @@ public class ReadWriteSolrClient extends SolrClient {
 	 * @deprecated As of Wilberforce (7.0.x)
 	 */
 	@Deprecated
-	@Override
 	public void shutdown() {
 		try {
 			close();

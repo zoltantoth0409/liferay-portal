@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.search.Query;
 import com.liferay.portal.kernel.search.query.QueryVisitor;
 
 import org.apache.lucene.search.BooleanClause.Occur;
+import org.apache.lucene.search.BoostQuery;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -36,51 +37,44 @@ public class BooleanQueryTranslatorImpl implements BooleanQueryTranslator {
 		BooleanQuery booleanQuery,
 		QueryVisitor<org.apache.lucene.search.Query> queryVisitor) {
 
-		org.apache.lucene.search.BooleanQuery luceneBooleanQuery =
-			new org.apache.lucene.search.BooleanQuery();
+		org.apache.lucene.search.BooleanQuery.Builder builder =
+			new org.apache.lucene.search.BooleanQuery.Builder();
 
 		for (BooleanClause<Query> booleanClause : booleanQuery.clauses()) {
-			_addClause(booleanClause, luceneBooleanQuery, queryVisitor);
+			builder.add(
+				translate(booleanClause.getClause(), queryVisitor),
+				translate(booleanClause.getBooleanClauseOccur()));
 		}
+
+		org.apache.lucene.search.Query query = builder.build();
 
 		if (!booleanQuery.isDefaultBoost()) {
-			luceneBooleanQuery.setBoost(booleanQuery.getBoost());
+			return new BoostQuery(query, booleanQuery.getBoost());
 		}
 
-		return luceneBooleanQuery;
+		return query;
 	}
 
-	private void _addClause(
-		BooleanClause<Query> booleanClause,
-		org.apache.lucene.search.BooleanQuery booleanQuery,
+	protected Occur translate(BooleanClauseOccur booleanClauseOccur) {
+		if (booleanClauseOccur.equals(BooleanClauseOccur.MUST)) {
+			return Occur.MUST;
+		}
+		else if (booleanClauseOccur.equals(BooleanClauseOccur.MUST_NOT)) {
+			return Occur.MUST_NOT;
+		}
+		else if (booleanClauseOccur.equals(BooleanClauseOccur.SHOULD)) {
+			return Occur.SHOULD;
+		}
+		else {
+			throw new IllegalArgumentException();
+		}
+	}
+
+	protected org.apache.lucene.search.Query translate(
+		Query query,
 		QueryVisitor<org.apache.lucene.search.Query> queryVisitor) {
 
-		BooleanClauseOccur booleanClauseOccur =
-			booleanClause.getBooleanClauseOccur();
-
-		Query query = booleanClause.getClause();
-
-		org.apache.lucene.search.Query luceneQuery = query.accept(queryVisitor);
-
-		if (booleanClauseOccur.equals(BooleanClauseOccur.MUST)) {
-			booleanQuery.add(luceneQuery, Occur.MUST);
-
-			return;
-		}
-
-		if (booleanClauseOccur.equals(BooleanClauseOccur.MUST_NOT)) {
-			booleanQuery.add(luceneQuery, Occur.MUST_NOT);
-
-			return;
-		}
-
-		if (booleanClauseOccur.equals(BooleanClauseOccur.SHOULD)) {
-			booleanQuery.add(luceneQuery, Occur.SHOULD);
-
-			return;
-		}
-
-		throw new IllegalArgumentException();
+		return query.accept(queryVisitor);
 	}
 
 }

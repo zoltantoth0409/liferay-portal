@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.search.QueryTerm;
 import com.liferay.portal.kernel.search.TermQuery;
 
 import org.apache.lucene.index.Term;
+import org.apache.lucene.search.BoostQuery;
 import org.apache.lucene.search.Query;
 
 import org.osgi.service.component.annotations.Component;
@@ -31,21 +32,19 @@ public class TermQueryTranslatorImpl implements TermQueryTranslator {
 
 	@Override
 	public Query translate(TermQuery termQuery) {
-		Query luceneQuery = null;
-
 		QueryTerm queryTerm = termQuery.getQueryTerm();
 
 		String field = queryTerm.getField();
 		String value = queryTerm.getValue();
 
-		luceneQuery = new org.apache.lucene.search.TermQuery(
+		Query query = new org.apache.lucene.search.TermQuery(
 			new Term(field, value));
 
 		if (!termQuery.isDefaultBoost()) {
-			luceneQuery.setBoost(termQuery.getBoost());
+			return new BoostQuery(query, termQuery.getBoost());
 		}
 
-		return luceneQuery;
+		return query;
 	}
 
 }
