@@ -25,8 +25,8 @@ import java.io.PrintWriter;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 /**
  * @author Ray Augé
@@ -67,7 +67,7 @@ public class JSPortlet extends MVCPortlet {
 			printWriter.flush();
 		}
 		catch (IOException ioe) {
-			_logger.error("Unable to render HTML output", ioe);
+			_log.error("Unable to render HTML output", ioe);
 		}
 	}
 
@@ -79,7 +79,7 @@ public class JSPortlet extends MVCPortlet {
 			return StringUtil.read(inputStream);
 		}
 		catch (Exception e) {
-			_logger.error("Unable to read template " + name, e);
+			_log.error("Unable to read template " + name, e);
 		}
 
 		return StringPool.BLANK;
@@ -89,7 +89,7 @@ public class JSPortlet extends MVCPortlet {
 
 	private static final String _JAVA_SCRIPT_TPL;
 
-	private static final Logger _logger = LoggerFactory.getLogger(
+	private static final Log _log = LogFactoryUtil.getLog(
 		JSPortlet.class);
 
 	static {
