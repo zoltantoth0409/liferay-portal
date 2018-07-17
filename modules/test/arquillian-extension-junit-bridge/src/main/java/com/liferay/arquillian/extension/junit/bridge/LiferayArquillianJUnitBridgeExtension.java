@@ -44,12 +44,12 @@ public class LiferayArquillianJUnitBridgeExtension
 
 		if (url == null) {
 			extensionBuilder.override(
-				AuxiliaryArchiveAppender.class, JUnitDeploymentAppender.class,
-				JUnitBridgeAuxiliaryArchiveAppender.class);
-			extensionBuilder.override(
 				ApplicationArchiveProcessor.class,
 				OSGiApplicationArchiveProcessor.class,
 				NoOpArchiveApplicationProcessor.class);
+			extensionBuilder.override(
+				AuxiliaryArchiveAppender.class, JUnitDeploymentAppender.class,
+				JUnitBridgeAuxiliaryArchiveAppender.class);
 			extensionBuilder.override(
 				DeployableContainer.class, KarafRemoteDeployableContainer.class,
 				LiferayRemoteDeployableContainer.class);
