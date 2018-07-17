@@ -40,18 +40,18 @@ public class JSPortlet extends MVCPortlet {
 	}
 
 	@Override
-	public void render(RenderRequest request, RenderResponse response) {
+	public void render(RenderRequest renderRequest, RenderResponse renderResponse) {
 		try {
-			PrintWriter writer = response.getWriter();
+			PrintWriter printWriter = renderResponse.getWriter();
 
-			String portletElementId = "js-portlet-" + response.getNamespace();
+			String portletElementId = "js-portlet-" + renderResponse.getNamespace();
 
-			writer.print(
+			printWriter.print(
 				StringUtil.replace(
 					_HTML_TPL, new String[] {"[$PORTLET_ELEMENT_ID$]"},
 					new String[] {portletElementId}));
 
-			writer.print(
+			printWriter.print(
 				StringUtil.replace(
 					_JAVA_SCRIPT_TPL,
 					new String[] {
@@ -60,11 +60,11 @@ public class JSPortlet extends MVCPortlet {
 						"[$PACKAGE_VERSION$]"
 					},
 					new String[] {
-						request.getContextPath(), portletElementId,
-						response.getNamespace(), _name, _version
+						renderRequest.getContextPath(), portletElementId,
+						renderResponse.getNamespace(), _name, _version
 					}));
 
-			writer.flush();
+			printWriter.flush();
 		}
 		catch (IOException ioe) {
 			_logger.error("Unable to render HTML output", ioe);

@@ -93,12 +93,12 @@ public class JSPortletExtender {
 				properties.put(key, stringValue);
 			}
 			else if (value instanceof JSONArray) {
-				JSONArray array = (JSONArray)value;
+				JSONArray jsonArray = (JSONArray)value;
 
 				List<String> values = new ArrayList<>();
 
-				for (int i = 0; i < array.length(); i++) {
-					Object object = array.get(i);
+				for (int i = 0; i < jsonArray.length(); i++) {
+					Object object = jsonArray.get(i);
 
 					values.add(object.toString());
 				}
@@ -145,7 +145,7 @@ public class JSPortletExtender {
 
 				@Override
 				public ServiceRegistration<?> addingBundle(
-					Bundle bundle, BundleEvent event) {
+					Bundle bundle, BundleEvent bundleEvent) {
 
 					if (!_optIn(bundle)) {
 						return null;
@@ -196,16 +196,16 @@ public class JSPortletExtender {
 
 				@Override
 				public void modifiedBundle(
-					Bundle bundle, BundleEvent event,
-					ServiceRegistration<?> registration) {
+					Bundle bundle, BundleEvent bundleEvent,
+					ServiceRegistration<?> serviceRegistration) {
 				}
 
 				@Override
 				public void removedBundle(
-					Bundle bundle, BundleEvent event,
-					ServiceRegistration<?> registration) {
+					Bundle bundle, BundleEvent bundleEvent,
+					ServiceRegistration<?> serviceRegistration) {
 
-					registration.unregister();
+					serviceRegistration.unregister();
 				}
 
 			};
