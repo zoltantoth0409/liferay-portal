@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.search.solr.http;
+package com.liferay.portal.search.solr7.internal.http;
 
 import org.apache.http.client.HttpClient;
 

@@ -12,10 +12,9 @@
  * details.
  */
 
-package com.liferay.portal.search.solr.internal.query;
+package com.liferay.portal.search.solr7.internal.query;
 
 import com.liferay.portal.kernel.search.generic.MoreLikeThisQuery;
-import com.liferay.portal.search.solr.query.MoreLikeThisQueryTranslator;
 
 import java.util.List;
 import java.util.Set;

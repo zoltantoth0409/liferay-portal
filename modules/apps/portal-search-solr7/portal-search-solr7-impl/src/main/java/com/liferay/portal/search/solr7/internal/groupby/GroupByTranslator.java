@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.search.solr.groupby;
+package com.liferay.portal.search.solr7.internal.groupby;
 
 import com.liferay.portal.kernel.search.SearchContext;
 

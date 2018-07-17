@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.search.solr.internal.query;
+package com.liferay.portal.search.solr7.internal.query;
 
 import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.Query;
@@ -30,19 +30,6 @@ import com.liferay.portal.kernel.search.generic.NestedQuery;
 import com.liferay.portal.kernel.search.generic.StringQuery;
 import com.liferay.portal.kernel.search.query.QueryTranslator;
 import com.liferay.portal.kernel.search.query.QueryVisitor;
-import com.liferay.portal.search.solr.query.BooleanQueryTranslator;
-import com.liferay.portal.search.solr.query.DisMaxQueryTranslator;
-import com.liferay.portal.search.solr.query.FuzzyQueryTranslator;
-import com.liferay.portal.search.solr.query.LuceneQueryConverter;
-import com.liferay.portal.search.solr.query.MatchAllQueryTranslator;
-import com.liferay.portal.search.solr.query.MatchQueryTranslator;
-import com.liferay.portal.search.solr.query.MoreLikeThisQueryTranslator;
-import com.liferay.portal.search.solr.query.MultiMatchQueryTranslator;
-import com.liferay.portal.search.solr.query.NestedQueryTranslator;
-import com.liferay.portal.search.solr.query.StringQueryTranslator;
-import com.liferay.portal.search.solr.query.TermQueryTranslator;
-import com.liferay.portal.search.solr.query.TermRangeQueryTranslator;
-import com.liferay.portal.search.solr.query.WildcardQueryTranslator;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
