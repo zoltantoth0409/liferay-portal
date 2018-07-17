@@ -164,8 +164,8 @@ public class JSPortletExtender {
 						JSONObject jsonObject = _jsonFactory.createJSONObject(
 							jsonString);
 
-						final String name = jsonObject.getString("name");
-						final String version = jsonObject.getString("version");
+						String name = jsonObject.getString("name");
+						String version = jsonObject.getString("version");
 
 						Dictionary<String, Object> properties =
 							new Hashtable<>();
