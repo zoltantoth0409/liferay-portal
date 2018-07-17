@@ -1661,10 +1661,10 @@ public class AdvancedPermissionChecker extends BasePermissionChecker {
 		if ((group != null) && group.isUserPersonalSite() &&
 			ActionKeys.VIEW.equals(actionId)) {
 
-			// The only check we can perform on top is for the SITE_MEMBER role.
-			// The SITE_MEMBER role is derived from the POWER_USER role. When a user is missing
-			// the POWER_USER role, then the SITE_MEMBER role is not granted and we do not check
-			// default actions granted to the SITE_MEMBER role. Hence, it is the only
+			// The only check we can perform on top is for the Site Member role.
+			// The Site Member role is derived from the Power User role. When a user is missing
+			// the Power User role, then the Site Member role is not granted and we do not check
+			// default actions granted to the Site Member role. Hence, it is the only
 			// role left. All other roles were already checked.
 
 			Role siteMemberRole = RoleLocalServiceUtil.getRole(
