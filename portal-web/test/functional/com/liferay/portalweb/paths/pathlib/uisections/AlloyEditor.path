@@ -25,7 +25,7 @@
 </tr>
 <tr>
 	<td>CONTENT_FIELD_LOCALIZED</td>
-	<td>//div[contains(@id,'contentEditor') and contains(@title,'${key_localizedText}')]</td>
+	<td>//div[contains(@id,'contentEditor') and contains(@aria-label,'false')]</td>
 	<td></td>
 </tr>
 <tr>
@@ -65,7 +65,7 @@
 </tr>
 <tr>
 	<td>TITLE_FIELD_LOCALIZED</td>
-	<td>//div[contains(@id,'titleEditor') and contains(@aria-label,'${key_localizedText}')]</td>
+	<td>//div[contains(@id,'titleEditor') and contains(@aria-label,'false')]</td>
 	<td></td>
 </tr>
 <tr>
