@@ -424,21 +424,22 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 			return dlFileEntryFinder.filterCountByG_F(
 				groupId, folderIds, queryDefinition);
 		}
+		else {
+			int start = 0;
+			int end = PropsValues.SQL_DATA_MAX_PARAMETERS;
 
-		int start = 0;
-		int end = PropsValues.SQL_DATA_MAX_PARAMETERS;
+			int filesCount = dlFileEntryFinder.filterCountByG_F(
+				groupId, folderIds.subList(start, end), queryDefinition);
 
-		int filesCount = dlFileEntryFinder.filterCountByG_F(
-			groupId, folderIds.subList(start, end), queryDefinition);
+			List<Long> sublist = folderIds.subList(start, end);
 
-		List<Long> sublist = folderIds.subList(start, end);
+			sublist.clear();
 
-		sublist.clear();
+			filesCount += getFoldersFileEntriesCount(
+				groupId, folderIds, status);
 
-		filesCount += getFoldersFileEntriesCount(
-			groupId, folderIds, status);
-
-		return filesCount;
+			return filesCount;
+		}
 	}
 
 	@Override
@@ -453,14 +454,15 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 		if (folderIds.isEmpty()) {
 			return Collections.emptyList();
 		}
-
-		if (userId <= 0) {
+		else if (userId <= 0) {
 			return dlFileEntryPersistence.filterFindByG_F(
 				groupId, ArrayUtil.toLongArray(folderIds), start, end, obc);
 		}
-
-		return dlFileEntryPersistence.filterFindByG_U_F(
-			groupId, userId, ArrayUtil.toLongArray(folderIds), start, end, obc);
+		else {
+			return dlFileEntryPersistence.filterFindByG_U_F(
+				groupId, userId, ArrayUtil.toLongArray(folderIds), start, end,
+				obc);
+		}
 	}
 
 	@Override
@@ -519,14 +521,14 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 		if (folderIds.isEmpty()) {
 			return 0;
 		}
-
-		if (userId <= 0) {
+		else if (userId <= 0) {
 			return dlFileEntryPersistence.filterCountByG_F(
 				groupId, ArrayUtil.toLongArray(folderIds));
 		}
-
-		return dlFileEntryPersistence.filterCountByG_U_F(
-			groupId, userId, ArrayUtil.toLongArray(folderIds));
+		else {
+			return dlFileEntryPersistence.filterCountByG_U_F(
+				groupId, userId, ArrayUtil.toLongArray(folderIds));
+		}
 	}
 
 	@Override
