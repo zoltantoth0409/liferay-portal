@@ -1155,14 +1155,14 @@ public abstract class PortletRequestImpl implements LiferayPortletRequest {
 			return false;
 		}
 
-		// TODO: Additional Portlet 3.0 related methods.
+		// TODO
 
 		private RequestParameter(
 			String name, String[] values, String portletNamespace) {
 
 			super(name, values, portletNamespace);
 
-			// TODO: Additional Portlet 3.0 related initialization.
+			// TODO
 
 		}
 
