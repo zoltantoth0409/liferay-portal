@@ -434,7 +434,8 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 
 		sublist.clear();
 
-		filesCount += getFoldersFileEntriesCount(groupId, folderIds, status);
+		filesCount += getFoldersFileEntriesCount(
+			groupId, folderIds, status);
 
 		return filesCount;
 	}
