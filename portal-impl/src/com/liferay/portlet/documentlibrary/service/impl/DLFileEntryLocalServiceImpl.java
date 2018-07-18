@@ -50,6 +50,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.comment.CommentManagerUtil;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
@@ -548,21 +549,29 @@ public class DLFileEntryLocalServiceImpl
 
 		int total = dlFileEntryFinder.countByExtraSettings();
 
-		IntervalActionProcessor<Void> intervalActionProcessor =
+		final IntervalActionProcessor<Void> intervalActionProcessor =
 			new IntervalActionProcessor<>(total);
 
 		intervalActionProcessor.setPerformIntervalActionMethod(
-			(start, end) -> {
-				List<DLFileEntry> dlFileEntries =
-					dlFileEntryFinder.findByExtraSettings(start, end);
+			new IntervalActionProcessor.PerformIntervalActionMethod<Void>() {
 
-				for (DLFileEntry dlFileEntry : dlFileEntries) {
-					convertExtraSettings(dlFileEntry, keys);
+				@Override
+				public Void performIntervalAction(int start, int end)
+					throws PortalException {
+
+					List<DLFileEntry> dlFileEntries =
+						dlFileEntryFinder.findByExtraSettings(start, end);
+
+					for (DLFileEntry dlFileEntry : dlFileEntries) {
+						convertExtraSettings(dlFileEntry, keys);
+					}
+
+					intervalActionProcessor.incrementStart(
+						dlFileEntries.size());
+
+					return null;
 				}
 
-				intervalActionProcessor.incrementStart(dlFileEntries.size());
-
-				return null;
 			});
 
 		intervalActionProcessor.performIntervalActions();
@@ -662,24 +671,36 @@ public class DLFileEntryLocalServiceImpl
 			dlFileEntryLocalService.getActionableDynamicQuery();
 
 		actionableDynamicQuery.setAddCriteriaMethod(
-			dynamicQuery -> {
-				Property folderIdproperty = PropertyFactoryUtil.forName(
-					"folderId");
+			new ActionableDynamicQuery.AddCriteriaMethod() {
 
-				dynamicQuery.add(folderIdproperty.eq(folderId));
+				@Override
+				public void addCriteria(DynamicQuery dynamicQuery) {
+					Property folderIdproperty = PropertyFactoryUtil.forName(
+						"folderId");
+
+					dynamicQuery.add(folderIdproperty.eq(folderId));
+				}
+
 			});
 		actionableDynamicQuery.setGroupId(groupId);
 		actionableDynamicQuery.setPerformActionMethod(
-			(DLFileEntry dlFileEntry) -> {
-				if (includeTrashedEntries ||
-					!dlFileEntry.isInTrashExplicitly()) {
+			new ActionableDynamicQuery.PerformActionMethod<DLFileEntry>() {
 
-					repositoryEventTrigger.trigger(
-						RepositoryEventType.Delete.class, FileEntry.class,
-						new LiferayFileEntry(dlFileEntry));
+				@Override
+				public void performAction(DLFileEntry dlFileEntry)
+					throws PortalException {
 
-					dlFileEntryLocalService.deleteFileEntry(dlFileEntry);
+					if (includeTrashedEntries ||
+						!dlFileEntry.isInTrashExplicitly()) {
+
+						repositoryEventTrigger.trigger(
+							RepositoryEventType.Delete.class, FileEntry.class,
+							new LiferayFileEntry(dlFileEntry));
+
+						dlFileEntryLocalService.deleteFileEntry(dlFileEntry);
+					}
 				}
+
 			});
 
 		actionableDynamicQuery.performActions();
@@ -954,27 +975,36 @@ public class DLFileEntryLocalServiceImpl
 			new IntervalActionProcessor<>(total);
 
 		intervalActionProcessor.setPerformIntervalActionMethod(
-			(start, end) -> {
-				List<DLFileEntry> dlFileEntries =
-					dlFileEntryPersistence.findByR_F(
-						repositoryId, folderId, start, end);
+			new IntervalActionProcessor.PerformIntervalActionMethod<Void>() {
 
-				for (DLFileEntry dlFileEntry : dlFileEntries) {
-					if (includeTrashedEntries ||
-						!dlFileEntry.isInTrashExplicitly()) {
+				@Override
+				public Void performIntervalAction(int start, int end)
+					throws PortalException {
 
-						repositoryEventTrigger.trigger(
-							RepositoryEventType.Delete.class, FileEntry.class,
-							new LiferayFileEntry(dlFileEntry));
+					List<DLFileEntry> dlFileEntries =
+						dlFileEntryPersistence.findByR_F(
+							repositoryId, folderId, start, end);
 
-						dlFileEntryLocalService.deleteFileEntry(dlFileEntry);
+					for (DLFileEntry dlFileEntry : dlFileEntries) {
+						if (includeTrashedEntries ||
+							!dlFileEntry.isInTrashExplicitly()) {
+
+							repositoryEventTrigger.trigger(
+								RepositoryEventType.Delete.class,
+								FileEntry.class,
+								new LiferayFileEntry(dlFileEntry));
+
+							dlFileEntryLocalService.deleteFileEntry(
+								dlFileEntry);
+						}
+						else {
+							intervalActionProcessor.incrementStart();
+						}
 					}
-					else {
-						intervalActionProcessor.incrementStart();
-					}
+
+					return null;
 				}
 
-				return null;
 			});
 
 		intervalActionProcessor.performIntervalActions();
@@ -1823,41 +1853,53 @@ public class DLFileEntryLocalServiceImpl
 			throw new IllegalArgumentException("Tree path is null");
 		}
 
-		IndexableActionableDynamicQuery indexableActionableDynamicQuery =
+		final IndexableActionableDynamicQuery indexableActionableDynamicQuery =
 			getIndexableActionableDynamicQuery();
 
 		indexableActionableDynamicQuery.setAddCriteriaMethod(
-			dynamicQuery -> {
-				Property folderIdProperty = PropertyFactoryUtil.forName(
-					"folderId");
+			new ActionableDynamicQuery.AddCriteriaMethod() {
 
-				dynamicQuery.add(folderIdProperty.eq(folderId));
+				@Override
+				public void addCriteria(DynamicQuery dynamicQuery) {
+					Property folderIdProperty = PropertyFactoryUtil.forName(
+						"folderId");
 
-				Property treePathProperty = PropertyFactoryUtil.forName(
-					"treePath");
+					dynamicQuery.add(folderIdProperty.eq(folderId));
 
-				dynamicQuery.add(
-					RestrictionsFactoryUtil.or(
-						treePathProperty.isNull(),
-						treePathProperty.ne(treePath)));
+					Property treePathProperty = PropertyFactoryUtil.forName(
+						"treePath");
+
+					dynamicQuery.add(
+						RestrictionsFactoryUtil.or(
+							treePathProperty.isNull(),
+							treePathProperty.ne(treePath)));
+				}
+
 			});
 
-		Indexer<DLFileEntry> indexer = IndexerRegistryUtil.getIndexer(
+		final Indexer<DLFileEntry> indexer = IndexerRegistryUtil.getIndexer(
 			DLFileEntry.class.getName());
 
 		indexableActionableDynamicQuery.setPerformActionMethod(
-			(DLFileEntry dlFileEntry) -> {
-				dlFileEntry.setTreePath(treePath);
+			new ActionableDynamicQuery.PerformActionMethod<DLFileEntry>() {
 
-				updateDLFileEntry(dlFileEntry);
+				@Override
+				public void performAction(DLFileEntry dlFileEntry)
+					throws PortalException {
 
-				if (!reindex) {
-					return;
+					dlFileEntry.setTreePath(treePath);
+
+					updateDLFileEntry(dlFileEntry);
+
+					if (!reindex) {
+						return;
+					}
+
+					Document document = indexer.getDocument(dlFileEntry);
+
+					indexableActionableDynamicQuery.addDocuments(document);
 				}
 
-				Document document = indexer.getDocument(dlFileEntry);
-
-				indexableActionableDynamicQuery.addDocuments(document);
 			});
 
 		indexableActionableDynamicQuery.performActions();
