@@ -1287,7 +1287,7 @@ public class DLFileEntryLocalServiceImpl
 		folderIds.add(folderId);
 
 		return dlFileEntryFinder.countByG_F(
-			groupId, folderIds, new QueryDefinition<>(status));
+			groupId, folderIds, new QueryDefinition<DLFileEntry>(status));
 	}
 
 	@Override
@@ -1369,7 +1369,8 @@ public class DLFileEntryLocalServiceImpl
 		long groupId, int start, int end) {
 
 		return getGroupFileEntries(
-			groupId, start, end, new RepositoryModelModifiedDateComparator<>());
+			groupId, start, end,
+			new RepositoryModelModifiedDateComparator<DLFileEntry>());
 	}
 
 	@Override
@@ -1385,7 +1386,7 @@ public class DLFileEntryLocalServiceImpl
 
 		return getGroupFileEntries(
 			groupId, userId, start, end,
-			new RepositoryModelModifiedDateComparator<>());
+			new RepositoryModelModifiedDateComparator<DLFileEntry>());
 	}
 
 	@Override
