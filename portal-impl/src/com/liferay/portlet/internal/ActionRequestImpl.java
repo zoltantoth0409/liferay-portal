@@ -79,7 +79,7 @@ public class ActionRequestImpl
 			// prefixed with the portlet namespace in the original request, then
 			// it is to be regarded as an action parameter (even if it has the
 			// same name as a public render parameter). See: TCK
-			// V3PortletParametersTests_SPEC11_3_getNames
+			// V3PortletParametersTests_SPEC11_3_getNames.
 
 			if (renderParameterNames.contains(name)) {
 				String[] values = servletRequestParameterMap.get(

@@ -809,7 +809,7 @@ public abstract class PortletRequestImpl implements LiferayPortletRequest {
 		_locale = themeDisplay.getLocale();
 		_plid = plid;
 
-		// TODO: Set render parameter values
+		// TODO Set render parameter values
 
 		_renderParameters = new RenderParametersImpl(
 			new HashMap<>(), new HashSet<>(), portletNamespace);
