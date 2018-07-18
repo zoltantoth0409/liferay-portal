@@ -215,12 +215,10 @@ if (portletTitleBasedNavigation) {
 
 					<c:if test="<%= dlViewFileVersionDisplayContext.isDownloadLinkVisible() %>">
 						<span class="download-document">
-							<liferay-ui:icon
-								iconCssClass="icon-download"
-								label="<%= true %>"
-								message='<%= LanguageUtil.get(resourceBundle, "download") + " (" + TextFormatter.formatStorageSize(fileVersion.getSize(), locale) + ")" %>'
-								url="<%= DLUtil.getDownloadURL(fileEntry, fileVersion, themeDisplay, StringPool.BLANK) %>"
-							/>
+							<a href="<%= DLUtil.getDownloadURL(fileEntry, fileVersion, themeDisplay, StringPool.BLANK) %>">
+								<i class="icon-download"></i>
+								<%= LanguageUtil.get(resourceBundle, "download") + " (" + TextFormatter.formatStorageSize(fileVersion.getSize(), locale) + ")" %>
+							</a>
 						</span>
 						<span class="conversions">
 
