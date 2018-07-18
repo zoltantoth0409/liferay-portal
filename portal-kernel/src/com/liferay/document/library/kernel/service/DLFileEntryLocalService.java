@@ -463,12 +463,12 @@ public interface DLFileEntryLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<DLFileEntry> getFileEntries(long groupId, long userId,
 		List<Long> repositoryIds, List<Long> folderIds, String[] mimeTypes,
-		QueryDefinition<DLFileEntry> queryDefinition);
+		QueryDefinition<DLFileEntry> queryDefinition) throws Exception;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<DLFileEntry> getFileEntries(long groupId, long userId,
 		List<Long> folderIds, String[] mimeTypes,
-		QueryDefinition<DLFileEntry> queryDefinition);
+		QueryDefinition<DLFileEntry> queryDefinition) throws Exception;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<DLFileEntry> getFileEntries(long folderId, String name);
@@ -493,12 +493,12 @@ public interface DLFileEntryLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getFileEntriesCount(long groupId, long userId,
 		List<Long> repositoryIds, List<Long> folderIds, String[] mimeTypes,
-		QueryDefinition<DLFileEntry> queryDefinition);
+		QueryDefinition<DLFileEntry> queryDefinition) throws Exception;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getFileEntriesCount(long groupId, long userId,
 		List<Long> folderIds, String[] mimeTypes,
-		QueryDefinition<DLFileEntry> queryDefinition);
+		QueryDefinition<DLFileEntry> queryDefinition) throws Exception;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public DLFileEntry getFileEntry(long fileEntryId) throws PortalException;
@@ -601,7 +601,8 @@ public interface DLFileEntryLocalService extends BaseLocalService,
 	public void incrementViewCounter(DLFileEntry dlFileEntry, int increment);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public boolean isFileEntryCheckedOut(long fileEntryId);
+	public boolean isFileEntryCheckedOut(long fileEntryId)
+		throws PortalException;
 
 	/**
 	* @deprecated As of Judson (7.1.x), with no direct replacement
