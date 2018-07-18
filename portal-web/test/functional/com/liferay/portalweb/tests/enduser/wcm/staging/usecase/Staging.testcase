@@ -399,8 +399,8 @@
 			<var name="entryTitle" value="Blogs Entry Title" />
 		</execute>
 
-		<execute macro="BlogsEntry#addContent">
-			<var name="entryContent" value="Blogs Entry Content" />
+		<execute macro="AlloyEditor#addContent">
+			<var name="content" value="Blogs Entry Content" />
 		</execute>
 
 		<execute macro="Panel#expandPanel">

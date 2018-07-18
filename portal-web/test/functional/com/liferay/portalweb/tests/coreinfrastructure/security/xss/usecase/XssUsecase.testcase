@@ -328,8 +328,8 @@
 
 		<execute function="Type#typeAceEditor" locator1="AlloyEditor#TITLE_FIELD" value1="${entryTitle}" />
 
-		<execute macro="BlogsEntry#addContent">
-			<var name="entryContent" value="Blogs Entry Content" />
+		<execute macro="AlloyEditor#addContent">
+			<var name="content" value="Blogs Entry Content" />
 		</execute>
 
 		<execute macro="PortletEntry#publish" />
