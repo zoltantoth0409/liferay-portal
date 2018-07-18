@@ -103,11 +103,11 @@ public class DLAdminManagementToolbarDisplayContext {
 
 		return new DropdownItemList() {
 			{
+				boolean stagedActions = false;
+
 				Group scopeGroup = _themeDisplay.getScopeGroup();
 				StagingGroupHelper stagingGroupHelper =
 					StagingGroupHelperUtil.getStagingGroupHelper();
-
-				boolean stagedActions = false;
 
 				if (!stagingGroupHelper.isLiveGroup(scopeGroup) ||
 					!stagingGroupHelper.isStagedPortlet(
