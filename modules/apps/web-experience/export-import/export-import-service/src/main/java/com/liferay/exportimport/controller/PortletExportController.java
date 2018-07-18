@@ -162,6 +162,12 @@ public class PortletExportController implements ExportController {
 		catch (Throwable t) {
 			ExportImportThreadLocal.setPortletExportInProcess(false);
 
+			if (portletDataContext != null) {
+				ZipWriter zipWriter = portletDataContext.getZipWriter();
+
+				zipWriter.getFile();
+			}
+
 			_exportImportLifecycleManager.fireExportImportLifecycleEvent(
 				ExportImportLifecycleConstants.EVENT_PORTLET_EXPORT_FAILED,
 				getProcessFlag(),
