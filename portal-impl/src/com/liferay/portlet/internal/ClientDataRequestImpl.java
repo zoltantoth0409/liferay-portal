@@ -169,8 +169,8 @@ public abstract class ClientDataRequestImpl
 
 		Set<String> renderParameterNames = renderParameters.getNames();
 
-		for (Map.Entry<String, String[]> mapEntry : parameterMap.entrySet()) {
-			String name = mapEntry.getKey();
+		for (Map.Entry<String, String[]> entry : parameterMap.entrySet()) {
+			String name = entry.getKey();
 
 			if (renderParameterNames.contains(name)) {
 				String[] values = servletRequestParameterMap.get(
@@ -181,7 +181,7 @@ public abstract class ClientDataRequestImpl
 				}
 			}
 			else {
-				portletParameterMap.put(name, mapEntry.getValue());
+				portletParameterMap.put(name, entry.getValue());
 			}
 		}
 
