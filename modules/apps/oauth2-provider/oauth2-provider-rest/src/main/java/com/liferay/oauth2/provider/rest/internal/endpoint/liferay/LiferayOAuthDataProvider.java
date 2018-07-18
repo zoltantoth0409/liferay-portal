@@ -638,13 +638,13 @@ public class LiferayOAuthDataProvider
 	@Activate
 	@SuppressWarnings("unchecked")
 	protected void activate(Map<String, Object> properties) {
+		_codeGrantsPortalCache =
+			(PortalCache<String, ServerAuthorizationCodeGrant>)
+				_multiVMPool.getPortalCache("oauth2-provider-code-grants");
 		_oAuth2AuthorizeFlowConfiguration = ConfigurableUtil.createConfigurable(
 			OAuth2AuthorizationFlowConfiguration.class, properties);
 		_oAuth2ProviderConfiguration = ConfigurableUtil.createConfigurable(
 			OAuth2ProviderConfiguration.class, properties);
-		_codeGrantsPortalCache =
-			(PortalCache<String, ServerAuthorizationCodeGrant>)
-				_multiVMPool.getPortalCache("oauth2-provider-code-grants");
 
 		setGrantLifetime(
 			_oAuth2AuthorizeFlowConfiguration.authorizationCodeGrantTTL());
