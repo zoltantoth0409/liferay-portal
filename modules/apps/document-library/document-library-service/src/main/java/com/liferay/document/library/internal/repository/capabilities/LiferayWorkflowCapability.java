@@ -81,8 +81,13 @@ public class LiferayWorkflowCapability
 			ServiceContext serviceContext)
 		throws PortalException {
 
+		boolean keepFileVersionLabel =
+			_dlFileEntryServiceAdapter.isKeepFileVersionLabel(
+				fileEntry.getFileEntryId(), majorVersion, serviceContext);
+
 		if ((serviceContext.getWorkflowAction() ==
-			 	WorkflowConstants.ACTION_PUBLISH)) {
+				WorkflowConstants.ACTION_PUBLISH) &&
+			!keepFileVersionLabel) {
 
 			DLFileVersion latestDLFileVersion =
 				_dlFileVersionServiceAdapter.getLatestFileVersion(
