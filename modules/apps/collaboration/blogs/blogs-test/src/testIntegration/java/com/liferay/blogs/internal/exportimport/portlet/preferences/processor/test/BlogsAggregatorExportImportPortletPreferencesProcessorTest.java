@@ -308,6 +308,10 @@ public class BlogsAggregatorExportImportPortletPreferencesProcessorTest {
 			return StringPool.BLANK;
 		}
 
+		@Override
+		public void umount() {
+		}
+
 		private final Map<String, String> _entries = new HashMap<>();
 
 	}
