@@ -211,8 +211,8 @@
 	</command>
 
 	<command name="addAllDay">
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="${eventTitle}" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="${eventTitle}" />
 		</execute>
 
 		<var name="endDateTime" value="11:59 PM" />
@@ -385,16 +385,16 @@
 	<command name="addPGViaAP">
 		<execute macro="CalendarNavigator#gotoAddEventViaAssetPublisher" />
 
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="${eventTitle}" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="${eventTitle}" />
 		</execute>
 
 		<execute macro="CalendarEvent#clickPublish" />
 	</command>
 
 	<command name="addRegular">
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="${eventTitle}" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="${eventTitle}" />
 		</execute>
 
 		<execute function="AssertNotChecked" locator1="CalendarEditEvent#ALL_DAY_CHECKBOX" />
@@ -489,8 +489,8 @@
 	</command>
 
 	<command name="addRepeating">
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="${eventTitle}" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="${eventTitle}" />
 		</execute>
 
 		<var method="selenium#getElementValue(CalendarEditEvent#END_DATE)" name="endDate" />
@@ -1205,12 +1205,6 @@
 		<execute function="AssertTextEquals" locator1="CalendarViewEventDetails#COMMENTS_BODY" value1="${eventCommentEdit}" />
 
 		<execute function="SelectFrame" value1="relative=top" />
-	</command>
-
-	<command name="editTitle">
-		<execute macro="PortletEntry#inputTitle">
-			<var name="title" value="${eventTitle}" />
-		</execute>
 	</command>
 
 	<command name="editViaAgendaView">

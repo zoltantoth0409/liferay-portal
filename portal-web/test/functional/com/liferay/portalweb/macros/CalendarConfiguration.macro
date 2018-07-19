@@ -37,10 +37,6 @@
 		<execute function="AssertClick" locator1="CalendarConfiguration#NAVIGATION_USER_RSS" value1="RSS" />
 	</command>
 
-	<command name="save">
-		<execute macro="PortletEntry#save" />
-	</command>
-
 	<command name="selectDefaultDuration">
 		<execute function="Select" locator1="CalendarConfiguration#USER_SETTINGS_DEFAULT_DURATION_SELECT" value1="${defaultDuration}" />
 	</command>
@@ -72,11 +68,11 @@
 			<var name="weekStartDay" value="Sunday" />
 		</execute>
 
-		<execute macro="CalendarConfiguration#save" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="CalendarConfiguration#enableRSS" />
 
-		<execute macro="CalendarConfiguration#save" />
+		<execute macro="PortletEntry#save" />
 	</command>
 
 	<command name="viewRSSOptionsDisabled">

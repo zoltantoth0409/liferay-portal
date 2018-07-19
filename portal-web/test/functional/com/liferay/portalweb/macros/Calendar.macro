@@ -29,12 +29,6 @@
 		<execute function="AssertTextEquals#assertPartialText" locator1="Calendar#DELETED_CALENDAR_SUCCESS_MESSAGE" value1="The calendar was deleted successfully." />
 	</command>
 
-	<command name="_editName">
-		<execute macro="PortletEntry#inputName">
-			<var name="name" value="${calendarName}" />
-		</execute>
-	</command>
-
 	<command name="_gotoMenulistOption">
 		<var name="key_menuListOption" value="${menuListOption}" />
 
@@ -97,8 +91,8 @@
 			<then>
 				<execute macro="CalendarNavigator#gotoAddMyCalendars" />
 
-				<execute macro="Calendar#_editName">
-					<var name="calendarName" value="${calendarName}" />
+				<execute macro="PortletEntry#inputName">
+					<var name="name" value="${calendarName}" />
 				</execute>
 
 				<execute macro="PortletEntry#save" />
@@ -108,8 +102,8 @@
 				<then>
 					<execute macro="CalendarNavigator#gotoAddCurrentSiteCalendars" />
 
-					<execute macro="Calendar#_editName">
-						<var name="calendarName" value="${calendarName}" />
+					<execute macro="PortletEntry#inputName">
+						<var name="name" value="${calendarName}" />
 					</execute>
 
 					<execute macro="PortletEntry#save" />

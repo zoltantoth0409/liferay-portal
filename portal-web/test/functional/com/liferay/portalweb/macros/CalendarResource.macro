@@ -19,8 +19,8 @@
 	<command name="add">
 		<execute macro="CalendarNavigator#gotoAddResource" />
 
-		<execute macro="CalendarResource#editResourceName">
-			<var name="calendarResourceName" value="${calendarResourceName}" />
+		<execute macro="PortletEntry#inputName">
+			<var name="name" value="${calendarResourceName}" />
 		</execute>
 
 		<execute macro="CalendarResource#save" />
@@ -79,12 +79,6 @@
 
 		<execute macro="CalendarResource#view">
 			<var name="calendarResourceName" value="${calendarResourceNameEdit}" />
-		</execute>
-	</command>
-
-	<command name="editResourceName">
-		<execute macro="PortletEntry#inputName">
-			<var name="name" value="${calendarResourceName}" />
 		</execute>
 	</command>
 

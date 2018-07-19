@@ -152,8 +152,8 @@
 
 		<execute macro="CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="Calendar Event Title" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="Calendar Event Title" />
 		</execute>
 
 		<execute macro="CalendarNavigator#closeModal">
@@ -162,8 +162,8 @@
 
 		<execute macro="CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="Calendar Event Title" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="Calendar Event Title" />
 		</execute>
 
 		<execute macro="CalendarEvent#publish" />
@@ -497,8 +497,8 @@
 
 		<execute macro="CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="Calendar Event" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="Calendar Event" />
 		</execute>
 
 		<execute macro="CalendarEvent#viewAvailableCalendars">
@@ -1117,7 +1117,7 @@
 
 		<execute macro="CalendarConfiguration#editTimeZonePacific" />
 
-		<execute macro="CalendarConfiguration#save" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
@@ -1165,8 +1165,8 @@
 
 		<execute macro="CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="Calendar Repeating Event" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="Calendar Repeating Event" />
 		</execute>
 
 		<execute macro="CalendarEvent#setRepeating">
@@ -1354,8 +1354,8 @@
 
 		<execute macro="CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="Calendar Event Repeating Title" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="Calendar Event Repeating Title" />
 		</execute>
 
 		<execute macro="CalendarEvent#setDates">
@@ -1475,8 +1475,8 @@
 			<var name="user" value="Test Test" />
 		</execute>
 
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="Calendar Event Title1" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="Calendar Event Title1" />
 		</execute>
 
 		<execute macro="CalendarEvent#publish" />
@@ -1515,8 +1515,8 @@
 
 		<execute macro="CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="Calendar Event Title" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="Calendar Event Title" />
 		</execute>
 
 		<execute macro="CalendarEvent#setEndDate">
@@ -1581,8 +1581,8 @@
 
 		<execute macro="CalendarNavigator#gotoAddEventViaAssetPublisher" />
 
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="Calendar Event Title" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="Calendar Event Title" />
 		</execute>
 
 		<execute macro="CalendarEvent#gotoConfigureRelatedAssets" />
@@ -1683,8 +1683,8 @@
 
 		<execute macro="CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="Calendar Event Title" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="Calendar Event Title" />
 		</execute>
 
 		<execute macro="CalendarEvent#publish" />
@@ -1723,8 +1723,8 @@
 			<var name="eventTitle" value="Calendar Event Title" />
 		</execute>
 
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="Calendar Event Title - Staged Edit" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="Calendar Event Title - Staged Edit" />
 		</execute>
 
 		<execute macro="CalendarEvent#publish" />
@@ -1870,8 +1870,8 @@
 
 		<execute macro="CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="Calendar Non-Repeating Event 1" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="Calendar Non-Repeating Event 1" />
 		</execute>
 
 		<execute macro="CalendarEvent#viewNoRepeating" />
@@ -1894,8 +1894,8 @@
 
 		<execute macro="CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="Calendar Non-Repeating Event 2" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="Calendar Non-Repeating Event 2" />
 		</execute>
 
 		<execute macro="CalendarEvent#viewNoRepeating" />
@@ -1922,8 +1922,8 @@
 
 		<execute macro="CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="Calendar Non-Repeating Event 3" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="Calendar Non-Repeating Event 3" />
 		</execute>
 
 		<execute macro="CalendarEvent#viewNoRepeating" />
@@ -2149,7 +2149,7 @@
 				<var name="defaultView" value="${defaultView}" />
 			</execute>
 
-			<execute macro="CalendarConfiguration#save" />
+			<execute macro="PortletEntry#save" />
 
 			<execute macro="Navigator#gotoPage">
 				<var name="pageName" value="Calendar Page" />
@@ -2170,7 +2170,7 @@
 
 		<execute macro="CalendarConfiguration#editTimeZoneUTC" />
 
-		<execute macro="CalendarConfiguration#save" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
@@ -2178,8 +2178,8 @@
 
 		<execute macro="CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="Calendar Event Title" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="Calendar Event Title" />
 		</execute>
 
 		<execute macro="CalendarEvent#setDatesToday" />
@@ -2232,7 +2232,7 @@
 
 		<execute macro="CalendarConfiguration#enableGlobalTimeZone" />
 
-		<execute macro="CalendarConfiguration#save" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
@@ -2409,8 +2409,8 @@
 
 		<execute macro="CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="Current Day Event" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="Current Day Event" />
 		</execute>
 
 		<execute macro="CalendarEvent#setTimes">
@@ -2574,8 +2574,8 @@
 
 		<execute macro="CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="Calendar Event Repeating Title" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="Calendar Event Repeating Title" />
 		</execute>
 
 		<execute macro="CalendarEvent#setDates">
@@ -2649,8 +2649,8 @@
 
 		<execute macro="CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="Current Day Event" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="Current Day Event" />
 		</execute>
 
 		<execute macro="CalendarEvent#setTimes">
@@ -2690,7 +2690,7 @@
 
 		<execute macro="CalendarConfiguration#viewRSSOptionsDisabled" />
 
-		<execute macro="CalendarConfiguration#save" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
@@ -2987,8 +2987,8 @@
 			<var name="eventTitle" value="Calendar Event Title" />
 		</execute>
 
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="Edited Event Title" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="Edited Event Title" />
 		</execute>
 
 		<execute macro="CalendarEvent#publishWithUserNotification" />
@@ -3175,8 +3175,8 @@
 
 		<execute macro="CalendarScheduler#gotoEditViaDialogBox" />
 
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="New Edited Title" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="New Edited Title" />
 		</execute>
 
 		<execute macro="CalendarEvent#clickPublish" />
@@ -3234,8 +3234,8 @@
 
 		<execute macro="CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="Original Event Title" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="Original Event Title" />
 		</execute>
 
 		<execute macro="CalendarEvent#setRepeating">
@@ -3291,8 +3291,8 @@
 
 		<execute macro="CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="Original Event Title" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="Original Event Title" />
 		</execute>
 
 		<execute macro="CalendarEvent#setRepeating">
@@ -3318,8 +3318,8 @@
 
 		<execute macro="CalendarScheduler#gotoEditViaDialogBox" />
 
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="Edited Title" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="Edited Title" />
 		</execute>
 
 		<execute macro="CalendarEvent#publishRepeating">
@@ -4183,8 +4183,8 @@
 
 		<execute macro="CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="Calendar Event Title2" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="Calendar Event Title2" />
 		</execute>
 
 		<execute macro="CalendarEvent#setTimes">
@@ -4535,8 +4535,8 @@
 
 		<execute macro="CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="Calendar Event Title" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="Calendar Event Title" />
 		</execute>
 
 		<execute macro="CalendarEvent#setDatesToday" />
@@ -4558,7 +4558,7 @@
 			<var name="timeFormat" value="24 Hour" />
 		</execute>
 
-		<execute macro="CalendarConfiguration#save" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
@@ -4611,7 +4611,7 @@
 			<var name="timeFormat" value="AM/PM" />
 		</execute>
 
-		<execute macro="CalendarConfiguration#save" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
@@ -4827,8 +4827,8 @@
 
 		<execute macro="CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="Site Event" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="Site Event" />
 		</execute>
 
 		<execute macro="CalendarEvent#selectCalendar">
@@ -4843,8 +4843,8 @@
 
 		<execute macro="CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="Personal Event" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="Personal Event" />
 		</execute>
 
 		<execute macro="CalendarEvent#selectCalendar">
@@ -4943,8 +4943,8 @@
 			<var name="startDateTime" value="${startDateTime}" />
 		</execute>
 
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="Calendar Event" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="Calendar Event" />
 		</execute>
 
 		<execute macro="CalendarEvent#publish" />
@@ -4968,7 +4968,7 @@
 				<var name="defaultDuration" value="${minutes} Minutes" />
 			</execute>
 
-			<execute macro="CalendarConfiguration#save" />
+			<execute macro="PortletEntry#save" />
 
 			<execute macro="Navigator#gotoPage">
 				<var name="pageName" value="Calendar Page" />
@@ -5007,8 +5007,8 @@
 
 		<execute macro="CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="Liferay Calendar Event Title" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="Liferay Calendar Event Title" />
 		</execute>
 
 		<execute macro="CalendarEvent#setTimes">
@@ -5028,8 +5028,8 @@
 
 		<execute macro="CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="Test Test Calendar Event Title" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="Test Test Calendar Event Title" />
 		</execute>
 
 		<execute macro="CalendarEvent#setTimes">
@@ -5146,8 +5146,8 @@
 
 		<execute macro="CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="Calendar Event" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="Calendar Event" />
 		</execute>
 
 		<execute macro="CalendarEvent#selectCalendar">
@@ -5285,8 +5285,8 @@
 
 		<execute macro="CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="Calendar Event All Day Title" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="Calendar Event All Day Title" />
 		</execute>
 
 		<execute macro="CalendarEvent#setAllDay" />
@@ -5348,8 +5348,8 @@
 
 		<execute macro="CalendarNavigator#gotoAddResource" />
 
-		<execute macro="CalendarResource#editResourceName">
-			<var name="calendarResourceName" value="Calendar Resource" />
+		<execute macro="PortletEntry#inputName">
+			<var name="name" value="Calendar Resource" />
 		</execute>
 
 		<execute macro="CalendarResource#deactivate" />
@@ -5580,8 +5580,8 @@
 
 		<execute macro="CalendarNavigator#gotoAddEvent" />
 
-		<execute macro="CalendarEvent#editTitle">
-			<var name="eventTitle" value="Current Day Event" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="Current Day Event" />
 		</execute>
 
 		<execute macro="CalendarEvent#setTimes">
@@ -5895,7 +5895,7 @@
 			<var name="weekStartDay" value="Monday" />
 		</execute>
 
-		<execute macro="CalendarConfiguration#save" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
@@ -5943,7 +5943,7 @@
 			<var name="weekStartDay" value="Saturday" />
 		</execute>
 
-		<execute macro="CalendarConfiguration#save" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
