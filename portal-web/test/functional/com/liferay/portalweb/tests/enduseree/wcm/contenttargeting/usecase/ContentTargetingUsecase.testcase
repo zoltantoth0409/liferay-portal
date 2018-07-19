@@ -1553,19 +1553,19 @@
 
 		<execute macro="PortletEntry#save" />
 
-		<execute macro="LAR#gotoExport">
+		<execute macro="LAR#gotoExportSite">
 			<var name="siteScopeName" value="Site Name" />
 		</execute>
 
 		<execute macro="LexiconEntry#gotoAdd" />
 
-		<execute macro="LAR#configureExportOptions">
+		<execute macro="LAR#configureExportSiteOptions">
 			<var name="contentName" value="Audience Targeting" />
 			<var name="subContent" value="User Segments" />
 			<var name="uncheckSubSubContent" value="Referenced Content" />
 		</execute>
 
-		<execute macro="LAR#configureExportOptions">
+		<execute macro="LAR#configureExportSiteOptions">
 			<var name="uncheckContentNameList" value="Web Content" />
 		</execute>
 
@@ -1762,7 +1762,7 @@
 
 		<execute macro="ContentTargetingCampaign#saveCP" />
 
-		<execute macro="LAR#gotoExport">
+		<execute macro="LAR#gotoExportSite">
 			<var name="siteScopeName" value="Site Name" />
 		</execute>
 
@@ -1833,13 +1833,13 @@
 
 		<execute macro="ContentTargetingCampaign#deleteAllCP" />
 
-		<execute macro="LAR#gotoExport">
+		<execute macro="LAR#gotoExportSite">
 			<var name="siteScopeName" value="Site Name" />
 		</execute>
 
 		<execute macro="LexiconEntry#gotoAdd" />
 
-		<execute macro="LAR#configureExportOptions">
+		<execute macro="LAR#configureExportSiteOptions">
 			<var name="checkContentNameList" value="Audience Targeting" />
 			<var name="contentDeletion" value="true" />
 		</execute>
@@ -1923,7 +1923,7 @@
 
 		<execute macro="LAR#setupContentTargeting" />
 
-		<execute macro="LAR#gotoExport">
+		<execute macro="LAR#gotoExportSite">
 			<var name="siteScopeName" value="Site Name" />
 		</execute>
 
@@ -2118,17 +2118,17 @@
 
 		<execute macro="PortletEntry#save" />
 
-		<execute macro="LAR#gotoExport">
+		<execute macro="LAR#gotoExportSite">
 			<var name="siteScopeName" value="Site Name" />
 		</execute>
 
 		<execute macro="LexiconEntry#gotoAdd" />
 
-		<execute macro="LAR#configureExportOptions">
+		<execute macro="LAR#configureExportSiteOptions">
 			<var name="checkContentNameList" value="Audience Targeting" />
 		</execute>
 
-		<execute macro="LAR#configureExportOptions">
+		<execute macro="LAR#configureExportSiteOptions">
 			<var name="uncheckContentNameList" value="Web Content" />
 		</execute>
 

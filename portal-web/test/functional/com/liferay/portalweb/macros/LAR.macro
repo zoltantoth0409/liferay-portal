@@ -1,5 +1,5 @@
 <definition>
-	<command name="_configureExportSiteOptions">
+	<command name="configureExportSiteOptions">
 		<if>
 			<isset var="larFileName" />
 			<then>
@@ -217,7 +217,7 @@
 		<execute function="Pause" locator1="5000" />
 	</command>
 
-	<command name="_gotoExportSite">
+	<command name="gotoExportSite">
 		<if>
 			<isset var="siteScopeName" />
 			<then>
@@ -462,31 +462,12 @@
 		</execute>
 	</command>
 
-	<command name="configureExportOptions">
-		<execute macro="LAR#_configureExportSiteOptions">
-			<var name="checkContentNameList" value="${checkContentNameList}" />
-			<var name="checkPageName" value="${checkPageName}" />
-			<var name="contentDeletion" value="${contentDeletion}" />
-			<var name="contentName" value="${contentName}" />
-			<var name="deleteMissingPages" value="${deleteMissingPages}" />
-			<var name="exportPermissions" value="${exportPermissions}" />
-			<var name="larFileName" value="${larFileName}" />
-			<var name="lastDateRange" value="${lastDateRange}" />
-			<var name="mainContent" value="${mainContent}" />
-			<var name="subContent" value="${subContent}" />
-			<var name="uncheckContentNameList" value="${uncheckContentNameList}" />
-			<var name="uncheckLogo" value="${uncheckLogo}" />
-			<var name="uncheckSubContent" value="${uncheckSubContent}" />
-			<var name="uncheckSubSubContent" value="${uncheckSubSubContent}" />
-		</execute>
-	</command>
-
 	<command name="configureExportSiteCP">
-		<execute macro="LAR#_gotoExportSite" />
+		<execute macro="LAR#gotoExportSite" />
 
 		<execute macro="LexiconEntry#gotoAdd" />
 
-		<execute macro="LAR#_configureExportSiteOptions">
+		<execute macro="LAR#configureExportSiteOptions">
 			<var name="checkContentNameList" value="${checkContentNameList}" />
 			<var name="checkPageName" value="${checkPageName}" />
 			<var name="contentDeletion" value="${contentDeletion}" />
@@ -574,7 +555,7 @@
 	</command>
 
 	<command name="exportSiteCP">
-		<execute macro="LAR#_gotoExportSite">
+		<execute macro="LAR#gotoExportSite">
 			<var name="siteScopeName" value="${siteScopeName}" />
 		</execute>
 
@@ -615,12 +596,6 @@
 		<var name="key_filterValue" value="Completed" />
 
 		<execute function="AssertClick" locator1="Dropdown#FILTER_VALUES" value1="Completed" />
-	</command>
-
-	<command name="gotoExport">
-		<execute macro="LAR#_gotoExportSite">
-			<var name="siteScopeName" value="${siteScopeName}" />
-		</execute>
 	</command>
 
 	<command name="importPortlet">
