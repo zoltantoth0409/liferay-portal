@@ -305,8 +305,8 @@
 			<var name="sitePagePrivacy" value="Private" />
 		</execute>
 
-		<execute macro="Page#addPageTitle">
-			<var name="pageName" value="Research Projects" />
+		<execute macro="PortletEntry#inputName">
+			<var name="name" value="Research Projects" />
 		</execute>
 
 		<execute macro="Page#saveAddPage" />

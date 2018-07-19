@@ -437,8 +437,8 @@
 
 		<execute macro="SitePageNavigator#gotoAddPage" />
 
-		<execute macro="Page#addPageTitle">
-			<var name="pageName" value="Page Category" />
+		<execute macro="PortletEntry#inputName">
+			<var name="name" value="Page Category" />
 		</execute>
 
 		<execute macro="Panel#expandPanel">
