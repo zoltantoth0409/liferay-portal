@@ -205,7 +205,7 @@ public class GitWorkingDirectory {
 
 			System.out.println(
 				JenkinsResultsParserUtil.combine(
-					"HEAD file content is currently: ", headContent,
+					"HEAD file content is: ", headContent,
 					". Waiting for branch to be updated."));
 
 			JenkinsResultsParserUtil.sleep(5000);
@@ -566,8 +566,7 @@ public class GitWorkingDirectory {
 				if (required) {
 					throw new RuntimeException(
 						JenkinsResultsParserUtil.combine(
-							"Unable to find currently checked out branch ",
-							branchName));
+							"Unable to find checked out branch ", branchName));
 				}
 
 				return null;
@@ -584,8 +583,7 @@ public class GitWorkingDirectory {
 
 				throw new RuntimeException(
 					JenkinsResultsParserUtil.combine(
-						"Unable to find currently checked out branch ",
-						branchName));
+						"Unable to find checked out branch ", branchName));
 			}
 
 			return new Branch(
