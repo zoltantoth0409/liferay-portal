@@ -59,8 +59,8 @@
 
 		<execute macro="DMNavigator#gotoAddRepositoryPG" />
 
-		<execute macro="DMRepository#edit">
-			<var name="dmRepositoryName" value="Sharepoint Repository Name" />
+		<execute macro="PortletEntry#inputName">
+			<var name="name" value="Sharepoint Repository Name" />
 		</execute>
 
 		<execute macro="DMRepository#addSharepoint">

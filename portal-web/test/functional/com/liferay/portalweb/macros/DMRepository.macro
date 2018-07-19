@@ -35,12 +35,6 @@
 		</if>
 	</command>
 
-	<command name="edit">
-		<execute macro="PortletEntry#inputName">
-			<var name="name" value="${dmRepositoryName}" />
-		</execute>
-	</command>
-
 	<command name="gotoCP">
 		<var name="key_dmRepositoryName" value="${dmRepositoryName}" />
 

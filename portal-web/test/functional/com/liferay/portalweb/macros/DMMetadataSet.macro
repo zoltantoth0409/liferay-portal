@@ -86,10 +86,6 @@
 		<execute function="AssertTextEquals" locator1="DocumentsAndMediaMetadataSets#METADATA_SETS_TABLE_NAME" value1="${metadataSetName}" />
 	</command>
 
-	<command name="save">
-		<execute macro="Button#clickSave" />
-	</command>
-
 	<command name="selectMetadataSetsFrame">
 		<if>
 			<condition function="IsElementPresent" locator1="DocumentsAndMediaMetadataSets#METADATA_SETS_IFRAME" />

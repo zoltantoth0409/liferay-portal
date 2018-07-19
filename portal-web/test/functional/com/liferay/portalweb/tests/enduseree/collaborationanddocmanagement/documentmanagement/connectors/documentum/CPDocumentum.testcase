@@ -55,8 +55,8 @@
 
 		<execute macro="DMNavigator#gotoAddRepositoryCP" />
 
-		<execute macro="DMRepository#edit">
-			<var name="dmRepositoryName" value="Documentum Repository Name" />
+		<execute macro="PortletEntry#inputName">
+			<var name="name" value="Documentum Repository Name" />
 		</execute>
 
 		<execute macro="DMRepository#addDocumentum">
