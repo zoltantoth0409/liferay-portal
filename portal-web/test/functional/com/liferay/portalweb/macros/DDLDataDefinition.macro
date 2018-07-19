@@ -239,10 +239,6 @@
 		<execute function="AssertTextEquals" locator1="TextInput#DATA_DEFINITION" value1="${ddlDataDefinitionName}" />
 	</command>
 
-	<command name="selectFrame">
-		<execute macro="IFrame#selectDialogFrame" />
-	</command>
-
 	<command name="selectViaDDLDisplayPG">
 		<execute macro="DDLDataDefinition#_select">
 			<var name="ddlDataDefinitionName" value="${ddlDataDefinitionName}" />

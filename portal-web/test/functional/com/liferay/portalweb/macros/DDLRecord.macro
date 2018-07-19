@@ -382,14 +382,6 @@
 	</command>
 
 	<command name="populateFieldTextViaSpreadsheetView">
-		<execute macro="DDLRecord#populateFieldTextViaSpreadsheetViewCmd">
-			<var name="ddlRecordFieldData" value="${ddlRecordFieldData}" />
-			<var name="ddlRecordRow" value="${ddlRecordRow}" />
-			<var name="fieldName" value="${fieldName}" />
-		</execute>
-	</command>
-
-	<command name="populateFieldTextViaSpreadsheetViewCmd">
 		<var name="key_ddlRecordRow" value="${ddlRecordRow}" />
 		<var name="key_fieldName" value="${fieldName}" />
 
