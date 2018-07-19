@@ -441,7 +441,7 @@ public class JSLoaderModulesServletTest extends PowerMockito {
 					return content;
 				}
 
-		});
+			});
 
 		ReflectionTestUtil.setFieldValue(
 			jsLoaderModulesServlet, "_portal", PortalUtil.getPortal());
