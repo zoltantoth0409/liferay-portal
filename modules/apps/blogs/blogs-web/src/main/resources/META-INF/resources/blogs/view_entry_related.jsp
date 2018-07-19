@@ -17,8 +17,9 @@
 <%@ include file="/blogs/init.jsp" %>
 
 <%
-	BlogsEntry blogsEntry = (BlogsEntry)request.getAttribute("view_entry_related.jsp-blogs_entry");
-	String redirect = ParamUtil.getString(request, "redirect");
+String redirect = ParamUtil.getString(request, "redirect");
+
+BlogsEntry blogsEntry = (BlogsEntry)request.getAttribute("view_entry_related.jsp-blogs_entry");
 %>
 
 <c:if test="<%= blogsEntry != null %>">
