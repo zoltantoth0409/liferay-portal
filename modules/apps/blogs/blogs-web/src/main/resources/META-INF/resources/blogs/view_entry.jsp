@@ -96,13 +96,13 @@ if (portletTitleBasedNavigation) {
 					<div class="row widget-mode-card">
 
 						<%
-							request.setAttribute("view_entry_related.jsp-blogs_entry", previousEntry);
+						request.setAttribute("view_entry_related.jsp-blogs_entry", previousEntry);
 						%>
 
 						<liferay-util:include page="/blogs/view_entry_related.jsp" servletContext="<%= application %>" />
 
 						<%
-							request.setAttribute("view_entry_related.jsp-blogs_entry", nextEntry);
+						request.setAttribute("view_entry_related.jsp-blogs_entry", nextEntry);
 						%>
 
 						<liferay-util:include page="/blogs/view_entry_related.jsp" servletContext="<%= application %>" />
