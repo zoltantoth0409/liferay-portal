@@ -228,7 +228,7 @@ public class PersonCollectionResource
 				pagination.getStartPosition(), pagination.getEndPosition(),
 				new UserLastNameComparator());
 
-			List<UserWrapper> userWrappers = _toUserWrapperList(
+			List<UserWrapper> userWrappers = _toUserWrappers(
 				users, themeDisplay);
 
 			int count = _userLocalService.searchCount(
@@ -242,8 +242,7 @@ public class PersonCollectionResource
 			themeDisplay.getCompanyId(), pagination.getStartPosition(),
 			pagination.getEndPosition());
 
-		List<UserWrapper> userWrappers = _toUserWrapperList(
-			users, themeDisplay);
+		List<UserWrapper> userWrappers = _toUserWrappers(users, themeDisplay);
 
 		int count = _userService.getCompanyUsersCount(
 			themeDisplay.getCompanyId());
@@ -263,11 +262,11 @@ public class PersonCollectionResource
 		return new UserWrapper(user, themeDisplay);
 	}
 
-	private List<UserWrapper> _toUserWrapperList(
-		List<User> list, ThemeDisplay themeDisplay) {
+	private List<UserWrapper> _toUserWrappers(
+		List<User> users, ThemeDisplay themeDisplay) {
 
 		return Stream.of(
-			list
+			users
 		).flatMap(
 			List::stream
 		).map(
