@@ -121,6 +121,7 @@
 
 		<!-- Temporary suppressions for private repos and subrepos -->
 
+		<suppress checks="JavaAPISignatureCheck" files="modules/private/apps/osb-asah/.*" />
 		<suppress checks="JavaAPISignatureCheck" files="modules/private/apps/osb-lcs/.*" />
 		<suppress checks="JavaAPISignatureCheck" files="modules/private/apps/osb-loop/.*" />
 		<suppress checks="JavaAPISignatureCheck" files="modules/private/apps/osb-testray/.*" />
