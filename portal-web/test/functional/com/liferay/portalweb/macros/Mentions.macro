@@ -5,8 +5,8 @@
 
 		<execute macro="BlogsNavigator#gotoAddEntry" />
 
-		<execute macro="BlogsEntry#addTitle">
-			<var name="entryTitle" value="${entryTitle}" />
+		<execute macro="AlloyEditor#addTitle">
+			<var name="title" value="${entryTitle}" />
 		</execute>
 
 		<execute function="Type#sendKeys" locator1="AlloyEditor#CONTENT_FIELD" value1="${entryContent} @${mentionsUserScreenName}" />

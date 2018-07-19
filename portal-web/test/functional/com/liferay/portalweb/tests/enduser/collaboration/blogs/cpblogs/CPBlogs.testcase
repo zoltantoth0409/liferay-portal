@@ -261,8 +261,8 @@
 
 		<execute macro="BlogsNavigator#gotoAddEntry" />
 
-		<execute macro="BlogsEntry#addTitle">
-			<var name="entryTitle" value="Blogs Entry Title" />
+		<execute macro="AlloyEditor#addTitle">
+			<var name="title" value="Blogs Entry Title" />
 		</execute>
 
 		<execute macro="AlloyEditor#addContent">

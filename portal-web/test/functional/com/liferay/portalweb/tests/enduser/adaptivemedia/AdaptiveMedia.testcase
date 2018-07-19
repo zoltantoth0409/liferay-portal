@@ -320,8 +320,8 @@
 
 		<execute macro="BlogsNavigator#gotoAddEntry" />
 
-		<execute macro="BlogsEntry#addTitle">
-			<var name="entryTitle" value="Blogs Entry With Adaptive Media Image" />
+		<execute macro="AlloyEditor#addTitle">
+			<var name="title" value="Blogs Entry With Adaptive Media Image" />
 		</execute>
 
 		<execute macro="ItemSelector#gotoItemSelectorViaAlloyEditor" />

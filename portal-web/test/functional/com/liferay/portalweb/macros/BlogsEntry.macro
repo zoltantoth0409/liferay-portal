@@ -64,8 +64,8 @@
 	</command>
 
 	<command name="addEntryContent">
-		<execute macro="BlogsEntry#addTitle">
-			<var name="entryTitle" value="${entryTitle}" />
+		<execute macro="AlloyEditor#addTitle">
+			<var name="title" value="${entryTitle}" />
 		</execute>
 
 		<if>
@@ -118,12 +118,6 @@
 
 			<execute function="AssertClick" locator1="Button#ADD_TAGS" value1="Add" />
 		</for>
-	</command>
-
-	<command name="addTitle">
-		<execute macro="AlloyEditor#addTitle">
-			<var name="title" value="${entryTitle}" />
-		</execute>
 	</command>
 
 	<command name="addWithTrackbackURLPG">

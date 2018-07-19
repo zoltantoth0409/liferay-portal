@@ -59,8 +59,8 @@
 	<command name="addEntryWithCoverImageFromDMFolders">
 		<execute macro="BlogsNavigator#gotoAddEntry" />
 
-		<execute macro="BlogsEntry#addTitle">
-			<var name="entryTitle" value="${entryTitle}" />
+		<execute macro="AlloyEditor#addTitle">
+			<var name="title" value="${entryTitle}" />
 		</execute>
 
 		<execute macro="BlogsEntry#addEntryContent">
@@ -85,8 +85,8 @@
 	<command name="addEntryWithHTML">
 		<execute macro="BlogsNavigator#gotoAddEntry" />
 
-		<execute macro="BlogsEntry#addTitle">
-			<var name="entryTitle" value="${entryTitle}" />
+		<execute macro="AlloyEditor#addTitle">
+			<var name="title" value="${entryTitle}" />
 		</execute>
 
 		<execute macro="BlogsEntry#addSubtitle">
@@ -193,8 +193,8 @@
 
 		<execute function="Pause" locator1="5000" />
 
-		<execute macro="BlogsEntry#addTitle">
-			<var name="entryTitle" value="${entryTitle}" />
+		<execute macro="AlloyEditor#addTitle">
+			<var name="title" value="${entryTitle}" />
 		</execute>
 
 		<execute macro="BlogsEntry#addEntryContent">
