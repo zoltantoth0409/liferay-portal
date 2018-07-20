@@ -39,7 +39,7 @@ public class UpgradeProcess_7_0_6 extends UpgradeProcess {
 	}
 
 	@Override
-	protected boolean skipUpgradeProcess() throws Exception {
+	protected boolean isSkipUpgradeProcess() throws Exception {
 		if (hasColumnType(RepositoryTable.class, "name", "VARCHAR(200) null")) {
 			return true;
 		}

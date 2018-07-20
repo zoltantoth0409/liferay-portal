@@ -85,7 +85,7 @@ public abstract class UpgradeProcess
 		try (Connection con = DataAccess.getConnection()) {
 			connection = con;
 
-			if (skipUpgradeProcess()) {
+			if (isSkipUpgradeProcess()) {
 				return;
 			}
 
@@ -615,7 +615,7 @@ public abstract class UpgradeProcess
 		return dbInspector.normalizeName(name, databaseMetaData);
 	}
 
-	protected boolean skipUpgradeProcess() throws Exception {
+	protected boolean isSkipUpgradeProcess() throws Exception {
 		return false;
 	}
 
