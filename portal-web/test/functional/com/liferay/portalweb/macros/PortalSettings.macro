@@ -1,8 +1,4 @@
 <definition>
-	<command name="_saveDisplaySettings">
-		<execute macro="PortletEntry#save" />
-	</command>
-
 	<command name="addLDAPServer">
 		<execute function="AssertClick" locator1="PortalSettingsAuthentication#AUTHENTICATION_LDAP_ADD_BUTTON" value1="Add" />
 
@@ -209,7 +205,7 @@
 
 		<execute function="Select" locator1="Select#TIME_ZONE" value1="${timeZone}" />
 
-		<execute macro="PortalSettings#_saveDisplaySettings" />
+		<execute macro="PortletEntry#save" />
 	</command>
 
 	<command name="configureWikiService">

@@ -155,7 +155,7 @@
 			<var name="kfProcessFieldData" value="Test" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -299,7 +299,7 @@
 
 		<execute function="AssertElementNotPresent" locator1="DDLEditRecord#SEPARATOR_FIELD" />
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -431,7 +431,7 @@
 			<var name="kfProcessFieldData" value="Test Hidden from Review" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -460,7 +460,7 @@
 
 		<execute function="AssertElementNotPresent" locator1="DDLEditRecord#TEXT_FIELD" />
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -643,7 +643,7 @@
 			<var name="kfProcessFieldData" value="Test 1" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Content" />
@@ -660,7 +660,7 @@
 			<var name="kfProcessFieldData" value="Test 2" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Navigator#openURL" />
 
@@ -1043,7 +1043,7 @@
 			<var name="kfProcessFieldData" value="Test Submitted" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -1259,7 +1259,7 @@
 			<var name="kfProcessFieldData" value="Test Submitted" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -1484,7 +1484,7 @@
 			<var name="kfProcessFieldData" value="Test Submitted" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -1768,7 +1768,7 @@
 			<var name="kfProcessFieldData" value="Test Submitted" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -1973,7 +1973,7 @@
 			<var name="kfProcessFieldData" value="Test 1" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -1998,7 +1998,7 @@
 			<var name="kfProcessFieldData" value="Test 1 EDIT" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -2025,7 +2025,7 @@
 			<var name="kfProcessFieldData" value="Test 2" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -2050,7 +2050,7 @@
 			<var name="kfProcessFieldData" value="Test 2 EDIT" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -2079,7 +2079,7 @@
 			<var name="kfProcessFieldData" value="Test 1 EDIT new edit" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -2108,7 +2108,7 @@
 			<var name="kfProcessFieldData" value="Test 2 EDIT new edit" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -2271,7 +2271,7 @@
 		<execute function="AssertTextEquals" locator1="//div[contains(@class,'field-wrapper')][2]//label" value1="Text Box" />
 		<execute function="AssertTextEquals" locator1="//div[contains(@class,'field-wrapper')][3]//label" value1="Select" />
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -2455,7 +2455,7 @@
 			<var name="kfProcessFieldData" value="Test" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="Notifications" />
@@ -2607,7 +2607,7 @@
 			<var name="kfProcessFieldData" value="Text Data" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="KaleoFormsAdmin#viewProcessRecordTable">
 			<var name="kfAuthor" value="Test Test" />
@@ -2774,7 +2774,7 @@
 			<var name="kfProcessFieldData" value="Test" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -2937,7 +2937,7 @@
 			<var name="kfProcessFieldData" value="Kaleo Text Field" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -3075,7 +3075,7 @@
 			<var name="kfProcessFieldData" value="Test Data" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -3294,7 +3294,7 @@
 			<var name="kfProcessFieldData" value="Test Data" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -3500,7 +3500,7 @@
 			<var name="kfProcessFieldData" value="Test Data" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -3745,7 +3745,7 @@
 			<var name="kfProcessFieldData" value="04/17/2017" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -3883,7 +3883,7 @@
 			<var name="kfProcessFieldData" value="Test Data" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -4057,7 +4057,7 @@
 			<var name="kfProcessFieldData" value="Test Data" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -4250,7 +4250,7 @@
 			<var name="kfProcessFieldData" value="Kaleo Text Field" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -4544,7 +4544,7 @@
 			<var name="kfProcessFieldData" value="04/01/2017" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -4717,7 +4717,7 @@
 			<var name="kfProcessFieldData" value="04/01/2017" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -4946,7 +4946,7 @@
 			<var name="kfProcessFieldData" value="Kaleo Text Field" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -5115,7 +5115,7 @@
 			<var name="kfProcessFieldData" value="04/01/2017" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -5285,7 +5285,7 @@
 			<var name="kfProcessFieldData" value="Test" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -5430,7 +5430,7 @@
 			<var name="kfProcessFieldData" value="Test" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="Notifications" />
@@ -5616,7 +5616,7 @@
 			<var name="kfProcessFieldData" value="Test" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -5755,7 +5755,7 @@
 			<var name="kfProcessFieldData" value="Test Data" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -5940,7 +5940,7 @@
 			<var name="kfProcessFieldData" value="Test Data" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="test@liferay.com" />
@@ -6090,7 +6090,7 @@
 			<var name="kfProcessFieldData" value="Test Data" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -6223,7 +6223,7 @@
 			<var name="kfProcessFieldData" value="Test" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="Notifications" />
@@ -6406,7 +6406,7 @@
 			<var name="kfProcessFieldData" value="Test Data" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -6439,7 +6439,7 @@
 			<var name="kfProcessFieldData" value="Test Data" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Navigator#openURL" />
 
@@ -6640,7 +6640,7 @@
 			<var name="kfProcessFieldData" value="Test" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -6846,7 +6846,7 @@
 			<var name="kfProcessFieldData" value="Test Data" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -6991,7 +6991,7 @@
 			<var name="kfProcessFieldData" value="Test Data" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Navigator#openURL" />
 
@@ -7108,7 +7108,7 @@
 			<var name="kfProcessFieldData" value="Test Submitted" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -7161,7 +7161,7 @@
 			<var name="kfProcessFieldData" value="Test Second Submitted" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />
@@ -7290,7 +7290,7 @@
 			<var name="kfProcessFieldData" value="Test" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Submissions" />

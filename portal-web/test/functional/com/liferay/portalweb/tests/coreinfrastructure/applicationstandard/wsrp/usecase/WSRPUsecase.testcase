@@ -83,7 +83,7 @@
 			<var name="portletName" value="WSRP Unit Converter" />
 		</execute>
 
-		<execute macro="WSRP#wsrpUnitConverterConvertPG">
+		<execute macro="UnitConverter#convertPG">
 			<var name="initialUnit" value="Inch" />
 			<var name="initialValue" value="12" />
 			<var name="targetUnit" value="Foot" />

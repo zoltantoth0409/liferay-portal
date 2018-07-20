@@ -388,7 +388,7 @@
 			<var name="kfProcessFieldData" value="Test Test" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="MockMock#viewMail">
 			<var name="asset" value="Review Notification Description" />
@@ -612,7 +612,7 @@
 			<var name="kfProcessFieldData" value="Test 1" />
 		</execute>
 
-		<execute macro="KaleoFormsAdmin#saveProcessRecord" />
+		<execute macro="PortletEntry#save" />
 
 		<execute macro="Page#gotoMyAccount">
 			<var name="portletName" value="My Workflow Tasks" />

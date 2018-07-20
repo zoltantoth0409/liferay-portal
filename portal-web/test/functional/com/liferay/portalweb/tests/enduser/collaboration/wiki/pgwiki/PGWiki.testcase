@@ -955,8 +955,8 @@
 			<var name="wikiPageTitle" value="Wiki Page Title" />
 		</execute>
 
-		<execute macro="WikiEntry#addPageContent">
-			<var name="wikiPageContent" value="Wiki Page Content" />
+		<execute macro="AlloyEditor#addContent">
+			<var name="content" value="Wiki Page Content" />
 		</execute>
 
 		<execute macro="WikiEntry#cancel" />
@@ -979,8 +979,8 @@
 			<var name="wikiPageTitle" value="Wiki Page Title" />
 		</execute>
 
-		<execute macro="WikiEntry#addPageContent">
-			<var name="wikiPageContent" value="Wiki Page Content" />
+		<execute macro="AlloyEditor#addContent">
+			<var name="content" value="Wiki Page Content" />
 		</execute>
 
 		<execute macro="PortletEntry#publish" />
@@ -995,8 +995,8 @@
 			<var name="wikiPageTitle" value="Wiki Page Title" />
 		</execute>
 
-		<execute macro="WikiEntry#addPageContent">
-			<var name="wikiPageContent" value="Edited Wiki Page Content" />
+		<execute macro="AlloyEditor#addContent">
+			<var name="content" value="Edited Wiki Page Content" />
 		</execute>
 
 		<execute macro="WikiEntry#cancel" />
@@ -1074,8 +1074,8 @@
 			<var name="wikiPageTitle" value="Wiki Page Title" />
 		</execute>
 
-		<execute macro="WikiEntry#addPageContent">
-			<var name="wikiPageContent" value="Wiki Page Content" />
+		<execute macro="AlloyEditor#addContent">
+			<var name="content" value="Wiki Page Content" />
 		</execute>
 
 		<execute macro="PortletEntry#publish" />
@@ -1094,8 +1094,8 @@
 			<var name="wikiPageTitle" value="Copied Wiki Page Title" />
 		</execute>
 
-		<execute macro="WikiEntry#addPageContent">
-			<var name="wikiPageContent" value="Copied Wiki Page Content" />
+		<execute macro="AlloyEditor#addContent">
+			<var name="content" value="Copied Wiki Page Content" />
 		</execute>
 
 		<execute macro="PortletEntry#publish" />
@@ -1188,8 +1188,8 @@
 			<var name="wikiPageTitle" value="Wiki Page Title" />
 		</execute>
 
-		<execute macro="WikiEntry#addPageContent">
-			<var name="wikiPageContent" value="Wiki Page Content" />
+		<execute macro="AlloyEditor#addContent">
+			<var name="content" value="Wiki Page Content" />
 		</execute>
 
 		<execute macro="WikiEntry#saveAsDraft" />
@@ -1208,8 +1208,8 @@
 
 		<execute function="AssertElementPresent" locator1="AlloyEditor#CONTENT_ADD_BUTTON" />
 
-		<execute macro="WikiEntry#addPageContent">
-			<var name="wikiPageContent" value="Edited Wiki Page Content" />
+		<execute macro="AlloyEditor#addContent">
+			<var name="content" value="Edited Wiki Page Content" />
 		</execute>
 
 		<execute macro="PortletEntry#publish" />
@@ -1691,8 +1691,8 @@
 			<var name="wikiPageTitle" value="Wiki Page Title" />
 		</execute>
 
-		<execute macro="WikiEntry#addPageContent">
-			<var name="wikiPageContent" value="Wiki Page Content" />
+		<execute macro="AlloyEditor#addContent">
+			<var name="content" value="Wiki Page Content" />
 		</execute>
 
 		<execute macro="PortletEntry#publish" />
@@ -1707,8 +1707,8 @@
 			<var name="wikiPageTitle" value="Wiki Page Title" />
 		</execute>
 
-		<execute macro="WikiEntry#addPageContent">
-			<var name="wikiPageContent" value="Edited Wiki Page Content" />
+		<execute macro="AlloyEditor#addContent">
+			<var name="content" value="Edited Wiki Page Content" />
 		</execute>
 
 		<execute macro="WikiEntry#saveAsDraft" />

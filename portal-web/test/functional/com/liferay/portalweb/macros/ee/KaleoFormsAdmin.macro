@@ -670,10 +670,6 @@
 		<execute macro="Button#clickSave" />
 	</command>
 
-	<command name="saveProcessRecord">
-		<execute macro="PortletEntry#save" />
-	</command>
-
 	<command name="searchProcessRecords">
 		<execute function="Type" locator1="NavBar#BASIC_SEARCH_FIELD" value1="${kfProcessSearchData}" />
 

@@ -288,8 +288,8 @@
 			<var name="wikiPageTitle" value="Child Page Title" />
 		</execute>
 
-		<execute macro="WikiEntry#addPageContent">
-			<var name="wikiPageContent" value="Child Page Content" />
+		<execute macro="AlloyEditor#addContent">
+			<var name="content" value="Child Page Content" />
 		</execute>
 
 		<execute macro="PortletEntry#publish" />

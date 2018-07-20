@@ -95,14 +95,4 @@
 
 		<execute function="AssertTextEquals" locator1="Message#INFO" value1="There are no consumers." />
 	</command>
-
-	<command name="wsrpUnitConverterConvertPG">
-		<execute macro="UnitConverter#convertPG">
-			<var name="initialUnit" value="${initialUnit}" />
-			<var name="initialValue" value="${initialValue}" />
-			<var name="targetUnit" value="${targetUnit}" />
-			<var name="targetValue" value="${targetValue}" />
-			<var name="unitType" value="${unitType}" />
-		</execute>
-	</command>
 </definition>

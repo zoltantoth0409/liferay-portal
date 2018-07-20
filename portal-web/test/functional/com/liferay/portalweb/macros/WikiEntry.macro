@@ -3,12 +3,6 @@
 		<execute function="Type" locator1="TextArea#WEB_EDITOR" value1="${wikiPageContent}" />
 	</command>
 
-	<command name="addPageContent">
-		<execute macro="AlloyEditor#addContent">
-			<var name="content" value="${wikiPageContent}" />
-		</execute>
-	</command>
-
 	<command name="addPageTitle">
 		<execute function="Type#typeEditor" locator1="AlloyEditor#TITLE_FIELD" value1="${wikiPageTitle}" />
 	</command>

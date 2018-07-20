@@ -39,8 +39,8 @@
 	<command name="DeleteTaskNode" priority="5">
 		<property name="test.name.skip.portal.instance" value="KaleoDesignerEditSingleApprover#DeleteTaskNode" />
 
-		<execute macro="KaleoDesigner#editWorkflowDefinitionTitleViaWorkflowCP">
-			<var name="workflowDefinitionTitle" value="Edited Workflow Definition" />
+		<execute macro="PortletEntry#inputTitle">
+			<var name="title" value="Edited Workflow Definition" />
 		</execute>
 
 		<execute macro="KaleoDesigner#selectNode">

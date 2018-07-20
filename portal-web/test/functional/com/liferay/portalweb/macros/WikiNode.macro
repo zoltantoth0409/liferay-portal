@@ -15,12 +15,6 @@
 		<execute macro="Alert#viewSuccessMessage" />
 	</command>
 
-	<command name="addDescription">
-		<execute macro="PortletEntry#inputDescription">
-			<var name="description" value="${wikiNodeDescription}" />
-		</execute>
-	</command>
-
 	<command name="addMainCP">
 		<execute macro="Navigator#openURL" />
 
@@ -38,12 +32,6 @@
 				</execute>
 			</then>
 		</if>
-	</command>
-
-	<command name="addName">
-		<execute macro="PortletEntry#inputName">
-			<var name="name" value="${wikiNodeName}" />
-		</execute>
 	</command>
 
 	<command name="deleteCP">

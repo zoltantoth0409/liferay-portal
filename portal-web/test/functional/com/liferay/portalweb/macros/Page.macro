@@ -259,12 +259,6 @@
 		<execute function="AssertClickNoError" locator1="Button#SAVE" value1="Save" />
 	</command>
 
-	<command name="addPageTitle">
-		<execute macro="PortletEntry#inputName">
-			<var name="name" value="${pageName}" />
-		</execute>
-	</command>
-
 	<command name="addPageTranslations">
 		<execute macro="SitePageNavigator#gotoEditPage">
 			<var name="page" value="${page}" />

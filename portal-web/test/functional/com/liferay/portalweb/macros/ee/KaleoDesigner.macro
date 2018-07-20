@@ -523,12 +523,6 @@
 		<execute function="TypeScreen" locator1="${kdSourceXML}" />
 	</command>
 
-	<command name="editWorkflowDefinitionTitleViaWorkflowCP">
-		<execute macro="PortletEntry#inputTitle">
-			<var name="title" value="${workflowDefinitionTitle}" />
-		</execute>
-	</command>
-
 	<command name="editWorkflowDefinitionViaKDCP">
 		<execute macro="LexiconEntry#gotoEntryMenuItem">
 			<var name="menuItem" value="Edit" />

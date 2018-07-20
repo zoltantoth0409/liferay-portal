@@ -310,10 +310,6 @@
 		<execute macro="Alert#viewSuccessMessage" />
 	</command>
 
-	<command name="saveProcessRecord">
-		<execute macro="PortletEntry#save" />
-	</command>
-
 	<command name="submitNewProcess">
 		<execute function="AssertClick" locator1="KaleoForms#SUBMIT_NEW" value1="Submit New" />
 

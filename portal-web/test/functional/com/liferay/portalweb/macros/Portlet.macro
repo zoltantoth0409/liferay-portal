@@ -330,12 +330,6 @@
 		</if>
 	</command>
 
-	<command name="openAdminURL">
-		<execute macro="Navigator#openSpecificURL">
-			<var name="url" value="${adminURL}" />
-		</execute>
-	</command>
-
 	<command name="selectApplicationDecorator">
 		<execute function="Select" locator1="Select#APPLICATION_DECORATORS" value1="${decorator}" />
 
