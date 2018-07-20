@@ -475,7 +475,7 @@
 			<propertyresource name="app.names.unfiltered.formatted" />
 		</loadfile>
 
-		<echo message="Apps that will be included in this run: ${app.names}" />
+		<echo message="Apps that will be included in this run: ${app.names}." />
 	</target>
 
 	<target depends="init-build-app" name="get-app-properties">
