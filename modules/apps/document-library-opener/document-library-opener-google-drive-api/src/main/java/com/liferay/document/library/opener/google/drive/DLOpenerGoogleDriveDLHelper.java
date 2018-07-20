@@ -15,7 +15,6 @@
 package com.liferay.document.library.opener.google.drive;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.service.ServiceContext;
 
 /**
  * @author Adolfo Pérez
@@ -25,12 +24,10 @@ public interface DLOpenerGoogleDriveDLHelper {
 	public void cancelCheckOut(long fileEntryId) throws PortalException;
 
 	public void checkInFileEntry(
-			long fileEntryId, boolean majorVersion, String changeLog,
-			ServiceContext serviceContext)
+			long fileEntryId, boolean majorVersion, String changeLog)
 		throws PortalException;
 
-	public DLOpenerGoogleDriveFileReference checkOutFileEntry(
-			long fileEntryId, ServiceContext serviceContext)
+	public DLOpenerGoogleDriveFileReference checkOutFileEntry(long fileEntryId)
 		throws PortalException;
 
 	public DLOpenerGoogleDriveFileReference editInGoogleDrive(
