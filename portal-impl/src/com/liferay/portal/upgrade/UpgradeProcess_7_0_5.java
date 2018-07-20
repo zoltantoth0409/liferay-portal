@@ -57,7 +57,7 @@ public class UpgradeProcess_7_0_5 extends UpgradeProcess {
 	}
 
 	@Override
-	protected boolean skipUpgradeProcess() throws Exception {
+	protected boolean isSkipUpgradeProcess() throws Exception {
 		if (hasColumnType(
 				UserTable.class, "emailAddress", "VARCHAR(254) null") &&
 			hasColumnType(
