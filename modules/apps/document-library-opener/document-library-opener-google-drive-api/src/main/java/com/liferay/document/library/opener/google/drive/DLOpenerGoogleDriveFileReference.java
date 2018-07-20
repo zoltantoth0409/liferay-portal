@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.document.library.opener.google.drive.model;
+package com.liferay.document.library.opener.google.drive;
 
 import com.liferay.portal.kernel.util.StringBundler;
 

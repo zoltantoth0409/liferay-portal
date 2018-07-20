@@ -12,9 +12,8 @@
  * details.
  */
 
-package com.liferay.document.library.opener.google.drive.manager;
+package com.liferay.document.library.opener.google.drive;
 
-import com.liferay.document.library.opener.google.drive.model.DLOpenerGoogleDriveFileReference;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 
