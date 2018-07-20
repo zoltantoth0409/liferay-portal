@@ -51,8 +51,6 @@
 	<c:when test='<%= displayStyle.equals("icon") %>'>
 
 		<%
-		long logoId = organization.getLogoId();
-
 		row.setCssClass("entry-card lfr-asset-item");
 		%>
 
@@ -61,7 +59,7 @@
 				actionJsp="/organization_action.jsp"
 				actionJspServletContext="<%= application %>"
 				cssClass="entry-display-style"
-				imageUrl='<%= themeDisplay.getPathImage() + "/organization_logo?img_id=" + logoId + "&t=" + WebServerServletTokenUtil.getToken(logoId) %>'
+				imageUrl='<%= themeDisplay.getPathImage() + "/organization_logo?img_id=" + organization.getLogoId() + "&t=" + WebServerServletTokenUtil.getToken(organization.getLogoId()) %>'
 				resultRow="<%= row %>"
 				rowChecker="<%= organizationSearchContainer.getRowChecker() %>"
 				subtitle="<%= LanguageUtil.get(request, organization.getType()) %>"
