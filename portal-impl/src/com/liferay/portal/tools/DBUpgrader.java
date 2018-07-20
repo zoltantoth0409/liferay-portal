@@ -363,7 +363,7 @@ public class DBUpgrader {
 				Version schemaVersion =
 					PortalUpgradeProcess.getCurrentSchemaVersion(connection);
 
-				if (!schemaVersion.equals(_LATEST_PORTAL7010_SCHEMA_VERSION)) {
+				if (!schemaVersion.equals(_VERSION_7010)) {
 					return ReleaseInfo.RELEASE_7_0_1_BUILD_NUMBER;
 				}
 			}
@@ -472,8 +472,7 @@ public class DBUpgrader {
 		}
 	}
 
-	private static final Version _LATEST_PORTAL7010_SCHEMA_VERSION =
-		new Version("0.0.6");
+	private static final Version _VERSION_7010 = new Version("0.0.6");
 
 	private static final Log _log = LogFactoryUtil.getLog(DBUpgrader.class);
 
