@@ -25,10 +25,8 @@ LayoutSet selLayoutSet = layoutsAdminDisplayContext.getSelLayoutSet();
 
 String backURL = ParamUtil.getString(request, "backURL");
 
-if (Validator.isNull(backURL)) {
-	if (LayoutLocalServiceUtil.getLayoutsCount(selGroup, privateLayout) != 0) {
-		backURL = PortalUtil.getGroupFriendlyURL(layoutsAdminDisplayContext.getSelLayoutSet(), themeDisplay);
-	}
+if (Validator.isNull(backURL) && (LayoutLocalServiceUtil.getLayoutsCount(selGroup, privateLayout) > 0)) {
+	backURL = PortalUtil.getGroupFriendlyURL(layoutsAdminDisplayContext.getSelLayoutSet(), themeDisplay);
 }
 
 PortletURL redirectURL = layoutsAdminDisplayContext.getRedirectURL();
