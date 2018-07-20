@@ -31,14 +31,10 @@ public class DLOpenerGoogleDriveMimeTypes {
 		return _mimeTypes.contains(mimeType);
 	}
 
-	private static final String
-		_APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSING_DOCUMENT =
-			"application/vnd.openxmlformats-officedocument.wordprocessingml." +
-				"document";
-
 	private static final Collection<String> _mimeTypes = Arrays.asList(
 		ContentTypes.APPLICATION_TEXT,
-		_APPLICATION_VND_OPENXMLFORMATS_OFFICEDOCUMENT_WORDPROCESSING_DOCUMENT,
+		"application/vnd.openxmlformats-officedocument.wordprocessingml." +
+			"document",
 		ContentTypes.TEXT, ContentTypes.TEXT_PLAIN);
 
 }
