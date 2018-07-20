@@ -69,7 +69,7 @@ public class FileEntryFileEntryItemSelectorReturnTypeResolver
 		}
 		else {
 			previewURL = PortletFileRepositoryUtil.getPortletFileEntryURL(
-				themeDisplay, fileEntry, _IMAGE_PREVIEW_QUERY_STRING, false);
+				themeDisplay, fileEntry, "&imagePreview=1", false);
 		}
 
 		fileEntryJSONObject.put("url", previewURL);
@@ -78,7 +78,5 @@ public class FileEntryFileEntryItemSelectorReturnTypeResolver
 
 		return fileEntryJSONObject.toString();
 	}
-
-	private static final String _IMAGE_PREVIEW_QUERY_STRING = "&imagePreview=1";
 
 }
