@@ -577,6 +577,10 @@ public abstract class UpgradeProcess
 		return _portal62TableNames.contains(StringUtil.toLowerCase(tableName));
 	}
 
+	protected boolean isSkipUpgradeProcess() throws Exception {
+		return false;
+	}
+
 	protected boolean isSupportsAlterColumnName() {
 		DB db = DBManagerUtil.getDB();
 
@@ -613,10 +617,6 @@ public abstract class UpgradeProcess
 		DBInspector dbInspector = new DBInspector(connection);
 
 		return dbInspector.normalizeName(name, databaseMetaData);
-	}
-
-	protected boolean isSkipUpgradeProcess() throws Exception {
-		return false;
 	}
 
 	protected void upgradeTable(String tableName, Object[][] tableColumns)
