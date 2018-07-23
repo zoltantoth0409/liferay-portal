@@ -617,15 +617,6 @@ public interface JournalArticleService extends BaseService {
 	public List<JournalArticle> getArticles(long groupId, long folderId,
 		int start, int end, OrderByComparator<JournalArticle> obc);
 
-	/**
-	* Returns all the web content articles matching the group, folder and
-	* locale.
-	*
-	* @param groupId the primary key of the web content article's group
-	* @param folderId the primary key of the web content article folder
-	* @param locale current locale
-	* @return the matching web content articles
-	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<JournalArticle> getArticles(long groupId, long folderId,
 		Locale locale);
