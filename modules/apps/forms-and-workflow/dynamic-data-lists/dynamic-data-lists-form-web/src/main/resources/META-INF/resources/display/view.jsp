@@ -71,7 +71,7 @@ long recordSetId = ddlFormDisplayContext.getRecordSetId();
 							for (DDMFormFieldEvaluationResult ddmFormFieldEvaluationResult : ddmFormFieldEvaluationResults) {
 							%>
 
-								<liferay-ui:message arguments="<%= new Object[] {ddmFormFieldEvaluationResult.getName(), ddmFormFieldEvaluationResult.getErrorMessage()} %>" key="validation-failed-for-field-x" translateArguments="<%= false %>" />
+								<liferay-ui:message arguments="<%= new Object[] {HtmlUtil.escape(ddmFormFieldEvaluationResult.getName()), ddmFormFieldEvaluationResult.getErrorMessage()} %>" key="validation-failed-for-field-x" translateArguments="<%= false %>" />
 
 								<br />
 
@@ -87,7 +87,7 @@ long recordSetId = ddlFormDisplayContext.getRecordSetId();
 							DDMFormValuesValidationException.RequiredValue rv = (DDMFormValuesValidationException.RequiredValue)errorException;
 							%>
 
-							<liferay-ui:message arguments="<%= rv.getFieldName() %>" key="no-value-is-defined-for-field-x" translateArguments="<%= false %>" />
+							<liferay-ui:message arguments="<%= HtmlUtil.escape(rv.getFieldName()) %>" key="no-value-is-defined-for-field-x" translateArguments="<%= false %>" />
 						</liferay-ui:error>
 
 						<liferay-ui:error exception="<%= NoSuchRecordSetException.class %>" message="the-selected-form-no-longer-exists" />
