@@ -100,7 +100,7 @@ public class OSGiAllInProcessor implements ApplicationArchiveProcessor {
 		}
 		catch (IOException ioe) {
 			throw new IllegalArgumentException(
-				"Not a valid OSGi bundle: " + javaArchive, ioe);
+				"Invalid OSGi bundle: " + javaArchive, ioe);
 		}
 	}
 
