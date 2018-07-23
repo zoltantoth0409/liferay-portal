@@ -122,8 +122,8 @@ public class UpgradeKernelPackage extends UpgradeProcess {
 		throws SQLException {
 
 		throw new UnsupportedOperationException(
-			"This method is deprecated, please use upgradeLongTextTable(" +
-				"String, String, String, String, String[]) instead");
+			"This method is deprecated and replaced by upgradeLongTextTable(" +
+				"String, String, String, String, String[])");
 	}
 
 	protected void upgradeLongTextTable(
@@ -190,8 +190,8 @@ public class UpgradeKernelPackage extends UpgradeProcess {
 		throws Exception {
 
 		throw new UnsupportedOperationException(
-			"This method is deprecated, please use upgradeLongTextTable(" +
-				"String, String, String, String[][], WildcardMode) instead");
+			"This method is deprecated and replaced by upgradeLongTextTable(" +
+				"String, String, String, String[][], WildcardMode)");
 	}
 
 	protected void upgradeTable(
