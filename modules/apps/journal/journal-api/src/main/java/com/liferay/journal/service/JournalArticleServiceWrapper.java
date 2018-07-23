@@ -695,15 +695,6 @@ public class JournalArticleServiceWrapper implements JournalArticleService,
 			end, obc);
 	}
 
-	/**
-	* Returns all the web content articles matching the group, folder and
-	* locale.
-	*
-	* @param groupId the primary key of the web content article's group
-	* @param folderId the primary key of the web content article folder
-	* @param locale current locale
-	* @return the matching web content articles
-	*/
 	@Override
 	public java.util.List<com.liferay.journal.model.JournalArticle> getArticles(
 		long groupId, long folderId, java.util.Locale locale) {

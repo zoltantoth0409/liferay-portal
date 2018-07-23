@@ -544,15 +544,6 @@ public class JournalArticleServiceSoap {
 		}
 	}
 
-	/**
-	* Returns all the web content articles matching the group, folder and
-	* locale.
-	*
-	* @param groupId the primary key of the web content article's group
-	* @param folderId the primary key of the web content article folder
-	* @param locale current locale
-	* @return the matching web content articles
-	*/
 	public static com.liferay.journal.model.JournalArticleSoap[] getArticles(
 		long groupId, long folderId, String locale) throws RemoteException {
 		try {
