@@ -857,12 +857,12 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 	public List<JournalArticle> getArticles(
 		long groupId, long folderId, Locale locale) {
 
-		QueryDefinition<JournalArticle> queryDefinition = new QueryDefinition<>(
-			WorkflowConstants.STATUS_ANY);
-
 		List<Long> folderIds = new ArrayList<>();
 
 		folderIds.add(folderId);
+
+		QueryDefinition<JournalArticle> queryDefinition = new QueryDefinition<>(
+			WorkflowConstants.STATUS_ANY);
 
 		return journalArticleFinder.filterFindByG_F_L(
 			groupId, folderIds, locale, queryDefinition);
@@ -873,12 +873,12 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 		long groupId, long folderId, Locale locale, int start, int end,
 		OrderByComparator<JournalArticle> obc) {
 
-		QueryDefinition<JournalArticle> queryDefinition = new QueryDefinition<>(
-			WorkflowConstants.STATUS_ANY, start, end, obc);
-
 		List<Long> folderIds = new ArrayList<>();
 
 		folderIds.add(folderId);
+
+		QueryDefinition<JournalArticle> queryDefinition = new QueryDefinition<>(
+			WorkflowConstants.STATUS_ANY, start, end, obc);
 
 		return journalArticleFinder.filterFindByG_F_L(
 			groupId, folderIds, locale, queryDefinition);
@@ -1076,12 +1076,12 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 	 */
 	@Override
 	public int getArticlesCount(long groupId, long folderId, int status) {
-		QueryDefinition<JournalArticle> queryDefinition = new QueryDefinition<>(
-			status);
-
 		List<Long> folderIds = new ArrayList<>();
 
 		folderIds.add(folderId);
+
+		QueryDefinition<JournalArticle> queryDefinition = new QueryDefinition<>(
+			status);
 
 		return journalArticleFinder.filterCountByG_F(
 			groupId, folderIds, queryDefinition);
