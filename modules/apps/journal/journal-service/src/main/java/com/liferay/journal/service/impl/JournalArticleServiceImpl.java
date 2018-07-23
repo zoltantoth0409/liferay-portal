@@ -845,15 +845,6 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 		return getArticles(groupId, folderId, locale, start, end, obc);
 	}
 
-	/**
-	 * Returns all the web content articles matching the group, folder and
-	 * locale.
-	 *
-	 * @param  groupId the primary key of the web content article's group
-	 * @param  folderId the primary key of the web content article folder
-	 * @param  locale current locale
-	 * @return the matching web content articles
-	 */
 	public List<JournalArticle> getArticles(
 		long groupId, long folderId, Locale locale) {
 
