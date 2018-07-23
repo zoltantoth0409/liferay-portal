@@ -150,7 +150,7 @@
 			<var name="fieldValue" value="${fieldValue}" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="Button#SUBMIT" />
+		<execute function="AssertElementNotPresent" locator1="Button#SUBMIT_1" />
 	</command>
 
 	<command name="save">
@@ -171,7 +171,7 @@
 			<var name="fieldValue" value="${fieldValue}" />
 		</execute>
 
-		<execute function="AssertClick" locator1="Button#SUBMIT" value1="Submit" />
+		<execute function="AssertClick" locator1="Button#SUBMIT_1" value1="Submit" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 	</command>

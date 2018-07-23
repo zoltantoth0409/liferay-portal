@@ -90,7 +90,7 @@
 	</command>
 
 	<command name="viewCannotEditFormEntries">
-		<execute function="AssertElementNotPresent" locator1="Button#SUBMIT" />
+		<execute function="AssertElementNotPresent" locator1="Button#SUBMIT_1" />
 		<execute function="AssertElementNotPresent" locator1="FormFields#FIELD_ADD" />
 	</command>
 
