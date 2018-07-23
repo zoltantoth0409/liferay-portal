@@ -58,7 +58,7 @@ public class RandomTestUtil {
 
 	/**
 	 * @deprecated As of Judson (7.1.x), replaced by {@link
-	 * TestDataConstants.TEST_BYTE_ARRAY}
+	 * TestDataConstants#TEST_BYTE_ARRAY}
 	 */
 	@Deprecated
 	@SafeVarargs
@@ -92,7 +92,7 @@ public class RandomTestUtil {
 
 	/**
 	 * @deprecated As of Judson (7.1.x), replaced by {@link
-	 * TestDataConstants.TEST_BYTE_ARRAY}
+	 * TestDataConstants#TEST_BYTE_ARRAY}
 	 */
 	@Deprecated
 	@SafeVarargs
