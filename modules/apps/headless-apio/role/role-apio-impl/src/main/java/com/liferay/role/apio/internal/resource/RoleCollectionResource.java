@@ -98,7 +98,6 @@ public class RoleCollectionResource
 		List<Role> roles = _roleService.search(
 			company.getCompanyId(), null, roleTypes, null,
 			pagination.getStartPosition(), pagination.getEndPosition(), null);
-
 		int count = _roleService.searchCount(
 			company.getCompanyId(), null, roleTypes, null);
 
