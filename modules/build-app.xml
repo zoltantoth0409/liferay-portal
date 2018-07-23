@@ -34,7 +34,7 @@
 	</target>
 
 	<target depends="get-app-names" name="build-app-all">
-		<echo message="Apps that will be included in this run: ${app.names}" />
+		<echo message="Apps that will be included in this run: ${app.names}." />
 
 		<for list="${app.names}" param="app.name">
 			<sequential>
