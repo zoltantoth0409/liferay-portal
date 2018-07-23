@@ -48,17 +48,17 @@ public class FormFieldProjectTemplateCustomizer
 
 			Path projectDirPath = destinationDirPath.resolve(name);
 
-			List<String> files = new ArrayList<>();
+			List<String> fileNames = new ArrayList<>();
 
-			files.add(".babelrc");
-			files.add(".npmbundlerrc");
-			files.add("package.json");
-			files.add(
+			fileNames.add(".babelrc");
+			fileNames.add(".npmbundlerrc");
+			fileNames.add("package.json");
+			fileNames.add(
 				"src/main/resources/META-INF/resources/" + name + ".es.js");
 
-			for (String file : files) {
+			for (String fileName : fileNames) {
 				ProjectTemplateCustomizer.deleteFileInPath(
-					file, projectDirPath);
+					fileName, projectDirPath);
 			}
 		}
 	}
