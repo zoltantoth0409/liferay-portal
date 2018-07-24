@@ -177,6 +177,8 @@
 			<var name="portletOption" value="Configuration" />
 		</execute>
 
+		<execute macro="IFrame#selectDialogFrame" />
+
 		<execute macro="Button#clickSave" />
 
 		<execute macro="BlogsConfiguration#selectMaximumItemstoDisplay">
