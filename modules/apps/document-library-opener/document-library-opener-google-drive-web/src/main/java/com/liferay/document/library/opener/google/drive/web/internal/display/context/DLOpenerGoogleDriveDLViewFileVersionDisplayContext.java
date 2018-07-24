@@ -126,9 +126,9 @@ public class DLOpenerGoogleDriveDLViewFileVersionDisplayContext
 
 		liferayPortletURL.setParameter(
 			ActionRequest.ACTION_NAME, "/document_library/edit_in_google_docs");
+		liferayPortletURL.setParameter("cmd", cmd);
 		liferayPortletURL.setParameter(
 			"fileEntryId", String.valueOf(fileVersion.getFileEntryId()));
-		liferayPortletURL.setParameter("cmd", cmd);
 
 		return liferayPortletURL.toString();
 	}
