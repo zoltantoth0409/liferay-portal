@@ -32,7 +32,8 @@ public class State implements Serializable {
 	public static State get(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 
-		return (State)session.getAttribute(_SESSION_ATTRIBUTE_NAME_GOOGLE_OAUTH2_STATE);
+		return (State)session.getAttribute(
+			_SESSION_ATTRIBUTE_NAME_GOOGLE_OAUTH2_STATE);
 	}
 
 	public static void save(
