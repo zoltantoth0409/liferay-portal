@@ -27,11 +27,11 @@ import com.liferay.document.library.opener.google.drive.DLOpenerGoogleDriveManag
 import com.liferay.document.library.opener.google.drive.constants.DLOpenerGoogleDriveMimeTypes;
 import com.liferay.document.library.opener.model.DLOpenerFileEntryReference;
 import com.liferay.document.library.opener.service.DLOpenerFileEntryReferenceLocalService;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.util.FileUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.io.File;
@@ -195,8 +195,7 @@ public class DLOpenerGoogleDriveManagerImpl
 			if (Validator.isNull(googleDriveFileId)) {
 				throw new IllegalArgumentException(
 					StringBundler.concat(
-						"FileEntry ",
-						String.valueOf(fileEntry.getFileEntryId()),
+						"File entry ", fileEntry.getFileEntryId(),
 						" is not a Google Drive file"));
 			}
 
