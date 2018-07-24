@@ -174,6 +174,8 @@ page import="com.liferay.taglib.search.SearchEntry" %><%@
 page import="com.liferay.users.admin.constants.UsersAdminPortletKeys" %><%@
 page import="com.liferay.users.admin.kernel.util.UsersAdmin" %><%@
 page import="com.liferay.users.admin.kernel.util.UsersAdminUtil" %><%@
+page import="com.liferay.users.admin.user.action.contributor.UserActionContributor" %><%@
+page import="com.liferay.users.admin.web.display.context.UserActionDisplayContext" %><%@
 page import="com.liferay.users.admin.web.search.OrganizationChecker" %>
 
 <%@ page import="java.text.Format" %>
