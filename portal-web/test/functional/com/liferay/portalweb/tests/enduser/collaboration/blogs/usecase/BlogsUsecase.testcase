@@ -179,8 +179,6 @@
 
 		<execute macro="IFrame#selectDialogFrame" />
 
-		<execute macro="Button#clickSave" />
-
 		<execute macro="BlogsConfiguration#selectMaximumItemstoDisplay">
 			<var name="maximumItemsToDisplay" value="75" />
 		</execute>
