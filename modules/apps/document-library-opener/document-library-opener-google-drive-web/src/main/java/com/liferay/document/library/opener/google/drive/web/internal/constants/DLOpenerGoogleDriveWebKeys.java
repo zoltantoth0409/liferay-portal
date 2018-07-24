@@ -20,6 +20,6 @@ package com.liferay.document.library.opener.google.drive.web.internal.constants;
 public class DLOpenerGoogleDriveWebKeys {
 
 	public static final String DL_OPENER_GOOGLE_DRIVE_FILE_REFERENCE =
-		"dlOpenerGoogleDriveFileReference";
+		"DL_OPENER_GOOGLE_DRIVE_FILE_REFERENCE";
 
 }
