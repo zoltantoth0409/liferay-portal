@@ -47,10 +47,10 @@ public class DLPortletToolbarContributorRegistry {
 
 	@Activate
 	protected void activate(BundleContext bundleContext) {
-		_serviceTrackerList = ServiceTrackerListFactory.open(
-			bundleContext, DLPortletToolbarContributor.class);
 		_dlPortletToolbarContributor =
 			new AggregateDLPortletToolbarContributor();
+		_serviceTrackerList = ServiceTrackerListFactory.open(
+			bundleContext, DLPortletToolbarContributor.class);
 	}
 
 	@Deactivate
