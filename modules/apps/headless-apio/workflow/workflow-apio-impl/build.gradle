@@ -9,7 +9,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.person.apio.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.workflow.kaleo.api", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.workflow.kaleo.definition.api", version: "3.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.role.apio.impl", version: "1.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.role.apio.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.workflow.apio.api", version: "1.1.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "3.0.0"
 	compileOnly group: "javax.portlet", name: "portlet-api", version: "3.0.0"
