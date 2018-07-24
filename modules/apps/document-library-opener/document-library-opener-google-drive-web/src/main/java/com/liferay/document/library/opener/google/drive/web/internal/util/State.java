@@ -32,7 +32,7 @@ public class State implements Serializable {
 	public static State get(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 
-		return (State)session.getAttribute(_GOOGLE_OAUTH2_STATE);
+		return (State)session.getAttribute(_SESSION_ATTRIBUTE_NAME_GOOGLE_OAUTH2_STATE);
 	}
 
 	public static void save(
@@ -42,7 +42,7 @@ public class State implements Serializable {
 		HttpSession session = request.getSession();
 
 		session.setAttribute(
-			_GOOGLE_OAUTH2_STATE,
+			_SESSION_ATTRIBUTE_NAME_GOOGLE_OAUTH2_STATE,
 			new State(userId, successURL, failureURL, state));
 	}
 
@@ -98,10 +98,11 @@ public class State implements Serializable {
 	private void _cleanUpSession(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 
-		session.removeAttribute(_GOOGLE_OAUTH2_STATE);
+		session.removeAttribute(_SESSION_ATTRIBUTE_NAME_GOOGLE_OAUTH2_STATE);
 	}
 
-	private static final String _GOOGLE_OAUTH2_STATE = "google-oauth2-state";
+	private static final String _SESSION_ATTRIBUTE_NAME_GOOGLE_OAUTH2_STATE =
+		"google-oauth2-state";
 
 	private static final long serialVersionUID = 1180494919540636879L;
 
