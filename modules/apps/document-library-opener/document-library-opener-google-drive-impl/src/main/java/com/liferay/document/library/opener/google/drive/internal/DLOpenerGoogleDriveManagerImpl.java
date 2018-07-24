@@ -66,7 +66,7 @@ public class DLOpenerGoogleDriveManagerImpl
 			file.setName(fileEntry.getTitle());
 
 			FileContent fileContent = new FileContent(
-				fileEntry.getMimeType(), _getFileEntryContents(fileEntry));
+				fileEntry.getMimeType(), _getFileEntryFile(fileEntry));
 
 			Drive drive = new Drive.Builder(
 				_netHttpTransport, _jsonFactory, _getCredential(userId)
@@ -236,7 +236,7 @@ public class DLOpenerGoogleDriveManagerImpl
 		return credential;
 	}
 
-	private File _getFileEntryContents(FileEntry fileEntry)
+	private File _getFileEntryFile(FileEntry fileEntry)
 		throws IOException, PortalException {
 
 		try (InputStream is = fileEntry.getContentStream()) {
