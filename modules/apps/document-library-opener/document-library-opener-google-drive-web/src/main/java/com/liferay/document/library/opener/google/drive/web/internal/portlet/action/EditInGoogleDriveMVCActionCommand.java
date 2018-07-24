@@ -170,7 +170,7 @@ public class EditInGoogleDriveMVCActionCommand extends BaseMVCActionCommand {
 
 		actionResponse.sendRedirect(
 			_dlOpenerGoogleDriveManager.getAuthorizationURL(
-				state, _oAuth2Helper.getRedirectUri(actionRequest)));
+				state, _oAuth2Helper.getRedirectURI(actionRequest)));
 	}
 
 	private void _saveDLOpenerGoogleDriveFileReference(

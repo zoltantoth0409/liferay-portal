@@ -85,7 +85,7 @@ public class GoogleDriveOAuth2Servlet extends HttpServlet {
 		}
 		else {
 			_dlOpenerGoogleDriveManager.requestAuthorizationToken(
-				state.getUserId(), code, _oAuth2Helper.getRedirectUri(request));
+				state.getUserId(), code, _oAuth2Helper.getRedirectURI(request));
 
 			state.goToSuccessPage(request, response);
 		}

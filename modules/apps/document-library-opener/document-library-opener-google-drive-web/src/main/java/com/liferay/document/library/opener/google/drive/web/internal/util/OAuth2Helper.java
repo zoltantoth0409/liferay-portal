@@ -30,15 +30,15 @@ import org.osgi.service.component.annotations.Reference;
 @Component(immediate = true, service = OAuth2Helper.class)
 public class OAuth2Helper {
 
-	public String getRedirectUri(HttpServletRequest request) {
-		return _getRedirectUri(_portal.getPortalURL(request));
+	public String getRedirectURI(HttpServletRequest request) {
+		return _getRedirectURI(_portal.getPortalURL(request));
 	}
 
-	public String getRedirectUri(PortletRequest portletRequest) {
-		return _getRedirectUri(_portal.getPortalURL(portletRequest));
+	public String getRedirectURI(PortletRequest portletRequest) {
+		return _getRedirectURI(_portal.getPortalURL(portletRequest));
 	}
 
-	private String _getRedirectUri(String portalURL) {
+	private String _getRedirectURI(String portalURL) {
 		return portalURL + Portal.PATH_MODULE +
 			DLOpenerGoogleDriveWebConstants.GOOGLE_DRIVE_SERVLET_PATH;
 	}
