@@ -297,7 +297,7 @@ public class PortalContextLoaderListener extends ContextLoaderListener {
 			});
 
 		Thread springInitThread = new Thread(
-			springInitTask, "Portal Spring init thread");
+			springInitTask, "Portal Spring Init Thread");
 
 		springInitThread.setDaemon(true);
 
