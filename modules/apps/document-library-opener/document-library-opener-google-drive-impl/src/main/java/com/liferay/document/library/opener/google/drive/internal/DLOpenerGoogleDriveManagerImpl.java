@@ -229,8 +229,8 @@ public class DLOpenerGoogleDriveManagerImpl
 		if (credential == null) {
 			throw new PrincipalException(
 				StringBundler.concat(
-					"User ", String.valueOf(userId),
-					" has no valid Google credential"));
+					"User ", userId,
+					" does not have a valid Google credential"));
 		}
 
 		return credential;
