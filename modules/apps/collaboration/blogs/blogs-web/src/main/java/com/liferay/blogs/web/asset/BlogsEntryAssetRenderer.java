@@ -18,10 +18,12 @@ import com.liferay.asset.kernel.model.AssetRendererFactory;
 import com.liferay.asset.kernel.model.BaseJSPAssetRenderer;
 import com.liferay.blogs.constants.BlogsPortletKeys;
 import com.liferay.blogs.kernel.model.BlogsEntry;
+import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
+import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 import com.liferay.portal.kernel.trash.TrashRenderer;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
@@ -160,9 +162,20 @@ public class BlogsEntryAssetRenderer
 			LiferayPortletResponse liferayPortletResponse)
 		throws Exception {
 
-		PortletURL portletURL = PortalUtil.getControlPanelPortletURL(
-			liferayPortletRequest, BlogsPortletKeys.BLOGS,
-			PortletRequest.RENDER_PHASE);
+		PortletURL portletURL;
+
+		Group group = GroupLocalServiceUtil.fetchGroup(_entry.getGroupId());
+
+		if (group.isCompany()) {
+			portletURL = PortalUtil.getControlPanelPortletURL(
+				liferayPortletRequest, BlogsPortletKeys.BLOGS,
+				PortletRequest.RENDER_PHASE);
+		}
+		else {
+			portletURL = PortalUtil.getControlPanelPortletURL(
+				liferayPortletRequest, group, BlogsPortletKeys.BLOGS, 0, 0,
+				PortletRequest.RENDER_PHASE);
+		}
 
 		portletURL.setParameter("mvcRenderCommandName", "/blogs/edit_entry");
 		portletURL.setParameter("entryId", String.valueOf(_entry.getEntryId()));
