@@ -53,8 +53,7 @@ public class ExportImportConfigurationFactory {
 		boolean privateLayout = ParamUtil.getBoolean(
 			portletRequest, "privateLayout");
 
-		Map<String, String[]> parameterMap = _getPublishingParameters(
-			portletRequest);
+		Map<String, String[]> parameterMap = _getParameterMap(portletRequest);
 
 		return buildDefaultLocalPublishingExportImportConfiguration(
 			themeDisplay.getUser(), sourceGroupId, targetGroupId, privateLayout,
@@ -114,8 +113,7 @@ public class ExportImportConfigurationFactory {
 			portletRequest, "secureConnection");
 		long remoteGroupId = ParamUtil.getLong(portletRequest, "remoteGroupId");
 
-		Map<String, String[]> parameterMap = _getPublishingParameters(
-			portletRequest);
+		Map<String, String[]> parameterMap = _getParameterMap(portletRequest);
 
 		return buildDefaultRemotePublishingExportImportConfiguration(
 			themeDisplay.getUser(), sourceGroupId, privateLayout, remoteAddress,
@@ -165,16 +163,16 @@ public class ExportImportConfigurationFactory {
 	public static Map<String, String[]> getDefaultPublishingParameters(
 		PortletRequest portletRequest) {
 
-		Map<String, String[]> parameterMapFromRequest = new LinkedHashMap<>(
-			portletRequest.getParameterMap());
-
-		Map<String, String[]> defaultParameterMap =
+		Map<String, String[]> parameterMap =
 			ExportImportConfigurationParameterMapFactoryUtil.
 				buildParameterMap();
 
-		MapUtil.merge(parameterMapFromRequest, defaultParameterMap);
+		Map<String, String[]> requestParameterMap = new LinkedHashMap<>(
+			portletRequest.getParameterMap());
 
-		return defaultParameterMap;
+		MapUtil.merge(requestParameterMap, parameterMap);
+
+		return parameterMap;
 	}
 
 	protected static ExportImportConfiguration
@@ -202,19 +200,19 @@ public class ExportImportConfigurationFactory {
 				publishLayoutRemoteSettingsMap);
 	}
 
-	private static Map<String, String[]> _getPublishingParameters(
-		final PortletRequest portletRequest) {
+	private static Map<String, String[]> _getParameterMap(
+		PortletRequest portletRequest) {
 
-		final Map<String, String[]> parameterMapFromRequest =
-			new LinkedHashMap<>(portletRequest.getParameterMap());
-
-		final Map<String, String[]> defaultParameterMap =
+		Map<String, String[]> parameterMap =
 			ExportImportConfigurationParameterMapFactoryUtil.
 				buildParameterMap();
 
-		parameterMapFromRequest.forEach(defaultParameterMap::putIfAbsent);
+		Map<String, String[]> requestParameterMap = new LinkedHashMap<>(
+			portletRequest.getParameterMap());
 
-		return defaultParameterMap;
+		requestParameterMap.forEach(parameterMap::putIfAbsent);
+
+		return parameterMap;
 	}
 
 }
