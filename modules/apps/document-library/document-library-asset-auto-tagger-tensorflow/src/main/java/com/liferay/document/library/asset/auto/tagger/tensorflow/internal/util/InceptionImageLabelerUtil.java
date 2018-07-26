@@ -108,7 +108,7 @@ public class InceptionImageLabelerUtil {
 
 			GraphBuilder graphBuilder = new GraphBuilder(_imageNormalizerGraph);
 
-			Output<String> input = graphBuilder.placeholder("input", String.class);
+			Output<String> output = graphBuilder.placeholder("input", String.class);
 
 			graphBuilder.rename(
 				graphBuilder.div(
@@ -116,7 +116,7 @@ public class InceptionImageLabelerUtil {
 						graphBuilder.resizeBilinear(
 							graphBuilder.expandDims(
 								graphBuilder.cast(
-									graphBuilder.decodeJpeg(input, 3), Float.class),
+									graphBuilder.decodeJpeg(output, 3), Float.class),
 								graphBuilder.constant("make_batch", 0)),
 							graphBuilder.constant("size", new int[] {224, 224})),
 						graphBuilder.constant("mean", 117F)),
