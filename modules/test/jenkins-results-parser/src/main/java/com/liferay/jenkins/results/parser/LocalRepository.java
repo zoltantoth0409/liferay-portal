@@ -77,11 +77,11 @@ public class LocalRepository extends BaseRepository {
 
 		Properties repositoryProperties = _getProperties();
 
-		String repositoryPropertyKey = getRepositoryDirPropertyKey();
+		String repositoryDirPropertyKey = getRepositoryDirPropertyKey();
 
-		if (repositoryProperties.containsKey(repositoryPropertyKey)) {
+		if (repositoryProperties.containsKey(repositoryDirPropertyKey)) {
 			directory = new File(
-				repositoryProperties.getProperty(repositoryPropertyKey));
+				repositoryProperties.getProperty(repositoryDirPropertyKey));
 		}
 		else {
 			directory = new File(
