@@ -52,13 +52,26 @@ public class ApioEntryPointTest {
 	}
 
 	@Test
-	public void testGetRootEndpointMap() {
+	public void testGetRootEndpointMap1() {
 		Map<String, String> rootEndpointMap =
 			_apioEntryPoint.getRootEndpointMap();
 
 		Assert.assertThat(rootEndpointMap.size(), equalTo(2));
 		Assert.assertThat(
 			rootEndpointMap.values(), hasItems("BlogPosting", "Person"));
+	}
+
+	@Test
+	public void testGetRootEndpointMap2() {
+		Map<String, String> rootEndpointMap =
+			_apioEntryPoint.getRootEndpointMap();
+
+		Assert.assertThat(rootEndpointMap.size(), equalTo(2));
+		Assert.assertThat(
+			rootEndpointMap.keySet(),
+			hasItems(
+				"http://localhost:9000/p/blog-postings",
+				"http://localhost:9000/p/people"));
 	}
 
 	@Test
