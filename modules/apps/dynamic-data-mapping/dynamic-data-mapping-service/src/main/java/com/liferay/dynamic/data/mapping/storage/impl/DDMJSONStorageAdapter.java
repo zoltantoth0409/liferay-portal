@@ -103,17 +103,14 @@ public class DDMJSONStorageAdapter implements DDMStorageAdapter {
 			ddmStorageAdapterSaveRequest.getDDMFormValues();
 
 		try {
-			long userId = ddmStorageAdapterSaveRequest.getUserId();
-			long scopeGroupId = ddmStorageAdapterSaveRequest.getScopeGroupId();
-
 			ServiceContext serviceContext = new ServiceContext();
 
-			serviceContext.setUserId(userId);
-			serviceContext.setScopeGroupId(scopeGroupId);
+			serviceContext.setScopeGroupId(ddmStorageAdapterSaveRequest.getScopeGroupId());
+			serviceContext.setUserId(ddmStorageAdapterSaveRequest.getUserId());
 			serviceContext.setUuid(ddmStorageAdapterSaveRequest.getUuid());
 
 			DDMContent ddmContent = ddmContentLocalService.addContent(
-				userId, scopeGroupId,
+				ddmStorageAdapterSaveRequest.getUserId(), ddmStorageAdapterSaveRequest.getScopeGroupId(),
 				ddmStorageAdapterSaveRequest.getClassName(), null,
 				ddmFormValuesJSONSerializer.serialize(ddmFormValues),
 				serviceContext);
