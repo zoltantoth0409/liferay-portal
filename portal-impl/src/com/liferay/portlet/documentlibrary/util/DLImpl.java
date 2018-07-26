@@ -507,9 +507,9 @@ public class DLImpl implements DL {
 		FileEntry fileEntry, FileVersion fileVersion,
 		ThemeDisplay themeDisplay) {
 
-		return getImagePreviewURL(fileEntry, fileVersion, themeDisplay, null,
-				true, true);
-		}
+		return getImagePreviewURL(
+			fileEntry, fileVersion, themeDisplay, null, true, true);
+	}
 
 	@Override
 	public String getImagePreviewURL(
@@ -1171,8 +1171,8 @@ public class DLImpl implements DL {
 		FileEntry fileEntry, FileVersion fileVersion, ThemeDisplay themeDisplay,
 		String queryString) {
 
-		return getImageSrc(fileEntry, fileVersion, themeDisplay, queryString,
-			true, true);
+		return getImageSrc(
+			fileEntry, fileVersion, themeDisplay, queryString, true, true);
 	}
 
 	protected String getImageSrc(
