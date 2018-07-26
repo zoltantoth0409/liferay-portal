@@ -106,21 +106,21 @@ public class InceptionImageLabelerUtil {
 
 			_imageNormalizerGraph = new Graph();
 
-			GraphBuilder builder = new GraphBuilder(_imageNormalizerGraph);
+			GraphBuilder graphBuilder = new GraphBuilder(_imageNormalizerGraph);
 
-			Output<String> input = builder.placeholder("input", String.class);
+			Output<String> input = graphBuilder.placeholder("input", String.class);
 
-			builder.rename(
-				builder.div(
-					builder.sub(
-						builder.resizeBilinear(
-							builder.expandDims(
-								builder.cast(
-									builder.decodeJpeg(input, 3), Float.class),
-								builder.constant("make_batch", 0)),
-							builder.constant("size", new int[] {224, 224})),
-						builder.constant("mean", 117F)),
-					builder.constant("scale", 1F)),
+			graphBuilder.rename(
+				graphBuilder.div(
+					graphBuilder.sub(
+						graphBuilder.resizeBilinear(
+							graphBuilder.expandDims(
+								graphBuilder.cast(
+									graphBuilder.decodeJpeg(input, 3), Float.class),
+								graphBuilder.constant("make_batch", 0)),
+							graphBuilder.constant("size", new int[] {224, 224})),
+						graphBuilder.constant("mean", 117F)),
+					graphBuilder.constant("scale", 1F)),
 				"output"
 			);
 		}
