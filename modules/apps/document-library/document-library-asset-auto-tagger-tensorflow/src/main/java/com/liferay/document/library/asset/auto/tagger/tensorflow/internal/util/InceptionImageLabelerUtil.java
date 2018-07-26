@@ -12,9 +12,7 @@
  * details.
  */
 
-package com.liferay.document.library.asset.auto.tagger.tensorflow.internal.process;
-
-import com.liferay.document.library.asset.auto.tagger.tensorflow.internal.util.GraphBuilder;
+package com.liferay.document.library.asset.auto.tagger.tensorflow.internal.util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
