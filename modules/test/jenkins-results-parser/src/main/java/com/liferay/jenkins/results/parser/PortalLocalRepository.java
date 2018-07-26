@@ -81,7 +81,6 @@ public class PortalLocalRepository extends LocalRepository {
 
 		properties.put("jsp.precompile", "off");
 		properties.put("jsp.precompile.parallel", "off");
-
 		properties.put("liferay.home", getDirectory() + "/bundles");
 
 		setBuildProperties(properties);
