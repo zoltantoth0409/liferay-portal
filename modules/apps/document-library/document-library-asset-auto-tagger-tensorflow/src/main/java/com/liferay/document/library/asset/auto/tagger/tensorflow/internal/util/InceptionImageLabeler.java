@@ -70,10 +70,10 @@ public class InceptionImageLabeler {
 	public List<String> label(byte[] imageBytes, float confidenceThreshold) {
 		float[] labelProbabilities = _getLabelProbabilities(imageBytes);
 
-		Stream<Integer> indexesStream = _bestIndexes(
+		Stream<Integer> stream = _getBestIndexesStream(
 			labelProbabilities, confidenceThreshold);
 
-		return indexesStream.map(
+		return stream.map(
 			i -> _labels[i]
 		).collect(
 			Collectors.toList()
@@ -109,14 +109,14 @@ public class InceptionImageLabeler {
 		Dictionary<String, String> headers = bundle.getHeaders(
 			StringPool.BLANK);
 
-		for (String filePath :
+		for (String pathString :
 				StringUtil.split(headers.get(Constants.BUNDLE_CLASSPATH))) {
 
-			if (filePath.equals(StringPool.PERIOD)) {
+			if (pathString.equals(StringPool.PERIOD)) {
 				continue;
 			}
 
-			URL url = bundle.getEntry(filePath);
+			URL url = bundle.getEntry(pathString);
 
 			Path path = Paths.get(url.getFile());
 
@@ -154,11 +154,11 @@ public class InceptionImageLabeler {
 			Bundle bundle, Path tempPath)
 		throws IOException {
 
-		String classpath = _createClassPath(bundle, tempPath);
-
 		Builder builder = new Builder();
 
-		builder.setBootstrapClassPath(classpath);
+		String classPath = _createClassPath(bundle, tempPath);
+
+		builder.setBootstrapClassPath(classPath);
 
 		builder.setProcessLogConsumer(
 			processLog -> {
@@ -187,12 +187,12 @@ public class InceptionImageLabeler {
 			});
 		builder.setReactClassLoader(
 			InceptionImageLabeler.class.getClassLoader());
-		builder.setRuntimeClassPath(classpath);
+		builder.setRuntimeClassPath(classPath);
 
 		return builder.build();
 	}
 
-	private Stream<Integer> _bestIndexes(
+	private Stream<Integer> _getBestIndexesStream(
 		float[] probabilities, float confidenceThreshold) {
 
 		List<Integer> bestIndexes = new ArrayList<>();
