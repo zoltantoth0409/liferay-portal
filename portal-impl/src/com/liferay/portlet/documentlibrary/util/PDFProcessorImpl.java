@@ -73,10 +73,11 @@ import java.util.concurrent.TimeoutException;
 
 import org.apache.commons.lang.time.StopWatch;
 import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.encryption.InvalidPasswordException;
 import org.apache.pdfbox.pdmodel.PDDocumentCatalog;
 import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageTree;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.encryption.InvalidPasswordException;
 
 /**
  * @author Alexander Chow
@@ -912,9 +913,9 @@ public class PDFProcessorImpl
 			PDDocumentCatalog pdDocumentCatalog =
 				pdDocument.getDocumentCatalog();
 
-			List<PDPage> pdPages = pdDocumentCatalog.getAllPages();
+			PDPageTree pages = pdDocumentCatalog.getPages();
 
-			PDPage pdPage = pdPages.get(0);
+			PDPage pdPage = pages.get(0);
 
 			PDRectangle pdRectangle = pdPage.getMediaBox();
 
