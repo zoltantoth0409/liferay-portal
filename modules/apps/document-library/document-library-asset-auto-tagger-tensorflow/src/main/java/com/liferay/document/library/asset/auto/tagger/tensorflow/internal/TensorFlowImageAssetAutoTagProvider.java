@@ -30,9 +30,11 @@ import com.liferay.portal.kernel.util.FileUtil;
 
 import java.io.IOException;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -58,14 +60,14 @@ public class TensorFlowImageAssetAutoTagProvider
 			try {
 				FileVersion fileVersion = fileEntry.getFileVersion();
 
-				if (_accepts(fileVersion.getMimeType())) {
+				if (_isSupportedMimeType(fileVersion.getMimeType())) {
 					return _inceptionImageLabeler.label(
 						FileUtil.getBytes(fileVersion.getContentStream(false)),
 						_tensorFlowImageAutoTaggerConfiguration.
 							confidenceThreshold());
 				}
 			}
-			catch (IOException | PortalException e) {
+			catch (Exception e) {
 				_log.error(e, e);
 			}
 		}
@@ -82,7 +84,7 @@ public class TensorFlowImageAssetAutoTagProvider
 				properties);
 	}
 
-	private boolean _accepts(String mimeType) {
+	private boolean _isSupportedMimeType(String mimeType) {
 		return ArrayUtil.contains(_SUPPORTED_MIME_TYPES, mimeType);
 	}
 
@@ -91,9 +93,8 @@ public class TensorFlowImageAssetAutoTagProvider
 			TemporaryFileEntriesCapability.class);
 	}
 
-	private static final String[] _SUPPORTED_MIME_TYPES = {
-		ContentTypes.IMAGE_JPEG, ContentTypes.IMAGE_BMP, ContentTypes.IMAGE_PNG
-	};
+	private static final Set<String> _supportedMimeTypes = new HashSet<>(
+		Arrays.asList(ContentTypes.IMAGE_JPEG, ContentTypes.IMAGE_BMP, ContentTypes.IMAGE_PNG));
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		TensorFlowImageAssetAutoTagProvider.class);
