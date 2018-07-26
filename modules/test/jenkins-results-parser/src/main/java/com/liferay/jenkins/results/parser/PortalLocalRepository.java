@@ -22,19 +22,19 @@ import java.util.Properties;
 public class PortalLocalRepository extends LocalRepository {
 
 	public void setAppServerProperties(Properties properties) {
-		setProperties(_APP_SERVER_PROPERTIES, properties);
+		setProperties(_FILE_PATH_APP_SERVER_PROPERTIES, properties);
 	}
 
 	public void setBuildProperties(Properties properties) {
-		setProperties(_BUILD_PROPERTIES, properties);
+		setProperties(_FILE_PATH_BUILD_PROPERTIES, properties);
 	}
 
 	public void setSQLProperties(Properties properties) {
-		setProperties(_SQL_PROPERTIES, properties);
+		setProperties(_FILE_PATH_SQL_PROPERTIES, properties);
 	}
 
 	public void setTestProperties(Properties properties) {
-		setProperties(_TEST_PROPERTIES, properties);
+		setProperties(_FILE_PATH_TEST_PROPERTIES, properties);
 	}
 
 	protected PortalLocalRepository(String name, String upstreamBranchName) {
@@ -86,24 +86,24 @@ public class PortalLocalRepository extends LocalRepository {
 		setBuildProperties(properties);
 	}
 
-	private static final String _APP_SERVER_PROPERTIES;
+	private static final String _FILE_PATH_APP_SERVER_PROPERTIES;
 
-	private static final String _BUILD_PROPERTIES;
+	private static final String _FILE_PATH_BUILD_PROPERTIES;
 
-	private static final String _SQL_PROPERTIES;
+	private static final String _FILE_PATH_SQL_PROPERTIES;
 
-	private static final String _TEST_PROPERTIES;
+	private static final String _FILE_PATH_TEST_PROPERTIES;
 
 	static {
 		String hostname = System.getenv("HOSTNAME");
 
-		_APP_SERVER_PROPERTIES = JenkinsResultsParserUtil.combine(
+		_FILE_PATH_APP_SERVER_PROPERTIES = JenkinsResultsParserUtil.combine(
 			"app.server.", hostname, ".properties");
-		_BUILD_PROPERTIES = JenkinsResultsParserUtil.combine(
+		_FILE_PATH_BUILD_PROPERTIES = JenkinsResultsParserUtil.combine(
 			"build.", hostname, ".properties");
-		_TEST_PROPERTIES = JenkinsResultsParserUtil.combine(
+		_FILE_PATH_TEST_PROPERTIES = JenkinsResultsParserUtil.combine(
 			"test.", hostname, ".properties");
-		_SQL_PROPERTIES = JenkinsResultsParserUtil.combine(
+		_FILE_PATH_SQL_PROPERTIES = JenkinsResultsParserUtil.combine(
 			"sql/sql.", hostname, ".properties");
 	}
 
