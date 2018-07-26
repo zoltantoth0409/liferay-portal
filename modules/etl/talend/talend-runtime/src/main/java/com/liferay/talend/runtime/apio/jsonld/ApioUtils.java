@@ -156,6 +156,31 @@ public class ApioUtils {
 		return jsonNode.asText();
 	}
 
+	public static boolean hasValueOf(String value, JsonNode jsonNode) {
+		if (jsonNode.isArray()) {
+			Iterator<JsonNode> iterator = jsonNode.elements();
+
+			while (iterator.hasNext()) {
+				JsonNode entryJsonNode = iterator.next();
+
+				String entry = entryJsonNode.asText();
+
+				if (entry.equals(value)) {
+					return true;
+				}
+			}
+		}
+		else if (jsonNode.isValueNode()) {
+			String entry = jsonNode.asText();
+
+			if (entry.equals(value)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	private static JsonNode _findJsonNode(JsonNode resource, String nodeName) {
 		JsonNode jsonNode = resource.path(nodeName);
 
