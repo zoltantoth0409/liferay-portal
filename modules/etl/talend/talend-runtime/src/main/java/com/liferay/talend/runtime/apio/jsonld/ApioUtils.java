@@ -67,7 +67,9 @@ public class ApioUtils {
 
 		JsonNode typeObjectJsonNode = managesJsonNode.path(FieldNames.OBJECT);
 
-		return typeObjectJsonNode.asText();
+		String managedType = typeObjectJsonNode.asText();
+
+		return managedType.replaceFirst("schema:", "");
 	}
 
 	/**
