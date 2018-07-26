@@ -85,7 +85,7 @@ public class InceptionImageLabelerUtil {
 	static {
 		try (InputStream inputStream =
 				InceptionImageLabelerUtil.class.getResourceAsStream(
-					"/META-INF/model/tensorflow_inception_graph.pb")) {
+					"/META-INF/tensorflow/tensorflow_inception_graph.pb")) {
 
 			byte[] buffer = new byte[1024];
 

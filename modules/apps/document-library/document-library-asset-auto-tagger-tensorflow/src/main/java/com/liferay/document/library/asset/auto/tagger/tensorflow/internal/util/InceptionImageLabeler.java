@@ -254,7 +254,8 @@ public class InceptionImageLabeler {
 			StringUtil.read(
 				_getInputStream(
 					bundle,
-					"META-INF/model/imagenet_comp_graph_label_strings.txt")));
+					"META-INF/tensorflow" +
+						"/imagenet_comp_graph_label_strings.txt")));
 	}
 
 	private synchronized void _stopProcess() {
