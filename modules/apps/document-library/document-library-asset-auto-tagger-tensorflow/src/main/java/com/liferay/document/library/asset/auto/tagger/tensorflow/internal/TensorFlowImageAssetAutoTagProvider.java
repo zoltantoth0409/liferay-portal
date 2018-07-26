@@ -18,7 +18,6 @@ import com.liferay.asset.auto.tagger.AssetAutoTagProvider;
 import com.liferay.document.library.asset.auto.tagger.tensorflow.internal.configuration.TensorFlowImageAssetAutoTagProviderConfiguration;
 import com.liferay.document.library.asset.auto.tagger.tensorflow.internal.util.InceptionImageLabeler;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.capabilities.TemporaryFileEntriesCapability;
@@ -27,8 +26,6 @@ import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
-
-import java.io.IOException;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -93,11 +90,13 @@ public class TensorFlowImageAssetAutoTagProvider
 			TemporaryFileEntriesCapability.class);
 	}
 
-	private static final Set<String> _supportedMimeTypes = new HashSet<>(
-		Arrays.asList(ContentTypes.IMAGE_BMP, ContentTypes.IMAGE_JPEG, ContentTypes.IMAGE_PNG));
-
 	private static final Log _log = LogFactoryUtil.getLog(
 		TensorFlowImageAssetAutoTagProvider.class);
+
+	private static final Set<String> _supportedMimeTypes = new HashSet<>(
+		Arrays.asList(
+			ContentTypes.IMAGE_BMP, ContentTypes.IMAGE_JPEG,
+			ContentTypes.IMAGE_PNG));
 
 	@Reference
 	private InceptionImageLabeler _inceptionImageLabeler;
