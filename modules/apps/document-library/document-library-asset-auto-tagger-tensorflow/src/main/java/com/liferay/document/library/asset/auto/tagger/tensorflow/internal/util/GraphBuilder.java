@@ -22,7 +22,7 @@ import org.tensorflow.Tensor;
 import org.tensorflow.types.UInt8;
 
 /**
- * Based on https://github.com/tensorflow/tensorflow/blob/master/tensorflow/java/src/main/java/org/tensorflow/examples/LabelImage.java
+ * See https://github.com/tensorflow/tensorflow/blob/master/tensorflow/java/src/main/java/org/tensorflow/examples/LabelImage.java
  *
  * @author Alejandro Tardín
  */
