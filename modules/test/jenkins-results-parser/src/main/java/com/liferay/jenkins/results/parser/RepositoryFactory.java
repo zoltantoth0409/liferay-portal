@@ -33,7 +33,7 @@ public class RepositoryFactory {
 			return _localRepositories.get(key);
 		}
 
-		LocalRepository localRepository;
+		LocalRepository localRepository = null;
 
 		if (repositoryName.startsWith("com-liferay-")) {
 			localRepository = new SubrepositoryLocalRepository(
