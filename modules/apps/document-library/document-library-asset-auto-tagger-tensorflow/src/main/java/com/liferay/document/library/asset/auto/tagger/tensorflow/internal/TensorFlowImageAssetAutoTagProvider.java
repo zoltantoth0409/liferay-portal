@@ -94,7 +94,7 @@ public class TensorFlowImageAssetAutoTagProvider
 	}
 
 	private static final Set<String> _supportedMimeTypes = new HashSet<>(
-		Arrays.asList(ContentTypes.IMAGE_JPEG, ContentTypes.IMAGE_BMP, ContentTypes.IMAGE_PNG));
+		Arrays.asList(ContentTypes.IMAGE_BMP, ContentTypes.IMAGE_JPEG, ContentTypes.IMAGE_PNG));
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		TensorFlowImageAssetAutoTagProvider.class);
