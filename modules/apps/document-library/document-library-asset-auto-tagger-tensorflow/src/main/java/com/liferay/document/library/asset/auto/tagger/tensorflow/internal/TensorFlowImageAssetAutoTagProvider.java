@@ -23,12 +23,12 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.capabilities.TemporaryFileEntriesCapability;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
-import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -82,7 +82,7 @@ public class TensorFlowImageAssetAutoTagProvider
 	}
 
 	private boolean _isSupportedMimeType(String mimeType) {
-		return ArrayUtil.contains(_SUPPORTED_MIME_TYPES, mimeType);
+		return _supportedMimeTypes.contains(mimeType);
 	}
 
 	private boolean _isTemporary(FileEntry fileEntry) {

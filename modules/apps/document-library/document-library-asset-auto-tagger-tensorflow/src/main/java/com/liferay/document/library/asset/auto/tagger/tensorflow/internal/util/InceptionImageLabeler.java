@@ -14,8 +14,8 @@
 
 package com.liferay.document.library.asset.auto.tagger.tensorflow.internal.util;
 
-import com.liferay.document.library.asset.auto.tagger.tensorflow.internal.process.GetLabelProbabilitiesProcessCallable;
-import com.liferay.document.library.asset.auto.tagger.tensorflow.internal.process.TensorFlowDaemonProcessCallable;
+import com.liferay.document.library.asset.auto.tagger.tensorflow.internal.petra.process.GetLabelProbabilitiesProcessCallable;
+import com.liferay.document.library.asset.auto.tagger.tensorflow.internal.petra.process.TensorFlowDaemonProcessCallable;
 import com.liferay.petra.process.ProcessChannel;
 import com.liferay.petra.process.ProcessConfig;
 import com.liferay.petra.process.ProcessConfig.Builder;
