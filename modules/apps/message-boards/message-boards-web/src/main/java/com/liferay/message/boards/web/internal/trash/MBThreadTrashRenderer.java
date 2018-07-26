@@ -48,11 +48,10 @@ public class MBThreadTrashRenderer extends BaseJSPTrashRenderer {
 		throws PortalException {
 
 		_thread = thread;
+		_assetHelper = assetHelper;
 
 		_rootMessage = MBMessageLocalServiceUtil.getMBMessage(
 			thread.getRootMessageId());
-
-		_assetHelper = assetHelper;
 	}
 
 	@Override
@@ -103,6 +102,8 @@ public class MBThreadTrashRenderer extends BaseJSPTrashRenderer {
 			String template)
 		throws Exception {
 
+		request.setAttribute(AssetWebKeys.ASSET_HELPER, _assetHelper);
+
 		MBMessageDisplay messageDisplay =
 			MBMessageServiceUtil.getMessageDisplay(
 				_rootMessage.getMessageId(), WorkflowConstants.STATUS_IN_TRASH);
@@ -129,8 +130,6 @@ public class MBThreadTrashRenderer extends BaseJSPTrashRenderer {
 		request.setAttribute(
 			WebKeys.MESSAGE_BOARDS_TREE_WALKER_THREAD,
 			messageDisplay.getThread());
-
-		request.setAttribute(AssetWebKeys.ASSET_HELPER, _assetHelper);
 
 		return super.include(request, response, template);
 	}
