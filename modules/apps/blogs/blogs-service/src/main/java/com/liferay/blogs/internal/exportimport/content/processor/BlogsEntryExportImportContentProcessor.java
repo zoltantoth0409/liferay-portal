@@ -50,13 +50,11 @@ public class BlogsEntryExportImportContentProcessor
 				replaceExportContentReferences(
 					portletDataContext, stagedModel, content,
 					exportReferencedContent, escapeContent);
-
 		content =
 			_journalFeedReferencesExportImportContentProcessor.
 				replaceExportContentReferences(
 					portletDataContext, stagedModel, content,
 					exportReferencedContent, escapeContent);
-
 		content =
 			_layoutReferencesExportImportContentProcessor.
 				replaceExportContentReferences(
@@ -81,12 +79,10 @@ public class BlogsEntryExportImportContentProcessor
 			_dlReferencesExportImportContentProcessor.
 				replaceImportContentReferences(
 					portletDataContext, stagedModel, content);
-
 		content =
 			_journalFeedReferencesExportImportContentProcessor.
 				replaceImportContentReferences(
 					portletDataContext, stagedModel, content);
-
 		content =
 			_layoutReferencesExportImportContentProcessor.
 				replaceImportContentReferences(

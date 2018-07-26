@@ -51,13 +51,11 @@ public class KBArticleExportImportContentProcessor
 				replaceExportContentReferences(
 					portletDataContext, stagedModel, content,
 					exportReferencedContent, escapeContent);
-
 		content =
 			_journalFeedReferencesExportImportContentProcessor.
 				replaceExportContentReferences(
 					portletDataContext, stagedModel, content,
 					exportReferencedContent, escapeContent);
-
 		content =
 			_layoutReferencesExportImportContentProcessor.
 				replaceExportContentReferences(
@@ -82,12 +80,10 @@ public class KBArticleExportImportContentProcessor
 			_dlReferencesExportImportContentProcessor.
 				replaceImportContentReferences(
 					portletDataContext, stagedModel, content);
-
 		content =
 			_journalFeedReferencesExportImportContentProcessor.
 				replaceImportContentReferences(
 					portletDataContext, stagedModel, content);
-
 		content =
 			_layoutReferencesExportImportContentProcessor.
 				replaceImportContentReferences(
