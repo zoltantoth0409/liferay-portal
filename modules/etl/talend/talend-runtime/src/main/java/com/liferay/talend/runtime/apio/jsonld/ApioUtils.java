@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,6 +43,31 @@ public class ApioUtils {
 	 */
 	public static JsonNode getContextJsonNode(JsonNode jsonNode) {
 		return _findJsonNode(jsonNode, JSONLDConstants.CONTEXT);
+	}
+
+	/**
+	 * Determines the type of the given <code>collection</code> JsonNode
+	 *
+	 * @param collectionJsonNode
+	 * @return String the managed type of the collection, empty string otherwise
+	 */
+	public static String getManagedType(JsonNode collectionJsonNode) {
+		JsonNode typeJsonNode = collectionJsonNode.path(JSONLDConstants.TYPE);
+
+		if (!hasValueOf(FieldTypes.COLLECTION, typeJsonNode)) {
+			_log.error(
+				"Unexpected type for the Collection: \"{}\"",
+				typeJsonNode.toString());
+
+			throw new NoSuchElementException(
+				"Unable to determine the managed type of the collection");
+		}
+
+		JsonNode managesJsonNode = collectionJsonNode.path(FieldNames.MANAGES);
+
+		JsonNode typeObjectJsonNode = managesJsonNode.path(FieldNames.OBJECT);
+
+		return typeObjectJsonNode.asText();
 	}
 
 	/**
