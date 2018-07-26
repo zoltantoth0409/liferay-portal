@@ -83,6 +83,7 @@ public class ResourceRequestImpl
 	@Override
 	public Map<String, String[]> getPrivateRenderParameterMap() {
 		Map<String, String[]> privateRenderParameters = new HashMap<>();
+
 		RenderParameters renderParameters = getRenderParameters();
 
 		Set<String> renderParameterNames = renderParameters.getNames();
