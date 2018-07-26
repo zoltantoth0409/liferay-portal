@@ -58,7 +58,7 @@ public class LocalRepository extends BaseRepository {
 		super(name);
 
 		if ((upstreamBranchName == null) || upstreamBranchName.isEmpty()) {
-			throw new IllegalArgumentException("upstreamBranchName is null");
+			throw new IllegalArgumentException("Upstream branch name is null");
 		}
 
 		_upstreamBranchName = upstreamBranchName;

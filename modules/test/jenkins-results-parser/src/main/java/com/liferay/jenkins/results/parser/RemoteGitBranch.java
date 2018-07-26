@@ -45,7 +45,7 @@ public class RemoteGitBranch extends BaseGitBranch {
 		super(name, sha);
 
 		if (remoteRepository == null) {
-			throw new IllegalArgumentException("remoteRepository is null");
+			throw new IllegalArgumentException("Remote repository is null");
 		}
 
 		_remoteRepository = remoteRepository;
