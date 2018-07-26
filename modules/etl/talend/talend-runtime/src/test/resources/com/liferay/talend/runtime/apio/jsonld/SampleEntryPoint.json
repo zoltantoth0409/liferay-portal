@@ -24,7 +24,7 @@
 				"Collection"
 			],
 			"manages": {
-				"object": "schema:Person",
+				"object": "Person",
 				"property": "rdf:type"
 			}
 		}
