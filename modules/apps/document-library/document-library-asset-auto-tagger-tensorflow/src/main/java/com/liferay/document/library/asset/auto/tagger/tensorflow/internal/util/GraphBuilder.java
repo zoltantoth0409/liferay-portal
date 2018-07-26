@@ -32,13 +32,13 @@ public class GraphBuilder {
 		_graph = graph;
 	}
 
-	public <T, U> Output<U> cast(Output<T> output, Class<U> type) {
+	public <T, U> Output<U> cast(Output<T> output, Class<U> clazz) {
 		OperationBuilder operationBuilder = _graph.opBuilder("Cast", "Cast");
 
 		return operationBuilder.addInput(
 			output
 		).setAttr(
-			"DstT", DataType.fromClass(type)
+			"DstT", DataType.fromClass(clazz)
 		).build(
 		).output(
 			0
@@ -57,12 +57,12 @@ public class GraphBuilder {
 		return constant(name, value, Integer.class);
 	}
 
-	public <T> Output<T> constant(String name, Object value, Class<T> type) {
-		try (Tensor<T> tensor = Tensor.create(value, type)) {
+	public <T> Output<T> constant(String name, Object value, Class<T> clazz) {
+		try (Tensor<T> tensor = Tensor.create(value, clazz)) {
 			OperationBuilder operationBuilder = _graph.opBuilder("Const", name);
 
 			return operationBuilder.setAttr(
-				"dtype", DataType.fromClass(type)
+				"dtype", DataType.fromClass(clazz)
 			).setAttr(
 				"value", tensor
 			).build(
@@ -98,12 +98,12 @@ public class GraphBuilder {
 		return _binaryOp3("ExpandDims", output, dimOutput);
 	}
 
-	public <T> Output<T> placeholder(String name, Class<T> type) {
+	public <T> Output<T> placeholder(String name, Class<T> clazz) {
 		OperationBuilder operationBuilder = _graph.opBuilder(
 			"Placeholder", name);
 
 		return operationBuilder.setAttr(
-			"dtype", DataType.fromClass(type)
+			"dtype", DataType.fromClass(clazz)
 		).build(
 		).output(
 			0
