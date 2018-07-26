@@ -22,6 +22,7 @@ import com.liferay.document.library.kernel.util.DLUtil;
 import com.liferay.exportimport.configuration.ExportImportServiceConfiguration;
 import com.liferay.exportimport.content.processor.ExportImportContentProcessor;
 import com.liferay.exportimport.kernel.lar.ExportImportPathUtil;
+import com.liferay.exportimport.kernel.lar.ExportImportThreadLocal;
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
 import com.liferay.exportimport.kernel.lar.PortletDataHandlerKeys;
 import com.liferay.exportimport.kernel.lar.StagedModelDataHandlerUtil;
@@ -329,7 +330,8 @@ public class BaseTextExportImportContentProcessor
 		}
 
 		if (group.isStaged() && !group.isStagedRemotely() &&
-			!group.isStagedPortlet(PortletKeys.DOCUMENT_LIBRARY)) {
+			!group.isStagedPortlet(PortletKeys.DOCUMENT_LIBRARY) &&
+			ExportImportThreadLocal.isStagingInProcess()) {
 
 			return content;
 		}
