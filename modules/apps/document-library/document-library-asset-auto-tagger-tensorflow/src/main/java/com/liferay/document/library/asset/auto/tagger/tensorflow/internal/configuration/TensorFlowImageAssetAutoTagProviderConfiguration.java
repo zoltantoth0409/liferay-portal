@@ -23,11 +23,11 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
  */
 @ExtendedObjectClassDefinition(category = "documents-and-media")
 @Meta.OCD(
-	id = "com.liferay.document.library.asset.auto.tagger.tensorflow.internal.configuration.TensorflowImageAssetAutoTagProviderConfiguration",
+	id = "com.liferay.document.library.asset.auto.tagger.tensorflow.internal.configuration.TensorFlowImageAssetAutoTagProviderConfiguration",
 	localization = "content/Language",
 	name = "tensorflow-auto-tag-provider-configuration-name"
 )
-public interface TensorflowImageAssetAutoTagProviderConfiguration {
+public interface TensorFlowImageAssetAutoTagProviderConfiguration {
 
 	/**
 	 * Enables auto tagging of images using a pre-trained tensorflow model

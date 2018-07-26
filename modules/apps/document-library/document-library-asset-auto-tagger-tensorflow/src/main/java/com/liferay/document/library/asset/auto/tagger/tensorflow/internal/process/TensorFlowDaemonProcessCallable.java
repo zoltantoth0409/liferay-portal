@@ -21,13 +21,13 @@ import com.liferay.petra.process.local.LocalProcessLauncher.ProcessContext;
 /**
  * @author Shuyang Zhou
  */
-public class TensorflowDaemonProcessCallable
+public class TensorFlowDaemonProcessCallable
 	implements ProcessCallable<String> {
 
 	@Override
 	public String call() throws ProcessException {
 		ProcessContext.attach(
-			"Tensorflow-Daemon", 10000,
+			"TensorFlow-Daemon", 10000,
 			(shutdownCode, shutdownThrowable) -> {
 				System.exit(shutdownCode);
 

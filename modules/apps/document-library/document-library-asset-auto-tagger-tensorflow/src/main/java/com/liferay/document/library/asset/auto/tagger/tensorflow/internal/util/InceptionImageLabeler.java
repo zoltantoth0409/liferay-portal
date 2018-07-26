@@ -15,7 +15,7 @@
 package com.liferay.document.library.asset.auto.tagger.tensorflow.internal.util;
 
 import com.liferay.document.library.asset.auto.tagger.tensorflow.internal.process.GetLabelProbabilitiesProcessCallable;
-import com.liferay.document.library.asset.auto.tagger.tensorflow.internal.process.TensorflowDaemonProcessCallable;
+import com.liferay.document.library.asset.auto.tagger.tensorflow.internal.process.TensorFlowDaemonProcessCallable;
 import com.liferay.petra.process.ProcessChannel;
 import com.liferay.petra.process.ProcessConfig;
 import com.liferay.petra.process.ProcessConfig.Builder;
@@ -225,7 +225,7 @@ public class InceptionImageLabeler {
 					try {
 						_processChannel = _processExecutor.execute(
 							_processConfig,
-							new TensorflowDaemonProcessCallable());
+							new TensorFlowDaemonProcessCallable());
 					}
 					catch (ProcessException pe) {
 						ReflectionUtil.throwException(pe);

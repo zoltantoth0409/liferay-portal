@@ -15,7 +15,7 @@
 package com.liferay.document.library.asset.auto.tagger.tensorflow.internal;
 
 import com.liferay.asset.auto.tagger.AssetAutoTagProvider;
-import com.liferay.document.library.asset.auto.tagger.tensorflow.internal.configuration.TensorflowImageAssetAutoTagProviderConfiguration;
+import com.liferay.document.library.asset.auto.tagger.tensorflow.internal.configuration.TensorFlowImageAssetAutoTagProviderConfiguration;
 import com.liferay.document.library.asset.auto.tagger.tensorflow.internal.util.InceptionImageLabeler;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -43,7 +43,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Alejandro Tardín
  */
 @Component(
-	configurationPid = "com.liferay.document.library.asset.auto.tagger.tensorflow.internal.configuration.TensorflowImageAssetAutoTagProviderConfiguration",
+	configurationPid = "com.liferay.document.library.asset.auto.tagger.tensorflow.internal.configuration.TensorFlowImageAssetAutoTagProviderConfiguration",
 	property = "model.class.name=com.liferay.document.library.kernel.model.DLFileEntry",
 	service = AssetAutoTagProvider.class
 )
@@ -52,7 +52,7 @@ public class TensorFlowImageAssetAutoTagProvider
 
 	@Override
 	public List<String> getTagNames(FileEntry fileEntry) {
-		if (_tensorflowImageAutoTaggerConfiguration.enabled() &&
+		if (_tensorFlowImageAutoTaggerConfiguration.enabled() &&
 			!_isTemporary(fileEntry)) {
 
 			try {
@@ -61,7 +61,7 @@ public class TensorFlowImageAssetAutoTagProvider
 				if (_accepts(fileVersion.getMimeType())) {
 					return _inceptionImageLabeler.label(
 						FileUtil.getBytes(fileVersion.getContentStream(false)),
-						_tensorflowImageAutoTaggerConfiguration.
+						_tensorFlowImageAutoTaggerConfiguration.
 							confidenceThreshold());
 				}
 			}
@@ -76,9 +76,9 @@ public class TensorFlowImageAssetAutoTagProvider
 	@Activate
 	@Modified
 	protected void activate(Map<String, Object> properties) {
-		_tensorflowImageAutoTaggerConfiguration =
+		_tensorFlowImageAutoTaggerConfiguration =
 			ConfigurableUtil.createConfigurable(
-				TensorflowImageAssetAutoTagProviderConfiguration.class,
+				TensorFlowImageAssetAutoTagProviderConfiguration.class,
 				properties);
 	}
 
@@ -101,7 +101,7 @@ public class TensorFlowImageAssetAutoTagProvider
 	@Reference
 	private InceptionImageLabeler _inceptionImageLabeler;
 
-	private volatile TensorflowImageAssetAutoTagProviderConfiguration
-		_tensorflowImageAutoTaggerConfiguration;
+	private volatile TensorFlowImageAssetAutoTagProviderConfiguration
+		_tensorFlowImageAutoTaggerConfiguration;
 
 }
