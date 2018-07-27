@@ -23,8 +23,8 @@ import com.liferay.talend.runtime.apio.constants.JSONLDConstants;
 import java.io.IOException;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -67,7 +67,7 @@ public class ApioEntryPoint extends ApioBaseResponse {
 			return Collections.emptyMap();
 		}
 
-		Map<String, String> rootEndpointMap = new HashMap<>();
+		Map<String, String> rootEndpointMap = new TreeMap<>();
 
 		for (final JsonNode collectionJsonNode : collectionArrayJsonNode) {
 			JsonNode idJsonNode = collectionJsonNode.path(JSONLDConstants.ID);
