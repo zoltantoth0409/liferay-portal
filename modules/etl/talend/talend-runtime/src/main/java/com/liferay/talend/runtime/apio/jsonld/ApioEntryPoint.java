@@ -81,9 +81,7 @@ public class ApioEntryPoint extends ApioBaseResponse {
 
 	private void _validateEntryPoint() throws IOException {
 		if (!hasValueOf(FieldTypes.ENTRY_POINT, getTypeJsonNode())) {
-			throw new IOException(
-				"The type of the given resource is not an instance of " +
-					"EntryPoint");
+			throw new IOException("The given resource is not an entry point");
 		}
 	}
 

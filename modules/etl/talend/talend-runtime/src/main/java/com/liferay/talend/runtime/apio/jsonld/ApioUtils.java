@@ -56,7 +56,7 @@ public class ApioUtils {
 
 		if (!hasValueOf(FieldTypes.COLLECTION, typeJsonNode)) {
 			_log.error(
-				"Unexpected type for the Collection: \"{}\"",
+				"Unexpected type for the collection: \"{}\"",
 				typeJsonNode.toString());
 
 			throw new NoSuchElementException(

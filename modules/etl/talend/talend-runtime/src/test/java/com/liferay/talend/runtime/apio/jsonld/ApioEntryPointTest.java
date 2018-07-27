@@ -78,7 +78,7 @@ public class ApioEntryPointTest {
 	public void testWrongType() throws Exception {
 		expectedException.expect(IOException.class);
 		expectedException.expectMessage(
-			"The type of the given resource is not an instance of EntryPoint");
+			"The given resource is not an entry point");
 
 		String json = read("SampleResource.json");
 
