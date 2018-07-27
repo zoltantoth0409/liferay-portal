@@ -29,6 +29,7 @@ import com.liferay.talend.runtime.apio.constants.JSONLDConstants;
 import com.liferay.talend.runtime.apio.constants.SchemaOrgConstants;
 import com.liferay.talend.runtime.apio.constants.SchemaOrgConstants.Vocabulary;
 import com.liferay.talend.runtime.apio.jsonld.ApioApiDocumentation;
+import com.liferay.talend.runtime.apio.jsonld.ApioEntryPoint;
 import com.liferay.talend.runtime.apio.jsonld.ApioForm;
 import com.liferay.talend.runtime.apio.jsonld.ApioResourceCollection;
 import com.liferay.talend.runtime.apio.jsonld.ApioSingleModel;
@@ -253,7 +254,31 @@ public class LiferaySourceOrSink
 			return Collections.emptyMap();
 		}
 
-		return _getResourceCollectionsDescriptor(jsonNode);
+		if (jsonNode.size() == 0) {
+			if (_log.isDebugEnabled()) {
+				_log.debug("Unable to find any exposed resources");
+			}
+
+			return Collections.emptyMap();
+		}
+
+		ApioEntryPoint apioEntryPoint = null;
+
+		try {
+			apioEntryPoint = new ApioEntryPoint(jsonNode);
+		}
+		catch (IOException ioe) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					"The response is not a JSON-LD Entry point. Try a " +
+						"fallback method for parsing the old JSON-Home " +
+							"response.");
+			}
+
+			return _getResourceCollectionsDescriptor(jsonNode);
+		}
+
+		return apioEntryPoint.getRootEndpointMap();
 	}
 
 	@Override
