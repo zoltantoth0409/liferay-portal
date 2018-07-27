@@ -30,7 +30,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Represent the Json-LD+Hydra response of the Apio Architect for a given
+ * Represents the Json-LD+Hydra response of the Apio Architect for a given
  * RootEndpoint
  *
  * @author Zoltán Takács
