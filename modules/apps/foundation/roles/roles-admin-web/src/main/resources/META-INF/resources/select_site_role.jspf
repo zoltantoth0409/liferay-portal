@@ -53,6 +53,12 @@ if (step == 1) {
 	}
 }
 
+if (step == 2) {
+	long groupId = ParamUtil.getLong(request, "groupId", uniqueGroupId);
+
+	portletURL.setParameter("groupId", String.valueOf(groupId));
+}
+
 portletURL.setParameter("step", String.valueOf(step));
 %>
 
@@ -165,8 +171,6 @@ portletURL.setParameter("step", String.valueOf(step));
 			long groupId = ParamUtil.getLong(request, "groupId", uniqueGroupId);
 
 			Group group = GroupServiceUtil.getGroup(groupId);
-
-			portletURL.setParameter("groupId", String.valueOf(groupId));
 			%>
 
 			<aui:input name="step" type="hidden" value="<%= step %>" />
