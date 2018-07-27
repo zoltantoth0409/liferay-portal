@@ -66,9 +66,9 @@ public class ApioUtilsTest {
 		JsonNode typeJsonNode = _apioJsonLDResource.getTypeJsonNode();
 
 		Assert.assertThat(
-			ApioUtils.hasValueOf("WebSite", typeJsonNode), is(true));
-		Assert.assertThat(
 			ApioUtils.hasValueOf("BlogPosting", typeJsonNode), is(false));
+		Assert.assertThat(
+			ApioUtils.hasValueOf("WebSite", typeJsonNode), is(true));
 	}
 
 	@Test
