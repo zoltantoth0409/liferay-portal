@@ -9,6 +9,7 @@ import ${apiPackagePath}.model.${entity.name};
 import ${serviceBuilder.getCompatProperty("StringBundler")};
 
 import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.MVCCModel;
 import com.liferay.portal.kernel.util.HashUtil;
