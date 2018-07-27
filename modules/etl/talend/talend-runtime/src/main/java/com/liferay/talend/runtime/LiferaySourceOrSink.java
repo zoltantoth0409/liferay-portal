@@ -615,28 +615,17 @@ public class LiferaySourceOrSink
 
 	@Override
 	public boolean hasWebSiteResource() {
-		JsonNode jsonNode = null;
-
-		try {
-			jsonNode = doApioGetRequest((RuntimeContainer)null);
-		}
-		catch (IOException ioe) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(
-					"Unable to fetch the list of exposed resources", ioe);
-			}
-
-			return false;
-		}
+		Map<String, String> apioResourceEndpointsMap =
+			getApioResourceEndpointsMap(null);
 
 		Set<Map.Entry<String, String>> resourceCollectionEntrySet =
-			_getJsonHomeRootEndpointMap(jsonNode).entrySet();
+			apioResourceEndpointsMap.entrySet();
 
 		Stream<Map.Entry<String, String>> stream =
 			resourceCollectionEntrySet.stream();
 
 		return stream.anyMatch(
-			entry -> Vocabulary.WEB_SITE.equals(entry.getValue()));
+			LiferaySourceOrSink::_hasWebSiteResourcePredicate);
 	}
 
 	@Override
@@ -772,6 +761,18 @@ public class LiferaySourceOrSink
 	protected final ObjectMapper objectMapper = new ObjectMapper();
 	protected RESTClient restClient;
 
+	private static boolean _hasWebSiteResourcePredicate(
+		Map.Entry<String, String> entry) {
+
+		if (Vocabulary.WEB_SITE.equals(entry.getValue()) ||
+			SchemaOrgConstants.Type.WEB_SITE.equals(entry.getValue())) {
+
+			return true;
+		}
+
+		return false;
+	}
+
 	private Map<String, String> _getJsonHomeRootEndpointMap(JsonNode jsonNode) {
 		Map<String, String> resourcesMap = new TreeMap<>();
 
@@ -845,25 +846,17 @@ public class LiferaySourceOrSink
 	}
 
 	private String _getWebSitesEndpointURL() throws IOException {
-		JsonNode jsonNode = null;
-
-		try {
-			jsonNode = doApioGetRequest((RuntimeContainer)null);
-		}
-		catch (IOException ioe) {
-			_log.error("Unable to fetch the list of exposed resources", ioe);
-
-			throw ioe;
-		}
+		Map<String, String> apioResourceEndpointsMap =
+			getApioResourceEndpointsMap(null);
 
 		Set<Map.Entry<String, String>> resourceCollectionEntrySet =
-			_getJsonHomeRootEndpointMap(jsonNode).entrySet();
+			apioResourceEndpointsMap.entrySet();
 
 		Stream<Map.Entry<String, String>> stream =
 			resourceCollectionEntrySet.stream();
 
 		Optional<String> webSiteHrefOptional = stream.filter(
-			entry -> Vocabulary.WEB_SITE.equals(entry.getValue())
+			LiferaySourceOrSink::_hasWebSiteResourcePredicate
 		).map(
 			Map.Entry::getKey
 		).findFirst();
