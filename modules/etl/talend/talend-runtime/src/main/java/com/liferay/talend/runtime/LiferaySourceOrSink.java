@@ -275,7 +275,7 @@ public class LiferaySourceOrSink
 							"response.");
 			}
 
-			return _getResourceCollectionsDescriptor(jsonNode);
+			return _getJsonHomeRootEndpointMap(jsonNode);
 		}
 
 		return apioEntryPoint.getRootEndpointMap();
@@ -630,7 +630,7 @@ public class LiferaySourceOrSink
 		}
 
 		Set<Map.Entry<String, String>> resourceCollectionEntrySet =
-			_getResourceCollectionsDescriptor(jsonNode).entrySet();
+			_getJsonHomeRootEndpointMap(jsonNode).entrySet();
 
 		Stream<Map.Entry<String, String>> stream =
 			resourceCollectionEntrySet.stream();
@@ -772,9 +772,7 @@ public class LiferaySourceOrSink
 	protected final ObjectMapper objectMapper = new ObjectMapper();
 	protected RESTClient restClient;
 
-	private Map<String, String> _getResourceCollectionsDescriptor(
-		JsonNode jsonNode) {
-
+	private Map<String, String> _getJsonHomeRootEndpointMap(JsonNode jsonNode) {
 		Map<String, String> resourcesMap = new TreeMap<>();
 
 		JsonNode resourcesJsonNode = jsonNode.findPath(
@@ -859,7 +857,7 @@ public class LiferaySourceOrSink
 		}
 
 		Set<Map.Entry<String, String>> resourceCollectionEntrySet =
-			_getResourceCollectionsDescriptor(jsonNode).entrySet();
+			_getJsonHomeRootEndpointMap(jsonNode).entrySet();
 
 		Stream<Map.Entry<String, String>> stream =
 			resourceCollectionEntrySet.stream();
