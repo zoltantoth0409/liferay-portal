@@ -45,13 +45,13 @@ import ${apiPackagePath}.model.${entity.name}Soap;
 </#if>
 
 import ${apiPackagePath}.service.${entity.name}LocalServiceUtil;
+import ${serviceBuilder.getCompatProperty("StringBundler")};
 
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
 import com.liferay.exportimport.kernel.lar.StagedModelType;
-import ${serviceBuilder.getCompatProperty("StringBundler")};
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.LocaleException;
 import com.liferay.portal.kernel.exception.NoSuchModelException;

@@ -24,8 +24,9 @@ import ${apiPackagePath}.service.persistence.${entity.name}Persistence;
 	import ${apiPackagePath}.service.persistence.${entity.PKClassName};
 </#if>
 
-import aQute.bnd.annotation.ProviderType;
 import ${serviceBuilder.getCompatProperty("StringBundler")};
+
+import aQute.bnd.annotation.ProviderType;
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
