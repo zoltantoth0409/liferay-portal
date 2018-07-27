@@ -95,6 +95,7 @@ public abstract class StateAwareResponseImpl
 	@Override
 	public Map<String, String[]> getRenderParameterMap() {
 		Map<String, String[]> renderParameterMap = new LinkedHashMap<>();
+
 		Set<String> parameterNames = _mutableRenderParameters.getNames();
 
 		for (String parameterName : parameterNames) {
@@ -147,9 +148,9 @@ public abstract class StateAwareResponseImpl
 
 		_calledSetRenderParameter = false;
 
-		// Since Portlet 3.0 ActionURLs can contain private render parameters,
+		// Since Portlet 3.0 action URLs can contain private render parameters,
 		// it is necessary to populate the render parameter map with the render
-		// parameters found in the request.
+		// parameters found in the request
 
 		Portlet portlet = portletRequestImpl.getPortlet();
 
