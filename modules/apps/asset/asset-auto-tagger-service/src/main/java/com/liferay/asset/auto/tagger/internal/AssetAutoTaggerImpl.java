@@ -256,7 +256,7 @@ public class AssetAutoTaggerImpl implements AssetAutoTagger {
 
 		assetTagNamesSet.removeAll(Arrays.asList(assetEntry.getTagNames()));
 
-		ArrayList<String> assetTagNames = new ArrayList<>(assetTagNamesSet);
+		List<String> assetTagNames = new ArrayList<>(assetTagNamesSet);
 
 		if (maximumNumberOfTagsPerAsset > 0) {
 			return assetTagNames.subList(
