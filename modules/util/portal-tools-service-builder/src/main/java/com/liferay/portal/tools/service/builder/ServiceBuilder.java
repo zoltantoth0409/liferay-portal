@@ -7138,7 +7138,6 @@ public class ServiceBuilder {
 	private boolean _osgiModule;
 	private String _outputPath;
 	private String _packagePath;
-	private Pattern _pattern;
 	private String _pluginName;
 	private String _portletShortName = StringPool.BLANK;
 	private String _propsUtil;
