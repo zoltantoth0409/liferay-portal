@@ -57,13 +57,14 @@ if (backgroundTaskStatus != null) {
 	}
 
 	String stagedModelName = (String)backgroundTaskStatus.getAttribute("stagedModelName");
-	String stagedModelType = (String)backgroundTaskStatus.getAttribute("stagedModelType");
 
 	shortenedStagedModelName = stagedModelName;
 
 	if (Validator.isNotNull(stagedModelName) && (stagedModelName.length() > (20 + StringPool.TRIPLE_PERIOD.length()))) {
 		shortenedStagedModelName = StringPool.TRIPLE_PERIOD + stagedModelName.substring(stagedModelName.length() - 20);
 	}
+
+	String stagedModelType = (String)backgroundTaskStatus.getAttribute("stagedModelType");
 
 	if (Validator.isNotNull(stagedModelType)) {
 		localizedStagedModelType = ResourceActionsUtil.getModelResource(locale, stagedModelType);
