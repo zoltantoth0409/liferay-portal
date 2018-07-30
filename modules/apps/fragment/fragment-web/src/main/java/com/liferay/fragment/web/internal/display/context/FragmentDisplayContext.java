@@ -83,7 +83,7 @@ public class FragmentDisplayContext {
 		_fragmentPortletConfiguration =
 			(FragmentPortletConfiguration)_request.getAttribute(
 				FragmentPortletConfiguration.class.getName());
-		_itemSelector = (ItemSelector)request.getAttribute(
+		_itemSelector = (ItemSelector)_request.getAttribute(
 			FragmentWebKeys.ITEM_SELECTOR);
 		_themeDisplay = (ThemeDisplay)_request.getAttribute(
 			WebKeys.THEME_DISPLAY);
