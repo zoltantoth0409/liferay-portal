@@ -4,8 +4,8 @@
 [subrepo]
 	autopull = false
 	cmdver = liferay
-	commit = dcbdfba389c75eab8aa13fcc3306249c17502fde
+	commit = a2b10320f321ebda60e687ffe3aeb8299009eecf
 	mergebuttonmergecommits = false
 	mode = push
-	parent = c5522da7fa4f94eecffbe5d17db6afe6b482b5d4
+	parent = 9f9d81b52894b978e05eb2b493730ff6f4febd4b
 	remote = git@github.com:liferay/com-liferay-xsl-content.git
