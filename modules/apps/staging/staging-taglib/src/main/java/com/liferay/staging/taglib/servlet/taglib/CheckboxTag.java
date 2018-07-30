@@ -31,11 +31,6 @@ import javax.servlet.jsp.PageContext;
 public class CheckboxTag extends BaseCssTag {
 
 	@Override
-	public int doEndTag() throws JspException {
-		return super.doEndTag();
-	}
-
-	@Override
 	public String getTagNameForCssPath() {
 		return "checkbox";
 	}
