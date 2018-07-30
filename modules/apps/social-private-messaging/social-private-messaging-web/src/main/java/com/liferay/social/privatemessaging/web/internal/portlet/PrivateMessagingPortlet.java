@@ -105,7 +105,7 @@ import org.osgi.service.component.annotations.Reference;
 		"javax.portlet.info.keywords=Private Messaging",
 		"javax.portlet.info.short-title=Private Messaging",
 		"javax.portlet.info.title=Private Messaging",
-		"javax.portlet.init-param.template-path=/",
+		"javax.portlet.init-param.template-path=/META-INF/resources/",
 		"javax.portlet.init-param.view-template=/view.jsp",
 		"javax.portlet.name=" + PrivateMessagingPortletKeys.PRIVATE_MESSAGING,
 		"javax.portlet.resource-bundle=content.Language",
