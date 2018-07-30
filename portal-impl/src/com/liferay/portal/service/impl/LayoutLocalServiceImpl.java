@@ -2860,6 +2860,10 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 			lessThan = true;
 		}
 
+		if (oldPriority == layouts.size()) {
+			lessThan = true;
+		}
+
 		layouts = ListUtil.sort(
 			layouts, new LayoutPriorityComparator(layout, lessThan));
 
