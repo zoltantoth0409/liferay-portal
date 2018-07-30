@@ -30,7 +30,6 @@ import com.liferay.portal.kernel.util.HashMapDictionary;
 
 import java.util.Dictionary;
 import java.util.Objects;
-import java.util.function.ToLongFunction;
 
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
@@ -58,10 +57,29 @@ public class DDMFormInstanceModelResourcePermissionRegistrar {
 				_ddmFormInstanceLocalService::getDDMFormInstance,
 				_portletResourcePermission,
 				(modelResourcePermission, consumer) -> consumer.accept(
-					new AddFormInstanceRecordPermissionLogic(
+					new StagedModelPermissionLogic<DDMFormInstance>(
 						_stagingPermission,
 						DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN,
-						DDMFormInstance::getFormInstanceId))),
+						DDMFormInstance::getFormInstanceId) {
+
+						@Override
+						public Boolean contains(
+							PermissionChecker permissionChecker, String name,
+							DDMFormInstance ddmFormInstance, String actionId) {
+
+							if (Objects.equals(
+									actionId,
+									DDMActionKeys.ADD_FORM_INSTANCE_RECORD)) {
+
+								return null;
+							}
+
+							return super.contains(
+								permissionChecker, name, ddmFormInstance,
+								actionId);
+						}
+
+					})),
 			properties);
 	}
 
@@ -83,31 +101,5 @@ public class DDMFormInstanceModelResourcePermissionRegistrar {
 
 	@Reference
 	private StagingPermission _stagingPermission;
-
-	private class AddFormInstanceRecordPermissionLogic
-		extends StagedModelPermissionLogic<DDMFormInstance> {
-
-		public AddFormInstanceRecordPermissionLogic(
-			StagingPermission stagingPermission, String portletId,
-			ToLongFunction<DDMFormInstance> primKeyToLongFunction) {
-
-			super(stagingPermission, portletId, primKeyToLongFunction);
-		}
-
-		@Override
-		public Boolean contains(
-			PermissionChecker permissionChecker, String name,
-			DDMFormInstance model, String actionId) {
-
-			if (Objects.equals(
-					actionId, DDMActionKeys.ADD_FORM_INSTANCE_RECORD)) {
-
-				return null;
-			}
-
-			return super.contains(permissionChecker, name, model, actionId);
-		}
-
-	}
 
 }
