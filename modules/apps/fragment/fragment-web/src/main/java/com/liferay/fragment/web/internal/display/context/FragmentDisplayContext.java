@@ -83,10 +83,8 @@ public class FragmentDisplayContext {
 		_fragmentPortletConfiguration =
 			(FragmentPortletConfiguration)_request.getAttribute(
 				FragmentPortletConfiguration.class.getName());
-
 		_itemSelector = (ItemSelector)request.getAttribute(
 			FragmentWebKeys.ITEM_SELECTOR);
-
 		_themeDisplay = (ThemeDisplay)_request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 	}
@@ -229,9 +227,7 @@ public class FragmentDisplayContext {
 		soyContext.put("initialHTML", getHtmlContent());
 		soyContext.put("initialJS", getJsContent());
 		soyContext.put("name", getName());
-
 		soyContext.put("portletNamespace", _renderResponse.getNamespace());
-
 		soyContext.put(
 			"spritemap",
 			_themeDisplay.getPathThemeImages() + "/lexicon/icons.svg");
@@ -645,7 +641,6 @@ public class FragmentDisplayContext {
 		portletURL.setParameter(
 			"fragmentEntryId",
 			String.valueOf(fragmentEntry.getFragmentEntryId()));
-
 		portletURL.setWindowState(windowState);
 
 		return portletURL.toString();
