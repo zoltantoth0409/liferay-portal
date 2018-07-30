@@ -24,6 +24,10 @@
 		<if>
 			<equals arg1="${templateLanguage}" arg2="ftl" />
 			<then>
+				<execute macro="Panel#expandPanel">
+					<var name="panelHeading" value="Details" />
+				</execute>
+
 				<execute function="Select" locator1="DDMEditTemplate#DETAILS_LANGUAGE_SELECT" value1="FreeMarker (.ftl)" />
 			</then>
 			<elseif>
