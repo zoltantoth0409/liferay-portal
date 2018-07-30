@@ -12,7 +12,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.staging.api", version: "3.0.0"
-	compileOnly group: "com.liferay", name: "com.liferay.staging.taglib", version: "4.0.7"
+	compileOnly group: "com.liferay", name: "com.liferay.staging.taglib", version: "4.0.0"
 	compileOnly group: "com.liferay", name: "org.eclipse.osgi.services", version: "3.5.0-20150611.165350-3-LIFERAY-CACHED"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "3.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.util.taglib", version: "3.0.0"
