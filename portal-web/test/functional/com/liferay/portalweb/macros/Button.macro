@@ -21,12 +21,6 @@
 		</execute>
 	</command>
 
-	<command name="clickDelete">
-		<execute macro="Button#click">
-			<var name="button" value="Delete" />
-		</execute>
-	</command>
-
 	<command name="clickDone">
 		<execute macro="Button#click">
 			<var name="button" value="Done" />
@@ -42,12 +36,6 @@
 	<command name="clickNext">
 		<execute macro="Button#click">
 			<var name="button" value="Next" />
-		</execute>
-	</command>
-
-	<command name="clickNoError">
-		<execute function="ClickNoError" locator1="Button#ANY">
-			<var name="key_text" value="${button}" />
 		</execute>
 	</command>
 
@@ -87,12 +75,6 @@
 
 	<command name="viewNotPresent">
 		<execute function="AssertElementNotPresent" locator1="Button#ANY">
-			<var name="key_text" value="${button}" />
-		</execute>
-	</command>
-
-	<command name="viewPresent">
-		<execute function="AssertElementPresent" locator1="Button#ANY">
 			<var name="key_text" value="${button}" />
 		</execute>
 	</command>

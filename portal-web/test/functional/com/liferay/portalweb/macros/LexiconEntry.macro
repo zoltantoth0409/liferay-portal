@@ -1,12 +1,4 @@
 <definition>
-	<command name="changeDisplayStyle">
-		<execute function="Click" locator1="Icon#CURRENT_DISPLAY_STYLE" />
-
-		<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM">
-			<var method="StringUtil#upperCaseFirstLetter('${displayStyle}')" name="key_menuItem" />
-		</execute>
-	</command>
-
 	<command name="gotoAdd">
 		<execute function="Click" locator1="Button#PLUS" />
 	</command>
@@ -97,20 +89,8 @@
 		</execute>
 	</command>
 
-	<command name="selectEntry">
-		<var name="key_rowEntry" value="${rowEntry}" />
-
-		<execute function="Check" locator1="ContentRow#ENTRY_CONTENT_ENTRY_CHECKBOX" />
-	</command>
-
 	<command name="viewEntryName">
 		<execute function="AssertTextEquals" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME" value1="${rowEntry}">
-			<var name="key_rowEntry" value="${rowEntry}" />
-		</execute>
-	</command>
-
-	<command name="viewNoEntry">
-		<execute function="AssertElementNotPresent" locator1="ContentRow#ENTRY_CONTENT_ENTRY_NAME">
 			<var name="key_rowEntry" value="${rowEntry}" />
 		</execute>
 	</command>

@@ -46,22 +46,6 @@
 		</for>
 	</command>
 
-	<command name="viewSolrLogsInConsole">
-		<execute function="Pause" locator1="1000" />
-
-		<var method="StringUtil#lowerCase('${searchTerm}')" name="searchTerm" />
-
-		<execute function="AssertConsoleTextPresent" value1="SolrIndexSearcher" />
-		<execute function="AssertConsoleTextPresent" value1="entryClassName:com.liferay.portlet.messageboards.model.MBMessage" />
-		<execute function="AssertConsoleTextPresent" value1="entryClassName:com.liferay.portlet.documentlibrary.model.DLFileEntry" />
-		<execute function="AssertConsoleTextPresent" value1="content:${searchTerm}" />
-		<execute function="AssertConsoleTextPresent" value1="content_en_US:${searchTerm}" />
-		<execute function="AssertConsoleTextPresent" value1="description:${searchTerm}" />
-		<execute function="AssertConsoleTextPresent" value1="description_en_US:${searchTerm}" />
-		<execute function="AssertConsoleTextPresent" value1="title:${searchTerm}" />
-		<execute function="AssertConsoleTextPresent" value1="title_en_US:${searchTerm}" />
-	</command>
-
 	<command name="viewSolrwithSolrCloudEnabledInConsole">
 		<execute function="AssertConsoleTextPresent" value1="Using default ZkCredentialsProvider" />
 		<execute function="AssertConsoleTextPresent" value1="Using default ZkACLProvider" />

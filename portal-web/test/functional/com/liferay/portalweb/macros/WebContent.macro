@@ -1199,24 +1199,6 @@
 		<execute function="AssertTextEquals" locator1="Message#ERROR_FIELD_REQUIRED" value1="This field is required." />
 	</command>
 
-	<command name="editPermissionsCP">
-		<execute function="Click" locator1="AP#ASSET_ABSTRACT_EDIT">
-			<var name="key_assetTitle" value="${assetTitle}" />
-		</execute>
-
-		<execute function="SelectFrame" locator1="IFrame#EDIT_ASSET" />
-
-		<execute macro="PortletEntry#inputTitle">
-			<var name="title" value="${webContentTitleEdit}" />
-		</execute>
-
-		<execute macro="AlloyEditor#addContent">
-			<var name="content" value="${webContentContentEdit}" />
-		</execute>
-
-		<execute function="Click" locator1="Button#PUBLISH" />
-	</command>
-
 	<command name="editPGViaAP">
 		<execute macro="AssetPublisherPortlet#gotoEditWebContent">
 			<var name="assetTitle" value="${assetTitle}" />
@@ -1304,14 +1286,6 @@
 		<execute function="ClickNoError" locator1="Icon#EXPIRE" />
 
 		<execute function="Confirm" value1="Are you sure you want to expire the selected version?" />
-	</command>
-
-	<command name="gotoArticlePermissionsCP">
-		<execute macro="LexiconEntry#gotoHeaderMenuItem">
-			<var name="menuItem" value="Permissions" />
-		</execute>
-
-		<execute macro="IFrame#selectDialogFrame" />
 	</command>
 
 	<command name="gotoEditDuplicateEntryCP">
@@ -1739,22 +1713,6 @@
 		</for>
 	</command>
 
-	<command name="viewCategoryDescriptiveCP">
-		<execute macro="Portlet#changeDisplayStyle">
-			<var name="displayStyle" value="Descriptive" />
-		</execute>
-
-		<execute function="AssertElementPresent#pauseAssertVisible" locator1="WC#ENTRY_DESCRIPTIVE_THUMBNAIL">
-			<var name="key_webContentTitle" value="${webContentTitle}" />
-		</execute>
-
-		<for list="${categoryNameList}" param="categoryName">
-			<execute function="AssertTextEquals#assertPartialText" locator1="WC#ENTRY_DESCRIPTIVE_CATEGORY" value1="${categoryName}">
-				<var name="key_categoryName" value="${categoryName}" />
-			</execute>
-		</for>
-	</command>
-
 	<command name="viewCompareVersions">
 		<execute macro="IFrame#selectDialogFrame" />
 
@@ -1868,20 +1826,6 @@
 		<execute function="AssertTextEquals#assertPartialText" locator1="Message#INFO" value1="Select Web Content to make it visible" />
 	</command>
 
-	<command name="viewDisplayPagePGViaAP">
-		<execute macro="AssetPublisherPortlet#gotoEditRelatedAssets" />
-
-		<execute macro="IFrame#selectDialogFrame" />
-
-		<execute macro="Panel#expandPanel">
-			<var name="panelHeading" value="Display Page" />
-		</execute>
-
-		<execute function="AssertTextEquals#assertPartialText" locator1="WCSelectDisplayPage#PUBLIC_DISPLAY_PAGE_ITEM" value1="${displayPageSelection}" />
-
-		<execute function="SelectFrame" value1="relative=top" />
-	</command>
-
 	<command name="viewDisplayStyleCP">
 		<execute macro="Portlet#changeDisplayStyle">
 			<var name="displayStyle" value="Icon" />
@@ -1970,16 +1914,6 @@
 		<execute function="AssertTextEquals" locator1="APAsset#ASSET_TITLE_HEADER" value1="${webContentTitle}" />
 		<execute function="AssertTextEquals#assertPartialText" locator1="APAsset#ASSET_CONTENT" value1="${webContentContent}">
 			<var name="key_assetContent" value="${webContentContent}" />
-		</execute>
-	</command>
-
-	<command name="viewLinkToPagePGViaWCD">
-		<execute function="AssertClick" locator1="WCD#WEB_CONTENT_LINK_TO_PAGE" value1="Link to Page" />
-
-		<execute macro="Page#viewChildPageDropdown">
-			<var name="childPageName" value="${childPageName}" />
-			<var name="javaScriptPage" value="${javaScriptPage}" />
-			<var name="viewChildPageDropdown" value="${viewChildPageDropdown}" />
 		</execute>
 	</command>
 
@@ -2157,16 +2091,6 @@
 		<execute function="AssertTextEquals" locator1="MenuItem#ANY_MENU_ITEM" value1="${structureName}">
 			<var name="key_menuItem" value="${structureName}" />
 		</execute>
-	</command>
-
-	<command name="viewStructureWithWorkflowCP">
-		<execute macro="WebContentNavigator#gotoViewStatus">
-			<var name="webContentStatus" value="Pending" />
-			<var name="webContentTitle" value="${webContentTitle}" />
-		</execute>
-
-		<execute function="AssertTextEquals" locator1="AssetWorkflow#WORKFLOW_STATUS" value1="Pending (${workflowTask})" />
-		<execute function="AssertTextEquals" locator1="TextInput#TITLE" value1="${webContentTitle}" />
 	</command>
 
 	<command name="viewTitle">

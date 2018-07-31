@@ -1196,14 +1196,6 @@
 		<execute function="Click" locator1="Link#REFRESH_COUNTS" />
 	</command>
 
-	<command name="setHistoryVersionPG">
-		<execute function="Click" locator1="Icon#STAGING_BAR_VERTICAL_ELLIPSIS" />
-
-		<execute function="Click" locator1="Staging#HISTORY_BUTTON" />
-
-		<var method="selenium#getText(Staging#HISTORY_VERSION)" name="historyVersion" />
-	</command>
-
 	<command name="submitForPublicationPageRevision">
 		<if>
 			<condition function="IsTextEqual" locator1="Message#WORKFLOW_STATUS" value1="Draft" />

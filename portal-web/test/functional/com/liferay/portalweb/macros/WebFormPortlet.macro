@@ -113,12 +113,6 @@
 		<execute function="SelectFrameTop" value1="relative=top" />
 	</command>
 
-	<command name="viewDeletedFieldNotPresent">
-		<var name="key_wfFieldName" value="${wfFieldName}" />
-
-		<execute function="AssertElementNotPresent" locator1="WebFormConfiguration#SETUP_FORM_POPULATED_FIELDS_FIELD_TITLE" />
-	</command>
-
 	<command name="viewEditableField">
 		<var name="key_wfFieldName" value="${wfFieldName}" />
 

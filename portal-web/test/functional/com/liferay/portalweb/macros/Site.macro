@@ -627,64 +627,10 @@
 		<execute macro="PortletEntry#save" />
 	</command>
 
-	<command name="enableRecycleBinCP">
-		<execute function="AssertClick" locator1="NavListItem#RECYCLE_BIN" value1="Recycle Bin" />
-
-		<execute function="Check" locator1="Checkbox#ENABLE_RECYCLE_BIN" />
-
-		<execute macro="PortletEntry#save" />
-	</command>
-
-	<command name="exportSite">
-		<var name="key_siteName" value="${siteName}" />
-
-		<execute function="AssertClick#assertPartialTextClickAt" locator1="Sites#SITE_TABLE_NAME" value1="${siteName}" />
-
-		<execute function="AssertClick" locator1="SitePages#TOOLBAR_EXPORT" value1="Export" />
-
-		<execute function="SelectFrame" locator1="SitesExport#EXPORT_IFRAME" />
-
-		<execute function="Type" locator1="SitesImport#EXPORT_FILE_NAME" value1="${fileName}" />
-
-		<execute function="AssertClick" locator1="SitesExport#EXPORT_BUTTON" value1="Export" />
-
-		<execute function="Pause" locator1="5000" />
-
-		<execute function="AssertClick" locator1="SitesExport#DOWNLOAD_FILE" value1="${fileDownload}" />
-	</command>
-
 	<command name="gotoSiteViaMySitesPG">
 		<execute function="AssertClick" locator1="ListGroupItem#ITEM_NAME_LINK" value1="${siteName}">
 			<var name="key_itemName" value="${siteName}" />
 		</execute>
-	</command>
-
-	<command name="importSite">
-		<var name="key_siteName" value="${siteName}" />
-
-		<execute function="AssertClick#assertPartialTextClickAt" locator1="Sites#SITE_TABLE_NAME" value1="${siteName}" />
-
-		<execute function="AssertClick" locator1="SitePages#TOOLBAR_IMPORT" value1="Import" />
-
-		<execute function="SelectFrame" locator1="SitesImport#IMPORT_IFRAME" />
-
-		<execute function="AssertClick" locator1="SitesImport#SELECT_FILE" value1="Select File" />
-
-		<execute function="SikuliClick" locator1="OS#FILE_DIALOG_BOX_TYPE_FILE_NAME_ICON_PNG" />
-
-		<execute function="SikuliType" locator1="OS#FILE_DIALOG_BOX_FILE_NAME_FIELD_PNG" value1="${larFileName}" />
-
-		<execute function="SikuliClick" locator1="OS#FILE_DIALOG_BOX_TEST_LAR_FILE_ICON_PNG" />
-
-		<execute function="SikuliClick" locator1="OS#FILE_DIALOG_BOX_OPEN_BUTTON_PNG" />
-
-		<execute function="AssertClick" locator1="SitesImport#IMPORT_CONTINUE" value1="Continue" />
-
-		<execute function="AssertClick" locator1="SitesImport#IMPORT_CONTINUE_2" value1="Continue" />
-
-		<execute function="AssertClick" locator1="SitesImport#IMPORT" value1="Import" />
-
-		<execute function="Pause" locator1="2000" />
 	</command>
 
 	<command name="inactivateCP">
@@ -1190,11 +1136,6 @@
 		</if>
 	</command>
 
-	<command name="viewDefaultThemePG">
-		<execute function="AssertElementNotPresent" locator1="Home#DARK_THEME" />
-		<execute function="AssertElementPresent" locator1="Home#DEFAULT_THEME" />
-	</command>
-
 	<command name="viewGlobalLandingDefault">
 		<var name="key_portletName" value="${portletName}" />
 		<var name="key_siteName" value="${siteName}" />
@@ -1377,19 +1318,6 @@
 		<execute function="AssertLocation" value1="${sitePageURL}" />
 	</command>
 
-	<command name="viewSiteHierarchyInBreadcrumbPG">
-		<if>
-			<isset var="breadcrumbListVisible" />
-			<then>
-				<for list="${breadcrumbListVisible}" param="breadcrumbName">
-					<var name="key_breadcrumbName" value="${breadcrumbName}" />
-
-					<execute function="AssertTextEquals" locator1="SitesDirectory#BREADCRUMB" value1="${breadcrumbName}" />
-				</for>
-			</then>
-		</if>
-	</command>
-
 	<command name="viewSiteMembershipsRequest">
 		<execute function="Click" locator1="Button#INFO" />
 
@@ -1404,14 +1332,6 @@
 
 		<execute function="AssertTextEquals" locator1="SiteMembershipsViewMembershipRequests#USER_NAME" value1="${userFirstName} ${userLastName}" />
 		<execute function="AssertTextEquals" locator1="SiteMembershipsViewMembershipRequests#USER_COMMENTS" value1="Please allow me to join the Restricted Site." />
-	</command>
-
-	<command name="viewSiteNotClonedFromSiteTemplateCP">
-		<var name="key_siteTemplateName" value="${siteTemplateName}" />
-
-		<execute function="AssertClick" locator1="SitesEditSite#MENU_BASIC_INFORMATION_SITE_TEMPLATE" value1="Site Template" />
-
-		<execute function="AssertTextEquals#assertPartialText" locator1="SiteSettingsSiteTemplate#SITE_CLONED_FROM_TEMPLATE_MESSAGE" value1="Site Template" />
 	</command>
 
 	<command name="viewSiteRoleViaSiteMembershipsCP">

@@ -1,41 +1,6 @@
 <definition>
 	<var name="entryAuthorFullName" value="Test Test" />
 
-	<command name="addAbstractImage">
-		<execute function="Click" locator1="Button#SELECT" />
-
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Basic Document">
-			<var name="key_menuItem" value="Basic Document" />
-		</execute>
-
-		<execute function="UploadCommonFile" locator1="TextInput#FILE" value1="${dmDocumentFile}" />
-
-		<execute macro="PortletEntry#inputTitle">
-			<var name="title" value="${dmDocumentTitle}" />
-		</execute>
-
-		<execute macro="PortletEntry#inputDescription">
-			<var name="description" value="${dmDocumentDescription}" />
-		</execute>
-
-		<execute macro="PortletEntry#publish" />
-	</command>
-
-	<command name="addCategory">
-		<var name="key_categoryName" value="${categoryName}" />
-		<var name="key_vocabularyName" value="${vocabularyName}" />
-
-		<execute function="AssertClick" locator1="AssetCategorization#CATEGORY_SELECT" value1="Select" />
-
-		<execute function="AssertClick" locator1="AssetCategorization#CATEGORIES_CATEGORY_CHECKBOX" value1="${categoryName}" />
-
-		<execute function="AssertChecked" locator1="AssetCategorization#CATEGORIES_CATEGORY_CHECKBOX" value1="${categoryName}" />
-
-		<execute function="Click" locator1="Button#CLOSE" />
-
-		<execute function="AssertTextEquals" locator1="AssetCategorization#CATEGORY" value1="${categoryName}" />
-	</command>
-
 	<command name="addContentWithInlineImage">
 		<execute macro="AlloyEditor#addContent">
 			<var name="content" value="${entryContent}" />
@@ -184,28 +149,6 @@
 		<execute macro="Alert#viewSuccessMessage" />
 	</command>
 
-	<command name="addWithWorkflowPGViaAP">
-		<execute macro="AssetPublisherPortlet#addAsset">
-			<var name="assetType" value="Blogs Entry" />
-		</execute>
-
-		<execute macro="PortletEntry#inputTitle">
-			<var name="title" value="${entryTitle}" />
-		</execute>
-
-		<execute function="Type" locator1="BlogsEntry#CONTENT" value1="${entryContent}" />
-
-		<execute function="AssertClick" locator1="Button#SUBMIT_FOR_PUBLICATION" value1="Submit for Publication" />
-
-		<execute function="Pause" locator1="5000" />
-
-		<execute function="SelectFrame" value1="relative=top" />
-
-		<var name="key_assetTitle" value="${entryTitle}" />
-
-		<execute function="AssertElementNotPresent" locator1="AP#ASSET_ABSTRACT_TITLE" />
-	</command>
-
 	<command name="autoSaveDraft">
 		<execute function="Pause" locator1="30000" />
 
@@ -217,17 +160,6 @@
 
 		<execute macro="AlloyEditor#addContent">
 			<var name="content" value="${entryContentEdit}" />
-		</execute>
-	</command>
-
-	<command name="editContentViaCardViewPG">
-		<execute macro="LexiconEntry#gotoEllipsisMenuItem">
-			<var name="menuItem" value="Edit" />
-		</execute>
-
-		<execute macro="BlogsEntry#editContent">
-			<var name="entryContent" value="${entryContent}" />
-			<var name="entryContentEdit" value="${entryContentEdit}" />
 		</execute>
 	</command>
 
@@ -313,17 +245,6 @@
 		</execute>
 	</command>
 
-	<command name="editTitleViaCardViewPG">
-		<execute macro="LexiconEntry#gotoEllipsisMenuItem">
-			<var name="menuItem" value="Edit" />
-		</execute>
-
-		<execute macro="BlogsEntry#editTitle">
-			<var name="entryTitle" value="${entryTitle}" />
-			<var name="entryTitleEdit" value="${entryTitleEdit}" />
-		</execute>
-	</command>
-
 	<command name="entryAddPermissions">
 		<if>
 			<isset var="viewableBy" />
@@ -366,16 +287,6 @@
 		<execute function="AssertTextEquals#assertPartialText" locator1="ReportContent#SUCCESS_MESSAGE" value1="Although we cannot disclose our final decision, we do review every report and appreciate your effort to make sure ${siteName} is a safe environment for everyone." />
 
 		<execute function="Click" locator1="Icon#CLOSE" />
-	</command>
-
-	<command name="gotoScheduledEditPG">
-		<var name="key_entryTitle" value="${entryTitle}" />
-
-		<execute function="Click" locator1="Blogs#SCHEDULED_ENTRY_VERTICAL_ELLIPSIS" />
-
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Edit">
-			<var name="key_menuItem" value="Edit" />
-		</execute>
 	</command>
 
 	<command name="moveToRecycleBinCP">
@@ -455,14 +366,6 @@
 		<execute macro="Alert#viewSuccessMessage" />
 	</command>
 
-	<command name="rate4StarsPG">
-		<var name="key_entryTitle" value="${entryTitle}" />
-
-		<execute function="AssertClick" locator1="BlogsEntry#TITLE_LINK" value1="${entryTitle}" />
-
-		<execute function="Click#clickWaitForInlineCKEditorNoMouseOver" locator1="Ratings#YOUR_RATING_STAR_EMPTY_4" />
-	</command>
-
 	<command name="rateThumbsDown">
 		<var name="key_entryTitle" value="${entryTitle}" />
 
@@ -501,14 +404,6 @@
 
 	<command name="saveAsDraft">
 		<execute function="AssertClick" locator1="Button#SAVE_AS_DRAFT" value1="Save as Draft" />
-
-		<execute macro="Alert#viewSuccessMessage" />
-	</command>
-
-	<command name="saveAsDraftAndWait">
-		<execute function="AssertClick" locator1="Button#SAVE_AS_DRAFT" value1="Save as Draft" />
-
-		<execute function="Pause" locator1="3000" />
 
 		<execute macro="Alert#viewSuccessMessage" />
 	</command>
@@ -582,44 +477,6 @@
 		<execute function="AssertElementNotPresent" locator1="Blogs#DESCRIPTIVE_VIEW_ENTRY_TITLE" />
 	</command>
 
-	<command name="searchNoPG">
-		<var name="key_entryContent" value="${entryContent}" />
-		<var name="key_entryTitle" value="${entryTitle}" />
-
-		<execute function="Type" locator1="TextInput#SEARCH" value1="${entrySearchTerm}" />
-
-		<execute function="AssertClick" locator1="Button#SEARCH" value1="Search" />
-
-		<execute function="AssertTextEquals" locator1="Message#INFO" value1="No entries were found that matched the keywords: ${entrySearchTerm}." />
-
-		<execute function="AssertElementNotPresent" locator1="Blogs#SEARCH_RESULTS_ENTRY_TITLE" />
-		<execute function="AssertElementNotPresent" locator1="Blogs#SEARCH_RESULTS_ENTRY_DESCRIPTION" />
-	</command>
-
-	<command name="searchNoResultsCP">
-		<var name="key_entryContent" value="${entryContent}" />
-		<var name="key_entryTitle" value="${entryTitle}" />
-
-		<execute function="Type" locator1="NavBar#BASIC_SEARCH_FIELD" value1="${entrySearchTerm}" />
-
-		<execute function="AssertClick" locator1="Button#SEARCH" value1="Search" />
-
-		<execute function="AssertTextEquals" locator1="Message#INFO" value1="No entries were found that matched the keywords: ${entrySearchTerm}." />
-		<execute function="AssertElementNotPresent" locator1="Blogs#SEARCH_RESULTS_ENTRY_TITLE" />
-		<execute function="AssertElementNotPresent" locator1="Blogs#SEARCH_RESULTS_ENTRY_DESCRIPTION" />
-	</command>
-
-	<command name="searchPG">
-		<var name="key_entryContent" value="${entryContent}" />
-		<var name="key_entryTitle" value="${entryTitle}" />
-
-		<execute function="Type" locator1="TextInput#SEARCH" value1="${entrySearchTerm}" />
-		<execute function="AssertClick" locator1="Button#SEARCH" value1="Search" />
-
-		<execute function="AssertTextEquals" locator1="Blogs#SEARCH_RESULTS_ENTRY_TITLE" value1="${entryTitle}" />
-		<execute function="AssertTextEquals" locator1="Blogs#SEARCH_RESULTS_ENTRY_DESCRIPTION" value1="${entryContent}" />
-	</command>
-
 	<command name="selectFormattingStyle">
 		<execute function="SelectFieldText" locator1="AlloyEditor#CONTENT_FIELD" />
 
@@ -679,26 +536,6 @@
 		<execute function="AssertTextNotEquals" locator1="BlogsEntry#CONTENT_GENERIC" value1="${entryContent}" />
 	</command>
 
-	<command name="viewAbstractEntryViaAPPG">
-		<var name="key_assetContent" value="${entryContent}" />
-		<var name="key_assetTitle" value="${assetTitle}" />
-
-		<execute function="AssertTextEquals" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${entryTitle}" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="AP#ASSET_ABSTRACT_DESCRIPTION" value1="${entryAbstractDescription}" />
-
-		<if>
-			<isset var="smallImage" />
-			<then>
-				<execute function="AssertElementPresent" locator1="AP#ASSET_ABSTRACT_DESCRIPTION_SMALL_IMAGE" />
-			</then>
-		</if>
-
-		<execute function="AssertClick" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${entryTitle}" />
-
-		<execute function="AssertTextEquals" locator1="APAsset#ASSET_TITLE" value1="${entryTitle}" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="APAsset#ASSET_CONTENT" value1="${entryContent}" />
-	</command>
-
 	<command name="viewAsRelatedAssetPG">
 		<var name="key_assetTitle" value="${assetTitle}" />
 		<var name="key_entryContent" value="${entryContent}" />
@@ -710,69 +547,9 @@
 		<execute function="AssertTextEquals" locator1="AssetRelatedAssets#ASSET_TITLE" value1="${assetTitle}" />
 	</command>
 
-	<command name="viewCategory">
-		<var name="key_categoryName" value="${categoryName}" />
-		<var name="key_vocabularyName" value="${vocabularyName}" />
-
-		<execute function="AssertTextEquals#assertPartialText" locator1="BlogsEntry#VOCABULARY" value1="${vocabularyName}" />
-		<execute function="AssertTextEquals" locator1="BlogsEntry#CATEGORY" value1="${categoryName}" />
-
-		<execute function="AssertClick" locator1="BlogsEntry#CATEGORY" value1="${categoryName}" />
-
-		<execute function="AssertTextEquals" locator1="AssetCategorization#CATEGORIZATION_FILTER_TITLE" value1="Entries with ${vocabularyName} ${categoryName} ." />
-		<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="${entryTitle}" />
-	</command>
-
-	<command name="viewContent">
-		<execute function="AssertTextEquals" locator1="BlogsEntry#CONTENT" value1="${entryContent}" />
-	</command>
-
 	<command name="viewDefaultCP">
 		<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No entries were found." />
 		<execute function="AssertElementNotPresent" locator1="Blogs#ENTRY_TABLE_TITLE" />
-	</command>
-
-	<command name="viewDetailsPG">
-		<if>
-			<isset var="blogEntryURL" />
-			<then>
-				<execute function="AssertLocation" value1="http://localhost:8080/web/guest/blogs/-/${blogEntryURL}" />
-			</then>
-			<else>
-				<execute function="Click" locator1="BlogsEntry#TITLE_LINK" />
-			</else>
-		</if>
-
-		<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="${entryTitle}" />
-		<execute function="AssertTextEquals" locator1="BlogsEntry#CONTENT" value1="${entryContent}" />
-
-		<if>
-			<not>
-				<and>
-					<isset var="entryAuthorFirstName" />
-					<isset var="entryAuthorLastName" />
-				</and>
-			</not>
-			<then>
-				<execute function="AssertTextEquals#assertPartialText" locator1="BlogsEntry#ENTRY_AUTHOR" value1="Test Test" />
-			</then>
-			<else>
-				<if>
-					<isset var="entryAuthorMiddleName" />
-					<then>
-						<execute function="AssertTextEquals" locator1="BlogsEntry#ENTRY_AUTHOR" value1="By ${entryAuthorFirstName} ${entryAuthorMiddleName} ${entryAuthorLastName}" />
-					</then>
-					<else>
-						<execute function="AssertTextEquals" locator1="BlogsEntry#ENTRY_AUTHOR" value1="By ${entryAuthorFirstName} ${entryAuthorLastName}" />
-					</else>
-				</if>
-			</else>
-		</if>
-
-		<execute function="AssertTextEquals" locator1="Ratings#YOUR_RATING_LABEL" value1="Your Rating" />
-		<execute function="AssertTextEquals" locator1="Pagination#PREVIOUS_LINK" value1="Previous" />
-		<execute function="AssertTextEquals" locator1="Pagination#NEXT_LINK" value1="Next" />
-		<execute function="AssertTextEquals#assertTextWaitForInlineCKEditor" locator1="Comments#COMMENT_LABEL" value1="Comment" />
 	</command>
 
 	<command name="viewDisabledSocialBookmarkSites">
@@ -879,20 +656,6 @@
 		<execute function="AssertTextEquals#assertPartialText" locator1="APAsset#ASSET_CONTENT" value1="${entryContent}" />
 	</command>
 
-	<command name="viewEntryWithWorkflow">
-		<execute function="AssertTextEquals" locator1="BlogsEntry#WORKFLOW_STATUS" value1="Pending Approval" />
-		<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="${entryTitle}" />
-
-		<if>
-			<isset var="entrySubtitle" />
-			<then>
-				<execute function="AssertTextEquals" locator1="BlogsEntry#SUBTITLE" value1="${entrySubtitle}" />
-			</then>
-		</if>
-
-		<execute function="AssertTextEquals" locator1="BlogsEntry#CONTENT" value1="${entryContent}" />
-	</command>
-
 	<command name="viewInlineImage">
 		<var name="key_uploadFileName" value="${uploadFileName}" />
 
@@ -907,10 +670,6 @@
 		<var name="key_entryTitle" value="${entryTitle}" />
 
 		<execute function="AssertElementNotPresent" locator1="Blogs#ENTRY_TABLE_TITLE" />
-	</command>
-
-	<command name="viewNoEditPermissions">
-		<execute function="AssertElementNotPresent" locator1="Link#EDIT" />
 	</command>
 
 	<command name="viewNoEntryAsGuestPG">
@@ -1015,49 +774,6 @@
 		<execute function="AssertTextEquals#assertPartialText" locator1="APAsset#ASSET_CONTENT" value1="${entryContent}" />
 	</command>
 
-	<command name="viewRate4StarsPG">
-		<execute function="AssertTextEquals" locator1="Ratings#AVERAGE_LABEL" value1="Average (1 Vote)" />
-
-		<execute function="AssertElementPresent" locator1="Ratings#YOUR_RATING_STAR_1" />
-		<execute function="AssertElementPresent" locator1="Ratings#YOUR_RATING_STAR_2" />
-		<execute function="AssertElementPresent" locator1="Ratings#YOUR_RATING_STAR_3" />
-		<execute function="AssertElementPresent" locator1="Ratings#YOUR_RATING_STAR_4" />
-		<execute function="AssertElementNotPresent" locator1="Ratings#YOUR_RATING_STAR_5" />
-		<execute function="AssertElementPresent" locator1="Ratings#YOUR_RATING_STAR_EMPTY_1" />
-		<execute function="AssertElementNotPresent" locator1="Ratings#YOUR_RATING_STAR_EMPTY_2" />
-
-		<execute function="AssertElementPresent" locator1="Ratings#AVERAGE_STAR_1" />
-		<execute function="AssertElementPresent" locator1="Ratings#AVERAGE_STAR_2" />
-		<execute function="AssertElementPresent" locator1="Ratings#AVERAGE_STAR_3" />
-		<execute function="AssertElementPresent" locator1="Ratings#AVERAGE_STAR_4" />
-		<execute function="AssertElementPresent" locator1="Ratings#AVERAGE_STAR_4" />
-		<execute function="AssertElementNotPresent" locator1="Ratings#AVERAGE_STAR_5" />
-		<execute function="AssertElementPresent" locator1="Ratings#AVERAGE_STAR_EMPTY_1" />
-		<execute function="AssertElementNotPresent" locator1="Ratings#AVERAGE_STAR_EMPTY_2" />
-	</command>
-
-	<command name="viewRate4StarsSpecificEntryPG">
-		<var name="key_entryTitle" value="${entryTitle}" />
-
-		<execute function="AssertTextEquals" locator1="BlogsEntry#SPECIFIC_ENTRY_AVERAGE" value1="Average (1 Vote)" />
-
-		<execute function="AssertElementPresent" locator1="BlogsEntry#SPECIFIC_ENTRY_YOUR_RATING_STAR_1" />
-		<execute function="AssertElementPresent" locator1="BlogsEntry#SPECIFIC_ENTRY_YOUR_RATING_STAR_2" />
-		<execute function="AssertElementPresent" locator1="BlogsEntry#SPECIFIC_ENTRY_YOUR_RATING_STAR_3" />
-		<execute function="AssertElementPresent" locator1="BlogsEntry#SPECIFIC_ENTRY_YOUR_RATING_STAR_4" />
-		<execute function="AssertElementNotPresent" locator1="BlogsEntry#SPECIFIC_ENTRY_YOUR_RATING_STAR_5" />
-		<execute function="AssertElementNotPresent" locator1="BlogsEntry#SPECIFIC_ENTRY_AVERAGE_STAR_EMPTY_1" />
-		<execute function="AssertElementPresent" locator1="BlogsEntry#SPECIFIC_ENTRY_YOUR_RATING_STAR_EMPTY_5" />
-
-		<execute function="AssertElementPresent" locator1="BlogsEntry#SPECIFIC_ENTRY_AVERAGE_STAR_1" />
-		<execute function="AssertElementPresent" locator1="BlogsEntry#SPECIFIC_ENTRY_AVERAGE_STAR_2" />
-		<execute function="AssertElementPresent" locator1="BlogsEntry#SPECIFIC_ENTRY_AVERAGE_STAR_3" />
-		<execute function="AssertElementPresent" locator1="BlogsEntry#SPECIFIC_ENTRY_AVERAGE_STAR_4" />
-		<execute function="AssertElementNotPresent" locator1="BlogsEntry#SPECIFIC_ENTRY_AVERAGE_STAR_5" />
-		<execute function="AssertElementNotPresent" locator1="BlogsEntry#SPECIFIC_ENTRY_AVERAGE_STAR_EMPTY_1" />
-		<execute function="AssertElementPresent" locator1="BlogsEntry#SPECIFIC_ENTRY_AVERAGE_STAR_EMPTY_5" />
-	</command>
-
 	<command name="viewRelatedAssetPG">
 		<var name="key_assetTitle" value="${assetTitle}" />
 		<var name="key_assetType" value="${assetType}" />
@@ -1083,10 +799,6 @@
 
 	<command name="viewStatus">
 		<execute function="AssertTextEquals" locator1="AssetWorkflow#WORKFLOW_STATUS" value1="${entryStatus}" />
-	</command>
-
-	<command name="viewSubtitle">
-		<execute function="AssertTextEquals" locator1="BlogsEntry#SUBTITLE" value1="${entrySubtitle}" />
 	</command>
 
 	<command name="viewTag">
@@ -1216,34 +928,6 @@
 		<var method="MathUtil#sum('${entryViewCount}', '1')" name="entryViewCount" />
 
 		<execute function="AssertTextEquals#assertPartialText" locator1="BlogsEntry#ENTRY_VIEW_COUNT" value1="${entryViewCount} Views" />
-	</command>
-
-	<command name="viewViewPermissionsPG">
-		<var name="key_entryTitle" value="${entryTitle}" />
-		<var method="StringUtil#replace('${roleName}', ' ', '-')" name="key_roleName" />
-		<var method="StringUtil#lowerCase('${key_roleName}')" name="key_roleName" />
-
-		<execute function="AssertClick" locator1="Link#PERMISSIONS" value1="Permissions" />
-
-		<execute macro="IFrame#selectPermissionsFrame" />
-
-		<if>
-			<equals arg1="${viewPermissionValue}" arg2="checked" />
-			<then>
-				<execute function="AssertChecked" locator1="Permissions#CONTENT_PERMISSIONS_VIEW_CHECKBOX" value1="${roleName}" />
-			</then>
-			<elseif>
-				<equals arg1="${viewPermissionValue}" arg2="unchecked" />
-				<then>
-					<execute function="AssertNotChecked" locator1="Permissions#CONTENT_PERMISSIONS_VIEW_CHECKBOX" value1="${roleName}" />
-				</then>
-			</elseif>
-			<else>
-				<execute function="AssertChecked" locator1="Permissions#CONTENT_PERMISSIONS_VIEW_CHECKBOX" value1="${roleName}" />
-			</else>
-		</if>
-
-		<execute function="SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="viewWithAbstractDisplayTemplatePG">

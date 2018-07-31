@@ -36,14 +36,6 @@
 		<execute macro="PortletEntry#save" />
 	</command>
 
-	<command name="dragAndDropContentToRecycleBin">
-		<var name="key_webContentTitle" value="${assetName}" />
-
-		<execute function="AssertTextEquals" locator1="WC#ENTRY_DESCRIPTIVE_TITLE" value1="${assetName}" />
-
-		<execute function="DragAndDrop" locator1="WC#ENTRY_DESCRIPTIVE_TITLE" locator2="RecycleBin#RECYCLE_BIN" value1="${assetName}" />
-	</command>
-
 	<command name="emptyCP">
 		<execute function="Click" locator1="Icon#HEADER_VERTICAL_ELLIPSIS" />
 
@@ -156,37 +148,6 @@
 		<execute macro="PortletEntry#save" />
 	</command>
 
-	<command name="restoreWarningCP">
-		<var name="key_assetName" value="${assetName}" />
-
-		<execute function="AssertTextEquals" locator1="RecycleBin#RECYCLE_BIN_TABLE_NAME" value1="${assetName}" />
-		<execute function="AssertTextEquals" locator1="RecycleBin#RECYCLE_BIN_TABLE_TYPE" value1="${assetType}" />
-
-		<execute function="Click" locator1="RecycleBin#RECYCLE_BIN_TABLE_ACTIONS" />
-
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Restore">
-			<var name="key_menuItem" value="Restore" />
-		</execute>
-
-		<execute function="AssertTextEquals" locator1="Message#ERROR" value1="An entry with name ${assetName} already exists." />
-
-		<execute function="Click" locator1="RecycleBin#RECYCLE_BIN_WARNING_KEEP_AND_RENAME_RADIO" />
-
-		<execute function="Type" locator1="RecycleBin#RECYCLE_BIN_WARNING_KEEP_AND_RENAME_FIELD" value1="${newAssetName}" />
-
-		<execute macro="Button#clickSave" />
-
-		<var name="key_assetType" value="${newAssetName}" />
-
-		<execute function="AssertTextEquals#assertPartialText" locator1="Message#SUCCESS_CONTENT" value1="${newAssetName}" />
-
-		<var name="key_assetRestoreLocation" value="${assetRestoreLocation}" />
-
-		<execute function="AssertTextEquals#assertPartialText" locator1="Message#SUCCESS_RESTORE_LOCATION" value1="${assetRestoreLocation}" />
-		<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="The Recycle Bin is empty." />
-		<execute function="AssertElementNotPresent" locator1="RecycleBin#RECYCLE_BIN_TABLE_NAME" />
-	</command>
-
 	<command name="searchCP">
 		<execute function="Type" locator1="NavBar#BASIC_SEARCH_FIELD" value1="${assetName}" />
 
@@ -255,15 +216,5 @@
 		<execute function="AssertElementPresent" locator1="MenuItem#ANY_MENU_ITEM">
 			<var name="key_menuItem" value="Delete" />
 		</execute>
-	</command>
-
-	<command name="viewRecycleBinMaxAge">
-		<execute function="AssertTextEquals#assertPartialText" locator1="Message#INFO" value1="Entries that have been in the Recycle Bin for more than ${maxAgeField} minute are automatically deleted." />
-	</command>
-
-	<command name="viewRecyclebinViaSiteSettingsCP">
-		<execute function="AssertClick" locator1="SitesEditSite#MENU_BASIC_INFORMATION_RECYCLE_BIN" value1="Recycle Bin" />
-
-		<execute function="AssertTextEquals#assertValue" locator1="TextInput#TRASH_ENTRIES_MAX_AGE" value1="${maxAgeField}" />
 	</command>
 </definition>

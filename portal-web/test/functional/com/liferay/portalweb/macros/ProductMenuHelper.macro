@@ -41,17 +41,6 @@
 		<execute function="AssertElementPresent" locator1="ProductMenu#CATEGORY_EXPANDED" />
 	</command>
 
-	<command name="expandPagePagination">
-		<while>
-			<condition function="IsElementPresent" locator1="SitePages#PAGE_TREE_LOAD_MORE_RESULTS_LINK" />
-			<then>
-				<execute function="AssertClick" locator1="SitePages#PAGE_TREE_LOAD_MORE_RESULTS_LINK" value1="Load more results" />
-			</then>
-		</while>
-
-		<execute function="AssertTextNotPresent" locator1="SitePages#PAGE_TREE_LOAD_MORE_RESULTS_LINK" value1="Load more results" />
-	</command>
-
 	<command name="expandPageTree">
 		<while>
 			<and>
@@ -97,12 +86,6 @@
 		<execute macro-mobile="MobileNavigator#clickRemoveIcon" />
 	</command>
 
-	<command name="gotoTab">
-		<var name="key_tab" value="${tab}" />
-
-		<execute function="Click" locator1="ProductMenu#TAB" />
-	</command>
-
 	<command name="openProductMenu">
 		<if>
 			<condition function="IsElementNotPresent" locator1="ProductMenu#PRODUCT_MENU_OPENED" />
@@ -131,11 +114,5 @@
 		<var name="key_site" value="${site}" />
 
 		<execute function="AssertElementNotPresent" locator1="ProductMenu#SITE" />
-	</command>
-
-	<command name="viewSite">
-		<var name="key_site" value="${site}" />
-
-		<execute function="AssertTextEquals" locator1="ProductMenu#SITE" value1="${site}" />
 	</command>
 </definition>

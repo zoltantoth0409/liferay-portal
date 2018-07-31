@@ -656,16 +656,6 @@
 		<execute function="AssertElementPresent" locator1="Message#SUCCESS" />
 	</command>
 
-	<command name="orderByCompletionDate">
-		<execute function="Pause" locator1="1000" />
-
-		<execute function="Click" locator1="Dropdown#FILTER_ORDER" />
-
-		<var name="key_filterValue" value="Completion Date" />
-
-		<execute function="AssertClick" locator1="Dropdown#FILTER_ORDER_VALUES" value1="Completion Date" />
-	</command>
-
 	<command name="saveExportTemplateCP">
 		<execute macro="Button#clickSave" />
 

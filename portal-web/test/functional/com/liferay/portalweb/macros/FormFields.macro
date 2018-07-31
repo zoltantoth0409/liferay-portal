@@ -1,10 +1,6 @@
 <definition>
 	<var name="rowNumber" value="1" />
 
-	<command name="addOptionsRow">
-		<execute function="Click" locator1="FormFields#OPTIONS_ADD_ROW_BUTTON" />
-	</command>
-
 	<command name="addRepeatableField">
 		<execute function="Click" locator1="FormFields#FIELD_ADD_SPECIFIC">
 			<var name="key_fieldName" value="${fieldName}" />
@@ -136,10 +132,6 @@
 		<execute function="Click" locator1="FormFields#SWITCHER">
 			<var name="key_fieldName" value="${fieldName}" />
 		</execute>
-	</command>
-
-	<command name="removeRepeatableField">
-		<execute function="Click" locator1="FormFields#FIELD_REMOVE" />
 	</command>
 
 	<command name="save">
@@ -276,13 +268,6 @@
 		<execute function="AssertTextEquals" locator1="FormFields#TEXT_MULTILINE_FIELD" value1="${fieldValue}">
 			<var name="key_fieldName" value="${fieldName}" />
 			<var name="key_fieldValue" value="${fieldValue}" />
-		</execute>
-	</command>
-
-	<command name="viewOptionsLabel">
-		<execute function="AssertTextEquals#assertText" locator1="FormFields#OPTIONS_LABEL" value1="${fieldLabel}">
-			<var name="key_fieldLabel" value="${fieldLabel}" />
-			<var name="key_fieldName" value="${fieldName}" />
 		</execute>
 	</command>
 
@@ -432,30 +417,6 @@
 	<command name="viewTextLabel">
 		<execute function="AssertTextEquals#assertText" locator1="FormFields#TEXT_LABEL" value1="${fieldLabel}">
 			<var name="key_fieldLabel" value="${fieldLabel}" />
-			<var name="key_fieldName" value="${fieldName}" />
-		</execute>
-	</command>
-
-	<command name="viewTextMultilineField">
-		<execute macro="FormFields#viewTextMultilineLabel">
-			<var name="fieldLabel" value="${fieldLabel}" />
-			<var name="fieldName" value="${fieldName}" />
-		</execute>
-
-		<execute function="AssertElementPresent#assertVisible" locator1="FormFields#TEXT_MULTILINE_FIELD">
-			<var name="key_fieldName" value="${fieldName}" />
-		</execute>
-	</command>
-
-	<command name="viewTextMultilineLabel">
-		<execute function="AssertTextEquals#assertText" locator1="FormFields#TEXT_MULTILINE_LABEL" value1="${fieldLabel}">
-			<var name="key_fieldLabel" value="${fieldLabel}" />
-			<var name="key_fieldName" value="${fieldName}" />
-		</execute>
-	</command>
-
-	<command name="viewTextMultilineValue">
-		<execute function="AssertTextEquals" locator1="FormFields#TEXT_MULTILINE_FIELD" value1="${fieldValue}">
 			<var name="key_fieldName" value="${fieldName}" />
 		</execute>
 	</command>

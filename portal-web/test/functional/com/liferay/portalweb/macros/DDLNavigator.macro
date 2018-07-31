@@ -2,12 +2,6 @@
 	<var name="ddlDataDefinitionName" value="Data Definition Name" />
 	<var name="ddlListName" value="List Name" />
 
-	<command name="gotoAddDisplayTemplate">
-		<execute macro="LexiconEntry#gotoAddMenuItem">
-			<var name="menuItem" value="Add Display Template" />
-		</execute>
-	</command>
-
 	<command name="gotoAddListRecord">
 		<execute macro="LexiconEntry#gotoAdd" />
 

@@ -275,20 +275,6 @@
 		<execute macro="PortletEntry#save" />
 	</command>
 
-	<command name="addPageTypePanelPG">
-		<var name="key_componentName" value="${componentName}" />
-
-		<execute function="Click" locator1="SitePagesEditPage#PAGE_TYPE_PANEL_COMPONENT_TREE_ARROW" />
-
-		<for list="${portletNameList}" param="portletName">
-			<var name="key_componentOrPortletName" value="${portletName}" />
-
-			<execute function="Click" locator1="SitePagesEditPage#PAGE_TYPE_PANEL_CHECKBOX" />
-
-			<execute function="AssertChecked#assertCheckedNotVisible" locator1="SitePagesEditPage#PAGE_TYPE_PANEL_CHECKBOX_INPUT" />
-		</for>
-	</command>
-
 	<command name="assertCannotDeleteOnlyPage">
 		<var name="key_page" value="${pageName}" />
 
@@ -361,12 +347,6 @@
 		<execute macro="Alert#viewSuccessMessage" />
 	</command>
 
-	<command name="deleteLivePG">
-		<execute function="ClickNoError" locator1="ControlMenu#EDIT_LIVE_DELETE" />
-
-		<execute function="Confirm#waitForConfirmation" value1="Are you sure you want to delete the selected page?" />
-	</command>
-
 	<command name="deleteLogoPG">
 		<execute macro="SitePageNavigator#gotoEditPage">
 			<var name="page" value="${page}" />
@@ -417,16 +397,6 @@
 
 	<command name="disableMobileDeviceRulesAreInheritedFromPublicPages">
 		<execute function="Uncheck#uncheckHiddenToggleSwitch" locator1="ToggleSwitch#INHERIT_MOBILE_DEVICE_RULES_FROM_PAGE" />
-	</command>
-
-	<command name="disallowEditViaSiteAdminEditCP">
-		<var name="key_page" value="${pageName}" />
-
-		<execute function="AssertClick" locator1="SitePages#PAGE_TREE_PAGE_SPECIFIC_PAGE" value1="${pageName}" />
-
-		<execute function="Uncheck" locator1="Checkbox#ALLOW_SITE_ADMIN_MODIFY_PAGES" />
-
-		<execute macro="Button#clickSave" />
 	</command>
 
 	<command name="editName">
@@ -542,16 +512,6 @@
 		<execute function="AssertVisible" locator1="Home#PAGE_CHILD_PAGE" />
 
 		<execute function="Click" locator1="Home#PAGE_CHILD_PAGE" />
-	</command>
-
-	<command name="gotoEditTemplatePages">
-		<var name="key_siteTemplateName" value="${siteTemplateName}" />
-
-		<execute function="Click" locator1="SiteTemplates#SITE_TEMPLATE_TABLE_ACTIONS" />
-
-		<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM">
-			<var name="key_menuItem" value="Manage" />
-		</execute>
 	</command>
 
 	<command name="gotoMyAccount">
@@ -973,15 +933,6 @@
 		</execute>
 	</command>
 
-	<command name="viewOnlyAddOptionViaSiteAdmin">
-		<execute function="Click" locator1="ControlMenu#ADD" />
-
-		<execute function="AssertElementNotPresent" locator1="ControlMenuAddPanel#CONTENT_ACCORDION_PANEL_TITLE" />
-		<execute function="AssertElementNotPresent" locator1="ControlMenuAddPanel#APPLICATIONS_ACCORDION_PANEL_TITLE" />
-
-		<execute function="Refresh" />
-	</command>
-
 	<command name="viewPageFriendlyURLPG">
 		<if>
 			<isset var="friendlyUrlLocalized" />
@@ -1053,10 +1004,6 @@
 		<execute function="AssertTextEquals" locator1="TextArea#SEO_META_TAGS_KEYWORDS" value1="${metaTagsKeywords}" />
 	</command>
 
-	<command name="viewPageNoLockCheck">
-		<execute function="AssertElementNotPresent" locator1="Message#CUSTOMIZED_PAGE_INFO" />
-	</command>
-
 	<command name="viewPageOrderStagingLivePG">
 		<execute function="AssertTextEquals" locator1="Home#PAGE_1_STAGING_LIVE" value1="${pageName1}" />
 		<execute function="AssertTextEquals" locator1="Home#PAGE_2_STAGING_LIVE" value1="${pageName2}" />
@@ -1097,17 +1044,6 @@
 
 		<execute function="AssertTextEquals" locator1="Message#ERROR_3" value1="Some page settings are unavailable because Inherit Changes is enabled. To change these settings, disable Inherit Changes under the General section." />
 		<execute function="AssertChecked#assertCheckedNotVisible" locator1="SitePagesEditPage#PAGE_TYPE_TEMPLATE_AUTOMATICALLY_APPLY_CHANGES_CHECKBOX_GENERIC" />
-	</command>
-
-	<command name="viewPageTemplateLockCheck">
-		<execute function="Click" locator1="ControlMenu#INFO" />
-
-		<execute function="AssertTextEquals#assertPartialText" locator1="Message#CUSTOMIZED_PAGE_INFO" value1="This page is linked to a page template. Disable the automatic propagation of changes to this page to be able to make modifications." />
-	</command>
-
-	<command name="viewPageTemplateNoLockCheck">
-		<execute function="AssertElementNotPresent" locator1="ControlMenu#INFO" />
-		<execute function="AssertElementNotPresent" locator1="Message#CUSTOMIZED_PAGE_INFO" />
 	</command>
 
 	<command name="viewPageTemplateTypeNotPresent">
@@ -1186,18 +1122,6 @@
 		</execute>
 
 		<execute function="AssertTextEquals" locator1="Home#SITE_NAME" value1="${siteName}" />
-	</command>
-
-	<command name="viewSiteTemplatePages">
-		<var name="key_siteName" value="${siteName}" />
-
-		<execute function="AssertTextEquals" locator1="SitePages#SITE_NAME" value1="${siteName}" />
-
-		<execute function="Click" locator1="SitePages#PAGE_TREE_ROOT_LINK" />
-
-		<execute function="Click" locator1="SitePages#TOOLBAR_VIEW_PAGES" />
-
-		<execute function="Pause" locator1="5000" />
 	</command>
 
 	<command name="viewSpecificPG">
