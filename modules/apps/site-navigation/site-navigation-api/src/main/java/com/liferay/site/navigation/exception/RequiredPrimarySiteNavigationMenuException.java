@@ -22,7 +22,8 @@ import com.liferay.portal.kernel.exception.PortalException;
  * @author Brian Wing Shun Chan
  */
 @ProviderType
-public class RequiredPrimarySiteNavigationMenuException extends PortalException {
+public class RequiredPrimarySiteNavigationMenuException
+	extends PortalException {
 
 	public RequiredPrimarySiteNavigationMenuException() {
 	}
@@ -31,7 +32,9 @@ public class RequiredPrimarySiteNavigationMenuException extends PortalException 
 		super(msg);
 	}
 
-	public RequiredPrimarySiteNavigationMenuException(String msg, Throwable cause) {
+	public RequiredPrimarySiteNavigationMenuException(
+		String msg, Throwable cause) {
+
 		super(msg, cause);
 	}
 

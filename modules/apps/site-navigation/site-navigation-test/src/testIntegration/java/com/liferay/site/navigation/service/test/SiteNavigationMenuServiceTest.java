@@ -60,18 +60,6 @@ public class SiteNavigationMenuServiceTest {
 	}
 
 	@Test(expected = RequiredPrimarySiteNavigationMenuException.class)
-	public void testUpdateSiteNavigationMenu() throws Exception {
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(
-				_group.getGroupId(), TestPropsValues.getUserId());
-
-		SiteNavigationMenuLocalServiceUtil.updateSiteNavigationMenu(
-			TestPropsValues.getUserId(),
-			_siteNavigationMenu.getSiteNavigationMenuId(),
-			SiteNavigationConstants.TYPE_SECONDARY, false, serviceContext);
-	}
-
-	@Test(expected = RequiredPrimarySiteNavigationMenuException.class)
 	public void testDeleteSiteNavigationMenu() throws Exception {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(
@@ -83,6 +71,18 @@ public class SiteNavigationMenuServiceTest {
 
 		SiteNavigationMenuLocalServiceUtil.deleteSiteNavigationMenu(
 			_siteNavigationMenu);
+	}
+
+	@Test(expected = RequiredPrimarySiteNavigationMenuException.class)
+	public void testUpdateSiteNavigationMenu() throws Exception {
+		ServiceContext serviceContext =
+			ServiceContextTestUtil.getServiceContext(
+				_group.getGroupId(), TestPropsValues.getUserId());
+
+		SiteNavigationMenuLocalServiceUtil.updateSiteNavigationMenu(
+			TestPropsValues.getUserId(),
+			_siteNavigationMenu.getSiteNavigationMenuId(),
+			SiteNavigationConstants.TYPE_SECONDARY, false, serviceContext);
 	}
 
 	@DeleteAfterTestRun
