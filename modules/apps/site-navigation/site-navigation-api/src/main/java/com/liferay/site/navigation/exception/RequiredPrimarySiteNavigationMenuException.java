@@ -22,20 +22,20 @@ import com.liferay.portal.kernel.exception.PortalException;
  * @author Brian Wing Shun Chan
  */
 @ProviderType
-public class RequiredPrimaryNavigationException extends PortalException {
+public class RequiredPrimarySiteNavigationMenuException extends PortalException {
 
-	public RequiredPrimaryNavigationException() {
+	public RequiredPrimarySiteNavigationMenuException() {
 	}
 
-	public RequiredPrimaryNavigationException(String msg) {
+	public RequiredPrimarySiteNavigationMenuException(String msg) {
 		super(msg);
 	}
 
-	public RequiredPrimaryNavigationException(String msg, Throwable cause) {
+	public RequiredPrimarySiteNavigationMenuException(String msg, Throwable cause) {
 		super(msg, cause);
 	}
 
-	public RequiredPrimaryNavigationException(Throwable cause) {
+	public RequiredPrimarySiteNavigationMenuException(Throwable cause) {
 		super(cause);
 	}
 

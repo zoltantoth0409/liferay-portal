@@ -29,7 +29,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.spring.extender.service.ServiceReference;
 import com.liferay.site.navigation.constants.SiteNavigationConstants;
 import com.liferay.site.navigation.exception.DuplicateSiteNavigationMenuException;
-import com.liferay.site.navigation.exception.RequiredPrimaryNavigationException;
+import com.liferay.site.navigation.exception.RequiredPrimarySiteNavigationMenuException;
 import com.liferay.site.navigation.exception.SiteNavigationMenuNameException;
 import com.liferay.site.navigation.menu.item.layout.constants.SiteNavigationMenuItemTypeConstants;
 import com.liferay.site.navigation.model.SiteNavigationMenu;
@@ -191,7 +191,7 @@ public class SiteNavigationMenuLocalServiceImpl
 			(primarySiteNavigationMenu.getSiteNavigationMenuId() ==
 				siteNavigationMenu.getSiteNavigationMenuId())) {
 
-			throw new RequiredPrimaryNavigationException();
+			throw new RequiredPrimarySiteNavigationMenuException();
 		}
 
 		// Site navigation menu
@@ -423,7 +423,7 @@ public class SiteNavigationMenuLocalServiceImpl
 				siteNavigationMenu.getSiteNavigationMenuId()) &&
 			(type != SiteNavigationConstants.TYPE_PRIMARY)) {
 
-			throw new RequiredPrimaryNavigationException();
+			throw new RequiredPrimarySiteNavigationMenuException();
 		}
 
 		if (type == SiteNavigationConstants.TYPE_DEFAULT) {
