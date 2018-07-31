@@ -24,7 +24,7 @@ import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.site.navigation.constants.SiteNavigationConstants;
-import com.liferay.site.navigation.exception.RequiredPrimaryNavigationException;
+import com.liferay.site.navigation.exception.RequiredPrimarySiteNavigationMenuException;
 import com.liferay.site.navigation.model.SiteNavigationMenu;
 import com.liferay.site.navigation.service.SiteNavigationMenuLocalServiceUtil;
 
@@ -59,8 +59,8 @@ public class SiteNavigationMenuServiceTest {
 				serviceContext);
 	}
 
-	@Test(expected = RequiredPrimaryNavigationException.class)
-	public void testChangePrimaryNavigationMenuFunction() throws Exception {
+	@Test(expected = RequiredPrimarySiteNavigationMenuException.class)
+	public void testUpdateSiteNavigationMenu() throws Exception {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(
 				_group.getGroupId(), TestPropsValues.getUserId());
@@ -71,8 +71,8 @@ public class SiteNavigationMenuServiceTest {
 			SiteNavigationConstants.TYPE_SECONDARY, false, serviceContext);
 	}
 
-	@Test(expected = RequiredPrimaryNavigationException.class)
-	public void testDeletePrimaryNavigationMenu() throws Exception {
+	@Test(expected = RequiredPrimarySiteNavigationMenuException.class)
+	public void testDeleteSiteNavigationMenu() throws Exception {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(
 				_group.getGroupId(), TestPropsValues.getUserId());
