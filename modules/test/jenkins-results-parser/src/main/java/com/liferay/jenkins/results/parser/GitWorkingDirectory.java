@@ -438,7 +438,7 @@ public class GitWorkingDirectory {
 		RemoteGitBranch remoteGitBranch) {
 
 		if (remoteGitBranch == null) {
-			throw new IllegalArgumentException("Remote git branch is null");
+			throw new IllegalArgumentException("Remote Git branch is null");
 		}
 
 		String remoteGitBranchSHA = remoteGitBranch.getSHA();
@@ -561,7 +561,7 @@ public class GitWorkingDirectory {
 
 	public void fetch(String remoteURL, boolean noTags) {
 		if (remoteURL == null) {
-			throw new IllegalArgumentException("Remote url is null");
+			throw new IllegalArgumentException("Remote URL is null");
 		}
 
 		Matcher remoteURLMatcher = _remoteURLPattern.matcher(remoteURL);
@@ -1188,7 +1188,7 @@ public class GitWorkingDirectory {
 		}
 
 		if (remoteURL == null) {
-			throw new IllegalArgumentException("Remote url is null");
+			throw new IllegalArgumentException("Remote URL is null");
 		}
 
 		Matcher remoteURLMatcher = _remoteURLPattern.matcher(remoteURL);
@@ -1418,11 +1418,11 @@ public class GitWorkingDirectory {
 		String remoteGitBranchName, String remoteURL) {
 
 		if (localGitBranch == null) {
-			throw new IllegalArgumentException("Local git branch is null");
+			throw new IllegalArgumentException("Local Git branch is null");
 		}
 
 		if (remoteURL == null) {
-			throw new IllegalArgumentException("Remote url is null");
+			throw new IllegalArgumentException("Remote URL is null");
 		}
 
 		Matcher remoteURLMatcher = _remoteURLPattern.matcher(remoteURL);
