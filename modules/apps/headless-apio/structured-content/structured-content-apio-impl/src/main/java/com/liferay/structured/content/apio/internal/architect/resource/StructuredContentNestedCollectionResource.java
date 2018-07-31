@@ -350,11 +350,9 @@ public class StructuredContentNestedCollectionResource
 	private String _getLayoutLink(JSONObject jsonObject)
 		throws PortalException {
 
-		Long layoutId = Long.valueOf(jsonObject.getString("layoutId"));
-
-		Long groupId = Long.valueOf(jsonObject.getString("groupId"));
-
+		long groupId = jsonObject.getLong("groupId");
 		boolean privateLayout = jsonObject.getBoolean("privateLayout");
+		long layoutId = jsonObject.getLong("layoutId");
 
 		Layout layoutByUuidAndGroupId = _layoutLocalService.getLayout(
 			groupId, privateLayout, layoutId);
