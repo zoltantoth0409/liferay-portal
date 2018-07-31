@@ -132,7 +132,6 @@ public class AnnotationsExtendedAttributeDefinition
 					"description-arguments",
 					StringUtil.merge(
 						extendedAttributeDefinition.descriptionArguments()));
-
 				map.put(
 					"name-arguments",
 					StringUtil.merge(
