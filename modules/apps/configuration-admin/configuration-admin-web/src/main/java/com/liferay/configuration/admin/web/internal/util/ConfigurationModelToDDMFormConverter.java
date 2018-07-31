@@ -265,13 +265,13 @@ public class ConfigurationModelToDDMFormConverter {
 	protected void setDDMFormFieldLabel(
 		AttributeDefinition attributeDefinition, DDMFormField ddmFormField) {
 
+		LocalizedValue label = new LocalizedValue(_locale);
+
 		Map<String, String> extensionAttributes = _getExtensionAttributes(
 			attributeDefinition);
 
 		List<String> nameArguments = StringUtil.split(
 			extensionAttributes.get("name-arguments"));
-
-		LocalizedValue label = new LocalizedValue(_locale);
 
 		label.addString(
 			_locale, translate(attributeDefinition.getName(), nameArguments));
@@ -331,13 +331,13 @@ public class ConfigurationModelToDDMFormConverter {
 	protected void setDDMFormFieldTip(
 		AttributeDefinition attributeDefinition, DDMFormField ddmFormField) {
 
+		LocalizedValue tip = new LocalizedValue(_locale);
+
 		Map<String, String> extensionAttributes = _getExtensionAttributes(
 			attributeDefinition);
 
 		List<String> descriptionArguments = StringUtil.split(
 			extensionAttributes.get("description-arguments"));
-
-		LocalizedValue tip = new LocalizedValue(_locale);
 
 		tip.addString(
 			_locale,
@@ -356,7 +356,7 @@ public class ConfigurationModelToDDMFormConverter {
 			return key;
 		}
 
-		String value;
+		String value = null;
 
 		if (ListUtil.isEmpty(arguments)) {
 			value = LanguageUtil.get(_resourceBundle, key);
