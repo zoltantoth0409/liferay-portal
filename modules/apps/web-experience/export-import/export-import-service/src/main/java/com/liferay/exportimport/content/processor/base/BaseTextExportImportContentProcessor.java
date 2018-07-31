@@ -761,10 +761,11 @@ public class BaseTextExportImportContentProcessor
 
 			String url = content.substring(beginPos + offset, endPos);
 
-			endPos = url.indexOf(Portal.FRIENDLY_URL_SEPARATOR);
+			int pos = url.indexOf(Portal.FRIENDLY_URL_SEPARATOR);
 
-			if (endPos != -1) {
-				url = url.substring(0, endPos);
+			if (pos != -1) {
+				url = url.substring(0, pos);
+				endPos = beginPos + offset + pos;
 			}
 
 			if (url.endsWith(StringPool.SLASH)) {
@@ -797,7 +798,7 @@ public class BaseTextExportImportContentProcessor
 					continue;
 				}
 
-				int pos = url.indexOf(StringPool.SLASH, 1);
+				pos = url.indexOf(StringPool.SLASH, 1);
 
 				String localePath = StringPool.BLANK;
 
