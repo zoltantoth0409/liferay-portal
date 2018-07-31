@@ -1244,24 +1244,26 @@ public class PortletURLImpl
 		else {
 			mutableRenderParameterMap = new LinkedHashMap<>();
 
-			LiferayRenderParameters renderParameters =
+			LiferayRenderParameters liferayRenderParameters =
 				(LiferayRenderParameters)_portletRequest.getRenderParameters();
 
 			publicRenderParameterNames =
-				renderParameters.getPublicRenderParameterNames();
+				liferayRenderParameters.getPublicRenderParameterNames();
 
 			if (MimeResponse.Copy.ALL.equals(_copy) ||
 				MimeResponse.Copy.PUBLIC.equals(_copy)) {
 
-				Set<String> renderParameterNames = renderParameters.getNames();
+				Set<String> renderParameterNames =
+					liferayRenderParameters.getNames();
 
 				for (String renderParameterName : renderParameterNames) {
 					if (MimeResponse.Copy.ALL.equals(_copy) ||
-						renderParameters.isPublic(renderParameterName)) {
+						liferayRenderParameters.isPublic(renderParameterName)) {
 
 						mutableRenderParameterMap.put(
 							renderParameterName,
-							renderParameters.getValues(renderParameterName));
+							liferayRenderParameters.getValues(
+								renderParameterName));
 					}
 				}
 			}
