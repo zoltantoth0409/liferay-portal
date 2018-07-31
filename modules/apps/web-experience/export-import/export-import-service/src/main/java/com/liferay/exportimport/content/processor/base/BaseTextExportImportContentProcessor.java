@@ -761,6 +761,12 @@ public class BaseTextExportImportContentProcessor
 
 			String url = content.substring(beginPos + offset, endPos);
 
+			endPos = url.indexOf(Portal.FRIENDLY_URL_SEPARATOR);
+
+			if (endPos != -1) {
+				url = url.substring(0, endPos);
+			}
+
 			if (url.endsWith(StringPool.SLASH)) {
 				url = url.substring(0, url.length() - 1);
 			}
