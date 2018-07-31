@@ -66,12 +66,10 @@ public class ConfigurationModelToDDMFormConverterTest extends Mockito {
 			extendedObjectClassDefinition,
 			new ExtendedAttributeDefinition[] {extendedAttributeDefinition},
 			ExtendedObjectClassDefinition.ALL);
-
 		whenGetAttributeDefinitions(
 			extendedObjectClassDefinition,
 			new ExtendedAttributeDefinition[] {extendedAttributeDefinition},
 			ExtendedObjectClassDefinition.REQUIRED);
-
 		whenGetCardinality(extendedAttributeDefinition, 0);
 		whenGetID(extendedAttributeDefinition, "Boolean");
 		whenGetType(
