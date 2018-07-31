@@ -1264,9 +1264,9 @@ public class BaseTextExportImportContentProcessor
 					groupId, className, classPK);
 			}
 
-			String exportedReference =
-				Portal.FRIENDLY_URL_SEPARATOR + "[$journalfeed-reference=" +
-					path + "$]";
+			String exportedReference = StringBundler.concat(
+				Portal.FRIENDLY_URL_SEPARATOR, "[$journalfeed-reference=", path,
+				"$]");
 
 			if (!content.contains(exportedReference)) {
 				continue;
