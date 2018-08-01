@@ -27,6 +27,10 @@
 			<var name="portlet" value="System Settings" />
 		</execute>
 
+		<execute macro="SystemSettings#gotoCategory">
+			<var name="category" value="Collaboration" />
+		</execute>
+
 		<execute macro="SystemSettings#viewConfiguration">
 			<var name="configurationName" value="Sharepoint OAuth2" />
 		</execute>
