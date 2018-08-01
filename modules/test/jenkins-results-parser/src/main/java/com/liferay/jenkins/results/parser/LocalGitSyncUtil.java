@@ -509,7 +509,7 @@ public class LocalGitSyncUtil {
 		final List<GitWorkingDirectory.Remote> remotes) {
 
 		if (localGitBranch == null) {
-			throw new RuntimeException("Local Git Branch is null");
+			throw new RuntimeException("Local Git branch is null");
 		}
 
 		String localGitBranchName = localGitBranch.getName();
