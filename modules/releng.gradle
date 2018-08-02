@@ -108,7 +108,7 @@ cherryPickArtifacts {
 }
 
 cleanReleng {
-	description = "Removes all 'artifact.properties' files pointing to non-existing modules."
+	description = "Removes all 'artifact.properties' files pointing to nonexisting modules."
 
 	doLast {
 		File relengRootDir = file(".releng")
