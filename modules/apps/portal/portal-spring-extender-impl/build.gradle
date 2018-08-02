@@ -37,7 +37,7 @@ dependencies {
 
 	springExtenderApi group: "com.liferay", name: "com.liferay.portal.spring.extender.api", version: "3.0.0"
 
-	testCompile group: "com.liferay.portal", name: "com.liferay.util.java", version: "3.0.0"
+	testCompile group: "com.liferay.portal", name: "com.liferay.util.java", version: "default"
 	testCompile group: "easyconf", name: "easyconf", version: "0.9.5"
 	testCompile group: "javax.servlet", name: "javax.servlet-api", version: "3.0.1"
 	testCompile project(":core:petra:petra-concurrent")
