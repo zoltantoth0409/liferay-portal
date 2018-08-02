@@ -6,7 +6,7 @@ runGradleTest {
 
 		assert dataProject.plugins.hasPlugin("com.liferay.wedeploy.data")
 
-		assert dataProject.tasks.deleteWeData.commandLine == ["we", "delete", "--force", "--project", "foobar", "--remote", "sample", "--service", "data"]
-		assert dataProject.tasks.deployWeData.commandLine == ["we", "deploy", "--project", "foobar", "--remote", "sample"]
+		assert dataProject.tasks.deleteWeDeployData.commandLine == ["we", "delete", "--force", "--project", "foobar", "--remote", "sample", "--service", "data"]
+		assert dataProject.tasks.deployWeDeployData.commandLine == ["we", "deploy", "--project", "foobar", "--remote", "sample"]
 	}
 }

@@ -33,9 +33,11 @@ import org.gradle.api.tasks.Exec;
  */
 public class WeDeployDataPlugin implements Plugin<Project> {
 
-	public static final String DELETE_WE_DATA_TASK_NAME = "deleteWeData";
+	public static final String DELETE_WEDEPLOY_DATA_TASK_NAME =
+		"deleteWeDeployData";
 
-	public static final String DEPLOY_WE_DATA_TASK_NAME = "deployWeData";
+	public static final String DEPLOY_WEDEPLOY_DATA_TASK_NAME =
+		"deployWeDeployData";
 
 	@Override
 	public void apply(Project project) {
@@ -51,18 +53,18 @@ public class WeDeployDataPlugin implements Plugin<Project> {
 
 		String wedeployService = (String)wedeployJsonMap.get("id");
 
-		_addTaskDeleteWeData(
+		_addTaskDeleteWeDeployData(
 			project, wedeployProject, wedeployRemote, wedeployService);
 
-		_addTaskDeployWeData(project, wedeployProject, wedeployRemote);
+		_addTaskDeployWeDeployData(project, wedeployProject, wedeployRemote);
 	}
 
-	private Exec _addTaskDeleteWeData(
+	private Exec _addTaskDeleteWeDeployData(
 		Project project, String wedeployProject, String wedeployRemote,
 		Object wedeployService) {
 
 		Exec exec = GradleUtil.addTask(
-			project, DELETE_WE_DATA_TASK_NAME, Exec.class);
+			project, DELETE_WEDEPLOY_DATA_TASK_NAME, Exec.class);
 
 		exec.args("delete", "--force");
 
@@ -84,11 +86,11 @@ public class WeDeployDataPlugin implements Plugin<Project> {
 		return exec;
 	}
 
-	private Exec _addTaskDeployWeData(
+	private Exec _addTaskDeployWeDeployData(
 		Project project, String wedeployProject, String wedeployRemote) {
 
 		Exec exec = GradleUtil.addTask(
-			project, DEPLOY_WE_DATA_TASK_NAME, Exec.class);
+			project, DEPLOY_WEDEPLOY_DATA_TASK_NAME, Exec.class);
 
 		exec.args("deploy");
 
