@@ -165,8 +165,6 @@ public class InitUtil {
 
 		// XML
 
-		XmlReader.setDefaultEncoding(StringPool.UTF8);
-
 		SecureXMLFactoryProviderUtil secureXMLFactoryProviderUtil =
 			new SecureXMLFactoryProviderUtil();
 
@@ -177,6 +175,8 @@ public class InitUtil {
 			new UnsecureSAXReaderUtil();
 
 		unsecureSAXReaderUtil.setSAXReader(new SAXReaderImpl());
+
+		XmlReader.setDefaultEncoding(StringPool.UTF8);
 
 		if (_PRINT_TIME) {
 			System.out.println(
