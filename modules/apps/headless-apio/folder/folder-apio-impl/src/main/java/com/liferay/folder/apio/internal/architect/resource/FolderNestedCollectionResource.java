@@ -94,6 +94,8 @@ public class FolderNestedCollectionResource
 		).addRelatedCollection(
 			"subFolders", FolderIdentifier.class
 		).addString(
+			"description", Folder::getDescription
+		).addString(
 			"name", Folder::getName
 		).build();
 	}
