@@ -51,21 +51,15 @@ public class DLFileEntryUADTestHelper {
 			false, 0L, RandomTestUtil.randomString(),
 			RandomTestUtil.randomString(), false, serviceContext);
 
-		long repositoryId = dlFolder.getRepositoryId();
-		long folderId = dlFolder.getFolderId();
-		String sourceFileName = RandomTestUtil.randomString();
-		String mimeType = ContentTypes.TEXT_PLAIN;
-		String title = RandomTestUtil.randomString();
-		String description = StringPool.BLANK;
-		String changeLog = StringPool.BLANK;
-
 		byte[] bytes = TestDataConstants.TEST_BYTE_ARRAY;
 
 		InputStream is = new ByteArrayInputStream(bytes);
 
 		FileEntry fileEntry = _dlAppLocalService.addFileEntry(
-			userId, repositoryId, folderId, sourceFileName, mimeType, title,
-			description, changeLog, is, bytes.length, serviceContext);
+			userId, dlFolder.getRepositoryId(), dlFolder.getFolderId(),
+			RandomTestUtil.randomString(), ContentTypes.TEXT_PLAIN,
+			RandomTestUtil.randomString(), StringPool.BLANK, StringPool.BLANK,
+			is, bytes.length, serviceContext);
 
 		return _dlFileEntryLocalService.getFileEntry(
 			fileEntry.getFileEntryId());
