@@ -51,14 +51,15 @@ public class DLFileEntryUADTestHelper {
 			false, 0L, RandomTestUtil.randomString(),
 			RandomTestUtil.randomString(), false, serviceContext);
 
-		byte[] bytes = TestDataConstants.TEST_BYTE_ARRAY;
-		long folderId = dlFolder.getFolderId();
 		long repositoryId = dlFolder.getRepositoryId();
-		String changeLog = StringPool.BLANK;
-		String description = StringPool.BLANK;
-		String mimeType = ContentTypes.TEXT_PLAIN;
+		long folderId = dlFolder.getFolderId();
 		String sourceFileName = RandomTestUtil.randomString();
+		String mimeType = ContentTypes.TEXT_PLAIN;
 		String title = RandomTestUtil.randomString();
+		String description = StringPool.BLANK;
+		String changeLog = StringPool.BLANK;
+
+		byte[] bytes = TestDataConstants.TEST_BYTE_ARRAY;
 
 		InputStream is = new ByteArrayInputStream(bytes);
 
