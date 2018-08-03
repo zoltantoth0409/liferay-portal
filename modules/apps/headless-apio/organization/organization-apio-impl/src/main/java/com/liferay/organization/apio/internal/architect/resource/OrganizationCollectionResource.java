@@ -147,13 +147,13 @@ public class OrganizationCollectionResource
 	private String _formatHour(int integer) {
 		DecimalFormat decimalFormat = new DecimalFormat("00,00");
 
-		decimalFormat.setGroupingSize(2);
-
 		DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols();
 
 		decimalFormatSymbols.setGroupingSeparator(':');
 
 		decimalFormat.setDecimalFormatSymbols(decimalFormatSymbols);
+
+		decimalFormat.setGroupingSize(2);
 
 		return decimalFormat.format(integer);
 	}
