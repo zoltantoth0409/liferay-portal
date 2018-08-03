@@ -16,5 +16,5 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.address.apio.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.email.apio.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.phone.apio.api", version: "1.0.0"
-	compileOnly project(":apps:headless-apio:web-url:web-url-apio-api")
+	compileOnly group: "com.liferay", name: "com.liferay.web.url.apio.api", version: "1.0.0"
 }
