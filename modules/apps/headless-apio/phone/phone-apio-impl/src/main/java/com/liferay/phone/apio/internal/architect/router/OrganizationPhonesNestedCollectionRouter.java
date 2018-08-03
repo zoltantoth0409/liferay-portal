@@ -64,9 +64,7 @@ public class OrganizationPhonesNestedCollectionRouter implements
 		List<Phone> phones = _phoneService.getPhones(
 			organization.getModelClassName(), organization.getOrganizationId());
 
-		int count = phones.size();
-
-		return new PageItems<>(phones, count);
+		return new PageItems<>(phones, phones.size());
 	}
 
 	@Reference
