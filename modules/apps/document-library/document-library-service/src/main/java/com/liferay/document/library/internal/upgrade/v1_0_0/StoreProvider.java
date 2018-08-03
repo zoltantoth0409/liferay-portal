@@ -73,11 +73,11 @@ public class StoreProvider {
 				return null;
 			}
 
+			Store store = _bundleContext.getService(serviceReference);
+
 			Dictionary<String, Object> properties = new HashMapDictionary<>();
 
 			properties.put("dl.store.upgrade", "true");
-
-			Store store = _bundleContext.getService(serviceReference);
 
 			_serviceRegistration = _bundleContext.registerService(
 				Store.class, store, properties);
