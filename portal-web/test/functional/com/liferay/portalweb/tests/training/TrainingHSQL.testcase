@@ -1,5 +1,5 @@
 <definition component-name="portal-training">
-	<property name="liferay.training.dependency.jars" value="src/01-liferay-fundamentals/02-integrating-identity-management/com.liferay.docs.samplecontent-1.0.0.jar" />
+	<property name="liferay.training.dependency.jars" value="02-content-management/exercise-src/01-engaging-users-with-content/com.liferay.training.contentloader.jar" />
 	<property name="portal.release" value="false" />
 	<property name="portal.upstream" value="false" />
 	<property name="setup.wizard.enabled" value="true" />
@@ -8,7 +8,7 @@
 
 	<command name="TrainingDemo1" priority="5">
 		<property name="database.types" value="hypersonic" />
-		<property name="liferay.training.dependency.jars" value="src/01-liferay-fundamentals/02-integrating-identity-management/com.liferay.docs.samplecontent-1.0.0.jar" />
+		<property name="liferay.training.dependency.jars" value="02-content-management/exercise-src/01-engaging-users-with-content/com.liferay.training.contentloader.jar" />
 		<property name="test.name.skip.portal.instance" value="TrainingHSQL#TrainingDemo1" />
 		<property name="testray.component.names" value="Training" />
 
@@ -1829,7 +1829,7 @@
 
 	<command name="TrainingDemo2" priority="5">
 		<property name="database.types" value="hypersonic" />
-		<property name="liferay.training.dependency.jars" value="src/01-liferay-fundamentals/02-integrating-identity-management/com.liferay.docs.samplecontent-1.0.0.jar" />
+		<property name="liferay.training.dependency.jars" value="02-content-management/exercise-src/01-engaging-users-with-content/com.liferay.training.contentloader.jar" />
 		<property name="test.name.skip.portal.instance" value="TrainingHSQL#TrainingDemo2" />
 		<property name="testray.component.names" value="Training" />
 
@@ -2804,7 +2804,7 @@ Brainstorming:
 
 	<command name="TrainingDemo3" priority="5">
 		<property name="database.types" value="hypersonic" />
-		<property name="liferay.training.dependency.jars" value="src/01-liferay-fundamentals/02-integrating-identity-management/com.liferay.docs.samplecontent-1.0.0.jar" />
+		<property name="liferay.training.dependency.jars" value="02-content-management/exercise-src/01-engaging-users-with-content/com.liferay.training.contentloader.jar" />
 		<property name="test.name.skip.portal.instance" value="TrainingHSQL#TrainingDemo3" />
 		<property name="testray.component.names" value="Training" />
 
@@ -4224,7 +4224,7 @@ Lead Text: Attention, incoming students: New Student Orientation begins at 2:00 
 
 	<command name="TrainingDemo4" priority="5">
 		<property name="database.types" value="hypersonic" />
-		<property name="liferay.training.dependency.jars" value="src/01-liferay-fundamentals/02-integrating-identity-management/com.liferay.docs.samplecontent-1.0.0.jar" />
+		<property name="liferay.training.dependency.jars" value="02-content-management/exercise-src/01-engaging-users-with-content/com.liferay.training.contentloader.jar" />
 		<property name="test.name.skip.portal.instance" value="TrainingHSQL#TrainingDemo4" />
 		<property name="testray.component.names" value="Training" />
 
