@@ -64,9 +64,7 @@ public class OrganizationWebUrlsNestedCollectionRouter implements
 		List<Website> websites = _websiteService.getWebsites(
 			organization.getModelClassName(), organization.getOrganizationId());
 
-		int count = websites.size();
-
-		return new PageItems<>(websites, count);
+		return new PageItems<>(websites, websites.size());
 	}
 
 	@Reference
