@@ -64,7 +64,9 @@
 
 						<div class="row">
 							<aui:fieldset cssClass="col-md-6" label="portal">
-								<aui:input helpTextCssClass="help-inline" label="portal-name" name="companyName" suffix='<%= LanguageUtil.format(request, "for-example-x", "Liferay", false) %>' value="<%= PropsValues.COMPANY_DEFAULT_NAME %>" />
+								<aui:input helpTextCssClass="help-inline" label="portal-name" name="companyName" suffix='<%= LanguageUtil.format(request, "for-example-x", "Liferay", false) %>' value="<%= PropsValues.COMPANY_DEFAULT_NAME %>">
+									<aui:validator name="required" />
+								</aui:input>
 
 								<aui:field-wrapper inlineLabel="default-language" label="default-language" name="companyLocale">
 									<aui:select label="" name="companyLocale">
@@ -229,6 +231,7 @@
 						var adminEmailAddress = A.one('#<portlet:namespace />adminEmailAddress');
 						var adminFirstName = A.one('#<portlet:namespace />adminFirstName');
 						var adminLastName = A.one('#<portlet:namespace />adminLastName');
+						var companyName = A.one('#<portlet:namespace />companyName');
 						var customDatabaseOptions = A.one('#customDatabaseOptions');
 						var customDatabaseOptionsLink = A.one('#customDatabaseOptionsLink');
 						var databaseSelector = A.one('#databaseType');
@@ -334,7 +337,7 @@
 						A.one('#fm').on(
 							'submit',
 							function(event) {
-								if ((adminEmailAddress && (adminEmailAddress.val() != '')) && (adminFirstName && (adminFirstName.val() != '')) && (adminLastName && (adminLastName.val() != ''))) {
+								if ((adminEmailAddress && (adminEmailAddress.val() != '')) && (adminFirstName && (adminFirstName.val() != '')) && (adminLastName && (adminLastName.val() != '')) && (companyName && (companyName.val() != ''))) {
 									if (defaultDatabase.val() == 'true') {
 										startInstall();
 
