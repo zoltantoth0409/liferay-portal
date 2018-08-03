@@ -52,7 +52,6 @@ public class TableMapperImpl<L extends BaseModel<L>, R extends BaseModel<R>>
 		BasePersistence<R> rightBasePersistence) {
 
 		_tableName = tableName;
-
 		this.leftColumnName = leftColumnName;
 		this.rightColumnName = rightColumnName;
 		this.leftBasePersistence = leftBasePersistence;
