@@ -4,8 +4,8 @@
 [subrepo]
 	autopull = false
 	cmdver = liferay
-	commit = e13cb5e72f803bda9810bf19b39aee52632e54f6
+	commit = c18dca895c5c68f1f2fadc57b2e9d4b2a5a12b89
 	mergebuttonmergecommits = false
 	mode = push
-	parent = 39333c6c9c857bf88196519327f9a3ff66b3d4dc
+	parent = 640304ad4847ae53015183a0665b1a9aadddfa91
 	remote = git@github.com:liferay/com-liferay-roles.git
