@@ -69,6 +69,14 @@
 
 		<execute macro="DDLDataDefinition#saveViaDDLDisplayPG" />
 
+		<execute function="Refresh" />
+
+		<execute macro="Navigator#gotoPage">
+			<var name="pageName" value="Dynamic Data Lists Display Page" />
+		</execute>
+
+		<execute macro="DDLList#addViaDDLDisplayPG" />
+
 		<execute macro="DDLDataDefinition#selectViaDDLDisplayPG" />
 
 		<execute macro="DDLList#saveViaDDLDisplayPG" />
@@ -442,6 +450,14 @@
 		</execute>
 
 		<execute macro="DDLDataDefinition#saveViaDDLDisplayPG" />
+
+		<execute function="Refresh" />
+
+		<execute macro="Navigator#gotoPage">
+			<var name="pageName" value="Dynamic Data Lists Display Page" />
+		</execute>
+
+		<execute macro="DDLList#addViaDDLDisplayPG" />
 
 		<execute macro="DDLDataDefinition#selectViaDDLDisplayPG" />
 
