@@ -588,7 +588,7 @@
 				<execute function="Click" locator1="DDMEditStructure#FORM_FIELD_1_NO_LABEL" />
 			</then>
 			<else>
-				<execute function="AssertClick" locator1="DDMEditStructure#FORM_FIELD" value1="${fieldFieldLabel}" />
+				<execute function="DoubleClick" locator1="DDMEditStructure#FORM_FIELD" />
 			</else>
 		</if>
 
