@@ -15,6 +15,9 @@ compileJava {
 	dependsOn.remove "generateGrammarSource"
 }
 
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+
 dependencies {
 	antlr group: "org.antlr", name: "antlr", version: "3.0.1"
 
