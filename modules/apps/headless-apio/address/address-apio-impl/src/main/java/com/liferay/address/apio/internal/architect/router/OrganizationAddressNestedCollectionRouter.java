@@ -64,9 +64,7 @@ public class OrganizationAddressNestedCollectionRouter implements
 		List<Address> addresses = _addressService.getAddresses(
 			organization.getModelClassName(), organization.getOrganizationId());
 
-		int count = addresses.size();
-
-		return new PageItems<>(addresses, count);
+		return new PageItems<>(addresses, addresses.size());
 	}
 
 	@Reference
