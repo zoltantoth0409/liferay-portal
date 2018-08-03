@@ -66,9 +66,7 @@ public class OrganizationEmailsNestedCollectionRouter implements
 				organization.getModelClassName(),
 				organization.getOrganizationId());
 
-		int count = emailAddresses.size();
-
-		return new PageItems<>(emailAddresses, count);
+		return new PageItems<>(emailAddresses, emailAddresses.size());
 	}
 
 	@Reference
