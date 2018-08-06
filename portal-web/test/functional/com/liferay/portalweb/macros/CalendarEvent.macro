@@ -984,10 +984,10 @@
 		<execute function="AssertTextEquals" locator1="Calendar#SCHEDULER_EVENT_SPECIFIC" value1="${eventTitleEdit}" />
 	</command>
 
-	<command name="getEventStartDateViaDetails" returns="startDate">
+	<command name="getEventStartDateViaDetails">
 		<var method="selenium#getText(CalendarViewEventDetails#START_DATE_FIELD)" name="startDate" />
 
-		<return name="startDate" value="${startDate}" />
+		<return value="${startDate}" />
 	</command>
 
 	<command name="gotoConfigureInvitations">
