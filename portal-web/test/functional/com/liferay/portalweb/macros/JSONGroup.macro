@@ -3,7 +3,7 @@
 		<if>
 			<isset var="groupDescription" />
 			<then>
-				<execute class="java.net.URLEncoder" method="encode">
+				<execute class="com.liferay.poshi.runner.util.URLUtil" method="encode">
 					<arg value="${groupDescription}" />
 					<arg value="UTF-8" />
 					<return name="groupDescriptionEncoded" />
@@ -19,7 +19,7 @@
 		<if>
 			<isset var="groupName" />
 			<then>
-				<execute class="java.net.URLEncoder" method="encode">
+				<execute class="com.liferay.poshi.runner.util.URLUtil" method="encode">
 					<arg value="${groupName}" />
 					<arg value="UTF-8" />
 					<return name="groupNameEncoded" />

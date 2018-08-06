@@ -3,7 +3,7 @@
 		<if>
 			<isset var="roleDescription" />
 			<then>
-				<execute class="java.net.URLEncoder" method="encode">
+				<execute class="com.liferay.poshi.runner.util.URLUtil" method="encode">
 					<arg value="${roleDescription}" />
 					<arg value="UTF-8" />
 					<return name="roleDescriptionEncoded" />
@@ -19,7 +19,7 @@
 		<if>
 			<isset var="roleName" />
 			<then>
-				<execute class="java.net.URLEncoder" method="encode">
+				<execute class="com.liferay.poshi.runner.util.URLUtil" method="encode">
 					<arg value="${roleName}" />
 					<arg value="UTF-8" />
 					<return name="roleNameEncoded" />
@@ -33,7 +33,7 @@
 		<if>
 			<isset var="roleTitle" />
 			<then>
-				<execute class="java.net.URLEncoder" method="encode">
+				<execute class="com.liferay.poshi.runner.util.URLUtil" method="encode">
 					<arg value="${roleTitle}" />
 					<arg value="UTF-8" />
 					<return name="roleTitleEncoded" />
@@ -257,7 +257,7 @@
 		<if>
 			<isset var="roleName" />
 			<then>
-				<execute class="java.net.URLEncoder" method="encode">
+				<execute class="com.liferay.poshi.runner.util.URLUtil" method="encode">
 					<arg value="${roleName}" />
 					<arg value="UTF-8" />
 					<return name="roleNameEncoded" />

@@ -12,7 +12,7 @@
 		<if>
 			<isset var="userFirstName" />
 			<then>
-				<execute class="java.net.URLEncoder" method="encode">
+				<execute class="com.liferay.poshi.runner.util.URLUtil" method="encode">
 					<arg value="${userFirstName}" />
 					<arg value="UTF-8" />
 					<return name="userFirstNameEncoded" />
@@ -26,7 +26,7 @@
 		<if>
 			<isset var="userLastName" />
 			<then>
-				<execute class="java.net.URLEncoder" method="encode">
+				<execute class="com.liferay.poshi.runner.util.URLUtil" method="encode">
 					<arg value="${userLastName}" />
 					<arg value="UTF-8" />
 					<return name="userLastNameEncoded" />

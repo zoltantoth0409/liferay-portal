@@ -4,7 +4,7 @@
 		<if>
 			<isset var="organizationName" />
 			<then>
-				<execute class="java.net.URLEncoder" method="encode">
+				<execute class="com.liferay.poshi.runner.util.URLUtil" method="encode">
 					<arg value="${organizationName}" />
 					<arg value="UTF-8" />
 					<return name="organizationNameEncoded" />

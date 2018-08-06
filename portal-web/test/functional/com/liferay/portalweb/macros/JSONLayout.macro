@@ -12,7 +12,7 @@
 		<if>
 			<isset var="layoutName" />
 			<then>
-				<execute class="java.net.URLEncoder" method="encode">
+				<execute class="com.liferay.poshi.runner.util.URLUtil" method="encode">
 					<arg value="${layoutName}" />
 					<arg value="UTF-8" />
 					<return name="layoutNameEncoded" />
