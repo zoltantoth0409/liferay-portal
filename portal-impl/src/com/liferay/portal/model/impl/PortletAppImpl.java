@@ -69,8 +69,7 @@ public class PortletAppImpl implements PortletApp {
 	@Override
 	public void addPortletFilter(PortletFilter portletFilter) {
 		_portletFilters.add(portletFilter);
-		_portletFiltersMap.put(
-			portletFilter.getFilterName(), portletFilter);
+		_portletFiltersMap.put(portletFilter.getFilterName(), portletFilter);
 	}
 
 	@Override
@@ -261,8 +260,8 @@ public class PortletAppImpl implements PortletApp {
 	private final Set<Portlet> _portlets = new LinkedHashSet<>();
 	private final Set<PortletURLListener> _portletURLListeners =
 		new LinkedHashSet<>();
-	private final Map<String, PortletURLListener>
-		_portletURLListenersMap = new HashMap<>();
+	private final Map<String, PortletURLListener> _portletURLListenersMap =
+		new HashMap<>();
 	private final Map<String, PublicRenderParameter>
 		_publicRenderParametersMap = new HashMap<>();
 	private ServletContext _servletContext;

@@ -252,8 +252,8 @@ public class BundlePortletApp implements PortletApp {
 	private final PortletApp _portletApp;
 	private final Set<PortletURLListener> _portletURLListeners =
 		new LinkedHashSet<>();
-	private final Map<String, PortletURLListener>
-		_portletURLListenersMap = new HashMap<>();
+	private final Map<String, PortletURLListener> _portletURLListenersMap =
+		new HashMap<>();
 	private final ServiceTracker
 		<ServletContextHelperRegistration, ServletContext> _serviceTracker;
 	private int _specMajorVersion = 2;
