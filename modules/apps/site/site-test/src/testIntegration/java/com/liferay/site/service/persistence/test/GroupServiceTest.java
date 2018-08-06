@@ -214,7 +214,7 @@ public class GroupServiceTest {
 
 		Assert.assertNull(
 			"Deleting the group should also delete layout type portlet " +
-				"preferences that do no belong to a single layout.",
+				"preferences that do no belong to a single layout",
 			_portletPreferencesLocalService.fetchPortletPreferences(
 				portletPreferences.getPortletPreferencesId()));
 	}

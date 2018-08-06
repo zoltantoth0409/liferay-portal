@@ -946,7 +946,6 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 			portletPreferencesLocalService.deletePortletPreferences(
 				group.getGroupId(), PortletKeys.PREFS_OWNER_TYPE_GROUP,
 				PortletKeys.PREFS_PLID_SHARED);
-
 			portletPreferencesLocalService.deletePortletPreferences(
 				group.getGroupId(), PortletKeys.PREFS_OWNER_TYPE_LAYOUT,
 				PortletKeys.PREFS_PLID_SHARED);
