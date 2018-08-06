@@ -990,7 +990,7 @@
 		</execute>
 
 		<execute macro="TestCase#getSiteName">
-			<return from="siteName" name="siteName" />
+			<return name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
@@ -2054,7 +2054,7 @@
 		<property name="test.name.skip.portal.instance" value="ContentTargetingUserSegment#AddUserSegmentUserAttributesSiteRoleCP" />
 
 		<execute macro="TestCase#getSiteName">
-			<return from="siteName" name="siteName" />
+			<return name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 

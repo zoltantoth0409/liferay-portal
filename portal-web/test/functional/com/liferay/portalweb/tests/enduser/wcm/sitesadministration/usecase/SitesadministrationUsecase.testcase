@@ -363,7 +363,7 @@
 
 	<command name="OnlySiteOwnersCanAssignSiteRolesToUserGroups" priority="3">
 		<execute macro="TestCase#getSiteName">
-			<return from="siteName" name="siteName" />
+			<return name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
@@ -556,7 +556,7 @@
 
 	<command name="PrivateVirtualHostUrlDoesNotRedirectUserToLoginPage" priority="4">
 		<execute macro="TestCase#getSiteName">
-			<return from="siteName" name="siteName" />
+			<return name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
@@ -657,7 +657,7 @@
 		<property name="test.name.skip.portal.instance" value="SiteadministrationUsecase#ReturnWrongLayoutForSignedInUserWithVirtualHostsConfigured" />
 
 		<execute macro="TestCase#getSiteName">
-			<return from="siteName" name="siteName" />
+			<return name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 

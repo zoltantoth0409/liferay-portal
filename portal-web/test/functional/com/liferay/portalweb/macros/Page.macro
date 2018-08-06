@@ -177,7 +177,7 @@
 
 	<command name="addChild">
 		<execute macro="TestCase#getSiteName">
-			<return from="siteName" name="siteName" />
+			<return name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
@@ -645,7 +645,7 @@
 
 	<command name="tearDownPG" summary="Delete all pages except the Welcome Page">
 		<execute macro="TestCase#getSiteName">
-			<return from="siteName" name="siteName" />
+			<return name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 

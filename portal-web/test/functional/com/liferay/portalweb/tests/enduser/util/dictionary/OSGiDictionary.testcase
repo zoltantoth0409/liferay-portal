@@ -35,7 +35,7 @@
 
 	<command name="FindDictionaryWord" priority="2">
 		<execute macro="TestCase#getSiteName">
-			<return from="siteName" name="siteName" />
+			<return name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 

@@ -2594,7 +2594,7 @@
 		</execute>
 
 		<execute macro="GogoShell#getModuleID">
-			<return from="moduleID" name="moduleID" />
+			<return name="moduleID" />
 			<var name="moduleName" value="com.liferay.journal.content.web" />
 		</execute>
 
@@ -3487,7 +3487,7 @@
 
 	<command name="WebContentAdministrationPaginatingRelatedAssets" priority="3">
 		<execute macro="TestCase#getSiteName">
-			<return from="siteName" name="siteName" />
+			<return name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 

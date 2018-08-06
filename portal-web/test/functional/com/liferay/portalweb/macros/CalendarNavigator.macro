@@ -19,7 +19,7 @@
 
 	<command name="gotoAddCurrentSiteCalendars">
 		<execute macro="TestCase#getSiteName">
-			<return from="siteName" name="siteName" />
+			<return name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
@@ -98,7 +98,7 @@
 
 	<command name="gotoCurrentSiteCalendarsManage">
 		<execute macro="TestCase#getSiteName">
-			<return from="siteName" name="siteName" />
+			<return name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 

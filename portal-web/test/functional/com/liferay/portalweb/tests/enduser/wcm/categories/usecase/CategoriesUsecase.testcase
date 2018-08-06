@@ -1919,7 +1919,7 @@
 
 	<command name="UseCategoryFromParentSiteViaSiteHierarchy" priority="4">
 		<execute macro="TestCase#getSiteName">
-			<return from="siteName" name="parentSiteName" />
+			<return name="parentSiteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 

@@ -4008,7 +4008,7 @@ Lead Text: Attention, incoming students: New Student Orientation begins at 2:00 
 		</execute>
 
 		<execute macro="TestCase#getFileContent">
-			<return from="fileContent" name="fileContent" />
+			<return name="fileContent" />
 			<var name="fileName" value="advanced-governors-review.xml" />
 		</execute>
 

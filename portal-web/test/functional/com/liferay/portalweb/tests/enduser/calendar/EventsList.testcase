@@ -79,7 +79,7 @@
 
 	<command name="ViewRepeatingEventLinks" priority="4">
 		<execute macro="TestCase#getSiteName">
-			<return from="siteName" name="siteName" />
+			<return name="siteName" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
@@ -111,7 +111,7 @@
 		</execute>
 
 		<execute macro="CalendarEvent#getEventStartDateViaDetails">
-			<return from="startDate" name="startDate" />
+			<return name="startDate" />
 			<var name="startDate" value="${startDate}" />
 		</execute>
 
