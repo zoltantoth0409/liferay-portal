@@ -10,7 +10,7 @@
 	</set-up>
 
 	<tear-down>
-		<var method="TestPropsUtil#get('test.portal.instance')" name="testPortalInstance" />
+		<var method="PropsUtil#get('test.portal.instance')" name="testPortalInstance" />
 
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
@@ -85,7 +85,7 @@
 		<property name="custom.properties" value="locale.prepend.friendly.url.style=0" />
 		<property name="test.name.skip.portal.instance" value="SitelocalizationUsecase#LocalizationStyle0" />
 
-		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
+		<var method="PropsUtil#get('portal.url')" name="portalURL" />
 
 		<execute macro="Page#add">
 			<var name="pageName" value="Language Test Page" />
@@ -130,7 +130,7 @@
 		<property name="custom.properties" value="locale.prepend.friendly.url.style=1" />
 		<property name="test.name.skip.portal.instance" value="SitelocalizationUsecase#LocalizationStyle1" />
 
-		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
+		<var method="PropsUtil#get('portal.url')" name="portalURL" />
 
 		<execute macro="Page#add">
 			<var name="pageName" value="Language Test Page" />
@@ -175,7 +175,7 @@
 		<property name="custom.properties" value="locale.prepend.friendly.url.style=2" />
 		<property name="test.name.skip.portal.instance" value="SitelocalizationUsecase#LocalizationStyle2" />
 
-		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
+		<var method="PropsUtil#get('portal.url')" name="portalURL" />
 
 		<execute macro="Page#add">
 			<var name="pageName" value="Language Test Page" />
@@ -306,7 +306,7 @@
 	<command name="NoLocalePrependedWhenLocaleMatchMyPreferredLocalization" priority="3">
 		<property name="test.name.skip.portal.instance" value="SitelocalizationUsecase#NoLocalePrependedWhenLocaleMatchMyPreferredLocalization" />
 
-		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
+		<var method="PropsUtil#get('portal.url')" name="portalURL" />
 
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Sites" />
@@ -658,7 +658,7 @@
 
 		<property name="test.name.skip.portal.instance" value="SitelocalizationUsecase#RedirectLocalizedFriendlyURL" />
 
-		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
+		<var method="PropsUtil#get('portal.url')" name="portalURL" />
 
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Sites" />
@@ -878,7 +878,7 @@
 	<command name="ViewEditURLLocale" priority="4">
 		<property name="test.name.skip.portal.instance" value="SitelocalizationUsecase#ViewEditURLLocale" />
 
-		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
+		<var method="PropsUtil#get('portal.url')" name="portalURL" />
 
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Configuration" />

@@ -1,7 +1,7 @@
 <definition>
 	<command name="getFileContent">
-		<var method="TestPropsUtil#get('test.base.dir.name')" name="baseDir" />
-		<var method="TestPropsUtil#get('test.dependencies.dir.name')" name="dependenciesDir" />
+		<var method="PropsUtil#get('test.base.dir.name')" name="baseDir" />
+		<var method="PropsUtil#get('test.dependencies.dir.name')" name="dependenciesDir" />
 
 		<execute class="com.liferay.poshi.runner.util.FileUtil" method="read">
 			<arg value="${baseDir}${dependenciesDir}/${fileName}" />
@@ -12,8 +12,8 @@
 	</command>
 
 	<command name="getSiteName">
-		<var method="TestPropsUtil#get('test.name.skip.portal.instance')" name="testNameSkipPortalInstance" />
-		<var method="TestPropsUtil#get('test.portal.instance')" name="testPortalInstance" />
+		<var method="PropsUtil#get('test.name.skip.portal.instance')" name="testNameSkipPortalInstance" />
+		<var method="PropsUtil#get('test.portal.instance')" name="testPortalInstance" />
 
 		<if>
 			<or>
@@ -31,7 +31,7 @@
 						</not>
 					</and>
 					<then>
-						<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
+						<var method="PropsUtil#get('portal.url')" name="portalURL" />
 
 						<var method="StringUtil#replace('${portalURL}', 'http://', '')" name="portalURL" />
 						<var method="StringUtil#replace('${portalURL}', ':8080', '')" name="portalURL" />
@@ -39,7 +39,7 @@
 						<return value="${portalURL}" />
 					</then>
 					<else>
-						<var method="TestPropsUtil#get('test.run.environment')" name="testRunEnvironment" />
+						<var method="PropsUtil#get('test.run.environment')" name="testRunEnvironment" />
 
 						<if>
 							<equals arg1="${testRunEnvironment}" arg2="EE" />
@@ -60,8 +60,8 @@
 	</command>
 
 	<command name="setUpPortalInstance">
-		<var method="TestPropsUtil#get('test.name.skip.portal.instance')" name="testNameSkipPortalInstance" />
-		<var method="TestPropsUtil#get('test.portal.instance')" name="testPortalInstance" />
+		<var method="PropsUtil#get('test.name.skip.portal.instance')" name="testNameSkipPortalInstance" />
+		<var method="PropsUtil#get('test.portal.instance')" name="testPortalInstance" />
 
 		<if>
 			<and>

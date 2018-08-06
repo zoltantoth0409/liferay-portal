@@ -18,11 +18,11 @@
 			<var name="administratorFirstName" value="Space" />
 			<var name="administratorLastName" value="Admin" />
 			<var name="databaseName" value="lportal1" />
-			<var method="TestPropsUtil#get('database.hypersonic.password')" name="databasePassword" />
+			<var method="PropsUtil#get('database.hypersonic.password')" name="databasePassword" />
 			<var name="databaseType" value="Hypersonic" />
-			<var method="TestPropsUtil#get('database.hypersonic.username')" name="databaseUserName" />
-			<var method="TestPropsUtil#get('database.hypersonic.driver')" name="jdbcDriverClassName" />
-			<var method="TestPropsUtil#get('database.hypersonic.url')" name="jdbcURL" />
+			<var method="PropsUtil#get('database.hypersonic.username')" name="databaseUserName" />
+			<var method="PropsUtil#get('database.hypersonic.driver')" name="jdbcDriverClassName" />
+			<var method="PropsUtil#get('database.hypersonic.url')" name="jdbcURL" />
 			<var name="portalName" value="S.P.A.C.E" />
 		</execute>
 
@@ -1839,11 +1839,11 @@
 			<var name="administratorFirstName" value="Space" />
 			<var name="administratorLastName" value="Admin" />
 			<var name="databaseName" value="lportal1" />
-			<var method="TestPropsUtil#get('database.hypersonic.password')" name="databasePassword" />
+			<var method="PropsUtil#get('database.hypersonic.password')" name="databasePassword" />
 			<var name="databaseType" value="Hypersonic" />
-			<var method="TestPropsUtil#get('database.hypersonic.username')" name="databaseUserName" />
-			<var method="TestPropsUtil#get('database.hypersonic.driver')" name="jdbcDriverClassName" />
-			<var method="TestPropsUtil#get('database.hypersonic.url')" name="jdbcURL" />
+			<var method="PropsUtil#get('database.hypersonic.username')" name="databaseUserName" />
+			<var method="PropsUtil#get('database.hypersonic.driver')" name="jdbcDriverClassName" />
+			<var method="PropsUtil#get('database.hypersonic.url')" name="jdbcURL" />
 			<var name="portalName" value="S.P.A.C.E" />
 		</execute>
 
@@ -2814,11 +2814,11 @@ Brainstorming:
 			<var name="administratorFirstName" value="Space" />
 			<var name="administratorLastName" value="Admin" />
 			<var name="databaseName" value="lportal1" />
-			<var method="TestPropsUtil#get('database.hypersonic.password')" name="databasePassword" />
+			<var method="PropsUtil#get('database.hypersonic.password')" name="databasePassword" />
 			<var name="databaseType" value="Hypersonic" />
-			<var method="TestPropsUtil#get('database.hypersonic.username')" name="databaseUserName" />
-			<var method="TestPropsUtil#get('database.hypersonic.driver')" name="jdbcDriverClassName" />
-			<var method="TestPropsUtil#get('database.hypersonic.url')" name="jdbcURL" />
+			<var method="PropsUtil#get('database.hypersonic.username')" name="databaseUserName" />
+			<var method="PropsUtil#get('database.hypersonic.driver')" name="jdbcDriverClassName" />
+			<var method="PropsUtil#get('database.hypersonic.url')" name="jdbcURL" />
 			<var name="portalName" value="S.P.A.C.E" />
 		</execute>
 
@@ -4234,11 +4234,11 @@ Lead Text: Attention, incoming students: New Student Orientation begins at 2:00 
 			<var name="administratorFirstName" value="Space" />
 			<var name="administratorLastName" value="Admin" />
 			<var name="databaseName" value="lportal1" />
-			<var method="TestPropsUtil#get('database.hypersonic.password')" name="databasePassword" />
+			<var method="PropsUtil#get('database.hypersonic.password')" name="databasePassword" />
 			<var name="databaseType" value="Hypersonic" />
-			<var method="TestPropsUtil#get('database.hypersonic.username')" name="databaseUserName" />
-			<var method="TestPropsUtil#get('database.hypersonic.driver')" name="jdbcDriverClassName" />
-			<var method="TestPropsUtil#get('database.hypersonic.url')" name="jdbcURL" />
+			<var method="PropsUtil#get('database.hypersonic.username')" name="databaseUserName" />
+			<var method="PropsUtil#get('database.hypersonic.driver')" name="jdbcDriverClassName" />
+			<var method="PropsUtil#get('database.hypersonic.url')" name="jdbcURL" />
 			<var name="portalName" value="S.P.A.C.E" />
 		</execute>
 

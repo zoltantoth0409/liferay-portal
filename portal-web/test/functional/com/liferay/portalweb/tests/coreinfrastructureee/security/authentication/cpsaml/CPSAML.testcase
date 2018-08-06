@@ -43,7 +43,7 @@
 
 		<execute macro="User#viewLoggedOutPG" />
 
-		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
+		<var method="PropsUtil#get('portal.url')" name="portalURL" />
 
 		<execute macro="SAML#executeIdPInitiatedSSO">
 			<var name="idpInitiatedSSOURL" value="${portalURL}/c/portal/saml/sso?entityId=samlsp&amp;RelayState=http://www.able.com:9080" />
@@ -122,7 +122,7 @@
 
 		<execute macro="User#viewLoggedOutPG" />
 
-		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
+		<var method="PropsUtil#get('portal.url')" name="portalURL" />
 
 		<execute macro="SAML#executeIdPInitiatedSSO">
 			<var name="idpInitiatedSSOURL" value="${portalURL}/c/portal/saml/sso?entityId=samlsp&amp;RelayState=http://www.able.com:9080" />
@@ -175,7 +175,7 @@
 
 		<execute macro="User#viewLoggedOutPG" />
 
-		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
+		<var method="PropsUtil#get('portal.url')" name="portalURL" />
 
 		<execute macro="SAML#executeIdPInitiatedSSO">
 			<var name="idpInitiatedSSOURL" value="${portalURL}/c/portal/saml/sso?entityId=samlsp&amp;RelayState=http://www.able.com:9080" />
@@ -381,7 +381,7 @@
 
 		<execute macro="User#viewLoggedOutPG" />
 
-		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
+		<var method="PropsUtil#get('portal.url')" name="portalURL" />
 
 		<!-- Verify SP is logged in -->
 
@@ -445,7 +445,7 @@
 
 		<execute macro="User#viewLoggedOutPG" />
 
-		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
+		<var method="PropsUtil#get('portal.url')" name="portalURL" />
 
 		<!-- Verify SP is logged in -->
 
@@ -521,7 +521,7 @@
 
 		<execute macro="User#viewLoggedOutPG" />
 
-		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
+		<var method="PropsUtil#get('portal.url')" name="portalURL" />
 
 		<execute macro="SAML#executeIdPInitiatedSSO">
 			<var name="idpInitiatedSSOURL" value="${portalURL}/c/portal/saml/sso?entityId=samlsp&amp;RelayState=http://www.able.com:9080" />

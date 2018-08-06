@@ -14,7 +14,7 @@
 	</set-up>
 
 	<tear-down>
-		<var method="TestPropsUtil#get('test.portal.instance')" name="testPortalInstance" />
+		<var method="PropsUtil#get('test.portal.instance')" name="testPortalInstance" />
 
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
@@ -1216,7 +1216,7 @@
 		<property name="dummy.socket.proxy.disabled" value="true" />
 		<property name="test.name.skip.portal.instance" value="MessageboardsUsecase#ViewMBThreadAndReplyThreadInGmail" />
 
-		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
+		<var method="PropsUtil#get('portal.url')" name="portalURL" />
 
 		<execute macro="TestCase#getSiteName">
 			<return name="siteName" />
@@ -1230,8 +1230,8 @@
 		</execute>
 
 		<execute macro="ServerAdministration#configureMailServerSettings">
-			<var method="TestPropsUtil#get('email.address.2')" name="userName" />
-			<var method="TestPropsUtil#get('email.password.2')" name="userPassword" />
+			<var method="PropsUtil#get('email.address.2')" name="userName" />
+			<var method="PropsUtil#get('email.password.2')" name="userPassword" />
 		</execute>
 
 		<execute macro="Navigator#openURL" />
@@ -1264,7 +1264,7 @@
 		</execute>
 
 		<execute macro="User#addCP">
-			<var method="TestPropsUtil#get('email.address.4')" name="userEmailAddress" />
+			<var method="PropsUtil#get('email.address.4')" name="userEmailAddress" />
 			<var name="userFirstName" value="userfn" />
 			<var name="userLastName" value="userln" />
 			<var name="userScreenName" value="usersn" />
@@ -1277,7 +1277,7 @@
 		</execute>
 
 		<execute macro="User#editPasswordCP">
-			<var method="TestPropsUtil#get('email.address.4')" name="userEmailAddress" />
+			<var method="PropsUtil#get('email.address.4')" name="userEmailAddress" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
@@ -1293,11 +1293,11 @@
 		</execute>
 
 		<execute macro="User#editEmailViaMyAccount">
-			<var method="TestPropsUtil#get('email.address.3')" name="userEmailAddress" />
+			<var method="PropsUtil#get('email.address.3')" name="userEmailAddress" />
 		</execute>
 
 		<execute macro="MessageboardsPortlet#configureMessageEmailFromCP">
-			<var method="TestPropsUtil#get('email.address.2')" name="emailFromAddress" />
+			<var method="PropsUtil#get('email.address.2')" name="emailFromAddress" />
 		</execute>
 
 		<execute macro="Navigator#openURL" />
@@ -1334,7 +1334,7 @@
 
 		<execute macro="User#loginPG">
 			<var name="password" value="test" />
-			<var method="TestPropsUtil#get('email.address.4')" name="userEmailAddress" />
+			<var method="PropsUtil#get('email.address.4')" name="userEmailAddress" />
 		</execute>
 
 		<execute macro="Navigator#gotoPage">
@@ -1351,7 +1351,7 @@
 
 		<execute macro="User#loginPG">
 			<var name="password" value="test" />
-			<var method="TestPropsUtil#get('email.address.3')" name="userEmailAddress" />
+			<var method="PropsUtil#get('email.address.3')" name="userEmailAddress" />
 		</execute>
 
 		<execute macro="Navigator#gotoPage">
@@ -1370,8 +1370,8 @@
 		<execute function="Pause" locator1="30000" />
 
 		<execute macro="Gmail#login">
-			<var method="TestPropsUtil#get('email.address.4')" name="userEmailAddress" />
-			<var method="TestPropsUtil#get('email.password.4')" name="userPassword" />
+			<var method="PropsUtil#get('email.address.4')" name="userEmailAddress" />
+			<var method="PropsUtil#get('email.password.4')" name="userPassword" />
 		</execute>
 
 		<execute macro="Gmail#gotoHtmlMode" />

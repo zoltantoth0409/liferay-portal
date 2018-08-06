@@ -11,7 +11,7 @@
 	<set-up>
 		<execute macro="TestCase#setUpPortalInstance" />
 
-		<var method="TestPropsUtil#get('cmis.repository.vm.host.name')" name="sharepointVMHostName" />
+		<var method="PropsUtil#get('cmis.repository.vm.host.name')" name="sharepointVMHostName" />
 
 		<execute function="AntCommand" locator1="build-test-sharepoint.xml" value1="clean-sharepoint-repository -Dssh.host=${sharepointVMHostName}" />
 
@@ -78,7 +78,7 @@
 	</set-up>
 
 	<tear-down>
-		<var method="TestPropsUtil#get('test.portal.instance')" name="testPortalInstance" />
+		<var method="PropsUtil#get('test.portal.instance')" name="testPortalInstance" />
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
 			<then>
@@ -124,7 +124,7 @@
 
 		<property name="test.name.skip.portal.instance" value="StagingSharepoint#StagingSharepointRepositoryPG" />
 
-		<var method="TestPropsUtil#get('cmis.repository.vm.host.name')" name="sharepointVMHostName" />
+		<var method="PropsUtil#get('cmis.repository.vm.host.name')" name="sharepointVMHostName" />
 
 		<execute macro="Navigator#gotoStagedSitePage">
 			<var name="pageName" value="Staging Test Page" />

@@ -141,7 +141,7 @@
 
 		<execute function="AssertElementPresent" locator1="UserBar#USER_AVATAR_IMAGE" />
 
-		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
+		<var method="PropsUtil#get('portal.url')" name="portalURL" />
 
 		<var method="StringUtil#replace('${idpInitiatedSSOURL}', '${portalURL}/c/portal/saml/sso?entityId=samlsp&amp;RelayState=', '')" name="spURL" />
 

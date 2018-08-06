@@ -28,7 +28,7 @@
 			<return name="currentURL" />
 		</execute>
 
-		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
+		<var method="PropsUtil#get('portal.url')" name="portalURL" />
 
 		<var name="isLocalizedURL" value="false" />
 
@@ -67,7 +67,7 @@
 					<return name="currentURL" />
 				</execute>
 
-				<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
+				<var method="PropsUtil#get('portal.url')" name="portalURL" />
 
 				<execute macro="Navigator#openSpecificURL">
 					<var method="StringUtil#replace('${currentURL}', '${portalURL}', '${portalURL}/${locale}')" name="url" />

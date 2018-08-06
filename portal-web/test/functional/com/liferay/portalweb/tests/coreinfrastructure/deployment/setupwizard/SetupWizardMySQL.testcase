@@ -32,11 +32,11 @@
 
 		<execute macro="SetupWizard#configureDatabasePG">
 			<var name="databaseName" value="lportal" />
-			<var method="TestPropsUtil#get('database.mysql.password')" name="databasePassword" />
+			<var method="PropsUtil#get('database.mysql.password')" name="databasePassword" />
 			<var name="databaseType" value="MySQL" />
-			<var method="TestPropsUtil#get('database.mysql.username')" name="databaseUserName" />
-			<var method="TestPropsUtil#get('database.mysql.driver')" name="jdbcDriverClassName" />
-			<var method="TestPropsUtil#get('database.mysql.url')" name="jdbcURL" />
+			<var method="PropsUtil#get('database.mysql.username')" name="databaseUserName" />
+			<var method="PropsUtil#get('database.mysql.driver')" name="jdbcDriverClassName" />
+			<var method="PropsUtil#get('database.mysql.url')" name="jdbcURL" />
 		</execute>
 
 		<execute macro="SetupWizard#finishConfigurationPG" />
@@ -102,11 +102,11 @@
 			<var name="administratorFirstName" value="Test" />
 			<var name="administratorLastName" value="Test" />
 			<var name="databaseName" value="lportal1" />
-			<var method="TestPropsUtil#get('database.mysql.password')" name="databasePassword" />
+			<var method="PropsUtil#get('database.mysql.password')" name="databasePassword" />
 			<var name="databaseType" value="MySQL" />
-			<var method="TestPropsUtil#get('database.mysql.username')" name="databaseUserName" />
-			<var method="TestPropsUtil#get('database.mysql.driver')" name="jdbcDriverClassName" />
-			<var method="TestPropsUtil#get('database.mysql.url')" name="jdbcURL" />
+			<var method="PropsUtil#get('database.mysql.username')" name="databaseUserName" />
+			<var method="PropsUtil#get('database.mysql.driver')" name="jdbcDriverClassName" />
+			<var method="PropsUtil#get('database.mysql.url')" name="jdbcURL" />
 		</execute>
 
 		<execute macro="Smoke#viewWelcomePage">
@@ -128,11 +128,11 @@
 			<var name="administratorFirstName" value="Test" />
 			<var name="administratorLastName" value="Test" />
 			<var name="databaseName" value="lportal1" />
-			<var method="TestPropsUtil#get('database.mysql.password')" name="databasePassword" />
+			<var method="PropsUtil#get('database.mysql.password')" name="databasePassword" />
 			<var name="databaseType" value="MySQL" />
-			<var method="TestPropsUtil#get('database.mysql.username')" name="databaseUserName" />
-			<var method="TestPropsUtil#get('database.mysql.driver')" name="jdbcDriverClassName" />
-			<var method="TestPropsUtil#get('database.mysql.url')" name="jdbcURL" />
+			<var method="PropsUtil#get('database.mysql.username')" name="databaseUserName" />
+			<var method="PropsUtil#get('database.mysql.driver')" name="jdbcDriverClassName" />
+			<var method="PropsUtil#get('database.mysql.url')" name="jdbcURL" />
 		</execute>
 
 		<execute macro="Smoke#viewWelcomePage" />

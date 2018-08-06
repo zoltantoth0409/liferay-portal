@@ -17,11 +17,11 @@
 			<var name="administratorEmail" value="space.admin@spaceprogram.liferay.com" />
 			<var name="administratorFirstName" value="Space" />
 			<var name="administratorLastName" value="Admin" />
-			<var method="TestPropsUtil#get('database.mysql.password')" name="databasePassword" />
+			<var method="PropsUtil#get('database.mysql.password')" name="databasePassword" />
 			<var name="databaseType" value="MySQL" />
-			<var method="TestPropsUtil#get('database.mysql.username')" name="databaseUserName" />
-			<var method="TestPropsUtil#get('database.mysql.driver')" name="jdbcDriverClassName" />
-			<var method="TestPropsUtil#get('database.mysql.url')" name="jdbcURL" />
+			<var method="PropsUtil#get('database.mysql.username')" name="databaseUserName" />
+			<var method="PropsUtil#get('database.mysql.driver')" name="jdbcDriverClassName" />
+			<var method="PropsUtil#get('database.mysql.url')" name="jdbcURL" />
 			<var name="portalName" value="S.P.A.C.E" />
 		</execute>
 
@@ -1837,11 +1837,11 @@
 			<var name="administratorEmail" value="space.admin@spaceprogram.liferay.com" />
 			<var name="administratorFirstName" value="Space" />
 			<var name="administratorLastName" value="Admin" />
-			<var method="TestPropsUtil#get('database.mysql.password')" name="databasePassword" />
+			<var method="PropsUtil#get('database.mysql.password')" name="databasePassword" />
 			<var name="databaseType" value="MySQL" />
-			<var method="TestPropsUtil#get('database.mysql.username')" name="databaseUserName" />
-			<var method="TestPropsUtil#get('database.mysql.driver')" name="jdbcDriverClassName" />
-			<var method="TestPropsUtil#get('database.mysql.url')" name="jdbcURL" />
+			<var method="PropsUtil#get('database.mysql.username')" name="databaseUserName" />
+			<var method="PropsUtil#get('database.mysql.driver')" name="jdbcDriverClassName" />
+			<var method="PropsUtil#get('database.mysql.url')" name="jdbcURL" />
 			<var name="portalName" value="S.P.A.C.E" />
 		</execute>
 
@@ -2811,11 +2811,11 @@ Brainstorming:
 			<var name="administratorEmail" value="space.admin@spaceprogram.liferay.com" />
 			<var name="administratorFirstName" value="Space" />
 			<var name="administratorLastName" value="Admin" />
-			<var method="TestPropsUtil#get('database.mysql.password')" name="databasePassword" />
+			<var method="PropsUtil#get('database.mysql.password')" name="databasePassword" />
 			<var name="databaseType" value="MySQL" />
-			<var method="TestPropsUtil#get('database.mysql.username')" name="databaseUserName" />
-			<var method="TestPropsUtil#get('database.mysql.driver')" name="jdbcDriverClassName" />
-			<var method="TestPropsUtil#get('database.mysql.url')" name="jdbcURL" />
+			<var method="PropsUtil#get('database.mysql.username')" name="databaseUserName" />
+			<var method="PropsUtil#get('database.mysql.driver')" name="jdbcDriverClassName" />
+			<var method="PropsUtil#get('database.mysql.url')" name="jdbcURL" />
 			<var name="portalName" value="S.P.A.C.E" />
 		</execute>
 
@@ -4230,11 +4230,11 @@ Lead Text: Attention, incoming students: New Student Orientation begins at 2:00 
 			<var name="administratorEmail" value="space.admin@spaceprogram.liferay.com" />
 			<var name="administratorFirstName" value="Space" />
 			<var name="administratorLastName" value="Admin" />
-			<var method="TestPropsUtil#get('database.mysql.password')" name="databasePassword" />
+			<var method="PropsUtil#get('database.mysql.password')" name="databasePassword" />
 			<var name="databaseType" value="MySQL" />
-			<var method="TestPropsUtil#get('database.mysql.username')" name="databaseUserName" />
-			<var method="TestPropsUtil#get('database.mysql.driver')" name="jdbcDriverClassName" />
-			<var method="TestPropsUtil#get('database.mysql.url')" name="jdbcURL" />
+			<var method="PropsUtil#get('database.mysql.username')" name="databaseUserName" />
+			<var method="PropsUtil#get('database.mysql.driver')" name="jdbcDriverClassName" />
+			<var method="PropsUtil#get('database.mysql.url')" name="jdbcURL" />
 			<var name="portalName" value="S.P.A.C.E" />
 		</execute>
 

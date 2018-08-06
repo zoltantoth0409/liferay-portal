@@ -10,7 +10,7 @@
 	</set-up>
 
 	<tear-down>
-		<var method="TestPropsUtil#get('test.portal.instance')" name="testPortalInstance" />
+		<var method="PropsUtil#get('test.portal.instance')" name="testPortalInstance" />
 
 		<if>
 			<equals arg1="${testPortalInstance}" arg2="true" />
@@ -721,8 +721,8 @@
 		</execute>
 
 		<execute macro="ServerAdministration#configureMailServerSettings">
-			<var method="TestPropsUtil#get('email.address.2')" name="userName" />
-			<var method="TestPropsUtil#get('email.password.2')" name="userPassword" />
+			<var method="PropsUtil#get('email.address.2')" name="userName" />
+			<var method="PropsUtil#get('email.password.2')" name="userPassword" />
 		</execute>
 
 		<execute macro="Navigator#openSpecificURL">
@@ -736,15 +736,15 @@
 		<execute macro="User#logoutPG" />
 
 		<execute macro="User#addCreateAccountPG">
-			<var method="TestPropsUtil#get('email.address.3')" name="userEmailAddress" />
+			<var method="PropsUtil#get('email.address.3')" name="userEmailAddress" />
 			<var name="userFirstName" value="userfn" />
 			<var name="userLastName" value="userln" />
 			<var name="userScreenName" value="usersn" />
 		</execute>
 
 		<execute macro="Gmail#login">
-			<var method="TestPropsUtil#get('email.address.3')" name="userEmailAddress" />
-			<var method="TestPropsUtil#get('email.password.3')" name="userPassword" />
+			<var method="PropsUtil#get('email.address.3')" name="userEmailAddress" />
+			<var method="PropsUtil#get('email.password.3')" name="userPassword" />
 		</execute>
 
 		<execute macro="Gmail#gotoHtmlMode" />
@@ -780,7 +780,7 @@
 		<execute macro="User#signInPG">
 			<var name="emailPassword" value="${emailPassword}" />
 			<var name="emailVerification" value="${emailVerification}" />
-			<var method="TestPropsUtil#get('email.address.3')" name="userEmailAddress" />
+			<var method="PropsUtil#get('email.address.3')" name="userEmailAddress" />
 		</execute>
 
 		<execute macro="User#firstLoginPG">
@@ -803,12 +803,12 @@
 		</execute>
 
 		<execute macro="User#editEmailViaMyAccount">
-			<var method="TestPropsUtil#get('email.address.4')" name="userEmailAddress" />
+			<var method="PropsUtil#get('email.address.4')" name="userEmailAddress" />
 		</execute>
 
 		<execute macro="Gmail#logoutAndLogin">
-			<var method="TestPropsUtil#get('email.address.4')" name="userEmailAddress" />
-			<var method="TestPropsUtil#get('email.password.4')" name="userPassword" />
+			<var method="PropsUtil#get('email.address.4')" name="userEmailAddress" />
+			<var method="PropsUtil#get('email.password.4')" name="userPassword" />
 		</execute>
 
 		<execute macro="Gmail#gotoHtmlMode" />
@@ -834,7 +834,7 @@
 	</command>
 
 	<command name="SiteFriendlyURLLayoutImporter" priority="3">
-		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
+		<var method="PropsUtil#get('portal.url')" name="portalURL" />
 
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Users" />
@@ -1072,7 +1072,7 @@
 	<command name="SitesDemoSiteManagement" priority="4">
 		<property name="test.name.skip.portal.instance" value="SitesadministrationUsecase#SitesDemoSiteManagement" />
 
-		<var method="TestPropsUtil#get('portal.url')" name="portalURL" />
+		<var method="PropsUtil#get('portal.url')" name="portalURL" />
 
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Sites" />
