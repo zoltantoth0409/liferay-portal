@@ -123,6 +123,11 @@ public class CMISStoreTest extends BaseStoreTestCase {
 		return _store;
 	}
 
+	@Override
+	protected String getStoreType() {
+		return "com.liferay.portal.store.cmis.CMISStore";
+	}
+
 	@Inject(
 		filter = "store.type=com.liferay.portal.store.cmis.CMISStore",
 		type = Store.class

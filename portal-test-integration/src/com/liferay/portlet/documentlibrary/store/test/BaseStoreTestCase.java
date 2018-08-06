@@ -735,6 +735,8 @@ public abstract class BaseStoreTestCase {
 
 	protected abstract Store getStore();
 
+	protected abstract String getStoreType();
+
 	protected long companyId;
 	protected long repositoryId;
 	protected Store store;
