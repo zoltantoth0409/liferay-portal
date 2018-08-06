@@ -147,7 +147,7 @@ public class PortletURLUtil {
 		for (String renderParameterName : renderParameterNames) {
 			String[] values = renderParameters.getValues(renderParameterName);
 
-			// Don't set parameter values that are over 32 kb. See LEP-1755.
+			// Do not set parameter values that are over 32 kb. See LEP-1755.
 
 			for (String value : values) {
 				if ((value != null) &&
