@@ -73,7 +73,7 @@ public class BundlePortletApp implements PortletApp {
 	@Override
 	public void addPortletURLListener(PortletURLListener portletURLListener) {
 		_portletURLListeners.add(portletURLListener);
-		_portletURLListenersByListenerClass.put(
+		_portletURLListenersMap.put(
 			portletURLListener.getListenerClass(), portletURLListener);
 	}
 
@@ -146,7 +146,7 @@ public class BundlePortletApp implements PortletApp {
 
 	@Override
 	public PortletURLListener getPortletURLListener(String listenerClass) {
-		return _portletURLListenersByListenerClass.get(listenerClass);
+		return _portletURLListenersMap.get(listenerClass);
 	}
 
 	@Override
@@ -253,7 +253,7 @@ public class BundlePortletApp implements PortletApp {
 	private final Set<PortletURLListener> _portletURLListeners =
 		new LinkedHashSet<>();
 	private final Map<String, PortletURLListener>
-		_portletURLListenersByListenerClass = new HashMap<>();
+		_portletURLListenersMap = new HashMap<>();
 	private final ServiceTracker
 		<ServletContextHelperRegistration, ServletContext> _serviceTracker;
 	private int _specMajorVersion = 2;

@@ -69,14 +69,14 @@ public class PortletAppImpl implements PortletApp {
 	@Override
 	public void addPortletFilter(PortletFilter portletFilter) {
 		_portletFilters.add(portletFilter);
-		_portletFiltersByFilterName.put(
+		_portletFiltersMap.put(
 			portletFilter.getFilterName(), portletFilter);
 	}
 
 	@Override
 	public void addPortletURLListener(PortletURLListener portletURLListener) {
 		_portletURLListeners.add(portletURLListener);
-		_portletURLListenersByListenerClass.put(
+		_portletURLListenersMap.put(
 			portletURLListener.getListenerClass(), portletURLListener);
 	}
 
@@ -84,7 +84,7 @@ public class PortletAppImpl implements PortletApp {
 	public void addPublicRenderParameter(
 		PublicRenderParameter publicRenderParameter) {
 
-		_publicRenderParametersByIdentifier.put(
+		_publicRenderParametersMap.put(
 			publicRenderParameter.getIdentifier(), publicRenderParameter);
 	}
 
@@ -128,7 +128,7 @@ public class PortletAppImpl implements PortletApp {
 
 	@Override
 	public PortletFilter getPortletFilter(String filterName) {
-		return _portletFiltersByFilterName.get(filterName);
+		return _portletFiltersMap.get(filterName);
 	}
 
 	@Override
@@ -143,7 +143,7 @@ public class PortletAppImpl implements PortletApp {
 
 	@Override
 	public PortletURLListener getPortletURLListener(String listenerClass) {
-		return _portletURLListenersByListenerClass.get(listenerClass);
+		return _portletURLListenersMap.get(listenerClass);
 	}
 
 	@Override
@@ -153,7 +153,7 @@ public class PortletAppImpl implements PortletApp {
 
 	@Override
 	public PublicRenderParameter getPublicRenderParameter(String identifier) {
-		return _publicRenderParametersByIdentifier.get(identifier);
+		return _publicRenderParametersMap.get(identifier);
 	}
 
 	@Override
@@ -256,15 +256,15 @@ public class PortletAppImpl implements PortletApp {
 	private final Set<EventDefinition> _eventDefinitions =
 		new LinkedHashSet<>();
 	private final Set<PortletFilter> _portletFilters = new LinkedHashSet<>();
-	private final Map<String, PortletFilter> _portletFiltersByFilterName =
+	private final Map<String, PortletFilter> _portletFiltersMap =
 		new HashMap<>();
 	private final Set<Portlet> _portlets = new LinkedHashSet<>();
 	private final Set<PortletURLListener> _portletURLListeners =
 		new LinkedHashSet<>();
 	private final Map<String, PortletURLListener>
-		_portletURLListenersByListenerClass = new HashMap<>();
+		_portletURLListenersMap = new HashMap<>();
 	private final Map<String, PublicRenderParameter>
-		_publicRenderParametersByIdentifier = new HashMap<>();
+		_publicRenderParametersMap = new HashMap<>();
 	private ServletContext _servletContext;
 	private final String _servletContextName;
 	private final Set<String> _servletURLPatterns = new LinkedHashSet<>();
