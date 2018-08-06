@@ -50,7 +50,7 @@
 	</command>
 
 	<command name="AddPagesFullPageApplication" priority="4">
-		<for list="Blogs,Documents and Media,Wiki,Media Gallery,Message Boards,Dynamic Data Lists Form,Hello Soy Portlet,RSS" param="portlet">
+		<for list="Blogs,Documents and Media,Wiki,Media Gallery,Message Boards,Form,Hello Soy Portlet,RSS Publisher" param="portlet">
 			<execute macro="Page#add">
 				<var name="pageName" value="${portlet} Full Page Application" />
 				<var name="portlet" value="${portlet}" />
