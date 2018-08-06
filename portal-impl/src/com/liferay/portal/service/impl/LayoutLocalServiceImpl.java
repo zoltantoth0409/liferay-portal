@@ -430,6 +430,7 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 	 * layouts, and associated resources.
 	 *
 	 * @param  layout the layout
+	 * @return the deleted layout
 	 * @throws PortalException if a portal exception occurred
 	 */
 	@Override
