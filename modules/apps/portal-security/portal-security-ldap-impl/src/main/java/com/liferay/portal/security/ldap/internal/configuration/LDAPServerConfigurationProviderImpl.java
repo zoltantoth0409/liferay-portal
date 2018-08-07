@@ -331,8 +331,6 @@ public class LDAPServerConfigurationProviderImpl
 		LDAPServerConfiguration ldapServerConfiguration =
 			ConfigurableUtil.createConfigurable(getMetatype(), properties);
 
-		String pid = configuration.getPid();
-
 		synchronized (_configurations) {
 			Map<Long, ObjectValuePair<Configuration, LDAPServerConfiguration>>
 				ldapServerConfigurations = _configurations.computeIfAbsent(
@@ -343,9 +341,9 @@ public class LDAPServerConfigurationProviderImpl
 				new ObjectValuePair<>(configuration, ldapServerConfiguration));
 
 			_pidCompanyConfigurations.put(
-				pid, ldapServerConfiguration.companyId());
+				configuration.getPid(), ldapServerConfiguration.companyId());
 			_pidServerConfigurations.put(
-				pid, ldapServerConfiguration.ldapServerId());
+				configuration.getPid(), ldapServerConfiguration.ldapServerId());
 		}
 	}
 
