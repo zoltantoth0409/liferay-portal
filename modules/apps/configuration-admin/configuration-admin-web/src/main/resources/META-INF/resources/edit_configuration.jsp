@@ -35,7 +35,7 @@ ConfigurationModel configurationModel = (ConfigurationModel)request.getAttribute
 
 viewFactoryInstancesURL.setParameter("factoryPid", configurationModel.getFactoryPid());
 
-if (configurationModel.isFactory() && !configurationModel.isCompanyFactory()) {
+if (!configurationModel.isCompanyFactory() && configurationModel.isFactory()) {
 	bindRedirectURL = viewFactoryInstancesURL.toString();
 }
 
