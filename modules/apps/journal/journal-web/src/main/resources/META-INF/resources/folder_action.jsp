@@ -50,8 +50,6 @@ else {
 
 	hasPermissionsPermission = JournalPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS);
 }
-
-Group group = themeDisplay.getScopeGroup();
 %>
 
 <liferay-ui:icon-menu
@@ -190,6 +188,10 @@ Group group = themeDisplay.getScopeGroup();
 			url="<%= deleteURL %>"
 		/>
 	</c:if>
+
+	<%
+	Group group = themeDisplay.getScopeGroup();
+	%>
 
 	<c:if test="<%= journalDisplayContext.isShowPublishFolderAction(folder) && !group.isLayout() %>">
 		<portlet:actionURL name="/journal/publish_folder" var="publishFolderURL">
