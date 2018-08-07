@@ -93,6 +93,7 @@ boolean showCSVWarning = StringUtil.equals("enabled-with-warning", csvExport);
 						toolbars: {
 							footer: [
 								{
+									cssClass: 'btn-lg btn-primary',
 									label: '<liferay-ui:message key="ok" />',
 									on: {
 										click: function() {
@@ -100,10 +101,10 @@ boolean showCSVWarning = StringUtil.equals("enabled-with-warning", csvExport);
 
 											dialog.hide();
 										}
-									},
-									primary: true
+									}
 								},
 								{
+									cssClass: 'btn-lg btn-link',
 									label: '<liferay-ui:message key="cancel" />',
 									on: {
 										click: function() {
