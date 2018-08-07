@@ -199,12 +199,11 @@ public abstract class CompanyScopedConfigurationProvider
 		T configurable = ConfigurableUtil.createConfigurable(
 			getMetatype(), properties);
 
-		_pidCompanyConfigurations.put(
-			configuration.getPid(), configurable.companyId());
-
 		_configurations.put(
 			configurable.companyId(),
 			new ObjectValuePair<>(configuration, configurable));
+		_pidCompanyConfigurations.put(
+			configuration.getPid(), configurable.companyId());
 	}
 
 	@Override
