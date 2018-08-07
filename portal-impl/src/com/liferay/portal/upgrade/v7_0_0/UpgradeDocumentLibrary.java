@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.repository.liferayrepository.LiferayRepository;
 import com.liferay.portal.repository.portletrepository.PortletRepository;
+import com.liferay.portal.upgrade.v7_0_0.util.DLFileEntryTypeTable;
 import com.liferay.portal.upgrade.v7_0_0.util.DLFolderTable;
 
 import java.sql.PreparedStatement;
@@ -103,6 +104,8 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 		updateFileEntryTypeNamesAndDescriptions();
 
 		updateFileEntryTypeDDMStructureLinks();
+
+		updateFileEntryTypeFileEntryTypeKeys();
 
 		// DLFileVersion
 
@@ -199,6 +202,20 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 			}
 
 			runSQL("drop table DLFileEntryTypes_DDMStructures");
+		}
+	}
+
+	protected void updateFileEntryTypeFileEntryTypeKeys() throws Exception {
+		try (LoggingTimer loggingTimer = new LoggingTimer()) {
+			if (!hasColumnType(
+					DLFileEntryTypeTable.class, "fileEntryTypeKey",
+					"VARCHAR(75) null")) {
+
+				alter(
+					DLFileEntryTypeTable.class,
+					new AlterColumnType(
+						"fileEntryTypeKey", "VARCHAR(75) null"));
+			}
 		}
 	}
 
