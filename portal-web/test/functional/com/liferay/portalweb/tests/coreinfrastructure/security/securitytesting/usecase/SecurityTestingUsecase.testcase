@@ -251,6 +251,36 @@
 		<execute function="AssertTextEquals" locator1="Message#INFO" value1="This portlet has been undeployed. Please redeploy it or remove it from the page." />
 	</command>
 
+	<command name="ViewProperNPEMessageForScript" priority="4">
+		<description message="This is a use case for LPS-53584." />
+
+		<property name="test.name.skip.portal.instance" value="SecurityTestingUsecase#ViewProperNPEMessageForScript" />
+
+		<execute macro="ProductMenu#gotoPortlet">
+			<var name="category" value="Configuration" />
+			<var name="panel" value="Control Panel" />
+			<var name="portlet" value="Server Administration" />
+		</execute>
+
+		<execute macro="ServerAdministration#executeScriptCP">
+			<var name="script">
+				<![CDATA[
+				import com.liferay.portal.kernel.service.*;
+
+				try {
+				  policy = PasswordPolicyLocalServiceUtil.deletePasswordPolicy(null);
+				}
+				catch (Exception e) {
+				  e.printStackTrace();
+				}
+				]]>
+			</var>
+			<var name="scriptLanguage" value="Beanshell" />
+		</execute>
+
+		<execute function="AssertConsoleTextPresent" value1="at com.liferay.portal.service.impl.PasswordPolicyLocalServiceImpl.deletePasswordPolicy(PasswordPolicyLocalServiceImpl.java:197)" />
+	</command>
+
 	<command name="ViewUpdateUserViaJSONWS" priority="4">
 		<property name="test.name.skip.portal.instance" value="SecurityTestingUsecase#ViewUpdateUserViaJSONWS" />
 
