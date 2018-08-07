@@ -205,7 +205,7 @@
 </tr>
 <tr>
 	<td>SCRIPT</td>
-	<td>//ul[contains(@class,'nav-tabs')]/li/a[contains(.,'Script')]</td>
+	<td>//ul[contains(@class,'nav navbar-nav')]/li/a[contains(.,'Script')]</td>
 	<td></td>
 </tr>
 <tr>
