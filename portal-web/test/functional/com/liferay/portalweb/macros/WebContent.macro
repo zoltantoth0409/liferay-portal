@@ -515,7 +515,7 @@
 
 		<var method="StringUtil#replace('${dmDocumentTitle}', ' ', '+')" name="key_imageFileName" />
 
-		<execute function="Pause" locator1="1000" />
+		<execute function="Pause" locator1="5000" />
 
 		<execute function="Click" locator1="ItemSelector#SELECT_FILE_IMAGE_PREVIEW" />
 

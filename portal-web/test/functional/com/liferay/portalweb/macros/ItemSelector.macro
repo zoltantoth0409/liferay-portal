@@ -128,6 +128,8 @@
 
 		<var method="StringUtil#replace('${imageFileName}', ' ', '+')" name="key_imageFileName" />
 
+		<execute function="Pause" locator1="5000" />
+
 		<execute function="Click" locator1="ItemSelector#SELECT_FILE_IMAGE_PREVIEW" />
 
 		<execute function="AssertTextEquals#assertPartialText" locator1="ItemSelector#CAPTION" value1="${imageFileName}" />
