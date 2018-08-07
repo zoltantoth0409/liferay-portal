@@ -17,8 +17,8 @@ package com.liferay.portlet.blogs.pingback;
 import com.liferay.portal.kernel.exception.PortalException;
 
 /**
- * @author Marcellus Tavares
- * @deprecated As of 7.0.0, with no direct replacement
+ * @author     Marcellus Tavares
+ * @deprecated As of Wilberforce (7.0.x), with no direct replacement
  */
 @Deprecated
 public class UnavailableSourceURIException extends PortalException {

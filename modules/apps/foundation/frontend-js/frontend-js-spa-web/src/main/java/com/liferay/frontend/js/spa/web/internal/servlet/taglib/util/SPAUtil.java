@@ -82,7 +82,7 @@ public class SPAUtil {
 	}
 
 	/**
-	 * @deprecated As of 2.0.0
+	 * @deprecated As of Judson (7.1.x)
 	 */
 	@Deprecated
 	public ResourceBundle getLanguageResourceBundle(Locale locale) {
