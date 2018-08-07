@@ -18,6 +18,8 @@ import com.liferay.asset.kernel.service.AssetCategoryLocalServiceUtil;
 import com.liferay.document.library.kernel.model.DLFileEntryConstants;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
+import com.liferay.portal.kernel.model.Layout;
+import com.liferay.portal.kernel.model.LayoutConstants;
 import com.liferay.portal.kernel.util.LoggingTimer;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -55,8 +57,28 @@ public class VerifyAsset extends VerifyProcess {
 		}
 	}
 
+	protected void deleteOrphanLayoutAssetEntries() throws Exception {
+		try (LoggingTimer loggingTimer = new LoggingTimer()) {
+			long classNameId = PortalUtil.getClassNameId(
+				Layout.class.getName());
+
+			StringBundler sb = new StringBundler(5);
+
+			sb.append("delete from AssetEntry where classNameId = ");
+			sb.append(classNameId);
+			sb.append(" and classPK not in (select plid from ");
+			sb.append("Layout)");
+
+			runSQL(sb.toString());
+
+			EntityCacheUtil.clearCache(AssetEntryImpl.class);
+			FinderCacheUtil.clearCache(AssetEntryImpl.class.getName());
+		}
+	}
+
 	@Override
 	protected void doVerify() throws Exception {
+		deleteOrphanLayoutAssetEntries();
 		rebuildTree();
 	}
 
