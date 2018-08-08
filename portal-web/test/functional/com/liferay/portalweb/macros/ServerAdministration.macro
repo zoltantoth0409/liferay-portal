@@ -121,11 +121,11 @@
 	<command name="executeScriptCP">
 		<execute function="AssertClick" locator1="NavTab#SCRIPT" value1="Script" />
 
-		<execute function="Select" locator1="ServerAdministrationScript#SCRIPT_LANGUAGE_SELECT" value1="${scriptLanguage}" />
+		<execute function="Select" locator1="Select#LANGUAGE" value1="${scriptLanguage}" />
 
-		<execute function="Type" locator1="ServerAdministrationScript#SCRIPT" value1="${script}" />
+		<execute function="Type" locator1="TextArea#SCRIPT" value1="${script}" />
 
-		<execute function="AssertClick" locator1="ServerAdministrationScript#SCRIPT_EXCUTE_BUTTON" value1="Execute" />
+		<execute function="AssertClick" locator1="Button#EXCUTE" value1="Execute" />
 	</command>
 
 	<command name="executeServerResourcesActions">
