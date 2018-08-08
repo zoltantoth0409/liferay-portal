@@ -342,8 +342,6 @@ public class AlloyEditorCreoleConfigContributor
 
 	private static final int _CKEDITOR_STYLE_BLOCK = 1;
 
-	private static final int _CKEDITOR_STYLE_INLINE = 2;
-
 	private volatile ResourceBundleLoader _resourceBundleLoader;
 
 }

@@ -1631,7 +1631,6 @@ public class GroupFinderImpl
 	private volatile Map<String, String> _joinMap;
 	private final Map<String, String> _replaceJoinAndWhereSQLCache =
 		new ConcurrentHashMap<>();
-	private volatile Long _userGroupClassNameId;
 	private volatile Map<String, String> _whereMap;
 
 }

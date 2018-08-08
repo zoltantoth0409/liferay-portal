@@ -331,8 +331,6 @@ public class Log4JUtil {
 
 	private static final Logger _logger = Logger.getRootLogger();
 
-	private static final Map<String, String> _customLogSettings =
-		new ConcurrentHashMap<>();
 	private static String _liferayHome;
 
 }
