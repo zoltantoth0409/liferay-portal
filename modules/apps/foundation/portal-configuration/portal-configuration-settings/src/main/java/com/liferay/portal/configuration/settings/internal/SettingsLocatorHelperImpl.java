@@ -16,8 +16,6 @@ package com.liferay.portal.configuration.settings.internal;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.PortletIdCodec;
 import com.liferay.portal.kernel.resource.manager.ClassLoaderResourceManager;
@@ -260,9 +258,6 @@ public class SettingsLocatorHelperImpl implements SettingsLocatorHelper {
 		_configurationBeanClasses.remove(
 			configurationPidMapping.getConfigurationPid());
 	}
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		SettingsLocatorHelperImpl.class);
 
 	private final ConcurrentMap<String, Class<?>> _configurationBeanClasses =
 		new ConcurrentHashMap<>();

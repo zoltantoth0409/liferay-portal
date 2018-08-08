@@ -16,8 +16,6 @@ package com.liferay.blogs.internal.exportimport.content.processor;
 
 import com.liferay.exportimport.content.processor.ExportImportContentProcessor;
 import com.liferay.exportimport.content.processor.base.BaseTextExportImportContentProcessor;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -33,8 +31,4 @@ import org.osgi.service.component.annotations.Component;
 )
 public class BlogsEntryExportImportContentProcessor
 	extends BaseTextExportImportContentProcessor {
-
-	private static final Log _log = LogFactoryUtil.getLog(
-		BlogsEntryExportImportContentProcessor.class);
-
 }
