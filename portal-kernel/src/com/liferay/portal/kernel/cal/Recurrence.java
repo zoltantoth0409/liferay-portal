@@ -844,7 +844,7 @@ public class Recurrence implements Serializable {
 			// Doesn't match a by* rule
 
 			if (debug) {
-				System.err.println("doesn't match a by*");
+				System.err.println("does not match a by*");
 			}
 
 			return false;
