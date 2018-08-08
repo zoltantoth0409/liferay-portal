@@ -153,13 +153,10 @@ public class TargetPlatformRootProjectConfigurator implements Plugin<Project> {
 					Matcher matcher = _dxpVersionPattern.matcher(
 						targetPlatformVersion);
 
-					final String artifactId;
+					String artifactId = _ARTIFACT_ID_RELEASE_PORTAL_DISTRO;
 
 					if (matcher.matches()) {
 						artifactId = _ARTIFACT_ID_RELEASE_DXP_DISTRO;
-					}
-					else {
-						artifactId = _ARTIFACT_ID_RELEASE_PORTAL_DISTRO;
 					}
 
 					GradleUtil.addDependency(
