@@ -418,7 +418,6 @@ public class PersonCollectionResource
 		long prefixId = _getPrefixId(
 			personUpdaterForm.getHonorificPrefix(),
 			ListTypeConstants.CONTACT_PREFIX, contact.getPrefixId());
-
 		long suffixId = _getPrefixId(
 			personUpdaterForm.getHonorificSuffix(),
 			ListTypeConstants.CONTACT_SUFFIX, contact.getSuffixId());
