@@ -254,9 +254,9 @@ public class PersonCollectionResource
 	}
 
 	private Integer _getBirthdayDate(
-		Optional<Integer> birthdayDate, int existingDate) {
+		Optional<Integer> optional, int existingDate) {
 
-		return birthdayDate.orElse(existingDate);
+		return optional.orElse(existingDate);
 	}
 
 	private Contact _getContact(UserWrapper userWrapper) {
