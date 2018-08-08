@@ -231,7 +231,7 @@ public class PersonCollectionResource
 						personCreatorForm.getJobTitle(), null, null, null, null,
 						false, new ServiceContext());
 
-					byte[] bytes = _getImageArray(personCreatorForm);
+					byte[] bytes = _getImageBytes(personCreatorForm);
 
 					_userLocalService.updatePortrait(user.getUserId(), bytes);
 
@@ -285,7 +285,7 @@ public class PersonCollectionResource
 		);
 	}
 
-	private byte[] _getImageArray(PersonCreatorForm personCreatorForm) {
+	private byte[] _getImageBytes(PersonCreatorForm personCreatorForm) {
 		return Try.fromFallible(
 			personCreatorForm::getImage
 		).map(
