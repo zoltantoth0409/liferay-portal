@@ -287,7 +287,7 @@ public class PersonCollectionResource
 
 	private byte[] _getImageBytes(PersonCreatorForm personCreatorForm) {
 		return Try.fromFallible(
-			personCreatorForm::getImage
+			personCreatorForm::getImageBinaryFile
 		).map(
 			BinaryFile::getInputStream
 		).map(
