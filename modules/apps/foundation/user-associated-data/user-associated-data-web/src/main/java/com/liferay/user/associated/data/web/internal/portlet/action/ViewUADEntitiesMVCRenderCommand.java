@@ -14,8 +14,6 @@
 
 package com.liferay.user.associated.data.web.internal.portlet.action;
 
-import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItem;
-import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItemList;
 import com.liferay.portal.kernel.dao.search.EmptyOnClickRowChecker;
 import com.liferay.portal.kernel.dao.search.RowChecker;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
@@ -37,9 +35,7 @@ import com.liferay.user.associated.data.web.internal.util.SafeDisplayValueUtil;
 import com.liferay.user.associated.data.web.internal.util.SelectedUserHelper;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import javax.portlet.PortletException;
@@ -88,11 +84,6 @@ public class ViewUADEntitiesMVCRenderCommand implements MVCRenderCommand {
 			PortletURL currentURL = PortletURLUtil.getCurrent(
 				renderRequest, renderResponse);
 
-			viewUADEntitiesDisplay.setNavigationItems(
-				_getNavigationItems(
-					applicationKey, uadRegistryKey, currentURL,
-					liferayPortletResponse));
-
 			UADDisplay uadDisplay = _uadRegistry.getUADDisplay(uadRegistryKey);
 
 			viewUADEntitiesDisplay.setSearchContainer(
@@ -139,36 +130,6 @@ public class ViewUADEntitiesMVCRenderCommand implements MVCRenderCommand {
 		}
 
 		return uadEntity;
-	}
-
-	private List<NavigationItem> _getNavigationItems(
-			String applicationKey, String uadRegistryKey, PortletURL currentURL,
-			LiferayPortletResponse liferayPortletResponse)
-		throws PortletException {
-
-		NavigationItemList navigationItemList = new NavigationItemList();
-
-		Locale locale = LocaleThreadLocal.getThemeDisplayLocale();
-		PortletURL tabPortletURL = PortletURLUtil.clone(
-			currentURL, liferayPortletResponse);
-
-		Collection<UADDisplay> applicationUADDisplays =
-			_uadRegistry.getApplicationUADDisplays(applicationKey);
-
-		applicationUADDisplays.forEach(
-			uadDisplay -> navigationItemList.add(
-				navigationItem -> {
-					Class<?> uadClass = uadDisplay.getTypeClass();
-
-					navigationItem.setActive(
-						uadRegistryKey.equals(uadClass.getName()));
-					navigationItem.setHref(
-						tabPortletURL, "uadRegistryKey", uadClass.getName());
-
-					navigationItem.setLabel(uadDisplay.getTypeName(locale));
-				}));
-
-		return navigationItemList;
 	}
 
 	private SearchContainer<UADEntity> _getSearchContainer(
