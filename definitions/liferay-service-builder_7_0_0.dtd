@@ -644,6 +644,14 @@ arrayable-operator of OR will act like an IN clause.
 >
 
 <!--
+The attribute arrayable-pagination is a boolean value and is used to signal if
+the entity column can be paginated.
+-->
+<!ATTLIST finder-column
+	arrayable-pagination CDATA #IMPLIED
+>
+
+<!--
 The reference element allows you to inject services from another service.xml
 within the same class loader. For example, if you inject the Resource entity,
 then you'll be able to reference the Resource services from your service
