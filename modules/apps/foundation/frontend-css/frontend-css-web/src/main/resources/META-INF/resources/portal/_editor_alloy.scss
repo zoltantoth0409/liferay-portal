@@ -39,7 +39,12 @@
 		}
 
 		a {
+			color: #65B6F0;
 			cursor: auto;
+		}
+
+		a:hover, a:focus {
+			color: #40A4EC;
 		}
 
 		p:only-child {
