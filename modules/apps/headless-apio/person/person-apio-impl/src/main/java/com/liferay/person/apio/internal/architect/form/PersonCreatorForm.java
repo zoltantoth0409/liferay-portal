@@ -58,7 +58,7 @@ public class PersonCreatorForm {
 		).addOptionalString(
 			"honorificSuffix", PersonCreatorForm::setHonorificSuffix
 		).addOptionalFile(
-			"image", PersonCreatorForm::setImage
+			"image", PersonCreatorForm::setImageBinaryFile
 		).addRequiredString(
 			"email", PersonCreatorForm::setEmail
 		).addRequiredString(
@@ -160,8 +160,8 @@ public class PersonCreatorForm {
 		return _honorificSuffix;
 	}
 
-	public BinaryFile getImage() {
-		return _image;
+	public BinaryFile getImageBinaryFile() {
+		return _imageBinaryFile;
 	}
 
 	/**
@@ -241,8 +241,8 @@ public class PersonCreatorForm {
 		_honorificSuffix = honorificSuffix;
 	}
 
-	public void setImage(BinaryFile image) {
-		_image = image;
+	public void setImageBinaryFile(BinaryFile imageBinaryFile) {
+		_imageBinaryFile = imageBinaryFile;
 	}
 
 	public void setJobTitle(String jobTitle) {
@@ -258,7 +258,7 @@ public class PersonCreatorForm {
 	private String _givenName;
 	private String _honorificPrefix;
 	private String _honorificSuffix;
-	private BinaryFile _image;
+	private BinaryFile _imageBinaryFile;
 	private String _jobTitle;
 	private Boolean _male;
 
