@@ -180,8 +180,8 @@ public class PersonUpdaterForm {
 
 		calendar.setTime(birthDate);
 
-		_birthdayMonth = calendar.get(Calendar.MONTH);
 		_birthdayDay = calendar.get(Calendar.DATE);
+		_birthdayMonth = calendar.get(Calendar.MONTH);
 		_birthdayYear = calendar.get(Calendar.YEAR);
 	}
 
