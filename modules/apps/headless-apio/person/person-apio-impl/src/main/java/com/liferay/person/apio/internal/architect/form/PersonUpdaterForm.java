@@ -85,7 +85,7 @@ public class PersonUpdaterForm {
 	 * @return the person's birthday day
 	 * @review
 	 */
-	public Optional<Integer> getBirthdayDay() {
+	public Optional<Integer> getBirthdayDayOptional() {
 		return Optional.ofNullable(_birthdayDay);
 	}
 
@@ -95,7 +95,7 @@ public class PersonUpdaterForm {
 	 * @return the person's birthday month
 	 * @review
 	 */
-	public Optional<Integer> getBirthdayMonth() {
+	public Optional<Integer> getBirthdayMonthOptional() {
 		return Optional.ofNullable(_birthdayMonth);
 	}
 
@@ -105,7 +105,7 @@ public class PersonUpdaterForm {
 	 * @return the person's birthday year
 	 * @review
 	 */
-	public Optional<Integer> getBirthdayYear() {
+	public Optional<Integer> getBirthdayYearOptional() {
 		return Optional.ofNullable(_birthdayYear);
 	}
 
@@ -167,7 +167,7 @@ public class PersonUpdaterForm {
 		return _password;
 	}
 
-	public Optional<Boolean> isMale() {
+	public Optional<Boolean> isMaleOptional() {
 		return Optional.ofNullable(_male);
 	}
 
