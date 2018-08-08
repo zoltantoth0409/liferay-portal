@@ -253,10 +253,10 @@ public class PersonCollectionResource
 		return personUpdaterForm.getAlternateName();
 	}
 
-	private Integer _getBirthdayDate(
-		Optional<Integer> optional, int existingDate) {
+	private Integer _getDefaultValue(
+		Optional<Integer> optional, int defaultValue) {
 
-		return optional.orElse(existingDate);
+		return optional.orElse(defaultValue);
 	}
 
 	private Contact _getContact(UserWrapper userWrapper) {
@@ -424,7 +424,7 @@ public class PersonCollectionResource
 
 		String alternateName = _getAlternateName(personUpdaterForm, user);
 
-		Date birthday = user.getBirthday();
+		Date birthdayDate = user.getBirthday();
 
 		user = _userLocalService.updateUser(
 			user.getUserId(), user.getPassword(),
@@ -437,12 +437,12 @@ public class PersonCollectionResource
 			personUpdaterForm.getGivenName(), user.getMiddleName(),
 			personUpdaterForm.getFamilyName(), prefixId, suffixId,
 			_isMale(personUpdaterForm, user),
-			_getBirthdayDate(
-				personUpdaterForm.getBirthdayMonthOptional(), birthday.getMonth()),
-			_getBirthdayDate(
-				personUpdaterForm.getBirthdayDayOptional(), birthday.getDate()),
-			_getBirthdayDate(
-				personUpdaterForm.getBirthdayYearOptional(), birthday.getYear()),
+			_getDefaultValue(
+				personUpdaterForm.getBirthdayMonthOptional(), birthdayDate.getMonth()),
+			_getDefaultValue(
+				personUpdaterForm.getBirthdayDayOptional(), birthdayDate.getDate()),
+			_getDefaultValue(
+				personUpdaterForm.getBirthdayYearOptional(), birthdayDate.getYear()),
 			contact.getSmsSn(), contact.getFacebookSn(), contact.getJabberSn(),
 			contact.getSkypeSn(), contact.getTwitterSn(),
 			personUpdaterForm.getJobTitle(), user.getGroupIds(),
