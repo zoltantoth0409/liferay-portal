@@ -369,9 +369,9 @@ public class PersonCollectionResource
 	private Boolean _isMale(PersonUpdaterForm personUpdaterForm, User user)
 		throws PortalException {
 
-		Optional<Boolean> male = personUpdaterForm.isMale();
+		Optional<Boolean> optional = personUpdaterForm.isMaleOptional();
 
-		return male.orElse(user.isMale());
+		return optional.orElse(user.isMale());
 	}
 
 	private byte[] _readInputStream(InputStream inputStream)
@@ -438,11 +438,11 @@ public class PersonCollectionResource
 			personUpdaterForm.getFamilyName(), prefixId, suffixId,
 			_isMale(personUpdaterForm, user),
 			_getBirthdayDate(
-				personUpdaterForm.getBirthdayMonth(), birthday.getMonth()),
+				personUpdaterForm.getBirthdayMonthOptional(), birthday.getMonth()),
 			_getBirthdayDate(
-				personUpdaterForm.getBirthdayDay(), birthday.getDate()),
+				personUpdaterForm.getBirthdayDayOptional(), birthday.getDate()),
 			_getBirthdayDate(
-				personUpdaterForm.getBirthdayYear(), birthday.getYear()),
+				personUpdaterForm.getBirthdayYearOptional(), birthday.getYear()),
 			contact.getSmsSn(), contact.getFacebookSn(), contact.getJabberSn(),
 			contact.getSkypeSn(), contact.getTwitterSn(),
 			personUpdaterForm.getJobTitle(), user.getGroupIds(),
