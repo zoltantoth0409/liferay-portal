@@ -80,6 +80,7 @@ import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.SessionClicks_IW;
 import com.liferay.portal.kernel.util.StaticFieldGetter;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil_IW;
 import com.liferay.portal.kernel.util.TimeZoneUtil_IW;
@@ -1226,6 +1227,13 @@ public class TemplateContextHelper {
 		@Override
 		public byte[] URLtoByteArray(Options options) throws IOException {
 			if (isLocalNetworkAccessDenied(options.getLocation())) {
+				_log.error(
+					StringBundler.concat(
+						"Denied access to resource ", options.getLocation(),
+						" using $httpUtil variable from a template. Please ",
+						"use restricted variable $httpUtilUnsafe to access ",
+						"local network."));
+
 				return new byte[0];
 			}
 
@@ -1235,6 +1243,13 @@ public class TemplateContextHelper {
 		@Override
 		public byte[] URLtoByteArray(String location) throws IOException {
 			if (isLocalNetworkAccessDenied(location)) {
+				_log.error(
+					StringBundler.concat(
+						"Denied access to resource ", location,
+						" using $httpUtil variable from a template. Please ",
+						"use restricted variable $httpUtilUnsafe to access ",
+						"local network."));
+
 				return new byte[0];
 			}
 
@@ -1246,6 +1261,13 @@ public class TemplateContextHelper {
 			throws IOException {
 
 			if (isLocalNetworkAccessDenied(location)) {
+				_log.error(
+					StringBundler.concat(
+						"Denied access to resource ", location,
+						" using $httpUtil variable from a template. Please ",
+						"use restricted variable $httpUtilUnsafe to access ",
+						"local network."));
+
 				return new byte[0];
 			}
 
@@ -1257,6 +1279,13 @@ public class TemplateContextHelper {
 			throws IOException {
 
 			if (isLocalNetworkAccessDenied(options.getLocation())) {
+				_log.error(
+					StringBundler.concat(
+						"Denied access to resource ", options.getLocation(),
+						" using $httpUtil variable from a template. Please ",
+						"use restricted variable $httpUtilUnsafe to access ",
+						"local network."));
+
 				return new ByteArrayInputStream(new byte[0]);
 			}
 
@@ -1268,6 +1297,13 @@ public class TemplateContextHelper {
 			throws IOException {
 
 			if (isLocalNetworkAccessDenied(location)) {
+				_log.error(
+					StringBundler.concat(
+						"Denied access to resource ", location,
+						" using $httpUtil variable from a template. Please ",
+						"use restricted variable $httpUtilUnsafe to access ",
+						"local network."));
+
 				return new ByteArrayInputStream(new byte[0]);
 			}
 
@@ -1279,6 +1315,13 @@ public class TemplateContextHelper {
 			throws IOException {
 
 			if (isLocalNetworkAccessDenied(location)) {
+				_log.error(
+					StringBundler.concat(
+						"Denied access to resource ", location,
+						" using $httpUtil variable from a template. Please ",
+						"use restricted variable $httpUtilUnsafe to access ",
+						"local network."));
+
 				return new ByteArrayInputStream(new byte[0]);
 			}
 
@@ -1288,6 +1331,13 @@ public class TemplateContextHelper {
 		@Override
 		public String URLtoString(Options options) throws IOException {
 			if (isLocalNetworkAccessDenied(options.getLocation())) {
+				_log.error(
+					StringBundler.concat(
+						"Denied access to resource ", options.getLocation(),
+						" using $httpUtil variable from a template. Please ",
+						"use restricted variable $httpUtilUnsafe to access ",
+						"local network."));
+
 				return StringPool.BLANK;
 			}
 
@@ -1297,6 +1347,13 @@ public class TemplateContextHelper {
 		@Override
 		public String URLtoString(String location) throws IOException {
 			if (isLocalNetworkAccessDenied(location)) {
+				_log.error(
+					StringBundler.concat(
+						"Denied access to resource ", location,
+						" using $httpUtil variable from a template. Please ",
+						"use restricted variable $httpUtilUnsafe to access ",
+						"local network."));
+
 				return StringPool.BLANK;
 			}
 
@@ -1308,6 +1365,13 @@ public class TemplateContextHelper {
 			throws IOException {
 
 			if (isLocalNetworkAccessDenied(location)) {
+				_log.error(
+					StringBundler.concat(
+						"Denied access to resource ", location,
+						" using $httpUtil variable from a template. Please ",
+						"use restricted variable $httpUtilUnsafe to access ",
+						"local network."));
+
 				return StringPool.BLANK;
 			}
 
@@ -1317,6 +1381,13 @@ public class TemplateContextHelper {
 		@Override
 		public String URLtoString(URL url) throws IOException {
 			if (isLocalNetworkAccessDenied(url.toString())) {
+				_log.error(
+					StringBundler.concat(
+						"Denied access to resource ", url.toString(),
+						" using $httpUtil variable from a template. Please ",
+						"use restricted variable $httpUtilUnsafe to access ",
+						"local network."));
+
 				return StringPool.BLANK;
 			}
 
