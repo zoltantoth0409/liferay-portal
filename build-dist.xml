@@ -1028,6 +1028,57 @@ release was successful.</echo>
 		</if>
 	</target>
 
+	<target name="generate-startup-files">
+		<property location="dist/startup.shutdown.tmp" name="tmp.startup.shutdown.dir" />
+
+		<property location="${tmp.startup.shutdown.dir}/tomcat-${app.server.tomcat.version}/bin" name="tmp.app.server.tomcat.bin.dir" />
+
+		<copy
+			todir="${tmp.startup.shutdown.dir}"
+		>
+			<fileset
+				dir="${liferay.home}"
+			/>
+		</copy>
+
+		<chmod
+			perm="744"
+		>
+			<fileset
+				dir="${tmp.app.server.tomcat.bin.dir}"
+				includes="*.sh"
+			/>
+		</chmod>
+
+		<parallel>
+			<exec dir="${tmp.app.server.tomcat.bin.dir}" executable="sh">
+				<arg value="catalina.sh" />
+				<arg value="run" />
+			</exec>
+
+			<sequential>
+				<waitfor>
+					<http url="http://localhost:8080" />
+				</waitfor>
+
+				<sleep seconds="5" />
+
+				<exec dir="${tmp.app.server.tomcat.bin.dir}" executable="sh">
+					<arg value="shutdown.sh" />
+				</exec>
+			</sequential>
+		</parallel>
+
+		<copy
+			todir="dist/startup"
+		>
+			<fileset
+				dir="${tmp.startup.shutdown.dir}"
+				includes="data/hypersonic/**,osgi/state/**"
+			/>
+		</copy>
+	</target>
+
 	<target name="prepare-generated-files">
 		<antcall target="clean" />
 		<antcall target="start" />
@@ -1157,57 +1208,6 @@ release was successful.</echo>
 				</else>
 			</if>
 		</sequential>
-	</target>
-
-	<target name="generate-startup-files">
-		<property location="dist/startup.shutdown.tmp" name="tmp.startup.shutdown.dir" />
-
-		<property location="${tmp.startup.shutdown.dir}/tomcat-${app.server.tomcat.version}/bin" name="tmp.app.server.tomcat.bin.dir" />
-
-		<copy
-			todir="${tmp.startup.shutdown.dir}"
-		>
-			<fileset
-				dir="${liferay.home}"
-			/>
-		</copy>
-
-		<chmod
-			perm="744"
-		>
-			<fileset
-				dir="${tmp.app.server.tomcat.bin.dir}"
-				includes="*.sh"
-			/>
-		</chmod>
-
-		<parallel>
-			<exec dir="${tmp.app.server.tomcat.bin.dir}" executable="sh">
-				<arg value="catalina.sh" />
-				<arg value="run" />
-			</exec>
-
-			<sequential>
-				<waitfor>
-					<http url="http://localhost:8080" />
-				</waitfor>
-
-				<sleep seconds="5" />
-
-				<exec dir="${tmp.app.server.tomcat.bin.dir}" executable="sh">
-					<arg value="shutdown.sh" />
-				</exec>
-			</sequential>
-		</parallel>
-
-		<copy
-			todir="dist/startup"
-		>
-			<fileset
-				dir="${tmp.startup.shutdown.dir}"
-				includes="data/hypersonic/**,osgi/state/**"
-			/>
-		</copy>
 	</target>
 
 	<target name="unzip-glassfish">
