@@ -11,5 +11,6 @@ dependencies {
 	testIntegrationCompile project(":apps:export-import:export-import-changeset-api")
 	testIntegrationCompile project(":apps:journal:journal-api")
 	testIntegrationCompile project(":apps:staging:staging-api")
+	testIntegrationCompile project(":core:petra:petra-reflect")
 	testIntegrationCompile project(":core:petra:petra-string")
 }
