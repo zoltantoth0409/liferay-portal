@@ -551,9 +551,6 @@ public class LiferayRelengPlugin implements Plugin<Project> {
 					}
 
 				});
-
-			_configureTaskEnabledIfDependenciesArePublished(
-				writeArtifactPublishCommandsTask);
 		}
 
 		GradleUtil.withPlugin(
@@ -680,32 +677,6 @@ public class LiferayRelengPlugin implements Plugin<Project> {
 
 		buildChangeLogTask.setChangeLogFile(
 			new File(destinationDir, "liferay-releng.changelog"));
-	}
-
-	private void _configureTaskEnabledIfDependenciesArePublished(Task task) {
-		task.onlyIf(
-			new Spec<Task>() {
-
-				@Override
-				public boolean isSatisfiedBy(Task task) {
-					try {
-						Project project = task.getProject();
-
-						if (FileUtil.contains(
-								project.getBuildFile(),
-								"version: \"default\"")) {
-
-							return false;
-						}
-
-						return true;
-					}
-					catch (IOException ioe) {
-						throw new UncheckedIOException(ioe);
-					}
-				}
-
-			});
 	}
 
 	private void _configureTaskEnabledIfRelease(Task task) {
