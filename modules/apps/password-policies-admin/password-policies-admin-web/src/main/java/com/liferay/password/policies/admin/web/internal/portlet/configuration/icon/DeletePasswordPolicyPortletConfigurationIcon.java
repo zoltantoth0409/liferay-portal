@@ -73,9 +73,7 @@ public class DeletePasswordPolicyPortletConfigurationIcon
 			sb.append(portletDisplay.getNamespace());
 
 			sb.append("deletePasswordPolicy('");
-
 			sb.append(String.valueOf(_getPasswordPolicyId(portletRequest)));
-
 			sb.append("');");
 		}
 		catch (Exception e) {
