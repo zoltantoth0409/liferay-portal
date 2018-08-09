@@ -217,7 +217,7 @@ else {
 							classPK="<%= classPK %>"
 							ddmFormValues="<%= ddmFormValues %>"
 							repeatable="<%= translating ? false : true %>"
-							requestedLocale="<%= LocaleUtil.fromLanguageId(languageId) %>"
+							requestedLocale="<%= locale %>"
 						/>
 					</c:when>
 					<c:otherwise>
