@@ -1028,7 +1028,7 @@ release was successful.</echo>
 		</if>
 	</target>
 
-	<target depends="tomcat-startup-shutdown" name="generate-hypersonic-data">
+	<target depends="tomcat-startup-shutdown" name="generate-startup-files">
 		<copy
 			todir="dist/hypersonic"
 		>
@@ -1036,9 +1036,7 @@ release was successful.</echo>
 				dir="${tmp.startup.shutdown.dir}/data/hypersonic"
 			/>
 		</copy>
-	</target>
 
-	<target depends="tomcat-startup-shutdown" name="generate-osgi-state">
 		<copy
 			todir="dist/osgi/state"
 		>
@@ -1046,9 +1044,7 @@ release was successful.</echo>
 				dir="${tmp.startup.shutdown.dir}/osgi/state"
 			/>
 		</copy>
-	</target>
 
-	<target depends="generate-hypersonic-data,generate-osgi-state" name="generate-startup-files">
 		<delete dir="${tmp.startup.shutdown.dir}" />
 	</target>
 
