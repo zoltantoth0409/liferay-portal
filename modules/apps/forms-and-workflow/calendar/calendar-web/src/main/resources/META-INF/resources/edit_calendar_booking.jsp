@@ -823,6 +823,7 @@ while (manageableCalendarsIterator.hasNext()) {
 
 	<%
 	defaultEndTimeJCalendar = (java.util.Calendar)defaultStartTimeJCalendar.clone();
+
 	defaultEndTimeJCalendar.add(java.util.Calendar.MINUTE, defaultDuration);
 	%>
 
