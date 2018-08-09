@@ -128,6 +128,13 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 	protected String buildPayload(JSONObject payloadJSONObject) {
 		PayloadBuilder builder = PayloadBuilder.newPayload();
 
+		String title = payloadJSONObject.getString(
+			PushNotificationsConstants.KEY_TITLE);
+
+		if (Validator.isNotNull(title)) {
+			builder.alertTitle(title);
+		}
+
 		if (payloadJSONObject.has(PushNotificationsConstants.KEY_BADGE)) {
 			builder.badge(
 				payloadJSONObject.getInt(PushNotificationsConstants.KEY_BADGE));
@@ -174,13 +181,6 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 
 		if (Validator.isNotNull(sound)) {
 			builder.sound(sound);
-		}
-
-		String title = payloadJSONObject.getString(
-			PushNotificationsConstants.KEY_TITLE);
-
-		if (Validator.isNotNull(title)) {
-			builder.alertTitle(title);
 		}
 
 		JSONArray titleLocalizedArgumentsJSONArray =
