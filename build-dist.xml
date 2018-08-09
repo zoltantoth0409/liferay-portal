@@ -1006,12 +1006,12 @@ release was successful.</echo>
 	</target>
 
 	<target name="generate-startup-files">
-		<property location="dist/startup.shutdown.tmp" name="tmp.startup.shutdown.dir" />
-
-		<property location="${tmp.startup.shutdown.dir}/tomcat-${app.server.tomcat.version}/bin" name="tmp.app.server.tomcat.bin.dir" />
+		<tstamp>
+			<format pattern="yyyyMMddkkmmssSSS" property="tstamp.value" />
+		</tstamp>
 
 		<copy
-			todir="${tmp.startup.shutdown.dir}"
+			todir="${tstamp.value}"
 		>
 			<fileset
 				dir="${liferay.home}"
@@ -1022,13 +1022,13 @@ release was successful.</echo>
 			perm="744"
 		>
 			<fileset
-				dir="${tmp.app.server.tomcat.bin.dir}"
+				dir="${tstamp.value}/tomcat-${app.server.tomcat.version}/bin"
 				includes="*.sh"
 			/>
 		</chmod>
 
 		<parallel>
-			<exec dir="${tmp.app.server.tomcat.bin.dir}" executable="sh">
+			<exec dir="${tstamp.value}/tomcat-${app.server.tomcat.version}/bin" executable="sh">
 				<arg value="catalina.sh" />
 				<arg value="run" />
 			</exec>
@@ -1040,7 +1040,7 @@ release was successful.</echo>
 
 				<sleep seconds="5" />
 
-				<exec dir="${tmp.app.server.tomcat.bin.dir}" executable="sh">
+				<exec dir="${tstamp.value}/tomcat-${app.server.tomcat.version}/bin" executable="sh">
 					<arg value="shutdown.sh" />
 				</exec>
 			</sequential>
@@ -1050,10 +1050,12 @@ release was successful.</echo>
 			todir="dist/startup"
 		>
 			<fileset
-				dir="${tmp.startup.shutdown.dir}"
+				dir="${tstamp.value}"
 				includes="data/hypersonic/**,osgi/state/**"
 			/>
 		</copy>
+
+		<delete dir="${tstamp.value}" />
 	</target>
 
 	<target name="prepare-generated-files">
