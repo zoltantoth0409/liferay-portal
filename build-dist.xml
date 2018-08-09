@@ -1030,7 +1030,7 @@ release was successful.</echo>
 
 	<target depends="tomcat-startup-shutdown" name="generate-startup-files">
 		<copy
-			todir="dist/startup/hypersonic"
+			todir="dist/startup/data/hypersonic"
 		>
 			<fileset
 				dir="${tmp.startup.shutdown.dir}/data/hypersonic"
@@ -3675,30 +3675,15 @@ plugins.includes=</echo>
 		</if>
 
 		<if>
-			<available file="dist/startup/hypersonic" />
+			<available file="dist/startup" />
 			<then>
 				<zip
 					destfile="dist/${zip.executable.file}-${lp.version}.zip"
 					update="true"
 				>
 					<zipfileset
-						dir="dist/startup/hypersonic"
-						prefix="liferay-portal-${lp.version}/${zip.executable.dir.name}/data"
-					/>
-				</zip>
-			</then>
-		</if>
-
-		<if>
-			<available file="dist/startup/osgi/state" />
-			<then>
-				<zip
-					destfile="dist/${zip.executable.file}-${lp.version}.zip"
-					update="true"
-				>
-					<zipfileset
-						dir="dist/startup/osgi/state"
-						prefix="liferay-portal-${lp.version}/osgi/state"
+						dir="dist/startup"
+						prefix="liferay-portal-${lp.version}/${zip.executable.dir.name}"
 					/>
 				</zip>
 			</then>
