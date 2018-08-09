@@ -1226,7 +1226,7 @@ public class TemplateContextHelper {
 
 		@Override
 		public byte[] URLtoByteArray(Options options) throws IOException {
-			if (isLocalNetworkAccessDenied(options.getLocation())) {
+			if (isLocationAccessDenied(options.getLocation())) {
 				_log.error(
 					StringBundler.concat(
 						"Denied access to resource ", options.getLocation(),
@@ -1242,7 +1242,7 @@ public class TemplateContextHelper {
 
 		@Override
 		public byte[] URLtoByteArray(String location) throws IOException {
-			if (isLocalNetworkAccessDenied(location)) {
+			if (isLocationAccessDenied(location)) {
 				_log.error(
 					StringBundler.concat(
 						"Denied access to resource ", location,
@@ -1260,7 +1260,7 @@ public class TemplateContextHelper {
 		public byte[] URLtoByteArray(String location, boolean post)
 			throws IOException {
 
-			if (isLocalNetworkAccessDenied(location)) {
+			if (isLocationAccessDenied(location)) {
 				_log.error(
 					StringBundler.concat(
 						"Denied access to resource ", location,
@@ -1278,7 +1278,7 @@ public class TemplateContextHelper {
 		public InputStream URLtoInputStream(Options options)
 			throws IOException {
 
-			if (isLocalNetworkAccessDenied(options.getLocation())) {
+			if (isLocationAccessDenied(options.getLocation())) {
 				_log.error(
 					StringBundler.concat(
 						"Denied access to resource ", options.getLocation(),
@@ -1296,7 +1296,7 @@ public class TemplateContextHelper {
 		public InputStream URLtoInputStream(String location)
 			throws IOException {
 
-			if (isLocalNetworkAccessDenied(location)) {
+			if (isLocationAccessDenied(location)) {
 				_log.error(
 					StringBundler.concat(
 						"Denied access to resource ", location,
@@ -1314,7 +1314,7 @@ public class TemplateContextHelper {
 		public InputStream URLtoInputStream(String location, boolean post)
 			throws IOException {
 
-			if (isLocalNetworkAccessDenied(location)) {
+			if (isLocationAccessDenied(location)) {
 				_log.error(
 					StringBundler.concat(
 						"Denied access to resource ", location,
@@ -1330,7 +1330,7 @@ public class TemplateContextHelper {
 
 		@Override
 		public String URLtoString(Options options) throws IOException {
-			if (isLocalNetworkAccessDenied(options.getLocation())) {
+			if (isLocationAccessDenied(options.getLocation())) {
 				_log.error(
 					StringBundler.concat(
 						"Denied access to resource ", options.getLocation(),
@@ -1346,7 +1346,7 @@ public class TemplateContextHelper {
 
 		@Override
 		public String URLtoString(String location) throws IOException {
-			if (isLocalNetworkAccessDenied(location)) {
+			if (isLocationAccessDenied(location)) {
 				_log.error(
 					StringBundler.concat(
 						"Denied access to resource ", location,
@@ -1364,7 +1364,7 @@ public class TemplateContextHelper {
 		public String URLtoString(String location, boolean post)
 			throws IOException {
 
-			if (isLocalNetworkAccessDenied(location)) {
+			if (isLocationAccessDenied(location)) {
 				_log.error(
 					StringBundler.concat(
 						"Denied access to resource ", location,
@@ -1380,7 +1380,7 @@ public class TemplateContextHelper {
 
 		@Override
 		public String URLtoString(URL url) throws IOException {
-			if (isLocalNetworkAccessDenied(url.toString())) {
+			if (isLocationAccessDenied(url.toString())) {
 				_log.error(
 					StringBundler.concat(
 						"Denied access to resource ", url.toString(),
@@ -1394,7 +1394,7 @@ public class TemplateContextHelper {
 			return _http.URLtoString(url);
 		}
 
-		protected boolean isLocalNetworkAccessDenied(String location)
+		protected boolean isLocationAccessDenied(String location)
 			throws IOException {
 
 			if (_disableLocalNetworkAccess &&
