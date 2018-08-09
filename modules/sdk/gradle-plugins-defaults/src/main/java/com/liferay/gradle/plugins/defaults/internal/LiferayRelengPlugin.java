@@ -932,6 +932,8 @@ public class LiferayRelengPlugin implements Plugin<Project> {
 	}
 
 	private boolean _hasProjectDependencies(Project project) {
+		Logger logger = project.getLogger();
+
 		for (Configuration configuration : project.getConfigurations()) {
 			String name = configuration.getName();
 
@@ -954,6 +956,12 @@ public class LiferayRelengPlugin implements Plugin<Project> {
 				String version = dependency.getVersion();
 
 				if ((version != null) && version.equals("default")) {
+					if (logger.isQuietEnabled()) {
+						logger.quiet(
+							"{} has version \"default\" in {}.", project,
+							dependency);
+					}
+
 					return true;
 				}
 			}
