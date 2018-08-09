@@ -3063,7 +3063,7 @@
 			<var name="page" value="Public Pages" />
 			<var name="pageName" value="Welcome" />
 			<var name="siteChildPageName" value="Knowledge Base Display Page" />
-			<var name="siteName" value="Liferay" />
+			<var name="siteName" value="${siteName}" />
 		</execute>
 
 		<execute macro="SitePageNavigator#gotoEditPage">
