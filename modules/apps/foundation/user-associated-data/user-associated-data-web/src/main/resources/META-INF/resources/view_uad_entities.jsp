@@ -35,9 +35,29 @@ portletDisplay.setURLBack(backURL.toString());
 renderResponse.setTitle(StringBundler.concat(selectedUser.getFullName(), " - ", LanguageUtil.get(request, "personal-data-erasure"), " - ", viewUADEntitiesDisplay.getTypeName()));
 %>
 
-<clay:navigation-bar
-	navigationItems="<%= viewUADEntitiesDisplay.getNavigationItems() %>"
-/>
+<aui:nav-bar markupView="lexicon">
+	<aui:nav cssClass="navbar-nav">
+
+		<%
+		List<UADDisplay> applicationUADDisplays = viewUADEntitiesDisplay.getApplicationUADDisplays();
+
+		PortletURL tabPortletURL = PortletURLUtil.clone(currentURL, liferayPortletResponse);
+		String uadRegistryKey = viewUADEntitiesDisplay.getUADRegistryKey();
+
+		for (UADDisplay uadDisplay : applicationUADDisplays) {
+			Class<?> uadClass = uadDisplay.getTypeClass();
+
+			tabPortletURL.setParameter("uadRegistryKey", uadClass.getName());
+		%>
+
+			<aui:nav-item href="<%= tabPortletURL.toString() %>" label="<%= uadDisplay.getTypeName(locale) %>" selected="<%= uadRegistryKey.equals(uadClass.getName()) %>" />
+
+		<%
+		}
+		%>
+
+	</aui:nav>
+</aui:nav-bar>
 
 <clay:management-toolbar
 	displayContext="<%= viewUADEntitiesManagementToolbarDisplayContext %>"

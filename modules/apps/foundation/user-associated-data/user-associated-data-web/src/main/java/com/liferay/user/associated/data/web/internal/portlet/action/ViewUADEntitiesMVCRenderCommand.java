@@ -77,6 +77,8 @@ public class ViewUADEntitiesMVCRenderCommand implements MVCRenderCommand {
 				new ViewUADEntitiesDisplay();
 
 			viewUADEntitiesDisplay.setApplicationKey(applicationKey);
+			viewUADEntitiesDisplay.setApplicationUADDisplays(
+				_uadRegistry.getApplicationUADDisplays(applicationKey));
 
 			LiferayPortletResponse liferayPortletResponse =
 				_portal.getLiferayPortletResponse(renderResponse);

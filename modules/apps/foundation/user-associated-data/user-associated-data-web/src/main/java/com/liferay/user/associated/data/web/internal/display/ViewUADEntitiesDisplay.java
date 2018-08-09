@@ -15,6 +15,9 @@
 package com.liferay.user.associated.data.web.internal.display;
 
 import com.liferay.portal.kernel.dao.search.SearchContainer;
+import com.liferay.user.associated.data.display.UADDisplay;
+
+import java.util.List;
 
 /**
  * @author Drew Brokke
@@ -23,6 +26,10 @@ public class ViewUADEntitiesDisplay {
 
 	public String getApplicationKey() {
 		return _applicationKey;
+	}
+
+	public List<UADDisplay> getApplicationUADDisplays() {
+		return _applicationUADDisplays;
 	}
 
 	public SearchContainer<UADEntity> getSearchContainer() {
@@ -41,6 +48,12 @@ public class ViewUADEntitiesDisplay {
 		_applicationKey = applicationKey;
 	}
 
+	public void setApplicationUADDisplays(
+		List<UADDisplay> applicationUADDisplays) {
+
+		_applicationUADDisplays = applicationUADDisplays;
+	}
+
 	public void setSearchContainer(SearchContainer<UADEntity> searchContainer) {
 		_searchContainer = searchContainer;
 	}
@@ -54,6 +67,7 @@ public class ViewUADEntitiesDisplay {
 	}
 
 	private String _applicationKey;
+	private List<UADDisplay> _applicationUADDisplays;
 	private SearchContainer<UADEntity> _searchContainer;
 	private String _typeName;
 	private String _uadRegistryKey;
