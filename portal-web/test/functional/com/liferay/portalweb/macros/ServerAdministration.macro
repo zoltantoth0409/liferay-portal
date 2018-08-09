@@ -125,7 +125,7 @@
 
 		<execute function="Type" locator1="TextArea#SCRIPT" value1="${script}" />
 
-		<execute function="AssertClick" locator1="Button#EXCUTE" value1="Execute" />
+		<execute function="AssertClick" locator1="Button#EXECUTE" value1="Execute" />
 	</command>
 
 	<command name="executeServerResourcesActions">
