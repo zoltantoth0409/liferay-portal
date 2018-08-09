@@ -21,8 +21,6 @@ ViewUADEntitiesDisplay viewUADEntitiesDisplay = (ViewUADEntitiesDisplay)request.
 
 SearchContainer<UADEntity> uadEntitySearchContainer = viewUADEntitiesDisplay.getSearchContainer();
 
-ViewUADEntitiesManagementToolbarDisplayContext viewUADEntitiesManagementToolbarDisplayContext = new ViewUADEntitiesManagementToolbarDisplayContext(liferayPortletRequest, liferayPortletResponse, request, uadEntitySearchContainer);
-
 portletDisplay.setShowBackIcon(true);
 
 PortletURL backURL = renderResponse.createRenderURL();
@@ -41,7 +39,7 @@ renderResponse.setTitle(StringBundler.concat(selectedUser.getFullName(), " - ", 
 		<%
 		List<UADDisplay> applicationUADDisplays = viewUADEntitiesDisplay.getApplicationUADDisplays();
 
-		PortletURL tabPortletURL = PortletURLUtil.clone(currentURL, liferayPortletResponse);
+		PortletURL tabPortletURL = PortletURLUtil.clone(currentURLObj, liferayPortletResponse);
 		String uadRegistryKey = viewUADEntitiesDisplay.getUADRegistryKey();
 
 		for (UADDisplay uadDisplay : applicationUADDisplays) {
@@ -59,9 +57,36 @@ renderResponse.setTitle(StringBundler.concat(selectedUser.getFullName(), " - ", 
 	</aui:nav>
 </aui:nav-bar>
 
-<clay:management-toolbar
-	displayContext="<%= viewUADEntitiesManagementToolbarDisplayContext %>"
-/>
+<liferay-frontend:management-bar
+	includeCheckBox="<%= true %>"
+	searchContainerId="UADEntities"
+>
+	<liferay-frontend:management-bar-buttons>
+		<liferay-frontend:management-bar-sidenav-toggler-button
+			icon="info-circle"
+			label="info"
+		/>
+
+		<liferay-frontend:management-bar-action-buttons>
+			<liferay-frontend:management-bar-sidenav-toggler-button
+				icon="info-circle"
+				label="info"
+			/>
+
+			<liferay-frontend:management-bar-button
+				href='<%= "javascript:" + renderResponse.getNamespace() + "doAnonymizeMultiple();" %>'
+				icon="magic"
+				label="anonymize"
+			/>
+
+			<liferay-frontend:management-bar-button
+				href='<%= "javascript:" + renderResponse.getNamespace() + "doDeleteMultiple();" %>'
+				icon="trash"
+				label="delete"
+			/>
+		</liferay-frontend:management-bar-action-buttons>
+	</liferay-frontend:management-bar-buttons>
+</liferay-frontend:management-bar>
 
 <aui:form method="post" name="viewUADEntitiesFm">
 	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />

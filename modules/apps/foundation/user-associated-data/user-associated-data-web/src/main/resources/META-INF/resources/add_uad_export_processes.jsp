@@ -58,13 +58,10 @@ renderResponse.setTitle(StringBundler.concat(selectedUser.getFullName(), " - ", 
 				}
 				%>
 
-				<clay:management-toolbar
+				<liferay-frontend:management-bar
 					disabled="<%= disableManagementBar %>"
-					itemsTotal="<%= uadApplicationExportDisplayList.size() %>"
-					namespace="<%= renderResponse.getNamespace() %>"
+					includeCheckBox="<%= true %>"
 					searchContainerId="uadApplicationExportDisplay"
-					selectable="<%= true %>"
-					showSearch="<%= false %>"
 				/>
 
 				<liferay-ui:search-container

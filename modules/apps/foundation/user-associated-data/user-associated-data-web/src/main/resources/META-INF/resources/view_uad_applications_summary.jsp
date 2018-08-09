@@ -21,8 +21,6 @@ ViewUADApplicationsSummaryDisplay viewUADApplicationsSummaryDisplay = (ViewUADAp
 
 SearchContainer<UADApplicationSummaryDisplay> uadApplicationsSummaryDisplaySearchContainer = viewUADApplicationsSummaryDisplay.getSearchContainer();
 
-UADApplicationsSummaryManagementToolbarDisplayContext uadApplicationsSummaryManagementToolbarDisplayContext = new UADApplicationsSummaryManagementToolbarDisplayContext(liferayPortletRequest, liferayPortletResponse, request, uadApplicationsSummaryDisplaySearchContainer);
-
 portletDisplay.setShowBackIcon(true);
 
 PortletURL backURL = renderResponse.createRenderURL();
@@ -65,9 +63,21 @@ String statusLabelPending = StringUtil.toUpperCase(LanguageUtil.get(request, "pe
 		<div class="sheet-section">
 			<h3 class="sheet-subtitle"><liferay-ui:message key="applications" /></h3>
 
-			<clay:management-toolbar
-				displayContext="<%= uadApplicationsSummaryManagementToolbarDisplayContext %>"
-			/>
+			<liferay-frontend:management-bar>
+				<liferay-frontend:management-bar-filters>
+					<liferay-frontend:management-bar-navigation
+						navigationKeys='<%= new String[] {"all", "pending", "done"} %>'
+						portletURL="<%= PortletURLUtil.clone(currentURLObj, renderResponse) %>"
+					/>
+
+					<liferay-frontend:management-bar-sort
+						orderByCol="<%= uadApplicationsSummaryDisplaySearchContainer.getOrderByCol() %>"
+						orderByType="<%= uadApplicationsSummaryDisplaySearchContainer.getOrderByType() %>"
+						orderColumns='<%= new String[] {"name", "items", "status"} %>'
+						portletURL="<%= PortletURLUtil.clone(currentURLObj, renderResponse) %>"
+					/>
+				</liferay-frontend:management-bar-filters>
+			</liferay-frontend:management-bar>
 
 			<liferay-ui:search-container
 				searchContainer="<%= uadApplicationsSummaryDisplaySearchContainer %>"

@@ -19,8 +19,6 @@
 <%
 UADExportProcessDisplayContext uadExportProcessDisplayContext = new UADExportProcessDisplayContext(request, renderResponse);
 
-UADExportProcessManagementToolbarDisplayContext uadExportProcessManagementToolbarDisplayContext = new UADExportProcessManagementToolbarDisplayContext(liferayPortletRequest, liferayPortletResponse, request);
-
 portletDisplay.setShowBackIcon(true);
 
 LiferayPortletURL usersAdminURL = liferayPortletResponse.createLiferayPortletURL(UsersAdminPortletKeys.USERS_ADMIN, PortletRequest.RENDER_PHASE);
@@ -36,9 +34,36 @@ renderResponse.setTitle(StringBundler.concat(selectedUser.getFullName(), " - ", 
 	</aui:nav>
 </aui:nav-bar>
 
-<clay:management-toolbar
-	displayContext="<%= uadExportProcessManagementToolbarDisplayContext %>"
-/>
+<liferay-frontend:management-bar>
+	<liferay-frontend:management-bar-filters>
+		<liferay-frontend:management-bar-navigation
+			navigationKeys='<%= new String[] {"all", "in-progress", "successful", "failed"} %>'
+			portletURL="<%= PortletURLUtil.clone(uadExportProcessDisplayContext.getPortletURL(), renderResponse) %>"
+		/>
+
+		<liferay-frontend:management-bar-sort
+			orderByCol="<%= uadExportProcessDisplayContext.getOrderByCol() %>"
+			orderByType="<%= uadExportProcessDisplayContext.getOrderByType() %>"
+			orderColumns='<%= new String[] {"create-date", "name"} %>'
+			portletURL="<%= PortletURLUtil.clone(uadExportProcessDisplayContext.getPortletURL(), renderResponse) %>"
+		/>
+	</liferay-frontend:management-bar-filters>
+
+	<liferay-frontend:management-bar-buttons>
+		<liferay-frontend:add-menu>
+			<portlet:renderURL var="addExportProcessesURL">
+				<portlet:param name="mvcRenderCommandName" value="/add_uad_export_processes" />
+				<portlet:param name="backURL" value="<%= currentURL %>" />
+				<portlet:param name="p_u_i_d" value="<%= String.valueOf(selectedUser.getUserId()) %>" />
+			</portlet:renderURL>
+
+			<liferay-frontend:add-menu-item
+				title='<%= LanguageUtil.get(request, "add-export-processes") %>'
+				url="<%= addExportProcessesURL.toString() %>"
+			/>
+		</liferay-frontend:add-menu>
+	</liferay-frontend:management-bar-buttons>
+</liferay-frontend:management-bar>
 
 <aui:form cssClass="container-fluid-1280">
 	<div id="<portlet:namespace />exportProcesses">
