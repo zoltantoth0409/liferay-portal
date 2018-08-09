@@ -1028,26 +1028,6 @@ release was successful.</echo>
 		</if>
 	</target>
 
-	<target depends="tomcat-startup-shutdown" name="generate-startup-files">
-		<copy
-			todir="dist/startup/data/hypersonic"
-		>
-			<fileset
-				dir="${tmp.startup.shutdown.dir}/data/hypersonic"
-			/>
-		</copy>
-
-		<copy
-			todir="dist/startup/osgi/state"
-		>
-			<fileset
-				dir="${tmp.startup.shutdown.dir}/osgi/state"
-			/>
-		</copy>
-
-		<delete dir="${tmp.startup.shutdown.dir}" />
-	</target>
-
 	<target name="prepare-generated-files">
 		<antcall target="clean" />
 		<antcall target="start" />
@@ -1179,7 +1159,7 @@ release was successful.</echo>
 		</sequential>
 	</target>
 
-	<target name="tomcat-startup-shutdown">
+	<target name="generate-startup-files">
 		<property location="dist/startup.shutdown.tmp" name="tmp.startup.shutdown.dir" />
 
 		<property location="${tmp.startup.shutdown.dir}/tomcat-${app.server.tomcat.version}/bin" name="tmp.app.server.tomcat.bin.dir" />
@@ -1219,6 +1199,15 @@ release was successful.</echo>
 				</exec>
 			</sequential>
 		</parallel>
+
+		<copy
+			todir="dist/startup"
+		>
+			<fileset
+				dir="${tmp.startup.shutdown.dir}"
+				includes="data/hypersonic/**,osgi/state/**"
+			/>
+		</copy>
 	</target>
 
 	<target name="unzip-glassfish">
