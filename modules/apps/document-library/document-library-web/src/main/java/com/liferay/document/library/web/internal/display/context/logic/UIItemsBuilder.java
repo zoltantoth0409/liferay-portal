@@ -852,7 +852,7 @@ public class UIItemsBuilder {
 			UnicodeLanguageUtil.get(
 				_resourceBundle,
 				"are-you-sure-you-want-to-publish-the-selected-document"));
-		sb.append("')){ location.href = '");
+		sb.append("')){location.href = '");
 		sb.append(portletURL);
 		sb.append("';}");
 
