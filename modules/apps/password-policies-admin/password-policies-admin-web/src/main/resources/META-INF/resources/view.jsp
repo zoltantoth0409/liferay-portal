@@ -97,7 +97,7 @@ PortletURL portletURL = viewPasswordPoliciesManagementToolbarDisplayContext.getP
 			>
 
 				<%
-				String rowHref = null;
+				String rowHREF = null;
 
 				if (passwordPolicyDisplayContext.hasPermission(ActionKeys.UPDATE, passwordPolicy.getPasswordPolicyId())) {
 					PortletURL rowURL = renderResponse.createRenderURL();
@@ -109,7 +109,7 @@ PortletURL portletURL = viewPasswordPoliciesManagementToolbarDisplayContext.getP
 					rowURL.setParameter("redirect", redirectURL.toString());
 					rowURL.setParameter("passwordPolicyId", String.valueOf(passwordPolicy.getPasswordPolicyId()));
 
-					rowHref = rowURL.toString();
+					rowHREF = rowURL.toString();
 				}
 				%>
 
