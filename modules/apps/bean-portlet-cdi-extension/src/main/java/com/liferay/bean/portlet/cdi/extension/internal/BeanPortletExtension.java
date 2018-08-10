@@ -52,7 +52,7 @@ public class BeanPortletExtension implements Extension {
 	}
 
 	public void applicationScopedInitialized(
-		@Initialized(ApplicationScoped.class) @Observes ServletContext context,
+		@Initialized(ApplicationScoped.class) @Observes ServletContext servletContext,
 		BeanManager beanManager) {
 
 		// TODO
@@ -62,7 +62,7 @@ public class BeanPortletExtension implements Extension {
 				StringBundler.concat(
 					"Discovered ", _beanPortlets.size(), " bean portlets and ",
 					_beanFilters.size(), " bean filters for ",
-					context.getServletContextName()));
+					servletContext.getServletContextName()));
 		}
 	}
 
