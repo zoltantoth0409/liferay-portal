@@ -162,19 +162,21 @@ public class BeanMethod {
 	public boolean isEventProcessor(QName qName) {
 		EventMethod eventMethod = _method.getAnnotation(EventMethod.class);
 
-		if (eventMethod != null) {
-			PortletQName[] portletQNames = eventMethod.processingEvents();
+		if (eventMethod == null) {
+			return false;
+		}
 
-			for (PortletQName portletQName : portletQNames) {
-				String namespaceURI = portletQName.namespaceURI();
+		PortletQName[] portletQNames = eventMethod.processingEvents();
 
-				String localPart = portletQName.localPart();
+		for (PortletQName portletQName : portletQNames) {
+			String namespaceURI = portletQName.namespaceURI();
 
-				if (localPart.equals(qName.getLocalPart()) &&
-					namespaceURI.equals(qName.getNamespaceURI())) {
+			String localPart = portletQName.localPart();
 
-					return true;
-				}
+			if (localPart.equals(qName.getLocalPart()) &&
+				namespaceURI.equals(qName.getNamespaceURI())) {
+
+				return true;
 			}
 		}
 
