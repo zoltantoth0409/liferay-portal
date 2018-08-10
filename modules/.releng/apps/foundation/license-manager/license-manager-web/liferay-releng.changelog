@@ -47,3 +47,8 @@ cd3bababec7936745ef4b9d39e405a370238f734^..12d1a0f751c2b04aa516f266c20efc9623d7e
 # Bundle Version 2.0.11
 #
 5e04bec3b193f4c487cec3b17afda8c68f1b4645^..74da9ae3ecdec5f3dda62c6eb7a1548ce64ec54d=LPS-83705
+
+#
+# Bundle Version 2.0.12
+#
+74da9ae3ecdec5f3dda62c6eb7a1548ce64ec54d^..e0fa762f786a58825b1bed99d821a5b62159748d=LPS-83705
