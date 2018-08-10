@@ -94,6 +94,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import java.net.InetAddress;
 import java.net.URL;
 
 import java.util.Collections;
@@ -1397,10 +1398,14 @@ public class TemplateContextHelper {
 		protected boolean isLocationAccessDenied(String location)
 			throws IOException {
 
-			if (_disableLocalNetworkAccess &&
-				InetAddressUtil.isLocalNetwork(location)) {
+			if (_disableLocalNetworkAccess) {
+				URL url = new URL(location);
 
-				return true;
+				if (InetAddressUtil.isLocalInetAddress(
+						InetAddress.getByName(url.getHost()))) {
+
+					return true;
+				}
 			}
 
 			return false;
