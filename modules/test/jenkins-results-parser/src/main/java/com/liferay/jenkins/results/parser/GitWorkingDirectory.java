@@ -353,7 +353,7 @@ public class GitWorkingDirectory {
 		for (List<String> branchNames :
 				Lists.partition(
 					new ArrayList<>(localGitBranchNames),
-						_DELETE_BRANCHES_BATCH_SIZE)) {
+					_DELETE_BRANCHES_BATCH_SIZE)) {
 
 			_deleteLocalGitBranches(
 				branchNames.toArray(new String[branchNames.size()]));
