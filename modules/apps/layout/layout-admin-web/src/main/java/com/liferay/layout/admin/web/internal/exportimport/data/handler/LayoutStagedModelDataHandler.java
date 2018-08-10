@@ -1539,8 +1539,8 @@ public class LayoutStagedModelDataHandler
 			return;
 		}
 
-		boolean privateLayout = portletDataContext.isPrivateLayout();
 		long scopeGroupId = portletDataContext.getScopeGroupId();
+		boolean privateLayout = portletDataContext.isPrivateLayout();
 
 		Layout existingLayout = _layoutLocalService.fetchLayout(
 			linkedToLayoutUuid, scopeGroupId, privateLayout);
