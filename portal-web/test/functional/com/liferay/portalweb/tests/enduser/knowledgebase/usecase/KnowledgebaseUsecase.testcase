@@ -3051,6 +3051,11 @@
 	</command>
 
 	<command name="ViewUnchangedKBArticleTitleViaLocalizedPage" priority="3">
+		<execute macro="TestCase#getSiteName">
+			<return name="siteName" />
+			<var name="siteName" value="${siteName}" />
+		</execute>
+
 		<var method="PropsUtil#get('portal.url')" name="portalURL" />
 
 		<execute macro="ProductMenu#gotoPortlet">
