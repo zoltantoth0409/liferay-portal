@@ -91,14 +91,12 @@ public class ServiceBuilderBatchTestClassGroup
 					public FileVisitResult preVisitDirectory(
 						Path filePath, BasicFileAttributes attrs) {
 
-						String filePathString = filePath.toString();
-
 						File currentDirectory = filePath.toFile();
+						String filePathString = filePath.toString();
 
 						if (filePathString.endsWith("-service")) {
 							File buildFile = new File(
 								currentDirectory, "build.gradle");
-
 							File serviceXmlFile = new File(
 								currentDirectory, "service.xml");
 
@@ -112,7 +110,6 @@ public class ServiceBuilderBatchTestClassGroup
 							File portletXmlFile = new File(
 								currentDirectory,
 								"docroot/WEB-INF/portlet.xml");
-
 							File serviceXmlFile = new File(
 								currentDirectory,
 								"docroot/WEB-INF/service.xml");
