@@ -93,7 +93,7 @@ public class DLExportImportPortletPreferencesProcessor
 			return portletPreferences;
 		}
 
-		// Root folder id is set, only export that
+		// Root folder ID is set, only export that
 
 		String portletId = portletDataContext.getPortletId();
 
@@ -125,7 +125,7 @@ public class DLExportImportPortletPreferencesProcessor
 			return portletPreferences;
 		}
 
-		// Root folder id is not set, we need to export everything
+		// Root folder ID is not set, we need to export everything
 
 		try {
 			portletDataContext.addPortletPermissions(DLConstants.RESOURCE_NAME);
@@ -275,7 +275,7 @@ public class DLExportImportPortletPreferencesProcessor
 			PortletPreferences portletPreferences)
 		throws PortletDataException {
 
-		// Root folder id is set, only import that
+		// Root folder ID is set, only import that
 
 		long rootFolderId = GetterUtil.getLong(
 			portletPreferences.getValue("rootFolderId", null));
