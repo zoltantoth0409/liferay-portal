@@ -86,7 +86,6 @@ public class DefineObjectsTag3 extends DefineObjectsTag {
 			pageContext.setAttribute(
 				"portletMode", portletRequest.getPortletMode());
 			pageContext.setAttribute("portletRequest", portletRequest);
-
 			pageContext.setAttribute(
 				"renderParams", portletRequest.getRenderParameters());
 
