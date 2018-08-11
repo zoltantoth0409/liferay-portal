@@ -419,7 +419,9 @@ AUI.add(
 						layoutColumn.get('value').get('fields')[0].get('container').append(instance._getFieldActionsLayout());
 
 						instance._destroySortable(instance.sortable1);
+
 						instance._traverseFormPages();
+
 						instance._applyDragAndDrop();
 
 						activeLayout.normalizeColsHeight(new A.NodeList(newRow));
@@ -813,7 +815,9 @@ AUI.add(
 						}
 						else {
 							instance._applyDragAndDrop();
+
 							container.removeClass('edit-mode');
+
 							controlTriggers.each(
 								function(item) {
 									item.removeClass('disabled');
