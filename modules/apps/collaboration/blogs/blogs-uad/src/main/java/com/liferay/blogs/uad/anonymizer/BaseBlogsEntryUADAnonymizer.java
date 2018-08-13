@@ -14,8 +14,8 @@
 
 package com.liferay.blogs.uad.anonymizer;
 
-import com.liferay.blogs.model.BlogsEntry;
-import com.liferay.blogs.service.BlogsEntryLocalService;
+import com.liferay.blogs.kernel.model.BlogsEntry;
+import com.liferay.blogs.kernel.service.BlogsEntryLocalService;
 import com.liferay.blogs.uad.constants.BlogsUADConstants;
 
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
