@@ -104,7 +104,7 @@ public abstract class UpgradeProcess
 					StringBundler.concat(
 						message, ClassUtil.getClassName(this), " in ",
 						String.valueOf(System.currentTimeMillis() - start),
-						"ms"));
+						" ms"));
 			}
 		}
 	}
