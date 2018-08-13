@@ -15,7 +15,7 @@
 package com.liferay.blogs.uad.display.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
-import com.liferay.blogs.model.BlogsEntry;
+import com.liferay.blogs.kernel.model.BlogsEntry;
 import com.liferay.blogs.uad.test.BlogsEntryUADTestHelper;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
