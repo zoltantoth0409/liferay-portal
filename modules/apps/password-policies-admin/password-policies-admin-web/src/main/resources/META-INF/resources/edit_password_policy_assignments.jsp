@@ -36,7 +36,7 @@ else {
 }
 
 portletDisplay.setShowBackIcon(true);
-portletDisplay.setURLBack(renderURL);
+portletDisplay.setURLBack(renderResponse.createRenderURL());
 
 renderResponse.setTitle(passwordPolicy.getName());
 

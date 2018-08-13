@@ -32,7 +32,7 @@ if (passwordPolicy == null) {
 boolean defaultPolicy = BeanParamUtil.getBoolean(passwordPolicy, request, "defaultPolicy");
 
 portletDisplay.setShowBackIcon(true);
-portletDisplay.setURLBack(renderURL);
+portletDisplay.setURLBack(String.valueOf(renderResponse.createRenderURL()));
 
 renderResponse.setTitle(passwordPolicy.isNew() ? LanguageUtil.get(request, "new-password-policy") : passwordPolicy.getName());
 %>
@@ -42,7 +42,7 @@ renderResponse.setTitle(passwordPolicy.isNew() ? LanguageUtil.get(request, "new-
 <portlet:actionURL name="editPasswordPolicy" var="editPasswordPolicyURL" />
 
 <aui:form action="<%= editPasswordPolicyURL %>" cssClass="container-fluid-1280" method="post" name="fm">
-	<aui:input name="redirect" type="hidden" value="<%= (passwordPolicyId > 0) ? currentURL : renderURL %>" />
+	<aui:input name="redirect" type="hidden" value="<%= (passwordPolicyId > 0) ? currentURL : String.valueOf(renderResponse.createRenderURL()) %>" />
 	<aui:input name="passwordPolicyId" type="hidden" value="<%= passwordPolicyId %>" />
 
 	<liferay-ui:error exception="<%= DuplicatePasswordPolicyException.class %>" message="please-enter-a-unique-name" />
@@ -270,7 +270,7 @@ renderResponse.setTitle(passwordPolicy.isNew() ? LanguageUtil.get(request, "new-
 	<aui:button-row>
 		<aui:button type="submit" />
 
-		<aui:button href="<%= renderURL %>" type="cancel" />
+		<aui:button href="<%= String.valueOf(renderResponse.createRenderURL()) %>" type="cancel" />
 	</aui:button-row>
 </aui:form>
 
