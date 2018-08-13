@@ -268,18 +268,19 @@ public class JSONWebServiceDiscoverAction implements JSONWebServiceAction {
 	}
 
 	private void _completeTypes() {
-		int typesSize;
-
-		do {
-			typesSize = _types.size();
+		while (true) {
+			int typesSize = _types.size();
 
 			for (Class<?> type : new ArrayList<>(_types)) {
 				Class<?> modelType = _getInterfaceType(type);
 
 				_buildPropertiesList(modelType);
 			}
+
+			if (typesSize != _types.size()) {
+				break;
+			}
 		}
-		while (typesSize != _types.size());
 	}
 
 	private String _formatType(
