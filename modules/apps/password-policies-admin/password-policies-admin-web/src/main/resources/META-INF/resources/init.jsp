@@ -71,8 +71,6 @@ page import="javax.portlet.WindowState" %>
 PasswordPolicyDisplayContext passwordPolicyDisplayContext = new PasswordPolicyDisplayContext(request, renderResponse);
 
 PortalPreferences portalPreferences = PortletPreferencesFactoryUtil.getPortalPreferences(liferayPortletRequest);
-
-String renderURL = String.valueOf(renderResponse.createRenderURL());
 %>
 
 <%@ include file="/init-ext.jsp" %>
