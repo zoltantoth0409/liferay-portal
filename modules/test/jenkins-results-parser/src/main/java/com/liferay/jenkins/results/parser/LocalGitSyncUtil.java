@@ -350,7 +350,8 @@ public class LocalGitSyncUtil {
 
 		Collections.sort(remoteGitBranches);
 
-		Map<String, List<RemoteGitBranch>> remoteGitBranchMap = new HashMap<>();
+		Map<String, List<RemoteGitBranch>> remoteGitBranchesMap =
+			new HashMap<>();
 
 		for (RemoteGitBranch remoteGitBranch : remoteGitBranches) {
 			String remoteGitBranchName = remoteGitBranch.getName();
@@ -361,20 +362,20 @@ public class LocalGitSyncUtil {
 				String baseCacheBranchName = remoteGitBranchName.replaceAll(
 					"(.*)-\\d+", "$1");
 
-				if (!remoteGitBranchMap.containsKey(baseCacheBranchName)) {
-					remoteGitBranchMap.put(
+				if (!remoteGitBranchesMap.containsKey(baseCacheBranchName)) {
+					remoteGitBranchesMap.put(
 						baseCacheBranchName, new ArrayList<RemoteGitBranch>());
 				}
 
 				List<RemoteGitBranch> timestampedRemoteGitBranches =
-					remoteGitBranchMap.get(baseCacheBranchName);
+					remoteGitBranchesMap.get(baseCacheBranchName);
 
 				timestampedRemoteGitBranches.add(remoteGitBranch);
 			}
 		}
 
 		for (Map.Entry<String, List<RemoteGitBranch>> entry :
-				remoteGitBranchMap.entrySet()) {
+				remoteGitBranchesMap.entrySet()) {
 
 			List<RemoteGitBranch> timestampedRemoteGitBranches =
 				entry.getValue();
