@@ -15,7 +15,7 @@
 package com.liferay.message.boards.uad.exporter.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
-import com.liferay.message.boards.model.MBMessage;
+import com.liferay.message.boards.kernel.model.MBMessage;
 import com.liferay.message.boards.uad.test.MBMessageUADTestHelper;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;

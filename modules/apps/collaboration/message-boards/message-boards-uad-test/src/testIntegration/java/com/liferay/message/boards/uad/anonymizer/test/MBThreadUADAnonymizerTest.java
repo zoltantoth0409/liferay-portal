@@ -15,8 +15,8 @@
 package com.liferay.message.boards.uad.anonymizer.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
-import com.liferay.message.boards.model.MBThread;
-import com.liferay.message.boards.service.MBThreadLocalService;
+import com.liferay.message.boards.kernel.model.MBThread;
+import com.liferay.message.boards.kernel.service.MBThreadLocalService;
 import com.liferay.message.boards.uad.test.MBThreadUADTestHelper;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
