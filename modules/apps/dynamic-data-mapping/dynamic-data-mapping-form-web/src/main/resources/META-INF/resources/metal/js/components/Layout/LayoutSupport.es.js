@@ -64,10 +64,15 @@ const removeRow = (pages, pageIndex, rowIndex) => {
 };
 
 const getColumn = (pages, pageIndex, rowIndex, columnIndex) => {
-	return pages[Number(pageIndex)].rows[Number(rowIndex)].columns[
-		Number(columnIndex)
-	].fields;
+	const row = getRow(pages, pageIndex, rowIndex);
+
+	return row.columns[Number(columnIndex)].fields;
 };
+
+const getField = (pages, pageIndex, rowIndex, columnIndex) => {
+    return getColumn(pages, pageIndex, rowIndex, columnIndex)[0];
+}
+
 
 const getRow = (pages, pageIndex, rowIndex) => {
 	return pages[Number(pageIndex)].rows[Number(rowIndex)];
@@ -109,6 +114,7 @@ export default {
 	addFieldToColumn,
 	addRow,
 	changeFieldsFromColumn,
+	getField,
 	getColumn,
 	getIndexes,
 	getRow,
