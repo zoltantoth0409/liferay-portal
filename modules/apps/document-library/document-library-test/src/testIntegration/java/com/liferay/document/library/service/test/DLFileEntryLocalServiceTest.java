@@ -430,11 +430,11 @@ public class DLFileEntryLocalServiceTest {
 	public void testKeepsOriginalExtensionAfterChangingTheTitle()
 		throws Exception {
 
+		String content = StringUtil.randomString();
+
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(
 				_group.getGroupId(), TestPropsValues.getUserId());
-
-		String content = StringUtil.randomString();
 
 		DLFileEntry dlFileEntry = DLFileEntryLocalServiceUtil.addFileEntry(
 			TestPropsValues.getUserId(), _group.getGroupId(),
