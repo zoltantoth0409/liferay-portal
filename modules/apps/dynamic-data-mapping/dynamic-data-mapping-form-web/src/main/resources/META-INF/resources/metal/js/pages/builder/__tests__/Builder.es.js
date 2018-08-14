@@ -105,5 +105,36 @@ describe(
 				expect(sidebar.state.show).toBeTruthy();
 			}
 		);
+
+		it(
+			'should continue to propagate the duplicateField event',
+			() => {
+				const spy = jest.spyOn(component, 'emit');
+				const {layoutRenderer} = component.refs;
+				const mockEvent = jest.fn();
+
+				layoutRenderer.emit('duplicateButtonClicked', mockEvent);
+
+				jest.runAllTimers();
+
+				expect(spy).toHaveBeenCalled();
+				expect(spy).toHaveBeenCalledWith('duplicateField', expect.anything());
+			}
+		);
+
+		it(
+			'should open the sidebar when click the creation button',
+			() => {
+				const {managementToolbar, sidebar} = component.refs;
+
+				managementToolbar.refs.creationMenu.element.click();
+
+				jest.runAllTimers();
+
+				expect(sidebar.props.mode).toBe('add');
+				expect(sidebar.state.mode).toBe('add');
+				expect(sidebar.state.show).toBeTruthy();
+			}
+		);
 	}
 );
