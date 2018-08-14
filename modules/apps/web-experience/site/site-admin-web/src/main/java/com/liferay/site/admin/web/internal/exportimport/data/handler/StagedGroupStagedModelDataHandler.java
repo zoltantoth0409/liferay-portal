@@ -144,11 +144,11 @@ public class StagedGroupStagedModelDataHandler
 	protected Group fetchExistingGroup(
 		PortletDataContext portletDataContext, long groupId, long liveGroupId) {
 
-		long companyId = portletDataContext.getCompanyId();
-
 		Group liveGroup = _groupLocalService.fetchGroup(liveGroupId);
 
-		if ((liveGroup != null) && (liveGroup.getCompanyId() == companyId)) {
+		if ((liveGroup != null) &&
+			(liveGroup.getCompanyId() == portletDataContext.getCompanyId())) {
+
 			return liveGroup;
 		}
 
@@ -167,7 +167,9 @@ public class StagedGroupStagedModelDataHandler
 
 		Group group = _groupLocalService.fetchGroup(existingGroupId);
 
-		if ((group != null) && (group.getCompanyId() == companyId)) {
+		if ((group != null) &&
+			(group.getCompanyId() == portletDataContext.getCompanyId())) {
+
 			return group;
 		}
 
