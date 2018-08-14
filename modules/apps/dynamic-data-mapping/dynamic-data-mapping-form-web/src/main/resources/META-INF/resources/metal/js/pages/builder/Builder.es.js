@@ -68,6 +68,7 @@ class Builder extends Component {
 	 * @param {!Object}
 	 * @private
 	 */
+
 	_handleDuplicateButtonClicked(indexes) {
 		this.emit('duplicateField', indexes);
 	}

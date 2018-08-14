@@ -64,8 +64,8 @@ const removeRow = (pages, pageIndex, rowIndex) => {
 };
 
 const generateFieldName = field => {
-    return field.name + Date.now();
-}
+	return field.name + Date.now();
+};
 
 const getColumn = (pages, pageIndex, rowIndex, columnIndex) => {
 	const row = getRow(pages, pageIndex, rowIndex);
@@ -74,8 +74,8 @@ const getColumn = (pages, pageIndex, rowIndex, columnIndex) => {
 };
 
 const getField = (pages, pageIndex, rowIndex, columnIndex) => {
-    return getColumn(pages, pageIndex, rowIndex, columnIndex)[0];
-}
+	return getColumn(pages, pageIndex, rowIndex, columnIndex)[0];
+};
 
 
 const getRow = (pages, pageIndex, rowIndex) => {

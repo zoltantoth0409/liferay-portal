@@ -175,12 +175,13 @@ class LayoutProvider extends Component {
 		);
 	}
 
-		/**
+	/**
 	 * @param {!Object}
 	 * @private
 	 */
-	_handleDuplicatedField({ rowIndex, pageIndex, columnIndex }) {
-		const { context } = this.state;
+
+	_handleDuplicatedField({rowIndex, pageIndex, columnIndex}) {
+		const {context} = this.state;
 		const field = LayoutSupport.getField(context, pageIndex, rowIndex, columnIndex);
 		const newRowIndex = rowIndex + 1;
 		const newContext = LayoutSupport.addRow(context, newRowIndex, pageIndex);
