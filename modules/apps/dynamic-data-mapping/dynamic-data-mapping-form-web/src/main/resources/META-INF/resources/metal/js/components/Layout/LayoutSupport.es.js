@@ -9,7 +9,7 @@ const implAddRow = (size, fields) => {
 	};
 };
 
-const addRow = (pages, indexToAddRow, pageIndex, newRow) => {
+const addRow = (pages, indexToAddRow, pageIndex, newRow = implAddRow(12, [])) => {
 	pages[Number(pageIndex)].rows.splice(Number(indexToAddRow), 0, newRow);
 
 	return pages;
