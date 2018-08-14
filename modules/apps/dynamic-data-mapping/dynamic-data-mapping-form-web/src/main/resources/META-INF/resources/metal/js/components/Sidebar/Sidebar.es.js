@@ -409,7 +409,7 @@ class Sidebar extends Component {
 					<nav class="component-tbar tbar">
 						<div class="container-fluid">
 							<ul class="tbar-nav">
-								{mode === 'add' && (
+								{mode === 'add' && show && (
 									<li class="tbar-item tbar-item-expand text-left">
 										<div class="tbar-section">
 											<span class="text-truncate-inline">
@@ -418,7 +418,7 @@ class Sidebar extends Component {
 										</div>
 									</li>
 								)}
-								{mode === 'edit' && (
+								{mode === 'edit' && show && (
 									<Fragment>
 										<li class="tbar-item">
 											<ClayButton
