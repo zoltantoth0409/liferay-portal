@@ -1235,6 +1235,21 @@
 					<var name="userEmailAddress" value="${userEmailAddress}" />
 				</execute>
 			</then>
+			<elseif>
+				<equals arg1="${samlEnabled}" arg2="true" />
+				<then>
+					<execute function="Type" locator1="TextInput#EMAIL_ADDRESS" value1="${userEmailAddress}" />
+					<execute function="Type" locator1="TextInput#PASSWORD" value1="${password}" />
+
+					<execute function="Click" locator1="Button#SIGN_IN" />
+
+					<execute macro="Button#viewNotPresent">
+						<var name="button" value="Sign In" />
+					</execute>
+
+					<execute function="AssertElementPresent" locator1="UserBar#USER_AVATAR_IMAGE" />
+				</then>
+			</elseif>
 			<else>
 				<execute macro="User#loginPG">
 					<var name="localization" value="${localization}" />
