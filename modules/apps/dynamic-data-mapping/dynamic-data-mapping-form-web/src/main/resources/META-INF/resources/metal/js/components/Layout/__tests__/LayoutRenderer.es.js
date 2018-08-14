@@ -122,6 +122,26 @@ describe(
 		);
 
 		it(
+			'should render a layout and emit an event when duplicate button is clicked',
+			() => {
+				component = new LayoutRenderer(
+					{
+						editable: true,
+						pages: context,
+						spritemap
+					}
+				);
+
+				const spy = jest.spyOn(component, 'emit');
+
+				component.element.querySelector('button[aria-label=\'paste\']').click();
+
+				expect(spy).toHaveBeenCalled();
+				expect(spy).toHaveBeenCalledWith('duplicateButtonClicked', expect.any(Object));
+			}
+		);
+
+		it(
 			'should render a layout and continue to propagate the field edit event',
 			() => {
 				component = new LayoutRenderer(
