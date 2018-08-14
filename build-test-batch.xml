@@ -2024,7 +2024,7 @@ app.server.type=@{app.server.type}]]></echo>
 								<then>
 									<print-test-class-group test.class.group.index="${axis.variable}" />
 
-									<echo>Executing Gradle task in directory 'modules': testIntegration</echo>
+									<echo>Executing Gradle task in directory "modules": testIntegration.</echo>
 
 									<gradle-execute dir="modules" refreshdependencies="@{refreshdependencies}" task="testIntegration">
 										<arg value="-Dapp.server.start.executable.arg.line=${test.batch.app.server.start.executable.arg.line}" />
@@ -2036,7 +2036,7 @@ app.server.type=@{app.server.type}]]></echo>
 								<else>
 									<get-module-base-dir-from-subrepository-name subrepository.name="@{subrepository.name}" />
 
-									<echo>Executing Gradle task in directory '${module.base.dir}': testIntegration</echo>
+									<echo>Executing Gradle task in directory "${module.base.dir}": testIntegration.</echo>
 
 									<gradle-execute dir="${module.base.dir}" refreshdependencies="@{refreshdependencies}" task="testIntegration">
 										<arg value="-Dapp.server.start.executable.arg.line=${test.batch.app.server.start.executable.arg.line}" />
