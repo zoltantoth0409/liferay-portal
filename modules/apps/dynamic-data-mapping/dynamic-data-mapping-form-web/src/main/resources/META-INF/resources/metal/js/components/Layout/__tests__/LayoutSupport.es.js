@@ -70,15 +70,23 @@ describe(
 			}
 		);
 
-		it('should get a specific field through the context', () => {
-			const indexColumn = 0;
-			const indexPage = 0;
-			const indexRow = 0;
+		it(
+			'should get a specific field through the context',
+			() => {
+				const indexColumn = 0;
+				const indexPage = 0;
+				const indexRow = 0;
 
-			expect(
-				LayoutSupport.getField(context, indexPage, indexRow, indexColumn)
-			).toMatchSnapshot();
-		});
+				expect(
+					LayoutSupport.getField(
+						context,
+						indexPage,
+						indexRow,
+						indexColumn
+					)
+				).toMatchSnapshot();
+			}
+		);
 
 		it(
 			'add a new field to column to the context',

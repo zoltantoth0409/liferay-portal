@@ -183,18 +183,23 @@ class LayoutProvider extends Component {
 	_handleDuplicatedField({rowIndex, pageIndex, columnIndex}) {
 		const {context} = this.state;
 		const field = LayoutSupport.getField(context, pageIndex, rowIndex, columnIndex);
-		const newRowIndex = rowIndex + 1;
-		const newContext = LayoutSupport.addRow(context, newRowIndex, pageIndex);
+
 		const duplicatedField = {
 			...field,
 			name: LayoutSupport.generateFieldName(field)
 		};
 
+		const newRowIndex = rowIndex + 1;
+
+		const newContext = LayoutSupport.addRow(context, newRowIndex, pageIndex);
+
 		LayoutSupport.addFieldToColumn(newContext, pageIndex, newRowIndex, columnIndex, duplicatedField);
 
-		this.setState({
-			context: newContext
-		});
+		this.setState(
+			{
+				context: newContext
+			}
+		);
 	}
 
 	/**

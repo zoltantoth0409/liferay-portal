@@ -77,7 +77,6 @@ const getField = (pages, pageIndex, rowIndex, columnIndex) => {
 	return getColumn(pages, pageIndex, rowIndex, columnIndex)[0];
 };
 
-
 const getRow = (pages, pageIndex, rowIndex) => {
 	return pages[Number(pageIndex)].rows[Number(rowIndex)];
 };
@@ -118,9 +117,9 @@ export default {
 	addFieldToColumn,
 	addRow,
 	changeFieldsFromColumn,
-	getField,
 	generateFieldName,
 	getColumn,
+	getField,
 	getIndexes,
 	getRow,
 	hasFieldsRow,
