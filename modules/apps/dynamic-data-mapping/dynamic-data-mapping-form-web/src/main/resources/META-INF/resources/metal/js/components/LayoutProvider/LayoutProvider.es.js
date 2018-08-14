@@ -175,6 +175,27 @@ class LayoutProvider extends Component {
 		);
 	}
 
+		/**
+	 * @param {!Object}
+	 * @private
+	 */
+	_handleDuplicatedField({ rowIndex, pageIndex, columnIndex }) {
+		const { context } = this.state;
+		const field = LayoutSupport.getField(context, pageIndex, rowIndex, columnIndex);
+		const newRowIndex = rowIndex + 1;
+		const newContext = LayoutSupport.addRow(context, newRowIndex, pageIndex);
+		const duplicatedField = {
+			...field,
+			name: LayoutSupport.generateFieldName(field)
+		};
+
+		LayoutSupport.addFieldToColumn(newContext, pageIndex, newRowIndex, columnIndex, duplicatedField);
+
+		this.setState({
+			context: newContext
+		});
+	}
+
 	/**
 	 * @param {!Object} event
 	 * @private
@@ -340,6 +361,7 @@ class LayoutProvider extends Component {
 			const events = {
 				clickedField: this._handleClickedField.bind(this),
 				deleteField: this._handleDeleteField.bind(this),
+				duplicateField: this._handleDuplicatedField.bind(this),
 				fieldAdded: this._handleFieldAdd.bind(this),
 				fieldEdited: this._handleFieldEdited.bind(this),
 				fieldMoved: this._handleFieldMoved.bind(this)
