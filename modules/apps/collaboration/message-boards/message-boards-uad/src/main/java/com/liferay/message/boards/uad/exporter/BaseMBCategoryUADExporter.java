@@ -14,8 +14,8 @@
 
 package com.liferay.message.boards.uad.exporter;
 
-import com.liferay.message.boards.model.MBCategory;
-import com.liferay.message.boards.service.MBCategoryLocalService;
+import com.liferay.message.boards.kernel.model.MBCategory;
+import com.liferay.message.boards.kernel.service.MBCategoryLocalService;
 import com.liferay.message.boards.uad.constants.MBUADConstants;
 
 import com.liferay.petra.string.StringBundler;
@@ -59,7 +59,7 @@ public abstract class BaseMBCategoryUADExporter extends DynamicQueryUADExporter<
 		StringBundler sb = new StringBundler(25);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.message.boards.model.MBCategory");
+		sb.append("com.liferay.message.boards.kernel.model.MBCategory");
 		sb.append("</model-name>");
 
 		sb.append(

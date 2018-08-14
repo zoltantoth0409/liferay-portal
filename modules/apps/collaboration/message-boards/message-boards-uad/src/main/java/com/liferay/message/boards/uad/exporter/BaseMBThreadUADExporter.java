@@ -14,8 +14,8 @@
 
 package com.liferay.message.boards.uad.exporter;
 
-import com.liferay.message.boards.model.MBThread;
-import com.liferay.message.boards.service.MBThreadLocalService;
+import com.liferay.message.boards.kernel.model.MBThread;
+import com.liferay.message.boards.kernel.service.MBThreadLocalService;
 import com.liferay.message.boards.uad.constants.MBUADConstants;
 
 import com.liferay.petra.string.StringBundler;
@@ -59,7 +59,7 @@ public abstract class BaseMBThreadUADExporter extends DynamicQueryUADExporter<MB
 		StringBundler sb = new StringBundler(25);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.message.boards.model.MBThread");
+		sb.append("com.liferay.message.boards.kernel.model.MBThread");
 		sb.append("</model-name>");
 
 		sb.append(

@@ -14,8 +14,8 @@
 
 package com.liferay.message.boards.uad.anonymizer;
 
-import com.liferay.message.boards.model.MBMessage;
-import com.liferay.message.boards.service.MBMessageLocalService;
+import com.liferay.message.boards.kernel.model.MBMessage;
+import com.liferay.message.boards.kernel.service.MBMessageLocalService;
 import com.liferay.message.boards.uad.constants.MBUADConstants;
 
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;

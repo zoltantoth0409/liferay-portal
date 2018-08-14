@@ -14,8 +14,8 @@
 
 package com.liferay.message.boards.uad.exporter;
 
-import com.liferay.message.boards.model.MBMessage;
-import com.liferay.message.boards.service.MBMessageLocalService;
+import com.liferay.message.boards.kernel.model.MBMessage;
+import com.liferay.message.boards.kernel.service.MBMessageLocalService;
 import com.liferay.message.boards.uad.constants.MBUADConstants;
 
 import com.liferay.petra.string.StringBundler;
@@ -59,7 +59,7 @@ public abstract class BaseMBMessageUADExporter extends DynamicQueryUADExporter<M
 		StringBundler sb = new StringBundler(25);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.message.boards.model.MBMessage");
+		sb.append("com.liferay.message.boards.kernel.model.MBMessage");
 		sb.append("</model-name>");
 
 		sb.append(

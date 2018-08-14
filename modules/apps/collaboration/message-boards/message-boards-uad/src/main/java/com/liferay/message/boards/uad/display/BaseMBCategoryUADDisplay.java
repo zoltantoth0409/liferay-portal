@@ -14,8 +14,8 @@
 
 package com.liferay.message.boards.uad.display;
 
-import com.liferay.message.boards.model.MBCategory;
-import com.liferay.message.boards.service.MBCategoryLocalService;
+import com.liferay.message.boards.kernel.model.MBCategory;
+import com.liferay.message.boards.kernel.service.MBCategoryLocalService;
 import com.liferay.message.boards.uad.constants.MBUADConstants;
 
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;

@@ -14,8 +14,8 @@
 
 package com.liferay.message.boards.uad.display;
 
-import com.liferay.message.boards.constants.MBPortletKeys;
-import com.liferay.message.boards.model.MBCategory;
+import com.liferay.message.boards.kernel.model.MBCategory;
+import com.liferay.message.boards.web.constants.MBPortletKeys;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.util.Portal;
