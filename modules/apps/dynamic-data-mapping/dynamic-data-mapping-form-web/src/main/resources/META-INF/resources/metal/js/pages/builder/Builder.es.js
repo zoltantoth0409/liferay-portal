@@ -87,6 +87,7 @@ class Builder extends Component {
 	render() {
 		const {
 			context,
+			fieldContext,
 			fieldsList,
 			focusedField,
 			mode,
@@ -120,6 +121,7 @@ class Builder extends Component {
 				<Sidebar
 					context={context}
 					events={sidebarEvents}
+					fieldContext={fieldContext}
 					fieldLists={fieldsList}
 					focusedField={focusedField}
 					mode={mode}
