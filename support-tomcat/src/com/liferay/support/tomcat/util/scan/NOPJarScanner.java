@@ -28,7 +28,7 @@ public class NOPJarScanner implements JarScanner {
 
 	@Override
 	public JarScanFilter getJarScanFilter() {
-		return _nopJarScanFilter;
+		return _jarScanFilter;
 	}
 
 	@Override
@@ -41,8 +41,7 @@ public class NOPJarScanner implements JarScanner {
 	public void setJarScanFilter(JarScanFilter jarScanFilter) {
 	}
 
-	private static final JarScanFilter _nopJarScanFilter =
-		new NOPJarScanFilter();
+	private static final JarScanFilter _jarScanFilter = new NOPJarScanFilter();
 
 	private static class NOPJarScanFilter implements JarScanFilter {
 
