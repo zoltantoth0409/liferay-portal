@@ -65,6 +65,15 @@ class Builder extends Component {
 
 	/**
 	 * Continues the propagation of event.
+	 * @param {!Object}
+	 * @private
+	 */
+	_handleDuplicateButtonClicked(indexes) {
+		this.emit('duplicateField', indexes);
+	}
+
+	/**
+	 * Continues the propagation of event.
 	 * @param {!Event} event
 	 * @private
 	 */
@@ -96,6 +105,7 @@ class Builder extends Component {
 
 		const layoutRendererEvents = {
 			deleteButtonClicked: this._handleDeleteButtonClicked.bind(this),
+			duplicateButtonClicked: this._handleDuplicateButtonClicked.bind(this),
 			clickedField: this._handleFieldClicked.bind(this),
 			fieldMoved: this._handleFieldMoved.bind(this)
 		};
