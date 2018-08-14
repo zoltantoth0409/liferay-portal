@@ -122,7 +122,7 @@ public class DLFileEntryUADAnonymizerTest
 		serviceContext.setAssetEntryVisible(true);
 
 		MBMessage mbMessage = MBTestUtil.addMessageWithWorkflow(
-			dlFileEntry.getGroupId(),
+			dlFileEntry.getUserId(), dlFileEntry.getGroupId(),
 			MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID,
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(), true,
 			serviceContext);
