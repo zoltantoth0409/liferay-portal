@@ -370,6 +370,26 @@ describe(
 					}
 				);
 
+				describe('duplicateField', () => {
+					it('should listen the duplicate field event and add this field in the context', () => {
+						component = new Parent();
+
+						const {provider, child} = component.refs;
+						const mockEvent = {
+							rowIndex: 0,
+							pageIndex: 0,
+							columnIndex: 0
+						};
+
+						child.emit('duplicateField', mockEvent);
+
+						jest.runAllTimers();
+
+						expect(provider.state.context).toMatchSnapshot();
+						expect(child.props.context).toEqual(provider.state.context);
+					});
+				});
+
 				describe(
 					'fieldEdited',
 					() => {
