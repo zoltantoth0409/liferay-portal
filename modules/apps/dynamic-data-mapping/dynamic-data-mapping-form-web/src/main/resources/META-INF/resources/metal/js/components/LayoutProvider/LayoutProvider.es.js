@@ -251,7 +251,7 @@ class LayoutProvider extends Component {
 		this.setState(
 			{
 				context: newContext,
-				focusedField: {}
+				focusedField: fieldSourceToMove[0]
 			}
 		);
 
