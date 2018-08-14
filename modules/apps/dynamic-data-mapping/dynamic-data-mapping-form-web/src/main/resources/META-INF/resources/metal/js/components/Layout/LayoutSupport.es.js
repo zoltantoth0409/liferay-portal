@@ -63,6 +63,10 @@ const removeRow = (pages, pageIndex, rowIndex) => {
 	return pages;
 };
 
+const generateFieldName = field => {
+    return field.name + Date.now();
+}
+
 const getColumn = (pages, pageIndex, rowIndex, columnIndex) => {
 	const row = getRow(pages, pageIndex, rowIndex);
 
@@ -115,6 +119,7 @@ export default {
 	addRow,
 	changeFieldsFromColumn,
 	getField,
+	generateFieldName,
 	getColumn,
 	getIndexes,
 	getRow,
