@@ -241,11 +241,10 @@ class Sidebar extends Component {
 	 * @return {bool}
 	 */
 
-	_isEditMode(mode = this.state.mode) {
+	_isEditMode() {
 		const {fieldContext, fieldLists, focusedField} = this.props;
 
 		return !!(
-			mode === 'edit' &&
 			!(
 				Object.keys(focusedField).length === 0 &&
 				focusedField.constructor === Object
@@ -262,7 +261,7 @@ class Sidebar extends Component {
 	 */
 
 	_setMode(mode) {
-		if (this._isEditMode(mode)) {
+		if (this._isEditMode()) {
 			this.setState(
 				{
 					mode
@@ -366,7 +365,7 @@ class Sidebar extends Component {
 		if (
 			typeof nextProps.mode !== 'undefined' &&
 			nextProps.mode.newVal &&
-			this._isEditMode(nextProps.mode.newVal)
+			this._isEditMode()
 		) {
 			this.show();
 		}
@@ -423,6 +422,7 @@ class Sidebar extends Component {
 									<Fragment>
 										<li class="tbar-item">
 											<ClayButton
+												editable={true}
 												events={angleLeftEvents}
 												icon="angle-left"
 												ref="previousButton"
