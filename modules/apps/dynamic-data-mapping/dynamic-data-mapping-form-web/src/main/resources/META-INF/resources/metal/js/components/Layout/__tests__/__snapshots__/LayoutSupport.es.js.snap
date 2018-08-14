@@ -310,6 +310,13 @@ Object {
 }
 `;
 
+exports[`LayoutSupport should get a specific field through the context 1`] = `
+Object {
+  "label": "Radio",
+  "type": "radio",
+}
+`;
+
 exports[`LayoutSupport should not add an empty object to the column when the field is not passed 1`] = `
 Array [
   Object {
