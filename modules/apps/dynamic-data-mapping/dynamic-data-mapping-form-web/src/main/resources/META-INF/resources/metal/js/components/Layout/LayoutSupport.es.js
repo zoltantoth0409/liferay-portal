@@ -15,8 +15,8 @@ const addRow = (pages, indexToAddRow, pageIndex, newRow) => {
 	return pages;
 };
 
-const addFieldToColumn = (pages, pageIndex, rowIndex, columnIndex, fields) => {
-	if (!fields) {
+const addFieldToColumn = (pages, pageIndex, rowIndex, columnIndex, field) => {
+	if (!field) {
 		console.warn(
 			`It is not possible to add the field to column (${pageIndex}, ${rowIndex}, ${columnIndex}) when the field is not passed.`
 		);
@@ -24,7 +24,7 @@ const addFieldToColumn = (pages, pageIndex, rowIndex, columnIndex, fields) => {
 	else {
 		pages[Number(pageIndex)].rows[Number(rowIndex)].columns[
 			Number(columnIndex)
-		].fields.push(fields);
+		].fields.push(field);
 	}
 
 	return pages;
