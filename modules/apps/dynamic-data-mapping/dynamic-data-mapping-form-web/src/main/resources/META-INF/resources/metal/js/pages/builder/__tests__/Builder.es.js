@@ -76,7 +76,7 @@ describe(
 		);
 
 		it(
-			'should continue to propagate the fieldDeleted event',
+			'should continue to propagate the deleteField event',
 			() => {
 				const spy = jest.spyOn(component, 'emit');
 				const {layoutRenderer} = component.refs;
@@ -85,7 +85,7 @@ describe(
 				layoutRenderer.emit('deleteButtonClicked', mockEvent);
 
 				expect(spy).toHaveBeenCalled();
-				expect(spy).toHaveBeenCalledWith('fieldDeleted', expect.anything());
+				expect(spy).toHaveBeenCalledWith('deleteField', expect.anything());
 			}
 		);
 

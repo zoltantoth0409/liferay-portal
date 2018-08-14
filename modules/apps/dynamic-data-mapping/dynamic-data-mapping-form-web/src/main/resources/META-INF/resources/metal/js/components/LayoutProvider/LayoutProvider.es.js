@@ -149,7 +149,7 @@ class LayoutProvider extends Component {
 	 * @private
 	 */
 
-	_handleFieldDelete({rowIndex, pageIndex, columnIndex}) {
+	_handleDeleteField({rowIndex, pageIndex, columnIndex}) {
 		const {context} = this.state;
 		let newContext = LayoutSupport.removeFields(
 			context,
@@ -339,8 +339,8 @@ class LayoutProvider extends Component {
 
 			const events = {
 				clickedField: this._handleClickedField.bind(this),
+				deleteField: this._handleDeleteField.bind(this),
 				fieldAdded: this._handleFieldAdd.bind(this),
-				fieldDeleted: this._handleFieldDelete.bind(this),
 				fieldEdited: this._handleFieldEdited.bind(this),
 				fieldMoved: this._handleFieldMoved.bind(this)
 			};

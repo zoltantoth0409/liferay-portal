@@ -102,7 +102,7 @@ describe(
 		);
 
 		it(
-			'should render a layout and emit an event on button delete clicked',
+			'should render a layout and emit an event when button delete is clicked',
 			() => {
 				component = new LayoutRenderer(
 					{

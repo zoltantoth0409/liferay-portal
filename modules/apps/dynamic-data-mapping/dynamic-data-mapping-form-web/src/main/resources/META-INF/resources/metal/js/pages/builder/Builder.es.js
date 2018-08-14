@@ -60,7 +60,7 @@ class Builder extends Component {
 	 */
 
 	_handleDeleteButtonClicked(indexes) {
-		this.emit('fieldDeleted', indexes);
+		this.emit('deleteField', indexes);
 	}
 
 	/**

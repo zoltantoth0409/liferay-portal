@@ -70,8 +70,8 @@ describe(
 				expect(provider.props.children[0].props.events).toMatchObject(
 					{
 						fieldAdded: expect.any(Function),
-						fieldDeleted: expect.any(Function),
 						clickedField: expect.any(Function),
+						deleteField: expect.any(Function),
 						fieldEdited: expect.any(Function),
 						fieldMoved: expect.any(Function)
 					}
@@ -345,10 +345,10 @@ describe(
 				);
 
 				describe(
-					'fieldDeleted',
+					'deleteField',
 					() => {
 						it(
-							'should listen the fieldDeleted event and delete the field in the column to the context',
+							'should listen the deleteField event and delete the field in the column to the context',
 							() => {
 								component = new Parent();
 
@@ -359,7 +359,7 @@ describe(
 									rowIndex: 1
 								};
 
-								child.emit('fieldDeleted', mockEvent);
+								child.emit('deleteField', mockEvent);
 
 								jest.runAllTimers();
 
