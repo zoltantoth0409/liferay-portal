@@ -237,12 +237,12 @@ describe(
 				component.element.querySelector('.ddm-drag').click();
 
 				expect(spy).toHaveBeenCalled();
-				expect(spy).toHaveBeenCalledWith('fieldClicked', expect.any(Object));
+				expect(spy).toHaveBeenCalledWith('clickedField', expect.any(Object));
 			}
 		);
 
 		it(
-			'should emit a fieldClicked event with the field location',
+			'should emit a clickedField event with the field location',
 			() => {
 				component = new LayoutRenderer(
 					{
@@ -259,7 +259,7 @@ describe(
 
 				expect(spy).toHaveBeenCalled();
 				expect(spy).toHaveBeenCalledWith(
-					'fieldClicked',
+					'clickedField',
 					expect.objectContaining(
 						{
 							columnIndex: expect.anything(),

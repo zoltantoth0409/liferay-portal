@@ -20,7 +20,7 @@ class Builder extends Component {
 		const Sidebar = this.refs.sidebar;
 
 		Sidebar.show();
-		this.emit('fieldClicked', indexAllocateField);
+		this.emit('clickedField', indexAllocateField);
 	}
 
 	/**
@@ -96,7 +96,7 @@ class Builder extends Component {
 
 		const layoutRendererEvents = {
 			deleteButtonClicked: this._handleDeleteButtonClicked.bind(this),
-			fieldClicked: this._handleFieldClicked.bind(this),
+			clickedField: this._handleFieldClicked.bind(this),
 			fieldMoved: this._handleFieldMoved.bind(this)
 		};
 

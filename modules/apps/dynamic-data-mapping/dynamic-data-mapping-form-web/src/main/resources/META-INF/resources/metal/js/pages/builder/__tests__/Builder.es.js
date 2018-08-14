@@ -90,18 +90,18 @@ describe(
 		);
 
 		it(
-			'should continue to propagate the fieldClicked event and open the sidebar',
+			'should continue to propagate the clickedField event and open the sidebar',
 			() => {
 				const spy = jest.spyOn(component, 'emit');
 				const {layoutRenderer, sidebar} = component.refs;
 				const mockEvent = jest.fn();
 
-				layoutRenderer.emit('fieldClicked', mockEvent);
+				layoutRenderer.emit('clickedField', mockEvent);
 
 				jest.runAllTimers();
 
 				expect(spy).toHaveBeenCalled();
-				expect(spy).toHaveBeenCalledWith('fieldClicked', expect.anything());
+				expect(spy).toHaveBeenCalledWith('clickedField', expect.anything());
 				expect(sidebar.state.show).toBeTruthy();
 			}
 		);

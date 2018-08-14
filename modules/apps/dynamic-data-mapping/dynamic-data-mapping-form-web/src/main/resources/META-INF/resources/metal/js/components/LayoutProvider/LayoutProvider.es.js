@@ -87,7 +87,7 @@ class LayoutProvider extends Component {
 	 * @private
 	 */
 
-	_handleFieldClicked(data) {
+	_handleClickedField(data) {
 		this.setState(
 			{
 				focusedField: data,
@@ -338,8 +338,8 @@ class LayoutProvider extends Component {
 			const Child = children[0];
 
 			const events = {
+				clickedField: this._handleClickedField.bind(this),
 				fieldAdded: this._handleFieldAdd.bind(this),
-				fieldClicked: this._handleFieldClicked.bind(this),
 				fieldDeleted: this._handleFieldDelete.bind(this),
 				fieldEdited: this._handleFieldEdited.bind(this),
 				fieldMoved: this._handleFieldMoved.bind(this)
