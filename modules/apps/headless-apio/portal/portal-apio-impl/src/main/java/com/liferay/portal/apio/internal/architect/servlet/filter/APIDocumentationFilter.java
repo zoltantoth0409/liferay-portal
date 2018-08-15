@@ -63,16 +63,16 @@ public class APIDocumentationFilter extends BaseFilter {
 			FilterChain filterChain)
 		throws Exception {
 
-		StringBuilder stringBuilder = new StringBuilder();
+		StringBuilder sb = new StringBuilder();
 
-		stringBuilder.append("<");
-		stringBuilder.append(_getApiDocumentationUrl(request));
-		stringBuilder.append(" ");
-		stringBuilder.append(
+		sb.append("<");
+		sb.append(_getApiDocumentationUrl(request));
+		sb.append(" ");
+		sb.append(
 			"rel=\"http://www.w3.org/ns/hydra/core#apiDocumentation\"");
-		stringBuilder.append(">");
+		sb.append(">");
 
-		response.addHeader("Link", stringBuilder.toString());
+		response.addHeader("Link", sb.toString());
 
 		super.processFilter(request, response, filterChain);
 	}
@@ -86,14 +86,14 @@ public class APIDocumentationFilter extends BaseFilter {
 	}
 
 	private String _getApiDocumentationUrl(HttpServletRequest request) {
-		StringBuilder stringBuilder = new StringBuilder();
+		StringBuilder sb = new StringBuilder();
 
-		stringBuilder.append(_portal.getPortalURL(request));
-		stringBuilder.append("/o");
-		stringBuilder.append(_applicationPath);
-		stringBuilder.append("/doc");
+		sb.append(_portal.getPortalURL(request));
+		sb.append("/o");
+		sb.append(_applicationPath);
+		sb.append("/doc");
 
-		return stringBuilder.toString();
+		return sb.toString();
 	}
 
 	private String _applicationPath;
