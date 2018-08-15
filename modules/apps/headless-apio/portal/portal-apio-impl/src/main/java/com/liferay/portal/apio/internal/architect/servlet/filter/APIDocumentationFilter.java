@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.apio.internal.architect.filter;
+package com.liferay.portal.apio.internal.architect.servlet.filter;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
