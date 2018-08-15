@@ -25,8 +25,8 @@ public enum Action {
 
 	Delete("DELETE"), Unavailable("NOOP"), Update("PUT"), Upsert("POST");
 
-	public static Stream<Action> getActionStream() {
-		return _actionStreamSupplier.get();
+	public static Stream<Action> getActionsStream() {
+		return _actionsStreamSupplier.get();
 	}
 
 	public String getMethodName() {
@@ -37,7 +37,7 @@ public enum Action {
 		_method = method;
 	}
 
-	private static final Supplier<Stream<Action>> _actionStreamSupplier =
+	private static final Supplier<Stream<Action>> _actionsStreamSupplier =
 		() -> Arrays.stream(values());
 
 	private final String _method;
