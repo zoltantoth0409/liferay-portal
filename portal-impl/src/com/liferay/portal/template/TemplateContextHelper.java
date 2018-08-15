@@ -1381,6 +1381,16 @@ public class TemplateContextHelper {
 
 		@Override
 		public String URLtoString(URL url) throws IOException {
+			String protocol = url.getProtocol();
+
+			if (!HTTP.equals(protocol) && !HTTPS.equals(protocol)) {
+				throw new IOException(
+					StringBundler.concat(
+						"Denied access to resource ", url.toString(),
+						". $httpUtil template variable supports only http and ",
+						"https protocols."));
+			}
+
 			if (isLocationAccessDenied(url.toString())) {
 				_log.error(
 					StringBundler.concat(
