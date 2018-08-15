@@ -67,10 +67,7 @@ public class APIDocumentationFilter extends BaseFilter {
 
 		sb.append("<");
 		sb.append(_getApiDocumentationUrl(request));
-		sb.append(" ");
-		sb.append(
-			"rel=\"http://www.w3.org/ns/hydra/core#apiDocumentation\"");
-		sb.append(">");
+		sb.append(" rel=\"http://www.w3.org/ns/hydra/core#apiDocumentation\">");
 
 		response.addHeader("Link", sb.toString());
 
