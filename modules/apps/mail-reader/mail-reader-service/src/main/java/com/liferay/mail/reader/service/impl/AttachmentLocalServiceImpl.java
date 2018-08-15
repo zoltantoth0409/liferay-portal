@@ -14,6 +14,7 @@
 
 package com.liferay.mail.reader.service.impl;
 
+import com.liferay.document.library.kernel.exception.DirectoryNameException;
 import com.liferay.document.library.kernel.store.DLStoreUtil;
 import com.liferay.mail.reader.model.Attachment;
 import com.liferay.mail.reader.model.Message;
@@ -83,7 +84,7 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 				// LPS-52675
 
 				if (_log.isDebugEnabled()) {
-					_log.debug(dde, dde);
+					_log.debug(dne, dne);
 				}
 			}
 
