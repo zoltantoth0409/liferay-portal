@@ -85,6 +85,8 @@ public class Utilities {
 	}
 
 	public static String toChecksum(URI uri) throws Exception {
+		CRC32 crc32 = new CRC32();
+
 		String content = readURL(uri.toURL());
 
 		Matcher matcher = _incrementPattern.matcher(content);
@@ -95,8 +97,6 @@ public class Utilities {
 
 			content = start.concat(end);
 		}
-
-		CRC32 crc32 = new CRC32();
 
 		crc32.update(content.getBytes(StandardCharsets.UTF_8));
 

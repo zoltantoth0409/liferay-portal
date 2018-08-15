@@ -381,6 +381,8 @@ public class LPKGIndexValidator {
 	}
 
 	private String _toChecksum(URI uri) throws Exception {
+		CRC32 crc32 = new CRC32();
+
 		URL url = uri.toURL();
 
 		UnsyncByteArrayOutputStream unsyncByteArrayOutputStream =
@@ -398,8 +400,6 @@ public class LPKGIndexValidator {
 
 			content = start.concat(end);
 		}
-
-		CRC32 crc32 = new CRC32();
 
 		crc32.update(content.getBytes(StandardCharsets.UTF_8));
 
