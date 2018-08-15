@@ -913,6 +913,12 @@ message.
 	</target>
 
 	<target name="nightly">
+		<fail>This target is deprecated and renamed to "snapshot-bundle".</fail>
+
+		<antcall target="snapshot-bundle" />
+	</target>
+
+	<target name="snapshot-bundle">
 		<antelope:stringutil property="snapshot.bundle.file.beginindex" string="${snapshot.bundle.url}">
 			<antelope:lastindexof string="/" />
 		</antelope:stringutil>
