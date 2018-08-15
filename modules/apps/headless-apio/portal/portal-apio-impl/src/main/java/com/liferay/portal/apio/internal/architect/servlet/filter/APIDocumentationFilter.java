@@ -75,7 +75,7 @@ public class APIDocumentationFilter extends BaseFilter {
 	}
 
 	@Reference(target = "(osgi.jaxrs.name=apio-application)", unbind = "-")
-	protected void setApioApplication(
+	protected void setApplication(
 		ServiceReference<Application> serviceReference) {
 
 		_applicationPath = (String)serviceReference.getProperty(
