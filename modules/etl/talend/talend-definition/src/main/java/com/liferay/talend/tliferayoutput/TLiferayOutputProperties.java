@@ -445,7 +445,7 @@ public class TLiferayOutputProperties
 		}
 
 		private Action _methodToAction(String method) {
-			Stream<Action> actionStream = Action.getActionStream();
+			Stream<Action> actionStream = Action.getActionsStream();
 
 			return actionStream.filter(
 				action -> method.equals(action.getMethodName())
