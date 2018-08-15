@@ -66,7 +66,7 @@ public class APIDocumentationFilter extends BaseFilter {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("<");
-		sb.append(_getApiDocumentationUrl(request));
+		sb.append(_getApiDocumentationURL(request));
 		sb.append(" rel=\"http://www.w3.org/ns/hydra/core#apiDocumentation\">");
 
 		response.addHeader("Link", sb.toString());
@@ -82,7 +82,7 @@ public class APIDocumentationFilter extends BaseFilter {
 			"osgi.jaxrs.application.base");
 	}
 
-	private String _getApiDocumentationUrl(HttpServletRequest request) {
+	private String _getApiDocumentationURL(HttpServletRequest request) {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(_portal.getPortalURL(request));
