@@ -421,16 +421,16 @@ public class TLiferayOutputProperties
 
 			Stream<Operation> operationStream = supportedOperations.stream();
 
-			List<Action> actionList = operationStream.map(
+			List<Action> actions = operationStream.map(
 				Operation::getMethod
 			).map(
-				this::_methodToAction
+				this::_toAction
 			).collect(
 				Collectors.toList()
 			);
 
-			if (!actionList.isEmpty()) {
-				operations.setPossibleValues(actionList);
+			if (!actions.isEmpty()) {
+				operations.setPossibleValues(actions);
 			}
 			else {
 				operations.setPossibleValues(Action.Unavailable);
@@ -444,10 +444,10 @@ public class TLiferayOutputProperties
 			return validationResultMutable;
 		}
 
-		private Action _methodToAction(String method) {
-			Stream<Action> actionStream = Action.getActionsStream();
+		private Action _toAction(String method) {
+			Stream<Action> actionsStream = Action.getActionsStream();
 
-			return actionStream.filter(
+			return actionsStream.filter(
 				action -> method.equals(action.getMethodName())
 			).findFirst(
 			).orElseThrow(
