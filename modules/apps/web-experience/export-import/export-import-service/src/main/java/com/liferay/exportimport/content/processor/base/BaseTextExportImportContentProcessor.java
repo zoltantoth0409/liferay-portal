@@ -1778,7 +1778,8 @@ public class BaseTextExportImportContentProcessor
 				if (urlWithoutLocale.startsWith(
 						PRIVATE_GROUP_SERVLET_MAPPING) ||
 					urlWithoutLocale.startsWith(PRIVATE_USER_SERVLET_MAPPING) ||
-					urlWithoutLocale.startsWith(PUBLIC_GROUP_SERVLET_MAPPING)) {
+					urlWithoutLocale.startsWith(PUBLIC_GROUP_SERVLET_MAPPING) ||
+					_isVirtualHostDefined(urlSB)) {
 
 					url = urlWithoutLocale;
 				}
@@ -1987,6 +1988,21 @@ public class BaseTextExportImportContentProcessor
 		"\\[([\\d]+)@(private(-group|-user)?|public)(@([\\d]+))?\\]");
 	protected static final Pattern importLinksToLayoutPattern = Pattern.compile(
 		"\\[([\\d]+)@(private(-group|-user)?|public)@([\\d]+)(@([\\d]+))?\\]");
+
+	private boolean _isVirtualHostDefined(StringBundler urlSB) {
+		String urlSBString = urlSB.toString();
+
+		if (urlSBString.contains(DATA_HANDLER_PUBLIC_LAYOUT_SET_SECURE_URL) ||
+			urlSBString.contains(DATA_HANDLER_PUBLIC_LAYOUT_SET_URL) ||
+			urlSBString.contains(DATA_HANDLER_PRIVATE_LAYOUT_SET_SECURE_URL) ||
+			urlSBString.contains(DATA_HANDLER_PRIVATE_LAYOUT_SET_URL)) {
+
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 
 	private static final String[] _DL_REFERENCE_LEGACY_STOP_STRINGS = {
 		StringPool.APOSTROPHE, StringPool.APOSTROPHE_ENCODED,
