@@ -1689,7 +1689,7 @@
 
 		<execute macro="KaleoDesigner#editSourceXML">
 			<var name="kdSourceXML"><![CDATA[</transitions></state>]]></var>
-			<var name="line" value="16" />
+			<var name="line" value="20" />
 		</execute>
 
 		<execute macro="KaleoDesigner#viewViewTab" />
