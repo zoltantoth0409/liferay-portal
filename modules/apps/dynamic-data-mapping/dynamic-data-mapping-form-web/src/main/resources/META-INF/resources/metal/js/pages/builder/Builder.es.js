@@ -105,9 +105,9 @@ class Builder extends Component {
 		} = this.props;
 
 		const layoutRendererEvents = {
-			fieldClicked: this._handleFieldClicked.bind(this),
 			deleteButtonClicked: this._handleDeleteButtonClicked.bind(this),
 			duplicateButtonClicked: this._handleDuplicateButtonClicked.bind(this),
+			fieldClicked: this._handleFieldClicked.bind(this),
 			fieldMoved: this._handleFieldMoved.bind(this)
 		};
 

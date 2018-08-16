@@ -69,9 +69,9 @@ describe(
 
 				expect(provider.props.children[0].props.events).toMatchObject(
 					{
-						fieldClicked: expect.any(Function),
 						deleteField: expect.any(Function),
 						fieldAdded: expect.any(Function),
+						fieldClicked: expect.any(Function),
 						fieldEdited: expect.any(Function),
 						fieldMoved: expect.any(Function)
 					}
