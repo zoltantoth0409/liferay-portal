@@ -64,13 +64,13 @@ public class DLFileEntrySharingPermissionChecker
 	}
 
 	private static final Set<SharingEntryActionKey> _actionKeysSet =
-		new HashSet<>();
-
-	static {
-		_actionKeysSet.add(SharingEntryActionKey.ADD_DISCUSSION);
-		_actionKeysSet.add(SharingEntryActionKey.UPDATE);
-		_actionKeysSet.add(SharingEntryActionKey.VIEW);
-	}
+		new HashSet<SharingEntryActionKey>() {
+			{
+				add(SharingEntryActionKey.ADD_DISCUSSION);
+				add(SharingEntryActionKey.UPDATE);
+				add(SharingEntryActionKey.VIEW);
+			}
+		};
 
 	@Reference(
 		target = "(&(model.class.name=com.liferay.document.library.kernel.model.DLFileEntry)(!(component.name=" + SharingEntryDLFileEntryModelResourcePermissionRegistrar.COMPONENT_NAME + ")))"
