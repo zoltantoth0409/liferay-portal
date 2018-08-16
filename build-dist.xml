@@ -3131,9 +3131,17 @@ and put it in ${app.server.parent.dir}. Then rerun this task.
 					<try>
 						<mkdir dir="${app.server.parent.dir}" />
 
+						<propertyregex
+							input="${app.server.websphere.version}"
+							override="true"
+							property="app.server.websphere.major.version"
+							regexp="(.*)\.\d+"
+							replace="\1"
+						/>
+
 						<mirrors-get
 							dest="${app.server.parent.dir}/${app.server.websphere.custom.zip.name}"
-							src="http://files.liferay.com/private/apps/ibm/websphere/8.5.5/${app.server.websphere.custom.zip.name}"
+							src="http://files.liferay.com/private/apps/ibm/websphere/${app.server.websphere.major.version}/${app.server.websphere.custom.zip.name}"
 							verbose="true"
 						/>
 					</try>
@@ -3142,7 +3150,7 @@ and put it in ${app.server.parent.dir}. Then rerun this task.
 .
 
 Please download the Websphere custom zip file from
-http://mirrors/files.liferay.com/private/apps/ibm/websphere/8.5.5 and
+http://mirrors/files.liferay.com/private/apps/ibm/websphere/${app.server.websphere.major.version} and
 place it here: ${app.server.parent.dir}/${app.server.websphere.custom.zip.name}. Then rerun
 this task.
 						</fail>
