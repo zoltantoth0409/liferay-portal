@@ -1474,14 +1474,17 @@
 			<var name="fieldName" value="Date" />
 		</execute>
 
+		<var method="DateUtil#getCurrentYear()" name="currentDateYear" />
+		<var name="fieldPredefinedValue" value="12/15/${currentDateYear}" />
+
 		<execute macro="DynamicDataMapping#editFieldPredefinedValue">
 			<var name="field" value="Date" />
 			<var name="fieldFieldLabel" value="Date" />
 			<var name="fieldName" value="Date" />
-			<var name="fieldPredefinedValue" value="09/01/2017" />
-			<var name="fieldPredefinedValueDay" value="1" />
-			<var name="fieldPredefinedValueMonth" value="September" />
-			<var name="fieldPredefinedValueYear" value="2017" />
+			<var name="fieldPredefinedValue" value="${fieldPredefinedValue}" />
+			<var name="fieldPredefinedValueDay" value="15" />
+			<var name="fieldPredefinedValueMonth" value="December" />
+			<var name="fieldPredefinedValueYear" value="${currentDateYear}" />
 		</execute>
 
 		<execute macro="DDLDataDefinition#save" />
@@ -1513,14 +1516,16 @@
 			<var name="field" value="Date" />
 			<var name="fieldFieldLabel" value="Date" />
 			<var name="fieldName" value="Date" />
-			<var name="fieldPredefinedValue" value="09/01/2017" />
+			<var name="fieldPredefinedValue" value="${fieldPredefinedValue}" />
 		</execute>
 
 		<execute macro="PortletEntry#publish" />
 
+		<var method="StringUtil#extractLast('${currentDateYear}','0')" name="shortYear" />
+
 		<execute macro="DDLRecord#viewViaDDLDisplayPG">
 			<var name="ddlListName" value="List Name" />
-			<var name="ddlRecordFieldData" value="9/1/17" />
+			<var name="ddlRecordFieldData" value="12/15/${shortYear}" />
 			<var name="field" value="Date" />
 			<var name="fieldFieldLabel" value="Date" />
 		</execute>
@@ -1538,7 +1543,7 @@
 			<var name="field" value="Date" />
 			<var name="fieldFieldLabel" value="Date" />
 			<var name="fieldName" value="Date" />
-			<var name="fieldPredefinedValue" value="09/01/2017" />
+			<var name="fieldPredefinedValue" value="${fieldPredefinedValue}" />
 		</execute>
 
 		<execute macro="DDLRecord#populateFieldDate">
