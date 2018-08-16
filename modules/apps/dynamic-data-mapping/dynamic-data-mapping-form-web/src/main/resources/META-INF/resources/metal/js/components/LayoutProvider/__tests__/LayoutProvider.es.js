@@ -69,7 +69,7 @@ describe(
 
 				expect(provider.props.children[0].props.events).toMatchObject(
 					{
-						clickedField: expect.any(Function),
+						fieldClicked: expect.any(Function),
 						deleteField: expect.any(Function),
 						fieldAdded: expect.any(Function),
 						fieldEdited: expect.any(Function),
@@ -415,7 +415,7 @@ describe(
 									rowIndex: 1
 								};
 
-								child.emit('clickedField', mockFieldFocus);
+								child.emit('fieldClicked', mockFieldFocus);
 								child.emit('fieldEdited', mockEvent);
 
 								jest.runAllTimers();
@@ -435,10 +435,10 @@ describe(
 				);
 
 				describe(
-					'clickedField',
+					'fieldClicked',
 					() => {
 						it(
-							'should listen the clickedField event and change the state of the focusedField to the data receive',
+							'should listen the fieldClicked event and change the state of the focusedField to the data receive',
 							() => {
 								component = new Parent();
 
@@ -450,11 +450,11 @@ describe(
 									rowIndex: 0
 								};
 
-								child.emit('clickedField', mockEvent);
+								child.emit('fieldClicked', mockEvent);
 
 								expect(provider.props.children[0].props.events).toMatchObject(
 									{
-										clickedField: expect.any(Function)
+										fieldClicked: expect.any(Function)
 									}
 								);
 								expect(provider.state.focusedField).toEqual(mockEvent);

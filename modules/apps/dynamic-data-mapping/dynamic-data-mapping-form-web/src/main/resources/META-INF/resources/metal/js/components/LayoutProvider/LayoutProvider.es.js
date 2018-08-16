@@ -365,7 +365,7 @@ class LayoutProvider extends Component {
 			const Child = children[0];
 
 			const events = {
-				clickedField: this._handleClickedField.bind(this),
+				fieldClicked: this._handleClickedField.bind(this),
 				deleteField: this._handleDeleteField.bind(this),
 				duplicateField: this._handleDuplicatedField.bind(this),
 				fieldAdded: this._handleFieldAdd.bind(this),

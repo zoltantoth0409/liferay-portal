@@ -247,7 +247,7 @@ class LayoutRenderer extends Component {
 		const index = LayoutSupport.getIndexes(event);
 
 		this.emit(
-			'clickedField',
+			'fieldClicked',
 			{
 				...index,
 				mode
