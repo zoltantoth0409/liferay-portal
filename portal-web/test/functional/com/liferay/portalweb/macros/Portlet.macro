@@ -295,7 +295,7 @@
 					</condition>
 
 					<then>
-						<execute function="AssertTextEquals#assertPartialText" locator1="MenuItem#ANY_MENU_ITEM" value1="${portletOption}">
+						<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="${portletOption}">
 							<var name="key_menuItem" value="${portletOption}" />
 						</execute>
 					</then>
