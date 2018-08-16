@@ -242,8 +242,8 @@ name = HtmlUtil.escapeJS(name);
 
 			var range = new CKEDITOR.dom.range(this.root);
 
-			range.setStartBefore(element);
 			range.setEndAfter(element);
+			range.setStartBefore(element);
 
 			this.selectRanges([range]);
 		};
