@@ -289,9 +289,22 @@
 		<if>
 			<isset var="portletOption" />
 			<then>
-				<var name="key_menuItem" value="${portletOption}" />
+				<if>
+					<condition function="IsElementPresent" locator1="MenuItem#ANY_MENU_ITEM">
+						<var name="key_menuItem" value="${portletOption}" />
+					</condition>
 
-				<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM" />
+					<then>
+						<execute function="AssertTextEquals#assertPartialText" locator1="MenuItem#ANY_MENU_ITEM" value1="${portletOption}">
+							<var name="key_menuItem" value="${portletOption}" />
+						</execute>
+					</then>
+					<else>
+						<execute macro="LexiconEntry#gotoEllipsisMenuItem">
+							<var name="menuItem" value="${portletOption}" />
+						</execute>
+					</else>
+				</if>
 			</then>
 		</if>
 	</command>
