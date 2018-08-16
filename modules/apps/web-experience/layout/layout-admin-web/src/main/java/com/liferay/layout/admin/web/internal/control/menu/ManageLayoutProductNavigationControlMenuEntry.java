@@ -107,6 +107,7 @@ public class ManageLayoutProductNavigationControlMenuEntry
 		Layout layout = themeDisplay.getLayout();
 
 		editPageURL.setParameter("backURL", _portal.getCurrentURL(request));
+		editPageURL.setParameter("redirect", _portal.getCurrentURL(request));
 		editPageURL.setParameter(
 			"groupId", String.valueOf(layout.getGroupId()));
 		editPageURL.setParameter("selPlid", String.valueOf(layout.getPlid()));
