@@ -121,20 +121,5 @@ describe(
 				expect(spy).toHaveBeenCalledWith('duplicateField', expect.anything());
 			}
 		);
-
-		it(
-			'should open the sidebar when click the creation button',
-			() => {
-				const {managementToolbar, sidebar} = component.refs;
-
-				managementToolbar.refs.creationMenu.element.click();
-
-				jest.runAllTimers();
-
-				expect(sidebar.props.mode).toBe('add');
-				expect(sidebar.state.mode).toBe('add');
-				expect(sidebar.state.show).toBeTruthy();
-			}
-		);
 	}
-);
+)
