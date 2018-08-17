@@ -145,7 +145,7 @@ StagingGroupHelper stagingGroupHelper = StagingGroupHelperUtil.getStagingGroupHe
 
 												<aui:input name="postReplyBody0" type="hidden" />
 
-												<c:if test="<%= !subscribed && canSubscribe %>">
+												<c:if test="<%= canSubscribe && !subscribed %>">
 													<aui:input helpMessage="comments-subscribe-me-help" label="subscribe-me" name="subscribe" type="checkbox" value="<%= PropsValues.DISCUSSION_SUBSCRIBE_BY_DEFAULT %>" />
 												</c:if>
 
