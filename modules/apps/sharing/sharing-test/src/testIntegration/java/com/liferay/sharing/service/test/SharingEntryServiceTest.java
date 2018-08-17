@@ -215,7 +215,7 @@ public class SharingEntryServiceTest {
 	}
 
 	@Test(expected = NoSuchEntryException.class)
-	public void testDeleteNonExistingSharingEntry() throws Exception {
+	public void testDeleteNonexistingSharingEntry() throws Exception {
 		_sharingEntryService.updateSharingEntry(
 			RandomTestUtil.randomLong(),
 			Arrays.asList(
