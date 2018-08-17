@@ -3674,7 +3674,7 @@ plugins.includes=</echo>
 				>
 					<zipfileset
 						dir="dist/startup"
-						prefix="liferay-portal-${lp.version}/${zip.executable.dir.name}"
+						prefix="liferay-portal-${lp.version}"
 					/>
 				</zip>
 			</then>
