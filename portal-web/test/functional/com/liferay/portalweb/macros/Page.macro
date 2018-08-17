@@ -109,8 +109,6 @@
 			<var name="sitePagePrivacy" value="${sitePagePrivacy}" />
 		</execute>
 
-		<execute macro-mobile="MobileNavigator#clickRemoveIcon" />
-
 		<execute function="Type#typeClickAt" locator1="TextInput#NAME" value1="${pageName}" />
 
 		<if>
@@ -919,8 +917,6 @@
 		<execute macro="SitePageNavigator#gotoAddPage">
 			<var name="sitePagePrivacy" value="${sitePagePrivacy}" />
 		</execute>
-
-		<execute macro-mobile="MobileNavigator#clickRemoveIcon" />
 
 		<execute function="Type#typeClickAt" locator1="TextInput#NAME" value1="${pageName}" />
 
