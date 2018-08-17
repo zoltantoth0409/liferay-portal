@@ -141,7 +141,7 @@
 
 		<echo message="value name ${valueName}" />
 
-		<var group="2" input="${valueName}" name="xmlURL" pattern="(localhost:\d+\/)(documents\/.*)" />
+		<var method="RegexUtil#replace('${valueName}', '(localhost:\d+\/)(documents\/.*)', '2')" name="xmlURL" />
 
 		<echo message="xml url ${xmlURL}" />
 
@@ -159,7 +159,7 @@
 
 		<echo message="value name ${valueName}" />
 
-		<var group="2" input="${valueName}" name="xslURL" pattern="(localhost:\d+\/)(documents\/.*)" />
+		<var method="RegexUtil#replace('${valueName}', '(localhost:\d+\/)(documents\/.*)', '2')" name="xslURL" />
 
 		<echo message="xsl url ${xslURL}" />
 
@@ -279,7 +279,7 @@
 
 		<echo message="value name ${valueName}" />
 
-		<var group="2" input="${valueName}" name="xmlURL" pattern="(localhost:\d+\/)(documents\/.*)" />
+		<var method="RegexUtil#replace('${valueName}', '(localhost:\d+\/)(documents\/.*)', '2')" name="xmlURL" />
 
 		<echo message="xml url ${xmlURL}" />
 
@@ -297,7 +297,7 @@
 
 		<echo message="value name ${valueName}" />
 
-		<var group="2" input="${valueName}" name="xslURL" pattern="(localhost:\d+\/)(documents\/.*)" />
+		<var method="RegexUtil#replace('${valueName}', '(localhost:\d+\/)(documents\/.*)', '2')" name="xslURL" />
 
 		<echo message="xsl url ${xslURL}" />
 
@@ -405,7 +405,7 @@
 
 		<echo message="value name ${valueName}" />
 
-		<var group="2" input="${valueName}" name="xmlURL" pattern="(localhost:\d+\/)(documents\/.*)" />
+		<var method="RegexUtil#replace('${valueName}', '(localhost:\d+\/)(documents\/.*)', '2')" name="xmlURL" />
 
 		<echo message="xml url ${xmlURL}" />
 
@@ -423,7 +423,7 @@
 
 		<echo message="value name ${valueName}" />
 
-		<var group="2" input="${valueName}" name="xslURL" pattern="(localhost:\d+\/)(documents\/.*)" />
+		<var method="RegexUtil#replace('${valueName}', '(localhost:\d+\/)(documents\/.*)', '2')" name="xslURL" />
 
 		<echo message="xsl url ${xslURL}" />
 
@@ -530,7 +530,7 @@
 
 		<echo message="value name ${valueName}" />
 
-		<var group="2" input="${valueName}" name="xmlURL" pattern="(localhost:\d+\/)(documents\/.*)" />
+		<var method="RegexUtil#replace('${valueName}', '(localhost:\d+\/)(documents\/.*)', '2')" name="xmlURL" />
 
 		<echo message="xml url ${xmlURL}" />
 
@@ -548,7 +548,7 @@
 
 		<echo message="value name ${valueName}" />
 
-		<var group="2" input="${valueName}" name="xslURL" pattern="(localhost:\d+\/)(documents\/.*)" />
+		<var method="RegexUtil#replace('${valueName}', '(localhost:\d+\/)(documents\/.*)', '2')" name="xslURL" />
 
 		<echo message="xsl url ${xslURL}" />
 

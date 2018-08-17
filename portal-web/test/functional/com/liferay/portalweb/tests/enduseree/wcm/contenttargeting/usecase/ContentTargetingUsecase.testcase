@@ -1583,7 +1583,7 @@
 
 		<echo message="value name ${valueName}" />
 
-		<var group="1" input="${valueName}" name="larFileName" pattern="([a-zA-z0-9_.-]*)[(0-9KB)]*" />
+		<var method="RegexUtil#replace('${valueName}', '([a-zA-z0-9_.-]*)[(0-9KB)]*', '1')" name="larFileName" />
 
 		<echo message="lar file name ${larFileName}" />
 
@@ -1782,7 +1782,7 @@
 
 		<echo message="value name ${valueName}" />
 
-		<var group="1" input="${valueName}" name="larFileName" pattern="([a-zA-z0-9_.-]*)[(0-9KB)]*" />
+		<var method="RegexUtil#replace('${valueName}', '([a-zA-z0-9_.-]*)[(0-9KB)]*', '1')" name="larFileName" />
 
 		<echo message="lar file name ${larFileName}" />
 
@@ -1858,7 +1858,7 @@
 
 		<echo message="value name ${valueName}" />
 
-		<var group="1" input="${valueName}" name="larFileName" pattern="([a-zA-z0-9_.-]*)[(0-9KB)]*" />
+		<var method="RegexUtil#replace('${valueName}', '([a-zA-z0-9_.-]*)[(0-9KB)]*', '1')" name="larFileName" />
 
 		<echo message="lar file name ${larFileName}" />
 
@@ -1943,7 +1943,7 @@
 
 		<echo message="value name ${valueName}" />
 
-		<var group="1" input="${valueName}" name="larFileName" pattern="([a-zA-z0-9_.-]*)[(0-9KB)]*" />
+		<var method="RegexUtil#replace('${valueName}', '([a-zA-z0-9_.-]*)[(0-9KB)]*', '1')" name="larFileName" />
 
 		<echo message="lar file name ${larFileName}" />
 
@@ -2146,7 +2146,7 @@
 
 		<echo message="value name ${valueName}" />
 
-		<var group="1" input="${valueName}" name="larFileName" pattern="([a-zA-z0-9_.-]*)[(0-9KB)]*" />
+		<var method="RegexUtil#replace('${valueName}', '([a-zA-z0-9_.-]*)[(0-9KB)]*', '1')" name="larFileName" />
 
 		<echo message="lar file name ${larFileName}" />
 
