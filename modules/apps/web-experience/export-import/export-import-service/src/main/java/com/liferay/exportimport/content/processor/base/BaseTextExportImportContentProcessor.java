@@ -1569,63 +1569,86 @@ public class BaseTextExportImportContentProcessor
 	protected void validateDLReferences(long groupId, String content)
 		throws PortalException {
 
-		String portalURL = PortalUtil.getPathContext();
-
-		ServiceContext serviceContext =
-			ServiceContextThreadLocal.getServiceContext();
-
-		if ((serviceContext != null) &&
-			(serviceContext.getThemeDisplay() != null)) {
-
-			ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
-
-			portalURL =
-				PortalUtil.getPortalURL(themeDisplay) +
-					PortalUtil.getPathContext();
-		}
+		String pathContext = PortalUtil.getPathContext();
 
 		String[] patterns = {
-			portalURL.concat("/c/document_library/get_file?"),
-			portalURL.concat("/documents/"),
-			portalURL.concat("/image/image_gallery?")
+			pathContext.concat("/c/document_library/get_file?"),
+			pathContext.concat("/documents/"),
+			pathContext.concat("/image/image_gallery?")
 		};
 
-		String[] completePatterns = new String[patterns.length];
+		int beginPos = -1;
+		int endPos = content.length();
 
-		long[] companyIds = PortalUtil.getCompanyIds();
+		while (true) {
+			beginPos = StringUtil.lastIndexOfAny(content, patterns, endPos);
 
-		for (long companyId : companyIds) {
-			Company company = CompanyLocalServiceUtil.getCompany(companyId);
-
-			String webId = company.getWebId();
-
-			int i = 0;
-
-			for (String pattern : patterns) {
-				completePatterns[i] = webId.concat(pattern);
-
-				i++;
+			if (beginPos == -1) {
+				break;
 			}
 
-			int beginPos = -1;
-			int endPos = content.length();
+			Map<String, String[]> dlReferenceParameters =
+				getDLReferenceParameters(
+					groupId, content, beginPos + pathContext.length(), endPos);
 
-			while (true) {
-				beginPos = StringUtil.lastIndexOfAny(
-					content, completePatterns, endPos);
+			FileEntry fileEntry = getFileEntry(dlReferenceParameters);
 
-				if (beginPos == -1) {
-					break;
+			if (fileEntry == null) {
+				boolean absolutePortalURL = false;
+				boolean relativePortalURL = false;
+
+				if (content.regionMatches(
+						true, beginPos - _OFFSET_HREF_ATTRIBUTE, "href=", 0,
+						5) ||
+					content.regionMatches(
+						true, beginPos - _OFFSET_SRC_ATTRIBUTE, "src=", 0, 4)) {
+
+					relativePortalURL = true;
 				}
 
-				Map<String, String[]> dlReferenceParameters =
-					getDLReferenceParameters(
-						groupId, content,
-						beginPos + portalURL.length() + webId.length(), endPos);
+				if (!relativePortalURL) {
+					List<String> portalHosts = new ArrayList<>();
 
-				FileEntry fileEntry = getFileEntry(dlReferenceParameters);
+					String portalURL = pathContext;
 
-				if (fileEntry == null) {
+					if (Validator.isNull(portalURL)) {
+						ServiceContext serviceContext =
+							ServiceContextThreadLocal.getServiceContext();
+
+						if ((serviceContext != null) &&
+							(serviceContext.getThemeDisplay() != null)) {
+
+							ThemeDisplay themeDisplay =
+								serviceContext.getThemeDisplay();
+
+							portalURL = PortalUtil.getPortalURL(themeDisplay);
+						}
+					}
+
+					portalHosts.add(portalURL);
+
+					List<Company> companies =
+						CompanyLocalServiceUtil.getCompanies();
+
+					for (Company company : companies) {
+						portalHosts.add(company.getWebId());
+					}
+
+					for (String portalHost : portalHosts) {
+						int curBeginPos = beginPos - portalHost.length();
+
+						String substring = content.substring(
+							curBeginPos, endPos);
+
+						if (substring.startsWith(portalHost)) {
+							absolutePortalURL = true;
+
+							continue;
+						}
+					}
+				}
+
+				if (absolutePortalURL || relativePortalURL) {
 					StringBundler sb = new StringBundler(4);
 
 					sb.append("Validation failed for a referenced file entry ");
@@ -1635,9 +1658,9 @@ public class BaseTextExportImportContentProcessor
 
 					throw new NoSuchFileEntryException(sb.toString());
 				}
-
-				endPos = beginPos - 1;
 			}
+
+			endPos = beginPos - 1;
 		}
 	}
 
@@ -1726,6 +1749,13 @@ public class BaseTextExportImportContentProcessor
 			}
 
 			String url = content.substring(beginPos + offset, endPos);
+
+			if (url.contains("/c/document_library/get_file?") ||
+				url.contains("/documents/") ||
+				url.contains("/image/image_gallery?")) {
+
+				continue;
+			}
 
 			endPos = url.indexOf(Portal.FRIENDLY_URL_SEPARATOR);
 
@@ -2028,6 +2058,10 @@ public class BaseTextExportImportContentProcessor
 		CharPool.PIPE, CharPool.POUND, CharPool.QUESTION, CharPool.QUOTE,
 		CharPool.SPACE
 	};
+
+	private static final int _OFFSET_HREF_ATTRIBUTE = 6;
+
+	private static final int _OFFSET_SRC_ATTRIBUTE = 5;
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseTextExportImportContentProcessor.class);
