@@ -61,6 +61,8 @@ public class WikiTextEditorConfigContributor
 			removePlugins = "magicline";
 		}
 
+		jsonObject.put("removePlugins", removePlugins);
+
 		jsonObject.put("toolbars", JSONFactoryUtil.createJSONObject());
 	}
 

@@ -59,6 +59,8 @@ public class BlogsCoverImageCaptionEditorConfigContributor
 		else {
 			removePlugins = "magicline";
 		}
+
+		jsonObject.put("removePlugins", removePlugins);
 	}
 
 	protected JSONObject getToolbarsJSONObject() {
