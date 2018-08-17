@@ -158,7 +158,7 @@ class LayoutProvider extends Component {
 			columnIndex
 		);
 
-		newContext = this._cleanRowEmpty(
+		newContext = this._removeEmptyRow(
 			newContext,
 			{
 				columnIndex,
@@ -210,7 +210,7 @@ class LayoutProvider extends Component {
 	_handleFieldEdited({value, key}) {
 		const {context, focusedField} = this.state;
 		const {columnIndex, pageIndex, rowIndex} = focusedField;
-		const fieldSelected = LayoutSupport.getColumn(
+		const column = LayoutSupport.getColumn(
 			context,
 			pageIndex,
 			rowIndex,
@@ -223,7 +223,7 @@ class LayoutProvider extends Component {
 
 		const newField = Object.assign(
 			{},
-			fieldSelected[0],
+			column.fields[0],
 			implPropertiesField
 		);
 
@@ -249,40 +249,45 @@ class LayoutProvider extends Component {
 
 	_handleFieldMoved({target, source}) {
 		const {context} = this.state;
-		const fieldSourceToMove = this._getFieldSourceToMove(context, source);
+		const {columnIndex, pageIndex, rowIndex} = source;
+		const column = LayoutSupport.getColumn(
+			context,
+			pageIndex,
+			rowIndex,
+			columnIndex
+		);
+		const {fields} = column;
 
 		let newContext = LayoutSupport.removeFields(
 			context,
-			source.pageIndex,
-			source.rowIndex,
-			source.columnIndex
+			pageIndex,
+			rowIndex,
+			columnIndex
 		);
 
 		if (target.columnIndex === false) {
-			newContext = this._cleanRowEmpty(newContext, source);
-			newContext = this._addFieldToRow(
+			newContext = this._removeEmptyRow(newContext, source);
+			newContext = this._addRow(
 				newContext,
 				target,
-				fieldSourceToMove
+				fields
 			);
 		}
 		else {
-			newContext = this._addFieldToColumn(
+			newContext = this._setColumnFields(
 				newContext,
 				target,
-				fieldSourceToMove
+				fields
 			);
-			newContext = this._cleanRowEmpty(newContext, source);
+			newContext = this._removeEmptyRow(newContext, source);
 		}
 
 		this.setState(
 			{
 				context: newContext,
-				focusedField: fieldSourceToMove[0]
+				focusedField: fields[0]
 			}
 		);
-
-		newContext = null;
 	}
 
 	/**
@@ -292,7 +297,7 @@ class LayoutProvider extends Component {
 	 * @return {Object}
 	 */
 
-	_cleanRowEmpty(context, source) {
+	_removeEmptyRow(context, source) {
 		const {pageIndex, rowIndex} = source;
 
 		if (!LayoutSupport.hasFieldsRow(context, pageIndex, rowIndex)) {
@@ -310,9 +315,9 @@ class LayoutProvider extends Component {
 	 * @return {Object}
 	 */
 
-	_addFieldToRow(context, target, field) {
+	_addRow(context, target, fields) {
 		const {pageIndex, rowIndex} = target;
-		const newRow = LayoutSupport.implAddRow(12, field);
+		const newRow = LayoutSupport.implAddRow(12, fields);
 
 		return LayoutSupport.addRow(context, rowIndex, pageIndex, newRow);
 	}
@@ -325,33 +330,15 @@ class LayoutProvider extends Component {
 	 * @return {Object}
 	 */
 
-	_addFieldToColumn(context, target, field) {
+	_setColumnFields(context, target, fields) {
 		const {columnIndex, pageIndex, rowIndex} = target;
 
-		return LayoutSupport.addFields(
+		return LayoutSupport.setColumnFields(
 			context,
 			pageIndex,
 			rowIndex,
 			columnIndex,
-			field
-		);
-	}
-
-	/**
-	 * @param {!Array} context
-	 * @param {!Object} source
-	 * @private
-	 * @return {Object}
-	 */
-
-	_getFieldSourceToMove(context, source) {
-		const {columnIndex, pageIndex, rowIndex} = source;
-
-		return LayoutSupport.getColumn(
-			context,
-			pageIndex,
-			rowIndex,
-			columnIndex
+			fields
 		);
 	}
 

@@ -30,7 +30,7 @@ const addFieldToColumn = (pages, pageIndex, rowIndex, columnIndex, field) => {
 	return pages;
 };
 
-const addFields = (pages, pageIndex, rowIndex, columnIndex, fields = []) => {
+const setColumnFields = (pages, pageIndex, rowIndex, columnIndex, fields = []) => {
 	if (!fields.length) {
 		console.warn(
 			`Can not add empty fields to column (${pageIndex}, ${rowIndex}, ${columnIndex}), use removeFields for this.`
@@ -70,11 +70,11 @@ const generateFieldName = field => {
 const getColumn = (pages, pageIndex, rowIndex, columnIndex) => {
 	const row = getRow(pages, pageIndex, rowIndex);
 
-	return row.columns[Number(columnIndex)].fields;
+	return row.columns[Number(columnIndex)];
 };
 
 const getField = (pages, pageIndex, rowIndex, columnIndex) => {
-	return getColumn(pages, pageIndex, rowIndex, columnIndex)[0];
+	return getColumn(pages, pageIndex, rowIndex, columnIndex).fields[0];
 };
 
 const getRow = (pages, pageIndex, rowIndex) => {
@@ -113,7 +113,6 @@ const changeFieldsFromColumn = (
 };
 
 export default {
-	addFields,
 	addFieldToColumn,
 	addRow,
 	changeFieldsFromColumn,
@@ -126,5 +125,6 @@ export default {
 	implAddRow,
 	removeColumn,
 	removeFields,
-	removeRow
+	removeRow,
+	setColumnFields
 };

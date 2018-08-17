@@ -143,7 +143,7 @@ describe(
 				const rowIndex = 1;
 
 				expect(
-					LayoutSupport.addFields(
+					LayoutSupport.setColumnFields(
 						context,
 						pageIndex,
 						rowIndex,
@@ -162,7 +162,7 @@ describe(
 				const rowIndex = 1;
 
 				expect(
-					LayoutSupport.addFields(context, pageIndex, rowIndex, columnIndex)
+					LayoutSupport.setColumnFields(context, pageIndex, rowIndex, columnIndex)
 				).toMatchSnapshot();
 			}
 		);

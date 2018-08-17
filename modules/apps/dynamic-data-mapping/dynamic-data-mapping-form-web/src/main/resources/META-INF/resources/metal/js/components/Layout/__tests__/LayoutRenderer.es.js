@@ -391,7 +391,7 @@ describe(
 				const pageIndex = 0;
 				const rowIndex = 1;
 
-				const newContext = LayoutSupport.addFields(
+				const newContext = LayoutSupport.setColumnFields(
 					context,
 					pageIndex,
 					rowIndex,
@@ -424,7 +424,7 @@ describe(
 				const pageIndex = 0;
 				const rowIndex = 1;
 
-				const newContext = LayoutSupport.addFields(
+				const newContext = LayoutSupport.setColumnFields(
 					context,
 					pageIndex,
 					rowIndex,
