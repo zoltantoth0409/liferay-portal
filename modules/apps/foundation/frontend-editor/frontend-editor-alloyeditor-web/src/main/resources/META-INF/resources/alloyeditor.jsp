@@ -287,6 +287,15 @@ name = HtmlUtil.escapeJS(name);
 			);
 		</c:if>
 
+		CKEDITOR.dom.selection.prototype.selectElement = function(element) {
+			this.isLocked = 0;
+
+			var range = new CKEDITOR.dom.range( this.root );
+			range.setStartBefore( element );
+			range.setEndAfter( element );
+			this.selectRanges( [ range ] );
+		};
+
 		<liferay-util:dynamic-include key='<%= "com.liferay.frontend.editor.alloyeditor.web#" + editorName + "#onEditorCreate" %>' />
 	};
 
