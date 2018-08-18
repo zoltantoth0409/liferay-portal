@@ -1968,8 +1968,8 @@ public class PortletDataContextImpl implements PortletDataContext {
 	public void removePrimaryKey(String path) {
 		String primaryKeyString = getPrimaryKeyString(String.class, path);
 
-		_scopedPrimaryKeys.remove(primaryKeyString);
 		_primaryKeys.remove(primaryKeyString);
+		_scopedPrimaryKeys.remove(primaryKeyString);
 	}
 
 	@Override
