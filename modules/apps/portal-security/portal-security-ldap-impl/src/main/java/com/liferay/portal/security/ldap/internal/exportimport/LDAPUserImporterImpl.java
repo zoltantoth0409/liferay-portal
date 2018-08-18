@@ -193,8 +193,8 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 				},
 				new String[] {
 					String.valueOf(companyId),
-					_portalLDAP.encodedFilterAttribute(emailAddress, false),
-					_portalLDAP.encodedFilterAttribute(screenName, false)
+					_portalLDAP.encodeFilterAttribute(emailAddress, false),
+					_portalLDAP.encodeFilterAttribute(screenName, false)
 				});
 
 			_ldapFilterValidator.validate(filter);
@@ -722,7 +722,7 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 		sb.append(groupMappings.getProperty("groupName"));
 		sb.append("=");
 		sb.append(
-			_portalLDAP.encodedFilterAttribute(userGroup.getName(), true));
+			_portalLDAP.encodeFilterAttribute(userGroup.getName(), true));
 		sb.append("))");
 
 		return _portalLDAP.getMultivaluedAttribute(
@@ -973,7 +973,7 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 			String fullUserDN = binding.getNameInNamespace();
 
 			sb.append(
-				_portalLDAP.encodedFilterAttribute(
+				_portalLDAP.encodeFilterAttribute(
 					escapeLDAPName(fullUserDN), false));
 
 			sb.append(StringPool.CLOSE_PARENTHESIS);

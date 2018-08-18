@@ -86,7 +86,7 @@ import org.osgi.service.component.annotations.ReferencePolicyOption;
 public class DefaultPortalLDAP implements PortalLDAP {
 
 	@Override
-	public String encodedFilterAttribute(String attribute, boolean rdnEscape) {
+	public String encodeFilterAttribute(String attribute, boolean rdnEscape) {
 		String[] oldString = {
 			StringPool.STAR, StringPool.OPEN_PARENTHESIS,
 			StringPool.CLOSE_PARENTHESIS, StringPool.NULL_CHAR
@@ -222,7 +222,7 @@ public class DefaultPortalLDAP implements PortalLDAP {
 			sb.append(groupMappings.getProperty("groupName"));
 
 			sb.append(StringPool.EQUAL);
-			sb.append(encodedFilterAttribute(groupName, true));
+			sb.append(encodeFilterAttribute(groupName, true));
 			sb.append(StringPool.CLOSE_PARENTHESIS);
 
 			if (Validator.isNotNull(groupFilter)) {
@@ -600,7 +600,7 @@ public class DefaultPortalLDAP implements PortalLDAP {
 
 			sb.append(loginMapping);
 			sb.append(StringPool.EQUAL);
-			sb.append(encodedFilterAttribute(login, false));
+			sb.append(encodeFilterAttribute(login, false));
 			sb.append(StringPool.CLOSE_PARENTHESIS);
 
 			if (Validator.isNotNull(userSearchFilter)) {
@@ -833,7 +833,7 @@ public class DefaultPortalLDAP implements PortalLDAP {
 			sb.append(groupMappings.getProperty("user"));
 			sb.append(StringPool.EQUAL);
 			sb.append(
-				encodedFilterAttribute(
+				encodeFilterAttribute(
 					StringUtil.replace(userDN, '\\', "\\\\"), false));
 			sb.append(StringPool.CLOSE_PARENTHESIS);
 
@@ -895,7 +895,7 @@ public class DefaultPortalLDAP implements PortalLDAP {
 			sb.append(userMappings.getProperty(UserConverterKeys.GROUP));
 			sb.append(StringPool.EQUAL);
 			sb.append(
-				encodedFilterAttribute(
+				encodeFilterAttribute(
 					StringUtil.replace(groupDN, '\\', "\\\\"), false));
 			sb.append(StringPool.CLOSE_PARENTHESIS);
 
