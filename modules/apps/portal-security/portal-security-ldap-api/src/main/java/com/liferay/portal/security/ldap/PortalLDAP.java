@@ -27,7 +27,7 @@ import javax.naming.ldap.LdapContext;
  */
 public interface PortalLDAP {
 
-	public String encodedFilterAttribute(String attribute, boolean rdnEscape);
+	public String encodeFilterAttribute(String attribute, boolean rdnEscape);
 
 	public LdapContext getContext(long ldapServerId, long companyId)
 		throws Exception;
