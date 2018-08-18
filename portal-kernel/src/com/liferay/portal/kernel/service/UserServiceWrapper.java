@@ -500,6 +500,41 @@ public class UserServiceWrapper implements UserService,
 	}
 
 	/**
+	* Returns the number of users with the status belonging to the group.
+	*
+	* @param groupId the primary key of the group
+	* @param status the workflow status
+	* @return the number of users with the status belonging to the group
+	*/
+	@Override
+	public int getGroupUsersCount(long groupId, int status)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _userService.getGroupUsersCount(groupId, status);
+	}
+
+	@Override
+	public java.util.List<com.liferay.portal.kernel.model.User> getGtCompanyUsers(
+		long gtUserId, long companyId, int size)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _userService.getGtCompanyUsers(gtUserId, companyId, size);
+	}
+
+	@Override
+	public java.util.List<com.liferay.portal.kernel.model.User> getGtOrganizationUsers(
+		long gtUserId, long organizationId, int size)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _userService.getGtOrganizationUsers(gtUserId, organizationId,
+			size);
+	}
+
+	@Override
+	public java.util.List<com.liferay.portal.kernel.model.User> getGtUserGroupUsers(
+		long gtUserId, long userGroupId, int size)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _userService.getGtUserGroupUsers(gtUserId, userGroupId, size);
+	}
+
+	/**
 	* Returns the primary keys of all the users belonging to the organization.
 	*
 	* @param organizationId the primary key of the organization
@@ -559,6 +594,20 @@ public class UserServiceWrapper implements UserService,
 		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.kernel.model.User> obc)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _userService.getOrganizationUsers(organizationId, status, obc);
+	}
+
+	/**
+	* Returns the number of users with the status belonging to the
+	* organization.
+	*
+	* @param organizationId the primary key of the organization
+	* @param status the workflow status
+	* @return the number of users with the status belonging to the organization
+	*/
+	@Override
+	public int getOrganizationUsersCount(long organizationId, int status)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _userService.getOrganizationUsersCount(organizationId, status);
 	}
 
 	/**
@@ -630,14 +679,6 @@ public class UserServiceWrapper implements UserService,
 		return _userService.getUserGroupUsers(userGroupId);
 	}
 
-	/**
-	* Returns the users belonging to the user group with the status.
-	*
-	* @param userGroupId the primary key of the user group
-	* @param start the lower bound of the range of users
-	* @param end the upper bound of the range of users (not inclusive)
-	* @return the matching users
-	*/
 	@Override
 	public java.util.List<com.liferay.portal.kernel.model.User> getUserGroupUsers(
 		long userGroupId, int start, int end)

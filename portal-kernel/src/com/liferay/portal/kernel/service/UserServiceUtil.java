@@ -494,6 +494,37 @@ public class UserServiceUtil {
 	}
 
 	/**
+	* Returns the number of users with the status belonging to the group.
+	*
+	* @param groupId the primary key of the group
+	* @param status the workflow status
+	* @return the number of users with the status belonging to the group
+	*/
+	public static int getGroupUsersCount(long groupId, int status)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getGroupUsersCount(groupId, status);
+	}
+
+	public static java.util.List<com.liferay.portal.kernel.model.User> getGtCompanyUsers(
+		long gtUserId, long companyId, int size)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getGtCompanyUsers(gtUserId, companyId, size);
+	}
+
+	public static java.util.List<com.liferay.portal.kernel.model.User> getGtOrganizationUsers(
+		long gtUserId, long organizationId, int size)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .getGtOrganizationUsers(gtUserId, organizationId, size);
+	}
+
+	public static java.util.List<com.liferay.portal.kernel.model.User> getGtUserGroupUsers(
+		long gtUserId, long userGroupId, int size)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getGtUserGroupUsers(gtUserId, userGroupId, size);
+	}
+
+	/**
 	* Returns the primary keys of all the users belonging to the organization.
 	*
 	* @param organizationId the primary key of the organization
@@ -549,6 +580,19 @@ public class UserServiceUtil {
 		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.kernel.model.User> obc)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getOrganizationUsers(organizationId, status, obc);
+	}
+
+	/**
+	* Returns the number of users with the status belonging to the
+	* organization.
+	*
+	* @param organizationId the primary key of the organization
+	* @param status the workflow status
+	* @return the number of users with the status belonging to the organization
+	*/
+	public static int getOrganizationUsersCount(long organizationId, int status)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getOrganizationUsersCount(organizationId, status);
 	}
 
 	/**
@@ -614,14 +658,6 @@ public class UserServiceUtil {
 		return getService().getUserGroupUsers(userGroupId);
 	}
 
-	/**
-	* Returns the users belonging to the user group with the status.
-	*
-	* @param userGroupId the primary key of the user group
-	* @param start the lower bound of the range of users
-	* @param end the upper bound of the range of users (not inclusive)
-	* @return the matching users
-	*/
 	public static java.util.List<com.liferay.portal.kernel.model.User> getUserGroupUsers(
 		long userGroupId, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException {
