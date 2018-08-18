@@ -77,7 +77,6 @@ public class ParamUtilTest {
 			new MockHttpServletRequest();
 
 		mockHttpServletRequest.addParameter("key", "\u1004\u103A\u1037");
-
 		mockHttpServletRequest.addParameter("key2", "\u1004\u1037\u103A");
 
 		String value = ParamUtil.getString(mockHttpServletRequest, "key", "");
