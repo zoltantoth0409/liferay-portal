@@ -36,9 +36,9 @@ import org.osgi.service.component.annotations.Reference;
 	property = {
 		"osgi.command.function=listScopes", "osgi.command.scope=oauth2"
 	},
-	service = OAuth2OSGICommands.class
+	service = OAuth2OSGiCommands.class
 )
-public class OAuth2OSGICommands {
+public class OAuth2OSGiCommands {
 
 	public void listScopes() {
 		listScopes(_portal.getDefaultCompanyId());
