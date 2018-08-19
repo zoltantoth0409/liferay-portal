@@ -50,7 +50,6 @@ public class OAuth2OSGiCommands {
 
 		for (String scopeAlias : scopeAliases) {
 			System.out.println();
-
 			System.out.println(scopeAlias);
 
 			Collection<LiferayOAuth2Scope> liferayOAuth2Scopes = ListUtil.sort(
