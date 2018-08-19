@@ -470,7 +470,7 @@ public class HeaderResponseImpl
 			xmlStreamReader = xmlInputFactory.createXMLStreamReader(
 				new UnsyncStringReader(xml));
 
-			Map<String, String> elementAttributes = null;
+			Map<String, String> elementAttributeValues = null;
 			String elementName = null;
 			StringBundler elementTextSB = null;
 
@@ -503,10 +503,10 @@ public class HeaderResponseImpl
 					if (elementName != null) {
 						parsedElements.add(
 							new ParsedElement(
-								elementName, elementAttributes,
+								elementName, elementAttributeValues,
 								elementTextSB.toString(), true));
 
-						elementAttributes = null;
+						elementAttributeValues = null;
 						elementName = null;
 						elementTextSB.setIndex(0);
 					}
@@ -522,13 +522,13 @@ public class HeaderResponseImpl
 
 							elementName = localName;
 
-							elementAttributes = new LinkedHashMap<>();
+							elementAttributeValues = new LinkedHashMap<>();
 
 							int attributeCount =
 								xmlStreamReader.getAttributeCount();
 
 							for (int i = 0; i < attributeCount; i++) {
-								elementAttributes.put(
+								elementAttributeValues.put(
 									xmlStreamReader.getAttributeLocalName(i),
 									xmlStreamReader.getAttributeValue(i));
 							}
