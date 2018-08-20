@@ -72,10 +72,10 @@ public class SharingDLDisplayContextHelper {
 
 		JavaScriptMenuItem javaScriptMenuItem = new JavaScriptMenuItem();
 
+		javaScriptMenuItem.setJavaScript(_getJavaScript());
 		javaScriptMenuItem.setKey("#share");
 		javaScriptMenuItem.setLabel(LanguageUtil.get(resourceBundle, "share"));
 		javaScriptMenuItem.setOnClick(_getOnclickMethod(resourceBundle));
-		javaScriptMenuItem.setJavaScript(_getJavaScript());
 
 		return javaScriptMenuItem;
 	}
@@ -87,11 +87,11 @@ public class SharingDLDisplayContextHelper {
 		JavaScriptToolbarItem javaScriptToolbarItem =
 			new JavaScriptToolbarItem();
 
+		javaScriptToolbarItem.setJavaScript(_getJavaScript());
 		javaScriptToolbarItem.setKey("#share");
 		javaScriptToolbarItem.setLabel(
 			LanguageUtil.get(resourceBundle, "share"));
 		javaScriptToolbarItem.setOnClick(_getOnclickMethod(resourceBundle));
-		javaScriptToolbarItem.setJavaScript(_getJavaScript());
 
 		return javaScriptToolbarItem;
 	}
