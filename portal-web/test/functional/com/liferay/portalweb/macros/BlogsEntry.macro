@@ -629,10 +629,6 @@
 		<execute function="AssertTextEquals" locator1="Blogs#ENTRY_TABLE_AUTHOR" value1="${entryAuthorFullName}" />
 	</command>
 
-	<command name="viewEntryAuthorPG">
-		<execute function="AssertTextEquals" locator1="BlogsEntry#ENTRY_AUTHOR" value1="${entryAuthorFullName}" />
-	</command>
-
 	<command name="viewEntryTable">
 		<var name="key_entryTitle" value="${entryTitle}" />
 
