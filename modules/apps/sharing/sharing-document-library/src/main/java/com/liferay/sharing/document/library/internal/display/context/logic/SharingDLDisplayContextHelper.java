@@ -130,10 +130,11 @@ public class SharingDLDisplayContextHelper {
 	}
 
 	private String _getJavaScript() throws PortalException {
+		UnsyncStringWriter unsyncStringWriter = new UnsyncStringWriter();
+
 		String javaScript =
 			"/com/liferay/sharing/document/library/internal/display/context" +
 				"/dependencies/sharing_js.ftl";
-
 		Class<?> clazz = getClass();
 
 		URLTemplateResource urlTemplateResource = new URLTemplateResource(
@@ -146,8 +147,6 @@ public class SharingDLDisplayContextHelper {
 			_getLiferayPortletResponse();
 
 		template.put("namespace", liferayPortletResponse.getNamespace());
-
-		UnsyncStringWriter unsyncStringWriter = new UnsyncStringWriter();
 
 		template.processTemplate(unsyncStringWriter);
 
