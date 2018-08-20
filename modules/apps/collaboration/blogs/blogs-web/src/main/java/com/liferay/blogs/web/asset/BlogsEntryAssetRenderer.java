@@ -137,7 +137,7 @@ public class BlogsEntryAssetRenderer
 				AssetUtil.ASSET_ENTRY_ABSTRACT_LENGTH);
 		}
 
-		String summary = _entry.getDescription();
+		String summary = HtmlUtil.escape(_entry.getDescription());
 
 		if (Validator.isNull(summary)) {
 			summary = HtmlUtil.stripHtml(
