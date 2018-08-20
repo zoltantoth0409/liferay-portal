@@ -136,8 +136,7 @@ public class DLFileEntryAutoTaggerTest {
 			}
 		}
 
-		throw new AssertionError(
-			"The asset entry has not been tagged with " + tag);
+		throw new AssertionError("The asset entry was not tagged with " + tag);
 	}
 
 	private void _withAutoTaggerEnabled(UnsafeRunnable unsafeRunnable)
@@ -149,15 +148,13 @@ public class DLFileEntryAutoTaggerTest {
 
 		try (ConfigurationTemporarySwapper configurationTemporarySwapper =
 				new ConfigurationTemporarySwapper(
-					_CONFIGURATION_PID, dictionary)) {
+					"com.liferay.asset.auto.tagger.internal.configuration." +
+						"AssetAutoTaggerSystemConfiguration",
+					dictionary)) {
 
 			unsafeRunnable.run();
 		}
 	}
-
-	private static final String _CONFIGURATION_PID =
-		"com.liferay.asset.auto.tagger.internal.configuration." +
-			"AssetAutoTaggerSystemConfiguration";
 
 	@Inject
 	private AssetEntryLocalService _assetEntryLocalService;
