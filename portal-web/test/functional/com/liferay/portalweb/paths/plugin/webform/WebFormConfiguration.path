@@ -14,11 +14,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>CLOSE_ICON</td>
-	<td>//button[contains(@class,'close-content')]</td>
-	<td></td>
-</tr>
-<tr>
 	<td></td>
 	<td></td>
 	<td></td>
@@ -93,32 +88,6 @@
 <tr>
 	<td>SETUP_FORM_FIELDS_DELETE_ROW_BUTTON</td>
 	<td>//div[@class='field-title' and contains(.,'${key_wfFieldName}')]/../../..//button[contains(@class,'delete-row')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>SETUP_FORM_FIELDS_NEW_ITEM_NAME_FIELD</td>
-	<td>//div[@class='field-title' and contains(.,'New Item')]/..//input[contains(@id,'_86_fieldLabel') and @type='text']</td>
-	<td></td>
-</tr>
-<tr>
-	<td></td>
-	<td></td>
-	<td></td>
-</tr>
-<!--SETUP_FORM_DEFAULT_FIELDS-->
-<tr>
-	<td>SETUP_FORM_DEFAULT_FIELDS_NAME_NAME_FIELD</td>
-	<td>//input[contains(@id,'fieldLabel1')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>SETUP_FORM_DEFAULT_FIELDS_RATING_NAME_FIELD</td>
-	<td>//input[contains(@id,'fieldLabel2')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>SETUP_FORM_DEFAULT_FIELDS_COMMENTS_NAME_FIELD</td>
-	<td>//input[contains(@id,'fieldLabel3')]</td>
 	<td></td>
 </tr>
 <tr>
