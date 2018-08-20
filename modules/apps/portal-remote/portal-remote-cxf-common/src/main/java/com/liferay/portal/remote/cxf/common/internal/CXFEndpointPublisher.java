@@ -175,15 +175,16 @@ public class CXFEndpointPublisher {
 			ServiceReference<ServletContextHelper> serviceReference =
 				_servletContextHelperServiceRegistration.getReference();
 
+			properties = new Hashtable<>();
+
 			String httpWhiteboardContextSelect =
 				"(service.id=" + serviceReference.getProperty("service.id") +
 					")";
 
-			properties = new Hashtable<>();
-
 			properties.put(
 				HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_SELECT,
 				httpWhiteboardContextSelect);
+
 			properties.put(
 				HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_NAME,
 				CXFNonSpringServlet.class.getName());
