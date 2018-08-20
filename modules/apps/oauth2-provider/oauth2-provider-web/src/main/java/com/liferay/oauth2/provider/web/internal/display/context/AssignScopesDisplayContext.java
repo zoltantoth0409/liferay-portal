@@ -301,7 +301,11 @@ public class AssignScopesDisplayContext
 			return stream.map(
 				_assignableScopesRelations::get
 			).flatMap(
-				relations -> relations.getScopeAliases().stream()
+				relations -> {
+					Set<String> scopeAliases = relations.getScopeAliases();
+
+					return scopeAliases.stream();
+				}
 			).collect(
 				Collectors.toSet()
 			);

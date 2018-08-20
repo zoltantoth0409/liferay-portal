@@ -25,7 +25,9 @@
 		String scopeAlias = StringPool.BLANK;
 
 		if (!scopeAliases.isEmpty()) {
-			scopeAlias = scopeAliases.iterator().next();
+			Iterator<String> iterator = scopeAliases.iterator();
+
+			scopeAlias = iterator.next();
 		}
 	%>
 
