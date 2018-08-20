@@ -88,8 +88,8 @@ public class LayoutModelListener extends BaseModelListener<Layout> {
 	private void _addSiteNavigationMenuItem(
 		SiteNavigationMenu siteNavigationMenu, Layout layout) {
 
-		if (ExportImportThreadLocal.isStagingInProcess() ||
-			ExportImportThreadLocal.isImportInProcess() ||
+		if (ExportImportThreadLocal.isImportInProcess() ||
+			ExportImportThreadLocal.isStagingInProcess() ||
 			_menuItemExists(siteNavigationMenu, layout)) {
 
 			return;
