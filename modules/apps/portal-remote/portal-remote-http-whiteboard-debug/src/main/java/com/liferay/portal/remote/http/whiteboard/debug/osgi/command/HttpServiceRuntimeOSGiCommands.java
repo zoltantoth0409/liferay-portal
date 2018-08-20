@@ -70,7 +70,7 @@ public class HttpServiceRuntimeOSGiCommands {
 
 			for (ServletContextDTO servletContextDTO : servletContextDTOs) {
 				navigableSet.add(
-					getServiceReference(servletContextDTO.serviceId));
+					_getServiceReference(servletContextDTO.serviceId));
 			}
 
 			ServiceReference<?> lastServiceReference = navigableSet.last();
@@ -80,11 +80,11 @@ public class HttpServiceRuntimeOSGiCommands {
 
 				StringBundler sb = new StringBundler(6);
 
-				sb.append("Servlet Context with path ");
+				sb.append("Servlet context with path ");
 				sb.append(
 					serviceReference.getProperty(
 						HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_PATH));
-				sb.append(" and service id ");
+				sb.append(" and service ID ");
 				sb.append(serviceReference.getProperty("service.id"));
 				sb.append(" might fail because it is shadowed by service ");
 				sb.append(lastServiceReference.getProperty("service.id"));
@@ -99,7 +99,7 @@ public class HttpServiceRuntimeOSGiCommands {
 		_bundleContext = bundleContext;
 	}
 
-	protected ServiceReference<?> getServiceReference(long serviceId) {
+	private ServiceReference<?> _getServiceReference(long serviceId) {
 		try {
 			ServiceReference<?>[] serviceReferences =
 				_bundleContext.getServiceReferences(
