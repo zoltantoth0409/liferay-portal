@@ -483,7 +483,7 @@ MBThread thread = (MBThread)request.getAttribute("edit_message.jsp-thread");
 								</portlet:renderURL>
 
 								<liferay-ui:icon
-									iconCssClass="icon-paperclip"
+									iconCssClass="icon-paper-clip"
 									label="<%= true %>"
 									message='<%= LanguageUtil.format(request, (deletedAttachmentsFileEntriesCount == 1) ? "x-recently-removed-attachment" : "x-recently-removed-attachments", deletedAttachmentsFileEntriesCount, false) %>'
 									url="<%= viewTrashAttachmentsURL %>"
