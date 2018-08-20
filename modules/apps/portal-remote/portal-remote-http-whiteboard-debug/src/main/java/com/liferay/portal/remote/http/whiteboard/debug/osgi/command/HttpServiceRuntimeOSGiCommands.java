@@ -40,9 +40,9 @@ import org.osgi.service.http.whiteboard.HttpWhiteboardConstants;
 @Component(
 	immediate = true,
 	property = {"osgi.command.function=check", "osgi.command.scope=http"},
-	service = HttpServiceRuntimeOSGICommands.class
+	service = HttpServiceRuntimeOSGiCommands.class
 )
-public class HttpServiceRuntimeOSGICommands {
+public class HttpServiceRuntimeOSGiCommands {
 
 	public void check() {
 		RuntimeDTO runtimeDTO = _httpServiceRuntime.getRuntimeDTO();
