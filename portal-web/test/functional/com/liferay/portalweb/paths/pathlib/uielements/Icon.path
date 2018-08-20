@@ -9,11 +9,6 @@
 </thead>
 <tbody>
 <tr>
-	<td>ADD_REPEATABLE_ENTRY</td>
-	<td>xpath=(//div[contains(@data-fieldname,'${key_assetType}')]/../div//a[contains(@class,'repeatable-add-button')])[${key_counter}]</td>
-	<td></td>
-</tr>
-<tr>
 	<td>ADVANCED_SEARCH</td>
 	<td>//button[contains(@class,'toggle-advanced') and span[@class='caret']] | //a[contains(@id,'searchtoggleAdvanced')]</td>
 	<td></td>
@@ -44,18 +39,8 @@
 	<td></td>
 </tr>
 <tr>
-	<td>CARET_LEFT</td>
-	<td>//span[contains(@class,'icon-caret-left')]</td>
-	<td></td>
-</tr>
-<tr>
 	<td>CARET_RIGHT</td>
 	<td>//span[contains(@class,'icon-caret-right')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>CARET_ASCENDING</td>
-	<td>//*[@data-qa-id='ascendingButton']</td>
 	<td></td>
 </tr>
 <tr>
@@ -64,23 +49,8 @@
 	<td></td>
 </tr>
 <tr>
-	<td>CLEAR_SEARCH</td>
-	<td>//input[@type='image' and @title='Clear Search']</td>
-	<td></td>
-</tr>
-<tr>
 	<td>CLOSE</td>
 	<td>//button[contains(@class,'close')] | //a[contains(@id,'closePanelAdd') and contains(@class,'close')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>COG</td>
-	<td>//div[@id='main-content']//i[contains(@class,'icon-cog') and contains(@class,'lfr-icon-menu-icon')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>CURRENT_DISPLAY_STYLE</td>
-	<td>//ul[@class='navbar-nav'][2]//li[contains(@class,'dropdown nav-item')]//button[contains(@class,'dropdown-toggle')]</td>
 	<td></td>
 </tr>
 <tr>
@@ -129,11 +99,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>EDIT_CONTROLS</td>
-	<td>//li[contains(@id,'toggleControls')]/a[i[contains(@class,'icon-eye-close') or contains(@class,'icon-eye-open')]]</td>
-	<td></td>
-</tr>
-<tr>
 	<td>EDIT_PENCIL</td>
 	<td>//a[span/*[name()='svg'][contains(@class,'lexicon-icon-pencil')]]</td>
 	<td></td>
@@ -169,16 +134,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>INFO_ALL_ENTRIES</td>
-	<td>//div[contains(@class,'management-bar-no-collapse on')]//a[contains(@class,'infoPanelToggler')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>LOCALIZED_FLAG</td>
-	<td>//li[@role='menuitem' and @data-value='${key_localizationName}']/a</td>
-	<td></td>
-</tr>
-<tr>
 	<td>MARK_AS_READ</td>
 	<td>//a[span/*[name()='svg'][contains(@class,'icon-envelope-open')]]</td>
 	<td></td>
@@ -206,16 +161,6 @@
 <tr>
 	<td>PRINT</td>
 	<td>//span/a[contains(.,'Print')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>REMOVE</td>
-	<td>//a/i[@class='icon-remove']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>REORDER</td>
-	<td>//a/i[@class='icon-reorder']</td>
 	<td></td>
 </tr>
 <tr>

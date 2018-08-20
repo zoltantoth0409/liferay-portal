@@ -54,11 +54,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>LINK_TO_PAGE</td>
-	<td>//div[@data-fieldname='${key_fieldName}']//select</td>
-	<td></td>
-</tr>
-<tr>
 	<td>NESTED</td>
 	<td>//div[@data-fieldname='${key_fieldName}']/div[@data-fieldname='${key_nestedFieldName}']//input</td>
 	<td></td>

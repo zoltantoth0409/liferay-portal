@@ -14,21 +14,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>ENTRY_CONTENT_ROW_1_BUTTON</td>
-	<td>//*[@data-qa-id='row']//td//button</td>
-	<td></td>
-</tr>
-<tr>
-	<td>ENTRY_CONTENT_ROW_1_CHECKBOX</td>
-	<td>//*[@data-qa-id='row']//input[@title='Select']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>ENTRY_CONTENT_ROW_1_ELLIPSIS</td>
-	<td>//*[@data-qa-id='row']//span[contains(@class,'icon-ellipsis-vertical')]</td>
-	<td></td>
-</tr>
-<tr>
 	<td>ENTRY_CONTENT_ROW_NUMBER</td>
 	<td>xpath=(//*[@data-qa-id='row'])[${key_rowNumber}]</td>
 	<td></td>
@@ -41,11 +26,6 @@
 <tr>
 	<td>ENTRY_CONTENT_ROW_NUMBER_TD_2</td>
 	<td>xpath=(//*[@data-qa-id='row'])[${key_rowNumber}]/td[2]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>ENTRY_CONTENT_ROW_NUMBER_CHECKBOX</td>
-	<td>xpath=(//*[@data-qa-id='row'])[${key_rowNumber}]//input[@title='Select']</td>
 	<td></td>
 </tr>
 <tr>

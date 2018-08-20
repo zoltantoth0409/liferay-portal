@@ -44,21 +44,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>APPLICATION_CONFIGURATION_APPLICATION_CHANGE_LINK</td>
-	<td>//a[@data-portlettitle='${key_applicationName}']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>APPLICATION_CONFIGURATION_CHOOSE_APPLICATION_SUBAPPLICATION_CHECKBOX</td>
-	<td>//div[contains(@class,'widget-content-expanded') and contains(.,'${key_applicationName}')]//div[contains(@class,'modal-body')]//input[@data-name='${key_subApplication}']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>APPLICATION_CONFIGURATION_CHOOSE_APPLICATION_SUBAPPLICATION_OK_BUTTON</td>
-	<td>//div[contains(@class,'widget-content-expanded') and contains(.,'${key_applicationName}')]//button[contains(.,'OK')]</td>
-	<td></td>
-</tr>
-<tr>
 	<td>CHANGE_TO_PUBLIC_PAGES</td>
 	<td>//div/button[contains(@id,'changeToPublicLayoutsButton')]</td>
 	<td></td>
