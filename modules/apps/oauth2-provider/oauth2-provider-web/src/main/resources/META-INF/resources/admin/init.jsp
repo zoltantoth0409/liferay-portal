@@ -51,7 +51,8 @@ page import="com.liferay.portal.kernel.util.StringUtil" %>
 page import="java.util.Collections" %><%@
 page import="java.util.Date" %><%@
 page import="java.util.HashMap" %><%@
-page import="java.util.HashSet" %>
+page import="java.util.HashSet" %><%@
+page import="java.util.Iterator" %>
 
 <%@ page import="javax.portlet.PortletURL" %>
 
