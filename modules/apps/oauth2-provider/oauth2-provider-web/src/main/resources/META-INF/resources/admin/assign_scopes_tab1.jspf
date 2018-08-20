@@ -74,10 +74,10 @@
 										<c:otherwise>
 
 											<%
-											String scopeAliasesStr = StringUtil.merge(scopeAliases, StringPool.SPACE);
+											String scopeAliasesString = StringUtil.merge(scopeAliases, StringPool.SPACE);
 											%>
 
-											<aui:input checked="<%= !Collections.disjoint(assignedScopes, scopeAliases) %>" data="<%= data %>" id="<%= id %>" label="" name="scopeAliases" onChange='<%= renderResponse.getNamespace() + "recalculateDependants(this)" %>' title="<%= scopeAliasesStr %>" type="checkbox" value="<%= scopeAliasesStr %>" />
+											<aui:input checked="<%= !Collections.disjoint(assignedScopes, scopeAliases) %>" data="<%= data %>" id="<%= id %>" label="" name="scopeAliases" onChange='<%= renderResponse.getNamespace() + "recalculateDependants(this)" %>' title="<%= scopeAliasesString %>" type="checkbox" value="<%= scopeAliasesString %>" />
 										</c:otherwise>
 									</c:choose>
 								</div>
