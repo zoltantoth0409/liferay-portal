@@ -212,7 +212,16 @@ for (Group group : allGroups) {
 		formModelBean="<%= selUser %>"
 		id="<%= FormNavigatorConstants.FORM_NAVIGATOR_ID_USERS %>"
 		markupView="lexicon"
+		showButtons="<%= false %>"
 	/>
+
+	<aui:button-row>
+		<aui:button cssClass="btn-lg" primary="<%= true %>" type="submit" />
+
+		<c:if test="<%= !portletName.equals(myAccountPortletId) %>">
+			<aui:button cssClass="btn-lg" href="<%= backURL %>" type="cancel" />
+		</c:if>
+	</aui:button-row>
 </aui:form>
 
 <%
