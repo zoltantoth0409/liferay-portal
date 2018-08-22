@@ -23,7 +23,7 @@ public abstract class WorkspaceFactory {
 		String gitHubURL, String upstreamBranchName, String batchName) {
 
 		if (!PortalWorkspace.isPortalGitHubURL(gitHubURL)) {
-			throw new RuntimeException("Unsupported github url " + gitHubURL);
+			throw new RuntimeException("Unsupported GitHub URL " + gitHubURL);
 		}
 
 		if (batchName == null) {
@@ -46,7 +46,7 @@ public abstract class WorkspaceFactory {
 		String gitHubURL, String upstreamBranchName) {
 
 		if (!PortalWorkspace.isPortalGitHubURL(gitHubURL)) {
-			throw new RuntimeException("Unsupported github url " + gitHubURL);
+			throw new RuntimeException("Unsupported GitHub URL " + gitHubURL);
 		}
 
 		return new PortalWorkspace(gitHubURL, upstreamBranchName, true);

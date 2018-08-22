@@ -306,7 +306,7 @@ public class PortalWorkspace extends BaseWorkspace {
 		}
 		else {
 			throw new RuntimeException(
-				"Invalid portal github url " + portalGitHubURL);
+				"Invalid portal GitHub URL " + portalGitHubURL);
 		}
 
 		if (!(localGitBranch instanceof PortalLocalGitBranch)) {
@@ -392,7 +392,7 @@ public class PortalWorkspace extends BaseWorkspace {
 
 		if (!matcher.find()) {
 			throw new RuntimeException(
-				"Invalid portal github url " + portalGitHubURL);
+				"Invalid portal GitHub URL " + portalGitHubURL);
 		}
 
 		return matcher.group("repositoryName");
