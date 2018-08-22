@@ -23,7 +23,7 @@ public class BuildRunnerFactory {
 		Job job, String gitHubURL, String batchName) {
 
 		if (!PortalWorkspace.isPortalGitHubURL(gitHubURL)) {
-			throw new RuntimeException("Unsupported github url " + gitHubURL);
+			throw new RuntimeException("Unsupported GitHub URL " + gitHubURL);
 		}
 
 		return new PortalBatchBuildRunner(job, gitHubURL, batchName);
@@ -33,7 +33,7 @@ public class BuildRunnerFactory {
 		Job job, String gitHubURL) {
 
 		if (!PortalWorkspace.isPortalGitHubURL(gitHubURL)) {
-			throw new RuntimeException("Unsupported github url " + gitHubURL);
+			throw new RuntimeException("Unsupported GitHub URL " + gitHubURL);
 		}
 
 		return new PortalTopLevelBuildRunner(job, gitHubURL);
