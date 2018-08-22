@@ -329,6 +329,44 @@
 		<execute macro="Alert#viewSuccessMessage" />
 	</command>
 
+	<command name="assignSiteRoleToUserGroup">
+		<var name="key_userGroupName" value="${userGroupName}" />
+
+		<execute macro="Navigator#gotoNavItem">
+			<var name="navItem" value="User Groups" />
+		</execute>
+
+		<execute function="Type" locator1="NavBar#BASIC_SEARCH_FIELD" value1="${userGroupName}" />
+
+		<execute function="Click" locator1="Button#SUBMIT" />
+
+		<execute function="Click" locator1="Icon#DISPLAY_STYLE_LIST" />
+
+		<execute function="AssertTextEquals" locator1="SiteMembershipsUserGroups#USER_GROUP_TABLE_NAME" value1="${userGroupName}" />
+
+		<execute function="Click" locator1="SiteMembershipsUserGroups#USER_GROUP_TABLE_ACTIONS" />
+
+		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Assign Site Roles">
+			<var name="key_menuItem" value="Assign Site Roles" />
+		</execute>
+
+		<execute macro="IFrame#selectDialogFrame" />
+
+		<execute macro="Portlet#changeDisplayStyle">
+			<var name="displayStyle" value="Icon" />
+		</execute>
+
+		<execute function="Check" locator1="Card#SPECIFIC_CHECKBOX">
+			<var name="key_cardText" value="${roleName}" />
+		</execute>
+
+		<execute function="SelectFrameTop" />
+
+		<execute macro="Button#clickDone" />
+
+		<execute macro="Alert#viewSuccessMessage" />
+	</command>
+
 	<command name="assignUserAsMemberCP">
 		<var name="key_cardText" value="${userScreenName}" />
 
