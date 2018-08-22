@@ -3603,8 +3603,6 @@ public class PortalImpl implements Portal {
 			Locale originalLocale)
 		throws Exception {
 
-		String contextPath = getPathContext();
-
 		String requestURI = request.getRequestURI();
 
 		HttpServletRequest originalRequest = getOriginalServletRequest(request);
@@ -3612,6 +3610,8 @@ public class PortalImpl implements Portal {
 		if (originalRequest.getPathInfo() == null) {
 			requestURI = originalRequest.getRequestURI();
 		}
+
+		String contextPath = getPathContext();
 
 		if (Validator.isNotNull(contextPath) &&
 			requestURI.contains(contextPath)) {
