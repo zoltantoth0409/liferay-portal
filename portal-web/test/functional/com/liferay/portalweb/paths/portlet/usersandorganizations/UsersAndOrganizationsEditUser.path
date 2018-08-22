@@ -212,6 +212,17 @@
 	<td></td>
 	<td></td>
 </tr>
+<!--ROLES_INHERITED_ROLES_SITE_ROLES-->
+<tr>
+	<td>ROLES_INHERITED_SITE_ROLES_TABLE_TITLE</td>
+	<td>//div[contains(@class,'inherited-site-roles')]//span[contains(.,'${key_roleName}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
 <!--PERSONAL_SITE-->
 <tr>
 	<td>PERSONAL_SITE_PRIVATE_PAGES_LABEL</td>

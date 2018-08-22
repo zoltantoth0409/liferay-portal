@@ -2052,7 +2052,15 @@
 
 		<var name="key_roleName" value="${roleName}" />
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditUser#ROLES_REGULAR_ROLES_TABLE_TITLE" value1="${roleName}" />
+		<if>
+			<equals arg1="${roleType}" arg2="Inherited Site Roles" />
+			<then>
+				<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditUser#ROLES_INHERITED_SITE_ROLES_TABLE_TITLE" value1="${roleName}" />
+			</then>
+			<else>
+				<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditUser#ROLES_REGULAR_ROLES_TABLE_TITLE" value1="${roleName}" />
+			</else>
+		</if>
 	</command>
 
 	<command name="viewUserInfomationSitesCP">
