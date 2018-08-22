@@ -624,7 +624,7 @@ public class GitWorkingDirectory {
 		String branchName, LocalGitBranch localGitBranch) {
 
 		if (localGitBranch == null) {
-			throw new IllegalArgumentException("Local Git Branch is null");
+			throw new IllegalArgumentException("Local Git branch is null");
 		}
 
 		StringBuilder sb = new StringBuilder();
