@@ -126,14 +126,14 @@ public class LiferayObjectWrapper extends DefaultObjectWrapper {
 	protected TemplateModel handleUnknownType(Object object) {
 		ModelFactory modelFactory = null;
 
-		if (object instanceof Node) {
+		if (object instanceof Enumeration) {
+			modelFactory = _ENUMERATION_MODEL_FACTORY;
+		}
+		else if (object instanceof Node) {
 			modelFactory = _NODE_MODEL_FACTORY;
 		}
 		else if (object instanceof ResourceBundle) {
 			modelFactory = _RESOURCE_BUNDLE_MODEL_FACTORY;
-		}
-		else if (object instanceof Enumeration) {
-			modelFactory = _ENUMERATION_MODEL_FACTORY;
 		}
 		else {
 			modelFactory = _STRING_MODEL_FACTORY;
