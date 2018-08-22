@@ -562,7 +562,8 @@ public class LayoutPageTemplateEntryLocalServiceImpl
 
 		if (layoutPageTemplateEntry != null) {
 			throw new DuplicateLayoutPageTemplateEntryException(
-				"Duplicate layout page template: " + name);
+				"Duplicate layout page template for group " + groupId +
+					" with name " + name);
 		}
 	}
 
