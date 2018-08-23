@@ -73,11 +73,11 @@ public class StructuredContentNestedCollectionResourceTest {
 
 	@Test
 	public void testGetPageItems() throws Exception {
-		Map<Locale, String> keywordsMap = new HashMap<>();
+		Map<Locale, String> stringMap = new HashMap<>();
 
-		keywordsMap.put(LocaleUtil.getDefault(), RandomTestUtil.randomString());
-		keywordsMap.put(LocaleUtil.GERMANY, RandomTestUtil.randomString());
-		keywordsMap.put(LocaleUtil.SPAIN, RandomTestUtil.randomString());
+		stringMap.put(LocaleUtil.getDefault(), RandomTestUtil.randomString());
+		stringMap.put(LocaleUtil.GERMANY, RandomTestUtil.randomString());
+		stringMap.put(LocaleUtil.SPAIN, RandomTestUtil.randomString());
 
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
@@ -86,8 +86,8 @@ public class StructuredContentNestedCollectionResourceTest {
 			_group.getGroupId(),
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 			JournalArticleConstants.CLASSNAME_ID_DEFAULT,
-			RandomTestUtil.randomString(), false, keywordsMap, keywordsMap,
-			keywordsMap, null, LocaleUtil.getDefault(), null, true, true,
+			RandomTestUtil.randomString(), false, stringMap, stringMap,
+			stringMap, null, LocaleUtil.getDefault(), null, true, true,
 			serviceContext);
 
 		PageItems pageItems = _getPageItems(
