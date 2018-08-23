@@ -105,7 +105,7 @@ public class DLInfoPanelFileEntryOwnerDynamicSection implements DynamicSection {
 				"/META-INF/resources/dynamic_section" +
 					"/info_panel_file_entry.jsp");
 
-		String result = null;
+		String string = null;
 
 		try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
 			HttpServletResponse httpServletResponse = new PipingServletResponse(
@@ -114,13 +114,13 @@ public class DLInfoPanelFileEntryOwnerDynamicSection implements DynamicSection {
 			requestDispatcher.include(
 				pageContext.getRequest(), httpServletResponse);
 
-			result = new String(outputStream.toByteArray());
+			string = new String(outputStream.toByteArray());
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 
-		return new StringBundler(result);
+		return new StringBundler(string);
 	}
 
 	@Reference
