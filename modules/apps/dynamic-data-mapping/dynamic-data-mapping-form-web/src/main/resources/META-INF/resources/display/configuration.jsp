@@ -144,28 +144,16 @@ DDMFormInstance selFormInstance = DDMFormInstanceServiceUtil.fetchFormInstance(f
 
 			document.<portlet:namespace />fm.<portlet:namespace />formInstanceId.value = formInstanceId;
 
-			var formInstanceHolder = A.one('.displaying-form-instance-id-holder');
-
-			if (formInstanceHolder) {
-				formInstanceHolder.show();
-			}
-
-			var messageHolder = A.one('.displaying-help-message-holder');
-
-			if (messageHolder) {
-				messageHolder.hide();
-			}
+			A.one('.displaying-form-instance-id-holder').show();
+			A.one('.displaying-help-message-holder').hide();
 
 			var displayFormInstanceId = A.one('.displaying-form-instance-id');
 
-			if (displayFormInstanceId) {
-				var doc = new DOMParser().parseFromString(formInstanceName, "text/html");
-				var unescapedFormInstanceName = doc.documentElement.textContent;
+			var doc = new DOMParser().parseFromString(formInstanceName, "text/html");
+			var unescapedFormInstanceName = doc.documentElement.textContent;
 
-				displayFormInstanceId.set('innerHTML', unescapedFormInstanceName + ' (<liferay-ui:message key="modified" />)');
-
-				displayFormInstanceId.addClass('modified');
-			}
+			displayFormInstanceId.set('innerHTML', unescapedFormInstanceName + ' (<liferay-ui:message key="modified" />)');
+			displayFormInstanceId.addClass('modified');
 		},
 		['aui-base']
 	);
