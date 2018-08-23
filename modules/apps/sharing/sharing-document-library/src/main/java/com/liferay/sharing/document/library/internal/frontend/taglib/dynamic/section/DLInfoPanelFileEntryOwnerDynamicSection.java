@@ -60,11 +60,10 @@ public class DLInfoPanelFileEntryOwnerDynamicSection implements DynamicSection {
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		FileEntry fileEntry = (FileEntry)request.getAttribute(
-			"info_panel.jsp-fileEntry");
-
 		long classNameId = _classNameLocalService.getClassNameId(
 			DLFileEntryConstants.getClassName());
+		FileEntry fileEntry = (FileEntry)request.getAttribute(
+			"info_panel.jsp-fileEntry");
 
 		int countSharingEntryToUserIds =
 			_sharingEntryLocalService.countFromUserSharingEntries(
