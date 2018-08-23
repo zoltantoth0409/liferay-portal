@@ -35,6 +35,7 @@ import com.liferay.calendar.recurrence.RecurrenceSerializer;
 import com.liferay.calendar.recurrence.Weekday;
 import com.liferay.calendar.service.CalendarBookingLocalService;
 import com.liferay.calendar.service.CalendarResourceLocalService;
+import com.liferay.calevent.importer.internal.json.jabsorb.serializer.CalEventImporterLiferayJSONDeserializationWhitelist;
 import com.liferay.counter.kernel.service.CounterLocalService;
 import com.liferay.message.boards.kernel.model.MBDiscussion;
 import com.liferay.message.boards.kernel.model.MBMessage;
@@ -1454,6 +1455,11 @@ public class CalEventImporter {
 	private AssetVocabularyLocalService _assetVocabularyLocalService;
 	private CalendarBookingLocalService _calendarBookingLocalService;
 	private CalendarResourceLocalService _calendarResourceLocalService;
+
+	@Reference
+	private CalEventImporterLiferayJSONDeserializationWhitelist
+		_calEventImporterLiferayJSONDeserializationWhitelist;
+
 	private ClassNameLocalService _classNameLocalService;
 	private CounterLocalService _counterLocalService;
 	private GroupLocalService _groupLocalService;
