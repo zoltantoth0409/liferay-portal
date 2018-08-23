@@ -73,14 +73,14 @@ public class StructuredContentNestedCollectionResourceTest {
 
 	@Test
 	public void testGetPageItems() throws Exception {
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
 		Map<Locale, String> keywordsMap = new HashMap<>();
 
 		keywordsMap.put(LocaleUtil.getDefault(), RandomTestUtil.randomString());
 		keywordsMap.put(LocaleUtil.GERMANY, RandomTestUtil.randomString());
 		keywordsMap.put(LocaleUtil.SPAIN, RandomTestUtil.randomString());
+
+		ServiceContext serviceContext =
+			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
 
 		JournalArticle journalArticle = JournalTestUtil.addArticle(
 			_group.getGroupId(),
