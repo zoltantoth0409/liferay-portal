@@ -78,11 +78,9 @@ public class StructuredContentNestedCollectionResourceTest {
 
 		Map<Locale, String> keywordsMap = new HashMap<>();
 
-		String keywords = "keywords";
-
-		keywordsMap.put(LocaleUtil.getDefault(), keywords);
-		keywordsMap.put(LocaleUtil.GERMANY, keywords);
-		keywordsMap.put(LocaleUtil.SPAIN, keywords);
+		keywordsMap.put(LocaleUtil.getDefault(), RandomTestUtil.randomString());
+		keywordsMap.put(LocaleUtil.GERMANY, RandomTestUtil.randomString());
+		keywordsMap.put(LocaleUtil.SPAIN, RandomTestUtil.randomString());
 
 		JournalArticle journalArticle = JournalTestUtil.addArticle(
 			_group.getGroupId(),
