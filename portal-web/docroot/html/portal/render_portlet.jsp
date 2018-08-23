@@ -667,12 +667,11 @@ if (lifecycle.equals(PortletRequest.RENDER_PHASE)) {
 		String portletNamespace = portletDisplay.getNamespace();
 		Set<String> publicRenderParameterNames = SetUtil.fromEnumeration(portletConfig.getPublicRenderParameterNames());
 
-		PortletApp portletApp = portlet.getPortletApp();
-
-		int portletSpecMajorVersion = portletApp.getSpecMajorVersion();
 		MutableRenderParameters urlMaxRenderParameters = null;
 
-		if (portletSpecMajorVersion >= 3) {
+		PortletApp portletApp = portlet.getPortletApp();
+
+		if (portletApp.getSpecMajorVersion() >= 3) {
 			urlMaxRenderParameters = urlMax.getRenderParameters();
 		}
 
