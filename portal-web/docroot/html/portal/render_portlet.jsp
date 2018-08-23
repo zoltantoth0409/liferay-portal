@@ -667,14 +667,6 @@ if (lifecycle.equals(PortletRequest.RENDER_PHASE)) {
 		String portletNamespace = portletDisplay.getNamespace();
 		Set<String> publicRenderParameterNames = SetUtil.fromEnumeration(portletConfig.getPublicRenderParameterNames());
 
-		MutableRenderParameters urlMaxRenderParameters = null;
-
-		PortletApp portletApp = portlet.getPortletApp();
-
-		if (portletApp.getSpecMajorVersion() >= 3) {
-			urlMaxRenderParameters = urlMax.getRenderParameters();
-		}
-
 		for (Map.Entry<String, String[]> entry : renderParameters.entrySet()) {
 			String key = entry.getKey();
 
@@ -685,11 +677,15 @@ if (lifecycle.equals(PortletRequest.RENDER_PHASE)) {
 
 				String[] values = entry.getValue();
 
-				if (urlMaxRenderParameters == null) {
-					urlMax.setParameter(key, values);
+				PortletApp portletApp = portlet.getPortletApp();
+
+				if (portletApp.getSpecMajorVersion() >= 3) {
+					MutableRenderParameters urlMaxRenderParameters = urlMax.getRenderParameters();
+
+					urlMaxRenderParameters.setValues(key, values);
 				}
 				else {
-					urlMaxRenderParameters.setValues(key, values);
+					urlMax.setParameter(key, values);
 				}
 			}
 		}
