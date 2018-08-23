@@ -680,9 +680,9 @@ if (lifecycle.equals(PortletRequest.RENDER_PHASE)) {
 				PortletApp portletApp = portlet.getPortletApp();
 
 				if (portletApp.getSpecMajorVersion() >= 3) {
-					MutableRenderParameters urlMaxRenderParameters = urlMax.getRenderParameters();
+					MutableRenderParameters mutableRenderParameters = urlMax.getRenderParameters();
 
-					urlMaxRenderParameters.setValues(key, values);
+					mutableRenderParameters.setValues(key, values);
 				}
 				else {
 					urlMax.setParameter(key, values);
