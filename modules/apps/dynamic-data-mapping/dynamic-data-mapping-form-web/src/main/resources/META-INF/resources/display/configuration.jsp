@@ -159,11 +159,8 @@ DDMFormInstance selFormInstance = DDMFormInstanceServiceUtil.fetchFormInstance(f
 			var displayFormInstanceId = A.one('.displaying-form-instance-id');
 
 			if (displayFormInstanceId) {
-				var domParser = new DOMParser();
-
-				var htmlDocument = domParser.parseFromString(formInstanceName, "text/html");
-
-				var unescapedFormInstanceName = htmlDocument.documentElement.textContent;
+				var doc = new DOMParser().parseFromString(formInstanceName, "text/html");
+				var unescapedFormInstanceName = doc.documentElement.textContent;
 
 				displayFormInstanceId.set('innerHTML', unescapedFormInstanceName + ' (<liferay-ui:message key="modified" />)');
 
