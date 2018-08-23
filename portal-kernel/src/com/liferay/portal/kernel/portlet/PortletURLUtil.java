@@ -138,9 +138,7 @@ public class PortletURLUtil {
 
 		PortletApp portletApp = portlet.getPortletApp();
 
-		int portletSpecMajorVersion = portletApp.getSpecMajorVersion();
-
-		if (portletSpecMajorVersion < 3) {
+		if (portletApp.getSpecMajorVersion() < 3) {
 			portletURL = _getCurrentV2(
 				liferayPortletRequest, liferayPortletResponse);
 		}
