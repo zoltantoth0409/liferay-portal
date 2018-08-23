@@ -108,16 +108,15 @@ public class StructuredContentNestedCollectionResourceTest {
 			ThemeDisplay themeDisplay)
 		throws Exception {
 
-		Class<? extends NestedCollectionResource>
-			nestedCollectionResourceClass =
-				_nestedCollectionResource.getClass();
+		Class<? extends NestedCollectionResource> clazz =
+			_nestedCollectionResource.getClass();
 
-		Method getPageItems = nestedCollectionResourceClass.getDeclaredMethod(
+		Method method = clazz.getDeclaredMethod(
 			"_getPageItems", Pagination.class, long.class, ThemeDisplay.class);
 
-		getPageItems.setAccessible(true);
+		method.setAccessible(true);
 
-		return (PageItems)getPageItems.invoke(
+		return (PageItems)method.invoke(
 			_nestedCollectionResource, pagination, contentSpaceId,
 			themeDisplay);
 	}
