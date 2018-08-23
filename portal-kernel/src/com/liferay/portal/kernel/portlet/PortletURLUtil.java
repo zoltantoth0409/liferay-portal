@@ -378,7 +378,7 @@ public class PortletURLUtil {
 
 			boolean addParam = true;
 
-			// Don't set parameter values that are over 32 kb. See LEP-1755.
+			// Do not set parameter values that are over 32 kb. See LEP-1755.
 
 			for (String value : values) {
 				if (value.length() > _CURRENT_URL_PARAMETER_THRESHOLD) {
@@ -417,17 +417,19 @@ public class PortletURLUtil {
 
 			// Do not set parameter values that are over 32 kb. See LEP-1755.
 
-			if (values != null) {
-				for (String value : values) {
-					if ((value != null) &&
-						(value.length() > _CURRENT_URL_PARAMETER_THRESHOLD)) {
-
-						continue renderParameter;
-					}
-				}
-
-				mutableRenderParameters.setValues(renderParameterName, values);
+			if (values == null) {
+				continue;
 			}
+
+			for (String value : values) {
+				if ((value != null) &&
+					(value.length() > _CURRENT_URL_PARAMETER_THRESHOLD)) {
+
+					continue renderParameter;
+				}
+			}
+
+			mutableRenderParameters.setValues(renderParameterName, values);
 		}
 
 		return portletURL;
