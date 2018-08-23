@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.sharing.document.library.internal.servlet.taglib;
+package com.liferay.sharing.document.library.internal.frontend.taglib.dynamic.section;
 
 import com.liferay.document.library.kernel.model.DLFileEntryConstants;
 import com.liferay.frontend.taglib.dynamic.section.DynamicSection;
