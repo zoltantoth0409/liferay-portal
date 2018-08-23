@@ -41,6 +41,7 @@ import com.liferay.portal.kernel.util.ServerDetector;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.scheduler.quartz.internal.job.MessageSenderJob;
+import com.liferay.portal.scheduler.quartz.internal.json.jabsorb.serializer.QuartzLiferayJSONDeserializationWhitelist;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -1062,6 +1063,11 @@ public class QuartzSchedulerEngine implements SchedulerEngine {
 	private PortletLocalService _portletLocalService;
 	private Props _props;
 	private QuartzTriggerFactory _quartzTriggerFactory;
+
+	@Reference
+	private QuartzLiferayJSONDeserializationWhitelist
+		_quartzLiferayJSONDeserializationWhitelist;
+
 	private volatile boolean _schedulerEngineEnabled;
 	private SchedulerEngineHelper _schedulerEngineHelper;
 
