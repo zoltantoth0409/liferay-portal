@@ -44,12 +44,12 @@ public class UniqueFileEntryTitleProvider {
 
 		return _uniqueFileNameProvider.provide(
 			_language.get(resourceBundle, "untitled"),
-			curFileName -> _exists(groupId, folderId, curFileName));
+			fileName -> _exists(groupId, folderId, fileName));
 	}
 
-	private boolean _exists(long groupId, long folderId, String curFileName) {
+	private boolean _exists(long groupId, long folderId, String fileName) {
 		try {
-			_dlAppLocalService.getFileEntry(groupId, folderId, curFileName);
+			_dlAppLocalService.getFileEntry(groupId, folderId, fileName);
 
 			return true;
 		}
