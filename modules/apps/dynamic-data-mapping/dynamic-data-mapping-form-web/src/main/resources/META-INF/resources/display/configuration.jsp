@@ -160,7 +160,6 @@ DDMFormInstance selFormInstance = DDMFormInstanceServiceUtil.fetchFormInstance(f
 			displayFormInstanceId.set('innerHTML', formInstanceName + ' (<liferay-ui:message key="modified" />)');
 
 			displayFormInstanceId.addClass('modified');
-			}
 		},
 		['aui-base']
 	);
