@@ -36,7 +36,7 @@ public class DLOpenerGoogleDriveMimeTypes {
 	}
 
 	private static final Collection<String> _mimeTypes = Arrays.asList(
-		ContentTypes.APPLICATION_TEXT, APPLICATION_VND_DOCX, ContentTypes.TEXT,
+		APPLICATION_VND_DOCX, ContentTypes.APPLICATION_TEXT, ContentTypes.TEXT,
 		ContentTypes.TEXT_PLAIN);
 
 }
