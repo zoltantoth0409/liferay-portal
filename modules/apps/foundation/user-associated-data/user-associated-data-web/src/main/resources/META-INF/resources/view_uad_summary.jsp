@@ -19,6 +19,7 @@
 <%
 int step = (int)request.getAttribute(UADWebKeys.VIEW_UAD_SUMMARY_STEP);
 
+
 portletDisplay.setShowBackIcon(true);
 
 LiferayPortletURL usersAdminURL = liferayPortletResponse.createLiferayPortletURL(UsersAdminPortletKeys.USERS_ADMIN, PortletRequest.RENDER_PHASE);
@@ -28,7 +29,7 @@ portletDisplay.setURLBack(usersAdminURL.toString());
 renderResponse.setTitle(StringBundler.concat(selectedUser.getFullName(), " - ", LanguageUtil.get(request, "personal-data-erasure")));
 %>
 
-<div class="container-fluid container-fluid-max-xl container-form-lg">
+<div class="container-fluid-1280">
 	<aui:form method="post" name="viewUADSummaryFm">
 		<aui:input name="redirect" type="hidden" value="<%= currentURLObj.toString() %>" />
 		<aui:input name="p_u_i_d" type="hidden" value="<%= String.valueOf(selectedUser.getUserId()) %>" />

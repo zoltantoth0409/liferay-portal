@@ -32,7 +32,7 @@ renderResponse.setTitle(StringBundler.concat(selectedUser.getFullName(), " - ", 
 	<portlet:param name="p_u_i_d" value="<%= String.valueOf(selectedUser.getUserId()) %>" />
 </portlet:renderURL>
 
-<div class="container-fluid container-fluid-max-xl container-form-lg">
+<div class="container-fluid-1280">
 	<aui:form method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "exportApplicationData();" %>'>
 		<aui:input name="redirect" type="hidden" value="<%= viewUADExportProcesses.toString() %>" />
 		<aui:input name="p_u_i_d" type="hidden" value="<%= String.valueOf(selectedUser.getUserId()) %>" />

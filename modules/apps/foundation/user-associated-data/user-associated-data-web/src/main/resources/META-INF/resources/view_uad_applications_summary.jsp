@@ -36,7 +36,7 @@ String statusLabelDone = StringUtil.toUpperCase(LanguageUtil.get(request, "done"
 String statusLabelPending = StringUtil.toUpperCase(LanguageUtil.get(request, "pending"), locale);
 %>
 
-<div class="container-fluid container-fluid-max-xl container-form-lg">
+<div class="container-fluid-1280">
 	<div class="sheet sheet-lg">
 		<div class="sheet-header">
 			<h2 class="sheet-title"><liferay-ui:message key="application-data-review" /></h2>
