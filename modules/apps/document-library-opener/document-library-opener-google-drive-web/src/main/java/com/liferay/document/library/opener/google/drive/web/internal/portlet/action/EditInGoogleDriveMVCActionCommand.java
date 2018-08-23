@@ -21,9 +21,9 @@ import com.liferay.document.library.opener.google.drive.DLOpenerGoogleDriveManag
 import com.liferay.document.library.opener.google.drive.constants.DLOpenerGoogleDriveMimeTypes;
 import com.liferay.document.library.opener.google.drive.web.internal.constants.DLOpenerGoogleDriveWebConstants;
 import com.liferay.document.library.opener.google.drive.web.internal.constants.DLOpenerGoogleDriveWebKeys;
+import com.liferay.document.library.opener.google.drive.web.internal.upload.UniqueFileEntryTitleProvider;
 import com.liferay.document.library.opener.google.drive.web.internal.util.OAuth2Helper;
 import com.liferay.document.library.opener.google.drive.web.internal.util.State;
-import com.liferay.document.library.opener.google.drive.web.internal.util.UniqueFileEntryTitleProvider;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;

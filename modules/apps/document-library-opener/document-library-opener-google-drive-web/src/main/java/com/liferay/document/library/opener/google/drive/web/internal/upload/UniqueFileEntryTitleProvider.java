@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.document.library.opener.google.drive.web.internal.util;
+package com.liferay.document.library.opener.google.drive.web.internal.upload;
 
 import com.liferay.document.library.kernel.exception.NoSuchFileEntryException;
 import com.liferay.document.library.kernel.service.DLAppLocalService;
