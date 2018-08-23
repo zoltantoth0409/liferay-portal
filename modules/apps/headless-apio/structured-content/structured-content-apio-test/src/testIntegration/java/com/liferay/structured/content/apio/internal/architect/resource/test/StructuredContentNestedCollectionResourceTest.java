@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
+import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -83,14 +84,13 @@ public class StructuredContentNestedCollectionResourceTest {
 		keywordsMap.put(LocaleUtil.GERMANY, keywords);
 		keywordsMap.put(LocaleUtil.SPAIN, keywords);
 
-		String articleId = "Article.Id";
-
 		JournalArticle journalArticle = JournalTestUtil.addArticle(
 			_group.getGroupId(),
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID,
-			JournalArticleConstants.CLASSNAME_ID_DEFAULT, articleId, false,
-			keywordsMap, keywordsMap, keywordsMap, null,
-			LocaleUtil.getDefault(), null, true, true, serviceContext);
+			JournalArticleConstants.CLASSNAME_ID_DEFAULT,
+			RandomTestUtil.randomString(), false, keywordsMap, keywordsMap,
+			keywordsMap, null, LocaleUtil.getDefault(), null, true, true,
+			serviceContext);
 
 		PageItems pageItems = _getPageItems(
 			PaginationTestUtil.of(10, 1), _group.getGroupId(),
