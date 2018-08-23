@@ -107,7 +107,6 @@ public class DDMFormAdminFieldSetDisplayContext
 
 	public List<DropdownItem> getActionItemsDropdownItems() {
 		return new DropdownItemList() {
-
 			{
 				add(
 					dropdownItem -> {
@@ -120,7 +119,6 @@ public class DDMFormAdminFieldSetDisplayContext
 						dropdownItem.setQuickAction(true);
 					});
 			}
-
 		};
 	}
 

@@ -104,7 +104,6 @@ public class DDMFormViewFormInstanceRecordsDisplayContext {
 			_renderRequest);
 
 		return new DropdownItemList() {
-
 			{
 				add(
 					dropdownItem -> {
@@ -115,7 +114,6 @@ public class DDMFormViewFormInstanceRecordsDisplayContext {
 						dropdownItem.setQuickAction(true);
 					});
 			}
-
 		};
 	}
 
