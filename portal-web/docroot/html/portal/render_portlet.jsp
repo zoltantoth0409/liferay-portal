@@ -675,17 +675,15 @@ if (lifecycle.equals(PortletRequest.RENDER_PHASE)) {
 					key = key.substring(portletNamespace.length());
 				}
 
-				String[] values = entry.getValue();
-
 				PortletApp portletApp = portlet.getPortletApp();
 
 				if (portletApp.getSpecMajorVersion() >= 3) {
 					MutableRenderParameters mutableRenderParameters = urlMax.getRenderParameters();
 
-					mutableRenderParameters.setValues(key, values);
+					mutableRenderParameters.setValues(key, entry.getValue());
 				}
 				else {
-					urlMax.setParameter(key, values);
+					urlMax.setParameter(key, entry.getValue());
 				}
 			}
 		}
