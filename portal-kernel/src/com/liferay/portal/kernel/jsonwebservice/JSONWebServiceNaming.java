@@ -17,8 +17,6 @@ package com.liferay.portal.kernel.jsonwebservice;
 import com.liferay.portal.kernel.annotation.ImplementationClassName;
 import com.liferay.portal.kernel.servlet.HttpMethods;
 import com.liferay.portal.kernel.util.CamelCaseUtil;
-import com.liferay.portal.kernel.util.MethodParameter;
-import com.liferay.portal.kernel.util.MethodParametersResolverUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
@@ -30,6 +28,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 
 import java.util.Set;
 
@@ -122,14 +122,12 @@ public class JSONWebServiceNaming {
 			}
 		}
 
-		MethodParameter[] methodParameters =
-			MethodParametersResolverUtil.resolveMethodParameters(method);
+		Type[] types = method.getGenericParameterTypes();
 
 		Class<?>[] parameterTypes = method.getParameterTypes();
 
 		for (int i = 0; i < parameterTypes.length; i++) {
-			MethodParameter methodParameter = methodParameters[i];
-
+			Type type = types[i];
 			Class<?> parameterType = parameterTypes[i];
 
 			if (parameterType.isArray()) {
@@ -143,13 +141,16 @@ public class JSONWebServiceNaming {
 					return false;
 				}
 
-				Class<?>[] genericTypes = methodParameter.getGenericTypes();
+				if (type instanceof ParameterizedType) {
+					ParameterizedType parameterizedType =
+						(ParameterizedType)type;
 
-				if (genericTypes != null) {
-					for (Class<?> genericType : genericTypes) {
-						String genericName = genericType.getName();
+					for (Type actualTypeArgument :
+							parameterizedType.getActualTypeArguments()) {
 
-						if (genericName.startsWith(excludedTypesName)) {
+						String typeName = actualTypeArgument.getTypeName();
+
+						if (typeName.startsWith(excludedTypesName)) {
 							return false;
 						}
 					}
