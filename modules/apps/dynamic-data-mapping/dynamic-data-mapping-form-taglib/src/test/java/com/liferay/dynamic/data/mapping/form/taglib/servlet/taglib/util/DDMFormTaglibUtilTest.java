@@ -96,7 +96,6 @@ public class DDMFormTaglibUtilTest {
 		DDMStructure ddmStructure = new DDMStructureImpl();
 
 		ddmStructure.setDDMForm(ddmForm);
-
 		ddmStructure.setStructureId(RandomTestUtil.randomLong());
 		ddmStructure.setName(RandomTestUtil.randomString());
 
@@ -107,7 +106,6 @@ public class DDMFormTaglibUtilTest {
 		DDMStructureVersion ddmStructureVersion = new DDMStructureVersionImpl();
 
 		ddmStructureVersion.setDDMForm(ddmForm);
-
 		ddmStructureVersion.setStructureId(RandomTestUtil.randomLong());
 		ddmStructureVersion.setName(RandomTestUtil.randomString());
 
