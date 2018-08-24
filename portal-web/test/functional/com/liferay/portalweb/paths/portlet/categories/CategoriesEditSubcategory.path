@@ -36,26 +36,6 @@
 </tr>
 <!--PROPERTIES-->
 <tr>
-	<td>PROPERTIES_BAR</td>
-	<td>//div[@class='panel-toggle' and contains(.,'Properties')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>PROPERTIES_BAR_COLLAPSED</td>
-	<td>//div[contains(@id,'assetCategoryPropertiesPanel')]//div[contains(@class,'panel-heading') and contains(@class,'toggler-header') and contains(@class,'toggler-header-collapsed')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>PROPERTIES_ADD_ROW_BUTTON</td>
-	<td>//button[contains(@class,'add-row btn-content')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>PROPERTIES_DELETE_ROW_BUTTON</td>
-	<td>//button[contains(@class,'delete-row btn-content')]</td>
-	<td></td>
-</tr>
-<tr>
 	<td>PROPERTIES_KEY_FIELD</td>
 	<td>//input[contains(@id,'key${key_pathNumber}')]</td>
 	<td></td>
