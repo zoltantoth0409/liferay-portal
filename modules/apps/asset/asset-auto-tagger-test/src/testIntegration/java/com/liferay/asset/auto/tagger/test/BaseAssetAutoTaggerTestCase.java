@@ -146,7 +146,9 @@ public abstract class BaseAssetAutoTaggerTestCase {
 
 		try (ConfigurationTemporarySwapper configurationTemporarySwapper =
 				new ConfigurationTemporarySwapper(
-					_CONFIGURATION_PID, dictionary)) {
+					"com.liferay.asset.auto.tagger.internal.configuration." +
+						"AssetAutoTaggerSystemConfiguration",
+					dictionary)) {
 
 			unsafeRunnable.run();
 		}
@@ -154,10 +156,6 @@ public abstract class BaseAssetAutoTaggerTestCase {
 
 	@DeleteAfterTestRun
 	protected Group group;
-
-	private static final String _CONFIGURATION_PID =
-		"com.liferay.asset.auto.tagger.internal.configuration." +
-			"AssetAutoTaggerSystemConfiguration";
 
 	private ServiceRegistration<AssetAutoTagProvider>
 		_assetAutoTagProviderServiceRegistration;
