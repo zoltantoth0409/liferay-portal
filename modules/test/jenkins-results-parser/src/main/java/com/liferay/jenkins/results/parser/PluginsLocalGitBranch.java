@@ -38,7 +38,7 @@ public class PluginsLocalGitBranch extends LocalGitBranch {
 
 		if (!(localGitRepository instanceof PluginsLocalGitRepository)) {
 			throw new IllegalArgumentException(
-				"Local repository is not a plugins repository");
+				"Local Git repository is not a plugins repository");
 		}
 	}
 

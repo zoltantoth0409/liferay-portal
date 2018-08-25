@@ -65,7 +65,7 @@ public class LocalGitBranch extends BaseGitRef {
 		super(name, sha);
 
 		if (localGitRepository == null) {
-			throw new IllegalArgumentException("Local repository is null");
+			throw new IllegalArgumentException("Local Git repository is null");
 		}
 
 		_localGitRepository = localGitRepository;
