@@ -206,7 +206,6 @@ public class MediaObjectNestedCollectionResource
 		List<FileEntry> fileEntries = _dlAppService.getFileEntries(
 			groupId, 0, pagination.getStartPosition(),
 			pagination.getEndPosition(), null);
-
 		int count = _dlAppService.getFileEntriesCount(groupId, 0);
 
 		return new PageItems<>(fileEntries, count);
