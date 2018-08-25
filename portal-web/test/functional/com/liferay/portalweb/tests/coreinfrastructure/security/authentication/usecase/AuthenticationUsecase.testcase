@@ -254,7 +254,7 @@
 			<var name="enableCheckboxKey" value="ENABLED" />
 		</execute>
 
-		<for list="ENABLED,EXPORT_ENABLED,IMPORT_ENABLED,IMPORT_ON_STARTUP_ENABLED," param="enableCheckboxKey">
+		<for list="ENABLED,EXPORT_ENABLED,IMPORT_ENABLED,IMPORT_ON_STARTUP_ENABLED" param="enableCheckboxKey">
 			<execute macro="PortalSettingsNavigator#gotoLDAP" />
 
 			<execute macro="PortalSettings#enableLDAPSetting">
