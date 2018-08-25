@@ -114,7 +114,7 @@ public abstract class BaseAssetAutoTaggerTestCase {
 
 		throw new AssertionError(
 			String.format(
-				"The asset entry has not been tagged with '%s'", assetTagName));
+				"The asset entry was not tagged with \"%s\"", assetTagName));
 	}
 
 	protected void assertDoesNotContainAssetTagName(
@@ -124,7 +124,7 @@ public abstract class BaseAssetAutoTaggerTestCase {
 			if (StringUtil.equals(assetTag.getName(), assetTagName)) {
 				throw new AssertionError(
 					String.format(
-						"The asset entry has been tagged with '%s'",
+						"The asset entry was tagged with \"%s\"",
 						assetTagName));
 			}
 		}
