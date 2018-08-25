@@ -146,14 +146,14 @@ public class AssetAutoTaggerOSGiCommands {
 			ActionableDynamicQuery actionableDynamicQuery =
 				_assetEntryLocalService.getActionableDynamicQuery();
 
-			if (Validator.isNotNull(companyId)) {
-				actionableDynamicQuery.setCompanyId(Long.valueOf(companyId));
-			}
-
 			if (!ArrayUtil.isEmpty(classNames)) {
 				actionableDynamicQuery.setAddCriteriaMethod(
 					dynamicQuery -> dynamicQuery.add(
 						_getClassNameIdCriterion(classNames)));
+			}
+
+			if (Validator.isNotNull(companyId)) {
+				actionableDynamicQuery.setCompanyId(Long.valueOf(companyId));
 			}
 
 			actionableDynamicQuery.setPerformActionMethod(
