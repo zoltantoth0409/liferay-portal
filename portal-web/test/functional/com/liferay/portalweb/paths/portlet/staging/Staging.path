@@ -31,11 +31,6 @@
 </tr>
 <!--STAGING-->
 <tr>
-	<td>STAGING_NEW_PUBLICATION_PROCESS_NAVIGATION</td>
-	<td>//ul[contains(@class,'nav-tabs')]/li/a[contains(.,'New Publication Process')]</td>
-	<td></td>
-</tr>
-<tr>
 	<td>STAGING_CONTENT_COUNT</td>
 	<td>//span[contains(@class,'badge-info')]</td>
 	<td></td>
@@ -69,11 +64,6 @@
 <tr>
 	<td>LIVE_BUTTON</td>
 	<td>//a[contains(@value,'live')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>LIVE_VIEW</td>
-	<td>//body[contains(@class,'live-view')]</td>
 	<td></td>
 </tr>
 <tr>
@@ -181,11 +171,6 @@
 </tr>
 <!--LIVE_MENU-->
 <tr>
-	<td>LIVE_MENU_SITE</td>
-	<td>//span[@class='staging-live-group-name']</td>
-	<td></td>
-</tr>
-<tr>
 	<td>LIVE_MENU_MESSAGE</td>
 	<td>//span[@class='last-publication-branch']</td>
 	<td></td>
@@ -204,11 +189,6 @@
 <tr>
 	<td>STAGING_MENU_SUBMIT_FOR_PUBLICATION</td>
 	<td>//a[contains(@id,'submitLink') and contains(.,'Submit for Publication')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>STAGING_MENU_SUBMIT_FOR_PUBLICATION_DISABLED</td>
-	<td>//span[contains(@class,'label') and contains(@class,'label-submit')]/span[contains(.,'Submit for Publication')]</td>
 	<td></td>
 </tr>
 <tr>

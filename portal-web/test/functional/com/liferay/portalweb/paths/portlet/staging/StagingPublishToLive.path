@@ -14,18 +14,8 @@
 	<td></td>
 </tr>
 <tr>
-	<td>SWITCH_TO_SIMPLE_PUBLICATION</td>
-	<td>//a[contains(.,'Switch to Simple Publication')]/span</td>
-	<td></td>
-</tr>
-<tr>
 	<td>ADD_EVENT_BUTTON</td>
 	<td>//button[contains(@id,'addButton')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>CUSTOM_BUTTON</td>
-	<td>//a[@title='Custom']</td>
 	<td></td>
 </tr>
 <tr>
@@ -39,11 +29,6 @@
 	<td></td>
 </tr>
 <!--DATE-->
-<tr>
-	<td>DATE_NOW_RADIO</td>
-	<td>//input[contains(@id,'publishingEventNow')]</td>
-	<td></td>
-</tr>
 <tr>
 	<td>DATE_SCHEDULE_RADIO</td>
 	<td>//input[contains(@id,'publishingEventSchedule')]</td>

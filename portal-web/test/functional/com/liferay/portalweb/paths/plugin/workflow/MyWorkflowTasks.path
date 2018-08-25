@@ -8,10 +8,14 @@
 <tr><td rowspan="1" colspan="3">MyWorkflowTasks</td></tr>
 </thead>
 <tbody>
-<!--TABLE_GENERIC-->
 <tr>
 	<td>TABLE_GENERIC_ASSET_TITLE</td>
 	<td>//tr[contains(.,'${key_workflowAssetTitle}')]/td[1]//a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ASSIGNED_TO_ME_ACTIVE</td>
+	<td>//li[contains(@class,'active')]/a[@role='menuitem' and contains(.,'Assigned to Me')]</td>
 	<td></td>
 </tr>
 <tr>
