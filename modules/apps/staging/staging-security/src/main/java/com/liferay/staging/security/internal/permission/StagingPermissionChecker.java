@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * @author Tomas Polesovsky
@@ -250,7 +251,7 @@ public class StagingPermissionChecker implements PermissionChecker {
 			actionId.equals("VIEW") &&
 			(name.equals(Folder.class.getName()) ||
 			 name.equals(DLFolder.class.getName()) ||
-			 "com.liferay.document.library".equals(name))) {
+			 Objects.equals("com.liferay.document.library", name))) {
 
 			return true;
 		}
