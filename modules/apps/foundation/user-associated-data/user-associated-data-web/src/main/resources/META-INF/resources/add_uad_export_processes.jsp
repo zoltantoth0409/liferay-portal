@@ -80,13 +80,13 @@ renderResponse.setTitle(StringBundler.concat(selectedUser.getFullName(), " - ", 
 						modelVar="uadApplicationExportDisplay"
 					>
 						<liferay-ui:search-container-column-text
-							cssClass="table-cell-expand table-list-title"
+							cssClass="table-cell-content table-list-title"
 							name="application"
 							value="<%= UADLanguageUtil.getApplicationName(uadApplicationExportDisplay.getApplicationKey(), locale) %>"
 						/>
 
 						<liferay-ui:search-container-column-text
-							cssClass="table-cell-expand"
+							cssClass="table-cell-content"
 							name="items"
 							value="<%= String.valueOf(uadApplicationExportDisplay.getDataCount()) %>"
 						/>
@@ -98,7 +98,7 @@ renderResponse.setTitle(StringBundler.concat(selectedUser.getFullName(), " - ", 
 						%>
 
 						<liferay-ui:search-container-column-text
-							cssClass="table-cell-expand"
+							cssClass="table-cell-content"
 							name="last-available-export"
 						>
 							<%= (lastExportDate != null) ? dateFormat.format(lastExportDate) : StringPool.DASH %>

@@ -89,21 +89,21 @@ String statusLabelPending = StringUtil.toUpperCase(LanguageUtil.get(request, "pe
 					modelVar="uadApplicationSummaryDisplay"
 				>
 					<liferay-ui:search-container-column-text
-						cssClass="table-cell-expand table-list-title"
+						cssClass="table-cell-content table-list-title"
 						href="<%= uadApplicationSummaryDisplay.getViewURL() %>"
 						name="name"
 						value="<%= UADLanguageUtil.getApplicationName(uadApplicationSummaryDisplay.getApplicationKey(), locale) %>"
 					/>
 
 					<liferay-ui:search-container-column-text
-						cssClass="table-cell-expand"
+						cssClass="table-cell-content"
 						href="<%= uadApplicationSummaryDisplay.getViewURL() %>"
 						name="items"
 						property="count"
 					/>
 
 					<liferay-ui:search-container-column-text
-						cssClass="table-cell-expand"
+						cssClass="table-cell-content"
 						name="status"
 					>
 						<clay:label
