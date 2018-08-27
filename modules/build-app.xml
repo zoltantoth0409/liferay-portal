@@ -269,7 +269,7 @@
 			failonerror="false"
 			file="${app.dir}/settings.gradle"
 			quiet="true"
-			tofile="${app.dir}/settings.gradle.tmp"
+			tofile="${app.dir}/settings.gradle.temp"
 		/>
 
 		<exec dir="${app.dir}" executable="${gradle.wrapper.path}" outputproperty="stale.artifacts.output">
@@ -279,7 +279,7 @@
 
 		<move
 			failonerror="false"
-			file="${app.dir}/settings.gradle.tmp"
+			file="${app.dir}/settings.gradle.temp"
 			quiet="true"
 			tofile="${app.dir}/settings.gradle"
 		/>
