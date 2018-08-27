@@ -62,6 +62,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import org.aopalliance.intercept.MethodInterceptor;
@@ -668,6 +669,20 @@ public class LayoutLocalServiceStagingAdvice implements MethodInterceptor {
 				}
 			}
 		}
+		else if (returnValue instanceof Map<?, ?>) {
+			Map<Object, Object> map = (Map<Object, Object>)returnValue;
+
+			if (map.isEmpty()) {
+				return returnValue;
+			}
+
+			for (Entry<Object, Object> entry : map.entrySet()) {
+				Object value = wrapReturnValue(
+					entry.getValue(), showIncomplete);
+
+				map.put(entry.getKey(), value);
+			}
+		}
 
 		return returnValue;
 	}
@@ -694,6 +709,7 @@ public class LayoutLocalServiceStagingAdvice implements MethodInterceptor {
 		_layoutLocalServiceStagingAdviceMethodNames.add("createLayout");
 		_layoutLocalServiceStagingAdviceMethodNames.add("deleteLayout");
 		_layoutLocalServiceStagingAdviceMethodNames.add("getLayouts");
+		_layoutLocalServiceStagingAdviceMethodNames.add("getLayoutChildLayouts");
 		_layoutLocalServiceStagingAdviceMethodNames.add("updateLayout");
 		_layoutLocalServiceStagingAdviceMethodNames.add("updateLookAndFeel");
 		_layoutLocalServiceStagingAdviceMethodNames.add("updateName");
