@@ -220,12 +220,9 @@ name = HtmlUtil.escapeJS(name);
 
 		editorConfig.removePlugins = editorConfig.removePlugins ? editorConfig.removePlugins + ',ae_embed' : 'ae_embed';
 
-		var uiNode = Liferay.Util.getOpener() !== window.self ? document.querySelector('.lfr-form-content') : null;
-
 		editorConfig = A.merge(
 			{
-				title: false,
-				uiNode: uiNode
+				title: false
 			},
 			editorConfig
 		);
@@ -272,7 +269,18 @@ name = HtmlUtil.escapeJS(name);
 				plugins: plugins,
 				textMode: <%= (editorOptions != null) ? editorOptions.isTextMode() : Boolean.FALSE.toString() %>
 			}
-		).render();
+		);
+
+		alloyEditor.getNativeEditor().on(
+			'uiReady', function(x) {
+				var uiNode = Liferay.Util.getOpener() !== window.self ?
+					document.querySelector('.lfr-form-content') :
+					null;
+
+				this.config.uiNode = uiNode;
+		});
+
+		alloyEditor.render();
 
 		<%
 		boolean useCustomDataProcessor = (editorOptionsDynamicAttributes != null) && GetterUtil.getBoolean(editorOptionsDynamicAttributes.get("useCustomDataProcessor"));
