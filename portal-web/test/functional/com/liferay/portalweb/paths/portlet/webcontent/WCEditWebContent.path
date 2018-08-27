@@ -9,6 +9,11 @@
 </thead>
 <tbody>
 <tr>
+	<td>ARTICLE_ID</td>
+	<td>//span[@class='workflow-id']/span[@class='workflow-value']</td>
+	<td></td>
+</tr>
+<tr>
 	<td>VERSION</td>
 	<td>//span[@class='workflow-version']/span[@class='workflow-value']</td>
 	<td></td>

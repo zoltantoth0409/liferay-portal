@@ -353,6 +353,11 @@
 	<td></td>
 </tr>
 <tr>
+	<td>MINI_CALENDAR_DAY_SELECTED</td>
+	<td>//div[contains(@class,'datepicker-popover') and contains(@style,'display: block')]//table[contains(@class,'calendar-grid')]//tr//td[contains(@class,'calendar-day-selected')]</td>
+	<td></td>
+</tr>
+<tr>
 	<td>MINI_CALENDAR_DAY_SPECIFIC</td>
 	<td>//div[contains(@class,'datepicker-popover') and contains(@style,'display: block')]//table[contains(@class,'calendar-grid')]//tr//td[contains(@class,'calendar-day') and not(contains(@class,'calendar-column-hidden')) and contains(.,'${key_daySpecific}')]</td>
 	<td></td>
