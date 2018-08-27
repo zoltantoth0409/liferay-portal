@@ -133,18 +133,19 @@ public class JSONWebServiceNaming {
 					return false;
 				}
 
-				if (type instanceof ParameterizedType) {
-					ParameterizedType parameterizedType =
-						(ParameterizedType)type;
+				if (!(type instanceof ParameterizedType)) {
+					continue;
+				}
 
-					for (Type actualTypeArgument :
-							parameterizedType.getActualTypeArguments()) {
+				ParameterizedType parameterizedType = (ParameterizedType)type;
 
-						String typeName = actualTypeArgument.getTypeName();
+				for (Type actualTypeArgument :
+						parameterizedType.getActualTypeArguments()) {
 
-						if (typeName.startsWith(excludedTypesName)) {
-							return false;
-						}
+					String typeName = actualTypeArgument.getTypeName();
+
+					if (typeName.startsWith(excludedTypesName)) {
+						return false;
 					}
 				}
 			}
