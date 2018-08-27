@@ -41,7 +41,7 @@ public class PasswordGeneratorWebUpgrade implements UpgradeStepRegistrator {
 				@Override
 				protected String[][] getRenamePortletIdsArray() {
 					return new String[][] {
-						new String[] {
+						{
 							"70",
 							PasswordGeneratorPortletKeys.PASSWORD_GENERATOR
 						}
