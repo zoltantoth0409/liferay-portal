@@ -22,8 +22,8 @@ String productMenuState = SessionClicks.get(request, ProductNavigationProductMen
 
 <div class="lfr-product-menu-sidebar" id="productMenuSidebar">
 	<div class="sidebar-header">
-		<div class="autofit-row">
-			<div class="autofit-col autofit-col-expand">
+		<div class="sidebar-section-flex">
+			<div class="flex-col flex-col-expand">
 				<a href="<%= PortalUtil.addPreservedParameters(themeDisplay, themeDisplay.getURLPortal(), false, true) %>">
 					<span class="company-details truncate-text">
 						<img alt="" class="company-logo" src="<%= themeDisplay.getRealCompanyLogo() %>" />
@@ -33,7 +33,7 @@ String productMenuState = SessionClicks.get(request, ProductNavigationProductMen
 				</a>
 			</div>
 
-			<div class="autofit-col">
+			<div class="flex-col">
 				<aui:icon cssClass="d-inline-block d-md-none icon-monospaced sidenav-close" image="times" markupView="lexicon" url="javascript:;" />
 			</div>
 		</div>
