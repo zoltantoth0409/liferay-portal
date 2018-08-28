@@ -100,7 +100,7 @@ public class StructuredContentNestedCollectionResourceTest {
 
 		Assert.assertEquals(1, pageItems.getTotalCount());
 
-		Collection items = pageItems.getItems();
+		List<JournalArticle> items = pageItems.getItems();
 
 		Assert.assertTrue("Items " + items, items.contains(journalArticle));
 	}
@@ -140,7 +140,7 @@ public class StructuredContentNestedCollectionResourceTest {
 
 		Assert.assertEquals(2, pageItems.getTotalCount());
 
-		List items = (List)pageItems.getItems();
+		List<JournalArticle> items = (List<JournalArticle>)pageItems.getItems();
 
 		Assert.assertEquals(journalArticle1, items.get(0));
 		Assert.assertEquals(journalArticle2, items.get(1));
@@ -181,7 +181,7 @@ public class StructuredContentNestedCollectionResourceTest {
 
 		Assert.assertEquals(2, pageItems.getTotalCount());
 
-		List items = (List)pageItems.getItems();
+		List<JournalArticle> items = (List<JournalArticle>)pageItems.getItems();
 
 		Assert.assertEquals(journalArticle1, items.get(0));
 		Assert.assertEquals(journalArticle2, items.get(1));
@@ -223,7 +223,7 @@ public class StructuredContentNestedCollectionResourceTest {
 
 		Assert.assertEquals(2, pageItems.getTotalCount());
 
-		List items = (List)pageItems.getItems();
+		List<JournalArticle> items = (List<JournalArticle>)pageItems.getItems();
 
 		Assert.assertEquals(journalArticle2, items.get(0));
 		Assert.assertEquals(journalArticle1, items.get(1));
