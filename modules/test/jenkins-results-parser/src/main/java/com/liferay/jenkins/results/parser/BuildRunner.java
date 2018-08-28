@@ -21,6 +21,6 @@ public interface BuildRunner {
 
 	public void setup();
 
-	public void setupWorkspace();
+	public void setUpWorkspace();
 
 }

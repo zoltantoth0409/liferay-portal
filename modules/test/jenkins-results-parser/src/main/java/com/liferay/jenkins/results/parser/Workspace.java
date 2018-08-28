@@ -27,7 +27,7 @@ public interface Workspace {
 
 	public void setGitRepositoryJobProperties(Job job);
 
-	public void setupWorkspace();
+	public void setUpWorkspace();
 
 	public void writeGitRepositoryPropertiesFiles();
 

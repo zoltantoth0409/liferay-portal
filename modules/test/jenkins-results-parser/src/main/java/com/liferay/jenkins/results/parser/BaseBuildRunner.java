@@ -21,16 +21,16 @@ public abstract class BaseBuildRunner implements BuildRunner {
 
 	@Override
 	public void setup() {
-		setupWorkspace();
+		setUpWorkspace();
 	}
 
 	@Override
-	public void setupWorkspace() {
+	public void setUpWorkspace() {
 		if (workspace == null) {
 			throw new RuntimeException("Workspace is null");
 		}
 
-		workspace.setupWorkspace();
+		workspace.setUpWorkspace();
 	}
 
 	protected BaseBuildRunner(Job job) {

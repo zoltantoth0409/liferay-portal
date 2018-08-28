@@ -68,7 +68,7 @@ public abstract class BaseWorkspace implements Workspace {
 	}
 
 	@Override
-	public void setupWorkspace() {
+	public void setUpWorkspace() {
 		checkoutLocalGitBranches();
 
 		writeGitRepositoryPropertiesFiles();
