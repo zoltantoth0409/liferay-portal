@@ -59,9 +59,9 @@ public class SortParserImpl implements SortParser {
 			return Collections.emptyList();
 		}
 
-		List<String> sortStrings = StringUtil.split(sortString);
+		List<String> list = StringUtil.split(sortString);
 
-		Stream<String> stream = sortStrings.stream();
+		Stream<String> stream = list.stream();
 
 		return stream.map(
 			this::getSortField
@@ -74,22 +74,22 @@ public class SortParserImpl implements SortParser {
 	}
 
 	protected Optional<SortField> getSortField(String sortString) {
-		List<String> sortStrings = StringUtil.split(sortString, ':');
+		List<String> list = StringUtil.split(sortString, ':');
 
-		if (sortStrings.isEmpty()) {
+		if (list.isEmpty()) {
 			return Optional.empty();
 		}
 
-		if (sortStrings.size() > 2) {
+		if (list.size() > 2) {
 			throw new RuntimeException("Unable to parse sort string");
 		}
 
-		String fieldName = sortStrings.get(0);
+		String fieldName = list.get(0);
 
 		boolean ascending = _ASC_DEFAULT;
 
-		if (sortStrings.size() > 1) {
-			ascending = isAscending(sortStrings.get(1));
+		if (list.size() > 1) {
+			ascending = isAscending(list.get(1));
 		}
 
 		return Optional.of(new SortField(fieldName, ascending));
