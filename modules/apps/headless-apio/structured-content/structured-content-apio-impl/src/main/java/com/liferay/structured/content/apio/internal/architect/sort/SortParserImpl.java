@@ -66,8 +66,11 @@ public class SortParserImpl implements SortParser {
 		return stream.map(
 			this::getSortField
 		).flatMap(
-			sortFieldOptional ->
-				sortFieldOptional.map(Stream::of).orElseGet(Stream::empty)
+			sortFieldOptional -> sortFieldOptional.map(
+				Stream::of
+			).orElseGet(
+				Stream::empty
+			)
 		).collect(
 			Collectors.toList()
 		);
