@@ -43,6 +43,7 @@ import com.liferay.structured.content.apio.architect.util.test.PaginationTestUti
 
 import java.lang.reflect.Method;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -99,7 +100,7 @@ public class StructuredContentNestedCollectionResourceTest {
 
 		Assert.assertEquals(1, pageItems.getTotalCount());
 
-		List<JournalArticle> items = pageItems.getItems();
+		Collection<JournalArticle> items = pageItems.getItems();
 
 		Assert.assertTrue("Items " + items, items.contains(journalArticle));
 	}
