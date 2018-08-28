@@ -93,6 +93,11 @@
 	<td></td>
 </tr>
 <tr>
+	<td>PUBLISH_FORM_PUBLIC_URL</td>
+	<td>//input[@class='form-control' and @type='text']</td>
+	<td></td>
+</tr>
+<tr>
 	<td></td>
 	<td></td>
 	<td></td>

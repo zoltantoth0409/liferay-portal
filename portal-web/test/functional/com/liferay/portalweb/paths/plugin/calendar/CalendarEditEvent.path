@@ -266,6 +266,16 @@
 </tr>
 <!--RESOURCES_AVAILABILITY-->
 <tr>
+	<td>RESOURCES_AVAILABILITY_PANEL_COLLAPSED</td>
+	<td>//div[contains(@class,'toggler-header-collapsed') and contains(@id,'checkAvailability')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>RESOURCES_AVAILABILITY_PANEL_EXPANDED</td>
+	<td>//div[contains(@class,'toggler-header-expanded') and contains(@id,'checkAvailability')]</td>
+	<td></td>
+</tr>
+<tr>
 	<td>RESOURCES_AVAILABILITY_SCHEDULER_EVENT_GENERIC</td>
 	<td>//div[@class='calendar-portlet-availability']//div[contains(@class,'calendar-portlet-event')]</td>
 	<td></td>
@@ -281,6 +291,16 @@
 	<td></td>
 </tr>
 <!--REMINDERS-->
+<tr>
+	<td>REMINDERS_PANEL_COLLAPSED</td>
+	<td>//a[@aria-expanded='false' and contains(@aria-controls,'calendarBookingReminderPanel')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>REMINDERS_PANEL_EXPANDED</td>
+	<td>//a[@aria-expanded='true' and contains(@aria-controls,'calendarBookingReminderPanel')]</td>
+	<td></td>
+</tr>
 <tr>
 	<td>REMINDERS_EMAIL_CHECKBOX_1</td>
 	<td>xpath=(//div[@class='calendar-portlet-reminder-section form-inline']//input[@type='checkbox'])[1]</td>
@@ -369,6 +389,16 @@
 </tr>
 <!--CATEGORIZATION-->
 <tr>
+	<td>CATEGORIZATION_PANEL_COLLAPSED</td>
+	<td>//a[@aria-expanded='false' and contains(@aria-controls,'calendarBookingCategorizationPanel')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CATEGORIZATION_PANEL_EXPANDED</td>
+	<td>//a[@aria-expanded='true' and contains(@aria-controls,'calendarBookingCategorizationPanel')]</td>
+	<td></td>
+</tr>
+<tr>
 	<td>CATEGORIZATION_TAG_FIELD</td>
 	<td>//textarea[contains(@title,'Add Tags')]</td>
 	<td></td>
@@ -388,6 +418,22 @@
 	<td></td>
 	<td></td>
 </tr>
+<!--RELATED_ASSETS-->
+<tr>
+	<td>RELATED_ASSETS_PANEL_COLLAPSED</td>
+	<td>//a[@aria-expanded='false' and contains(@aria-controls,'calendarBookingAssetLinksPanel')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>RELATED_ASSETS_PANEL_EXPANDED</td>
+	<td>//a[@aria-expanded='true' and contains(@aria-controls,'calendarBookingAssetLinksPanel')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td></td>
+	<td></td>
+ 	<td></td>
+ </tr>
 <!--ARE_YOU_SURE_DIALOG_BOX-->
 <tr>
 	<td>ARE_YOU_SURE_DIALOG_BOX_HEADER</td>
@@ -433,6 +479,17 @@
 <tr>
 	<td>ENTIRE_SERIES_BUTTON</td>
 	<td>//button[@role='button' and contains(.,'Entire Series')]</td>
+	<td></td>
+</tr>
+<!--ACTIVITIES-->
+<tr>
+	<td>ACTIVITIES_PANEL_COLLAPSED</td>
+	<td>//div[contains(@class,'toggler-header-collapsed')]/div[contains(.,'Activities')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ACTIVITIES_PANEL_EXPANDED</td>
+	<td>//div[contains(@class,'toggler-header-expanded')]/div[contains(.,'Activities')]</td>
 	<td></td>
 </tr>
 </tbody>
