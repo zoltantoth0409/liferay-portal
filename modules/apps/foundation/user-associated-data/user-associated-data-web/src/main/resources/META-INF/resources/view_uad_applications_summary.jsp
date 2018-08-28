@@ -38,10 +38,6 @@ String statusLabelPending = StringUtil.toUpperCase(LanguageUtil.get(request, "pe
 
 <div class="container-fluid-1280">
 	<div class="sheet sheet-lg">
-		<div class="sheet-header">
-			<h2 class="sheet-title"><liferay-ui:message key="application-data-review" /></h2>
-		</div>
-
 		<div class="sheet-section">
 			<h3 class="sheet-subtitle">
 				<liferay-ui:message key="status-summary" />
