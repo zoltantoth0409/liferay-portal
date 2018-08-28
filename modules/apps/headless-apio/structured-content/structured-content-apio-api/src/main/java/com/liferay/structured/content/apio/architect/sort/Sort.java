@@ -28,40 +28,40 @@ import java.util.List;
 public class Sort {
 
 	/**
-	 * Creates a new Sort from a list of sort keys.
+	 * Creates a new Sort from a list of sort fields.
 	 *
-	 * @param  sortKeys - list of sort keys
+	 * @param  sortFields - list of sort fields
 	 * @review
 	 */
-	public Sort(List<SortKey> sortKeys) {
-		_sortKeys = sortKeys;
+	public Sort(List<SortField> sortFields) {
+		_sortFields = sortFields;
 	}
 
 	/**
-	 * Returns the list of sort keys.
+	 * Returns the list of sort fields.
 	 *
-	 * @return - the list of sort keys
+	 * @return - the list of sort fields
 	 * @review
 	 */
-	public List<SortKey> getSortKeys() {
-		return _sortKeys;
+	public List<SortField> getSortFields() {
+		return _sortFields;
 	}
 
 	/**
-	 * Models a Sort Key.
+	 * Models a Sort Field.
 	 *
 	 * @review
 	 */
-	public static class SortKey implements Serializable {
+	public static class SortField implements Serializable {
 
 		/**
-		 * Creates a new sort key.
+		 * Creates a new sort field.
 		 *
 		 * @param  fieldName - the name of the field
 		 * @param  asc - if the sort should be ascending
 		 * @review
 		 */
-		public SortKey(String fieldName, boolean asc) {
+		public SortField(String fieldName, boolean asc) {
 			_fieldName = fieldName;
 			_asc = asc;
 		}
@@ -77,9 +77,9 @@ public class Sort {
 		}
 
 		/**
-		 * Returns if the sort key is ascending or not.
+		 * Returns if the sort field is ascending or not.
 		 *
-		 * @return - if the sort key is ascending or not
+		 * @return - if the sort field is ascending or not
 		 * @review
 		 */
 		public boolean isAscending() {
@@ -91,6 +91,6 @@ public class Sort {
 
 	}
 
-	private final List<SortKey> _sortKeys;
+	private final List<SortField> _sortFields;
 
 }

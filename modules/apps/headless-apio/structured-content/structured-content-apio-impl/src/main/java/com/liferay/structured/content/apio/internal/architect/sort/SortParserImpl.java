@@ -28,7 +28,7 @@ import org.osgi.service.component.annotations.Component;
 
 /**
  * Utility for parsing Sort expressions. It uses a model to create a list of
- * {@link Sort.SortKey}.
+ * {@link Sort.SortField}.
  *
  * @author Cristina González
  * @review
@@ -37,13 +37,13 @@ import org.osgi.service.component.annotations.Component;
 public class SortParserImpl implements SortParser {
 
 	/**
-	 * Returns a List of {@link Sort.SortKey} obtained from a comma-separated
+	 * Returns a List of {@link Sort.SortField} obtained from a comma-separated
 	 * list of field names and sort directions.
 	 *
 	 * Sort directions supported are desc and asc and can be appended to each
 	 * sort field, separated by the ':' character.
 	 *
-	 * If a sort direction is not provided, the sort key will be 'asc'.
+	 * If a sort direction is not provided, the sort field will be 'asc'.
 	 *
 	 * For example:
 	 * - field1,field2,field3
@@ -51,10 +51,10 @@ public class SortParserImpl implements SortParser {
 	 * - field1:asc,field2,field3:desc
 	 *
 	 * @param  sortExpressions - String to be parsed
-	 * @return a  {@link List<Sort.SortKey>}
+	 * @return a  {@link List< Sort.SortField >}
 	 * @review
 	 */
-	public List<Sort.SortKey> parse(String sortExpressions) {
+	public List<Sort.SortField> parse(String sortExpressions) {
 		if (sortExpressions == null) {
 			return Collections.emptyList();
 		}
@@ -64,16 +64,16 @@ public class SortParserImpl implements SortParser {
 		Stream<String> stream = sortExpressionsList.stream();
 
 		return stream.map(
-			this::getSortKey
+			this::getSortField
 		).flatMap(
-			sortKeyOptional ->
-				sortKeyOptional.map(Stream::of).orElseGet(Stream::empty)
+			sortFieldOptional ->
+				sortFieldOptional.map(Stream::of).orElseGet(Stream::empty)
 		).collect(
 			Collectors.toList()
 		);
 	}
 
-	protected Optional<Sort.SortKey> getSortKey(String sortExpression) {
+	protected Optional<Sort.SortField> getSortField(String sortExpression) {
 		List<String> sortParts = StringUtil.split(sortExpression, ':');
 
 		if (sortParts.isEmpty()) {
@@ -92,7 +92,7 @@ public class SortParserImpl implements SortParser {
 			ascending = isAscending(sortParts.get(1));
 		}
 
-		return Optional.of(new Sort.SortKey(fieldName, ascending));
+		return Optional.of(new Sort.SortField(fieldName, ascending));
 	}
 
 	protected boolean isAscending(String orderBy) {

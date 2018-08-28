@@ -337,16 +337,16 @@ public class StructuredContentNestedCollectionResource
 	}
 
 	private OrderByComparator<JournalArticle>
-		_getJournalArticleOrderByComparator(List<Sort.SortKey> sortKeys) {
+		_getJournalArticleOrderByComparator(List<Sort.SortField> sortFields) {
 
 		OrderByComparator<JournalArticle> orderByComparator = null;
 
-		for (Sort.SortKey sortKey : sortKeys) {
-			String fieldName = sortKey.getFieldName();
+		for (Sort.SortField sortField : sortFields) {
+			String fieldName = sortField.getFieldName();
 
 			if (fieldName.equals("title")) {
 				orderByComparator = new ArticleTitleComparator(
-					sortKey.isAscending());
+					sortField.isAscending());
 
 				break;
 			}
@@ -423,7 +423,7 @@ public class StructuredContentNestedCollectionResource
 		Sort sort) {
 
 		OrderByComparator<JournalArticle> orderByComparator =
-			_getJournalArticleOrderByComparator(sort.getSortKeys());
+			_getJournalArticleOrderByComparator(sort.getSortFields());
 
 		List<JournalArticleWrapper> journalArticleWrappers = Stream.of(
 			_journalArticleService.getLatestArticles(
