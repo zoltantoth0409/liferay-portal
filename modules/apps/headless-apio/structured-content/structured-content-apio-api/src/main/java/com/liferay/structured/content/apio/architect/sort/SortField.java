@@ -14,23 +14,49 @@
 
 package com.liferay.structured.content.apio.architect.sort;
 
-import java.util.List;
+import java.io.Serializable;
 
 /**
- * Models a Parser from String to Sort Fields.
+ * Models a Sort Field.
  *
  * @author Cristina González
  * @review
  */
-public interface SortParser {
+public class SortField implements Serializable {
 
 	/**
-	 * Returns a List of {@link SortField} obtained from a String.
+	 * Creates a new sort field.
 	 *
-	 * @param  sortString - String to be parsed
-	 * @return a List of  {@link SortField}
+	 * @param  fieldName - the name of the field
+	 * @param  asc - if the sort should be ascending
 	 * @review
 	 */
-	public List<SortField> parse(String sortString);
+	public SortField(String fieldName, boolean asc) {
+		_fieldName = fieldName;
+		_asc = asc;
+	}
+
+	/**
+	 * Returns the name of the field.
+	 *
+	 * @return - the name of the field
+	 * @review
+	 */
+	public String getFieldName() {
+		return _fieldName;
+	}
+
+	/**
+	 * Returns if the sort field is ascending or not.
+	 *
+	 * @return - if the sort field is ascending or not
+	 * @review
+	 */
+	public boolean isAscending() {
+		return _asc;
+	}
+
+	private final boolean _asc;
+	private final String _fieldName;
 
 }

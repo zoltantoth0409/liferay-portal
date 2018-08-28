@@ -14,8 +14,6 @@
 
 package com.liferay.structured.content.apio.architect.sort;
 
-import java.io.Serializable;
-
 import java.util.List;
 
 /**
@@ -45,50 +43,6 @@ public class Sort {
 	 */
 	public List<SortField> getSortFields() {
 		return _sortFields;
-	}
-
-	/**
-	 * Models a Sort Field.
-	 *
-	 * @review
-	 */
-	public static class SortField implements Serializable {
-
-		/**
-		 * Creates a new sort field.
-		 *
-		 * @param  fieldName - the name of the field
-		 * @param  asc - if the sort should be ascending
-		 * @review
-		 */
-		public SortField(String fieldName, boolean asc) {
-			_fieldName = fieldName;
-			_asc = asc;
-		}
-
-		/**
-		 * Returns the name of the field.
-		 *
-		 * @return - the name of the field
-		 * @review
-		 */
-		public String getFieldName() {
-			return _fieldName;
-		}
-
-		/**
-		 * Returns if the sort field is ascending or not.
-		 *
-		 * @return - if the sort field is ascending or not
-		 * @review
-		 */
-		public boolean isAscending() {
-			return _asc;
-		}
-
-		private final boolean _asc;
-		private final String _fieldName;
-
 	}
 
 	private final List<SortField> _sortFields;

@@ -14,7 +14,7 @@
 
 package com.liferay.structured.content.apio.internal.architect.sort;
 
-import com.liferay.structured.content.apio.architect.sort.Sort;
+import com.liferay.structured.content.apio.architect.sort.SortField;
 
 import java.util.List;
 import java.util.Optional;
@@ -32,12 +32,12 @@ public class SortParserTest {
 
 	@Test
 	public void testGetSortAsc() {
-		Optional<Sort.SortField> sortOptional = _sortParser.getSortField(
+		Optional<SortField> sortOptional = _sortParser.getSortField(
 			"field:asc");
 
 		Assert.assertTrue(sortOptional.isPresent());
 
-		Sort.SortField sortField = sortOptional.get();
+		SortField sortField = sortOptional.get();
 
 		Assert.assertEquals("field", sortField.getFieldName());
 
@@ -52,17 +52,17 @@ public class SortParserTest {
 			RuntimeException.class
 		);
 
-		exception.hasMessageStartingWith("Unable to parse sort expression");
+		exception.hasMessageStartingWith("Unable to parse sort string");
 	}
 
 	@Test
 	public void testGetSortDesc() {
-		Optional<Sort.SortField> sortOptional = _sortParser.getSortField(
+		Optional<SortField> sortOptional = _sortParser.getSortField(
 			"field:desc");
 
 		Assert.assertTrue(sortOptional.isPresent());
 
-		Sort.SortField sortField = sortOptional.get();
+		SortField sortField = sortOptional.get();
 
 		Assert.assertEquals("field", sortField.getFieldName());
 
@@ -71,11 +71,11 @@ public class SortParserTest {
 
 	@Test
 	public void testGetSortNoOrder() {
-		Optional<Sort.SortField> sortOptional = _sortParser.getSortField("field");
+		Optional<SortField> sortOptional = _sortParser.getSortField("field");
 
 		Assert.assertTrue(sortOptional.isPresent());
 
-		Sort.SortField sortField = sortOptional.get();
+		SortField sortField = sortOptional.get();
 
 		Assert.assertEquals("field", sortField.getFieldName());
 
@@ -84,7 +84,7 @@ public class SortParserTest {
 
 	@Test
 	public void testGetSortNull() {
-		Optional<Sort.SortField> sortOptional = _sortParser.getSortField(null);
+		Optional<SortField> sortOptional = _sortParser.getSortField(null);
 
 		Assert.assertTrue(!sortOptional.isPresent());
 	}
@@ -136,47 +136,50 @@ public class SortParserTest {
 
 	@Test
 	public void testSortEmpty() {
-		List<Sort.SortField> sortFields = _sortParser.parse("");
+		List<SortField> sortFields = _sortParser.parse("");
 
 		Assert.assertEquals(
-			"No sort keys should be obtained: " + sortFields, 0, sortFields.size());
+			"No sort keys should be obtained: " + sortFields, 0,
+			sortFields.size());
 	}
 
 	@Test
 	public void testSortOneField() {
-		List<Sort.SortField> sortFields = _sortParser.parse("field1");
+		List<SortField> sortFields = _sortParser.parse("field1");
 
 		Assert.assertEquals(
-			"One sort field should be obtained: " + sortFields, 1, sortFields.size());
+			"One sort field should be obtained: " + sortFields, 1,
+			sortFields.size());
 
-		Sort.SortField sortField = sortFields.get(0);
+		SortField sortField = sortFields.get(0);
 
 		Assert.assertEquals("field1", sortField.getFieldName());
 	}
 
 	@Test
 	public void testSortOnlyComma() {
-		List<Sort.SortField> sortFields = _sortParser.parse(",");
+		List<SortField> sortFields = _sortParser.parse(",");
 
 		Assert.assertEquals(
-			"No sort fields should be obtained: " + sortFields, 0, sortFields.size());
+			"No sort fields should be obtained: " + sortFields, 0,
+			sortFields.size());
 	}
 
 	@Test
 	public void testSortTwoFields() {
-		List<Sort.SortField> sortFields = _sortParser.parse("field1,field2");
+		List<SortField> sortFields = _sortParser.parse("field1,field2");
 
 		Assert.assertEquals(
 			"Two sort fields should be obtained: " + sortFields, 2,
 			sortFields.size());
 
-		Sort.SortField sortField = sortFields.get(0);
+		SortField sortField = sortFields.get(0);
 
 		Assert.assertEquals("field1", sortField.getFieldName());
 
 		Assert.assertTrue(sortField.isAscending());
 
-		Sort.SortField sortField2 = sortFields.get(1);
+		SortField sortField2 = sortFields.get(1);
 
 		Assert.assertEquals("field2", sortField2.getFieldName());
 
@@ -185,20 +188,20 @@ public class SortParserTest {
 
 	@Test
 	public void testSortTwoFieldsAscAndDesc() {
-		List<Sort.SortField> sortFields = _sortParser.parse(
+		List<SortField> sortFields = _sortParser.parse(
 			"field1:asc,field2:desc");
 
 		Assert.assertEquals(
 			"Two sort fields should be obtained: " + sortFields, 2,
 			sortFields.size());
 
-		Sort.SortField sortField = sortFields.get(0);
+		SortField sortField = sortFields.get(0);
 
 		Assert.assertEquals("field1", sortField.getFieldName());
 
 		Assert.assertTrue(sortField.isAscending());
 
-		Sort.SortField sortField2 = sortFields.get(1);
+		SortField sortField2 = sortFields.get(1);
 
 		Assert.assertEquals("field2", sortField2.getFieldName());
 
@@ -207,19 +210,19 @@ public class SortParserTest {
 
 	@Test
 	public void testSortTwoFieldsDefaultAndDesc() {
-		List<Sort.SortField> sortFields = _sortParser.parse("field1,field2:desc");
+		List<SortField> sortFields = _sortParser.parse("field1,field2:desc");
 
 		Assert.assertEquals(
 			"Two sort fields should be obtained: " + sortFields, 2,
 			sortFields.size());
 
-		Sort.SortField sortField = sortFields.get(0);
+		SortField sortField = sortFields.get(0);
 
 		Assert.assertEquals("field1", sortField.getFieldName());
 
 		Assert.assertTrue(sortField.isAscending());
 
-		Sort.SortField sortField2 = sortFields.get(1);
+		SortField sortField2 = sortFields.get(1);
 
 		Assert.assertEquals("field2", sortField2.getFieldName());
 
