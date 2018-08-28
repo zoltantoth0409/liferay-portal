@@ -28,8 +28,8 @@
 				JournalArticle
 			LEFT JOIN
 				JournalArticle tempJournalArticle ON
-					(JournalArticle.articleId = tempJournalArticle.articleId) AND
 					(JournalArticle.groupId = tempJournalArticle.groupId) AND
+					(JournalArticle.articleId = tempJournalArticle.articleId) AND
 					(JournalArticle.version < tempJournalArticle.version)
 			WHERE
 				(JournalArticle.groupId = ?) AND
@@ -222,8 +222,8 @@
 				JournalArticle
 			LEFT JOIN
 				JournalArticle tempJournalArticle ON
-					(JournalArticle.articleId = tempJournalArticle.articleId) AND
 					(JournalArticle.groupId = tempJournalArticle.groupId) AND
+					(JournalArticle.articleId = tempJournalArticle.articleId) AND
 					(JournalArticle.version < tempJournalArticle.version)
 			WHERE
 				(JournalArticle.groupId = ?) AND
