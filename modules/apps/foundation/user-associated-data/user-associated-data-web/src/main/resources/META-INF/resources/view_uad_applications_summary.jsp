@@ -44,16 +44,12 @@ String statusLabelPending = StringUtil.toUpperCase(LanguageUtil.get(request, "pe
 			</div>
 		</div>
 		<div class="panel-body">
-			<div class="autofit-row autofit-row-center">
-				<div class="autofit-col autofit-col-expand">
-					<div class="autofit-section">
-						<strong><liferay-ui:message key="remaining-items" />: </strong><%= viewUADApplicationsSummaryDisplay.getTotalCount() %>
-					</div>
-				</div>
+			<p class="remaining-items-wrapper">
+				<strong><liferay-ui:message key="remaining-items" />: </strong><%= viewUADApplicationsSummaryDisplay.getTotalCount() %>
+			</p>
 
-				<div class="autofit-col">
-					<aui:button cssClass="btn-sm" disabled="<%= viewUADApplicationsSummaryDisplay.getTotalCount() > 0 %>" href="<%= backURL.toString() %>" primary="true" value="complete-step" />
-				</div>
+			<div class="complete-step-button-wrapper">
+				<aui:button cssClass="btn-md" disabled="<%= viewUADApplicationsSummaryDisplay.getTotalCount() > 0 %>" href="<%= backURL.toString() %>" primary="true" value="complete-step" />
 			</div>
 		</div>
 	</div>
