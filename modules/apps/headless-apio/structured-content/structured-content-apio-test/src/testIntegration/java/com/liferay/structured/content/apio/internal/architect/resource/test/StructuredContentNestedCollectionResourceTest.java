@@ -106,7 +106,7 @@ public class StructuredContentNestedCollectionResourceTest {
 	}
 
 	@Test
-	public void testGetPageItemsSortedByTitleAsc() throws Exception {
+	public void testGetPageItemsSortByTitleAsc() throws Exception {
 		Map<Locale, String> stringMap1 = new HashMap<>();
 
 		stringMap1.put(LocaleUtil.getDefault(), "title1");
@@ -147,7 +147,7 @@ public class StructuredContentNestedCollectionResourceTest {
 	}
 
 	@Test
-	public void testGetPageItemsSortedByTitleDefaultSort() throws Exception {
+	public void testGetPageItemsSortByTitleDefault() throws Exception {
 		Map<Locale, String> stringMap1 = new HashMap<>();
 
 		stringMap1.put(LocaleUtil.getDefault(), "title1");
@@ -188,7 +188,7 @@ public class StructuredContentNestedCollectionResourceTest {
 	}
 
 	@Test
-	public void testGetPageItemsSortedByTitleDesc() throws Exception {
+	public void testGetPageItemsSortByTitleDesc() throws Exception {
 		Map<Locale, String> stringMap1 = new HashMap<>();
 
 		stringMap1.put(LocaleUtil.getDefault(), "title1");
