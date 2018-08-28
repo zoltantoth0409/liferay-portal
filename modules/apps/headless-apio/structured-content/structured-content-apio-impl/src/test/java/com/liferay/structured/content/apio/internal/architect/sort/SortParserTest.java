@@ -32,8 +32,8 @@ public class SortParserTest {
 
 	@Test
 	public void testGetSortFieldOptionalAsc() {
-		Optional<SortField> sortFieldOptional = _sortParser.getSortFieldOptional(
-			"field:asc");
+		Optional<SortField> sortFieldOptional =
+			_sortParser.getSortFieldOptional("field:asc");
 
 		Assert.assertTrue(sortFieldOptional.isPresent());
 
@@ -42,6 +42,34 @@ public class SortParserTest {
 		Assert.assertEquals("field", sortField.getFieldName());
 
 		Assert.assertTrue(sortField.isAscending());
+	}
+
+	@Test
+	public void testGetSortFieldOptionalDefault() {
+		Optional<SortField> sortFieldOptional =
+			_sortParser.getSortFieldOptional("field");
+
+		Assert.assertTrue(sortFieldOptional.isPresent());
+
+		SortField sortField = sortFieldOptional.get();
+
+		Assert.assertEquals("field", sortField.getFieldName());
+
+		Assert.assertTrue(sortField.isAscending());
+	}
+
+	@Test
+	public void testGetSortFieldOptionalDesc() {
+		Optional<SortField> sortFieldOptional =
+			_sortParser.getSortFieldOptional("field:desc");
+
+		Assert.assertTrue(sortFieldOptional.isPresent());
+
+		SortField sortField = sortFieldOptional.get();
+
+		Assert.assertEquals("field", sortField.getFieldName());
+
+		Assert.assertTrue(!sortField.isAscending());
 	}
 
 	@Test
@@ -56,35 +84,9 @@ public class SortParserTest {
 	}
 
 	@Test
-	public void testGetSortFieldOptionalDesc() {
-		Optional<SortField> sortFieldOptional = _sortParser.getSortFieldOptional(
-			"field:desc");
-
-		Assert.assertTrue(sortFieldOptional.isPresent());
-
-		SortField sortField = sortFieldOptional.get();
-
-		Assert.assertEquals("field", sortField.getFieldName());
-
-		Assert.assertTrue(!sortField.isAscending());
-	}
-
-	@Test
-	public void testGetSortFieldOptionalDefault() {
-		Optional<SortField> sortFieldOptional = _sortParser.getSortFieldOptional("field");
-
-		Assert.assertTrue(sortFieldOptional.isPresent());
-
-		SortField sortField = sortFieldOptional.get();
-
-		Assert.assertEquals("field", sortField.getFieldName());
-
-		Assert.assertTrue(sortField.isAscending());
-	}
-
-	@Test
 	public void testGetSortFieldOptionalNull() {
-		Optional<SortField> sortFieldOptional = _sortParser.getSortFieldOptional(null);
+		Optional<SortField> sortFieldOptional =
+			_sortParser.getSortFieldOptional(null);
 
 		Assert.assertTrue(!sortFieldOptional.isPresent());
 	}
