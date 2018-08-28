@@ -119,11 +119,10 @@ renderResponse.setTitle(StringBundler.concat(selectedUser.getFullName(), " - ", 
 					List<KeyValuePair> columnEntries = uadEntity.getColumnEntries();
 
 					for (KeyValuePair columnEntry : columnEntries) {
-						String cssClass = columnEntry.equals(columnEntries.get(0)) ? "table-cell-content table-list-title" : "table-cell-content";
 					%>
 
 						<liferay-ui:search-container-column-text
-							cssClass="<%= cssClass %>"
+							cssClass="table-cell-content"
 							href="<%= uadEntity.getEditURL() %>"
 							name="<%= columnEntry.getKey() %>"
 							value="<%= StringUtil.shorten(columnEntry.getValue(), 200) %>"
