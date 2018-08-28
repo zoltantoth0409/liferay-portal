@@ -36,13 +36,14 @@ String statusLabelDone = StringUtil.toUpperCase(LanguageUtil.get(request, "done"
 String statusLabelPending = StringUtil.toUpperCase(LanguageUtil.get(request, "pending"), locale);
 %>
 
-<div class="container-fluid-1280">
-	<div class="sheet sheet-lg">
-		<div class="sheet-section">
-			<h3 class="sheet-subtitle">
+<div class="container-fluid-1280 uad-application-summary-wrapper">
+	<div class="panel panel-default application-summary-section">
+		<div class="panel-heading">
+			<div class="panel-title">
 				<liferay-ui:message key="status-summary" />
-			</h3>
-
+			</div>
+		</div>
+		<div class="panel-body">
 			<div class="autofit-row autofit-row-center">
 				<div class="autofit-col autofit-col-expand">
 					<div class="autofit-section">
@@ -55,10 +56,15 @@ String statusLabelPending = StringUtil.toUpperCase(LanguageUtil.get(request, "pe
 				</div>
 			</div>
 		</div>
+	</div>
 
-		<div class="sheet-section">
-			<h3 class="sheet-subtitle"><liferay-ui:message key="applications" /></h3>
-
+	<div class="panel panel-default application-summary-section">
+		<div class="panel-heading">
+			<div class="panel-title">
+				<liferay-ui:message key="applications" />
+			</div>
+		</div>
+		<div class="panel-body">
 			<liferay-frontend:management-bar>
 				<liferay-frontend:management-bar-filters>
 					<liferay-frontend:management-bar-navigation
