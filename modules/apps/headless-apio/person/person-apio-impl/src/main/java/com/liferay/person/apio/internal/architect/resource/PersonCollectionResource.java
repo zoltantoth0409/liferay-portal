@@ -34,7 +34,6 @@ import com.liferay.person.apio.internal.query.FullNameQuery;
 import com.liferay.person.apio.internal.util.UserAccountRepresentorBuilderHelper;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.apio.permission.HasPermission;
-import com.liferay.portal.apio.user.CurrentUser;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Contact;
 import com.liferay.portal.kernel.model.ListTypeConstants;
@@ -90,7 +89,7 @@ public class PersonCollectionResource
 
 		return builder.addGetter(
 			this::_getPageItems, FullNameQuery.class, Credentials.class,
-			ThemeDisplay.class, CurrentUser.class
+			ThemeDisplay.class
 		).addCreator(
 			this::_addUser, ThemeDisplay.class, _hasPermission::forAdding,
 			PersonCreatorForm::buildForm
@@ -204,8 +203,7 @@ public class PersonCollectionResource
 
 	private PageItems<UserWrapper> _getPageItems(
 			Pagination pagination, FullNameQuery fullNameQuery,
-			Credentials credentials, ThemeDisplay themeDisplay,
-			CurrentUser currentUser)
+			Credentials credentials, ThemeDisplay themeDisplay)
 		throws PortalException {
 
 		PermissionChecker permissionChecker =
