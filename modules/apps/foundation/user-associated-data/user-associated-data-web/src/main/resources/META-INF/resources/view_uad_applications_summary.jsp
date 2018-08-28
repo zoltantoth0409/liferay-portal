@@ -84,7 +84,7 @@ renderResponse.setTitle(StringBundler.concat(selectedUser.getFullName(), " - ", 
 					modelVar="uadApplicationSummaryDisplay"
 				>
 					<liferay-ui:search-container-column-text
-						cssClass="table-cell-content table-list-title"
+						cssClass="table-cell-content"
 						href="<%= uadApplicationSummaryDisplay.getViewURL() %>"
 						name="name"
 						value="<%= UADLanguageUtil.getApplicationName(uadApplicationSummaryDisplay.getApplicationKey(), locale) %>"
