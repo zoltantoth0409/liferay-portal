@@ -32,7 +32,7 @@ public class SortParserTest {
 
 	@Test
 	public void testGetSortAsc() {
-		Optional<SortField> sortOptional = _sortParser.getSortField(
+		Optional<SortField> sortOptional = _sortParser.getSortFieldOptional(
 			"field:asc");
 
 		Assert.assertTrue(sortOptional.isPresent());
@@ -47,7 +47,7 @@ public class SortParserTest {
 	@Test
 	public void testGetSortBadSyntax() {
 		AbstractThrowableAssert exception = Assertions.assertThatThrownBy(
-			() -> _sortParser.getSortField("field:desc:another")
+			() -> _sortParser.getSortFieldOptional("field:desc:another")
 		).isInstanceOf(
 			RuntimeException.class
 		);
@@ -57,7 +57,7 @@ public class SortParserTest {
 
 	@Test
 	public void testGetSortDesc() {
-		Optional<SortField> sortOptional = _sortParser.getSortField(
+		Optional<SortField> sortOptional = _sortParser.getSortFieldOptional(
 			"field:desc");
 
 		Assert.assertTrue(sortOptional.isPresent());
@@ -71,7 +71,7 @@ public class SortParserTest {
 
 	@Test
 	public void testGetSortNoOrder() {
-		Optional<SortField> sortOptional = _sortParser.getSortField("field");
+		Optional<SortField> sortOptional = _sortParser.getSortFieldOptional("field");
 
 		Assert.assertTrue(sortOptional.isPresent());
 
@@ -84,7 +84,7 @@ public class SortParserTest {
 
 	@Test
 	public void testGetSortNull() {
-		Optional<SortField> sortOptional = _sortParser.getSortField(null);
+		Optional<SortField> sortOptional = _sortParser.getSortFieldOptional(null);
 
 		Assert.assertTrue(!sortOptional.isPresent());
 	}

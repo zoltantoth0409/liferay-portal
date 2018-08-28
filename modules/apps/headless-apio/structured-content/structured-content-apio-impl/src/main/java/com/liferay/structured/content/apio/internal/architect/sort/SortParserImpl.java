@@ -64,7 +64,7 @@ public class SortParserImpl implements SortParser {
 		Stream<String> stream = list.stream();
 
 		return stream.map(
-			this::getSortField
+			this::getSortFieldOptional
 		).flatMap(
 			sortFieldOptional -> sortFieldOptional.map(
 				Stream::of
@@ -76,7 +76,7 @@ public class SortParserImpl implements SortParser {
 		);
 	}
 
-	protected Optional<SortField> getSortField(String sortString) {
+	protected Optional<SortField> getSortFieldOptional(String sortString) {
 		List<String> list = StringUtil.split(sortString, ':');
 
 		if (list.isEmpty()) {
