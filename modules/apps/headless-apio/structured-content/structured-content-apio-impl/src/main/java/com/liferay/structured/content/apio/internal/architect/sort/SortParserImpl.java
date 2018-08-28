@@ -15,7 +15,7 @@
 package com.liferay.structured.content.apio.internal.architect.sort;
 
 import com.liferay.petra.string.StringUtil;
-import com.liferay.structured.content.apio.architect.sort.Sort;
+import com.liferay.structured.content.apio.architect.sort.SortField;
 import com.liferay.structured.content.apio.architect.sort.SortParser;
 
 import java.util.Collections;
@@ -27,8 +27,8 @@ import java.util.stream.Stream;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * Utility for parsing Sort expressions. It uses a model to create a list of
- * {@link Sort.SortField}.
+ * Utility for parsing Sort strings. It uses a model to create a list of {@link
+ * SortField}.
  *
  * @author Cristina González
  * @review
@@ -37,8 +37,8 @@ import org.osgi.service.component.annotations.Component;
 public class SortParserImpl implements SortParser {
 
 	/**
-	 * Returns a List of {@link Sort.SortField} obtained from a comma-separated
-	 * list of field names and sort directions.
+	 * Returns a List of {@link SortField} obtained from a comma-separated list
+	 * of field names and sort directions.
 	 *
 	 * Sort directions supported are desc and asc and can be appended to each
 	 * sort field, separated by the ':' character.
@@ -50,18 +50,18 @@ public class SortParserImpl implements SortParser {
 	 * - field1:asc,field2:desc,field3
 	 * - field1:asc,field2,field3:desc
 	 *
-	 * @param  sortExpressions - String to be parsed
-	 * @return a  {@link List< Sort.SortField >}
+	 * @param  sortString - String to be parsed
+	 * @return a  {@link List<SortField>}
 	 * @review
 	 */
-	public List<Sort.SortField> parse(String sortExpressions) {
-		if (sortExpressions == null) {
+	public List<SortField> parse(String sortString) {
+		if (sortString == null) {
 			return Collections.emptyList();
 		}
 
-		List<String> sortExpressionsList = StringUtil.split(sortExpressions);
+		List<String> sortStrings = StringUtil.split(sortString);
 
-		Stream<String> stream = sortExpressionsList.stream();
+		Stream<String> stream = sortStrings.stream();
 
 		return stream.map(
 			this::getSortField
@@ -73,26 +73,26 @@ public class SortParserImpl implements SortParser {
 		);
 	}
 
-	protected Optional<Sort.SortField> getSortField(String sortExpression) {
-		List<String> sortParts = StringUtil.split(sortExpression, ':');
+	protected Optional<SortField> getSortField(String sortString) {
+		List<String> sortStrings = StringUtil.split(sortString, ':');
 
-		if (sortParts.isEmpty()) {
+		if (sortStrings.isEmpty()) {
 			return Optional.empty();
 		}
 
-		if (sortParts.size() > 2) {
-			throw new RuntimeException("Unable to parse sort expression");
+		if (sortStrings.size() > 2) {
+			throw new RuntimeException("Unable to parse sort string");
 		}
 
-		String fieldName = sortParts.get(0);
+		String fieldName = sortStrings.get(0);
 
 		boolean ascending = _ASC_DEFAULT;
 
-		if (sortParts.size() > 1) {
-			ascending = isAscending(sortParts.get(1));
+		if (sortStrings.size() > 1) {
+			ascending = isAscending(sortStrings.get(1));
 		}
 
-		return Optional.of(new Sort.SortField(fieldName, ascending));
+		return Optional.of(new SortField(fieldName, ascending));
 	}
 
 	protected boolean isAscending(String orderBy) {

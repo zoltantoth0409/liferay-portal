@@ -61,6 +61,7 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.structure.apio.architect.identifier.ContentStructureIdentifier;
 import com.liferay.structured.content.apio.architect.identifier.StructuredContentIdentifier;
 import com.liferay.structured.content.apio.architect.sort.Sort;
+import com.liferay.structured.content.apio.architect.sort.SortField;
 import com.liferay.structured.content.apio.architect.util.StructuredContentUtil;
 import com.liferay.structured.content.apio.internal.architect.form.StructuredContentCreatorForm;
 import com.liferay.structured.content.apio.internal.architect.form.StructuredContentUpdaterForm;
@@ -337,11 +338,11 @@ public class StructuredContentNestedCollectionResource
 	}
 
 	private OrderByComparator<JournalArticle>
-		_getJournalArticleOrderByComparator(List<Sort.SortField> sortFields) {
+		_getJournalArticleOrderByComparator(List<SortField> sortFields) {
 
 		OrderByComparator<JournalArticle> orderByComparator = null;
 
-		for (Sort.SortField sortField : sortFields) {
+		for (SortField sortField : sortFields) {
 			String fieldName = sortField.getFieldName();
 
 			if (fieldName.equals("title")) {
