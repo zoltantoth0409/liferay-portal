@@ -49,7 +49,7 @@ String statusLabelPending = StringUtil.toUpperCase(LanguageUtil.get(request, "pe
 			</p>
 
 			<div class="complete-step-button-wrapper">
-				<aui:button cssClass="btn-md" disabled="<%= viewUADApplicationsSummaryDisplay.getTotalCount() > 0 %>" href="<%= backURL.toString() %>" primary="true" value="complete-step" />
+				<aui:button cssClass="btn-lg" disabled="<%= viewUADApplicationsSummaryDisplay.getTotalCount() > 0 %>" href="<%= backURL.toString() %>" primary="true" value="complete-step" />
 			</div>
 		</div>
 	</div>
