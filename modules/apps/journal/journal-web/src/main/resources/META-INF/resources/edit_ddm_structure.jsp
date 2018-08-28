@@ -17,9 +17,9 @@
 <%@ include file="/init.jsp" %>
 
 <%
-JournalEditDDMStructuresDisplayContext journalEditDDMStructuresDisplayContext = new JournalEditDDMStructuresDisplayContext(request);
-
 String redirect = ParamUtil.getString(request, "redirect");
+
+JournalEditDDMStructuresDisplayContext journalEditDDMStructuresDisplayContext = new JournalEditDDMStructuresDisplayContext(request);
 
 DDMStructure ddmStructure = journalEditDDMStructuresDisplayContext.getDDMStructure();
 
