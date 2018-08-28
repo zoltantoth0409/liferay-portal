@@ -107,19 +107,19 @@ public class StructuredContentNestedCollectionResourceTest {
 
 	@Test
 	public void testGetPageItemsSortedByTitleAsc() throws Exception {
-		Map<Locale, String> stringMap = new HashMap<>();
+		Map<Locale, String> stringMap1 = new HashMap<>();
 
-		stringMap.put(LocaleUtil.getDefault(), "title1");
+		stringMap1.put(LocaleUtil.getDefault(), "title1");
 
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
 
-		JournalArticle journalArticle = JournalTestUtil.addArticle(
+		JournalArticle journalArticle1 = JournalTestUtil.addArticle(
 			_group.getGroupId(),
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 			JournalArticleConstants.CLASSNAME_ID_DEFAULT,
-			RandomTestUtil.randomString(), false, stringMap, stringMap,
-			stringMap, null, LocaleUtil.getDefault(), null, true, true,
+			RandomTestUtil.randomString(), false, stringMap1, stringMap1,
+			stringMap1, null, LocaleUtil.getDefault(), null, true, true,
 			serviceContext);
 
 		Map<Locale, String> stringMap2 = new HashMap<>();
@@ -142,25 +142,25 @@ public class StructuredContentNestedCollectionResourceTest {
 
 		List items = (List)pageItems.getItems();
 
-		Assert.assertEquals(journalArticle, items.get(0));
+		Assert.assertEquals(journalArticle1, items.get(0));
 		Assert.assertEquals(journalArticle2, items.get(1));
 	}
 
 	@Test
 	public void testGetPageItemsSortedByTitleDefaultSort() throws Exception {
-		Map<Locale, String> stringMap = new HashMap<>();
+		Map<Locale, String> stringMap1 = new HashMap<>();
 
-		stringMap.put(LocaleUtil.getDefault(), "title1");
+		stringMap1.put(LocaleUtil.getDefault(), "title1");
 
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
 
-		JournalArticle journalArticle = JournalTestUtil.addArticle(
+		JournalArticle journalArticle1 = JournalTestUtil.addArticle(
 			_group.getGroupId(),
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 			JournalArticleConstants.CLASSNAME_ID_DEFAULT,
-			RandomTestUtil.randomString(), false, stringMap, stringMap,
-			stringMap, null, LocaleUtil.getDefault(), null, true, true,
+			RandomTestUtil.randomString(), false, stringMap1, stringMap1,
+			stringMap1, null, LocaleUtil.getDefault(), null, true, true,
 			serviceContext);
 
 		Map<Locale, String> stringMap2 = new HashMap<>();
@@ -183,25 +183,25 @@ public class StructuredContentNestedCollectionResourceTest {
 
 		List items = (List)pageItems.getItems();
 
-		Assert.assertEquals(journalArticle, items.get(0));
+		Assert.assertEquals(journalArticle1, items.get(0));
 		Assert.assertEquals(journalArticle2, items.get(1));
 	}
 
 	@Test
 	public void testGetPageItemsSortedByTitleDesc() throws Exception {
-		Map<Locale, String> stringMap = new HashMap<>();
+		Map<Locale, String> stringMap1 = new HashMap<>();
 
-		stringMap.put(LocaleUtil.getDefault(), "title1");
+		stringMap1.put(LocaleUtil.getDefault(), "title1");
 
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
 
-		JournalArticle journalArticle = JournalTestUtil.addArticle(
+		JournalArticle journalArticle1 = JournalTestUtil.addArticle(
 			_group.getGroupId(),
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 			JournalArticleConstants.CLASSNAME_ID_DEFAULT,
-			RandomTestUtil.randomString(), false, stringMap, stringMap,
-			stringMap, null, LocaleUtil.getDefault(), null, true, true,
+			RandomTestUtil.randomString(), false, stringMap1, stringMap1,
+			stringMap1, null, LocaleUtil.getDefault(), null, true, true,
 			serviceContext);
 
 		Map<Locale, String> stringMap2 = new HashMap<>();
@@ -226,7 +226,7 @@ public class StructuredContentNestedCollectionResourceTest {
 		List items = (List)pageItems.getItems();
 
 		Assert.assertEquals(journalArticle2, items.get(0));
-		Assert.assertEquals(journalArticle, items.get(1));
+		Assert.assertEquals(journalArticle1, items.get(1));
 	}
 
 	private PageItems _getPageItems(
