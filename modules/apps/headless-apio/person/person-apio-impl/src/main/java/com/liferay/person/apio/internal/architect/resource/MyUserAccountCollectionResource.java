@@ -100,9 +100,8 @@ public class MyUserAccountCollectionResource
 
 			return new PageItems<>(Arrays.asList(userWrapper), 1);
 		}
-		else {
-			return null;
-		}
+
+		return null;
 	}
 
 	private UserWrapper _getUserWrapper(long userId, ThemeDisplay themeDisplay)
