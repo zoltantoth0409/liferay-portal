@@ -81,8 +81,8 @@ public class DLOpenerGoogleDriveDLDisplayContextFactory
 			parentDLViewFileVersionDisplayContext, request, response,
 			fileVersion,
 			_resourceBundleLoader.loadResourceBundle(themeDisplay.getLocale()),
-			_dlOpenerGoogleDriveManager,
-			_dlOpenerFileEntryReferenceLocalService);
+			_dlOpenerFileEntryReferenceLocalService,
+			_dlOpenerGoogleDriveManager);
 	}
 
 	@Reference

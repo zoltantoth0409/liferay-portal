@@ -63,16 +63,16 @@ public class DLOpenerGoogleDriveDLViewFileVersionDisplayContext
 		DLViewFileVersionDisplayContext parentDLDisplayContext,
 		HttpServletRequest request, HttpServletResponse response,
 		FileVersion fileVersion, ResourceBundle resourceBundle,
-		DLOpenerGoogleDriveManager dlOpenerGoogleDriveManager,
 		DLOpenerFileEntryReferenceLocalService
-			dlOpenerFileEntryReferenceLocalService) {
+			dlOpenerFileEntryReferenceLocalService,
+		DLOpenerGoogleDriveManager dlOpenerGoogleDriveManager) {
 
 		super(_UUID, parentDLDisplayContext, request, response, fileVersion);
 
 		_resourceBundle = resourceBundle;
-		_dlOpenerGoogleDriveManager = dlOpenerGoogleDriveManager;
 		_dlOpenerFileEntryReferenceLocalService =
 			dlOpenerFileEntryReferenceLocalService;
+		_dlOpenerGoogleDriveManager = dlOpenerGoogleDriveManager;
 	}
 
 	@Override
