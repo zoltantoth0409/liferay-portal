@@ -4,8 +4,8 @@
 [subrepo]
 	autopull = false
 	cmdver = liferay
-	commit = df2416794794a48d72f5eaa21cea100ad12bf26e
+	commit = c561c7d631c5cddba9508876c141590b489f162c
 	mergebuttonmergecommits = false
 	mode = push
-	parent = 07047a8ec7c7a40ed9ba474a17830de2f1ea960d
+	parent = f9a49c7d9e325274518ec8b781e2f29da9e04c16
 	remote = git@github.com:liferay/com-liferay-license-manager.git
