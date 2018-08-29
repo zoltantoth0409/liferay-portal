@@ -112,7 +112,7 @@ public class AssetListEntryLocalServiceImpl
 		throws PortalException {
 
 		if (Validator.isNull(title)) {
-			throw new AssetListEntryTitleException("Title must not be null");
+			throw new AssetListEntryTitleException("Title is null");
 		}
 
 		AssetListEntry assetListEntry = assetListEntryPersistence.fetchByG_T(
