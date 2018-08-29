@@ -118,7 +118,7 @@ public class MediaObjectNestedCollectionResource
 		).addLinkedModel(
 			"creator", PersonIdentifier.class, FileEntry::getUserId
 		).addNestedList(
-			"adaptedMedia", this::_getAdaptiveMedia,
+			"adaptedMedia", this::_getAdaptiveMedias,
 			this::_getAdaptiveMediaNestedRepresentor
 		).addNumber(
 			"sizeInBytes", FileEntry::getSize
@@ -137,7 +137,7 @@ public class MediaObjectNestedCollectionResource
 		).build();
 	}
 
-	private List<AdaptiveMedia<AMImageProcessor>> _getAdaptiveMedia(
+	private List<AdaptiveMedia<AMImageProcessor>> _getAdaptiveMedias(
 		FileEntry fileEntry) {
 
 		return Try.fromFallible(
