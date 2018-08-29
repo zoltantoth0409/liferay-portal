@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.adapter.StagedGroup;
 import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.xml.Element;
 
 import java.util.Collections;
@@ -138,11 +139,23 @@ public class StagedGroupStagedModelDataHandler
 			return null;
 		}
 
-		return fetchExistingGroup(portletDataContext, groupId, liveGroupId);
+		String groupKey = GetterUtil.getString(
+			referenceElement.attributeValue("group-key"));
+
+		return fetchExistingGroup(
+			portletDataContext, groupId, liveGroupId, groupKey);
 	}
 
 	protected Group fetchExistingGroup(
 		PortletDataContext portletDataContext, long groupId, long liveGroupId) {
+
+		return fetchExistingGroup(
+			portletDataContext, groupId, liveGroupId, null);
+	}
+
+	protected Group fetchExistingGroup(
+		PortletDataContext portletDataContext, long groupId, long liveGroupId,
+		String groupKey) {
 
 		Group liveGroup = _groupLocalService.fetchGroup(liveGroupId);
 
@@ -159,6 +172,14 @@ public class StagedGroupStagedModelDataHandler
 		}
 		else if (groupId == portletDataContext.getSourceGroupId()) {
 			existingGroupId = portletDataContext.getGroupId();
+		}
+		else if (Validator.isNotNull(groupKey)) {
+			Group groupKeyGroup = _groupLocalService.fetchGroup(
+				portletDataContext.getCompanyId(), groupKey);
+
+			if (groupKeyGroup != null) {
+				existingGroupId = groupKeyGroup.getGroupId();
+			}
 		}
 
 		// During remote staging, valid mappings are found when the reference's
