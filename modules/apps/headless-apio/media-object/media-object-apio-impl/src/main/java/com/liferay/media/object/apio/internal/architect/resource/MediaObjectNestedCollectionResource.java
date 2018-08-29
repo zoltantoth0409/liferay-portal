@@ -137,28 +137,6 @@ public class MediaObjectNestedCollectionResource
 		).build();
 	}
 
-	private List<AdaptiveMedia<AMImageProcessor>> _getAdaptiveMedias(
-		FileEntry fileEntry) {
-
-		return Try.fromFallible(
-			fileEntry::getMimeType
-		).filter(
-			_amImageMimeTypeProvider::isMimeTypeSupported
-		).map(
-			mimeType -> _amImageFinder.getAdaptiveMediaStream(
-				amImageQueryBuilder -> amImageQueryBuilder.forFileEntry(
-					fileEntry
-				).withConfigurationStatus(
-					AMImageQueryBuilder.ConfigurationStatus.ANY
-				).done()
-			).collect(
-				Collectors.toList()
-			)
-		).orElse(
-			null
-		);
-	}
-
 	private NestedRepresentor<AdaptiveMedia<AMImageProcessor>>
 		_getAdaptiveMediaNestedRepresentor(
 			Builder<AdaptiveMedia<AMImageProcessor>> builder) {
@@ -185,6 +163,28 @@ public class MediaObjectNestedCollectionResource
 			adaptiveMedia -> _getAdaptiveMediaValue(
 				adaptiveMedia, AMAttribute.getConfigurationUuidAMAttribute())
 		).build();
+	}
+
+	private List<AdaptiveMedia<AMImageProcessor>> _getAdaptiveMedias(
+		FileEntry fileEntry) {
+
+		return Try.fromFallible(
+			fileEntry::getMimeType
+		).filter(
+			_amImageMimeTypeProvider::isMimeTypeSupported
+		).map(
+			mimeType -> _amImageFinder.getAdaptiveMediaStream(
+				amImageQueryBuilder -> amImageQueryBuilder.forFileEntry(
+					fileEntry
+				).withConfigurationStatus(
+					AMImageQueryBuilder.ConfigurationStatus.ANY
+				).done()
+			).collect(
+				Collectors.toList()
+			)
+		).orElse(
+			null
+		);
 	}
 
 	private <V> V _getAdaptiveMediaValue(
