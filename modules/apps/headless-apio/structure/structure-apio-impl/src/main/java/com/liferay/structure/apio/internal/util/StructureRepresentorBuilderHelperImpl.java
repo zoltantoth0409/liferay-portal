@@ -195,7 +195,7 @@ public class StructureRepresentorBuilderHelperImpl
 		).orElseGet(
 			Stream::empty
 		).map(
-			_getFormLayoutPage(ddmStructure)
+			_getFormLayoutPageFunction(ddmStructure)
 		).collect(
 			Collectors.toList()
 		);
@@ -272,7 +272,7 @@ public class StructureRepresentorBuilderHelperImpl
 	}
 
 	private static Function<List<String>, List<DDMFormField>>
-		_getFieldsPerPage(DDMStructure ddmStructure) {
+		_getFieldsPerPageFunction(DDMStructure ddmStructure) {
 
 		return fieldNamesPerPage -> Try.fromFallible(
 			() -> ddmStructure.getDDMFormFields(true)
@@ -288,12 +288,12 @@ public class StructureRepresentorBuilderHelperImpl
 	}
 
 	private static Function<DDMFormLayoutPage, FormLayoutPage>
-		_getFormLayoutPage(DDMStructure ddmStructure) {
+		_getFormLayoutPageFunction(DDMStructure ddmStructure) {
 
 		return ddmFormLayoutPage -> Optional.ofNullable(
 			_getFieldNames(ddmFormLayoutPage, ddmStructure)
 		).map(
-			_getFieldsPerPage(ddmStructure)
+			_getFieldsPerPageFunction(ddmStructure)
 		).map(
 			ddmFormFields -> new FormLayoutPageImpl(
 				ddmFormLayoutPage, ddmFormFields)
