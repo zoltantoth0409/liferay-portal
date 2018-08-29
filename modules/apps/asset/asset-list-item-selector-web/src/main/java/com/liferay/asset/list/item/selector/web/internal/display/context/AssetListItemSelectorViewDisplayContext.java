@@ -69,11 +69,12 @@ public class AssetListItemSelectorViewDisplayContext {
 				searchContainer.getEnd(),
 				searchContainer.getOrderByComparator());
 
+		searchContainer.setResults(assetListEntries);
+
 		int assetListEntriesCount =
 			AssetListEntryServiceUtil.getAssetListEntriesCount(
 				themeDisplay.getScopeGroupId());
 
-		searchContainer.setResults(assetListEntries);
 		searchContainer.setTotal(assetListEntriesCount);
 
 		_searchContainer = searchContainer;
