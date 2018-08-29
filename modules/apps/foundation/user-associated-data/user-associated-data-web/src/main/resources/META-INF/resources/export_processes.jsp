@@ -36,10 +36,13 @@ UADExportProcessDisplayContext uadExportProcessDisplayContext = new UADExportPro
 					<liferay-ui:message key="<%= UADLanguageUtil.getApplicationName(UADExportProcessUtil.getApplicationKey(backgroundTask), locale) %>" />
 				</h5>
 
-				<clay:label
-					label="<%= StringUtil.toUpperCase(LanguageUtil.get(request, backgroundTask.getStatusLabel()), locale) %>"
-					style="<%= UADExportProcessUtil.getStatusStyle(backgroundTask.getStatus()) %>"
-				/>
+				<%
+				String cssClass = "text-" + UADExportProcessUtil.getStatusStyle(backgroundTask.getStatus());
+				%>
+
+				<span class="<%= cssClass %>">
+					<liferay-ui:message key="<%= backgroundTask.getStatusLabel() %>" />
+				</span>
 			</div>
 		</liferay-ui:search-container-column-text>
 
