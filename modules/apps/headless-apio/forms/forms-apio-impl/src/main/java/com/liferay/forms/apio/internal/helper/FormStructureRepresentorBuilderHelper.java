@@ -78,7 +78,7 @@ public class FormStructureRepresentorBuilderHelper {
 		return ddmStructureFirstStep;
 	}
 
-	private static Function<DDMFormField, Boolean> _hasFormRules() {
+	private static Function<DDMFormField, Boolean> _getHasFormRulesFunction() {
 		return ddmFormField -> Try.fromFallible(
 			ddmFormField::getDDMForm
 		).map(
@@ -120,7 +120,7 @@ public class FormStructureRepresentorBuilderHelper {
 				builder);
 
 		ddmFormFieldFirstStepBuilder.addBoolean(
-			"hasFormRules", _hasFormRules()
+			"hasFormRules", _getHasFormRulesFunction()
 		).addBoolean(
 			"transient", DDMFormField::isTransient
 		).addNested(
