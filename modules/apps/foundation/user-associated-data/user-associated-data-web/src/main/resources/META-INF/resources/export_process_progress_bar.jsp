@@ -35,9 +35,16 @@ BackgroundTaskStatus backgroundTaskStatus = BackgroundTaskStatusRegistryUtil.get
 	percentage = Math.round((float)applicationDataCounter / applicationDataTotal * 100);
 	%>
 
-	<clay:progressbar
-		maxValue="<%= 100 %>"
-		minValue="<%= 0 %>"
-		value="<%= percentage %>"
-	/>
+	<div class="progress">
+		<div
+			aria-valuenow="<%= percentage %>"
+			aria-valuemin="0"
+			aria-valuemax="100"
+			class="progress-bar"
+			role="progressbar"
+			style="width: <%= percentage %>%;"
+		>
+			<%= percentage %>%
+		</div>
+	</div>
 </c:if>
