@@ -50,7 +50,6 @@ public class EditAssetListEntryMVCActionCommand extends BaseMVCActionCommand {
 			actionRequest, "assetListEntryId");
 
 		String title = ParamUtil.getString(actionRequest, "title");
-
 		int type = ParamUtil.getInteger(actionRequest, "type");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
