@@ -52,7 +52,9 @@ public class FormStructureNestedCollectionResource
 	public NestedCollectionRoutes<DDMStructure, Long, Long> collectionRoutes(
 		NestedCollectionRoutes.Builder<DDMStructure, Long, Long> builder) {
 
-		return builder.addGetter(this::_getPageItems).build();
+		return builder.addGetter(
+			this::_getPageItems
+		).build();
 	}
 
 	@Override
