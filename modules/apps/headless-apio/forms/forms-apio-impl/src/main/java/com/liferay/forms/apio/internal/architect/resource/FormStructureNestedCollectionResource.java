@@ -65,7 +65,8 @@ public class FormStructureNestedCollectionResource
 		ItemRoutes.Builder<DDMStructure, Long> builder) {
 
 		return builder.addGetter(
-			_ddmStructureLocalService::getStructure).build();
+			_ddmStructureLocalService::getStructure
+		).build();
 	}
 
 	@Override
