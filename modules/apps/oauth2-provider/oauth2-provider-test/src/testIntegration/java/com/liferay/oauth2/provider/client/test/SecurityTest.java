@@ -99,9 +99,9 @@ public class SecurityTest extends BaseClientTestCase {
 				webTarget -> webTarget.queryParam(
 					"client_id", "oauthTestApplicationCodePKCE"
 				).queryParam(
-					"response_type", "code"
-				).queryParam(
 					"code_challenge", "correctCodeChallenge"
+				).queryParam(
+					"response_type", "code"
 				)),
 			this::parseAuthorizationCodeString);
 
@@ -151,9 +151,9 @@ public class SecurityTest extends BaseClientTestCase {
 					webTarget -> webTarget.queryParam(
 						"client_id", "oauthTestApplicationCode"
 					).queryParam(
-						"response_type", "code"
-					).queryParam(
 						"redirect_uri", "http://invalid:8080"
+					).queryParam(
+						"response_type", "code"
 					)),
 				this::parseError));
 	}
@@ -166,9 +166,9 @@ public class SecurityTest extends BaseClientTestCase {
 				webTarget -> webTarget.queryParam(
 					"client_id", "oauthTestApplicationCode"
 				).queryParam(
-					"response_type", "code"
-				).queryParam(
 					"redirect_uri", "http://redirecturi:8080"
+				).queryParam(
+					"response_type", "code"
 				)),
 			this::parseAuthorizationCodeString);
 
