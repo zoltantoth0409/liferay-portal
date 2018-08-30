@@ -123,6 +123,8 @@ public class BookmarksEntryStagedModelDataHandler
 				portletDataContext, importedEntry);
 		}
 
+		portletDataContext.setGroupId(portletDataContext.getScopeGroupId());
+
 		portletDataContext.importClassedModel(entry, importedEntry);
 	}
 
