@@ -47,8 +47,8 @@ public class GrantedFlowsTest extends BaseClientTestCase {
 	@Test
 	public void test() throws Exception {
 		String errorString = getToken(
-			"oauthTestApplicationPassword", null, this::getClientCredentialsResponse,
-			this::parseError);
+			"oauthTestApplicationPassword", null,
+			this::getClientCredentialsResponse, this::parseError);
 
 		Assert.assertEquals("unauthorized_client", errorString);
 
@@ -67,8 +67,8 @@ public class GrantedFlowsTest extends BaseClientTestCase {
 		Assert.assertEquals("unauthorized_client", errorString);
 
 		tokenString = getToken(
-			"oauthTestApplicationClient", null, this::getClientCredentialsResponse,
-			this::parseTokenString);
+			"oauthTestApplicationClient", null,
+			this::getClientCredentialsResponse, this::parseTokenString);
 
 		Assert.assertNotNull(tokenString);
 
