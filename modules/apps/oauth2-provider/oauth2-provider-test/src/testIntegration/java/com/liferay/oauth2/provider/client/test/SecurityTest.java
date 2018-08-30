@@ -211,8 +211,8 @@ public class SecurityTest extends BaseClientTestCase {
 
 		if (uri == null) {
 			throw new IllegalArgumentException(
-				"Authorization service response missing Location header from " +
-					"which state is extracted");
+				"Authorization service response missing \"Location\" header " +
+					"from which code is extracted");
 		}
 
 		Map<String, String[]> parameterMap = HttpUtil.getParameterMap(
