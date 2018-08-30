@@ -53,7 +53,7 @@ UADExportProcessDisplayContext uadExportProcessDisplayContext = new UADExportPro
 		<liferay-ui:search-container-column-text
 			cssClass="lfr-create-date-column table-cell-content"
 			translate="<%= false %>"
-			value="<%= StringBundler.concat(LanguageUtil.get(request, "create-date"), ": ", dateFormat.format(backgroundTask.getCreateDate())) %>"
+			value='<%= StringBundler.concat(LanguageUtil.get(request, "create-date"), ": ", dateFormat.format(backgroundTask.getCreateDate())) %>'
 		/>
 
 		<liferay-ui:search-container-column-text

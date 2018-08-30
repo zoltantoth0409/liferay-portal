@@ -34,12 +34,13 @@ renderResponse.setTitle(StringBundler.concat(selectedUser.getFullName(), " - ", 
 %>
 
 <div class="container-fluid-1280 uad-application-summary-wrapper">
-	<div class="panel panel-default application-summary-section">
+	<div class="application-summary-section panel panel-default">
 		<div class="panel-heading">
 			<div class="panel-title">
 				<liferay-ui:message key="status-summary" />
 			</div>
 		</div>
+
 		<div class="panel-body">
 			<p class="remaining-items-wrapper">
 				<strong><liferay-ui:message key="remaining-items" />: </strong><%= viewUADApplicationsSummaryDisplay.getTotalCount() %>
@@ -51,12 +52,13 @@ renderResponse.setTitle(StringBundler.concat(selectedUser.getFullName(), " - ", 
 		</div>
 	</div>
 
-	<div class="panel panel-default application-summary-section">
+	<div class="application-summary-section panel panel-default">
 		<div class="panel-heading">
 			<div class="panel-title">
 				<liferay-ui:message key="applications" />
 			</div>
 		</div>
+
 		<div class="panel-body">
 			<liferay-frontend:management-bar>
 				<liferay-frontend:management-bar-filters>

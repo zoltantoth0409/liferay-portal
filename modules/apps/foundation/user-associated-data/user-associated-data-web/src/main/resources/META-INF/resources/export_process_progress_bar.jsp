@@ -36,14 +36,7 @@ BackgroundTaskStatus backgroundTaskStatus = BackgroundTaskStatusRegistryUtil.get
 	%>
 
 	<div class="export-progress-bar progress">
-		<div
-			aria-valuenow="<%= percentage %>"
-			aria-valuemin="0"
-			aria-valuemax="100"
-			class="progress-bar"
-			role="progressbar"
-			style="width: <%= percentage %>%;"
-		>
+		<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="<%= percentage %>" class="progress-bar" role="progressbar" style="width: <%= percentage %>%;">
 			<%= percentage %>%
 		</div>
 	</div>
