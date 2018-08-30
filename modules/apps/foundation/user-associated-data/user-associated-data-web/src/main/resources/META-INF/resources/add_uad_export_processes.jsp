@@ -38,7 +38,7 @@ renderResponse.setTitle(StringBundler.concat(selectedUser.getFullName(), " - ", 
 		<aui:input name="p_u_i_d" type="hidden" value="<%= String.valueOf(selectedUser.getUserId()) %>" />
 		<aui:input name="applicationKeys" type="hidden" />
 
-		<div class="sheet sheet-lg">
+		<div class="card-horizontal card-block main-content-card">
 			<div class="sheet-section">
 				<div class="sheet-text">
 					<liferay-ui:message key="please-select-the-applications-for-which-you-want-to-start-an-export-process" />
