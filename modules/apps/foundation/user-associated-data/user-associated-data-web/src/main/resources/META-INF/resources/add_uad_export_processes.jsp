@@ -40,8 +40,6 @@ renderResponse.setTitle(StringBundler.concat(selectedUser.getFullName(), " - ", 
 
 		<div class="sheet sheet-lg">
 			<div class="sheet-section">
-				<h2 class="sheet-title"><liferay-ui:message key="export-personal-data" /></h2>
-
 				<div class="sheet-text">
 					<liferay-ui:message key="please-select-the-applications-for-which-you-want-to-start-an-export-process" />
 				</div>
