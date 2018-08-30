@@ -52,28 +52,29 @@ UADExportProcessDisplayContext uadExportProcessDisplayContext = new UADExportPro
 
 		<liferay-ui:search-container-column-text
 			cssClass="lfr-create-date-column table-cell-content"
+			translate="<%= false %>"
+			value="<%= StringBundler.concat(LanguageUtil.get(request, "create-date"), ": ", dateFormat.format(backgroundTask.getCreateDate())) %>"
+		/>
+
+		<liferay-ui:search-container-column-text
+			cssClass="lfr-completion-date-column table-cell-content"
 		>
-			<%= LanguageUtil.get(request, "create-date") + ": " + dateFormat.format(backgroundTask.getCreateDate()) %>
+			<c:choose>
+				<c:when test="<%= backgroundTask.isInProgress() %>">
 
-			<c:if test="<%= backgroundTask.isInProgress() %>">
+					<%
+					request.setAttribute("backgroundTask", backgroundTask);
+					%>
 
-				<%
-				request.setAttribute("backgroundTask", backgroundTask);
-				%>
-
-				<liferay-util:include page="/export_process_progress_bar.jsp" servletContext="<%= application %>">
-					<liferay-util:param name="backgroundTaskId" value="<%= String.valueOf(backgroundTask.getBackgroundTaskId()) %>" />
-				</liferay-util:include>
-			</c:if>
+					<liferay-util:include page="/export_process_progress_bar.jsp" servletContext="<%= application %>">
+						<liferay-util:param name="backgroundTaskId" value="<%= String.valueOf(backgroundTask.getBackgroundTaskId()) %>" />
+					</liferay-util:include>
+				</c:when>
+				<c:otherwise>
+					<%= LanguageUtil.get(request, "completion-date") + ": " + dateFormat.format(backgroundTask.getCompletionDate()) %>
+				</c:otherwise>
+			</c:choose>
 		</liferay-ui:search-container-column-text>
-
-		<c:if test="<%= backgroundTask.isCompleted() %>">
-			<liferay-ui:search-container-column-text
-				cssClass="lfr-completion-date-column table-cell-content"
-			>
-				<%= LanguageUtil.get(request, "completion-date") + ": " + dateFormat.format(backgroundTask.getCompletionDate()) %>
-			</liferay-ui:search-container-column-text>
-		</c:if>
 
 		<liferay-ui:search-container-column-jsp
 			cssClass="entry-action-column"

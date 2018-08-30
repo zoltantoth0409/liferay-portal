@@ -35,7 +35,7 @@ BackgroundTaskStatus backgroundTaskStatus = BackgroundTaskStatusRegistryUtil.get
 	percentage = Math.round((float)applicationDataCounter / applicationDataTotal * 100);
 	%>
 
-	<div class="progress">
+	<div class="export-progress-bar progress">
 		<div
 			aria-valuenow="<%= percentage %>"
 			aria-valuemin="0"
