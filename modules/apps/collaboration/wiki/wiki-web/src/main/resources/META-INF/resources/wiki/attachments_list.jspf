@@ -62,3 +62,58 @@
 		paginate="<%= paginate %>"
 	/>
 </liferay-ui:search-container>
+
+<aui:script use="liferay-search-container">
+	var searchContainer = Liferay.SearchContainer.get('<portlet:namespace />pageAttachments');
+
+	searchContainer.get('contentBox').delegate(
+		'click',
+		function(event) {
+			var link = event.currentTarget;
+
+			var cmd = link.getAttribute('data-cmd');
+			var fileName = link.getAttribute('data-fileName');
+			var nodeId = link.getAttribute('data-nodeId');
+			var ticketKey = link.getAttribute('data-ticketKey');
+			var title = link.getAttribute('data-title');
+
+			var tr = link.ancestor('tr');
+
+			var deleteURL = Liferay.PortletURL.createActionURL();
+
+			var actionName = '/wiki/edit_page_attachment';
+
+			var params = {
+				cmd: cmd,
+				fileName: fileName,
+				nodeId: nodeId,
+				ticketKey: ticketKey,
+				title: title
+			};
+
+			deleteURL.setName(actionName);
+			deleteURL.setParameters(params);
+			deleteURL.setPortletId('com_liferay_wiki_web_portlet_WikiAdminPortlet');
+
+			const A = new AUI();
+
+			A.use(
+				'liferay-search-container',
+				A => {
+					A.io.request(
+						deleteURL.toString(),
+						{
+							on: {
+								success: function() {
+									searchContainer.deleteRow(tr, link.getAttribute('data-rowid'));
+									searchContainer.updateDataStore();
+								}
+							}
+						}
+					);	
+				}
+			);
+		},
+		'.delete-attachment'
+	);
+</aui:script>
