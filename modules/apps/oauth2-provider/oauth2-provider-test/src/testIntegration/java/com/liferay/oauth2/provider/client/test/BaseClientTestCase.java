@@ -578,8 +578,8 @@ public abstract class BaseClientTestCase {
 
 		if (uri == null) {
 			throw new IllegalArgumentException(
-				"Authorization service response missing Location header from " +
-					"which code is extracted");
+				"Authorization service response missing \"Location\" header " +
+					"from which code is extracted");
 		}
 
 		Map<String, String[]> parameterMap = HttpUtil.getParameterMap(
@@ -601,8 +601,8 @@ public abstract class BaseClientTestCase {
 
 		if (uri == null) {
 			throw new IllegalArgumentException(
-				"Authorization service response missing Location header from " +
-					"which error is extracted");
+				"Authorization service response missing \"Location\" header " +
+					"from which code is extracted");
 		}
 
 		Map<String, String[]> parameterMap = HttpUtil.getParameterMap(
