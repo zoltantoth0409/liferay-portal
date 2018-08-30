@@ -78,7 +78,7 @@ renderResponse.setTitle(StringBundler.concat(selectedUser.getFullName(), " - ", 
 						modelVar="uadApplicationExportDisplay"
 					>
 						<liferay-ui:search-container-column-text
-							cssClass="table-cell-content table-list-title"
+							cssClass="table-cell-content"
 							name="application"
 							value="<%= UADLanguageUtil.getApplicationName(uadApplicationExportDisplay.getApplicationKey(), locale) %>"
 						/>
