@@ -123,7 +123,11 @@ public class BookmarksEntryStagedModelDataHandler
 				portletDataContext, importedEntry);
 		}
 
-		portletDataContext.setGroupId(portletDataContext.getScopeGroupId());
+		long scopeGroupId = portletDataContext.getScopeGroupId();
+
+		if (scopeGroupId == portletDataContext.getCompanyGroupId()) {
+			portletDataContext.setGroupId(scopeGroupId);
+		}
 
 		portletDataContext.importClassedModel(entry, importedEntry);
 	}
