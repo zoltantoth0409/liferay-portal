@@ -3972,7 +3972,15 @@ public class ProjectTemplatesTest {
 			}
 		}
 
-		File archetypesDir = FileUtil.getJarFile(ProjectTemplatesTest.class);
+		ProjectGenerator projectGenerator = new ProjectGenerator();
+
+		ProjectTemplatesArgs projectTemplatesArgs = new ProjectTemplatesArgs();
+
+		projectTemplatesArgs.setArchetypesDirs(
+			Arrays.asList(FileUtil.getJarFile(ProjectTemplatesTest.class)));
+		projectTemplatesArgs.setAuthor(author);
+		projectTemplatesArgs.setClassName(className);
+		projectTemplatesArgs.setContributorType(contributorType);
 
 		File archetyperDestinationDir = null;
 
@@ -3993,18 +4001,8 @@ public class ProjectTemplatesTest {
 			archetyperDestinationDir = archetyperDestinationPath.toFile();
 		}
 
-		ProjectGenerator projectGenerator = new ProjectGenerator();
-
-		ProjectTemplatesArgs projectTemplatesArgs = new ProjectTemplatesArgs();
-
-		List<File> archetypesDirs = Arrays.asList(archetypesDir);
-
-		projectTemplatesArgs.setArchetypesDirs(archetypesDirs);
-
-		projectTemplatesArgs.setAuthor(author);
-		projectTemplatesArgs.setClassName(className);
-		projectTemplatesArgs.setContributorType(contributorType);
 		projectTemplatesArgs.setDestinationDir(archetyperDestinationDir);
+
 		projectTemplatesArgs.setGradle(false);
 		projectTemplatesArgs.setGroupId(groupId);
 		projectTemplatesArgs.setHostBundleSymbolicName(hostBundleSymbolicName);
