@@ -62,7 +62,7 @@ public class NarrowDownScopeClientTest extends BaseClientTestCase {
 			"HEAD",
 			getToken(
 				"oauthTestApplication", null,
-				getClientCredentialsBiFunction("HEAD"),
+				getClientCredentialsResponseBiFunction("HEAD"),
 				this::parseScopeString));
 
 		Assert.assertEquals(

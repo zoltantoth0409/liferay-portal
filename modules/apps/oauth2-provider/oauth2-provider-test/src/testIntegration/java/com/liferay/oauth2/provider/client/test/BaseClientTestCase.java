@@ -311,7 +311,7 @@ public abstract class BaseClientTestCase {
 		return webTarget.path("authorize");
 	}
 
-	protected Response getClientCredentials(
+	protected Response getClientCredentialsResponse(
 		String clientId, Invocation.Builder invocationBuilder) {
 
 		MultivaluedMap<String, String> formData = new MultivaluedHashMap<>();
@@ -324,7 +324,7 @@ public abstract class BaseClientTestCase {
 	}
 
 	protected BiFunction<String, Invocation.Builder, Response>
-		getClientCredentialsBiFunction(String scope) {
+		getClientCredentialsResponseBiFunction(String scope) {
 
 		return (clientId, invocationBuilder) -> {
 			MultivaluedMap<String, String> formData =
@@ -534,7 +534,7 @@ public abstract class BaseClientTestCase {
 
 	protected String getToken(String clientId, String hostname)	 {
 		return parseTokenString(
-			getClientCredentials(
+			getClientCredentialsResponse(
 				clientId, getTokenInvocationBuilder(hostname)));
 	}
 

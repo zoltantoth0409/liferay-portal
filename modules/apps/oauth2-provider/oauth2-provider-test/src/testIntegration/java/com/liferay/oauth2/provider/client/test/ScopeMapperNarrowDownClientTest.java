@@ -59,7 +59,7 @@ public class ScopeMapperNarrowDownClientTest extends BaseClientTestCase {
 			webTarget.request(),
 			getToken(
 				"oauthTestApplication", null,
-				getClientCredentialsBiFunction("everything"),
+				getClientCredentialsResponseBiFunction("everything"),
 				this::parseTokenString));
 
 		Assert.assertEquals(
@@ -67,14 +67,14 @@ public class ScopeMapperNarrowDownClientTest extends BaseClientTestCase {
 
 		String error = getToken(
 			"oauthTestApplication", null,
-			getClientCredentialsBiFunction("everything.read"),
+			getClientCredentialsResponseBiFunction("everything.read"),
 			this::parseError);
 
 		Assert.assertEquals("invalid_grant", error);
 
 		String scopeString = getToken(
 			"oauthTestApplicationNarrowed", null,
-			getClientCredentialsBiFunction("everything"),
+			getClientCredentialsResponseBiFunction("everything"),
 			this::parseScopeString);
 
 		Assert.assertEquals("everything", scopeString);
@@ -83,7 +83,7 @@ public class ScopeMapperNarrowDownClientTest extends BaseClientTestCase {
 			webTarget.request(),
 			getToken(
 				"oauthTestApplicationNarrowed", null,
-				getClientCredentialsBiFunction("everything"),
+				getClientCredentialsResponseBiFunction("everything"),
 				this::parseTokenString));
 
 		Assert.assertEquals(
@@ -91,7 +91,7 @@ public class ScopeMapperNarrowDownClientTest extends BaseClientTestCase {
 
 		scopeString = getToken(
 			"oauthTestApplicationNarrowed", null,
-			getClientCredentialsBiFunction("everything.read"),
+			getClientCredentialsResponseBiFunction("everything.read"),
 			this::parseScopeString);
 
 		Assert.assertEquals("everything.read", scopeString);
@@ -100,7 +100,7 @@ public class ScopeMapperNarrowDownClientTest extends BaseClientTestCase {
 			webTarget.request(),
 			getToken(
 				"oauthTestApplicationNarrowed", null,
-				getClientCredentialsBiFunction("everything.read"),
+				getClientCredentialsResponseBiFunction("everything.read"),
 				this::parseTokenString));
 
 		Assert.assertEquals(
