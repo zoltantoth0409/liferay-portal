@@ -213,7 +213,7 @@ public class TensorflowProcessHolder {
 				if (_relanuchCounter >= maxRelaunch) {
 					throw new SystemException(
 						StringBundler.concat(
-							"The tensorflow process has crashed more than ",
+							"The Tensorflow process has crashed more than ",
 							maxRelaunch,
 							" times. It is now disabled. To enable it again ",
 							"please open the Gogo shell and run ",
