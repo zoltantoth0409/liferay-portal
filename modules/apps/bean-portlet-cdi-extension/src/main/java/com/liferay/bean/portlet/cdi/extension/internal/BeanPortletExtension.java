@@ -390,9 +390,9 @@ public class BeanPortletExtension implements Extension {
 
 		Class<T> annotatedClass = annotatedType.getJavaClass();
 
-		Set<Type> typeClosure = annotatedType.getTypeClosure();
+		Set<Type> typeClosures = annotatedType.getTypeClosure();
 
-		if (typeClosure.contains(PortletConfig.class)) {
+		if (typeClosures.contains(PortletConfig.class)) {
 			annotatedType = new AnnotatedTypePortletConfigImpl<>(annotatedType);
 
 			processAnnotatedType.setAnnotatedType(annotatedType);
@@ -538,7 +538,7 @@ public class BeanPortletExtension implements Extension {
 
 		if (Validator.isNull(configuredPortletName)) {
 			_log.error(
-				"Invalid portletName attribute for " +
+				"Invalid portlet name attribute for " +
 					beanPortletClass.getName());
 
 			return;
@@ -640,18 +640,18 @@ public class BeanPortletExtension implements Extension {
 	protected LiferayPortletConfiguration getLiferayPortletConfiguration(
 		String portletName) {
 
-		for (Class<?> annotatedClass : _liferayPortletConfigurationClasses) {
+		for (Class<?> clazz : _liferayPortletConfigurationClasses) {
 			LiferayPortletConfiguration liferayPortletConfiguration =
-				annotatedClass.getAnnotation(LiferayPortletConfiguration.class);
+				clazz.getAnnotation(LiferayPortletConfiguration.class);
 
 			if (portletName.equals(liferayPortletConfiguration.portletName())) {
 				return liferayPortletConfiguration;
 			}
 		}
 
-		for (Class<?> annotatedClass : _liferayPortletConfigurationsClasses) {
+		for (Class<?> clazz : _liferayPortletConfigurationsClasses) {
 			LiferayPortletConfigurations liferayPortletConfigurations =
-				annotatedClass.getAnnotation(
+				clazz.getAnnotation(
 					LiferayPortletConfigurations.class);
 
 			for (LiferayPortletConfiguration liferayPortletConfiguration :
@@ -668,9 +668,9 @@ public class BeanPortletExtension implements Extension {
 		return null;
 	}
 
-	protected Class<?> loadBeanPortletClass(String portletClass) {
+	protected Class<?> loadBeanPortletClass(String className) {
 		try {
-			return Class.forName(portletClass);
+			return Class.forName(className);
 		}
 		catch (ClassNotFoundException cnfe) {
 			_log.error(cnfe, cnfe);
