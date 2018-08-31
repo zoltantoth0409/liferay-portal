@@ -49,7 +49,7 @@ public abstract class TopLevelBuildData extends BaseBuildData {
 			return "";
 		}
 
-		Properties buildProperties;
+		Properties buildProperties = null;
 
 		try {
 			buildProperties = JenkinsResultsParserUtil.getBuildProperties();
