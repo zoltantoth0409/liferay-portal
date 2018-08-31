@@ -28,7 +28,7 @@ public class BeanPortletFactory {
 		PortletApplication portletApplication,
 		PortletConfiguration portletConfiguration,
 		LiferayPortletConfiguration liferayPortletConfiguration,
-		String portletClass) {
+		String portletClassName) {
 
 		// TODO
 
@@ -38,7 +38,7 @@ public class BeanPortletFactory {
 	public static BeanPortlet create(
 		PortletConfiguration portletConfiguration,
 		LiferayPortletConfiguration liferayPortletConfiguration,
-		String portletClass) {
+		String portletClassName) {
 
 		// TODO
 
