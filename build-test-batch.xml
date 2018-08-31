@@ -3220,9 +3220,13 @@ app.server.type=@{app.server.type}]]></echo>
 			<test-action>
 				<database-test-run-test database.type="mysql" database.version="${database.version}" stop.app.server="true">
 					<test-action>
+						<propertycopy from="app.server.${app.server.type}.classes.portal.dir" name="app.server.classes.portal.dir" override="true" />
+
 						<get-database-property property.name="database.version" />
 
-						<antcall target="prepare-portal-ext-properties" />
+						<antcall target="prepare-portal-ext-properties">
+							<param name="app.server.classes.portal.dir" value="${app.server.classes.portal.dir}" />
+						</antcall>
 
 						<echo append="true" file="${app.server.classes.portal.dir}/portal-ext.properties"><![CDATA[
 							admin.email.from.address=${admin.email.from.address}
@@ -3288,7 +3292,11 @@ app.server.type=@{app.server.type}]]></echo>
 							/>
 						</copy>
 
-						<antcall target="start-app-server" />
+						<propertycopy from="app.server.${app.server.type}.bin.dir" name="app.server.bin.dir" override="true" />
+
+						<antcall target="start-app-server">
+							<param name="app.server.bin.dir" value="${app.server.bin.dir}" />
+						</antcall>
 
 						<copy
 							flatten="true"
