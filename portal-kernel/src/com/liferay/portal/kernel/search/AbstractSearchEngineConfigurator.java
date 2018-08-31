@@ -68,6 +68,9 @@ public abstract class AbstractSearchEngineConfigurator
 				public void dependenciesFulfilled() {
 					Registry registry = RegistryUtil.getRegistry();
 
+					_destinationServiceRegistrar = registry.getServiceRegistrar(
+						Destination.class);
+
 					_messageBusServiceReference = registry.getServiceReference(
 						MessageBus.class);
 
@@ -111,6 +114,8 @@ public abstract class AbstractSearchEngineConfigurator
 
 			registry.ungetService(_messageBusServiceReference);
 		}
+
+		_destinationServiceRegistrar.destroy();
 	}
 
 	@Override
@@ -204,10 +209,6 @@ public abstract class AbstractSearchEngineConfigurator
 
 		_messageBus.removeDestination(
 			searchEngineRegistration.getSearchWriterDestinationName());
-
-		if (_destinationServiceRegistrar != null) {
-			_destinationServiceRegistrar.destroy();
-		}
 
 		SearchEngineHelper searchEngineHelper = getSearchEngineHelper();
 
@@ -390,13 +391,6 @@ public abstract class AbstractSearchEngineConfigurator
 	}
 
 	protected void registerSearchEngineDestination(Destination destination) {
-		if (_destinationServiceRegistrar == null) {
-			Registry registry = RegistryUtil.getRegistry();
-
-			_destinationServiceRegistrar = registry.getServiceRegistrar(
-				Destination.class);
-		}
-
 		Map<String, Object> properties = new HashMap<>();
 
 		properties.put("destination.name", destination.getName());
