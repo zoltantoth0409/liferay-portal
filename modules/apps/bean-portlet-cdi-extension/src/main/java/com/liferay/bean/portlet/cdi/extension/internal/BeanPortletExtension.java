@@ -128,7 +128,8 @@ public class BeanPortletExtension implements Extension {
 							beanPortlet.getPortletName(), beanPortlet);
 
 						scanBeanPortletClass(
-							loadBeanPortletClass(beanPortlet.getPortletClassName()),
+							loadBeanPortletClass(
+								beanPortlet.getPortletClassName()),
 							beanPortlet.getPortletName());
 					}
 				}
