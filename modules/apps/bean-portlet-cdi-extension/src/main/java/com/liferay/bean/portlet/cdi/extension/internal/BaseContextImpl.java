@@ -36,7 +36,7 @@ public abstract class BaseContextImpl implements Context {
 		return false;
 	}
 
-	protected String getAttributeName(Bean bean) {
+	protected String getAttributeName(Bean<?> bean) {
 
 		// TODO
 
