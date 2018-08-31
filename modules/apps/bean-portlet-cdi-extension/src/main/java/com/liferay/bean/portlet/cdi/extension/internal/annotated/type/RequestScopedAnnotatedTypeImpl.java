@@ -39,8 +39,6 @@ public class RequestScopedAnnotatedTypeImpl<X> extends AnnotatedTypeWrapper<X> {
 
 		super(annotatedType);
 
-		_annotations = new HashSet<>();
-
 		for (Annotation annotation : annotatedType.getAnnotations()) {
 			Class<? extends Annotation> annotationType =
 				annotation.annotationType();
@@ -100,6 +98,6 @@ public class RequestScopedAnnotatedTypeImpl<X> extends AnnotatedTypeWrapper<X> {
 
 		};
 
-	private final Set<Annotation> _annotations;
+	private final Set<Annotation> _annotations = new HashSet<>();
 
 }
