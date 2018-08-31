@@ -50,7 +50,7 @@ public enum SharingEntryPermissionDisplayActionKey {
 			return VIEW;
 		}
 
-		throw new IllegalArgumentException("Invalid action id " + actionId);
+		throw new IllegalArgumentException("Invalid action ID " + actionId);
 	}
 
 	public String getActionId() {
