@@ -124,7 +124,7 @@ public class BeanPortletExtension implements Extension {
 							beanPortlet.getPortletName(), beanPortlet);
 
 						scanBeanPortletClass(
-							loadBeanPortletClass(beanPortlet.getPortletClass()),
+							loadBeanPortletClass(beanPortlet.getPortletClassName()),
 							beanPortlet.getPortletName());
 					}
 				}
@@ -611,7 +611,7 @@ public class BeanPortletExtension implements Extension {
 				String beanClassName = beanClass.getName();
 
 				for (BeanPortlet beanPortlet : _beanPortlets.values()) {
-					if (beanClassName.equals(beanPortlet.getPortletClass())) {
+					if (beanClassName.equals(beanPortlet.getPortletClassName())) {
 						beanPortlet.addBeanMethod(beanMethod);
 					}
 				}

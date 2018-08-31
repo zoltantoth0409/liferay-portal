@@ -26,7 +26,7 @@ public class BeanPortletDefaultImpl extends BaseBeanPortletImpl {
 	}
 
 	@Override
-	public String getPortletClass() {
+	public String getPortletClassName() {
 
 		// TODO
 
