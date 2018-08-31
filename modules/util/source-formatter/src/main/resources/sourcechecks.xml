@@ -139,7 +139,9 @@
 		</check>
 		<check name="JavaImportsCheck" />
 		<check name="JavaIndexableCheck" />
-		<check name="JavaInnerClassImportsCheck" />
+		<check name="JavaInnerClassImportsCheck">
+			<property name="enabled" value="false" />
+		</check>
 		<check name="JavaInterfaceCheck" />
 		<check name="JavaIOExceptionCheck" />
 		<check name="JavaJSPDynamicIncludeCheck">
