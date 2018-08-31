@@ -19,7 +19,8 @@ import javax.xml.namespace.QName;
 /**
  * @author Neil Griffin
  */
-public abstract class BasePublicRenderParameterImpl implements PublicRenderParameter {
+public abstract class BasePublicRenderParameterImpl
+	implements PublicRenderParameter {
 
 	@Override
 	public String getIdentifier() {
