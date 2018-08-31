@@ -19,29 +19,16 @@ import javax.xml.namespace.QName;
 /**
  * @author Neil Griffin
  */
-public abstract class BasePublicRenderParamImpl implements PublicRenderParam {
+public interface PublicRenderParameter {
 
-	@Override
-	public String getIdentifier() {
-		return _id;
-	}
+	public String getIdentifier();
 
-	@Override
-	public QName getQName() {
-		return _qName;
-	}
+	public QName getQName();
 
-	@Override
-	public void setIdentifier(String identifier) {
-		_id = identifier;
-	}
+	public void setIdentifier(String identifier);
 
-	@Override
-	public void setQName(QName qName) {
-		_qName = qName;
-	}
+	public void setName(String name);
 
-	private String _id;
-	private QName _qName;
+	public void setQName(QName qName);
 
 }
