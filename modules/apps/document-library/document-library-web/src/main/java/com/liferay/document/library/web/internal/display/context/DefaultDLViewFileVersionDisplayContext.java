@@ -217,9 +217,8 @@ public class DefaultDLViewFileVersionDisplayContext
 
 			return dlPreviewRendererOptional.isPresent();
 		}
-		else {
-			return false;
-		}
+
+		return false;
 	}
 
 	@Override
@@ -231,9 +230,8 @@ public class DefaultDLViewFileVersionDisplayContext
 
 			return dlPreviewRendererOptional.isPresent();
 		}
-		else {
-			return false;
-		}
+
+		return false;
 	}
 
 	@Override
