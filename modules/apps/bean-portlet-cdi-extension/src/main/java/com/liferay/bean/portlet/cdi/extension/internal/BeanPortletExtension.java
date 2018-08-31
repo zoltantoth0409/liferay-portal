@@ -615,7 +615,9 @@ public class BeanPortletExtension implements Extension {
 				String beanClassName = beanClass.getName();
 
 				for (BeanPortlet beanPortlet : _beanPortlets.values()) {
-					if (beanClassName.equals(beanPortlet.getPortletClassName())) {
+					if (beanClassName.equals(
+							beanPortlet.getPortletClassName())) {
+
 						beanPortlet.addBeanMethod(beanMethod);
 					}
 				}
@@ -655,8 +657,7 @@ public class BeanPortletExtension implements Extension {
 
 		for (Class<?> clazz : _liferayPortletConfigurationsClasses) {
 			LiferayPortletConfigurations liferayPortletConfigurations =
-				clazz.getAnnotation(
-					LiferayPortletConfigurations.class);
+				clazz.getAnnotation(LiferayPortletConfigurations.class);
 
 			for (LiferayPortletConfiguration liferayPortletConfiguration :
 					liferayPortletConfigurations.value()) {
