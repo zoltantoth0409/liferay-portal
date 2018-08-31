@@ -92,6 +92,54 @@ public class LiferaySecureUberspector extends SecureUberspector {
 		_runtimeServices = runtimeServices;
 	}
 
+	private void _checkClassIsRestricted(Class<?> clazz) {
+		ClassRestrictionInformation classRestrictionInformation =
+			_classRestrictionInformations.computeIfAbsent(
+				clazz.getName(),
+				className -> {
+					for (Class<?> restrictedClass : _restrictedClasses) {
+						if (!restrictedClass.isAssignableFrom(clazz)) {
+							continue;
+						}
+
+						return new ClassRestrictionInformation(
+							StringBundler.concat(
+								"Denied resolving class ", className, " by ",
+								restrictedClass.getName()));
+					}
+
+					Package clazzPackage = clazz.getPackage();
+
+					if (clazzPackage == null) {
+						return _nullInstance;
+					}
+
+					String packageName = clazzPackage.getName();
+
+					packageName = packageName.concat(StringPool.PERIOD);
+
+					for (String restrictedPackageName :
+							_restrictedPackageNames) {
+
+						if (!packageName.startsWith(restrictedPackageName)) {
+							continue;
+						}
+
+						return new ClassRestrictionInformation(
+							StringBundler.concat(
+								"Denied resolving class ", className, " by ",
+								restrictedPackageName));
+					}
+
+					return _nullInstance;
+				});
+
+		if (classRestrictionInformation.isRestricted()) {
+			throw new IllegalArgumentException(
+				classRestrictionInformation.getDescription());
+		}
+	}
+
 	private static final ClassRestrictionInformation _nullInstance =
 		new ClassRestrictionInformation(null);
 
@@ -146,56 +194,6 @@ public class LiferaySecureUberspector extends SecureUberspector {
 			super(
 				new String[0], new String[0],
 				LiferaySecureUberspector.this.log);
-		}
-
-		private void _checkClassIsRestricted(Class<?> clazz) {
-			ClassRestrictionInformation classRestrictionInformation =
-				_classRestrictionInformations.computeIfAbsent(
-					clazz.getName(),
-					className -> {
-						for (Class<?> restrictedClass : _restrictedClasses) {
-							if (!restrictedClass.isAssignableFrom(clazz)) {
-								continue;
-							}
-
-							return new ClassRestrictionInformation(
-								StringBundler.concat(
-									"Denied resolving class ", className,
-									" by ", restrictedClass.getName()));
-						}
-
-						Package clazzPackage = clazz.getPackage();
-
-						if (clazzPackage == null) {
-							return _nullInstance;
-						}
-
-						String packageName = clazzPackage.getName();
-
-						packageName = packageName.concat(StringPool.PERIOD);
-
-						for (String restrictedPackageName :
-								_restrictedPackageNames) {
-
-							if (!packageName.startsWith(
-									restrictedPackageName)) {
-
-								continue;
-							}
-
-							return new ClassRestrictionInformation(
-								StringBundler.concat(
-									"Denied resolving class ", className,
-									" by ", restrictedPackageName));
-						}
-
-						return _nullInstance;
-					});
-
-			if (classRestrictionInformation.isRestricted()) {
-				throw new IllegalArgumentException(
-					classRestrictionInformation.getDescription());
-			}
 		}
 
 	}
