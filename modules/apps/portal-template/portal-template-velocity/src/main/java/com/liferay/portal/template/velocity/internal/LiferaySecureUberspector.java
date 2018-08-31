@@ -108,13 +108,13 @@ public class LiferaySecureUberspector extends SecureUberspector {
 								restrictedClass.getName()));
 					}
 
-					Package clazzPackage = clazz.getPackage();
+					Package pkg = clazz.getPackage();
 
-					if (clazzPackage == null) {
+					if (pkg == null) {
 						return _nullInstance;
 					}
 
-					String packageName = clazzPackage.getName();
+					String packageName = pkg.getName();
 
 					packageName = packageName.concat(StringPool.PERIOD);
 
