@@ -154,6 +154,7 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "passwor
 					PortletURL redirectURL = passwordPolicySearchContainer.getIteratorURL();
 
 					rowURL.setParameter("redirect", redirectURL.toString());
+
 					rowURL.setParameter("passwordPolicyId", String.valueOf(passwordPolicy.getPasswordPolicyId()));
 
 					rowHREF = rowURL.toString();
