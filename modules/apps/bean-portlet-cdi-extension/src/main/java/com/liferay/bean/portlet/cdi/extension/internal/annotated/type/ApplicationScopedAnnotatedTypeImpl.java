@@ -37,8 +37,6 @@ public class ApplicationScopedAnnotatedTypeImpl<X>
 	public ApplicationScopedAnnotatedTypeImpl(AnnotatedType<X> annotatedType) {
 		super(annotatedType);
 
-		_annotations = new HashSet<>();
-
 		for (Annotation annotation : annotatedType.getAnnotations()) {
 			Class<? extends Annotation> clazz = annotation.annotationType();
 
@@ -100,6 +98,6 @@ public class ApplicationScopedAnnotatedTypeImpl<X>
 
 		};
 
-	private final Set<Annotation> _annotations;
+	private final Set<Annotation> _annotations = new HashSet<>();
 
 }
