@@ -420,7 +420,7 @@ message.
 				</gradle-execute>
 
 				<if>
-					<equals arg1="${deploy.ci.profile.modules}" arg2="true" />
+					<equals arg1="${marker.files.lfrbuild.ci.enabled}" arg2="true" />
 					<then>
 						<if>
 							<resourcecount count="0" when="gt">
