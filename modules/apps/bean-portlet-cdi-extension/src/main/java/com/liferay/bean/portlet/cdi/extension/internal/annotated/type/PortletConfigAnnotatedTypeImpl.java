@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.bean.portlet.cdi.extension.internal;
+package com.liferay.bean.portlet.cdi.extension.internal.annotated.type;
 
 import java.lang.reflect.Type;
 
@@ -29,9 +29,9 @@ import javax.portlet.PortletConfig;
  *
  * @author Neil Griffin
  */
-public class AnnotatedTypePortletConfigImpl<X> extends AnnotatedTypeWrapper<X> {
+public class PortletConfigAnnotatedTypeImpl<X> extends AnnotatedTypeWrapper<X> {
 
-	public AnnotatedTypePortletConfigImpl(AnnotatedType<X> annotatedType) {
+	public PortletConfigAnnotatedTypeImpl(AnnotatedType<X> annotatedType) {
 		super(annotatedType);
 
 		_types = annotatedType.getTypeClosure();

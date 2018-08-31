@@ -16,6 +16,10 @@ package com.liferay.bean.portlet.cdi.extension.internal;
 
 import com.liferay.bean.portlet.LiferayPortletConfiguration;
 import com.liferay.bean.portlet.LiferayPortletConfigurations;
+import com.liferay.bean.portlet.cdi.extension.internal.annotated.type.ApplicationScopedAnnotatedTypeImpl;
+import com.liferay.bean.portlet.cdi.extension.internal.annotated.type.PortletConfigAnnotatedTypeImpl;
+import com.liferay.bean.portlet.cdi.extension.internal.annotated.type.RequestScopedAnnotatedTypeImpl;
+import com.liferay.bean.portlet.cdi.extension.internal.annotated.type.SessionScopedAnnotatedTypeImpl;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -393,7 +397,7 @@ public class BeanPortletExtension implements Extension {
 		Set<Type> typeClosures = annotatedType.getTypeClosure();
 
 		if (typeClosures.contains(PortletConfig.class)) {
-			annotatedType = new AnnotatedTypePortletConfigImpl<>(annotatedType);
+			annotatedType = new PortletConfigAnnotatedTypeImpl<>(annotatedType);
 
 			processAnnotatedType.setAnnotatedType(annotatedType);
 		}
@@ -405,14 +409,14 @@ public class BeanPortletExtension implements Extension {
 		}
 
 		if (annotationClasses.contains(RequestScoped.class)) {
-			annotatedType = new AnnotatedTypeRequestScopedImpl<>(
+			annotatedType = new RequestScopedAnnotatedTypeImpl<>(
 				annotatedType, annotationClasses);
 
 			processAnnotatedType.setAnnotatedType(annotatedType);
 		}
 
 		if (annotationClasses.contains(SessionScoped.class)) {
-			annotatedType = new AnnotatedTypeSessionScopedImpl<>(
+			annotatedType = new SessionScopedAnnotatedTypeImpl<>(
 				annotatedType, annotationClasses);
 
 			processAnnotatedType.setAnnotatedType(annotatedType);
@@ -449,7 +453,7 @@ public class BeanPortletExtension implements Extension {
 		if (Portlet.class.isAssignableFrom(annotatedClass) &&
 			!annotationClasses.contains(ApplicationScoped.class)) {
 
-			annotatedType = new AnnotatedTypeApplicationScopedImpl<>(
+			annotatedType = new ApplicationScopedAnnotatedTypeImpl<>(
 				annotatedType);
 
 			processAnnotatedType.setAnnotatedType(annotatedType);

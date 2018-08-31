@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.bean.portlet.cdi.extension.internal;
+package com.liferay.bean.portlet.cdi.extension.internal.annotated.type;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
