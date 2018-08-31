@@ -163,12 +163,12 @@ public class BeanPortletExtension implements Extension {
 			}
 
 			for (Class<?> portletListenerClass : _portletListenerClasses) {
-				PortletListener portletListenerAnnotation =
+				PortletListener portletListener =
 					portletListenerClass.getAnnotation(PortletListener.class);
 
 				URLGenerationListener urlGenerationListener =
 					new URLGenerationListener(
-						portletListenerAnnotation.ordinal(),
+						portletListener.ordinal(),
 						portletListenerClass.getName());
 
 				for (BeanPortlet beanPortlet : _beanPortlets.values()) {
@@ -217,10 +217,10 @@ public class BeanPortletExtension implements Extension {
 
 			if (displayDescriptorURL != null) {
 				try {
-					Map<String, String> categoryMap =
-						DisplayDescriptorParser.parse(displayDescriptorURL);
+					Map<String, String> map = DisplayDescriptorParser.parse(
+						displayDescriptorURL);
 
-					for (Entry<String, String> entry : categoryMap.entrySet()) {
+					for (Entry<String, String> entry : map.entrySet()) {
 						BeanPortlet beanPortlet = _beanPortlets.get(
 							entry.getKey());
 
@@ -337,7 +337,7 @@ public class BeanPortletExtension implements Extension {
 					}
 
 					_log.error(
-						"Unknown portletId " + portletName +
+						"Unknown portlet ID " + portletName +
 							" found in liferay-display.xml");
 				}
 			}
