@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.bean.portlet.cdi.extension.internal;
+package com.liferay.bean.portlet.cdi.extension.internal.annotated.type;
 
 import java.lang.annotation.Annotation;
 
@@ -31,10 +31,10 @@ import javax.portlet.annotations.PortletSessionScoped;
 /**
  * @author Neil Griffin
  */
-public class AnnotatedTypeApplicationScopedImpl<X>
+public class ApplicationScopedAnnotatedTypeImpl<X>
 	extends AnnotatedTypeWrapper<X> {
 
-	public AnnotatedTypeApplicationScopedImpl(AnnotatedType<X> annotatedType) {
+	public ApplicationScopedAnnotatedTypeImpl(AnnotatedType<X> annotatedType) {
 		super(annotatedType);
 
 		_annotations = new HashSet<>();

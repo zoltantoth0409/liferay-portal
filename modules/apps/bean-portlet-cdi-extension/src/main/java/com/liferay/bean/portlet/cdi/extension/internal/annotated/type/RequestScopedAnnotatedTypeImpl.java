@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.bean.portlet.cdi.extension.internal;
+package com.liferay.bean.portlet.cdi.extension.internal.annotated.type;
 
 import java.lang.annotation.Annotation;
 
@@ -31,9 +31,9 @@ import javax.portlet.annotations.PortletRequestScoped;
  *
  * @author Neil Griffin
  */
-public class AnnotatedTypeRequestScopedImpl<X> extends AnnotatedTypeWrapper<X> {
+public class RequestScopedAnnotatedTypeImpl<X> extends AnnotatedTypeWrapper<X> {
 
-	public AnnotatedTypeRequestScopedImpl(
+	public RequestScopedAnnotatedTypeImpl(
 		AnnotatedType<X> annotatedType,
 		Set<Class<? extends Annotation>> annotationClasses) {
 
