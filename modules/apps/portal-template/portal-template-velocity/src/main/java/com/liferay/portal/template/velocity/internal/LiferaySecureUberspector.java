@@ -156,37 +156,39 @@ public class LiferaySecureUberspector extends SecureUberspector {
 					clazz.getName(),
 					className -> {
 						for (Class<?> restrictedClass : _restrictedClasses) {
-							if (restrictedClass.isAssignableFrom(clazz)) {
-								return new ClassRestrictionInformation(
-									StringBundler.concat(
-										"Denied to resolve class ", className,
-										" due to security reasons, restricted ",
-										"by ", restrictedClass.getName()));
+							if (!restrictedClass.isAssignableFrom(clazz)) {
+								continue;
 							}
+
+							return new ClassRestrictionInformation(
+								StringBundler.concat(
+									"Denied to resolve class ", className,
+									" due to security reasons, restricted by ",
+									restrictedClass.getName()));
 						}
 
 						Package clazzPackage = clazz.getPackage();
 
-						if (clazzPackage != null) {
-							String packageName = clazzPackage.getName();
+						if (clazzPackage == null) {
+							return _nullInstance;
+						}
 
-							packageName = packageName.concat(StringPool.PERIOD);
+						String packageName = clazzPackage.getName();
 
-							for (String restrictedPackageName :
-									_restrictedPackageNames) {
+						packageName = packageName.concat(StringPool.PERIOD);
 
-								if (packageName.startsWith(
-										restrictedPackageName)) {
+						for (String restrictedPackageName :
+								_restrictedPackageNames) {
 
-									return new ClassRestrictionInformation(
-										StringBundler.concat(
-											"Denied to resolve class ",
-											className,
-											" due to security reasons, ",
-											"restricted by ",
-											restrictedPackageName));
-								}
+							if (!packageName.startsWith(restrictedPackageName)) {
+								continue;
 							}
+
+							return new ClassRestrictionInformation(
+								StringBundler.concat(
+									"Denied to resolve class ", className,
+									" due to security reasons, restricted by ",
+									restrictedPackageName));
 						}
 
 						return _nullInstance;
