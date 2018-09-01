@@ -4003,14 +4003,14 @@ plugins.includes=</echo>
 
 		<echo>Calling 7-Zip, this will take a few minutes...</echo>
 
-		<exec dir="${project.dir}" executable="sh">
-			<arg line="7z a -md1024m  dist/liferay-portal-tomcat-${lp.version}.7z ${tstamp.value}/liferay-portal-${lp.version}/osgi" />
+		<exec dir="${tstamp.value}" executable="sh">
+			<arg line="7z a -md1024m ${project.dir}/dist/liferay-portal-tomcat-${lp.version}.7z liferay-portal-${lp.version}/osgi" />
 		</exec>
 
 		<delete dir="${tstamp.value}/liferay-portal-${lp.version}/osgi" />
 
-		<exec dir="${project.dir}" executable="sh">
-			<arg line="7z a -md1024m  dist/liferay-portal-tomcat-${lp.version}.7z ${tstamp.value}/liferay-portal-${lp.version}" />
+		<exec dir="${tstamp.value}" executable="sh">
+			<arg line="7z a -md1024m ${project.dir}/dist/liferay-portal-tomcat-${lp.version}.7z liferay-portal-${lp.version}" />
 		</exec>
 
 		<delete dir="${tstamp.value}" />
