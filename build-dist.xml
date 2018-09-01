@@ -1029,56 +1029,12 @@ release was successful.</echo>
 	</target>
 
 	<target name="generate-startup-files">
-		<tstamp>
-			<format pattern="yyyyMMddkkmmssSSS" property="tstamp.value" />
-		</tstamp>
 
-		<copy
-			todir="${tstamp.value}"
-		>
-			<fileset
-				dir="${liferay.home}"
-			/>
-		</copy>
+		<!--
+		Remove this target the reference to this target is removed from the
+		release tool
+		-->
 
-		<chmod
-			perm="744"
-		>
-			<fileset
-				dir="${tstamp.value}/tomcat-${app.server.tomcat.version}/bin"
-				includes="*.sh"
-			/>
-		</chmod>
-
-		<parallel>
-			<exec dir="${tstamp.value}/tomcat-${app.server.tomcat.version}/bin" executable="sh">
-				<arg value="catalina.sh" />
-				<arg value="run" />
-			</exec>
-
-			<sequential>
-				<waitfor>
-					<http url="http://localhost:8080" />
-				</waitfor>
-
-				<sleep seconds="5" />
-
-				<exec dir="${tstamp.value}/tomcat-${app.server.tomcat.version}/bin" executable="sh">
-					<arg value="shutdown.sh" />
-				</exec>
-			</sequential>
-		</parallel>
-
-		<copy
-			todir="dist/startup"
-		>
-			<fileset
-				dir="${tstamp.value}"
-				includes="data/hypersonic/**,osgi/state/**"
-			/>
-		</copy>
-
-		<delete dir="${tstamp.value}" />
 	</target>
 
 	<target name="prepare-generated-files">
@@ -3684,21 +3640,6 @@ plugins.includes=</echo>
 					/>
 				</zip>
 			</else>
-		</if>
-
-		<if>
-			<available file="dist/startup" />
-			<then>
-				<zip
-					destfile="dist/${zip.executable.file}-${lp.version}.zip"
-					update="true"
-				>
-					<zipfileset
-						dir="dist/startup"
-						prefix="liferay-portal-${lp.version}"
-					/>
-				</zip>
-			</then>
 		</if>
 	</target>
 
