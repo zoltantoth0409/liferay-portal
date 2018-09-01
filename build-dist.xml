@@ -4006,7 +4006,7 @@ plugins.includes=</echo>
 					<arg value="shutdown.sh" />
 				</exec>
 
-				<sleep seconds="10" />
+				<sleep seconds="20" />
 
 				<delete dir="${tstamp.value}/liferay-portal-${lp.version}">
 					<patternset includes="**/logs/**" />
