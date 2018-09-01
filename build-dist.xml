@@ -4011,8 +4011,12 @@ plugins.includes=</echo>
 			<param name="zip.executable.dir" value="${app.server.tomcat.dir}" />
 		</antcall>
 
+		<tstamp>
+			<format pattern="yyyyMMddkkmmssSSS" property="tstamp.value" />
+		</tstamp>
+
 		<unzip
-			dest="dist"
+			dest="${tstamp.value}"
 			src="dist/liferay-portal-tomcat-${lp.version}.zip"
 		>
 			<patternset
@@ -4024,13 +4028,13 @@ plugins.includes=</echo>
 			perm="744"
 		>
 			<fileset
-				dir="dist/liferay-portal-${lp.version}/tomcat-${app.server.tomcat.version}/bin"
+				dir="${tstamp.value}/liferay-portal-${lp.version}/tomcat-${app.server.tomcat.version}/bin"
 				includes="*.sh"
 			/>
 		</chmod>
 
 		<parallel>
-			<exec dir="dist/liferay-portal-${lp.version}/tomcat-${app.server.tomcat.version}/bin" executable="sh">
+			<exec dir="${tstamp.value}/liferay-portal-${lp.version}/tomcat-${app.server.tomcat.version}/bin" executable="sh">
 				<arg value="catalina.sh" />
 				<arg value="run" />
 			</exec>
@@ -4042,7 +4046,7 @@ plugins.includes=</echo>
 
 				<sleep seconds="5" />
 
-				<exec dir="dist/liferay-portal-${lp.version}/tomcat-${app.server.tomcat.version}/bin" executable="sh">
+				<exec dir="${tstamp.value}/liferay-portal-${lp.version}/tomcat-${app.server.tomcat.version}/bin" executable="sh">
 					<arg value="shutdown.sh" />
 				</exec>
 			</sequential>
@@ -4050,18 +4054,18 @@ plugins.includes=</echo>
 
 		<tar
 			compression="gzip"
-			destfile="dist/liferay-portal-tomcat-${lp.version}.tar.gz"
+			destfile="${tstamp.value}/liferay-portal-tomcat-${lp.version}.tar.gz"
 		>
-			<tarfileset dir="dist" filemode="744">
+			<tarfileset dir="${tstamp.value}" filemode="744">
 				<include name="liferay-portal-${lp.version}/tomcat-${app.server.tomcat.version}/bin/*.sh" />
 			</tarfileset>
-			<tarfileset dir="dist">
+			<tarfileset dir="${tstamp.value}">
 				<exclude name="liferay-portal-${lp.version}/tomcat-${app.server.tomcat.version}/bin/*.sh" />
 				<include name="liferay-portal-${lp.version}/**" />
 			</tarfileset>
 		</tar>
 
-		<delete dir="dist/liferay-portal-${lp.version}" />
+		<delete dir="${tstamp.value}" />
 	</target>
 
 	<target name="zip-weblogic-custom">
