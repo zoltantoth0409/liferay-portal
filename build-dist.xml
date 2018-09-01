@@ -4020,7 +4020,9 @@ plugins.includes=</echo>
 			src="dist/liferay-portal-tomcat-${lp.version}.zip"
 		>
 			<patternset
-				excludes="**/data/hypersonic/**,**/logs/**,**/osgi/state/**"
+				excludes="
+					liferay-portal-${lp.version}/data/hypersonic/**,
+					liferay-portal-${lp.version}/osgi/state/**"
 			/>
 		</unzip>
 
@@ -4049,21 +4051,26 @@ plugins.includes=</echo>
 				<exec dir="${tstamp.value}/liferay-portal-${lp.version}/tomcat-${app.server.tomcat.version}/bin" executable="sh">
 					<arg value="shutdown.sh" />
 				</exec>
+
+				<sleep seconds="10" />
+
+				<delete dir="${tstamp.value}/liferay-portal-${lp.version}">
+					<patternset includes="**/logs/**" />
+				</delete>
 			</sequential>
 		</parallel>
 
-		<tar
-			compression="gzip"
-			destfile="${tstamp.value}/liferay-portal-tomcat-${lp.version}.tar.gz"
-		>
-			<tarfileset dir="${tstamp.value}" filemode="744">
-				<include name="liferay-portal-${lp.version}/tomcat-${app.server.tomcat.version}/bin/*.sh" />
-			</tarfileset>
-			<tarfileset dir="${tstamp.value}">
-				<exclude name="liferay-portal-${lp.version}/tomcat-${app.server.tomcat.version}/bin/*.sh" />
-				<include name="liferay-portal-${lp.version}/**" />
-			</tarfileset>
-		</tar>
+		<echo>Calling 7-Zip, this will take a few minutes...</echo>
+
+		<exec dir="${project.dir}" executable="sh">
+			<arg line="7z a -md1024m  dist/liferay-portal-tomcat-${lp.version}.7z ${tstamp.value}/liferay-portal-${lp.version}/osgi" />
+		</exec>
+
+		<delete dir="${tstamp.value}/liferay-portal-${lp.version}/osgi" />
+
+		<exec dir="${project.dir}" executable="sh">
+			<arg line="7z a -md1024m  dist/liferay-portal-tomcat-${lp.version}.7z ${tstamp.value}/liferay-portal-${lp.version}" />
+		</exec>
 
 		<delete dir="${tstamp.value}" />
 	</target>
