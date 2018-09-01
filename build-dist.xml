@@ -2068,11 +2068,6 @@ org.apache.catalina.startup.ClassLoaderFactory.level=SEVERE]]>
 			<replacevalue><![CDATA[pattern="%h %l %u %t &quot;%r&quot; %s %b" /> -->]]></replacevalue>
 		</replace>
 
-		<!--<replace file="${app.server.tomcat.dir}/conf/server.xml">
-			<replacetoken><![CDATA[xmlValidation="false" xmlNamespaceAware="false">]]></replacetoken>
-			<replacevalue><![CDATA[xmlValidation="false" deployXML="false" xmlNamespaceAware="false">]]></replacevalue>
-		</replace>-->
-
 		<replace
 			file="${app.server.tomcat.dir}/conf/web.xml"
 		>
