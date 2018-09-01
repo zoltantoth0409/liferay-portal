@@ -3406,6 +3406,14 @@ plugins.includes=</echo>
 	<target name="zip-executable">
 		<delete failonerror="false" file="dist/${zip.executable.file}-${lp.version}.zip" />
 
+		<exec dir="${project.dir}" executable="git" outputproperty="githash.rev.parse">
+			<arg line="rev-parse HEAD" />
+		</exec>
+
+		<echo>Recording ${zip.executable.dir}/.githash with ${githash.rev.parse}.</echo>
+
+		<echo file="${zip.executable.dir}/.githash">${githash.rev.parse}</echo>
+
 		<antelope:stringutil property="zip.executable.dir.beginindex" string="${zip.executable.dir}">
 			<lastindexof string="/" />
 		</antelope:stringutil>
