@@ -3450,7 +3450,7 @@ plugins.includes=</echo>
 						prefix="liferay-portal-${lp.version}/${zip.executable.dir.name}"
 					/>
 					<zipfileset
-						dir="${zip.executable.dir}/.."
+						dir="${zip.executable.dir}"
 						includes=".githash"
 						prefix="liferay-portal-${lp.version}"
 					/>
