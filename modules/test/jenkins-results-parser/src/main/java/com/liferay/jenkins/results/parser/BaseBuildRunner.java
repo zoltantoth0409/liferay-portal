@@ -46,6 +46,7 @@ public abstract class BaseBuildRunner<T extends BuildData>
 
 	protected BaseBuildRunner(T buildData) {
 		_buildData = buildData;
+
 		_jenkinsJSONObjectFile = new File(
 			buildData.getWorkspaceDir(),
 			BuildData.JENKINS_BUILD_DATA_FILE_NAME);
