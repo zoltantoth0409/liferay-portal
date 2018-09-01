@@ -4016,7 +4016,7 @@ plugins.includes=</echo>
 			src="dist/liferay-portal-tomcat-${lp.version}.zip"
 		>
 			<patternset
-				excludes="**/logs/**,**/osgi/state/**"
+				excludes="**/data/hypersonic/**,**/logs/**,**/osgi/state/**"
 			/>
 		</unzip>
 
