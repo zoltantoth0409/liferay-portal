@@ -70,7 +70,6 @@ public class AssetListDisplayContext {
 
 		_portalPreferences = PortletPreferencesFactoryUtil.getPortalPreferences(
 			_request);
-
 		_themeDisplay = (ThemeDisplay)_request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 	}
