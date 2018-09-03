@@ -87,18 +87,6 @@ public final class FormValuesUtil {
 		return ddmFormValues;
 	}
 
-	private static String _toString(JsonElement jsonElement) {
-		if (jsonElement instanceof JsonPrimitive) {
-			JsonPrimitive jsonPrimitive = (JsonPrimitive)jsonElement;
-
-			if (!jsonPrimitive.isJsonNull()) {
-				return jsonPrimitive.getAsString();
-			}
-		}
-
-		return jsonElement.toString();
-	}
-
 	private static Value _getValue(
 		String stringValue, DDMFormField ddmFormField, Locale locale) {
 
@@ -123,6 +111,18 @@ public final class FormValuesUtil {
 		ddmFormFieldValue.setValue(value);
 
 		ddmFormValues.addDDMFormFieldValue(ddmFormFieldValue);
+	}
+
+	private static String _toString(JsonElement jsonElement) {
+		if (jsonElement instanceof JsonPrimitive) {
+			JsonPrimitive jsonPrimitive = (JsonPrimitive)jsonElement;
+
+			if (!jsonPrimitive.isJsonNull()) {
+				return jsonPrimitive.getAsString();
+			}
+		}
+
+		return jsonElement.toString();
 	}
 
 	private static final Value _EMPTY_VALUE = new UnlocalizedValue(

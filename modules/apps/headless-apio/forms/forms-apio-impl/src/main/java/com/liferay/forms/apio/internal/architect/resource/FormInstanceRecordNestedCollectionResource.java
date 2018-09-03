@@ -206,7 +206,6 @@ public class FormInstanceRecordNestedCollectionResource
 				formInstanceId, WorkflowConstants.STATUS_ANY,
 				pagination.getStartPosition(), pagination.getEndPosition(),
 				null);
-
 		int count = _ddmFormInstanceRecordService.getFormInstanceRecordsCount(
 			formInstanceId);
 
