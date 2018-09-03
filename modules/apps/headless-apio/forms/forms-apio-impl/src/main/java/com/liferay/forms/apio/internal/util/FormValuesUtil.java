@@ -73,7 +73,7 @@ public final class FormValuesUtil {
 				value = Optional.ofNullable(
 					formFieldValue.value
 				).map(
-					FormValuesUtil::_getJSONString
+					FormValuesUtil::_toString
 				).map(
 					stringValue -> _getValue(stringValue, ddmFormField, locale)
 				).orElse(
@@ -87,22 +87,22 @@ public final class FormValuesUtil {
 		return ddmFormValues;
 	}
 
-	private static String _getJSONString(JsonElement value) {
-		if (value instanceof JsonPrimitive) {
-			JsonPrimitive jsonPrimitive = (JsonPrimitive)value;
+	private static String _toString(JsonElement jsonElement) {
+		if (jsonElement instanceof JsonPrimitive) {
+			JsonPrimitive jsonPrimitive = (JsonPrimitive)jsonElement;
 
 			if (!jsonPrimitive.isJsonNull()) {
 				return jsonPrimitive.getAsString();
 			}
 		}
 
-		return value.toString();
+		return jsonElement.toString();
 	}
 
 	private static Value _getValue(
 		String stringValue, DDMFormField ddmFormField, Locale locale) {
 
-		Value value;
+		Value value = null;
 
 		if (ddmFormField.isLocalizable()) {
 			value = new LocalizedValue();
