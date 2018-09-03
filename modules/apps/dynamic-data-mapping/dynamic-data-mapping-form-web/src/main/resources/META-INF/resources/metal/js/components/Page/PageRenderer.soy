@@ -4,7 +4,6 @@
 	{@param spritemap: string}
 	{@param? _handlePageDescriptionChanged: any}
 	{@param? _handlePageTitleChanged: any}
-	{@param? _handleDeleteButtonClicked: any}
 	{@param? _handleDuplicateButtonClicked: any}
 	{@param? _handleFieldEdited: any}
 	{@param? _handleOnClickResize: any}
@@ -28,7 +27,6 @@
 	{delcall PageRenderer.container variant="$contentRenderer"}
 		{param _handlePageDescriptionChanged: $_handlePageDescriptionChanged /}
 		{param _handlePageTitleChanged: $_handlePageTitleChanged /}
-		{param _handleDeleteButtonClicked: $_handleDeleteButtonClicked /}
 		{param _handleDuplicateButtonClicked: $_handleDuplicateButtonClicked /}
 		{param _handleFieldEdited: $_handleFieldEdited /}
 		{param _handleOnClickResize: $_handleOnClickResize /}
@@ -50,7 +48,7 @@
 	{@param spritemap: string}
 	{@param? _handlePageDescriptionChanged: any}
 	{@param? _handlePageTitleChanged: any}
-	{@param? _handleDeleteButtonClicked: any}
+	{@param? _handleModal: any}
 	{@param? _handleDuplicateButtonClicked: any}
 	{@param? _handleFieldEdited: any}
 	{@param? _handleOnClickResize: any}
@@ -87,7 +85,7 @@
 
 				<div class="form-builder-layout">
 					{delcall PageRenderer.page variant="$contentRenderer"}
-						{param _handleDeleteButtonClicked: $_handleDeleteButtonClicked /}
+						{param _handleModal: $_handleModal /}
 						{param _handleDuplicateButtonClicked: $_handleDuplicateButtonClicked /}
 						{param _handleFieldEdited: $_handleFieldEdited /}
 						{param _handleOnClickResize: $_handleOnClickResize /}
@@ -101,31 +99,6 @@
 					{/delcall}
 				</div>
 			</div>
-
-			{call ClayModal.render}
-				{param body kind="html"}
-					<h4>{$strings.deleteFieldDialogQuestion}</h4>
-				{/param}
-				{param ref: 'modal' /}
-				{param footerButtons: [
-						[
-							'alignment': 'right',
-							'label': $strings.dismiss,
-							'style': 'primary',
-							'type': 'close'
-						],
-						[
-							'alignment': 'right',
-							'label': $strings.delete,
-							'style': 'primary',
-							'type': 'button'
-						]
-					]
-				/}
-				{param size: 'sm' /}
-				{param spritemap: $spritemap /}
-				{param title: $strings.deleteFieldDialogTitle /}
-			{/call}
 		{/if}
 	</div>
 {/deltemplate}
@@ -190,7 +163,7 @@
 
 {deltemplate PageRenderer.page variant="'list'"}
 	{@param spritemap: string}
-	{@param? _handleDeleteButtonClicked: any}
+	{@param? _handleModal: any}
 	{@param? _handleDuplicateButtonClicked: any}
 	{@param? _handleFieldEdited: any}
 	{@param? _handleOnClickResize: any}
@@ -202,7 +175,7 @@
 
 	{for $row in $page.rows}
 		{delcall PageRenderer.row variant="'grid'"}
-			{param _handleDeleteButtonClicked: $_handleDeleteButtonClicked /}
+			{param _handleModal: $_handleModal /}
 			{param _handleDuplicateButtonClicked: $_handleDuplicateButtonClicked /}
 			{param _handleFieldEdited: $_handleFieldEdited /}
 			{param _handleOnClickResize: $_handleOnClickResize /}
@@ -219,7 +192,7 @@
 
 {deltemplate PageRenderer.page variant="'grid'"}
 	{@param spritemap: string}
-	{@param? _handleDeleteButtonClicked: any}
+	{@param? _handleModal: any}
 	{@param? _handleDuplicateButtonClicked: any}
 	{@param? _handleFieldEdited: any}
 	{@param? _handleOnClickResize: any}
@@ -256,7 +229,7 @@
 				{/if}
 
 				{delcall PageRenderer.row variant="$contentRenderer"}
-					{param _handleDeleteButtonClicked: $_handleDeleteButtonClicked /}
+					{param _handleModal: $_handleModal /}
 					{param _handleDuplicateButtonClicked: $_handleDuplicateButtonClicked /}
 					{param _handleFieldEdited: $_handleFieldEdited /}
 					{param _handleOnClickResize: $_handleOnClickResize /}
@@ -284,7 +257,7 @@
 
 {deltemplate PageRenderer.row variant="'grid'"}
 	{@param spritemap: string}
-	{@param? _handleDeleteButtonClicked: any}
+	{@param? _handleModal: any}
 	{@param? _handleDuplicateButtonClicked: any}
 	{@param? _handleFieldEdited: any}
 	{@param? _handleOnClickResize: any}
@@ -298,7 +271,7 @@
 	<div class="row">
 		{for $column in $row.columns}
 			{delcall PageRenderer.column variant="$contentRenderer"}
-				{param _handleDeleteButtonClicked: $_handleDeleteButtonClicked /}
+				{param _handleModal: $_handleModal /}
 				{param _handleDuplicateButtonClicked: $_handleDuplicateButtonClicked /}
 				{param _handleFieldEdited: $_handleFieldEdited /}
 				{param _handleOnClickResize: $_handleOnClickResize /}
@@ -346,7 +319,7 @@
 
 {deltemplate PageRenderer.column variant="'grid'"}
 	{@param spritemap: string}
-	{@param? _handleDeleteButtonClicked: any}
+	{@param? _handleModal: any}
 	{@param? _handleDuplicateButtonClicked: any}
 	{@param? _handleFieldEdited: any}
 	{@param? _handleOnClickResize: any}
@@ -406,7 +379,7 @@
 					</div>
 
 					{call .fieldActions}
-						{param _handleDeleteButtonClicked: $_handleDeleteButtonClicked /}
+						{param _handleModal: $_handleModal /}
 						{param _handleDuplicateButtonClicked: $_handleDuplicateButtonClicked /}
 						{param spritemap: $spritemap /}
 					{/call}
@@ -429,7 +402,7 @@
 
 {template .fieldActions}
 	{@param spritemap: string}
-	{@param? _handleDeleteButtonClicked: any}
+	{@param? _handleModal: any}
 	{@param? _handleDuplicateButtonClicked: any}
 
 	<div class="ddm-field-actions-container">
@@ -446,7 +419,7 @@
 
 		{call ClayButton.render}
 			{param events: [
-				'click': $_handleDeleteButtonClicked
+				'click': $_handleModal
 			] /}
 			{param icon: 'trash' /}
 			{param monospaced: true /}

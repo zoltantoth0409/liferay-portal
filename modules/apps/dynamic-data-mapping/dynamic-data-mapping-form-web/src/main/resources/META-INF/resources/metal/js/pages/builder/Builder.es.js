@@ -1,9 +1,11 @@
 import {Config} from 'metal-state';
 import {focusedFieldStructure, pageStructure} from '../../util/config.es';
-import FormSupport from '../../components/Form/FormSupport.es';
 import {PagesVisitor} from '../../util/visitors.es';
+import autobind from 'autobind-decorator';
+import ClayModal from 'clay-modal';
 import Component from 'metal-jsx';
 import FormRenderer from '../../components/Form/index.es';
+import FormSupport from '../../components/Form/FormSupport.es';
 import Sidebar from '../../components/Sidebar/index.es';
 
 /**
@@ -12,6 +14,17 @@ import Sidebar from '../../components/Sidebar/index.es';
  */
 
 class Builder extends Component {
+	static STATE = {
+
+		/**
+		 * @default []
+		 * @instance
+		 * @memberof FormRenderer
+		 * @type {?array<object>}
+		 */
+
+		indexes: Config.object()
+	}
 
 	static PROPS = {
 
@@ -51,6 +64,25 @@ class Builder extends Component {
 
 	_handleFieldClicked(indexAllocateField) {
 		this.emit('fieldClicked', indexAllocateField);
+	}
+
+	_handleDeleteFieldClicked(indexes) {
+		this.setState(
+			{
+				indexes
+			}
+		);
+		this._handleModal();
+	}
+
+	/**
+	 * @param {!Event} event
+	 * @private
+	 */
+
+	_handleModal() {
+		const {modal} = this.refs;
+		modal.show();
 	}
 
 	_handlePageAdded() {
@@ -254,6 +286,23 @@ class Builder extends Component {
 		this.emit('pageReset');
 	}
 
+	@autobind
+	_handleModalButtonClicked(event) {
+		event.stopPropagation();
+
+		const {modal} = this.refs;
+		const {indexes} = this.state;
+
+		modal.emit('hide');
+
+		if (!event.target.classList.contains('close-modal')) {
+			this.emit(
+				'deleteField',
+				{...indexes}
+			);
+		}
+	}
+
 	/**
 	 * Continues the propagation of event.
 	 * @param {Array} pages
@@ -294,13 +343,14 @@ class Builder extends Component {
 	 */
 
 	render() {
+		const {_handleModalButtonClicked, props} = this;
 		const {
 			activePage,
 			fieldTypes,
 			focusedField,
 			pages,
 			spritemap
-		} = this.props;
+		} = props;
 
 		const FormRendererEvents = {
 			activePageUpdated: this._handleActivePageUpdated.bind(this),
@@ -331,6 +381,30 @@ class Builder extends Component {
 							pages={pages}
 							ref="FormRenderer"
 							spritemap={spritemap}
+						/>
+						<ClayModal
+							body={Liferay.Language.get('are-you-sure-you-want-to-delete-this-field')}
+							events={{
+								clickButton: _handleModalButtonClicked
+							}}
+							footerButtons={[
+								{
+									alignment: 'right',
+									label: Liferay.Language.get('dismiss'),
+									style: 'primary',
+									type: 'close'
+								},
+								{
+									alignment: 'right',
+									label: Liferay.Language.get('delete'),
+									style: 'primary',
+									type: 'button'
+								}
+							]}
+							ref="modal"
+							size="sm"
+							spritemap={spritemap}
+							title={Liferay.Language.get('delete-field-dialog-title')}
 						/>
 					</div>
 				</div>
