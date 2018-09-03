@@ -26,6 +26,8 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 
+import java.util.Objects;
+
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 
@@ -60,15 +62,18 @@ public class GetDDMTemplateMVCResourceCommand extends BaseMVCResourceCommand {
 
 		String contentType = null;
 
-		String type = ddmTemplate.getType();
+		if (Objects.equals(
+				ddmTemplate.getType(),
+				DDMTemplateConstants.TEMPLATE_TYPE_FORM)) {
 
-		String language = GetterUtil.getString(
-			ddmTemplate.getLanguage(), TemplateConstants.LANG_TYPE_VM);
-
-		if (type.equals(DDMTemplateConstants.TEMPLATE_TYPE_FORM)) {
 			contentType = ContentTypes.APPLICATION_JSON;
 		}
-		else if (language.equals(TemplateConstants.LANG_TYPE_XSL)) {
+		else if (Objects.equals(
+					 GetterUtil.getString(
+						 ddmTemplate.getLanguage(),
+						 TemplateConstants.LANG_TYPE_VM),
+					 TemplateConstants.LANG_TYPE_XSL)) {
+
 			contentType = ContentTypes.TEXT_XML_UTF8;
 		}
 		else {
