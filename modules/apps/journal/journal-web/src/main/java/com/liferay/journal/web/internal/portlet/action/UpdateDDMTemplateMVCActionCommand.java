@@ -72,9 +72,7 @@ public class UpdateDDMTemplateMVCActionCommand extends BaseMVCActionCommand {
 				uploadPortletRequest, "description");
 		String language = ParamUtil.getString(
 			uploadPortletRequest, "language", TemplateConstants.LANG_TYPE_VM);
-
 		String script = ActionUtil.getScript(uploadPortletRequest);
-
 		boolean cacheable = ParamUtil.getBoolean(
 			uploadPortletRequest, "cacheable");
 		boolean smallImage = ParamUtil.getBoolean(
