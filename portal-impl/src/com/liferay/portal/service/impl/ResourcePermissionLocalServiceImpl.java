@@ -302,7 +302,6 @@ public class ResourcePermissionLocalServiceImpl
 				oldResourcePermission.getActionIds());
 			resourcePermission.setViewActionId(
 				oldResourcePermission.isViewActionId());
-			resourcePermission.setNew(true);
 
 			resourcePermissionPersistence.update(resourcePermission);
 		}
