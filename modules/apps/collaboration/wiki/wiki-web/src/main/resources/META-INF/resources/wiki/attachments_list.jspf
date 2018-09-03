@@ -71,29 +71,22 @@
 		function(event) {
 			var link = event.currentTarget;
 
-			var cmd = link.getAttribute('data-cmd');
-			var fileName = link.getAttribute('data-fileName');
-			var nodeId = link.getAttribute('data-nodeId');
-			var ticketKey = link.getAttribute('data-ticketKey');
-			var title = link.getAttribute('data-title');
-
 			var tr = link.ancestor('tr');
 
 			var deleteURL = Liferay.PortletURL.createActionURL();
 
-			var actionName = '/wiki/edit_page_attachment';
+			deleteURL.setName('/wiki/edit_page_attachment');
 
 			var params = {
-				cmd: cmd,
-				fileName: fileName,
-				nodeId: nodeId,
-				ticketKey: ticketKey,
-				title: title
+				cmd: link.getAttribute('data-cmd'),
+				fileName: link.getAttribute('data-fileName'),
+				nodeId: link.getAttribute('data-nodeId'),
+				ticketKey: link.getAttribute('data-ticketKey'),
+				title: link.getAttribute('data-title')
 			};
 
-			deleteURL.setName(actionName);
 			deleteURL.setParameters(params);
-			deleteURL.setPortletId('com_liferay_wiki_web_portlet_WikiAdminPortlet');
+			deleteURL.setPortletId('com_liferay_wiki_web_portlet_WikiPortlet');
 
 			const A = new AUI();
 
