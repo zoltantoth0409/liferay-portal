@@ -212,8 +212,7 @@ public class DefaultDLViewFileVersionDisplayContext
 	public boolean hasCustomThumbnail() {
 		if (_dlPreviewRendererProvider != null) {
 			Optional<DLPreviewRenderer> dlPreviewRendererOptional =
-				_dlPreviewRendererProvider.
-					getThumbnailDLPreviewRendererOptional(_fileVersion);
+				_dlPreviewRendererProvider.getThumbnailRenderer(_fileVersion);
 
 			return dlPreviewRendererOptional.isPresent();
 		}
@@ -226,8 +225,7 @@ public class DefaultDLViewFileVersionDisplayContext
 	public boolean hasPreview() {
 		if (_dlPreviewRendererProvider != null) {
 			Optional<DLPreviewRenderer> dlPreviewRendererOptional =
-				_dlPreviewRendererProvider.getPreviewDLPreviewRendererOptional(
-					_fileVersion);
+				_dlPreviewRendererProvider.getPreviewRenderer(_fileVersion);
 
 			return dlPreviewRendererOptional.isPresent();
 		}
@@ -253,8 +251,7 @@ public class DefaultDLViewFileVersionDisplayContext
 
 		if (_dlPreviewRendererProvider != null) {
 			Optional<DLPreviewRenderer> dlPreviewRendererOptional =
-				_dlPreviewRendererProvider.
-					getThumbnailDLPreviewRendererOptional(_fileVersion);
+				_dlPreviewRendererProvider.getThumbnailRenderer(_fileVersion);
 
 			if (dlPreviewRendererOptional.isPresent()) {
 				DLPreviewRenderer dlPreviewRenderer =
@@ -272,8 +269,7 @@ public class DefaultDLViewFileVersionDisplayContext
 
 		if (_dlPreviewRendererProvider != null) {
 			Optional<DLPreviewRenderer> dlPreviewRendererOptional =
-				_dlPreviewRendererProvider.getPreviewDLPreviewRendererOptional(
-					_fileVersion);
+				_dlPreviewRendererProvider.getPreviewRenderer(_fileVersion);
 
 			if (dlPreviewRendererOptional.isPresent()) {
 				DLPreviewRenderer dlPreviewRenderer =

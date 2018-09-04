@@ -23,10 +23,10 @@ import java.util.Optional;
  */
 public interface DLPreviewRendererProvider {
 
-	public Optional<DLPreviewRenderer> getPreviewDLPreviewRendererOptional(
+	public Optional<DLPreviewRenderer> getPreviewRenderer(
 		FileVersion fileVersion);
 
-	public Optional<DLPreviewRenderer> getThumbnailDLPreviewRendererOptional(
+	public Optional<DLPreviewRenderer> getThumbnailRenderer(
 		FileVersion fileVersion);
 
 }
