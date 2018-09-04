@@ -192,11 +192,11 @@ public class PorygonSiteInitializer implements SiteInitializer {
 
 		List<DDMTemplate> ddmTemplates = new ArrayList<>();
 
-		Enumeration<URL> urls = _bundle.findEntries(
+		Enumeration<URL> enumeration = _bundle.findEntries(
 			_PATH + "/adt", "*.ftl", false);
 
-		while (urls.hasMoreElements()) {
-			URL url = urls.nextElement();
+		while (enumeration.hasMoreElements()) {
+			URL url = enumeration.nextElement();
 
 			String script = StringUtil.read(url.openStream());
 
@@ -296,11 +296,11 @@ public class PorygonSiteInitializer implements SiteInitializer {
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, _THEME_NAME,
 			StringPool.BLANK, serviceContext);
 
-		Enumeration<URL> urls = _bundle.findEntries(
+		Enumeration<URL> enumeration = _bundle.findEntries(
 			_PATH + "/images", StringPool.STAR, false);
 
-		while (urls.hasMoreElements()) {
-			URL url = urls.nextElement();
+		while (enumeration.hasMoreElements()) {
+			URL url = enumeration.nextElement();
 
 			byte[] bytes = null;
 
@@ -334,11 +334,11 @@ public class PorygonSiteInitializer implements SiteInitializer {
 
 		Map<String, String> fileEntriesMap = _getFileEntriesMap(fileEntries);
 
-		Enumeration<URL> urls = _bundle.findEntries(
+		Enumeration<URL> enumeration = _bundle.findEntries(
 			_PATH + "/fragments", "*.html", false);
 
-		while (urls.hasMoreElements()) {
-			URL url = urls.nextElement();
+		while (enumeration.hasMoreElements()) {
+			URL url = enumeration.nextElement();
 
 			String fileName = FileUtil.getShortFileName(url.getPath());
 			String filePath = FileUtil.getPath(url.getPath());
@@ -494,11 +494,11 @@ public class PorygonSiteInitializer implements SiteInitializer {
 			DDMStructure ddmStructure, ServiceContext serviceContext)
 		throws Exception {
 
-		Enumeration<URL> urls = _bundle.findEntries(
+		Enumeration<URL> enumeration = _bundle.findEntries(
 			_PATH + "/journal/structures/porygon_entry/templates", "*", false);
 
-		while (urls.hasMoreElements()) {
-			URL url = urls.nextElement();
+		while (enumeration.hasMoreElements()) {
+			URL url = enumeration.nextElement();
 
 			String script = StringUtil.read(url.openStream());
 
@@ -538,11 +538,11 @@ public class PorygonSiteInitializer implements SiteInitializer {
 
 		List<JournalArticle> journalArticles = new ArrayList<>();
 
-		Enumeration<URL> urls = _bundle.findEntries(
+		Enumeration<URL> enumeration = _bundle.findEntries(
 			_PATH + "/journal/structures/porygon_entry/content", "*", false);
 
-		while (urls.hasMoreElements()) {
-			URL url = urls.nextElement();
+		while (enumeration.hasMoreElements()) {
+			URL url = enumeration.nextElement();
 
 			String content = StringUtil.replace(
 				StringUtil.read(url.openStream()), StringPool.DOLLAR,
