@@ -4009,7 +4009,9 @@ plugins.includes=</echo>
 				<sleep seconds="20" />
 
 				<delete dir="${tstamp.value}/liferay-portal-${lp.version}">
-					<patternset includes="**/logs/**" />
+					<patternset
+						includes="**/logs/**"
+					/>
 				</delete>
 			</sequential>
 		</parallel>
