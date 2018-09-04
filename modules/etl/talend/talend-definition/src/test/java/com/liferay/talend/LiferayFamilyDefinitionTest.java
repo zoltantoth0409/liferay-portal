@@ -65,13 +65,12 @@ public class LiferayFamilyDefinitionTest {
 
 	@Test
 	public void testFamilyInstalled() {
-		ComponentFrameworkContext context = Mockito.mock(
+		ComponentFrameworkContext componentFrameworkContext = Mockito.mock(
 			ComponentFrameworkContext.class);
 
-		_liferayFamilyDefinition.install(context);
+		_liferayFamilyDefinition.install(componentFrameworkContext);
 
-		ComponentFrameworkContext componentFrameworkContext = Mockito.verify(
-			context);
+		Mockito.verify(componentFrameworkContext);
 
 		componentFrameworkContext.registerComponentFamilyDefinition(
 			_liferayFamilyDefinition);
