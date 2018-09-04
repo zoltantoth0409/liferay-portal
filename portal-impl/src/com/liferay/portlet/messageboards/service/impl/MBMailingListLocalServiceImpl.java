@@ -21,7 +21,9 @@ import com.liferay.message.boards.kernel.exception.MailingListOutEmailAddressExc
 import com.liferay.message.boards.kernel.exception.MailingListOutServerNameException;
 import com.liferay.message.boards.kernel.exception.MailingListOutUserNameException;
 import com.liferay.message.boards.kernel.model.MBMailingList;
+import com.liferay.portal.json.jabsorb.serializer.LiferayJSONDeserializationWhitelist;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.scheduler.SchedulerEngineHelperUtil;
@@ -35,6 +37,9 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portlet.messageboards.messaging.MailingListRequest;
 import com.liferay.portlet.messageboards.service.base.MBMailingListLocalServiceBaseImpl;
+
+import java.io.Closeable;
+import java.io.IOException;
 
 import java.util.Calendar;
 
@@ -104,6 +109,14 @@ public class MBMailingListLocalServiceImpl
 	}
 
 	@Override
+	public void afterPropertiesSet() {
+		super.afterPropertiesSet();
+
+		_unregister = _liferayJSONDeserializationWhitelist.register(
+			MailingListRequest.class.getName());
+	}
+
+	@Override
 	public void deleteCategoryMailingList(long groupId, long categoryId)
 		throws PortalException {
 
@@ -128,6 +141,18 @@ public class MBMailingListLocalServiceImpl
 		unscheduleMailingList(mailingList);
 
 		mbMailingListPersistence.remove(mailingList);
+	}
+
+	@Override
+	public void destroy() {
+		super.destroy();
+
+		try {
+			_unregister.close();
+		}
+		catch (IOException ioe) {
+			throw new SystemException(ioe);
+		}
 	}
 
 	@Override
@@ -276,5 +301,11 @@ public class MBMailingListLocalServiceImpl
 			}
 		}
 	}
+
+	@ServiceReference(type = LiferayJSONDeserializationWhitelist.class)
+	private LiferayJSONDeserializationWhitelist
+		_liferayJSONDeserializationWhitelist;
+
+	private Closeable _unregister;
 
 }

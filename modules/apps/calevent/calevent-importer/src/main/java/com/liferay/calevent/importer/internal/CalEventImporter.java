@@ -35,7 +35,6 @@ import com.liferay.calendar.recurrence.RecurrenceSerializer;
 import com.liferay.calendar.recurrence.Weekday;
 import com.liferay.calendar.service.CalendarBookingLocalService;
 import com.liferay.calendar.service.CalendarResourceLocalService;
-import com.liferay.calevent.importer.internal.json.jabsorb.serializer.CalEventImporterLiferayJSONDeserializationWhitelist;
 import com.liferay.counter.kernel.service.CounterLocalService;
 import com.liferay.message.boards.kernel.model.MBDiscussion;
 import com.liferay.message.boards.kernel.model.MBMessage;
@@ -44,7 +43,9 @@ import com.liferay.message.boards.kernel.model.MBThread;
 import com.liferay.message.boards.kernel.service.MBDiscussionLocalService;
 import com.liferay.message.boards.kernel.service.MBMessageLocalService;
 import com.liferay.message.boards.kernel.service.MBThreadLocalService;
+import com.liferay.portal.json.jabsorb.serializer.LiferayJSONDeserializationWhitelist;
 import com.liferay.portal.kernel.cal.DayAndPosition;
+import com.liferay.portal.kernel.cal.Duration;
 import com.liferay.portal.kernel.cal.TZSRecurrence;
 import com.liferay.portal.kernel.dao.db.DBInspector;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
@@ -87,6 +88,9 @@ import com.liferay.ratings.kernel.service.RatingsStatsLocalService;
 import com.liferay.social.kernel.model.SocialActivity;
 import com.liferay.social.kernel.service.SocialActivityLocalService;
 
+import java.io.Closeable;
+import java.io.IOException;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -96,6 +100,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -105,6 +110,7 @@ import org.jabsorb.JSONSerializer;
 
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 
 /**
@@ -115,6 +121,10 @@ public class CalEventImporter {
 
 	@Activate
 	protected void activate() throws Exception {
+		_unregister = _liferayJSONDeserializationWhitelist.register(
+			DayAndPosition.class.getName(), Duration.class.getName(),
+			TZSRecurrence.class.getName(), GregorianCalendar.class.getName());
+
 		initJSONSerializer();
 
 		long start = System.currentTimeMillis();
@@ -511,6 +521,11 @@ public class CalEventImporter {
 		}
 
 		return RecurrenceSerializer.serialize(recurrence);
+	}
+
+	@Deactivate
+	protected void deactivate() throws IOException {
+		_unregister.close();
 	}
 
 	protected long getActionId(
@@ -1455,15 +1470,15 @@ public class CalEventImporter {
 	private AssetVocabularyLocalService _assetVocabularyLocalService;
 	private CalendarBookingLocalService _calendarBookingLocalService;
 	private CalendarResourceLocalService _calendarResourceLocalService;
-
-	@Reference
-	private CalEventImporterLiferayJSONDeserializationWhitelist
-		_calEventImporterLiferayJSONDeserializationWhitelist;
-
 	private ClassNameLocalService _classNameLocalService;
 	private CounterLocalService _counterLocalService;
 	private GroupLocalService _groupLocalService;
 	private JSONSerializer _jsonSerializer;
+
+	@Reference
+	private LiferayJSONDeserializationWhitelist
+		_liferayJSONDeserializationWhitelist;
+
 	private MBDiscussionLocalService _mbDiscussionLocalService;
 	private MBMessageLocalService _mbMessageLocalService;
 	private MBThreadLocalService _mbThreadLocalService;
@@ -1475,6 +1490,7 @@ public class CalEventImporter {
 	private RoleLocalService _roleLocalService;
 	private SocialActivityLocalService _socialActivityLocalService;
 	private SubscriptionLocalService _subscriptionLocalService;
+	private Closeable _unregister;
 	private UserLocalService _userLocalService;
 
 }
