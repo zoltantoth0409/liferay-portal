@@ -67,7 +67,6 @@ public class SharingEntrySearchPermissionCheckerTest {
 	@Before
 	public void setUp() throws Exception {
 		_group = GroupTestUtil.addGroup();
-
 		_user = UserTestUtil.addUser();
 	}
 
