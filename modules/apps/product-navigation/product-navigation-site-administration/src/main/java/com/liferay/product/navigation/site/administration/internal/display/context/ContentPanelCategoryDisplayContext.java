@@ -47,9 +47,6 @@ public class ContentPanelCategoryDisplayContext {
 		ThemeDisplay themeDisplay = (ThemeDisplay)_portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		PermissionChecker permissionChecker =
-			themeDisplay.getPermissionChecker();
-
 		PanelCategoryHelper panelCategoryHelper =
 			(PanelCategoryHelper)_portletRequest.getAttribute(
 				ApplicationListWebKeys.PANEL_CATEGORY_HELPER);
@@ -59,44 +56,45 @@ public class ContentPanelCategoryDisplayContext {
 		if (Validator.isNull(portletId) ||
 			!panelCategoryHelper.containsPortlet(
 				portletId, PanelCategoryKeys.SITE_ADMINISTRATION_CONTENT,
-				permissionChecker, themeDisplay.getSiteGroup())) {
+				themeDisplay.getPermissionChecker(),
+				themeDisplay.getSiteGroup())) {
 
 			portletId = panelCategoryHelper.getFirstPortletId(
 				PanelCategoryKeys.SITE_ADMINISTRATION_CONTENT,
-				permissionChecker, themeDisplay.getSiteGroup());
+				themeDisplay.getPermissionChecker(),
+				themeDisplay.getSiteGroup());
 		}
 
 		PortletURL portletURL = PortalUtil.getControlPanelPortletURL(
 			_portletRequest, themeDisplay.getSiteGroup(), portletId, 0, 0,
 			PortletRequest.RENDER_PHASE);
 
-		String itemLabel = LanguageUtil.get(
-			themeDisplay.getLocale(), "default-scope");
-
-		List<Layout> scopeLayouts = LayoutLocalServiceUtil.getScopeGroupLayouts(
-			themeDisplay.getSiteGroupId());
-
 		DropdownItemList dropdownItems = new DropdownItemList() {
 			{
 				add(
 					dropdownItem -> {
 						dropdownItem.setHref(portletURL.toString());
-						dropdownItem.setLabel(itemLabel);
+						dropdownItem.setLabel(
+							LanguageUtil.get(
+								themeDisplay.getLocale(), "default-scope"));
 					});
 			}
 		};
 
-		for (Layout curScopeLayout : scopeLayouts) {
-			Group scopeGroup = curScopeLayout.getScopeGroup();
+		List<Layout> scopeLayouts = LayoutLocalServiceUtil.getScopeGroupLayouts(
+			themeDisplay.getSiteGroupId());
+
+		for (Layout scopeLayout : scopeLayouts) {
+			Group scopeGroup = scopeLayout.getScopeGroup();
 
 			if (Validator.isNull(portletId) ||
 				!panelCategoryHelper.containsPortlet(
 					portletId, PanelCategoryKeys.SITE_ADMINISTRATION_CONTENT,
-					permissionChecker, scopeGroup)) {
+					themeDisplay.getPermissionChecker(), scopeGroup)) {
 
 				portletId = panelCategoryHelper.getFirstPortletId(
 					PanelCategoryKeys.SITE_ADMINISTRATION_CONTENT,
-					permissionChecker, scopeGroup);
+					themeDisplay.getPermissionChecker(), scopeGroup);
 			}
 
 			if (Validator.isNull(portletId)) {
@@ -108,15 +106,15 @@ public class ContentPanelCategoryDisplayContext {
 					_portletRequest, scopeGroup, portletId, 0, 0,
 					PortletRequest.RENDER_PHASE);
 
-			String layoutItemLabel = LanguageUtil.get(
-				themeDisplay.getLocale(),
-				HtmlUtil.escape(
-					curScopeLayout.getName(themeDisplay.getLocale())));
-
 			dropdownItems.add(
 				dropdownItem -> {
 					dropdownItem.setHref(layoutItemPortletURL.toString());
-					dropdownItem.setLabel(layoutItemLabel);
+					dropdownItem.setLabel(
+						LanguageUtil.get(
+							themeDisplay.getLocale(),
+							HtmlUtil.escape(
+								scopeLayout.getName(
+									themeDisplay.getLocale()))));
 				});
 		}
 
