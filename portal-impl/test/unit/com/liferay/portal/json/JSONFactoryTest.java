@@ -110,7 +110,8 @@ public class JSONFactoryTest {
 			Object object = JSONFactoryUtil.deserialize(json);
 
 			Assert.assertTrue(
-				object.getClass() + " is not a Map", object instanceof Map);
+				object.getClass() + " is not an instance of Map",
+				object instanceof Map);
 
 			List<LogRecord> logRecords = captureHandler.getLogRecords();
 
