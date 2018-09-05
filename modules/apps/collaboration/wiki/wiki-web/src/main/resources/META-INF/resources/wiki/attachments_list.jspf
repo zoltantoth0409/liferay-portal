@@ -86,22 +86,12 @@
 			deleteUrl.setParameters(params);
 			deleteUrl.setPortletId('com_liferay_wiki_web_portlet_WikiPortlet');
 
-			const A = new AUI();
-
-			A.use(
-				'liferay-search-container',
-				A => {
-					A.io.request(
-						deleteUrl.toString(),
-						{
-							on: {
-								success: function() {
-									searchContainer.deleteRow(link.ancestor('tr'),link.getAttribute('data-rowid'));
-									searchContainer.updateDataStore();
-								}
-							}
-						}
-					);	
+			fetch(
+				deleteUrl.toString()
+			).then(
+				function() {
+					searchContainer.deleteRow(link.ancestor('tr'),link.getAttribute('data-rowid'));
+					searchContainer.updateDataStore();
 				}
 			);
 		},
