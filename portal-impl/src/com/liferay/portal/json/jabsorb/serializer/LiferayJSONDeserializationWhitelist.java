@@ -50,14 +50,14 @@ public class LiferayJSONDeserializationWhitelist {
 			_log.warn(
 				StringBundler.concat(
 					"Unable to deserialize ", className,
-					" due to security restrictions."));
+					" due to security restrictions"));
 		}
 
 		return false;
 	}
 
-	public Closeable register(String... classeNames) {
-		for (String className : classeNames) {
+	public Closeable register(String... classNames) {
+		for (String className : classNames) {
 			_registeredClassNames.compute(
 				className,
 				(keyClassName, counter) -> {
@@ -79,7 +79,7 @@ public class LiferayJSONDeserializationWhitelist {
 					return;
 				}
 
-				for (String className : classeNames) {
+				for (String className : classNames) {
 					_registeredClassNames.compute(
 						className,
 						(keyClassName, counter) -> {
