@@ -48,11 +48,11 @@ public class FilterParserImpl implements FilterParser {
 		throws ExpressionVisitException {
 
 		if (_log.isDebugEnabled()) {
-			_log.debug("Parsing the filter: ", filterString);
+			_log.debug("Parsing filter: " + filterString);
 		}
 
 		if (Validator.isNull(filterString)) {
-			throw new InvalidFilterException("Filter is empty");
+			throw new InvalidFilterException("Filter is null");
 		}
 
 		UriInfo uriInfo = _getUriInfo(filterString);
