@@ -152,14 +152,12 @@ public abstract class BaseSingleEntitySchemaBasedEdmProvider
 
 		CsdlSchema csdlSchema = new CsdlSchema();
 
-		csdlSchema.setNamespace(namespace);
-
+		csdlSchema.setEntityContainer(
+			_createCsdlEntityContainer(namespace, name));
 		csdlSchema.setEntityTypes(
 			Collections.singletonList(
 				_createCsdlEntityType(name, csdlProperties)));
-
-		csdlSchema.setEntityContainer(
-			_createCsdlEntityContainer(namespace, name));
+		csdlSchema.setNamespace(namespace);
 
 		return csdlSchema;
 	}
