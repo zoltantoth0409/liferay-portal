@@ -44,9 +44,7 @@ public class SoyJavaScriptRendererUtil {
 		JSONSerializer jsonSerializer = JSONFactoryUtil.createJSONSerializer();
 
 		String contextString = jsonSerializer.serializeDeep(context);
-
 		String modulesString = jsonSerializer.serialize(modules);
-
 		String wrapperString = jsonSerializer.serialize(wrapper);
 
 		return StringUtil.replace(
