@@ -58,7 +58,8 @@ public class StructuredContentSingleEntitySchemaBasedEdmProviderTest {
 
 		List<CsdlEntityType> csdlEntityTypes = csdlSchema.getEntityTypes();
 
-		Assert.assertEquals(csdlEntityTypes.toString(), 1, csdlEntityTypes.size());
+		Assert.assertEquals(
+			csdlEntityTypes.toString(), 1, csdlEntityTypes.size());
 
 		CsdlEntityType csdlEntityType = csdlEntityTypes.get(0);
 
