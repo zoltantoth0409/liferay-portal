@@ -130,6 +130,7 @@ public class DLSyncEventMessageListener extends BaseMessageListener {
 
 			setUser(syncDLObject);
 
+			syncDLObject.setModifiedTime(System.currentTimeMillis());
 			syncDLObject.setEvent(event);
 			syncDLObject.setType(type);
 			syncDLObject.setTypePK(typePK);
@@ -167,6 +168,7 @@ public class DLSyncEventMessageListener extends BaseMessageListener {
 				setUser(syncDLObject);
 			}
 
+			syncDLObject.setModifiedTime(modifiedTime);
 			syncDLObject.setLanTokenKey(
 				_syncUtil.getLanTokenKey(modifiedTime, typePK, false));
 		}
@@ -178,9 +180,9 @@ public class DLSyncEventMessageListener extends BaseMessageListener {
 			}
 
 			syncDLObject = _syncUtil.toSyncDLObject(dlFolder, event);
-		}
 
-		syncDLObject.setModifiedTime(modifiedTime);
+			syncDLObject.setModifiedTime(modifiedTime);
+		}
 
 		_syncUtil.addSyncDLObject(syncDLObject);
 	}
