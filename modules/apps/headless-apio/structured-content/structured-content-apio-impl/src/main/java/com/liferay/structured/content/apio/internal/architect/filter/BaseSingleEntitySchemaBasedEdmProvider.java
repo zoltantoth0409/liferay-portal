@@ -105,7 +105,6 @@ public abstract class BaseSingleEntitySchemaBasedEdmProvider
 		CsdlEntityType csdlEntityType = new CsdlEntityType();
 
 		csdlEntityType.setName(name);
-
 		csdlEntityType.setProperties(csdlProperties);
 
 		return csdlEntityType;
