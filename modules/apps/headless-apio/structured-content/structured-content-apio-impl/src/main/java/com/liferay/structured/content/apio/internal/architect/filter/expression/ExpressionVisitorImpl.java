@@ -41,7 +41,8 @@ public class ExpressionVisitorImpl implements ExpressionVisitor<Expression> {
 
 	@Override
 	public Expression visitAlias(String alias) {
-		throw new UnsupportedOperationException("Unsupported alias");
+		throw new UnsupportedOperationException(
+			"Unsupported method visitAlias");
 	}
 
 	@Override
@@ -57,13 +58,12 @@ public class ExpressionVisitorImpl implements ExpressionVisitor<Expression> {
 		}
 
 		throw new UnsupportedOperationException(
-			"Unsupported visitBinaryExpressionOperation with operator " +
-				binaryOperatorKind);
+			"Unsupported method visitBinaryOperator");
 	}
 
 	@Override
 	public Expression visitEnum(EdmEnumType edmEnumType, List<String> list) {
-		throw new UnsupportedOperationException("Unsupported visitEnum");
+		throw new UnsupportedOperationException("Unsupported method visitEnum");
 	}
 
 	@Override
@@ -73,13 +73,13 @@ public class ExpressionVisitorImpl implements ExpressionVisitor<Expression> {
 			expression) {
 
 		throw new UnsupportedOperationException(
-			"Unsupported visitLambdaExpression");
+			"Unsupported method visitLambdaExpression");
 	}
 
 	@Override
 	public Expression visitLambdaReference(String lambdaReference) {
 		throw new UnsupportedOperationException(
-			"Unsupported visitLambdaReference");
+			"Unsupported method visitLambdaReference");
 	}
 
 	@Override
@@ -92,7 +92,7 @@ public class ExpressionVisitorImpl implements ExpressionVisitor<Expression> {
 		}
 
 		throw new UnsupportedOperationException(
-			"Unsupported visitLiteral with type " + edmType);
+			"Unsupported method visitLiteral");
 	}
 
 	@Override
@@ -116,12 +116,14 @@ public class ExpressionVisitorImpl implements ExpressionVisitor<Expression> {
 	public Expression visitMethodCall(
 		MethodKind methodKind, List<Expression> expressions) {
 
-		throw new UnsupportedOperationException("Unsupported visitMethodCall");
+		throw new UnsupportedOperationException(
+			"Unsupported method visitMethodCall");
 	}
 
 	@Override
 	public Expression visitTypeLiteral(EdmType edmType) {
-		throw new UnsupportedOperationException("Unsupported visitTypeLiteral");
+		throw new UnsupportedOperationException(
+			"Unsupported method visitTypeLiteral");
 	}
 
 	@Override
@@ -129,7 +131,7 @@ public class ExpressionVisitorImpl implements ExpressionVisitor<Expression> {
 		UnaryOperatorKind unaryOperatorKind, Expression expression) {
 
 		throw new UnsupportedOperationException(
-			"Unsupported visitUnaryOperator");
+			"Unsupported method visitUnaryOperator");
 	}
 
 }
