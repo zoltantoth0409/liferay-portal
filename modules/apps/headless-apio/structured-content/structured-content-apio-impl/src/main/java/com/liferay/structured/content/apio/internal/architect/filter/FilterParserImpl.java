@@ -48,7 +48,7 @@ public class FilterParserImpl implements FilterParser {
 		throws ExpressionVisitException {
 
 		if (_log.isDebugEnabled()) {
-			_log.debug(String.format("Parsing the filter '%s'", filterString));
+			_log.debug("Parsing the filter: ", filterString);
 		}
 
 		if (Validator.isNull(filterString)) {
