@@ -73,7 +73,7 @@ public class ContentPanelCategoryDisplayContext {
 			{
 				add(
 					dropdownItem -> {
-						dropdownItem.setHref(portletURL.toString());
+						dropdownItem.setHref(portletURL);
 						dropdownItem.setLabel(
 							LanguageUtil.get(
 								themeDisplay.getLocale(), "default-scope"));
@@ -108,7 +108,7 @@ public class ContentPanelCategoryDisplayContext {
 
 			dropdownItems.add(
 				dropdownItem -> {
-					dropdownItem.setHref(layoutItemPortletURL.toString());
+					dropdownItem.setHref(layoutItemPortletURL);
 					dropdownItem.setLabel(
 						LanguageUtil.get(
 							themeDisplay.getLocale(),
