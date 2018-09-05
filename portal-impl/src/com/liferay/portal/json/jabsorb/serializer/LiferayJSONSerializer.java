@@ -44,7 +44,7 @@ public class LiferayJSONSerializer extends JSONSerializer {
 	public void registerSerializer(Serializer serializer) {
 		if (serializer != null) {
 			_liferayJSONDeserializationWhitelist.register(
-				_toClassName(serializer.getSerializableClasses()));
+				_toClassNames(serializer.getSerializableClasses()));
 		}
 
 		super.registerSerializer(serializer);
@@ -107,14 +107,14 @@ public class LiferayJSONSerializer extends JSONSerializer {
 		return super.getClassFromHint(object);
 	}
 
-	private static String[] _toClassName(Class<?>[] classes) {
-		String[] names = new String[classes.length];
+	private static String[] _toClassNames(Class<?>[] classes) {
+		String[] classNames = new String[classes.length];
 
 		for (int i = 0; i < classes.length; i++) {
-			names[i] = classes[i].getName();
+			classNames[i] = classes[i].getName();
 		}
 
-		return names;
+		return classNames;
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
