@@ -44,13 +44,13 @@ public class ContentPanelCategoryDisplayContext {
 	}
 
 	public DropdownItemList getScopesDropdownItemList() throws Exception {
-		final ThemeDisplay themeDisplay =
-			(ThemeDisplay)_portletRequest.getAttribute(WebKeys.THEME_DISPLAY);
+		ThemeDisplay themeDisplay = (ThemeDisplay)_portletRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
-		final PermissionChecker permissionChecker =
+		PermissionChecker permissionChecker =
 			themeDisplay.getPermissionChecker();
 
-		final PanelCategoryHelper panelCategoryHelper =
+		PanelCategoryHelper panelCategoryHelper =
 			(PanelCategoryHelper)_portletRequest.getAttribute(
 				ApplicationListWebKeys.PANEL_CATEGORY_HELPER);
 
@@ -66,11 +66,11 @@ public class ContentPanelCategoryDisplayContext {
 				permissionChecker, themeDisplay.getSiteGroup());
 		}
 
-		final PortletURL portletURL = PortalUtil.getControlPanelPortletURL(
+		PortletURL portletURL = PortalUtil.getControlPanelPortletURL(
 			_portletRequest, themeDisplay.getSiteGroup(), portletId, 0, 0,
 			PortletRequest.RENDER_PHASE);
 
-		final String itemLabel = LanguageUtil.get(
+		String itemLabel = LanguageUtil.get(
 			themeDisplay.getLocale(), "default-scope");
 
 		List<Layout> scopeLayouts = LayoutLocalServiceUtil.getScopeGroupLayouts(
