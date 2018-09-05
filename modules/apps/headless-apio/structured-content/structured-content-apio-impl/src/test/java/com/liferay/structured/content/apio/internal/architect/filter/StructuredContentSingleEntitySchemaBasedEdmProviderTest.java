@@ -31,7 +31,7 @@ import org.junit.Test;
 public class StructuredContentSingleEntitySchemaBasedEdmProviderTest {
 
 	@Test
-	public void testGetSingleEntityTypeName() {
+	public void testGetName() {
 		StructuredContentSingleEntitySchemaBasedEdmProvider
 			structuredContentSingleEntitySchemaBasedEdmProvider =
 				new StructuredContentSingleEntitySchemaBasedEdmProvider();
@@ -42,34 +42,34 @@ public class StructuredContentSingleEntitySchemaBasedEdmProviderTest {
 	}
 
 	@Test
-	public void testModelCreation() throws ODataException {
+	public void testGetSchemas() throws ODataException {
 		StructuredContentSingleEntitySchemaBasedEdmProvider
 			structuredContentSingleEntitySchemaBasedEdmProvider =
 				new StructuredContentSingleEntitySchemaBasedEdmProvider();
 
-		List<CsdlSchema> schemas =
+		List<CsdlSchema> csdlSchemas =
 			structuredContentSingleEntitySchemaBasedEdmProvider.getSchemas();
 
-		Assert.assertEquals(schemas.toString(), 1, schemas.size());
+		Assert.assertEquals(csdlSchemas.toString(), 1, csdlSchemas.size());
 
-		CsdlSchema schema = schemas.get(0);
+		CsdlSchema csdlSchema = csdlSchemas.get(0);
 
-		Assert.assertEquals("HypermediaRestApis", schema.getNamespace());
+		Assert.assertEquals("HypermediaRestApis", csdlSchema.getNamespace());
 
-		List<CsdlEntityType> entityTypes = schema.getEntityTypes();
+		List<CsdlEntityType> csdlEntityTypes = csdlSchema.getEntityTypes();
 
-		Assert.assertEquals(entityTypes.toString(), 1, entityTypes.size());
+		Assert.assertEquals(csdlEntityTypes.toString(), 1, csdlEntityTypes.size());
 
-		CsdlEntityType entityType = entityTypes.get(0);
+		CsdlEntityType csdlEntityType = csdlEntityTypes.get(0);
 
-		Assert.assertEquals("StructuredContent", entityType.getName());
+		Assert.assertEquals("StructuredContent", csdlEntityType.getName());
 
-		CsdlProperty titleProperty = entityType.getProperty("title");
+		CsdlProperty csdlProperty = csdlEntityType.getProperty("title");
 
-		Assert.assertNotNull(titleProperty);
+		Assert.assertNotNull(csdlProperty);
 		Assert.assertEquals(
 			EdmPrimitiveTypeKind.String.getFullQualifiedName(),
-			titleProperty.getTypeAsFQNObject());
+			csdlProperty.getTypeAsFQNObject());
 	}
 
 }

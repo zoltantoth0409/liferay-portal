@@ -41,7 +41,7 @@ public class ExpressionVisitorImpl implements ExpressionVisitor<Expression> {
 
 	@Override
 	public Expression visitAlias(String alias) {
-		throw new UnsupportedOperationException("Unsupported visitAlias");
+		throw new UnsupportedOperationException("Unsupported alias");
 	}
 
 	@Override
