@@ -30,10 +30,10 @@ public class LiteralExpressionImpl implements LiteralExpression {
 	}
 
 	@Override
-	public <T> T accept(ExpressionVisitor<T> visitor)
+	public <T> T accept(ExpressionVisitor<T> expressionVisitor)
 		throws ExpressionVisitException {
 
-		return visitor.visitLiteralExpression(this);
+		return expressionVisitor.visitLiteralExpression(this);
 	}
 
 	@Override
