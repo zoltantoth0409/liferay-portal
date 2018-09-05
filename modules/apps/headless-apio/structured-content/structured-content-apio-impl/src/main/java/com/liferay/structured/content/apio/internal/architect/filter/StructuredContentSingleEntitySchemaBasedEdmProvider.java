@@ -36,13 +36,12 @@ public class StructuredContentSingleEntitySchemaBasedEdmProvider
 		return "StructuredContent";
 	}
 
-	private static final Map<String, EntityType> _entityTypesMap;
-
-	static {
-		_entityTypesMap = new HashMap<>();
-
-		_entityTypesMap.put("datePublished", EntityType.DATE);
-		_entityTypesMap.put("title", EntityType.STRING);
-	}
+	private static final Map<String, EntityType> _entityTypesMap =
+		new HashMap<String, EntityType>() {
+			{
+				put("datePublished", EntityType.DATE);
+				put("title", EntityType.STRING);
+			}
+		};
 
 }
