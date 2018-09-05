@@ -91,8 +91,8 @@ AUI.add(
 
 					context.localizedValue = {};
 
-					context.localizable = false;
 					context.locale = editingLanguageId;
+					context.localizable = false;
 					context.localizedValue[editingLanguageId] = context.value;
 				}
 
