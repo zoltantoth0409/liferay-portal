@@ -84,15 +84,15 @@ public class ExpressionVisitorImpl implements ExpressionVisitor<Expression> {
 
 	@Override
 	public Expression visitLiteral(Literal literal) {
-		EdmType type = literal.getType();
+		EdmType edmType = literal.getType();
 
-		if (type instanceof EdmString) {
+		if (edmType instanceof EdmString) {
 			return new LiteralExpressionImpl(
 				literal.getText(), LiteralExpression.Type.STRING);
 		}
 
 		throw new UnsupportedOperationException(
-			"Unsupported visitLiteral with type " + type);
+			"Unsupported visitLiteral with type " + edmType);
 	}
 
 	@Override
