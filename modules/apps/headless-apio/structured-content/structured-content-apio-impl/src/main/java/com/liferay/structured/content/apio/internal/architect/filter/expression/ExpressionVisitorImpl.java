@@ -103,13 +103,13 @@ public class ExpressionVisitorImpl implements ExpressionVisitor<Expression> {
 
 		Stream<UriResource> stream = uriResources.stream();
 
-		List<String> list = stream.map(
+		List<String> resourcePath = stream.map(
 			UriResource::getSegmentValue
 		).collect(
 			Collectors.toList()
 		);
 
-		return new MemberExpressionImpl(list);
+		return new MemberExpressionImpl(resourcePath);
 	}
 
 	@Override
