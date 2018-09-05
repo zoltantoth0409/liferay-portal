@@ -61,9 +61,9 @@ public class AddFormInstanceRecordMVCResourceCommandTest extends PowerMockito {
 
 	@Before
 	public void setUp() throws Exception {
+		setUpAddFormInstanceRecordMVCResourceCommand();
 		setUpDDMFormContextToDDMFormValues();
 		setUpDDMFormInstance();
-		setUpAddFormInstanceRecordMVCResourceCommand();
 		setUpProps();
 		setUpLanguageUtil();
 	}
