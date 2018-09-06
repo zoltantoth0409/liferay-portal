@@ -49,7 +49,7 @@ buildDir = new File(rootDir.parentFile, "build")
 
 for (String gradleVersion in ["2.5", "2.14"]) {
 	String gradleDistributionURL = "https://services.gradle.org/distributions/gradle-${gradleVersion}-bin.zip"
-	String suffix = gradleVersion.replace('.', '')
+	String suffix = gradleVersion.replace(".", "")
 
 	tasks.create(name: "extractGradleApi${suffix}", type: Copy) {
 		description = "Extracts the Gradle ${gradleVersion} JAR files into a temporary directory."
