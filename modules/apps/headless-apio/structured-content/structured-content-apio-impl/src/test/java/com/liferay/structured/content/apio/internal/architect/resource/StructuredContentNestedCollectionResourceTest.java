@@ -37,8 +37,9 @@ public class StructuredContentNestedCollectionResourceTest {
 	public void testGetFilterFieldsMapWithExistingProperty() {
 		Filter filter = _getFilter("title", "Title Value");
 
-		Map<String, Object> filterFieldsMap = _resource.getFilterFieldsMap(
-			filter);
+		Map<String, Object> filterFieldsMap =
+			_structuredContentNestedCollectionResource.getFilterFieldsMap(
+				filter);
 
 		Assert.assertEquals("Title Value", filterFieldsMap.get("title"));
 	}
