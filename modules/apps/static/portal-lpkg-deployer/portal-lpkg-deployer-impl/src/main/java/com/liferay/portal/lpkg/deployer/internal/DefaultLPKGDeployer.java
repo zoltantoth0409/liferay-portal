@@ -286,11 +286,11 @@ public class DefaultLPKGDeployer implements LPKGDeployer {
 
 		_wabBundleTracker.open();
 
+		Set<Bundle> removalPendingBundles = new HashSet<>();
+
 		_deploymentDirPath = _getDeploymentDirPath(bundleContext);
 
 		Path overrideDirPath = _deploymentDirPath.resolve("override");
-
-		Set<Bundle> removalPendingBundles = new HashSet<>();
 
 		List<File> jarFiles = _scanFiles(overrideDirPath, ".jar", true);
 
