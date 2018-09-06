@@ -257,6 +257,7 @@ ManagementToolbar.STATE = {
 	 * @memberof ClayManagementToolbar
 	 * @type {?(array|undefined)}
 	 */
+
 	filterLabels: filterLabelsValidator,
 
 	/**

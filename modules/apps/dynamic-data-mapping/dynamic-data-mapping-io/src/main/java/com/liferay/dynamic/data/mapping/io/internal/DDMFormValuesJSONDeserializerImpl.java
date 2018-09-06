@@ -192,9 +192,8 @@ public class DDMFormValuesJSONDeserializerImpl
 		if (isLocalized(valueJSONObject)) {
 			return getLocalizedValue(valueJSONObject);
 		}
-		else {
-			return new UnlocalizedValue(jsonObject.getString("value"));
-		}
+
+		return new UnlocalizedValue(jsonObject.getString("value"));
 	}
 
 	protected boolean isLocalized(JSONObject jsonObject) {
