@@ -512,8 +512,8 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 
 	@Override
 	public void reindex(Collection<T> collection) {
-		if (IndexWriterHelperUtil.isIndexReadOnly() ||
-			!isIndexerEnabled() || collection.isEmpty()) {
+		if (IndexWriterHelperUtil.isIndexReadOnly() || !isIndexerEnabled() ||
+			collection.isEmpty()) {
 
 			return;
 		}
