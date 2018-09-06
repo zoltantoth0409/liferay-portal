@@ -342,7 +342,8 @@ public class AggregateFilter extends IgnoreModuleRequestFilter {
 		}
 
 		content = StringBundler.concat(
-			StringPool.DOUBLE_SLASH, PortalWebResourcesUtil.getLastModified(
+			StringPool.DOUBLE_SLASH,
+			PortalWebResourcesUtil.getLastModified(
 					PortalWebResourceConstants.RESOURCE_TYPE_JS),
 			StringPool.NEW_LINE, content);
 
