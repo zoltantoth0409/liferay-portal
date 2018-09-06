@@ -52,11 +52,11 @@ public class AssetListEntryImpl extends AssetListEntryBaseImpl {
 	}
 
 	public AssetEntryQuery getAssetEntryQuery(long[] groupIds, Layout layout) {
+		AssetEntryQuery assetEntryQuery = new AssetEntryQuery();
+
 		UnicodeProperties properties = new UnicodeProperties();
 
 		properties.fastLoad(getTypeSettings());
-
-		AssetEntryQuery assetEntryQuery = new AssetEntryQuery();
 
 		_setCategoriesAndTags(
 			assetEntryQuery, properties, groupIds,
