@@ -502,49 +502,49 @@ public class AggregateFilter extends IgnoreModuleRequestFilter {
 
 			FileUtil.write(cacheDataFile, content);
 
-			if (PropsValues.MINIFIER_ENABLED) {
-				String finalContent = content;
-				String finalResourcePath = resourcePath;
-
-				_ongoingTasks.computeIfAbsent(
-					cacheCommonFileName,
-					key -> {
-						NoticeableExecutorService noticeableExecutorService =
-							_portalExecutorManager.getPortalExecutor(
-								AggregateFilter.class.getName());
-
-						NoticeableFuture<String> noticeableFuture =
-							noticeableExecutorService.submit(
-								() -> {
-									String minifiedContent = null;
-
-									if (minifierType.equals("css")) {
-										minifiedContent =
-											MinifierUtil.minifyCss(
-												finalContent);
-									}
-									else {
-										minifiedContent =
-											MinifierUtil.minifyJavaScript(
-												finalResourcePath,
-												finalContent);
-									}
-
-									File tempFile = FileUtil.createTempFile();
-
-									FileUtil.write(tempFile, minifiedContent);
-
-									FileUtil.move(tempFile, cacheDataFile);
-
-									return minifiedContent;
-								});
-
-						noticeableFuture.addFutureListener(
-							future -> _ongoingTasks.remove(key));
-
-						return noticeableFuture;
-					});
+			if (!PropsValues.MINIFIER_ENABLED) {
+				return content;
 			}
+
+			String finalContent = content;
+			String finalResourcePath = resourcePath;
+
+			_ongoingTasks.computeIfAbsent(
+				cacheCommonFileName,
+				key -> {
+					NoticeableExecutorService noticeableExecutorService =
+						_portalExecutorManager.getPortalExecutor(
+							AggregateFilter.class.getName());
+
+					NoticeableFuture<String> noticeableFuture =
+						noticeableExecutorService.submit(
+							() -> {
+								String minifiedContent = null;
+
+								if (minifierType.equals("css")) {
+									minifiedContent = MinifierUtil.minifyCss(
+										finalContent);
+								}
+								else {
+									minifiedContent =
+										MinifierUtil.minifyJavaScript(
+											finalResourcePath, finalContent);
+								}
+
+								File tempFile = FileUtil.createTempFile();
+
+								FileUtil.write(tempFile, minifiedContent);
+
+								FileUtil.move(tempFile, cacheDataFile);
+
+								return minifiedContent;
+							});
+
+					noticeableFuture.addFutureListener(
+						future -> _ongoingTasks.remove(key));
+
+					return noticeableFuture;
+				});
 
 			return content;
 		}
