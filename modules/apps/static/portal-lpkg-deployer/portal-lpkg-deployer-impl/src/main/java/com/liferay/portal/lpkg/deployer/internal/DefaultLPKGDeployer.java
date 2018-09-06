@@ -290,11 +290,11 @@ public class DefaultLPKGDeployer implements LPKGDeployer {
 
 		Path overrideDirPath = _deploymentDirPath.resolve("override");
 
-		Set<Bundle> removalPending = new HashSet<>();
+		Set<Bundle> removalPendingBundles = new HashSet<>();
 
 		List<File> jarFiles = _scanFiles(overrideDirPath, ".jar", true);
 
-		removalPending.addAll(
+		removalPendingBundles.addAll(
 			_uninstallOrphanOverridingJars(bundleContext, jarFiles));
 
 		List<File> warFiles = _scanFiles(overrideDirPath, ".war", true);
@@ -305,9 +305,9 @@ public class DefaultLPKGDeployer implements LPKGDeployer {
 			_log.info("Start refreshing uninstalled orphan bundles");
 		}
 
-		if (!removalPending.isEmpty()) {
+		if (!removalPendingBundles.isEmpty()) {
 			FrameworkEvent frameworkEvent = _refreshBundles(
-				removalPending, bundleContext);
+				removalPendingBundles, bundleContext);
 
 			if (frameworkEvent.getType() == FrameworkEvent.PACKAGES_REFRESHED) {
 				if (_log.isInfoEnabled()) {
@@ -608,7 +608,7 @@ public class DefaultLPKGDeployer implements LPKGDeployer {
 			BundleContext bundleContext, List<File> jarFiles)
 		throws BundleException {
 
-		Set<Bundle> removed = new HashSet<>();
+		Set<Bundle> removedBundles = new HashSet<>();
 
 		for (Bundle bundle : bundleContext.getBundles()) {
 			String location = bundle.getLocation();
@@ -626,7 +626,7 @@ public class DefaultLPKGDeployer implements LPKGDeployer {
 
 			bundle.uninstall();
 
-			removed.add(bundle);
+			removedBundles.add(bundle);
 
 			if (_log.isInfoEnabled()) {
 				_log.info(
@@ -634,7 +634,7 @@ public class DefaultLPKGDeployer implements LPKGDeployer {
 			}
 		}
 
-		return removed;
+		return removedBundles;
 	}
 
 	private void _uninstallOrphanOverridingWars(
