@@ -298,11 +298,12 @@ public class SharingEntryLocalServiceImpl
 			actionIds -> sharingEntry.setActionIds(actionIds)
 		);
 
-		sharingEntry = sharingEntryPersistence.update(sharingEntry);
+		SharingEntry updatedSharingEntry = sharingEntryPersistence.update(
+			sharingEntry);
 
-		_sendNotificationEvent(sharingEntry);
+		_sendNotificationEvent(updatedSharingEntry);
 
-		return sharingEntry;
+		return updatedSharingEntry;
 	}
 
 	private SharingEntry _deleteSharingEntry(SharingEntry sharingEntry) {
