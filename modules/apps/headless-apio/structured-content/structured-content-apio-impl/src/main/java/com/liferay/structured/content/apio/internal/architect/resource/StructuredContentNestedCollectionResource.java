@@ -449,10 +449,9 @@ public class StructuredContentNestedCollectionResource
 		Pagination pagination, long contentSpaceId, ThemeDisplay themeDisplay,
 		Filter filter, Sort sort) {
 
+		Map<String, Object> filterFieldsMap = getFilterFieldsMap(filter);
 		OrderByComparator<JournalArticle> orderByComparator =
 			_getJournalArticleOrderByComparator(sort.getSortFields());
-
-		Map<String, Object> filterFieldsMap = getFilterFieldsMap(filter);
 
 		List<JournalArticleWrapper> journalArticleWrappers = Stream.of(
 			_journalArticleService.search(
