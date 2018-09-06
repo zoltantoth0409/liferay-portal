@@ -60,11 +60,6 @@ public class SharingUserNotificationHandler
 			ServiceContext serviceContext)
 		throws Exception {
 
-		Locale locale = serviceContext.getLocale();
-
-		ResourceBundle resourceBundle =
-			_resourceBundleLoader.loadResourceBundle(locale);
-
 		JSONObject userNotificationEventPayloadJSONObject =
 			JSONFactoryUtil.createJSONObject(
 				userNotificationEvent.getPayload());
@@ -78,6 +73,11 @@ public class SharingUserNotificationHandler
 
 			return null;
 		}
+
+		Locale locale = serviceContext.getLocale();
+
+		ResourceBundle resourceBundle =
+			_resourceBundleLoader.loadResourceBundle(locale);
 
 		return ResourceBundleUtil.getString(
 			resourceBundle, "x-has-shared-x-with-you-for-x",
