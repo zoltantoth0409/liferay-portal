@@ -27,8 +27,6 @@ WorkflowDefinitionLinkSearchEntry workflowDefinitionLinkSearchEntry = (WorkflowD
 
 String className = workflowDefinitionLinkSearchEntry.getClassName();
 String resource = workflowDefinitionLinkSearchEntry.getResource();
-
-String workflowAssignedValue = "";
 %>
 
 <portlet:actionURL name="updateWorkflowDefinitionLink" var="updateWorkflowDefinitionLinkURL">
@@ -42,6 +40,10 @@ String workflowAssignedValue = "";
 		<aui:input name="groupId" type="hidden" value="<%= workflowDefinitionLinkDisplayContext.getGroupId() %>" />
 		<aui:input name="resource" type="hidden" value="<%= resource %>" />
 		<aui:input name="editMode" type="hidden" value="false" />
+
+		<%
+		String workflowAssignedValue = "";
+		%>
 
 		<aui:select cssClass="workflow-definition-form" label="<%= StringPool.BLANK %>" name='<%= "workflowDefinitionName@" + className %>' title="workflow-definition">
 
