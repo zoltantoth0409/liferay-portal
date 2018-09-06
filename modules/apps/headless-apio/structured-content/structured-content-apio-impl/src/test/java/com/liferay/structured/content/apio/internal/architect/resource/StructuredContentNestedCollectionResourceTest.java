@@ -47,8 +47,9 @@ public class StructuredContentNestedCollectionResourceTest {
 	public void testGetFilterFieldsMapWithNonexistingProperty() {
 		Filter filter = _getFilter("title", RandomTestUtil.randomString());
 
-		Map<String, Object> filterFieldsMap = _resource.getFilterFieldsMap(
-			filter);
+		Map<String, Object> filterFieldsMap =
+			_structuredContentNestedCollectionResource.getFilterFieldsMap(
+				filter);
 
 		Assert.assertNull(filterFieldsMap.get("nonexistingProperty"));
 	}
@@ -62,7 +63,8 @@ public class StructuredContentNestedCollectionResourceTest {
 					fieldValue, LiteralExpression.Type.STRING)));
 	}
 
-	private static final StructuredContentNestedCollectionResource _resource =
-		new StructuredContentNestedCollectionResource();
+	private static final StructuredContentNestedCollectionResource
+		_structuredContentNestedCollectionResource =
+			new StructuredContentNestedCollectionResource();
 
 }
