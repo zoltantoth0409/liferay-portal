@@ -107,7 +107,7 @@ Ticket ticket = TicketLocalServiceUtil.addTicket(user.getCompanyId(), User.class
 
 				rowColumns.push(event.name);
 				rowColumns.push(uploader.formatStorage(event.size));
-				rowColumns.push('<a class="delete-attachment" data-rowid="' + event.id + '" data-url="' + deleteURL + '" href="javascript:;"><%= TrashUtil.isTrashEnabled(scopeGroupId) ? UnicodeLanguageUtil.get(resourceBundle, "move-to-the-recycle-bin") : UnicodeFormatter.toString(removeAttachmentIcon) %></a>');
+				rowColumns.push('<a class="delete-attachment" data-rowid="' + event.id + '" data-url="' + deleteURL.toString() + '" href="javascript:;"><%= TrashUtil.isTrashEnabled(scopeGroupId) ? UnicodeLanguageUtil.get(resourceBundle, "move-to-the-recycle-bin") : UnicodeFormatter.toString(removeAttachmentIcon) %></a>');
 
 				searchContainer.addRow(rowColumns, event.id);
 
