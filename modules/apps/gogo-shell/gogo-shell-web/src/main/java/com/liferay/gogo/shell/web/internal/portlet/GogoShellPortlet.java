@@ -169,7 +169,7 @@ public class GogoShellPortlet extends MVCPortlet {
 	protected void checkCommand(String command, ThemeDisplay themeDisplay)
 		throws Exception {
 
-		Matcher matcher = _closeDisconnectExitShutdownPattern.matcher(command);
+		Matcher matcher = _pattern.matcher(command);
 
 		if (matcher.find()) {
 			ResourceBundle resourceBundle =
@@ -250,8 +250,8 @@ public class GogoShellPortlet extends MVCPortlet {
 		return null;
 	}
 
-	private static final Pattern _closeDisconnectExitShutdownPattern =
-		Pattern.compile("\\b(close|disconnect|exit|shutdown)\\b");
+	private static final Pattern _pattern = Pattern.compile(
+		"\\b(close|disconnect|exit|shutdown)\\b");
 
 	@Reference
 	private CommandProcessor _commandProcessor;
