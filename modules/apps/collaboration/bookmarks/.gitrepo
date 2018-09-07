@@ -4,8 +4,8 @@
 [subrepo]
 	autopull = false
 	cmdver = liferay
-	commit = 32059d27d9e8e83de79b1f0f9ff04287e29d9b19
+	commit = 4079b8f0090b8394e225cd1d04672dfad491a581
 	mergebuttonmergecommits = false
 	mode = push
-	parent = 4e4070966c3536242b97328de52d15bb82048e9d
+	parent = b254b27b5836e12a79bb5f9979760282a8b9dd95
 	remote = git@github.com:liferay/com-liferay-bookmarks.git
