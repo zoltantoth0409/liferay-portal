@@ -1105,7 +1105,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	}
 
 	/**
-	 * Removes the group from the organization.
+	 * Deletes the group from the organization.
 	 *
 	 * @param organizationId the primary key of the organization
 	 * @param group the group
@@ -1123,7 +1123,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	}
 
 	/**
-	 * Removes the group from the organization.
+	 * Deletes the group from the organization.
 	 *
 	 * @param organizationId the primary key of the organization
 	 * @param groupId the primary key of the group
@@ -1141,7 +1141,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	}
 
 	/**
-	 * Removes the groups from the organization.
+	 * Deletes the groups from the organization.
 	 *
 	 * @param organizationId the primary key of the organization
 	 * @param groups the groups
@@ -1161,7 +1161,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	}
 
 	/**
-	 * Removes the groups from the organization.
+	 * Deletes the groups from the organization.
 	 *
 	 * @param organizationId the primary key of the organization
 	 * @param groupIds the primary keys of the groups
@@ -1179,7 +1179,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	}
 
 	/**
-	 * Removes the group from the user group.
+	 * Deletes the group from the user group.
 	 *
 	 * @param userGroupId the primary key of the user group
 	 * @param group the group
@@ -1197,7 +1197,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	}
 
 	/**
-	 * Removes the group from the user group.
+	 * Deletes the group from the user group.
 	 *
 	 * @param userGroupId the primary key of the user group
 	 * @param groupId the primary key of the group
@@ -1215,7 +1215,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	}
 
 	/**
-	 * Removes the groups from the user group.
+	 * Deletes the groups from the user group.
 	 *
 	 * @param userGroupId the primary key of the user group
 	 * @param groups the groups
@@ -1233,7 +1233,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	}
 
 	/**
-	 * Removes the groups from the user group.
+	 * Deletes the groups from the user group.
 	 *
 	 * @param userGroupId the primary key of the user group
 	 * @param groupIds the primary keys of the groups
