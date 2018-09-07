@@ -310,7 +310,6 @@ public class StructuredContentNestedCollectionResource
 		searchContext.setCompanyId(companyId);
 		searchContext.setEnd(end);
 		searchContext.setGroupIds(new long[] {groupId});
-		searchContext.setStart(start);
 
 		List<com.liferay.portal.kernel.search.Sort> sorts = _getSorts(
 			sort.getSortFields(), locale);
@@ -319,6 +318,8 @@ public class StructuredContentNestedCollectionResource
 			searchContext.setSorts(
 				sorts.toArray(new com.liferay.portal.kernel.search.Sort[0]));
 		}
+
+		searchContext.setStart(start);
 
 		QueryConfig queryConfig = searchContext.getQueryConfig();
 
