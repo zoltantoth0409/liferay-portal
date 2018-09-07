@@ -147,7 +147,6 @@ if (organization != null) {
 			>
 				<liferay-ui:search-container-row
 					className="Object"
-					escapedModel="<%= true %>"
 					modelVar="result"
 				>
 
