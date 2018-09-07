@@ -486,7 +486,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	}
 
 	/**
-	 * Adds the organization to the group.
+	 * Adds the group to the organization.
 	 *
 	 * @param organizationId the primary key of the organization
 	 * @param group the group
@@ -504,7 +504,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	}
 
 	/**
-	 * Adds the organization to the group.
+	 * Adds the group to the organization.
 	 *
 	 * @param organizationId the primary key of the organization
 	 * @param groupId the primary key of the group
