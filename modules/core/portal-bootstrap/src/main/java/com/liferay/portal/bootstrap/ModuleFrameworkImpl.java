@@ -1565,10 +1565,6 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 
 		throwableCollector.rethrow();
 
-		if (_log.isDebugEnabled()) {
-			_log.debug("Started initial bundles");
-		}
-
 		Bundle[] installedBundles = bundleContext.getBundles();
 
 		Set<Bundle> fragmentBundles = new HashSet<>();
@@ -1582,7 +1578,7 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 		frameworkWiring.resolveBundles(fragmentBundles);
 
 		if (_log.isInfoEnabled()) {
-			_log.info("Finished starting initial bundles");
+			_log.info("Started initial bundles");
 		}
 
 		return new HashSet<>(Arrays.asList(initialBundles));
@@ -1706,7 +1702,7 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 		}
 
 		if (_log.isInfoEnabled()) {
-			_log.info("Finished starting dynamic bundles");
+			_log.info("Started dynamic bundles");
 		}
 	}
 
