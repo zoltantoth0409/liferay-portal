@@ -510,7 +510,7 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 
 		ServiceTrackerMapFactoryUtil.setServiceTrackerMapFactory(null);
 
-		if (Boolean.parseBoolean(System.getenv("CLEAN_OSGI_STATE"))) {
+		if (Boolean.parseBoolean(System.getenv("LIFERAY_CLEAN_OSGI_STATE"))) {
 			_cleanOSGiStateFolder();
 		}
 	}
