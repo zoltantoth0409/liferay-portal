@@ -185,8 +185,8 @@ public class LPKGDeployerTest {
 						path = URLCodec.decodeURL(path);
 
 						String location =
-							name + "?protocol=lpkg&static=true&lpkgPath=" +
-								path;
+							name + "?lpkgPath=" + path +
+								"&protocol=lpkg&static=true";
 
 						Bundle bundle = bundleContext.getBundle(location);
 
