@@ -383,7 +383,7 @@ public class SharingEntryLocalServiceImpl
 			expirationDate.before(DateUtil.newDate())) {
 
 			throw new InvalidSharingEntryExpirationDateException(
-				"Expiration date cannot be in the past");
+				"Expiration date is in the past");
 		}
 	}
 
