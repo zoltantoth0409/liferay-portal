@@ -47,7 +47,7 @@ public class PublicRenderParameterAnnotationImpl
 	public void setName(String name) {
 
 		// The @PublicRenderParameterDefinition annotation does not have the
-		// name feature that is available in portlet.xml.
+		// name feature that is available in portlet.xml
 
 		throw new UnsupportedOperationException();
 	}
