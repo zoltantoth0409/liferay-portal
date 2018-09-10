@@ -43,7 +43,7 @@ import javax.portlet.annotations.RenderStateScoped;
 public class ScopedBeanHolder {
 
 	public static ScopedBeanHolder getCurrentInstance() {
-		return _INSTANCE.get();
+		return _instance.get();
 	}
 
 	public ScopedBeanHolder(
@@ -165,7 +165,7 @@ public class ScopedBeanHolder {
 	}
 
 	public Closeable install() {
-		_INSTANCE.set(this);
+		_instance.set(this);
 
 		return new Closeable() {
 
@@ -173,7 +173,7 @@ public class ScopedBeanHolder {
 			public void close() throws IOException {
 				_release();
 
-				_INSTANCE.remove();
+				_instance.remove();
 			}
 
 		};
@@ -280,8 +280,8 @@ public class ScopedBeanHolder {
 
 	private static final String _ATTRIBUTE_NAME_PREFIX = "com.liferay.cdi.";
 
-	private static final ThreadLocal<ScopedBeanHolder> _INSTANCE =
-		new CentralizedThreadLocal<>(ScopedBeanHolder.class + "._INSTANCE");
+	private static final ThreadLocal<ScopedBeanHolder> _instance =
+		new CentralizedThreadLocal<>(ScopedBeanHolder.class + "._instance");
 
 	private final PortletConfig _portletConfig;
 	private final PortletRequest _portletRequest;
