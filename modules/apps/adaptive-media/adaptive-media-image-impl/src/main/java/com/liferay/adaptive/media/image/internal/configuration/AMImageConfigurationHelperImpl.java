@@ -465,7 +465,7 @@ public class AMImageConfigurationHelperImpl
 			throw new AMImageConfigurationException.InvalidUuidException();
 		}
 
-		Matcher matcher = _pattern.matcher(uuid);
+		Matcher matcher = _uuidPattern.matcher(uuid);
 
 		if (!matcher.matches()) {
 			throw new AMImageConfigurationException.InvalidUuidException();
@@ -592,9 +592,9 @@ public class AMImageConfigurationHelperImpl
 		}
 	}
 
-	private static final Pattern _pattern = Pattern.compile("^(?:\\w|-)+$");
 	private static final Pattern _positiveNumberPattern = Pattern.compile(
 		"\\d*[1-9]\\d*");
+	private static final Pattern _uuidPattern = Pattern.compile("^(?:\\w|-)+$");
 
 	@Reference
 	private AMImageConfigurationEntryParser _amImageConfigurationEntryParser;
