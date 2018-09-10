@@ -391,10 +391,10 @@ public class BeanPortletAnnotationImpl extends BaseBeanPortletImpl {
 					for (Field field : LiferayPortletMode.class.getFields()) {
 						if (Modifier.isStatic(field.getModifiers()) &&
 							(field.getType() == PortletMode.class)) {
-		
-							PortletMode portletMode =
-								(PortletMode)field.get(null);
-		
+
+							PortletMode portletMode = (PortletMode)field.get(
+								null);
+
 							add(portletMode.toString());
 						}
 					}

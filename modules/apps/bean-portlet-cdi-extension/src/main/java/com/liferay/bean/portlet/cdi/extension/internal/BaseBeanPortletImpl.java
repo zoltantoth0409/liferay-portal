@@ -230,10 +230,10 @@ public abstract class BaseBeanPortletImpl implements BeanPortlet {
 					for (Field field : LiferayPortletMode.class.getFields()) {
 						if (Modifier.isStatic(field.getModifiers()) &&
 							(field.getType() == PortletMode.class)) {
-		
-							PortletMode portletMode =
-								(PortletMode)field.get(null);
-		
+
+							PortletMode portletMode = (PortletMode)field.get(
+								null);
+
 							add(portletMode.toString());
 						}
 					}
@@ -241,7 +241,7 @@ public abstract class BaseBeanPortletImpl implements BeanPortlet {
 				catch (IllegalAccessException iae) {
 					throw new ExceptionInInitializerError(iae);
 				}
-			}		
+			}
 		};
 
 	private final EnumMap<MethodType, List<BeanMethod>> _beanMethods =
