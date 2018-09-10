@@ -223,24 +223,26 @@ public abstract class BaseBeanPortletImpl implements BeanPortlet {
 		return dictionary;
 	}
 
-	private static final Set<String> _liferayPortletModes = new HashSet<>();
-
-	static {
-		try {
-			for (Field field : LiferayPortletMode.class.getFields()) {
-				if (Modifier.isStatic(field.getModifiers()) &&
-					(field.getType() == PortletMode.class)) {
-
-					PortletMode portletMode = (PortletMode)field.get(null);
-
-					_liferayPortletModes.add(portletMode.toString());
+	private static final Set<String> _liferayPortletModes =
+		new HashSet<String>() {
+			{
+				try {
+					for (Field field : LiferayPortletMode.class.getFields()) {
+						if (Modifier.isStatic(field.getModifiers()) &&
+							(field.getType() == PortletMode.class)) {
+		
+							PortletMode portletMode =
+								(PortletMode)field.get(null);
+		
+							add(portletMode.toString());
+						}
+					}
 				}
-			}
-		}
-		catch (IllegalAccessException iae) {
-			throw new ExceptionInInitializerError(iae);
-		}
-	}
+				catch (IllegalAccessException iae) {
+					throw new ExceptionInInitializerError(iae);
+				}
+			}		
+		};
 
 	private final EnumMap<MethodType, List<BeanMethod>> _beanMethods =
 		new EnumMap<>(MethodType.class);
