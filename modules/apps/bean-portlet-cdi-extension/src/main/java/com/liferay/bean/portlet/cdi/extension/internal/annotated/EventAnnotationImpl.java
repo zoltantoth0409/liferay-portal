@@ -53,7 +53,7 @@ public class EventAnnotationImpl extends BaseEventImpl {
 	public void setName(String name) {
 
 		// The @Event annotation does not have the name feature that
-		// is available in portlet.xml.
+		// is available in portlet.xml
 
 		throw new UnsupportedOperationException();
 	}

@@ -114,7 +114,7 @@ public class RegistrationUtil {
 				servletContext.getServletContextName());
 
 			if (_log.isDebugEnabled()) {
-				_log.debug("Registering bean portletId: " + portletId);
+				_log.debug("Registering bean portlet: " + portletId);
 			}
 
 			Dictionary<String, Object> dictionary = beanPortlet.toDictionary();
