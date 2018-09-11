@@ -333,7 +333,7 @@ public class StructuredContentNestedCollectionResourceTest {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
 
-		// Default Locale of Article is in Spanish (no English content or title)
+		// Default locale of article is in Spanish (no English content or title)
 
 		JournalArticle journalArticle = JournalTestUtil.addArticle(
 			_group.getGroupId(),
