@@ -99,7 +99,7 @@ public class DLPreviewableProcessorDLStoreConvertProcess
 						}
 					}
 					catch (Exception e) {
-						_log.error("Migration failed for " + fileName, e);
+						_log.error("Unable to migrate " + fileName, e);
 					}
 				}
 			});
