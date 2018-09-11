@@ -44,11 +44,12 @@ public class BaseUpgradeSQLServerDatetime extends UpgradeProcess {
 
 	private void _upgradeTable(Class<?> tableClass) throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer();) {
-			DatabaseMetaData databaseMetaData = connection.getMetaData();
 			DBInspector dbInspector = new DBInspector(connection);
 
 			String catalog = dbInspector.getCatalog();
 			String schema = dbInspector.getSchema();
+
+			DatabaseMetaData databaseMetaData = connection.getMetaData();
 
 			String tableName = dbInspector.normalizeName(
 				getTableName(tableClass), databaseMetaData);
