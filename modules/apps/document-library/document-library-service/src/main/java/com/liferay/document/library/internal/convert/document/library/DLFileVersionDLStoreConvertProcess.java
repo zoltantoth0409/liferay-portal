@@ -84,8 +84,7 @@ public class DLFileVersionDLStoreConvertProcess
 					}
 				}
 				catch (Exception e) {
-					_log.error(
-						"Migration failed for " + dlFileEntry.getName(), e);
+					_log.error("Unable to migrate " + dlFileEntry.getName(), e);
 				}
 			});
 
