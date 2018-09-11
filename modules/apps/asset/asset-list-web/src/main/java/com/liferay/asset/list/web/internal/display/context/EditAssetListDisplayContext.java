@@ -104,6 +104,8 @@ public class EditAssetListDisplayContext {
 			boolean includeNonVisibleAssets, int type)
 		throws Exception {
 
+		List<AssetEntry> assetEntries = new ArrayList<>();
+
 		UnicodeProperties typeSettingsProperties = new UnicodeProperties(true);
 
 		typeSettingsProperties.fastLoad(assetListEntry.getTypeSettings());
@@ -112,8 +114,6 @@ public class EditAssetListDisplayContext {
 			"assetEntryXml");
 
 		String[] assetEntryXmls = StringUtil.split(assetEntryXmlProperty);
-
-		List<AssetEntry> assetEntries = new ArrayList<>();
 
 		List<String> missingAssetEntryUuids = new ArrayList<>();
 
