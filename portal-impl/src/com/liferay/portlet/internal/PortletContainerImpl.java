@@ -993,8 +993,8 @@ public class PortletContainerImpl implements PortletContainer {
 		finally {
 			ServiceContextThreadLocal.popServiceContext();
 
-			if (liferayResourceRequest.isAsyncSupported() &&
-				liferayResourceRequest.isAsyncStarted()) {
+			if (liferayResourceRequest.isAsyncStarted() &&
+				liferayResourceRequest.isAsyncSupported()) {
 
 				PortletAsyncContextImpl portletAsyncContextImpl =
 					(PortletAsyncContextImpl)
