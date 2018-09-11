@@ -50,7 +50,7 @@ public abstract class TopLevelBuildRunner<T extends TopLevelBuildData>
 
 		if (!(build instanceof TopLevelBuild)) {
 			throw new RuntimeException(
-				"Invalid build url " + topLevelBuildData.getBuildURL());
+				"Invalid build URL " + topLevelBuildData.getBuildURL());
 		}
 
 		_topLevelBuild = (TopLevelBuild)build;
