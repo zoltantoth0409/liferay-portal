@@ -108,12 +108,11 @@ public class UpgradeKernelPackageTest extends UpgradeKernelPackage {
 	@Test
 	public void testDoUpgrade() throws Exception {
 
-		// Just invoke this method to have code coverage
-		// All methods are tested in other tests
+		// For code coverage
 
 		doUpgrade();
 
-		// Only thing left is to check the table and column combination is right
+		// Check that the table and column combination is correct
 
 		DBInspector dbInspector = new DBInspector(connection);
 
@@ -135,45 +134,45 @@ public class UpgradeKernelPackageTest extends UpgradeKernelPackage {
 
 			// Test WildcardMode.LEADING
 
-			_insertData(1, "", _PREFIX_OLD_CLASS_NAME);
-			_insertData(2, "", _POSTFIX_OLD_CLASS_NAME);
-			_insertData(3, "", _PREFIX_POSTFIX_OLD_CLASS_NAME);
+			_insertData(1, "", _PREFIX_CLASS_NAME_OLD);
+			_insertData(2, "", _POSTFIX_CLASS_NAME_OLD);
+			_insertData(3, "", _PREFIX_POSTFIX_CLASS_NAME_OLD);
 
 			upgradeLongTextTable(
 				"UpgradeKernelPackageTest", "textData", "id", _TEST_CLASS_NAMES,
 				WildcardMode.LEADING);
 
-			_assertData(1, "textData", _PREFIX_NEW_CLASS_NAME);
-			_assertData(2, "textData", _POSTFIX_OLD_CLASS_NAME);
-			_assertData(3, "textData", _PREFIX_POSTFIX_OLD_CLASS_NAME);
+			_assertData(1, "textData", _PREFIX_CLASS_NAME_NEW);
+			_assertData(2, "textData", _POSTFIX_CLASS_NAME_OLD);
+			_assertData(3, "textData", _PREFIX_POSTFIX_CLASS_NAME_OLD);
 
 			// Test WildcardMode.TRAILING
 
-			_insertData(4, "", _PREFIX_OLD_CLASS_NAME);
-			_insertData(5, "", _POSTFIX_OLD_CLASS_NAME);
-			_insertData(6, "", _PREFIX_POSTFIX_OLD_CLASS_NAME);
+			_insertData(4, "", _PREFIX_CLASS_NAME_OLD);
+			_insertData(5, "", _POSTFIX_CLASS_NAME_OLD);
+			_insertData(6, "", _PREFIX_POSTFIX_CLASS_NAME_OLD);
 
 			upgradeLongTextTable(
 				"UpgradeKernelPackageTest", "textData", "id", _TEST_CLASS_NAMES,
 				WildcardMode.TRAILING);
 
-			_assertData(4, "textData", _PREFIX_OLD_CLASS_NAME);
-			_assertData(5, "textData", _POSTFIX_NEW_CLASS_NAME);
-			_assertData(6, "textData", _PREFIX_POSTFIX_OLD_CLASS_NAME);
+			_assertData(4, "textData", _PREFIX_CLASS_NAME_OLD);
+			_assertData(5, "textData", _POSTFIX_CLASS_NAME_NEW);
+			_assertData(6, "textData", _PREFIX_POSTFIX_CLASS_NAME_OLD);
 
 			// Test WildcardMode.SURROUND
 
-			_insertData(7, "", _PREFIX_OLD_CLASS_NAME);
-			_insertData(8, "", _POSTFIX_OLD_CLASS_NAME);
-			_insertData(9, "", _PREFIX_POSTFIX_OLD_CLASS_NAME);
+			_insertData(7, "", _PREFIX_CLASS_NAME_OLD);
+			_insertData(8, "", _POSTFIX_CLASS_NAME_OLD);
+			_insertData(9, "", _PREFIX_POSTFIX_CLASS_NAME_OLD);
 
 			upgradeLongTextTable(
 				"UpgradeKernelPackageTest", "textData", "id", _TEST_CLASS_NAMES,
 				WildcardMode.SURROUND);
 
-			_assertData(7, "textData", _PREFIX_NEW_CLASS_NAME);
-			_assertData(8, "textData", _POSTFIX_NEW_CLASS_NAME);
-			_assertData(9, "textData", _PREFIX_POSTFIX_NEW_CLASS_NAME);
+			_assertData(7, "textData", _PREFIX_CLASS_NAME_NEW);
+			_assertData(8, "textData", _POSTFIX_CLASS_NAME_NEW);
+			_assertData(9, "textData", _PREFIX_POSTFIX_CLASS_NAME_NEW);
 		}
 		finally {
 			runSQL("delete from UpgradeKernelPackageTest");
@@ -185,22 +184,22 @@ public class UpgradeKernelPackageTest extends UpgradeKernelPackage {
 		throws Exception {
 
 		try {
-			_insertData(1, "", _PREFIX_OLD_CLASS_NAME);
-			_insertData(2, "", _POSTFIX_OLD_CLASS_NAME);
-			_insertData(3, "", _PREFIX_POSTFIX_OLD_CLASS_NAME);
-			_insertData(4, "", "NOT_OLD_CLASS_NAME");
+			_insertData(1, "", _PREFIX_CLASS_NAME_OLD);
+			_insertData(2, "", _POSTFIX_CLASS_NAME_OLD);
+			_insertData(3, "", _PREFIX_POSTFIX_CLASS_NAME_OLD);
+			_insertData(4, "", "NOT_CLASS_NAME_OLD");
 
 			upgradeLongTextTable(
 				"textData", "id",
 				"select textData, id from UpgradeKernelPackageTest where " +
-					"textData like '%" + _OLD_CLASS_NAME + "%'",
+					"textData like '%" + _CLASS_NAME_OLD + "%'",
 				"update UpgradeKernelPackageTest set textData = ? where id = ?",
 				_TEST_CLASS_NAMES[0]);
 
-			_assertData(1, "textData", _PREFIX_NEW_CLASS_NAME);
-			_assertData(2, "textData", _POSTFIX_NEW_CLASS_NAME);
-			_assertData(3, "textData", _PREFIX_POSTFIX_NEW_CLASS_NAME);
-			_assertData(4, "textData", "NOT_OLD_CLASS_NAME");
+			_assertData(1, "textData", _PREFIX_CLASS_NAME_NEW);
+			_assertData(2, "textData", _POSTFIX_CLASS_NAME_NEW);
+			_assertData(3, "textData", _PREFIX_POSTFIX_CLASS_NAME_NEW);
+			_assertData(4, "textData", "NOT_CLASS_NAME_OLD");
 		}
 		finally {
 			runSQL("delete from UpgradeKernelPackageTest");
@@ -213,56 +212,56 @@ public class UpgradeKernelPackageTest extends UpgradeKernelPackage {
 
 			// Test WildcardMode.LEADING
 
-			_insertData(1, _PREFIX_OLD_CLASS_NAME, "");
-			_insertData(2, _POSTFIX_OLD_CLASS_NAME, "");
-			_insertData(3, _PREFIX_POSTFIX_OLD_CLASS_NAME, "");
+			_insertData(1, _PREFIX_CLASS_NAME_OLD, "");
+			_insertData(2, _POSTFIX_CLASS_NAME_OLD, "");
+			_insertData(3, _PREFIX_POSTFIX_CLASS_NAME_OLD, "");
 
 			upgradeTable(
 				"UpgradeKernelPackageTest", "data", _TEST_CLASS_NAMES,
 				WildcardMode.LEADING);
 
-			_assertData(1, "data", _PREFIX_NEW_CLASS_NAME);
-			_assertData(2, "data", _POSTFIX_OLD_CLASS_NAME);
-			_assertData(3, "data", _PREFIX_POSTFIX_OLD_CLASS_NAME);
+			_assertData(1, "data", _PREFIX_CLASS_NAME_NEW);
+			_assertData(2, "data", _POSTFIX_CLASS_NAME_OLD);
+			_assertData(3, "data", _PREFIX_POSTFIX_CLASS_NAME_OLD);
 
 			// Test WildcardMode.TRAILING
 
-			_insertData(4, _PREFIX_OLD_CLASS_NAME, "");
-			_insertData(5, _POSTFIX_OLD_CLASS_NAME, "");
-			_insertData(6, _PREFIX_POSTFIX_OLD_CLASS_NAME, "");
+			_insertData(4, _PREFIX_CLASS_NAME_OLD, "");
+			_insertData(5, _POSTFIX_CLASS_NAME_OLD, "");
+			_insertData(6, _PREFIX_POSTFIX_CLASS_NAME_OLD, "");
 
 			upgradeTable(
 				"UpgradeKernelPackageTest", "data", _TEST_CLASS_NAMES,
 				WildcardMode.TRAILING);
 
-			_assertData(4, "data", _PREFIX_OLD_CLASS_NAME);
-			_assertData(5, "data", _POSTFIX_NEW_CLASS_NAME);
-			_assertData(6, "data", _PREFIX_POSTFIX_OLD_CLASS_NAME);
+			_assertData(4, "data", _PREFIX_CLASS_NAME_OLD);
+			_assertData(5, "data", _POSTFIX_CLASS_NAME_NEW);
+			_assertData(6, "data", _PREFIX_POSTFIX_CLASS_NAME_OLD);
 
 			// Test WildcardMode.SURROUND
 
-			_insertData(7, _PREFIX_OLD_CLASS_NAME, "");
-			_insertData(8, _POSTFIX_OLD_CLASS_NAME, "");
-			_insertData(9, _PREFIX_POSTFIX_OLD_CLASS_NAME, "");
+			_insertData(7, _PREFIX_CLASS_NAME_OLD, "");
+			_insertData(8, _POSTFIX_CLASS_NAME_OLD, "");
+			_insertData(9, _PREFIX_POSTFIX_CLASS_NAME_OLD, "");
 
 			upgradeTable(
 				"UpgradeKernelPackageTest", "data", _TEST_CLASS_NAMES,
 				WildcardMode.SURROUND);
 
-			_assertData(7, "data", _PREFIX_NEW_CLASS_NAME);
-			_assertData(8, "data", _POSTFIX_NEW_CLASS_NAME);
-			_assertData(9, "data", _PREFIX_POSTFIX_NEW_CLASS_NAME);
+			_assertData(7, "data", _PREFIX_CLASS_NAME_NEW);
+			_assertData(8, "data", _POSTFIX_CLASS_NAME_NEW);
+			_assertData(9, "data", _PREFIX_POSTFIX_CLASS_NAME_NEW);
 
-			// Test preventDuplicate
+			// Test preventDuplicates
 
-			_insertData(10, _PREFIX_POSTFIX_OLD_CLASS_NAME, "");
-			_insertData(11, _PREFIX_POSTFIX_NEW_CLASS_NAME, "");
+			_insertData(10, _PREFIX_POSTFIX_CLASS_NAME_OLD, "");
+			_insertData(11, _PREFIX_POSTFIX_CLASS_NAME_NEW, "");
 
 			upgradeTable(
 				"UpgradeKernelPackageTest", "data", _TEST_CLASS_NAMES,
 				WildcardMode.SURROUND, true);
 
-			_assertData(10, "data", _PREFIX_POSTFIX_NEW_CLASS_NAME);
+			_assertData(10, "data", _PREFIX_POSTFIX_CLASS_NAME_NEW);
 			_assertData(11, "data", null);
 		}
 		finally {
@@ -342,30 +341,30 @@ public class UpgradeKernelPackageTest extends UpgradeKernelPackage {
 		runSQL(sb.toString());
 	}
 
-	private static final String _NEW_CLASS_NAME = "UPDATED_CLASS_NAME";
+	private static final String _CLASS_NAME_NEW = "UPDATED_CLASS_NAME";
 
-	private static final String _OLD_CLASS_NAME = "ORIGINAL_CLASS_NAME";
+	private static final String _CLASS_NAME_OLD = "ORIGINAL_CLASS_NAME";
 
-	private static final String _POSTFIX_NEW_CLASS_NAME =
-		_NEW_CLASS_NAME + "_POSTFIX";
+	private static final String _POSTFIX_CLASS_NAME_NEW =
+		_CLASS_NAME_NEW + "_POSTFIX";
 
-	private static final String _POSTFIX_OLD_CLASS_NAME =
-		_OLD_CLASS_NAME + "_POSTFIX";
+	private static final String _POSTFIX_CLASS_NAME_OLD =
+		_CLASS_NAME_OLD + "_POSTFIX";
 
-	private static final String _PREFIX_NEW_CLASS_NAME =
-		"PREFIX_" + _NEW_CLASS_NAME;
+	private static final String _PREFIX_CLASS_NAME_NEW =
+		"PREFIX_" + _CLASS_NAME_NEW;
 
-	private static final String _PREFIX_OLD_CLASS_NAME =
-		"PREFIX_" + _OLD_CLASS_NAME;
+	private static final String _PREFIX_CLASS_NAME_OLD =
+		"PREFIX_" + _CLASS_NAME_OLD;
 
-	private static final String _PREFIX_POSTFIX_NEW_CLASS_NAME =
-		"PREFIX_" + _NEW_CLASS_NAME + "_POSTFIX";
+	private static final String _PREFIX_POSTFIX_CLASS_NAME_NEW =
+		"PREFIX_" + _CLASS_NAME_NEW + "_POSTFIX";
 
-	private static final String _PREFIX_POSTFIX_OLD_CLASS_NAME =
-		"PREFIX_" + _OLD_CLASS_NAME + "_POSTFIX";
+	private static final String _PREFIX_POSTFIX_CLASS_NAME_OLD =
+		"PREFIX_" + _CLASS_NAME_OLD + "_POSTFIX";
 
 	private static final String[][] _TEST_CLASS_NAMES = {
-		{_OLD_CLASS_NAME, _NEW_CLASS_NAME}
+		{_CLASS_NAME_OLD, _CLASS_NAME_NEW}
 	};
 
 	private static DB _db;
