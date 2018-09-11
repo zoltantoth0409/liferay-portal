@@ -23,7 +23,7 @@ AUI.add(
 			var nodeType = node.get('type').toLowerCase();
 
 			if (nodeType === 'file') {
-				return (node._node.files[0].size <= ruleValue);
+				return (ruleValue === 0 || node._node.files[0].size <= ruleValue);
 			}
 
 			return true;
@@ -327,7 +327,7 @@ AUI.add(
 						var fieldName = rule.fieldName;
 						var validatorName = rule.validatorName;
 
-						if (rule.body && !rule.custom) {
+						if ((rule.body || rule.body === 0) && !rule.custom) {
 							value = rule.body;
 						}
 
