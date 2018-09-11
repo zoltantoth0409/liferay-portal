@@ -106,6 +106,8 @@ public class EditAssetListDisplayContext {
 
 		List<AssetEntry> assetEntries = new ArrayList<>();
 
+		List<String> missingAssetEntryUuids = new ArrayList<>();
+
 		UnicodeProperties typeSettingsProperties = new UnicodeProperties(true);
 
 		typeSettingsProperties.fastLoad(assetListEntry.getTypeSettings());
@@ -114,8 +116,6 @@ public class EditAssetListDisplayContext {
 			"assetEntryXml");
 
 		String[] assetEntryXmls = StringUtil.split(assetEntryXmlProperty);
-
-		List<String> missingAssetEntryUuids = new ArrayList<>();
 
 		for (String assetEntryXml : assetEntryXmls) {
 			Document document = SAXReaderUtil.read(assetEntryXml);
