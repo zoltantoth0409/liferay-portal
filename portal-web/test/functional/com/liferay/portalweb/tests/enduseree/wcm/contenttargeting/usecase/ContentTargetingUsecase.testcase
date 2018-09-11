@@ -1400,7 +1400,7 @@
 		</execute>
 	</command>
 
-	<command ignore="true" name="ClusteringWithContentTargeting" priority="3">
+	<command name="ClusteringWithContentTargeting" priority="3">
 		<property name="app.server.bundles.size" value="1" />
 		<property name="cluster.enabled" value="true" />
 		<property name="content.targeting.release" value="true" />
