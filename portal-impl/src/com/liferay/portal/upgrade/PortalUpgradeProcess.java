@@ -184,11 +184,11 @@ public class PortalUpgradeProcess extends UpgradeProcess {
 		portalUpgradeProcessRegistry.registerUpgradeProcesses(
 			_upgradeProcesses);
 
-		PortalUpgradeProcessRegistry portalUpgradeProcessRegistry72x =
+		PortalUpgradeProcessRegistry v72xPortalUpgradeProcessRegistry =
 			new com.liferay.portal.upgrade.v7_2_x.
 				PortalUpgradeProcessRegistryImpl();
 
-		portalUpgradeProcessRegistry72x.registerUpgradeProcesses(
+		v72xPortalUpgradeProcessRegistry.registerUpgradeProcesses(
 			_upgradeProcesses);
 	}
 
