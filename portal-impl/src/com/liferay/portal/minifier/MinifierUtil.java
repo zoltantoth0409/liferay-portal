@@ -103,8 +103,8 @@ public class MinifierUtil {
 			int startIndex = index;
 
 			for (parenthesesCount = 1;
-					parenthesesCount != 0 && index < minifiedCss.length();
-					index++) {
+				 parenthesesCount != 0 && index < minifiedCss.length();
+				 index++) {
 
 				char c = minifiedCss.charAt(index);
 
