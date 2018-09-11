@@ -66,14 +66,14 @@ public class UpdateFragmentEntryLinksMVCActionCommand
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		Callable<Void> updateFragmentEntryLinksCallable =
+		Callable<Void> callable =
 			new UpdateFragmentEntryLinksCallable(actionRequest);
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		try {
 			TransactionInvokerUtil.invoke(
-				_transactionConfig, updateFragmentEntryLinksCallable);
+				_transactionConfig, callable);
 		}
 		catch (Throwable t) {
 			_log.error(t, t);

@@ -105,14 +105,14 @@ public class AddFragmentEntryLinkMVCActionCommand extends BaseMVCActionCommand {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		Callable<FragmentEntryLink> addFragmentEntryLinkCallable =
+		Callable<FragmentEntryLink> callable =
 			new AddFragmentEntryLinkCallable(actionRequest);
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		try {
 			FragmentEntryLink fragmentEntryLink = TransactionInvokerUtil.invoke(
-				_transactionConfig, addFragmentEntryLinkCallable);
+				_transactionConfig, callable);
 
 			jsonObject.put(
 				"editableValues", fragmentEntryLink.getEditableValues());

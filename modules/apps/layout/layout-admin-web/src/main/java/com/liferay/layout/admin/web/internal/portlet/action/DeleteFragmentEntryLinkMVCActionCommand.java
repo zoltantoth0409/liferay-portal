@@ -91,14 +91,14 @@ public class DeleteFragmentEntryLinkMVCActionCommand
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		Callable<FragmentEntryLink> deleteFragmentEntryLinkCallable =
+		Callable<FragmentEntryLink> callable =
 			new DeleteFragmentEntryLinkCallable(actionRequest);
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		try {
 			TransactionInvokerUtil.invoke(
-				_transactionConfig, deleteFragmentEntryLinkCallable);
+				_transactionConfig, callable);
 		}
 		catch (Throwable t) {
 			_log.error(t, t);
