@@ -105,8 +105,8 @@ public class AddFragmentEntryLinkMVCActionCommand extends BaseMVCActionCommand {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		Callable<FragmentEntryLink> callable =
-			new AddFragmentEntryLinkCallable(actionRequest);
+		Callable<FragmentEntryLink> callable = new AddFragmentEntryLinkCallable(
+			actionRequest);
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
