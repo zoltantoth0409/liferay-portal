@@ -248,20 +248,6 @@ describe(
 		);
 
 		it(
-			'should continue to propagate the fieldDeleted event',
-			() => {
-				const {FormRenderer} = component.refs;
-				const spy = jest.spyOn(component, 'emit');
-
-				FormRenderer.emit('fieldDeleted');
-
-				jest.runAllTimers();
-
-				expect(spy).toHaveBeenCalledWith('fieldDeleted', expect.anything());
-			}
-		);
-
-		it(
 			'should continue to propagate the fieldDuplicated event',
 			() => {
 				const {FormRenderer} = component.refs;
@@ -368,11 +354,18 @@ describe(
 				const {FormRenderer} = component.refs;
 				const mockEvent = jest.fn();
 
-				FormRenderer.emit('deleteFieldClicked', mockEvent);
-
-				const modal = document.querySelector('.modal');
+				FormRenderer.emit(
+					'fieldDeleted',
+					{
+						columnIndex: 0,
+						pageIndex: 1,
+						rowIndex: 0
+					}
+				);
 
 				jest.runAllTimers();
+
+				const modal = document.querySelector('.modal');
 
 				expect(modal.classList.contains('show')).toEqual(true);
 
@@ -394,7 +387,7 @@ describe(
 				jest.runAllTimers();
 
 				expect(spy).toHaveBeenCalled();
-				expect(spy).toHaveBeenCalledWith('deleteField', expect.anything());
+				expect(spy).toHaveBeenCalledWith('fieldDeleted', expect.anything());
 			}
 		);
 	}

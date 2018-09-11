@@ -224,16 +224,6 @@ class Builder extends Component {
 
 	/**
 	 * Continues the propagation of event.
-	 * @param {!Object} indexes
-	 * @private
-	 */
-
-	_handleFieldDeleted(indexes) {
-		this.emit('fieldDeleted', indexes);
-	}
-
-	/**
-	 * Continues the propagation of event.
 	 * @param {!Object}
 	 * @private
 	 */
@@ -297,7 +287,7 @@ class Builder extends Component {
 
 		if (!event.target.classList.contains('close-modal')) {
 			this.emit(
-				'deleteField',
+				'fieldDeleted',
 				{...indexes}
 			);
 		}
@@ -355,7 +345,7 @@ class Builder extends Component {
 		const FormRendererEvents = {
 			activePageUpdated: this._handleActivePageUpdated.bind(this),
 			fieldClicked: this._handleFieldClicked.bind(this),
-			fieldDeleted: this._handleFieldDeleted.bind(this),
+			fieldDeleted: this._handleDeleteFieldClicked.bind(this),
 			fieldDuplicated: this._handleFieldDuplicated.bind(this),
 			fieldMoved: this._handleFieldMoved.bind(this),
 			pageAdded: this._handlePageAdded.bind(this),
