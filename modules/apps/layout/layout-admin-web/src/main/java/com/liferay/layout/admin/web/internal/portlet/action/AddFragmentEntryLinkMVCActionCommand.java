@@ -66,13 +66,6 @@ public class AddFragmentEntryLinkMVCActionCommand extends BaseMVCActionCommand {
 		throws PortalException {
 
 		long fragmentEntryId = ParamUtil.getLong(actionRequest, "fragmentId");
-		long classNameId = ParamUtil.getLong(actionRequest, "classNameId");
-		long classPK = ParamUtil.getLong(actionRequest, "classPK");
-		int position = ParamUtil.getInteger(actionRequest, "position");
-		String data = ParamUtil.getString(actionRequest, "data");
-
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			actionRequest);
 
 		FragmentEntry fragmentEntry =
 			_fragmentEntryLocalService.fetchFragmentEntry(fragmentEntryId);
@@ -81,12 +74,21 @@ public class AddFragmentEntryLinkMVCActionCommand extends BaseMVCActionCommand {
 			throw new NoSuchEntryException();
 		}
 
+		long classNameId = ParamUtil.getLong(actionRequest, "classNameId");
+		long classPK = ParamUtil.getLong(actionRequest, "classPK");
+		int position = ParamUtil.getInteger(actionRequest, "position");
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			actionRequest);
+
 		FragmentEntryLink fragmentEntryLink =
 			_fragmentEntryLinkLocalService.addFragmentEntryLink(
 				serviceContext.getUserId(), serviceContext.getScopeGroupId(),
 				fragmentEntryId, classNameId, classPK, fragmentEntry.getCss(),
 				fragmentEntry.getHtml(), fragmentEntry.getJs(), null, position,
 				serviceContext);
+
+		String data = ParamUtil.getString(actionRequest, "data");
 
 		_layoutPageTemplateStructureLocalService.
 			updateLayoutPageTemplateStructure(
