@@ -64,16 +64,17 @@ public class DeleteFragmentEntryLinkMVCActionCommand
 
 		long fragmentEntryLinkId = ParamUtil.getLong(
 			actionRequest, "fragmentEntryLinkId");
+
+		FragmentEntryLink fragmentEntryLink =
+			_fragmentEntryLinkLocalService.deleteFragmentEntryLink(
+				fragmentEntryLinkId);
+
 		long classNameId = ParamUtil.getLong(actionRequest, "classNameId");
 		long classPK = ParamUtil.getLong(actionRequest, "classPK");
 		String data = ParamUtil.getString(actionRequest, "data");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			actionRequest);
-
-		FragmentEntryLink fragmentEntryLink =
-			_fragmentEntryLinkLocalService.deleteFragmentEntryLink(
-				fragmentEntryLinkId);
 
 		_layoutPageTemplateStructureLocalService.
 			updateLayoutPageTemplateStructure(
