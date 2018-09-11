@@ -112,9 +112,9 @@ public class SharingEntryServiceTest {
 			_testSharingPermissionCheckerClassName.getClassNameId();
 		long classPK = RandomTestUtil.randomLong();
 
-		Instant now = Instant.now();
+		Instant instant = Instant.now();
 
-		Date expirationDate = Date.from(now.plus(2, ChronoUnit.DAYS));
+		Date expirationDate = Date.from(instant.plus(2, ChronoUnit.DAYS));
 
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
@@ -149,9 +149,9 @@ public class SharingEntryServiceTest {
 			_testSharingPermissionCheckerClassName.getClassNameId();
 		long classPK = RandomTestUtil.randomLong();
 
-		Instant now = Instant.now();
+		Instant instant = Instant.now();
 
-		Date expirationDate = Date.from(now.plus(2, ChronoUnit.DAYS));
+		Date expirationDate = Date.from(instant.plus(2, ChronoUnit.DAYS));
 
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
@@ -166,7 +166,7 @@ public class SharingEntryServiceTest {
 		Assert.assertEquals(
 			expirationDate, addSharingEntry.getExpirationDate());
 
-		expirationDate = Date.from(now.plus(3, ChronoUnit.DAYS));
+		expirationDate = Date.from(instant.plus(3, ChronoUnit.DAYS));
 
 		SharingEntry updateSharingEntry =
 			_sharingEntryService.addOrUpdateSharingEntry(
@@ -220,9 +220,9 @@ public class SharingEntryServiceTest {
 			_testSharingPermissionCheckerClassName.getClassNameId();
 		long classPK = RandomTestUtil.randomLong();
 
-		Instant now = Instant.now();
+		Instant instant = Instant.now();
 
-		Date expirationDate = Date.from(now.minus(2, ChronoUnit.DAYS));
+		Date expirationDate = Date.from(instant.minus(2, ChronoUnit.DAYS));
 
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
@@ -624,9 +624,9 @@ public class SharingEntryServiceTest {
 
 		Assert.assertNull(sharingEntry.getExpirationDate());
 
-		Instant now = Instant.now();
+		Instant instant = Instant.now();
 
-		Date expirationDate = Date.from(now.plus(2, ChronoUnit.DAYS));
+		Date expirationDate = Date.from(instant.plus(2, ChronoUnit.DAYS));
 
 		sharingEntry = _sharingEntryService.updateSharingEntry(
 			sharingEntry.getSharingEntryId(),
@@ -656,9 +656,9 @@ public class SharingEntryServiceTest {
 			true, Arrays.asList(SharingEntryActionKey.VIEW), null,
 			serviceContext);
 
-		Instant now = Instant.now();
+		Instant instant = Instant.now();
 
-		Date expirationDate = Date.from(now.minus(2, ChronoUnit.DAYS));
+		Date expirationDate = Date.from(instant.minus(2, ChronoUnit.DAYS));
 
 		_sharingEntryService.updateSharingEntry(
 			sharingEntry.getSharingEntryId(),
