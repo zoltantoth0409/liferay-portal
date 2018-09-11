@@ -62,7 +62,7 @@ public class PortletAsyncListenerAdapter implements AsyncListener {
 						resourceResponse));
 			}
 			catch (IOException ioe) {
-				_log.error("Failed to notify listener for onError", ioe);
+				_log.error("Unable to notify listener for onError", ioe);
 			}
 		}
 
@@ -74,7 +74,7 @@ public class PortletAsyncListenerAdapter implements AsyncListener {
 						resourceResponse));
 			}
 			catch (IOException ioe) {
-				_log.error("Failed to notify listener for onTimeout", ioe);
+				_log.error("Unable to notify listener for onTimeout", ioe);
 			}
 		}
 
@@ -86,7 +86,7 @@ public class PortletAsyncListenerAdapter implements AsyncListener {
 						resourceResponse));
 			}
 			catch (IOException ioe) {
-				_log.error("Failed to notify listener for onComplete", ioe);
+				_log.error("Unable to notify listener for onComplete", ioe);
 			}
 		}
 
@@ -169,7 +169,7 @@ public class PortletAsyncListenerAdapter implements AsyncListener {
 		}
 		finally {
 
-			// Ensure the adapter is kept registered when the AsyncContext is
+			// Ensure the adapter is still registered when the AsyncContext is
 			// reinitialized
 
 			AsyncContext asyncContext = asyncEvent.getAsyncContext();
