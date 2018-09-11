@@ -90,7 +90,7 @@ public class BaseUpgradeSQLServerDatetime extends UpgradeProcess {
 							_log.error(
 								StringBundler.concat(
 									"Column ", columnName,
-									" does not exist in Table ", tableName));
+									" does not exist in table ", tableName));
 
 							continue;
 						}
@@ -102,7 +102,7 @@ public class BaseUpgradeSQLServerDatetime extends UpgradeProcess {
 							if (_log.isWarnEnabled()) {
 								_log.warn(
 									StringBundler.concat(
-										"Column ", columnName, " in Table ",
+										"Column ", columnName, " in table ",
 										tableName, " already is ",
 										newTypeDefinition));
 							}
