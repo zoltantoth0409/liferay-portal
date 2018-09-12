@@ -262,7 +262,6 @@ public class EditEntryMVCActionCommand extends BaseMVCActionCommand {
 				jsonObject.put(
 					"coverImageFileEntryId", entry.getCoverImageFileEntryId());
 				jsonObject.put("entryId", entry.getEntryId());
-				jsonObject.put("redirect", redirect);
 				jsonObject.put("updateRedirect", updateRedirect);
 
 				JSONPortletResponseUtil.writeJSON(
