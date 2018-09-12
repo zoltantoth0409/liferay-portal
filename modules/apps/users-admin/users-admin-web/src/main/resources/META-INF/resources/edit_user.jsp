@@ -17,8 +17,9 @@
 <%@ include file="/init.jsp" %>
 
 <%
-User selUser = PortalUtil.getSelectedUser(request);
 String backURL = ParamUtil.getString(request, "backURL");
+
+User selUser = PortalUtil.getSelectedUser(request);
 
 PortletURL portletURL = liferayPortletResponse.createRenderURL();
 
