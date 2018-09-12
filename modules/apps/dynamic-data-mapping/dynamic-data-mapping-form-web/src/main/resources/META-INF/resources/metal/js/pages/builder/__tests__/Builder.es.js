@@ -352,7 +352,6 @@ describe(
 			'should show modal when trash button gets clicked',
 			() => {
 				const {FormRenderer} = component.refs;
-				const mockEvent = jest.fn();
 
 				FormRenderer.emit(
 					'fieldDeleted',
