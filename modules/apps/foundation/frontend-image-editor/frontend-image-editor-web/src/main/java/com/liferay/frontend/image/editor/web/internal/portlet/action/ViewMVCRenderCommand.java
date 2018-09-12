@@ -26,7 +26,7 @@ import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
-import com.liferay.portal.kernel.util.ResourceBundleLoader;
+import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 
 import java.util.ArrayList;
@@ -100,8 +100,8 @@ public class ViewMVCRenderCommand implements MVCRenderCommand {
 
 		Locale locale = themeDisplay.getLocale();
 
-		ResourceBundle resourceBundle =
-			_resourceBundleLoader.loadResourceBundle(locale);
+		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
+			"content.Language", locale, ViewMVCRenderCommand.class);
 
 		Map<String, Object> strings = new HashMap<>();
 
@@ -242,10 +242,5 @@ public class ViewMVCRenderCommand implements MVCRenderCommand {
 
 	@Reference
 	private Portal _portal;
-
-	@Reference(
-		target = "(bundle.symbolic.name=com.liferay.frontend.image.editor.web)"
-	)
-	private ResourceBundleLoader _resourceBundleLoader;
 
 }
