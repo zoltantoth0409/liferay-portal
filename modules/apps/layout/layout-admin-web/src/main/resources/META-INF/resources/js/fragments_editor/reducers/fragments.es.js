@@ -57,7 +57,7 @@ function addFragmentEntryLinkReducer(state, actionType, payload) {
 
 							resolve(nextState);
 						}
-					).catch(
+					).catch (
 						() => {
 							resolve(nextState);
 						}
@@ -105,7 +105,7 @@ function removeFragmentEntryLinkReducer(state, actionType, payload) {
 
 						resolve(nextState);
 					}
-				).catch(
+				).catch (
 					() => {
 						resolve(nextState);
 					}
