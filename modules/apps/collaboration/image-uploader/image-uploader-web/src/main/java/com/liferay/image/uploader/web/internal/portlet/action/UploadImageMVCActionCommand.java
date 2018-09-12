@@ -259,8 +259,8 @@ public class UploadImageMVCActionCommand extends BaseMVCActionCommand {
 					errorMessage = themeDisplay.translate(
 						"request-is-larger-than-x-and-could-not-be-processed",
 						TextFormatter.formatStorageSize(
-							_uploadServletRequestConfigurationHelper.
-								getMaxSize(),
+							PrefsPropsUtil.getLong(
+								PropsKeys.UPLOAD_SERVLET_REQUEST_IMPL_MAX_SIZE),
 							themeDisplay.getLocale()));
 				}
 
