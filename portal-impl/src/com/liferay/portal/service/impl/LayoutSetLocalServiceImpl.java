@@ -592,8 +592,7 @@ public class LayoutSetLocalServiceImpl extends LayoutSetLocalServiceBaseImpl {
 				FIELD_ENABLE_COM_LIFERAY_PORTAL_KERNEL_MODEL_LAYOUTSET_JAVASCRIPT;
 
 		if (!enableJavaScript) {
-			String javaScript = oldSettingsProperties.getProperty(
-				"javascript");
+			String javaScript = oldSettingsProperties.getProperty("javascript");
 
 			newSettingsProperties.setProperty("javascript", javaScript);
 		}
