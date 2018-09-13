@@ -3185,10 +3185,10 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 			UnicodeProperties layoutTypeSettingsProperties =
 				layout.getTypeSettingsProperties();
 
-			String oldJavaScript = layoutTypeSettingsProperties.getProperty(
+			String javaScript = layoutTypeSettingsProperties.getProperty(
 				"javascript");
 
-			typeSettingsProperties.setProperty("javascript", oldJavaScript);
+			typeSettingsProperties.setProperty("javascript", javaScript);
 		}
 	}
 
