@@ -143,11 +143,11 @@ public class DDMFormInstanceRecordLocalServiceImpl
 				DDMFormInstanceRecord.class.getName(),
 				ddmFormInstanceRecordVersion.getFormInstanceRecordVersionId(),
 				ddmFormInstanceRecordVersion, serviceContext);
-		}
 
-		if (isEmailNotificationEnabled(ddmFormInstance)) {
-			ddmFormEmailNotificationSender.sendEmailNotification(
-				serviceContext, ddmFormInstanceRecord);
+			if (isEmailNotificationEnabled(ddmFormInstance)) {
+				ddmFormEmailNotificationSender.sendEmailNotification(
+					serviceContext, ddmFormInstanceRecord);
+			}
 		}
 
 		return ddmFormInstanceRecord;
@@ -416,11 +416,11 @@ public class DDMFormInstanceRecordLocalServiceImpl
 				DDMFormInstanceRecord.class.getName(),
 				ddmFormInstanceRecordVersion.getFormInstanceRecordVersionId(),
 				ddmFormInstanceRecordVersion, serviceContext);
-		}
 
-		if (isEmailNotificationEnabled(ddmFormInstance)) {
-			ddmFormEmailNotificationSender.sendEmailNotification(
-				serviceContext, ddmFormInstanceRecord);
+			if (isEmailNotificationEnabled(ddmFormInstance)) {
+				ddmFormEmailNotificationSender.sendEmailNotification(
+					serviceContext, ddmFormInstanceRecord);
+			}
 		}
 
 		return ddmFormInstanceRecord;
