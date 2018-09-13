@@ -46,16 +46,20 @@ import org.hibernate.dialect.resolver.DialectFactory;
 public class DialectDetector {
 
 	public static Dialect getDialect(DataSource dataSource) {
-		String dialectKey = null;
+		int dbMajorVersion = 0;
+		int dbMinorVersion = 0;
+		String dbName = null;
 		Dialect dialect = null;
+		String dialectKey = null;
 
 		try (Connection connection = dataSource.getConnection()) {
 			DatabaseMetaData databaseMetaData = connection.getMetaData();
 
-			String dbName = databaseMetaData.getDatabaseProductName();
+			dbMajorVersion = databaseMetaData.getDatabaseMajorVersion();
+			dbMinorVersion = databaseMetaData.getDatabaseMinorVersion();
+			dbName = databaseMetaData.getDatabaseProductName();
+
 			String driverName = databaseMetaData.getDriverName();
-			int dbMajorVersion = databaseMetaData.getDatabaseMajorVersion();
-			int dbMinorVersion = databaseMetaData.getDatabaseMinorVersion();
 
 			StringBundler sb = new StringBundler(5);
 
@@ -73,8 +77,8 @@ public class DialectDetector {
 				return dialect;
 			}
 
-			if (_log.isInfoEnabled()) {
-				_log.info(
+			if (_log.isDebugEnabled()) {
+				_log.debug(
 					StringBundler.concat(
 						"Determine dialect for ", dbName, " ", dbMajorVersion,
 						".", dbMinorVersion));
@@ -151,7 +155,10 @@ public class DialectDetector {
 			if (_log.isInfoEnabled()) {
 				Class<?> clazz = dialect.getClass();
 
-				_log.info("Using dialect " + clazz.getName());
+				_log.info(
+					StringBundler.concat(
+						"Using dialect ", clazz.getName(), " for ", dbName, " ",
+						dbMajorVersion, ".", dbMinorVersion));
 			}
 
 			_dialects.put(dialectKey, dialect);
