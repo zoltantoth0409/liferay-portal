@@ -317,17 +317,18 @@ public class SelectDDMFormFieldTemplateContextContributorTest
 		SelectDDMFormFieldTemplateContextContributor spy = PowerMockito.spy(
 			_selectDDMFormFieldTemplateContextContributor);
 
-		PowerMockitoStubber stubber = PowerMockito.doReturn(LocaleUtil.US);
+		PowerMockitoStubber powerMockitoStubber = PowerMockito.doReturn(
+			LocaleUtil.US);
 
-		stubber.when(
+		powerMockitoStubber.when(
 			spy
 		).getDisplayLocale(
 			Matchers.any(HttpServletRequest.class)
 		);
 
-		stubber = PowerMockito.doReturn(_resourceBundle);
+		powerMockitoStubber = PowerMockito.doReturn(_resourceBundle);
 
-		stubber.when(
+		powerMockitoStubber.when(
 			spy
 		).getResourceBundle(
 			Matchers.any(Locale.class)
