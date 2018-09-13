@@ -106,6 +106,8 @@ public class DLOpenerGoogleDriveDLViewFileVersionDisplayContext
 	private MenuItem _createCheckoutInGoogleDocsMenuItem() {
 		JavaScriptMenuItem javaScriptMenuItem = new JavaScriptMenuItem();
 
+		javaScriptMenuItem.setLabel(
+			LanguageUtil.get(_resourceBundle, "checkout-to-google-docs"));
 		javaScriptMenuItem.setOnClick(
 			StringBundler.concat(
 				_getNamespace(), "redirectNotification('",
@@ -113,24 +115,20 @@ public class DLOpenerGoogleDriveDLViewFileVersionDisplayContext
 					DLOpenerGoogleDriveWebConstants.GOOGLE_DRIVE_CHECKOUT),
 				"')"));
 
-		javaScriptMenuItem.setLabel(
-			LanguageUtil.get(_resourceBundle, "checkout-to-google-docs"));
-
 		return javaScriptMenuItem;
 	}
 
 	private MenuItem _createEditInGoogleDocsMenuItem() {
 		JavaScriptMenuItem javaScriptMenuItem = new JavaScriptMenuItem();
 
+		javaScriptMenuItem.setLabel(
+			LanguageUtil.get(_resourceBundle, "edit-in-google-docs"));
 		javaScriptMenuItem.setOnClick(
 			StringBundler.concat(
 				_getNamespace(), "redirectNotification('",
 				_getActionURL(
 					DLOpenerGoogleDriveWebConstants.GOOGLE_DRIVE_EDIT),
 				"')"));
-
-		javaScriptMenuItem.setLabel(
-			LanguageUtil.get(_resourceBundle, "edit-in-google-docs"));
 
 		return javaScriptMenuItem;
 	}

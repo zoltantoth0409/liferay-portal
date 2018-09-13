@@ -56,13 +56,13 @@ long cssLastModifiedTime = PortalWebResourcesUtil.getLastModified(PortalWebResou
 		<iframe class="google-docs-iframe" frameborder="0" id="<portlet:namespace />gDocsIFrame" src="<%= dlOpenerGoogleDriveFileReference.getGoogleDocsEditURL() %>"></iframe>
 
 		<portlet:actionURL name="/document_library/edit_in_google_docs" var="checkInURL">
-			<portlet:param name="fileEntryId" value="<%= String.valueOf(dlOpenerGoogleDriveFileReference.getFileEntryId()) %>" />
 			<portlet:param name="<%= Constants.CMD %>" value="<%= DLOpenerGoogleDriveWebConstants.GOOGLE_DRIVE_CHECKIN %>" />
+			<portlet:param name="fileEntryId" value="<%= String.valueOf(dlOpenerGoogleDriveFileReference.getFileEntryId()) %>" />
 		</portlet:actionURL>
 
 		<portlet:actionURL name="/document_library/edit_in_google_docs" var="cancelCheckoutURL">
-			<portlet:param name="fileEntryId" value="<%= String.valueOf(dlOpenerGoogleDriveFileReference.getFileEntryId()) %>" />
 			<portlet:param name="<%= Constants.CMD %>" value="<%= DLOpenerGoogleDriveWebConstants.GOOGLE_DRIVE_CANCEL_CHECKOUT %>" />
+			<portlet:param name="fileEntryId" value="<%= String.valueOf(dlOpenerGoogleDriveFileReference.getFileEntryId()) %>" />
 		</portlet:actionURL>
 
 		<script type="application/javascript">
