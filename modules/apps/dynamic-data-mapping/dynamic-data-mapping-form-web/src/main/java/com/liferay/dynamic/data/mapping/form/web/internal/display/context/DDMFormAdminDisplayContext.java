@@ -815,18 +815,14 @@ public class DDMFormAdminDisplayContext {
 
 		JSONSerializer jsonSerializer = _jsonFactory.createJSONSerializer();
 
-		DDMStructureVersion ddmStructureVersion =
-			getLatestDDMStructureVersion();
-
-		Locale defaultLocale = themeDisplay.getSiteDefaultLocale();
-
 		DDMFormBuilderContextRequest ddmFormBuilderContextRequest =
 			DDMFormBuilderContextRequest.with(
 				Optional.ofNullable(null), themeDisplay.getRequest(),
-				themeDisplay.getResponse(), defaultLocale, true);
+				themeDisplay.getResponse(), themeDisplay.getSiteDefaultLocale(),
+				true);
 
 		ddmFormBuilderContextRequest.addProperty(
-			"ddmStructureVersion", ddmStructureVersion);
+			"ddmStructureVersion", getLatestDDMStructureVersion());
 
 		DDMFormBuilderContextResponse ddmFormBuilderContextResponse =
 			_ddmFormBuilderContextFactory.create(ddmFormBuilderContextRequest);
