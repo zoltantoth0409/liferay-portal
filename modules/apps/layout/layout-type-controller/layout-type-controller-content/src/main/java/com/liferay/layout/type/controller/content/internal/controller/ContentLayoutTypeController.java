@@ -237,7 +237,7 @@ public class ContentLayoutTypeController extends BaseLayoutTypeControllerImpl {
 			return Collections.emptyList();
 		}
 
-		List<FragmentEntryLink> fragmentEntryLinksList = new ArrayList<>();
+		List<FragmentEntryLink> filteredFragmentEntryLinks = new ArrayList<>();
 
 		List<FragmentEntryLink> fragmentEntryLinks =
 			_fragmentEntryLinkLocalService.getFragmentEntryLinks(
@@ -257,11 +257,11 @@ public class ContentLayoutTypeController extends BaseLayoutTypeControllerImpl {
 				structureJSONArray.getLong(i));
 
 			if (fragmentEntryLink != null) {
-				fragmentEntryLinksList.add(fragmentEntryLink);
+				filteredFragmentEntryLinks.add(fragmentEntryLink);
 			}
 		}
 
-		return fragmentEntryLinksList;
+		return filteredFragmentEntryLinks;
 	}
 
 	private static final String _EDIT_LAYOUT_PAGE =
