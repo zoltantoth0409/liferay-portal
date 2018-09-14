@@ -522,7 +522,7 @@ if (Validator.isNotNull(keywords)) {
 			/>
 		</liferay-ui:search-container>
 
-		<c:if test="<%= !showSearchInfo %>">
+		<c:if test="<%= !showSearchInfo && (uploadURL != null) %>">
 			<liferay-ui:drop-here-info
 				message="drop-files-here"
 			/>
