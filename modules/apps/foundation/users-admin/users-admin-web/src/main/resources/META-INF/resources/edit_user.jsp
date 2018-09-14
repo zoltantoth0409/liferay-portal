@@ -121,12 +121,8 @@ SortedSet<Group> inheritedSitesSet = new TreeSet<>();
 
 inheritedSitesSet.addAll(GroupLocalServiceUtil.getUserGroupsRelatedGroups(userGroups));
 
-List<Group> organizationsRelatedGroups = Collections.emptyList();
-
 if (!organizations.isEmpty()) {
-	organizationsRelatedGroups = GroupLocalServiceUtil.getOrganizationsRelatedGroups(organizations);
-
-	inheritedSitesSet.addAll(organizationsRelatedGroups);
+	inheritedSitesSet.addAll(GroupLocalServiceUtil.getOrganizationsRelatedGroups(organizations));
 }
 
 List<Group> inheritedSites = ListUtil.fromCollection(inheritedSitesSet);
@@ -135,7 +131,6 @@ List<Group> allGroups = new ArrayList<Group>();
 
 allGroups.addAll(groups);
 allGroups.addAll(inheritedSites);
-allGroups.addAll(organizationsRelatedGroups);
 allGroups.addAll(GroupLocalServiceUtil.getOrganizationsGroups(organizations));
 allGroups.addAll(GroupLocalServiceUtil.getUserGroupsGroups(userGroups));
 
