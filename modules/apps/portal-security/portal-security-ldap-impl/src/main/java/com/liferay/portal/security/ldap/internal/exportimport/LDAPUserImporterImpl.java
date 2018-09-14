@@ -1512,6 +1512,17 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 
 		Date modifiedDate = null;
 
+		try {
+			modifiedDate = LDAPUtil.parseDate(modifyTimestamp);
+		}
+		catch (ParseException pe) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					"Unable to parse LDAP modify timestamp " + modifyTimestamp,
+					pe);
+			}
+		}
+
 		LDAPImportConfiguration ldapImportConfiguration =
 			_ldapImportConfigurationProvider.getConfiguration(companyId);
 
@@ -1521,11 +1532,8 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 			passwordReset = user.isPasswordReset();
 		}
 
-		try {
-			if (Validator.isNotNull(modifyTimestamp)) {
-				modifiedDate = LDAPUtil.parseDate(modifyTimestamp);
-
-				if (modifiedDate.equals(user.getModifiedDate())) {
+			if ((modifiedDate != null) &&
+				modifiedDate.equals(user.getModifiedDate())) {
 					if ((ldapUser.isUpdatePassword() ||
 						 !ldapImportConfiguration.
 							 importUserPasswordEnabled()) &&
@@ -1546,9 +1554,8 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 					}
 
 					return user;
-				}
 			}
-			else if (!isNew) {
+			else if ((modifiedDate == null) && !isNew) {
 				if (_log.isInfoEnabled()) {
 					_log.info(
 						"Skipping user " + user.getEmailAddress() +
@@ -1557,14 +1564,6 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 
 				return user;
 			}
-		}
-		catch (ParseException pe) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(
-					"Unable to parse LDAP modify timestamp " + modifyTimestamp,
-					pe);
-			}
-		}
 
 		LDAPServerConfiguration ldapServerConfiguration =
 			_ldapServerConfigurationProvider.getConfiguration(
