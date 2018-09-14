@@ -65,13 +65,13 @@ public class SharingUserNotificationTest extends BaseUserNotificationTestCase {
 
 	@Override
 	protected BaseModel<?> addBaseModel() throws Exception {
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(
-				group.getGroupId(), TestPropsValues.getUserId());
-
 		long classNameId = _classNameLocalService.getClassNameId(
 			Group.class.getName());
 		long classPK = group.getGroupId();
+
+		ServiceContext serviceContext =
+			ServiceContextTestUtil.getServiceContext(
+				group.getGroupId(), TestPropsValues.getUserId());
 
 		return _sharingEntryLocalService.addSharingEntry(
 			_fromUser.getUserId(), user.getUserId(), classNameId, classPK,

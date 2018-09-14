@@ -66,13 +66,13 @@ public class AddOrUpdateSharingUserNotificationTest
 
 	@Override
 	protected BaseModel<?> addBaseModel() throws Exception {
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(
-				group.getGroupId(), TestPropsValues.getUserId());
-
 		long classNameId = _classNameLocalService.getClassNameId(
 			Group.class.getName());
 		long classPK = group.getGroupId();
+
+		ServiceContext serviceContext =
+			ServiceContextTestUtil.getServiceContext(
+				group.getGroupId(), TestPropsValues.getUserId());
 
 		return _sharingEntryLocalService.addOrUpdateSharingEntry(
 			_fromUser.getUserId(), user.getUserId(), classNameId, classPK,
@@ -97,11 +97,11 @@ public class AddOrUpdateSharingUserNotificationTest
 	protected BaseModel<?> updateBaseModel(BaseModel<?> baseModel)
 		throws Exception {
 
+		SharingEntry sharingEntry = (SharingEntry)baseModel;
+
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(
 				group.getGroupId(), TestPropsValues.getUserId());
-
-		SharingEntry sharingEntry = (SharingEntry)baseModel;
 
 		return _sharingEntryLocalService.addOrUpdateSharingEntry(
 			sharingEntry.getFromUserId(), sharingEntry.getToUserId(),
