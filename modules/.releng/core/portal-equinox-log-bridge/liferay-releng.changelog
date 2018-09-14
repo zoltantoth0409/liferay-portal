@@ -22,3 +22,8 @@
 # Bundle Version 2.0.4
 #
 1114d2b37d4bf89072656c534a1e0a7609e9ac91^..67db8a1417e3d76f93abed3350ebd468af5a860e=LPS-80388 LPS-85003 LPS-85206
+
+#
+# Bundle Version 2.0.5
+#
+67db8a1417e3d76f93abed3350ebd468af5a860e^..fc6ed73f7f0b936dccac8594ccccc7226e6f747a=LPS-85206
