@@ -34,11 +34,13 @@ public class BundleStartStopLogger implements SynchronousBundleListener {
 	@Override
 	public void bundleChanged(BundleEvent bundleEvent) {
 		if (_portalStarted.get()) {
-			if (bundleEvent.getType() == BundleEvent.STARTED) {
-				_log.info("STARTED {}", bundleEvent.getBundle());
-			}
-			else if (bundleEvent.getType() == BundleEvent.STOPPED) {
-				_log.info("STOPPED {}", bundleEvent.getBundle());
+			if (_log.isInfoEnabled()) {
+				if (bundleEvent.getType() == BundleEvent.STARTED) {
+					_log.info("STARTED {}", bundleEvent.getBundle());
+				}
+				else if (bundleEvent.getType() == BundleEvent.STOPPED) {
+					_log.info("STOPPED {}", bundleEvent.getBundle());
+				}
 			}
 		}
 		else {
