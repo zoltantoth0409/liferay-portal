@@ -25,6 +25,7 @@ import org.eclipse.osgi.internal.hookregistry.HookRegistry;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
 import org.osgi.util.tracker.ServiceTracker;
 
@@ -51,7 +52,9 @@ public class PortalHookConfigurator
 	}
 
 	@Override
-	public void start(BundleContext bundleContext) throws Exception {
+	public void start(BundleContext bundleContext)
+		throws InvalidSyntaxException {
+
 		ServiceReference<ExtendedLogReaderService> serviceReference =
 			bundleContext.getServiceReference(ExtendedLogReaderService.class);
 
@@ -92,7 +95,7 @@ public class PortalHookConfigurator
 	}
 
 	@Override
-	public void stop(BundleContext bundleContext) throws Exception {
+	public void stop(BundleContext bundleContext) {
 		_serviceTracker.close();
 
 		bundleContext.removeBundleListener(_bundleStartStopLogger);
