@@ -108,7 +108,7 @@ public class PortalHookConfigurator
 	}
 
 	private final BundleStartStopLogger _bundleStartStopLogger;
-	private final AtomicBoolean _portalStarted = new AtomicBoolean(false);
+	private final AtomicBoolean _portalStarted = new AtomicBoolean();
 	private final PortalSynchronousLogListener _portalSynchronousLogListener;
 	private ServiceTracker<Object, Void> _serviceTracker;
 
