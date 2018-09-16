@@ -43,14 +43,12 @@ public class BundleStartStopLogger implements SynchronousBundleListener {
 				}
 			}
 		}
-		else {
-			if (_log.isDebugEnabled()) {
-				if (bundleEvent.getType() == BundleEvent.STARTED) {
-					_log.debug("STARTED {}", bundleEvent.getBundle());
-				}
-				else if (bundleEvent.getType() == BundleEvent.STOPPED) {
-					_log.debug("STOPPED {}", bundleEvent.getBundle());
-				}
+		else if (_log.isDebugEnabled()) {
+			if (bundleEvent.getType() == BundleEvent.STARTED) {
+				_log.debug("STARTED {}", bundleEvent.getBundle());
+			}
+			else if (bundleEvent.getType() == BundleEvent.STOPPED) {
+				_log.debug("STOPPED {}", bundleEvent.getBundle());
 			}
 		}
 	}
