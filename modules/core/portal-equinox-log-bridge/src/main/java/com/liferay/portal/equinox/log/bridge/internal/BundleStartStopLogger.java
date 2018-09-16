@@ -33,7 +33,15 @@ public class BundleStartStopLogger implements SynchronousBundleListener {
 
 	@Override
 	public void bundleChanged(BundleEvent bundleEvent) {
-		if (!_portalStarted.get()) {
+		if (_portalStarted.get()) {
+			if (bundleEvent.getType() == BundleEvent.STARTED) {
+				_log.info("STARTED {}", bundleEvent.getBundle());
+			}
+			else if (bundleEvent.getType() == BundleEvent.STOPPED) {
+				_log.info("STOPPED {}", bundleEvent.getBundle());
+			}
+		}
+		else {
 			if (_log.isDebugEnabled()) {
 				if (bundleEvent.getType() == BundleEvent.STARTED) {
 					_log.debug("STARTED {}", bundleEvent.getBundle());
@@ -41,14 +49,6 @@ public class BundleStartStopLogger implements SynchronousBundleListener {
 				else if (bundleEvent.getType() == BundleEvent.STOPPED) {
 					_log.debug("STOPPED {}", bundleEvent.getBundle());
 				}
-			}
-		}
-		else {
-			if (bundleEvent.getType() == BundleEvent.STARTED) {
-				_log.info("STARTED {}", bundleEvent.getBundle());
-			}
-			else if (bundleEvent.getType() == BundleEvent.STOPPED) {
-				_log.info("STOPPED {}", bundleEvent.getBundle());
 			}
 		}
 	}
