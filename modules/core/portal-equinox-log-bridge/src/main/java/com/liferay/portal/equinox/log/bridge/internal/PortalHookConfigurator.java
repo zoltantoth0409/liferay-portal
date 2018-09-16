@@ -93,6 +93,10 @@ public class PortalHookConfigurator
 
 	@Override
 	public void stop(BundleContext bundleContext) throws Exception {
+		_serviceTracker.close();
+
+		bundleContext.removeBundleListener(_bundleStartStopLogger);
+
 		ServiceReference<ExtendedLogReaderService> serviceReference =
 			bundleContext.getServiceReference(ExtendedLogReaderService.class);
 
@@ -101,10 +105,6 @@ public class PortalHookConfigurator
 
 		extendedLogReaderService.removeLogListener(
 			_portalSynchronousLogListener);
-
-		bundleContext.removeBundleListener(_bundleStartStopLogger);
-
-		_serviceTracker.close();
 	}
 
 	private final BundleStartStopLogger _bundleStartStopLogger;
