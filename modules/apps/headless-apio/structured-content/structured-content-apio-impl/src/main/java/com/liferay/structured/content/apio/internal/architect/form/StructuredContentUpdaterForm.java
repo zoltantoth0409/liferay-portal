@@ -192,11 +192,11 @@ public class StructuredContentUpdaterForm {
 
 		calendar.setTime(displayDate);
 
-		_displayDateMonth = calendar.get(Calendar.MONTH);
 		_displayDateDay = calendar.get(Calendar.DATE);
-		_displayDateYear = calendar.get(Calendar.YEAR);
 		_displayDateHour = calendar.get(Calendar.HOUR);
 		_displayDateMinute = calendar.get(Calendar.MINUTE);
+		_displayDateMonth = calendar.get(Calendar.MONTH);
+		_displayDateYear = calendar.get(Calendar.YEAR);
 	}
 
 	public void setTemplate(String template) {
