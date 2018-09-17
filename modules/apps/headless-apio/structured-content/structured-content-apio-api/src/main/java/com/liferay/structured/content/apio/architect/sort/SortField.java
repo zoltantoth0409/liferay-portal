@@ -45,6 +45,27 @@ public class SortField implements Serializable {
 	}
 
 	/**
+	 * @deprecated As of Judson (7.1.x), replaced by {@link
+	 *             #SortField(EntityField, boolean)}
+	 */
+	@Deprecated
+	public SortField(String fieldName, boolean asc) {
+		throw new UnsupportedOperationException(
+			"This constructor is deprecated and replaced by #SortField(" +
+				"EntityField, boolean)");
+	}
+
+	/**
+	 * @deprecated As of Judson (7.1.x), replaced by {@link
+	 *             #getSortableFieldName}
+	 */
+	@Deprecated
+	public String getFieldName() {
+		throw new UnsupportedOperationException(
+			"This method is deprecated and replaced by #getSortableFieldName");
+	}
+
+	/**
 	 * Returns the name of the field.
 	 *
 	 * @param  locale - the locale
