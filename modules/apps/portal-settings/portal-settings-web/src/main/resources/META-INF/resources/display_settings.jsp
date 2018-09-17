@@ -64,13 +64,9 @@
 
 			<%
 			RequiredLocaleException rle = (RequiredLocaleException)errorException;
-
-			String[] messageArguments = rle.getMessageArguments();
-
-			String messageKey = rle.getMessageKey();
 			%>
 
-			<liferay-ui:message arguments="<%= messageArguments %>" key="<%= messageKey %>" translateArguments="<%= false %>" />
+			<liferay-ui:message arguments="<%= rle.getMessageArguments() %>" key="<%= rle.getMessageKey() %>" translateArguments="<%= false %>" />
 		</liferay-ui:error>
 
 		<%
