@@ -81,7 +81,7 @@ public class JournalArticleContentHelper {
 
 					Optional<StructuredContentValuesForm>
 						structuredContentValuesFormOptional =
-							_findFirstFormFieldOptional(
+							_findStructuredContentValuesFormOptional(
 								structuredContentValuesForms, name);
 
 					Element contentElement = _getContentElement(
@@ -100,7 +100,9 @@ public class JournalArticleContentHelper {
 		);
 	}
 
-	private Optional<StructuredContentValuesForm> _findFirstFormFieldOptional(
+	private Optional<StructuredContentValuesForm>
+		_findStructuredContentValuesFormOptional(
+
 		List<StructuredContentValuesForm> structuredContentValuesForms,
 		String name) {
 
@@ -127,7 +129,7 @@ public class JournalArticleContentHelper {
 				if (type.equals("list") &&
 					_isJsonArray(structuredContentValuesForm.getValue())) {
 
-					return _getDynamicContentList(
+					return _getDynamicContentListElement(
 						document, element, structuredContentValuesForm);
 				}
 
@@ -176,7 +178,7 @@ public class JournalArticleContentHelper {
 		return "journal";
 	}
 
-	private Element _getDynamicContentList(
+	private Element _getDynamicContentListElement(
 		Document document, Element element,
 		StructuredContentValuesForm structuredContentValuesForm) {
 
