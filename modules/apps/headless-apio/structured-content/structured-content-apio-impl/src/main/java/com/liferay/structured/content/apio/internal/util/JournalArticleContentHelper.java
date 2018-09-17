@@ -319,11 +319,10 @@ public class JournalArticleContentHelper {
 
 		Transformer transformer = transformerFactory.newTransformer();
 
-		DOMSource domSource = new DOMSource(document);
-
 		StringWriter stringWriter = new StringWriter();
 
-		transformer.transform(domSource, new StreamResult(stringWriter));
+		transformer.transform(
+			new DOMSource(document), new StreamResult(stringWriter));
 
 		return stringWriter.toString();
 	}
