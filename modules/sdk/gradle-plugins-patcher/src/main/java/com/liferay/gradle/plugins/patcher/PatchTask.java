@@ -263,14 +263,14 @@ public class PatchTask extends DefaultTask {
 					public void execute(ExecSpec execSpec) {
 						execSpec.args(getArgs());
 
+						if (OSDetector.isWindows()) {
+							execSpec.args("--binary");
+						}
+
 						execSpec.args(
 							"--input=" +
 								FileUtil.relativize(
 									patchFile, srcTemporaryDir));
-
-						if (OSDetector.isWindows()) {
-							execSpec.args("--binary");
-						}
 
 						execSpec.setExecutable("patch");
 						execSpec.setIgnoreExitValue(true);
