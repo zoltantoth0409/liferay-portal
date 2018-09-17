@@ -93,7 +93,7 @@ public class JournalArticleContentHelper {
 					rootElement.appendChild(dynamicElement);
 				}
 
-				return _transformToString(document);
+				return _toString(document);
 			}
 		).orElse(
 			""
@@ -311,7 +311,7 @@ public class JournalArticleContentHelper {
 		).isSuccess();
 	}
 
-	private String _transformToString(Document document)
+	private String _toString(Document document)
 		throws TransformerException {
 
 		TransformerFactory transformerFactory =
