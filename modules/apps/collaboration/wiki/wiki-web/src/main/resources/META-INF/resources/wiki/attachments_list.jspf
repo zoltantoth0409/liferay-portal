@@ -71,11 +71,9 @@
 		function(event) {
 			var link = event.currentTarget;
 
-			var tr = link.ancestor('tr');
+			var deleteUrl = Liferay.PortletURL.createActionURL();
 
-			var deleteURL = Liferay.PortletURL.createActionURL();
-
-			deleteURL.setName('/wiki/edit_page_attachment');
+			deleteUrl.setName('/wiki/edit_page_attachment');
 
 			var params = {
 				cmd: link.getAttribute('data-cmd'),
@@ -85,8 +83,8 @@
 				title: link.getAttribute('data-title')
 			};
 
-			deleteURL.setParameters(params);
-			deleteURL.setPortletId('com_liferay_wiki_web_portlet_WikiPortlet');
+			deleteUrl.setParameters(params);
+			deleteUrl.setPortletId('com_liferay_wiki_web_portlet_WikiPortlet');
 
 			const A = new AUI();
 
@@ -94,11 +92,11 @@
 				'liferay-search-container',
 				A => {
 					A.io.request(
-						deleteURL.toString(),
+						deleteUrl.toString(),
 						{
 							on: {
 								success: function() {
-									searchContainer.deleteRow(tr, link.getAttribute('data-rowid'));
+									searchContainer.deleteRow(link.ancestor('tr'),link.getAttribute('data-rowid'));
 									searchContainer.updateDataStore();
 								}
 							}
