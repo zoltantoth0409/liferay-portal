@@ -274,9 +274,9 @@ public class StructuredContentNestedCollectionResource
 			structuredContentCreatorForm.getValues(), ddmStructure, locale,
 			structuredContentCreatorForm::getText);
 
-		String structureKey = ddmStructure.getStructureKey();
+		String ddmStructureKey = ddmStructure.getStructureKey();
 
-		String templateKey = _getTemplateKey(
+		String ddmTemplateKey = _getDDMTemplateKey(
 			contentSpaceId, structuredContentCreatorForm.getTemplate(),
 			ddmStructure);
 
@@ -287,7 +287,7 @@ public class StructuredContentNestedCollectionResource
 			contentSpaceId, 0, 0, 0, null, true,
 			structuredContentCreatorForm.getTitleMap(locale),
 			structuredContentCreatorForm.getDescriptionMap(locale), content,
-			structureKey, templateKey, null,
+			ddmStructureKey, ddmTemplateKey, null,
 			structuredContentCreatorForm.getDisplayDateMonth(),
 			structuredContentCreatorForm.getDisplayDateDay(),
 			structuredContentCreatorForm.getDisplayDateYear(),
@@ -616,11 +616,11 @@ public class StructuredContentNestedCollectionResource
 		);
 	}
 
-	private String _getTemplateKey(
-			long contentSpaceId, String templateKey, DDMStructure ddmStructure)
+	private String _getDDMTemplateKey(
+			long contentSpaceId, String ddmTemplateKey, DDMStructure ddmStructure)
 		throws PortalException {
 
-		if (templateKey == null) {
+		if (ddmTemplateKey == null) {
 			List<DDMTemplate> ddmTemplates = ddmStructure.getTemplates();
 
 			DDMTemplate ddmTemplate = ddmTemplates.get(0);
@@ -632,7 +632,7 @@ public class StructuredContentNestedCollectionResource
 			JournalArticle.class.getName());
 
 		DDMTemplate ddmTemplate = _ddmTemplateService.getTemplate(
-			contentSpaceId, className.getClassNameId(), templateKey);
+			contentSpaceId, className.getClassNameId(), ddmTemplateKey);
 
 		return ddmTemplate.getTemplateKey();
 	}
@@ -646,13 +646,11 @@ public class StructuredContentNestedCollectionResource
 		JournalArticle journalArticle = _journalArticleService.getArticle(
 			journalArticleId);
 
-		long groupId = journalArticle.getGroupId();
-
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setAddGroupPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
-		serviceContext.setScopeGroupId(groupId);
+		serviceContext.setScopeGroupId(journalArticle.getGroupId());
 
 		DDMStructure ddmStructure = journalArticle.getDDMStructure();
 
@@ -664,14 +662,15 @@ public class StructuredContentNestedCollectionResource
 				structuredContentUpdaterForm.getTextOptional(),
 				journalArticle.getContent()));
 
-		String ddmTemplateKey = _getTemplateKey(
-			groupId, structuredContentUpdaterForm.getTemplate(), ddmStructure);
+		String ddmTemplateKey = _getDDMTemplateKey(
+			journalArticle.getGroupId(),
+			structuredContentUpdaterForm.getTemplate(), ddmStructure);
 
 		Date displayDate = journalArticle.getDisplayDate();
 
 		JournalArticle updatedJournalArticle =
 			_journalArticleService.updateArticle(
-				groupId, journalArticle.getFolderId(),
+				journalArticle.getGroupId(), journalArticle.getFolderId(),
 				journalArticle.getArticleId(), journalArticle.getVersion(),
 				_getDefaultValue(
 					structuredContentUpdaterForm.getTitleMapOptional(locale),
