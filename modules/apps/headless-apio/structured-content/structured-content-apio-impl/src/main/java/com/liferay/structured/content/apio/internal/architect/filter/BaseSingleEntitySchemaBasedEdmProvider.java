@@ -20,6 +20,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -127,13 +128,11 @@ public abstract class BaseSingleEntitySchemaBasedEdmProvider
 
 		FullQualifiedName fullQualifiedName = null;
 
-		EntityField.Type entityFieldType = entityField.getType();
-
-		if (entityFieldType.equals(EntityField.Type.STRING)) {
+		if (Objects.equals(entityField.getType(), EntityField.Type.STRING)) {
 			fullQualifiedName =
 				EdmPrimitiveTypeKind.String.getFullQualifiedName();
 		}
-		else if (entityFieldType.equals(EntityField.Type.DATE)) {
+		else if (Objects.equals(entityField.getType(), EntityField.Type.DATE)) {
 			fullQualifiedName =
 				EdmPrimitiveTypeKind.Date.getFullQualifiedName();
 		}
