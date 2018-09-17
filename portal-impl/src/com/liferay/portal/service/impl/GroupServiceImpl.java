@@ -365,6 +365,29 @@ public class GroupServiceImpl extends GroupServiceBaseImpl {
 			groupLocalService.getGroups(companyId, parentGroupId, site));
 	}
 
+	/**
+	 * Returns all the groups that are direct children of the parent group.
+	 *
+	 * @param  companyId the primary key of the company
+	 * @param  parentGroupId the primary key of the parent group
+	 * @param  site whether the group is to be associated with a main site
+	 * @param  start the lower bound of the range of results
+	 * @param  end the upper bound of the range of results (not inclusive)
+	 * @return the matching groups, or <code>null</code> if no matches were
+	 *         found
+	 * @throws PortalException if a portal exception occurred
+	 */
+	@Override
+	public List<Group> getGroups(
+			long companyId, long parentGroupId, boolean site, int start,
+			int end)
+		throws PortalException {
+
+		return filterGroups(
+			groupLocalService.getGroups(
+				companyId, parentGroupId, site, start, end));
+	}
+
 	public List<Group> getGtGroups(
 			long gtGroupId, long companyId, long parentGroupId, boolean site,
 			int size)
