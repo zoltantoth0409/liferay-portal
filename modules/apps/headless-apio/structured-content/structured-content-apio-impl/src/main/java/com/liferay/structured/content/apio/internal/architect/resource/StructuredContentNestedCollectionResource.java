@@ -657,7 +657,8 @@ public class StructuredContentNestedCollectionResource
 		Locale locale = themeDisplay.getLocale();
 
 		String content = _getDefaultContent(
-			structuredContentUpdaterForm.getValues(), ddmStructure, locale,
+			structuredContentUpdaterForm.getStructuredContentValuesForms(),
+			ddmStructure, locale,
 			() -> _getDefaultValue(
 				structuredContentUpdaterForm.getTextOptional(),
 				journalArticle.getContent()));

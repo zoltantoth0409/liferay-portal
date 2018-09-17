@@ -55,7 +55,7 @@ public class StructuredContentUpdaterForm {
 			"displayDate", StructuredContentUpdaterForm::setDisplayDate
 		).addOptionalNestedModelList(
 			"values", StructuredContentValuesForm::buildValuesForm,
-			StructuredContentUpdaterForm::setValues
+			StructuredContentUpdaterForm::setStructuredContentValuesForms
 		).addOptionalString(
 			"description", StructuredContentUpdaterForm::setDescription
 		).addOptionalString(
@@ -179,8 +179,8 @@ public class StructuredContentUpdaterForm {
 		return _getStringMapOptional(locale, _title);
 	}
 
-	public List<StructuredContentValuesForm> getValues() {
-		return _values;
+	public List<StructuredContentValuesForm> getStructuredContentValuesForms() {
+		return _structuredContentValuesForms;
 	}
 
 	public void setDescription(String description) {
@@ -211,8 +211,10 @@ public class StructuredContentUpdaterForm {
 		_title = title;
 	}
 
-	public void setValues(List<StructuredContentValuesForm> values) {
-		_values = values;
+	public void setStructuredContentValuesForms(
+		List<StructuredContentValuesForm> structuredContentValuesForms) {
+
+		_structuredContentValuesForms = structuredContentValuesForms;
 	}
 
 	private Optional<Map<Locale, String>> _getStringMapOptional(
@@ -240,6 +242,7 @@ public class StructuredContentUpdaterForm {
 	private String _template;
 	private String _text;
 	private String _title;
-	private List<StructuredContentValuesForm> _values = new ArrayList<>();
+	private List<StructuredContentValuesForm> _structuredContentValuesForms =
+		new ArrayList<>();
 
 }
