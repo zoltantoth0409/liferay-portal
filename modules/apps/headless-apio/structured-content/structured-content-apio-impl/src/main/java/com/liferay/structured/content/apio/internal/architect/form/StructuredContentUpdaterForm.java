@@ -139,6 +139,10 @@ public class StructuredContentUpdaterForm {
 		return Optional.ofNullable(_displayDateYear);
 	}
 
+	public List<StructuredContentValuesForm> getStructuredContentValuesForms() {
+		return _structuredContentValuesForms;
+	}
+
 	/**
 	 * Returns the structured content's template ID.
 	 *
@@ -179,10 +183,6 @@ public class StructuredContentUpdaterForm {
 		return _getStringMapOptional(locale, _title);
 	}
 
-	public List<StructuredContentValuesForm> getStructuredContentValuesForms() {
-		return _structuredContentValuesForms;
-	}
-
 	public void setDescription(String description) {
 		_description = description;
 	}
@@ -199,6 +199,12 @@ public class StructuredContentUpdaterForm {
 		_displayDateYear = calendar.get(Calendar.YEAR);
 	}
 
+	public void setStructuredContentValuesForms(
+		List<StructuredContentValuesForm> structuredContentValuesForms) {
+
+		_structuredContentValuesForms = structuredContentValuesForms;
+	}
+
 	public void setTemplate(String template) {
 		_template = template;
 	}
@@ -209,12 +215,6 @@ public class StructuredContentUpdaterForm {
 
 	public void setTitle(String title) {
 		_title = title;
-	}
-
-	public void setStructuredContentValuesForms(
-		List<StructuredContentValuesForm> structuredContentValuesForms) {
-
-		_structuredContentValuesForms = structuredContentValuesForms;
 	}
 
 	private Optional<Map<Locale, String>> _getStringMapOptional(
@@ -239,10 +239,10 @@ public class StructuredContentUpdaterForm {
 	private Integer _displayDateMinute;
 	private Integer _displayDateMonth;
 	private Integer _displayDateYear;
+	private List<StructuredContentValuesForm> _structuredContentValuesForms =
+		new ArrayList<>();
 	private String _template;
 	private String _text;
 	private String _title;
-	private List<StructuredContentValuesForm> _structuredContentValuesForms =
-		new ArrayList<>();
 
 }
