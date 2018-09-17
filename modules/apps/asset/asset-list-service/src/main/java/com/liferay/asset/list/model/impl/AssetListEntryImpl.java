@@ -35,7 +35,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -227,7 +226,12 @@ public class AssetListEntryImpl extends AssetListEntryBaseImpl {
 	}
 
 	private List<AssetEntry> _getDynamicAssetEntries(int start, int end) {
-		return Collections.emptyList();
+		AssetEntryQuery assetEntryQuery = getAssetEntryQuery();
+
+		assetEntryQuery.setStart(start);
+		assetEntryQuery.setEnd(end);
+
+		return AssetEntryLocalServiceUtil.getEntries(assetEntryQuery);
 	}
 
 	private List<AssetEntry> _getManualAssetEntries(int start, int end) {
