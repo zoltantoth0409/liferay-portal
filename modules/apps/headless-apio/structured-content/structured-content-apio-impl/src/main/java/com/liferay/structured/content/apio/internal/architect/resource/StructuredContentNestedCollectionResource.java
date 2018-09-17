@@ -360,6 +360,28 @@ public class StructuredContentNestedCollectionResource
 			journalArticle.getArticleResourceUuid(), new ServiceContext());
 	}
 
+	private String _getDDMTemplateKey(
+			long contentSpaceId, String ddmTemplateKey,
+			DDMStructure ddmStructure)
+		throws PortalException {
+
+		if (ddmTemplateKey == null) {
+			List<DDMTemplate> ddmTemplates = ddmStructure.getTemplates();
+
+			DDMTemplate ddmTemplate = ddmTemplates.get(0);
+
+			return ddmTemplate.getTemplateKey();
+		}
+
+		ClassName className = _classNameService.fetchClassName(
+			JournalArticle.class.getName());
+
+		DDMTemplate ddmTemplate = _ddmTemplateService.getTemplate(
+			contentSpaceId, className.getClassNameId(), ddmTemplateKey);
+
+		return ddmTemplate.getTemplateKey();
+	}
+
 	private String _getDefaultContent(
 		List<StructuredContentValuesForm> structuredContentValuesForms,
 		DDMStructure ddmStructure, Locale preferredLocale,
@@ -614,27 +636,6 @@ public class StructuredContentNestedCollectionResource
 		).orElse(
 			null
 		);
-	}
-
-	private String _getDDMTemplateKey(
-			long contentSpaceId, String ddmTemplateKey, DDMStructure ddmStructure)
-		throws PortalException {
-
-		if (ddmTemplateKey == null) {
-			List<DDMTemplate> ddmTemplates = ddmStructure.getTemplates();
-
-			DDMTemplate ddmTemplate = ddmTemplates.get(0);
-
-			return ddmTemplate.getTemplateKey();
-		}
-
-		ClassName className = _classNameService.fetchClassName(
-			JournalArticle.class.getName());
-
-		DDMTemplate ddmTemplate = _ddmTemplateService.getTemplate(
-			contentSpaceId, className.getClassNameId(), ddmTemplateKey);
-
-		return ddmTemplate.getTemplateKey();
 	}
 
 	private JournalArticleWrapper _updateJournalArticle(

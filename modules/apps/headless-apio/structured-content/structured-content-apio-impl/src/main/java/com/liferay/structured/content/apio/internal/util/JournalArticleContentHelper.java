@@ -102,9 +102,8 @@ public class JournalArticleContentHelper {
 
 	private Optional<StructuredContentValuesForm>
 		_findStructuredContentValuesFormOptional(
-
-		List<StructuredContentValuesForm> structuredContentValuesForms,
-		String name) {
+			List<StructuredContentValuesForm> structuredContentValuesForms,
+			String name) {
 
 		Stream<StructuredContentValuesForm> stream =
 			structuredContentValuesForms.stream();
@@ -311,9 +310,7 @@ public class JournalArticleContentHelper {
 		).isSuccess();
 	}
 
-	private String _toString(Document document)
-		throws TransformerException {
-
+	private String _toString(Document document) throws TransformerException {
 		TransformerFactory transformerFactory =
 			TransformerFactory.newInstance();
 
