@@ -51,7 +51,7 @@ public class EntityField {
 
 		if (sortableFieldNameFunction == null) {
 			throw new IllegalArgumentException(
-				"sortableFieldNameFunction is null");
+				"Sortable field name function is null");
 		}
 
 		_name = name;
