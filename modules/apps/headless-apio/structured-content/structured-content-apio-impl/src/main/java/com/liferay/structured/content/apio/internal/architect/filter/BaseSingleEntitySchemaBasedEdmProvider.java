@@ -128,13 +128,15 @@ public abstract class BaseSingleEntitySchemaBasedEdmProvider
 
 		FullQualifiedName fullQualifiedName = null;
 
-		if (Objects.equals(entityField.getType(), EntityField.Type.STRING)) {
-			fullQualifiedName =
-				EdmPrimitiveTypeKind.String.getFullQualifiedName();
-		}
-		else if (Objects.equals(entityField.getType(), EntityField.Type.DATE)) {
+		if (Objects.equals(entityField.getType(), EntityField.Type.DATE)) {
 			fullQualifiedName =
 				EdmPrimitiveTypeKind.Date.getFullQualifiedName();
+		}
+		else if (Objects.equals(
+					entityField.getType(), EntityField.Type.STRING)) {
+
+			fullQualifiedName =
+				EdmPrimitiveTypeKind.String.getFullQualifiedName();
 		}
 
 		csdlProperty.setType(fullQualifiedName);
