@@ -187,16 +187,6 @@ public class FormInstanceRecordNestedCollectionResource
 			ddmFormValues, serviceContext);
 	}
 
-	private Boolean _isDraft(DDMFormInstanceRecord ddmFormInstanceRecord) {
-		return Try.fromFallible(
-			ddmFormInstanceRecord::getStatus
-		).map(
-			status -> status == WorkflowConstants.STATUS_DRAFT
-		).orElse(
-			false
-		);
-	}
-
 	private List<DDMFormFieldValue> _getDDMFormFieldValues(
 		DDMFormInstanceRecord ddmFormInstanceRecord) {
 
@@ -222,6 +212,16 @@ public class FormInstanceRecordNestedCollectionResource
 			formInstanceId);
 
 		return new PageItems<>(ddmFormInstanceRecords, count);
+	}
+
+	private Boolean _isDraft(DDMFormInstanceRecord ddmFormInstanceRecord) {
+		return Try.fromFallible(
+			ddmFormInstanceRecord::getStatus
+		).map(
+			status -> status == WorkflowConstants.STATUS_DRAFT
+		).orElse(
+			false
+		);
 	}
 
 	private DDMFormInstanceRecord _updateDDMFormInstanceRecord(
