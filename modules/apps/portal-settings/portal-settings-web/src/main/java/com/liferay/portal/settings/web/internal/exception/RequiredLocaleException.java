@@ -90,14 +90,12 @@ public class RequiredLocaleException extends PortalException {
 			};
 		}
 		else {
-			int moreGroups = groups.size() - 2;
-
 			Group group1 = groups.get(0);
 			Group group2 = groups.get(1);
 
 			return new String[] {
 				group1.getDescriptiveName(), group2.getDescriptiveName(),
-				String.valueOf(moreGroups)
+				String.valueOf(groups.size() - 2)
 			};
 		}
 	}
