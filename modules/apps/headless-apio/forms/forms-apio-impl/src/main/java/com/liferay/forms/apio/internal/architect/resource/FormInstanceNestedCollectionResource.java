@@ -85,7 +85,7 @@ public class FormInstanceNestedCollectionResource
 		return builder.addGetter(
 			_ddmFormInstanceService::getFormInstance
 		).addCustomRoute(
-			getRoute, this::_fetchLatestDraft, CurrentUser.class,
+			getRoute, this::_fetchDDMFormInstanceRecord, CurrentUser.class,
 			FormInstanceRecordIdentifier.class, this::_hasPermission,
 			FetchLatestDraftForm::buildForm
 		).build();
@@ -184,7 +184,7 @@ public class FormInstanceNestedCollectionResource
 		).build();
 	}
 
-	private DDMFormInstanceRecord _fetchLatestDraft(
+	private DDMFormInstanceRecord _fetchDDMFormInstanceRecord(
 		Long ddmFormInstanceId, FetchLatestDraftForm fetchLatestDraftForm,
 		CurrentUser currentUser) {
 
