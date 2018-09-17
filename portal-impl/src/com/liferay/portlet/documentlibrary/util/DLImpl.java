@@ -593,7 +593,7 @@ public class DLImpl implements DL {
 			sb.append(fileVersion.getVersion());
 		}
 
-		if (ImageProcessorUtil.isImageSupported(fileVersion)) {
+		if (_isDocumentSupported(fileVersion)) {
 			if (appendVersion) {
 				sb.append("&t=");
 			}
@@ -1201,6 +1201,14 @@ public class DLImpl implements DL {
 		for (String extension : extensions) {
 			_genericNames.put(extension, genericName);
 		}
+	}
+
+	private boolean _isDocumentSupported(FileVersion fileVersion) {
+		if ((fileVersion == null) || (fileVersion.getSize() == 0)) {
+			return false;
+		}
+
+		return true;
 	}
 
 	private static final String _DEFAULT_FILE_ICON = "page";
