@@ -37,7 +37,7 @@ public class SortField implements Serializable {
 	 */
 	public SortField(EntityField entityField, boolean asc) {
 		if (entityField == null) {
-			throw new IllegalArgumentException("EntityField is null");
+			throw new IllegalArgumentException("Entity field is null");
 		}
 
 		_asc = asc;
