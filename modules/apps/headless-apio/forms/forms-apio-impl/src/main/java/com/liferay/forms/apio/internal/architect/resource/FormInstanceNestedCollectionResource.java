@@ -86,19 +86,16 @@ public class FormInstanceNestedCollectionResource
 	public ItemRoutes<DDMFormInstance, Long> itemRoutes(
 		ItemRoutes.Builder<DDMFormInstance, Long> builder) {
 
-		GetRoute getRoute = new FetchLatestDraftRoute();
-
-		PostRoute postRoute = new UploadFileRoute();
-
 		return builder.addGetter(
 			_ddmFormInstanceService::getFormInstance
 		).addCustomRoute(
-			getRoute, this::_fetchDDMFormInstanceRecord, CurrentUser.class,
-			FormInstanceRecordIdentifier.class, this::_hasPermission,
-			FetchLatestDraftForm::buildForm
+			new FetchLatestDraftRoute(), this::_fetchDDMFormInstanceRecord,
+			CurrentUser.class, FormInstanceRecordIdentifier.class,
+			this::_hasPermission, FetchLatestDraftForm::buildForm
 		).addCustomRoute(
-			postRoute, this::_uploadFile, MediaObjectIdentifier.class,
-			this::_hasPermission, MediaObjectCreatorForm::buildForm
+			new UploadFileRoute(), this::_uploadFile,
+			MediaObjectIdentifier.class, this::_hasPermission,
+			MediaObjectCreatorForm::buildForm
 		).build();
 	}
 
