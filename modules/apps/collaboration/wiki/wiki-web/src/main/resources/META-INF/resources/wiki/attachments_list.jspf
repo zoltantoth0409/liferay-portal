@@ -71,26 +71,13 @@
 		function(event) {
 			var link = event.currentTarget;
 
-			var deleteUrl = Liferay.PortletURL.createActionURL();
-
-			deleteUrl.setName('/wiki/edit_page_attachment');
-
-			var params = {
-				cmd: link.getAttribute('data-cmd'),
-				fileName: link.getAttribute('data-fileName'),
-				nodeId: link.getAttribute('data-nodeId'),
-				ticketKey: link.getAttribute('data-ticketKey'),
-				title: link.getAttribute('data-title')
-			};
-
-			deleteUrl.setParameters(params);
-			deleteUrl.setPortletId('com_liferay_wiki_web_portlet_WikiPortlet');
+			var deleteURL = link.getAttribute('data-url');
 
 			fetch(
-				deleteUrl.toString()
+				deleteURL
 			).then(
 				function() {
-					searchContainer.deleteRow(link.ancestor('tr'),link.getAttribute('data-rowid'));
+					searchContainer.deleteRow(link.ancestor('tr'), link.getAttribute('data-rowid'));
 					searchContainer.updateDataStore();
 				}
 			);
