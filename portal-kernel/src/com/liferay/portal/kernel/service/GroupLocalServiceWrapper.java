@@ -770,6 +770,13 @@ public class GroupLocalServiceWrapper implements GroupLocalService,
 
 	@Override
 	public java.util.List<com.liferay.portal.kernel.model.Group> getGroups(
+		long companyId, long parentGroupId, boolean site, int start, int end) {
+		return _groupLocalService.getGroups(companyId, parentGroupId, site,
+			start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.portal.kernel.model.Group> getGroups(
 		long companyId, String treePath, boolean site) {
 		return _groupLocalService.getGroups(companyId, treePath, site);
 	}

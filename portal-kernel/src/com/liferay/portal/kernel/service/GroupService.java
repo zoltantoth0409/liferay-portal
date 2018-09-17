@@ -204,6 +204,22 @@ public interface GroupService extends BaseService {
 	public List<Group> getGroups(long companyId, long parentGroupId,
 		boolean site) throws PortalException;
 
+	/**
+	* Returns all the groups that are direct children of the parent group.
+	*
+	* @param companyId the primary key of the company
+	* @param parentGroupId the primary key of the parent group
+	* @param site whether the group is to be associated with a main site
+	* @param start the lower bound of the range of results
+	* @param end the upper bound of the range of results (not inclusive)
+	* @return the matching groups, or <code>null</code> if no matches were
+	found
+	* @throws PortalException if a portal exception occurred
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Group> getGroups(long companyId, long parentGroupId,
+		boolean site, int start, int end) throws PortalException;
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Group> getGtGroups(long gtGroupId, long companyId,
 		long parentGroupId, boolean site, int size) throws PortalException;

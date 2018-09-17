@@ -542,6 +542,10 @@ public interface GroupLocalService extends BaseLocalService,
 		boolean site, boolean inheritContent);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Group> getGroups(long companyId, long parentGroupId,
+		boolean site, int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Group> getGroups(long companyId, String treePath, boolean site);
 
 	/**
