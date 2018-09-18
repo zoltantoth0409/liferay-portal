@@ -3947,6 +3947,11 @@ public class ProjectTemplatesTest {
 	private static void _editXml(File xmlFile, Consumer<Document> consumer)
 		throws Exception {
 
+		TransformerFactory transformerFactory =
+			TransformerFactory.newInstance();
+
+		Transformer transformer = transformerFactory.newTransformer();
+
 		DocumentBuilderFactory documentBuilderFactory =
 			DocumentBuilderFactory.newInstance();
 
@@ -3957,16 +3962,9 @@ public class ProjectTemplatesTest {
 
 		consumer.accept(document);
 
-		TransformerFactory transformerFactory =
-			TransformerFactory.newInstance();
-
-		Transformer transformer = transformerFactory.newTransformer();
-
 		DOMSource domSource = new DOMSource(document);
 
-		StreamResult streamResult = new StreamResult(xmlFile);
-
-		transformer.transform(domSource, streamResult);
+		transformer.transform(domSource, new StreamResult(xmlFile));
 	}
 
 	private static Optional<String> _executeGradle(
