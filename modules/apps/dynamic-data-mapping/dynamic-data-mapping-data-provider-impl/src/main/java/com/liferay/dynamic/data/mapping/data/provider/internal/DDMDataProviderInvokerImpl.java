@@ -127,7 +127,7 @@ public class DDMDataProviderInvokerImpl implements DDMDataProviderInvoker {
 					DDMDataProviderResponse.Status.TIMEOUT);
 			}
 			else if (failureType ==
-						 HystrixRuntimeException.FailureType.SHORTCIRCUIT) {
+						HystrixRuntimeException.FailureType.SHORTCIRCUIT) {
 
 				return DDMDataProviderResponse.error(
 					DDMDataProviderResponse.Status.SHORTCIRCUIT);
