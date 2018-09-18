@@ -129,11 +129,11 @@ public class LPKGIndexer implements Indexer {
 		throws IOException {
 
 		try (ZipFile zipFile = new ZipFile(_lpkgFile)) {
-			ZipEntry indexEntry = zipFile.getEntry("index.xml");
+			ZipEntry zipEntry = zipFile.getEntry("index.xml");
 
-			if (indexEntry != null) {
+			if (zipEntry != null) {
 				StreamUtil.transfer(
-					zipFile.getInputStream(indexEntry), outputStream, false);
+					zipFile.getInputStream(zipEntry), outputStream, false);
 
 				return true;
 			}
