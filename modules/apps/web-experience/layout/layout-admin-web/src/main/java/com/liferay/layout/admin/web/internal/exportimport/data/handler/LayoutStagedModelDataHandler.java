@@ -381,8 +381,8 @@ public class LayoutStagedModelDataHandler
 			friendlyURL = StringPool.SLASH + layoutId;
 		}
 		else if (layoutsImportMode.equals(
-					 PortletDataHandlerKeys.
-						 LAYOUTS_IMPORT_MODE_MERGE_BY_LAYOUT_NAME)) {
+					PortletDataHandlerKeys.
+						LAYOUTS_IMPORT_MODE_MERGE_BY_LAYOUT_NAME)) {
 
 			Locale locale = LocaleUtil.getSiteDefault();
 
@@ -407,8 +407,8 @@ public class LayoutStagedModelDataHandler
 			}
 		}
 		else if (layoutsImportMode.equals(
-					 PortletDataHandlerKeys.
-						 LAYOUTS_IMPORT_MODE_CREATED_FROM_PROTOTYPE)) {
+					PortletDataHandlerKeys.
+						LAYOUTS_IMPORT_MODE_CREATED_FROM_PROTOTYPE)) {
 
 			existingLayout = _layoutLocalService.fetchLayoutByUuidAndGroupId(
 				layout.getUuid(), groupId, privateLayout);

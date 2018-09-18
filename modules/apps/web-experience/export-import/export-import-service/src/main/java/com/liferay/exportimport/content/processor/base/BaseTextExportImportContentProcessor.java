@@ -866,7 +866,7 @@ public class BaseTextExportImportContentProcessor
 						layoutSet = group.getPublicLayoutSet();
 					}
 					else if (urlSBString.contains(
-								 DATA_HANDLER_PRIVATE_LAYOUT_SET_SECURE_URL) ||
+								DATA_HANDLER_PRIVATE_LAYOUT_SET_SECURE_URL) ||
 							 urlSBString.contains(
 								 DATA_HANDLER_PRIVATE_LAYOUT_SET_URL)) {
 
@@ -1842,7 +1842,7 @@ public class BaseTextExportImportContentProcessor
 					layoutSet = group.getPublicLayoutSet();
 				}
 				else if (urlSBString.contains(
-							 DATA_HANDLER_PRIVATE_LAYOUT_SET_SECURE_URL) ||
+							DATA_HANDLER_PRIVATE_LAYOUT_SET_SECURE_URL) ||
 						 urlSBString.contains(
 							 DATA_HANDLER_PRIVATE_LAYOUT_SET_URL)) {
 

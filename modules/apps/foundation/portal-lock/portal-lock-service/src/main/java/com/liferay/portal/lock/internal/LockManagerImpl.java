@@ -248,7 +248,7 @@ public class LockManagerImpl implements LockManager {
 			return new ExpiredLockException(message, cause);
 		}
 		else if (portalException instanceof
-					 com.liferay.portal.lock.exception.InvalidLockException) {
+					com.liferay.portal.lock.exception.InvalidLockException) {
 
 			if (cause == null) {
 				return new InvalidLockException(message);
@@ -257,7 +257,7 @@ public class LockManagerImpl implements LockManager {
 			return new InvalidLockException(message, cause);
 		}
 		else if (portalException instanceof
-					 com.liferay.portal.lock.exception.NoSuchLockException) {
+					com.liferay.portal.lock.exception.NoSuchLockException) {
 
 			if (cause == null) {
 				return new NoSuchLockException(message);

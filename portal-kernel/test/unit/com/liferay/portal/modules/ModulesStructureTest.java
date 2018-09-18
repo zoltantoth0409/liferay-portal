@@ -381,7 +381,7 @@ public class ModulesStructureTest {
 						_testAntPluginIgnoreFiles(dirPath);
 					}
 					else if (StringUtil.startsWith(
-								 dirName, "frontend-theme-") &&
+								dirName, "frontend-theme-") &&
 							 Files.exists(dirPath.resolve("gulpfile.js"))) {
 
 						_testThemeIgnoreFiles(

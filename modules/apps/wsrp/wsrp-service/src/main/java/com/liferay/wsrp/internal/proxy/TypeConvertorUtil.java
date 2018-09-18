@@ -93,7 +93,7 @@ public class TypeConvertorUtil {
 				cookieProtocol.getValue());
 		}
 		else if (sourceClass ==
-					 oasis.names.tc.wsrp.v2.types.CookieProtocol.class) {
+					oasis.names.tc.wsrp.v2.types.CookieProtocol.class) {
 
 			oasis.names.tc.wsrp.v2.types.CookieProtocol cookieProtocol =
 				(oasis.names.tc.wsrp.v2.types.CookieProtocol)source;
@@ -107,7 +107,7 @@ public class TypeConvertorUtil {
 				stateChange.getValue());
 		}
 		else if (sourceClass ==
-					 oasis.names.tc.wsrp.v2.types.StateChange.class) {
+					oasis.names.tc.wsrp.v2.types.StateChange.class) {
 
 			oasis.names.tc.wsrp.v2.types.StateChange stateChange =
 				(oasis.names.tc.wsrp.v2.types.StateChange)source;

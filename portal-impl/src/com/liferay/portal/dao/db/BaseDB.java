@@ -826,7 +826,7 @@ public abstract class BaseDB implements DB {
 				}
 			}
 			else if (!tablesSQLLowerCase.contains(
-						 CREATE_TABLE + tableNameLowerCase + " (")) {
+						CREATE_TABLE + tableNameLowerCase + " (")) {
 
 				continue;
 			}

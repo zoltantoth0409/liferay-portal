@@ -260,7 +260,7 @@ public class ShoppingUtil {
 			discount = coupon.getDiscount();
 		}
 		else if (type.equals(
-					 ShoppingCouponConstants.DISCOUNT_TYPE_FREE_SHIPPING)) {
+					ShoppingCouponConstants.DISCOUNT_TYPE_FREE_SHIPPING)) {
 
 			discount = calculateShipping(items);
 		}

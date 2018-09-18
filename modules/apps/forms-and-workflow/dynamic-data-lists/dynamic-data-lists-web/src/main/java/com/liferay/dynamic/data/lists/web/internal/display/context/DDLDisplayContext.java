@@ -147,8 +147,8 @@ public class DDLDisplayContext {
 					_ddlWebConfiguration.defaultDisplayView());
 			}
 			else if (ArrayUtil.contains(
-						 getDDLRecordSetDisplayViews(),
-						 _ddlRecordDisplayStyle)) {
+						getDDLRecordSetDisplayViews(),
+						_ddlRecordDisplayStyle)) {
 
 				portalPreferences.setValue(
 					DDLPortletKeys.DYNAMIC_DATA_LISTS, "display-style",

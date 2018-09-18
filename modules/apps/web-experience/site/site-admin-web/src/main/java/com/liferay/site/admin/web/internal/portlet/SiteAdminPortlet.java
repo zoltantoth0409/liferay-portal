@@ -336,7 +336,7 @@ public class SiteAdminPortlet extends MVCPortlet {
 			include("/error.jsp", renderRequest, renderResponse);
 		}
 		else if (SessionErrors.contains(
-					 renderRequest, NoSuchLayoutSetException.class.getName())) {
+					renderRequest, NoSuchLayoutSetException.class.getName())) {
 
 			include("/view.jsp", renderRequest, renderResponse);
 		}

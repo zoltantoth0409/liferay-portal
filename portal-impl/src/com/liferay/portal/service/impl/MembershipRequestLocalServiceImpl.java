@@ -324,7 +324,7 @@ public class MembershipRequestLocalServiceImpl
 			statusKey = "approved";
 		}
 		else if (membershipRequest.getStatusId() ==
-					 MembershipRequestConstants.STATUS_DENIED) {
+					MembershipRequestConstants.STATUS_DENIED) {
 
 			statusKey = "denied";
 		}

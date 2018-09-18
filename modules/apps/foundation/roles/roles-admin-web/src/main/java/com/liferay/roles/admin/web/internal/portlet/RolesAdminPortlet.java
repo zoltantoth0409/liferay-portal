@@ -457,7 +457,7 @@ public class RolesAdminPortlet extends MVCPortlet {
 			include("/view.jsp", renderRequest, renderResponse);
 		}
 		else if (SessionErrors.contains(
-					 renderRequest, DuplicateRoleException.class.getName()) ||
+					renderRequest, DuplicateRoleException.class.getName()) ||
 				 SessionErrors.contains(
 					 renderRequest, RequiredRoleException.class.getName()) ||
 				 SessionErrors.contains(
@@ -466,7 +466,7 @@ public class RolesAdminPortlet extends MVCPortlet {
 			include("/edit_role.jsp", renderRequest, renderResponse);
 		}
 		else if (SessionErrors.contains(
-					 renderRequest, NoSuchRoleException.class.getName()) ||
+					renderRequest, NoSuchRoleException.class.getName()) ||
 				 SessionErrors.contains(
 					 renderRequest, PrincipalException.getNestedClasses()) ||
 				 SessionErrors.contains(
@@ -686,7 +686,7 @@ public class RolesAdminPortlet extends MVCPortlet {
 			actionId = ActionKeys.VIEW_CONTROL_PANEL;
 		}
 		else if (panelCategoryHelper.containsPortlet(
-					 portletId, PanelCategoryKeys.SITE_ADMINISTRATION)) {
+					portletId, PanelCategoryKeys.SITE_ADMINISTRATION)) {
 
 			selResource = Group.class.getName();
 			actionId = ActionKeys.VIEW_SITE_ADMINISTRATION;

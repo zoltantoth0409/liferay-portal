@@ -550,41 +550,41 @@ public class ImageProcessorImpl
 			return renderedImage;
 		}
 		else if (tiffOrientationValue.equals(
-					 ImageTool.ORIENTATION_VALUE_MIRROR_HORIZONTAL)) {
+					ImageTool.ORIENTATION_VALUE_MIRROR_HORIZONTAL)) {
 
 			return ImageToolUtil.flipHorizontal(renderedImage);
 		}
 		else if (tiffOrientationValue.equals(
-					 ImageTool.
-						 ORIENTATION_VALUE_MIRROR_HORIZONTAL_ROTATE_90_CW)) {
+					ImageTool.
+						ORIENTATION_VALUE_MIRROR_HORIZONTAL_ROTATE_90_CW)) {
 
 			return ImageToolUtil.flipVertical(
 				ImageToolUtil.rotate(renderedImage, 90));
 		}
 		else if (tiffOrientationValue.equals(
-					 ImageTool.
-						 ORIENTATION_VALUE_MIRROR_HORIZONTAL_ROTATE_270_CW)) {
+					ImageTool.
+						ORIENTATION_VALUE_MIRROR_HORIZONTAL_ROTATE_270_CW)) {
 
 			return ImageToolUtil.flipVertical(
 				ImageToolUtil.rotate(renderedImage, 270));
 		}
 		else if (tiffOrientationValue.equals(
-					 ImageTool.ORIENTATION_VALUE_MIRROR_VERTICAL)) {
+					ImageTool.ORIENTATION_VALUE_MIRROR_VERTICAL)) {
 
 			return ImageToolUtil.flipVertical(renderedImage);
 		}
 		else if (tiffOrientationValue.equals(
-					 ImageTool.ORIENTATION_VALUE_ROTATE_90_CW)) {
+					ImageTool.ORIENTATION_VALUE_ROTATE_90_CW)) {
 
 			return ImageToolUtil.rotate(renderedImage, 90);
 		}
 		else if (tiffOrientationValue.equals(
-					 ImageTool.ORIENTATION_VALUE_ROTATE_180)) {
+					ImageTool.ORIENTATION_VALUE_ROTATE_180)) {
 
 			return ImageToolUtil.rotate(renderedImage, 180);
 		}
 		else if (tiffOrientationValue.equals(
-					 ImageTool.ORIENTATION_VALUE_ROTATE_270_CW)) {
+					ImageTool.ORIENTATION_VALUE_ROTATE_270_CW)) {
 
 			return ImageToolUtil.rotate(renderedImage, 270);
 		}

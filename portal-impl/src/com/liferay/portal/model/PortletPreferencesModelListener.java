@@ -138,7 +138,7 @@ public class PortletPreferencesModelListener
 					layoutSetPrototype);
 			}
 			else if ((portletPreferences.getOwnerType() ==
-						 PortletKeys.PREFS_OWNER_TYPE_LAYOUT) &&
+						PortletKeys.PREFS_OWNER_TYPE_LAYOUT) &&
 					 (portletPreferences.getPlid() > 0)) {
 
 				Layout layout = LayoutLocalServiceUtil.fetchLayout(

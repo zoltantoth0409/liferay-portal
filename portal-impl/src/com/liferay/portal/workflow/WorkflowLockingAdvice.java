@@ -60,7 +60,7 @@ public class WorkflowLockingAdvice {
 			return proceedingJoinPoint.proceed();
 		}
 		else if (!methodName.equals(
-					 _UNDEPLOY_WORKFLOW_DEFINITION_METHOD_NAME)) {
+					_UNDEPLOY_WORKFLOW_DEFINITION_METHOD_NAME)) {
 
 			return proceedingJoinPoint.proceed();
 		}

@@ -75,13 +75,13 @@ public class UserModelListener extends BaseModelListener<User> {
 						(Long)associationClassPK);
 				}
 				else if (associationClassName.equals(
-							 Organization.class.getName())) {
+							Organization.class.getName())) {
 
 					group = groupLocalService.getOrganizationGroup(
 						user.getCompanyId(), (Long)associationClassPK);
 				}
 				else if (associationClassName.equals(
-							 UserGroup.class.getName())) {
+							UserGroup.class.getName())) {
 
 					group = groupLocalService.getUserGroupGroup(
 						user.getCompanyId(), (Long)associationClassPK);
@@ -153,13 +153,13 @@ public class UserModelListener extends BaseModelListener<User> {
 						(Long)associationClassPK);
 				}
 				else if (associationClassName.equals(
-							 Organization.class.getName())) {
+							Organization.class.getName())) {
 
 					group = groupLocalService.getOrganizationGroup(
 						user.getCompanyId(), (Long)associationClassPK);
 				}
 				else if (associationClassName.equals(
-							 UserGroup.class.getName())) {
+							UserGroup.class.getName())) {
 
 					group = groupLocalService.getUserGroupGroup(
 						user.getCompanyId(), (Long)associationClassPK);

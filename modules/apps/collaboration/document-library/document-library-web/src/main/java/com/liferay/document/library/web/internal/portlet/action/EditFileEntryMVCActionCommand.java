@@ -624,7 +624,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 					vocabularyTitle);
 			}
 			else if (ace.getType() ==
-						 AssetCategoryException.TOO_MANY_CATEGORIES) {
+						AssetCategoryException.TOO_MANY_CATEGORIES) {
 
 				errorMessage = themeDisplay.translate(
 					"you-cannot-select-more-than-one-category-for-x",

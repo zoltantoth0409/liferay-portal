@@ -757,7 +757,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 					}
 				}
 				else if (message.getStatus() ==
-							 WorkflowConstants.STATUS_APPROVED) {
+							WorkflowConstants.STATUS_APPROVED) {
 
 					MessageCreateDateComparator comparator =
 						new MessageCreateDateComparator(true);
