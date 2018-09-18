@@ -2328,7 +2328,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	public int getOrganizationsAndUserGroupsUsersCount(
 		long[] organizationIds, long[] userGroupIds) {
 
-		return userFinder.getOrganizationsAndUserGroupsUsersCount(
+		return userFinder.countByOrganizationsAndUserGroups(
 			organizationIds, userGroupIds);
 	}
 

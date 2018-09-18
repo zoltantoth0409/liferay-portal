@@ -498,7 +498,7 @@
 			<finder-column name="liveGroupId" />
 			<finder-column name="groupKey" />
 		</finder>
-		<finder name="C_P_N_S" return-type="Collection">
+		<finder name="C_P_LikeN_S" return-type="Collection">
 			<finder-column name="companyId" />
 			<finder-column name="parentGroupId" />
 			<finder-column comparator="LIKE" name="name" />
@@ -1317,7 +1317,7 @@
 			<finder-column name="companyId" />
 			<finder-column name="parentOrganizationId" />
 		</finder>
-		<finder name="C_P_N" return-type="Collection">
+		<finder name="C_P_LikeN" return-type="Collection">
 			<finder-column name="companyId" />
 			<finder-column name="parentOrganizationId" />
 			<finder-column comparator="LIKE" name="name" />

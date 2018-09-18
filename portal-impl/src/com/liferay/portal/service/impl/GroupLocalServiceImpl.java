@@ -1595,7 +1595,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 		long companyId, long parentGroupId, String name, boolean site,
 		int start, int end) {
 
-		return groupPersistence.findByC_P_N_S(
+		return groupPersistence.findByC_P_LikeN_S(
 			companyId, parentGroupId, name, site, start, end);
 	}
 
@@ -1692,7 +1692,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	public int getGroupsCount(
 		long companyId, long parentGroupId, String name, boolean site) {
 
-		return groupPersistence.countByC_P_N_S(
+		return groupPersistence.countByC_P_LikeN_S(
 			companyId, parentGroupId, name, site);
 	}
 
