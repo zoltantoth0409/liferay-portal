@@ -673,6 +673,14 @@ public class OrganizationLocalServiceImpl
 		}
 	}
 
+	public List<Organization> getOrganizations(
+		long companyId, long parentOrganizationId, String name, int start,
+		int end) {
+
+		return organizationPersistence.findByC_P_N(
+			companyId, parentOrganizationId, name, start, end);
+	}
+
 	@Override
 	public List<Organization> getOrganizations(
 		long companyId, String treePath) {
@@ -723,6 +731,13 @@ public class OrganizationLocalServiceImpl
 			return organizationPersistence.countByC_P(
 				companyId, parentOrganizationId);
 		}
+	}
+
+	public int getOrganizationsCount(
+		long companyId, long parentOrganizationId, String name) {
+
+		return organizationPersistence.countByC_P_N(
+			companyId, parentOrganizationId, name);
 	}
 
 	/**

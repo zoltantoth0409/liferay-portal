@@ -388,6 +388,17 @@ public class GroupServiceImpl extends GroupServiceBaseImpl {
 				companyId, parentGroupId, site, start, end));
 	}
 
+	@Override
+	public List<Group> getGroups(
+			long companyId, long parentGroupId, String name, boolean site,
+			int start, int end)
+		throws PortalException {
+
+		return filterGroups(
+			groupLocalService.getGroups(
+				companyId, parentGroupId, name, site, start, end));
+	}
+
 	public List<Group> getGtGroups(
 			long gtGroupId, long companyId, long parentGroupId, boolean site,
 			int size)
