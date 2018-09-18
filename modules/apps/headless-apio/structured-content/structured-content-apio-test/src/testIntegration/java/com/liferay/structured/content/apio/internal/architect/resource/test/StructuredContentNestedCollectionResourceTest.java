@@ -179,7 +179,7 @@ public class StructuredContentNestedCollectionResourceTest
 			(List<JournalArticle>)pageItems.getItems();
 
 		Assert.assertTrue(
-			"Journal Articles: " + journalArticles,
+			"Journal articles: " + journalArticles,
 			journalArticles.contains(journalArticle));
 	}
 
