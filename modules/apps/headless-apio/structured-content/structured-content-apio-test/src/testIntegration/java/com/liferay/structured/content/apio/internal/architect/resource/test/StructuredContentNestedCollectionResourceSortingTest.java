@@ -111,10 +111,11 @@ public class StructuredContentNestedCollectionResourceSortingTest
 
 		Assert.assertEquals(2, pageItems.getTotalCount());
 
-		List<JournalArticle> items = (List<JournalArticle>)pageItems.getItems();
+		List<JournalArticle> journalArticles =
+			(List<JournalArticle>)pageItems.getItems();
 
-		Assert.assertEquals(journalArticle1, items.get(0));
-		Assert.assertEquals(journalArticle2, items.get(1));
+		Assert.assertEquals(journalArticle1, journalArticles.get(0));
+		Assert.assertEquals(journalArticle2, journalArticles.get(1));
 	}
 
 	@Test
@@ -156,10 +157,11 @@ public class StructuredContentNestedCollectionResourceSortingTest
 
 		Assert.assertEquals(2, pageItems.getTotalCount());
 
-		List<JournalArticle> items = (List<JournalArticle>)pageItems.getItems();
+		List<JournalArticle> journalArticles =
+			(List<JournalArticle>)pageItems.getItems();
 
-		Assert.assertEquals(journalArticle1, items.get(1));
-		Assert.assertEquals(journalArticle2, items.get(0));
+		Assert.assertEquals(journalArticle1, journalArticles.get(1));
+		Assert.assertEquals(journalArticle2, journalArticles.get(0));
 	}
 
 	@Test
@@ -201,10 +203,11 @@ public class StructuredContentNestedCollectionResourceSortingTest
 
 		Assert.assertEquals(2, pageItems.getTotalCount());
 
-		List<JournalArticle> items = (List<JournalArticle>)pageItems.getItems();
+		List<JournalArticle> journalArticles =
+			(List<JournalArticle>)pageItems.getItems();
 
-		Assert.assertEquals(journalArticle1, items.get(0));
-		Assert.assertEquals(journalArticle2, items.get(1));
+		Assert.assertEquals(journalArticle1, journalArticles.get(0));
+		Assert.assertEquals(journalArticle2, journalArticles.get(1));
 	}
 
 	@Test
@@ -246,10 +249,11 @@ public class StructuredContentNestedCollectionResourceSortingTest
 
 		Assert.assertEquals(2, pageItems.getTotalCount());
 
-		List<JournalArticle> items = (List<JournalArticle>)pageItems.getItems();
+		List<JournalArticle> journalArticles =
+			(List<JournalArticle>)pageItems.getItems();
 
-		Assert.assertEquals(journalArticle1, items.get(1));
-		Assert.assertEquals(journalArticle2, items.get(0));
+		Assert.assertEquals(journalArticle1, journalArticles.get(1));
+		Assert.assertEquals(journalArticle2, journalArticles.get(0));
 	}
 
 	@Test
@@ -301,10 +305,11 @@ public class StructuredContentNestedCollectionResourceSortingTest
 
 		Assert.assertEquals(2, pageItems.getTotalCount());
 
-		List<JournalArticle> items = (List<JournalArticle>)pageItems.getItems();
+		List<JournalArticle> journalArticles =
+			(List<JournalArticle>)pageItems.getItems();
 
-		Assert.assertEquals(journalArticle1, items.get(0));
-		Assert.assertEquals(journalArticle2, items.get(1));
+		Assert.assertEquals(journalArticle1, journalArticles.get(0));
+		Assert.assertEquals(journalArticle2, journalArticles.get(1));
 	}
 
 	@Test
@@ -356,10 +361,11 @@ public class StructuredContentNestedCollectionResourceSortingTest
 
 		Assert.assertEquals(2, pageItems.getTotalCount());
 
-		List<JournalArticle> items = (List<JournalArticle>)pageItems.getItems();
+		List<JournalArticle> journalArticles =
+			(List<JournalArticle>)pageItems.getItems();
 
-		Assert.assertEquals(journalArticle1, items.get(1));
-		Assert.assertEquals(journalArticle2, items.get(0));
+		Assert.assertEquals(journalArticle1, journalArticles.get(1));
+		Assert.assertEquals(journalArticle2, journalArticles.get(0));
 	}
 
 	@Test
@@ -398,10 +404,11 @@ public class StructuredContentNestedCollectionResourceSortingTest
 
 		Assert.assertEquals(2, pageItems.getTotalCount());
 
-		List<JournalArticle> items = (List<JournalArticle>)pageItems.getItems();
+		List<JournalArticle> journalArticles =
+			(List<JournalArticle>)pageItems.getItems();
 
-		Assert.assertEquals(journalArticle1, items.get(0));
-		Assert.assertEquals(journalArticle2, items.get(1));
+		Assert.assertEquals(journalArticle1, journalArticles.get(0));
+		Assert.assertEquals(journalArticle2, journalArticles.get(1));
 	}
 
 	@Test
@@ -443,10 +450,11 @@ public class StructuredContentNestedCollectionResourceSortingTest
 
 		Assert.assertEquals(2, pageItems.getTotalCount());
 
-		List<JournalArticle> items = (List<JournalArticle>)pageItems.getItems();
+		List<JournalArticle> journalArticles =
+			(List<JournalArticle>)pageItems.getItems();
 
-		Assert.assertEquals(journalArticle2, items.get(0));
-		Assert.assertEquals(journalArticle1, items.get(1));
+		Assert.assertEquals(journalArticle2, journalArticles.get(0));
+		Assert.assertEquals(journalArticle1, journalArticles.get(1));
 	}
 
 	@Test
@@ -489,10 +497,11 @@ public class StructuredContentNestedCollectionResourceSortingTest
 
 		Assert.assertEquals(2, pageItems.getTotalCount());
 
-		List<JournalArticle> items = (List<JournalArticle>)pageItems.getItems();
+		List<JournalArticle> journalArticles =
+			(List<JournalArticle>)pageItems.getItems();
 
-		Assert.assertEquals(journalArticle2, items.get(0));
-		Assert.assertEquals(journalArticle1, items.get(1));
+		Assert.assertEquals(journalArticle2, journalArticles.get(0));
+		Assert.assertEquals(journalArticle1, journalArticles.get(1));
 	}
 
 	@Test
@@ -531,10 +540,11 @@ public class StructuredContentNestedCollectionResourceSortingTest
 
 		Assert.assertEquals(2, pageItems.getTotalCount());
 
-		List<JournalArticle> items = (List<JournalArticle>)pageItems.getItems();
+		List<JournalArticle> journalArticles =
+			(List<JournalArticle>)pageItems.getItems();
 
-		Assert.assertEquals(journalArticle2, items.get(0));
-		Assert.assertEquals(journalArticle1, items.get(1));
+		Assert.assertEquals(journalArticle2, journalArticles.get(0));
+		Assert.assertEquals(journalArticle1, journalArticles.get(1));
 	}
 
 	@Test
@@ -573,10 +583,11 @@ public class StructuredContentNestedCollectionResourceSortingTest
 
 		Assert.assertEquals(2, pageItems.getTotalCount());
 
-		List<JournalArticle> items = (List<JournalArticle>)pageItems.getItems();
+		List<JournalArticle> journalArticles =
+			(List<JournalArticle>)pageItems.getItems();
 
-		Assert.assertEquals(journalArticle2, items.get(0));
-		Assert.assertEquals(journalArticle1, items.get(1));
+		Assert.assertEquals(journalArticle2, journalArticles.get(0));
+		Assert.assertEquals(journalArticle1, journalArticles.get(1));
 	}
 
 	@DeleteAfterTestRun
