@@ -37,6 +37,8 @@ import com.liferay.social.kernel.model.SocialActivityInterpreter;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferencePolicy;
+import org.osgi.service.component.annotations.ReferencePolicyOption;
 
 /**
  * @author Peter Shin
@@ -260,16 +262,6 @@ public class KBActivityInterpreter extends BaseSocialActivityInterpreter {
 		_kbTemplateLocalService = kbTemplateLocalService;
 	}
 
-	@Reference(
-		target = "(bundle.symbolic.name=com.liferay.knowledge.base.web)",
-		unbind = "-"
-	)
-	protected void setResourceBundleLoader(
-		ResourceBundleLoader resourceBundleLoader) {
-
-		_resourceBundleLoader = resourceBundleLoader;
-	}
-
 	private static final String[] _CLASS_NAMES = {
 		KBArticle.class.getName(), KBComment.class.getName(),
 		KBTemplate.class.getName()
@@ -278,6 +270,12 @@ public class KBActivityInterpreter extends BaseSocialActivityInterpreter {
 	private KBArticleLocalService _kbArticleLocalService;
 	private KBCommentLocalService _kbCommentLocalService;
 	private KBTemplateLocalService _kbTemplateLocalService;
-	private ResourceBundleLoader _resourceBundleLoader;
+
+	@Reference(
+		policy = ReferencePolicy.DYNAMIC,
+		policyOption = ReferencePolicyOption.GREEDY,
+		target = "(bundle.symbolic.name=com.liferay.knowledge.base.web)"
+	)
+	private volatile ResourceBundleLoader _resourceBundleLoader;
 
 }

@@ -35,6 +35,8 @@ import java.text.Format;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferencePolicy;
+import org.osgi.service.component.annotations.ReferencePolicyOption;
 
 /**
  * @author Brian Wing Shun Chan
@@ -183,9 +185,6 @@ public class BlogsActivityInterpreter extends BaseSocialActivityInterpreter {
 		_blogsEntryLocalService = blogsEntryLocalService;
 	}
 
-	@Reference(
-		target = "(bundle.symbolic.name=com.liferay.blogs.web)", unbind = "-"
-	)
 	protected void setResourceBundleLoader(
 		ResourceBundleLoader resourceBundleLoader) {
 
@@ -195,6 +194,12 @@ public class BlogsActivityInterpreter extends BaseSocialActivityInterpreter {
 	private static final String[] _CLASS_NAMES = {BlogsEntry.class.getName()};
 
 	private BlogsEntryLocalService _blogsEntryLocalService;
-	private ResourceBundleLoader _resourceBundleLoader;
+
+	@Reference(
+		policy = ReferencePolicy.DYNAMIC,
+		policyOption = ReferencePolicyOption.GREEDY,
+		target = "(bundle.symbolic.name=com.liferay.blogs.web)"
+	)
+	private volatile ResourceBundleLoader _resourceBundleLoader;
 
 }

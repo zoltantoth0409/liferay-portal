@@ -33,6 +33,8 @@ import com.liferay.social.kernel.model.SocialActivityInterpreter;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferencePolicy;
+import org.osgi.service.component.annotations.ReferencePolicyOption;
 
 /**
  * @author Brian Wing Shun Chan
@@ -182,10 +184,6 @@ public class MBMessageActivityInterpreter
 		_mbMessageLocalService = mbMessageLocalService;
 	}
 
-	@Reference(
-		target = "(bundle.symbolic.name=com.liferay.message.boards.web)",
-		unbind = "-"
-	)
 	protected void setResourceBundleLoader(
 		ResourceBundleLoader resourceBundleLoader) {
 
@@ -198,6 +196,12 @@ public class MBMessageActivityInterpreter
 	private Http _http;
 
 	private MBMessageLocalService _mbMessageLocalService;
-	private ResourceBundleLoader _resourceBundleLoader;
+
+	@Reference(
+		policy = ReferencePolicy.DYNAMIC,
+		policyOption = ReferencePolicyOption.GREEDY,
+		target = "(bundle.symbolic.name=com.liferay.message.boards.web)"
+	)
+	private volatile ResourceBundleLoader _resourceBundleLoader;
 
 }

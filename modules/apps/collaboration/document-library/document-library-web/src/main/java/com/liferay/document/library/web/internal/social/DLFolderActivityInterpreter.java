@@ -28,6 +28,8 @@ import com.liferay.social.kernel.model.SocialActivityInterpreter;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferencePolicy;
+import org.osgi.service.component.annotations.ReferencePolicyOption;
 
 /**
  * @author Zsolt Berentey
@@ -98,18 +100,13 @@ public class DLFolderActivityInterpreter extends BaseSocialActivityInterpreter {
 			actionId);
 	}
 
-	@Reference(
-		target = "(bundle.symbolic.name=com.liferay.document.library.web)",
-		unbind = "-"
-	)
-	protected void setResourceBundleLoader(
-		ResourceBundleLoader resourceBundleLoader) {
-
-		_resourceBundleLoader = resourceBundleLoader;
-	}
-
 	private static final String[] _CLASS_NAMES = {DLFolder.class.getName()};
 
-	private ResourceBundleLoader _resourceBundleLoader;
+	@Reference(
+		policy = ReferencePolicy.DYNAMIC,
+		policyOption = ReferencePolicyOption.GREEDY,
+		target = "(bundle.symbolic.name=com.liferay.document.library.web)"
+	)
+	private volatile ResourceBundleLoader _resourceBundleLoader;
 
 }
