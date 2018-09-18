@@ -322,6 +322,45 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 	}
 
 	@Override
+	public int countByOrganizationsAndUserGroups(
+		long[] organizationIds, long[] userGroupIds) {
+
+		Long count = null;
+
+		Session session = openSession();
+
+		try {
+			String sql = CustomSQLUtil.get(
+				COUNT_BY_ORGANIZATIONS_AND_USER_GROUPS);
+
+			sql = StringUtil.replace(
+				sql, new String[] {"[$ORGANIZATION_ID$]", "[$USER_GROUP_ID$]"},
+				new String[] {
+					StringUtil.merge(organizationIds),
+					StringUtil.merge(userGroupIds)
+				});
+
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
+
+			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+
+			count = (Long)sqlQuery.uniqueResult();
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally {
+			if (count == null) {
+				count = Long.valueOf(0);
+			}
+
+			closeSession(session);
+		}
+
+		return count.intValue();
+	}
+
+	@Override
 	public int countBySocialUsers(
 		long companyId, long userId, int socialRelationType,
 		String socialRelationTypeComparator, int status) {
@@ -842,45 +881,6 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 		catch (Exception e) {
 			throw new SystemException(e);
 		}
-	}
-
-	@Override
-	public int getOrganizationsAndUserGroupsUsersCount(
-		long[] organizationIds, long[] userGroupIds) {
-
-		Long count = null;
-
-		Session session = openSession();
-
-		try {
-			String sql = CustomSQLUtil.get(
-				COUNT_BY_ORGANIZATIONS_AND_USER_GROUPS);
-
-			sql = StringUtil.replace(
-				sql, new String[] {"[$ORGANIZATION_ID$]", "[$USER_GROUP_ID$]"},
-				new String[] {
-					StringUtil.merge(organizationIds),
-					StringUtil.merge(userGroupIds)
-				});
-
-			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
-
-			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
-
-			count = (Long)sqlQuery.uniqueResult();
-		}
-		catch (Exception e) {
-			throw new SystemException(e);
-		}
-		finally {
-			if (count == null) {
-				count = Long.valueOf(0);
-			}
-
-			closeSession(session);
-		}
-
-		return count.intValue();
 	}
 
 	protected List<Long> doFindByC_FN_MN_LN_SN_EA_S(

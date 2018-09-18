@@ -391,7 +391,7 @@ public class OrganizationServiceImpl extends OrganizationServiceBaseImpl {
 		long companyId, long parentOrganizationId, String name, int start,
 		int end) {
 
-		return organizationPersistence.filterFindByC_P_N(
+		return organizationPersistence.filterFindByC_P_LikeN(
 			companyId, parentOrganizationId, name, start, end);
 	}
 
@@ -422,7 +422,7 @@ public class OrganizationServiceImpl extends OrganizationServiceBaseImpl {
 			long companyId, long parentOrganizationId, String name)
 		throws PortalException {
 
-		return organizationPersistence.filterCountByC_P_N(
+		return organizationPersistence.filterCountByC_P_LikeN(
 			companyId, parentOrganizationId, name);
 	}
 
