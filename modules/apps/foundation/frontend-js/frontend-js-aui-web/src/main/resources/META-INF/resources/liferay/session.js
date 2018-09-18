@@ -621,10 +621,10 @@ AUI.add(
 
 						instance._host.unregisterInterval(instance._intervalId);
 
-						var banner = instance._getBanner();
+						var notificationContainer = AUI().one('.lfr-notification-container');
 
-						if (banner) {
-							banner.hide();
+						if (notificationContainer) {
+							notificationContainer.remove();
 						}
 					},
 
