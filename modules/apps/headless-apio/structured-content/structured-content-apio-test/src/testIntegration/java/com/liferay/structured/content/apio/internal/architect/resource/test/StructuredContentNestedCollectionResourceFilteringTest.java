@@ -156,9 +156,12 @@ public class StructuredContentNestedCollectionResourceFilteringTest
 
 		Assert.assertEquals(1, pageItems.getTotalCount());
 
-		List<JournalArticle> items = (List<JournalArticle>)pageItems.getItems();
+		List<JournalArticle> journalArticles =
+			(List<JournalArticle>)pageItems.getItems();
 
-		Assert.assertTrue("Items " + items, items.contains(journalArticle1));
+		Assert.assertTrue(
+			"Items " + journalArticles,
+			journalArticles.contains(journalArticle1));
 	}
 
 	@Test
@@ -224,9 +227,10 @@ public class StructuredContentNestedCollectionResourceFilteringTest
 
 		Assert.assertEquals(1, pageItems.getTotalCount());
 
-		List<JournalArticle> items = (List<JournalArticle>)pageItems.getItems();
+		List<JournalArticle> journalArticles =
+			(List<JournalArticle>)pageItems.getItems();
 
-		Assert.assertEquals(journalArticle1, items.get(0));
+		Assert.assertEquals(journalArticle1, journalArticles.get(0));
 	}
 
 	@Test
@@ -279,10 +283,11 @@ public class StructuredContentNestedCollectionResourceFilteringTest
 
 		Assert.assertEquals(2, pageItems.getTotalCount());
 
-		List<JournalArticle> items = (List<JournalArticle>)pageItems.getItems();
+		List<JournalArticle> journalArticles =
+			(List<JournalArticle>)pageItems.getItems();
 
-		Assert.assertTrue(items.contains(journalArticle1));
-		Assert.assertTrue(items.contains(journalArticle2));
+		Assert.assertTrue(journalArticles.contains(journalArticle1));
+		Assert.assertTrue(journalArticles.contains(journalArticle2));
 	}
 
 	@Test
@@ -314,9 +319,10 @@ public class StructuredContentNestedCollectionResourceFilteringTest
 
 		Assert.assertEquals(1, pageItems.getTotalCount());
 
-		List<JournalArticle> items = (List<JournalArticle>)pageItems.getItems();
+		List<JournalArticle> journalArticles =
+			(List<JournalArticle>)pageItems.getItems();
 
-		Assert.assertEquals(journalArticle, items.get(0));
+		Assert.assertEquals(journalArticle, journalArticles.get(0));
 	}
 
 	@Test
@@ -376,9 +382,10 @@ public class StructuredContentNestedCollectionResourceFilteringTest
 
 		Assert.assertEquals(1, pageItems.getTotalCount());
 
-		List<JournalArticle> items = (List<JournalArticle>)pageItems.getItems();
+		List<JournalArticle> journalArticles =
+			(List<JournalArticle>)pageItems.getItems();
 
-		Assert.assertEquals(journalArticle, items.get(0));
+		Assert.assertEquals(journalArticle, journalArticles.get(0));
 	}
 
 	@Test
@@ -431,10 +438,11 @@ public class StructuredContentNestedCollectionResourceFilteringTest
 
 		Assert.assertEquals(2, pageItems.getTotalCount());
 
-		List<JournalArticle> items = (List<JournalArticle>)pageItems.getItems();
+		List<JournalArticle> journalArticles =
+			(List<JournalArticle>)pageItems.getItems();
 
-		Assert.assertTrue(items.contains(journalArticle1));
-		Assert.assertTrue(items.contains(journalArticle2));
+		Assert.assertTrue(journalArticles.contains(journalArticle1));
+		Assert.assertTrue(journalArticles.contains(journalArticle2));
 	}
 
 	@Test
@@ -476,10 +484,11 @@ public class StructuredContentNestedCollectionResourceFilteringTest
 
 		Assert.assertEquals(2, pageItems.getTotalCount());
 
-		List<JournalArticle> items = (List<JournalArticle>)pageItems.getItems();
+		List<JournalArticle> journalArticles =
+			(List<JournalArticle>)pageItems.getItems();
 
-		Assert.assertTrue(items.contains(journalArticle1));
-		Assert.assertTrue(items.contains(journalArticle2));
+		Assert.assertTrue(journalArticles.contains(journalArticle1));
+		Assert.assertTrue(journalArticles.contains(journalArticle2));
 	}
 
 	@Test
@@ -521,10 +530,11 @@ public class StructuredContentNestedCollectionResourceFilteringTest
 
 		Assert.assertEquals(2, pageItems.getTotalCount());
 
-		List<JournalArticle> items = (List<JournalArticle>)pageItems.getItems();
+		List<JournalArticle> journalArticles =
+			(List<JournalArticle>)pageItems.getItems();
 
-		Assert.assertTrue(items.contains(journalArticle1));
-		Assert.assertTrue(items.contains(journalArticle2));
+		Assert.assertTrue(journalArticles.contains(journalArticle1));
+		Assert.assertTrue(journalArticles.contains(journalArticle2));
 	}
 
 	@Inject
