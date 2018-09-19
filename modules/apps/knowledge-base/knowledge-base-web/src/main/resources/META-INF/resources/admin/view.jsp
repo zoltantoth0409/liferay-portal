@@ -150,13 +150,13 @@ if (parentResourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 
 							String modifiedDateDescription = LanguageUtil.getTimeDescription(request, System.currentTimeMillis() - modifiedDate.getTime(), true);
 
-							row.setPrimaryKey(String.valueOf(kbFolder.getKbFolderId()));
-
 							Map<String, Object> rowData = new HashMap<String, Object>();
 
 							rowData.put("actions", String.join(StringPool.COMMA, kbAdminManagementToolbarDisplayContext.getAvailableActionDropdownItems(kbFolder)));
 
 							row.setData(rowData);
+
+							row.setPrimaryKey(String.valueOf(kbFolder.getKbFolderId()));
 							%>
 
 							<liferay-ui:search-container-column-icon
@@ -231,13 +231,13 @@ if (parentResourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 
 							String modifiedDateDescription = LanguageUtil.getTimeDescription(request, System.currentTimeMillis() - modifiedDate.getTime(), true);
 
-							row.setPrimaryKey(String.valueOf(kbArticle.getResourcePrimKey()));
-
 							Map<String, Object> rowData = new HashMap<String, Object>();
 
 							rowData.put("actions", String.join(StringPool.COMMA, kbAdminManagementToolbarDisplayContext.getAvailableActionDropdownItems(kbArticle)));
 
 							row.setData(rowData);
+
+							row.setPrimaryKey(String.valueOf(kbArticle.getResourcePrimKey()));
 							%>
 
 							<liferay-ui:search-container-column-user
