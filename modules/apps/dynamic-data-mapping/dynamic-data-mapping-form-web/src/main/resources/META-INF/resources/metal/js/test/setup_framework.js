@@ -1,6 +1,7 @@
 window.Liferay = {
 	component: (name) => {
 		let component;
+
 		if (name.endsWith('settingsDDMForm')) {
 			component = {
 				getField: () => {
@@ -9,11 +10,13 @@ window.Liferay = {
 					}
 				}
 			};
-		} else if (name.endsWith('translationManager')) {
+		}
+		else if (name.endsWith('translationManager')) {
 			component = {
 				get: (arg) => 'en_US'
 			};
 		}
+
 		return component;
 	},
 	DDM: {
