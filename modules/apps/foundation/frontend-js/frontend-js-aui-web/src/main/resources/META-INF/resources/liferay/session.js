@@ -621,7 +621,7 @@ AUI.add(
 
 						instance._host.unregisterInterval(instance._intervalId);
 
-						var notificationContainer = AUI().one('.lfr-notification-container');
+						var notificationContainer = A.one('.lfr-notification-container');
 
 						if (notificationContainer) {
 							notificationContainer.remove();
