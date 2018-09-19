@@ -52,7 +52,7 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Juan Fernández
  */
-@Component(immediate = true)
+@Component(immediate = true, service = DDMWebDAV.class)
 public class DDMWebDAVImpl implements DDMWebDAV {
 
 	@Override

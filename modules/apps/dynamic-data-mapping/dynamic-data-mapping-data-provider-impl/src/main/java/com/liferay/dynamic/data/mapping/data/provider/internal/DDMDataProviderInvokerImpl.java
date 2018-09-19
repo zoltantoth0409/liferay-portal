@@ -45,7 +45,7 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Marcellus Tavares
  */
-@Component(immediate = true)
+@Component(immediate = true, service = DDMDataProviderInvoker.class)
 public class DDMDataProviderInvokerImpl implements DDMDataProviderInvoker {
 
 	public DDMDataProviderResponse invoke(
