@@ -109,6 +109,7 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -142,6 +143,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
+import java.util.ResourceBundle;
 import java.util.Set;
 
 import javax.portlet.PortletPreferences;
@@ -669,6 +671,9 @@ public class StagingImpl implements Staging {
 		int errorType = 0;
 		JSONArray warningMessagesJSONArray = null;
 
+		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
+			"content.Language", locale, getClass());
+
 		if (e instanceof DuplicateFileEntryException) {
 			errorMessage = LanguageUtil.get(
 				locale, "please-enter-a-unique-document-name");
@@ -754,7 +759,7 @@ public class StagingImpl implements Staging {
 			sb.append("not-be-found.-please-import-the-following-templates-");
 			sb.append("manually");
 
-			errorMessage = LanguageUtil.get(locale, sb.toString());
+			errorMessage = LanguageUtil.get(resourceBundle, sb.toString());
 
 			errorMessagesJSONArray = JSONFactoryUtil.createJSONArray();
 
