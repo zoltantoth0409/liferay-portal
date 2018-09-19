@@ -106,7 +106,6 @@ public class UpgradeLayoutPageTemplateStructure extends UpgradeProcess {
 		actionableDynamicQuery.setAddCriteriaMethod(
 			dynamicQuery -> dynamicQuery.add(
 				RestrictionsFactoryUtil.eq("type", "content")));
-
 		actionableDynamicQuery.setPerformActionMethod(
 			(Layout layout) -> {
 				Date createDate = layout.getCreateDate();
