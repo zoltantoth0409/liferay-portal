@@ -7,3 +7,8 @@
 # Bundle Version 1.1.0
 #
 bcb38e822edf0164bab451e4abe3589f42bed3aa^..462f8169e9f0bd158393e8b2e5f22b1e91d1cf57=LPS-83417
+
+#
+# Bundle Version 1.1.1
+#
+462f8169e9f0bd158393e8b2e5f22b1e91d1cf57^..015a57d61ea764148007ebe6768f382d6539a14f=LRDOCS-5689
