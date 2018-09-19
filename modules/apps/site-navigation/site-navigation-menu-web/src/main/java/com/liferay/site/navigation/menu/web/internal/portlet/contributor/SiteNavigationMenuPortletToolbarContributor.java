@@ -88,8 +88,8 @@ public class SiteNavigationMenuPortletToolbarContributor
 		menu.setExtended(false);
 		menu.setIcon("pencil");
 		menu.setMarkupView("lexicon");
-		menu.setMessage("edit");
 		menu.setMenuItems(menuItems);
+		menu.setMessage("edit");
 		menu.setScroll(false);
 		menu.setShowArrow(false);
 		menu.setShowWhenSingleIcon(true);
