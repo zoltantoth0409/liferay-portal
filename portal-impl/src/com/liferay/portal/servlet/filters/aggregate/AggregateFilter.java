@@ -507,7 +507,7 @@ public class AggregateFilter extends IgnoreModuleRequestFilter {
 			String finalResourcePath = resourcePath;
 
 			NoticeableFuture<String> noticeableFuture =
-				_ongoingTasks.computeIfAbsent(
+				_noticeableFutures.computeIfAbsent(
 					cacheCommonFileName,
 					key -> {
 						NoticeableExecutorService noticeableExecutorService =
@@ -545,7 +545,7 @@ public class AggregateFilter extends IgnoreModuleRequestFilter {
 					});
 
 			noticeableFuture.addFutureListener(
-				future -> _ongoingTasks.remove(cacheCommonFileName));
+				future -> _noticeableFutures.remove(cacheCommonFileName));
 
 			return content;
 		}
@@ -763,7 +763,7 @@ public class AggregateFilter extends IgnoreModuleRequestFilter {
 			PortalExecutorManager.class, AggregateFilter.class,
 			"_portalExecutorManager", true);
 
-	private final Map<String, NoticeableFuture<String>> _ongoingTasks =
+	private final Map<String, NoticeableFuture<String>> _noticeableFutures =
 		new ConcurrentHashMap<>();
 	private ServletContext _servletContext;
 	private File _tempDir;
