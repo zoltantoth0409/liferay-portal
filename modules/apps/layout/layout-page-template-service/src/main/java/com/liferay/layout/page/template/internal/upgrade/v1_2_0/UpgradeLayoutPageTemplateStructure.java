@@ -110,13 +110,11 @@ public class UpgradeLayoutPageTemplateStructure extends UpgradeProcess {
 			(Layout layout) -> {
 				Date createDate = layout.getCreateDate();
 
-				Timestamp createDateTimestamp = new Timestamp(
-					createDate.getTime());
-
 				_updateLayoutPageTemplateStructure(
 					layout.getGroupId(), layout.getCompanyId(),
 					layout.getUserId(), layout.getUserName(),
-					createDateTimestamp, classNameId, layout.getPlid());
+					new Timestamp(createDate.getTime()), classNameId,
+					layout.getPlid());
 			});
 
 		actionableDynamicQuery.performActions();
