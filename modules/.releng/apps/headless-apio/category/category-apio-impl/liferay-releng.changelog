@@ -52,3 +52,8 @@ ba32cd97ee754a7b6fca00928fd07b0901436d89^..cc8d70f0fa70cab4c8cf5290e393d95534c6e
 # Bundle Version 1.0.11
 #
 cc8d70f0fa70cab4c8cf5290e393d95534c6edac^..9e32d51c04ef134cfa1a8f63400ddff11626fdbd=LPS-84119
+
+#
+# Bundle Version 1.0.12
+#
+9e32d51c04ef134cfa1a8f63400ddff11626fdbd^..143e704e6eca0bd4bdd3e38c557545dcab78d49d=LPS-85296 LRDOCS-5689
