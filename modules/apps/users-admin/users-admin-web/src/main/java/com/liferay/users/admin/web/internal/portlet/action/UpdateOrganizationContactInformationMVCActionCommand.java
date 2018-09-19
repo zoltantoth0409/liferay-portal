@@ -118,18 +118,20 @@ public class UpdateOrganizationContactInformationMVCActionCommand
 
 		List<EmailAddress> emailAddresses = UsersAdminUtil.getEmailAddresses(
 			actionRequest);
-		List<Phone> phones = UsersAdminUtil.getPhones(actionRequest);
-		List<Website> websites = UsersAdminUtil.getWebsites(actionRequest);
 
 		if (emailAddresses != null) {
 			_usersAdmin.updateEmailAddresses(
 				Organization.class.getName(), organizationId, emailAddresses);
 		}
 
+		List<Phone> phones = UsersAdminUtil.getPhones(actionRequest);
+
 		if (phones != null) {
 			_usersAdmin.updatePhones(
 				Organization.class.getName(), organizationId, phones);
 		}
+
+		List<Website> websites = UsersAdminUtil.getWebsites(actionRequest);
 
 		if (websites != null) {
 			_usersAdmin.updateWebsites(
