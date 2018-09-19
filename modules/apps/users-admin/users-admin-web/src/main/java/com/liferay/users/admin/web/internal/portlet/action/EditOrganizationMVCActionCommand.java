@@ -260,10 +260,8 @@ public class EditOrganizationMVCActionCommand extends BaseMVCActionCommand {
 			List<EmailAddress> emailAddresses =
 				_emailAddressService.getEmailAddresses(
 					Organization.class.getName(), organizationId);
-
 			List<Phone> phones = _phoneService.getPhones(
 				Organization.class.getName(), organizationId);
-
 			List<Website> websites = _websiteService.getWebsites(
 				Organization.class.getName(), organizationId);
 
