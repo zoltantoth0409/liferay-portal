@@ -86,7 +86,8 @@ public class LayoutTemplateHotDeployListener extends BaseHotDeployListener {
 		}
 
 		if (_log.isDebugEnabled()) {
-			_log.debug("Registering layout templates for " + servletContextName);
+			_log.debug(
+				"Registering layout templates for " + servletContextName);
 		}
 
 		List<LayoutTemplate> layoutTemplates =
