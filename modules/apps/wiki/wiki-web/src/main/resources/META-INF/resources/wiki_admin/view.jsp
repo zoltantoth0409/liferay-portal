@@ -158,18 +158,18 @@ WikiNodesManagementToolbarDisplayContext wikiNodesManagementToolbarDisplayContex
 				>
 
 					<%
+					Map<String, Object> rowData = new HashMap<>();
+
+					rowData.put("actions", String.join(StringPool.COMMA, wikiNodesManagementToolbarDisplayContext.getAvailableActionDropdownItems(node)));
+
+					row.setData(rowData);
+
 					PortletURL rowURL = renderResponse.createRenderURL();
 
 					rowURL.setParameter("mvcRenderCommandName", "/wiki/view_pages");
 					rowURL.setParameter("navigation", "all-pages");
 					rowURL.setParameter("redirect", currentURL);
 					rowURL.setParameter("nodeId", String.valueOf(node.getNodeId()));
-
-					Map<String, Object> rowData = new HashMap<>();
-
-					rowData.put("actions", String.join(StringPool.COMMA, wikiNodesManagementToolbarDisplayContext.getAvailableActionDropdownItems(node)));
-
-					row.setData(rowData);
 					%>
 
 					<c:choose>

@@ -171,6 +171,12 @@ WikiPagesManagementToolbarDisplayContext wikiPagesManagementToolbarDisplayContex
 				>
 
 					<%
+					Map<String, Object> rowData = new HashMap<>();
+
+					rowData.put("actions", String.join(StringPool.COMMA, wikiPagesManagementToolbarDisplayContext.getAvailableActionDropdownItems(curPage)));
+
+					row.setData(rowData);
+
 					PortletURL rowURL = renderResponse.createRenderURL();
 
 					if (!navigation.equals("draft-pages") || Validator.isNotNull(keywords)) {
@@ -185,12 +191,6 @@ WikiPagesManagementToolbarDisplayContext wikiPagesManagementToolbarDisplayContex
 					}
 
 					rowURL.setParameter("title", curPage.getTitle());
-
-					Map<String, Object> rowData = new HashMap<>();
-
-					rowData.put("actions", String.join(StringPool.COMMA, wikiPagesManagementToolbarDisplayContext.getAvailableActionDropdownItems(curPage)));
-
-					row.setData(rowData);
 					%>
 
 					<c:choose>
