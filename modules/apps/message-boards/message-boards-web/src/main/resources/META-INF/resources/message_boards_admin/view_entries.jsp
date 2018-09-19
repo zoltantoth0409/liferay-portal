@@ -23,8 +23,9 @@ long categoryId = GetterUtil.getLong(request.getAttribute("view.jsp-categoryId")
 
 MBCategoryDisplay categoryDisplay = new MBCategoryDisplay(scopeGroupId, categoryId);
 
-SearchContainer entriesSearchContainer = (SearchContainer)request.getAttribute("view.jsp-entriesSearchContainer");
 MBEntriesManagementToolbarDisplayContext mbEntriesManagementToolbarDisplayContext = (MBEntriesManagementToolbarDisplayContext)request.getAttribute("view.jsp-mbEntriesManagementToolbarDisplayContext");
+
+SearchContainer entriesSearchContainer = (SearchContainer)request.getAttribute("view.jsp-entriesSearchContainer");
 %>
 
 <div class="container-fluid-1280 view-entries-container">
@@ -90,13 +91,13 @@ MBEntriesManagementToolbarDisplayContext mbEntriesManagementToolbarDisplayContex
 					<c:when test="<%= curCategory != null %>">
 
 						<%
-						row.setPrimaryKey(String.valueOf(curCategory.getCategoryId()));
-
 						Map<String, Object> rowData = new HashMap<String, Object>();
 
 						rowData.put("actions", String.join(StringPool.COMMA, mbEntriesManagementToolbarDisplayContext.getAvailableActionDropdownItems(curCategory)));
 
 						row.setData(rowData);
+
+						row.setPrimaryKey(String.valueOf(curCategory.getCategoryId()));
 						%>
 
 						<liferay-portlet:renderURL varImpl="rowURL">

@@ -89,8 +89,9 @@ String entriesNavigation = ParamUtil.getString(request, "entriesNavigation", "al
 />
 
 <%
-request.setAttribute("view.jsp-entriesSearchContainer", searchContainer);
 request.setAttribute("view.jsp-mbEntriesManagementToolbarDisplayContext", mbEntriesManagementToolbarDisplayContext);
+
+request.setAttribute("view.jsp-entriesSearchContainer", searchContainer);
 %>
 
 <liferay-util:include page="/message_boards_admin/view_entries.jsp" servletContext="<%= application %>" />
