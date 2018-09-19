@@ -56,7 +56,6 @@ AnnouncementsAdminViewManagementToolbarDisplayContext announcementsAdminViewMana
 						navigationItem.setHref(renderResponse.createRenderURL());
 						navigationItem.setLabel(LanguageUtil.get(request, "announcements"));
 					});
-
 				add(
 					navigationItem -> {
 						navigationItem.setActive(navigation.equals("alerts"));
@@ -102,17 +101,17 @@ AnnouncementsAdminViewManagementToolbarDisplayContext announcementsAdminViewMana
 			>
 
 				<%
-				PortletURL rowURL = renderResponse.createRenderURL();
-
-				rowURL.setParameter("mvcRenderCommandName", "/announcements/view_entry");
-				rowURL.setParameter("redirect", currentURL);
-				rowURL.setParameter("entryId", String.valueOf(entry.getEntryId()));
-
 				Map<String, Object> rowData = new HashMap<String, Object>();
 
 				rowData.put("actions", String.join(StringPool.COMMA, announcementsAdminViewManagementToolbarDisplayContext.getAvailableActionDropdownItems(entry)));
 
 				row.setData(rowData);
+
+				PortletURL rowURL = renderResponse.createRenderURL();
+
+				rowURL.setParameter("mvcRenderCommandName", "/announcements/view_entry");
+				rowURL.setParameter("redirect", currentURL);
+				rowURL.setParameter("entryId", String.valueOf(entry.getEntryId()));
 				%>
 
 				<liferay-ui:search-container-column-text

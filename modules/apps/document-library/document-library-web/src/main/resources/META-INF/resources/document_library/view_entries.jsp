@@ -84,25 +84,6 @@ if (portletTitleBasedNavigation && (folderId != DLFolderConstants.DEFAULT_PARENT
 				<c:when test="<%= fileEntry != null %>">
 
 					<%
-					FileVersion latestFileVersion = fileEntry.getFileVersion();
-
-					if ((user.getUserId() == fileEntry.getUserId()) || permissionChecker.isContentReviewer(user.getCompanyId(), scopeGroupId) || DLFileEntryPermission.contains(permissionChecker, fileEntry, ActionKeys.UPDATE)) {
-						latestFileVersion = fileEntry.getLatestFileVersion();
-					}
-
-					DLViewFileVersionDisplayContext dlViewFileVersionDisplayContext = null;
-
-					if (fileShortcut == null) {
-						dlViewFileVersionDisplayContext = dlDisplayContextProvider.getDLViewFileVersionDisplayContext(request, response, fileEntry.getFileVersion());
-
-						row.setPrimaryKey(String.valueOf(fileEntry.getFileEntryId()));
-					}
-					else {
-						dlViewFileVersionDisplayContext = dlDisplayContextProvider.getDLViewFileVersionDisplayContext(request, response, fileShortcut);
-
-						row.setPrimaryKey(String.valueOf(fileShortcut.getFileShortcutId()));
-					}
-
 					boolean draggable = false;
 
 					if (DLFileEntryPermission.contains(permissionChecker, fileEntry, ActionKeys.DELETE) || DLFileEntryPermission.contains(permissionChecker, fileEntry, ActionKeys.UPDATE)) {
@@ -124,6 +105,25 @@ if (portletTitleBasedNavigation && (folderId != DLFolderConstants.DEFAULT_PARENT
 					rowData.put("title", fileEntry.getTitle());
 
 					row.setData(rowData);
+
+					DLViewFileVersionDisplayContext dlViewFileVersionDisplayContext = null;
+
+					if (fileShortcut == null) {
+						dlViewFileVersionDisplayContext = dlDisplayContextProvider.getDLViewFileVersionDisplayContext(request, response, fileEntry.getFileVersion());
+
+						row.setPrimaryKey(String.valueOf(fileEntry.getFileEntryId()));
+					}
+					else {
+						dlViewFileVersionDisplayContext = dlDisplayContextProvider.getDLViewFileVersionDisplayContext(request, response, fileShortcut);
+
+						row.setPrimaryKey(String.valueOf(fileShortcut.getFileShortcutId()));
+					}
+
+					FileVersion latestFileVersion = fileEntry.getFileVersion();
+
+					if ((user.getUserId() == fileEntry.getUserId()) || permissionChecker.isContentReviewer(user.getCompanyId(), scopeGroupId) || DLFileEntryPermission.contains(permissionChecker, fileEntry, ActionKeys.UPDATE)) {
+						latestFileVersion = fileEntry.getLatestFileVersion();
+					}
 
 					String thumbnailSrc = DLUtil.getThumbnailSrc(fileEntry, latestFileVersion, themeDisplay);
 					%>
@@ -352,8 +352,6 @@ if (portletTitleBasedNavigation && (folderId != DLFolderConstants.DEFAULT_PARENT
 						dlSearchContainer.setRowChecker(entriesChecker);
 					}
 
-					Map<String, Object> rowData = new HashMap<String, Object>();
-
 					boolean draggable = false;
 
 					if (DLFolderPermission.contains(permissionChecker, curFolder, ActionKeys.DELETE) || DLFolderPermission.contains(permissionChecker, curFolder, ActionKeys.UPDATE)) {
@@ -364,9 +362,10 @@ if (portletTitleBasedNavigation && (folderId != DLFolderConstants.DEFAULT_PARENT
 						}
 					}
 
-					rowData.put("draggable", draggable);
+					Map<String, Object> rowData = new HashMap<String, Object>();
 
 					rowData.put("actions", String.join(StringPool.COMMA, dlAdminManagementToolbarDisplayContext.getAvailableActionDropdownItems(curFolder)));
+					rowData.put("draggable", draggable);
 					rowData.put("folder", true);
 					rowData.put("folder-id", curFolder.getFolderId());
 					rowData.put("title", curFolder.getName());
