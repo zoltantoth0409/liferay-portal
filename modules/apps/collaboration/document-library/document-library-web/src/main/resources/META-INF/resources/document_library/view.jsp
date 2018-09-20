@@ -183,16 +183,21 @@ if (!defaultFolderView && (folder != null) && (portletName.equals(DLPortletKeys.
 
 boolean uploadable = true;
 
-List<AssetVocabulary> assetVocabularies = AssetVocabularyServiceUtil.getGroupVocabularies(scopeGroupId);
+if (!DLFolderPermission.contains(permissionChecker, scopeGroupId, folderId, ActionKeys.ADD_DOCUMENT)) {
+	uploadable = false;
+}
+else {
+	List<AssetVocabulary> assetVocabularies = AssetVocabularyServiceUtil.getGroupVocabularies(scopeGroupId);
 
-if (!assetVocabularies.isEmpty()) {
-	long classNameId = ClassNameLocalServiceUtil.getClassNameId(DLFileEntryConstants.getClassName());
+	if (!assetVocabularies.isEmpty()) {
+		long classNameId = ClassNameLocalServiceUtil.getClassNameId(DLFileEntryConstants.getClassName());
 
-	for (AssetVocabulary assetVocabulary : assetVocabularies) {
-		if (assetVocabulary.isRequired(classNameId, DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_BASIC_DOCUMENT)) {
-			uploadable = false;
+		for (AssetVocabulary assetVocabulary : assetVocabularies) {
+			if (assetVocabulary.isRequired(classNameId, DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_BASIC_DOCUMENT)) {
+				uploadable = false;
 
-			break;
+				break;
+			}
 		}
 	}
 }
