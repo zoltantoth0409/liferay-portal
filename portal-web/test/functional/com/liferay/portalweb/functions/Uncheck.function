@@ -13,7 +13,7 @@
 			</then>
 		</if>
 
-		<execute function="AssertNotChecked#assertNotChecked" />
+		<execute function="AssertNotChecked" />
 
 		<execute selenium="assertJavaScriptErrors" />
 
