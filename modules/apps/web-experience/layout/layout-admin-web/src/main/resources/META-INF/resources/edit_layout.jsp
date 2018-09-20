@@ -23,8 +23,6 @@ Group group = layoutsAdminDisplayContext.getGroup();
 
 Layout selLayout = layoutsAdminDisplayContext.getSelLayout();
 
-String redirect = ParamUtil.getString(request, "redirect");
-
 String backURL = ParamUtil.getString(request, "backURL");
 
 if (Validator.isNull(backURL)) {
@@ -35,6 +33,8 @@ if (Validator.isNull(backURL)) {
 		backURL = PortalUtil.getLayoutFullURL(selLayout, themeDisplay);
 	}
 }
+
+String redirect = ParamUtil.getString(request, "redirect", backURL);
 
 PortletURL redirectURL = layoutsAdminDisplayContext.getRedirectURL();
 
