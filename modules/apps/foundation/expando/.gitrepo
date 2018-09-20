@@ -4,8 +4,8 @@
 [subrepo]
 	autopull = false
 	cmdver = liferay
-	commit = 8e4e731cb439b7751b6d0550d09341f54cb37cde
+	commit = ac28531988989fd50025a6024297b273782db4a4
 	mergebuttonmergecommits = false
 	mode = push
-	parent = e64a8705f91f5ec5a86e63dec43aaaff7641d1b5
+	parent = 2ed90b3a2b94650f7838d042c506ca536d05cf5d
 	remote = git@github.com:liferay/com-liferay-expando.git
