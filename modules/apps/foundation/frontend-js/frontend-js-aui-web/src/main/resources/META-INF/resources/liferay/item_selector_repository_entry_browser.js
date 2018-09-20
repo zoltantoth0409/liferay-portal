@@ -373,12 +373,17 @@ AUI.add(
 
 						if (validExtensions === '*' || validExtensions.indexOf(fileExtension) != -1) {
 							var maxFileSize = instance.get('maxFileSize');
+							var maxUploadRequestSize = Liferay.PropsValues.UPLOAD_SERVLET_REQUEST_IMPL_MAX_SIZE;
+
+							if (maxFileSize === 0) {
+								maxFileSize = maxUploadRequestSize;
+							}
 
 							if (file.size <= maxFileSize) {
 								instance._previewFile(file);
 							}
 							else {
-								var message =  Lang.sub(Liferay.Language.get('please-enter-a-file-with-a-valid-file-size-no-larger-than-x'), [instance.formatStorage(instance.get('maxFileSize'))]);
+								var message =  Lang.sub(Liferay.Language.get('please-enter-a-file-with-a-valid-file-size-no-larger-than-x'), [instance.formatStorage(maxFileSize)]);
 
 								instance._showError(message);
 							}
