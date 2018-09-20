@@ -1275,6 +1275,10 @@ public class WabProcessor {
 	private static final Log _log = LogFactoryUtil.getLog(WabProcessor.class);
 
 	private static final Attrs _optionalAttrs = new Attrs();
+	private static final Pattern _tldPackagesPattern = Pattern.compile(
+		"<[^>]+?-class>\\p{Space}*?(.*?)\\p{Space}*?</[^>]+?-class>");
+	private static final Pattern _versionMavenPattern = Pattern.compile(
+		"(\\d{1,9})(\\.(\\d{1,9})(\\.(\\d{1,9})(-([-_\\da-zA-Z]+))?)?)?");
 	private static final Map<String, String> _xsds = new ConcurrentHashMap<>();
 
 	static {
@@ -1319,9 +1323,5 @@ public class WabProcessor {
 	private File _pluginDir;
 	private PluginPackage _pluginPackage;
 	private String _servicePackageName;
-	private final Pattern _tldPackagesPattern = Pattern.compile(
-		"<[^>]+?-class>\\p{Space}*?(.*?)\\p{Space}*?</[^>]+?-class>");
-	private final Pattern _versionMavenPattern = Pattern.compile(
-		"(\\d{1,9})(\\.(\\d{1,9})(\\.(\\d{1,9})(-([-_\\da-zA-Z]+))?)?)?");
 
 }
