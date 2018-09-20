@@ -496,9 +496,9 @@ public class StructuredContentNestedCollectionResourceFilteringTest
 
 		Assert.assertEquals(1, pageItems.getTotalCount());
 
-		List<JournalArticle> items = (List<JournalArticle>)pageItems.getItems();
+		List<JournalArticle> journalArticles = (List<JournalArticle>)pageItems.getItems();
 
-		Assert.assertTrue(items.contains(journalArticle));
+		Assert.assertTrue(journalArticles.contains(journalArticle));
 	}
 
 	@Test
@@ -554,11 +554,11 @@ public class StructuredContentNestedCollectionResourceFilteringTest
 
 		Assert.assertEquals(3, pageItems.getTotalCount());
 
-		List<JournalArticle> items = (List<JournalArticle>)pageItems.getItems();
+		List<JournalArticle> journalArticles = (List<JournalArticle>)pageItems.getItems();
 
-		Assert.assertTrue(items.contains(journalArticle1));
-		Assert.assertTrue(items.contains(journalArticle2));
-		Assert.assertTrue(items.contains(journalArticle3));
+		Assert.assertTrue(journalArticles.contains(journalArticle1));
+		Assert.assertTrue(journalArticles.contains(journalArticle2));
+		Assert.assertTrue(journalArticles.contains(journalArticle3));
 	}
 
 	@Test
