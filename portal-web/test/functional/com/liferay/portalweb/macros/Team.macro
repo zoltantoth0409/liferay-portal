@@ -139,11 +139,10 @@
 	</command>
 
 	<command name="definePermissionPG">
-		<execute function="Check" locator1="//tr[contains(.,'${teamName}')]/td/input[contains(@id,'${permissionDefinitionKey}')]" />
-
-		<execute macro="PortletEntry#save" />
-
-		<execute function="AssertChecked" locator1="//tr[contains(.,'${teamName}')]/td/input[contains(@id,'${permissionDefinitionKey}')]" />
+		<execute function="Check" locator1="Checkbox#TEAM_PERMISSIONS">
+			<var name="key_permissionDefinitionKey" value="${permissionDefinitionKey}" />
+			<var name="key_teamName" value="${teamName}" />
+		</execute>
 	</command>
 
 	<command name="deleteCP">
@@ -331,5 +330,12 @@
 
 			<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="There are no members. You can add a member by clicking the plus button on the bottom right corner." />
 		</for>
+	</command>
+
+	<command name="viewPermissionPG">
+		<execute function="AssertChecked" locator1="Checkbox#TEAM_PERMISSIONS">
+			<var name="key_permissionDefinitionKey" value="${permissionDefinitionKey}" />
+			<var name="key_teamName" value="${teamName}" />
+		</execute>
 	</command>
 </definition>
