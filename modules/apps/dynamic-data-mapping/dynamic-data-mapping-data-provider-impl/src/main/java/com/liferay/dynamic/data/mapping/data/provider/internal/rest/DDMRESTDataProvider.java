@@ -399,7 +399,9 @@ public class DDMRESTDataProvider implements DDMDataProvider {
 				ddmDataProviderRequest, ddmRESTDataProviderSettings));
 	}
 
-	private final Pattern _pathParameterPattern = Pattern.compile("\\{(.*)\\}");
+	private static final Pattern _pathParameterPattern = Pattern.compile(
+		"\\{(.*)\\}");
+
 	private PortalCache<String, DDMRESTDataProviderResult> _portalCache;
 
 	private static class DDMRESTDataProviderResult implements Serializable {
