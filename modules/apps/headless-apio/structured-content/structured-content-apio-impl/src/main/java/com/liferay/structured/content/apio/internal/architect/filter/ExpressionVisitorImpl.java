@@ -86,12 +86,15 @@ public class ExpressionVisitorImpl implements ExpressionVisitor<Object> {
 	}
 
 	private Query _getANDQuery(
-		BooleanClause<Query> left, BooleanClause<Query> right) {
+		BooleanClause<Query> leftBooleanClause,
+		BooleanClause<Query> rightBooleanClause) {
 
 		BooleanQueryImpl booleanQuery = new BooleanQueryImpl();
 
-		booleanQuery.add(left.getClause(), BooleanClauseOccur.MUST);
-		booleanQuery.add(right.getClause(), BooleanClauseOccur.MUST);
+		booleanQuery.add(
+			leftBooleanClause.getClause(), BooleanClauseOccur.MUST);
+		booleanQuery.add(
+			rightBooleanClause.getClause(), BooleanClauseOccur.MUST);
 
 		return booleanQuery;
 	}
@@ -150,12 +153,15 @@ public class ExpressionVisitorImpl implements ExpressionVisitor<Object> {
 	}
 
 	private Query _getORQuery(
-		BooleanClause<Query> left, BooleanClause<Query> right) {
+		BooleanClause<Query> leftBooleanClause,
+		BooleanClause<Query> rightBooleanClause) {
 
 		BooleanQueryImpl booleanQuery = new BooleanQueryImpl();
 
-		booleanQuery.add(left.getClause(), BooleanClauseOccur.SHOULD);
-		booleanQuery.add(right.getClause(), BooleanClauseOccur.SHOULD);
+		booleanQuery.add(
+			leftBooleanClause.getClause(), BooleanClauseOccur.SHOULD);
+		booleanQuery.add(
+			rightBooleanClause.getClause(), BooleanClauseOccur.SHOULD);
 
 		return booleanQuery;
 	}
