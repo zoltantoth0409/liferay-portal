@@ -200,12 +200,14 @@ public class WabBundleProcessor {
 
 			scanTLDsForListeners(webXMLDefinition, servletContext);
 
-			initListeners(
-				webXMLDefinition.getListenerDefinitions(), servletContext);
+			Set<ListenerDefinition> listenerDefinitions = new HashSet<>();
 
-			initListeners(
-				modifiableServletContext.getListenerDefinitions(),
-				servletContext);
+			listenerDefinitions.addAll(
+				modifiableServletContext.getListenerDefinitions());
+			listenerDefinitions.addAll(
+				webXMLDefinition.getListenerDefinitions());
+
+			initListeners(new ArrayList<>(listenerDefinitions), servletContext);
 
 			modifiableServletContext.registerFilters();
 
