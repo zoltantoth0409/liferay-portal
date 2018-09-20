@@ -149,7 +149,7 @@
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute macro="User#addCP">
+		<execute macro="JSONUser#addUser">
 			<var name="userEmailAddress" value="userea@liferay.com" />
 			<var name="userFirstName" value="userfn" />
 			<var name="userLastName" value="userln" />
@@ -224,9 +224,9 @@
 			<var name="portletName" value="Web Content Display" />
 		</execute>
 
-		<var name="key_teamName" value="Site Team Name" />
-
-		<execute function="AssertTextEquals" locator1="Permissions#CONFIGURATION_PERMISSIONS_TEAM_ROLE_NAME" value1="Site Team Name" />
+		<execute function="AssertTextEquals" locator1="Permissions#CONFIGURATION_PERMISSIONS_TEAM_ROLE_NAME" value1="Site Team Name">
+			<var name="key_teamName" value="Site Team Name" />
+		</execute>
 
 		<execute macro="User#logoutPG" />
 
@@ -243,9 +243,9 @@
 			<var name="portletName" value="Web Content Display" />
 		</execute>
 
-		<var name="key_teamName" value="Site Team Name" />
-
-		<execute function="AssertTextEquals" locator1="Permissions#CONFIGURATION_PERMISSIONS_TEAM_ROLE_NAME" value1="Site Team Name" />
+		<execute function="AssertTextEquals" locator1="Permissions#CONFIGURATION_PERMISSIONS_TEAM_ROLE_NAME" value1="Site Team Name">
+			<var name="key_teamName" value="Site Team Name" />
+		</execute>
 
 		<execute macro="Navigator#openURL" />
 
@@ -2319,7 +2319,7 @@
 				<var name="portlet" value="Users and Organizations" />
 			</execute>
 
-			<execute macro="User#addCP">
+			<execute macro="JSONUser#addUser">
 				<var name="userEmailAddress" value="userea${userNumber}@liferay.com" />
 				<var name="userFirstName" value="userfn${userNumber}" />
 				<var name="userLastName" value="userln${userNumber}" />
