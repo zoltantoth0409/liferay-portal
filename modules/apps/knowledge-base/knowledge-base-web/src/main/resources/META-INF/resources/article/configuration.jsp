@@ -39,7 +39,7 @@ kbArticlePortletInstanceConfiguration = ParameterMapUtil.setParameterMap(KBArtic
 					<div class="container-fluid-1280">
 						<aui:fieldset-group markupView="lexicon">
 							<aui:fieldset>
-								<div class="form-group kb-field-wrapper">
+								<div class="form-group">
 
 									<%
 									KBArticle kbArticle = KBArticleServiceUtil.fetchLatestKBArticle(kbArticlePortletInstanceConfiguration.resourcePrimKey(), WorkflowConstants.STATUS_APPROVED);

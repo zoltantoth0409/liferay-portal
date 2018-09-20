@@ -49,7 +49,7 @@ kbDisplayPortletInstanceConfiguration = ParameterMapUtil.setParameterMap(KBDispl
 					<div class="container-fluid-1280">
 						<aui:fieldset-group markupView="lexicon">
 							<aui:fieldset>
-								<div class="input-append kb-field-wrapper">
+								<div class="input-append">
 									<aui:field-wrapper label="article-or-folder">
 
 										<%
