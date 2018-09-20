@@ -531,9 +531,9 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<var name="key_roleName" value="Guest" />
-
-		<execute function="AssertTextNotPresent" locator1="Permissions#CONTENT_PERMISSIONS_ROLE_NAME" value1="Guest" />
+		<execute function="AssertTextNotPresent" locator1="Permissions#CONTENT_PERMISSIONS_ROLE_NAME" value1="Guest">
+			<var name="key_roleName" value="Guest" />
+		</execute>
 
 		<execute macro="Navigator#openPrivateSitePageURL">
 			<var name="pageName" value="Private Blogs Page" />
@@ -548,9 +548,9 @@
 			<var name="portletName" value="Blogs" />
 		</execute>
 
-		<var name="key_roleName" value="Guest" />
-
-		<execute function="AssertTextNotPresent" locator1="Permissions#CONTENT_PERMISSIONS_ROLE_NAME" value1="Guest" />
+		<execute function="AssertTextNotPresent" locator1="Permissions#CONTENT_PERMISSIONS_ROLE_NAME" value1="Guest">
+			<var name="key_roleName" value="Guest" />
+		</execute>
 	</command>
 
 	<command name="RolesOrganizationSearch" priority="4">
@@ -741,9 +741,9 @@
 			<var name="searchAssetType" value="Document" />
 		</execute>
 
-		<var name="key_searchAssetTitle" value="Test Document" />
-
-		<execute function="AssertClick" locator1="SearchResults#ASSET_ENTRY_TABLE_TITLE" value1="Test Document" />
+		<execute function="AssertClick" locator1="SearchResults#ASSET_ENTRY_TABLE_TITLE" value1="Test Document">
+			<var name="key_searchAssetTitle" value="Test Document" />
+		</execute>
 
 		<execute macro="DMDocument#viewPGViaSearch">
 			<var name="dmDocumentDescription" value="This is a test document." />
@@ -801,9 +801,9 @@
 			<var name="searchAssetType" value="Document" />
 		</execute>
 
-		<var name="key_searchAssetTitle" value="Test Document" />
-
-		<execute function="AssertClick" locator1="SearchResults#ASSET_ENTRY_TABLE_TITLE" value1="Test Document" />
+		<execute function="AssertClick" locator1="SearchResults#ASSET_ENTRY_TABLE_TITLE" value1="Test Document">
+			<var name="key_searchAssetTitle" value="Test Document" />
+		</execute>
 
 		<execute macro="DMDocument#viewPGViaSearch">
 			<var name="dmDocumentDescription" value="This is a test document." />
@@ -1184,9 +1184,10 @@
 			<var name="pageName" value="Dynamic Data Lists Page" />
 		</execute>
 
-		<var name="key_ddlDataDefinitionName" value="Employee Profile Data Definition" />
+		<execute function="AssertTextEquals" locator1="DDL#TOOLBAR_ADD" value1="Add Employee Profile Data Definition">
+			<var name="key_ddlDataDefinitionName" value="Employee Profile Data Definition" />
+		</execute>
 
-		<execute function="AssertTextEquals" locator1="DDL#TOOLBAR_ADD" value1="Add Employee Profile Data Definition" />
 		<execute function="AssertElementPresent" locator1="DDL#RECORD_TABLE_ELLIPSIS_1" />
 
 		<execute macro="User#logoutPG" />
@@ -1200,7 +1201,10 @@
 			<var name="pageName" value="Dynamic Data Lists Page" />
 		</execute>
 
-		<execute function="AssertElementNotPresent" locator1="DDL#TOOLBAR_ADD" />
+		<execute function="AssertElementNotPresent" locator1="DDL#TOOLBAR_ADD">
+			<var name="key_ddlDataDefinitionName" value="Employee Profile Data Definition" />
+		</execute>
+
 		<execute function="AssertElementPresent" locator1="DDL#RECORD_TABLE_ELLIPSIS_1" />
 
 		<execute macro="User#logoutPG" />
@@ -1372,9 +1376,9 @@
 			<var name="searchAssetType" value="Document" />
 		</execute>
 
-		<var name="key_searchAssetTitle" value="Test Document" />
-
-		<execute function="AssertClick" locator1="SearchResults#ASSET_ENTRY_TABLE_TITLE" value1="Test Document" />
+		<execute function="AssertClick" locator1="SearchResults#ASSET_ENTRY_TABLE_TITLE" value1="Test Document">
+			<var name="key_searchAssetTitle" value="Test Document" />
+		</execute>
 
 		<execute macro="DMDocument#viewPGViaSearch">
 			<var name="dmDocumentDescription" value="This is a test document." />
@@ -1430,9 +1434,9 @@
 			<var name="searchAssetType" value="Document" />
 		</execute>
 
-		<var name="key_searchAssetTitle" value="Test Document" />
-
-		<execute function="AssertClick" locator1="SearchResults#ASSET_ENTRY_TABLE_TITLE" value1="Test Document" />
+		<execute function="AssertClick" locator1="SearchResults#ASSET_ENTRY_TABLE_TITLE" value1="Test Document">
+			<var name="key_searchAssetTitle" value="Test Document" />
+		</execute>
 
 		<execute macro="DMDocument#viewPGViaSearch">
 			<var name="dmDocumentDescription" value="This is a test document." />
@@ -2062,13 +2066,13 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<var name="key_portletTitleName" value="Message Boards" />
+		<execute function="AssertTextEquals" locator1="Portlet#SPECIFIC_TITLE" value1="Message Boards">
+			<var name="key_portletTitleName" value="Message Boards" />
+		</execute>
 
-		<execute function="AssertTextEquals" locator1="Portlet#SPECIFIC_TITLE" value1="Message Boards" />
-
-		<var name="key_portletTitleName" value="Asset Publisher" />
-
-		<execute function="AssertTextEquals" locator1="Portlet#SPECIFIC_TITLE" value1="Asset Publisher" />
+		<execute function="AssertTextEquals" locator1="Portlet#SPECIFIC_TITLE" value1="Asset Publisher">
+			<var name="key_portletTitleName" value="Asset Publisher" />
+		</execute>
 
 		<execute macro="MessageboardsThread#addPG">
 			<var name="threadBody" value="This is a thread by usersn1" />
@@ -2087,13 +2091,13 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<var name="key_portletTitleName" value="Message Boards" />
+		<execute function="AssertTextEquals" locator1="Portlet#SPECIFIC_TITLE" value1="Message Boards">
+			<var name="key_portletTitleName" value="Message Boards" />
+		</execute>
 
-		<execute function="AssertTextEquals" locator1="Portlet#SPECIFIC_TITLE" value1="Message Boards" />
-
-		<var name="key_portletTitleName" value="Asset Publisher" />
-
-		<execute function="AssertTextEquals" locator1="Portlet#SPECIFIC_TITLE" value1="Asset Publisher" />
+		<execute function="AssertTextEquals" locator1="Portlet#SPECIFIC_TITLE" value1="Asset Publisher">
+			<var name="key_portletTitleName" value="Asset Publisher" />
+		</execute>
 
 		<execute function="AssertElementNotPresent" locator1="MessageBoards#ADD_CATEGORY_BUTTON" />
 		<execute function="AssertElementNotPresent" locator1="Button#PERMISSIONS" />
@@ -2107,9 +2111,9 @@
 			<var name="siteName" value="Organization Name 2" />
 		</execute>
 
-		<var name="key_portletTitleName" value="Message Boards" />
-
-		<execute function="AssertTextEquals" locator1="Portlet#SPECIFIC_TITLE" value1="Message Boards" />
+		<execute function="AssertTextEquals" locator1="Portlet#SPECIFIC_TITLE" value1="Message Boards">
+			<var name="key_portletTitleName" value="Message Boards" />
+		</execute>
 
 		<execute function="AssertTextEquals" locator1="Button#ADD_CATEGORY" value1="Add Category" />
 		<execute function="AssertTextEquals" locator1="Button#POST_NEW_THREAD" value1="Post New Thread" />
@@ -2127,13 +2131,13 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<var name="key_portletTitleName" value="Message Boards" />
+		<execute function="AssertTextEquals" locator1="Portlet#SPECIFIC_TITLE" value1="Message Boards">
+			<var name="key_portletTitleName" value="Message Boards" />
+		</execute>
 
-		<execute function="AssertTextEquals" locator1="Portlet#SPECIFIC_TITLE" value1="Message Boards" />
-
-		<var name="key_portletTitleName" value="Asset Publisher" />
-
-		<execute function="AssertTextEquals" locator1="Portlet#SPECIFIC_TITLE" value1="Asset Publisher" />
+		<execute function="AssertTextEquals" locator1="Portlet#SPECIFIC_TITLE" value1="Asset Publisher">
+			<var name="key_portletTitleName" value="Asset Publisher" />
+		</execute>
 
 		<execute function="AssertElementNotPresent" locator1="Button#ADD_CATEGORY" />
 
@@ -2453,9 +2457,9 @@
 			<var name="userEmailAddress" value="userea2@liferay.com" />
 		</execute>
 
-		<var name="key_pageName" value="USA Ice Hockey Team Blog" />
-
-		<execute function="AssertTextNotPresent" locator1="Home#PAGE" value1="USA Ice Hockey Team Blog" />
+		<execute function="AssertTextNotPresent" locator1="Home#PAGE" value1="USA Ice Hockey Team Blog">
+			<var name="key_pageName" value="USA Ice Hockey Team Blog" />
+		</execute>
 
 		<execute macro="User#logoutPG" />
 
@@ -2614,9 +2618,9 @@
 			<var name="portletOption" value="Preferences" />
 		</execute>
 
-		<var name="key_pageName" value="Welcome" />
-
-		<execute function="AssertElementPresent" locator1="Home#PAGE" />
+		<execute function="AssertElementPresent" locator1="Home#PAGE">
+			<var name="key_pageName" value="Welcome" />
+		</execute>
 
 		<execute function="AssertTextEquals#assertText" locator1="HelloWorld#PORTLET_TITLE" value1="Hello World" />
 		<execute function="AssertElementPresent" locator1="HelloWorld#PORTLET_CONTENT" />
