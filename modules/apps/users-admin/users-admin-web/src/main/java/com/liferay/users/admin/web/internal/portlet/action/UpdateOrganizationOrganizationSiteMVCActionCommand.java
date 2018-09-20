@@ -86,6 +86,9 @@ public class UpdateOrganizationOrganizationSiteMVCActionCommand
 	protected void updateOrganizationSite(ActionRequest actionRequest)
 		throws Exception {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		long organizationId = ParamUtil.getLong(
 			actionRequest, "organizationId");
 
@@ -111,9 +114,6 @@ public class UpdateOrganizationOrganizationSiteMVCActionCommand
 			organization.getStatusId(), organization.getComments(), true, null,
 			site, organization.getAddresses(), emailAddresses, orgLabors,
 			phones, websites, null);
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
 
 		Group organizationGroup = organization.getGroup();
 
