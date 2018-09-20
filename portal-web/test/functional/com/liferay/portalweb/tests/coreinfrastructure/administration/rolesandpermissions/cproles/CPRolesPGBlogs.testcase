@@ -584,6 +584,13 @@
 			<var name="teamName" value="Site Team Name" />
 		</execute>
 
+		<execute macro="PortletEntry#save" />
+
+		<execute macro="Team#viewPermissionPG">
+			<var name="permissionDefinitionKey" value="_ACTION_ADD_ENTRY" />
+			<var name="teamName" value="Site Team Name" />
+		</execute>
+
 		<execute macro="User#logoutAndLoginPG">
 			<var name="userLoginEmailAddress" value="userea@liferay.com" />
 			<var name="userLoginFullName" value="userfn userln" />
@@ -1424,6 +1431,13 @@
 		<execute macro="BlogsNavigator#gotoBlogsEntryPermissionsPG" />
 
 		<execute macro="Team#definePermissionPG">
+			<var name="permissionDefinitionKey" value="_ACTION_DELETE" />
+			<var name="teamName" value="Site Team Name" />
+		</execute>
+
+		<execute macro="PortletEntry#save" />
+
+		<execute macro="Team#viewPermissionPG">
 			<var name="permissionDefinitionKey" value="_ACTION_DELETE" />
 			<var name="teamName" value="Site Team Name" />
 		</execute>

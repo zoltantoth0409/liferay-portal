@@ -262,6 +262,15 @@
 			</execute>
 		</for>
 
+		<execute macro="PortletEntry#save" />
+
+		<for list="ACTION_ASSIGN_MEMBERS,ACTION_DELETE,ACTION_PERMISSIONS,ACTION_UPDATE,ACTION_VIEW" param="permissionDefinitionKey">
+			<execute macro="Team#viewPermissionPG">
+				<var name="permissionDefinitionKey" value="${permissionDefinitionKey}" />
+				<var name="teamName" value="Site Team Name" />
+			</execute>
+		</for>
+
 		<execute macro="User#logoutPG" />
 
 		<execute macro="User#loginUserPG">
@@ -2405,6 +2414,15 @@
 
 		<for list="ACTION_ADD_DISCUSSION,ACTION_ADD_LAYOUT,ACTION_CONFIGURE_PORTLETS,ACTION_CUSTOMIZE,ACTION_DELETE,ACTION_DELETE_DISCUSSION,ACTION_PERMISSIONS,ACTION_UPDATE,ACTION_UPDATE_DISCUSSION,ACTION_VIEW" param="permissionDefinitionKey">
 			<execute macro="Team#definePermissionPG">
+				<var name="permissionDefinitionKey" value="${permissionDefinitionKey}" />
+				<var name="teamName" value="Site Team Name" />
+			</execute>
+		</for>
+
+		<execute macro="PortletEntry#save" />
+
+		<for list="ACTION_ADD_DISCUSSION,ACTION_ADD_LAYOUT,ACTION_CONFIGURE_PORTLETS,ACTION_CUSTOMIZE,ACTION_DELETE,ACTION_DELETE_DISCUSSION,ACTION_PERMISSIONS,ACTION_UPDATE,ACTION_UPDATE_DISCUSSION,ACTION_VIEW" param="permissionDefinitionKey">
+			<execute macro="Team#viewPermissionPG">
 				<var name="permissionDefinitionKey" value="${permissionDefinitionKey}" />
 				<var name="teamName" value="Site Team Name" />
 			</execute>
