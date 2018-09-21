@@ -17,23 +17,12 @@ package com.liferay.asset.list.model.impl;
 import aQute.bnd.annotation.ProviderType;
 
 /**
- * The extended model implementation for the AssetListEntryAssetEntryRel service. Represents a row in the &quot;AssetListEntryAssetEntryRel&quot; database table, with each column mapped to a property of this class.
- *
- * <p>
- * Helper methods and all application logic should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.asset.list.model.AssetListEntryAssetEntryRel} interface.
- * </p>
- *
  * @author Brian Wing Shun Chan
  */
 @ProviderType
 public class AssetListEntryAssetEntryRelImpl
 	extends AssetListEntryAssetEntryRelBaseImpl {
 
-	/**
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. All methods that expect a asset list entry asset entry rel model instance should use the {@link com.liferay.asset.list.model.AssetListEntryAssetEntryRel} interface instead.
-	 */
 	public AssetListEntryAssetEntryRelImpl() {
 	}
 
