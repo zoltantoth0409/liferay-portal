@@ -32,7 +32,6 @@ public class AssetListEntryAssetEntryRelLocalServiceImpl
 		long assetListEntryId, long assetEntryId) {
 
 		long assetListEntryAssetEntryRelId = counterLocalService.increment();
-		int position = getAssetListEntryAssetEntryRelsCount(assetListEntryId);
 
 		AssetListEntryAssetEntryRel assetListEntryAssetEntryRel =
 			assetListEntryAssetEntryRelPersistence.create(
@@ -40,7 +39,8 @@ public class AssetListEntryAssetEntryRelLocalServiceImpl
 
 		assetListEntryAssetEntryRel.setAssetListEntryId(assetListEntryId);
 		assetListEntryAssetEntryRel.setAssetEntryId(assetEntryId);
-		assetListEntryAssetEntryRel.setPosition(position);
+		assetListEntryAssetEntryRel.setPosition(
+			getAssetListEntryAssetEntryRelsCount(assetListEntryId));
 
 		return assetListEntryAssetEntryRelPersistence.update(
 			assetListEntryAssetEntryRel);
