@@ -143,16 +143,11 @@ public class UpdatePasswordMVCActionCommand extends BaseMVCActionCommand {
 					login = String.valueOf(user.getUserId());
 				}
 
-				HttpServletRequest originalRequest =
-					_portal.getOriginalServletRequest(
-						_portal.getHttpServletRequest(actionRequest));
-
-				HttpServletResponse httpServletResponse =
-					_portal.getHttpServletResponse(actionResponse);
-
 				_authenticatedSessionManager.login(
-					originalRequest, httpServletResponse, login, newPassword1,
-					false, null);
+					_portal.getOriginalServletRequest(
+						_portal.getHttpServletRequest(actionRequest)),
+					_portal.getHttpServletResponse(actionResponse), login,
+					newPassword1, false, null);
 			}
 		}
 		catch (Exception e) {
