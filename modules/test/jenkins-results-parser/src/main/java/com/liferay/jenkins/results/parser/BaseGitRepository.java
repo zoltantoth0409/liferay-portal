@@ -52,7 +52,7 @@ public abstract class BaseGitRepository implements GitRepository {
 
 	protected void put(String key, Object o) {
 		if (_jsonObject.has(key)) {
-			throw new RuntimeException("JSONObject already contains " + key);
+			throw new RuntimeException("JSON object already contains " + key);
 		}
 
 		_jsonObject.put(key, o);
