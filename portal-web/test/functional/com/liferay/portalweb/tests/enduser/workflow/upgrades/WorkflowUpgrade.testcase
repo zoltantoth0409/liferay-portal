@@ -57,4 +57,11 @@
 
 		<execute macro="Upgrade#approveWorkflow" />
 	</command>
+
+	<command name="ViewWorkflowArchive7010" priority="5">
+		<property name="data.archive.type" value="data-archive-workflow" />
+		<property name="portal.version" value="7.0.10" />
+
+		<execute macro="Upgrade#approveWorkflow" />
+	</command>
 </definition>

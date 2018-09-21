@@ -58,4 +58,11 @@
 
 		<execute macro="Upgrade#ViewDroolsAppManager" />
 	</command>
+
+	<command name="ViewDroolsInAppManagerAfterUpgrade7010" priority="5">
+		<property name="data.archive.type" value="data-archive-portal" />
+		<property name="portal.version" value="7.0.10" />
+
+		<execute macro="Upgrade#ViewDroolsAppManager" />
+	</command>
 </definition>

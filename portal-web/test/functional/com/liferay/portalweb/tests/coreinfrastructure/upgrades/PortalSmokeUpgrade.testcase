@@ -82,4 +82,15 @@
 
 		<execute macro="Upgrade#searchForAssetsAfterUpgrade" />
 	</command>
+
+	<command name="ViewPortalSmokeArchive7010" priority="5">
+		<property name="data.archive.type" value="data-archive-portal" />
+		<property name="portal.upgrades" value="true" />
+		<property name="portal.version" value="7.0.10" />
+		<property name="test.assert.warning.exceptions" value="true" />
+
+		<execute macro="Upgrade#viewUpgrade" />
+
+		<execute macro="Upgrade#searchForAssetsAfterUpgrade" />
+	</command>
 </definition>
