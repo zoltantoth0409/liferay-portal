@@ -655,7 +655,6 @@ public class EditAssetListDisplayContext {
 
 		searchContainer.setRowChecker(
 			new EmptyOnClickRowChecker(_portletResponse));
-
 		searchContainer.setTotal(
 			AssetListEntryAssetEntryRelLocalServiceUtil.
 				getAssetListEntryAssetEntryRelsCount(getAssetListEntryId()));
@@ -682,9 +681,9 @@ public class EditAssetListDisplayContext {
 			}
 
 			portletURL.setParameter(
-				"eventName", _portletResponse.getNamespace() + "selectTag");
-			portletURL.setParameter(
 				"groupIds", StringUtil.merge(getGroupIds()));
+			portletURL.setParameter(
+				"eventName", _portletResponse.getNamespace() + "selectTag");
 			portletURL.setParameter("selectedTagNames", "{selectedTagNames}");
 			portletURL.setWindowState(LiferayWindowState.POP_UP);
 
