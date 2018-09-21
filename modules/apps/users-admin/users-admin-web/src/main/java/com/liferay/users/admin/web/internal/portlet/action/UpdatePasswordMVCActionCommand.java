@@ -98,7 +98,7 @@ public class UpdatePasswordMVCActionCommand extends BaseMVCActionCommand {
 			String reminderQueryAnswer = BeanParamUtil.getString(
 				user, actionRequest, "reminderQueryAnswer");
 
-			boolean passwordChanged = false;
+			boolean passwordModified = false;
 
 			if (Validator.isNotNull(newPassword1) ||
 				Validator.isNotNull(newPassword2)) {
@@ -107,7 +107,7 @@ public class UpdatePasswordMVCActionCommand extends BaseMVCActionCommand {
 					user.getUserId(), newPassword1, newPassword2,
 					passwordReset);
 
-				passwordChanged = true;
+				passwordModified = true;
 			}
 
 			_userLocalService.updatePasswordReset(
@@ -125,7 +125,7 @@ public class UpdatePasswordMVCActionCommand extends BaseMVCActionCommand {
 				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
 
 			if ((user.getUserId() == themeDisplay.getUserId()) &&
-				passwordChanged) {
+				passwordModified) {
 
 				String login = null;
 
