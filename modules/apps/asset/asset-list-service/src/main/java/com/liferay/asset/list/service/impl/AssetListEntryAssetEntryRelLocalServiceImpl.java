@@ -95,13 +95,11 @@ public class AssetListEntryAssetEntryRelLocalServiceImpl
 			assetListEntryAssetEntryRelPersistence.findByA_P(
 				assetListEntryId, position);
 
-		int assetListEntryAssetEntryRelCount =
+		int count =
 			assetListEntryAssetEntryRelPersistence.countByAssetListEntryId(
 				assetListEntryId);
 
-		if ((newPosition < 0) ||
-			(newPosition >= assetListEntryAssetEntryRelCount)) {
-
+		if ((newPosition < 0) || (newPosition >= count)) {
 			return assetListEntryAssetEntryRel;
 		}
 
