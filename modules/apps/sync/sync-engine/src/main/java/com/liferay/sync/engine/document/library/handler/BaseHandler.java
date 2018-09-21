@@ -27,6 +27,7 @@ import com.liferay.sync.engine.service.SyncSiteService;
 import com.liferay.sync.engine.util.ConnectionRetryUtil;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
@@ -119,7 +120,9 @@ public class BaseHandler implements Handler<Void> {
 
 			retryServerConnection(SyncAccount.UI_EVENT_CONNECTION_EXCEPTION);
 		}
-		else if (e instanceof FileNotFoundException) {
+		else if (e instanceof FileNotFoundException ||
+				 e instanceof IOException) {
+
 			SyncFile syncFile = (SyncFile)getParameterValue("syncFile");
 
 			String message = e.getMessage();
@@ -132,8 +135,13 @@ public class BaseHandler implements Handler<Void> {
 
 				_scheduledExecutorService.schedule(_event, 1, TimeUnit.SECONDS);
 			}
-			else if (syncFile.getVersion() == null) {
+			else if (e instanceof FileNotFoundException &&
+					 (syncFile.getVersion() == null)) {
+
 				SyncFileService.deleteSyncFile(syncFile, false);
+			}
+			else {
+				_logger.error(e.getMessage(), e);
 			}
 		}
 		else {
