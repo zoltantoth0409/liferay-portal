@@ -78,15 +78,13 @@ public class PasswordModifiedFilter extends BasePortalFilter {
 				return false;
 			}
 
-			boolean sessionOlderThanPassword = false;
-
 			if (session.getCreationTime() <
 					passwordModifiedDate.getTime()) {
 
-				sessionOlderThanPassword = true;
+				return true;
 			}
 
-			return sessionOlderThanPassword;
+			return false;
 		}
 		catch (PortalException pe) {
 			_log.error(pe, pe);
