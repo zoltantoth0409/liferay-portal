@@ -71,7 +71,7 @@ public class OAuth2ScopeGrantLocalServiceImpl
 		long oAuth2ApplicationScopeAliasesId,
 		Collection<LiferayOAuth2Scope> liferayOAuth2Scopes) {
 
-		Collection<LiferayOAuth2Scope> resultLiferayOAuth2Scopes =
+		Collection<LiferayOAuth2Scope> filteredLiferayOAuth2Scopes =
 			new ArrayList<>(liferayOAuth2Scopes.size());
 
 		List<OAuth2ScopeGrant> oAuth2ScopeGrants =
@@ -80,15 +80,15 @@ public class OAuth2ScopeGrantLocalServiceImpl
 
 		for (LiferayOAuth2Scope liferayOAuth2Scope : liferayOAuth2Scopes) {
 			for (OAuth2ScopeGrant oAuth2ScopeGrant : oAuth2ScopeGrants) {
-				if (_matches(oAuth2ScopeGrant, liferayOAuth2Scope)) {
-					resultLiferayOAuth2Scopes.add(liferayOAuth2Scope);
+				if (_isMatch(oAuth2ScopeGrant, liferayOAuth2Scope)) {
+					filteredLiferayOAuth2Scopes.add(liferayOAuth2Scope);
 
 					break;
 				}
 			}
 		}
 
-		return resultLiferayOAuth2Scopes;
+		return filteredLiferayOAuth2Scopes;
 	}
 
 	public Collection<OAuth2ScopeGrant> getOAuth2ScopeGrants(
@@ -132,7 +132,7 @@ public class OAuth2ScopeGrantLocalServiceImpl
 
 		for (LiferayOAuth2Scope liferayOAuth2Scope : liferayOAuth2Scopes) {
 			for (OAuth2ScopeGrant oAuth2ScopeGrant : oAuth2ScopeGrants) {
-				if (_matches(oAuth2ScopeGrant, liferayOAuth2Scope)) {
+				if (_isMatch(oAuth2ScopeGrant, liferayOAuth2Scope)) {
 					resultOAuth2ScopeGrants.add(oAuth2ScopeGrant);
 
 					break;
@@ -146,7 +146,7 @@ public class OAuth2ScopeGrantLocalServiceImpl
 		return resultOAuth2ScopeGrants;
 	}
 
-	private boolean _matches(
+	private boolean _isMatch(
 		OAuth2ScopeGrant oAuth2ScopeGrant,
 		LiferayOAuth2Scope liferayOAuth2Scope) {
 
