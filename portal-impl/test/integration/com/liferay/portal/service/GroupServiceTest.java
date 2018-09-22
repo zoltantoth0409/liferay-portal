@@ -49,16 +49,15 @@ public class GroupServiceTest {
 
 	@Test
 	public void testGetGroupsLikeName() throws Exception {
-		String baseName = RandomTestUtil.randomString(10);
+		String name = RandomTestUtil.randomString(10);
+
 		List<Group> expectedGroups = new ArrayList<>();
 
 		for (int i = 0; i < 10; i++) {
-			String uniqueName = baseName + String.valueOf(i);
-
 			Group group = GroupTestUtil.addGroup(
 				GroupConstants.DEFAULT_PARENT_GROUP_ID);
 
-			group.setName(uniqueName);
+			group.setName(name + i);
 
 			group = GroupLocalServiceUtil.updateGroup(group);
 
@@ -70,17 +69,14 @@ public class GroupServiceTest {
 		_groups.add(GroupTestUtil.addGroup());
 		_groups.add(GroupTestUtil.addGroup());
 
-		String searchString = baseName + "%";
-
 		List<Group> actualGroups = GroupServiceUtil.getGroups(
 			TestPropsValues.getCompanyId(),
-			GroupConstants.DEFAULT_PARENT_GROUP_ID, searchString, true,
+			GroupConstants.DEFAULT_PARENT_GROUP_ID, name + "%", true,
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 		Assert.assertEquals(
 			actualGroups.toString(), expectedGroups.size(),
 			actualGroups.size());
-
 		Assert.assertTrue(
 			actualGroups.toString(), actualGroups.containsAll(expectedGroups));
 
@@ -88,7 +84,7 @@ public class GroupServiceTest {
 			expectedGroups.size(),
 			GroupServiceUtil.getGroupsCount(
 				TestPropsValues.getCompanyId(),
-				GroupConstants.DEFAULT_PARENT_GROUP_ID, searchString, true));
+				GroupConstants.DEFAULT_PARENT_GROUP_ID, name + "%", true));
 	}
 
 	@Test
