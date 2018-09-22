@@ -89,15 +89,14 @@ public class OrganizationServiceTest {
 
 	@Test
 	public void testGetOrganizationsLikeName() throws Exception {
-		String baseName = RandomTestUtil.randomString(10);
+		String name = RandomTestUtil.randomString(10);
+
 		List<Organization> expectedOrganizations = new ArrayList<>();
 
 		for (int i = 0; i < 10; i++) {
-			String uniqueName = baseName + String.valueOf(i);
-
 			Organization organization = OrganizationTestUtil.addOrganization(
-				OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID,
-				uniqueName, false);
+				OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID, name + i,
+				false);
 
 			expectedOrganizations.add(organization);
 		}
@@ -107,18 +106,15 @@ public class OrganizationServiceTest {
 		_organizations.add(OrganizationTestUtil.addOrganization());
 		_organizations.add(OrganizationTestUtil.addOrganization());
 
-		String searchString = baseName + "%";
-
 		List<Organization> actualOrganizations =
 			OrganizationServiceUtil.getOrganizations(
 				TestPropsValues.getCompanyId(),
 				OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID,
-				searchString, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+				name + "%", QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 		Assert.assertEquals(
 			actualOrganizations.toString(), expectedOrganizations.size(),
 			actualOrganizations.size());
-
 		Assert.assertTrue(
 			actualOrganizations.toString(),
 			actualOrganizations.containsAll(expectedOrganizations));
@@ -128,7 +124,7 @@ public class OrganizationServiceTest {
 			OrganizationServiceUtil.getOrganizationsCount(
 				TestPropsValues.getCompanyId(),
 				OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID,
-				searchString));
+				name + "%"));
 	}
 
 	@DeleteAfterTestRun

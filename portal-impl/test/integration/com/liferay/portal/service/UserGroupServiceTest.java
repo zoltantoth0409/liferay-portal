@@ -84,15 +84,14 @@ public class UserGroupServiceTest {
 
 	@Test
 	public void testGetUserGroupsLikeName() throws Exception {
-		String baseName = RandomTestUtil.randomString(10);
+		String name = RandomTestUtil.randomString(10);
+
 		List<UserGroup> expectedUserGroups = new ArrayList<>();
 
 		for (int i = 0; i < 10; i++) {
-			String uniqueName = baseName + String.valueOf(i);
-
 			UserGroup userGroup = UserGroupTestUtil.addUserGroup();
 
-			userGroup.setName(uniqueName);
+			userGroup.setName(name + i);
 
 			UserGroupLocalServiceUtil.updateUserGroup(userGroup);
 
@@ -104,16 +103,13 @@ public class UserGroupServiceTest {
 		_userGroups.add(UserGroupTestUtil.addUserGroup());
 		_userGroups.add(UserGroupTestUtil.addUserGroup());
 
-		String searchString = baseName + "%";
-
 		List<UserGroup> actualUserGroups = UserGroupServiceUtil.getUserGroups(
-			TestPropsValues.getCompanyId(), searchString, QueryUtil.ALL_POS,
+			TestPropsValues.getCompanyId(), name + "%", QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS);
 
 		Assert.assertEquals(
 			actualUserGroups.toString(), expectedUserGroups.size(),
 			actualUserGroups.size());
-
 		Assert.assertTrue(
 			actualUserGroups.toString(),
 			actualUserGroups.containsAll(expectedUserGroups));
@@ -121,7 +117,7 @@ public class UserGroupServiceTest {
 		Assert.assertEquals(
 			expectedUserGroups.size(),
 			UserGroupServiceUtil.getUserGroupsCount(
-				TestPropsValues.getCompanyId(), searchString));
+				TestPropsValues.getCompanyId(), name + "%"));
 	}
 
 	@DeleteAfterTestRun

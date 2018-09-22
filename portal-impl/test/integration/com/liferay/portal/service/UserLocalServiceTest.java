@@ -127,37 +127,50 @@ public class UserLocalServiceTest {
 
 	@Test
 	public void testGetOrganizationsAndUserGroupsUsersCount() throws Exception {
-		int iterationAmount = 3;
+		int iterations = 3;
 
 		int expectedCount = 0;
 
-		long[] commonUsers = _createUsers(iterationAmount);
+		long[] commonUserIds = _addUsers(iterations);
 
-		expectedCount += commonUsers.length;
+		expectedCount += commonUserIds.length;
 
-		long[] organizationIds = new long[iterationAmount];
+		long[] organizationIds = new long[iterations];
 
-		for (int i = 0; i < iterationAmount; i++) {
-			long[] uniqueUsers = _createUsers(iterationAmount);
+		for (int i = 0; i < iterations; i++) {
+			long[] uniqueUserIds = _addUsers(iterations);
 
-			Organization organization = _setUpOrganization(
-				commonUsers, uniqueUsers);
+			Organization organization = OrganizationTestUtil.addOrganization();
+
+			_organizations.add(organization);
+
+			UserServiceUtil.addOrganizationUsers(
+				organization.getOrganizationId(), commonUserIds);
+			UserServiceUtil.addOrganizationUsers(
+				organization.getOrganizationId(), uniqueUserIds);
 
 			organizationIds[i] = organization.getOrganizationId();
 
-			expectedCount += uniqueUsers.length;
+			expectedCount += uniqueUserIds.length;
 		}
 
-		long[] userGroupIds = new long[iterationAmount];
+		long[] userGroupIds = new long[iterations];
 
-		for (int i = 0; i < iterationAmount; i++) {
-			long[] uniqueUsers = _createUsers(iterationAmount);
+		for (int i = 0; i < iterations; i++) {
+			long[] uniqueUserIds = _addUsers(iterations);
 
-			UserGroup userGroup = _setUpUserGroup(commonUsers, uniqueUsers);
+			UserGroup userGroup = UserGroupTestUtil.addUserGroup();
+
+			_userGroups.add(userGroup);
+
+			UserServiceUtil.addUserGroupUsers(
+				userGroup.getUserGroupId(), commonUserIds);
+			UserServiceUtil.addUserGroupUsers(
+				userGroup.getUserGroupId(), uniqueUserIds);
 
 			userGroupIds[i] = userGroup.getUserGroupId();
 
-			expectedCount += uniqueUsers.length;
+			expectedCount += uniqueUserIds.length;
 		}
 
 		int actualCount =
@@ -224,16 +237,10 @@ public class UserLocalServiceTest {
 		Assert.assertTrue(_users.containsAll(userGroupUsers));
 	}
 
-	private void _addUsers(int numberOfUsers) throws Exception {
+	private long[] _addUsers(int numberOfUsers) throws Exception {
+		long[] userIds = new long[numberOfUsers];
+
 		for (int i = 0; i < numberOfUsers; i++) {
-			_users.add(UserTestUtil.addUser());
-		}
-	}
-
-	private long[] _createUsers(int amount) throws Exception {
-		long[] userIds = new long[amount];
-
-		for (int i = 0; i < amount; i++) {
 			User user = UserTestUtil.addUser();
 
 			_users.add(user);
@@ -242,38 +249,6 @@ public class UserLocalServiceTest {
 		}
 
 		return userIds;
-	}
-
-	private Organization _setUpOrganization(
-			long[] commonUserIds, long[] uniqueUserIds)
-		throws Exception {
-
-		Organization organization = OrganizationTestUtil.addOrganization();
-
-		_organizations.add(organization);
-
-		UserServiceUtil.addOrganizationUsers(
-			organization.getOrganizationId(), commonUserIds);
-		UserServiceUtil.addOrganizationUsers(
-			organization.getOrganizationId(), uniqueUserIds);
-
-		return organization;
-	}
-
-	private UserGroup _setUpUserGroup(
-			long[] commonUserIds, long[] uniqueUserIds)
-		throws Exception {
-
-		UserGroup userGroup = UserGroupTestUtil.addUserGroup();
-
-		_userGroups.add(userGroup);
-
-		UserServiceUtil.addUserGroupUsers(
-			userGroup.getUserGroupId(), commonUserIds);
-		UserServiceUtil.addUserGroupUsers(
-			userGroup.getUserGroupId(), uniqueUserIds);
-
-		return userGroup;
 	}
 
 	@DeleteAfterTestRun
