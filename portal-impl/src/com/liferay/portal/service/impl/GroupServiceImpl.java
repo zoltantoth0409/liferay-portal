@@ -399,6 +399,73 @@ public class GroupServiceImpl extends GroupServiceBaseImpl {
 				companyId, parentGroupId, name, site, start, end));
 	}
 
+	/**
+	 * Returns the number of groups that are direct children of the parent
+	 * group.
+	 *
+	 * @param  companyId the primary key of the company
+	 * @param  parentGroupId the primary key of the parent group
+	 * @param  site whether the group is to be associated with a main site
+	 * @return the number of matching groups
+	 */
+	@Override
+	public int getGroupsCount(long companyId, long parentGroupId, boolean site)
+		throws PortalException {
+
+		if (parentGroupId == 0) {
+			GroupPermissionUtil.check(getPermissionChecker(), ActionKeys.VIEW);
+		}
+		else {
+			GroupPermissionUtil.check(
+				getPermissionChecker(), parentGroupId, ActionKeys.VIEW);
+		}
+
+		return groupLocalService.getGroupsCount(companyId, parentGroupId, site);
+	}
+
+	@Override
+	public int getGroupsCount(
+			long companyId, long parentGroupId, String name, boolean site)
+		throws PortalException {
+
+		if (parentGroupId == 0) {
+			GroupPermissionUtil.check(getPermissionChecker(), ActionKeys.VIEW);
+		}
+		else {
+			GroupPermissionUtil.check(
+				getPermissionChecker(), parentGroupId, ActionKeys.VIEW);
+		}
+
+		return groupLocalService.getGroupsCount(
+			companyId, parentGroupId, name, site);
+	}
+
+	/**
+	 * Returns the number of groups that are direct children of the parent group
+	 * with the matching className.
+	 *
+	 * @param  companyId the primary key of the company
+	 * @param  className the class name of the group
+	 * @param  parentGroupId the primary key of the parent group
+	 * @return the number of matching groups
+	 */
+	@Override
+	public int getGroupsCount(
+			long companyId, String className, long parentGroupId)
+		throws PortalException {
+
+		if (parentGroupId == 0) {
+			GroupPermissionUtil.check(getPermissionChecker(), ActionKeys.VIEW);
+		}
+		else {
+			GroupPermissionUtil.check(
+				getPermissionChecker(), parentGroupId, ActionKeys.VIEW);
+		}
+
+		return groupLocalService.getGroupsCount(
+			companyId, className, parentGroupId);
+	}
+
 	public List<Group> getGtGroups(
 			long gtGroupId, long companyId, long parentGroupId, boolean site,
 			int size)
