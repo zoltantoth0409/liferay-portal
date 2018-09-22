@@ -451,6 +451,10 @@ public interface UserGroupLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<UserGroup> getUserGroups(long companyId);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<UserGroup> getUserGroups(long companyId, String name,
+		int start, int end);
+
 	/**
 	* Returns all the user groups with the primary keys.
 	*
@@ -468,6 +472,9 @@ public interface UserGroupLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getUserGroupsCount();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getUserGroupsCount(long companyId, String name);
 
 	/**
 	* Returns the userIds of the users associated with the user group.

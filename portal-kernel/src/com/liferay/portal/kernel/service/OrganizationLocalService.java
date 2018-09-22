@@ -460,6 +460,10 @@ public interface OrganizationLocalService extends BaseLocalService,
 		long parentOrganizationId, int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Organization> getOrganizations(long companyId,
+		long parentOrganizationId, String name, int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Organization> getOrganizations(long companyId, String treePath);
 
 	/**
@@ -490,6 +494,10 @@ public interface OrganizationLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getOrganizationsCount(long companyId, long parentOrganizationId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getOrganizationsCount(long companyId, long parentOrganizationId,
+		String name);
 
 	/**
 	* Returns the OSGi service identifier.

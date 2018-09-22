@@ -639,6 +639,12 @@ public class UserGroupLocalServiceWrapper implements UserGroupLocalService,
 		return _userGroupLocalService.getUserGroups(companyId);
 	}
 
+	@Override
+	public java.util.List<com.liferay.portal.kernel.model.UserGroup> getUserGroups(
+		long companyId, String name, int start, int end) {
+		return _userGroupLocalService.getUserGroups(companyId, name, start, end);
+	}
+
 	/**
 	* Returns all the user groups with the primary keys.
 	*
@@ -660,6 +666,11 @@ public class UserGroupLocalServiceWrapper implements UserGroupLocalService,
 	@Override
 	public int getUserGroupsCount() {
 		return _userGroupLocalService.getUserGroupsCount();
+	}
+
+	@Override
+	public int getUserGroupsCount(long companyId, String name) {
+		return _userGroupLocalService.getUserGroupsCount(companyId, name);
 	}
 
 	/**

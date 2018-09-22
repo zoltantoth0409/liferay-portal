@@ -1252,6 +1252,13 @@ public class UserLocalServiceUtil {
 		return getService().getOrganizationPrimaryKeys(userId);
 	}
 
+	public static int getOrganizationsAndUserGroupsUsersCount(
+		long[] organizationIds, long[] userGroupIds) {
+		return getService()
+				   .getOrganizationsAndUserGroupsUsersCount(organizationIds,
+			userGroupIds);
+	}
+
 	/**
 	* Returns the primary keys of all the users belonging to the organization.
 	*

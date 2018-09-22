@@ -252,6 +252,50 @@ public class GroupServiceUtil {
 		return getService().getGroups(companyId, parentGroupId, site, start, end);
 	}
 
+	public static java.util.List<com.liferay.portal.kernel.model.Group> getGroups(
+		long companyId, long parentGroupId, String name, boolean site,
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .getGroups(companyId, parentGroupId, name, site, start, end);
+	}
+
+	/**
+	* Returns the number of groups that are direct children of the parent
+	* group.
+	*
+	* @param companyId the primary key of the company
+	* @param parentGroupId the primary key of the parent group
+	* @param site whether the group is to be associated with a main site
+	* @return the number of matching groups
+	*/
+	public static int getGroupsCount(long companyId, long parentGroupId,
+		boolean site)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getGroupsCount(companyId, parentGroupId, site);
+	}
+
+	public static int getGroupsCount(long companyId, long parentGroupId,
+		String name, boolean site)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getGroupsCount(companyId, parentGroupId, name, site);
+	}
+
+	/**
+	* Returns the number of groups that are direct children of the parent group
+	* with the matching className.
+	*
+	* @param companyId the primary key of the company
+	* @param className the class name of the group
+	* @param parentGroupId the primary key of the parent group
+	* @return the number of matching groups
+	*/
+	public static int getGroupsCount(long companyId, String className,
+		long parentGroupId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getGroupsCount(companyId, className, parentGroupId);
+	}
+
 	public static java.util.List<com.liferay.portal.kernel.model.Group> getGtGroups(
 		long gtGroupId, long companyId, long parentGroupId, boolean site,
 		int size) throws com.liferay.portal.kernel.exception.PortalException {
