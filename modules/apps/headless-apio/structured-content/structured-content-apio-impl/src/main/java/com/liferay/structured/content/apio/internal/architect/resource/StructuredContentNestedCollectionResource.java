@@ -404,10 +404,10 @@ public class StructuredContentNestedCollectionResource
 		Indexer<JournalArticle> indexer = _indexerRegistry.nullSafeGetIndexer(
 			JournalArticle.class);
 
+		BooleanQuery booleanQuery = indexer.getFullQuery(searchContext);
+
 		com.liferay.portal.kernel.search.filter.Filter searchFilter =
 			_getSearchFilter(filter, locale);
-
-		BooleanQuery booleanQuery = indexer.getFullQuery(searchContext);
 
 		if (searchFilter != null) {
 			BooleanFilter preBooleanFilter = booleanQuery.getPreBooleanFilter();
