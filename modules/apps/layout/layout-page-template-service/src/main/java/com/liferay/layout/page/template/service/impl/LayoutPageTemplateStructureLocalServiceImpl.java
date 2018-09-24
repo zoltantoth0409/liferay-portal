@@ -109,6 +109,8 @@ public class LayoutPageTemplateStructureLocalServiceImpl
 			return layoutPageTemplateStructure;
 		}
 
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		List<FragmentEntryLink> fragmentEntryLinks =
@@ -118,8 +120,6 @@ public class LayoutPageTemplateStructureLocalServiceImpl
 		for (FragmentEntryLink fragmentEntryLink : fragmentEntryLinks) {
 			jsonArray.put(fragmentEntryLink.getFragmentEntryLinkId());
 		}
-
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		jsonObject.put("structure", jsonArray);
 
