@@ -76,7 +76,7 @@
 
 		<execute function="Type" locator1="Comments#EDIT_COMMENT_FIELD" value1="${entryCommentEdit}" />
 
-		<execute macro="Button#clickSave" />
+		<execute function="AssertClick" locator1="Comments#PUBLISH_COMMENT_BUTTON" value1="Publish" />
 
 		<var name="key_entryComment" value="${entryCommentEdit}" />
 
