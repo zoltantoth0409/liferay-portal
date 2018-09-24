@@ -208,7 +208,7 @@ public class WabBundleProcessor {
 			listenerDefinitions.addAll(
 				webXMLDefinition.getListenerDefinitions());
 
-			initListeners(new ArrayList<>(listenerDefinitions), servletContext);
+			initListeners(listenerDefinitions, servletContext);
 
 			modifiableServletContext.registerFilters();
 
@@ -533,7 +533,7 @@ public class WabBundleProcessor {
 	}
 
 	protected void initListeners(
-			List<ListenerDefinition> listenerDefinitions,
+			Collection<ListenerDefinition> listenerDefinitions,
 			ServletContext servletContext)
 		throws Exception {
 
