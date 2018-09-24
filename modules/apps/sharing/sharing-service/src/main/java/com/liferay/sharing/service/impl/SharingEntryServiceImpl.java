@@ -137,7 +137,7 @@ public class SharingEntryServiceImpl extends SharingEntryServiceBaseImpl {
 
 		if (sharingPermissionChecker == null) {
 			throw new PrincipalException(
-				"sharing permission checker is null for class name id " +
+				"sharing permission checker is null for class name ID " +
 					classNameId);
 		}
 
