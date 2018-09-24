@@ -278,11 +278,10 @@ public class OpenSSOImpl implements OpenSSO {
 			String subjectId = getSubjectId(request, serviceURL);
 
 			if (subjectId != null) {
-				String validateTokenURL = StringUtil.replace(
-					_VALIDATE_TOKEN_VERSION_13, "{#subjectId}",
-					URLCodec.encodeURL(subjectId));
-
-				String url = serviceURL.concat(validateTokenURL);
+				String url = serviceURL.concat(
+					StringUtil.replace(
+						_VALIDATE_TOKEN_VERSION_13, "{#subjectId}",
+						URLCodec.encodeURL(subjectId)));
 
 				String json = _http.URLtoString(url, true);
 
