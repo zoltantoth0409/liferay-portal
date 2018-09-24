@@ -12,3 +12,8 @@
 # Bundle Version 8.1.1
 #
 5b24ad52162faccb94c112873aedab90e658c0cf^..0f0ad7c5ac3baa8bef6674ebc2f438ad36171ae8=LPS-84813 LPS-85296
+
+#
+# Bundle Version 8.1.2
+#
+0f0ad7c5ac3baa8bef6674ebc2f438ad36171ae8^..eba257b74b3a2371fedc6e4916731c83a112238f=LPS-84119
