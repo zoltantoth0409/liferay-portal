@@ -90,12 +90,10 @@ public class BaselineTask extends DefaultTask implements VerificationTask {
 		if (!match) {
 			StringBuilder sb = new StringBuilder();
 
-			sb.append("Semantic versioning is incorrect ");
-			sb.append("{oldJarFile=");
-			sb.append(getOldJarFile());
-			sb.append(", newJarFile=");
+			sb.append("Semantic versioning is incorrect while checking ");
 			sb.append(getNewJarFile());
-			sb.append("}");
+			sb.append(" against ");
+			sb.append(getOldJarFile());
 
 			if (getIgnoreFailures()) {
 				if (logger.isWarnEnabled()) {
