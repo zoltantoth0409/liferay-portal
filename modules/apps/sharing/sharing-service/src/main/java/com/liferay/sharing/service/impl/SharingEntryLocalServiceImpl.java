@@ -374,25 +374,24 @@ public class SharingEntryLocalServiceImpl
 	}
 
 	private void _validateSharingEntryActions(
-			Collection<SharingEntryAction> sharedEntryActionKeys)
+			Collection<SharingEntryAction> sharedEntryActions)
 		throws InvalidSharingEntryActionException {
 
-		if (sharedEntryActionKeys.isEmpty()) {
+		if (sharedEntryActions.isEmpty()) {
 			throw new InvalidSharingEntryActionException(
-				"Shared entry action keys is empty");
+				"Shared entry actions is empty");
 		}
 
-		for (SharingEntryAction curSharingEntryAction : sharedEntryActionKeys) {
+		for (SharingEntryAction curSharingEntryAction : sharedEntryActions) {
 			if (curSharingEntryAction == null) {
 				throw new InvalidSharingEntryActionException(
-					"Shared entry action keys contains a null value");
+					"Shared entry actions contains a null value");
 			}
 		}
 
-		if (!sharedEntryActionKeys.contains(SharingEntryAction.VIEW)) {
+		if (!sharedEntryActions.contains(SharingEntryAction.VIEW)) {
 			throw new InvalidSharingEntryActionException(
-				"Shared entry action keys must contain VIEW shared entry " +
-					"action key");
+				"Shared entry actions must contain VIEW shared entry action");
 		}
 	}
 
