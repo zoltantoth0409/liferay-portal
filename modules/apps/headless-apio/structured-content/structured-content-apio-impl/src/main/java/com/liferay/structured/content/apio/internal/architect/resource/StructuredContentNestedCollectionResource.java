@@ -303,7 +303,6 @@ public class StructuredContentNestedCollectionResource
 		searchContext.setAttribute("head", Boolean.TRUE);
 		searchContext.setAttribute(
 			Field.STATUS, WorkflowConstants.STATUS_APPROVED);
-
 		searchContext.setCompanyId(companyId);
 		searchContext.setEnd(end);
 		searchContext.setGroupIds(new long[] {groupId});
