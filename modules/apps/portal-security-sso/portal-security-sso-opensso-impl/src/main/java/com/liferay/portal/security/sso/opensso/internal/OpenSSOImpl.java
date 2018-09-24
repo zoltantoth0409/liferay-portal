@@ -284,21 +284,21 @@ public class OpenSSOImpl implements OpenSSO {
 
 				String url = serviceURL.concat(validateTokenURL);
 
-				String result = _http.URLtoString(url, true);
+				String json = _http.URLtoString(url, true);
 
 				try {
 					JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
-						result);
+						json);
 
-					boolean valid = jsonObject.getBoolean("valid");
-					String uid = jsonObject.getString("uid");
 					String realm = jsonObject.getString("realm");
+					String uid = jsonObject.getString("uid");
+					boolean valid = jsonObject.getBoolean("valid");
 
 					if ((realm != null) && (uid != null) && valid) {
 						return true;
 					}
 					else if (_log.isDebugEnabled()) {
-						_log.debug("Invalid authentication: " + result);
+						_log.debug("Invalid authentication: " + json);
 					}
 				}
 				catch (JSONException jsone) {
