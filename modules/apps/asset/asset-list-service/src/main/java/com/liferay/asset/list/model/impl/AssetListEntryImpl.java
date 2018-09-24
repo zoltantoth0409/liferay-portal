@@ -232,8 +232,8 @@ public class AssetListEntryImpl extends AssetListEntryBaseImpl {
 	private List<AssetEntry> _getDynamicAssetEntries(int start, int end) {
 		AssetEntryQuery assetEntryQuery = getAssetEntryQuery();
 
-		assetEntryQuery.setStart(start);
 		assetEntryQuery.setEnd(end);
+		assetEntryQuery.setStart(start);
 
 		return AssetEntryLocalServiceUtil.getEntries(assetEntryQuery);
 	}
