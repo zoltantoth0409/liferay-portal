@@ -252,7 +252,7 @@ public class OpenSSOImpl implements OpenSSO {
 
 		String[] cookieNames = getCookieNames(serviceURL);
 
-		if (!hasCookieNames(request, cookieNames)) {
+		if (!_hasCookieNames(request, cookieNames)) {
 			return false;
 		}
 
@@ -442,7 +442,7 @@ public class OpenSSOImpl implements OpenSSO {
 		urlc.setRequestProperty("Cookie", sb.toString());
 	}
 
-	protected boolean hasCookieNames(
+	private boolean _hasCookieNames(
 		HttpServletRequest request, String[] cookieNames) {
 
 		for (String cookieName : cookieNames) {
