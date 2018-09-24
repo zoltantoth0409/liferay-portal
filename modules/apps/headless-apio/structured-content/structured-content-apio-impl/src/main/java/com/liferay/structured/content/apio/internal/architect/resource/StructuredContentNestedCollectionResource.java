@@ -544,14 +544,16 @@ public class StructuredContentNestedCollectionResource
 			ThemeDisplay themeDisplay, Filter filter, Sort sort)
 		throws PortalException {
 
-		Query fullQuery = _getFullQuery(
-			filter, themeDisplay.getLocale(), searchContext);
-		PermissionChecker permissionChecker =
-			PermissionThreadLocal.getPermissionChecker();
 		SearchContext searchContext = _createSearchContext(
 			themeDisplay.getCompanyId(), contentSpaceId,
 			themeDisplay.getLocale(), sort, pagination.getStartPosition(),
 			pagination.getEndPosition());
+
+		Query fullQuery = _getFullQuery(
+			filter, themeDisplay.getLocale(), searchContext);
+
+		PermissionChecker permissionChecker =
+			PermissionThreadLocal.getPermissionChecker();
 
 		Hits hits = null;
 
