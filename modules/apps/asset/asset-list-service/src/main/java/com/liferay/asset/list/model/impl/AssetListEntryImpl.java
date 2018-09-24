@@ -60,7 +60,7 @@ public class AssetListEntryImpl extends AssetListEntryBaseImpl {
 			return _getManualAssetEntries(start, end);
 		}
 
-		return _getDynamicAssetEntries(QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+		return _getDynamicAssetEntries(start, end);
 	}
 
 	public AssetEntryQuery getAssetEntryQuery() {
