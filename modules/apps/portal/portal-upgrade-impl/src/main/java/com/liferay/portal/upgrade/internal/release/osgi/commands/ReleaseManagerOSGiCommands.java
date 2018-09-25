@@ -74,9 +74,9 @@ public class ReleaseManagerOSGiCommands {
 
 	@Descriptor("List pending or running upgrades")
 	public String check() {
-		Set<String> bundleSymbolicNames = _serviceTrackerMap.keySet();
-
 		StringBundler sb = new StringBundler(0);
+
+		Set<String> bundleSymbolicNames = _serviceTrackerMap.keySet();
 
 		for (String bundleSymbolicName : bundleSymbolicNames) {
 			String schemaVersionString = getSchemaVersionString(
