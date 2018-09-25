@@ -164,7 +164,6 @@ public class StructuredContentUpdaterForm {
 
 		serviceContext.setAddGroupPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
-		serviceContext.setScopeGroupId(groupId);
 
 		if (ListUtil.isNotEmpty(_keywords)) {
 			serviceContext.setAssetTagNames(ArrayUtil.toStringArray(_keywords));
@@ -174,6 +173,8 @@ public class StructuredContentUpdaterForm {
 			serviceContext.setAssetCategoryIds(
 				ArrayUtil.toLongArray(_categories));
 		}
+
+		serviceContext.setScopeGroupId(groupId);
 
 		return serviceContext;
 	}

@@ -244,10 +244,10 @@ public class StructuredContentNestedCollectionResource
 			ThemeDisplay themeDisplay)
 		throws PortalException {
 
-		Long structureId = structuredContentCreatorForm.getContentStructureId();
+		Long ddmStructureId = structuredContentCreatorForm.getContentStructureId();
 
 		DDMStructure ddmStructure = _ddmStructureService.getStructure(
-			structureId);
+			ddmStructureId);
 
 		Locale locale = themeDisplay.getLocale();
 
