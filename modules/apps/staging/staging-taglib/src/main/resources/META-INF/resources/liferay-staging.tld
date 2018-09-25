@@ -237,6 +237,7 @@
 		</attribute>
 	</tag>
 	<tag>
+		<description>Renders a scheduler for scheduled publications.</description>
 		<name>input-scheduler</name>
 		<tag-class>com.liferay.staging.taglib.servlet.taglib.InputSchedulerTag</tag-class>
 		<body-content>JSP</body-content>
