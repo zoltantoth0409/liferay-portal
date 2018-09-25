@@ -320,8 +320,13 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 
 <aui:script>
 	var destroyMenus = function(event) {
-		window.<portlet:namespace />calendarListsMenu.destroy();
-		window.<portlet:namespace />colorPicker.destroy();
+		if (window.<portlet:namespace />calendarListsMenu) {
+			window.<portlet:namespace />calendarListsMenu.destroy();
+		}
+
+		if (window.<portlet:namespace />colorPicker) {
+			window.<portlet:namespace />colorPicker.destroy();
+		}
 
 		var myCalendarList = window.<portlet:namespace />myCalendarList;
 		var otherCalendarList = window.<portlet:namespace />otherCalendarList;
@@ -329,18 +334,23 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 
 		if (myCalendarList && myCalendarList.simpleMenu) {
 			myCalendarList.simpleMenu.destroy();
+			myCalendarList.destroy();
 		}
 
 		if (otherCalendarList && otherCalendarList.simpleMenu) {
 			otherCalendarList.simpleMenu.destroy();
+			otherCalendarList.destroy();
 		}
 
 		if (siteCalendarList && siteCalendarList.simpleMenu) {
 			siteCalendarList.simpleMenu.destroy();
+			siteCalendarList.destroy();
 		}
 
+		Liferay.detach('<%= portletDisplay.getId() %>:portletRefreshed', destroyMenus);
 		Liferay.detach('destroyPortlet', destroyMenus);
 	};
+	Liferay.on('<%= portletDisplay.getId() %>:portletRefreshed', destroyMenus);
 	Liferay.on('destroyPortlet', destroyMenus);
 </aui:script>
 
