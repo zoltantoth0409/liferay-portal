@@ -68,12 +68,10 @@ public class StructuredContentApioTest {
 	public void testStructuredContentsExistsInContentSpaceEndpoint()
 		throws Exception {
 
-		String response = _doGet(_rootEndpointURL.toExternalForm());
-
-		String contentSpaceHref = JsonPath.read(
-			response, "$._links.content-space.href");
-
-		String contentSpaceResponse = _doGet(contentSpaceHref);
+		String contentSpaceResponse = _doGet(
+			JsonPath.read(
+				_doGet(_rootEndpointURL.toExternalForm()),
+				"$._links.content-space.href"));
 
 		List<String> liferayStructuredContentsHrefs = JsonPath.read(
 			contentSpaceResponse,
@@ -85,12 +83,10 @@ public class StructuredContentApioTest {
 
 	@Test
 	public void testStructuredContentsMatchesSelfLink() throws Exception {
-		String response = _doGet(_rootEndpointURL.toExternalForm());
-
-		String contentSpaceHref = JsonPath.read(
-			response, "$._links.content-space.href");
-
-		String contentSpaceResponse = _doGet(contentSpaceHref);
+		String contentSpaceResponse = _doGet(
+			JsonPath.read(
+				_doGet(_rootEndpointURL.toExternalForm()),
+				"$._links.content-space.href"));
 
 		List<String> liferayStructuredContentsHrefs = JsonPath.read(
 			contentSpaceResponse,
