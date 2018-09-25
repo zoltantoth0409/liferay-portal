@@ -257,13 +257,11 @@ public class StructuredContentNestedCollectionResource
 				ddmStructure, locale);
 
 		String ddmStructureKey = ddmStructure.getStructureKey();
-
 		String ddmTemplateKey = _getDDMTemplateKey(ddmStructure);
+		Date displayDate = new Date();
 
 		ServiceContext serviceContext =
 			structuredContentCreatorForm.getServiceContext(contentSpaceId);
-
-		Date displayDate = new Date();
 
 		JournalArticle journalArticle = _journalArticleService.addArticle(
 			contentSpaceId, 0, 0, 0, null, true,
