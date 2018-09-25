@@ -45,12 +45,13 @@ public class StructuredContentApioTest {
 
 	@Before
 	public void setUp() throws MalformedURLException {
-		_rootEndpointURL = new URL(_url, "/o/api");
-
 		_jsonWebServiceClient = new JSONWebServiceClientImpl();
+
+		_rootEndpointURL = new URL(_url, "/o/api");
 
 		_jsonWebServiceClient.setHostName(_rootEndpointURL.getHost());
 		_jsonWebServiceClient.setHostPort(_rootEndpointURL.getPort());
+
 		_jsonWebServiceClient.setLogin("test@liferay.com");
 		_jsonWebServiceClient.setPassword("test");
 		_jsonWebServiceClient.setProtocol(_rootEndpointURL.getProtocol());
