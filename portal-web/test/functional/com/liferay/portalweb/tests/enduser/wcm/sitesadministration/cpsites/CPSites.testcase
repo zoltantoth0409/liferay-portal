@@ -45,28 +45,17 @@
 
 		<execute macro="SystemSettings#saveConfiguration" />
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Sites" />
-			<var name="panel" value="Control Panel" />
-			<var name="portlet" value="Sites" />
+		<execute macro="JSONGroup#addGroup">
+			<var name="groupName" value="Site Name" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
-			<var name="siteName" value="Site Name" />
+		<execute macro="JSONLayout#addLayoutByGroupName">
+			<var name="groupName" value="Site Name" />
+			<var name="layoutName" value="Site Page" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Pages" />
-		</execute>
-
-		<execute macro="SitePages#addPublicPage">
-			<var name="pageName" value="Site Page" />
-		</execute>
-
-		<execute macro="ProductMenu#gotoSite">
-			<var name="site" value="Site Name" />
+		<execute macro="Navigator#openWithAppendToBaseURL">
+			<var name="urlAppend" value="web/site-name/" />
 		</execute>
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -116,8 +105,8 @@
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
-			<var name="siteName" value="Site Name" />
+		<execute macro="JSONGroup#addGroup">
+			<var name="groupName" value="Site Name" />
 		</execute>
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -168,8 +157,8 @@
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
-			<var name="siteName" value="Site Name" />
+		<execute macro="JSONGroup#addGroup">
+			<var name="groupName" value="Site Name" />
 		</execute>
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -202,22 +191,17 @@
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
-			<var name="siteName" value="Site Name" />
+		<execute macro="JSONGroup#addGroup">
+			<var name="groupName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Pages" />
+		<execute macro="JSONLayout#addLayoutByGroupName">
+			<var name="groupName" value="Site Name" />
+			<var name="layoutName" value="Site Page" />
 		</execute>
 
-		<execute macro="SitePages#addPublicPage">
-			<var name="pageName" value="Test Public Page" />
-		</execute>
-
-		<execute macro="ProductMenu#gotoSite">
-			<var name="site" value="Site Name" />
+		<execute macro="Navigator#openWithAppendToBaseURL">
+			<var name="urlAppend" value="web/site-name/" />
 		</execute>
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -305,14 +289,8 @@
 	</command>
 
 	<command name="AddSiteWithCommaInName" priority="3">
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Sites" />
-			<var name="panel" value="Control Panel" />
-			<var name="portlet" value="Sites" />
-		</execute>
-
-		<execute macro="Site#addBlankCP">
-			<var name="siteName" value="Site Name," />
+		<execute macro="JSONGroup#addGroup">
+			<var name="groupName" value="Site Name," />
 		</execute>
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -327,14 +305,8 @@
 	</command>
 
 	<command name="AddSiteWithInvalidDuplicateName" priority="3">
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Sites" />
-			<var name="panel" value="Control Panel" />
-			<var name="portlet" value="Sites" />
-		</execute>
-
-		<execute macro="Site#addBlankCP">
-			<var name="siteName" value="Site Name" />
+		<execute macro="JSONGroup#addGroup">
+			<var name="groupName" value="Site Name" />
 		</execute>
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -395,8 +367,12 @@
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
-			<var name="siteName" value="Site Name" />
+		<execute macro="JSONGroup#addGroup">
+			<var name="groupName" value="Site Name" />
+		</execute>
+
+		<execute macro="Navigator#openWithAppendToBaseURL">
+			<var name="urlAppend" value="web/site-name/" />
 		</execute>
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -430,8 +406,12 @@
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
-			<var name="siteName" value="Site Name" />
+		<execute macro="JSONGroup#addGroup">
+			<var name="groupName" value="Site Name" />
+		</execute>
+
+		<execute macro="Navigator#openWithAppendToBaseURL">
+			<var name="urlAppend" value="web/site-name/" />
 		</execute>
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -440,8 +420,9 @@
 			<var name="portlet" value="Pages" />
 		</execute>
 
-		<execute macro="SitePages#addPublicPage">
-			<var name="pageName" value="Test Public Page" />
+		<execute macro="JSONLayout#addLayoutByGroupName">
+			<var name="groupName" value="Site Name" />
+			<var name="layoutName" value="Site Page" />
 		</execute>
 
 		<execute macro="SitePages#addPrivatePage">
@@ -484,28 +465,17 @@
 
 		<var method="PropsUtil#get('portal.url')" name="portalURL" />
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Sites" />
-			<var name="panel" value="Control Panel" />
-			<var name="portlet" value="Sites" />
+		<execute macro="JSONGroup#addGroup">
+			<var name="groupName" value="Site Name" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
-			<var name="siteName" value="Site Name" />
+		<execute macro="JSONLayout#addLayoutByGroupName">
+			<var name="groupName" value="Site Name" />
+			<var name="layoutName" value="Site Page" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Pages" />
-		</execute>
-
-		<execute macro="SitePages#addPublicPage">
-			<var name="pageName" value="Site Page" />
-		</execute>
-
-		<execute macro="ProductMenu#gotoSite">
-			<var name="site" value="Site Name" />
+		<execute macro="Navigator#openWithAppendToBaseURL">
+			<var name="urlAppend" value="web/site-name/" />
 		</execute>
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -538,14 +508,8 @@
 	</command>
 
 	<command name="SearchSite" priority="5">
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Sites" />
-			<var name="panel" value="Control Panel" />
-			<var name="portlet" value="Sites" />
-		</execute>
-
-		<execute macro="Site#addBlankCP">
-			<var name="siteName" value="Site Name" />
+		<execute macro="JSONGroup#addGroup">
+			<var name="groupName" value="Site Name" />
 		</execute>
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -642,18 +606,13 @@
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
-			<var name="siteName" value="Site Name" />
+		<execute macro="JSONGroup#addGroup">
+			<var name="groupName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Pages" />
-		</execute>
-
-		<execute macro="SitePages#addPublicPage">
-			<var name="pageName" value="Site Page" />
+		<execute macro="JSONLayout#addLayoutByGroupName">
+			<var name="groupName" value="Site Name" />
+			<var name="layoutName" value="Site Page" />
 		</execute>
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -667,14 +626,9 @@
 			<var name="siteName" value="Child SiteName" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Pages" />
-		</execute>
-
-		<execute macro="SitePages#addPublicPage">
-			<var name="pageName" value="Site Page" />
+		<execute macro="JSONLayout#addLayoutByGroupName">
+			<var name="groupName" value="Child SiteName" />
+			<var name="layoutName" value="Site Page" />
 		</execute>
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -688,14 +642,9 @@
 			<var name="siteName" value="Child ChildSiteName" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Pages" />
-		</execute>
-
-		<execute macro="SitePages#addPublicPage">
-			<var name="pageName" value="Site Page" />
+		<execute macro="JSONLayout#addLayoutByGroupName">
+			<var name="groupName" value="Child ChildSiteName" />
+			<var name="layoutName" value="Site Page" />
 		</execute>
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -744,18 +693,13 @@
 			<var name="portlet" value="Sites" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
-			<var name="siteName" value="Site Name" />
+		<execute macro="JSONGroup#addGroup">
+			<var name="groupName" value="Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Pages" />
-		</execute>
-
-		<execute macro="SitePages#addPublicPage">
-			<var name="pageName" value="Site Page" />
+		<execute macro="JSONLayout#addLayoutByGroupName">
+			<var name="groupName" value="Site Name" />
+			<var name="layoutName" value="Site Page" />
 		</execute>
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -769,14 +713,9 @@
 			<var name="siteName" value="Child Site1Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Pages" />
-		</execute>
-
-		<execute macro="SitePages#addPublicPage">
-			<var name="pageName" value="Site Page" />
+		<execute macro="JSONLayout#addLayoutByGroupName">
+			<var name="groupName" value="Child Site1Name" />
+			<var name="layoutName" value="Site Page" />
 		</execute>
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -790,14 +729,9 @@
 			<var name="siteName" value="Child ChildSite1Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Pages" />
-		</execute>
-
-		<execute macro="SitePages#addPublicPage">
-			<var name="pageName" value="Site Page" />
+		<execute macro="JSONLayout#addLayoutByGroupName">
+			<var name="groupName" value="Child ChildSite1Name" />
+			<var name="layoutName" value="Site Page" />
 		</execute>
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -811,14 +745,9 @@
 			<var name="siteName" value="Child ChildSite2Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Pages" />
-		</execute>
-
-		<execute macro="SitePages#addPublicPage">
-			<var name="pageName" value="Site Page" />
+		<execute macro="JSONLayout#addLayoutByGroupName">
+			<var name="groupName" value="Child ChildSite2Name" />
+			<var name="layoutName" value="Site Page" />
 		</execute>
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -832,14 +761,9 @@
 			<var name="siteName" value="Child Site2Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Pages" />
-		</execute>
-
-		<execute macro="SitePages#addPublicPage">
-			<var name="pageName" value="Site Page" />
+		<execute macro="JSONLayout#addLayoutByGroupName">
+			<var name="groupName" value="Child Site2Name" />
+			<var name="layoutName" value="Site Page" />
 		</execute>
 
 		<execute macro="Navigator#gotoSitePage">
