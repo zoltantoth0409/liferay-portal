@@ -61,7 +61,6 @@ public class StructuredContentApioTest {
 		String response = _getWithHalFormat(_rootEndpointURL.toExternalForm());
 
 		Assert.assertNotNull(
-			"Content space link should not be empty in root end point",
 			JsonPath.read(response, "$._links.content-space.href"));
 	}
 
@@ -81,9 +80,7 @@ public class StructuredContentApioTest {
 			"$._embedded.ContentSpace[?(@.name == 'Liferay')]._links." +
 				"structuredContents.href");
 
-		Assert.assertNotNull(
-			"Structured contents link should not be empty in Liferay site",
-			liferayStructuredContentsHrefs.get(0));
+		Assert.assertNotNull(liferayStructuredContentsHrefs.get(0));
 	}
 
 	@Test
