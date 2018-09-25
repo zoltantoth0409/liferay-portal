@@ -81,7 +81,7 @@ if (organization != null) {
 		<aui:fieldset cssClass="hide-data-labels">
 			<c:choose>
 				<c:when test="<%= (organization == null) || ((publicLayoutSetPrototype == null) && (privateLayoutSetPrototype == null)) %>">
-					<p class="sheet-text"><liferay-ui:message key="by-clicking-this-toggle-you-could-create-a-public-or-and-private-site-for-your-organization" /></p>
+					<p class="sheet-text"><liferay-ui:message key="by-clicking-this-toggle-you-could-create-a-public-and-or-private-site-for-your-organization" /></p>
 					<aui:input label="create-site" name="site" type="toggle-switch" value="<%= site %>" />
 				</c:when>
 				<c:otherwise>
