@@ -23,7 +23,7 @@ import com.liferay.structured.content.apio.architect.identifier.StructuredConten
  */
 public class StructuredContentValuesForm {
 
-	public static Form<StructuredContentValuesForm> buildValuesForm(
+	public static Form<StructuredContentValuesForm> buildForm(
 		Form.Builder<StructuredContentValuesForm> builder) {
 
 		return builder.title(
@@ -39,7 +39,7 @@ public class StructuredContentValuesForm {
 			"structuredContent", StructuredContentIdentifier.class,
 			StructuredContentValuesForm::setStructuredContent
 		).addOptionalNestedModel(
-			"geo", StructuredContentLocationForm::buildValuesForm,
+			"geo", StructuredContentLocationForm::buildForm,
 			StructuredContentValuesForm::setStructuredContentLocationForm
 		).addOptionalString(
 			"name", StructuredContentValuesForm::setName

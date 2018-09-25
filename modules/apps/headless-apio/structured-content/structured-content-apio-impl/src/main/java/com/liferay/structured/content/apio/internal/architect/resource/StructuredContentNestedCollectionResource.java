@@ -253,7 +253,8 @@ public class StructuredContentNestedCollectionResource
 
 		String content =
 			_journalArticleContentHelper.createJournalArticleContent(
-				structuredContentCreatorForm.getValues(), ddmStructure, locale);
+				structuredContentCreatorForm.getStructuredContentValuesForms(),
+				ddmStructure, locale);
 
 		String ddmStructureKey = ddmStructure.getStructureKey();
 

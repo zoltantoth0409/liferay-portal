@@ -61,7 +61,7 @@ public class StructuredContentUpdaterForm {
 			"category", CategoryIdentifier .class,
 			StructuredContentUpdaterForm::setCategories
 		).addOptionalNestedModelList(
-			"values", StructuredContentValuesForm::buildValuesForm,
+			"values", StructuredContentValuesForm::buildForm,
 			StructuredContentUpdaterForm::setStructuredContentValuesForms
 		).addOptionalString(
 			"description", StructuredContentUpdaterForm::setDescription
