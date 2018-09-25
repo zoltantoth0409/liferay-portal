@@ -51,9 +51,9 @@ public class StructuredContentApioTest {
 
 		_jsonWebServiceClient.setHostName(_rootEndpointURL.getHost());
 		_jsonWebServiceClient.setHostPort(_rootEndpointURL.getPort());
-		_jsonWebServiceClient.setProtocol(_rootEndpointURL.getProtocol());
-		_jsonWebServiceClient.setPassword("test");
 		_jsonWebServiceClient.setLogin("test@liferay.com");
+		_jsonWebServiceClient.setPassword("test");
+		_jsonWebServiceClient.setProtocol(_rootEndpointURL.getProtocol());
 	}
 
 	@Test
