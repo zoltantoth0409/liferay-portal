@@ -21,7 +21,7 @@ import com.liferay.apio.architect.form.Form;
  */
 public class StructuredContentLocationForm {
 
-	public static Form<StructuredContentLocationForm> buildValuesForm(
+	public static Form<StructuredContentLocationForm> buildForm(
 		Form.Builder<StructuredContentLocationForm> builder) {
 
 		return builder.title(

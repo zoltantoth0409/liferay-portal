@@ -62,7 +62,7 @@ public class StructuredContentCreatorForm {
 			"category", CategoryIdentifier.class,
 			StructuredContentCreatorForm::setCategories
 		).addOptionalNestedModelList(
-			"values", StructuredContentValuesForm::buildValuesForm,
+			"values", StructuredContentValuesForm::buildForm,
 			StructuredContentCreatorForm::setStructuredContentValuesForms
 		).addOptionalString(
 			"description", StructuredContentCreatorForm::setDescription
@@ -180,6 +180,10 @@ public class StructuredContentCreatorForm {
 		return serviceContext;
 	}
 
+	public List<StructuredContentValuesForm> getStructuredContentValuesForms() {
+		return _structuredContentValuesForms;
+	}
+
 	/**
 	 * Returns the structured content's title map.
 	 *
@@ -192,10 +196,6 @@ public class StructuredContentCreatorForm {
 		titleMap.put(locale, _title);
 
 		return titleMap;
-	}
-
-	public List<StructuredContentValuesForm> getValues() {
-		return _structuredContentValuesForms;
 	}
 
 	public void setCategories(List<Long> categories) {
