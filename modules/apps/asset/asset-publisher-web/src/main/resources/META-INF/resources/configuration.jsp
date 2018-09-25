@@ -19,9 +19,9 @@
 <%
 String redirect = ParamUtil.getString(request, "redirect");
 
-List<AssetRendererFactory<?>> classTypesAssetRendererFactories = new ArrayList<>();
-
 String portletResource = ParamUtil.getString(request, "portletResource");
+
+List<AssetRendererFactory<?>> classTypesAssetRendererFactories = new ArrayList<>();
 %>
 
 <liferay-portlet:actionURL portletConfiguration="<%= true %>" var="configurationActionURL" />
