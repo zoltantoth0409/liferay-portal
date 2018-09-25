@@ -58,7 +58,7 @@ public class StructuredContentApioTest {
 
 	@Test
 	public void testContentSpaceLinkExistsInRootEndpoint() throws Exception {
-		String response = _getWithHalFormat(_rootEndpointURL.toExternalForm());
+		String response = _doGet(_rootEndpointURL.toExternalForm());
 
 		Assert.assertNotNull(
 			JsonPath.read(response, "$._links.content-space.href"));
@@ -68,12 +68,12 @@ public class StructuredContentApioTest {
 	public void testStructuredContentsExistsInContentSpaceEndpoint()
 		throws Exception {
 
-		String response = _getWithHalFormat(_rootEndpointURL.toExternalForm());
+		String response = _doGet(_rootEndpointURL.toExternalForm());
 
 		String contentSpacesHref = JsonPath.read(
 			response, "$._links.content-space.href");
 
-		String contentSpacesResponse = _getWithHalFormat(contentSpacesHref);
+		String contentSpacesResponse = _doGet(contentSpacesHref);
 
 		List<String> liferayStructuredContentsHrefs = JsonPath.read(
 			contentSpacesResponse,
@@ -85,19 +85,19 @@ public class StructuredContentApioTest {
 
 	@Test
 	public void testStructuredContentsMatchesSelfLink() throws Exception {
-		String response = _getWithHalFormat(_rootEndpointURL.toExternalForm());
+		String response = _doGet(_rootEndpointURL.toExternalForm());
 
 		String contentSpacesHref = JsonPath.read(
 			response, "$._links.content-space.href");
 
-		String contentSpacesResponse = _getWithHalFormat(contentSpacesHref);
+		String contentSpacesResponse = _doGet(contentSpacesHref);
 
 		List<String> liferayStructuredContentsHrefs = JsonPath.read(
 			contentSpacesResponse,
 			"$._embedded.ContentSpace[?(@.name == 'Liferay')]._links." +
 				"structuredContents.href");
 
-		String liferayStructuredContentsResponse = _getWithHalFormat(
+		String liferayStructuredContentsResponse = _doGet(
 			liferayStructuredContentsHrefs.get(0));
 
 		String liferayStructuredContentsSelfHref = JsonPath.read(
@@ -108,7 +108,7 @@ public class StructuredContentApioTest {
 				liferayStructuredContentsHrefs.get(0)));
 	}
 
-	private String _getWithHalFormat(String url)
+	private String _doGet(String url)
 		throws JSONWebServiceInvocationException,
 			   JSONWebServiceTransportException {
 
