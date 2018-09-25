@@ -18,5 +18,6 @@ dependencies {
 	testIntegrationCompile project(":apps:message-boards:message-boards-api")
 	testIntegrationCompile project(":apps:portal-search:portal-search-api")
 	testIntegrationCompile project(":apps:static:osgi:osgi-util")
+	testIntegrationCompile project(":apps:users-admin:users-admin-test-util")
 	testIntegrationCompile project(":core:petra:petra-string")
 }
