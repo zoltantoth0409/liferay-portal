@@ -155,6 +155,9 @@ public class LPKGIndexer implements Indexer {
 		return name.toLowerCase();
 	}
 
+	/**
+	 * @see com.liferay.portal.kernel.util.StreamUtil#transfer
+	 */
 	private void _transfer(InputStream inputStream, OutputStream outputStream)
 		throws IOException {
 
