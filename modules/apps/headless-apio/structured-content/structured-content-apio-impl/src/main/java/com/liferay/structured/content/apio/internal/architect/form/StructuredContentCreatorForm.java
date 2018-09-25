@@ -166,7 +166,6 @@ public class StructuredContentCreatorForm {
 
 		serviceContext.setAddGroupPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
-		serviceContext.setScopeGroupId(groupId);
 
 		if (ListUtil.isNotEmpty(_keywords)) {
 			serviceContext.setAssetTagNames(ArrayUtil.toStringArray(_keywords));
@@ -176,6 +175,8 @@ public class StructuredContentCreatorForm {
 			serviceContext.setAssetCategoryIds(
 				ArrayUtil.toLongArray(_categories));
 		}
+
+		serviceContext.setScopeGroupId(groupId);
 
 		return serviceContext;
 	}
@@ -219,11 +220,11 @@ public class StructuredContentCreatorForm {
 
 		calendar.setTime(publishedDate);
 
-		_publishedDateMonth = calendar.get(Calendar.MONTH);
 		_publishedDateDay = calendar.get(Calendar.DATE);
-		_publishedDateYear = calendar.get(Calendar.YEAR);
 		_publishedDateHour = calendar.get(Calendar.HOUR);
 		_publishedDateMinute = calendar.get(Calendar.MINUTE);
+		_publishedDateMonth = calendar.get(Calendar.MONTH);
+		_publishedDateYear = calendar.get(Calendar.YEAR);
 	}
 
 	public void setStructuredContentValuesForms(
