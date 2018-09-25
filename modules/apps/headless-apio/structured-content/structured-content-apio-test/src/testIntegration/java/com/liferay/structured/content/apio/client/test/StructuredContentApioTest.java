@@ -59,7 +59,7 @@ public class StructuredContentApioTest {
 
 	@Test
 	public void testContentSpaceLinkExistsInRootEndpoint() throws Exception {
-		String response = _doGet(_rootEndpointURL.toExternalForm());
+		String response = _get(_rootEndpointURL.toExternalForm());
 
 		Assert.assertNotNull(
 			JsonPath.read(response, "$._links.content-space.href"));
@@ -69,9 +69,9 @@ public class StructuredContentApioTest {
 	public void testStructuredContentsExistsInContentSpaceEndpoint()
 		throws Exception {
 
-		String contentSpaceResponse = _doGet(
+		String contentSpaceResponse = _get(
 			JsonPath.read(
-				_doGet(_rootEndpointURL.toExternalForm()),
+				_get(_rootEndpointURL.toExternalForm()),
 				"$._links.content-space.href"));
 
 		List<String> liferayStructuredContentsHrefs = JsonPath.read(
@@ -84,9 +84,9 @@ public class StructuredContentApioTest {
 
 	@Test
 	public void testStructuredContentsMatchesSelfLink() throws Exception {
-		String contentSpaceResponse = _doGet(
+		String contentSpaceResponse = _get(
 			JsonPath.read(
-				_doGet(_rootEndpointURL.toExternalForm()),
+				_get(_rootEndpointURL.toExternalForm()),
 				"$._links.content-space.href"));
 
 		List<String> liferayStructuredContentsHrefs = JsonPath.read(
@@ -94,7 +94,7 @@ public class StructuredContentApioTest {
 			"$._embedded.ContentSpace[?(@.name == 'Liferay')]._links." +
 				"structuredContents.href");
 
-		String liferayStructuredContentsResponse = _doGet(
+		String liferayStructuredContentsResponse = _get(
 			liferayStructuredContentsHrefs.get(0));
 
 		String liferayStructuredContentsSelfHref = JsonPath.read(
@@ -105,7 +105,7 @@ public class StructuredContentApioTest {
 				liferayStructuredContentsHrefs.get(0)));
 	}
 
-	private String _doGet(String url)
+	private String _get(String url)
 		throws JSONWebServiceInvocationException,
 			   JSONWebServiceTransportException {
 
