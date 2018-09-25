@@ -234,7 +234,6 @@ public class FriendlyURLServletTest {
 	@DeleteAfterTestRun
 	private Group _group;
 
-	private final I18nServlet _i18nServlet = new I18nServlet();
 	private Layout _layout;
 
 }
