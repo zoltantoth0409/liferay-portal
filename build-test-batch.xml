@@ -588,35 +588,42 @@ mariadb.executable=${mariadb.executable}]]></echo>
 	</macrodef>
 
 	<macrodef name="prepare-suite-search-engine">
-		<attribute name="search.engine" />
+		<attribute name="suite.name" />
 
 		<sequential>
-			<echo>Preparing search engine: @{search.engine}</echo>
+			<propertycopy from="search.engine[@{suite.name}]" name="suite.search.engine" silent="true" />
 
 			<if>
-				<equals arg1="@{search.engine}" arg2="elasticsearch6" />
+				<isset property="suite.search.engine" />
 				<then>
-					<ant antfile="build-test-elasticsearch6.xml" inheritAll="false" target="deploy-elasticsearch6" />
-				</then>
-				<elseif>
-					<equals arg1="@{search.engine}" arg2="solr" />
-					<then>
-						<ant antfile="build-test-solr.xml" target="deploy-solr" />
+					<echo>Preparing search engine: ${suite.search.engine}</echo>
 
-						<condition else="${env.TEST_BATCH_NAME}" property="test.batch.name" value="${test.batch.name}">
-							<isset property="test.batch.name" />
-						</condition>
-
-						<if>
-							<not>
-								<contains string="${test.batch.name}" substring="functional" />
-							</not>
+					<if>
+						<equals arg1="${suite.search.engine}" arg2="elasticsearch6" />
+						<then>
+							<ant antfile="build-test-elasticsearch6.xml" inheritAll="false" target="deploy-elasticsearch6" />
+						</then>
+						<elseif>
+							<equals arg1="${suite.search.engine}" arg2="solr" />
 							<then>
-								<ant antfile="build-test-solr.xml" target="start-solr" />
+								<ant antfile="build-test-solr.xml" target="deploy-solr" />
+
+								<condition else="${env.TEST_BATCH_NAME}" property="test.batch.name" value="${test.batch.name}">
+									<isset property="test.batch.name" />
+								</condition>
+
+								<if>
+									<not>
+										<contains string="${test.batch.name}" substring="functional" />
+									</not>
+									<then>
+										<ant antfile="build-test-solr.xml" target="start-solr" />
+									</then>
+								</if>
 							</then>
-						</if>
-					</then>
-				</elseif>
+						</elseif>
+					</if>
+				</then>
 			</if>
 		</sequential>
 	</macrodef>
@@ -1263,17 +1270,7 @@ app.server.type=@{app.server.type}]]></echo>
 							</not>
 						</and>
 						<then>
-							<propertycopy from="search.engine[${env.CI_TEST_SUITE}]" name="search.engine" silent="true" />
-
-							<if>
-								<or>
-									<equals arg1="${search.engine}" arg2="elasticsearch6" />
-									<equals arg1="${search.engine}" arg2="solr" />
-								</or>
-								<then>
-									<prepare-suite-search-engine search.engine="${search.engine}" />
-								</then>
-							</if>
+							<prepare-suite-search-engine suite.name="${env.CI_TEST_SUITE}" />
 						</then>
 					</if>
 
@@ -1340,9 +1337,7 @@ app.server.type=@{app.server.type}]]></echo>
 					<if>
 						<isset property="env.CI_TEST_SUITE" />
 						<then>
-							<propertycopy from="search.engine[${env.CI_TEST_SUITE}]" name="search.engine" silent="true" />
-
-							<prepare-suite-search-engine search.engine="${search.engine}" />
+							<prepare-suite-search-engine suite.name="${env.CI_TEST_SUITE}" />
 						</then>
 					</if>
 				</test-set-up>
@@ -2303,9 +2298,7 @@ app.server.type=@{app.server.type}]]></echo>
 					<if>
 						<isset property="env.CI_TEST_SUITE" />
 						<then>
-							<propertycopy from="search.engine[${env.CI_TEST_SUITE}]" name="search.engine" silent="true" />
-
-							<prepare-suite-search-engine search.engine="${search.engine}" />
+							<prepare-suite-search-engine suite.name="${env.CI_TEST_SUITE}" />
 						</then>
 					</if>
 
