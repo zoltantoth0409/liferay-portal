@@ -1294,9 +1294,9 @@ app.server.type=@{app.server.type}]]></echo>
 					</if>
 
 					<if>
-						<isset property="search.engine" />
+						<isset property="suite.search.engine" />
 						<then>
-							<stop-search-engine />
+							<stop-suite-search-engine />
 						</then>
 					</if>
 				</test-tear-down>
@@ -1350,9 +1350,9 @@ app.server.type=@{app.server.type}]]></echo>
 
 				<test-tear-down>
 					<if>
-						<isset property="search.engine" />
+						<isset property="suite.search.engine" />
 						<then>
-							<stop-search-engine />
+							<stop-suite-search-engine />
 						</then>
 					</if>
 				</test-tear-down>
@@ -2320,9 +2320,9 @@ app.server.type=@{app.server.type}]]></echo>
 
 				<test-tear-down>
 					<if>
-						<isset property="search.engine" />
+						<isset property="suite.search.engine" />
 						<then>
-							<stop-search-engine />
+							<stop-suite-search-engine />
 						</then>
 					</if>
 				</test-tear-down>
@@ -2552,6 +2552,17 @@ app.server.type=@{app.server.type}]]></echo>
 							CATALINA_OPTS="${CATALINA_OPTS} ${print.final.flags}"
 						]]>
 					</echo>
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="stop-suite-search-engine">
+		<sequential>
+			<if>
+				<equals arg1="${suite.search.engine}" arg2="solr" />
+				<then>
+					<ant antfile="build-test-solr.xml" target="stop-solr-core" />
 				</then>
 			</if>
 		</sequential>
@@ -4130,6 +4141,15 @@ app.server.type=@{app.server.type}]]></echo>
 					</then>
 				</if>
 			</test-set-up>
+
+			<test-tear-down>
+				<if>
+					<isset property="suite.search.engine" />
+					<then>
+						<stop-suite-search-engine />
+					</then>
+				</if>
+			</test-tear-down>
 		</run-batch-test>
 	</target>
 
