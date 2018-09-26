@@ -207,7 +207,7 @@ public class FormInstanceNestedCollectionResource
 
 	private FormContextWrapper _evaluateContext(
 		Long ddmFormInstanceId, FormContextForm formContextForm,
-		AcceptLanguage language,
+		AcceptLanguage acceptLanguage,
 		DDMFormRenderingContext ddmFormRenderingContext,
 		ThemeDisplay themeDisplay) {
 
@@ -218,7 +218,7 @@ public class FormInstanceNestedCollectionResource
 		).map(
 			ddmStructure -> _evaluateContextHelper.evaluateContext(
 				formContextForm.getFieldValues(), ddmStructure,
-				ddmFormRenderingContext, language.getPreferredLocale())
+				ddmFormRenderingContext, acceptLanguage.getPreferredLocale())
 		).orElse(
 			null
 		);
@@ -252,10 +252,10 @@ public class FormInstanceNestedCollectionResource
 		return new PageItems<>(ddmFormInstances, count);
 	}
 
-	private Long _getStructureId(DDMFormInstance formInstance) {
+	private Long _getStructureId(DDMFormInstance ddmFormInstance) {
 		return Try.fromFallible(
 			() -> _ddmFormInstanceVersionService.getLatestFormInstanceVersion(
-				formInstance.getFormInstanceId(),
+				ddmFormInstance.getFormInstanceId(),
 				WorkflowConstants.STATUS_APPROVED)
 		).map(
 			DDMFormInstanceVersion::getStructureVersion
