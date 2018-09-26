@@ -621,11 +621,8 @@ public class StructuredContentNestedCollectionResource
 		try {
 			Expression expression = filter.getExpression();
 
-			String formatPattern = PropsUtil.get(
-				PropsKeys.INDEX_DATE_FORMAT_PATTERN);
-
 			Format format = FastDateFormatFactoryUtil.getSimpleDateFormat(
-				formatPattern);
+				PropsUtil.get(PropsKeys.INDEX_DATE_FORMAT_PATTERN));
 
 			return (com.liferay.portal.kernel.search.filter.Filter)
 				expression.accept(

@@ -243,11 +243,9 @@ public class ExpressionVisitorImplTest {
 			_expressionVisitorImpl.visitLiteralExpression(literalExpression));
 	}
 
-	private static final String _INDEX_DATE_FORMAT_PATTERN = "yyyyMMddHHmmss";
-
 	private static final ExpressionVisitorImpl _expressionVisitorImpl =
 		new ExpressionVisitorImpl(
-			new SimpleDateFormat(_INDEX_DATE_FORMAT_PATTERN),
+			new SimpleDateFormat("yyyyMMddHHmmss"),
 			LocaleUtil.getDefault(),
 			ExpressionVisitorImplTest.
 				_structuredContentSingleEntitySchemaBasedEdmProvider);

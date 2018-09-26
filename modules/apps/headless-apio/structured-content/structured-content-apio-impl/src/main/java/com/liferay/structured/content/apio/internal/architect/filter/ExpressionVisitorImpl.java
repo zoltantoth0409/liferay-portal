@@ -191,7 +191,7 @@ public class ExpressionVisitorImpl implements ExpressionVisitor<Object> {
 		}
 		catch (ParseException pe) {
 			throw new InvalidFilterException(
-				"Invalid date format, use ISO8601: " + pe.getMessage());
+				"Invalid date format, use ISO 8601: " + pe.getMessage());
 		}
 	}
 
