@@ -20,17 +20,11 @@
 ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
 DDMDataProviderInstance ddmDataProviderInstance = (DDMDataProviderInstance)row.getObject();
-
-DateSearchEntry dateSearchEntry = new DateSearchEntry();
-
-dateSearchEntry.setDate(ddmDataProviderInstance.getModifiedDate());
-
-String href = (String)request.getAttribute(WebKeys.SEARCH_ENTRY_HREF);
 %>
 
 <div class="clamp-container">
 	<h4 class="truncate-text">
-		<aui:a href="<%= href %>">
+		<aui:a href="<%= (String)request.getAttribute(WebKeys.SEARCH_ENTRY_HREF) %>">
 			<%= HtmlUtil.escape(ddmDataProviderInstance.getName(locale)) %>
 		</aui:a>
 	</h4>
@@ -46,6 +40,13 @@ String href = (String)request.getAttribute(WebKeys.SEARCH_ENTRY_HREF);
 			<liferay-ui:message key="id" />: <%= ddmDataProviderInstance.getDataProviderInstanceId() %>
 		</span>
 		<span class="data-provider-instance-modified-date">
+
+			<%
+			DateSearchEntry dateSearchEntry = new DateSearchEntry();
+
+			dateSearchEntry.setDate(ddmDataProviderInstance.getModifiedDate());
+			%>
+
 			<liferay-ui:message key="modified-date" />: <%= dateSearchEntry.getName(request) %>
 		</span>
 	</h5>
