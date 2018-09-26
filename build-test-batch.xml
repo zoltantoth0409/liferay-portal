@@ -587,7 +587,7 @@ mariadb.executable=${mariadb.executable}]]></echo>
 		</sequential>
 	</macrodef>
 
-	<macrodef name="prepare-search-engine">
+	<macrodef name="prepare-suite-search-engine">
 		<attribute name="search.engine" />
 
 		<sequential>
@@ -1260,7 +1260,7 @@ app.server.type=@{app.server.type}]]></echo>
 									<equals arg1="${search.engine}" arg2="solr" />
 								</or>
 								<then>
-									<prepare-search-engine search.engine="${search.engine}" />
+									<prepare-suite-search-engine search.engine="${search.engine}" />
 								</then>
 							</if>
 						</then>
@@ -1331,7 +1331,7 @@ app.server.type=@{app.server.type}]]></echo>
 						<then>
 							<propertycopy from="search.engine[${env.CI_TEST_SUITE}]" name="search.engine" silent="true" />
 
-							<prepare-search-engine search.engine="${search.engine}" />
+							<prepare-suite-search-engine search.engine="${search.engine}" />
 						</then>
 					</if>
 				</test-set-up>
@@ -2294,7 +2294,7 @@ app.server.type=@{app.server.type}]]></echo>
 						<then>
 							<propertycopy from="search.engine[${env.CI_TEST_SUITE}]" name="search.engine" silent="true" />
 
-							<prepare-search-engine search.engine="${search.engine}" />
+							<prepare-suite-search-engine search.engine="${search.engine}" />
 						</then>
 					</if>
 
