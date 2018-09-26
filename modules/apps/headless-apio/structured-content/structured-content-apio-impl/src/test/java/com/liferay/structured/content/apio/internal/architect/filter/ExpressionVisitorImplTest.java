@@ -245,8 +245,7 @@ public class ExpressionVisitorImplTest {
 
 	private static final ExpressionVisitorImpl _expressionVisitorImpl =
 		new ExpressionVisitorImpl(
-			new SimpleDateFormat("yyyyMMddHHmmss"),
-			LocaleUtil.getDefault(),
+			new SimpleDateFormat("yyyyMMddHHmmss"), LocaleUtil.getDefault(),
 			ExpressionVisitorImplTest.
 				_structuredContentSingleEntitySchemaBasedEdmProvider);
 
