@@ -1257,20 +1257,24 @@ app.server.type=@{app.server.type}]]></echo>
 						</then>
 					</if>
 
-					<get-testcase-property property.name="osgi.app.includes" />
-
 					<if>
-						<and>
-							<isset property="env.CI_TEST_SUITE" />
-							<not>
-								<contains string="${osgi.app.includes}" substring="portal-search-elasticsearch6" />
-							</not>
-							<not>
-								<contains string="${osgi.app.includes}" substring="portal-search-solr" />
-							</not>
-						</and>
+						<isset property="env.CI_TEST_SUITE" />
 						<then>
-							<prepare-suite-search-engine suite.name="${env.CI_TEST_SUITE}" />
+							<get-testcase-property property.name="osgi.app.includes" />
+
+							<if>
+								<and>
+									<not>
+										<contains string="${osgi.app.includes}" substring="portal-search-elasticsearch6" />
+									</not>
+									<not>
+										<contains string="${osgi.app.includes}" substring="portal-search-solr" />
+									</not>
+								</and>
+								<then>
+									<prepare-suite-search-engine suite.name="${env.CI_TEST_SUITE}" />
+								</then>
+							</if>
 						</then>
 					</if>
 
