@@ -50,9 +50,6 @@ public class MediaObjectHelper {
 			MediaObjectCreatorForm mediaObjectCreatorForm)
 		throws PortalException {
 
-		ServiceContext serviceContext =
-			mediaObjectCreatorForm.getServiceContext(repositoryId);
-
 		BinaryFile binaryFile = mediaObjectCreatorForm.getBinaryFile();
 
 		String binaryFileName = binaryFile.getName();
@@ -61,6 +58,9 @@ public class MediaObjectHelper {
 			mediaObjectCreatorForm.getTitleOptional();
 
 		String title = titleOptional.orElse(binaryFileName);
+
+		ServiceContext serviceContext =
+			mediaObjectCreatorForm.getServiceContext(repositoryId);
 
 		return _dlAppService.addFileEntry(
 			repositoryId, folderId, binaryFileName, binaryFile.getMimeType(),
