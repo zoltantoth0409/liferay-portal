@@ -1190,14 +1190,14 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 		return true;
 	}
 
-	private boolean _isValid(String string) {
-		int index = string.lastIndexOf(CharPool.DASH);
+	private boolean _isValid(String pathName) {
+		int index = pathName.lastIndexOf(CharPool.DASH);
 
 		if (index == -1) {
 			return true;
 		}
 
-		String version = string.substring(index + 1, string.length() - 4);
+		String version = pathName.substring(index + 1, pathName.length() - 4);
 
 		int count = StringUtil.count(version, CharPool.PERIOD);
 
