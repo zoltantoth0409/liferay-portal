@@ -6708,7 +6708,7 @@ public class OrganizationPersistenceImpl extends BasePersistenceImpl<Organizatio
 							(parentOrganizationId != organization.getParentOrganizationId()) ||
 							!StringUtil.wildcardMatches(
 								organization.getName(), name, '_', '%', '\\',
-								true)) {
+								false)) {
 						list = null;
 
 						break;
@@ -6773,7 +6773,7 @@ public class OrganizationPersistenceImpl extends BasePersistenceImpl<Organizatio
 				qPos.add(parentOrganizationId);
 
 				if (bindName) {
-					qPos.add(name);
+					qPos.add(StringUtil.toLowerCase(name));
 				}
 
 				if (!pagination) {
@@ -7091,7 +7091,7 @@ public class OrganizationPersistenceImpl extends BasePersistenceImpl<Organizatio
 		qPos.add(parentOrganizationId);
 
 		if (bindName) {
-			qPos.add(name);
+			qPos.add(StringUtil.toLowerCase(name));
 		}
 
 		if (orderByComparator != null) {
@@ -7255,7 +7255,7 @@ public class OrganizationPersistenceImpl extends BasePersistenceImpl<Organizatio
 			qPos.add(parentOrganizationId);
 
 			if (bindName) {
-				qPos.add(name);
+				qPos.add(StringUtil.toLowerCase(name));
 			}
 
 			return (List<Organization>)QueryUtil.list(q, getDialect(), start,
@@ -7462,7 +7462,7 @@ public class OrganizationPersistenceImpl extends BasePersistenceImpl<Organizatio
 		qPos.add(parentOrganizationId);
 
 		if (bindName) {
-			qPos.add(name);
+			qPos.add(StringUtil.toLowerCase(name));
 		}
 
 		if (orderByComparator != null) {
@@ -7557,7 +7557,7 @@ public class OrganizationPersistenceImpl extends BasePersistenceImpl<Organizatio
 				qPos.add(parentOrganizationId);
 
 				if (bindName) {
-					qPos.add(name);
+					qPos.add(StringUtil.toLowerCase(name));
 				}
 
 				count = (Long)q.uniqueResult();
@@ -7635,7 +7635,7 @@ public class OrganizationPersistenceImpl extends BasePersistenceImpl<Organizatio
 			qPos.add(parentOrganizationId);
 
 			if (bindName) {
-				qPos.add(name);
+				qPos.add(StringUtil.toLowerCase(name));
 			}
 
 			Long count = (Long)q.uniqueResult();
@@ -7653,7 +7653,7 @@ public class OrganizationPersistenceImpl extends BasePersistenceImpl<Organizatio
 	private static final String _FINDER_COLUMN_C_P_LIKEN_COMPANYID_2 = "organization.companyId = ? AND ";
 	private static final String _FINDER_COLUMN_C_P_LIKEN_PARENTORGANIZATIONID_2 = "organization.parentOrganizationId = ? AND ";
 	private static final String _FINDER_COLUMN_C_P_LIKEN_NAME_1 = "organization.name IS NULL";
-	private static final String _FINDER_COLUMN_C_P_LIKEN_NAME_2 = "organization.name LIKE ?";
+	private static final String _FINDER_COLUMN_C_P_LIKEN_NAME_2 = "lower(organization.name) LIKE ?";
 	private static final String _FINDER_COLUMN_C_P_LIKEN_NAME_3 = "(organization.name IS NULL OR organization.name LIKE '')";
 
 	public OrganizationPersistenceImpl() {
