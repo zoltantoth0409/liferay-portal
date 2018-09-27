@@ -113,7 +113,7 @@ public class WorkspaceUtil {
 		}
 		catch (IOException ioe) {
 			System.out.println(
-				"SKIPPED downloading " + _WORKSPACE_PROPERTIES_URL);
+				"Skipped downloading " + _WORKSPACE_PROPERTIES_URL);
 		}
 
 		File propertiesFile = new File("workspace.properties");
