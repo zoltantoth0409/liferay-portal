@@ -111,7 +111,7 @@ public abstract class BaseLocalGitRepository
 
 		if (!upstreamBranchNames.contains(upstreamBranchName)) {
 			throw new IllegalArgumentException(
-				"Upstream branch name is not valid " + upstreamBranchName);
+				"Invalid upstream branch name: " + upstreamBranchName);
 		}
 
 		put("upstream_branch_name", upstreamBranchName);

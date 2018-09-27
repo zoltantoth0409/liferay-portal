@@ -72,7 +72,7 @@ public abstract class BaseGitRepository
 		}
 		catch (IOException ioe) {
 			System.out.println(
-				"SKIPPED downloading " + _REPOSITORY_PROPERTIES_URL);
+				"Skipped downloading " + _REPOSITORY_PROPERTIES_URL);
 		}
 
 		_repositoryProperties = JenkinsResultsParserUtil.getProperties(
