@@ -1439,6 +1439,14 @@
 			<var name="userEmailAddress" value="test@liferay.com" />
 		</execute>
 
+		<execute macro="Portlet#shutdownSpecificServer">
+			<var name="nodePort" value="9080" />
+		</execute>
+
+		<execute macro="Portlet#startSpecificServer">
+			<var name="nodePort" value="9080" />
+		</execute>
+
 		<execute macro="User#loginPG">
 			<var name="nodePort" value="9080" />
 			<var name="password" value="test" />
