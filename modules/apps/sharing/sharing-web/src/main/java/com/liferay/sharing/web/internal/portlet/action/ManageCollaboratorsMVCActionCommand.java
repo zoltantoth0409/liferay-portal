@@ -50,24 +50,22 @@ public class ManageCollaboratorsMVCActionCommand extends BaseMVCActionCommand {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		long[] sharingEntryIdsToDelete = ParamUtil.getLongValues(
-			actionRequest, "sharingEntryIdsToDelete");
+		long[] deleteSharingEntryIds = ParamUtil.getLongValues(
+			actionRequest, "deleteSharingEntryIds");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			actionRequest);
 
-		for (long sharingEntryId : sharingEntryIdsToDelete) {
+		for (long sharingEntryId : deleteSharingEntryIds) {
 			_sharingEntryService.deleteSharingEntry(
 				sharingEntryId, serviceContext);
 		}
 
-		String[] sharingEntryIdSharingEntryPermissionDisplayActionIdPairs =
-			ParamUtil.getStringValues(
-				actionRequest,
-				"sharingEntryIdSharingEntryPermissionDisplayActionIdPairs");
+		String[] sharingEntryIdActionIdPairs = ParamUtil.getStringValues(
+			actionRequest, "sharingEntryIdActionIdPairs");
 
 		for (String sharingEntryIdSharingEntryPermissionDisplayActionIdPair :
-				sharingEntryIdSharingEntryPermissionDisplayActionIdPairs) {
+				sharingEntryIdActionIdPairs) {
 
 			String[] parts = StringUtil.split(
 				sharingEntryIdSharingEntryPermissionDisplayActionIdPair);
