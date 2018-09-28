@@ -46,27 +46,27 @@ public class MethodKeyTest {
 	@Test
 	public void testConstructors() throws NoSuchMethodException {
 		_assertMethodKey(
-			_TEST_CLASS, _TEST_METHOD_NAME, new Class<?>[0],
-			new MethodKey(_TEST_CLASS, _TEST_METHOD_NAME));
+			TestClass.class, _METHOD_NAME, new Class<?>[0],
+			new MethodKey(TestClass.class, _METHOD_NAME));
 		_assertMethodKey(
-			_TEST_CLASS, _TEST_METHOD_NAME, new Class<?>[] {String.class},
-			new MethodKey(_TEST_CLASS, _TEST_METHOD_NAME, String.class));
+			TestClass.class, _METHOD_NAME, new Class<?>[] {String.class},
+			new MethodKey(TestClass.class, _METHOD_NAME, String.class));
 		_assertMethodKey(
-			_TEST_CLASS, _TEST_METHOD_NAME,
+			TestClass.class, _METHOD_NAME,
 			new Class<?>[] {String.class, String.class},
 			new MethodKey(
-				_TEST_CLASS, _TEST_METHOD_NAME, String.class, String.class));
+				TestClass.class, _METHOD_NAME, String.class, String.class));
 		_assertMethodKey(
-			_TEST_CLASS, _TEST_METHOD_NAME, new Class<?>[0],
-			new MethodKey(_TEST_CLASS.getMethod(_TEST_METHOD_NAME)));
+			TestClass.class, _METHOD_NAME, new Class<?>[0],
+			new MethodKey(TestClass.class.getMethod(_METHOD_NAME)));
 		_assertMethodKey(
-			_TEST_CLASS, _TEST_METHOD_NAME, new Class<?>[0],
-			new MethodKey(_TEST_CLASS_NAME, _TEST_METHOD_NAME));
+			TestClass.class, _METHOD_NAME, new Class<?>[0],
+			new MethodKey(TestClass.class.getName(), _METHOD_NAME));
 
 		try {
-			new MethodKey("ClassNotFound", _TEST_METHOD_NAME);
+			new MethodKey("ClassNotFound", _METHOD_NAME);
 
-			Assert.fail("No RuntimeException thrown!");
+			Assert.fail("RuntimeException was not thrown");
 		}
 		catch (RuntimeException re) {
 			Throwable throwable = re.getCause();
@@ -79,33 +79,31 @@ public class MethodKeyTest {
 	@Test
 	public void testEquals() throws Exception {
 		MethodKey methodKey = new MethodKey(
-			_TEST_CLASS, _TEST_METHOD_NAME, String.class);
+			TestClass.class, _METHOD_NAME, String.class);
 
 		Assert.assertEquals(methodKey, methodKey);
-		Assert.assertEquals(methodKey, _cloneBySerialization(methodKey));
+		Assert.assertEquals(methodKey, _clone(methodKey));
 		Assert.assertEquals(
 			methodKey,
-			new MethodKey(_TEST_CLASS, _TEST_METHOD_NAME, String.class));
+			new MethodKey(TestClass.class, _METHOD_NAME, String.class));
 		Assert.assertNotEquals(methodKey, new Object());
 		Assert.assertNotEquals(
 			methodKey,
 			new MethodKey(
-				_TEST_CLASS, _TEST_METHOD_NAME, String.class, String.class));
+				TestClass.class, _METHOD_NAME, String.class, String.class));
+		Assert.assertNotEquals(
+			methodKey, new MethodKey(TestClass.class, _METHOD_NAME, int.class));
 		Assert.assertNotEquals(
 			methodKey,
-			new MethodKey(_TEST_CLASS, _TEST_METHOD_NAME, int.class));
+			new MethodKey(TestClass.class, "testMethodAnother", String.class));
 		Assert.assertNotEquals(
-			methodKey,
-			new MethodKey(_TEST_CLASS, "testMethodAnother", String.class));
-		Assert.assertNotEquals(
-			methodKey,
-			new MethodKey(Object.class, _TEST_METHOD_NAME, String.class));
+			methodKey, new MethodKey(Object.class, _METHOD_NAME, String.class));
 	}
 
 	@Test
 	public void testGetMethodAndResetCache() throws NoSuchMethodException {
 		MethodKey methodKey = new MethodKey(
-			_TEST_CLASS, _TEST_METHOD_NAME, String.class);
+			TestClass.class, _METHOD_NAME, String.class);
 
 		Method method = methodKey.getMethod();
 
@@ -116,7 +114,7 @@ public class MethodKeyTest {
 		method.setAccessible(false);
 
 		Assert.assertFalse(
-			"The method should not be accessiable", method.isAccessible());
+			"The method should not be accessible", method.isAccessible());
 		Assert.assertSame(method, methodKey.getMethod());
 		Assert.assertTrue(
 			"The method should be accessible", method.isAccessible());
@@ -134,36 +132,37 @@ public class MethodKeyTest {
 
 	@Test
 	public void testHashCode() throws Exception {
-		Method method = _TEST_CLASS.getMethod(_TEST_METHOD_NAME, String.class);
+		Method method = TestClass.class.getMethod(_METHOD_NAME, String.class);
 
 		MethodKey methodKey = new MethodKey(
-			_TEST_CLASS, _TEST_METHOD_NAME, String.class);
+			TestClass.class, _METHOD_NAME, String.class);
 
 		Assert.assertEquals(method.hashCode(), methodKey.hashCode());
 
-		MethodKey serializedMethodKey = _cloneBySerialization(methodKey);
+		MethodKey serializedMethodKey = _clone(methodKey);
 
 		Assert.assertEquals(method.hashCode(), serializedMethodKey.hashCode());
 	}
 
 	@Test
 	public void testToString() {
-		MethodKey methodKey = new MethodKey(_TEST_CLASS, _TEST_METHOD_NAME);
+		MethodKey methodKey = new MethodKey(TestClass.class, _METHOD_NAME);
 
 		Assert.assertEquals(
-			_TEST_CLASS_NAME + ".testMethod()", methodKey.toString());
+			TestClass.class.getName() + ".testMethod()", methodKey.toString());
 
-		methodKey = new MethodKey(_TEST_CLASS, _TEST_METHOD_NAME, String.class);
+		methodKey = new MethodKey(TestClass.class, _METHOD_NAME, String.class);
 
 		Assert.assertEquals(
-			_TEST_CLASS_NAME + ".testMethod(java.lang.String)",
+			TestClass.class.getName() + ".testMethod(java.lang.String)",
 			methodKey.toString());
 
 		methodKey = new MethodKey(
-			_TEST_CLASS, _TEST_METHOD_NAME, String.class, String.class);
+			TestClass.class, _METHOD_NAME, String.class, String.class);
 
 		Assert.assertEquals(
-			_TEST_CLASS_NAME + ".testMethod(java.lang.String,java.lang.String)",
+			TestClass.class.getName() +
+				".testMethod(java.lang.String,java.lang.String)",
 			methodKey.toString());
 
 		Assert.assertSame(methodKey.toString(), methodKey.toString());
@@ -172,7 +171,7 @@ public class MethodKeyTest {
 	@Test
 	public void testTransform() throws Exception {
 		MethodKey methodKey = new MethodKey(
-			_TEST_CLASS, _TEST_METHOD_NAME, String.class);
+			TestClass.class, _METHOD_NAME, String.class);
 
 		MethodKey transformedMethodKey = methodKey.transform(
 			new URLClassLoader(
@@ -197,7 +196,7 @@ public class MethodKeyTest {
 		try {
 			method.invoke(transformedClassInstance, "test");
 
-			Assert.fail("No IllegalArgumentException thrown!");
+			Assert.fail("IllegalArgumentException was not thrown");
 		}
 		catch (IllegalArgumentException iae) {
 			Assert.assertEquals(
@@ -221,9 +220,7 @@ public class MethodKeyTest {
 			expectedParameters, methodKey.getParameterTypes());
 	}
 
-	private MethodKey _cloneBySerialization(MethodKey methodKey)
-		throws Exception {
-
+	private MethodKey _clone(MethodKey methodKey) throws Exception {
 		try (UnsyncByteArrayOutputStream ubaos =
 				new UnsyncByteArrayOutputStream()) {
 
@@ -241,11 +238,7 @@ public class MethodKeyTest {
 		}
 	}
 
-	private static final Class<?> _TEST_CLASS = TestClass.class;
-
-	private static final String _TEST_CLASS_NAME = _TEST_CLASS.getName();
-
-	private static final String _TEST_METHOD_NAME = "testMethod";
+	private static final String _METHOD_NAME = "testMethod";
 
 	private static class TestClass {
 
