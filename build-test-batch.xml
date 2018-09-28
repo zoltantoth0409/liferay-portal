@@ -697,8 +697,10 @@ app.server.type=@{app.server.type}]]></echo>
 			>
 				<fileset
 					dir="bundles"
-					includes="**/*.sh"
-				/>
+				>
+					<include name="**/*.sh" />
+					<include name="**/bin/*" />
+				</fileset>
 			</chmod>
 
 			<tar
@@ -760,8 +762,10 @@ app.server.type=@{app.server.type}]]></echo>
 			>
 				<fileset
 					dir="bundles"
-					includes="**/*.sh"
-				/>
+				>
+					<include name="**/*.sh" />
+					<include name="**/bin/*" />
+				</fileset>
 			</chmod>
 
 			<setup-libs />
