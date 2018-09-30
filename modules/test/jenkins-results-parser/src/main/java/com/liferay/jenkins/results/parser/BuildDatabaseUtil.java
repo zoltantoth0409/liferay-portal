@@ -116,7 +116,7 @@ public class BuildDatabaseUtil {
 				}
 
 				System.out.println(
-					"Unable to execute bash commands retrying... ");
+					"Unable to execute bash commands, retrying... ");
 
 				e.printStackTrace();
 
