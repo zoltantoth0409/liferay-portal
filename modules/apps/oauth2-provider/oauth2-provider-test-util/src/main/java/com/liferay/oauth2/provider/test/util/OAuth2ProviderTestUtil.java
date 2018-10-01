@@ -43,7 +43,7 @@ import org.osgi.framework.BundleActivator;
  */
 public class OAuth2ProviderTestUtil {
 
-	public static Archive<?> getDeployment(
+	public static Archive<?> getArchive(
 			Class<? extends BundleActivator> bundleActivatorClass)
 		throws Exception {
 
