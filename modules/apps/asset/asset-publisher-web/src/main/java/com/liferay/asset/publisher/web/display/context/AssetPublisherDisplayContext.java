@@ -322,8 +322,6 @@ public class AssetPublisherDisplayContext {
 			_request, AssetListEntry.class.getName(),
 			PortletProvider.Action.BROWSE);
 
-		portletURL.setParameter("eventName", getSelectAssetListEventName());
-
 		AssetListEntry assetListEntry = fetchAssetListEntry();
 
 		if (assetListEntry != null) {
@@ -331,6 +329,8 @@ public class AssetPublisherDisplayContext {
 				"assetListEntryId",
 				String.valueOf(assetListEntry.getAssetListEntryId()));
 		}
+
+		portletURL.setParameter("eventName", getSelectAssetListEventName());
 
 		portletURL.setWindowState(LiferayWindowState.POP_UP);
 
