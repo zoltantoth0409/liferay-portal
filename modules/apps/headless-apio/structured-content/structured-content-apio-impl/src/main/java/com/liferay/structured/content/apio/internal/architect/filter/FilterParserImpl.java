@@ -42,12 +42,11 @@ import org.apache.olingo.server.core.uri.parser.Parser;
 public class FilterParserImpl implements FilterParser {
 
 	public FilterParserImpl(EntityModel entityModel) {
-		_path = entityModel.getName();
-
 		_parser = new Parser(
 			new EdmProviderImpl(
 				new EntityModelSchemaBasedEdmProvider(entityModel)),
 			OData.newInstance());
+		_path = entityModel.getName();
 	}
 
 	@Override
