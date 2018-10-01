@@ -9,11 +9,7 @@ definition {
 
 		PortletEntry.inputName(name = "${pageName}");
 
-		if ("${hideFromNavMenu}" == "true") {
-			Uncheck(locator1 = "Checkbox#ADD_TO_NAVIGATION_MENU");
-		}
-
-		Button.click(button = "Save");
+		PortletEntry.save();
 
 		if ("${sitePageType}" == "Embedded") {
 			Type(
@@ -87,7 +83,6 @@ definition {
 		);
 
 		SitePages._addPage(
-			hideFromNavMenu = "${hideFromNavMenu}",
 			pageName = "${childPageName}",
 			pageTemplateName = "${pageTemplateName}",
 			sitePageType = "${sitePageType}"
@@ -114,7 +109,6 @@ definition {
 		}
 
 		SitePages._addPage(
-			hideFromNavMenu = "${hideFromNavMenu}",
 			pageName = "${pageName}",
 			pageTemplateName = "${pageTemplateName}",
 			sitePageType = "${sitePageType}"
@@ -136,7 +130,6 @@ definition {
 		LexiconEntry.gotoAddMenuItem(menuItem = "Public Page");
 
 		SitePages._addPage(
-			hideFromNavMenu = "${hideFromNavMenu}",
 			inheritChanges = "${inheritChanges}",
 			pageName = "${pageName}",
 			pageTemplateName = "${pageTemplateName}",

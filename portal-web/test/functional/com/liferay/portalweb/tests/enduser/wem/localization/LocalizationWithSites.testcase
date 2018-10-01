@@ -626,7 +626,7 @@ definition {
 
 		SitePages.addPublicPage(pageName = "Dummy Page");
 
-		SitePages.addPublicPage(hideFromNavMenu = "true", pageName = "Language Page");
+		SitePages.addPublicPage(pageName = "Language Page");
 
 		SitePages.gotoPageMenuItem(menuItem = "Configure", pageName = "Language Page");
 
