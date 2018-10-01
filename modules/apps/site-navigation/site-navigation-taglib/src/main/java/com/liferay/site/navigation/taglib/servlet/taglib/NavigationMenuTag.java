@@ -275,7 +275,8 @@ public class NavigationMenuTag extends IncludeTag {
 			return new ArrayList<>();
 		}
 
-		List<SiteNavigationMenuItem> ancestorSiteNavigationMenuItems = new ArrayList<>();
+		List<SiteNavigationMenuItem> ancestorSiteNavigationMenuItems =
+			new ArrayList<>();
 
 		while (siteNavigationMenuItem.getParentSiteNavigationMenuItemId() !=
 					0) {
@@ -289,7 +290,8 @@ public class NavigationMenuTag extends IncludeTag {
 			ancestorSiteNavigationMenuItems.add(siteNavigationMenuItem);
 		}
 
-		List<NavItem> navItems = new ArrayList<>(ancestorSiteNavigationMenuItems.size() + 1);
+		List<NavItem> navItems = new ArrayList<>(
+			ancestorSiteNavigationMenuItems.size() + 1);
 
 		for (int i = ancestorSiteNavigationMenuItems.size() - 1; i >= 0; i--) {
 			SiteNavigationMenuItem ancestorSiteNavigationMenuItem =
