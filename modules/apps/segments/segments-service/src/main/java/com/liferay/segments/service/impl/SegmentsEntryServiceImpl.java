@@ -55,7 +55,9 @@ public class SegmentsEntryServiceImpl extends SegmentsEntryServiceBaseImpl {
 	}
 
 	@Override
-	public SegmentsEntry deleteSegmentsEntry(long segmentsEntryId) throws PortalException {
+	public SegmentsEntry deleteSegmentsEntry(long segmentsEntryId)
+		throws PortalException {
+
 		_segmentsEntryResourcePermission.check(
 			getPermissionChecker(), segmentsEntryId, ActionKeys.DELETE);
 
@@ -84,7 +86,9 @@ public class SegmentsEntryServiceImpl extends SegmentsEntryServiceBaseImpl {
 	}
 
 	@Override
-	public SegmentsEntry getSegmentsEntry(long segmentsEntryId) throws PortalException {
+	public SegmentsEntry getSegmentsEntry(long segmentsEntryId)
+		throws PortalException {
+
 		_segmentsEntryResourcePermission.check(
 			getPermissionChecker(), segmentsEntryId, ActionKeys.VIEW);
 
