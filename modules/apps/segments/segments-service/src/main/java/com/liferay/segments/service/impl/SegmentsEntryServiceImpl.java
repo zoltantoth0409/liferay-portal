@@ -39,7 +39,7 @@ import java.util.Map;
 public class SegmentsEntryServiceImpl extends SegmentsEntryServiceBaseImpl {
 
 	@Override
-	public SegmentsEntry addEntry(
+	public SegmentsEntry addSegmentsEntry(
 			Map<Locale, String> nameMap, Map<Locale, String> descriptionMap,
 			String key, String type, boolean active, String criteria,
 			ServiceContext serviceContext)
@@ -49,21 +49,21 @@ public class SegmentsEntryServiceImpl extends SegmentsEntryServiceBaseImpl {
 			getPermissionChecker(), serviceContext.getScopeGroupId(),
 			SegmentsActionKeys.MANAGE_SEGMENTS_ENTRIES);
 
-		return segmentsEntryLocalService.addEntry(
+		return segmentsEntryLocalService.addSegmentsEntry(
 			nameMap, descriptionMap, key, type, active, criteria,
 			serviceContext);
 	}
 
 	@Override
-	public SegmentsEntry deleteEntry(long entryId) throws PortalException {
+	public SegmentsEntry deleteSegmentsEntry(long segmentsEntryId) throws PortalException {
 		_segmentsEntryResourcePermission.check(
-			getPermissionChecker(), entryId, ActionKeys.DELETE);
+			getPermissionChecker(), segmentsEntryId, ActionKeys.DELETE);
 
-		return segmentsEntryLocalService.deleteEntry(entryId);
+		return segmentsEntryLocalService.deleteSegmentsEntry(segmentsEntryId);
 	}
 
 	@Override
-	public List<SegmentsEntry> getEntries(
+	public List<SegmentsEntry> getSegmentsEntries(
 			long groupId, int start, int end,
 			OrderByComparator<SegmentsEntry> orderByComparator)
 		throws PortalException {
@@ -71,28 +71,28 @@ public class SegmentsEntryServiceImpl extends SegmentsEntryServiceBaseImpl {
 		_portletResourcePermission.check(
 			getPermissionChecker(), groupId, ActionKeys.VIEW);
 
-		return segmentsEntryLocalService.getEntries(
+		return segmentsEntryLocalService.getSegmentsEntries(
 			groupId, start, end, orderByComparator);
 	}
 
 	@Override
-	public int getEntriesCount(long groupId) throws PortalException {
+	public int getSegmentsEntriesCount(long groupId) throws PortalException {
 		_portletResourcePermission.check(
 			getPermissionChecker(), groupId, ActionKeys.VIEW);
 
-		return segmentsEntryLocalService.getEntriesCount(groupId);
+		return segmentsEntryLocalService.getSegmentsEntriesCount(groupId);
 	}
 
 	@Override
-	public SegmentsEntry getEntry(long entryId) throws PortalException {
+	public SegmentsEntry getSegmentsEntry(long segmentsEntryId) throws PortalException {
 		_segmentsEntryResourcePermission.check(
-			getPermissionChecker(), entryId, ActionKeys.VIEW);
+			getPermissionChecker(), segmentsEntryId, ActionKeys.VIEW);
 
-		return segmentsEntryLocalService.getSegmentsEntry(entryId);
+		return segmentsEntryLocalService.getSegmentsEntry(segmentsEntryId);
 	}
 
 	@Override
-	public BaseModelSearchResult<SegmentsEntry> searchEntries(
+	public BaseModelSearchResult<SegmentsEntry> searchSegmentsEntries(
 			long companyId, long groupId, String keywords, int start, int end,
 			Sort sort)
 		throws PortalException {
@@ -100,22 +100,22 @@ public class SegmentsEntryServiceImpl extends SegmentsEntryServiceBaseImpl {
 		_portletResourcePermission.check(
 			getPermissionChecker(), groupId, ActionKeys.VIEW);
 
-		return segmentsEntryLocalService.searchEntries(
+		return segmentsEntryLocalService.searchSegmentsEntries(
 			companyId, groupId, keywords, start, end, sort);
 	}
 
 	@Override
 	public SegmentsEntry updateSegmentsEntry(
-			long entryId, Map<Locale, String> nameMap,
+			long segmentsEntryId, Map<Locale, String> nameMap,
 			Map<Locale, String> descriptionMap, String key, boolean active,
 			String criteria, ServiceContext serviceContext)
 		throws PortalException {
 
 		_segmentsEntryResourcePermission.check(
-			getPermissionChecker(), entryId, ActionKeys.UPDATE);
+			getPermissionChecker(), segmentsEntryId, ActionKeys.UPDATE);
 
-		return segmentsEntryLocalService.updateEntry(
-			entryId, nameMap, descriptionMap, key, active, criteria,
+		return segmentsEntryLocalService.updateSegmentsEntry(
+			segmentsEntryId, nameMap, descriptionMap, key, active, criteria,
 			serviceContext);
 	}
 

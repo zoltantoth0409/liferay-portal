@@ -58,13 +58,13 @@ public class SegmentsEntryLocalServiceImpl
 
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public SegmentsEntry addEntry(
+	public SegmentsEntry addSegmentsEntry(
 			Map<Locale, String> nameMap, Map<Locale, String> descriptionMap,
 			String key, String type, boolean active, String criteria,
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		// Entry
+		// Segments entry
 
 		User user = userLocalService.getUser(serviceContext.getUserId());
 		long groupId = serviceContext.getScopeGroupId();
@@ -73,76 +73,76 @@ public class SegmentsEntryLocalServiceImpl
 
 		validate(0, groupId, key);
 
-		long entryId = counterLocalService.increment();
+		long segmentsEntryId = counterLocalService.increment();
 
-		SegmentsEntry entry = segmentsEntryPersistence.create(entryId);
+		SegmentsEntry segmentsEntry = segmentsEntryPersistence.create(segmentsEntryId);
 
-		entry.setGroupId(groupId);
-		entry.setCompanyId(user.getCompanyId());
-		entry.setUserId(user.getUserId());
-		entry.setUserName(user.getFullName());
-		entry.setCreateDate(serviceContext.getCreateDate(new Date()));
-		entry.setModifiedDate(serviceContext.getModifiedDate(new Date()));
-		entry.setNameMap(nameMap);
-		entry.setDescriptionMap(descriptionMap);
-		entry.setKey(key);
-		entry.setType(type);
-		entry.setActive(active);
-		entry.setCriteria(criteria);
+		segmentsEntry.setGroupId(groupId);
+		segmentsEntry.setCompanyId(user.getCompanyId());
+		segmentsEntry.setUserId(user.getUserId());
+		segmentsEntry.setUserName(user.getFullName());
+		segmentsEntry.setCreateDate(serviceContext.getCreateDate(new Date()));
+		segmentsEntry.setModifiedDate(serviceContext.getModifiedDate(new Date()));
+		segmentsEntry.setNameMap(nameMap);
+		segmentsEntry.setDescriptionMap(descriptionMap);
+		segmentsEntry.setKey(key);
+		segmentsEntry.setType(type);
+		segmentsEntry.setActive(active);
+		segmentsEntry.setCriteria(criteria);
 
-		segmentsEntryPersistence.update(entry);
+		segmentsEntryPersistence.update(segmentsEntry);
 
 		// Resources
 
-		resourceLocalService.addModelResources(entry, serviceContext);
+		resourceLocalService.addModelResources(segmentsEntry, serviceContext);
 
-		return entry;
+		return segmentsEntry;
 	}
 
 	@Override
-	public void deleteEntries(long groupId) throws PortalException {
+	public void deleteSegmentsEntries(long groupId) throws PortalException {
 		List<SegmentsEntry> segmentsEntries =
 			segmentsEntryPersistence.findByGroupId(groupId);
 
-		for (SegmentsEntry entry : segmentsEntries) {
+		for (SegmentsEntry segmentsEntry : segmentsEntries) {
 			segmentsEntryLocalService.deleteSegmentsEntry(
-				entry.getSegmentsEntryId());
+				segmentsEntry.getSegmentsEntryId());
 		}
 	}
 
 	@Override
-	public SegmentsEntry deleteEntry(long entryId) throws PortalException {
-		SegmentsEntry entry = segmentsEntryPersistence.findByPrimaryKey(
-			entryId);
+	public SegmentsEntry deleteSegmentsEntry(long segmentsEntryId) throws PortalException {
+		SegmentsEntry segmentsEntry = segmentsEntryPersistence.findByPrimaryKey(
+			segmentsEntryId);
 
-		return segmentsEntryLocalService.deleteSegmentsEntry(entry);
+		return segmentsEntryLocalService.deleteSegmentsEntry(segmentsEntry);
 	}
 
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
-	public SegmentsEntry deleteEntry(SegmentsEntry entry)
+	public SegmentsEntry deleteSegmentsEntry(SegmentsEntry segmentsEntry)
 		throws PortalException {
 
-		// Entry
+		// Segments entry
 
-		segmentsEntryPersistence.remove(entry);
+		segmentsEntryPersistence.remove(segmentsEntry);
 
 		// Resources
 
 		resourceLocalService.deleteResource(
-			entry, ResourceConstants.SCOPE_INDIVIDUAL);
+			segmentsEntry, ResourceConstants.SCOPE_INDIVIDUAL);
 
-		return entry;
+		return segmentsEntry;
 	}
 
 	@Override
-	public SegmentsEntry fetchEntry(long groupId, String key) {
+	public SegmentsEntry fetchSegmentsEntry(long groupId, String key) {
 		return segmentsEntryPersistence.fetchByG_K(groupId, key);
 	}
 
 	@Override
-	public List<SegmentsEntry> getEntries(
+	public List<SegmentsEntry> getSegmentsEntries(
 		long groupId, int start, int end,
 		OrderByComparator<SegmentsEntry> orderByComparator) {
 
@@ -151,19 +151,19 @@ public class SegmentsEntryLocalServiceImpl
 	}
 
 	@Override
-	public int getEntriesCount(long groupId) {
+	public int getSegmentsEntriesCount(long groupId) {
 		return segmentsEntryPersistence.countByGroupId(groupId);
 	}
 
 	@Override
-	public SegmentsEntry getEntry(long groupId, String key)
+	public SegmentsEntry getSegmentsEntry(long groupId, String key)
 		throws PortalException {
 
 		return segmentsEntryPersistence.findByG_K(groupId, key);
 	}
 
 	@Override
-	public BaseModelSearchResult<SegmentsEntry> searchEntries(
+	public BaseModelSearchResult<SegmentsEntry> searchSegmentsEntries(
 			long companyId, long groupId, String keywords, int start, int end,
 			Sort sort)
 		throws PortalException {
@@ -171,11 +171,11 @@ public class SegmentsEntryLocalServiceImpl
 		SearchContext searchContext = buildSearchContext(
 			companyId, groupId, keywords, start, end, sort);
 
-		return segmentsEntryLocalService.searchEntries(searchContext);
+		return segmentsEntryLocalService.searchSegmentsEntries(searchContext);
 	}
 
 	@Override
-	public BaseModelSearchResult<SegmentsEntry> searchEntries(
+	public BaseModelSearchResult<SegmentsEntry> searchSegmentsEntries(
 			SearchContext searchContext)
 		throws PortalException {
 
@@ -185,10 +185,10 @@ public class SegmentsEntryLocalServiceImpl
 		for (int i = 0; i < 10; i++) {
 			Hits hits = indexer.search(searchContext);
 
-			List<SegmentsEntry> entries = getEntries(hits);
+			List<SegmentsEntry> segmentsEntries = getSegmentsEntries(hits);
 
-			if (entries != null) {
-				return new BaseModelSearchResult<>(entries, hits.getLength());
+			if (segmentsEntries != null) {
+				return new BaseModelSearchResult<>(segmentsEntries, hits.getLength());
 			}
 		}
 
@@ -198,26 +198,26 @@ public class SegmentsEntryLocalServiceImpl
 
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public SegmentsEntry updateEntry(
-			long entryId, Map<Locale, String> nameMap,
+	public SegmentsEntry updateSegmentsEntry(
+			long segmentsEntryId, Map<Locale, String> nameMap,
 			Map<Locale, String> descriptionMap, String key, boolean active,
 			String criteria, ServiceContext serviceContext)
 		throws PortalException {
 
-		SegmentsEntry entry = segmentsEntryPersistence.findByPrimaryKey(
-			entryId);
+		SegmentsEntry segmentsEntry = segmentsEntryPersistence.findByPrimaryKey(
+			segmentsEntryId);
 
 		key = FriendlyURLNormalizerUtil.normalize(key);
 
-		validate(entryId, entry.getGroupId(), key);
+		validate(segmentsEntryId, segmentsEntry.getGroupId(), key);
 
-		entry.setNameMap(nameMap);
-		entry.setDescriptionMap(descriptionMap);
-		entry.setKey(key);
-		entry.setActive(active);
-		entry.setCriteria(criteria);
+		segmentsEntry.setNameMap(nameMap);
+		segmentsEntry.setDescriptionMap(descriptionMap);
+		segmentsEntry.setKey(key);
+		segmentsEntry.setActive(active);
+		segmentsEntry.setCriteria(criteria);
 
-		return segmentsEntryPersistence.update(entry);
+		return segmentsEntryPersistence.update(segmentsEntry);
 	}
 
 	protected SearchContext buildSearchContext(
@@ -258,19 +258,19 @@ public class SegmentsEntryLocalServiceImpl
 		return searchContext;
 	}
 
-	protected List<SegmentsEntry> getEntries(Hits hits) throws PortalException {
+	protected List<SegmentsEntry> getSegmentsEntries(Hits hits) throws PortalException {
 		List<Document> documents = hits.toList();
 
-		List<SegmentsEntry> entries = new ArrayList<>(documents.size());
+		List<SegmentsEntry> segmentsEntries = new ArrayList<>(documents.size());
 
 		for (Document document : documents) {
-			long entryId = GetterUtil.getLong(
+			long segmentsEntryId = GetterUtil.getLong(
 				document.get(Field.ENTRY_CLASS_PK));
 
-			SegmentsEntry entry = fetchSegmentsEntry(entryId);
+			SegmentsEntry segmentsEntry = fetchSegmentsEntry(segmentsEntryId);
 
-			if (entry == null) {
-				entries = null;
+			if (segmentsEntry == null) {
+				segmentsEntries = null;
 
 				Indexer<SegmentsEntry> indexer = IndexerRegistryUtil.getIndexer(
 					SegmentsEntry.class);
@@ -280,20 +280,20 @@ public class SegmentsEntryLocalServiceImpl
 
 				indexer.delete(companyId, document.getUID());
 			}
-			else if (entries != null) {
-				entries.add(entry);
+			else if (segmentsEntries != null) {
+				segmentsEntries.add(segmentsEntry);
 			}
 		}
 
-		return entries;
+		return segmentsEntries;
 	}
 
-	protected void validate(long entryId, long groupId, String key)
+	protected void validate(long segmentsEntryId, long groupId, String key)
 		throws PortalException {
 
-		SegmentsEntry entry = segmentsEntryPersistence.fetchByG_K(groupId, key);
+		SegmentsEntry segmentsEntry = segmentsEntryPersistence.fetchByG_K(groupId, key);
 
-		if ((entry != null) && (entry.getSegmentsEntryId() != entryId)) {
+		if ((segmentsEntry != null) && (segmentsEntry.getSegmentsEntryId() != segmentsEntryId)) {
 			throw new SegmentsEntryKeyException();
 		}
 	}
