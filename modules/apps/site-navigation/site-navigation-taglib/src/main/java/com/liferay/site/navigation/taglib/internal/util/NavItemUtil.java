@@ -95,22 +95,22 @@ public class NavItemUtil {
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		NavItem rootNavItem = null;
 		List<NavItem> navItems = null;
+		NavItem rootNavItem = null;
 
-		if (rootLayoutType.equals("relative")) {
-			if ((rootLayoutLevel >= 0) &&
-				(rootLayoutLevel < branchNavItems.size())) {
-
-				rootNavItem = branchNavItems.get(rootLayoutLevel);
-			}
-		}
-		else if (rootLayoutType.equals("absolute")) {
+		if (rootLayoutType.equals("absolute")) {
 			if (rootLayoutLevel == 0) {
 				navItems = NavItem.fromLayouts(request, themeDisplay, null);
 			}
 			else if (branchNavItems.size() >= rootLayoutLevel) {
 				rootNavItem = branchNavItems.get(rootLayoutLevel - 1);
+			}
+		}
+		else if (rootLayoutType.equals("relative")) {
+			if ((rootLayoutLevel >= 0) &&
+				(rootLayoutLevel < branchNavItems.size())) {
+
+				rootNavItem = branchNavItems.get(rootLayoutLevel);
 			}
 		}
 		else if (rootLayoutType.equals("select")) {
