@@ -36,14 +36,13 @@ public class SegmentsEntryRelLocalServiceImpl
 		throws PortalException {
 
 		User user = userLocalService.getUser(serviceContext.getUserId());
-		long groupId = serviceContext.getScopeGroupId();
 
 		long segmentsEntryRelId = counterLocalService.increment();
 
 		SegmentsEntryRel segmentsEntryRel = segmentsEntryRelPersistence.create(
 			segmentsEntryRelId);
 
-		segmentsEntryRel.setGroupId(groupId);
+		segmentsEntryRel.setGroupId(serviceContext.getScopeGroupId());
 		segmentsEntryRel.setCompanyId(user.getCompanyId());
 		segmentsEntryRel.setUserId(user.getUserId());
 		segmentsEntryRel.setUserName(user.getFullName());

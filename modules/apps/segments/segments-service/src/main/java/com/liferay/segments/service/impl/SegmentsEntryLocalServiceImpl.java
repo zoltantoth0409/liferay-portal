@@ -231,13 +231,14 @@ public class SegmentsEntryLocalServiceImpl
 
 		SearchContext searchContext = new SearchContext();
 
+		Map<String, Serializable> attributes = new HashMap<>();
+
+		attributes.put(Field.NAME, keywords);
+
 		LinkedHashMap<String, Object> params = new LinkedHashMap<>();
 
 		params.put("keywords", keywords);
 
-		Map<String, Serializable> attributes = new HashMap<>();
-
-		attributes.put(Field.NAME, keywords);
 		attributes.put("params", params);
 
 		searchContext.setAttributes(attributes);
