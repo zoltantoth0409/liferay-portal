@@ -65,11 +65,10 @@ public class DLOpenerGoogleDriveMimeTypes {
 		return _googleDocsMimeTypes.containsKey(mimeType);
 	}
 
-	private static final Map<String, String> _extensions =
-		MapUtil.fromArray(
-			APPLICATION_VND_DOCX, ".docx", APPLICATION_VND_PPTX, ".pptx",
-			APPLICATION_VND_XSLX, ".xslx", ContentTypes.APPLICATION_TEXT,
-			".txt", ContentTypes.TEXT, ".txt", ContentTypes.TEXT_PLAIN, ".txt");
+	private static final Map<String, String> _extensions = MapUtil.fromArray(
+		APPLICATION_VND_DOCX, ".docx", APPLICATION_VND_PPTX, ".pptx",
+		APPLICATION_VND_XSLX, ".xslx", ContentTypes.APPLICATION_TEXT, ".txt",
+		ContentTypes.TEXT, ".txt", ContentTypes.TEXT_PLAIN, ".txt");
 	private static final Map<String, String> _googleDocsMimeTypes =
 		MapUtil.fromArray(
 			APPLICATION_VND_DOCX, APPLICATION_VND_GOOGLE_APPS_DOCUMENT,

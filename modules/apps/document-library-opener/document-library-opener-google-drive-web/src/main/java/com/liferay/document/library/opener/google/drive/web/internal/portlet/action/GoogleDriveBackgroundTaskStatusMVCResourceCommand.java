@@ -140,21 +140,17 @@ public class GoogleDriveBackgroundTaskStatusMVCResourceCommand
 		String googleDriveFileId, String mimeType) {
 
 		return StringBundler.concat(
-			"https://docs.google.com/",
-			_paths.get(mimeType), "/d/",
+			"https://docs.google.com/", _paths.get(mimeType), "/d/",
 			googleDriveFileId, "/edit");
 	}
 
-	private static final Map<String, String> _paths =
-		MapUtil.fromArray(
-			DLOpenerGoogleDriveMimeTypes.APPLICATION_VND_GOOGLE_APPS_DOCUMENT,
-			"document",
-			DLOpenerGoogleDriveMimeTypes.
-				APPLICATION_VND_GOOGLE_APPS_PRESENTATION,
-			"presentation",
-			DLOpenerGoogleDriveMimeTypes.
-				APPLICATION_VND_GOOGLE_APPS_SPREADSHEET,
-			"spreadsheets");
+	private static final Map<String, String> _paths = MapUtil.fromArray(
+		DLOpenerGoogleDriveMimeTypes.APPLICATION_VND_GOOGLE_APPS_DOCUMENT,
+		"document",
+		DLOpenerGoogleDriveMimeTypes.APPLICATION_VND_GOOGLE_APPS_PRESENTATION,
+		"presentation",
+		DLOpenerGoogleDriveMimeTypes.APPLICATION_VND_GOOGLE_APPS_SPREADSHEET,
+		"spreadsheets");
 
 	@Reference
 	private BackgroundTaskStatusRegistry _backgroundTaskStatusRegistry;
