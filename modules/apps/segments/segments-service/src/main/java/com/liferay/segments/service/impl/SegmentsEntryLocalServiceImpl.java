@@ -231,6 +231,11 @@ public class SegmentsEntryLocalServiceImpl
 
 		SearchContext searchContext = new SearchContext();
 
+		QueryConfig queryConfig = searchContext.getQueryConfig();
+
+		queryConfig.setHighlightEnabled(false);
+		queryConfig.setScoreEnabled(false);
+
 		Map<String, Serializable> attributes = new HashMap<>();
 
 		attributes.put(Field.NAME, keywords);
@@ -244,7 +249,6 @@ public class SegmentsEntryLocalServiceImpl
 		searchContext.setAttributes(attributes);
 
 		searchContext.setCompanyId(companyId);
-		searchContext.setStart(start);
 		searchContext.setEnd(end);
 		searchContext.setGroupIds(new long[] {groupId});
 
@@ -252,14 +256,11 @@ public class SegmentsEntryLocalServiceImpl
 			searchContext.setKeywords(keywords);
 		}
 
-		QueryConfig queryConfig = searchContext.getQueryConfig();
-
-		queryConfig.setHighlightEnabled(false);
-		queryConfig.setScoreEnabled(false);
-
 		if (sort != null) {
 			searchContext.setSorts(sort);
 		}
+
+		searchContext.setStart(start);
 
 		return searchContext;
 	}
