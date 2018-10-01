@@ -8,10 +8,10 @@ create table SegmentsEntry (
 	modifiedDate DATE null,
 	name STRING null,
 	description STRING null,
-	key_ VARCHAR(75) null,
 	active_ BOOLEAN,
-	type_ VARCHAR(75) null,
-	criteria VARCHAR(75) null
+	criteria VARCHAR(75) null,
+	key_ VARCHAR(75) null,
+	type_ VARCHAR(75) null
 );
 
 create table SegmentsEntryRel (

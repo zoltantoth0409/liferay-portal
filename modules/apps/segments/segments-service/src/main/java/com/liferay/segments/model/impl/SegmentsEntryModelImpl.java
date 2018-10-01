@@ -88,10 +88,10 @@ public class SegmentsEntryModelImpl extends BaseModelImpl<SegmentsEntry>
 			{ "modifiedDate", Types.TIMESTAMP },
 			{ "name", Types.VARCHAR },
 			{ "description", Types.VARCHAR },
-			{ "key_", Types.VARCHAR },
 			{ "active_", Types.BOOLEAN },
-			{ "type_", Types.VARCHAR },
-			{ "criteria", Types.VARCHAR }
+			{ "criteria", Types.VARCHAR },
+			{ "key_", Types.VARCHAR },
+			{ "type_", Types.VARCHAR }
 		};
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
 
@@ -105,13 +105,13 @@ public class SegmentsEntryModelImpl extends BaseModelImpl<SegmentsEntry>
 		TABLE_COLUMNS_MAP.put("modifiedDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("name", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("description", Types.VARCHAR);
-		TABLE_COLUMNS_MAP.put("key_", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("active_", Types.BOOLEAN);
-		TABLE_COLUMNS_MAP.put("type_", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("criteria", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("key_", Types.VARCHAR);
+		TABLE_COLUMNS_MAP.put("type_", Types.VARCHAR);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table SegmentsEntry (segmentsEntryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name STRING null,description STRING null,key_ VARCHAR(75) null,active_ BOOLEAN,type_ VARCHAR(75) null,criteria VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table SegmentsEntry (segmentsEntryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name STRING null,description STRING null,active_ BOOLEAN,criteria VARCHAR(75) null,key_ VARCHAR(75) null,type_ VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table SegmentsEntry";
 	public static final String ORDER_BY_JPQL = " ORDER BY segmentsEntry.modifiedDate DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY SegmentsEntry.modifiedDate DESC";
@@ -154,10 +154,10 @@ public class SegmentsEntryModelImpl extends BaseModelImpl<SegmentsEntry>
 		model.setModifiedDate(soapModel.getModifiedDate());
 		model.setName(soapModel.getName());
 		model.setDescription(soapModel.getDescription());
-		model.setKey(soapModel.getKey());
 		model.setActive(soapModel.isActive());
-		model.setType(soapModel.getType());
 		model.setCriteria(soapModel.getCriteria());
+		model.setKey(soapModel.getKey());
+		model.setType(soapModel.getType());
 
 		return model;
 	}
@@ -231,10 +231,10 @@ public class SegmentsEntryModelImpl extends BaseModelImpl<SegmentsEntry>
 		attributes.put("modifiedDate", getModifiedDate());
 		attributes.put("name", getName());
 		attributes.put("description", getDescription());
-		attributes.put("key", getKey());
 		attributes.put("active", isActive());
-		attributes.put("type", getType());
 		attributes.put("criteria", getCriteria());
+		attributes.put("key", getKey());
+		attributes.put("type", getType());
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -298,28 +298,28 @@ public class SegmentsEntryModelImpl extends BaseModelImpl<SegmentsEntry>
 			setDescription(description);
 		}
 
-		String key = (String)attributes.get("key");
-
-		if (key != null) {
-			setKey(key);
-		}
-
 		Boolean active = (Boolean)attributes.get("active");
 
 		if (active != null) {
 			setActive(active);
 		}
 
-		String type = (String)attributes.get("type");
-
-		if (type != null) {
-			setType(type);
-		}
-
 		String criteria = (String)attributes.get("criteria");
 
 		if (criteria != null) {
 			setCriteria(criteria);
+		}
+
+		String key = (String)attributes.get("key");
+
+		if (key != null) {
+			setKey(key);
+		}
+
+		String type = (String)attributes.get("type");
+
+		if (type != null) {
+			setType(type);
 		}
 	}
 
@@ -645,32 +645,6 @@ public class SegmentsEntryModelImpl extends BaseModelImpl<SegmentsEntry>
 
 	@JSON
 	@Override
-	public String getKey() {
-		if (_key == null) {
-			return "";
-		}
-		else {
-			return _key;
-		}
-	}
-
-	@Override
-	public void setKey(String key) {
-		_columnBitmask |= KEY_COLUMN_BITMASK;
-
-		if (_originalKey == null) {
-			_originalKey = _key;
-		}
-
-		_key = key;
-	}
-
-	public String getOriginalKey() {
-		return GetterUtil.getString(_originalKey);
-	}
-
-	@JSON
-	@Override
 	public boolean getActive() {
 		return _active;
 	}
@@ -700,22 +674,6 @@ public class SegmentsEntryModelImpl extends BaseModelImpl<SegmentsEntry>
 
 	@JSON
 	@Override
-	public String getType() {
-		if (_type == null) {
-			return "";
-		}
-		else {
-			return _type;
-		}
-	}
-
-	@Override
-	public void setType(String type) {
-		_type = type;
-	}
-
-	@JSON
-	@Override
 	public String getCriteria() {
 		if (_criteria == null) {
 			return "";
@@ -728,6 +686,48 @@ public class SegmentsEntryModelImpl extends BaseModelImpl<SegmentsEntry>
 	@Override
 	public void setCriteria(String criteria) {
 		_criteria = criteria;
+	}
+
+	@JSON
+	@Override
+	public String getKey() {
+		if (_key == null) {
+			return "";
+		}
+		else {
+			return _key;
+		}
+	}
+
+	@Override
+	public void setKey(String key) {
+		_columnBitmask |= KEY_COLUMN_BITMASK;
+
+		if (_originalKey == null) {
+			_originalKey = _key;
+		}
+
+		_key = key;
+	}
+
+	public String getOriginalKey() {
+		return GetterUtil.getString(_originalKey);
+	}
+
+	@JSON
+	@Override
+	public String getType() {
+		if (_type == null) {
+			return "";
+		}
+		else {
+			return _type;
+		}
+	}
+
+	@Override
+	public void setType(String type) {
+		_type = type;
 	}
 
 	public long getColumnBitmask() {
@@ -852,10 +852,10 @@ public class SegmentsEntryModelImpl extends BaseModelImpl<SegmentsEntry>
 		segmentsEntryImpl.setModifiedDate(getModifiedDate());
 		segmentsEntryImpl.setName(getName());
 		segmentsEntryImpl.setDescription(getDescription());
-		segmentsEntryImpl.setKey(getKey());
 		segmentsEntryImpl.setActive(isActive());
-		segmentsEntryImpl.setType(getType());
 		segmentsEntryImpl.setCriteria(getCriteria());
+		segmentsEntryImpl.setKey(getKey());
+		segmentsEntryImpl.setType(getType());
 
 		segmentsEntryImpl.resetOriginalValues();
 
@@ -925,11 +925,11 @@ public class SegmentsEntryModelImpl extends BaseModelImpl<SegmentsEntry>
 
 		segmentsEntryModelImpl._setModifiedDate = false;
 
-		segmentsEntryModelImpl._originalKey = segmentsEntryModelImpl._key;
-
 		segmentsEntryModelImpl._originalActive = segmentsEntryModelImpl._active;
 
 		segmentsEntryModelImpl._setOriginalActive = false;
+
+		segmentsEntryModelImpl._originalKey = segmentsEntryModelImpl._key;
 
 		segmentsEntryModelImpl._columnBitmask = 0;
 	}
@@ -988,6 +988,16 @@ public class SegmentsEntryModelImpl extends BaseModelImpl<SegmentsEntry>
 			segmentsEntryCacheModel.description = null;
 		}
 
+		segmentsEntryCacheModel.active = isActive();
+
+		segmentsEntryCacheModel.criteria = getCriteria();
+
+		String criteria = segmentsEntryCacheModel.criteria;
+
+		if ((criteria != null) && (criteria.length() == 0)) {
+			segmentsEntryCacheModel.criteria = null;
+		}
+
 		segmentsEntryCacheModel.key = getKey();
 
 		String key = segmentsEntryCacheModel.key;
@@ -996,22 +1006,12 @@ public class SegmentsEntryModelImpl extends BaseModelImpl<SegmentsEntry>
 			segmentsEntryCacheModel.key = null;
 		}
 
-		segmentsEntryCacheModel.active = isActive();
-
 		segmentsEntryCacheModel.type = getType();
 
 		String type = segmentsEntryCacheModel.type;
 
 		if ((type != null) && (type.length() == 0)) {
 			segmentsEntryCacheModel.type = null;
-		}
-
-		segmentsEntryCacheModel.criteria = getCriteria();
-
-		String criteria = segmentsEntryCacheModel.criteria;
-
-		if ((criteria != null) && (criteria.length() == 0)) {
-			segmentsEntryCacheModel.criteria = null;
 		}
 
 		return segmentsEntryCacheModel;
@@ -1039,14 +1039,14 @@ public class SegmentsEntryModelImpl extends BaseModelImpl<SegmentsEntry>
 		sb.append(getName());
 		sb.append(", description=");
 		sb.append(getDescription());
-		sb.append(", key=");
-		sb.append(getKey());
 		sb.append(", active=");
 		sb.append(isActive());
-		sb.append(", type=");
-		sb.append(getType());
 		sb.append(", criteria=");
 		sb.append(getCriteria());
+		sb.append(", key=");
+		sb.append(getKey());
+		sb.append(", type=");
+		sb.append(getType());
 		sb.append("}");
 
 		return sb.toString();
@@ -1097,20 +1097,20 @@ public class SegmentsEntryModelImpl extends BaseModelImpl<SegmentsEntry>
 		sb.append(getDescription());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>key</column-name><column-value><![CDATA[");
-		sb.append(getKey());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>active</column-name><column-value><![CDATA[");
 		sb.append(isActive());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>type</column-name><column-value><![CDATA[");
-		sb.append(getType());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>criteria</column-name><column-value><![CDATA[");
 		sb.append(getCriteria());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>key</column-name><column-value><![CDATA[");
+		sb.append(getKey());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>type</column-name><column-value><![CDATA[");
+		sb.append(getType());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -1136,13 +1136,13 @@ public class SegmentsEntryModelImpl extends BaseModelImpl<SegmentsEntry>
 	private String _nameCurrentLanguageId;
 	private String _description;
 	private String _descriptionCurrentLanguageId;
-	private String _key;
-	private String _originalKey;
 	private boolean _active;
 	private boolean _originalActive;
 	private boolean _setOriginalActive;
-	private String _type;
 	private String _criteria;
+	private String _key;
+	private String _originalKey;
+	private String _type;
 	private long _columnBitmask;
 	private SegmentsEntry _escapedModel;
 }

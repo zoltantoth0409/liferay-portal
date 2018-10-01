@@ -67,10 +67,10 @@ public class SegmentsEntryWrapper implements SegmentsEntry,
 		attributes.put("modifiedDate", getModifiedDate());
 		attributes.put("name", getName());
 		attributes.put("description", getDescription());
-		attributes.put("key", getKey());
 		attributes.put("active", isActive());
-		attributes.put("type", getType());
 		attributes.put("criteria", getCriteria());
+		attributes.put("key", getKey());
+		attributes.put("type", getType());
 
 		return attributes;
 	}
@@ -131,28 +131,28 @@ public class SegmentsEntryWrapper implements SegmentsEntry,
 			setDescription(description);
 		}
 
-		String key = (String)attributes.get("key");
-
-		if (key != null) {
-			setKey(key);
-		}
-
 		Boolean active = (Boolean)attributes.get("active");
 
 		if (active != null) {
 			setActive(active);
 		}
 
-		String type = (String)attributes.get("type");
-
-		if (type != null) {
-			setType(type);
-		}
-
 		String criteria = (String)attributes.get("criteria");
 
 		if (criteria != null) {
 			setCriteria(criteria);
+		}
+
+		String key = (String)attributes.get("key");
+
+		if (key != null) {
+			setKey(key);
+		}
+
+		String type = (String)attributes.get("type");
+
+		if (type != null) {
+			setType(type);
 		}
 	}
 

@@ -1402,8 +1402,8 @@ public class SegmentsEntryPersistenceImpl extends BasePersistenceImpl<SegmentsEn
 
 			Map<String, String> dbColumnNames = new HashMap<String, String>();
 
-			dbColumnNames.put("key", "key_");
 			dbColumnNames.put("active", "active_");
+			dbColumnNames.put("key", "key_");
 			dbColumnNames.put("type", "type_");
 
 			field.set(this, dbColumnNames);
@@ -2202,6 +2202,6 @@ public class SegmentsEntryPersistenceImpl extends BasePersistenceImpl<SegmentsEn
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No SegmentsEntry exists with the key {";
 	private static final Log _log = LogFactoryUtil.getLog(SegmentsEntryPersistenceImpl.class);
 	private static final Set<String> _badColumnNames = SetUtil.fromArray(new String[] {
-				"key", "active", "type"
+				"active", "key", "type"
 			});
 }

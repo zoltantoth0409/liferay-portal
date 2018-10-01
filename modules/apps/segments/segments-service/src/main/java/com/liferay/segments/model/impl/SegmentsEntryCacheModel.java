@@ -86,14 +86,14 @@ public class SegmentsEntryCacheModel implements CacheModel<SegmentsEntry>,
 		sb.append(name);
 		sb.append(", description=");
 		sb.append(description);
-		sb.append(", key=");
-		sb.append(key);
 		sb.append(", active=");
 		sb.append(active);
-		sb.append(", type=");
-		sb.append(type);
 		sb.append(", criteria=");
 		sb.append(criteria);
+		sb.append(", key=");
+		sb.append(key);
+		sb.append(", type=");
+		sb.append(type);
 		sb.append("}");
 
 		return sb.toString();
@@ -143,6 +143,15 @@ public class SegmentsEntryCacheModel implements CacheModel<SegmentsEntry>,
 			segmentsEntryImpl.setDescription(description);
 		}
 
+		segmentsEntryImpl.setActive(active);
+
+		if (criteria == null) {
+			segmentsEntryImpl.setCriteria("");
+		}
+		else {
+			segmentsEntryImpl.setCriteria(criteria);
+		}
+
 		if (key == null) {
 			segmentsEntryImpl.setKey("");
 		}
@@ -150,20 +159,11 @@ public class SegmentsEntryCacheModel implements CacheModel<SegmentsEntry>,
 			segmentsEntryImpl.setKey(key);
 		}
 
-		segmentsEntryImpl.setActive(active);
-
 		if (type == null) {
 			segmentsEntryImpl.setType("");
 		}
 		else {
 			segmentsEntryImpl.setType(type);
-		}
-
-		if (criteria == null) {
-			segmentsEntryImpl.setCriteria("");
-		}
-		else {
-			segmentsEntryImpl.setCriteria(criteria);
 		}
 
 		segmentsEntryImpl.resetOriginalValues();
@@ -185,11 +185,11 @@ public class SegmentsEntryCacheModel implements CacheModel<SegmentsEntry>,
 		modifiedDate = objectInput.readLong();
 		name = objectInput.readUTF();
 		description = objectInput.readUTF();
-		key = objectInput.readUTF();
 
 		active = objectInput.readBoolean();
-		type = objectInput.readUTF();
 		criteria = objectInput.readUTF();
+		key = objectInput.readUTF();
+		type = objectInput.readUTF();
 	}
 
 	@Override
@@ -227,6 +227,15 @@ public class SegmentsEntryCacheModel implements CacheModel<SegmentsEntry>,
 			objectOutput.writeUTF(description);
 		}
 
+		objectOutput.writeBoolean(active);
+
+		if (criteria == null) {
+			objectOutput.writeUTF("");
+		}
+		else {
+			objectOutput.writeUTF(criteria);
+		}
+
 		if (key == null) {
 			objectOutput.writeUTF("");
 		}
@@ -234,20 +243,11 @@ public class SegmentsEntryCacheModel implements CacheModel<SegmentsEntry>,
 			objectOutput.writeUTF(key);
 		}
 
-		objectOutput.writeBoolean(active);
-
 		if (type == null) {
 			objectOutput.writeUTF("");
 		}
 		else {
 			objectOutput.writeUTF(type);
-		}
-
-		if (criteria == null) {
-			objectOutput.writeUTF("");
-		}
-		else {
-			objectOutput.writeUTF(criteria);
 		}
 	}
 
@@ -260,8 +260,8 @@ public class SegmentsEntryCacheModel implements CacheModel<SegmentsEntry>,
 	public long modifiedDate;
 	public String name;
 	public String description;
-	public String key;
 	public boolean active;
-	public String type;
 	public String criteria;
+	public String key;
+	public String type;
 }

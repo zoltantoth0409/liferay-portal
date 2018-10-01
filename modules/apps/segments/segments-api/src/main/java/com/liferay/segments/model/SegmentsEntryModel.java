@@ -397,21 +397,6 @@ public interface SegmentsEntryModel extends BaseModel<SegmentsEntry>,
 		Locale defaultLocale);
 
 	/**
-	 * Returns the key of this segments entry.
-	 *
-	 * @return the key of this segments entry
-	 */
-	@AutoEscape
-	public String getKey();
-
-	/**
-	 * Sets the key of this segments entry.
-	 *
-	 * @param key the key of this segments entry
-	 */
-	public void setKey(String key);
-
-	/**
 	 * Returns the active of this segments entry.
 	 *
 	 * @return the active of this segments entry
@@ -433,21 +418,6 @@ public interface SegmentsEntryModel extends BaseModel<SegmentsEntry>,
 	public void setActive(boolean active);
 
 	/**
-	 * Returns the type of this segments entry.
-	 *
-	 * @return the type of this segments entry
-	 */
-	@AutoEscape
-	public String getType();
-
-	/**
-	 * Sets the type of this segments entry.
-	 *
-	 * @param type the type of this segments entry
-	 */
-	public void setType(String type);
-
-	/**
 	 * Returns the criteria of this segments entry.
 	 *
 	 * @return the criteria of this segments entry
@@ -461,6 +431,36 @@ public interface SegmentsEntryModel extends BaseModel<SegmentsEntry>,
 	 * @param criteria the criteria of this segments entry
 	 */
 	public void setCriteria(String criteria);
+
+	/**
+	 * Returns the key of this segments entry.
+	 *
+	 * @return the key of this segments entry
+	 */
+	@AutoEscape
+	public String getKey();
+
+	/**
+	 * Sets the key of this segments entry.
+	 *
+	 * @param key the key of this segments entry
+	 */
+	public void setKey(String key);
+
+	/**
+	 * Returns the type of this segments entry.
+	 *
+	 * @return the type of this segments entry
+	 */
+	@AutoEscape
+	public String getType();
+
+	/**
+	 * Sets the type of this segments entry.
+	 *
+	 * @param type the type of this segments entry
+	 */
+	public void setType(String type);
 
 	@Override
 	public boolean isNew();
