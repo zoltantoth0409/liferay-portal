@@ -60,7 +60,7 @@ public class SegmentsEntryLocalServiceImpl
 	@Override
 	public SegmentsEntry addSegmentsEntry(
 			Map<Locale, String> nameMap, Map<Locale, String> descriptionMap,
-			String key, String type, boolean active, String criteria,
+			boolean active, String criteria, String key, String type,
 			ServiceContext serviceContext)
 		throws PortalException {
 
@@ -205,8 +205,8 @@ public class SegmentsEntryLocalServiceImpl
 	@Override
 	public SegmentsEntry updateSegmentsEntry(
 			long segmentsEntryId, Map<Locale, String> nameMap,
-			Map<Locale, String> descriptionMap, String key, boolean active,
-			String criteria, ServiceContext serviceContext)
+			Map<Locale, String> descriptionMap, boolean active, String criteria,
+			String key, ServiceContext serviceContext)
 		throws PortalException {
 
 		SegmentsEntry segmentsEntry = segmentsEntryPersistence.findByPrimaryKey(

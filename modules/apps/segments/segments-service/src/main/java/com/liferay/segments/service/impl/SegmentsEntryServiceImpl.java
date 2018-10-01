@@ -41,7 +41,7 @@ public class SegmentsEntryServiceImpl extends SegmentsEntryServiceBaseImpl {
 	@Override
 	public SegmentsEntry addSegmentsEntry(
 			Map<Locale, String> nameMap, Map<Locale, String> descriptionMap,
-			String key, String type, boolean active, String criteria,
+			boolean active, String criteria, String key, String type,
 			ServiceContext serviceContext)
 		throws PortalException {
 
@@ -50,7 +50,7 @@ public class SegmentsEntryServiceImpl extends SegmentsEntryServiceBaseImpl {
 			SegmentsActionKeys.MANAGE_SEGMENTS_ENTRIES);
 
 		return segmentsEntryLocalService.addSegmentsEntry(
-			nameMap, descriptionMap, key, type, active, criteria,
+			nameMap, descriptionMap, active, criteria, key, type,
 			serviceContext);
 	}
 
@@ -111,15 +111,15 @@ public class SegmentsEntryServiceImpl extends SegmentsEntryServiceBaseImpl {
 	@Override
 	public SegmentsEntry updateSegmentsEntry(
 			long segmentsEntryId, Map<Locale, String> nameMap,
-			Map<Locale, String> descriptionMap, String key, boolean active,
-			String criteria, ServiceContext serviceContext)
+			Map<Locale, String> descriptionMap, boolean active, String criteria,
+			String key, ServiceContext serviceContext)
 		throws PortalException {
 
 		_segmentsEntryResourcePermission.check(
 			getPermissionChecker(), segmentsEntryId, ActionKeys.UPDATE);
 
 		return segmentsEntryLocalService.updateSegmentsEntry(
-			segmentsEntryId, nameMap, descriptionMap, key, active, criteria,
+			segmentsEntryId, nameMap, descriptionMap, active, criteria, key,
 			serviceContext);
 	}
 
