@@ -133,7 +133,6 @@ public class SelectAssetListDisplayContext {
 		searchContainer.setOrderByType(getOrderByType());
 
 		List<AssetListEntry> assetListEntries = new ArrayList<>();
-
 		int assetListEntriesCount = 0;
 
 		if (_isSearch()) {
@@ -141,7 +140,6 @@ public class SelectAssetListDisplayContext {
 				themeDisplay.getScopeGroupId(), _getKeywords(),
 				searchContainer.getStart(), searchContainer.getEnd(),
 				searchContainer.getOrderByComparator());
-
 			assetListEntriesCount =
 				AssetListEntryServiceUtil.getAssetListEntriesCount(
 					themeDisplay.getScopeGroupId(), _getKeywords());
@@ -151,7 +149,6 @@ public class SelectAssetListDisplayContext {
 				themeDisplay.getScopeGroupId(), searchContainer.getStart(),
 				searchContainer.getEnd(),
 				searchContainer.getOrderByComparator());
-
 			AssetListEntryServiceUtil.getAssetListEntriesCount(
 				themeDisplay.getScopeGroupId());
 		}
