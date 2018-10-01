@@ -21,5 +21,4 @@ import com.liferay.segments.service.base.SegmentsEntryRelLocalServiceBaseImpl;
  */
 public class SegmentsEntryRelLocalServiceImpl
 	extends SegmentsEntryRelLocalServiceBaseImpl {
-
 }
