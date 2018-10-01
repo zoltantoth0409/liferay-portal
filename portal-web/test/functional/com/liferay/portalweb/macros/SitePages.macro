@@ -5,6 +5,8 @@ definition {
 			sitePageType = "${sitePageType}"
 		);
 
+		SelectFrame(locator1 = "IFrame#DIALOG");
+
 		PortletEntry.inputName(name = "${pageName}");
 
 		if ("${hideFromNavMenu}" == "true") {
@@ -19,6 +21,8 @@ definition {
 				value1 = "${pageTypeURL}"
 			);
 		}
+
+		SelectFrame.selectFrameTop();
 
 		if (isSet(inheritChanges)) {
 			Page.togglePageTemplateInheritChanges(toggleValue = "${inheritChanges}");
