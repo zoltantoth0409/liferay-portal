@@ -3560,7 +3560,7 @@ app.server.type=@{app.server.type}]]></echo>
 
 						<setup-testable-tomcat />
 
-						<setup-test-batch-testable-tomcat test.portal.bundle.version="${test.portal.bundle.version}" />
+						<setup-test-batch-testable-tomcat />
 					</then>
 					<elseif>
 						<and>
