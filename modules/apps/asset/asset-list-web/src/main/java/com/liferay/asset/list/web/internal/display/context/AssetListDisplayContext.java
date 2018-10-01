@@ -78,7 +78,6 @@ public class AssetListDisplayContext {
 						AssetListEntryTypeConstants.TYPE_MANUAL_LABEL,
 						"manual-selection",
 						AssetListEntryTypeConstants.TYPE_MANUAL));
-
 				add(
 					_getAddAssetListEntryDropdownItem(
 						AssetListEntryTypeConstants.TYPE_DYNAMIC_LABEL,
