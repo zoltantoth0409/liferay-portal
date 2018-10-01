@@ -317,9 +317,9 @@ public class NavigationMenuTag extends IncludeTag {
 		if (_rootItemType.equals("relative") && (_rootItemLevel >= 0) &&
 			(_rootItemLevel < branchNavItems.size())) {
 
-			NavItem rootMenuItem = branchNavItems.get(_rootItemLevel);
+			NavItem rootNavItem = branchNavItems.get(_rootItemLevel);
 
-			return rootMenuItem.getChildren();
+			return rootNavItem.getChildren();
 		}
 		else if (_rootItemType.equals("absolute")) {
 			if (_rootItemLevel == 0) {
@@ -327,9 +327,9 @@ public class NavigationMenuTag extends IncludeTag {
 					request, _siteNavigationMenuId, 0);
 			}
 			else if (branchNavItems.size() >= _rootItemLevel) {
-				NavItem rootMenuItem = branchNavItems.get(_rootItemLevel - 1);
+				NavItem rootNavItem = branchNavItems.get(_rootItemLevel - 1);
 
-				return rootMenuItem.getChildren();
+				return rootNavItem.getChildren();
 			}
 		}
 		else if (_rootItemType.equals("select")) {
