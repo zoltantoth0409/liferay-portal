@@ -9,7 +9,7 @@ dependencies {
 	compileOnly group: "org.jboss.arquillian.test", name: "arquillian-test-api", version: "1.2.0.Final"
 	compileOnly group: "org.jboss.shrinkwrap", name: "shrinkwrap-api", version: "1.2.2"
 	compileOnly group: "org.osgi", name: "org.osgi.core", version: "6.0.0"
-	compileOnly project(":test:shrinkwrap-osgi")
+	compileOnly group: "com.liferay", name: "com.liferay.shrinkwrap.osgi", version: "2.0.0"
 }
 
 liferay {
