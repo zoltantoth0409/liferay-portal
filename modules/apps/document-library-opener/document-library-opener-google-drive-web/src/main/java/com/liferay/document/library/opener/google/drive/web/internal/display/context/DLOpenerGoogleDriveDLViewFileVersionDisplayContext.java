@@ -110,14 +110,14 @@ public class DLOpenerGoogleDriveDLViewFileVersionDisplayContext
 	}
 
 	private MenuItem _createEditInGoogleDocsMenuItem(String cmd) {
-		URLMenuItem menuItem = new URLMenuItem();
+		URLMenuItem urlMenuItem = new URLMenuItem();
 
-		menuItem.setLabel(
+		urlMenuItem.setLabel(
 			LanguageUtil.get(_resourceBundle, "edit-in-google-docs"));
-		menuItem.setMethod(HttpMethods.POST);
-		menuItem.setURL(_getActionURL(cmd));
+		urlMenuItem.setMethod(HttpMethods.POST);
+		urlMenuItem.setURL(_getActionURL(cmd));
 
-		return menuItem;
+		return urlMenuItem;
 	}
 
 	private String _getActionURL(String cmd) {
