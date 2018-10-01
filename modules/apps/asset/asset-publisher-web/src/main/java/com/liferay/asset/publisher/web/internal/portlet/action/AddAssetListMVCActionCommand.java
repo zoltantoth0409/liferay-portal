@@ -85,11 +85,11 @@ public class AddAssetListMVCActionCommand extends BaseMVCActionCommand {
 			"selectionStyle", "dynamic");
 
 		try {
-			if (Objects.equals(selectionStyle, "manual")) {
-				_saveManualAssetList(actionRequest, title, portletPreferences);
-			}
-			else if (Objects.equals(selectionStyle, "dynamic")) {
+			if (Objects.equals(selectionStyle, "dynamic")) {
 				_saveDynamicAssetList(actionRequest, title, portletPreferences);
+			}
+			else if (Objects.equals(selectionStyle, "manual")) {
+				_saveManualAssetList(actionRequest, title, portletPreferences);
 			}
 
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
