@@ -4659,8 +4659,8 @@ and `testIntegration` for OSGi modules.
 ### Added
 - [LPS-85905]: When on Jenkins, fail the `testIntegration` task if any dependent
 projects defined in the `testIntegrationCompile` configuration do not have a
-`lfrbuild-ci`, `lfrbuild-ci-skip-test-integration-check`, or a `.lfrbuild-portal`
-marker file.
+`lfrbuild-ci`, `lfrbuild-ci-skip-test-integration-check`, or a
+`.lfrbuild-portal` marker file.
 
 [Find Security Bugs]: https://github.com/liferay/liferay-portal/tree/master/modules/third-party/com-h3xstream-findsecbugs
 [Gradle Dependency Management]: https://github.com/spring-gradle-plugins/dependency-management-plugin
