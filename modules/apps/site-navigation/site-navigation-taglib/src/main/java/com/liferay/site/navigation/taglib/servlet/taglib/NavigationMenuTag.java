@@ -80,9 +80,7 @@ public class NavigationMenuTag extends IncludeTag {
 			if (_siteNavigationMenuId > 0) {
 				branchNavItems = Collections.emptyList();
 
-				List<NavItem> branchMenuItems = _getBranchMenuItems();
-
-				navItems = _getMenuItems(branchMenuItems);
+				navItems = _getMenuItems(_getBranchNavItems());
 			}
 			else {
 				branchNavItems = getBranchNavItems(request);
@@ -260,7 +258,7 @@ public class NavigationMenuTag extends IncludeTag {
 	protected void setAttributes(HttpServletRequest request) {
 	}
 
-	private List<NavItem> _getBranchMenuItems() throws PortalException {
+	private List<NavItem> _getBranchNavItems() throws PortalException {
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
@@ -307,15 +305,15 @@ public class NavigationMenuTag extends IncludeTag {
 		return navItems;
 	}
 
-	private List<NavItem> _getMenuItems(List<NavItem> branchMenuItems)
+	private List<NavItem> _getMenuItems(List<NavItem> branchNavItems)
 		throws Exception {
 
 		long parentSiteNavigationMenuItemId = GetterUtil.getLong(_rootItemId);
 
 		if (_rootItemType.equals("relative") && (_rootItemLevel >= 0) &&
-			(_rootItemLevel < branchMenuItems.size())) {
+			(_rootItemLevel < branchNavItems.size())) {
 
-			NavItem rootMenuItem = branchMenuItems.get(_rootItemLevel);
+			NavItem rootMenuItem = branchNavItems.get(_rootItemLevel);
 
 			return rootMenuItem.getChildren();
 		}
@@ -324,8 +322,8 @@ public class NavigationMenuTag extends IncludeTag {
 				return NavItemUtil.getChildNavItems(
 					request, _siteNavigationMenuId, 0);
 			}
-			else if (branchMenuItems.size() >= _rootItemLevel) {
-				NavItem rootMenuItem = branchMenuItems.get(_rootItemLevel - 1);
+			else if (branchNavItems.size() >= _rootItemLevel) {
+				NavItem rootMenuItem = branchNavItems.get(_rootItemLevel - 1);
 
 				return rootMenuItem.getChildren();
 			}
