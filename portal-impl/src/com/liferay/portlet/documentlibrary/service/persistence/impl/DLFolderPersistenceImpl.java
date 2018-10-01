@@ -22,9 +22,7 @@ import com.liferay.document.library.kernel.service.persistence.DLFileEntryTypePe
 import com.liferay.document.library.kernel.service.persistence.DLFolderPersistence;
 
 import com.liferay.portal.kernel.bean.BeanReference;
-import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
-import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
@@ -207,7 +205,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 		List<DLFolder> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DLFolder>)finderCache.getResult(finderPath,
+			list = (List<DLFolder>)FinderCacheUtil.getResult(finderPath,
 					finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
@@ -287,10 +285,10 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -592,7 +590,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 		Object[] finderArgs = new Object[] { uuid };
 
-		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(2);
@@ -630,10 +629,10 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(finderPath, finderArgs, count);
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -723,7 +722,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = finderCache.getResult(FINDER_PATH_FETCH_BY_UUID_G,
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_UUID_G,
 					finderArgs, this);
 		}
 
@@ -777,7 +776,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 				List<DLFolder> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(FINDER_PATH_FETCH_BY_UUID_G,
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
 						finderArgs, list);
 				}
 				else {
@@ -789,7 +788,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(FINDER_PATH_FETCH_BY_UUID_G, finderArgs);
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
+					finderArgs);
 
 				throw processException(e);
 			}
@@ -834,7 +834,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 		Object[] finderArgs = new Object[] { uuid, groupId };
 
-		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(3);
@@ -876,10 +877,10 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(finderPath, finderArgs, count);
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1011,7 +1012,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 		List<DLFolder> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DLFolder>)finderCache.getResult(finderPath,
+			list = (List<DLFolder>)FinderCacheUtil.getResult(finderPath,
 					finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
@@ -1096,10 +1097,10 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1421,7 +1422,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 		Object[] finderArgs = new Object[] { uuid, companyId };
 
-		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(3);
@@ -1463,10 +1465,10 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(finderPath, finderArgs, count);
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -1586,7 +1588,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 		List<DLFolder> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DLFolder>)finderCache.getResult(finderPath,
+			list = (List<DLFolder>)FinderCacheUtil.getResult(finderPath,
 					finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
@@ -1652,10 +1654,10 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -2252,7 +2254,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 		Object[] finderArgs = new Object[] { groupId };
 
-		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(2);
@@ -2276,10 +2279,10 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(finderPath, finderArgs, count);
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -2446,7 +2449,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 		List<DLFolder> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DLFolder>)finderCache.getResult(finderPath,
+			list = (List<DLFolder>)FinderCacheUtil.getResult(finderPath,
 					finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
@@ -2512,10 +2515,10 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -2803,7 +2806,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 		Object[] finderArgs = new Object[] { companyId };
 
-		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(2);
@@ -2827,10 +2831,10 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(finderPath, finderArgs, count);
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -2956,7 +2960,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 		List<DLFolder> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DLFolder>)finderCache.getResult(finderPath,
+			list = (List<DLFolder>)FinderCacheUtil.getResult(finderPath,
 					finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
@@ -3022,10 +3026,10 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -3316,7 +3320,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 		Object[] finderArgs = new Object[] { repositoryId };
 
-		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(2);
@@ -3340,10 +3345,10 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(finderPath, finderArgs, count);
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -3471,7 +3476,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 		List<DLFolder> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DLFolder>)finderCache.getResult(finderPath,
+			list = (List<DLFolder>)FinderCacheUtil.getResult(finderPath,
 					finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
@@ -3542,10 +3547,10 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -4176,7 +4181,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 		Object[] finderArgs = new Object[] { groupId, parentFolderId };
 
-		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(3);
@@ -4204,10 +4210,10 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(finderPath, finderArgs, count);
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -4374,7 +4380,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 		List<DLFolder> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DLFolder>)finderCache.getResult(finderPath,
+			list = (List<DLFolder>)FinderCacheUtil.getResult(finderPath,
 					finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
@@ -4445,10 +4451,10 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -4756,7 +4762,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 		Object[] finderArgs = new Object[] { companyId, status };
 
-		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(3);
@@ -4784,10 +4791,10 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(finderPath, finderArgs, count);
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -4876,7 +4883,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = finderCache.getResult(FINDER_PATH_FETCH_BY_R_M,
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_R_M,
 					finderArgs, this);
 		}
 
@@ -4916,8 +4923,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 				List<DLFolder> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(FINDER_PATH_FETCH_BY_R_M, finderArgs,
-						list);
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_R_M,
+						finderArgs, list);
 				}
 				else {
 					if (list.size() > 1) {
@@ -4939,7 +4946,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(FINDER_PATH_FETCH_BY_R_M, finderArgs);
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_R_M,
+					finderArgs);
 
 				throw processException(e);
 			}
@@ -4984,7 +4992,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 		Object[] finderArgs = new Object[] { repositoryId, mountPoint };
 
-		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(3);
@@ -5012,10 +5021,10 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(finderPath, finderArgs, count);
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -5144,7 +5153,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 		List<DLFolder> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DLFolder>)finderCache.getResult(finderPath,
+			list = (List<DLFolder>)FinderCacheUtil.getResult(finderPath,
 					finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
@@ -5215,10 +5224,10 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -5526,7 +5535,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 		Object[] finderArgs = new Object[] { repositoryId, parentFolderId };
 
-		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(3);
@@ -5554,10 +5564,10 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(finderPath, finderArgs, count);
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -5685,7 +5695,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 		List<DLFolder> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DLFolder>)finderCache.getResult(finderPath,
+			list = (List<DLFolder>)FinderCacheUtil.getResult(finderPath,
 					finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
@@ -5770,10 +5780,10 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -6095,7 +6105,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 		Object[] finderArgs = new Object[] { parentFolderId, name };
 
-		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(3);
@@ -6137,10 +6148,10 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(finderPath, finderArgs, count);
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -6285,7 +6296,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 		List<DLFolder> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DLFolder>)finderCache.getResult(finderPath,
+			list = (List<DLFolder>)FinderCacheUtil.getResult(finderPath,
 					finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
@@ -6361,10 +6372,10 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -7033,7 +7044,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 		Object[] finderArgs = new Object[] { groupId, mountPoint, parentFolderId };
 
-		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(4);
@@ -7065,10 +7077,10 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(finderPath, finderArgs, count);
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -7230,7 +7242,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = finderCache.getResult(FINDER_PATH_FETCH_BY_G_P_N,
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_G_P_N,
 					finderArgs, this);
 		}
 
@@ -7289,7 +7301,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 				List<DLFolder> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(FINDER_PATH_FETCH_BY_G_P_N,
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_P_N,
 						finderArgs, list);
 				}
 				else {
@@ -7301,7 +7313,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(FINDER_PATH_FETCH_BY_G_P_N, finderArgs);
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_P_N,
+					finderArgs);
 
 				throw processException(e);
 			}
@@ -7348,7 +7361,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 		Object[] finderArgs = new Object[] { groupId, parentFolderId, name };
 
-		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(4);
@@ -7394,10 +7408,10 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(finderPath, finderArgs, count);
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -7531,7 +7545,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 		List<DLFolder> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DLFolder>)finderCache.getResult(finderPath,
+			list = (List<DLFolder>)FinderCacheUtil.getResult(finderPath,
 					finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
@@ -7612,10 +7626,10 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -7806,7 +7820,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 				folderId, companyId, parentFolderId, status
 			};
 
-		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(5);
@@ -7842,10 +7857,10 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(finderPath, finderArgs, count);
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -7999,7 +8014,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 		List<DLFolder> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DLFolder>)finderCache.getResult(finderPath,
+			list = (List<DLFolder>)FinderCacheUtil.getResult(finderPath,
 					finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
@@ -8080,10 +8095,10 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -8790,7 +8805,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 				groupId, mountPoint, parentFolderId, hidden
 			};
 
-		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(5);
@@ -8826,10 +8842,10 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(finderPath, finderArgs, count);
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -9025,7 +9041,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 		List<DLFolder> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DLFolder>)finderCache.getResult(finderPath,
+			list = (List<DLFolder>)FinderCacheUtil.getResult(finderPath,
 					finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
@@ -9121,10 +9137,10 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -9870,7 +9886,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 		Object[] finderArgs = new Object[] { groupId, mountPoint, treePath, hidden };
 
-		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(5);
@@ -9920,10 +9937,10 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(finderPath, finderArgs, count);
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -10156,7 +10173,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 		List<DLFolder> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DLFolder>)finderCache.getResult(finderPath,
+			list = (List<DLFolder>)FinderCacheUtil.getResult(finderPath,
 					finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
@@ -10237,10 +10254,10 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -10946,7 +10963,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 				groupId, parentFolderId, hidden, status
 			};
 
-		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(5);
@@ -10982,10 +11000,10 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(finderPath, finderArgs, count);
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -11213,7 +11231,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 		List<DLFolder> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DLFolder>)finderCache.getResult(finderPath,
+			list = (List<DLFolder>)FinderCacheUtil.getResult(finderPath,
 					finderArgs, this);
 
 			if ((list != null) && !list.isEmpty()) {
@@ -11299,10 +11317,10 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -12043,7 +12061,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 				groupId, mountPoint, parentFolderId, hidden, status
 			};
 
-		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
 
 		if (count == null) {
 			StringBundler query = new StringBundler(6);
@@ -12083,10 +12102,10 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(finderPath, finderArgs, count);
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -12205,17 +12224,17 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 	 */
 	@Override
 	public void cacheResult(DLFolder dlFolder) {
-		entityCache.putResult(DLFolderModelImpl.ENTITY_CACHE_ENABLED,
+		EntityCacheUtil.putResult(DLFolderModelImpl.ENTITY_CACHE_ENABLED,
 			DLFolderImpl.class, dlFolder.getPrimaryKey(), dlFolder);
 
-		finderCache.putResult(FINDER_PATH_FETCH_BY_UUID_G,
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
 			new Object[] { dlFolder.getUuid(), dlFolder.getGroupId() }, dlFolder);
 
-		finderCache.putResult(FINDER_PATH_FETCH_BY_R_M,
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_R_M,
 			new Object[] { dlFolder.getRepositoryId(), dlFolder.isMountPoint() },
 			dlFolder);
 
-		finderCache.putResult(FINDER_PATH_FETCH_BY_G_P_N,
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_P_N,
 			new Object[] {
 				dlFolder.getGroupId(), dlFolder.getParentFolderId(),
 				dlFolder.getName()
@@ -12232,7 +12251,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 	@Override
 	public void cacheResult(List<DLFolder> dlFolders) {
 		for (DLFolder dlFolder : dlFolders) {
-			if (entityCache.getResult(DLFolderModelImpl.ENTITY_CACHE_ENABLED,
+			if (EntityCacheUtil.getResult(
+						DLFolderModelImpl.ENTITY_CACHE_ENABLED,
 						DLFolderImpl.class, dlFolder.getPrimaryKey()) == null) {
 				cacheResult(dlFolder);
 			}
@@ -12246,43 +12266,43 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 	 * Clears the cache for all document library folders.
 	 *
 	 * <p>
-	 * The {@link EntityCache} and {@link FinderCache} are both cleared by this method.
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
 	@Override
 	public void clearCache() {
-		entityCache.clearCache(DLFolderImpl.class);
+		EntityCacheUtil.clearCache(DLFolderImpl.class);
 
-		finderCache.clearCache(FINDER_CLASS_NAME_ENTITY);
-		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 	}
 
 	/**
 	 * Clears the cache for the document library folder.
 	 *
 	 * <p>
-	 * The {@link EntityCache} and {@link FinderCache} are both cleared by this method.
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
 	 * </p>
 	 */
 	@Override
 	public void clearCache(DLFolder dlFolder) {
-		entityCache.removeResult(DLFolderModelImpl.ENTITY_CACHE_ENABLED,
+		EntityCacheUtil.removeResult(DLFolderModelImpl.ENTITY_CACHE_ENABLED,
 			DLFolderImpl.class, dlFolder.getPrimaryKey());
 
-		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		clearUniqueFindersCache((DLFolderModelImpl)dlFolder, true);
 	}
 
 	@Override
 	public void clearCache(List<DLFolder> dlFolders) {
-		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		for (DLFolder dlFolder : dlFolders) {
-			entityCache.removeResult(DLFolderModelImpl.ENTITY_CACHE_ENABLED,
+			EntityCacheUtil.removeResult(DLFolderModelImpl.ENTITY_CACHE_ENABLED,
 				DLFolderImpl.class, dlFolder.getPrimaryKey());
 
 			clearUniqueFindersCache((DLFolderModelImpl)dlFolder, true);
@@ -12294,9 +12314,9 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 				dlFolderModelImpl.getUuid(), dlFolderModelImpl.getGroupId()
 			};
 
-		finderCache.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
+		FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
 			Long.valueOf(1), false);
-		finderCache.putResult(FINDER_PATH_FETCH_BY_UUID_G, args,
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G, args,
 			dlFolderModelImpl, false);
 
 		args = new Object[] {
@@ -12304,9 +12324,9 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 				dlFolderModelImpl.isMountPoint()
 			};
 
-		finderCache.putResult(FINDER_PATH_COUNT_BY_R_M, args, Long.valueOf(1),
-			false);
-		finderCache.putResult(FINDER_PATH_FETCH_BY_R_M, args,
+		FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_R_M, args,
+			Long.valueOf(1), false);
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_R_M, args,
 			dlFolderModelImpl, false);
 
 		args = new Object[] {
@@ -12315,9 +12335,9 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 				dlFolderModelImpl.getName()
 			};
 
-		finderCache.putResult(FINDER_PATH_COUNT_BY_G_P_N, args,
+		FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_P_N, args,
 			Long.valueOf(1), false);
-		finderCache.putResult(FINDER_PATH_FETCH_BY_G_P_N, args,
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_P_N, args,
 			dlFolderModelImpl, false);
 	}
 
@@ -12328,8 +12348,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 					dlFolderModelImpl.getUuid(), dlFolderModelImpl.getGroupId()
 				};
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
-			finderCache.removeResult(FINDER_PATH_FETCH_BY_UUID_G, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G, args);
 		}
 
 		if ((dlFolderModelImpl.getColumnBitmask() &
@@ -12339,8 +12359,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 					dlFolderModelImpl.getOriginalGroupId()
 				};
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
-			finderCache.removeResult(FINDER_PATH_FETCH_BY_UUID_G, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G, args);
 		}
 
 		if (clearCurrent) {
@@ -12349,8 +12369,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 					dlFolderModelImpl.isMountPoint()
 				};
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_R_M, args);
-			finderCache.removeResult(FINDER_PATH_FETCH_BY_R_M, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_R_M, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_R_M, args);
 		}
 
 		if ((dlFolderModelImpl.getColumnBitmask() &
@@ -12360,8 +12380,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 					dlFolderModelImpl.getOriginalMountPoint()
 				};
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_R_M, args);
-			finderCache.removeResult(FINDER_PATH_FETCH_BY_R_M, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_R_M, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_R_M, args);
 		}
 
 		if (clearCurrent) {
@@ -12371,8 +12391,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 					dlFolderModelImpl.getName()
 				};
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_G_P_N, args);
-			finderCache.removeResult(FINDER_PATH_FETCH_BY_G_P_N, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_P_N, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_P_N, args);
 		}
 
 		if ((dlFolderModelImpl.getColumnBitmask() &
@@ -12383,8 +12403,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 					dlFolderModelImpl.getOriginalName()
 				};
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_G_P_N, args);
-			finderCache.removeResult(FINDER_PATH_FETCH_BY_G_P_N, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_P_N, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_P_N, args);
 		}
 	}
 
@@ -12565,17 +12585,17 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 			closeSession(session);
 		}
 
-		finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 
 		if (!DLFolderModelImpl.COLUMN_BITMASK_ENABLED) {
-			finderCache.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+			FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 		}
 		else
 		 if (isNew) {
 			Object[] args = new Object[] { dlFolderModelImpl.getUuid() };
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
-			finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
 				args);
 
 			args = new Object[] {
@@ -12583,26 +12603,26 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 					dlFolderModelImpl.getCompanyId()
 				};
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
-			finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C,
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C,
 				args);
 
 			args = new Object[] { dlFolderModelImpl.getGroupId() };
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
-			finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
 				args);
 
 			args = new Object[] { dlFolderModelImpl.getCompanyId() };
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_COMPANYID, args);
-			finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
 				args);
 
 			args = new Object[] { dlFolderModelImpl.getRepositoryId() };
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_REPOSITORYID, args);
-			finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_REPOSITORYID,
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_REPOSITORYID, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_REPOSITORYID,
 				args);
 
 			args = new Object[] {
@@ -12610,8 +12630,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 					dlFolderModelImpl.getParentFolderId()
 				};
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_G_P, args);
-			finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_P,
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_P, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_P,
 				args);
 
 			args = new Object[] {
@@ -12619,8 +12639,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 					dlFolderModelImpl.getParentFolderId()
 				};
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_R_P, args);
-			finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_R_P,
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_R_P, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_R_P,
 				args);
 
 			args = new Object[] {
@@ -12628,8 +12648,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 					dlFolderModelImpl.getName()
 				};
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_P_N, args);
-			finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_P_N,
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_P_N, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_P_N,
 				args);
 
 			args = new Object[] {
@@ -12638,8 +12658,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 					dlFolderModelImpl.getParentFolderId()
 				};
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_G_M_P, args);
-			finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_M_P,
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_M_P, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_M_P,
 				args);
 
 			args = new Object[] {
@@ -12649,8 +12669,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 					dlFolderModelImpl.isHidden()
 				};
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_G_M_P_H, args);
-			finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_M_P_H,
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_M_P_H, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_M_P_H,
 				args);
 
 			args = new Object[] {
@@ -12659,8 +12679,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 					dlFolderModelImpl.isHidden(), dlFolderModelImpl.getStatus()
 				};
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_G_P_H_S, args);
-			finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_P_H_S,
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_P_H_S, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_P_H_S,
 				args);
 
 			args = new Object[] {
@@ -12670,12 +12690,13 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 					dlFolderModelImpl.isHidden(), dlFolderModelImpl.getStatus()
 				};
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_G_M_P_H_S, args);
-			finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_M_P_H_S,
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_M_P_H_S, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_M_P_H_S,
 				args);
 
-			finderCache.removeResult(FINDER_PATH_COUNT_ALL, FINDER_ARGS_EMPTY);
-			finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL,
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_ALL,
+				FINDER_ARGS_EMPTY);
+			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL,
 				FINDER_ARGS_EMPTY);
 		}
 
@@ -12684,14 +12705,14 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] { dlFolderModelImpl.getOriginalUuid() };
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
 					args);
 
 				args = new Object[] { dlFolderModelImpl.getUuid() };
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
 					args);
 			}
 
@@ -12702,8 +12723,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 						dlFolderModelImpl.getOriginalCompanyId()
 					};
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C,
 					args);
 
 				args = new Object[] {
@@ -12711,8 +12732,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 						dlFolderModelImpl.getCompanyId()
 					};
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C,
 					args);
 			}
 
@@ -12722,14 +12743,14 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 						dlFolderModelImpl.getOriginalGroupId()
 					};
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
 					args);
 
 				args = new Object[] { dlFolderModelImpl.getGroupId() };
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
 					args);
 			}
 
@@ -12739,14 +12760,16 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 						dlFolderModelImpl.getOriginalCompanyId()
 					};
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_COMPANYID, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
 					args);
 
 				args = new Object[] { dlFolderModelImpl.getCompanyId() };
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_COMPANYID, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
 					args);
 			}
 
@@ -12756,14 +12779,16 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 						dlFolderModelImpl.getOriginalRepositoryId()
 					};
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_REPOSITORYID, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_REPOSITORYID,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_REPOSITORYID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_REPOSITORYID,
 					args);
 
 				args = new Object[] { dlFolderModelImpl.getRepositoryId() };
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_REPOSITORYID, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_REPOSITORYID,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_REPOSITORYID,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_REPOSITORYID,
 					args);
 			}
 
@@ -12774,8 +12799,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 						dlFolderModelImpl.getOriginalParentFolderId()
 					};
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_G_P, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_P,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_P, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_P,
 					args);
 
 				args = new Object[] {
@@ -12783,8 +12808,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 						dlFolderModelImpl.getParentFolderId()
 					};
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_G_P, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_P,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_P, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_P,
 					args);
 			}
 
@@ -12795,8 +12820,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 						dlFolderModelImpl.getOriginalParentFolderId()
 					};
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_R_P, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_R_P,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_R_P, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_R_P,
 					args);
 
 				args = new Object[] {
@@ -12804,8 +12829,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 						dlFolderModelImpl.getParentFolderId()
 					};
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_R_P, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_R_P,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_R_P, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_R_P,
 					args);
 			}
 
@@ -12816,8 +12841,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 						dlFolderModelImpl.getOriginalName()
 					};
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_P_N, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_P_N,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_P_N, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_P_N,
 					args);
 
 				args = new Object[] {
@@ -12825,8 +12850,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 						dlFolderModelImpl.getName()
 					};
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_P_N, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_P_N,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_P_N, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_P_N,
 					args);
 			}
 
@@ -12838,8 +12863,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 						dlFolderModelImpl.getOriginalParentFolderId()
 					};
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_G_M_P, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_M_P,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_M_P, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_M_P,
 					args);
 
 				args = new Object[] {
@@ -12848,8 +12873,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 						dlFolderModelImpl.getParentFolderId()
 					};
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_G_M_P, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_M_P,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_M_P, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_M_P,
 					args);
 			}
 
@@ -12862,8 +12887,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 						dlFolderModelImpl.getOriginalHidden()
 					};
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_G_M_P_H, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_M_P_H,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_M_P_H, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_M_P_H,
 					args);
 
 				args = new Object[] {
@@ -12873,8 +12898,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 						dlFolderModelImpl.isHidden()
 					};
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_G_M_P_H, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_M_P_H,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_M_P_H, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_M_P_H,
 					args);
 			}
 
@@ -12887,8 +12912,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 						dlFolderModelImpl.getOriginalStatus()
 					};
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_G_P_H_S, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_P_H_S,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_P_H_S, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_P_H_S,
 					args);
 
 				args = new Object[] {
@@ -12898,8 +12923,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 						dlFolderModelImpl.getStatus()
 					};
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_G_P_H_S, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_P_H_S,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_P_H_S, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_P_H_S,
 					args);
 			}
 
@@ -12913,8 +12938,9 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 						dlFolderModelImpl.getOriginalStatus()
 					};
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_G_M_P_H_S, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_M_P_H_S,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_M_P_H_S,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_M_P_H_S,
 					args);
 
 				args = new Object[] {
@@ -12925,13 +12951,14 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 						dlFolderModelImpl.getStatus()
 					};
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_G_M_P_H_S, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_M_P_H_S,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_G_M_P_H_S,
+					args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_M_P_H_S,
 					args);
 			}
 		}
 
-		entityCache.putResult(DLFolderModelImpl.ENTITY_CACHE_ENABLED,
+		EntityCacheUtil.putResult(DLFolderModelImpl.ENTITY_CACHE_ENABLED,
 			DLFolderImpl.class, dlFolder.getPrimaryKey(), dlFolder, false);
 
 		clearUniqueFindersCache(dlFolderModelImpl, false);
@@ -12987,7 +13014,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 	 */
 	@Override
 	public DLFolder fetchByPrimaryKey(Serializable primaryKey) {
-		Serializable serializable = entityCache.getResult(DLFolderModelImpl.ENTITY_CACHE_ENABLED,
+		Serializable serializable = EntityCacheUtil.getResult(DLFolderModelImpl.ENTITY_CACHE_ENABLED,
 				DLFolderImpl.class, primaryKey);
 
 		if (serializable == nullModel) {
@@ -13008,12 +13035,12 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 					cacheResult(dlFolder);
 				}
 				else {
-					entityCache.putResult(DLFolderModelImpl.ENTITY_CACHE_ENABLED,
+					EntityCacheUtil.putResult(DLFolderModelImpl.ENTITY_CACHE_ENABLED,
 						DLFolderImpl.class, primaryKey, nullModel);
 				}
 			}
 			catch (Exception e) {
-				entityCache.removeResult(DLFolderModelImpl.ENTITY_CACHE_ENABLED,
+				EntityCacheUtil.removeResult(DLFolderModelImpl.ENTITY_CACHE_ENABLED,
 					DLFolderImpl.class, primaryKey);
 
 				throw processException(e);
@@ -13063,7 +13090,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 		Set<Serializable> uncachedPrimaryKeys = null;
 
 		for (Serializable primaryKey : primaryKeys) {
-			Serializable serializable = entityCache.getResult(DLFolderModelImpl.ENTITY_CACHE_ENABLED,
+			Serializable serializable = EntityCacheUtil.getResult(DLFolderModelImpl.ENTITY_CACHE_ENABLED,
 					DLFolderImpl.class, primaryKey);
 
 			if (serializable != nullModel) {
@@ -13117,7 +13144,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 			}
 
 			for (Serializable primaryKey : uncachedPrimaryKeys) {
-				entityCache.putResult(DLFolderModelImpl.ENTITY_CACHE_ENABLED,
+				EntityCacheUtil.putResult(DLFolderModelImpl.ENTITY_CACHE_ENABLED,
 					DLFolderImpl.class, primaryKey, nullModel);
 			}
 		}
@@ -13209,7 +13236,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 		List<DLFolder> list = null;
 
 		if (retrieveFromCache) {
-			list = (List<DLFolder>)finderCache.getResult(finderPath,
+			list = (List<DLFolder>)FinderCacheUtil.getResult(finderPath,
 					finderArgs, this);
 		}
 
@@ -13258,10 +13285,10 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 				cacheResult(list);
 
-				finderCache.putResult(finderPath, finderArgs, list);
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
 
 				throw processException(e);
 			}
@@ -13291,7 +13318,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)finderCache.getResult(FINDER_PATH_COUNT_ALL,
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
@@ -13304,11 +13331,11 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(FINDER_PATH_COUNT_ALL, FINDER_ARGS_EMPTY,
-					count);
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL,
+					FINDER_ARGS_EMPTY, count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(FINDER_PATH_COUNT_ALL,
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_ALL,
 					FINDER_ARGS_EMPTY);
 
 				throw processException(e);
@@ -13648,18 +13675,16 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 	}
 
 	public void destroy() {
-		entityCache.removeCache(DLFolderImpl.class.getName());
-		finderCache.removeCache(FINDER_CLASS_NAME_ENTITY);
-		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
-		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+		EntityCacheUtil.removeCache(DLFolderImpl.class.getName());
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
 		TableMapperFactory.removeTableMapper("DLFileEntryTypes_DLFolders");
 	}
 
 	@BeanReference(type = CompanyProviderWrapper.class)
 	protected CompanyProvider companyProvider;
-	protected EntityCache entityCache = EntityCacheUtil.getEntityCache();
-	protected FinderCache finderCache = FinderCacheUtil.getFinderCache();
 	@BeanReference(type = DLFileEntryTypePersistence.class)
 	protected DLFileEntryTypePersistence dlFileEntryTypePersistence;
 	protected TableMapper<DLFolder, com.liferay.document.library.kernel.model.DLFileEntryType> dlFolderToDLFileEntryTypeTableMapper;
