@@ -599,253 +599,6 @@ public class SegmentsEntryPersistenceImpl extends BasePersistenceImpl<SegmentsEn
 	}
 
 	private static final String _FINDER_COLUMN_GROUPID_GROUPID_2 = "segmentsEntry.groupId = ?";
-	public static final FinderPath FINDER_PATH_FETCH_BY_G_K = new FinderPath(SegmentsEntryModelImpl.ENTITY_CACHE_ENABLED,
-			SegmentsEntryModelImpl.FINDER_CACHE_ENABLED,
-			SegmentsEntryImpl.class, FINDER_CLASS_NAME_ENTITY, "fetchByG_K",
-			new String[] { Long.class.getName(), String.class.getName() },
-			SegmentsEntryModelImpl.GROUPID_COLUMN_BITMASK |
-			SegmentsEntryModelImpl.KEY_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_G_K = new FinderPath(SegmentsEntryModelImpl.ENTITY_CACHE_ENABLED,
-			SegmentsEntryModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_K",
-			new String[] { Long.class.getName(), String.class.getName() });
-
-	/**
-	 * Returns the segments entry where groupId = &#63; and key = &#63; or throws a {@link NoSuchEntryException} if it could not be found.
-	 *
-	 * @param groupId the group ID
-	 * @param key the key
-	 * @return the matching segments entry
-	 * @throws NoSuchEntryException if a matching segments entry could not be found
-	 */
-	@Override
-	public SegmentsEntry findByG_K(long groupId, String key)
-		throws NoSuchEntryException {
-		SegmentsEntry segmentsEntry = fetchByG_K(groupId, key);
-
-		if (segmentsEntry == null) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("groupId=");
-			msg.append(groupId);
-
-			msg.append(", key=");
-			msg.append(key);
-
-			msg.append("}");
-
-			if (_log.isDebugEnabled()) {
-				_log.debug(msg.toString());
-			}
-
-			throw new NoSuchEntryException(msg.toString());
-		}
-
-		return segmentsEntry;
-	}
-
-	/**
-	 * Returns the segments entry where groupId = &#63; and key = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
-	 *
-	 * @param groupId the group ID
-	 * @param key the key
-	 * @return the matching segments entry, or <code>null</code> if a matching segments entry could not be found
-	 */
-	@Override
-	public SegmentsEntry fetchByG_K(long groupId, String key) {
-		return fetchByG_K(groupId, key, true);
-	}
-
-	/**
-	 * Returns the segments entry where groupId = &#63; and key = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
-	 *
-	 * @param groupId the group ID
-	 * @param key the key
-	 * @param retrieveFromCache whether to retrieve from the finder cache
-	 * @return the matching segments entry, or <code>null</code> if a matching segments entry could not be found
-	 */
-	@Override
-	public SegmentsEntry fetchByG_K(long groupId, String key,
-		boolean retrieveFromCache) {
-		Object[] finderArgs = new Object[] { groupId, key };
-
-		Object result = null;
-
-		if (retrieveFromCache) {
-			result = finderCache.getResult(FINDER_PATH_FETCH_BY_G_K,
-					finderArgs, this);
-		}
-
-		if (result instanceof SegmentsEntry) {
-			SegmentsEntry segmentsEntry = (SegmentsEntry)result;
-
-			if ((groupId != segmentsEntry.getGroupId()) ||
-					!Objects.equals(key, segmentsEntry.getKey())) {
-				result = null;
-			}
-		}
-
-		if (result == null) {
-			StringBundler query = new StringBundler(4);
-
-			query.append(_SQL_SELECT_SEGMENTSENTRY_WHERE);
-
-			query.append(_FINDER_COLUMN_G_K_GROUPID_2);
-
-			boolean bindKey = false;
-
-			if (key == null) {
-				query.append(_FINDER_COLUMN_G_K_KEY_1);
-			}
-			else if (key.equals("")) {
-				query.append(_FINDER_COLUMN_G_K_KEY_3);
-			}
-			else {
-				bindKey = true;
-
-				query.append(_FINDER_COLUMN_G_K_KEY_2);
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(groupId);
-
-				if (bindKey) {
-					qPos.add(key);
-				}
-
-				List<SegmentsEntry> list = q.list();
-
-				if (list.isEmpty()) {
-					finderCache.putResult(FINDER_PATH_FETCH_BY_G_K, finderArgs,
-						list);
-				}
-				else {
-					SegmentsEntry segmentsEntry = list.get(0);
-
-					result = segmentsEntry;
-
-					cacheResult(segmentsEntry);
-				}
-			}
-			catch (Exception e) {
-				finderCache.removeResult(FINDER_PATH_FETCH_BY_G_K, finderArgs);
-
-				throw processException(e);
-			}
-			finally {
-				closeSession(session);
-			}
-		}
-
-		if (result instanceof List<?>) {
-			return null;
-		}
-		else {
-			return (SegmentsEntry)result;
-		}
-	}
-
-	/**
-	 * Removes the segments entry where groupId = &#63; and key = &#63; from the database.
-	 *
-	 * @param groupId the group ID
-	 * @param key the key
-	 * @return the segments entry that was removed
-	 */
-	@Override
-	public SegmentsEntry removeByG_K(long groupId, String key)
-		throws NoSuchEntryException {
-		SegmentsEntry segmentsEntry = findByG_K(groupId, key);
-
-		return remove(segmentsEntry);
-	}
-
-	/**
-	 * Returns the number of segments entries where groupId = &#63; and key = &#63;.
-	 *
-	 * @param groupId the group ID
-	 * @param key the key
-	 * @return the number of matching segments entries
-	 */
-	@Override
-	public int countByG_K(long groupId, String key) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_G_K;
-
-		Object[] finderArgs = new Object[] { groupId, key };
-
-		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(3);
-
-			query.append(_SQL_COUNT_SEGMENTSENTRY_WHERE);
-
-			query.append(_FINDER_COLUMN_G_K_GROUPID_2);
-
-			boolean bindKey = false;
-
-			if (key == null) {
-				query.append(_FINDER_COLUMN_G_K_KEY_1);
-			}
-			else if (key.equals("")) {
-				query.append(_FINDER_COLUMN_G_K_KEY_3);
-			}
-			else {
-				bindKey = true;
-
-				query.append(_FINDER_COLUMN_G_K_KEY_2);
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(groupId);
-
-				if (bindKey) {
-					qPos.add(key);
-				}
-
-				count = (Long)q.uniqueResult();
-
-				finderCache.putResult(finderPath, finderArgs, count);
-			}
-			catch (Exception e) {
-				finderCache.removeResult(finderPath, finderArgs);
-
-				throw processException(e);
-			}
-			finally {
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	private static final String _FINDER_COLUMN_G_K_GROUPID_2 = "segmentsEntry.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_K_KEY_1 = "segmentsEntry.key IS NULL";
-	private static final String _FINDER_COLUMN_G_K_KEY_2 = "segmentsEntry.key = ?";
-	private static final String _FINDER_COLUMN_G_K_KEY_3 = "(segmentsEntry.key IS NULL OR segmentsEntry.key = '')";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_G_A = new FinderPath(SegmentsEntryModelImpl.ENTITY_CACHE_ENABLED,
 			SegmentsEntryModelImpl.FINDER_CACHE_ENABLED,
 			SegmentsEntryImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
@@ -1390,6 +1143,253 @@ public class SegmentsEntryPersistenceImpl extends BasePersistenceImpl<SegmentsEn
 
 	private static final String _FINDER_COLUMN_G_A_GROUPID_2 = "segmentsEntry.groupId = ? AND ";
 	private static final String _FINDER_COLUMN_G_A_ACTIVE_2 = "segmentsEntry.active = ?";
+	public static final FinderPath FINDER_PATH_FETCH_BY_G_K = new FinderPath(SegmentsEntryModelImpl.ENTITY_CACHE_ENABLED,
+			SegmentsEntryModelImpl.FINDER_CACHE_ENABLED,
+			SegmentsEntryImpl.class, FINDER_CLASS_NAME_ENTITY, "fetchByG_K",
+			new String[] { Long.class.getName(), String.class.getName() },
+			SegmentsEntryModelImpl.GROUPID_COLUMN_BITMASK |
+			SegmentsEntryModelImpl.KEY_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_G_K = new FinderPath(SegmentsEntryModelImpl.ENTITY_CACHE_ENABLED,
+			SegmentsEntryModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_K",
+			new String[] { Long.class.getName(), String.class.getName() });
+
+	/**
+	 * Returns the segments entry where groupId = &#63; and key = &#63; or throws a {@link NoSuchEntryException} if it could not be found.
+	 *
+	 * @param groupId the group ID
+	 * @param key the key
+	 * @return the matching segments entry
+	 * @throws NoSuchEntryException if a matching segments entry could not be found
+	 */
+	@Override
+	public SegmentsEntry findByG_K(long groupId, String key)
+		throws NoSuchEntryException {
+		SegmentsEntry segmentsEntry = fetchByG_K(groupId, key);
+
+		if (segmentsEntry == null) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("groupId=");
+			msg.append(groupId);
+
+			msg.append(", key=");
+			msg.append(key);
+
+			msg.append("}");
+
+			if (_log.isDebugEnabled()) {
+				_log.debug(msg.toString());
+			}
+
+			throw new NoSuchEntryException(msg.toString());
+		}
+
+		return segmentsEntry;
+	}
+
+	/**
+	 * Returns the segments entry where groupId = &#63; and key = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param groupId the group ID
+	 * @param key the key
+	 * @return the matching segments entry, or <code>null</code> if a matching segments entry could not be found
+	 */
+	@Override
+	public SegmentsEntry fetchByG_K(long groupId, String key) {
+		return fetchByG_K(groupId, key, true);
+	}
+
+	/**
+	 * Returns the segments entry where groupId = &#63; and key = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param groupId the group ID
+	 * @param key the key
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the matching segments entry, or <code>null</code> if a matching segments entry could not be found
+	 */
+	@Override
+	public SegmentsEntry fetchByG_K(long groupId, String key,
+		boolean retrieveFromCache) {
+		Object[] finderArgs = new Object[] { groupId, key };
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = finderCache.getResult(FINDER_PATH_FETCH_BY_G_K,
+					finderArgs, this);
+		}
+
+		if (result instanceof SegmentsEntry) {
+			SegmentsEntry segmentsEntry = (SegmentsEntry)result;
+
+			if ((groupId != segmentsEntry.getGroupId()) ||
+					!Objects.equals(key, segmentsEntry.getKey())) {
+				result = null;
+			}
+		}
+
+		if (result == null) {
+			StringBundler query = new StringBundler(4);
+
+			query.append(_SQL_SELECT_SEGMENTSENTRY_WHERE);
+
+			query.append(_FINDER_COLUMN_G_K_GROUPID_2);
+
+			boolean bindKey = false;
+
+			if (key == null) {
+				query.append(_FINDER_COLUMN_G_K_KEY_1);
+			}
+			else if (key.equals("")) {
+				query.append(_FINDER_COLUMN_G_K_KEY_3);
+			}
+			else {
+				bindKey = true;
+
+				query.append(_FINDER_COLUMN_G_K_KEY_2);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(groupId);
+
+				if (bindKey) {
+					qPos.add(key);
+				}
+
+				List<SegmentsEntry> list = q.list();
+
+				if (list.isEmpty()) {
+					finderCache.putResult(FINDER_PATH_FETCH_BY_G_K, finderArgs,
+						list);
+				}
+				else {
+					SegmentsEntry segmentsEntry = list.get(0);
+
+					result = segmentsEntry;
+
+					cacheResult(segmentsEntry);
+				}
+			}
+			catch (Exception e) {
+				finderCache.removeResult(FINDER_PATH_FETCH_BY_G_K, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		if (result instanceof List<?>) {
+			return null;
+		}
+		else {
+			return (SegmentsEntry)result;
+		}
+	}
+
+	/**
+	 * Removes the segments entry where groupId = &#63; and key = &#63; from the database.
+	 *
+	 * @param groupId the group ID
+	 * @param key the key
+	 * @return the segments entry that was removed
+	 */
+	@Override
+	public SegmentsEntry removeByG_K(long groupId, String key)
+		throws NoSuchEntryException {
+		SegmentsEntry segmentsEntry = findByG_K(groupId, key);
+
+		return remove(segmentsEntry);
+	}
+
+	/**
+	 * Returns the number of segments entries where groupId = &#63; and key = &#63;.
+	 *
+	 * @param groupId the group ID
+	 * @param key the key
+	 * @return the number of matching segments entries
+	 */
+	@Override
+	public int countByG_K(long groupId, String key) {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_G_K;
+
+		Object[] finderArgs = new Object[] { groupId, key };
+
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_SEGMENTSENTRY_WHERE);
+
+			query.append(_FINDER_COLUMN_G_K_GROUPID_2);
+
+			boolean bindKey = false;
+
+			if (key == null) {
+				query.append(_FINDER_COLUMN_G_K_KEY_1);
+			}
+			else if (key.equals("")) {
+				query.append(_FINDER_COLUMN_G_K_KEY_3);
+			}
+			else {
+				bindKey = true;
+
+				query.append(_FINDER_COLUMN_G_K_KEY_2);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(groupId);
+
+				if (bindKey) {
+					qPos.add(key);
+				}
+
+				count = (Long)q.uniqueResult();
+
+				finderCache.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				finderCache.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_G_K_GROUPID_2 = "segmentsEntry.groupId = ? AND ";
+	private static final String _FINDER_COLUMN_G_K_KEY_1 = "segmentsEntry.key IS NULL";
+	private static final String _FINDER_COLUMN_G_K_KEY_2 = "segmentsEntry.key = ?";
+	private static final String _FINDER_COLUMN_G_K_KEY_3 = "(segmentsEntry.key IS NULL OR segmentsEntry.key = '')";
 
 	public SegmentsEntryPersistenceImpl() {
 		setModelClass(SegmentsEntry.class);

@@ -174,56 +174,6 @@ public interface SegmentsEntryPersistence extends BasePersistence<SegmentsEntry>
 	public int countByGroupId(long groupId);
 
 	/**
-	* Returns the segments entry where groupId = &#63; and key = &#63; or throws a {@link NoSuchEntryException} if it could not be found.
-	*
-	* @param groupId the group ID
-	* @param key the key
-	* @return the matching segments entry
-	* @throws NoSuchEntryException if a matching segments entry could not be found
-	*/
-	public SegmentsEntry findByG_K(long groupId, String key)
-		throws NoSuchEntryException;
-
-	/**
-	* Returns the segments entry where groupId = &#63; and key = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
-	*
-	* @param groupId the group ID
-	* @param key the key
-	* @return the matching segments entry, or <code>null</code> if a matching segments entry could not be found
-	*/
-	public SegmentsEntry fetchByG_K(long groupId, String key);
-
-	/**
-	* Returns the segments entry where groupId = &#63; and key = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
-	*
-	* @param groupId the group ID
-	* @param key the key
-	* @param retrieveFromCache whether to retrieve from the finder cache
-	* @return the matching segments entry, or <code>null</code> if a matching segments entry could not be found
-	*/
-	public SegmentsEntry fetchByG_K(long groupId, String key,
-		boolean retrieveFromCache);
-
-	/**
-	* Removes the segments entry where groupId = &#63; and key = &#63; from the database.
-	*
-	* @param groupId the group ID
-	* @param key the key
-	* @return the segments entry that was removed
-	*/
-	public SegmentsEntry removeByG_K(long groupId, String key)
-		throws NoSuchEntryException;
-
-	/**
-	* Returns the number of segments entries where groupId = &#63; and key = &#63;.
-	*
-	* @param groupId the group ID
-	* @param key the key
-	* @return the number of matching segments entries
-	*/
-	public int countByG_K(long groupId, String key);
-
-	/**
 	* Returns all the segments entries where groupId = &#63; and active = &#63;.
 	*
 	* @param groupId the group ID
@@ -365,6 +315,56 @@ public interface SegmentsEntryPersistence extends BasePersistence<SegmentsEntry>
 	* @return the number of matching segments entries
 	*/
 	public int countByG_A(long groupId, boolean active);
+
+	/**
+	* Returns the segments entry where groupId = &#63; and key = &#63; or throws a {@link NoSuchEntryException} if it could not be found.
+	*
+	* @param groupId the group ID
+	* @param key the key
+	* @return the matching segments entry
+	* @throws NoSuchEntryException if a matching segments entry could not be found
+	*/
+	public SegmentsEntry findByG_K(long groupId, String key)
+		throws NoSuchEntryException;
+
+	/**
+	* Returns the segments entry where groupId = &#63; and key = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param groupId the group ID
+	* @param key the key
+	* @return the matching segments entry, or <code>null</code> if a matching segments entry could not be found
+	*/
+	public SegmentsEntry fetchByG_K(long groupId, String key);
+
+	/**
+	* Returns the segments entry where groupId = &#63; and key = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param groupId the group ID
+	* @param key the key
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the matching segments entry, or <code>null</code> if a matching segments entry could not be found
+	*/
+	public SegmentsEntry fetchByG_K(long groupId, String key,
+		boolean retrieveFromCache);
+
+	/**
+	* Removes the segments entry where groupId = &#63; and key = &#63; from the database.
+	*
+	* @param groupId the group ID
+	* @param key the key
+	* @return the segments entry that was removed
+	*/
+	public SegmentsEntry removeByG_K(long groupId, String key)
+		throws NoSuchEntryException;
+
+	/**
+	* Returns the number of segments entries where groupId = &#63; and key = &#63;.
+	*
+	* @param groupId the group ID
+	* @param key the key
+	* @return the number of matching segments entries
+	*/
+	public int countByG_K(long groupId, String key);
 
 	/**
 	* Caches the segments entry in the entity cache if it is enabled.
