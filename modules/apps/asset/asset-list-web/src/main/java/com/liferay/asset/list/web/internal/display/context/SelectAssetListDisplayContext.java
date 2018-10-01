@@ -193,7 +193,6 @@ public class SelectAssetListDisplayContext {
 						dropdownItem.setLabel(
 							LanguageUtil.get(_request, "title"));
 					});
-
 				add(
 					dropdownItem -> {
 						dropdownItem.setActive(
