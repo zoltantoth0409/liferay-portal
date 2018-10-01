@@ -231,8 +231,8 @@ public class SelectAssetListDisplayContext {
 		PortletURL portletURL = _renderResponse.createRenderURL();
 
 		portletURL.setParameter("mvcPath", "/select_asset_list.jsp");
-		portletURL.setParameter("eventName", getEventName());
 		portletURL.setParameter("keywords", _getKeywords());
+		portletURL.setParameter("eventName", getEventName());
 
 		return portletURL;
 	}
