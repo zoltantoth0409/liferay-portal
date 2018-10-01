@@ -80,7 +80,7 @@ public class NavigationMenuTag extends IncludeTag {
 			if (_siteNavigationMenuId > 0) {
 				branchNavItems = Collections.emptyList();
 
-				navItems = _getMenuItems(_getBranchNavItems());
+				navItems = _getMenuNavItems(_getBranchNavItems());
 			}
 			else {
 				branchNavItems = getBranchNavItems(request);
@@ -228,7 +228,7 @@ public class NavigationMenuTag extends IncludeTag {
 	@Deprecated
 	protected List<NavItem> getMenuItems() {
 		try {
-			return _getMenuItems(new ArrayList<NavItem>());
+			return _getMenuNavItems(new ArrayList<NavItem>());
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -305,7 +305,7 @@ public class NavigationMenuTag extends IncludeTag {
 		return navItems;
 	}
 
-	private List<NavItem> _getMenuItems(List<NavItem> branchNavItems)
+	private List<NavItem> _getMenuNavItems(List<NavItem> branchNavItems)
 		throws Exception {
 
 		long parentSiteNavigationMenuItemId = GetterUtil.getLong(_rootItemId);
