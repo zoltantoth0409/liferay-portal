@@ -31,9 +31,10 @@ DLOpenerGoogleDriveFileReference dlOpenerGoogleDriveFileReference = (DLOpenerGoo
 		(function() {
 			var TIME_POLLING = 500;
 			var TIME_SHOW_MSG = 2000;
-			var isTimeConsumed = false;
+
 			var defaultError = '<liferay-ui:message key="an-unexpected-error-occurred" />';
 			var dialogId = '<portlet:namespace />LoadingDialog';
+			var isTimeConsumed = false;
 			var url;
 
 			showStatusMessage = Liferay.lazyLoad(
