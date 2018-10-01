@@ -62,11 +62,11 @@ import org.osgi.framework.BundleActivator;
  */
 public abstract class BaseClientTestCase {
 
-	public static Archive<?> getDeployment(
+	public static Archive<?> getArchive(
 			Class<? extends BundleActivator> bundleActivatorClass)
 		throws Exception {
 
-		return OAuth2ProviderTestUtil.getDeployment(bundleActivatorClass);
+		return OAuth2ProviderTestUtil.getArchive(bundleActivatorClass);
 	}
 
 	@BeforeClass
