@@ -16,9 +16,20 @@ package com.liferay.segments.service.http;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.LocalizationUtil;
+
+import com.liferay.segments.service.SegmentsEntryServiceUtil;
+
+import java.rmi.RemoteException;
+
+import java.util.Locale;
+import java.util.Map;
+
 /**
  * Provides the SOAP utility for the
- * {@link com.liferay.segments.service.SegmentsEntryServiceUtil} service utility. The
+ * {@link SegmentsEntryServiceUtil} service utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it is difficult for SOAP to
  * support certain types.
@@ -53,9 +64,120 @@ import aQute.bnd.annotation.ProviderType;
  * @author Eduardo Garcia
  * @see SegmentsEntryServiceHttp
  * @see com.liferay.segments.model.SegmentsEntrySoap
- * @see com.liferay.segments.service.SegmentsEntryServiceUtil
+ * @see SegmentsEntryServiceUtil
  * @generated
  */
 @ProviderType
 public class SegmentsEntryServiceSoap {
+	public static com.liferay.segments.model.SegmentsEntrySoap addSegmentsEntry(
+		String[] nameMapLanguageIds, String[] nameMapValues,
+		String[] descriptionMapLanguageIds, String[] descriptionMapValues,
+		boolean active, String criteria, String key, String type,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws RemoteException {
+		try {
+			Map<Locale, String> nameMap = LocalizationUtil.getLocalizationMap(nameMapLanguageIds,
+					nameMapValues);
+			Map<Locale, String> descriptionMap = LocalizationUtil.getLocalizationMap(descriptionMapLanguageIds,
+					descriptionMapValues);
+
+			com.liferay.segments.model.SegmentsEntry returnValue = SegmentsEntryServiceUtil.addSegmentsEntry(nameMap,
+					descriptionMap, active, criteria, key, type, serviceContext);
+
+			return com.liferay.segments.model.SegmentsEntrySoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.segments.model.SegmentsEntrySoap deleteSegmentsEntry(
+		long segmentsEntryId) throws RemoteException {
+		try {
+			com.liferay.segments.model.SegmentsEntry returnValue = SegmentsEntryServiceUtil.deleteSegmentsEntry(segmentsEntryId);
+
+			return com.liferay.segments.model.SegmentsEntrySoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.segments.model.SegmentsEntrySoap[] getSegmentsEntries(
+		long groupId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.segments.model.SegmentsEntry> orderByComparator)
+		throws RemoteException {
+		try {
+			java.util.List<com.liferay.segments.model.SegmentsEntry> returnValue =
+				SegmentsEntryServiceUtil.getSegmentsEntries(groupId, start,
+					end, orderByComparator);
+
+			return com.liferay.segments.model.SegmentsEntrySoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static int getSegmentsEntriesCount(long groupId)
+		throws RemoteException {
+		try {
+			int returnValue = SegmentsEntryServiceUtil.getSegmentsEntriesCount(groupId);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.segments.model.SegmentsEntrySoap getSegmentsEntry(
+		long segmentsEntryId) throws RemoteException {
+		try {
+			com.liferay.segments.model.SegmentsEntry returnValue = SegmentsEntryServiceUtil.getSegmentsEntry(segmentsEntryId);
+
+			return com.liferay.segments.model.SegmentsEntrySoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.segments.model.SegmentsEntrySoap updateSegmentsEntry(
+		long segmentsEntryId, String[] nameMapLanguageIds,
+		String[] nameMapValues, String[] descriptionMapLanguageIds,
+		String[] descriptionMapValues, boolean active, String criteria,
+		String key,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws RemoteException {
+		try {
+			Map<Locale, String> nameMap = LocalizationUtil.getLocalizationMap(nameMapLanguageIds,
+					nameMapValues);
+			Map<Locale, String> descriptionMap = LocalizationUtil.getLocalizationMap(descriptionMapLanguageIds,
+					descriptionMapValues);
+
+			com.liferay.segments.model.SegmentsEntry returnValue = SegmentsEntryServiceUtil.updateSegmentsEntry(segmentsEntryId,
+					nameMap, descriptionMap, active, criteria, key,
+					serviceContext);
+
+			return com.liferay.segments.model.SegmentsEntrySoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(SegmentsEntryServiceSoap.class);
 }

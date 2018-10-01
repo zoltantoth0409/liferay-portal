@@ -42,6 +42,22 @@ public class SegmentsEntryServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.segments.service.impl.SegmentsEntryServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static com.liferay.segments.model.SegmentsEntry addSegmentsEntry(
+		java.util.Map<java.util.Locale, String> nameMap,
+		java.util.Map<java.util.Locale, String> descriptionMap, boolean active,
+		String criteria, String key, String type,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .addSegmentsEntry(nameMap, descriptionMap, active, criteria,
+			key, type, serviceContext);
+	}
+
+	public static com.liferay.segments.model.SegmentsEntry deleteSegmentsEntry(
+		long segmentsEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deleteSegmentsEntry(segmentsEntryId);
+	}
 
 	/**
 	* Returns the OSGi service identifier.
@@ -50,6 +66,45 @@ public class SegmentsEntryServiceUtil {
 	*/
 	public static String getOSGiServiceIdentifier() {
 		return getService().getOSGiServiceIdentifier();
+	}
+
+	public static java.util.List<com.liferay.segments.model.SegmentsEntry> getSegmentsEntries(
+		long groupId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.segments.model.SegmentsEntry> orderByComparator)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .getSegmentsEntries(groupId, start, end, orderByComparator);
+	}
+
+	public static int getSegmentsEntriesCount(long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getSegmentsEntriesCount(groupId);
+	}
+
+	public static com.liferay.segments.model.SegmentsEntry getSegmentsEntry(
+		long segmentsEntryId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getSegmentsEntry(segmentsEntryId);
+	}
+
+	public static com.liferay.portal.kernel.search.BaseModelSearchResult<com.liferay.segments.model.SegmentsEntry> searchSegmentsEntries(
+		long companyId, long groupId, String keywords, int start, int end,
+		com.liferay.portal.kernel.search.Sort sort)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .searchSegmentsEntries(companyId, groupId, keywords, start,
+			end, sort);
+	}
+
+	public static com.liferay.segments.model.SegmentsEntry updateSegmentsEntry(
+		long segmentsEntryId, java.util.Map<java.util.Locale, String> nameMap,
+		java.util.Map<java.util.Locale, String> descriptionMap, boolean active,
+		String criteria, String key,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .updateSegmentsEntry(segmentsEntryId, nameMap,
+			descriptionMap, active, criteria, key, serviceContext);
 	}
 
 	public static SegmentsEntryService getService() {

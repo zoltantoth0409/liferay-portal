@@ -23,10 +23,16 @@ import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.model.PersistedModel;
+import com.liferay.portal.kernel.model.SystemEventConstants;
+import com.liferay.portal.kernel.search.BaseModelSearchResult;
 import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
+import com.liferay.portal.kernel.search.SearchContext;
+import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.service.BaseLocalService;
 import com.liferay.portal.kernel.service.PersistedModelLocalService;
+import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -37,6 +43,8 @@ import com.liferay.segments.model.SegmentsEntry;
 import java.io.Serializable;
 
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 /**
  * Provides the local service interface for SegmentsEntry. Methods of this
@@ -60,6 +68,11 @@ public interface SegmentsEntryLocalService extends BaseLocalService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link SegmentsEntryLocalServiceUtil} to access the segments entry local service. Add custom service methods to {@link com.liferay.segments.service.impl.SegmentsEntryLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	@Indexable(type = IndexableType.REINDEX)
+	public SegmentsEntry addSegmentsEntry(Map<Locale, String> nameMap,
+		Map<Locale, String> descriptionMap, boolean active, String criteria,
+		String key, String type, ServiceContext serviceContext)
+		throws PortalException;
 
 	/**
 	* Adds the segments entry to the database. Also notifies the appropriate model listeners.
@@ -86,6 +99,8 @@ public interface SegmentsEntryLocalService extends BaseLocalService,
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException;
 
+	public void deleteSegmentsEntries(long groupId) throws PortalException;
+
 	/**
 	* Deletes the segments entry with the primary key from the database. Also notifies the appropriate model listeners.
 	*
@@ -102,9 +117,12 @@ public interface SegmentsEntryLocalService extends BaseLocalService,
 	*
 	* @param segmentsEntry the segments entry
 	* @return the segments entry that was removed
+	* @throws PortalException
 	*/
 	@Indexable(type = IndexableType.DELETE)
-	public SegmentsEntry deleteSegmentsEntry(SegmentsEntry segmentsEntry);
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
+	public SegmentsEntry deleteSegmentsEntry(SegmentsEntry segmentsEntry)
+		throws PortalException;
 
 	public DynamicQuery dynamicQuery();
 
@@ -169,6 +187,9 @@ public interface SegmentsEntryLocalService extends BaseLocalService,
 	public SegmentsEntry fetchSegmentsEntry(long segmentsEntryId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public SegmentsEntry fetchSegmentsEntry(long groupId, String key);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -200,6 +221,10 @@ public interface SegmentsEntryLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<SegmentsEntry> getSegmentsEntries(int start, int end);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<SegmentsEntry> getSegmentsEntries(long groupId, int start,
+		int end, OrderByComparator<SegmentsEntry> orderByComparator);
+
 	/**
 	* Returns the number of segments entries.
 	*
@@ -207,6 +232,9 @@ public interface SegmentsEntryLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getSegmentsEntriesCount();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getSegmentsEntriesCount(long groupId);
 
 	/**
 	* Returns the segments entry with the primary key.
@@ -218,6 +246,25 @@ public interface SegmentsEntryLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public SegmentsEntry getSegmentsEntry(long segmentsEntryId)
 		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public SegmentsEntry getSegmentsEntry(long groupId, String key)
+		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public BaseModelSearchResult<SegmentsEntry> searchSegmentsEntries(
+		long companyId, long groupId, String keywords, int start, int end,
+		Sort sort) throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public BaseModelSearchResult<SegmentsEntry> searchSegmentsEntries(
+		SearchContext searchContext) throws PortalException;
+
+	@Indexable(type = IndexableType.REINDEX)
+	public SegmentsEntry updateSegmentsEntry(long segmentsEntryId,
+		Map<Locale, String> nameMap, Map<Locale, String> descriptionMap,
+		boolean active, String criteria, String key,
+		ServiceContext serviceContext) throws PortalException;
 
 	/**
 	* Updates the segments entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.

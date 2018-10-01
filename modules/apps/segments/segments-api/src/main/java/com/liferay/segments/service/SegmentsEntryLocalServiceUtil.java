@@ -42,6 +42,16 @@ public class SegmentsEntryLocalServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.segments.service.impl.SegmentsEntryLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static com.liferay.segments.model.SegmentsEntry addSegmentsEntry(
+		java.util.Map<java.util.Locale, String> nameMap,
+		java.util.Map<java.util.Locale, String> descriptionMap, boolean active,
+		String criteria, String key, String type,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .addSegmentsEntry(nameMap, descriptionMap, active, criteria,
+			key, type, serviceContext);
+	}
 
 	/**
 	* Adds the segments entry to the database. Also notifies the appropriate model listeners.
@@ -74,6 +84,11 @@ public class SegmentsEntryLocalServiceUtil {
 		return getService().deletePersistedModel(persistedModel);
 	}
 
+	public static void deleteSegmentsEntries(long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService().deleteSegmentsEntries(groupId);
+	}
+
 	/**
 	* Deletes the segments entry with the primary key from the database. Also notifies the appropriate model listeners.
 	*
@@ -92,9 +107,11 @@ public class SegmentsEntryLocalServiceUtil {
 	*
 	* @param segmentsEntry the segments entry
 	* @return the segments entry that was removed
+	* @throws PortalException
 	*/
 	public static com.liferay.segments.model.SegmentsEntry deleteSegmentsEntry(
-		com.liferay.segments.model.SegmentsEntry segmentsEntry) {
+		com.liferay.segments.model.SegmentsEntry segmentsEntry)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteSegmentsEntry(segmentsEntry);
 	}
 
@@ -181,6 +198,11 @@ public class SegmentsEntryLocalServiceUtil {
 		return getService().fetchSegmentsEntry(segmentsEntryId);
 	}
 
+	public static com.liferay.segments.model.SegmentsEntry fetchSegmentsEntry(
+		long groupId, String key) {
+		return getService().fetchSegmentsEntry(groupId, key);
+	}
+
 	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
 		return getService().getActionableDynamicQuery();
 	}
@@ -220,6 +242,13 @@ public class SegmentsEntryLocalServiceUtil {
 		return getService().getSegmentsEntries(start, end);
 	}
 
+	public static java.util.List<com.liferay.segments.model.SegmentsEntry> getSegmentsEntries(
+		long groupId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.segments.model.SegmentsEntry> orderByComparator) {
+		return getService()
+				   .getSegmentsEntries(groupId, start, end, orderByComparator);
+	}
+
 	/**
 	* Returns the number of segments entries.
 	*
@@ -227,6 +256,10 @@ public class SegmentsEntryLocalServiceUtil {
 	*/
 	public static int getSegmentsEntriesCount() {
 		return getService().getSegmentsEntriesCount();
+	}
+
+	public static int getSegmentsEntriesCount(long groupId) {
+		return getService().getSegmentsEntriesCount(groupId);
 	}
 
 	/**
@@ -240,6 +273,38 @@ public class SegmentsEntryLocalServiceUtil {
 		long segmentsEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getSegmentsEntry(segmentsEntryId);
+	}
+
+	public static com.liferay.segments.model.SegmentsEntry getSegmentsEntry(
+		long groupId, String key)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getSegmentsEntry(groupId, key);
+	}
+
+	public static com.liferay.portal.kernel.search.BaseModelSearchResult<com.liferay.segments.model.SegmentsEntry> searchSegmentsEntries(
+		long companyId, long groupId, String keywords, int start, int end,
+		com.liferay.portal.kernel.search.Sort sort)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .searchSegmentsEntries(companyId, groupId, keywords, start,
+			end, sort);
+	}
+
+	public static com.liferay.portal.kernel.search.BaseModelSearchResult<com.liferay.segments.model.SegmentsEntry> searchSegmentsEntries(
+		com.liferay.portal.kernel.search.SearchContext searchContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().searchSegmentsEntries(searchContext);
+	}
+
+	public static com.liferay.segments.model.SegmentsEntry updateSegmentsEntry(
+		long segmentsEntryId, java.util.Map<java.util.Locale, String> nameMap,
+		java.util.Map<java.util.Locale, String> descriptionMap, boolean active,
+		String criteria, String key,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .updateSegmentsEntry(segmentsEntryId, nameMap,
+			descriptionMap, active, criteria, key, serviceContext);
 	}
 
 	/**

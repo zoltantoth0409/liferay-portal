@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.service.BaseLocalService;
 import com.liferay.portal.kernel.service.PersistedModelLocalService;
+import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -60,6 +61,9 @@ public interface SegmentsEntryRelLocalService extends BaseLocalService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link SegmentsEntryRelLocalServiceUtil} to access the segments entry rel local service. Add custom service methods to {@link com.liferay.segments.service.impl.SegmentsEntryRelLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public SegmentsEntryRel addSegmentsEntryRel(long segmentsEntryId,
+		long classNameId, long classPK, ServiceContext serviceContext)
+		throws PortalException;
 
 	/**
 	* Adds the segments entry rel to the database. Also notifies the appropriate model listeners.
@@ -107,6 +111,10 @@ public interface SegmentsEntryRelLocalService extends BaseLocalService,
 	@Indexable(type = IndexableType.DELETE)
 	public SegmentsEntryRel deleteSegmentsEntryRel(
 		SegmentsEntryRel segmentsEntryRel);
+
+	public void deleteSegmentsEntryRels(long segmentsEntryId);
+
+	public void deleteSegmentsEntryRels(long classNameId, long classPK);
 
 	public DynamicQuery dynamicQuery();
 
@@ -212,6 +220,13 @@ public interface SegmentsEntryRelLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<SegmentsEntryRel> getSegmentsEntryRels(int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<SegmentsEntryRel> getSegmentsEntryRels(long segmentsEntryId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<SegmentsEntryRel> getSegmentsEntryRels(long classNameId,
+		long classPK);
 
 	/**
 	* Returns the number of segments entry rels.
