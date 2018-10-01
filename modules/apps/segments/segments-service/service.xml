@@ -26,10 +26,10 @@
 
 		<column localized="true" name="name" type="String" />
 		<column localized="true" name="description" type="String" />
-		<column name="key" type="String" />
 		<column name="active" type="boolean" />
-		<column name="type" type="String" />
 		<column name="criteria" type="String" />
+		<column name="key" type="String" />
+		<column name="type" type="String" />
 
 		<!-- Order -->
 
