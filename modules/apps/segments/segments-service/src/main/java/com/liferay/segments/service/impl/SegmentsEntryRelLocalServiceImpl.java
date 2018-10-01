@@ -71,13 +71,13 @@ public class SegmentsEntryRelLocalServiceImpl
 	}
 
 	@Override
-	public List<SegmentsEntryRel> getSegmentEntryRels(long segmentEntryId) {
+	public List<SegmentsEntryRel> getSegmentsEntryRels(long segmentsEntryId) {
 		return segmentsEntryRelPersistence.findBySegmentsEntryId(
-			segmentEntryId);
+			segmentsEntryId);
 	}
 
 	@Override
-	public List<SegmentsEntryRel> getSegmentEntryRels(
+	public List<SegmentsEntryRel> getSegmentsEntryRels(
 		long classNameId, long classPK) {
 
 		return segmentsEntryRelPersistence.findByCN_CPK(classNameId, classPK);
