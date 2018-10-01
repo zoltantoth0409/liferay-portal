@@ -32,10 +32,10 @@ public class CallableUtil {
 		Consumer<Map<String, Serializable>> consumer) {
 
 		return () -> {
+			Map<String, Serializable> expandoBridgeAttributes = null;
+
 			ServiceContext serviceContext =
 				ServiceContextThreadLocal.getServiceContext();
-
-			Map<String, Serializable> expandoBridgeAttributes = null;
 
 			if (serviceContext != null) {
 				expandoBridgeAttributes =
