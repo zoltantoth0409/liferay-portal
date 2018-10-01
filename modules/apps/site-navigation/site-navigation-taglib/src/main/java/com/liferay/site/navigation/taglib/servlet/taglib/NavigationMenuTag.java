@@ -275,7 +275,7 @@ public class NavigationMenuTag extends IncludeTag {
 			return new ArrayList<>();
 		}
 
-		List<SiteNavigationMenuItem> ancestors = new ArrayList<>();
+		List<SiteNavigationMenuItem> ancestorSiteNavigationMenuItems = new ArrayList<>();
 
 		while (siteNavigationMenuItem.getParentSiteNavigationMenuItemId() !=
 					0) {
@@ -286,16 +286,18 @@ public class NavigationMenuTag extends IncludeTag {
 						siteNavigationMenuItem.
 							getParentSiteNavigationMenuItemId());
 
-			ancestors.add(siteNavigationMenuItem);
+			ancestorSiteNavigationMenuItems.add(siteNavigationMenuItem);
 		}
 
-		List<NavItem> navItems = new ArrayList<>(ancestors.size() + 1);
+		List<NavItem> navItems = new ArrayList<>(ancestorSiteNavigationMenuItems.size() + 1);
 
-		for (int i = ancestors.size() - 1; i >= 0; i--) {
-			SiteNavigationMenuItem ancestor = ancestors.get(i);
+		for (int i = ancestorSiteNavigationMenuItems.size() - 1; i >= 0; i--) {
+			SiteNavigationMenuItem ancestorSiteNavigationMenuItem =
+				ancestorSiteNavigationMenuItems.get(i);
 
 			navItems.add(
-				new SiteNavigationMenuNavItem(request, themeDisplay, ancestor));
+				new SiteNavigationMenuNavItem(
+					request, themeDisplay, ancestorSiteNavigationMenuItem));
 		}
 
 		navItems.add(
