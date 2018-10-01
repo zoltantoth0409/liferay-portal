@@ -141,11 +141,11 @@ public class GoogleDriveBackgroundTaskStatusMVCResourceCommand
 
 		return StringBundler.concat(
 			"https://docs.google.com/",
-			_mimeTypePathFragmentMapping.get(mimeType), "/d/",
+			_paths.get(mimeType), "/d/",
 			googleDriveFileId, "/edit");
 	}
 
-	private static final Map<String, String> _mimeTypePathFragmentMapping =
+	private static final Map<String, String> _paths =
 		MapUtil.fromArray(
 			DLOpenerGoogleDriveMimeTypes.APPLICATION_VND_GOOGLE_APPS_DOCUMENT,
 			"document",
