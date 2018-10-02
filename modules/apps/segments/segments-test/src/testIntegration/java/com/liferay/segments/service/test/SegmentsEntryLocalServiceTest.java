@@ -85,6 +85,7 @@ public class SegmentsEntryLocalServiceTest {
 		Assert.assertEquals(
 			FriendlyURLNormalizerUtil.normalize(key), segmentsEntry.getKey());
 		Assert.assertEquals(type, segmentsEntry.getType());
+
 		Assert.assertEquals(
 			1,
 			_segmentsEntryLocalService.getSegmentsEntriesCount(
@@ -198,6 +199,7 @@ public class SegmentsEntryLocalServiceTest {
 		Assert.assertEquals(
 			FriendlyURLNormalizerUtil.normalize(key),
 			updatedSegmentsEntry.getKey());
+
 		Assert.assertEquals(
 			1,
 			_segmentsEntryLocalService.getSegmentsEntriesCount(
