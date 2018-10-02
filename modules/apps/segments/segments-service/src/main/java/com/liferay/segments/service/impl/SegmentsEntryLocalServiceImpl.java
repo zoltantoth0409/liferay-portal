@@ -128,11 +128,6 @@ public class SegmentsEntryLocalServiceImpl
 	public SegmentsEntry deleteSegmentsEntry(SegmentsEntry segmentsEntry)
 		throws PortalException {
 
-		// Segment rels
-
-		segmentsEntryRelLocalService.deleteSegmentsEntryRels(
-			segmentsEntry.getSegmentsEntryId());
-
 		// Segments entry
 
 		segmentsEntryPersistence.remove(segmentsEntry);
@@ -141,6 +136,11 @@ public class SegmentsEntryLocalServiceImpl
 
 		resourceLocalService.deleteResource(
 			segmentsEntry, ResourceConstants.SCOPE_INDIVIDUAL);
+
+		// Segment rels
+
+		segmentsEntryRelLocalService.deleteSegmentsEntryRels(
+			segmentsEntry.getSegmentsEntryId());
 
 		return segmentsEntry;
 	}
