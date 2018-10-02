@@ -505,7 +505,7 @@ public class PortletContainerImpl implements PortletContainer {
 				Layout requestLayout = (Layout)request.getAttribute(
 					WebKeys.LAYOUT);
 
-				_setAllRenderParametersV3(
+				_setAllRenderParameters(
 					request, liferayActionResponse, portlet, requestLayout);
 			}
 
@@ -672,7 +672,7 @@ public class PortletContainerImpl implements PortletContainer {
 						new HashMap<>(renderParameterMap));
 				}
 				else {
-					_setAllRenderParametersV3(
+					_setAllRenderParameters(
 						request, liferayEventResponse, portlet, requestLayout);
 				}
 			}
@@ -1035,7 +1035,7 @@ public class PortletContainerImpl implements PortletContainer {
 		}
 	}
 
-	private void _setAllRenderParametersV3(
+	private void _setAllRenderParameters(
 		HttpServletRequest request,
 		LiferayStateAwareResponse liferayStateAwareResponse, Portlet portlet,
 		Layout requestLayout) {
