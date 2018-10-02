@@ -211,7 +211,7 @@ public class AssetPublisherConfigurationAction
 					validateEmailFrom(actionRequest);
 				}
 
-				updateAssetSelection(actionRequest);
+				updateSelectionStyle(actionRequest);
 
 				updateDisplaySettings(actionRequest);
 
@@ -628,7 +628,7 @@ public class AssetPublisherConfigurationAction
 		}
 	}
 
-	protected void updateAssetSelection(ActionRequest actionRequest) {
+	protected void updateSelectionStyle(ActionRequest actionRequest) {
 		String selectionStyle = getParameter(actionRequest, "selectionStyle");
 
 		if (Validator.isNull(selectionStyle)) {
