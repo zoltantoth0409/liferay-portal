@@ -211,6 +211,8 @@ public class AssetPublisherConfigurationAction
 					validateEmailFrom(actionRequest);
 				}
 
+				updateAssetSelection(actionRequest);
+
 				updateDisplaySettings(actionRequest);
 
 				String selectionStyle = getParameter(
@@ -623,6 +625,14 @@ public class AssetPublisherConfigurationAction
 			displayStyle.equals("view-count-details")) {
 
 			preferences.setValue("displayStyle", "full-content");
+		}
+	}
+
+	protected void updateAssetSelection(ActionRequest actionRequest) {
+		String selectionStyle = getParameter(actionRequest, "selectionStyle");
+
+		if (Validator.isNull(selectionStyle)) {
+			setPreference(actionRequest, "selectionStyle", "dynamic");
 		}
 	}
 
