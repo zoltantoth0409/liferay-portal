@@ -329,7 +329,7 @@ private File _getRootDir(File dir, String markerFileName) {
 }
 
 private List<String> _getTestClasses(Task task) {
-	List<String> testClasses = task.project.gradle.testClasses.collect {
+	return task.project.gradle.testClasses.collect {
 		String testClass ->
 
 		if (testClass.startsWith("/modules/")) {
@@ -344,8 +344,6 @@ private List<String> _getTestClasses(Task task) {
 
 		return testClass
 	}
-
-	return testClasses
 }
 
 private boolean _hasTestClasses(Task task, String testClassesDirName) {
