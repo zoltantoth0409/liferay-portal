@@ -77,18 +77,18 @@ public class SegmentsEntryLocalServiceTest {
 			name, description, criteria, key, type);
 
 		Assert.assertEquals(
-			1,
-			_segmentsEntryLocalService.getSegmentsEntriesCount(
-				_group.getGroupId()));
-		Assert.assertTrue(segmentsEntry.isActive());
-		Assert.assertEquals(
 			name, segmentsEntry.getName(LocaleUtil.getDefault()));
 		Assert.assertEquals(
 			description, segmentsEntry.getDescription(LocaleUtil.getDefault()));
+		Assert.assertTrue(segmentsEntry.isActive());
 		Assert.assertEquals(criteria, segmentsEntry.getCriteria());
 		Assert.assertEquals(
 			FriendlyURLNormalizerUtil.normalize(key), segmentsEntry.getKey());
 		Assert.assertEquals(type, segmentsEntry.getType());
+		Assert.assertEquals(
+			1,
+			_segmentsEntryLocalService.getSegmentsEntriesCount(
+				_group.getGroupId()));
 	}
 
 	@Test(expected = SegmentsEntryKeyException.class)
@@ -186,20 +186,20 @@ public class SegmentsEntryLocalServiceTest {
 				ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
 		Assert.assertEquals(
-			1,
-			_segmentsEntryLocalService.getSegmentsEntriesCount(
-				_group.getGroupId()));
-		Assert.assertFalse(updatedSegmentsEntry.isActive());
-		Assert.assertEquals(
 			nameMap.get(LocaleUtil.getDefault()),
 			updatedSegmentsEntry.getName(LocaleUtil.getDefault()));
 		Assert.assertEquals(
 			descriptionMap.get(LocaleUtil.getDefault()),
 			updatedSegmentsEntry.getDescription(LocaleUtil.getDefault()));
+		Assert.assertFalse(updatedSegmentsEntry.isActive());
 		Assert.assertEquals(criteria, updatedSegmentsEntry.getCriteria());
 		Assert.assertEquals(
 			FriendlyURLNormalizerUtil.normalize(key),
 			updatedSegmentsEntry.getKey());
+		Assert.assertEquals(
+			1,
+			_segmentsEntryLocalService.getSegmentsEntriesCount(
+				_group.getGroupId()));
 	}
 
 	@Test(expected = SegmentsEntryKeyException.class)
