@@ -128,10 +128,8 @@ public class SharedWithMeViewMVCRenderCommand implements MVCRenderCommand {
 
 		LiferayPortletRequest liferayPortletRequest =
 			_portal.getLiferayPortletRequest(renderRequest);
-
 		LiferayPortletResponse liferayPortletResponse =
 			_portal.getLiferayPortletResponse(renderResponse);
-
 		HttpServletRequest request = _portal.getHttpServletRequest(
 			renderRequest);
 
