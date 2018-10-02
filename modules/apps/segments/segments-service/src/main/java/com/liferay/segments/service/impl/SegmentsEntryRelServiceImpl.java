@@ -49,7 +49,7 @@ public class SegmentsEntryRelServiceImpl
 	}
 
 	@Override
-	public void deleteCommerceDiscountRel(long segmentsEntryRelId)
+	public void deleteSegmentsEntryRel(long segmentsEntryRelId)
 		throws PortalException {
 
 		SegmentsEntryRel segmentsEntryRel =
