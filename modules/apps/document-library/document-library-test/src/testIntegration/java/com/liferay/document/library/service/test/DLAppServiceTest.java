@@ -2090,7 +2090,7 @@ public class DLAppServiceTest extends BaseDLAppTestCase {
 		return DLAppServiceUtil.updateFileEntry(
 			fileEntryId, fileName, ContentTypes.TEXT_PLAIN, fileName,
 			StringPool.BLANK, StringPool.BLANK,
-			DLVersionNumberIncrease.fromBoolean(majorVersion),
+			DLVersionNumberIncrease.fromMajorVersion(majorVersion),
 			TestDataConstants.TEST_BYTE_ARRAY, serviceContext);
 	}
 

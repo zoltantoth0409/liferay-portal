@@ -163,7 +163,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		throws PortalException {
 
 		checkInFileEntry(
-			userId, fileEntryId, DLVersionNumberIncrease.fromBoolean(major),
+			userId, fileEntryId, DLVersionNumberIncrease.fromMajorVersion(major),
 			changeLog, serviceContext);
 	}
 
@@ -1036,7 +1036,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 
 		return updateFileEntry(
 			userId, fileEntryId, sourceFileName, mimeType, title, description,
-			changeLog, DLVersionNumberIncrease.fromBoolean(major), inputStream,
+			changeLog, DLVersionNumberIncrease.fromMajorVersion(major), inputStream,
 			size, serviceContext);
 	}
 

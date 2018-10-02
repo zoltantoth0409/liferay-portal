@@ -109,7 +109,7 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 		throws PortalException {
 
 		dlFileEntryService.checkInFileEntry(
-			fileEntryId, DLVersionNumberIncrease.fromBoolean(major), changeLog,
+			fileEntryId, DLVersionNumberIncrease.fromMajorVersion(major), changeLog,
 			serviceContext);
 	}
 
@@ -711,7 +711,7 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 
 		return dlFileEntryService.updateFileEntry(
 			fileEntryId, sourceFileName, mimeType, title, description,
-			changeLog, DLVersionNumberIncrease.fromBoolean(majorVersion),
+			changeLog, DLVersionNumberIncrease.fromMajorVersion(majorVersion),
 			fileEntryTypeId, ddmFormValuesMap, file, is, size, serviceContext);
 	}
 

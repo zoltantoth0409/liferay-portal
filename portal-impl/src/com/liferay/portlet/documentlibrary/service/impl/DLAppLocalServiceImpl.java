@@ -893,7 +893,7 @@ public class DLAppLocalServiceImpl extends DLAppLocalServiceBaseImpl {
 
 		return updateFileEntry(
 			userId, fileEntryId, sourceFileName, mimeType, title, description,
-			changeLog, DLVersionNumberIncrease.fromBoolean(majorVersion), bytes,
+			changeLog, DLVersionNumberIncrease.fromMajorVersion(majorVersion), bytes,
 			serviceContext);
 	}
 
@@ -910,7 +910,7 @@ public class DLAppLocalServiceImpl extends DLAppLocalServiceBaseImpl {
 
 		return updateFileEntry(
 			userId, fileEntryId, sourceFileName, mimeType, title, description,
-			changeLog, DLVersionNumberIncrease.fromBoolean(majorVersion), file,
+			changeLog, DLVersionNumberIncrease.fromMajorVersion(majorVersion), file,
 			serviceContext);
 	}
 
@@ -928,7 +928,7 @@ public class DLAppLocalServiceImpl extends DLAppLocalServiceBaseImpl {
 
 		return updateFileEntry(
 			userId, fileEntryId, sourceFileName, mimeType, title, description,
-			changeLog, DLVersionNumberIncrease.fromBoolean(majorVersion), is,
+			changeLog, DLVersionNumberIncrease.fromMajorVersion(majorVersion), is,
 			size, serviceContext);
 	}
 

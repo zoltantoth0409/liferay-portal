@@ -470,7 +470,7 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 		throws PortalException {
 
 		checkInFileEntry(
-			fileEntryId, DLVersionNumberIncrease.fromBoolean(majorVersion),
+			fileEntryId, DLVersionNumberIncrease.fromMajorVersion(majorVersion),
 			changeLog, serviceContext);
 	}
 
@@ -2459,7 +2459,7 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 
 		return updateFileEntry(
 			fileEntryId, sourceFileName, mimeType, title, description,
-			changeLog, DLVersionNumberIncrease.fromBoolean(majorVersion), bytes,
+			changeLog, DLVersionNumberIncrease.fromMajorVersion(majorVersion), bytes,
 			serviceContext);
 	}
 
@@ -2476,7 +2476,7 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 
 		return updateFileEntry(
 			fileEntryId, sourceFileName, mimeType, title, description,
-			changeLog, DLVersionNumberIncrease.fromBoolean(majorVersion), file,
+			changeLog, DLVersionNumberIncrease.fromMajorVersion(majorVersion), file,
 			serviceContext);
 	}
 
@@ -2494,7 +2494,7 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 
 		return updateFileEntry(
 			fileEntryId, sourceFileName, mimeType, title, description,
-			changeLog, DLVersionNumberIncrease.fromBoolean(majorVersion), is,
+			changeLog, DLVersionNumberIncrease.fromMajorVersion(majorVersion), is,
 			size, serviceContext);
 	}
 
@@ -2725,7 +2725,7 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 
 		return updateFileEntryAndCheckIn(
 			fileEntryId, sourceFileName, mimeType, title, description,
-			changeLog, DLVersionNumberIncrease.fromBoolean(majorVersion), file,
+			changeLog, DLVersionNumberIncrease.fromMajorVersion(majorVersion), file,
 			serviceContext);
 	}
 
@@ -2743,7 +2743,7 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 
 		return updateFileEntryAndCheckIn(
 			fileEntryId, sourceFileName, mimeType, title, description,
-			changeLog, DLVersionNumberIncrease.fromBoolean(majorVersion), is,
+			changeLog, DLVersionNumberIncrease.fromMajorVersion(majorVersion), is,
 			size, serviceContext);
 	}
 
@@ -2960,7 +2960,7 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 					sourceFileName, fileVersion.getMimeType(),
 					fileVersion.getTitle(), fileVersion.getDescription(),
 					StringPool.BLANK,
-					DLVersionNumberIncrease.fromBoolean(
+					DLVersionNumberIncrease.fromMajorVersion(
 						DLAppUtil.isMajorVersion(
 							previousFileVersion, fileVersion)),
 					fileVersion.getContentStream(false), fileVersion.getSize(),

@@ -109,7 +109,7 @@ public class LocalRepositoryProxyBean
 
 		checkInFileEntry(
 			userId, fileEntryId,
-			DLVersionNumberIncrease.fromBoolean(majorVersion), changeLog,
+			DLVersionNumberIncrease.fromMajorVersion(majorVersion), changeLog,
 			serviceContext);
 	}
 
@@ -422,7 +422,7 @@ public class LocalRepositoryProxyBean
 
 		return updateFileEntry(
 			userId, fileEntryId, sourceFileName, mimeType, title, description,
-			changeLog, DLVersionNumberIncrease.fromBoolean(majorVersion), file,
+			changeLog, DLVersionNumberIncrease.fromMajorVersion(majorVersion), file,
 			serviceContext);
 	}
 
@@ -440,7 +440,7 @@ public class LocalRepositoryProxyBean
 
 		return updateFileEntry(
 			userId, fileEntryId, sourceFileName, mimeType, title, description,
-			changeLog, DLVersionNumberIncrease.fromBoolean(majorVersion), is,
+			changeLog, DLVersionNumberIncrease.fromMajorVersion(majorVersion), is,
 			size, serviceContext);
 	}
 

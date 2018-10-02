@@ -316,7 +316,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 
 		if (fileEntryId > 0) {
 			_dlAppService.checkInFileEntry(
-				fileEntryId, DLVersionNumberIncrease.fromBoolean(majorVersion),
+				fileEntryId, DLVersionNumberIncrease.fromMajorVersion(majorVersion),
 				changeLog, serviceContext);
 		}
 		else {
@@ -326,7 +326,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 			for (long curFileEntryId : fileEntryIds) {
 				_dlAppService.checkInFileEntry(
 					curFileEntryId,
-					DLVersionNumberIncrease.fromBoolean(majorVersion),
+					DLVersionNumberIncrease.fromMajorVersion(majorVersion),
 					changeLog, serviceContext);
 			}
 		}
@@ -960,7 +960,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 				fileEntry = _dlAppService.updateFileEntryAndCheckIn(
 					fileEntryId, sourceFileName, contentType, title,
 					description, changeLog,
-					DLVersionNumberIncrease.fromBoolean(majorVersion),
+					DLVersionNumberIncrease.fromMajorVersion(majorVersion),
 					inputStream, size, serviceContext);
 			}
 			else {
@@ -970,7 +970,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 				fileEntry = _dlAppService.updateFileEntry(
 					fileEntryId, sourceFileName, contentType, title,
 					description, changeLog,
-					DLVersionNumberIncrease.fromBoolean(majorVersion),
+					DLVersionNumberIncrease.fromMajorVersion(majorVersion),
 					inputStream, size, serviceContext);
 			}
 

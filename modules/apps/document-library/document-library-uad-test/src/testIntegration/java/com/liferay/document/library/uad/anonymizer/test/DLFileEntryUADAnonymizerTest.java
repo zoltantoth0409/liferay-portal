@@ -260,7 +260,7 @@ public class DLFileEntryUADAnonymizerTest
 		_dlAppLocalService.updateFileEntry(
 			userId, fileEntryId, sourceFileName, contentType, title,
 			description, changeLog,
-			DLVersionNumberIncrease.fromBoolean(majorVersion), is, size,
+			DLVersionNumberIncrease.fromMajorVersion(majorVersion), is, size,
 			serviceContext);
 	}
 

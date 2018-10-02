@@ -309,7 +309,7 @@ public class DLFileEntryLocalServiceImpl
 
 		dlFileEntryLocalService.checkInFileEntry(
 			userId, fileEntryId,
-			DLVersionNumberIncrease.fromBoolean(majorVersion), changeLog,
+			DLVersionNumberIncrease.fromMajorVersion(majorVersion), changeLog,
 			serviceContext);
 	}
 
@@ -1901,7 +1901,7 @@ public class DLFileEntryLocalServiceImpl
 
 		return dlFileEntryLocalService.updateFileEntry(
 			userId, fileEntryId, sourceFileName, mimeType, title, description,
-			changeLog, DLVersionNumberIncrease.fromBoolean(majorVersion),
+			changeLog, DLVersionNumberIncrease.fromMajorVersion(majorVersion),
 			fileEntryTypeId, ddmFormValuesMap, file, is, size, serviceContext);
 	}
 
