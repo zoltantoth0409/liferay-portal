@@ -237,14 +237,14 @@ public class TestPortalCacheListener<K extends Serializable, V>
 		public String toString() {
 			StringBundler sb = new StringBundler(9);
 
-			sb.append("{ActionType: ");
+			sb.append("{actiontype: ");
 			sb.append(_actionType);
-			sb.append(", Key: ");
+			sb.append(", key: ");
 			sb.append(_key);
-			sb.append(", Value: ");
-			sb.append(_value);
-			sb.append(", TimeToLive: ");
+			sb.append(", timetolive: ");
 			sb.append(_timeToLive);
+			sb.append(", value: ");
+			sb.append(_value);
 			sb.append("}");
 
 			return sb.toString();
