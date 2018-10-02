@@ -15,9 +15,13 @@ definition {
 			Card.clickSitePagesCardLink(cardName = "Content Page");
 		}
 
+		SelectFrame(locator1 = "IFrame#DIALOG");
+
 		PortletEntry.inputName(name = "${pageName}");
 
 		Button.click(button = "Save");
+
+		SelectFrame.selectFrameTop();
 	}
 
 	macro gotoEdit {
