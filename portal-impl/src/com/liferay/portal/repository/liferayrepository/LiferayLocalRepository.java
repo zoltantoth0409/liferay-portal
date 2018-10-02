@@ -577,8 +577,8 @@ public class LiferayLocalRepository
 
 		return updateFileEntry(
 			userId, fileEntryId, sourceFileName, mimeType, title, description,
-			changeLog, DLVersionNumberIncrease.fromMajorVersion(majorVersion), file,
-			serviceContext);
+			changeLog, DLVersionNumberIncrease.fromMajorVersion(majorVersion),
+			file, serviceContext);
 	}
 
 	/**
@@ -595,8 +595,8 @@ public class LiferayLocalRepository
 
 		return updateFileEntry(
 			userId, fileEntryId, sourceFileName, mimeType, title, description,
-			changeLog, DLVersionNumberIncrease.fromMajorVersion(majorVersion), is,
-			size, serviceContext);
+			changeLog, DLVersionNumberIncrease.fromMajorVersion(majorVersion),
+			is, size, serviceContext);
 	}
 
 	@Override

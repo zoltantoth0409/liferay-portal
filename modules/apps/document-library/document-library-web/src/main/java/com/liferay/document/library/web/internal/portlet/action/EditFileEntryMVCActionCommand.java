@@ -316,7 +316,8 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 
 		if (fileEntryId > 0) {
 			_dlAppService.checkInFileEntry(
-				fileEntryId, DLVersionNumberIncrease.fromMajorVersion(majorVersion),
+				fileEntryId,
+				DLVersionNumberIncrease.fromMajorVersion(majorVersion),
 				changeLog, serviceContext);
 		}
 		else {

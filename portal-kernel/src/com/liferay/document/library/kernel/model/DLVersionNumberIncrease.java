@@ -21,7 +21,9 @@ public enum DLVersionNumberIncrease {
 
 	MAJOR, MINOR, NONE;
 
-	public static DLVersionNumberIncrease fromMajorVersion(boolean majorVersion) {
+	public static DLVersionNumberIncrease fromMajorVersion(
+		boolean majorVersion) {
+
 		if (majorVersion) {
 			return MAJOR;
 		}

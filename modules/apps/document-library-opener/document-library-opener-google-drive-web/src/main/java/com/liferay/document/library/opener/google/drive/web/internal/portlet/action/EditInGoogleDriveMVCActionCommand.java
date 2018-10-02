@@ -174,7 +174,8 @@ public class EditInGoogleDriveMVCActionCommand extends BaseMVCActionCommand {
 				actionRequest);
 
 			_dlAppService.checkInFileEntry(
-				fileEntryId, DLVersionNumberIncrease.fromMajorVersion(majorVersion),
+				fileEntryId,
+				DLVersionNumberIncrease.fromMajorVersion(majorVersion),
 				changeLog, serviceContext);
 		}
 		else if (cmd.equals(

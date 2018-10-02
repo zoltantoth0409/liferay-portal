@@ -88,7 +88,8 @@ public class LiferayWorkflowCapability
 
 		checkInFileEntry(
 			userId, fileEntry,
-			DLVersionNumberIncrease.fromMajorVersion(majorVersion), serviceContext);
+			DLVersionNumberIncrease.fromMajorVersion(majorVersion),
+			serviceContext);
 	}
 
 	@Override
@@ -138,7 +139,8 @@ public class LiferayWorkflowCapability
 
 		updateFileEntry(
 			userId, fileEntry,
-			DLVersionNumberIncrease.fromMajorVersion(majorVersion), serviceContext);
+			DLVersionNumberIncrease.fromMajorVersion(majorVersion),
+			serviceContext);
 	}
 
 	@Override

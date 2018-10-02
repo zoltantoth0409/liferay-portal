@@ -109,8 +109,8 @@ public class DLFileEntryServiceImpl extends DLFileEntryServiceBaseImpl {
 		throws PortalException {
 
 		dlFileEntryService.checkInFileEntry(
-			fileEntryId, DLVersionNumberIncrease.fromMajorVersion(major), changeLog,
-			serviceContext);
+			fileEntryId, DLVersionNumberIncrease.fromMajorVersion(major),
+			changeLog, serviceContext);
 	}
 
 	@Override

@@ -67,7 +67,8 @@ public class MinimalWorkflowCapability
 
 		checkInFileEntry(
 			userId, fileEntry,
-			DLVersionNumberIncrease.fromMajorVersion(majorVersion), serviceContext);
+			DLVersionNumberIncrease.fromMajorVersion(majorVersion),
+			serviceContext);
 	}
 
 	@Override
@@ -107,7 +108,8 @@ public class MinimalWorkflowCapability
 
 		updateFileEntry(
 			userId, fileEntry,
-			DLVersionNumberIncrease.fromMajorVersion(majorVersion), serviceContext);
+			DLVersionNumberIncrease.fromMajorVersion(majorVersion),
+			serviceContext);
 	}
 
 	@Override
