@@ -269,7 +269,8 @@ public class KBArticleLocalServiceTest {
 
 	@Test
 	public void testAddKBArticleWithCustomHTML() throws Exception {
-		String content = "<a href='http://www.liferay.com' target='_blank' />";
+		String content =
+			"<a href=\"http://www.liferay.com\" target=\"_blank\" />";
 
 		KBArticle kbArticle = KBArticleLocalServiceUtil.addKBArticle(
 			_user.getUserId(), _kbFolderClassNameId,
