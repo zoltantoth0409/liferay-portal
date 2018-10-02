@@ -639,14 +639,6 @@ public class AssetPublisherConfigurationAction
 		}
 	}
 
-	protected void updateSelectionStyle(ActionRequest actionRequest) {
-		String selectionStyle = getParameter(actionRequest, "selectionStyle");
-
-		if (Validator.isNull(selectionStyle)) {
-			setPreference(actionRequest, "selectionStyle", "dynamic");
-		}
-	}
-
 	protected void updateDefaultAssetPublisher(ActionRequest actionRequest)
 		throws Exception {
 
@@ -797,6 +789,14 @@ public class AssetPublisherConfigurationAction
 			i++;
 
 			values = preferences.getValues("queryValues" + i, new String[0]);
+		}
+	}
+
+	protected void updateSelectionStyle(ActionRequest actionRequest) {
+		String selectionStyle = getParameter(actionRequest, "selectionStyle");
+
+		if (Validator.isNull(selectionStyle)) {
+			setPreference(actionRequest, "selectionStyle", "dynamic");
 		}
 	}
 
