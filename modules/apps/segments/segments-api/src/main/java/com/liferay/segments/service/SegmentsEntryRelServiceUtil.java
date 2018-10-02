@@ -51,9 +51,9 @@ public class SegmentsEntryRelServiceUtil {
 			serviceContext);
 	}
 
-	public static void deleteCommerceDiscountRel(long segmentsEntryRelId)
+	public static void deleteSegmentsEntryRel(long segmentsEntryRelId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		getService().deleteCommerceDiscountRel(segmentsEntryRelId);
+		getService().deleteSegmentsEntryRel(segmentsEntryRelId);
 	}
 
 	/**

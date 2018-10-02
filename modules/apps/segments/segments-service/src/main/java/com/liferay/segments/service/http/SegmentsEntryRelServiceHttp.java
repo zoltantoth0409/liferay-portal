@@ -89,13 +89,13 @@ public class SegmentsEntryRelServiceHttp {
 		}
 	}
 
-	public static void deleteCommerceDiscountRel(HttpPrincipal httpPrincipal,
+	public static void deleteSegmentsEntryRel(HttpPrincipal httpPrincipal,
 		long segmentsEntryRelId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			MethodKey methodKey = new MethodKey(SegmentsEntryRelServiceUtil.class,
-					"deleteCommerceDiscountRel",
-					_deleteCommerceDiscountRelParameterTypes1);
+					"deleteSegmentsEntryRel",
+					_deleteSegmentsEntryRelParameterTypes1);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey,
 					segmentsEntryRelId);
@@ -188,7 +188,7 @@ public class SegmentsEntryRelServiceHttp {
 			long.class, long.class, long.class,
 			com.liferay.portal.kernel.service.ServiceContext.class
 		};
-	private static final Class<?>[] _deleteCommerceDiscountRelParameterTypes1 = new Class[] {
+	private static final Class<?>[] _deleteSegmentsEntryRelParameterTypes1 = new Class[] {
 			long.class
 		};
 	private static final Class<?>[] _getSegmentsEntryRelsParameterTypes2 = new Class[] {

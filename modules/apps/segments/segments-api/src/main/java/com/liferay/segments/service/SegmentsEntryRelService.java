@@ -59,7 +59,7 @@ public interface SegmentsEntryRelService extends BaseService {
 		long classNameId, long classPK, ServiceContext serviceContext)
 		throws PortalException;
 
-	public void deleteCommerceDiscountRel(long segmentsEntryRelId)
+	public void deleteSegmentsEntryRel(long segmentsEntryRelId)
 		throws PortalException;
 
 	/**

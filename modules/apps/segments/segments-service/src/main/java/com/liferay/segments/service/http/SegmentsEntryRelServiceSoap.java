@@ -82,10 +82,10 @@ public class SegmentsEntryRelServiceSoap {
 		}
 	}
 
-	public static void deleteCommerceDiscountRel(long segmentsEntryRelId)
+	public static void deleteSegmentsEntryRel(long segmentsEntryRelId)
 		throws RemoteException {
 		try {
-			SegmentsEntryRelServiceUtil.deleteCommerceDiscountRel(segmentsEntryRelId);
+			SegmentsEntryRelServiceUtil.deleteSegmentsEntryRel(segmentsEntryRelId);
 		}
 		catch (Exception e) {
 			_log.error(e, e);

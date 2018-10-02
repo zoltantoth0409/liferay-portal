@@ -43,9 +43,9 @@ public class SegmentsEntryRelServiceWrapper implements SegmentsEntryRelService,
 	}
 
 	@Override
-	public void deleteCommerceDiscountRel(long segmentsEntryRelId)
+	public void deleteSegmentsEntryRel(long segmentsEntryRelId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		_segmentsEntryRelService.deleteCommerceDiscountRel(segmentsEntryRelId);
+		_segmentsEntryRelService.deleteSegmentsEntryRel(segmentsEntryRelId);
 	}
 
 	/**
