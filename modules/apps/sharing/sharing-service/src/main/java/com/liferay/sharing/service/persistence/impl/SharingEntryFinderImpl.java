@@ -89,7 +89,6 @@ public class SharingEntryFinderImpl
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
-			q.setCacheable(false);
 			q.addEntity("SharingEntry", SharingEntryImpl.class);
 
 			QueryPos qPos = QueryPos.getInstance(q);
