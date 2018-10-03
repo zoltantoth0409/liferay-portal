@@ -71,7 +71,7 @@ public class DLFolderIndexerIndexedFieldsTest extends BaseDLIndexerTestCase {
 		super.setUp();
 
 		dlFolderSearchFixture = new DLFolderSearchFixture(
-			dlFolderLocalService, dlFileEntryLocalService, dlAppLocalService);
+			dlAppLocalService, dlFileEntryLocalService, dlFolderLocalService);
 
 		setGroup(dlFixture.addGroup());
 		setIndexerClass(DLFolder.class);
