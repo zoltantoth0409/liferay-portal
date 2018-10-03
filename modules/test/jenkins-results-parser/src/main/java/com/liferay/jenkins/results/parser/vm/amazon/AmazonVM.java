@@ -81,31 +81,8 @@ public abstract class AmazonVM extends VM {
 
 		_waitForInstanceState("running");
 
-		ModifyInstanceAttributeRequest modifyInstanceAttributeRequest =
-			new ModifyInstanceAttributeRequest();
-
-		InstanceBlockDeviceMappingSpecification
-			instanceBlockDeviceMappingSpecification =
-				new InstanceBlockDeviceMappingSpecification();
-
-		instanceBlockDeviceMappingSpecification.withDeviceName(
-			_getDeviceName());
-
-		EbsInstanceBlockDeviceSpecification
-			ebsInstanceBlockDeviceSpecification =
-				new EbsInstanceBlockDeviceSpecification();
-
-		ebsInstanceBlockDeviceSpecification.withDeleteOnTermination(true);
-
-		instanceBlockDeviceMappingSpecification.withEbs(
-			ebsInstanceBlockDeviceSpecification);
-
-		modifyInstanceAttributeRequest.withBlockDeviceMappings(
-			instanceBlockDeviceMappingSpecification);
-
-		modifyInstanceAttributeRequest.withInstanceId(_instanceId);
-
-		_amazonEC2.modifyInstanceAttribute(modifyInstanceAttributeRequest);
+		_amazonEC2.modifyInstanceAttribute(
+			_getModifyInstanceAttributeRequest());
 	}
 
 	public void delete() {
@@ -180,6 +157,18 @@ public abstract class AmazonVM extends VM {
 		return instanceBlockDeviceMapping.getDeviceName();
 	}
 
+	private EbsInstanceBlockDeviceSpecification
+		_getEbsInstanceBlockDeviceSpecification() {
+
+		EbsInstanceBlockDeviceSpecification
+			ebsInstanceBlockDeviceSpecification =
+				new EbsInstanceBlockDeviceSpecification();
+
+		ebsInstanceBlockDeviceSpecification.withDeleteOnTermination(true);
+
+		return ebsInstanceBlockDeviceSpecification;
+	}
+
 	private Instance _getInstance() {
 		DescribeInstancesRequest describeInstancesRequest =
 			new DescribeInstancesRequest();
@@ -199,12 +188,40 @@ public abstract class AmazonVM extends VM {
 		return instances.get(0);
 	}
 
+	private InstanceBlockDeviceMappingSpecification
+		_getInstanceBlockDeviceMappingSpecification() {
+
+		InstanceBlockDeviceMappingSpecification
+			instanceBlockDeviceMappingSpecification =
+				new InstanceBlockDeviceMappingSpecification();
+
+		instanceBlockDeviceMappingSpecification.withDeviceName(
+			_getDeviceName());
+		instanceBlockDeviceMappingSpecification.withEbs(
+			_getEbsInstanceBlockDeviceSpecification());
+
+		return instanceBlockDeviceMappingSpecification;
+	}
+
 	private String _getInstanceState() {
 		Instance instance = _getInstance();
 
 		InstanceState instanceState = instance.getState();
 
 		return instanceState.getName();
+	}
+
+	private ModifyInstanceAttributeRequest
+		_getModifyInstanceAttributeRequest() {
+
+		ModifyInstanceAttributeRequest modifyInstanceAttributeRequest =
+			new ModifyInstanceAttributeRequest();
+
+		modifyInstanceAttributeRequest.withBlockDeviceMappings(
+			_getInstanceBlockDeviceMappingSpecification());
+		modifyInstanceAttributeRequest.withInstanceId(_instanceId);
+
+		return modifyInstanceAttributeRequest;
 	}
 
 	private void _waitForInstanceState(String targetState) {
