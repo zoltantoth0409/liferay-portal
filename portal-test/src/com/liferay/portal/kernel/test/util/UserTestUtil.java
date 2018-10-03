@@ -228,12 +228,12 @@ public class UserTestUtil {
 				"@liferay.com";
 
 		return addUser(
-			companyId, userId, emailAddress, StringPool.BLANK, screenName,
+			companyId, userId, StringPool.BLANK, emailAddress, screenName,
 			locale, firstName, lastName, groupIds, serviceContext);
 	}
 
 	public static User addUser(
-			long companyId, long userId, String emailAddress, String password,
+			long companyId, long userId, String password, String emailAddress,
 			String screenName, Locale locale, String firstName, String lastName,
 			long[] groupIds, ServiceContext serviceContext)
 		throws Exception {
