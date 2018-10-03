@@ -48,7 +48,7 @@ public class FilterProviderTest {
 		filterProvider.setFilterParser(filterParser);
 
 		AbstractThrowableAssert exception = Assertions.assertThatThrownBy(
-			() -> filterProvider.createContext(_createFilterRequest())
+			() -> filterProvider.createContext(_createHttpServletRequest())
 		).isInstanceOf(
 			InvalidFilterException.class
 		);
@@ -67,7 +67,7 @@ public class FilterProviderTest {
 		filterProvider.setFilterParser(filterParser);
 
 		AbstractThrowableAssert exception = Assertions.assertThatThrownBy(
-			() -> filterProvider.createContext(_createFilterRequest())
+			() -> filterProvider.createContext(_createHttpServletRequest())
 		).isInstanceOf(
 			InvalidFilterException.class
 		);
@@ -84,21 +84,22 @@ public class FilterProviderTest {
 
 		filterProvider.setFilterParser(filterParser);
 
-		Filter filter = filterProvider.createContext(_createFilterRequest());
+		Filter filter = filterProvider.createContext(_createHttpServletRequest());
 
 		Assert.assertNotNull(filter.getExpression());
 	}
 
-	private HttpServletRequest _createFilterRequest() {
-		HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
+	private HttpServletRequest _createHttpServletRequest() {
+		HttpServletRequest httpServletRequest = Mockito.mock(
+			HttpServletRequest.class);
 
 		Mockito.when(
-			request.getParameter("filter")
+			httpServletRequest.getParameter("filter")
 		).thenReturn(
 			RandomTestUtil.randomString()
 		);
 
-		return request;
+		return httpServletRequest;
 	}
 
 }
