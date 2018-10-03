@@ -52,7 +52,7 @@ public class FilterProviderTest {
 		mockHttpServletRequest.setParameter("filter", filterString);
 
 		AbstractThrowableAssert exception = Assertions.assertThatThrownBy(
-			() -> _filterProvider.createContext(mockHttpServletRequest)
+			() -> _provider.createContext(mockHttpServletRequest)
 		).isInstanceOf(
 			InvalidFilterException.class
 		);
@@ -73,7 +73,7 @@ public class FilterProviderTest {
 		mockHttpServletRequest.setParameter("filter", filterString);
 
 		AbstractThrowableAssert exception = Assertions.assertThatThrownBy(
-			() -> _filterProvider.createContext(mockHttpServletRequest)
+			() -> _provider.createContext(mockHttpServletRequest)
 		).isInstanceOf(
 			InvalidFilterException.class
 		);
@@ -88,6 +88,6 @@ public class FilterProviderTest {
 	@Inject(
 		filter = "component.name=com.liferay.structured.content.apio.internal.architect.provider.FilterProvider"
 	)
-	private Provider<Filter> _filterProvider;
+	private Provider<Filter> _provider;
 
 }
