@@ -3911,9 +3911,9 @@ log.sanitizer.enabled=false</echo>
 						</execute>
 
 						<!--
-							Ensure the Alloy Showcase tests use the appropriate JSF Showcase test version and Liferay
-							Faces Test Selenium version since the Alloy Showcase tests may depend on a different version
-							of the JSF Showcase tests.
+						Ensure the Alloy Showcase tests use the appropriate JSF Showcase test version
+						and Liferay Faces Test Selenium version since the Alloy Showcase tests may
+						depend on a different version of the JSF Showcase tests.
 						-->
 
 						<xmltask source="${liferay.faces.showcase.dir}/pom.xml">
@@ -3968,8 +3968,8 @@ log.sanitizer.enabled=false</echo>
 						</execute>
 
 						<!--
-							Move the JSF Showcase results to a different folder so that they are not overwritten by the
-							Bridge Impl test results.
+						Move the JSF Showcase results to a different folder so that they are not
+						overwritten by the Bridge Impl test results.
 						-->
 
 						<move
@@ -3982,8 +3982,8 @@ log.sanitizer.enabled=false</echo>
 						</execute>
 
 						<!--
-							Move the Alloy Showcase results to a different folder so that they are not overwritten by
-							the Bridge Impl test results.
+						Move the Alloy Showcase results to a different folder so that they are not
+						overwritten by the Bridge Impl test results.
 						-->
 
 						<move
