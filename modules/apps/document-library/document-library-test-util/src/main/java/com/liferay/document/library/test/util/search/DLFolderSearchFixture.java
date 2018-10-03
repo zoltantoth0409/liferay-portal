@@ -42,9 +42,9 @@ public class DLFolderSearchFixture {
 		DLFileEntryLocalService dlFileEntryLocalService,
 		DLFolderLocalService dlFolderLocalService) {
 
-		this.dlFolderLocalService = dlFolderLocalService;
-		this.dlFileEntryLocalService = dlFileEntryLocalService;
 		this.dlAppLocalService = dlAppLocalService;
+		this.dlFileEntryLocalService = dlFileEntryLocalService;
+		this.dlFolderLocalService = dlFolderLocalService;
 	}
 
 	public DLFolder addDLFolderAndDLFileEntry(
