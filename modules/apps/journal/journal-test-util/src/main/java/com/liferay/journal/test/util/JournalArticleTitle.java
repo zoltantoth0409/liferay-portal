@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.journal.test.util.search;
+package com.liferay.journal.test.util;
 
 import com.liferay.portal.kernel.settings.LocalizedValuesMap;
 
