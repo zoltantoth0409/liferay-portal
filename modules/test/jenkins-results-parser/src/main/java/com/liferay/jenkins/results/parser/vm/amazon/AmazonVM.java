@@ -81,11 +81,8 @@ public abstract class AmazonVM extends VM {
 
 		_waitForInstanceState("running");
 
-		EbsInstanceBlockDeviceSpecification
-			ebsInstanceBlockDeviceSpecification =
-				new EbsInstanceBlockDeviceSpecification();
-
-		ebsInstanceBlockDeviceSpecification.withDeleteOnTermination(true);
+		ModifyInstanceAttributeRequest modifyInstanceAttributeRequest =
+			new ModifyInstanceAttributeRequest();
 
 		InstanceBlockDeviceMappingSpecification
 			instanceBlockDeviceMappingSpecification =
@@ -93,14 +90,19 @@ public abstract class AmazonVM extends VM {
 
 		instanceBlockDeviceMappingSpecification.withDeviceName(
 			_getDeviceName());
+
+		EbsInstanceBlockDeviceSpecification
+			ebsInstanceBlockDeviceSpecification =
+				new EbsInstanceBlockDeviceSpecification();
+
+		ebsInstanceBlockDeviceSpecification.withDeleteOnTermination(true);
+
 		instanceBlockDeviceMappingSpecification.withEbs(
 			ebsInstanceBlockDeviceSpecification);
 
-		ModifyInstanceAttributeRequest modifyInstanceAttributeRequest =
-			new ModifyInstanceAttributeRequest();
-
 		modifyInstanceAttributeRequest.withBlockDeviceMappings(
 			instanceBlockDeviceMappingSpecification);
+
 		modifyInstanceAttributeRequest.withInstanceId(_instanceId);
 
 		_amazonEC2.modifyInstanceAttribute(modifyInstanceAttributeRequest);
