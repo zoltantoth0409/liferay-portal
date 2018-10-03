@@ -84,7 +84,8 @@ public class FilterProviderTest {
 
 		filterProvider.setFilterParser(filterParser);
 
-		Filter filter = filterProvider.createContext(_createHttpServletRequest());
+		Filter filter = filterProvider.createContext(
+			_createHttpServletRequest());
 
 		Assert.assertNotNull(filter.getExpression());
 	}
