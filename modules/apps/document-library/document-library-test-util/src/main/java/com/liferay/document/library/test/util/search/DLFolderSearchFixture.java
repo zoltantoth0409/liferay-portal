@@ -38,13 +38,13 @@ import java.util.List;
 public class DLFolderSearchFixture {
 
 	public DLFolderSearchFixture(
-		DLAppLocalService dlAppLocalService1,
-		DLFileEntryLocalService dlFileEntryLocalService1,
-		DLFolderLocalService dlFolderLocalService1) {
+		DLAppLocalService dlAppLocalService,
+		DLFileEntryLocalService dlFileEntryLocalService,
+		DLFolderLocalService dlFolderLocalService) {
 
-		dlFolderLocalService = dlFolderLocalService1;
-		dlFileEntryLocalService = dlFileEntryLocalService1;
-		dlAppLocalService = dlAppLocalService1;
+		this.dlFolderLocalService = dlFolderLocalService;
+		this.dlFileEntryLocalService = dlFileEntryLocalService;
+		this.dlAppLocalService = dlAppLocalService;
 	}
 
 	public DLFolder addDLFolderAndDLFileEntry(
