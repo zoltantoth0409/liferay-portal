@@ -50,10 +50,10 @@ public class SegmentsDisplayContext {
 		_request = request;
 		_renderRequest = renderRequest;
 		_renderResponse = renderResponse;
+		_segmentsEntryService = segmentsEntryService;
+
 		_themeDisplay = (ThemeDisplay)_request.getAttribute(
 			WebKeys.THEME_DISPLAY);
-
-		_segmentsEntryService = segmentsEntryService;
 	}
 
 	public List<DropdownItem> getActionDropdownItems() {
@@ -64,12 +64,9 @@ public class SegmentsDisplayContext {
 						dropdownItem -> {
 							dropdownItem.putData(
 								"action", "deleteSegmentsEntries");
-
 							dropdownItem.setIcon("times");
-
 							dropdownItem.setLabel(
 								LanguageUtil.get(_request, "delete"));
-
 							dropdownItem.setQuickAction(true);
 						}));
 			}
