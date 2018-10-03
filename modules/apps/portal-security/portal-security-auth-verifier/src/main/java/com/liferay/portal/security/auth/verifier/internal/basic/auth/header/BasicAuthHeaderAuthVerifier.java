@@ -63,14 +63,14 @@ public class BasicAuthHeaderAuthVerifier implements AuthVerifier {
 				authVerifierResult.setState(AuthVerifierResult.State.SUCCESS);
 				authVerifierResult.setUserId(Long.valueOf(credentials[0]));
 			}
-			else if (isForcedBasicAuth(accessControlContext, properties)) {
+			else if (isBasicAuth(accessControlContext, properties)) {
 				return generateChallenge(accessControlContext);
 			}
 
 			return authVerifierResult;
 		}
 		catch (AutoLoginException ale) {
-			if (isForcedBasicAuth(accessControlContext, properties)) {
+			if (isBasicAuth(accessControlContext, properties)) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(ale, ale);
 				}
@@ -100,18 +100,18 @@ public class BasicAuthHeaderAuthVerifier implements AuthVerifier {
 		return authVerifierResult;
 	}
 
-	protected boolean isForcedBasicAuth(
+	protected boolean isBasicAuth(
 		AccessControlContext accessControlContext, Properties properties) {
 
-		boolean forcedBasicAuth = MapUtil.getBoolean(
+		boolean basicAuth = MapUtil.getBoolean(
 			accessControlContext.getSettings(), "basic_auth");
 
-		if (!forcedBasicAuth) {
-			forcedBasicAuth = GetterUtil.getBoolean(
+		if (!basicAuth) {
+			basicAuth = GetterUtil.getBoolean(
 				properties.getProperty("basic_auth"));
 		}
 
-		return forcedBasicAuth;
+		return basicAuth;
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
