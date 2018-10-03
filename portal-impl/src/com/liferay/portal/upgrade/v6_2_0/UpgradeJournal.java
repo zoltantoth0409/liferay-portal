@@ -398,16 +398,12 @@ public class UpgradeJournal extends BaseUpgradePortletPreferences {
 	}
 
 	protected void updateAssetEntryClassTypeId() throws Exception {
-		StringBundler sb = new StringBundler(2);
-
-		sb.append("select distinct companyId, groupId, resourcePrimKey, ");
-		sb.append("structureId from JournalArticle where structureId != ''");
-
-		String selectStatement = sb.toString();
-
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement selectPS = connection.prepareStatement(
-				SQLTransformer.transform(selectStatement));
+				SQLTransformer.transform(
+					"select distinct companyId, groupId, resourcePrimKey, " +
+						"structureId from JournalArticle where structureId " +
+							"!= ''"));
 			ResultSet rs = selectPS.executeQuery()) {
 
 			long classNameId = PortalUtil.getClassNameId(
