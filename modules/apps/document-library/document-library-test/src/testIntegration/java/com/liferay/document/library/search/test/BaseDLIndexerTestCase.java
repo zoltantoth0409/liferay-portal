@@ -42,7 +42,6 @@ public abstract class BaseDLIndexerTestCase {
 		dlFixture.setUp();
 
 		dlSearchFixture = createDLSearchFixture();
-
 		indexedFieldsFixture = createIndexedFieldsFixture();
 	}
 
