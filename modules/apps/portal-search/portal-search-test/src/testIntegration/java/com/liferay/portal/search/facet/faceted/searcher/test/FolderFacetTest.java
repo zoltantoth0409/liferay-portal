@@ -223,7 +223,7 @@ public class FolderFacetTest extends BaseFacetedSearcherTestCase {
 
 	protected void setUpDLFolderSearchFixture() {
 		dlFolderSearchFixture = new DLFolderSearchFixture(
-			dlFolderLocalService, dlFileEntryLocalService, dlAppLocalService);
+			dlAppLocalService, dlFileEntryLocalService, dlFolderLocalService);
 
 		dlFolderSearchFixture.setUp();
 

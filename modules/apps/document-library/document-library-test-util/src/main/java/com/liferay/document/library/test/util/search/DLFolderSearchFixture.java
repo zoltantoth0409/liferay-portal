@@ -38,9 +38,9 @@ import java.util.List;
 public class DLFolderSearchFixture {
 
 	public DLFolderSearchFixture(
-		DLFolderLocalService dlFolderLocalService1,
+		DLAppLocalService dlAppLocalService1,
 		DLFileEntryLocalService dlFileEntryLocalService1,
-		DLAppLocalService dlAppLocalService1) {
+		DLFolderLocalService dlFolderLocalService1) {
 
 		dlFolderLocalService = dlFolderLocalService1;
 		dlFileEntryLocalService = dlFileEntryLocalService1;
