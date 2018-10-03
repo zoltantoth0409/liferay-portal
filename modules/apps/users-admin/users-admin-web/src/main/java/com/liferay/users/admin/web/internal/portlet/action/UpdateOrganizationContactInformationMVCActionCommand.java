@@ -151,6 +151,7 @@ public class UpdateOrganizationContactInformationMVCActionCommand
 		}
 
 		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+
 		long entryId = ParamUtil.getLong(actionRequest, "entryId");
 
 		if (cmd.equals(Constants.DELETE)) {
