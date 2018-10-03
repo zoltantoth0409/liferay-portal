@@ -399,17 +399,17 @@ public class UpgradeJournal extends BaseUpgradePortletPreferences {
 
 	protected void updateAssetEntryClassTypeId() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer();
-			PreparedStatement selectPS = connection.prepareStatement(
+			PreparedStatement ps1 = connection.prepareStatement(
 				SQLTransformer.transform(
 					"select distinct companyId, groupId, resourcePrimKey, " +
 						"structureId from JournalArticle where structureId " +
 							"!= ''"));
-			ResultSet rs = selectPS.executeQuery()) {
+			ResultSet rs = ps1.executeQuery()) {
 
 			long classNameId = PortalUtil.getClassNameId(
 				"com.liferay.portlet.journal.model.JournalArticle");
 
-			try (PreparedStatement updatePS =
+			try (PreparedStatement ps2 =
 					AutoBatchPreparedStatementUtil.concurrentAutoBatch(
 						connection,
 						"update AssetEntry set classTypeId = ? where " +
@@ -424,15 +424,15 @@ public class UpgradeJournal extends BaseUpgradePortletPreferences {
 					long ddmStructureId = getDDMStructureId(
 						groupId, getCompanyGroupId(companyId), structureId);
 
-					updatePS.setLong(1, ddmStructureId);
+					ps2.setLong(1, ddmStructureId);
 
-					updatePS.setLong(2, classNameId);
-					updatePS.setLong(3, resourcePrimKey);
+					ps2.setLong(2, classNameId);
+					ps2.setLong(3, resourcePrimKey);
 
-					updatePS.addBatch();
+					ps2.addBatch();
 				}
 
-				updatePS.executeBatch();
+				ps2.executeBatch();
 			}
 		}
 	}
