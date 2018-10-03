@@ -99,9 +99,9 @@ public abstract class AmazonVM extends VM {
 		ModifyInstanceAttributeRequest modifyInstanceAttributeRequest =
 			new ModifyInstanceAttributeRequest();
 
-		modifyInstanceAttributeRequest.withInstanceId(_instanceId);
 		modifyInstanceAttributeRequest.withBlockDeviceMappings(
 			instanceBlockDeviceMappingSpecification);
+		modifyInstanceAttributeRequest.withInstanceId(_instanceId);
 
 		_amazonEC2.modifyInstanceAttribute(modifyInstanceAttributeRequest);
 	}
