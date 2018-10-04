@@ -420,8 +420,8 @@ public interface GroupLocalService extends BaseLocalService,
 	* @review
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<Group> getActiveGroups(long companyId, boolean active,
-		boolean site, int start, int end, OrderByComparator<Group> obc);
+	public List<Group> getActiveGroups(long companyId, boolean site,
+		boolean active, int start, int end, OrderByComparator<Group> obc);
 
 	/**
 	* Returns the active or inactive groups associated with the company.

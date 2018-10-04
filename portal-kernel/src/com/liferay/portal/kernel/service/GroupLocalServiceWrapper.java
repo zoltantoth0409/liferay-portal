@@ -617,9 +617,9 @@ public class GroupLocalServiceWrapper implements GroupLocalService,
 	*/
 	@Override
 	public java.util.List<com.liferay.portal.kernel.model.Group> getActiveGroups(
-		long companyId, boolean active, boolean site, int start, int end,
+		long companyId, boolean site, boolean active, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.kernel.model.Group> obc) {
-		return _groupLocalService.getActiveGroups(companyId, active, site,
+		return _groupLocalService.getActiveGroups(companyId, site, active,
 			start, end, obc);
 	}
 
