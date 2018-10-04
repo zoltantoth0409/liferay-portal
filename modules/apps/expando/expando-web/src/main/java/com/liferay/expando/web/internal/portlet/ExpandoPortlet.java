@@ -152,15 +152,15 @@ public class ExpandoPortlet extends MVCPortlet {
 		long resourcePrimKey = ParamUtil.getLong(
 			actionRequest, "resourcePrimKey");
 
-		ExpandoBridge expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(
-			themeDisplay.getCompanyId(), modelResource, resourcePrimKey);
-
-		String name = ParamUtil.getString(actionRequest, "name");
-
 		int type = ParamUtil.getInteger(actionRequest, "type");
 
 		Serializable defaultValue = getValue(
 			actionRequest, "defaultValue", type);
+
+		String name = ParamUtil.getString(actionRequest, "name");
+
+		ExpandoBridge expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(
+			themeDisplay.getCompanyId(), modelResource, resourcePrimKey);
 
 		expandoBridge.setAttributeDefault(name, defaultValue);
 
