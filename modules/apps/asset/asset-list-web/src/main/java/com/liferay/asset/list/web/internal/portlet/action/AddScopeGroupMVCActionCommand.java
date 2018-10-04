@@ -52,8 +52,6 @@ public class AddScopeGroupMVCActionCommand extends BaseMVCActionCommand {
 		long assetListEntryId = ParamUtil.getLong(
 			actionRequest, "assetListEntryId");
 
-		long groupId = ParamUtil.getLong(actionRequest, "groupId");
-
 		AssetListEntry assetListEntry =
 			_assetListEntryService.fetchAssetListEntry(assetListEntryId);
 
@@ -68,6 +66,8 @@ public class AddScopeGroupMVCActionCommand extends BaseMVCActionCommand {
 			if (ArrayUtil.isEmpty(groupIds)) {
 				ArrayUtil.append(groupIds, assetListEntry.getGroupId());
 			}
+
+			long groupId = ParamUtil.getLong(actionRequest, "groupId");
 
 			if (!ArrayUtil.contains(groupIds, groupId)) {
 				groupIds = ArrayUtil.append(groupIds, groupId);
