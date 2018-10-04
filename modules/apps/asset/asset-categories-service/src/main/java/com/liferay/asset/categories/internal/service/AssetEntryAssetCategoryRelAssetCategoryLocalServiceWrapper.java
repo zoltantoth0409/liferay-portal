@@ -171,11 +171,9 @@ public class AssetEntryAssetCategoryRelAssetCategoryLocalServiceWrapper
 
 	@Override
 	public boolean hasAssetEntryAssetCategories(long entryId) {
-		int assetEntryAssetCategoryRelsCount =
-			_assetEntryAssetCategoryRelLocalService.
-				getAssetEntryAssetCategoryRelsCount(entryId);
+		if (_assetEntryAssetCategoryRelLocalService.
+				getAssetEntryAssetCategoryRelsCount(entryId) > 0) {
 
-		if (assetEntryAssetCategoryRelsCount > 0) {
 			return true;
 		}
 
@@ -184,11 +182,9 @@ public class AssetEntryAssetCategoryRelAssetCategoryLocalServiceWrapper
 
 	@Override
 	public boolean hasAssetEntryAssetCategory(long entryId, long categoryId) {
-		AssetEntryAssetCategoryRel assetEntryAssetCategoryRel =
-			_assetEntryAssetCategoryRelLocalService.
-				fetchAssetEntryAssetCategoryRel(entryId, categoryId);
+		if (_assetEntryAssetCategoryRelLocalService.
+				fetchAssetEntryAssetCategoryRel(entryId, categoryId) != null) {
 
-		if (assetEntryAssetCategoryRel != null) {
 			return true;
 		}
 
