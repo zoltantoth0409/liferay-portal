@@ -197,7 +197,6 @@ public class UserLocalServiceTest {
 			0,
 			UserLocalServiceUtil.getOrganizationsAndUserGroupsUsersCount(
 				emptyLongArray.clone(), null));
-
 		Assert.assertEquals(
 			0,
 			UserLocalServiceUtil.getOrganizationsAndUserGroupsUsersCount(
@@ -223,7 +222,6 @@ public class UserLocalServiceTest {
 			commonUsersCount + uniqueOrganizationUsersCount,
 			UserLocalServiceUtil.getOrganizationsAndUserGroupsUsersCount(
 				organizationIds, emptyLongArray.clone()));
-
 		Assert.assertEquals(
 			commonUsersCount + uniqueUserGroupUsersCount,
 			UserLocalServiceUtil.getOrganizationsAndUserGroupsUsersCount(
