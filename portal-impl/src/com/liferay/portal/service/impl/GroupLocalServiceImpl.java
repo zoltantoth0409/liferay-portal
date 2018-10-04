@@ -1475,7 +1475,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	 */
 	@Override
 	public List<Group> getActiveGroups(
-		long companyId, boolean active, boolean site, int start, int end,
+		long companyId, boolean site, boolean active, int start, int end,
 		OrderByComparator<Group> obc) {
 
 		return groupPersistence.findByC_S_A(
