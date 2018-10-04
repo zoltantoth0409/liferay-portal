@@ -380,7 +380,6 @@ public class PoshiRunnerPlugin implements Plugin<Project> {
 
 	private void _configureTaskRunPoshiReports(Test test) {
 		Project project = test.getProject();
-
 		TestTaskReports testTaskReports = test.getReports();
 
 		DirectoryReport directoryReport = testTaskReports.getHtml();

@@ -48,7 +48,6 @@ public class CheckOSGiBundleStateTask extends DefaultTask {
 		Logger logger = getLogger();
 
 		String bundleState = getBundleState();
-
 		String bundleSymbolicName = getBundleSymbolicName();
 
 		boolean singleBundle = Validator.isNotNull(bundleSymbolicName);

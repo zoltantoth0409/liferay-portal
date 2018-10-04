@@ -4116,7 +4116,6 @@ public class ProjectTemplatesTest {
 		}
 
 		String stdOutput = null;
-
 		StringWriter stringWriter = new StringWriter();
 
 		if (debug) {
@@ -4298,7 +4297,6 @@ public class ProjectTemplatesTest {
 		}
 		else {
 			Path destinationDirPath = destinationDir.toPath();
-
 			Path parentDirPath = parentDir.toPath();
 
 			Path archetyperPath = parentDirPath.resolveSibling("archetyper");

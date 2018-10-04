@@ -77,7 +77,6 @@ public class TargetPlatformPlugin implements Plugin<Project> {
 
 		final Configuration targetPlatformBomsConfiguration =
 			_addConfigurationTargetPlatformBoms(project);
-
 		final Configuration targetPlatformBundlesConfiguration =
 			_addConfigurationTargetPlatformBundles(project);
 		final Configuration targetPlatformDistroConfiguration =

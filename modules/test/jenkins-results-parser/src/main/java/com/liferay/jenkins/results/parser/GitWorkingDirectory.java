@@ -941,7 +941,6 @@ public class GitWorkingDirectory {
 
 		String classFileName =
 			fullClassName.replaceAll(".*\\.([^\\.]+)", "$1") + ".java";
-
 		String classPackageName = fullClassName.substring(
 			0, fullClassName.lastIndexOf("."));
 

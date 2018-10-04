@@ -373,7 +373,6 @@ public class LiferayOSGiPlugin implements Plugin<Project> {
 				@Override
 				public void execute(Task task) {
 					Logger logger = task.getLogger();
-
 					Project project = task.getProject();
 
 					project.delete("liferay/logs");

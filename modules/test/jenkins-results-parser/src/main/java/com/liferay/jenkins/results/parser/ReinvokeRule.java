@@ -176,6 +176,7 @@ public class ReinvokeRule {
 		for (String configuration : configurations.split("\n")) {
 			int x = configuration.indexOf("=");
 
+			String name = configuration.substring(0, x);
 			String value = configuration.substring(x + 1);
 
 			value = value.trim();
@@ -183,8 +184,6 @@ public class ReinvokeRule {
 			if (value.isEmpty()) {
 				continue;
 			}
-
-			String name = configuration.substring(0, x);
 
 			if (name.equals("notificationRecipients")) {
 				notificationRecipients = value;
