@@ -165,7 +165,7 @@ public class UserLocalServiceTest {
 			uniqueOrganizationUsersCount += uniqueUserIds.length;
 		}
 
-		int uniqueUserGroupsCount = 0;
+		int uniqueUserGroupUsersCount = 0;
 		int userGroupIterations = 3;
 
 		long[] userGroupIds = new long[userGroupIterations];
@@ -184,7 +184,7 @@ public class UserLocalServiceTest {
 
 			userGroupIds[i] = userGroup.getUserGroupId();
 
-			uniqueUserGroupsCount += uniqueUserIds.length;
+			uniqueUserGroupUsersCount += uniqueUserIds.length;
 		}
 
 		long[] emptyLongArray = new long[0];
@@ -211,7 +211,7 @@ public class UserLocalServiceTest {
 
 		Assert.assertEquals(
 			commonUsersCount + uniqueOrganizationUsersCount +
-				uniqueUserGroupsCount,
+				uniqueUserGroupUsersCount,
 			UserLocalServiceUtil.getOrganizationsAndUserGroupsUsersCount(
 				organizationIds, userGroupIds));
 
@@ -225,11 +225,11 @@ public class UserLocalServiceTest {
 				organizationIds, emptyLongArray.clone()));
 
 		Assert.assertEquals(
-			commonUsersCount + uniqueUserGroupsCount,
+			commonUsersCount + uniqueUserGroupUsersCount,
 			UserLocalServiceUtil.getOrganizationsAndUserGroupsUsersCount(
 				null, userGroupIds));
 		Assert.assertEquals(
-			commonUsersCount + uniqueUserGroupsCount,
+			commonUsersCount + uniqueUserGroupUsersCount,
 			UserLocalServiceUtil.getOrganizationsAndUserGroupsUsersCount(
 				emptyLongArray.clone(), userGroupIds));
 	}
