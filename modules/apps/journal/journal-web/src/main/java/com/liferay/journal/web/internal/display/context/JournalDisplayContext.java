@@ -585,6 +585,19 @@ public class JournalDisplayContext {
 		return _ddmTemplateKey;
 	}
 
+	public String getDefaultLanguageId() throws PortalException {
+		JournalArticle article = getArticle();
+
+		if (article != null) {
+			return article.getDefaultLanguageId();
+		}
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)_request.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		return LocaleUtil.toLanguageId(themeDisplay.getSiteDefaultLocale());
+	}
+
 	public String getDisplayStyle() {
 		if (_displayStyle != null) {
 			return _displayStyle;
