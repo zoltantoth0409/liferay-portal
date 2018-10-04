@@ -298,7 +298,6 @@ public class UpgradeDynamicDataMapping extends UpgradeProcess {
 
 			try (ResultSet rs = ps.executeQuery()) {
 				if (rs.next()) {
-					long parentStructureId = rs.getLong("parentStructureId");
 					String definition = rs.getString("definition");
 					String storageType = rs.getString("storageType");
 
@@ -323,6 +322,8 @@ public class UpgradeDynamicDataMapping extends UpgradeProcess {
 									"defined more than once",
 								mndfn.getFieldName(), structureId));
 					}
+
+					long parentStructureId = rs.getLong("parentStructureId");
 
 					if (parentStructureId > 0) {
 						DDMForm parentDDMForm = getDDMForm(parentStructureId);
@@ -946,6 +947,7 @@ public class UpgradeDynamicDataMapping extends UpgradeProcess {
 				String entryVersion = rs.getString("version");
 				long contentId = rs.getLong("ddmStorageId");
 				String data_ = rs.getString("data_");
+
 				long ddmStructureId = rs.getLong("structureId");
 
 				DDMForm ddmForm = getFullHierarchyDDMForm(ddmStructureId);
@@ -999,6 +1001,7 @@ public class UpgradeDynamicDataMapping extends UpgradeProcess {
 				String entryVersion = rs.getString("version");
 				long contentId = rs.getLong("contentId");
 				String data_ = rs.getString("data_");
+
 				long ddmStructureId = rs.getLong("structureId");
 
 				DDMForm ddmForm = getFullHierarchyDDMForm(ddmStructureId);
@@ -1061,6 +1064,7 @@ public class UpgradeDynamicDataMapping extends UpgradeProcess {
 					long userId = rs.getLong("userId");
 					String userName = rs.getString("userName");
 					Timestamp createDate = rs.getTimestamp("createDate");
+
 					long expandoRowId = rs.getLong("classPK");
 
 					Map<String, String> expandoValuesMap = getExpandoValuesMap(

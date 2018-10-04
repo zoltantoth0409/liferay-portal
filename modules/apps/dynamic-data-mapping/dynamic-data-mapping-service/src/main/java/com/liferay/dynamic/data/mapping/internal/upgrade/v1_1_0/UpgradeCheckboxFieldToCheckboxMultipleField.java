@@ -197,7 +197,6 @@ public class UpgradeCheckboxFieldToCheckboxMultipleField
 
 			try (ResultSet rs = ps1.executeQuery()) {
 				while (rs.next()) {
-					long contentId = rs.getLong("DDMStorageId");
 					String data_ = rs.getString("data_");
 
 					DDMFormValues ddmFormValues =
@@ -209,6 +208,8 @@ public class UpgradeCheckboxFieldToCheckboxMultipleField
 					ps2.setString(
 						1,
 						_ddmFormValuesJSONSerializer.serialize(ddmFormValues));
+
+					long contentId = rs.getLong("DDMStorageId");
 
 					ps2.setLong(2, contentId);
 

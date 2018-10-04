@@ -60,7 +60,6 @@ public class UpgradeAutocompleteDDMTextFieldSetting extends UpgradeProcess {
 
 			try (ResultSet rs = ps1.executeQuery()) {
 				while (rs.next()) {
-					long structureId = rs.getLong(1);
 					String definition = rs.getString(2);
 
 					String newDefinition = upgradeDDMFormInstanceStructure(
@@ -71,6 +70,8 @@ public class UpgradeAutocompleteDDMTextFieldSetting extends UpgradeProcess {
 					}
 
 					ps2.setString(1, newDefinition);
+
+					long structureId = rs.getLong(1);
 
 					ps2.setLong(2, structureId);
 

@@ -200,7 +200,6 @@ public class UpgradeDataProviderInstance extends UpgradeProcess {
 			ResultSet rs = ps1.executeQuery()) {
 
 			while (rs.next()) {
-				long dataProviderInstanceId = rs.getLong(1);
 				String dataProviderInstanceDefinition = rs.getString(2);
 				String type = rs.getString(3);
 
@@ -208,6 +207,8 @@ public class UpgradeDataProviderInstance extends UpgradeProcess {
 					dataProviderInstanceDefinition, type);
 
 				ps2.setString(1, newDefinition);
+
+				long dataProviderInstanceId = rs.getLong(1);
 
 				ps2.setLong(2, dataProviderInstanceId);
 
