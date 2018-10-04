@@ -129,7 +129,6 @@ public class UserGroupMembershipPolicyMembershipsTest
 	@Test
 	public void testAssignUserToRequiredUserGroups() throws Exception {
 		long[] userIds = addUsers();
-
 		long[] requiredUserGroupIds = addRequiredUserGroups();
 
 		int initialUserGroupUsersCount =

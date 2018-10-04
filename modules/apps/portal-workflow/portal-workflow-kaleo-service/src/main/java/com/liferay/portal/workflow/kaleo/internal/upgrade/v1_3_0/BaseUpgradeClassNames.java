@@ -86,6 +86,7 @@ public abstract class BaseUpgradeClassNames extends UpgradeProcess {
 			ResultSet rs = ps.executeQuery()) {
 
 			while (rs.next()) {
+				long primaryKeyValue = rs.getLong(primaryKeyName);
 				String workflowContextJSON = rs.getString("workflowContext");
 
 				if (Validator.isNull(workflowContextJSON)) {
@@ -96,8 +97,6 @@ public abstract class BaseUpgradeClassNames extends UpgradeProcess {
 					updateWorkflowContext(workflowContextJSON);
 
 				if (workflowContext != null) {
-					long primaryKeyValue = rs.getLong(primaryKeyName);
-
 					updateWorkflowContext(
 						tableName, primaryKeyName, primaryKeyValue,
 						WorkflowContextUtil.convert(workflowContext));
