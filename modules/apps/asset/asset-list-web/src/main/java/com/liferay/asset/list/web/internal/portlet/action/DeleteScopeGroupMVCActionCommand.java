@@ -52,8 +52,6 @@ public class DeleteScopeGroupMVCActionCommand extends BaseMVCActionCommand {
 		long assetListEntryId = ParamUtil.getLong(
 			actionRequest, "assetListEntryId");
 
-		long groupId = ParamUtil.getLong(actionRequest, "groupId");
-
 		AssetListEntry assetListEntry =
 			_assetListEntryService.fetchAssetListEntry(assetListEntryId);
 
@@ -64,6 +62,8 @@ public class DeleteScopeGroupMVCActionCommand extends BaseMVCActionCommand {
 
 			long[] groupIds = GetterUtil.getLongValues(
 				StringUtil.split(properties.getProperty("groupIds")));
+
+			long groupId = ParamUtil.getLong(actionRequest, "groupId");
 
 			groupIds = ArrayUtil.remove(groupIds, groupId);
 
