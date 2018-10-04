@@ -58,6 +58,9 @@ public class UpdateLayoutPageTemplateEntryPreviewMVCActionCommand
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
+		long layoutPageTemplateEntryId = ParamUtil.getLong(
+			actionRequest, "layoutPageTemplateEntryId");
+
 		long fileEntryId = ParamUtil.getLong(actionRequest, "fileEntryId");
 
 		FileEntry fileEntry = _dlAppLocalService.getFileEntry(fileEntryId);
@@ -77,9 +80,6 @@ public class UpdateLayoutPageTemplateEntryPreviewMVCActionCommand
 				themeDisplay.getScopeGroupId(),
 				LayoutAdminPortletKeys.GROUP_PAGES, serviceContext);
 		}
-
-		long layoutPageTemplateEntryId = ParamUtil.getLong(
-			actionRequest, "layoutPageTemplateEntryId");
 
 		String fileName =
 			layoutPageTemplateEntryId + "_preview." + fileEntry.getExtension();
