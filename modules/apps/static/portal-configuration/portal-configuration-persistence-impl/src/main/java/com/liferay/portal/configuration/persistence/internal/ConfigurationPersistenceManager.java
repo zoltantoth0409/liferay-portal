@@ -673,6 +673,7 @@ public class ConfigurationPersistenceManager
 			ResultSet rs = selectPS.executeQuery()) {
 
 			while (rs.next()) {
+				String pid = rs.getString(1);
 				String dictionaryString = rs.getString(2);
 
 				@SuppressWarnings("unchecked")
@@ -695,8 +696,6 @@ public class ConfigurationPersistenceManager
 					unsyncByteArrayOutputStream, dictionary);
 
 				updatePS.setString(1, unsyncByteArrayOutputStream.toString());
-
-				String pid = rs.getString(1);
 
 				updatePS.setString(2, pid);
 

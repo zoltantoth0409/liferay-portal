@@ -94,6 +94,7 @@ public class WikiNodeLocalServiceImpl extends WikiNodeLocalServiceBaseImpl {
 
 		// Node
 
+		User user = userLocalService.getUser(userId);
 		long groupId = serviceContext.getScopeGroupId();
 
 		validate(groupId, name);
@@ -104,13 +105,9 @@ public class WikiNodeLocalServiceImpl extends WikiNodeLocalServiceBaseImpl {
 
 		node.setUuid(serviceContext.getUuid());
 		node.setGroupId(groupId);
-
-		User user = userLocalService.getUser(userId);
-
 		node.setCompanyId(user.getCompanyId());
 		node.setUserId(user.getUserId());
 		node.setUserName(user.getFullName());
-
 		node.setName(name);
 		node.setDescription(description);
 

@@ -57,7 +57,6 @@ public class GetPageAttachmentAction extends BaseStrutsAction {
 
 		try {
 			long nodeId = ParamUtil.getLong(request, "nodeId");
-
 			String title = ParamUtil.getString(request, "title");
 			String fileName = ParamUtil.getString(request, "fileName");
 
