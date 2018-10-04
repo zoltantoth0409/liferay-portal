@@ -5001,8 +5001,9 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			boolean passwordReset, boolean silentUpdate)
 		throws PortalException {
 
-		// Password hashing takes long, encrypt the password before we get user
-		// to avoid org.hibernate.StaleObjectStateException
+		// Password hashing takes a long time. Therefore, encrypt the password
+		// before we get the user to avoid
+		// an org.hibernate.StaleObjectStateException.
 
 		String newEncPwd = PasswordEncryptorUtil.encrypt(password1);
 
