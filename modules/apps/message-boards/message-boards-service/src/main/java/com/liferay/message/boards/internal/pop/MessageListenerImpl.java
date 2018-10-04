@@ -86,7 +86,6 @@ public class MessageListenerImpl implements MessageListener {
 			}
 
 			Company company = getCompany(messageIdString);
-
 			long categoryId = MBMailUtil.getCategoryId(messageIdString);
 
 			MBCategory category = _mbCategoryLocalService.getCategory(
@@ -165,7 +164,6 @@ public class MessageListenerImpl implements MessageListener {
 			}
 
 			long groupId = 0;
-
 			long categoryId = MBMailUtil.getCategoryId(messageIdString);
 
 			MBCategory category = _mbCategoryLocalService.fetchMBCategory(

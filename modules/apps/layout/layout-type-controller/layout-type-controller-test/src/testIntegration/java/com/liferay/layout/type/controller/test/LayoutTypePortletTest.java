@@ -206,7 +206,6 @@ public class LayoutTypePortletTest {
 		Assert.assertEquals(columns.toString(), 2, columns.size());
 
 		String column1 = columns.get(0);
-
 		String column2 = columns.get(1);
 
 		portletId = _layoutTypePortlet.addPortletId(

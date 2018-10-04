@@ -59,7 +59,6 @@ public class UpgradeSocial extends UpgradeProcess {
 			try (ResultSet rs = ps.executeQuery()) {
 				while (rs.next()) {
 					long activityId = rs.getLong("activityId");
-
 					String extraData = rs.getString("extraData");
 
 					JSONObject extraDataJSONObject =

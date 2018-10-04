@@ -83,7 +83,6 @@ public class MBUserRankUtil {
 			String[] kvp = StringUtil.split(curRank, CharPool.EQUAL);
 
 			String kvpName = kvp[0];
-
 			String kvpPosts = kvp[1];
 
 			String[] curRankValueKvp = StringUtil.split(
