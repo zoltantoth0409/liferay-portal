@@ -364,7 +364,6 @@ public class DisplayPortlet extends BaseKBPortlet {
 
 		long parentResourcePrimKey = GetterUtil.getLong(
 			portletPreferences.getValue("resourcePrimKey", null));
-
 		long parentResourceClassNameId = GetterUtil.getLong(
 			portletPreferences.getValue("resourceClassNameId", null),
 			kbFolderClassNameId);

@@ -253,14 +253,13 @@ public class JournalArticleStagedModelDataHandler
 
 		groupId = MapUtil.getLong(groupIds, groupId);
 
+		String articleArticleId = referenceElement.attributeValue("article-id");
 		boolean preloaded = GetterUtil.getBoolean(
 			referenceElement.attributeValue("preloaded"));
 
 		if (!preloaded) {
 			return super.validateMissingReference(uuid, groupId);
 		}
-
-		String articleArticleId = referenceElement.attributeValue("article-id");
 
 		JournalArticle existingArticle = fetchExistingArticleWithParentGroups(
 			uuid, articleResourceUuid, groupId, articleArticleId, null, 0.0,

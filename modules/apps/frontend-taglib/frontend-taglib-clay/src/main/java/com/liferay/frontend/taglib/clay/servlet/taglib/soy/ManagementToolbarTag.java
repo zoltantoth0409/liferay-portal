@@ -401,7 +401,6 @@ public class ManagementToolbarTag extends BaseClayTag {
 			}
 
 			String parameterName = parameterParts[0];
-
 			String parameterValue = StringPool.BLANK;
 
 			if (parameterParts.length > 1) {

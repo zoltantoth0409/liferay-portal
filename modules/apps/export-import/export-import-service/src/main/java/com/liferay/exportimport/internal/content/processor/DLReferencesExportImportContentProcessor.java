@@ -559,7 +559,6 @@ public class DLReferencesExportImportContentProcessor
 
 			if (fileEntry == null) {
 				boolean absolutePortalURL = false;
-
 				boolean relativePortalURL = false;
 
 				if (content.regionMatches(

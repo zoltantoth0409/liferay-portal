@@ -213,7 +213,6 @@ public class ExportImportHelperUtilTest {
 		throws Exception {
 
 		long companyId = TestPropsValues.getCompanyId();
-
 		String portletId = JournalPortletKeys.JOURNAL;
 
 		String rootPortletId = PortletIdCodec.decodePortletName(portletId);
@@ -254,7 +253,6 @@ public class ExportImportHelperUtilTest {
 		throws Exception {
 
 		long companyId = TestPropsValues.getCompanyId();
-
 		String portletId = JournalPortletKeys.JOURNAL;
 
 		String rootPortletId = PortletIdCodec.decodePortletName(portletId);
@@ -649,7 +647,6 @@ public class ExportImportHelperUtilTest {
 		throws Exception {
 
 		long companyId = TestPropsValues.getCompanyId();
-
 		String portletId = JournalPortletKeys.JOURNAL;
 
 		String rootPortletId = PortletIdCodec.decodePortletName(portletId);
@@ -694,7 +691,6 @@ public class ExportImportHelperUtilTest {
 		throws Exception {
 
 		long companyId = TestPropsValues.getCompanyId();
-
 		String portletId = JournalPortletKeys.JOURNAL;
 
 		String rootPortletId = PortletIdCodec.decodePortletName(portletId);
