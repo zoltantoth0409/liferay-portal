@@ -587,9 +587,9 @@ public class ClusterSchedulerEngine
 						sb.append("Property \"");
 						sb.append(PropsKeys.SCHEDULER_ENABLED);
 						sb.append("\" is disabled in the master node. To ");
-						sb.append("ensure consistent behaviour this property ");
-						sb.append("must have the same value in all cluster's ");
-						sb.append("nodes. If scheduler needs to be enabled ");
+						sb.append("ensure consistent behavior, this property ");
+						sb.append("must have the same value in all cluster ");
+						sb.append("nodes. If scheduler needs to be enabled, ");
 						sb.append("please stop all nodes and restart them in ");
 						sb.append("an ordered way.");
 
