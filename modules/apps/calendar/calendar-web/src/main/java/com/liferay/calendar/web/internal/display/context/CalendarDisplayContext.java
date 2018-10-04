@@ -243,12 +243,13 @@ public class CalendarDisplayContext {
 		HttpServletRequest request = PortalUtil.getHttpServletRequest(
 			_renderRequest);
 
-		String active = ParamUtil.getString(
-			_renderRequest, "active", Boolean.TRUE.toString());
+		String tabs1 = ParamUtil.getString(request, "tabs1", "calendar");
+
 		String scope = ParamUtil.getString(
 			_renderRequest, "scope",
 			String.valueOf(_themeDisplay.getScopeGroupId()));
-		String tabs1 = ParamUtil.getString(request, "tabs1", "calendar");
+		String active = ParamUtil.getString(
+			_renderRequest, "active", Boolean.TRUE.toString());
 
 		return new NavigationItemList() {
 			{
@@ -261,13 +262,12 @@ public class CalendarDisplayContext {
 						navigationItem.setLabel(
 							LanguageUtil.get(request, "calendar"));
 					});
-
 				add(
 					navigationItem -> {
 						navigationItem.setActive(tabs1.equals("resources"));
 						navigationItem.setHref(
-							_renderResponse.createRenderURL(), "active", active,
-							"scope", scope, "tabs1", "resources");
+							_renderResponse.createRenderURL(), "tabs1",
+							"resources", "scope", scope, "active", active);
 						navigationItem.setLabel(
 							LanguageUtil.get(request, "resources"));
 					});
@@ -367,7 +367,6 @@ public class CalendarDisplayContext {
 
 		portletURL.setParameter(
 			"active", ParamUtil.getString(_renderRequest, "active"));
-
 		portletURL.setParameter(
 			"scope", ParamUtil.getString(_renderRequest, "scope"));
 
@@ -428,7 +427,6 @@ public class CalendarDisplayContext {
 							LanguageUtil.get(
 								_themeDisplay.getRequest(), "yes"));
 					});
-
 				add(
 					dropdownItem -> {
 						dropdownItem.setActive(!displayTerms.isActive());
@@ -459,7 +457,6 @@ public class CalendarDisplayContext {
 							LanguageUtil.get(
 								_themeDisplay.getRequest(), "current"));
 					});
-
 				add(
 					dropdownItem -> {
 						dropdownItem.setActive(
@@ -507,7 +504,7 @@ public class CalendarDisplayContext {
 		CalendarResourceDisplayTerms displayTerms =
 			new CalendarResourceDisplayTerms(_renderRequest);
 
-		List<CalendarResource> results =
+		List<CalendarResource> calendarResources =
 			_calendarResourceLocalService.searchByKeywords(
 				_themeDisplay.getCompanyId(), groupIds, classNameIds,
 				getKeywords(), displayTerms.isActive(),
@@ -515,7 +512,7 @@ public class CalendarDisplayContext {
 				calendarResourceSearch.getEnd(),
 				calendarResourceSearch.getOrderByComparator());
 
-		calendarResourceSearch.setResults(results);
+		calendarResourceSearch.setResults(calendarResources);
 	}
 
 	protected void setCalendarResourceSearchTotal(
