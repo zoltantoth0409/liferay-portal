@@ -367,17 +367,17 @@ public class SiteNavigationMenuDisplayContext {
 		if (type == SiteNavigationConstants.TYPE_PRIMARY) {
 			typeKey = "primary-navigation";
 		}
-		else if (type == SiteNavigationConstants.TYPE_SECONDARY) {
-			typeKey = "secondary-navigation";
-		}
-		else if (type == SiteNavigationConstants.TYPE_SOCIAL) {
-			typeKey = "social-navigation";
-		}
 		else if (type == SiteNavigationConstants.TYPE_PRIVATE_PAGES_HIERARCHY) {
 			typeKey = "private-pages-hierarchy";
 		}
 		else if (type == SiteNavigationConstants.TYPE_PUBLIC_PAGES_HIERARCHY) {
 			typeKey = "public-pages-hierarchy";
+		}
+		else if (type == SiteNavigationConstants.TYPE_SECONDARY) {
+			typeKey = "secondary-navigation";
+		}
+		else if (type == SiteNavigationConstants.TYPE_SOCIAL) {
+			typeKey = "social-navigation";
 		}
 
 		return LanguageUtil.get(_request, typeKey);
