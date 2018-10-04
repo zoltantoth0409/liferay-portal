@@ -837,7 +837,6 @@ public class DataFactory {
 
 			for (int j = 0; j < _assetClassNameIds.length; j++) {
 				int fromIndex = j * pageSize;
-
 				int toIndex = (j + 1) * pageSize;
 
 				if (j == (_assetClassNameIds.length - 1)) {
@@ -912,7 +911,6 @@ public class DataFactory {
 
 			for (int j = 0; j < _assetClassNameIds.length; j++) {
 				int fromIndex = j * pageSize;
-
 				int toIndex = (j + 1) * pageSize;
 
 				if (j == (_assetClassNameIds.length - 1)) {

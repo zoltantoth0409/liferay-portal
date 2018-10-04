@@ -4662,14 +4662,13 @@ public class ServiceBuilder {
 	}
 
 	private String _getCreateTableSQL(Entity entity) {
+		List<EntityColumn> pkEntityColumns = entity.getPKEntityColumns();
 		List<EntityColumn> regularEntityColumns =
 			entity.getRegularEntityColumns();
 
 		if (regularEntityColumns.isEmpty()) {
 			return null;
 		}
-
-		List<EntityColumn> pkEntityColumns = entity.getPKEntityColumns();
 
 		StringBundler sb = new StringBundler();
 
@@ -5581,7 +5580,6 @@ public class ServiceBuilder {
 
 		boolean uadAutoDelete = GetterUtil.getBoolean(
 			entityElement.attributeValue("uad-auto-delete"));
-
 		String uadDirPath = GetterUtil.getString(
 			entityElement.attributeValue("uad-dir-path"), _uadDirName);
 		String uadPackagePath = GetterUtil.getString(

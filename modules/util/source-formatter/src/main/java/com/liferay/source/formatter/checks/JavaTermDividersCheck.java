@@ -78,7 +78,6 @@ public class JavaTermDividersCheck extends BaseJavaTermCheck {
 		String classContent, JavaTerm previousJavaTerm, JavaTerm javaTerm) {
 
 		String javaTermContent = javaTerm.getContent();
-
 		String previousJavaTermContent = previousJavaTerm.getContent();
 
 		String afterPreviousJavaTerm = StringUtil.trim(

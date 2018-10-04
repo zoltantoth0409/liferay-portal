@@ -44,7 +44,6 @@ public class CSSBuilderUtil {
 		String cacheFileName = fileName.replace('\\', '/');
 
 		int x = cacheFileName.lastIndexOf('/');
-
 		int y = cacheFileName.lastIndexOf('.');
 
 		if (cacheFileName.endsWith(".scss")) {

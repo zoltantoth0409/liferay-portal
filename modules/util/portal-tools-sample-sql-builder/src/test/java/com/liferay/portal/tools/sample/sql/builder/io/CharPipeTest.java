@@ -485,7 +485,6 @@ public class CharPipeTest {
 		CharPipe charPipe = new CharPipe(4);
 
 		Reader reader = charPipe.getReader();
-
 		Writer writer = charPipe.getWriter();
 
 		writer.write("abcd");
