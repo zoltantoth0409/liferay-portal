@@ -159,28 +159,6 @@ public class AssetEntryAssetCategoryRelAssetCategoryLocalServiceWrapper
 	}
 
 	@Override
-	public boolean hasAssetEntryAssetCategories(long entryId) {
-		if (_assetEntryAssetCategoryRelLocalService.
-				getAssetEntryAssetCategoryRelsCount(entryId) > 0) {
-
-			return true;
-		}
-
-		return false;
-	}
-
-	@Override
-	public boolean hasAssetEntryAssetCategory(long entryId, long categoryId) {
-		if (_assetEntryAssetCategoryRelLocalService.
-				fetchAssetEntryAssetCategoryRel(entryId, categoryId) != null) {
-
-			return true;
-		}
-
-		return false;
-	}
-
-	@Override
 	public AssetCategory mergeCategories(long fromCategoryId, long toCategoryId)
 		throws PortalException {
 
