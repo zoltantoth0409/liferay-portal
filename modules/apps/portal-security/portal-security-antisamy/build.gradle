@@ -101,7 +101,6 @@ processSanitizerConfiguration {
 				|				</regexp-list>
 				|			</attribute>""".stripMargin()
 		}
-
 		else if (line.contains('<tag name="a" action="validate">')) {
 			line = """\
 				|		<tag name="a" action="validate">
