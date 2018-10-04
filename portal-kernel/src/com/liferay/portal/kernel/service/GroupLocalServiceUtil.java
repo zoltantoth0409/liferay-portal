@@ -567,10 +567,10 @@ public class GroupLocalServiceUtil {
 	* @review
 	*/
 	public static java.util.List<com.liferay.portal.kernel.model.Group> getActiveGroups(
-		long companyId, boolean active, boolean site, int start, int end,
+		long companyId, boolean site, boolean active, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.kernel.model.Group> obc) {
 		return getService()
-				   .getActiveGroups(companyId, active, site, start, end, obc);
+				   .getActiveGroups(companyId, site, active, start, end, obc);
 	}
 
 	/**
