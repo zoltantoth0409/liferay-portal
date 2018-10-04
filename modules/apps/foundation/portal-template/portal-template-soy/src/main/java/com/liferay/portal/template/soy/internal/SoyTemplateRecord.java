@@ -104,10 +104,10 @@ public class SoyTemplateRecord extends SoyAbstractValue implements SoyRecord {
 
 	@Override
 	public SoyValue getField(String name) {
-		SoyValueProvider fieldProvider = getFieldProvider(name);
+		SoyValueProvider soyValueProvider = getFieldProvider(name);
 
-		if (fieldProvider != null) {
-			return fieldProvider.resolve();
+		if (soyValueProvider != null) {
+			return soyValueProvider.resolve();
 		}
 
 		return NullData.INSTANCE;
@@ -132,9 +132,9 @@ public class SoyTemplateRecord extends SoyAbstractValue implements SoyRecord {
 
 	@Override
 	public boolean hasField(String name) {
-		SoyValueProvider fieldProvider = getFieldProvider(name);
+		SoyValueProvider soyValueProvider = getFieldProvider(name);
 
-		if (fieldProvider != null) {
+		if (soyValueProvider != null) {
 			return true;
 		}
 
