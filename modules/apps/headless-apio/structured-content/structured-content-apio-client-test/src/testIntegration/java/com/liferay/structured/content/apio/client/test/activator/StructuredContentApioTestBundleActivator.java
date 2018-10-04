@@ -77,7 +77,6 @@ public class StructuredContentApioTestBundleActivator
 
 	private void _prepareTest() throws Exception {
 		User user = UserTestUtil.getAdminUser(TestPropsValues.getCompanyId());
-
 		Map<Locale, String> nameMap = Collections.singletonMap(
 			LocaleUtil.getDefault(), SITE_NAME);
 
