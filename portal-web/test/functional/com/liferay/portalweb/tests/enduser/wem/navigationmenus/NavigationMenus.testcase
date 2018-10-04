@@ -339,6 +339,12 @@ definition {
 			siteName = "Test Site Name"
 		);
 
+		NavigationMenusWidget.gotoNavigationMenuWidgetConfig();
+
+		NavigationMenusWidget.selectNavigation(menuType = "Primary Navigation");
+
+		Portlet.saveAndCloseConfig();
+
 		Navigator.gotoSitePage(
 			pageName = "Site Page Name 3",
 			siteName = "Test Site Name"
