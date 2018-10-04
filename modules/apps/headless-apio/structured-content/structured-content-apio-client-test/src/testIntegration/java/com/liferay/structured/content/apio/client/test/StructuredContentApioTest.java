@@ -48,7 +48,7 @@ import org.junit.runner.RunWith;
 public class StructuredContentApioTest {
 
 	@Deployment
-	public static Archive<?> getDeployment() throws Exception {
+	public static Archive<?> getArchive() throws Exception {
 		return OAuth2ProviderTestUtil.getArchive(
 			StructuredContentApioTestBundleActivator.class);
 	}
