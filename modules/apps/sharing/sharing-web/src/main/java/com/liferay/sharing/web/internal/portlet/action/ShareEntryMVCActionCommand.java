@@ -67,16 +67,25 @@ public class ShareEntryMVCActionCommand extends BaseMVCActionCommand {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		long classNameId = ParamUtil.getLong(actionRequest, "classNameId");
-		long classPK = ParamUtil.getLong(actionRequest, "classPK");
-		boolean shareable = ParamUtil.getBoolean(actionRequest, "shareable");
-		String sharingEntryPermissionDisplayActionId = ParamUtil.getString(
-			actionRequest, "sharingEntryPermissionDisplayActionId");
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		String userEmailAddress = ParamUtil.getString(
 			actionRequest, "userEmailAddress");
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
+		String[] userEmailAddresses = StringUtil.split(userEmailAddress);
+
+		long classNameId = ParamUtil.getLong(actionRequest, "classNameId");
+		long classPK = ParamUtil.getLong(actionRequest, "classPK");
+		boolean shareable = ParamUtil.getBoolean(actionRequest, "shareable");
+
+		String sharingEntryPermissionDisplayActionId = ParamUtil.getString(
+			actionRequest, "sharingEntryPermissionDisplayActionId");
+
+		SharingEntryPermissionDisplayAction
+			sharingEntryPermissionDisplayAction =
+				SharingEntryPermissionDisplayAction.parseFromActionId(
+					sharingEntryPermissionDisplayActionId);
 
 		Date expirationDate = ParamUtil.getDate(
 			actionRequest, "expirationDate",
@@ -87,13 +96,6 @@ public class ShareEntryMVCActionCommand extends BaseMVCActionCommand {
 
 		ResourceBundle resourceBundle =
 			_resourceBundleLoader.loadResourceBundle(themeDisplay.getLocale());
-
-		SharingEntryPermissionDisplayAction
-			sharingEntryPermissionDisplayAction =
-				SharingEntryPermissionDisplayAction.parseFromActionId(
-					sharingEntryPermissionDisplayActionId);
-
-		String[] userEmailAddresses = StringUtil.split(userEmailAddress);
 
 		try {
 			TransactionInvokerUtil.invoke(
