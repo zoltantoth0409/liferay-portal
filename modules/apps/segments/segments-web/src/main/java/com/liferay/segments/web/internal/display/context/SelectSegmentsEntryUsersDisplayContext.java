@@ -380,7 +380,6 @@ public class SelectSegmentsEntryUsersDisplayContext {
 						dropdownItem.setLabel(
 							LanguageUtil.get(_request, "first-name"));
 					});
-
 				add(
 					dropdownItem -> {
 						dropdownItem.setActive(
