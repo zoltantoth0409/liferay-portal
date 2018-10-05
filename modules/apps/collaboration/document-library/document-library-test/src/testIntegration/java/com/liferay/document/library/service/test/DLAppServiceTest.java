@@ -1587,9 +1587,7 @@ public class DLAppServiceTest extends BaseDLAppTestCase {
 			new LiferayIntegrationTestRule();
 
 		@Test
-		public void assetEntryAndFileEntryShouldHaveSameModifiedDate()
-			throws Exception {
-
+		public void shouldHaveSameModifiedDate() throws Exception {
 			FileEntry fileEntry = addFileEntry(
 				group.getGroupId(), parentFolder.getFolderId());
 
