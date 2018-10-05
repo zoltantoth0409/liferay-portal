@@ -56,8 +56,8 @@ public class OrgLaborContactInformationHelper
 		throws Exception {
 
 		long entryId = ParamUtil.getLong(actionRequest, "entryId");
-		long typeId = ParamUtil.getLong(actionRequest, "orgLaborTypeId");
 
+		long typeId = ParamUtil.getLong(actionRequest, "orgLaborTypeId");
 		int sunOpen = ParamUtil.getInteger(actionRequest, "sunOpen", -1);
 		int sunClose = ParamUtil.getInteger(actionRequest, "sunClose", -1);
 		int monOpen = ParamUtil.getInteger(actionRequest, "monOpen", -1);

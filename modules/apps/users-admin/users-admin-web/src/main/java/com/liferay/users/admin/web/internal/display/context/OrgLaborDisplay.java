@@ -73,38 +73,38 @@ public class OrgLaborDisplay {
 			return "";
 		}
 
-		Calendar cal = CalendarFactoryUtil.getCalendar();
+		Calendar calendar = CalendarFactoryUtil.getCalendar();
 
-		cal.set(Calendar.MILLISECOND, 0);
-		cal.set(Calendar.SECOND, 0);
+		calendar.set(Calendar.MILLISECOND, 0);
+		calendar.set(Calendar.SECOND, 0);
 
 		String hourAndMinuteString = String.valueOf(hourAndMinute);
 
 		if (hourAndMinuteString.length() == 4) {
-			cal.set(
+			calendar.set(
 				Calendar.HOUR_OF_DAY,
 				Integer.valueOf(hourAndMinuteString.substring(0, 2)));
-			cal.set(
+			calendar.set(
 				Calendar.MINUTE,
 				Integer.valueOf(hourAndMinuteString.substring(2)));
 		}
 		else if (hourAndMinuteString.length() == 3) {
-			cal.set(
+			calendar.set(
 				Calendar.HOUR_OF_DAY,
 				Integer.valueOf(hourAndMinuteString.charAt(0)));
-			cal.set(
+			calendar.set(
 				Calendar.MINUTE,
 				Integer.valueOf(hourAndMinuteString.substring(1)));
 		}
 		else {
-			cal.set(Calendar.HOUR_OF_DAY, 0);
-			cal.set(Calendar.MINUTE, 0);
+			calendar.set(Calendar.HOUR_OF_DAY, 0);
+			calendar.set(Calendar.MINUTE, 0);
 		}
 
 		Format format = FastDateFormatFactoryUtil.getSimpleDateFormat(
 			"HH:mm", locale);
 
-		return format.format(cal.getTime());
+		return format.format(calendar.getTime());
 	}
 
 	private String _getHoursDisplayValue(

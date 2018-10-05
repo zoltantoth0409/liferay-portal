@@ -148,27 +148,27 @@ public class OrgLaborFormDisplay {
 		Format timeFormat = FastDateFormatFactoryUtil.getSimpleDateFormat(
 			"HH:mm", locale);
 
-		Calendar cal = CalendarFactoryUtil.getCalendar();
+		Calendar calendar = CalendarFactoryUtil.getCalendar();
 
-		cal.set(Calendar.HOUR_OF_DAY, 0);
-		cal.set(Calendar.MINUTE, 0);
-		cal.set(Calendar.SECOND, 0);
-		cal.set(Calendar.MILLISECOND, 0);
+		calendar.set(Calendar.HOUR_OF_DAY, 0);
+		calendar.set(Calendar.MINUTE, 0);
+		calendar.set(Calendar.SECOND, 0);
+		calendar.set(Calendar.MILLISECOND, 0);
 
-		int today = cal.get(Calendar.DATE);
+		int today = calendar.get(Calendar.DATE);
 
-		while (cal.get(Calendar.DATE) == today) {
+		while (calendar.get(Calendar.DATE) == today) {
 			int timeOfDayValue = GetterUtil.getInteger(
 				StringUtil.replace(
-					timeFormat.format(cal.getTime()), CharPool.COLON,
+					timeFormat.format(calendar.getTime()), CharPool.COLON,
 					StringPool.BLANK));
 
 			selectOptionDisplays.add(
 				new SelectOptionDisplay(
-					timeFormat.format(cal.getTime()), timeOfDayValue,
+					timeFormat.format(calendar.getTime()), timeOfDayValue,
 					time == timeOfDayValue));
 
-			cal.add(Calendar.MINUTE, 30);
+			calendar.add(Calendar.MINUTE, 30);
 		}
 
 		return selectOptionDisplays;
