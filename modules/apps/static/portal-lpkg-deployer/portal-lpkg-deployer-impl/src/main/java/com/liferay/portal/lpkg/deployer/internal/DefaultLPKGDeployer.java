@@ -345,13 +345,13 @@ public class DefaultLPKGDeployer implements LPKGDeployer {
 		while (iterator.hasNext()) {
 			File lpkgFile = iterator.next();
 
-			List<File> innerLPKGs = ContainerLPKGUtil.deploy(
+			List<File> innerLPKGFiles = ContainerLPKGUtil.deploy(
 				lpkgFile, bundleContext);
 
-			if (innerLPKGs != null) {
+			if (innerLPKGFiles != null) {
 				iterator.remove();
 
-				explodedLPKGFiles.addAll(innerLPKGs);
+				explodedLPKGFiles.addAll(innerLPKGFiles);
 			}
 		}
 
