@@ -974,7 +974,7 @@ public class SharingEntryLocalServiceTest {
 				sharingEntriesForClassNameId.toString(), 1,
 				sharingEntriesForClassNameId.size());
 
-			List<SharingEntry> sharingEntriesForClassNameId2 =
+			List<SharingEntry> classNameId2SharingEntries =
 				_sharingEntryLocalService.getUniqueToUserSharingEntries(
 					_toUser.getUserId(), classNameId2, 0,
 					_sharingEntryLocalService.
@@ -983,10 +983,10 @@ public class SharingEntryLocalServiceTest {
 					new SharingEntryModifiedDateComparator());
 
 			Assert.assertEquals(
-				sharingEntriesForClassNameId2.toString(), 1,
-				sharingEntriesForClassNameId2.size());
+				classNameId2SharingEntries.toString(), 1,
+				classNameId2SharingEntries.size());
 
-			List<SharingEntry> sharingEntriesForAnyClassNameId =
+			List<SharingEntry> anyClassNameIdSharingEntries =
 				_sharingEntryLocalService.getUniqueToUserSharingEntries(
 					_toUser.getUserId(), 0, 0,
 					_sharingEntryLocalService.
@@ -995,8 +995,8 @@ public class SharingEntryLocalServiceTest {
 					new SharingEntryModifiedDateComparator());
 
 			Assert.assertEquals(
-				sharingEntriesForAnyClassNameId.toString(), 2,
-				sharingEntriesForAnyClassNameId.size());
+				anyClassNameIdSharingEntries.toString(), 2,
+				anyClassNameIdSharingEntries.size());
 		}
 		finally {
 			for (User user : users) {
