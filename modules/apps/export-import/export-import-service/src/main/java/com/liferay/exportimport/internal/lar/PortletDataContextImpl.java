@@ -2969,15 +2969,14 @@ public class PortletDataContextImpl implements PortletDataContext {
 			long classPK = ExportImportClassedModelUtil.getClassPK(
 				stagedGroupedModel);
 
-			List<WorkflowDefinitionLink> workflowDefinitionLinks =
+			WorkflowDefinitionLink workflowDefinitionLink =
 				WorkflowDefinitionLinkLocalServiceUtil.
-					fetchWorkflowDefinitionLinks(
+					fetchWorkflowDefinitionLink(
 						stagedGroupedModel.getCompanyId(),
-						stagedGroupedModel.getGroupId(), className, classPK);
+						stagedGroupedModel.getGroupId(), className, classPK,
+						-1);
 
-			for (WorkflowDefinitionLink workflowDefinitionLink :
-					workflowDefinitionLinks) {
-
+			if (workflowDefinitionLink != null) {
 				StagedGroupedWorkflowDefinitionLink
 					stagedGroupedWorkflowDefinitionLink =
 						ModelAdapterUtil.adapt(
