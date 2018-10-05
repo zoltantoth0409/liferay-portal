@@ -927,13 +927,14 @@ public class SharingEntryLocalServiceTest {
 		long classNameId2 = _classNameLocalService.getClassNameId(
 			DLFileVersion.class.getName());
 
-		DLFolder folder = DLTestUtil.addDLFolder(_group.getGroupId());
+		DLFolder dlFolder = DLTestUtil.addDLFolder(_group.getGroupId());
 
-		DLFileEntry fileEntry = DLTestUtil.addDLFileEntry(folder.getFolderId());
+		DLFileEntry dlFileEntry = DLTestUtil.addDLFileEntry(
+			dlFolder.getFolderId());
 
-		DLFileVersion fileVersion = fileEntry.getFileVersion();
+		DLFileVersion dlFileVersion = dlFileEntry.getFileVersion();
 
-		long classPK2 = fileVersion.getFileVersionId();
+		long classPK2 = dlFileVersion.getFileVersionId();
 
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
