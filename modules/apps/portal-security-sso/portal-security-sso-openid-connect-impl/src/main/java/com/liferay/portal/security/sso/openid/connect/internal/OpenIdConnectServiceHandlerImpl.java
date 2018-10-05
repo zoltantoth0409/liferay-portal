@@ -102,8 +102,8 @@ public class OpenIdConnectServiceHandlerImpl
 	public boolean hasValidOpenIdConnectSession(HttpSession httpSession)
 		throws OpenIdConnectServiceException.NoOpenIdConnectSessionException {
 
-		OpenIdConnectSessionImpl openIdConnectSessionImpl = getOpenIdConnectSessionImpl(
-			httpSession);
+		OpenIdConnectSessionImpl openIdConnectSessionImpl =
+			getOpenIdConnectSessionImpl(httpSession);
 
 		if (!hasValidAccessToken(openIdConnectSessionImpl)) {
 			try {
@@ -130,8 +130,8 @@ public class OpenIdConnectServiceHandlerImpl
 
 		HttpSession httpSession = httpServletRequest.getSession();
 
-		OpenIdConnectSessionImpl openIdConnectSessionImpl = getOpenIdConnectSessionImpl(
-			httpSession);
+		OpenIdConnectSessionImpl openIdConnectSessionImpl =
+			getOpenIdConnectSessionImpl(httpSession);
 
 		if (!OpenIdConnectFlowState.AUTH_REQUESTED.equals(
 				openIdConnectSessionImpl.getOpenIdConnectFlowState())) {
@@ -161,14 +161,16 @@ public class OpenIdConnectServiceHandlerImpl
 
 		Tokens tokens = requestIdToken(
 			authenticationSuccessResponse, oidcClientInformation,
-			oidcProviderMetadata, redirectURI, openIdConnectSessionImpl.getNonce());
+			oidcProviderMetadata, redirectURI,
+			openIdConnectSessionImpl.getNonce());
 
 		updateSessionTokens(
 			openIdConnectSessionImpl, tokens, System.currentTimeMillis());
 
 		long companyId = _portal.getCompanyId(httpServletRequest);
 
-		processUserInfo(companyId, openIdConnectSessionImpl, oidcProviderMetadata);
+		processUserInfo(
+			companyId, openIdConnectSessionImpl, oidcProviderMetadata);
 
 		openIdConnectSessionImpl.setOpenIdConnectFlowState(
 			OpenIdConnectFlowState.AUTH_COMPLETE);
@@ -187,8 +189,8 @@ public class OpenIdConnectServiceHandlerImpl
 
 		HttpSession httpSession = httpServletRequest.getSession();
 
-		OpenIdConnectSessionImpl openIdConnectSessionImpl = getOpenIdConnectSessionImpl(
-			httpSession, openIdConnectProviderName);
+		OpenIdConnectSessionImpl openIdConnectSessionImpl =
+			getOpenIdConnectSessionImpl(httpSession, openIdConnectProviderName);
 
 		if (openIdConnectSessionImpl == null) {
 			openIdConnectSessionImpl = createAndSetOpenIdConnectSession(
@@ -196,7 +198,10 @@ public class OpenIdConnectServiceHandlerImpl
 		}
 
 		URI authenticationRequestURI = getAuthenticationRequestURI(
-			getLoginRedirectURI(httpServletRequest), openIdConnectProvider, openIdConnectSessionImpl.getNonce(), openIdConnectSessionImpl.getState(), Scope.parse(openIdConnectProvider.getScopes()));
+			getLoginRedirectURI(httpServletRequest), openIdConnectProvider,
+			openIdConnectSessionImpl.getNonce(),
+			openIdConnectSessionImpl.getState(),
+			Scope.parse(openIdConnectProvider.getScopes()));
 
 		try {
 			httpServletResponse.sendRedirect(
@@ -219,7 +224,8 @@ public class OpenIdConnectServiceHandlerImpl
 				openIdConnectProviderName, new Nonce(), new State());
 
 		httpSession.setAttribute(
-			OpenIdConnectWebKeys.OPEN_ID_CONNECT_SESSION, openIdConnectSessionImpl);
+			OpenIdConnectWebKeys.OPEN_ID_CONNECT_SESSION,
+			openIdConnectSessionImpl);
 
 		return openIdConnectSessionImpl;
 	}
