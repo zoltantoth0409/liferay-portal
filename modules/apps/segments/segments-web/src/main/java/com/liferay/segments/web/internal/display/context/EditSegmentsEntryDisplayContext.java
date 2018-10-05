@@ -194,20 +194,19 @@ public class EditSegmentsEntryDisplayContext {
 
 		userSearchContainer.setTotal(total);
 
-		List segmentsEntryRels = _segmentsEntryRelService.getSegmentsEntryRels(
-			getSegmentsEntryId());
+		List<SegmentsEntryRel> segmentsEntryRels =
+			_segmentsEntryRelService.getSegmentsEntryRels(getSegmentsEntryId());
 
-		Stream<SegmentsEntryRel> segmentsEntryRelStream =
-			segmentsEntryRels.stream();
+		Stream<SegmentsEntryRel> stream = segmentsEntryRels.stream();
 
-		List<User> results = segmentsEntryRelStream.map(
+		List<User> users = stream.map(
 			segmentsEntryRel -> _userLocalService.fetchUser(
 				segmentsEntryRel.getClassPK())
 		).collect(
 			Collectors.toList()
 		);
 
-		userSearchContainer.setResults(results);
+		userSearchContainer.setResults(users);
 
 		_userSearchContainer = userSearchContainer;
 
