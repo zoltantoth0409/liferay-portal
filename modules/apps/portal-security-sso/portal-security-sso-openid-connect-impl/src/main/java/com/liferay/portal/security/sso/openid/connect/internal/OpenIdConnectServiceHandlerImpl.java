@@ -195,15 +195,15 @@ public class OpenIdConnectServiceHandlerImpl
 				httpSession, openIdConnectProviderName);
 		}
 
-		State state = openIdConnectSessionImpl.getState();
 		Nonce nonce = openIdConnectSessionImpl.getNonce();
+		State state = openIdConnectSessionImpl.getState();
 
 		Scope scope = Scope.parse(openIdConnectProvider.getScopes());
 
 		URI loginRedirectURI = getLoginRedirectURI(httpServletRequest);
 
 		URI authenticationRequestURI = getAuthenticationRequestURI(
-			loginRedirectURI, openIdConnectProvider, state, nonce, scope);
+			loginRedirectURI, openIdConnectProvider, nonce, state, scope);
 
 		try {
 			httpServletResponse.sendRedirect(
@@ -221,8 +221,8 @@ public class OpenIdConnectServiceHandlerImpl
 	protected OpenIdConnectSessionImpl createAndSetOpenIdConnectSession(
 		HttpSession httpSession, String openIdConnectProviderName) {
 
-		State state = new State();
 		Nonce nonce = new Nonce();
+		State state = new State();
 
 		OpenIdConnectSessionImpl openIdConnectSessionImpl =
 			new OpenIdConnectSessionImpl(
@@ -236,7 +236,7 @@ public class OpenIdConnectServiceHandlerImpl
 
 	protected URI getAuthenticationRequestURI(
 			URI loginRedirectURI, OpenIdConnectProvider openIdConnectProvider,
-			State state, Nonce nonce, Scope scope)
+			Nonce nonce, State state, Scope scope)
 		throws OpenIdConnectServiceException.ProviderException {
 
 		OIDCProviderMetadata oidcProviderMetadata =
