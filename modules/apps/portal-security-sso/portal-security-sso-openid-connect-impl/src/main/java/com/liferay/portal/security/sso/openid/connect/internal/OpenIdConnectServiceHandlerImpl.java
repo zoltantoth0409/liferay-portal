@@ -195,15 +195,8 @@ public class OpenIdConnectServiceHandlerImpl
 				httpSession, openIdConnectProviderName);
 		}
 
-		Nonce nonce = openIdConnectSessionImpl.getNonce();
-		State state = openIdConnectSessionImpl.getState();
-
-		Scope scope = Scope.parse(openIdConnectProvider.getScopes());
-
-		URI loginRedirectURI = getLoginRedirectURI(httpServletRequest);
-
 		URI authenticationRequestURI = getAuthenticationRequestURI(
-			loginRedirectURI, openIdConnectProvider, nonce, state, scope);
+			getLoginRedirectURI(httpServletRequest), openIdConnectProvider, openIdConnectSessionImpl.getNonce(), openIdConnectSessionImpl.getState(), Scope.parse(openIdConnectProvider.getScopes()));
 
 		try {
 			httpServletResponse.sendRedirect(
@@ -221,12 +214,9 @@ public class OpenIdConnectServiceHandlerImpl
 	protected OpenIdConnectSessionImpl createAndSetOpenIdConnectSession(
 		HttpSession httpSession, String openIdConnectProviderName) {
 
-		Nonce nonce = new Nonce();
-		State state = new State();
-
 		OpenIdConnectSessionImpl openIdConnectSessionImpl =
 			new OpenIdConnectSessionImpl(
-				openIdConnectProviderName, nonce, state);
+				openIdConnectProviderName, new Nonce(), new State());
 
 		httpSession.setAttribute(
 			OpenIdConnectWebKeys.OPEN_ID_CONNECT_SESSION, openIdConnectSessionImpl);
