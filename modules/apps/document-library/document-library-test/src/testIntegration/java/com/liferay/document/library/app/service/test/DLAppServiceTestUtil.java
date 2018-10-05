@@ -41,12 +41,13 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapDictionary;
 import com.liferay.portal.security.permission.DoAsUserThread;
 import com.liferay.portlet.documentlibrary.service.test.BaseDLAppTestCase;
-import org.junit.Assert;
-import org.junit.experimental.runners.Enclosed;
-import org.junit.runner.RunWith;
 
 import java.util.Dictionary;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import org.junit.Assert;
+import org.junit.experimental.runners.Enclosed;
+import org.junit.runner.RunWith;
 
 /**
  * @author Alexander Chow
@@ -57,7 +58,7 @@ public class DLAppServiceTestUtil {
 	protected static FileEntry addFileEntry(long groupId, long folderId)
 		throws Exception {
 
-		return addFileEntry(groupId, folderId, _FILE_NAME);
+		return addFileEntry(groupId, folderId, FILE_NAME);
 	}
 
 	protected static FileEntry addFileEntry(
@@ -81,6 +82,18 @@ public class DLAppServiceTestUtil {
 			groupId, folderId, fileName, ContentTypes.TEXT_PLAIN, title,
 			StringPool.BLANK, StringPool.BLANK,
 			BaseDLAppTestCase.CONTENT.getBytes(), serviceContext);
+	}
+
+	protected static ConfigurationTemporarySwapper
+			getConfigurationTemporarySwapper(String key, Object value)
+		throws Exception {
+
+		Dictionary<String, Object> dictionary = new HashMapDictionary<>();
+
+		dictionary.put(key, value);
+
+		return new ConfigurationTemporarySwapper(
+			DL_CONFIGURATION_PID, dictionary);
 	}
 
 	protected static AtomicInteger registerDLSyncEventProcessorMessageListener(
@@ -191,26 +204,14 @@ public class DLAppServiceTestUtil {
 			TestDataConstants.TEST_BYTE_ARRAY, serviceContext);
 	}
 
-	private static ConfigurationTemporarySwapper
-			_getConfigurationTemporarySwapper(String key, Object value)
-		throws Exception {
-
-		Dictionary<String, Object> dictionary = new HashMapDictionary<>();
-
-		dictionary.put(key, value);
-
-		return new ConfigurationTemporarySwapper(
-			_DL_CONFIGURATION_PID, dictionary);
-	}
-
-	private static final String _DL_CONFIGURATION_PID =
+	protected static final String DL_CONFIGURATION_PID =
 		"com.liferay.document.library.configuration.DLConfiguration";
 
-	private static final String _FILE_NAME = "Title.txt";
+	protected static final String FILE_NAME = "Title.txt";
 
-	private static final String _STRIPPED_FILE_NAME = "Title";
+	protected static final String STRIPPED_FILE_NAME = "Title";
 
-	private static final Log _log = LogFactoryUtil.getLog(
-		DLAppServiceTest.class);
+	protected static final Log log = LogFactoryUtil.getLog(
+		DLAppServiceTestUtil.class);
 
 }

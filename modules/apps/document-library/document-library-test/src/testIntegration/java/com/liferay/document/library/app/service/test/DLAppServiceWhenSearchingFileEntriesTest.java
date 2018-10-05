@@ -51,13 +51,13 @@ public class DLAppServiceWhenSearchingFileEntriesTest
 
 		String[] assetTagNames = {"hello", "world"};
 
-		FileEntry fileEntry = addFileEntry(
+		FileEntry fileEntry = DLAppServiceTestUtil.addFileEntry(
 			group.getGroupId(), parentFolder.getFolderId(), fileName, fileName,
 			assetTagNames);
 
-		search(fileEntry, "hello", true);
-		search(fileEntry, "world", true);
-		search(fileEntry, "liferay", false);
+		DLAppServiceTestUtil.search(fileEntry, "hello", true);
+		DLAppServiceTestUtil.search(fileEntry, "world", true);
+		DLAppServiceTestUtil.search(fileEntry, "liferay", false);
 	}
 
 	@Ignore
@@ -72,7 +72,7 @@ public class DLAppServiceWhenSearchingFileEntriesTest
 
 		String[] assetTagNames = {"hello", "world"};
 
-		FileEntry fileEntry = addFileEntry(
+		FileEntry fileEntry = DLAppServiceTestUtil.addFileEntry(
 			group.getGroupId(), parentFolder.getFolderId(), fileName, fileName,
 			assetTagNames);
 
@@ -87,22 +87,23 @@ public class DLAppServiceWhenSearchingFileEntriesTest
 			fileEntry.getFileEntryId(), fileName, ContentTypes.TEXT_PLAIN,
 			fileName, description, changeLog, false, bytes, serviceContext);
 
-		search(fileEntry, "hello", true);
-		search(fileEntry, "world", true);
-		search(fileEntry, "liferay", true);
+		DLAppServiceTestUtil.search(fileEntry, "hello", true);
+		DLAppServiceTestUtil.search(fileEntry, "world", true);
+		DLAppServiceTestUtil.search(fileEntry, "liferay", true);
 	}
 
 	@Ignore
 	@Test
 	public void shouldFindFileEntryInRootFolder() throws Exception {
-		searchFile(
+		DLAppServiceTestUtil.searchFile(
 			group.getGroupId(), DLFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 	}
 
 	@Ignore
 	@Test
 	public void shouldFindFileEntryInSubfolder() throws Exception {
-		searchFile(group.getGroupId(), parentFolder.getFolderId());
+		DLAppServiceTestUtil.searchFile(
+			group.getGroupId(), parentFolder.getFolderId());
 	}
 
 }

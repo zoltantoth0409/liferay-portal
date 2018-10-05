@@ -68,7 +68,7 @@ public class DLAppServiceWhenUpdatingAFileEntryTest extends BaseDLAppTestCase {
 		byte[] bytes = CONTENT.getBytes();
 		String[] assetTagNames = {"hello"};
 
-		FileEntry fileEntry = addFileEntry(
+		FileEntry fileEntry = DLAppServiceTestUtil.addFileEntry(
 			group.getGroupId(), parentFolder.getFolderId(), fileName, fileName,
 			assetTagNames);
 
@@ -114,7 +114,7 @@ public class DLAppServiceWhenUpdatingAFileEntryTest extends BaseDLAppTestCase {
 		String fileName = RandomTestUtil.randomString();
 		String[] assetTagNames = {"hello"};
 
-		FileEntry fileEntry = addFileEntry(
+		FileEntry fileEntry = DLAppServiceTestUtil.addFileEntry(
 			group.getGroupId(), parentFolder.getFolderId(), fileName, fileName,
 			assetTagNames);
 
@@ -158,7 +158,7 @@ public class DLAppServiceWhenUpdatingAFileEntryTest extends BaseDLAppTestCase {
 		String fileName = RandomTestUtil.randomString();
 		byte[] bytes = CONTENT.getBytes();
 
-		FileEntry fileEntry = addFileEntry(
+		FileEntry fileEntry = DLAppServiceTestUtil.addFileEntry(
 			group.getGroupId(), parentFolder.getFolderId(), fileName);
 
 		String[] assetTagNames = {"hello", "world", "liferay"};
@@ -183,10 +183,10 @@ public class DLAppServiceWhenUpdatingAFileEntryTest extends BaseDLAppTestCase {
 	public void shouldCallWorkflowHandler() throws Exception {
 		try (WorkflowHandlerInvocationCounter<DLFileEntry>
 				workflowHandlerInvocationCounter =
-				new WorkflowHandlerInvocationCounter<>(
-					DLFileEntryConstants.getClassName())) {
+					new WorkflowHandlerInvocationCounter<>(
+						DLFileEntryConstants.getClassName())) {
 
-			FileEntry fileEntry = addFileEntry(
+			FileEntry fileEntry = DLAppServiceTestUtil.addFileEntry(
 				group.getGroupId(), parentFolder.getFolderId());
 
 			Assert.assertEquals(
@@ -194,7 +194,7 @@ public class DLAppServiceWhenUpdatingAFileEntryTest extends BaseDLAppTestCase {
 				workflowHandlerInvocationCounter.getCount(
 					"updateStatus", int.class, Map.class));
 
-			updateFileEntry(
+			DLAppServiceTestUtil.updateFileEntry(
 				group.getGroupId(), fileEntry.getFileEntryId(),
 				RandomTestUtil.randomString(), true);
 
@@ -218,7 +218,8 @@ public class DLAppServiceWhenUpdatingAFileEntryTest extends BaseDLAppTestCase {
 			StringPool.BLANK, null, 0, serviceContext);
 
 		try (ConfigurationTemporarySwapper configurationTemporarySwapper =
-				_getConfigurationTemporarySwapper("fileMaxSize", 1L)) {
+				DLAppServiceTestUtil.getConfigurationTemporarySwapper(
+					"fileMaxSize", 1L)) {
 
 			byte[] bytes = TestDataConstants.TEST_BYTE_ARRAY;
 
@@ -231,13 +232,14 @@ public class DLAppServiceWhenUpdatingAFileEntryTest extends BaseDLAppTestCase {
 
 	@Test
 	public void shouldFireSyncEvent() throws Exception {
-		AtomicInteger counter = registerDLSyncEventProcessorMessageListener(
-			DLSyncConstants.EVENT_UPDATE);
+		AtomicInteger counter =
+			DLAppServiceTestUtil.registerDLSyncEventProcessorMessageListener(
+				DLSyncConstants.EVENT_UPDATE);
 
-		FileEntry fileEntry = addFileEntry(
+		FileEntry fileEntry = DLAppServiceTestUtil.addFileEntry(
 			group.getGroupId(), parentFolder.getFolderId());
 
-		updateFileEntry(
+		DLAppServiceTestUtil.updateFileEntry(
 			fileEntry.getGroupId(), fileEntry.getFileEntryId(),
 			fileEntry.getTitle(), true);
 
@@ -248,13 +250,13 @@ public class DLAppServiceWhenUpdatingAFileEntryTest extends BaseDLAppTestCase {
 	public void shouldIncrementMajorVersion() throws Exception {
 		String fileName = "TestVersion.txt";
 
-		FileEntry fileEntry = addFileEntry(
+		FileEntry fileEntry = DLAppServiceTestUtil.addFileEntry(
 			group.getGroupId(), parentFolder.getFolderId(), fileName);
 
-		fileEntry = updateFileEntry(
+		fileEntry = DLAppServiceTestUtil.updateFileEntry(
 			group.getGroupId(), fileEntry.getFileEntryId(), fileName, true);
 
-		fileEntry = updateFileEntry(
+		fileEntry = DLAppServiceTestUtil.updateFileEntry(
 			group.getGroupId(), fileEntry.getFileEntryId(), fileName, true);
 
 		Assert.assertEquals(
@@ -266,10 +268,10 @@ public class DLAppServiceWhenUpdatingAFileEntryTest extends BaseDLAppTestCase {
 	public void shouldIncrementMinorVersion() throws Exception {
 		String fileName = "TestVersion.txt";
 
-		FileEntry fileEntry = addFileEntry(
+		FileEntry fileEntry = DLAppServiceTestUtil.addFileEntry(
 			group.getGroupId(), parentFolder.getFolderId(), fileName);
 
-		fileEntry = updateFileEntry(
+		fileEntry = DLAppServiceTestUtil.updateFileEntry(
 			group.getGroupId(), fileEntry.getFileEntryId(), fileName, false);
 
 		ServiceContext serviceContext =
@@ -289,7 +291,7 @@ public class DLAppServiceWhenUpdatingAFileEntryTest extends BaseDLAppTestCase {
 	public void shouldNotChangeMimeTypeIfNullContent() throws Exception {
 		String fileName = RandomTestUtil.randomString();
 
-		FileEntry fileEntry = addFileEntry(
+		FileEntry fileEntry = DLAppServiceTestUtil.addFileEntry(
 			group.getGroupId(), parentFolder.getFolderId());
 
 		byte[] bytes = CONTENT.getBytes();
@@ -321,7 +323,7 @@ public class DLAppServiceWhenUpdatingAFileEntryTest extends BaseDLAppTestCase {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(group.getGroupId());
 
-		FileEntry fileEntry = addFileEntry(
+		FileEntry fileEntry = DLAppServiceTestUtil.addFileEntry(
 			group.getGroupId(), parentFolder.getFolderId());
 
 		DLAppServiceUtil.updateFileEntry(
@@ -337,7 +339,7 @@ public class DLAppServiceWhenUpdatingAFileEntryTest extends BaseDLAppTestCase {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(group.getGroupId());
 
-		FileEntry fileEntry = addFileEntry(
+		FileEntry fileEntry = DLAppServiceTestUtil.addFileEntry(
 			group.getGroupId(), parentFolder.getFolderId());
 
 		DLAppServiceUtil.updateFileEntry(
@@ -353,7 +355,7 @@ public class DLAppServiceWhenUpdatingAFileEntryTest extends BaseDLAppTestCase {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(group.getGroupId());
 
-		FileEntry fileEntry = addFileEntry(
+		FileEntry fileEntry = DLAppServiceTestUtil.addFileEntry(
 			group.getGroupId(), parentFolder.getFolderId());
 
 		DLAppServiceUtil.updateFileEntry(

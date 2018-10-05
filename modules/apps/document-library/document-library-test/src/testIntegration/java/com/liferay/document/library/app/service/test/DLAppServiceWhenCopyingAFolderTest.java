@@ -53,8 +53,8 @@ public class DLAppServiceWhenCopyingAFolderTest extends BaseDLAppTestCase {
 	public void shouldCallWorkflowHandler() throws Exception {
 		try (WorkflowHandlerInvocationCounter<DLFileEntry>
 				workflowHandlerInvocationCounter =
-				new WorkflowHandlerInvocationCounter<>(
-					DLFileEntryConstants.getClassName())) {
+					new WorkflowHandlerInvocationCounter<>(
+						DLFileEntryConstants.getClassName())) {
 
 			ServiceContext serviceContext =
 				ServiceContextTestUtil.getServiceContext(group.getGroupId());
@@ -64,7 +64,8 @@ public class DLAppServiceWhenCopyingAFolderTest extends BaseDLAppTestCase {
 				RandomTestUtil.randomString(), StringPool.BLANK,
 				serviceContext);
 
-			addFileEntry(group.getGroupId(), folder.getFolderId());
+			DLAppServiceTestUtil.addFileEntry(
+				group.getGroupId(), folder.getFolderId());
 
 			Assert.assertEquals(
 				1,
@@ -85,8 +86,9 @@ public class DLAppServiceWhenCopyingAFolderTest extends BaseDLAppTestCase {
 
 	@Test
 	public void shouldFireSyncEvent() throws Exception {
-		AtomicInteger counter = registerDLSyncEventProcessorMessageListener(
-			DLSyncConstants.EVENT_ADD);
+		AtomicInteger counter =
+			DLAppServiceTestUtil.registerDLSyncEventProcessorMessageListener(
+				DLSyncConstants.EVENT_ADD);
 
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(group.getGroupId());

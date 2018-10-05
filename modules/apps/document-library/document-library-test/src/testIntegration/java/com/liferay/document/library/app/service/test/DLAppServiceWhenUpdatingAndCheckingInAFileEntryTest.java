@@ -50,7 +50,7 @@ public class DLAppServiceWhenUpdatingAndCheckingInAFileEntryTest
 
 	@Test
 	public void shouldHaveSameModifiedDate() throws Exception {
-		FileEntry fileEntry = addFileEntry(
+		FileEntry fileEntry = DLAppServiceTestUtil.addFileEntry(
 			group.getGroupId(), parentFolder.getFolderId());
 
 		ServiceContext serviceContext =

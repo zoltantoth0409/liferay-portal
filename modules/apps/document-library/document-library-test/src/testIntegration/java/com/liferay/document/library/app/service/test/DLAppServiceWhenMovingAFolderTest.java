@@ -47,8 +47,9 @@ public class DLAppServiceWhenMovingAFolderTest extends BaseDLAppTestCase {
 
 	@Test
 	public void shouldFireSyncEvent() throws Exception {
-		AtomicInteger moveCounter = registerDLSyncEventProcessorMessageListener(
-			DLSyncConstants.EVENT_MOVE);
+		AtomicInteger moveCounter =
+			DLAppServiceTestUtil.registerDLSyncEventProcessorMessageListener(
+				DLSyncConstants.EVENT_MOVE);
 
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(group.getGroupId());

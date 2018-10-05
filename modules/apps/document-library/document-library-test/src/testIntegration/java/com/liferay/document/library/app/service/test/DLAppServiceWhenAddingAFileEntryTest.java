@@ -80,7 +80,7 @@ public class DLAppServiceWhenAddingAFileEntryTest extends BaseDLAppTestCase {
 	public void assetEntryShouldHavePublishDate() throws Exception {
 		String fileName = RandomTestUtil.randomString();
 
-		FileEntry fileEntry = addFileEntry(
+		FileEntry fileEntry = DLAppServiceTestUtil.addFileEntry(
 			group.getGroupId(), parentFolder.getFolderId(), fileName);
 
 		AssetEntry assetEntry = AssetEntryLocalServiceUtil.fetchEntry(
@@ -96,7 +96,7 @@ public class DLAppServiceWhenAddingAFileEntryTest extends BaseDLAppTestCase {
 
 		String[] assetTagNames = {"hello", "world"};
 
-		FileEntry fileEntry = addFileEntry(
+		FileEntry fileEntry = DLAppServiceTestUtil.addFileEntry(
 			group.getGroupId(), parentFolder.getFolderId(), fileName, fileName,
 			assetTagNames);
 
@@ -110,10 +110,11 @@ public class DLAppServiceWhenAddingAFileEntryTest extends BaseDLAppTestCase {
 	public void shouldCallWorkflowHandler() throws Exception {
 		try (WorkflowHandlerInvocationCounter<DLFileEntry>
 				workflowHandlerInvocationCounter =
-				new WorkflowHandlerInvocationCounter<>(
-					DLFileEntryConstants.getClassName())) {
+					new WorkflowHandlerInvocationCounter<>(
+						DLFileEntryConstants.getClassName())) {
 
-			addFileEntry(group.getGroupId(), parentFolder.getFolderId());
+			DLAppServiceTestUtil.addFileEntry(
+				group.getGroupId(), parentFolder.getFolderId());
 
 			Assert.assertEquals(
 				1,
@@ -126,52 +127,61 @@ public class DLAppServiceWhenAddingAFileEntryTest extends BaseDLAppTestCase {
 	public void shouldFailIfDuplicateNameAndExtensionInFolder1()
 		throws Exception {
 
-		addFileEntry(
-			group.getGroupId(), parentFolder.getFolderId(), _FILE_NAME,
-			_STRIPPED_FILE_NAME, null);
-		addFileEntry(
-			group.getGroupId(), parentFolder.getFolderId(), _FILE_NAME,
-			_FILE_NAME, null);
+		DLAppServiceTestUtil.addFileEntry(
+			group.getGroupId(), parentFolder.getFolderId(),
+			DLAppServiceTestUtil.FILE_NAME,
+			DLAppServiceTestUtil.STRIPPED_FILE_NAME, null);
+		DLAppServiceTestUtil.addFileEntry(
+			group.getGroupId(), parentFolder.getFolderId(),
+			DLAppServiceTestUtil.FILE_NAME, DLAppServiceTestUtil.FILE_NAME,
+			null);
 	}
 
 	@Test(expected = DuplicateFileEntryException.class)
 	public void shouldFailIfDuplicateNameAndExtensionInFolder2()
 		throws Exception {
 
-		addFileEntry(
-			group.getGroupId(), parentFolder.getFolderId(), _FILE_NAME,
-			_FILE_NAME, null);
-		addFileEntry(
-			group.getGroupId(), parentFolder.getFolderId(), _FILE_NAME,
-			_STRIPPED_FILE_NAME, null);
+		DLAppServiceTestUtil.addFileEntry(
+			group.getGroupId(), parentFolder.getFolderId(),
+			DLAppServiceTestUtil.FILE_NAME, DLAppServiceTestUtil.FILE_NAME,
+			null);
+		DLAppServiceTestUtil.addFileEntry(
+			group.getGroupId(), parentFolder.getFolderId(),
+			DLAppServiceTestUtil.FILE_NAME,
+			DLAppServiceTestUtil.STRIPPED_FILE_NAME, null);
 	}
 
 	@Test(expected = DuplicateFileEntryException.class)
 	public void shouldFailIfDuplicateNameAndExtensionInFolder3()
 		throws Exception {
 
-		addFileEntry(
-			group.getGroupId(), parentFolder.getFolderId(), _FILE_NAME,
-			_STRIPPED_FILE_NAME, null);
-		addFileEntry(
-			group.getGroupId(), parentFolder.getFolderId(), _STRIPPED_FILE_NAME,
-			_FILE_NAME, null);
+		DLAppServiceTestUtil.addFileEntry(
+			group.getGroupId(), parentFolder.getFolderId(),
+			DLAppServiceTestUtil.FILE_NAME,
+			DLAppServiceTestUtil.STRIPPED_FILE_NAME, null);
+		DLAppServiceTestUtil.addFileEntry(
+			group.getGroupId(), parentFolder.getFolderId(),
+			DLAppServiceTestUtil.STRIPPED_FILE_NAME,
+			DLAppServiceTestUtil.FILE_NAME, null);
 	}
 
 	@Test(expected = DuplicateFileEntryException.class)
 	public void shouldFailIfDuplicateNameInFolder() throws Exception {
-		addFileEntry(group.getGroupId(), parentFolder.getFolderId());
-		addFileEntry(group.getGroupId(), parentFolder.getFolderId());
+		DLAppServiceTestUtil.addFileEntry(
+			group.getGroupId(), parentFolder.getFolderId());
+		DLAppServiceTestUtil.addFileEntry(
+			group.getGroupId(), parentFolder.getFolderId());
 	}
 
 	@Test(expected = FileSizeException.class)
 	public void shouldFailIfSizeLimitExceeded() throws Exception {
 		try (ConfigurationTemporarySwapper configurationTemporarySwapper =
-				_getConfigurationTemporarySwapper("fileMaxSize", 1L)) {
+				DLAppServiceTestUtil.getConfigurationTemporarySwapper(
+					"fileMaxSize", 1L)) {
 
 			String fileName = RandomTestUtil.randomString();
 
-			addFileEntry(
+			DLAppServiceTestUtil.addFileEntry(
 				group.getGroupId(), parentFolder.getFolderId(), fileName);
 		}
 	}
@@ -181,16 +191,15 @@ public class DLAppServiceWhenAddingAFileEntryTest extends BaseDLAppTestCase {
 		throws Exception {
 
 		int i =
-			RandomTestUtil.randomInt() %
-			PropsValues.DL_CHAR_BLACKLIST.length;
+			RandomTestUtil.randomInt() % PropsValues.DL_CHAR_BLACKLIST.length;
 
 		String blackListedChar = PropsValues.DL_CHAR_BLACKLIST[i];
 
 		String sourceFileName =
 			RandomTestUtil.randomString() + blackListedChar +
-			RandomTestUtil.randomString();
+				RandomTestUtil.randomString();
 
-		addFileEntry(
+		DLAppServiceTestUtil.addFileEntry(
 			group.getGroupId(), parentFolder.getFolderId(), sourceFileName);
 	}
 
@@ -200,13 +209,13 @@ public class DLAppServiceWhenAddingAFileEntryTest extends BaseDLAppTestCase {
 
 		int i =
 			RandomTestUtil.randomInt() %
-			PropsValues.DL_CHAR_LAST_BLACKLIST.length;
+				PropsValues.DL_CHAR_LAST_BLACKLIST.length;
 
 		String blackListedChar = PropsValues.DL_CHAR_LAST_BLACKLIST[i];
 
 		String sourceFileName = RandomTestUtil.randomString() + blackListedChar;
 
-		addFileEntry(
+		DLAppServiceTestUtil.addFileEntry(
 			group.getGroupId(), parentFolder.getFolderId(), sourceFileName);
 	}
 
@@ -215,12 +224,12 @@ public class DLAppServiceWhenAddingAFileEntryTest extends BaseDLAppTestCase {
 		throws Exception {
 
 		try (ConfigurationTemporarySwapper configurationTemporarySwapper =
-				_getConfigurationTemporarySwapper(
+				DLAppServiceTestUtil.getConfigurationTemporarySwapper(
 					"fileExtensions", new String[0])) {
 
 			String sourceFileName = "file.jpg";
 
-			addFileEntry(
+			DLAppServiceTestUtil.addFileEntry(
 				group.getGroupId(), parentFolder.getFolderId(), sourceFileName);
 		}
 	}
@@ -228,21 +237,22 @@ public class DLAppServiceWhenAddingAFileEntryTest extends BaseDLAppTestCase {
 	@Test(expected = FileNameException.class)
 	public void shouldFailIfSourceFileNameIsBlacklisted() throws Exception {
 		int i =
-			RandomTestUtil.randomInt() %
-			PropsValues.DL_NAME_BLACKLIST.length;
+			RandomTestUtil.randomInt() % PropsValues.DL_NAME_BLACKLIST.length;
 
 		String blackListedName = PropsValues.DL_NAME_BLACKLIST[i];
 
-		addFileEntry(
+		DLAppServiceTestUtil.addFileEntry(
 			group.getGroupId(), parentFolder.getFolderId(), blackListedName);
 	}
 
 	@Test
 	public void shouldFireSyncEvent() throws Exception {
-		AtomicInteger counter = registerDLSyncEventProcessorMessageListener(
-			DLSyncConstants.EVENT_ADD);
+		AtomicInteger counter =
+			DLAppServiceTestUtil.registerDLSyncEventProcessorMessageListener(
+				DLSyncConstants.EVENT_ADD);
 
-		addFileEntry(group.getGroupId(), parentFolder.getFolderId());
+		DLAppServiceTestUtil.addFileEntry(
+			group.getGroupId(), parentFolder.getFolderId());
 
 		Assert.assertEquals(1, counter.get());
 	}
@@ -251,7 +261,7 @@ public class DLAppServiceWhenAddingAFileEntryTest extends BaseDLAppTestCase {
 	public void shouldHaveDefaultVersion() throws Exception {
 		String fileName = RandomTestUtil.randomString();
 
-		FileEntry fileEntry = addFileEntry(
+		FileEntry fileEntry = DLAppServiceTestUtil.addFileEntry(
 			group.getGroupId(), parentFolder.getFolderId(), fileName);
 
 		Assert.assertEquals(
@@ -275,8 +285,9 @@ public class DLAppServiceWhenAddingAFileEntryTest extends BaseDLAppTestCase {
 
 	@Test
 	public void shouldSucceedIfDuplicateNameInOtherFolder() throws Exception {
-		addFileEntry(group.getGroupId(), parentFolder.getFolderId());
-		addFileEntry(
+		DLAppServiceTestUtil.addFileEntry(
+			group.getGroupId(), parentFolder.getFolderId());
+		DLAppServiceTestUtil.addFileEntry(
 			group.getGroupId(), DLFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 	}
 
@@ -316,22 +327,24 @@ public class DLAppServiceWhenAddingAFileEntryTest extends BaseDLAppTestCase {
 				_users[i].getUserId(), i);
 		}
 
-		successCount = runUserThreads(doAsUserThreads);
+		successCount = DLAppServiceTestUtil.runUserThreads(doAsUserThreads);
 
 		Assert.assertEquals(
 			"Only " + successCount + " out of " + _users.length +
-			" threads added successfully", _users.length, successCount);
+				" threads added successfully",
+			_users.length, successCount);
 
 		for (int i = 0; i < doAsUserThreads.length; i++) {
 			doAsUserThreads[i] = new GetFileEntryThread(
 				_users[i].getUserId(), i);
 		}
 
-		successCount = runUserThreads(doAsUserThreads);
+		successCount = DLAppServiceTestUtil.runUserThreads(doAsUserThreads);
 
 		Assert.assertEquals(
 			"Only " + successCount + " out of " + _users.length +
-			" threads retrieved successfully", _users.length, successCount);
+				" threads retrieved successfully",
+			_users.length, successCount);
 	}
 
 	@Ignore
@@ -397,20 +410,21 @@ public class DLAppServiceWhenAddingAFileEntryTest extends BaseDLAppTestCase {
 			ProxyModeThreadLocal.setForceSync(true);
 
 			try {
-				FileEntry fileEntry = addFileEntry(
+				FileEntry fileEntry = DLAppServiceTestUtil.addFileEntry(
 					group.getGroupId(), parentFolder.getFolderId(),
 					"Test-" + _index + ".txt");
 
 				_fileEntryIds[_index] = fileEntry.getFileEntryId();
 
-				if (_log.isDebugEnabled()) {
-					_log.debug("Added file " + _index);
+				if (DLAppServiceTestUtil.log.isDebugEnabled()) {
+					DLAppServiceTestUtil.log.debug("Added file " + _index);
 				}
 
 				_success = true;
 			}
 			catch (Exception e) {
-				_log.error("Unable to add file " + _index, e);
+				DLAppServiceTestUtil.log.error(
+					"Unable to add file " + _index, e);
 			}
 		}
 
@@ -443,15 +457,17 @@ public class DLAppServiceWhenAddingAFileEntryTest extends BaseDLAppTestCase {
 				String content = StringUtil.read(is);
 
 				if (CONTENT.equals(content)) {
-					if (_log.isDebugEnabled()) {
-						_log.debug("Retrieved file " + _index);
+					if (DLAppServiceTestUtil.log.isDebugEnabled()) {
+						DLAppServiceTestUtil.log.debug(
+							"Retrieved file " + _index);
 					}
 
 					_success = true;
 				}
 			}
 			catch (Exception e) {
-				_log.error("Unable to get file " + _index, e);
+				DLAppServiceTestUtil.log.error(
+					"Unable to get file " + _index, e);
 			}
 		}
 

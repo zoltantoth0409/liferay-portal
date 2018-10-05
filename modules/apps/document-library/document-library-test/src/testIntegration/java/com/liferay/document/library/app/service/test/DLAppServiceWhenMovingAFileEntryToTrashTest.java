@@ -51,7 +51,7 @@ public class DLAppServiceWhenMovingAFileEntryToTrashTest
 	public void setUp() throws Exception {
 		super.setUp();
 
-		_fileEntry = addFileEntry(
+		_fileEntry = DLAppServiceTestUtil.addFileEntry(
 			group.getGroupId(), parentFolder.getFolderId());
 	}
 
