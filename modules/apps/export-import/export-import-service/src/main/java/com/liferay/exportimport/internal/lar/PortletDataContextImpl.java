@@ -3102,11 +3102,11 @@ public class PortletDataContextImpl implements PortletDataContext {
 					long typePK = referrerWorkflowDefinitionLink.getTypePK();
 
 					if (typePK != -1) {
-						Map<Long, Long> ddmStructureIds =
+						Map<Long, Long> ddmPrimaryKeys =
 							(Map<Long, Long>)getNewPrimaryKeysMap(
 								DDMStructure.class.getName());
 
-						typePK = ddmStructureIds.getOrDefault(typePK, typePK);
+						typePK = ddmPrimaryKeys.getOrDefault(typePK, typePK);
 					}
 
 					long importedClassPK = GetterUtil.getLong(
