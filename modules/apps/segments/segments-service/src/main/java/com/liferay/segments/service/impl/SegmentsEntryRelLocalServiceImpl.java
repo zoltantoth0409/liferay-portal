@@ -79,18 +79,18 @@ public class SegmentsEntryRelLocalServiceImpl
 	}
 
 	@Override
-	public int getSegmentsEntryRelCount(long segmentsEntryId) {
+	public int getSegmentsEntryRelsCount(long segmentsEntryId) {
 		return segmentsEntryRelPersistence.countBySegmentsEntryId(
 			segmentsEntryId);
 	}
 
 	@Override
-	public int getSegmentsEntryRelCount(long classNameId, long classPK) {
+	public int getSegmentsEntryRelsCount(long classNameId, long classPK) {
 		return segmentsEntryRelPersistence.countByCN_CPK(classNameId, classPK);
 	}
 
 	@Override
-	public int getSegmentsEntryRelCount(
+	public int getSegmentsEntryRelsCount(
 		long groupId, long classNameId, long classPK) {
 
 		return segmentsEntryRelPersistence.countByG_CN_CPK(

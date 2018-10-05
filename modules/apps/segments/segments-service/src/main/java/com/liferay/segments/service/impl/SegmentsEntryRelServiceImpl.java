@@ -76,18 +76,18 @@ public class SegmentsEntryRelServiceImpl
 	}
 
 	@Override
-	public int getSegmentsEntryRelCount(long segmentsEntryId)
+	public int getSegmentsEntryRelsCount(long segmentsEntryId)
 		throws PortalException {
 
 		_segmentsEntryResourcePermission.check(
 			getPermissionChecker(), segmentsEntryId, ActionKeys.VIEW);
 
-		return segmentsEntryRelLocalService.getSegmentsEntryRelCount(
+		return segmentsEntryRelLocalService.getSegmentsEntryRelsCount(
 			segmentsEntryId);
 	}
 
 	@Override
-	public int getSegmentsEntryRelCount(
+	public int getSegmentsEntryRelsCount(
 			long groupId, long classNameId, long classPK)
 		throws PortalException {
 
@@ -95,7 +95,7 @@ public class SegmentsEntryRelServiceImpl
 			getPermissionChecker(), groupId,
 			SegmentsActionKeys.MANAGE_SEGMENTS_ENTRIES);
 
-		return segmentsEntryRelLocalService.getSegmentsEntryRelCount(
+		return segmentsEntryRelLocalService.getSegmentsEntryRelsCount(
 			groupId, classNameId, classPK);
 	}
 

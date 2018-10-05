@@ -189,7 +189,7 @@ public class EditSegmentsEntryDisplayContext {
 		userSearchContainer.setRowChecker(
 			new EmptyOnClickRowChecker(_renderResponse));
 
-		int total = _segmentsEntryRelService.getSegmentsEntryRelCount(
+		int total = _segmentsEntryRelService.getSegmentsEntryRelsCount(
 			getSegmentsEntryId());
 
 		userSearchContainer.setTotal(total);
