@@ -232,10 +232,10 @@ public class EditSegmentsEntryDisplayContext {
 		PortletURL portletURL = _renderResponse.createRenderURL();
 
 		portletURL.setParameter("mvcRenderCommandName", "editSegmentsEntry");
+		portletURL.setParameter("tabs1", "details");
+		portletURL.setParameter("redirect", _themeDisplay.getURLCurrent());
 		portletURL.setParameter(
 			"segmentsEntryId", String.valueOf(getSegmentsEntryId()));
-		portletURL.setParameter("redirect", _themeDisplay.getURLCurrent());
-		portletURL.setParameter("tabs1", "details");
 
 		return portletURL.toString();
 	}
@@ -245,10 +245,10 @@ public class EditSegmentsEntryDisplayContext {
 
 		portletURL.setParameter(
 			"mvcRenderCommandName", "editSegmentsEntryUsers");
+		portletURL.setParameter("tabs1", "users");
+		portletURL.setParameter("redirect", _themeDisplay.getURLCurrent());
 		portletURL.setParameter(
 			"segmentsEntryId", String.valueOf(getSegmentsEntryId()));
-		portletURL.setParameter("redirect", _themeDisplay.getURLCurrent());
-		portletURL.setParameter("tabs1", "users");
 
 		return portletURL.toString();
 	}
