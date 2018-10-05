@@ -44,6 +44,7 @@ public class MoveLayoutMVCActionCommand extends BaseAddLayoutMVCActionCommand {
 		throws Exception {
 
 		long plid = ParamUtil.getLong(actionRequest, "plid");
+
 		long parentPlid = ParamUtil.getLong(actionRequest, "parentPlid");
 		int priority = ParamUtil.getInteger(actionRequest, "priority");
 
