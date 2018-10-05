@@ -179,9 +179,9 @@ public class SelectSegmentsEntryUsersDisplayContext {
 
 		portletURL.setParameter(
 			"mvcRenderCommandName", "selectSegmentsEntryUsers");
-		portletURL.setParameter("groupId", String.valueOf(getGroupId()));
 		portletURL.setParameter(
 			"segmentsEntryId", String.valueOf(getSegmentsEntryId()));
+		portletURL.setParameter("groupId", String.valueOf(getGroupId()));
 		portletURL.setParameter("eventName", getEventName());
 
 		String displayStyle = getDisplayStyle();
