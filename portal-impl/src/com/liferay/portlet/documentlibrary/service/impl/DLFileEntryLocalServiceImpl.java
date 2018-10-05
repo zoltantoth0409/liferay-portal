@@ -335,11 +335,11 @@ public class DLFileEntryLocalServiceImpl
 
 				// File entry
 
+				dlFileEntry.setModifiedDate(
+					latestDLFileVersion.getModifiedDate());
 				dlFileEntry.setFileName(latestDLFileVersion.getFileName());
 				dlFileEntry.setExtension(latestDLFileVersion.getExtension());
 				dlFileEntry.setMimeType(latestDLFileVersion.getMimeType());
-				dlFileEntry.setModifiedDate(
-					latestDLFileVersion.getModifiedDate());
 				dlFileEntry.setSize(latestDLFileVersion.getSize());
 
 				dlFileEntryPersistence.update(dlFileEntry);
