@@ -44,7 +44,7 @@ public class OpenIdConnectSessionImpl
 	}
 
 	@Override
-	public String getAccessTokenString() {
+	public String getAccessTokenValue() {
 		return _accessToken.getValue();
 	}
 
@@ -61,7 +61,7 @@ public class OpenIdConnectSessionImpl
 	}
 
 	@Override
-	public String getNonceString() {
+	public String getNonceValue() {
 		return _nonce.getValue();
 	}
 
@@ -78,7 +78,7 @@ public class OpenIdConnectSessionImpl
 	}
 
 	@Override
-	public String getRefreshTokenString() {
+	public String getRefreshTokenValue() {
 		return _refreshToken.getValue();
 	}
 
@@ -87,7 +87,7 @@ public class OpenIdConnectSessionImpl
 	}
 
 	@Override
-	public String getStateString() {
+	public String getStateValue() {
 		return _state.getValue();
 	}
 

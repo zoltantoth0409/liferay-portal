@@ -22,21 +22,21 @@ import aQute.bnd.annotation.ProviderType;
 @ProviderType
 public interface OpenIdConnectSession {
 
-	public String getAccessTokenString();
+	public String getAccessTokenValue();
 
 	public long getLoginTime();
 
 	public long getLoginUserId();
 
-	public String getNonceString();
+	public String getNonceValue();
 
 	public OpenIdConnectFlowState getOpenIdConnectFlowState();
 
 	public String getOpenIdProviderName();
 
-	public String getRefreshTokenString();
+	public String getRefreshTokenValue();
 
-	public String getStateString();
+	public String getStateValue();
 
 	public void setOpenIdConnectFlowState(
 		OpenIdConnectFlowState openIdConnectFlowState);
