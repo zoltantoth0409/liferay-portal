@@ -171,7 +171,7 @@ public class EditFileEntryImageEditorMVCActionCommand
 		jsonObject.put("success", Boolean.TRUE);
 
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", themeDisplay.getLocale(),
+			themeDisplay.getLocale(),
 			EditFileEntryImageEditorMVCActionCommand.class);
 
 		SessionMessages.add(

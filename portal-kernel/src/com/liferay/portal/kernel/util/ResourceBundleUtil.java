@@ -55,6 +55,10 @@ public class ResourceBundleUtil {
 
 		};
 
+	public static ResourceBundle getBundle(Locale locale, Class<?> clazz) {
+		return getBundle("content.Language", locale, clazz);
+	}
+
 	public static ResourceBundle getBundle(
 		Locale locale, ClassLoader classLoader) {
 

@@ -63,7 +63,7 @@ public class MicroblogsUserNotificationHandler
 		String title = StringPool.BLANK;
 
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", serviceContext.getLocale(),
+			serviceContext.getLocale(),
 			MicroblogsUserNotificationHandler.class);
 
 		MicroblogsEntry microblogsEntry =

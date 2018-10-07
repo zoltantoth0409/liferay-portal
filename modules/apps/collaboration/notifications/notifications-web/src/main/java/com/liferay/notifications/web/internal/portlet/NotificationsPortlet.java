@@ -275,8 +275,7 @@ public class NotificationsPortlet extends MVCPortlet {
 		}
 
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", themeDisplay.getLocale(),
-			NotificationsPortlet.class);
+			themeDisplay.getLocale(), NotificationsPortlet.class);
 
 		SessionMessages.add(
 			actionRequest, "requestProcessed",

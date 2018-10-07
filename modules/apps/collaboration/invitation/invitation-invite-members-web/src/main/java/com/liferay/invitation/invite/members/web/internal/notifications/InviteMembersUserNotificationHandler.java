@@ -96,7 +96,7 @@ public class InviteMembersUserNotificationHandler
 		}
 
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", serviceContext.getLocale(),
+			serviceContext.getLocale(),
 			InviteMembersUserNotificationHandler.class);
 
 		String title = ResourceBundleUtil.getString(

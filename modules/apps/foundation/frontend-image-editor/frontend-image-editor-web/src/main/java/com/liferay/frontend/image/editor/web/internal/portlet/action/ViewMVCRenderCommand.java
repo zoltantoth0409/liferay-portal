@@ -101,7 +101,7 @@ public class ViewMVCRenderCommand implements MVCRenderCommand {
 		Locale locale = themeDisplay.getLocale();
 
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", locale, ViewMVCRenderCommand.class);
+			locale, ViewMVCRenderCommand.class);
 
 		Map<String, Object> strings = new HashMap<>();
 

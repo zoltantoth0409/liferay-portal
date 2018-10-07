@@ -55,8 +55,7 @@ public class ExportFactoryInstancesIcon extends BasePortletConfigurationIcon {
 			WebKeys.THEME_DISPLAY);
 
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", themeDisplay.getLocale(),
-			ExportFactoryInstancesIcon.class);
+			themeDisplay.getLocale(), ExportFactoryInstancesIcon.class);
 
 		return LanguageUtil.get(resourceBundle, "export-entries");
 	}

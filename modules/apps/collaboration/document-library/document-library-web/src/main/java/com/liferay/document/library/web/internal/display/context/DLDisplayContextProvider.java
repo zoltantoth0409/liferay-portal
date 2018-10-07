@@ -103,8 +103,7 @@ public class DLDisplayContextProvider {
 			WebKeys.THEME_DISPLAY);
 
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", themeDisplay.getLocale(),
-			DLDisplayContextProvider.class);
+			themeDisplay.getLocale(), DLDisplayContextProvider.class);
 
 		DLViewFileEntryHistoryDisplayContext
 			dlViewFileEntryHistoryDisplayContext =
