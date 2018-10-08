@@ -64,10 +64,10 @@ public class WebSiteCollectionResourceTest {
 			ThemeDisplay themeDisplay = getThemeDisplay(
 				group, Locale.getDefault());
 
-			PageItems<Group> groupPageItems = _getPageItems(
+			PageItems<Group> pageItems = _getPageItems(
 				PaginationRequest.of(10, 1), themeDisplay);
 
-			List<Group> groups = (List<Group>)groupPageItems.getItems();
+			List<Group> groups = (List<Group>)pageItems.getItems();
 
 			Assert.assertTrue(groups.contains(group));
 		}
@@ -86,10 +86,10 @@ public class WebSiteCollectionResourceTest {
 			ThemeDisplay themeDisplay = getThemeDisplay(
 				group, Locale.getDefault());
 
-			PageItems<Group> groupPageItems = _getPageItems(
+			PageItems<Group> pageItems = _getPageItems(
 				PaginationRequest.of(10, 1), themeDisplay);
 
-			List<Group> groups = (List<Group>)groupPageItems.getItems();
+			List<Group> groups = (List<Group>)pageItems.getItems();
 
 			Assert.assertFalse(groups.contains(group));
 		}
