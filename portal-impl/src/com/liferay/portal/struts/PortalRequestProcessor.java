@@ -322,11 +322,11 @@ public class PortalRequestProcessor {
 
 		path = path.substring(prefix.length());
 
-		int slash = path.lastIndexOf(CharPool.SLASH);
-		int period = path.lastIndexOf(CharPool.PERIOD);
+		int slashIndex = path.lastIndexOf(CharPool.SLASH);
+		int periodIndex = path.lastIndexOf(CharPool.PERIOD);
 
-		if ((period >= 0) && (period > slash)) {
-			path = path.substring(0, period);
+		if ((periodIndex >= 0) && (periodIndex > slashIndex)) {
+			path = path.substring(0, periodIndex);
 		}
 
 		return path;
