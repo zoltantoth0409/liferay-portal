@@ -556,6 +556,7 @@ public class PortalRequestProcessor {
 
 		if (actionForm != null) {
 			actionForm.setServlet(_actionServlet);
+
 			actionForm.reset(actionMapping, request);
 
 			if (actionMapping.getMultipartClass() != null) {
