@@ -102,7 +102,7 @@ public class SegmentsEntryRelLocalServiceTest {
 	}
 
 	@Test
-	public void testDeleteSegmentsEntryRelsByClassNameIdAndClassPk()
+	public void testDeleteSegmentsEntryRelsByClassNameIdAndClassPK()
 		throws PortalException {
 
 		SegmentsEntry segmentsEntry = _addSegmentsEntry();
