@@ -395,9 +395,6 @@ public class StagedModelDataHandlerUtil {
 				continue;
 			}
 
-			boolean missing = portletDataContext.isMissingReference(
-				referenceElement);
-
 			StagedModelDataHandler<?> stagedModelDataHandler =
 				StagedModelDataHandlerRegistryUtil.getStagedModelDataHandler(
 					stagedModelClassName);
@@ -406,7 +403,7 @@ public class StagedModelDataHandlerUtil {
 				continue;
 			}
 
-			if (missing) {
+			if (portletDataContext.isMissingReference(referenceElement)) {
 				stagedModelDataHandler.importMissingReference(
 					portletDataContext, referenceElement);
 
@@ -479,10 +476,7 @@ public class StagedModelDataHandlerUtil {
 			return;
 		}
 
-		boolean missing = portletDataContext.isMissingReference(
-			referenceElement);
-
-		if (missing) {
+		if (portletDataContext.isMissingReference(referenceElement)) {
 			stagedModelDataHandler.importMissingReference(
 				portletDataContext, referenceElement);
 
