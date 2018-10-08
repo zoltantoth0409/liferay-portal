@@ -53,61 +53,61 @@ public class ResolveFileEntryUUIDServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(
-		HttpServletRequest request, HttpServletResponse response) {
+		HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
 
 		try {
-			_sendSuccess(response, _getFileEntryByUuidAndGroupId(request));
+			_sendSuccess(httpServletResponse, _getFileEntryByUuidAndGroupId(httpServletRequest));
 		}
 		catch (PrincipalException pe) {
-			_sendError(response, 403, pe);
+			_sendError(httpServletResponse, 403, pe);
 		}
 		catch (Exception e) {
-			_sendError(response, 500, e);
+			_sendError(httpServletResponse, 500, e);
 		}
 	}
 
-	private FileEntry _getFileEntryByUuidAndGroupId(HttpServletRequest request)
+	private FileEntry _getFileEntryByUuidAndGroupId(HttpServletRequest httpServletRequest)
 		throws Exception {
 
-		long groupId = ParamUtil.getLong(request, "groupId");
-		String uuid = ParamUtil.getString(request, "uuid");
+		long groupId = ParamUtil.getLong(httpServletRequest, "groupId");
+		String uuid = ParamUtil.getString(httpServletRequest, "uuid");
 
 		return _dlAppLocalService.getFileEntryByUuidAndGroupId(uuid, groupId);
 	}
 
 	private void _sendError(
-		HttpServletResponse response, int status, Throwable throwable) {
+		HttpServletResponse httpServletResponse, int status, Throwable throwable) {
 
 		try {
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 			jsonObject.put("error", throwable.getMessage());
 
-			PrintWriter printWriter = response.getWriter();
+			PrintWriter printWriter = httpServletResponse.getWriter();
 
 			printWriter.write(jsonObject.toString());
 
-			response.setStatus(status);
+			httpServletResponse.setStatus(status);
 		}
 		catch (IOException ioe) {
 			_log.error(ioe, ioe);
 
-			response.setStatus(500);
+			httpServletResponse.setStatus(500);
 		}
 	}
 
-	private void _sendSuccess(HttpServletResponse response, FileEntry fileEntry)
+	private void _sendSuccess(HttpServletResponse httpServletResponse, FileEntry fileEntry)
 		throws IOException {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		jsonObject.put("fileEntryId", fileEntry.getFileEntryId());
 
-		PrintWriter printWriter = response.getWriter();
+		PrintWriter printWriter = httpServletResponse.getWriter();
 
 		printWriter.write(jsonObject.toString());
 
-		response.setStatus(200);
+		httpServletResponse.setStatus(200);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
