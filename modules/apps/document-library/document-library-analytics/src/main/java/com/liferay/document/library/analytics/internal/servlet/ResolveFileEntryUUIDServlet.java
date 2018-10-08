@@ -44,7 +44,7 @@ import org.osgi.service.component.annotations.Reference;
 	property = {
 		"osgi.http.whiteboard.servlet.name=com.liferay.document.library.analytics.internal.servlet.ResolveFileEntryUUIDServlet",
 		"osgi.http.whiteboard.servlet.pattern=" +
-			DocumentLibraryAnalyticsConstants.SERVLET_PATTERN,
+			DocumentLibraryAnalyticsConstants.PATH_RESOLVE_FILE_ENTRY,
 		"servlet.init.httpMethods=GET"
 	},
 	service = Servlet.class
