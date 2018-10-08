@@ -671,22 +671,22 @@ public class PortalRequestProcessor {
 	}
 
 	private ActionForm _processActionForm(
-		HttpServletRequest request, ActionMapping mapping) {
+		HttpServletRequest request, ActionMapping actionMapping) {
 
 		ActionForm actionForm = RequestUtils.createActionForm(
-			request, mapping, _moduleConfig, _actionServlet);
+			request, actionMapping, _moduleConfig, _actionServlet);
 
 		if (actionForm == null) {
 			return null;
 		}
 
-		if ("request".equals(mapping.getScope())) {
-			request.setAttribute(mapping.getAttribute(), actionForm);
+		if ("request".equals(actionMapping.getScope())) {
+			request.setAttribute(actionMapping.getAttribute(), actionForm);
 		}
 		else {
 			HttpSession session = request.getSession();
 
-			session.setAttribute(mapping.getAttribute(), actionForm);
+			session.setAttribute(actionMapping.getAttribute(), actionForm);
 		}
 
 		return actionForm;
