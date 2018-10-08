@@ -219,31 +219,6 @@ public class StructuredContentApioTest {
 		Assert.assertTrue(href.startsWith(hrefs.get(0)));
 	}
 
-	private String _toString(JSONWebServiceClient jsonWebServiceClient, String url)
-		throws Exception {
-
-		return jsonWebServiceClient.doGet(
-			url, Collections.emptyMap(),
-			Collections.singletonMap("Accept", "application/hal+json"));
-	}
-
-	private String _toStringAsAdmin(String url) throws Exception {
-		return _toStringAsUser(url, "test@liferay.com", "test");
-	}
-
-	private String _toStringAsGuest(String url) throws Exception {
-		return _toString(_getGuestJSONWebServiceClient(), url);
-	}
-
-	private String _toStringAsUser(String url, String login, String password)
-		throws Exception {
-
-		JSONWebServiceClient jsonWebServiceClient = _getJSONWebServiceClient(
-			login, password);
-
-		return _toString(jsonWebServiceClient, url);
-	}
-
 	private JSONWebServiceClient _getGuestJSONWebServiceClient() {
 		JSONWebServiceClient jsonWebServiceClient =
 			new JSONWebServiceClientImpl();
@@ -271,6 +246,32 @@ public class StructuredContentApioTest {
 		}
 
 		return jsonWebServiceClient;
+	}
+
+	private String _toString(
+			JSONWebServiceClient jsonWebServiceClient, String url)
+		throws Exception {
+
+		return jsonWebServiceClient.doGet(
+			url, Collections.emptyMap(),
+			Collections.singletonMap("Accept", "application/hal+json"));
+	}
+
+	private String _toStringAsAdmin(String url) throws Exception {
+		return _toStringAsUser(url, "test@liferay.com", "test");
+	}
+
+	private String _toStringAsGuest(String url) throws Exception {
+		return _toString(_getGuestJSONWebServiceClient(), url);
+	}
+
+	private String _toStringAsUser(String url, String login, String password)
+		throws Exception {
+
+		JSONWebServiceClient jsonWebServiceClient = _getJSONWebServiceClient(
+			login, password);
+
+		return _toString(jsonWebServiceClient, url);
 	}
 
 	private final Map<String, JSONWebServiceClient> _jsonWebServiceClientMap =

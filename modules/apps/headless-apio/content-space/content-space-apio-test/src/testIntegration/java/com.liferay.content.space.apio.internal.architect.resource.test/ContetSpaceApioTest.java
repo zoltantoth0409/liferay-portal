@@ -17,8 +17,6 @@ package com.liferay.content.space.apio.internal.architect.resource.test;
 import com.jayway.jsonpath.JsonPath;
 
 import com.liferay.petra.json.web.service.client.JSONWebServiceClient;
-import com.liferay.petra.json.web.service.client.JSONWebServiceInvocationException;
-import com.liferay.petra.json.web.service.client.JSONWebServiceTransportException;
 import com.liferay.petra.json.web.service.client.internal.JSONWebServiceClientImpl;
 
 import java.net.MalformedURLException;
