@@ -62,12 +62,9 @@ public class BasicAuthHeaderAuthVerifier
 			AccessControlContext accessControlContext, Properties properties)
 		throws AuthException {
 
-		AuthVerifierResult authVerifierResult = new AuthVerifierResult();
-
-		boolean forcedBasicAuth = isForcedBasicAuth(
-			accessControlContext, properties);
-
 		try {
+			AuthVerifierResult authVerifierResult = new AuthVerifierResult();
+
 			String[] credentials = login(
 				accessControlContext.getRequest(),
 				accessControlContext.getResponse());
@@ -78,14 +75,14 @@ public class BasicAuthHeaderAuthVerifier
 				authVerifierResult.setState(AuthVerifierResult.State.SUCCESS);
 				authVerifierResult.setUserId(Long.valueOf(credentials[0]));
 			}
-			else if (forcedBasicAuth) {
+			else if (isForcedBasicAuth(accessControlContext, properties)) {
 				return generateChallenge(accessControlContext);
 			}
 
 			return authVerifierResult;
 		}
 		catch (AutoLoginException ale) {
-			if (forcedBasicAuth) {
+			if (isForcedBasicAuth(accessControlContext, properties)) {
 				return generateChallenge(accessControlContext);
 			}
 
