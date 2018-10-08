@@ -79,11 +79,6 @@ public class VerifyUUID extends VerifyProcess {
 	protected void verifyUUID(VerifiableUUIDModel verifiableUUIDModel)
 		throws Exception {
 
-		String updateUuidClause = StringBundler.concat(
-			"update ", verifiableUUIDModel.getTableName(), " set uuid_ = ");
-
-		String notNullUuidFilter = " where uuid_ is null or uuid_ = ''";
-
 		DB db = DBManagerUtil.getDB();
 
 		if (db.isSupportsNewUuidFunction()) {
@@ -92,8 +87,9 @@ public class VerifyUUID extends VerifyProcess {
 				Connection con = DataAccess.getConnection();
 				PreparedStatement ps = con.prepareStatement(
 					StringBundler.concat(
-						updateUuidClause, db.getNewUuidFunctionName(),
-						notNullUuidFilter))) {
+						"update ", verifiableUUIDModel.getTableName(),
+						" set uuid_ = ", db.getNewUuidFunctionName(),
+						" where uuid_ is null or uuid_ = ''"))) {
 
 				ps.executeUpdate();
 
@@ -101,10 +97,11 @@ public class VerifyUUID extends VerifyProcess {
 			}
 		}
 
-		StringBundler sb = new StringBundler(4);
+		StringBundler sb = new StringBundler(5);
 
-		sb.append(updateUuidClause);
-		sb.append("? where ");
+		sb.append("update ");
+		sb.append(verifiableUUIDModel.getTableName());
+		sb.append(" set uuid_ = ? where ");
 		sb.append(verifiableUUIDModel.getPrimaryKeyColumnName());
 		sb.append(" = ?");
 
@@ -115,7 +112,7 @@ public class VerifyUUID extends VerifyProcess {
 				StringBundler.concat(
 					"select ", verifiableUUIDModel.getPrimaryKeyColumnName(),
 					" from ", verifiableUUIDModel.getTableName(),
-					notNullUuidFilter));
+					" where uuid_ is null or uuid_ = ''"));
 			ResultSet rs = ps1.executeQuery();
 			PreparedStatement ps2 = AutoBatchPreparedStatementUtil.autoBatch(
 				con.prepareStatement(sb.toString()))) {
