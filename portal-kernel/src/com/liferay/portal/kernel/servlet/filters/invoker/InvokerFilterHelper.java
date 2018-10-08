@@ -507,14 +507,10 @@ public class InvokerFilterHelper {
 
 			updateFilterMappings(servletFilterName, filter);
 
-			List<String> urlPatterns = StringPlus.asList(
-				serviceReference.getProperty("url-pattern"));
-			List<String> dispatchers = StringPlus.asList(
-				serviceReference.getProperty("dispatcher"));
-
 			FilterMapping filterMapping = new FilterMapping(
-				servletFilterName, filter, filterConfig, urlPatterns,
-				dispatchers);
+				servletFilterName, filter, filterConfig,
+				StringPlus.asList(serviceReference.getProperty("url-pattern")),
+				StringPlus.asList(serviceReference.getProperty("dispatcher")));
 
 			registerFilterMapping(filterMapping, positionFilterName, after);
 
