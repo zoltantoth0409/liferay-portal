@@ -20,7 +20,7 @@
 String p_u_i_d = ParamUtil.getString(request, "p_u_i_d");
 String eventName = ParamUtil.getString(request, "eventName", liferayPortletResponse.getNamespace() + "selectOrganization");
 
-long selectedOrganizationId = ParamUtil.getLong(request, "organizationId");
+long selOrganizationId = ParamUtil.getLong(request, "organizationId");
 User selUser = PortalUtil.getSelectedUser(request);
 
 SelectOrganizationManagementToolbarDisplayContext SelectOrganizationManagementToolbarDisplayContext = new SelectOrganizationManagementToolbarDisplayContext(request, renderRequest, renderResponse);
@@ -120,7 +120,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "organizations"));
 						}
 					}
 
-					if (selectedOrganizationId == organization.getOrganizationId()) {
+					if (selOrganizationId == organization.getOrganizationId()) {
 						disabled = true;
 					}
 					%>
