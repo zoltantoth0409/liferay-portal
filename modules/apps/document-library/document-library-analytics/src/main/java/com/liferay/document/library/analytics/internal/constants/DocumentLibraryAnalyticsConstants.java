@@ -23,6 +23,6 @@ public class DocumentLibraryAnalyticsConstants {
 		"_com_liferay_document_library_analytics_";
 
 	public static final String SERVLET_PATTERN =
-		"/document_library/analytics/resolve-file-entry";
+		"/document_library/analytics/resolve_file_entry";
 
 }
