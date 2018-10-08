@@ -17,8 +17,6 @@
 <%@ include file="/init.jsp" %>
 
 <%
-SelectLayoutPageTemplateEntryDisplayContext selectLayoutPageTemplateEntryDisplayContext = new SelectLayoutPageTemplateEntryDisplayContext(request);
-
 String backURL = layoutsAdminDisplayContext.getRedirect();
 
 if (Validator.isNull(backURL)) {
@@ -26,6 +24,8 @@ if (Validator.isNull(backURL)) {
 
 	backURL = portletURL.toString();
 }
+
+SelectLayoutPageTemplateEntryDisplayContext selectLayoutPageTemplateEntryDisplayContext = new SelectLayoutPageTemplateEntryDisplayContext(request);
 
 portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(backURL);
