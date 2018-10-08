@@ -79,11 +79,11 @@ public class ResolveFileEntryUUIDServlet extends HttpServlet {
 		HttpServletResponse httpServletResponse, int status, Throwable throwable) {
 
 		try {
+			PrintWriter printWriter = httpServletResponse.getWriter();
+
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 			jsonObject.put("error", throwable.getMessage());
-
-			PrintWriter printWriter = httpServletResponse.getWriter();
 
 			printWriter.write(jsonObject.toString());
 
