@@ -107,13 +107,11 @@ public class StructuredContentApioTestBundleActivator
 			}
 		};
 
-		long defaultCompanyId = PortalUtil.getDefaultCompanyId();
-
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setAddGroupPermissions(addGroupPermissions);
 		serviceContext.setAddGuestPermissions(addGuestPermissions);
-		serviceContext.setCompanyId(defaultCompanyId);
+		serviceContext.setCompanyId(PortalUtil.getDefaultCompanyId());
 		serviceContext.setScopeGroupId(groupId);
 		serviceContext.setUserId(userId);
 
