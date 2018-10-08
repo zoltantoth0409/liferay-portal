@@ -1759,9 +1759,6 @@ public class CMISRepository extends BaseCmisRepository {
 				continue;
 			}
 
-			com.liferay.portal.kernel.search.Document document =
-				new DocumentImpl();
-
 			String objectId = queryResult.getPropertyValueByQueryName(
 				PropertyIds.OBJECT_ID);
 
@@ -1798,6 +1795,9 @@ public class CMISRepository extends BaseCmisRepository {
 
 				continue;
 			}
+
+			com.liferay.portal.kernel.search.Document document =
+				new DocumentImpl();
 
 			DocumentHelper documentHelper = new DocumentHelper(document);
 

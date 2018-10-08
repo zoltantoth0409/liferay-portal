@@ -248,12 +248,12 @@ public class AssetPublisherPortletToolbarContributor
 		AssetPublisherDisplayContext assetPublisherDisplayContext,
 		PortletRequest portletRequest) {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		if (!assetPublisherDisplayContext.isShowAddContentButton()) {
 			return false;
 		}
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
 		Group scopeGroup = themeDisplay.getScopeGroup();
 
