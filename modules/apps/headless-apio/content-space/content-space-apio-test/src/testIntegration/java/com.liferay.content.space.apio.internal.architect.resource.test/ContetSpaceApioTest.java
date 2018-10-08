@@ -60,9 +60,9 @@ public class ContetSpaceApioTest {
 	@Test
 	public void testContentSpaceLiferayExists() throws Exception {
 		List<String> hrefs = JsonPath.read(
-			_get(
+			_toString(
 				JsonPath.read(
-					_get(_rootEndpointURL.toExternalForm()),
+					_toString(_rootEndpointURL.toExternalForm()),
 					"$._links.content-space.href")),
 			"$._embedded.ContentSpace[?(@.name == 'Liferay')]");
 
@@ -73,11 +73,11 @@ public class ContetSpaceApioTest {
 	public void testContentSpaceLinkExistsInRootEndpoint() throws Exception {
 		Assert.assertNotNull(
 			JsonPath.read(
-				_get(_rootEndpointURL.toExternalForm()),
+				_toString(_rootEndpointURL.toExternalForm()),
 				"$._links.content-space.href"));
 	}
 
-	private String _get(String url) throws Exception {
+	private String _toString(String url) throws Exception {
 		return _jsonWebServiceClient.doGet(
 			url, Collections.emptyMap(),
 			Collections.singletonMap("Accept", "application/hal+json"));

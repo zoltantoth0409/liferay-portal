@@ -61,16 +61,16 @@ public class StructuredContentApioTest {
 	@Test
 	public void testAdminUserSeesAllStructuredContents() throws Exception {
 		List<String> hrefs = JsonPath.read(
-			_getAsAdmin(
+			_toStringAsAdmin(
 				JsonPath.read(
-					_getAsAdmin(_rootEndpointURL.toExternalForm()),
+					_toStringAsAdmin(_rootEndpointURL.toExternalForm()),
 					"$._links.content-space.href")),
 			"$._embedded.ContentSpace[?(@.name == '" +
 				StructuredContentApioTestBundleActivator.SITE_NAME +
 					"')]._links.structuredContents.href");
 
 		List<String> titles = JsonPath.read(
-			_getAsAdmin(hrefs.get(0)),
+			_toStringAsAdmin(hrefs.get(0)),
 			"$._embedded.StructuredContent[*].title");
 
 		Assert.assertTrue(
@@ -90,16 +90,16 @@ public class StructuredContentApioTest {
 	@Test
 	public void testGuestUserSeesRightStructuredContents() throws Exception {
 		List<String> hrefs = JsonPath.read(
-			_getAsAdmin(
+			_toStringAsAdmin(
 				JsonPath.read(
-					_getAsAdmin(_rootEndpointURL.toExternalForm()),
+					_toStringAsAdmin(_rootEndpointURL.toExternalForm()),
 					"$._links.content-space.href")),
 			"$._embedded.ContentSpace[?(@.name == '" +
 				StructuredContentApioTestBundleActivator.SITE_NAME +
 					"')]._links.structuredContents.href");
 
 		List<String> titles = JsonPath.read(
-			_getAsGuest(hrefs.get(0)),
+			_toStringAsGuest(hrefs.get(0)),
 			"$._embedded.StructuredContent[*].title");
 
 		Assert.assertFalse(
@@ -121,16 +121,16 @@ public class StructuredContentApioTest {
 		throws Exception {
 
 		List<String> hrefs = JsonPath.read(
-			_getAsAdmin(
+			_toStringAsAdmin(
 				JsonPath.read(
-					_getAsAdmin(_rootEndpointURL.toExternalForm()),
+					_toStringAsAdmin(_rootEndpointURL.toExternalForm()),
 					"$._links.content-space.href")),
 			"$._embedded.ContentSpace[?(@.name == '" +
 				StructuredContentApioTestBundleActivator.SITE_NAME +
 					"')]._links.structuredContents.href");
 
 		List<String> titles = JsonPath.read(
-			_getAsUser(
+			_toStringAsUser(
 				hrefs.get(0),
 				StructuredContentApioTestBundleActivator.
 					NOT_A_SITE_MEMBER_EMAIL_ADDRESS,
@@ -156,16 +156,16 @@ public class StructuredContentApioTest {
 		throws Exception {
 
 		List<String> hrefs = JsonPath.read(
-			_getAsGuest(
+			_toStringAsGuest(
 				JsonPath.read(
-					_getAsGuest(_rootEndpointURL.toExternalForm()),
+					_toStringAsGuest(_rootEndpointURL.toExternalForm()),
 					"$._links.content-space.href")),
 			"$._embedded.ContentSpace[?(@.name == '" +
 				StructuredContentApioTestBundleActivator.SITE_NAME +
 					"')]._links.structuredContents.href");
 
 		List<String> titles = JsonPath.read(
-			_getAsUser(
+			_toStringAsUser(
 				hrefs.get(0),
 				StructuredContentApioTestBundleActivator.
 					SITE_MEMBER_EMAIL_ADDRESS,
@@ -191,9 +191,9 @@ public class StructuredContentApioTest {
 		throws Exception {
 
 		List<String> hrefs = JsonPath.read(
-			_getAsGuest(
+			_toStringAsGuest(
 				JsonPath.read(
-					_getAsGuest(_rootEndpointURL.toExternalForm()),
+					_toStringAsGuest(_rootEndpointURL.toExternalForm()),
 					"$._links.content-space.href")),
 			"$._embedded.ContentSpace[?(@.name == '" +
 				StructuredContentApioTestBundleActivator.SITE_NAME +
@@ -205,21 +205,21 @@ public class StructuredContentApioTest {
 	@Test
 	public void testStructuredContentsMatchesSelfLink() throws Exception {
 		List<String> hrefs = JsonPath.read(
-			_getAsGuest(
+			_toStringAsGuest(
 				JsonPath.read(
-					_getAsGuest(_rootEndpointURL.toExternalForm()),
+					_toStringAsGuest(_rootEndpointURL.toExternalForm()),
 					"$._links.content-space.href")),
 			"$._embedded.ContentSpace[?(@.name == '" +
 				StructuredContentApioTestBundleActivator.SITE_NAME +
 					"')]._links.structuredContents.href");
 
 		String href = JsonPath.read(
-			_getAsGuest(hrefs.get(0)), "$._links.self.href");
+			_toStringAsGuest(hrefs.get(0)), "$._links.self.href");
 
 		Assert.assertTrue(href.startsWith(hrefs.get(0)));
 	}
 
-	private String _get(JSONWebServiceClient jsonWebServiceClient, String url)
+	private String _toString(JSONWebServiceClient jsonWebServiceClient, String url)
 		throws Exception {
 
 		return jsonWebServiceClient.doGet(
@@ -227,21 +227,21 @@ public class StructuredContentApioTest {
 			Collections.singletonMap("Accept", "application/hal+json"));
 	}
 
-	private String _getAsAdmin(String url) throws Exception {
-		return _getAsUser(url, "test@liferay.com", "test");
+	private String _toStringAsAdmin(String url) throws Exception {
+		return _toStringAsUser(url, "test@liferay.com", "test");
 	}
 
-	private String _getAsGuest(String url) throws Exception {
-		return _get(_getGuestJSONWebServiceClient(), url);
+	private String _toStringAsGuest(String url) throws Exception {
+		return _toString(_getGuestJSONWebServiceClient(), url);
 	}
 
-	private String _getAsUser(String url, String login, String password)
+	private String _toStringAsUser(String url, String login, String password)
 		throws Exception {
 
 		JSONWebServiceClient jsonWebServiceClient = _getJSONWebServiceClient(
 			login, password);
 
-		return _get(jsonWebServiceClient, url);
+		return _toString(jsonWebServiceClient, url);
 	}
 
 	private JSONWebServiceClient _getGuestJSONWebServiceClient() {
