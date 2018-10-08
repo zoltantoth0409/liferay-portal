@@ -43,8 +43,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = {
 		"osgi.http.whiteboard.servlet.name=com.liferay.document.library.analytics.internal.servlet.ResolveFileEntryUUIDServlet",
-		"osgi.http.whiteboard.servlet.pattern=" +
-			DocumentLibraryAnalyticsConstants.PATH_RESOLVE_FILE_ENTRY,
+		"osgi.http.whiteboard.servlet.pattern=" + DocumentLibraryAnalyticsConstants.PATH_RESOLVE_FILE_ENTRY,
 		"servlet.init.httpMethods=GET"
 	},
 	service = Servlet.class
@@ -53,10 +52,13 @@ public class ResolveFileEntryUUIDServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(
-		HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+		HttpServletRequest httpServletRequest,
+		HttpServletResponse httpServletResponse) {
 
 		try {
-			_sendSuccess(httpServletResponse, _getFileEntryByUuidAndGroupId(httpServletRequest));
+			_sendSuccess(
+				httpServletResponse,
+				_getFileEntryByUuidAndGroupId(httpServletRequest));
 		}
 		catch (PrincipalException pe) {
 			_sendError(httpServletResponse, 403, pe);
@@ -66,7 +68,8 @@ public class ResolveFileEntryUUIDServlet extends HttpServlet {
 		}
 	}
 
-	private FileEntry _getFileEntryByUuidAndGroupId(HttpServletRequest httpServletRequest)
+	private FileEntry _getFileEntryByUuidAndGroupId(
+			HttpServletRequest httpServletRequest)
 		throws Exception {
 
 		long groupId = ParamUtil.getLong(httpServletRequest, "groupId");
@@ -76,7 +79,8 @@ public class ResolveFileEntryUUIDServlet extends HttpServlet {
 	}
 
 	private void _sendError(
-		HttpServletResponse httpServletResponse, int status, Throwable throwable) {
+		HttpServletResponse httpServletResponse, int status,
+		Throwable throwable) {
 
 		try {
 			PrintWriter printWriter = httpServletResponse.getWriter();
@@ -96,7 +100,8 @@ public class ResolveFileEntryUUIDServlet extends HttpServlet {
 		}
 	}
 
-	private void _sendSuccess(HttpServletResponse httpServletResponse, FileEntry fileEntry)
+	private void _sendSuccess(
+			HttpServletResponse httpServletResponse, FileEntry fileEntry)
 		throws IOException {
 
 		PrintWriter printWriter = httpServletResponse.getWriter();
