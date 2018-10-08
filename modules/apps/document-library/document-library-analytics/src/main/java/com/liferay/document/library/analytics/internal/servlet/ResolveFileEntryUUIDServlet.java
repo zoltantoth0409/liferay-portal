@@ -42,14 +42,14 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	immediate = true,
 	property = {
-		"osgi.http.whiteboard.servlet.name=com.liferay.document.library.analytics.internal.servlet.FileEntryUUIDResolverServlet",
+		"osgi.http.whiteboard.servlet.name=com.liferay.document.library.analytics.internal.servlet.ResolveFileEntryUUIDServlet",
 		"osgi.http.whiteboard.servlet.pattern=" +
 			DocumentLibraryAnalyticsConstants.SERVLET_PATTERN,
 		"servlet.init.httpMethods=GET"
 	},
 	service = Servlet.class
 )
-public class FileEntryUUIDResolverServlet extends HttpServlet {
+public class ResolveFileEntryUUIDServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(
@@ -111,7 +111,7 @@ public class FileEntryUUIDResolverServlet extends HttpServlet {
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		FileEntryUUIDResolverServlet.class);
+		ResolveFileEntryUUIDServlet.class);
 
 	@Reference
 	private DLAppLocalService _dlAppLocalService;
