@@ -77,10 +77,7 @@ public class WebSiteApioTest {
 				"$._links.web-site.href"));
 	}
 
-	private String _get(String url)
-		throws JSONWebServiceInvocationException,
-			   JSONWebServiceTransportException {
-
+	private String _get(String url) throws Exception {
 		return _jsonWebServiceClient.doGet(
 			url, Collections.emptyMap(),
 			Collections.singletonMap("Accept", "application/hal+json"));
