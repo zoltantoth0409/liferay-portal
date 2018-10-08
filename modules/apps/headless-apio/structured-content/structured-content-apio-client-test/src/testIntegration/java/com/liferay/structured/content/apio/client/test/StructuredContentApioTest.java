@@ -59,7 +59,7 @@ public class StructuredContentApioTest {
 	}
 
 	@Test
-	public void testAdminUserSeeAllStructuredContents() throws Exception {
+	public void testAdminUserSeesAllStructuredContents() throws Exception {
 		List<String> hrefs = JsonPath.read(
 			_getAsAdmin(
 				JsonPath.read(
