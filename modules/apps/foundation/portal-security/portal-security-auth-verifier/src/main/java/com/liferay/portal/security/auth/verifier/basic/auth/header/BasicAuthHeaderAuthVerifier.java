@@ -40,7 +40,7 @@ public class BasicAuthHeaderAuthVerifier
 	extends BasicAuthHeaderAutoLogin implements AuthVerifier {
 
 	/**
-	 * @deprecated As of Judson (7.1.x), replaced by {@link
+	 * @deprecated As of 2.1.0, As of Judson (7.1.x), replaced by {@link
 	 *             #BasicAuthHeaderAuthVerifier(ConfigurationProvider, Portal)}
 	 */
 	@Deprecated
@@ -114,11 +114,6 @@ public class BasicAuthHeaderAuthVerifier
 		return authVerifierResult;
 	}
 
-	@Override
-	protected boolean isEnabled(long companyId) {
-		return true;
-	}
-
 	protected boolean isBasicAuth(
 		AccessControlContext accessControlContext, Properties properties) {
 
@@ -131,6 +126,11 @@ public class BasicAuthHeaderAuthVerifier
 		}
 
 		return basicAuth;
+	}
+
+	@Override
+	protected boolean isEnabled(long companyId) {
+		return true;
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
