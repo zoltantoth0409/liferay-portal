@@ -39,9 +39,13 @@ Organization organization = organizationScreenNavigationDisplayContext.getOrgani
 <div class="sheet-section">
 	<h3 class="sheet-subtitle"><liferay-ui:message key="more-information" /></h3>
 
-	<liferay-util:include page="/organization/categorization.jsp" servletContext="<%= application %>" />
+	<div class="form-group">
+		<liferay-util:include page="/organization/categorization.jsp" servletContext="<%= application %>" />
+	</div>
 
-	<liferay-util:include page="/organization/comments.jsp" servletContext="<%= application %>" />
+	<div class="form-group">
+		<liferay-util:include page="/organization/comments.jsp" servletContext="<%= application %>" />
+	</div>
 </div>
 
 <c:if test="<%= CustomFieldsUtil.hasVisibleCustomFields(company.getCompanyId(), Organization.class) %>">

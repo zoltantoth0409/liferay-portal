@@ -24,6 +24,6 @@ Organization organization = OrganizationServiceUtil.fetchOrganization(organizati
 
 <aui:model-context bean="<%= organization %>" model="<%= Organization.class %>" />
 
-<aui:fieldset cssClass="comments-fieldset">
+<aui:fieldset>
 	<aui:input label="comments" name="comments" />
 </aui:fieldset>
