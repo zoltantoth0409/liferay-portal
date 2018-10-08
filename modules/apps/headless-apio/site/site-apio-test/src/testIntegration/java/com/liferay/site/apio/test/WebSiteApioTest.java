@@ -60,9 +60,9 @@ public class WebSiteApioTest {
 	@Test
 	public void testWebSiteLiferayExists() throws Exception {
 		List<String> hrefs = JsonPath.read(
-			_get(
+			_toString(
 				JsonPath.read(
-					_get(_rootEndpointURL.toExternalForm()),
+					_toString(_rootEndpointURL.toExternalForm()),
 					"$._links.web-site.href")),
 			"$._embedded.WebSite[?(@.name == 'Liferay')]");
 
@@ -73,11 +73,11 @@ public class WebSiteApioTest {
 	public void testWebSiteLinkExistsInRootEndpoint() throws Exception {
 		Assert.assertNotNull(
 			JsonPath.read(
-				_get(_rootEndpointURL.toExternalForm()),
+				_toString(_rootEndpointURL.toExternalForm()),
 				"$._links.web-site.href"));
 	}
 
-	private String _get(String url) throws Exception {
+	private String _toString(String url) throws Exception {
 		return _jsonWebServiceClient.doGet(
 			url, Collections.emptyMap(),
 			Collections.singletonMap("Accept", "application/hal+json"));
