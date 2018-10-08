@@ -99,11 +99,11 @@ public class ResolveFileEntryUUIDServlet extends HttpServlet {
 	private void _sendSuccess(HttpServletResponse httpServletResponse, FileEntry fileEntry)
 		throws IOException {
 
+		PrintWriter printWriter = httpServletResponse.getWriter();
+
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		jsonObject.put("fileEntryId", fileEntry.getFileEntryId());
-
-		PrintWriter printWriter = httpServletResponse.getWriter();
 
 		printWriter.write(jsonObject.toString());
 
