@@ -219,7 +219,7 @@ public class StructuredContentApioTest {
 		Assert.assertTrue(href.startsWith(hrefs.get(0)));
 	}
 
-	private String _get(String url, JSONWebServiceClient jsonWebServiceClient)
+	private String _get(JSONWebServiceClient jsonWebServiceClient, String url)
 		throws Exception {
 
 		return jsonWebServiceClient.doGet(
@@ -232,7 +232,7 @@ public class StructuredContentApioTest {
 	}
 
 	private String _getAsGuest(String url) throws Exception {
-		return _get(url, _getGuestJSONWebServiceClient());
+		return _get(_getGuestJSONWebServiceClient(), url);
 	}
 
 	private String _getAsUser(String url, String login, String password)
@@ -241,7 +241,7 @@ public class StructuredContentApioTest {
 		JSONWebServiceClient jsonWebServiceClient = _getJSONWebServiceClient(
 			login, password);
 
-		return _get(url, jsonWebServiceClient);
+		return _get(jsonWebServiceClient, url);
 	}
 
 	private JSONWebServiceClient _getGuestJSONWebServiceClient() {
