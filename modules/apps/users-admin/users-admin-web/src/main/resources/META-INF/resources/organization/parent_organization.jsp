@@ -159,6 +159,12 @@ if (parentOrganization != null) {
 	url="javascript:;"
 />
 
+<portlet:renderURL var="selectOrganizationRenderURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+	<portlet:param name="mvcPath" value="/select_organization.jsp" />
+	<portlet:param name="organizationId" value="<%= String.valueOf(organizationId) %>" />
+	<portlet:param name="p_u_i_d" value='<%= (selUser == null) ? "0" : String.valueOf(selUser.getUserId()) %>' />
+</portlet:renderURL>
+
 <aui:script use="liferay-search-container">
 	function <portlet:namespace />createURL(href, value, onclick) {
 		return '<a href="' + href + '"' + (onclick ? ' onclick="' + onclick + '" ' : '') + '>' + value + '</a>';
@@ -194,7 +200,7 @@ if (parentOrganization != null) {
 						id: '<portlet:namespace />selectOrganization',
 						selectedData: [searchContainerData],
 						title: '<liferay-ui:message arguments="organization" key="select-x" />',
-						uri: '<portlet:renderURL windowState="<%= LiferayWindowState.POP_UP.toString() %>"><portlet:param name="mvcPath" value="/select_organization.jsp" /><portlet:param name="p_u_i_d" value='<%= (selUser == null) ? "0" : String.valueOf(selUser.getUserId()) %>' /></portlet:renderURL>'
+						uri: '<%= selectOrganizationRenderURL %>'
 					},
 					function(event) {
 						var rowColumns = [];
