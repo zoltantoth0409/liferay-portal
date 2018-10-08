@@ -16,10 +16,6 @@
 
 <%@ include file="/dynamic_include/init.jsp" %>
 
-<%
-String fileEntryUUIDResolverURI = StringBundler.concat(PortalUtil.getPortalURL(request), Portal.PATH_MODULE, DocumentLibraryAnalyticsConstants.SERVLET_PATTERN);
-%>
-
 <script data-senna-track="temporary" type="text/javascript">
 	if (window.Analytics) {
 		window.<%= DocumentLibraryAnalyticsConstants.JS_PREFIX %>isViewFileEntry = false;
@@ -46,7 +42,7 @@ String fileEntryUUIDResolverURI = StringBundler.concat(PortalUtil.getPortalURL(r
 					var fileEntryUUID = match[4];
 
 					fetch(
-						'<%= fileEntryUUIDResolverURI %>?groupId=' + encodeURIComponent(groupId) + '&uuid=' + encodeURIComponent(fileEntryUUID),
+						'<%= PortalUtil.getPortalURL(request) %><%= Portal.PATH_MODULE %><%= DocumentLibraryAnalyticsConstants.SERVLET_PATTERN %>?groupId=' + encodeURIComponent(groupId) + '&uuid=' + encodeURIComponent(fileEntryUUID),
 						{
 							credentials: 'include',
 							method: 'GET'
