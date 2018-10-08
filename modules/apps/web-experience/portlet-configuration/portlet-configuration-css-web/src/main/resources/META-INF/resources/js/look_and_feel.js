@@ -1961,7 +1961,7 @@ AUI.add(
 				// Font color
 
 				var changeColor = function(color) {
-					if (color) {
+					if (typeof color !== 'undefined') {
 						portlet.setStyle(COLOR, color);
 
 						textData.color = color;
