@@ -114,7 +114,7 @@ public class DBInspector {
 
 			int actualColumnDataType = rs.getInt("DATA_TYPE");
 
-			if (actualColumnDataType != expectedColumnDataType) {
+			if (expectedColumnDataType != actualColumnDataType) {
 				return false;
 			}
 
