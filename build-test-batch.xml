@@ -3544,8 +3544,9 @@ app.server.type=@{app.server.type}]]></echo>
 						</execute>
 
 						<!--
-						In order to build the Bridge Impl and Portal tests, first build the JSF Showcase tests
-						since the Alloy, Bridge Impl, and Portal Showcase tests depend on the JSF Showcase tests.
+						In order to build the Bridge Impl and Portal tests, first build the JSF Showcase
+						tests since the Alloy, Bridge Impl, and Portal Showcase tests depend on the JSF
+						Showcase tests.
 						-->
 
 						<execute dir="${liferay.faces.showcase.dir}/jsf-showcase-webapp">
@@ -3553,9 +3554,10 @@ app.server.type=@{app.server.type}]]></echo>
 						</execute>
 
 						<!--
-						Next build the Alloy Showcase tests that the Bridge Impl tests depend on. In order to build the
-						Alloy Showcase, ensure that the Alloy Showcase depends on the current JSF Showcase version
-						(built above) and its transitive dependencies like Test Selenium:
+						Next build the Alloy Showcase tests that the Bridge Impl tests depend on. In
+						order to build the Alloy Showcase, ensure that the Alloy Showcase depends on the
+						current JSF Showcase version (built above) and its transitive dependencies like
+						Test Selenium:
 
 						1. Extract the Test Selenium version used by the JSF Showcase.
 						-->
@@ -3568,8 +3570,8 @@ app.server.type=@{app.server.type}]]></echo>
 						</xmltask>
 
 						<!--
-						2. Replace the Test Selenium dependency version in the Alloy Showcase with the one extracted from
-						the JSF Showcase above.
+						2. Replace the Test Selenium dependency version in the Alloy Showcase with the
+						one extracted from the JSF Showcase above.
 						-->
 
 						<xmltask
@@ -3594,8 +3596,8 @@ app.server.type=@{app.server.type}]]></echo>
 						</xmltask>
 
 						<!--
-						4. Replace the JSF Showcase dependency version in the Alloy Showcase with the one extracted from
-						the JSF Showcase above.
+						4. Replace the JSF Showcase dependency version in the Alloy Showcase with the
+						one extracted from the JSF Showcase above.
 						-->
 
 						<xmltask dest="${liferay.faces.alloy.dir}/pom.xml" source="${liferay.faces.alloy.dir}/pom.xml">
@@ -3618,8 +3620,8 @@ app.server.type=@{app.server.type}]]></echo>
 						</execute>
 
 						<!--
-						Move the Bridge Impl test results to a different folder so they are not overwritten by the
-						Showcase test results.
+						Move the Bridge Impl test results to a different folder so they are not
+						overwritten by the Showcase test results.
 						-->
 
 						<move
@@ -3632,8 +3634,8 @@ app.server.type=@{app.server.type}]]></echo>
 						</execute>
 
 						<!--
-						Move the Alloy Showcase test results to a different folder so they are not overwritten by the
-						JSF Showcase test results.
+						Move the Alloy Showcase test results to a different folder so they are not
+						overwritten by the JSF Showcase test results.
 						-->
 
 						<move
@@ -3654,8 +3656,8 @@ app.server.type=@{app.server.type}]]></echo>
 						</execute>
 
 						<!--
-						Move the Portal test results to a different folder so they are not overwritten by the
-						Showcase test results.
+						Move the Portal test results to a different folder so they are not overwritten
+						by the Showcase test results.
 						-->
 
 						<move
