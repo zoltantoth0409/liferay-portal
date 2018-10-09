@@ -120,12 +120,11 @@ public class DLWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 			String[] destinationArray = WebDAVUtil.getPathArray(
 				destination, true);
 
-			long companyId = webDAVRequest.getCompanyId();
-
 			long parentFolderId = DLFolderConstants.DEFAULT_PARENT_FOLDER_ID;
 
 			try {
-				parentFolderId = getParentFolderId(companyId, destinationArray);
+				parentFolderId = getParentFolderId(
+					webDAVRequest.getCompanyId(), destinationArray);
 			}
 			catch (NoSuchFolderException nsfe) {
 				if (_log.isDebugEnabled()) {
@@ -137,7 +136,8 @@ public class DLWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 
 			Folder folder = (Folder)resource.getModel();
 
-			long groupId = WebDAVUtil.getGroupId(companyId, destination);
+			long groupId = WebDAVUtil.getGroupId(
+				webDAVRequest.getCompanyId(), destination);
 			String name = WebDAVUtil.getResourceName(destinationArray);
 			String description = folder.getDescription();
 
@@ -201,12 +201,11 @@ public class DLWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 			String[] destinationArray = WebDAVUtil.getPathArray(
 				destination, true);
 
-			long companyId = webDAVRequest.getCompanyId();
-
 			long parentFolderId = DLFolderConstants.DEFAULT_PARENT_FOLDER_ID;
 
 			try {
-				parentFolderId = getParentFolderId(companyId, destinationArray);
+				parentFolderId = getParentFolderId(
+					webDAVRequest.getCompanyId(), destinationArray);
 			}
 			catch (NoSuchFolderException nsfe) {
 				if (_log.isDebugEnabled()) {
@@ -218,7 +217,8 @@ public class DLWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 
 			FileEntry fileEntry = (FileEntry)resource.getModel();
 
-			long groupId = WebDAVUtil.getGroupId(companyId, destination);
+			long groupId = WebDAVUtil.getGroupId(
+				webDAVRequest.getCompanyId(), destination);
 			String mimeType = fileEntry.getMimeType();
 			String title = getTitle(destinationArray);
 			String description = fileEntry.getDescription();
@@ -362,9 +362,8 @@ public class DLWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 		try {
 			String[] pathArray = webDAVRequest.getPathArray();
 
-			long companyId = webDAVRequest.getCompanyId();
-
-			long parentFolderId = getParentFolderId(companyId, pathArray);
+			long parentFolderId = getParentFolderId(
+				webDAVRequest.getCompanyId(), pathArray);
 
 			String name = WebDAVUtil.getResourceName(pathArray);
 
@@ -471,9 +470,9 @@ public class DLWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 
 				String[] pathArray = webDAVRequest.getPathArray();
 
-				long companyId = webDAVRequest.getCompanyId();
 				long groupId = webDAVRequest.getGroupId();
-				long parentFolderId = getParentFolderId(companyId, pathArray);
+				long parentFolderId = getParentFolderId(
+					webDAVRequest.getCompanyId(), pathArray);
 
 				String title = getTitle(pathArray);
 
@@ -563,9 +562,9 @@ public class DLWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 
 			String[] pathArray = webDAVRequest.getPathArray();
 
-			long companyId = webDAVRequest.getCompanyId();
 			long groupId = webDAVRequest.getGroupId();
-			long parentFolderId = getParentFolderId(companyId, pathArray);
+			long parentFolderId = getParentFolderId(
+				webDAVRequest.getCompanyId(), pathArray);
 			String name = WebDAVUtil.getResourceName(pathArray);
 			String description = StringPool.BLANK;
 
@@ -627,13 +626,12 @@ public class DLWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 
 			Folder folder = (Folder)resource.getModel();
 
-			long companyId = webDAVRequest.getCompanyId();
-
-			long groupId = WebDAVUtil.getGroupId(companyId, destinationArray);
+			long groupId = WebDAVUtil.getGroupId(
+				webDAVRequest.getCompanyId(), destinationArray);
 
 			long folderId = folder.getFolderId();
 			long parentFolderId = getParentFolderId(
-				companyId, destinationArray);
+				webDAVRequest.getCompanyId(), destinationArray);
 			String name = WebDAVUtil.getResourceName(destinationArray);
 			String description = folder.getDescription();
 
@@ -700,13 +698,13 @@ public class DLWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 				return WebDAVUtil.SC_LOCKED;
 			}
 
-			long companyId = webDAVRequest.getCompanyId();
 			String[] destinationArray = WebDAVUtil.getPathArray(
 				destination, true);
 
-			long groupId = WebDAVUtil.getGroupId(companyId, destinationArray);
+			long groupId = WebDAVUtil.getGroupId(
+				webDAVRequest.getCompanyId(), destinationArray);
 			long newParentFolderId = getParentFolderId(
-				companyId, destinationArray);
+				webDAVRequest.getCompanyId(), destinationArray);
 			String title = getTitle(destinationArray);
 
 			String description = fileEntry.getDescription();
@@ -817,9 +815,9 @@ public class DLWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 
 			String[] pathArray = webDAVRequest.getPathArray();
 
-			long companyId = webDAVRequest.getCompanyId();
 			long groupId = webDAVRequest.getGroupId();
-			long parentFolderId = getParentFolderId(companyId, pathArray);
+			long parentFolderId = getParentFolderId(
+				webDAVRequest.getCompanyId(), pathArray);
 			String title = getTitle(pathArray);
 			String description = StringPool.BLANK;
 			String changeLog = StringPool.BLANK;
@@ -924,18 +922,16 @@ public class DLWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 
 		Resource resource = getResource(webDAVRequest);
 
-		long companyId = webDAVRequest.getCompanyId();
-
 		Lock lock = null;
 
 		try {
 			if (resource instanceof DLFileEntryResourceImpl) {
 				lock = _dlAppService.refreshFileEntryLock(
-					uuid, companyId, timeout);
+					uuid, webDAVRequest.getCompanyId(), timeout);
 			}
 			else {
 				lock = _dlAppService.refreshFolderLock(
-					uuid, companyId, timeout);
+					uuid, webDAVRequest.getCompanyId(), timeout);
 			}
 		}
 		catch (Exception e) {
