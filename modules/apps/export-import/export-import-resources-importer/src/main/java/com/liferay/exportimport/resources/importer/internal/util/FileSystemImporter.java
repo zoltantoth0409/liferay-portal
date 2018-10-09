@@ -1296,8 +1296,6 @@ public class FileSystemImporter extends BaseImporter {
 		Map<Locale, String> descriptionMap = getMap(
 			layoutTemplateJSONObject, "description");
 
-		String uuid = layoutTemplateJSONObject.getString("uuid");
-
 		LayoutPrototype layoutPrototype = getLayoutPrototype(companyId, name);
 
 		if (layoutPrototype != null) {
@@ -1322,6 +1320,8 @@ public class FileSystemImporter extends BaseImporter {
 
 		serviceContext.setCompanyId(companyId);
 		serviceContext.setUserId(userId);
+
+		String uuid = layoutTemplateJSONObject.getString("uuid");
 
 		if (Validator.isNotNull(uuid)) {
 			serviceContext.setUuid(uuid);
@@ -1609,8 +1609,6 @@ public class FileSystemImporter extends BaseImporter {
 
 			String className = primaryKeysEntry.getKey();
 
-			Set<Long> primaryKeys = primaryKeysEntry.getValue();
-
 			Indexer<?> indexer = indexerRegistry.getIndexer(className);
 
 			if (indexer == null) {
@@ -1625,7 +1623,7 @@ public class FileSystemImporter extends BaseImporter {
 				_log.debug("Indexing " + className);
 			}
 
-			for (long primaryKey : primaryKeys) {
+			for (long primaryKey : primaryKeysEntry.getValue()) {
 				try {
 					indexer.reindex(className, primaryKey);
 				}

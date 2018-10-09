@@ -692,9 +692,6 @@ public class DLWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 		File file = null;
 
 		try {
-			String[] destinationArray = WebDAVUtil.getPathArray(
-				destination, true);
-
 			FileEntry fileEntry = (FileEntry)resource.getModel();
 
 			if (!hasLock(fileEntry, webDAVRequest.getLockUuid()) &&
@@ -704,12 +701,14 @@ public class DLWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 			}
 
 			long companyId = webDAVRequest.getCompanyId();
+			String[] destinationArray = WebDAVUtil.getPathArray(
+				destination, true);
 
 			long groupId = WebDAVUtil.getGroupId(companyId, destinationArray);
 			long newParentFolderId = getParentFolderId(
 				companyId, destinationArray);
-
 			String title = getTitle(destinationArray);
+
 			String description = fileEntry.getDescription();
 			String changeLog = StringPool.BLANK;
 
