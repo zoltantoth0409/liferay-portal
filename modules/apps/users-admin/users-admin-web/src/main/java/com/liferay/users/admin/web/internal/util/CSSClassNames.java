@@ -54,6 +54,14 @@ public class CSSClassNames {
 		private Builder() {
 		}
 
+		private Builder _add(String cssClassName, boolean condition) {
+			if (condition) {
+				_streamBuilder.accept(cssClassName);
+			}
+
+			return this;
+		}
+
 		private String _build() {
 			return _streamBuilder.build(
 			).distinct(
@@ -61,14 +69,6 @@ public class CSSClassNames {
 			).collect(
 				Collectors.joining(StringPool.SPACE)
 			);
-		}
-
-		private Builder _add(String cssClassName, boolean condition) {
-			if (condition) {
-				_streamBuilder.accept(cssClassName);
-			}
-
-			return this;
 		}
 
 		private final Stream.Builder<String> _streamBuilder = Stream.builder();

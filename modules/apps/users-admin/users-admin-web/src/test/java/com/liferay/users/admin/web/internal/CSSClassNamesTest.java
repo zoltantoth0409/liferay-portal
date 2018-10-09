@@ -28,7 +28,6 @@ public class CSSClassNamesTest {
 	public void testBasicOutput() {
 		Assert.assertEquals(
 			"hello", CSSClassNames.build(builder -> builder.add("hello")));
-
 		Assert.assertEquals(
 			"hello world",
 			CSSClassNames.build(builder -> builder.add("hello", "world")));
@@ -48,7 +47,6 @@ public class CSSClassNamesTest {
 				).add(
 					"world", true
 				)));
-
 		Assert.assertEquals(
 			"foo hello world",
 			CSSClassNames.build(
@@ -69,7 +67,6 @@ public class CSSClassNamesTest {
 				builder -> builder.add(
 					"hello", "hello", "world", "world"
 				)));
-
 		Assert.assertEquals(
 			"hello world",
 			CSSClassNames.build(
@@ -92,7 +89,6 @@ public class CSSClassNamesTest {
 				builder -> builder.add(
 					"world", "hello"
 				)));
-
 		Assert.assertEquals(
 			"alpha beta gamma",
 			CSSClassNames.build(
