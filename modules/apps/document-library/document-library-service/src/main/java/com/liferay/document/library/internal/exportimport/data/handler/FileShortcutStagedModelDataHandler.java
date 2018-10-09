@@ -199,10 +199,10 @@ public class FileShortcutStagedModelDataHandler
 			return;
 		}
 
+		long userId = portletDataContext.getUserId(fileShortcut.getUserUuid());
+
 		ServiceContext serviceContext = portletDataContext.createServiceContext(
 			fileShortcut, DLFileShortcut.class);
-
-		long userId = portletDataContext.getUserId(fileShortcut.getUserUuid());
 
 		FileShortcut importedFileShortcut = null;
 
