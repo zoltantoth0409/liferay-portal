@@ -86,36 +86,27 @@ public class ManageCollaboratorsMVCActionCommand extends BaseMVCActionCommand {
 				});
 		}
 		catch (Throwable t) {
-			_handleManageCollaboratorsException(
-				actionRequest, actionResponse, resourceBundle, t);
+			HttpServletResponse response = _portal.getHttpServletResponse(
+				actionResponse);
+
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+
+			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+			String errorMessage =
+				"an-unexpected-error-occurred-while-updating-permissions";
+
+			if (t instanceof PrincipalException) {
+				errorMessage =
+					"you-do-not-have-permission-to-update-these-permissions";
+			}
+
+			jsonObject.put(
+				"errorMessage", LanguageUtil.get(resourceBundle, errorMessage));
+
+			JSONPortletResponseUtil.writeJSON(
+				actionRequest, actionResponse, jsonObject);
 		}
-	}
-
-	private void _handleManageCollaboratorsException(
-			ActionRequest actionRequest, ActionResponse actionResponse,
-			ResourceBundle resourceBundle, Throwable t)
-		throws IOException {
-
-		HttpServletResponse response = _portal.getHttpServletResponse(
-			actionResponse);
-
-		response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-		String errorMessage =
-			"an-unexpected-error-occurred-while-updating-permissions";
-
-		if (t instanceof PrincipalException) {
-			errorMessage =
-				"you-do-not-have-permission-to-update-these-permissions";
-		}
-
-		jsonObject.put(
-			"errorMessage", LanguageUtil.get(resourceBundle, errorMessage));
-
-		JSONPortletResponseUtil.writeJSON(
-			actionRequest, actionResponse, jsonObject);
 	}
 
 	private void _manageCollaborators(
