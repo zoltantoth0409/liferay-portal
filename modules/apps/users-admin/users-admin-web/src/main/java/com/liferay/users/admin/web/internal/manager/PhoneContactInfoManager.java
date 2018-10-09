@@ -44,10 +44,10 @@ public class PhoneContactInfoManager extends BaseContactInfoManager<Phone> {
 	public Phone construct(ActionRequest actionRequest) {
 		long phoneId = ParamUtil.getLong(actionRequest, "primaryKey");
 
-		String extension = ParamUtil.getString(actionRequest, "phoneExtension");
 		String number = ParamUtil.getString(actionRequest, "phoneNumber");
-		boolean primary = ParamUtil.getBoolean(actionRequest, "phonePrimary");
+		String extension = ParamUtil.getString(actionRequest, "phoneExtension");
 		long typeId = ParamUtil.getLong(actionRequest, "phoneTypeId");
+		boolean primary = ParamUtil.getBoolean(actionRequest, "phonePrimary");
 
 		Phone phone = _phoneLocalService.createPhone(phoneId);
 

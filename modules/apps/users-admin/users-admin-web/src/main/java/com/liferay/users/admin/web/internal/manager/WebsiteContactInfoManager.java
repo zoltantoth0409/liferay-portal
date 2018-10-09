@@ -45,9 +45,9 @@ public class WebsiteContactInfoManager extends BaseContactInfoManager<Website> {
 	protected Website construct(ActionRequest actionRequest) throws Exception {
 		long websiteId = ParamUtil.getLong(actionRequest, "primaryKey");
 
-		boolean primary = ParamUtil.getBoolean(actionRequest, "websitePrimary");
-		long typeId = ParamUtil.getLong(actionRequest, "websiteTypeId");
 		String url = ParamUtil.getString(actionRequest, "websiteUrl");
+		long typeId = ParamUtil.getLong(actionRequest, "websiteTypeId");
+		boolean primary = ParamUtil.getBoolean(actionRequest, "websitePrimary");
 
 		Website website = _websiteLocalService.createWebsite(websiteId);
 

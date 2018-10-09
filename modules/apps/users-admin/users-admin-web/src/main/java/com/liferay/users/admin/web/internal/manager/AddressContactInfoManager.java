@@ -44,16 +44,16 @@ public class AddressContactInfoManager extends BaseContactInfoManager<Address> {
 	protected Address construct(ActionRequest actionRequest) throws Exception {
 		long addressId = ParamUtil.getLong(actionRequest, "primaryKey");
 
-		String city = ParamUtil.getString(actionRequest, "addressCity");
-		long countryId = ParamUtil.getLong(actionRequest, "addressCountryId");
-		boolean mailing = ParamUtil.getBoolean(actionRequest, "addressMailing");
-		boolean primary = ParamUtil.getBoolean(actionRequest, "addressPrimary");
-		long regionId = ParamUtil.getLong(actionRequest, "addressRegionId");
 		String street1 = ParamUtil.getString(actionRequest, "addressStreet1");
 		String street2 = ParamUtil.getString(actionRequest, "addressStreet2");
 		String street3 = ParamUtil.getString(actionRequest, "addressStreet3");
-		long typeId = ParamUtil.getLong(actionRequest, "addressTypeId");
+		String city = ParamUtil.getString(actionRequest, "addressCity");
 		String zip = ParamUtil.getString(actionRequest, "addressZip");
+		long regionId = ParamUtil.getLong(actionRequest, "addressRegionId");
+		long countryId = ParamUtil.getLong(actionRequest, "addressCountryId");
+		long typeId = ParamUtil.getLong(actionRequest, "addressTypeId");
+		boolean mailing = ParamUtil.getBoolean(actionRequest, "addressMailing");
+		boolean primary = ParamUtil.getBoolean(actionRequest, "addressPrimary");
 
 		if (Validator.isNull(street1) && Validator.isNull(street2) &&
 			Validator.isNull(street3) && Validator.isNull(city) &&
