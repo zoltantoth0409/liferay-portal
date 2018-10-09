@@ -170,9 +170,6 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 				_ldapServerConfigurationProvider.getConfiguration(
 					companyId, ldapServerId);
 
-			String baseDN = LDAPUtil.escapeCharacters(
-				ldapServerConfiguration.baseDN());
-
 			ldapContext = _portalLDAP.getContext(ldapServerId, companyId);
 
 			if (ldapContext == null) {
@@ -180,6 +177,9 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 
 				return null;
 			}
+
+			String baseDN = LDAPUtil.escapeCharacters(
+				ldapServerConfiguration.baseDN());
 
 			String filter = ldapServerConfiguration.authSearchFilter();
 
