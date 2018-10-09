@@ -38,6 +38,8 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.GroupConstants;
 import com.liferay.portal.kernel.model.Layout;
+import com.liferay.portal.kernel.model.LayoutTypePortletConstants;
+import com.liferay.portal.kernel.model.Portlet;
 import com.liferay.portal.kernel.module.configuration.ConfigurationException;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
@@ -48,6 +50,7 @@ import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.ResourceActionsUtil;
 import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.LayoutLocalService;
+import com.liferay.portal.kernel.service.PortletLocalService;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -56,6 +59,7 @@ import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.xml.Document;
@@ -577,6 +581,9 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 			viewURL = viewFullContentURL.toString();
 		}
 
+		viewURL = _replacePortletIdIfLinkedToAnotherLayout(
+			liferayPortletRequest, viewURL);
+
 		return viewURL;
 	}
 
@@ -1076,6 +1083,63 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 		portletPreferences.store();
 	}
 
+	private String _replacePortletIdIfLinkedToAnotherLayout(
+		LiferayPortletRequest liferayPortletRequest, String viewUrl) {
+
+		Layout layout = _layoutLocalService.fetchLayout(
+			liferayPortletRequest.getPlid());
+
+		PortletPreferences portletPreferences =
+			liferayPortletRequest.getPreferences();
+
+		String portletSetupLinkToLayoutUuid = portletPreferences.getValue(
+			"portletSetupLinkToLayoutUuid", StringPool.BLANK);
+
+		if ((layout != null) &&
+			Validator.isNotNull(portletSetupLinkToLayoutUuid)) {
+
+			Layout linkedLayout =
+				_layoutLocalService.fetchLayoutByUuidAndGroupId(
+					portletSetupLinkToLayoutUuid, layout.getGroupId(),
+					layout.isPrivateLayout());
+
+			String newPortletId = linkedLayout.getTypeSettingsProperty(
+				LayoutTypePortletConstants.DEFAULT_ASSET_PUBLISHER_PORTLET_ID,
+				StringPool.BLANK);
+
+			if (Validator.isNotNull(newPortletId)) {
+				String oldPortletName = liferayPortletRequest.getPortletName();
+
+				viewUrl = StringUtil.replace(
+					viewUrl, oldPortletName, newPortletId);
+
+				String newId = newPortletId.split("_INSTANCE_")[1];
+				String oldId = oldPortletName.split("_INSTANCE_")[1];
+
+				viewUrl = StringUtil.replace(
+					viewUrl, StringPool.SLASH + oldId + StringPool.SLASH,
+					StringPool.SLASH + newId + StringPool.SLASH);
+
+				Portlet oldPortlet = _portletLocalService.getPortletById(
+					oldPortletName);
+
+				String oldPortletMapping = oldPortlet.getFriendlyURLMapping();
+
+				Portlet newPortlet = _portletLocalService.getPortletById(
+					newPortletId);
+
+				String newPortletMapping = newPortlet.getFriendlyURLMapping();
+
+				viewUrl = StringUtil.replace(
+					viewUrl,
+					StringPool.SLASH + oldPortletMapping + StringPool.SLASH,
+					StringPool.SLASH + newPortletMapping + StringPool.SLASH);
+			}
+		}
+
+		return viewUrl;
+	}
+
 	private void _setCategoriesAndTags(
 		AssetEntryQuery assetEntryQuery, PortletPreferences portletPreferences,
 		long[] scopeGroupIds, long[] overrideAllAssetCategoryIds,
@@ -1213,5 +1277,8 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 
 	@Reference
 	private Portal _portal;
+
+	@Reference
+	private PortletLocalService _portletLocalService;
 
 }
