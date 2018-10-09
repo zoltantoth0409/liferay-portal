@@ -190,7 +190,6 @@ public class ClusterLinkImpl implements ClusterLink {
 			}
 
 			String channelLogicName = channelLogicNames.get(key);
-
 			ClusterReceiver clusterReceiver = new ClusterForwardReceiver(this);
 
 			ClusterChannel clusterChannel =
