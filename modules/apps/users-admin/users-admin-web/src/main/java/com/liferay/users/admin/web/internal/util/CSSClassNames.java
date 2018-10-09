@@ -30,7 +30,7 @@ public class CSSClassNames {
 
 		builderConsumer.accept(builder);
 
-		return builder.build();
+		return builder._build();
 	}
 
 	public static class Builder {
@@ -51,11 +51,11 @@ public class CSSClassNames {
 			return _add(cssClassName, condition);
 		}
 
-		protected Builder() {
+		private Builder() {
 		}
 
-		protected String build() {
-			return _cssClassNamesStreamBuilder.build(
+		private String _build() {
+			return _streamBuilder.build(
 			).distinct(
 			).sorted(
 			).collect(
@@ -65,14 +65,13 @@ public class CSSClassNames {
 
 		private Builder _add(String cssClassName, boolean condition) {
 			if (condition) {
-				_cssClassNamesStreamBuilder.accept(cssClassName);
+				_streamBuilder.accept(cssClassName);
 			}
 
 			return this;
 		}
 
-		private final Stream.Builder<String> _cssClassNamesStreamBuilder =
-			Stream.builder();
+		private final Stream.Builder<String> _streamBuilder = Stream.builder();
 
 	}
 
