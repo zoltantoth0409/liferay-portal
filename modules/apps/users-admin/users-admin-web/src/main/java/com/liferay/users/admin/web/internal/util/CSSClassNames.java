@@ -17,7 +17,6 @@ package com.liferay.users.admin.web.internal.util;
 import com.liferay.petra.string.StringPool;
 
 import java.util.function.Consumer;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -60,7 +59,7 @@ public class CSSClassNames {
 			).distinct(
 			).sorted(
 			).collect(
-				_JOIN_BY_SPACE_COLLECTOR
+				Collectors.joining(StringPool.SPACE)
 			);
 		}
 
@@ -79,8 +78,5 @@ public class CSSClassNames {
 
 	private CSSClassNames() {
 	}
-
-	private static final Collector<CharSequence, ?, String>
-		_JOIN_BY_SPACE_COLLECTOR = Collectors.joining(StringPool.SPACE);
 
 }
