@@ -173,6 +173,7 @@ public class SegmentsEntryServiceTest {
 				_group, _companyAdminUser.getUserId());
 
 		SegmentsEntry segmentsEntry = _addSegmentsEntry(serviceContext);
+
 		_addSegmentsEntry(serviceContext);
 		_addSegmentsEntry(serviceContext);
 
