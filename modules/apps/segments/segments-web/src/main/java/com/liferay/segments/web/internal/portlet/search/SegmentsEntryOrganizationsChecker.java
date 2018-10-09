@@ -50,7 +50,7 @@ public class SegmentsEntryOrganizationsChecker extends EmptyOnClickRowChecker {
 			organization = (Organization)((Object[])obj)[0];
 		}
 		else {
-			throw new IllegalArgumentException(obj + " is not a organization");
+			throw new IllegalArgumentException(obj + " is not an organization");
 		}
 
 		return _segmentsEntryRelService.hasSegmentsEntryRel(
