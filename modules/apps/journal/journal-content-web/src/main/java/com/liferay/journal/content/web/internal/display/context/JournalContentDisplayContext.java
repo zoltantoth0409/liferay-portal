@@ -660,6 +660,12 @@ public class JournalContentDisplayContext {
 
 	public String getURLEditTemplate() {
 		try {
+			DDMTemplate ddmTemplate = getDDMTemplate();
+
+			if (ddmTemplate == null) {
+				return StringPool.BLANK;
+			}
+
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay)_portletRequest.getAttribute(
 					WebKeys.THEME_DISPLAY);
@@ -669,12 +675,6 @@ public class JournalContentDisplayContext {
 				PortletProviderUtil.getPortletId(
 					DDMTemplate.class.getName(), PortletProvider.Action.EDIT),
 				PortletRequest.RENDER_PHASE);
-
-			DDMTemplate ddmTemplate = getDDMTemplate();
-
-			if (ddmTemplate == null) {
-				return StringPool.BLANK;
-			}
 
 			portletURL.setParameter(
 				"hideDefaultSuccessMessage", Boolean.TRUE.toString());
