@@ -1595,6 +1595,7 @@ public class BaseTextExportImportContentProcessor
 
 			if (fileEntry == null) {
 				boolean absolutePortalURL = false;
+
 				boolean relativePortalURL = false;
 
 				if (content.regionMatches(

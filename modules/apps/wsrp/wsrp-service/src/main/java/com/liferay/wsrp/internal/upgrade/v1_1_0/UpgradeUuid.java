@@ -99,6 +99,7 @@ public class UpgradeUuid extends UpgradeProcess {
 
 			while (rs.next()) {
 				long plid = rs.getLong("plid");
+
 				String typeSettings = rs.getString("typeSettings");
 
 				typeSettings = StringUtil.replace(
@@ -172,6 +173,7 @@ public class UpgradeUuid extends UpgradeProcess {
 
 			while (rs.next()) {
 				long resourcePermissionId = rs.getLong("resourcePermissionId");
+
 				String primKey = rs.getString("primKey");
 
 				primKey = StringUtil.replace(

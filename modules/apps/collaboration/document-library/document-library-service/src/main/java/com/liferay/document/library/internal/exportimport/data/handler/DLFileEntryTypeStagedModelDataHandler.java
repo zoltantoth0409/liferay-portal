@@ -151,6 +151,7 @@ public class DLFileEntryTypeStagedModelDataHandler
 
 		String fileEntryTypeKey = referenceElement.attributeValue(
 			"file-entry-type-key");
+
 		boolean preloaded = GetterUtil.getBoolean(
 			referenceElement.attributeValue("preloaded"));
 

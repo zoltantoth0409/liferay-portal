@@ -112,6 +112,7 @@ public class MBMessageActivityInterpreter
 		ServiceContext serviceContext) {
 
 		String userName = getUserName(activity.getUserId(), serviceContext);
+
 		String receiverUserName = StringPool.BLANK;
 
 		if (activity.getReceiverUserId() > 0) {

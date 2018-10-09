@@ -314,6 +314,7 @@ public class WikiPageLocalServiceTest {
 			_group.getGroupId(), _node.getNodeId(), true);
 
 		WikiPage parentPage = pages[0];
+
 		WikiPage childPage = pages[1];
 
 		WikiPageLocalServiceUtil.restorePageFromTrash(
@@ -344,6 +345,7 @@ public class WikiPageLocalServiceTest {
 			_group.getGroupId(), _node.getNodeId(), true);
 
 		WikiPage page = pages[0];
+
 		WikiPage redirectPage = pages[1];
 
 		WikiPageLocalServiceUtil.restorePageFromTrash(

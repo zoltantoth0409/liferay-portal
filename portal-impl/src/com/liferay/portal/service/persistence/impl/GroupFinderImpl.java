@@ -1050,6 +1050,7 @@ public class GroupFinderImpl
 
 		for (Map.Entry<String, Object> entry : params.entrySet()) {
 			String key = entry.getKey();
+
 			Object value = entry.getValue();
 
 			if (Validator.isNull(value)) {

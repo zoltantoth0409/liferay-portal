@@ -259,6 +259,7 @@ public class PortletBagFactory {
 
 		for (Map.Entry<String, String[]> entry : parameterMap.entrySet()) {
 			String name = entry.getKey();
+
 			String[] values = entry.getValue();
 
 			if (values.length == 0) {

@@ -467,6 +467,7 @@ public class ExecutorIntrabandTest {
 		// Submitted callback
 
 		Pipe readPipe = Pipe.open();
+
 		Pipe writePipe = Pipe.open();
 
 		GatheringByteChannel gatheringByteChannel = writePipe.sink();

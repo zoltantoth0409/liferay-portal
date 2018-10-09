@@ -664,6 +664,7 @@ public class ConfigurationPersistenceManager
 
 			while (rs.next()) {
 				String pid = rs.getString(1);
+
 				String dictionaryString = rs.getString(2);
 
 				@SuppressWarnings("unchecked")

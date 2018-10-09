@@ -79,6 +79,7 @@ public class PollerServlet extends HttpServlet {
 
 	protected String getContent(HttpServletRequest request) throws Exception {
 		long companyId = PortalUtil.getCompanyId(request);
+
 		long userId = PortalUtil.getUserId(request);
 
 		if (userId == 0) {

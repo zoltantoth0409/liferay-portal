@@ -44,6 +44,7 @@ public class MailboxFactoryUtil {
 		throws PortalException {
 
 		User user = _userLocalService.getUser(userId);
+
 		Account account = _accountLocalService.getAccount(accountId);
 
 		MailboxFactory mailboxFactory = _mailboxFactories.get(

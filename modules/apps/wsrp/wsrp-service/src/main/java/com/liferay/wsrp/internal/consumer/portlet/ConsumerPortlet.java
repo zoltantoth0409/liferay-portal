@@ -2029,6 +2029,7 @@ public class ConsumerPortlet extends MVCPortlet {
 
 				while (parameterMatcher.find()) {
 					String name = parameterMatcher.group(1);
+
 					String value = parameterMatcher.group(2);
 
 					if (Validator.isNull(value) ||

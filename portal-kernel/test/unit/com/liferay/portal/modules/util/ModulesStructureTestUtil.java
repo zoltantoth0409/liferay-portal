@@ -146,6 +146,7 @@ public class ModulesStructureTestUtil {
 			String dependency = matcher.group();
 
 			String configuration = matcher.group(1);
+
 			String projectPath = matcher.group(2);
 
 			String projectDirName = StringUtil.replace(

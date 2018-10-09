@@ -94,6 +94,7 @@ public class BlogsEntryServiceImpl extends BlogsEntryServiceBaseImpl {
 			ActionKeys.ADD_ENTRY);
 
 		ImageSelector coverImageImageSelector = null;
+
 		ImageSelector smallImageImageSelector = null;
 
 		if (smallImage) {
@@ -587,6 +588,7 @@ public class BlogsEntryServiceImpl extends BlogsEntryServiceBaseImpl {
 			ActionKeys.UPDATE);
 
 		ImageSelector coverImageImageSelector = null;
+
 		ImageSelector smallImageImageSelector = null;
 
 		if (smallImage) {

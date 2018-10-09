@@ -203,6 +203,7 @@ public class LayoutExportController implements ExportController {
 			parameterMap, PortletDataHandlerKeys.LAYOUT_SET_SETTINGS);
 		boolean logo = MapUtil.getBoolean(
 			parameterMap, PortletDataHandlerKeys.LOGO);
+
 		boolean permissions = MapUtil.getBoolean(
 			parameterMap, PortletDataHandlerKeys.PERMISSIONS);
 

@@ -195,6 +195,7 @@ public class UpgradeSubscription extends UpgradeProcess {
 
 			while (rs.next()) {
 				long subscriptionId = rs.getLong("subscriptionId");
+
 				long classNameId = rs.getLong("classNameId");
 				long classPK = rs.getLong("classPK");
 

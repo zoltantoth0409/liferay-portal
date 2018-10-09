@@ -205,6 +205,7 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 		throws PortalException {
 
 		ImageSelector coverImageImageSelector = null;
+
 		ImageSelector smallImageImageSelector = null;
 
 		if (smallImage) {
@@ -1043,6 +1044,7 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 		throws PortalException {
 
 		ImageSelector coverImageImageSelector = null;
+
 		ImageSelector smallImageImageSelector = null;
 
 		if (smallImage) {

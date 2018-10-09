@@ -343,6 +343,7 @@ public class PortletImportController implements ImportController {
 
 			String portletId = MapUtil.getString(settingsMap, "portletId");
 			long targetGroupId = MapUtil.getLong(settingsMap, "targetGroupId");
+
 			long targetPlid = MapUtil.getLong(settingsMap, "targetPlid");
 
 			Layout layout = _layoutLocalService.getLayout(targetPlid);
@@ -895,6 +896,7 @@ public class PortletImportController implements ImportController {
 
 				long ownerId = GetterUtil.getLong(
 					element.attributeValue("owner-id"));
+
 				int ownerType = GetterUtil.getInteger(
 					element.attributeValue("owner-type"));
 

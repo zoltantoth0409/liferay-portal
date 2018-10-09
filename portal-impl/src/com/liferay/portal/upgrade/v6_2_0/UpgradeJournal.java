@@ -813,6 +813,7 @@ public class UpgradeJournal extends BaseUpgradePortletPreferences {
 				while (rs.next()) {
 					long groupId = rs.getLong("groupId");
 					String articleId = rs.getString("articleId");
+
 					String urlTitle = GetterUtil.getString(
 						rs.getString("urlTitle"));
 

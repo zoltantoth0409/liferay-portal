@@ -701,6 +701,7 @@ public class ImageToolImpl implements ImageTool {
 		}
 
 		int imageHeight = renderedImage.getHeight();
+
 		int imageWidth = renderedImage.getWidth();
 
 		double factor = (double)width / imageWidth;

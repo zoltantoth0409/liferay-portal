@@ -173,6 +173,7 @@ public class WebProxyPortlet extends PortletBridgePortlet {
 		Dictionary<String, Object> properties = new HashMapDictionary<>();
 
 		PortletConfig portletConfig = getPortletConfig();
+
 		PortletContext portletContext = getPortletContext();
 
 		properties.put(

@@ -132,6 +132,7 @@ public class FriendlyURLMapperTrackerImpl implements FriendlyURLMapperTracker {
 
 		for (Map.Entry<String, String[]> entry : parameterMap.entrySet()) {
 			String name = entry.getKey();
+
 			String[] values = entry.getValue();
 
 			if (values.length == 0) {

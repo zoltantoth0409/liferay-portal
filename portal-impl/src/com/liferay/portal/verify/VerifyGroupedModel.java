@@ -171,6 +171,7 @@ public class VerifyGroupedModel extends VerifyProcess {
 					while (rs.next()) {
 						long primKey = rs.getLong(
 							verifiableGroupedModel.getPrimaryKeyColumnName());
+
 						long relatedPrimKey = rs.getLong(
 							verifiableGroupedModel.
 								getRelatedPrimaryKeyColumnName());

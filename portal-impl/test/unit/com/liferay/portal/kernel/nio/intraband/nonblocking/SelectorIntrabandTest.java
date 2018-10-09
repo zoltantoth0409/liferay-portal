@@ -176,6 +176,7 @@ public class SelectorIntrabandTest {
 	@Test
 	public void testReceiveDatagram() throws Exception {
 		Pipe readPipe = Pipe.open();
+
 		Pipe writePipe = Pipe.open();
 
 		GatheringByteChannel gatheringByteChannel = writePipe.sink();
@@ -911,6 +912,7 @@ public class SelectorIntrabandTest {
 		// Submitted callback
 
 		Pipe readPipe = Pipe.open();
+
 		Pipe writePipe = Pipe.open();
 
 		GatheringByteChannel gatheringByteChannel = writePipe.sink();

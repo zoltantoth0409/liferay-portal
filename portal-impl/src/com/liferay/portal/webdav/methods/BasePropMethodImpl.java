@@ -298,6 +298,7 @@ public abstract class BasePropMethodImpl implements Method {
 
 		for (QName qName : props) {
 			String name = qName.getName();
+
 			Namespace namespace = qName.getNamespace();
 
 			String prefix = namespace.getPrefix();

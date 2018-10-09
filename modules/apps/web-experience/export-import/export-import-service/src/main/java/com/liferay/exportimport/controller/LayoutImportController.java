@@ -401,6 +401,7 @@ public class LayoutImportController implements ImportController {
 			PortletDataHandlerKeys.LAYOUTS_IMPORT_MODE_MERGE_BY_LAYOUT_UUID);
 		boolean logo = MapUtil.getBoolean(
 			parameterMap, PortletDataHandlerKeys.LOGO);
+
 		boolean permissions = MapUtil.getBoolean(
 			parameterMap, PortletDataHandlerKeys.PERMISSIONS);
 

@@ -180,6 +180,7 @@ public class ReleaseVersionsTest {
 
 		ObjectValuePair<Version, Path> versionPathPair = _getVersion(
 			bndBndPath, bndProperties);
+
 		ObjectValuePair<Version, Path> otherVersionPathPair = _getVersion(
 			otherBndBndPath, otherBndProperties);
 

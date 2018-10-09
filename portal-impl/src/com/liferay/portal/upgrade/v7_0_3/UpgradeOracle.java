@@ -58,6 +58,7 @@ public class UpgradeOracle extends UpgradeProcess {
 				}
 
 				String columnName = rs.getString(2);
+
 				int dataLength = rs.getInt(3);
 
 				if (isBetweenBuildNumbers(

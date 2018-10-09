@@ -215,6 +215,7 @@ public class Recurrence implements Serializable {
 		}
 
 		int minInterval = getMinimumInterval();
+
 		Calendar candidate = (Calendar)current.clone();
 
 		if (true) {

@@ -346,6 +346,7 @@ public class JSPWikiEngine extends BaseWikiEngine {
 	private static String _encodeLink(String content, Matcher wikiLinkMatcher) {
 		while (wikiLinkMatcher.find()) {
 			String link = wikiLinkMatcher.group();
+
 			String linkValues = wikiLinkMatcher.group(1);
 
 			String name = linkValues;

@@ -241,6 +241,7 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 			for (int i = 1; i <= 3; i++) {
 				String fileName = uploadPortletRequest.getFileName(
 					"msgFile" + i);
+
 				InputStream inputStream = uploadPortletRequest.getFileAsStream(
 					"msgFile" + i);
 

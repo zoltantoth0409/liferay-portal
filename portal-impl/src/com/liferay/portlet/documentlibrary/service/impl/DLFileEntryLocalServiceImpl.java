@@ -176,6 +176,7 @@ public class DLFileEntryLocalServiceImpl
 
 		String name = String.valueOf(
 			counterLocalService.increment(DLFileEntry.class.getName()));
+
 		String extension = DLAppUtil.getExtension(title, sourceFileName);
 
 		String fileName = DLUtil.getSanitizedFileName(title, extension);
@@ -2481,6 +2482,7 @@ public class DLFileEntryLocalServiceImpl
 		// File entry
 
 		User user = userPersistence.findByPrimaryKey(userId);
+
 		DLFileEntry dlFileEntry = dlFileEntryPersistence.findByPrimaryKey(
 			fileEntryId);
 
@@ -2567,6 +2569,7 @@ public class DLFileEntryLocalServiceImpl
 		throws PortalException {
 
 		User user = userPersistence.findByPrimaryKey(userId);
+
 		DLFileEntry dlFileEntry = dlFileEntryPersistence.findByPrimaryKey(
 			fileEntryId);
 

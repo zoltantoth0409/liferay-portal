@@ -112,6 +112,7 @@ public class DDLImpl implements DDL {
 		for (Field field : fields) {
 			String fieldName = field.getName();
 			String fieldType = field.getType();
+
 			Object[] fieldValues = getFieldValues(field, locale);
 
 			if (fieldValues.length == 0) {

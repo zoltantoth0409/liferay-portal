@@ -1837,6 +1837,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 		int oldStatus = message.getStatus();
 
 		User user = userPersistence.findByPrimaryKey(userId);
+
 		Date now = new Date();
 
 		Date modifiedDate = serviceContext.getModifiedDate(now);
