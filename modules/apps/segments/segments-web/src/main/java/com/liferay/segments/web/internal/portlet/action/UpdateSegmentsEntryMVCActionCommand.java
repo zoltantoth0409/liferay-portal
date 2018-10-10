@@ -139,7 +139,6 @@ public class UpdateSegmentsEntryMVCActionCommand extends BaseMVCActionCommand {
 			PortletRequest.RENDER_PHASE);
 
 		portletURL.setParameter("mvcRenderCommandName", "editSegmentsEntry");
-
 		portletURL.setParameter(Constants.CMD, Constants.UPDATE, false);
 		portletURL.setParameter("redirect", redirect, false);
 		portletURL.setParameter(
