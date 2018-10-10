@@ -139,7 +139,9 @@ public abstract class BaseGadgetPortlet extends MVCPortlet {
 		}
 
 		GadgetSpec gadgetSpec = ShindigUtil.getGadgetSpec(gadget.getUrl());
+
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
+
 		Portlet portlet = PortletLocalServiceUtil.getPortletById(
 			themeDisplay.getCompanyId(), portletDisplay.getId());
 
