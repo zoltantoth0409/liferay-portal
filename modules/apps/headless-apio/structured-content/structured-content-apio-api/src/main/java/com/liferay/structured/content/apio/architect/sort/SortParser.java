@@ -21,7 +21,7 @@ import java.util.List;
  *
  * @author     Cristina González
  * @deprecated As of Judson (7.1.x), replaced by {@link
- *             com.liferay.parser.apio.architect.sort.SortParser}
+ *             com.liferay.portal.odata.sort.SortParser}
  */
 @Deprecated
 public interface SortParser {

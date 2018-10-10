@@ -14,13 +14,13 @@
 
 package com.liferay.structured.content.apio.internal.architect.provider;
 
-import com.liferay.parser.apio.architect.filter.Filter;
-import com.liferay.parser.apio.architect.filter.FilterParser;
-import com.liferay.parser.apio.architect.filter.InvalidFilterException;
-import com.liferay.parser.apio.architect.filter.expression.ExpressionVisitException;
-import com.liferay.parser.apio.architect.filter.expression.ExpressionVisitor;
-import com.liferay.parser.apio.architect.filter.expression.LiteralExpression;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.odata.filter.Filter;
+import com.liferay.portal.odata.filter.FilterParser;
+import com.liferay.portal.odata.filter.InvalidFilterException;
+import com.liferay.portal.odata.filter.expression.ExpressionVisitException;
+import com.liferay.portal.odata.filter.expression.ExpressionVisitor;
+import com.liferay.portal.odata.filter.expression.LiteralExpression;
 
 import javax.servlet.http.HttpServletRequest;
 

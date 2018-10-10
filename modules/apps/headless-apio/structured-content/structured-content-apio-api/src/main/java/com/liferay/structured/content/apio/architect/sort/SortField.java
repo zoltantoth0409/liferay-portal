@@ -25,7 +25,7 @@ import java.util.Locale;
  *
  * @author     Cristina González
  * @deprecated As of Judson (7.1.x), replaced by {@link
- *             com.liferay.parser.apio.architect.sort.SortField}
+ *             com.liferay.portal.odata.sort.SortField}
  */
 @Deprecated
 public class SortField implements Serializable {

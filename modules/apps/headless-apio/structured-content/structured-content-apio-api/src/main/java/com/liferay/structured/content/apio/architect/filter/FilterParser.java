@@ -23,7 +23,7 @@ import com.liferay.structured.content.apio.architect.filter.expression.Expressio
  *
  * @author     David Arques
  * @deprecated As of Judson (7.1.x), replaced by {@link
- *             com.liferay.parser.apio.architect.filter.FilterParser}
+ *             com.liferay.portal.odata.filter.FilterParser}
  */
 @Deprecated
 public interface FilterParser {

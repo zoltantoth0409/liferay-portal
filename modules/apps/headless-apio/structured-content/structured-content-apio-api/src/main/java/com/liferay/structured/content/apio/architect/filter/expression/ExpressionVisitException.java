@@ -20,7 +20,7 @@ package com.liferay.structured.content.apio.architect.filter.expression;
  *
  * @author     Cristina González
  * @deprecated As of Judson (7.1.x), replaced by {@link
- *             com.liferay.parser.apio.architect.filter.expression.ExpressionVisitException}
+ *             com.liferay.portal.odata.filter.expression.ExpressionVisitException}
  */
 @Deprecated
 public class ExpressionVisitException extends Exception {
