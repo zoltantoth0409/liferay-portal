@@ -601,7 +601,6 @@ public class DefaultPortalLDAP implements PortalLDAP {
 			sb.append(loginMapping);
 			sb.append(StringPool.EQUAL);
 			sb.append(encodeFilterAttribute(login, false));
-
 			sb.append(StringPool.CLOSE_PARENTHESIS);
 
 			if (Validator.isNotNull(userSearchFilter)) {
