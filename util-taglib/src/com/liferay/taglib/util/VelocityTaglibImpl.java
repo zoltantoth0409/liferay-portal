@@ -917,6 +917,9 @@ public class VelocityTaglibImpl implements VelocityTaglib {
 	}
 
 	protected void setUp(TagSupport tagSupport) throws Exception {
+		PageContextWrapper pageContextWrapper = new PageContextWrapper(
+			_pageContext);
+
 		Writer writer = null;
 
 		if (_contextObjects != null) {
@@ -926,9 +929,6 @@ public class VelocityTaglibImpl implements VelocityTaglib {
 		if (writer == null) {
 			writer = _response.getWriter();
 		}
-
-		PageContextWrapper pageContextWrapper = new PageContextWrapper(
-			_pageContext);
 
 		pageContextWrapper.pushBody(writer);
 
