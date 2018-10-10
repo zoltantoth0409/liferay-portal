@@ -14,6 +14,7 @@
 
 package com.liferay.oauth2.provider.configuration;
 
+import aQute.bnd.annotation.ProviderType;
 import aQute.bnd.annotation.metatype.Meta;
 
 import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClassDefinition;
@@ -29,6 +30,7 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
 	localization = "content/Language",
 	name = "oauth2-provider-configuration-name"
 )
+@ProviderType
 public interface OAuth2ProviderConfiguration {
 
 	@Meta.AD(
