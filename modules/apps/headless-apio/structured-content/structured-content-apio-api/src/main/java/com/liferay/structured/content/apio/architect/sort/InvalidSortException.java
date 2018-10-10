@@ -21,7 +21,7 @@ import javax.ws.rs.BadRequestException;
  *
  * @author     Cristina González
  * @deprecated As of Judson (7.1.x), replaced by {@link
- *             com.liferay.parser.apio.architect.sort.InvalidSortException}
+ *             com.liferay.portal.odata.sort.InvalidSortException}
  */
 @Deprecated
 public class InvalidSortException extends BadRequestException {

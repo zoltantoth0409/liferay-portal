@@ -16,8 +16,8 @@ package com.liferay.structured.content.apio.internal.architect.provider.test;
 
 import com.liferay.apio.architect.provider.Provider;
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
-import com.liferay.parser.apio.architect.filter.Filter;
-import com.liferay.parser.apio.architect.filter.InvalidFilterException;
+import com.liferay.portal.odata.filter.Filter;
+import com.liferay.portal.odata.filter.InvalidFilterException;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 

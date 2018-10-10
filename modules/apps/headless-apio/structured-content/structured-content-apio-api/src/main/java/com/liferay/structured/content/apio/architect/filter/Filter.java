@@ -24,7 +24,7 @@ import com.liferay.structured.content.apio.architect.filter.expression.Expressio
  * @author     Cristina González
  * @author     David Arques
  * @deprecated As of Judson (7.1.x), replaced by {@link
- *             com.liferay.parser.apio.architect.filter.Filter}
+ *             com.liferay.portal.odata.filter.Filter}
  */
 @Deprecated
 public class Filter {

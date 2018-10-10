@@ -24,7 +24,7 @@ import java.util.function.Function;
  *
  * @author     Cristina González
  * @deprecated As of Judson (7.1.x), replaced by {@link
- *             com.liferay.parser.apio.architect.entity.EntityField}
+ *             com.liferay.portal.odata.entity.EntityField}
  */
 @Deprecated
 public class EntityField {

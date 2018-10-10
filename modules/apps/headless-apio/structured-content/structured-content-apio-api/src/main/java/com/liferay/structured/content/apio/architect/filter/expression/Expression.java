@@ -19,7 +19,7 @@ package com.liferay.structured.content.apio.architect.filter.expression;
  *
  * @author     Cristina González
  * @deprecated As of Judson (7.1.x), replaced by {@link
- *             com.liferay.parser.apio.architect.filter.expression.Expression}
+ *             com.liferay.portal.odata.filter.expression.Expression}
  */
 @Deprecated
 public interface Expression {
