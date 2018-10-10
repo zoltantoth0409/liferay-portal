@@ -657,8 +657,6 @@ public class FileEntryStagedModelDataHandler
 			PortletDataContext portletDataContext, FileEntry fileEntry)
 		throws Exception {
 
-		long userId = portletDataContext.getUserId(fileEntry.getUserUuid());
-
 		FileEntry existingFileEntry = fetchStagedModelByUuidAndGroupId(
 			fileEntry.getUuid(), portletDataContext.getScopeGroupId());
 
@@ -670,6 +668,8 @@ public class FileEntryStagedModelDataHandler
 			DLFileEntry.class.getName());
 
 		if (trashHandler.isRestorable(existingFileEntry.getFileEntryId())) {
+			long userId = portletDataContext.getUserId(fileEntry.getUserUuid());
+
 			trashHandler.restoreTrashEntry(
 				userId, existingFileEntry.getFileEntryId());
 		}

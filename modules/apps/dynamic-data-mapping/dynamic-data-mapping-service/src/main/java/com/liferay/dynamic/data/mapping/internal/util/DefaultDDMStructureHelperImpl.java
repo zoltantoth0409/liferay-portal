@@ -80,8 +80,6 @@ public class DefaultDDMStructureHelperImpl
 
 			String name = structureElement.elementText("name");
 
-			String description = structureElement.elementText("description");
-
 			String ddmStructureKey = name;
 
 			DDMStructure ddmStructure =
@@ -98,7 +96,7 @@ public class DefaultDDMStructureHelperImpl
 				continue;
 			}
 
-			String ddmTemplateKey = name;
+			String description = structureElement.elementText("description");
 
 			Map<Locale, String> nameMap = new HashMap<>();
 			Map<Locale, String> descriptionMap = new HashMap<>();
@@ -143,8 +141,7 @@ public class DefaultDDMStructureHelperImpl
 			_ddmTemplateLocalService.addTemplate(
 				userId, groupId, _portal.getClassNameId(DDMStructure.class),
 				ddmStructure.getStructureId(), ddmStructure.getClassNameId(),
-				ddmTemplateKey, nameMap, null,
-				DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY,
+				name, nameMap, null, DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY,
 				DDMTemplateConstants.TEMPLATE_MODE_CREATE,
 				TemplateConstants.LANG_TYPE_FTL, script, cacheable, false,
 				StringPool.BLANK, null, serviceContext);
