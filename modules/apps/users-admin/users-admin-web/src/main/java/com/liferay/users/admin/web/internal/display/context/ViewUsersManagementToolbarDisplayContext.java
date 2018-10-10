@@ -171,7 +171,6 @@ public class ViewUsersManagementToolbarDisplayContext {
 
 		portletURL.setParameter(_getCurParam(), String.valueOf(_getCur()));
 		portletURL.setParameter("delta", String.valueOf(_getDelta()));
-
 		portletURL.setParameter("displayStyle", _displayStyle);
 
 		String[] keywords = ParamUtil.getStringValues(_request, "keywords");
