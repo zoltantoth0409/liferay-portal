@@ -90,7 +90,7 @@ String refererPortletName = ParamUtil.getString(request, "refererPortletName");
 						resourceClassNameId: <%= ddmStructure.getClassNameId() %>,
 						showAncestorScopes: true,
 						showCacheableInput: true,
-						templateId: templateId,
+						templateId: 0,
 						title: '<liferay-ui:message key="templates" />'
 					},
 					function(event) {
