@@ -193,7 +193,7 @@ public class AssetPublisherPortletLayoutListener
 				portletId, serviceContext);
 		}
 		catch (PortalException pe) {
-			_log.error("Unable to add Asset List usage", pe);
+			_log.error("Unable to add asset list usage", pe);
 		}
 	}
 
