@@ -16,6 +16,7 @@ package com.liferay.portal.upgrade;
 
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.ReleaseInfo;
+import com.liferay.portal.upgrade.v7_0_6.UpgradeDB2;
 import com.liferay.portal.upgrade.v7_0_6.UpgradeRepository;
 import com.liferay.portal.upgrade.v7_0_6.UpgradeThemeId;
 
@@ -31,6 +32,7 @@ public class UpgradeProcess_7_0_6 extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
+		upgrade(UpgradeDB2.class);
 		upgrade(UpgradeRepository.class);
 		upgrade(UpgradeThemeId.class);
 
