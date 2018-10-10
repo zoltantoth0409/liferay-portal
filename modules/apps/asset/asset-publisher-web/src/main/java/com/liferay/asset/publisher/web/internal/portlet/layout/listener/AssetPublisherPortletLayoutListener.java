@@ -123,7 +123,7 @@ public class AssetPublisherPortletLayoutListener
 		if (Objects.equals(selectionStyle, "asset-list") &&
 			(assetListEntryId > 0)) {
 
-			_addAssetListUsage(assetListEntryId, plid, portletId);
+			_addAssetListEntryUsage(assetListEntryId, plid, portletId);
 		}
 		else if (!Objects.equals(selectionStyle, "asset-list")) {
 			_removeAssetListUsage(plid, portletId);
@@ -167,7 +167,7 @@ public class AssetPublisherPortletLayoutListener
 		_subscriptionLocalService = subscriptionLocalService;
 	}
 
-	private void _addAssetListUsage(
+	private void _addAssetListEntryUsage(
 		long assetListEntryId, long plid, String portletId) {
 
 		AssetListEntryUsage assetListEntryUsage =
@@ -193,7 +193,7 @@ public class AssetPublisherPortletLayoutListener
 				portletId, serviceContext);
 		}
 		catch (PortalException pe) {
-			_log.error("Unable to add asset list usage", pe);
+			_log.error("Unable to add asset list entry usage", pe);
 		}
 	}
 
