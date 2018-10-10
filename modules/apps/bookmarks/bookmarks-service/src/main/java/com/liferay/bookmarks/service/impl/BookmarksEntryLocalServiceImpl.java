@@ -783,8 +783,8 @@ public class BookmarksEntryLocalServiceImpl
 		String fromAddress =
 			bookmarksGroupServiceOverriddenConfiguration.emailFromAddress();
 
-		final LocalizedValuesMap subjectLocalizedValuesMap;
-		final LocalizedValuesMap bodyLocalizedValuesMap;
+		LocalizedValuesMap subjectLocalizedValuesMap = null;
+		LocalizedValuesMap bodyLocalizedValuesMap = null;
 
 		if (serviceContext.isCommandUpdate()) {
 			subjectLocalizedValuesMap =
