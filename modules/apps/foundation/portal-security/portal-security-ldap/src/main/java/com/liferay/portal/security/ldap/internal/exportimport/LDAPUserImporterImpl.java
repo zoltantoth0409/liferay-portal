@@ -691,8 +691,7 @@ public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 		sb.append(StringPool.OPEN_PARENTHESIS);
 		sb.append(groupMappings.getProperty("groupName"));
 		sb.append("=");
-		sb.append(
-			_portalLDAP.encodeFilterAttribute(userGroup.getName(), true));
+		sb.append(_portalLDAP.encodeFilterAttribute(userGroup.getName(), true));
 		sb.append("))");
 
 		return _portalLDAP.getMultivaluedAttribute(
