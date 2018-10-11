@@ -55,6 +55,15 @@ public class StructuredContentEntityModel implements EntityModel {
 
 	private static final Map<String, EntityField> _entityFieldsMap = Stream.of(
 		new EntityField(
+			"contentStructure", EntityField.Type.ID,
+			locale -> Field.CLASS_TYPE_ID, locale -> Field.CLASS_TYPE_ID,
+			contentStructureLink -> {
+				List<String> parts = StringUtil.split(
+					String.valueOf(contentStructureLink), '/');
+
+				return parts.get(parts.size() - 1);
+			}),
+		new EntityField(
 			"dateCreated", EntityField.Type.DATE,
 			locale -> Field.getSortableFieldName(Field.CREATE_DATE),
 			locale -> Field.CREATE_DATE),
@@ -69,16 +78,7 @@ public class StructuredContentEntityModel implements EntityModel {
 		new EntityField(
 			"title", EntityField.Type.STRING,
 			locale -> Field.getSortableFieldName(
-				"localized_title_".concat(LocaleUtil.toLanguageId(locale)))),
-		new EntityField(
-			"contentStructure", EntityField.Type.ID,
-			locale -> Field.CLASS_TYPE_ID, locale -> Field.CLASS_TYPE_ID,
-			contentStructureLink -> {
-				List<String> parts = StringUtil.split(
-					String.valueOf(contentStructureLink), '/');
-
-				return parts.get(parts.size() - 1);
-			})
+				"localized_title_".concat(LocaleUtil.toLanguageId(locale))))
 	).collect(
 		Collectors.toMap(EntityField::getName, Function.identity())
 	);
