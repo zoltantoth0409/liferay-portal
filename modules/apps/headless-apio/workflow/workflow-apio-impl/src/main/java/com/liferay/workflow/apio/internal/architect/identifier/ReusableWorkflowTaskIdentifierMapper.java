@@ -55,8 +55,12 @@ public class ReusableWorkflowTaskIdentifierMapper
 	}
 
 	@Override
-	public Path map(String name, ReusableWorkflowTaskIdentifier identifier) {
-		WorkflowTaskType workflowTaskType = identifier.getWorkflowTaskType();
+	public Path map(
+		String name,
+		ReusableWorkflowTaskIdentifier reusableWorkflowTaskIdentifier) {
+
+		WorkflowTaskType workflowTaskType =
+			reusableWorkflowTaskIdentifier.getWorkflowTaskType();
 
 		return new Path(name, workflowTaskType.getName());
 	}
