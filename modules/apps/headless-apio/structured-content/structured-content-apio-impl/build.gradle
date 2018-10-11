@@ -11,6 +11,7 @@ dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.journal.api", version: "3.4.0"
 	compileOnly group: "com.liferay", name: "com.liferay.media.object.apio.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.person.apio.api", version: "1.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.apio.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.odata.api", version: "1.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.structure.apio.api", version: "1.0.0"
