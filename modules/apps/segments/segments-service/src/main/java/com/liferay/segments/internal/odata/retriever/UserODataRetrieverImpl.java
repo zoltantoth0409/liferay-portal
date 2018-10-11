@@ -63,17 +63,15 @@ public class UserODataRetrieverImpl implements UserODataRetriever {
 		throws PortalException {
 
 		try {
-			Filter filter = new Filter(_filterParser.parse(filterString));
-
 			SearchContext searchContext = _createSearchContext(
 				companyId, start, end);
 
-			Query fullQuery = _getFullQuery(filter, locale, searchContext);
+			Query query = _getQuery(filterString, locale, searchContext);
 
 			PermissionChecker permissionChecker =
 				PermissionThreadLocal.getPermissionChecker();
 
-			Hits hits;
+			Hits hits = null;
 
 			if (permissionChecker != null) {
 				if (searchContext.getUserId() == 0) {
@@ -83,13 +81,13 @@ public class UserODataRetrieverImpl implements UserODataRetriever {
 				SearchResultPermissionFilter searchResultPermissionFilter =
 					_searchResultPermissionFilterFactory.create(
 						searchContext1 -> IndexSearcherHelperUtil.search(
-							searchContext1, fullQuery),
+							searchContext1, query),
 						permissionChecker);
 
 				hits = searchResultPermissionFilter.search(searchContext);
 			}
 			else {
-				hits = IndexSearcherHelperUtil.search(searchContext, fullQuery);
+				hits = IndexSearcherHelperUtil.search(searchContext, query);
 			}
 
 			return _getUsers(hits);
@@ -117,16 +115,17 @@ public class UserODataRetrieverImpl implements UserODataRetriever {
 		return searchContext;
 	}
 
-	private Query _getFullQuery(
-			Filter filter, Locale locale, SearchContext searchContext)
-		throws SearchException {
+	private Query _getQuery(
+			String filterString, Locale locale, SearchContext searchContext)
+		throws Exception {
 
 		Indexer<User> indexer = _indexerRegistry.getIndexer(User.class);
 
 		BooleanQuery booleanQuery = indexer.getFullQuery(searchContext);
 
 		com.liferay.portal.kernel.search.filter.Filter searchFilter =
-			_getSearchFilter(filter, locale);
+			_getSearchFilter(
+				new Filter(_filterParser.parse(filterString)), locale);
 
 		if (searchFilter != null) {
 			BooleanFilter preBooleanFilter = booleanQuery.getPreBooleanFilter();
@@ -137,7 +136,6 @@ public class UserODataRetrieverImpl implements UserODataRetriever {
 		return booleanQuery;
 	}
 
-	@SuppressWarnings("unchecked")
 	private com.liferay.portal.kernel.search.filter.Filter _getSearchFilter(
 		Filter filter, Locale locale) {
 
