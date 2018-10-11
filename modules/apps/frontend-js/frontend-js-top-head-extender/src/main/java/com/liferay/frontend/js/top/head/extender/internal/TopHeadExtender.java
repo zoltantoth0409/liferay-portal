@@ -75,8 +75,7 @@ public class TopHeadExtender extends AbstractExtender {
 			return null;
 		}
 
-		List<String> jsResourcePaths;
-		List<String> authenticatedJsResourcePaths;
+		List<String> jsResourcePaths = null;
 
 		if (Validator.isNull(liferayJsResourcesTopHead)) {
 			jsResourcePaths = Collections.emptyList();
@@ -85,6 +84,8 @@ public class TopHeadExtender extends AbstractExtender {
 			jsResourcePaths = Arrays.asList(
 				liferayJsResourcesTopHead.split(StringPool.COMMA));
 		}
+
+		List<String> authenticatedJsResourcePaths = null;
 
 		if (Validator.isNull(liferayJsResourcesTopHeadAuthenticated)) {
 			authenticatedJsResourcePaths = Collections.emptyList();
