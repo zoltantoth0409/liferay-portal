@@ -66,9 +66,6 @@ public class UserODataRetrieverTest {
 		_user1 = UserTestUtil.addUser(
 			RandomTestUtil.randomString(), LocaleUtil.getDefault(), firstName,
 			RandomTestUtil.randomString(), new long[] {_group1.getGroupId()});
-
-		Thread.sleep(1000);
-
 		_user2 = UserTestUtil.addUser(
 			RandomTestUtil.randomString(), LocaleUtil.getDefault(), firstName,
 			RandomTestUtil.randomString(), new long[] {_group1.getGroupId()});
@@ -91,9 +88,6 @@ public class UserODataRetrieverTest {
 		_user1 = UserTestUtil.addUser(
 			RandomTestUtil.randomString(), LocaleUtil.getDefault(), firstName,
 			RandomTestUtil.randomString(), new long[] {_group1.getGroupId()});
-
-		Thread.sleep(1000);
-
 		_user2 = UserTestUtil.addUser(
 			RandomTestUtil.randomString(), LocaleUtil.getDefault(), firstName,
 			RandomTestUtil.randomString(), new long[] {_group1.getGroupId()});
@@ -119,8 +113,6 @@ public class UserODataRetrieverTest {
 			RandomTestUtil.randomString(), LocaleUtil.getDefault(), firstName,
 			RandomTestUtil.randomString(), new long[] {_group1.getGroupId()});
 
-		Thread.sleep(1000);
-
 		Date inBetween = new Date();
 
 		_user2 = UserTestUtil.addUser(
@@ -145,8 +137,6 @@ public class UserODataRetrieverTest {
 		_user1 = UserTestUtil.addUser(
 			RandomTestUtil.randomString(), LocaleUtil.getDefault(), firstName,
 			RandomTestUtil.randomString(), new long[] {_group1.getGroupId()});
-
-		Thread.sleep(1000);
 
 		_user2 = UserTestUtil.addUser(
 			RandomTestUtil.randomString(), LocaleUtil.getDefault(), firstName,
@@ -174,8 +164,6 @@ public class UserODataRetrieverTest {
 			RandomTestUtil.randomString(), new long[] {_group1.getGroupId()});
 
 		Date inBetween = new Date();
-
-		Thread.sleep(1000);
 
 		_user2 = UserTestUtil.addUser(
 			RandomTestUtil.randomString(), LocaleUtil.getDefault(), firstName,
