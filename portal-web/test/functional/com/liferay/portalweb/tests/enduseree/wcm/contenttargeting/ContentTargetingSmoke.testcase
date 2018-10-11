@@ -230,7 +230,7 @@
 
 		<execute macro="CampaignDisplayPortlet#viewPG">
 			<var name="entryContentText" value="WC Campaign Content" />
-			<var name="previewCampaignList" value="Campaign Name,default" />
+			<var name="previewCampaignList" value="Campaign Name,Default" />
 			<var name="viewCampaignSelected" value="Campaign Name" />
 			<var name="viewDontDisplay" value="true" />
 		</execute>
@@ -242,7 +242,7 @@
 
 		<execute macro="UserSegmentContentDisplayPortlet#viewEntryPG">
 			<var name="entryContentText" value="WC User Segment Content" />
-			<var name="previewUserSegmentList" value="User Segment Name,default" />
+			<var name="previewUserSegmentList" value="User Segment Name,Default" />
 			<var name="viewDontDisplay" value="true" />
 			<var name="viewUserSegmentSelected" value="User Segment Name" />
 		</execute>

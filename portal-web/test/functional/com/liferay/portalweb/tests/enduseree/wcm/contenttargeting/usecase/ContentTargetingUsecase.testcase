@@ -287,7 +287,7 @@
 		</execute>
 
 		<execute macro="CampaignDisplayPortlet#viewPG">
-			<var name="previewCampaignList" value="Higher Priority Campaign Name,Low Priority Campaign Name,default" />
+			<var name="previewCampaignList" value="Higher Priority Campaign Name,Low Priority Campaign Name,Default" />
 		</execute>
 	</command>
 
@@ -417,7 +417,7 @@
 
 		<execute macro="CampaignDisplayPortlet#viewPG">
 			<var name="entryContentText" value="Web Content Content" />
-			<var name="previewCampaignList" value="Campaign Name,default" />
+			<var name="previewCampaignList" value="Campaign Name,Default" />
 			<var name="viewCampaignSelected" value="Campaign Name" />
 		</execute>
 	</command>
@@ -949,8 +949,8 @@
 
 		<execute macro="CampaignDisplayPortlet#viewPG">
 			<var name="entryContentText" value="Web Content Content Otherwise" />
-			<var name="previewCampaignList" value="Campaign Name,default" />
-			<var name="viewUserSegmentSelected" value="default" />
+			<var name="previewCampaignList" value="Campaign Name,Default" />
+			<var name="viewUserSegmentSelected" value="Default" />
 		</execute>
 	</command>
 
@@ -1079,9 +1079,9 @@
 		</execute>
 
 		<execute macro="CampaignDisplayPortlet#viewPG">
-			<var name="previewCampaignList" value="Campaign Name,default" />
+			<var name="previewCampaignList" value="Campaign Name,Default" />
 			<var name="viewDontDisplay" value="true" />
-			<var name="viewUserSegmentSelected" value="default" />
+			<var name="viewUserSegmentSelected" value="Default" />
 		</execute>
 	</command>
 
@@ -1989,7 +1989,7 @@
 
 		<execute macro="UserSegmentContentDisplayPortlet#viewEntryPG">
 			<var name="entryContentText" value="Web Content Content" />
-			<var name="previewUserSegmentList" value="User Segment Name,default" />
+			<var name="previewUserSegmentList" value="User Segment Name,Default" />
 			<var name="viewUserSegmentSelected" value="User Segment Name" />
 		</execute>
 
@@ -2000,7 +2000,7 @@
 
 		<execute macro="CampaignDisplayPortlet#viewPG">
 			<var name="entryContentText" value="Web Content Content" />
-			<var name="previewCampaignList" value="Campaign Name,default" />
+			<var name="previewCampaignList" value="Campaign Name,Default" />
 			<var name="viewCampaignSelected" value="Campaign Name" />
 		</execute>
 	</command>
@@ -2425,7 +2425,7 @@
 
 		<execute macro="CampaignDisplayPortlet#viewPG">
 			<var name="entryContentText" value="Web Content Content" />
-			<var name="previewCampaignList" value="Campaign Name,default" />
+			<var name="previewCampaignList" value="Campaign Name,Default" />
 			<var name="viewCampaignSelected" value="Campaign Name" />
 		</execute>
 
@@ -2436,7 +2436,7 @@
 
 		<execute macro="UserSegmentContentDisplayPortlet#viewEntryPG">
 			<var name="entryContentText" value="Web Content Content" />
-			<var name="previewUserSegmentList" value="Male Users,default" />
+			<var name="previewUserSegmentList" value="Male Users,Default" />
 			<var name="viewUserSegmentSelected" value="Male Users" />
 		</execute>
 
@@ -2456,7 +2456,7 @@
 		<execute macro="ContentTargeting#viewEntryOnStagingLiveMode">
 			<var name="entryContentText" value="Web Content Content" />
 			<var name="portletName" value="User Segment Content Display" />
-			<var name="previewContentList" value="Male Users,default" />
+			<var name="previewContentList" value="Male Users,Default" />
 			<var name="viewSelectedContent" value="Male Users" />
 		</execute>
 
@@ -2468,7 +2468,7 @@
 		<execute macro="ContentTargeting#viewEntryOnStagingLiveMode">
 			<var name="entryContentText" value="Web Content Content" />
 			<var name="portletName" value="Campaign Content Display" />
-			<var name="previewContentList" value="Campaign Name,default" />
+			<var name="previewContentList" value="Campaign Name,Default" />
 			<var name="viewSelectedContent" value="Campaign Name" />
 		</execute>
 	</command>
@@ -3523,8 +3523,8 @@
 
 		<execute macro="UserSegmentContentDisplayPortlet#viewEntryPG">
 			<var name="entryContentText" value="Web Content Content Otherwise" />
-			<var name="previewUserSegmentList" value="User Segment Name Age and User Segment Name Reg Role,default" />
-			<var name="viewUserSegmentSelected" value="default" />
+			<var name="previewUserSegmentList" value="User Segment Name Age and User Segment Name Reg Role,Default" />
+			<var name="viewUserSegmentSelected" value="Default" />
 		</execute>
 	</command>
 
@@ -3657,7 +3657,7 @@
 
 		<execute macro="UserSegmentContentDisplayPortlet#viewEntryPG">
 			<var name="entryContentText" value="Web Content Content Any" />
-			<var name="previewUserSegmentList" value="User Segment Name Age or User Segment Name Reg Role,default" />
+			<var name="previewUserSegmentList" value="User Segment Name Age or User Segment Name Reg Role,Default" />
 		</execute>
 	</command>
 
@@ -3753,7 +3753,7 @@
 		</execute>
 
 		<execute macro="UserSegmentContentDisplayPortlet#viewEntryPG">
-			<var name="previewUserSegmentList" value="User Segment Name,default" />
+			<var name="previewUserSegmentList" value="User Segment Name,Default" />
 		</execute>
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -3918,7 +3918,7 @@
 
 		<execute macro="UserSegmentContentDisplayPortlet#viewEntryPG">
 			<var name="entryContentText" value="Web Content Content Male" />
-			<var name="previewUserSegmentList" value="not User Segment Name,default" />
+			<var name="previewUserSegmentList" value="not User Segment Name,Default" />
 		</execute>
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -4056,9 +4056,9 @@
 		</execute>
 
 		<execute macro="UserSegmentContentDisplayPortlet#viewEntryPG">
-			<var name="previewUserSegmentList" value="User Segment Name,default" />
+			<var name="previewUserSegmentList" value="User Segment Name,Default" />
 			<var name="viewDontDisplay" value="true" />
-			<var name="viewUserSegmentSelected" value="default" />
+			<var name="viewUserSegmentSelected" value="Default" />
 		</execute>
 	</command>
 

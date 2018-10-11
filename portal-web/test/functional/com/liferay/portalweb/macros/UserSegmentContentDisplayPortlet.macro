@@ -239,7 +239,7 @@
 						<and>
 							<isset var="entryContentText" />
 							<not>
-								<equals arg1="${previewEntry}" arg2="default" />
+								<equals arg1="${previewEntry}" arg2="Default" />
 							</not>
 						</and>
 						<then>
@@ -250,7 +250,7 @@
 					<if>
 						<and>
 							<equals arg1="viewDontDisplay" arg2="true" />
-							<equals arg1="${previewEntry}" arg2="default" />
+							<equals arg1="${previewEntry}" arg2="Default" />
 						</and>
 						<then>
 							<execute function="AssertTextEquals" locator1="UserSegmentContentDisplay#ENTRY_CONTENT" value1="There are no matching rules" />
