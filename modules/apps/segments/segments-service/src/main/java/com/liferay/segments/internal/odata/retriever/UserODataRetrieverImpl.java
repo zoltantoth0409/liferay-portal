@@ -63,10 +63,10 @@ public class UserODataRetrieverImpl implements UserODataRetriever {
 		throws PortalException {
 
 		try {
-			SearchContext searchContext = _createSearchContext(
+			SearchContext searchContext1 = _createSearchContext(
 				companyId, start, end);
 
-			Query query = _getQuery(filterString, locale, searchContext);
+			Query query = _getQuery(filterString, locale, searchContext1);
 
 			PermissionChecker permissionChecker =
 				PermissionThreadLocal.getPermissionChecker();
@@ -74,20 +74,20 @@ public class UserODataRetrieverImpl implements UserODataRetriever {
 			Hits hits = null;
 
 			if (permissionChecker != null) {
-				if (searchContext.getUserId() == 0) {
-					searchContext.setUserId(permissionChecker.getUserId());
+				if (searchContext1.getUserId() == 0) {
+					searchContext1.setUserId(permissionChecker.getUserId());
 				}
 
 				SearchResultPermissionFilter searchResultPermissionFilter =
 					_searchResultPermissionFilterFactory.create(
-						searchContext1 -> IndexSearcherHelperUtil.search(
-							searchContext1, query),
+						searchContext2 -> IndexSearcherHelperUtil.search(
+							searchContext2, query),
 						permissionChecker);
 
-				hits = searchResultPermissionFilter.search(searchContext);
+				hits = searchResultPermissionFilter.search(searchContext1);
 			}
 			else {
-				hits = IndexSearcherHelperUtil.search(searchContext, query);
+				hits = IndexSearcherHelperUtil.search(searchContext1, query);
 			}
 
 			return _getUsers(hits);
