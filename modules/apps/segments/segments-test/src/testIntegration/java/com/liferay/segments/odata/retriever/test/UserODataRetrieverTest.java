@@ -113,8 +113,6 @@ public class UserODataRetrieverTest {
 			RandomTestUtil.randomString(), LocaleUtil.getDefault(), firstName,
 			RandomTestUtil.randomString(), new long[] {_group1.getGroupId()});
 
-		Date inBetween = new Date();
-
 		_user2 = UserTestUtil.addUser(
 			RandomTestUtil.randomString(), LocaleUtil.getDefault(), firstName,
 			RandomTestUtil.randomString(), new long[] {_group1.getGroupId()});
@@ -123,7 +121,7 @@ public class UserODataRetrieverTest {
 			_group1.getCompanyId(),
 			String.format(
 				"(dateModified ge %s) and (firstName eq '%s')", firstName,
-				ISO8601Utils.format(inBetween)),
+				ISO8601Utils.format(new Date())),
 			LocaleUtil.getDefault(), 0, 2);
 
 		Assert.assertEquals(users.toString(), 1, users.size());
@@ -163,8 +161,6 @@ public class UserODataRetrieverTest {
 			RandomTestUtil.randomString(), LocaleUtil.getDefault(), firstName,
 			RandomTestUtil.randomString(), new long[] {_group1.getGroupId()});
 
-		Date inBetween = new Date();
-
 		_user2 = UserTestUtil.addUser(
 			RandomTestUtil.randomString(), LocaleUtil.getDefault(), firstName,
 			RandomTestUtil.randomString(), new long[] {_group1.getGroupId()});
@@ -173,7 +169,7 @@ public class UserODataRetrieverTest {
 			_group1.getCompanyId(),
 			String.format(
 				"(dateModified le %s) and (firstName eq '%s')", firstName,
-				ISO8601Utils.format(inBetween)),
+				ISO8601Utils.format(new Date())),
 			LocaleUtil.getDefault(), 0, 2);
 
 		Assert.assertEquals(users.toString(), 1, users.size());
@@ -260,7 +256,7 @@ public class UserODataRetrieverTest {
 		List<User> users = _userODataRetriever.getUsers(
 			_group1.getCompanyId(),
 			"(firstName eq '" + _user1.getFirstName() +
-				"') or (lastName eq 'nonexistingLastName') ",
+				"') or (lastName eq 'nonexistentLastName') ",
 			LocaleUtil.getDefault(), 0, 2);
 
 		Assert.assertEquals(users.toString(), 1, users.size());
