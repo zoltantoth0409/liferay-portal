@@ -114,13 +114,13 @@ public class EntityModelSchemaBasedEdmProvider extends SchemaBasedEdmProvider {
 			fullQualifiedName =
 				EdmPrimitiveTypeKind.DateTimeOffset.getFullQualifiedName();
 		}
-		else if (Objects.equals(
-					entityField.getType(), EntityField.Type.STRING)) {
-
+		else if (Objects.equals(entityField.getType(), EntityField.Type.ID)) {
 			fullQualifiedName =
 				EdmPrimitiveTypeKind.String.getFullQualifiedName();
 		}
-		else if (Objects.equals(entityField.getType(), EntityField.Type.ID)) {
+		else if (Objects.equals(
+					entityField.getType(), EntityField.Type.STRING)) {
+
 			fullQualifiedName =
 				EdmPrimitiveTypeKind.String.getFullQualifiedName();
 		}
