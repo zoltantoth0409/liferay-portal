@@ -51,17 +51,14 @@ public interface ReusableWorkflowTaskIdentifier {
 			_name = name;
 		}
 
-		private static final Map<String, WorkflowTaskType> _workflywTaskTypes;
-
-		static {
-			Map<String, WorkflowTaskType> map = new HashMap<>();
-
-			for (WorkflowTaskType workflowTaskType : values()) {
-				map.put(workflowTaskType.getName(), workflowTaskType);
-			}
-
-			_workflywTaskTypes = Collections.unmodifiableMap(map);
-		}
+		private static final Map<String, WorkflowTaskType> _workflywTaskTypes = Collections.unmodifiableMap(
+			new HashMap<String, WorkflowTaskType>() {
+				{
+					for (WorkflowTaskType workflowTaskType : WorkflowTaskType.values()) {
+						put(workflowTaskType.getName(), workflowTaskType);
+					}
+				}
+			});
 
 		private final String _name;
 
