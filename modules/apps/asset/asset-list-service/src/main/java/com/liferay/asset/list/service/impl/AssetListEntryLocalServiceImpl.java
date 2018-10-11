@@ -184,12 +184,9 @@ public class AssetListEntryLocalServiceImpl
 	public AssetListEntry deleteAssetListEntry(long assetListEntryId)
 		throws PortalException {
 
-		AssetListEntry assetListEntry =
-			assetListEntryPersistence.findByPrimaryKey(assetListEntryId);
+		// Asset list entry
 
-		// Asset List Entry Rels
-
-		assetListEntryAssetEntryRelPersistence.removeByAssetListEntryId(
+		AssetListEntry assetListEntry = assetListEntryPersistence.remove(
 			assetListEntryId);
 
 		// Resources
@@ -197,7 +194,12 @@ public class AssetListEntryLocalServiceImpl
 		resourceLocalService.deleteResource(
 			assetListEntry, ResourceConstants.SCOPE_INDIVIDUAL);
 
-		return assetListEntryPersistence.remove(assetListEntryId);
+		// Asset list entry rels
+
+		assetListEntryAssetEntryRelPersistence.removeByAssetListEntryId(
+			assetListEntryId);
+
+		return assetListEntry;
 	}
 
 	@Override
