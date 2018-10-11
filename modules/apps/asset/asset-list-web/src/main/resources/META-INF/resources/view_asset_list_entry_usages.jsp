@@ -17,8 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-AssetListEntryUsagesDisplayContext
-	assetListEntryUsagesDisplayContext = new AssetListEntryUsagesDisplayContext(renderRequest, renderResponse);
+AssetListEntryUsagesDisplayContext assetListEntryUsagesDisplayContext = new AssetListEntryUsagesDisplayContext(renderRequest, renderResponse);
 %>
 
 <div class="container-fluid container-fluid-max-xl container-form-lg">
