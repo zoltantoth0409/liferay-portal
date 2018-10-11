@@ -326,7 +326,6 @@
 					AUI().use(
 						'liferay-item-selector-dialog',
 						function(A) {
-
 							itemSelectorDialog = new A.LiferayItemSelectorDialog(
 								{
 									eventName: eventName,
