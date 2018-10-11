@@ -40,7 +40,7 @@ public interface ReusableWorkflowTaskIdentifier {
 		TO_ME("assigned-to-me"), TO_MY_ROLE("assigned-to-my-role");
 
 		public static WorkflowTaskType get(String name) {
-			return _enumMap.get(name);
+			return _workflywTaskTypes.get(name);
 		}
 
 		public String getName() {
@@ -51,7 +51,7 @@ public interface ReusableWorkflowTaskIdentifier {
 			_name = name;
 		}
 
-		private static final Map<String, WorkflowTaskType> _enumMap;
+		private static final Map<String, WorkflowTaskType> _workflywTaskTypes;
 
 		static {
 			Map<String, WorkflowTaskType> map = new HashMap<>();
@@ -60,7 +60,7 @@ public interface ReusableWorkflowTaskIdentifier {
 				map.put(workflowTaskType.getName(), workflowTaskType);
 			}
 
-			_enumMap = Collections.unmodifiableMap(map);
+			_workflywTaskTypes = Collections.unmodifiableMap(map);
 		}
 
 		private final String _name;
