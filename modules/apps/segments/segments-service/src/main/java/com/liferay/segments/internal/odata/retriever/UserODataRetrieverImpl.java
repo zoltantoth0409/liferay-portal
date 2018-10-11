@@ -63,6 +63,8 @@ public class UserODataRetrieverImpl implements UserODataRetriever {
 		throws PortalException {
 
 		try {
+			Hits hits = null;
+
 			SearchContext searchContext1 = _createSearchContext(
 				companyId, start, end);
 
@@ -70,8 +72,6 @@ public class UserODataRetrieverImpl implements UserODataRetriever {
 
 			PermissionChecker permissionChecker =
 				PermissionThreadLocal.getPermissionChecker();
-
-			Hits hits = null;
 
 			if (permissionChecker != null) {
 				if (searchContext1.getUserId() == 0) {
