@@ -73,7 +73,7 @@ public class UserODataRetrieverTest {
 		List<User> users = _userODataRetriever.getUsers(
 			_group1.getCompanyId(),
 			String.format(
-				"(firstName eq '%s') and (dateModified eq %s)", firstName,
+				"(dateModified eq %s) and (firstName eq '%s')", firstName,
 				ISO8601Utils.format(_user1.getModifiedDate())),
 			LocaleUtil.getDefault(), 0, 2);
 
@@ -95,7 +95,7 @@ public class UserODataRetrieverTest {
 		List<User> users = _userODataRetriever.getUsers(
 			_group1.getCompanyId(),
 			String.format(
-				"(firstName eq '%s') and (dateModified gt %s)", firstName,
+				"(dateModified gt %s) and (firstName eq '%s')", firstName,
 				ISO8601Utils.format(_user1.getModifiedDate())),
 			LocaleUtil.getDefault(), 0, 2);
 
@@ -122,7 +122,7 @@ public class UserODataRetrieverTest {
 		List<User> users = _userODataRetriever.getUsers(
 			_group1.getCompanyId(),
 			String.format(
-				"(firstName eq '%s') and (dateModified ge %s)", firstName,
+				"(dateModified ge %s) and (firstName eq '%s')", firstName,
 				ISO8601Utils.format(inBetween)),
 			LocaleUtil.getDefault(), 0, 2);
 
@@ -145,7 +145,7 @@ public class UserODataRetrieverTest {
 		List<User> users = _userODataRetriever.getUsers(
 			_group1.getCompanyId(),
 			String.format(
-				"(firstName eq '%s') and (dateModified lt %s)", firstName,
+				"(dateModified lt %s) and (firstName eq '%s')", firstName,
 				ISO8601Utils.format(_user2.getModifiedDate())),
 			LocaleUtil.getDefault(), 0, 2);
 
@@ -172,7 +172,7 @@ public class UserODataRetrieverTest {
 		List<User> users = _userODataRetriever.getUsers(
 			_group1.getCompanyId(),
 			String.format(
-				"(firstName eq '%s') and (dateModified le %s)", firstName,
+				"(dateModified le %s) and (firstName eq '%s')", firstName,
 				ISO8601Utils.format(inBetween)),
 			LocaleUtil.getDefault(), 0, 2);
 
