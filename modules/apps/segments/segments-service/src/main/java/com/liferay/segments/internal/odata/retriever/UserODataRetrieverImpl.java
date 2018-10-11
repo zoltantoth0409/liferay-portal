@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.segments.internal.retriever;
+package com.liferay.segments.internal.odata.retriever;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
@@ -41,7 +41,7 @@ import com.liferay.portal.odata.filter.Filter;
 import com.liferay.portal.odata.filter.FilterParser;
 import com.liferay.portal.odata.filter.InvalidFilterException;
 import com.liferay.segments.internal.odata.entity.UserEntityModel;
-import com.liferay.segments.retriever.UserODataRetriever;
+import com.liferay.segments.odata.retriever.UserODataRetriever;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.segments.retriever.test;
+package com.liferay.segments.odata.retriever.test;
 
 import com.fasterxml.jackson.databind.util.ISO8601Utils;
 
@@ -28,7 +28,7 @@ import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PermissionCheckerTestRule;
-import com.liferay.segments.retriever.UserODataRetriever;
+import com.liferay.segments.odata.retriever.UserODataRetriever;
 
 import java.util.Date;
 import java.util.List;

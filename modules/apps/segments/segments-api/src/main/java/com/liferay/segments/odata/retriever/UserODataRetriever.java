@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.segments.retriever;
+package com.liferay.segments.odata.retriever;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
