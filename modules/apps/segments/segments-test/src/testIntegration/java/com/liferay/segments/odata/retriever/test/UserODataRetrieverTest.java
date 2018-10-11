@@ -308,7 +308,6 @@ public class UserODataRetrieverTest {
 			RandomTestUtil.randomString(), LocaleUtil.getDefault(), firstName,
 			RandomTestUtil.randomString(),
 			new long[] {_group1.getGroupId(), _group2.getGroupId()});
-
 		_user2 = UserTestUtil.addUser(
 			RandomTestUtil.randomString(), LocaleUtil.getDefault(), firstName,
 			RandomTestUtil.randomString(), new long[] {_group1.getGroupId()});
@@ -331,7 +330,6 @@ public class UserODataRetrieverTest {
 			RandomTestUtil.randomString(), LocaleUtil.getDefault(), firstName,
 			RandomTestUtil.randomString(),
 			new long[] {_group1.getGroupId(), _group2.getGroupId()});
-
 		_user2 = UserTestUtil.addUser(
 			RandomTestUtil.randomString(), LocaleUtil.getDefault(), firstName,
 			RandomTestUtil.randomString(), new long[] {_group1.getGroupId()});
@@ -350,7 +348,6 @@ public class UserODataRetrieverTest {
 	public void testGetUsersFilterByLastName() throws Exception {
 		_user1 = UserTestUtil.addUser(
 			_group1.getGroupId(), LocaleUtil.getDefault());
-
 		_user2 = UserTestUtil.addUser(
 			_group1.getGroupId(), LocaleUtil.getDefault());
 
@@ -371,7 +368,6 @@ public class UserODataRetrieverTest {
 			RandomTestUtil.randomString(), LocaleUtil.getDefault(), firstName,
 			RandomTestUtil.randomString(),
 			new long[] {_group1.getGroupId(), _group2.getGroupId()});
-
 		_user2 = UserTestUtil.addUser(
 			RandomTestUtil.randomString(), LocaleUtil.getDefault(), firstName,
 			RandomTestUtil.randomString(), new long[] {_group1.getGroupId()});
@@ -391,7 +387,6 @@ public class UserODataRetrieverTest {
 	public void testGetUsersFilterByScreenName() throws Exception {
 		_user1 = UserTestUtil.addUser(
 			_group1.getGroupId(), LocaleUtil.getDefault());
-
 		_user2 = UserTestUtil.addUser(
 			_group1.getGroupId(), LocaleUtil.getDefault());
 
