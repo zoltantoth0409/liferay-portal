@@ -405,6 +405,15 @@ public class LayoutsAdminDisplayContext {
 		return _groupDisplayContextHelper.getGroupTypeSettings();
 	}
 
+	public String getLayoutChildrenURL() {
+		PortletURL itemChildrenURL = _liferayPortletResponse.createActionURL();
+
+		itemChildrenURL.setParameter(
+			ActionRequest.ACTION_NAME, "/layout/get_layout_children");
+
+		return itemChildrenURL.toString();
+	}
+
 	public JSONArray getLayoutColumnsJSONArray() throws Exception {
 		JSONArray layoutColumnsJSONArray = _getLayoutColumnsJSONArray();
 
@@ -441,6 +450,91 @@ public class LayoutsAdminDisplayContext {
 		}
 
 		return _layoutId;
+	}
+
+	public JSONArray getLayoutsJSONArray(
+			long parentLayoutId, boolean privateLayout)
+		throws Exception {
+
+		JSONArray layoutsJSONArray = JSONFactoryUtil.createJSONArray();
+
+		List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
+			getSelGroupId(), privateLayout, parentLayoutId, true,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+
+		for (Layout layout : layouts) {
+			UnicodeProperties typeSettingsProperties =
+				layout.getTypeSettingsProperties();
+
+			boolean visible = GetterUtil.getBoolean(
+				typeSettingsProperties.getProperty("visible"), true);
+
+			if (!visible) {
+				continue;
+			}
+
+			if (_getActiveLayoutSetBranchId() > 0) {
+				LayoutRevision layoutRevision =
+					LayoutStagingUtil.getLayoutRevision(layout);
+
+				if (layoutRevision.isIncomplete()) {
+					continue;
+				}
+			}
+
+			JSONObject layoutJSONObject = JSONFactoryUtil.createJSONObject();
+
+			layoutJSONObject.put(
+				"actionURLs", _getActionURLsJSONObject(layout));
+			layoutJSONObject.put("active", _isActive(layout.getPlid()));
+
+			LayoutTypeController layoutTypeController =
+				LayoutTypeControllerTracker.getLayoutTypeController(
+					layout.getType());
+
+			ResourceBundle layoutTypeResourceBundle =
+				ResourceBundleUtil.getBundle(
+					"content.Language", _themeDisplay.getLocale(),
+					layoutTypeController.getClass());
+
+			layoutJSONObject.put(
+				"description",
+				LanguageUtil.get(
+					_request, layoutTypeResourceBundle,
+					"layout.types." + layout.getType()));
+
+			layoutJSONObject.put(
+				"homePage",
+				_getHomePagePlid(privateLayout) == layout.getPlid());
+
+			int childLayoutsCount = LayoutLocalServiceUtil.getLayoutsCount(
+				getSelGroup(), layout.isPrivateLayout(), layout.getLayoutId());
+
+			layoutJSONObject.put("hasChild", childLayoutsCount > 0);
+
+			layoutJSONObject.put(
+				"homePageTitle", _getHomePageTitle(privateLayout));
+			layoutJSONObject.put("plid", layout.getPlid());
+
+			PortletURL portletURL = getPortletURL();
+
+			portletURL.setParameter(
+				"selPlid", String.valueOf(layout.getPlid()));
+			portletURL.setParameter(
+				"layoutSetBranchId",
+				String.valueOf(_getActiveLayoutSetBranchId()));
+			portletURL.setParameter(
+				"privateLayout", String.valueOf(layout.isPrivateLayout()));
+
+			layoutJSONObject.put("url", portletURL.toString());
+
+			layoutJSONObject.put(
+				"title", layout.getName(_themeDisplay.getLocale()));
+
+			layoutsJSONArray.put(layoutJSONObject);
+		}
+
+		return layoutsJSONArray;
 	}
 
 	public Group getLiveGroup() {
@@ -1182,9 +1276,10 @@ public class LayoutsAdminDisplayContext {
 			layoutColumnsJSONArray.put(layoutSetBranchesJSONArray);
 		}
 
+		JSONArray pagesJSONArray = getLayoutsJSONArray(0, isPrivateLayout());
+
 		if (selLayout == null) {
-			layoutColumnsJSONArray.put(
-				_getLayoutsJSONArray(0, isPrivateLayout()));
+			layoutColumnsJSONArray.put(pagesJSONArray);
 
 			return layoutColumnsJSONArray;
 		}
@@ -1197,12 +1292,12 @@ public class LayoutsAdminDisplayContext {
 
 		for (Layout layout : layouts) {
 			layoutColumnsJSONArray.put(
-				_getLayoutsJSONArray(
+				getLayoutsJSONArray(
 					layout.getParentLayoutId(), selLayout.isPrivateLayout()));
 		}
 
 		layoutColumnsJSONArray.put(
-			_getLayoutsJSONArray(
+			getLayoutsJSONArray(
 				selLayout.getLayoutId(), selLayout.isPrivateLayout()));
 
 		return layoutColumnsJSONArray;
@@ -1242,91 +1337,6 @@ public class LayoutsAdminDisplayContext {
 		}
 
 		return jsonArray;
-	}
-
-	private JSONArray _getLayoutsJSONArray(
-			long parentLayoutId, boolean privateLayout)
-		throws Exception {
-
-		JSONArray layoutsJSONArray = JSONFactoryUtil.createJSONArray();
-
-		List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
-			getSelGroupId(), privateLayout, parentLayoutId, true,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-
-		for (Layout layout : layouts) {
-			UnicodeProperties typeSettingsProperties =
-				layout.getTypeSettingsProperties();
-
-			boolean visible = GetterUtil.getBoolean(
-				typeSettingsProperties.getProperty("visible"), true);
-
-			if (!visible) {
-				continue;
-			}
-
-			if (_getActiveLayoutSetBranchId() > 0) {
-				LayoutRevision layoutRevision =
-					LayoutStagingUtil.getLayoutRevision(layout);
-
-				if (layoutRevision.isIncomplete()) {
-					continue;
-				}
-			}
-
-			JSONObject layoutJSONObject = JSONFactoryUtil.createJSONObject();
-
-			layoutJSONObject.put(
-				"actionURLs", _getActionURLsJSONObject(layout));
-			layoutJSONObject.put("active", _isActive(layout.getPlid()));
-
-			LayoutTypeController layoutTypeController =
-				LayoutTypeControllerTracker.getLayoutTypeController(
-					layout.getType());
-
-			ResourceBundle layoutTypeResourceBundle =
-				ResourceBundleUtil.getBundle(
-					"content.Language", _themeDisplay.getLocale(),
-					layoutTypeController.getClass());
-
-			layoutJSONObject.put(
-				"description",
-				LanguageUtil.get(
-					_request, layoutTypeResourceBundle,
-					"layout.types." + layout.getType()));
-
-			layoutJSONObject.put(
-				"homePage",
-				_getHomePagePlid(privateLayout) == layout.getPlid());
-
-			int childLayoutsCount = LayoutLocalServiceUtil.getLayoutsCount(
-				getSelGroup(), layout.isPrivateLayout(), layout.getLayoutId());
-
-			layoutJSONObject.put("hasChild", childLayoutsCount > 0);
-
-			layoutJSONObject.put(
-				"homePageTitle", _getHomePageTitle(privateLayout));
-			layoutJSONObject.put("plid", layout.getPlid());
-
-			PortletURL portletURL = getPortletURL();
-
-			portletURL.setParameter(
-				"selPlid", String.valueOf(layout.getPlid()));
-			portletURL.setParameter(
-				"layoutSetBranchId",
-				String.valueOf(_getActiveLayoutSetBranchId()));
-			portletURL.setParameter(
-				"privateLayout", String.valueOf(layout.isPrivateLayout()));
-
-			layoutJSONObject.put("url", portletURL.toString());
-
-			layoutJSONObject.put(
-				"title", layout.getName(_themeDisplay.getLocale()));
-
-			layoutsJSONArray.put(layoutJSONObject);
-		}
-
-		return layoutsJSONArray;
 	}
 
 	private String _getTitle(boolean privatePages) {
