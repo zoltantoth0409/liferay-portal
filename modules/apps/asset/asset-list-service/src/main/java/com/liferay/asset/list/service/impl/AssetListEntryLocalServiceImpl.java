@@ -97,9 +97,9 @@ public class AssetListEntryLocalServiceImpl
 		assetListEntry.setCreateDate(serviceContext.getCreateDate(new Date()));
 		assetListEntry.setModifiedDate(
 			serviceContext.getModifiedDate(new Date()));
-		assetListEntry.setTypeSettings(typeSettings);
 		assetListEntry.setTitle(title);
 		assetListEntry.setType(type);
+		assetListEntry.setTypeSettings(typeSettings);
 
 		assetListEntryPersistence.update(assetListEntry);
 
