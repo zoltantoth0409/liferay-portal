@@ -63,12 +63,13 @@ public class WorkflowTasksReusableNestedCollectionRouter
 	protected WorkflowTaskManager workflowTaskManager;
 
 	private PageItems<WorkflowTask> _getPageItems(
-			Pagination pagination, ReusableWorkflowTaskIdentifier identifier,
+			Pagination pagination,
+			ReusableWorkflowTaskIdentifier reusableWorkflowTaskIdentifier,
 			Company company, CurrentUser currentUser)
 		throws WorkflowException {
 
 		ReusableWorkflowTaskIdentifier.WorkflowTaskType workflowTaskType =
-			identifier.getWorkflowTaskType();
+			reusableWorkflowTaskIdentifier.getWorkflowTaskType();
 
 		List<WorkflowTask> workflowTasks = new ArrayList<>();
 		int count = 0;
