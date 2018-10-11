@@ -16,9 +16,7 @@
 			</then>
 		</if>
 
-		<execute macro="Button#click">
-			<var name="button" value="Save" />
-		</execute>
+		<execute macro="PortletEntry#save" />
 
 		<if>
 			<isset var="inheritChanges" />
@@ -29,9 +27,7 @@
 			</then>
 		</if>
 
-		<execute macro="Button#click">
-			<var name="button" value="Save" />
-		</execute>
+		<execute macro="PortletEntry#save" />
 
 		<execute function="WaitForSPARefresh" />
 	</command>
