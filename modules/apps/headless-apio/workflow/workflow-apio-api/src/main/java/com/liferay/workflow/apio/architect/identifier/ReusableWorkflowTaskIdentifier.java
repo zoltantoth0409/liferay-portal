@@ -15,8 +15,8 @@
 package com.liferay.workflow.apio.architect.identifier;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Holds information about a reusable {@code WorkflowTask} identifier. It's
@@ -54,7 +54,7 @@ public interface ReusableWorkflowTaskIdentifier {
 		private static final Map<String, WorkflowTaskType> _enumMap;
 
 		static {
-			Map<String, WorkflowTaskType> map = new ConcurrentHashMap<>();
+			Map<String, WorkflowTaskType> map = new HashMap<>();
 
 			for (WorkflowTaskType workflowTaskType : values()) {
 				map.put(workflowTaskType.getName(), workflowTaskType);
