@@ -68,11 +68,11 @@ public class WorkflowTasksReusableNestedCollectionRouter
 			Company company, CurrentUser currentUser)
 		throws WorkflowException {
 
-		ReusableWorkflowTaskIdentifier.WorkflowTaskType workflowTaskType =
-			reusableWorkflowTaskIdentifier.getWorkflowTaskType();
-
 		List<WorkflowTask> workflowTasks = new ArrayList<>();
 		int count = 0;
+
+		ReusableWorkflowTaskIdentifier.WorkflowTaskType workflowTaskType =
+			reusableWorkflowTaskIdentifier.getWorkflowTaskType();
 
 		if (workflowTaskType.equals(
 				ReusableWorkflowTaskIdentifier.WorkflowTaskType.TO_ME)) {
