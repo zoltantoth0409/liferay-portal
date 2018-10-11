@@ -112,7 +112,6 @@ public class UserODataRetrieverTest {
 		_user1 = UserTestUtil.addUser(
 			RandomTestUtil.randomString(), LocaleUtil.getDefault(), firstName,
 			RandomTestUtil.randomString(), new long[] {_group1.getGroupId()});
-
 		_user2 = UserTestUtil.addUser(
 			RandomTestUtil.randomString(), LocaleUtil.getDefault(), firstName,
 			RandomTestUtil.randomString(), new long[] {_group1.getGroupId()});
@@ -135,7 +134,6 @@ public class UserODataRetrieverTest {
 		_user1 = UserTestUtil.addUser(
 			RandomTestUtil.randomString(), LocaleUtil.getDefault(), firstName,
 			RandomTestUtil.randomString(), new long[] {_group1.getGroupId()});
-
 		_user2 = UserTestUtil.addUser(
 			RandomTestUtil.randomString(), LocaleUtil.getDefault(), firstName,
 			RandomTestUtil.randomString(), new long[] {_group1.getGroupId()});
@@ -160,7 +158,6 @@ public class UserODataRetrieverTest {
 		_user1 = UserTestUtil.addUser(
 			RandomTestUtil.randomString(), LocaleUtil.getDefault(), firstName,
 			RandomTestUtil.randomString(), new long[] {_group1.getGroupId()});
-
 		_user2 = UserTestUtil.addUser(
 			RandomTestUtil.randomString(), LocaleUtil.getDefault(), firstName,
 			RandomTestUtil.randomString(), new long[] {_group1.getGroupId()});
@@ -229,7 +226,6 @@ public class UserODataRetrieverTest {
 			RandomTestUtil.randomString(), LocaleUtil.getDefault(),
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
 			new long[] {_group1.getGroupId()});
-
 		_user2 = UserTestUtil.addUser(
 			RandomTestUtil.randomString(), LocaleUtil.getDefault(),
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
@@ -290,7 +286,6 @@ public class UserODataRetrieverTest {
 			RandomTestUtil.randomString(), LocaleUtil.getDefault(), firstName,
 			RandomTestUtil.randomString(),
 			new long[] {_group1.getGroupId(), _group2.getGroupId()});
-
 		_user2 = UserTestUtil.addUser(
 			RandomTestUtil.randomString(), LocaleUtil.getDefault(), firstName,
 			RandomTestUtil.randomString(), new long[] {_group1.getGroupId()});
