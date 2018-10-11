@@ -178,7 +178,7 @@
 		</execute>
 
 		<execute macro="AdaptiveMedia#viewNumberOfAdaptedImages">
-			<var name="numberOfAdaptedImages" value="0/61" />
+			<var name="numberOfAdaptedImages" value="0/1" />
 		</execute>
 
 		<execute macro="AdaptiveMedia#editImageResolution">
@@ -193,7 +193,7 @@
 		</execute>
 
 		<execute macro="AdaptiveMedia#viewNumberOfAdaptedImages">
-			<var name="numberOfAdaptedImages" value="0/61" />
+			<var name="numberOfAdaptedImages" value="0/1" />
 		</execute>
 	</command>
 
@@ -904,7 +904,7 @@
 		</execute>
 
 		<execute macro="AdaptiveMedia#viewNumberOfAdaptedImages">
-			<var name="numberOfAdaptedImages" value="62/64" />
+			<var name="numberOfAdaptedImages" value="2/4" />
 		</execute>
 
 		<execute macro="AdaptiveMedia#enableImageResolution">
@@ -922,7 +922,7 @@
 		</execute>
 
 		<execute macro="AdaptiveMedia#viewNumberOfAdaptedImages">
-			<var name="numberOfAdaptedImages" value="64/64" />
+			<var name="numberOfAdaptedImages" value="4/4" />
 		</execute>
 	</command>
 </definition>
