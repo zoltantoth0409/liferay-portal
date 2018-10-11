@@ -260,7 +260,7 @@ public class UserODataRetrieverTest {
 		List<User> users = _userODataRetriever.getUsers(
 			_group1.getCompanyId(),
 			"(firstName eq '" + _user1.getFirstName() +
-				"') or (lastName eq 'nonExistingLastName') ",
+				"') or (lastName eq 'nonexistingLastName') ",
 			LocaleUtil.getDefault(), 0, 2);
 
 		Assert.assertEquals(users.toString(), 1, users.size());
