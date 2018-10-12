@@ -31,6 +31,7 @@ import org.jboss.arquillian.test.api.ArquillianResource;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -55,6 +56,7 @@ public class WebSiteApioTest {
 		_jsonWebServiceClient.setProtocol(_rootEndpointURL.getProtocol());
 	}
 
+	@Ignore
 	@Test
 	public void testWebSiteLiferayExists() throws Exception {
 		List<String> hrefs = JsonPath.read(
