@@ -3645,7 +3645,8 @@ public class ProjectTemplatesTest {
 
 	@Test
 	public void testListTemplatesWithCustomArchetypesDir() throws Exception {
-		Properties archetypes = ProjectTemplatesUtil.getArchetypes();
+		Properties archetypes =
+			ProjectTemplatesUtil.getProjectTemplateJarVersions();
 
 		Set<String> artifactIds = archetypes.stringPropertyNames();
 
