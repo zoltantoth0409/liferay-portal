@@ -259,6 +259,7 @@ AUI.add(
 							var pendingData = instance._pendingData;
 
 							instance._pendingData = null;
+
 							instance.getNativeEditor().setData(pendingData);
 						}
 						else {
