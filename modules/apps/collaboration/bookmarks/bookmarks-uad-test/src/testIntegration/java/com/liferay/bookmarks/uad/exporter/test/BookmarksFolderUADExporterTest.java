@@ -19,7 +19,6 @@ import com.liferay.bookmarks.model.BookmarksFolder;
 import com.liferay.bookmarks.service.BookmarksFolderLocalService;
 import com.liferay.bookmarks.uad.test.BookmarksFolderUADTestUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
-import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.user.associated.data.exporter.UADExporter;
@@ -29,6 +28,7 @@ import com.liferay.user.associated.data.test.util.WhenHasStatusByUserIdField;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.runner.RunWith;
@@ -60,6 +60,15 @@ public class BookmarksFolderUADExporterTest
 		return bookmarksFolder;
 	}
 
+	@After
+	public void tearDown() {
+		for (BookmarksFolder bookmarksEntry : _bookmarksFolders) {
+			_bookmarksFolderLocalService.deleteBookmarksFolder(bookmarksEntry);
+		}
+
+		_bookmarksFolders.clear();
+	}
+
 	@Override
 	protected BookmarksFolder addBaseModel(long userId) throws Exception {
 		BookmarksFolder bookmarksFolder =
@@ -84,7 +93,6 @@ public class BookmarksFolderUADExporterTest
 	@Inject
 	private BookmarksFolderLocalService _bookmarksFolderLocalService;
 
-	@DeleteAfterTestRun
 	private final List<BookmarksFolder> _bookmarksFolders = new ArrayList<>();
 
 	@Inject(filter = "component.name=*.BookmarksFolderUADExporter")

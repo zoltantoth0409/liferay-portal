@@ -19,7 +19,6 @@ import com.liferay.bookmarks.model.BookmarksEntry;
 import com.liferay.bookmarks.service.BookmarksEntryLocalService;
 import com.liferay.bookmarks.uad.test.BookmarksEntryUADTestUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
-import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.user.associated.data.display.UADDisplay;
@@ -28,6 +27,7 @@ import com.liferay.user.associated.data.test.util.BaseUADDisplayTestCase;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.runner.RunWith;
@@ -43,6 +43,15 @@ public class BookmarksEntryUADDisplayTest
 	@Rule
 	public static final AggregateTestRule aggregateTestRule =
 		new LiferayIntegrationTestRule();
+
+	@After
+	public void tearDown() {
+		for (BookmarksEntry bookmarksEntry : _bookmarksEntries) {
+			_bookmarksEntryLocalService.deleteBookmarksEntry(bookmarksEntry);
+		}
+
+		_bookmarksEntries.clear();
+	}
 
 	@Override
 	protected BookmarksEntry addBaseModel(long userId) throws Exception {
@@ -60,7 +69,6 @@ public class BookmarksEntryUADDisplayTest
 		return _uadDisplay;
 	}
 
-	@DeleteAfterTestRun
 	private final List<BookmarksEntry> _bookmarksEntries = new ArrayList<>();
 
 	@Inject

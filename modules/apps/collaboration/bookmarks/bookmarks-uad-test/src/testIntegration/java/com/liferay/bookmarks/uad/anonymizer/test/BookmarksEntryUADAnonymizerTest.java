@@ -20,7 +20,6 @@ import com.liferay.bookmarks.service.BookmarksEntryLocalService;
 import com.liferay.bookmarks.uad.test.BookmarksEntryUADTestUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
-import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
@@ -31,6 +30,7 @@ import com.liferay.user.associated.data.test.util.WhenHasStatusByUserIdField;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.runner.RunWith;
@@ -60,6 +60,15 @@ public class BookmarksEntryUADAnonymizerTest
 		_bookmarksEntries.add(bookmarksEntry);
 
 		return bookmarksEntry;
+	}
+
+	@After
+	public void tearDown() {
+		for (BookmarksEntry bookmarksEntry : _bookmarksEntries) {
+			_bookmarksEntryLocalService.deleteBookmarksEntry(bookmarksEntry);
+		}
+
+		_bookmarksEntries.clear();
 	}
 
 	@Override
@@ -119,7 +128,6 @@ public class BookmarksEntryUADAnonymizerTest
 		return false;
 	}
 
-	@DeleteAfterTestRun
 	private final List<BookmarksEntry> _bookmarksEntries = new ArrayList<>();
 
 	@Inject
