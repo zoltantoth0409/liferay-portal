@@ -3,7 +3,9 @@ import com.liferay.gradle.util.copy.RenameDependencyClosure
 task copyTestLibs(type: Copy)
 
 configurations {
-	testLibs
+	testLibs {
+		extendsFrom compileOnly
+	}
 }
 
 copyTestLibs {
@@ -15,6 +17,7 @@ copyTestLibs {
 dependencies {
 	compileOnly group: "com.liferay", name: "com.liferay.petra.concurrent", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.function", version: "2.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.reflect", version: "2.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "2.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "3.0.0"
 	compileOnly group: "org.osgi", name: "org.osgi.core", version: "5.0.0"
@@ -26,6 +29,7 @@ dependencies {
 	testIntegrationCompile group: "org.jboss.arquillian.container", name: "arquillian-container-felix-embedded", version: "2.1.0.Final"
 	testIntegrationCompile group: "org.jboss.arquillian.junit", name: "arquillian-junit-container", version: "1.1.10.Final"
 
+	testLibs group: "com.liferay", name: "com.liferay.petra.reflect", version: "2.0.0"
 	testLibs group: "org.jboss.arquillian.osgi", name: "arquillian-osgi-bundle", version: "2.1.0.Final"
 }
 
