@@ -113,7 +113,7 @@ public class StructuredContentApioTest {
 	}
 
 	@Test
-	public void testDefaultTitleIsDisplayedWhenAcceptLanguageIsSpecifiedAndDoesntMatch()
+	public void testDefaultTitleIsDisplayedWhenAcceptLanguageIsSpecifiedAndDoesNotMatch()
 		throws Exception {
 
 		List<String> hrefs = JsonPath.read(
