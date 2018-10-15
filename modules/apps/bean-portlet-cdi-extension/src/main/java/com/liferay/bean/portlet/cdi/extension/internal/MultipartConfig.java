@@ -17,12 +17,12 @@ package com.liferay.bean.portlet.cdi.extension.internal;
 /**
  * @author Shuyang Zhou
  */
-public class MultiPartConfig {
+public class MultipartConfig {
 
-	public static final MultiPartConfig UNSUPPORTED = new MultiPartConfig(
+	public static final MultipartConfig UNSUPPORTED = new MultipartConfig(
 		false, 0, null, -1, -1);
 
-	public MultiPartConfig(
+	public MultipartConfig(
 		int fileSizeThreshold, String location, long maxFileSize,
 		long maxRequestSize) {
 
@@ -49,40 +49,40 @@ public class MultiPartConfig {
 		return _supported;
 	}
 
-	public MultiPartConfig merge(MultiPartConfig multiPartConfig) {
-		if (!_supported && !multiPartConfig._supported) {
+	public MultipartConfig merge(MultipartConfig multipartConfig) {
+		if (!_supported && !multipartConfig._supported) {
 			return this;
 		}
 
 		int fileSizeThreshold = _fileSizeThreshold;
 
-		if (multiPartConfig._fileSizeThreshold > 0) {
-			fileSizeThreshold = multiPartConfig._fileSizeThreshold;
+		if (multipartConfig._fileSizeThreshold > 0) {
+			fileSizeThreshold = multipartConfig._fileSizeThreshold;
 		}
 
 		String location = _location;
 
-		if (multiPartConfig._location != null) {
-			location = multiPartConfig._location;
+		if (multipartConfig._location != null) {
+			location = multipartConfig._location;
 		}
 
 		long maxFileSize = _maxFileSize;
 
-		if (multiPartConfig._maxFileSize > 0) {
-			maxFileSize = multiPartConfig._maxFileSize;
+		if (multipartConfig._maxFileSize > 0) {
+			maxFileSize = multipartConfig._maxFileSize;
 		}
 
 		long maxRequestSize = _maxRequestSize;
 
-		if (multiPartConfig._maxRequestSize > 0) {
-			maxRequestSize = multiPartConfig._maxRequestSize;
+		if (multipartConfig._maxRequestSize > 0) {
+			maxRequestSize = multipartConfig._maxRequestSize;
 		}
 
-		return new MultiPartConfig(
+		return new MultipartConfig(
 			fileSizeThreshold, location, maxFileSize, maxRequestSize);
 	}
 
-	private MultiPartConfig(
+	private MultipartConfig(
 		boolean supported, int fileSizeThreshold, String location,
 		long maxFileSize, long maxRequestSize) {
 

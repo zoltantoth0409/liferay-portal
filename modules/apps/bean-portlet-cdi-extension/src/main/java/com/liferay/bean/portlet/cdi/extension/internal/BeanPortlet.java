@@ -42,7 +42,7 @@ public interface BeanPortlet {
 
 	public Map<String, Set<String>> getLiferayConfiguration();
 
-	public MultiPartConfig getMultiPartConfig();
+	public MultipartConfig getMultipartConfig();
 
 	public String getPortletClassName();
 

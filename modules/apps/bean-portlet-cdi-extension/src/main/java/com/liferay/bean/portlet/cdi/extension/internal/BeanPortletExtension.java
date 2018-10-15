@@ -753,10 +753,10 @@ public class BeanPortletExtension implements Extension {
 
 		Multipart multipart = portletConfiguration.multipart();
 
-		MultiPartConfig multiPartConfig = MultiPartConfig.UNSUPPORTED;
+		MultipartConfig multipartConfig = MultipartConfig.UNSUPPORTED;
 
 		if (multipart.supported()) {
-			multiPartConfig = new MultiPartConfig(
+			multipartConfig = new MultipartConfig(
 				multipart.fileSizeThreshold(), multipart.location(),
 				multipart.maxFileSize(), multipart.maxRequestSize());
 		}
@@ -850,7 +850,7 @@ public class BeanPortletExtension implements Extension {
 			securityRoleRefs, supportedProcessingEvents,
 			supportedPublishingEvents, supportedPublicRenderParameters,
 			containerRuntimeOptions, portletDependencies,
-			portletConfiguration.asyncSupported(), multiPartConfig,
+			portletConfiguration.asyncSupported(), multipartConfig,
 			displayCategory, liferayConfiguration);
 
 		if (descriptorBeanPortlet == null) {
@@ -979,8 +979,8 @@ public class BeanPortletExtension implements Extension {
 				asyncSupport = true;
 			}
 
-			multiPartConfig = multiPartConfig.merge(
-				descriptorBeanPortlet.getMultiPartConfig());
+			multipartConfig = multipartConfig.merge(
+				descriptorBeanPortlet.getMultipartConfig());
 
 			if (descriptorBeanPortlet.getDisplayCategory() != null) {
 				displayCategory = descriptorBeanPortlet.getDisplayCategory();
@@ -1003,7 +1003,7 @@ public class BeanPortletExtension implements Extension {
 				securityRoleRefs, supportedProcessingEvents,
 				supportedPublishingEvents, supportedPublicRenderParameters,
 				containerRuntimeOptions, portletDependencies, asyncSupport,
-				multiPartConfig, displayCategory, liferayConfiguration);
+				multipartConfig, displayCategory, liferayConfiguration);
 
 			_beanPortlets.put(configuredPortletName, mergedBeanPortlet);
 		}
