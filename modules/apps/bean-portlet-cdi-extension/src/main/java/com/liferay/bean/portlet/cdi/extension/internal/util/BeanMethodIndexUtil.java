@@ -40,11 +40,11 @@ public class BeanMethodIndexUtil {
 	public static Map<MethodType, List<BeanMethod>> indexBeanMethods(
 		Set<BeanMethod> beanMethods) {
 
-		EnumMap<MethodType, List<BeanMethod>> beanMethodMap = new EnumMap<>(
-			MethodType.class);
+		EnumMap<MethodType, List<BeanMethod>> beanMethodsEnumMap =
+			new EnumMap<>(MethodType.class);
 
 		for (BeanMethod beanMethod : beanMethods) {
-			beanMethodMap.compute(
+			beanMethodsEnumMap.compute(
 				beanMethod.getMethodType(),
 				(methodType, valueBeanMethods) -> {
 					if (valueBeanMethods == null) {
@@ -57,20 +57,20 @@ public class BeanMethodIndexUtil {
 				});
 		}
 
-		beanMethodMap.forEach(
+		beanMethodsEnumMap.forEach(
 			(methodType, valueBeanMethods) -> {
 				Collections.sort(valueBeanMethods);
 			});
 
-		return beanMethodMap;
+		return beanMethodsEnumMap;
 	}
 
 	public static void scanSupportedEvents(
-		Map<MethodType, List<BeanMethod>> beanMethodMap,
+		Map<MethodType, List<BeanMethod>> beanMethodsMap,
 		Set<QName> supportedProcessingEvents,
 		Set<QName> supportedPublishingEvents) {
 
-		List<BeanMethod> eventBeanMethods = beanMethodMap.get(MethodType.EVENT);
+		List<BeanMethod> eventBeanMethods = beanMethodsMap.get(MethodType.EVENT);
 
 		if (eventBeanMethods != null) {
 			for (BeanMethod beanMethod : eventBeanMethods) {
@@ -103,10 +103,11 @@ public class BeanMethodIndexUtil {
 			}
 		}
 
-		List<BeanMethod> actionMethods = beanMethodMap.get(MethodType.ACTION);
+		List<BeanMethod> actionBeanMethods = beanMethodsMap.get(
+			MethodType.ACTION);
 
-		if (actionMethods != null) {
-			for (BeanMethod beanMethod : actionMethods) {
+		if (actionBeanMethods != null) {
+			for (BeanMethod beanMethod : actionBeanMethods) {
 				Method method = beanMethod.getMethod();
 
 				ActionMethod actionMethod = method.getAnnotation(
