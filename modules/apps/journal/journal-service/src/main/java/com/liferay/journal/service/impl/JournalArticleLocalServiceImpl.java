@@ -4093,11 +4093,11 @@ public class JournalArticleLocalServiceImpl
 		journalArticleLocalizationPersistence.removeByA_L(
 			article.getId(), languageId);
 
-		String content = article.getContent();
-
 		Document document = article.getDocument();
 
 		if (document != null) {
+			String content = article.getContent();
+
 			content = JournalUtil.removeArticleLocale(
 				document, content, languageId);
 
@@ -5458,14 +5458,14 @@ public class JournalArticleLocalServiceImpl
 
 		boolean imported = ExportImportThreadLocal.isImportInProcess();
 
-		double latestArticleVersion = latestArticle.getVersion();
-
 		boolean addNewVersion = false;
 
 		if (imported) {
 			article = getArticle(groupId, articleId, version);
 		}
 		else {
+			double latestArticleVersion = latestArticle.getVersion();
+
 			if ((version > 0) && (version != latestArticleVersion)) {
 				StringBundler sb = new StringBundler(4);
 
@@ -6105,8 +6105,6 @@ public class JournalArticleLocalServiceImpl
 			user = userLocalService.getDefaultUser(oldArticle.getCompanyId());
 		}
 
-		Locale defaultLocale = getArticleDefaultLocale(content);
-
 		if (incrementVersion) {
 			double newVersion = getNextVersion(oldArticle);
 
@@ -6132,7 +6130,7 @@ public class JournalArticleLocalServiceImpl
 			article.setDDMStructureKey(oldArticle.getDDMStructureKey());
 			article.setDDMTemplateKey(oldArticle.getDDMTemplateKey());
 			article.setDefaultLanguageId(
-				LocaleUtil.toLanguageId(defaultLocale));
+				LocaleUtil.toLanguageId(getArticleDefaultLocale(content)));
 			article.setLayoutUuid(oldArticle.getLayoutUuid());
 			article.setDisplayDate(oldArticle.getDisplayDate());
 			article.setExpirationDate(oldArticle.getExpirationDate());
@@ -6439,7 +6437,6 @@ public class JournalArticleLocalServiceImpl
 				// Asset
 
 				String title = article.getTitleMapAsXML();
-				String description = article.getDescriptionMapAsXML();
 
 				if ((oldStatus != WorkflowConstants.STATUS_APPROVED) &&
 					(article.getVersion() !=
@@ -6462,6 +6459,8 @@ public class JournalArticleLocalServiceImpl
 
 						long[] assetLinkEntryIds = ListUtil.toLongArray(
 							assetLinks, AssetLink.ENTRY_ID2_ACCESSOR);
+
+						String description = article.getDescriptionMapAsXML();
 
 						AssetEntry assetEntry =
 							assetEntryLocalService.updateEntry(
