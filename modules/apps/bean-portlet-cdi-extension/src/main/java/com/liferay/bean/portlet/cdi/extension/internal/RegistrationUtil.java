@@ -65,8 +65,8 @@ public class RegistrationUtil {
 				_log.error(
 					StringBundler.concat(
 						"Unable to register filter ",
-						beanFilter.getFilterName(),
-						" for nonexistent portlet ", portletName));
+						beanFilter.getFilterName(), " for nonexistent portlet ",
+						portletName));
 			}
 			else {
 				String portletId = _getPortletId(
