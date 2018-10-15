@@ -25,12 +25,12 @@ if (Validator.isNull(redirect)) {
 	redirect = portletURL.toString();
 }
 
+AssetListEntryUsagesDisplayContext assetListEntryUsagesDisplayContext = new AssetListEntryUsagesDisplayContext(renderRequest, renderResponse);
+
 portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(redirect);
 
 renderResponse.setTitle(assetListDisplayContext.getAssetListEntryTitle());
-
-AssetListEntryUsagesDisplayContext assetListEntryUsagesDisplayContext = new AssetListEntryUsagesDisplayContext(renderRequest, renderResponse);
 %>
 
 <div class="container-fluid container-fluid-max-xl container-form-lg">
