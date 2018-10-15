@@ -19,7 +19,7 @@ import com.liferay.apio.architect.custom.actions.PostRoute;
 /**
  * @author Sarai Díaz
  */
-public class AssignToMeRoute extends PostRoute {
+public class AssignToMePostRoute extends PostRoute {
 
 	@Override
 	public String getName() {
