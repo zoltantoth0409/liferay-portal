@@ -77,15 +77,15 @@ public class StructuredContentApioTestBundleActivator
 		StructuredContentApioTestBundleActivator.class.getSimpleName() +
 			"YesGuestYesGroupTitle";
 
-	public static final String TITLE1_LOCALE_ES =
+	public static final String TITLE_1_LOCALE_ES =
 		StructuredContentApioTestBundleActivator.class.getSimpleName() +
 			"Title1_es";
 
-	public static final String TITLE2_LOCALE_DEFAULT =
+	public static final String TITLE_2_LOCALE_DEFAULT =
 		StructuredContentApioTestBundleActivator.class.getSimpleName() +
 			"Title2_DefaultLocale";
 
-	public static final String TITLE2_LOCALE_ES =
+	public static final String TITLE_2_LOCALE_ES =
 		StructuredContentApioTestBundleActivator.class.getSimpleName() +
 			"Title2_es";
 
@@ -192,7 +192,7 @@ public class StructuredContentApioTestBundleActivator
 
 		Map<Locale, String> titleMap1 = new HashMap<Locale, String>() {
 			{
-				put(LocaleUtil.SPAIN, TITLE1_LOCALE_ES);
+				put(LocaleUtil.SPAIN, TITLE_1_LOCALE_ES);
 			}
 		};
 
@@ -202,8 +202,8 @@ public class StructuredContentApioTestBundleActivator
 
 		Map<Locale, String> titleMap2 = new HashMap<Locale, String>() {
 			{
-				put(LocaleUtil.getDefault(), TITLE2_LOCALE_DEFAULT);
-				put(LocaleUtil.SPAIN, TITLE2_LOCALE_ES);
+				put(LocaleUtil.getDefault(), TITLE_2_LOCALE_DEFAULT);
+				put(LocaleUtil.SPAIN, TITLE_2_LOCALE_ES);
 			}
 		};
 

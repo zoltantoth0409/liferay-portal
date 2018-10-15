@@ -250,7 +250,7 @@ public class StructuredContentApioTest {
 
 		Assert.assertTrue(
 			titles.contains(
-				StructuredContentApioTestBundleActivator.TITLE1_LOCALE_ES));
+				StructuredContentApioTestBundleActivator.TITLE_1_LOCALE_ES));
 	}
 
 	@Test
