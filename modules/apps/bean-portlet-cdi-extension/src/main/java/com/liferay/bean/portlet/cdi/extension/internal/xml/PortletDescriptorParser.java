@@ -24,7 +24,7 @@ import com.liferay.bean.portlet.cdi.extension.internal.BeanPortletImpl;
 import com.liferay.bean.portlet.cdi.extension.internal.Event;
 import com.liferay.bean.portlet.cdi.extension.internal.EventImpl;
 import com.liferay.bean.portlet.cdi.extension.internal.MethodType;
-import com.liferay.bean.portlet.cdi.extension.internal.MultiPartConfig;
+import com.liferay.bean.portlet.cdi.extension.internal.MultipartConfig;
 import com.liferay.bean.portlet.cdi.extension.internal.PortletDependency;
 import com.liferay.bean.portlet.cdi.extension.internal.Preference;
 import com.liferay.bean.portlet.cdi.extension.internal.PublicRenderParameter;
@@ -606,13 +606,13 @@ public class PortletDescriptorParser {
 		boolean asyncSupported = GetterUtil.getBoolean(
 			portletElement.elementText("async-supported"));
 
-		MultiPartConfig multiPartConfig = MultiPartConfig.UNSUPPORTED;
+		MultipartConfig multipartConfig = MultipartConfig.UNSUPPORTED;
 
 		Element multipartConfigElement = portletElement.element(
 			"multipart-config");
 
 		if (multipartConfigElement != null) {
-			multiPartConfig = new MultiPartConfig(
+			multipartConfig = new MultipartConfig(
 				GetterUtil.getInteger(
 					multipartConfigElement.elementText("file-size-threshold")),
 				multipartConfigElement.elementText("location"),
@@ -631,7 +631,7 @@ public class PortletDescriptorParser {
 			preferencesValidator, securityRoleRefs, supportedProcessingEvents,
 			supportedPublishingEvents, supportedPublicRenderParameters,
 			containerRuntimeOptions, portletDependencies, asyncSupported,
-			multiPartConfig, categoryName, liferayConfiguration);
+			multipartConfig, categoryName, liferayConfiguration);
 	}
 
 	private static Map<String, String> _toLocaleMap(List<Element> elements) {

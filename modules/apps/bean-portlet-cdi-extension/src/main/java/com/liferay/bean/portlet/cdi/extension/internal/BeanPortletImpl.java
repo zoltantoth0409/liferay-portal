@@ -62,7 +62,7 @@ public class BeanPortletImpl implements BeanPortlet {
 		Set<String> supportedPublicRenderParameters,
 		Map<String, List<String>> containerRuntimeOptions,
 		Set<PortletDependency> portletDependencies, boolean asyncSupported,
-		MultiPartConfig multiPartConfig, String displayCategory,
+		MultipartConfig multipartConfig, String displayCategory,
 		Map<String, Set<String>> liferayConfiguration) {
 
 		_portletName = portletName;
@@ -88,7 +88,7 @@ public class BeanPortletImpl implements BeanPortlet {
 		_containerRuntimeOptions = containerRuntimeOptions;
 		_portletDependencies = portletDependencies;
 		_asyncSupported = asyncSupported;
-		_multiPartConfig = multiPartConfig;
+		_multipartConfig = multipartConfig;
 		_displayCategory = displayCategory;
 		_liferayConfiguration = liferayConfiguration;
 	}
@@ -114,7 +114,7 @@ public class BeanPortletImpl implements BeanPortlet {
 			Collections.emptyMap(), supportedProcessingEvents,
 			supportedPublishingEvents, Collections.emptySet(),
 			Collections.emptyMap(), Collections.emptySet(), false,
-			MultiPartConfig.UNSUPPORTED, displayCategory, liferayConfiguration);
+			MultipartConfig.UNSUPPORTED, displayCategory, liferayConfiguration);
 	}
 
 	@Override
@@ -163,8 +163,8 @@ public class BeanPortletImpl implements BeanPortlet {
 	}
 
 	@Override
-	public MultiPartConfig getMultiPartConfig() {
-		return _multiPartConfig;
+	public MultipartConfig getMultipartConfig() {
+		return _multipartConfig;
 	}
 
 	@Override
@@ -401,22 +401,22 @@ public class BeanPortletImpl implements BeanPortlet {
 
 		// javax.portlet.multipart
 
-		if (_multiPartConfig.isSupported()) {
+		if (_multipartConfig.isSupported()) {
 			dictionary.put(
 				"javax.portlet.multipart.file-size-threshold",
-				_multiPartConfig.getFileSizeThreshold());
+				_multipartConfig.getFileSizeThreshold());
 
 			dictionary.put(
 				"javax.portlet.multipart.location",
-				_multiPartConfig.getLocation());
+				_multipartConfig.getLocation());
 
 			dictionary.put(
 				"javax.portlet.multipart.max-file-size",
-				_multiPartConfig.getMaxFileSize());
+				_multipartConfig.getMaxFileSize());
 
 			dictionary.put(
 				"javax.portlet.multipart.max-request-size",
-				_multiPartConfig.getMaxRequestSize());
+				_multipartConfig.getMaxRequestSize());
 		}
 
 		// javax.portlet.portlet-mode
@@ -753,7 +753,7 @@ public class BeanPortletImpl implements BeanPortlet {
 	private final Map<String, String> _initParams;
 	private final Map<String, String> _keywords;
 	private final Map<String, Set<String>> _liferayConfiguration;
-	private final MultiPartConfig _multiPartConfig;
+	private final MultipartConfig _multipartConfig;
 	private final String _portletClassName;
 	private final Set<PortletDependency> _portletDependencies;
 	private final String _portletName;
