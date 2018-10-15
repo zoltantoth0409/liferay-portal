@@ -319,10 +319,10 @@ public class LDAPUserExporterImpl implements UserExporter {
 				String modifyTimestamp = LDAPUtil.getAttributeString(
 					attributes, "modifyTimestamp");
 
-				if (Validator.isNotNull(modifyTimestamp)) {
-					Date modifiedDate = LDAPUtil.parseDate(modifyTimestamp);
+				Date modifiedDate = LDAPUtil.parseDate(modifyTimestamp);
 
-					if (modifiedDate.equals(user.getModifiedDate())) {
+				if ((modifiedDate != null) &&
+					modifiedDate.equals(user.getModifiedDate())) {
 						if (_log.isDebugEnabled()) {
 							_log.debug(
 								"Skipping user " + user.getEmailAddress() +
@@ -330,7 +330,6 @@ public class LDAPUserExporterImpl implements UserExporter {
 						}
 
 						return;
-					}
 				}
 			}
 
