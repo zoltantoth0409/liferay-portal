@@ -40,9 +40,9 @@ import com.liferay.forms.apio.architect.identifier.StructureIdentifier;
 import com.liferay.forms.apio.internal.architect.form.FetchLatestDraftForm;
 import com.liferay.forms.apio.internal.architect.form.FormContextForm;
 import com.liferay.forms.apio.internal.architect.form.MediaObjectCreatorForm;
-import com.liferay.forms.apio.internal.architect.route.EvaluateContextRoute;
+import com.liferay.forms.apio.internal.architect.route.EvaluateContextPostRoute;
 import com.liferay.forms.apio.internal.architect.route.FetchLatestDraftRoute;
-import com.liferay.forms.apio.internal.architect.route.UploadFileRoute;
+import com.liferay.forms.apio.internal.architect.route.UploadFilePostRoute;
 import com.liferay.forms.apio.internal.helper.EvaluateContextHelper;
 import com.liferay.forms.apio.internal.helper.FetchLatestRecordHelper;
 import com.liferay.forms.apio.internal.helper.UploadFileHelper;
@@ -98,7 +98,7 @@ public class FormInstanceNestedCollectionResource
 		return builder.addGetter(
 			_ddmFormInstanceService::getFormInstance
 		).addCustomRoute(
-			new EvaluateContextRoute(), this::_evaluateContext,
+			new EvaluateContextPostRoute(), this::_evaluateContext,
 			AcceptLanguage.class, DDMFormRenderingContext.class,
 			ThemeDisplay.class, FormContextIdentifier.class,
 			_getPermissionBiFunction(), FormContextForm::buildForm
@@ -107,7 +107,7 @@ public class FormInstanceNestedCollectionResource
 			CurrentUser.class, FormInstanceRecordIdentifier.class,
 			_getPermissionBiFunction(), FetchLatestDraftForm::buildForm
 		).addCustomRoute(
-			new UploadFileRoute(), this::_uploadFile,
+			new UploadFilePostRoute(), this::_uploadFile,
 			MediaObjectIdentifier.class, _getPermissionBiFunction(),
 			MediaObjectCreatorForm::buildForm
 		).build();

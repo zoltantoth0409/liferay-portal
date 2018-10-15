@@ -32,7 +32,7 @@ import com.liferay.portal.kernel.workflow.WorkflowTaskManager;
 import com.liferay.workflow.apio.architect.identifier.WorkflowLogIdentifier;
 import com.liferay.workflow.apio.architect.identifier.WorkflowTaskIdentifier;
 import com.liferay.workflow.apio.internal.architect.form.AssignToMeForm;
-import com.liferay.workflow.apio.internal.architect.route.AssignToMeRoute;
+import com.liferay.workflow.apio.internal.architect.route.AssignToMePostRoute;
 
 import java.io.Serializable;
 
@@ -65,7 +65,7 @@ public class WorkflowTaskItemResource
 		return builder.addGetter(
 			this::_getWorkflowTask, Company.class
 		).addCustomRoute(
-			new AssignToMeRoute(), this::_assignToMe, CurrentUser.class,
+			new AssignToMePostRoute(), this::_assignToMe, CurrentUser.class,
 			WorkflowTaskIdentifier.class, (credentials, id) -> true,
 			AssignToMeForm::buildForm
 		).build();
