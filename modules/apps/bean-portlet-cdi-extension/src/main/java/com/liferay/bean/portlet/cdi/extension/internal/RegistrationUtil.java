@@ -103,7 +103,7 @@ public class RegistrationUtil {
 				servletContext.getServletContextName());
 
 			if (_log.isDebugEnabled()) {
-				_log.debug("Registering bean portlet: " + portletId);
+				_log.debug("Registering bean portlet " + portletId);
 			}
 
 			Dictionary<String, Object> dictionary = beanPortlet.toDictionary(
@@ -172,8 +172,8 @@ public class RegistrationUtil {
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Registering bean filter: ", beanFilter.getFilterName(),
-					" for portletId: ", portletId));
+					"Registering bean filter ", beanFilter.getFilterName(),
+					" for portlet ", portletId));
 		}
 
 		Dictionary<String, Object> dictionary = beanFilter.toDictionary();
