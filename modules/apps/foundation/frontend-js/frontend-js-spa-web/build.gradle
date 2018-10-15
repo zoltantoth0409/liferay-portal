@@ -2,9 +2,6 @@ import com.liferay.gradle.util.copy.StripPathSegmentsAction
 
 task buildSenna(type: Copy)
 
-sourceCompatibility = "1.8"
-targetCompatibility = "1.8"
-
 buildSenna {
 	dependsOn npmInstall
 
