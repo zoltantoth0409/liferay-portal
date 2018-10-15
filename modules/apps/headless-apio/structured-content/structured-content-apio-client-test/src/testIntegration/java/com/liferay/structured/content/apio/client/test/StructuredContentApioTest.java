@@ -100,10 +100,10 @@ public class StructuredContentApioTest {
 				StructuredContentApioTestBundleActivator.SITE_NAME +
 					"')]._links.structuredContents.href");
 
-		Map<String, String> headersMap = _getHeadersMap();
+		Map<String, String> headers = _getHeaders();
 
 		List<String> titles = JsonPath.read(
-			_toStringAsGuest(hrefs.get(0), headersMap),
+			_toStringAsGuest(hrefs.get(0), headers),
 			"$._embedded.StructuredContent[*].title");
 
 		Assert.assertTrue(
@@ -125,12 +125,12 @@ public class StructuredContentApioTest {
 				StructuredContentApioTestBundleActivator.SITE_NAME +
 					"')]._links.structuredContents.href");
 
-		Map<String, String> headersMap = _getHeadersMap();
+		Map<String, String> headers = _getHeaders();
 
-		headersMap.put("Accept-Language", "de-DE");
+		headers.put("Accept-Language", "de-DE");
 
 		List<String> titles = JsonPath.read(
-			_toStringAsGuest(hrefs.get(0), headersMap),
+			_toStringAsGuest(hrefs.get(0), headers),
 			"$._embedded.StructuredContent[*].title");
 
 		Assert.assertTrue(
@@ -181,12 +181,12 @@ public class StructuredContentApioTest {
 				StructuredContentApioTestBundleActivator.SITE_NAME +
 					"')]._links.structuredContents.href");
 
-		Map<String, String> headersMap = _getHeadersMap();
+		Map<String, String> headers = _getHeaders();
 
-		headersMap.put("Accept-Language", "es-ES");
+		headers.put("Accept-Language", "es-ES");
 
 		List<String> titles = JsonPath.read(
-			_toStringAsGuest(hrefs.get(0), headersMap),
+			_toStringAsGuest(hrefs.get(0), headers),
 			"$._embedded.StructuredContent[*].title");
 
 		Assert.assertTrue(
@@ -242,10 +242,10 @@ public class StructuredContentApioTest {
 				StructuredContentApioTestBundleActivator.SITE_NAME +
 					"')]._links.structuredContents.href");
 
-		Map<String, String> headersMap = _getHeadersMap();
+		Map<String, String> headers = _getHeaders();
 
 		List<String> titles = JsonPath.read(
-			_toStringAsGuest(hrefs.get(0), headersMap),
+			_toStringAsGuest(hrefs.get(0), headers),
 			"$._embedded.StructuredContent[*].title");
 
 		Assert.assertTrue(
@@ -321,7 +321,7 @@ public class StructuredContentApioTest {
 		Assert.assertTrue(href.startsWith(hrefs.get(0)));
 	}
 
-	private Map<String, String> _getHeadersMap() {
+	private Map<String, String> _getHeaders() {
 		return new HashMap<String, String>() {
 			{
 				put("Accept", "application/hal+json");
@@ -369,11 +369,11 @@ public class StructuredContentApioTest {
 
 	private String _toString(
 			JSONWebServiceClient jsonWebServiceClient, String url,
-			Map<String, String> headersMap)
+			Map<String, String> headers)
 		throws Exception {
 
 		return jsonWebServiceClient.doGet(
-			url, Collections.emptyMap(), headersMap);
+			url, Collections.emptyMap(), headers);
 	}
 
 	private String _toStringAsAdmin(String url) throws Exception {
@@ -381,13 +381,13 @@ public class StructuredContentApioTest {
 	}
 
 	private String _toStringAsGuest(String url) throws Exception {
-		return _toStringAsGuest(url, _getHeadersMap());
+		return _toStringAsGuest(url, _getHeaders());
 	}
 
-	private String _toStringAsGuest(String url, Map<String, String> headersMap)
+	private String _toStringAsGuest(String url, Map<String, String> headers)
 		throws Exception {
 
-		return _toString(_getGuestJSONWebServiceClient(), url, headersMap);
+		return _toString(_getGuestJSONWebServiceClient(), url, headers);
 	}
 
 	private String _toStringAsUser(String url, String login, String password)
