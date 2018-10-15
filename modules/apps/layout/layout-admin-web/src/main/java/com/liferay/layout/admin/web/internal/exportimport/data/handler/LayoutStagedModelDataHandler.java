@@ -1698,7 +1698,7 @@ public class LayoutStagedModelDataHandler
 				}
 			}
 
-			// Add portlets in non-existent column to the first column
+			// Add portlets in nonexistent column to the first column
 
 			String columnId = previousColumns.get(0);
 
