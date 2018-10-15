@@ -70,7 +70,8 @@ public class BeanMethodIndexUtil {
 		Set<QName> supportedProcessingEvents,
 		Set<QName> supportedPublishingEvents) {
 
-		List<BeanMethod> eventBeanMethods = beanMethodsMap.get(MethodType.EVENT);
+		List<BeanMethod> eventBeanMethods = beanMethodsMap.get(
+			MethodType.EVENT);
 
 		if (eventBeanMethods != null) {
 			for (BeanMethod beanMethod : eventBeanMethods) {
