@@ -109,7 +109,7 @@ public class StructuredContentApioTest {
 		Assert.assertTrue(
 			titles.contains(
 				StructuredContentApioTestBundleActivator.
-					TITLE2_LOCALE_DEFAULT));
+					TITLE_2_LOCALE_DEFAULT));
 	}
 
 	@Test
@@ -136,7 +136,7 @@ public class StructuredContentApioTest {
 		Assert.assertTrue(
 			titles.contains(
 				StructuredContentApioTestBundleActivator.
-					TITLE2_LOCALE_DEFAULT));
+					TITLE_2_LOCALE_DEFAULT));
 	}
 
 	@Test
@@ -191,7 +191,7 @@ public class StructuredContentApioTest {
 
 		Assert.assertTrue(
 			titles.contains(
-				StructuredContentApioTestBundleActivator.TITLE2_LOCALE_ES));
+				StructuredContentApioTestBundleActivator.TITLE_2_LOCALE_ES));
 	}
 
 	@Test
