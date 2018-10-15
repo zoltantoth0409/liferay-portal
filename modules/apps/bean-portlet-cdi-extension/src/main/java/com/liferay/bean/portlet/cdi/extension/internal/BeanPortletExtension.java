@@ -194,18 +194,12 @@ public class BeanPortletExtension implements Extension {
 		Set<Annotation> annotations = new HashSet<>(
 			annotatedType.getAnnotations());
 
-		// If has RequestScoped, remove it, only then if not have
-		// PortletRequestScoped, add a default one.
-
 		if (annotations.remove(
 				annotatedType.getAnnotation(RequestScoped.class)) &&
 			!annotatedType.isAnnotationPresent(PortletRequestScoped.class)) {
 
 			annotations.add(_portletRequestScoped);
 		}
-
-		// If has SessionScoped, remove it, only then if not have
-		// PortletSessionScoped, add a default one.
 
 		if (annotations.remove(
 				annotatedType.getAnnotation(SessionScoped.class)) &&
