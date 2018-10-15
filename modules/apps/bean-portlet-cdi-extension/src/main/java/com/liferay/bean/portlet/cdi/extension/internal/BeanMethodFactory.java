@@ -36,7 +36,7 @@ public class BeanMethodFactory {
 	public BeanMethod create(BeanManager beanManager) {
 		return new BeanMethod(
 			beanManager, beanManager.resolve(beanManager.getBeans(_clazz)),
-			_methodType, _method);
+			_method, _methodType);
 	}
 
 	public String[] getPortletNames() {

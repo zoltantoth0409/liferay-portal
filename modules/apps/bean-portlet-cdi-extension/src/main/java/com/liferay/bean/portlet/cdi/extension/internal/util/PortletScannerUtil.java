@@ -71,8 +71,8 @@ public class PortletScannerUtil {
 
 					beanMethods.add(
 						new BeanMethod(
-							beanManager, bean, MethodType.ACTION,
-							processActionMethod));
+							beanManager, bean, processActionMethod,
+							MethodType.ACTION));
 				}
 
 				Method destroyMethod = beanPortletClass.getMethod("destroy");
@@ -80,8 +80,8 @@ public class PortletScannerUtil {
 				if (!destroyMethod.isAnnotationPresent(DestroyMethod.class)) {
 					beanMethods.add(
 						new BeanMethod(
-							beanManager, bean, MethodType.DESTROY,
-							destroyMethod));
+							beanManager, bean, destroyMethod,
+							MethodType.DESTROY));
 				}
 
 				Method initMethod = beanPortletClass.getMethod(
@@ -90,7 +90,7 @@ public class PortletScannerUtil {
 				if (!initMethod.isAnnotationPresent(InitMethod.class)) {
 					beanMethods.add(
 						new BeanMethod(
-							beanManager, bean, MethodType.INIT, initMethod));
+							beanManager, bean, initMethod, MethodType.INIT));
 				}
 
 				Method renderMethod = beanPortletClass.getMethod(
@@ -99,8 +99,8 @@ public class PortletScannerUtil {
 				if (!renderMethod.isAnnotationPresent(RenderMethod.class)) {
 					beanMethods.add(
 						new BeanMethod(
-							beanManager, bean, MethodType.RENDER,
-							renderMethod));
+							beanManager, bean, renderMethod,
+							MethodType.RENDER));
 				}
 			}
 			catch (NoSuchMethodException nsme) {
@@ -116,7 +116,7 @@ public class PortletScannerUtil {
 				if (!eventMethod.isAnnotationPresent(EventMethod.class)) {
 					beanMethods.add(
 						new BeanMethod(
-							beanManager, bean, MethodType.EVENT, eventMethod));
+							beanManager, bean, eventMethod, MethodType.EVENT));
 				}
 			}
 			catch (NoSuchMethodException nsme) {
@@ -134,8 +134,8 @@ public class PortletScannerUtil {
 
 					beanMethods.add(
 						new BeanMethod(
-							beanManager, bean, MethodType.HEADER,
-							renderHeadersMethod));
+							beanManager, bean, renderHeadersMethod,
+							MethodType.HEADER));
 				}
 			}
 			catch (NoSuchMethodException nsme) {
@@ -154,8 +154,8 @@ public class PortletScannerUtil {
 
 					beanMethods.add(
 						new BeanMethod(
-							beanManager, bean, MethodType.SERVE_RESOURCE,
-							serveResourceMethod));
+							beanManager, bean, serveResourceMethod,
+							MethodType.SERVE_RESOURCE));
 				}
 			}
 			catch (NoSuchMethodException nsme) {

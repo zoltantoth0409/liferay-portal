@@ -39,14 +39,15 @@ import javax.xml.namespace.QName;
 public class BeanMethod implements Comparable<BeanMethod> {
 
 	public BeanMethod(
-		BeanManager beanManager, Bean<?> bean, MethodType type, Method method) {
+		BeanManager beanManager, Bean<?> bean, Method method,
+		MethodType methodType) {
 
 		_beanManager = beanManager;
 		_bean = bean;
-		_methodType = type;
 		_method = method;
+		_methodType = methodType;
 
-		_ordinal = type.getOrdinal(method);
+		_ordinal = methodType.getOrdinal(method);
 	}
 
 	@Override
