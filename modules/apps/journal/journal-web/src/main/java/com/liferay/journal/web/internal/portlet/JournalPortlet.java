@@ -748,10 +748,10 @@ public class JournalPortlet extends MVCPortlet {
 		String layoutUuid = ParamUtil.getString(
 			uploadPortletRequest, "layoutUuid");
 
-		Layout targetLayout = _journalHelper.getArticleLayout(
-			layoutUuid, groupId);
-
 		if (displayPageType == AssetDisplayPageConstants.TYPE_SPECIFIC) {
+			Layout targetLayout = _journalHelper.getArticleLayout(
+				layoutUuid, groupId);
+
 			if ((assetDisplayPageId != 0) || (targetLayout == null)) {
 				layoutUuid = null;
 			}
@@ -967,7 +967,6 @@ public class JournalPortlet extends MVCPortlet {
 		long groupId = ParamUtil.getLong(actionRequest, "groupId");
 
 		String feedId = ParamUtil.getString(actionRequest, "feedId");
-		boolean autoFeedId = ParamUtil.getBoolean(actionRequest, "autoFeedId");
 
 		String name = ParamUtil.getString(actionRequest, "name");
 		String description = ParamUtil.getString(actionRequest, "description");
@@ -1000,6 +999,9 @@ public class JournalPortlet extends MVCPortlet {
 
 			// Add feed
 
+			boolean autoFeedId = ParamUtil.getBoolean(
+				actionRequest, "autoFeedId");
+
 			_journalFeedService.addFeed(
 				groupId, feedId, autoFeedId, name, description, ddmStructureKey,
 				ddmTemplateKey, ddmRendererTemplateKey, delta, orderByCol,
@@ -1029,9 +1031,6 @@ public class JournalPortlet extends MVCPortlet {
 		String name = ParamUtil.getString(actionRequest, "name");
 		String description = ParamUtil.getString(actionRequest, "description");
 
-		boolean mergeWithParentFolder = ParamUtil.getBoolean(
-			actionRequest, "mergeWithParentFolder");
-
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			JournalFolder.class.getName(), actionRequest);
 
@@ -1053,6 +1052,8 @@ public class JournalPortlet extends MVCPortlet {
 				0L);
 			int restrinctionType = ParamUtil.getInteger(
 				actionRequest, "restrictionType");
+			boolean mergeWithParentFolder = ParamUtil.getBoolean(
+				actionRequest, "mergeWithParentFolder");
 
 			_journalFolderService.updateFolder(
 				serviceContext.getScopeGroupId(), folderId, parentFolderId,
