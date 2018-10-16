@@ -168,10 +168,10 @@ public class DLOpenerGoogleDriveDLAppServiceWrapper
 		}
 
 		try {
-			String sourceFileName =
-				title +
-					DLOpenerGoogleDriveMimeTypes.getMimeTypeExtension(
-						fileEntry.getMimeType());
+			String sourceFileName = title;
+
+			sourceFileName += DLOpenerGoogleDriveMimeTypes.getMimeTypeExtension(
+				fileEntry.getMimeType());
 
 			updateFileEntry(
 				fileEntry.getFileEntryId(), sourceFileName,
