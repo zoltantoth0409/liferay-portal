@@ -102,11 +102,11 @@ public class MoveThreadMVCActionCommand extends BaseMVCActionCommand {
 			actionRequest, "addExplanationPost");
 
 		if (addExplanationPost) {
-			String subject = ParamUtil.getString(actionRequest, "subject");
-			String body = ParamUtil.getString(actionRequest, "body");
-
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
+
+			String subject = ParamUtil.getString(actionRequest, "subject");
+			String body = ParamUtil.getString(actionRequest, "body");
 
 			MBGroupServiceSettings mbGroupServiceSettings =
 				MBGroupServiceSettings.getInstance(
