@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.analytics.oauth2.internal;
+package com.liferay.analytics.oauth2.internal.instance.lifecycle;
 
 import com.liferay.oauth2.provider.constants.ClientProfile;
 import com.liferay.oauth2.provider.model.OAuth2Application;
