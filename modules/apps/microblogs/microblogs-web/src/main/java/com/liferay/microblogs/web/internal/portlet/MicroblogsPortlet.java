@@ -100,6 +100,7 @@ public class MicroblogsPortlet extends MVCPortlet {
 		else {
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
+
 			int type = ParamUtil.getInteger(actionRequest, "type");
 			long parentMicroblogsEntryId = ParamUtil.getLong(
 				actionRequest, "parentMicroblogsEntryId");
