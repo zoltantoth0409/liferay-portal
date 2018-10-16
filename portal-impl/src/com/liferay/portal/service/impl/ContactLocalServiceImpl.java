@@ -91,9 +91,7 @@ public class ContactLocalServiceImpl extends ContactLocalServiceBaseImpl {
 		contact.setTwitterSn(twitterSn);
 		contact.setJobTitle(jobTitle);
 
-		contact = contactPersistence.update(contact);
-
-		return contact;
+		return contactPersistence.update(contact);
 	}
 
 	@Indexable(type = IndexableType.DELETE)
@@ -215,9 +213,7 @@ public class ContactLocalServiceImpl extends ContactLocalServiceBaseImpl {
 		contact.setTwitterSn(twitterSn);
 		contact.setJobTitle(jobTitle);
 
-		contact = contactPersistence.update(contact);
-
-		return contact;
+		return contactPersistence.update(contact);
 	}
 
 	protected void validate(String className, long classPK)
