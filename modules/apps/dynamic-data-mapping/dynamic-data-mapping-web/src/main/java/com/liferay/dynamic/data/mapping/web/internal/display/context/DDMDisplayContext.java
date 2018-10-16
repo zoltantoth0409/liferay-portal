@@ -488,7 +488,6 @@ public class DDMDisplayContext {
 
 		return new CreationMenu() {
 			{
-
 				if (getClassNameId() ==
 						PortalUtil.getClassNameId(DDMStructure.class)) {
 
