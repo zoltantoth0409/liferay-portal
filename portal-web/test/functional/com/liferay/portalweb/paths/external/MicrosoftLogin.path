@@ -55,6 +55,11 @@
 	<td>//input[contains(@value,'Trust It')]</td>
 	<td></td>
 </tr>
+<tr>
+	<td>SHAREPOINT_YES_BUTTON</td>
+	<td>//div[contains(@class,'inline-block')]/input[contains(@value,'Yes')]</td>
+	<td></td>
+</tr>
 </tbody>
 </table>
 </body>

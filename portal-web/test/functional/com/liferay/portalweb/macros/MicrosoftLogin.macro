@@ -27,6 +27,8 @@
 				</then>
 			</elseif>
 		</if>
+
+		<execute function="AssertClick" locator1="MicrosoftLogin#SHAREPOINT_YES_BUTTON" value1="Yes" />
 	</command>
 
 	<command name="confirmSharepointApp">
