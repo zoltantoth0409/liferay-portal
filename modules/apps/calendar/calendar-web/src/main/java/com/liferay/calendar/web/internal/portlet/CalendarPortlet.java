@@ -373,8 +373,6 @@ public class CalendarPortlet extends MVCPortlet {
 
 		long calendarId = ParamUtil.getLong(actionRequest, "calendarId");
 
-		long calendarResourceId = ParamUtil.getLong(
-			actionRequest, "calendarResourceId");
 		Map<Locale, String> nameMap = LocalizationUtil.getLocalizationMap(
 			actionRequest, "name");
 		Map<Locale, String> descriptionMap =
@@ -394,6 +392,9 @@ public class CalendarPortlet extends MVCPortlet {
 		Calendar calendar = null;
 
 		if (calendarId <= 0) {
+			long calendarResourceId = ParamUtil.getLong(
+				actionRequest, "calendarResourceId");
+
 			CalendarResource calendarResource =
 				_calendarResourceService.getCalendarResource(
 					calendarResourceId);
@@ -422,12 +423,8 @@ public class CalendarPortlet extends MVCPortlet {
 		long calendarNotificationTemplateId = ParamUtil.getLong(
 			actionRequest, "calendarNotificationTemplateId");
 
-		long calendarId = ParamUtil.getLong(actionRequest, "calendarId");
 		NotificationType notificationType = NotificationType.parse(
 			ParamUtil.getString(actionRequest, "notificationType"));
-		NotificationTemplateType notificationTemplateType =
-			NotificationTemplateType.parse(
-				ParamUtil.getString(actionRequest, "notificationTemplateType"));
 		String subject = ParamUtil.getString(actionRequest, "subject");
 		String body = ParamUtil.getString(actionRequest, "body");
 
@@ -435,6 +432,12 @@ public class CalendarPortlet extends MVCPortlet {
 			CalendarNotificationTemplate.class.getName(), actionRequest);
 
 		if (calendarNotificationTemplateId <= 0) {
+			long calendarId = ParamUtil.getLong(actionRequest, "calendarId");
+			NotificationTemplateType notificationTemplateType =
+				NotificationTemplateType.parse(
+					ParamUtil.getString(
+						actionRequest, "notificationTemplateType"));
+
 			_calendarNotificationTemplateService.
 				addCalendarNotificationTemplate(
 					calendarId, notificationType,
@@ -459,9 +462,6 @@ public class CalendarPortlet extends MVCPortlet {
 		long calendarResourceId = ParamUtil.getLong(
 			actionRequest, "calendarResourceId");
 
-		long defaultCalendarId = ParamUtil.getLong(
-			actionRequest, "defaultCalendarId");
-		String code = ParamUtil.getString(actionRequest, "code");
 		Map<Locale, String> nameMap = LocalizationUtil.getLocalizationMap(
 			actionRequest, "name");
 		Map<Locale, String> descriptionMap =
@@ -472,6 +472,8 @@ public class CalendarPortlet extends MVCPortlet {
 			CalendarResource.class.getName(), actionRequest);
 
 		if (calendarResourceId <= 0) {
+			String code = ParamUtil.getString(actionRequest, "code");
+
 			_calendarResourceService.addCalendarResource(
 				serviceContext.getScopeGroupId(),
 				_portal.getClassNameId(CalendarResource.class), 0,
@@ -482,6 +484,9 @@ public class CalendarPortlet extends MVCPortlet {
 			_calendarResourceService.updateCalendarResource(
 				calendarResourceId, nameMap, descriptionMap, active,
 				serviceContext);
+
+			long defaultCalendarId = ParamUtil.getLong(
+				actionRequest, "defaultCalendarId");
 
 			if (defaultCalendarId > 0) {
 				_calendarLocalService.updateCalendar(defaultCalendarId, true);
@@ -955,12 +960,13 @@ public class CalendarPortlet extends MVCPortlet {
 		}
 
 		long oldStartTime = editedCalendarBookingInstance.getStartTime();
-		TimeZone timeZone = editedCalendarBookingInstance.getTimeZone();
 
 		if (frequency == Frequency.WEEKLY) {
 			CalendarBooking firstInstance =
 				_calendarBookingService.getCalendarBookingInstance(
 					editedCalendarBookingInstance.getCalendarBookingId(), 0);
+
+			TimeZone timeZone = editedCalendarBookingInstance.getTimeZone();
 
 			java.util.Calendar oldStartTimeJCalendar =
 				CalendarFactoryUtil.getCalendar(oldStartTime, timeZone);
@@ -1283,19 +1289,20 @@ public class CalendarPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		long[] calendarIds = ParamUtil.getLongValues(
-			resourceRequest, "calendarIds");
-		java.util.Calendar endTimeJCalendar = getJCalendar(
-			resourceRequest, "endTime");
-		java.util.Calendar startTimeJCalendar = getJCalendar(
-			resourceRequest, "startTime");
-		int[] statuses = ParamUtil.getIntegerValues(
-			resourceRequest, "statuses");
-
 		List<CalendarBooking> calendarBookings =
 			Collections.<CalendarBooking>emptyList();
 
+		long[] calendarIds = ParamUtil.getLongValues(
+			resourceRequest, "calendarIds");
+
 		if (!ArrayUtil.isEmpty(calendarIds)) {
+			java.util.Calendar endTimeJCalendar = getJCalendar(
+				resourceRequest, "endTime");
+			java.util.Calendar startTimeJCalendar = getJCalendar(
+				resourceRequest, "startTime");
+			int[] statuses = ParamUtil.getIntegerValues(
+				resourceRequest, "statuses");
+
 			calendarBookings = _calendarBookingService.search(
 				themeDisplay.getCompanyId(), new long[0], calendarIds,
 				new long[0], -1, null, startTimeJCalendar.getTimeInMillis(),
@@ -1375,11 +1382,16 @@ public class CalendarPortlet extends MVCPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
+		long[] calendarIds = ParamUtil.getLongValues(
+			resourceRequest, "calendarIds");
+
+		if (ArrayUtil.isEmpty(calendarIds)) {
+			return;
+		}
+
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		long[] calendarIds = ParamUtil.getLongValues(
-			resourceRequest, "calendarIds");
 		int[] statuses = {
 			WorkflowConstants.STATUS_APPROVED,
 			CalendarBookingWorkflowConstants.STATUS_MAYBE,
@@ -1389,13 +1401,11 @@ public class CalendarPortlet extends MVCPortlet {
 		long endTime = ParamUtil.getLong(resourceRequest, "endTime");
 		String ruleName = ParamUtil.getString(resourceRequest, "ruleName");
 
-		if (calendarIds.length > 0) {
-			JSONObject jsonObject = CalendarUtil.getCalendarRenderingRules(
-				themeDisplay, calendarIds, statuses, startTime, endTime,
-				ruleName, getTimeZone(resourceRequest));
+		JSONObject jsonObject = CalendarUtil.getCalendarRenderingRules(
+			themeDisplay, calendarIds, statuses, startTime, endTime, ruleName,
+			getTimeZone(resourceRequest));
 
-			writeJSON(resourceRequest, resourceResponse, jsonObject);
-		}
+		writeJSON(resourceRequest, resourceResponse, jsonObject);
 	}
 
 	protected void serveCalendarResources(
