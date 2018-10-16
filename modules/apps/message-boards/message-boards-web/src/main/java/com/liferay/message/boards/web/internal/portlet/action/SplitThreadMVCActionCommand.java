@@ -124,12 +124,12 @@ public class SplitThreadMVCActionCommand extends BaseMVCActionCommand {
 			actionRequest, "addExplanationPost");
 
 		if (addExplanationPost) {
+			ThemeDisplay themeDisplay =
+				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
+
 			long oldParentMessageId = message.getParentMessageId();
 			String subject = ParamUtil.getString(actionRequest, "subject");
 			String body = ParamUtil.getString(actionRequest, "body");
-
-			ThemeDisplay themeDisplay =
-				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
 
 			MBGroupServiceSettings mbGroupServiceSettings =
 				MBGroupServiceSettings.getInstance(
