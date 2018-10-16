@@ -325,7 +325,7 @@ public class FileUtil {
 	public static String getSanitizedFileName(
 		String fileName, String extension) {
 
-		fileName = fileName.trim();
+		fileName = StringUtils.stripEnd(fileName, null);
 
 		for (String blacklistChar : PropsValues.SYNC_FILE_BLACKLIST_CHARS) {
 			blacklistChar = unescapeJava(blacklistChar);
@@ -344,7 +344,7 @@ public class FileUtil {
 		}
 
 		if (!Validator.isBlank(extension)) {
-			extension = extension.trim();
+			extension = StringUtils.stripEnd(extension, null);
 
 			int x = fileName.lastIndexOf(".");
 
