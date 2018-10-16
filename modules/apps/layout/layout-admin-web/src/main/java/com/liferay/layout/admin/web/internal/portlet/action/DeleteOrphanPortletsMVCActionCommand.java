@@ -61,6 +61,7 @@ public class DeleteOrphanPortletsMVCActionCommand extends BaseMVCActionCommand {
 		if (portletIds.length > 0) {
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
+
 			long selPlid = ParamUtil.getLong(actionRequest, "selPlid");
 
 			_portletLocalService.deletePortlets(
