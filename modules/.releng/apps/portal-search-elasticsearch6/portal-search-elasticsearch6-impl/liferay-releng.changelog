@@ -97,3 +97,8 @@ dabb4000fd8e14b72b8fdf37a9408a232adc0253^..5ccace86fdc45de23b07c6c48bec832d6c69f
 # Bundle Version 2.0.21
 #
 6fbff7d75c135b123b6f7bf097ae325f7e97e5ac^..6703dee2c1005136ccee4a9ce6f4b9f8dce0acb1=LPS-86408
+
+#
+# Bundle Version 2.0.22
+#
+6703dee2c1005136ccee4a9ce6f4b9f8dce0acb1^..cbe18de9ac9e7fd08e397e2411d6ad0d0c485a5d=LPS-77301 LPS-84119
