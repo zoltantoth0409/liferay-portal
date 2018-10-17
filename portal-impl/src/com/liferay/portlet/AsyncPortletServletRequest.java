@@ -174,26 +174,27 @@ public class AsyncPortletServletRequest extends HttpServletRequestWrapper {
 	}
 
 	private static final Set<String> _portalServletURLPatterns =
-		new HashSet<>();
+		new HashSet<String>() {
+			{
+				ServletContext servletContext = ServletContextPool.get(
+					PortalContextLoaderListener.getPortalServletContextName());
 
-	static {
-		ServletContext servletContext = ServletContextPool.get(
-			PortalContextLoaderListener.getPortalServletContextName());
+				if (servletContext == null) {
+					throw new ExceptionInInitializerError(
+						"Portal servlet context is not initialized");
+				}
 
-		if (servletContext == null) {
-			throw new ExceptionInInitializerError(
-				"Portal servlet context is not initialized");
-		}
+				Map<String, ? extends ServletRegistration>
+					servletRegistrations =
+						servletContext.getServletRegistrations();
 
-		Map<String, ? extends ServletRegistration> servletRegistrationMap =
-			servletContext.getServletRegistrations();
+				for (ServletRegistration servletRegistration :
+						servletRegistrations.values()) {
 
-		for (ServletRegistration servletRegistration :
-				servletRegistrationMap.values()) {
-
-			_portalServletURLPatterns.addAll(servletRegistration.getMappings());
-		}
-	}
+					addAll(servletRegistration.getMappings());
+				}
+			}
+		};
 
 	private String _contextPath;
 	private String _pathInfo;
