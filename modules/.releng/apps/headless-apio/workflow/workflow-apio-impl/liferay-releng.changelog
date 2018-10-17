@@ -47,3 +47,8 @@ ef730258d95d7376eaeb9a3fe1c0f31c645668c5^..0e303dbbd5f17a235893915e7dca1bc074bda
 # Bundle Version 1.0.10
 #
 d558eac521ed0f12d1911cba59d1fc2ba9ef9fe8^..e6f0d81bbdc32e58b204fe0bcda557b9e810b51f=LRDOCS-5714
+
+#
+# Bundle Version 1.0.11
+#
+e6f0d81bbdc32e58b204fe0bcda557b9e810b51f^..69ac55a85c758eba1e03afedc2cb57cd89db5c5b=LPS-83417 LPS-85586 LPS-86408
