@@ -189,6 +189,7 @@ public class SiteTeamsPortlet extends MVCPortlet {
 
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
+
 			ServiceContext serviceContext = ServiceContextFactory.getInstance(
 				Team.class.getName(), actionRequest);
 
