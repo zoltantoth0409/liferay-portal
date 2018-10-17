@@ -39,12 +39,12 @@ taglib uri="http://liferay.com/tld/clay" prefix="clay" %><%@
 taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
 <%
-	String ddmFormHTML = (String)request.getAttribute("liferay-form:ddm-form-renderer:ddmFormHTML");
-	DDMFormInstance ddmFormInstance = (DDMFormInstance)request.getAttribute("liferay-form:ddm-form-renderer:ddmFormInstance");
-	boolean hasAddFormInstanceRecordPermission = GetterUtil.getBoolean(request.getAttribute("liferay-form:ddm-form-renderer:hasAddFormInstanceRecordPermission"));
-	boolean hasViewFormInstancePermission = GetterUtil.getBoolean(request.getAttribute("liferay-form:ddm-form-renderer:hasViewFormInstancePermission"));
-	boolean isFormAvailable = GetterUtil.getBoolean(request.getAttribute("liferay-form:ddm-form-renderer:isFormAvailable"));
-	String languageId = (String)request.getAttribute("liferay-form:ddm-form-renderer:languageId");
-	String redirectURL = (String)request.getAttribute("liferay-form:ddm-form-renderer:redirectURL");
-	ResourceBundle resourceBundle = (ResourceBundle)request.getAttribute("liferay-form:ddm-form-renderer:resourceBundle");
+String ddmFormHTML = (String)request.getAttribute("liferay-form:ddm-form-renderer:ddmFormHTML");
+DDMFormInstance ddmFormInstance = (DDMFormInstance)request.getAttribute("liferay-form:ddm-form-renderer:ddmFormInstance");
+boolean hasAddFormInstanceRecordPermission = GetterUtil.getBoolean(request.getAttribute("liferay-form:ddm-form-renderer:hasAddFormInstanceRecordPermission"));
+boolean hasViewFormInstancePermission = GetterUtil.getBoolean(request.getAttribute("liferay-form:ddm-form-renderer:hasViewFormInstancePermission"));
+boolean isFormAvailable = GetterUtil.getBoolean(request.getAttribute("liferay-form:ddm-form-renderer:isFormAvailable"));
+String languageId = (String)request.getAttribute("liferay-form:ddm-form-renderer:languageId");
+String redirectURL = (String)request.getAttribute("liferay-form:ddm-form-renderer:redirectURL");
+ResourceBundle resourceBundle = (ResourceBundle)request.getAttribute("liferay-form:ddm-form-renderer:resourceBundle");
 %>
