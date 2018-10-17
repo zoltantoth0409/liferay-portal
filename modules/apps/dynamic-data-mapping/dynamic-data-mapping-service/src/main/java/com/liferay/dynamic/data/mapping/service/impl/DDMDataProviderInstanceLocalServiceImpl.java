@@ -150,17 +150,8 @@ public class DDMDataProviderInstanceLocalServiceImpl
 				dynamicQuery.add(groupIdProperty.eq(groupId));
 			});
 		actionableDynamicQuery.setPerformActionMethod(
-			new ActionableDynamicQuery.
-				PerformActionMethod<DDMDataProviderInstance>() {
-
-				@Override
-				public void performAction(
-						DDMDataProviderInstance ddmDataProviderInstance)
-					throws PortalException {
-
-					deleteDataProviderInstance(ddmDataProviderInstance);
-				}
-
+			(DDMDataProviderInstance ddmDataProviderInstance) -> {
+				deleteDataProviderInstance(ddmDataProviderInstance);
 			});
 
 		actionableDynamicQuery.setCompanyId(companyId);
