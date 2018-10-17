@@ -1344,6 +1344,12 @@ public class LayoutStagedModelDataHandler
 				layout.getGroupId(), _portal.getClassNameId(Layout.class),
 				layout.getPlid());
 
+		long originalOldPlid = portletDataContext.getOldPlid();
+
+		long originalPlid = portletDataContext.getPlid();
+
+		String originalPortletId = portletDataContext.getPortletId();
+
 		for (Element portletElement : portletsElement.elements()) {
 			String portletId = portletElement.attributeValue("portlet-id");
 
@@ -1527,6 +1533,10 @@ public class LayoutStagedModelDataHandler
 					newPortletId, portlet, portletPreferences.getPreferences());
 			}
 		}
+
+		portletDataContext.setOldPlid(originalOldPlid);
+		portletDataContext.setPlid(originalPlid);
+		portletDataContext.setPortletId(originalPortletId);
 	}
 
 	protected void importLinkedLayout(
