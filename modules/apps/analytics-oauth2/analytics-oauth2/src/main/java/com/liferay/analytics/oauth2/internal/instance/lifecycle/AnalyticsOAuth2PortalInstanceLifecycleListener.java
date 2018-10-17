@@ -44,7 +44,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -70,18 +69,18 @@ public class AnalyticsOAuth2PortalInstanceLifecycleListener
 
 		_addSAPEntry(company.getCompanyId(), user.getUserId());
 
-		List<GrantType> grantTypes = new ArrayList<>();
-
-		grantTypes.add(GrantType.AUTHORIZATION_CODE);
-		grantTypes.add(GrantType.REFRESH_TOKEN);
-
 		OAuth2Application oAuth2Application =
 			_oAuth2ApplicationLocalService.addOAuth2Application(
 				company.getCompanyId(), user.getUserId(), user.getScreenName(),
-				grantTypes, _generateRandomId(),
-				ClientProfile.WEB_APPLICATION.id(), _generateRandomSecret(),
-				null, null, "https://analytics.liferay.com", 0,
-				_APPLICATION_NAME, null,
+				new ArrayList<GrantType>() {
+					{
+						add(GrantType.AUTHORIZATION_CODE);
+						add(GrantType.REFRESH_TOKEN);
+					}
+				},
+				_generateRandomId(), ClientProfile.WEB_APPLICATION.id(),
+				_generateRandomSecret(), null, null,
+				"https://analytics.liferay.com", 0, _APPLICATION_NAME, null,
 				Collections.singletonList(
 					"https://analytics.liferay.com/oauth/receive"),
 				Arrays.asList("everything.read", "preferences.write"),
