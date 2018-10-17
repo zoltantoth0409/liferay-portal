@@ -264,6 +264,7 @@ public class TrashPortlet extends MVCPortlet {
 		if (Validator.isNull(newName)) {
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
+
 			String oldName = ParamUtil.getString(actionRequest, "oldName");
 
 			newName = _trashHelper.getNewName(themeDisplay, null, 0, oldName);
