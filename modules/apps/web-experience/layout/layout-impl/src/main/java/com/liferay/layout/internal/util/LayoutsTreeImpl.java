@@ -627,7 +627,16 @@ public class LayoutsTreeImpl implements LayoutsTree {
 			jsonObject.put("plid", layout.getPlid());
 			jsonObject.put("priority", layout.getPriority());
 			jsonObject.put("privateLayout", layout.isPrivateLayout());
-			jsonObject.put("regularURL", layout.getRegularURL(request));
+
+			if (layout.isTypeURL()) {
+				jsonObject.put("regularURL", layout.getRegularURL(request));
+			}
+			else {
+				jsonObject.put(
+					"regularURL",
+					_portal.getLayoutRelativeURL(layout, themeDisplay));
+			}
+
 			jsonObject.put(
 				"sortable",
 				hasManageLayoutsPermission && !mobile &&
