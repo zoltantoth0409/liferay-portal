@@ -43,6 +43,7 @@ import org.osgi.service.component.annotations.Reference;
  * are mapped from the internal model {@code Address}.
  *
  * @author Javier Gamarra
+ * @review
  */
 @Component(immediate = true, service = ReusableNestedCollectionRouter.class)
 public class AddressReusableNestedCollectionRouter
