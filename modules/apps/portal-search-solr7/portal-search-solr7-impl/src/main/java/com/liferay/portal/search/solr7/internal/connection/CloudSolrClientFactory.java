@@ -51,11 +51,9 @@ public class CloudSolrClientFactory implements SolrClientFactory {
 			throw new IllegalStateException("Zookeeper host is null");
 		}
 
-		HttpClient httpClient = httpClientFactory.createInstance();
-
 		CloudSolrClient.Builder builder = new CloudSolrClient.Builder();
 
-		builder.withHttpClient(httpClient);
+		builder.withHttpClient(httpClientFactory.createInstance());
 		builder.withZkHost(zkHost);
 
 		CloudSolrClient cloudSolrClient = builder.build();
