@@ -66,7 +66,7 @@ public class TOCTOUTest extends BaseClientTestCase {
 	public void testPreventTOCTOUWithNewScopes() {
 
 		// Get a token (implicitly for "everything.read") and check success
-		// for pre-installed JAX-RS app 1
+		// for preinstalled JAX-RS app 1
 
 		WebTarget webTarget1 = getWebTarget("/annotated");
 
@@ -85,8 +85,8 @@ public class TOCTOUTest extends BaseClientTestCase {
 
 		webTarget1InvocationBuilder.post(null, String.class);
 
-		// Fail to use the token from [1] on JAX-RS app 2
-		// (admin & end-user TOCTOU protection when API grows)
+		// Fail to use the token from [1] on JAX-RS app 2 (admin & end-user
+		// TOCTOU protection when API grows)
 
 		WebTarget webTarget2 = getWebTarget("/annotated2");
 
@@ -104,7 +104,7 @@ public class TOCTOUTest extends BaseClientTestCase {
 		}
 
 		// Try again with a fresh narrowed down token for "everything.read".
-		// Should still fail (admin TOCTOU protection when narrowing down)
+		// It should still fail (admin TOCTOU protection when narrowing down).
 
 		token = getToken(
 			"oauthTestApplicationCode", null,
@@ -124,12 +124,12 @@ public class TOCTOUTest extends BaseClientTestCase {
 			Assert.assertEquals(403, cee.getResponse().getStatus());
 		}
 
-		// Re-save the OAuth2 app scope assignment
+		// Resave the OAuth2 app scope assignment
 
 		webTarget2InvocationBuilder.post(null, String.class);
 
-		// Fail to use the token from [4] on JAX-RS app 2
-		// (end-user TOCTOU protection when OAuth2 app scope assignment grows)
+		// Fail to use the token from [4] on JAX-RS app 2 (end-user TOCTOU
+		// protection when OAuth2 app scope assignment grows)
 
 		try {
 			webTarget2InvocationBuilder.get(String.class);
@@ -141,8 +141,8 @@ public class TOCTOUTest extends BaseClientTestCase {
 			Assert.assertEquals(403, cee.getResponse().getStatus());
 		}
 
-		// Try again with a fresh token (implicitly for "everything.read").
-		// Should succeed
+		// Try again with a fresh token (implicitly for "everything.read"). It
+		// should succeed.
 
 		token = getToken(
 			"oauthTestApplicationCode", null,
@@ -163,38 +163,46 @@ public class TOCTOUTest extends BaseClientTestCase {
 			throws PortalException {
 
 			ServiceReference<OAuth2ApplicationLocalService>
-				oA2ApplicationLSServiceReference =
+				oAuth2ApplicationLocalServiceServiceReference =
 					bundleContext.getServiceReference(
 						OAuth2ApplicationLocalService.class);
 
-			OAuth2ApplicationLocalService oAuth2ApplicationLS =
-				bundleContext.getService(oA2ApplicationLSServiceReference);
+			OAuth2ApplicationLocalService oAuth2ApplicationLocalService =
+				bundleContext.getService(
+					oAuth2ApplicationLocalServiceServiceReference);
 
 			ServiceReference<OAuth2ApplicationScopeAliasesLocalService>
-				oA2AScopeAliasesLSServiceReference =
+				oAuth2AScopeAliasesLocalServiceServiceReference =
 					bundleContext.getServiceReference(
 						OAuth2ApplicationScopeAliasesLocalService.class);
 
-			OAuth2ApplicationScopeAliasesLocalService oA2AScopeAliasesLS =
-				bundleContext.getService(oA2AScopeAliasesLSServiceReference);
+			OAuth2ApplicationScopeAliasesLocalService
+				oAuth2ApplicationScopeAliasesLocalService =
+					bundleContext.getService(
+						oAuth2AScopeAliasesLocalServiceServiceReference);
 
 			try {
 				OAuth2ApplicationScopeAliases oAuth2ApplicationScopeAliases =
-					oA2AScopeAliasesLS.getOAuth2ApplicationScopeAliases(
-						oAuth2Application.getOAuth2ApplicationScopeAliasesId());
+					oAuth2ApplicationScopeAliasesLocalService.
+						getOAuth2ApplicationScopeAliases(
+							oAuth2Application.
+								getOAuth2ApplicationScopeAliasesId());
 
-				oAuth2Application = oAuth2ApplicationLS.updateScopeAliases(
-					oAuth2Application.getUserId(),
-					oAuth2Application.getUserName(),
-					oAuth2Application.getOAuth2ApplicationId(),
-					oAuth2ApplicationScopeAliases.getScopeAliasesList());
+				oAuth2Application =
+					oAuth2ApplicationLocalService.updateScopeAliases(
+						oAuth2Application.getUserId(),
+						oAuth2Application.getUserName(),
+						oAuth2Application.getOAuth2ApplicationId(),
+						oAuth2ApplicationScopeAliases.getScopeAliasesList());
 
 				return oAuth2Application;
 			}
 			finally {
-				bundleContext.ungetService(oA2ApplicationLSServiceReference);
+				bundleContext.ungetService(
+					oAuth2ApplicationLocalServiceServiceReference);
 
-				bundleContext.ungetService(oA2AScopeAliasesLSServiceReference);
+				bundleContext.ungetService(
+					oAuth2AScopeAliasesLocalServiceServiceReference);
 			}
 		}
 
@@ -219,19 +227,17 @@ public class TOCTOUTest extends BaseClientTestCase {
 					}
 				});
 
-			Dictionary<String, Object> applicationProperties =
-				new HashMapDictionary<>();
+			Dictionary<String, Object> properties = new HashMapDictionary<>();
 
-			applicationProperties.put(
-				"oauth2.scopechecker.type", "annotations");
+			properties.put("oauth2.scopechecker.type", "annotations");
 
 			registerJaxRsApplication(
 				new TestRunnablePostHandlingApplication(
 					() -> {
 						registerJaxRsApplication(
-							application, "annotated2", applicationProperties);
+							application, "annotated2", properties);
 					}),
-				"annotated", applicationProperties);
+				"annotated", properties);
 
 			updateOAuth2ApplicationScopeAliases(oAuth2Application);
 		}
