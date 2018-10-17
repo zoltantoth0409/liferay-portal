@@ -64,18 +64,16 @@ public class EmailReusableNestedCollectionRouter
 
 		String className = classNameClassPK.getClassName();
 
-		long classPK = classNameClassPK.getClassPK();
-
 		if (className.equals(Organization.class.getName())) {
 			Organization organization = _organizationService.getOrganization(
-				classPK);
+				classNameClassPK.getClassPK());
 
 			return _emailAddressService.getEmailAddresses(
 				organization.getModelClassName(),
 				organization.getOrganizationId());
 		}
 		else {
-			User user = _userService.getUserById(classPK);
+			User user = _userService.getUserById(classNameClassPK.getClassPK());
 
 			return _emailAddressService.getEmailAddresses(
 				Contact.class.getName(), user.getContactId());

@@ -77,11 +77,9 @@ public class WebUrlReusableNestedCollectionRouter
 
 		String className = classNameClassPK.getClassName();
 
-		long classPK = classNameClassPK.getClassPK();
-
 		if (className.equals(Organization.class.getName())) {
 			Organization organization = _organizationService.getOrganization(
-				classPK);
+				classNameClassPK.getClassPK());
 
 			return _websiteService.getWebsites(
 				organization.getModelClassName(),

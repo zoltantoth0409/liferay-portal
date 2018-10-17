@@ -76,18 +76,16 @@ public class PhoneReusableNestedCollectionRouter
 
 		String className = classNameClassPK.getClassName();
 
-		long classPK = classNameClassPK.getClassPK();
-
 		if (className.equals(Organization.class.getName())) {
 			Organization organization = _organizationService.getOrganization(
-				classPK);
+				classNameClassPK.getClassPK());
 
 			return _phoneService.getPhones(
 				organization.getModelClassName(),
 				organization.getOrganizationId());
 		}
 		else {
-			User user = _userService.getUserById(classPK);
+			User user = _userService.getUserById(classNameClassPK.getClassPK());
 
 			return _phoneService.getPhones(
 				Contact.class.getName(), user.getContactId());

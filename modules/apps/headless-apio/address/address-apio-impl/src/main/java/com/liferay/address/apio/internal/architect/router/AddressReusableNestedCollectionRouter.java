@@ -70,23 +70,19 @@ public class AddressReusableNestedCollectionRouter
 
 		String className = classNameClassPK.getClassName();
 
-		long classPK = classNameClassPK.getClassPK();
-
 		if (className.equals(Organization.class.getName())) {
 			Organization organization = _organizationService.getOrganization(
-				classPK);
+				classNameClassPK.getClassPK());
 
 			return _addressLocalService.getAddresses(
 				currentUser.getCompanyId(), organization.getModelClassName(),
 				organization.getOrganizationId());
 		}
 		else {
-			User user = _userService.getUserById(classPK);
-
-			String userModelClassName = user.getModelClassName();
+			User user = _userService.getUserById(classNameClassPK.getClassPK());
 
 			CommonPermissionUtil.check(
-				(PermissionChecker)credentials.get(), userModelClassName,
+				(PermissionChecker)credentials.get(), user.getModelClassName(),
 				user.getUserId(), ActionKeys.VIEW);
 
 			return _addressLocalService.getAddresses(
