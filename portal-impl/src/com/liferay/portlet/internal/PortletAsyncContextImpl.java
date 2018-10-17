@@ -83,14 +83,15 @@ public class PortletAsyncContextImpl implements PortletAsyncContext {
 			throw new IllegalStateException();
 		}
 
-		HttpServletRequest originalRequest =
-			(HttpServletRequest)_getOriginalRequest();
+		HttpServletRequest originalHttpServletRequest =
+			(HttpServletRequest)_getOriginalServletRequest();
 
 		String path = StringBundler.concat(
-			originalRequest.getRequestURI(), "?",
-			originalRequest.getQueryString());
+			originalHttpServletRequest.getRequestURI(), "?",
+			originalHttpServletRequest.getQueryString());
 
-		ServletContext servletContext = originalRequest.getServletContext();
+		ServletContext servletContext =
+			originalHttpServletRequest.getServletContext();
 
 		_asyncPortletServletRequest.update(
 			servletContext.getContextPath(), path);
@@ -108,9 +109,10 @@ public class PortletAsyncContextImpl implements PortletAsyncContext {
 			throw new IllegalStateException();
 		}
 
-		ServletRequest originalRequest = _getOriginalRequest();
+		ServletRequest originalServletRequest = _getOriginalServletRequest();
 
-		ServletContext servletContext = originalRequest.getServletContext();
+		ServletContext servletContext =
+			originalServletRequest.getServletContext();
 
 		String contextPath = _resourceRequest.getContextPath();
 
@@ -200,17 +202,17 @@ public class PortletAsyncContextImpl implements PortletAsyncContext {
 		}
 	}
 
-	private ServletRequest _getOriginalRequest() {
-		ServletRequest originalRequest = _asyncPortletServletRequest;
+	private ServletRequest _getOriginalServletRequest() {
+		ServletRequest originalServletRequest = _asyncPortletServletRequest;
 
-		while (originalRequest instanceof ServletRequestWrapper) {
+		while (originalServletRequest instanceof ServletRequestWrapper) {
 			ServletRequestWrapper servletRequestWrapper =
-				(ServletRequestWrapper)originalRequest;
+				(ServletRequestWrapper)originalServletRequest;
 
-			originalRequest = servletRequestWrapper.getRequest();
+			originalServletRequest = servletRequestWrapper.getRequest();
 		}
 
-		return originalRequest;
+		return originalServletRequest;
 	}
 
 	private AsyncContext _asyncContext;
