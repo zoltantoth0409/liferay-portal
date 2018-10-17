@@ -109,9 +109,19 @@ public class OAuthAuthorizationDataMessageBodyWriter
 		authorizeScreenURL = setParameter(
 			authorizeScreenURL, OAuthConstants.STATE,
 			oAuthAuthorizationData.getState());
+		authorizeScreenURL = setParameter(
+			authorizeScreenURL, "reply_to",
+			_getReplyTo(oAuthAuthorizationData));
 
-		String replyTo = null;
+		if (authorizeScreenURL.length() > _invokerFilterURIMaxLength) {
+			authorizeScreenURL = removeParameter(
+				authorizeScreenURL, OAuthConstants.SCOPE);
+		}
 
+		return authorizeScreenURL;
+	}
+
+	private String _getReplyTo(OAuthAuthorizationData oAuthAuthorizationData) {
 		if (portal.isForwardedSecure(messageContext.getHttpServletRequest())) {
 			UriInfo uriInfo = messageContext.getUriInfo();
 
@@ -122,21 +132,10 @@ public class OAuthAuthorizationDataMessageBodyWriter
 
 			URI uri = uriBuilder.build();
 
-			replyTo = uri.toString();
-		}
-		else {
-			replyTo = oAuthAuthorizationData.getReplyTo();
+			return uri.toString();
 		}
 
-		authorizeScreenURL = setParameter(
-			authorizeScreenURL, "reply_to", replyTo);
-
-		if (authorizeScreenURL.length() > _invokerFilterURIMaxLength) {
-			authorizeScreenURL = removeParameter(
-				authorizeScreenURL, OAuthConstants.SCOPE);
-		}
-
-		return authorizeScreenURL;
+		return oAuthAuthorizationData.getReplyTo();
 	}
 
 	private int _invokerFilterURIMaxLength = 4000;
