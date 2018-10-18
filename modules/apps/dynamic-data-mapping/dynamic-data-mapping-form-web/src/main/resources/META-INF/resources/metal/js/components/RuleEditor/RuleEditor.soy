@@ -7,7 +7,20 @@
 	{@param actions: list<[
 			action: string,
 			expression: string,
+			hasRequiredInputs: bool,
+			inputs: list<[
+				label: string,
+				name: string,
+				required: bool,
+				type: string,
+				value: string
+			]>,
 			label: string,
+			outputs: list<[
+				name: string,
+				type: string,
+				value: string
+			]>,
 			target: string
 		]>
 	}
@@ -41,8 +54,6 @@
 			name: string
 		]>
 	}
-	{@param deleteActionModalVisible: bool}
-	{@param deleteConditionModalVisible: bool}
 	{@param fieldOptions : list<[
 			label: string,
 			name: string,
@@ -67,9 +78,12 @@
 	{@param logicalOperator: string}
 	{@param readOnly: bool}
 	{@param strings: ?}
+	{@param spritemap: string}
 	{@param? _handleActionSelection: any}
 	{@param? _handleActionAdded: any}
 	{@param? _handleConditionAdded: any}
+	{@param? _handleDataProviderInputEdited: any}
+	{@param? _handleDataProviderOutputEdited: any}
 	{@param? _handleDeleteAction: any}
 	{@param? _handleDeleteCondition: any}
 	{@param? _handleFirstOperandFieldEdited: any}
@@ -84,7 +98,6 @@
 			value: string
 		]>
 	}
-	{@param? spritemap: string}
 
 	<div class="form-builder-rule-builder liferay-ddm-form-builder-rule-builder-content">
 		<h2 class="form-builder-section-title text-default">{$strings.title}</h2>
@@ -147,8 +160,13 @@
 			{foreach $action in $actions}
 				{call .renderAction}
 					{param _handleActionSelection: $_handleActionSelection /}
+					{param _handleDataProviderInputEdited: $_handleDataProviderInputEdited /}
+					{param _handleDataProviderOutputEdited: $_handleDataProviderOutputEdited /}
 					{param _handleDeleteAction: $_handleDeleteAction /}
 					{param _handleTargetSelection: $_handleTargetSelection /}
+					{param actionInputs: $action.inputs /}
+					{param actionOutputs: $action.outputs /}
+					{param hasRequiredInputs: $action.hasRequiredInputs /}
 					{param actionTypes: $actionTypes /}
 					{param actionSelected: $action.action /}
 					{param strings: $strings /}
@@ -169,7 +187,6 @@
 
 		{call .renderModal}
 			{param _handleModalButtonClicked: $_handleModalButtonClicked /}
-			{param modalVisibility: $deleteConditionModalVisible /}
 			{param question: $strings.deleteConditionQuestion /}
 			{param spritemap: $spritemap /}
 			{param title: $strings.deleteCondition /}
@@ -178,7 +195,6 @@
 
 		{call .renderModal}
 			{param _handleModalButtonClicked: $_handleModalButtonClicked /}
-			{param modalVisibility: $deleteActionModalVisible /}
 			{param question: $strings.deleteActionQuestion /}
 			{param spritemap: $spritemap /}
 			{param title: $strings.deleteAction /}
@@ -188,11 +204,10 @@
 {/template}
 {template .renderModal}
 	{@param question: string}
-	{@param modalVisibility: bool}
 	{@param title: string}
 	{@param type: string}
+	{@param spritemap: string}
 	{@param? _handleModalButtonClicked: any}
-	{@param? spritemap: string}
 
 	{call ClayModal.render}
 		{param body kind="html"}
@@ -219,23 +234,13 @@
 		{param size: 'sm' /}
 		{param spritemap: $spritemap /}
 		{param title: $title /}
-		{param visible: $modalVisibility /}
 	{/call}
 
 {/template}
 
 {template .renderAction}
-	{@param? _handleActionSelection: any}
-	{@param? _handleDeleteAction: any}
-	{@param? _handleTargetSelection: any}
-
 	{@param actionTypes: list<[
 			value: string,
-			name: string
-		]>
-	}
-	{@param? dataProvider: list<[
-			id: string,
 			name: string
 		]>
 	}
@@ -250,17 +255,47 @@
 			value: string
 		]>
 	}
-	{@param? actionSelected: string}
-	{@param? targetSelected: string}
 	{@param index: int}
+	{@param spritemap: string}
 	{@param strings: [
 		chooseAnOption: string,
+		dataProviderParameterInput: string,
+		dataProviderParameterInputDescription: string,
+		dataProviderParameterOutput: string,
+		dataProviderParameterOutputDescription: string,
 		do: string,
-		fromDataProvider: string
+		fromDataProvider: string,
+		requiredField: string
 	]}
-	{@param? spritemap: string}
+	{@param? _handleActionSelection: any}
+	{@param? _handleDataProviderInputEdited: any}
+	{@param? _handleDataProviderOutputEdited: any}
+	{@param? _handleDeleteAction: any}
+	{@param? _handleTargetSelection: any}
+	{@param? actionInputs: list<[
+			label: string,
+			name: string,
+			required: bool,
+			type: string,
+			value: string
+		]>
+	}
+	{@param? actionOutputs: list<[
+			name: string,
+			type: string,
+			value: string
+		]>
+	}
+	{@param? actionSelected: string}
+	{@param? dataProvider: list<[
+			id: string,
+			name: string
+		]>
+	}
+	{@param? targetSelected: string}
+	{@param? hasRequiredInputs: bool}
 
-	<li class="form-builder-rule-action-container-{$index} timeline-item">
+	<li action-index="{$index}" class="action form-builder-rule-action-container-{$index} timeline-item">
 		<div class="panel panel-default">
 			<div class="panel-body">
 				<div class="form-group-autofit">
@@ -310,6 +345,27 @@
 					{/if}
 				</div>
 
+				{if $showTargetAutofill and $targetSelected}
+					<div class="action-rule-data-provider row">
+						{call .renderAutofill}
+							{param _handleDataProviderInputEdited: $_handleDataProviderInputEdited /}
+							{param _handleDataProviderOutputEdited: $_handleDataProviderOutputEdited /}
+							{param actionIndex: $index /}
+							{param actionInputs: $actionInputs /}
+							{param actionOutputs: $actionOutputs /}
+							{param dataProviderParameterInput: $strings.dataProviderParameterInput /}
+							{param dataProviderParameterInputDescription: $strings.dataProviderParameterInputDescription /}
+							{param dataProviderParameterOutput: $strings.dataProviderParameterOutput /}
+							{param dataProviderParameterOutputDescription: $strings.dataProviderParameterOutputDescription /}
+							{param fieldOptions: $fieldOptions /}
+							{param hasRequiredInputs: $hasRequiredInputs /}
+							{param chooseAnOption: $strings.chooseAnOption /}
+							{param requiredField: $strings.requiredField /}
+							{param spritemap: $spritemap /}
+						{/call}
+					</div>
+				{/if}
+
 				<div class="timeline-increment">
 					<span class="timeline-icon"></span>
 				</div>
@@ -334,12 +390,12 @@
 {/template}
 
 {template .renderActionTarget}
-	{@param? _handleTargetSelection: any}
 	{@param index: int}
 	{@param options: any}
-	{@param? placeholder: string}
 	{@param ref: string}
-	{@param? spritemap: string}
+	{@param spritemap: string}
+	{@param? _handleTargetSelection: any}
+	{@param? placeholder: string}
 	{@param? value: string}
 
 	<div class="form-group-item target-action" target-action-index="{$index}">
@@ -370,6 +426,7 @@
 	]>}
 	{@param index: int}
 	{@param readOnly: bool}
+	{@param spritemap: string}
 	{@param strings: [
 		chooseAnOption: string,
 		if: string,
@@ -390,10 +447,10 @@
 	{@param? fixedOptions: any}
 	{@param? logicalOperator: string}
 	{@param? operators:  list<[
-		value: string,
 		name: string,
 		parameterTypes: list<string>,
-		returnType: string
+		returnType: string,
+		value: string
 	]>}
 	{@param? roles: list<[
 		label: string,
@@ -404,7 +461,6 @@
 	{@param? secondOperandType: string}
 	{@param? secondOperandValue: any}
 	{@param? selectedOperator: string}
-	{@param? spritemap: string}
 
 	<li class="form-builder-rule-condition-container timeline-item" condition-index="{$index}">
 		<div class="panel panel-default">
@@ -546,6 +602,7 @@
 
 {template .renderConditionOperators}
 	{@param index: int}
+	{@param spritemap: string}
 	{@param strings: [
 		chooseAnOption: string
 	]}
@@ -559,7 +616,6 @@
 		]>
 	}
 	{@param? selectedOperator: string}
-	{@param? spritemap: string}
 
 	{let $readOnly: $firstOperandType ? false : true /}
 
@@ -580,6 +636,7 @@
 
 {template .renderConditionSecondOperandTypeSelector}
 	{@param index: int}
+	{@param spritemap: string}
 	{@param strings: [
 		chooseAnOption: string,
 		otherField: string,
@@ -588,7 +645,6 @@
 	{@param? _handleSecondOperandTypeEdited: any}
 	{@param? secondOperandType: string}
 	{@param? selectedOperator: any}
-	{@param? spritemap: string}
 
 	{let $options: [
 		[
@@ -624,6 +680,7 @@
 
 {template .renderConditionUserRolesSelector}
 	{@param index: int}
+	{@param spritemap: string}
 	{@param strings: [
 		chooseAnOption: string
 	]}
@@ -635,7 +692,6 @@
 	}
 	{@param? selectedOperator: any}
 	{@param? secondOperandValue: any }
-	{@param? spritemap: string}
 
 	{let $visible: $selectedOperator ? true : false /}
 
@@ -714,7 +770,7 @@
  */
 {template .renderAddItemButton}
 	{@param? _handleItemAdded: any}
-	{@param? spritemap: string}
+	{@param spritemap: string}
 	{@param? type: string}
 
 	<div class="addbutton-timeline-item">
@@ -731,5 +787,132 @@
 				{param spritemap: $spritemap /}
 			{/call}
 		</div>
+	</div>
+{/template}
+
+{template .renderAutofill}
+	{@param actionIndex: int}
+	{@param chooseAnOption: string}
+	{@param dataProviderParameterInput: string}
+	{@param dataProviderParameterInputDescription: string}
+	{@param dataProviderParameterOutput: string}
+	{@param dataProviderParameterOutputDescription: string}
+	{@param fieldOptions : list<[
+			label: string,
+			name: string,
+			options: list<[
+				label: string,
+				value: string
+			]>,
+			type: string,
+			value: string
+		]>
+	}
+	{@param requiredField: string}
+	{@param spritemap: string}
+	{@param? _handleDataProviderInputEdited: any}
+	{@param? _handleDataProviderOutputEdited: any}
+	{@param? actionInputs: list<[
+			label: string,
+			name: string,
+			required: bool,
+			type: string,
+			value: string
+		]>
+	}
+	{@param? actionOutputs: list<[
+			name: string,
+			type: string,
+			value: string
+		]>
+	}
+	{@param? hasRequiredInputs: bool}
+	<div class="col-md-12 no-padding">
+		{if $actionInputs}
+			<div class="data-provider-parameter-input-container">
+				{if $hasRequiredInputs}
+					<div class="data-provider-label-container">
+						<label>
+							<p class="data-provider-parameter-input-required-field">{$requiredField}</p>
+							{sp}
+							<span class="reference-mark">
+								{call ClayIcon.render}
+									{param spritemap: $spritemap /}
+									{param symbol: 'asterisk' /}
+								{/call}
+							</span>
+						</label>
+					</div>
+				{/if}
+
+				<div class="data-provider-label-container">
+					<p class="data-provider-parameter-input"><b>{$dataProviderParameterInput}</b></p>
+					<p class="data-provider-parameter-input-description">{$dataProviderParameterInputDescription}</p>
+				</div>
+
+				<div class="data-provider-parameter-input-list row">
+					{foreach $input in $actionInputs}
+						<div class="col-md-3 container-input-label">
+							{$input.label}
+							<label>
+								{if $input.required}
+									<span class="input-required reference-mark">
+										{call ClayIcon.render}
+											{param spritemap: $spritemap /}
+											{param symbol: 'asterisk' /}
+										{/call}
+									</span>
+								{/if}
+							</label>
+						</div>
+						{let $index: index($input) /}
+						<div class="col-md-9 container-input-field container-input-field-{$index}" container-input-field-index={$index}>
+							{delcall PageRenderer.RegisterFieldType variant="'select'"}
+								{param events: [
+									'fieldEdited': $_handleDataProviderInputEdited
+								] /}
+								{param options: $fieldOptions /}
+								{param placeholder: $chooseAnOption /}
+								{param ref: 'action' + $actionIndex + 'dataProviderInput' + $index /}
+								{param spritemap: $spritemap /}
+								{param value: [$input.value] /}
+							{/delcall}
+						</div>
+					{/foreach}
+				</div>
+			</div>
+		{/if}
+
+		{if $actionOutputs}
+			<div class="data-provider-parameter-output-container">
+				<div class="data-provider-label-container">
+					<p class="data-provider-parameter-output"><b>{$dataProviderParameterOutput}</b></p>
+					<p class="data-provider-parameter-output-description">{$dataProviderParameterOutputDescription}</p>
+				</div>
+
+				{if $actionOutputs}
+					<div class="data-provider-parameter-output-list row">
+						{foreach $output in $actionOutputs}
+						<div class="col-md-3 container-output-label">
+							{$output.name}
+						</div>
+						{let $index: index($output) /}
+						<div class="col-md-9 container-output-field container-output-field-{$index}" container-output-field-index={$index}>
+							{delcall PageRenderer.RegisterFieldType variant="'select'"}
+								{param events: [
+									'fieldEdited': $_handleDataProviderOutputEdited
+								] /}
+								{param options: $fieldOptions /}
+								{param placeholder: $chooseAnOption /}
+								{param ref: 'action' + $actionIndex + 'dataProviderOutput' + $index /}
+								{param spritemap: $spritemap /}
+								{param value: [$output.value] /}
+							{/delcall}
+						</div>
+					{/foreach}
+					</div>
+				{/if}
+			</div>
+		{/if}
 	</div>
 {/template}
