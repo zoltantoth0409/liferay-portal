@@ -423,10 +423,6 @@ public class DLFileEntryLocalServiceImpl
 		DLFileVersion dlFileVersion =
 			dlFileVersionLocalService.getLatestFileVersion(fileEntryId, false);
 
-		DLFileVersion oldDLFileVersion = dlFileVersion;
-
-		long oldDLFileVersionId = dlFileVersion.getFileVersionId();
-
 		serviceContext.setUserId(userId);
 
 		boolean manualCheckinRequired = GetterUtil.getBoolean(
@@ -442,6 +438,10 @@ public class DLFileEntryLocalServiceImpl
 
 		if (!version.equals(
 				DLFileEntryConstants.PRIVATE_WORKING_COPY_VERSION)) {
+
+			DLFileVersion oldDLFileVersion = dlFileVersion;
+
+			long oldDLFileVersionId = dlFileVersion.getFileVersionId();
 
 			long existingDLFileVersionId = ParamUtil.getLong(
 				serviceContext, "existingDLFileVersionId");
