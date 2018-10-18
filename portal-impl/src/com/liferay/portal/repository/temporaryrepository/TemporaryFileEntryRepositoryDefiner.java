@@ -40,7 +40,7 @@ public class TemporaryFileEntryRepositoryDefiner extends BaseRepositoryDefiner {
 
 	public static BiFunction
 		<PortalCapabilityLocator, RepositoryFactory, RepositoryDefiner>
-			getFactoryFunction() {
+			getFactoryBiFunction() {
 
 		return TemporaryFileEntryRepositoryDefiner::new;
 	}
