@@ -19,7 +19,28 @@ class RuleEditor extends Component {
 				{
 					action: Config.string(),
 					expression: Config.string(),
+					hasRequiredInputs: Config.bool(),
+					inputs: Config.arrayOf(
+						Config.shapeOf(
+							{
+								label: Config.string(),
+								name: Config.string(),
+								required: Config.bool(),
+								type: Config.string(),
+								value: Config.string()
+							}
+						)
+					),
 					label: Config.string(),
+					outputs: Config.arrayOf(
+						Config.shapeOf(
+							{
+								name: Config.string(),
+								type: Config.string(),
+								value: Config.string()
+							}
+						)
+					),
 					target: Config.string()
 				}
 			)
@@ -84,27 +105,9 @@ class RuleEditor extends Component {
 			)
 		).internal(),
 
+		dataProviderInstanceParameterSettingsURL: Config.string().required(),
+
 		dataProviderInstancesURL: Config.string().required(),
-
-		/**
-		 * Used for telling whether the delete conditional modal is visible or not.
-		 * @default false
-		 * @instance
-		 * @memberof RuleEditor
-		 * @type {Boolean}
-		 */
-
-		deleteActionModalVisible: Config.bool().value(false),
-
-		/**
-		 * Used for telling whether the delete conditional modal is visible or not.
-		 * @default false
-		 * @instance
-		 * @memberof RuleEditor
-		 * @type {Boolean}
-		 */
-
-		deleteConditionModalVisible: Config.bool().value(false),
 
 		/**
 		 * @default 0
@@ -275,6 +278,10 @@ class RuleEditor extends Component {
 				cancel: Liferay.Language.get('cancel'),
 				chooseAnOption: Liferay.Language.get('choose-an-option'),
 				condition: Liferay.Language.get('condition'),
+				dataProviderParameterInput: Liferay.Language.get('data-provider-parameter-input'),
+				dataProviderParameterInputDescription: Liferay.Language.get('data-provider-parameter-input-description'),
+				dataProviderParameterOutput: Liferay.Language.get('data-provider-parameter-output'),
+				dataProviderParameterOutputDescription: Liferay.Language.get('data-provider-parameter-output-description'),
 				delete: Liferay.Language.get('delete'),
 				deleteAction: Liferay.Language.get('delete-action'),
 				deleteActionQuestion: Liferay.Language.get('are-you-sure-you-want-to-delete-this-action'),
@@ -290,6 +297,7 @@ class RuleEditor extends Component {
 				or: Liferay.Language.get('or'),
 				otherField: Liferay.Language.get('other-field'),
 				require: Liferay.Language.get('require'),
+				requiredField: Liferay.Language.get('required-field'),
 				save: Liferay.Language.get('save'),
 				show: Liferay.Language.get('show'),
 				the: Liferay.Language.get('the'),
@@ -504,6 +512,36 @@ class RuleEditor extends Component {
 		);
 	}
 
+	_fetchDataProviderParameters(id, index) {
+		const {actions, dataProviderInstanceParameterSettingsURL} = this;
+
+		const url = dataProviderInstanceParameterSettingsURL.slice(0, dataProviderInstanceParameterSettingsURL.length - 1);
+
+		return makeFetch(
+			{
+				method: 'GET',
+				url: `${url}?ddmDataProviderInstanceId=${id}`
+			}
+		).then(
+			responseData => {
+				if (!this.isDisposed()) {
+					actions[index].inputs = responseData.inputs;
+					actions[index].outputs = responseData.outputs;
+
+					this.setState(
+						{
+							actions
+						}
+					);
+				}
+			}
+		).catch(
+			error => {
+				console.log(error);
+			}
+		);
+	}
+
 	_fetchRoles() {
 		const {rolesURL} = this;
 
@@ -557,7 +595,7 @@ class RuleEditor extends Component {
 		return fields;
 	}
 
-	_getConditionIndex(fieldInstance, fieldClass) {
+	_getIndex(fieldInstance, fieldClass) {
 		const firstOperand = fieldInstance.element.closest(fieldClass);
 
 		return firstOperand.getAttribute(`${fieldClass.substring(1)}-index`);
@@ -622,7 +660,7 @@ class RuleEditor extends Component {
 
 	_handleActionSelection(event) {
 		const {fieldInstance, value} = event;
-		const index = this._getConditionIndex(fieldInstance, '.action-type');
+		const index = this._getIndex(fieldInstance, '.action-type');
 
 		const {actions} = this;
 
@@ -677,14 +715,46 @@ class RuleEditor extends Component {
 		);
 	}
 
+	_handleDataProviderInputEdited(event) {
+		const {fieldInstance, value} = event;
+		const actionIndex = this._getIndex(fieldInstance, '.action');
+		const inputIndex = this._getIndex(fieldInstance, '.container-input-field');
+		const {actions} = this;
+
+		if (value && value.length > 0 && value[0]) {
+			actions[actionIndex].inputs[inputIndex].value = value[0];
+			this.setState(
+				{
+					actions
+				}
+			);
+		}
+	}
+
+	_handleDataProviderOutputEdited(event) {
+		const {fieldInstance, value} = event;
+		const actionIndex = this._getIndex(fieldInstance, '.action');
+		const inputIndex = this._getIndex(fieldInstance, '.container-output-field');
+		const {actions} = this;
+
+		if (value && value.length > 0 && value[0]) {
+			actions[actionIndex].outputs[inputIndex].value = value[0];
+			this.setState(
+				{
+					actions
+				}
+			);
+		}
+	}
+
 	_handleDeleteAction(event) {
 		const {currentTarget} = event;
 		const index = currentTarget.getAttribute('data-index');
 
+		this.refs.confirmationModalAction.show();
 		this.setState(
 			{
-				activeActionIndex: parseInt(index, 10),
-				deleteActionModalVisible: true
+				activeActionIndex: parseInt(index, 10)
 			}
 		);
 	}
@@ -693,17 +763,17 @@ class RuleEditor extends Component {
 		const {currentTarget} = event;
 		const index = currentTarget.getAttribute('data-index');
 
+		this.refs.confirmationModalCondition.show();
 		this.setState(
 			{
-				activeConditionIndex: parseInt(index, 10),
-				deleteConditionModalVisible: true
+				activeConditionIndex: parseInt(index, 10)
 			}
 		);
 	}
 
 	_handleFirstOperandFieldEdited(event) {
 		const {fieldInstance, value} = event;
-		const index = this._getConditionIndex(fieldInstance, '.condition-if');
+		const index = this._getIndex(fieldInstance, '.condition-if');
 		let {conditions} = this;
 
 		if (value && value.length > 0 && value[0]) {
@@ -775,14 +845,20 @@ class RuleEditor extends Component {
 				actions.splice(activeActionIndex, 1);
 			}
 
+			if (this.refs.confirmationModalAction.visible) {
+				this.refs.confirmationModalAction.emit('hide');
+			}
+
+			if (this.refs.confirmationModalCondition.visible) {
+				this.refs.confirmationModalCondition.emit('hide');
+			}
+
 			this.setState(
 				{
 					actions,
 					activeActionIndex: -1,
 					activeConditionIndex: -1,
-					conditions,
-					deleteActionModalVisible: false,
-					deleteConditionModalVisible: false
+					conditions
 				}
 			);
 
@@ -798,7 +874,7 @@ class RuleEditor extends Component {
 			operatorValue = value[0];
 		}
 
-		const index = this._getConditionIndex(fieldInstance, '.condition-operator');
+		const index = this._getIndex(fieldInstance, '.condition-operator');
 
 		if (!operatorValue || !this._isBinary(operatorValue)) {
 			conditions = this._clearSecondOperandValue(conditions, index);
@@ -830,7 +906,7 @@ class RuleEditor extends Component {
 		let index;
 
 		if (delegateTarget.closest('.condition-type-value')) {
-			index = this._getConditionIndex(fieldInstance, '.condition-type-value');
+			index = this._getIndex(fieldInstance, '.condition-type-value');
 		}
 
 		const secondOperand = conditions[index].operands[1];
@@ -850,7 +926,7 @@ class RuleEditor extends Component {
 	_handleSecondOperandTypeEdited(event) {
 		let {conditions} = this;
 		const {fieldInstance, value} = event;
-		const index = this._getConditionIndex(fieldInstance, '.condition-type');
+		const index = this._getIndex(fieldInstance, '.condition-type');
 		const secondOperand = conditions[index].operands[1];
 
 		if (secondOperand && secondOperand.type != value) {
@@ -888,18 +964,40 @@ class RuleEditor extends Component {
 
 	_handleTargetSelection(event) {
 		const {fieldInstance, value} = event;
-		const index = this._getConditionIndex(fieldInstance, '.target-action');
-
+		const id = value[0];
+		const index = this._getIndex(fieldInstance, '.target-action');
 		const {actions} = this;
 
-		actions[index].target = value[0];
-		actions[index].label = value[0];
+		actions[index].target = id;
+		actions[index].label = id;
 
-		this.setState(
-			{
-				actions
-			}
-		);
+		if (this.actions[index].action == 'autofill' && id) {
+			this._fetchDataProviderParameters(id, index)
+				.then(
+					() => {
+						if (!this.isDisposed()) {
+							actions[index].hasRequiredInputs = (actions[index].inputs)
+								.some(
+									input => {
+										return input.required;
+									}
+								);
+							this.setState(actions);
+						}
+					}
+				);
+		}
+		else {
+			actions[index].inputs = [];
+			actions[index].outputs = [];
+			actions[index].hasRequiredInputs = false;
+
+			this.setState(
+				{
+					actions
+				}
+			);
+		}
 	}
 
 	_isFieldAction(fieldName) {
@@ -926,7 +1024,10 @@ class RuleEditor extends Component {
 				{
 					action: '',
 					expression: '',
+					hasRequiredInputs: false,
+					inputs: [],
 					label: '',
+					outputs: [],
 					target: ''
 				}
 			);
