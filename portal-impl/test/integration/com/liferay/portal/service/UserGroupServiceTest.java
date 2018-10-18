@@ -32,6 +32,7 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -83,6 +84,7 @@ public class UserGroupServiceTest {
 		}
 	}
 
+	@Ignore
 	@Test
 	public void testGetUserGroupsLikeName() throws Exception {
 		String name = RandomTestUtil.randomString(10);
