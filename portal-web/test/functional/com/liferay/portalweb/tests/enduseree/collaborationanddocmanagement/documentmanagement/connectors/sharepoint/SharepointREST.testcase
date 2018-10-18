@@ -145,11 +145,11 @@
 
 	<command name="ViewRepository" priority="5">
 		<execute macro="DMRepository#gotoCP">
-			<var name="dmRepositoryName" value="CollabQA" />
+			<var name="dmRepositoryName" value="${configurationName}" />
 		</execute>
 
 		<execute macro="DMRepository#viewBreadcrumb">
-			<var name="dmRepositoryName" value="CollabQA" />
+			<var name="dmRepositoryName" value="${configurationName}" />
 		</execute>
 	</command>
 </definition>
