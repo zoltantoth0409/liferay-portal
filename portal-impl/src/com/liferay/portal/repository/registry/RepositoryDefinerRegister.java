@@ -51,7 +51,7 @@ public class RepositoryDefinerRegister {
 						registry.getService(serviceReference);
 
 					RepositoryDefiner repositoryDefiner =
-						_repositoryDefinerFactoryFunction.apply(
+						_repositoryDefinerFactoryBiFunction.apply(
 							portalCapabilityLocator, _repositoryFactory);
 
 					Map<String, Object> properties = new HashMap<>();
@@ -88,12 +88,12 @@ public class RepositoryDefinerRegister {
 		_serviceTracker.close();
 	}
 
-	public void setRepositoryDefinerFactoryFunction(
+	public void setRepositoryDefinerFactoryBiFunction(
 		BiFunction
 			<PortalCapabilityLocator, RepositoryFactory, RepositoryDefiner>
-				repositoryDefinerFactoryFunction) {
+				repositoryDefinerFactoryBiFunction) {
 
-		_repositoryDefinerFactoryFunction = repositoryDefinerFactoryFunction;
+		_repositoryDefinerFactoryBiFunction = repositoryDefinerFactoryBiFunction;
 	}
 
 	public void setRepositoryFactory(RepositoryFactory repositoryFactory) {
@@ -102,7 +102,7 @@ public class RepositoryDefinerRegister {
 
 	private BiFunction
 		<PortalCapabilityLocator, RepositoryFactory, RepositoryDefiner>
-			_repositoryDefinerFactoryFunction;
+			_repositoryDefinerFactoryBiFunction;
 	private RepositoryFactory _repositoryFactory;
 	private ServiceTracker
 		<PortalCapabilityLocator, ServiceRegistration<RepositoryDefiner>>

@@ -27,7 +27,7 @@
 		<property name="repositoryClassDefinitionCatalog" ref="com.liferay.portal.repository.registry.RepositoryClassDefinitionCatalog" />
 	</bean>
 	<bean class="com.liferay.portal.repository.registry.RepositoryDefinerRegister">
-		<property name="repositoryDefinerFactoryFunction">
+		<property name="repositoryDefinerFactoryBiFunction">
 			<bean class="com.liferay.portal.repository.liferayrepository.LiferayRepositoryDefiner" factory-method="getFactoryBiFunction" />
 		</property>
 		<property name="repositoryFactory">
@@ -35,7 +35,7 @@
 		</property>
 	</bean>
 	<bean class="com.liferay.portal.repository.registry.RepositoryDefinerRegister">
-		<property name="repositoryDefinerFactoryFunction">
+		<property name="repositoryDefinerFactoryBiFunction">
 			<bean class="com.liferay.portal.repository.portletrepository.PortletRepositoryDefiner" factory-method="getFactoryBiFunction" />
 		</property>
 		<property name="repositoryFactory">
@@ -43,7 +43,7 @@
 		</property>
 	</bean>
 	<bean class="com.liferay.portal.repository.registry.RepositoryDefinerRegister">
-		<property name="repositoryDefinerFactoryFunction">
+		<property name="repositoryDefinerFactoryBiFunction">
 			<bean class="com.liferay.portal.repository.temporaryrepository.TemporaryFileEntryRepositoryDefiner" factory-method="getFactoryBiFunction" />
 		</property>
 		<property name="repositoryFactory">
