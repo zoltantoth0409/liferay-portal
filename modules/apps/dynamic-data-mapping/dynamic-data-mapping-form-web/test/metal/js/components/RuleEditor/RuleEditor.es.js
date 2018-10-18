@@ -7,6 +7,8 @@ let component;
 
 const dataProviderInstancesURL = '/o/dynamic-data-mapping-form-builder-data-provider-instances/';
 
+const dataProviderInstanceParameterSettingsURL = '/o/dynamic-data-mapping-form-builder-provider-instance-parameter-settings/';
+
 const functionsMetadata = {
 	radio: [
 		{name: 'contains', parameterTypes: ['text', 'text'], returnType: 'boolean', value: 'Contains'},
@@ -37,6 +39,7 @@ const rolesURL = '/o/dynamic-data-mapping-form-builder-roles/';
 
 const getBaseConfig = () => ({
 	conditions: [],
+	dataProviderInstanceParameterSettingsURL,
 	dataProviderInstancesURL,
 	functionsMetadata,
 	pages,
@@ -874,7 +877,7 @@ describe(
 
 								jest.runAllTimers();
 
-								component.refs.actionTarget0.emitFieldEdited(['38701']);
+								component.refs.actionTarget0.emitFieldEdited(['36582']);
 
 								jest.runAllTimers();
 
@@ -934,6 +937,82 @@ describe(
 								jest.runAllTimers();
 
 								expect(component.actions.length).toBe(1);
+							}
+						);
+					}
+				);
+
+				describe(
+					'When the user choose a data provider as a target',
+					() => {
+						it(
+							'should show the inputs and outputs fields',
+							done => {
+
+								const spy = jest.spyOn(window, 'fetch');
+
+								component = new RuleEditor(
+									{
+										...getBaseConfig()
+									}
+								);
+
+								component.refs.action0.emitFieldEdited(['autofill']);
+
+								jest.runAllTimers();
+
+								fetch.mockResponse(
+									JSON.stringify(
+										{
+											inputs: [
+												{
+													label: 'Nome',
+													name: 'Name',
+													required: false,
+													type: 'text'
+												},
+												{
+													label: 'Outro Nome',
+													name: 'Name',
+													required: true,
+													type: 'text'
+												}
+											],
+											outputs: [
+												{
+													name: 'Name',
+													type: 'text'
+												}
+											]
+										}
+									)
+								);
+
+								component.refs.actionTarget0.emitFieldEdited(['36582']);
+
+								component.once(
+									'rendered',
+									() => {
+										if (component.actions.inputs) {
+											expect(component.refs.action0dataProviderInput0).toBeTruthy();
+										}
+										if (component.actions.outputs) {
+											expect(component.refs.action0dataProviderOutput0).toBeTruthy();
+										}
+										done();
+									}
+								);
+
+								jest.runAllTimers();
+
+								const url = component.dataProviderInstanceParameterSettingsURL.slice(0, dataProviderInstanceParameterSettingsURL.length - 1);
+
+								expect(spy).toHaveBeenCalledWith(
+									`${url}?ddmDataProviderInstanceId=36582`,
+									expect.anything()
+								);
+
+								jest.runAllTimers();
 							}
 						);
 					}
