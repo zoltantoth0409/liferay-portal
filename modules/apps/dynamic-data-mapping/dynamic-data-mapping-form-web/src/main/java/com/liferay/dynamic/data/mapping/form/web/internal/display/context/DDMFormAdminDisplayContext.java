@@ -249,6 +249,15 @@ public class DDMFormAdminDisplayContext {
 		return _ddmFormWebConfiguration.csvExport();
 	}
 
+	public String getDataProviderInstanceParameterSettingsURL()
+		throws PortalException {
+
+		DDMFormBuilderSettingsResponse ddmFormBuilderSettingsResponse =
+			getDDMFormBuilderSettingsResponse();
+
+		return ddmFormBuilderSettingsResponse.getDataProviderInstanceParameterSettingsURL();
+	}
+
 	public String getDataProviderInstancesURL() throws PortalException {
 		DDMFormBuilderSettingsResponse ddmFormBuilderSettingsResponse =
 			getDDMFormBuilderSettingsResponse();
