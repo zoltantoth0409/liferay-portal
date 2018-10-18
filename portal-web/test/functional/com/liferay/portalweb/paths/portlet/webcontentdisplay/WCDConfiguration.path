@@ -20,7 +20,7 @@
 </tr>
 <tr>
 	<td>TOGGLE_CARD_CHECKBOX</td>
-	<td>//label[contains(.,'${key_toggleCardLabel}')]/input</td>
+	<td>//label[contains(.,'${key_toggleCardLabel}')]</td>
 	<td></td>
 </tr>
 <tr>
