@@ -6,6 +6,7 @@ const spritemap = 'icons.svg';
 let component;
 
 const baseConfig = {
+	dataProviderInstanceParameterSettingsURL: '/o/dynamic-data-mapping-form-builder-data-provider-instances/',
 	dataProviderInstancesURL: '/o/data-provider/',
 	mode: 'view',
 	pages: [
