@@ -50,6 +50,15 @@ class Form extends Component {
 		 * @memberof Form
 		 * @type {!array}
 		 */
+		dataProviderInstanceParameterSettingsURL: Config.string().required(),
+
+		/**
+		 * The rules of a form.
+		 * @default undefined
+		 * @instance
+		 * @memberof Form
+		 * @type {!array}
+		 */
 		dataProviderInstancesURL: Config.string().required(),
 
 		/**
