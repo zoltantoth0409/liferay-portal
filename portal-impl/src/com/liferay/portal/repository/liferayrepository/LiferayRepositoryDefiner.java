@@ -48,7 +48,7 @@ public class LiferayRepositoryDefiner extends BaseRepositoryDefiner {
 
 	public static BiFunction
 		<PortalCapabilityLocator, RepositoryFactory, RepositoryDefiner>
-			getFactoryFunction() {
+			getFactoryBiFunction() {
 
 		return LiferayRepositoryDefiner::new;
 	}

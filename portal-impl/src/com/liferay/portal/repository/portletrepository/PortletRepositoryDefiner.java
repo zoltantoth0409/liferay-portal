@@ -35,7 +35,7 @@ public class PortletRepositoryDefiner extends BaseRepositoryDefiner {
 
 	public static BiFunction
 		<PortalCapabilityLocator, RepositoryFactory, RepositoryDefiner>
-			getFactoryFunction() {
+			getFactoryBiFunction() {
 
 		return PortletRepositoryDefiner::new;
 	}
