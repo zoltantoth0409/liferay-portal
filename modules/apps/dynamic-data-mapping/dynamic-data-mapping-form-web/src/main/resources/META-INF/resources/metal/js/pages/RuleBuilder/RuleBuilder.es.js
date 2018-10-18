@@ -12,6 +12,8 @@ import RuleEditor from '../../components/RuleEditor/index.es';
 
 class RuleBuilder extends Component {
 	static PROPS = {
+		dataProviderInstanceParameterSettingsURL: Config.string().required(),
+
 		dataProviderInstancesURL: Config.string().required(),
 
 		functionsMetadata: Config.object(
@@ -228,7 +230,7 @@ class RuleBuilder extends Component {
 		return (
 			<div class="container">
 				{this.state.mode === 'create' && (
-					<RuleEditor dataProviderInstancesURL={this.props.dataProviderInstancesURL} functionsMetadata={this.props.functionsMetadata} key={'create'} pages={pages} rolesURL={this.props.rolesURL} spritemap={spritemap} />
+					<RuleEditor dataProviderInstanceParameterSettingsURL={this.props.dataProviderInstanceParameterSettingsURL} dataProviderInstancesURL={this.props.dataProviderInstancesURL} functionsMetadata={this.props.functionsMetadata} key={'create'} pages={pages} rolesURL={this.props.rolesURL} spritemap={spritemap} />
 				)}
 				{this.state.mode === 'edit' && (
 					<RuleEditor key={'edit'} pages={pages} rules={rules} spritemap={spritemap} />
