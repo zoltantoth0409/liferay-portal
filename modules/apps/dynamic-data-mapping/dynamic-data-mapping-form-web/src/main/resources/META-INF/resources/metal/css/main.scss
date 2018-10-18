@@ -115,6 +115,10 @@ textarea[class^="form-builder-page-header"] {
 }
 
 .form-builder-rule-builder {
+	.action-list .input-required {
+		padding-left: 4px;
+	}
+
 	.add-item.timeline-increment-icon {
 		padding-left: 10px;
 	}
