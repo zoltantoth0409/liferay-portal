@@ -80,9 +80,7 @@ public class SaveFormInstanceMVCActionCommand
 		catch (
 			DDMFormValidationException.MustSetValidValidationExpression msvve) {
 
-			Class<?> exceptionClass = msvve.getClass();
-
-			SessionErrors.add(actionRequest, exceptionClass.getName());
+			SessionErrors.add(actionRequest, msvve.getClass(), msvve);
 		}
 	}
 
