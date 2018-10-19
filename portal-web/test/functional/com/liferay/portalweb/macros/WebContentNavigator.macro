@@ -97,6 +97,8 @@
 			<var name="menuItem" value="Edit" />
 			<var name="rowEntry" value="${feedName}" />
 		</execute>
+
+		<execute function="AssertElementPresent" locator1="Icon#BACK" />
 	</command>
 
 	<command name="gotoEditPGViaWCD">
