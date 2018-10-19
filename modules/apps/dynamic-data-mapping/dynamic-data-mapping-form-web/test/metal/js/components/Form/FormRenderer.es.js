@@ -669,10 +669,9 @@ describe(
 					}
 				);
 
-				const spy = jest.spyOn(component, '_startDrag');
 				const spyDragAndDrop = jest.spyOn(
 					component._dragAndDrop,
-					'disposeInternal'
+					'setState'
 				);
 
 				const newmockPages = FormSupport.removeFields(pages, 0, 1, 0);
@@ -686,7 +685,6 @@ describe(
 
 				jest.runAllTimers();
 
-				expect(spy).toHaveBeenCalled();
 				expect(spyDragAndDrop).toHaveBeenCalled();
 			}
 		);
