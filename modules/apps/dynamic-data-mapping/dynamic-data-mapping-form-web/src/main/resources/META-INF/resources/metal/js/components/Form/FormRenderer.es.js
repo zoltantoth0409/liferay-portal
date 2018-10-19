@@ -346,12 +346,27 @@ class FormRenderer extends Component {
 		this.emit('activePageUpdated', this.activePage);
 	}
 
+	_handleDragStarted({source}) {
+		const {height} = source.getBoundingClientRect();
+		const {parentElement} = source;
+
+		parentElement.setAttribute('style', `height: ${height}px`);
+		parentElement.classList.add('ddm-parent-dragging');
+	}
+
 	/**
 	 * @param {!Object} data
 	 * @private
 	 */
 
 	_handleDragAndDropEnd(data) {
+		const lastParent = document.querySelector('.ddm-parent-dragging');
+
+		if (lastParent) {
+			lastParent.classList.remove('ddm-parent-dragging');
+			lastParent.removeAttribute('style');
+		}
+
 		if (data.target) {
 			const sourceIndex = FormSupport.getIndexes(
 				data.source.parentElement.parentElement
@@ -470,6 +485,8 @@ class FormRenderer extends Component {
 			DragDrop.Events.END,
 			this._handleDragAndDropEnd.bind(this)
 		);
+
+		this._dragAndDrop.on(DragDrop.Events.DRAG, this._handleDragStarted.bind(this));
 	}
 }
 
