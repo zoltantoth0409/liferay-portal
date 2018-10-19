@@ -144,11 +144,12 @@ class FormRenderer extends Component {
 	 */
 
 	willReceiveState(nextState) {
-		if (nextState.pages) {
-			if (this.editable && !this.dragAndDropDisabled) {
-				this.disposeDragAndDrop();
-				this._startDrag();
-			}
+		if (nextState.pages && this.editable && !this.dragAndDropDisabled) {
+			this._dragAndDrop.setState(
+				{
+					targets: '.ddm-target'
+				}
+			);
 		}
 		return nextState;
 	}
