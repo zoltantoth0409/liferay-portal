@@ -96,6 +96,22 @@ const removeFields = (pages, pageIndex, rowIndex, columnIndex) => {
 	);
 };
 
+const removeEmptyRows = (pages, pageIndex) => {
+	return pages[pageIndex].rows.reduce(
+		(result, next, index) => {
+			if (rowHasFields(pages, pageIndex, index)) {
+				result = [
+					...result,
+					next
+				];
+			}
+
+			return result;
+		},
+		[]
+	);
+};
+
 const removeRow = (pages, pageIndex, rowIndex) => {
 	pages[Number(pageIndex)].rows.splice(Number(rowIndex), 1);
 
@@ -177,6 +193,7 @@ export default {
 	getRow,
 	implAddRow,
 	removeColumn,
+	removeEmptyRows,
 	removeFields,
 	removeRow,
 	rowHasFields,

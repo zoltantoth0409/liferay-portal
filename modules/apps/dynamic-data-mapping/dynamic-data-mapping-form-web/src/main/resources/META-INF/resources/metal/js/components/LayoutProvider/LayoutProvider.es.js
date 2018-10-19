@@ -325,6 +325,7 @@ class LayoutProvider extends Component {
 			columnIndex
 		);
 		const {fields} = column;
+		const newRow = FormSupport.implAddRow(12, fields);
 
 		pages = FormSupport.removeFields(
 			pages,
@@ -332,20 +333,13 @@ class LayoutProvider extends Component {
 			rowIndex,
 			columnIndex
 		);
-		if (FormSupport.rowHasFields(pages, target.pageIndex, target.rowIndex)) {
-			pages = FormSupport.addRow(pages, target.rowIndex, target.pageIndex);
-			target.columnIndex = 0;
-		}
-		pages = this._setColumnFields(
-			pages,
-			target,
-			fields
-		);
-		pages = this._removeEmptyRow(pages, source);
+
+		pages = FormSupport.addRow(pages, target.rowIndex, target.pageIndex, newRow);
+
+		pages[pageIndex].rows = FormSupport.removeEmptyRows(pages, pageIndex);
 
 		this.setState(
 			{
-				focusedField: fields[0],
 				pages
 			}
 		);
