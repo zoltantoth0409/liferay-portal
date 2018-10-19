@@ -145,7 +145,7 @@ public abstract class BaseBuildData implements BuildData {
 		Matcher matcher = _buildURLPattern.matcher(buildURL);
 
 		if (!matcher.find()) {
-			throw new RuntimeException("Invalid build url " + buildURL);
+			throw new RuntimeException("Invalid build URL " + buildURL);
 		}
 
 		put("build_number", Integer.valueOf(matcher.group("buildNumber")));
@@ -332,7 +332,7 @@ public abstract class BaseBuildData implements BuildData {
 		JSONObject buildURLJSONObject = _getBuildURLJSONObject();
 
 		if (buildURLJSONObject == null) {
-			throw new RuntimeException("Please set the build url");
+			throw new RuntimeException("Please set the build URL");
 		}
 
 		return buildURLJSONObject.getString("builtOn");
@@ -342,7 +342,7 @@ public abstract class BaseBuildData implements BuildData {
 		JSONObject buildURLJSONObject = _getBuildURLJSONObject();
 
 		if (buildURLJSONObject == null) {
-			throw new RuntimeException("Please set the build url");
+			throw new RuntimeException("Please set the build URL");
 		}
 
 		return buildURLJSONObject.getLong("timestamp");
