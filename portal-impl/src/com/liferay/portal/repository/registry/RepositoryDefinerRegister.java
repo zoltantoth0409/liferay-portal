@@ -93,7 +93,8 @@ public class RepositoryDefinerRegister {
 			<PortalCapabilityLocator, RepositoryFactory, RepositoryDefiner>
 				repositoryDefinerFactoryBiFunction) {
 
-		_repositoryDefinerFactoryBiFunction = repositoryDefinerFactoryBiFunction;
+		_repositoryDefinerFactoryBiFunction =
+			repositoryDefinerFactoryBiFunction;
 	}
 
 	public void setRepositoryFactory(RepositoryFactory repositoryFactory) {
