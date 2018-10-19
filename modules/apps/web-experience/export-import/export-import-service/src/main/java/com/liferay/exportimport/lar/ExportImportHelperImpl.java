@@ -213,7 +213,7 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 			dataSiteLevelPortlets.addAll(rankedPortlets);
 		}
 
-		return dataSiteLevelPortlets;
+		return _filterPortletsBySharedDataHandlers(dataSiteLevelPortlets);
 	}
 
 	/**
@@ -1702,6 +1702,54 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 		}
 
 		return null;
+	}
+
+	private List<Portlet> _filterPortletsBySharedDataHandlers(
+		List<Portlet> portlets) {
+
+		Map<PortletDataHandler, Portlet> portletDataHandlersMap =
+			new HashMap<>();
+
+		for (Portlet portlet : portlets) {
+			PortletDataHandler portletDataHandler =
+				portlet.getPortletDataHandlerInstance();
+
+			if (portletDataHandlersMap.containsKey(portletDataHandler)) {
+				Portlet otherPortlet = portletDataHandlersMap.get(
+					portletDataHandler);
+
+				if (!_isPreferredPortlet(otherPortlet) &&
+					_isPreferredPortlet(portlet)) {
+
+					portletDataHandlersMap.put(portletDataHandler, portlet);
+				}
+			}
+			else {
+				portletDataHandlersMap.put(portletDataHandler, portlet);
+			}
+		}
+
+		List<Portlet> filteredPortlets = new ArrayList<>();
+
+		for (Portlet portlet : portlets) {
+			PortletDataHandler portletDataHandler =
+				portlet.getPortletDataHandlerInstance();
+
+			Portlet preferredPortlet = portletDataHandlersMap.get(
+				portletDataHandler);
+
+			if (preferredPortlet.equals(portlet)) {
+				filteredPortlets.add(portlet);
+			}
+		}
+
+		return filteredPortlets;
+	}
+
+	private boolean _isPreferredPortlet(Portlet portlet) {
+		String portletId = portlet.getPortletId();
+
+		return portletId.contains("AdminPortlet");
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
