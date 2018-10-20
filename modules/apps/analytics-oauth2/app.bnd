@@ -1,7 +1,7 @@
-Liferay-Releng-App-Description:
+Liferay-Releng-App-Description: Liferay Analytics OAuth 2 enables portal integration with Liferay Analytics Cloud. This app requires the Liferay Plugin for OAuth 2.0 app.<br /><br />Visit https://www.liferay.com/products/analytics-cloud to learn more about Liferay's Analytics Cloud offering.
 Liferay-Releng-App-Title: ${liferay.releng.app.title.prefix} Analytics OAuth 2
-Liferay-Releng-Bundle: false
-Liferay-Releng-Category: Utility
+Liferay-Releng-Bundle: true
+Liferay-Releng-Category: Security
 Liferay-Releng-Demo-Url:
 Liferay-Releng-Deprecated: false
 Liferay-Releng-Fix-Delivery-Method:
