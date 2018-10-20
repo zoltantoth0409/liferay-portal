@@ -116,18 +116,18 @@ public class DefaultIndexValidator implements IndexValidator {
 					public Object send(HttpRequest<?> request)
 						throws Exception {
 
-						URL url = (URL)field.get(request);
-
-						Path tempFile = Files.createTempFile(
+						Path tempPath = Files.createTempFile(
 							tempDir, null, null);
+
+						URL url = (URL)field.get(request);
 
 						try (InputStream inputStream = url.openStream()) {
 							Files.copy(
-								inputStream, tempFile,
+								inputStream, tempPath,
 								StandardCopyOption.REPLACE_EXISTING);
 						}
 
-						return tempFile.toFile();
+						return tempPath.toFile();
 					}
 
 				}) {
