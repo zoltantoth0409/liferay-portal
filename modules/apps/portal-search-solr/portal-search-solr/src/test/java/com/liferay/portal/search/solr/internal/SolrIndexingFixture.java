@@ -27,7 +27,6 @@ import com.liferay.portal.search.solr.document.SolrUpdateDocumentCommand;
 import com.liferay.portal.search.solr.internal.document.DefaultSolrDocumentFactory;
 import com.liferay.portal.search.solr.internal.facet.DefaultFacetProcessor;
 import com.liferay.portal.search.solr.internal.filter.BooleanFilterTranslatorImpl;
-import com.liferay.portal.search.solr.internal.filter.DateRangeFilterTranslatorImpl;
 import com.liferay.portal.search.solr.internal.filter.DateRangeTermFilterTranslatorImpl;
 import com.liferay.portal.search.solr.internal.filter.ExistsFilterTranslatorImpl;
 import com.liferay.portal.search.solr.internal.filter.GeoBoundingBoxFilterTranslatorImpl;
@@ -109,8 +108,6 @@ public class SolrIndexingFixture implements IndexingFixture {
 	protected static SolrFilterTranslator createSolrFilterTranslator() {
 		return new SolrFilterTranslator() {
 			{
-				dateRangeFilterTranslator = new DateRangeFilterTranslatorImpl();
-
 				setBooleanQueryTranslator(new BooleanFilterTranslatorImpl());
 				setDateRangeTermFilterTranslator(
 					new DateRangeTermFilterTranslatorImpl());
@@ -223,14 +220,6 @@ public class SolrIndexingFixture implements IndexingFixture {
 			props
 		).get(
 			PropsKeys.INDEX_SEARCH_LIMIT
-		);
-
-		Mockito.doReturn(
-			"yyyyMMddHHmmss"
-		).when(
-			props
-		).get(
-			PropsKeys.INDEX_DATE_FORMAT_PATTERN
 		);
 
 		return props;
