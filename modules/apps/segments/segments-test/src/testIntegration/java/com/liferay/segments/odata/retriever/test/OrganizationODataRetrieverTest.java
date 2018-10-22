@@ -63,7 +63,7 @@ public class OrganizationODataRetrieverTest {
 		_organizations.add(OrganizationTestUtil.addOrganization());
 
 		List<Organization> organizations =
-			_organizationODataRetriever.getResults(
+			_oDataRetriever.getResults(
 				TestPropsValues.getCompanyId(),
 				"(name eq '" + organization.getName() + "')",
 				LocaleUtil.getDefault(), 0, 2);
@@ -75,7 +75,7 @@ public class OrganizationODataRetrieverTest {
 	@Inject(
 		filter = "model.class.name=com.liferay.portal.kernel.model.Organization"
 	)
-	private ODataRetriever<Organization> _organizationODataRetriever;
+	private ODataRetriever<Organization> _oDataRetriever;
 
 	@DeleteAfterTestRun
 	private List<Organization> _organizations;

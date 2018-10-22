@@ -62,7 +62,7 @@ public class EditSegmentsEntryOrganizationsMVCRenderCommand
 				httpServletRequest, renderRequest, renderResponse,
 				_organizationLocalService, _segmentsEntryService,
 				_segmentsEntryRelService, _userLocalService,
-				_userODataRetriever);
+				_oDataRetriever);
 
 		renderRequest.setAttribute(
 			SegmentsWebKeys.EDIT_SEGMENTS_ENTRY_DISPLAY_CONTEXT,
@@ -89,6 +89,6 @@ public class EditSegmentsEntryOrganizationsMVCRenderCommand
 	@Reference(
 		target = "(model.class.name=com.liferay.portal.kernel.model.User)"
 	)
-	private ODataRetriever<User> _userODataRetriever;
+	private ODataRetriever<User> _oDataRetriever;
 
 }

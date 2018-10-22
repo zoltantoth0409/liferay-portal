@@ -63,7 +63,7 @@ public class EditSegmentsEntryDisplayContext {
 		SegmentsEntryService segmentsEntryService,
 		SegmentsEntryRelService segmentsEntryRelService,
 		UserLocalService userLocalService,
-		ODataRetriever<User> userODataRetriever) {
+		ODataRetriever<User> oDataRetriever) {
 
 		_request = request;
 		_renderRequest = renderRequest;
@@ -72,7 +72,7 @@ public class EditSegmentsEntryDisplayContext {
 		_segmentsEntryService = segmentsEntryService;
 		_segmentsEntryRelService = segmentsEntryRelService;
 		_userLocalService = userLocalService;
-		_userODataRetriever = userODataRetriever;
+		_oDataRetriever = oDataRetriever;
 
 		_themeDisplay = (ThemeDisplay)_request.getAttribute(
 			WebKeys.THEME_DISPLAY);
@@ -295,7 +295,7 @@ public class EditSegmentsEntryDisplayContext {
 				"no-users-were-found-that-matched-the-segment-criteria");
 
 			try {
-				users = _userODataRetriever.getResults(
+				users = _oDataRetriever.getResults(
 					segmentsEntry.getCompanyId(), segmentsEntry.getCriteria(),
 					_themeDisplay.getLocale(), userSearchContainer.getStart(),
 					userSearchContainer.getEnd());
@@ -443,7 +443,7 @@ public class EditSegmentsEntryDisplayContext {
 	private final SegmentsEntryService _segmentsEntryService;
 	private final ThemeDisplay _themeDisplay;
 	private final UserLocalService _userLocalService;
-	private final ODataRetriever<User> _userODataRetriever;
+	private final ODataRetriever<User> _oDataRetriever;
 	private SearchContainer _userSearchContainer;
 
 }
