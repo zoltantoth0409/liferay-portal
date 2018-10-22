@@ -14,6 +14,8 @@
 
 package com.liferay.portal.odata.filter.expression;
 
+import aQute.bnd.annotation.ProviderType;
+
 import java.util.List;
 
 /**
@@ -24,6 +26,7 @@ import java.util.List;
  * @author Cristina González
  * @review
  */
+@ProviderType
 public interface ExpressionVisitor<T> {
 
 	/**
