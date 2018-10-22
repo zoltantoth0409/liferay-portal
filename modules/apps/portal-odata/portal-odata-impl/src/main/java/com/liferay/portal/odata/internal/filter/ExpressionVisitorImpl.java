@@ -108,7 +108,7 @@ public class ExpressionVisitorImpl implements ExpressionVisitor<Object> {
 				throw new UnsupportedOperationException(
 					StringBundler.concat(
 						"Unsupported method visitMethodExpression with method",
-						"type ", type, " and", expressions.size(), "params"));
+						"type ", type, " and ", expressions.size(), "params"));
 			}
 
 			return _contains(
