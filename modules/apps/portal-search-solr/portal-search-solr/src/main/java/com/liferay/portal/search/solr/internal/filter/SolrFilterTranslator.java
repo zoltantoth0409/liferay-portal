@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.search.filter.DateRangeTermFilter;
 import com.liferay.portal.kernel.search.filter.ExistsFilter;
 import com.liferay.portal.kernel.search.filter.Filter;
 import com.liferay.portal.kernel.search.filter.FilterTranslator;
+import com.liferay.portal.kernel.search.filter.FilterVisitor;
 import com.liferay.portal.kernel.search.filter.GeoBoundingBoxFilter;
 import com.liferay.portal.kernel.search.filter.GeoDistanceFilter;
 import com.liferay.portal.kernel.search.filter.GeoDistanceRangeFilter;
@@ -34,8 +35,6 @@ import com.liferay.portal.kernel.search.filter.TermsFilter;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.search.filter.FilterVisitor;
-import com.liferay.portal.search.filter.TermsSetFilter;
 import com.liferay.portal.search.solr.filter.BooleanFilterTranslator;
 import com.liferay.portal.search.solr.filter.DateRangeTermFilterTranslator;
 import com.liferay.portal.search.solr.filter.ExistsFilterTranslator;
@@ -148,11 +147,6 @@ public class SolrFilterTranslator
 	@Override
 	public Query visit(TermsFilter termsFilter) {
 		return _termsFilterTranslator.translate(termsFilter);
-	}
-
-	@Override
-	public Query visit(TermsSetFilter termsSetFilter) {
-		throw new UnsupportedOperationException();
 	}
 
 	protected String includeCompanyId(
