@@ -799,26 +799,28 @@ public class StructuredContentNestedCollectionResource
 	private static class StructuredContentField {
 
 		public StructuredContentField(
-			DDMFormFieldValue value, DDMStructure ddmStructure) {
+			DDMFormFieldValue ddmFormFieldValue, DDMStructure ddmStructure) {
 
-			_value = value;
+			_ddmFormFieldValue = ddmFormFieldValue;
 			_ddmStructure = ddmStructure;
 		}
 
 		public DDMFormFieldValue getDDMFormFieldValue() {
-			return _value;
+			return _ddmFormFieldValue;
 		}
 
 		public String getLocalizedLabel(Locale locale) {
 			try {
-				return _ddmStructure.getFieldLabel(_value.getName(), locale);
+				return _ddmStructure.getFieldLabel(
+					_ddmFormFieldValue.getName(), locale);
 			}
 			catch (PortalException pe) {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						StringBundler.concat(
-							"Cannot get localized label for value name ",
-							_value.getName(), " and locale ", locale),
+							"Unable to get localized label for value name ",
+							_ddmFormFieldValue.getName(), " and locale ",
+							locale),
 						pe);
 				}
 
@@ -827,7 +829,7 @@ public class StructuredContentNestedCollectionResource
 		}
 
 		public String getLocalizedValue(Locale locale) {
-			Value value = _value.getValue();
+			Value value = _ddmFormFieldValue.getValue();
 
 			String localizedValue = value.getString(locale);
 
@@ -839,12 +841,12 @@ public class StructuredContentNestedCollectionResource
 		}
 
 		public String getName() {
-			return _value.getName();
+			return _ddmFormFieldValue.getName();
 		}
 
 		public List<StructuredContentField> getNestedFields() {
 			List<DDMFormFieldValue> ddmFormFieldValues =
-				_value.getNestedDDMFormFieldValues();
+				_ddmFormFieldValue.getNestedDDMFormFieldValues();
 
 			Stream<DDMFormFieldValue> stream = ddmFormFieldValues.stream();
 
@@ -856,8 +858,8 @@ public class StructuredContentNestedCollectionResource
 			);
 		}
 
+		private final DDMFormFieldValue _ddmFormFieldValue;
 		private final DDMStructure _ddmStructure;
-		private final DDMFormFieldValue _value;
 
 	}
 
