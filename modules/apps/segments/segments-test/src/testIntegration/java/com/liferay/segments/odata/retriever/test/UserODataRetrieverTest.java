@@ -739,6 +739,9 @@ public class UserODataRetrieverTest {
 	@DeleteAfterTestRun
 	private Group _group2;
 
+	@Inject(filter = "model.class.name=com.liferay.portal.kernel.model.User")
+	private ODataRetriever<User> _oDataRetriever;
+
 	@DeleteAfterTestRun
 	private List<Organization> _organizations;
 
@@ -762,8 +765,5 @@ public class UserODataRetrieverTest {
 
 	@Inject
 	private UserLocalService _userLocalService;
-
-	@Inject(filter = "model.class.name=com.liferay.portal.kernel.model.User")
-	private ODataRetriever<User> _oDataRetriever;
 
 }

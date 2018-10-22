@@ -58,21 +58,20 @@ public class EditSegmentsEntryDisplayContext {
 
 	public EditSegmentsEntryDisplayContext(
 		HttpServletRequest request, RenderRequest renderRequest,
-		RenderResponse renderResponse,
+		RenderResponse renderResponse, ODataRetriever<User> oDataRetriever,
 		OrganizationLocalService organizationLocalService,
 		SegmentsEntryService segmentsEntryService,
 		SegmentsEntryRelService segmentsEntryRelService,
-		UserLocalService userLocalService,
-		ODataRetriever<User> oDataRetriever) {
+		UserLocalService userLocalService) {
 
 		_request = request;
 		_renderRequest = renderRequest;
 		_renderResponse = renderResponse;
+		_oDataRetriever = oDataRetriever;
 		_organizationLocalService = organizationLocalService;
 		_segmentsEntryService = segmentsEntryService;
 		_segmentsEntryRelService = segmentsEntryRelService;
 		_userLocalService = userLocalService;
-		_oDataRetriever = oDataRetriever;
 
 		_themeDisplay = (ThemeDisplay)_request.getAttribute(
 			WebKeys.THEME_DISPLAY);
@@ -430,6 +429,7 @@ public class EditSegmentsEntryDisplayContext {
 		EditSegmentsEntryDisplayContext.class);
 
 	private String _displayStyle;
+	private final ODataRetriever<User> _oDataRetriever;
 	private final OrganizationLocalService _organizationLocalService;
 	private SearchContainer _organizationSearchContainer;
 	private String _redirect;
@@ -443,7 +443,6 @@ public class EditSegmentsEntryDisplayContext {
 	private final SegmentsEntryService _segmentsEntryService;
 	private final ThemeDisplay _themeDisplay;
 	private final UserLocalService _userLocalService;
-	private final ODataRetriever<User> _oDataRetriever;
 	private SearchContainer _userSearchContainer;
 
 }

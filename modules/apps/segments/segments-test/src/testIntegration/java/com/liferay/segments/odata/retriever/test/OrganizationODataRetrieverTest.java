@@ -62,11 +62,10 @@ public class OrganizationODataRetrieverTest {
 
 		_organizations.add(OrganizationTestUtil.addOrganization());
 
-		List<Organization> organizations =
-			_oDataRetriever.getResults(
-				TestPropsValues.getCompanyId(),
-				"(name eq '" + organization.getName() + "')",
-				LocaleUtil.getDefault(), 0, 2);
+		List<Organization> organizations = _oDataRetriever.getResults(
+			TestPropsValues.getCompanyId(),
+			"(name eq '" + organization.getName() + "')",
+			LocaleUtil.getDefault(), 0, 2);
 
 		Assert.assertEquals(organizations.toString(), 1, organizations.size());
 		Assert.assertEquals(organization, organizations.get(0));

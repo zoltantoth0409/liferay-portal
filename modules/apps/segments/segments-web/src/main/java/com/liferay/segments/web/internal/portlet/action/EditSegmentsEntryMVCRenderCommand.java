@@ -59,9 +59,9 @@ public class EditSegmentsEntryMVCRenderCommand implements MVCRenderCommand {
 		EditSegmentsEntryDisplayContext editSegmentsEntryDisplayContext =
 			new EditSegmentsEntryDisplayContext(
 				httpServletRequest, renderRequest, renderResponse,
-				_organizationLocalService, _segmentsEntryService,
-				_segmentsEntryRelService, _userLocalService,
-				_oDataRetriever);
+				_oDataRetriever, _organizationLocalService,
+				_segmentsEntryService, _segmentsEntryRelService,
+				_userLocalService);
 
 		renderRequest.setAttribute(
 			SegmentsWebKeys.EDIT_SEGMENTS_ENTRY_DISPLAY_CONTEXT,
@@ -69,6 +69,11 @@ public class EditSegmentsEntryMVCRenderCommand implements MVCRenderCommand {
 
 		return "/edit_segments_entry.jsp";
 	}
+
+	@Reference(
+		target = "(model.class.name=com.liferay.portal.kernel.model.User)"
+	)
+	private ODataRetriever<User> _oDataRetriever;
 
 	@Reference
 	private OrganizationLocalService _organizationLocalService;
@@ -84,10 +89,5 @@ public class EditSegmentsEntryMVCRenderCommand implements MVCRenderCommand {
 
 	@Reference
 	private UserLocalService _userLocalService;
-
-	@Reference(
-		target = "(model.class.name=com.liferay.portal.kernel.model.User)"
-	)
-	private ODataRetriever<User> _oDataRetriever;
 
 }
