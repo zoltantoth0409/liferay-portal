@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.analytics.oauth2.internal.instance.lifecycle;
+package com.liferay.oauth2.provider.shortcut.internal.instance.lifecycle;
 
 import com.liferay.oauth2.provider.constants.ClientProfile;
 import com.liferay.oauth2.provider.constants.GrantType;
@@ -56,7 +56,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Shinn Lok
  */
 @Component(immediate = true, service = PortalInstanceLifecycleListener.class)
-public class AnalyticsOAuth2PortalInstanceLifecycleListener
+public class OAuth2ProviderShortcutPortalInstanceLifecycleListener
 	extends BasePortalInstanceLifecycleListener {
 
 	@Override
