@@ -123,7 +123,7 @@ public abstract class BaseWorkspaceGitRepository
 
 		if (!requiredCommitSHAs.isEmpty()) {
 			throw new RuntimeException(
-				"Could not find the following SHAs: " + requiredCommitSHAs);
+				"Unable to find the following SHAs: " + requiredCommitSHAs);
 		}
 
 		put("commits", commitsJSONArray);
