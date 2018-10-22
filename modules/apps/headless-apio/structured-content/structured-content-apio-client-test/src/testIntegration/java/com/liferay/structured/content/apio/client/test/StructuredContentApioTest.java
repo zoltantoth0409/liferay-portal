@@ -114,8 +114,8 @@ public class StructuredContentApioTest {
 			"$._embedded.StructuredContent[*]._embedded.values._embedded[*]." +
 				"label");
 
-		Assert.assertTrue(labels.contains("TextFieldNameLabel_us"));
 		Assert.assertTrue(labels.contains("NestedTextFieldNameLabel_us"));
+		Assert.assertTrue(labels.contains("TextFieldNameLabel_us"));
 	}
 
 	@Test
@@ -145,8 +145,8 @@ public class StructuredContentApioTest {
 			"$._embedded.StructuredContent[*]._embedded.values._embedded[*]." +
 				"value");
 
-		Assert.assertTrue(values.contains("TextFieldValue_us"));
 		Assert.assertTrue(values.contains("NestedTextFieldValue_us"));
+		Assert.assertTrue(values.contains("TextFieldValue_us"));
 	}
 
 	@Test
@@ -252,8 +252,8 @@ public class StructuredContentApioTest {
 			"$._embedded.StructuredContent[*]._embedded.values._embedded[*]." +
 				"label");
 
-		Assert.assertTrue(labels.contains("TextFieldNameLabel_es"));
 		Assert.assertTrue(labels.contains("NestedTextFieldNameLabel_es"));
+		Assert.assertTrue(labels.contains("TextFieldNameLabel_es"));
 	}
 
 	@Test
@@ -282,8 +282,8 @@ public class StructuredContentApioTest {
 			"$._embedded.StructuredContent[*]._embedded.values._embedded[*]." +
 				"value");
 
-		Assert.assertTrue(values.contains("TextFieldValue_es"));
 		Assert.assertTrue(values.contains("NestedTextFieldValue_es"));
+		Assert.assertTrue(values.contains("TextFieldValue_es"));
 	}
 
 	@Test
