@@ -31,12 +31,12 @@ $c: '.ddm-form-page';
 	}
 
 	.ddm-drag.dragging {
+		border-radius: 4px;
+		box-shadow: 0 0px 3px 0 rgba(0, 0, 0, 0.2);
 		cursor: -webkit-grabbing;
 		opacity: 0.7;
 		position: absolute;
 		z-index: 10;
-		box-shadow: 0 0px 3px 0 rgba(0, 0, 0, 0.2);
-		border-radius: 4px;
 	}
 
 	.ddm-drag-item {
