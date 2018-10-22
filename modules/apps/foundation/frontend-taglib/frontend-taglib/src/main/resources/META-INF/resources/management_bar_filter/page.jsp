@@ -25,15 +25,8 @@ String value = (String)request.getAttribute("liferay-frontend:management-bar-fil
 
 <c:if test="<%= managementBarFilterItems.size() > 0 %>">
 	<c:choose>
-		<c:when test="<%= Validator.isNotNull(label) %>">
-			<c:choose>
-				<c:when test='<%= label.equals("order-by") %>'>
-					<li class="dropdown <%= disabled ? "disabled" : StringPool.BLANK %> management-bar-item-inline-block">
-				</c:when>
-				<c:otherwise>
-					<li class="dropdown <%= disabled ? "disabled" : StringPool.BLANK %>">
-				</c:otherwise>
-			</c:choose>
+		<c:when test='<%= Validator.isNotNull(label) && label.equals("order-by") %>'>
+			<li class="dropdown <%= disabled ? "disabled" : StringPool.BLANK %> management-bar-item-inline-block">
 		</c:when>
 		<c:otherwise>
 			<li class="dropdown <%= disabled ? "disabled" : StringPool.BLANK %>">
