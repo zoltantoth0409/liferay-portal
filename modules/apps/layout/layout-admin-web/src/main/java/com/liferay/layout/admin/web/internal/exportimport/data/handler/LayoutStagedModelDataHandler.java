@@ -1348,6 +1348,10 @@ public class LayoutStagedModelDataHandler
 			return;
 		}
 
+		long originalOldPlid = portletDataContext.getOldPlid();
+		long originalPlid = portletDataContext.getPlid();
+		String originalPortletId = portletDataContext.getPortletId();
+
 		Map<String, String[]> parameterMap =
 			portletDataContext.getParameterMap();
 
@@ -1361,12 +1365,6 @@ public class LayoutStagedModelDataHandler
 			_fragmentEntryLinkLocalService.getFragmentEntryLinks(
 				layout.getGroupId(), _portal.getClassNameId(Layout.class),
 				layout.getPlid());
-
-		long originalOldPlid = portletDataContext.getOldPlid();
-
-		long originalPlid = portletDataContext.getPlid();
-
-		String originalPortletId = portletDataContext.getPortletId();
 
 		for (Element portletElement : portletsElement.elements()) {
 			String portletId = portletElement.attributeValue("portlet-id");
