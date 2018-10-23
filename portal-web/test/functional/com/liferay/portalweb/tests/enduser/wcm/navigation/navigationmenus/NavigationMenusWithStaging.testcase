@@ -236,6 +236,15 @@
 			<var name="urlName" value="Liferay" />
 		</execute>
 
+		<execute macro="NavigationMenusAdmin#openNavigationMenusAdmin">
+			<var name="siteURLKey" value="test-site-name-staging" />
+		</execute>
+
+		<execute macro="NavigationMenusAdmin#markAsPrimaryNavigation">
+			<var name="newMenuName" value="Test Navigation Menu Name" />
+			<var name="oldMenuName" value="Default" />
+		</execute>
+
 		<execute macro="Navigator#openWithAppendToBaseURL">
 			<var name="urlAppend" value="web/test-site-name-staging" />
 		</execute>
@@ -554,6 +563,15 @@
 			<var name="urlName" value="Liferay" />
 		</execute>
 
+		<execute macro="NavigationMenusAdmin#openNavigationMenusAdmin">
+			<var name="siteURLKey" value="test-site-name-staging" />
+		</execute>
+
+		<execute macro="NavigationMenusAdmin#markAsPrimaryNavigation">
+			<var name="newMenuName" value="Test Navigation Menu Name" />
+			<var name="oldMenuName" value="Default" />
+		</execute>
+
 		<execute macro="Navigator#openWithAppendToBaseURL">
 			<var name="urlAppend" value="web/test-site-name-staging" />
 		</execute>
@@ -673,6 +691,15 @@
 		<execute macro="NavigationMenusAdmin#addItem">
 			<var name="item" value="Page" />
 			<var name="pageNames" value="Test Page 1,Test Page 2,Test Page 3" />
+		</execute>
+
+		<execute macro="NavigationMenusAdmin#openNavigationMenusAdmin">
+			<var name="siteURLKey" value="test-site-name-staging" />
+		</execute>
+
+		<execute macro="NavigationMenusAdmin#markAsPrimaryNavigation">
+			<var name="newMenuName" value="Test Navigation Menu Name" />
+			<var name="oldMenuName" value="Default" />
 		</execute>
 
 		<execute macro="Navigator#openWithAppendToBaseURL">
