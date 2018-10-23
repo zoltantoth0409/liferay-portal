@@ -711,10 +711,10 @@ public class MediaWikiImporter implements WikiImporter {
 
 	protected String translateMediaLinks(WikiNode node, String content) {
 		try {
+			StringBuffer sb = new StringBuffer();
+
 			WikiPage sharedImagesPage = _wikiPageLocalService.getPage(
 				node.getNodeId(), SHARED_IMAGES_TITLE);
-
-			StringBuffer sb = new StringBuffer();
 
 			Company company = _companyLocalService.getCompany(
 				node.getCompanyId());
