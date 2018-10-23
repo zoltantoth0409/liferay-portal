@@ -423,7 +423,7 @@ AUI.add(
 				_resetFocus: function(modal) {
 					var contentBox = modal.get('contentBox');
 
-					var input = contentBox.('input[type=text]');
+					var input = contentBox.one('input[type=text]');
 
 					if (input) {
 						input.getDOM().focus();
