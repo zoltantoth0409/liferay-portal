@@ -161,17 +161,18 @@ public class DefaultIndexValidator implements IndexValidator {
 			ResourceBuilder resourceBuilder, Domain domain)
 		throws Exception {
 
+		CapReqBuilder capability = new CapReqBuilder(
+			BundleNamespace.BUNDLE_NAMESPACE);
+
+		capability.addAttribute(
+			capability.getNamespace(), Constants.SYSTEM_BUNDLE_SYMBOLICNAME);
+
 		Parameters parameters = domain.getExportPackage();
 
 		Attrs attrs = parameters.get("org.osgi.framework");
 
 		String version = attrs.get(Constants.VERSION_ATTRIBUTE);
 
-		CapReqBuilder capability = new CapReqBuilder(
-			BundleNamespace.BUNDLE_NAMESPACE);
-
-		capability.addAttribute(
-			capability.getNamespace(), Constants.SYSTEM_BUNDLE_SYMBOLICNAME);
 		capability.addAttribute(
 			ResourceUtils.getVersionAttributeForNamespace(
 				capability.getNamespace()),
