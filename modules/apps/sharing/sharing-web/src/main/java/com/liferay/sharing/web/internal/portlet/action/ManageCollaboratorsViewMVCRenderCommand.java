@@ -170,7 +170,6 @@ public class ManageCollaboratorsViewMVCRenderCommand
 
 				collaboratorJSONObject.put(
 					"sharingEntryExpirationDate", expirationDateAsText);
-
 				collaboratorJSONObject.put(
 					"sharingEntryExpirationDateTooltip", expirationDateTooltip);
 

@@ -29,22 +29,22 @@ public class SharingEntryActionTest {
 
 	@Test
 	public void testGetSharingEntryActionsInABitwiseValue() throws Exception {
-		_assertCollectionEquals(
+		_assertEquals(
 			Collections.emptyList(),
 			SharingEntryAction.getSharingEntryActions(0));
 
-		_assertCollectionEquals(
+		_assertEquals(
 			Arrays.asList(SharingEntryAction.VIEW),
 			SharingEntryAction.getSharingEntryActions(
 				SharingEntryAction.VIEW.getBitwiseValue()));
 
-		_assertCollectionEquals(
+		_assertEquals(
 			Arrays.asList(SharingEntryAction.VIEW, SharingEntryAction.UPDATE),
 			SharingEntryAction.getSharingEntryActions(
 				SharingEntryAction.VIEW.getBitwiseValue() |
 				SharingEntryAction.UPDATE.getBitwiseValue()));
 
-		_assertCollectionEquals(
+		_assertEquals(
 			Arrays.asList(
 				SharingEntryAction.VIEW, SharingEntryAction.UPDATE,
 				SharingEntryAction.ADD_DISCUSSION),
@@ -165,7 +165,7 @@ public class SharingEntryActionTest {
 		SharingEntryAction.parseFromActionId("8");
 	}
 
-	private <T> void _assertCollectionEquals(
+	private <T> void _assertEquals(
 		Collection<T> collection1, Collection<T> collection2) {
 
 		Assert.assertEquals(

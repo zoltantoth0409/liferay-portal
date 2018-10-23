@@ -128,11 +128,11 @@ public class ManageCollaboratorsMVCActionCommand extends BaseMVCActionCommand {
 	private Map<Long, Collection<SharingEntryAction>>
 		_getSharingEntryActions(ActionRequest actionRequest) {
 
-		String[] sharingEntryIdActionIdPairs = ParamUtil.getParameterValues(
-			actionRequest, "sharingEntryIdActionIdPairs", new String[0], false);
-
 		Map<Long, Collection<SharingEntryAction>> sharingEntryActions =
 			new HashMap<>();
+
+		String[] sharingEntryIdActionIdPairs = ParamUtil.getParameterValues(
+			actionRequest, "sharingEntryIdActionIdPairs", new String[0], false);
 
 		for (String sharingEntryIdActionIdPair : sharingEntryIdActionIdPairs) {
 			String[] parts = StringUtil.split(sharingEntryIdActionIdPair);
@@ -201,22 +201,24 @@ public class ManageCollaboratorsMVCActionCommand extends BaseMVCActionCommand {
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			actionRequest);
 
+		Set<Long> toEditSharingEntryIds = new HashSet<>();
+
 		Map<Long, Collection<SharingEntryAction>> sharingEntryActions =
 			_getSharingEntryActions(actionRequest);
+
+		toEditSharingEntryIds.addAll(sharingEntryActions.keySet());
 
 		Map<Long, Date> sharingEntryExpirationDates =
 			_getSharingEntryExpirationDates(actionRequest, resourceBundle);
 
+		toEditSharingEntryIds.addAll(sharingEntryExpirationDates.keySet());
+
 		Set<Long> sharingEntryIdsToDelete = _getSharingEntryIdsToDelete(
 			actionRequest);
 
-		Set<Long> sharingEntryIdsToEdit = new HashSet<>();
+		toEditSharingEntryIds.removeAll(sharingEntryIdsToDelete);
 
-		sharingEntryIdsToEdit.addAll(sharingEntryActions.keySet());
-		sharingEntryIdsToEdit.addAll(sharingEntryExpirationDates.keySet());
-		sharingEntryIdsToEdit.removeAll(sharingEntryIdsToDelete);
-
-		for (Long sharingEntryId : sharingEntryIdsToEdit) {
+		for (Long sharingEntryId : toEditSharingEntryIds) {
 			SharingEntry sharingEntry =
 				_sharingEntryLocalService.getSharingEntry(sharingEntryId);
 
