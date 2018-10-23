@@ -946,7 +946,7 @@ describe(
 					'When the user choose a data provider as a target',
 					() => {
 						it(
-							'should show the inputs and outputs fields',
+							'should show the inputs and outputs fields if Input and Outputs were not empty',
 							done => {
 
 								const spy = jest.spyOn(window, 'fetch');
@@ -988,15 +988,15 @@ describe(
 									)
 								);
 
-								component.refs.actionTarget0.emitFieldEdited(['36582']);
+								component.refs.actionTarget0.emitFieldEdited(['36808']);
 
 								component.once(
 									'rendered',
 									() => {
-										if (component.actions.inputs) {
+										if (component.actions[0].inputs) {
 											expect(component.refs.action0dataProviderInput0).toBeTruthy();
 										}
-										if (component.actions.outputs) {
+										if (component.actions[0].outputs) {
 											expect(component.refs.action0dataProviderOutput0).toBeTruthy();
 										}
 										done();
@@ -1008,11 +1008,228 @@ describe(
 								const url = component.dataProviderInstanceParameterSettingsURL.slice(0, dataProviderInstanceParameterSettingsURL.length - 1);
 
 								expect(spy).toHaveBeenCalledWith(
-									`${url}?ddmDataProviderInstanceId=36582`,
+									`${url}?ddmDataProviderInstanceId=36808`,
 									expect.anything()
 								);
 
 								jest.runAllTimers();
+							}
+						);
+					}
+				);
+
+				it(
+					'should not show Inputs and Outputss if the dataprovider\'s inputs and outputs were empty',
+					done => {
+
+						component = new RuleEditor(
+							{
+								...getBaseConfig()
+							}
+						);
+
+						component.refs.action0.emitFieldEdited(['autofill']);
+
+						jest.runAllTimers();
+
+						fetch.mockResponse(
+							JSON.stringify(
+								{
+									inputs: [],
+									outputs: []
+								}
+							)
+						);
+
+						component.refs.actionTarget0.emitFieldEdited(['36777']);
+
+						component.once(
+							'rendered',
+							() => {
+								const divHasChildren = document.querySelector('.action-rule-data-provider .col-md-12').hasChildNodes();
+
+								expect(divHasChildren).toBeFalsy();
+								done();
+							}
+						);
+
+						jest.runAllTimers();
+					}
+				);
+
+				it(
+					'should not reset inputs and output if the same data provider were selected',
+					done => {
+						component = new RuleEditor(
+							{
+								...getBaseConfig()
+							}
+						);
+
+						component.refs.action0.emitFieldEdited(['autofill']);
+
+						jest.runAllTimers();
+
+						fetch.mockResponse(
+							JSON.stringify(
+								{
+									inputs: [
+										{
+											label: 'Nome',
+											name: 'Name',
+											required: false,
+											type: 'text'
+										},
+										{
+											label: 'Outro Nome',
+											name: 'Name',
+											required: true,
+											type: 'text'
+										}
+									],
+									outputs: [
+										{
+											name: 'Name',
+											type: 'list'
+										}
+									]
+								}
+							)
+						);
+
+						component.refs.actionTarget0.emitFieldEdited(['36808']);
+
+						jest.runAllTimers();
+
+						component.once(
+							'rendered',
+							() => {
+								component.refs.action0dataProviderOutput0.emitFieldEdited(['Name']);
+
+								jest.runAllTimers();
+
+								component.refs.actionTarget0.emitFieldEdited(['36808']);
+
+								jest.runAllTimers();
+
+								expect(component.refs.action0dataProviderOutput0.value).toEqual(['Name']);
+								done();
+							}
+						);
+					}
+				);
+
+				it(
+					'should display only select field types option in the output sections according to the List Type configured in the Data Provider ',
+					done => {
+						component = new RuleEditor(
+							{
+								...getBaseConfig()
+							}
+						);
+
+						component.refs.action0.emitFieldEdited(['autofill']);
+
+						jest.runAllTimers();
+
+						fetch.mockResponse(
+							JSON.stringify(
+								{
+									inputs: [
+										{
+											label: 'Nome',
+											name: 'Name',
+											required: false,
+											type: 'text'
+										},
+										{
+											label: 'Outro Nome',
+											name: 'Name',
+											required: true,
+											type: 'text'
+										}
+									],
+									outputs: [
+										{
+											name: 'Name',
+											type: 'list'
+										}
+									]
+								}
+							)
+						);
+
+						component.refs.actionTarget0.emitFieldEdited(['36808']);
+
+						jest.runAllTimers();
+
+						component.once(
+							'rendered',
+							() => {
+								const fieldOptions = component.actions[0].outputs[0].fieldOptions;
+
+								jest.runAllTimers();
+
+								expect(fieldOptions.some(({type}) => type === 'text')).toBeFalsy();
+								done();
+							}
+						);
+					}
+				);
+
+				it(
+					'should display any field types option in the output sections according to the List Text configured in the Data Provider ',
+					done => {
+						component = new RuleEditor(
+							{
+								...getBaseConfig()
+							}
+						);
+
+						component.refs.action0.emitFieldEdited(['autofill']);
+
+						jest.runAllTimers();
+
+						fetch.mockResponse(
+							JSON.stringify(
+								{
+									inputs: [
+										{
+											label: 'Nome',
+											name: 'Name',
+											required: false,
+											type: 'text'
+										},
+										{
+											label: 'Outro Nome',
+											name: 'Name',
+											required: true,
+											type: 'text'
+										}
+									],
+									outputs: [
+										{
+											name: 'Name',
+											type: 'list'
+										}
+									]
+								}
+							)
+						);
+
+						component.refs.actionTarget0.emitFieldEdited(['36808']);
+
+						jest.runAllTimers();
+
+						component.once(
+							'rendered',
+							() => {
+								const fieldOptions = component.actions[0].inputs[0].fieldOptions;
+
+								jest.runAllTimers();
+
+								expect(fieldOptions.some(({type}) => type === 'text')).toBeTruthy();
+								done();
 							}
 						);
 					}
