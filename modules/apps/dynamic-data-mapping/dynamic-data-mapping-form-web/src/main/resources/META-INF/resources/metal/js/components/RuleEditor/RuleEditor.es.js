@@ -7,6 +7,24 @@ import Soy from 'metal-soy';
 import templates from './RuleEditor.soy.js';
 import {makeFetch} from '../../util/fetch.es';
 
+const fieldOptionStructure = Config.shapeOf(
+	{
+		dataType: Config.string(),
+		name: Config.string(),
+		options: Config.arrayOf(
+			Config.shapeOf(
+				{
+					label: Config.string(),
+					name: Config.string(),
+					value: Config.string()
+				}
+			)
+		),
+		type: Config.string(),
+		value: Config.string()
+	}
+);
+
 /**
  * RuleEditor.
  * @extends Component
@@ -23,6 +41,7 @@ class RuleEditor extends Component {
 					inputs: Config.arrayOf(
 						Config.shapeOf(
 							{
+								fieldOptions: Config.arrayOf(fieldOptionStructure),
 								label: Config.string(),
 								name: Config.string(),
 								required: Config.bool(),
@@ -35,6 +54,7 @@ class RuleEditor extends Component {
 					outputs: Config.arrayOf(
 						Config.shapeOf(
 							{
+								fieldOptions: Config.arrayOf(fieldOptionStructure),
 								name: Config.string(),
 								type: Config.string(),
 								value: Config.string()
@@ -155,22 +175,7 @@ class RuleEditor extends Component {
 		).internal().valueFn('_fieldOptionsValueFn'),
 
 		fixedOptions: Config.arrayOf(
-			Config.shapeOf(
-				{
-					dataType: Config.string(),
-					name: Config.string(),
-					options: Config.arrayOf(
-						Config.shapeOf(
-							{
-								label: Config.string(),
-								value: Config.string()
-							}
-						)
-					),
-					type: Config.string(),
-					value: Config.string()
-				}
-			)
+			fieldOptionStructure
 		).value(
 			[
 				{
@@ -356,6 +361,26 @@ class RuleEditor extends Component {
 		);
 
 		return options;
+	}
+
+	getTypesByFieldType(fieldType) {
+		let list = [];
+
+		if (fieldType == 'list') {
+			list = ['select', 'checkbox_multiple', 'radio'];
+		}
+		else if (fieldType == 'text') {
+			list = ['select', 'checkbox_multiple', 'radio', 'text', 'numeric'];
+		}
+		else if (fieldType == 'number') {
+			list = ['numeric'];
+		}
+
+		return list;
+	}
+
+	getFieldsByTypes(fields, types) {
+		return fields.filter(field => types.some(fieldType => field.type == fieldType));
 	}
 
 	syncPages(pages) {
@@ -734,11 +759,11 @@ class RuleEditor extends Component {
 	_handleDataProviderOutputEdited(event) {
 		const {fieldInstance, value} = event;
 		const actionIndex = this._getIndex(fieldInstance, '.action');
-		const inputIndex = this._getIndex(fieldInstance, '.container-output-field');
+		const outputIndex = this._getIndex(fieldInstance, '.container-output-field');
 		const {actions} = this;
 
 		if (value && value.length > 0 && value[0]) {
-			actions[actionIndex].outputs[inputIndex].value = value[0];
+			actions[actionIndex].outputs[outputIndex].value = value[0];
 			this.setState(
 				{
 					actions
@@ -968,26 +993,12 @@ class RuleEditor extends Component {
 		const index = this._getIndex(fieldInstance, '.target-action');
 		const {actions} = this;
 
+		const previousTarget = this.actions[index].target;
+
 		actions[index].target = id;
 		actions[index].label = id;
 
-		if (this.actions[index].action == 'autofill' && id) {
-			this._fetchDataProviderParameters(id, index)
-				.then(
-					() => {
-						if (!this.isDisposed()) {
-							actions[index].hasRequiredInputs = (actions[index].inputs)
-								.some(
-									input => {
-										return input.required;
-									}
-								);
-							this.setState(actions);
-						}
-					}
-				);
-		}
-		else {
+		if (id === '') {
 			actions[index].inputs = [];
 			actions[index].outputs = [];
 			actions[index].hasRequiredInputs = false;
@@ -998,6 +1009,43 @@ class RuleEditor extends Component {
 				}
 			);
 		}
+		else if (previousTarget !== id) {
+			if (this.actions[index].action == 'autofill') {
+				this._fetchDataProviderParameters(id, index)
+					.then(
+						() => {
+							if (!this.isDisposed()) {
+								actions[index] = {
+									...actions[index],
+									inputs: this.formatDataProviderParameter(actions[index].inputs),
+									outputs: this.formatDataProviderParameter(actions[index].outputs)
+								};
+								actions[index].hasRequiredInputs = (actions[index].inputs)
+									.some(
+										input => {
+											return input.required;
+										}
+									);
+								this.setState(actions);
+							}
+						}
+					);
+			}
+		}
+	}
+
+	formatDataProviderParameter(parameters) {
+		return parameters.map(
+			param => (
+				{
+					...param,
+					fieldOptions: this.getFieldsByTypes(
+						this.fieldOptions,
+						this.getTypesByFieldType(param.type)
+					)
+				}
+			)
+		);
 	}
 
 	_isFieldAction(fieldName) {
