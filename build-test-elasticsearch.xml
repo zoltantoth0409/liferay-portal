@@ -679,7 +679,7 @@ username=&quot;liferay&quot;</echo>
 				<then>
 					<exec dir="${elasticsearch.dir}/bin" executable="/bin/bash">
 						<arg value="-c" />
-						<arg value="ES_HEAP_SIZE=512m ./elasticsearch -Des.insecure.allow.root=true -d -p pid-elasticsearch-${elasticsearch.pid.file.count}" />
+						<arg value="./elasticsearch -Des.insecure.allow.root=true -d -p pid-elasticsearch-${elasticsearch.pid.file.count}" />
 					</exec>
 				</then>
 				<elseif>
