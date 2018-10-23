@@ -52,26 +52,26 @@ public class OrganizationEntityModel implements EntityModel {
 
 	private static final Map<String, EntityField> _entityFieldsMap = Stream.of(
 		new EntityField(
-			"dateModified", EntityField.Type.DATE,
-			locale -> Field.getSortableFieldName(Field.MODIFIED_DATE),
-			locale -> Field.MODIFIED_DATE),
-		new EntityField(
 			Field.NAME, EntityField.Type.STRING,
 			locale -> Field.getSortableFieldName(Field.NAME)),
-		new EntityField(
-			"nameTreePath", EntityField.Type.STRING,
-			locale -> Field.getSortableFieldName("nameTreePath_String")),
 		new EntityField(
 			Field.ORGANIZATION_ID, EntityField.Type.STRING,
 			locale -> Field.ORGANIZATION_ID),
 		new EntityField(
-			"parentOrganizationId", EntityField.Type.STRING,
-			locale -> "parentOrganizationId"),
-		new EntityField(
 			Field.TREE_PATH, EntityField.Type.STRING,
 			locale -> Field.TREE_PATH),
 		new EntityField(
-			Field.TYPE, EntityField.Type.STRING, locale -> Field.TYPE)
+			Field.TYPE, EntityField.Type.STRING, locale -> Field.TYPE),
+		new EntityField(
+			"dateModified", EntityField.Type.DATE,
+			locale -> Field.getSortableFieldName(Field.MODIFIED_DATE),
+			locale -> Field.MODIFIED_DATE),
+		new EntityField(
+			"nameTreePath", EntityField.Type.STRING,
+			locale -> Field.getSortableFieldName("nameTreePath_String")),
+		new EntityField(
+			"parentOrganizationId", EntityField.Type.STRING,
+			locale -> "parentOrganizationId")
 	).collect(
 		Collectors.toMap(EntityField::getName, Function.identity())
 	);
