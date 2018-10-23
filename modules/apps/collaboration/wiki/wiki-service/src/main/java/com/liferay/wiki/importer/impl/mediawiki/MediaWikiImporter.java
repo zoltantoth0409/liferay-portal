@@ -31,7 +31,6 @@ import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.service.CompanyLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalService;
-import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
@@ -772,8 +771,7 @@ public class MediaWikiImporter implements WikiImporter {
 				FileEntry attachmentFileEntry =
 					PortletFileRepositoryUtil.fetchPortletFileEntry(
 						node.getGroupId(),
-						sharedImagesPage.getAttachmentsFolderId(),
-						fileName);
+						sharedImagesPage.getAttachmentsFolderId(), fileName);
 
 				if (attachmentFileEntry == null) {
 					matcher.appendReplacement(sb, mediaLinkTag);
