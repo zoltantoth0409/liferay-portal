@@ -33,12 +33,6 @@ portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(redirect);
 
 renderResponse.setTitle((formInstance == null) ? LanguageUtil.get(request, "new-form") : LanguageUtil.get(request, "edit-form"));
-
-String disableCopyBtnClass = "";
-
-if (!ddmFormAdminDisplayContext.isFormPublished() && (formInstance != null)) {
-	disableCopyBtnClass = "ddm-btn-disabled";
-}
 %>
 
 <portlet:actionURL name="saveFormInstance" var="saveFormInstanceURL">
@@ -65,6 +59,15 @@ if (!ddmFormAdminDisplayContext.isFormPublished() && (formInstance != null)) {
 
 			<ul class="navbar-nav toolbar-group-field">
 				<li class="nav-item">
+
+					<%
+					String disableCopyBtnClass = "";
+
+					if (!ddmFormAdminDisplayContext.isFormPublished() && (formInstance != null)) {
+						disableCopyBtnClass = "ddm-btn-disabled";
+					}
+					%>
+
 					<button class="btn btn-secondary lfr-ddm-share-url-button nav-btn nav-btn-monospaced share-form-icon <%= disableCopyBtnClass %> <%= (!ddmFormAdminDisplayContext.isFormPublished() && (formInstance == null)) ? "hide" : "" %>" data-original-title="<liferay-ui:message key="copy-url" />" id="<portlet:namespace />publishIcon" title="<%= (disableCopyBtnClass == "") ? LanguageUtil.get(request, "copy-url") : LanguageUtil.get(request, "publish-the-form-to-get-its-shareable-link") %>" type="button">
 						<svg class="lexicon-icon">
 							<use xlink:href="<%= ddmFormAdminDisplayContext.getLexiconIconsPath() %>link" />
