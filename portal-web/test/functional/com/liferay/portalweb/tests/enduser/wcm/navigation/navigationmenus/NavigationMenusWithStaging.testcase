@@ -27,6 +27,10 @@
 			<var name="layoutName" value="Test Page 3" />
 		</execute>
 
+		<execute macro="NavigationMenusAdmin#openNavigationMenusAdmin">
+			<var name="siteURLKey" value="test-site-name" />
+		</execute>
+
 		<execute macro="Staging#openStagingAdmin">
 			<var name="siteURLKey" value="test-site-name" />
 		</execute>
