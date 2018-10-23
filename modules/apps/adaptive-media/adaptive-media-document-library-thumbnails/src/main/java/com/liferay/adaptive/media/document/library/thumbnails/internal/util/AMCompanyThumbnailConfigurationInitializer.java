@@ -99,7 +99,7 @@ public class AMCompanyThumbnailConfigurationInitializer {
 		}
 	}
 
-	private boolean _configurationExists(
+	private boolean _hasConfiguration(
 		long companyId, String name, String uuid) {
 
 		Collection<AMImageConfigurationEntry> amImageConfigurationEntries =
@@ -126,7 +126,7 @@ public class AMCompanyThumbnailConfigurationInitializer {
 
 		String uuid = _normalize(name);
 
-		if (!_configurationExists(company.getCompanyId(), name, uuid)) {
+		if (!_hasConfiguration(company.getCompanyId(), name, uuid)) {
 			Map<String, String> properties = new HashMap<>();
 
 			properties.put("max-height", String.valueOf(maxHeight));
