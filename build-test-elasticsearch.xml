@@ -329,11 +329,6 @@ shield.transport.ssl: true</echo>
 				</then>
 			</if>
 
-			<chmod
-				file="${elastic.kibana.dir}/bin/**"
-				perm="a+x"
-			/>
-
 			<if>
 				<os family="unix" />
 				<then>
@@ -670,6 +665,15 @@ username=&quot;liferay&quot;</echo>
 				result="elasticsearch.pid.file.count"
 			/>
 
+			<chmod
+				perm="a+rwx"
+				type="both"
+			>
+				<fileset
+					dir="${elasticsearch.dir}"
+				/>
+			</chmod>
+
 			<if>
 				<os family="unix" />
 				<then>
@@ -725,6 +729,23 @@ username=&quot;liferay&quot;</echo>
 
 	<target name="start-kibana">
 		<unzip-kibana />
+
+		<chmod
+			maxparallel="10"
+			perm="a+x"
+			type="both"
+		>
+			<fileset
+				dir="${elastic.kibana.dir}/bin"
+			>
+				<include name="**" />
+			</fileset>
+			<fileset
+				dir="${elastic.kibana.dir}/node"
+			>
+				<include name="**" />
+			</fileset>
+		</chmod>
 
 		<prepare-kibana />
 
