@@ -289,6 +289,7 @@ public class DDMFormRendererTagTest extends PowerMockito {
 		setDDMFormRendererTagInputs(
 			ddmFormInstanceId, ddmFormInstanceRecordId,
 			ddmFormInstanceRecordVersionId, ddmFormInstanceVersionId);
+
 		_ddmFormRendererTag.setShowFormBasicInfo(showFormBasicInfo);
 		_ddmFormRendererTag.setShowSubmitButton(showSubmitButton);
 	}
