@@ -99,27 +99,6 @@ public class AMCompanyThumbnailConfigurationInitializer {
 		}
 	}
 
-	private boolean _hasConfiguration(
-		long companyId, String name, String uuid) {
-
-		Collection<AMImageConfigurationEntry> amImageConfigurationEntries =
-			_amImageConfigurationHelper.getAMImageConfigurationEntries(
-				companyId);
-
-		Stream<AMImageConfigurationEntry> amImageConfigurationEntryStream =
-			amImageConfigurationEntries.stream();
-
-		Optional<AMImageConfigurationEntry>
-			duplicateNameAMImageConfigurationEntryOptional =
-				amImageConfigurationEntryStream.filter(
-					amImageConfigurationEntry ->
-						name.equals(amImageConfigurationEntry.getName()) ||
-						uuid.equals(amImageConfigurationEntry.getUUID())
-				).findFirst();
-
-		return duplicateNameAMImageConfigurationEntryOptional.isPresent();
-	}
-
 	private void _createAMDocumentLibraryConfiguration(
 			Company company, String name, int maxHeight, int maxWidth)
 		throws AMImageConfigurationException, IOException {
@@ -158,6 +137,27 @@ public class AMCompanyThumbnailConfigurationInitializer {
 
 		_createAMDocumentLibraryConfiguration(
 			company, name, maxHeight, maxWidth);
+	}
+
+	private boolean _hasConfiguration(
+		long companyId, String name, String uuid) {
+
+		Collection<AMImageConfigurationEntry> amImageConfigurationEntries =
+			_amImageConfigurationHelper.getAMImageConfigurationEntries(
+				companyId);
+
+		Stream<AMImageConfigurationEntry> amImageConfigurationEntryStream =
+			amImageConfigurationEntries.stream();
+
+		Optional<AMImageConfigurationEntry>
+			duplicateNameAMImageConfigurationEntryOptional =
+				amImageConfigurationEntryStream.filter(
+					amImageConfigurationEntry ->
+						name.equals(amImageConfigurationEntry.getName()) ||
+						uuid.equals(amImageConfigurationEntry.getUUID())
+				).findFirst();
+
+		return duplicateNameAMImageConfigurationEntryOptional.isPresent();
 	}
 
 	private String _normalize(String str) {
