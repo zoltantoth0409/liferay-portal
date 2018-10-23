@@ -161,9 +161,9 @@ public class DefaultIndexValidator implements IndexValidator {
 			ResourceBuilder resourceBuilder, Domain domain)
 		throws Exception {
 
-		Parameters exportPackage = domain.getExportPackage();
+		Parameters parameters = domain.getExportPackage();
 
-		Attrs attrs = exportPackage.get("org.osgi.framework");
+		Attrs attrs = parameters.get("org.osgi.framework");
 
 		String version = attrs.get(Constants.VERSION_ATTRIBUTE);
 
