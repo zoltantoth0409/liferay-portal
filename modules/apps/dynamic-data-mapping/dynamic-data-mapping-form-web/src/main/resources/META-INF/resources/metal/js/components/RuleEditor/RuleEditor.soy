@@ -13,13 +13,33 @@
 				name: string,
 				required: bool,
 				type: string,
-				value: string
+				value: string,
+				fieldOptions: list<[
+					label: string,
+					name: string,
+					options: list<[
+						label: string,
+						value: string
+					]>,
+					type: string,
+					value: string
+				]>
 			]>,
 			label: string,
 			outputs: list<[
 				name: string,
 				type: string,
-				value: string
+				value: string,
+				fieldOptions: list<[
+					label: string,
+					name: string,
+					options: list<[
+						label: string,
+						value: string
+					]>,
+					type: string,
+					value: string
+				]>
 			]>,
 			target: string
 		]>
@@ -166,13 +186,13 @@
 					{param _handleTargetSelection: $_handleTargetSelection /}
 					{param actionInputs: $action.inputs /}
 					{param actionOutputs: $action.outputs /}
-					{param hasRequiredInputs: $action.hasRequiredInputs /}
-					{param actionTypes: $actionTypes /}
 					{param actionSelected: $action.action /}
-					{param strings: $strings /}
+					{param actionTypes: $actionTypes /}
 					{param dataProvider: $dataProvider /}
 					{param fieldOptions: $fieldOptions /}
+					{param hasRequiredInputs: $action.hasRequiredInputs /}
 					{param index: index($action) /}
+					{param strings: $strings /}
 					{param spritemap: $spritemap /}
 					{param targetSelected: $action.target /}
 				{/call}
@@ -273,18 +293,38 @@
 	{@param? _handleDeleteAction: any}
 	{@param? _handleTargetSelection: any}
 	{@param? actionInputs: list<[
+		label: string,
+		name: string,
+		required: bool,
+		type: string,
+		value: string,
+		fieldOptions: list<[
 			label: string,
 			name: string,
-			required: bool,
+			options: list<[
+				label: string,
+				value: string
+			]>,
 			type: string,
 			value: string
 		]>
+	]>
 	}
 	{@param? actionOutputs: list<[
+		name: string,
+		type: string,
+		value: string,
+		fieldOptions: list<[
+			label: string,
 			name: string,
+			options: list<[
+				label: string,
+				value: string
+			]>,
 			type: string,
 			value: string
 		]>
+	]>
 	}
 	{@param? actionSelected: string}
 	{@param? dataProvider: list<[
@@ -353,13 +393,12 @@
 							{param actionIndex: $index /}
 							{param actionInputs: $actionInputs /}
 							{param actionOutputs: $actionOutputs /}
+							{param chooseAnOption: $strings.chooseAnOption /}
 							{param dataProviderParameterInput: $strings.dataProviderParameterInput /}
 							{param dataProviderParameterInputDescription: $strings.dataProviderParameterInputDescription /}
 							{param dataProviderParameterOutput: $strings.dataProviderParameterOutput /}
 							{param dataProviderParameterOutputDescription: $strings.dataProviderParameterOutputDescription /}
-							{param fieldOptions: $fieldOptions /}
 							{param hasRequiredInputs: $hasRequiredInputs /}
-							{param chooseAnOption: $strings.chooseAnOption /}
 							{param requiredField: $strings.requiredField /}
 							{param spritemap: $spritemap /}
 						{/call}
@@ -797,7 +836,17 @@
 	{@param dataProviderParameterInputDescription: string}
 	{@param dataProviderParameterOutput: string}
 	{@param dataProviderParameterOutputDescription: string}
-	{@param fieldOptions : list<[
+	{@param requiredField: string}
+	{@param spritemap: string}
+	{@param? _handleDataProviderInputEdited: any}
+	{@param? _handleDataProviderOutputEdited: any}
+	{@param? actionInputs: list<[
+		label: string,
+		name: string,
+		required: bool,
+		type: string,
+		value: string,
+		fieldOptions: list<[
 			label: string,
 			name: string,
 			options: list<[
@@ -807,28 +856,27 @@
 			type: string,
 			value: string
 		]>
-	}
-	{@param requiredField: string}
-	{@param spritemap: string}
-	{@param? _handleDataProviderInputEdited: any}
-	{@param? _handleDataProviderOutputEdited: any}
-	{@param? actionInputs: list<[
-			label: string,
-			name: string,
-			required: bool,
-			type: string,
-			value: string
-		]>
+	]>
 	}
 	{@param? actionOutputs: list<[
+		name: string,
+		type: string,
+		value: string,
+		fieldOptions: list<[
+			label: string,
 			name: string,
+			options: list<[
+				label: string,
+				value: string
+			]>,
 			type: string,
 			value: string
 		]>
+	]>
 	}
 	{@param? hasRequiredInputs: bool}
 	<div class="col-md-12 no-padding">
-		{if $actionInputs}
+		{if $actionInputs and length($actionInputs) > 0}
 			<div class="data-provider-parameter-input-container">
 				{if $hasRequiredInputs}
 					<div class="data-provider-label-container">
@@ -871,7 +919,7 @@
 								{param events: [
 									'fieldEdited': $_handleDataProviderInputEdited
 								] /}
-								{param options: $fieldOptions /}
+								{param options: $input.fieldOptions /}
 								{param placeholder: $chooseAnOption /}
 								{param ref: 'action' + $actionIndex + 'dataProviderInput' + $index /}
 								{param spritemap: $spritemap /}
@@ -883,16 +931,15 @@
 			</div>
 		{/if}
 
-		{if $actionOutputs}
+		{if $actionOutputs and length($actionOutputs) > 0}
 			<div class="data-provider-parameter-output-container">
 				<div class="data-provider-label-container">
 					<p class="data-provider-parameter-output"><b>{$dataProviderParameterOutput}</b></p>
 					<p class="data-provider-parameter-output-description">{$dataProviderParameterOutputDescription}</p>
 				</div>
 
-				{if $actionOutputs}
-					<div class="data-provider-parameter-output-list row">
-						{foreach $output in $actionOutputs}
+				<div class="data-provider-parameter-output-list row">
+					{foreach $output in $actionOutputs}
 						<div class="col-md-3 container-output-label">
 							{$output.name}
 						</div>
@@ -902,7 +949,7 @@
 								{param events: [
 									'fieldEdited': $_handleDataProviderOutputEdited
 								] /}
-								{param options: $fieldOptions /}
+								{param options: $output.fieldOptions /}
 								{param placeholder: $chooseAnOption /}
 								{param ref: 'action' + $actionIndex + 'dataProviderOutput' + $index /}
 								{param spritemap: $spritemap /}
@@ -910,8 +957,7 @@
 							{/delcall}
 						</div>
 					{/foreach}
-					</div>
-				{/if}
+				</div>
 			</div>
 		{/if}
 	</div>
