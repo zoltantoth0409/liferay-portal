@@ -797,7 +797,8 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			field -> {
 				if (StringUtil.endsWith(field, "date")) {
 					return new Sort(
-						field, Sort.LONG_TYPE, !orderByComparator.isAscending());
+						field, Sort.LONG_TYPE,
+						!orderByComparator.isAscending());
 				}
 
 				return new Sort(field, !orderByComparator.isAscending());
