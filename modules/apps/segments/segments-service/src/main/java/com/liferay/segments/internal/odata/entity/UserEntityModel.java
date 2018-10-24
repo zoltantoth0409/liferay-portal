@@ -52,13 +52,13 @@ public class UserEntityModel implements EntityModel {
 	}
 
 	private static final Map<String, EntityField> _entityFieldsMap = Stream.of(
-		new StringEntityField(
-			"ancestorOrganizationIds", locale -> "ancestorOrganizationIds"),
-		new StringEntityField("companyId", locale -> "companyId"),
 		new DateEntityField(
 			"dateModified",
 			locale -> Field.getSortableFieldName(Field.MODIFIED_DATE),
 			locale -> Field.MODIFIED_DATE),
+		new StringEntityField(
+			"ancestorOrganizationIds", locale -> "ancestorOrganizationIds"),
+		new StringEntityField("companyId", locale -> "companyId"),
 		new StringEntityField("emailAddress", locale -> "emailAddress"),
 		new StringEntityField(
 			"firstName", locale -> Field.getSortableFieldName("firstName")),
