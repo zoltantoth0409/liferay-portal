@@ -493,7 +493,7 @@ public class UserODataRetrieverTest {
 			_group1.getGroupId(), LocaleUtil.getDefault());
 
 		List<User> users = _oDataRetriever.getResults(
-			_group1.getCompanyId(), "contains(jobTitle,'Dev')",
+			_group1.getCompanyId(), "contains(jobTitle, 'Dev')",
 			LocaleUtil.getDefault(), 0, 2);
 
 		Assert.assertEquals(users.toString(), 1, users.size());
