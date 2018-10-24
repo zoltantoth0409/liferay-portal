@@ -1718,8 +1718,8 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 				Portlet otherPortlet = portletDataHandlersMap.get(
 					portletDataHandler);
 
-				if (!_isPreferredPortlet(otherPortlet) &&
-					_isPreferredPortlet(portlet)) {
+				if (!_isAdminPortlet(otherPortlet) &&
+					_isAdminPortlet(portlet)) {
 
 					portletDataHandlersMap.put(portletDataHandler, portlet);
 				}
@@ -1746,7 +1746,7 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 		return filteredPortlets;
 	}
 
-	private boolean _isPreferredPortlet(Portlet portlet) {
+	private boolean _isAdminPortlet(Portlet portlet) {
 		String portletId = portlet.getPortletId();
 
 		return portletId.contains("AdminPortlet");
