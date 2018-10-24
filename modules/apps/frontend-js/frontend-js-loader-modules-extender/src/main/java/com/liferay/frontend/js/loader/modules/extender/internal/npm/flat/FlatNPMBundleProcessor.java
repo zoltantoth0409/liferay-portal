@@ -129,7 +129,7 @@ public class FlatNPMBundleProcessor implements JSBundleProcessor {
 	 * @return the arguments or null if not found or read failed
 	 * @review
 	 */
-	private String _getDefineArguments(URL url) {
+	private String _getDefineArgs(URL url) {
 		try {
 			String urlContent = _normalizeModuleContent(
 				StringUtil.read(url.openStream()));
@@ -389,7 +389,7 @@ public class FlatNPMBundleProcessor implements JSBundleProcessor {
 				continue;
 			}
 
-			String defineArgs = _getDefineArguments(url);
+			String defineArgs = _getDefineArgs(url);
 
 			if (defineArgs == null) {
 				continue;
