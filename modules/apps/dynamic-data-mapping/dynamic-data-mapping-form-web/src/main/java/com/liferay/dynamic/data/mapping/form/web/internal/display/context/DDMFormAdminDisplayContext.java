@@ -255,7 +255,8 @@ public class DDMFormAdminDisplayContext {
 		DDMFormBuilderSettingsResponse ddmFormBuilderSettingsResponse =
 			getDDMFormBuilderSettingsResponse();
 
-		return ddmFormBuilderSettingsResponse.getDataProviderInstanceParameterSettingsURL();
+		return ddmFormBuilderSettingsResponse.
+			getDataProviderInstanceParameterSettingsURL();
 	}
 
 	public String getDataProviderInstancesURL() throws PortalException {
