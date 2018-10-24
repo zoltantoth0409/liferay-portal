@@ -82,7 +82,6 @@ public class FragmentManagementToolbarDisplayContext
 								LanguageUtil.get(request, "move"));
 							dropdownItem.setQuickAction(true);
 						});
-
 					add(
 						dropdownItem -> {
 							dropdownItem.putData(
