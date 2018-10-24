@@ -840,6 +840,30 @@ describe(
 								expect(component.refs.actionTarget0).toBeTruthy();
 							}
 						);
+
+						it(
+							'should not reset the target after setting a target to an action and click in the action selected without changing it',
+							() => {
+								component = new RuleEditor(
+									{
+										...getBaseConfig()
+									}
+								);
+
+								component.refs.action0.emitFieldEdited(['show']);
+
+								jest.runAllTimers();
+
+								component.refs.actionTarget0.emitFieldEdited(['date']);
+
+								jest.runAllTimers();
+
+								component.refs.action0.emitFieldEdited(['show']);
+
+								expect(component.refs.actionTarget0.value).toEqual(['date']);
+							}
+						);
+
 						it(
 							'should refresh the target when the user changes any of the options of the first action select between (Show, Enable or Required)',
 							() => {
@@ -903,6 +927,37 @@ describe(
 								jest.runAllTimers();
 
 								expect(component.refs.actionTarget0).toBeTruthy();
+
+								const labelVisible = !document.querySelector('.form-group-item-label').classList.contains('hide');
+
+								expect(labelVisible).toBeTruthy();
+							}
+						);
+
+						it(
+							'should display only one data-provider label everytime an autofill target is selected',
+							() => {
+								component = new RuleEditor(
+									{
+										...getBaseConfig()
+									}
+								);
+
+								component.refs.action0.emitFieldEdited(['autofill']);
+
+								jest.runAllTimers();
+
+								component.refs.actionTarget0.emitFieldEdited(['36808']);
+
+								jest.runAllTimers();
+
+								component.refs.actionTarget0.emitFieldEdited(['36777']);
+
+								const labelQuantityAfter = document.querySelectorAll('.form-group-item-label.target-message-0').length;
+
+								jest.runAllTimers();
+
+								expect(labelQuantityAfter).toBe(1);
 							}
 						);
 
