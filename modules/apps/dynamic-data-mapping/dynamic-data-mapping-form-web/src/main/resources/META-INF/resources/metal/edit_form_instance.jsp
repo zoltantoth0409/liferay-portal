@@ -218,7 +218,7 @@ renderResponse.setTitle((formInstance == null) ? LanguageUtil.get(request, "new-
 							published: !!<%= ddmFormAdminDisplayContext.isFormPublished() %>,
 							rolesURL: '<%= rolesURL %>',
 							rules: <%= serializedDDMFormRules %>,
-							saved: <%= (formInstance != null) %>,
+							saved: <%= formInstance != null %>,
 							spritemap: Liferay.DDM.FormSettings.spritemap,
 							strings: Liferay.DDM.FormSettings.strings
 						},
