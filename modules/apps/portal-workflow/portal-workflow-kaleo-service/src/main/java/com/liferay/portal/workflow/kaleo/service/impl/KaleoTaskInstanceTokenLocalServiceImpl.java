@@ -790,19 +790,17 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 	protected Sort[] getSortsFromComparator(
 		OrderByComparator<KaleoTaskInstanceToken> orderByComparator) {
 
-		boolean reverse = !orderByComparator.isAscending();
-
-		String[] fields = orderByComparator.getOrderByFields();
-
-		Stream<String> stream = Arrays.stream(fields);
+		Stream<String> stream = Arrays.stream(
+			orderByComparator.getOrderByFields());
 
 		return stream.map(
 			field -> {
 				if (StringUtil.endsWith(field, "date")) {
-					return new Sort(field, Sort.LONG_TYPE, reverse);
+					return new Sort(
+						field, Sort.LONG_TYPE, !orderByComparator.isAscending());
 				}
 
-				return new Sort(field, reverse);
+				return new Sort(field, !orderByComparator.isAscending());
 			}
 		).toArray(
 			Sort[]::new
