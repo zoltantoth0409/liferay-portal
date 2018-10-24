@@ -59,31 +59,31 @@ public class KaleoTaskInstanceTokenModelDocumentContributor
 		List<KaleoTaskAssignmentInstance> kaleoTaskAssignmentInstances =
 			kaleoTaskInstanceToken.getKaleoTaskAssignmentInstances();
 
-		Set<Long> assigneeClassNameIdSet = new HashSet<>();
-		Set<Long> assigneeClassPKSet = new HashSet<>();
-		Set<Long> assigneeGroupIdSet = new HashSet<>();
+		Set<Long> assigneeClassNameIds = new HashSet<>();
+		Set<Long> assigneeClassPKs = new HashSet<>();
+		Set<Long> assigneeGroupIds = new HashSet<>();
 
 		for (KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance :
 				kaleoTaskAssignmentInstances) {
 
-			assigneeClassNameIdSet.add(
+			assigneeClassNameIds.add(
 				portal.getClassNameId(
 					kaleoTaskAssignmentInstance.getAssigneeClassName()));
-			assigneeClassPKSet.add(
+			assigneeClassPKs.add(
 				kaleoTaskAssignmentInstance.getAssigneeClassPK());
-			assigneeGroupIdSet.add(kaleoTaskAssignmentInstance.getGroupId());
+			assigneeGroupIds.add(kaleoTaskAssignmentInstance.getGroupId());
 		}
 
 		document.addKeyword(
 			KaleoTaskInstanceTokenField.ASSIGNEE_CLASS_NAME_IDS,
-			assigneeClassNameIdSet.toArray(
-				new Long[assigneeClassNameIdSet.size()]));
+			assigneeClassNameIds.toArray(
+				new Long[assigneeClassNameIds.size()]));
 		document.addKeyword(
 			KaleoTaskInstanceTokenField.ASSIGNEE_CLASS_PKS,
-			assigneeClassPKSet.toArray(new Long[assigneeClassPKSet.size()]));
+			assigneeClassPKs.toArray(new Long[assigneeClassPKs.size()]));
 		document.addKeyword(
 			KaleoTaskInstanceTokenField.ASSIGNEE_GROUP_IDS,
-			assigneeGroupIdSet.toArray(new Long[assigneeGroupIdSet.size()]));
+			assigneeGroupIds.toArray(new Long[assigneeGroupIds.size()]));
 		document.addKeyword(
 			KaleoTaskInstanceTokenField.COMPLETED,
 			kaleoTaskInstanceToken.isCompleted());
