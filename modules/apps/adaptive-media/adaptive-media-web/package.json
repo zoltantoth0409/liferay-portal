@@ -23,5 +23,5 @@
 		"build": "metalsoy --soyDeps \"node_modules/+(metal-progressbar|metal-tooltip|com.liferay.frontend.js.web)/**/*.soy\" && cross-env NODE_ENV=production babel --source-maps -d classes/META-INF/resources src/main/resources/META-INF/resources && liferay-npm-bundler && npm run cleanSoy",
 		"cleanSoy": "rimraf src/**/*.soy.js"
 	},
-	"version": "2.0.13"
+	"version": "2.0.14"
 }
