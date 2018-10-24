@@ -57,6 +57,18 @@ public class StructuredContentEntityModel implements EntityModel {
 	}
 
 	private static final Map<String, EntityField> _entityFieldsMap = Stream.of(
+		new DateEntityField(
+			"dateCreated",
+			locale -> Field.getSortableFieldName(Field.CREATE_DATE),
+			locale -> Field.CREATE_DATE),
+		new DateEntityField(
+			"dateModified",
+			locale -> Field.getSortableFieldName(Field.MODIFIED_DATE),
+			locale -> Field.MODIFIED_DATE),
+		new DateEntityField(
+			"datePublished",
+			locale -> Field.getSortableFieldName(Field.DISPLAY_DATE),
+			locale -> Field.DISPLAY_DATE),
 		new IdEntityField(
 			"contentStructure", locale -> Field.CLASS_TYPE_ID,
 			contentStructureLink -> {
@@ -73,18 +85,6 @@ public class StructuredContentEntityModel implements EntityModel {
 
 				return parts.get(parts.size() - 1);
 			}),
-		new DateEntityField(
-			"dateCreated",
-			locale -> Field.getSortableFieldName(Field.CREATE_DATE),
-			locale -> Field.CREATE_DATE),
-		new DateEntityField(
-			"dateModified",
-			locale -> Field.getSortableFieldName(Field.MODIFIED_DATE),
-			locale -> Field.MODIFIED_DATE),
-		new DateEntityField(
-			"datePublished",
-			locale -> Field.getSortableFieldName(Field.DISPLAY_DATE),
-			locale -> Field.DISPLAY_DATE),
 		new StringEntityField(
 			"description",
 			locale -> "description_".concat(LocaleUtil.toLanguageId(locale))),
