@@ -179,7 +179,7 @@ public class EntityField {
 	@Override
 	public String toString() {
 		return StringBundler.concat(
-			"{name:", _name, ", type:", _type.name() , "}");
+			"{name:", _name, ", type:", _type.name(), "}");
 	}
 
 	public enum Type {
