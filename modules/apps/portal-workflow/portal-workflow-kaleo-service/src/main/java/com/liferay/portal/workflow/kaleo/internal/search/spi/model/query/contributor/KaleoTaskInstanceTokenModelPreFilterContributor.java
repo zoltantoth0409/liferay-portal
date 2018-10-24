@@ -411,11 +411,11 @@ public class KaleoTaskInstanceTokenModelPreFilterContributor
 
 	protected List<Long> getSearchByUserRoleIds(long userId) {
 		try {
-			User user = userLocalService.getUserById(userId);
-
 			List<Role> roles = roleLocalService.getUserRoles(userId);
 
 			List<Group> groups = new ArrayList<>();
+
+			User user = userLocalService.getUserById(userId);
 
 			groups.addAll(user.getGroups());
 			groups.addAll(
