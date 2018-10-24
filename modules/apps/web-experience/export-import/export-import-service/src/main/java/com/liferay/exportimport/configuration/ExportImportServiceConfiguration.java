@@ -40,10 +40,4 @@ public interface ExportImportServiceConfiguration {
 	)
 	public boolean validateLayoutReferences();
 
-	@Meta.AD(
-		deflt = "false", description = "enable-comments-on-live-help",
-		name = "enable-comments-on-live", required = false
-	)
-	public boolean enableCommentsOnLive();
-
 }

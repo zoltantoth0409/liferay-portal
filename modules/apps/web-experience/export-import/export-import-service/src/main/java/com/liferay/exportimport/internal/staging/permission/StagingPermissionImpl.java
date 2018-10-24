@@ -14,14 +14,10 @@
 
 package com.liferay.exportimport.internal.staging.permission;
 
-import com.liferay.exportimport.configuration.ExportImportServiceConfiguration;
 import com.liferay.exportimport.kernel.staging.permission.StagingPermission;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
-import com.liferay.portal.kernel.module.configuration.ConfigurationProviderUtil;
-import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
 import com.liferay.portal.kernel.security.pacl.DoPrivileged;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
@@ -84,12 +80,6 @@ public class StagingPermissionImpl implements StagingPermission {
 			return null;
 		}
 
-		if (actionId.equals(ActionKeys.ADD_DISCUSSION) &&
-			isEnableCommentsOnLive()) {
-
-			return null;
-		}
-
 		if (!actionId.equals(ActionKeys.ACCESS) &&
 			!actionId.equals(ActionKeys.ACCESS_IN_CONTROL_PANEL) &&
 			!actionId.equals(ActionKeys.ADD_TO_PAGE) &&
@@ -106,16 +96,6 @@ public class StagingPermissionImpl implements StagingPermission {
 		else {
 			return null;
 		}
-	}
-
-	protected boolean isEnableCommentsOnLive() throws PortalException {
-		long companyId = CompanyThreadLocal.getCompanyId();
-
-		ExportImportServiceConfiguration exportImportServiceConfiguration =
-			ConfigurationProviderUtil.getCompanyConfiguration(
-				ExportImportServiceConfiguration.class, companyId);
-
-		return exportImportServiceConfiguration.enableCommentsOnLive();
 	}
 
 	@Reference(unbind = "-")
