@@ -1,4 +1,4 @@
-/**
+g s/**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -74,8 +74,8 @@ public class ComplexEntityField extends EntityField {
 	@Override
 	public String toString() {
 		return StringBundler.concat(
-			"{ type:", getType().name(), ",name:", getName(), ",entityFields:",
-			_entityFieldsMap.toString(), "}");
+			"{entityFields: ", _entityFieldsMap.toString(), ", name: ",
+			getName(), ", type: ", getType().name(), "}");
 	}
 
 	private final Map<String, EntityField> _entityFieldsMap;
