@@ -125,7 +125,7 @@ public class DLFileEntryPermission implements BaseModelPermissionChecker {
 			// See LPS-10500 and LPS-72547
 
 			if (actionId.equals(ActionKeys.VIEW) && !hasOwnerPermission &&
-				_hasActiveWorkflowInstance(
+				_hasWorkflowTasks(
 					permissionChecker.getCompanyId(), dlFileEntry.getGroupId(),
 					permissionChecker.getUserId(),
 					currentDLFileVersion.getFileVersionId())) {
@@ -226,7 +226,7 @@ public class DLFileEntryPermission implements BaseModelPermissionChecker {
 		check(permissionChecker, primaryKey, actionId);
 	}
 
-	private static boolean _hasActiveWorkflowInstance(
+	private static boolean _hasWorkflowTasks(
 			long companyId, long groupId, long userId, long fileVersionId)
 		throws WorkflowException {
 
