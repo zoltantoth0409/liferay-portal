@@ -33,6 +33,30 @@ public abstract class BaseWorkspaceGitRepository
 	extends BaseLocalGitRepository implements WorkspaceGitRepository {
 
 	@Override
+	public String getFileContent(String filePath) {
+		File file = new File(getDirectory(), filePath);
+
+		try {
+			String fileContent = JenkinsResultsParserUtil.read(file);
+
+			return fileContent.trim();
+		}
+		catch (IOException ioe) {
+			throw new RuntimeException(ioe);
+		}
+	}
+
+	@Override
+	public String getGitHubDevBranchName() {
+		return getString("git_hub_dev_branch_name");
+	}
+
+	@Override
+	public String getGitHubURL() {
+		return getString("git_hub_url");
+	}
+
+	@Override
 	public List<Commit> getHistoricalCommits() {
 		if (_historicalCommits != null) {
 			return _historicalCommits;
@@ -59,30 +83,6 @@ public abstract class BaseWorkspaceGitRepository
 		}
 
 		return _historicalCommits;
-	}
-
-	@Override
-	public String getFileContent(String filePath) {
-		File file = new File(getDirectory(), filePath);
-
-		try {
-			String fileContent = JenkinsResultsParserUtil.read(file);
-
-			return fileContent.trim();
-		}
-		catch (IOException ioe) {
-			throw new RuntimeException(ioe);
-		}
-	}
-
-	@Override
-	public String getGitHubDevBranchName() {
-		return getString("git_hub_dev_branch_name");
-	}
-
-	@Override
-	public String getGitHubURL() {
-		return getString("git_hub_url");
 	}
 
 	@Override

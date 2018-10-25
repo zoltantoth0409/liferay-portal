@@ -137,7 +137,8 @@ public class GitBisectToolBuild extends TopLevelBuild {
 
 		Element tableBodyElement = Dom4JUtil.getNewElement("tbody");
 
-		List<Commit> historicalCommits = workspaceGitRepository.getHistoricalCommits();
+		List<Commit> historicalCommits =
+			workspaceGitRepository.getHistoricalCommits();
 
 		boolean first = true;
 
