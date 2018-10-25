@@ -20,6 +20,8 @@ import com.liferay.layout.page.template.model.LayoutPageTemplateEntry;
 import com.liferay.layout.type.controller.content.internal.constants.ContentLayoutTypeControllerConstants;
 import com.liferay.portal.kernel.exception.ModelListenerException;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.BaseModelListener;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.ModelListener;
@@ -46,10 +48,7 @@ public class LayoutModelListener extends BaseModelListener<Layout> {
 
 	@Override
 	public void onAfterCreate(Layout layout) throws ModelListenerException {
-		if (!Objects.equals(
-				layout.getType(),
-				ContentLayoutTypeControllerConstants.LAYOUT_TYPE_CONTENT)) {
-
+		if (!_isContentLayout(layout)) {
 			return;
 		}
 
@@ -89,28 +88,21 @@ public class LayoutModelListener extends BaseModelListener<Layout> {
 		_reindexLayout(layout);
 	}
 
-	private void _reindexLayout(Layout layout) {
-		Indexer indexer = IndexerRegistryUtil.getIndexer(Layout.class);
-
-		try {
-			indexer.reindex(layout);
-		}
-		catch (SearchException e) {
-			if (_log.isDebugEnabled()) {
-				_log.debug("Unable to reindex Layout " + layout.getPlid(), e);
-			}
-
-			throw new ModelListenerException(e);
-		}
-	}
-
 	@Override
 	public void onAfterUpdate(Layout layout) throws ModelListenerException {
+		if (!_isContentLayout(layout)) {
+			return;
+		}
+
 		_reindexLayout(layout);
 	}
 
 	@Override
 	public void onBeforeRemove(Layout layout) throws ModelListenerException {
+		if (!_isContentLayout(layout)) {
+			return;
+		}
+
 		_fragmentEntryLinkLocalService.
 			deleteLayoutPageTemplateEntryFragmentEntryLinks(
 				layout.getGroupId(),
@@ -130,6 +122,35 @@ public class LayoutModelListener extends BaseModelListener<Layout> {
 			throw new ModelListenerException(pe);
 		}
 	}
+
+	private boolean _isContentLayout(Layout layout) {
+		if (Objects.equals(
+				layout.getType(),
+				ContentLayoutTypeControllerConstants.LAYOUT_TYPE_CONTENT)) {
+
+			return true;
+		}
+
+		return false;
+	}
+
+	private void _reindexLayout(Layout layout) {
+		Indexer indexer = IndexerRegistryUtil.getIndexer(Layout.class);
+
+		try {
+			indexer.reindex(layout);
+		}
+		catch (SearchException se) {
+			if (_log.isDebugEnabled()) {
+				_log.debug("Unable to reindex Layout " + layout.getPlid(), se);
+			}
+
+			throw new ModelListenerException(se);
+		}
+	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		LayoutModelListener.class);
 
 	@Reference
 	private FragmentEntryLinkLocalService _fragmentEntryLinkLocalService;
