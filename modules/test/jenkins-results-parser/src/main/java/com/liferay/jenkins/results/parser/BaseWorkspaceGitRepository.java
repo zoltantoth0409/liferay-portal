@@ -33,16 +33,16 @@ public abstract class BaseWorkspaceGitRepository
 	extends BaseLocalGitRepository implements WorkspaceGitRepository {
 
 	@Override
-	public List<Commit> getCommitHistory() {
-		if (_commitHistory != null) {
-			return _commitHistory;
+	public List<Commit> getHistoricalCommits() {
+		if (_historicalCommits != null) {
+			return _historicalCommits;
 		}
 
 		if (!has("commits")) {
 			return new ArrayList<>();
 		}
 
-		_commitHistory = new ArrayList<>();
+		_historicalCommits = new ArrayList<>();
 
 		JSONArray commitsJSONArray = getJSONArray("commits");
 
@@ -55,10 +55,10 @@ public abstract class BaseWorkspaceGitRepository
 				commitJSONObject.getString("sha"), " ",
 				commitJSONObject.getString("message"));
 
-			_commitHistory.add(gitWorkingDirectory.getCommit(gitLogEntity));
+			_historicalCommits.add(gitWorkingDirectory.getCommit(gitLogEntity));
 		}
 
-		return _commitHistory;
+		return _historicalCommits;
 	}
 
 	@Override
@@ -131,7 +131,7 @@ public abstract class BaseWorkspaceGitRepository
 
 	@Override
 	public void storeCommitHistory(List<String> commitSHAs) {
-		_commitHistory = getCommitHistory();
+		_historicalCommits = getHistoricalCommits();
 
 		List<String> requiredCommitSHAs = new ArrayList<>();
 
@@ -155,7 +155,7 @@ public abstract class BaseWorkspaceGitRepository
 				index, currentGroupSize);
 
 			for (Commit commit : commits) {
-				_commitHistory.add(commit);
+				_historicalCommits.add(commit);
 
 				commitsJSONArray.put(commit.toJSONObject());
 
@@ -381,7 +381,7 @@ public abstract class BaseWorkspaceGitRepository
 
 	private static final String _SHA_REGEX = "[0-9a-f]{7,40}";
 
-	private List<Commit> _commitHistory;
+	private List<Commit> _historicalCommits;
 	private final Map<String, Properties> _propertiesFilesMap = new HashMap<>();
 
 }

@@ -137,11 +137,11 @@ public class GitBisectToolBuild extends TopLevelBuild {
 
 		Element tableBodyElement = Dom4JUtil.getNewElement("tbody");
 
-		List<Commit> commitHistory = workspaceGitRepository.getCommitHistory();
+		List<Commit> historicalCommits = workspaceGitRepository.getHistoricalCommits();
 
 		boolean first = true;
 
-		for (Commit commit : commitHistory) {
+		for (Commit commit : historicalCommits) {
 			String shaText = commit.getSHA();
 
 			if (first) {

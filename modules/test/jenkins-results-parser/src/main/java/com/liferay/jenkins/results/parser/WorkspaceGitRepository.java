@@ -21,7 +21,7 @@ import java.util.List;
  */
 public interface WorkspaceGitRepository extends LocalGitRepository {
 
-	public List<Commit> getCommitHistory();
+	public List<Commit> getHistoricalCommits();
 
 	public String getFileContent(String filePath);
 
