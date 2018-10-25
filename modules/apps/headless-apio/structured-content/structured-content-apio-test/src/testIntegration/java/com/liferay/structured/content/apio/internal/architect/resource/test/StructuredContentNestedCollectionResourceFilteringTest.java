@@ -162,9 +162,8 @@ public class StructuredContentNestedCollectionResourceFilteringTest
 			stringMap2, null, LocaleUtil.getDefault(), null, true, true,
 			serviceContext);
 
-		DDMStructure ddmStructure = journalArticle1.getDDMStructure();
-
 		FilterParser filterParser = _getFilterParser();
+		DDMStructure ddmStructure = journalArticle1.getDDMStructure();
 
 		PageItems<JournalArticle> pageItems = getPageItems(
 			PaginationRequest.of(10, 1), _group.getGroupId(), _acceptLanguage,
