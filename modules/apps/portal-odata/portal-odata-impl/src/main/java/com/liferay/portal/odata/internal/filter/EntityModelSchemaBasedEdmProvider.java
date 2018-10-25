@@ -232,7 +232,6 @@ public class EntityModelSchemaBasedEdmProvider extends SchemaBasedEdmProvider {
 		CsdlProperty csdlProperty = new CsdlProperty();
 
 		csdlProperty.setName(entityField.getName());
-
 		csdlProperty.setType(fullQualifiedName);
 
 		return csdlProperty;
