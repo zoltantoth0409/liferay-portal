@@ -206,7 +206,6 @@ public class DDMStructureModelListener extends BaseModelListener<DDMStructure> {
 
 				dynamicQuery.add(classNameIdProperty.eq(classNameId));
 			});
-
 		actionableDynamicQuery.setPerformActionMethod(
 			(DDMStructure ddmStructure) -> {
 				Map.Entry<Long, List<EntityField>> simpleEntry = _getEntry(
@@ -225,9 +224,9 @@ public class DDMStructureModelListener extends BaseModelListener<DDMStructure> {
 			DDMStructure ddmStructure)
 		throws PortalException {
 
-		List<DDMFormField> ddmFormFields = ddmStructure.getDDMFormFields(false);
-
 		List<EntityField> entityFields = new ArrayList<>();
+
+		List<DDMFormField> ddmFormFields = ddmStructure.getDDMFormFields(false);
 
 		for (DDMFormField ddmFormField : ddmFormFields) {
 			Optional<EntityField> entityFieldOptional = _createEntityField(
@@ -246,10 +245,9 @@ public class DDMStructureModelListener extends BaseModelListener<DDMStructure> {
 		BundleContext bundleContext,
 		Map<Long, List<EntityField>> entityFieldsMap) {
 
-		Collection<List<EntityField>> entityFieldListCollection =
-			entityFieldsMap.values();
+		Collection<List<EntityField>> collection = entityFieldsMap.values();
 
-		Stream<List<EntityField>> stream = entityFieldListCollection.stream();
+		Stream<List<EntityField>> stream = collection.stream();
 
 		List<EntityField> entityFields = stream.flatMap(
 			List::stream
