@@ -247,12 +247,10 @@ public class DLFileEntryPermission implements BaseModelPermissionChecker {
 			return false;
 		}
 
-		int userTasksCount =
-			WorkflowTaskManagerUtil.getWorkflowTaskCountByWorkflowInstance(
+		if (WorkflowTaskManagerUtil.getWorkflowTaskCountByWorkflowInstance(
 				companyId, userId, workflowInstanceLink.getWorkflowInstanceId(),
-				null);
+				null) > 0) {
 
-		if (userTasksCount > 0) {
 			return false;
 		}
 
