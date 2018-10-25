@@ -528,7 +528,7 @@ public class JournalArticleExportImportContentProcessor
 			Value value = ddmFormFieldValue.getValue();
 
 			if (value == null) {
-				contents.add(null);
+				contents.add(StringPool.BLANK);
 
 				continue;
 			}
