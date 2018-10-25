@@ -198,16 +198,16 @@ public class BaseTextExportImportContentProcessor
 
 			map.put("groupId", new String[] {pathArray[2]});
 
-			if (pathArray.length == 4) {
-				map.put("uuid", new String[] {pathArray[3]});
-			}
-			else if (pathArray.length == 5) {
+			if (pathArray.length == 5) {
 				map.put("folderId", new String[] {pathArray[3]});
 				map.put(
 					"title", new String[] {HttpUtil.decodeURL(pathArray[4])});
 			}
-			else if (pathArray.length > 5) {
-				map.put("uuid", new String[] {pathArray[5]});
+
+			String uuid = _getUuid(dlReference);
+
+			if (Validator.isNotNull(uuid)) {
+				map.put("uuid", new String[] {uuid});
 			}
 		}
 		else {
@@ -2023,6 +2023,16 @@ public class BaseTextExportImportContentProcessor
 	protected static final Pattern importLinksToLayoutPattern = Pattern.compile(
 		"\\[([\\d]+)@(private(-group|-user)?|public)@([\\d]+)(@([\\d]+))?\\]");
 
+	private String _getUuid(String s) {
+		Matcher matcher = _uuidPattern.matcher(s);
+
+		if (matcher.find()) {
+			return matcher.group(0);
+		}
+
+		return com.liferay.petra.string.StringPool.BLANK;
+	}
+
 	private boolean _isVirtualHostDefined(StringBundler urlSB) {
 		String urlSBString = urlSB.toString();
 
@@ -2069,5 +2079,9 @@ public class BaseTextExportImportContentProcessor
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseTextExportImportContentProcessor.class);
+
+	private static final Pattern _uuidPattern = Pattern.compile(
+		"[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-" +
+			"[a-fA-F0-9]{12}");
 
 }
