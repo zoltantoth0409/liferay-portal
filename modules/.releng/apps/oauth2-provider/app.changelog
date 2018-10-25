@@ -31,10 +31,10 @@ app.artifacts-1.1.0=\
 	com.liferay.oauth2.provider.scope.impl-1.0.27.jar,\
 	com.liferay.oauth2.provider.scope.liferay.api-1.0.3.jar,\
 	com.liferay.oauth2.provider.scope.spi-1.0.2.jar,\
-	com.liferay.oauth2.provider.service-1.0.9.jar,\
+	com.liferay.oauth2.provider.service-1.0.10.jar,\
 	com.liferay.oauth2.provider.shortcut-1.0.2.jar,\
 	com.liferay.oauth2.provider.web-1.0.30.jar
 
-app.change.log-1.1.0=LPS-77699 LPS-85849 LPS-86408 LPS-86412 LPS-86473 OAUTH2-116 OAUTH2-124 OAUTH2-128 OAUTH2-131 OAUTH2-143 OAUTH2-150 OAUTH2-227
+app.change.log-1.1.0=LPS-77699 LPS-85849 LPS-86408 LPS-86412 LPS-86667 OAUTH2-116 OAUTH2-124 OAUTH2-128 OAUTH2-131 OAUTH2-143 OAUTH2-150 OAUTH2-227
 
-app.git.id-1.1.0=2fb8211a7dff20442878d83c8c74bc70cabec4e8
+app.git.id-1.1.0=401f01fa752946c61f075b1a87dfbda330f90c39
