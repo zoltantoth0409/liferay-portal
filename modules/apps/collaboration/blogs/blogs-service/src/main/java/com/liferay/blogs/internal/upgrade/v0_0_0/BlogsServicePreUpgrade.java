@@ -17,6 +17,7 @@ package com.liferay.blogs.internal.upgrade.v0_0_0;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Release;
 import com.liferay.portal.kernel.service.ReleaseLocalService;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -30,18 +31,15 @@ public class BlogsServicePreUpgrade {
 
 	@Activate
 	protected void activate() throws PortalException {
-		_releaseLocalService.deleteRelease(_release.getReleaseId());
-	}
+		Release release = _releaseLocalService.fetchRelease(
+			"com.liferay.blogs.service");
 
-	@Reference(
-		target = "(&(release.bundle.symbolic.name=com.liferay.blogs.service)(release.schema.version=1.0.0))",
-		unbind = "-"
-	)
-	protected void setRelease(Release release) {
-		_release = release;
-	}
+		if ((release != null) &&
+			StringUtil.equals(release.getSchemaVersion(), "1.0.0")) {
 
-	private Release _release;
+			_releaseLocalService.deleteRelease(release.getReleaseId());
+		}
+	}
 
 	@Reference
 	private ReleaseLocalService _releaseLocalService;
