@@ -23,6 +23,9 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.BaseModelListener;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.ModelListener;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -82,6 +85,28 @@ public class LayoutModelListener extends BaseModelListener<Layout> {
 		catch (PortalException pe) {
 			throw new ModelListenerException(pe);
 		}
+
+		_reindexLayout(layout);
+	}
+
+	private void _reindexLayout(Layout layout) {
+		Indexer indexer = IndexerRegistryUtil.getIndexer(Layout.class);
+
+		try {
+			indexer.reindex(layout);
+		}
+		catch (SearchException e) {
+			if (_log.isDebugEnabled()) {
+				_log.debug("Unable to reindex Layout " + layout.getPlid(), e);
+			}
+
+			throw new ModelListenerException(e);
+		}
+	}
+
+	@Override
+	public void onAfterUpdate(Layout layout) throws ModelListenerException {
+		_reindexLayout(layout);
 	}
 
 	@Override
@@ -91,6 +116,19 @@ public class LayoutModelListener extends BaseModelListener<Layout> {
 				layout.getGroupId(),
 				_portal.getClassNameId(Layout.class.getName()),
 				layout.getPlid());
+
+		try {
+			Indexer indexer = IndexerRegistryUtil.getIndexer(Layout.class);
+
+			indexer.delete(layout);
+		}
+		catch (PortalException pe) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(pe, pe);
+			}
+
+			throw new ModelListenerException(pe);
+		}
 	}
 
 	@Reference
