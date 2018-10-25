@@ -228,9 +228,9 @@ public abstract class BaseBuildData implements BuildData {
 	protected BaseBuildData(String runID, String jobName, String buildURL) {
 		JSONObject jsonObject = buildDatabase.getBuildDataJSONObject(runID);
 
-		String jsonObjectString = jsonObject.toString();
+		String json = jsonObject.toString();
 
-		if (jsonObjectString.equals("{}") && (buildURL != null)) {
+		if (json.equals("{}") && (buildURL != null)) {
 			try {
 				jsonObject = buildDatabase.getBuildDataJSONObject(
 					new URL(buildURL));
