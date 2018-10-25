@@ -33,11 +33,10 @@ public class SubscriptionServiceUpgrade implements UpgradeStepRegistrator {
 	public void register(Registry registry) {
 		registry.register("0.0.1", "1.0.0", new UpgradeClassNames());
 
-		Class<?>[] upgradeDatetimeTableClasses = {SubscriptionTable.class};
-
 		registry.register(
 			"1.0.0", "2.0.0",
-			new BaseUpgradeSQLServerDatetime(upgradeDatetimeTableClasses));
+			new BaseUpgradeSQLServerDatetime(
+				new Class<?>[] {SubscriptionTable.class}));
 	}
 
 	@Reference(unbind = "-")

@@ -35,12 +35,10 @@ public class ReadingTimeServiceUpgrade implements UpgradeStepRegistrator {
 		DB db = DBManagerUtil.getDB();
 
 		if (db.getDBType() == DBType.SQLSERVER) {
-			Class<?>[] upgradeDatetimeTableClasses =
-				{ReadingTimeEntryTable.class};
-
 			registry.register(
 				"1.0.0", "2.0.0",
-				new BaseUpgradeSQLServerDatetime(upgradeDatetimeTableClasses));
+				new BaseUpgradeSQLServerDatetime(
+					new Class<?>[] {ReadingTimeEntryTable.class}));
 		}
 		else {
 			registry.register("1.0.0", "2.0.0", new DummyUpgradeStep());

@@ -28,11 +28,10 @@ public class AMImageServiceUpgrade implements UpgradeStepRegistrator {
 
 	@Override
 	public void register(Registry registry) {
-		Class<?>[] upgradeDatetimeTableClasses = {AMImageEntryTable.class};
-
 		registry.register(
 			"1.0.0", "2.0.0",
-			new BaseUpgradeSQLServerDatetime(upgradeDatetimeTableClasses));
+			new BaseUpgradeSQLServerDatetime(
+				new Class<?>[] {AMImageEntryTable.class}));
 	}
 
 }

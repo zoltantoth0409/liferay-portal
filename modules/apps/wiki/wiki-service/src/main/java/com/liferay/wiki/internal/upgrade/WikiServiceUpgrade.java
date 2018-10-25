@@ -56,12 +56,10 @@ public class WikiServiceUpgrade implements UpgradeStepRegistrator {
 
 		registry.register("1.0.0", "1.1.0", new UpgradeWikiNode());
 
-		Class<?>[] upgradeDatetimeTableClasses =
-			{WikiNodeTable.class, WikiPageTable.class};
-
 		registry.register(
 			"1.1.0", "2.0.0",
-			new BaseUpgradeSQLServerDatetime(upgradeDatetimeTableClasses));
+			new BaseUpgradeSQLServerDatetime(
+				new Class<?>[] {WikiNodeTable.class, WikiPageTable.class}));
 	}
 
 	@Reference(unbind = "-")

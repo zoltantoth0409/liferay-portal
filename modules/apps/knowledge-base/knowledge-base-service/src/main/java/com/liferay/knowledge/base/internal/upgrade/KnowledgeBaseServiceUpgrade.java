@@ -129,14 +129,13 @@ public class KnowledgeBaseServiceUpgrade implements UpgradeStepRegistrator {
 
 		registry.register("2.0.1", "2.0.2", new UpgradeKBArticle());
 
-		Class<?>[] upgradeDatetimeTableClasses = {
-			KBArticleTable.class, KBCommentTable.class, KBFolderTable.class,
-			KBTemplateTable.class
-		};
-
 		registry.register(
 			"2.0.2", "3.0.0",
-			new BaseUpgradeSQLServerDatetime(upgradeDatetimeTableClasses));
+			new BaseUpgradeSQLServerDatetime(
+				new Class<?>[] {
+					KBArticleTable.class, KBCommentTable.class,
+					KBFolderTable.class, KBTemplateTable.class
+				}));
 	}
 
 	@Reference(target = ModuleServiceLifecycle.PORTAL_INITIALIZED, unbind = "-")

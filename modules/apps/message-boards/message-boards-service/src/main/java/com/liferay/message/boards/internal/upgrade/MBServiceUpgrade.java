@@ -54,15 +54,15 @@ public class MBServiceUpgrade implements UpgradeStepRegistrator {
 			"com.liferay.message.boards.service", "1.0.1", "1.1.0",
 			new UpgradeMBThread());
 
-		Class<?>[] upgradeDatetimeTableClasses = {
-			MBBanTable.class, MBCategoryTable.class, MBDiscussionTable.class,
-			MBMailingListTable.class, MBMessageTable.class,
-			MBStatsUserTable.class, MBThreadFlagTable.class, MBThreadTable.class
-		};
-
 		registry.register(
 			"1.1.0", "2.0.0",
-			new BaseUpgradeSQLServerDatetime(upgradeDatetimeTableClasses));
+			new BaseUpgradeSQLServerDatetime(
+				new Class<?>[] {
+					MBBanTable.class, MBCategoryTable.class,
+					MBDiscussionTable.class, MBMailingListTable.class,
+					MBMessageTable.class, MBStatsUserTable.class,
+					MBThreadFlagTable.class, MBThreadTable.class
+				}));
 	}
 
 	@Reference

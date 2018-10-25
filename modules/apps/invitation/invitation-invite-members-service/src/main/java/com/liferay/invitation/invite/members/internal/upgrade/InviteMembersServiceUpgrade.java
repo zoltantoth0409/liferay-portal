@@ -38,11 +38,10 @@ public class InviteMembersServiceUpgrade implements UpgradeStepRegistrator {
 		registry.register(
 			"1.0.0", "1.0.1", new UpgradeNamespace(), new UpgradePortletId());
 
-		Class<?>[] upgradeDatetimeTableClasses = {MemberRequestTable.class};
-
 		registry.register(
 			"1.0.1", "2.0.0",
-			new BaseUpgradeSQLServerDatetime(upgradeDatetimeTableClasses));
+			new BaseUpgradeSQLServerDatetime(
+				new Class<?>[] {MemberRequestTable.class}));
 	}
 
 }

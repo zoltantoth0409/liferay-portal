@@ -49,12 +49,12 @@ public class BlogsServiceUpgrade implements UpgradeStepRegistrator {
 			"1.1.1", "1.1.2",
 			new UpgradeBlogsImages(_imageLocalService, _portletFileRepository));
 
-		Class<?>[] upgradeDatetimeTableClasses =
-			{BlogsEntryTable.class, BlogsStatsUserTable.class};
-
 		registry.register(
 			"1.1.2", "2.0.0",
-			new BaseUpgradeSQLServerDatetime(upgradeDatetimeTableClasses));
+			new BaseUpgradeSQLServerDatetime(
+				new Class<?>[] {
+					BlogsEntryTable.class, BlogsStatsUserTable.class
+				}));
 	}
 
 	@Reference
