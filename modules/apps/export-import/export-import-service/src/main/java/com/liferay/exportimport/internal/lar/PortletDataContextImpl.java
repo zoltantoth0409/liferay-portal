@@ -3089,6 +3089,9 @@ public class PortletDataContextImpl implements PortletDataContext {
 						newPrimaryKey))) {
 
 				try {
+					long importedClassPK = GetterUtil.getLong(
+						classedModel.getPrimaryKeyObj());
+
 					String referrerUuid =
 						stagedGroupedWorkflowDefinitionLinkElement.
 							attributeValue("uuid");
@@ -3107,9 +3110,6 @@ public class PortletDataContextImpl implements PortletDataContext {
 
 						typePK = ddmPrimaryKeys.getOrDefault(typePK, typePK);
 					}
-
-					long importedClassPK = GetterUtil.getLong(
-						classedModel.getPrimaryKeyObj());
 
 					PermissionChecker permissionChecker =
 						PermissionThreadLocal.getPermissionChecker();
