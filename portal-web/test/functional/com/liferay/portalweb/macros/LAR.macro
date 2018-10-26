@@ -188,14 +188,14 @@
 			<else>
 				<execute function="AssertClickNoError" locator1="Button#CONTINUE" value1="Continue" />
 
+				<execute function="Pause" locator1="5000" />
+
 				<if>
 					<equals arg1="${mirrorWithOverwriting}" arg2="true" />
 					<then>
 						<execute macro="LAR#_mirrorWithOverwriting" />
 					</then>
 				</if>
-
-				<execute function="Pause" locator1="5000" />
 
 				<execute function="AssertVisible" locator1="Link#BACK" />
 
