@@ -8,3 +8,14 @@ app.artifacts-1.0.0=\
 app.change.log-1.0.0=LPS-77699
 
 app.git.id-1.0.0=bf9943b93ff9473888db9fac9695168575fa3ab2
+
+#
+# Liferay App Version 1.0.1
+#
+
+app.artifacts-1.0.1=\
+	com.liferay.image.uploader.web-2.0.5.jar
+
+app.change.log-1.0.1=LPS-83705 LPS-84119 LPS-85261
+
+app.git.id-1.0.1=9508d913f6909502cb3740473221065b3555f7b1
