@@ -34,7 +34,6 @@ public class FolderFacetBuilder {
 		Facet facet = _folderFacetFactory.newInstance(_searchContext);
 
 		facet.setAggregationName(getAggregationName(facet.getFieldName()));
-
 		facet.setFacetConfiguration(buildFacetConfiguration(facet));
 
 		if (_selectedFolderIds != null) {

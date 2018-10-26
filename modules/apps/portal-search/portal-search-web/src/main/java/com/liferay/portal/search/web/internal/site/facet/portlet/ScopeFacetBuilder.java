@@ -34,7 +34,6 @@ public class ScopeFacetBuilder {
 		Facet facet = _facetFactory.newInstance(_searchContext);
 
 		facet.setAggregationName(getAggregationName(facet.getFieldName()));
-
 		facet.setFacetConfiguration(buildFacetConfiguration(facet));
 
 		if (ArrayUtil.isNotEmpty(_selectedGroupIds)) {
