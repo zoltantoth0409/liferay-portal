@@ -18,3 +18,24 @@ app.artifacts-1.0.0=\
 app.change.log-1.0.0=LPS-0 LPS-77699 LPS-79653 LPS-79709 LPS-80332 LPS-80517 LPS-82343 LPS-82420 LPS-82481 LPS-82568 LPS-82734 LPS-82828 LRQA-41876
 
 app.git.id-1.0.0=bf9943b93ff9473888db9fac9695168575fa3ab2
+
+#
+# Liferay App Version 1.0.1
+#
+
+app.artifacts-1.0.1=\
+	com.liferay.frontend.js.aui.web-2.0.24.jar,\
+	com.liferay.frontend.js.bundle.config.extender-2.0.5.jar,\
+	com.liferay.frontend.js.loader.modules.extender-3.0.15.jar,\
+	com.liferay.frontend.js.loader.modules.extender.api-2.0.5.jar,\
+	com.liferay.frontend.js.metal.web-2.0.4.jar,\
+	com.liferay.frontend.js.minifier-1.0.4.jar,\
+	com.liferay.frontend.js.node.shims-2.0.1.jar,\
+	com.liferay.frontend.js.polyfill.babel.web-2.0.0.jar,\
+	com.liferay.frontend.js.spa.web-2.0.14.jar,\
+	com.liferay.frontend.js.top.head.extender-1.0.4.jar,\
+	com.liferay.frontend.js.web-2.0.23.jar
+
+app.change.log-1.0.1=LPS-0 LPS-74544 LPS-78938 LPS-79410 LPS-80388 LPS-80977 LPS-82045 LPS-82420 LPS-82534 LPS-82734 LPS-82808 LPS-82828 LPS-83052 LPS-83327 LPS-83332 LPS-83449 LPS-83468 LPS-83560 LPS-83703 LPS-83819 LPS-83824 LPS-83825 LPS-83828 LPS-83829 LPS-84041 LPS-84090 LPS-84119 LPS-84367 LPS-84568 LPS-84598 LPS-84600 LPS-84775 LPS-84777 LPS-85055 LPS-85062 LPS-85296 LPS-85575 LPS-85582 LPS-85800 LPS-85918 LPS-85977 LPS-86059 LPS-86070 LPS-86154 LPS-86330 LPS-86408 
+
+app.git.id-1.0.1=0c08fe386cad4b246b169bf4a749cd44e20b708a
