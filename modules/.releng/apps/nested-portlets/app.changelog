@@ -8,3 +8,14 @@ app.artifacts-1.0.0=\
 app.change.log-1.0.0=LPS-77699
 
 app.git.id-1.0.0=bf9943b93ff9473888db9fac9695168575fa3ab2
+
+#
+# Liferay App Version 1.0.1
+#
+
+app.artifacts-1.0.1=\
+	com.liferay.nested.portlets.web-3.0.7.jar
+
+app.change.log-1.0.1=LPS-83705 LPS-84092 LPS-84119 LPS-85296
+
+app.git.id-1.0.1=75f7301f8814945aa20adfff6b53f9d7e3010371
