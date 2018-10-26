@@ -311,7 +311,6 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 
 		Locale localeThreadLocalDefaultLocale =
 			LocaleThreadLocal.getDefaultLocale();
-
 		Locale localeThreadSiteDefaultLocale =
 			LocaleThreadLocal.getSiteDefaultLocale();
 
