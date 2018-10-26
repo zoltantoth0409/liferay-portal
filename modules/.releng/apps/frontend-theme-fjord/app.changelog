@@ -21,3 +21,15 @@ app.artifacts-2.0.1=\
 app.change.log-2.0.1=LPS-79679 LPS-83131 LPS-83327
 
 app.git.id-2.0.1=879b41974197c18348b81d8b53c28937cf0b4f0e
+
+#
+# Liferay App Version 2.0.2
+#
+
+app.artifacts-2.0.2=\
+	com.liferay.frontend.theme.fjord.site.initializer-1.0.6.jar,\
+	fjord-theme-2.0.13.war
+
+app.change.log-2.0.2=LPS-83131 LPS-83327 LPS-85296 LPS-86408
+
+app.git.id-2.0.2=1d8e72a25de0a7158e82fd195496cd50cb2a1738
