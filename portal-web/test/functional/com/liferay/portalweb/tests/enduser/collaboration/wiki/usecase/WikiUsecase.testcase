@@ -323,7 +323,6 @@
 
 		<execute macro="LAR#importPortlet">
 			<var name="larFileName" value="research-projects-update-node.lar" />
-			<var name="mirrorWithOverwriting" value="true" />
 			<var name="uploadFrom" value="dependencies" />
 		</execute>
 
