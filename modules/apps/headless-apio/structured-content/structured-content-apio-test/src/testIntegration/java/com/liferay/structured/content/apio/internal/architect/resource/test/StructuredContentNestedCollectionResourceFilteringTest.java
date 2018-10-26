@@ -991,7 +991,7 @@ public class StructuredContentNestedCollectionResourceFilteringTest
 			new Filter(
 				filterParser.parse(
 					StringBundler.concat(
-						"(values/s", _ddmStructure.getStructureId(),
+						"(values/_", _ddmStructure.getStructureId(),
 						StringPool.UNDERLINE, "TextFieldName eq ",
 						"'textfield')"))),
 			Sort.emptySort());
