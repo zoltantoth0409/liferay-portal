@@ -73,6 +73,11 @@ public class LiferayTemplateCache extends TemplateCache {
 	}
 
 	@Override
+	public void clear() {
+		_portalCache.removeAll();
+	}
+
+	@Override
 	public MaybeMissingTemplate getTemplate(
 			String templateId, Locale locale, Object customLookupCondition,
 			String encoding, boolean parse)
