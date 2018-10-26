@@ -99,8 +99,6 @@ public class VelocityManager extends BaseSingleTemplateManager {
 		_velocityEngine = null;
 
 		templateContextHelper.removeAllHelperUtilities();
-
-		templateContextHelper = null;
 	}
 
 	@Override
