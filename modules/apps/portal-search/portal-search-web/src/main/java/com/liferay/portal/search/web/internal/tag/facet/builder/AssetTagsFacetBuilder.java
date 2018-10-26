@@ -35,7 +35,6 @@ public class AssetTagsFacetBuilder {
 		Facet facet = _assetTagNamesFacetFactory.newInstance(_searchContext);
 
 		facet.setAggregationName(getAggregationName(facet.getFieldName()));
-
 		facet.setFacetConfiguration(buildFacetConfiguration(facet));
 
 		facet.select(_selectedTagNames);

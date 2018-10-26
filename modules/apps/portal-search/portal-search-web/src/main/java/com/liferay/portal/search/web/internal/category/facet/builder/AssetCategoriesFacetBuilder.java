@@ -36,7 +36,6 @@ public class AssetCategoriesFacetBuilder {
 		Facet facet = _categoryFacetFactory.newInstance(_searchContext);
 
 		facet.setAggregationName(getAggregationName(facet.getFieldName()));
-
 		facet.setFacetConfiguration(buildFacetConfiguration(facet));
 
 		if (_selectedCategoryIds != null) {

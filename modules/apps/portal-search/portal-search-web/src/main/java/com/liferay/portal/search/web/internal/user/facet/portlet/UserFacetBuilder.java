@@ -33,7 +33,6 @@ public class UserFacetBuilder {
 		Facet facet = _userFacetFactory.newInstance(_searchContext);
 
 		facet.setAggregationName(getAggregationName(facet.getFieldName()));
-
 		facet.setFacetConfiguration(buildFacetConfiguration(facet));
 
 		facet.select(_selectedUserNames);

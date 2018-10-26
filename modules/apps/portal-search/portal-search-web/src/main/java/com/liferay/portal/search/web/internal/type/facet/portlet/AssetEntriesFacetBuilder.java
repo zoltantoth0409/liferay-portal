@@ -35,7 +35,6 @@ public class AssetEntriesFacetBuilder {
 		Facet facet = _assetEntriesFacetFactory.newInstance(_searchContext);
 
 		facet.setAggregationName(getAggregationName(facet.getFieldName()));
-
 		facet.setFacetConfiguration(buildFacetConfiguration(facet));
 
 		facet.select(_selectedEntryClassNames);
