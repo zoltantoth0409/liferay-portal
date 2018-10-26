@@ -4,6 +4,11 @@ dependencies {
 }
 
 deploy {
+	from ("osgi/configs") {
+		include "*.cfg"
+		include "*.config"
+		into "osgi/configs"
+	}
 	from ("properties") {
 		include "*.properties"
 	}
@@ -12,6 +17,11 @@ deploy {
 distributions {
 	main {
 		contents {
+			from ("osgi/configs") {
+				include "*.cfg"
+				include "*.config"
+				into "lib/osgi/configs"
+			}
 			from("properties") {
 				include "*.properties"
 				into "lib"
