@@ -63,9 +63,7 @@ public class AssetEntryAuthorProfileAssetDisplayContributorField
 
 	@Override
 	public String getValue(AssetEntry assetEntry, Locale locale) {
-		long userId = assetEntry.getUserId();
-
-		User user = _userLocalService.fetchUser(userId);
+		User user = _userLocalService.fetchUser(assetEntry.getUserId());
 
 		if (user != null) {
 			ServiceContext serviceContext =

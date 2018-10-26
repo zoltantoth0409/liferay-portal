@@ -58,9 +58,7 @@ public class JournalArticleLastEditorNameAssetDisplayContributorField
 
 	@Override
 	public String getValue(JournalArticle article, Locale locale) {
-		long userId = article.getUserId();
-
-		User user = _userLocalService.fetchUser(userId);
+		User user = _userLocalService.fetchUser(article.getUserId());
 
 		if (user != null) {
 			return user.getFullName();
