@@ -1,0 +1,13 @@
+#
+# Liferay App Version 9
+#
+
+app.artifacts-9=\
+	com.liferay.marketplace.api-5.0.3.jar,\
+	com.liferay.marketplace.app.manager.web-2.0.16.jar,\
+	com.liferay.marketplace.service-4.0.8.jar,\
+	com.liferay.marketplace.store.web-4.0.4.jar
+
+app.change.log-9=LPS-84039 LPS-84119 LPS-85849 LPS-86444
+
+app.git.id-9=d20c9e8621dccefef96c6eae05cb639d3f99bf4c
