@@ -693,8 +693,8 @@ class Layout extends Component {
 
 		nextLayoutColumns = deleteEmptyColumns(nextLayoutColumns);
 
-		this._getItemChildren(targetItemPlid).
-			then(
+		this._getItemChildren(targetItemPlid)
+			.then(
 				(response) => {
 					const {children} = response;
 					const lastColumnIndex = nextLayoutColumns.length - 1;
@@ -828,8 +828,8 @@ Layout.STATE = {
 	 * @type {!string}
 	 */
 
-	_currentPathItemPlid: Config.string().internal().
-		value(null),
+	_currentPathItemPlid: Config.string().internal()
+		.value(null),
 
 	/**
 	 * Item that is being dragged.
