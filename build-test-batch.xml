@@ -2258,7 +2258,10 @@ app.server.type=@{app.server.type}]]></echo>
 									<then>
 										<setup-testable-tomcat />
 
-										<setup-test-batch-testable-tomcat setup.proxy="@{setup.proxy}" />
+										<setup-test-batch-testable-tomcat
+											setup.proxy="@{setup.proxy}"
+											test.portal.bundle.version="${test.portal.bundle.version}"
+										/>
 									</then>
 								</elseif>
 							</if>
