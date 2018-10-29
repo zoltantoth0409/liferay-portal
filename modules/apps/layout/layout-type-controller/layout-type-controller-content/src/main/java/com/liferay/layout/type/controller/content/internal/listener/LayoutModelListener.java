@@ -142,7 +142,7 @@ public class LayoutModelListener extends BaseModelListener<Layout> {
 		}
 		catch (SearchException se) {
 			if (_log.isDebugEnabled()) {
-				_log.debug("Unable to reindex Layout " + layout.getPlid(), se);
+				_log.debug("Unable to reindex layout " + layout.getPlid(), se);
 			}
 
 			throw new ModelListenerException(se);
