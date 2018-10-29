@@ -107,10 +107,8 @@ public class LayoutIndexer extends BaseIndexer<Layout> {
 		Document document = getBaseModelDocument(CLASS_NAME, layout);
 
 		document.addUID(CLASS_NAME, layout.getPlid());
-
 		document.addText(
 			Field.DEFAULT_LANGUAGE_ID, layout.getDefaultLanguageId());
-
 		document.addLocalizedText(Field.NAME, layout.getNameMap());
 
 		LayoutPageTemplateStructure layoutPageTemplateStructure =
