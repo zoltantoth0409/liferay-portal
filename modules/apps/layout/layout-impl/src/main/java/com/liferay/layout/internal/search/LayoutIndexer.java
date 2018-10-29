@@ -231,6 +231,7 @@ public class LayoutIndexer extends BaseIndexer<Layout> {
 		IndexableActionableDynamicQuery indexableActionableDynamicQuery =
 			_layoutLocalService.getIndexableActionableDynamicQuery();
 
+		indexableActionableDynamicQuery.setCompanyId(companyId);
 		indexableActionableDynamicQuery.setInterval(
 			_batchIndexingHelper.getBulkSize(Layout.class.getName()));
 		indexableActionableDynamicQuery.setPerformActionMethod(
@@ -247,8 +248,6 @@ public class LayoutIndexer extends BaseIndexer<Layout> {
 					}
 				}
 			});
-
-		indexableActionableDynamicQuery.setCompanyId(companyId);
 		indexableActionableDynamicQuery.setSearchEngineId(getSearchEngineId());
 
 		indexableActionableDynamicQuery.performActions();
