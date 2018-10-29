@@ -513,8 +513,8 @@ String[] liferayAnalyticsGroupIds = PrefsPropsUtil.getStringArray(company.getCom
 			if (themeDisplay.isSignedIn()) {
 				Analytics.setIdentity(
 					{
-						email: '<%= HtmlUtil.escapeJS(user.getEmailAddress()) %>',
-						name: '<%= HtmlUtil.escapeJS(user.getFullName()) %>'
+						email: themeDisplay.getUserEmailAddress(),
+						name: themeDisplay.getUserName()
 					}
 				);
 			}
@@ -533,8 +533,8 @@ String[] liferayAnalyticsGroupIds = PrefsPropsUtil.getStringArray(company.getCom
 							if (themeDisplay.isSignedIn()) {
 								Analytics.setIdentity(
 									{
-										email: '<%= HtmlUtil.escapeJS(user.getEmailAddress()) %>',
-										name: '<%= HtmlUtil.escapeJS(user.getFullName()) %>'
+										email: themeDisplay.getUserEmailAddress(),
+										name: themeDisplay.getUserName()
 									}
 								);
 							}
