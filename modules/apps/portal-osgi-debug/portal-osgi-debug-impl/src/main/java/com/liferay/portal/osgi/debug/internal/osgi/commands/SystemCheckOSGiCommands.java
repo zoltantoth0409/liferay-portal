@@ -89,7 +89,7 @@ public class SystemCheckOSGiCommands {
 		Collection<SystemChecker> systemCheckers = systemCheckerMap.values();
 
 		if (useSystemOut) {
-			System.out.println("Available checkers :" + systemCheckers);
+			System.out.println("Available checkers: " + systemCheckers);
 		}
 		else if (_log.isInfoEnabled()) {
 			_log.info("Available checkers :" + systemCheckers);
