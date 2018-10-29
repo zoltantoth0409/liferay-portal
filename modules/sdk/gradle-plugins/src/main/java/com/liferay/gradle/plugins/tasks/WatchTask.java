@@ -206,9 +206,12 @@ public class WatchTask extends DefaultTask {
 
 			List<File> modifiedFiles = _getModifiedFiles(incrementalTaskInputs);
 
-			if (_isClassLoaderFileChanged(modifiedFiles) ||
-				_isManifestChanged(modifiedFiles)) {
+			if (_isManifestChanged(modifiedFiles)) {
+				_installOrUpdateBundle(installedBundleId, gogoShellClient);
 
+				return;
+			}
+			else if (_isClassLoaderFileChanged(modifiedFiles)) {
 				_refreshBundle(installedBundleId, gogoShellClient);
 
 				return;
