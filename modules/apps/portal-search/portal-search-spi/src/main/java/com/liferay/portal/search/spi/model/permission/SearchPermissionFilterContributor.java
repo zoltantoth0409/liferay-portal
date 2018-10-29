@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.security.permission.PermissionChecker;
 
 /**
  * Contributes new filters for checking permissions on search results. Matches
-<<<<<<< HEAD
  * are based on the fields indexed by the corresponding {@link
  * SearchPermissionFieldContributor}.
  *
@@ -29,13 +28,6 @@ import com.liferay.portal.kernel.security.permission.PermissionChecker;
  * Register implementations of this interface as OSGi components using the
  * service {@code SearchPermissionFilterContributor}.
  * </p>
-=======
- * are based on the fields indexed by the corresponding
- * {@link SearchPermissionFieldContributor}.
- *
- * Register implementations of this interface as OSGi components using the
- * service {@code SearchPermissionFilterContributor}.
->>>>>>> 179f129... LPS-84966, review editing
  *
  * @author Sergio González
  */
