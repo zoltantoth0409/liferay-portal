@@ -147,7 +147,6 @@ public class LayoutSetPrototypeDisplayContext {
 						dropdownGroupItem.setLabel(
 							LanguageUtil.get(_request, "filter-by-status"));
 					});
-
 				addGroup(
 					dropdownGroupItem -> {
 						dropdownGroupItem.setDropdownItems(
