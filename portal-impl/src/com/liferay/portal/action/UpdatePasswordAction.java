@@ -198,23 +198,23 @@ public class UpdatePasswordAction extends Action {
 
 		StringBundler sb = new StringBundler(7 + parameterMap.size() * 5);
 
-		sb.append("<html><body onload='document.fm.submit()'>");
-		sb.append("<form name=fm method=post action='");
+		sb.append("<html><body onload=\"document.fm.submit();\">");
+		sb.append("<form action=\"");
 		sb.append(PortalUtil.getPortalURL(request));
-		sb.append("/c/portal/update_password'>");
+		sb.append("/c/portal/update_password\" method=\"post\" name=\"fm\">");
 
 		for (String name : parameterMap.keySet()) {
 			String value = ParamUtil.getString(request, name);
 
-			sb.append("<input type=hidden name='");
+			sb.append("<input name=\"");
 			sb.append(HtmlUtil.escapeAttribute(name));
-			sb.append("' value='");
+			sb.append("\" type=\"hidden\" value=\"");
 			sb.append(HtmlUtil.escapeAttribute(value));
-			sb.append("'/>");
+			sb.append("\"/>");
 		}
 
 		sb.append("<noscript>");
-		sb.append("<input type=submit value='Please continue here...'/>");
+		sb.append("<input type=\"submit\" value=\"Please continue here...\"/>");
 		sb.append("</noscript></form></body></html>");
 
 		printWriter.write(sb.toString());
