@@ -192,6 +192,8 @@ public class UpdatePasswordAction extends Action {
 		response.setHeader("Expires", "0");
 		response.setHeader("Pragma", "no-cache");
 
+		PrintWriter printWriter = response.getWriter();
+
 		Map<String, String[]> parameterMap = request.getParameterMap();
 
 		StringBundler sb = new StringBundler(7 + parameterMap.size() * 5);
@@ -215,10 +217,9 @@ public class UpdatePasswordAction extends Action {
 		sb.append("<input type=submit value='Please continue here...'/>");
 		sb.append("</noscript></form></body></html>");
 
-		PrintWriter writer = response.getWriter();
+		printWriter.write(sb.toString());
 
-		writer.write(sb.toString());
-		writer.close();
+		printWriter.close();
 	}
 
 	protected void updatePassword(
