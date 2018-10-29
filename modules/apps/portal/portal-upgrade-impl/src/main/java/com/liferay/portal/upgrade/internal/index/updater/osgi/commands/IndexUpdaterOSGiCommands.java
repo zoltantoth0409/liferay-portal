@@ -43,23 +43,22 @@ import org.osgi.service.component.annotations.Component;
 )
 public class IndexUpdaterOSGiCommands {
 
-	@Descriptor("Update database indexes for a specific module via bundle id")
+	@Descriptor("Update database indexes for a specific module via bundle ID")
 	public String updateIndexes(long bundleId) throws Exception {
 		Bundle bundle = _bundleContext.getBundle(bundleId);
 
 		if (bundle == null) {
 			throw new IllegalArgumentException(
-				"Module with id " + bundleId + " does not exist");
+				"Module " + bundleId + " does not exist");
 		}
 
 		if (IndexUpdaterUtil.isLiferayServiceBundle(bundle)) {
 			IndexUpdaterUtil.updateIndexes(bundle);
 
-			return "Completed update of indexes for module with id " + bundleId;
+			return "Completed update of indexes for module " + bundleId;
 		}
 
-		return "Module with id " + bundleId +
-			" has no indexes associated with it";
+		return "Module " + bundleId + " has no indexes associated with it";
 	}
 
 	@Descriptor(
@@ -115,8 +114,8 @@ public class IndexUpdaterOSGiCommands {
 				catch (Exception e) {
 					System.out.println(
 						StringBundler.concat(
-							"Failed to update indexes for ",
-							bundle.getSymbolicName(), " with error ", e));
+							"Unable to update indexes for ",
+							bundle.getSymbolicName(), ": ", e));
 				}
 			}
 		}
