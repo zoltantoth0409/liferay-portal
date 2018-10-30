@@ -78,6 +78,8 @@ MBBreadcrumbUtil.addPortletBreadcrumbEntries(message, request, renderResponse);
 
 			if (editorInstance) {
 				setTimeout(AUI._.bind(editorInstance.focus, editorInstance), 50);
+
+				Liferay.Util.scrollTo('<portlet:namespace />addReplyToMessage' + messageId);
 			}
 		}
 		else {
