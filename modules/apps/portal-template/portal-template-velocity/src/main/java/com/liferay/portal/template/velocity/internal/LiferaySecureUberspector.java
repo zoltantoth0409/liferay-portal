@@ -180,7 +180,9 @@ public class LiferaySecureUberspector extends SecureUberspector {
 						for (String restrictedPackageName :
 								_restrictedPackageNames) {
 
-							if (!packageName.startsWith(restrictedPackageName)) {
+							if (!packageName.startsWith(
+									restrictedPackageName)) {
+
 								continue;
 							}
 
