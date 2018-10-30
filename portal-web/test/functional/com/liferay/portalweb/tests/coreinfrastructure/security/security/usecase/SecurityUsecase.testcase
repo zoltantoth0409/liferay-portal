@@ -142,6 +142,8 @@ out.println(PortalUtil.escapeRedirect("/"));
 
 		<execute macro="UserBar#gotoProfile" />
 
+		<execute function="WaitForSPARefresh" />
+
 		<execute macro="Page#getGroupIdFromHtmlSource">
 			<return name="groupId" />
 		</execute>
