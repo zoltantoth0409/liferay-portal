@@ -291,12 +291,7 @@ public class DDMFormFieldTemplateContextFactory {
 			changedProperties = new HashMap<>();
 		}
 
-		if (!_pageEnabled) {
-			changedProperties.put("enabled", false);
-		}
-		else {
-			changedProperties.put("enabled", true);
-		}
+		changedProperties.put("enabled", _pageEnabled);
 
 		if (_ddmFormRenderingContext.isReadOnly()) {
 			changedProperties.put("readOnly", true);
