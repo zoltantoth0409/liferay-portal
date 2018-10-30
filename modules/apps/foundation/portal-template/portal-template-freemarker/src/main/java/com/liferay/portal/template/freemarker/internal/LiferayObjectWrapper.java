@@ -14,6 +14,7 @@
 
 package com.liferay.portal.template.freemarker.internal;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.concurrent.ConcurrentReferenceKeyHashMap;
 import com.liferay.petra.memory.FinalizeManager;
 import com.liferay.petra.string.StringPool;
@@ -136,7 +137,7 @@ public class LiferayObjectWrapper extends DefaultObjectWrapper {
 							StringBundler.concat(
 								"Unable to find restricted class ",
 								restrictedClassName,
-								". Registering as package name"),
+								". Registering as a package."),
 							cnfe);
 					}
 
@@ -238,8 +239,7 @@ public class LiferayObjectWrapper extends DefaultObjectWrapper {
 
 						return new ClassRestrictionInformation(
 							StringBundler.concat(
-								"Denied to resolve class ", className,
-								" due to security reasons, restricted by ",
+								"Denied resolving class ", className, " by ",
 								restrictedClass.getName()));
 					}
 
@@ -262,8 +262,7 @@ public class LiferayObjectWrapper extends DefaultObjectWrapper {
 
 						return new ClassRestrictionInformation(
 							StringBundler.concat(
-								"Denied to resolve class ", className,
-								" due to security reasons, restricted by ",
+								"Denied resolving class ", className, " by ",
 								restrictedPackageName));
 					}
 

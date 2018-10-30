@@ -14,8 +14,8 @@
 
 package com.liferay.portal.template.velocity.internal;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 
@@ -134,9 +134,7 @@ public class LiferaySecureUberspector extends SecureUberspector {
 			 methodName.equals("notify")))
 			{
 				throw new IllegalArgumentException(
-					StringBundler.concat(
-						"It is not allowed to execute ", methodName,
-						" method"));
+					"Executing method " + methodName + " is not allowed");
 			}
 
 			_checkClassIsRestricted(clazz);
@@ -162,9 +160,8 @@ public class LiferaySecureUberspector extends SecureUberspector {
 
 							return new ClassRestrictionInformation(
 								StringBundler.concat(
-									"Denied to resolve class ", className,
-									" due to security reasons, restricted by ",
-									restrictedClass.getName()));
+									"Denied resolving class ", className,
+									" by ", restrictedClass.getName()));
 						}
 
 						Package clazzPackage = clazz.getPackage();
@@ -188,9 +185,8 @@ public class LiferaySecureUberspector extends SecureUberspector {
 
 							return new ClassRestrictionInformation(
 								StringBundler.concat(
-									"Denied to resolve class ", className,
-									" due to security reasons, restricted by ",
-									restrictedPackageName));
+									"Denied resolving class ", className,
+									" by ", restrictedPackageName));
 						}
 
 						return _nullInstance;
