@@ -80,7 +80,7 @@ MBBreadcrumbUtil.addPortletBreadcrumbEntries(message, request, renderResponse);
 				setTimeout(AUI._.bind(editorInstance.focus, editorInstance), 50);
 
 				if (AUI().UA.mobile) {
-					document.getElementById('<portlet:namespace />addReplyToMessage' + messageId).scrollIntoView(true);
+					document.getElementById('<portlet:namespace />addQuickReplyDiv').scrollIntoView(false);
 				}
 			}
 		}
