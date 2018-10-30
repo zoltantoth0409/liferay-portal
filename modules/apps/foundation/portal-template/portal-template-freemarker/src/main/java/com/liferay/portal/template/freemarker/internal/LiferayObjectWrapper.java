@@ -228,7 +228,7 @@ public class LiferayObjectWrapper extends DefaultObjectWrapper {
 				clazz.getName(),
 				className -> {
 					if (_allowedClassNames.contains(className)) {
-						return new ClassRestrictionInformation(null);
+						return _nullInstance;
 					}
 
 					for (Class<?> restrictedClass : _restrictedClasses) {
@@ -260,7 +260,7 @@ public class LiferayObjectWrapper extends DefaultObjectWrapper {
 						}
 					}
 
-					return new ClassRestrictionInformation(null);
+					return _nullInstance;
 				});
 
 		if (classRestrictionInformation.isRestricted()) {
@@ -338,6 +338,8 @@ public class LiferayObjectWrapper extends DefaultObjectWrapper {
 	private static final Map<Class<?>, ModelFactory> _modelFactories =
 		new ConcurrentReferenceKeyHashMap<>(
 			FinalizeManager.SOFT_REFERENCE_FACTORY);
+	private static final ClassRestrictionInformation _nullInstance =
+		new ClassRestrictionInformation(null);
 
 	static {
 		try {
@@ -363,7 +365,7 @@ public class LiferayObjectWrapper extends DefaultObjectWrapper {
 	private final List<Class<?>> _restrictedClasses;
 	private final List<String> _restrictedPackageNames;
 
-	private class ClassRestrictionInformation {
+	private static class ClassRestrictionInformation {
 
 		public String getDescription() {
 			return _description;
