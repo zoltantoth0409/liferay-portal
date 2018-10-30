@@ -74,7 +74,10 @@
 			var deleteURL = link.getAttribute('data-url');
 
 			fetch(
-				deleteURL
+				deleteURL,
+				{
+					credentials: 'include'
+				}
 			).then(
 				function() {
 					searchContainer.deleteRow(link.ancestor('tr'), link.getAttribute('data-rowid'));
