@@ -4,8 +4,8 @@
 [subrepo]
 	autopull = false
 	cmdver = liferay
-	commit = dd972263b7b9ffdf98911813f89e21e39b555e79
+	commit = b290bb01f92f6c3aa8dec85a74bed4a7c068004a
 	mergebuttonmergecommits = false
 	mode = push
-	parent = 43f5cd8ef3f3872bc9b0becf9fb93eaeb4561a5d
+	parent = 051b90c6a795e2ae3e1ee0eaeebc80456430bcbb
 	remote = git@github.com:liferay/com-liferay-staging.git
