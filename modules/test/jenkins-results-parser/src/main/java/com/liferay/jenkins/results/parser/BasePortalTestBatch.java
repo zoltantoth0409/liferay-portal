@@ -82,28 +82,28 @@ public abstract class BasePortalTestBatch
 			getPrimaryPortalWorkspaceDirectory(), "build-test.xml",
 			"merge-test-results");
 
-		File source = new File(
+		File sourceFile = new File(
 			getPrimaryPortalWorkspaceDirectory(),
 			"test-results/TESTS-TestSuites.xml");
 
-		if (!source.exists()) {
+		if (!sourceFile.exists()) {
 			return;
 		}
 
 		BatchBuildData batchBuildData = getBatchBuildData();
 
-		File target = new File(
+		File targetFile = new File(
 			batchBuildData.getWorkspaceDir(),
 			"test-results/TESTS-TestSuites.xml");
 
 		try {
-			JenkinsResultsParserUtil.copy(source, target);
+			JenkinsResultsParserUtil.copy(sourceFile, targetFile);
 		}
 		catch (IOException ioe) {
 			throw new RuntimeException(
 				JenkinsResultsParserUtil.combine(
-					"Unable to copy test results file from ", source.getPath(),
-					" to ", target.getPath()),
+					"Unable to copy test results file from ",
+					sourceFile.getPath(), " to ", targetFile.getPath()),
 				ioe);
 		}
 	}
