@@ -24,7 +24,7 @@
 			<var name="key_menuItem" value="Edit With Image Editor" />
 		</execute>
 
-		<execute function="SelectFrame" locator1="ImageEditor#IMAGE_EDITOR_IFRAME" />
+		<execute function="SelectFrame" locator1="IFrame#IMAGE_EDITOR" />
 	</command>
 
 	<command name="gotoImageEditorViaItemSelector">
@@ -44,7 +44,7 @@
 
 		<execute function="SelectFrameTop" value1="relative=top" />
 
-		<execute function="SelectFrame" locator1="ImageEditor#IMAGE_EDITOR_IFRAME" />
+		<execute function="SelectFrame" locator1="IFrame#IMAGE_EDITOR" />
 	</command>
 
 	<command name="gotoRotateImage">

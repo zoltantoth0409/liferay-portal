@@ -383,7 +383,7 @@
 		<var name="key_entryTitle" value="Blogs Entry Title" />
 
 		<execute function="AssertElementNotPresent" locator1="Link#EDIT" />
-		<execute function="AssertElementNotPresent" locator1="Link#MOVE_TO_THE_RECYCLING_BIN" />
+		<execute function="AssertElementNotPresent" locator1="Link#MOVE_TO_THE_RECYCLE_BIN" />
 
 		<execute macro="LAR#configureExportSiteCP" />
 
@@ -422,7 +422,7 @@
 		<var name="key_entryTitle" value="Blogs Entry Title" />
 
 		<execute function="AssertElementNotPresent" locator1="Link#EDIT" />
-		<execute function="AssertElementNotPresent" locator1="Link#MOVE_TO_THE_RECYCLING_BIN" />
+		<execute function="AssertElementNotPresent" locator1="Link#MOVE_TO_THE_RECYCLE_BIN" />
 	</command>
 
 	<command name="ExportImportPrivatePage" priority="5">

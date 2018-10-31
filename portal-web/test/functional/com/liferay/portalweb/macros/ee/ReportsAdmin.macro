@@ -319,9 +319,9 @@ Sincerely,<br />
 		<execute macro="ReportsAdmin#gotoDefinitions" />
 
 		<while>
-			<condition function="IsElementPresent" locator1="ReportsAdmin#REPORTS_ENTRY_TABLE_ACTIONS_1" />
+			<condition function="IsElementPresent" locator1="ReportsAdmin#DEFINITIONS_DEFINITION_TABLE_ACTIONS_1" />
 			<then>
-				<execute function="Click" locator1="ReportsAdmin#REPORTS_ENTRY_TABLE_ACTIONS_1" />
+				<execute function="Click" locator1="ReportsAdmin#DEFINITIONS_DEFINITION_TABLE_ACTIONS_1" />
 
 				<execute function="AssertClickNoError" locator1="MenuItem#ANY_MENU_ITEM" value1="Delete">
 					<var name="key_menuItem" value="Delete" />
@@ -346,9 +346,9 @@ Sincerely,<br />
 		</execute>
 
 		<while>
-			<condition function="IsElementPresent" locator1="ReportsAdmin#REPORTS_ENTRY_TABLE_ACTIONS_1" />
+			<condition function="IsElementPresent" locator1="ReportsAdmin#DEFINITIONS_DEFINITION_TABLE_ACTIONS_1" />
 			<then>
-				<execute function="Click" locator1="ReportsAdmin#REPORTS_ENTRY_TABLE_ACTIONS_1" />
+				<execute function="Click" locator1="ReportsAdmin#DEFINITIONS_DEFINITION_TABLE_ACTIONS_1" />
 
 				<execute function="AssertClickNoError" locator1="MenuItem#ANY_MENU_ITEM" value1="Delete">
 					<var name="key_menuItem" value="Delete" />
@@ -375,9 +375,9 @@ Sincerely,<br />
 		<execute macro="ReportsAdmin#gotoSources" />
 
 		<while>
-			<condition function="IsElementPresent" locator1="ReportsAdmin#REPORTS_ENTRY_TABLE_ACTIONS_1" />
+			<condition function="IsElementPresent" locator1="ReportsAdmin#DEFINITIONS_DEFINITION_TABLE_ACTIONS_1" />
 			<then>
-				<execute function="Click" locator1="ReportsAdmin#REPORTS_ENTRY_TABLE_ACTIONS_1" />
+				<execute function="Click" locator1="ReportsAdmin#DEFINITIONS_DEFINITION_TABLE_ACTIONS_1" />
 
 				<execute function="AssertClickNoError" locator1="MenuItem#ANY_MENU_ITEM" value1="Delete">
 					<var name="key_menuItem" value="Delete" />
