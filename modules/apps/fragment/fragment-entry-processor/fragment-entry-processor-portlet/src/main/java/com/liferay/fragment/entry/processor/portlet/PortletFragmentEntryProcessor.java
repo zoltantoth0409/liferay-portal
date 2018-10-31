@@ -87,15 +87,15 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 
 			StringBundler sb = new StringBundler(5);
 
-			sb.append("<");
-			sb.append(_LFR_WIDGET + alias);
-			sb.append("></");
-			sb.append(_LFR_WIDGET + alias);
+			sb.append("<lfr-widget-");
+			sb.append(alias);
+			sb.append("></lfr-widget-");
+			sb.append(alias);
 			sb.append(">");
 
 			jsonObject.put("content", sb.toString());
 
-			jsonObject.put("name", _LFR_WIDGET + alias);
+			jsonObject.put("name", "lfr-widget-" + alias);
 
 			jsonArray.put(jsonObject);
 		}
@@ -116,12 +116,12 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 		for (Element element : document.select("*")) {
 			String tagName = element.tagName();
 
-			if (!StringUtil.startsWith(tagName, _LFR_WIDGET)) {
+			if (!StringUtil.startsWith(tagName, "lfr-widget-")) {
 				continue;
 			}
 
 			String alias = StringUtil.replace(
-				tagName, _LFR_WIDGET, StringPool.BLANK);
+				tagName, "lfr-widget-", StringPool.BLANK);
 
 			String portletName = _portletRegistry.getPortletName(alias);
 
@@ -211,12 +211,12 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 		for (Element element : document.select("*")) {
 			String htmlTagName = element.tagName();
 
-			if (!StringUtil.startsWith(htmlTagName, _LFR_WIDGET)) {
+			if (!StringUtil.startsWith(htmlTagName, "lfr-widget-")) {
 				continue;
 			}
 
 			String alias = StringUtil.replace(
-				htmlTagName, _LFR_WIDGET, StringPool.BLANK);
+				htmlTagName, "lfr-widget-", StringPool.BLANK);
 
 			if (Validator.isNull(_portletRegistry.getPortletName(alias))) {
 				throw new FragmentEntryContentException(
@@ -444,8 +444,6 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 				portletPreferences);
 		}
 	}
-
-	private static final String _LFR_WIDGET = "lfr-widget-";
 
 	@Reference
 	private FragmentEntryLinkLocalService _fragmentEntryLinkLocalService;
