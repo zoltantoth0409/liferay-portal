@@ -9,26 +9,6 @@
 </thead>
 <tbody>
 <tr>
-	<td>VIEWABLE_AS_SELECT</td>
-	<td>//select[contains(@id,'_inputPermissionsViewRole')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>MORE_OPTIONS_LINK</td>
-	<td>link=More Options »</td>
-	<td></td>
-</tr>
-<tr>
-	<td>HIDE_OPTIONS_LINK</td>
-	<td>link=« Hide Options</td>
-	<td></td>
-</tr>
-<tr>
-	<td>PERMISSIONS_CHECKBOX</td>
-	<td>//tr[contains(.,'${key_roleName}')]//input[@value='${key_permissionDefinitionKey}']</td>
-	<td></td>
-</tr>
-<tr>
 	<td>GUEST_REPLY_TO_MESSAGE_CHECKBOX</td>
 	<td>//tr[contains(.,'Guest')]//input[contains(@name,'ACTION_REPLY_TO_MESSAGE') and contains(@type,'checkbox')]</td>
 	<td></td>
@@ -39,8 +19,13 @@
 	<td></td>
 </tr>
 <tr>
+	<td>HIDE_OPTIONS_LINK</td>
+	<td>link=« Hide Options</td>
 	<td></td>
-	<td></td>
+</tr>
+<tr>
+	<td>MORE_OPTIONS_LINK</td>
+	<td>link=More Options »</td>
 	<td></td>
 </tr>
 <tr>
@@ -49,8 +34,8 @@
 	<td></td>
 </tr>
 <tr>
-	<td></td>
-	<td></td>
+	<td>PERMISSIONS_CHECKBOX</td>
+	<td>//tr[contains(.,'${key_roleName}')]//input[@value='${key_permissionDefinitionKey}']</td>
 	<td></td>
 </tr>
 <tr>
@@ -59,13 +44,13 @@
 	<td></td>
 </tr>
 <tr>
-	<td></td>
-	<td></td>
+	<td>SITE_MEMBER_VIEW_CHECKBOX</td>
+	<td>//input[@id='site-member_ACTION_VIEW']</td>
 	<td></td>
 </tr>
 <tr>
-	<td>SITE_MEMBER_VIEW_CHECKBOX</td>
-	<td>//input[@id='site-member_ACTION_VIEW']</td>
+	<td>VIEWABLE_AS_SELECT</td>
+	<td>//select[contains(@id,'_inputPermissionsViewRole')]</td>
 	<td></td>
 </tr>
 </tbody>

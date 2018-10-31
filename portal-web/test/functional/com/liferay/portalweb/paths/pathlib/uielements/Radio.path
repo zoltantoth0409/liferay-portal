@@ -14,11 +14,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>CUSTOM_URL</td>
-	<td>//label[contains(.,'Custom')]/input[@type='radio']</td>
-	<td></td>
-</tr>
-<tr>
 	<td>CHOOSE_CONTENT_DATE_RANGE_CHANGE</td>
 	<td>//input[contains(@id,'rangeDateRange')]</td>
 	<td></td>
@@ -26,6 +21,11 @@
 <tr>
 	<td>CUSTOM_ABSTRACT</td>
 	<td>//label[contains(.,'Custom Abstract')]/input[contains(@id,'customAbstract')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>CUSTOM_URL</td>
+	<td>//label[contains(.,'Custom')]/input[@type='radio']</td>
 	<td></td>
 </tr>
 <tr>

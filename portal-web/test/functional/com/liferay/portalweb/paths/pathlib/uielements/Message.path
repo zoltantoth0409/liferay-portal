@@ -34,11 +34,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>ERROR_ALERT</td>
-	<td>//div[@role='alert']</td>
-	<td></td>
-</tr>
-<tr>
 	<td>ERROR</td>
 	<td>//div[contains(@class,'alert') and (contains(@class,'alert-error') or contains(@class,'alert-danger'))]</td>
 	<td></td>
@@ -79,13 +74,13 @@
 	<td></td>
 </tr>
 <tr>
-	<td>ERROR_ENTER_A_VALID_TITLE</td>
-	<td>//div[contains(@class,'alert-danger') and contains(.,'Please enter a valid title')]</td>
+	<td>ERROR_ALERT</td>
+	<td>//div[@role='alert']</td>
 	<td></td>
 </tr>
 <tr>
-	<td>ERROR_REQUEST_FAILED_TO_COMPLETE</td>
-	<td>//div[contains(@class,'alert-danger') and contains(.,'Your request failed to complete')]</td>
+	<td>ERROR_ENTER_A_VALID_TITLE</td>
+	<td>//div[contains(@class,'alert-danger') and contains(.,'Please enter a valid title')]</td>
 	<td></td>
 </tr>
 <tr>
@@ -96,6 +91,11 @@
 <tr>
 	<td>ERROR_FORM_FIELD_REQUIRED</td>
 	<td>//div[contains(@class,'has-error')]//div[contains(@class,'error-message')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ERROR_REQUEST_FAILED_TO_COMPLETE</td>
+	<td>//div[contains(@class,'alert-danger') and contains(.,'Your request failed to complete')]</td>
 	<td></td>
 </tr>
 <tr>
@@ -114,11 +114,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>INFO_LINK</td>
-	<td>//div[contains(@class,'alert') and contains(@class,'alert-info')]/a</td>
-	<td></td>
-</tr>
-<tr>
 	<td>INFO_1</td>
 	<td>//div[contains(@class,'alert') and contains(@class,'alert-info')][1]</td>
 	<td></td>
@@ -134,13 +129,18 @@
 	<td></td>
 </tr>
 <tr>
-	<td>INFO_NO_RESULTS_FOUND</td>
-	<td>//div[contains(@class,'empty-result-message')]//div[contains(@class,'text-center')]</td>
+	<td>INFO_EXPLANATION_POST</td>
+	<td>//div[contains(@id,'explanationPost')]/div[@class='alert alert-info']</td>
 	<td></td>
 </tr>
 <tr>
-	<td>INFO_EXPLANATION_POST</td>
-	<td>//div[contains(@id,'explanationPost')]/div[@class='alert alert-info']</td>
+	<td>INFO_LINK</td>
+	<td>//div[contains(@class,'alert') and contains(@class,'alert-info')]/a</td>
+	<td></td>
+</tr>
+<tr>
+	<td>INFO_NO_RESULTS_FOUND</td>
+	<td>//div[contains(@class,'empty-result-message')]//div[contains(@class,'text-center')]</td>
 	<td></td>
 </tr>
 <tr>

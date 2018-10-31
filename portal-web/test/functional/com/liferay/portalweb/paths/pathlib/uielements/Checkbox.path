@@ -59,13 +59,13 @@
 	<td></td>
 </tr>
 <tr>
-	<td>CHANGEABLE</td>
-	<td>//label[contains(.,'Changeable')]/input[@type='checkbox']</td>
+	<td>CHANGE_REQUIRED</td>
+	<td>//label[contains(.,'Change Required')]/input[@type='checkbox']</td>
 	<td></td>
 </tr>
 <tr>
-	<td>CHANGE_REQUIRED</td>
-	<td>//label[contains(.,'Change Required')]/input[@type='checkbox']</td>
+	<td>CHANGEABLE</td>
+	<td>//label[contains(.,'Changeable')]/input[@type='checkbox']</td>
 	<td></td>
 </tr>
 <tr>
@@ -89,13 +89,13 @@
 	<td></td>
 </tr>
 <tr>
-	<td>ENABLE_COMMENTS</td>
-	<td>//label[contains(.,'Enable Comments')]/input[@type='checkbox']</td>
+	<td>ENABLE_COMMENT_RATINGS</td>
+	<td>//label[contains(.,'Enable Comment Ratings')]/input[@type='checkbox']</td>
 	<td></td>
 </tr>
 <tr>
-	<td>ENABLE_COMMENT_RATINGS</td>
-	<td>//label[contains(.,'Enable Comment Ratings')]/input[@type='checkbox']</td>
+	<td>ENABLE_COMMENTS</td>
+	<td>//label[contains(.,'Enable Comments')]/input[@type='checkbox']</td>
 	<td></td>
 </tr>
 <tr>
@@ -141,6 +141,11 @@
 <tr>
 	<td>ENABLE_SOCIAL_BOOKMARKS</td>
 	<td>//input[@type='checkbox' and contains(@name,'enableSocialBookmarks')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>ENABLE_SYNTAX_CHECKING</td>
+	<td>//label[contains(.,'Enable Syntax Checking')]/input[@type='checkbox']</td>
 	<td></td>
 </tr>
 <tr>
@@ -281,11 +286,6 @@
 <tr>
 	<td>STAGED_CONTENT</td>
 	<td>//li[contains(.,'${key_contentName}')]//input</td>
-	<td></td>
-</tr>
-<tr>
-	<td>ENABLE_SYNTAX_CHECKING</td>
-	<td>//label[contains(.,'Enable Syntax Checking')]/input[@type='checkbox']</td>
 	<td></td>
 </tr>
 <tr>

@@ -9,8 +9,18 @@
 </thead>
 <tbody>
 <tr>
+	<td>CHANGE_TO_PUBLIC_PAGES</td>
+	<td>//div/button[contains(@id,'changeToPublicLayoutsButton')]</td>
 	<td></td>
+</tr>
+<tr>
+	<td>CHANGE_TO_PRIVATE_PAGES</td>
+	<td>//div/button[contains(@id,'changeToPrivateLayoutsButton')]</td>
 	<td></td>
+</tr>
+<tr>
+	<td>CONTENT_CHOOSE_CONTENT_CONTENT_CHECKBOX</td>
+	<td>//label[contains(.,'${key_contentName}')]/input</td>
 	<td></td>
 </tr>
 <tr>
@@ -24,16 +34,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>PAGES_SPECIFIC_PAGE_NAME</td>
-	<td>//li/div[contains(.,'${key_pageName}')]//span[contains(@class,'icon-check')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>PAGES_SPECIFIC_PAGE_CHECKED</td>
-	<td>//li/div[contains(@class,'checked') and contains(.,'${key_pageName}')]//span[contains(@class,'icon-check')]</td>
-	<td></td>
-</tr>
-<tr>
 	<td>PAGES_DELETE_MISSING_PAGES_CHECKBOX</td>
 	<td>//input[contains(@id,'DELETE_MISSING_LAYOUTS')]</td>
 	<td></td>
@@ -44,18 +44,13 @@
 	<td></td>
 </tr>
 <tr>
-	<td>CHANGE_TO_PUBLIC_PAGES</td>
-	<td>//div/button[contains(@id,'changeToPublicLayoutsButton')]</td>
+	<td>PAGES_SPECIFIC_PAGE_CHECKED</td>
+	<td>//li/div[contains(@class,'checked') and contains(.,'${key_pageName}')]//span[contains(@class,'icon-check')]</td>
 	<td></td>
 </tr>
 <tr>
-	<td>CHANGE_TO_PRIVATE_PAGES</td>
-	<td>//div/button[contains(@id,'changeToPrivateLayoutsButton')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>CONTENT_CHOOSE_CONTENT_CONTENT_CHECKBOX</td>
-	<td>//label[contains(.,'${key_contentName}')]/input</td>
+	<td>PAGES_SPECIFIC_PAGE_NAME</td>
+	<td>//li/div[contains(.,'${key_pageName}')]//span[contains(@class,'icon-check')]</td>
 	<td></td>
 </tr>
 </tbody>

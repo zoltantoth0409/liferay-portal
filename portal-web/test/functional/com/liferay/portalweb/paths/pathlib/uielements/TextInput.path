@@ -69,13 +69,13 @@
 	<td></td>
 </tr>
 <tr>
-	<td>DISPLAY_DATE_MINUTE</td>
-	<td>//input[contains(@id,'displayDateMinute')]</td>
+	<td>DISPLAY_DATE_MERIDIAN</td>
+	<td>//input[contains(@id,'displayDateAmPm')]</td>
 	<td></td>
 </tr>
 <tr>
-	<td>DISPLAY_DATE_MERIDIAN</td>
-	<td>//input[contains(@id,'displayDateAmPm')]</td>
+	<td>DISPLAY_DATE_MINUTE</td>
+	<td>//input[contains(@id,'displayDateMinute')]</td>
 	<td></td>
 </tr>
 <tr>
@@ -134,13 +134,13 @@
 	<td></td>
 </tr>
 <tr>
-	<td>FIRST_NAME</td>
-	<td>//div[label[contains(.,'First Name')]]/input[@type='text']</td>
+	<td>FILE</td>
+	<td>//input[contains(@id,'file') and @type='file']</td>
 	<td></td>
 </tr>
 <tr>
-	<td>FILE</td>
-	<td>//input[contains(@id,'file') and @type='file']</td>
+	<td>FIRST_NAME</td>
+	<td>//div[label[contains(.,'First Name')]]/input[@type='text']</td>
 	<td></td>
 </tr>
 <tr>
@@ -156,6 +156,16 @@
 <tr>
 	<td>GOOGLE_ANALYTICS_ID</td>
 	<td>//input[contains(@id,'googleAnalyticsId')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>GOOGLE_APPS_API_KEY</td>
+	<td>//div[label[contains(.,'Google Apps API Key')]]/input[@type='text']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>GOOGLE_CLIENT_ID</td>
+	<td>//input[contains(@id,'googleClientId')]</td>
 	<td></td>
 </tr>
 <tr>
@@ -184,8 +194,8 @@
 	<td></td>
 </tr>
 <tr>
-	<td>LOGIN_USER_NAME</td>
-	<td>//input[@id='username']</td>
+	<td>LOAN_AMOUNT</td>
+	<td>//input[@type='text' and contains(@name,'loanAmount')]</td>
 	<td></td>
 </tr>
 <tr>
@@ -199,18 +209,8 @@
 	<td></td>
 </tr>
 <tr>
-	<td>GOOGLE_APPS_API_KEY</td>
-	<td>//div[label[contains(.,'Google Apps API Key')]]/input[@type='text']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>GOOGLE_CLIENT_ID</td>
-	<td>//input[contains(@id,'googleClientId')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>LOAN_AMOUNT</td>
-	<td>//input[@type='text' and contains(@name,'loanAmount')]</td>
+	<td>LOGIN_USER_NAME</td>
+	<td>//input[@id='username']</td>
 	<td></td>
 </tr>
 <tr>
@@ -294,13 +294,13 @@
 	<td></td>
 </tr>
 <tr>
-	<td>NEW_PASSWORD</td>
-	<td>//div[label[contains(.,'New Password')]]/input</td>
+	<td>NEW_NAME</td>
+	<td>//input[contains(@id,'newName')]</td>
 	<td></td>
 </tr>
 <tr>
-	<td>NEW_NAME</td>
-	<td>//input[contains(@id,'newName')]</td>
+	<td>NEW_PASSWORD</td>
+	<td>//div[label[contains(.,'New Password')]]/input</td>
 	<td></td>
 </tr>
 <tr>

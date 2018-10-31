@@ -14,11 +14,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>PERMISSIONS_VIEW_ROLE</td>
-	<td>//select[contains(.,'${key_permissionsViewRole}')]</td>
-	<td></td>
-</tr>
-<tr>
 	<td>AVAILABLE</td>
 	<td>//div[label[contains(.,'Available')]]/select</td>
 	<td></td>
@@ -44,13 +39,13 @@
 	<td></td>
 </tr>
 <tr>
-	<td>DATE_RANGE_START_DATE</td>
-	<td>xpath=(//ul[contains(@class,'date-range-options')]//input[contains(@name,'startDate') and contains(@type,'text')])[1]</td>
+	<td>DATE_RANGE_END_DATE</td>
+	<td>xpath=(//ul[contains(@class,'date-range-options')]//input[contains(@name,'endDate') and contains(@type,'text')])[1]</td>
 	<td></td>
 </tr>
 <tr>
-	<td>DATE_RANGE_END_DATE</td>
-	<td>xpath=(//ul[contains(@class,'date-range-options')]//input[contains(@name,'endDate') and contains(@type,'text')])[1]</td>
+	<td>DATE_RANGE_START_DATE</td>
+	<td>xpath=(//ul[contains(@class,'date-range-options')]//input[contains(@name,'startDate') and contains(@type,'text')])[1]</td>
 	<td></td>
 </tr>
 <tr>
@@ -74,6 +69,11 @@
 	<td></td>
 </tr>
 <tr>
+	<td>EXPORT_IMPORT_CONTENT</td>
+	<td>//select[contains(@id,'PORTLET_DATA')]</td>
+	<td></td>
+</tr>
+<tr>
 	<td>FEED_ITEM_CONTENT</td>
 	<td>//select[contains(@id,'contentFieldSelector')]</td>
 	<td></td>
@@ -81,11 +81,6 @@
 <tr>
 	<td>FEED_TYPE</td>
 	<td>//select[contains(@id,'feedType')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>EXPORT_IMPORT_CONTENT</td>
-	<td>//select[contains(@id,'PORTLET_DATA')]</td>
 	<td></td>
 </tr>
 <tr>
@@ -129,6 +124,11 @@
 	<td></td>
 </tr>
 <tr>
+	<td>PERMISSIONS_VIEW_ROLE</td>
+	<td>//select[contains(.,'${key_permissionsViewRole}')]</td>
+	<td></td>
+</tr>
+<tr>
 	<td>QUESTION</td>
 	<td>//div[label[contains(.,'Question')]]/select</td>
 	<td></td>
@@ -144,13 +144,13 @@
 	<td></td>
 </tr>
 <tr>
-	<td>SITES</td>
-	<td>//div[label[contains(.,'Sites')]]/select</td>
+	<td>SCOPE</td>
+	<td>//div[label[contains(.,'Scope')]]/select | //div/select[@title='Scope']</td>
 	<td></td>
 </tr>
 <tr>
-	<td>SCOPE</td>
-	<td>//div[label[contains(.,'Scope')]]/select | //div/select[@title='Scope']</td>
+	<td>SITES</td>
+	<td>//div[label[contains(.,'Sites')]]/select</td>
 	<td></td>
 </tr>
 <tr>

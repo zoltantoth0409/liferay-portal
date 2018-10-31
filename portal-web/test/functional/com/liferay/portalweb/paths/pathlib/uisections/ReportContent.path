@@ -9,16 +9,6 @@
 </thead>
 <tbody>
 <tr>
-	<td>WARNING</td>
-	<td>//p[contains(.,'You are about to report a violation')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>WARNING_TERMS_OF_USE_LINK</td>
-	<td>//a[@href='/c/portal/terms_of_use']</td>
-	<td></td>
-</tr>
-<tr>
 	<td>REASON_SELECT</td>
 	<td>//div[contains(.,'Reason for the Report')]/select[contains(@id,'FlagsPortlet')]</td>
 	<td></td>
@@ -26,6 +16,16 @@
 <tr>
 	<td>SUCCESS_MESSAGE</td>
 	<td>//div[contains(.,'Thank you for your report')]/p[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>WARNING</td>
+	<td>//p[contains(.,'You are about to report a violation')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>WARNING_TERMS_OF_USE_LINK</td>
+	<td>//a[@href='/c/portal/terms_of_use']</td>
 	<td></td>
 </tr>
 </tbody>
