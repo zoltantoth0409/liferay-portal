@@ -127,12 +127,12 @@ public class DefaultLPKGDeployer implements LPKGDeployer {
 							String.valueOf(lpkgFile)));
 				}
 
-				String lpkgPath = lpkgFile.getCanonicalPath();
+				String location = lpkgFile.getCanonicalPath();
 
-				lpkgPath = StringUtil.replace(
-					lpkgPath, CharPool.BACK_SLASH, CharPool.FORWARD_SLASH);
+				location = StringUtil.replace(
+					location, CharPool.BACK_SLASH, CharPool.FORWARD_SLASH);
 
-				if (!lpkgPath.equals(bundle.getLocation()) &&
+				if (!location.equals(bundle.getLocation()) &&
 					Files.deleteIfExists(Paths.get(bundle.getLocation())) &&
 					_log.isInfoEnabled()) {
 
