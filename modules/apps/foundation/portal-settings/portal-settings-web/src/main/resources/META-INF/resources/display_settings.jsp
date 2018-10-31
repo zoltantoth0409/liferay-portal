@@ -37,6 +37,15 @@
 		</c:if>
 	</liferay-ui:error>
 
+	<liferay-ui:error exception="<%= RequiredLocaleException.class %>">
+
+		<%
+		RequiredLocaleException rle = (RequiredLocaleException)errorException;
+		%>
+
+		<liferay-ui:message arguments="<%= rle.getMessageArguments() %>" key="<%= rle.getMessageKey() %>" translateArguments="<%= false %>" />
+	</liferay-ui:error>
+
 	<aui:select label="default-language" name="languageId">
 
 		<%
@@ -58,14 +67,6 @@
 	</aui:select>
 
 	<aui:fieldset cssClass="available-languages" label="available-languages">
-		<liferay-ui:error exception="<%= RequiredLocaleException.class %>">
-
-			<%
-			RequiredLocaleException rle = (RequiredLocaleException)errorException;
-			%>
-
-			<liferay-ui:message arguments="<%= rle.getMessageArguments() %>" key="<%= rle.getMessageKey() %>" translateArguments="<%= false %>" />
-		</liferay-ui:error>
 
 		<%
 		String[] availableLanguageIds = LocaleUtil.toLanguageIds(LanguageUtil.getAvailableLocales());
