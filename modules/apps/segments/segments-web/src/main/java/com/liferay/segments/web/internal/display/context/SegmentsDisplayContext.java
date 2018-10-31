@@ -126,7 +126,6 @@ public class SegmentsDisplayContext {
 						dropdownGroupItem.setLabel(
 							LanguageUtil.get(_request, "filter-by-navigation"));
 					});
-
 				addGroup(
 					dropdownGroupItem -> {
 						dropdownGroupItem.setDropdownItems(
@@ -163,13 +162,9 @@ public class SegmentsDisplayContext {
 			_renderRequest, _getPortletURL(), null, "there-are-no-segments");
 
 		searchContainer.setId("segmentsEntries");
-
 		searchContainer.setOrderByCol(_getOrderByCol());
-
 		searchContainer.setOrderByComparator(_getOrderByComparator());
-
 		searchContainer.setOrderByType(getOrderByType());
-
 		searchContainer.setRowChecker(
 			new EmptyOnClickRowChecker(_renderResponse));
 
@@ -200,7 +195,6 @@ public class SegmentsDisplayContext {
 		}
 
 		searchContainer.setResults(segmentsEntries);
-
 		searchContainer.setTotal(segmentsEntriesCount);
 
 		_searchContainer = searchContainer;
@@ -310,7 +304,6 @@ public class SegmentsDisplayContext {
 							dropdownItem.setLabel(
 								LanguageUtil.get(_request, "modified-date"));
 						}));
-
 				add(
 					SafeConsumer.ignore(
 						dropdownItem -> {
