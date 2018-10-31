@@ -8940,7 +8940,10 @@ ANT_OPTS=${env.ANT_OPTS}</echo>
 					<then>
 						<mkdir dir="${app.server.websphere.dir}/java_1.8_64/jre/lib/ext" />
 
-						<move file="${app.server.lib.global.dir}/portlet.jar" todir="${app.server.websphere.dir}/java_1.8_64/jre/lib/ext" />
+						<move
+							file="${app.server.lib.global.dir}/portlet.jar"
+							todir="${app.server.websphere.dir}/java_1.8_64/jre/lib/ext"
+						/>
 
 						<if>
 							<available file="${app.server.portal.dir}/WEB-INF/ibm-web-ext.xml" />
@@ -8949,7 +8952,7 @@ ANT_OPTS=${env.ANT_OPTS}</echo>
 									file="${app.server.portal.dir}/WEB-INF/ibm-web-ext.xml"
 								>
 									<replacetoken><![CDATA[<jsp-attribute name="reloadEnabled" value="true"/>]]></replacetoken>
-									<replacevalue><![CDATA[<jsp-attribute name="jdkSourceLevel" value="18"/>
+									<replacevalue><![CDATA[<jsp-attribute name="jdkSourceLevel" value="18" />
 <jsp-attribute name="reloadEnabled" value="true"/>]]></replacevalue>
 								</replace>
 
@@ -8957,7 +8960,7 @@ ANT_OPTS=${env.ANT_OPTS}</echo>
 									file="${app.server.dir}/profiles/liferay/config/cells/liferay-cell/applications/liferay-portal.ear/deployments/liferay-portal/liferay-portal.war/WEB-INF/ibm-web-ext.xml"
 								>
 									<replacetoken><![CDATA[<jsp-attribute name="reloadEnabled" value="true"/>]]></replacetoken>
-									<replacevalue><![CDATA[<jsp-attribute name="jdkSourceLevel" value="18"/>
+									<replacevalue><![CDATA[<jsp-attribute name="jdkSourceLevel" value="18" />
 <jsp-attribute name="reloadEnabled" value="true"/>]]></replacevalue>
 								</replace>
 							</then>
