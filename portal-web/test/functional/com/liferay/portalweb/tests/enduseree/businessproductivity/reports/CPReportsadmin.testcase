@@ -48,7 +48,7 @@
 
 		<var name="key_reportsDefinitionName" value="Reports Definition Name" />
 
-		<execute function="Click" locator1="ReportsAdmin#DEFINITIONS_DEFINITION_TABLE_ACTIONS" />
+		<execute function="Click" locator1="ReportsAdmin#REPORTS_ENTRY_TABLE_ACTIONS" />
 
 		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Add Report">
 			<var name="key_menuItem" value="Add Report" />
@@ -56,7 +56,7 @@
 
 		<execute function="Select" locator1="ReportsAdminEditReportEntry#REPORT_FORMAT_SELECT" value1="csv" />
 		<execute function="Type" locator1="ReportsAdminEditReportEntry#EMAIL_NOTIFICATIONS_FIELD" value1="InvalidEmail" />
-		<execute function="AssertClick" locator1="ReportsAdminEditReportEntry#GENERATE_BUTTON" value1="Generate" />
+		<execute function="AssertClick" locator1="Button#GENERATE" value1="Generate" />
 
 		<execute macro="Alert#viewRequestFailedToComplete" />
 
@@ -64,7 +64,7 @@
 
 		<execute function="Type" locator1="ReportsAdminEditReportEntry#EMAIL_NOTIFICATIONS_FIELD" value1="liferay.qa1@gmail.com" />
 		<execute function="Type" locator1="ReportsAdminEditReportEntry#EMAIL_RECIPIENT_FIELD" value1="InvalidEmail" />
-		<execute function="AssertClick" locator1="ReportsAdminEditReportEntry#GENERATE_BUTTON" value1="Generate" />
+		<execute function="AssertClick" locator1="Button#GENERATE" value1="Generate" />
 
 		<execute macro="Alert#viewRequestFailedToComplete" />
 

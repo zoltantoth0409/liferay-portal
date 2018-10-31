@@ -1400,10 +1400,10 @@
 
 		<var name="key_fieldName" value="Decimal" />
 
-		<execute function="Type" locator1="DDLEditRecord#DECIMAL_FIELD" value1="0.987a" />
+		<execute function="Type" locator1="TextInput#DDM" value1="0.987a" />
 
 		<execute function="AssertClick" locator1="Button#PUBLISH" value1="Publish" />
-		<execute function="AssertTextEquals" locator1="DDLEditRecord#RECORD_FIELD_ALERT" value1="Please enter a valid number." />
+		<execute function="AssertTextEquals" locator1="Message#ERROR_ALERT" value1="Please enter a valid number." />
 	</command>
 
 	<command name="AssertFieldAfterNavigatingToManageTemplates" priority="3">
@@ -1711,10 +1711,10 @@
 
 		<var name="key_fieldName" value="Integer" />
 
-		<execute function="Type" locator1="DDLEditRecord#INTEGER_FIELD" value1="aaaa" />
+		<execute function="Type" locator1="TextInput#DDM_FUZZY" value1="aaaa" />
 
 		<execute function="AssertClick" locator1="Button#PUBLISH" value1="Publish" />
-		<execute function="AssertTextEquals" locator1="DDLEditRecord#RECORD_FIELD_ALERT" value1="Please enter only digits." />
+		<execute function="AssertTextEquals" locator1="Message#ERROR_ALERT" value1="Please enter only digits." />
 	</command>
 
 	<command name="AssertNumberFieldInvalidDataErrorMessage" priority="4">
@@ -1775,9 +1775,9 @@
 
 		<var name="key_fieldName" value="Number" />
 
-		<execute function="Type" locator1="DDLEditRecord#NUMBER_FIELD" value1="555b" />
+		<execute function="Type" locator1="TextInput#DDM" value1="555b" />
 		<execute function="AssertClick" locator1="Button#PUBLISH" value1="Publish" />
-		<execute function="AssertTextEquals" locator1="DDLEditRecord#RECORD_FIELD_ALERT" value1="Please enter a valid number." />
+		<execute function="AssertTextEquals" locator1="Message#ERROR_ALERT" value1="Please enter a valid number." />
 	</command>
 
 	<command name="AssertUserCannotDeleteEntryAfterPermissionRemoved" priority="4">

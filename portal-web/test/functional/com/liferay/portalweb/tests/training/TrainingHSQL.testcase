@@ -2289,11 +2289,11 @@ How to Present:
 			<var name="panelHeading" value="Categorization" />
 		</execute>
 
-		<execute function="Click#clickAt" locator1="AssetCategorization#TAGS_ADD_BUTTON" />
+		<execute function="Click#clickAt" locator1="Button#ADD_TAGS" />
 
 		<execute function="Type" locator1="AssetCategorization#TAGS_FIELD" value1="moon rocks" />
 
-		<execute function="Click#clickAt" locator1="AssetCategorization#TAGS_ADD_BUTTON" />
+		<execute function="Click#clickAt" locator1="Button#ADD_TAGS" />
 
 		<execute macro="PortletEntry#publish" />
 
@@ -2580,7 +2580,7 @@ Brainstorming:
 
 		<execute function="AssertClick" locator1="WikiEntry#BODY_LINK" value1="Sweet Potatoes" />
 
-		<execute function="AssertTextEquals" locator1="WikiEntry#HEADER_TITLE" value1="Sweet Potatoes" />
+		<execute function="AssertTextEquals" locator1="Portlet#HEADER_TITLE" value1="Sweet Potatoes" />
 
 		<execute macro="Navigator#openURL" />
 

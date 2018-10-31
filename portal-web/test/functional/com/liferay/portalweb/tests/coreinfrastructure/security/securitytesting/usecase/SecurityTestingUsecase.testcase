@@ -182,9 +182,9 @@
 			<var name="url" value="${portalURL}/api/jsonws/user/update-status/user-id/20250/status/6?p_auth=" />
 		</execute>
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="JSONWS#SECURITY_TEST_PAGE_BODY" value1="must have DELETE permission for com.liferay.portal.kernel.model.User" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="Home#DIRECT_URL" value1="must have DELETE permission for com.liferay.portal.kernel.model.User" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="JSONWS#SECURITY_TEST_PAGE_BODY" value1="com.liferay.portal.kernel.security.auth.PrincipalException$MustHavePermission" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="Home#DIRECT_URL" value1="com.liferay.portal.kernel.security.auth.PrincipalException$MustHavePermission" />
 
 		<execute function="AssertConsoleTextPresent" value1="must have DELETE permission for com.liferay.portal.kernel.model.User" />
 	</command>
@@ -272,7 +272,7 @@
 
 		<var name="key_userScreenName" value="test" />
 
-		<execute function="AssertClick" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="test" />
+		<execute function="AssertClick" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME_LINK" value1="test" />
 
 		<execute function="Pause" locator1="5000" />
 
@@ -304,12 +304,12 @@
 
 		<var name="key_userScreenName" value="test1" />
 
-		<execute function="AssertClick" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="test1" />
+		<execute function="AssertClick" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME_LINK" value1="test1" />
 
 		<execute function="AssertValue" locator1="UsersAndOrganizationsEditUser#DETAILS_USER_ID_FIELD" value1="${userId}" />
 		<execute function="AssertValue" locator1="UsersAndOrganizationsEditUser#DETAILS_FIRST_NAME_FIELD" value1="test1" />
 		<execute function="AssertValue" locator1="UsersAndOrganizationsEditUser#DETAILS_LAST_NAME_FIELD" value1="test1" />
-		<execute function="AssertValue" locator1="UsersAndOrganizationsEditUser#DETAILS_EMAIL_ADDRESS_FIELD" value1="test1@liferay.com" />
+		<execute function="AssertValue" locator1="TextInput#EMAIL_ADDRESS" value1="test1@liferay.com" />
 		<execute function="AssertValue" locator1="UsersAndOrganizationsEditUser#DETAILS_SCREEN_NAME_FIELD" value1="test1" />
 		<execute function="AssertValue" locator1="UsersAndOrganizationsEditUser#DETAILS_BIRTHDAY_FIELD" value1="11/24/1984" />
 	</command>

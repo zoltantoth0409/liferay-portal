@@ -207,7 +207,7 @@
 			<var name="key_customFieldName" value="${actualScript}" />
 		</execute>
 
-		<execute function="Click" locator1="CategoriesEditCategory#LOCALIZATION_NAME">
+		<execute function="Click" locator1="Translation#LOCALIZATION_NAME">
 			<var name="key_localizationName" value="zh_CN" />
 		</execute>
 

@@ -2397,7 +2397,7 @@
 
 		<execute function="Click" locator1="Staging#HISTORY_BUTTON" />
 
-		<execute function="SelectFrame" locator1="IFrame#METADATA_SETS_IFRAME" />
+		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
 
 		<var method="selenium#getText(Staging#HISTORY_VERSION)" name="historyVersion" />
 

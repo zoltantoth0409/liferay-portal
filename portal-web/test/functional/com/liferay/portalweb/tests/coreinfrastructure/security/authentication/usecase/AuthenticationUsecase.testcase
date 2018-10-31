@@ -115,7 +115,7 @@
 		</execute>
 
 		<if>
-			<condition function="IsElementNotPresent" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME">
+			<condition function="IsElementNotPresent" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME_LINK">
 				<var name="key_userScreenName" value="ldapusercn" />
 			</condition>
 
@@ -291,7 +291,7 @@
 		</execute>
 
 		<if>
-			<condition function="IsElementNotPresent" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME">
+			<condition function="IsElementNotPresent" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME_LINK">
 				<var name="key_userScreenName" value="ldapusercn" />
 			</condition>
 

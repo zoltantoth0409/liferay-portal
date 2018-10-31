@@ -315,7 +315,7 @@
 			<var name="portlet" value="Users and Organizations" />
 		</execute>
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="liferaytester">
+		<execute function="AssertTextEquals#assertPartialText" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME_LINK" value1="liferaytester">
 			<var name="key_userScreenName" value="liferaytester" />
 		</execute>
 	</command>

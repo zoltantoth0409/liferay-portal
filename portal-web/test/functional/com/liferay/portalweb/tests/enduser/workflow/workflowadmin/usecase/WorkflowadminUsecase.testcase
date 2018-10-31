@@ -1230,12 +1230,12 @@
 
 		<var name="key_workflowAssetTitle" value="Wiki Page Title" />
 
-		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#PENDING_TABLE_DEFINITION" value1="Single Approver" />
-		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#PENDING_TABLE_ASSET_TITLE" value1="Wiki Page Title" />
-		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#PENDING_TABLE_ASSET_TYPE" value1="Wiki Page" />
-		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#PENDING_TABLE_STATUS" value1="Review" />
-		<execute function="AssertElementPresent" locator1="WorkflowSubmissions#PENDING_TABLE_LAST_ACTIVITY_DATE" />
-		<execute function="AssertElementPresent" locator1="WorkflowSubmissions#PENDING_TABLE_END_DATE" />
+		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#DEFINITION" value1="Single Approver" />
+		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#ASSET_TITLE" value1="Wiki Page Title" />
+		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#ASSET_TYPE" value1="Wiki Page" />
+		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#STATUS" value1="Review" />
+		<execute function="AssertElementPresent" locator1="WorkflowSubmissions#LAST_ACTIVITY_DATE" />
+		<execute function="AssertElementPresent" locator1="WorkflowSubmissions#END_DATE" />
 
 		<execute macro="User#logoutPG" />
 

@@ -102,7 +102,7 @@
 				<var name="portletOption" value="Look and Feel Configuration" />
 			</execute>
 
-			<execute function="AssertTextEquals" locator1="NavTab#LOOK_AND_FEEL_GENERAL" value1="General" />
+			<execute function="AssertTextEquals" locator1="NavTab#GENERAL" value1="General" />
 
 			<execute function="Click" locator1="Icon#CLOSE" />
 		</task>

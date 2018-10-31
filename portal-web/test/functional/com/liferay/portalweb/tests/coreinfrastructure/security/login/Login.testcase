@@ -307,7 +307,7 @@
 
 		<while max-iterations="30">
 			<and>
-				<condition function="IsElementNotPresent" locator1="OpenAM#USER_NAME" />
+				<condition function="IsElementNotPresent" locator1="TextInput#USER_NAME" />
 				<not>
 					<equals arg1="${pauseCount}" arg2="20" />
 				</not>
