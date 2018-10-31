@@ -39,7 +39,7 @@
 		<if>
 			<isset var="ddlDataDefinitionDescription" />
 			<then>
-				<execute function="Type#clickAtType" locator1="DDMEditStructure#DETAILS_DESCRIPTION_FIELD" value1="${ddlDataDefinitionDescription}" />
+				<execute function="Type#clickAtType" locator1="TextInput#DESCRIPTION" value1="${ddlDataDefinitionDescription}" />
 			</then>
 		</if>
 	</command>
@@ -199,7 +199,7 @@
 
 		<execute macro="DDLDataDefinition#_showDetails" />
 
-		<execute function="Type#clickAtType" locator1="DDMEditStructure#DETAILS_DESCRIPTION_FIELD" value1="${ddlDataDefinitionDescriptionEdit}" />
+		<execute function="Type#clickAtType" locator1="TextInput#DESCRIPTION" value1="${ddlDataDefinitionDescriptionEdit}" />
 	</command>
 
 	<command name="editName">
@@ -318,7 +318,7 @@
 			<then>
 				<execute macro="DDLDataDefinition#_showDetails" />
 
-				<execute function="AssertTextEquals" locator1="DDMEditStructure#DETAILS_DESCRIPTION_FIELD" value1="${ddlDataDefinitionDescription}" />
+				<execute function="AssertTextEquals" locator1="TextInput#DESCRIPTION" value1="${ddlDataDefinitionDescription}" />
 			</then>
 		</if>
 
@@ -341,7 +341,7 @@
 	<command name="viewParentStructureHeader">
 		<execute function="Click" locator1="DDMEditStructure#DETAILS_TOGGLE" />
 
-		<execute function="AssertClick" locator1="DDMEditStructure#DETAILS_PARENT_SELECT_BUTTON" value1="Select" />
+		<execute function="AssertClick" locator1="Button#SELECT" value1="Select" />
 
 		<execute macro="IFrame#selectDialogFrame" />
 

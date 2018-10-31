@@ -1,7 +1,7 @@
 <definition>
 	<command name="_addPageTypeEmbedded">
 		<execute function="Type" locator1="SitePagesEditPage#PAGE_TYPE_EMBEDDED_URL_FIELD" value1="${pageTypeURL}" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="SitePagesEditPage#PAGE_TYPE_EMBEDDED_DESCRIPTION_FIELD" value1="Show content from another website." />
+		<execute function="AssertTextEquals#assertPartialText" locator1="SitePagesEditPage#PAGE_TYPE_DESCRIPTION_FIELD" value1="Show content from another website." />
 	</command>
 
 	<command name="_addPageTypeFullPageApplication">
@@ -10,7 +10,7 @@
 
 	<command name="_addPageTypeLinkToURL">
 		<execute function="Type" locator1="SitePagesEditPage#PAGE_TYPE_LINK_TO_URL_URL_FIELD" value1="${pageTypeURL}" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="SitePagesEditPage#PAGE_TYPE_LINK_TO_URL_DESCRIPTION_FIELD" value1="Link to another website." />
+		<execute function="AssertTextEquals#assertPartialText" locator1="SitePagesEditPage#PAGE_TYPE_DESCRIPTION_FIELD" value1="Link to another website." />
 	</command>
 
 	<command name="_addPageTypePanel">
@@ -234,7 +234,7 @@
 
 		<execute function="Click" locator1="SitePagesEditPage#FRIENDLY_URL_LOCALIZED" />
 
-		<execute function="Type" locator1="SitePagesEditPage#FRIENDLY_URL_FIELD" value1="${localizedFriendlyURL}" />
+		<execute function="Type" locator1="TextInput#FRIENDLY_URL" value1="${localizedFriendlyURL}" />
 	</command>
 
 	<command name="addJavaScript">
@@ -338,7 +338,7 @@
 
 		<execute function="Click#pauseClickAt" locator1="SitePagesEditPage#FRIENDLY_URL_LOCALIZED" />
 
-		<execute function="Type" locator1="SitePagesEditPage#FRIENDLY_URL_FIELD" value1=" " />
+		<execute function="Type" locator1="TextInput#FRIENDLY_URL" value1=" " />
 
 		<execute function="AssertClick#pauseAssertTextClickAt" locator1="Button#SAVE" value1="Save" />
 
@@ -939,7 +939,7 @@
 			</then>
 		</if>
 
-		<execute function="AssertTextEquals" locator1="SitePagesEditPage#FRIENDLY_URL_FIELD" value1="/${pageName}" />
+		<execute function="AssertTextEquals" locator1="TextInput#FRIENDLY_URL" value1="/${pageName}" />
 	</command>
 
 	<command name="viewPageLayout">

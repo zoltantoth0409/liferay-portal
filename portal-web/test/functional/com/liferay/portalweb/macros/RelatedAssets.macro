@@ -42,7 +42,7 @@
 
 		<execute macro="IFrame#selectDialogFrame" />
 
-		<execute function="AssertTextEquals" locator1="RelatedassetsConfiguration#CATEGORY" value1="${categoryName}" />
+		<execute function="AssertTextEquals" locator1="AssetCategorization#CATEGORY" value1="${categoryName}" />
 
 		<execute macro="Button#clickSave" />
 

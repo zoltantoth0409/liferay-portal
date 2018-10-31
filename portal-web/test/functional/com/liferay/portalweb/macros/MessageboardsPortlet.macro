@@ -117,14 +117,14 @@
 		<if>
 			<isset var="emailFromName" />
 			<then>
-				<execute function="Type" locator1="MessageBoardsAdminConfiguration#EMAIL_FROM_NAME" value1="${emailFromName}" />
+				<execute function="Type" locator1="TextInput#EMAIL_FROM_NAME" value1="${emailFromName}" />
 			</then>
 		</if>
 
 		<if>
 			<isset var="emailFromAddress" />
 			<then>
-				<execute function="Type" locator1="MessageBoardsAdminConfiguration#EMAIL_FROM_ADDRESS" value1="${emailFromAddress}" />
+				<execute function="Type" locator1="TextInput#EMAIL_FROM_ADDRESS" value1="${emailFromAddress}" />
 			</then>
 		</if>
 
@@ -191,7 +191,7 @@
 	<command name="searchPG">
 		<execute function="Type" locator1="NavBar#BASIC_SEARCH_FIELD" value1="${searchTerm}" />
 
-		<execute function="Click" locator1="MessageBoards#SEARCH_BUTTON" />
+		<execute function="Click" locator1="Button#SEARCH" />
 	</command>
 
 	<command name="subscribePG">
@@ -273,13 +273,13 @@
 
 		<var name="key_userScreenName" value="${userScreenName}" />
 
-		<execute function="AssertTextEquals" locator1="MessageBoardsBannedUsers#BANNED_USERS_TABLE_BANNED_USER" value1="${userScreenName}" />
-		<execute function="AssertTextEquals" locator1="MessageBoardsBannedUsers#BANNED_USERS_TABLE_BANNED_BY" value1="Test Test" />
-		<execute function="AssertVisible" locator1="MessageBoardsBannedUsers#BANNED_USERS_TABLE_BAN_DATE" />
+		<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_FIRST_NAME_LINK" value1="${userScreenName}" />
+		<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_USER_NAME" value1="Test Test" />
+		<execute function="AssertVisible" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" />
 		<execute function="AssertVisible" locator1="MessageBoardsBannedUsers#BANNED_USERS_TABLE_UNBAN_DATE" />
 		<execute function="AssertElementPresent" locator1="MessageBoardsBannedUsers#BANNED_USERS_TABLE_UNBAN_THIS_USER" />
 
-		<execute function="AssertClick" locator1="MessageBoardsBannedUsers#BANNED_USERS_TABLE_BANNED_USER" value1="${userScreenName}" />
+		<execute function="AssertClick" locator1="UsersAndOrganizations#USER_TABLE_FIRST_NAME_LINK" value1="${userScreenName}" />
 
 		<var name="key_siteName" value="${userScreenName}" />
 
@@ -305,8 +305,8 @@
 
 		<execute function="AssertClick" locator1="MessageBoardsAdminConfiguration#SETUP_NAVIGATION_EMAIL_FROM" value1="Email From" />
 
-		<execute function="AssertTextEquals" locator1="MessageBoardsAdminConfiguration#EMAIL_FROM_NAME" value1="[$MESSAGE_USER_NAME$]" />
-		<execute function="AssertTextEquals" locator1="MessageBoardsAdminConfiguration#EMAIL_FROM_ADDRESS" value1="test@liferay.com" />
+		<execute function="AssertTextEquals" locator1="TextInput#EMAIL_FROM_NAME" value1="[$MESSAGE_USER_NAME$]" />
+		<execute function="AssertTextEquals" locator1="TextInput#EMAIL_FROM_ADDRESS" value1="test@liferay.com" />
 	</command>
 
 	<command name="viewNoPermissionCP">
@@ -324,7 +324,7 @@
 	</command>
 
 	<command name="viewSearchResultPG">
-		<execute function="AssertVisible" locator1="MessageBoardsThread#THREAD_CONTROLS_BACK" />
+		<execute function="AssertVisible" locator1="Link#BACK" />
 
 		<var name="key_threadSubject" value="${threadSubject}" />
 

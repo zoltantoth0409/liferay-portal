@@ -35,11 +35,11 @@
 
 		<execute function="SelectWindow" locator1="GoogleLogin#PAGE_TITLE" />
 
-		<execute function="Type" locator1="GoogleLogin#LOGIN_EMAIL_FIELD" value1="${userEmailAddress}" />
+		<execute function="Type" locator1="TextInput#LOGIN_EMAIL_FIELD" value1="${userEmailAddress}" />
 
 		<execute function="Click" locator1="GoogleLogin#LOGIN_NEXT_BUTTON" />
 
-		<execute function="Type" locator1="GoogleLogin#LOGIN_PASSWORD_FIELD" value1="${userPassword}" />
+		<execute function="Type" locator1="TextInput#LOGIN_PASSWORD_FIELD" value1="${userPassword}" />
 
 		<if>
 			<condition function="IsElementPresent" locator1="GoogleLogin#LOGIN_SIGN_IN_BUTTON" />

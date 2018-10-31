@@ -33,7 +33,7 @@
 	</command>
 
 	<command name="selectMaximumItemstoDisplay">
-		<execute function="Select" locator1="Configuration#SETUP_DISPLAY_SETTINGS_MAXIMUM_ITEMS_TO_DISPLAY_SELECT" value1="${maximumItemsToDisplay}" />
+		<execute function="Select" locator1="Select#MAXIMUM_ITEMS_TO_DISPLAY" value1="${maximumItemsToDisplay}" />
 	</command>
 
 	<command name="selectScopeCP">
@@ -104,7 +104,7 @@
 	</command>
 
 	<command name="viewDefaultConfiguration">
-		<execute function="AssertTextEquals#assertValue" locator1="Configuration#SETUP_DISPLAY_SETTINGS_MAXIMUM_ITEMS_TO_DISPLAY_SELECT" value1="20" />
+		<execute function="AssertTextEquals#assertValue" locator1="Select#MAXIMUM_ITEMS_TO_DISPLAY" value1="20" />
 		<execute function="AssertTextEquals#assertValue" locator1="Configuration#SETUP_DISPLAY_SETTINGS_DISPLAY_TEMPLATE_SELECT" value1="abstract" />
 		<execute function="AssertChecked" locator1="Checkbox#ENABLE_FLAGS" />
 		<execute function="AssertChecked" locator1="Checkbox#ENABLE_RELATED_ASSETS" />

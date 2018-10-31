@@ -38,7 +38,7 @@
 	</command>
 
 	<command name="gotoEdit">
-		<execute function="Click" locator1="DDL#RECORD_TABLE_ELLIPSIS_1" />
+		<execute function="Click" locator1="DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS_1" />
 
 		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Edit">
 			<var name="key_menuItem" value="Edit" />
@@ -105,7 +105,7 @@
 	</command>
 
 	<command name="gotoView">
-		<execute function="Click" locator1="DDL#RECORD_TABLE_ELLIPSIS_1" />
+		<execute function="Click" locator1="DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS_1" />
 
 		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="View">
 			<var name="key_menuItem" value="View" />

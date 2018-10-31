@@ -9,7 +9,7 @@
 			<var name="title" value="${categoryName}" />
 		</execute>
 
-		<execute function="Click" locator1="CategoriesEditCategory#LOCALIZATION_NAME">
+		<execute function="Click" locator1="Translation#LOCALIZATION_NAME">
 			<var name="key_localizationName" value="${localizationNameKey}" />
 		</execute>
 
@@ -20,7 +20,7 @@
 		<if>
 			<isset var="localization2NameKey" />
 			<then>
-				<execute function="Click" locator1="CategoriesEditCategory#LOCALIZATION_NAME">
+				<execute function="Click" locator1="Translation#LOCALIZATION_NAME">
 					<var name="key_localizationName" value="${localization2NameKey}" />
 				</execute>
 
@@ -96,7 +96,7 @@
 			<var name="panelHeading" value="Permissions" />
 		</execute>
 
-		<execute function="Select" locator1="CategoriesEditCategory#PERMISSIONS_VIEWABLE_BY_SELECT" value1="${viewableBy}" />
+		<execute function="Select" locator1="Select#PERMISSIONS" value1="${viewableBy}" />
 
 		<execute macro="PortletEntry#save" />
 	</command>
@@ -344,8 +344,8 @@
 
 						<var method="MathUtil#sum('${i}', '1')" name="i" />
 
-						<execute function="AssertTextEquals" locator1="Categories#CATEGORY_DETAILS_PROPERTY_KEY_2" value1="${propertiesKeyField} ${i}" />
-						<execute function="AssertTextEquals" locator1="Categories#CATEGORY_DETAILS_PROPERTY_VALUE_2" value1="${propertiesValueField} ${i}" />
+						<execute function="AssertTextEquals" locator1="CategoriesEditCategory#PROPERTIES_KEY_FIELD" value1="${propertiesKeyField} ${i}" />
+						<execute function="AssertTextEquals" locator1="CategoriesEditCategory#PROPERTIES_VALUE_FIELD" value1="${propertiesValueField} ${i}" />
 					</then>
 				</while>
 			</else>

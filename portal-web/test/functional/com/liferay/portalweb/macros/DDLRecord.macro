@@ -85,7 +85,7 @@
 	</command>
 
 	<command name="deleteViaDDLDisplayPG">
-		<execute function="Click" locator1="DDL#RECORD_TABLE_ELLIPSIS_1" />
+		<execute function="Click" locator1="DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS_1" />
 
 		<execute function="AssertClickNoError" locator1="MenuItem#ANY_MENU_ITEM" value1="Delete">
 			<var name="key_menuItem" value="Delete" />
@@ -106,7 +106,7 @@
 
 		<execute function="AssertTextEquals" locator1="DDL#RECORD_TABLE_COLUMN_ONE_RECORD_1" value1="${ddlRecordFieldData}" />
 
-		<execute function="Click" locator1="DDL#RECORD_TABLE_ELLIPSIS_1" />
+		<execute function="Click" locator1="DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS_1" />
 
 		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Edit">
 			<var name="key_menuItem" value="Edit" />
@@ -114,7 +114,7 @@
 	</command>
 
 	<command name="editPG">
-		<execute function="Click" locator1="DDL#RECORD_TABLE_ELLIPSIS_1" />
+		<execute function="Click" locator1="DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS_1" />
 
 		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Edit">
 			<var name="key_menuItem" value="Edit" />
@@ -138,7 +138,7 @@
 
 		<execute function="AssertElementPresent#assertVisible" locator1="DDL#RECORD_TABLE_COLUMN_ONE_RECORD_1" />
 
-		<execute function="Click" locator1="DDL#RECORD_TABLE_ELLIPSIS_1" />
+		<execute function="Click" locator1="DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS_1" />
 
 		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="View">
 			<var name="key_menuItem" value="View" />
@@ -148,7 +148,7 @@
 	</command>
 
 	<command name="editViaRecordViewPG">
-		<execute function="Click" locator1="DDL#RECORD_TABLE_ELLIPSIS_1" />
+		<execute function="Click" locator1="DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS_1" />
 
 		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="View">
 			<var name="key_menuItem" value="View" />
@@ -181,7 +181,7 @@
 	<command name="gotoLinkToPageSelect">
 		<var name="key_fieldName" value="${fieldName}" />
 
-		<execute function="AssertClick" locator1="DDLEditRecord#LINK_TO_PAGE_SELECT_PAGE_BUTTON" value1="Select" />
+		<execute function="AssertClick" locator1="Button#FIELD_SELECT" value1="Select" />
 	</command>
 
 	<command name="gotoRecordPreview">
@@ -203,10 +203,10 @@
 				<if>
 					<equals arg1="${fieldShowLabel}" arg2="No" />
 					<then>
-						<execute function="Uncheck" locator1="DDLEditRecord#BOOLEAN_LABEL_HIDDEN_CHECKBOX" />
+						<execute function="Uncheck" locator1="TextInput#DDM" />
 					</then>
 					<else>
-						<execute function="Uncheck" locator1="DDLEditRecord#BOOLEAN_CHECKBOX" />
+						<execute function="Uncheck" locator1="TextInput#DDM" />
 					</else>
 				</if>
 			</then>
@@ -216,10 +216,10 @@
 					<if>
 						<equals arg1="${fieldShowLabel}" arg2="No" />
 						<then>
-							<execute function="Check" locator1="DDLEditRecord#BOOLEAN_LABEL_HIDDEN_CHECKBOX" />
+							<execute function="Check" locator1="TextInput#DDM" />
 						</then>
 						<else>
-							<execute function="Check" locator1="DDLEditRecord#BOOLEAN_CHECKBOX" />
+							<execute function="Check" locator1="TextInput#DDM" />
 						</else>
 					</if>
 				</then>
@@ -233,13 +233,13 @@
 	<command name="populateFieldDate">
 		<var name="key_fieldName" value="${fieldName}" />
 
-		<execute function="Type" locator1="DDLEditRecord#DATE_FIELD" value1="${ddlRecordFieldData}" />
+		<execute function="Type" locator1="TextInput#DDM" value1="${ddlRecordFieldData}" />
 	</command>
 
 	<command name="populateFieldDecimal">
 		<var name="key_fieldName" value="${fieldName}" />
 
-		<execute function="Type" locator1="DDLEditRecord#DECIMAL_FIELD" value1="${ddlRecordFieldData}" />
+		<execute function="Type" locator1="TextInput#DDM" value1="${ddlRecordFieldData}" />
 	</command>
 
 	<command name="populateFieldDocumentsAndMediaChooseFromDocumentLibrary">
@@ -253,7 +253,7 @@
 				<execute function="AssertClick" locator1="DDLEditRecord#DOCUMENTS_AND_MEDIA_CHILD_FIELD_CHOOSE_FROM_DOCUMENT_LIBRARY_BUTTON_" value1="Select" />
 			</then>
 			<else>
-				<execute function="AssertClick" locator1="DDLEditRecord#DOCUMENTS_AND_MEDIA_CHOOSE_FROM_DOCUMENT_LIBRARY_BUTTON" value1="Select" />
+				<execute function="AssertClick" locator1="Button#FIELD_SELECT" value1="Select" />
 			</else>
 		</if>
 
@@ -295,7 +295,7 @@
 	<command name="populateFieldInteger">
 		<var name="key_fieldName" value="${fieldName}" />
 
-		<execute function="Type" locator1="DDLEditRecord#INTEGER_FIELD" value1="${ddlRecordFieldData}" />
+		<execute function="Type" locator1="TextInput#DDM_FUZZY" value1="${ddlRecordFieldData}" />
 	</command>
 
 	<command name="populateFieldLinkToPage">
@@ -316,13 +316,13 @@
 
 		<var name="key_fieldName" value="${fieldName}" />
 
-		<execute function="AssertTextEquals" locator1="DDLEditRecord#LINK_TO_PAGE_PAGE_SELECT" value1="${ddlRecordFieldData}" />
+		<execute function="AssertTextEquals" locator1="TextInput#DDM" value1="${ddlRecordFieldData}" />
 	</command>
 
 	<command name="populateFieldNumber">
 		<var name="key_fieldName" value="${fieldName}" />
 
-		<execute function="Type" locator1="DDLEditRecord#NUMBER_FIELD" value1="${ddlRecordFieldData}" />
+		<execute function="Type" locator1="TextInput#DDM" value1="${ddlRecordFieldData}" />
 	</command>
 
 	<command name="populateFieldRadio">
@@ -337,7 +337,7 @@
 	<command name="populateFieldSelect">
 		<var name="key_fieldName" value="${fieldName}" />
 
-		<execute function="Select" locator1="DDLEditRecord#SELECT_SELECT" value1="${ddlRecordFieldData}" />
+		<execute function="Select" locator1="DDMField#SELECT" value1="${ddlRecordFieldData}" />
 	</command>
 
 	<command name="populateFieldSelectViaSpreadsheetView">
@@ -346,7 +346,7 @@
 
 		<execute function="DoubleClick" locator1="DDLSpreadsheet#RECORD_TABLE_FIELD_ENTRY" />
 
-		<execute function="Select" locator1="DDLSpreadsheet#CELL_EDITOR_SELECT" value1="${ddlRecordFieldData}" />
+		<execute function="Select" locator1="DDMEditStructure#FORM_FIELD_SELECT" value1="${ddlRecordFieldData}" />
 
 		<execute function="Click" locator1="Button#SAVE" />
 
@@ -356,7 +356,7 @@
 	<command name="populateFieldText">
 		<var name="key_fieldName" value="${fieldName}" />
 
-		<execute function="Type" locator1="DDLEditRecord#TEXT_FIELD" value1="${ddlRecordFieldData}" />
+		<execute function="Type" locator1="TextInput#DDM" value1="${ddlRecordFieldData}" />
 
 		<var name="i" value="1" />
 
@@ -387,7 +387,7 @@
 
 		<execute function="DoubleClick" locator1="DDLSpreadsheet#RECORD_TABLE_FIELD_ENTRY" />
 
-		<execute function="Type" locator1="DDLSpreadsheet#CELL_EDITOR_FIELD" value1="${ddlRecordFieldData}" />
+		<execute function="Type" locator1="DDMEditStructure#FORM_FIELD_FIELD" value1="${ddlRecordFieldData}" />
 
 		<execute function="Click" locator1="Button#SAVE" />
 
@@ -398,7 +398,7 @@
 		<var name="key_fieldName" value="${fieldName}" />
 		<var name="key_webContentTitle" value="${webContentTitle}" />
 
-		<execute function="AssertClick" locator1="DDLEditRecord#WEB_CONTENT_CHOOSE_FROM_WEB_CONTENT_LIBRARY_BUTTON" value1="Select" />
+		<execute function="AssertClick" locator1="Button#FIELD_SELECT" value1="Select" />
 
 		<execute macro="IFrame#selectDialogFrame" />
 
@@ -410,7 +410,7 @@
 	<command name="populateTranslationFieldText">
 		<var name="key_fieldName" value="${fieldName}" />
 
-		<execute function="Type" locator1="DDLEditRecord#TEXT_FIELD" value1="${ddlRecordFieldData}" />
+		<execute function="Type" locator1="TextInput#DDM" value1="${ddlRecordFieldData}" />
 
 		<var name="i" value="1" />
 
@@ -484,7 +484,7 @@
 			<var name="fieldName" value="${fieldName}" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="DDLEditRecord#TEXT_FIELD" value1="${ddlRecordFieldDataEdit}" />
+		<execute function="AssertTextEquals" locator1="TextInput#DDM" value1="${ddlRecordFieldDataEdit}" />
 
 		<execute function="AssertElementNotPresent" locator1="DDL#RECORD_TABLE_ENTRY" />
 
@@ -600,12 +600,12 @@
 				<if>
 					<equals arg1="${fieldPredefinedValue}" arg2="Yes" />
 					<then>
-						<execute function="AssertChecked" locator1="DDLEditRecord#BOOLEAN_CHECKBOX" />
+						<execute function="AssertChecked" locator1="TextInput#DDM" />
 					</then>
 					<elseif>
 						<equals arg1="${fieldPredefinedValue}" arg2="No" />
 						<then>
-							<execute function="AssertNotChecked" locator1="DDLEditRecord#BOOLEAN_CHECKBOX" />
+							<execute function="AssertNotChecked" locator1="TextInput#DDM" />
 						</then>
 					</elseif>
 				</if>
@@ -615,21 +615,21 @@
 		<if>
 			<equals arg1="${field}" arg2="Date" />
 			<then>
-				<execute function="AssertTextEquals" locator1="DDLEditRecord#DATE_FIELD" value1="${fieldPredefinedValue}" />
+				<execute function="AssertTextEquals" locator1="TextInput#DDM" value1="${fieldPredefinedValue}" />
 			</then>
 		</if>
 
 		<if>
 			<equals arg1="${field}" arg2="Decimal" />
 			<then>
-				<execute function="AssertTextEquals" locator1="DDLEditRecord#DECIMAL_FIELD" value1="${fieldPredefinedValue}" />
+				<execute function="AssertTextEquals" locator1="TextInput#DDM" value1="${fieldPredefinedValue}" />
 			</then>
 		</if>
 
 		<if>
 			<equals arg1="${field}" arg2="Documents and Media" />
 			<then>
-				<execute function="AssertTextEquals" locator1="DDLEditRecord#DECIMAL_FIELD" value1="${fieldPredefinedValue}" />
+				<execute function="AssertTextEquals" locator1="TextInput#DDM" value1="${fieldPredefinedValue}" />
 			</then>
 		</if>
 
@@ -643,21 +643,21 @@
 		<if>
 			<equals arg1="${field}" arg2="Integer" />
 			<then>
-				<execute function="AssertTextEquals" locator1="DDLEditRecord#INTEGER_FIELD" value1="${fieldPredefinedValue}" />
+				<execute function="AssertTextEquals" locator1="TextInput#DDM_FUZZY" value1="${fieldPredefinedValue}" />
 			</then>
 		</if>
 
 		<if>
 			<equals arg1="${field}" arg2="Link to Page" />
 			<then>
-				<execute function="AssertTextEquals" locator1="DDLEditRecord#LINK_TO_PAGE_PAGE_SELECT" value1="${fieldPredefinedValue}" />
+				<execute function="AssertTextEquals" locator1="TextInput#DDM" value1="${fieldPredefinedValue}" />
 			</then>
 		</if>
 
 		<if>
 			<equals arg1="${field}" arg2="Number" />
 			<then>
-				<execute function="AssertTextEquals" locator1="DDLEditRecord#NUMBER_FIELD" value1="${fieldPredefinedValue}" />
+				<execute function="AssertTextEquals" locator1="TextInput#DDM" value1="${fieldPredefinedValue}" />
 			</then>
 		</if>
 
@@ -673,14 +673,14 @@
 		<if>
 			<equals arg1="${field}" arg2="Select" />
 			<then>
-				<execute function="AssertTextEquals" locator1="DDLEditRecord#SELECT_SELECT" value1="${fieldPredefinedValue}" />
+				<execute function="AssertTextEquals" locator1="DDMField#SELECT" value1="${fieldPredefinedValue}" />
 			</then>
 		</if>
 
 		<if>
 			<equals arg1="${field}" arg2="Text" />
 			<then>
-				<execute function="AssertTextEquals" locator1="DDLEditRecord#TEXT_FIELD" value1="${fieldPredefinedValue}" />
+				<execute function="AssertTextEquals" locator1="TextInput#DDM" value1="${fieldPredefinedValue}" />
 			</then>
 		</if>
 
@@ -715,14 +715,14 @@
 
 				<execute function="AssertTextEquals" locator1="DDL#RECORD_TABLE_PREVIEW" value1="${ddlRecordFieldData}" />
 
-				<execute function="Click" locator1="DDL#RECORD_TABLE_PREVIEW_CLOSE" />
+				<execute function="Click" locator1="Icon#CLOSE" />
 			</then>
 			<else>
 				<execute function="AssertTextEquals" locator1="DDL#RECORD_TABLE_COLUMN_ONE_RECORD_1" value1="${ddlRecordFieldData}" />
 			</else>
 		</if>
 
-		<execute function="Click" locator1="DDL#RECORD_TABLE_ELLIPSIS_1" />
+		<execute function="Click" locator1="DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS_1" />
 
 		<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM">
 			<var name="key_menuItem" value="View" />
@@ -768,7 +768,7 @@
 	</command>
 
 	<command name="viewFirstRecordSearchResult">
-		<execute function="AssertTextEquals" locator1="Portlet#H3_HEADER" value1="New Data Definition Name for List: ${ddlListName}" />
+		<execute function="AssertTextEquals" locator1="Portlet#HEADER_TITLE" value1="New Data Definition Name for List: ${ddlListName}" />
 		<execute function="AssertTextEquals" locator1="DDLRecord#FIELD_1" value1="${field} ${ddlRecordFieldData}" />
 	</command>
 
@@ -864,7 +864,7 @@
 	</command>
 
 	<command name="viewSecondRecordSearchResult">
-		<execute function="AssertTextEquals" locator1="Portlet#H3_HEADER" value1="New Data Definition Name for List: ${ddlListName}" />
+		<execute function="AssertTextEquals" locator1="Portlet#HEADER_TITLE" value1="New Data Definition Name for List: ${ddlListName}" />
 		<execute function="AssertTextEquals" locator1="DDLRecord#FIELD_2" value1="${field} ${ddlRecordFieldData}" />
 	</command>
 
@@ -875,7 +875,7 @@
 
 		<execute function="AssertTextEquals" locator1="DDL#RECORD_TABLE_COLUMN_NAME" value1="${fieldFieldLabel}" />
 
-		<execute function="Click" locator1="DDL#RECORD_TABLE_ELLIPSIS_1" />
+		<execute function="Click" locator1="DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS_1" />
 
 		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="View">
 			<var name="key_menuItem" value="View" />
@@ -956,7 +956,7 @@
 		<if>
 			<equals arg1="${userRole}" arg2="Guest" />
 			<then>
-				<execute function="Click" locator1="DDL#RECORD_TABLE_ELLIPSIS_1" />
+				<execute function="Click" locator1="DDMSelectStructure#DDM_STRUCTURE_ELLIPSIS_1" />
 
 				<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="View">
 					<var name="key_menuItem" value="View" />

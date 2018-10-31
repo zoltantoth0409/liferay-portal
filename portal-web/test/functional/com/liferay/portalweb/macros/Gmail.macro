@@ -64,15 +64,15 @@
 				</if>
 
 				<if>
-					<condition function="IsElementPresent" locator1="Gmail#LOGIN_EMAIL_FIELD" />
+					<condition function="IsElementPresent" locator1="TextInput#LOGIN_EMAIL_FIELD" />
 					<then>
-						<execute function="Type" locator1="Gmail#LOGIN_EMAIL_FIELD" value1="${userEmailAddress}" />
+						<execute function="Type" locator1="TextInput#LOGIN_EMAIL_FIELD" value1="${userEmailAddress}" />
 
 						<execute function="Click" locator1="Gmail#LOGIN_NEXT_BUTTON" />
 					</then>
 				</if>
 
-				<execute function="Type" locator1="Gmail#LOGIN_PASSWORD_FIELD" value1="${userPassword}" />
+				<execute function="Type" locator1="TextInput#LOGIN_PASSWORD_FIELD" value1="${userPassword}" />
 
 				<if>
 					<condition function="IsElementPresent" locator1="Gmail#LOGIN_SIGN_IN_BUTTON" />
@@ -133,11 +133,11 @@
 			</elseif>
 		</if>
 
-		<execute function="Type" locator1="Gmail#LOGIN_EMAIL_FIELD" value1="${userEmailAddress}" />
+		<execute function="Type" locator1="TextInput#LOGIN_EMAIL_FIELD" value1="${userEmailAddress}" />
 
 		<execute function="Click" locator1="Gmail#LOGIN_NEXT_BUTTON" />
 
-		<execute function="Type" locator1="Gmail#LOGIN_PASSWORD_FIELD" value1="${userPassword}" />
+		<execute function="Type" locator1="TextInput#LOGIN_PASSWORD_FIELD" value1="${userPassword}" />
 
 		<if>
 			<condition function="IsElementPresent" locator1="Gmail#LOGIN_SIGN_IN_BUTTON" />

@@ -8,7 +8,7 @@
 
 		<execute macro="IFrame#selectDialogFrame" />
 
-		<execute function="Select" locator1="Configuration#MAXIMUM_ITEMS_TO_DISPLAY_SELECT" value1="5" />
+		<execute function="Select" locator1="Select#MAXIMUM_ITEMS_TO_DISPLAY" value1="5" />
 
 		<execute macro="PortletEntry#save" />
 

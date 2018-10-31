@@ -91,7 +91,7 @@
 						<var method="MathUtil#sum('${tagNumber}', '1')" name="tagNumber" />
 
 						<execute function="Type" locator1="AddTask#TASK_TAG_FIELD" value1="tag${tagNumber}" />
-						<execute function="Click" locator1="AddTask#TASK_ADD_TAG_BUTTON" />
+						<execute function="Click" locator1="Button#ADD_TAGS" />
 
 						<var name="key_tagNumber" value="${tagNumber}" />
 
@@ -107,7 +107,7 @@
 				<var name="key_tagNumber" value="${tagNumber}" />
 
 				<execute function="Type" locator1="AddTask#TASK_TAG_FIELD" value1="tag${tagNumber}" />
-				<execute function="Click" locator1="AddTask#TASK_ADD_TAG_BUTTON" />
+				<execute function="Click" locator1="Button#ADD_TAGS" />
 				<execute function="AssertTextEquals" locator1="AddTask#TASK_TAG" value1="tag${tagNumber}" />
 			</then>
 		</if>
@@ -116,7 +116,7 @@
 
 		<var name="key_taskDescription" value="${taskDescription}" />
 
-		<execute function="AssertTextEquals" locator1="TasksTask#TASK_DESCRIPTION" value1="${taskDescription}" />
+		<execute function="AssertTextEquals" locator1="Portlet#H3_HEADER_TITLE" value1="${taskDescription}" />
 
 		<if>
 			<equals arg1="${taskAssignee}" arg2="Unassigned" />

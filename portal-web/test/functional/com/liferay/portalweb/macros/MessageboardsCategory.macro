@@ -262,7 +262,7 @@
 
 		<execute function="Click" locator1="MessageBoards#CATEGORY_LIST_CATEGORY" />
 
-		<execute function="AssertTextEquals" locator1="MessageBoards#CATEGORIES_NAME_HEADER" value1="${categoryName}" />
+		<execute function="AssertTextEquals" locator1="Portlet#HEADER_TITLE" value1="${categoryName}" />
 		<execute function="AssertElementNotPresent" locator1="MessageBoards#SUBCATEGORY_TABLE_PANEL" />
 		<execute function="AssertElementNotPresent" locator1="MessageBoards#SUBCATEGORY_TABLE_CATEGORY_GENERIC" />
 	</command>
@@ -352,7 +352,7 @@
 			</else>
 		</if>
 
-		<execute function="AssertTextEquals" locator1="MessageBoards#CATEGORIES_NAME_HEADER" value1="${categoryName}" />
+		<execute function="AssertTextEquals" locator1="Portlet#HEADER_TITLE" value1="${categoryName}" />
 	</command>
 
 	<command name="viewSubcategoryFromSubcategoryPG">
@@ -360,13 +360,13 @@
 		<var name="key_subCategoryDescription" value="${subCategoryDescription}" />
 		<var name="key_subCategoryName" value="${subCategoryName}" />
 
-		<execute function="AssertTextEquals" locator1="MessageBoards#CATEGORIES_NAME_HEADER" value1="${categoryName}" />
+		<execute function="AssertTextEquals" locator1="Portlet#HEADER_TITLE" value1="${categoryName}" />
 		<execute function="AssertTextEquals" locator1="MessageBoards#CATEGORY_LIST_SUBCATEGORY" value1="${subCategoryName}" />
 		<execute function="AssertTextEquals" locator1="MessageBoards#CATEGORY_LIST_SUBCATEGORY_DESCRIPTION" value1="${subCategoryDescription}" />
 
 		<execute function="Click" locator1="MessageBoards#CATEGORY_LIST_SUBCATEGORY" />
 
-		<execute function="AssertTextEquals" locator1="MessageBoards#CATEGORIES_NAME_HEADER" value1="${subCategoryName}" />
+		<execute function="AssertTextEquals" locator1="Portlet#HEADER_TITLE" value1="${subCategoryName}" />
 	</command>
 
 	<command name="viewSubcategoryPG">
@@ -386,6 +386,6 @@
 
 		<execute function="Click" locator1="MessageBoards#CATEGORY_LIST_CATEGORY" />
 
-		<execute function="AssertTextEquals" locator1="MessageBoards#CATEGORIES_NAME_HEADER" value1="${subCategoryName}" />
+		<execute function="AssertTextEquals" locator1="Portlet#HEADER_TITLE" value1="${subCategoryName}" />
 	</command>
 </definition>

@@ -1,12 +1,12 @@
 <definition>
 	<command name="_selectCalendarSettingsIframe">
-		<execute function="SelectFrame" locator1="CalendarEditCalendar#EDIT_CALENDAR_IFRAME" />
+		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
 	</command>
 
 	<command name="_selectPermissionsIframe">
 		<execute function="AssertTextEquals" locator1="CalendarPermissions#PERMISSIONS_TITLE" value1="Permissions" />
 
-		<execute function="SelectFrame" locator1="CalendarPermissions#CALENDAR_PERMISSIONS_IFRAME" />
+		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
 	</command>
 
 	<command name="closeModal">
@@ -73,7 +73,7 @@
 	<command name="gotoAddMyCalendars">
 		<execute function="Click" locator1="Calendar#MY_CALENDARS_MENULIST_ARROW" />
 
-		<execute function="AssertClick" locator1="Calendar#MY_CALENDARS_MENULIST_ADD_CALENDAR" value1="Add Calendar" />
+		<execute function="AssertClick" locator1="Calendar#CURRENT_SITE_CALENDARS_MENULIST_ADD_CALENDAR" value1="Add Calendar" />
 
 		<execute macro="CalendarNavigator#_selectCalendarSettingsIframe" />
 	</command>
@@ -83,7 +83,7 @@
 
 		<execute function="AssertClick" locator1="CalendarResources#ADD_RESOURCE_BUTTON" value1="Add Resource" />
 
-		<execute function="AssertTextEquals" locator1="CalendarEditResource#HEADER_TITLE" value1="New Resource" />
+		<execute function="AssertTextEquals" locator1="Portlet#HEADER_TITLE" value1="New Resource" />
 	</command>
 
 	<command name="gotoConfiguration">
@@ -135,7 +135,7 @@
 			<var name="rowEntry" value="${calendarResourceName}" />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="CalendarEditResource#HEADER_TITLE" value1="${calendarResourceName}" />
+		<execute function="AssertTextEquals" locator1="Portlet#HEADER_TITLE" value1="${calendarResourceName}" />
 	</command>
 
 	<command name="gotoEventDetails">
@@ -176,7 +176,7 @@
 	<command name="gotoMyCalendarsManage">
 		<execute function="Click" locator1="Calendar#MY_CALENDARS_MENULIST_ARROW" />
 
-		<execute function="AssertClick" locator1="Calendar#MY_CALENDARS_MENULIST_MANAGE_CALENDAR" value1="Manage Calendars" />
+		<execute function="AssertClick" locator1="Calendar#CURRENT_SITE_CALENDARS_MENULIST_MANAGE_CALENDAR" value1="Manage Calendars" />
 	</command>
 
 	<command name="gotoNextDay">

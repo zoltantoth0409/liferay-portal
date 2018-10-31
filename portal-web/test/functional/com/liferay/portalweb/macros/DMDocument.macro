@@ -140,12 +140,12 @@
 				</execute>
 
 				<for list="${tagNameList}" param="tagName">
-					<execute function="Click#clickAt" locator1="AssetCategorization#TAGS_ADD_BUTTON" />
+					<execute function="Click#clickAt" locator1="Button#ADD_TAGS" />
 
 					<execute function="Type" locator1="AssetCategorization#TAGS_FIELD" value1="${tagName}" />
 				</for>
 
-				<execute function="Click#clickAt" locator1="AssetCategorization#TAGS_ADD_BUTTON" />
+				<execute function="Click#clickAt" locator1="Button#ADD_TAGS" />
 			</then>
 		</if>
 
@@ -260,14 +260,14 @@
 				<isset var="dateFieldName" />
 			</and>
 			<then>
-				<execute function="Type" locator1="DocumentsAndMediaEditCustomDocumentType#DATE_FIELD" value1="${date}">
+				<execute function="Type" locator1="TextInput#DDM_FUZZY" value1="${date}">
 					<var name="key_fieldName" value="${dateFieldName}" />
 				</execute>
 			</then>
 			<elseif>
 				<isset var="date" />
 				<then>
-					<execute function="Type" locator1="DocumentsAndMediaEditCustomDocumentType#DATE_FIELD" value1="${date}">
+					<execute function="Type" locator1="TextInput#DDM_FUZZY" value1="${date}">
 						<var name="key_fieldName" value="date" />
 					</execute>
 				</then>
@@ -287,14 +287,14 @@
 				<isset var="textBoxFieldName" />
 			</and>
 			<then>
-				<execute function="Type" locator1="DocumentsAndMediaEditCustomDocumentType#TEXT_BOX_FIELD" value1="${textBox}">
+				<execute function="Type" locator1="DDMField#TEXT_BOX" value1="${textBox}">
 					<var name="key_fieldName" value="${textBoxFieldName}" />
 				</execute>
 			</then>
 			<elseif>
 				<isset var="textBox" />
 				<then>
-					<execute function="Type" locator1="DocumentsAndMediaEditCustomDocumentType#TEXT_BOX_FIELD" value1="${textBox}">
+					<execute function="Type" locator1="DDMField#TEXT_BOX" value1="${textBox}">
 						<var name="key_fieldName" value="textBox" />
 					</execute>
 				</then>
@@ -304,7 +304,7 @@
 		<if>
 			<isset var="textField" />
 			<then>
-				<execute function="Type" locator1="DocumentsAndMediaEditCustomDocumentType#TEXT_FIELD" value1="${textField}">
+				<execute function="Type" locator1="TextInput#DDM_FUZZY" value1="${textField}">
 					<var name="key_fieldName" value="Text" />
 				</execute>
 			</then>
@@ -313,7 +313,7 @@
 		<if>
 			<isset var="numberField" />
 			<then>
-				<execute function="Type" locator1="DocumentsAndMediaEditCustomDocumentType#NUMBER_FIELD" value1="${numberField}">
+				<execute function="Type" locator1="TextInput#DDM_FUZZY" value1="${numberField}">
 					<var name="key_fieldName" value="Number" />
 				</execute>
 			</then>
@@ -322,7 +322,7 @@
 		<if>
 			<isset var="booleanField" />
 			<then>
-				<execute function="Check" locator1="DocumentsAndMediaEditCustomDocumentType#BOOLEAN_CHECKBOX" value1="${booleanField}">
+				<execute function="Check" locator1="TextInput#DDM_FUZZY" value1="${booleanField}">
 					<var name="key_fieldName" value="Boolean" />
 				</execute>
 			</then>
@@ -375,7 +375,7 @@
 		<if>
 			<isset var="textField" />
 			<then>
-				<execute function="Type" locator1="DocumentsAndMediaEditCustomDocumentType#TEXT_FIELD" value1="${textField}">
+				<execute function="Type" locator1="TextInput#DDM_FUZZY" value1="${textField}">
 					<var name="key_fieldName" value="Text" />
 				</execute>
 			</then>
@@ -384,7 +384,7 @@
 		<if>
 			<isset var="numberField" />
 			<then>
-				<execute function="Type" locator1="DocumentsAndMediaEditCustomDocumentType#NUMBER_FIELD" value1="${numberField}">
+				<execute function="Type" locator1="TextInput#DDM_FUZZY" value1="${numberField}">
 					<var name="key_fieldName" value="Number" />
 				</execute>
 			</then>
@@ -393,7 +393,7 @@
 		<if>
 			<isset var="booleanField" />
 			<then>
-				<execute function="Check" locator1="DocumentsAndMediaEditCustomDocumentType#BOOLEAN_CHECKBOX" value1="${booleanField}">
+				<execute function="Check" locator1="TextInput#DDM_FUZZY" value1="${booleanField}">
 					<var name="key_fieldName" value="Boolean" />
 				</execute>
 			</then>
@@ -432,7 +432,7 @@
 			<isset var="dmDocumentFileList" />
 			<then>
 				<for list="${dmDocumentFileList}" param="dmDocumentFile">
-					<execute function="AssertClick" locator1="DynamicUploader#SELECT_FILES_BUTTON" value1="Select Files" />
+					<execute function="AssertClick" locator1="Button#SELECT_FILES" value1="Select Files" />
 
 					<if>
 						<equals arg1="${uploadTempFile}" arg2="true" />
@@ -456,7 +456,7 @@
 		<if>
 			<isset var="viewableBy" />
 			<then>
-				<execute function="Select" locator1="DocumentsAndMediaEditFolder#PERMISSIONS_SELECT" value1="${viewableBy}" />
+				<execute function="Select" locator1="Select#PERMISSIONS" value1="${viewableBy}" />
 			</then>
 		</if>
 
@@ -478,7 +478,7 @@
 			<isset var="dmDocumentFileList" />
 			<then>
 				<for list="${dmDocumentFileList}" param="dmDocumentFile">
-					<execute function="AssertClick" locator1="DynamicUploader#SELECT_FILES_BUTTON" value1="Select Files" />
+					<execute function="AssertClick" locator1="Button#SELECT_FILES" value1="Select Files" />
 
 					<if>
 						<equals arg1="${uploadTempFile}" arg2="true" />
@@ -502,7 +502,7 @@
 		<if>
 			<isset var="viewableBy" />
 			<then>
-				<execute function="Select" locator1="DocumentsAndMediaEditFolder#PERMISSIONS_SELECT" value1="${viewableBy}" />
+				<execute function="Select" locator1="Select#PERMISSIONS" value1="${viewableBy}" />
 			</then>
 		</if>
 
@@ -582,7 +582,7 @@
 
 					<execute function="Type" locator1="AssetCategorization#TAGS_FIELD" value1="${tagName}" />
 
-					<execute function="AssertClick" locator1="AssetCategorization#TAGS_ADD_BUTTON" value1="Add" />
+					<execute function="AssertClick" locator1="Button#ADD_TAGS" value1="Add" />
 				</for>
 			</then>
 		</if>
@@ -1640,7 +1640,7 @@
 
 		<var name="key_dmDocumentSize" value="${dmDocumentSize}" />
 
-		<execute function="AssertElementPresent" locator1="DocumentsAndMediaDocument#DOCUMENT_INFO_DOWNLOAD_DOCUMENT" />
+		<execute function="AssertElementPresent" locator1="Link#DOWNLOAD" />
 		<execute function="AssertElementPresent" locator1="DocumentsAndMediaDocument#DOCUMENT_INFO_GET_URL_OR_WEBDAV_URL" />
 
 		<execute function="Click" locator1="DocumentsAndMediaDocument#DOCUMENT_DETAILS_DROPDOWN" />
@@ -1813,7 +1813,7 @@
 
 		<var method="StringUtil#upperCase('${key_dmFolderName}')" name="dmFolderName" />
 
-		<execute function="AssertTextEquals" locator1="DocumentsAndMedia#BREADCRUMB_LAST" value1="${dmFolderName}" />
+		<execute function="AssertTextEquals" locator1="DocumentsAndMedia#BREADCRUMB_FOLDER_NAME" value1="${dmFolderName}" />
 		<execute function="AssertElementPresent" locator1="DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_ICON" />
 		<execute function="AssertTextEquals" locator1="DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE" value1="${dmDocumentTitle}" />
 	</command>
@@ -1924,7 +1924,7 @@
 
 		<execute function="Type" locator1="DocumentsAndMedia#SEARCH_FIELD" value1="${dmDocumentTitle}" />
 
-		<execute function="Click" locator1="DocumentsAndMedia#SEARCH_BUTTON" />
+		<execute function="Click" locator1="Button#SEARCH" />
 
 		<execute function="AssertClick#assertPartialTextClickAt" locator1="DocumentsAndMedia#SEARCH_TITLE" value1="${dmDocumentTitle}" />
 
@@ -1962,7 +1962,7 @@
 			<then>
 				<execute function="AssertClick#assertPartialTextClickAt" locator1="Link#READ_MORE" value1="Read More" />
 
-				<execute function="AssertTextEquals" locator1="APAsset#ASSET_TITLE" value1="${dmDocumentTitle}" />
+				<execute function="AssertTextEquals" locator1="AP#ASSET_ABSTRACT_VIEW" value1="${dmDocumentTitle}" />
 				<execute function="AssertTextEquals#assertPartialText" locator1="APAsset#ASSET_CONTENT" value1="${dmDocumentDescription}" />
 			</then>
 		</if>

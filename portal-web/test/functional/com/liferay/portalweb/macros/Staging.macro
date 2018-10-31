@@ -214,7 +214,7 @@
 
 		<execute macro="LexiconEntry#gotoAdd" />
 
-		<execute function="Type" locator1="StagingPublishToLive#PUBLISH_TEMPLATES_NAME_FIELD" value1="${publishTemplateName}" />
+		<execute function="Type" locator1="TextInput#NAME" value1="${publishTemplateName}" />
 		<execute macro="PortletEntry#inputDescription">
 			<var name="description" value="${publishTemplateDescription}" />
 		</execute>
@@ -464,7 +464,7 @@
 				<var name="key_subContent" value="${subContent}" />
 				<var name="key_subSubContent" value="${uncheckSubSubContent}" />
 
-				<execute function="Uncheck" locator1="StagingPublishToLive#CONTENT_CHOOSE_CONTENT_SUB_SUBCONTENT_CHECKBOX" />
+				<execute function="Uncheck" locator1="ExportImport#CONTENT_CHOOSE_CONTENT_SUB_SUBCONTENT_CHECKBOX" />
 
 				<execute function="AssertClick" locator1="Button#OK" value1="OK" />
 			</then>
@@ -568,7 +568,7 @@
 		</execute>
 
 		<if>
-			<condition function="IsElementPresent" locator1="SiteSettingsStaging#ENABLED_ON_PUBLIC_PAGES_CHECKBOX" />
+			<condition function="IsElementPresent" locator1="Checkbox#ENABLED_ON_PUBLIC_PAGES" />
 			<then>
 				<execute function="Check" locator1="SiteSettingsStaging#NONE_RADIO" />
 
@@ -580,7 +580,7 @@
 			</then>
 		</if>
 
-		<execute function="AssertNotVisible" locator1="SiteSettingsStaging#ENABLED_ON_PUBLIC_PAGES_CHECKBOX" />
+		<execute function="AssertNotVisible" locator1="Checkbox#ENABLED_ON_PUBLIC_PAGES" />
 	</command>
 
 	<command name="deletePageVariationPG">
@@ -645,7 +645,7 @@
 
 		<execute function="AssertClick" locator1="StagingPublishToLive#PUBLISH_TEMPLATES_TABLE_NAME" value1="${publishTemplateName}" />
 
-		<execute function="Type" locator1="StagingPublishToLive#PUBLISH_TEMPLATES_NAME_FIELD" value1="${publishTemplateNameEdit}" />
+		<execute function="Type" locator1="TextInput#NAME" value1="${publishTemplateNameEdit}" />
 		<execute macro="PortletEntry#inputDescription">
 			<var name="description" value="${publishTemplateDescriptionEdit}" />
 		</execute>
@@ -1247,7 +1247,7 @@
 
 				<execute function="Click" locator1="Staging#HISTORY_BUTTON" />
 
-				<execute function="SelectFrame" locator1="IFrame#METADATA_SETS_IFRAME" />
+				<execute function="SelectFrame" locator1="IFrame#DIALOG" />
 			</then>
 		</if>
 

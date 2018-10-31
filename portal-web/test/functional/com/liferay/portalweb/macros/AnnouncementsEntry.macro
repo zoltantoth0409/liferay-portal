@@ -195,7 +195,7 @@
 		<execute function="Select" locator1="AnnouncementsManageEntries#DISTRIBUTION_SCOPE_SELECT" value1="${distributionScope}" />
 
 		<execute function="AssertTextEquals" locator1="AnnouncementsManageEntries#ENTRY_TABLE_TITLE" value1="${entryTitle}" />
-		<execute function="AssertTextEquals" locator1="AnnouncementsManageEntries#ENTRY_TABLE_TYPE" value1="${announcementType}" />
+		<execute function="AssertTextEquals" locator1="Blogs#ENTRY_TABLE_TITLE" value1="${announcementType}" />
 	</command>
 
 	<command name="viewReadPG">
@@ -230,7 +230,7 @@
 		<execute function="Select" locator1="AnnouncementsManageEntries#DISTRIBUTION_SCOPE_SELECT" value1="${distributionScope}" />
 
 		<execute function="AssertTextEquals" locator1="AnnouncementsManageEntries#ENTRY_TABLE_TITLE" value1="${entryTitle}" />
-		<execute function="AssertTextEquals" locator1="AnnouncementsManageEntries#ENTRY_TABLE_TYPE" value1="${announcementType}" />
+		<execute function="AssertTextEquals" locator1="Blogs#ENTRY_TABLE_TITLE" value1="${announcementType}" />
 		<execute function="AssertElementPresent" locator1="AnnouncementsManageEntries#ENTRY_TABLE_MODIFIED_DATE" />
 		<execute function="AssertElementPresent" locator1="AnnouncementsManageEntries#ENTRY_TABLE_DISPLAY_DATE" />
 		<execute function="AssertElementPresent" locator1="AnnouncementsManageEntries#ENTRY_TABLE_EXPIRATION_DATE" />

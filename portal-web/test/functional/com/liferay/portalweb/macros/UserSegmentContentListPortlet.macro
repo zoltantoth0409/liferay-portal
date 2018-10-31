@@ -66,6 +66,6 @@
 	</command>
 
 	<command name="viewContentNotPresent">
-		<execute function="AssertElementNotPresent" locator1="UserSegmentContentList#VIEW_ENTRY_CONTENT_BASIC" />
+		<execute function="AssertElementNotPresent" locator1="AP#ASSET_ABSTRACT_DETAIL_CONTENT" />
 	</command>
 </definition>

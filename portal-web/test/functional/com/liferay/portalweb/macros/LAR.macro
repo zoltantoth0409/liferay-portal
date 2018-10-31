@@ -1,6 +1,6 @@
 <definition>
 	<command name="_export">
-		<execute function="SelectFrame" locator1="ExportImport#EXPORT_IMPORT_IFRAME" />
+		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION_DIALOG" />
 
 		<if>
 			<isset var="larFileName" />
@@ -142,7 +142,7 @@
 	</command>
 
 	<command name="_selectImportFile">
-		<execute function="SelectFrame" locator1="ExportImport#EXPORT_IMPORT_IFRAME" />
+		<execute function="SelectFrame" locator1="IFrame#CONFIGURATION_DIALOG" />
 
 		<execute function="AssertClick" locator1="ExportImport#NAVIGATION_IMPORT" value1="Import" />
 
@@ -167,13 +167,13 @@
 		<if>
 			<equals arg1="${cannotImport}" arg2="true" />
 			<then>
-				<execute function="AssertTextEquals" locator1="SitePagesImport#VALIDATION_ERROR_MESSAGE_HEADER" value1="The file ${larFileName} cannot be imported." />
+				<execute function="AssertTextEquals" locator1="Message#VALIDATION_ERROR_MESSAGE_HEADER" value1="The file ${larFileName} cannot be imported." />
 			</then>
 			<elseif>
 				<isset var="importValidationMissingItem" />
 				<then>
-					<execute function="AssertTextEquals" locator1="ExportImport#VALIDATION_ERROR_MESSAGE_HEADER" value1="The file ${larFileName} cannot be imported." />
-					<execute function="AssertTextEquals" locator1="ExportImport#VALIDATION_ERROR_MESSAGE" value1="An unexpected error occurred while uploading your file." />
+					<execute function="AssertTextEquals" locator1="Message#VALIDATION_ERROR_MESSAGE_HEADER" value1="The file ${larFileName} cannot be imported." />
+					<execute function="AssertTextEquals" locator1="Message#VALIDATION_ERROR_MESSAGE" value1="An unexpected error occurred while uploading your file." />
 				</then>
 			</elseif>
 			<else>
@@ -213,7 +213,7 @@
 
 		<execute function="Pause" locator1="5000" />
 
-		<execute function="AssertClick" locator1="SitePagesImport#SELECT_FILE_BUTTON" value1="Select File" />
+		<execute function="AssertClick" locator1="Button#SELECT_FILE" value1="Select File" />
 
 		<execute function="Pause" locator1="5000" />
 
@@ -236,8 +236,8 @@
 		<if>
 			<isset var="importValidationMissingItem" />
 			<then>
-				<execute function="AssertTextEquals#assertPartialText" locator1="SitePagesImport#VALIDATION_ERROR_MESSAGE_HEADER" value1="cannot be imported." />
-				<execute function="AssertTextEquals" locator1="SitePagesImport#VALIDATION_ERROR_MESSAGE" value1="There are missing references that could not be found in the current site. Please import the following elements first:" />
+				<execute function="AssertTextEquals#assertPartialText" locator1="Message#VALIDATION_ERROR_MESSAGE_HEADER" value1="cannot be imported." />
+				<execute function="AssertTextEquals" locator1="Message#VALIDATION_ERROR_MESSAGE" value1="There are missing references that could not be found in the current site. Please import the following elements first:" />
 				<execute function="AssertTextEquals#assertPartialText" locator1="SitePagesImport#VALIDATION_ERROR_LIST_ITEM" value1="${importValidationMissingItem}" />
 			</then>
 		</if>
@@ -245,7 +245,7 @@
 		<if>
 			<equals arg1="importCampaignValidationError" arg2="true" />
 			<then>
-				<execute function="AssertTextEquals" locator1="SitePagesImport#VALIDATION_ERROR_MESSAGE" value1="The following data will not be imported:" />
+				<execute function="AssertTextEquals" locator1="Message#VALIDATION_ERROR_MESSAGE" value1="The following data will not be imported:" />
 				<execute function="AssertTextEquals#assertPartialText" locator1="SitePagesImport#VALIDATION_ERROR_LIST_ITEM" value1="Campaign Tracking Action" />
 				<execute function="AssertTextEquals#assertPartialText" locator1="SitePagesImport#VALIDATION_ERROR_LIST_ITEM" value1="The original Referenced Asset does not exist in the current environment." />
 			</then>
@@ -667,7 +667,7 @@
 
 	<command name="searchTemplate">
 		<execute function="Type" locator1="Search#SEARCH_FIELD" value1="${exportTemplateName}" />
-		<execute function="Click" locator1="NavBar#SEARCH_BUTTON" />
+		<execute function="Click" locator1="Button#SEARCH" />
 
 		<var name="key_exportTemplateName" value="${exportTemplateName}" />
 

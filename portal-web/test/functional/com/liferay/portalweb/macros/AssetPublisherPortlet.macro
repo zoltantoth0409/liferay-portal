@@ -250,7 +250,7 @@
 			<var name="navTab" value="Display Settings" />
 		</execute>
 
-		<execute function="Select" locator1="APConfigurationDisplaysettings#DISPLAY_TEMPLATE_SELECT" value1="${displayTemplate}" />
+		<execute function="Select" locator1="Configuration#SETUP_DISPLAY_SETTINGS_DISPLAY_TEMPLATE_SELECT" value1="${displayTemplate}" />
 
 		<execute macro="PortletEntry#save" />
 
@@ -391,7 +391,7 @@
 
 				<execute function="Click" locator1="APConfiguration#ASSET_SELECTION_MANUAL_ASSET_ENTRIES_SELECT_BUTTON" />
 
-				<execute function="AssertClick" locator1="APConfiguration#ASSET_SELECTION_MANUAL_ASSET_ENTRIES_ASSET" value1="${assetType}">
+				<execute function="AssertClick" locator1="AssetRelatedAssets#RELATED_ASSETS_SELECT_MENULIST_ASSET" value1="${assetType}">
 					<var name="key_assetType" value="${assetType}" />
 				</execute>
 
@@ -1266,7 +1266,7 @@
 
 		<execute function="AssertTextEquals#assertPartialText" locator1="APAsset#ASSET_CONTENT" value1="${assetContent}" />
 
-		<execute function="AssertClick" locator1="APAsset#ASSET_TITLE" value1="${assetTitle}" />
+		<execute function="AssertClick" locator1="AP#ASSET_ABSTRACT_VIEW" value1="${assetTitle}" />
 
 		<if>
 			<isset var="relatedAssetTitle" />

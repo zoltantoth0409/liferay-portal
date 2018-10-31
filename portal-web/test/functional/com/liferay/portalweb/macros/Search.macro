@@ -72,7 +72,7 @@
 
 	<command name="searchCP">
 		<execute function="AssertElementPresent" locator1="NavBar#BASIC_SEARCH_FIELD" />
-		<execute function="AssertElementPresent" locator1="NavBar#SEARCH_BUTTON" />
+		<execute function="AssertElementPresent" locator1="Button#SEARCH" />
 
 		<execute function="Type" locator1="NavBar#BASIC_SEARCH_FIELD" value1="${searchTerm}" />
 

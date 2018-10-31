@@ -145,7 +145,7 @@
 			<then>
 				<var name="defaultPortalLanguage" value="${defaultPortalLanguage}" />
 
-				<execute function="Select" locator1="SiteSettingsDisplaySettings#DEFAULT_LANGUAGE_SELECT" value1="${defaultPortalLanguage}" />
+				<execute function="Select" locator1="LanguageConfiguration#DEFAULT_LANGUAGE_SELECT" value1="${defaultPortalLanguage}" />
 			</then>
 		</if>
 
@@ -153,9 +153,9 @@
 			<isset var="currentPortalLanguages" />
 			<then>
 				<while>
-					<condition function="IsElementPresent" locator1="PortalSettingsDisplaySettings#AVAILABLE_LANGUAGES_CURRENT_PRESENT" />
+					<condition function="IsElementPresent" locator1="LanguageConfiguration#LANGUAGES_CURRENT_SELECT" />
 					<then>
-						<execute function="AddSelection" locator1="PortalSettingsDisplaySettings#AVAILABLE_LANGUAGES_CURRENT_SELECT" value1="index=0" />
+						<execute function="AddSelection" locator1="LanguageConfiguration#LANGUAGES_CURRENT" value1="index=0" />
 
 						<execute function="Click" locator1="Button#MOVE_CURRENT_TO_AVAILABLE" />
 					</then>
@@ -164,11 +164,11 @@
 				<for list="${currentPortalLanguages}" param="currentPortalLanguage">
 					<var name="currentPortalLanguage" value="${currentPortalLanguage}" />
 
-					<execute function="AddSelection" locator1="PortalSettingsDisplaySettings#AVAILABLE_LANGUAGES_AVAILABLE_SELECT" value1="${currentPortalLanguage}" />
+					<execute function="AddSelection" locator1="LanguageConfiguration#LANGUAGES_AVAILABLE" value1="${currentPortalLanguage}" />
 
 					<execute function="Click" locator1="Button#MOVE_AVAILABLE_TO_CURRENT" />
 
-					<execute function="AssertTextEquals#assertPartialText" locator1="PortalSettingsDisplaySettings#AVAILABLE_LANGUAGES_CURRENT_SELECT" value1="${currentPortalLanguage}" />
+					<execute function="AssertTextEquals#assertPartialText" locator1="LanguageConfiguration#LANGUAGES_CURRENT" value1="${currentPortalLanguage}" />
 				</for>
 			</then>
 		</if>
@@ -372,7 +372,7 @@
 
 		<execute function="AssertClick" locator1="NavTab#ACCOUNT_CREATED_NOTIFICATION" value1="Account Created Notification" />
 
-		<execute function="Type#typeCKEditor" locator1="PortalSettingsEmailNotifications#EMAIL_NOTIFICATIONS_ACCOUNT_CREATED_NOTIFICATION_BODY_WITH_PASSWORD" value1="[$USER_PASSWORD$]" />
+		<execute function="Type#typeCKEditor" locator1="CKEditor#BODY_FIELD" value1="[$USER_PASSWORD$]" />
 
 		<execute macro="PortletEntry#save" />
 	</command>
@@ -747,7 +747,7 @@
 			<var name="navTab" value="${navTab}" />
 		</execute>
 
-		<execute function="AssertSelectedLabel" locator1="PortalSettingsDisplaySettings#DEFAULT_LANGUAGE_SELECT" value1="${defaultPortalLanguage}" />
+		<execute function="AssertSelectedLabel" locator1="LanguageConfiguration#DEFAULT_LANGUAGE_SELECT" value1="${defaultPortalLanguage}" />
 	</command>
 
 	<command name="viewDefaultLanguageCP">
@@ -755,7 +755,7 @@
 			<var name="navTab" value="Miscellaneous" />
 		</execute>
 
-		<execute function="AssertSelectedLabel" locator1="PortalSettingsDisplaySettings#DEFAULT_LANGUAGE_SELECT" value1="${defaultPortalLanguage}" />
+		<execute function="AssertSelectedLabel" locator1="LanguageConfiguration#DEFAULT_LANGUAGE_SELECT" value1="${defaultPortalLanguage}" />
 	</command>
 
 	<command name="viewDefaultUserAssociationsCP">

@@ -152,7 +152,7 @@
 			<var name="menuItem" value="Assign to..." />
 		</execute>
 
-		<execute function="AssertTextEquals" locator1="MyWorkflowTasks#DIALOG_BOX_TITLE" value1="Assign to..." />
+		<execute function="AssertTextEquals" locator1="DDMEditStructure#ARE_YOU_SURE_DIALOG_BOX_HEADER" value1="Assign to..." />
 
 		<execute function="SelectFrame" locator1="IFrame#SELECT_ASSIGN_TO" />
 
@@ -430,7 +430,7 @@
 	<command name="gotoViewCompletedAssetViaMySubmissions">
 		<execute macro="Workflow#gotoCompletedFilter" />
 
-		<execute function="Click" locator1="WorkflowSubmissions#COMPLETED_TABLE_ASSET_TITLE">
+		<execute function="Click" locator1="WorkflowSubmissions#ASSET_TITLE">
 			<var name="key_workflowAssetTitle" value="${workflowAssetTitle}" />
 		</execute>
 
@@ -835,12 +835,12 @@
 
 		<var name="key_workflowAssetTitle" value="${workflowAssetTitle}" />
 
-		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#COMPLETED_TABLE_DEFINITION" value1="${workflowDefinition}" />
-		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#COMPLETED_TABLE_ASSET_TITLE" value1="${workflowAssetTitle}" />
-		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#COMPLETED_TABLE_ASSET_TYPE" value1="${workflowAssetType}" />
-		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#COMPLETED_TABLE_STATUS" value1="${workflowTask}" />
-		<execute function="AssertElementPresent" locator1="WorkflowSubmissions#COMPLETED_TABLE_LAST_ACTIVITY_DATE" />
-		<execute function="AssertElementPresent" locator1="WorkflowSubmissions#COMPLETED_TABLE_END_DATE" />
+		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#DEFINITION" value1="${workflowDefinition}" />
+		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#ASSET_TITLE" value1="${workflowAssetTitle}" />
+		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#ASSET_TYPE" value1="${workflowAssetType}" />
+		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#STATUS" value1="${workflowTask}" />
+		<execute function="AssertElementPresent" locator1="WorkflowSubmissions#LAST_ACTIVITY_DATE" />
+		<execute function="AssertElementPresent" locator1="WorkflowSubmissions#END_DATE" />
 		<execute function="AssertElementNotPresent" locator1="//div[@id='_158_workflowInstancesSearchContainer']//tr[contains(.,'${key_workflowAssetTitle}')]/td[7]/span/a[contains(@id,'menu_withdraw-submission')]/span" />
 		<execute function="AssertTextNotPresent" value1="Withdraw Submission" />
 	</command>
@@ -850,12 +850,12 @@
 
 		<var name="key_workflowAssetTitle" value="${workflowAssetTitle}" />
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="WorkflowSubmissions#COMPLETED_TABLE_ASSET_TITLE" value1="${workflowAssetTitle}" />
-		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#COMPLETED_TABLE_ASSET_TYPE" value1="${workflowAssetType}" />
-		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#COMPLETED_TABLE_STATUS" value1="${workflowStatus}" />
-		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#COMPLETED_TABLE_DEFINITION" value1="${workflowDefinition}" />
-		<execute function="AssertElementPresent" locator1="WorkflowSubmissions#COMPLETED_TABLE_LAST_ACTIVITY_DATE" />
-		<execute function="AssertElementPresent" locator1="WorkflowSubmissions#COMPLETED_TABLE_END_DATE" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="WorkflowSubmissions#ASSET_TITLE" value1="${workflowAssetTitle}" />
+		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#ASSET_TYPE" value1="${workflowAssetType}" />
+		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#STATUS" value1="${workflowStatus}" />
+		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#DEFINITION" value1="${workflowDefinition}" />
+		<execute function="AssertElementPresent" locator1="WorkflowSubmissions#LAST_ACTIVITY_DATE" />
+		<execute function="AssertElementPresent" locator1="WorkflowSubmissions#END_DATE" />
 	</command>
 
 	<command name="viewCompletedTask">
@@ -956,16 +956,16 @@
 
 		<var name="key_workflowAssetTitle" value="${workflowAssetTitle}" />
 
-		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#PENDING_TABLE_ASSET_TITLE" value1="${workflowAssetTitle}" />
-		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#PENDING_TABLE_ASSET_TYPE" value1="${workflowAssetType}" />
-		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#PENDING_TABLE_STATUS" value1="${workflowTask}" />
-		<execute function="AssertElementPresent" locator1="WorkflowSubmissions#PENDING_TABLE_LAST_ACTIVITY_DATE" />
-		<execute function="AssertElementPresent" locator1="WorkflowSubmissions#PENDING_TABLE_END_DATE" />
+		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#ASSET_TITLE" value1="${workflowAssetTitle}" />
+		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#ASSET_TYPE" value1="${workflowAssetType}" />
+		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#STATUS" value1="${workflowTask}" />
+		<execute function="AssertElementPresent" locator1="WorkflowSubmissions#LAST_ACTIVITY_DATE" />
+		<execute function="AssertElementPresent" locator1="WorkflowSubmissions#END_DATE" />
 	</command>
 
 	<command name="viewMySubmissionsTaskPreview">
 		<execute function="AssertTextEquals" locator1="WorkflowSubmissionsTask#PREVIEW" value1="Preview of ${workflowAssetType}" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="WorkflowSubmissionsTask#PREVIEW_TITLE" value1="${workflowAssetTitle}" />
+		<execute function="AssertTextEquals#assertPartialText" locator1="MyWorkflowTasksTask#PREVIEW_TITLE" value1="${workflowAssetTitle}" />
 		<execute function="AssertTextEquals#assertPartialText" locator1="WorkflowSubmissionsTask#PREVIEW_CONTENT" value1="${workflowAssetContent}" />
 
 		<execute macro="SiteAdmin#viewPortletTitle">
@@ -1027,7 +1027,7 @@
 	<command name="viewSubmissionNotPresent">
 		<execute macro="Workflow#_gotoPendingFilter" />
 
-		<execute function="AssertElementNotPresent" locator1="WorkflowSubmissions#PENDING_TABLE_ASSET_TITLE">
+		<execute function="AssertElementNotPresent" locator1="WorkflowSubmissions#ASSET_TITLE">
 			<var name="key_workflowAssetTitle" value="${workflowAssetTitle}" />
 		</execute>
 	</command>
@@ -1158,7 +1158,7 @@
 
 		<var name="key_workflowAssetTitle" value="${workflowAssetTitle}" />
 
-		<execute function="AssertClick" locator1="WorkflowSubmissions#PENDING_TABLE_ASSET_TITLE" value1="${workflowAssetTitle}" />
+		<execute function="AssertClick" locator1="WorkflowSubmissions#ASSET_TITLE" value1="${workflowAssetTitle}" />
 
 		<execute macro="Workflow#viewMySubmissionsTaskPreview">
 			<var name="workflowAssetContent" value="${workflowAssetContent}" />
@@ -1179,14 +1179,14 @@
 
 		<var name="key_workflowAssetTitle" value="${workflowAssetTitle}" />
 
-		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#COMPLETED_TABLE_DEFINITION" value1="${workflowDefinition}" />
-		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#COMPLETED_TABLE_ASSET_TITLE" value1="${workflowAssetTitle}" />
-		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#COMPLETED_TABLE_ASSET_TYPE" value1="${workflowAssetType}" />
-		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#COMPLETED_TABLE_STATUS" value1="${workflowTask}" />
-		<execute function="AssertElementPresent" locator1="WorkflowSubmissions#COMPLETED_TABLE_LAST_ACTIVITY_DATE" />
-		<execute function="AssertElementPresent" locator1="WorkflowSubmissions#COMPLETED_TABLE_END_DATE" />
+		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#DEFINITION" value1="${workflowDefinition}" />
+		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#ASSET_TITLE" value1="${workflowAssetTitle}" />
+		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#ASSET_TYPE" value1="${workflowAssetType}" />
+		<execute function="AssertTextEquals" locator1="WorkflowSubmissions#STATUS" value1="${workflowTask}" />
+		<execute function="AssertElementPresent" locator1="WorkflowSubmissions#LAST_ACTIVITY_DATE" />
+		<execute function="AssertElementPresent" locator1="WorkflowSubmissions#END_DATE" />
 
-		<execute function="AssertClick" locator1="WorkflowSubmissions#COMPLETED_TABLE_ASSET_TITLE" value1="${workflowAssetTitle}" />
+		<execute function="AssertClick" locator1="WorkflowSubmissions#ASSET_TITLE" value1="${workflowAssetTitle}" />
 
 		<execute macro="Workflow#viewMySubmissionsTaskPreview">
 			<var name="workflowAssetContent" value="${workflowAssetContent}" />

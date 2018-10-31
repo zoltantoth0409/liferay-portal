@@ -82,7 +82,7 @@
 
 		<execute function="AssertTextEquals" locator1="RecycleBin#RECYCLE_BIN_FOLDER_WARNING_INFO" value1="The original Folder does not exist anymore. Choose a different Folder to restore ${documentName}." />
 
-		<execute function="AssertClick" locator1="RecycleBin#RECYCLE_BIN_FOLDER_WARNING_CHOOSE_THIS_FOLDER_BUTTON" value1="Choose This Folder" />
+		<execute function="AssertClick" locator1="Button#CHOOSE_THIS_FOLDER" value1="Choose This Folder" />
 
 		<execute function="SelectFrameTop" value1="relative=top" />
 
@@ -169,10 +169,10 @@
 				<if>
 					<isset var="customMaxAgeMsg" />
 					<then>
-						<execute function="AssertTextEquals#assertPartialText" locator1="Message#RECYCLE_BIN_INFO" value1="${customMaxAgeMsg}" />
+						<execute function="AssertTextEquals#assertPartialText" locator1="Message#TOOLTIP" value1="${customMaxAgeMsg}" />
 					</then>
 					<else>
-						<execute function="AssertTextEquals" locator1="Message#RECYCLE_BIN_INFO" value1="The Recycle Bin shows all assets removed by users. Assets can be restored or permanently deleted.Entries that have been in the Recycle Bin for more than 1 month are automatically deleted." />
+						<execute function="AssertTextEquals" locator1="Message#TOOLTIP" value1="The Recycle Bin shows all assets removed by users. Assets can be restored or permanently deleted.Entries that have been in the Recycle Bin for more than 1 month are automatically deleted." />
 					</else>
 				</if>
 			</then>

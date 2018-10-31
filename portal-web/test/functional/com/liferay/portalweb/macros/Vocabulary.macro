@@ -55,7 +55,7 @@
 			<then>
 				<var name="key_localizationName" value="${localizationNameKey}" />
 
-				<execute function="Click" locator1="CategoriesEditVocabulary#LOCALIZATION_NAME" />
+				<execute function="Click" locator1="Translation#LOCALIZATION_NAME" />
 
 				<execute macro="PortletEntry#inputName">
 					<var name="name" value="${localizationName}" />
@@ -68,7 +68,7 @@
 			<then>
 				<var name="key_localizationName" value="${localization2NameKey}" />
 
-				<execute function="Click" locator1="CategoriesEditVocabulary#LOCALIZATION_NAME" />
+				<execute function="Click" locator1="Translation#LOCALIZATION_NAME" />
 
 				<execute macro="PortletEntry#inputName">
 					<var name="name" value="${localization2Name}" />
@@ -90,7 +90,7 @@
 			<var name="panelHeading" value="Permissions" />
 		</execute>
 
-		<execute function="Select" locator1="CategoriesEditVocabulary#PERMISSIONS_VIEWABLE_BY_SELECT" value1="${viewableBy}" />
+		<execute function="Select" locator1="Select#PERMISSIONS" value1="${viewableBy}" />
 
 		<execute macro="PortletEntry#save" />
 

@@ -50,7 +50,7 @@
 			<var name="panelHeading" value="Feeds" />
 		</execute>
 
-		<execute function="Select" locator1="RSSFeed#DISPLAY_SETTINGS_DISPLAY_TEMPLATE_OPTION" value1="${feedDisplayStyle}" />
+		<execute function="Select" locator1="Configuration#SETUP_DISPLAY_SETTINGS_DISPLAY_TEMPLATE_SELECT" value1="${feedDisplayStyle}" />
 	</command>
 
 	<command name="deleteFeed">

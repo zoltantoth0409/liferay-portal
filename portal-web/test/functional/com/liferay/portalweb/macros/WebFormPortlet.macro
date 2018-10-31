@@ -24,14 +24,14 @@
 		<if>
 			<isset var="wfInformationTitle" />
 			<then>
-				<execute function="Type" locator1="WebFormConfiguration#SETUP_FORM_INFORMATION_TITLE_FIELD" value1="${wfInformationTitle}" />
+				<execute function="Type" locator1="TextInput#TITLE" value1="${wfInformationTitle}" />
 			</then>
 		</if>
 
 		<if>
 			<isset var="wfInformationDescription" />
 			<then>
-				<execute function="Type" locator1="WebFormConfiguration#SETUP_FORM_INFORMATION_DESCRIPTION_FIELD" value1="${wfInformationDescription}" />
+				<execute function="Type" locator1="TextArea#DESCRIPTION" value1="${wfInformationDescription}" />
 			</then>
 		</if>
 	</command>
@@ -63,7 +63,7 @@
 			</else>
 		</if>
 
-		<execute function="Click" locator1="WebFormConfiguration#SETUP_FORM_FIELDS" />
+		<execute function="Click" locator1="Button#BROWSE" />
 
 		<if>
 			<isset var="wfFieldType" />
