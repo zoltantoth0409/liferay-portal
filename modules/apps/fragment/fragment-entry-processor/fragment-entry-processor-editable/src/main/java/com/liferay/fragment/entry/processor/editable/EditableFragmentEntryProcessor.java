@@ -68,18 +68,18 @@ public class EditableFragmentEntryProcessor implements FragmentEntryProcessor {
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 			StringBundler sb = new StringBundler(
-				2 + (5 * _REQUIRED_ATTRIBUTES.length));
+				2 + (5 * _REQUIRED_ATTRIBUTE_NAMES.length));
 
 			sb.append("<lfr-editable");
 
-			for (String attribute : _REQUIRED_ATTRIBUTES) {
+			for (String attributeName : _REQUIRED_ATTRIBUTE_NAMES) {
 				sb.append(StringPool.SPACE);
-				sb.append(attribute);
+				sb.append(attributeName);
 				sb.append("=\"");
 
 				String value = StringPool.BLANK;
 
-				if (attribute.equals("type")) {
+				if (attributeName.equals("type")) {
 					value = editableElementParser.getKey();
 				}
 
@@ -259,10 +259,10 @@ public class EditableFragmentEntryProcessor implements FragmentEntryProcessor {
 			editableElementParser.getFieldTemplate(), "field_name", value);
 	}
 
-	private void _validateAttribute(Element element, String attribute)
+	private void _validateAttribute(Element element, String attributeName)
 		throws FragmentEntryContentException {
 
-		if (element.hasAttr(attribute)) {
+		if (element.hasAttr(attributeName)) {
 			return;
 		}
 
@@ -274,7 +274,7 @@ public class EditableFragmentEntryProcessor implements FragmentEntryProcessor {
 				resourceBundle,
 				"you-must-define-all-require-attributes-x-for-each-editable-" +
 					"element",
-				String.join(StringPool.COMMA, _REQUIRED_ATTRIBUTES)));
+				String.join(StringPool.COMMA, _REQUIRED_ATTRIBUTE_NAMES)));
 	}
 
 	private void _validateAttributes(String html)
@@ -283,8 +283,8 @@ public class EditableFragmentEntryProcessor implements FragmentEntryProcessor {
 		Document document = _getDocument(html);
 
 		for (Element element : document.getElementsByTag("lfr-editable")) {
-			for (String attribute : _REQUIRED_ATTRIBUTES) {
-				_validateAttribute(element, attribute);
+			for (String attributeName : _REQUIRED_ATTRIBUTE_NAMES) {
+				_validateAttribute(element, attributeName);
 			}
 
 			_validateType(element);
@@ -357,7 +357,7 @@ public class EditableFragmentEntryProcessor implements FragmentEntryProcessor {
 				"you-must-define-a-valid-type-for-each-editable-element"));
 	}
 
-	private static final String[] _REQUIRED_ATTRIBUTES = {"id", "type"};
+	private static final String[] _REQUIRED_ATTRIBUTE_NAMES = {"id", "type"};
 
 	private final Map<String, EditableElementParser> _editableElementParsers =
 		new HashMap<>();
