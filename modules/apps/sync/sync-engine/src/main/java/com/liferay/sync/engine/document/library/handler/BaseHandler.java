@@ -49,6 +49,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpResponseException;
 import org.apache.http.conn.ConnectTimeoutException;
 import org.apache.http.conn.HttpHostConnectException;
+import org.apache.http.util.EntityUtils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -165,6 +166,8 @@ public class BaseHandler implements Handler<Void> {
 
 			if ((statusLine.getStatusCode() != HttpStatus.SC_OK) &&
 				(statusLine.getStatusCode() != HttpStatus.SC_PARTIAL_CONTENT)) {
+
+				EntityUtils.consume(httpResponse.getEntity());
 
 				_logger.error("Status code {}", statusLine.getStatusCode());
 
