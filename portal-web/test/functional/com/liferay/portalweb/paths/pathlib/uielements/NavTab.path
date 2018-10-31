@@ -109,11 +109,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>LOOK_AND_FEEL_GENERAL</td>
-	<td>//ul[contains(@class,'nav-tabs')]/li/a[contains(.,'General')]</td>
-	<td></td>
-</tr>
-<tr>
 	<td>PRODUCERS</td>
 	<td>//span[@class='nav-item-label' and contains(.,'Producers')]</td>
 	<td></td>

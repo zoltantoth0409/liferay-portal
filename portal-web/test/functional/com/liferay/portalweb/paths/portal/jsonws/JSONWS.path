@@ -24,6 +24,17 @@
 	<td></td>
 	<td></td>
 </tr>
+<!--API-->
+<tr>
+	<td>API_METHOD</td>
+	<td>//div[contains(@class,'lfr-api-method') and contains(@class,'lfr-api-section')]/h2</td>
+	<td></td>
+</tr>
+<tr>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
 <!--USER-->
 <tr>
 	<td>USER_UPDATE_USER</td>
@@ -39,11 +50,6 @@
 <tr>
 	<td>SECURITY_TEST_PAGE_POPULATED</td>
 	<td>//body/pre[contains(.,*)]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>SECURITY_TEST_PAGE_BODY</td>
-	<td>//body/pre</td>
 	<td></td>
 </tr>
 </tbody>

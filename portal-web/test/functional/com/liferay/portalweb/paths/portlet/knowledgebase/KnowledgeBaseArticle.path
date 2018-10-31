@@ -24,11 +24,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>HEADER_TITLE</td>
-	<td>//h3[@class='header-title']/span</td>
-	<td></td>
-</tr>
-<tr>
 	<td>CONTENT_IMAGE</td>
 	<td>//p/img</td>
 	<td></td>

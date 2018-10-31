@@ -157,22 +157,6 @@
 	<td></td>
 	<td></td>
 </tr>
-<!--MY_CALENDARS_MENULIST-->
-<tr>
-	<td>MY_CALENDARS_MENULIST_ADD_CALENDAR</td>
-	<td>//li[@class='simple-menu-item' and @data-id='add']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>MY_CALENDARS_MENULIST_MANAGE_CALENDAR</td>
-	<td>//li[@class='simple-menu-item' and @data-id='manage']</td>
-	<td></td>
-</tr>
-<tr>
-	<td></td>
-	<td></td>
-	<td></td>
-</tr>
 <!--MY_CALENDARS_CALENDAR-->
 <tr>
 	<td>MY_CALENDARS_CALENDAR_PRIMARY</td>
@@ -272,11 +256,6 @@
 	<td></td>
 </tr>
 <!--CURRENT_SITE_CALENDARS_CALENDAR-->
-<tr>
-	<td>CURRENT_SITE_CALENDARS_CALENDAR_PRIMARY</td>
-	<td>//div[contains(@id,'CalendarPortlet_siteCalendarList')]/div/div/span[contains(.,'${key_calendarName}')]</td>
-	<td></td>
-</tr>
 <tr>
 	<td>CURRENT_SITE_CALENDARS_CALENDAR_PRIMARY_COLOR</td>
 	<td>//div[contains(@id,'CalendarPortlet_siteCalendarList')]/div/div/div[contains(@style,'${key_color}')]</td>

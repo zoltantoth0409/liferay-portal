@@ -9,23 +9,8 @@
 </thead>
 <tbody>
 <tr>
-	<td>SELECT_FILE_BUTTON</td>
-	<td>//button[contains(.,'Select File')]</td>
-	<td></td>
-</tr>
-<tr>
 	<td>IMPORT_BUTTON</td>
 	<td>//button[contains(.,'Import') and contains(@type,'submit')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>VALIDATION_ERROR_MESSAGE_HEADER</td>
-	<td>//h4[@class='upload-error-message']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>VALIDATION_ERROR_MESSAGE</td>
-	<td>//span[@class='error-message']</td>
 	<td></td>
 </tr>
 <tr>

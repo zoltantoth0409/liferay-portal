@@ -14,11 +14,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>SEARCH_BUTTON</td>
-	<td>//*[@data-qa-id='searchButton']</td>
-	<td></td>
-</tr>
-<tr>
 	<td>SUBSCRIBE_LINK</td>
 	<td>//div[contains(@class,'category-subscription-types')]/span/a/span[contains(.,'Subscribe')]</td>
 	<td></td>
@@ -26,22 +21,6 @@
 <tr>
 	<td>VERTICAL_ELLIPSIS</td>
 	<td>//li[contains(.,'${key_threadSubject}')]//a[span/*[name()='svg'][contains(@class,'icon-ellipsis')]]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>VERTICAL_ELLIPSIS_REPLY_CARD</td>
-	<td>xpath=(//div[contains(@class,'portlet') and contains(@class,'container')]//a[span/*[name()='svg'][contains(@class,'icon-ellipsis')]])[2]</td>
-	<td></td>
-</tr>
-<tr>
-	<td></td>
-	<td></td>
-	<td></td>
-</tr>
-<!--CATEGORIES-->
-<tr>
-	<td>CATEGORIES_NAME_HEADER</td>
-	<td>//h3[@class='header-title']/span</td>
 	<td></td>
 </tr>
 <tr>
@@ -216,11 +195,6 @@
 </tr>
 <!--THREAD_LIST-->
 <tr>
-	<td>THREAD_LIST_ACTIONS</td>
-	<td>//li[contains(.,'${key_threadSubject}')]//a[span/*[name()='svg'][contains(@class,'icon-ellipsis')]]</td>
-	<td></td>
-</tr>
-<tr>
 	<td>THREAD_LIST_ANSWER</td>
 	<td>//li[contains(.,'${key_threadSubject}')]/div/span[3]</td>
 	<td></td>
@@ -290,12 +264,6 @@
 <tr>
 	<td>THREAD_TABLE_POSTS</td>
 	<td>//a[contains(.,'${key_threadSubject}')]/../../span[contains(.,'Posts')]</td>
-	<td></td>
-</tr>
-<!--THREAD_TABLE_ADMIN-->
-<tr>
-	<td>THREAD_TABLE_ADMIN_FLAG</td>
-	<td>//div[contains(@id,'mbThreadsSearchContainer')]//tr[contains(.,'${key_threadSubject}')]/td[3]//a</td>
 	<td></td>
 </tr>
 </tbody>

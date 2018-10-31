@@ -114,11 +114,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>SEARCH_BUTTON</td>
-	<td>//*[@data-qa-id='searchButton']</td>
-	<td></td>
-</tr>
-<tr>
 	<td>SEARCH_TOGGLE_ADVANCED</td>
 	<td>//button[contains(@id,'searchtoggleAdvanced')]/span</td>
 	<td></td>

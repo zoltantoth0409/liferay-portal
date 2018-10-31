@@ -20,11 +20,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>RECORD_FIELD_ALERT</td>
-	<td>//div[@role='alert']</td>
-	<td></td>
-</tr>
-<tr>
 	<td>FIELD_ADD</td>
 	<td>//div[@data-fieldname='${key_fieldName}']//a[contains(@class,'ddm-repeatable-add-button')]</td>
 	<td></td>
@@ -32,31 +27,6 @@
 <tr>
 	<td>FIELD_DELETE</td>
 	<td>xpath=(//div[@data-fieldname='${key_fieldName}']//a[contains(@class,'ddm-repeatable-delete-button')])[${key_fieldNumber}]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>BOOLEAN_CHECKBOX</td>
-	<td>//div[@data-fieldname='${key_fieldName}']//input</td>
-	<td></td>
-</tr>
-<tr>
-	<td>BOOLEAN_LABEL_HIDDEN_CHECKBOX</td>
-	<td>//div[@data-fieldname='${key_fieldName}']//input</td>
-	<td></td>
-</tr>
-<tr>
-	<td>DATE_FIELD</td>
-	<td>//div[@data-fieldname='${key_fieldName}']//input</td>
-	<td></td>
-</tr>
-<tr>
-	<td>DECIMAL_FIELD</td>
-	<td>//div[@data-fieldname='${key_fieldName}']//input</td>
-	<td></td>
-</tr>
-<tr>
-	<td>DOCUMENTS_AND_MEDIA_CHOOSE_FROM_DOCUMENT_LIBRARY_BUTTON</td>
-	<td>//div[@data-fieldname='${key_fieldName}']//button[contains(.,'Select')]</td>
 	<td></td>
 </tr>
 <tr>
@@ -77,16 +47,6 @@
 <tr>
 	<td>HTML_FIELD</td>
 	<td>//div[contains(@id,'${key_fieldName}') and contains(@id,'Editor') and contains(@aria-label,'false')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>INTEGER_FIELD</td>
-	<td>//div[contains(@data-fieldname,'${key_fieldName}')]//input</td>
-	<td></td>
-</tr>
-<tr>
-	<td>LINK_TO_PAGE_PAGE_SELECT</td>
-	<td>//div[@data-fieldname='${key_fieldName}']//input</td>
 	<td></td>
 </tr>
 <tr>
@@ -115,18 +75,8 @@
 	<td></td>
 </tr>
 <tr>
-	<td>LINK_TO_PAGE_SELECT_PAGE_BUTTON</td>
-	<td>//div[@data-fieldname='${key_fieldName}']//button[contains(.,'Select')]</td>
-	<td></td>
-</tr>
-<tr>
 	<td>PARAGRAPH_FIELD</td>
 	<td>//div[@class='lfr-ddm-container']/p[contains(.,'${key_fieldText}')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>NUMBER_FIELD</td>
-	<td>//div[@data-fieldname='${key_fieldName}']//input</td>
 	<td></td>
 </tr>
 <tr>
@@ -140,28 +90,13 @@
 	<td></td>
 </tr>
 <tr>
-	<td>SELECT_SELECT</td>
-	<td>//div[@data-fieldname='${key_fieldName}']//select</td>
-	<td></td>
-</tr>
-<tr>
 	<td>SEPARATOR_FIELD</td>
 	<td>//div[@class='separator']</td>
 	<td></td>
 </tr>
 <tr>
-	<td>TEXT_FIELD</td>
-	<td>//div[@data-fieldname='${key_fieldName}']//input</td>
-	<td></td>
-</tr>
-<tr>
 	<td>TEXT_BOX_FIELD</td>
 	<td>//div[@data-fieldname='${key_fieldName}']//textarea</td>
-	<td></td>
-</tr>
-<tr>
-	<td>WEB_CONTENT_CHOOSE_FROM_WEB_CONTENT_LIBRARY_BUTTON</td>
-	<td>//div[@data-fieldname='${key_fieldName}']//button[contains(.,'Select')]</td>
 	<td></td>
 </tr>
 </tbody>

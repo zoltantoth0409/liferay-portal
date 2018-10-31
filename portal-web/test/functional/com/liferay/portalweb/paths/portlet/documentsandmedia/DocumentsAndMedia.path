@@ -19,11 +19,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>BREADCRUMB_LAST</td>
-	<td>//div[contains(@id,'breadcrumbContainer')]//li[contains(.,'${key_dmFolderName}')]</td>
-	<td></td>
-</tr>
-<tr>
 	<td>CHOOSE_FOLDER_BUTTON</td>
 	<td>//button[@data-foldername='${key_dmFolderName}']/span[contains(.,'Choose')]</td>
 	<td></td>
@@ -253,11 +248,6 @@
 <tr>
 	<td>SEARCH_FIELD</td>
 	<td>//div[contains(@class,'basic-search')]/input[contains(@id,'document_library')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>SEARCH_BUTTON</td>
-	<td>//*[@data-qa-id='searchButton']</td>
 	<td></td>
 </tr>
 <tr>

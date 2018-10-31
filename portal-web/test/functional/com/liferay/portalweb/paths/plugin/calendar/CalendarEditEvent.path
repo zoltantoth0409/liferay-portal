@@ -14,11 +14,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>EDIT_EVENT_IFRAME</td>
-	<td>//iframe[contains(@class,'dialog-iframe-node')]</td>
-	<td></td>
-</tr>
-<tr>
 	<td>FORM_CONTENT</td>
 	<td>//div[@id='Content']</td>
 	<td></td>
@@ -195,22 +190,6 @@
 <tr>
 	<td>DETAILS_CALENDAR_SELECT_OPTION</td>
 	<td>//select[contains(@id,'calendarId')]/option[contains(.,'${key_calendarName}')] | //select[contains(@name,'calendarId')]/option[contains(.,'${key_calendarName}')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td></td>
-	<td></td>
-	<td></td>
-</tr>
-<!--DETAILS_PERMISSIONS-->
-<tr>
-	<td>DETAILS_PERMISSIONS_VIEWABLE_BY_SELECT</td>
-	<td>//select[contains(@id,'inputPermissionsViewRole')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>DETAILS_PERMISSIONS_CHECKBOX</td>
-	<td>//tr[contains(.,'${key_roleName}')]//input[@value='${key_permissionDefinitionKey}']</td>
 	<td></td>
 </tr>
 <tr>

@@ -15,11 +15,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>ATTACHMENTS_FILE_FIELD_1</td>
-	<td>//input[contains(@id,'_msgFile1')]</td>
-	<td></td>
-</tr>
-<tr>
 	<td>ATTACHMENTS_NAME</td>
 	<td>//span[contains(@id,'existingFile1')]</td>
 	<td></td>

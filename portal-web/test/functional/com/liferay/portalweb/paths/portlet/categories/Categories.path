@@ -61,16 +61,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>CATEGORY_DETAILS_PROPERTY_KEY_2</td>
-	<td>//input[contains(@id,'key${key_pathNumber}')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>CATEGORY_DETAILS_PROPERTY_VALUE_2</td>
-	<td>//input[contains(@id,'value${key_pathNumber}')]</td>
-	<td></td>
-</tr>
-<tr>
 	<td></td>
 	<td></td>
 	<td></td>

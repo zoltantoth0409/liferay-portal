@@ -114,8 +114,18 @@
 	<td></td>
 </tr>
 <tr>
+	<td>MAXIMUM_ITEMS_TO_DISPLAY</td>
+	<td>//select[contains(@id,'pageDelta')]</td>
+	<td></td>
+</tr>
+<tr>
 	<td>NEW_PARENT</td>
 	<td>//div[label[contains(.,'New Parent')]]/select</td>
+	<td></td>
+</tr>
+<tr>
+	<td>PERMISSIONS</td>
+	<td>//select[contains(@id,'inputPermissionsViewRole')]</td>
 	<td></td>
 </tr>
 <tr>

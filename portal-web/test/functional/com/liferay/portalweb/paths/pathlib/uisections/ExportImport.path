@@ -9,11 +9,6 @@
 </thead>
 <tbody>
 <tr>
-	<td>EXPORT_IMPORT_IFRAME</td>
-	<td>//iframe[contains(@id,'configurationIframeDialog')]</td>
-	<td></td>
-</tr>
-<tr>
 	<td>EXPORT_FILE_NAME</td>
 	<td>//input[contains(@id,'exportFileName')]</td>
 	<td></td>
@@ -91,17 +86,6 @@
 <tr>
 	<td></td>
 	<td></td>
-	<td></td>
-</tr>
-<!-- VALIDATION -->
-<tr>
-	<td>VALIDATION_ERROR_MESSAGE_HEADER</td>
-	<td>//h4[@class='upload-error-message']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>VALIDATION_ERROR_MESSAGE</td>
-	<td>//span[@class='error-message']</td>
 	<td></td>
 </tr>
 <!-- PERMISSIONS -->

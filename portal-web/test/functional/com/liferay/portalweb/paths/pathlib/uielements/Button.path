@@ -60,7 +60,7 @@
 </tr>
 <tr>
 	<td>ADD_TAGS</td>
-	<td>//button[contains(.,'Add')]</td>
+	<td>//button[contains(.,'Add Tags')]</td>
 	<td></td>
 </tr>
 <tr>
@@ -271,6 +271,11 @@
 <tr>
 	<td>FIELD_FILTER_APPLY</td>
 	<td>//tr[contains(.,'${key_fieldName}')]//button[contains(.,'Apply')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>FIELD_SELECT</td>
+	<td>//div[@data-fieldname='${key_fieldName}']//button[contains(.,'Select')]</td>
 	<td></td>
 </tr>
 <tr>

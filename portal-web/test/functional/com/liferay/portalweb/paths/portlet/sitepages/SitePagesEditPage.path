@@ -10,11 +10,6 @@
 <tbody>
 <!--DETAILS-->
 <tr>
-	<td>FRIENDLY_URL_FIELD</td>
-	<td>//input[contains(@id,'friendlyURL')]</td>
-	<td></td>
-</tr>
-<tr>
 	<td>FRIENDLY_URL_ENGLISH_UNITED_STATES</td>
 	<td>//div[contains(@id,'friendlyURL')]//li[@data-value='en_US']/a</td>
 	<td></td>
@@ -80,18 +75,13 @@
 	<td></td>
 </tr>
 <tr>
-	<td>PAGE_TYPE_EMBEDDED_DESCRIPTION_FIELD</td>
+	<td>PAGE_TYPE_DESCRIPTION_FIELD</td>
 	<td>//div[@class='layout-type']/p[contains(@class,'text')]</td>
 	<td></td>
 </tr>
 <tr>
 	<td>PAGE_TYPE_LINK_TO_URL_URL_FIELD</td>
 	<td>//input[contains(@name,'TypeSettingsProperties--url') and contains(@type,'text')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>PAGE_TYPE_LINK_TO_URL_DESCRIPTION_FIELD</td>
-	<td>//div[@class='layout-type']/p[contains(@class,'text')]</td>
 	<td></td>
 </tr>
 <tr>

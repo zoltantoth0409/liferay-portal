@@ -107,11 +107,6 @@
 </tr>
 <!--DIALOG_BOX-->
 <tr>
-	<td>DIALOG_BOX_TITLE</td>
-	<td>//div[contains(@class,'modal-header')]/h3</td>
-	<td></td>
-</tr>
-<tr>
 	<td>DIALOG_BOX_DUE_DATE</td>
 	<td>//input[contains(@id,'_dueDate')]</td>
 	<td></td>

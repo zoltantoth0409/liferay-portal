@@ -9,11 +9,6 @@
 </thead>
 <tbody>
 <tr>
-	<td>USER_GROUP_TABLE_NAME</td>
-	<td>//tr[contains(.,'${key_userGroupName}')]/td[2]</td>
-	<td></td>
-</tr>
-<tr>
 	<td>USER_GROUP_TABLE_ACTIONS</td>
 	<td>//tr[contains(.,'${key_userGroupName}')]/td[5]//span</td>
 	<td></td>

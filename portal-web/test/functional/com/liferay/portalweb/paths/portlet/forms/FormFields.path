@@ -81,11 +81,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>DATE_LABEL</td>
-	<td>//div[contains(@data-fieldname,'${key_fieldName}')]//label[contains(.,'${key_fieldLabel}')]</td>
-	<td></td>
-</tr>
-<tr>
 	<td>REPEATABLE_HELP_TEXT</td>
 	<td>//div[contains(@class,'form-field-container')][${key_repeatableFieldNumber}]//div[contains(@data-fieldname,'${key_fieldName}')]//p[@class='liferay-ddm-form-field-tip']</td>
 	<td></td>
@@ -99,11 +94,6 @@
 <tr>
 	<td>HELP_TEXT</td>
 	<td>//div[contains(@data-fieldname,'${key_fieldName}')]//p[@class='liferay-ddm-form-field-tip']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>HELP_TEXT_INPUT_FIELD</td>
-	<td>//input[@type='text' and contains(@id,'${key_fieldName}')]</td>
 	<td></td>
 </tr>
 <tr>
@@ -253,11 +243,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>SELECT_LABEL</td>
-	<td>//div[contains(@data-fieldname,'${key_fieldName}')]//label</td>
-	<td></td>
-</tr>
-<tr>
 	<td></td>
 	<td></td>
 	<td></td>
@@ -266,11 +251,6 @@
 <tr>
 	<td>SWITCHER</td>
 	<td>//div[contains(@data-fieldname,'${key_fieldName}')]//span[@class='toggle-switch-bar']</td>
-	<td></td>
-</tr>
-<tr>
-	<td>SWITCHER_LABEL</td>
-	<td>//div[contains(@data-fieldname,'${key_fieldName}')]//label</td>
 	<td></td>
 </tr>
 <!--VALIDATION-->

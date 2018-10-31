@@ -8,16 +8,6 @@
 <tr><td rowspan="1" colspan="3">CategoriesEditCategory</td></tr>
 </thead>
 <tbody>
-<tr>
-	<td>LOCALIZATION_NAME</td>
-	<td>//li[@data-value='${key_localizationName}']</td>
-	<td></td>
-</tr>
-<tr>
-	<td></td>
-	<td></td>
-	<td></td>
-</tr>
 <!--PROPERTIES-->
 <tr>
 	<td>PROPERTIES_UNDO_MESSAGE</td>
@@ -47,17 +37,6 @@
 <tr>
 	<td>VOCABULARY_SELECT</td>
 	<td>//div[contains(@class,'select-wrapper')]/select</td>
-	<td></td>
-</tr>
-<tr>
-	<td></td>
-	<td></td>
-	<td></td>
-</tr>
-<!--PERMISSIONS-->
-<tr>
-	<td>PERMISSIONS_VIEWABLE_BY_SELECT</td>
-	<td>//select[contains(@id,'inputPermissionsViewRole')]</td>
 	<td></td>
 </tr>
 </tbody>

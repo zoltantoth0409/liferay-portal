@@ -46,11 +46,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>MAXIMUM_ITEMS_TO_DISPLAY_SELECT</td>
-	<td>//select[contains(@id,'pageDelta')]</td>
-	<td></td>
-</tr>
-<tr>
 	<td>SELECTION_METHOD_SELECT</td>
 	<td>//select[contains(@id,'selectionMethod')]</td>
 	<td></td>
@@ -76,11 +71,6 @@
 	<td></td>
 </tr>
 <!--SETUP_DISPLAY_SETTINGS-->
-<tr>
-	<td>SETUP_DISPLAY_SETTINGS_MAXIMUM_ITEMS_TO_DISPLAY_SELECT</td>
- 	<td>//select[contains(@id,'pageDelta')]</td>
- 	<td></td>
-</tr>
 <tr>
 	<td>SETUP_DISPLAY_SETTINGS_DISPLAY_TEMPLATE_SELECT</td>
 	<td>//select[contains(@id,'displayStyle')]</td>

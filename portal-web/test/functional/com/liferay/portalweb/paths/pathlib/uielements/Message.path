@@ -34,6 +34,11 @@
 	<td></td>
 </tr>
 <tr>
+	<td>ERROR_ALERT</td>
+	<td>//div[@role='alert']</td>
+	<td></td>
+</tr>
+<tr>
 	<td>ERROR</td>
 	<td>//div[contains(@class,'alert') and (contains(@class,'alert-error') or contains(@class,'alert-danger'))]</td>
 	<td></td>
@@ -154,11 +159,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>RECYCLE_BIN_INFO</td>
-	<td>//div[contains(@class,'tooltip-content')]</td>
-	<td></td>
-</tr>
-<tr>
 	<td>REQUIRED_INFO</td>
 	<td>//div[contains(@class,'required') and contains(@role,'alert')]</td>
 	<td></td>
@@ -170,11 +170,6 @@
 </tr>
 <tr>
 	<td>SUCCESS</td>
-	<td>//div[contains(@class,'alert') and contains(@class,'alert-success')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>SUCCESS_LOCALIZED</td>
 	<td>//div[contains(@class,'alert') and contains(@class,'alert-success')]</td>
 	<td></td>
 </tr>
@@ -196,6 +191,16 @@
 <tr>
 	<td>UNIQUE_SUCCESS</td>
 	<td>//div[contains(@class,'alert') and contains(@class,'alert-success') and contains(.,'${key_uniqueSuccess}')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>VALIDATION_ERROR_MESSAGE</td>
+	<td>//span[@class='error-message']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>VALIDATION_ERROR_MESSAGE_HEADER</td>
+	<td>//h4[@class='upload-error-message']</td>
 	<td></td>
 </tr>
 <tr>
