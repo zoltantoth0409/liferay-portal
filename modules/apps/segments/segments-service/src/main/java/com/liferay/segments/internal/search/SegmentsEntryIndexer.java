@@ -121,7 +121,6 @@ public class SegmentsEntryIndexer extends BaseIndexer<SegmentsEntry> {
 		document.addDate(Field.MODIFIED_DATE, segmentsEntry.getModifiedDate());
 		document.addLocalizedKeyword(
 			Field.NAME, segmentsEntry.getNameMap(), true);
-
 		document.addKeyword("active", segmentsEntry.isActive());
 		document.addKeyword(
 			"segmentsEntryId", segmentsEntry.getSegmentsEntryId());
