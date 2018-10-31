@@ -58,6 +58,18 @@
 	</aui:select>
 
 	<aui:fieldset cssClass="available-languages" label="available-languages">
+		<liferay-ui:error exception="<%= RequiredLocaleException.class %>">
+
+			<%
+			RequiredLocaleException rle = (RequiredLocaleException)errorException;
+
+			String[] messageArguments = rle.getMessageArguments();
+
+			String messageKey = rle.getMessageKey();
+			%>
+
+			<liferay-ui:message arguments="<%= messageArguments %>" key="<%= messageKey %>" translateArguments="<%= false %>" />
+		</liferay-ui:error>
 
 		<%
 		String[] availableLanguageIds = LocaleUtil.toLanguageIds(LanguageUtil.getAvailableLocales());
