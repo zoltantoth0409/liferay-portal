@@ -164,6 +164,11 @@ public abstract class BaseHTMLTag extends com.liferay.taglib.util.IncludeTag {
 	}
 
 	@Override
+	protected String getEndPage() {
+		return super.getEndPage();
+	}
+
+	@Override
 	protected String getStartPage() {
 		return _START_PAGE;
 	}

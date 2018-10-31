@@ -119,6 +119,11 @@ public abstract class BaseHTMLFieldTag extends com.liferay.taglib.util.IncludeTa
 	}
 
 	@Override
+	protected String getEndPage() {
+		return super.getEndPage();
+	}
+
+	@Override
 	protected String getStartPage() {
 		return _START_PAGE;
 	}
