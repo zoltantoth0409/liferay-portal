@@ -60,7 +60,7 @@
 </tr>
 <tr>
 	<td>ADD_TAGS</td>
-	<td>//button[contains(.,'Add Tags')]</td>
+	<td>//button[contains(@title,'Add Tags')]</td>
 	<td></td>
 </tr>
 <tr>
