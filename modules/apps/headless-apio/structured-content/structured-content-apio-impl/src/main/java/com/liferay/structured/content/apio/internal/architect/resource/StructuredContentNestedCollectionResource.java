@@ -881,30 +881,22 @@ public class StructuredContentNestedCollectionResource
 		}
 
 		public String getDDMFormFieldInputControl() {
-			try {
-				String type = _ddmStructure.getFieldType(
-					_ddmFormFieldValue.getName());
+			return Try.fromFallible(
+				() -> _ddmStructure.getFieldType(_ddmFormFieldValue.getName())
+			).filter(
+				this::_isDDMFormFieldInputControl
+			).recover(
+				pe -> {
+					if (_log.isWarnEnabled()) {
+						_log.warn(
+							"Unable to get input control for field name " +
+								_ddmFormFieldValue.getName(),
+							pe);
+					}
 
-				if (Objects.equals(type, DDMFormFieldType.CHECKBOX) ||
-					Objects.equals(type, DDMFormFieldType.RADIO) ||
-					Objects.equals(type, DDMFormFieldType.SELECT) ||
-					Objects.equals(type, DDMFormFieldType.TEXT) ||
-					Objects.equals(type, DDMFormFieldType.TEXT_AREA)) {
-
-					return type;
+					return null;
 				}
-				else return null;
-			}
-			catch (PortalException pe) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(
-						"Unable to get input control for field name " +
-							_ddmFormFieldValue.getName(),
-						pe);
-				}
-
-				return null;
-			}
+			);
 		}
 
 		public DDMFormFieldValue getDDMFormFieldValue() {
@@ -963,6 +955,19 @@ public class StructuredContentNestedCollectionResource
 			).collect(
 				Collectors.toList()
 			);
+		}
+
+		private boolean _isDDMFormFieldInputControl(String type) {
+			if (DDMFormFieldType.CHECKBOX.equals(type) ||
+				DDMFormFieldType.RADIO.equals(type) ||
+				DDMFormFieldType.SELECT.equals(type) ||
+				DDMFormFieldType.TEXT.equals(type) ||
+				DDMFormFieldType.TEXT_AREA.equals(type)) {
+
+				return true;
+			}
+
+			return false;
 		}
 
 		private final DDMFormFieldValue _ddmFormFieldValue;
