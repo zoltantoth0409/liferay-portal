@@ -1,2 +1,2 @@
-Bundle-SymbolicName: jaxb-api
+Bundle-SymbolicName: javax.xml.ws
 Bundle-Version: 2.3.0.LIFERAY-PATCHED-1
