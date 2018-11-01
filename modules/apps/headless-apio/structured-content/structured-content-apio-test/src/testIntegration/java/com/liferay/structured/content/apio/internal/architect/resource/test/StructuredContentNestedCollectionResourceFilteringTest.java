@@ -21,6 +21,8 @@ import com.liferay.apio.architect.pagination.PageItems;
 import com.liferay.apio.architect.test.util.pagination.PaginationRequest;
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.dynamic.data.mapping.io.DDMFormJSONDeserializer;
+import com.liferay.dynamic.data.mapping.kernel.DDMFormFieldValue;
+import com.liferay.dynamic.data.mapping.kernel.LocalizedValue;
 import com.liferay.dynamic.data.mapping.model.DDMForm;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.model.DDMStructureConstants;
@@ -116,14 +118,14 @@ public class StructuredContentNestedCollectionResourceFilteringTest
 		_ddmStructure = ddmStructureTestHelper.addStructure(
 			PortalUtil.getClassNameId(JournalArticle.class),
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
-			deserialize(_read("test-journal-text-field-structure.json")),
+			deserialize(_read("test-journal-all-fields-structure.json")),
 			StorageType.JSON.getValue(), DDMStructureConstants.TYPE_DEFAULT);
 
 		_ddmTemplate = DDMTemplateTestUtil.addTemplate(
 			_group.getGroupId(), _ddmStructure.getStructureId(),
 			PortalUtil.getClassNameId(JournalArticle.class),
 			TemplateConstants.LANG_TYPE_VM,
-			_read("test-journal-text-field-template.xsl"), LocaleUtil.US);
+			_read("test-journal-all-fields-template.xsl"), LocaleUtil.US);
 	}
 
 	@After
@@ -977,7 +979,7 @@ public class StructuredContentNestedCollectionResourceFilteringTest
 			JournalArticleLocalServiceUtil.addArticle(
 				TestPropsValues.getUser().getUserId(), _group.getGroupId(),
 				JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID, stringMap1,
-				null, _read("test-journal-text-field-content.xml"),
+				null, _read("test-journal-all-fields-content.xml"),
 				_ddmStructure.getStructureKey(), _ddmTemplate.getTemplateKey(),
 				ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
@@ -990,8 +992,8 @@ public class StructuredContentNestedCollectionResourceFilteringTest
 				filterParser.parse(
 					StringBundler.concat(
 						"(values/_", _ddmStructure.getStructureId(),
-						StringPool.UNDERLINE, "TextFieldName eq ",
-						"'textfield')"))),
+						StringPool.UNDERLINE, "MyText eq ",
+						"'TextFieldValue_us')"))),
 			Sort.emptySort());
 
 		Assert.assertEquals(1, pageItems.getTotalCount());
@@ -1660,7 +1662,7 @@ public class StructuredContentNestedCollectionResourceFilteringTest
 		}
 	}
 
-	private FilterParser _getFilterParser() throws Exception {
+	private FilterParser _getFilterParser() {
 		return _serviceTracker.getService();
 	}
 
