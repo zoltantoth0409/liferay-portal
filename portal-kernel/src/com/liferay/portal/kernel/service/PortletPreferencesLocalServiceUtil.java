@@ -203,6 +203,12 @@ public class PortletPreferencesLocalServiceUtil {
 		return getService().fetchPortletPreferences(portletPreferencesId);
 	}
 
+	public static com.liferay.portal.kernel.model.PortletPreferences fetchPortletPreferences(
+		long ownerId, int ownerType, long plid, String portletId) {
+		return getService()
+				   .fetchPortletPreferences(ownerId, ownerType, plid, portletId);
+	}
+
 	public static javax.portlet.PortletPreferences fetchPreferences(
 		long companyId, long ownerId, int ownerType, long plid, String portletId) {
 		return getService()
