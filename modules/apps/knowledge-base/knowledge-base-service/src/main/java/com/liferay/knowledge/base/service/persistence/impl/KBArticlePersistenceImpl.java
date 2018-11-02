@@ -703,6 +703,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public List<KBArticle> findByUuid(String uuid, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -726,7 +728,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 			if ((list != null) && !list.isEmpty()) {
 				for (KBArticle kbArticle : list) {
-					if (!Objects.equals(uuid, kbArticle.getUuid())) {
+					if (!uuid.equals(kbArticle.getUuid())) {
 						list = null;
 
 						break;
@@ -750,10 +752,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -934,6 +933,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle[] findByUuid_PrevAndNext(long kbArticleId, String uuid,
 		OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
+		uuid = Objects.toString(uuid, "");
+
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
 		Session session = null;
@@ -979,10 +980,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		boolean bindUuid = false;
 
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_UUID_1);
-		}
-		else if (uuid.equals("")) {
+		if (uuid.isEmpty()) {
 			query.append(_FINDER_COLUMN_UUID_UUID_3);
 		}
 		else {
@@ -1102,6 +1100,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public int countByUuid(String uuid) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID;
 
 		Object[] finderArgs = new Object[] { uuid };
@@ -1115,10 +1115,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -1232,6 +1229,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public KBArticle fetchByUUID_G(String uuid, long groupId,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		Object[] finderArgs = new Object[] { uuid, groupId };
 
 		Object result = null;
@@ -1257,10 +1256,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_G_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_G_UUID_3);
 			}
 			else {
@@ -1344,6 +1340,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public int countByUUID_G(String uuid, long groupId) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_G;
 
 		Object[] finderArgs = new Object[] { uuid, groupId };
@@ -1357,10 +1355,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_G_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_G_UUID_3);
 			}
 			else {
@@ -1502,6 +1497,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public List<KBArticle> findByUuid_C(String uuid, long companyId, int start,
 		int end, OrderByComparator<KBArticle> orderByComparator,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1529,7 +1526,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 			if ((list != null) && !list.isEmpty()) {
 				for (KBArticle kbArticle : list) {
-					if (!Objects.equals(uuid, kbArticle.getUuid()) ||
+					if (!uuid.equals(kbArticle.getUuid()) ||
 							(companyId != kbArticle.getCompanyId())) {
 						list = null;
 
@@ -1554,10 +1551,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 			}
 			else {
@@ -1756,6 +1750,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle[] findByUuid_C_PrevAndNext(long kbArticleId, String uuid,
 		long companyId, OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
+		uuid = Objects.toString(uuid, "");
+
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
 		Session session = null;
@@ -1801,10 +1797,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		boolean bindUuid = false;
 
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-		}
-		else if (uuid.equals("")) {
+		if (uuid.isEmpty()) {
 			query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 		}
 		else {
@@ -1930,6 +1923,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public int countByUuid_C(String uuid, long companyId) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_C;
 
 		Object[] finderArgs = new Object[] { uuid, companyId };
@@ -1943,10 +1938,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 			}
 			else {
@@ -22091,6 +22083,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		String urlTitle, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
 		boolean retrieveFromCache) {
+		urlTitle = Objects.toString(urlTitle, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -22120,7 +22114,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				for (KBArticle kbArticle : list) {
 					if ((groupId != kbArticle.getGroupId()) ||
 							(kbFolderId != kbArticle.getKbFolderId()) ||
-							!Objects.equals(urlTitle, kbArticle.getUrlTitle())) {
+							!urlTitle.equals(kbArticle.getUrlTitle())) {
 						list = null;
 
 						break;
@@ -22148,10 +22142,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 			boolean bindUrlTitle = false;
 
-			if (urlTitle == null) {
-				query.append(_FINDER_COLUMN_G_KBFI_UT_URLTITLE_1);
-			}
-			else if (urlTitle.equals("")) {
+			if (urlTitle.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_KBFI_UT_URLTITLE_3);
 			}
 			else {
@@ -22362,6 +22353,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		long groupId, long kbFolderId, String urlTitle,
 		OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
+		urlTitle = Objects.toString(urlTitle, "");
+
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
 		Session session = null;
@@ -22411,10 +22404,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		boolean bindUrlTitle = false;
 
-		if (urlTitle == null) {
-			query.append(_FINDER_COLUMN_G_KBFI_UT_URLTITLE_1);
-		}
-		else if (urlTitle.equals("")) {
+		if (urlTitle.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_KBFI_UT_URLTITLE_3);
 		}
 		else {
@@ -22577,6 +22567,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				orderByComparator);
 		}
 
+		urlTitle = Objects.toString(urlTitle, "");
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -22600,10 +22592,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		boolean bindUrlTitle = false;
 
-		if (urlTitle == null) {
-			query.append(_FINDER_COLUMN_G_KBFI_UT_URLTITLE_1);
-		}
-		else if (urlTitle.equals("")) {
+		if (urlTitle.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_KBFI_UT_URLTITLE_3);
 		}
 		else {
@@ -22694,6 +22683,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				kbFolderId, urlTitle, orderByComparator);
 		}
 
+		urlTitle = Objects.toString(urlTitle, "");
+
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
 		Session session = null;
@@ -22748,10 +22739,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		boolean bindUrlTitle = false;
 
-		if (urlTitle == null) {
-			query.append(_FINDER_COLUMN_G_KBFI_UT_URLTITLE_1);
-		}
-		else if (urlTitle.equals("")) {
+		if (urlTitle.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_KBFI_UT_URLTITLE_3);
 		}
 		else {
@@ -22909,6 +22897,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public int countByG_KBFI_UT(long groupId, long kbFolderId, String urlTitle) {
+		urlTitle = Objects.toString(urlTitle, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_G_KBFI_UT;
 
 		Object[] finderArgs = new Object[] { groupId, kbFolderId, urlTitle };
@@ -22926,10 +22916,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 			boolean bindUrlTitle = false;
 
-			if (urlTitle == null) {
-				query.append(_FINDER_COLUMN_G_KBFI_UT_URLTITLE_1);
-			}
-			else if (urlTitle.equals("")) {
+			if (urlTitle.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_KBFI_UT_URLTITLE_3);
 			}
 			else {
@@ -22989,6 +22976,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			return countByG_KBFI_UT(groupId, kbFolderId, urlTitle);
 		}
 
+		urlTitle = Objects.toString(urlTitle, "");
+
 		StringBundler query = new StringBundler(4);
 
 		query.append(_FILTER_SQL_COUNT_KBARTICLE_WHERE);
@@ -22999,10 +22988,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		boolean bindUrlTitle = false;
 
-		if (urlTitle == null) {
-			query.append(_FINDER_COLUMN_G_KBFI_UT_URLTITLE_1);
-		}
-		else if (urlTitle.equals("")) {
+		if (urlTitle.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_KBFI_UT_URLTITLE_3);
 		}
 		else {
@@ -25116,6 +25102,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		boolean latest, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
 		boolean retrieveFromCache) {
+		sections = Objects.toString(sections, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -25165,10 +25153,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 			boolean bindSections = false;
 
-			if (sections == null) {
-				query.append(_FINDER_COLUMN_G_S_L_SECTIONS_1);
-			}
-			else if (sections.equals("")) {
+			if (sections.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_S_L_SECTIONS_3);
 			}
 			else {
@@ -25381,6 +25366,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		String sections, boolean latest,
 		OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
+		sections = Objects.toString(sections, "");
+
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
 		Session session = null;
@@ -25428,10 +25415,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		boolean bindSections = false;
 
-		if (sections == null) {
-			query.append(_FINDER_COLUMN_G_S_L_SECTIONS_1);
-		}
-		else if (sections.equals("")) {
+		if (sections.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_S_L_SECTIONS_3);
 		}
 		else {
@@ -25595,6 +25579,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				orderByComparator);
 		}
 
+		sections = Objects.toString(sections, "");
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -25616,10 +25602,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		boolean bindSections = false;
 
-		if (sections == null) {
-			query.append(_FINDER_COLUMN_G_S_L_SECTIONS_1);
-		}
-		else if (sections.equals("")) {
+		if (sections.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_S_L_SECTIONS_3);
 		}
 		else {
@@ -25712,6 +25695,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				latest, orderByComparator);
 		}
 
+		sections = Objects.toString(sections, "");
+
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
 		Session session = null;
@@ -25764,10 +25749,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		boolean bindSections = false;
 
-		if (sections == null) {
-			query.append(_FINDER_COLUMN_G_S_L_SECTIONS_1);
-		}
-		else if (sections.equals("")) {
+		if (sections.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_S_L_SECTIONS_3);
 		}
 		else {
@@ -25965,10 +25947,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			sectionses = new String[0];
 		}
 		else if (sectionses.length > 1) {
-			sectionses = ArrayUtil.distinct(sectionses,
-					NULL_SAFE_STRING_COMPARATOR);
+			for (int i = 0; i < sectionses.length; i++) {
+				sectionses[i] = Objects.toString(sectionses[i], "");
+			}
 
-			Arrays.sort(sectionses, NULL_SAFE_STRING_COMPARATOR);
+			sectionses = ArrayUtil.unique(sectionses);
+
+			Arrays.sort(sectionses);
 		}
 
 		StringBundler query = new StringBundler();
@@ -25988,10 +25973,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			for (int i = 0; i < sectionses.length; i++) {
 				String sections = sectionses[i];
 
-				if (sections == null) {
-					query.append(_FINDER_COLUMN_G_S_L_SECTIONS_4);
-				}
-				else if (sections.equals("")) {
+				if (sections.isEmpty()) {
 					query.append(_FINDER_COLUMN_G_S_L_SECTIONS_6);
 				}
 				else {
@@ -26163,10 +26145,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			sectionses = new String[0];
 		}
 		else if (sectionses.length > 1) {
-			sectionses = ArrayUtil.distinct(sectionses,
-					NULL_SAFE_STRING_COMPARATOR);
+			for (int i = 0; i < sectionses.length; i++) {
+				sectionses[i] = Objects.toString(sectionses[i], "");
+			}
 
-			Arrays.sort(sectionses, NULL_SAFE_STRING_COMPARATOR);
+			sectionses = ArrayUtil.unique(sectionses);
+
+			Arrays.sort(sectionses);
 		}
 
 		if (sectionses.length == 1) {
@@ -26225,10 +26210,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				for (int i = 0; i < sectionses.length; i++) {
 					String sections = sectionses[i];
 
-					if (sections == null) {
-						query.append(_FINDER_COLUMN_G_S_L_SECTIONS_4);
-					}
-					else if (sections.equals("")) {
+					if (sections.isEmpty()) {
 						query.append(_FINDER_COLUMN_G_S_L_SECTIONS_6);
 					}
 					else {
@@ -26337,6 +26319,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public int countByG_S_L(long groupId, String sections, boolean latest) {
+		sections = Objects.toString(sections, "");
+
 		FinderPath finderPath = FINDER_PATH_WITH_PAGINATION_COUNT_BY_G_S_L;
 
 		Object[] finderArgs = new Object[] { groupId, sections, latest };
@@ -26352,10 +26336,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 			boolean bindSections = false;
 
-			if (sections == null) {
-				query.append(_FINDER_COLUMN_G_S_L_SECTIONS_1);
-			}
-			else if (sections.equals("")) {
+			if (sections.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_S_L_SECTIONS_3);
 			}
 			else {
@@ -26416,10 +26397,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			sectionses = new String[0];
 		}
 		else if (sectionses.length > 1) {
-			sectionses = ArrayUtil.distinct(sectionses,
-					NULL_SAFE_STRING_COMPARATOR);
+			for (int i = 0; i < sectionses.length; i++) {
+				sectionses[i] = Objects.toString(sectionses[i], "");
+			}
 
-			Arrays.sort(sectionses, NULL_SAFE_STRING_COMPARATOR);
+			sectionses = ArrayUtil.unique(sectionses);
+
+			Arrays.sort(sectionses);
 		}
 
 		Object[] finderArgs = new Object[] {
@@ -26442,10 +26426,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				for (int i = 0; i < sectionses.length; i++) {
 					String sections = sectionses[i];
 
-					if (sections == null) {
-						query.append(_FINDER_COLUMN_G_S_L_SECTIONS_4);
-					}
-					else if (sections.equals("")) {
+					if (sections.isEmpty()) {
 						query.append(_FINDER_COLUMN_G_S_L_SECTIONS_6);
 					}
 					else {
@@ -26521,6 +26502,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			return countByG_S_L(groupId, sections, latest);
 		}
 
+		sections = Objects.toString(sections, "");
+
 		StringBundler query = new StringBundler(4);
 
 		query.append(_FILTER_SQL_COUNT_KBARTICLE_WHERE);
@@ -26529,10 +26512,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		boolean bindSections = false;
 
-		if (sections == null) {
-			query.append(_FINDER_COLUMN_G_S_L_SECTIONS_1);
-		}
-		else if (sections.equals("")) {
+		if (sections.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_S_L_SECTIONS_3);
 		}
 		else {
@@ -26598,10 +26578,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			sectionses = new String[0];
 		}
 		else if (sectionses.length > 1) {
-			sectionses = ArrayUtil.distinct(sectionses,
-					NULL_SAFE_STRING_COMPARATOR);
+			for (int i = 0; i < sectionses.length; i++) {
+				sectionses[i] = Objects.toString(sectionses[i], "");
+			}
 
-			Arrays.sort(sectionses, NULL_SAFE_STRING_COMPARATOR);
+			sectionses = ArrayUtil.unique(sectionses);
+
+			Arrays.sort(sectionses);
 		}
 
 		StringBundler query = new StringBundler();
@@ -26616,10 +26599,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			for (int i = 0; i < sectionses.length; i++) {
 				String sections = sectionses[i];
 
-				if (sections == null) {
-					query.append(_FINDER_COLUMN_G_S_L_SECTIONS_4);
-				}
-				else if (sections.equals("")) {
+				if (sections.isEmpty()) {
 					query.append(_FINDER_COLUMN_G_S_L_SECTIONS_6);
 				}
 				else {
@@ -26787,6 +26767,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		boolean main, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
 		boolean retrieveFromCache) {
+		sections = Objects.toString(sections, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -26835,10 +26817,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 			boolean bindSections = false;
 
-			if (sections == null) {
-				query.append(_FINDER_COLUMN_G_S_M_SECTIONS_1);
-			}
-			else if (sections.equals("")) {
+			if (sections.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_S_M_SECTIONS_3);
 			}
 			else {
@@ -27051,6 +27030,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		String sections, boolean main,
 		OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
+		sections = Objects.toString(sections, "");
+
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
 		Session session = null;
@@ -27098,10 +27079,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		boolean bindSections = false;
 
-		if (sections == null) {
-			query.append(_FINDER_COLUMN_G_S_M_SECTIONS_1);
-		}
-		else if (sections.equals("")) {
+		if (sections.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_S_M_SECTIONS_3);
 		}
 		else {
@@ -27265,6 +27243,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				orderByComparator);
 		}
 
+		sections = Objects.toString(sections, "");
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -27286,10 +27266,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		boolean bindSections = false;
 
-		if (sections == null) {
-			query.append(_FINDER_COLUMN_G_S_M_SECTIONS_1);
-		}
-		else if (sections.equals("")) {
+		if (sections.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_S_M_SECTIONS_3);
 		}
 		else {
@@ -27382,6 +27359,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				main, orderByComparator);
 		}
 
+		sections = Objects.toString(sections, "");
+
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
 		Session session = null;
@@ -27434,10 +27413,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		boolean bindSections = false;
 
-		if (sections == null) {
-			query.append(_FINDER_COLUMN_G_S_M_SECTIONS_1);
-		}
-		else if (sections.equals("")) {
+		if (sections.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_S_M_SECTIONS_3);
 		}
 		else {
@@ -27635,10 +27611,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			sectionses = new String[0];
 		}
 		else if (sectionses.length > 1) {
-			sectionses = ArrayUtil.distinct(sectionses,
-					NULL_SAFE_STRING_COMPARATOR);
+			for (int i = 0; i < sectionses.length; i++) {
+				sectionses[i] = Objects.toString(sectionses[i], "");
+			}
 
-			Arrays.sort(sectionses, NULL_SAFE_STRING_COMPARATOR);
+			sectionses = ArrayUtil.unique(sectionses);
+
+			Arrays.sort(sectionses);
 		}
 
 		StringBundler query = new StringBundler();
@@ -27658,10 +27637,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			for (int i = 0; i < sectionses.length; i++) {
 				String sections = sectionses[i];
 
-				if (sections == null) {
-					query.append(_FINDER_COLUMN_G_S_M_SECTIONS_4);
-				}
-				else if (sections.equals("")) {
+				if (sections.isEmpty()) {
 					query.append(_FINDER_COLUMN_G_S_M_SECTIONS_6);
 				}
 				else {
@@ -27833,10 +27809,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			sectionses = new String[0];
 		}
 		else if (sectionses.length > 1) {
-			sectionses = ArrayUtil.distinct(sectionses,
-					NULL_SAFE_STRING_COMPARATOR);
+			for (int i = 0; i < sectionses.length; i++) {
+				sectionses[i] = Objects.toString(sectionses[i], "");
+			}
 
-			Arrays.sort(sectionses, NULL_SAFE_STRING_COMPARATOR);
+			sectionses = ArrayUtil.unique(sectionses);
+
+			Arrays.sort(sectionses);
 		}
 
 		if (sectionses.length == 1) {
@@ -27895,10 +27874,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				for (int i = 0; i < sectionses.length; i++) {
 					String sections = sectionses[i];
 
-					if (sections == null) {
-						query.append(_FINDER_COLUMN_G_S_M_SECTIONS_4);
-					}
-					else if (sections.equals("")) {
+					if (sections.isEmpty()) {
 						query.append(_FINDER_COLUMN_G_S_M_SECTIONS_6);
 					}
 					else {
@@ -28007,6 +27983,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public int countByG_S_M(long groupId, String sections, boolean main) {
+		sections = Objects.toString(sections, "");
+
 		FinderPath finderPath = FINDER_PATH_WITH_PAGINATION_COUNT_BY_G_S_M;
 
 		Object[] finderArgs = new Object[] { groupId, sections, main };
@@ -28022,10 +28000,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 			boolean bindSections = false;
 
-			if (sections == null) {
-				query.append(_FINDER_COLUMN_G_S_M_SECTIONS_1);
-			}
-			else if (sections.equals("")) {
+			if (sections.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_S_M_SECTIONS_3);
 			}
 			else {
@@ -28086,10 +28061,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			sectionses = new String[0];
 		}
 		else if (sectionses.length > 1) {
-			sectionses = ArrayUtil.distinct(sectionses,
-					NULL_SAFE_STRING_COMPARATOR);
+			for (int i = 0; i < sectionses.length; i++) {
+				sectionses[i] = Objects.toString(sectionses[i], "");
+			}
 
-			Arrays.sort(sectionses, NULL_SAFE_STRING_COMPARATOR);
+			sectionses = ArrayUtil.unique(sectionses);
+
+			Arrays.sort(sectionses);
 		}
 
 		Object[] finderArgs = new Object[] {
@@ -28112,10 +28090,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				for (int i = 0; i < sectionses.length; i++) {
 					String sections = sectionses[i];
 
-					if (sections == null) {
-						query.append(_FINDER_COLUMN_G_S_M_SECTIONS_4);
-					}
-					else if (sections.equals("")) {
+					if (sections.isEmpty()) {
 						query.append(_FINDER_COLUMN_G_S_M_SECTIONS_6);
 					}
 					else {
@@ -28191,6 +28166,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			return countByG_S_M(groupId, sections, main);
 		}
 
+		sections = Objects.toString(sections, "");
+
 		StringBundler query = new StringBundler(4);
 
 		query.append(_FILTER_SQL_COUNT_KBARTICLE_WHERE);
@@ -28199,10 +28176,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		boolean bindSections = false;
 
-		if (sections == null) {
-			query.append(_FINDER_COLUMN_G_S_M_SECTIONS_1);
-		}
-		else if (sections.equals("")) {
+		if (sections.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_S_M_SECTIONS_3);
 		}
 		else {
@@ -28268,10 +28242,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			sectionses = new String[0];
 		}
 		else if (sectionses.length > 1) {
-			sectionses = ArrayUtil.distinct(sectionses,
-					NULL_SAFE_STRING_COMPARATOR);
+			for (int i = 0; i < sectionses.length; i++) {
+				sectionses[i] = Objects.toString(sectionses[i], "");
+			}
 
-			Arrays.sort(sectionses, NULL_SAFE_STRING_COMPARATOR);
+			sectionses = ArrayUtil.unique(sectionses);
+
+			Arrays.sort(sectionses);
 		}
 
 		StringBundler query = new StringBundler();
@@ -28286,10 +28263,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			for (int i = 0; i < sectionses.length; i++) {
 				String sections = sectionses[i];
 
-				if (sections == null) {
-					query.append(_FINDER_COLUMN_G_S_M_SECTIONS_4);
-				}
-				else if (sections.equals("")) {
+				if (sections.isEmpty()) {
 					query.append(_FINDER_COLUMN_G_S_M_SECTIONS_6);
 				}
 				else {
@@ -28456,6 +28430,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		int status, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
 		boolean retrieveFromCache) {
+		sections = Objects.toString(sections, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -28505,10 +28481,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 			boolean bindSections = false;
 
-			if (sections == null) {
-				query.append(_FINDER_COLUMN_G_S_S_SECTIONS_1);
-			}
-			else if (sections.equals("")) {
+			if (sections.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_S_S_SECTIONS_3);
 			}
 			else {
@@ -28721,6 +28694,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		String sections, int status,
 		OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
+		sections = Objects.toString(sections, "");
+
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
 		Session session = null;
@@ -28768,10 +28743,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		boolean bindSections = false;
 
-		if (sections == null) {
-			query.append(_FINDER_COLUMN_G_S_S_SECTIONS_1);
-		}
-		else if (sections.equals("")) {
+		if (sections.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_S_S_SECTIONS_3);
 		}
 		else {
@@ -28935,6 +28907,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				orderByComparator);
 		}
 
+		sections = Objects.toString(sections, "");
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -28956,10 +28930,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		boolean bindSections = false;
 
-		if (sections == null) {
-			query.append(_FINDER_COLUMN_G_S_S_SECTIONS_1);
-		}
-		else if (sections.equals("")) {
+		if (sections.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_S_S_SECTIONS_3);
 		}
 		else {
@@ -29052,6 +29023,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				status, orderByComparator);
 		}
 
+		sections = Objects.toString(sections, "");
+
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
 		Session session = null;
@@ -29104,10 +29077,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		boolean bindSections = false;
 
-		if (sections == null) {
-			query.append(_FINDER_COLUMN_G_S_S_SECTIONS_1);
-		}
-		else if (sections.equals("")) {
+		if (sections.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_S_S_SECTIONS_3);
 		}
 		else {
@@ -29305,10 +29275,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			sectionses = new String[0];
 		}
 		else if (sectionses.length > 1) {
-			sectionses = ArrayUtil.distinct(sectionses,
-					NULL_SAFE_STRING_COMPARATOR);
+			for (int i = 0; i < sectionses.length; i++) {
+				sectionses[i] = Objects.toString(sectionses[i], "");
+			}
 
-			Arrays.sort(sectionses, NULL_SAFE_STRING_COMPARATOR);
+			sectionses = ArrayUtil.unique(sectionses);
+
+			Arrays.sort(sectionses);
 		}
 
 		StringBundler query = new StringBundler();
@@ -29328,10 +29301,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			for (int i = 0; i < sectionses.length; i++) {
 				String sections = sectionses[i];
 
-				if (sections == null) {
-					query.append(_FINDER_COLUMN_G_S_S_SECTIONS_4);
-				}
-				else if (sections.equals("")) {
+				if (sections.isEmpty()) {
 					query.append(_FINDER_COLUMN_G_S_S_SECTIONS_6);
 				}
 				else {
@@ -29503,10 +29473,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			sectionses = new String[0];
 		}
 		else if (sectionses.length > 1) {
-			sectionses = ArrayUtil.distinct(sectionses,
-					NULL_SAFE_STRING_COMPARATOR);
+			for (int i = 0; i < sectionses.length; i++) {
+				sectionses[i] = Objects.toString(sectionses[i], "");
+			}
 
-			Arrays.sort(sectionses, NULL_SAFE_STRING_COMPARATOR);
+			sectionses = ArrayUtil.unique(sectionses);
+
+			Arrays.sort(sectionses);
 		}
 
 		if (sectionses.length == 1) {
@@ -29565,10 +29538,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				for (int i = 0; i < sectionses.length; i++) {
 					String sections = sectionses[i];
 
-					if (sections == null) {
-						query.append(_FINDER_COLUMN_G_S_S_SECTIONS_4);
-					}
-					else if (sections.equals("")) {
+					if (sections.isEmpty()) {
 						query.append(_FINDER_COLUMN_G_S_S_SECTIONS_6);
 					}
 					else {
@@ -29677,6 +29647,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	 */
 	@Override
 	public int countByG_S_S(long groupId, String sections, int status) {
+		sections = Objects.toString(sections, "");
+
 		FinderPath finderPath = FINDER_PATH_WITH_PAGINATION_COUNT_BY_G_S_S;
 
 		Object[] finderArgs = new Object[] { groupId, sections, status };
@@ -29692,10 +29664,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 			boolean bindSections = false;
 
-			if (sections == null) {
-				query.append(_FINDER_COLUMN_G_S_S_SECTIONS_1);
-			}
-			else if (sections.equals("")) {
+			if (sections.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_S_S_SECTIONS_3);
 			}
 			else {
@@ -29756,10 +29725,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			sectionses = new String[0];
 		}
 		else if (sectionses.length > 1) {
-			sectionses = ArrayUtil.distinct(sectionses,
-					NULL_SAFE_STRING_COMPARATOR);
+			for (int i = 0; i < sectionses.length; i++) {
+				sectionses[i] = Objects.toString(sectionses[i], "");
+			}
 
-			Arrays.sort(sectionses, NULL_SAFE_STRING_COMPARATOR);
+			sectionses = ArrayUtil.unique(sectionses);
+
+			Arrays.sort(sectionses);
 		}
 
 		Object[] finderArgs = new Object[] {
@@ -29782,10 +29754,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				for (int i = 0; i < sectionses.length; i++) {
 					String sections = sectionses[i];
 
-					if (sections == null) {
-						query.append(_FINDER_COLUMN_G_S_S_SECTIONS_4);
-					}
-					else if (sections.equals("")) {
+					if (sections.isEmpty()) {
 						query.append(_FINDER_COLUMN_G_S_S_SECTIONS_6);
 					}
 					else {
@@ -29861,6 +29830,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			return countByG_S_S(groupId, sections, status);
 		}
 
+		sections = Objects.toString(sections, "");
+
 		StringBundler query = new StringBundler(4);
 
 		query.append(_FILTER_SQL_COUNT_KBARTICLE_WHERE);
@@ -29869,10 +29840,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		boolean bindSections = false;
 
-		if (sections == null) {
-			query.append(_FINDER_COLUMN_G_S_S_SECTIONS_1);
-		}
-		else if (sections.equals("")) {
+		if (sections.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_S_S_SECTIONS_3);
 		}
 		else {
@@ -29937,10 +29905,13 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			sectionses = new String[0];
 		}
 		else if (sectionses.length > 1) {
-			sectionses = ArrayUtil.distinct(sectionses,
-					NULL_SAFE_STRING_COMPARATOR);
+			for (int i = 0; i < sectionses.length; i++) {
+				sectionses[i] = Objects.toString(sectionses[i], "");
+			}
 
-			Arrays.sort(sectionses, NULL_SAFE_STRING_COMPARATOR);
+			sectionses = ArrayUtil.unique(sectionses);
+
+			Arrays.sort(sectionses);
 		}
 
 		StringBundler query = new StringBundler();
@@ -29955,10 +29926,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			for (int i = 0; i < sectionses.length; i++) {
 				String sections = sectionses[i];
 
-				if (sections == null) {
-					query.append(_FINDER_COLUMN_G_S_S_SECTIONS_4);
-				}
-				else if (sections.equals("")) {
+				if (sections.isEmpty()) {
 					query.append(_FINDER_COLUMN_G_S_S_SECTIONS_6);
 				}
 				else {
@@ -30153,6 +30121,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		String urlTitle, int status, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
 		boolean retrieveFromCache) {
+		urlTitle = Objects.toString(urlTitle, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -30182,7 +30152,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				for (KBArticle kbArticle : list) {
 					if ((groupId != kbArticle.getGroupId()) ||
 							(kbFolderId != kbArticle.getKbFolderId()) ||
-							!Objects.equals(urlTitle, kbArticle.getUrlTitle()) ||
+							!urlTitle.equals(kbArticle.getUrlTitle()) ||
 							(status != kbArticle.getStatus())) {
 						list = null;
 
@@ -30211,10 +30181,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 			boolean bindUrlTitle = false;
 
-			if (urlTitle == null) {
-				query.append(_FINDER_COLUMN_G_KBFI_UT_ST_URLTITLE_1);
-			}
-			else if (urlTitle.equals("")) {
+			if (urlTitle.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_KBFI_UT_ST_URLTITLE_3);
 			}
 			else {
@@ -30444,6 +30411,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		long groupId, long kbFolderId, String urlTitle, int status,
 		OrderByComparator<KBArticle> orderByComparator)
 		throws NoSuchArticleException {
+		urlTitle = Objects.toString(urlTitle, "");
+
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
 		Session session = null;
@@ -30496,10 +30465,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		boolean bindUrlTitle = false;
 
-		if (urlTitle == null) {
-			query.append(_FINDER_COLUMN_G_KBFI_UT_ST_URLTITLE_1);
-		}
-		else if (urlTitle.equals("")) {
+		if (urlTitle.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_KBFI_UT_ST_URLTITLE_3);
 		}
 		else {
@@ -30669,6 +30635,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				start, end, orderByComparator);
 		}
 
+		urlTitle = Objects.toString(urlTitle, "");
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -30692,10 +30660,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		boolean bindUrlTitle = false;
 
-		if (urlTitle == null) {
-			query.append(_FINDER_COLUMN_G_KBFI_UT_ST_URLTITLE_1);
-		}
-		else if (urlTitle.equals("")) {
+		if (urlTitle.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_KBFI_UT_ST_URLTITLE_3);
 		}
 		else {
@@ -30791,6 +30756,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				kbFolderId, urlTitle, status, orderByComparator);
 		}
 
+		urlTitle = Objects.toString(urlTitle, "");
+
 		KBArticle kbArticle = findByPrimaryKey(kbArticleId);
 
 		Session session = null;
@@ -30848,10 +30815,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		boolean bindUrlTitle = false;
 
-		if (urlTitle == null) {
-			query.append(_FINDER_COLUMN_G_KBFI_UT_ST_URLTITLE_1);
-		}
-		else if (urlTitle.equals("")) {
+		if (urlTitle.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_KBFI_UT_ST_URLTITLE_3);
 		}
 		else {
@@ -31075,10 +31039,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		boolean bindUrlTitle = false;
 
-		if (urlTitle == null) {
-			query.append(_FINDER_COLUMN_G_KBFI_UT_ST_URLTITLE_1);
-		}
-		else if (urlTitle.equals("")) {
+		if (urlTitle.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_KBFI_UT_ST_URLTITLE_3);
 		}
 		else {
@@ -31251,6 +31212,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		String urlTitle, int[] statuses, int start, int end,
 		OrderByComparator<KBArticle> orderByComparator,
 		boolean retrieveFromCache) {
+		urlTitle = Objects.toString(urlTitle, "");
+
 		if (statuses == null) {
 			statuses = new int[0];
 		}
@@ -31293,7 +31256,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				for (KBArticle kbArticle : list) {
 					if ((groupId != kbArticle.getGroupId()) ||
 							(kbFolderId != kbArticle.getKbFolderId()) ||
-							!Objects.equals(urlTitle, kbArticle.getUrlTitle()) ||
+							!urlTitle.equals(kbArticle.getUrlTitle()) ||
 							!ArrayUtil.contains(statuses, kbArticle.getStatus())) {
 						list = null;
 
@@ -31314,10 +31277,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 			boolean bindUrlTitle = false;
 
-			if (urlTitle == null) {
-				query.append(_FINDER_COLUMN_G_KBFI_UT_ST_URLTITLE_1);
-			}
-			else if (urlTitle.equals("")) {
+			if (urlTitle.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_KBFI_UT_ST_URLTITLE_3);
 			}
 			else {
@@ -31430,6 +31390,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public int countByG_KBFI_UT_ST(long groupId, long kbFolderId,
 		String urlTitle, int status) {
+		urlTitle = Objects.toString(urlTitle, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_G_KBFI_UT_ST;
 
 		Object[] finderArgs = new Object[] { groupId, kbFolderId, urlTitle, status };
@@ -31447,10 +31409,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 			boolean bindUrlTitle = false;
 
-			if (urlTitle == null) {
-				query.append(_FINDER_COLUMN_G_KBFI_UT_ST_URLTITLE_1);
-			}
-			else if (urlTitle.equals("")) {
+			if (urlTitle.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_KBFI_UT_ST_URLTITLE_3);
 			}
 			else {
@@ -31511,6 +31470,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	@Override
 	public int countByG_KBFI_UT_ST(long groupId, long kbFolderId,
 		String urlTitle, int[] statuses) {
+		urlTitle = Objects.toString(urlTitle, "");
+
 		if (statuses == null) {
 			statuses = new int[0];
 		}
@@ -31538,10 +31499,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 			boolean bindUrlTitle = false;
 
-			if (urlTitle == null) {
-				query.append(_FINDER_COLUMN_G_KBFI_UT_ST_URLTITLE_1);
-			}
-			else if (urlTitle.equals("")) {
+			if (urlTitle.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_KBFI_UT_ST_URLTITLE_3);
 			}
 			else {
@@ -31619,6 +31577,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			return countByG_KBFI_UT_ST(groupId, kbFolderId, urlTitle, status);
 		}
 
+		urlTitle = Objects.toString(urlTitle, "");
+
 		StringBundler query = new StringBundler(5);
 
 		query.append(_FILTER_SQL_COUNT_KBARTICLE_WHERE);
@@ -31629,10 +31589,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		boolean bindUrlTitle = false;
 
-		if (urlTitle == null) {
-			query.append(_FINDER_COLUMN_G_KBFI_UT_ST_URLTITLE_1);
-		}
-		else if (urlTitle.equals("")) {
+		if (urlTitle.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_KBFI_UT_ST_URLTITLE_3);
 		}
 		else {
@@ -31716,10 +31673,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		boolean bindUrlTitle = false;
 
-		if (urlTitle == null) {
-			query.append(_FINDER_COLUMN_G_KBFI_UT_ST_URLTITLE_1);
-		}
-		else if (urlTitle.equals("")) {
+		if (urlTitle.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_KBFI_UT_ST_URLTITLE_3);
 		}
 		else {

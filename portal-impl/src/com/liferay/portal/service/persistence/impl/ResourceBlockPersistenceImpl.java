@@ -180,6 +180,8 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	public List<ResourceBlock> findByC_N(long companyId, String name,
 		int start, int end, OrderByComparator<ResourceBlock> orderByComparator,
 		boolean retrieveFromCache) {
+		name = Objects.toString(name, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -208,7 +210,7 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 			if ((list != null) && !list.isEmpty()) {
 				for (ResourceBlock resourceBlock : list) {
 					if ((companyId != resourceBlock.getCompanyId()) ||
-							!Objects.equals(name, resourceBlock.getName())) {
+							!name.equals(resourceBlock.getName())) {
 						list = null;
 
 						break;
@@ -234,10 +236,7 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 
 			boolean bindName = false;
 
-			if (name == null) {
-				query.append(_FINDER_COLUMN_C_N_NAME_1);
-			}
-			else if (name.equals("")) {
+			if (name.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_N_NAME_3);
 			}
 			else {
@@ -435,6 +434,8 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 		long companyId, String name,
 		OrderByComparator<ResourceBlock> orderByComparator)
 		throws NoSuchResourceBlockException {
+		name = Objects.toString(name, "");
+
 		ResourceBlock resourceBlock = findByPrimaryKey(resourceBlockId);
 
 		Session session = null;
@@ -482,10 +483,7 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 
 		boolean bindName = false;
 
-		if (name == null) {
-			query.append(_FINDER_COLUMN_C_N_NAME_1);
-		}
-		else if (name.equals("")) {
+		if (name.isEmpty()) {
 			query.append(_FINDER_COLUMN_C_N_NAME_3);
 		}
 		else {
@@ -609,6 +607,8 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	 */
 	@Override
 	public int countByC_N(long companyId, String name) {
+		name = Objects.toString(name, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_N;
 
 		Object[] finderArgs = new Object[] { companyId, name };
@@ -625,10 +625,7 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 
 			boolean bindName = false;
 
-			if (name == null) {
-				query.append(_FINDER_COLUMN_C_N_NAME_1);
-			}
-			else if (name.equals("")) {
+			if (name.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_N_NAME_3);
 			}
 			else {
@@ -784,6 +781,8 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 		String name, int start, int end,
 		OrderByComparator<ResourceBlock> orderByComparator,
 		boolean retrieveFromCache) {
+		name = Objects.toString(name, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -813,7 +812,7 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 				for (ResourceBlock resourceBlock : list) {
 					if ((companyId != resourceBlock.getCompanyId()) ||
 							(groupId != resourceBlock.getGroupId()) ||
-							!Objects.equals(name, resourceBlock.getName())) {
+							!name.equals(resourceBlock.getName())) {
 						list = null;
 
 						break;
@@ -841,10 +840,7 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 
 			boolean bindName = false;
 
-			if (name == null) {
-				query.append(_FINDER_COLUMN_C_G_N_NAME_1);
-			}
-			else if (name.equals("")) {
+			if (name.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_G_N_NAME_3);
 			}
 			else {
@@ -1055,6 +1051,8 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 		long companyId, long groupId, String name,
 		OrderByComparator<ResourceBlock> orderByComparator)
 		throws NoSuchResourceBlockException {
+		name = Objects.toString(name, "");
+
 		ResourceBlock resourceBlock = findByPrimaryKey(resourceBlockId);
 
 		Session session = null;
@@ -1104,10 +1102,7 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 
 		boolean bindName = false;
 
-		if (name == null) {
-			query.append(_FINDER_COLUMN_C_G_N_NAME_1);
-		}
-		else if (name.equals("")) {
+		if (name.isEmpty()) {
 			query.append(_FINDER_COLUMN_C_G_N_NAME_3);
 		}
 		else {
@@ -1235,6 +1230,8 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	 */
 	@Override
 	public int countByC_G_N(long companyId, long groupId, String name) {
+		name = Objects.toString(name, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_G_N;
 
 		Object[] finderArgs = new Object[] { companyId, groupId, name };
@@ -1253,10 +1250,7 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 
 			boolean bindName = false;
 
-			if (name == null) {
-				query.append(_FINDER_COLUMN_C_G_N_NAME_1);
-			}
-			else if (name.equals("")) {
+			if (name.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_G_N_NAME_3);
 			}
 			else {
@@ -1400,6 +1394,9 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	@Override
 	public ResourceBlock fetchByC_G_N_P(long companyId, long groupId,
 		String name, String permissionsHash, boolean retrieveFromCache) {
+		name = Objects.toString(name, "");
+		permissionsHash = Objects.toString(permissionsHash, "");
+
 		Object[] finderArgs = new Object[] {
 				companyId, groupId, name, permissionsHash
 			};
@@ -1434,10 +1431,7 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 
 			boolean bindName = false;
 
-			if (name == null) {
-				query.append(_FINDER_COLUMN_C_G_N_P_NAME_1);
-			}
-			else if (name.equals("")) {
+			if (name.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_G_N_P_NAME_3);
 			}
 			else {
@@ -1448,10 +1442,7 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 
 			boolean bindPermissionsHash = false;
 
-			if (permissionsHash == null) {
-				query.append(_FINDER_COLUMN_C_G_N_P_PERMISSIONSHASH_1);
-			}
-			else if (permissionsHash.equals("")) {
+			if (permissionsHash.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_G_N_P_PERMISSIONSHASH_3);
 			}
 			else {
@@ -1547,6 +1538,9 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 	@Override
 	public int countByC_G_N_P(long companyId, long groupId, String name,
 		String permissionsHash) {
+		name = Objects.toString(name, "");
+		permissionsHash = Objects.toString(permissionsHash, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_G_N_P;
 
 		Object[] finderArgs = new Object[] {
@@ -1567,10 +1561,7 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 
 			boolean bindName = false;
 
-			if (name == null) {
-				query.append(_FINDER_COLUMN_C_G_N_P_NAME_1);
-			}
-			else if (name.equals("")) {
+			if (name.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_G_N_P_NAME_3);
 			}
 			else {
@@ -1581,10 +1572,7 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 
 			boolean bindPermissionsHash = false;
 
-			if (permissionsHash == null) {
-				query.append(_FINDER_COLUMN_C_G_N_P_PERMISSIONSHASH_1);
-			}
-			else if (permissionsHash.equals("")) {
+			if (permissionsHash.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_G_N_P_PERMISSIONSHASH_3);
 			}
 			else {

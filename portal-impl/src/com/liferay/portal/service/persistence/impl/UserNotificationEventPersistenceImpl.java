@@ -179,6 +179,8 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 	public List<UserNotificationEvent> findByUuid(String uuid, int start,
 		int end, OrderByComparator<UserNotificationEvent> orderByComparator,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -202,7 +204,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 
 			if ((list != null) && !list.isEmpty()) {
 				for (UserNotificationEvent userNotificationEvent : list) {
-					if (!Objects.equals(uuid, userNotificationEvent.getUuid())) {
+					if (!uuid.equals(userNotificationEvent.getUuid())) {
 						list = null;
 
 						break;
@@ -226,10 +228,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -414,6 +413,8 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		long userNotificationEventId, String uuid,
 		OrderByComparator<UserNotificationEvent> orderByComparator)
 		throws NoSuchUserNotificationEventException {
+		uuid = Objects.toString(uuid, "");
+
 		UserNotificationEvent userNotificationEvent = findByPrimaryKey(userNotificationEventId);
 
 		Session session = null;
@@ -460,10 +461,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 
 		boolean bindUuid = false;
 
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_UUID_1);
-		}
-		else if (uuid.equals("")) {
+		if (uuid.isEmpty()) {
 			query.append(_FINDER_COLUMN_UUID_UUID_3);
 		}
 		else {
@@ -583,6 +581,8 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 	 */
 	@Override
 	public int countByUuid(String uuid) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID;
 
 		Object[] finderArgs = new Object[] { uuid };
@@ -597,10 +597,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -741,6 +738,8 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		long companyId, int start, int end,
 		OrderByComparator<UserNotificationEvent> orderByComparator,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -768,7 +767,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 
 			if ((list != null) && !list.isEmpty()) {
 				for (UserNotificationEvent userNotificationEvent : list) {
-					if (!Objects.equals(uuid, userNotificationEvent.getUuid()) ||
+					if (!uuid.equals(userNotificationEvent.getUuid()) ||
 							(companyId != userNotificationEvent.getCompanyId())) {
 						list = null;
 
@@ -793,10 +792,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 			}
 			else {
@@ -999,6 +995,8 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		long userNotificationEventId, String uuid, long companyId,
 		OrderByComparator<UserNotificationEvent> orderByComparator)
 		throws NoSuchUserNotificationEventException {
+		uuid = Objects.toString(uuid, "");
+
 		UserNotificationEvent userNotificationEvent = findByPrimaryKey(userNotificationEventId);
 
 		Session session = null;
@@ -1046,10 +1044,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 
 		boolean bindUuid = false;
 
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-		}
-		else if (uuid.equals("")) {
+		if (uuid.isEmpty()) {
 			query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 		}
 		else {
@@ -1175,6 +1170,8 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 	 */
 	@Override
 	public int countByUuid_C(String uuid, long companyId) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_C;
 
 		Object[] finderArgs = new Object[] { uuid, companyId };
@@ -1189,10 +1186,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 			}
 			else {
@@ -1839,6 +1833,8 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 	public List<UserNotificationEvent> findByType(String type, int start,
 		int end, OrderByComparator<UserNotificationEvent> orderByComparator,
 		boolean retrieveFromCache) {
+		type = Objects.toString(type, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1862,7 +1858,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 
 			if ((list != null) && !list.isEmpty()) {
 				for (UserNotificationEvent userNotificationEvent : list) {
-					if (!Objects.equals(type, userNotificationEvent.getType())) {
+					if (!type.equals(userNotificationEvent.getType())) {
 						list = null;
 
 						break;
@@ -1886,10 +1882,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 
 			boolean bindType = false;
 
-			if (type == null) {
-				query.append(_FINDER_COLUMN_TYPE_TYPE_1);
-			}
-			else if (type.equals("")) {
+			if (type.isEmpty()) {
 				query.append(_FINDER_COLUMN_TYPE_TYPE_3);
 			}
 			else {
@@ -2074,6 +2067,8 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		long userNotificationEventId, String type,
 		OrderByComparator<UserNotificationEvent> orderByComparator)
 		throws NoSuchUserNotificationEventException {
+		type = Objects.toString(type, "");
+
 		UserNotificationEvent userNotificationEvent = findByPrimaryKey(userNotificationEventId);
 
 		Session session = null;
@@ -2120,10 +2115,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 
 		boolean bindType = false;
 
-		if (type == null) {
-			query.append(_FINDER_COLUMN_TYPE_TYPE_1);
-		}
-		else if (type.equals("")) {
+		if (type.isEmpty()) {
 			query.append(_FINDER_COLUMN_TYPE_TYPE_3);
 		}
 		else {
@@ -2243,6 +2235,8 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 	 */
 	@Override
 	public int countByType(String type) {
+		type = Objects.toString(type, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_TYPE;
 
 		Object[] finderArgs = new Object[] { type };
@@ -2257,10 +2251,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 
 			boolean bindType = false;
 
-			if (type == null) {
-				query.append(_FINDER_COLUMN_TYPE_TYPE_1);
-			}
-			else if (type.equals("")) {
+			if (type.isEmpty()) {
 				query.append(_FINDER_COLUMN_TYPE_TYPE_3);
 			}
 			else {
@@ -6466,6 +6457,8 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		int deliveryType, boolean delivered, int start, int end,
 		OrderByComparator<UserNotificationEvent> orderByComparator,
 		boolean retrieveFromCache) {
+		type = Objects.toString(type, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -6494,8 +6487,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 			if ((list != null) && !list.isEmpty()) {
 				for (UserNotificationEvent userNotificationEvent : list) {
 					if ((userId != userNotificationEvent.getUserId()) ||
-							!Objects.equals(type,
-								userNotificationEvent.getType()) ||
+							!type.equals(userNotificationEvent.getType()) ||
 							(deliveryType != userNotificationEvent.getDeliveryType()) ||
 							(delivered != userNotificationEvent.isDelivered())) {
 						list = null;
@@ -6523,10 +6515,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 
 			boolean bindType = false;
 
-			if (type == null) {
-				query.append(_FINDER_COLUMN_U_T_DT_D_TYPE_1);
-			}
-			else if (type.equals("")) {
+			if (type.isEmpty()) {
 				query.append(_FINDER_COLUMN_U_T_DT_D_TYPE_3);
 			}
 			else {
@@ -6759,6 +6748,8 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		int deliveryType, boolean delivered,
 		OrderByComparator<UserNotificationEvent> orderByComparator)
 		throws NoSuchUserNotificationEventException {
+		type = Objects.toString(type, "");
+
 		UserNotificationEvent userNotificationEvent = findByPrimaryKey(userNotificationEventId);
 
 		Session session = null;
@@ -6810,10 +6801,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 
 		boolean bindType = false;
 
-		if (type == null) {
-			query.append(_FINDER_COLUMN_U_T_DT_D_TYPE_1);
-		}
-		else if (type.equals("")) {
+		if (type.isEmpty()) {
 			query.append(_FINDER_COLUMN_U_T_DT_D_TYPE_3);
 		}
 		else {
@@ -6952,6 +6940,8 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 	@Override
 	public int countByU_T_DT_D(long userId, String type, int deliveryType,
 		boolean delivered) {
+		type = Objects.toString(type, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_U_T_DT_D;
 
 		Object[] finderArgs = new Object[] { userId, type, deliveryType, delivered };
@@ -6968,10 +6958,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 
 			boolean bindType = false;
 
-			if (type == null) {
-				query.append(_FINDER_COLUMN_U_T_DT_D_TYPE_1);
-			}
-			else if (type.equals("")) {
+			if (type.isEmpty()) {
 				query.append(_FINDER_COLUMN_U_T_DT_D_TYPE_3);
 			}
 			else {

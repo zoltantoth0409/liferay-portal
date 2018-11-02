@@ -659,6 +659,8 @@ public class UserIdMapperPersistenceImpl extends BasePersistenceImpl<UserIdMappe
 	@Override
 	public UserIdMapper fetchByU_T(long userId, String type,
 		boolean retrieveFromCache) {
+		type = Objects.toString(type, "");
+
 		Object[] finderArgs = new Object[] { userId, type };
 
 		Object result = null;
@@ -686,10 +688,7 @@ public class UserIdMapperPersistenceImpl extends BasePersistenceImpl<UserIdMappe
 
 			boolean bindType = false;
 
-			if (type == null) {
-				query.append(_FINDER_COLUMN_U_T_TYPE_1);
-			}
-			else if (type.equals("")) {
+			if (type.isEmpty()) {
 				query.append(_FINDER_COLUMN_U_T_TYPE_3);
 			}
 			else {
@@ -772,6 +771,8 @@ public class UserIdMapperPersistenceImpl extends BasePersistenceImpl<UserIdMappe
 	 */
 	@Override
 	public int countByU_T(long userId, String type) {
+		type = Objects.toString(type, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_U_T;
 
 		Object[] finderArgs = new Object[] { userId, type };
@@ -788,10 +789,7 @@ public class UserIdMapperPersistenceImpl extends BasePersistenceImpl<UserIdMappe
 
 			boolean bindType = false;
 
-			if (type == null) {
-				query.append(_FINDER_COLUMN_U_T_TYPE_1);
-			}
-			else if (type.equals("")) {
+			if (type.isEmpty()) {
 				query.append(_FINDER_COLUMN_U_T_TYPE_3);
 			}
 			else {
@@ -908,6 +906,9 @@ public class UserIdMapperPersistenceImpl extends BasePersistenceImpl<UserIdMappe
 	@Override
 	public UserIdMapper fetchByT_E(String type, String externalUserId,
 		boolean retrieveFromCache) {
+		type = Objects.toString(type, "");
+		externalUserId = Objects.toString(externalUserId, "");
+
 		Object[] finderArgs = new Object[] { type, externalUserId };
 
 		Object result = null;
@@ -934,10 +935,7 @@ public class UserIdMapperPersistenceImpl extends BasePersistenceImpl<UserIdMappe
 
 			boolean bindType = false;
 
-			if (type == null) {
-				query.append(_FINDER_COLUMN_T_E_TYPE_1);
-			}
-			else if (type.equals("")) {
+			if (type.isEmpty()) {
 				query.append(_FINDER_COLUMN_T_E_TYPE_3);
 			}
 			else {
@@ -948,10 +946,7 @@ public class UserIdMapperPersistenceImpl extends BasePersistenceImpl<UserIdMappe
 
 			boolean bindExternalUserId = false;
 
-			if (externalUserId == null) {
-				query.append(_FINDER_COLUMN_T_E_EXTERNALUSERID_1);
-			}
-			else if (externalUserId.equals("")) {
+			if (externalUserId.isEmpty()) {
 				query.append(_FINDER_COLUMN_T_E_EXTERNALUSERID_3);
 			}
 			else {
@@ -1036,6 +1031,9 @@ public class UserIdMapperPersistenceImpl extends BasePersistenceImpl<UserIdMappe
 	 */
 	@Override
 	public int countByT_E(String type, String externalUserId) {
+		type = Objects.toString(type, "");
+		externalUserId = Objects.toString(externalUserId, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_T_E;
 
 		Object[] finderArgs = new Object[] { type, externalUserId };
@@ -1050,10 +1048,7 @@ public class UserIdMapperPersistenceImpl extends BasePersistenceImpl<UserIdMappe
 
 			boolean bindType = false;
 
-			if (type == null) {
-				query.append(_FINDER_COLUMN_T_E_TYPE_1);
-			}
-			else if (type.equals("")) {
+			if (type.isEmpty()) {
 				query.append(_FINDER_COLUMN_T_E_TYPE_3);
 			}
 			else {
@@ -1064,10 +1059,7 @@ public class UserIdMapperPersistenceImpl extends BasePersistenceImpl<UserIdMappe
 
 			boolean bindExternalUserId = false;
 
-			if (externalUserId == null) {
-				query.append(_FINDER_COLUMN_T_E_EXTERNALUSERID_1);
-			}
-			else if (externalUserId.equals("")) {
+			if (externalUserId.isEmpty()) {
 				query.append(_FINDER_COLUMN_T_E_EXTERNALUSERID_3);
 			}
 			else {

@@ -705,6 +705,8 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 		String name, long roleId, int start, int end,
 		OrderByComparator<ResourceTypePermission> orderByComparator,
 		boolean retrieveFromCache) {
+		name = Objects.toString(name, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -733,8 +735,7 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 			if ((list != null) && !list.isEmpty()) {
 				for (ResourceTypePermission resourceTypePermission : list) {
 					if ((companyId != resourceTypePermission.getCompanyId()) ||
-							!Objects.equals(name,
-								resourceTypePermission.getName()) ||
+							!name.equals(resourceTypePermission.getName()) ||
 							(roleId != resourceTypePermission.getRoleId())) {
 						list = null;
 
@@ -761,10 +762,7 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 
 			boolean bindName = false;
 
-			if (name == null) {
-				query.append(_FINDER_COLUMN_C_N_R_NAME_1);
-			}
-			else if (name.equals("")) {
+			if (name.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_N_R_NAME_3);
 			}
 			else {
@@ -980,6 +978,8 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 		long resourceTypePermissionId, long companyId, String name,
 		long roleId, OrderByComparator<ResourceTypePermission> orderByComparator)
 		throws NoSuchResourceTypePermissionException {
+		name = Objects.toString(name, "");
+
 		ResourceTypePermission resourceTypePermission = findByPrimaryKey(resourceTypePermissionId);
 
 		Session session = null;
@@ -1029,10 +1029,7 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 
 		boolean bindName = false;
 
-		if (name == null) {
-			query.append(_FINDER_COLUMN_C_N_R_NAME_1);
-		}
-		else if (name.equals("")) {
+		if (name.isEmpty()) {
 			query.append(_FINDER_COLUMN_C_N_R_NAME_3);
 		}
 		else {
@@ -1163,6 +1160,8 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	 */
 	@Override
 	public int countByC_N_R(long companyId, String name, long roleId) {
+		name = Objects.toString(name, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_N_R;
 
 		Object[] finderArgs = new Object[] { companyId, name, roleId };
@@ -1179,10 +1178,7 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 
 			boolean bindName = false;
 
-			if (name == null) {
-				query.append(_FINDER_COLUMN_C_N_R_NAME_1);
-			}
-			else if (name.equals("")) {
+			if (name.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_N_R_NAME_3);
 			}
 			else {
@@ -1327,6 +1323,8 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	@Override
 	public ResourceTypePermission fetchByC_G_N_R(long companyId, long groupId,
 		String name, long roleId, boolean retrieveFromCache) {
+		name = Objects.toString(name, "");
+
 		Object[] finderArgs = new Object[] { companyId, groupId, name, roleId };
 
 		Object result = null;
@@ -1358,10 +1356,7 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 
 			boolean bindName = false;
 
-			if (name == null) {
-				query.append(_FINDER_COLUMN_C_G_N_R_NAME_1);
-			}
-			else if (name.equals("")) {
+			if (name.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_G_N_R_NAME_3);
 			}
 			else {
@@ -1456,6 +1451,8 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 	@Override
 	public int countByC_G_N_R(long companyId, long groupId, String name,
 		long roleId) {
+		name = Objects.toString(name, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_G_N_R;
 
 		Object[] finderArgs = new Object[] { companyId, groupId, name, roleId };
@@ -1474,10 +1471,7 @@ public class ResourceTypePermissionPersistenceImpl extends BasePersistenceImpl<R
 
 			boolean bindName = false;
 
-			if (name == null) {
-				query.append(_FINDER_COLUMN_C_G_N_R_NAME_1);
-			}
-			else if (name.equals("")) {
+			if (name.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_G_N_R_NAME_3);
 			}
 			else {

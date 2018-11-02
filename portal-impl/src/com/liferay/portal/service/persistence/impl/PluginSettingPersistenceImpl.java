@@ -682,6 +682,9 @@ public class PluginSettingPersistenceImpl extends BasePersistenceImpl<PluginSett
 	@Override
 	public PluginSetting fetchByC_I_T(long companyId, String pluginId,
 		String pluginType, boolean retrieveFromCache) {
+		pluginId = Objects.toString(pluginId, "");
+		pluginType = Objects.toString(pluginType, "");
+
 		Object[] finderArgs = new Object[] { companyId, pluginId, pluginType };
 
 		Object result = null;
@@ -710,10 +713,7 @@ public class PluginSettingPersistenceImpl extends BasePersistenceImpl<PluginSett
 
 			boolean bindPluginId = false;
 
-			if (pluginId == null) {
-				query.append(_FINDER_COLUMN_C_I_T_PLUGINID_1);
-			}
-			else if (pluginId.equals("")) {
+			if (pluginId.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_I_T_PLUGINID_3);
 			}
 			else {
@@ -724,10 +724,7 @@ public class PluginSettingPersistenceImpl extends BasePersistenceImpl<PluginSett
 
 			boolean bindPluginType = false;
 
-			if (pluginType == null) {
-				query.append(_FINDER_COLUMN_C_I_T_PLUGINTYPE_1);
-			}
-			else if (pluginType.equals("")) {
+			if (pluginType.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_I_T_PLUGINTYPE_3);
 			}
 			else {
@@ -817,6 +814,9 @@ public class PluginSettingPersistenceImpl extends BasePersistenceImpl<PluginSett
 	 */
 	@Override
 	public int countByC_I_T(long companyId, String pluginId, String pluginType) {
+		pluginId = Objects.toString(pluginId, "");
+		pluginType = Objects.toString(pluginType, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_I_T;
 
 		Object[] finderArgs = new Object[] { companyId, pluginId, pluginType };
@@ -833,10 +833,7 @@ public class PluginSettingPersistenceImpl extends BasePersistenceImpl<PluginSett
 
 			boolean bindPluginId = false;
 
-			if (pluginId == null) {
-				query.append(_FINDER_COLUMN_C_I_T_PLUGINID_1);
-			}
-			else if (pluginId.equals("")) {
+			if (pluginId.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_I_T_PLUGINID_3);
 			}
 			else {
@@ -847,10 +844,7 @@ public class PluginSettingPersistenceImpl extends BasePersistenceImpl<PluginSett
 
 			boolean bindPluginType = false;
 
-			if (pluginType == null) {
-				query.append(_FINDER_COLUMN_C_I_T_PLUGINTYPE_1);
-			}
-			else if (pluginType.equals("")) {
+			if (pluginType.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_I_T_PLUGINTYPE_3);
 			}
 			else {

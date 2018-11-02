@@ -162,6 +162,9 @@ public class WeDeployAuthAppPersistenceImpl extends BasePersistenceImpl<WeDeploy
 	@Override
 	public WeDeployAuthApp fetchByRU_CI(String redirectURI, String clientId,
 		boolean retrieveFromCache) {
+		redirectURI = Objects.toString(redirectURI, "");
+		clientId = Objects.toString(clientId, "");
+
 		Object[] finderArgs = new Object[] { redirectURI, clientId };
 
 		Object result = null;
@@ -187,10 +190,7 @@ public class WeDeployAuthAppPersistenceImpl extends BasePersistenceImpl<WeDeploy
 
 			boolean bindRedirectURI = false;
 
-			if (redirectURI == null) {
-				query.append(_FINDER_COLUMN_RU_CI_REDIRECTURI_1);
-			}
-			else if (redirectURI.equals("")) {
+			if (redirectURI.isEmpty()) {
 				query.append(_FINDER_COLUMN_RU_CI_REDIRECTURI_3);
 			}
 			else {
@@ -201,10 +201,7 @@ public class WeDeployAuthAppPersistenceImpl extends BasePersistenceImpl<WeDeploy
 
 			boolean bindClientId = false;
 
-			if (clientId == null) {
-				query.append(_FINDER_COLUMN_RU_CI_CLIENTID_1);
-			}
-			else if (clientId.equals("")) {
+			if (clientId.isEmpty()) {
 				query.append(_FINDER_COLUMN_RU_CI_CLIENTID_3);
 			}
 			else {
@@ -299,6 +296,9 @@ public class WeDeployAuthAppPersistenceImpl extends BasePersistenceImpl<WeDeploy
 	 */
 	@Override
 	public int countByRU_CI(String redirectURI, String clientId) {
+		redirectURI = Objects.toString(redirectURI, "");
+		clientId = Objects.toString(clientId, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_RU_CI;
 
 		Object[] finderArgs = new Object[] { redirectURI, clientId };
@@ -312,10 +312,7 @@ public class WeDeployAuthAppPersistenceImpl extends BasePersistenceImpl<WeDeploy
 
 			boolean bindRedirectURI = false;
 
-			if (redirectURI == null) {
-				query.append(_FINDER_COLUMN_RU_CI_REDIRECTURI_1);
-			}
-			else if (redirectURI.equals("")) {
+			if (redirectURI.isEmpty()) {
 				query.append(_FINDER_COLUMN_RU_CI_REDIRECTURI_3);
 			}
 			else {
@@ -326,10 +323,7 @@ public class WeDeployAuthAppPersistenceImpl extends BasePersistenceImpl<WeDeploy
 
 			boolean bindClientId = false;
 
-			if (clientId == null) {
-				query.append(_FINDER_COLUMN_RU_CI_CLIENTID_1);
-			}
-			else if (clientId.equals("")) {
+			if (clientId.isEmpty()) {
 				query.append(_FINDER_COLUMN_RU_CI_CLIENTID_3);
 			}
 			else {
@@ -451,6 +445,9 @@ public class WeDeployAuthAppPersistenceImpl extends BasePersistenceImpl<WeDeploy
 	@Override
 	public WeDeployAuthApp fetchByCI_CS(String clientId, String clientSecret,
 		boolean retrieveFromCache) {
+		clientId = Objects.toString(clientId, "");
+		clientSecret = Objects.toString(clientSecret, "");
+
 		Object[] finderArgs = new Object[] { clientId, clientSecret };
 
 		Object result = null;
@@ -477,10 +474,7 @@ public class WeDeployAuthAppPersistenceImpl extends BasePersistenceImpl<WeDeploy
 
 			boolean bindClientId = false;
 
-			if (clientId == null) {
-				query.append(_FINDER_COLUMN_CI_CS_CLIENTID_1);
-			}
-			else if (clientId.equals("")) {
+			if (clientId.isEmpty()) {
 				query.append(_FINDER_COLUMN_CI_CS_CLIENTID_3);
 			}
 			else {
@@ -491,10 +485,7 @@ public class WeDeployAuthAppPersistenceImpl extends BasePersistenceImpl<WeDeploy
 
 			boolean bindClientSecret = false;
 
-			if (clientSecret == null) {
-				query.append(_FINDER_COLUMN_CI_CS_CLIENTSECRET_1);
-			}
-			else if (clientSecret.equals("")) {
+			if (clientSecret.isEmpty()) {
 				query.append(_FINDER_COLUMN_CI_CS_CLIENTSECRET_3);
 			}
 			else {
@@ -589,6 +580,9 @@ public class WeDeployAuthAppPersistenceImpl extends BasePersistenceImpl<WeDeploy
 	 */
 	@Override
 	public int countByCI_CS(String clientId, String clientSecret) {
+		clientId = Objects.toString(clientId, "");
+		clientSecret = Objects.toString(clientSecret, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_CI_CS;
 
 		Object[] finderArgs = new Object[] { clientId, clientSecret };
@@ -602,10 +596,7 @@ public class WeDeployAuthAppPersistenceImpl extends BasePersistenceImpl<WeDeploy
 
 			boolean bindClientId = false;
 
-			if (clientId == null) {
-				query.append(_FINDER_COLUMN_CI_CS_CLIENTID_1);
-			}
-			else if (clientId.equals("")) {
+			if (clientId.isEmpty()) {
 				query.append(_FINDER_COLUMN_CI_CS_CLIENTID_3);
 			}
 			else {
@@ -616,10 +607,7 @@ public class WeDeployAuthAppPersistenceImpl extends BasePersistenceImpl<WeDeploy
 
 			boolean bindClientSecret = false;
 
-			if (clientSecret == null) {
-				query.append(_FINDER_COLUMN_CI_CS_CLIENTSECRET_1);
-			}
-			else if (clientSecret.equals("")) {
+			if (clientSecret.isEmpty()) {
 				query.append(_FINDER_COLUMN_CI_CS_CLIENTSECRET_3);
 			}
 			else {

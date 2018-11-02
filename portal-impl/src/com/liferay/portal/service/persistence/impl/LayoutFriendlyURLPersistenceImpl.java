@@ -184,6 +184,8 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 	public List<LayoutFriendlyURL> findByUuid(String uuid, int start, int end,
 		OrderByComparator<LayoutFriendlyURL> orderByComparator,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -207,7 +209,7 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 
 			if ((list != null) && !list.isEmpty()) {
 				for (LayoutFriendlyURL layoutFriendlyURL : list) {
-					if (!Objects.equals(uuid, layoutFriendlyURL.getUuid())) {
+					if (!uuid.equals(layoutFriendlyURL.getUuid())) {
 						list = null;
 
 						break;
@@ -231,10 +233,7 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -418,6 +417,8 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 		long layoutFriendlyURLId, String uuid,
 		OrderByComparator<LayoutFriendlyURL> orderByComparator)
 		throws NoSuchLayoutFriendlyURLException {
+		uuid = Objects.toString(uuid, "");
+
 		LayoutFriendlyURL layoutFriendlyURL = findByPrimaryKey(layoutFriendlyURLId);
 
 		Session session = null;
@@ -463,10 +464,7 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 
 		boolean bindUuid = false;
 
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_UUID_1);
-		}
-		else if (uuid.equals("")) {
+		if (uuid.isEmpty()) {
 			query.append(_FINDER_COLUMN_UUID_UUID_3);
 		}
 		else {
@@ -586,6 +584,8 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 	 */
 	@Override
 	public int countByUuid(String uuid) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID;
 
 		Object[] finderArgs = new Object[] { uuid };
@@ -600,10 +600,7 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -718,6 +715,8 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 	@Override
 	public LayoutFriendlyURL fetchByUUID_G(String uuid, long groupId,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		Object[] finderArgs = new Object[] { uuid, groupId };
 
 		Object result = null;
@@ -743,10 +742,7 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_G_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_G_UUID_3);
 			}
 			else {
@@ -831,6 +827,8 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 	 */
 	@Override
 	public int countByUUID_G(String uuid, long groupId) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_G;
 
 		Object[] finderArgs = new Object[] { uuid, groupId };
@@ -845,10 +843,7 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_G_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_G_UUID_3);
 			}
 			else {
@@ -993,6 +988,8 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 		int start, int end,
 		OrderByComparator<LayoutFriendlyURL> orderByComparator,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1020,7 +1017,7 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 
 			if ((list != null) && !list.isEmpty()) {
 				for (LayoutFriendlyURL layoutFriendlyURL : list) {
-					if (!Objects.equals(uuid, layoutFriendlyURL.getUuid()) ||
+					if (!uuid.equals(layoutFriendlyURL.getUuid()) ||
 							(companyId != layoutFriendlyURL.getCompanyId())) {
 						list = null;
 
@@ -1045,10 +1042,7 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 			}
 			else {
@@ -1248,6 +1242,8 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 		long layoutFriendlyURLId, String uuid, long companyId,
 		OrderByComparator<LayoutFriendlyURL> orderByComparator)
 		throws NoSuchLayoutFriendlyURLException {
+		uuid = Objects.toString(uuid, "");
+
 		LayoutFriendlyURL layoutFriendlyURL = findByPrimaryKey(layoutFriendlyURLId);
 
 		Session session = null;
@@ -1293,10 +1289,7 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 
 		boolean bindUuid = false;
 
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-		}
-		else if (uuid.equals("")) {
+		if (uuid.isEmpty()) {
 			query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 		}
 		else {
@@ -1422,6 +1415,8 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 	 */
 	@Override
 	public int countByUuid_C(String uuid, long companyId) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_C;
 
 		Object[] finderArgs = new Object[] { uuid, companyId };
@@ -1436,10 +1431,7 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 			}
 			else {
@@ -3106,6 +3098,8 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 		int start, int end,
 		OrderByComparator<LayoutFriendlyURL> orderByComparator,
 		boolean retrieveFromCache) {
+		friendlyURL = Objects.toString(friendlyURL, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -3134,7 +3128,7 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 			if ((list != null) && !list.isEmpty()) {
 				for (LayoutFriendlyURL layoutFriendlyURL : list) {
 					if ((plid != layoutFriendlyURL.getPlid()) ||
-							!Objects.equals(friendlyURL,
+							!friendlyURL.equals(
 								layoutFriendlyURL.getFriendlyURL())) {
 						list = null;
 
@@ -3161,10 +3155,7 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 
 			boolean bindFriendlyURL = false;
 
-			if (friendlyURL == null) {
-				query.append(_FINDER_COLUMN_P_F_FRIENDLYURL_1);
-			}
-			else if (friendlyURL.equals("")) {
+			if (friendlyURL.isEmpty()) {
 				query.append(_FINDER_COLUMN_P_F_FRIENDLYURL_3);
 			}
 			else {
@@ -3362,6 +3353,8 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 		long plid, String friendlyURL,
 		OrderByComparator<LayoutFriendlyURL> orderByComparator)
 		throws NoSuchLayoutFriendlyURLException {
+		friendlyURL = Objects.toString(friendlyURL, "");
+
 		LayoutFriendlyURL layoutFriendlyURL = findByPrimaryKey(layoutFriendlyURLId);
 
 		Session session = null;
@@ -3409,10 +3402,7 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 
 		boolean bindFriendlyURL = false;
 
-		if (friendlyURL == null) {
-			query.append(_FINDER_COLUMN_P_F_FRIENDLYURL_1);
-		}
-		else if (friendlyURL.equals("")) {
+		if (friendlyURL.isEmpty()) {
 			query.append(_FINDER_COLUMN_P_F_FRIENDLYURL_3);
 		}
 		else {
@@ -3536,6 +3526,8 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 	 */
 	@Override
 	public int countByP_F(long plid, String friendlyURL) {
+		friendlyURL = Objects.toString(friendlyURL, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_P_F;
 
 		Object[] finderArgs = new Object[] { plid, friendlyURL };
@@ -3552,10 +3544,7 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 
 			boolean bindFriendlyURL = false;
 
-			if (friendlyURL == null) {
-				query.append(_FINDER_COLUMN_P_F_FRIENDLYURL_1);
-			}
-			else if (friendlyURL.equals("")) {
+			if (friendlyURL.isEmpty()) {
 				query.append(_FINDER_COLUMN_P_F_FRIENDLYURL_3);
 			}
 			else {
@@ -3721,6 +3710,8 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 			Arrays.sort(plids);
 		}
 
+		languageId = Objects.toString(languageId, "");
+
 		if (plids.length == 1) {
 			LayoutFriendlyURL layoutFriendlyURL = fetchByP_L(plids[0],
 					languageId);
@@ -3758,7 +3749,7 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 			if ((list != null) && !list.isEmpty()) {
 				for (LayoutFriendlyURL layoutFriendlyURL : list) {
 					if (!ArrayUtil.contains(plids, layoutFriendlyURL.getPlid()) ||
-							!Objects.equals(languageId,
+							!languageId.equals(
 								layoutFriendlyURL.getLanguageId())) {
 						list = null;
 
@@ -3834,10 +3825,7 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 
 		boolean bindLanguageId = false;
 
-		if (languageId == null) {
-			query.append(_FINDER_COLUMN_P_L_LANGUAGEID_1);
-		}
-		else if (languageId.equals("")) {
+		if (languageId.isEmpty()) {
 			query.append(_FINDER_COLUMN_P_L_LANGUAGEID_3);
 		}
 		else {
@@ -3955,6 +3943,8 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 	@Override
 	public LayoutFriendlyURL fetchByP_L(long plid, String languageId,
 		boolean retrieveFromCache) {
+		languageId = Objects.toString(languageId, "");
+
 		Object[] finderArgs = new Object[] { plid, languageId };
 
 		Object result = null;
@@ -3983,10 +3973,7 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 
 			boolean bindLanguageId = false;
 
-			if (languageId == null) {
-				query.append(_FINDER_COLUMN_P_L_LANGUAGEID_1);
-			}
-			else if (languageId.equals("")) {
+			if (languageId.isEmpty()) {
 				query.append(_FINDER_COLUMN_P_L_LANGUAGEID_3);
 			}
 			else {
@@ -4069,6 +4056,8 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 	 */
 	@Override
 	public int countByP_L(long plid, String languageId) {
+		languageId = Objects.toString(languageId, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_P_L;
 
 		Object[] finderArgs = new Object[] { plid, languageId };
@@ -4085,10 +4074,7 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 
 			boolean bindLanguageId = false;
 
-			if (languageId == null) {
-				query.append(_FINDER_COLUMN_P_L_LANGUAGEID_1);
-			}
-			else if (languageId.equals("")) {
+			if (languageId.isEmpty()) {
 				query.append(_FINDER_COLUMN_P_L_LANGUAGEID_3);
 			}
 			else {
@@ -4208,10 +4194,7 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 
 		boolean bindLanguageId = false;
 
-		if (languageId == null) {
-			query.append(_FINDER_COLUMN_P_L_LANGUAGEID_1);
-		}
-		else if (languageId.equals("")) {
+		if (languageId.isEmpty()) {
 			query.append(_FINDER_COLUMN_P_L_LANGUAGEID_3);
 		}
 		else {
@@ -4364,6 +4347,8 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 		boolean privateLayout, String friendlyURL, int start, int end,
 		OrderByComparator<LayoutFriendlyURL> orderByComparator,
 		boolean retrieveFromCache) {
+		friendlyURL = Objects.toString(friendlyURL, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -4393,7 +4378,7 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 				for (LayoutFriendlyURL layoutFriendlyURL : list) {
 					if ((groupId != layoutFriendlyURL.getGroupId()) ||
 							(privateLayout != layoutFriendlyURL.isPrivateLayout()) ||
-							!Objects.equals(friendlyURL,
+							!friendlyURL.equals(
 								layoutFriendlyURL.getFriendlyURL())) {
 						list = null;
 
@@ -4422,10 +4407,7 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 
 			boolean bindFriendlyURL = false;
 
-			if (friendlyURL == null) {
-				query.append(_FINDER_COLUMN_G_P_F_FRIENDLYURL_1);
-			}
-			else if (friendlyURL.equals("")) {
+			if (friendlyURL.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_P_F_FRIENDLYURL_3);
 			}
 			else {
@@ -4641,6 +4623,8 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 		String friendlyURL,
 		OrderByComparator<LayoutFriendlyURL> orderByComparator)
 		throws NoSuchLayoutFriendlyURLException {
+		friendlyURL = Objects.toString(friendlyURL, "");
+
 		LayoutFriendlyURL layoutFriendlyURL = findByPrimaryKey(layoutFriendlyURLId);
 
 		Session session = null;
@@ -4692,10 +4676,7 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 
 		boolean bindFriendlyURL = false;
 
-		if (friendlyURL == null) {
-			query.append(_FINDER_COLUMN_G_P_F_FRIENDLYURL_1);
-		}
-		else if (friendlyURL.equals("")) {
+		if (friendlyURL.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_P_F_FRIENDLYURL_3);
 		}
 		else {
@@ -4826,6 +4807,8 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 	@Override
 	public int countByG_P_F(long groupId, boolean privateLayout,
 		String friendlyURL) {
+		friendlyURL = Objects.toString(friendlyURL, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_G_P_F;
 
 		Object[] finderArgs = new Object[] { groupId, privateLayout, friendlyURL };
@@ -4844,10 +4827,7 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 
 			boolean bindFriendlyURL = false;
 
-			if (friendlyURL == null) {
-				query.append(_FINDER_COLUMN_G_P_F_FRIENDLYURL_1);
-			}
-			else if (friendlyURL.equals("")) {
+			if (friendlyURL.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_P_F_FRIENDLYURL_3);
 			}
 			else {
@@ -4993,6 +4973,9 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 	public LayoutFriendlyURL fetchByG_P_F_L(long groupId,
 		boolean privateLayout, String friendlyURL, String languageId,
 		boolean retrieveFromCache) {
+		friendlyURL = Objects.toString(friendlyURL, "");
+		languageId = Objects.toString(languageId, "");
+
 		Object[] finderArgs = new Object[] {
 				groupId, privateLayout, friendlyURL, languageId
 			};
@@ -5028,10 +5011,7 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 
 			boolean bindFriendlyURL = false;
 
-			if (friendlyURL == null) {
-				query.append(_FINDER_COLUMN_G_P_F_L_FRIENDLYURL_1);
-			}
-			else if (friendlyURL.equals("")) {
+			if (friendlyURL.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_P_F_L_FRIENDLYURL_3);
 			}
 			else {
@@ -5042,10 +5022,7 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 
 			boolean bindLanguageId = false;
 
-			if (languageId == null) {
-				query.append(_FINDER_COLUMN_G_P_F_L_LANGUAGEID_1);
-			}
-			else if (languageId.equals("")) {
+			if (languageId.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_P_F_L_LANGUAGEID_3);
 			}
 			else {
@@ -5141,6 +5118,9 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 	@Override
 	public int countByG_P_F_L(long groupId, boolean privateLayout,
 		String friendlyURL, String languageId) {
+		friendlyURL = Objects.toString(friendlyURL, "");
+		languageId = Objects.toString(languageId, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_G_P_F_L;
 
 		Object[] finderArgs = new Object[] {
@@ -5161,10 +5141,7 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 
 			boolean bindFriendlyURL = false;
 
-			if (friendlyURL == null) {
-				query.append(_FINDER_COLUMN_G_P_F_L_FRIENDLYURL_1);
-			}
-			else if (friendlyURL.equals("")) {
+			if (friendlyURL.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_P_F_L_FRIENDLYURL_3);
 			}
 			else {
@@ -5175,10 +5152,7 @@ public class LayoutFriendlyURLPersistenceImpl extends BasePersistenceImpl<Layout
 
 			boolean bindLanguageId = false;
 
-			if (languageId == null) {
-				query.append(_FINDER_COLUMN_G_P_F_L_LANGUAGEID_1);
-			}
-			else if (languageId.equals("")) {
+			if (languageId.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_P_F_L_LANGUAGEID_3);
 			}
 			else {

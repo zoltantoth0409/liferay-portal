@@ -1158,6 +1158,8 @@ public class RegionPersistenceImpl extends BasePersistenceImpl<Region>
 	@Override
 	public Region fetchByC_R(long countryId, String regionCode,
 		boolean retrieveFromCache) {
+		regionCode = Objects.toString(regionCode, "");
+
 		Object[] finderArgs = new Object[] { countryId, regionCode };
 
 		Object result = null;
@@ -1185,10 +1187,7 @@ public class RegionPersistenceImpl extends BasePersistenceImpl<Region>
 
 			boolean bindRegionCode = false;
 
-			if (regionCode == null) {
-				query.append(_FINDER_COLUMN_C_R_REGIONCODE_1);
-			}
-			else if (regionCode.equals("")) {
+			if (regionCode.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_R_REGIONCODE_3);
 			}
 			else {
@@ -1271,6 +1270,8 @@ public class RegionPersistenceImpl extends BasePersistenceImpl<Region>
 	 */
 	@Override
 	public int countByC_R(long countryId, String regionCode) {
+		regionCode = Objects.toString(regionCode, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_R;
 
 		Object[] finderArgs = new Object[] { countryId, regionCode };
@@ -1287,10 +1288,7 @@ public class RegionPersistenceImpl extends BasePersistenceImpl<Region>
 
 			boolean bindRegionCode = false;
 
-			if (regionCode == null) {
-				query.append(_FINDER_COLUMN_C_R_REGIONCODE_1);
-			}
-			else if (regionCode.equals("")) {
+			if (regionCode.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_R_REGIONCODE_3);
 			}
 			else {

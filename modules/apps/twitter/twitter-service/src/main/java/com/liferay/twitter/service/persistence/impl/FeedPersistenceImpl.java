@@ -160,6 +160,8 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	@Override
 	public Feed fetchByU_TSN(long userId, String twitterScreenName,
 		boolean retrieveFromCache) {
+		twitterScreenName = Objects.toString(twitterScreenName, "");
+
 		Object[] finderArgs = new Object[] { userId, twitterScreenName };
 
 		Object result = null;
@@ -188,10 +190,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 
 			boolean bindTwitterScreenName = false;
 
-			if (twitterScreenName == null) {
-				query.append(_FINDER_COLUMN_U_TSN_TWITTERSCREENNAME_1);
-			}
-			else if (twitterScreenName.equals("")) {
+			if (twitterScreenName.isEmpty()) {
 				query.append(_FINDER_COLUMN_U_TSN_TWITTERSCREENNAME_3);
 			}
 			else {
@@ -284,6 +283,8 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 */
 	@Override
 	public int countByU_TSN(long userId, String twitterScreenName) {
+		twitterScreenName = Objects.toString(twitterScreenName, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_U_TSN;
 
 		Object[] finderArgs = new Object[] { userId, twitterScreenName };
@@ -299,10 +300,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 
 			boolean bindTwitterScreenName = false;
 
-			if (twitterScreenName == null) {
-				query.append(_FINDER_COLUMN_U_TSN_TWITTERSCREENNAME_1);
-			}
-			else if (twitterScreenName.equals("")) {
+			if (twitterScreenName.isEmpty()) {
 				query.append(_FINDER_COLUMN_U_TSN_TWITTERSCREENNAME_3);
 			}
 			else {

@@ -182,6 +182,9 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	public List<OAuthToken> findByG_S(String gadgetKey, String serviceName,
 		int start, int end, OrderByComparator<OAuthToken> orderByComparator,
 		boolean retrieveFromCache) {
+		gadgetKey = Objects.toString(gadgetKey, "");
+		serviceName = Objects.toString(serviceName, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -209,9 +212,8 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 			if ((list != null) && !list.isEmpty()) {
 				for (OAuthToken oAuthToken : list) {
-					if (!Objects.equals(gadgetKey, oAuthToken.getGadgetKey()) ||
-							!Objects.equals(serviceName,
-								oAuthToken.getServiceName())) {
+					if (!gadgetKey.equals(oAuthToken.getGadgetKey()) ||
+							!serviceName.equals(oAuthToken.getServiceName())) {
 						list = null;
 
 						break;
@@ -235,10 +237,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 			boolean bindGadgetKey = false;
 
-			if (gadgetKey == null) {
-				query.append(_FINDER_COLUMN_G_S_GADGETKEY_1);
-			}
-			else if (gadgetKey.equals("")) {
+			if (gadgetKey.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_S_GADGETKEY_3);
 			}
 			else {
@@ -249,10 +248,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 			boolean bindServiceName = false;
 
-			if (serviceName == null) {
-				query.append(_FINDER_COLUMN_G_S_SERVICENAME_1);
-			}
-			else if (serviceName.equals("")) {
+			if (serviceName.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_S_SERVICENAME_3);
 			}
 			else {
@@ -452,6 +448,9 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 		String gadgetKey, String serviceName,
 		OrderByComparator<OAuthToken> orderByComparator)
 		throws NoSuchOAuthTokenException {
+		gadgetKey = Objects.toString(gadgetKey, "");
+		serviceName = Objects.toString(serviceName, "");
+
 		OAuthToken oAuthToken = findByPrimaryKey(oAuthTokenId);
 
 		Session session = null;
@@ -497,10 +496,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 		boolean bindGadgetKey = false;
 
-		if (gadgetKey == null) {
-			query.append(_FINDER_COLUMN_G_S_GADGETKEY_1);
-		}
-		else if (gadgetKey.equals("")) {
+		if (gadgetKey.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_S_GADGETKEY_3);
 		}
 		else {
@@ -511,10 +507,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 		boolean bindServiceName = false;
 
-		if (serviceName == null) {
-			query.append(_FINDER_COLUMN_G_S_SERVICENAME_1);
-		}
-		else if (serviceName.equals("")) {
+		if (serviceName.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_S_SERVICENAME_3);
 		}
 		else {
@@ -640,6 +633,9 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 */
 	@Override
 	public int countByG_S(String gadgetKey, String serviceName) {
+		gadgetKey = Objects.toString(gadgetKey, "");
+		serviceName = Objects.toString(serviceName, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_G_S;
 
 		Object[] finderArgs = new Object[] { gadgetKey, serviceName };
@@ -654,10 +650,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 			boolean bindGadgetKey = false;
 
-			if (gadgetKey == null) {
-				query.append(_FINDER_COLUMN_G_S_GADGETKEY_1);
-			}
-			else if (gadgetKey.equals("")) {
+			if (gadgetKey.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_S_GADGETKEY_3);
 			}
 			else {
@@ -668,10 +661,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 			boolean bindServiceName = false;
 
-			if (serviceName == null) {
-				query.append(_FINDER_COLUMN_G_S_SERVICENAME_1);
-			}
-			else if (serviceName.equals("")) {
+			if (serviceName.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_S_SERVICENAME_3);
 			}
 			else {
@@ -826,6 +816,10 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	public OAuthToken fetchByU_G_S_M_T(long userId, String gadgetKey,
 		String serviceName, long moduleId, String tokenName,
 		boolean retrieveFromCache) {
+		gadgetKey = Objects.toString(gadgetKey, "");
+		serviceName = Objects.toString(serviceName, "");
+		tokenName = Objects.toString(tokenName, "");
+
 		Object[] finderArgs = new Object[] {
 				userId, gadgetKey, serviceName, moduleId, tokenName
 			};
@@ -858,10 +852,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 			boolean bindGadgetKey = false;
 
-			if (gadgetKey == null) {
-				query.append(_FINDER_COLUMN_U_G_S_M_T_GADGETKEY_1);
-			}
-			else if (gadgetKey.equals("")) {
+			if (gadgetKey.isEmpty()) {
 				query.append(_FINDER_COLUMN_U_G_S_M_T_GADGETKEY_3);
 			}
 			else {
@@ -872,10 +863,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 			boolean bindServiceName = false;
 
-			if (serviceName == null) {
-				query.append(_FINDER_COLUMN_U_G_S_M_T_SERVICENAME_1);
-			}
-			else if (serviceName.equals("")) {
+			if (serviceName.isEmpty()) {
 				query.append(_FINDER_COLUMN_U_G_S_M_T_SERVICENAME_3);
 			}
 			else {
@@ -888,10 +876,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 			boolean bindTokenName = false;
 
-			if (tokenName == null) {
-				query.append(_FINDER_COLUMN_U_G_S_M_T_TOKENNAME_1);
-			}
-			else if (tokenName.equals("")) {
+			if (tokenName.isEmpty()) {
 				query.append(_FINDER_COLUMN_U_G_S_M_T_TOKENNAME_3);
 			}
 			else {
@@ -1004,6 +989,10 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	@Override
 	public int countByU_G_S_M_T(long userId, String gadgetKey,
 		String serviceName, long moduleId, String tokenName) {
+		gadgetKey = Objects.toString(gadgetKey, "");
+		serviceName = Objects.toString(serviceName, "");
+		tokenName = Objects.toString(tokenName, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_U_G_S_M_T;
 
 		Object[] finderArgs = new Object[] {
@@ -1022,10 +1011,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 			boolean bindGadgetKey = false;
 
-			if (gadgetKey == null) {
-				query.append(_FINDER_COLUMN_U_G_S_M_T_GADGETKEY_1);
-			}
-			else if (gadgetKey.equals("")) {
+			if (gadgetKey.isEmpty()) {
 				query.append(_FINDER_COLUMN_U_G_S_M_T_GADGETKEY_3);
 			}
 			else {
@@ -1036,10 +1022,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 			boolean bindServiceName = false;
 
-			if (serviceName == null) {
-				query.append(_FINDER_COLUMN_U_G_S_M_T_SERVICENAME_1);
-			}
-			else if (serviceName.equals("")) {
+			if (serviceName.isEmpty()) {
 				query.append(_FINDER_COLUMN_U_G_S_M_T_SERVICENAME_3);
 			}
 			else {
@@ -1052,10 +1035,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 			boolean bindTokenName = false;
 
-			if (tokenName == null) {
-				query.append(_FINDER_COLUMN_U_G_S_M_T_TOKENNAME_1);
-			}
-			else if (tokenName.equals("")) {
+			if (tokenName.isEmpty()) {
 				query.append(_FINDER_COLUMN_U_G_S_M_T_TOKENNAME_3);
 			}
 			else {

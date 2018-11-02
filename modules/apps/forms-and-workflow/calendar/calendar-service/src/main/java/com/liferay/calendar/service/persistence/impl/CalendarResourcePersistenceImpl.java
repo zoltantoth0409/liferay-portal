@@ -705,6 +705,8 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	public List<CalendarResource> findByUuid(String uuid, int start, int end,
 		OrderByComparator<CalendarResource> orderByComparator,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -728,7 +730,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 			if ((list != null) && !list.isEmpty()) {
 				for (CalendarResource calendarResource : list) {
-					if (!Objects.equals(uuid, calendarResource.getUuid())) {
+					if (!uuid.equals(calendarResource.getUuid())) {
 						list = null;
 
 						break;
@@ -752,10 +754,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -938,6 +937,8 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	public CalendarResource[] findByUuid_PrevAndNext(long calendarResourceId,
 		String uuid, OrderByComparator<CalendarResource> orderByComparator)
 		throws NoSuchResourceException {
+		uuid = Objects.toString(uuid, "");
+
 		CalendarResource calendarResource = findByPrimaryKey(calendarResourceId);
 
 		Session session = null;
@@ -983,10 +984,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 		boolean bindUuid = false;
 
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_UUID_1);
-		}
-		else if (uuid.equals("")) {
+		if (uuid.isEmpty()) {
 			query.append(_FINDER_COLUMN_UUID_UUID_3);
 		}
 		else {
@@ -1106,6 +1104,8 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	 */
 	@Override
 	public int countByUuid(String uuid) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID;
 
 		Object[] finderArgs = new Object[] { uuid };
@@ -1119,10 +1119,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -1237,6 +1234,8 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	@Override
 	public CalendarResource fetchByUUID_G(String uuid, long groupId,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		Object[] finderArgs = new Object[] { uuid, groupId };
 
 		Object result = null;
@@ -1262,10 +1261,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_G_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_G_UUID_3);
 			}
 			else {
@@ -1349,6 +1345,8 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	 */
 	@Override
 	public int countByUUID_G(String uuid, long groupId) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_G;
 
 		Object[] finderArgs = new Object[] { uuid, groupId };
@@ -1362,10 +1360,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_G_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_G_UUID_3);
 			}
 			else {
@@ -1511,6 +1506,8 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		int start, int end,
 		OrderByComparator<CalendarResource> orderByComparator,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1538,7 +1535,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 			if ((list != null) && !list.isEmpty()) {
 				for (CalendarResource calendarResource : list) {
-					if (!Objects.equals(uuid, calendarResource.getUuid()) ||
+					if (!uuid.equals(calendarResource.getUuid()) ||
 							(companyId != calendarResource.getCompanyId())) {
 						list = null;
 
@@ -1563,10 +1560,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 			}
 			else {
@@ -1766,6 +1760,8 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		long calendarResourceId, String uuid, long companyId,
 		OrderByComparator<CalendarResource> orderByComparator)
 		throws NoSuchResourceException {
+		uuid = Objects.toString(uuid, "");
+
 		CalendarResource calendarResource = findByPrimaryKey(calendarResourceId);
 
 		Session session = null;
@@ -1811,10 +1807,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 		boolean bindUuid = false;
 
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-		}
-		else if (uuid.equals("")) {
+		if (uuid.isEmpty()) {
 			query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 		}
 		else {
@@ -1940,6 +1933,8 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	 */
 	@Override
 	public int countByUuid_C(String uuid, long companyId) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_C;
 
 		Object[] finderArgs = new Object[] { uuid, companyId };
@@ -1953,10 +1948,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 			}
 			else {
@@ -3419,6 +3411,8 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		int start, int end,
 		OrderByComparator<CalendarResource> orderByComparator,
 		boolean retrieveFromCache) {
+		code = Objects.toString(code, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -3447,7 +3441,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 			if ((list != null) && !list.isEmpty()) {
 				for (CalendarResource calendarResource : list) {
 					if ((groupId != calendarResource.getGroupId()) ||
-							!Objects.equals(code, calendarResource.getCode())) {
+							!code.equals(calendarResource.getCode())) {
 						list = null;
 
 						break;
@@ -3473,10 +3467,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 			boolean bindCode = false;
 
-			if (code == null) {
-				query.append(_FINDER_COLUMN_G_C_CODE_1);
-			}
-			else if (code.equals("")) {
+			if (code.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_C_CODE_3);
 			}
 			else {
@@ -3674,6 +3665,8 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		long groupId, String code,
 		OrderByComparator<CalendarResource> orderByComparator)
 		throws NoSuchResourceException {
+		code = Objects.toString(code, "");
+
 		CalendarResource calendarResource = findByPrimaryKey(calendarResourceId);
 
 		Session session = null;
@@ -3721,10 +3714,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 		boolean bindCode = false;
 
-		if (code == null) {
-			query.append(_FINDER_COLUMN_G_C_CODE_1);
-		}
-		else if (code.equals("")) {
+		if (code.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_C_CODE_3);
 		}
 		else {
@@ -3879,6 +3869,8 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 			return findByG_C(groupId, code, start, end, orderByComparator);
 		}
 
+		code = Objects.toString(code, "");
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -3895,10 +3887,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 		boolean bindCode = false;
 
-		if (code == null) {
-			query.append(_FINDER_COLUMN_G_C_CODE_1);
-		}
-		else if (code.equals("")) {
+		if (code.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_C_CODE_3);
 		}
 		else {
@@ -3966,6 +3955,8 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 				orderByComparator);
 		}
 
+		code = Objects.toString(code, "");
+
 		CalendarResource calendarResource = findByPrimaryKey(calendarResourceId);
 
 		Session session = null;
@@ -4013,10 +4004,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 		boolean bindCode = false;
 
-		if (code == null) {
-			query.append(_FINDER_COLUMN_G_C_CODE_1);
-		}
-		else if (code.equals("")) {
+		if (code.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_C_CODE_3);
 		}
 		else {
@@ -4203,10 +4191,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 		boolean bindCode = false;
 
-		if (code == null) {
-			query.append(_FINDER_COLUMN_G_C_CODE_1);
-		}
-		else if (code.equals("")) {
+		if (code.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_C_CODE_3);
 		}
 		else {
@@ -4341,6 +4326,8 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 			Arrays.sort(groupIds);
 		}
 
+		code = Objects.toString(code, "");
+
 		if (groupIds.length == 1) {
 			return findByG_C(groupIds[0], code, start, end, orderByComparator);
 		}
@@ -4371,7 +4358,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 				for (CalendarResource calendarResource : list) {
 					if (!ArrayUtil.contains(groupIds,
 								calendarResource.getGroupId()) ||
-							!Objects.equals(code, calendarResource.getCode())) {
+							!code.equals(calendarResource.getCode())) {
 						list = null;
 
 						break;
@@ -4401,10 +4388,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 			boolean bindCode = false;
 
-			if (code == null) {
-				query.append(_FINDER_COLUMN_G_C_CODE_1);
-			}
-			else if (code.equals("")) {
+			if (code.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_C_CODE_3);
 			}
 			else {
@@ -4495,6 +4479,8 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	 */
 	@Override
 	public int countByG_C(long groupId, String code) {
+		code = Objects.toString(code, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_G_C;
 
 		Object[] finderArgs = new Object[] { groupId, code };
@@ -4510,10 +4496,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 			boolean bindCode = false;
 
-			if (code == null) {
-				query.append(_FINDER_COLUMN_G_C_CODE_1);
-			}
-			else if (code.equals("")) {
+			if (code.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_C_CODE_3);
 			}
 			else {
@@ -4574,6 +4557,8 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 			Arrays.sort(groupIds);
 		}
 
+		code = Objects.toString(code, "");
+
 		Object[] finderArgs = new Object[] { StringUtil.merge(groupIds), code };
 
 		Long count = (Long)finderCache.getResult(FINDER_PATH_WITH_PAGINATION_COUNT_BY_G_C,
@@ -4600,10 +4585,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 			boolean bindCode = false;
 
-			if (code == null) {
-				query.append(_FINDER_COLUMN_G_C_CODE_1);
-			}
-			else if (code.equals("")) {
+			if (code.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_C_CODE_3);
 			}
 			else {
@@ -4662,6 +4644,8 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 			return countByG_C(groupId, code);
 		}
 
+		code = Objects.toString(code, "");
+
 		StringBundler query = new StringBundler(3);
 
 		query.append(_SQL_COUNT_CALENDARRESOURCE_WHERE);
@@ -4670,10 +4654,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 		boolean bindCode = false;
 
-		if (code == null) {
-			query.append(_FINDER_COLUMN_G_C_CODE_1);
-		}
-		else if (code.equals("")) {
+		if (code.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_C_CODE_3);
 		}
 		else {
@@ -4756,10 +4737,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 		boolean bindCode = false;
 
-		if (code == null) {
-			query.append(_FINDER_COLUMN_G_C_CODE_1);
-		}
-		else if (code.equals("")) {
+		if (code.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_C_CODE_3);
 		}
 		else {
@@ -5985,6 +5963,8 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		boolean active, int start, int end,
 		OrderByComparator<CalendarResource> orderByComparator,
 		boolean retrieveFromCache) {
+		code = Objects.toString(code, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -6034,10 +6014,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 			boolean bindCode = false;
 
-			if (code == null) {
-				query.append(_FINDER_COLUMN_C_C_A_CODE_1);
-			}
-			else if (code.equals("")) {
+			if (code.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_C_A_CODE_3);
 			}
 			else {
@@ -6250,6 +6227,8 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		long companyId, String code, boolean active,
 		OrderByComparator<CalendarResource> orderByComparator)
 		throws NoSuchResourceException {
+		code = Objects.toString(code, "");
+
 		CalendarResource calendarResource = findByPrimaryKey(calendarResourceId);
 
 		Session session = null;
@@ -6298,10 +6277,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 		boolean bindCode = false;
 
-		if (code == null) {
-			query.append(_FINDER_COLUMN_C_C_A_CODE_1);
-		}
-		else if (code.equals("")) {
+		if (code.isEmpty()) {
 			query.append(_FINDER_COLUMN_C_C_A_CODE_3);
 		}
 		else {
@@ -6431,6 +6407,8 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	 */
 	@Override
 	public int countByC_C_A(long companyId, String code, boolean active) {
+		code = Objects.toString(code, "");
+
 		FinderPath finderPath = FINDER_PATH_WITH_PAGINATION_COUNT_BY_C_C_A;
 
 		Object[] finderArgs = new Object[] { companyId, code, active };
@@ -6446,10 +6424,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 			boolean bindCode = false;
 
-			if (code == null) {
-				query.append(_FINDER_COLUMN_C_C_A_CODE_1);
-			}
-			else if (code.equals("")) {
+			if (code.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_C_A_CODE_3);
 			}
 			else {

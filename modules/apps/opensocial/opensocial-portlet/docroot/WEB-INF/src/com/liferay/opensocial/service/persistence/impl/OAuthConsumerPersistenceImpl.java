@@ -182,6 +182,8 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	public List<OAuthConsumer> findByGadgetKey(String gadgetKey, int start,
 		int end, OrderByComparator<OAuthConsumer> orderByComparator,
 		boolean retrieveFromCache) {
+		gadgetKey = Objects.toString(gadgetKey, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -205,7 +207,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 
 			if ((list != null) && !list.isEmpty()) {
 				for (OAuthConsumer oAuthConsumer : list) {
-					if (!Objects.equals(gadgetKey, oAuthConsumer.getGadgetKey())) {
+					if (!gadgetKey.equals(oAuthConsumer.getGadgetKey())) {
 						list = null;
 
 						break;
@@ -229,10 +231,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 
 			boolean bindGadgetKey = false;
 
-			if (gadgetKey == null) {
-				query.append(_FINDER_COLUMN_GADGETKEY_GADGETKEY_1);
-			}
-			else if (gadgetKey.equals("")) {
+			if (gadgetKey.isEmpty()) {
 				query.append(_FINDER_COLUMN_GADGETKEY_GADGETKEY_3);
 			}
 			else {
@@ -416,6 +415,8 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	public OAuthConsumer[] findByGadgetKey_PrevAndNext(long oAuthConsumerId,
 		String gadgetKey, OrderByComparator<OAuthConsumer> orderByComparator)
 		throws NoSuchOAuthConsumerException {
+		gadgetKey = Objects.toString(gadgetKey, "");
+
 		OAuthConsumer oAuthConsumer = findByPrimaryKey(oAuthConsumerId);
 
 		Session session = null;
@@ -461,10 +462,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 
 		boolean bindGadgetKey = false;
 
-		if (gadgetKey == null) {
-			query.append(_FINDER_COLUMN_GADGETKEY_GADGETKEY_1);
-		}
-		else if (gadgetKey.equals("")) {
+		if (gadgetKey.isEmpty()) {
 			query.append(_FINDER_COLUMN_GADGETKEY_GADGETKEY_3);
 		}
 		else {
@@ -584,6 +582,8 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	 */
 	@Override
 	public int countByGadgetKey(String gadgetKey) {
+		gadgetKey = Objects.toString(gadgetKey, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_GADGETKEY;
 
 		Object[] finderArgs = new Object[] { gadgetKey };
@@ -598,10 +598,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 
 			boolean bindGadgetKey = false;
 
-			if (gadgetKey == null) {
-				query.append(_FINDER_COLUMN_GADGETKEY_GADGETKEY_1);
-			}
-			else if (gadgetKey.equals("")) {
+			if (gadgetKey.isEmpty()) {
 				query.append(_FINDER_COLUMN_GADGETKEY_GADGETKEY_3);
 			}
 			else {
@@ -715,6 +712,9 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	@Override
 	public OAuthConsumer fetchByG_S(String gadgetKey, String serviceName,
 		boolean retrieveFromCache) {
+		gadgetKey = Objects.toString(gadgetKey, "");
+		serviceName = Objects.toString(serviceName, "");
+
 		Object[] finderArgs = new Object[] { gadgetKey, serviceName };
 
 		Object result = null;
@@ -740,10 +740,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 
 			boolean bindGadgetKey = false;
 
-			if (gadgetKey == null) {
-				query.append(_FINDER_COLUMN_G_S_GADGETKEY_1);
-			}
-			else if (gadgetKey.equals("")) {
+			if (gadgetKey.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_S_GADGETKEY_3);
 			}
 			else {
@@ -754,10 +751,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 
 			boolean bindServiceName = false;
 
-			if (serviceName == null) {
-				query.append(_FINDER_COLUMN_G_S_SERVICENAME_1);
-			}
-			else if (serviceName.equals("")) {
+			if (serviceName.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_S_SERVICENAME_3);
 			}
 			else {
@@ -853,6 +847,9 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	 */
 	@Override
 	public int countByG_S(String gadgetKey, String serviceName) {
+		gadgetKey = Objects.toString(gadgetKey, "");
+		serviceName = Objects.toString(serviceName, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_G_S;
 
 		Object[] finderArgs = new Object[] { gadgetKey, serviceName };
@@ -867,10 +864,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 
 			boolean bindGadgetKey = false;
 
-			if (gadgetKey == null) {
-				query.append(_FINDER_COLUMN_G_S_GADGETKEY_1);
-			}
-			else if (gadgetKey.equals("")) {
+			if (gadgetKey.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_S_GADGETKEY_3);
 			}
 			else {
@@ -881,10 +875,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 
 			boolean bindServiceName = false;
 
-			if (serviceName == null) {
-				query.append(_FINDER_COLUMN_G_S_SERVICENAME_1);
-			}
-			else if (serviceName.equals("")) {
+			if (serviceName.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_S_SERVICENAME_3);
 			}
 			else {

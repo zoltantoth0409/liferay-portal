@@ -691,6 +691,8 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	@Override
 	public List<Calendar> findByUuid(String uuid, int start, int end,
 		OrderByComparator<Calendar> orderByComparator, boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -714,7 +716,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 
 			if ((list != null) && !list.isEmpty()) {
 				for (Calendar calendar : list) {
-					if (!Objects.equals(uuid, calendar.getUuid())) {
+					if (!uuid.equals(calendar.getUuid())) {
 						list = null;
 
 						break;
@@ -738,10 +740,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -922,6 +921,8 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	public Calendar[] findByUuid_PrevAndNext(long calendarId, String uuid,
 		OrderByComparator<Calendar> orderByComparator)
 		throws NoSuchCalendarException {
+		uuid = Objects.toString(uuid, "");
+
 		Calendar calendar = findByPrimaryKey(calendarId);
 
 		Session session = null;
@@ -967,10 +968,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 
 		boolean bindUuid = false;
 
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_UUID_1);
-		}
-		else if (uuid.equals("")) {
+		if (uuid.isEmpty()) {
 			query.append(_FINDER_COLUMN_UUID_UUID_3);
 		}
 		else {
@@ -1090,6 +1088,8 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	 */
 	@Override
 	public int countByUuid(String uuid) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID;
 
 		Object[] finderArgs = new Object[] { uuid };
@@ -1103,10 +1103,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -1220,6 +1217,8 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	@Override
 	public Calendar fetchByUUID_G(String uuid, long groupId,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		Object[] finderArgs = new Object[] { uuid, groupId };
 
 		Object result = null;
@@ -1245,10 +1244,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_G_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_G_UUID_3);
 			}
 			else {
@@ -1332,6 +1328,8 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	 */
 	@Override
 	public int countByUUID_G(String uuid, long groupId) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_G;
 
 		Object[] finderArgs = new Object[] { uuid, groupId };
@@ -1345,10 +1343,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_G_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_G_UUID_3);
 			}
 			else {
@@ -1490,6 +1485,8 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	public List<Calendar> findByUuid_C(String uuid, long companyId, int start,
 		int end, OrderByComparator<Calendar> orderByComparator,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1517,7 +1514,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 
 			if ((list != null) && !list.isEmpty()) {
 				for (Calendar calendar : list) {
-					if (!Objects.equals(uuid, calendar.getUuid()) ||
+					if (!uuid.equals(calendar.getUuid()) ||
 							(companyId != calendar.getCompanyId())) {
 						list = null;
 
@@ -1542,10 +1539,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 			}
 			else {
@@ -1744,6 +1738,8 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	public Calendar[] findByUuid_C_PrevAndNext(long calendarId, String uuid,
 		long companyId, OrderByComparator<Calendar> orderByComparator)
 		throws NoSuchCalendarException {
+		uuid = Objects.toString(uuid, "");
+
 		Calendar calendar = findByPrimaryKey(calendarId);
 
 		Session session = null;
@@ -1789,10 +1785,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 
 		boolean bindUuid = false;
 
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-		}
-		else if (uuid.equals("")) {
+		if (uuid.isEmpty()) {
 			query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 		}
 		else {
@@ -1918,6 +1911,8 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	 */
 	@Override
 	public int countByUuid_C(String uuid, long companyId) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_C;
 
 		Object[] finderArgs = new Object[] { uuid, companyId };
@@ -1931,10 +1926,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 			}
 			else {

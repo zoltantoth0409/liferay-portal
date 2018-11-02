@@ -177,6 +177,8 @@ public class MDRRulePersistenceImpl extends BasePersistenceImpl<MDRRule>
 	@Override
 	public List<MDRRule> findByUuid(String uuid, int start, int end,
 		OrderByComparator<MDRRule> orderByComparator, boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -200,7 +202,7 @@ public class MDRRulePersistenceImpl extends BasePersistenceImpl<MDRRule>
 
 			if ((list != null) && !list.isEmpty()) {
 				for (MDRRule mdrRule : list) {
-					if (!Objects.equals(uuid, mdrRule.getUuid())) {
+					if (!uuid.equals(mdrRule.getUuid())) {
 						list = null;
 
 						break;
@@ -224,10 +226,7 @@ public class MDRRulePersistenceImpl extends BasePersistenceImpl<MDRRule>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -408,6 +407,8 @@ public class MDRRulePersistenceImpl extends BasePersistenceImpl<MDRRule>
 	public MDRRule[] findByUuid_PrevAndNext(long ruleId, String uuid,
 		OrderByComparator<MDRRule> orderByComparator)
 		throws NoSuchRuleException {
+		uuid = Objects.toString(uuid, "");
+
 		MDRRule mdrRule = findByPrimaryKey(ruleId);
 
 		Session session = null;
@@ -453,10 +454,7 @@ public class MDRRulePersistenceImpl extends BasePersistenceImpl<MDRRule>
 
 		boolean bindUuid = false;
 
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_UUID_1);
-		}
-		else if (uuid.equals("")) {
+		if (uuid.isEmpty()) {
 			query.append(_FINDER_COLUMN_UUID_UUID_3);
 		}
 		else {
@@ -576,6 +574,8 @@ public class MDRRulePersistenceImpl extends BasePersistenceImpl<MDRRule>
 	 */
 	@Override
 	public int countByUuid(String uuid) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID;
 
 		Object[] finderArgs = new Object[] { uuid };
@@ -589,10 +589,7 @@ public class MDRRulePersistenceImpl extends BasePersistenceImpl<MDRRule>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -706,6 +703,8 @@ public class MDRRulePersistenceImpl extends BasePersistenceImpl<MDRRule>
 	@Override
 	public MDRRule fetchByUUID_G(String uuid, long groupId,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		Object[] finderArgs = new Object[] { uuid, groupId };
 
 		Object result = null;
@@ -731,10 +730,7 @@ public class MDRRulePersistenceImpl extends BasePersistenceImpl<MDRRule>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_G_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_G_UUID_3);
 			}
 			else {
@@ -818,6 +814,8 @@ public class MDRRulePersistenceImpl extends BasePersistenceImpl<MDRRule>
 	 */
 	@Override
 	public int countByUUID_G(String uuid, long groupId) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_G;
 
 		Object[] finderArgs = new Object[] { uuid, groupId };
@@ -831,10 +829,7 @@ public class MDRRulePersistenceImpl extends BasePersistenceImpl<MDRRule>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_G_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_G_UUID_3);
 			}
 			else {
@@ -976,6 +971,8 @@ public class MDRRulePersistenceImpl extends BasePersistenceImpl<MDRRule>
 	public List<MDRRule> findByUuid_C(String uuid, long companyId, int start,
 		int end, OrderByComparator<MDRRule> orderByComparator,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1003,7 +1000,7 @@ public class MDRRulePersistenceImpl extends BasePersistenceImpl<MDRRule>
 
 			if ((list != null) && !list.isEmpty()) {
 				for (MDRRule mdrRule : list) {
-					if (!Objects.equals(uuid, mdrRule.getUuid()) ||
+					if (!uuid.equals(mdrRule.getUuid()) ||
 							(companyId != mdrRule.getCompanyId())) {
 						list = null;
 
@@ -1028,10 +1025,7 @@ public class MDRRulePersistenceImpl extends BasePersistenceImpl<MDRRule>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 			}
 			else {
@@ -1228,6 +1222,8 @@ public class MDRRulePersistenceImpl extends BasePersistenceImpl<MDRRule>
 	public MDRRule[] findByUuid_C_PrevAndNext(long ruleId, String uuid,
 		long companyId, OrderByComparator<MDRRule> orderByComparator)
 		throws NoSuchRuleException {
+		uuid = Objects.toString(uuid, "");
+
 		MDRRule mdrRule = findByPrimaryKey(ruleId);
 
 		Session session = null;
@@ -1273,10 +1269,7 @@ public class MDRRulePersistenceImpl extends BasePersistenceImpl<MDRRule>
 
 		boolean bindUuid = false;
 
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-		}
-		else if (uuid.equals("")) {
+		if (uuid.isEmpty()) {
 			query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 		}
 		else {
@@ -1402,6 +1395,8 @@ public class MDRRulePersistenceImpl extends BasePersistenceImpl<MDRRule>
 	 */
 	@Override
 	public int countByUuid_C(String uuid, long companyId) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_C;
 
 		Object[] finderArgs = new Object[] { uuid, companyId };
@@ -1415,10 +1410,7 @@ public class MDRRulePersistenceImpl extends BasePersistenceImpl<MDRRule>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 			}
 			else {

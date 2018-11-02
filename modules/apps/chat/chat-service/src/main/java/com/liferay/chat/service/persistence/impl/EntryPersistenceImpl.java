@@ -3877,6 +3877,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public List<Entry> findByF_T_C(long fromUserId, long toUserId,
 		String content, int start, int end,
 		OrderByComparator<Entry> orderByComparator, boolean retrieveFromCache) {
+		content = Objects.toString(content, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -3906,7 +3908,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 				for (Entry entry : list) {
 					if ((fromUserId != entry.getFromUserId()) ||
 							(toUserId != entry.getToUserId()) ||
-							!Objects.equals(content, entry.getContent())) {
+							!content.equals(entry.getContent())) {
 						list = null;
 
 						break;
@@ -3934,10 +3936,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 			boolean bindContent = false;
 
-			if (content == null) {
-				query.append(_FINDER_COLUMN_F_T_C_CONTENT_1);
-			}
-			else if (content.equals("")) {
+			if (content.isEmpty()) {
 				query.append(_FINDER_COLUMN_F_T_C_CONTENT_3);
 			}
 			else {
@@ -4147,6 +4146,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public Entry[] findByF_T_C_PrevAndNext(long entryId, long fromUserId,
 		long toUserId, String content,
 		OrderByComparator<Entry> orderByComparator) throws NoSuchEntryException {
+		content = Objects.toString(content, "");
+
 		Entry entry = findByPrimaryKey(entryId);
 
 		Session session = null;
@@ -4196,10 +4197,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 		boolean bindContent = false;
 
-		if (content == null) {
-			query.append(_FINDER_COLUMN_F_T_C_CONTENT_1);
-		}
-		else if (content.equals("")) {
+		if (content.isEmpty()) {
 			query.append(_FINDER_COLUMN_F_T_C_CONTENT_3);
 		}
 		else {
@@ -4327,6 +4325,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 */
 	@Override
 	public int countByF_T_C(long fromUserId, long toUserId, String content) {
+		content = Objects.toString(content, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_F_T_C;
 
 		Object[] finderArgs = new Object[] { fromUserId, toUserId, content };
@@ -4344,10 +4344,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 
 			boolean bindContent = false;
 
-			if (content == null) {
-				query.append(_FINDER_COLUMN_F_T_C_CONTENT_1);
-			}
-			else if (content.equals("")) {
+			if (content.isEmpty()) {
 				query.append(_FINDER_COLUMN_F_T_C_CONTENT_3);
 			}
 			else {

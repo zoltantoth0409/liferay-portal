@@ -660,6 +660,8 @@ public class ShoppingCouponPersistenceImpl extends BasePersistenceImpl<ShoppingC
 	 */
 	@Override
 	public ShoppingCoupon fetchByCode(String code, boolean retrieveFromCache) {
+		code = Objects.toString(code, "");
+
 		Object[] finderArgs = new Object[] { code };
 
 		Object result = null;
@@ -684,10 +686,7 @@ public class ShoppingCouponPersistenceImpl extends BasePersistenceImpl<ShoppingC
 
 			boolean bindCode = false;
 
-			if (code == null) {
-				query.append(_FINDER_COLUMN_CODE_CODE_1);
-			}
-			else if (code.equals("")) {
+			if (code.isEmpty()) {
 				query.append(_FINDER_COLUMN_CODE_CODE_3);
 			}
 			else {
@@ -765,6 +764,8 @@ public class ShoppingCouponPersistenceImpl extends BasePersistenceImpl<ShoppingC
 	 */
 	@Override
 	public int countByCode(String code) {
+		code = Objects.toString(code, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_CODE;
 
 		Object[] finderArgs = new Object[] { code };
@@ -778,10 +779,7 @@ public class ShoppingCouponPersistenceImpl extends BasePersistenceImpl<ShoppingC
 
 			boolean bindCode = false;
 
-			if (code == null) {
-				query.append(_FINDER_COLUMN_CODE_CODE_1);
-			}
-			else if (code.equals("")) {
+			if (code.isEmpty()) {
 				query.append(_FINDER_COLUMN_CODE_CODE_3);
 			}
 			else {

@@ -146,6 +146,8 @@ public class CompanyPersistenceImpl extends BasePersistenceImpl<Company>
 	 */
 	@Override
 	public Company fetchByWebId(String webId, boolean retrieveFromCache) {
+		webId = Objects.toString(webId, "");
+
 		Object[] finderArgs = new Object[] { webId };
 
 		Object result = null;
@@ -170,10 +172,7 @@ public class CompanyPersistenceImpl extends BasePersistenceImpl<Company>
 
 			boolean bindWebId = false;
 
-			if (webId == null) {
-				query.append(_FINDER_COLUMN_WEBID_WEBID_1);
-			}
-			else if (webId.equals("")) {
+			if (webId.isEmpty()) {
 				query.append(_FINDER_COLUMN_WEBID_WEBID_3);
 			}
 			else {
@@ -251,6 +250,8 @@ public class CompanyPersistenceImpl extends BasePersistenceImpl<Company>
 	 */
 	@Override
 	public int countByWebId(String webId) {
+		webId = Objects.toString(webId, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_WEBID;
 
 		Object[] finderArgs = new Object[] { webId };
@@ -265,10 +266,7 @@ public class CompanyPersistenceImpl extends BasePersistenceImpl<Company>
 
 			boolean bindWebId = false;
 
-			if (webId == null) {
-				query.append(_FINDER_COLUMN_WEBID_WEBID_1);
-			}
-			else if (webId.equals("")) {
+			if (webId.isEmpty()) {
 				query.append(_FINDER_COLUMN_WEBID_WEBID_3);
 			}
 			else {
@@ -373,6 +371,8 @@ public class CompanyPersistenceImpl extends BasePersistenceImpl<Company>
 	 */
 	@Override
 	public Company fetchByMx(String mx, boolean retrieveFromCache) {
+		mx = Objects.toString(mx, "");
+
 		Object[] finderArgs = new Object[] { mx };
 
 		Object result = null;
@@ -397,10 +397,7 @@ public class CompanyPersistenceImpl extends BasePersistenceImpl<Company>
 
 			boolean bindMx = false;
 
-			if (mx == null) {
-				query.append(_FINDER_COLUMN_MX_MX_1);
-			}
-			else if (mx.equals("")) {
+			if (mx.isEmpty()) {
 				query.append(_FINDER_COLUMN_MX_MX_3);
 			}
 			else {
@@ -488,6 +485,8 @@ public class CompanyPersistenceImpl extends BasePersistenceImpl<Company>
 	 */
 	@Override
 	public int countByMx(String mx) {
+		mx = Objects.toString(mx, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_MX;
 
 		Object[] finderArgs = new Object[] { mx };
@@ -502,10 +501,7 @@ public class CompanyPersistenceImpl extends BasePersistenceImpl<Company>
 
 			boolean bindMx = false;
 
-			if (mx == null) {
-				query.append(_FINDER_COLUMN_MX_MX_1);
-			}
-			else if (mx.equals("")) {
+			if (mx.isEmpty()) {
 				query.append(_FINDER_COLUMN_MX_MX_3);
 			}
 			else {

@@ -183,6 +183,8 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	public List<WSRPConsumerPortlet> findByUuid(String uuid, int start,
 		int end, OrderByComparator<WSRPConsumerPortlet> orderByComparator,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -206,7 +208,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 
 			if ((list != null) && !list.isEmpty()) {
 				for (WSRPConsumerPortlet wsrpConsumerPortlet : list) {
-					if (!Objects.equals(uuid, wsrpConsumerPortlet.getUuid())) {
+					if (!uuid.equals(wsrpConsumerPortlet.getUuid())) {
 						list = null;
 
 						break;
@@ -230,10 +232,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -418,6 +417,8 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		long wsrpConsumerPortletId, String uuid,
 		OrderByComparator<WSRPConsumerPortlet> orderByComparator)
 		throws NoSuchConsumerPortletException {
+		uuid = Objects.toString(uuid, "");
+
 		WSRPConsumerPortlet wsrpConsumerPortlet = findByPrimaryKey(wsrpConsumerPortletId);
 
 		Session session = null;
@@ -464,10 +465,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 
 		boolean bindUuid = false;
 
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_UUID_1);
-		}
-		else if (uuid.equals("")) {
+		if (uuid.isEmpty()) {
 			query.append(_FINDER_COLUMN_UUID_UUID_3);
 		}
 		else {
@@ -587,6 +585,8 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 */
 	@Override
 	public int countByUuid(String uuid) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID;
 
 		Object[] finderArgs = new Object[] { uuid };
@@ -600,10 +600,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -744,6 +741,8 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		int start, int end,
 		OrderByComparator<WSRPConsumerPortlet> orderByComparator,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -771,7 +770,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 
 			if ((list != null) && !list.isEmpty()) {
 				for (WSRPConsumerPortlet wsrpConsumerPortlet : list) {
-					if (!Objects.equals(uuid, wsrpConsumerPortlet.getUuid()) ||
+					if (!uuid.equals(wsrpConsumerPortlet.getUuid()) ||
 							(companyId != wsrpConsumerPortlet.getCompanyId())) {
 						list = null;
 
@@ -796,10 +795,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 			}
 			else {
@@ -999,6 +995,8 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		long wsrpConsumerPortletId, String uuid, long companyId,
 		OrderByComparator<WSRPConsumerPortlet> orderByComparator)
 		throws NoSuchConsumerPortletException {
+		uuid = Objects.toString(uuid, "");
+
 		WSRPConsumerPortlet wsrpConsumerPortlet = findByPrimaryKey(wsrpConsumerPortletId);
 
 		Session session = null;
@@ -1045,10 +1043,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 
 		boolean bindUuid = false;
 
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-		}
-		else if (uuid.equals("")) {
+		if (uuid.isEmpty()) {
 			query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 		}
 		else {
@@ -1174,6 +1169,8 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 */
 	@Override
 	public int countByUuid_C(String uuid, long companyId) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_C;
 
 		Object[] finderArgs = new Object[] { uuid, companyId };
@@ -1187,10 +1184,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 			}
 			else {
@@ -1833,6 +1827,8 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	@Override
 	public WSRPConsumerPortlet fetchByW_P(long wsrpConsumerId,
 		String portletHandle, boolean retrieveFromCache) {
+		portletHandle = Objects.toString(portletHandle, "");
+
 		Object[] finderArgs = new Object[] { wsrpConsumerId, portletHandle };
 
 		Object result = null;
@@ -1861,10 +1857,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 
 			boolean bindPortletHandle = false;
 
-			if (portletHandle == null) {
-				query.append(_FINDER_COLUMN_W_P_PORTLETHANDLE_1);
-			}
-			else if (portletHandle.equals("")) {
+			if (portletHandle.isEmpty()) {
 				query.append(_FINDER_COLUMN_W_P_PORTLETHANDLE_3);
 			}
 			else {
@@ -1958,6 +1951,8 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 */
 	@Override
 	public int countByW_P(long wsrpConsumerId, String portletHandle) {
+		portletHandle = Objects.toString(portletHandle, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_W_P;
 
 		Object[] finderArgs = new Object[] { wsrpConsumerId, portletHandle };
@@ -1973,10 +1968,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 
 			boolean bindPortletHandle = false;
 
-			if (portletHandle == null) {
-				query.append(_FINDER_COLUMN_W_P_PORTLETHANDLE_1);
-			}
-			else if (portletHandle.equals("")) {
+			if (portletHandle.isEmpty()) {
 				query.append(_FINDER_COLUMN_W_P_PORTLETHANDLE_3);
 			}
 			else {

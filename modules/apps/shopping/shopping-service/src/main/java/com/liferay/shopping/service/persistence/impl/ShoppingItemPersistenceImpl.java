@@ -1712,6 +1712,8 @@ public class ShoppingItemPersistenceImpl extends BasePersistenceImpl<ShoppingIte
 	@Override
 	public ShoppingItem fetchByC_S(long companyId, String sku,
 		boolean retrieveFromCache) {
+		sku = Objects.toString(sku, "");
+
 		Object[] finderArgs = new Object[] { companyId, sku };
 
 		Object result = null;
@@ -1739,10 +1741,7 @@ public class ShoppingItemPersistenceImpl extends BasePersistenceImpl<ShoppingIte
 
 			boolean bindSku = false;
 
-			if (sku == null) {
-				query.append(_FINDER_COLUMN_C_S_SKU_1);
-			}
-			else if (sku.equals("")) {
+			if (sku.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_S_SKU_3);
 			}
 			else {
@@ -1824,6 +1823,8 @@ public class ShoppingItemPersistenceImpl extends BasePersistenceImpl<ShoppingIte
 	 */
 	@Override
 	public int countByC_S(long companyId, String sku) {
+		sku = Objects.toString(sku, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_S;
 
 		Object[] finderArgs = new Object[] { companyId, sku };
@@ -1839,10 +1840,7 @@ public class ShoppingItemPersistenceImpl extends BasePersistenceImpl<ShoppingIte
 
 			boolean bindSku = false;
 
-			if (sku == null) {
-				query.append(_FINDER_COLUMN_C_S_SKU_1);
-			}
-			else if (sku.equals("")) {
+			if (sku.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_S_SKU_3);
 			}
 			else {

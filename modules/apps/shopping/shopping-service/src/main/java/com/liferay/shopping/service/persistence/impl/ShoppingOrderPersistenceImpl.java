@@ -1021,6 +1021,8 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 	 */
 	@Override
 	public ShoppingOrder fetchByNumber(String number, boolean retrieveFromCache) {
+		number = Objects.toString(number, "");
+
 		Object[] finderArgs = new Object[] { number };
 
 		Object result = null;
@@ -1045,10 +1047,7 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 
 			boolean bindNumber = false;
 
-			if (number == null) {
-				query.append(_FINDER_COLUMN_NUMBER_NUMBER_1);
-			}
-			else if (number.equals("")) {
+			if (number.isEmpty()) {
 				query.append(_FINDER_COLUMN_NUMBER_NUMBER_3);
 			}
 			else {
@@ -1126,6 +1125,8 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 	 */
 	@Override
 	public int countByNumber(String number) {
+		number = Objects.toString(number, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_NUMBER;
 
 		Object[] finderArgs = new Object[] { number };
@@ -1139,10 +1140,7 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 
 			boolean bindNumber = false;
 
-			if (number == null) {
-				query.append(_FINDER_COLUMN_NUMBER_NUMBER_1);
-			}
-			else if (number.equals("")) {
+			if (number.isEmpty()) {
 				query.append(_FINDER_COLUMN_NUMBER_NUMBER_3);
 			}
 			else {
@@ -1249,6 +1247,8 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 	@Override
 	public ShoppingOrder fetchByPPTxnId(String ppTxnId,
 		boolean retrieveFromCache) {
+		ppTxnId = Objects.toString(ppTxnId, "");
+
 		Object[] finderArgs = new Object[] { ppTxnId };
 
 		Object result = null;
@@ -1273,10 +1273,7 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 
 			boolean bindPpTxnId = false;
 
-			if (ppTxnId == null) {
-				query.append(_FINDER_COLUMN_PPTXNID_PPTXNID_1);
-			}
-			else if (ppTxnId.equals("")) {
+			if (ppTxnId.isEmpty()) {
 				query.append(_FINDER_COLUMN_PPTXNID_PPTXNID_3);
 			}
 			else {
@@ -1366,6 +1363,8 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 	 */
 	@Override
 	public int countByPPTxnId(String ppTxnId) {
+		ppTxnId = Objects.toString(ppTxnId, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_PPTXNID;
 
 		Object[] finderArgs = new Object[] { ppTxnId };
@@ -1379,10 +1378,7 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 
 			boolean bindPpTxnId = false;
 
-			if (ppTxnId == null) {
-				query.append(_FINDER_COLUMN_PPTXNID_PPTXNID_1);
-			}
-			else if (ppTxnId.equals("")) {
+			if (ppTxnId.isEmpty()) {
 				query.append(_FINDER_COLUMN_PPTXNID_PPTXNID_3);
 			}
 			else {
@@ -1537,6 +1533,8 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 		String ppPaymentStatus, int start, int end,
 		OrderByComparator<ShoppingOrder> orderByComparator,
 		boolean retrieveFromCache) {
+		ppPaymentStatus = Objects.toString(ppPaymentStatus, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1566,7 +1564,7 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 				for (ShoppingOrder shoppingOrder : list) {
 					if ((groupId != shoppingOrder.getGroupId()) ||
 							(userId != shoppingOrder.getUserId()) ||
-							!Objects.equals(ppPaymentStatus,
+							!ppPaymentStatus.equals(
 								shoppingOrder.getPpPaymentStatus())) {
 						list = null;
 
@@ -1595,10 +1593,7 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 
 			boolean bindPpPaymentStatus = false;
 
-			if (ppPaymentStatus == null) {
-				query.append(_FINDER_COLUMN_G_U_PPPS_PPPAYMENTSTATUS_1);
-			}
-			else if (ppPaymentStatus.equals("")) {
+			if (ppPaymentStatus.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_U_PPPS_PPPAYMENTSTATUS_3);
 			}
 			else {
@@ -1813,6 +1808,8 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 		long groupId, long userId, String ppPaymentStatus,
 		OrderByComparator<ShoppingOrder> orderByComparator)
 		throws NoSuchOrderException {
+		ppPaymentStatus = Objects.toString(ppPaymentStatus, "");
+
 		ShoppingOrder shoppingOrder = findByPrimaryKey(orderId);
 
 		Session session = null;
@@ -1863,10 +1860,7 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 
 		boolean bindPpPaymentStatus = false;
 
-		if (ppPaymentStatus == null) {
-			query.append(_FINDER_COLUMN_G_U_PPPS_PPPAYMENTSTATUS_1);
-		}
-		else if (ppPaymentStatus.equals("")) {
+		if (ppPaymentStatus.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_U_PPPS_PPPAYMENTSTATUS_3);
 		}
 		else {
@@ -2029,6 +2023,8 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 				orderByComparator);
 		}
 
+		ppPaymentStatus = Objects.toString(ppPaymentStatus, "");
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -2052,10 +2048,7 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 
 		boolean bindPpPaymentStatus = false;
 
-		if (ppPaymentStatus == null) {
-			query.append(_FINDER_COLUMN_G_U_PPPS_PPPAYMENTSTATUS_1);
-		}
-		else if (ppPaymentStatus.equals("")) {
+		if (ppPaymentStatus.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_U_PPPS_PPPAYMENTSTATUS_3);
 		}
 		else {
@@ -2147,6 +2140,8 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 				ppPaymentStatus, orderByComparator);
 		}
 
+		ppPaymentStatus = Objects.toString(ppPaymentStatus, "");
+
 		ShoppingOrder shoppingOrder = findByPrimaryKey(orderId);
 
 		Session session = null;
@@ -2202,10 +2197,7 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 
 		boolean bindPpPaymentStatus = false;
 
-		if (ppPaymentStatus == null) {
-			query.append(_FINDER_COLUMN_G_U_PPPS_PPPAYMENTSTATUS_1);
-		}
-		else if (ppPaymentStatus.equals("")) {
+		if (ppPaymentStatus.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_U_PPPS_PPPAYMENTSTATUS_3);
 		}
 		else {
@@ -2364,6 +2356,8 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 	 */
 	@Override
 	public int countByG_U_PPPS(long groupId, long userId, String ppPaymentStatus) {
+		ppPaymentStatus = Objects.toString(ppPaymentStatus, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_G_U_PPPS;
 
 		Object[] finderArgs = new Object[] { groupId, userId, ppPaymentStatus };
@@ -2381,10 +2375,7 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 
 			boolean bindPpPaymentStatus = false;
 
-			if (ppPaymentStatus == null) {
-				query.append(_FINDER_COLUMN_G_U_PPPS_PPPAYMENTSTATUS_1);
-			}
-			else if (ppPaymentStatus.equals("")) {
+			if (ppPaymentStatus.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_U_PPPS_PPPAYMENTSTATUS_3);
 			}
 			else {
@@ -2444,6 +2435,8 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 			return countByG_U_PPPS(groupId, userId, ppPaymentStatus);
 		}
 
+		ppPaymentStatus = Objects.toString(ppPaymentStatus, "");
+
 		StringBundler query = new StringBundler(4);
 
 		query.append(_FILTER_SQL_COUNT_SHOPPINGORDER_WHERE);
@@ -2454,10 +2447,7 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 
 		boolean bindPpPaymentStatus = false;
 
-		if (ppPaymentStatus == null) {
-			query.append(_FINDER_COLUMN_G_U_PPPS_PPPAYMENTSTATUS_1);
-		}
-		else if (ppPaymentStatus.equals("")) {
+		if (ppPaymentStatus.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_U_PPPS_PPPAYMENTSTATUS_3);
 		}
 		else {
