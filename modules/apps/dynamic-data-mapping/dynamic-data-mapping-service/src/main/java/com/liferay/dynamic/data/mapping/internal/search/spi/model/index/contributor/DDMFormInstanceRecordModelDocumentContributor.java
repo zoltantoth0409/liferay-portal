@@ -71,7 +71,6 @@ public class DDMFormInstanceRecordModelDocumentContributor
 				Field.STATUS, ddmFormInstanceRecordVersion.getStatus());
 			document.addKeyword(
 				Field.VERSION, ddmFormInstanceRecordVersion.getVersion());
-
 			document.addKeyword(
 				"formInstanceId", ddmFormInstance.getFormInstanceId());
 
