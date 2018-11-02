@@ -16,8 +16,6 @@ package com.liferay.portal.service.persistence.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.petra.string.StringBundler;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -37,6 +35,7 @@ import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.SetUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.PortletImpl;
 import com.liferay.portal.model.impl.PortletModelImpl;
 
@@ -660,6 +659,8 @@ public class PortletPersistenceImpl extends BasePersistenceImpl<Portlet>
 	@Override
 	public Portlet fetchByC_P(long companyId, String portletId,
 		boolean retrieveFromCache) {
+		portletId = Objects.toString(portletId, "");
+
 		Object[] finderArgs = new Object[] { companyId, portletId };
 
 		Object result = null;
@@ -687,10 +688,7 @@ public class PortletPersistenceImpl extends BasePersistenceImpl<Portlet>
 
 			boolean bindPortletId = false;
 
-			if (portletId == null) {
-				query.append(_FINDER_COLUMN_C_P_PORTLETID_1);
-			}
-			else if (portletId.equals("")) {
+			if (portletId.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_P_PORTLETID_3);
 			}
 			else {
@@ -773,6 +771,8 @@ public class PortletPersistenceImpl extends BasePersistenceImpl<Portlet>
 	 */
 	@Override
 	public int countByC_P(long companyId, String portletId) {
+		portletId = Objects.toString(portletId, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_P;
 
 		Object[] finderArgs = new Object[] { companyId, portletId };
@@ -789,10 +789,7 @@ public class PortletPersistenceImpl extends BasePersistenceImpl<Portlet>
 
 			boolean bindPortletId = false;
 
-			if (portletId == null) {
-				query.append(_FINDER_COLUMN_C_P_PORTLETID_1);
-			}
-			else if (portletId.equals("")) {
+			if (portletId.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_P_PORTLETID_3);
 			}
 			else {

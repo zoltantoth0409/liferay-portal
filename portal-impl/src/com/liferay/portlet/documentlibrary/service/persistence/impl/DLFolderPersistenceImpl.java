@@ -21,8 +21,6 @@ import com.liferay.document.library.kernel.model.DLFolder;
 import com.liferay.document.library.kernel.service.persistence.DLFileEntryTypePersistence;
 import com.liferay.document.library.kernel.service.persistence.DLFolderPersistence;
 
-import com.liferay.petra.string.StringBundler;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -47,6 +45,7 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.SetUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
@@ -188,6 +187,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 	@Override
 	public List<DLFolder> findByUuid(String uuid, int start, int end,
 		OrderByComparator<DLFolder> orderByComparator, boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -211,7 +212,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DLFolder dlFolder : list) {
-					if (!Objects.equals(uuid, dlFolder.getUuid())) {
+					if (!uuid.equals(dlFolder.getUuid())) {
 						list = null;
 
 						break;
@@ -235,10 +236,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -419,6 +417,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 	public DLFolder[] findByUuid_PrevAndNext(long folderId, String uuid,
 		OrderByComparator<DLFolder> orderByComparator)
 		throws NoSuchFolderException {
+		uuid = Objects.toString(uuid, "");
+
 		DLFolder dlFolder = findByPrimaryKey(folderId);
 
 		Session session = null;
@@ -464,10 +464,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 		boolean bindUuid = false;
 
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_UUID_1);
-		}
-		else if (uuid.equals("")) {
+		if (uuid.isEmpty()) {
 			query.append(_FINDER_COLUMN_UUID_UUID_3);
 		}
 		else {
@@ -587,6 +584,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 	 */
 	@Override
 	public int countByUuid(String uuid) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID;
 
 		Object[] finderArgs = new Object[] { uuid };
@@ -601,10 +600,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -718,6 +714,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 	@Override
 	public DLFolder fetchByUUID_G(String uuid, long groupId,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		Object[] finderArgs = new Object[] { uuid, groupId };
 
 		Object result = null;
@@ -743,10 +741,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_G_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_G_UUID_3);
 			}
 			else {
@@ -831,6 +826,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 	 */
 	@Override
 	public int countByUUID_G(String uuid, long groupId) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_G;
 
 		Object[] finderArgs = new Object[] { uuid, groupId };
@@ -845,10 +842,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_G_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_G_UUID_3);
 			}
 			else {
@@ -991,6 +985,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 	public List<DLFolder> findByUuid_C(String uuid, long companyId, int start,
 		int end, OrderByComparator<DLFolder> orderByComparator,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1018,7 +1014,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DLFolder dlFolder : list) {
-					if (!Objects.equals(uuid, dlFolder.getUuid()) ||
+					if (!uuid.equals(dlFolder.getUuid()) ||
 							(companyId != dlFolder.getCompanyId())) {
 						list = null;
 
@@ -1043,10 +1039,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 			}
 			else {
@@ -1245,6 +1238,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 	public DLFolder[] findByUuid_C_PrevAndNext(long folderId, String uuid,
 		long companyId, OrderByComparator<DLFolder> orderByComparator)
 		throws NoSuchFolderException {
+		uuid = Objects.toString(uuid, "");
+
 		DLFolder dlFolder = findByPrimaryKey(folderId);
 
 		Session session = null;
@@ -1290,10 +1285,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 		boolean bindUuid = false;
 
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-		}
-		else if (uuid.equals("")) {
+		if (uuid.isEmpty()) {
 			query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 		}
 		else {
@@ -1419,6 +1411,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 	 */
 	@Override
 	public int countByUuid_C(String uuid, long companyId) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_C;
 
 		Object[] finderArgs = new Object[] { uuid, companyId };
@@ -1433,10 +1427,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 			}
 			else {
@@ -5674,6 +5665,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 	public List<DLFolder> findByP_N(long parentFolderId, String name,
 		int start, int end, OrderByComparator<DLFolder> orderByComparator,
 		boolean retrieveFromCache) {
+		name = Objects.toString(name, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -5702,7 +5695,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 			if ((list != null) && !list.isEmpty()) {
 				for (DLFolder dlFolder : list) {
 					if ((parentFolderId != dlFolder.getParentFolderId()) ||
-							!Objects.equals(name, dlFolder.getName())) {
+							!name.equals(dlFolder.getName())) {
 						list = null;
 
 						break;
@@ -5728,10 +5721,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 			boolean bindName = false;
 
-			if (name == null) {
-				query.append(_FINDER_COLUMN_P_N_NAME_1);
-			}
-			else if (name.equals("")) {
+			if (name.isEmpty()) {
 				query.append(_FINDER_COLUMN_P_N_NAME_3);
 			}
 			else {
@@ -5928,6 +5918,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 	public DLFolder[] findByP_N_PrevAndNext(long folderId, long parentFolderId,
 		String name, OrderByComparator<DLFolder> orderByComparator)
 		throws NoSuchFolderException {
+		name = Objects.toString(name, "");
+
 		DLFolder dlFolder = findByPrimaryKey(folderId);
 
 		Session session = null;
@@ -5975,10 +5967,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 		boolean bindName = false;
 
-		if (name == null) {
-			query.append(_FINDER_COLUMN_P_N_NAME_1);
-		}
-		else if (name.equals("")) {
+		if (name.isEmpty()) {
 			query.append(_FINDER_COLUMN_P_N_NAME_3);
 		}
 		else {
@@ -6102,6 +6091,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 	 */
 	@Override
 	public int countByP_N(long parentFolderId, String name) {
+		name = Objects.toString(name, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_P_N;
 
 		Object[] finderArgs = new Object[] { parentFolderId, name };
@@ -6118,10 +6109,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 			boolean bindName = false;
 
-			if (name == null) {
-				query.append(_FINDER_COLUMN_P_N_NAME_1);
-			}
-			else if (name.equals("")) {
+			if (name.isEmpty()) {
 				query.append(_FINDER_COLUMN_P_N_NAME_3);
 			}
 			else {
@@ -7238,6 +7226,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 	@Override
 	public DLFolder fetchByG_P_N(long groupId, long parentFolderId,
 		String name, boolean retrieveFromCache) {
+		name = Objects.toString(name, "");
+
 		Object[] finderArgs = new Object[] { groupId, parentFolderId, name };
 
 		Object result = null;
@@ -7268,10 +7258,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 			boolean bindName = false;
 
-			if (name == null) {
-				query.append(_FINDER_COLUMN_G_P_N_NAME_1);
-			}
-			else if (name.equals("")) {
+			if (name.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_P_N_NAME_3);
 			}
 			else {
@@ -7358,6 +7345,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 	 */
 	@Override
 	public int countByG_P_N(long groupId, long parentFolderId, String name) {
+		name = Objects.toString(name, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_G_P_N;
 
 		Object[] finderArgs = new Object[] { groupId, parentFolderId, name };
@@ -7376,10 +7365,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 			boolean bindName = false;
 
-			if (name == null) {
-				query.append(_FINDER_COLUMN_G_P_N_NAME_1);
-			}
-			else if (name.equals("")) {
+			if (name.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_P_N_NAME_3);
 			}
 			else {
@@ -9028,6 +9014,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 	public List<DLFolder> findByG_M_T_H(long groupId, boolean mountPoint,
 		String treePath, boolean hidden, int start, int end,
 		OrderByComparator<DLFolder> orderByComparator, boolean retrieveFromCache) {
+		treePath = Objects.toString(treePath, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -9079,10 +9067,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 			boolean bindTreePath = false;
 
-			if (treePath == null) {
-				query.append(_FINDER_COLUMN_G_M_T_H_TREEPATH_1);
-			}
-			else if (treePath.equals("")) {
+			if (treePath.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_M_T_H_TREEPATH_3);
 			}
 			else {
@@ -9312,6 +9297,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 		boolean mountPoint, String treePath, boolean hidden,
 		OrderByComparator<DLFolder> orderByComparator)
 		throws NoSuchFolderException {
+		treePath = Objects.toString(treePath, "");
+
 		DLFolder dlFolder = findByPrimaryKey(folderId);
 
 		Session session = null;
@@ -9362,10 +9349,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 		boolean bindTreePath = false;
 
-		if (treePath == null) {
-			query.append(_FINDER_COLUMN_G_M_T_H_TREEPATH_1);
-		}
-		else if (treePath.equals("")) {
+		if (treePath.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_M_T_H_TREEPATH_3);
 		}
 		else {
@@ -9535,6 +9519,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 				end, orderByComparator);
 		}
 
+		treePath = Objects.toString(treePath, "");
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -9558,10 +9544,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 		boolean bindTreePath = false;
 
-		if (treePath == null) {
-			query.append(_FINDER_COLUMN_G_M_T_H_TREEPATH_1);
-		}
-		else if (treePath.equals("")) {
+		if (treePath.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_M_T_H_TREEPATH_3);
 		}
 		else {
@@ -9657,6 +9640,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 				treePath, hidden, orderByComparator);
 		}
 
+		treePath = Objects.toString(treePath, "");
+
 		DLFolder dlFolder = findByPrimaryKey(folderId);
 
 		Session session = null;
@@ -9714,10 +9699,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 		boolean bindTreePath = false;
 
-		if (treePath == null) {
-			query.append(_FINDER_COLUMN_G_M_T_H_TREEPATH_1);
-		}
-		else if (treePath.equals("")) {
+		if (treePath.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_M_T_H_TREEPATH_3);
 		}
 		else {
@@ -9883,6 +9865,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 	@Override
 	public int countByG_M_T_H(long groupId, boolean mountPoint,
 		String treePath, boolean hidden) {
+		treePath = Objects.toString(treePath, "");
+
 		FinderPath finderPath = FINDER_PATH_WITH_PAGINATION_COUNT_BY_G_M_T_H;
 
 		Object[] finderArgs = new Object[] { groupId, mountPoint, treePath, hidden };
@@ -9901,10 +9885,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 			boolean bindTreePath = false;
 
-			if (treePath == null) {
-				query.append(_FINDER_COLUMN_G_M_T_H_TREEPATH_1);
-			}
-			else if (treePath.equals("")) {
+			if (treePath.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_M_T_H_TREEPATH_3);
 			}
 			else {
@@ -9969,6 +9950,8 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 			return countByG_M_T_H(groupId, mountPoint, treePath, hidden);
 		}
 
+		treePath = Objects.toString(treePath, "");
+
 		StringBundler query = new StringBundler(5);
 
 		query.append(_FILTER_SQL_COUNT_DLFOLDER_WHERE);
@@ -9979,10 +9962,7 @@ public class DLFolderPersistenceImpl extends BasePersistenceImpl<DLFolder>
 
 		boolean bindTreePath = false;
 
-		if (treePath == null) {
-			query.append(_FINDER_COLUMN_G_M_T_H_TREEPATH_1);
-		}
-		else if (treePath.equals("")) {
+		if (treePath.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_M_T_H_TREEPATH_3);
 		}
 		else {

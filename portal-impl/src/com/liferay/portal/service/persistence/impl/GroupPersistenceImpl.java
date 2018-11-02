@@ -16,8 +16,6 @@ package com.liferay.portal.service.persistence.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.petra.string.StringBundler;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -45,6 +43,7 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.SetUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
@@ -183,6 +182,8 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	@Override
 	public List<Group> findByUuid(String uuid, int start, int end,
 		OrderByComparator<Group> orderByComparator, boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -206,7 +207,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 
 			if ((list != null) && !list.isEmpty()) {
 				for (Group group : list) {
-					if (!Objects.equals(uuid, group.getUuid())) {
+					if (!uuid.equals(group.getUuid())) {
 						list = null;
 
 						break;
@@ -230,10 +231,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -410,6 +408,8 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	@Override
 	public Group[] findByUuid_PrevAndNext(long groupId, String uuid,
 		OrderByComparator<Group> orderByComparator) throws NoSuchGroupException {
+		uuid = Objects.toString(uuid, "");
+
 		Group group = findByPrimaryKey(groupId);
 
 		Session session = null;
@@ -455,10 +455,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 
 		boolean bindUuid = false;
 
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_UUID_1);
-		}
-		else if (uuid.equals("")) {
+		if (uuid.isEmpty()) {
 			query.append(_FINDER_COLUMN_UUID_UUID_3);
 		}
 		else {
@@ -578,6 +575,8 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	 */
 	@Override
 	public int countByUuid(String uuid) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID;
 
 		Object[] finderArgs = new Object[] { uuid };
@@ -592,10 +591,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -709,6 +705,8 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	@Override
 	public Group fetchByUUID_G(String uuid, long groupId,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		Object[] finderArgs = new Object[] { uuid, groupId };
 
 		Object result = null;
@@ -734,10 +732,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_G_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_G_UUID_3);
 			}
 			else {
@@ -822,6 +817,8 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	 */
 	@Override
 	public int countByUUID_G(String uuid, long groupId) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_G;
 
 		Object[] finderArgs = new Object[] { uuid, groupId };
@@ -836,10 +833,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_G_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_G_UUID_3);
 			}
 			else {
@@ -981,6 +975,8 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	public List<Group> findByUuid_C(String uuid, long companyId, int start,
 		int end, OrderByComparator<Group> orderByComparator,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1008,7 +1004,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 
 			if ((list != null) && !list.isEmpty()) {
 				for (Group group : list) {
-					if (!Objects.equals(uuid, group.getUuid()) ||
+					if (!uuid.equals(group.getUuid()) ||
 							(companyId != group.getCompanyId())) {
 						list = null;
 
@@ -1033,10 +1029,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 			}
 			else {
@@ -1230,6 +1223,8 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	public Group[] findByUuid_C_PrevAndNext(long groupId, String uuid,
 		long companyId, OrderByComparator<Group> orderByComparator)
 		throws NoSuchGroupException {
+		uuid = Objects.toString(uuid, "");
+
 		Group group = findByPrimaryKey(groupId);
 
 		Session session = null;
@@ -1275,10 +1270,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 
 		boolean bindUuid = false;
 
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-		}
-		else if (uuid.equals("")) {
+		if (uuid.isEmpty()) {
 			query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 		}
 		else {
@@ -1404,6 +1396,8 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	 */
 	@Override
 	public int countByUuid_C(String uuid, long companyId) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_C;
 
 		Object[] finderArgs = new Object[] { uuid, companyId };
@@ -1418,10 +1412,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 			}
 			else {
@@ -3330,6 +3321,8 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	@Override
 	public Group fetchByC_GK(long companyId, String groupKey,
 		boolean retrieveFromCache) {
+		groupKey = Objects.toString(groupKey, "");
+
 		Object[] finderArgs = new Object[] { companyId, groupKey };
 
 		Object result = null;
@@ -3357,10 +3350,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 
 			boolean bindGroupKey = false;
 
-			if (groupKey == null) {
-				query.append(_FINDER_COLUMN_C_GK_GROUPKEY_1);
-			}
-			else if (groupKey.equals("")) {
+			if (groupKey.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_GK_GROUPKEY_3);
 			}
 			else {
@@ -3443,6 +3433,8 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	 */
 	@Override
 	public int countByC_GK(long companyId, String groupKey) {
+		groupKey = Objects.toString(groupKey, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_GK;
 
 		Object[] finderArgs = new Object[] { companyId, groupKey };
@@ -3459,10 +3451,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 
 			boolean bindGroupKey = false;
 
-			if (groupKey == null) {
-				query.append(_FINDER_COLUMN_C_GK_GROUPKEY_1);
-			}
-			else if (groupKey.equals("")) {
+			if (groupKey.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_GK_GROUPKEY_3);
 			}
 			else {
@@ -3579,6 +3568,8 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	@Override
 	public Group fetchByC_F(long companyId, String friendlyURL,
 		boolean retrieveFromCache) {
+		friendlyURL = Objects.toString(friendlyURL, "");
+
 		Object[] finderArgs = new Object[] { companyId, friendlyURL };
 
 		Object result = null;
@@ -3606,10 +3597,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 
 			boolean bindFriendlyURL = false;
 
-			if (friendlyURL == null) {
-				query.append(_FINDER_COLUMN_C_F_FRIENDLYURL_1);
-			}
-			else if (friendlyURL.equals("")) {
+			if (friendlyURL.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_F_FRIENDLYURL_3);
 			}
 			else {
@@ -3692,6 +3680,8 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	 */
 	@Override
 	public int countByC_F(long companyId, String friendlyURL) {
+		friendlyURL = Objects.toString(friendlyURL, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_F;
 
 		Object[] finderArgs = new Object[] { companyId, friendlyURL };
@@ -3708,10 +3698,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 
 			boolean bindFriendlyURL = false;
 
-			if (friendlyURL == null) {
-				query.append(_FINDER_COLUMN_C_F_FRIENDLYURL_1);
-			}
-			else if (friendlyURL.equals("")) {
+			if (friendlyURL.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_F_FRIENDLYURL_3);
 			}
 			else {
@@ -7805,6 +7792,8 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	@Override
 	public Group fetchByC_L_GK(long companyId, long liveGroupId,
 		String groupKey, boolean retrieveFromCache) {
+		groupKey = Objects.toString(groupKey, "");
+
 		Object[] finderArgs = new Object[] { companyId, liveGroupId, groupKey };
 
 		Object result = null;
@@ -7835,10 +7824,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 
 			boolean bindGroupKey = false;
 
-			if (groupKey == null) {
-				query.append(_FINDER_COLUMN_C_L_GK_GROUPKEY_1);
-			}
-			else if (groupKey.equals("")) {
+			if (groupKey.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_L_GK_GROUPKEY_3);
 			}
 			else {
@@ -7925,6 +7911,8 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	 */
 	@Override
 	public int countByC_L_GK(long companyId, long liveGroupId, String groupKey) {
+		groupKey = Objects.toString(groupKey, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_L_GK;
 
 		Object[] finderArgs = new Object[] { companyId, liveGroupId, groupKey };
@@ -7943,10 +7931,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 
 			boolean bindGroupKey = false;
 
-			if (groupKey == null) {
-				query.append(_FINDER_COLUMN_C_L_GK_GROUPKEY_1);
-			}
-			else if (groupKey.equals("")) {
+			if (groupKey.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_L_GK_GROUPKEY_3);
 			}
 			else {
@@ -8091,6 +8076,8 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	public List<Group> findByC_T_S(long companyId, String treePath,
 		boolean site, int start, int end,
 		OrderByComparator<Group> orderByComparator, boolean retrieveFromCache) {
+		treePath = Objects.toString(treePath, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -8139,10 +8126,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 
 			boolean bindTreePath = false;
 
-			if (treePath == null) {
-				query.append(_FINDER_COLUMN_C_T_S_TREEPATH_1);
-			}
-			else if (treePath.equals("")) {
+			if (treePath.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_T_S_TREEPATH_3);
 			}
 			else {
@@ -8354,6 +8338,8 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	public Group[] findByC_T_S_PrevAndNext(long groupId, long companyId,
 		String treePath, boolean site,
 		OrderByComparator<Group> orderByComparator) throws NoSuchGroupException {
+		treePath = Objects.toString(treePath, "");
+
 		Group group = findByPrimaryKey(groupId);
 
 		Session session = null;
@@ -8401,10 +8387,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 
 		boolean bindTreePath = false;
 
-		if (treePath == null) {
-			query.append(_FINDER_COLUMN_C_T_S_TREEPATH_1);
-		}
-		else if (treePath.equals("")) {
+		if (treePath.isEmpty()) {
 			query.append(_FINDER_COLUMN_C_T_S_TREEPATH_3);
 		}
 		else {
@@ -8534,6 +8517,8 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	 */
 	@Override
 	public int countByC_T_S(long companyId, String treePath, boolean site) {
+		treePath = Objects.toString(treePath, "");
+
 		FinderPath finderPath = FINDER_PATH_WITH_PAGINATION_COUNT_BY_C_T_S;
 
 		Object[] finderArgs = new Object[] { companyId, treePath, site };
@@ -8550,10 +8535,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 
 			boolean bindTreePath = false;
 
-			if (treePath == null) {
-				query.append(_FINDER_COLUMN_C_T_S_TREEPATH_1);
-			}
-			else if (treePath.equals("")) {
+			if (treePath.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_T_S_TREEPATH_3);
 			}
 			else {
@@ -10165,6 +10147,8 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	@Override
 	public Group fetchByC_C_L_GK(long companyId, long classNameId,
 		long liveGroupId, String groupKey, boolean retrieveFromCache) {
+		groupKey = Objects.toString(groupKey, "");
+
 		Object[] finderArgs = new Object[] {
 				companyId, classNameId, liveGroupId, groupKey
 			};
@@ -10200,10 +10184,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 
 			boolean bindGroupKey = false;
 
-			if (groupKey == null) {
-				query.append(_FINDER_COLUMN_C_C_L_GK_GROUPKEY_1);
-			}
-			else if (groupKey.equals("")) {
+			if (groupKey.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_C_L_GK_GROUPKEY_3);
 			}
 			else {
@@ -10296,6 +10277,8 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	@Override
 	public int countByC_C_L_GK(long companyId, long classNameId,
 		long liveGroupId, String groupKey) {
+		groupKey = Objects.toString(groupKey, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_C_L_GK;
 
 		Object[] finderArgs = new Object[] {
@@ -10318,10 +10301,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 
 			boolean bindGroupKey = false;
 
-			if (groupKey == null) {
-				query.append(_FINDER_COLUMN_C_C_L_GK_GROUPKEY_1);
-			}
-			else if (groupKey.equals("")) {
+			if (groupKey.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_C_L_GK_GROUPKEY_3);
 			}
 			else {
@@ -10477,6 +10457,8 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	public List<Group> findByC_P_LikeN_S(long companyId, long parentGroupId,
 		String name, boolean site, int start, int end,
 		OrderByComparator<Group> orderByComparator, boolean retrieveFromCache) {
+		name = Objects.toString(name, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -10528,10 +10510,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 
 			boolean bindName = false;
 
-			if (name == null) {
-				query.append(_FINDER_COLUMN_C_P_LIKEN_S_NAME_1);
-			}
-			else if (name.equals("")) {
+			if (name.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_P_LIKEN_S_NAME_3);
 			}
 			else {
@@ -10756,6 +10735,8 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	public Group[] findByC_P_LikeN_S_PrevAndNext(long groupId, long companyId,
 		long parentGroupId, String name, boolean site,
 		OrderByComparator<Group> orderByComparator) throws NoSuchGroupException {
+		name = Objects.toString(name, "");
+
 		Group group = findByPrimaryKey(groupId);
 
 		Session session = null;
@@ -10805,10 +10786,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 
 		boolean bindName = false;
 
-		if (name == null) {
-			query.append(_FINDER_COLUMN_C_P_LIKEN_S_NAME_1);
-		}
-		else if (name.equals("")) {
+		if (name.isEmpty()) {
 			query.append(_FINDER_COLUMN_C_P_LIKEN_S_NAME_3);
 		}
 		else {
@@ -10944,6 +10922,8 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	@Override
 	public int countByC_P_LikeN_S(long companyId, long parentGroupId,
 		String name, boolean site) {
+		name = Objects.toString(name, "");
+
 		FinderPath finderPath = FINDER_PATH_WITH_PAGINATION_COUNT_BY_C_P_LIKEN_S;
 
 		Object[] finderArgs = new Object[] { companyId, parentGroupId, name, site };
@@ -10962,10 +10942,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 
 			boolean bindName = false;
 
-			if (name == null) {
-				query.append(_FINDER_COLUMN_C_P_LIKEN_S_NAME_1);
-			}
-			else if (name.equals("")) {
+			if (name.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_P_LIKEN_S_NAME_3);
 			}
 			else {

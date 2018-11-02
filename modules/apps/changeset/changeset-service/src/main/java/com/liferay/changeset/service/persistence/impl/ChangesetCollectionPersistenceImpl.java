@@ -22,8 +22,6 @@ import com.liferay.changeset.model.impl.ChangesetCollectionImpl;
 import com.liferay.changeset.model.impl.ChangesetCollectionModelImpl;
 import com.liferay.changeset.service.persistence.ChangesetCollectionPersistence;
 
-import com.liferay.petra.string.StringBundler;
-
 import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -40,6 +38,7 @@ import com.liferay.portal.kernel.service.persistence.CompanyProviderWrapper;
 import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ProxyUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.spring.extender.service.ServiceReference;
 
 import java.io.Serializable;
@@ -1727,6 +1726,8 @@ public class ChangesetCollectionPersistenceImpl extends BasePersistenceImpl<Chan
 	@Override
 	public ChangesetCollection fetchByG_N(long groupId, String name,
 		boolean retrieveFromCache) {
+		name = Objects.toString(name, "");
+
 		Object[] finderArgs = new Object[] { groupId, name };
 
 		Object result = null;
@@ -1754,10 +1755,7 @@ public class ChangesetCollectionPersistenceImpl extends BasePersistenceImpl<Chan
 
 			boolean bindName = false;
 
-			if (name == null) {
-				query.append(_FINDER_COLUMN_G_N_NAME_1);
-			}
-			else if (name.equals("")) {
+			if (name.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_N_NAME_3);
 			}
 			else {
@@ -1839,6 +1837,8 @@ public class ChangesetCollectionPersistenceImpl extends BasePersistenceImpl<Chan
 	 */
 	@Override
 	public int countByG_N(long groupId, String name) {
+		name = Objects.toString(name, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_G_N;
 
 		Object[] finderArgs = new Object[] { groupId, name };
@@ -1854,10 +1854,7 @@ public class ChangesetCollectionPersistenceImpl extends BasePersistenceImpl<Chan
 
 			boolean bindName = false;
 
-			if (name == null) {
-				query.append(_FINDER_COLUMN_G_N_NAME_1);
-			}
-			else if (name.equals("")) {
+			if (name.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_N_NAME_3);
 			}
 			else {
@@ -1999,6 +1996,8 @@ public class ChangesetCollectionPersistenceImpl extends BasePersistenceImpl<Chan
 		int start, int end,
 		OrderByComparator<ChangesetCollection> orderByComparator,
 		boolean retrieveFromCache) {
+		name = Objects.toString(name, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -2027,7 +2026,7 @@ public class ChangesetCollectionPersistenceImpl extends BasePersistenceImpl<Chan
 			if ((list != null) && !list.isEmpty()) {
 				for (ChangesetCollection changesetCollection : list) {
 					if ((companyId != changesetCollection.getCompanyId()) ||
-							!Objects.equals(name, changesetCollection.getName())) {
+							!name.equals(changesetCollection.getName())) {
 						list = null;
 
 						break;
@@ -2053,10 +2052,7 @@ public class ChangesetCollectionPersistenceImpl extends BasePersistenceImpl<Chan
 
 			boolean bindName = false;
 
-			if (name == null) {
-				query.append(_FINDER_COLUMN_C_N_NAME_1);
-			}
-			else if (name.equals("")) {
+			if (name.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_N_NAME_3);
 			}
 			else {
@@ -2254,6 +2250,8 @@ public class ChangesetCollectionPersistenceImpl extends BasePersistenceImpl<Chan
 		long changesetCollectionId, long companyId, String name,
 		OrderByComparator<ChangesetCollection> orderByComparator)
 		throws NoSuchCollectionException {
+		name = Objects.toString(name, "");
+
 		ChangesetCollection changesetCollection = findByPrimaryKey(changesetCollectionId);
 
 		Session session = null;
@@ -2302,10 +2300,7 @@ public class ChangesetCollectionPersistenceImpl extends BasePersistenceImpl<Chan
 
 		boolean bindName = false;
 
-		if (name == null) {
-			query.append(_FINDER_COLUMN_C_N_NAME_1);
-		}
-		else if (name.equals("")) {
+		if (name.isEmpty()) {
 			query.append(_FINDER_COLUMN_C_N_NAME_3);
 		}
 		else {
@@ -2429,6 +2424,8 @@ public class ChangesetCollectionPersistenceImpl extends BasePersistenceImpl<Chan
 	 */
 	@Override
 	public int countByC_N(long companyId, String name) {
+		name = Objects.toString(name, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_N;
 
 		Object[] finderArgs = new Object[] { companyId, name };
@@ -2444,10 +2441,7 @@ public class ChangesetCollectionPersistenceImpl extends BasePersistenceImpl<Chan
 
 			boolean bindName = false;
 
-			if (name == null) {
-				query.append(_FINDER_COLUMN_C_N_NAME_1);
-			}
-			else if (name.equals("")) {
+			if (name.isEmpty()) {
 				query.append(_FINDER_COLUMN_C_N_NAME_3);
 			}
 			else {

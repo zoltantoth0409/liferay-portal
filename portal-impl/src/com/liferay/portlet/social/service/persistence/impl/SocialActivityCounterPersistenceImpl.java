@@ -16,8 +16,6 @@ package com.liferay.portlet.social.service.persistence.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.petra.string.StringBundler;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -34,6 +32,7 @@ import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.SetUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 
 import com.liferay.portlet.social.model.impl.SocialActivityCounterImpl;
 import com.liferay.portlet.social.model.impl.SocialActivityCounterModelImpl;
@@ -1898,6 +1897,8 @@ public class SocialActivityCounterPersistenceImpl extends BasePersistenceImpl<So
 	public SocialActivityCounter fetchByG_C_C_N_O_S(long groupId,
 		long classNameId, long classPK, String name, int ownerType,
 		int startPeriod, boolean retrieveFromCache) {
+		name = Objects.toString(name, "");
+
 		Object[] finderArgs = new Object[] {
 				groupId, classNameId, classPK, name, ownerType, startPeriod
 			};
@@ -1935,10 +1936,7 @@ public class SocialActivityCounterPersistenceImpl extends BasePersistenceImpl<So
 
 			boolean bindName = false;
 
-			if (name == null) {
-				query.append(_FINDER_COLUMN_G_C_C_N_O_S_NAME_1);
-			}
-			else if (name.equals("")) {
+			if (name.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_C_C_N_O_S_NAME_3);
 			}
 			else {
@@ -2044,6 +2042,8 @@ public class SocialActivityCounterPersistenceImpl extends BasePersistenceImpl<So
 	@Override
 	public int countByG_C_C_N_O_S(long groupId, long classNameId, long classPK,
 		String name, int ownerType, int startPeriod) {
+		name = Objects.toString(name, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_G_C_C_N_O_S;
 
 		Object[] finderArgs = new Object[] {
@@ -2066,10 +2066,7 @@ public class SocialActivityCounterPersistenceImpl extends BasePersistenceImpl<So
 
 			boolean bindName = false;
 
-			if (name == null) {
-				query.append(_FINDER_COLUMN_G_C_C_N_O_S_NAME_1);
-			}
-			else if (name.equals("")) {
+			if (name.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_C_C_N_O_S_NAME_3);
 			}
 			else {
@@ -2245,6 +2242,8 @@ public class SocialActivityCounterPersistenceImpl extends BasePersistenceImpl<So
 	public SocialActivityCounter fetchByG_C_C_N_O_E(long groupId,
 		long classNameId, long classPK, String name, int ownerType,
 		int endPeriod, boolean retrieveFromCache) {
+		name = Objects.toString(name, "");
+
 		Object[] finderArgs = new Object[] {
 				groupId, classNameId, classPK, name, ownerType, endPeriod
 			};
@@ -2282,10 +2281,7 @@ public class SocialActivityCounterPersistenceImpl extends BasePersistenceImpl<So
 
 			boolean bindName = false;
 
-			if (name == null) {
-				query.append(_FINDER_COLUMN_G_C_C_N_O_E_NAME_1);
-			}
-			else if (name.equals("")) {
+			if (name.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_C_C_N_O_E_NAME_3);
 			}
 			else {
@@ -2391,6 +2387,8 @@ public class SocialActivityCounterPersistenceImpl extends BasePersistenceImpl<So
 	@Override
 	public int countByG_C_C_N_O_E(long groupId, long classNameId, long classPK,
 		String name, int ownerType, int endPeriod) {
+		name = Objects.toString(name, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_G_C_C_N_O_E;
 
 		Object[] finderArgs = new Object[] {
@@ -2413,10 +2411,7 @@ public class SocialActivityCounterPersistenceImpl extends BasePersistenceImpl<So
 
 			boolean bindName = false;
 
-			if (name == null) {
-				query.append(_FINDER_COLUMN_G_C_C_N_O_E_NAME_1);
-			}
-			else if (name.equals("")) {
+			if (name.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_C_C_N_O_E_NAME_3);
 			}
 			else {

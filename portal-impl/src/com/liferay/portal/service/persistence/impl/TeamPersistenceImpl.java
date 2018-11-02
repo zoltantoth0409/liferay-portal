@@ -16,8 +16,6 @@ package com.liferay.portal.service.persistence.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.petra.string.StringBundler;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -47,6 +45,7 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.SetUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.impl.TeamImpl;
@@ -185,6 +184,8 @@ public class TeamPersistenceImpl extends BasePersistenceImpl<Team>
 	@Override
 	public List<Team> findByUuid(String uuid, int start, int end,
 		OrderByComparator<Team> orderByComparator, boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -208,7 +209,7 @@ public class TeamPersistenceImpl extends BasePersistenceImpl<Team>
 
 			if ((list != null) && !list.isEmpty()) {
 				for (Team team : list) {
-					if (!Objects.equals(uuid, team.getUuid())) {
+					if (!uuid.equals(team.getUuid())) {
 						list = null;
 
 						break;
@@ -232,10 +233,7 @@ public class TeamPersistenceImpl extends BasePersistenceImpl<Team>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -412,6 +410,8 @@ public class TeamPersistenceImpl extends BasePersistenceImpl<Team>
 	@Override
 	public Team[] findByUuid_PrevAndNext(long teamId, String uuid,
 		OrderByComparator<Team> orderByComparator) throws NoSuchTeamException {
+		uuid = Objects.toString(uuid, "");
+
 		Team team = findByPrimaryKey(teamId);
 
 		Session session = null;
@@ -456,10 +456,7 @@ public class TeamPersistenceImpl extends BasePersistenceImpl<Team>
 
 		boolean bindUuid = false;
 
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_UUID_1);
-		}
-		else if (uuid.equals("")) {
+		if (uuid.isEmpty()) {
 			query.append(_FINDER_COLUMN_UUID_UUID_3);
 		}
 		else {
@@ -579,6 +576,8 @@ public class TeamPersistenceImpl extends BasePersistenceImpl<Team>
 	 */
 	@Override
 	public int countByUuid(String uuid) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID;
 
 		Object[] finderArgs = new Object[] { uuid };
@@ -593,10 +592,7 @@ public class TeamPersistenceImpl extends BasePersistenceImpl<Team>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -710,6 +706,8 @@ public class TeamPersistenceImpl extends BasePersistenceImpl<Team>
 	@Override
 	public Team fetchByUUID_G(String uuid, long groupId,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		Object[] finderArgs = new Object[] { uuid, groupId };
 
 		Object result = null;
@@ -735,10 +733,7 @@ public class TeamPersistenceImpl extends BasePersistenceImpl<Team>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_G_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_G_UUID_3);
 			}
 			else {
@@ -823,6 +818,8 @@ public class TeamPersistenceImpl extends BasePersistenceImpl<Team>
 	 */
 	@Override
 	public int countByUUID_G(String uuid, long groupId) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_G;
 
 		Object[] finderArgs = new Object[] { uuid, groupId };
@@ -837,10 +834,7 @@ public class TeamPersistenceImpl extends BasePersistenceImpl<Team>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_G_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_G_UUID_3);
 			}
 			else {
@@ -982,6 +976,8 @@ public class TeamPersistenceImpl extends BasePersistenceImpl<Team>
 	public List<Team> findByUuid_C(String uuid, long companyId, int start,
 		int end, OrderByComparator<Team> orderByComparator,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1009,7 +1005,7 @@ public class TeamPersistenceImpl extends BasePersistenceImpl<Team>
 
 			if ((list != null) && !list.isEmpty()) {
 				for (Team team : list) {
-					if (!Objects.equals(uuid, team.getUuid()) ||
+					if (!uuid.equals(team.getUuid()) ||
 							(companyId != team.getCompanyId())) {
 						list = null;
 
@@ -1034,10 +1030,7 @@ public class TeamPersistenceImpl extends BasePersistenceImpl<Team>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 			}
 			else {
@@ -1231,6 +1224,8 @@ public class TeamPersistenceImpl extends BasePersistenceImpl<Team>
 	public Team[] findByUuid_C_PrevAndNext(long teamId, String uuid,
 		long companyId, OrderByComparator<Team> orderByComparator)
 		throws NoSuchTeamException {
+		uuid = Objects.toString(uuid, "");
+
 		Team team = findByPrimaryKey(teamId);
 
 		Session session = null;
@@ -1276,10 +1271,7 @@ public class TeamPersistenceImpl extends BasePersistenceImpl<Team>
 
 		boolean bindUuid = false;
 
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-		}
-		else if (uuid.equals("")) {
+		if (uuid.isEmpty()) {
 			query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 		}
 		else {
@@ -1405,6 +1397,8 @@ public class TeamPersistenceImpl extends BasePersistenceImpl<Team>
 	 */
 	@Override
 	public int countByUuid_C(String uuid, long companyId) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_C;
 
 		Object[] finderArgs = new Object[] { uuid, companyId };
@@ -1419,10 +1413,7 @@ public class TeamPersistenceImpl extends BasePersistenceImpl<Team>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 			}
 			else {
@@ -2392,6 +2383,8 @@ public class TeamPersistenceImpl extends BasePersistenceImpl<Team>
 	 */
 	@Override
 	public Team fetchByG_N(long groupId, String name, boolean retrieveFromCache) {
+		name = Objects.toString(name, "");
+
 		Object[] finderArgs = new Object[] { groupId, name };
 
 		Object result = null;
@@ -2419,10 +2412,7 @@ public class TeamPersistenceImpl extends BasePersistenceImpl<Team>
 
 			boolean bindName = false;
 
-			if (name == null) {
-				query.append(_FINDER_COLUMN_G_N_NAME_1);
-			}
-			else if (name.equals("")) {
+			if (name.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_N_NAME_3);
 			}
 			else {
@@ -2505,6 +2495,8 @@ public class TeamPersistenceImpl extends BasePersistenceImpl<Team>
 	 */
 	@Override
 	public int countByG_N(long groupId, String name) {
+		name = Objects.toString(name, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_G_N;
 
 		Object[] finderArgs = new Object[] { groupId, name };
@@ -2521,10 +2513,7 @@ public class TeamPersistenceImpl extends BasePersistenceImpl<Team>
 
 			boolean bindName = false;
 
-			if (name == null) {
-				query.append(_FINDER_COLUMN_G_N_NAME_1);
-			}
-			else if (name.equals("")) {
+			if (name.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_N_NAME_3);
 			}
 			else {

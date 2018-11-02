@@ -22,8 +22,6 @@ import com.liferay.dynamic.data.lists.model.impl.DDLRecordImpl;
 import com.liferay.dynamic.data.lists.model.impl.DDLRecordModelImpl;
 import com.liferay.dynamic.data.lists.service.persistence.DDLRecordPersistence;
 
-import com.liferay.petra.string.StringBundler;
-
 import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -41,6 +39,7 @@ import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.SetUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.spring.extender.service.ServiceReference;
@@ -178,6 +177,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	public List<DDLRecord> findByUuid(String uuid, int start, int end,
 		OrderByComparator<DDLRecord> orderByComparator,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -201,7 +202,7 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDLRecord ddlRecord : list) {
-					if (!Objects.equals(uuid, ddlRecord.getUuid())) {
+					if (!uuid.equals(ddlRecord.getUuid())) {
 						list = null;
 
 						break;
@@ -225,10 +226,7 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -409,6 +407,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	public DDLRecord[] findByUuid_PrevAndNext(long recordId, String uuid,
 		OrderByComparator<DDLRecord> orderByComparator)
 		throws NoSuchRecordException {
+		uuid = Objects.toString(uuid, "");
+
 		DDLRecord ddlRecord = findByPrimaryKey(recordId);
 
 		Session session = null;
@@ -454,10 +454,7 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 
 		boolean bindUuid = false;
 
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_UUID_1);
-		}
-		else if (uuid.equals("")) {
+		if (uuid.isEmpty()) {
 			query.append(_FINDER_COLUMN_UUID_UUID_3);
 		}
 		else {
@@ -577,6 +574,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 */
 	@Override
 	public int countByUuid(String uuid) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID;
 
 		Object[] finderArgs = new Object[] { uuid };
@@ -590,10 +589,7 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -707,6 +703,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	@Override
 	public DDLRecord fetchByUUID_G(String uuid, long groupId,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		Object[] finderArgs = new Object[] { uuid, groupId };
 
 		Object result = null;
@@ -732,10 +730,7 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_G_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_G_UUID_3);
 			}
 			else {
@@ -819,6 +814,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 */
 	@Override
 	public int countByUUID_G(String uuid, long groupId) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_G;
 
 		Object[] finderArgs = new Object[] { uuid, groupId };
@@ -832,10 +829,7 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_G_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_G_UUID_3);
 			}
 			else {
@@ -976,6 +970,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	public List<DDLRecord> findByUuid_C(String uuid, long companyId, int start,
 		int end, OrderByComparator<DDLRecord> orderByComparator,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1003,7 +999,7 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 
 			if ((list != null) && !list.isEmpty()) {
 				for (DDLRecord ddlRecord : list) {
-					if (!Objects.equals(uuid, ddlRecord.getUuid()) ||
+					if (!uuid.equals(ddlRecord.getUuid()) ||
 							(companyId != ddlRecord.getCompanyId())) {
 						list = null;
 
@@ -1028,10 +1024,7 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 			}
 			else {
@@ -1230,6 +1223,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	public DDLRecord[] findByUuid_C_PrevAndNext(long recordId, String uuid,
 		long companyId, OrderByComparator<DDLRecord> orderByComparator)
 		throws NoSuchRecordException {
+		uuid = Objects.toString(uuid, "");
+
 		DDLRecord ddlRecord = findByPrimaryKey(recordId);
 
 		Session session = null;
@@ -1275,10 +1270,7 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 
 		boolean bindUuid = false;
 
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-		}
-		else if (uuid.equals("")) {
+		if (uuid.isEmpty()) {
 			query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 		}
 		else {
@@ -1404,6 +1396,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 */
 	@Override
 	public int countByUuid_C(String uuid, long companyId) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_C;
 
 		Object[] finderArgs = new Object[] { uuid, companyId };
@@ -1417,10 +1411,7 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 			}
 			else {
@@ -3113,6 +3104,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	public List<DDLRecord> findByR_R(long recordSetId, String recordSetVersion,
 		int start, int end, OrderByComparator<DDLRecord> orderByComparator,
 		boolean retrieveFromCache) {
+		recordSetVersion = Objects.toString(recordSetVersion, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -3141,7 +3134,7 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 			if ((list != null) && !list.isEmpty()) {
 				for (DDLRecord ddlRecord : list) {
 					if ((recordSetId != ddlRecord.getRecordSetId()) ||
-							!Objects.equals(recordSetVersion,
+							!recordSetVersion.equals(
 								ddlRecord.getRecordSetVersion())) {
 						list = null;
 
@@ -3168,10 +3161,7 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 
 			boolean bindRecordSetVersion = false;
 
-			if (recordSetVersion == null) {
-				query.append(_FINDER_COLUMN_R_R_RECORDSETVERSION_1);
-			}
-			else if (recordSetVersion.equals("")) {
+			if (recordSetVersion.isEmpty()) {
 				query.append(_FINDER_COLUMN_R_R_RECORDSETVERSION_3);
 			}
 			else {
@@ -3368,6 +3358,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	public DDLRecord[] findByR_R_PrevAndNext(long recordId, long recordSetId,
 		String recordSetVersion, OrderByComparator<DDLRecord> orderByComparator)
 		throws NoSuchRecordException {
+		recordSetVersion = Objects.toString(recordSetVersion, "");
+
 		DDLRecord ddlRecord = findByPrimaryKey(recordId);
 
 		Session session = null;
@@ -3415,10 +3407,7 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 
 		boolean bindRecordSetVersion = false;
 
-		if (recordSetVersion == null) {
-			query.append(_FINDER_COLUMN_R_R_RECORDSETVERSION_1);
-		}
-		else if (recordSetVersion.equals("")) {
+		if (recordSetVersion.isEmpty()) {
 			query.append(_FINDER_COLUMN_R_R_RECORDSETVERSION_3);
 		}
 		else {
@@ -3542,6 +3531,8 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	 */
 	@Override
 	public int countByR_R(long recordSetId, String recordSetVersion) {
+		recordSetVersion = Objects.toString(recordSetVersion, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_R_R;
 
 		Object[] finderArgs = new Object[] { recordSetId, recordSetVersion };
@@ -3557,10 +3548,7 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 
 			boolean bindRecordSetVersion = false;
 
-			if (recordSetVersion == null) {
-				query.append(_FINDER_COLUMN_R_R_RECORDSETVERSION_1);
-			}
-			else if (recordSetVersion.equals("")) {
+			if (recordSetVersion.isEmpty()) {
 				query.append(_FINDER_COLUMN_R_R_RECORDSETVERSION_3);
 			}
 			else {

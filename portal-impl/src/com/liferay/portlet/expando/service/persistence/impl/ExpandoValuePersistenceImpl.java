@@ -20,8 +20,6 @@ import com.liferay.expando.kernel.exception.NoSuchValueException;
 import com.liferay.expando.kernel.model.ExpandoValue;
 import com.liferay.expando.kernel.service.persistence.ExpandoValuePersistence;
 
-import com.liferay.petra.string.StringBundler;
-
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
@@ -38,6 +36,7 @@ import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.SetUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 
 import com.liferay.portlet.expando.model.impl.ExpandoValueImpl;
 import com.liferay.portlet.expando.model.impl.ExpandoValueModelImpl;
@@ -4345,6 +4344,8 @@ public class ExpandoValuePersistenceImpl extends BasePersistenceImpl<ExpandoValu
 		String data, int start, int end,
 		OrderByComparator<ExpandoValue> orderByComparator,
 		boolean retrieveFromCache) {
+		data = Objects.toString(data, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -4374,7 +4375,7 @@ public class ExpandoValuePersistenceImpl extends BasePersistenceImpl<ExpandoValu
 				for (ExpandoValue expandoValue : list) {
 					if ((tableId != expandoValue.getTableId()) ||
 							(columnId != expandoValue.getColumnId()) ||
-							!Objects.equals(data, expandoValue.getData())) {
+							!data.equals(expandoValue.getData())) {
 						list = null;
 
 						break;
@@ -4402,10 +4403,7 @@ public class ExpandoValuePersistenceImpl extends BasePersistenceImpl<ExpandoValu
 
 			boolean bindData = false;
 
-			if (data == null) {
-				query.append(_FINDER_COLUMN_T_C_D_DATA_1);
-			}
-			else if (data.equals("")) {
+			if (data.isEmpty()) {
 				query.append(_FINDER_COLUMN_T_C_D_DATA_3);
 			}
 			else {
@@ -4616,6 +4614,8 @@ public class ExpandoValuePersistenceImpl extends BasePersistenceImpl<ExpandoValu
 		long columnId, String data,
 		OrderByComparator<ExpandoValue> orderByComparator)
 		throws NoSuchValueException {
+		data = Objects.toString(data, "");
+
 		ExpandoValue expandoValue = findByPrimaryKey(valueId);
 
 		Session session = null;
@@ -4665,10 +4665,7 @@ public class ExpandoValuePersistenceImpl extends BasePersistenceImpl<ExpandoValu
 
 		boolean bindData = false;
 
-		if (data == null) {
-			query.append(_FINDER_COLUMN_T_C_D_DATA_1);
-		}
-		else if (data.equals("")) {
+		if (data.isEmpty()) {
 			query.append(_FINDER_COLUMN_T_C_D_DATA_3);
 		}
 		else {
@@ -4796,6 +4793,8 @@ public class ExpandoValuePersistenceImpl extends BasePersistenceImpl<ExpandoValu
 	 */
 	@Override
 	public int countByT_C_D(long tableId, long columnId, String data) {
+		data = Objects.toString(data, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_T_C_D;
 
 		Object[] finderArgs = new Object[] { tableId, columnId, data };
@@ -4814,10 +4813,7 @@ public class ExpandoValuePersistenceImpl extends BasePersistenceImpl<ExpandoValu
 
 			boolean bindData = false;
 
-			if (data == null) {
-				query.append(_FINDER_COLUMN_T_C_D_DATA_1);
-			}
-			else if (data.equals("")) {
+			if (data.isEmpty()) {
 				query.append(_FINDER_COLUMN_T_C_D_DATA_3);
 			}
 			else {

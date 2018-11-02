@@ -22,8 +22,6 @@ import com.liferay.dynamic.data.mapping.model.impl.DDMFormInstanceVersionImpl;
 import com.liferay.dynamic.data.mapping.model.impl.DDMFormInstanceVersionModelImpl;
 import com.liferay.dynamic.data.mapping.service.persistence.DDMFormInstanceVersionPersistence;
 
-import com.liferay.petra.string.StringBundler;
-
 import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -39,6 +37,7 @@ import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.SetUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.spring.extender.service.ServiceReference;
 
 import java.io.Serializable;
@@ -688,6 +687,8 @@ public class DDMFormInstanceVersionPersistenceImpl extends BasePersistenceImpl<D
 	@Override
 	public DDMFormInstanceVersion fetchByF_V(long formInstanceId,
 		String version, boolean retrieveFromCache) {
+		version = Objects.toString(version, "");
+
 		Object[] finderArgs = new Object[] { formInstanceId, version };
 
 		Object result = null;
@@ -715,10 +716,7 @@ public class DDMFormInstanceVersionPersistenceImpl extends BasePersistenceImpl<D
 
 			boolean bindVersion = false;
 
-			if (version == null) {
-				query.append(_FINDER_COLUMN_F_V_VERSION_1);
-			}
-			else if (version.equals("")) {
+			if (version.isEmpty()) {
 				query.append(_FINDER_COLUMN_F_V_VERSION_3);
 			}
 			else {
@@ -801,6 +799,8 @@ public class DDMFormInstanceVersionPersistenceImpl extends BasePersistenceImpl<D
 	 */
 	@Override
 	public int countByF_V(long formInstanceId, String version) {
+		version = Objects.toString(version, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_F_V;
 
 		Object[] finderArgs = new Object[] { formInstanceId, version };
@@ -816,10 +816,7 @@ public class DDMFormInstanceVersionPersistenceImpl extends BasePersistenceImpl<D
 
 			boolean bindVersion = false;
 
-			if (version == null) {
-				query.append(_FINDER_COLUMN_F_V_VERSION_1);
-			}
-			else if (version.equals("")) {
+			if (version.isEmpty()) {
 				query.append(_FINDER_COLUMN_F_V_VERSION_3);
 			}
 			else {

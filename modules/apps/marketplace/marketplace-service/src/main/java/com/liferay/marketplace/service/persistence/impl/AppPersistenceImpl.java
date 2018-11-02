@@ -22,8 +22,6 @@ import com.liferay.marketplace.model.impl.AppImpl;
 import com.liferay.marketplace.model.impl.AppModelImpl;
 import com.liferay.marketplace.service.persistence.AppPersistence;
 
-import com.liferay.petra.string.StringBundler;
-
 import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -41,6 +39,7 @@ import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.SetUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
@@ -178,6 +177,8 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	@Override
 	public List<App> findByUuid(String uuid, int start, int end,
 		OrderByComparator<App> orderByComparator, boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -200,7 +201,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 
 			if ((list != null) && !list.isEmpty()) {
 				for (App app : list) {
-					if (!Objects.equals(uuid, app.getUuid())) {
+					if (!uuid.equals(app.getUuid())) {
 						list = null;
 
 						break;
@@ -224,10 +225,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -403,6 +401,8 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	@Override
 	public App[] findByUuid_PrevAndNext(long appId, String uuid,
 		OrderByComparator<App> orderByComparator) throws NoSuchAppException {
+		uuid = Objects.toString(uuid, "");
+
 		App app = findByPrimaryKey(appId);
 
 		Session session = null;
@@ -447,10 +447,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 
 		boolean bindUuid = false;
 
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_UUID_1);
-		}
-		else if (uuid.equals("")) {
+		if (uuid.isEmpty()) {
 			query.append(_FINDER_COLUMN_UUID_UUID_3);
 		}
 		else {
@@ -570,6 +567,8 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	 */
 	@Override
 	public int countByUuid(String uuid) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID;
 
 		Object[] finderArgs = new Object[] { uuid };
@@ -583,10 +582,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -722,6 +718,8 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	public List<App> findByUuid_C(String uuid, long companyId, int start,
 		int end, OrderByComparator<App> orderByComparator,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -748,7 +746,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 
 			if ((list != null) && !list.isEmpty()) {
 				for (App app : list) {
-					if (!Objects.equals(uuid, app.getUuid()) ||
+					if (!uuid.equals(app.getUuid()) ||
 							(companyId != app.getCompanyId())) {
 						list = null;
 
@@ -773,10 +771,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 			}
 			else {
@@ -969,6 +964,8 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	public App[] findByUuid_C_PrevAndNext(long appId, String uuid,
 		long companyId, OrderByComparator<App> orderByComparator)
 		throws NoSuchAppException {
+		uuid = Objects.toString(uuid, "");
+
 		App app = findByPrimaryKey(appId);
 
 		Session session = null;
@@ -1014,10 +1011,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 
 		boolean bindUuid = false;
 
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-		}
-		else if (uuid.equals("")) {
+		if (uuid.isEmpty()) {
 			query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 		}
 		else {
@@ -1143,6 +1137,8 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	 */
 	@Override
 	public int countByUuid_C(String uuid, long companyId) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_C;
 
 		Object[] finderArgs = new Object[] { uuid, companyId };
@@ -1156,10 +1152,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 			}
 			else {
@@ -1996,6 +1989,8 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	@Override
 	public List<App> findByCategory(String category, int start, int end,
 		OrderByComparator<App> orderByComparator, boolean retrieveFromCache) {
+		category = Objects.toString(category, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -2018,7 +2013,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 
 			if ((list != null) && !list.isEmpty()) {
 				for (App app : list) {
-					if (!Objects.equals(category, app.getCategory())) {
+					if (!category.equals(app.getCategory())) {
 						list = null;
 
 						break;
@@ -2042,10 +2037,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 
 			boolean bindCategory = false;
 
-			if (category == null) {
-				query.append(_FINDER_COLUMN_CATEGORY_CATEGORY_1);
-			}
-			else if (category.equals("")) {
+			if (category.isEmpty()) {
 				query.append(_FINDER_COLUMN_CATEGORY_CATEGORY_3);
 			}
 			else {
@@ -2222,6 +2214,8 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	@Override
 	public App[] findByCategory_PrevAndNext(long appId, String category,
 		OrderByComparator<App> orderByComparator) throws NoSuchAppException {
+		category = Objects.toString(category, "");
+
 		App app = findByPrimaryKey(appId);
 
 		Session session = null;
@@ -2267,10 +2261,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 
 		boolean bindCategory = false;
 
-		if (category == null) {
-			query.append(_FINDER_COLUMN_CATEGORY_CATEGORY_1);
-		}
-		else if (category.equals("")) {
+		if (category.isEmpty()) {
 			query.append(_FINDER_COLUMN_CATEGORY_CATEGORY_3);
 		}
 		else {
@@ -2390,6 +2381,8 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	 */
 	@Override
 	public int countByCategory(String category) {
+		category = Objects.toString(category, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_CATEGORY;
 
 		Object[] finderArgs = new Object[] { category };
@@ -2403,10 +2396,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 
 			boolean bindCategory = false;
 
-			if (category == null) {
-				query.append(_FINDER_COLUMN_CATEGORY_CATEGORY_1);
-			}
-			else if (category.equals("")) {
+			if (category.isEmpty()) {
 				query.append(_FINDER_COLUMN_CATEGORY_CATEGORY_3);
 			}
 			else {
