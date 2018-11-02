@@ -22,8 +22,6 @@ import com.liferay.asset.display.page.model.impl.AssetDisplayPageEntryImpl;
 import com.liferay.asset.display.page.model.impl.AssetDisplayPageEntryModelImpl;
 import com.liferay.asset.display.page.service.persistence.AssetDisplayPageEntryPersistence;
 
-import com.liferay.petra.string.StringBundler;
-
 import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -41,6 +39,7 @@ import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.SetUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.spring.extender.service.ServiceReference;
@@ -183,6 +182,8 @@ public class AssetDisplayPageEntryPersistenceImpl extends BasePersistenceImpl<As
 	public List<AssetDisplayPageEntry> findByUuid(String uuid, int start,
 		int end, OrderByComparator<AssetDisplayPageEntry> orderByComparator,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -206,7 +207,7 @@ public class AssetDisplayPageEntryPersistenceImpl extends BasePersistenceImpl<As
 
 			if ((list != null) && !list.isEmpty()) {
 				for (AssetDisplayPageEntry assetDisplayPageEntry : list) {
-					if (!Objects.equals(uuid, assetDisplayPageEntry.getUuid())) {
+					if (!uuid.equals(assetDisplayPageEntry.getUuid())) {
 						list = null;
 
 						break;
@@ -230,10 +231,7 @@ public class AssetDisplayPageEntryPersistenceImpl extends BasePersistenceImpl<As
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -418,6 +416,8 @@ public class AssetDisplayPageEntryPersistenceImpl extends BasePersistenceImpl<As
 		long assetDisplayPageEntryId, String uuid,
 		OrderByComparator<AssetDisplayPageEntry> orderByComparator)
 		throws NoSuchDisplayPageEntryException {
+		uuid = Objects.toString(uuid, "");
+
 		AssetDisplayPageEntry assetDisplayPageEntry = findByPrimaryKey(assetDisplayPageEntryId);
 
 		Session session = null;
@@ -464,10 +464,7 @@ public class AssetDisplayPageEntryPersistenceImpl extends BasePersistenceImpl<As
 
 		boolean bindUuid = false;
 
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_UUID_1);
-		}
-		else if (uuid.equals("")) {
+		if (uuid.isEmpty()) {
 			query.append(_FINDER_COLUMN_UUID_UUID_3);
 		}
 		else {
@@ -587,6 +584,8 @@ public class AssetDisplayPageEntryPersistenceImpl extends BasePersistenceImpl<As
 	 */
 	@Override
 	public int countByUuid(String uuid) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID;
 
 		Object[] finderArgs = new Object[] { uuid };
@@ -600,10 +599,7 @@ public class AssetDisplayPageEntryPersistenceImpl extends BasePersistenceImpl<As
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -719,6 +715,8 @@ public class AssetDisplayPageEntryPersistenceImpl extends BasePersistenceImpl<As
 	@Override
 	public AssetDisplayPageEntry fetchByUUID_G(String uuid, long groupId,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		Object[] finderArgs = new Object[] { uuid, groupId };
 
 		Object result = null;
@@ -744,10 +742,7 @@ public class AssetDisplayPageEntryPersistenceImpl extends BasePersistenceImpl<As
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_G_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_G_UUID_3);
 			}
 			else {
@@ -831,6 +826,8 @@ public class AssetDisplayPageEntryPersistenceImpl extends BasePersistenceImpl<As
 	 */
 	@Override
 	public int countByUUID_G(String uuid, long groupId) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_G;
 
 		Object[] finderArgs = new Object[] { uuid, groupId };
@@ -844,10 +841,7 @@ public class AssetDisplayPageEntryPersistenceImpl extends BasePersistenceImpl<As
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_G_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_G_UUID_3);
 			}
 			else {
@@ -992,6 +986,8 @@ public class AssetDisplayPageEntryPersistenceImpl extends BasePersistenceImpl<As
 		long companyId, int start, int end,
 		OrderByComparator<AssetDisplayPageEntry> orderByComparator,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1019,7 +1015,7 @@ public class AssetDisplayPageEntryPersistenceImpl extends BasePersistenceImpl<As
 
 			if ((list != null) && !list.isEmpty()) {
 				for (AssetDisplayPageEntry assetDisplayPageEntry : list) {
-					if (!Objects.equals(uuid, assetDisplayPageEntry.getUuid()) ||
+					if (!uuid.equals(assetDisplayPageEntry.getUuid()) ||
 							(companyId != assetDisplayPageEntry.getCompanyId())) {
 						list = null;
 
@@ -1044,10 +1040,7 @@ public class AssetDisplayPageEntryPersistenceImpl extends BasePersistenceImpl<As
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 			}
 			else {
@@ -1250,6 +1243,8 @@ public class AssetDisplayPageEntryPersistenceImpl extends BasePersistenceImpl<As
 		long assetDisplayPageEntryId, String uuid, long companyId,
 		OrderByComparator<AssetDisplayPageEntry> orderByComparator)
 		throws NoSuchDisplayPageEntryException {
+		uuid = Objects.toString(uuid, "");
+
 		AssetDisplayPageEntry assetDisplayPageEntry = findByPrimaryKey(assetDisplayPageEntryId);
 
 		Session session = null;
@@ -1297,10 +1292,7 @@ public class AssetDisplayPageEntryPersistenceImpl extends BasePersistenceImpl<As
 
 		boolean bindUuid = false;
 
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-		}
-		else if (uuid.equals("")) {
+		if (uuid.isEmpty()) {
 			query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 		}
 		else {
@@ -1426,6 +1418,8 @@ public class AssetDisplayPageEntryPersistenceImpl extends BasePersistenceImpl<As
 	 */
 	@Override
 	public int countByUuid_C(String uuid, long companyId) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_C;
 
 		Object[] finderArgs = new Object[] { uuid, companyId };
@@ -1439,10 +1433,7 @@ public class AssetDisplayPageEntryPersistenceImpl extends BasePersistenceImpl<As
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 			}
 			else {

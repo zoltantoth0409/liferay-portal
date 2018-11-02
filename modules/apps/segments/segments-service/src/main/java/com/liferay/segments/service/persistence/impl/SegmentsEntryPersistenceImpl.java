@@ -16,8 +16,6 @@ package com.liferay.segments.service.persistence.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.petra.string.StringBundler;
-
 import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -37,6 +35,7 @@ import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.SetUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.spring.extender.service.ServiceReference;
 
 import com.liferay.segments.exception.NoSuchEntryException;
@@ -1047,6 +1046,8 @@ public class SegmentsEntryPersistenceImpl extends BasePersistenceImpl<SegmentsEn
 	public List<SegmentsEntry> findByType(String type, int start, int end,
 		OrderByComparator<SegmentsEntry> orderByComparator,
 		boolean retrieveFromCache) {
+		type = Objects.toString(type, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1070,7 +1071,7 @@ public class SegmentsEntryPersistenceImpl extends BasePersistenceImpl<SegmentsEn
 
 			if ((list != null) && !list.isEmpty()) {
 				for (SegmentsEntry segmentsEntry : list) {
-					if (!Objects.equals(type, segmentsEntry.getType())) {
+					if (!type.equals(segmentsEntry.getType())) {
 						list = null;
 
 						break;
@@ -1094,10 +1095,7 @@ public class SegmentsEntryPersistenceImpl extends BasePersistenceImpl<SegmentsEn
 
 			boolean bindType = false;
 
-			if (type == null) {
-				query.append(_FINDER_COLUMN_TYPE_TYPE_1);
-			}
-			else if (type.equals("")) {
+			if (type.isEmpty()) {
 				query.append(_FINDER_COLUMN_TYPE_TYPE_3);
 			}
 			else {
@@ -1278,6 +1276,8 @@ public class SegmentsEntryPersistenceImpl extends BasePersistenceImpl<SegmentsEn
 	public SegmentsEntry[] findByType_PrevAndNext(long segmentsEntryId,
 		String type, OrderByComparator<SegmentsEntry> orderByComparator)
 		throws NoSuchEntryException {
+		type = Objects.toString(type, "");
+
 		SegmentsEntry segmentsEntry = findByPrimaryKey(segmentsEntryId);
 
 		Session session = null;
@@ -1323,10 +1323,7 @@ public class SegmentsEntryPersistenceImpl extends BasePersistenceImpl<SegmentsEn
 
 		boolean bindType = false;
 
-		if (type == null) {
-			query.append(_FINDER_COLUMN_TYPE_TYPE_1);
-		}
-		else if (type.equals("")) {
+		if (type.isEmpty()) {
 			query.append(_FINDER_COLUMN_TYPE_TYPE_3);
 		}
 		else {
@@ -1446,6 +1443,8 @@ public class SegmentsEntryPersistenceImpl extends BasePersistenceImpl<SegmentsEn
 	 */
 	@Override
 	public int countByType(String type) {
+		type = Objects.toString(type, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_TYPE;
 
 		Object[] finderArgs = new Object[] { type };
@@ -1459,10 +1458,7 @@ public class SegmentsEntryPersistenceImpl extends BasePersistenceImpl<SegmentsEn
 
 			boolean bindType = false;
 
-			if (type == null) {
-				query.append(_FINDER_COLUMN_TYPE_TYPE_1);
-			}
-			else if (type.equals("")) {
+			if (type.isEmpty()) {
 				query.append(_FINDER_COLUMN_TYPE_TYPE_3);
 			}
 			else {
@@ -2498,6 +2494,8 @@ public class SegmentsEntryPersistenceImpl extends BasePersistenceImpl<SegmentsEn
 	@Override
 	public SegmentsEntry fetchByG_K(long groupId, String key,
 		boolean retrieveFromCache) {
+		key = Objects.toString(key, "");
+
 		Object[] finderArgs = new Object[] { groupId, key };
 
 		Object result = null;
@@ -2525,10 +2523,7 @@ public class SegmentsEntryPersistenceImpl extends BasePersistenceImpl<SegmentsEn
 
 			boolean bindKey = false;
 
-			if (key == null) {
-				query.append(_FINDER_COLUMN_G_K_KEY_1);
-			}
-			else if (key.equals("")) {
+			if (key.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_K_KEY_3);
 			}
 			else {
@@ -2610,6 +2605,8 @@ public class SegmentsEntryPersistenceImpl extends BasePersistenceImpl<SegmentsEn
 	 */
 	@Override
 	public int countByG_K(long groupId, String key) {
+		key = Objects.toString(key, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_G_K;
 
 		Object[] finderArgs = new Object[] { groupId, key };
@@ -2625,10 +2622,7 @@ public class SegmentsEntryPersistenceImpl extends BasePersistenceImpl<SegmentsEn
 
 			boolean bindKey = false;
 
-			if (key == null) {
-				query.append(_FINDER_COLUMN_G_K_KEY_1);
-			}
-			else if (key.equals("")) {
+			if (key.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_K_KEY_3);
 			}
 			else {
@@ -2785,6 +2779,8 @@ public class SegmentsEntryPersistenceImpl extends BasePersistenceImpl<SegmentsEn
 		String type, int start, int end,
 		OrderByComparator<SegmentsEntry> orderByComparator,
 		boolean retrieveFromCache) {
+		type = Objects.toString(type, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -2814,7 +2810,7 @@ public class SegmentsEntryPersistenceImpl extends BasePersistenceImpl<SegmentsEn
 				for (SegmentsEntry segmentsEntry : list) {
 					if ((groupId != segmentsEntry.getGroupId()) ||
 							(active != segmentsEntry.isActive()) ||
-							!Objects.equals(type, segmentsEntry.getType())) {
+							!type.equals(segmentsEntry.getType())) {
 						list = null;
 
 						break;
@@ -2842,10 +2838,7 @@ public class SegmentsEntryPersistenceImpl extends BasePersistenceImpl<SegmentsEn
 
 			boolean bindType = false;
 
-			if (type == null) {
-				query.append(_FINDER_COLUMN_G_A_T_TYPE_1);
-			}
-			else if (type.equals("")) {
+			if (type.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_A_T_TYPE_3);
 			}
 			else {
@@ -3056,6 +3049,8 @@ public class SegmentsEntryPersistenceImpl extends BasePersistenceImpl<SegmentsEn
 		long groupId, boolean active, String type,
 		OrderByComparator<SegmentsEntry> orderByComparator)
 		throws NoSuchEntryException {
+		type = Objects.toString(type, "");
+
 		SegmentsEntry segmentsEntry = findByPrimaryKey(segmentsEntryId);
 
 		Session session = null;
@@ -3105,10 +3100,7 @@ public class SegmentsEntryPersistenceImpl extends BasePersistenceImpl<SegmentsEn
 
 		boolean bindType = false;
 
-		if (type == null) {
-			query.append(_FINDER_COLUMN_G_A_T_TYPE_1);
-		}
-		else if (type.equals("")) {
+		if (type.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_A_T_TYPE_3);
 		}
 		else {
@@ -3270,6 +3262,8 @@ public class SegmentsEntryPersistenceImpl extends BasePersistenceImpl<SegmentsEn
 				orderByComparator);
 		}
 
+		type = Objects.toString(type, "");
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -3293,10 +3287,7 @@ public class SegmentsEntryPersistenceImpl extends BasePersistenceImpl<SegmentsEn
 
 		boolean bindType = false;
 
-		if (type == null) {
-			query.append(_FINDER_COLUMN_G_A_T_TYPE_1_SQL);
-		}
-		else if (type.equals("")) {
+		if (type.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_A_T_TYPE_3_SQL);
 		}
 		else {
@@ -3388,6 +3379,8 @@ public class SegmentsEntryPersistenceImpl extends BasePersistenceImpl<SegmentsEn
 				type, orderByComparator);
 		}
 
+		type = Objects.toString(type, "");
+
 		SegmentsEntry segmentsEntry = findByPrimaryKey(segmentsEntryId);
 
 		Session session = null;
@@ -3442,10 +3435,7 @@ public class SegmentsEntryPersistenceImpl extends BasePersistenceImpl<SegmentsEn
 
 		boolean bindType = false;
 
-		if (type == null) {
-			query.append(_FINDER_COLUMN_G_A_T_TYPE_1_SQL);
-		}
-		else if (type.equals("")) {
+		if (type.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_A_T_TYPE_3_SQL);
 		}
 		else {
@@ -3603,6 +3593,8 @@ public class SegmentsEntryPersistenceImpl extends BasePersistenceImpl<SegmentsEn
 	 */
 	@Override
 	public int countByG_A_T(long groupId, boolean active, String type) {
+		type = Objects.toString(type, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_G_A_T;
 
 		Object[] finderArgs = new Object[] { groupId, active, type };
@@ -3620,10 +3612,7 @@ public class SegmentsEntryPersistenceImpl extends BasePersistenceImpl<SegmentsEn
 
 			boolean bindType = false;
 
-			if (type == null) {
-				query.append(_FINDER_COLUMN_G_A_T_TYPE_1);
-			}
-			else if (type.equals("")) {
+			if (type.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_A_T_TYPE_3);
 			}
 			else {
@@ -3682,6 +3671,8 @@ public class SegmentsEntryPersistenceImpl extends BasePersistenceImpl<SegmentsEn
 			return countByG_A_T(groupId, active, type);
 		}
 
+		type = Objects.toString(type, "");
+
 		StringBundler query = new StringBundler(4);
 
 		query.append(_FILTER_SQL_COUNT_SEGMENTSENTRY_WHERE);
@@ -3692,10 +3683,7 @@ public class SegmentsEntryPersistenceImpl extends BasePersistenceImpl<SegmentsEn
 
 		boolean bindType = false;
 
-		if (type == null) {
-			query.append(_FINDER_COLUMN_G_A_T_TYPE_1_SQL);
-		}
-		else if (type.equals("")) {
+		if (type.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_A_T_TYPE_3_SQL);
 		}
 		else {

@@ -16,8 +16,6 @@ package com.liferay.wiki.service.persistence.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.petra.string.StringBundler;
-
 import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -44,6 +42,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.SetUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
@@ -705,6 +704,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	@Override
 	public List<WikiPage> findByUuid(String uuid, int start, int end,
 		OrderByComparator<WikiPage> orderByComparator, boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -728,7 +729,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			if ((list != null) && !list.isEmpty()) {
 				for (WikiPage wikiPage : list) {
-					if (!Objects.equals(uuid, wikiPage.getUuid())) {
+					if (!uuid.equals(wikiPage.getUuid())) {
 						list = null;
 
 						break;
@@ -752,10 +753,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -936,6 +934,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	public WikiPage[] findByUuid_PrevAndNext(long pageId, String uuid,
 		OrderByComparator<WikiPage> orderByComparator)
 		throws NoSuchPageException {
+		uuid = Objects.toString(uuid, "");
+
 		WikiPage wikiPage = findByPrimaryKey(pageId);
 
 		Session session = null;
@@ -981,10 +981,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 		boolean bindUuid = false;
 
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_UUID_1);
-		}
-		else if (uuid.equals("")) {
+		if (uuid.isEmpty()) {
 			query.append(_FINDER_COLUMN_UUID_UUID_3);
 		}
 		else {
@@ -1104,6 +1101,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	 */
 	@Override
 	public int countByUuid(String uuid) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID;
 
 		Object[] finderArgs = new Object[] { uuid };
@@ -1117,10 +1116,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -1234,6 +1230,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	@Override
 	public WikiPage fetchByUUID_G(String uuid, long groupId,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		Object[] finderArgs = new Object[] { uuid, groupId };
 
 		Object result = null;
@@ -1259,10 +1257,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_G_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_G_UUID_3);
 			}
 			else {
@@ -1346,6 +1341,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	 */
 	@Override
 	public int countByUUID_G(String uuid, long groupId) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_G;
 
 		Object[] finderArgs = new Object[] { uuid, groupId };
@@ -1359,10 +1356,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_G_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_G_UUID_3);
 			}
 			else {
@@ -1506,6 +1500,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	public List<WikiPage> findByUuid_C(String uuid, long companyId, int start,
 		int end, OrderByComparator<WikiPage> orderByComparator,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1533,7 +1529,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			if ((list != null) && !list.isEmpty()) {
 				for (WikiPage wikiPage : list) {
-					if (!Objects.equals(uuid, wikiPage.getUuid()) ||
+					if (!uuid.equals(wikiPage.getUuid()) ||
 							(companyId != wikiPage.getCompanyId())) {
 						list = null;
 
@@ -1558,10 +1554,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 			}
 			else {
@@ -1760,6 +1753,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	public WikiPage[] findByUuid_C_PrevAndNext(long pageId, String uuid,
 		long companyId, OrderByComparator<WikiPage> orderByComparator)
 		throws NoSuchPageException {
+		uuid = Objects.toString(uuid, "");
+
 		WikiPage wikiPage = findByPrimaryKey(pageId);
 
 		Session session = null;
@@ -1805,10 +1800,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 		boolean bindUuid = false;
 
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-		}
-		else if (uuid.equals("")) {
+		if (uuid.isEmpty()) {
 			query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 		}
 		else {
@@ -1934,6 +1926,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	 */
 	@Override
 	public int countByUuid_C(String uuid, long companyId) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_C;
 
 		Object[] finderArgs = new Object[] { uuid, companyId };
@@ -1947,10 +1941,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 			}
 			else {
@@ -2587,6 +2578,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	@Override
 	public List<WikiPage> findByFormat(String format, int start, int end,
 		OrderByComparator<WikiPage> orderByComparator, boolean retrieveFromCache) {
+		format = Objects.toString(format, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -2610,7 +2603,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			if ((list != null) && !list.isEmpty()) {
 				for (WikiPage wikiPage : list) {
-					if (!Objects.equals(format, wikiPage.getFormat())) {
+					if (!format.equals(wikiPage.getFormat())) {
 						list = null;
 
 						break;
@@ -2634,10 +2627,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindFormat = false;
 
-			if (format == null) {
-				query.append(_FINDER_COLUMN_FORMAT_FORMAT_1);
-			}
-			else if (format.equals("")) {
+			if (format.isEmpty()) {
 				query.append(_FINDER_COLUMN_FORMAT_FORMAT_3);
 			}
 			else {
@@ -2818,6 +2808,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	public WikiPage[] findByFormat_PrevAndNext(long pageId, String format,
 		OrderByComparator<WikiPage> orderByComparator)
 		throws NoSuchPageException {
+		format = Objects.toString(format, "");
+
 		WikiPage wikiPage = findByPrimaryKey(pageId);
 
 		Session session = null;
@@ -2863,10 +2855,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 		boolean bindFormat = false;
 
-		if (format == null) {
-			query.append(_FINDER_COLUMN_FORMAT_FORMAT_1);
-		}
-		else if (format.equals("")) {
+		if (format.isEmpty()) {
 			query.append(_FINDER_COLUMN_FORMAT_FORMAT_3);
 		}
 		else {
@@ -2986,6 +2975,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	 */
 	@Override
 	public int countByFormat(String format) {
+		format = Objects.toString(format, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_FORMAT;
 
 		Object[] finderArgs = new Object[] { format };
@@ -2999,10 +2990,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindFormat = false;
 
-			if (format == null) {
-				query.append(_FINDER_COLUMN_FORMAT_FORMAT_1);
-			}
-			else if (format.equals("")) {
+			if (format.isEmpty()) {
 				query.append(_FINDER_COLUMN_FORMAT_FORMAT_3);
 			}
 			else {
@@ -4225,6 +4213,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	public List<WikiPage> findByN_T(long nodeId, String title, int start,
 		int end, OrderByComparator<WikiPage> orderByComparator,
 		boolean retrieveFromCache) {
+		title = Objects.toString(title, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -4253,7 +4243,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 			if ((list != null) && !list.isEmpty()) {
 				for (WikiPage wikiPage : list) {
 					if ((nodeId != wikiPage.getNodeId()) ||
-							!Objects.equals(title, wikiPage.getTitle())) {
+							!title.equals(wikiPage.getTitle())) {
 						list = null;
 
 						break;
@@ -4279,10 +4269,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindTitle = false;
 
-			if (title == null) {
-				query.append(_FINDER_COLUMN_N_T_TITLE_1);
-			}
-			else if (title.equals("")) {
+			if (title.isEmpty()) {
 				query.append(_FINDER_COLUMN_N_T_TITLE_3);
 			}
 			else {
@@ -4476,6 +4463,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	public WikiPage[] findByN_T_PrevAndNext(long pageId, long nodeId,
 		String title, OrderByComparator<WikiPage> orderByComparator)
 		throws NoSuchPageException {
+		title = Objects.toString(title, "");
+
 		WikiPage wikiPage = findByPrimaryKey(pageId);
 
 		Session session = null;
@@ -4523,10 +4512,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 		boolean bindTitle = false;
 
-		if (title == null) {
-			query.append(_FINDER_COLUMN_N_T_TITLE_1);
-		}
-		else if (title.equals("")) {
+		if (title.isEmpty()) {
 			query.append(_FINDER_COLUMN_N_T_TITLE_3);
 		}
 		else {
@@ -4650,6 +4636,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	 */
 	@Override
 	public int countByN_T(long nodeId, String title) {
+		title = Objects.toString(title, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_N_T;
 
 		Object[] finderArgs = new Object[] { nodeId, title };
@@ -4665,10 +4653,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindTitle = false;
 
-			if (title == null) {
-				query.append(_FINDER_COLUMN_N_T_TITLE_1);
-			}
-			else if (title.equals("")) {
+			if (title.isEmpty()) {
 				query.append(_FINDER_COLUMN_N_T_TITLE_3);
 			}
 			else {
@@ -5348,6 +5333,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	public List<WikiPage> findByN_P(long nodeId, String parentTitle, int start,
 		int end, OrderByComparator<WikiPage> orderByComparator,
 		boolean retrieveFromCache) {
+		parentTitle = Objects.toString(parentTitle, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -5376,8 +5363,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 			if ((list != null) && !list.isEmpty()) {
 				for (WikiPage wikiPage : list) {
 					if ((nodeId != wikiPage.getNodeId()) ||
-							!Objects.equals(parentTitle,
-								wikiPage.getParentTitle())) {
+							!parentTitle.equals(wikiPage.getParentTitle())) {
 						list = null;
 
 						break;
@@ -5403,10 +5389,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindParentTitle = false;
 
-			if (parentTitle == null) {
-				query.append(_FINDER_COLUMN_N_P_PARENTTITLE_1);
-			}
-			else if (parentTitle.equals("")) {
+			if (parentTitle.isEmpty()) {
 				query.append(_FINDER_COLUMN_N_P_PARENTTITLE_3);
 			}
 			else {
@@ -5603,6 +5586,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	public WikiPage[] findByN_P_PrevAndNext(long pageId, long nodeId,
 		String parentTitle, OrderByComparator<WikiPage> orderByComparator)
 		throws NoSuchPageException {
+		parentTitle = Objects.toString(parentTitle, "");
+
 		WikiPage wikiPage = findByPrimaryKey(pageId);
 
 		Session session = null;
@@ -5650,10 +5635,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 		boolean bindParentTitle = false;
 
-		if (parentTitle == null) {
-			query.append(_FINDER_COLUMN_N_P_PARENTTITLE_1);
-		}
-		else if (parentTitle.equals("")) {
+		if (parentTitle.isEmpty()) {
 			query.append(_FINDER_COLUMN_N_P_PARENTTITLE_3);
 		}
 		else {
@@ -5777,6 +5759,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	 */
 	@Override
 	public int countByN_P(long nodeId, String parentTitle) {
+		parentTitle = Objects.toString(parentTitle, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_N_P;
 
 		Object[] finderArgs = new Object[] { nodeId, parentTitle };
@@ -5792,10 +5776,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindParentTitle = false;
 
-			if (parentTitle == null) {
-				query.append(_FINDER_COLUMN_N_P_PARENTTITLE_1);
-			}
-			else if (parentTitle.equals("")) {
+			if (parentTitle.isEmpty()) {
 				query.append(_FINDER_COLUMN_N_P_PARENTTITLE_3);
 			}
 			else {
@@ -5936,6 +5917,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	public List<WikiPage> findByN_R(long nodeId, String redirectTitle,
 		int start, int end, OrderByComparator<WikiPage> orderByComparator,
 		boolean retrieveFromCache) {
+		redirectTitle = Objects.toString(redirectTitle, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -5964,8 +5947,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 			if ((list != null) && !list.isEmpty()) {
 				for (WikiPage wikiPage : list) {
 					if ((nodeId != wikiPage.getNodeId()) ||
-							!Objects.equals(redirectTitle,
-								wikiPage.getRedirectTitle())) {
+							!redirectTitle.equals(wikiPage.getRedirectTitle())) {
 						list = null;
 
 						break;
@@ -5991,10 +5973,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindRedirectTitle = false;
 
-			if (redirectTitle == null) {
-				query.append(_FINDER_COLUMN_N_R_REDIRECTTITLE_1);
-			}
-			else if (redirectTitle.equals("")) {
+			if (redirectTitle.isEmpty()) {
 				query.append(_FINDER_COLUMN_N_R_REDIRECTTITLE_3);
 			}
 			else {
@@ -6191,6 +6170,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	public WikiPage[] findByN_R_PrevAndNext(long pageId, long nodeId,
 		String redirectTitle, OrderByComparator<WikiPage> orderByComparator)
 		throws NoSuchPageException {
+		redirectTitle = Objects.toString(redirectTitle, "");
+
 		WikiPage wikiPage = findByPrimaryKey(pageId);
 
 		Session session = null;
@@ -6238,10 +6219,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 		boolean bindRedirectTitle = false;
 
-		if (redirectTitle == null) {
-			query.append(_FINDER_COLUMN_N_R_REDIRECTTITLE_1);
-		}
-		else if (redirectTitle.equals("")) {
+		if (redirectTitle.isEmpty()) {
 			query.append(_FINDER_COLUMN_N_R_REDIRECTTITLE_3);
 		}
 		else {
@@ -6365,6 +6343,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	 */
 	@Override
 	public int countByN_R(long nodeId, String redirectTitle) {
+		redirectTitle = Objects.toString(redirectTitle, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_N_R;
 
 		Object[] finderArgs = new Object[] { nodeId, redirectTitle };
@@ -6380,10 +6360,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindRedirectTitle = false;
 
-			if (redirectTitle == null) {
-				query.append(_FINDER_COLUMN_N_R_REDIRECTTITLE_1);
-			}
-			else if (redirectTitle.equals("")) {
+			if (redirectTitle.isEmpty()) {
 				query.append(_FINDER_COLUMN_N_R_REDIRECTTITLE_3);
 			}
 			else {
@@ -11000,6 +10977,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	@Override
 	public WikiPage fetchByN_T_V(long nodeId, String title, double version,
 		boolean retrieveFromCache) {
+		title = Objects.toString(title, "");
+
 		Object[] finderArgs = new Object[] { nodeId, title, version };
 
 		Object result = null;
@@ -11028,10 +11007,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindTitle = false;
 
-			if (title == null) {
-				query.append(_FINDER_COLUMN_N_T_V_TITLE_1);
-			}
-			else if (title.equals("")) {
+			if (title.isEmpty()) {
 				query.append(_FINDER_COLUMN_N_T_V_TITLE_3);
 			}
 			else {
@@ -11119,6 +11095,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	 */
 	@Override
 	public int countByN_T_V(long nodeId, String title, double version) {
+		title = Objects.toString(title, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_N_T_V;
 
 		Object[] finderArgs = new Object[] { nodeId, title, version };
@@ -11134,10 +11112,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindTitle = false;
 
-			if (title == null) {
-				query.append(_FINDER_COLUMN_N_T_V_TITLE_1);
-			}
-			else if (title.equals("")) {
+			if (title.isEmpty()) {
 				query.append(_FINDER_COLUMN_N_T_V_TITLE_3);
 			}
 			else {
@@ -11294,6 +11269,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	public List<WikiPage> findByN_T_H(long nodeId, String title, boolean head,
 		int start, int end, OrderByComparator<WikiPage> orderByComparator,
 		boolean retrieveFromCache) {
+		title = Objects.toString(title, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -11322,7 +11299,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 			if ((list != null) && !list.isEmpty()) {
 				for (WikiPage wikiPage : list) {
 					if ((nodeId != wikiPage.getNodeId()) ||
-							!Objects.equals(title, wikiPage.getTitle()) ||
+							!title.equals(wikiPage.getTitle()) ||
 							(head != wikiPage.isHead())) {
 						list = null;
 
@@ -11349,10 +11326,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindTitle = false;
 
-			if (title == null) {
-				query.append(_FINDER_COLUMN_N_T_H_TITLE_1);
-			}
-			else if (title.equals("")) {
+			if (title.isEmpty()) {
 				query.append(_FINDER_COLUMN_N_T_H_TITLE_3);
 			}
 			else {
@@ -11565,6 +11539,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 		String title, boolean head,
 		OrderByComparator<WikiPage> orderByComparator)
 		throws NoSuchPageException {
+		title = Objects.toString(title, "");
+
 		WikiPage wikiPage = findByPrimaryKey(pageId);
 
 		Session session = null;
@@ -11612,10 +11588,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 		boolean bindTitle = false;
 
-		if (title == null) {
-			query.append(_FINDER_COLUMN_N_T_H_TITLE_1);
-		}
-		else if (title.equals("")) {
+		if (title.isEmpty()) {
 			query.append(_FINDER_COLUMN_N_T_H_TITLE_3);
 		}
 		else {
@@ -11745,6 +11718,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	 */
 	@Override
 	public int countByN_T_H(long nodeId, String title, boolean head) {
+		title = Objects.toString(title, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_N_T_H;
 
 		Object[] finderArgs = new Object[] { nodeId, title, head };
@@ -11760,10 +11735,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindTitle = false;
 
-			if (title == null) {
-				query.append(_FINDER_COLUMN_N_T_H_TITLE_1);
-			}
-			else if (title.equals("")) {
+			if (title.isEmpty()) {
 				query.append(_FINDER_COLUMN_N_T_H_TITLE_3);
 			}
 			else {
@@ -11920,6 +11892,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	public List<WikiPage> findByN_T_S(long nodeId, String title, int status,
 		int start, int end, OrderByComparator<WikiPage> orderByComparator,
 		boolean retrieveFromCache) {
+		title = Objects.toString(title, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -11948,7 +11922,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 			if ((list != null) && !list.isEmpty()) {
 				for (WikiPage wikiPage : list) {
 					if ((nodeId != wikiPage.getNodeId()) ||
-							!Objects.equals(title, wikiPage.getTitle()) ||
+							!title.equals(wikiPage.getTitle()) ||
 							(status != wikiPage.getStatus())) {
 						list = null;
 
@@ -11975,10 +11949,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindTitle = false;
 
-			if (title == null) {
-				query.append(_FINDER_COLUMN_N_T_S_TITLE_1);
-			}
-			else if (title.equals("")) {
+			if (title.isEmpty()) {
 				query.append(_FINDER_COLUMN_N_T_S_TITLE_3);
 			}
 			else {
@@ -12190,6 +12161,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	public WikiPage[] findByN_T_S_PrevAndNext(long pageId, long nodeId,
 		String title, int status, OrderByComparator<WikiPage> orderByComparator)
 		throws NoSuchPageException {
+		title = Objects.toString(title, "");
+
 		WikiPage wikiPage = findByPrimaryKey(pageId);
 
 		Session session = null;
@@ -12237,10 +12210,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 		boolean bindTitle = false;
 
-		if (title == null) {
-			query.append(_FINDER_COLUMN_N_T_S_TITLE_1);
-		}
-		else if (title.equals("")) {
+		if (title.isEmpty()) {
 			query.append(_FINDER_COLUMN_N_T_S_TITLE_3);
 		}
 		else {
@@ -12370,6 +12340,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	 */
 	@Override
 	public int countByN_T_S(long nodeId, String title, int status) {
+		title = Objects.toString(title, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_N_T_S;
 
 		Object[] finderArgs = new Object[] { nodeId, title, status };
@@ -12385,10 +12357,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindTitle = false;
 
-			if (title == null) {
-				query.append(_FINDER_COLUMN_N_T_S_TITLE_1);
-			}
-			else if (title.equals("")) {
+			if (title.isEmpty()) {
 				query.append(_FINDER_COLUMN_N_T_S_TITLE_3);
 			}
 			else {
@@ -12548,6 +12517,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	public List<WikiPage> findByN_H_P(long nodeId, boolean head,
 		String parentTitle, int start, int end,
 		OrderByComparator<WikiPage> orderByComparator, boolean retrieveFromCache) {
+		parentTitle = Objects.toString(parentTitle, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -12577,8 +12548,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 				for (WikiPage wikiPage : list) {
 					if ((nodeId != wikiPage.getNodeId()) ||
 							(head != wikiPage.isHead()) ||
-							!Objects.equals(parentTitle,
-								wikiPage.getParentTitle())) {
+							!parentTitle.equals(wikiPage.getParentTitle())) {
 						list = null;
 
 						break;
@@ -12606,10 +12576,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindParentTitle = false;
 
-			if (parentTitle == null) {
-				query.append(_FINDER_COLUMN_N_H_P_PARENTTITLE_1);
-			}
-			else if (parentTitle.equals("")) {
+			if (parentTitle.isEmpty()) {
 				query.append(_FINDER_COLUMN_N_H_P_PARENTTITLE_3);
 			}
 			else {
@@ -12820,6 +12787,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 		boolean head, String parentTitle,
 		OrderByComparator<WikiPage> orderByComparator)
 		throws NoSuchPageException {
+		parentTitle = Objects.toString(parentTitle, "");
+
 		WikiPage wikiPage = findByPrimaryKey(pageId);
 
 		Session session = null;
@@ -12869,10 +12838,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 		boolean bindParentTitle = false;
 
-		if (parentTitle == null) {
-			query.append(_FINDER_COLUMN_N_H_P_PARENTTITLE_1);
-		}
-		else if (parentTitle.equals("")) {
+		if (parentTitle.isEmpty()) {
 			query.append(_FINDER_COLUMN_N_H_P_PARENTTITLE_3);
 		}
 		else {
@@ -13000,6 +12966,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	 */
 	@Override
 	public int countByN_H_P(long nodeId, boolean head, String parentTitle) {
+		parentTitle = Objects.toString(parentTitle, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_N_H_P;
 
 		Object[] finderArgs = new Object[] { nodeId, head, parentTitle };
@@ -13017,10 +12985,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindParentTitle = false;
 
-			if (parentTitle == null) {
-				query.append(_FINDER_COLUMN_N_H_P_PARENTTITLE_1);
-			}
-			else if (parentTitle.equals("")) {
+			if (parentTitle.isEmpty()) {
 				query.append(_FINDER_COLUMN_N_H_P_PARENTTITLE_3);
 			}
 			else {
@@ -13178,6 +13143,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	public List<WikiPage> findByN_H_R(long nodeId, boolean head,
 		String redirectTitle, int start, int end,
 		OrderByComparator<WikiPage> orderByComparator, boolean retrieveFromCache) {
+		redirectTitle = Objects.toString(redirectTitle, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -13207,8 +13174,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 				for (WikiPage wikiPage : list) {
 					if ((nodeId != wikiPage.getNodeId()) ||
 							(head != wikiPage.isHead()) ||
-							!Objects.equals(redirectTitle,
-								wikiPage.getRedirectTitle())) {
+							!redirectTitle.equals(wikiPage.getRedirectTitle())) {
 						list = null;
 
 						break;
@@ -13236,10 +13202,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindRedirectTitle = false;
 
-			if (redirectTitle == null) {
-				query.append(_FINDER_COLUMN_N_H_R_REDIRECTTITLE_1);
-			}
-			else if (redirectTitle.equals("")) {
+			if (redirectTitle.isEmpty()) {
 				query.append(_FINDER_COLUMN_N_H_R_REDIRECTTITLE_3);
 			}
 			else {
@@ -13450,6 +13413,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 		boolean head, String redirectTitle,
 		OrderByComparator<WikiPage> orderByComparator)
 		throws NoSuchPageException {
+		redirectTitle = Objects.toString(redirectTitle, "");
+
 		WikiPage wikiPage = findByPrimaryKey(pageId);
 
 		Session session = null;
@@ -13499,10 +13464,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 		boolean bindRedirectTitle = false;
 
-		if (redirectTitle == null) {
-			query.append(_FINDER_COLUMN_N_H_R_REDIRECTTITLE_1);
-		}
-		else if (redirectTitle.equals("")) {
+		if (redirectTitle.isEmpty()) {
 			query.append(_FINDER_COLUMN_N_H_R_REDIRECTTITLE_3);
 		}
 		else {
@@ -13630,6 +13592,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	 */
 	@Override
 	public int countByN_H_R(long nodeId, boolean head, String redirectTitle) {
+		redirectTitle = Objects.toString(redirectTitle, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_N_H_R;
 
 		Object[] finderArgs = new Object[] { nodeId, head, redirectTitle };
@@ -13647,10 +13611,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindRedirectTitle = false;
 
-			if (redirectTitle == null) {
-				query.append(_FINDER_COLUMN_N_H_R_REDIRECTTITLE_1);
-			}
-			else if (redirectTitle.equals("")) {
+			if (redirectTitle.isEmpty()) {
 				query.append(_FINDER_COLUMN_N_H_R_REDIRECTTITLE_3);
 			}
 			else {
@@ -15992,6 +15953,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	public List<WikiPage> findByG_N_T_H(long groupId, long nodeId,
 		String title, boolean head, int start, int end,
 		OrderByComparator<WikiPage> orderByComparator, boolean retrieveFromCache) {
+		title = Objects.toString(title, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -16021,7 +15984,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 				for (WikiPage wikiPage : list) {
 					if ((groupId != wikiPage.getGroupId()) ||
 							(nodeId != wikiPage.getNodeId()) ||
-							!Objects.equals(title, wikiPage.getTitle()) ||
+							!title.equals(wikiPage.getTitle()) ||
 							(head != wikiPage.isHead())) {
 						list = null;
 
@@ -16050,10 +16013,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindTitle = false;
 
-			if (title == null) {
-				query.append(_FINDER_COLUMN_G_N_T_H_TITLE_1);
-			}
-			else if (title.equals("")) {
+			if (title.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_N_T_H_TITLE_3);
 			}
 			else {
@@ -16282,6 +16242,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 		long nodeId, String title, boolean head,
 		OrderByComparator<WikiPage> orderByComparator)
 		throws NoSuchPageException {
+		title = Objects.toString(title, "");
+
 		WikiPage wikiPage = findByPrimaryKey(pageId);
 
 		Session session = null;
@@ -16332,10 +16294,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 		boolean bindTitle = false;
 
-		if (title == null) {
-			query.append(_FINDER_COLUMN_G_N_T_H_TITLE_1);
-		}
-		else if (title.equals("")) {
+		if (title.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_N_T_H_TITLE_3);
 		}
 		else {
@@ -16505,6 +16464,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 				orderByComparator);
 		}
 
+		title = Objects.toString(title, "");
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -16528,10 +16489,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 		boolean bindTitle = false;
 
-		if (title == null) {
-			query.append(_FINDER_COLUMN_G_N_T_H_TITLE_1);
-		}
-		else if (title.equals("")) {
+		if (title.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_N_T_H_TITLE_3);
 		}
 		else {
@@ -16627,6 +16585,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 				head, orderByComparator);
 		}
 
+		title = Objects.toString(title, "");
+
 		WikiPage wikiPage = findByPrimaryKey(pageId);
 
 		Session session = null;
@@ -16682,10 +16642,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 		boolean bindTitle = false;
 
-		if (title == null) {
-			query.append(_FINDER_COLUMN_G_N_T_H_TITLE_1);
-		}
-		else if (title.equals("")) {
+		if (title.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_N_T_H_TITLE_3);
 		}
 		else {
@@ -16851,6 +16808,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	@Override
 	public int countByG_N_T_H(long groupId, long nodeId, String title,
 		boolean head) {
+		title = Objects.toString(title, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_G_N_T_H;
 
 		Object[] finderArgs = new Object[] { groupId, nodeId, title, head };
@@ -16868,10 +16827,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindTitle = false;
 
-			if (title == null) {
-				query.append(_FINDER_COLUMN_G_N_T_H_TITLE_1);
-			}
-			else if (title.equals("")) {
+			if (title.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_N_T_H_TITLE_3);
 			}
 			else {
@@ -16936,6 +16892,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 			return countByG_N_T_H(groupId, nodeId, title, head);
 		}
 
+		title = Objects.toString(title, "");
+
 		StringBundler query = new StringBundler(5);
 
 		query.append(_FILTER_SQL_COUNT_WIKIPAGE_WHERE);
@@ -16946,10 +16904,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 		boolean bindTitle = false;
 
-		if (title == null) {
-			query.append(_FINDER_COLUMN_G_N_T_H_TITLE_1);
-		}
-		else if (title.equals("")) {
+		if (title.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_N_T_H_TITLE_3);
 		}
 		else {
@@ -18153,6 +18108,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	public List<WikiPage> findByN_H_P_S(long nodeId, boolean head,
 		String parentTitle, int status, int start, int end,
 		OrderByComparator<WikiPage> orderByComparator, boolean retrieveFromCache) {
+		parentTitle = Objects.toString(parentTitle, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -18182,8 +18139,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 				for (WikiPage wikiPage : list) {
 					if ((nodeId != wikiPage.getNodeId()) ||
 							(head != wikiPage.isHead()) ||
-							!Objects.equals(parentTitle,
-								wikiPage.getParentTitle()) ||
+							!parentTitle.equals(wikiPage.getParentTitle()) ||
 							(status != wikiPage.getStatus())) {
 						list = null;
 
@@ -18212,10 +18168,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindParentTitle = false;
 
-			if (parentTitle == null) {
-				query.append(_FINDER_COLUMN_N_H_P_S_PARENTTITLE_1);
-			}
-			else if (parentTitle.equals("")) {
+			if (parentTitle.isEmpty()) {
 				query.append(_FINDER_COLUMN_N_H_P_S_PARENTTITLE_3);
 			}
 			else {
@@ -18445,6 +18398,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 		boolean head, String parentTitle, int status,
 		OrderByComparator<WikiPage> orderByComparator)
 		throws NoSuchPageException {
+		parentTitle = Objects.toString(parentTitle, "");
+
 		WikiPage wikiPage = findByPrimaryKey(pageId);
 
 		Session session = null;
@@ -18495,10 +18450,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 		boolean bindParentTitle = false;
 
-		if (parentTitle == null) {
-			query.append(_FINDER_COLUMN_N_H_P_S_PARENTTITLE_1);
-		}
-		else if (parentTitle.equals("")) {
+		if (parentTitle.isEmpty()) {
 			query.append(_FINDER_COLUMN_N_H_P_S_PARENTTITLE_3);
 		}
 		else {
@@ -18634,6 +18586,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	@Override
 	public int countByN_H_P_S(long nodeId, boolean head, String parentTitle,
 		int status) {
+		parentTitle = Objects.toString(parentTitle, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_N_H_P_S;
 
 		Object[] finderArgs = new Object[] { nodeId, head, parentTitle, status };
@@ -18651,10 +18605,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindParentTitle = false;
 
-			if (parentTitle == null) {
-				query.append(_FINDER_COLUMN_N_H_P_S_PARENTTITLE_1);
-			}
-			else if (parentTitle.equals("")) {
+			if (parentTitle.isEmpty()) {
 				query.append(_FINDER_COLUMN_N_H_P_S_PARENTTITLE_3);
 			}
 			else {
@@ -18812,6 +18763,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	public List<WikiPage> findByN_H_P_NotS(long nodeId, boolean head,
 		String parentTitle, int status, int start, int end,
 		OrderByComparator<WikiPage> orderByComparator, boolean retrieveFromCache) {
+		parentTitle = Objects.toString(parentTitle, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -18833,8 +18786,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 				for (WikiPage wikiPage : list) {
 					if ((nodeId != wikiPage.getNodeId()) ||
 							(head != wikiPage.isHead()) ||
-							!Objects.equals(parentTitle,
-								wikiPage.getParentTitle()) ||
+							!parentTitle.equals(wikiPage.getParentTitle()) ||
 							(status == wikiPage.getStatus())) {
 						list = null;
 
@@ -18863,10 +18815,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindParentTitle = false;
 
-			if (parentTitle == null) {
-				query.append(_FINDER_COLUMN_N_H_P_NOTS_PARENTTITLE_1);
-			}
-			else if (parentTitle.equals("")) {
+			if (parentTitle.isEmpty()) {
 				query.append(_FINDER_COLUMN_N_H_P_NOTS_PARENTTITLE_3);
 			}
 			else {
@@ -19096,6 +19045,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 		boolean head, String parentTitle, int status,
 		OrderByComparator<WikiPage> orderByComparator)
 		throws NoSuchPageException {
+		parentTitle = Objects.toString(parentTitle, "");
+
 		WikiPage wikiPage = findByPrimaryKey(pageId);
 
 		Session session = null;
@@ -19146,10 +19097,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 		boolean bindParentTitle = false;
 
-		if (parentTitle == null) {
-			query.append(_FINDER_COLUMN_N_H_P_NOTS_PARENTTITLE_1);
-		}
-		else if (parentTitle.equals("")) {
+		if (parentTitle.isEmpty()) {
 			query.append(_FINDER_COLUMN_N_H_P_NOTS_PARENTTITLE_3);
 		}
 		else {
@@ -19285,6 +19233,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	@Override
 	public int countByN_H_P_NotS(long nodeId, boolean head, String parentTitle,
 		int status) {
+		parentTitle = Objects.toString(parentTitle, "");
+
 		FinderPath finderPath = FINDER_PATH_WITH_PAGINATION_COUNT_BY_N_H_P_NOTS;
 
 		Object[] finderArgs = new Object[] { nodeId, head, parentTitle, status };
@@ -19302,10 +19252,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindParentTitle = false;
 
-			if (parentTitle == null) {
-				query.append(_FINDER_COLUMN_N_H_P_NOTS_PARENTTITLE_1);
-			}
-			else if (parentTitle.equals("")) {
+			if (parentTitle.isEmpty()) {
 				query.append(_FINDER_COLUMN_N_H_P_NOTS_PARENTTITLE_3);
 			}
 			else {
@@ -19475,6 +19422,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	public List<WikiPage> findByN_H_R_S(long nodeId, boolean head,
 		String redirectTitle, int status, int start, int end,
 		OrderByComparator<WikiPage> orderByComparator, boolean retrieveFromCache) {
+		redirectTitle = Objects.toString(redirectTitle, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -19504,8 +19453,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 				for (WikiPage wikiPage : list) {
 					if ((nodeId != wikiPage.getNodeId()) ||
 							(head != wikiPage.isHead()) ||
-							!Objects.equals(redirectTitle,
-								wikiPage.getRedirectTitle()) ||
+							!redirectTitle.equals(wikiPage.getRedirectTitle()) ||
 							(status != wikiPage.getStatus())) {
 						list = null;
 
@@ -19534,10 +19482,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindRedirectTitle = false;
 
-			if (redirectTitle == null) {
-				query.append(_FINDER_COLUMN_N_H_R_S_REDIRECTTITLE_1);
-			}
-			else if (redirectTitle.equals("")) {
+			if (redirectTitle.isEmpty()) {
 				query.append(_FINDER_COLUMN_N_H_R_S_REDIRECTTITLE_3);
 			}
 			else {
@@ -19767,6 +19712,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 		boolean head, String redirectTitle, int status,
 		OrderByComparator<WikiPage> orderByComparator)
 		throws NoSuchPageException {
+		redirectTitle = Objects.toString(redirectTitle, "");
+
 		WikiPage wikiPage = findByPrimaryKey(pageId);
 
 		Session session = null;
@@ -19817,10 +19764,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 		boolean bindRedirectTitle = false;
 
-		if (redirectTitle == null) {
-			query.append(_FINDER_COLUMN_N_H_R_S_REDIRECTTITLE_1);
-		}
-		else if (redirectTitle.equals("")) {
+		if (redirectTitle.isEmpty()) {
 			query.append(_FINDER_COLUMN_N_H_R_S_REDIRECTTITLE_3);
 		}
 		else {
@@ -19956,6 +19900,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	@Override
 	public int countByN_H_R_S(long nodeId, boolean head, String redirectTitle,
 		int status) {
+		redirectTitle = Objects.toString(redirectTitle, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_N_H_R_S;
 
 		Object[] finderArgs = new Object[] { nodeId, head, redirectTitle, status };
@@ -19973,10 +19919,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindRedirectTitle = false;
 
-			if (redirectTitle == null) {
-				query.append(_FINDER_COLUMN_N_H_R_S_REDIRECTTITLE_1);
-			}
-			else if (redirectTitle.equals("")) {
+			if (redirectTitle.isEmpty()) {
 				query.append(_FINDER_COLUMN_N_H_R_S_REDIRECTTITLE_3);
 			}
 			else {
@@ -20134,6 +20077,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	public List<WikiPage> findByN_H_R_NotS(long nodeId, boolean head,
 		String redirectTitle, int status, int start, int end,
 		OrderByComparator<WikiPage> orderByComparator, boolean retrieveFromCache) {
+		redirectTitle = Objects.toString(redirectTitle, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -20155,8 +20100,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 				for (WikiPage wikiPage : list) {
 					if ((nodeId != wikiPage.getNodeId()) ||
 							(head != wikiPage.isHead()) ||
-							!Objects.equals(redirectTitle,
-								wikiPage.getRedirectTitle()) ||
+							!redirectTitle.equals(wikiPage.getRedirectTitle()) ||
 							(status == wikiPage.getStatus())) {
 						list = null;
 
@@ -20185,10 +20129,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindRedirectTitle = false;
 
-			if (redirectTitle == null) {
-				query.append(_FINDER_COLUMN_N_H_R_NOTS_REDIRECTTITLE_1);
-			}
-			else if (redirectTitle.equals("")) {
+			if (redirectTitle.isEmpty()) {
 				query.append(_FINDER_COLUMN_N_H_R_NOTS_REDIRECTTITLE_3);
 			}
 			else {
@@ -20418,6 +20359,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 		boolean head, String redirectTitle, int status,
 		OrderByComparator<WikiPage> orderByComparator)
 		throws NoSuchPageException {
+		redirectTitle = Objects.toString(redirectTitle, "");
+
 		WikiPage wikiPage = findByPrimaryKey(pageId);
 
 		Session session = null;
@@ -20468,10 +20411,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 		boolean bindRedirectTitle = false;
 
-		if (redirectTitle == null) {
-			query.append(_FINDER_COLUMN_N_H_R_NOTS_REDIRECTTITLE_1);
-		}
-		else if (redirectTitle.equals("")) {
+		if (redirectTitle.isEmpty()) {
 			query.append(_FINDER_COLUMN_N_H_R_NOTS_REDIRECTTITLE_3);
 		}
 		else {
@@ -20607,6 +20547,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	@Override
 	public int countByN_H_R_NotS(long nodeId, boolean head,
 		String redirectTitle, int status) {
+		redirectTitle = Objects.toString(redirectTitle, "");
+
 		FinderPath finderPath = FINDER_PATH_WITH_PAGINATION_COUNT_BY_N_H_R_NOTS;
 
 		Object[] finderArgs = new Object[] { nodeId, head, redirectTitle, status };
@@ -20624,10 +20566,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindRedirectTitle = false;
 
-			if (redirectTitle == null) {
-				query.append(_FINDER_COLUMN_N_H_R_NOTS_REDIRECTTITLE_1);
-			}
-			else if (redirectTitle.equals("")) {
+			if (redirectTitle.isEmpty()) {
 				query.append(_FINDER_COLUMN_N_H_R_NOTS_REDIRECTTITLE_3);
 			}
 			else {
@@ -20806,6 +20745,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	public List<WikiPage> findByG_N_H_P_S(long groupId, long nodeId,
 		boolean head, String parentTitle, int status, int start, int end,
 		OrderByComparator<WikiPage> orderByComparator, boolean retrieveFromCache) {
+		parentTitle = Objects.toString(parentTitle, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -20836,8 +20777,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 					if ((groupId != wikiPage.getGroupId()) ||
 							(nodeId != wikiPage.getNodeId()) ||
 							(head != wikiPage.isHead()) ||
-							!Objects.equals(parentTitle,
-								wikiPage.getParentTitle()) ||
+							!parentTitle.equals(wikiPage.getParentTitle()) ||
 							(status != wikiPage.getStatus())) {
 						list = null;
 
@@ -20868,10 +20808,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindParentTitle = false;
 
-			if (parentTitle == null) {
-				query.append(_FINDER_COLUMN_G_N_H_P_S_PARENTTITLE_1);
-			}
-			else if (parentTitle.equals("")) {
+			if (parentTitle.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_N_H_P_S_PARENTTITLE_3);
 			}
 			else {
@@ -21114,6 +21051,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 		long nodeId, boolean head, String parentTitle, int status,
 		OrderByComparator<WikiPage> orderByComparator)
 		throws NoSuchPageException {
+		parentTitle = Objects.toString(parentTitle, "");
+
 		WikiPage wikiPage = findByPrimaryKey(pageId);
 
 		Session session = null;
@@ -21166,10 +21105,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 		boolean bindParentTitle = false;
 
-		if (parentTitle == null) {
-			query.append(_FINDER_COLUMN_G_N_H_P_S_PARENTTITLE_1);
-		}
-		else if (parentTitle.equals("")) {
+		if (parentTitle.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_N_H_P_S_PARENTTITLE_3);
 		}
 		else {
@@ -21344,6 +21280,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 				start, end, orderByComparator);
 		}
 
+		parentTitle = Objects.toString(parentTitle, "");
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -21369,10 +21307,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 		boolean bindParentTitle = false;
 
-		if (parentTitle == null) {
-			query.append(_FINDER_COLUMN_G_N_H_P_S_PARENTTITLE_1);
-		}
-		else if (parentTitle.equals("")) {
+		if (parentTitle.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_N_H_P_S_PARENTTITLE_3);
 		}
 		else {
@@ -21471,6 +21406,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 				parentTitle, status, orderByComparator);
 		}
 
+		parentTitle = Objects.toString(parentTitle, "");
+
 		WikiPage wikiPage = findByPrimaryKey(pageId);
 
 		Session session = null;
@@ -21530,10 +21467,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 		boolean bindParentTitle = false;
 
-		if (parentTitle == null) {
-			query.append(_FINDER_COLUMN_G_N_H_P_S_PARENTTITLE_1);
-		}
-		else if (parentTitle.equals("")) {
+		if (parentTitle.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_N_H_P_S_PARENTTITLE_3);
 		}
 		else {
@@ -21703,6 +21637,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	@Override
 	public int countByG_N_H_P_S(long groupId, long nodeId, boolean head,
 		String parentTitle, int status) {
+		parentTitle = Objects.toString(parentTitle, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_G_N_H_P_S;
 
 		Object[] finderArgs = new Object[] {
@@ -21724,10 +21660,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			boolean bindParentTitle = false;
 
-			if (parentTitle == null) {
-				query.append(_FINDER_COLUMN_G_N_H_P_S_PARENTTITLE_1);
-			}
-			else if (parentTitle.equals("")) {
+			if (parentTitle.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_N_H_P_S_PARENTTITLE_3);
 			}
 			else {
@@ -21795,6 +21728,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 			return countByG_N_H_P_S(groupId, nodeId, head, parentTitle, status);
 		}
 
+		parentTitle = Objects.toString(parentTitle, "");
+
 		StringBundler query = new StringBundler(6);
 
 		query.append(_FILTER_SQL_COUNT_WIKIPAGE_WHERE);
@@ -21807,10 +21742,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 		boolean bindParentTitle = false;
 
-		if (parentTitle == null) {
-			query.append(_FINDER_COLUMN_G_N_H_P_S_PARENTTITLE_1);
-		}
-		else if (parentTitle.equals("")) {
+		if (parentTitle.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_N_H_P_S_PARENTTITLE_3);
 		}
 		else {

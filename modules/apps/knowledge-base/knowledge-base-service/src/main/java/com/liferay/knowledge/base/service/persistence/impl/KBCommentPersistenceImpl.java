@@ -22,8 +22,6 @@ import com.liferay.knowledge.base.model.impl.KBCommentImpl;
 import com.liferay.knowledge.base.model.impl.KBCommentModelImpl;
 import com.liferay.knowledge.base.service.persistence.KBCommentPersistence;
 
-import com.liferay.petra.string.StringBundler;
-
 import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -42,6 +40,7 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.SetUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
@@ -182,6 +181,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	public List<KBComment> findByUuid(String uuid, int start, int end,
 		OrderByComparator<KBComment> orderByComparator,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -205,7 +206,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 
 			if ((list != null) && !list.isEmpty()) {
 				for (KBComment kbComment : list) {
-					if (!Objects.equals(uuid, kbComment.getUuid())) {
+					if (!uuid.equals(kbComment.getUuid())) {
 						list = null;
 
 						break;
@@ -229,10 +230,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -413,6 +411,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	public KBComment[] findByUuid_PrevAndNext(long kbCommentId, String uuid,
 		OrderByComparator<KBComment> orderByComparator)
 		throws NoSuchCommentException {
+		uuid = Objects.toString(uuid, "");
+
 		KBComment kbComment = findByPrimaryKey(kbCommentId);
 
 		Session session = null;
@@ -458,10 +458,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 
 		boolean bindUuid = false;
 
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_UUID_1);
-		}
-		else if (uuid.equals("")) {
+		if (uuid.isEmpty()) {
 			query.append(_FINDER_COLUMN_UUID_UUID_3);
 		}
 		else {
@@ -581,6 +578,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	@Override
 	public int countByUuid(String uuid) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID;
 
 		Object[] finderArgs = new Object[] { uuid };
@@ -594,10 +593,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -711,6 +707,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	@Override
 	public KBComment fetchByUUID_G(String uuid, long groupId,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		Object[] finderArgs = new Object[] { uuid, groupId };
 
 		Object result = null;
@@ -736,10 +734,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_G_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_G_UUID_3);
 			}
 			else {
@@ -823,6 +818,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	@Override
 	public int countByUUID_G(String uuid, long groupId) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_G;
 
 		Object[] finderArgs = new Object[] { uuid, groupId };
@@ -836,10 +833,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_G_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_G_UUID_3);
 			}
 			else {
@@ -981,6 +975,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	public List<KBComment> findByUuid_C(String uuid, long companyId, int start,
 		int end, OrderByComparator<KBComment> orderByComparator,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1008,7 +1004,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 
 			if ((list != null) && !list.isEmpty()) {
 				for (KBComment kbComment : list) {
-					if (!Objects.equals(uuid, kbComment.getUuid()) ||
+					if (!uuid.equals(kbComment.getUuid()) ||
 							(companyId != kbComment.getCompanyId())) {
 						list = null;
 
@@ -1033,10 +1029,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 			}
 			else {
@@ -1235,6 +1228,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	public KBComment[] findByUuid_C_PrevAndNext(long kbCommentId, String uuid,
 		long companyId, OrderByComparator<KBComment> orderByComparator)
 		throws NoSuchCommentException {
+		uuid = Objects.toString(uuid, "");
+
 		KBComment kbComment = findByPrimaryKey(kbCommentId);
 
 		Session session = null;
@@ -1280,10 +1275,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 
 		boolean bindUuid = false;
 
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-		}
-		else if (uuid.equals("")) {
+		if (uuid.isEmpty()) {
 			query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 		}
 		else {
@@ -1409,6 +1401,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	 */
 	@Override
 	public int countByUuid_C(String uuid, long companyId) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_C;
 
 		Object[] finderArgs = new Object[] { uuid, companyId };
@@ -1422,10 +1416,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 			}
 			else {

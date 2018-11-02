@@ -16,8 +16,6 @@ package com.liferay.reading.time.service.persistence.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.petra.string.StringBundler;
-
 import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -35,6 +33,7 @@ import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.SetUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.spring.extender.service.ServiceReference;
@@ -183,6 +182,8 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	public List<ReadingTimeEntry> findByUuid(String uuid, int start, int end,
 		OrderByComparator<ReadingTimeEntry> orderByComparator,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -206,7 +207,7 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 
 			if ((list != null) && !list.isEmpty()) {
 				for (ReadingTimeEntry readingTimeEntry : list) {
-					if (!Objects.equals(uuid, readingTimeEntry.getUuid())) {
+					if (!uuid.equals(readingTimeEntry.getUuid())) {
 						list = null;
 
 						break;
@@ -230,10 +231,7 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -416,6 +414,8 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	public ReadingTimeEntry[] findByUuid_PrevAndNext(long readingTimeEntryId,
 		String uuid, OrderByComparator<ReadingTimeEntry> orderByComparator)
 		throws NoSuchEntryException {
+		uuid = Objects.toString(uuid, "");
+
 		ReadingTimeEntry readingTimeEntry = findByPrimaryKey(readingTimeEntryId);
 
 		Session session = null;
@@ -461,10 +461,7 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 
 		boolean bindUuid = false;
 
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_UUID_1);
-		}
-		else if (uuid.equals("")) {
+		if (uuid.isEmpty()) {
 			query.append(_FINDER_COLUMN_UUID_UUID_3);
 		}
 		else {
@@ -584,6 +581,8 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 */
 	@Override
 	public int countByUuid(String uuid) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID;
 
 		Object[] finderArgs = new Object[] { uuid };
@@ -597,10 +596,7 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -715,6 +711,8 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	@Override
 	public ReadingTimeEntry fetchByUUID_G(String uuid, long groupId,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		Object[] finderArgs = new Object[] { uuid, groupId };
 
 		Object result = null;
@@ -740,10 +738,7 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_G_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_G_UUID_3);
 			}
 			else {
@@ -827,6 +822,8 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 */
 	@Override
 	public int countByUUID_G(String uuid, long groupId) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_G;
 
 		Object[] finderArgs = new Object[] { uuid, groupId };
@@ -840,10 +837,7 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_G_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_G_UUID_3);
 			}
 			else {
@@ -989,6 +983,8 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 		int start, int end,
 		OrderByComparator<ReadingTimeEntry> orderByComparator,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1016,7 +1012,7 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 
 			if ((list != null) && !list.isEmpty()) {
 				for (ReadingTimeEntry readingTimeEntry : list) {
-					if (!Objects.equals(uuid, readingTimeEntry.getUuid()) ||
+					if (!uuid.equals(readingTimeEntry.getUuid()) ||
 							(companyId != readingTimeEntry.getCompanyId())) {
 						list = null;
 
@@ -1041,10 +1037,7 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 			}
 			else {
@@ -1244,6 +1237,8 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 		long readingTimeEntryId, String uuid, long companyId,
 		OrderByComparator<ReadingTimeEntry> orderByComparator)
 		throws NoSuchEntryException {
+		uuid = Objects.toString(uuid, "");
+
 		ReadingTimeEntry readingTimeEntry = findByPrimaryKey(readingTimeEntryId);
 
 		Session session = null;
@@ -1289,10 +1284,7 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 
 		boolean bindUuid = false;
 
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-		}
-		else if (uuid.equals("")) {
+		if (uuid.isEmpty()) {
 			query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 		}
 		else {
@@ -1418,6 +1410,8 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 	 */
 	@Override
 	public int countByUuid_C(String uuid, long companyId) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_C;
 
 		Object[] finderArgs = new Object[] { uuid, companyId };
@@ -1431,10 +1425,7 @@ public class ReadingTimeEntryPersistenceImpl extends BasePersistenceImpl<Reading
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 			}
 			else {

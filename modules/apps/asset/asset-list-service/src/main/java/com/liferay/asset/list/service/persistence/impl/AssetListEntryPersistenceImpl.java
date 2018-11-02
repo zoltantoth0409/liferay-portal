@@ -22,8 +22,6 @@ import com.liferay.asset.list.model.impl.AssetListEntryImpl;
 import com.liferay.asset.list.model.impl.AssetListEntryModelImpl;
 import com.liferay.asset.list.service.persistence.AssetListEntryPersistence;
 
-import com.liferay.petra.string.StringBundler;
-
 import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -43,6 +41,7 @@ import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.SetUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
@@ -185,6 +184,8 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 	public List<AssetListEntry> findByUuid(String uuid, int start, int end,
 		OrderByComparator<AssetListEntry> orderByComparator,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -208,7 +209,7 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 
 			if ((list != null) && !list.isEmpty()) {
 				for (AssetListEntry assetListEntry : list) {
-					if (!Objects.equals(uuid, assetListEntry.getUuid())) {
+					if (!uuid.equals(assetListEntry.getUuid())) {
 						list = null;
 
 						break;
@@ -232,10 +233,7 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -417,6 +415,8 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 	public AssetListEntry[] findByUuid_PrevAndNext(long assetListEntryId,
 		String uuid, OrderByComparator<AssetListEntry> orderByComparator)
 		throws NoSuchEntryException {
+		uuid = Objects.toString(uuid, "");
+
 		AssetListEntry assetListEntry = findByPrimaryKey(assetListEntryId);
 
 		Session session = null;
@@ -462,10 +462,7 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 
 		boolean bindUuid = false;
 
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_UUID_1);
-		}
-		else if (uuid.equals("")) {
+		if (uuid.isEmpty()) {
 			query.append(_FINDER_COLUMN_UUID_UUID_3);
 		}
 		else {
@@ -585,6 +582,8 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 	 */
 	@Override
 	public int countByUuid(String uuid) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID;
 
 		Object[] finderArgs = new Object[] { uuid };
@@ -598,10 +597,7 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_UUID_3);
 			}
 			else {
@@ -716,6 +712,8 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 	@Override
 	public AssetListEntry fetchByUUID_G(String uuid, long groupId,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		Object[] finderArgs = new Object[] { uuid, groupId };
 
 		Object result = null;
@@ -741,10 +739,7 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_G_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_G_UUID_3);
 			}
 			else {
@@ -828,6 +823,8 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 	 */
 	@Override
 	public int countByUUID_G(String uuid, long groupId) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_G;
 
 		Object[] finderArgs = new Object[] { uuid, groupId };
@@ -841,10 +838,7 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_G_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_G_UUID_3);
 			}
 			else {
@@ -988,6 +982,8 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 		int start, int end,
 		OrderByComparator<AssetListEntry> orderByComparator,
 		boolean retrieveFromCache) {
+		uuid = Objects.toString(uuid, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1015,7 +1011,7 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 
 			if ((list != null) && !list.isEmpty()) {
 				for (AssetListEntry assetListEntry : list) {
-					if (!Objects.equals(uuid, assetListEntry.getUuid()) ||
+					if (!uuid.equals(assetListEntry.getUuid()) ||
 							(companyId != assetListEntry.getCompanyId())) {
 						list = null;
 
@@ -1040,10 +1036,7 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 			}
 			else {
@@ -1243,6 +1236,8 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 		String uuid, long companyId,
 		OrderByComparator<AssetListEntry> orderByComparator)
 		throws NoSuchEntryException {
+		uuid = Objects.toString(uuid, "");
+
 		AssetListEntry assetListEntry = findByPrimaryKey(assetListEntryId);
 
 		Session session = null;
@@ -1288,10 +1283,7 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 
 		boolean bindUuid = false;
 
-		if (uuid == null) {
-			query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-		}
-		else if (uuid.equals("")) {
+		if (uuid.isEmpty()) {
 			query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 		}
 		else {
@@ -1417,6 +1409,8 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 	 */
 	@Override
 	public int countByUuid_C(String uuid, long companyId) {
+		uuid = Objects.toString(uuid, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_C;
 
 		Object[] finderArgs = new Object[] { uuid, companyId };
@@ -1430,10 +1424,7 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 
 			boolean bindUuid = false;
 
-			if (uuid == null) {
-				query.append(_FINDER_COLUMN_UUID_C_UUID_1);
-			}
-			else if (uuid.equals("")) {
+			if (uuid.isEmpty()) {
 				query.append(_FINDER_COLUMN_UUID_C_UUID_3);
 			}
 			else {
@@ -2417,6 +2408,8 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 	@Override
 	public AssetListEntry fetchByG_T(long groupId, String title,
 		boolean retrieveFromCache) {
+		title = Objects.toString(title, "");
+
 		Object[] finderArgs = new Object[] { groupId, title };
 
 		Object result = null;
@@ -2444,10 +2437,7 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 
 			boolean bindTitle = false;
 
-			if (title == null) {
-				query.append(_FINDER_COLUMN_G_T_TITLE_1);
-			}
-			else if (title.equals("")) {
+			if (title.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_T_TITLE_3);
 			}
 			else {
@@ -2529,6 +2519,8 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 	 */
 	@Override
 	public int countByG_T(long groupId, String title) {
+		title = Objects.toString(title, "");
+
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_G_T;
 
 		Object[] finderArgs = new Object[] { groupId, title };
@@ -2544,10 +2536,7 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 
 			boolean bindTitle = false;
 
-			if (title == null) {
-				query.append(_FINDER_COLUMN_G_T_TITLE_1);
-			}
-			else if (title.equals("")) {
+			if (title.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_T_TITLE_3);
 			}
 			else {
@@ -2681,6 +2670,8 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 		int start, int end,
 		OrderByComparator<AssetListEntry> orderByComparator,
 		boolean retrieveFromCache) {
+		title = Objects.toString(title, "");
+
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -2725,10 +2716,7 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 
 			boolean bindTitle = false;
 
-			if (title == null) {
-				query.append(_FINDER_COLUMN_G_LIKET_TITLE_1);
-			}
-			else if (title.equals("")) {
+			if (title.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_LIKET_TITLE_3);
 			}
 			else {
@@ -2926,6 +2914,8 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 		long groupId, String title,
 		OrderByComparator<AssetListEntry> orderByComparator)
 		throws NoSuchEntryException {
+		title = Objects.toString(title, "");
+
 		AssetListEntry assetListEntry = findByPrimaryKey(assetListEntryId);
 
 		Session session = null;
@@ -2973,10 +2963,7 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 
 		boolean bindTitle = false;
 
-		if (title == null) {
-			query.append(_FINDER_COLUMN_G_LIKET_TITLE_1);
-		}
-		else if (title.equals("")) {
+		if (title.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_LIKET_TITLE_3);
 		}
 		else {
@@ -3130,6 +3117,8 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 			return findByG_LikeT(groupId, title, start, end, orderByComparator);
 		}
 
+		title = Objects.toString(title, "");
+
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -3151,10 +3140,7 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 
 		boolean bindTitle = false;
 
-		if (title == null) {
-			query.append(_FINDER_COLUMN_G_LIKET_TITLE_1);
-		}
-		else if (title.equals("")) {
+		if (title.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_LIKET_TITLE_3);
 		}
 		else {
@@ -3243,6 +3229,8 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 				orderByComparator);
 		}
 
+		title = Objects.toString(title, "");
+
 		AssetListEntry assetListEntry = findByPrimaryKey(assetListEntryId);
 
 		Session session = null;
@@ -3295,10 +3283,7 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 
 		boolean bindTitle = false;
 
-		if (title == null) {
-			query.append(_FINDER_COLUMN_G_LIKET_TITLE_1);
-		}
-		else if (title.equals("")) {
+		if (title.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_LIKET_TITLE_3);
 		}
 		else {
@@ -3452,6 +3437,8 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 	 */
 	@Override
 	public int countByG_LikeT(long groupId, String title) {
+		title = Objects.toString(title, "");
+
 		FinderPath finderPath = FINDER_PATH_WITH_PAGINATION_COUNT_BY_G_LIKET;
 
 		Object[] finderArgs = new Object[] { groupId, title };
@@ -3467,10 +3454,7 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 
 			boolean bindTitle = false;
 
-			if (title == null) {
-				query.append(_FINDER_COLUMN_G_LIKET_TITLE_1);
-			}
-			else if (title.equals("")) {
+			if (title.isEmpty()) {
 				query.append(_FINDER_COLUMN_G_LIKET_TITLE_3);
 			}
 			else {
@@ -3526,6 +3510,8 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 			return countByG_LikeT(groupId, title);
 		}
 
+		title = Objects.toString(title, "");
+
 		StringBundler query = new StringBundler(3);
 
 		query.append(_FILTER_SQL_COUNT_ASSETLISTENTRY_WHERE);
@@ -3534,10 +3520,7 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 
 		boolean bindTitle = false;
 
-		if (title == null) {
-			query.append(_FINDER_COLUMN_G_LIKET_TITLE_1);
-		}
-		else if (title.equals("")) {
+		if (title.isEmpty()) {
 			query.append(_FINDER_COLUMN_G_LIKET_TITLE_3);
 		}
 		else {
