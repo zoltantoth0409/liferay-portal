@@ -93,8 +93,7 @@ public class CalendarServiceUpgrade implements UpgradeStepRegistrator {
 			"3.0.0", "4.0.0",
 			new BaseUpgradeSQLServerDatetime(
 				new Class<?>[] {
-					CalendarBookingTable.class,
-					CalendarNotificationTemplateTable.class,
+					CalendarBookingTable.class, CalendarNotificationTemplateTable.class,
 					CalendarResourceTable.class, CalendarTable.class
 				}));
 	}
