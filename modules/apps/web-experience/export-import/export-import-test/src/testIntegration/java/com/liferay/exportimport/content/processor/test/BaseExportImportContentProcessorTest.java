@@ -490,7 +490,7 @@ public class BaseExportImportContentProcessorTest {
 	}
 
 	@Test
-	public void testExportLinksToURLSWithStopCharacters() throws Exception {
+	public void testExportLinksToURLsWithStopCharacters() throws Exception {
 		String path = RandomTestUtil.randomString();
 
 		String content = getContent("url_links.txt");
@@ -1083,8 +1083,8 @@ public class BaseExportImportContentProcessorTest {
 
 			Assert.assertTrue(
 				String.format(
-					"%s does not contain the path %s", content,
-					sb.toString()), content.contains(sb.toString()));
+					"%s does not contain the path %s", content, sb.toString()),
+				content.contains(sb.toString()));
 		}
 	}
 
