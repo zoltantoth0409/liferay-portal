@@ -152,6 +152,7 @@ public class LayoutsAdminDisplayContext {
 
 		portletURL.setParameter(
 			"mvcPath", "/select_layout_page_template_entry.jsp");
+		portletURL.setParameter("backURL", _getBackURL());
 		portletURL.setParameter("portletResource", getPortletResource());
 		portletURL.setParameter("groupId", String.valueOf(getGroupId()));
 		portletURL.setParameter(
@@ -1138,6 +1139,16 @@ public class LayoutsAdminDisplayContext {
 		return _activeLayoutSetBranchId;
 	}
 
+	private String _getBackURL() {
+		if (_backURL != null) {
+			return _backURL;
+		}
+
+		_backURL = ParamUtil.getString(_liferayPortletRequest, "backURL");
+
+		return _backURL;
+	}
+
 	private JSONObject _getBreadcrumbEntryJSONObject(
 		long plid, boolean privateLayout, String title) {
 
@@ -1367,6 +1378,7 @@ public class LayoutsAdminDisplayContext {
 	}
 
 	private Long _activeLayoutSetBranchId;
+	private String _backURL;
 	private final GroupDisplayContextHelper _groupDisplayContextHelper;
 	private Long _homePagePlid;
 	private String _homePageTitle;
