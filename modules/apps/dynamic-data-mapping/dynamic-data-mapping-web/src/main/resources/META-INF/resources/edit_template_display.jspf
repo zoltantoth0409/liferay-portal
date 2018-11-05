@@ -22,7 +22,13 @@ if (Validator.isNotNull(scriptContent)) {
 }
 %>
 
-<aui:input name="scriptContent" type="hidden" value="<%= script %>" />
+<aui:input
+	cssClass="hide"
+	label=""
+	name="scriptContent"
+	type="textarea"
+	value="<%= script %>"
+/>
 
 <liferay-ui:panel-container
 	extended="<%= true %>"
