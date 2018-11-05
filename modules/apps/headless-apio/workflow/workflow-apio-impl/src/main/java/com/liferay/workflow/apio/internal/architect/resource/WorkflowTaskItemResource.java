@@ -90,10 +90,10 @@ public class WorkflowTaskItemResource
 			"object", WorkflowTask::getOptionalAttributes,
 			nestedBuilder -> nestedBuilder.types(
 				"Object"
-			).addString(
-				"resourceType", this::_getResourceType
 			).addApplicationRelativeURL(
 				"identifier", this::_getResourceURL
+			).addString(
+				"resourceType", this::_getResourceType
 			).build()
 		).addRelatedCollection(
 			"logs", WorkflowLogIdentifier.class
