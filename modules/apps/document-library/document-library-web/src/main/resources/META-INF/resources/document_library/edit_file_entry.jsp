@@ -642,7 +642,7 @@ if (portletTitleBasedNavigation) {
 					inputValue = "<%= DLVersionNumberIncrease.NONE %>";
 				}
 
-				$('input[value=' + inputValue + ']')[0].checked=true
+				$('input[value=' + inputValue + ']')[0].checked = true;
 
 				$('#<portlet:namespace />versionDetails').toggle();
 			}
