@@ -1437,13 +1437,21 @@ public class BaseTextExportImportContentProcessor
 						portletDataContext.getCompanyId(), groupUuid);
 			}
 
-			if (groupFriendlyUrlGroup == null) {
+			if ((groupFriendlyUrlGroup == null) ||
+				groupUuid.contains(_TEMPLATE_NAME_PREFIX)) {
+
 				content = StringUtil.replaceFirst(
 					content, DATA_HANDLER_GROUP_FRIENDLY_URL,
 					group.getFriendlyURL(), groupFriendlyUrlPos);
 				content = StringUtil.replaceFirst(
 					content, StringPool.AT + groupUuid + StringPool.AT,
 					StringPool.BLANK, groupFriendlyUrlPos);
+
+				if (groupUuid.contains(_TEMPLATE_NAME_PREFIX)) {
+					boolean isPrivate = portletDataContext.isPrivateLayout();
+
+					content = _replaceTemplateLinkToLayout(content, isPrivate);
+				}
 
 				continue;
 			}
@@ -2048,6 +2056,23 @@ public class BaseTextExportImportContentProcessor
 		}
 	}
 
+	private String _replaceTemplateLinkToLayout(
+		String content, boolean layoutPrivate) {
+
+		if (layoutPrivate) {
+			content = StringUtil.replace(
+				content, DATA_HANDLER_PRIVATE_GROUP_SERVLET_MAPPING,
+				PropsValues.LAYOUT_FRIENDLY_URL_PRIVATE_GROUP_SERVLET_MAPPING);
+		}
+		else {
+			content = StringUtil.replace(
+				content, DATA_HANDLER_PRIVATE_GROUP_SERVLET_MAPPING,
+				PropsValues.LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING);
+		}
+
+		return content;
+	}
+
 	private static final String[] _DL_REFERENCE_LEGACY_STOP_STRINGS = {
 		StringPool.APOSTROPHE, StringPool.APOSTROPHE_ENCODED,
 		StringPool.CLOSE_BRACKET, StringPool.CLOSE_CURLY_BRACE,
@@ -2076,6 +2101,8 @@ public class BaseTextExportImportContentProcessor
 	private static final int _OFFSET_HREF_ATTRIBUTE = 6;
 
 	private static final int _OFFSET_SRC_ATTRIBUTE = 5;
+
+	private static final String _TEMPLATE_NAME_PREFIX = "template";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		BaseTextExportImportContentProcessor.class);
