@@ -145,7 +145,7 @@ if (organization != null) {
 				}
 				%>
 
-				<aui:input disabled="<%= true %>" name="organizationsRedirect" type="hidden" value="<%= backURL %>" />
+				<aui:input disabled="<%= true %>" name="organizationsRedirect" type="hidden" value="<%= currentURL %>" />
 				<aui:input name="deleteOrganizationIds" type="hidden" />
 
 				<c:if test="<%= showOrganizations %>">
