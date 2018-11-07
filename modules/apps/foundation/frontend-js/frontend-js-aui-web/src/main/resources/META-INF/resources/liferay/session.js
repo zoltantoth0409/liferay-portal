@@ -605,7 +605,7 @@ AUI.add(
 												event.domEvent.preventDefault();
 												instance._host.extend();
 											}
-											else if (event.domEvent.target.test('.close')) {
+											else if (event.domEvent.target.test('.close') || event.domEvent.target.test('.lexicon-icon-times')) {
 												instance._destroyBanner();
 												instance._alertClosed = true;
 											}
