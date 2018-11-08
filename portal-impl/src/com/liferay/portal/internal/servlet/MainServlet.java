@@ -750,7 +750,6 @@ public class MainServlet extends HttpServlet {
 			ServletContext servletContext = getServletContext();
 
 			servletContext.setAttribute(Globals.ACTION_SERVLET_KEY, this);
-
 			servletContext.setAttribute(
 				Globals.MODULE_PREFIXES_KEY, StringPool.EMPTY_ARRAY);
 

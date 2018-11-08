@@ -272,12 +272,12 @@ public class PortalRequestProcessor {
 		response.sendError(
 			HttpServletResponse.SC_NOT_FOUND, "Invalid path was requested");
 
-		_log.error("User ID " + request.getRemoteUser());
 		_log.error("Current URL " + PortalUtil.getCurrentURL(request));
 		_log.error("Referer " + request.getHeader("Referer"));
 		_log.error("Remote address " + request.getRemoteAddr());
+		_log.error("User ID " + request.getRemoteUser());
 
-		_log.error("Invalid path was requested :" + path);
+		_log.error("Invalid path was requested: " + path);
 
 		return null;
 	}
