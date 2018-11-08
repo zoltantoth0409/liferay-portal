@@ -42,7 +42,7 @@ public class AdvancedFileSystemStoreTest extends BaseStoreTestCase {
 	}
 
 	@Inject(
-		filter = "(&(store.type=com.liferay.portal.store.file.system.AdvancedFileSystemStore)(service.ranking=0))",
+		filter = "(&(service.ranking=0)(store.type=com.liferay.portal.store.file.system.AdvancedFileSystemStore))",
 		type = Store.class
 	)
 	private Store _store;
