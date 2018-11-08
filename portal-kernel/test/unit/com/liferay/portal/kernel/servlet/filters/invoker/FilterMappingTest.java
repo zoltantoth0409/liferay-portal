@@ -35,20 +35,21 @@ public class FilterMappingTest {
 
 	@Test
 	public void testIsMatchURLPattern() {
-		List<String> dispatchers = new ArrayList<>();
-
-		for (Dispatcher dispatcher : Dispatcher.values()) {
-			dispatchers.add(dispatcher.name());
-		}
-
-		List<String> urlPatterns = new ArrayList<>();
-
-		urlPatterns.add("/c/portal/login");
-
 		FilterMapping filterMapping = new FilterMapping(
 			StringPool.BLANK, null,
-			ProxyFactory.newDummyInstance(FilterConfig.class), urlPatterns,
-			dispatchers);
+			ProxyFactory.newDummyInstance(FilterConfig.class),
+			new ArrayList<String>() {
+				{
+					add("/c/portal/login");
+				}
+			},
+			new ArrayList<String>() {
+				{
+					for (Dispatcher dispatcher : Dispatcher.values()) {
+						add(dispatcher.name());
+					}
+				}
+			});
 
 		String uri = "/c/portal/login";
 
