@@ -111,10 +111,10 @@ public class InvokerFilterContainerImplTest {
 
 	@Test
 	public void testGetActionFilters() {
+		boolean found = false;
+
 		List<ActionFilter> actionFilters =
 			_invokerFilterContainerImpl.getActionFilters();
-
-		boolean found = false;
 
 		for (ActionFilter actionFilter : actionFilters) {
 			Class<?> clazz = actionFilter.getClass();
@@ -133,10 +133,10 @@ public class InvokerFilterContainerImplTest {
 
 	@Test
 	public void testGetEventFilters() {
+		boolean found = false;
+
 		List<EventFilter> eventFilters =
 			_invokerFilterContainerImpl.getEventFilters();
-
-		boolean found = false;
 
 		for (EventFilter eventFilter : eventFilters) {
 			Class<?> clazz = eventFilter.getClass();
@@ -155,10 +155,10 @@ public class InvokerFilterContainerImplTest {
 
 	@Test
 	public void testGetRenderFilters() {
+		boolean found = false;
+
 		List<RenderFilter> renderFilters =
 			_invokerFilterContainerImpl.getRenderFilters();
-
-		boolean found = false;
 
 		for (RenderFilter renderFilter : renderFilters) {
 			Class<?> clazz = renderFilter.getClass();
@@ -177,10 +177,10 @@ public class InvokerFilterContainerImplTest {
 
 	@Test
 	public void testGetResourceFilters() {
+		boolean found = false;
+
 		List<ResourceFilter> resourceFilters =
 			_invokerFilterContainerImpl.getResourceFilters();
-
-		boolean found = false;
 
 		for (ResourceFilter resourceFilter : resourceFilters) {
 			Class<?> clazz = resourceFilter.getClass();
