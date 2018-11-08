@@ -30,16 +30,14 @@ public class PropertiesSettingsTest {
 
 	@Before
 	public void setUp() {
-		Properties properties = new Properties() {
-			{
-				put(_SINGLE_KEY, _SINGLE_VALUE);
-				put(_MULTIPLE_KEY, _MULTIPLE_VALUES);
-			}
-		};
-
 		_propertiesSettings = new PropertiesSettings(
 			new LocationVariableResolver(null, (SettingsLocatorHelper)null),
-			properties);
+			new Properties() {
+				{
+					put(_SINGLE_KEY, _SINGLE_VALUE);
+					put(_MULTIPLE_KEY, _MULTIPLE_VALUES);
+				}
+			});
 
 		_properties = ReflectionTestUtil.getFieldValue(
 			_propertiesSettings, "_properties");
@@ -72,16 +70,14 @@ public class PropertiesSettingsTest {
 		final String expectedValue =
 			"resourceValue0,resourceValue1,resourceValue2";
 
-		Properties properties = new Properties() {
-			{
-				put(_MULTIPLE_KEY, _RESOURCE_MULTIPLE_VALUES);
-			}
-		};
-
 		PropertiesSettings propertiesSettings = new PropertiesSettings(
 			_createLocationVariableResolver(
 				_RESOURCE_MULTIPLE_VALUES, expectedValue),
-			properties);
+			new Properties() {
+				{
+					put(_MULTIPLE_KEY, _RESOURCE_MULTIPLE_VALUES);
+				}
+			});
 
 		Assert.assertArrayEquals(
 			expectedValue.split(","),
@@ -110,16 +106,14 @@ public class PropertiesSettingsTest {
 	public void testGetValueWithResourceValue() {
 		final String expectedValue = "resourceValue";
 
-		Properties properties = new Properties() {
-			{
-				put(_SINGLE_KEY, _RESOURCE_SINGLE_VALUE);
-			}
-		};
-
 		PropertiesSettings propertiesSettings = new PropertiesSettings(
 			_createLocationVariableResolver(
 				_RESOURCE_SINGLE_VALUE, expectedValue),
-			properties);
+			new Properties() {
+				{
+					put(_SINGLE_KEY, _RESOURCE_SINGLE_VALUE);
+				}
+			});
 
 		Assert.assertEquals(
 			expectedValue, propertiesSettings.getValue(_SINGLE_KEY, null));
