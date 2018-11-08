@@ -178,6 +178,9 @@ public class PortalContextLoaderListener extends ContextLoaderListener {
 		ModuleFrameworkUtilAdapter.unregisterContext(_arrayApplicationContext);
 
 		_arrayApplicationContext.close();
+
+		ClassLoaderPool.unregister(_portalServletContextName);
+		ServletContextClassLoaderPool.unregister(_portalServletContextName);
 	}
 
 	@Override
