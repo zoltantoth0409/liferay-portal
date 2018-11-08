@@ -16,6 +16,7 @@ Liferay = window.Liferay || {};
 	Liferay.namespace = function namespace(obj, path) {
 		if (path === undefined) {
 			path = obj;
+
 			obj = this;
 		}
 
