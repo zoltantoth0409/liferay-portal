@@ -30,10 +30,12 @@ public class PropertiesSettingsTest {
 
 	@Before
 	public void setUp() {
-		Properties properties = new Properties();
-
-		properties.put(_SINGLE_KEY, _SINGLE_VALUE);
-		properties.put(_MULTIPLE_KEY, _MULTIPLE_VALUES);
+		Properties properties = new Properties() {
+			{
+				put(_SINGLE_KEY, _SINGLE_VALUE);
+				put(_MULTIPLE_KEY, _MULTIPLE_VALUES);
+			}
+		};
 
 		_propertiesSettings = new PropertiesSettings(
 			new LocationVariableResolver(null, (SettingsLocatorHelper)null),
@@ -70,9 +72,11 @@ public class PropertiesSettingsTest {
 		final String expectedValue =
 			"resourceValue0,resourceValue1,resourceValue2";
 
-		Properties properties = new Properties();
-
-		properties.put(_MULTIPLE_KEY, _RESOURCE_MULTIPLE_VALUES);
+		Properties properties = new Properties() {
+			{
+				put(_MULTIPLE_KEY, _RESOURCE_MULTIPLE_VALUES);
+			}
+		};
 
 		PropertiesSettings propertiesSettings = new PropertiesSettings(
 			_createLocationVariableResolver(
@@ -106,9 +110,11 @@ public class PropertiesSettingsTest {
 	public void testGetValueWithResourceValue() {
 		final String expectedValue = "resourceValue";
 
-		Properties properties = new Properties();
-
-		properties.put(_SINGLE_KEY, _RESOURCE_SINGLE_VALUE);
+		Properties properties = new Properties() {
+			{
+				put(_SINGLE_KEY, _RESOURCE_SINGLE_VALUE);
+			}
+		};
 
 		PropertiesSettings propertiesSettings = new PropertiesSettings(
 			_createLocationVariableResolver(
