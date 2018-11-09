@@ -211,9 +211,19 @@ public class LayoutPageTemplateEntryLocalServiceImpl
 			throw new RequiredLayoutPageTemplateEntryException();
 		}
 
+		// Layout page template
+
 		layoutPageTemplateEntryPersistence.remove(layoutPageTemplateEntry);
 
-		// Prototype
+		// Resources
+
+		resourceLocalService.deleteResource(
+			layoutPageTemplateEntry.getCompanyId(),
+			LayoutPageTemplateEntry.class.getName(),
+			ResourceConstants.SCOPE_INDIVIDUAL,
+			layoutPageTemplateEntry.getLayoutPageTemplateEntryId());
+
+		// Layout prototype
 
 		long layoutPrototypeId = layoutPageTemplateEntry.getLayoutPrototypeId();
 
@@ -227,14 +237,6 @@ public class LayoutPageTemplateEntryLocalServiceImpl
 					layoutPrototypeId);
 			}
 		}
-
-		// Resources
-
-		resourceLocalService.deleteResource(
-			layoutPageTemplateEntry.getCompanyId(),
-			LayoutPageTemplateEntry.class.getName(),
-			ResourceConstants.SCOPE_INDIVIDUAL,
-			layoutPageTemplateEntry.getLayoutPageTemplateEntryId());
 
 		// Dynamic data mapping structure link
 
