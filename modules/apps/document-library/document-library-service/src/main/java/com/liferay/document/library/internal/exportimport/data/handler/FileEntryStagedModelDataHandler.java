@@ -632,15 +632,8 @@ public class FileEntryStagedModelDataHandler
 				}
 
 				if (ExportImportThreadLocal.isStagingInProcess()) {
-					ServiceContextThreadLocal.pushServiceContext(
-						serviceContext);
-
-					try {
-						_overrideFileVersion(importedFileEntry, version);
-					}
-					finally {
-						ServiceContextThreadLocal.popServiceContext();
-					}
+					_overrideFileVersion(
+						importedFileEntry, version, serviceContext);
 				}
 			}
 			else {
@@ -948,8 +941,11 @@ public class FileEntryStagedModelDataHandler
 	}
 
 	private void _overrideFileVersion(
-			final FileEntry importedFileEntry, final String version)
+			final FileEntry importedFileEntry, final String version,
+			ServiceContext serviceContext)
 		throws PortalException {
+
+		ServiceContextThreadLocal.pushServiceContext(serviceContext);
 
 		try {
 			TransactionInvokerUtil.invoke(
@@ -994,6 +990,9 @@ public class FileEntryStagedModelDataHandler
 		}
 		catch (Throwable t) {
 			throw new PortalException(t);
+		}
+		finally {
+			ServiceContextThreadLocal.popServiceContext();
 		}
 	}
 
