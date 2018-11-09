@@ -1126,10 +1126,8 @@ public class LayoutsAdminDisplayContext {
 		}
 
 		if (selLayout == null) {
-			JSONArray pagesJSONArray = _getLayoutsJSONArray(
-				0, isPrivateLayout());
-
-			layoutColumnsJSONArray.put(pagesJSONArray);
+			layoutColumnsJSONArray.put(
+				_getLayoutsJSONArray(0, isPrivateLayout()));
 
 			return layoutColumnsJSONArray;
 		}
