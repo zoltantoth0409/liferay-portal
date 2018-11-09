@@ -27,7 +27,7 @@ import com.liferay.portal.security.sso.openid.connect.OpenIdConnectServiceHandle
 import com.liferay.portal.security.sso.openid.connect.OpenIdConnectSession;
 import com.liferay.portal.security.sso.openid.connect.constants.OpenIdConnectConstants;
 import com.liferay.portal.security.sso.openid.connect.constants.OpenIdConnectWebKeys;
-import com.liferay.portal.security.sso.openid.connect.internal.StrangersNotAllowedException;
+import com.liferay.portal.security.sso.openid.connect.internal.exception.StrangersNotAllowedException;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -110,8 +110,8 @@ public class OpenIdConnectFilter extends BaseFilter {
 					httpServletRequest, httpServletResponse);
 			}
 		}
-		catch (UserEmailAddressException.MustNotUseCompanyMx |
-			   StrangersNotAllowedException e) {
+		catch (StrangersNotAllowedException |
+			   UserEmailAddressException.MustNotUseCompanyMx e) {
 
 			Class<?> clazz = e.getClass();
 
