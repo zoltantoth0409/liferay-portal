@@ -1081,6 +1081,7 @@ public class UIItemsBuilder {
 			_fileShortcut = fileShortcut;
 			_resourceBundle = resourceBundle;
 			_dlTrashUtil = dlTrashUtil;
+			_versioningStrategy = versioningStrategy;
 
 			FileEntry fileEntry = null;
 
@@ -1102,8 +1103,6 @@ public class UIItemsBuilder {
 
 			_fileVersionDisplayContextHelper =
 				new FileVersionDisplayContextHelper(fileVersion);
-
-			_versioningStrategy = versioningStrategy;
 		}
 		catch (PortalException pe) {
 			throw new SystemException(

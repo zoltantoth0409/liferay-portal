@@ -70,7 +70,6 @@ public class VersioningPolicyVersioningStrategy implements VersioningStrategy {
 
 		_dlConfiguration = ConfigurableUtil.createConfigurable(
 			DLConfiguration.class, properties);
-
 		_serviceTrackerList = ServiceTrackerListFactory.open(
 			bundleContext, VersioningPolicy.class);
 	}

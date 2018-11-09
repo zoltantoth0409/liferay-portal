@@ -95,6 +95,7 @@ public class DLAdminDisplayContext {
 
 		_liferayPortletRequest = liferayPortletRequest;
 		_liferayPortletResponse = liferayPortletResponse;
+		_versioningStrategy = versioningStrategy;
 
 		_request = liferayPortletRequest.getHttpServletRequest();
 
@@ -113,8 +114,6 @@ public class DLAdminDisplayContext {
 			WebKeys.THEME_DISPLAY);
 
 		_permissionChecker = _themeDisplay.getPermissionChecker();
-
-		_versioningStrategy = versioningStrategy;
 
 		_computeFolders();
 	}
