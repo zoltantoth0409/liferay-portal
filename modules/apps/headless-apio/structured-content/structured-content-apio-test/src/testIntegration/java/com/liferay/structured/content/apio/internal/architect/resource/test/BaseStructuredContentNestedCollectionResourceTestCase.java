@@ -194,13 +194,13 @@ public abstract class BaseStructuredContentNestedCollectionResourceTestCase {
 
 		Registry registry = RegistryUtil.getRegistry();
 
-		Collection<NestedCollectionResource> services = registry.getServices(
+		Collection<NestedCollectionResource> collection = registry.getServices(
 			NestedCollectionResource.class,
 			"(component.name=com.liferay.structured.content.apio.internal." +
 				"architect.resource." +
 					"StructuredContentNestedCollectionResource)");
 
-		Iterator<NestedCollectionResource> iterator = services.iterator();
+		Iterator<NestedCollectionResource> iterator = collection.iterator();
 
 		return iterator.next();
 	}
