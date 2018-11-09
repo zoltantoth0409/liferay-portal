@@ -39,8 +39,8 @@ public class UserPortraitTag extends StickerTag {
 	}
 
 	public void setUser(User user) {
-		putValue("title", user.getFullName());
 		putValue("imageSrc", _getPortraitURL(user));
+		putValue("title", user.getFullName());
 	}
 
 	public void setUserId(long userId) {
