@@ -96,14 +96,14 @@ public class StructureRepresentorBuilderHelperTest {
 
 		Registry registry = RegistryUtil.getRegistry();
 
-		Collection<StructureRepresentorBuilderHelper> services =
+		Collection<StructureRepresentorBuilderHelper> collection =
 			registry.getServices(
 				StructureRepresentorBuilderHelper.class,
 				"(component.name=com.liferay.structure.apio.internal.util." +
 					"StructureRepresentorBuilderHelperImpl)");
 
 		Iterator<StructureRepresentorBuilderHelper> iterator =
-			services.iterator();
+			collection.iterator();
 
 		return iterator.next();
 	}
