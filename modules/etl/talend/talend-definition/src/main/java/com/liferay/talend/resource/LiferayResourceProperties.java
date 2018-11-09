@@ -238,9 +238,10 @@ public class LiferayResourceProperties
 		LiferayConnectionProperties liferayConnectionProperties =
 			getEffectiveLiferayConnectionProperties();
 
-		resourceProperty.setHost(
-			liferayConnectionProperties.endpoint.getValue());
 		liferayConnectionProperties.webSiteProperty.setHost(
+			liferayConnectionProperties.endpoint.getValue());
+
+		resourceProperty.setHost(
 			liferayConnectionProperties.endpoint.getValue());
 
 		if (liferayConnectionProperties.siteFilter.getValue()) {
