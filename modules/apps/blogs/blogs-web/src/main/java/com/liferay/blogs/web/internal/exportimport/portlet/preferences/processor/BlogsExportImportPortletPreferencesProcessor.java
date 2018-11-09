@@ -145,8 +145,6 @@ public class BlogsExportImportPortletPreferencesProcessor
 				portletDataContext, entryElement);
 		}
 
-		// Friendly URLs
-
 		Element friendlyURLEntriesElement =
 			portletDataContext.getImportDataGroupElement(
 				FriendlyURLEntry.class);
