@@ -127,6 +127,8 @@ public class DDMFormFieldTemplateContextFactory {
 			_ddmFormRenderingContext.getProperty("dataProviderSettings"),
 			ddmFormFieldValue.getName());
 		setDDMFormFieldTemplateContextDir(ddmFormFieldTemplateContext);
+		setDDMFormFieldTemplateContextEnabled(
+			ddmFormFieldTemplateContext, ddmFormFieldEvaluationResult);
 		setDDMFormFieldTemplateContextEvaluable(
 			ddmFormFieldTemplateContext, ddmFormFieldEvaluationResult,
 			ddmFormField.getProperty("evaluable"));
@@ -211,7 +213,10 @@ public class DDMFormFieldTemplateContextFactory {
 				_getDDMFormFieldEvaluationResult(ddmFormFieldValue);
 
 			if (!_pageEnabled) {
-				ddmFormFieldEvaluationResult.setRequired(false);
+				ddmFormFieldEvaluationResult.setProperty("enabled", false);
+			}
+			else {
+				ddmFormFieldEvaluationResult.setProperty("enabled", true);
 			}
 
 			Object ddmFormFieldTemplateContext =
@@ -383,6 +388,16 @@ public class DDMFormFieldTemplateContextFactory {
 
 		ddmFormFieldTemplateContext.put(
 			"dir", LanguageUtil.get(_locale, LanguageConstants.KEY_DIR));
+	}
+
+	protected void setDDMFormFieldTemplateContextEnabled(
+		Map<String, Object> ddmFormFieldTemplateContext,
+		DDMFormFieldEvaluationResult ddmFormFieldEvaluationResult) {
+
+		ddmFormFieldTemplateContext.put(
+			"enabled",
+			GetterUtil.getBoolean((Boolean)
+				ddmFormFieldEvaluationResult.getProperty("enabled")));
 	}
 
 	protected void setDDMFormFieldTemplateContextEvaluable(
