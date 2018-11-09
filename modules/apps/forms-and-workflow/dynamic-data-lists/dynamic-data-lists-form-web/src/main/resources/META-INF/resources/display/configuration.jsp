@@ -24,6 +24,12 @@ String keywords = ParamUtil.getString(request, "keywords");
 long recordSetId = PrefsParamUtil.getLong(PortletPreferencesFactoryUtil.getPortletSetup(renderRequest), renderRequest, "recordSetId");
 
 DDLRecordSet selRecordSet = DDLRecordSetServiceUtil.fetchRecordSet(recordSetId);
+
+Group scopeGroup = themeDisplay.getScopeGroup();
+
+if (scopeGroup.isStagingGroup() && !scopeGroup.isInStagingPortlet(DDLFormPortletKeys.DYNAMIC_DATA_LISTS_FORM_ADMIN)) {
+	scopeGroupId = scopeGroup.getLiveGroupId();
+}
 %>
 
 <liferay-portlet:actionURL portletConfiguration="<%= true %>" var="configurationActionURL" />
