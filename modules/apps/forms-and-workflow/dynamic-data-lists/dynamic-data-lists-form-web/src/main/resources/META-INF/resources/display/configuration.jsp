@@ -122,6 +122,7 @@ DDLRecordSet selRecordSet = DDLRecordSetServiceUtil.fetchRecordSet(recordSetId);
 <aui:form action="<%= configurationActionURL %>" method="post" name="fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 	<aui:input name="redirect" type="hidden" value='<%= configurationRenderURL.toString() + StringPool.AMPERSAND + renderResponse.getNamespace() + "cur" + cur %>' />
+	<aui:input name="preferences--groupId--" type="hidden" value="<%= scopeGroupId %>" />
 	<aui:input name="preferences--recordSetId--" type="hidden" value="<%= recordSetId %>" />
 
 	<aui:button-row>
