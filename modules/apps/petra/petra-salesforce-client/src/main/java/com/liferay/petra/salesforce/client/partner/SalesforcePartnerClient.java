@@ -14,6 +14,8 @@
 
 package com.liferay.petra.salesforce.client.partner;
 
+import aQute.bnd.annotation.ProviderType;
+
 import com.liferay.petra.salesforce.client.SalesforceClient;
 
 import com.sforce.soap.partner.DeleteResult;
@@ -36,6 +38,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  * @author Peter Shin
  */
+@ProviderType
 public interface SalesforcePartnerClient extends SalesforceClient {
 
 	public List<SaveResult> create(SObject[] sObjects)
