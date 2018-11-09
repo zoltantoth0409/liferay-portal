@@ -891,12 +891,13 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 		String changeLog = ParamUtil.getString(
 			uploadPortletRequest, "changeLog");
 
-		boolean updateVersionDetails = ParamUtil.getBoolean(
-			uploadPortletRequest, "updateVersionDetails");
 		DLVersionNumberIncrease dlVersionNumberIncrease =
 			DLVersionNumberIncrease.valueOf(
 				ParamUtil.getString(uploadPortletRequest, "versionIncrease"),
 				DLVersionNumberIncrease.AUTOMATIC);
+
+		boolean updateVersionDetails = ParamUtil.getBoolean(
+			uploadPortletRequest, "updateVersionDetails");
 
 		if (!updateVersionDetails) {
 			dlVersionNumberIncrease = DLVersionNumberIncrease.AUTOMATIC;
