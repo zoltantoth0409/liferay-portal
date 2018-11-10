@@ -3701,7 +3701,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 		for (File file : lenientConfiguration.getFiles(Specs.satisfyAll())) {
 			final FileTree fileTree = project.zipTree(file);
 
-			Action<CopySpec> copySpec = new Action<CopySpec>() {
+			Action<CopySpec> copySpecAction = new Action<CopySpec>() {
 
 				@Override
 				public void execute(CopySpec copySpec) {
@@ -3714,7 +3714,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 			};
 
 			try {
-				project.copy(copySpec);
+				project.copy(copySpecAction);
 			}
 			catch (RuntimeException re) {
 				if (logger.isInfoEnabled()) {
