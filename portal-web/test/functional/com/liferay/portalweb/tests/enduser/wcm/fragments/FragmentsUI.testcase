@@ -139,7 +139,7 @@
 
 		<execute function="SelectFrame" locator1="FragmentEditor#PREVIEW_IFRAME" />
 
-		<execute function="AssertTextEquals" locator1="//div[@class='fragment-header']/h1[@class='title']" value1="LOREM IPSUM DOLOR SIT AMET." />
+		<execute function="AssertTextEquals" locator1="//div[@class='fragment-header']/h1[@class='title']" value1="LOREM IPSUM DOLOR SIT AMET" />
 
 		<execute function="SelectFrameTop" />
 
@@ -152,7 +152,7 @@
 
 		<execute function="SelectFrame" locator1="FragmentEditor#PREVIEW_IFRAME" />
 
-		<execute function="AssertTextEquals" locator1="//div[@class='fragment-header']/h1[@class='title']" value1="LOREM IPSUM DOLOR SIT AMET." />
+		<execute function="AssertTextEquals" locator1="//div[@class='fragment-header']/h1[@class='title']" value1="LOREM IPSUM DOLOR SIT AMET" />
 
 		<execute function="SelectFrameTop" />
 	</command>
