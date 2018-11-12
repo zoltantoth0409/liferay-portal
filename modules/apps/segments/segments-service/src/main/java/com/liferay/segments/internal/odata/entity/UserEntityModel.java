@@ -39,6 +39,7 @@ public class UserEntityModel implements EntityModel {
 
 	public UserEntityModel(List<EntityField> customFields) {
 		_entityFieldsMap = Stream.of(
+			new ComplexEntityField("customField", customFields),
 			new DateEntityField(
 				"dateModified",
 				locale -> Field.getSortableFieldName(Field.MODIFIED_DATE),
@@ -69,8 +70,7 @@ public class UserEntityModel implements EntityModel {
 			new StringEntityField("teamIds", locale -> "teamIds"),
 			new StringEntityField("userGroupIds", locale -> "userGroupIds"),
 			new StringEntityField("userId", locale -> Field.USER_ID),
-			new StringEntityField("userName", locale -> Field.USER_NAME),
-			new ComplexEntityField("customField", customFields)
+			new StringEntityField("userName", locale -> Field.USER_NAME)
 		).collect(
 			Collectors.toMap(EntityField::getName, Function.identity())
 		);
