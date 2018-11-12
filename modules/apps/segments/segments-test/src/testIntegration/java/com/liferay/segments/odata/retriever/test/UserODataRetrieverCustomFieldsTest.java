@@ -76,8 +76,8 @@ public class UserODataRetrieverCustomFieldsTest {
 		Registry registry = RegistryUtil.getRegistry();
 
 		Filter filter = registry.getFilter(
-			"(&(objectClass=" + ODataRetriever.class.getName() +
-				")(model.class.name=com.liferay.portal.kernel.model.User))");
+			"(&(model.class.name=com.liferay.portal.kernel.model.User)" +
+				"(objectClass=" + ODataRetriever.class.getName() + "))");
 
 		_serviceTracker = registry.trackServices(filter);
 
