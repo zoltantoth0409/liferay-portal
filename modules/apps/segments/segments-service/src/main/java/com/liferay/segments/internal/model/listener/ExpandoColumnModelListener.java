@@ -101,7 +101,6 @@ public class ExpandoColumnModelListener
 					_serviceRegistration = _updateRegistry(
 						_bundleContext, _serviceRegistration,
 						_userEntityFields);
-
 				});
 		}
 		catch (PortalException pe) {
