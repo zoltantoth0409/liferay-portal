@@ -17,8 +17,9 @@
 <%@ include file="/init.jsp" %>
 
 <%
-long classPK = (long)request.getAttribute("contact_information.jsp-classPK");
 String mvcActionPath = (String)request.getAttribute("contact_information.jsp-mvcActionPath");
+
+long classPK = (long)request.getAttribute("contact_information.jsp-classPK");
 
 long addressId = ParamUtil.getLong(request, "addressId");
 %>
@@ -35,8 +36,8 @@ long addressId = ParamUtil.getLong(request, "addressId");
 		data="<%=
 			new HashMap<String, Object>() {
 				{
-					put("title", LanguageUtil.get(request, "edit-address"));
 					put("primary-key", String.valueOf(addressId));
+					put("title", LanguageUtil.get(request, "edit-address"));
 				}
 			}
 		%>"
@@ -48,10 +49,10 @@ long addressId = ParamUtil.getLong(request, "addressId");
 	PortletURL portletURL = renderResponse.createActionURL();
 
 	portletURL.setParameter(ActionRequest.ACTION_NAME, mvcActionPath);
-	portletURL.setParameter("classPK", String.valueOf(classPK));
-	portletURL.setParameter("listType", ListTypeConstants.ADDRESS);
-	portletURL.setParameter("primaryKey", String.valueOf(addressId));
 	portletURL.setParameter("redirect", currentURL);
+	portletURL.setParameter("classPK", String.valueOf(classPK));
+	portletURL.setParameter("primaryKey", String.valueOf(addressId));
+	portletURL.setParameter("listType", ListTypeConstants.ADDRESS);
 
 	PortletURL makePrimaryURL = PortletURLUtil.clone(portletURL, renderResponse);
 
