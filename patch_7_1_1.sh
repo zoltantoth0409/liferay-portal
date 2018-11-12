@@ -95,6 +95,8 @@ function main {
 
 	7z a -md1024m liferay-ce-portal-tomcat-7.1.1-ga2-${timestamp}.7z liferay-ce-portal-7.1.1-ga2
 
+	tar -czf liferay-ce-portal-tomcat-7.1.1-ga2-${timestamp}.tar.gz liferay-ce-portal-7.1.1-ga2
+
 	#
 	# Decompress Wildfly.
 	#
@@ -112,6 +114,8 @@ function main {
 	cp *.lpkg liferay-ce-portal-7.1.1-ga2/osgi/marketplace
 
 	7z a -md1024m liferay-ce-portal-wildfly-7.1.1-ga2-${timestamp}.7z liferay-ce-portal-7.1.1-ga2
+
+	tar -czf liferay-ce-portal-wildfly-7.1.1-ga2-${timestamp}.tar.gz liferay-ce-portal-7.1.1-ga2
 
 	cd ..
 }
