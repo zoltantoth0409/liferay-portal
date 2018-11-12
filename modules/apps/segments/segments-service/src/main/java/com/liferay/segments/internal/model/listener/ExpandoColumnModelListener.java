@@ -197,7 +197,6 @@ public class ExpandoColumnModelListener
 							userClassNameId,
 							ExpandoTableConstants.DEFAULT_TABLE_NAME)));
 			});
-
 		columnActionableDynamicQuery.setPerformActionMethod(
 			(ActionableDynamicQuery.PerformActionMethod<ExpandoColumn>)
 				expandoColumn -> {
