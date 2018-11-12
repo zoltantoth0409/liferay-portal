@@ -230,6 +230,8 @@ public class StructuredContentNestedCollectionResource
 				"structuredContent", StructuredContentIdentifier.class,
 				this::_getStructuredContentId
 			).addLocalizedStringByLocale(
+				"label", StructuredContentField::getLocalizedLabel
+			).addLocalizedStringByLocale(
 				"value", StructuredContentField::getLocalizedValue
 			).addNested(
 				"geo", this::_getGeoJSONObject,
@@ -244,13 +246,11 @@ public class StructuredContentNestedCollectionResource
 				"link", this::_getLink
 			).addString(
 				"dataType", StructuredContentField::getDDMFormFieldDataType
-			).addLocalizedStringByLocale(
-				"label", StructuredContentField::getLocalizedLabel
-			).addString(
-				"name", StructuredContentField::getName
 			).addString(
 				"filterAndSortIdentifier",
 				StructuredContentField::getFilterAndSortIdentifier
+			).addString(
+				"name", StructuredContentField::getName
 			).build()
 		).addRelatedCollection(
 			"category", CategoryIdentifier.class
