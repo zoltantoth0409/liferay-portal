@@ -49,7 +49,7 @@ public class PortletAsyncScopeManagerImpl implements PortletAsyncScopeManager {
 
 		if (_closeable != null) {
 			throw new IllegalStateException(
-				"Allready called activateScopeContexts()");
+				"Allready called activateScopeContexts");
 		}
 
 		_closeable = ScopedBeanManagerThreadLocal.install(
