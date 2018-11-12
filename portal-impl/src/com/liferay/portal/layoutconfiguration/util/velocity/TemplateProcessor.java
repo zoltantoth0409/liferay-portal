@@ -239,7 +239,7 @@ public class TemplateProcessor implements ColumnProcessor {
 			if (value instanceof String) {
 				Object storedValue = modifiableSettings.getValue(key, null);
 
-				if (!value.equals(storedValue)) {
+				if (storedValue == null) {
 					modifiableSettings.setValue(key, (String)value);
 
 					modified = true;
@@ -248,7 +248,7 @@ public class TemplateProcessor implements ColumnProcessor {
 			else if (value instanceof String[]) {
 				Object[] storedValues = modifiableSettings.getValues(key, null);
 
-				if (!Arrays.equals((String[])value, storedValues)) {
+				if (storedValues == null) {
 					modifiableSettings.setValues(key, (String[])value);
 
 					modified = true;
