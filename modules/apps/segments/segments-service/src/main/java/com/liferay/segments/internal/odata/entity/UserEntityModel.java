@@ -37,9 +37,9 @@ public class UserEntityModel implements EntityModel {
 
 	public static final String NAME = "User";
 
-	public UserEntityModel(List<EntityField> customFields) {
+	public UserEntityModel(List<EntityField> customEntityFields) {
 		_entityFieldsMap = Stream.of(
-			new ComplexEntityField("customField", customFields),
+			new ComplexEntityField("customField", customEntityFields),
 			new DateEntityField(
 				"dateModified",
 				locale -> Field.getSortableFieldName(Field.MODIFIED_DATE),
