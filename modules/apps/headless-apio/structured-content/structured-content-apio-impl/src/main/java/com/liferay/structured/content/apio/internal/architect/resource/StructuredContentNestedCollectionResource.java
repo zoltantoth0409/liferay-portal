@@ -231,6 +231,8 @@ public class StructuredContentNestedCollectionResource
 				"structuredContent", StructuredContentIdentifier.class,
 				this::_getStructuredContentId
 			).addLocalizedStringByLocale(
+				"label", StructuredContentField::getLocalizedLabel
+			).addLocalizedStringByLocale(
 				"value", StructuredContentField::getLocalizedValue
 			).addNested(
 				"geo", this::_getGeoJSONObject,
@@ -246,15 +248,13 @@ public class StructuredContentNestedCollectionResource
 			).addString(
 				"dataType", StructuredContentField::getDDMFormFieldDataType
 			).addString(
-				"inputControl",
-				StructuredContentField::getDDMFormFieldInputControl
-			).addLocalizedStringByLocale(
-				"label", StructuredContentField::getLocalizedLabel
-			).addString(
-				"name", StructuredContentField::getName
-			).addString(
 				"filterAndSortIdentifier",
 				StructuredContentField::getFilterAndSortIdentifier
+			).addString(
+				"inputControl",
+				StructuredContentField::getDDMFormFieldInputControl
+			).addString(
+				"name", StructuredContentField::getName
 			).build()
 		).addRelatedCollection(
 			"category", CategoryIdentifier.class
