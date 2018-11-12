@@ -246,15 +246,15 @@ public class StructuredContentNestedCollectionResource
 			).addString(
 				"dataType", StructuredContentField::getDDMFormFieldDataType
 			).addString(
+				"filterAndSortIdentifier",
+				StructuredContentField::getFilterAndSortIdentifier
+			).addLocalizedStringByLocale(
 				"inputControl",
 				StructuredContentField::getDDMFormFieldInputControl
-			).addLocalizedStringByLocale(
+			).addString(
 				"label", StructuredContentField::getLocalizedLabel
 			).addString(
 				"name", StructuredContentField::getName
-			).addString(
-				"filterAndSortIdentifier",
-				StructuredContentField::getFilterAndSortIdentifier
 			).build()
 		).addRelatedCollection(
 			"category", CategoryIdentifier.class
