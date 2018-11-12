@@ -414,7 +414,8 @@ private void _updateGradleSourcePaths(String gradleVersion, EclipseModel eclipse
 
 	XmlFileContentMerger xmlFileContentMerger = eclipseClasspath.getFile()
 
-	xmlFileContentMerger.whenMerged({
+	xmlFileContentMerger.whenMerged(
+		{
 			Classpath classpath ->
 
 			for (ClasspathEntry classpathEntry : classpath.getEntries()) {
