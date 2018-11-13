@@ -16,9 +16,9 @@ package com.liferay.flags.web.internal.upgrade;
 
 import com.liferay.flags.configuration.FlagsGroupServiceConfiguration;
 import com.liferay.flags.web.internal.upgrade.v1_0_0.UpgradePortletId;
-import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
 import com.liferay.portal.configuration.persistence.upgrade.ConfigurationUpgradeStepFactory;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
+
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -39,7 +39,7 @@ public class PageFlagsWebUpgrade implements UpgradeStepRegistrator {
 			_configurationUpgradeStepFactory.createUpgradeStep(
 				"com.liferay.flags.configuration.FlagsConfiguration",
 				FlagsGroupServiceConfiguration.class.getName()));
-		}
+	}
 
 	@Reference
 	private ConfigurationUpgradeStepFactory _configurationUpgradeStepFactory;
