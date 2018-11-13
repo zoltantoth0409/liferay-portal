@@ -21,8 +21,6 @@ import com.liferay.apio.architect.pagination.PageItems;
 import com.liferay.apio.architect.test.util.pagination.PaginationRequest;
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.dynamic.data.mapping.io.DDMFormJSONDeserializer;
-import com.liferay.dynamic.data.mapping.kernel.DDMFormFieldValue;
-import com.liferay.dynamic.data.mapping.model.DDMForm;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.model.DDMStructureConstants;
 import com.liferay.dynamic.data.mapping.model.DDMTemplate;
@@ -36,7 +34,6 @@ import com.liferay.journal.service.JournalArticleLocalServiceUtil;
 import com.liferay.journal.test.util.JournalTestUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.search.filter.TermFilter;
@@ -51,7 +48,6 @@ import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.odata.filter.Filter;
 import com.liferay.portal.odata.filter.FilterParser;
 import com.liferay.portal.odata.sort.Sort;
@@ -61,8 +57,6 @@ import com.liferay.portal.test.rule.PermissionCheckerTestRule;
 import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
 import com.liferay.registry.ServiceTracker;
-
-import java.io.InputStream;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -109,51 +103,11 @@ public class StructuredContentNestedCollectionResourceFilteringTest
 		_serviceTracker.open();
 
 		_group = GroupTestUtil.addGroup();
-
-		DDMStructureTestHelper ddmStructureTestHelper =
-			new DDMStructureTestHelper(
-				PortalUtil.getClassNameId(JournalArticle.class), _group);
-
-		_ddmStructure = ddmStructureTestHelper.addStructure(
-			PortalUtil.getClassNameId(JournalArticle.class),
-			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
-			deserialize(_read("test-journal-all-fields-structure.json")),
-			StorageType.JSON.getValue(), DDMStructureConstants.TYPE_DEFAULT);
-
-		_ddmTemplate = DDMTemplateTestUtil.addTemplate(
-			_group.getGroupId(), _ddmStructure.getStructureId(),
-			PortalUtil.getClassNameId(JournalArticle.class),
-			TemplateConstants.LANG_TYPE_VM,
-			_read("test-journal-all-fields-template.xsl"), LocaleUtil.US);
 	}
 
 	@After
 	public void tearDown() {
 		_serviceTracker.close();
-	}
-
-	@Test
-	public void testBooleanFieldDataType() throws Exception {
-		DDMFormFieldValue ddmFormFieldValue = new DDMFormFieldValue();
-
-		ddmFormFieldValue.setName("MyBoolean");
-
-		String dataType = getDDMFormFieldDataType(
-			ddmFormFieldValue, _ddmStructure);
-
-		Assert.assertEquals("boolean", dataType);
-	}
-
-	@Test
-	public void testBooleanFieldInputControl() throws Exception {
-		DDMFormFieldValue ddmFormFieldValue = new DDMFormFieldValue();
-
-		ddmFormFieldValue.setName("MyBoolean");
-
-		String inputControl = getDDMFormFieldInputControl(
-			ddmFormFieldValue, _ddmStructure);
-
-		Assert.assertEquals("checkbox", inputControl);
 	}
 
 	@Test
@@ -994,6 +948,24 @@ public class StructuredContentNestedCollectionResourceFilteringTest
 
 	@Test
 	public void testGetPageItemsFilterByStructureField() throws Exception {
+		DDMStructureTestHelper ddmStructureTestHelper =
+			new DDMStructureTestHelper(
+				PortalUtil.getClassNameId(JournalArticle.class), _group);
+
+		DDMStructure ddmStructure = ddmStructureTestHelper.addStructure(
+			PortalUtil.getClassNameId(JournalArticle.class),
+			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
+			deserialize(
+				_ddmFormJSONDeserializer,
+				read("test-journal-all-fields-structure.json")),
+			StorageType.JSON.getValue(), DDMStructureConstants.TYPE_DEFAULT);
+
+		DDMTemplate ddmTemplate = DDMTemplateTestUtil.addTemplate(
+			_group.getGroupId(), ddmStructure.getStructureId(),
+			PortalUtil.getClassNameId(JournalArticle.class),
+			TemplateConstants.LANG_TYPE_VM,
+			read("test-journal-all-fields-template.xsl"), LocaleUtil.US);
+
 		Map<Locale, String> stringMap1 = new HashMap<>();
 
 		stringMap1.put(LocaleUtil.getDefault(), RandomTestUtil.randomString());
@@ -1002,8 +974,8 @@ public class StructuredContentNestedCollectionResourceFilteringTest
 			JournalArticleLocalServiceUtil.addArticle(
 				TestPropsValues.getUser().getUserId(), _group.getGroupId(),
 				JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID, stringMap1,
-				null, _read("test-journal-all-fields-content.xml"),
-				_ddmStructure.getStructureKey(), _ddmTemplate.getTemplateKey(),
+				null, read("test-journal-all-fields-content.xml"),
+				ddmStructure.getStructureKey(), ddmTemplate.getTemplateKey(),
 				ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 
 		FilterParser filterParser = _getFilterParser();
@@ -1014,7 +986,7 @@ public class StructuredContentNestedCollectionResourceFilteringTest
 			new Filter(
 				filterParser.parse(
 					StringBundler.concat(
-						"(values/_", _ddmStructure.getStructureId(),
+						"(values/_", ddmStructure.getStructureId(),
 						StringPool.UNDERLINE, "MyText eq ",
 						"'TextFieldValue_us')"))),
 			Sort.emptySort());
@@ -1677,53 +1649,8 @@ public class StructuredContentNestedCollectionResourceFilteringTest
 		Assert.assertEquals("title value", termQuery.getValue());
 	}
 
-	@Test
-	public void testIntegerFieldInputControlIsNull() throws Exception {
-		DDMFormFieldValue ddmFormFieldValue = new DDMFormFieldValue();
-
-		ddmFormFieldValue.setName("MyInteger");
-
-		String inputControl = getDDMFormFieldInputControl(
-			ddmFormFieldValue, _ddmStructure);
-
-		Assert.assertNull(inputControl);
-	}
-
-	@Test
-	public void testLinkToPageFieldDataType() throws Exception {
-		DDMFormFieldValue ddmFormFieldValue = new DDMFormFieldValue();
-
-		ddmFormFieldValue.setName("MyLinkToPage");
-
-		String dataType = getDDMFormFieldDataType(
-			ddmFormFieldValue, _ddmStructure);
-
-		Assert.assertEquals("url", dataType);
-	}
-
-	protected DDMForm deserialize(String content) {
-		try {
-			return _ddmFormJSONDeserializer.deserialize(content);
-		}
-		catch (PortalException pe) {
-			throw new RuntimeException(pe);
-		}
-	}
-
 	private FilterParser _getFilterParser() {
 		return _serviceTracker.getService();
-	}
-
-	private String _read(String fileName) throws Exception {
-		Class<?> clazz = getClass();
-
-		ClassLoader classLoader = clazz.getClassLoader();
-
-		InputStream inputStream = classLoader.getResourceAsStream(
-			"/com/liferay/structured/content/apio/internal/architect/reso" +
-				"urce/test/" + fileName);
-
-		return StringUtil.read(inputStream);
 	}
 
 	private static final AcceptLanguage _acceptLanguage =
@@ -1732,9 +1659,6 @@ public class StructuredContentNestedCollectionResourceFilteringTest
 
 	@Inject
 	private DDMFormJSONDeserializer _ddmFormJSONDeserializer;
-
-	private DDMStructure _ddmStructure;
-	private DDMTemplate _ddmTemplate;
 
 	@DeleteAfterTestRun
 	private Group _group;
