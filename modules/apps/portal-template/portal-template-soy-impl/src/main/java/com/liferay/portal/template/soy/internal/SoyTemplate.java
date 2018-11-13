@@ -85,9 +85,9 @@ public class SoyTemplate extends AbstractMultiResourceTemplate {
 	@Override
 	public Object compute(
 		String key,
-		BiFunction<? super String, ? super Object, ?> remappingFunction) {
+		BiFunction<? super String, ? super Object, ?> remappingBiFunction) {
 
-		return _soyContextImpl.compute(key, remappingFunction);
+		return _soyContextImpl.compute(key, remappingBiFunction);
 	}
 
 	@Override
@@ -100,9 +100,9 @@ public class SoyTemplate extends AbstractMultiResourceTemplate {
 	@Override
 	public Object computeIfPresent(
 		String key,
-		BiFunction<? super String, ? super Object, ?> remappingFunction) {
+		BiFunction<? super String, ? super Object, ?> remappingBiFunction) {
 
-		return _soyContextImpl.computeIfPresent(key, remappingFunction);
+		return _soyContextImpl.computeIfPresent(key, remappingBiFunction);
 	}
 
 	@Override
@@ -118,9 +118,9 @@ public class SoyTemplate extends AbstractMultiResourceTemplate {
 	@Override
 	public Object merge(
 		String key, Object value,
-		BiFunction<? super Object, ? super Object, ?> remappingFunction) {
+		BiFunction<? super Object, ? super Object, ?> remappingBiFunction) {
 
-		return _soyContextImpl.merge(key, value, remappingFunction);
+		return _soyContextImpl.merge(key, value, remappingBiFunction);
 	}
 
 	@Override
