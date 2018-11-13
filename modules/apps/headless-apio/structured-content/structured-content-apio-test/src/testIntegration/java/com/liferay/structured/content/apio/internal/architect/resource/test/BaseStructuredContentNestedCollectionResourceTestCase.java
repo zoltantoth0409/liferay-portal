@@ -45,6 +45,7 @@ import java.lang.reflect.Method;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -156,6 +157,25 @@ public abstract class BaseStructuredContentNestedCollectionResourceTestCase {
 
 		return (com.liferay.portal.kernel.search.filter.Filter)method.invoke(
 			nestedCollectionResource, filter, locale);
+	}
+
+	protected List<StructuredContentField> getStructuredContentFields(
+			JournalArticleWrapper journalArticleWrapper)
+		throws Exception {
+
+		NestedCollectionResource nestedCollectionResource =
+			_getNestedCollectionResource();
+
+		Class<? extends NestedCollectionResource> clazz =
+			nestedCollectionResource.getClass();
+
+		Method method = clazz.getDeclaredMethod(
+			"_getStructuredContentFields", JournalArticle.class);
+
+		method.setAccessible(true);
+
+		return (List<StructuredContentField>)method.invoke(
+			nestedCollectionResource, journalArticleWrapper);
 	}
 
 	protected ThemeDisplay getThemeDisplay(Group group, Locale locale)
