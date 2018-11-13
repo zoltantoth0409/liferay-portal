@@ -212,12 +212,7 @@ public class DDMFormFieldTemplateContextFactory {
 			DDMFormFieldEvaluationResult ddmFormFieldEvaluationResult =
 				_getDDMFormFieldEvaluationResult(ddmFormFieldValue);
 
-			if (!_pageEnabled) {
-				ddmFormFieldEvaluationResult.setProperty("enabled", false);
-			}
-			else {
-				ddmFormFieldEvaluationResult.setProperty("enabled", true);
-			}
+			ddmFormFieldEvaluationResult.setProperty("enabled", _pageEnabled);
 
 			Object ddmFormFieldTemplateContext =
 				createDDMFormFieldTemplateContext(
