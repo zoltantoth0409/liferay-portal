@@ -199,6 +199,7 @@ public class SiteNavigationMenuItemStagedModelDataHandler
 			siteNavigationMenuItem, importedSiteNavigationMenuItem);
 	}
 
+	@Override
 	protected StagedModelRepository<SiteNavigationMenuItem>
 		getStagedModelRepository() {
 
