@@ -21,4 +21,6 @@ importFiles {
 
 transformImportedFiles {
 	enabled = false
+
+	setDependsOn([])
 }
