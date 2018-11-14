@@ -107,8 +107,8 @@ public class SortParserImpl implements SortParser {
 					EntityField.Type.COMPLEX, entityField.getType())) {
 
 				throw new InvalidSortException(
-					"Unable to sort because: " + fieldName +
-						" is not a complex field");
+					"Unable to sort because \"" + fieldName +
+						"\" is not a complex field");
 			}
 
 			ComplexEntityField complexEntityField =
