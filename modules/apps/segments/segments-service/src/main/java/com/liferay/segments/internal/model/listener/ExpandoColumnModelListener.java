@@ -185,7 +185,7 @@ public class ExpandoColumnModelListener
 			ExpandoBridgeIndexerUtil.encodeFieldName(
 				expandoColumn.getName(), indexType);
 
-		EntityField entityField;
+		EntityField entityField = null;
 
 		if (expandoColumn.getType() == ExpandoColumnConstants.DATE) {
 			entityField = new DateEntityField(
