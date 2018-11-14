@@ -111,9 +111,10 @@ public class UserODataRetrieverCustomFieldsTest {
 
 		User user1 = _addUser(expandoColumn.getName(), columnValue);
 
+		_users.add(user1);
+
 		User user2 = UserTestUtil.addUser();
 
-		_users.add(user1);
 		_users.add(user2);
 
 		String filterString = String.format(
@@ -146,9 +147,10 @@ public class UserODataRetrieverCustomFieldsTest {
 
 		User user1 = _addUser(expandoColumn.getName(), columnValue);
 
+		_users.add(user1);
+
 		User user2 = UserTestUtil.addUser();
 
-		_users.add(user1);
 		_users.add(user2);
 
 		String filterString = String.format(
@@ -190,9 +192,9 @@ public class UserODataRetrieverCustomFieldsTest {
 
 		User user1 = _addUser(expandoColumn.getName(), columnValue);
 
-		User user2 = UserTestUtil.addUser();
-
 		_users.add(user1);
+
+		User user2 = UserTestUtil.addUser();
 
 		_users.add(user2);
 
@@ -232,9 +234,9 @@ public class UserODataRetrieverCustomFieldsTest {
 
 		User user1 = _addUser(expandoColumn.getName(), columnValue);
 
-		User user2 = UserTestUtil.addUser();
-
 		_users.add(user1);
+
+		User user2 = UserTestUtil.addUser();
 
 		_users.add(user2);
 
@@ -261,9 +263,10 @@ public class UserODataRetrieverCustomFieldsTest {
 
 		User user1 = _addUser(expandoColumn.getName(), columnValue);
 
+		_users.add(user1);
+
 		User user2 = UserTestUtil.addUser();
 
-		_users.add(user1);
 		_users.add(user2);
 
 		String filterString = StringBundler.concat(
@@ -296,9 +299,10 @@ public class UserODataRetrieverCustomFieldsTest {
 
 		User user1 = _addUser(expandoColumn.getName(), columnValue);
 
+		_users.add(user1);
+
 		User user2 = UserTestUtil.addUser();
 
-		_users.add(user1);
 		_users.add(user2);
 
 		String filterString = StringBundler.concat(
