@@ -102,7 +102,6 @@ public class SegmentsEntryProviderTest {
 
 		SegmentsEntry segmentsEntry1 = SegmentsTestUtil.addSegmentsEntry(
 			_group.getGroupId(), User.class.getName(), _user1.getUserId());
-
 		SegmentsEntry segmentsEntry2 = SegmentsTestUtil.addSegmentsEntry(
 			_group.getGroupId(),
 			String.format("(firstName eq '%s')", _user1.getFirstName()),
@@ -110,7 +109,6 @@ public class SegmentsEntryProviderTest {
 
 		SegmentsTestUtil.addSegmentsEntry(
 			_group.getGroupId(), User.class.getName(), _user2.getUserId());
-
 		SegmentsTestUtil.addSegmentsEntry(
 			_group.getGroupId(),
 			String.format("(firstName eq '%s')", _user2.getFirstName()),
