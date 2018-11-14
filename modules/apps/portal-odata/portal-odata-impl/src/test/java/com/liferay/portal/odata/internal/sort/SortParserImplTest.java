@@ -361,18 +361,18 @@ public class SortParserImplTest {
 		@Override
 		public Map<String, EntityField> getEntityFieldsMap() {
 			return Stream.of(
-				new StringEntityField(
-					"fieldExternal", locale -> "fieldInternal"),
-				new StringEntityField(
-					"fieldExternal1", locale -> "fieldInternal1"),
-				new StringEntityField(
-					"fieldExternal2", locale -> "fieldInternal2"),
 				new ComplexEntityField(
 					"complexFieldExternal",
 					Collections.singletonList(
 						new StringEntityField(
 							"fieldInsideComplexFieldExternal",
-							locale -> "fieldInsideComplexFieldInternal")))
+							locale -> "fieldInsideComplexFieldInternal"))),
+				new StringEntityField(
+					"fieldExternal", locale -> "fieldInternal"),
+				new StringEntityField(
+					"fieldExternal1", locale -> "fieldInternal1"),
+				new StringEntityField(
+					"fieldExternal2", locale -> "fieldInternal2")
 			).collect(
 				Collectors.toMap(EntityField::getName, Function.identity())
 			);
