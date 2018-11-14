@@ -386,7 +386,7 @@ public class DefaultDLViewFileVersionDisplayContext
 			}
 			catch (Exception e) {
 				_log.error(
-					"Exception trying to render preview for file version: " +
+					"Unable to render preview for file version: " +
 						_fileVersion.getTitle());
 
 				JSPRenderer jspRenderer = new JSPRenderer(
