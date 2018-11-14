@@ -99,7 +99,7 @@ public class BuildDatabaseUtil {
 				if (process.exitValue() != 0) {
 					throw new RuntimeException(
 						JenkinsResultsParserUtil.combine(
-							"Failed to download ",
+							"Unable to download ",
 							BuildDatabase.BUILD_DATABASE_FILE_NAME));
 				}
 
