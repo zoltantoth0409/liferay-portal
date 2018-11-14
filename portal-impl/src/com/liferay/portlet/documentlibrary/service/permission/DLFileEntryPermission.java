@@ -40,6 +40,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.kernel.workflow.WorkflowInstance;
 import com.liferay.portal.kernel.workflow.WorkflowInstanceManagerUtil;
+import com.liferay.portal.kernel.workflow.WorkflowTaskManagerUtil;
 import com.liferay.portal.kernel.workflow.permission.WorkflowPermissionUtil;
 import com.liferay.portal.util.PropsValues;
 
@@ -126,6 +127,7 @@ public class DLFileEntryPermission implements BaseModelPermissionChecker {
 			if (actionId.equals(ActionKeys.VIEW) && !hasOwnerPermission &&
 				_hasActiveWorkflowInstance(
 					permissionChecker.getCompanyId(), dlFileEntry.getGroupId(),
+					permissionChecker.getUserId(),
 					currentDLFileVersion.getFileVersionId())) {
 
 				return false;
@@ -225,7 +227,7 @@ public class DLFileEntryPermission implements BaseModelPermissionChecker {
 	}
 
 	private static boolean _hasActiveWorkflowInstance(
-			long companyId, long groupId, long fileVersionId)
+			long companyId, long groupId, long userId, long fileVersionId)
 		throws WorkflowException {
 
 		WorkflowInstanceLink workflowInstanceLink =
@@ -242,6 +244,15 @@ public class DLFileEntryPermission implements BaseModelPermissionChecker {
 				companyId, workflowInstanceLink.getWorkflowInstanceId());
 
 		if (workflowInstance.isComplete()) {
+			return false;
+		}
+
+		int userTasksCount =
+			WorkflowTaskManagerUtil.getWorkflowTaskCountByWorkflowInstance(
+				companyId, userId, workflowInstanceLink.getWorkflowInstanceId(),
+				null);
+
+		if (userTasksCount > 0) {
 			return false;
 		}
 
