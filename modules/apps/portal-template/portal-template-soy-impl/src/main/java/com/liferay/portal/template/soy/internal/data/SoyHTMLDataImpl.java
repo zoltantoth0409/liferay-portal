@@ -25,15 +25,15 @@ import com.liferay.portal.template.soy.data.SoyHTMLData;
 public class SoyHTMLDataImpl implements SoyHTMLData {
 
 	public SoyHTMLDataImpl(String html) {
-		_html = UnsafeSanitizedContentOrdainer.ordainAsSafe(
+		_sanitizedContent = UnsafeSanitizedContentOrdainer.ordainAsSafe(
 			html, SanitizedContent.ContentKind.HTML);
 	}
 
 	@Override
 	public Object getValue() {
-		return _html;
+		return _sanitizedContent;
 	}
 
-	private final SanitizedContent _html;
+	private final SanitizedContent _sanitizedContent;
 
 }
