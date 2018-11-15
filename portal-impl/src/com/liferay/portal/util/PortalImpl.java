@@ -4648,7 +4648,6 @@ public class PortalImpl implements Portal {
 			WebKeys.PORTLET_ID);
 
 		PortletConfig portletConfig = PortletConfigFactoryUtil.get(portletId);
-
 		Locale locale = portletRequest.getLocale();
 
 		String portletTitle = _getPortletTitle(
