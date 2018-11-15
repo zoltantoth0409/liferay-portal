@@ -49,6 +49,12 @@ public class ExceptionTranslator {
 			Object currentObject = session.get(
 				object.getClass(), baseModel.getPrimaryKeyObj());
 
+			BaseModel<?> currentObjectBaseModel = (BaseModel<?>)currentObject;
+
+			currentObject = currentObjectBaseModel.clone();
+
+			object = baseModel.clone();
+
 			JSONSerializer jsonSerializer =
 				JSONFactoryUtil.createJSONSerializer();
 
