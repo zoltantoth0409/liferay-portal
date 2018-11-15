@@ -50,6 +50,7 @@ public class UpgradePortletPreferences extends UpgradeProcess {
 
 			while (rs1.next()) {
 				long companyId = rs1.getLong("companyId");
+
 				String preferences = rs1.getString("preferences");
 
 				if (preferences.equals(PortletConstants.DEFAULT_PREFERENCES)) {
