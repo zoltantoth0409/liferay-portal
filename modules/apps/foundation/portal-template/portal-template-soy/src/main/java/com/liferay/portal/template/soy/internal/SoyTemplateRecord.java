@@ -201,6 +201,9 @@ public class SoyTemplateRecord extends SoyAbstractValue implements SoyRecord {
 		else if (object instanceof Double) {
 			return FloatData.forValue((Double)object);
 		}
+		else if (object instanceof Enum) {
+			return StringData.forValue(object.toString());
+		}
 		else if (object instanceof Float) {
 			return FloatData.forValue((Float)object);
 		}
