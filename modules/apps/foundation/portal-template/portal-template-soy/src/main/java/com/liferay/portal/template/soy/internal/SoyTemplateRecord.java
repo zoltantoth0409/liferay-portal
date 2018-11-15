@@ -31,6 +31,7 @@ import com.google.template.soy.data.restricted.StringData;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.template.soy.utils.SoyHTMLContextValue;
 
 import java.io.IOException;
 
@@ -44,7 +45,6 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import com.liferay.portal.template.soy.utils.SoyHTMLContextValue;
 import org.apache.commons.lang3.ClassUtils;
 
 /**
