@@ -44,6 +44,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+import com.liferay.portal.template.soy.utils.SoyHTMLContextValue;
 import org.apache.commons.lang3.ClassUtils;
 
 /**
@@ -261,6 +262,9 @@ public class SoyTemplateRecord extends SoyAbstractValue implements SoyRecord {
 		}
 		else if (object instanceof SoyData) {
 			return (SoyData)object;
+		}
+		else if (object instanceof SoyHTMLContextValue) {
+			return StringData.forValue(object.toString());
 		}
 		else if (object instanceof SoyRawData) {
 			SoyRawData soyRawData = (SoyRawData)object;
