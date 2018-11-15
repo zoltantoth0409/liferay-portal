@@ -65,11 +65,11 @@ AUI.add(
 
 						instance._moveToolbar.on('click', instance._afterMoveClick, instance);
 
-						instance._leftBox.on('focus', A.rbind('_onSelectFocus', instance, instance._rightBox));
 						instance._leftBox.after('valuechange', A.bind('_toggleBtnSort', instance));
+						instance._leftBox.on('focus', A.rbind('_onSelectFocus', instance, instance._rightBox));
 
-						instance._rightBox.on('focus', A.rbind('_onSelectFocus', instance, instance._leftBox));
 						instance._rightBox.after('valuechange', A.bind('_toggleBtnSort', instance));
+						instance._rightBox.on('focus', A.rbind('_onSelectFocus', instance, instance._leftBox));
 					},
 
 					sortBox: function(box) {
