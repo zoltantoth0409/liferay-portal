@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.model.ListType;
 import com.liferay.portal.service.base.ListTypeLocalServiceBaseImpl;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author Brian Wing Shun Chan
@@ -76,7 +77,7 @@ public class ListTypeLocalServiceImpl extends ListTypeLocalServiceBaseImpl {
 	public void validate(long listTypeId, String type) throws PortalException {
 		ListType listType = listTypePersistence.fetchByPrimaryKey(listTypeId);
 
-		if ((listType == null) || !type.equals(listType.getType())) {
+		if ((listType == null) || !Objects.equals(listType.getType(), type)) {
 			NoSuchListTypeException nslte = new NoSuchListTypeException();
 
 			nslte.setType(type);
