@@ -7,4 +7,31 @@ window.Liferay = {
 	}
 };
 
+window.AUI = () => (
+	{
+		use: (_, callback) => callback(
+			{
+				LiferayAlloyEditor: () => (
+					{
+						render: () => (
+							{
+								getHTML: () => ''
+							}
+						)
+					}
+				),
+				one: () => (
+					{
+						innerHTML: () => {}
+					}
+				)
+			}
+		)
+	}
+);
+
+window.AlloyEditor = {
+	Selections: []
+};
+
 window.themeDisplay = window.Liferay.ThemeDisplay;
