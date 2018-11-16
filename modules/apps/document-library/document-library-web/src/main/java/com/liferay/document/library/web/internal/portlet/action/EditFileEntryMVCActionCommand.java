@@ -887,6 +887,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 
 		boolean majorVersion = ParamUtil.getBoolean(
 			uploadPortletRequest, "majorVersion");
+
 		boolean updateVersionDetails = ParamUtil.getBoolean(
 			uploadPortletRequest, "updateVersionDetails");
 
