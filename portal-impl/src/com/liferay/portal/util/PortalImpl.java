@@ -972,8 +972,8 @@ public class PortalImpl implements Portal {
 			if (!securityMode.equals("ip") && _log.isWarnEnabled()) {
 				_log.warn(
 					StringBundler.concat(
-						"Invalid ", PropsKeys.REDIRECT_URL_SECURITY_MODE,
-						" property value was configured: ", securityMode));
+						"Property \"", PropsKeys.REDIRECT_URL_SECURITY_MODE,
+						"\" has invalid value: ", securityMode));
 			}
 
 			String[] allowedIps = PropsValues.REDIRECT_URL_IPS_ALLOWED;
