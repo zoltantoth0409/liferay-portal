@@ -629,7 +629,7 @@ if (portletTitleBasedNavigation) {
  				if (<%= dlVersionNumberIncrease == DLVersionNumberIncrease.AUTOMATIC %>) {
 					inputValue = "<%= DLVersionNumberIncrease.NONE %>";
 				}
- 				$('input[value=' + inputValue + ']')[0].checked=true
+ 				$('input[value=' + inputValue + ']')[0].checked = true;
 
 				$('#<portlet:namespace />versionDetails').show();
 			}
