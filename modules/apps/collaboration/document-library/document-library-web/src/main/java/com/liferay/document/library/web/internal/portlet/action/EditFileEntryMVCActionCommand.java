@@ -947,8 +947,15 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 			uploadPortletRequest, "description");
 		String changeLog = ParamUtil.getString(
 			uploadPortletRequest, "changeLog");
+
 		boolean majorVersion = ParamUtil.getBoolean(
 			uploadPortletRequest, "majorVersion");
+		boolean updateVersionDetails = ParamUtil.getBoolean(
+			uploadPortletRequest, "updateVersionDetails");
+
+		if (!updateVersionDetails) {
+			majorVersion = Boolean.FALSE;
+		}
 
 		if (folderId > 0) {
 			Folder folder = _dlAppService.getFolder(folderId);
