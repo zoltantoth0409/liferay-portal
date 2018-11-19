@@ -254,11 +254,17 @@ public class SitesImpl implements Sites {
 		ServiceContext serviceContext =
 			ServiceContextThreadLocal.getServiceContext();
 
-		serviceContext.setAttribute("layoutPrototypeLinkEnabled", linkEnabled);
-		serviceContext.setAttribute(
-			"layoutPrototypeUuid", layoutPrototype.getUuid());
+		Serializable originalLayoutPrototypeLinkEnabled =
+			(Serializable)serviceContext.getAttribute(
+				"layoutPrototypeLinkEnabled");
+		Serializable originalLayoutPrototypeUuid =
+			(Serializable)serviceContext.getAttribute("layoutPrototypeUuid");
 
 		try {
+			serviceContext.setAttribute(
+				"layoutPrototypeLinkEnabled", linkEnabled);
+			serviceContext.setAttribute(
+				"layoutPrototypeUuid", layoutPrototype.getUuid());
 			Locale targetSiteDefaultLocale = PortalUtil.getSiteDefaultLocale(
 				targetLayout.getGroupId());
 
@@ -274,6 +280,23 @@ public class SitesImpl implements Sites {
 				targetLayout.getIconImage(), null, serviceContext);
 		}
 		finally {
+			if (originalLayoutPrototypeLinkEnabled == null) {
+				serviceContext.removeAttribute("layoutPrototypeLinkEnabled");
+			}
+			else {
+				serviceContext.setAttribute(
+					"layoutPrototypeLinkEnabled",
+					originalLayoutPrototypeLinkEnabled);
+			}
+
+			if (originalLayoutPrototypeUuid == null) {
+				serviceContext.removeAttribute("layoutPrototypeUuid");
+			}
+			else {
+				serviceContext.setAttribute(
+					"layoutPrototypeUuid", originalLayoutPrototypeUuid);
+			}
+
 			LocaleThreadLocal.setSiteDefaultLocale(siteDefaultLocale);
 		}
 
