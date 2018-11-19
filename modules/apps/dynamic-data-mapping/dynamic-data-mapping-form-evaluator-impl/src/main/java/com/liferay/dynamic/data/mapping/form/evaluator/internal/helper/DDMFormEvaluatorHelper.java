@@ -285,11 +285,11 @@ public class DDMFormEvaluatorHelper {
 	protected <K, V> void forEachEntry(
 		Map<K, V> map, Consumer<Map.Entry<K, V>> entryConsumer) {
 
-		Set<Map.Entry<K, V>> entrySet = map.entrySet();
+		Set<Map.Entry<K, V>> set = map.entrySet();
 
-		Stream<Map.Entry<K, V>> entryStream = entrySet.parallelStream();
+		Stream<Map.Entry<K, V>> stream = set.parallelStream();
 
-		entryStream.forEach(entryConsumer);
+		stream.forEach(entryConsumer);
 	}
 
 	protected boolean getBooleanPropertyValue(
