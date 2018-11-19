@@ -934,6 +934,8 @@
 
 		<execute function="AssertLocation" value1="${portalURL}/fr/web/site-name/language-page" />
 
+		<execute function="AssertTextEquals" locator1="UserBar#USER_SIGN_IN" value1="Sign In" />
+
 		<execute macro="Navigator#openSpecificURL">
 			<var name="url" value="${portalURL}/fr/web/guest/home" />
 		</execute>
@@ -941,6 +943,8 @@
 		<execute macro="Alert#closePortalLocalizationWarning" />
 
 		<execute function="AssertLocation" value1="${portalURL}/fr/web/guest/home" />
+
+		<execute function="AssertTextEquals" locator1="UserBar#USER_SIGN_IN" value1="Sign In" />
 
 		<execute macro="User#loginPG">
 			<var name="specificURL" value="${portalURL}/fr/web/guest/home" />
@@ -976,6 +980,8 @@
 			<var name="siteName" value="Site Name" />
 			<var name="sitePageURL" value="http://www.able.com:8080/fr/" />
 		</execute>
+
+		<execute function="AssertTextEquals" locator1="UserBar#USER_SIGN_IN" value1="Sign In" />
 	</command>
 
 	<command name="ViewSiteLocalizationAfterDeletingOriginalLocale" priority="5">
