@@ -48,15 +48,15 @@ public class DefaultRepositoryEventRegistry
 			throw new NullPointerException("Repository event listener is null");
 		}
 
-		Tuple key = new Tuple(repositoryEventTypeClass, modelClass);
+		Tuple tuple = new Tuple(repositoryEventTypeClass, modelClass);
 
 		Collection<RepositoryEventListener<?, ?>> repositoryEventListeners =
-			_repositoryEventListeners.get(key);
+			_repositoryEventListeners.get(tuple);
 
 		if (repositoryEventListeners == null) {
 			repositoryEventListeners = new ArrayList<>();
 
-			_repositoryEventListeners.put(key, repositoryEventListeners);
+			_repositoryEventListeners.put(tuple, repositoryEventListeners);
 		}
 
 		repositoryEventListeners.add(repositoryEventListener);
@@ -72,11 +72,11 @@ public class DefaultRepositoryEventRegistry
 				repositoryEventTypeClass, modelClass, model);
 		}
 
-		Tuple key = new Tuple(repositoryEventTypeClass, modelClass);
+		Tuple tuple = new Tuple(repositoryEventTypeClass, modelClass);
 
 		@SuppressWarnings("rawtypes")
 		Collection<RepositoryEventListener<S, T>> repositoryEventListeners =
-			(Collection)_repositoryEventListeners.get(key);
+			(Collection)_repositoryEventListeners.get(tuple);
 
 		if (repositoryEventListeners != null) {
 			for (RepositoryEventListener<S, T> repositoryEventListener :
@@ -97,10 +97,10 @@ public class DefaultRepositoryEventRegistry
 			throw new NullPointerException("Repository event listener is null");
 		}
 
-		Tuple key = new Tuple(repositoryEventTypeClass, modelClass);
+		Tuple tuple = new Tuple(repositoryEventTypeClass, modelClass);
 
 		Collection<RepositoryEventListener<?, ?>> repositoryEventListeners =
-			_repositoryEventListeners.get(key);
+			_repositoryEventListeners.get(tuple);
 
 		if (repositoryEventListeners != null) {
 			repositoryEventListeners.remove(repositoryEventListener);
