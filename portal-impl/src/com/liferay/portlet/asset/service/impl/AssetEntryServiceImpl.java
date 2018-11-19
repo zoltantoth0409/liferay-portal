@@ -321,12 +321,6 @@ public class AssetEntryServiceImpl extends AssetEntryServiceBaseImpl {
 				}
 				catch (Exception e) {
 				}
-
-				if ((end != QueryUtil.ALL_POS) &&
-					(filteredEntries.size() > (end - 1))) {
-
-					break;
-				}
 			}
 
 			count = filteredEntries.size();
