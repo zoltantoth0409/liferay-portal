@@ -642,7 +642,7 @@ public class JenkinsResultsParserUtil {
 			return buildParameters.get(key);
 		}
 
-		throw new RuntimeException("Could not find build parameter " + key);
+		throw new RuntimeException("Unable to find build parameter " + key);
 	}
 
 	public static Map<String, String> getBuildParameters(String buildURL) {
@@ -1476,7 +1476,7 @@ public class JenkinsResultsParserUtil {
 			ioe.printStackTrace();
 		}
 
-		System.out.println("Could not reach " + hostname);
+		System.out.println("Unable to reach " + hostname);
 
 		return false;
 	}
