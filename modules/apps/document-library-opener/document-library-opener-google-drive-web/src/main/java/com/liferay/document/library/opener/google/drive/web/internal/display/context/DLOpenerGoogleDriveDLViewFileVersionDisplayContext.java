@@ -80,13 +80,12 @@ public class DLOpenerGoogleDriveDLViewFileVersionDisplayContext
 		_dlOpenerFileEntryReferenceLocalService =
 			dlOpenerFileEntryReferenceLocalService;
 		_dlOpenerGoogleDriveManager = dlOpenerGoogleDriveManager;
+		_portal = portal;
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
 		_permissionChecker = themeDisplay.getPermissionChecker();
-
-		_portal = portal;
 	}
 
 	@Override
