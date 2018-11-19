@@ -930,8 +930,6 @@
 			<var name="url" value="${portalURL}/fr/web/site-name/language-page" />
 		</execute>
 
-		<execute macro="Alert#closePortalLocalizationWarning" />
-
 		<execute function="AssertLocation" value1="${portalURL}/fr/web/site-name/language-page" />
 
 		<execute function="AssertTextEquals" locator1="UserBar#USER_SIGN_IN" value1="Sign In" />
@@ -939,8 +937,6 @@
 		<execute macro="Navigator#openSpecificURL">
 			<var name="url" value="${portalURL}/fr/web/guest/home" />
 		</execute>
-
-		<execute macro="Alert#closePortalLocalizationWarning" />
 
 		<execute function="AssertLocation" value1="${portalURL}/fr/web/guest/home" />
 
