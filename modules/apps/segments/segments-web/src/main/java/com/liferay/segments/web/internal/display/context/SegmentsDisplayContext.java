@@ -104,7 +104,6 @@ public class SegmentsDisplayContext {
 						dropdownItem.setLabel(
 							LanguageUtil.get(_request, "user-segment"));
 					});
-
 				addPrimaryDropdownItem(
 					dropdownItem -> {
 						dropdownItem.setHref(

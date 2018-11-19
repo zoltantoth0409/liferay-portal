@@ -44,8 +44,8 @@ renderResponse.setTitle(editSegmentsEntryDisplayContext.getTitle(locale));
 <aui:form action="<%= updateSegmentsEntryActionURL %>" cssClass="container-fluid-1280" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveSegmentsEntry();" %>'>
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 	<aui:input name="segmentsEntryId" type="hidden" value="<%= segmentsEntryId %>" />
-	<aui:input name="saveAndContinue" type="hidden" />
 	<aui:input name="type" type="hidden" value="<%= type %>" />
+	<aui:input name="saveAndContinue" type="hidden" />
 
 	<div class="lfr-form-content">
 		<aui:model-context bean="<%= segmentsEntry %>" model="<%= SegmentsEntry.class %>" />
