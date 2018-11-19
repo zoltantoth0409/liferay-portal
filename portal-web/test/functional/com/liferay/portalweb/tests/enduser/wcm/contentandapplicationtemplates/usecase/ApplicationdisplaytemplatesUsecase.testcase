@@ -601,27 +601,22 @@
 			<var name="portlet" value="Categories" />
 		</execute>
 
-		<execute macro="Vocabulary#addCP">
-			<var name="vocabularyName" value="Vocabulary Name 1" />
-		</execute>
+		<for list="1,2" param="i">
+			<execute macro="ProductMenu#gotoPortlet">
+				<var name="category" value="Content" />
+				<var name="panel" value="Site Administration" />
+				<var name="portlet" value="Categories" />
+			</execute>
 
-		<execute macro="Category#addCP">
-			<var name="categoryName" value="Category Name 1" />
-			<var name="vocabularyName" value="Vocabulary Name 1" />
-		</execute>
+			<execute macro="Vocabulary#addCP">
+				<var name="vocabularyName" value="Vocabulary Name ${i}" />
+			</execute>
 
-		<execute macro="Category#openCategoriesAdmin">
-			<var name="siteURLKey" value="test-site-name" />
-		</execute>
-
-		<execute macro="Vocabulary#addCP">
-			<var name="vocabularyName" value="Vocabulary Name 2" />
-		</execute>
-
-		<execute macro="Category#addCP">
-			<var name="categoryName" value="Category Name 2" />
-			<var name="vocabularyName" value="Vocabulary Name 2" />
-		</execute>
+			<execute macro="Category#addCP">
+				<var name="categoryName" value="Category Name ${i}" />
+				<var name="vocabularyName" value="Vocabulary Name ${i}" />
+			</execute>
+		</for>
 
 		<execute macro="Navigator#openSiteURL">
 			<var name="siteName" value="Test Site Name" />
