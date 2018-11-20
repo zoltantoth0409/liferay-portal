@@ -318,7 +318,7 @@
 	</command>
 
 	<command name="viewSearchResultPG">
-		<execute function="AssertVisible" locator1="Link#BACK" />
+		<execute function="AssertVisible" locator1="Icon#BACK" />
 
 		<var name="key_threadSubject" value="${threadSubject}" />
 
