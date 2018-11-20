@@ -144,7 +144,7 @@ public abstract class BaseTestCase {
 		finally {
 			Path databaseFilePath = FileUtil.getFilePath(
 				PropsValues.SYNC_CONFIGURATION_DIRECTORY,
-				PropsValues.SYNC_DATABASE_NAME + ".h2.db");
+				PropsValues.SYNC_DATABASE_NAME + ".mv.db");
 
 			Files.deleteIfExists(databaseFilePath);
 		}
