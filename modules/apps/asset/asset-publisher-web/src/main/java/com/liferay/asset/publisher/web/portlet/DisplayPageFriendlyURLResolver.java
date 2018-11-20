@@ -418,12 +418,12 @@ public class DisplayPageFriendlyURLResolver implements FriendlyURLResolver {
 
 		Locale locale = _portal.getLocale(request);
 
-		String keywords = _assetHelper.getAssetKeywords(
-			assetEntry.getClassName(), assetEntry.getClassPK());
-
 		_portal.setPageTitle(assetEntry.getTitle(locale), request);
 		_portal.setPageDescription(assetEntry.getDescription(locale), request);
-		_portal.setPageKeywords(keywords, request);
+		_portal.setPageKeywords(
+			_assetHelper.getAssetKeywords(
+				assetEntry.getClassName(), assetEntry.getClassPK()),
+			request);
 
 		Layout layout = _getAssetDisplayPageEntryLayout(groupId, assetEntry);
 

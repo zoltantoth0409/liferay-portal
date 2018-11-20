@@ -87,12 +87,12 @@ public class AssetDisplayPageFriendlyURLResolver
 
 		Locale locale = _portal.getLocale(request);
 
-		String keywords = _assetHelper.getAssetKeywords(
-			assetEntry.getClassName(), assetEntry.getClassPK());
-
 		_portal.setPageTitle(assetEntry.getTitle(locale), request);
 		_portal.setPageDescription(assetEntry.getDescription(locale), request);
-		_portal.setPageKeywords(keywords, request);
+		_portal.setPageKeywords(
+			_assetHelper.getAssetKeywords(
+				assetEntry.getClassName(), assetEntry.getClassPK()),
+			request);
 
 		Layout layout = getAssetDisplayLayout(groupId);
 
@@ -139,9 +139,9 @@ public class AssetDisplayPageFriendlyURLResolver
 		long defaultUserId = _userLocalService.getDefaultUserId(
 			group.getCompanyId());
 
-		Locale locale = LocaleUtil.getSiteDefault();
-
 		Map<Locale, String> nameMap = new HashMap<>();
+
+		Locale locale = LocaleUtil.getSiteDefault();
 
 		nameMap.put(locale, "Asset Display Page");
 
