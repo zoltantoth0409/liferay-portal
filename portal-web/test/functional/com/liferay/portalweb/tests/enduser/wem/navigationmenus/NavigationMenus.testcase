@@ -188,7 +188,7 @@ definition {
 
 		NavigationMenusAdmin.openNavigationMenusAdmin(siteURLKey = "test-site-name");
 
-		SiteNavigationMenu.addMenu(menuName = "Test Navigation Menu Name");
+		NavigationMenusAdmin.addMenu(menuName = "Test Navigation Menu Name");
 
 		NavigationMenusAdmin.addItem(
 			item = "URL",
@@ -213,7 +213,7 @@ definition {
 	test ConfigurePrimaryNavigationMenu {
 		NavigationMenusAdmin.openNavigationMenusAdmin(siteURLKey = "test-site-name");
 
-		SiteNavigationMenu.addMenu(menuName = "Primary Menu Name 1");
+		NavigationMenusAdmin.addMenu(menuName = "Primary Menu Name 1");
 
 		NavigationMenusAdmin.openNavigationMenusAdmin(siteURLKey = "test-site-name");
 
@@ -312,10 +312,13 @@ definition {
 
 		NavigationMenusAdmin.openNavigationMenusAdmin(siteURLKey = "test-site-name");
 
-		SiteNavigationMenu.addMenu(menuName = "Test Navigation Menu Name");
+		NavigationMenusAdmin.addMenu(menuName = "Test Navigation Menu Name");
 
 		for (var index : list "1,2") {
-			SiteNavigationMenu.addItem(item = "Page", pageName = "Site Page Name ${index}");
+			NavigationMenusAdmin.addItem(
+				item = "Page",
+				pageName = "Site Page Name ${index}"
+			);
 		}
 
 		ProductMenu.gotoPortlet(
