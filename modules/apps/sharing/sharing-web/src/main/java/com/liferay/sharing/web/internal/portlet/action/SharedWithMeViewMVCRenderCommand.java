@@ -195,7 +195,6 @@ public class SharedWithMeViewMVCRenderCommand implements MVCRenderCommand {
 		}
 		catch (NoSuchEntryException nsee) {
 			long classNameId = ParamUtil.getLong(renderRequest, "classNameId");
-
 			long classPK = ParamUtil.getLong(renderRequest, "classPK");
 
 			List<SharingEntry> sharingEntries =

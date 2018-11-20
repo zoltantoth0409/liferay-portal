@@ -130,10 +130,8 @@ public class SharingNotificationUtil {
 			portletURL.setParameter(
 				"sharingEntryId",
 				String.valueOf(sharingEntry.getSharingEntryId()));
-
 			portletURL.setParameter(
 				"classNameId", String.valueOf(sharingEntry.getClassNameId()));
-
 			portletURL.setParameter(
 				"classPK", String.valueOf(sharingEntry.getClassPK()));
 
