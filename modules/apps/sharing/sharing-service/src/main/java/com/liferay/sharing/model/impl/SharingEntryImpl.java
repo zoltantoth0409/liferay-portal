@@ -40,6 +40,7 @@ public class SharingEntryImpl extends SharingEntryBaseImpl {
 	 * @param  sharingEntryAction the sharing entry action
 	 * @return {@code true} if the sharing entry has the sharing entry action;
 	 *         {@code false} otherwise
+	 * @review
 	 */
 	@Override
 	public boolean hasSharingPermission(SharingEntryAction sharingEntryAction) {
