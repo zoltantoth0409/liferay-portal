@@ -59,6 +59,7 @@ import java.util.Map;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceReference;
 
 /**
  * @author Ruben Pulido
@@ -105,8 +106,12 @@ public class StructuredContentApioTestBundleActivator
 	public void start(BundleContext bundleContext) {
 		_autoCloseables = new ArrayList<>();
 
-		_ddmFormJSONDeserializer = bundleContext.getService(
-			bundleContext.getServiceReference(DDMFormJSONDeserializer.class));
+		_bundleContext = bundleContext;
+
+		_serviceReference = bundleContext.getServiceReference(
+			DDMFormJSONDeserializer.class);
+
+		_ddmFormJSONDeserializer = bundleContext.getService(_serviceReference);
 
 		try {
 			_prepareTest();
@@ -121,6 +126,8 @@ public class StructuredContentApioTestBundleActivator
 	@Override
 	public void stop(BundleContext bundleContext) {
 		_cleanUp();
+
+		_bundleContext.ungetService(_serviceReference);
 	}
 
 	protected DDMForm deserialize(String content) {
@@ -340,6 +347,8 @@ public class StructuredContentApioTestBundleActivator
 		StructuredContentApioTestBundleActivator.class);
 
 	private List<AutoCloseable> _autoCloseables;
+	private BundleContext _bundleContext;
 	private DDMFormJSONDeserializer _ddmFormJSONDeserializer;
+	private ServiceReference<DDMFormJSONDeserializer> _serviceReference;
 
 }
