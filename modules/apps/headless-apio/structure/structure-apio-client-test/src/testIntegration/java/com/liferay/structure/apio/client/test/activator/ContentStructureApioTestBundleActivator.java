@@ -14,10 +14,7 @@
 
 package com.liferay.structure.apio.client.test.activator;
 
-import com.liferay.dynamic.data.mapping.io.DDMFormDeserializer;
-import com.liferay.dynamic.data.mapping.io.DDMFormDeserializerDeserializeRequest;
-import com.liferay.dynamic.data.mapping.io.DDMFormDeserializerDeserializeResponse;
-import com.liferay.dynamic.data.mapping.io.DDMFormDeserializerTracker;
+import com.liferay.dynamic.data.mapping.io.DDMFormJSONDeserializer;
 import com.liferay.dynamic.data.mapping.model.DDMForm;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.model.DDMStructureConstants;
@@ -25,6 +22,7 @@ import com.liferay.dynamic.data.mapping.service.DDMStructureLocalServiceUtil;
 import com.liferay.dynamic.data.mapping.storage.StorageType;
 import com.liferay.dynamic.data.mapping.test.util.DDMStructureTestHelper;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
@@ -49,6 +47,7 @@ import java.util.Map;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceReference;
 
 /**
  * @author Ruben Pulido
@@ -63,9 +62,12 @@ public class ContentStructureApioTestBundleActivator
 	public void start(BundleContext bundleContext) {
 		_autoCloseables = new ArrayList<>();
 
-		_ddmFormDeserializerTracker = bundleContext.getService(
-			bundleContext.getServiceReference(
-				DDMFormDeserializerTracker.class));
+		_bundleContext = bundleContext;
+
+		_serviceReference = bundleContext.getServiceReference(
+			DDMFormJSONDeserializer.class);
+
+		_ddmFormJSONDeserializer = bundleContext.getService(_serviceReference);
 
 		try {
 			_prepareTest();
@@ -80,20 +82,17 @@ public class ContentStructureApioTestBundleActivator
 	@Override
 	public void stop(BundleContext bundleContext) {
 		_cleanUp();
+
+		_bundleContext.ungetService(_serviceReference);
 	}
 
 	protected DDMForm deserialize(String content) {
-		DDMFormDeserializer ddmFormDeserializer =
-			_ddmFormDeserializerTracker.getDDMFormDeserializer("json");
-
-		DDMFormDeserializerDeserializeRequest.Builder builder =
-			DDMFormDeserializerDeserializeRequest.Builder.newBuilder(content);
-
-		DDMFormDeserializerDeserializeResponse
-			ddmFormDeserializerDeserializeResponse =
-				ddmFormDeserializer.deserialize(builder.build());
-
-		return ddmFormDeserializerDeserializeResponse.getDDMForm();
+		try {
+			return _ddmFormJSONDeserializer.deserialize(content);
+		}
+		catch (PortalException pe) {
+			throw new RuntimeException(pe);
+		}
 	}
 
 	private DDMStructure _addDDMStructure(Group group, String fileName)
@@ -163,6 +162,8 @@ public class ContentStructureApioTestBundleActivator
 		ContentStructureApioTestBundleActivator.class);
 
 	private List<AutoCloseable> _autoCloseables;
-	private DDMFormDeserializerTracker _ddmFormDeserializerTracker;
+	private BundleContext _bundleContext;
+	private DDMFormJSONDeserializer _ddmFormJSONDeserializer;
+	private ServiceReference<DDMFormJSONDeserializer> _serviceReference;
 
 }
