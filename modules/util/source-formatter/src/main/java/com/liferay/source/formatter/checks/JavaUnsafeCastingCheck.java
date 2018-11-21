@@ -50,8 +50,7 @@ public class JavaUnsafeCastingCheck extends BaseFileCheck {
 		return content;
 	}
 
-	private static final String[] _UNSAFE_CLASS_NAMES = {
-		"LiferayPortletRequest", "LiferayPortletResponse"
-	};
+	private static final String[] _UNSAFE_CLASS_NAMES =
+		{"LiferayPortletRequest", "LiferayPortletResponse"};
 
 }

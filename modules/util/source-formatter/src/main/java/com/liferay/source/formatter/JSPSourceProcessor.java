@@ -248,9 +248,8 @@ public class JSPSourceProcessor extends BaseSourceProcessor {
 		}
 	}
 
-	private static final String[] _INCLUDES = {
-		"**/*.jsp", "**/*.jspf", "**/*.tag", "**/*.tpl", "**/*.vm"
-	};
+	private static final String[] _INCLUDES =
+		{"**/*.jsp", "**/*.jspf", "**/*.tag", "**/*.tpl", "**/*.vm"};
 
 	private Configuration _checkstyleConfiguration;
 	private AlloyMVCCheckstyleLogger _checkstyleLogger;
