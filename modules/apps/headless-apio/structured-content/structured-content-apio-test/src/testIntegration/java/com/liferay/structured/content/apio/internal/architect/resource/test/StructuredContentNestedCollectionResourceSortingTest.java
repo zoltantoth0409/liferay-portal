@@ -18,7 +18,7 @@ import com.liferay.apio.architect.language.AcceptLanguage;
 import com.liferay.apio.architect.pagination.PageItems;
 import com.liferay.apio.architect.test.util.pagination.PaginationRequest;
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
-import com.liferay.dynamic.data.mapping.io.DDMFormDeserializerTracker;
+import com.liferay.dynamic.data.mapping.io.DDMFormJSONDeserializer;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.model.DDMStructureConstants;
 import com.liferay.dynamic.data.mapping.model.DDMTemplate;
@@ -423,7 +423,7 @@ public class StructuredContentNestedCollectionResourceSortingTest
 			PortalUtil.getClassNameId(JournalArticle.class),
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
 			deserialize(
-				_ddmFormDeserializerTracker,
+				_ddmFormJSONDeserializer,
 				read("test-journal-all-fields-structure.json")),
 			StorageType.JSON.getValue(), DDMStructureConstants.TYPE_DEFAULT);
 
@@ -484,7 +484,7 @@ public class StructuredContentNestedCollectionResourceSortingTest
 			PortalUtil.getClassNameId(JournalArticle.class),
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
 			deserialize(
-				_ddmFormDeserializerTracker,
+				_ddmFormJSONDeserializer,
 				read("test-journal-all-fields-structure.json")),
 			StorageType.JSON.getValue(), DDMStructureConstants.TYPE_DEFAULT);
 
@@ -776,7 +776,7 @@ public class StructuredContentNestedCollectionResourceSortingTest
 	private static ServiceTracker<SortParser, SortParser> _serviceTracker;
 
 	@Inject
-	private DDMFormDeserializerTracker _ddmFormDeserializerTracker;
+	private DDMFormJSONDeserializer _ddmFormJSONDeserializer;
 
 	@DeleteAfterTestRun
 	private Group _group;
