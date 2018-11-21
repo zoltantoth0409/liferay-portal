@@ -96,10 +96,10 @@ public class WorkflowTaskItemResource
 			"object", WorkflowTask::getOptionalAttributes,
 			nestedBuilder -> nestedBuilder.types(
 				"Object"
+			).addApplicationRelativeURL(
+				"identifier", this::_getResourceURL
 			).addString(
 				"resourceType", this::_getResourceType
-			).addApplicationRelativeURL(
-				"identifier", this::_getResourceUrl
 			).build()
 		).addRelatedCollection(
 			"logs", WorkflowLogIdentifier.class
@@ -161,7 +161,7 @@ public class WorkflowTaskItemResource
 		return type;
 	}
 
-	private String _getResourceUrl(
+	private String _getResourceURL(
 		Map<String, Serializable> optionalAttributes) {
 
 		Map<String, String> map = new HashMap<String, String>() {
@@ -178,13 +178,14 @@ public class WorkflowTaskItemResource
 			return null;
 		}
 
-		String entryClassPK = (String)optionalAttributes.get("entryClassPK");
-
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("p/");
 		sb.append(entryClassName);
 		sb.append("/");
+
+		String entryClassPK = (String)optionalAttributes.get("entryClassPK");
+
 		sb.append(entryClassPK);
 
 		return sb.toString();
