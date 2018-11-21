@@ -2353,14 +2353,11 @@ public class JenkinsResultsParserUtil {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(remaining);
-
 		sb.append(" GitHub API calls out of ");
 		sb.append(limit);
-
 		sb.append(" remain. GitHub API call limit will reset in ");
 		sb.append(
 			toDurationString((1000 * reset) - System.currentTimeMillis()));
-
 		sb.append(".");
 
 		return sb.toString();
