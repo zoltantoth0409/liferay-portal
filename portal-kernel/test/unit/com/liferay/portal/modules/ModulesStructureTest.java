@@ -1461,8 +1461,9 @@ public class ModulesStructureTest {
 
 	private static final String[] _GIT_IGNORE_LINE_PREFIXES = {"/wedeploy/"};
 
-	private static final String[] _GIT_IGNORE_OPTIONAL_LINES =
-		{"gradle-ext.properties"};
+	private static final String[] _GIT_IGNORE_OPTIONAL_LINES = {
+		"gradle-ext.properties"
+	};
 
 	private static final String _GIT_REPO_FILE_NAME = ".gitrepo";
 
@@ -1470,8 +1471,9 @@ public class ModulesStructureTest {
 		"project.group";
 
 	private static final String[]
-		_GIT_REPO_GRADLE_PROJECT_GROUP_RESERVED_PREFIXES =
-			{"com.liferay.plugins", "com.liferay.portal"};
+		_GIT_REPO_GRADLE_PROJECT_GROUP_RESERVED_PREFIXES = {
+			"com.liferay.plugins", "com.liferay.portal"
+		};
 
 	private static final String _GIT_REPO_GRADLE_PROJECT_PATH_PREFIX_KEY =
 		"project.path.prefix";
