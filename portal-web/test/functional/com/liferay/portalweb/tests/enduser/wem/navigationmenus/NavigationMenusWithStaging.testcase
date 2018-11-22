@@ -221,13 +221,13 @@
 			<var name="key_pageName" value="Test Page 1" />
 		</execute>
 
-		<execute function="Click#pauseClick" locator1="Home#PAGE">
+		<execute function="Click" locator1="Home#PAGE">
 			<var name="key_pageName" value="Test Page 3" />
 		</execute>
 
 		<execute function="AssertLocation#assertPartialLocation" value1="web/test-site-name/test-page-3" />
 
-		<execute function="Click#pauseClick" locator1="Home#PAGE">
+		<execute function="Click" locator1="Home#PAGE">
 			<var name="key_pageName" value="Liferay" />
 		</execute>
 
@@ -354,13 +354,13 @@
 			<var name="key_pageName" value="Test Page 1" />
 		</execute>
 
-		<execute function="Click#pauseClick" locator1="Home#PAGE">
+		<execute function="Click" locator1="Home#PAGE">
 			<var name="key_pageName" value="Test Page 3" />
 		</execute>
 
 		<execute function="AssertLocation#assertPartialLocation" value1="web/test-site-name/test-page-3" />
 
-		<execute function="Click#pauseClick" locator1="Home#PAGE">
+		<execute function="Click" locator1="Home#PAGE">
 			<var name="key_pageName" value="Liferay" />
 		</execute>
 
@@ -409,13 +409,13 @@
 			<var name="key_pageName" value="Test Page 3" />
 		</execute>
 
-		<execute function="Click#pauseClick" locator1="Home#PAGE">
+		<execute function="Click" locator1="Home#PAGE">
 			<var name="key_pageName" value="Test Page 1" />
 		</execute>
 
 		<execute function="AssertLocation#assertPartialLocation" value1="web/test-site-name-staging/test-page-1" />
 
-		<execute function="Click#pauseClick" locator1="Home#PAGE">
+		<execute function="Click" locator1="Home#PAGE">
 			<var name="key_pageName" value="Liferay" />
 		</execute>
 
@@ -483,13 +483,13 @@
 			<var name="key_pageName" value="Test Page 3" />
 		</execute>
 
-		<execute function="Click#pauseClick" locator1="Home#PAGE">
+		<execute function="Click" locator1="Home#PAGE">
 			<var name="key_pageName" value="Test Page 1" />
 		</execute>
 
 		<execute function="AssertLocation#assertPartialLocation" value1="web/test-site-name/test-page-1" />
 
-		<execute function="Click#pauseClick" locator1="Home#PAGE">
+		<execute function="Click" locator1="Home#PAGE">
 			<var name="key_pageName" value="Liferay" />
 		</execute>
 
@@ -620,13 +620,13 @@
 			<var name="key_pageName" value="Test Page 3" />
 		</execute>
 
-		<execute function="Click#pauseClick" locator1="Home#PAGE">
+		<execute function="Click" locator1="Home#PAGE">
 			<var name="key_pageName" value="Test Page 1" />
 		</execute>
 
 		<execute function="AssertLocation#assertPartialLocation" value1="web/test-site-name-staging/test-page-1" />
 
-		<execute function="Click#pauseClick" locator1="Home#PAGE">
+		<execute function="Click" locator1="Home#PAGE">
 			<var name="key_pageName" value="Liferay" />
 		</execute>
 
@@ -692,13 +692,13 @@
 			<var name="key_pageName" value="Test Page 3" />
 		</execute>
 
-		<execute function="Click#pauseClick" locator1="Home#PAGE">
+		<execute function="Click" locator1="Home#PAGE">
 			<var name="key_pageName" value="Test Page 1" />
 		</execute>
 
 		<execute function="AssertLocation#assertPartialLocation" value1="web/test-site-name/test-page-1" />
 
-		<execute function="Click#pauseClick" locator1="Home#PAGE">
+		<execute function="Click" locator1="Home#PAGE">
 			<var name="key_pageName" value="Liferay" />
 		</execute>
 
