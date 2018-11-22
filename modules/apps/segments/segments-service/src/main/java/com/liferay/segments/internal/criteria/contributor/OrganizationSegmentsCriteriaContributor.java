@@ -72,7 +72,7 @@ public class OrganizationSegmentsCriteriaContributor
 			for (int i = 0; i < organizations.size(); i++) {
 				Organization organization = organizations.get(i);
 
-				sb.append("contains(organizationIds, ');
+				sb.append("contains(organizationIds, '");
 				sb.append(organization.getOrganizationId());
 				sb.append("')");
 
