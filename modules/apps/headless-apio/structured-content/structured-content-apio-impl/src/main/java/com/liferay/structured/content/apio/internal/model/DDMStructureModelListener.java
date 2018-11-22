@@ -160,18 +160,7 @@ public class DDMStructureModelListener extends BaseModelListener<DDMStructure> {
 			return Optional.empty();
 		}
 
-		if (Objects.equals(ddmFormField.getDataType(), FieldConstants.STRING)) {
-			return Optional.of(
-				new StringEntityField(
-					StructuredContentNestedCollectionResource.
-						encodeFilterAndSortIdentifier(
-							ddmStructure, ddmFormField.getName()),
-					locale -> encodeName(
-						ddmStructure.getStructureId(), ddmFormField.getName(),
-						locale, "String"))
-			);
-		}
-		else if (Objects.equals(
+		if (Objects.equals(
 					ddmFormField.getDataType(), FieldConstants.DOUBLE) ||
 				 Objects.equals(
 					 ddmFormField.getDataType(), FieldConstants.NUMBER)) {
@@ -199,6 +188,19 @@ public class DDMStructureModelListener extends BaseModelListener<DDMStructure> {
 					locale -> encodeName(
 						ddmStructure.getStructureId(), ddmFormField.getName(),
 						locale, "Number"))
+			);
+		}
+		else if (Objects.equals(
+					ddmFormField.getDataType(), FieldConstants.STRING)) {
+
+			return Optional.of(
+				new StringEntityField(
+					StructuredContentNestedCollectionResource.
+						encodeFilterAndSortIdentifier(
+							ddmStructure, ddmFormField.getName()),
+					locale -> encodeName(
+						ddmStructure.getStructureId(), ddmFormField.getName(),
+						locale, "String"))
 			);
 		}
 
