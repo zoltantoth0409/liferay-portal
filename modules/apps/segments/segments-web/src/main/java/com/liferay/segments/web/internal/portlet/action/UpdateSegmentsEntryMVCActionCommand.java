@@ -153,7 +153,7 @@ public class UpdateSegmentsEntryMVCActionCommand extends BaseMVCActionCommand {
 
 			String filterString = ParamUtil.getString(
 				actionRequest,
-				"criterionFilterString" + segmentsCriteriaContributor.getKey());
+				"criterionFilter" + segmentsCriteriaContributor.getKey());
 
 			if (Validator.isNull(filterString)) {
 				continue;
