@@ -68,14 +68,14 @@ public class JSPortlet extends MVCPortlet implements ManagedService {
 				StringUtil.replace(
 					_JAVA_SCRIPT_TPL,
 					new String[] {
-						"[$CONTEXT_PATH$]", "[$PORTLET_ELEMENT_ID$]",
-						"[$PORTLET_NAMESPACE$]", "[$PACKAGE_NAME$]",
-						"[$PACKAGE_VERSION$]", "[$CONFIGURATION]"
+						"[$CONFIGURATION]", "[$CONTEXT_PATH$]",
+						"[$PORTLET_ELEMENT_ID$]", "[$PORTLET_NAMESPACE$]",
+						"[$PACKAGE_NAME$]", "[$PACKAGE_VERSION$]"
 					},
 					new String[] {
-						renderRequest.getContextPath(), portletElementId,
-						renderResponse.getNamespace(), _name, _version,
-						_getConfiguration()
+						_getConfiguration(), renderRequest.getContextPath(),
+						portletElementId, renderResponse.getNamespace(), _name,
+						_version
 					}));
 
 			printWriter.flush();
