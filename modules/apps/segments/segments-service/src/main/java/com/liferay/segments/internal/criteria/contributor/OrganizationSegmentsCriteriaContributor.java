@@ -91,9 +91,8 @@ public class OrganizationSegmentsCriteriaContributor
 		catch (PortalException pe) {
 			_log.error(
 				com.liferay.petra.string.StringBundler.concat(
-					"Error evaluating criteria ", criteria,
-					" with filterString ", filterString, " and conjunction ",
-					conjunction.getValue()),
+					"Unable to evaluate criteria ", criteria, " with filter ",
+					filterString, " and conjunction ", conjunction.getValue()),
 				pe);
 		}
 	}
