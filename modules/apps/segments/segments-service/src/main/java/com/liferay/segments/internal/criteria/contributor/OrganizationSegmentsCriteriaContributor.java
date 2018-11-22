@@ -14,7 +14,6 @@
 
 package com.liferay.segments.internal.criteria.contributor;
 
-import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
