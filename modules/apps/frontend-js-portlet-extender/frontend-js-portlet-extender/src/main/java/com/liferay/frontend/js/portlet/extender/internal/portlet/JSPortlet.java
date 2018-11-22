@@ -141,7 +141,6 @@ public class JSPortlet extends MVCPortlet implements ManagedService {
 
 		for (Map.Entry<String, String> entry : configuration.entrySet()) {
 			sb.append(delimiter);
-
 			sb.append("'");
 			sb.append(_escapeQuotes(entry.getKey()));
 			sb.append("':'");
