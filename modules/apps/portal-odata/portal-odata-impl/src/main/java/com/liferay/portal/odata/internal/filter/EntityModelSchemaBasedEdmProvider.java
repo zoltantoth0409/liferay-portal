@@ -176,7 +176,17 @@ public class EntityModelSchemaBasedEdmProvider extends SchemaBasedEdmProvider {
 	private Optional<CsdlProperty> _createCsdlProperty(
 		String namespace, EntityField entityField) {
 
-		if (Objects.equals(entityField.getType(), EntityField.Type.DATE)) {
+		if (Objects.equals(entityField.getType(), EntityField.Type.COMPLEX)) {
+			CsdlProperty csdlProperty = new CsdlProperty();
+
+			csdlProperty.setName(entityField.getName());
+
+			csdlProperty.setType(
+				new FullQualifiedName(namespace, entityField.getName()));
+
+			return Optional.of(csdlProperty);
+		}
+		else if (Objects.equals(entityField.getType(), EntityField.Type.DATE)) {
 			return Optional.of(
 				_createPrimitiveCsdlProperty(
 					entityField,
@@ -210,18 +220,6 @@ public class EntityModelSchemaBasedEdmProvider extends SchemaBasedEdmProvider {
 					entityField,
 					EdmPrimitiveTypeKind.Int64.getFullQualifiedName())
 			);
-		}
-		else if (Objects.equals(
-					entityField.getType(), EntityField.Type.COMPLEX)) {
-
-			CsdlProperty csdlProperty = new CsdlProperty();
-
-			csdlProperty.setName(entityField.getName());
-
-			csdlProperty.setType(
-				new FullQualifiedName(namespace, entityField.getName()));
-
-			return Optional.of(csdlProperty);
 		}
 
 		return Optional.empty();
