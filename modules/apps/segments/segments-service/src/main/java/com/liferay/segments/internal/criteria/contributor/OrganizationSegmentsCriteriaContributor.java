@@ -72,14 +72,9 @@ public class OrganizationSegmentsCriteriaContributor
 			for (int i = 0; i < organizations.size(); i++) {
 				Organization organization = organizations.get(i);
 
-				sb.append("contains");
-				sb.append(StringPool.OPEN_PARENTHESIS);
-				sb.append("organizationIds");
-				sb.append(StringPool.COMMA);
-				sb.append(StringPool.APOSTROPHE);
+				sb.append("contains(organizationIds, ');
 				sb.append(organization.getOrganizationId());
-				sb.append(StringPool.APOSTROPHE);
-				sb.append(StringPool.CLOSE_PARENTHESIS);
+				sb.append("')");
 
 				if (i < (organizations.size() - 1)) {
 					sb.append(" or ");
