@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.frontend.js.lodash.web.internal;
+package com.liferay.frontend.js.lodash.web.internal.servlet.taglib;
 
 import com.liferay.frontend.js.lodash.web.configuration.JSLodashConfiguration;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
