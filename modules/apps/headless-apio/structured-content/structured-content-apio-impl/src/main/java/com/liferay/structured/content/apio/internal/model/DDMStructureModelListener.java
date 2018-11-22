@@ -160,10 +160,8 @@ public class DDMStructureModelListener extends BaseModelListener<DDMStructure> {
 			return Optional.empty();
 		}
 
-		if (Objects.equals(
-					ddmFormField.getDataType(), FieldConstants.DOUBLE) ||
-				 Objects.equals(
-					 ddmFormField.getDataType(), FieldConstants.NUMBER)) {
+		if (Objects.equals(ddmFormField.getDataType(), FieldConstants.DOUBLE) ||
+			Objects.equals(ddmFormField.getDataType(), FieldConstants.NUMBER)) {
 
 			return Optional.of(
 				new DoubleEntityField(
