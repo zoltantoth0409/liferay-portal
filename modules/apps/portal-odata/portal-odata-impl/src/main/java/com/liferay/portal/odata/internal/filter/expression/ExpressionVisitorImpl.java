@@ -101,28 +101,28 @@ public class ExpressionVisitorImpl implements ExpressionVisitor<Expression> {
 	public Expression visitLiteral(Literal literal) {
 		EdmType edmType = literal.getType();
 
-		if (edmType instanceof EdmDate ||
-			edmType instanceof EdmDateTimeOffset) {
-
-			return new LiteralExpressionImpl(
-				literal.getText(), LiteralExpression.Type.DATE);
-		}
-		else if (edmType instanceof EdmString) {
-			return new LiteralExpressionImpl(
-				literal.getText(), LiteralExpression.Type.STRING);
-		}
-		else if (edmType instanceof EdmByte || edmType instanceof EdmInt16 ||
-				 edmType instanceof EdmInt32 || edmType instanceof EdmInt64 ||
-				 edmType instanceof EdmSByte) {
+		if (edmType instanceof EdmByte || edmType instanceof EdmInt16 ||
+			edmType instanceof EdmInt32 || edmType instanceof EdmInt64 ||
+			edmType instanceof EdmSByte) {
 
 			return new LiteralExpressionImpl(
 				literal.getText(), LiteralExpression.Type.INTEGER);
+		}
+		else if (edmType instanceof EdmDate ||
+				 edmType instanceof EdmDateTimeOffset) {
+
+			return new LiteralExpressionImpl(
+				literal.getText(), LiteralExpression.Type.DATE);
 		}
 		else if (edmType instanceof EdmDecimal ||
 				 edmType instanceof EdmDouble) {
 
 			return new LiteralExpressionImpl(
 				literal.getText(), LiteralExpression.Type.DOUBLE);
+		}
+		else if (edmType instanceof EdmString) {
+			return new LiteralExpressionImpl(
+				literal.getText(), LiteralExpression.Type.STRING);
 		}
 
 		throw new UnsupportedOperationException(
