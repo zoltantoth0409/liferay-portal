@@ -107,6 +107,14 @@ public class KBArticleServiceUtil {
 	}
 
 	public static com.liferay.knowledge.base.model.KBArticle
+		fetchFirstChildKBArticle(
+			long groupId, long parentResourcePrimKey, int status) {
+
+		return getService().fetchFirstChildKBArticle(
+			groupId, parentResourcePrimKey, status);
+	}
+
+	public static com.liferay.knowledge.base.model.KBArticle
 			fetchKBArticleByUrlTitle(
 				long groupId, long kbFolderId, String urlTitle)
 		throws com.liferay.portal.kernel.exception.PortalException {
