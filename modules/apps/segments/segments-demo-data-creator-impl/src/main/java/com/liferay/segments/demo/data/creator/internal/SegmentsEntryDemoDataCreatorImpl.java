@@ -124,13 +124,12 @@ public class SegmentsEntryDemoDataCreatorImpl
 			"/segment", index, "/criteria.txt");
 
 		try {
-			String criteriaFilter = StringUtil.read(
-				clazz.getClassLoader(), contentPath, false);
-
 			Criteria criteria = new Criteria();
 
 			criteria.addCriterion(
-				"entity-model", criteriaFilter, Criteria.Conjunction.AND);
+				"entity-model",
+				StringUtil.read(clazz.getClassLoader(), contentPath, false),
+				Criteria.Conjunction.AND);
 
 			return CriteriaSerializer.serialize(criteria);
 		}
