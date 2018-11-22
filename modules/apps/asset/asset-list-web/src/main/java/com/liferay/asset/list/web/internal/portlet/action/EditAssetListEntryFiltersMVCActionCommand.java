@@ -69,46 +69,43 @@ public class EditAssetListEntryFiltersMVCActionCommand
 		AssetListEntry assetListEntry =
 			_assetListEntryService.fetchAssetListEntry(assetListEntryId);
 
-		if (assetListEntry != null) {
-			try {
-				UnicodeProperties properties = new UnicodeProperties(true);
+		if (assetListEntry == null) {
+			return;
+		}
 
-				properties.fastLoad(assetListEntry.getTypeSettings());
+		try {
+			UnicodeProperties properties = new UnicodeProperties(true);
 
-				updateQueryLogic(actionRequest, properties);
+			properties.fastLoad(assetListEntry.getTypeSettings());
 
-				_assetListEntryService.updateAssetListEntryTypeSettings(
-					assetListEntryId, properties.toString());
+			updateQueryLogic(actionRequest, properties);
+
+			_assetListEntryService.updateAssetListEntryTypeSettings(
+				assetListEntryId, properties.toString());
+		}
+		catch (DuplicateQueryRuleException dqre) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(dqre, dqre);
 			}
-			catch (DuplicateQueryRuleException dqre) {
-				if (_log.isDebugEnabled()) {
-					_log.debug(dqre, dqre);
-				}
 
-				SessionErrors.add(actionRequest, dqre.getClass(), dqre);
+			SessionErrors.add(actionRequest, dqre.getClass(), dqre);
 
-				MutableRenderParameters renderParameters =
-					actionResponse.getRenderParameters();
+			MutableRenderParameters renderParameters =
+				actionResponse.getRenderParameters();
 
-				Map<String, String[]> parameters =
-					actionRequest.getParameterMap();
+			Map<String, String[]> parameters = actionRequest.getParameterMap();
 
-				for (Map.Entry<String, String[]> entry :
-						parameters.entrySet()) {
-
-					renderParameters.setValues(
-						entry.getKey(), entry.getValue());
-				}
-
-				renderParameters.setValue(
-					"mvcPath", "/edit_asset_list_entry.jsp");
-				renderParameters.setValue(
-					"screenNavigationCategoryKey",
-					AssetListFormConstants.ENTRY_KEY_FILTER);
-				renderParameters.setValue(
-					"screenNavigationEntryKey",
-					AssetListFormConstants.ENTRY_KEY_FILTER);
+			for (Map.Entry<String, String[]> entry : parameters.entrySet()) {
+				renderParameters.setValues(entry.getKey(), entry.getValue());
 			}
+
+			renderParameters.setValue("mvcPath", "/edit_asset_list_entry.jsp");
+			renderParameters.setValue(
+				"screenNavigationCategoryKey",
+				AssetListFormConstants.ENTRY_KEY_FILTER);
+			renderParameters.setValue(
+				"screenNavigationEntryKey",
+				AssetListFormConstants.ENTRY_KEY_FILTER);
 		}
 	}
 
