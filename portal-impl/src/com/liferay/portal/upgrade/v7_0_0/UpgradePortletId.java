@@ -43,6 +43,7 @@ public class UpgradePortletId
 			{"134", PortletKeys.SITE_ADMIN}, {"139", PortletKeys.EXPANDO},
 			{"140", PortletKeys.MY_PAGES}, {"146", _LAYOUT_PROTOTYPE},
 			{"147", _ASSET_CATEGORIES_ADMIN}, {"149", _LAYOUT_SET_PROTOTYPE},
+			{"153", PortletKeys.MY_WORKFLOW_TASK},
 			{"156", PortletKeys.GROUP_PAGES}, {"161", PortletKeys.BLOGS_ADMIN},
 			{"162", PortletKeys.MESSAGE_BOARDS_ADMIN}, {"165", _SITE_SETTINGS},
 			{"174", _SITE_MEMBERSHIPS_ADMIN},
