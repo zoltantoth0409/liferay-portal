@@ -59,16 +59,6 @@
 		<execute function="AssertTextNotPresent" locator1="Home#PAGE_COLUMN_1_LAYOUT_2_COLUMNS_30_SPLIT" value1="There was an unexpected error. Please refresh the current page." />
 	</command>
 
-	<command name="ViewWebContentArchive6012" priority="5">
-		<property name="data.archive.type" value="data-archive-web-content-draft" />
-		<property name="database.types" value="mariadb,mysql,oracle,postgresql,sybase" />
-		<property name="portal.version" value="6.0.12" />
-
-		<execute macro="Upgrade#addWCStructureAndTemplate" />
-
-		<execute macro="Upgrade#publishWCDraft" />
-	</command>
-
 	<command name="ViewWebContentArchive612" priority="5">
 		<property name="data.archive.type" value="data-archive-web-content-draft" />
 		<property name="database.types" value="mariadb,mysql,postgresql" />

@@ -13,14 +13,6 @@
 		<execute macro="Upgrade#reindexSearches" />
 	</set-up>
 
-	<command name="ViewPollsArchive6012" priority="5">
-		<property name="data.archive.type" value="data-archive-polls" />
-		<property name="database.types" value="mariadb,mysql,oracle,postgresql,sybase" />
-		<property name="portal.version" value="6.0.12" />
-
-		<execute macro="Upgrade#viewPolls" />
-	</command>
-
 	<command name="ViewPollsArchive612" priority="5">
 		<property name="data.archive.type" value="data-archive-polls" />
 		<property name="database.types" value="mariadb,mysql,postgresql" />

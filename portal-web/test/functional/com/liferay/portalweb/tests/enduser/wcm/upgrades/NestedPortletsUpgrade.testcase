@@ -13,14 +13,6 @@
 		<execute macro="Upgrade#reindexSearches" />
 	</set-up>
 
-	<command name="ViewNestedPortletsArchive6012" priority="5">
-		<property name="data.archive.type" value="data-archive-nested-portlets" />
-		<property name="database.types" value="mariadb,mysql,oracle,postgresql,sybase" />
-		<property name="portal.version" value="6.0.12" />
-
-		<execute macro="Upgrade#viewNestedPortlets" />
-	</command>
-
 	<command name="ViewNestedPortletsArchive612" priority="5">
 		<property name="data.archive.type" value="data-archive-nested-portlets" />
 		<property name="database.types" value="mariadb,mysql,postgresql" />

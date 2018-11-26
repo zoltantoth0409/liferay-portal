@@ -13,16 +13,6 @@
 		<execute macro="Upgrade#reindexSearches" />
 	</set-up>
 
-	<command name="ViewMessageBoardsArchive6012" priority="5">
-		<property name="data.archive.type" value="data-archive-message-boards" />
-		<property name="database.types" value="mariadb,mysql,oracle,postgresql,sybase" />
-		<property name="portal.version" value="6.0.12" />
-
-		<execute macro="Upgrade#addMessageBoards" />
-
-		<execute macro="Upgrade#viewMessageBoards" />
-	</command>
-
 	<command name="ViewMessageBoardsArchive6130" priority="5">
 		<property name="data.archive.type" value="data-archive-message-boards" />
 		<property name="portal.version" value="6.1.30" />
