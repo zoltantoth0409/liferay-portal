@@ -16,6 +16,8 @@
 
 		<execute function="AssertClick" locator1="TestOAuth#OAUTH_ADMIN_TABLE_NAME" value1="${applicationName}" />
 
+		<execute function="AssertElementPresent" locator1="Icon#ANGLE_LEFT_BACK" />
+
 		<var method="selenium#getText(TestOAuth#OAUTH_ADMIN_APPLICATION_CREDENTIALS)" name="applicationCredentials" />
 
 		<return value="${applicationCredentials}" />
