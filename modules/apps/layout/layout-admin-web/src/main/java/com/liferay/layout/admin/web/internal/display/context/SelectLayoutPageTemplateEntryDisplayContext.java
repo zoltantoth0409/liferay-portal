@@ -106,7 +106,7 @@ public class SelectLayoutPageTemplateEntryDisplayContext {
 					LayoutTypeControllerTracker.getLayoutTypeController(type);
 
 				return layoutTypeController.isInstanceable() &&
-					layoutTypeController.isPrimaryType();
+					   layoutTypeController.isPrimaryType();
 			});
 
 		return _primaryTypes;
@@ -141,7 +141,7 @@ public class SelectLayoutPageTemplateEntryDisplayContext {
 					LayoutTypeControllerTracker.getLayoutTypeController(type);
 
 				return layoutTypeController.isInstanceable() &&
-					!layoutTypeController.isPrimaryType();
+					   !layoutTypeController.isPrimaryType();
 			});
 
 		return _types;
