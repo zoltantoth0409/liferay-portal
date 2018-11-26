@@ -34,7 +34,7 @@ public class HeaderTag extends IncludeTag {
 
 	public void setBackURL(String backURL) {
 		if (Objects.equals(backURL, "javascript:history.go(-1)")) {
-			backURL = "javascript:history.go(-1);";
+			backURL += ";";
 		}
 
 		_backURL = backURL;
