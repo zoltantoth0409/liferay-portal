@@ -1,14 +1,4 @@
 <definition default="isTextEqual">
-	<command name="isPartialText">
-		<execute function="WaitForSPARefresh" />
-
-		<execute selenium="waitForElementPresent" />
-
-		<execute selenium="waitForVisible" />
-
-		<execute selenium="isPartialText" />
-	</command>
-
 	<command name="isText">
 		<execute function="WaitForSPARefresh" />
 

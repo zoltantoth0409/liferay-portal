@@ -205,7 +205,7 @@
 						<var name="panelHeading" value="Configuration" />
 					</execute>
 
-					<execute function="SelectNoError#pauseSelect" locator1="Wiki#ADD_PAGE_FORMAT_DROPDOWN" value1="HTML" />
+					<execute function="SelectNoError" locator1="Wiki#ADD_PAGE_FORMAT_DROPDOWN" value1="HTML" />
 
 					<execute function="Confirm" value1="You may lose some formatting when switching from Creole to HTML. Do you want to continue?" />
 
