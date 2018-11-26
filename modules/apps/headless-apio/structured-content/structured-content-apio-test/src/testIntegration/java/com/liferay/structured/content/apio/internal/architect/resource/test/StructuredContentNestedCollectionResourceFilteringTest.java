@@ -907,7 +907,7 @@ public class StructuredContentNestedCollectionResourceFilteringTest
 			PortalUtil.getClassNameId(JournalArticle.class),
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
 			deserialize(
-				_ddmFormDeserializerTracker,
+				_ddmFormJSONDeserializer,
 				read("test-journal-all-fields-structure.json")),
 			StorageType.JSON.getValue(), DDMStructureConstants.TYPE_DEFAULT);
 
@@ -1918,7 +1918,7 @@ public class StructuredContentNestedCollectionResourceFilteringTest
 			PortalUtil.getClassNameId(JournalArticle.class),
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
 			deserialize(
-				_ddmFormDeserializerTracker,
+				_ddmFormJSONDeserializer,
 				read("test-journal-all-fields-structure.json")),
 			StorageType.JSON.getValue(), DDMStructureConstants.TYPE_DEFAULT);
 
@@ -1972,7 +1972,7 @@ public class StructuredContentNestedCollectionResourceFilteringTest
 			PortalUtil.getClassNameId(JournalArticle.class),
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
 			deserialize(
-				_ddmFormDeserializerTracker,
+				_ddmFormJSONDeserializer,
 				read("test-journal-all-fields-structure.json")),
 			StorageType.JSON.getValue(), DDMStructureConstants.TYPE_DEFAULT);
 
