@@ -3026,10 +3026,31 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 					project.getVersion();
 		}
 
-		File dir = new File(
+		final File jspPrecompileDir = new File(
 			liferayExtension.getLiferayHome(), "work/" + dirName);
 
-		javaCompile.setDestinationDir(dir);
+		Action<Task> taskAction = new Action<Task>() {
+
+			@Override
+			public void execute(Task task) {
+				final JavaCompile javaCompile = (JavaCompile)task;
+
+				Action<CopySpec> copySpecAction = new Action<CopySpec>() {
+
+					@Override
+					public void execute(CopySpec copySpec) {
+						copySpec.from(javaCompile.getDestinationDir());
+						copySpec.into(jspPrecompileDir);
+					}
+
+				};
+
+				project.copy(copySpecAction);
+			}
+
+		};
+
+		javaCompile.doLast(taskAction);
 
 		if (!jspPrecompileFromSource && (artifactProperties != null)) {
 			Copy copy = _addTaskDownloadCompiledJSP(
