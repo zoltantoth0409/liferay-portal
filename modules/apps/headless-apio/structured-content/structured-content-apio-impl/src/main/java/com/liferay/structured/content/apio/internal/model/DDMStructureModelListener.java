@@ -190,9 +190,9 @@ public class DDMStructureModelListener extends BaseModelListener<DDMStructure> {
 			);
 		}
 		else if (Objects.equals(
-					ddmFormField.getDataType(), FieldConstants.STRING) ||
-				 Objects.equals(ddmFormField.getType(), DDMFormFieldType.RADIO
-			 )) {
+					ddmFormField.getDataType(), DDMFormFieldType.RADIO) ||
+				 Objects.equals(
+					ddmFormField.getType(), FieldConstants.STRING)) {
 
 			return Optional.of(
 				new StringEntityField(
