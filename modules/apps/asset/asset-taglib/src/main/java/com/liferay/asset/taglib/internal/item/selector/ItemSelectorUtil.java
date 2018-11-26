@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.asset.taglib.internal.servlet.item.selector;
+package com.liferay.asset.taglib.internal.item.selector;
 
 import com.liferay.item.selector.ItemSelector;
 
