@@ -31,14 +31,15 @@
 			<var name="applicationName" value="oauth1" />
 		</execute>
 
-		<execute macro="TestOAuth#getConsumerKey">
-			<return name="consumerKey" />
-			<var name="applicationCredentials" value="${applicationCredentials}" />
-		</execute>
-
 		<execute macro="TestOAuth#getConsumerSecret">
 			<return name="consumerSecret" />
 			<var name="applicationCredentials" value="${applicationCredentials}" />
+		</execute>
+
+		<execute macro="TestOAuth#getConsumerKey">
+			<return name="consumerKey" />
+			<var name="applicationCredentials" value="${applicationCredentials}" />
+			<var name="consumerSecret" value="${consumerSecret}" />
 		</execute>
 
 		<execute macro="Page#add">
