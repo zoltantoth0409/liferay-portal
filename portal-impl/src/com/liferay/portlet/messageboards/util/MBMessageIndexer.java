@@ -60,7 +60,6 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portlet.messageboards.service.permission.MBMessagePermission;
 
-import java.util.List;
 import java.util.Locale;
 
 import javax.portlet.PortletRequest;
