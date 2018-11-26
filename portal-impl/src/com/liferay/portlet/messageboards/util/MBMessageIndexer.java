@@ -60,10 +60,8 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portlet.messageboards.service.permission.MBMessagePermission;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Optional;
 
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
@@ -329,23 +327,19 @@ public class MBMessageIndexer
 		MBMessage message = MBMessageLocalServiceUtil.getMessage(classPK);
 
 		if (message.isRoot()) {
-			List<MBMessage> messages = new LinkedList<>();
+			for (MBMessage curMessage :
+					MBMessageLocalServiceUtil.getThreadMessages(
+						message.getThreadId(),
+						WorkflowConstants.STATUS_APPROVED)) {
 
-			Optional.ofNullable(
-				MBMessageLocalServiceUtil.getThreadMessages(
-					message.getThreadId(), WorkflowConstants.STATUS_APPROVED)
-			).ifPresent(
-				messages::addAll
-			);
+				reindex(curMessage);
+			}
 
-			Optional.ofNullable(
-				MBMessageLocalServiceUtil.getThreadMessages(
-					message.getThreadId(), WorkflowConstants.STATUS_IN_TRASH)
-			).ifPresent(
-				messages::addAll
-			);
+			for (MBMessage curMessage :
+					MBMessageLocalServiceUtil.getThreadMessages(
+						message.getThreadId(),
+						WorkflowConstants.STATUS_IN_TRASH)) {
 
-			for (MBMessage curMessage : messages) {
 				reindex(curMessage);
 			}
 		}
