@@ -16,6 +16,7 @@ package com.liferay.portal.odata.internal.filter;
 
 import com.liferay.portal.odata.entity.BooleanEntityField;
 import com.liferay.portal.odata.entity.DateEntityField;
+import com.liferay.portal.odata.entity.DateTimeEntityField;
 import com.liferay.portal.odata.entity.DoubleEntityField;
 import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
@@ -147,7 +148,8 @@ public class FilterParserImplTest {
 			"[booleanExternal]",
 			String.valueOf(binaryExpression.getLeftOperationExpression()));
 		Assert.assertEquals(
-			"false", String.valueOf(binaryExpression.getRightOperationExpression()));
+			"false",
+			String.valueOf(binaryExpression.getRightOperationExpression()));
 	}
 
 	@Test
@@ -178,26 +180,16 @@ public class FilterParserImplTest {
 			"[booleanExternal]",
 			String.valueOf(binaryExpression.getLeftOperationExpression()));
 		Assert.assertEquals(
-			"true", String.valueOf(binaryExpression.getRightOperationExpression()));
+			"true",
+			String.valueOf(binaryExpression.getRightOperationExpression()));
 	}
 
 	@Test
-	public void testParseWithEqBinaryExpressionWithDate() {
-		AbstractThrowableAssert exception = Assertions.assertThatThrownBy(
-			() -> _filterParserImpl.parse("dateExternal ge 2012-05-29")
-		).isInstanceOf(
-			ExpressionVisitException.class
-		);
-
-		exception.hasMessageContaining("Incompatible types");
-	}
-
-	@Test
-	public void testParseWithEqBinaryExpressionWithDateTimeOffset()
+	public void testParseWithEqBinaryExpressionWithDate()
 		throws ExpressionVisitException {
 
 		Expression expression = _filterParserImpl.parse(
-			"dateExternal ge 2012-05-29T09:13:28Z");
+			"dateExternal ge 2012-05-29");
 
 		Assert.assertNotNull(expression);
 
@@ -207,10 +199,54 @@ public class FilterParserImplTest {
 			BinaryExpression.Operation.GE, binaryExpression.getOperation());
 		Assert.assertEquals(
 			"[dateExternal]",
+			binaryExpression.getLeftOperationExpression().toString());
+		Assert.assertEquals(
+			"2012-05-29",
+			binaryExpression.getRightOperationExpression().toString());
+	}
+
+	@Test
+	public void testParseWithEqBinaryExpressionWithDateTimeOffset()
+		throws ExpressionVisitException {
+
+		Expression expression = _filterParserImpl.parse(
+			"dateTimeExternal ge 2012-05-29T09:13:28Z");
+
+		Assert.assertNotNull(expression);
+
+		BinaryExpression binaryExpression = (BinaryExpression)expression;
+
+		Assert.assertEquals(
+			BinaryExpression.Operation.GE, binaryExpression.getOperation());
+		Assert.assertEquals(
+			"[dateTimeExternal]",
 			String.valueOf(binaryExpression.getLeftOperationExpression()));
 		Assert.assertEquals(
 			"2012-05-29T09:13:28Z",
 			String.valueOf(binaryExpression.getRightOperationExpression()));
+	}
+
+	@Test
+	public void testParseWithEqBinaryExpressionWithDateTimeWithInvalidType() {
+		AbstractThrowableAssert exception = Assertions.assertThatThrownBy(
+			() -> _filterParserImpl.parse("dateTimeExternal ge 2012-05-29")
+		).isInstanceOf(
+			ExpressionVisitException.class
+		);
+
+		exception.hasMessageContaining("Incompatible types");
+	}
+
+	@Test
+	public void testParseWithEqBinaryExpressionWithDateWithInvalidType() {
+		AbstractThrowableAssert exception = Assertions.assertThatThrownBy(
+			() -> _filterParserImpl.parse(
+				"dateExternal ge 2012-05-29T09:13:28Z")
+		).isInstanceOf(
+			ExpressionVisitException.class
+		);
+
+		exception.hasMessageContaining("Incompatible types");
 	}
 
 	@Test
@@ -331,7 +367,8 @@ public class FilterParserImplTest {
 			"[booleanExternal]",
 			String.valueOf(binaryExpression.getLeftOperationExpression()));
 		Assert.assertEquals(
-			"true", String.valueOf(binaryExpression.getRightOperationExpression()));
+			"true",
+			String.valueOf(binaryExpression.getRightOperationExpression()));
 	}
 
 	@Test
@@ -357,6 +394,9 @@ public class FilterParserImplTest {
 						new DateEntityField(
 							"dateExternal", locale -> "dateInternal",
 							locale -> "dateInternal"),
+						new DateTimeEntityField(
+							"dateTimeExternal", locale -> "dateTimeInternal",
+							locale -> "dateTimeInternal"),
 						new DoubleEntityField(
 							"doubleExternal", locale -> "doubleInternal"),
 						new StringEntityField(
