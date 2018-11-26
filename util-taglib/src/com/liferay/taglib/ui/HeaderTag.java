@@ -19,6 +19,8 @@ import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.taglib.util.IncludeTag;
 
+import java.util.Objects;
+
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -31,6 +33,10 @@ public class HeaderTag extends IncludeTag {
 	}
 
 	public void setBackURL(String backURL) {
+		if (Objects.equals(backURL, "javascript:history.go(-1)")) {
+			backURL = "javascript:history.go(-1);";
+		}
+
 		_backURL = backURL;
 	}
 
