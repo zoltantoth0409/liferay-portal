@@ -3,5 +3,6 @@ Bundle-SymbolicName: com.liferay.portal.security.sso.facebook.connect.api
 Bundle-Version: 1.0.7
 Export-Package:\
 	com.liferay.portal.security.sso.facebook.connect.configuration,\
-	com.liferay.portal.security.sso.facebook.connect.constants
+	com.liferay.portal.security.sso.facebook.connect.constants,\
+	com.liferay.portal.security.sso.facebook.connect.exception
 Liferay-Releng-Module-Group-Title: Security Frameworks
