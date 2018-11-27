@@ -157,7 +157,7 @@ public class PortletContainerUtil {
 				if (protocol.equals(renderURL.getProtocol()) &&
 					host.equals(renderURL.getHost()) &&
 					(port == renderURL.getPort()) &&
-					_samePortletIdParameter(
+					_hasSamePortletIdParameter(
 						locationURL.getQuery(), renderURL.getQuery())) {
 
 					location = liferayPortletURL.toString();
@@ -349,7 +349,7 @@ public class PortletContainerUtil {
 		}
 	}
 
-	private static boolean _samePortletIdParameter(
+	private static boolean _hasSamePortletIdParameter(
 		String query1, String query2) {
 
 		if ((query1 == null) || (query2 == null)) {
