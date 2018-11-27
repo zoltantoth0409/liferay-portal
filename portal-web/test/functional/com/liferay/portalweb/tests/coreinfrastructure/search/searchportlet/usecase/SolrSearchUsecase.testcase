@@ -1195,7 +1195,7 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="Search#searchPG">
 			<var name="searchTerm" value="Web Content Article" />
 		</execute>
 
@@ -1206,7 +1206,7 @@
 
 		<execute macro="ProductMenu#gotoLiveSite" />
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="Search#searchPG">
 			<var name="searchTerm" value="Web Content Article" />
 		</execute>
 
@@ -1237,7 +1237,7 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="Search#searchPG">
 			<var name="searchTerm" value="Web Content Article" />
 		</execute>
 
@@ -1247,7 +1247,7 @@
 
 		<execute macro="ProductMenu#gotoLiveSite" />
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="Search#searchPG">
 			<var name="searchTerm" value="Web Content Article" />
 		</execute>
 

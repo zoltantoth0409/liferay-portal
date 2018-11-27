@@ -124,7 +124,7 @@
 
 		<execute macro="Navigator#openURL" />
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="Search#searchPG">
 			<var name="searchTerm" value="Apple" />
 		</execute>
 
@@ -140,7 +140,7 @@
 
 		<execute macro="Navigator#openURL" />
 
-		<execute macro="SearchPortlet#searchPG">
+		<execute macro="Search#searchPG">
 			<var name="searchTerm" value="Orange" />
 		</execute>
 
