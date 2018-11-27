@@ -67,6 +67,7 @@ public class ServiceBuilderInvoker {
 			serviceBuilderArgs.getPropsUtil(),
 			serviceBuilderArgs.getReadOnlyPrefixes(), resourceActionModels,
 			_getAbsolutePath(baseDir, serviceBuilderArgs.getResourcesDirName()),
+			serviceBuilderArgs.isSpringConfiguratorEnabled(),
 			_getAbsolutePath(baseDir, serviceBuilderArgs.getSpringFileName()),
 			serviceBuilderArgs.getSpringNamespaces(),
 			_getAbsolutePath(baseDir, serviceBuilderArgs.getSqlDirName()),
@@ -76,7 +77,7 @@ public class ServiceBuilderInvoker {
 			serviceBuilderArgs.getTargetEntityName(),
 			_getAbsolutePath(baseDir, serviceBuilderArgs.getTestDirName()),
 			_getAbsolutePath(baseDir, serviceBuilderArgs.getUADDirName()),
-			serviceBuilderArgs.isSpringConfiguratorEnabled(), true);
+			true);
 	}
 
 	private static String _getAbsolutePath(File baseDir, String fileName) {

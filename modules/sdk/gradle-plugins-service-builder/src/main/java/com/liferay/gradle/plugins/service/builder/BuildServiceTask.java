@@ -436,6 +436,9 @@ public class BuildServiceTask extends JavaExec {
 			"service.resource.actions.configs=" +
 				CollectionUtils.join(",", getResourceActionsConfigs()));
 		args.add("service.resources.dir=" + _relativize(getResourcesDir()));
+		args.add(
+			"service.spring.configurator.enabled=" +
+				isSpringConfiguratorEnabled());
 		args.add("service.spring.file=" + _relativize(getSpringFile()));
 		args.add(
 			"service.spring.namespaces=" +
@@ -472,9 +475,6 @@ public class BuildServiceTask extends JavaExec {
 				"service.uad.test.integration.dir=" +
 					_relativize(uadTestIntegrationDir));
 		}
-
-		args.add(
-			"spring.configurator.enabled=" + isSpringConfiguratorEnabled());
 
 		return args;
 	}

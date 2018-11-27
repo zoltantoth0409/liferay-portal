@@ -212,6 +212,7 @@ svn://svn.liferay.com/repos/public/alloy/trunk/sandbox/taglibs.
 			<arg value="service.plugin.name=" />
 			<arg value="service.props.util=com.liferay.portal.util.PropsUtil" />
 			<arg value="service.resources.dir=${basedir}/src" />
+			<arg value="service.spring.configurator.enabled=${spring.configurator.enabled}" />
 			<arg value="service.spring.file=${basedir}/src/META-INF/portal-spring.xml" />
 			<arg value="service.spring.namespaces=beans" />
 			<arg value="service.sql.dir=${basedir}/../sql" />
@@ -220,7 +221,6 @@ svn://svn.liferay.com/repos/public/alloy/trunk/sandbox/taglibs.
 			<arg value="service.sql.sequences.file=sequences.sql" />
 			<arg value="service.target.entity.name=${service.target.entity.name}" />
 			<arg value="service.test.dir=${basedir}/test/integration" />
-			<arg value="spring.configurator.enabled=${spring.configurator.enabled}" />
 		</java>
 
 		<delete file="ServiceBuilder.temp" />

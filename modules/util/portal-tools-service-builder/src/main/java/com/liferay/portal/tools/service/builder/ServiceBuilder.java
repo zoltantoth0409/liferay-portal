@@ -201,6 +201,8 @@ public class ServiceBuilder {
 				arguments.get("service.resource.actions.configs"),
 				StringUtil.merge(ServiceBuilderArgs.RESOURCE_ACTION_CONFIGS)));
 		String resourcesDirName = arguments.get("service.resources.dir");
+		boolean springConfiguratorEnabled = GetterUtil.getBoolean(
+			arguments.get("service.spring.configurator.enabled"));
 		String springFileName = arguments.get("service.spring.file");
 		String[] springNamespaces = StringUtil.split(
 			arguments.get("service.spring.namespaces"));
@@ -212,8 +214,6 @@ public class ServiceBuilder {
 		String targetEntityName = arguments.get("service.target.entity.name");
 		String testDirName = arguments.get("service.test.dir");
 		String uadDirName = arguments.get("service.uad.dir");
-		boolean springConfiguratorEnabled = GetterUtil.getBoolean(
-			arguments.get("spring.configurator.enabled"));
 
 		Set<String> resourceActionModels = readResourceActionModels(
 			implDirName, resourcesDirName, resourceActionsConfigs);
@@ -235,9 +235,10 @@ public class ServiceBuilder {
 				databaseNameMaxLength, hbmFileName, implDirName, inputFileName,
 				modelHintsFileName, osgiModule, pluginName, propsUtil,
 				readOnlyPrefixes, resourceActionModels, resourcesDirName,
-				springFileName, springNamespaces, sqlDirName, sqlFileName,
-				sqlIndexesFileName, sqlSequencesFileName, targetEntityName,
-				testDirName, uadDirName, springConfiguratorEnabled, true);
+				springConfiguratorEnabled, springFileName, springNamespaces,
+				sqlDirName, sqlFileName, sqlIndexesFileName,
+				sqlSequencesFileName, targetEntityName, testDirName, uadDirName,
+				true);
 
 			String modifiedFileNames = StringUtil.merge(
 				serviceBuilder.getModifiedFileNames());
@@ -485,9 +486,9 @@ public class ServiceBuilder {
 			beanLocatorUtil, 1, true, databaseNameMaxLength, hbmFileName,
 			implDirName, inputFileName, modelHintsFileName, osgiModule,
 			pluginName, propsUtil, readOnlyPrefixes, resourceActionModels,
-			resourcesDirName, springFileName, springNamespaces, sqlDirName,
-			sqlFileName, sqlIndexesFileName, sqlSequencesFileName,
-			targetEntityName, testDirName, uadDirName, true, true);
+			resourcesDirName, true, springFileName, springNamespaces,
+			sqlDirName, sqlFileName, sqlIndexesFileName, sqlSequencesFileName,
+			targetEntityName, testDirName, uadDirName, true);
 	}
 
 	public ServiceBuilder(
@@ -498,11 +499,11 @@ public class ServiceBuilder {
 			String inputFileName, String modelHintsFileName, boolean osgiModule,
 			String pluginName, String propsUtil, String[] readOnlyPrefixes,
 			Set<String> resourceActionModels, String resourcesDirName,
-			String springFileName, String[] springNamespaces, String sqlDirName,
-			String sqlFileName, String sqlIndexesFileName,
-			String sqlSequencesFileName, String targetEntityName,
-			String testDirName, String uadDirName,
-			boolean springConfiguratorEnabled, boolean build)
+			boolean springConfiguratorEnabled, String springFileName,
+			String[] springNamespaces, String sqlDirName, String sqlFileName,
+			String sqlIndexesFileName, String sqlSequencesFileName,
+			String targetEntityName, String testDirName, String uadDirName,
+			boolean build)
 		throws Exception {
 
 		_tplBadAliasNames = _getTplProperty(
@@ -569,6 +570,7 @@ public class ServiceBuilder {
 			_readOnlyPrefixes = readOnlyPrefixes;
 			_resourceActionModels = resourceActionModels;
 			_resourcesDirName = _normalize(resourcesDirName);
+			_springConfiguratorEnabled = springConfiguratorEnabled;
 			_springFileName = _normalize(springFileName);
 
 			_springNamespaces = springNamespaces;
@@ -587,7 +589,6 @@ public class ServiceBuilder {
 			_targetEntityName = targetEntityName;
 			_testDirName = _normalize(testDirName);
 			_uadDirName = _normalize(uadDirName);
-			_springConfiguratorEnabled = springConfiguratorEnabled;
 			_build = build;
 
 			_badTableNames = _readLines(_tplBadTableNames);
@@ -1132,10 +1133,10 @@ public class ServiceBuilder {
 			_databaseNameMaxLength, _hbmFileName, _implDirName,
 			refFile.getAbsolutePath(), _modelHintsFileName, _osgiModule,
 			_pluginName, _propsUtil, _readOnlyPrefixes, _resourceActionModels,
-			_resourcesDirName, _springFileName, _springNamespaces, _sqlDirName,
-			_sqlFileName, _sqlIndexesFileName, _sqlSequencesFileName,
-			_targetEntityName, _testDirName, _uadDirName,
-			_springConfiguratorEnabled, false);
+			_resourcesDirName, _springConfiguratorEnabled, _springFileName,
+			_springNamespaces, _sqlDirName, _sqlFileName, _sqlIndexesFileName,
+			_sqlSequencesFileName, _targetEntityName, _testDirName, _uadDirName,
+			false);
 
 		entity = serviceBuilder.getEntity(refEntity);
 
@@ -1847,7 +1848,11 @@ public class ServiceBuilder {
 	}
 
 	public boolean isSpringConfiguratorEnabled() {
-		return _springConfiguratorEnabled;
+		if (_springConfiguratorEnabled) {
+			return true;
+		}
+
+		return isVersionGTE_7_2_0();
 	}
 
 	public boolean isTxRequiredMethod(
@@ -1867,6 +1872,26 @@ public class ServiceBuilder {
 	public boolean isVersionGTE_7_1_0() {
 		if (_dtdVersion.isLaterVersionThan("7.1.0") ||
 			_dtdVersion.isSameVersionAs("7.1.0")) {
+
+			return true;
+		}
+
+		return false;
+	}
+
+	public boolean isVersionGTE_7_2_0() {
+		if (_dtdVersion.isLaterVersionThan("7.2.0") ||
+			_dtdVersion.isSameVersionAs("7.2.0")) {
+
+			return true;
+		}
+
+		return false;
+	}
+
+	public boolean isVersionLTE_7_0_0() {
+		if (_dtdVersion.isPreviousVersionThan("7.0.0") ||
+			_dtdVersion.isSameVersionAs("7.0.0")) {
 
 			return true;
 		}
