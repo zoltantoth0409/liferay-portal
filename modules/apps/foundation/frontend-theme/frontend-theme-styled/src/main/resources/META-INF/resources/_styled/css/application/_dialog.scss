@@ -123,9 +123,7 @@
 
 .dialog-with-footer {
 	#main-content, #wrapper {
-		@include md {
-			height: calc(100% - #{$dialog-footer-height});
-		}
+		height: calc(100% - #{$dialog-footer-height});
 	}
 
 	.button-holder {
