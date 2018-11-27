@@ -310,45 +310,6 @@ public class PortletContainerUtil {
 		_portletContainer = portletContainer;
 	}
 
-	private static void _processEvents(
-			HttpServletRequest request, HttpServletResponse response,
-			List<Event> events)
-		throws PortletContainerException {
-
-		Layout layout = (Layout)request.getAttribute(WebKeys.LAYOUT);
-
-		List<LayoutTypePortlet> layoutTypePortlets = getLayoutTypePortlets(
-			layout);
-
-		for (LayoutTypePortlet layoutTypePortlet : layoutTypePortlets) {
-			List<Portlet> portlets = null;
-
-			try {
-				portlets = layoutTypePortlet.getAllPortlets();
-			}
-			catch (Exception e) {
-				throw new PortletContainerException(e);
-			}
-
-			for (Portlet portlet : portlets) {
-				for (Event event : events) {
-					javax.xml.namespace.QName qName = event.getQName();
-
-					QName processingQName = portlet.getProcessingEvent(
-						qName.getNamespaceURI(), qName.getLocalPart());
-
-					if (processingQName == null) {
-						continue;
-					}
-
-					processEvent(
-						request, response, portlet,
-						layoutTypePortlet.getLayout(), event);
-				}
-			}
-		}
-	}
-
 	private static boolean _hasSamePortletIdParameter(
 		String queryString1, String queryString2) {
 
@@ -396,6 +357,45 @@ public class PortletContainerUtil {
 		}
 
 		return false;
+	}
+
+	private static void _processEvents(
+			HttpServletRequest request, HttpServletResponse response,
+			List<Event> events)
+		throws PortletContainerException {
+
+		Layout layout = (Layout)request.getAttribute(WebKeys.LAYOUT);
+
+		List<LayoutTypePortlet> layoutTypePortlets = getLayoutTypePortlets(
+			layout);
+
+		for (LayoutTypePortlet layoutTypePortlet : layoutTypePortlets) {
+			List<Portlet> portlets = null;
+
+			try {
+				portlets = layoutTypePortlet.getAllPortlets();
+			}
+			catch (Exception e) {
+				throw new PortletContainerException(e);
+			}
+
+			for (Portlet portlet : portlets) {
+				for (Event event : events) {
+					javax.xml.namespace.QName qName = event.getQName();
+
+					QName processingQName = portlet.getProcessingEvent(
+						qName.getNamespaceURI(), qName.getLocalPart());
+
+					if (processingQName == null) {
+						continue;
+					}
+
+					processEvent(
+						request, response, portlet,
+						layoutTypePortlet.getLayout(), event);
+				}
+			}
+		}
 	}
 
 	private static final boolean _LAYOUT_PARALLEL_RENDER_ENABLE = false;
