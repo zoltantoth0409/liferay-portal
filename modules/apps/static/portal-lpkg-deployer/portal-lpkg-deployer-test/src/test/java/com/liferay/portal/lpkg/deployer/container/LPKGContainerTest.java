@@ -16,7 +16,7 @@ package com.liferay.portal.lpkg.deployer.container;
 
 import com.liferay.portal.lpkg.deployer.test.util.LPKGTestUtil;
 
-import java.io.FileOutputStream;
+import java.io.OutputStream;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -52,10 +52,9 @@ public class LPKGContainerTest {
 
 		Files.createFile(containerPath);
 
-		try (FileOutputStream fileOutputStream = new FileOutputStream(
-				containerPath.toFile());
+		try (OutputStream outputStream = Files.newOutputStream(containerPath);
 			ZipOutputStream zipOutputStream = new ZipOutputStream(
-				fileOutputStream)) {
+				outputStream)) {
 
 			zipOutputStream.putNextEntry(
 				new ZipEntry("Liferay Inner Container Test.lpkg"));

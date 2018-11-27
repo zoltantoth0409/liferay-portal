@@ -17,8 +17,7 @@ package com.liferay.portal.lpkg.deployer.container.test;
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.portal.util.PropsValues;
 
-import java.io.File;
-
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -50,15 +49,15 @@ public class LPKGContainerVerifyTest {
 			PropsValues.MODULE_FRAMEWORK_MARKETPLACE_DIR,
 			"Liferay Container Test.lpkg");
 
-		File containerFile = path.toFile();
-
-		Assert.assertFalse(containerFile.exists());
+		Assert.assertTrue(Files.notExists(path));
 
 		boolean found = false;
 
 		for (Bundle bundle : _bundleContext.getBundles()) {
 			if (_LPKG_INNER_NAME.equals(bundle.getSymbolicName())) {
 				found = true;
+
+				break;
 			}
 		}
 
