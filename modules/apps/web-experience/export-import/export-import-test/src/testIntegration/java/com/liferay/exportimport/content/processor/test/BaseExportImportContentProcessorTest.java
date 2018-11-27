@@ -670,11 +670,11 @@ public class BaseExportImportContentProcessorTest {
 			LayoutLocalServiceUtil.fetchLayoutByUuidAndGroupId(
 				_stagingPrivateLayout.getUuid(), _liveGroup.getGroupId(), true);
 
-		Map<Long, Layout> data =
+		Map<Long, Layout> layouts =
 			(Map<Long, Layout>)_portletDataContextImport.getNewPrimaryKeysMap(
-				_PRIMARY_KEY_MAP_LAYOUT_KEY);
+				Layout.class + ".layout");
 
-		data.put(Long.valueOf(3), importedPrivateLayout);
+		layouts.put(Long.valueOf(3), importedPrivateLayout);
 
 		String contentInFile = getContent(
 			"layout_links_in_layoutset_prototype.txt");
@@ -1171,9 +1171,6 @@ public class BaseExportImportContentProcessorTest {
 		"[$NON_DEFAULT_LIVE_PUBLIC_LAYOUT_FRIENDLY_URL$]",
 		"[$NON_DEFAULT_PUBLIC_LAYOUT_FRIENDLY_URL$]"
 	};
-
-	private static final String _PRIMARY_KEY_MAP_LAYOUT_KEY =
-		"interface com.liferay.portal.kernel.model.Layout.layout";
 
 	private static final Locale[] _locales =
 		{LocaleUtil.US, LocaleUtil.GERMANY, LocaleUtil.SPAIN};
