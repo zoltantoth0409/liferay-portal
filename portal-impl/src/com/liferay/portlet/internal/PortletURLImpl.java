@@ -1574,8 +1574,8 @@ public class PortletURLImpl
 
 					String name = publicRenderParameter.getIdentifier();
 
-					publicRenderParameterNames.add(name);
 					mutableRenderParameterMap.put(name, values);
+					publicRenderParameterNames.add(name);
 				}
 			}
 
