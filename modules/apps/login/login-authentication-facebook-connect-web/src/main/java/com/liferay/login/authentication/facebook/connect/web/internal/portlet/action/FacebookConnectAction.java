@@ -293,9 +293,9 @@ public class FacebookConnectAction extends BaseStrutsAction {
 		LiferayPortletURL portletURL = PortletURLFactoryUtil.create(
 			request, PortletKeys.LOGIN, PortletRequest.RENDER_PHASE);
 
-		portletURL.setParameter("error", error);
 		portletURL.setParameter(
 			"mvcRenderCommandName", "/login/facebook_connect_login_error");
+		portletURL.setParameter("error", error);
 		portletURL.setWindowState(LiferayWindowState.POP_UP);
 
 		response.sendRedirect(portletURL.toString());
