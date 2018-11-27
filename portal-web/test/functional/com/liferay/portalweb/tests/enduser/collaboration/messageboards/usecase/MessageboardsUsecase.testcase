@@ -346,7 +346,8 @@
 			<var name="pageName" value="Message Boards Page" />
 		</execute>
 
-		<execute macro="Search#searchPG">
+		<execute macro="SearchPortlet#searchPG">
+			<var name="portletName" value="Message Boards" />
 			<var name="searchTerm" value="This is a *.docx file." />
 		</execute>
 
