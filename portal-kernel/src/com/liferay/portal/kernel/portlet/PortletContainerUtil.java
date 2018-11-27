@@ -350,19 +350,19 @@ public class PortletContainerUtil {
 	}
 
 	private static boolean _hasSamePortletIdParameter(
-		String query1, String query2) {
+		String queryString1, String queryString2) {
 
-		if ((query1 == null) || (query2 == null)) {
+		if ((queryString1 == null) || (queryString2 == null)) {
 			return false;
 		}
 
-		int x1 = query1.indexOf("p_p_id=");
+		int x1 = queryString1.indexOf("p_p_id=");
 
 		if (x1 < 0) {
 			return false;
 		}
 
-		int x2 = query2.indexOf("p_p_id=");
+		int x2 = queryString2.indexOf("p_p_id=");
 
 		if (x2 < 0) {
 			return false;
@@ -371,27 +371,27 @@ public class PortletContainerUtil {
 		x1 += 7;
 		x2 += 7;
 
-		int y1 = query1.indexOf(CharPool.AMPERSAND, x1);
+		int y1 = queryString1.indexOf(CharPool.AMPERSAND, x1);
 
 		if (y1 < 0) {
-			y1 = query1.length();
+			y1 = queryString1.length();
 		}
 
 		int length = y1 - x1;
 
 		int y2 = length + x2;
 
-		if (y2 > query2.length()) {
+		if (y2 > queryString2.length()) {
 			return false;
 		}
 
-		if ((y2 != query2.length()) &&
-			(query2.charAt(y2) != CharPool.AMPERSAND)) {
+		if ((y2 != queryString2.length()) &&
+			(queryString2.charAt(y2) != CharPool.AMPERSAND)) {
 
 			return false;
 		}
 
-		if (query1.regionMatches(x1, query2, x2, length)) {
+		if (queryString1.regionMatches(x1, queryString2, x2, length)) {
 			return true;
 		}
 
