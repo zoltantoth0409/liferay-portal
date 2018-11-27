@@ -97,8 +97,7 @@ public interface ExpressionVisitor<T> {
 			UnaryExpression.Operation operation, T operand)
 		throws ExpressionVisitException {
 
-		throw new UnsupportedOperationException(
-			"visitUnaryExpressionOperation is not supported");
+		throw new UnsupportedOperationException();
 	}
 
 }
