@@ -15,7 +15,7 @@ window.AUI = () => (
 					{
 						render: () => (
 							{
-								getHTML: () => ''
+								getHTML: () => 'test'
 							}
 						)
 					}
