@@ -145,9 +145,9 @@ public class FilterParserImplTest {
 			BinaryExpression.Operation.EQ, binaryExpression.getOperation());
 		Assert.assertEquals(
 			"[booleanExternal]",
-			binaryExpression.getLeftOperationExpression().toString());
+			String.valueOf(binaryExpression.getLeftOperationExpression()));
 		Assert.assertEquals(
-			"false", binaryExpression.getRightOperationExpression().toString());
+			"false", String.valueOf(binaryExpression.getRightOperationExpression()));
 	}
 
 	@Test
@@ -176,9 +176,9 @@ public class FilterParserImplTest {
 			BinaryExpression.Operation.EQ, binaryExpression.getOperation());
 		Assert.assertEquals(
 			"[booleanExternal]",
-			binaryExpression.getLeftOperationExpression().toString());
+			String.valueOf(binaryExpression.getLeftOperationExpression()));
 		Assert.assertEquals(
-			"true", binaryExpression.getRightOperationExpression().toString());
+			"true", String.valueOf(binaryExpression.getRightOperationExpression()));
 	}
 
 	@Test
@@ -207,10 +207,10 @@ public class FilterParserImplTest {
 			BinaryExpression.Operation.GE, binaryExpression.getOperation());
 		Assert.assertEquals(
 			"[dateExternal]",
-			binaryExpression.getLeftOperationExpression().toString());
+			String.valueOf(binaryExpression.getLeftOperationExpression()));
 		Assert.assertEquals(
 			"2012-05-29T09:13:28Z",
-			binaryExpression.getRightOperationExpression().toString());
+			String.valueOf(binaryExpression.getRightOperationExpression()));
 	}
 
 	@Test
@@ -241,10 +241,10 @@ public class FilterParserImplTest {
 			BinaryExpression.Operation.EQ, binaryExpression.getOperation());
 		Assert.assertEquals(
 			"[fieldExternal]",
-			binaryExpression.getLeftOperationExpression().toString());
+			String.valueOf(binaryExpression.getLeftOperationExpression()));
 		Assert.assertEquals(
 			"'value'",
-			binaryExpression.getRightOperationExpression().toString());
+			String.valueOf(binaryExpression.getRightOperationExpression()));
 	}
 
 	@Test
@@ -262,10 +262,10 @@ public class FilterParserImplTest {
 			BinaryExpression.Operation.EQ, binaryExpression.getOperation());
 		Assert.assertEquals(
 			"[fieldExternal]",
-			binaryExpression.getLeftOperationExpression().toString());
+			String.valueOf(binaryExpression.getLeftOperationExpression()));
 		Assert.assertEquals(
 			"'value'",
-			binaryExpression.getRightOperationExpression().toString());
+			String.valueOf(binaryExpression.getRightOperationExpression()));
 	}
 
 	@Test
@@ -283,10 +283,10 @@ public class FilterParserImplTest {
 			BinaryExpression.Operation.GE, binaryExpression.getOperation());
 		Assert.assertEquals(
 			"[fieldExternal]",
-			binaryExpression.getLeftOperationExpression().toString());
+			String.valueOf(binaryExpression.getLeftOperationExpression()));
 		Assert.assertEquals(
 			"'value'",
-			binaryExpression.getRightOperationExpression().toString());
+			String.valueOf(binaryExpression.getRightOperationExpression()));
 	}
 
 	@Test
@@ -304,10 +304,10 @@ public class FilterParserImplTest {
 			BinaryExpression.Operation.LE, binaryExpression.getOperation());
 		Assert.assertEquals(
 			"[fieldExternal]",
-			binaryExpression.getLeftOperationExpression().toString());
+			String.valueOf(binaryExpression.getLeftOperationExpression()));
 		Assert.assertEquals(
 			"'value'",
-			binaryExpression.getRightOperationExpression().toString());
+			String.valueOf(binaryExpression.getRightOperationExpression()));
 	}
 
 	@Test
@@ -329,9 +329,9 @@ public class FilterParserImplTest {
 
 		Assert.assertEquals(
 			"[booleanExternal]",
-			binaryExpression.getLeftOperationExpression().toString());
+			String.valueOf(binaryExpression.getLeftOperationExpression()));
 		Assert.assertEquals(
-			"true", binaryExpression.getRightOperationExpression().toString());
+			"true", String.valueOf(binaryExpression.getRightOperationExpression()));
 	}
 
 	@Test
