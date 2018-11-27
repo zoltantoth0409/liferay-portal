@@ -1,35 +1,12 @@
 <definition>
 	<command name="searchPG">
-		<execute function="AssertElementPresent" locator1="Search#SEARCH_FIELD" />
+		<var name="key_portletName" value="${portletName}" />
 
-		<execute function="Type" locator1="Search#SEARCH_FIELD" value1="${searchTerm}" />
+		<execute function="AssertElementPresent" locator1="Portlet#SEARCH_PORTLET_FIELD" />
 
-		<if>
-			<isset var="localizationIDName" />
-			<then>
-				<var name="key_searchIDName" value="${localizationIDName}" />
-			</then>
-			<else>
-				<var name="key_searchIDName" value="Search" />
-			</else>
-		</if>
+		<execute function="Type" locator1="Portlet#SEARCH_PORTLET_FIELD" value1="${searchTerm}" />
 
-		<var name="key_searchScope" value="${searchScope}" />
-
-		<if>
-			<equals arg1="${searchScope}" arg2="Everything" />
-			<then>
-				<execute function="Select" locator1="Select#SCOPE" value1="${searchScope}" />
-			</then>
-			<elseif>
-				<equals arg1="${searchScope}" arg2="This Site" />
-				<then>
-					<execute function="Select" locator1="Select#SCOPE" value1="${searchScope}" />
-				</then>
-			</elseif>
-		</if>
-
-		<execute function="KeyPress" locator1="Search#SEARCH_FIELD" value1="\RETURN" />
+		<execute function="KeyPress" locator1="Portlet#SEARCH_PORTLET_FIELD" value1="\RETURN" />
 	</command>
 
 	<command name="viewSearchNoAssetTitle">
