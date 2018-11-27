@@ -287,15 +287,13 @@ name = HtmlUtil.escapeJS(name);
 		);
 
 		alloyEditor.getNativeEditor().on(
-			'uiReady',
-			function(event) {
+			'uiReady', function(x) {
 				var uiNode = Liferay.Util.getOpener() !== window.self ?
 					document.querySelector('.lfr-form-content') :
 					null;
 
 				this.config.uiNode = uiNode;
-			}
-		);
+		});
 
 		alloyEditor.render();
 
