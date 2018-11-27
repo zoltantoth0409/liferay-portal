@@ -195,7 +195,7 @@ public class DDMStructureModelListener extends BaseModelListener<DDMStructure> {
 					locale -> encodeName(
 						ddmStructure.getStructureId(), ddmFormField.getName(),
 						locale, "String"),
-					this::_ddmDateFieldValue)
+					this::_getDDMDateFieldValue)
 			);
 		}
 		else if (Objects.equals(
@@ -247,7 +247,7 @@ public class DDMStructureModelListener extends BaseModelListener<DDMStructure> {
 		return Optional.empty();
 	}
 
-	private String _ddmDateFieldValue(Object fieldValue) {
+	private String _getDDMDateFieldValue(Object fieldValue) {
 		DateFormat indexDateFormat = DateFormatFactoryUtil.getSimpleDateFormat(
 			PropsUtil.get(PropsKeys.INDEX_DATE_FORMAT_PATTERN));
 
