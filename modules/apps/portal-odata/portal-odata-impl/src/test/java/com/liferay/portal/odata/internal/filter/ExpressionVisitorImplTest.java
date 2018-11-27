@@ -222,7 +222,7 @@ public class ExpressionVisitorImplTest {
 	@Test
 	public void testVisitDateISO8601LiteralExpression() {
 		LiteralExpression literalExpression = new LiteralExpressionImpl(
-			"2012-05-29T09:13:28Z", LiteralExpression.Type.DATETIME);
+			"2012-05-29T09:13:28Z", LiteralExpression.Type.DATE_TIME);
 
 		Assert.assertEquals(
 			"20120529091328",
@@ -232,7 +232,7 @@ public class ExpressionVisitorImplTest {
 	@Test
 	public void testVisitDateISOLiteralExpression() {
 		LiteralExpression literalExpression = new LiteralExpressionImpl(
-			"2012-05-29T11:58:16+00:00", LiteralExpression.Type.DATETIME);
+			"2012-05-29T11:58:16+00:00", LiteralExpression.Type.DATE_TIME);
 
 		Assert.assertEquals(
 			"20120529115816",

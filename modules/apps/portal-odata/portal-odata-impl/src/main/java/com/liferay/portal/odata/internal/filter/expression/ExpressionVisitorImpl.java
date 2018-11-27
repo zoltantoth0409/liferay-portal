@@ -120,7 +120,7 @@ public class ExpressionVisitorImpl implements ExpressionVisitor<Expression> {
 		}
 		else if (edmType instanceof EdmDateTimeOffset) {
 			return new LiteralExpressionImpl(
-				literal.getText(), LiteralExpression.Type.DATETIME);
+				literal.getText(), LiteralExpression.Type.DATE_TIME);
 		}
 		else if (edmType instanceof EdmDecimal ||
 				 edmType instanceof EdmDouble) {
