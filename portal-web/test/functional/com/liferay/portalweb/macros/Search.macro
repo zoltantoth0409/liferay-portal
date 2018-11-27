@@ -28,6 +28,12 @@ definition {
 			value1 = "\RETURN");
 	}
 
+	macro viewNoResultAssetTitle {
+		AssertElementNotPresent(
+			key_searchAssetTitle = "${searchAssetTitle}",
+			locator1 = "SearchResults#ASSET_ENTRY_TABLE_TITLE");
+	}
+
 	macro viewResultAssetTitle {
 		var key_searchAssetTitle = "${searchAssetTitle}";
 
