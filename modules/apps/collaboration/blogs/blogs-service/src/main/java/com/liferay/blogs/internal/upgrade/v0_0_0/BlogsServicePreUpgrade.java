@@ -16,6 +16,7 @@ package com.liferay.blogs.internal.upgrade.v0_0_0;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Release;
+import com.liferay.portal.kernel.module.framework.ModuleServiceLifecycle;
 import com.liferay.portal.kernel.service.ReleaseLocalService;
 import com.liferay.portal.kernel.util.StringUtil;
 
@@ -40,6 +41,9 @@ public class BlogsServicePreUpgrade {
 			_releaseLocalService.deleteRelease(release.getReleaseId());
 		}
 	}
+
+	@Reference(target = ModuleServiceLifecycle.DATABASE_INITIALIZED)
+	private ModuleServiceLifecycle _moduleServiceLifecycle;
 
 	@Reference
 	private ReleaseLocalService _releaseLocalService;
