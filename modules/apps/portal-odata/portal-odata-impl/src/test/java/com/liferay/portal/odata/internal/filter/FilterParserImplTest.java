@@ -199,10 +199,10 @@ public class FilterParserImplTest {
 			BinaryExpression.Operation.GE, binaryExpression.getOperation());
 		Assert.assertEquals(
 			"[dateExternal]",
-			binaryExpression.getLeftOperationExpression().toString());
+			String.valueOf(binaryExpression.getLeftOperationExpression()));
 		Assert.assertEquals(
 			"2012-05-29",
-			binaryExpression.getRightOperationExpression().toString());
+			String.valueOf(binaryExpression.getRightOperationExpression()));
 	}
 
 	@Test
