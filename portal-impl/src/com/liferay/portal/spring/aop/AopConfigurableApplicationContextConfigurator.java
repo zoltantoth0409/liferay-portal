@@ -88,7 +88,7 @@ public class AopConfigurableApplicationContextConfigurator
 
 			if (configurableListableBeanFactory.getBeanDefinitionCount() == 0) {
 
-				// Protection for the those theme wars with no spring xmls.
+				// Protection for the those theme wars with no Spring XML files
 
 				return;
 			}
@@ -97,7 +97,7 @@ public class AopConfigurableApplicationContextConfigurator
 				new BeanReferenceAnnotationBeanPostProcessor(
 					configurableListableBeanFactory));
 
-			// Counter AOP for portal spring context only
+			// Counter AOP for portal Spring context only
 
 			if (PortalClassLoaderUtil.isPortalClassLoader(_classLoader)) {
 				ServiceBeanAutoProxyCreator counterServiceBeanAutoProxyCreator =
