@@ -132,7 +132,7 @@ class Editor extends Component {
 		 * @type {?(string|undefined)}
 		 */
 
-		value: Config.string()
+		value: Config.string().value('')
 	};
 
 	created() {
@@ -145,25 +145,26 @@ class Editor extends Component {
 	}
 
 	attached() {
-		this.setEditor();
+		this._createEditor();
 	}
 
 	willReceiveState({children, value}) {
 		if (value && value.newVal !== value.prevVal && children) {
 			this._alloyEditor.destroy();
-			this.setEditor();
+
+			this._createEditor();
 		}
 	}
 
-	setEditor() {
+	_createEditor() {
 		const {A, name, readOnly, value} = this;
-		const editor = A.one(this.element.querySelector('.alloy-editor'));
+		const editorNode = this.element.querySelector('.alloy-editor');
 
 		if (readOnly) {
 			return;
 		}
 
-		editor.innerHTML = value;
+		editorNode.innerHTML = value;
 
 		window[name] = {};
 
@@ -173,7 +174,7 @@ class Editor extends Component {
 				editorConfig: {
 					extraPlugins: 'ae_placeholder,ae_selectionregion,ae_uicore',
 					removePlugins: 'contextmenu,elementspath,image,link,liststyle,resize,tabletools,toolbar',
-					srcNode: editor,
+					srcNode: A.one(editorNode),
 					toolbars: {
 						add: {
 							buttons: ['hline', 'table']
