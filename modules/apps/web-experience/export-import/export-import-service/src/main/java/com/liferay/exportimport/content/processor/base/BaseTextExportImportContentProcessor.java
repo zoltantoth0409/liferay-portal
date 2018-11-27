@@ -1448,9 +1448,8 @@ public class BaseTextExportImportContentProcessor
 					StringPool.BLANK, groupFriendlyUrlPos);
 
 				if (groupUuid.contains(_TEMPLATE_NAME_PREFIX)) {
-					boolean isPrivate = portletDataContext.isPrivateLayout();
-
-					content = _replaceTemplateLinkToLayout(content, isPrivate);
+					content = _replaceTemplateLinkToLayout(
+						content, portletDataContext.isPrivateLayout());
 				}
 
 				continue;
@@ -2057,9 +2056,9 @@ public class BaseTextExportImportContentProcessor
 	}
 
 	private String _replaceTemplateLinkToLayout(
-		String content, boolean layoutPrivate) {
+		String content, boolean privateLayout) {
 
-		if (layoutPrivate) {
+		if (privateLayout) {
 			content = StringUtil.replace(
 				content, DATA_HANDLER_PRIVATE_GROUP_SERVLET_MAPPING,
 				PropsValues.LAYOUT_FRIENDLY_URL_PRIVATE_GROUP_SERVLET_MAPPING);
