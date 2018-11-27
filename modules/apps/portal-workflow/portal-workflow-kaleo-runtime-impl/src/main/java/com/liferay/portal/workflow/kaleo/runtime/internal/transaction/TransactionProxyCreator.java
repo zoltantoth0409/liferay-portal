@@ -59,12 +59,12 @@ public class TransactionProxyCreator {
 		builder.setIsolation(transactional.isolation());
 		builder.setPropagation(transactional.propagation());
 		builder.setReadOnly(transactional.readOnly());
-		builder.setTimeout(transactional.timeout());
 		builder.setRollbackForClasses(transactional.rollbackFor());
 		builder.setRollbackForClassNames(transactional.rollbackForClassName());
 		builder.setNoRollbackForClasses(transactional.noRollbackFor());
 		builder.setNoRollbackForClassNames(
 			transactional.noRollbackForClassName());
+		builder.setTimeout(transactional.timeout());
 
 		return builder.build();
 	}
