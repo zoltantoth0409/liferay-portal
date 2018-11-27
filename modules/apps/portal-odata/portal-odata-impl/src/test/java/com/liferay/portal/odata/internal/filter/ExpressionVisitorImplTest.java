@@ -306,9 +306,9 @@ public class ExpressionVisitorImplTest {
 		Assert.assertEquals(
 			booleanClauses.toString(), 1, booleanClauses.size());
 
-		BooleanClause<Filter> queryBooleanClause1 = booleanClauses.get(0);
+		BooleanClause<Filter> queryBooleanClause = booleanClauses.get(0);
 
-		Assert.assertEquals(termFilter, queryBooleanClause1.getClause());
+		Assert.assertEquals(termFilter, queryBooleanClause.getClause());
 		Assert.assertEquals(
 			BooleanClauseOccur.MUST_NOT,
 			queryBooleanClause1.getBooleanClauseOccur());
