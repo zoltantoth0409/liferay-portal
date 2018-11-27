@@ -79,7 +79,7 @@ public class ExpressionVisitorImpl implements ExpressionVisitor<Object> {
 		if (Objects.equals(
 				LiteralExpression.Type.DATE, literalExpression.getType()) ||
 			Objects.equals(
-				LiteralExpression.Type.DATETIME, literalExpression.getType())) {
+				LiteralExpression.Type.DATE_TIME, literalExpression.getType())) {
 
 			return _normalizeDateLiteral(literalExpression.getText());
 		}
@@ -215,7 +215,7 @@ public class ExpressionVisitorImpl implements ExpressionVisitor<Object> {
 		EntityField entityField, Object fieldValue, Locale locale) {
 
 		if (Objects.equals(entityField.getType(), EntityField.Type.DATE) ||
-			Objects.equals(entityField.getType(), EntityField.Type.DATETIME) ||
+			Objects.equals(entityField.getType(), EntityField.Type.DATE_TIME) ||
 			Objects.equals(entityField.getType(), EntityField.Type.DOUBLE) ||
 			Objects.equals(entityField.getType(), EntityField.Type.INTEGER) ||
 			Objects.equals(entityField.getType(), EntityField.Type.STRING)) {
@@ -234,7 +234,7 @@ public class ExpressionVisitorImpl implements ExpressionVisitor<Object> {
 		EntityField entityField, Object fieldValue, Locale locale) {
 
 		if (Objects.equals(entityField.getType(), EntityField.Type.DATE) ||
-			Objects.equals(entityField.getType(), EntityField.Type.DATETIME) ||
+			Objects.equals(entityField.getType(), EntityField.Type.DATE_TIME) ||
 			Objects.equals(entityField.getType(), EntityField.Type.DOUBLE) ||
 			Objects.equals(entityField.getType(), EntityField.Type.INTEGER) ||
 			Objects.equals(entityField.getType(), EntityField.Type.STRING)) {
@@ -253,7 +253,7 @@ public class ExpressionVisitorImpl implements ExpressionVisitor<Object> {
 		EntityField entityField, Object fieldValue, Locale locale) {
 
 		if (Objects.equals(entityField.getType(), EntityField.Type.DATE) ||
-			Objects.equals(entityField.getType(), EntityField.Type.DATETIME) ||
+			Objects.equals(entityField.getType(), EntityField.Type.DATE_TIME) ||
 			Objects.equals(entityField.getType(), EntityField.Type.DOUBLE) ||
 			Objects.equals(entityField.getType(), EntityField.Type.INTEGER) ||
 			Objects.equals(entityField.getType(), EntityField.Type.STRING)) {
@@ -272,7 +272,7 @@ public class ExpressionVisitorImpl implements ExpressionVisitor<Object> {
 		EntityField entityField, Object fieldValue, Locale locale) {
 
 		if (Objects.equals(entityField.getType(), EntityField.Type.DATE) ||
-			Objects.equals(entityField.getType(), EntityField.Type.DATETIME) ||
+			Objects.equals(entityField.getType(), EntityField.Type.DATE_TIME) ||
 			Objects.equals(entityField.getType(), EntityField.Type.DOUBLE) ||
 			Objects.equals(entityField.getType(), EntityField.Type.INTEGER) ||
 			Objects.equals(entityField.getType(), EntityField.Type.STRING)) {

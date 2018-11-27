@@ -19,7 +19,7 @@ import java.util.function.Function;
 
 /**
  * Models an date entity field. A Entity field with a type {@code
- * EntityField.Type.DATETIME}
+ * EntityField.Type.DATE_TIME}
  *
  * @author Cristina González
  * @review
@@ -42,7 +42,7 @@ public class DateTimeEntityField extends EntityField {
 		Function<Locale, String> filterableFieldNameFunction) {
 
 		super(
-			name, Type.DATETIME, sortableFieldNameFunction,
+			name, Type.DATE_TIME, sortableFieldNameFunction,
 			filterableFieldNameFunction, String::valueOf);
 	}
 
