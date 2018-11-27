@@ -235,7 +235,7 @@ name = HtmlUtil.escapeJS(name);
 
 		editorConfig.removePlugins = editorConfig.removePlugins ? editorConfig.removePlugins + ',ae_embed' : 'ae_embed';
 
-		var uiNode = Liferay.Util.getOpener() !== window.self ? document.querySelector('.lfr-form-content') : null;
+		var uiNode = Liferay.Util.getOpener() !== window.self ? document.querySelector('#main-content') : null;
 
 		editorConfig = A.merge(
 			{
