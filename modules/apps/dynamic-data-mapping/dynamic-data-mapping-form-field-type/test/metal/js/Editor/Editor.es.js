@@ -168,14 +168,7 @@ describe(
 
 				component._onChangeEditor(event);
 
-				expect(spy).toHaveBeenCalledWith(
-					'fieldEdited',
-					{
-						fieldInstance: component,
-						originalEvent: event,
-						value: ''
-					}
-				);
+				expect(spy).toBeCalled();
 			}
 		);
 	}
