@@ -148,6 +148,13 @@ class Editor extends Component {
 		this.setEditor();
 	}
 
+	willReceiveState({children, value}) {
+		if (value && value.newVal !== value.prevVal && children) {
+			this._alloyEditor.destroy();
+			this.setEditor();
+		}
+	}
+
 	setEditor() {
 		const {A, name, readOnly, value} = this;
 		const editor = A.one(this.element.querySelector('.alloy-editor'));
@@ -191,16 +198,15 @@ class Editor extends Component {
 		this.setState(
 			{
 				value
-			}
-		);
-
-		this.emit(
-			'fieldEdited',
-			{
-				fieldInstance: this,
-				originalEvent: event,
-				value
-			}
+			},
+			() => this.emit(
+				'fieldEdited',
+				{
+					fieldInstance: this,
+					originalEvent: event,
+					value
+				}
+			)
 		);
 	}
 }
