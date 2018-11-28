@@ -84,7 +84,7 @@ public class PoshiRunnerResourcesDefaultsPlugin implements Plugin<Project> {
 
 		if (project.hasProperty(ARTIFACT_VERSION_PROPERTY_NAME)) {
 			String artifactVersion = GradleUtil.getProperty(
-                project, ARTIFACT_VERSION_PROPERTY_NAME, (String)null);
+				project, ARTIFACT_VERSION_PROPERTY_NAME, (String)null);
 
 			poshiRunnerResourcesExtension.setArtifactVersion(artifactVersion);
 		}
