@@ -51,13 +51,7 @@ public class ComplexPropertyExpressionImpl
 
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder(3);
-
-		sb.append(_name);
-		sb.append("/");
-		sb.append(_propertyExpression.toString());
-
-		return sb.toString();
+		return _name.concat("/").concat(_propertyExpression.toString());
 	}
 
 	private final String _name;
