@@ -165,11 +165,12 @@ public class FilterParserImplTest {
 		MemberExpression memberExpression =
 			(MemberExpression)binaryExpression.getLeftOperationExpression();
 
+		Assert.assertEquals(
+			BinaryExpression.Operation.EQ, binaryExpression.getOperation());
+
 		PrimitivePropertyExpression primitivePropertyExpression =
 			(PrimitivePropertyExpression)memberExpression.getExpression();
 
-		Assert.assertEquals(
-			BinaryExpression.Operation.EQ, binaryExpression.getOperation());
 		Assert.assertEquals(
 			"booleanExternal", primitivePropertyExpression.getName());
 
@@ -206,11 +207,12 @@ public class FilterParserImplTest {
 		MemberExpression memberExpression =
 			(MemberExpression)binaryExpression.getLeftOperationExpression();
 
+		Assert.assertEquals(
+			BinaryExpression.Operation.EQ, binaryExpression.getOperation());
+
 		PrimitivePropertyExpression primitivePropertyExpression =
 			(PrimitivePropertyExpression)memberExpression.getExpression();
 
-		Assert.assertEquals(
-			BinaryExpression.Operation.EQ, binaryExpression.getOperation());
 		Assert.assertEquals(
 			"booleanExternal", primitivePropertyExpression.getName());
 
@@ -429,14 +431,15 @@ public class FilterParserImplTest {
 
 		BinaryExpression binaryExpression = (BinaryExpression)expression;
 
+		Assert.assertEquals(
+			BinaryExpression.Operation.GE, binaryExpression.getOperation());
+
 		MemberExpression memberExpression =
 			(MemberExpression)binaryExpression.getLeftOperationExpression();
 
 		PrimitivePropertyExpression primitivePropertyExpression =
 			(PrimitivePropertyExpression)memberExpression.getExpression();
 
-		Assert.assertEquals(
-			BinaryExpression.Operation.GE, binaryExpression.getOperation());
 		Assert.assertEquals(
 			"fieldExternal", primitivePropertyExpression.getName());
 
