@@ -1482,7 +1482,7 @@
 		<if>
 			<condition function="IsElementPresent#pauseIsElementPresent" locator1="TextInput#EMAIL_ADDRESS" />
 			<then>
-				<execute function="SelectWindow#selectWindowNoSPARefresh" locator1="title=Terms of Use" />
+				<execute function="SelectWindow#selectWindowNoSPARefresh" locator1="title=Terms of Use - ${siteName}" />
 				<if>
 					<condition function="IsElementPresent#pauseIsElementPresent" locator1="Button#I_AGREE" value1="I Agree" />
 					<then>
