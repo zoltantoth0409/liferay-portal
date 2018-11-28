@@ -1,6 +1,6 @@
 import {Config} from 'metal-state';
 import {FormSupport} from '../Form/index.es';
-import {pageStructure} from '../../util/config.es';
+import {pageStructure, rule} from '../../util/config.es';
 import {PagesVisitor} from '../../util/visitors.es';
 import {setLocalizedValue} from '../../util/i18n.es';
 import {sub} from '../../util/strings.es';
@@ -106,36 +106,17 @@ class LayoutProvider extends Component {
 			}
 		).value({}),
 
+		/**
+		 * @default undefined
+		 * @instance
+		 * @memberof LayoutProvider
+		 * @type {?(array|undefined)}
+		 */
+
+		rules: Config.arrayOf(rule).valueFn('_rulesValueFn'),
+
 		successPageSettings: Config.object().valueFn('_successPageSettingsValueFn')
 	};
-
-	_pagesValueFn() {
-		const {initialPages} = this.props;
-
-		return initialPages;
-	}
-
-	_paginationModeValueFn() {
-		return this.props.initialPaginationMode;
-	}
-
-	_setInitialPages(initialPages) {
-		const visitor = new PagesVisitor(initialPages);
-
-		return visitor.mapFields(
-			field => {
-				return {
-					...field,
-					localizedValue: {},
-					value: undefined
-				};
-			}
-		);
-	}
-
-	_successPageSettingsValueFn() {
-		return this.props.initialSuccessPageSettings;
-	}
 
 	_handleActivePageUpdated(activePage) {
 		this.setState(
@@ -457,6 +438,19 @@ class LayoutProvider extends Component {
 		);
 	}
 
+	_handleRuleAdded(rule) {
+		const newRule = {...rule};
+		const {rules} = this.state;
+
+		rules.push(newRule);
+
+		this.setState(
+			{
+				rules
+			}
+		);
+	}
+
 	/**
 	 * Update the success page settings
 	 * @param {!Object} successPageSettings
@@ -468,6 +462,16 @@ class LayoutProvider extends Component {
 				successPageSettings
 			}
 		);
+	}
+
+	_pagesValueFn() {
+		const {initialPages} = this.props;
+
+		return initialPages;
+	}
+
+	_paginationModeValueFn() {
+		return this.props.initialPaginationMode;
 	}
 
 	/**
@@ -487,6 +491,16 @@ class LayoutProvider extends Component {
 		return pages;
 	}
 
+	_rulesValueFn() {
+		const {rules} = this.props;
+
+		return rules;
+	}
+
+	_successPageSettingsValueFn() {
+		return this.props.initialSuccessPageSettings;
+	}
+
 	/**
 	 * @param {!Array} pages
 	 * @param {!Object} target
@@ -504,6 +518,20 @@ class LayoutProvider extends Component {
 			rowIndex,
 			columnIndex,
 			fields
+		);
+	}
+
+	_setInitialPages(initialPages) {
+		const visitor = new PagesVisitor(initialPages);
+
+		return visitor.mapFields(
+			field => {
+				return {
+					...field,
+					localizedValue: {},
+					value: undefined
+				};
+			}
 		);
 	}
 
@@ -531,7 +559,7 @@ class LayoutProvider extends Component {
 
 	render() {
 		const {children, spritemap} = this.props;
-		const {activePage, focusedField, pages, paginationMode, successPageSettings} = this.state;
+		const {activePage, focusedField, pages, paginationMode, rules, successPageSettings} = this.state;
 
 		if (children.length) {
 			const events = {
@@ -549,6 +577,7 @@ class LayoutProvider extends Component {
 				pageDeleted: this._handlePageDeleted.bind(this),
 				pageReset: this._handlePageReset.bind(this),
 				paginationModeUpdated: this._handlePaginationModeUpdated.bind(this),
+				ruleAdded: this._handleRuleAdded.bind(this),
 				successPageChanged: this._handleSuccessPageChanged.bind(this)
 			};
 
@@ -564,6 +593,7 @@ class LayoutProvider extends Component {
 						focusedField,
 						pages,
 						paginationMode,
+						rules,
 						spritemap,
 						successPageSettings
 					}
