@@ -124,7 +124,7 @@ if (portletTitleBasedNavigation) {
 		</c:if>
 
 		<liferay-ui:header
-			backURL="<%= PortalUtil.escapeRedirect(redirect) %>"
+			backURL="<%= redirect %>"
 			localizeTitle="<%= message == null %>"
 			title="<%= headerTitle %>"
 		/>
