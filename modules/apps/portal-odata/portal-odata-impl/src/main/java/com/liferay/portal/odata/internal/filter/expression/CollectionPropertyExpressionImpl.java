@@ -58,13 +58,9 @@ public class CollectionPropertyExpressionImpl
 
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder(2);
+		String string = _propertyExpression.toString();
 
-		sb.append(_propertyExpression.toString());
-		sb.append("/");
-		sb.append(_lambdaFunctionExpression.toString());
-
-		return sb.toString();
+		return string.concat("/").concat(_lambdaFunctionExpression.toString());
 	}
 
 	private final LambdaFunctionExpression _lambdaFunctionExpression;
