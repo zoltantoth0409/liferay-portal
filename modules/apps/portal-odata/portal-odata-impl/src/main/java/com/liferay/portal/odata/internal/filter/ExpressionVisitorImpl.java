@@ -139,7 +139,7 @@ public class ExpressionVisitorImpl implements ExpressionVisitor<Object> {
 
 		if (entityField == null) {
 			throw new ExpressionVisitException(
-				"VisitLambdaVariableExpression invoked when no entity field " +
+				"Invoked visitlambdavariableexpression when no entity field " +
 					"is stored for lambda variable name " +
 						lambdaVariableExpression.getVariableName());
 		}
