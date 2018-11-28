@@ -331,13 +331,8 @@ public class AopConfigurableApplicationContextConfigurator
 					liferayHibernateSessionFactory);
 			}
 
-			try {
-				return TransactionManagerFactory.createTransactionManager(
-					liferayDataSource, liferayHibernateSessionFactory);
-			}
-			catch (ReflectiveOperationException roe) {
-				return ReflectionUtil.throwException(roe);
-			}
+			return TransactionManagerFactory.createTransactionManager(
+				liferayDataSource, liferayHibernateSessionFactory);
 		}
 
 		private final ClassLoader _classLoader;
