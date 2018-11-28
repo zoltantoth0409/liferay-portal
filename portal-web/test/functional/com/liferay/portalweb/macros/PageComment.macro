@@ -26,6 +26,10 @@
 		<execute function="AssertTextEquals" locator1="Comments#COMMENT_AUTHOR" value1="${commentAuthor}" />
 	</command>
 
+	<command name="editCommentField">
+		<execute function="Type#typeEditor" locator1="Comments#COMMENT_FIELD" value1="${commentBody}" />
+	</command>
+
 	<command name="reply">
 		<execute function="Type" locator1="Comments#COMMENT_FIELD" value1="${commentBody}" />
 
