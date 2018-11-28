@@ -43,7 +43,7 @@ public class HealthClusterResponse implements ClusterResponse {
 	public String toString() {
 		StringBundler sb = new StringBundler(5);
 
-		sb.append("HealthClusterResponse{_clusterHealthStatus=");
+		sb.append("{_clusterHealthStatus=");
 		sb.append(_clusterHealthStatus);
 		sb.append(", _healthStatusMessage='");
 		sb.append(_healthStatusMessage);
