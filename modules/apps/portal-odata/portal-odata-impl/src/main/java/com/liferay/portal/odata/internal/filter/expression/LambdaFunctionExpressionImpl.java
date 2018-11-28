@@ -14,6 +14,7 @@
 
 package com.liferay.portal.odata.internal.filter.expression;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.odata.filter.expression.Expression;
 import com.liferay.portal.odata.filter.expression.ExpressionVisitException;
 import com.liferay.portal.odata.filter.expression.ExpressionVisitor;
@@ -57,16 +58,8 @@ public class LambdaFunctionExpressionImpl implements LambdaFunctionExpression {
 
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder(6);
-
-		sb.append(_type);
-		sb.append("(");
-		sb.append(_variableName);
-		sb.append(" -> ");
-		sb.append(_expression.toString());
-		sb.append(")");
-
-		return sb.toString();
+		return StringBundler.concat(
+			_type, "(", _variableName, " -> ", _expression.toString(), ")");
 	}
 
 	private final Expression _expression;
