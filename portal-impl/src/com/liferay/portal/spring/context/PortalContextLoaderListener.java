@@ -219,10 +219,9 @@ public class PortalContextLoaderListener extends ContextLoaderListener {
 
 		InitUtil.init();
 
-		// Only print jvm arguments after log4j is initialized to ensure the
-		// print will be in log file.
+		// Log JVM arguments after Log4j is initialized
 
-		_printJVMArguments();
+		_logJVMArguments();
 
 		_portalServletContextName = servletContext.getServletContextName();
 
@@ -440,27 +439,29 @@ public class PortalContextLoaderListener extends ContextLoaderListener {
 		servletContext.addListener(PortletSessionListenerManager.class);
 	}
 
-	private void _printJVMArguments() {
-		if (_log.isInfoEnabled()) {
-			RuntimeMXBean runtimeMXBean = ManagementFactory.getRuntimeMXBean();
-
-			List<String> inputArguments = runtimeMXBean.getInputArguments();
-
-			StringBundler sb = new StringBundler(inputArguments.size() * 2);
-
-			sb.append("JVM arguments :");
-
-			for (String argument : inputArguments) {
-				sb.append(argument);
-				sb.append(StringPool.SPACE);
-			}
-
-			if (!inputArguments.isEmpty()) {
-				sb.setIndex(sb.index() - 1);
-			}
-
-			_log.info(sb.toString());
+	private void _logJVMArguments() {
+		if (!_log.isInfoEnabled()) {
+			return;
 		}
+
+		RuntimeMXBean runtimeMXBean = ManagementFactory.getRuntimeMXBean();
+
+		List<String> inputArguments = runtimeMXBean.getInputArguments();
+
+		StringBundler sb = new StringBundler(inputArguments.size() * 2);
+
+		sb.append("JVM arguments: ");
+
+		for (String inputArgument : inputArguments) {
+			sb.append(inputArgument);
+			sb.append(StringPool.SPACE);
+		}
+
+		if (!inputArguments.isEmpty()) {
+			sb.setIndex(sb.index() - 1);
+		}
+
+		_log.info(sb.toString());
 	}
 
 	private static final Field _FILTERED_PROPERTY_DESCRIPTORS_CACHE_FIELD;
