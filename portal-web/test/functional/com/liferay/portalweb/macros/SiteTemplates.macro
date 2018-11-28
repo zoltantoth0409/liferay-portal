@@ -101,11 +101,21 @@
 			</then>
 		</if>
 
-		<for list="1,2" param="iteration">
-			<execute macro="Button#click">
-				<var name="button" value="Save" />
-			</execute>
-		</for>
+		<if>
+			<equals arg1="${sitePageType}" arg2="Content Page" />
+			<then>
+				<execute macro="Button#click">
+					<var name="button" value="Save" />
+				</execute>
+			</then>
+			<else>
+				<for list="1,2" param="iteration">
+					<execute macro="Button#click">
+						<var name="button" value="Save" />
+					</execute>
+				</for>
+			</else>
+		</if>
 	</command>
 
 	<command name="deleteCP">
