@@ -451,6 +451,18 @@ class LayoutProvider extends Component {
 		);
 	}
 
+	_handleRuleDeleted({ruleId}) {
+		const {rules} = this.state;
+
+		rules.splice(ruleId, 1);
+
+		this.setState(
+			{
+				rules
+			}
+		);
+	}
+
 	/**
 	 * Update the success page settings
 	 * @param {!Object} successPageSettings
@@ -578,6 +590,7 @@ class LayoutProvider extends Component {
 				pageReset: this._handlePageReset.bind(this),
 				paginationModeUpdated: this._handlePaginationModeUpdated.bind(this),
 				ruleAdded: this._handleRuleAdded.bind(this),
+				ruleDeleted: this._handleRuleDeleted.bind(this),
 				successPageChanged: this._handleSuccessPageChanged.bind(this)
 			};
 
