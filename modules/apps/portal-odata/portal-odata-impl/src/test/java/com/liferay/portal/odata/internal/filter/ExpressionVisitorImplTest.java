@@ -376,7 +376,7 @@ public class ExpressionVisitorImplTest {
 		Map<String, EntityField> entityFieldsMap =
 			_entityModel.getEntityFieldsMap();
 
-		EntityField entityField = entityFieldsMap.get("keywords");
+		EntityField entityField1 = entityFieldsMap.get("keywords");
 
 		ExpressionVisitor expressionVisitor = new ExpressionVisitorImpl(
 			new SimpleDateFormat("yyyyMMddHHmmss"), LocaleUtil.getDefault(),
@@ -384,12 +384,12 @@ public class ExpressionVisitorImplTest {
 
 				@Override
 				public Map<String, EntityField> getEntityFieldsMap() {
-					return Collections.singletonMap("k", entityField);
+					return Collections.singletonMap("k", entityField1);
 				}
 
 				@Override
 				public String getName() {
-					return entityField.getName();
+					return entityField1.getName();
 				}
 
 			});
