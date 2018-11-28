@@ -253,7 +253,7 @@ public class ExpressionVisitorImpl implements ExpressionVisitor<Expression> {
 		}
 
 		throw new UnsupportedOperationException(
-			"An expression cannot be obtained from uri resources " +
+			"An expression cannot be obtained from URI resources " +
 				uriResources);
 	}
 

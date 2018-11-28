@@ -458,7 +458,7 @@ public class FilterParserImplTest {
 		);
 
 		exception.hasMessage(
-			"An expression cannot be obtained from uri resources " +
+			"An expression cannot be obtained from URI resources " +
 				"[collectionFieldExternal, all]");
 	}
 
