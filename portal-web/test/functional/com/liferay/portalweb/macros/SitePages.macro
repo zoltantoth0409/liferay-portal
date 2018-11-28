@@ -16,7 +16,9 @@
 			</then>
 		</if>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Button#click">
+			<var name="button" value="Save" />
+		</execute>
 
 		<if>
 			<equals arg1="${sitePageType}" arg2="Embedded" />
@@ -34,7 +36,9 @@
 			</then>
 		</if>
 
-		<execute macro="PortletEntry#save" />
+		<execute macro="Button#click">
+			<var name="button" value="Save" />
+		</execute>
 
 		<execute function="WaitForSPARefresh" />
 	</command>
