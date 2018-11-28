@@ -290,10 +290,8 @@ public class TrashPortlet extends MVCPortlet {
 
 		String newName = ParamUtil.getString(actionRequest, "newName");
 
-		TrashEntryLocalService trashEntryLocalService =
-			_trashServiceHolder.getTrashEntryLocalService();
-
-		TrashEntry entry = trashEntryLocalService.fetchTrashEntry(trashEntryId);
+		TrashEntry entry = _trashEntryLocalService.fetchTrashEntry(
+			trashEntryId);
 
 		TrashHandler trashHandler = TrashHandlerRegistryUtil.getTrashHandler(
 			entry.getClassName());
@@ -348,6 +346,9 @@ public class TrashPortlet extends MVCPortlet {
 
 	@Reference
 	private Portal _portal;
+
+	@Reference
+	private TrashEntryLocalService _trashEntryLocalService;
 
 	@Reference
 	private TrashEntryService _trashEntryService;
