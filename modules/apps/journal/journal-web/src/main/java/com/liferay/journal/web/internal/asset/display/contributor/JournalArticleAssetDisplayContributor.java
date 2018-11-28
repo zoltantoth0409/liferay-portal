@@ -85,8 +85,8 @@ public class JournalArticleAssetDisplayContributor
 			Map<String, List<DDMFormFieldValue>> ddmFormFieldsValuesMap =
 				ddmFormValues.getDDMFormFieldValuesMap();
 
-			for (Map.Entry<String, List<DDMFormFieldValue>>
-					entry: ddmFormFieldsValuesMap.entrySet()) {
+			for (Map.Entry<String, List<DDMFormFieldValue>> entry :
+					ddmFormFieldsValuesMap.entrySet()) {
 
 				List<DDMFormFieldValue> ddmFormFieldValues = entry.getValue();
 
