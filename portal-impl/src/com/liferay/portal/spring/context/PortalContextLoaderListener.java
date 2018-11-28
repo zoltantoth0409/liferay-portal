@@ -17,6 +17,7 @@ package com.liferay.portal.spring.context;
 import com.liferay.petra.executor.PortalExecutorManager;
 import com.liferay.petra.lang.ClassLoaderPool;
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.bean.BeanLocatorImpl;
 import com.liferay.portal.dao.orm.hibernate.FieldInterceptionHelperUtil;
 import com.liferay.portal.deploy.hot.CustomJspBagRegistryUtil;
@@ -76,8 +77,11 @@ import java.io.Closeable;
 import java.io.File;
 import java.io.IOException;
 
+import java.lang.management.ManagementFactory;
+import java.lang.management.RuntimeMXBean;
 import java.lang.reflect.Field;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -220,6 +224,11 @@ public class PortalContextLoaderListener extends ContextLoaderListener {
 		PortalClassPathUtil.initializeClassPaths(servletContext);
 
 		InitUtil.init();
+
+		// Only print jvm arguments after log4j is initialized to ensure the
+		// print will be in log file.
+
+		_printJVMArguments();
 
 		_portalServletContextName = servletContext.getServletContextName();
 
@@ -402,6 +411,29 @@ public class PortalContextLoaderListener extends ContextLoaderListener {
 
 		servletContext.addListener(PortalSessionListener.class);
 		servletContext.addListener(PortletSessionListenerManager.class);
+	}
+
+	private void _printJVMArguments() {
+		if (_log.isInfoEnabled()) {
+			RuntimeMXBean runtimeMXBean = ManagementFactory.getRuntimeMXBean();
+
+			List<String> inputArguments = runtimeMXBean.getInputArguments();
+
+			StringBundler sb = new StringBundler(inputArguments.size() * 2);
+
+			sb.append("JVM arguments :");
+
+			for (String argument : inputArguments) {
+				sb.append(argument);
+				sb.append(StringPool.SPACE);
+			}
+
+			if (!inputArguments.isEmpty()) {
+				sb.setIndex(sb.index() - 1);
+			}
+
+			_log.info(sb.toString());
+		}
 	}
 
 	private static final Field _FILTERED_PROPERTY_DESCRIPTORS_CACHE_FIELD;
