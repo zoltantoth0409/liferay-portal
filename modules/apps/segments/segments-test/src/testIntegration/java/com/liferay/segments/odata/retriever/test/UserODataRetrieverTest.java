@@ -586,9 +586,9 @@ public class UserODataRetrieverTest {
 	public void testGetUsersFilterByJobTitleContains() throws Exception {
 		_user1 = UserTestUtil.addUser(_group1.getGroupId());
 
-		String jobTitlePart = RandomTestUtil.randomString();
+		String jobTitlePrefix = RandomTestUtil.randomString();
 
-		_user1.setJobTitle(jobTitlePart + RandomTestUtil.randomString());
+		_user1.setJobTitle(jobTitlePrefix + RandomTestUtil.randomString());
 
 		_userLocalService.updateUser(_user1);
 
@@ -597,7 +597,7 @@ public class UserODataRetrieverTest {
 
 		List<User> users = _oDataRetriever.getResults(
 			_group1.getCompanyId(),
-			"contains(jobTitle, '" + jobTitlePart + "')",
+			"contains(jobTitle, '" + jobTitlePrefix + "')",
 			LocaleUtil.getDefault(), 0, 2);
 
 		Assert.assertEquals(users.toString(), 1, users.size());
