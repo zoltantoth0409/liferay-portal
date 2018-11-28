@@ -475,6 +475,7 @@ public class UpgradeClient {
 			File dir = _appServer.getDir();
 
 			_appServerProperties.setProperty("dir", dir.getCanonicalPath());
+
 			_appServerProperties.setProperty(
 				"extra.lib.dirs", _appServer.getExtraLibDirNames());
 			_appServerProperties.setProperty(
