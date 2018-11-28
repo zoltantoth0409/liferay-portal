@@ -118,7 +118,7 @@ List<TrashEntry> trashEntries = (List<TrashEntry>)request.getAttribute(TrashWebK
 			<h5><liferay-ui:message key="num-of-items" /></h5>
 
 			<p>
-				<%= trashEntryLocalService.getEntriesCount(themeDisplay.getScopeGroupId()) %>
+				<%= TrashEntryLocalServiceUtil.getEntriesCount(themeDisplay.getScopeGroupId()) %>
 			</p>
 		</div>
 	</c:otherwise>

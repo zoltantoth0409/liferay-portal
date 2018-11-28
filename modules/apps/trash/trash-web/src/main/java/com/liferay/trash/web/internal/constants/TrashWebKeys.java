@@ -30,8 +30,6 @@ public class TrashWebKeys extends com.liferay.trash.util.TrashWebKeys {
 
 	public static final String TRASH_RENDERER = "TRASH_RENDERER";
 
-	public static final String TRASH_SERVICE_HOLDER = "TRASH_SERVICE_HOLDER";
-
 	public static final String TRASH_UTIL = "TRASH_UTIL";
 
 }
