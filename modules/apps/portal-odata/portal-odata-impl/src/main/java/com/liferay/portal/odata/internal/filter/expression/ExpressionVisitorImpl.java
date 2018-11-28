@@ -106,10 +106,9 @@ public class ExpressionVisitorImpl implements ExpressionVisitor<Expression> {
 				LambdaFunctionExpression.Type.ANY, lambdaVariable,
 				expression.accept(this));
 		}
-		else {
-			throw new UnsupportedOperationException(
-				"Lambda expression: " + lambdaFunction);
-		}
+
+		throw new UnsupportedOperationException(
+			"Lambda expression: " + lambdaFunction);
 	}
 
 	@Override
