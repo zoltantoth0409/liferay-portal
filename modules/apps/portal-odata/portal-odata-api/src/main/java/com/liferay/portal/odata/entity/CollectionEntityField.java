@@ -47,11 +47,6 @@ public class CollectionEntityField extends EntityField {
 		return _entityField;
 	}
 
-	@Override
-	public String toString() {
-		return super.toString();
-	}
-
 	private final EntityField _entityField;
 
 }
