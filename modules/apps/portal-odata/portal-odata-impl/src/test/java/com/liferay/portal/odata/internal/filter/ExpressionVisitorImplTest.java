@@ -476,7 +476,6 @@ public class ExpressionVisitorImplTest {
 		@Override
 		public Map<String, EntityField> getEntityFieldsMap() {
 			return Stream.of(
-				new StringEntityField("title", locale -> "title"),
 				new CollectionEntityField(
 					new StringEntityField(
 						"keywords", locale -> "keywords.raw")),
@@ -486,7 +485,8 @@ public class ExpressionVisitorImplTest {
 						new StringEntityField("value1", locale -> "value1")
 					).collect(
 						Collectors.toList()
-					))
+					)),
+				new StringEntityField("title", locale -> "title")
 			).collect(
 				Collectors.toMap(EntityField::getName, Function.identity())
 			);

@@ -112,9 +112,10 @@ public class ExpressionConvertImplTest {
 		@Override
 		public Map<String, EntityField> getEntityFieldsMap() {
 			return Stream.of(
-				new StringEntityField("title", locale -> "title"),
 				new CollectionEntityField(
-					new StringEntityField("keywords", locale -> "keywords.raw"))
+					new StringEntityField(
+						"keywords", locale -> "keywords.raw")),
+				new StringEntityField("title", locale -> "title")
 			).collect(
 				Collectors.toMap(EntityField::getName, Function.identity())
 			);
