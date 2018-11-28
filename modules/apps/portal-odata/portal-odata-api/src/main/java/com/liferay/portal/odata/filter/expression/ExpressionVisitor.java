@@ -16,7 +16,7 @@ package com.liferay.portal.odata.filter.expression;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.petra.string.StringBundler;
 
 import java.util.List;
 
@@ -98,8 +98,7 @@ public interface ExpressionVisitor<T> {
 		throw new UnsupportedOperationException(
 			StringBundler.concat(
 				"Unsupported method visitLambdaFunctionExpression with ",
-				"variableName ", variableName, " and expression ",
-				expression.toString()));
+				"variableName ", variableName, " and expression ", expression));
 	}
 
 	/**
@@ -191,7 +190,10 @@ public interface ExpressionVisitor<T> {
 			UnaryExpression.Operation operation, T operand)
 		throws ExpressionVisitException {
 
-		throw new UnsupportedOperationException();
+		throw new UnsupportedOperationException(
+			StringBundler.concat(
+				"Unsupported method visitUnaryExpressionOperation with ",
+				"operation ", operation, " and operand ", operand));
 	}
 
 }
