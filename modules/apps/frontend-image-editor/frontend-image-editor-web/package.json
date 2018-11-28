@@ -20,5 +20,5 @@
 		"build": "metalsoy --soyDeps \"node_modules/+(com.liferay.frontend.js.web)/**/*.soy\" && cross-env NODE_ENV=production babel --source-maps -d classes/META-INF/resources src/main/resources/META-INF/resources && liferay-npm-bundler && npm run cleanSoy",
 		"cleanSoy": "rimraf src/**/*.soy.js"
 	},
-	"version": "2.0.8"
+	"version": "2.0.9"
 }
