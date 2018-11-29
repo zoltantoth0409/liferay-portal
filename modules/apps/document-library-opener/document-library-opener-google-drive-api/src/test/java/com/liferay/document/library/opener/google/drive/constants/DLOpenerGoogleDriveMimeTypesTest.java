@@ -24,37 +24,37 @@ public class DLOpenerGoogleDriveMimeTypesTest {
 
 	@Test
 	public void testSupportsDocumentMimeTypes() {
-		_assertIsSupportedGoogleDocsDocument("text/html", "html");
-		_assertIsSupportedGoogleDocsDocument("application/text", "txt");
-		_assertIsSupportedGoogleDocsDocument("text", "txt");
-		_assertIsSupportedGoogleDocsDocument("text/plain", "txt");
+		_assertIsSupportedGoogleDocsDocument("application/pdf", "pdf");
 		_assertIsSupportedGoogleDocsDocument("application/rtf", "rtf");
+		_assertIsSupportedGoogleDocsDocument("application/text", "txt");
 		_assertIsSupportedGoogleDocsDocument(
 			"application/vnd.oasis.opendocument.text", "odt");
-		_assertIsSupportedGoogleDocsDocument("application/pdf", "pdf");
 		_assertIsSupportedGoogleDocsDocument(
 			"application/vnd.openxmlformats-officedocument.wordprocessingml." +
 				"document",
 			"docx");
+		_assertIsSupportedGoogleDocsDocument("text", "txt");
+		_assertIsSupportedGoogleDocsDocument("text/html", "html");
+		_assertIsSupportedGoogleDocsDocument("text/plain", "txt");
 	}
 
 	@Test
 	public void testSupportsPresentationFiles() {
 		_assertIsSupportedGoogleDocsPresentation(
+			"application/vnd.oasis.opendocument.presentation", "odp");
+		_assertIsSupportedGoogleDocsPresentation(
 			"application/vnd.openxmlformats-officedocument.presentationml." +
 				"presentation",
 			"pptx");
-		_assertIsSupportedGoogleDocsPresentation(
-			"application/vnd.oasis.opendocument.presentation", "odp");
 	}
 
 	@Test
 	public void testSupportsSpreadsheetMimeTypes() {
 		_assertIsSupportedGoogleDocsSpreadsheet(
+			"application/vnd.oasis.opendocument.spreadsheet", "ods");
+		_assertIsSupportedGoogleDocsSpreadsheet(
 			"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
 			"xslx");
-		_assertIsSupportedGoogleDocsSpreadsheet(
-			"application/vnd.oasis.opendocument.spreadsheet", "ods");
 		_assertIsSupportedGoogleDocsSpreadsheet("text/csv", "csv");
 		_assertIsSupportedGoogleDocsSpreadsheet(
 			"text/tab-separated-values", "tsv");
