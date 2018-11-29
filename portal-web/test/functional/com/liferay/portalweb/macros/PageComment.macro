@@ -31,7 +31,9 @@
 	</command>
 
 	<command name="reply">
-		<execute function="Type" locator1="Comments#COMMENT_FIELD" value1="${commentBody}" />
+		<execute macro="PageComment#editCommentField">
+			<var name="commentBody" value="${commentBody}" />
+		</execute>
 
 		<execute function="AssertClick" locator1="Button#REPLY" value1="Reply" />
 	</command>
