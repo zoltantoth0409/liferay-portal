@@ -3402,7 +3402,7 @@ public class JournalArticleLocalServiceImpl
 		throws PortalException {
 
 		return getFirstArticle(
-			groupId, articleId, status, new ArticleVersionComparator(false));
+			groupId, articleId, status, new ArticleVersionComparator(true));
 	}
 
 	/**
