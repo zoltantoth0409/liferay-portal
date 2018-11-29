@@ -1922,9 +1922,9 @@
 
 		<execute function="AssertTextPresent" locator1="DocumentsAndMedia#BREADCRUMB_HOME" value1="HOME" />
 
-		<execute macro="Search#searchPG">
-			<var name="searchTerm" value="${dmDocumentTitle}" />
-		</execute>
+		<execute function="Type" locator1="DocumentsAndMedia#SEARCH_FIELD" value1="${dmDocumentTitle}" />
+
+		<execute function="KeyPress" locator1="DocumentsAndMedia#SEARCH_FIELD" value1="\RETURN" />
 
 		<execute function="AssertClick#assertPartialTextClickAt" locator1="DocumentsAndMedia#SEARCH_TITLE" value1="${dmDocumentTitle}" />
 
