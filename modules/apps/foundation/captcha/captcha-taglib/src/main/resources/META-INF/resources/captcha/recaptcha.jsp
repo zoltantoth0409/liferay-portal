@@ -47,7 +47,7 @@
 				grecaptcha.render(
 					'<portlet:namespace />recaptcha',
 					{
-						'sitekey' : '<%= PrefsPropsUtil.getString(PropsKeys.CAPTCHA_ENGINE_RECAPTCHA_KEY_PUBLIC, PropsValues.CAPTCHA_ENGINE_RECAPTCHA_KEY_PUBLIC) %>'
+						'sitekey' : '<%= HtmlUtil.escapeJS(PrefsPropsUtil.getString(PropsKeys.CAPTCHA_ENGINE_RECAPTCHA_KEY_PUBLIC, PropsValues.CAPTCHA_ENGINE_RECAPTCHA_KEY_PUBLIC)) %>'
 					}
 				);
 			}, delay);
