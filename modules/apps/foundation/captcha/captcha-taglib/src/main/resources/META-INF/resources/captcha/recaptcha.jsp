@@ -43,14 +43,17 @@
 				delay = 3000;
 			}
 
-			setTimeout(function() {
-				grecaptcha.render(
-					'<portlet:namespace />recaptcha',
-					{
-						'sitekey' : '<%= HtmlUtil.escapeJS(PrefsPropsUtil.getString(PropsKeys.CAPTCHA_ENGINE_RECAPTCHA_KEY_PUBLIC, PropsValues.CAPTCHA_ENGINE_RECAPTCHA_KEY_PUBLIC)) %>'
-					}
-				);
-			}, delay);
+			setTimeout(
+				function() {
+					grecaptcha.render(
+						'<portlet:namespace />recaptcha',
+						{
+							'sitekey' : '<%= HtmlUtil.escapeJS(PrefsPropsUtil.getString(PropsKeys.CAPTCHA_ENGINE_RECAPTCHA_KEY_PUBLIC, PropsValues.CAPTCHA_ENGINE_RECAPTCHA_KEY_PUBLIC)) %>'
+						}
+					);
+				},
+				delay
+			);
 		};
 	</aui:script>
 </c:if>
