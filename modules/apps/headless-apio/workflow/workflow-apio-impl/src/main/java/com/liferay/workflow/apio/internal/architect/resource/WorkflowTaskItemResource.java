@@ -162,7 +162,7 @@ public class WorkflowTaskItemResource
 				_workflowTaskManager.getWorkflowTask(
 					currentUser.getCompanyId(), workflowTaskId))
 		).filter(
-			l -> l.contains(transition)
+			transitionName -> transitionName.contains(transition)
 		).orElseThrow(
 			() -> new ValidationException("Invalid transition: " + transition)
 		);
