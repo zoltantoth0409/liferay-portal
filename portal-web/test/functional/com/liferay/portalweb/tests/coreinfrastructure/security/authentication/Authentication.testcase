@@ -137,8 +137,8 @@
 			<var name="category" value="Foundation" />
 		</execute>
 
-		<execute macro="FormFields#viewCheckboxNotChecked">
-			<var name="fieldName" value="enabled" />
+		<execute macro="SystemSettings#viewConfiguration">
+			<var name="configurationName" value="LDAP Auth" />
 		</execute>
 
 		<execute macro="ProductMenu#gotoPortlet">
@@ -173,8 +173,8 @@
 			<var name="category" value="Foundation" />
 		</execute>
 
-		<execute macro="FormFields#viewCheckboxNotChecked">
-			<var name="fieldName" value="enabled" />
+		<execute macro="SystemSettings#viewConfiguration">
+			<var name="configurationName" value="LDAP Auth" />
 		</execute>
 	</command>
 </definition>
