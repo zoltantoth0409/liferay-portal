@@ -1926,9 +1926,7 @@
 			<var name="searchTerm" value="${dmDocumentTitle}" />
 		</execute>
 
-		<execute function="AssertClick#assertPartialTextClickAt" locator1="SearchResults#ASSET_ENTRY_TABLE_TITLE" value1="${dmDocumentTitle}">
-			<var name="key_searchAssetTitle" value="${dmDocumentTitle}" />
-		</execute>
+		<execute function="AssertClick#assertPartialTextClickAt" locator1="DocumentsAndMedia#SEARCH_TITLE" value1="${dmDocumentTitle}" />
 
 		<execute function="AssertTextEquals" locator1="DocumentsAndMediaDocument#DOCUMENT_INFO_TITLE" value1="${dmDocumentTitle}" />
 		<execute function="AssertTextEquals" locator1="DocumentsAndMediaDocument#DOCUMENT_INFO_RELATED_ASSETS_TITLE" value1="${assetTitle}" />
