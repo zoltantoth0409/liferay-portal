@@ -94,7 +94,7 @@ public class DLOpenerGoogleDriveMimeTypesTest {
 			DLOpenerGoogleDriveMimeTypes.getGoogleDocsMimeType(mimeType));
 
 		Assert.assertTrue(
-			mimeType + " not supported",
+			mimeType + " is not supported",
 			DLOpenerGoogleDriveMimeTypes.isMimeTypeSupported(mimeType));
 
 		Assert.assertEquals(
