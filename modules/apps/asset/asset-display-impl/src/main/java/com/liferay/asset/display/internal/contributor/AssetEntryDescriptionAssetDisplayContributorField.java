@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.asset.display.internal.asset.display.contributor;
+package com.liferay.asset.display.internal.contributor;
 
 import com.liferay.asset.display.contributor.AssetDisplayContributorField;
 import com.liferay.asset.kernel.model.AssetEntry;
@@ -31,12 +31,12 @@ import org.osgi.service.component.annotations.Component;
 	property = "model.class.name=com.liferay.asset.kernel.model.AssetEntry",
 	service = AssetDisplayContributorField.class
 )
-public class AssetEntryTitleAssetDisplayContributorField
+public class AssetEntryDescriptionAssetDisplayContributorField
 	implements AssetDisplayContributorField<AssetEntry> {
 
 	@Override
 	public String getKey() {
-		return "title";
+		return "description";
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class AssetEntryTitleAssetDisplayContributorField
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
 			locale, getClass());
 
-		return LanguageUtil.get(resourceBundle, "title");
+		return LanguageUtil.get(resourceBundle, "description");
 	}
 
 	@Override
@@ -54,7 +54,7 @@ public class AssetEntryTitleAssetDisplayContributorField
 
 	@Override
 	public String getValue(AssetEntry assetEntry, Locale locale) {
-		return assetEntry.getTitle(locale);
+		return assetEntry.getDescription(locale);
 	}
 
 }
