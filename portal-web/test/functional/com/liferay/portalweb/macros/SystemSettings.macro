@@ -115,10 +115,14 @@
 				<if>
 					<equals arg1="${enableLDAP}" arg2="true" />
 					<then>
-						<execute function="AssertChecked" locator1="SystemSettings#ENABLED_CHECKBOX" />
+						<execute macro="FormFields#viewCheckboxChecked">
+							<var name="fieldName" value="enabled" />
+						</execute>
 					</then>
 					<else>
-						<execute function="AssertNotChecked" locator1="SystemSettings#ENABLED_CHECKBOX" />
+						<execute macro="FormFields#viewCheckboxNotChecked">
+							<var name="fieldName" value="enabled" />
+						</execute>
 					</else>
 				</if>
 			</then>
