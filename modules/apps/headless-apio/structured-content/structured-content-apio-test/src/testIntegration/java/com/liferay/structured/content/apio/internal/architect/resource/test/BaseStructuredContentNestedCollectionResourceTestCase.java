@@ -24,6 +24,7 @@ import com.liferay.dynamic.data.mapping.model.DDMForm;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.model.JournalArticleWrapper;
+import com.liferay.journal.service.JournalArticleLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Group;
@@ -52,6 +53,14 @@ import java.util.Locale;
  * @author Julio Camarero
  */
 public abstract class BaseStructuredContentNestedCollectionResourceTestCase {
+
+	protected void addAssetTagNames(
+			long userId, JournalArticle journalArticle, String[] assetTagNames)
+		throws PortalException {
+
+		JournalArticleLocalServiceUtil.updateAsset(
+			userId, journalArticle, null, assetTagNames, null, null);
+	}
 
 	protected StructuredContentField createStructuredContentField(
 			DDMFormFieldValue ddmFormFieldValue, DDMStructure ddmStructure)
@@ -89,6 +98,25 @@ public abstract class BaseStructuredContentNestedCollectionResourceTestCase {
 		catch (PortalException pe) {
 			throw new RuntimeException(pe);
 		}
+	}
+
+	protected List<String> getJournalArticleAssetTags(
+			JournalArticle journalArticle)
+		throws Exception {
+
+		NestedCollectionResource nestedCollectionResource =
+			_getNestedCollectionResource();
+
+		Class<? extends NestedCollectionResource> clazz =
+			nestedCollectionResource.getClass();
+
+		Method method = clazz.getDeclaredMethod(
+			"_getJournalArticleAssetTags", JournalArticle.class);
+
+		method.setAccessible(true);
+
+		return (List<String>)method.invoke(
+			nestedCollectionResource, journalArticle);
 	}
 
 	protected JournalArticleWrapper getJournalArticleWrapper(
