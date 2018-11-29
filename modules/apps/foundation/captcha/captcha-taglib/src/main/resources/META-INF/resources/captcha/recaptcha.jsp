@@ -17,9 +17,9 @@
 <%@ include file="/captcha/init.jsp" %>
 
 <c:if test="<%= captchaEnabled %>">
-	<script src="<%= PropsValues.CAPTCHA_ENGINE_RECAPTCHA_URL_SCRIPT %>?hl=<%= locale.getLanguage() %>&onload=onloadCallback&render=explicit" type="text/javascript"></script>
+	<script src="<%= PropsValues.CAPTCHA_ENGINE_RECAPTCHA_URL_SCRIPT %>?hl=<%= locale.getLanguage() %>&onload=<portlet:namespace />onloadCallback&render=explicit" type="text/javascript"></script>
 
-	<div id="recaptcha"></div>
+	<div id="<portlet:namespace />recaptcha"></div>
 
 	<noscript>
 		<div style="height: 525px; width: 302px;">
@@ -35,8 +35,8 @@
 		</div>
 	</noscript>
 
-	<script>
-		var onloadCallback = function() {
+	<aui:script>
+		var <portlet:namespace />onloadCallback = function() {
 			var delay = 0;
 
 			if (Liferay.Browser.isIe()) {
@@ -45,12 +45,12 @@
 
 			setTimeout(function() {
 				grecaptcha.render(
-					'recaptcha',
+					'<portlet:namespace />recaptcha',
 					{
 						'sitekey' : '<%= PrefsPropsUtil.getString(PropsKeys.CAPTCHA_ENGINE_RECAPTCHA_KEY_PUBLIC, PropsValues.CAPTCHA_ENGINE_RECAPTCHA_KEY_PUBLIC) %>'
 					}
 				);
 			}, delay);
 		};
-	</script>
+	</aui:script>
 </c:if>
