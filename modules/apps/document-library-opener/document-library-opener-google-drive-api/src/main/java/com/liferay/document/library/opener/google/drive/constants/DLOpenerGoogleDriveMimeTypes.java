@@ -28,11 +28,13 @@ import java.util.Map;
  * See https://developers.google.com/drive/api/v3/manage-downloads.
  *
  * @author Adolfo Pérez
+ * @review
  */
 public class DLOpenerGoogleDriveMimeTypes {
 
 	/**
 	 * The MIME type for Rich Text files.
+	 * @review
 	 */
 	public static final String APPLICATION_RTF = "application/rtf";
 
