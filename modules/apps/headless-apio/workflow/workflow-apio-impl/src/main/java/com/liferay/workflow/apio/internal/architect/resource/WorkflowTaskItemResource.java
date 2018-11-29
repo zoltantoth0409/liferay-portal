@@ -249,12 +249,9 @@ public class WorkflowTaskItemResource
 			CurrentUser currentUser)
 		throws WorkflowException {
 
-		String comment = updateDueDateForm.getComment();
-		Date dueDate = updateDueDateForm.getDueDate();
-
 		return _workflowTaskManager.updateDueDate(
 			currentUser.getCompanyId(), currentUser.getUserId(), workflowTaskId,
-			comment, dueDate);
+			updateDueDateForm.getComment(), updateDueDateForm.getDueDate());
 	}
 
 	@Reference
