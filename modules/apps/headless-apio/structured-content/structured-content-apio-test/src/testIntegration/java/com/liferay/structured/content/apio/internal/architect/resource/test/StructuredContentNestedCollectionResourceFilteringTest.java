@@ -1030,9 +1030,7 @@ public class StructuredContentNestedCollectionResourceFilteringTest
 			serviceContext);
 
 		User user = TestPropsValues.getUser();
-
 		String keyword1 = "keyword1";
-
 		String keyword2 = "keyword2";
 
 		addAssetTagNames(
