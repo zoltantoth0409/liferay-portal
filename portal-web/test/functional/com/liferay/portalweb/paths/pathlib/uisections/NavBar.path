@@ -44,11 +44,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>CAPTCHA</td>
-	<td>//ul[contains(@class,'navbar-nav')]/li/a[contains(.,'CAPTCHA')]</td>
-	<td></td>
-</tr>
-<tr>
 	<td>CONTAINER</td>
 	<td>//div[@class='navbar ' or contains(@class,'navbar-default')]//div[contains(@class,'container')]</td>
 	<td></td>
@@ -64,11 +59,6 @@
 	<td></td>
 </tr>
 <tr>
-	<td>FILE_UPLOADS</td>
-	<td>//ul[contains(@class,'navbar-nav')]/li/a[contains(.,'File Uploads')]</td>
-	<td></td>
-</tr>
-<tr>
 	<td>HOME</td>
 	<td>//div[contains(@class,'navbar-default')]//a/span[contains(.,'Home')]</td>
 	<td></td>
@@ -79,18 +69,8 @@
 	<td></td>
 </tr>
 <tr>
-	<td>MAIL</td>
-	<td>//ul[contains(@class,'navbar-nav')]/li/a[contains(.,'Mail')]</td>
-	<td></td>
-</tr>
-<tr>
 	<td>NAV_ITEM_LINK</td>
 	<td>//div[contains(@class,'navbar-default')]//a/span[contains(.,'${key_navItem}')] | //*[@data-qa-id='navigation']//a[contains(.,'${key_navItem}')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>ORGANIZATION_ROLES</td>
-	<td>//ul[contains(@class,'navbar-nav')]/li/a[contains(.,'Organization Roles')]</td>
 	<td></td>
 </tr>
 <tr>
@@ -99,38 +79,8 @@
 	<td></td>
 </tr>
 <tr>
-	<td>REGULAR_ROLES</td>
-	<td>//ul[contains(@class,'navbar-nav')]/li/a[contains(.,'Regular Roles')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>RESOURCES</td>
-	<td>//ul[contains(@class,'navbar-nav')]/li/a[contains(.,'Resources')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>SCOPE</td>
-	<td>//ul[contains(@class,'navbar-nav')]/li/a[contains(.,'Scope')]</td>
-	<td></td>
-</tr>
-<tr>
 	<td>SEARCH_TOGGLE_ADVANCED</td>
 	<td>//button[contains(@id,'searchtoggleAdvanced')]/span</td>
-	<td></td>
-</tr>
-<tr>
-	<td>SETUP</td>
-	<td>//ul[contains(@class,'navbar-nav')]/li/a[contains(.,'Setup')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>SHARING</td>
-	<td>//ul[contains(@class,'navbar-nav')]/li/a[contains(.,'Sharing')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>SITE_ROLES</td>
-	<td>//ul[contains(@class,'navbar-nav')]/li/a[contains(.,'Site Roles')]</td>
 	<td></td>
 </tr>
 <tr>
