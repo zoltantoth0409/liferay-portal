@@ -73,13 +73,14 @@ public class LocalGitRepositoryTest
 			if (!_REPOSITORY_DIR.equals(directory.getCanonicalPath())) {
 				errorCollector.addError(
 					new Throwable(
-						"The repository dir should be " + _REPOSITORY_DIR));
+						"The repository directory should be " +
+							_REPOSITORY_DIR));
 			}
 		}
 		catch (IOException ioe) {
 			errorCollector.addError(
 				new Throwable(
-					"The repository dir should be " + _REPOSITORY_DIR));
+					"The repository directory should be " + _REPOSITORY_DIR));
 		}
 
 		if (!_REPOSITORY_UPSTREAM_BRANCH_NAME.equals(
