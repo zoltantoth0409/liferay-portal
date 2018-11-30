@@ -23,7 +23,7 @@
 		</if>
 	</tear-down>
 
-	<command ignore="true" name="SearchByAssetAndModifiedRangeFacets" priority="4">
+	<command name="SearchByAssetAndModifiedRangeFacets" priority="4">
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="Content" />
 			<var name="panel" value="Site Administration" />
