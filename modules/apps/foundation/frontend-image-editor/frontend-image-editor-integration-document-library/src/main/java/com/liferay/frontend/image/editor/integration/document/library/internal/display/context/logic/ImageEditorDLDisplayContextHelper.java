@@ -246,7 +246,7 @@ public class ImageEditorDLDisplayContextHelper {
 		sb.append(_fileEntry.getFileName());
 		sb.append("', '");
 		sb.append(fileEntryPreviewURL);
-		sb.append("&mimeType=");
+		sb.append("','");
 		sb.append(_fileEntry.getMimeType());
 		sb.append("');");
 
