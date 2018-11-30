@@ -422,14 +422,9 @@ public class WatchTask extends DefaultTask {
 		URI uri = file.toURI();
 
 		if (_isWarDir(file)) {
-			StringBuilder sb = new StringBuilder();
-
-			sb.append("webbundledir:%s");
-			sb.append("?Bundle-SymbolicName=%s");
-			sb.append("&Web-ContextPath=/%s");
-
 			return String.format(
-				sb.toString(), uri.toASCIIString(), getBundleSymbolicName(),
+				"webbundledir:%s?Bundle-SymbolicName=%s&Web-ContextPath=/%s",
+				uri.toASCIIString(), getBundleSymbolicName(),
 				getBundleSymbolicName());
 		}
 
