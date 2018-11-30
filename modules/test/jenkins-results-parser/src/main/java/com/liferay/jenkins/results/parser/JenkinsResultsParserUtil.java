@@ -1556,8 +1556,8 @@ public class JenkinsResultsParserUtil {
 				return false;
 			}
 
-			Object actual = actualJSONObject.get(name);
 			Object expected = expectedJSONObject.get(name);
+			Object actual = actualJSONObject.get(name);
 
 			if (!_isJSONExpectedAndActualEqual(expected, actual)) {
 				return false;

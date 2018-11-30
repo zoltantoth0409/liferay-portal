@@ -161,7 +161,7 @@ public class JenkinsResultsParserUtilTest
 		expectedJSONArray.put(jsonArray);
 
 		if (!JenkinsResultsParserUtil.isJSONArrayEqual(
-				actualJSONArray, expectedJSONArray)) {
+				expectedJSONArray, actualJSONArray)) {
 
 			errorCollector.addError(
 				new Throwable(
@@ -174,7 +174,7 @@ public class JenkinsResultsParserUtilTest
 		actualJSONArray.put("string2");
 
 		if (JenkinsResultsParserUtil.isJSONArrayEqual(
-				actualJSONArray, expectedJSONArray)) {
+				expectedJSONArray, actualJSONArray)) {
 
 			errorCollector.addError(
 				new Throwable(
@@ -222,7 +222,7 @@ public class JenkinsResultsParserUtilTest
 		expectedJSONObject.put("json_array", jsonArray);
 
 		if (!JenkinsResultsParserUtil.isJSONObjectEqual(
-				actualJSONObject, expectedJSONObject)) {
+				expectedJSONObject, actualJSONObject)) {
 
 			errorCollector.addError(
 				new Throwable(
@@ -235,7 +235,7 @@ public class JenkinsResultsParserUtilTest
 		actualJSONObject.put("string", "value2");
 
 		if (JenkinsResultsParserUtil.isJSONObjectEqual(
-				actualJSONObject, expectedJSONObject)) {
+				expectedJSONObject, actualJSONObject)) {
 
 			errorCollector.addError(
 				new Throwable(
