@@ -127,12 +127,13 @@ public class JenkinsResultsParserUtilTest
 	@Test
 	public void testIsJSONArrayEqual() {
 		JSONArray actualJSONArray = new JSONArray();
-		JSONArray expectedJSONArray = new JSONArray();
 
 		actualJSONArray.put(true);
 		actualJSONArray.put(1.1);
 		actualJSONArray.put(1);
 		actualJSONArray.put("value");
+
+		JSONArray expectedJSONArray = new JSONArray();
 
 		expectedJSONArray.put(true);
 		expectedJSONArray.put(1.1);
@@ -187,12 +188,13 @@ public class JenkinsResultsParserUtilTest
 	@Test
 	public void testIsJSONObjectEqual() {
 		JSONObject actualJSONObject = new JSONObject();
-		JSONObject expectedJSONObject = new JSONObject();
 
 		actualJSONObject.put("boolean", true);
 		actualJSONObject.put("double", 1.1);
 		actualJSONObject.put("int", 1);
 		actualJSONObject.put("string", "value");
+
+		JSONObject expectedJSONObject = new JSONObject();
 
 		expectedJSONObject.put("boolean", true);
 		expectedJSONObject.put("double", 1.1);
