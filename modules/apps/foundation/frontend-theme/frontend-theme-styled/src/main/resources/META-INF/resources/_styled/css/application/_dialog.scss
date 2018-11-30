@@ -146,7 +146,7 @@
 			width: 100%;
 
 			@include md {
-				background-color: $dialog-desktop-footer-bg
+				background-color: $dialog-desktop-footer-bg;
 				position: fixed;
 			}
 		}
