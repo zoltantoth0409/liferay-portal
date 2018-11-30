@@ -219,6 +219,8 @@ public class ReleaseInfo {
 
 	public static final int RELEASE_7_1_1_BUILD_NUMBER = 7101;
 
+	public static final int RELEASE_7_1_2_BUILD_NUMBER = 7102;
+
 	public static final int RELEASE_7_1_10_BUILD_NUMBER = 7110;
 
 	public static final Date getBuildDate() {
@@ -270,7 +272,7 @@ public class ReleaseInfo {
 		return _VERSION;
 	}
 
-	private static final String _BUILD = "7101";
+	private static final String _BUILD = "7102";
 
 	private static final int _BUILD_NUMBER = GetterUtil.getInteger(_BUILD);
 
