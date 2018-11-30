@@ -3542,10 +3542,10 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 		SearchContext searchContext = new SearchContext();
 
 		searchContext.setAttribute(Field.TITLE, keywords);
+		searchContext.setAttribute(Field.TYPE, types);
 		searchContext.setAttribute("paginationType", "more");
 		searchContext.setAttribute(
 			"privateLayout", String.valueOf(privateLayout));
-		searchContext.setAttribute(Field.TYPE, types);
 
 		Group group = groupLocalService.getGroup(groupId);
 
