@@ -66,7 +66,9 @@
 	</command>
 
 	<command name="configureFileUploadOverallMaximumFileSize">
-		<execute function="AssertClick" locator1="NavBar#FILE_UPLOADS" value1="File Uploads" />
+		<execute macro="Navigator#gotoNavItem">
+			<var name="navItem" value="File Uploads" />
+		</execute>
 
 		<execute function="Type" locator1="ServerAdministrationFileUploads#GENERAL_OVERALL_MAX_FILE_SIZE_FIELD" value1="${maxFileSize}" />
 
@@ -76,7 +78,9 @@
 	</command>
 
 	<command name="configureMailServerSettings">
-		<execute function="AssertClick" locator1="NavBar#MAIL" value1="Mail" />
+		<execute macro="Navigator#gotoNavItem">
+			<var name="navItem" value="Mail" />
+		</execute>
 
 		<execute function="Type" locator1="ServerAdministrationMail#INCOMING_POP_SERVER" value1="pop.gmail.com" />
 		<execute function="Type" locator1="ServerAdministrationMail#INCOMING_PORT" value1="995" />
@@ -129,7 +133,9 @@
 	</command>
 
 	<command name="executeServerResourcesActions">
-		<execute function="AssertClick" locator1="NavBar#RESOURCES" value1="Resources" />
+		<execute macro="Navigator#gotoNavItem">
+			<var name="navItem" value="Resources" />
+		</execute>
 
 		<execute macro="Panel#expandPanel">
 			<var name="panelHeading" value="Clean Up Actions" />
@@ -182,7 +188,9 @@
 			<var name="portlet" value="Server Administration" />
 		</execute>
 
-		<execute function="AssertClick" locator1="NavBar#FILE_UPLOADS" value1="File Uploads" />
+		<execute macro="Navigator#gotoNavItem">
+			<var name="navItem" value="File Uploads" />
+		</execute>
 
 		<execute function="Type" locator1="ServerAdministrationFileUploads#DOCS_AND_MEDIA_MAX_FILE_SIZE_FIELD" value1="" />
 
@@ -196,7 +204,9 @@
 			<var name="portlet" value="Server Administration" />
 		</execute>
 
-		<execute function="AssertClick" locator1="NavBar#MAIL" value1="Mail" />
+		<execute macro="Navigator#gotoNavItem">
+			<var name="navItem" value="Mail" />
+		</execute>
 
 		<execute function="Type" locator1="ServerAdministrationMail#INCOMING_POP_SERVER" value1="localhost" />
 		<execute function="Type" locator1="ServerAdministrationMail#INCOMING_PORT" value1="110" />

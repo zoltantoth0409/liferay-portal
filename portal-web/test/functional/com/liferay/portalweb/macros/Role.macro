@@ -3,16 +3,22 @@
 		<if>
 			<equals arg1="${roleType}" arg2="Organization" />
 			<then>
-				<execute function="AssertClick" locator1="NavBar#ORGANIZATION_ROLES" value1="Organization Roles" />
+				<execute macro="Navigator#gotoNavItem">
+					<var name="navItem" value="Organization Roles" />
+				</execute>
 			</then>
 			<elseif>
 				<equals arg1="${roleType}" arg2="Site" />
 				<then>
-					<execute function="AssertClick" locator1="NavBar#SITE_ROLES" value1="Site Roles" />
+					<execute macro="Navigator#gotoNavItem">
+						<var name="navItem" value="Site Roles" />
+					</execute>
 				</then>
 			</elseif>
 			<else>
-				<execute function="AssertClick" locator1="NavBar#REGULAR_ROLES" value1="Regular Roles" />
+				<execute macro="Navigator#gotoNavItem">
+					<var name="navItem" value="Regular Roles" />
+				</execute>
 			</else>
 		</if>
 

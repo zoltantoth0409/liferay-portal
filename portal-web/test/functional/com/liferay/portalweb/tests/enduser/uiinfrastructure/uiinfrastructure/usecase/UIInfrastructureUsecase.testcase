@@ -89,7 +89,9 @@
 
 			<execute macro="IFrame#selectConfigurationFrame" />
 
-			<execute function="AssertTextEquals" locator1="NavBar#SHARING" value1="Sharing" />
+			<execute macro="Navigator#gotoNavItem">
+				<var name="navItem" value="Sharing" />
+			</execute>
 
 			<execute function="SelectFrame" value1="relative=top" />
 

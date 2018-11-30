@@ -2365,7 +2365,9 @@
 
 		<execute macro="IFrame#selectConfigurationFrame" />
 
-		<execute function="AssertClick" locator1="NavBar#SETUP" value1="Setup" />
+		<execute macro="Navigator#gotoNavItem">
+			<var name="navItem" value="Setup" />
+		</execute>
 
 		<execute function="AssertClick" locator1="Button#SELECT" value1="Select" />
 

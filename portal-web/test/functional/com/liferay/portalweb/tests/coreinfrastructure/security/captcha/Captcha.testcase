@@ -46,7 +46,9 @@
 			<var name="portlet" value="Server Administration" />
 		</execute>
 
-		<execute function="AssertClick" locator1="NavBar#CAPTCHA" value1="CAPTCHA" />
+		<execute macro="Navigator#gotoNavItem">
+			<var name="navItem" value="CAPTCHA" />
+		</execute>
 
 		<execute macro="ServerAdministration#enableRecaptcha">
 			<var name="privateKey" value="${recaptchaPrivateKey}" />
