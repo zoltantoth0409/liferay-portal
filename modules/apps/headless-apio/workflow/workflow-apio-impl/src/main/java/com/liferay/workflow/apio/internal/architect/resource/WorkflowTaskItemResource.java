@@ -104,7 +104,7 @@ public class WorkflowTaskItemResource
 		).addDate(
 			"dateCreated", WorkflowTask::getCreateDate
 		).addDate(
-			"expires", WorkflowTask::getDueDate
+			"dueDate", WorkflowTask::getDueDate
 		).addNested(
 			"object", WorkflowTask::getOptionalAttributes,
 			nestedBuilder -> nestedBuilder.types(
