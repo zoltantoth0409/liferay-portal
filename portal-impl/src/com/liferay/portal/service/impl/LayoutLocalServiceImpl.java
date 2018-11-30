@@ -593,7 +593,7 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 				"privateLayout", String.valueOf(layout.isPrivateLayout()));
 		}
 
-		// Index
+		// Indexer
 
 		Indexer indexer = IndexerRegistryUtil.getIndexer(Layout.class);
 
