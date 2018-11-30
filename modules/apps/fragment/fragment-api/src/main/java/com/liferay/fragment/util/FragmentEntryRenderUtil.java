@@ -139,7 +139,7 @@ public class FragmentEntryRenderUtil {
 			fragmentEntryProcessorRegistry.processFragmentEntryLinkHTML(
 				fragmentEntryLink, mode, locale);
 
-		if (Validator.isNotNull(html) && (request != null)) {
+		if ((request != null) && Validator.isNotNull(html)) {
 			html = _processTemplate(html, parameterMap, request, response);
 		}
 
