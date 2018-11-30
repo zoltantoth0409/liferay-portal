@@ -267,9 +267,15 @@
 			<var name="userSegmentRule" value="Site Member" />
 		</execute>
 
-		<var name="key_selectSiteMemberSite" value="${selectSiteMemberSite}" />
+		<execute function="AssertClick" locator1="EditUserSegment#USER_SEGMENT_RULE_SELECT_BUTTON" value1="Select" />
 
-		<execute function="Select" locator1="EditUserSegment#USER_SEGMENT_RULE_USER_ATTRIBUTES_SITE_MEMBER_SELECT" value1="${selectSiteMemberSite}" />
+		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+
+		<execute function="Click" locator1="SitesSelectSite#SITES_TABLE_CHOOSE_SITE_LINK">
+			<var name="key_siteName" value="${selectSiteMemberSite}" />
+		</execute>
+
+		<execute function="SelectFrame" value1="relative=top" />
 	</command>
 
 	<command name="addUserAttributesSiteRoleRuleCP">
@@ -605,7 +611,7 @@
 					<then>
 						<var name="key_selectSiteMemberSite" value="${selectSiteMemberSite}" />
 
-						<execute function="AssertSelectedLabel" locator1="EditUserSegment#USER_SEGMENT_RULE_USER_ATTRIBUTES_SITE_MEMBER_SELECT" value1="${selectSiteMemberSite}" />
+						<execute function="AssertTextEquals" locator1="EditUserSegment#USER_SEGMENT_RULE_USER_ATTRIBUTES_SITE_MEMBER_SELECT" value1="${selectSiteMemberSite}" />
 					</then>
 				</elseif>
 				<elseif>
