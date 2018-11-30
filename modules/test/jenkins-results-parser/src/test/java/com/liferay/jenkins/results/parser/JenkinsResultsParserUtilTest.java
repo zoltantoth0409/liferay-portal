@@ -126,19 +126,19 @@ public class JenkinsResultsParserUtilTest
 
 	@Test
 	public void testIsJSONArrayEqual() {
-		JSONArray actualJSONArray = new JSONArray();
-
-		actualJSONArray.put(true);
-		actualJSONArray.put(1.1);
-		actualJSONArray.put(1);
-		actualJSONArray.put("value");
-
 		JSONArray expectedJSONArray = new JSONArray();
 
 		expectedJSONArray.put(true);
 		expectedJSONArray.put(1.1);
 		expectedJSONArray.put(1);
 		expectedJSONArray.put("value");
+
+		JSONArray actualJSONArray = new JSONArray();
+
+		actualJSONArray.put(true);
+		actualJSONArray.put(1.1);
+		actualJSONArray.put(1);
+		actualJSONArray.put("value");
 
 		JSONObject jsonObject = new JSONObject();
 
@@ -147,8 +147,8 @@ public class JenkinsResultsParserUtilTest
 		jsonObject.put("int", 1);
 		jsonObject.put("string", "value");
 
-		actualJSONArray.put(jsonObject);
 		expectedJSONArray.put(jsonObject);
+		actualJSONArray.put(jsonObject);
 
 		JSONArray jsonArray = new JSONArray();
 
@@ -157,8 +157,8 @@ public class JenkinsResultsParserUtilTest
 		jsonArray.put(1);
 		jsonArray.put("value");
 
-		actualJSONArray.put(jsonArray);
 		expectedJSONArray.put(jsonArray);
+		actualJSONArray.put(jsonArray);
 
 		if (!JenkinsResultsParserUtil.isJSONArrayEqual(
 				expectedJSONArray, actualJSONArray)) {
@@ -187,19 +187,19 @@ public class JenkinsResultsParserUtilTest
 
 	@Test
 	public void testIsJSONObjectEqual() {
-		JSONObject actualJSONObject = new JSONObject();
-
-		actualJSONObject.put("boolean", true);
-		actualJSONObject.put("double", 1.1);
-		actualJSONObject.put("int", 1);
-		actualJSONObject.put("string", "value");
-
 		JSONObject expectedJSONObject = new JSONObject();
 
 		expectedJSONObject.put("boolean", true);
 		expectedJSONObject.put("double", 1.1);
 		expectedJSONObject.put("int", 1);
 		expectedJSONObject.put("string", "value");
+
+		JSONObject actualJSONObject = new JSONObject();
+
+		actualJSONObject.put("boolean", true);
+		actualJSONObject.put("double", 1.1);
+		actualJSONObject.put("int", 1);
+		actualJSONObject.put("string", "value");
 
 		JSONObject jsonObject = new JSONObject();
 
@@ -208,8 +208,8 @@ public class JenkinsResultsParserUtilTest
 		jsonObject.put("int", 1);
 		jsonObject.put("string", "value");
 
-		actualJSONObject.put("json_object", jsonObject);
 		expectedJSONObject.put("json_object", jsonObject);
+		actualJSONObject.put("json_object", jsonObject);
 
 		JSONArray jsonArray = new JSONArray();
 
@@ -218,8 +218,8 @@ public class JenkinsResultsParserUtilTest
 		jsonArray.put(1);
 		jsonArray.put("value");
 
-		actualJSONObject.put("json_array", jsonArray);
 		expectedJSONObject.put("json_array", jsonArray);
+		actualJSONObject.put("json_array", jsonArray);
 
 		if (!JenkinsResultsParserUtil.isJSONObjectEqual(
 				expectedJSONObject, actualJSONObject)) {
