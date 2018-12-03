@@ -35,12 +35,9 @@ import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
 import com.liferay.portal.kernel.test.rule.NewEnv;
+import com.liferay.portal.kernel.test.util.PropsTestUtil;
 import com.liferay.portal.kernel.util.KeyValuePair;
-import com.liferay.portal.kernel.util.Props;
 import com.liferay.portal.kernel.util.PropsKeys;
-import com.liferay.portal.kernel.util.PropsUtil;
-import com.liferay.portal.kernel.util.PropsUtilAdvice;
-import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.ThreadLocalDistributor;
@@ -55,8 +52,6 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.Serializable;
 
-import java.lang.reflect.Method;
-
 import java.net.URL;
 import java.net.URLClassLoader;
 
@@ -65,6 +60,7 @@ import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
@@ -104,20 +100,9 @@ public class SPIAgentSerializableTest {
 		_classLoader = new URLClassLoader(
 			new URL[0], currentThread.getContextClassLoader());
 
-		PropsUtil.setProps(
-			(Props)ProxyUtil.newProxyInstance(
-				Props.class.getClassLoader(), new Class<?>[] {Props.class},
-				(Object proxy, Method method, Object[] args) -> {
-					if ((args.length > 0) &&
-						args[0].equals(
-							PropsKeys.
-								SERVLET_CONTEXT_CLASS_LOADER_POOL_FALLBACK)) {
-
-						return "false";
-					}
-
-					return null;
-				}));
+		PropsTestUtil.setProps(
+			PropsKeys.SERVLET_CONTEXT_CLASS_LOADER_POOL_FALLBACK,
+			Boolean.FALSE.toString());
 
 		ServletContextClassLoaderPool.register(
 			_SERVLET_CONTEXT_NAME, _classLoader);
@@ -523,21 +508,23 @@ public class SPIAgentSerializableTest {
 		}
 	}
 
-	@AdviseWith(
-		adviceClasses = {DeserializerAdvice.class, PropsUtilAdvice.class}
-	)
+	@AdviseWith(adviceClasses = DeserializerAdvice.class)
 	@NewEnv(type = NewEnv.Type.CLASSLOADER)
 	@Test
 	public void testSerialization() throws IOException {
 
 		// Unable to send
 
-		PropsUtilAdvice.setProps(
+		Map<String, Object> properties = new HashMap<>();
+
+		properties.put(
 			PropsKeys.INTRABAND_MAILBOX_REAPER_THREAD_ENABLED,
 			Boolean.FALSE.toString());
-		PropsUtilAdvice.setProps(
+		properties.put(
 			PropsKeys.INTRABAND_MAILBOX_STORAGE_LIFE,
 			String.valueOf(Long.MAX_VALUE));
+
+		PropsTestUtil.setProps(properties);
 
 		final AtomicLong receiptReference = new AtomicLong();
 
