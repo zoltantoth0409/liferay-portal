@@ -1734,8 +1734,8 @@ logExceptionsOnly=B&quot;false&quot;</echo>
 				srcFile="${patching.tool.latest.txt}"
 			>
 				<filterchain>
-					<trim />
 					<striplinebreaks/>
+					<trim />
 				</filterchain>
 			</loadfile>
 
