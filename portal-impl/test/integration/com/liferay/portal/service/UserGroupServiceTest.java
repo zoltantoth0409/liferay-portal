@@ -95,7 +95,7 @@ public class UserGroupServiceTest {
 
 		List<UserGroup> likeNameUserGroups = new ArrayList<>();
 
-		String name = RandomTestUtil.randomString(10);
+		String name = RandomTestUtil.randomString(50);
 
 		for (int i = 0; i < 10; i++) {
 			UserGroup userGroup = addUserGroup();
