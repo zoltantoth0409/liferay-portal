@@ -9131,7 +9131,7 @@ public class PortalImpl implements Portal {
 	}
 
 	private class CommentsStrutsActionServiceTrackerCustomizer
-		implements ServiceTrackerCustomizer <StrutsAction, StrutsAction> {
+		implements ServiceTrackerCustomizer<StrutsAction, StrutsAction> {
 
 		@Override
 		public StrutsAction addingService(
