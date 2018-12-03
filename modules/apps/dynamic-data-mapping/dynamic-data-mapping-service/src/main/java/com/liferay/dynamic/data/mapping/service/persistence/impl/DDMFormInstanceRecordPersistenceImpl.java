@@ -640,7 +640,6 @@ public class DDMFormInstanceRecordPersistenceImpl extends BasePersistenceImpl<DD
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_UUID_1 = "ddmFormInstanceRecord.uuid IS NULL";
 	private static final String _FINDER_COLUMN_UUID_UUID_2 = "ddmFormInstanceRecord.uuid = ?";
 	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(ddmFormInstanceRecord.uuid IS NULL OR ddmFormInstanceRecord.uuid = '')";
 	public static final FinderPath FINDER_PATH_FETCH_BY_UUID_G = new FinderPath(DDMFormInstanceRecordModelImpl.ENTITY_CACHE_ENABLED,
@@ -886,7 +885,6 @@ public class DDMFormInstanceRecordPersistenceImpl extends BasePersistenceImpl<DD
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_G_UUID_1 = "ddmFormInstanceRecord.uuid IS NULL AND ";
 	private static final String _FINDER_COLUMN_UUID_G_UUID_2 = "ddmFormInstanceRecord.uuid = ? AND ";
 	private static final String _FINDER_COLUMN_UUID_G_UUID_3 = "(ddmFormInstanceRecord.uuid IS NULL OR ddmFormInstanceRecord.uuid = '') AND ";
 	private static final String _FINDER_COLUMN_UUID_G_GROUPID_2 = "ddmFormInstanceRecord.groupId = ?";
@@ -1478,7 +1476,6 @@ public class DDMFormInstanceRecordPersistenceImpl extends BasePersistenceImpl<DD
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_C_UUID_1 = "ddmFormInstanceRecord.uuid IS NULL AND ";
 	private static final String _FINDER_COLUMN_UUID_C_UUID_2 = "ddmFormInstanceRecord.uuid = ? AND ";
 	private static final String _FINDER_COLUMN_UUID_C_UUID_3 = "(ddmFormInstanceRecord.uuid IS NULL OR ddmFormInstanceRecord.uuid = '') AND ";
 	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 = "ddmFormInstanceRecord.companyId = ?";
@@ -3667,7 +3664,6 @@ public class DDMFormInstanceRecordPersistenceImpl extends BasePersistenceImpl<DD
 	}
 
 	private static final String _FINDER_COLUMN_F_F_FORMINSTANCEID_2 = "ddmFormInstanceRecord.formInstanceId = ? AND ";
-	private static final String _FINDER_COLUMN_F_F_FORMINSTANCEVERSION_1 = "ddmFormInstanceRecord.formInstanceVersion IS NULL";
 	private static final String _FINDER_COLUMN_F_F_FORMINSTANCEVERSION_2 = "ddmFormInstanceRecord.formInstanceVersion = ?";
 	private static final String _FINDER_COLUMN_F_F_FORMINSTANCEVERSION_3 = "(ddmFormInstanceRecord.formInstanceVersion IS NULL OR ddmFormInstanceRecord.formInstanceVersion = '')";
 

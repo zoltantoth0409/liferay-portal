@@ -641,7 +641,6 @@ public class SiteNavigationMenuItemPersistenceImpl extends BasePersistenceImpl<S
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_UUID_1 = "siteNavigationMenuItem.uuid IS NULL";
 	private static final String _FINDER_COLUMN_UUID_UUID_2 = "siteNavigationMenuItem.uuid = ?";
 	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(siteNavigationMenuItem.uuid IS NULL OR siteNavigationMenuItem.uuid = '')";
 	public static final FinderPath FINDER_PATH_FETCH_BY_UUID_G = new FinderPath(SiteNavigationMenuItemModelImpl.ENTITY_CACHE_ENABLED,
@@ -888,7 +887,6 @@ public class SiteNavigationMenuItemPersistenceImpl extends BasePersistenceImpl<S
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_G_UUID_1 = "siteNavigationMenuItem.uuid IS NULL AND ";
 	private static final String _FINDER_COLUMN_UUID_G_UUID_2 = "siteNavigationMenuItem.uuid = ? AND ";
 	private static final String _FINDER_COLUMN_UUID_G_UUID_3 = "(siteNavigationMenuItem.uuid IS NULL OR siteNavigationMenuItem.uuid = '') AND ";
 	private static final String _FINDER_COLUMN_UUID_G_GROUPID_2 = "siteNavigationMenuItem.groupId = ?";
@@ -1481,7 +1479,6 @@ public class SiteNavigationMenuItemPersistenceImpl extends BasePersistenceImpl<S
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_C_UUID_1 = "siteNavigationMenuItem.uuid IS NULL AND ";
 	private static final String _FINDER_COLUMN_UUID_C_UUID_2 = "siteNavigationMenuItem.uuid = ? AND ";
 	private static final String _FINDER_COLUMN_UUID_C_UUID_3 = "(siteNavigationMenuItem.uuid IS NULL OR siteNavigationMenuItem.uuid = '') AND ";
 	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 = "siteNavigationMenuItem.companyId = ?";
@@ -3695,7 +3692,6 @@ public class SiteNavigationMenuItemPersistenceImpl extends BasePersistenceImpl<S
 	}
 
 	private static final String _FINDER_COLUMN_S_LIKEN_SITENAVIGATIONMENUID_2 = "siteNavigationMenuItem.siteNavigationMenuId = ? AND ";
-	private static final String _FINDER_COLUMN_S_LIKEN_NAME_1 = "siteNavigationMenuItem.name IS NULL";
 	private static final String _FINDER_COLUMN_S_LIKEN_NAME_2 = "lower(siteNavigationMenuItem.name) LIKE ?";
 	private static final String _FINDER_COLUMN_S_LIKEN_NAME_3 = "(siteNavigationMenuItem.name IS NULL OR siteNavigationMenuItem.name LIKE '')";
 

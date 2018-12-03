@@ -639,7 +639,6 @@ public class AssetListEntryUsagePersistenceImpl extends BasePersistenceImpl<Asse
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_UUID_1 = "assetListEntryUsage.uuid IS NULL";
 	private static final String _FINDER_COLUMN_UUID_UUID_2 = "assetListEntryUsage.uuid = ?";
 	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(assetListEntryUsage.uuid IS NULL OR assetListEntryUsage.uuid = '')";
 	public static final FinderPath FINDER_PATH_FETCH_BY_UUID_G = new FinderPath(AssetListEntryUsageModelImpl.ENTITY_CACHE_ENABLED,
@@ -884,7 +883,6 @@ public class AssetListEntryUsagePersistenceImpl extends BasePersistenceImpl<Asse
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_G_UUID_1 = "assetListEntryUsage.uuid IS NULL AND ";
 	private static final String _FINDER_COLUMN_UUID_G_UUID_2 = "assetListEntryUsage.uuid = ? AND ";
 	private static final String _FINDER_COLUMN_UUID_G_UUID_3 = "(assetListEntryUsage.uuid IS NULL OR assetListEntryUsage.uuid = '') AND ";
 	private static final String _FINDER_COLUMN_UUID_G_GROUPID_2 = "assetListEntryUsage.groupId = ?";
@@ -1472,7 +1470,6 @@ public class AssetListEntryUsagePersistenceImpl extends BasePersistenceImpl<Asse
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_C_UUID_1 = "assetListEntryUsage.uuid IS NULL AND ";
 	private static final String _FINDER_COLUMN_UUID_C_UUID_2 = "assetListEntryUsage.uuid = ? AND ";
 	private static final String _FINDER_COLUMN_UUID_C_UUID_3 = "(assetListEntryUsage.uuid IS NULL OR assetListEntryUsage.uuid = '') AND ";
 	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 = "assetListEntryUsage.companyId = ?";
@@ -2828,7 +2825,6 @@ public class AssetListEntryUsagePersistenceImpl extends BasePersistenceImpl<Asse
 
 	private static final String _FINDER_COLUMN_C_C_P_CLASSNAMEID_2 = "assetListEntryUsage.classNameId = ? AND ";
 	private static final String _FINDER_COLUMN_C_C_P_CLASSPK_2 = "assetListEntryUsage.classPK = ? AND ";
-	private static final String _FINDER_COLUMN_C_C_P_PORTLETID_1 = "assetListEntryUsage.portletId IS NULL";
 	private static final String _FINDER_COLUMN_C_C_P_PORTLETID_2 = "assetListEntryUsage.portletId = ?";
 	private static final String _FINDER_COLUMN_C_C_P_PORTLETID_3 = "(assetListEntryUsage.portletId IS NULL OR assetListEntryUsage.portletId = '')";
 

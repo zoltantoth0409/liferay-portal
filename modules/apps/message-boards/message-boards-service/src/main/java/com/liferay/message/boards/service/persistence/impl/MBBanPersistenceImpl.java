@@ -625,7 +625,6 @@ public class MBBanPersistenceImpl extends BasePersistenceImpl<MBBan>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_UUID_1 = "mbBan.uuid IS NULL";
 	private static final String _FINDER_COLUMN_UUID_UUID_2 = "mbBan.uuid = ?";
 	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(mbBan.uuid IS NULL OR mbBan.uuid = '')";
 	public static final FinderPath FINDER_PATH_FETCH_BY_UUID_G = new FinderPath(MBBanModelImpl.ENTITY_CACHE_ENABLED,
@@ -869,7 +868,6 @@ public class MBBanPersistenceImpl extends BasePersistenceImpl<MBBan>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_G_UUID_1 = "mbBan.uuid IS NULL AND ";
 	private static final String _FINDER_COLUMN_UUID_G_UUID_2 = "mbBan.uuid = ? AND ";
 	private static final String _FINDER_COLUMN_UUID_G_UUID_3 = "(mbBan.uuid IS NULL OR mbBan.uuid = '') AND ";
 	private static final String _FINDER_COLUMN_UUID_G_GROUPID_2 = "mbBan.groupId = ?";
@@ -1446,7 +1444,6 @@ public class MBBanPersistenceImpl extends BasePersistenceImpl<MBBan>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_C_UUID_1 = "mbBan.uuid IS NULL AND ";
 	private static final String _FINDER_COLUMN_UUID_C_UUID_2 = "mbBan.uuid = ? AND ";
 	private static final String _FINDER_COLUMN_UUID_C_UUID_3 = "(mbBan.uuid IS NULL OR mbBan.uuid = '') AND ";
 	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 = "mbBan.companyId = ?";

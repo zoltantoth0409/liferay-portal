@@ -630,7 +630,6 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_UUID_1 = "ddlRecord.uuid IS NULL";
 	private static final String _FINDER_COLUMN_UUID_UUID_2 = "ddlRecord.uuid = ?";
 	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(ddlRecord.uuid IS NULL OR ddlRecord.uuid = '')";
 	public static final FinderPath FINDER_PATH_FETCH_BY_UUID_G = new FinderPath(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
@@ -874,7 +873,6 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_G_UUID_1 = "ddlRecord.uuid IS NULL AND ";
 	private static final String _FINDER_COLUMN_UUID_G_UUID_2 = "ddlRecord.uuid = ? AND ";
 	private static final String _FINDER_COLUMN_UUID_G_UUID_3 = "(ddlRecord.uuid IS NULL OR ddlRecord.uuid = '') AND ";
 	private static final String _FINDER_COLUMN_UUID_G_GROUPID_2 = "ddlRecord.groupId = ?";
@@ -1456,7 +1454,6 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_C_UUID_1 = "ddlRecord.uuid IS NULL AND ";
 	private static final String _FINDER_COLUMN_UUID_C_UUID_2 = "ddlRecord.uuid = ? AND ";
 	private static final String _FINDER_COLUMN_UUID_C_UUID_3 = "(ddlRecord.uuid IS NULL OR ddlRecord.uuid = '') AND ";
 	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 = "ddlRecord.companyId = ?";
@@ -3592,7 +3589,6 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	}
 
 	private static final String _FINDER_COLUMN_R_R_RECORDSETID_2 = "ddlRecord.recordSetId = ? AND ";
-	private static final String _FINDER_COLUMN_R_R_RECORDSETVERSION_1 = "ddlRecord.recordSetVersion IS NULL";
 	private static final String _FINDER_COLUMN_R_R_RECORDSETVERSION_2 = "ddlRecord.recordSetVersion = ?";
 	private static final String _FINDER_COLUMN_R_R_RECORDSETVERSION_3 = "(ddlRecord.recordSetVersion IS NULL OR ddlRecord.recordSetVersion = '')";
 
