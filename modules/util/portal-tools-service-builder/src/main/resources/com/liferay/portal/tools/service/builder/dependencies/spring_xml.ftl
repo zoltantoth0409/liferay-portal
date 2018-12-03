@@ -1,6 +1,6 @@
 <#assign parent = "" />
 
-<#if !serviceBuilder.isSpringConfiguratorEnabled()>
+<#if serviceBuilder.isVersionLTE_7_1_0()>
 	<#assign parent = " parent=\"basePersistence\"" />
 </#if>
 
