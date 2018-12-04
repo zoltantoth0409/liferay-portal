@@ -3045,7 +3045,7 @@ AUI.add(
 									instance._afterUpdateRepeatableFields,
 									instance
 								),
-								Liferay.after('form:registered', instance._afterFormRegistered, instance),
+								Liferay.after('form:registered', instance._afterFormRegistered, instance)
 							);
 
 							if (instance.get('synchronousFormSubmission')) {
