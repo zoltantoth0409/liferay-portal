@@ -48,13 +48,13 @@ public class JournalDefaultTemplateProviderImpl
 			TemplateHandlerRegistryUtil.getTemplateHandler(
 				JournalArticle.class.getName());
 
-		Map<String, TemplateVariableGroup> variableGroups =
+		Map<String, TemplateVariableGroup> templateVariableGroups =
 			templateHandler.getTemplateVariableGroups(
 				ddmStructureId, getLanguage(),
 				LocaleUtil.getMostRelevantLocale());
 
-		TemplateVariableGroup templateVariableGroup = variableGroups.get(
-			"fields");
+		TemplateVariableGroup templateVariableGroup =
+			templateVariableGroups.get("fields");
 
 		if (templateVariableGroup == null) {
 			return StringPool.BLANK;
