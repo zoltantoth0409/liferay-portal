@@ -53,14 +53,15 @@ public class JournalDefaultTemplateProviderImpl
 				ddmStructureId, getLanguage(),
 				LocaleUtil.getMostRelevantLocale());
 
-		TemplateVariableGroup fields = variableGroups.get("fields");
+		TemplateVariableGroup templateVariableGroup = variableGroups.get(
+			"fields");
 
-		if (fields == null) {
+		if (templateVariableGroup == null) {
 			return StringPool.BLANK;
 		}
 
 		Collection<TemplateVariableDefinition> templateVariableDefinitions =
-			fields.getTemplateVariableDefinitions();
+			templateVariableGroup.getTemplateVariableDefinitions();
 
 		StringBundler sb = new StringBundler(
 			templateVariableDefinitions.size() * 5 + 2);
