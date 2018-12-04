@@ -71,13 +71,12 @@ public class SiteNavigationAdminPortlet extends MVCPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
-		HttpServletRequest request = _portal.getHttpServletRequest(
-			renderRequest);
-
 		LiferayPortletRequest liferayPortletRequest =
 			_portal.getLiferayPortletRequest(renderRequest);
 		LiferayPortletResponse liferayPortletResponse =
 			_portal.getLiferayPortletResponse(renderResponse);
+		HttpServletRequest request = _portal.getHttpServletRequest(
+			renderRequest);
 
 		SiteNavigationAdminDisplayContext siteNavigationAdminDisplayContext =
 			new SiteNavigationAdminDisplayContext(
