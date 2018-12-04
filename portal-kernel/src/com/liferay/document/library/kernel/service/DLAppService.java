@@ -430,6 +430,7 @@ public interface DLAppService extends BaseService {
 	* approved and there are other approved file versions available.
 	*
 	* @param fileVersionId the primary key of the file version
+	* @review
 	*/
 	public void deleteFileVersion(long fileVersionId) throws PortalException;
 
