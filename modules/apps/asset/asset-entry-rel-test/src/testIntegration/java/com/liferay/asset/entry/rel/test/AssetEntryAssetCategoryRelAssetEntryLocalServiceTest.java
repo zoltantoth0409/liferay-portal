@@ -56,8 +56,8 @@ public class AssetEntryAssetCategoryRelAssetEntryLocalServiceTest {
 
 	@Before
 	public void setUp() throws Exception {
-		_user = UserTestUtil.addUser();
 		_group = GroupTestUtil.addGroup();
+		_user = UserTestUtil.addUser();
 
 		_assetVocabulary = AssetTestUtil.addVocabulary(_group.getGroupId());
 
