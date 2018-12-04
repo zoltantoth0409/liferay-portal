@@ -154,11 +154,11 @@ public class SPIClassPathContextListenerTest {
 
 		Map<String, Object> properties = new HashMap<>();
 
-		properties.put(
-			PropsKeys.JDBC_DEFAULT_DRIVER_CLASS_NAME, driverClassName);
 		properties.put(PropsKeys.INTRABAND_IMPL, StringPool.BLANK);
 		properties.put(PropsKeys.INTRABAND_TIMEOUT_DEFAULT, StringPool.BLANK);
 		properties.put(PropsKeys.INTRABAND_WELDER_IMPL, StringPool.BLANK);
+		properties.put(
+			PropsKeys.JDBC_DEFAULT_DRIVER_CLASS_NAME, driverClassName);
 
 		PropsTestUtil.setProps(properties);
 
