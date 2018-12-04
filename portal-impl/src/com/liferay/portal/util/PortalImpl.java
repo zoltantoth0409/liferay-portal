@@ -6886,7 +6886,7 @@ public class PortalImpl implements Portal {
 				_log.debug(e, e);
 			}
 		}
-		else if ((e instanceof SystemException) && _log.isWarnEnabled()) {
+		else if (_log.isWarnEnabled()) {
 			_log.warn(e, e);
 		}
 
@@ -6962,7 +6962,10 @@ public class PortalImpl implements Portal {
 			}
 		}
 		else if (e != null) {
-			response.sendError(status, e.getMessage());
+			response.sendError(
+				status,
+				"A " + e.getClass() +
+					" error occurred while processing your request");
 		}
 		else {
 			String currentURL = (String)request.getAttribute(
