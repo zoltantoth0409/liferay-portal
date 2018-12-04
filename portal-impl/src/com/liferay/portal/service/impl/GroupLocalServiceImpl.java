@@ -1471,9 +1471,9 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	 * </p>
 	 *
 	 * @param  companyId the primary key of the company
+	 * @param  site whether the group is associated with a main site
 	 * @param  active whether to return only active groups or only inactive
 	 *         groups
-	 * @param  site whether the group is associated with a main site
 	 * @param  start the lower bound of the range of groups to return
 	 * @param  end the upper bound of the range of groups to return (not
 	 *         inclusive)
@@ -1521,7 +1521,8 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	}
 
 	/**
-	 * Returns the number of active or inactive groups associated with the company.
+	 * Returns the number of active or inactive groups associated with the
+	 * company.
 	 *
 	 * @param  companyId the primary key of the company
 	 * @param  active whether to count only active groups or only inactive
@@ -1534,7 +1535,8 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	}
 
 	/**
-	 * Returns the number of active or inactive groups associated with the company.
+	 * Returns the number of active or inactive groups associated with the
+	 * company.
 	 *
 	 * @param  companyId the primary key of the company
 	 * @param  active whether to count only active groups or only inactive
