@@ -53,27 +53,31 @@ public class SocketWelderTest {
 
 	@Before
 	public void setUp() {
-		_properties = new HashMap<>();
-
-		_properties.put(
-			PropsKeys.INTRABAND_WELDER_SOCKET_BUFFER_SIZE,
-			String.valueOf(8192));
-		_properties.put(
-			PropsKeys.INTRABAND_WELDER_SOCKET_KEEP_ALIVE,
-			Boolean.toString(false));
-		_properties.put(
-			PropsKeys.INTRABAND_WELDER_SOCKET_REUSE_ADDRESS,
-			Boolean.toString(false));
-		_properties.put(
-			PropsKeys.INTRABAND_WELDER_SOCKET_SERVER_START_PORT,
-			String.valueOf(3414));
-		_properties.put(
-			PropsKeys.INTRABAND_WELDER_SOCKET_SO_LINGER, String.valueOf(0));
-		_properties.put(
-			PropsKeys.INTRABAND_WELDER_SOCKET_SO_TIMEOUT, String.valueOf(0));
-		_properties.put(
-			PropsKeys.INTRABAND_WELDER_SOCKET_TCP_NO_DELAY,
-			Boolean.toString(false));
+		_properties = new HashMap<String, Object>() {
+			{
+				put(
+					PropsKeys.INTRABAND_WELDER_SOCKET_BUFFER_SIZE,
+					String.valueOf(8192));
+				put(
+					PropsKeys.INTRABAND_WELDER_SOCKET_KEEP_ALIVE,
+					Boolean.toString(false));
+				put(
+					PropsKeys.INTRABAND_WELDER_SOCKET_REUSE_ADDRESS,
+					Boolean.toString(false));
+				put(
+					PropsKeys.INTRABAND_WELDER_SOCKET_SERVER_START_PORT,
+					String.valueOf(3414));
+				put(
+					PropsKeys.INTRABAND_WELDER_SOCKET_SO_LINGER,
+					String.valueOf(0));
+				put(
+					PropsKeys.INTRABAND_WELDER_SOCKET_SO_TIMEOUT,
+					String.valueOf(0));
+				put(
+					PropsKeys.INTRABAND_WELDER_SOCKET_TCP_NO_DELAY,
+					Boolean.toString(false));
+			}
+		};
 
 		PropsTestUtil.setProps(_properties);
 	}
