@@ -281,8 +281,8 @@ public class EditSegmentsEntryDisplayContext {
 	}
 
 	public int getSegmentsEntryClassPKsCount() throws PortalException {
-		if (_segmentsEntryClassPksCount != null) {
-			return _segmentsEntryClassPksCount;
+		if (_segmentsEntryClassPKsCount != null) {
+			return _segmentsEntryClassPKsCount;
 		}
 
 		SegmentsEntry segmentsEntry = getSegmentsEntry();
@@ -490,7 +490,7 @@ public class EditSegmentsEntryDisplayContext {
 	private final SegmentsCriteriaContributorRegistry
 		_segmentsCriteriaContributorRegistry;
 	private SegmentsEntry _segmentsEntry;
-	private Integer _segmentsEntryClassPksCount;
+	private Integer _segmentsEntryClassPKsCount;
 	private Long _segmentsEntryId;
 	private final SegmentsEntryProvider _segmentsEntryProvider;
 	private final SegmentsEntryService _segmentsEntryService;
