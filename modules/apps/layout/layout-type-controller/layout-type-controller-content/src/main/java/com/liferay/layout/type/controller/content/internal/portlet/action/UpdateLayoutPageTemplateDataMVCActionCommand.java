@@ -104,12 +104,12 @@ public class UpdateLayoutPageTemplateDataMVCActionCommand
 			updateLayoutPageTemplateStructure(
 				serviceContext.getScopeGroupId(), classNameId, classPK, data);
 
-		String fragmentEntryLinks = ParamUtil.getString(
+		String fragmentEntryLinkIdsString = ParamUtil.getString(
 			actionRequest, "fragmentEntryLinkIds");
 
-		if (Validator.isNotNull(fragmentEntryLinks)) {
+		if (Validator.isNotNull(fragmentEntryLinkIdsString)) {
 			long[] toFragmentEntryLinkIds = JSONUtil.toLongArray(
-				JSONFactoryUtil.createJSONArray(fragmentEntryLinks));
+				JSONFactoryUtil.createJSONArray(fragmentEntryLinkIdsString));
 
 			_fragmentEntryLinkLocalService.deleteFragmentEntryLinks(
 				toFragmentEntryLinkIds);
