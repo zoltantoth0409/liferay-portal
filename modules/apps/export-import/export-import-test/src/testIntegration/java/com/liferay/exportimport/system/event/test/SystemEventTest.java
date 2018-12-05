@@ -40,10 +40,8 @@ import com.liferay.portal.kernel.test.rule.Sync;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
-import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.service.test.ServiceTestUtil;
-import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.util.PropsValues;
 
@@ -59,6 +57,7 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -104,20 +103,21 @@ public class SystemEventTest {
 			PortletDataHandlerKeys.PORTLET_DATA_ALL,
 			new String[] {Boolean.FALSE.toString()});
 
+		int serverPort = PortalUtil.getPortalServerPort(false);
 		String pathContext = PortalUtil.getPathContext();
 
 		ServiceTestUtil.setUser(TestPropsValues.getUser());
 
 		StagingLocalServiceUtil.enableRemoteStaging(
 			TestPropsValues.getUserId(), _stagingGroup, false, false,
-			"localhost", _serverPort, pathContext, false,
+			"localhost", serverPort, pathContext, false,
 			_liveGroup.getGroupId(), serviceContext);
 
 		_exportImportConfiguration =
 			ExportImportConfigurationFactory.
 				buildDefaultRemotePublishingExportImportConfiguration(
 					TestPropsValues.getUser(), _stagingGroup.getGroupId(),
-					false, "localhost", _serverPort, pathContext, false,
+					false, "localhost", serverPort, pathContext, false,
 					_liveGroup.getGroupId());
 
 		JournalArticle journalArticle = JournalTestUtil.addArticle(
@@ -178,14 +178,6 @@ public class SystemEventTest {
 	@Before
 	public void setUp() throws Exception {
 		_liveGroup = GroupTestUtil.addGroup();
-
-		if (_serverPort <= 0) {
-			_serverPort = _portal.getPortalServerPort(false);
-
-			if (_serverPort <= 0) {
-				_serverPort = _portal.getPortalServerPort(true);
-			}
-		}
 	}
 
 	@After
@@ -252,6 +244,7 @@ public class SystemEventTest {
 		Assert.assertNull(systemEvent);
 	}
 
+	@Ignore
 	@Test
 	public void testRemoteStaging1() throws Exception {
 		setPortalProperty("STAGING_LIVE_GROUP_REMOTE_STAGING_ENABLED", false);
@@ -266,6 +259,7 @@ public class SystemEventTest {
 		Assert.assertNull(systemEvent);
 	}
 
+	@Ignore
 	@Test
 	public void testRemoteStaging2() throws Exception {
 		setPortalProperty("STAGING_LIVE_GROUP_REMOTE_STAGING_ENABLED", true);
@@ -282,11 +276,6 @@ public class SystemEventTest {
 
 	private ExportImportConfiguration _exportImportConfiguration;
 	private Group _liveGroup;
-
-	@Inject
-	private Portal _portal;
-
-	private int _serverPort;
 	private Group _stagingGroup;
 
 }
