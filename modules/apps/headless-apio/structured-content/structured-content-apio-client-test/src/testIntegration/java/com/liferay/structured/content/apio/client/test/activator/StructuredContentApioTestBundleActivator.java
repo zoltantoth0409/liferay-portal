@@ -28,6 +28,7 @@ import com.liferay.journal.model.JournalFolderConstants;
 import com.liferay.journal.service.JournalArticleLocalServiceUtil;
 import com.liferay.journal.test.util.JournalTestUtil;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.apio.test.util.AuthConfigurationTestUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -114,6 +115,8 @@ public class StructuredContentApioTestBundleActivator
 		_ddmFormJSONDeserializer = bundleContext.getService(_serviceReference);
 
 		try {
+			AuthConfigurationTestUtil.deployOAuthConfiguration(_bundleContext);
+
 			_prepareTest();
 		}
 		catch (Exception e) {
