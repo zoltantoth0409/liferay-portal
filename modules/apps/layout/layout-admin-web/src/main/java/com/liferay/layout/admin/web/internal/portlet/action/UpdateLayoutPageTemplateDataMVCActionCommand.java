@@ -96,8 +96,6 @@ public class UpdateLayoutPageTemplateDataMVCActionCommand
 		long classNameId = ParamUtil.getLong(actionRequest, "classNameId");
 		long classPK = ParamUtil.getLong(actionRequest, "classPK");
 		String data = ParamUtil.getString(actionRequest, "data");
-		String fragmentEntryLinks = ParamUtil.getString(
-			actionRequest, "fragmentEntryLinkIds");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			actionRequest);
@@ -105,6 +103,9 @@ public class UpdateLayoutPageTemplateDataMVCActionCommand
 		_layoutPageTemplateStructureLocalService.
 			updateLayoutPageTemplateStructure(
 				serviceContext.getScopeGroupId(), classNameId, classPK, data);
+
+		String fragmentEntryLinks = ParamUtil.getString(
+			actionRequest, "fragmentEntryLinkIds");
 
 		if (Validator.isNotNull(fragmentEntryLinks)) {
 			long[] toFragmentEntryLinkIds = JSONUtil.toLongArray(
