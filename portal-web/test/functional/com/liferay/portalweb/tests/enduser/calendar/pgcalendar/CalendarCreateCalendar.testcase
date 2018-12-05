@@ -152,6 +152,8 @@
 	<command name="ResizeAddedEventsViaEventBlock" priority="5">
 		<description message="This is a use case for LPS-45062." />
 
+		<property name="portal.release" value="false" />
+
 		<execute macro="CalendarNavigator#gotoView">
 			<var name="viewType" value="Day" />
 		</execute>
