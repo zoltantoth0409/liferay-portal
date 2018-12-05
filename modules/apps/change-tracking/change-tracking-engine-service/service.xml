@@ -7,7 +7,7 @@
 
 		<!-- PK fields -->
 
-		<column name="collectionId" primary="true" type="long" />
+		<column name="cteCollectionId" primary="true" type="long" />
 
 		<!-- Audit fields -->
 
@@ -38,7 +38,7 @@
 
 		<!-- PK fields -->
 
-		<column name="entryId" primary="true" type="long" />
+		<column name="cteEntryId" primary="true" type="long" />
 
 		<!-- Audit fields -->
 
