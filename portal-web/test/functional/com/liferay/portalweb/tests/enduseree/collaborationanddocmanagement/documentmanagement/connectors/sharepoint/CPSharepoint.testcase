@@ -638,6 +638,8 @@
 	<command name="ViewOriginalFileExtensionAfterUnsuccessfulExtensionChange" priority="4">
 		<property name="test.name.skip.portal.instance" value="CPSharepoint#ViewOriginalFileExtensionAfterUnsuccessfulExtensionChange" />
 
+		<property name="portal.release" value="true" />
+
 		<execute macro="DMRepository#gotoCP">
 			<var name="dmRepositoryName" value="Sharepoint Repository Name" />
 		</execute>
@@ -684,6 +686,8 @@
 
 	<command name="ViewOriginalFileExtensionAfterUnsuccessfulExtensionRemoval" priority="4">
 		<property name="test.name.skip.portal.instance" value="CPSharepoint#ViewOriginalFileExtensionAfterUnsuccessfulExtensionRemoval" />
+
+		<property name="portal.release" value="false" />
 
 		<execute macro="DMRepository#gotoCP">
 			<var name="dmRepositoryName" value="Sharepoint Repository Name" />

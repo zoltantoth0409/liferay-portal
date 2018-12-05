@@ -1348,6 +1348,8 @@
 	<command name="AddEventRepeatingYearly" priority="4">
 		<description message="This is a use case for LPS-51402." />
 
+		<property name="portal.release" value="false" />
+
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
@@ -2825,6 +2827,8 @@
 	</command>
 
 	<command name="EditEventAllDayReminders" priority="3">
+		<property name="portal.release" value="false" />
+
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Calendar Page" />
 		</execute>
@@ -4153,6 +4157,8 @@
 
 	<command name="ResizeAddedEventsViaEventBlock" priority="5">
 		<description message="This is a use case for LPS-45062." />
+
+		<property name="portal.release" value="false" />
 
 		<execute macro="CalendarNavigator#gotoView">
 			<var name="viewType" value="Day" />

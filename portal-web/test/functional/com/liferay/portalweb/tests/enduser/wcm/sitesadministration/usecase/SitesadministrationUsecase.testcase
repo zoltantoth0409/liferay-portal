@@ -1072,6 +1072,8 @@
 	<command name="SitesDemoSiteManagement" priority="4">
 		<property name="test.name.skip.portal.instance" value="SitesadministrationUsecase#SitesDemoSiteManagement" />
 
+		<property name="portal.release" value="false" />
+
 		<var method="PropsUtil#get('portal.url')" name="portalURL" />
 
 		<execute macro="ProductMenu#gotoPortlet">

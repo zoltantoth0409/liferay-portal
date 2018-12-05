@@ -828,6 +828,8 @@
 	</command>
 
 	<command name="DeleteBlogsEntryComment" priority="4">
+		<property name="portal.release" value="true" />
+
 		<execute macro="Navigator#gotoPage">
 			<var name="pageName" value="Blogs Page" />
 		</execute>

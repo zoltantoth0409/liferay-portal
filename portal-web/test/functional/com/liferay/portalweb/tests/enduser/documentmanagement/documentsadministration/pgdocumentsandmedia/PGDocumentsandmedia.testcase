@@ -1010,6 +1010,8 @@
 		<property name="plugins.deployment.type" value="osgi" />
 		<property name="test.name.skip.portal.instance" value="PGDocumentsandmedia#EditAndDeleteGoogleDoc" />
 
+		<property name="portal.release" value="false" />
+
 		<execute macro="TestCase#getSiteName">
 			<return name="siteName" />
 			<var name="siteName" value="${siteName}" />
