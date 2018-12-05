@@ -18,9 +18,9 @@ import com.liferay.fragment.service.FragmentEntryLinkLocalService;
 import com.liferay.layout.admin.constants.LayoutAdminPortletKeys;
 import com.liferay.layout.page.template.service.LayoutPageTemplateStructureLocalService;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -107,14 +107,8 @@ public class UpdateLayoutPageTemplateDataMVCActionCommand
 				serviceContext.getScopeGroupId(), classNameId, classPK, data);
 
 		if (Validator.isNotNull(fragmentEntryLinks)) {
-			JSONArray jsonArray = JSONFactoryUtil.createJSONArray(
-				fragmentEntryLinks);
-
-			long[] toFragmentEntryLinkIds = new long[jsonArray.length()];
-
-			for (int i = 0; i < jsonArray.length(); i++) {
-				toFragmentEntryLinkIds[i] = jsonArray.getLong(i);
-			}
+			long[] toFragmentEntryLinkIds = JSONUtil.toLongArray(
+				JSONFactoryUtil.createJSONArray(fragmentEntryLinks));
 
 			_fragmentEntryLinkLocalService.deleteFragmentEntryLinks(
 				toFragmentEntryLinkIds);
