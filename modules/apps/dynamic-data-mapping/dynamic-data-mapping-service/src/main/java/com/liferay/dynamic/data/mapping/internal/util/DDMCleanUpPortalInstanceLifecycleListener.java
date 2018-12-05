@@ -51,22 +51,22 @@ public class DDMCleanUpPortalInstanceLifecycleListener
 			_deleteDDMTemplate(ddmTemplate);
 		}
 
-		Queue<DDMStructure> toBeVisited = new LinkedList<>(
+		Queue<DDMStructure> queue = new LinkedList<>(
 			_ddmStructureLocalService.getStructures(company.getGroupId()));
 
-		Deque<DDMStructure> visited = new LinkedList<>();
+		Deque<DDMStructure> deque = new LinkedList<>();
 
 		DDMStructure currentDDMStructure = null;
 
-		while ((currentDDMStructure = toBeVisited.poll()) != null) {
-			visited.push(currentDDMStructure);
+		while ((currentDDMStructure = queue.poll()) != null) {
+			deque.push(currentDDMStructure);
 
-			toBeVisited.addAll(
+			queue.addAll(
 				_ddmStructureLocalService.getChildrenStructures(
 					currentDDMStructure.getStructureId()));
 		}
 
-		for (DDMStructure ddmStructure : visited) {
+		for (DDMStructure ddmStructure : deque) {
 			long structureId = ddmStructure.getStructureId();
 
 			_ddmStructureLinkLocalService.deleteStructureStructureLinks(
