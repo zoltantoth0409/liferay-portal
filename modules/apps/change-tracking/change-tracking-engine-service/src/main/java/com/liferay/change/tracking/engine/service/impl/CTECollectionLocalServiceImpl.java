@@ -17,28 +17,9 @@ package com.liferay.change.tracking.engine.service.impl;
 import com.liferay.change.tracking.engine.service.base.CTECollectionLocalServiceBaseImpl;
 
 /**
- * The implementation of the cte collection local service.
- *
- * <p>
- * All custom service methods should be put in this class. Whenever methods are
- * added, rerun ServiceBuilder to copy their definitions into the {@link
- * com.liferay.change.tracking.engine.service.CTECollectionLocalService}
- * interface. <p> This is a local service. Methods of this service will not have
- * security checks based on the propagated JAAS credentials because this service
- * can only be accessed from within the same VM.
- * </p>
- *
  * @author Brian Wing Shun Chan
- * @see    CTECollectionLocalServiceBaseImpl
- * @see    com.liferay.change.tracking.engine.service.CTECollectionLocalServiceUtil
  */
 public class CTECollectionLocalServiceImpl
 	extends CTECollectionLocalServiceBaseImpl {
-
-	/**
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. Always use {@link com.liferay.change.tracking.engine.service.CTECollectionLocalServiceUtil} to access the cte collection local service.
-	 */
 
 }
