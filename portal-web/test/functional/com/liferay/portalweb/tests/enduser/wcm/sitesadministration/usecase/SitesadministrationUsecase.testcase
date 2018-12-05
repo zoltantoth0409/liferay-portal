@@ -1070,9 +1070,8 @@
 	</command>
 
 	<command name="SitesDemoSiteManagement" priority="4">
-		<property name="test.name.skip.portal.instance" value="SitesadministrationUsecase#SitesDemoSiteManagement" />
-
 		<property name="portal.release" value="false" />
+		<property name="test.name.skip.portal.instance" value="SitesadministrationUsecase#SitesDemoSiteManagement" />
 
 		<var method="PropsUtil#get('portal.url')" name="portalURL" />
 
