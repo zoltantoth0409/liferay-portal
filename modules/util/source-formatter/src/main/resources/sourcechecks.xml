@@ -331,6 +331,7 @@
 		<!-- Module checks -->
 
 		<check name="JSPModuleIllegalImportsCheck" />
+		<check name="JSPServiceUtilCheck" />
 
 		<!-- Plugins checks -->
 
