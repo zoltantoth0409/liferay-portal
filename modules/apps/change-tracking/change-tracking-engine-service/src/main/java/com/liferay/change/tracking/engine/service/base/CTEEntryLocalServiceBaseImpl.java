@@ -91,26 +91,26 @@ public abstract class CTEEntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	/**
 	 * Creates a new cte entry with the primary key. Does not add the cte entry to the database.
 	 *
-	 * @param entryId the primary key for the new cte entry
+	 * @param cteEntryId the primary key for the new cte entry
 	 * @return the new cte entry
 	 */
 	@Override
 	@Transactional(enabled = false)
-	public CTEEntry createCTEEntry(long entryId) {
-		return cteEntryPersistence.create(entryId);
+	public CTEEntry createCTEEntry(long cteEntryId) {
+		return cteEntryPersistence.create(cteEntryId);
 	}
 
 	/**
 	 * Deletes the cte entry with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param entryId the primary key of the cte entry
+	 * @param cteEntryId the primary key of the cte entry
 	 * @return the cte entry that was removed
 	 * @throws PortalException if a cte entry with the primary key could not be found
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public CTEEntry deleteCTEEntry(long entryId) throws PortalException {
-		return cteEntryPersistence.remove(entryId);
+	public CTEEntry deleteCTEEntry(long cteEntryId) throws PortalException {
+		return cteEntryPersistence.remove(cteEntryId);
 	}
 
 	/**
@@ -208,20 +208,20 @@ public abstract class CTEEntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	@Override
-	public CTEEntry fetchCTEEntry(long entryId) {
-		return cteEntryPersistence.fetchByPrimaryKey(entryId);
+	public CTEEntry fetchCTEEntry(long cteEntryId) {
+		return cteEntryPersistence.fetchByPrimaryKey(cteEntryId);
 	}
 
 	/**
 	 * Returns the cte entry with the primary key.
 	 *
-	 * @param entryId the primary key of the cte entry
+	 * @param cteEntryId the primary key of the cte entry
 	 * @return the cte entry
 	 * @throws PortalException if a cte entry with the primary key could not be found
 	 */
 	@Override
-	public CTEEntry getCTEEntry(long entryId) throws PortalException {
-		return cteEntryPersistence.findByPrimaryKey(entryId);
+	public CTEEntry getCTEEntry(long cteEntryId) throws PortalException {
+		return cteEntryPersistence.findByPrimaryKey(cteEntryId);
 	}
 
 	@Override
@@ -232,7 +232,7 @@ public abstract class CTEEntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(CTEEntry.class);
 
-		actionableDynamicQuery.setPrimaryKeyPropertyName("entryId");
+		actionableDynamicQuery.setPrimaryKeyPropertyName("cteEntryId");
 
 		return actionableDynamicQuery;
 	}
@@ -245,7 +245,7 @@ public abstract class CTEEntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 		indexableActionableDynamicQuery.setClassLoader(getClassLoader());
 		indexableActionableDynamicQuery.setModelClass(CTEEntry.class);
 
-		indexableActionableDynamicQuery.setPrimaryKeyPropertyName("entryId");
+		indexableActionableDynamicQuery.setPrimaryKeyPropertyName("cteEntryId");
 
 		return indexableActionableDynamicQuery;
 	}
@@ -256,7 +256,7 @@ public abstract class CTEEntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 		actionableDynamicQuery.setClassLoader(getClassLoader());
 		actionableDynamicQuery.setModelClass(CTEEntry.class);
 
-		actionableDynamicQuery.setPrimaryKeyPropertyName("entryId");
+		actionableDynamicQuery.setPrimaryKeyPropertyName("cteEntryId");
 	}
 
 	/**
@@ -321,129 +321,137 @@ public abstract class CTEEntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	/**
 	 */
 	@Override
-	public void addCTECollectionCTEEntry(long collectionId, long entryId) {
-		cteCollectionPersistence.addCTEEntry(collectionId, entryId);
+	public void addCTECollectionCTEEntry(long cteCollectionId, long cteEntryId) {
+		cteCollectionPersistence.addCTEEntry(cteCollectionId, cteEntryId);
 	}
 
 	/**
 	 */
 	@Override
-	public void addCTECollectionCTEEntry(long collectionId, CTEEntry cteEntry) {
-		cteCollectionPersistence.addCTEEntry(collectionId, cteEntry);
+	public void addCTECollectionCTEEntry(long cteCollectionId, CTEEntry cteEntry) {
+		cteCollectionPersistence.addCTEEntry(cteCollectionId, cteEntry);
 	}
 
 	/**
 	 */
 	@Override
-	public void addCTECollectionCTEEntries(long collectionId, long[] entryIds) {
-		cteCollectionPersistence.addCTEEntries(collectionId, entryIds);
+	public void addCTECollectionCTEEntries(long cteCollectionId,
+		long[] cteEntryIds) {
+		cteCollectionPersistence.addCTEEntries(cteCollectionId, cteEntryIds);
 	}
 
 	/**
 	 */
 	@Override
-	public void addCTECollectionCTEEntries(long collectionId,
+	public void addCTECollectionCTEEntries(long cteCollectionId,
 		List<CTEEntry> cteEntries) {
-		cteCollectionPersistence.addCTEEntries(collectionId, cteEntries);
+		cteCollectionPersistence.addCTEEntries(cteCollectionId, cteEntries);
 	}
 
 	/**
 	 */
 	@Override
-	public void clearCTECollectionCTEEntries(long collectionId) {
-		cteCollectionPersistence.clearCTEEntries(collectionId);
+	public void clearCTECollectionCTEEntries(long cteCollectionId) {
+		cteCollectionPersistence.clearCTEEntries(cteCollectionId);
 	}
 
 	/**
 	 */
 	@Override
-	public void deleteCTECollectionCTEEntry(long collectionId, long entryId) {
-		cteCollectionPersistence.removeCTEEntry(collectionId, entryId);
+	public void deleteCTECollectionCTEEntry(long cteCollectionId,
+		long cteEntryId) {
+		cteCollectionPersistence.removeCTEEntry(cteCollectionId, cteEntryId);
 	}
 
 	/**
 	 */
 	@Override
-	public void deleteCTECollectionCTEEntry(long collectionId, CTEEntry cteEntry) {
-		cteCollectionPersistence.removeCTEEntry(collectionId, cteEntry);
+	public void deleteCTECollectionCTEEntry(long cteCollectionId,
+		CTEEntry cteEntry) {
+		cteCollectionPersistence.removeCTEEntry(cteCollectionId, cteEntry);
 	}
 
 	/**
 	 */
 	@Override
-	public void deleteCTECollectionCTEEntries(long collectionId, long[] entryIds) {
-		cteCollectionPersistence.removeCTEEntries(collectionId, entryIds);
+	public void deleteCTECollectionCTEEntries(long cteCollectionId,
+		long[] cteEntryIds) {
+		cteCollectionPersistence.removeCTEEntries(cteCollectionId, cteEntryIds);
 	}
 
 	/**
 	 */
 	@Override
-	public void deleteCTECollectionCTEEntries(long collectionId,
+	public void deleteCTECollectionCTEEntries(long cteCollectionId,
 		List<CTEEntry> cteEntries) {
-		cteCollectionPersistence.removeCTEEntries(collectionId, cteEntries);
+		cteCollectionPersistence.removeCTEEntries(cteCollectionId, cteEntries);
 	}
 
 	/**
-	 * Returns the collectionIds of the cte collections associated with the cte entry.
+	 * Returns the cteCollectionIds of the cte collections associated with the cte entry.
 	 *
-	 * @param entryId the entryId of the cte entry
-	 * @return long[] the collectionIds of cte collections associated with the cte entry
+	 * @param cteEntryId the cteEntryId of the cte entry
+	 * @return long[] the cteCollectionIds of cte collections associated with the cte entry
 	 */
 	@Override
-	public long[] getCTECollectionPrimaryKeys(long entryId) {
-		return cteEntryPersistence.getCTECollectionPrimaryKeys(entryId);
+	public long[] getCTECollectionPrimaryKeys(long cteEntryId) {
+		return cteEntryPersistence.getCTECollectionPrimaryKeys(cteEntryId);
 	}
 
 	/**
 	 */
 	@Override
-	public List<CTEEntry> getCTECollectionCTEEntries(long collectionId) {
-		return cteCollectionPersistence.getCTEEntries(collectionId);
+	public List<CTEEntry> getCTECollectionCTEEntries(long cteCollectionId) {
+		return cteCollectionPersistence.getCTEEntries(cteCollectionId);
 	}
 
 	/**
 	 */
 	@Override
-	public List<CTEEntry> getCTECollectionCTEEntries(long collectionId,
+	public List<CTEEntry> getCTECollectionCTEEntries(long cteCollectionId,
 		int start, int end) {
-		return cteCollectionPersistence.getCTEEntries(collectionId, start, end);
+		return cteCollectionPersistence.getCTEEntries(cteCollectionId, start,
+			end);
 	}
 
 	/**
 	 */
 	@Override
-	public List<CTEEntry> getCTECollectionCTEEntries(long collectionId,
+	public List<CTEEntry> getCTECollectionCTEEntries(long cteCollectionId,
 		int start, int end, OrderByComparator<CTEEntry> orderByComparator) {
-		return cteCollectionPersistence.getCTEEntries(collectionId, start, end,
-			orderByComparator);
+		return cteCollectionPersistence.getCTEEntries(cteCollectionId, start,
+			end, orderByComparator);
 	}
 
 	/**
 	 */
 	@Override
-	public int getCTECollectionCTEEntriesCount(long collectionId) {
-		return cteCollectionPersistence.getCTEEntriesSize(collectionId);
+	public int getCTECollectionCTEEntriesCount(long cteCollectionId) {
+		return cteCollectionPersistence.getCTEEntriesSize(cteCollectionId);
 	}
 
 	/**
 	 */
 	@Override
-	public boolean hasCTECollectionCTEEntry(long collectionId, long entryId) {
-		return cteCollectionPersistence.containsCTEEntry(collectionId, entryId);
+	public boolean hasCTECollectionCTEEntry(long cteCollectionId,
+		long cteEntryId) {
+		return cteCollectionPersistence.containsCTEEntry(cteCollectionId,
+			cteEntryId);
 	}
 
 	/**
 	 */
 	@Override
-	public boolean hasCTECollectionCTEEntries(long collectionId) {
-		return cteCollectionPersistence.containsCTEEntries(collectionId);
+	public boolean hasCTECollectionCTEEntries(long cteCollectionId) {
+		return cteCollectionPersistence.containsCTEEntries(cteCollectionId);
 	}
 
 	/**
 	 */
 	@Override
-	public void setCTECollectionCTEEntries(long collectionId, long[] entryIds) {
-		cteCollectionPersistence.setCTEEntries(collectionId, entryIds);
+	public void setCTECollectionCTEEntries(long cteCollectionId,
+		long[] cteEntryIds) {
+		cteCollectionPersistence.setCTEEntries(cteCollectionId, cteEntryIds);
 	}
 
 	/**

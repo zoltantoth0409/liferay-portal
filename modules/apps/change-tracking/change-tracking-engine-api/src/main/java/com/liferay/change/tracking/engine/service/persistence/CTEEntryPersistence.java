@@ -147,13 +147,13 @@ public interface CTEEntryPersistence extends BasePersistence<CTEEntry> {
 	/**
 	* Returns the cte entries before and after the current cte entry in the ordered set where resourcePrimKey = &#63;.
 	*
-	* @param entryId the primary key of the current cte entry
+	* @param cteEntryId the primary key of the current cte entry
 	* @param resourcePrimKey the resource prim key
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next cte entry
 	* @throws NoSuchCTEEntryException if a cte entry with the primary key could not be found
 	*/
-	public CTEEntry[] findByResourcePrimKey_PrevAndNext(long entryId,
+	public CTEEntry[] findByResourcePrimKey_PrevAndNext(long cteEntryId,
 		long resourcePrimKey,
 		com.liferay.portal.kernel.util.OrderByComparator<CTEEntry> orderByComparator)
 		throws NoSuchCTEEntryException;
@@ -190,39 +190,39 @@ public interface CTEEntryPersistence extends BasePersistence<CTEEntry> {
 	/**
 	* Creates a new cte entry with the primary key. Does not add the cte entry to the database.
 	*
-	* @param entryId the primary key for the new cte entry
+	* @param cteEntryId the primary key for the new cte entry
 	* @return the new cte entry
 	*/
-	public CTEEntry create(long entryId);
+	public CTEEntry create(long cteEntryId);
 
 	/**
 	* Removes the cte entry with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param entryId the primary key of the cte entry
+	* @param cteEntryId the primary key of the cte entry
 	* @return the cte entry that was removed
 	* @throws NoSuchCTEEntryException if a cte entry with the primary key could not be found
 	*/
-	public CTEEntry remove(long entryId) throws NoSuchCTEEntryException;
+	public CTEEntry remove(long cteEntryId) throws NoSuchCTEEntryException;
 
 	public CTEEntry updateImpl(CTEEntry cteEntry);
 
 	/**
 	* Returns the cte entry with the primary key or throws a {@link NoSuchCTEEntryException} if it could not be found.
 	*
-	* @param entryId the primary key of the cte entry
+	* @param cteEntryId the primary key of the cte entry
 	* @return the cte entry
 	* @throws NoSuchCTEEntryException if a cte entry with the primary key could not be found
 	*/
-	public CTEEntry findByPrimaryKey(long entryId)
+	public CTEEntry findByPrimaryKey(long cteEntryId)
 		throws NoSuchCTEEntryException;
 
 	/**
 	* Returns the cte entry with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param entryId the primary key of the cte entry
+	* @param cteEntryId the primary key of the cte entry
 	* @return the cte entry, or <code>null</code> if a cte entry with the primary key could not be found
 	*/
-	public CTEEntry fetchByPrimaryKey(long entryId);
+	public CTEEntry fetchByPrimaryKey(long cteEntryId);
 
 	@Override
 	public java.util.Map<java.io.Serializable, CTEEntry> fetchByPrimaryKeys(

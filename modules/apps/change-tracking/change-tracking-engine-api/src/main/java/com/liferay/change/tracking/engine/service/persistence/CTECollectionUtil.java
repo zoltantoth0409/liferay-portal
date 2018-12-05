@@ -133,23 +133,23 @@ public class CTECollectionUtil {
 	/**
 	* Creates a new cte collection with the primary key. Does not add the cte collection to the database.
 	*
-	* @param collectionId the primary key for the new cte collection
+	* @param cteCollectionId the primary key for the new cte collection
 	* @return the new cte collection
 	*/
-	public static CTECollection create(long collectionId) {
-		return getPersistence().create(collectionId);
+	public static CTECollection create(long cteCollectionId) {
+		return getPersistence().create(cteCollectionId);
 	}
 
 	/**
 	* Removes the cte collection with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param collectionId the primary key of the cte collection
+	* @param cteCollectionId the primary key of the cte collection
 	* @return the cte collection that was removed
 	* @throws NoSuchCTECollectionException if a cte collection with the primary key could not be found
 	*/
-	public static CTECollection remove(long collectionId)
+	public static CTECollection remove(long cteCollectionId)
 		throws com.liferay.change.tracking.engine.exception.NoSuchCTECollectionException {
-		return getPersistence().remove(collectionId);
+		return getPersistence().remove(cteCollectionId);
 	}
 
 	public static CTECollection updateImpl(CTECollection cteCollection) {
@@ -159,23 +159,23 @@ public class CTECollectionUtil {
 	/**
 	* Returns the cte collection with the primary key or throws a {@link NoSuchCTECollectionException} if it could not be found.
 	*
-	* @param collectionId the primary key of the cte collection
+	* @param cteCollectionId the primary key of the cte collection
 	* @return the cte collection
 	* @throws NoSuchCTECollectionException if a cte collection with the primary key could not be found
 	*/
-	public static CTECollection findByPrimaryKey(long collectionId)
+	public static CTECollection findByPrimaryKey(long cteCollectionId)
 		throws com.liferay.change.tracking.engine.exception.NoSuchCTECollectionException {
-		return getPersistence().findByPrimaryKey(collectionId);
+		return getPersistence().findByPrimaryKey(cteCollectionId);
 	}
 
 	/**
 	* Returns the cte collection with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param collectionId the primary key of the cte collection
+	* @param cteCollectionId the primary key of the cte collection
 	* @return the cte collection, or <code>null</code> if a cte collection with the primary key could not be found
 	*/
-	public static CTECollection fetchByPrimaryKey(long collectionId) {
-		return getPersistence().fetchByPrimaryKey(collectionId);
+	public static CTECollection fetchByPrimaryKey(long cteCollectionId) {
+		return getPersistence().fetchByPrimaryKey(cteCollectionId);
 	}
 
 	public static java.util.Map<java.io.Serializable, CTECollection> fetchByPrimaryKeys(

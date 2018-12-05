@@ -184,15 +184,15 @@ public class CTECollectionPersistenceImpl extends BasePersistenceImpl<CTECollect
 	/**
 	 * Creates a new cte collection with the primary key. Does not add the cte collection to the database.
 	 *
-	 * @param collectionId the primary key for the new cte collection
+	 * @param cteCollectionId the primary key for the new cte collection
 	 * @return the new cte collection
 	 */
 	@Override
-	public CTECollection create(long collectionId) {
+	public CTECollection create(long cteCollectionId) {
 		CTECollection cteCollection = new CTECollectionImpl();
 
 		cteCollection.setNew(true);
-		cteCollection.setPrimaryKey(collectionId);
+		cteCollection.setPrimaryKey(cteCollectionId);
 
 		cteCollection.setCompanyId(companyProvider.getCompanyId());
 
@@ -202,14 +202,14 @@ public class CTECollectionPersistenceImpl extends BasePersistenceImpl<CTECollect
 	/**
 	 * Removes the cte collection with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param collectionId the primary key of the cte collection
+	 * @param cteCollectionId the primary key of the cte collection
 	 * @return the cte collection that was removed
 	 * @throws NoSuchCTECollectionException if a cte collection with the primary key could not be found
 	 */
 	@Override
-	public CTECollection remove(long collectionId)
+	public CTECollection remove(long cteCollectionId)
 		throws NoSuchCTECollectionException {
-		return remove((Serializable)collectionId);
+		return remove((Serializable)cteCollectionId);
 	}
 
 	/**
@@ -394,25 +394,25 @@ public class CTECollectionPersistenceImpl extends BasePersistenceImpl<CTECollect
 	/**
 	 * Returns the cte collection with the primary key or throws a {@link NoSuchCTECollectionException} if it could not be found.
 	 *
-	 * @param collectionId the primary key of the cte collection
+	 * @param cteCollectionId the primary key of the cte collection
 	 * @return the cte collection
 	 * @throws NoSuchCTECollectionException if a cte collection with the primary key could not be found
 	 */
 	@Override
-	public CTECollection findByPrimaryKey(long collectionId)
+	public CTECollection findByPrimaryKey(long cteCollectionId)
 		throws NoSuchCTECollectionException {
-		return findByPrimaryKey((Serializable)collectionId);
+		return findByPrimaryKey((Serializable)cteCollectionId);
 	}
 
 	/**
 	 * Returns the cte collection with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param collectionId the primary key of the cte collection
+	 * @param cteCollectionId the primary key of the cte collection
 	 * @return the cte collection, or <code>null</code> if a cte collection with the primary key could not be found
 	 */
 	@Override
-	public CTECollection fetchByPrimaryKey(long collectionId) {
-		return fetchByPrimaryKey((Serializable)collectionId);
+	public CTECollection fetchByPrimaryKey(long cteCollectionId) {
+		return fetchByPrimaryKey((Serializable)cteCollectionId);
 	}
 
 	@Override
@@ -881,7 +881,7 @@ public class CTECollectionPersistenceImpl extends BasePersistenceImpl<CTECollect
 		List<com.liferay.change.tracking.engine.model.CTEEntry> cteEntries) {
 		addCTEEntries(pk,
 			ListUtil.toLongArray(cteEntries,
-				com.liferay.change.tracking.engine.model.CTEEntry.ENTRY_ID_ACCESSOR));
+				com.liferay.change.tracking.engine.model.CTEEntry.CTE_ENTRY_ID_ACCESSOR));
 	}
 
 	/**
@@ -940,7 +940,7 @@ public class CTECollectionPersistenceImpl extends BasePersistenceImpl<CTECollect
 		List<com.liferay.change.tracking.engine.model.CTEEntry> cteEntries) {
 		removeCTEEntries(pk,
 			ListUtil.toLongArray(cteEntries,
-				com.liferay.change.tracking.engine.model.CTEEntry.ENTRY_ID_ACCESSOR));
+				com.liferay.change.tracking.engine.model.CTEEntry.CTE_ENTRY_ID_ACCESSOR));
 	}
 
 	/**
@@ -1019,7 +1019,7 @@ public class CTECollectionPersistenceImpl extends BasePersistenceImpl<CTECollect
 	 */
 	public void afterPropertiesSet() {
 		cteCollectionToCTEEntryTableMapper = TableMapperFactory.getTableMapper("Collections_Entries",
-				"companyId", "collectionId", "entryId", this,
+				"companyId", "cteCollectionId", "cteEntryId", this,
 				cteEntryPersistence);
 	}
 
@@ -1042,7 +1042,7 @@ public class CTECollectionPersistenceImpl extends BasePersistenceImpl<CTECollect
 	protected CTEEntryPersistence cteEntryPersistence;
 	protected TableMapper<CTECollection, com.liferay.change.tracking.engine.model.CTEEntry> cteCollectionToCTEEntryTableMapper;
 	private static final String _SQL_SELECT_CTECOLLECTION = "SELECT cteCollection FROM CTECollection cteCollection";
-	private static final String _SQL_SELECT_CTECOLLECTION_WHERE_PKS_IN = "SELECT cteCollection FROM CTECollection cteCollection WHERE collectionId IN (";
+	private static final String _SQL_SELECT_CTECOLLECTION_WHERE_PKS_IN = "SELECT cteCollection FROM CTECollection cteCollection WHERE cteCollectionId IN (";
 	private static final String _SQL_COUNT_CTECOLLECTION = "SELECT COUNT(cteCollection) FROM CTECollection cteCollection";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "cteCollection.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No CTECollection exists with the primary key ";

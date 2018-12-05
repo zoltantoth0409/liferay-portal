@@ -57,7 +57,7 @@ public class CTEEntryWrapper implements CTEEntry, ModelWrapper<CTEEntry> {
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("entryId", getEntryId());
+		attributes.put("cteEntryId", getCteEntryId());
 		attributes.put("companyId", getCompanyId());
 		attributes.put("userId", getUserId());
 		attributes.put("userName", getUserName());
@@ -72,10 +72,10 @@ public class CTEEntryWrapper implements CTEEntry, ModelWrapper<CTEEntry> {
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long entryId = (Long)attributes.get("entryId");
+		Long cteEntryId = (Long)attributes.get("cteEntryId");
 
-		if (entryId != null) {
-			setEntryId(entryId);
+		if (cteEntryId != null) {
+			setCteEntryId(cteEntryId);
 		}
 
 		Long companyId = (Long)attributes.get("companyId");
@@ -188,13 +188,13 @@ public class CTEEntryWrapper implements CTEEntry, ModelWrapper<CTEEntry> {
 	}
 
 	/**
-	* Returns the entry ID of this cte entry.
+	* Returns the cte entry ID of this cte entry.
 	*
-	* @return the entry ID of this cte entry
+	* @return the cte entry ID of this cte entry
 	*/
 	@Override
-	public long getEntryId() {
-		return _cteEntry.getEntryId();
+	public long getCteEntryId() {
+		return _cteEntry.getCteEntryId();
 	}
 
 	@Override
@@ -348,13 +348,13 @@ public class CTEEntryWrapper implements CTEEntry, ModelWrapper<CTEEntry> {
 	}
 
 	/**
-	* Sets the entry ID of this cte entry.
+	* Sets the cte entry ID of this cte entry.
 	*
-	* @param entryId the entry ID of this cte entry
+	* @param cteEntryId the cte entry ID of this cte entry
 	*/
 	@Override
-	public void setEntryId(long entryId) {
-		_cteEntry.setEntryId(entryId);
+	public void setCteEntryId(long cteEntryId) {
+		_cteEntry.setCteEntryId(cteEntryId);
 	}
 
 	@Override

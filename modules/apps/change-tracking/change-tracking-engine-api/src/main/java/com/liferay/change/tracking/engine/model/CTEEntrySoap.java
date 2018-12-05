@@ -33,7 +33,7 @@ public class CTEEntrySoap implements Serializable {
 	public static CTEEntrySoap toSoapModel(CTEEntry model) {
 		CTEEntrySoap soapModel = new CTEEntrySoap();
 
-		soapModel.setEntryId(model.getEntryId());
+		soapModel.setCteEntryId(model.getCteEntryId());
 		soapModel.setCompanyId(model.getCompanyId());
 		soapModel.setUserId(model.getUserId());
 		soapModel.setUserName(model.getUserName());
@@ -87,19 +87,19 @@ public class CTEEntrySoap implements Serializable {
 	}
 
 	public long getPrimaryKey() {
-		return _entryId;
+		return _cteEntryId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setEntryId(pk);
+		setCteEntryId(pk);
 	}
 
-	public long getEntryId() {
-		return _entryId;
+	public long getCteEntryId() {
+		return _cteEntryId;
 	}
 
-	public void setEntryId(long entryId) {
-		_entryId = entryId;
+	public void setCteEntryId(long cteEntryId) {
+		_cteEntryId = cteEntryId;
 	}
 
 	public long getCompanyId() {
@@ -166,7 +166,7 @@ public class CTEEntrySoap implements Serializable {
 		_resourcePrimKey = resourcePrimKey;
 	}
 
-	private long _entryId;
+	private long _cteEntryId;
 	private long _companyId;
 	private long _userId;
 	private String _userName;

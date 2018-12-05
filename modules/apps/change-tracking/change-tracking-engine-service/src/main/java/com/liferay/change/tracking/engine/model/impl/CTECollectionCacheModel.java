@@ -52,7 +52,7 @@ public class CTECollectionCacheModel implements CacheModel<CTECollection>,
 
 		CTECollectionCacheModel cteCollectionCacheModel = (CTECollectionCacheModel)obj;
 
-		if (collectionId == cteCollectionCacheModel.collectionId) {
+		if (cteCollectionId == cteCollectionCacheModel.cteCollectionId) {
 			return true;
 		}
 
@@ -61,15 +61,15 @@ public class CTECollectionCacheModel implements CacheModel<CTECollection>,
 
 	@Override
 	public int hashCode() {
-		return HashUtil.hash(0, collectionId);
+		return HashUtil.hash(0, cteCollectionId);
 	}
 
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(25);
 
-		sb.append("{collectionId=");
-		sb.append(collectionId);
+		sb.append("{cteCollectionId=");
+		sb.append(cteCollectionId);
 		sb.append(", companyId=");
 		sb.append(companyId);
 		sb.append(", userId=");
@@ -101,7 +101,7 @@ public class CTECollectionCacheModel implements CacheModel<CTECollection>,
 	public CTECollection toEntityModel() {
 		CTECollectionImpl cteCollectionImpl = new CTECollectionImpl();
 
-		cteCollectionImpl.setCollectionId(collectionId);
+		cteCollectionImpl.setCteCollectionId(cteCollectionId);
 		cteCollectionImpl.setCompanyId(companyId);
 		cteCollectionImpl.setUserId(userId);
 
@@ -164,7 +164,7 @@ public class CTECollectionCacheModel implements CacheModel<CTECollection>,
 
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
-		collectionId = objectInput.readLong();
+		cteCollectionId = objectInput.readLong();
 
 		companyId = objectInput.readLong();
 
@@ -185,7 +185,7 @@ public class CTECollectionCacheModel implements CacheModel<CTECollection>,
 	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
-		objectOutput.writeLong(collectionId);
+		objectOutput.writeLong(cteCollectionId);
 
 		objectOutput.writeLong(companyId);
 
@@ -229,7 +229,7 @@ public class CTECollectionCacheModel implements CacheModel<CTECollection>,
 		objectOutput.writeLong(statusDate);
 	}
 
-	public long collectionId;
+	public long cteCollectionId;
 	public long companyId;
 	public long userId;
 	public String userName;

@@ -68,18 +68,18 @@ public interface CTEEntryModel extends AttachedModel, AuditedModel,
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Returns the entry ID of this cte entry.
+	 * Returns the cte entry ID of this cte entry.
 	 *
-	 * @return the entry ID of this cte entry
+	 * @return the cte entry ID of this cte entry
 	 */
-	public long getEntryId();
+	public long getCteEntryId();
 
 	/**
-	 * Sets the entry ID of this cte entry.
+	 * Sets the cte entry ID of this cte entry.
 	 *
-	 * @param entryId the entry ID of this cte entry
+	 * @param cteEntryId the cte entry ID of this cte entry
 	 */
-	public void setEntryId(long entryId);
+	public void setCteEntryId(long cteEntryId);
 
 	/**
 	 * Returns the company ID of this cte entry.

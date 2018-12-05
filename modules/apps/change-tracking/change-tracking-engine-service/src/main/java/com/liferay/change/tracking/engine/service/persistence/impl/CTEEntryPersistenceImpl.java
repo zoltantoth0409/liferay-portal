@@ -399,17 +399,17 @@ public class CTEEntryPersistenceImpl extends BasePersistenceImpl<CTEEntry>
 	/**
 	 * Returns the cte entries before and after the current cte entry in the ordered set where resourcePrimKey = &#63;.
 	 *
-	 * @param entryId the primary key of the current cte entry
+	 * @param cteEntryId the primary key of the current cte entry
 	 * @param resourcePrimKey the resource prim key
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next cte entry
 	 * @throws NoSuchCTEEntryException if a cte entry with the primary key could not be found
 	 */
 	@Override
-	public CTEEntry[] findByResourcePrimKey_PrevAndNext(long entryId,
+	public CTEEntry[] findByResourcePrimKey_PrevAndNext(long cteEntryId,
 		long resourcePrimKey, OrderByComparator<CTEEntry> orderByComparator)
 		throws NoSuchCTEEntryException {
-		CTEEntry cteEntry = findByPrimaryKey(entryId);
+		CTEEntry cteEntry = findByPrimaryKey(cteEntryId);
 
 		Session session = null;
 
@@ -693,15 +693,15 @@ public class CTEEntryPersistenceImpl extends BasePersistenceImpl<CTEEntry>
 	/**
 	 * Creates a new cte entry with the primary key. Does not add the cte entry to the database.
 	 *
-	 * @param entryId the primary key for the new cte entry
+	 * @param cteEntryId the primary key for the new cte entry
 	 * @return the new cte entry
 	 */
 	@Override
-	public CTEEntry create(long entryId) {
+	public CTEEntry create(long cteEntryId) {
 		CTEEntry cteEntry = new CTEEntryImpl();
 
 		cteEntry.setNew(true);
-		cteEntry.setPrimaryKey(entryId);
+		cteEntry.setPrimaryKey(cteEntryId);
 
 		cteEntry.setCompanyId(companyProvider.getCompanyId());
 
@@ -711,13 +711,13 @@ public class CTEEntryPersistenceImpl extends BasePersistenceImpl<CTEEntry>
 	/**
 	 * Removes the cte entry with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param entryId the primary key of the cte entry
+	 * @param cteEntryId the primary key of the cte entry
 	 * @return the cte entry that was removed
 	 * @throws NoSuchCTEEntryException if a cte entry with the primary key could not be found
 	 */
 	@Override
-	public CTEEntry remove(long entryId) throws NoSuchCTEEntryException {
-		return remove((Serializable)entryId);
+	public CTEEntry remove(long cteEntryId) throws NoSuchCTEEntryException {
+		return remove((Serializable)cteEntryId);
 	}
 
 	/**
@@ -931,25 +931,25 @@ public class CTEEntryPersistenceImpl extends BasePersistenceImpl<CTEEntry>
 	/**
 	 * Returns the cte entry with the primary key or throws a {@link NoSuchCTEEntryException} if it could not be found.
 	 *
-	 * @param entryId the primary key of the cte entry
+	 * @param cteEntryId the primary key of the cte entry
 	 * @return the cte entry
 	 * @throws NoSuchCTEEntryException if a cte entry with the primary key could not be found
 	 */
 	@Override
-	public CTEEntry findByPrimaryKey(long entryId)
+	public CTEEntry findByPrimaryKey(long cteEntryId)
 		throws NoSuchCTEEntryException {
-		return findByPrimaryKey((Serializable)entryId);
+		return findByPrimaryKey((Serializable)cteEntryId);
 	}
 
 	/**
 	 * Returns the cte entry with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param entryId the primary key of the cte entry
+	 * @param cteEntryId the primary key of the cte entry
 	 * @return the cte entry, or <code>null</code> if a cte entry with the primary key could not be found
 	 */
 	@Override
-	public CTEEntry fetchByPrimaryKey(long entryId) {
-		return fetchByPrimaryKey((Serializable)entryId);
+	public CTEEntry fetchByPrimaryKey(long cteEntryId) {
+		return fetchByPrimaryKey((Serializable)cteEntryId);
 	}
 
 	@Override
@@ -1417,7 +1417,7 @@ public class CTEEntryPersistenceImpl extends BasePersistenceImpl<CTEEntry>
 		List<com.liferay.change.tracking.engine.model.CTECollection> cteCollections) {
 		addCTECollections(pk,
 			ListUtil.toLongArray(cteCollections,
-				com.liferay.change.tracking.engine.model.CTECollection.COLLECTION_ID_ACCESSOR));
+				com.liferay.change.tracking.engine.model.CTECollection.CTE_COLLECTION_ID_ACCESSOR));
 	}
 
 	/**
@@ -1478,7 +1478,7 @@ public class CTEEntryPersistenceImpl extends BasePersistenceImpl<CTEEntry>
 		List<com.liferay.change.tracking.engine.model.CTECollection> cteCollections) {
 		removeCTECollections(pk,
 			ListUtil.toLongArray(cteCollections,
-				com.liferay.change.tracking.engine.model.CTECollection.COLLECTION_ID_ACCESSOR));
+				com.liferay.change.tracking.engine.model.CTECollection.CTE_COLLECTION_ID_ACCESSOR));
 	}
 
 	/**
@@ -1558,7 +1558,7 @@ public class CTEEntryPersistenceImpl extends BasePersistenceImpl<CTEEntry>
 	 */
 	public void afterPropertiesSet() {
 		cteEntryToCTECollectionTableMapper = TableMapperFactory.getTableMapper("Collections_Entries",
-				"companyId", "entryId", "collectionId", this,
+				"companyId", "cteEntryId", "cteCollectionId", this,
 				cteCollectionPersistence);
 	}
 
@@ -1581,7 +1581,7 @@ public class CTEEntryPersistenceImpl extends BasePersistenceImpl<CTEEntry>
 	protected CTECollectionPersistence cteCollectionPersistence;
 	protected TableMapper<CTEEntry, com.liferay.change.tracking.engine.model.CTECollection> cteEntryToCTECollectionTableMapper;
 	private static final String _SQL_SELECT_CTEENTRY = "SELECT cteEntry FROM CTEEntry cteEntry";
-	private static final String _SQL_SELECT_CTEENTRY_WHERE_PKS_IN = "SELECT cteEntry FROM CTEEntry cteEntry WHERE entryId IN (";
+	private static final String _SQL_SELECT_CTEENTRY_WHERE_PKS_IN = "SELECT cteEntry FROM CTEEntry cteEntry WHERE cteEntryId IN (";
 	private static final String _SQL_SELECT_CTEENTRY_WHERE = "SELECT cteEntry FROM CTEEntry cteEntry WHERE ";
 	private static final String _SQL_COUNT_CTEENTRY = "SELECT COUNT(cteEntry) FROM CTEEntry cteEntry";
 	private static final String _SQL_COUNT_CTEENTRY_WHERE = "SELECT COUNT(cteEntry) FROM CTEEntry cteEntry WHERE ";

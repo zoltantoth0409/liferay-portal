@@ -37,10 +37,10 @@ public interface CTEEntry extends CTEEntryModel, PersistedModel {
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.change.tracking.engine.model.impl.CTEEntryImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public static final Accessor<CTEEntry, Long> ENTRY_ID_ACCESSOR = new Accessor<CTEEntry, Long>() {
+	public static final Accessor<CTEEntry, Long> CTE_ENTRY_ID_ACCESSOR = new Accessor<CTEEntry, Long>() {
 			@Override
 			public Long get(CTEEntry cteEntry) {
-				return cteEntry.getEntryId();
+				return cteEntry.getCteEntryId();
 			}
 
 			@Override

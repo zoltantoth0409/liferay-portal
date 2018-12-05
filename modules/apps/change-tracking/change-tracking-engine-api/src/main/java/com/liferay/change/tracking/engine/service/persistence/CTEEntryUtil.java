@@ -244,18 +244,19 @@ public class CTEEntryUtil {
 	/**
 	* Returns the cte entries before and after the current cte entry in the ordered set where resourcePrimKey = &#63;.
 	*
-	* @param entryId the primary key of the current cte entry
+	* @param cteEntryId the primary key of the current cte entry
 	* @param resourcePrimKey the resource prim key
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next cte entry
 	* @throws NoSuchCTEEntryException if a cte entry with the primary key could not be found
 	*/
-	public static CTEEntry[] findByResourcePrimKey_PrevAndNext(long entryId,
-		long resourcePrimKey, OrderByComparator<CTEEntry> orderByComparator)
+	public static CTEEntry[] findByResourcePrimKey_PrevAndNext(
+		long cteEntryId, long resourcePrimKey,
+		OrderByComparator<CTEEntry> orderByComparator)
 		throws com.liferay.change.tracking.engine.exception.NoSuchCTEEntryException {
 		return getPersistence()
-				   .findByResourcePrimKey_PrevAndNext(entryId, resourcePrimKey,
-			orderByComparator);
+				   .findByResourcePrimKey_PrevAndNext(cteEntryId,
+			resourcePrimKey, orderByComparator);
 	}
 
 	/**
@@ -298,23 +299,23 @@ public class CTEEntryUtil {
 	/**
 	* Creates a new cte entry with the primary key. Does not add the cte entry to the database.
 	*
-	* @param entryId the primary key for the new cte entry
+	* @param cteEntryId the primary key for the new cte entry
 	* @return the new cte entry
 	*/
-	public static CTEEntry create(long entryId) {
-		return getPersistence().create(entryId);
+	public static CTEEntry create(long cteEntryId) {
+		return getPersistence().create(cteEntryId);
 	}
 
 	/**
 	* Removes the cte entry with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param entryId the primary key of the cte entry
+	* @param cteEntryId the primary key of the cte entry
 	* @return the cte entry that was removed
 	* @throws NoSuchCTEEntryException if a cte entry with the primary key could not be found
 	*/
-	public static CTEEntry remove(long entryId)
+	public static CTEEntry remove(long cteEntryId)
 		throws com.liferay.change.tracking.engine.exception.NoSuchCTEEntryException {
-		return getPersistence().remove(entryId);
+		return getPersistence().remove(cteEntryId);
 	}
 
 	public static CTEEntry updateImpl(CTEEntry cteEntry) {
@@ -324,23 +325,23 @@ public class CTEEntryUtil {
 	/**
 	* Returns the cte entry with the primary key or throws a {@link NoSuchCTEEntryException} if it could not be found.
 	*
-	* @param entryId the primary key of the cte entry
+	* @param cteEntryId the primary key of the cte entry
 	* @return the cte entry
 	* @throws NoSuchCTEEntryException if a cte entry with the primary key could not be found
 	*/
-	public static CTEEntry findByPrimaryKey(long entryId)
+	public static CTEEntry findByPrimaryKey(long cteEntryId)
 		throws com.liferay.change.tracking.engine.exception.NoSuchCTEEntryException {
-		return getPersistence().findByPrimaryKey(entryId);
+		return getPersistence().findByPrimaryKey(cteEntryId);
 	}
 
 	/**
 	* Returns the cte entry with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param entryId the primary key of the cte entry
+	* @param cteEntryId the primary key of the cte entry
 	* @return the cte entry, or <code>null</code> if a cte entry with the primary key could not be found
 	*/
-	public static CTEEntry fetchByPrimaryKey(long entryId) {
-		return getPersistence().fetchByPrimaryKey(entryId);
+	public static CTEEntry fetchByPrimaryKey(long cteEntryId) {
+		return getPersistence().fetchByPrimaryKey(cteEntryId);
 	}
 
 	public static java.util.Map<java.io.Serializable, CTEEntry> fetchByPrimaryKeys(

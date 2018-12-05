@@ -58,7 +58,7 @@ public class CTECollectionWrapper implements CTECollection,
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("collectionId", getCollectionId());
+		attributes.put("cteCollectionId", getCteCollectionId());
 		attributes.put("companyId", getCompanyId());
 		attributes.put("userId", getUserId());
 		attributes.put("userName", getUserName());
@@ -76,10 +76,10 @@ public class CTECollectionWrapper implements CTECollection,
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long collectionId = (Long)attributes.get("collectionId");
+		Long cteCollectionId = (Long)attributes.get("cteCollectionId");
 
-		if (collectionId != null) {
-			setCollectionId(collectionId);
+		if (cteCollectionId != null) {
+			setCteCollectionId(cteCollectionId);
 		}
 
 		Long companyId = (Long)attributes.get("companyId");
@@ -160,16 +160,6 @@ public class CTECollectionWrapper implements CTECollection,
 	}
 
 	/**
-	* Returns the collection ID of this cte collection.
-	*
-	* @return the collection ID of this cte collection
-	*/
-	@Override
-	public long getCollectionId() {
-		return _cteCollection.getCollectionId();
-	}
-
-	/**
 	* Returns the company ID of this cte collection.
 	*
 	* @return the company ID of this cte collection
@@ -187,6 +177,16 @@ public class CTECollectionWrapper implements CTECollection,
 	@Override
 	public Date getCreateDate() {
 		return _cteCollection.getCreateDate();
+	}
+
+	/**
+	* Returns the cte collection ID of this cte collection.
+	*
+	* @return the cte collection ID of this cte collection
+	*/
+	@Override
+	public long getCteCollectionId() {
+		return _cteCollection.getCteCollectionId();
 	}
 
 	/**
@@ -430,16 +430,6 @@ public class CTECollectionWrapper implements CTECollection,
 	}
 
 	/**
-	* Sets the collection ID of this cte collection.
-	*
-	* @param collectionId the collection ID of this cte collection
-	*/
-	@Override
-	public void setCollectionId(long collectionId) {
-		_cteCollection.setCollectionId(collectionId);
-	}
-
-	/**
 	* Sets the company ID of this cte collection.
 	*
 	* @param companyId the company ID of this cte collection
@@ -457,6 +447,16 @@ public class CTECollectionWrapper implements CTECollection,
 	@Override
 	public void setCreateDate(Date createDate) {
 		_cteCollection.setCreateDate(createDate);
+	}
+
+	/**
+	* Sets the cte collection ID of this cte collection.
+	*
+	* @param cteCollectionId the cte collection ID of this cte collection
+	*/
+	@Override
+	public void setCteCollectionId(long cteCollectionId) {
+		_cteCollection.setCteCollectionId(cteCollectionId);
 	}
 
 	/**

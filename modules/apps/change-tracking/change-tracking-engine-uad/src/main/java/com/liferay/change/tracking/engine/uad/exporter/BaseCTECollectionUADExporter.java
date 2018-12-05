@@ -64,8 +64,8 @@ public abstract class BaseCTECollectionUADExporter
 		sb.append("</model-name>");
 
 		sb.append(
-			"<column><column-name>collectionId</column-name><column-value><![CDATA[");
-		sb.append(cteCollection.getCollectionId());
+			"<column><column-name>cteCollectionId</column-name><column-value><![CDATA[");
+		sb.append(cteCollection.getCteCollectionId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>statusByUserId</column-name><column-value><![CDATA[");

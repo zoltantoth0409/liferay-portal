@@ -142,8 +142,8 @@ public class CTEEntryPersistenceTest {
 
 		CTEEntry existingCTEEntry = _persistence.findByPrimaryKey(newCTEEntry.getPrimaryKey());
 
-		Assert.assertEquals(existingCTEEntry.getEntryId(),
-			newCTEEntry.getEntryId());
+		Assert.assertEquals(existingCTEEntry.getCteEntryId(),
+			newCTEEntry.getCteEntryId());
 		Assert.assertEquals(existingCTEEntry.getCompanyId(),
 			newCTEEntry.getCompanyId());
 		Assert.assertEquals(existingCTEEntry.getUserId(),
@@ -194,10 +194,10 @@ public class CTEEntryPersistenceTest {
 	}
 
 	protected OrderByComparator<CTEEntry> getOrderByComparator() {
-		return OrderByComparatorFactoryUtil.create("CTEEntry", "entryId", true,
-			"companyId", true, "userId", true, "userName", true, "createDate",
-			true, "modifiedDate", true, "classNameId", true, "classPK", true,
-			"resourcePrimKey", true);
+		return OrderByComparatorFactoryUtil.create("CTEEntry", "cteEntryId",
+			true, "companyId", true, "userId", true, "userName", true,
+			"createDate", true, "modifiedDate", true, "classNameId", true,
+			"classPK", true, "resourcePrimKey", true);
 	}
 
 	@Test
@@ -328,8 +328,8 @@ public class CTEEntryPersistenceTest {
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(CTEEntry.class,
 				_dynamicQueryClassLoader);
 
-		dynamicQuery.add(RestrictionsFactoryUtil.eq("entryId",
-				newCTEEntry.getEntryId()));
+		dynamicQuery.add(RestrictionsFactoryUtil.eq("cteEntryId",
+				newCTEEntry.getCteEntryId()));
 
 		List<CTEEntry> result = _persistence.findWithDynamicQuery(dynamicQuery);
 
@@ -345,7 +345,7 @@ public class CTEEntryPersistenceTest {
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(CTEEntry.class,
 				_dynamicQueryClassLoader);
 
-		dynamicQuery.add(RestrictionsFactoryUtil.eq("entryId",
+		dynamicQuery.add(RestrictionsFactoryUtil.eq("cteEntryId",
 				RandomTestUtil.nextLong()));
 
 		List<CTEEntry> result = _persistence.findWithDynamicQuery(dynamicQuery);
@@ -361,20 +361,20 @@ public class CTEEntryPersistenceTest {
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(CTEEntry.class,
 				_dynamicQueryClassLoader);
 
-		dynamicQuery.setProjection(ProjectionFactoryUtil.property("entryId"));
+		dynamicQuery.setProjection(ProjectionFactoryUtil.property("cteEntryId"));
 
-		Object newEntryId = newCTEEntry.getEntryId();
+		Object newCteEntryId = newCTEEntry.getCteEntryId();
 
-		dynamicQuery.add(RestrictionsFactoryUtil.in("entryId",
-				new Object[] { newEntryId }));
+		dynamicQuery.add(RestrictionsFactoryUtil.in("cteEntryId",
+				new Object[] { newCteEntryId }));
 
 		List<Object> result = _persistence.findWithDynamicQuery(dynamicQuery);
 
 		Assert.assertEquals(1, result.size());
 
-		Object existingEntryId = result.get(0);
+		Object existingCteEntryId = result.get(0);
 
-		Assert.assertEquals(existingEntryId, newEntryId);
+		Assert.assertEquals(existingCteEntryId, newCteEntryId);
 	}
 
 	@Test
@@ -382,9 +382,9 @@ public class CTEEntryPersistenceTest {
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(CTEEntry.class,
 				_dynamicQueryClassLoader);
 
-		dynamicQuery.setProjection(ProjectionFactoryUtil.property("entryId"));
+		dynamicQuery.setProjection(ProjectionFactoryUtil.property("cteEntryId"));
 
-		dynamicQuery.add(RestrictionsFactoryUtil.in("entryId",
+		dynamicQuery.add(RestrictionsFactoryUtil.in("cteEntryId",
 				new Object[] { RandomTestUtil.nextLong() }));
 
 		List<Object> result = _persistence.findWithDynamicQuery(dynamicQuery);

@@ -70,26 +70,27 @@ public interface CTECollectionLocalService extends BaseLocalService,
 	@Indexable(type = IndexableType.REINDEX)
 	public CTECollection addCTECollection(CTECollection cteCollection);
 
-	public void addCTEEntryCTECollection(long entryId,
+	public void addCTEEntryCTECollection(long cteEntryId,
 		CTECollection cteCollection);
 
-	public void addCTEEntryCTECollection(long entryId, long collectionId);
+	public void addCTEEntryCTECollection(long cteEntryId, long cteCollectionId);
 
-	public void addCTEEntryCTECollections(long entryId,
+	public void addCTEEntryCTECollections(long cteEntryId,
 		List<CTECollection> cteCollections);
 
-	public void addCTEEntryCTECollections(long entryId, long[] collectionIds);
+	public void addCTEEntryCTECollections(long cteEntryId,
+		long[] cteCollectionIds);
 
-	public void clearCTEEntryCTECollections(long entryId);
+	public void clearCTEEntryCTECollections(long cteEntryId);
 
 	/**
 	* Creates a new cte collection with the primary key. Does not add the cte collection to the database.
 	*
-	* @param collectionId the primary key for the new cte collection
+	* @param cteCollectionId the primary key for the new cte collection
 	* @return the new cte collection
 	*/
 	@Transactional(enabled = false)
-	public CTECollection createCTECollection(long collectionId);
+	public CTECollection createCTECollection(long cteCollectionId);
 
 	/**
 	* Deletes the cte collection from the database. Also notifies the appropriate model listeners.
@@ -103,23 +104,25 @@ public interface CTECollectionLocalService extends BaseLocalService,
 	/**
 	* Deletes the cte collection with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param collectionId the primary key of the cte collection
+	* @param cteCollectionId the primary key of the cte collection
 	* @return the cte collection that was removed
 	* @throws PortalException if a cte collection with the primary key could not be found
 	*/
 	@Indexable(type = IndexableType.DELETE)
-	public CTECollection deleteCTECollection(long collectionId)
+	public CTECollection deleteCTECollection(long cteCollectionId)
 		throws PortalException;
 
-	public void deleteCTEEntryCTECollection(long entryId,
+	public void deleteCTEEntryCTECollection(long cteEntryId,
 		CTECollection cteCollection);
 
-	public void deleteCTEEntryCTECollection(long entryId, long collectionId);
+	public void deleteCTEEntryCTECollection(long cteEntryId,
+		long cteCollectionId);
 
-	public void deleteCTEEntryCTECollections(long entryId,
+	public void deleteCTEEntryCTECollections(long cteEntryId,
 		List<CTECollection> cteCollections);
 
-	public void deleteCTEEntryCTECollections(long entryId, long[] collectionIds);
+	public void deleteCTEEntryCTECollections(long cteEntryId,
+		long[] cteCollectionIds);
 
 	/**
 	* @throws PortalException
@@ -194,7 +197,7 @@ public interface CTECollectionLocalService extends BaseLocalService,
 		Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public CTECollection fetchCTECollection(long collectionId);
+	public CTECollection fetchCTECollection(long cteCollectionId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();
@@ -202,12 +205,12 @@ public interface CTECollectionLocalService extends BaseLocalService,
 	/**
 	* Returns the cte collection with the primary key.
 	*
-	* @param collectionId the primary key of the cte collection
+	* @param cteCollectionId the primary key of the cte collection
 	* @return the cte collection
 	* @throws PortalException if a cte collection with the primary key could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public CTECollection getCTECollection(long collectionId)
+	public CTECollection getCTECollection(long cteCollectionId)
 		throws PortalException;
 
 	/**
@@ -233,27 +236,27 @@ public interface CTECollectionLocalService extends BaseLocalService,
 	public int getCTECollectionsCount();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<CTECollection> getCTEEntryCTECollections(long entryId);
+	public List<CTECollection> getCTEEntryCTECollections(long cteEntryId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<CTECollection> getCTEEntryCTECollections(long entryId,
+	public List<CTECollection> getCTEEntryCTECollections(long cteEntryId,
 		int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<CTECollection> getCTEEntryCTECollections(long entryId,
+	public List<CTECollection> getCTEEntryCTECollections(long cteEntryId,
 		int start, int end, OrderByComparator<CTECollection> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getCTEEntryCTECollectionsCount(long entryId);
+	public int getCTEEntryCTECollectionsCount(long cteEntryId);
 
 	/**
-	* Returns the entryIds of the cte entries associated with the cte collection.
+	* Returns the cteEntryIds of the cte entries associated with the cte collection.
 	*
-	* @param collectionId the collectionId of the cte collection
-	* @return long[] the entryIds of cte entries associated with the cte collection
+	* @param cteCollectionId the cteCollectionId of the cte collection
+	* @return long[] the cteEntryIds of cte entries associated with the cte collection
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public long[] getCTEEntryPrimaryKeys(long collectionId);
+	public long[] getCTEEntryPrimaryKeys(long cteCollectionId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
@@ -271,12 +274,14 @@ public interface CTECollectionLocalService extends BaseLocalService,
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public boolean hasCTEEntryCTECollection(long entryId, long collectionId);
+	public boolean hasCTEEntryCTECollection(long cteEntryId,
+		long cteCollectionId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public boolean hasCTEEntryCTECollections(long entryId);
+	public boolean hasCTEEntryCTECollections(long cteEntryId);
 
-	public void setCTEEntryCTECollections(long entryId, long[] collectionIds);
+	public void setCTEEntryCTECollections(long cteEntryId,
+		long[] cteCollectionIds);
 
 	/**
 	* Updates the cte collection in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.

@@ -58,19 +58,19 @@ public interface CTECollectionPersistence extends BasePersistence<CTECollection>
 	/**
 	* Creates a new cte collection with the primary key. Does not add the cte collection to the database.
 	*
-	* @param collectionId the primary key for the new cte collection
+	* @param cteCollectionId the primary key for the new cte collection
 	* @return the new cte collection
 	*/
-	public CTECollection create(long collectionId);
+	public CTECollection create(long cteCollectionId);
 
 	/**
 	* Removes the cte collection with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param collectionId the primary key of the cte collection
+	* @param cteCollectionId the primary key of the cte collection
 	* @return the cte collection that was removed
 	* @throws NoSuchCTECollectionException if a cte collection with the primary key could not be found
 	*/
-	public CTECollection remove(long collectionId)
+	public CTECollection remove(long cteCollectionId)
 		throws NoSuchCTECollectionException;
 
 	public CTECollection updateImpl(CTECollection cteCollection);
@@ -78,20 +78,20 @@ public interface CTECollectionPersistence extends BasePersistence<CTECollection>
 	/**
 	* Returns the cte collection with the primary key or throws a {@link NoSuchCTECollectionException} if it could not be found.
 	*
-	* @param collectionId the primary key of the cte collection
+	* @param cteCollectionId the primary key of the cte collection
 	* @return the cte collection
 	* @throws NoSuchCTECollectionException if a cte collection with the primary key could not be found
 	*/
-	public CTECollection findByPrimaryKey(long collectionId)
+	public CTECollection findByPrimaryKey(long cteCollectionId)
 		throws NoSuchCTECollectionException;
 
 	/**
 	* Returns the cte collection with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param collectionId the primary key of the cte collection
+	* @param cteCollectionId the primary key of the cte collection
 	* @return the cte collection, or <code>null</code> if a cte collection with the primary key could not be found
 	*/
-	public CTECollection fetchByPrimaryKey(long collectionId);
+	public CTECollection fetchByPrimaryKey(long cteCollectionId);
 
 	@Override
 	public java.util.Map<java.io.Serializable, CTECollection> fetchByPrimaryKeys(

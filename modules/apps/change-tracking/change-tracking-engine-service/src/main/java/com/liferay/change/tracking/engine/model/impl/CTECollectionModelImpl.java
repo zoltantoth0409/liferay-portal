@@ -67,7 +67,7 @@ public class CTECollectionModelImpl extends BaseModelImpl<CTECollection>
 	 */
 	public static final String TABLE_NAME = "CTECollection";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "collectionId", Types.BIGINT },
+			{ "cteCollectionId", Types.BIGINT },
 			{ "companyId", Types.BIGINT },
 			{ "userId", Types.BIGINT },
 			{ "userName", Types.VARCHAR },
@@ -83,7 +83,7 @@ public class CTECollectionModelImpl extends BaseModelImpl<CTECollection>
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
 
 	static {
-		TABLE_COLUMNS_MAP.put("collectionId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("cteCollectionId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("companyId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("userId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("userName", Types.VARCHAR);
@@ -97,10 +97,10 @@ public class CTECollectionModelImpl extends BaseModelImpl<CTECollection>
 		TABLE_COLUMNS_MAP.put("statusDate", Types.TIMESTAMP);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table CTECollection (collectionId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,description VARCHAR(75) null,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table CTECollection (cteCollectionId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,description VARCHAR(75) null,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table CTECollection";
-	public static final String ORDER_BY_JPQL = " ORDER BY cteCollection.collectionId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY CTECollection.collectionId ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY cteCollection.cteCollectionId ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY CTECollection.cteCollectionId ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -114,10 +114,10 @@ public class CTECollectionModelImpl extends BaseModelImpl<CTECollection>
 	public static final String MAPPING_TABLE_COLLECTIONS_ENTRIES_NAME = "Collections_Entries";
 	public static final Object[][] MAPPING_TABLE_COLLECTIONS_ENTRIES_COLUMNS = {
 			{ "companyId", Types.BIGINT },
-			{ "collectionId", Types.BIGINT },
-			{ "entryId", Types.BIGINT }
+			{ "cteCollectionId", Types.BIGINT },
+			{ "cteEntryId", Types.BIGINT }
 		};
-	public static final String MAPPING_TABLE_COLLECTIONS_ENTRIES_SQL_CREATE = "create table Collections_Entries (companyId LONG not null,collectionId LONG not null,entryId LONG not null,primary key (collectionId, entryId))";
+	public static final String MAPPING_TABLE_COLLECTIONS_ENTRIES_SQL_CREATE = "create table Collections_Entries (companyId LONG not null,cteCollectionId LONG not null,cteEntryId LONG not null,primary key (cteCollectionId, cteEntryId))";
 	public static final boolean FINDER_CACHE_ENABLED_COLLECTIONS_ENTRIES = GetterUtil.getBoolean(com.liferay.change.tracking.engine.service.util.ServiceProps.get(
 				"value.object.finder.cache.enabled.Collections_Entries"), true);
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.change.tracking.engine.service.util.ServiceProps.get(
@@ -128,17 +128,17 @@ public class CTECollectionModelImpl extends BaseModelImpl<CTECollection>
 
 	@Override
 	public long getPrimaryKey() {
-		return _collectionId;
+		return _cteCollectionId;
 	}
 
 	@Override
 	public void setPrimaryKey(long primaryKey) {
-		setCollectionId(primaryKey);
+		setCteCollectionId(primaryKey);
 	}
 
 	@Override
 	public Serializable getPrimaryKeyObj() {
-		return _collectionId;
+		return _cteCollectionId;
 	}
 
 	@Override
@@ -160,7 +160,7 @@ public class CTECollectionModelImpl extends BaseModelImpl<CTECollection>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("collectionId", getCollectionId());
+		attributes.put("cteCollectionId", getCteCollectionId());
 		attributes.put("companyId", getCompanyId());
 		attributes.put("userId", getUserId());
 		attributes.put("userName", getUserName());
@@ -181,10 +181,10 @@ public class CTECollectionModelImpl extends BaseModelImpl<CTECollection>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long collectionId = (Long)attributes.get("collectionId");
+		Long cteCollectionId = (Long)attributes.get("cteCollectionId");
 
-		if (collectionId != null) {
-			setCollectionId(collectionId);
+		if (cteCollectionId != null) {
+			setCteCollectionId(cteCollectionId);
 		}
 
 		Long companyId = (Long)attributes.get("companyId");
@@ -255,13 +255,13 @@ public class CTECollectionModelImpl extends BaseModelImpl<CTECollection>
 	}
 
 	@Override
-	public long getCollectionId() {
-		return _collectionId;
+	public long getCteCollectionId() {
+		return _cteCollectionId;
 	}
 
 	@Override
-	public void setCollectionId(long collectionId) {
-		_collectionId = collectionId;
+	public void setCteCollectionId(long cteCollectionId) {
+		_cteCollectionId = cteCollectionId;
 	}
 
 	@Override
@@ -539,7 +539,7 @@ public class CTECollectionModelImpl extends BaseModelImpl<CTECollection>
 	public Object clone() {
 		CTECollectionImpl cteCollectionImpl = new CTECollectionImpl();
 
-		cteCollectionImpl.setCollectionId(getCollectionId());
+		cteCollectionImpl.setCteCollectionId(getCteCollectionId());
 		cteCollectionImpl.setCompanyId(getCompanyId());
 		cteCollectionImpl.setUserId(getUserId());
 		cteCollectionImpl.setUserName(getUserName());
@@ -620,7 +620,7 @@ public class CTECollectionModelImpl extends BaseModelImpl<CTECollection>
 	public CacheModel<CTECollection> toCacheModel() {
 		CTECollectionCacheModel cteCollectionCacheModel = new CTECollectionCacheModel();
 
-		cteCollectionCacheModel.collectionId = getCollectionId();
+		cteCollectionCacheModel.cteCollectionId = getCteCollectionId();
 
 		cteCollectionCacheModel.companyId = getCompanyId();
 
@@ -696,8 +696,8 @@ public class CTECollectionModelImpl extends BaseModelImpl<CTECollection>
 	public String toString() {
 		StringBundler sb = new StringBundler(25);
 
-		sb.append("{collectionId=");
-		sb.append(getCollectionId());
+		sb.append("{cteCollectionId=");
+		sb.append(getCteCollectionId());
 		sb.append(", companyId=");
 		sb.append(getCompanyId());
 		sb.append(", userId=");
@@ -734,8 +734,8 @@ public class CTECollectionModelImpl extends BaseModelImpl<CTECollection>
 		sb.append("</model-name>");
 
 		sb.append(
-			"<column><column-name>collectionId</column-name><column-value><![CDATA[");
-		sb.append(getCollectionId());
+			"<column><column-name>cteCollectionId</column-name><column-value><![CDATA[");
+		sb.append(getCteCollectionId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>companyId</column-name><column-value><![CDATA[");
@@ -791,7 +791,7 @@ public class CTECollectionModelImpl extends BaseModelImpl<CTECollection>
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
 			CTECollection.class, ModelWrapper.class
 		};
-	private long _collectionId;
+	private long _cteCollectionId;
 	private long _companyId;
 	private long _userId;
 	private String _userName;

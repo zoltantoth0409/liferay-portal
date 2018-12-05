@@ -42,23 +42,24 @@ public class CTEEntryLocalServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.change.tracking.engine.service.impl.CTEEntryLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static void addCTECollectionCTEEntries(long collectionId,
+	public static void addCTECollectionCTEEntries(long cteCollectionId,
 		java.util.List<com.liferay.change.tracking.engine.model.CTEEntry> cteEntries) {
-		getService().addCTECollectionCTEEntries(collectionId, cteEntries);
+		getService().addCTECollectionCTEEntries(cteCollectionId, cteEntries);
 	}
 
-	public static void addCTECollectionCTEEntries(long collectionId,
-		long[] entryIds) {
-		getService().addCTECollectionCTEEntries(collectionId, entryIds);
+	public static void addCTECollectionCTEEntries(long cteCollectionId,
+		long[] cteEntryIds) {
+		getService().addCTECollectionCTEEntries(cteCollectionId, cteEntryIds);
 	}
 
-	public static void addCTECollectionCTEEntry(long collectionId,
+	public static void addCTECollectionCTEEntry(long cteCollectionId,
 		com.liferay.change.tracking.engine.model.CTEEntry cteEntry) {
-		getService().addCTECollectionCTEEntry(collectionId, cteEntry);
+		getService().addCTECollectionCTEEntry(cteCollectionId, cteEntry);
 	}
 
-	public static void addCTECollectionCTEEntry(long collectionId, long entryId) {
-		getService().addCTECollectionCTEEntry(collectionId, entryId);
+	public static void addCTECollectionCTEEntry(long cteCollectionId,
+		long cteEntryId) {
+		getService().addCTECollectionCTEEntry(cteCollectionId, cteEntryId);
 	}
 
 	/**
@@ -72,39 +73,39 @@ public class CTEEntryLocalServiceUtil {
 		return getService().addCTEEntry(cteEntry);
 	}
 
-	public static void clearCTECollectionCTEEntries(long collectionId) {
-		getService().clearCTECollectionCTEEntries(collectionId);
+	public static void clearCTECollectionCTEEntries(long cteCollectionId) {
+		getService().clearCTECollectionCTEEntries(cteCollectionId);
 	}
 
 	/**
 	* Creates a new cte entry with the primary key. Does not add the cte entry to the database.
 	*
-	* @param entryId the primary key for the new cte entry
+	* @param cteEntryId the primary key for the new cte entry
 	* @return the new cte entry
 	*/
 	public static com.liferay.change.tracking.engine.model.CTEEntry createCTEEntry(
-		long entryId) {
-		return getService().createCTEEntry(entryId);
+		long cteEntryId) {
+		return getService().createCTEEntry(cteEntryId);
 	}
 
-	public static void deleteCTECollectionCTEEntries(long collectionId,
+	public static void deleteCTECollectionCTEEntries(long cteCollectionId,
 		java.util.List<com.liferay.change.tracking.engine.model.CTEEntry> cteEntries) {
-		getService().deleteCTECollectionCTEEntries(collectionId, cteEntries);
+		getService().deleteCTECollectionCTEEntries(cteCollectionId, cteEntries);
 	}
 
-	public static void deleteCTECollectionCTEEntries(long collectionId,
-		long[] entryIds) {
-		getService().deleteCTECollectionCTEEntries(collectionId, entryIds);
+	public static void deleteCTECollectionCTEEntries(long cteCollectionId,
+		long[] cteEntryIds) {
+		getService().deleteCTECollectionCTEEntries(cteCollectionId, cteEntryIds);
 	}
 
-	public static void deleteCTECollectionCTEEntry(long collectionId,
+	public static void deleteCTECollectionCTEEntry(long cteCollectionId,
 		com.liferay.change.tracking.engine.model.CTEEntry cteEntry) {
-		getService().deleteCTECollectionCTEEntry(collectionId, cteEntry);
+		getService().deleteCTECollectionCTEEntry(cteCollectionId, cteEntry);
 	}
 
-	public static void deleteCTECollectionCTEEntry(long collectionId,
-		long entryId) {
-		getService().deleteCTECollectionCTEEntry(collectionId, entryId);
+	public static void deleteCTECollectionCTEEntry(long cteCollectionId,
+		long cteEntryId) {
+		getService().deleteCTECollectionCTEEntry(cteCollectionId, cteEntryId);
 	}
 
 	/**
@@ -121,14 +122,14 @@ public class CTEEntryLocalServiceUtil {
 	/**
 	* Deletes the cte entry with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param entryId the primary key of the cte entry
+	* @param cteEntryId the primary key of the cte entry
 	* @return the cte entry that was removed
 	* @throws PortalException if a cte entry with the primary key could not be found
 	*/
 	public static com.liferay.change.tracking.engine.model.CTEEntry deleteCTEEntry(
-		long entryId)
+		long cteEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().deleteCTEEntry(entryId);
+		return getService().deleteCTEEntry(cteEntryId);
 	}
 
 	/**
@@ -219,8 +220,8 @@ public class CTEEntryLocalServiceUtil {
 	}
 
 	public static com.liferay.change.tracking.engine.model.CTEEntry fetchCTEEntry(
-		long entryId) {
-		return getService().fetchCTEEntry(entryId);
+		long cteEntryId) {
+		return getService().fetchCTEEntry(cteEntryId);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
@@ -228,35 +229,36 @@ public class CTEEntryLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.change.tracking.engine.model.CTEEntry> getCTECollectionCTEEntries(
-		long collectionId) {
-		return getService().getCTECollectionCTEEntries(collectionId);
+		long cteCollectionId) {
+		return getService().getCTECollectionCTEEntries(cteCollectionId);
 	}
 
 	public static java.util.List<com.liferay.change.tracking.engine.model.CTEEntry> getCTECollectionCTEEntries(
-		long collectionId, int start, int end) {
-		return getService().getCTECollectionCTEEntries(collectionId, start, end);
+		long cteCollectionId, int start, int end) {
+		return getService()
+				   .getCTECollectionCTEEntries(cteCollectionId, start, end);
 	}
 
 	public static java.util.List<com.liferay.change.tracking.engine.model.CTEEntry> getCTECollectionCTEEntries(
-		long collectionId, int start, int end,
+		long cteCollectionId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.change.tracking.engine.model.CTEEntry> orderByComparator) {
 		return getService()
-				   .getCTECollectionCTEEntries(collectionId, start, end,
+				   .getCTECollectionCTEEntries(cteCollectionId, start, end,
 			orderByComparator);
 	}
 
-	public static int getCTECollectionCTEEntriesCount(long collectionId) {
-		return getService().getCTECollectionCTEEntriesCount(collectionId);
+	public static int getCTECollectionCTEEntriesCount(long cteCollectionId) {
+		return getService().getCTECollectionCTEEntriesCount(cteCollectionId);
 	}
 
 	/**
-	* Returns the collectionIds of the cte collections associated with the cte entry.
+	* Returns the cteCollectionIds of the cte collections associated with the cte entry.
 	*
-	* @param entryId the entryId of the cte entry
-	* @return long[] the collectionIds of cte collections associated with the cte entry
+	* @param cteEntryId the cteEntryId of the cte entry
+	* @return long[] the cteCollectionIds of cte collections associated with the cte entry
 	*/
-	public static long[] getCTECollectionPrimaryKeys(long entryId) {
-		return getService().getCTECollectionPrimaryKeys(entryId);
+	public static long[] getCTECollectionPrimaryKeys(long cteEntryId) {
+		return getService().getCTECollectionPrimaryKeys(cteEntryId);
 	}
 
 	/**
@@ -287,14 +289,14 @@ public class CTEEntryLocalServiceUtil {
 	/**
 	* Returns the cte entry with the primary key.
 	*
-	* @param entryId the primary key of the cte entry
+	* @param cteEntryId the primary key of the cte entry
 	* @return the cte entry
 	* @throws PortalException if a cte entry with the primary key could not be found
 	*/
 	public static com.liferay.change.tracking.engine.model.CTEEntry getCTEEntry(
-		long entryId)
+		long cteEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getCTEEntry(entryId);
+		return getService().getCTEEntry(cteEntryId);
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery getIndexableActionableDynamicQuery() {
@@ -322,18 +324,18 @@ public class CTEEntryLocalServiceUtil {
 		return getService().getPersistedModel(primaryKeyObj);
 	}
 
-	public static boolean hasCTECollectionCTEEntries(long collectionId) {
-		return getService().hasCTECollectionCTEEntries(collectionId);
+	public static boolean hasCTECollectionCTEEntries(long cteCollectionId) {
+		return getService().hasCTECollectionCTEEntries(cteCollectionId);
 	}
 
-	public static boolean hasCTECollectionCTEEntry(long collectionId,
-		long entryId) {
-		return getService().hasCTECollectionCTEEntry(collectionId, entryId);
+	public static boolean hasCTECollectionCTEEntry(long cteCollectionId,
+		long cteEntryId) {
+		return getService().hasCTECollectionCTEEntry(cteCollectionId, cteEntryId);
 	}
 
-	public static void setCTECollectionCTEEntries(long collectionId,
-		long[] entryIds) {
-		getService().setCTECollectionCTEEntries(collectionId, entryIds);
+	public static void setCTECollectionCTEEntries(long cteCollectionId,
+		long[] cteEntryIds) {
+		getService().setCTECollectionCTEEntries(cteCollectionId, cteEntryIds);
 	}
 
 	/**

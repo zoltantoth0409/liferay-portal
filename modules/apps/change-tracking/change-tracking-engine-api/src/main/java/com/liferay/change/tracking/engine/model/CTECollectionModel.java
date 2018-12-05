@@ -67,18 +67,18 @@ public interface CTECollectionModel extends AuditedModel,
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Returns the collection ID of this cte collection.
+	 * Returns the cte collection ID of this cte collection.
 	 *
-	 * @return the collection ID of this cte collection
+	 * @return the cte collection ID of this cte collection
 	 */
-	public long getCollectionId();
+	public long getCteCollectionId();
 
 	/**
-	 * Sets the collection ID of this cte collection.
+	 * Sets the cte collection ID of this cte collection.
 	 *
-	 * @param collectionId the collection ID of this cte collection
+	 * @param cteCollectionId the cte collection ID of this cte collection
 	 */
-	public void setCollectionId(long collectionId);
+	public void setCteCollectionId(long cteCollectionId);
 
 	/**
 	 * Returns the company ID of this cte collection.

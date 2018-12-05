@@ -51,7 +51,7 @@ public class CTEEntryCacheModel implements CacheModel<CTEEntry>, Externalizable 
 
 		CTEEntryCacheModel cteEntryCacheModel = (CTEEntryCacheModel)obj;
 
-		if (entryId == cteEntryCacheModel.entryId) {
+		if (cteEntryId == cteEntryCacheModel.cteEntryId) {
 			return true;
 		}
 
@@ -60,15 +60,15 @@ public class CTEEntryCacheModel implements CacheModel<CTEEntry>, Externalizable 
 
 	@Override
 	public int hashCode() {
-		return HashUtil.hash(0, entryId);
+		return HashUtil.hash(0, cteEntryId);
 	}
 
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);
 
-		sb.append("{entryId=");
-		sb.append(entryId);
+		sb.append("{cteEntryId=");
+		sb.append(cteEntryId);
 		sb.append(", companyId=");
 		sb.append(companyId);
 		sb.append(", userId=");
@@ -94,7 +94,7 @@ public class CTEEntryCacheModel implements CacheModel<CTEEntry>, Externalizable 
 	public CTEEntry toEntityModel() {
 		CTEEntryImpl cteEntryImpl = new CTEEntryImpl();
 
-		cteEntryImpl.setEntryId(entryId);
+		cteEntryImpl.setCteEntryId(cteEntryId);
 		cteEntryImpl.setCompanyId(companyId);
 		cteEntryImpl.setUserId(userId);
 
@@ -130,7 +130,7 @@ public class CTEEntryCacheModel implements CacheModel<CTEEntry>, Externalizable 
 
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
-		entryId = objectInput.readLong();
+		cteEntryId = objectInput.readLong();
 
 		companyId = objectInput.readLong();
 
@@ -149,7 +149,7 @@ public class CTEEntryCacheModel implements CacheModel<CTEEntry>, Externalizable 
 	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
-		objectOutput.writeLong(entryId);
+		objectOutput.writeLong(cteEntryId);
 
 		objectOutput.writeLong(companyId);
 
@@ -172,7 +172,7 @@ public class CTEEntryCacheModel implements CacheModel<CTEEntry>, Externalizable 
 		objectOutput.writeLong(resourcePrimKey);
 	}
 
-	public long entryId;
+	public long cteEntryId;
 	public long companyId;
 	public long userId;
 	public String userName;

@@ -33,7 +33,7 @@ public class CTECollectionSoap implements Serializable {
 	public static CTECollectionSoap toSoapModel(CTECollection model) {
 		CTECollectionSoap soapModel = new CTECollectionSoap();
 
-		soapModel.setCollectionId(model.getCollectionId());
+		soapModel.setCteCollectionId(model.getCteCollectionId());
 		soapModel.setCompanyId(model.getCompanyId());
 		soapModel.setUserId(model.getUserId());
 		soapModel.setUserName(model.getUserName());
@@ -90,19 +90,19 @@ public class CTECollectionSoap implements Serializable {
 	}
 
 	public long getPrimaryKey() {
-		return _collectionId;
+		return _cteCollectionId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setCollectionId(pk);
+		setCteCollectionId(pk);
 	}
 
-	public long getCollectionId() {
-		return _collectionId;
+	public long getCteCollectionId() {
+		return _cteCollectionId;
 	}
 
-	public void setCollectionId(long collectionId) {
-		_collectionId = collectionId;
+	public void setCteCollectionId(long cteCollectionId) {
+		_cteCollectionId = cteCollectionId;
 	}
 
 	public long getCompanyId() {
@@ -193,7 +193,7 @@ public class CTECollectionSoap implements Serializable {
 		_statusDate = statusDate;
 	}
 
-	private long _collectionId;
+	private long _cteCollectionId;
 	private long _companyId;
 	private long _userId;
 	private String _userName;

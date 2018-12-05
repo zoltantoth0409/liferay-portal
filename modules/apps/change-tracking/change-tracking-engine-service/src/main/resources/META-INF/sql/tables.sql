@@ -1,5 +1,5 @@
 create table CTECollection (
-	collectionId LONG not null primary key,
+	cteCollectionId LONG not null primary key,
 	companyId LONG,
 	userId LONG,
 	userName VARCHAR(75) null,
@@ -14,7 +14,7 @@ create table CTECollection (
 );
 
 create table CTEEntry (
-	entryId LONG not null primary key,
+	cteEntryId LONG not null primary key,
 	companyId LONG,
 	userId LONG,
 	userName VARCHAR(75) null,
@@ -27,7 +27,7 @@ create table CTEEntry (
 
 create table Collections_Entries (
 	companyId LONG not null,
-	collectionId LONG not null,
-	entryId LONG not null,
-	primary key (collectionId, entryId)
+	cteCollectionId LONG not null,
+	cteEntryId LONG not null,
+	primary key (cteCollectionId, cteEntryId)
 );

@@ -5,7 +5,7 @@
 	<import class="com.liferay.change.tracking.engine.model.CTECollection" />
 	<import class="com.liferay.change.tracking.engine.model.CTEEntry" />
 	<class name="com.liferay.change.tracking.engine.model.impl.CTECollectionImpl" table="CTECollection">
-		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="collectionId" type="long">
+		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="cteCollectionId" type="long">
 			<generator class="assigned" />
 		</id>
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
@@ -21,7 +21,7 @@
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="statusDate" type="org.hibernate.type.TimestampType" />
 	</class>
 	<class name="com.liferay.change.tracking.engine.model.impl.CTEEntryImpl" table="CTEEntry">
-		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="entryId" type="long">
+		<id access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="cteEntryId" type="long">
 			<generator class="assigned" />
 		</id>
 		<property access="com.liferay.portal.dao.orm.hibernate.LiferayPropertyAccessor" name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />

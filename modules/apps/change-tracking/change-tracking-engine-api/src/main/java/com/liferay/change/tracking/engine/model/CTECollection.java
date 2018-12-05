@@ -37,10 +37,11 @@ public interface CTECollection extends CTECollectionModel, PersistedModel {
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.change.tracking.engine.model.impl.CTECollectionImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public static final Accessor<CTECollection, Long> COLLECTION_ID_ACCESSOR = new Accessor<CTECollection, Long>() {
+	public static final Accessor<CTECollection, Long> CTE_COLLECTION_ID_ACCESSOR =
+		new Accessor<CTECollection, Long>() {
 			@Override
 			public Long get(CTECollection cteCollection) {
-				return cteCollection.getCollectionId();
+				return cteCollection.getCteCollectionId();
 			}
 
 			@Override

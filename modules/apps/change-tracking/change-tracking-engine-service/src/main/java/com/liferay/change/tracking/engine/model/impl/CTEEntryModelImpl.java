@@ -68,7 +68,7 @@ public class CTEEntryModelImpl extends BaseModelImpl<CTEEntry>
 	 */
 	public static final String TABLE_NAME = "CTEEntry";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "entryId", Types.BIGINT },
+			{ "cteEntryId", Types.BIGINT },
 			{ "companyId", Types.BIGINT },
 			{ "userId", Types.BIGINT },
 			{ "userName", Types.VARCHAR },
@@ -81,7 +81,7 @@ public class CTEEntryModelImpl extends BaseModelImpl<CTEEntry>
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
 
 	static {
-		TABLE_COLUMNS_MAP.put("entryId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("cteEntryId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("companyId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("userId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("userName", Types.VARCHAR);
@@ -92,10 +92,10 @@ public class CTEEntryModelImpl extends BaseModelImpl<CTEEntry>
 		TABLE_COLUMNS_MAP.put("resourcePrimKey", Types.BIGINT);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table CTEEntry (entryId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,classNameId LONG,classPK LONG,resourcePrimKey LONG)";
+	public static final String TABLE_SQL_CREATE = "create table CTEEntry (cteEntryId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,classNameId LONG,classPK LONG,resourcePrimKey LONG)";
 	public static final String TABLE_SQL_DROP = "drop table CTEEntry";
-	public static final String ORDER_BY_JPQL = " ORDER BY cteEntry.entryId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY CTEEntry.entryId ASC";
+	public static final String ORDER_BY_JPQL = " ORDER BY cteEntry.cteEntryId ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY CTEEntry.cteEntryId ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
@@ -109,14 +109,14 @@ public class CTEEntryModelImpl extends BaseModelImpl<CTEEntry>
 				"value.object.column.bitmask.enabled.com.liferay.change.tracking.engine.model.CTEEntry"),
 			true);
 	public static final long RESOURCEPRIMKEY_COLUMN_BITMASK = 1L;
-	public static final long ENTRYID_COLUMN_BITMASK = 2L;
+	public static final long CTEENTRYID_COLUMN_BITMASK = 2L;
 	public static final String MAPPING_TABLE_COLLECTIONS_ENTRIES_NAME = "Collections_Entries";
 	public static final Object[][] MAPPING_TABLE_COLLECTIONS_ENTRIES_COLUMNS = {
 			{ "companyId", Types.BIGINT },
-			{ "collectionId", Types.BIGINT },
-			{ "entryId", Types.BIGINT }
+			{ "cteCollectionId", Types.BIGINT },
+			{ "cteEntryId", Types.BIGINT }
 		};
-	public static final String MAPPING_TABLE_COLLECTIONS_ENTRIES_SQL_CREATE = "create table Collections_Entries (companyId LONG not null,collectionId LONG not null,entryId LONG not null,primary key (collectionId, entryId))";
+	public static final String MAPPING_TABLE_COLLECTIONS_ENTRIES_SQL_CREATE = "create table Collections_Entries (companyId LONG not null,cteCollectionId LONG not null,cteEntryId LONG not null,primary key (cteCollectionId, cteEntryId))";
 	public static final boolean FINDER_CACHE_ENABLED_COLLECTIONS_ENTRIES = GetterUtil.getBoolean(com.liferay.change.tracking.engine.service.util.ServiceProps.get(
 				"value.object.finder.cache.enabled.Collections_Entries"), true);
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.change.tracking.engine.service.util.ServiceProps.get(
@@ -127,17 +127,17 @@ public class CTEEntryModelImpl extends BaseModelImpl<CTEEntry>
 
 	@Override
 	public long getPrimaryKey() {
-		return _entryId;
+		return _cteEntryId;
 	}
 
 	@Override
 	public void setPrimaryKey(long primaryKey) {
-		setEntryId(primaryKey);
+		setCteEntryId(primaryKey);
 	}
 
 	@Override
 	public Serializable getPrimaryKeyObj() {
-		return _entryId;
+		return _cteEntryId;
 	}
 
 	@Override
@@ -159,7 +159,7 @@ public class CTEEntryModelImpl extends BaseModelImpl<CTEEntry>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("entryId", getEntryId());
+		attributes.put("cteEntryId", getCteEntryId());
 		attributes.put("companyId", getCompanyId());
 		attributes.put("userId", getUserId());
 		attributes.put("userName", getUserName());
@@ -177,10 +177,10 @@ public class CTEEntryModelImpl extends BaseModelImpl<CTEEntry>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long entryId = (Long)attributes.get("entryId");
+		Long cteEntryId = (Long)attributes.get("cteEntryId");
 
-		if (entryId != null) {
-			setEntryId(entryId);
+		if (cteEntryId != null) {
+			setCteEntryId(cteEntryId);
 		}
 
 		Long companyId = (Long)attributes.get("companyId");
@@ -233,13 +233,13 @@ public class CTEEntryModelImpl extends BaseModelImpl<CTEEntry>
 	}
 
 	@Override
-	public long getEntryId() {
-		return _entryId;
+	public long getCteEntryId() {
+		return _cteEntryId;
 	}
 
 	@Override
-	public void setEntryId(long entryId) {
-		_entryId = entryId;
+	public void setCteEntryId(long cteEntryId) {
+		_cteEntryId = cteEntryId;
 	}
 
 	@Override
@@ -417,7 +417,7 @@ public class CTEEntryModelImpl extends BaseModelImpl<CTEEntry>
 	public Object clone() {
 		CTEEntryImpl cteEntryImpl = new CTEEntryImpl();
 
-		cteEntryImpl.setEntryId(getEntryId());
+		cteEntryImpl.setCteEntryId(getCteEntryId());
 		cteEntryImpl.setCompanyId(getCompanyId());
 		cteEntryImpl.setUserId(getUserId());
 		cteEntryImpl.setUserName(getUserName());
@@ -501,7 +501,7 @@ public class CTEEntryModelImpl extends BaseModelImpl<CTEEntry>
 	public CacheModel<CTEEntry> toCacheModel() {
 		CTEEntryCacheModel cteEntryCacheModel = new CTEEntryCacheModel();
 
-		cteEntryCacheModel.entryId = getEntryId();
+		cteEntryCacheModel.cteEntryId = getCteEntryId();
 
 		cteEntryCacheModel.companyId = getCompanyId();
 
@@ -546,8 +546,8 @@ public class CTEEntryModelImpl extends BaseModelImpl<CTEEntry>
 	public String toString() {
 		StringBundler sb = new StringBundler(19);
 
-		sb.append("{entryId=");
-		sb.append(getEntryId());
+		sb.append("{cteEntryId=");
+		sb.append(getCteEntryId());
 		sb.append(", companyId=");
 		sb.append(getCompanyId());
 		sb.append(", userId=");
@@ -578,8 +578,8 @@ public class CTEEntryModelImpl extends BaseModelImpl<CTEEntry>
 		sb.append("</model-name>");
 
 		sb.append(
-			"<column><column-name>entryId</column-name><column-value><![CDATA[");
-		sb.append(getEntryId());
+			"<column><column-name>cteEntryId</column-name><column-value><![CDATA[");
+		sb.append(getCteEntryId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>companyId</column-name><column-value><![CDATA[");
@@ -623,7 +623,7 @@ public class CTEEntryModelImpl extends BaseModelImpl<CTEEntry>
 	private static final Class<?>[] _escapedModelInterfaces = new Class[] {
 			CTEEntry.class, ModelWrapper.class
 		};
-	private long _entryId;
+	private long _cteEntryId;
 	private long _companyId;
 	private long _userId;
 	private String _userName;

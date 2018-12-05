@@ -61,14 +61,15 @@ public interface CTEEntryLocalService extends BaseLocalService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link CTEEntryLocalServiceUtil} to access the cte entry local service. Add custom service methods to {@link com.liferay.change.tracking.engine.service.impl.CTEEntryLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public void addCTECollectionCTEEntries(long collectionId,
+	public void addCTECollectionCTEEntries(long cteCollectionId,
 		List<CTEEntry> cteEntries);
 
-	public void addCTECollectionCTEEntries(long collectionId, long[] entryIds);
+	public void addCTECollectionCTEEntries(long cteCollectionId,
+		long[] cteEntryIds);
 
-	public void addCTECollectionCTEEntry(long collectionId, CTEEntry cteEntry);
+	public void addCTECollectionCTEEntry(long cteCollectionId, CTEEntry cteEntry);
 
-	public void addCTECollectionCTEEntry(long collectionId, long entryId);
+	public void addCTECollectionCTEEntry(long cteCollectionId, long cteEntryId);
 
 	/**
 	* Adds the cte entry to the database. Also notifies the appropriate model listeners.
@@ -79,25 +80,28 @@ public interface CTEEntryLocalService extends BaseLocalService,
 	@Indexable(type = IndexableType.REINDEX)
 	public CTEEntry addCTEEntry(CTEEntry cteEntry);
 
-	public void clearCTECollectionCTEEntries(long collectionId);
+	public void clearCTECollectionCTEEntries(long cteCollectionId);
 
 	/**
 	* Creates a new cte entry with the primary key. Does not add the cte entry to the database.
 	*
-	* @param entryId the primary key for the new cte entry
+	* @param cteEntryId the primary key for the new cte entry
 	* @return the new cte entry
 	*/
 	@Transactional(enabled = false)
-	public CTEEntry createCTEEntry(long entryId);
+	public CTEEntry createCTEEntry(long cteEntryId);
 
-	public void deleteCTECollectionCTEEntries(long collectionId,
+	public void deleteCTECollectionCTEEntries(long cteCollectionId,
 		List<CTEEntry> cteEntries);
 
-	public void deleteCTECollectionCTEEntries(long collectionId, long[] entryIds);
+	public void deleteCTECollectionCTEEntries(long cteCollectionId,
+		long[] cteEntryIds);
 
-	public void deleteCTECollectionCTEEntry(long collectionId, CTEEntry cteEntry);
+	public void deleteCTECollectionCTEEntry(long cteCollectionId,
+		CTEEntry cteEntry);
 
-	public void deleteCTECollectionCTEEntry(long collectionId, long entryId);
+	public void deleteCTECollectionCTEEntry(long cteCollectionId,
+		long cteEntryId);
 
 	/**
 	* Deletes the cte entry from the database. Also notifies the appropriate model listeners.
@@ -111,12 +115,12 @@ public interface CTEEntryLocalService extends BaseLocalService,
 	/**
 	* Deletes the cte entry with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param entryId the primary key of the cte entry
+	* @param cteEntryId the primary key of the cte entry
 	* @return the cte entry that was removed
 	* @throws PortalException if a cte entry with the primary key could not be found
 	*/
 	@Indexable(type = IndexableType.DELETE)
-	public CTEEntry deleteCTEEntry(long entryId) throws PortalException;
+	public CTEEntry deleteCTEEntry(long cteEntryId) throws PortalException;
 
 	/**
 	* @throws PortalException
@@ -191,33 +195,33 @@ public interface CTEEntryLocalService extends BaseLocalService,
 		Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public CTEEntry fetchCTEEntry(long entryId);
+	public CTEEntry fetchCTEEntry(long cteEntryId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<CTEEntry> getCTECollectionCTEEntries(long collectionId);
+	public List<CTEEntry> getCTECollectionCTEEntries(long cteCollectionId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<CTEEntry> getCTECollectionCTEEntries(long collectionId,
+	public List<CTEEntry> getCTECollectionCTEEntries(long cteCollectionId,
 		int start, int end);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<CTEEntry> getCTECollectionCTEEntries(long collectionId,
+	public List<CTEEntry> getCTECollectionCTEEntries(long cteCollectionId,
 		int start, int end, OrderByComparator<CTEEntry> orderByComparator);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getCTECollectionCTEEntriesCount(long collectionId);
+	public int getCTECollectionCTEEntriesCount(long cteCollectionId);
 
 	/**
-	* Returns the collectionIds of the cte collections associated with the cte entry.
+	* Returns the cteCollectionIds of the cte collections associated with the cte entry.
 	*
-	* @param entryId the entryId of the cte entry
-	* @return long[] the collectionIds of cte collections associated with the cte entry
+	* @param cteEntryId the cteEntryId of the cte entry
+	* @return long[] the cteCollectionIds of cte collections associated with the cte entry
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public long[] getCTECollectionPrimaryKeys(long entryId);
+	public long[] getCTECollectionPrimaryKeys(long cteEntryId);
 
 	/**
 	* Returns a range of all the cte entries.
@@ -244,12 +248,12 @@ public interface CTEEntryLocalService extends BaseLocalService,
 	/**
 	* Returns the cte entry with the primary key.
 	*
-	* @param entryId the primary key of the cte entry
+	* @param cteEntryId the primary key of the cte entry
 	* @return the cte entry
 	* @throws PortalException if a cte entry with the primary key could not be found
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public CTEEntry getCTEEntry(long entryId) throws PortalException;
+	public CTEEntry getCTEEntry(long cteEntryId) throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public IndexableActionableDynamicQuery getIndexableActionableDynamicQuery();
@@ -272,12 +276,14 @@ public interface CTEEntryLocalService extends BaseLocalService,
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public boolean hasCTECollectionCTEEntries(long collectionId);
+	public boolean hasCTECollectionCTEEntries(long cteCollectionId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public boolean hasCTECollectionCTEEntry(long collectionId, long entryId);
+	public boolean hasCTECollectionCTEEntry(long cteCollectionId,
+		long cteEntryId);
 
-	public void setCTECollectionCTEEntries(long collectionId, long[] entryIds);
+	public void setCTECollectionCTEEntries(long cteCollectionId,
+		long[] cteEntryIds);
 
 	/**
 	* Updates the cte entry in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.

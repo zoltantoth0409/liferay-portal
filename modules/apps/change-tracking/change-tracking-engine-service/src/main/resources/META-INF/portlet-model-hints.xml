@@ -2,7 +2,7 @@
 
 <model-hints>
 	<model name="com.liferay.change.tracking.engine.model.CTECollection">
-		<field name="collectionId" type="long" />
+		<field name="cteCollectionId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
 		<field name="userName" type="String" />
@@ -16,7 +16,7 @@
 		<field name="statusDate" type="Date" />
 	</model>
 	<model name="com.liferay.change.tracking.engine.model.CTEEntry">
-		<field name="entryId" type="long" />
+		<field name="cteEntryId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
 		<field name="userName" type="String" />
