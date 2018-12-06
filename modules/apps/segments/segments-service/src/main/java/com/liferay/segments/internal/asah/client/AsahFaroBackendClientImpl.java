@@ -60,22 +60,22 @@ public class AsahFaroBackendClientImpl implements AsahFaroBackendClient {
 		}
 		catch (IOException ioe) {
 			throw new NestableRuntimeException(
-				"Error handling JSON response: " + ioe.getMessage(), ioe);
+				"Unable to handle JSON response: " + ioe.getMessage(), ioe);
 		}
 	}
 
 	@Activate
 	protected void activate() {
 		_jsonWebServiceClient.setBaseURI(
-			_SYSTEM_PROPERTY_VALUE_ASAH_FARO_BACKEND_URL);
+			System.getProperty("asah.faro.backend.url"));
 	}
 
 	private Map<String, String> _getHeaders() {
 		Map<String, String> headers = new HashMap<>();
 
 		headers.put(
-			_ASAH_FARO_BACKEND_SECURITY_SIGNATURE_HEADER,
-			_SYSTEM_PROPERTY_VALUE_ASAH_FARO_BACKEND_SECURITY_SIGNATURE);
+			"OSB-Asah-Faro-Backend-Security-Signature",
+			System.getProperty( "asah.faro.backend.security.signature"));
 
 		return headers;
 	}
@@ -128,16 +128,6 @@ public class AsahFaroBackendClientImpl implements AsahFaroBackendClient {
 
 		return uriVariables;
 	}
-
-	private static final String _ASAH_FARO_BACKEND_SECURITY_SIGNATURE_HEADER =
-		"OSB-Asah-Faro-Backend-Security-Signature";
-
-	private static final String
-		_SYSTEM_PROPERTY_VALUE_ASAH_FARO_BACKEND_SECURITY_SIGNATURE =
-			System.getProperty("asah.faro.backend.security.signature");
-
-	private static final String _SYSTEM_PROPERTY_VALUE_ASAH_FARO_BACKEND_URL =
-		System.getProperty("asah.faro.backend.url");
 
 	private static final IndividualSegmentJSONObjectMapper
 		_individualSegmentJSONObjectMapper =
