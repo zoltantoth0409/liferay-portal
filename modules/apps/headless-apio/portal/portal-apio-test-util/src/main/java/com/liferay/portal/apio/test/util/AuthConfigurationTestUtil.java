@@ -36,11 +36,11 @@ public class AuthConfigurationTestUtil {
 		ConfigurationAdmin configurationAdmin = bundleContext.getService(
 			serviceReference);
 
-		String pid =
-			"com.liferay.apio.architect.internal.application.ApioApplication";
-
 		Configuration configuration =
-			configurationAdmin.createFactoryConfiguration(pid, null);
+			configurationAdmin.createFactoryConfiguration(
+				"com.liferay.apio.architect.internal.application." +
+					"ApioApplication",
+				null);
 
 		Dictionary<String, Object> dictionary = new Hashtable<>();
 
