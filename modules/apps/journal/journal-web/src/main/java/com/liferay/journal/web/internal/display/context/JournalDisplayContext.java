@@ -1476,8 +1476,8 @@ public class JournalDisplayContext {
 
 		if (JournalFolderPermission.contains(
 				themeDisplay.getPermissionChecker(),
-				themeDisplay.getScopeGroupId(),
-				getFolderId(), ActionKeys.ADD_FOLDER) ||
+				themeDisplay.getScopeGroupId(), getFolderId(),
+				ActionKeys.ADD_FOLDER) ||
 			JournalFolderPermission.contains(
 				themeDisplay.getPermissionChecker(),
 				themeDisplay.getScopeGroupId(), getFolderId(),

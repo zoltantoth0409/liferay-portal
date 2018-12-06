@@ -391,8 +391,8 @@ public class DDMFormFieldTemplateContextFactory {
 
 		ddmFormFieldTemplateContext.put(
 			"enabled",
-			GetterUtil.getBoolean((Boolean)
-				ddmFormFieldEvaluationResult.getProperty("enabled")));
+			GetterUtil.getBoolean(
+				(Boolean)ddmFormFieldEvaluationResult.getProperty("enabled")));
 	}
 
 	protected void setDDMFormFieldTemplateContextEvaluable(
@@ -603,8 +603,9 @@ public class DDMFormFieldTemplateContextFactory {
 
 		ddmFormFieldTemplateContext.put(
 			"valueChanged",
-			GetterUtil.getBoolean((Boolean)
-				ddmFormFieldEvaluationResult.getProperty("valueChanged")));
+			GetterUtil.getBoolean(
+				(Boolean)ddmFormFieldEvaluationResult.getProperty(
+					"valueChanged")));
 	}
 
 	protected void setDDMFormFieldTemplateContextValueLocalizableValue(

@@ -307,8 +307,8 @@ public class LayoutsAdminDisplayContext {
 	public long getFirstLayoutPageTemplateCollectionId() {
 		LayoutPageTemplateCollectionService
 			layoutPageTemplateCollectionService =
-				(LayoutPageTemplateCollectionService)_liferayPortletRequest.
-					getAttribute(
+				(LayoutPageTemplateCollectionService)
+					_liferayPortletRequest.getAttribute(
 						LayoutAdminWebKeys.
 							LAYOUT_PAGE_TEMPLATE_COLLECTION_SERVICE);
 

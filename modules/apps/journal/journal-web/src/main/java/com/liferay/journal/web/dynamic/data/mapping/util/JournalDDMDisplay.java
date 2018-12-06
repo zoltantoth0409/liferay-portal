@@ -277,8 +277,9 @@ public class JournalDDMDisplay extends BaseDDMDisplay {
 					LanguageUtil.get(resourceBundle, "templates"));
 				portletURL.setParameter(
 					"showAncestorScopes",
-					String.valueOf(_journalWebConfiguration.
-						showAncestorScopesByDefault()));
+					String.valueOf(
+						_journalWebConfiguration.
+							showAncestorScopesByDefault()));
 				portletURL.setParameter(
 					"showCacheableInput", Boolean.TRUE.toString());
 				portletURL.setParameter("showHeader", Boolean.FALSE.toString());
@@ -400,8 +401,9 @@ public class JournalDDMDisplay extends BaseDDMDisplay {
 					getTitle(liferayPortletRequest, liferayPortletResponse));
 				portletURL.setParameter(
 					"showAncestorScopes",
-					String.valueOf(_journalWebConfiguration.
-						showAncestorScopesByDefault()));
+					String.valueOf(
+						_journalWebConfiguration.
+							showAncestorScopesByDefault()));
 				portletURL.setParameter(
 					"showCacheableInput", Boolean.TRUE.toString());
 				portletURL.setParameter(
