@@ -14,6 +14,8 @@
 
 package com.liferay.segments.internal.asah.client.model;
 
+import com.liferay.portal.kernel.util.StringBundler;
+
 /**
  * @author Matthew Kong
  * @author David Arques
@@ -41,12 +43,11 @@ public class Author {
 
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder(6);
+		StringBundler sb = new StringBundler(5);
 
-		sb.append("Author{");
-		sb.append("_id='");
+		sb.append("{id=");
 		sb.append(_id);
-		sb.append("', _name='");
+		sb.append(", name=");
 		sb.append(_name);
 		sb.append("}");
 

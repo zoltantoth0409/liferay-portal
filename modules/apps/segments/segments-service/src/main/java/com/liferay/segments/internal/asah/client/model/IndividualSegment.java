@@ -16,6 +16,8 @@ package com.liferay.segments.internal.asah.client.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import com.liferay.portal.kernel.util.StringBundler;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -133,34 +135,33 @@ public class IndividualSegment {
 
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder(28);
+		StringBundler sb = new StringBundler(27);
 
-		sb.append("IndividualSegment{");
-		sb.append("_author='");
+		sb.append("{author=");
 		sb.append(_author);
-		sb.append("', _dateCreated='");
+		sb.append(", dateCreated=");
 		sb.append(_dateCreated);
-		sb.append("', _dateModified='");
+		sb.append(", dateModified=");
 		sb.append(_dateModified);
-		sb.append("', _embeddedResources='");
+		sb.append(", embeddedResources=");
 		sb.append(_embeddedResources);
-		sb.append("', _filter='");
+		sb.append(", filter=");
 		sb.append(_filter);
-		sb.append("', _filterMetadata='");
+		sb.append(", filterMetadata=");
 		sb.append(_filterMetadata);
-		sb.append("', _id='");
+		sb.append(", id=");
 		sb.append(_id);
-		sb.append("', _individualCount='");
+		sb.append(", individualCount=");
 		sb.append(_individualCount);
-		sb.append("', _name='");
+		sb.append(", name=");
 		sb.append(_name);
-		sb.append("', _scope='");
+		sb.append(", scope=");
 		sb.append(_scope);
-		sb.append("', _segmentType='");
+		sb.append(", segmentType=");
 		sb.append(_segmentType);
-		sb.append("', _state='");
+		sb.append(", state=");
 		sb.append(_state);
-		sb.append("', _status='");
+		sb.append(", status=");
 		sb.append(_status);
 		sb.append("}");
 
