@@ -45,19 +45,19 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		String url, MultivaluedMap<String, Object> parameters,
 		Map<String, String> headers) {
 
-		WebTarget target = _client.target(_baseURI);
+		WebTarget webTarget = _client.target(_baseURI);
 
-		target = target.path(url);
+		webTarget = webTarget.path(url);
 
 		for (MultivaluedMap.Entry<String, List<Object>> entry :
 				parameters.entrySet()) {
 
 			for (Object value : entry.getValue()) {
-				target = target.queryParam(entry.getKey(), value);
+				webTarget = webTarget.queryParam(entry.getKey(), value);
 			}
 		}
 
-		Invocation.Builder builder = target.request(
+		Invocation.Builder builder = webTarget.request(
 			MediaType.APPLICATION_JSON_TYPE);
 
 		for (Map.Entry<String, String> entry : headers.entrySet()) {

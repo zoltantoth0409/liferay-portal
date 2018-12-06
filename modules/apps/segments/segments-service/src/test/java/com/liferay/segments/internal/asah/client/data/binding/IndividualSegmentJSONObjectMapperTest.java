@@ -36,7 +36,7 @@ import org.junit.Test;
 public class IndividualSegmentJSONObjectMapperTest {
 
 	@Test
-	public void testmap() throws Exception {
+	public void testMap() throws Exception {
 		IndividualSegment individualSegment =
 			_individualSegmentJSONObjectMapper.map(
 				_read("get-individual-segment.json"));
@@ -53,7 +53,7 @@ public class IndividualSegmentJSONObjectMapperTest {
 	}
 
 	@Test
-	public void testmapResults() throws Exception {
+	public void testMapToResults() throws Exception {
 		Results<IndividualSegment> results =
 			_individualSegmentJSONObjectMapper.mapToResults(
 				_read("get-individual-segments.json"));
@@ -74,12 +74,12 @@ public class IndividualSegmentJSONObjectMapperTest {
 	}
 
 	@Test(expected = IOException.class)
-	public void testmapResultsWithInvalidJSON() throws Exception {
+	public void testMapToResultsThrowsIOException() throws Exception {
 		_individualSegmentJSONObjectMapper.mapToResults("invalid json");
 	}
 
 	@Test(expected = IOException.class)
-	public void testmapWithInvalidJSON() throws Exception {
+	public void testMapThrowsIOException() throws Exception {
 		_individualSegmentJSONObjectMapper.map("invalid json");
 	}
 
