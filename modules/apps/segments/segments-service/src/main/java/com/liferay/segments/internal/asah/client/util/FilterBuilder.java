@@ -63,13 +63,13 @@ public class FilterBuilder {
 			value = _getValue(value);
 		}
 
-		String filterString = FilterUtil.getFilter(fieldName, operator, value);
+		String filter = FilterUtil.getFilter(fieldName, operator, value);
 
 		if (required) {
-			_requiredFilters.add(filterString);
+			_requiredFilters.add(filter);
 		}
 		else {
-			_filters.add(filterString);
+			_filters.add(filter);
 		}
 	}
 
