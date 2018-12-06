@@ -75,7 +75,7 @@ public class AsahFaroBackendClientImpl implements AsahFaroBackendClient {
 
 		headers.put(
 			"OSB-Asah-Faro-Backend-Security-Signature",
-			System.getProperty( "asah.faro.backend.security.signature"));
+			System.getProperty("asah.faro.backend.security.signature"));
 
 		return headers;
 	}

@@ -52,6 +52,11 @@ public class IndividualSegmentJSONObjectMapperTest {
 		Assert.assertEquals("132184", author.getId());
 	}
 
+	@Test(expected = IOException.class)
+	public void testMapThrowsIOException() throws Exception {
+		_individualSegmentJSONObjectMapper.map("invalid json");
+	}
+
 	@Test
 	public void testMapToResults() throws Exception {
 		Results<IndividualSegment> results =
@@ -76,11 +81,6 @@ public class IndividualSegmentJSONObjectMapperTest {
 	@Test(expected = IOException.class)
 	public void testMapToResultsThrowsIOException() throws Exception {
 		_individualSegmentJSONObjectMapper.mapToResults("invalid json");
-	}
-
-	@Test(expected = IOException.class)
-	public void testMapThrowsIOException() throws Exception {
-		_individualSegmentJSONObjectMapper.map("invalid json");
 	}
 
 	private String _read(String fileName) throws Exception {
