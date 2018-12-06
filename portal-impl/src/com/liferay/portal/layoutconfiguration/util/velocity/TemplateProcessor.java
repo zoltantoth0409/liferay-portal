@@ -202,8 +202,12 @@ public class TemplateProcessor implements ColumnProcessor {
 		try {
 			PortletJSONUtil.writeHeaderPaths(_response, jsonObject);
 
+			HttpServletRequest request =
+				PortletContainerUtil.setupOptionalRenderParameters(
+					_request, null, null, null, null);
+
 			PortletContainerUtil.render(
-				_request, bufferCacheServletResponse, portlet);
+				request, bufferCacheServletResponse, portlet);
 
 			PortletJSONUtil.writeFooterPaths(_response, jsonObject);
 
