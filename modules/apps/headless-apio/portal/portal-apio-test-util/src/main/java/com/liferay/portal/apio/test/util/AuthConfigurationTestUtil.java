@@ -14,7 +14,6 @@
 
 package com.liferay.portal.apio.test.util;
 
-import java.util.Dictionary;
 import java.util.Hashtable;
 
 import org.osgi.framework.BundleContext;
@@ -42,19 +41,21 @@ public class AuthConfigurationTestUtil {
 					"ApioApplication",
 				null);
 
-		Dictionary<String, Object> dictionary = new Hashtable<>();
-
-		dictionary.put(
-			"auth.verifier.auth.verifier.BasicAuthHeaderAuthVerifier.urls." +
-				"includes",
-			"*");
-		dictionary.put(
-			"auth.verifier.auth.verifier.OAuth2RestAuthVerifier.urls.includes",
-			"*");
-		dictionary.put("auth.verifier.guest.allowed", "true");
-		dictionary.put("oauth2.scopechecker.type", "none");
-
-		configuration.update(dictionary);
+		configuration.update(
+			new Hashtable<String, Object>() {
+				{
+					put(
+						"auth.verifier.auth.verifier." +
+							"BasicAuthHeaderAuthVerifier.urls.includes",
+						"*");
+					put(
+						"auth.verifier.auth.verifier.OAuth2RestAuthVerifier." +
+							"urls.includes",
+						"*");
+					put("auth.verifier.guest.allowed", "true");
+					put("oauth2.scopechecker.type", "none");
+				}
+			});
 	}
 
 }
