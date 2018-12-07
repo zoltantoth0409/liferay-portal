@@ -139,11 +139,10 @@ public class OpenIdConnectLoginRequestMVCActionCommand
 				RenderURL renderURL = liferayPortletResponse.createRenderURL();
 
 				renderURL.setParameter(
+					"saveLastPath", Boolean.FALSE.toString());
+				renderURL.setParameter(
 					"mvcRenderCommandName",
 					OpenIdConnectWebKeys.OPEN_ID_CONNECT_REQUEST_ACTION_NAME);
-
-				renderURL.setParameter(
-					"saveLastPath", Boolean.FALSE.toString());
 
 				session.setAttribute(
 					OpenIdConnectWebKeys.OPEN_ID_CONNECT_RENDER_URL,
