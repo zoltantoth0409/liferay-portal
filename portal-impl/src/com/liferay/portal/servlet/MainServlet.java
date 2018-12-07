@@ -143,6 +143,8 @@ public class MainServlet extends ActionServlet {
 
 		_portalInitializedModuleServiceLifecycleServiceRegistration.
 			unregister();
+		_portalPortletsInitializedModuleServiceLifecycleServiceRegistration.
+			unregister();
 		_servletContextServiceRegistration.unregister();
 		_systemCheckModuleServiceLifecycleServiceRegistration.unregister();
 
@@ -1313,6 +1315,17 @@ public class MainServlet extends ActionServlet {
 
 		properties = new HashMap<>();
 
+		properties.put("module.service.lifecycle", "portlets.initialized");
+		properties.put("service.vendor", ReleaseInfo.getVendor());
+		properties.put("service.version", ReleaseInfo.getVersion());
+
+		_portalPortletsInitializedModuleServiceLifecycleServiceRegistration =
+			registry.registerService(
+				ModuleServiceLifecycle.class, new ModuleServiceLifecycle() {},
+				properties);
+
+		properties = new HashMap<>();
+
 		properties.put("bean.id", ServletContext.class.getName());
 		properties.put("original.bean", Boolean.TRUE);
 		properties.put("service.vendor", ReleaseInfo.getVendor());
@@ -1375,6 +1388,8 @@ public class MainServlet extends ActionServlet {
 
 	private ServiceRegistration<ModuleServiceLifecycle>
 		_portalInitializedModuleServiceLifecycleServiceRegistration;
+	private ServiceRegistration<ModuleServiceLifecycle>
+		_portalPortletsInitializedModuleServiceLifecycleServiceRegistration;
 	private PortalRequestProcessor _portalRequestProcessor;
 	private ServiceRegistration<ServletContext>
 		_servletContextServiceRegistration;
