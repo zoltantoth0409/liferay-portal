@@ -279,8 +279,7 @@ public class DDMStructureLocalServiceImpl
 
 		long structureId = counterLocalService.increment();
 
-		DDMStructure structure = ddmStructurePersistence.create(
-			structureId);
+		DDMStructure structure = ddmStructurePersistence.create(structureId);
 
 		structure.setUuid(serviceContext.getUuid());
 		structure.setGroupId(groupId);

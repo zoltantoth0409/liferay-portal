@@ -62,10 +62,10 @@ public class DEDataDefinitionServiceImpl implements DEDataDefinitionService {
 			return deDeleteRequestExecutor.execute(
 				deDataDefinitionDeleteRequest);
 		}
-		catch (DEDataDefinitionException dde) {
-			_log.error(dde, dde);
+		catch (DEDataDefinitionException dedde) {
+			_log.error(dedde, dedde);
 
-			throw dde;
+			throw dedde;
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -88,10 +88,10 @@ public class DEDataDefinitionServiceImpl implements DEDataDefinitionService {
 
 			return deGetRequestExecutor.execute(deDataDefinitionGetRequest);
 		}
-		catch (DEDataDefinitionException dde) {
-			_log.error(dde, dde);
+		catch (DEDataDefinitionException dedde) {
+			_log.error(dedde, dedde);
 
-			throw dde;
+			throw dedde;
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -113,7 +113,8 @@ public class DEDataDefinitionServiceImpl implements DEDataDefinitionService {
 
 			if (deDataDefinitionId == 0) {
 				checkCreateDataDefinitionPermission(
-					deDataDefinitionSaveRequest.getGroupId(), getPermissionChecker());
+					deDataDefinitionSaveRequest.getGroupId(),
+					getPermissionChecker());
 			}
 			else {
 				_modelResourcePermission.check(
@@ -127,10 +128,10 @@ public class DEDataDefinitionServiceImpl implements DEDataDefinitionService {
 			return DEDataDefinitionSaveResponse.Builder.of(
 				deDataDefinitionSaveResponse.getDEDataDefinitionId());
 		}
-		catch (DEDataDefinitionException dde) {
-			_log.error(dde, dde);
+		catch (DEDataDefinitionException dedde) {
+			_log.error(dedde, dedde);
 
-			throw dde;
+			throw dedde;
 		}
 		catch (Exception e) {
 			_log.error(e, e);

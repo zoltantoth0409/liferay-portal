@@ -292,8 +292,8 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 			WorkflowConstants.STATUS_APPROVED);
 
 		addRecordVersion(
-			user, record, ddmStorageId, DDLRecordConstants.VERSION_DEFAULT,
-			0, status);
+			user, record, ddmStorageId, DDLRecordConstants.VERSION_DEFAULT, 0,
+			status);
 
 		return record;
 	}
@@ -1078,8 +1078,7 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 
 		User user = userLocalService.getUser(userId);
 
-		DDLRecord record = ddlRecordPersistence.findByPrimaryKey(
-			recordId);
+		DDLRecord record = ddlRecordPersistence.findByPrimaryKey(recordId);
 
 		record.setModifiedDate(serviceContext.getModifiedDate(null));
 		record.setDDMStorageId(ddmStorageId);
