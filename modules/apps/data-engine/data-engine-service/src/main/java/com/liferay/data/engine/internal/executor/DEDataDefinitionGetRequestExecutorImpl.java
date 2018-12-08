@@ -54,8 +54,7 @@ public class DEDataDefinitionGetRequestExecutorImpl
 
 			return DEDataDefinitionGetResponse.Builder.of(map(ddmStructure));
 		}
-		catch (Exception e)
-		{
+		catch (Exception e) {
 			throw new DEDataDefinitionException(e);
 		}
 	}
