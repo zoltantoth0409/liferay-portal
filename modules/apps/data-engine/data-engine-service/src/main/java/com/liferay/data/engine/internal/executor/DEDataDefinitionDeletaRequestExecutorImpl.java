@@ -69,7 +69,6 @@ public class DEDataDefinitionDeletaRequestExecutorImpl
 
 				dynamicQuery.add(ddmStructureIdProperty.eq(deDataDefinitionId));
 			});
-
 		actionableDynamicQuery.setPerformActionMethod(
 			(DDLRecordSet ddlRecordSet) ->
 				ddlRecordSetLocalService.deleteDDLRecordSet(ddlRecordSet));
