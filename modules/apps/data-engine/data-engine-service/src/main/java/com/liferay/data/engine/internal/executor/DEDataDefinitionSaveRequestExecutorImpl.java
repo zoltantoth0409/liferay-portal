@@ -60,12 +60,6 @@ public class DEDataDefinitionSaveRequestExecutorImpl
 		throws DEDataDefinitionException {
 
 		try {
-			long userId = deDataDefinitionSaveRequest.getUserId();
-
-			long groupId = deDataDefinitionSaveRequest.getGroupId();
-
-			long classNameId = portal.getClassNameId(DEDataDefinition.class);
-
 			DEDataDefinition deDataDefinition =
 				deDataDefinitionSaveRequest.getDEDataDefinition();
 
@@ -76,24 +70,25 @@ public class DEDataDefinitionSaveRequestExecutorImpl
 
 			if (deDataDefinitionId == 0) {
 				DDMStructure ddmStructure = createDDMStructure(
-					userId, groupId, classNameId, deDataDefinition,
-					serviceContext);
+					deDataDefinitionSaveRequest.getUserId(), deDataDefinitionSaveRequest.getGroupId(),
+					portal.getClassNameId(DEDataDefinition.class),
+					deDataDefinition, serviceContext);
 
 				deDataDefinitionId = ddmStructure.getStructureId();
 
 				resourceLocalService.addModelResources(
-					ddmStructure.getCompanyId(), groupId, userId,
+					ddmStructure.getCompanyId(), deDataDefinitionSaveRequest.getGroupId(), deDataDefinitionSaveRequest.getUserId(),
 					DEDataDefinition.class.getName(), deDataDefinitionId,
 					serviceContext.getModelPermissions());
 
 				ddlRecordSetLocalService.addRecordSet(
-					userId, groupId, deDataDefinitionId,
+					deDataDefinitionSaveRequest.getUserId(), deDataDefinitionSaveRequest.getGroupId(), deDataDefinitionId,
 					String.valueOf(deDataDefinitionId),
 					ddmStructure.getNameMap(), ddmStructure.getDescriptionMap(),
 					0, DDLRecordSetConstants.SCOPE_DATA_ENGINE, serviceContext);
 			}
 			else {
-				updateDDMStructure(userId, deDataDefinition, serviceContext);
+				updateDDMStructure(deDataDefinitionSaveRequest.getUserId(), deDataDefinition, serviceContext);
 			}
 
 			return DEDataDefinitionSaveResponse.Builder.of(deDataDefinitionId);
