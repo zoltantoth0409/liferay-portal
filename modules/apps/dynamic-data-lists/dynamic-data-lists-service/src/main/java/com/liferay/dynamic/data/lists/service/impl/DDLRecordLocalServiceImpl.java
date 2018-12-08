@@ -264,24 +264,24 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 		DDLRecordSet ddlRecordSet = ddlRecordSetPersistence.findByPrimaryKey(
 			ddlRecordSetId);
 
-		long ddlRecordId = counterLocalService.increment();
+		long recordId = counterLocalService.increment();
 
-		DDLRecord ddlRecord = ddlRecordPersistence.create(ddlRecordId);
+		DDLRecord record = ddlRecordPersistence.create(recordId);
 
-		ddlRecord.setUuid(serviceContext.getUuid());
-		ddlRecord.setGroupId(groupId);
-		ddlRecord.setCompanyId(user.getCompanyId());
-		ddlRecord.setUserId(user.getUserId());
-		ddlRecord.setUserName(user.getFullName());
-		ddlRecord.setVersionUserId(user.getUserId());
-		ddlRecord.setVersionUserName(user.getFullName());
-		ddlRecord.setDDMStorageId(ddmStorageId);
-		ddlRecord.setRecordSetId(ddlRecordSetId);
-		ddlRecord.setRecordSetVersion(ddlRecordSet.getVersion());
-		ddlRecord.setVersion(DDLRecordConstants.VERSION_DEFAULT);
-		ddlRecord.setDisplayIndex(0);
+		record.setUuid(serviceContext.getUuid());
+		record.setGroupId(groupId);
+		record.setCompanyId(user.getCompanyId());
+		record.setUserId(user.getUserId());
+		record.setUserName(user.getFullName());
+		record.setVersionUserId(user.getUserId());
+		record.setVersionUserName(user.getFullName());
+		record.setDDMStorageId(ddmStorageId);
+		record.setRecordSetId(ddlRecordSetId);
+		record.setRecordSetVersion(ddlRecordSet.getVersion());
+		record.setVersion(DDLRecordConstants.VERSION_DEFAULT);
+		record.setDisplayIndex(0);
 
-		ddlRecordPersistence.update(ddlRecord);
+		ddlRecordPersistence.update(record);
 
 		// Record version
 
@@ -290,10 +290,10 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 			WorkflowConstants.STATUS_APPROVED);
 
 		addRecordVersion(
-			user, ddlRecord, ddmStorageId, DDLRecordConstants.VERSION_DEFAULT,
+			user, record, ddmStorageId, DDLRecordConstants.VERSION_DEFAULT,
 			0, status);
 
-		return ddlRecord;
+		return record;
 	}
 
 	/**
@@ -1068,7 +1068,7 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public DDLRecord updateRecord(
-			long userId, long ddlRecordId, long ddmStorageId,
+			long userId, long recordId, long ddmStorageId,
 			ServiceContext serviceContext)
 		throws PortalException {
 
@@ -1076,17 +1076,17 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 
 		User user = userLocalService.getUser(userId);
 
-		DDLRecord ddlRecord = ddlRecordPersistence.findByPrimaryKey(
-			ddlRecordId);
+		DDLRecord record = ddlRecordPersistence.findByPrimaryKey(
+			recordId);
 
-		ddlRecord.setModifiedDate(serviceContext.getModifiedDate(null));
-		ddlRecord.setDDMStorageId(ddmStorageId);
+		record.setModifiedDate(serviceContext.getModifiedDate(null));
+		record.setDDMStorageId(ddmStorageId);
 
-		ddlRecord = ddlRecordPersistence.update(ddlRecord);
+		record = ddlRecordPersistence.update(record);
 
 		// Record version
 
-		DDLRecordVersion ddlRecordVersion = ddlRecord.getLatestRecordVersion();
+		DDLRecordVersion ddlRecordVersion = record.getLatestRecordVersion();
 
 		String version = getNextVersion(
 			ddlRecordVersion.getVersion(), true,
@@ -1096,9 +1096,9 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 			serviceContext.getAttribute("status"),
 			WorkflowConstants.STATUS_APPROVED);
 
-		addRecordVersion(user, ddlRecord, ddmStorageId, version, 0, status);
+		addRecordVersion(user, record, ddmStorageId, version, 0, status);
 
-		return ddlRecord;
+		return record;
 	}
 
 	/**
