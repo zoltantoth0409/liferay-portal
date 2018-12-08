@@ -106,8 +106,6 @@ public class DEDataDefinitionServiceImpl implements DEDataDefinitionService {
 		throws DEDataDefinitionException {
 
 		try {
-			long groupId = deDataDefinitionSaveRequest.getGroupId();
-
 			DEDataDefinition deDataDefinition =
 				deDataDefinitionSaveRequest.getDEDataDefinition();
 
@@ -115,7 +113,7 @@ public class DEDataDefinitionServiceImpl implements DEDataDefinitionService {
 
 			if (deDataDefinitionId == 0) {
 				checkCreateDataDefinitionPermission(
-					groupId, getPermissionChecker());
+					deDataDefinitionSaveRequest.getGroupId(), getPermissionChecker());
 			}
 			else {
 				_modelResourcePermission.check(
