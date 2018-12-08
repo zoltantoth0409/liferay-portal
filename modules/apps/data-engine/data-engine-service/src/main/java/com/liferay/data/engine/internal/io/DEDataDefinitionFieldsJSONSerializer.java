@@ -118,7 +118,7 @@ public class DEDataDefinitionFieldsJSONSerializer
 	}
 
 	protected void setProperty(
-		String property, JSONObject jsonObject, Map<String, String> map) {
+		String propertyKey, JSONObject jsonObject, Map<String, String> map) {
 
 		JSONObject languageJSONObject = jsonFactory.createJSONObject();
 
@@ -129,7 +129,7 @@ public class DEDataDefinitionFieldsJSONSerializer
 		stream.forEach(
 			entry -> languageJSONObject.put(entry.getKey(), entry.getValue()));
 
-		jsonObject.put(property, languageJSONObject);
+		jsonObject.put(propertyKey, languageJSONObject);
 	}
 
 	@Reference
