@@ -1514,22 +1514,22 @@ public class DDMStructureLocalServiceImpl
 
 	@Override
 	public DDMStructure updateStructure(
-			long structureId, long userId, long parentStructureId,
+			long userId, long structureId, long parentStructureId,
 			Map<Locale, String> nameMap, Map<Locale, String> descriptionMap,
 			String definition, ServiceContext serviceContext)
 		throws PortalException {
 
-		DDMStructure ddmStructure = ddmStructurePersistence.findByPrimaryKey(
+		DDMStructure structure = ddmStructurePersistence.findByPrimaryKey(
 			structureId);
 
 		User user = userLocalService.getUser(userId);
 
-		ddmStructure.setUserId(userId);
-		ddmStructure.setParentStructureId(parentStructureId);
+		structure.setUserId(userId);
+		structure.setParentStructureId(parentStructureId);
 
 		DDMStructureVersion latestStructureVersion =
 			ddmStructureVersionLocalService.getLatestStructureVersion(
-				ddmStructure.getStructureId());
+				structure.getStructureId());
 
 		boolean majorVersion = GetterUtil.getBoolean(
 			serviceContext.getAttribute("majorVersion"));
@@ -1537,30 +1537,30 @@ public class DDMStructureLocalServiceImpl
 		String version = getNextVersion(
 			latestStructureVersion.getVersion(), majorVersion);
 
-		ddmStructure.setVersion(version);
+		structure.setVersion(version);
 
-		ddmStructure.setNameMap(nameMap);
-		ddmStructure.setVersionUserId(user.getUserId());
-		ddmStructure.setVersionUserName(user.getFullName());
-		ddmStructure.setDescriptionMap(descriptionMap);
-		ddmStructure.setDefinition(definition);
+		structure.setNameMap(nameMap);
+		structure.setVersionUserId(user.getUserId());
+		structure.setVersionUserName(user.getFullName());
+		structure.setDescriptionMap(descriptionMap);
+		structure.setDefinition(definition);
 
 		// Structure version
 
-		DDMStructureVersion ddmStructureVersion = addStructureVersion(
-			user, ddmStructure, version, serviceContext);
+		DDMStructureVersion structureVersion = addStructureVersion(
+			user, structure, version, serviceContext);
 
-		if (!ddmStructureVersion.isApproved()) {
-			return ddmStructure;
+		if (!structureVersion.isApproved()) {
+			return structure;
 		}
 
-		ddmStructurePersistence.update(ddmStructure);
+		ddmStructurePersistence.update(structure);
 
 		// Indexer
 
-		reindexStructure(ddmStructure, serviceContext);
+		reindexStructure(structure, serviceContext);
 
-		return ddmStructure;
+		return structure;
 	}
 
 	/**
