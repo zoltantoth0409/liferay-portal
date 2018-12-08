@@ -142,15 +142,13 @@ public final class DEDataDefinition implements ClassedModel, Serializable {
 
 	@Override
 	public int hashCode() {
-		int hash = HashUtil.hash(0, _name.hashCode());
-
-		hash = HashUtil.hash(hash, _description.hashCode());
+		int hash = HashUtil.hash(0, _deDataDefinitionFields.hashCode());
 
 		hash = HashUtil.hash(hash, _deDataDefinitionId);
+		hash = HashUtil.hash(hash, _description.hashCode());
+		hash = HashUtil.hash(hash, _name.hashCode());
 
-		hash = HashUtil.hash(hash, _storageType.hashCode());
-
-		return HashUtil.hash(hash, _deDataDefinitionFields.hashCode());
+		return HashUtil.hash(hash, _storageType.hashCode());
 	}
 
 	public void setDEDataDefinitionFields(
