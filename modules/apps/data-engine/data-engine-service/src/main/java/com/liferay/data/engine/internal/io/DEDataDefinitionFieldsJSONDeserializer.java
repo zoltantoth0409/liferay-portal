@@ -65,8 +65,7 @@ public class DEDataDefinitionFieldsJSONDeserializer
 			return DEDataDefinitionFieldsDeserializerApplyResponse.Builder.of(
 				deDataDefinitionFields);
 		}
-		catch (JSONException e)
-		{
+		catch (JSONException e) {
 			throw new DEDataDefinitionFieldsDeserializerException(
 				"Invalid JSON format");
 		}
