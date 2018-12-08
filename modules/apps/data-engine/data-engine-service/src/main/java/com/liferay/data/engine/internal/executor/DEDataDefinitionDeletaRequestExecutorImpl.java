@@ -53,8 +53,7 @@ public class DEDataDefinitionDeletaRequestExecutorImpl
 			return DEDataDefinitionDeleteResponse.Builder.of(
 				deDataDefinitionId);
 		}
-		catch (Exception e)
-		{
+		catch (Exception e) {
 			throw new DEDataDefinitionException(e);
 		}
 	}
