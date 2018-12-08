@@ -161,7 +161,8 @@ public class DEDataDefinitionServiceImpl implements DEDataDefinitionService {
 			PermissionThreadLocal.getPermissionChecker();
 
 		if (permissionChecker == null) {
-			throw new PrincipalException("PermissionChecker not initialized");
+			throw new PrincipalException(
+				"Permission checker is not initialized");
 		}
 
 		return permissionChecker;
