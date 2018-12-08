@@ -110,7 +110,7 @@ public class DEDataDefinitionSaveRequestExecutorImpl
 			deDataDefinition.getDescription());
 
 		return ddmStructureLocalService.addStructure(
-			groupId, userId, DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
+			userId, groupId, DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
 			classNameId, null, nameMap, descriptionMap,
 			serialize(deDataDefinition), deDataDefinition.getStorageType(),
 			serviceContext);
