@@ -262,7 +262,7 @@ public class DDMStructureLocalServiceImpl
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public DDMStructure addStructure(
-			long groupId, long userId, long parentStructureId, long classNameId,
+			long userId, long groupId, long parentStructureId, long classNameId,
 			String structureKey, Map<Locale, String> nameMap,
 			Map<Locale, String> descriptionMap, String definition,
 			String storageType, ServiceContext serviceContext)
@@ -277,35 +277,35 @@ public class DDMStructureLocalServiceImpl
 			structureKey = StringUtil.toUpperCase(structureKey.trim());
 		}
 
-		long ddmStructureId = counterLocalService.increment();
+		long structureId = counterLocalService.increment();
 
-		DDMStructure ddmStructure = ddmStructurePersistence.create(
-			ddmStructureId);
+		DDMStructure structure = ddmStructurePersistence.create(
+			structureId);
 
-		ddmStructure.setUuid(serviceContext.getUuid());
-		ddmStructure.setGroupId(groupId);
-		ddmStructure.setCompanyId(user.getCompanyId());
-		ddmStructure.setUserId(user.getUserId());
-		ddmStructure.setUserName(user.getFullName());
-		ddmStructure.setVersionUserId(user.getUserId());
-		ddmStructure.setVersionUserName(user.getFullName());
-		ddmStructure.setParentStructureId(parentStructureId);
-		ddmStructure.setClassNameId(classNameId);
-		ddmStructure.setStructureKey(structureKey);
-		ddmStructure.setVersion(DDMStructureConstants.VERSION_DEFAULT);
-		ddmStructure.setNameMap(nameMap);
-		ddmStructure.setDescriptionMap(descriptionMap);
-		ddmStructure.setDefinition(definition);
-		ddmStructure.setStorageType(storageType);
-		ddmStructure.setType(DDMStructureConstants.TYPE_DEFAULT);
+		structure.setUuid(serviceContext.getUuid());
+		structure.setGroupId(groupId);
+		structure.setCompanyId(user.getCompanyId());
+		structure.setUserId(user.getUserId());
+		structure.setUserName(user.getFullName());
+		structure.setVersionUserId(user.getUserId());
+		structure.setVersionUserName(user.getFullName());
+		structure.setParentStructureId(parentStructureId);
+		structure.setClassNameId(classNameId);
+		structure.setStructureKey(structureKey);
+		structure.setVersion(DDMStructureConstants.VERSION_DEFAULT);
+		structure.setNameMap(nameMap);
+		structure.setDescriptionMap(descriptionMap);
+		structure.setDefinition(definition);
+		structure.setStorageType(storageType);
+		structure.setType(DDMStructureConstants.TYPE_DEFAULT);
 
-		ddmStructurePersistence.update(ddmStructure);
+		ddmStructurePersistence.update(structure);
 
 		addStructureVersion(
-			user, ddmStructure, DDMStructureConstants.VERSION_DEFAULT,
+			user, structure, DDMStructureConstants.VERSION_DEFAULT,
 			serviceContext);
 
-		return ddmStructure;
+		return structure;
 	}
 
 	@Override
