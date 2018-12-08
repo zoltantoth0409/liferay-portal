@@ -260,6 +260,8 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 			ServiceContext serviceContext)
 		throws PortalException {
 
+		// Record
+
 		User user = userLocalService.getUser(userId);
 		DDLRecordSet ddlRecordSet = ddlRecordSetPersistence.findByPrimaryKey(
 			ddlRecordSetId);
