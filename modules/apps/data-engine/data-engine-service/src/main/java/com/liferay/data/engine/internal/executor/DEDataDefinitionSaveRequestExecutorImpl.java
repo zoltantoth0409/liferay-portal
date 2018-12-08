@@ -117,11 +117,11 @@ public class DEDataDefinitionSaveRequestExecutorImpl
 	}
 
 	protected Map<Locale, String> createLocalizedMap(Map<String, String> map) {
-		Set<Map.Entry<String, String>> entrySet = map.entrySet();
+		Set<Map.Entry<String, String>> set = map.entrySet();
 
-		Stream<Map.Entry<String, String>> entryStream = entrySet.stream();
+		Stream<Map.Entry<String, String>> stream = set.stream();
 
-		return entryStream.collect(
+		return stream.collect(
 			Collectors.toMap(
 				entry -> LocaleUtil.fromLanguageId(entry.getKey()),
 				entry -> entry.getValue()));
