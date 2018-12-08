@@ -155,7 +155,7 @@ public interface DDLRecordLocalService extends BaseLocalService,
 		ServiceContext serviceContext) throws PortalException;
 
 	@Indexable(type = IndexableType.REINDEX)
-	public DDLRecord addRecord(long groupId, long userId, long ddmStorageId,
+	public DDLRecord addRecord(long userId, long groupId, long ddmStorageId,
 		long ddlRecordSetId, ServiceContext serviceContext)
 		throws PortalException;
 
@@ -763,7 +763,7 @@ public interface DDLRecordLocalService extends BaseLocalService,
 		ServiceContext serviceContext) throws PortalException;
 
 	@Indexable(type = IndexableType.REINDEX)
-	public DDLRecord updateRecord(long ddlRecordId, long userId,
+	public DDLRecord updateRecord(long userId, long recordId,
 		long ddmStorageId, ServiceContext serviceContext)
 		throws PortalException;
 
