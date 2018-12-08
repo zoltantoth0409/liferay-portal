@@ -98,8 +98,7 @@ public class DEDataDefinitionSaveRequestExecutorImpl
 
 			return DEDataDefinitionSaveResponse.Builder.of(deDataDefinitionId);
 		}
-		catch (Exception e)
-		{
+		catch (Exception e) {
 			throw new DEDataDefinitionException(e);
 		}
 	}
