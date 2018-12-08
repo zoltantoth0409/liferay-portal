@@ -122,9 +122,9 @@ public class DEDataDefinitionFieldsJSONSerializer
 
 		JSONObject languageJSONObject = jsonFactory.createJSONObject();
 
-		Set<Map.Entry<String, String>> entries = map.entrySet();
+		Set<Map.Entry<String, String>> set = map.entrySet();
 
-		Stream<Map.Entry<String, String>> stream = entries.stream();
+		Stream<Map.Entry<String, String>> stream = set.stream();
 
 		stream.forEach(
 			entry -> languageJSONObject.put(entry.getKey(), entry.getValue()));
