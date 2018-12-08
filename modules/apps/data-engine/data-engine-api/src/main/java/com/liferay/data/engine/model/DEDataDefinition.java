@@ -85,14 +85,14 @@ public final class DEDataDefinition implements ClassedModel, Serializable {
 
 		DEDataDefinition deDataDefinition = (DEDataDefinition)obj;
 
-		if (Objects.equals(_name, deDataDefinition._name) &&
-			Objects.equals(_description, deDataDefinition._description) &&
+		if (Objects.equals(
+				_deDataDefinitionFields,
+				deDataDefinition._deDataDefinitionFields) &&
 			Objects.equals(
 				_deDataDefinitionId, deDataDefinition._deDataDefinitionId) &&
-			Objects.equals(_storageType, deDataDefinition._storageType) &&
-			Objects.equals(
-				_deDataDefinitionFields,
-				deDataDefinition._deDataDefinitionFields)) {
+			Objects.equals(_description, deDataDefinition._description) &&
+			Objects.equals(_name, deDataDefinition._name) &&
+			Objects.equals(_storageType, deDataDefinition._storageType)) {
 
 			return true;
 		}
