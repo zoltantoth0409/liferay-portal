@@ -62,14 +62,12 @@ public class DEDataDefinitionServiceImpl implements DEDataDefinitionService {
 			return deDeleteRequestExecutor.execute(
 				deDataDefinitionDeleteRequest);
 		}
-		catch (DEDataDefinitionException dde)
-		{
+		catch (DEDataDefinitionException dde) {
 			_log.error(dde, dde);
 
 			throw dde;
 		}
-		catch (Exception e)
-		{
+		catch (Exception e) {
 			_log.error(e, e);
 
 			throw new DEDataDefinitionException(e);
@@ -90,14 +88,12 @@ public class DEDataDefinitionServiceImpl implements DEDataDefinitionService {
 
 			return deGetRequestExecutor.execute(deDataDefinitionGetRequest);
 		}
-		catch (DEDataDefinitionException dde)
-		{
+		catch (DEDataDefinitionException dde) {
 			_log.error(dde, dde);
 
 			throw dde;
 		}
-		catch (Exception e)
-		{
+		catch (Exception e) {
 			_log.error(e, e);
 
 			throw new DEDataDefinitionException(e);
@@ -133,14 +129,12 @@ public class DEDataDefinitionServiceImpl implements DEDataDefinitionService {
 			return DEDataDefinitionSaveResponse.Builder.of(
 				deDataDefinitionSaveResponse.getDEDataDefinitionId());
 		}
-		catch (DEDataDefinitionException dde)
-		{
+		catch (DEDataDefinitionException dde) {
 			_log.error(dde, dde);
 
 			throw dde;
 		}
-		catch (Exception e)
-		{
+		catch (Exception e) {
 			_log.error(e, e);
 
 			throw new DEDataDefinitionException(e);
