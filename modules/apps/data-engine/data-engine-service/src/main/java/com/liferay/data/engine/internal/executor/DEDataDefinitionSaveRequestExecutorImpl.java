@@ -163,7 +163,7 @@ public class DEDataDefinitionSaveRequestExecutorImpl
 			deDataDefinition.getDescription());
 
 		ddmStructureLocalService.updateStructure(
-			deDataDefinition.getDEDataDefinitionId(), userId,
+			userId, deDataDefinition.getDEDataDefinitionId(),
 			DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID, nameMap,
 			descriptionMap, serialize(deDataDefinition), serviceContext);
 	}
