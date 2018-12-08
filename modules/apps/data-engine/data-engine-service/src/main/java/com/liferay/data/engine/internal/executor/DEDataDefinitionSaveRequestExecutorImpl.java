@@ -105,7 +105,6 @@ public class DEDataDefinitionSaveRequestExecutorImpl
 
 		Map<Locale, String> nameMap = createLocalizedMap(
 			deDataDefinition.getName());
-
 		Map<Locale, String> descriptionMap = createLocalizedMap(
 			deDataDefinition.getDescription());
 
