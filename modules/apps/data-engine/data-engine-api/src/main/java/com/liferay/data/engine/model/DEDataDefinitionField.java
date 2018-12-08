@@ -107,17 +107,11 @@ public final class DEDataDefinitionField implements Serializable {
 		}
 
 		hash = HashUtil.hash(hash, _indexable);
-
 		hash = HashUtil.hash(hash, _label.hashCode());
-
 		hash = HashUtil.hash(hash, _localizable);
-
 		hash = HashUtil.hash(hash, _name.hashCode());
-
 		hash = HashUtil.hash(hash, _repeatable);
-
 		hash = HashUtil.hash(hash, _required);
-
 		hash = HashUtil.hash(hash, _tip.hashCode());
 
 		return HashUtil.hash(hash, _type.hashCode());
