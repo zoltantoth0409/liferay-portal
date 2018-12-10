@@ -2806,7 +2806,6 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_CN_CPK_CLASSNAME_1 = "kaleoInstance.className IS NULL AND ";
 	private static final String _FINDER_COLUMN_CN_CPK_CLASSNAME_2 = "kaleoInstance.className = ? AND ";
 	private static final String _FINDER_COLUMN_CN_CPK_CLASSNAME_3 = "(kaleoInstance.className IS NULL OR kaleoInstance.className = '') AND ";
 	private static final String _FINDER_COLUMN_CN_CPK_CLASSPK_2 = "kaleoInstance.classPK = ?";
@@ -3533,8 +3532,6 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 	}
 
 	private static final String _FINDER_COLUMN_C_KDN_KDV_CD_COMPANYID_2 = "kaleoInstance.companyId = ? AND ";
-	private static final String _FINDER_COLUMN_C_KDN_KDV_CD_KALEODEFINITIONNAME_1 =
-		"kaleoInstance.kaleoDefinitionName IS NULL AND ";
 	private static final String _FINDER_COLUMN_C_KDN_KDV_CD_KALEODEFINITIONNAME_2 =
 		"kaleoInstance.kaleoDefinitionName = ? AND ";
 	private static final String _FINDER_COLUMN_C_KDN_KDV_CD_KALEODEFINITIONNAME_3 =

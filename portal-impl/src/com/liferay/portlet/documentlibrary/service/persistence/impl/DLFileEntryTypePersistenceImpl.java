@@ -647,7 +647,6 @@ public class DLFileEntryTypePersistenceImpl extends BasePersistenceImpl<DLFileEn
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_UUID_1 = "dlFileEntryType.uuid IS NULL";
 	private static final String _FINDER_COLUMN_UUID_UUID_2 = "dlFileEntryType.uuid = ?";
 	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(dlFileEntryType.uuid IS NULL OR dlFileEntryType.uuid = '')";
 	public static final FinderPath FINDER_PATH_FETCH_BY_UUID_G = new FinderPath(DLFileEntryTypeModelImpl.ENTITY_CACHE_ENABLED,
@@ -894,7 +893,6 @@ public class DLFileEntryTypePersistenceImpl extends BasePersistenceImpl<DLFileEn
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_G_UUID_1 = "dlFileEntryType.uuid IS NULL AND ";
 	private static final String _FINDER_COLUMN_UUID_G_UUID_2 = "dlFileEntryType.uuid = ? AND ";
 	private static final String _FINDER_COLUMN_UUID_G_UUID_3 = "(dlFileEntryType.uuid IS NULL OR dlFileEntryType.uuid = '') AND ";
 	private static final String _FINDER_COLUMN_UUID_G_GROUPID_2 = "dlFileEntryType.groupId = ?";
@@ -1481,7 +1479,6 @@ public class DLFileEntryTypePersistenceImpl extends BasePersistenceImpl<DLFileEn
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_C_UUID_1 = "dlFileEntryType.uuid IS NULL AND ";
 	private static final String _FINDER_COLUMN_UUID_C_UUID_2 = "dlFileEntryType.uuid = ? AND ";
 	private static final String _FINDER_COLUMN_UUID_C_UUID_3 = "(dlFileEntryType.uuid IS NULL OR dlFileEntryType.uuid = '') AND ";
 	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 = "dlFileEntryType.companyId = ?";
@@ -3060,7 +3057,6 @@ public class DLFileEntryTypePersistenceImpl extends BasePersistenceImpl<DLFileEn
 	}
 
 	private static final String _FINDER_COLUMN_G_F_GROUPID_2 = "dlFileEntryType.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_F_FILEENTRYTYPEKEY_1 = "dlFileEntryType.fileEntryTypeKey IS NULL";
 	private static final String _FINDER_COLUMN_G_F_FILEENTRYTYPEKEY_2 = "dlFileEntryType.fileEntryTypeKey = ?";
 	private static final String _FINDER_COLUMN_G_F_FILEENTRYTYPEKEY_3 = "(dlFileEntryType.fileEntryTypeKey IS NULL OR dlFileEntryType.fileEntryTypeKey = '')";
 
