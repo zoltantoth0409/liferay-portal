@@ -121,6 +121,16 @@
 	<td></td>
 </tr>
 <tr>
+	<td>TEXT_FORMATTING_LINK_BROWSE_BUTTON</td>
+	<td>//button[contains(@aria-label,'Browse')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>TEXT_FORMATTING_LINK_INPUT</td>
+	<td>//div[contains(@class,'ae-container-input')]//input[contains(@class,'ae-input')]</td>
+	<td></td>
+</tr>
+<tr>
 	<td></td>
 	<td></td>
 	<td></td>
