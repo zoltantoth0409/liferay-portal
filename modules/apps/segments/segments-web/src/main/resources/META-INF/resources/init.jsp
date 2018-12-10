@@ -57,7 +57,3 @@ page import="com.liferay.segments.web.internal.display.context.SelectSegmentsEnt
 <liferay-theme:defineObjects />
 
 <portlet:defineObjects />
-
-<%
-String resolvedModuleName = (String)renderRequest.getAttribute(SegmentsWebKeys.RESOLVED_MODULE_NAME);
-%>
