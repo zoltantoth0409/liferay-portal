@@ -15,11 +15,11 @@
 package com.liferay.portal.workflow.definition.web.internal.portlet;
 
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -39,14 +39,11 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Objects;
 
-import javax.portlet.ActionRequest;
-import javax.portlet.ActionResponse;
 import javax.portlet.Portlet;
 import javax.portlet.PortletException;
+import javax.portlet.PortletRequest;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
-import javax.portlet.ResourceRequest;
-import javax.portlet.ResourceResponse;
 
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -83,28 +80,16 @@ import org.osgi.service.component.annotations.Modified;
 public class WorkflowDefinitionPortlet extends MVCPortlet {
 
 	@Override
-	public void processAction(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws IOException, PortletException {
-
-		checkCompanyAdmin();
-
-		super.processAction(actionRequest, actionResponse);
-	}
-
-	@Override
 	public void render(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
-
-		checkCompanyAdmin();
 
 		try {
 			String path = getPath(renderRequest, renderResponse);
 
 			WorkflowDefinitionDisplayContext displayContext =
 				new WorkflowDefinitionDisplayContext(renderRequest);
-			
+
 			displayContext.setCompanyAdministratorCanPublish(
 				_companyAdministratorCanPublish);
 
@@ -129,16 +114,6 @@ public class WorkflowDefinitionPortlet extends MVCPortlet {
 		super.render(renderRequest, renderResponse);
 	}
 
-	@Override
-	public void serveResource(
-			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
-		throws IOException, PortletException {
-
-		checkCompanyAdmin();
-
-		super.serveResource(resourceRequest, resourceResponse);
-	}
-
 	@Activate
 	@Modified
 	protected void activate(Map<String, Object> properties) {
@@ -146,20 +121,22 @@ public class WorkflowDefinitionPortlet extends MVCPortlet {
 			ConfigurableUtil.createConfigurable(
 				WorkflowDefinitionConfiguration.class, properties);
 
- 		_companyAdministratorCanPublish =
+		_companyAdministratorCanPublish =
 			workflowDefinitionConfiguration.companyAdministratorCanPublish();
 	}
 
-	protected void checkCompanyAdmin() throws PortletException {
+	@Override
+	protected void checkPermissions(PortletRequest portletRequest)
+		throws Exception {
+
+		super.checkPermissions(portletRequest);
+
 		PermissionChecker permissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
 
 		if (!permissionChecker.isCompanyAdmin()) {
-			PrincipalException principalException =
-				new PrincipalException.MustBeCompanyAdmin(
-					permissionChecker.getUserId());
-
-			throw new PortletException(principalException);
+			throw new PrincipalException.MustBeCompanyAdmin(
+				permissionChecker.getUserId());
 		}
 	}
 
@@ -212,7 +189,7 @@ public class WorkflowDefinitionPortlet extends MVCPortlet {
 		renderRequest.setAttribute(
 			WebKeys.WORKFLOW_DEFINITION, workflowDefinition);
 	}
-	
+
 	private boolean _companyAdministratorCanPublish;
 
 }
