@@ -181,6 +181,21 @@ public class DDMExpressionImpl<T> implements DDMExpression<T> {
 
 		Variable variable = _variables.get(variableName);
 
+		if ((variable == null) && !_variables.isEmpty()) {
+			for (Map.Entry<String, Variable> entry : _variables.entrySet()) {
+				String key = entry.getKey();
+				Object value = entry.getValue();
+
+				if (variableName.startsWith(key) && (value != null)) {
+					variableName = key;
+
+					variable = new Variable(key);
+
+					_variables.put(key, variable);
+				}
+			}
+		}
+
 		if (variable == null) {
 			return;
 		}
@@ -389,6 +404,21 @@ public class DDMExpressionImpl<T> implements DDMExpression<T> {
 
 	protected void setVariableValue(String variableName, Object variableValue) {
 		Variable variable = _variables.get(variableName);
+
+		if ((variable == null) && !_variables.isEmpty()) {
+			for (Map.Entry<String, Variable> entry : _variables.entrySet()) {
+				String key = entry.getKey();
+				Object value = entry.getValue();
+
+				if (variableName.startsWith(key) && (value != null)) {
+					variableName = key;
+
+					variable = new Variable(key);
+
+					_variables.put(key, variable);
+				}
+			}
+		}
 
 		if (variable == null) {
 			return;
