@@ -344,7 +344,6 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	}
 
 	private static final String _FINDER_COLUMN_U_TSN_USERID_2 = "feed.userId = ? AND ";
-	private static final String _FINDER_COLUMN_U_TSN_TWITTERSCREENNAME_1 = "feed.twitterScreenName IS NULL";
 	private static final String _FINDER_COLUMN_U_TSN_TWITTERSCREENNAME_2 = "feed.twitterScreenName = ?";
 	private static final String _FINDER_COLUMN_U_TSN_TWITTERSCREENNAME_3 = "(feed.twitterScreenName IS NULL OR feed.twitterScreenName = '')";
 

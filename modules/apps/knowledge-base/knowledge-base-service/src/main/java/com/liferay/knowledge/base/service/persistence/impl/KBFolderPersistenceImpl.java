@@ -632,7 +632,6 @@ public class KBFolderPersistenceImpl extends BasePersistenceImpl<KBFolder>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_UUID_1 = "kbFolder.uuid IS NULL";
 	private static final String _FINDER_COLUMN_UUID_UUID_2 = "kbFolder.uuid = ?";
 	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(kbFolder.uuid IS NULL OR kbFolder.uuid = '')";
 	public static final FinderPath FINDER_PATH_FETCH_BY_UUID_G = new FinderPath(KBFolderModelImpl.ENTITY_CACHE_ENABLED,
@@ -876,7 +875,6 @@ public class KBFolderPersistenceImpl extends BasePersistenceImpl<KBFolder>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_G_UUID_1 = "kbFolder.uuid IS NULL AND ";
 	private static final String _FINDER_COLUMN_UUID_G_UUID_2 = "kbFolder.uuid = ? AND ";
 	private static final String _FINDER_COLUMN_UUID_G_UUID_3 = "(kbFolder.uuid IS NULL OR kbFolder.uuid = '') AND ";
 	private static final String _FINDER_COLUMN_UUID_G_GROUPID_2 = "kbFolder.groupId = ?";
@@ -1458,7 +1456,6 @@ public class KBFolderPersistenceImpl extends BasePersistenceImpl<KBFolder>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_C_UUID_1 = "kbFolder.uuid IS NULL AND ";
 	private static final String _FINDER_COLUMN_UUID_C_UUID_2 = "kbFolder.uuid = ? AND ";
 	private static final String _FINDER_COLUMN_UUID_C_UUID_3 = "(kbFolder.uuid IS NULL OR kbFolder.uuid = '') AND ";
 	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 = "kbFolder.companyId = ?";
@@ -2659,7 +2656,6 @@ public class KBFolderPersistenceImpl extends BasePersistenceImpl<KBFolder>
 
 	private static final String _FINDER_COLUMN_G_P_N_GROUPID_2 = "kbFolder.groupId = ? AND ";
 	private static final String _FINDER_COLUMN_G_P_N_PARENTKBFOLDERID_2 = "kbFolder.parentKBFolderId = ? AND ";
-	private static final String _FINDER_COLUMN_G_P_N_NAME_1 = "kbFolder.name IS NULL";
 	private static final String _FINDER_COLUMN_G_P_N_NAME_2 = "kbFolder.name = ?";
 	private static final String _FINDER_COLUMN_G_P_N_NAME_3 = "(kbFolder.name IS NULL OR kbFolder.name = '')";
 	public static final FinderPath FINDER_PATH_FETCH_BY_G_P_UT = new FinderPath(KBFolderModelImpl.ENTITY_CACHE_ENABLED,
@@ -2942,7 +2938,6 @@ public class KBFolderPersistenceImpl extends BasePersistenceImpl<KBFolder>
 
 	private static final String _FINDER_COLUMN_G_P_UT_GROUPID_2 = "kbFolder.groupId = ? AND ";
 	private static final String _FINDER_COLUMN_G_P_UT_PARENTKBFOLDERID_2 = "kbFolder.parentKBFolderId = ? AND ";
-	private static final String _FINDER_COLUMN_G_P_UT_URLTITLE_1 = "kbFolder.urlTitle IS NULL";
 	private static final String _FINDER_COLUMN_G_P_UT_URLTITLE_2 = "kbFolder.urlTitle = ?";
 	private static final String _FINDER_COLUMN_G_P_UT_URLTITLE_3 = "(kbFolder.urlTitle IS NULL OR kbFolder.urlTitle = '')";
 

@@ -636,7 +636,6 @@ public class UserPersistenceImpl extends BasePersistenceImpl<User>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_UUID_1 = "user.uuid IS NULL";
 	private static final String _FINDER_COLUMN_UUID_UUID_2 = "user.uuid = ?";
 	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(user.uuid IS NULL OR user.uuid = '')";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_UUID_C = new FinderPath(UserModelImpl.ENTITY_CACHE_ENABLED,
@@ -1213,7 +1212,6 @@ public class UserPersistenceImpl extends BasePersistenceImpl<User>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_C_UUID_1 = "user.uuid IS NULL AND ";
 	private static final String _FINDER_COLUMN_UUID_C_UUID_2 = "user.uuid = ? AND ";
 	private static final String _FINDER_COLUMN_UUID_C_UUID_3 = "(user.uuid IS NULL OR user.uuid = '') AND ";
 	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 = "user.companyId = ?";
@@ -2458,7 +2456,6 @@ public class UserPersistenceImpl extends BasePersistenceImpl<User>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_EMAILADDRESS_EMAILADDRESS_1 = "user.emailAddress IS NULL";
 	private static final String _FINDER_COLUMN_EMAILADDRESS_EMAILADDRESS_2 = "user.emailAddress = ?";
 	private static final String _FINDER_COLUMN_EMAILADDRESS_EMAILADDRESS_3 = "(user.emailAddress IS NULL OR user.emailAddress = '')";
 	public static final FinderPath FINDER_PATH_FETCH_BY_PORTRAITID = new FinderPath(UserModelImpl.ENTITY_CACHE_ENABLED,
@@ -4876,7 +4873,6 @@ public class UserPersistenceImpl extends BasePersistenceImpl<User>
 	}
 
 	private static final String _FINDER_COLUMN_C_SN_COMPANYID_2 = "user.companyId = ? AND ";
-	private static final String _FINDER_COLUMN_C_SN_SCREENNAME_1 = "user.screenName IS NULL";
 	private static final String _FINDER_COLUMN_C_SN_SCREENNAME_2 = "user.screenName = ?";
 	private static final String _FINDER_COLUMN_C_SN_SCREENNAME_3 = "(user.screenName IS NULL OR user.screenName = '')";
 	public static final FinderPath FINDER_PATH_FETCH_BY_C_EA = new FinderPath(UserModelImpl.ENTITY_CACHE_ENABLED,
@@ -5123,7 +5119,6 @@ public class UserPersistenceImpl extends BasePersistenceImpl<User>
 	}
 
 	private static final String _FINDER_COLUMN_C_EA_COMPANYID_2 = "user.companyId = ? AND ";
-	private static final String _FINDER_COLUMN_C_EA_EMAILADDRESS_1 = "user.emailAddress IS NULL";
 	private static final String _FINDER_COLUMN_C_EA_EMAILADDRESS_2 = "user.emailAddress = ?";
 	private static final String _FINDER_COLUMN_C_EA_EMAILADDRESS_3 = "(user.emailAddress IS NULL OR user.emailAddress = '')";
 	public static final FinderPath FINDER_PATH_FETCH_BY_C_FID = new FinderPath(UserModelImpl.ENTITY_CACHE_ENABLED,
@@ -5611,7 +5606,6 @@ public class UserPersistenceImpl extends BasePersistenceImpl<User>
 	}
 
 	private static final String _FINDER_COLUMN_C_GUID_COMPANYID_2 = "user.companyId = ? AND ";
-	private static final String _FINDER_COLUMN_C_GUID_GOOGLEUSERID_1 = "user.googleUserId IS NULL";
 	private static final String _FINDER_COLUMN_C_GUID_GOOGLEUSERID_2 = "user.googleUserId = ?";
 	private static final String _FINDER_COLUMN_C_GUID_GOOGLEUSERID_3 = "(user.googleUserId IS NULL OR user.googleUserId = '')";
 	public static final FinderPath FINDER_PATH_FETCH_BY_C_O = new FinderPath(UserModelImpl.ENTITY_CACHE_ENABLED,
@@ -5869,7 +5863,6 @@ public class UserPersistenceImpl extends BasePersistenceImpl<User>
 	}
 
 	private static final String _FINDER_COLUMN_C_O_COMPANYID_2 = "user.companyId = ? AND ";
-	private static final String _FINDER_COLUMN_C_O_OPENID_1 = "user.openId IS NULL";
 	private static final String _FINDER_COLUMN_C_O_OPENID_2 = "user.openId = ?";
 	private static final String _FINDER_COLUMN_C_O_OPENID_3 = "(user.openId IS NULL OR user.openId = '')";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_C_S = new FinderPath(UserModelImpl.ENTITY_CACHE_ENABLED,

@@ -631,7 +631,6 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_UUID_1 = "wsrpConsumer.uuid IS NULL";
 	private static final String _FINDER_COLUMN_UUID_UUID_2 = "wsrpConsumer.uuid = ?";
 	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(wsrpConsumer.uuid IS NULL OR wsrpConsumer.uuid = '')";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_UUID_C = new FinderPath(WSRPConsumerModelImpl.ENTITY_CACHE_ENABLED,
@@ -1214,7 +1213,6 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_C_UUID_1 = "wsrpConsumer.uuid IS NULL AND ";
 	private static final String _FINDER_COLUMN_UUID_C_UUID_2 = "wsrpConsumer.uuid = ? AND ";
 	private static final String _FINDER_COLUMN_UUID_C_UUID_3 = "(wsrpConsumer.uuid IS NULL OR wsrpConsumer.uuid = '') AND ";
 	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 = "wsrpConsumer.companyId = ?";

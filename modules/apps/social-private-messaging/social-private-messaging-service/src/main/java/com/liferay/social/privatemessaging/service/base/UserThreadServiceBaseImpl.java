@@ -135,25 +135,6 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	}
 
 	/**
-	 * Returns the mail remote service.
-	 *
-	 * @return the mail remote service
-	 */
-	public com.liferay.mail.kernel.service.MailService getMailService() {
-		return mailService;
-	}
-
-	/**
-	 * Sets the mail remote service.
-	 *
-	 * @param mailService the mail remote service
-	 */
-	public void setMailService(
-		com.liferay.mail.kernel.service.MailService mailService) {
-		this.mailService = mailService;
-	}
-
-	/**
 	 * Returns the class name local service.
 	 *
 	 * @return the class name local service
@@ -548,6 +529,25 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 		this.mbMessagePersistence = mbMessagePersistence;
 	}
 
+	/**
+	 * Returns the mail remote service.
+	 *
+	 * @return the mail remote service
+	 */
+	public com.liferay.mail.kernel.service.MailService getMailService() {
+		return mailService;
+	}
+
+	/**
+	 * Sets the mail remote service.
+	 *
+	 * @param mailService the mail remote service
+	 */
+	public void setMailService(
+		com.liferay.mail.kernel.service.MailService mailService) {
+		this.mailService = mailService;
+	}
+
 	public void afterPropertiesSet() {
 	}
 
@@ -604,8 +604,6 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	protected UserThreadPersistence userThreadPersistence;
 	@ServiceReference(type = com.liferay.counter.kernel.service.CounterLocalService.class)
 	protected com.liferay.counter.kernel.service.CounterLocalService counterLocalService;
-	@ServiceReference(type = com.liferay.mail.kernel.service.MailService.class)
-	protected com.liferay.mail.kernel.service.MailService mailService;
 	@ServiceReference(type = com.liferay.portal.kernel.service.ClassNameLocalService.class)
 	protected com.liferay.portal.kernel.service.ClassNameLocalService classNameLocalService;
 	@ServiceReference(type = com.liferay.portal.kernel.service.ClassNameService.class)
@@ -648,4 +646,6 @@ public abstract class UserThreadServiceBaseImpl extends BaseServiceImpl
 	protected com.liferay.message.boards.kernel.service.MBMessageService mbMessageService;
 	@ServiceReference(type = MBMessagePersistence.class)
 	protected MBMessagePersistence mbMessagePersistence;
+	@ServiceReference(type = com.liferay.mail.kernel.service.MailService.class)
+	protected com.liferay.mail.kernel.service.MailService mailService;
 }

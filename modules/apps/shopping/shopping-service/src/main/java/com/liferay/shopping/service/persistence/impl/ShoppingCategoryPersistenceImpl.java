@@ -2143,7 +2143,6 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	}
 
 	private static final String _FINDER_COLUMN_G_N_GROUPID_2 = "shoppingCategory.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_N_NAME_1 = "shoppingCategory.name IS NULL";
 	private static final String _FINDER_COLUMN_G_N_NAME_2 = "shoppingCategory.name = ?";
 	private static final String _FINDER_COLUMN_G_N_NAME_3 = "(shoppingCategory.name IS NULL OR shoppingCategory.name = '')";
 

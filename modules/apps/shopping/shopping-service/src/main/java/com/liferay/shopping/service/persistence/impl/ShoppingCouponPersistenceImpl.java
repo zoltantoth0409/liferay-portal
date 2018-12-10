@@ -820,7 +820,6 @@ public class ShoppingCouponPersistenceImpl extends BasePersistenceImpl<ShoppingC
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_CODE_CODE_1 = "shoppingCoupon.code IS NULL";
 	private static final String _FINDER_COLUMN_CODE_CODE_2 = "shoppingCoupon.code = ?";
 	private static final String _FINDER_COLUMN_CODE_CODE_3 = "(shoppingCoupon.code IS NULL OR shoppingCoupon.code = '')";
 

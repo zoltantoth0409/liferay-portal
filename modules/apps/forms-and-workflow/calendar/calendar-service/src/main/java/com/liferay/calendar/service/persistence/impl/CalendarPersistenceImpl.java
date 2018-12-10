@@ -1144,7 +1144,6 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_UUID_1 = "calendar.uuid IS NULL";
 	private static final String _FINDER_COLUMN_UUID_UUID_2 = "calendar.uuid = ?";
 	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(calendar.uuid IS NULL OR calendar.uuid = '')";
 	public static final FinderPath FINDER_PATH_FETCH_BY_UUID_G = new FinderPath(CalendarModelImpl.ENTITY_CACHE_ENABLED,
@@ -1388,7 +1387,6 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_G_UUID_1 = "calendar.uuid IS NULL AND ";
 	private static final String _FINDER_COLUMN_UUID_G_UUID_2 = "calendar.uuid = ? AND ";
 	private static final String _FINDER_COLUMN_UUID_G_UUID_3 = "(calendar.uuid IS NULL OR calendar.uuid = '') AND ";
 	private static final String _FINDER_COLUMN_UUID_G_GROUPID_2 = "calendar.groupId = ?";
@@ -1971,7 +1969,6 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_UUID_C_UUID_1 = "calendar.uuid IS NULL AND ";
 	private static final String _FINDER_COLUMN_UUID_C_UUID_2 = "calendar.uuid = ? AND ";
 	private static final String _FINDER_COLUMN_UUID_C_UUID_3 = "(calendar.uuid IS NULL OR calendar.uuid = '') AND ";
 	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 = "calendar.companyId = ?";
