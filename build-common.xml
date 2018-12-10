@@ -1418,7 +1418,7 @@ artifact.url=${remote.repository.url}/com/liferay/portal/com.liferay.${processed
 						<then>
 							<property location="${project.dir}/${build.binaries.cache.dir}" name="build.binaries.cache.dir.absolute.path" />
 
-							<echo>Updating ${build.binaries.cache.dir.absolute.path}</echo>
+							<echo>Updating ${build.binaries.cache.dir.absolute.path}.</echo>
 
 							<exec dir="${project.dir}/${build.binaries.cache.dir}" executable="git" failonerror="true">
 								<arg value="pull" />
