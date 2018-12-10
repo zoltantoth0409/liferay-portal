@@ -675,6 +675,20 @@
 		<execute function="AssertTextEquals" locator1="Blogs#ENTRY_TABLE_AUTHOR" value1="${entryAuthorFullName}" />
 	</command>
 
+	<command name="viewEntryExternalURL">
+		<execute macro="BlogsNavigator#gotoEditCP">
+			<var name="entryTitle" value="${entryTitle}" />
+		</execute>
+
+		<execute function="DoubleClick" locator1="BlogsEntry#CONTENT_LINK">
+			<var name="key_entryContent" value="${entryContent}" />
+		</execute>
+
+		<execute function="Click" locator1="AlloyEditor#TEXT_FORMATTING_LINK" />
+
+		<execute function="AssertTextEquals" locator1="AlloyEditor#TEXT_FORMATTING_LINK_INPUT" value1="${entryExternalURL}" />
+	</command>
+
 	<command name="viewEntryTable">
 		<var name="key_entryTitle" value="${entryTitle}" />
 
