@@ -68,6 +68,10 @@ public class SegmentsPortlet extends MVCPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
+		renderRequest.setAttribute(
+			SegmentsWebKeys.RESOLVED_MODULE_NAME,
+			_npmResolver.resolveModuleName("segments-web"));
+
 		HttpServletRequest httpServletRequest = _portal.getHttpServletRequest(
 			renderRequest);
 
@@ -75,10 +79,6 @@ public class SegmentsPortlet extends MVCPortlet {
 			new SegmentsDisplayContext(
 				httpServletRequest, renderRequest, renderResponse,
 				_segmentsEntryService);
-
-		renderRequest.setAttribute(
-			SegmentsWebKeys.RESOLVED_MODULE_NAME,
-			_npmResolver.resolveModuleName("segments-web"));
 
 		renderRequest.setAttribute(
 			SegmentsWebKeys.SEGMENTS_DISPLAY_CONTEXT, segmentsDisplayContext);
