@@ -255,7 +255,7 @@ public class LiferayOSGiPortalCompatDefaultsPlugin
 						if (version.isSnapshot()) {
 							throw new GradleException(
 								"The dependency " + key + " must be a " +
-									"released non-snapshot version");
+									"released nonsnapshot version");
 						}
 					}
 				}
