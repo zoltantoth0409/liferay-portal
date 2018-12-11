@@ -237,6 +237,8 @@
 	</command>
 
 	<command name="PublishRenamedTags" priority="4">
+		<description message="This is a use case for LPS-80492." />
+
 		<execute macro="Navigator#gotoSitePage">
 			<var name="pageName" value="Staging Test Page" />
 			<var name="siteName" value="Site Name" />
@@ -334,6 +336,11 @@
 
 		<execute macro="Tag#viewCP">
 			<var name="tagName" value="tag name edit" />
+		</execute>
+
+		<execute macro="Tag#viewTagMenuNotEditableOnLive">
+			<var name="menuItem" value="Edit" />
+			<var name="rowEntry" value="tag name edit" />
 		</execute>
 	</command>
 
