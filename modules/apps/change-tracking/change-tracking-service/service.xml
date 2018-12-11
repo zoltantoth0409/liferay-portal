@@ -28,7 +28,7 @@
 
 		<!-- Relationships -->
 
-		<column entity="ChangeTrackingEntry" mapping-table="Collections_Entries" name="entries" type="Collection" />
+		<column entity="ChangeTrackingEntry" mapping-table="CTCollections_CTEntries" name="entries" type="Collection" />
 
 		<!-- References -->
 
@@ -56,7 +56,7 @@
 
 		<!-- Relationships -->
 
-		<column entity="ChangeTrackingCollection" mapping-table="Collections_Entries" name="collections" type="Collection" />
+		<column entity="ChangeTrackingCollection" mapping-table="CTCollections_CTEntries" name="collections" type="Collection" />
 
 		<!-- References -->
 
