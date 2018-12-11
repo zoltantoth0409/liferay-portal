@@ -172,7 +172,17 @@
 			</then>
 		</if>
 
-		<execute macro="PortletEntry#publish" />
+		<if>
+			<isset var="validationError" />
+			<then>
+				<execute macro="Button#clickPublish" />
+
+				<execute function="AssertTextEquals" locator1="Message#ERROR_ALERT" value1="${validationError}" />
+			</then>
+			<else>
+				<execute macro="PortletEntry#publish" />
+			</else>
+		</if>
 	</command>
 
 	<command name="addDMMarketingBannerCP">
