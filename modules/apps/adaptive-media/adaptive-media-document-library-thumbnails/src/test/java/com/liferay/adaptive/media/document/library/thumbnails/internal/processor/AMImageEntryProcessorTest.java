@@ -61,7 +61,7 @@ public class AMImageEntryProcessorTest {
 	}
 
 	@Test
-	public void testGetPreviewAsStreamDoesNotTriggerAMProcessorWhenAmImageExists()
+	public void testGetPreviewAsStreamDoesNotTriggerAMProcessorWhenAMImageExists()
 		throws Exception {
 
 		Mockito.when(
@@ -136,7 +136,7 @@ public class AMImageEntryProcessorTest {
 	}
 
 	@Test
-	public void testGetPreviewAsStreamReturnsTheOriginalStreamWhenNoAmImageExists()
+	public void testGetPreviewAsStreamReturnsTheOriginalStreamWhenNoAMImageExists()
 		throws Exception {
 
 		Mockito.when(
@@ -171,7 +171,7 @@ public class AMImageEntryProcessorTest {
 	}
 
 	@Test
-	public void testGetPreviewAsStreamTriggersAMProcessorWhenNoAmImageExists()
+	public void testGetPreviewAsStreamTriggersAMProcessorWhenNoAMImageExists()
 		throws Exception {
 
 		Mockito.when(
@@ -202,7 +202,7 @@ public class AMImageEntryProcessorTest {
 	}
 
 	@Test
-	public void testGetPreviewFileSizeDoesNotTriggerAMProcessorWhenAmImageExists()
+	public void testGetPreviewFileSizeDoesNotTriggerAMProcessorWhenAMImageExists()
 		throws Exception {
 
 		Mockito.when(
@@ -283,7 +283,7 @@ public class AMImageEntryProcessorTest {
 	}
 
 	@Test
-	public void testGetPreviewFileSizeTriggersAMProcessorWhenNoAmImageExists()
+	public void testGetPreviewFileSizeTriggersAMProcessorWhenNoAMImageExists()
 		throws Exception {
 
 		Mockito.when(
@@ -314,7 +314,7 @@ public class AMImageEntryProcessorTest {
 	}
 
 	@Test
-	public void testGetThumbnailAsStreamDoesNotTriggerAMProcessorWhenAmImageExists()
+	public void testGetThumbnailAsStreamDoesNotTriggerAMProcessorWhenAMImageExists()
 		throws Exception {
 
 		Mockito.when(
@@ -389,7 +389,7 @@ public class AMImageEntryProcessorTest {
 	}
 
 	@Test
-	public void testGetThumbnailAsStreamTriggersAMProcessorWhenNoAmImageExists()
+	public void testGetThumbnailAsStreamTriggersAMProcessorWhenNoAMImageExists()
 		throws Exception {
 
 		Mockito.when(
@@ -420,7 +420,7 @@ public class AMImageEntryProcessorTest {
 	}
 
 	@Test
-	public void testGetThumbnailFileSizeDoesNotTriggerAMProcessorWhenAmImageExists()
+	public void testGetThumbnailFileSizeDoesNotTriggerAMProcessorWhenAMImageExists()
 		throws Exception {
 
 		Mockito.when(
@@ -501,7 +501,7 @@ public class AMImageEntryProcessorTest {
 	}
 
 	@Test
-	public void testGetThumbnailFileSizeTriggersAMProcessorWhenNoAmImageExists()
+	public void testGetThumbnailFileSizeTriggersAMProcessorWhenNoAMImageExists()
 		throws Exception {
 
 		Mockito.when(
@@ -532,7 +532,7 @@ public class AMImageEntryProcessorTest {
 	}
 
 	@Test
-	public void testHasImagesDoesNotTriggerAMProcessorWhenAmImageExists()
+	public void testHasImagesDoesNotTriggerAMProcessorWhenAMImageExists()
 		throws Exception {
 
 		Mockito.when(
@@ -607,7 +607,7 @@ public class AMImageEntryProcessorTest {
 	}
 
 	@Test
-	public void testHasImagesTriggersAMProcessorWhenNoAmImageExists()
+	public void testHasImagesTriggersAMProcessorWhenNoAMImageExists()
 		throws Exception {
 
 		Mockito.when(
