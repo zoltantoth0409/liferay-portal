@@ -108,12 +108,11 @@ public class AMImageEntryProcessor implements DLProcessor, ImageProcessor {
 
 			return fileVersion.getContentStream(false);
 		}
-		else {
-			AdaptiveMedia<AMImageProcessor> adaptiveMedia =
-				adaptiveMediaOptional.get();
 
-			return adaptiveMedia.getInputStream();
-		}
+		AdaptiveMedia<AMImageProcessor> adaptiveMedia =
+			adaptiveMediaOptional.get();
+
+		return adaptiveMedia.getInputStream();
 	}
 
 	@Override
