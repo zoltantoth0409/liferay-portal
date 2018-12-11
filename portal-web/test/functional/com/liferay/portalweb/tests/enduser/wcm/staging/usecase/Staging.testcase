@@ -725,7 +725,10 @@
 			<var name="navItem" value="File Uploads" />
 		</execute>
 
-		<execute function="Type" locator1="ServerAdministrationFileUploads#DOCS_AND_MEDIA_MAX_FILE_SIZE_FIELD" value1="30000000" />
+		<execute function="Type" locator1="ServerAdministrationFileUploads#FILE_UPLOADS_INPUT_FIELD" value1="30000000" >
+			<var name="key_fieldName" value="dlFileMaxSize" />
+		</execute>
+
 		<execute macro="PortletEntry#save" />
 
 		<execute macro="Navigator#gotoSitePage">
