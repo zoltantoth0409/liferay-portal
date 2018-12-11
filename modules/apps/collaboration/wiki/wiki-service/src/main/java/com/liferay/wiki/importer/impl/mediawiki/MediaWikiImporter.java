@@ -798,8 +798,8 @@ public class MediaWikiImporter implements WikiImporter {
 			return sb.toString();
 		}
 		catch (PortalException pe) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(pe, pe);
+			if (_log.isInfoEnabled()) {
+				_log.info(pe, pe);
 			}
 
 			return content;
