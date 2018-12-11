@@ -67,9 +67,9 @@ public class StructuredContentApioTest {
 		).follow(
 			"_links.content-space.href"
 		).follow(
-			"_embedded.ContentSpace.find { it.name == '" +
+			"_embedded.ContentSpace.find {it.name == '" +
 				StructuredContentApioTestBundleActivator.SITE_NAME +
-					"' }._links.structuredContents.href"
+					"'}._links.structuredContents.href"
 		).then(
 		).statusCode(
 			200
@@ -102,9 +102,9 @@ public class StructuredContentApioTest {
 		).then(
 		).extract(
 		).path(
-			"_embedded.ContentSpace.find { it.name == '" +
+			"_embedded.ContentSpace.find {it.name == '" +
 				StructuredContentApioTestBundleActivator.SITE_NAME +
-					"' }._links.structuredContents.href"
+					"'}._links.structuredContents.href"
 		);
 
 		ApioClientBuilder.given(
@@ -151,9 +151,9 @@ public class StructuredContentApioTest {
 		).then(
 		).extract(
 		).path(
-			"_embedded.ContentSpace.find { it.name == '" +
+			"_embedded.ContentSpace.find {it.name == '" +
 				StructuredContentApioTestBundleActivator.SITE_NAME +
-					"' }._links.structuredContents.href"
+					"'}._links.structuredContents.href"
 		);
 
 		ApioClientBuilder.given(
@@ -200,9 +200,9 @@ public class StructuredContentApioTest {
 		).then(
 		).extract(
 		).path(
-			"_embedded.ContentSpace.find { it.name == '" +
+			"_embedded.ContentSpace.find {it.name == '" +
 				StructuredContentApioTestBundleActivator.SITE_NAME +
-					"' }._links.structuredContents.href"
+					"'}._links.structuredContents.href"
 		);
 
 		ApioClientBuilder.given(
@@ -249,9 +249,9 @@ public class StructuredContentApioTest {
 		).then(
 		).extract(
 		).path(
-			"_embedded.ContentSpace.find { it.name == '" +
+			"_embedded.ContentSpace.find {it.name == '" +
 				StructuredContentApioTestBundleActivator.SITE_NAME +
-					"' }._links.structuredContents.href"
+					"'}._links.structuredContents.href"
 		);
 
 		ApioClientBuilder.given(
@@ -296,9 +296,9 @@ public class StructuredContentApioTest {
 		).then(
 		).extract(
 		).path(
-			"_embedded.ContentSpace.find { it.name == '" +
+			"_embedded.ContentSpace.find {it.name == '" +
 				StructuredContentApioTestBundleActivator.SITE_NAME +
-					"' }._links.structuredContents.href"
+					"'}._links.structuredContents.href"
 		);
 
 		ApioClientBuilder.given(
@@ -340,9 +340,9 @@ public class StructuredContentApioTest {
 		).follow(
 			"_links.content-space.href"
 		).follow(
-			"_embedded.ContentSpace.find { it.name == '" +
+			"_embedded.ContentSpace.find {it.name == '" +
 				StructuredContentApioTestBundleActivator.SITE_NAME +
-					"' }._links.structuredContents.href"
+					"'}._links.structuredContents.href"
 		).then(
 		).body(
 			"_embedded.StructuredContent.title",
@@ -366,9 +366,9 @@ public class StructuredContentApioTest {
 		).follow(
 			"_links.content-space.href"
 		).follow(
-			"_embedded.ContentSpace.find { it.name == '" +
+			"_embedded.ContentSpace.find {it.name == '" +
 				StructuredContentApioTestBundleActivator.SITE_NAME +
-					"' }._links.structuredContents.href"
+					"'}._links.structuredContents.href"
 		).then(
 		).body(
 			"_embedded.StructuredContent.title",
@@ -388,9 +388,9 @@ public class StructuredContentApioTest {
 		).follow(
 			"_links.content-space.href"
 		).follow(
-			"_embedded.ContentSpace.find { it.name == '" +
+			"_embedded.ContentSpace.find {it.name == '" +
 				StructuredContentApioTestBundleActivator.SITE_NAME +
-					"' }._links.structuredContents.href"
+					"'}._links.structuredContents.href"
 		).then(
 		).statusCode(
 			200
@@ -437,9 +437,9 @@ public class StructuredContentApioTest {
 		).then(
 		).extract(
 		).path(
-			"_embedded.ContentSpace.find { it.name == '" +
+			"_embedded.ContentSpace.find {it.name == '" +
 				StructuredContentApioTestBundleActivator.SITE_NAME +
-					"' }._links.structuredContents.href"
+					"'}._links.structuredContents.href"
 		);
 
 		ApioClientBuilder.given(
@@ -485,9 +485,9 @@ public class StructuredContentApioTest {
 		).then(
 		).extract(
 		).path(
-			"_embedded.ContentSpace.find { it.name == '" +
+			"_embedded.ContentSpace.find {it.name == '" +
 				StructuredContentApioTestBundleActivator.SITE_NAME +
-					"' }._links.structuredContents.href"
+					"'}._links.structuredContents.href"
 		);
 
 		ApioClientBuilder.given(
@@ -528,9 +528,9 @@ public class StructuredContentApioTest {
 		).follow(
 			"_links.content-space.href"
 		).follow(
-			"_embedded.ContentSpace.find { it.name == '" +
+			"_embedded.ContentSpace.find {it.name == '" +
 				StructuredContentApioTestBundleActivator.SITE_NAME +
-					"' }._links.structuredContents.href"
+					"'}._links.structuredContents.href"
 		).then(
 		).body(
 			"_embedded.StructuredContent.title",
@@ -554,9 +554,9 @@ public class StructuredContentApioTest {
 		).follow(
 			"_links.content-space.href"
 		).follow(
-			"_embedded.ContentSpace.find { it.name == '" +
+			"_embedded.ContentSpace.find {it.name == '" +
 				StructuredContentApioTestBundleActivator.SITE_NAME +
-					"' }._links.structuredContents.href"
+					"'}._links.structuredContents.href"
 		).then(
 		).statusCode(
 			200
@@ -593,9 +593,9 @@ public class StructuredContentApioTest {
 		).follow(
 			"_links.content-space.href"
 		).follow(
-			"_embedded.ContentSpace.find { it.name == '" +
+			"_embedded.ContentSpace.find {it.name == '" +
 				StructuredContentApioTestBundleActivator.SITE_NAME +
-					"' }._links.structuredContents.href"
+					"'}._links.structuredContents.href"
 		).then(
 		).body(
 			"_embedded.StructuredContent.title",
@@ -618,9 +618,9 @@ public class StructuredContentApioTest {
 		).follow(
 			"_links.content-space.href"
 		).follow(
-			"_embedded.ContentSpace.find { it.name == '" +
+			"_embedded.ContentSpace.find {it.name == '" +
 				StructuredContentApioTestBundleActivator.SITE_NAME +
-					"' }._links.structuredContents.href"
+					"'}._links.structuredContents.href"
 		).then(
 		).statusCode(
 			200
@@ -656,9 +656,9 @@ public class StructuredContentApioTest {
 		).follow(
 			"_links.content-space.href"
 		).follow(
-			"_embedded.ContentSpace.find { it.name == '" +
+			"_embedded.ContentSpace.find {it.name == '" +
 				StructuredContentApioTestBundleActivator.SITE_NAME +
-					"' }._links.structuredContents.href"
+					"'}._links.structuredContents.href"
 		).then(
 		).statusCode(
 			200
@@ -682,9 +682,9 @@ public class StructuredContentApioTest {
 		).then(
 		).extract(
 		).path(
-			"_embedded.ContentSpace.find { it.name == '" +
+			"_embedded.ContentSpace.find {it.name == '" +
 				StructuredContentApioTestBundleActivator.SITE_NAME +
-					"' }._links.structuredContents.href"
+					"'}._links.structuredContents.href"
 		);
 
 		ApioClientBuilder.given(
