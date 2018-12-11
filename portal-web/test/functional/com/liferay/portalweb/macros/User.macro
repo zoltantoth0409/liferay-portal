@@ -1418,8 +1418,6 @@
 
 		<execute function="Click" locator1="Button#SIGN_IN" />
 
-		<execute macro="Alert#viewRequestFailedToComplete" />
-
 		<if>
 			<equals arg1="${loginAttempts}" arg2="${maximumFailure}" />
 			<then>
