@@ -1,3 +1,10 @@
+create table CTCollections_CTEntries (
+	companyId LONG not null,
+	changeTrackingCollectionId LONG not null,
+	changeTrackingEntryId LONG not null,
+	primary key (changeTrackingCollectionId, changeTrackingEntryId)
+);
+
 create table ChangeTrackingCollection (
 	changeTrackingCollectionId LONG not null primary key,
 	companyId LONG,
@@ -23,11 +30,4 @@ create table ChangeTrackingEntry (
 	classNameId LONG,
 	classPK LONG,
 	resourcePrimKey LONG
-);
-
-create table Collections_Entries (
-	companyId LONG not null,
-	changeTrackingCollectionId LONG not null,
-	changeTrackingEntryId LONG not null,
-	primary key (changeTrackingCollectionId, changeTrackingEntryId)
 );

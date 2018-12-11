@@ -1,5 +1,5 @@
-create index IX_38CBC56A on ChangeTrackingEntry (resourcePrimKey);
+create index IX_8009037E on CTCollections_CTEntries (changeTrackingCollectionId);
+create index IX_FAA16F0C on CTCollections_CTEntries (changeTrackingEntryId);
+create index IX_AFC3725E on CTCollections_CTEntries (companyId);
 
-create index IX_FFD622E0 on Collections_Entries (changeTrackingCollectionId);
-create index IX_1D52BA6A on Collections_Entries (changeTrackingEntryId);
-create index IX_8745ABC on Collections_Entries (companyId);
+create index IX_38CBC56A on ChangeTrackingEntry (resourcePrimKey);

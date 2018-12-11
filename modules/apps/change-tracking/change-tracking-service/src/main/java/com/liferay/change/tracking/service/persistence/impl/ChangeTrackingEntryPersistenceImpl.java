@@ -1595,7 +1595,7 @@ public class ChangeTrackingEntryPersistenceImpl extends BasePersistenceImpl<Chan
 	 * Initializes the change tracking entry persistence.
 	 */
 	public void afterPropertiesSet() {
-		changeTrackingEntryToChangeTrackingCollectionTableMapper = TableMapperFactory.getTableMapper("Collections_Entries",
+		changeTrackingEntryToChangeTrackingCollectionTableMapper = TableMapperFactory.getTableMapper("CTCollections_CTEntries",
 				"companyId", "changeTrackingEntryId",
 				"changeTrackingCollectionId", this,
 				changeTrackingCollectionPersistence);
@@ -1607,7 +1607,7 @@ public class ChangeTrackingEntryPersistenceImpl extends BasePersistenceImpl<Chan
 		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
-		TableMapperFactory.removeTableMapper("Collections_Entries");
+		TableMapperFactory.removeTableMapper("CTCollections_CTEntries");
 	}
 
 	@ServiceReference(type = CompanyProviderWrapper.class)

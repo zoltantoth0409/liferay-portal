@@ -110,15 +110,17 @@ public class ChangeTrackingEntryModelImpl extends BaseModelImpl<ChangeTrackingEn
 			true);
 	public static final long RESOURCEPRIMKEY_COLUMN_BITMASK = 1L;
 	public static final long CHANGETRACKINGENTRYID_COLUMN_BITMASK = 2L;
-	public static final String MAPPING_TABLE_COLLECTIONS_ENTRIES_NAME = "Collections_Entries";
-	public static final Object[][] MAPPING_TABLE_COLLECTIONS_ENTRIES_COLUMNS = {
+	public static final String MAPPING_TABLE_CTCOLLECTIONS_CTENTRIES_NAME = "CTCollections_CTEntries";
+	public static final Object[][] MAPPING_TABLE_CTCOLLECTIONS_CTENTRIES_COLUMNS =
+		{
 			{ "companyId", Types.BIGINT },
 			{ "changeTrackingCollectionId", Types.BIGINT },
 			{ "changeTrackingEntryId", Types.BIGINT }
 		};
-	public static final String MAPPING_TABLE_COLLECTIONS_ENTRIES_SQL_CREATE = "create table Collections_Entries (companyId LONG not null,changeTrackingCollectionId LONG not null,changeTrackingEntryId LONG not null,primary key (changeTrackingCollectionId, changeTrackingEntryId))";
-	public static final boolean FINDER_CACHE_ENABLED_COLLECTIONS_ENTRIES = GetterUtil.getBoolean(com.liferay.change.tracking.service.util.ServiceProps.get(
-				"value.object.finder.cache.enabled.Collections_Entries"), true);
+	public static final String MAPPING_TABLE_CTCOLLECTIONS_CTENTRIES_SQL_CREATE = "create table CTCollections_CTEntries (companyId LONG not null,changeTrackingCollectionId LONG not null,changeTrackingEntryId LONG not null,primary key (changeTrackingCollectionId, changeTrackingEntryId))";
+	public static final boolean FINDER_CACHE_ENABLED_CTCOLLECTIONS_CTENTRIES = GetterUtil.getBoolean(com.liferay.change.tracking.service.util.ServiceProps.get(
+				"value.object.finder.cache.enabled.CTCollections_CTEntries"),
+			true);
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.change.tracking.service.util.ServiceProps.get(
 				"lock.expiration.time.com.liferay.change.tracking.model.ChangeTrackingEntry"));
 
