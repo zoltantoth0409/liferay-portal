@@ -56,7 +56,8 @@ public class CounterTransactionExecutorTest {
 			_newTransactionAttributeAdapter(t -> false);
 
 		transactionExecutor.execute(
-			transactionAttributeAdapter, _newMethodInvocation(() -> null));
+			transactionAttributeAdapter,
+			_newServiceBeanMethodInvocation(() -> null));
 
 		recordPlatformTransactionManager.verify(
 			transactionAttributeAdapter, _transactionStatus, null);
@@ -76,7 +77,7 @@ public class CounterTransactionExecutorTest {
 		try {
 			transactionExecutor.execute(
 				transactionAttributeAdapter,
-				_newMethodInvocation(
+				_newServiceBeanMethodInvocation(
 					() -> {
 						throw appException;
 					}));
@@ -114,7 +115,7 @@ public class CounterTransactionExecutorTest {
 		try {
 			transactionExecutor.execute(
 				transactionAttributeAdapter,
-				_newMethodInvocation(
+				_newServiceBeanMethodInvocation(
 					() -> {
 						throw appException;
 					}));
@@ -155,7 +156,8 @@ public class CounterTransactionExecutorTest {
 
 		try {
 			transactionExecutor.execute(
-				transactionAttributeAdapter, _newMethodInvocation(() -> null));
+				transactionAttributeAdapter,
+				_newServiceBeanMethodInvocation(() -> null));
 
 			Assert.fail();
 		}
@@ -194,7 +196,7 @@ public class CounterTransactionExecutorTest {
 		try {
 			transactionExecutor.execute(
 				transactionAttributeAdapter,
-				_newMethodInvocation(
+				_newServiceBeanMethodInvocation(
 					() -> {
 						throw appException;
 					}));
@@ -232,7 +234,7 @@ public class CounterTransactionExecutorTest {
 		try {
 			transactionExecutor.execute(
 				transactionAttributeAdapter,
-				_newMethodInvocation(
+				_newServiceBeanMethodInvocation(
 					() -> {
 						throw appException;
 					}));
@@ -326,7 +328,7 @@ public class CounterTransactionExecutorTest {
 	protected final Exception commitException = new Exception();
 	protected final Exception rollbackException = new Exception();
 
-	private static ServiceBeanMethodInvocation _newMethodInvocation(
+	private static ServiceBeanMethodInvocation _newServiceBeanMethodInvocation(
 		Callable<?> callable) {
 
 		return new ServiceBeanMethodInvocation(null, null) {
