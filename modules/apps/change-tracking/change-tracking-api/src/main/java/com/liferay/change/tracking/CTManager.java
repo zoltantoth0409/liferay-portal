@@ -16,8 +16,8 @@ package com.liferay.change.tracking;
 
 import aQute.bnd.annotation.ProviderType;
 
-import com.liferay.change.tracking.model.ChangeTrackingCollection;
-import com.liferay.change.tracking.model.ChangeTrackingEntry;
+import com.liferay.change.tracking.model.CTCollection;
+import com.liferay.change.tracking.model.CTEntry;
 import com.liferay.portal.kernel.model.BaseModel;
 
 import java.util.List;
@@ -53,7 +53,7 @@ public interface CTManager {
 	 * @param  description the description of the change collection
 	 * @return the newly created change collection
 	 */
-	public Optional<ChangeTrackingCollection> createCTCollection(
+	public Optional<CTCollection> createCTCollection(
 		long companyId, long userId, String name, String description);
 
 	/**
@@ -91,7 +91,7 @@ public interface CTManager {
 	 * @param  userId the primary key of the user
 	 * @return the selected change collection
 	 */
-	public Optional<ChangeTrackingCollection> getActiveCTCollectionOptional(
+	public Optional<CTCollection> getActiveCTCollectionOptional(
 		long companyId, long userId);
 
 	/**
@@ -101,8 +101,7 @@ public interface CTManager {
 	 *         collection
 	 * @return the change collection
 	 */
-	public Optional<ChangeTrackingCollection> getCTCollectionOptional(
-		long ctCollectionId);
+	public Optional<CTCollection> getCTCollectionOptional(long ctCollectionId);
 
 	/**
 	 * Returns all the change collection associated with the given company.
@@ -110,7 +109,7 @@ public interface CTManager {
 	 * @param  companyId the primary key of the company
 	 * @return the list of change collections
 	 */
-	public List<ChangeTrackingCollection> getCTCollections(long companyId);
+	public List<CTCollection> getCTCollections(long companyId);
 
 	/**
 	 * Returns all the change entries associated with the given change
@@ -120,7 +119,7 @@ public interface CTManager {
 	 *         collection
 	 * @return the list of change entries
 	 */
-	public List<ChangeTrackingEntry> getCTEntries(long ctCollectionId);
+	public List<CTEntry> getCTEntries(long ctCollectionId);
 
 	/**
 	 * Returns the special change collection which is called production and
@@ -129,7 +128,7 @@ public interface CTManager {
 	 * @param  companyId the primary key of the company
 	 * @return the production change collection
 	 */
-	public Optional<ChangeTrackingCollection> getProductionCTCollectionOptional(
+	public Optional<CTCollection> getProductionCTCollectionOptional(
 		long companyId);
 
 	/**

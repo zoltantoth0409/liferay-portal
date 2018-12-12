@@ -17,10 +17,10 @@ package com.liferay.change.tracking.internal;
 import com.liferay.change.tracking.CTManager;
 import com.liferay.change.tracking.constants.CTConstants;
 import com.liferay.change.tracking.constants.ChangeTrackingPortletKeys;
-import com.liferay.change.tracking.model.ChangeTrackingCollection;
-import com.liferay.change.tracking.model.ChangeTrackingEntry;
-import com.liferay.change.tracking.service.ChangeTrackingCollectionLocalService;
-import com.liferay.change.tracking.service.ChangeTrackingEntryLocalService;
+import com.liferay.change.tracking.model.CTCollection;
+import com.liferay.change.tracking.model.CTEntry;
+import com.liferay.change.tracking.service.CTCollectionLocalService;
+import com.liferay.change.tracking.service.CTEntryLocalService;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
@@ -59,8 +59,8 @@ public class CTManagerImpl implements CTManager {
 			return;
 		}
 
-		Optional<ChangeTrackingCollection> ctCollectionOptional =
-			getCTCollectionOptional(ctCollectionId);
+		Optional<CTCollection> ctCollectionOptional = getCTCollectionOptional(
+			ctCollectionId);
 
 		if (!ctCollectionOptional.isPresent()) {
 			_log.error(
@@ -87,7 +87,7 @@ public class CTManagerImpl implements CTManager {
 	}
 
 	@Override
-	public Optional<ChangeTrackingCollection> createCTCollection(
+	public Optional<CTCollection> createCTCollection(
 		long companyId, long userId, String name, String description) {
 
 		if (CTConstants.CT_COLLECTION_NAME_PRODUCTION.equals(name) ||
@@ -101,8 +101,8 @@ public class CTManagerImpl implements CTManager {
 
 	@Override
 	public void deleteCTCollection(long userId, long ctCollectionId) {
-		Optional<ChangeTrackingCollection> ctCollectionOptional =
-			getCTCollectionOptional(ctCollectionId);
+		Optional<CTCollection> ctCollectionOptional = getCTCollectionOptional(
+			ctCollectionId);
 
 		if (!ctCollectionOptional.isPresent()) {
 			_log.error(
@@ -112,7 +112,7 @@ public class CTManagerImpl implements CTManager {
 			return;
 		}
 
-		_changeTrackingCollectionLocalService.deleteChangeTrackingCollection(
+		_ctCollectionLocalService.deleteCTCollection(
 			ctCollectionOptional.get());
 	}
 
@@ -126,8 +126,8 @@ public class CTManagerImpl implements CTManager {
 			TransactionInvokerUtil.invoke(
 				_transactionConfig,
 				() -> {
-					_changeTrackingCollectionLocalService.
-						deleteCompanyChangeTrackingCollections(companyId);
+					_ctCollectionLocalService.deleteCompanyCTCollections(
+						companyId);
 
 					_productionCTCollection = null;
 
@@ -149,7 +149,7 @@ public class CTManagerImpl implements CTManager {
 			TransactionInvokerUtil.invoke(
 				_transactionConfig,
 				() -> {
-					Optional<ChangeTrackingCollection> ctCollectionOptional =
+					Optional<CTCollection> ctCollectionOptional =
 						_createCTCollection(
 							companyId, userId,
 							CTConstants.CT_COLLECTION_NAME_PRODUCTION,
@@ -162,7 +162,7 @@ public class CTManagerImpl implements CTManager {
 
 							checkoutCTCollection(
 								companyId, userId,
-								ctCollection.getChangeTrackingCollectionId());
+								ctCollection.getCtCollectionId());
 						});
 
 					return null;
@@ -174,7 +174,7 @@ public class CTManagerImpl implements CTManager {
 	}
 
 	@Override
-	public Optional<ChangeTrackingCollection> getActiveCTCollectionOptional(
+	public Optional<CTCollection> getActiveCTCollectionOptional(
 		long companyId, long userId) {
 
 		if (!isChangeTrackingEnabled(companyId)) {
@@ -184,11 +184,11 @@ public class CTManagerImpl implements CTManager {
 		long recentCTCollectionId = _getUserCollectionId(userId);
 
 		if (recentCTCollectionId == 0L) {
-			Optional<ChangeTrackingCollection> productionCTCollectionOptional =
+			Optional<CTCollection> productionCTCollectionOptional =
 				getProductionCTCollectionOptional(companyId);
 
 			recentCTCollectionId = productionCTCollectionOptional.map(
-				ChangeTrackingCollection::getChangeTrackingCollectionId
+				CTCollection::getCtCollectionId
 			).orElse(
 				0L
 			);
@@ -200,40 +200,34 @@ public class CTManagerImpl implements CTManager {
 	}
 
 	@Override
-	public Optional<ChangeTrackingCollection> getCTCollectionOptional(
-		long ctCollectionId) {
-
-		ChangeTrackingCollection ctCollection =
-			_changeTrackingCollectionLocalService.fetchChangeTrackingCollection(
-				ctCollectionId);
+	public Optional<CTCollection> getCTCollectionOptional(long ctCollectionId) {
+		CTCollection ctCollection = _ctCollectionLocalService.fetchCTCollection(
+			ctCollectionId);
 
 		return Optional.ofNullable(ctCollection);
 	}
 
 	@Override
-	public List<ChangeTrackingCollection> getCTCollections(long companyId) {
+	public List<CTCollection> getCTCollections(long companyId) {
 		if (!isChangeTrackingEnabled(companyId)) {
 			return Collections.emptyList();
 		}
 
-		return _changeTrackingCollectionLocalService.
-			getChangeTrackingCollections(companyId);
+		return _ctCollectionLocalService.getCTCollections(companyId);
 	}
 
 	@Override
-	public List<ChangeTrackingEntry> getCTEntries(long ctCollectionId) {
-		return _changeTrackingEntryLocalService.
-			getChangeTrackingCollectionChangeTrackingEntries(ctCollectionId);
+	public List<CTEntry> getCTEntries(long ctCollectionId) {
+		return _ctEntryLocalService.getCTCollectionCTEntries(ctCollectionId);
 	}
 
-	public Optional<ChangeTrackingCollection> getProductionCTCollectionOptional(
+	public Optional<CTCollection> getProductionCTCollectionOptional(
 		long companyId) {
 
 		if (_productionCTCollection == null) {
 			_productionCTCollection =
-				_changeTrackingCollectionLocalService.
-					fetchChangeTrackingCollection(
-						companyId, CTConstants.CT_COLLECTION_NAME_PRODUCTION);
+				_ctCollectionLocalService.fetchCTCollection(
+					companyId, CTConstants.CT_COLLECTION_NAME_PRODUCTION);
 		}
 
 		return Optional.ofNullable(_productionCTCollection);
@@ -241,7 +235,7 @@ public class CTManagerImpl implements CTManager {
 
 	@Override
 	public boolean isChangeTrackingEnabled(long companyId) {
-		Optional<ChangeTrackingCollection> productionCTCollection =
+		Optional<CTCollection> productionCTCollection =
 			getProductionCTCollectionOptional(companyId);
 
 		return productionCTCollection.isPresent();
@@ -269,7 +263,7 @@ public class CTManagerImpl implements CTManager {
 			return;
 		}
 
-		List<ChangeTrackingEntry> ctEntries = getCTEntries(ctCollectionId);
+		List<CTEntry> ctEntries = getCTEntries(ctCollectionId);
 
 		if (ListUtil.isEmpty(ctEntries)) {
 			if (_log.isWarnEnabled()) {
@@ -301,42 +295,37 @@ public class CTManagerImpl implements CTManager {
 		}
 	}
 
-	private void _copyEntriesFromProduction(
-		ChangeTrackingCollection ctCollection) {
-
-		Optional<ChangeTrackingCollection> productionCTCollectionOptional =
+	private void _copyEntriesFromProduction(CTCollection ctCollection) {
+		Optional<CTCollection> productionCTCollectionOptional =
 			getProductionCTCollectionOptional(ctCollection.getCompanyId());
 
-		List<ChangeTrackingEntry> productionCTEntries =
-			productionCTCollectionOptional.map(
-				ChangeTrackingCollection::getChangeTrackingCollectionId
-			).map(
-				this::getCTEntries
-			).orElse(
-				Collections.emptyList()
-			);
+		List<CTEntry> productionCTEntries = productionCTCollectionOptional.map(
+			CTCollection::getCtCollectionId
+		).map(
+			this::getCTEntries
+		).orElse(
+			Collections.emptyList()
+		);
 
-		for (ChangeTrackingEntry ctEntry : productionCTEntries) {
-			_changeTrackingCollectionLocalService.
-				addChangeTrackingEntryChangeTrackingCollection(
-					ctEntry.getChangeTrackingEntryId(), ctCollection);
+		for (CTEntry ctEntry : productionCTEntries) {
+			_ctCollectionLocalService.addCTEntryCTCollection(
+				ctEntry.getCtEntryId(), ctCollection);
 		}
 	}
 
-	private Optional<ChangeTrackingCollection> _createCTCollection(
+	private Optional<CTCollection> _createCTCollection(
 		long companyId, long userId, String name, String description) {
 
-		ChangeTrackingCollection ctCollection = null;
+		CTCollection ctCollection = null;
 
 		try {
 			ctCollection = TransactionInvokerUtil.invoke(
 				_transactionConfig,
 				() -> {
-					ChangeTrackingCollection addedCTCollection =
-						_changeTrackingCollectionLocalService.
-							addChangeTrackingCollection(
-								companyId, userId, name, description,
-								new ServiceContext());
+					CTCollection addedCTCollection =
+						_ctCollectionLocalService.addCTCollection(
+							companyId, userId, name, description,
+							new ServiceContext());
 
 					_copyEntriesFromProduction(addedCTCollection);
 
@@ -373,9 +362,9 @@ public class CTManagerImpl implements CTManager {
 
 	private void _publishCTEntries(
 		long companyId, long userId, long ctCollectionId,
-		List<ChangeTrackingEntry> ctEntries) {
+		List<CTEntry> ctEntries) {
 
-		Optional<ChangeTrackingCollection> productionCTCollectionOptional =
+		Optional<CTCollection> productionCTCollectionOptional =
 			getProductionCTCollectionOptional(companyId);
 
 		if (!productionCTCollectionOptional.isPresent()) {
@@ -383,22 +372,21 @@ public class CTManagerImpl implements CTManager {
 		}
 
 		long productionCTCollectionId = productionCTCollectionOptional.map(
-			ChangeTrackingCollection::getChangeTrackingCollectionId
+			CTCollection::getCtCollectionId
 		).get();
 
-		_changeTrackingEntryLocalService.
-			addChangeTrackingCollectionChangeTrackingEntries(
-				productionCTCollectionId, ctEntries);
+		_ctEntryLocalService.addCTCollectionCTEntries(
+			productionCTCollectionId, ctEntries);
 
-		Optional<ChangeTrackingCollection> ctCollectionOptional =
-			getCTCollectionOptional(ctCollectionId);
+		Optional<CTCollection> ctCollectionOptional = getCTCollectionOptional(
+			ctCollectionId);
 
 		if (!ctCollectionOptional.isPresent()) {
 			return;
 		}
 
 		try {
-			_changeTrackingCollectionLocalService.updateStatus(
+			_ctCollectionLocalService.updateStatus(
 				userId, ctCollectionOptional.get(),
 				WorkflowConstants.STATUS_APPROVED, new ServiceContext());
 		}
@@ -428,13 +416,12 @@ public class CTManagerImpl implements CTManager {
 	private static final Log _log = LogFactoryUtil.getLog(CTManagerImpl.class);
 
 	@Reference
-	private ChangeTrackingCollectionLocalService
-		_changeTrackingCollectionLocalService;
+	private CTCollectionLocalService _ctCollectionLocalService;
 
 	@Reference
-	private ChangeTrackingEntryLocalService _changeTrackingEntryLocalService;
+	private CTEntryLocalService _ctEntryLocalService;
 
-	private ChangeTrackingCollection _productionCTCollection;
+	private CTCollection _productionCTCollection;
 	private final TransactionConfig _transactionConfig =
 		TransactionConfig.Factory.create(
 			Propagation.REQUIRED, new Class<?>[] {Exception.class});

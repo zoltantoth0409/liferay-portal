@@ -2,12 +2,12 @@
 <!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_2_0.dtd">
 
 <service-builder auto-namespace-tables="false" package-path="com.liferay.change.tracking">
-	<namespace>ChangeTracking</namespace>
-	<entity local-service="true" name="ChangeTrackingCollection" remote-service="false" trash-enabled="false" uuid="false">
+	<namespace>CT</namespace>
+	<entity local-service="true" name="CTCollection" remote-service="false" trash-enabled="false" uuid="false">
 
 		<!-- PK fields -->
 
-		<column name="changeTrackingCollectionId" primary="true" type="long" />
+		<column name="ctCollectionId" primary="true" type="long" />
 
 		<!-- Audit fields -->
 
@@ -28,7 +28,7 @@
 
 		<!-- Relationships -->
 
-		<column entity="ChangeTrackingEntry" mapping-table="CTCollections_CTEntries" name="entries" type="Collection" />
+		<column entity="CTEntry" mapping-table="CTCollections_CTEntries" name="entries" type="Collection" />
 
 		<!-- Order -->
 
@@ -41,20 +41,20 @@
 		<finder name="CompanyId" return-type="Collection">
 			<finder-column name="companyId" />
 		</finder>
-		<finder name="C_N" return-type="ChangeTrackingCollection" unique="true">
+		<finder name="C_N" return-type="CTCollection" unique="true">
 			<finder-column name="companyId" />
 			<finder-column name="name" />
 		</finder>
 
 		<!-- References -->
 
-		<reference entity="ChangeTrackingEntry" package-path="com.liferay.change.tracking" />
+		<reference entity="CTEntry" package-path="com.liferay.change.tracking" />
 	</entity>
-	<entity local-service="true" name="ChangeTrackingEntry" remote-service="false" trash-enabled="false" uuid="false">
+	<entity local-service="true" name="CTEntry" remote-service="false" trash-enabled="false" uuid="false">
 
 		<!-- PK fields -->
 
-		<column name="changeTrackingEntryId" primary="true" type="long" />
+		<column name="ctEntryId" primary="true" type="long" />
 
 		<!-- Audit fields -->
 
@@ -72,7 +72,7 @@
 
 		<!-- Relationships -->
 
-		<column entity="ChangeTrackingCollection" mapping-table="CTCollections_CTEntries" name="collections" type="Collection" />
+		<column entity="CTCollection" mapping-table="CTCollections_CTEntries" name="collections" type="Collection" />
 
 		<!-- Finder methods -->
 
@@ -83,10 +83,10 @@
 
 		<!-- References -->
 
-		<reference entity="ChangeTrackingCollection" package-path="com.liferay.change.tracking" />
+		<reference entity="CTCollection" package-path="com.liferay.change.tracking" />
 	</entity>
 	<exceptions>
-		<exception>CollectionName</exception>
+		<exception>CTCollectionName</exception>
 		<exception>DuplicateCTEEntry</exception>
 	</exceptions>
 </service-builder>

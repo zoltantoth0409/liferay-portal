@@ -20,9 +20,9 @@ import aQute.bnd.annotation.ProviderType;
  * @author Brian Wing Shun Chan
  */
 @ProviderType
-public class ChangeTrackingEntryImpl extends ChangeTrackingEntryBaseImpl {
+public class CTEntryImpl extends CTEntryBaseImpl {
 
-	public ChangeTrackingEntryImpl() {
+	public CTEntryImpl() {
 	}
 
 }
