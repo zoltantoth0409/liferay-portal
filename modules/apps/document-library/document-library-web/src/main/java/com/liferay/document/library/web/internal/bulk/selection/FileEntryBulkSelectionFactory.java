@@ -81,16 +81,16 @@ public class FileEntryBulkSelectionFactory
 			values = StringUtil.split(values[0]);
 		}
 
-		long[] rowIdsFileEntries = GetterUtil.getLongValues(values);
+		long[] fileEntryIds = GetterUtil.getLongValues(values);
 
-		if (rowIdsFileEntries.length == 1) {
+		if (fileEntryIds.length == 1) {
 			return new SingleFileEntryBulkSelection(
-				rowIdsFileEntries[0], _resourceBundleLoader, _language,
+				fileEntryIds[0], _resourceBundleLoader, _language,
 				_dlAppService);
 		}
 
 		return new MultipleFileEntryBulkSelection(
-			rowIdsFileEntries, _resourceBundleLoader, _language, _dlAppService);
+			fileEntryIds, _resourceBundleLoader, _language, _dlAppService);
 	}
 
 	@Reference
