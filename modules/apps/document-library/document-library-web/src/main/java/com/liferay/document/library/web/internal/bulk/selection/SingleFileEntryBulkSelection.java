@@ -68,10 +68,10 @@ public class SingleFileEntryBulkSelection implements BulkSelection<FileEntry> {
 
 	@Override
 	public Stream<FileEntry> stream() throws PortalException {
-		Set<FileEntry> fileEntrySet = Collections.singleton(
+		Set<FileEntry> set = Collections.singleton(
 			_dlAppService.getFileEntry(_fileEntryId));
 
-		return fileEntrySet.stream();
+		return set.stream();
 	}
 
 	private final DLAppService _dlAppService;
