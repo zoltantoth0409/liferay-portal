@@ -101,7 +101,8 @@ public class SPIAgentSerializableTest {
 			new URL[0], currentThread.getContextClassLoader());
 
 		PropsTestUtil.setProps(
-			PropsKeys.SERVLET_CONTEXT_CLASS_LOADER_POOL_FALLBACK, "false");
+			PropsKeys.SERVLET_CONTEXT_CLASS_LOADER_POOL_FALLBACK,
+			Boolean.FALSE.toString());
 
 		ServletContextClassLoaderPool.register(
 			_SERVLET_CONTEXT_NAME, _classLoader);
