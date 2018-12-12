@@ -206,6 +206,13 @@
 
 		<execute function="Select" locator1="APConfiguration#FILTER_CATEGORIZATION_SELECT" value1="Categories" />
 
+		<if>
+			<isset var="queryAndOperator" />
+			<then>
+				<execute function="Select" locator1="APConfiguration#FILTER_QUERY_AND_OPERATOR" value1="${queryAndOperator}" />
+			</then>
+		</if>
+
 		<execute macro="AssetCategorization#addCategory">
 			<var name="categoryName" value="${categoryName}" />
 			<var name="vocabularyName" value="${vocabularyName}" />
