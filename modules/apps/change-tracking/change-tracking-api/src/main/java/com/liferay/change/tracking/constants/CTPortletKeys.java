@@ -17,7 +17,7 @@ package com.liferay.change.tracking.constants;
 /**
  * @author Mate Thurzo
  */
-public class ChangeTrackingPortletKeys {
+public class CTPortletKeys {
 
 	public static final String CHANGE_LISTS =
 		"com_liferay_change_tracking_web_portlet_ChangeListsPortlet";
