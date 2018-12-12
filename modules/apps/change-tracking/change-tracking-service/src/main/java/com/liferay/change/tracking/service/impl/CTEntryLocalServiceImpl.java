@@ -33,11 +33,11 @@ public class CTEntryLocalServiceImpl extends CTEntryLocalServiceBaseImpl {
 
 	@Override
 	public CTEntry addCTEntry(
-			long userId, long ctCollectionId, long classNameId, long classPK,
-			long resourcePrimKey, ServiceContext serviceContext)
+			long userId, long classNameId, long classPK, long resourcePrimKey,
+			long ctCollectionId, ServiceContext serviceContext)
 		throws PortalException {
 
-		_validate(ctCollectionId, classNameId, classPK);
+		_validate(classNameId, classPK, ctCollectionId);
 
 		long id = counterLocalService.increment();
 
@@ -63,10 +63,8 @@ public class CTEntryLocalServiceImpl extends CTEntryLocalServiceBaseImpl {
 		return ctEntry;
 	}
 
-	private void _validate(long ctCollectionId, long classNameId, long classPK)
+	private void _validate(long classNameId, long classPK, long ctCollectionId)
 		throws PortalException {
-
-		ctCollectionLocalService.getCTCollection(ctCollectionId);
 
 		List<CTEntry> ctEntries = ctEntryPersistence.findByC_C(
 			classNameId, classPK);
@@ -82,6 +80,8 @@ public class CTEntryLocalServiceImpl extends CTEntryLocalServiceBaseImpl {
 				}
 			}
 		}
+
+		ctCollectionLocalService.getCTCollection(ctCollectionId);
 	}
 
 }
