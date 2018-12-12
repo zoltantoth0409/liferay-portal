@@ -1,12 +1,5 @@
-create table CTCollections_CTEntries (
-	companyId LONG not null,
-	changeTrackingCollectionId LONG not null,
-	changeTrackingEntryId LONG not null,
-	primary key (changeTrackingCollectionId, changeTrackingEntryId)
-);
-
-create table ChangeTrackingCollection (
-	changeTrackingCollectionId LONG not null primary key,
+create table CTCollection (
+	ctCollectionId LONG not null primary key,
 	companyId LONG,
 	userId LONG,
 	userName VARCHAR(75) null,
@@ -20,8 +13,15 @@ create table ChangeTrackingCollection (
 	statusDate DATE null
 );
 
-create table ChangeTrackingEntry (
-	changeTrackingEntryId LONG not null primary key,
+create table CTCollections_CTEntries (
+	companyId LONG not null,
+	ctCollectionId LONG not null,
+	ctEntryId LONG not null,
+	primary key (ctCollectionId, ctEntryId)
+);
+
+create table CTEntry (
+	ctEntryId LONG not null primary key,
 	companyId LONG,
 	userId LONG,
 	userName VARCHAR(75) null,

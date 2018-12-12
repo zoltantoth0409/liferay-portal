@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 
 <model-hints>
-	<model name="com.liferay.change.tracking.model.ChangeTrackingCollection">
-		<field name="changeTrackingCollectionId" type="long" />
+	<model name="com.liferay.change.tracking.model.CTCollection">
+		<field name="ctCollectionId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
 		<field name="userName" type="String" />
@@ -15,8 +15,8 @@
 		<field name="statusByUserName" type="String" />
 		<field name="statusDate" type="Date" />
 	</model>
-	<model name="com.liferay.change.tracking.model.ChangeTrackingEntry">
-		<field name="changeTrackingEntryId" type="long" />
+	<model name="com.liferay.change.tracking.model.CTEntry">
+		<field name="ctEntryId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
 		<field name="userName" type="String" />

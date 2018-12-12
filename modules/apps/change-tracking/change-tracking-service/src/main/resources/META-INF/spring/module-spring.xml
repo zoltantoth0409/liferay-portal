@@ -7,8 +7,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
 >
-	<bean class="com.liferay.change.tracking.service.impl.ChangeTrackingCollectionLocalServiceImpl" id="com.liferay.change.tracking.service.ChangeTrackingCollectionLocalService" />
-	<bean class="com.liferay.change.tracking.service.persistence.impl.ChangeTrackingCollectionPersistenceImpl" id="com.liferay.change.tracking.service.persistence.ChangeTrackingCollectionPersistence" />
-	<bean class="com.liferay.change.tracking.service.impl.ChangeTrackingEntryLocalServiceImpl" id="com.liferay.change.tracking.service.ChangeTrackingEntryLocalService" />
-	<bean class="com.liferay.change.tracking.service.persistence.impl.ChangeTrackingEntryPersistenceImpl" id="com.liferay.change.tracking.service.persistence.ChangeTrackingEntryPersistence" />
+	<bean class="com.liferay.change.tracking.service.impl.CTCollectionLocalServiceImpl" id="com.liferay.change.tracking.service.CTCollectionLocalService" />
+	<bean class="com.liferay.change.tracking.service.persistence.impl.CTCollectionPersistenceImpl" id="com.liferay.change.tracking.service.persistence.CTCollectionPersistence" />
+	<bean class="com.liferay.change.tracking.service.impl.CTEntryLocalServiceImpl" id="com.liferay.change.tracking.service.CTEntryLocalService" />
+	<bean class="com.liferay.change.tracking.service.persistence.impl.CTEntryPersistenceImpl" id="com.liferay.change.tracking.service.persistence.CTEntryPersistence" />
 </beans>
