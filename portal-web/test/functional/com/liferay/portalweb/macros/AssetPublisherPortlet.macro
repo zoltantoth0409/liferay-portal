@@ -614,6 +614,46 @@
 		<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="There are no configuration templates." />
 	</command>
 
+	<command name="editConfigureCategoriesFilterPG">
+		<execute macro="AssetPublisherPortlet#gotoConfigurationPG" />
+
+		<execute macro="Panel#expandPanel">
+			<var name="panelHeading" value="Filter" />
+		</execute>
+
+		<if>
+			<isset var="queryAndOperator" />
+			<then>
+				<execute function="Select" locator1="APConfiguration#FILTER_QUERY_AND_OPERATOR" value1="${queryAndOperator}" />
+			</then>
+		</if>
+
+		<if>
+			<isset var="queryContains" />
+			<then>
+				<execute function="Select" locator1="APConfiguration#FILTER_QUERY_CONTAINS" value1="${queryContains}" />
+			</then>
+		</if>
+
+		<execute function="Click" locator1="Button#SELECT_CATEGORIES" />
+
+		<execute macro="AssetCategorization#gotoSelectCategory" />
+
+		<for list="${categoryNames}" param="categoryName">
+			<execute macro="Portlet#selectTreeNode">
+				<var name="nodeName" value="${categoryName}" />
+			</execute>
+		</for>
+
+		<execute function="SelectFrame" value1="relative=top" />
+
+		<execute function="Click" locator1="Icon#CLOSE" />
+
+		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+
+		<execute macro="PortletEntry#save" />
+	</command>
+
 	<command name="enableRSSSubscription">
 		<execute macro="IFrame#selectDialogFrame" />
 

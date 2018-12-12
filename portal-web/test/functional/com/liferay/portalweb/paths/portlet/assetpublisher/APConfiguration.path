@@ -155,6 +155,11 @@
 	<td></td>
 </tr>
 <tr>
+	<td>FILTER_QUERY_CONTAINS</td>
+	<td>//select[contains(@id,'queryContains')]</td>
+	<td></td>
+</tr>
+<tr>
 	<td></td>
 	<td></td>
 	<td></td>
