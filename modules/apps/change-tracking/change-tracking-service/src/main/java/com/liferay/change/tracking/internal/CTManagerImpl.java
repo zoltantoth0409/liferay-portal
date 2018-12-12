@@ -90,8 +90,7 @@ public class CTManagerImpl implements CTManager {
 	public Optional<ChangeTrackingCollection> createCTCollection(
 		long companyId, long userId, String name, String description) {
 
-		if (CTConstants.CT_COLLECTION_NAME_PRODUCTION.equals(
-				name) ||
+		if (CTConstants.CT_COLLECTION_NAME_PRODUCTION.equals(name) ||
 			!isChangeTrackingEnabled(companyId)) {
 
 			return Optional.empty();
@@ -153,8 +152,7 @@ public class CTManagerImpl implements CTManager {
 					Optional<ChangeTrackingCollection> ctCollectionOptional =
 						_createCTCollection(
 							companyId, userId,
-							CTConstants.
-								CT_COLLECTION_NAME_PRODUCTION,
+							CTConstants.CT_COLLECTION_NAME_PRODUCTION,
 							StringPool.BLANK);
 
 					ctCollectionOptional.ifPresent(
@@ -235,9 +233,7 @@ public class CTManagerImpl implements CTManager {
 			_productionCTCollection =
 				_changeTrackingCollectionLocalService.
 					fetchChangeTrackingCollection(
-						companyId,
-						CTConstants.
-							CT_COLLECTION_NAME_PRODUCTION);
+						companyId, CTConstants.CT_COLLECTION_NAME_PRODUCTION);
 		}
 
 		return Optional.ofNullable(_productionCTCollection);
@@ -422,15 +418,14 @@ public class CTManagerImpl implements CTManager {
 				userId, !user.isDefaultUser());
 
 		portalPreferences.setValue(
-			ChangeTrackingPortletKeys.CHANGE_LISTS,
-			_RECENT_CT_COLLECTION_ID, String.valueOf(ctCollectionId));
+			ChangeTrackingPortletKeys.CHANGE_LISTS, _RECENT_CT_COLLECTION_ID,
+			String.valueOf(ctCollectionId));
 	}
 
 	private static final String _RECENT_CT_COLLECTION_ID =
 		"recentCTCollectionId";
 
-	private static final Log _log = LogFactoryUtil.getLog(
-		CTManagerImpl.class);
+	private static final Log _log = LogFactoryUtil.getLog(CTManagerImpl.class);
 
 	@Reference
 	private ChangeTrackingCollectionLocalService
