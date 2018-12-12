@@ -90,7 +90,7 @@ public class ChangeTrackingManagerImpl implements ChangeTrackingManager {
 	public Optional<ChangeTrackingCollection> createCTCollection(
 		long companyId, long userId, String name, String description) {
 
-		if (ChangeTrackingConstants.CHANGE_COLLECTION_NAME_PRODUCTION.equals(
+		if (ChangeTrackingConstants.CT_COLLECTION_NAME_PRODUCTION.equals(
 				name) ||
 			!isChangeTrackingEnabled(companyId)) {
 
@@ -154,7 +154,7 @@ public class ChangeTrackingManagerImpl implements ChangeTrackingManager {
 						_createCTCollection(
 							companyId, userId,
 							ChangeTrackingConstants.
-								CHANGE_COLLECTION_NAME_PRODUCTION,
+								CT_COLLECTION_NAME_PRODUCTION,
 							StringPool.BLANK);
 
 					ctCollectionOptional.ifPresent(
@@ -237,7 +237,7 @@ public class ChangeTrackingManagerImpl implements ChangeTrackingManager {
 					fetchChangeTrackingCollection(
 						companyId,
 						ChangeTrackingConstants.
-							CHANGE_COLLECTION_NAME_PRODUCTION);
+							CT_COLLECTION_NAME_PRODUCTION);
 		}
 
 		return Optional.ofNullable(_productionCTCollection);

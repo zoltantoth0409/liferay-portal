@@ -19,7 +19,7 @@ package com.liferay.change.tracking.constants;
  */
 public interface ChangeTrackingConstants {
 
-	public static final String CHANGE_COLLECTION_NAME_PRODUCTION =
-		"productionChangeCollection";
+	public static final String CT_COLLECTION_NAME_PRODUCTION =
+		"productionCTCollection";
 
 }
