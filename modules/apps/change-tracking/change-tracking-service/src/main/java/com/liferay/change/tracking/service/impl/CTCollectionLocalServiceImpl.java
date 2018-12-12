@@ -36,24 +36,28 @@ public class CTCollectionLocalServiceImpl
 
 	@Override
 	public CTCollection addCTCollection(
-			long companyId, long userId, String name, String description,
+			long userId, String name, String description,
 			ServiceContext serviceContext)
 		throws PortalException {
 
 		_validate(name);
 
-		long id = counterLocalService.increment();
+		long ctCollectionId = counterLocalService.increment();
 
-		CTCollection ctCollection = ctCollectionPersistence.create(id);
+		CTCollection ctCollection = ctCollectionPersistence.create(
+			ctCollectionId);
 
 		User user = userLocalService.getUser(userId);
-		Date now = new Date();
 
-		ctCollection.setCompanyId(companyId);
+		ctCollection.setCompanyId(user.getCompanyId());
 		ctCollection.setUserId(user.getUserId());
 		ctCollection.setUserName(user.getFullName());
+
+		Date now = new Date();
+
 		ctCollection.setCreateDate(serviceContext.getCreateDate(now));
 		ctCollection.setModifiedDate(serviceContext.getModifiedDate(now));
+
 		ctCollection.setName(name);
 		ctCollection.setDescription(description);
 		ctCollection.setStatus(WorkflowConstants.STATUS_APPROVED);
