@@ -71,13 +71,12 @@ public class BaseUpgradeStagingGroupTypeSettings extends UpgradeProcess {
 
 				dynamicQuery.add(siteProperty.eq(Boolean.TRUE));
 			});
-
 		groupActionableDynamicQuery.setPerformActionMethod(
 			(ActionableDynamicQuery.PerformActionMethod<Group>)group -> {
 				UnicodeProperties typeSettingsProperties =
 					group.getTypeSettingsProperties();
 
-				if (typeSettingsProperties.size() == 0) {
+				if (typeSettingsProperties.isEmpty()) {
 					return;
 				}
 
