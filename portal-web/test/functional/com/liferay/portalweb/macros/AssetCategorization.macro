@@ -108,9 +108,11 @@
 			</then>
 		</if>
 
-		<execute function="Click" locator1="AssetCategorization#TAG_CHECKBOX">
-			<var name="key_tagName" value="${tagName}" />
-		</execute>
+		<for list="${tagNameList}" param="tagName">
+			<execute function="Click" locator1="AssetCategorization#TAG_CHECKBOX">
+				<var name="key_tagName" value="${tagName}" />
+			</execute>
+		</for>
 
 		<execute function="SelectFrameTop" />
 
