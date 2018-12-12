@@ -1,140 +1,111 @@
-<definition component-name="portal-wcm">
-	<property name="portal.release" value="true" />
-	<property name="portal.upstream" value="true" />
-	<property name="testray.main.component.name" value="Display Pages" />
+@component-name = "portal-wcm"
+definition {
+	property portal.release = "true";
+	property portal.upstream = "true";
+	property testray.main.component.name = "Display Pages";
 
-	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+	setUp {
+		TestCase.setUpPortalInstance();
 
-		<execute macro="User#firstLoginPG" />
+		User.firstLoginPG();
 
-		<execute macro="JSONGroup#addGroup">
-			<var name="groupName" value="Test Site Name" />
-		</execute>
+		JSONGroup.addGroup(groupName = "Test Site Name");
 
-		<execute macro="FragmentsAdmin#openFragmentsAdmin">
-			<var name="siteURLKey" value="test-site-name" />
-		</execute>
+		FragmentsAdmin.openFragmentsAdmin(siteURLKey = "test-site-name");
 
-		<execute macro="FragmentsAdmin#importCollectionFromDependenciesFolder">
-			<var name="collectionZipFile" value="fragment-collection.zip" />
-		</execute>
+		FragmentsAdmin.importCollectionFromDependenciesFolder(
+			collectionZipFile = "fragment-collection.zip"
+		);
 
-		<execute macro="DisplayPagesAdmin#openDisplayPagesAdmin">
-			<var name="siteURLKey" value="test-site-name" />
-		</execute>
-	</set-up>
+		DisplayPagesAdmin.openDisplayPagesAdmin(siteURLKey = "test-site-name");
+	}
 
-	<tear-down>
-		<var method="PropsUtil#get('test.portal.instance')" name="testPortalInstance" />
+	tearDown {
+		var testPortalInstance = PropsUtil.get("test.portal.instance");
 
-		<if>
-			<equals arg1="${testPortalInstance}" arg2="true" />
-			<then>
-				<execute macro="PortalInstances#tearDownCP" />
-			</then>
-			<else>
-				<execute macro="JSONGroup#deleteGroupByName">
-					<var name="groupName" value="Test Site Name" />
-				</execute>
-			</else>
-		</if>
-	</tear-down>
+		if ("${testPortalInstance}" == "true") {
+			PortalInstances.tearDownCP();
+		}
+		else {
+			JSONGroup.deleteGroupByName(groupName = "Test Site Name");
+		}
+	}
 
-	<command name="ViewDisplayPageWithComplexRichTextFragments" priority="4">
-		<description message="Add a fragment with multiple editable fields in it." />
+	@description = "Add a fragment with multiple editable fields in it."
+	@priority = "4"
+	test ViewDisplayPageWithComplexRichTextFragments {
+		DisplayPagesAdmin.add(displayPageName = "Display Page Name");
 
-		<execute macro="DisplayPagesAdmin#add">
-			<var name="displayPageName" value="Display Page Name" />
-		</execute>
+		PageEditor.addFragment(
+			collectionName = "Collection Name",
+			fragmentName = "Multiple Editables"
+		);
 
-		<execute macro="PageEditor#addFragment">
-			<var name="collectionName" value="Collection Name" />
-			<var name="fragmentName" value="Multiple Editables" />
-		</execute>
+		PageEditorMapping.selectAssetType(
+			assetType = "Web Content Article",
+			subType = "Basic Web Content"
+		);
 
-		<execute macro="PageEditorMapping#selectAssetType">
-			<var name="assetType" value="Web Content Article" />
-			<var name="subType" value="Basic Web Content" />
-		</execute>
+		PageEditorMapping.mapEditableTextToAsset(
+			fragmentName = "Multiple Editables",
+			id = "test1",
+			itemName = "Title"
+		);
 
-		<execute macro="PageEditorMapping#mapEditableTextToAsset">
-			<var name="fragmentName" value="Multiple Editables" />
-			<var name="id" value="test1" />
-			<var name="itemName" value="Title" />
-		</execute>
+		PageEditorMapping.mapEditableTextToAsset(
+			fragmentName = "Multiple Editables",
+			id = "test2",
+			itemName = "Content"
+		);
 
-		<execute macro="PageEditorMapping#mapEditableTextToAsset">
-			<var name="fragmentName" value="Multiple Editables" />
-			<var name="id" value="test2" />
-			<var name="itemName" value="Content" />
-		</execute>
+		PageEditorMapping.mapEditableTextToAsset(
+			fragmentName = "Multiple Editables",
+			id = "test3",
+			itemName = "Tags"
+		);
 
-		<execute macro="PageEditorMapping#mapEditableTextToAsset">
-			<var name="fragmentName" value="Multiple Editables" />
-			<var name="id" value="test3" />
-			<var name="itemName" value="Tags" />
-		</execute>
+		PageEditorMapping.mapEditableTextToAsset(
+			fragmentName = "Multiple Editables",
+			id = "test4",
+			itemName = "Publish Date"
+		);
 
-		<execute macro="PageEditorMapping#mapEditableTextToAsset">
-			<var name="fragmentName" value="Multiple Editables" />
-			<var name="id" value="test4" />
-			<var name="itemName" value="Publish Date" />
-		</execute>
+		Button.clickPublish();
 
-		<execute macro="Button#clickPublish" />
+		WebContent.openWebContentAdmin(siteURLKey = "test-site-name");
 
-		<execute macro="WebContent#openWebContentAdmin">
-			<var name="siteURLKey" value="test-site-name" />
-		</execute>
+		WebContent.addArticleCP(
+			webContentContent = "Webcontent Content",
+			webContentTitle = "Webcontent Title"
+		);
 
-		<execute macro="WebContent#addArticleCP">
-			<var name="webContentContent" value="Webcontent Content" />
-			<var name="webContentTitle" value="Webcontent Title" />
-		</execute>
+		WebContentNavigator.gotoEditCP(webContentTitle = "Webcontent Title");
 
-		<execute macro="WebContentNavigator#gotoEditCP">
-			<var name="webContentTitle" value="Webcontent Title" />
-		</execute>
+		WebContent.addWithTagCP(tagNameList = "tag1,tag2,tag3");
 
-		<execute macro="WebContent#addWithTagCP">
-			<var name="tagNameList" value="tag1,tag2,tag3" />
-		</execute>
+		WebContentNavigator.gotoEditCP(webContentTitle = "Webcontent Title");
 
-		<execute macro="WebContentNavigator#gotoEditCP">
-			<var name="webContentTitle" value="Webcontent Title" />
-		</execute>
+		WebContent.editDisplayPage(
+			pageName = "Display Page Name",
+			pageType = "Display Pages"
+		);
 
-		<execute macro="WebContent#editDisplayPage">
-			<var name="pageName" value="Display Page Name" />
-			<var name="pageType" value="Display Pages" />
-		</execute>
+		SitePages.openPagesAdmin(siteURLKey = "test-site-name");
 
-		<execute macro="SitePages#openPagesAdmin">
-			<var name="siteURLKey" value="test-site-name" />
-		</execute>
+		SitePages.addPublicPage(pageName = "Site Page Name");
 
-		<execute macro="SitePages#addPublicPage">
-			<var name="pageName" value="Site Page Name" />
-		</execute>
+		Navigator.gotoSitePage(pageName = "Site Page Name", siteName = "Test Site Name");
 
-		<execute macro="Navigator#gotoSitePage">
-			<var name="pageName" value="Site Page Name" />
-			<var name="siteName" value="Test Site Name" />
-		</execute>
+		Portlet.addPG(portletName = "Asset Publisher");
 
-		<execute macro="Portlet#addPG">
-			<var name="portletName" value="Asset Publisher" />
-		</execute>
+		AssetPublisherPortlet.configureAssetLinkBehaviorPG(
+			assetLinkBehavior = "View in Context"
+		);
 
-		<execute macro="AssetPublisherPortlet#configureAssetLinkBehaviorPG">
-			<var name="assetLinkBehavior" value="View in Context" />
-		</execute>
-
-		<execute macro="DisplayPagesAdmin#viewPGViaAP">
-			<var name="contentList" value="Webcontent Title,Webcontent Content,tag1,tag2,tag3" />
-			<var name="webContentContent" value="Webcontent Content" />
-			<var name="webContentTitle" value="Webcontent Title" />
-		</execute>
-	</command>
-</definition>
+		DisplayPagesAdmin.viewPGViaAP(
+			contentList = "Webcontent Title,Webcontent Content,tag1,tag2,tag3",
+			webContentContent = "Webcontent Content",
+			webContentTitle = "Webcontent Title"
+		);
+	}
+}
