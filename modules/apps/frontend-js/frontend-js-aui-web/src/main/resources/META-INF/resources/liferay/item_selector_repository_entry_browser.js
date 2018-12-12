@@ -394,6 +394,7 @@ AUI.add(
 
 						if (errorMessage) {
 							instance.one('input[type="file"]').val('');
+
 							instance._showError(errorMessage);
 						}
 					}
