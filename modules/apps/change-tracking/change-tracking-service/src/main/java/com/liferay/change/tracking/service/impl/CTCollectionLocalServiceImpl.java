@@ -111,24 +111,24 @@ public class CTCollectionLocalServiceImpl
 
 	@Override
 	public CTCollection updateStatus(
-			long userId, CTCollection collection, int status,
+			long userId, CTCollection ctCollection, int status,
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		User user = userLocalService.getUser(userId);
-
-		Date now = new Date();
-
-		Date modifiedDate = serviceContext.getModifiedDate(now);
+		Date modifiedDate = serviceContext.getModifiedDate(new Date());
 
 		collection.setModifiedDate(modifiedDate);
 
 		collection.setStatus(status);
+
+		User user = userLocalService.getUser(userId);
+
 		collection.setStatusByUserId(user.getUserId());
 		collection.setStatusByUserName(user.getFullName());
+
 		collection.setStatusDate(modifiedDate);
 
-		return ctCollectionPersistence.update(collection);
+		return ctCollectionPersistence.update(ctCollection);
 	}
 
 	private void _validate(String name) throws CTCollectionNameException {
