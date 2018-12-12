@@ -92,6 +92,7 @@ public class CTCollectionLocalServiceImpl
 		}
 
 		ctCollectionPersistence.remove(ctCollection);
+
 		ctCollectionPersistence.clearCTEntries(
 			ctCollection.getCtCollectionId());
 
