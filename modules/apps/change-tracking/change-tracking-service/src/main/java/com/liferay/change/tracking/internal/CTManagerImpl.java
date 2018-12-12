@@ -120,7 +120,7 @@ public class CTManagerImpl implements CTManager {
 
 		if (!ctCollectionOptional.isPresent()) {
 			_log.error(
-				"Unable to delete change tracking collection with " +
+				"Unable to delete change tracking collection " +
 					ctCollectionId);
 
 			return;
