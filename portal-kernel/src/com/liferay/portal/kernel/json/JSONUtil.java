@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -30,6 +31,33 @@ import java.util.Set;
  * @author Rachael Koestartyo
  */
 public class JSONUtil {
+
+	public static void addToStringCollection(
+		Collection<String> collection, JSONArray jsonArray) {
+
+		if (jsonArray == null) {
+			return;
+		}
+
+		for (int i = 0; i < jsonArray.length(); i++) {
+			collection.add(jsonArray.getString(i));
+		}
+	}
+
+	public static void addToStringCollection(
+		Collection<String> collection, JSONArray jsonArray,
+		String jsonObjectKey) {
+
+		if (jsonArray == null) {
+			return;
+		}
+
+		for (int i = 0; i < jsonArray.length(); i++) {
+			JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+			collection.add(jsonObject.getString(jsonObjectKey));
+		}
+	}
 
 	public static Object getValue(Object object, String... paths) {
 		Object value = null;
