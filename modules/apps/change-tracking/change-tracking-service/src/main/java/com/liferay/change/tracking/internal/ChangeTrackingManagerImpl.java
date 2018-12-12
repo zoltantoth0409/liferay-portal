@@ -372,7 +372,7 @@ public class ChangeTrackingManagerImpl implements ChangeTrackingManager {
 		return GetterUtil.getLong(
 			portalPreferences.getValue(
 				ChangeTrackingPortletKeys.CHANGE_LISTS,
-				_RECENT_CHANGE_COLLECTION_ID));
+				_RECENT_CT_COLLECTION_ID));
 	}
 
 	private void _publishCTEntries(
@@ -423,11 +423,11 @@ public class ChangeTrackingManagerImpl implements ChangeTrackingManager {
 
 		portalPreferences.setValue(
 			ChangeTrackingPortletKeys.CHANGE_LISTS,
-			_RECENT_CHANGE_COLLECTION_ID, String.valueOf(ctCollectionId));
+			_RECENT_CT_COLLECTION_ID, String.valueOf(ctCollectionId));
 	}
 
-	private static final String _RECENT_CHANGE_COLLECTION_ID =
-		"recentChangeCollectionId";
+	private static final String _RECENT_CT_COLLECTION_ID =
+		"recentCTCollectionId";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		ChangeTrackingManagerImpl.class);
