@@ -16,7 +16,7 @@ package com.liferay.change.tracking.internal;
 
 import com.liferay.change.tracking.CTManager;
 import com.liferay.change.tracking.constants.CTConstants;
-import com.liferay.change.tracking.constants.ChangeTrackingPortletKeys;
+import com.liferay.change.tracking.constants.CTPortletKeys;
 import com.liferay.change.tracking.model.CTCollection;
 import com.liferay.change.tracking.model.CTEntry;
 import com.liferay.change.tracking.service.CTCollectionLocalService;
@@ -393,8 +393,7 @@ public class CTManagerImpl implements CTManager {
 
 		return GetterUtil.getLong(
 			portalPreferences.getValue(
-				ChangeTrackingPortletKeys.CHANGE_LISTS,
-				_RECENT_CT_COLLECTION_ID));
+				CTPortletKeys.CHANGE_LISTS, _RECENT_CT_COLLECTION_ID));
 	}
 
 	private void _publishCTEntries(
@@ -450,7 +449,7 @@ public class CTManagerImpl implements CTManager {
 				userId, !user.isDefaultUser());
 
 		portalPreferences.setValue(
-			ChangeTrackingPortletKeys.CHANGE_LISTS, _RECENT_CT_COLLECTION_ID,
+			CTPortletKeys.CHANGE_LISTS, _RECENT_CT_COLLECTION_ID,
 			String.valueOf(ctCollectionId));
 	}
 

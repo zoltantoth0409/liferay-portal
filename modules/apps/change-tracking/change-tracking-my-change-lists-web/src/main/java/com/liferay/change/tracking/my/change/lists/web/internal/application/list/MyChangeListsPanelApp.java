@@ -16,7 +16,7 @@ package com.liferay.change.tracking.my.change.lists.web.internal.application.lis
 
 import com.liferay.application.list.BasePanelApp;
 import com.liferay.application.list.PanelApp;
-import com.liferay.change.tracking.constants.ChangeTrackingPortletKeys;
+import com.liferay.change.tracking.constants.CTPortletKeys;
 import com.liferay.portal.kernel.model.Portlet;
 import com.liferay.portal.kernel.util.PortletCategoryKeys;
 
@@ -38,12 +38,12 @@ public class MyChangeListsPanelApp extends BasePanelApp {
 
 	@Override
 	public String getPortletId() {
-		return ChangeTrackingPortletKeys.MY_CHANGE_LISTS;
+		return CTPortletKeys.MY_CHANGE_LISTS;
 	}
 
 	@Override
 	@Reference(
-		target = "(javax.portlet.name=" + ChangeTrackingPortletKeys.MY_CHANGE_LISTS + ")",
+		target = "(javax.portlet.name=" + CTPortletKeys.MY_CHANGE_LISTS + ")",
 		unbind = "-"
 	)
 	public void setPortlet(Portlet portlet) {

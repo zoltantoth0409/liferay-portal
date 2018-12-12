@@ -14,7 +14,7 @@
 
 package com.liferay.change.tracking.my.change.lists.web.internal.portlet;
 
-import com.liferay.change.tracking.constants.ChangeTrackingPortletKeys;
+import com.liferay.change.tracking.constants.CTPortletKeys;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 
 import javax.portlet.Portlet;
@@ -41,7 +41,7 @@ import org.osgi.service.component.annotations.Component;
 		"javax.portlet.expiration-cache=0",
 		"javax.portlet.init-param.template-path=/META-INF/resources/",
 		"javax.portlet.init-param.view-template=/view.jsp",
-		"javax.portlet.name=" + ChangeTrackingPortletKeys.MY_CHANGE_LISTS,
+		"javax.portlet.name=" + CTPortletKeys.MY_CHANGE_LISTS,
 		"javax.portlet.resource-bundle=content.Language",
 		"javax.portlet.security-role-ref=power-user,user",
 		"javax.portlet.supports.mime-type=text/html"

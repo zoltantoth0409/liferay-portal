@@ -17,7 +17,7 @@ package com.liferay.change.tracking.site.change.lists.web.internal.application.l
 import com.liferay.application.list.BasePanelApp;
 import com.liferay.application.list.PanelApp;
 import com.liferay.application.list.constants.PanelCategoryKeys;
-import com.liferay.change.tracking.constants.ChangeTrackingPortletKeys;
+import com.liferay.change.tracking.constants.CTPortletKeys;
 import com.liferay.portal.kernel.model.Portlet;
 
 import org.osgi.service.component.annotations.Component;
@@ -38,12 +38,12 @@ public class SiteChangeListsPanelApp extends BasePanelApp {
 
 	@Override
 	public String getPortletId() {
-		return ChangeTrackingPortletKeys.SITE_CHANGE_LISTS;
+		return CTPortletKeys.SITE_CHANGE_LISTS;
 	}
 
 	@Override
 	@Reference(
-		target = "(javax.portlet.name=" + ChangeTrackingPortletKeys.SITE_CHANGE_LISTS + ")",
+		target = "(javax.portlet.name=" + CTPortletKeys.SITE_CHANGE_LISTS + ")",
 		unbind = "-"
 	)
 	public void setPortlet(Portlet portlet) {

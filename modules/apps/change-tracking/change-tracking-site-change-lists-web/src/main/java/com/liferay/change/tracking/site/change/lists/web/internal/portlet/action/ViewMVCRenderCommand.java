@@ -14,7 +14,7 @@
 
 package com.liferay.change.tracking.site.change.lists.web.internal.portlet.action;
 
-import com.liferay.change.tracking.constants.ChangeTrackingPortletKeys;
+import com.liferay.change.tracking.constants.CTPortletKeys;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
 
 import javax.portlet.PortletException;
@@ -29,7 +29,7 @@ import org.osgi.service.component.annotations.Component;
 @Component(
 	immediate = true,
 	property = {
-		"javax.portlet.name=" + ChangeTrackingPortletKeys.SITE_CHANGE_LISTS,
+		"javax.portlet.name=" + CTPortletKeys.SITE_CHANGE_LISTS,
 		"mvc.command.name=/", "mvc.command.name=/site_change_lists/view"
 	},
 	service = MVCRenderCommand.class
