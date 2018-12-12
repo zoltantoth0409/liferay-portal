@@ -30,7 +30,7 @@ import java.util.Optional;
  * @author Daniel Kocsis
  */
 @ProviderType
-public interface ChangeTrackingManager {
+public interface CTManager {
 
 	/**
 	 * Changes the selected change collection for the given user.
