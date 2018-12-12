@@ -14,6 +14,7 @@
 
 package com.liferay.portal.template.soy.internal;
 
+import com.google.template.soy.data.SanitizedContent;
 import com.google.template.soy.data.SoyAbstractValue;
 import com.google.template.soy.data.SoyData;
 import com.google.template.soy.data.SoyDataException;
@@ -22,6 +23,7 @@ import com.google.template.soy.data.SoyMapData;
 import com.google.template.soy.data.SoyRecord;
 import com.google.template.soy.data.SoyValue;
 import com.google.template.soy.data.SoyValueProvider;
+import com.google.template.soy.data.UnsafeSanitizedContentOrdainer;
 import com.google.template.soy.data.restricted.BooleanData;
 import com.google.template.soy.data.restricted.FloatData;
 import com.google.template.soy.data.restricted.IntegerData;
@@ -270,7 +272,8 @@ public class SoyTemplateRecord extends SoyAbstractValue implements SoyRecord {
 			return (SoyData)object;
 		}
 		else if (object instanceof SoyHTMLContextValue) {
-			return StringData.forValue(object.toString());
+			return UnsafeSanitizedContentOrdainer.ordainAsSafe(
+				object.toString(), SanitizedContent.ContentKind.HTML);
 		}
 		else if (object instanceof SoyRawData) {
 			SoyRawData soyRawData = (SoyRawData)object;
