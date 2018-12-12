@@ -36,63 +36,55 @@ public interface CTManager {
 	/**
 	 * Changes the selected change tracking collection for the given user.
 	 *
-	 * @param companyId the primary key of the company
 	 * @param userId the primary key of the user
 	 * @param ctCollectionId the primary key of the selected change
 	 *        collection
 	 */
-	public void checkoutCTCollection(
-		long companyId, long userId, long ctCollectionId);
+	public void checkoutCTCollection(long userId, long ctCollectionId);
 
 	/**
 	 * Creates a new change tracking collection.
 	 *
-	 * @param  companyId the primary key of the company
 	 * @param  userId the primary key of the user who initiated the action
 	 * @param  name the name of the change tracking collection
 	 * @param  description the description of the change tracking collection
 	 * @return the newly created change tracking collection
 	 */
 	public Optional<CTCollection> createCTCollection(
-		long companyId, long userId, String name, String description);
+		long userId, String name, String description);
 
 	/**
 	 * Deletes a change tracking collection.
 	 *
-	 * @param userId the primary key of the user who initiated the action
 	 * @param ctCollectionId the primary key of the change
 	 *        collection
 	 */
-	public void deleteCTCollection(long userId, long ctCollectionId);
+	public void deleteCTCollection(long ctCollectionId);
 
 	/**
 	 * Disables the change tracking functionality in the scope of the given
 	 * company. As a side effect it deletes all the related change tracking collections
 	 * and entries.
 	 *
-	 * @param companyId the primary key of the company
 	 * @param userId the primary key of the user who initiated the action
 	 */
-	public void disableChangeTracking(long companyId, long userId);
+	public void disableChangeTracking(long userId);
 
 	/**
 	 * Enables the change tracking feature in the scope of the given company.
 	 *
-	 * @param companyId the primary key of the company
 	 * @param userId the primary key of the user who initiated the action
 	 */
-	public void enableChangeTracking(long companyId, long userId);
+	public void enableChangeTracking(long userId);
 
 	/**
 	 * Returns the active change tracking collection associated with the given user in
 	 * the scope of the given company.
 	 *
-	 * @param  companyId the primary key of the company
 	 * @param  userId the primary key of the user
 	 * @return the selected change tracking collection
 	 */
-	public Optional<CTCollection> getActiveCTCollectionOptional(
-		long companyId, long userId);
+	public Optional<CTCollection> getActiveCTCollectionOptional(long userId);
 
 	/**
 	 * Returns the change tracking collection identified by the primary key.
@@ -157,12 +149,10 @@ public interface CTManager {
 	 * Publishes all the change entries from the given change tracking collection to the
 	 * production change tracking collection.
 	 *
-	 * @param companyId the primary key of the company
 	 * @param userId the primary key of the user
 	 * @param ctCollectionId the primary key of the change
 	 *        collection
 	 */
-	public void publishCTCollection(
-		long companyId, long userId, long ctCollectionId);
+	public void publishCTCollection(long userId, long ctCollectionId);
 
 }

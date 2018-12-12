@@ -117,16 +117,16 @@ public class CTCollectionLocalServiceImpl
 
 		Date modifiedDate = serviceContext.getModifiedDate(new Date());
 
-		collection.setModifiedDate(modifiedDate);
+		ctCollection.setModifiedDate(modifiedDate);
 
-		collection.setStatus(status);
+		ctCollection.setStatus(status);
 
 		User user = userLocalService.getUser(userId);
 
-		collection.setStatusByUserId(user.getUserId());
-		collection.setStatusByUserName(user.getFullName());
+		ctCollection.setStatusByUserId(user.getUserId());
+		ctCollection.setStatusByUserName(user.getFullName());
 
-		collection.setStatusDate(modifiedDate);
+		ctCollection.setStatusDate(modifiedDate);
 
 		return ctCollectionPersistence.update(ctCollection);
 	}

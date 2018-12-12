@@ -52,10 +52,16 @@ import org.osgi.service.component.annotations.Reference;
 public class CTManagerImpl implements CTManager {
 
 	@Override
-	public void checkoutCTCollection(
-		long companyId, long userId, long ctCollectionId) {
+	public void checkoutCTCollection(long userId, long ctCollectionId) {
+		User user = _userLocalService.fetchUser(userId);
 
-		if (!isChangeTrackingEnabled(companyId)) {
+		if (user == null) {
+			_log.error("Unable to get user " + userId);
+
+			return;
+		}
+
+		if (!isChangeTrackingEnabled(user.getCompanyId())) {
 			return;
 		}
 
@@ -88,19 +94,27 @@ public class CTManagerImpl implements CTManager {
 
 	@Override
 	public Optional<CTCollection> createCTCollection(
-		long companyId, long userId, String name, String description) {
+		long userId, String name, String description) {
 
-		if (CTConstants.CT_COLLECTION_NAME_PRODUCTION.equals(name) ||
-			!isChangeTrackingEnabled(companyId)) {
+		User user = _userLocalService.fetchUser(userId);
+
+		if (user == null) {
+			_log.error("Unable to get user " + userId);
 
 			return Optional.empty();
 		}
 
-		return _createCTCollection(companyId, userId, name, description);
+		if (CTConstants.CT_COLLECTION_NAME_PRODUCTION.equals(name) ||
+			!isChangeTrackingEnabled(user.getCompanyId())) {
+
+			return Optional.empty();
+		}
+
+		return _createCTCollection(userId, name, description);
 	}
 
 	@Override
-	public void deleteCTCollection(long userId, long ctCollectionId) {
+	public void deleteCTCollection(long ctCollectionId) {
 		Optional<CTCollection> ctCollectionOptional = getCTCollectionOptional(
 			ctCollectionId);
 
@@ -117,8 +131,16 @@ public class CTManagerImpl implements CTManager {
 	}
 
 	@Override
-	public void disableChangeTracking(long companyId, long userId) {
-		if (!isChangeTrackingEnabled(companyId)) {
+	public void disableChangeTracking(long userId) {
+		User user = _userLocalService.fetchUser(userId);
+
+		if (user == null) {
+			_log.error("Unable to get user " + userId);
+
+			return;
+		}
+
+		if (!isChangeTrackingEnabled(user.getCompanyId())) {
 			return;
 		}
 
@@ -127,7 +149,7 @@ public class CTManagerImpl implements CTManager {
 				_transactionConfig,
 				() -> {
 					_ctCollectionLocalService.deleteCompanyCTCollections(
-						companyId);
+						user.getCompanyId());
 
 					_productionCTCollection = null;
 
@@ -140,8 +162,16 @@ public class CTManagerImpl implements CTManager {
 	}
 
 	@Override
-	public void enableChangeTracking(long companyId, long userId) {
-		if (isChangeTrackingEnabled(companyId)) {
+	public void enableChangeTracking(long userId) {
+		User user = _userLocalService.fetchUser(userId);
+
+		if (user == null) {
+			_log.error("Unable to get user " + userId);
+
+			return;
+		}
+
+		if (isChangeTrackingEnabled(user.getCompanyId())) {
 			return;
 		}
 
@@ -151,8 +181,7 @@ public class CTManagerImpl implements CTManager {
 				() -> {
 					Optional<CTCollection> ctCollectionOptional =
 						_createCTCollection(
-							companyId, userId,
-							CTConstants.CT_COLLECTION_NAME_PRODUCTION,
+							userId, CTConstants.CT_COLLECTION_NAME_PRODUCTION,
 							StringPool.BLANK);
 
 					ctCollectionOptional.ifPresent(
@@ -161,8 +190,7 @@ public class CTManagerImpl implements CTManager {
 								ctCollectionOptional.orElse(null);
 
 							checkoutCTCollection(
-								companyId, userId,
-								ctCollection.getCtCollectionId());
+								userId, ctCollection.getCtCollectionId());
 						});
 
 					return null;
@@ -174,10 +202,16 @@ public class CTManagerImpl implements CTManager {
 	}
 
 	@Override
-	public Optional<CTCollection> getActiveCTCollectionOptional(
-		long companyId, long userId) {
+	public Optional<CTCollection> getActiveCTCollectionOptional(long userId) {
+		User user = _userLocalService.fetchUser(userId);
 
-		if (!isChangeTrackingEnabled(companyId)) {
+		if (user == null) {
+			_log.error("Unable to get user " + userId);
+
+			return Optional.empty();
+		}
+
+		if (!isChangeTrackingEnabled(user.getCompanyId())) {
 			return Optional.empty();
 		}
 
@@ -185,7 +219,7 @@ public class CTManagerImpl implements CTManager {
 
 		if (recentCTCollectionId == 0L) {
 			Optional<CTCollection> productionCTCollectionOptional =
-				getProductionCTCollectionOptional(companyId);
+				getProductionCTCollectionOptional(user.getCompanyId());
 
 			recentCTCollectionId = productionCTCollectionOptional.map(
 				CTCollection::getCtCollectionId
@@ -193,7 +227,7 @@ public class CTManagerImpl implements CTManager {
 				0L
 			);
 
-			checkoutCTCollection(companyId, userId, recentCTCollectionId);
+			checkoutCTCollection(userId, recentCTCollectionId);
 		}
 
 		return getCTCollectionOptional(recentCTCollectionId);
@@ -249,15 +283,21 @@ public class CTManagerImpl implements CTManager {
 	}
 
 	@Override
-	public void publishCTCollection(
-		long companyId, long userId, long ctCollectionId) {
+	public void publishCTCollection(long userId, long ctCollectionId) {
+		User user = _userLocalService.fetchUser(userId);
 
-		if (!isChangeTrackingEnabled(companyId)) {
+		if (user == null) {
+			_log.error("Unable to get user " + userId);
+
+			return;
+		}
+
+		if (!isChangeTrackingEnabled(user.getCompanyId())) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					"Unable to publish change tracking collection because " +
 						"change tracking is not enabled in company " +
-							companyId);
+							user.getCompanyId());
 			}
 
 			return;
@@ -279,8 +319,7 @@ public class CTManagerImpl implements CTManager {
 			TransactionInvokerUtil.invoke(
 				_transactionConfig,
 				() -> {
-					_publishCTEntries(
-						companyId, userId, ctCollectionId, ctEntries);
+					_publishCTEntries(userId, ctCollectionId, ctEntries);
 
 					return null;
 				});
@@ -314,7 +353,7 @@ public class CTManagerImpl implements CTManager {
 	}
 
 	private Optional<CTCollection> _createCTCollection(
-		long companyId, long userId, String name, String description) {
+		long userId, String name, String description) {
 
 		CTCollection ctCollection = null;
 
@@ -324,8 +363,7 @@ public class CTManagerImpl implements CTManager {
 				() -> {
 					CTCollection addedCTCollection =
 						_ctCollectionLocalService.addCTCollection(
-							companyId, userId, name, description,
-							new ServiceContext());
+							userId, name, description, new ServiceContext());
 
 					_copyEntriesFromProduction(addedCTCollection);
 
@@ -361,11 +399,18 @@ public class CTManagerImpl implements CTManager {
 	}
 
 	private void _publishCTEntries(
-		long companyId, long userId, long ctCollectionId,
-		List<CTEntry> ctEntries) {
+		long userId, long ctCollectionId, List<CTEntry> ctEntries) {
+
+		User user = _userLocalService.fetchUser(userId);
+
+		if (user == null) {
+			_log.error("Unable to get user " + userId);
+
+			return;
+		}
 
 		Optional<CTCollection> productionCTCollectionOptional =
-			getProductionCTCollectionOptional(companyId);
+			getProductionCTCollectionOptional(user.getCompanyId());
 
 		if (!productionCTCollectionOptional.isPresent()) {
 			return;
