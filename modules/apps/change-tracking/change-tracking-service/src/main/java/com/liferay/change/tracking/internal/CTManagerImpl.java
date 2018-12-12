@@ -80,14 +80,14 @@ public class CTManagerImpl implements CTManager {
 			TransactionInvokerUtil.invoke(
 				_transactionConfig,
 				() -> {
-					_updateUserCollection(userId, ctCollectionId);
+					_updateRecentCTCollectionId(userId, ctCollectionId);
 
 					return null;
 				});
 		}
 		catch (Throwable t) {
 			_log.error(
-				"Unable to change user's active change tracking collection set",
+				"Unable to update user's recent change tracking collection",
 				t);
 		}
 	}
@@ -443,7 +443,7 @@ public class CTManagerImpl implements CTManager {
 		}
 	}
 
-	private void _updateUserCollection(long userId, long ctCollectionId) {
+	private void _updateRecentCTCollectionId(long userId, long ctCollectionId) {
 		User user = _userLocalService.fetchUser(userId);
 
 		PortalPreferences portalPreferences =
