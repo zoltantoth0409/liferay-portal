@@ -81,10 +81,10 @@ public class CTCollectionLocalServiceImpl
 			ctCollection.getCtCollectionId());
 
 		for (CTEntry ctEntry : ctEntries) {
-			int collectionsSize = ctEntryPersistence.getCTCollectionsSize(
+			int ctCollectionsSize = ctEntryPersistence.getCTCollectionsSize(
 				ctCollection.getCtCollectionId());
 
-			if (collectionsSize > 1) {
+			if (ctCollectionsSize > 1) {
 				continue;
 			}
 
