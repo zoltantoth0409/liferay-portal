@@ -15,7 +15,7 @@
 package com.liferay.change.tracking.internal;
 
 import com.liferay.change.tracking.ChangeTrackingManager;
-import com.liferay.change.tracking.constants.ChangeTrackingConstants;
+import com.liferay.change.tracking.constants.CTConstants;
 import com.liferay.change.tracking.constants.ChangeTrackingPortletKeys;
 import com.liferay.change.tracking.model.ChangeTrackingCollection;
 import com.liferay.change.tracking.model.ChangeTrackingEntry;
@@ -90,7 +90,7 @@ public class ChangeTrackingManagerImpl implements ChangeTrackingManager {
 	public Optional<ChangeTrackingCollection> createCTCollection(
 		long companyId, long userId, String name, String description) {
 
-		if (ChangeTrackingConstants.CT_COLLECTION_NAME_PRODUCTION.equals(
+		if (CTConstants.CT_COLLECTION_NAME_PRODUCTION.equals(
 				name) ||
 			!isChangeTrackingEnabled(companyId)) {
 
@@ -153,7 +153,7 @@ public class ChangeTrackingManagerImpl implements ChangeTrackingManager {
 					Optional<ChangeTrackingCollection> ctCollectionOptional =
 						_createCTCollection(
 							companyId, userId,
-							ChangeTrackingConstants.
+							CTConstants.
 								CT_COLLECTION_NAME_PRODUCTION,
 							StringPool.BLANK);
 
@@ -236,7 +236,7 @@ public class ChangeTrackingManagerImpl implements ChangeTrackingManager {
 				_changeTrackingCollectionLocalService.
 					fetchChangeTrackingCollection(
 						companyId,
-						ChangeTrackingConstants.
+						CTConstants.
 							CT_COLLECTION_NAME_PRODUCTION);
 		}
 
