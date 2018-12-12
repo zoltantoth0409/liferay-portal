@@ -64,7 +64,7 @@ public class ChangeTrackingManagerImpl implements ChangeTrackingManager {
 
 		if (!ctCollectionOptional.isPresent()) {
 			_log.error(
-				"Unable to checkout change collection with id " +
+				"Unable to checkout change tracking collection " +
 					ctCollectionId);
 
 			return;
@@ -80,7 +80,9 @@ public class ChangeTrackingManagerImpl implements ChangeTrackingManager {
 				});
 		}
 		catch (Throwable t) {
-			_log.error("Unable to change user's active collection set", t);
+			_log.error(
+				"Unable to change user's active change tracking collection set",
+				t);
 		}
 	}
 
@@ -105,7 +107,8 @@ public class ChangeTrackingManagerImpl implements ChangeTrackingManager {
 
 		if (!ctCollectionOptional.isPresent()) {
 			_log.error(
-				"Unable to delete change collection with id " + ctCollectionId);
+				"Unable to delete change tracking collection with " +
+					ctCollectionId);
 
 			return;
 		}
@@ -262,8 +265,9 @@ public class ChangeTrackingManagerImpl implements ChangeTrackingManager {
 		if (!isChangeTrackingEnabled(companyId)) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Unable to publish change collection because change " +
-						"tracking is not enabled in company " + companyId);
+					"Unable to publish change tracking collection because " +
+						"change tracking is not enabled in company " +
+							companyId);
 			}
 
 			return;
@@ -274,8 +278,8 @@ public class ChangeTrackingManagerImpl implements ChangeTrackingManager {
 		if (ListUtil.isEmpty(ctEntries)) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Unable to find any change entries with change " +
-						"collection id " + ctCollectionId);
+					"Unable to find change tracking entries with change " +
+						"tracking collection ID " + ctCollectionId);
 			}
 
 			return;
@@ -294,8 +298,8 @@ public class ChangeTrackingManagerImpl implements ChangeTrackingManager {
 		catch (Throwable t) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Unable to publish change entries to change collection " +
-						ctCollectionId,
+					"Unable to publish change tracking entries to change " +
+						"tracking collection " + ctCollectionId,
 					t);
 			}
 		}
@@ -345,7 +349,8 @@ public class ChangeTrackingManagerImpl implements ChangeTrackingManager {
 		}
 		catch (Throwable t) {
 			_log.error(
-				"Unable to create change collection with name " + name, t);
+				"Unable to create change tracking collection with name " + name,
+				t);
 		}
 
 		return Optional.ofNullable(ctCollection);
@@ -355,7 +360,7 @@ public class ChangeTrackingManagerImpl implements ChangeTrackingManager {
 		User user = _userLocalService.fetchUser(userId);
 
 		if (user == null) {
-			_log.error("Unable to find user with id " + userId);
+			_log.error("Unable to get user " + userId);
 
 			return 0L;
 		}
@@ -404,7 +409,7 @@ public class ChangeTrackingManagerImpl implements ChangeTrackingManager {
 		catch (PortalException pe) {
 			_log.error(
 				"Unable to update the status of the published change " +
-					"collection",
+					"tracking collection",
 				pe);
 		}
 	}
