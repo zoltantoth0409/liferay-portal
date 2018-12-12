@@ -36,8 +36,11 @@ import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
 import com.liferay.portal.kernel.test.rule.NewEnv;
 import com.liferay.portal.kernel.util.KeyValuePair;
+import com.liferay.portal.kernel.util.Props;
 import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.PropsUtilAdvice;
+import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.ThreadLocalDistributor;
@@ -51,6 +54,8 @@ import com.liferay.registry.RegistryUtil;
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.Serializable;
+
+import java.lang.reflect.Method;
 
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -99,9 +104,20 @@ public class SPIAgentSerializableTest {
 		_classLoader = new URLClassLoader(
 			new URL[0], currentThread.getContextClassLoader());
 
-		PropsTestUtil.setProps(
-			PropsKeys.SERVLET_CONTEXT_CLASS_LOADER_POOL_FALLBACK,
-			Boolean.FALSE.toString());
+		PropsUtil.setProps(
+			(Props)ProxyUtil.newProxyInstance(
+				Props.class.getClassLoader(), new Class<?>[] {Props.class},
+				(Object proxy, Method method, Object[] args) -> {
+					if ((args.length > 0) &&
+						args[0].equals(
+							PropsKeys.
+								SERVLET_CONTEXT_CLASS_LOADER_POOL_FALLBACK)) {
+
+						return "false";
+					}
+
+					return null;
+				}));
 
 		ServletContextClassLoaderPool.register(
 			_SERVLET_CONTEXT_NAME, _classLoader);
