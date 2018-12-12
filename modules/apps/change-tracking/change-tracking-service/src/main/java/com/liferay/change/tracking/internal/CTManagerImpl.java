@@ -215,7 +215,7 @@ public class CTManagerImpl implements CTManager {
 			return Optional.empty();
 		}
 
-		long recentCTCollectionId = _getUserCollectionId(userId);
+		long recentCTCollectionId = _getRecentCTCollectionId(userId);
 
 		if (recentCTCollectionId == 0L) {
 			Optional<CTCollection> productionCTCollectionOptional =
@@ -379,7 +379,7 @@ public class CTManagerImpl implements CTManager {
 		return Optional.ofNullable(ctCollection);
 	}
 
-	private long _getUserCollectionId(long userId) {
+	private long _getRecentCTCollectionId(long userId) {
 		User user = _userLocalService.fetchUser(userId);
 
 		if (user == null) {
