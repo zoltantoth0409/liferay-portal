@@ -33,8 +33,8 @@ public class CTEntryLocalServiceImpl extends CTEntryLocalServiceBaseImpl {
 
 	@Override
 	public CTEntry addCTEntry(
-			long companyId, long userId, long ctCollectionId, long classNameId,
-			long classPK, long resourcePrimKey, ServiceContext serviceContext)
+			long userId, long ctCollectionId, long classNameId, long classPK,
+			long resourcePrimKey, ServiceContext serviceContext)
 		throws PortalException {
 
 		_validate(ctCollectionId, classNameId, classPK);
@@ -46,7 +46,7 @@ public class CTEntryLocalServiceImpl extends CTEntryLocalServiceBaseImpl {
 		User user = userLocalService.getUser(userId);
 		Date now = new Date();
 
-		ctEntry.setCompanyId(companyId);
+		ctEntry.setCompanyId(user.getCompanyId());
 		ctEntry.setUserId(user.getUserId());
 		ctEntry.setUserName(user.getFullName());
 		ctEntry.setCreateDate(serviceContext.getCreateDate(now));
