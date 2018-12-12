@@ -87,8 +87,7 @@ public class CTManagerImpl implements CTManager {
 		}
 		catch (Throwable t) {
 			_log.error(
-				"Unable to update user's recent change tracking collection",
-				t);
+				"Unable to update user's recent change tracking collection", t);
 		}
 	}
 
