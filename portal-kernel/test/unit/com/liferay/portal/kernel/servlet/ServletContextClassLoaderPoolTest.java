@@ -19,10 +19,12 @@ import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
 import com.liferay.portal.kernel.test.rule.NewEnv;
 import com.liferay.portal.kernel.test.rule.NewEnvTestRule;
-import com.liferay.portal.kernel.test.util.PropsTestUtil;
+import com.liferay.portal.kernel.util.Props;
 import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.PropsUtil;
+import com.liferay.portal.kernel.util.ProxyUtil;
 
-import java.util.Collections;
+import java.lang.reflect.Method;
 
 import org.junit.Assert;
 import org.junit.ClassRule;
@@ -63,17 +65,32 @@ public class ServletContextClassLoaderPoolTest {
 
 	@Test
 	public void testMisc() {
-		PropsTestUtil.setProps(Collections.emptyMap());
+		_setProps(false);
 
 		new ServletContextClassLoaderPool();
 
 		ServletContextClassLoaderPool.unregister(_TEST_SERVLET_CONTEXT_NAME);
 	}
 
+	private void _setProps(boolean fallback) {
+		PropsUtil.setProps(
+			(Props)ProxyUtil.newProxyInstance(
+				Props.class.getClassLoader(), new Class<?>[] {Props.class},
+				(Object proxy, Method method, Object[] args) -> {
+					if ((args.length > 0) &&
+						args[0].equals(
+							PropsKeys.
+								SERVLET_CONTEXT_CLASS_LOADER_POOL_FALLBACK)) {
+
+						return String.valueOf(fallback);
+					}
+
+					return null;
+				}));
+	}
+
 	private void _testGetClassLoader(boolean fallback) {
-		PropsTestUtil.setProps(
-			PropsKeys.SERVLET_CONTEXT_CLASS_LOADER_POOL_FALLBACK,
-			String.valueOf(fallback));
+		_setProps(fallback);
 
 		Thread currentThread = Thread.currentThread();
 
@@ -137,9 +154,7 @@ public class ServletContextClassLoaderPoolTest {
 	}
 
 	private void _testGetServletContextName(boolean fallback) {
-		PropsTestUtil.setProps(
-			PropsKeys.SERVLET_CONTEXT_CLASS_LOADER_POOL_FALLBACK,
-			String.valueOf(fallback));
+		_setProps(fallback);
 
 		if (fallback) {
 			Assert.assertEquals(
