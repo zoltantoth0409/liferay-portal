@@ -34,7 +34,7 @@ import java.util.Optional;
 public interface CTManager {
 
 	/**
-	 * Changes the selected change collection for the given user.
+	 * Changes the selected change tracking collection for the given user.
 	 *
 	 * @param companyId the primary key of the company
 	 * @param userId the primary key of the user
@@ -45,19 +45,19 @@ public interface CTManager {
 		long companyId, long userId, long ctCollectionId);
 
 	/**
-	 * Creates a new change collection.
+	 * Creates a new change tracking collection.
 	 *
 	 * @param  companyId the primary key of the company
 	 * @param  userId the primary key of the user who initiated the action
-	 * @param  name the name of the change collection
-	 * @param  description the description of the change collection
-	 * @return the newly created change collection
+	 * @param  name the name of the change tracking collection
+	 * @param  description the description of the change tracking collection
+	 * @return the newly created change tracking collection
 	 */
 	public Optional<CTCollection> createCTCollection(
 		long companyId, long userId, String name, String description);
 
 	/**
-	 * Deletes a change collection.
+	 * Deletes a change tracking collection.
 	 *
 	 * @param userId the primary key of the user who initiated the action
 	 * @param ctCollectionId the primary key of the change
@@ -67,7 +67,7 @@ public interface CTManager {
 
 	/**
 	 * Disables the change tracking functionality in the scope of the given
-	 * company. As a side effect it deletes all the related change collections
+	 * company. As a side effect it deletes all the related change tracking collections
 	 * and entries.
 	 *
 	 * @param companyId the primary key of the company
@@ -84,30 +84,30 @@ public interface CTManager {
 	public void enableChangeTracking(long companyId, long userId);
 
 	/**
-	 * Returns the active change collection associated with the given user in
+	 * Returns the active change tracking collection associated with the given user in
 	 * the scope of the given company.
 	 *
 	 * @param  companyId the primary key of the company
 	 * @param  userId the primary key of the user
-	 * @return the selected change collection
+	 * @return the selected change tracking collection
 	 */
 	public Optional<CTCollection> getActiveCTCollectionOptional(
 		long companyId, long userId);
 
 	/**
-	 * Returns the change collection identified by the primary key.
+	 * Returns the change tracking collection identified by the primary key.
 	 *
 	 * @param  ctCollectionId the primary key of the change
 	 *         collection
-	 * @return the change collection
+	 * @return the change tracking collection
 	 */
 	public Optional<CTCollection> getCTCollectionOptional(long ctCollectionId);
 
 	/**
-	 * Returns all the change collection associated with the given company.
+	 * Returns all the change tracking collection associated with the given company.
 	 *
 	 * @param  companyId the primary key of the company
-	 * @return the list of change collections
+	 * @return the list of change tracking collections
 	 */
 	public List<CTCollection> getCTCollections(long companyId);
 
@@ -122,11 +122,11 @@ public interface CTManager {
 	public List<CTEntry> getCTEntries(long ctCollectionId);
 
 	/**
-	 * Returns the special change collection which is called production and
+	 * Returns the special change tracking collection which is called production and
 	 * contains all the changes published before.
 	 *
 	 * @param  companyId the primary key of the company
-	 * @return the production change collection
+	 * @return the production change tracking collection
 	 */
 	public Optional<CTCollection> getProductionCTCollectionOptional(
 		long companyId);
@@ -154,8 +154,8 @@ public interface CTManager {
 		long companyId, Class<BaseModel> clazz);
 
 	/**
-	 * Publishes all the change entries from the given change collection to the
-	 * production change collection.
+	 * Publishes all the change entries from the given change tracking collection to the
+	 * production change tracking collection.
 	 *
 	 * @param companyId the primary key of the company
 	 * @param userId the primary key of the user
