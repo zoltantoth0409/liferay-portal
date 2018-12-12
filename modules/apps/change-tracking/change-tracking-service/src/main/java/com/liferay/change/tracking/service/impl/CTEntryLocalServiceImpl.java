@@ -44,13 +44,16 @@ public class CTEntryLocalServiceImpl extends CTEntryLocalServiceBaseImpl {
 		CTEntry ctEntry = ctEntryPersistence.create(ctEntryId);
 
 		User user = userLocalService.getUser(userId);
-		Date now = new Date();
 
 		ctEntry.setCompanyId(user.getCompanyId());
 		ctEntry.setUserId(user.getUserId());
 		ctEntry.setUserName(user.getFullName());
+
+		Date now = new Date();
+
 		ctEntry.setCreateDate(serviceContext.getCreateDate(now));
 		ctEntry.setModifiedDate(serviceContext.getModifiedDate(now));
+
 		ctEntry.setClassNameId(classNameId);
 		ctEntry.setClassPK(classPK);
 		ctEntry.setResourcePrimKey(resourcePrimKey);
