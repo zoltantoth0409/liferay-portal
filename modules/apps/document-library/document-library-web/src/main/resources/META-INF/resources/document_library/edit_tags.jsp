@@ -19,8 +19,6 @@
 <%
 String redirect = ParamUtil.getString(request, "redirect");
 
-String commonTagNames = (String)request.getAttribute(DLWebKeys.DOCUMENT_LIBRARY_COMMON_TAG_NAMES);
-
 long repositoryId = ParamUtil.getLong(request, "repositoryId");
 
 boolean portletTitleBasedNavigation = GetterUtil.getBoolean(portletConfig.getInitParameter("portlet-title-based-navigation"));
@@ -31,8 +29,6 @@ if (portletTitleBasedNavigation) {
 
 	renderResponse.setTitle(LanguageUtil.get(request, "edit-tags"));
 }
-
-BulkSelection<FileEntry> bulkSelection = (BulkSelection<FileEntry>)request.getAttribute(DLWebKeys.DOCUMENT_LIBRARY_BULK_SELECTION);
 %>
 
 <liferay-portlet:actionURL name="/document_library/edit_tags" varImpl="editTagsURL" />
@@ -54,8 +50,19 @@ BulkSelection<FileEntry> bulkSelection = (BulkSelection<FileEntry>)request.getAt
 
 			<aui:fieldset-group markupView="lexicon">
 				<aui:fieldset>
+
+					<%
+					BulkSelection<FileEntry> bulkSelection = (BulkSelection<FileEntry>)request.getAttribute(DLWebKeys.DOCUMENT_LIBRARY_BULK_SELECTION);
+					%>
+
 					<aui:input name="rowIdsFileEntry" type="hidden" value="<%= String.valueOf(bulkSelection.serialize()) %>" />
+
+					<%
+					String commonTagNames = (String)request.getAttribute(DLWebKeys.DOCUMENT_LIBRARY_COMMON_TAG_NAMES);
+					%>
+
 					<aui:input name="commonTagNames" type="hidden" value="<%= commonTagNames %>" />
+
 					<aui:input name="repositoryId" type="hidden" value="<%= repositoryId %>" />
 
 					<%= bulkSelection.describe(themeDisplay.getLocale()) %>
