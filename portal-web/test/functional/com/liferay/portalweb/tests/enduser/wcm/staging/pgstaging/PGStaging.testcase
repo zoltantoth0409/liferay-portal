@@ -912,13 +912,15 @@
 
 		<execute macro="ProductMenu#gotoLiveSite" />
 
-		<var name="key_portletTitleName" value="Web Content Display" />
-
-		<execute function="AssertElementPresent" locator1="Portlet#SPECIFIC_TITLE" />
+		<execute macro="Portlet#viewSpecificPG">
+			<var name="portletName" value="Web Content Display" />
+		</execute>
 
 		<execute macro="Navigator#gotoStagedView" />
 
-		<execute function="AssertElementPresent" locator1="Portlet#SPECIFIC_TITLE" />
+		<execute macro="Portlet#viewSpecificPG">
+			<var name="portletName" value="Web Content Display" />
+		</execute>
 
 		<execute macro="WebContentDisplayPortlet#selectWebContent">
 			<var name="portletName" value="Web Content Display" />
