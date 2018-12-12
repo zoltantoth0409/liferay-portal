@@ -583,6 +583,20 @@
 			<var name="panelHeading" value="Filter" />
 		</execute>
 
+		<if>
+			<isset var="queryAndOperator" />
+			<then>
+				<execute function="Select" locator1="APConfiguration#FILTER_QUERY_AND_OPERATOR" value1="${queryAndOperator}" />
+			</then>
+		</if>
+
+		<if>
+			<isset var="queryContains" />
+			<then>
+				<execute function="Select" locator1="APConfiguration#FILTER_QUERY_CONTAINS" value1="${queryContains}" />
+			</then>
+		</if>
+
 		<execute function="Select" locator1="APConfiguration#FILTER_CATEGORIZATION_SELECT" value1="Tags" />
 
 		<execute macro="AssetCategorization#selectTag">
