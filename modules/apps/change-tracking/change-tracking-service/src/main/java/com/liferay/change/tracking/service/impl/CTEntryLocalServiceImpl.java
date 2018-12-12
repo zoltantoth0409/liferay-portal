@@ -39,9 +39,9 @@ public class CTEntryLocalServiceImpl extends CTEntryLocalServiceBaseImpl {
 
 		_validate(classNameId, classPK, ctCollectionId);
 
-		long id = counterLocalService.increment();
+		long ctEntryId = counterLocalService.increment();
 
-		CTEntry ctEntry = ctEntryPersistence.create(id);
+		CTEntry ctEntry = ctEntryPersistence.create(ctEntryId);
 
 		User user = userLocalService.getUser(userId);
 		Date now = new Date();
