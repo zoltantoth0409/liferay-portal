@@ -49,7 +49,7 @@ import org.osgi.service.component.annotations.Reference;
 public class AsahFaroBackendClientImpl implements AsahFaroBackendClient {
 
 	@Override
-	public Results<Individual> getIndividuals(
+	public Results<Individual> getIndividualResults(
 		String individualSegmentId, int cur, int delta,
 		List<OrderByField> orderByFields) {
 
@@ -81,7 +81,7 @@ public class AsahFaroBackendClientImpl implements AsahFaroBackendClient {
 	}
 
 	@Override
-	public Results<IndividualSegment> getIndividualSegments(
+	public Results<IndividualSegment> getIndividualSegmentResults(
 		int cur, int delta, List<OrderByField> orderByFields) {
 
 		FilterBuilder filterBuilder = new FilterBuilder();

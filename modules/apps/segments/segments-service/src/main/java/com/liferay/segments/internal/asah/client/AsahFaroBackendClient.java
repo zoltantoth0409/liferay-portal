@@ -27,7 +27,7 @@ import java.util.List;
  */
 public interface AsahFaroBackendClient {
 
-	public Results<Individual> getIndividuals(
+	public Results<Individual> getIndividualResults(
 		String individualSegmentId, int cur, int delta,
 		List<OrderByField> orderByFields);
 
@@ -42,7 +42,7 @@ public interface AsahFaroBackendClient {
 	 *         members
 	 * @review
 	 */
-	public Results<IndividualSegment> getIndividualSegments(
+	public Results<IndividualSegment> getIndividualSegmentResults(
 		int cur, int delta, List<OrderByField> orderByFields);
 
 }
