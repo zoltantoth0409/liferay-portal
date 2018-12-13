@@ -744,7 +744,12 @@
 		</if>
 
 		<if>
-			<condition function="IsElementPresent" locator1="Staging#STAGING_MENU_READY_FOR_PUBLICATION" />
+			<and>
+				<condition function="IsElementPresent" locator1="Staging#STAGING_MENU_READY_FOR_PUBLICATION" />
+				<not>
+					<isset var="pleaseDoNotMarkAsReady" />
+				</not>
+			</and>
 			<then>
 				<execute function="Check#toggleSwitch" locator1="Staging#STAGING_MENU_READY_FOR_PUBLICATION" />
 			</then>
