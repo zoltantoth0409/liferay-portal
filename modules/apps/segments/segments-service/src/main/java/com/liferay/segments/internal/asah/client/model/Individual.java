@@ -14,6 +14,8 @@
 
 package com.liferay.segments.internal.asah.client.model;
 
+import com.liferay.portal.kernel.util.StringBundler;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -72,18 +74,17 @@ public class Individual {
 
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder(12);
+		StringBuilder sb = new StringBuilder(11);
 
-		sb.append("Individual{");
-		sb.append("dataSourceIndividualPKs='");
+		sb.append("{dataSourceIndividualPKs=");
 		sb.append(_dataSourceIndividualPKs);
-		sb.append("', dateCreated='");
+		sb.append(", dateCreated=");
 		sb.append(_dateCreated);
-		sb.append("', dateModified='");
+		sb.append(", dateModified=");
 		sb.append(_dateModified);
-		sb.append("', demographics='");
+		sb.append(", demographics=");
 		sb.append(_demographics);
-		sb.append("', id='");
+		sb.append(", id=");
 		sb.append(_id);
 		sb.append("}");
 
