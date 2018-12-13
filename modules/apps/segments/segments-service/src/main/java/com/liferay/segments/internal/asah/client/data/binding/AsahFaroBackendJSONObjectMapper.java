@@ -50,10 +50,10 @@ public class AsahFaroBackendJSONObjectMapper {
 
 		TypeFactory typeFactory = TypeFactory.defaultInstance();
 
-		ObjectReader embeddedRelReader = _objectMapper.readerFor(
+		ObjectReader objectReader = _objectMapper.readerFor(
 			typeFactory.constructCollectionType(ArrayList.class, clazz));
 
-		List<T> embeddedRel = embeddedRelReader.readValue(embeddedRelJsonNode);
+		List<T> embeddedRel = objectReader.readValue(embeddedRelJsonNode);
 
 		JsonNode pageJsonNode = responseJsonNode.get("page");
 
