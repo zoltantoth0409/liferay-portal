@@ -14,6 +14,8 @@
 
 package com.liferay.segments.internal.asah.client.model;
 
+import com.liferay.portal.kernel.util.StringBundler;
+
 import java.util.Date;
 
 /**
@@ -122,7 +124,7 @@ public class Field {
 
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder(25);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("{context=");
 		sb.append(_context);
