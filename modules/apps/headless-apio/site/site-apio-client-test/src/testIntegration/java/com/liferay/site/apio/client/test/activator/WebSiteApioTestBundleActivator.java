@@ -51,6 +51,17 @@ public class WebSiteApioTestBundleActivator implements BundleActivator {
 		_cleanUp();
 	}
 
+	private void _cleanUp() {
+		try {
+			GroupTestUtil.deleteGroup(_group);
+
+			_permissionCheckerTestCallback.afterMethod(null, null, null);
+		}
+		catch (Throwable t) {
+			_log.error(t, t);
+		}
+	}
+
 	private void _createDemoData(BundleContext bundleContext) {
 		try {
 			AuthConfigurationTestUtil.deployOAuthConfiguration(bundleContext);
@@ -101,17 +112,6 @@ public class WebSiteApioTestBundleActivator implements BundleActivator {
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
-		}
-	}
-
-	private void _cleanUp() {
-		try {
-			GroupTestUtil.deleteGroup(_group);
-
-			_permissionCheckerTestCallback.afterMethod(null, null, null);
-		}
-		catch (Throwable t) {
-			_log.error(t, t);
 		}
 	}
 
