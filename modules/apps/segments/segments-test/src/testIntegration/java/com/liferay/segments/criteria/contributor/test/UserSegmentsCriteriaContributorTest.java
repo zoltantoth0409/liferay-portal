@@ -100,9 +100,9 @@ public class UserSegmentsCriteriaContributorTest {
 
 		String columnValue = RandomTestUtil.randomString();
 
-		User user1 = _addUser(expandoColumn.getName(), columnValue);
+		User user = _addUser(expandoColumn.getName(), columnValue);
 
-		_users.add(user1);
+		_users.add(user);
 
 		List<Field> fields = _segmentsCriteriaContributor.getFields(
 			LocaleUtil.getDefault());
