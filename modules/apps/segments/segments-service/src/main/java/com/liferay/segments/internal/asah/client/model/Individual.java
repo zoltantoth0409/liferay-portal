@@ -14,8 +14,6 @@
 
 package com.liferay.segments.internal.asah.client.model;
 
-import com.liferay.portal.kernel.util.StringBundler;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
