@@ -882,7 +882,7 @@
 			<var name="pageName" value="Web Content Display Page" />
 		</execute>
 
-		<execute macro="WebContentDisplayPortlet#viewNoPermissionPG" />
+		<execute macro="Portlet#viewNoPermissionPG" />
 
 		<execute macro="User#loginPG">
 			<var name="password" value="test" />
