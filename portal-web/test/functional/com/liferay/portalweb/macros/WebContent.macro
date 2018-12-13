@@ -888,13 +888,23 @@
 			<var name="panelHeading" value="Metadata" />
 		</execute>
 
-		<for list="${tagNameList}" param="tagName">
-			<execute function="Click" locator1="Button#ADD_TAGS" />
+		<if>
+			<equals arg1="${selectTag}" arg2="true" />
+			<then>
+				<execute macro="AssetCategorization#selectTag">
+					<var name="tagNameList" value="${tagNameList}" />
+				</execute>
+			</then>
+			<else>
+				<for list="${tagNameList}" param="tagName">
+					<execute function="Click" locator1="Button#ADD_TAGS" />
 
-			<execute function="Type#clickAtType" locator1="AssetCategorization#TAGS_FIELD" value1="${tagName}" />
+					<execute function="Type#clickAtType" locator1="AssetCategorization#TAGS_FIELD" value1="${tagName}" />
 
-			<execute function="AssertClick" locator1="Button#ADD_TAGS" value1="Add" />
-		</for>
+					<execute function="AssertClick" locator1="Button#ADD_TAGS" value1="Add" />
+				</for>
+			</else>
+		</if>
 
 		<execute macro="PortletEntry#publish" />
 	</command>
