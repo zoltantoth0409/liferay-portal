@@ -122,32 +122,31 @@ public class Field {
 
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder(26);
+		final StringBuilder sb = new StringBuilder(25);
 
-		sb.append("Field{");
-		sb.append("context='");
+		sb.append("{context=");
 		sb.append(_context);
-		sb.append("', dataSourceId='");
+		sb.append(", dataSourceId=");
 		sb.append(_dataSourceId);
-		sb.append("', dataSourceName='");
+		sb.append(", dataSourceName=");
 		sb.append(_dataSourceName);
-		sb.append("', dateModified='");
+		sb.append(", dateModified=");
 		sb.append(_dateModified);
-		sb.append("', fieldType='");
+		sb.append(", fieldType=");
 		sb.append(_fieldType);
-		sb.append("', id='");
+		sb.append(", id=");
 		sb.append(_id);
-		sb.append("', label='");
+		sb.append(", label=");
 		sb.append(_label);
-		sb.append("', name='");
+		sb.append(", name=");
 		sb.append(_name);
-		sb.append("', ownerId='");
+		sb.append(", ownerId=");
 		sb.append(_ownerId);
-		sb.append("', ownerType='");
+		sb.append(", ownerType=");
 		sb.append(_ownerType);
-		sb.append("', sourceName='");
+		sb.append(", sourceName=");
 		sb.append(_sourceName);
-		sb.append("', value='");
+		sb.append(", value=");
 		sb.append(_value);
 		sb.append("}");
 
