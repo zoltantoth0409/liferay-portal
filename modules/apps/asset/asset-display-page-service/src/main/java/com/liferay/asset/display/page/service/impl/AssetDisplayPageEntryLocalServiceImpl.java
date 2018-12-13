@@ -69,7 +69,7 @@ public class AssetDisplayPageEntryLocalServiceImpl
 			layoutPageTemplateEntryId);
 		assetDisplayPageEntry.setType(type);
 
-		Layout layout = _createLayout(
+		Layout layout = _addLayout(
 			userId, groupId, classNameId, classPK, serviceContext);
 
 		assetDisplayPageEntry.setPlid(layout.getPlid());
@@ -145,7 +145,7 @@ public class AssetDisplayPageEntryLocalServiceImpl
 		return assetDisplayPageEntry;
 	}
 
-	private Layout _createLayout(
+	private Layout _addLayout(
 			long userId, long groupId, long classNameId, long classPK,
 			ServiceContext serviceContext)
 		throws PortalException {
