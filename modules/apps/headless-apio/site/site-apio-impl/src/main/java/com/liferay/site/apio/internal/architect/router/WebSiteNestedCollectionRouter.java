@@ -59,7 +59,6 @@ public class WebSiteNestedCollectionRouter
 		List<Group> groups = _groupService.getGroups(
 			group.getCompanyId(), parentGroupId, true,
 			pagination.getStartPosition(), pagination.getEndPosition());
-
 		int count = _groupService.getGroupsCount(
 			group.getCompanyId(), parentGroupId, true);
 
