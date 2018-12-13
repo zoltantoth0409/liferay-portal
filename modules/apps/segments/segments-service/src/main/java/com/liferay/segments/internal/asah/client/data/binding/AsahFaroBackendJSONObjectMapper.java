@@ -42,25 +42,25 @@ public class AsahFaroBackendJSONObjectMapper {
 
 		throws IOException {
 
+		TypeFactory typeFactory = TypeFactory.defaultInstance();
+
+		ObjectReader objectReader = _objectMapper.readerFor(
+			typeFactory.constructCollectionType(ArrayList.class, clazz));
+
 		JsonNode responseJsonNode = _objectMapper.readTree(json);
 
 		JsonNode embeddedJsonNode = responseJsonNode.get("_embedded");
 
 		JsonNode embeddedRelJsonNode = embeddedJsonNode.get(embeddedRelName);
 
-		TypeFactory typeFactory = TypeFactory.defaultInstance();
-
-		ObjectReader objectReader = _objectMapper.readerFor(
-			typeFactory.constructCollectionType(ArrayList.class, clazz));
-
-		List<T> embeddedRel = objectReader.readValue(embeddedRelJsonNode);
+		List<T> items = objectReader.readValue(embeddedRelJsonNode);
 
 		JsonNode pageJsonNode = responseJsonNode.get("page");
 
 		PageMetadata pageMetadata = _objectMapper.treeToValue(
 			pageJsonNode, PageMetadata.class);
 
-		return new Results<>(embeddedRel, (int)pageMetadata.getTotalElements());
+		return new Results<>(items, (int)pageMetadata.getTotalElements());
 	}
 
 	private AsahFaroBackendJSONObjectMapper() {
