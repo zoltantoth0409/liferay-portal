@@ -892,9 +892,9 @@
 			<execute function="Click" locator1="Button#ADD_TAGS" />
 
 			<execute function="Type#clickAtType" locator1="AssetCategorization#TAGS_FIELD" value1="${tagName}" />
-		</for>
 
-		<execute function="Click" locator1="Button#ADD_TAGS" />
+			<execute function="AssertClick" locator1="Button#ADD_TAGS" value1="Add" />
+		</for>
 
 		<execute macro="PortletEntry#publish" />
 	</command>
