@@ -110,7 +110,7 @@ public class SystemEventTest {
 
 		ServiceTestUtil.setUser(TestPropsValues.getUser());
 
-		// Fallback to default port
+		// Fall back to default port
 
 		if (_serverPort <= 0) {
 			_serverPort = 8080;
