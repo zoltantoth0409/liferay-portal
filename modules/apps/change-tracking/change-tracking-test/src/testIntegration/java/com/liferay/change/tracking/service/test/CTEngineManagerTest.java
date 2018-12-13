@@ -145,8 +145,8 @@ public class CTEngineManagerTest {
 	public void testCreateCTCollection() throws Exception {
 		_ctEngineManager.enableChangeTracking(TestPropsValues.getUserId());
 
-		final String name = RandomTestUtil.randomString();
-		final String description = RandomTestUtil.randomString();
+		String name = RandomTestUtil.randomString();
+		String description = RandomTestUtil.randomString();
 
 		Optional<CTCollection> ctCollectionOptional =
 			_ctEngineManager.createCTCollection(
