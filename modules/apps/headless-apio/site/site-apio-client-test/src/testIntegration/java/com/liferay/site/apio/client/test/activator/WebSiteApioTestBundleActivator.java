@@ -48,7 +48,7 @@ public class WebSiteApioTestBundleActivator implements BundleActivator {
 
 	@Override
 	public void stop(BundleContext bundleContext) {
-		_deleteDemoData();
+		_cleanUp();
 	}
 
 	private void _createDemoData(BundleContext bundleContext) {
@@ -104,7 +104,7 @@ public class WebSiteApioTestBundleActivator implements BundleActivator {
 		}
 	}
 
-	private void _deleteDemoData() {
+	private void _cleanUp() {
 		try {
 			GroupTestUtil.deleteGroup(_group);
 
