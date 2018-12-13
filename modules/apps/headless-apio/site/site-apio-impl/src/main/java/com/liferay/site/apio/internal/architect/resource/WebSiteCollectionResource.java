@@ -170,9 +170,8 @@ public class WebSiteCollectionResource
 
 		themeDisplay.setLayout(layouts.get(0));
 
-		themeDisplay.setSiteGroupId(group.getGroupId());
-
 		themeDisplay.setPortalURL(company.getPortalURL(group.getGroupId()));
+		themeDisplay.setSiteGroupId(group.getGroupId());
 
 		return themeDisplay;
 	}
