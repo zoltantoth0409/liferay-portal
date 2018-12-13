@@ -126,17 +126,17 @@ public class WebSiteCollectionResourceTest {
 				group.getGroupId(), true,
 				new HashMap<Locale, String>() {
 					{
-						put(LocaleUtil.US, RandomTestUtil.randomString());
 						put(LocaleUtil.SPAIN, RandomTestUtil.randomString());
+						put(LocaleUtil.US, RandomTestUtil.randomString());
 					}
 				},
 				new HashMap<Locale, String>() {
 					{
 						put(
-							LocaleUtil.US,
+							LocaleUtil.SPAIN,
 							StringPool.SLASH + RandomTestUtil.randomString());
 						put(
-							LocaleUtil.SPAIN,
+							LocaleUtil.US,
 							StringPool.SLASH + RandomTestUtil.randomString());
 					}
 				});
