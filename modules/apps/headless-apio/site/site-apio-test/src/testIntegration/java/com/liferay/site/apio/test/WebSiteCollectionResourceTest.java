@@ -118,7 +118,7 @@ public class WebSiteCollectionResourceTest {
 	}
 
 	@Test
-	public void testGetPrivateUrl() throws Throwable {
+	public void testGetPrivateURL() throws Throwable {
 		Group group = GroupTestUtil.addGroup();
 
 		try {
@@ -141,11 +141,11 @@ public class WebSiteCollectionResourceTest {
 					}
 				});
 
-			String privateUrl = _getPrivateURL(group);
+			String privateURL = _getPrivateURL(group);
 
 			Assert.assertTrue(
-				"PrivateURL " + privateUrl,
-				privateUrl.endsWith(
+				"PrivateURL " + privateURL,
+				privateURL.endsWith(
 					PropsValues.
 						LAYOUT_FRIENDLY_URL_PRIVATE_GROUP_SERVLET_MAPPING +
 							group.getFriendlyURL()));
@@ -156,7 +156,7 @@ public class WebSiteCollectionResourceTest {
 	}
 
 	@Test
-	public void testGetPrivateUrlWithNoPrivateLayouts() throws Throwable {
+	public void testGetPrivateURLWithNoPrivateLayouts() throws Throwable {
 		Group group = GroupTestUtil.addGroup();
 
 		try {
@@ -168,7 +168,7 @@ public class WebSiteCollectionResourceTest {
 	}
 
 	@Test
-	public void testGetPublicUrl() throws Throwable {
+	public void testGetPublicURL() throws Throwable {
 		Group group = GroupTestUtil.addGroup();
 
 		try {
@@ -187,10 +187,10 @@ public class WebSiteCollectionResourceTest {
 					}
 				});
 
-			String publicUrl = _getPublicURL(group);
+			String publicURL = _getPublicURL(group);
 
 			Assert.assertTrue(
-				publicUrl.endsWith(
+				publicURL.endsWith(
 					PropsValues.LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING +
 						group.getFriendlyURL()));
 		}
@@ -200,7 +200,7 @@ public class WebSiteCollectionResourceTest {
 	}
 
 	@Test
-	public void testGetPublicUrlWithNoPuplicLayouts() throws Throwable {
+	public void testGetPublicURLWithNoPuplicLayouts() throws Throwable {
 		Group group = GroupTestUtil.addGroup();
 
 		try {
