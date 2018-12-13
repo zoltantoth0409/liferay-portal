@@ -103,7 +103,8 @@ public abstract class BaseAssetDisplayContributor<T>
 
 		if (assetObject == null) {
 			throw new NoSuchEntryException(
-				"No such Asset Entry " + versionClassPK);
+				"No asset entry exists with version class PK " +
+					versionClassPK);
 		}
 
 		return _getParameterMap(assetEntry, assetObject, locale);
