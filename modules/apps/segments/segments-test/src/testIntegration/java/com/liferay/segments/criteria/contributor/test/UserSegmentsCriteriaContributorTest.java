@@ -156,11 +156,12 @@ public class UserSegmentsCriteriaContributorTest {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext();
 
-		Map<String, Serializable> expandoBridgeAttributes = new HashMap<>();
-
-		expandoBridgeAttributes.put(columnName, columnValue);
-
-		serviceContext.setExpandoBridgeAttributes(expandoBridgeAttributes);
+		serviceContext.setExpandoBridgeAttributes(
+			new HashMap<String, Serializable>() {
+				{
+					put(columnName, columnValue);
+				}
+			});
 
 		return UserTestUtil.addUser(
 			TestPropsValues.getCompanyId(), TestPropsValues.getUserId(),
