@@ -63,10 +63,10 @@ public class AssetDisplayPageFriendlyURLResolver
 			Map<String, Object> requestContext)
 		throws PortalException {
 
-		String urlSeparator = getURLSeparator();
-
-		long versionClassPK = 0L;
 		long assetEntryId = 0L;
+		long versionClassPK = 0L;
+
+		String urlSeparator = getURLSeparator();
 
 		String path = friendlyURL.substring(urlSeparator.length());
 
