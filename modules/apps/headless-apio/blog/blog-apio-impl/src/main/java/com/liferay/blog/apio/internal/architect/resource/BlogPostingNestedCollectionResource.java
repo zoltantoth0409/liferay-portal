@@ -173,7 +173,7 @@ public class BlogPostingNestedCollectionResource
 				serviceContext);
 		}
 		catch (DuplicateFriendlyURLEntryException dfurlee) {
-			throw new ValidationException("Duplicate Friendly URL", dfurlee);
+			throw new ValidationException("Duplicate friendly URL", dfurlee);
 		}
 	}
 
