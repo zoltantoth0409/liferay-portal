@@ -18,6 +18,7 @@ import java.util.Dictionary;
 import java.util.Hashtable;
 
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.Filter;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.cm.Configuration;
 import org.osgi.service.cm.ConfigurationAdmin;
@@ -36,10 +37,12 @@ public class AuthConfigurationTestUtil {
 		ConfigurationAdmin configurationAdmin = bundleContext.getService(
 			serviceReference);
 
+		Filter filter = bundleContext.createFilter(
+			"(service.factoryPid=com.liferay.apio.architect.internal." +
+				"application.ApioApplication)");
+
 		Configuration[] configurations = configurationAdmin.listConfigurations(
-			bundleContext.createFilter(
-				"(service.factoryPid=com.liferay.apio.architect.internal." +
-					"application.ApioApplication)").toString());
+			filter.toString());
 
 		Dictionary<String, Object> dictionary =
 			new Hashtable<String, Object>() {
