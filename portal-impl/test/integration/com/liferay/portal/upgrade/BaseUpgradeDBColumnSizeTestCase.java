@@ -36,7 +36,7 @@ public abstract class BaseUpgradeDBColumnSizeTestCase {
 
 	@Before
 	public void setUp() throws Exception {
-		try (Connection connection = DataAccess.getUpgradeOptimizedConnection();
+		try (Connection connection = DataAccess.getConnection();
 			PreparedStatement ps = connection.prepareStatement(
 				getCreateTestTableSQL())) {
 
@@ -46,7 +46,7 @@ public abstract class BaseUpgradeDBColumnSizeTestCase {
 
 	@After
 	public void tearDown() throws Exception {
-		try (Connection connection = DataAccess.getUpgradeOptimizedConnection();
+		try (Connection connection = DataAccess.getConnection();
 			PreparedStatement ps = connection.prepareStatement(
 				"drop table TestTable")) {
 
@@ -74,9 +74,7 @@ public abstract class BaseUpgradeDBColumnSizeTestCase {
 	protected abstract BaseUpgradeDBColumnSize getUpgradeProcess();
 
 	private void _assertSize(int size) throws Exception {
-		try (Connection connection =
-				DataAccess.getUpgradeOptimizedConnection()) {
-
+		try (Connection connection = DataAccess.getConnection()) {
 			DatabaseMetaData databaseMetaData = connection.getMetaData();
 
 			DBInspector dbInspector = new DBInspector(connection);
