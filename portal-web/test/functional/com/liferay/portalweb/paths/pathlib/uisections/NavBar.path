@@ -69,6 +69,11 @@
 	<td></td>
 </tr>
 <tr>
+	<td>NAV_BAR_GENERAL</td>
+	<td>//ul[contains(@class,'navbar-nav')]/li/a[contains(.,'${key_navItem}')]</td>
+	<td></td>
+</tr>
+<tr>
 	<td>NAV_ITEM_LINK</td>
 	<td>//div[contains(@class,'navbar-default')]//a/span[contains(.,'${key_navItem}')] | //*[@data-qa-id='navigation']//a[contains(.,'${key_navItem}')]</td>
 	<td></td>
