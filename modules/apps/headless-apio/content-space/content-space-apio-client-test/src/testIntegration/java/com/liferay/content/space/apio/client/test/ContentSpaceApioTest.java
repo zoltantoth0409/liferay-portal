@@ -69,7 +69,8 @@ public class ContentSpaceApioTest {
 		).statusCode(
 			200
 		).body(
-			"_embedded.ContentSpace.find { it.name == 'Liferay' }",
+			"_embedded.ContentSpace.find { it.name == '" +
+				ContentSpaceTestActivator.CONTENT_SPACE_NAME + "' }",
 			IsNull.notNullValue()
 		);
 	}
