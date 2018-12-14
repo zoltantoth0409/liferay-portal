@@ -30,16 +30,16 @@ public abstract class BaseLocalGitRepository
 	extends BaseGitRepository implements LocalGitRepository {
 
 	@Override
-	public boolean equals(Object o) {
-		if (o == null) {
+	public boolean equals(Object obj) {
+		if (obj == null) {
 			return false;
 		}
 
-		if (!(o instanceof LocalGitRepository)) {
+		if (!(obj instanceof LocalGitRepository)) {
 			return false;
 		}
 
-		LocalGitRepository localGitRepository = (LocalGitRepository)o;
+		LocalGitRepository localGitRepository = (LocalGitRepository)obj;
 
 		File directory = getDirectory();
 
