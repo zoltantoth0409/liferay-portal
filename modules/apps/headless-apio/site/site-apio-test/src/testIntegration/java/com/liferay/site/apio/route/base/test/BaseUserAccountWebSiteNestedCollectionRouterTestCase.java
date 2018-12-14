@@ -58,7 +58,6 @@ public abstract class BaseUserAccountWebSiteNestedCollectionRouterTestCase {
 
 	protected void setUp() throws Exception {
 		_group1 = GroupTestUtil.addGroup();
-
 		_group2 = GroupTestUtil.addGroup();
 
 		_user = UserTestUtil.addUser(
