@@ -21,6 +21,11 @@ import com.liferay.portal.kernel.service.persistence.BasePersistence;
 import com.liferay.social.privatemessaging.exception.NoSuchUserThreadException;
 import com.liferay.social.privatemessaging.model.UserThread;
 
+import java.io.Serializable;
+
+import java.util.Map;
+import java.util.Set;
+
 /**
  * The persistence interface for the user thread service.
  *
@@ -40,6 +45,9 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link UserThreadUtil} to access the user thread persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
 	 */
+	@Override
+	public Map<Serializable, UserThread> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys);
 
 	/**
 	* Returns all the user threads where userId = &#63;.
@@ -709,10 +717,6 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	*/
 	public UserThread fetchByPrimaryKey(long userThreadId);
 
-	@Override
-	public java.util.Map<java.io.Serializable, UserThread> fetchByPrimaryKeys(
-		java.util.Set<java.io.Serializable> primaryKeys);
-
 	/**
 	* Returns all the user threads.
 	*
@@ -778,5 +782,5 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	public int countAll();
 
 	@Override
-	public java.util.Set<String> getBadColumnNames();
+	public Set<String> getBadColumnNames();
 }

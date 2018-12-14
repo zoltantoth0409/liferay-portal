@@ -21,6 +21,11 @@ import com.liferay.portal.kernel.service.persistence.BasePersistence;
 import com.liferay.social.networking.exception.NoSuchWallEntryException;
 import com.liferay.social.networking.model.WallEntry;
 
+import java.io.Serializable;
+
+import java.util.Map;
+import java.util.Set;
+
 /**
  * The persistence interface for the wall entry service.
  *
@@ -40,6 +45,9 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link WallEntryUtil} to access the wall entry persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
 	 */
+	@Override
+	public Map<Serializable, WallEntry> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys);
 
 	/**
 	* Returns all the wall entries where groupId = &#63;.
@@ -497,10 +505,6 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	* @return the wall entry, or <code>null</code> if a wall entry with the primary key could not be found
 	*/
 	public WallEntry fetchByPrimaryKey(long wallEntryId);
-
-	@Override
-	public java.util.Map<java.io.Serializable, WallEntry> fetchByPrimaryKeys(
-		java.util.Set<java.io.Serializable> primaryKeys);
 
 	/**
 	* Returns all the wall entries.

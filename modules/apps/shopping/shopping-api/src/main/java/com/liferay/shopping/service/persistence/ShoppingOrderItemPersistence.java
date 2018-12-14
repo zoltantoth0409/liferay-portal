@@ -21,6 +21,11 @@ import com.liferay.portal.kernel.service.persistence.BasePersistence;
 import com.liferay.shopping.exception.NoSuchOrderItemException;
 import com.liferay.shopping.model.ShoppingOrderItem;
 
+import java.io.Serializable;
+
+import java.util.Map;
+import java.util.Set;
+
 /**
  * The persistence interface for the shopping order item service.
  *
@@ -40,6 +45,9 @@ public interface ShoppingOrderItemPersistence extends BasePersistence<ShoppingOr
 	 *
 	 * Never modify or reference this interface directly. Always use {@link ShoppingOrderItemUtil} to access the shopping order item persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
 	 */
+	@Override
+	public Map<Serializable, ShoppingOrderItem> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys);
 
 	/**
 	* Returns all the shopping order items where orderId = &#63;.
@@ -225,10 +233,6 @@ public interface ShoppingOrderItemPersistence extends BasePersistence<ShoppingOr
 	* @return the shopping order item, or <code>null</code> if a shopping order item with the primary key could not be found
 	*/
 	public ShoppingOrderItem fetchByPrimaryKey(long orderItemId);
-
-	@Override
-	public java.util.Map<java.io.Serializable, ShoppingOrderItem> fetchByPrimaryKeys(
-		java.util.Set<java.io.Serializable> primaryKeys);
 
 	/**
 	* Returns all the shopping order items.

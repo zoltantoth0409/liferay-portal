@@ -21,6 +21,11 @@ import com.liferay.portal.kernel.service.persistence.BasePersistence;
 import com.liferay.social.networking.exception.NoSuchMeetupsEntryException;
 import com.liferay.social.networking.model.MeetupsEntry;
 
+import java.io.Serializable;
+
+import java.util.Map;
+import java.util.Set;
+
 /**
  * The persistence interface for the meetups entry service.
  *
@@ -40,6 +45,9 @@ public interface MeetupsEntryPersistence extends BasePersistence<MeetupsEntry> {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link MeetupsEntryUtil} to access the meetups entry persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
 	 */
+	@Override
+	public Map<Serializable, MeetupsEntry> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys);
 
 	/**
 	* Returns all the meetups entries where companyId = &#63;.
@@ -356,10 +364,6 @@ public interface MeetupsEntryPersistence extends BasePersistence<MeetupsEntry> {
 	* @return the meetups entry, or <code>null</code> if a meetups entry with the primary key could not be found
 	*/
 	public MeetupsEntry fetchByPrimaryKey(long meetupsEntryId);
-
-	@Override
-	public java.util.Map<java.io.Serializable, MeetupsEntry> fetchByPrimaryKeys(
-		java.util.Set<java.io.Serializable> primaryKeys);
 
 	/**
 	* Returns all the meetups entries.

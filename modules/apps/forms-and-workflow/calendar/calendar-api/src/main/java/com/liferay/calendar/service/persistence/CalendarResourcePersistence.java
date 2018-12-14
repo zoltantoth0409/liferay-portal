@@ -21,6 +21,11 @@ import com.liferay.calendar.model.CalendarResource;
 
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
 
+import java.io.Serializable;
+
+import java.util.Map;
+import java.util.Set;
+
 /**
  * The persistence interface for the calendar resource service.
  *
@@ -40,6 +45,9 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 	 *
 	 * Never modify or reference this interface directly. Always use {@link CalendarResourceUtil} to access the calendar resource persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
 	 */
+	@Override
+	public Map<Serializable, CalendarResource> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys);
 
 	/**
 	* Returns all the calendar resources where resourceBlockId = &#63;.
@@ -1640,10 +1648,6 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 	*/
 	public CalendarResource fetchByPrimaryKey(long calendarResourceId);
 
-	@Override
-	public java.util.Map<java.io.Serializable, CalendarResource> fetchByPrimaryKeys(
-		java.util.Set<java.io.Serializable> primaryKeys);
-
 	/**
 	* Returns all the calendar resources.
 	*
@@ -1709,5 +1713,5 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 	public int countAll();
 
 	@Override
-	public java.util.Set<String> getBadColumnNames();
+	public Set<String> getBadColumnNames();
 }

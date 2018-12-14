@@ -21,6 +21,11 @@ import com.liferay.portal.kernel.service.persistence.BasePersistence;
 import com.liferay.shopping.exception.NoSuchCategoryException;
 import com.liferay.shopping.model.ShoppingCategory;
 
+import java.io.Serializable;
+
+import java.util.Map;
+import java.util.Set;
+
 /**
  * The persistence interface for the shopping category service.
  *
@@ -40,6 +45,9 @@ public interface ShoppingCategoryPersistence extends BasePersistence<ShoppingCat
 	 *
 	 * Never modify or reference this interface directly. Always use {@link ShoppingCategoryUtil} to access the shopping category persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
 	 */
+	@Override
+	public Map<Serializable, ShoppingCategory> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys);
 
 	/**
 	* Returns all the shopping categories where groupId = &#63;.
@@ -551,10 +559,6 @@ public interface ShoppingCategoryPersistence extends BasePersistence<ShoppingCat
 	* @return the shopping category, or <code>null</code> if a shopping category with the primary key could not be found
 	*/
 	public ShoppingCategory fetchByPrimaryKey(long categoryId);
-
-	@Override
-	public java.util.Map<java.io.Serializable, ShoppingCategory> fetchByPrimaryKeys(
-		java.util.Set<java.io.Serializable> primaryKeys);
 
 	/**
 	* Returns all the shopping categories.

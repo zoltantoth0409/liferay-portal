@@ -21,6 +21,11 @@ import com.liferay.document.library.kernel.model.DLSyncEvent;
 
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
 
+import java.io.Serializable;
+
+import java.util.Map;
+import java.util.Set;
+
 /**
  * The persistence interface for the dl sync event service.
  *
@@ -40,6 +45,9 @@ public interface DLSyncEventPersistence extends BasePersistence<DLSyncEvent> {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link DLSyncEventUtil} to access the dl sync event persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
 	 */
+	@Override
+	public Map<Serializable, DLSyncEvent> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys);
 
 	/**
 	* Returns all the dl sync events where modifiedTime &gt; &#63;.
@@ -268,10 +276,6 @@ public interface DLSyncEventPersistence extends BasePersistence<DLSyncEvent> {
 	*/
 	public DLSyncEvent fetchByPrimaryKey(long syncEventId);
 
-	@Override
-	public java.util.Map<java.io.Serializable, DLSyncEvent> fetchByPrimaryKeys(
-		java.util.Set<java.io.Serializable> primaryKeys);
-
 	/**
 	* Returns all the dl sync events.
 	*
@@ -337,5 +341,5 @@ public interface DLSyncEventPersistence extends BasePersistence<DLSyncEvent> {
 	public int countAll();
 
 	@Override
-	public java.util.Set<String> getBadColumnNames();
+	public Set<String> getBadColumnNames();
 }

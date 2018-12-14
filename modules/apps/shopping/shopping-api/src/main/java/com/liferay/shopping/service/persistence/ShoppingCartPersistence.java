@@ -21,6 +21,11 @@ import com.liferay.portal.kernel.service.persistence.BasePersistence;
 import com.liferay.shopping.exception.NoSuchCartException;
 import com.liferay.shopping.model.ShoppingCart;
 
+import java.io.Serializable;
+
+import java.util.Map;
+import java.util.Set;
+
 /**
  * The persistence interface for the shopping cart service.
  *
@@ -40,6 +45,9 @@ public interface ShoppingCartPersistence extends BasePersistence<ShoppingCart> {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link ShoppingCartUtil} to access the shopping cart persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
 	 */
+	@Override
+	public Map<Serializable, ShoppingCart> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys);
 
 	/**
 	* Returns all the shopping carts where groupId = &#63;.
@@ -403,10 +411,6 @@ public interface ShoppingCartPersistence extends BasePersistence<ShoppingCart> {
 	* @return the shopping cart, or <code>null</code> if a shopping cart with the primary key could not be found
 	*/
 	public ShoppingCart fetchByPrimaryKey(long cartId);
-
-	@Override
-	public java.util.Map<java.io.Serializable, ShoppingCart> fetchByPrimaryKeys(
-		java.util.Set<java.io.Serializable> primaryKeys);
 
 	/**
 	* Returns all the shopping carts.

@@ -21,6 +21,11 @@ import com.liferay.message.boards.kernel.model.MBCategory;
 
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
 
+import java.io.Serializable;
+
+import java.util.Map;
+import java.util.Set;
+
 /**
  * The persistence interface for the message boards category service.
  *
@@ -40,6 +45,9 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link MBCategoryUtil} to access the message boards category persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
 	 */
+	@Override
+	public Map<Serializable, MBCategory> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys);
 
 	/**
 	* Returns all the message boards categories where uuid = &#63;.
@@ -2522,10 +2530,6 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	*/
 	public MBCategory fetchByPrimaryKey(long categoryId);
 
-	@Override
-	public java.util.Map<java.io.Serializable, MBCategory> fetchByPrimaryKeys(
-		java.util.Set<java.io.Serializable> primaryKeys);
-
 	/**
 	* Returns all the message boards categories.
 	*
@@ -2591,5 +2595,5 @@ public interface MBCategoryPersistence extends BasePersistence<MBCategory> {
 	public int countAll();
 
 	@Override
-	public java.util.Set<String> getBadColumnNames();
+	public Set<String> getBadColumnNames();
 }

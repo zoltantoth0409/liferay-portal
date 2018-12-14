@@ -21,6 +21,11 @@ import com.liferay.portal.kernel.service.persistence.BasePersistence;
 import com.liferay.wsrp.exception.NoSuchConsumerException;
 import com.liferay.wsrp.model.WSRPConsumer;
 
+import java.io.Serializable;
+
+import java.util.Map;
+import java.util.Set;
+
 /**
  * The persistence interface for the wsrp consumer service.
  *
@@ -40,6 +45,9 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link WSRPConsumerUtil} to access the wsrp consumer persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
 	 */
+	@Override
+	public Map<Serializable, WSRPConsumer> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys);
 
 	/**
 	* Returns all the wsrp consumers where uuid = &#63;.
@@ -500,10 +508,6 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	*/
 	public WSRPConsumer fetchByPrimaryKey(long wsrpConsumerId);
 
-	@Override
-	public java.util.Map<java.io.Serializable, WSRPConsumer> fetchByPrimaryKeys(
-		java.util.Set<java.io.Serializable> primaryKeys);
-
 	/**
 	* Returns all the wsrp consumers.
 	*
@@ -569,5 +573,5 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	public int countAll();
 
 	@Override
-	public java.util.Set<String> getBadColumnNames();
+	public Set<String> getBadColumnNames();
 }

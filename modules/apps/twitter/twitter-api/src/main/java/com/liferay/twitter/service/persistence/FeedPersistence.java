@@ -21,6 +21,11 @@ import com.liferay.portal.kernel.service.persistence.BasePersistence;
 import com.liferay.twitter.exception.NoSuchFeedException;
 import com.liferay.twitter.model.Feed;
 
+import java.io.Serializable;
+
+import java.util.Map;
+import java.util.Set;
+
 /**
  * The persistence interface for the feed service.
  *
@@ -40,6 +45,9 @@ public interface FeedPersistence extends BasePersistence<Feed> {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link FeedUtil} to access the feed persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
 	 */
+	@Override
+	public Map<Serializable, Feed> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys);
 
 	/**
 	* Returns the feed where userId = &#63; and twitterScreenName = &#63; or throws a {@link NoSuchFeedException} if it could not be found.
@@ -140,10 +148,6 @@ public interface FeedPersistence extends BasePersistence<Feed> {
 	* @return the feed, or <code>null</code> if a feed with the primary key could not be found
 	*/
 	public Feed fetchByPrimaryKey(long feedId);
-
-	@Override
-	public java.util.Map<java.io.Serializable, Feed> fetchByPrimaryKeys(
-		java.util.Set<java.io.Serializable> primaryKeys);
 
 	/**
 	* Returns all the feeds.

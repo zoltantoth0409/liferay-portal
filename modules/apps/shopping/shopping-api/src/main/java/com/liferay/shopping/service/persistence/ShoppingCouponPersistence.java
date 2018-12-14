@@ -21,6 +21,11 @@ import com.liferay.portal.kernel.service.persistence.BasePersistence;
 import com.liferay.shopping.exception.NoSuchCouponException;
 import com.liferay.shopping.model.ShoppingCoupon;
 
+import java.io.Serializable;
+
+import java.util.Map;
+import java.util.Set;
+
 /**
  * The persistence interface for the shopping coupon service.
  *
@@ -40,6 +45,9 @@ public interface ShoppingCouponPersistence extends BasePersistence<ShoppingCoupo
 	 *
 	 * Never modify or reference this interface directly. Always use {@link ShoppingCouponUtil} to access the shopping coupon persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
 	 */
+	@Override
+	public Map<Serializable, ShoppingCoupon> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys);
 
 	/**
 	* Returns all the shopping coupons where groupId = &#63;.
@@ -267,10 +275,6 @@ public interface ShoppingCouponPersistence extends BasePersistence<ShoppingCoupo
 	*/
 	public ShoppingCoupon fetchByPrimaryKey(long couponId);
 
-	@Override
-	public java.util.Map<java.io.Serializable, ShoppingCoupon> fetchByPrimaryKeys(
-		java.util.Set<java.io.Serializable> primaryKeys);
-
 	/**
 	* Returns all the shopping coupons.
 	*
@@ -336,5 +340,5 @@ public interface ShoppingCouponPersistence extends BasePersistence<ShoppingCoupo
 	public int countAll();
 
 	@Override
-	public java.util.Set<String> getBadColumnNames();
+	public Set<String> getBadColumnNames();
 }

@@ -21,6 +21,11 @@ import com.liferay.portal.kernel.service.persistence.BasePersistence;
 import com.liferay.social.networking.exception.NoSuchMeetupsRegistrationException;
 import com.liferay.social.networking.model.MeetupsRegistration;
 
+import java.io.Serializable;
+
+import java.util.Map;
+import java.util.Set;
+
 /**
  * The persistence interface for the meetups registration service.
  *
@@ -40,6 +45,9 @@ public interface MeetupsRegistrationPersistence extends BasePersistence<MeetupsR
 	 *
 	 * Never modify or reference this interface directly. Always use {@link MeetupsRegistrationUtil} to access the meetups registration persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
 	 */
+	@Override
+	public Map<Serializable, MeetupsRegistration> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys);
 
 	/**
 	* Returns all the meetups registrations where meetupsEntryId = &#63;.
@@ -425,10 +433,6 @@ public interface MeetupsRegistrationPersistence extends BasePersistence<MeetupsR
 	* @return the meetups registration, or <code>null</code> if a meetups registration with the primary key could not be found
 	*/
 	public MeetupsRegistration fetchByPrimaryKey(long meetupsRegistrationId);
-
-	@Override
-	public java.util.Map<java.io.Serializable, MeetupsRegistration> fetchByPrimaryKeys(
-		java.util.Set<java.io.Serializable> primaryKeys);
 
 	/**
 	* Returns all the meetups registrations.

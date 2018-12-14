@@ -21,6 +21,11 @@ import com.liferay.portal.kernel.service.persistence.BasePersistence;
 import com.liferay.wsrp.exception.NoSuchProducerException;
 import com.liferay.wsrp.model.WSRPProducer;
 
+import java.io.Serializable;
+
+import java.util.Map;
+import java.util.Set;
+
 /**
  * The persistence interface for the wsrp producer service.
  *
@@ -40,6 +45,9 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link WSRPProducerUtil} to access the wsrp producer persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
 	 */
+	@Override
+	public Map<Serializable, WSRPProducer> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys);
 
 	/**
 	* Returns all the wsrp producers where uuid = &#63;.
@@ -550,10 +558,6 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	*/
 	public WSRPProducer fetchByPrimaryKey(long wsrpProducerId);
 
-	@Override
-	public java.util.Map<java.io.Serializable, WSRPProducer> fetchByPrimaryKeys(
-		java.util.Set<java.io.Serializable> primaryKeys);
-
 	/**
 	* Returns all the wsrp producers.
 	*
@@ -619,5 +623,5 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	public int countAll();
 
 	@Override
-	public java.util.Set<String> getBadColumnNames();
+	public Set<String> getBadColumnNames();
 }

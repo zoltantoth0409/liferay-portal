@@ -21,6 +21,11 @@ import com.liferay.portal.kernel.service.persistence.BasePersistence;
 import com.liferay.shopping.exception.NoSuchItemPriceException;
 import com.liferay.shopping.model.ShoppingItemPrice;
 
+import java.io.Serializable;
+
+import java.util.Map;
+import java.util.Set;
+
 /**
  * The persistence interface for the shopping item price service.
  *
@@ -40,6 +45,9 @@ public interface ShoppingItemPricePersistence extends BasePersistence<ShoppingIt
 	 *
 	 * Never modify or reference this interface directly. Always use {@link ShoppingItemPriceUtil} to access the shopping item price persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
 	 */
+	@Override
+	public Map<Serializable, ShoppingItemPrice> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys);
 
 	/**
 	* Returns all the shopping item prices where itemId = &#63;.
@@ -225,10 +233,6 @@ public interface ShoppingItemPricePersistence extends BasePersistence<ShoppingIt
 	* @return the shopping item price, or <code>null</code> if a shopping item price with the primary key could not be found
 	*/
 	public ShoppingItemPrice fetchByPrimaryKey(long itemPriceId);
-
-	@Override
-	public java.util.Map<java.io.Serializable, ShoppingItemPrice> fetchByPrimaryKeys(
-		java.util.Set<java.io.Serializable> primaryKeys);
 
 	/**
 	* Returns all the shopping item prices.

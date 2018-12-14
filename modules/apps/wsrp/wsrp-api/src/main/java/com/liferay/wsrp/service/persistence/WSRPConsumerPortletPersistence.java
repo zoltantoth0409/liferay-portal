@@ -21,6 +21,11 @@ import com.liferay.portal.kernel.service.persistence.BasePersistence;
 import com.liferay.wsrp.exception.NoSuchConsumerPortletException;
 import com.liferay.wsrp.model.WSRPConsumerPortlet;
 
+import java.io.Serializable;
+
+import java.util.Map;
+import java.util.Set;
+
 /**
  * The persistence interface for the wsrp consumer portlet service.
  *
@@ -40,6 +45,9 @@ public interface WSRPConsumerPortletPersistence extends BasePersistence<WSRPCons
 	 *
 	 * Never modify or reference this interface directly. Always use {@link WSRPConsumerPortletUtil} to access the wsrp consumer portlet persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
 	 */
+	@Override
+	public Map<Serializable, WSRPConsumerPortlet> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys);
 
 	/**
 	* Returns all the wsrp consumer portlets where uuid = &#63;.
@@ -556,10 +564,6 @@ public interface WSRPConsumerPortletPersistence extends BasePersistence<WSRPCons
 	*/
 	public WSRPConsumerPortlet fetchByPrimaryKey(long wsrpConsumerPortletId);
 
-	@Override
-	public java.util.Map<java.io.Serializable, WSRPConsumerPortlet> fetchByPrimaryKeys(
-		java.util.Set<java.io.Serializable> primaryKeys);
-
 	/**
 	* Returns all the wsrp consumer portlets.
 	*
@@ -625,5 +629,5 @@ public interface WSRPConsumerPortletPersistence extends BasePersistence<WSRPCons
 	public int countAll();
 
 	@Override
-	public java.util.Set<String> getBadColumnNames();
+	public Set<String> getBadColumnNames();
 }
