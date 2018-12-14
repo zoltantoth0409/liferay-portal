@@ -95,9 +95,8 @@ public class OrganizationIndexerIndexedFieldsTest {
 
 		indexedFieldsFixture.postProcessDocument(document);
 
-		Map<String, String> expected = _expectedFieldValues(organization);
-
-		FieldValuesAssert.assertFieldValues(expected, document, searchTerm);
+		FieldValuesAssert.assertFieldValues(
+			_expectedFieldValues(organization), document, searchTerm);
 	}
 
 	@Test
@@ -124,10 +123,9 @@ public class OrganizationIndexerIndexedFieldsTest {
 
 		indexedFieldsFixture.postProcessDocument(document);
 
-		Map<String, String> expected = _expectedFieldValuesWithExpando(
-			organization);
-
-		FieldValuesAssert.assertFieldValues(expected, document, searchTerm);
+		FieldValuesAssert.assertFieldValues(
+			_expectedFieldValuesWithExpando(organization), document,
+			searchTerm);
 	}
 
 	protected void setUpExpandoTableSearchFixture() {
