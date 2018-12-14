@@ -183,6 +183,9 @@ public class PortalContextLoaderListener extends ContextLoaderListener {
 				_arrayApplicationContext);
 
 			_arrayApplicationContext.close();
+
+			ClassLoaderPool.unregister(_portalServletContextName);
+			ServletContextClassLoaderPool.unregister(_portalServletContextName);
 		}
 		finally {
 			PortalContextLoaderLifecycleThreadLocal.setDestroying(false);
