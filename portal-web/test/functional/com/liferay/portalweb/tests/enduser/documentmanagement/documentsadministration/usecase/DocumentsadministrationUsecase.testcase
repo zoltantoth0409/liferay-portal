@@ -713,7 +713,7 @@
 			<var name="navItem" value="File Uploads" />
 		</execute>
 
-		<execute function="Type" locator1="ServerAdministrationFileUploads#FILE_UPLOADS_INPUT_FIELD" value1=".doc" >
+		<execute function="Type" locator1="ServerAdministrationFileUploads#FILE_UPLOADS_INPUT_FIELD" value1=".doc">
 			<var name="key_fieldName" value="dlFileExtensions" />
 		</execute>
 
@@ -764,7 +764,7 @@
 				<var name="validationError" value="Please enter a file with a valid extension (.doc)." />
 			</execute>
 		</for>
-</command>
+	</command>
 
 	<command name="Comments" priority="4">
 		<execute macro="Navigator#openURL" />

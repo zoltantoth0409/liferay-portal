@@ -70,7 +70,7 @@
 			<var name="navItem" value="File Uploads" />
 		</execute>
 
-		<execute function="Type" locator1="ServerAdministrationFileUploads#FILE_UPLOADS_INPUT_FIELD" value1="${maxFileSize}" >
+		<execute function="Type" locator1="ServerAdministrationFileUploads#FILE_UPLOADS_INPUT_FIELD" value1="${maxFileSize}">
 			<var name="key_fieldName" value="uploadServletRequestImplMaxSize" />
 		</execute>
 
@@ -194,7 +194,7 @@
 			<var name="navItem" value="File Uploads" />
 		</execute>
 
-		<execute function="Type" locator1="ServerAdministrationFileUploads#FILE_UPLOADS_INPUT_FIELD" value1="" >
+		<execute function="Type" locator1="ServerAdministrationFileUploads#FILE_UPLOADS_INPUT_FIELD" value1="">
 			<var name="key_fieldName" value="dlFileMaxSize" />
 		</execute>
 
