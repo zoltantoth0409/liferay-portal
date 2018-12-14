@@ -87,23 +87,23 @@ public class BundleBlacklistTest {
 
 		CountDownLatch countDownLatch = new CountDownLatch(1);
 
-		BundleTracker<Bundle> bundleTracker =
-			new BundleTracker<Bundle>(_bundleContext, Bundle.ACTIVE, null) {
+		BundleTracker<Bundle> bundleTracker = new BundleTracker<Bundle>(
+			_bundleContext, Bundle.ACTIVE, null) {
 
-				@Override
-				public Bundle addingBundle(Bundle bundle, BundleEvent event) {
-					String symbolicName = bundle.getSymbolicName();
+			@Override
+			public Bundle addingBundle(Bundle bundle, BundleEvent event) {
+				String symbolicName = bundle.getSymbolicName();
 
-					if (symbolicName.equals(_LPKG_NAME)) {
-						countDownLatch.countDown();
+				if (symbolicName.equals(_LPKG_NAME)) {
+					countDownLatch.countDown();
 
-						close();
-					}
-
-					return null;
+					close();
 				}
 
-			};
+				return null;
+			}
+
+		};
 
 		bundleTracker.open();
 
@@ -126,24 +126,23 @@ public class BundleBlacklistTest {
 	public void tearDown() throws Exception {
 		CountDownLatch countDownLatch = new CountDownLatch(1);
 
-		BundleTracker<Bundle> bundleTracker =
-			new BundleTracker<Bundle>(
-				_bundleContext, Bundle.UNINSTALLED, null) {
+		BundleTracker<Bundle> bundleTracker = new BundleTracker<Bundle>(
+			_bundleContext, Bundle.UNINSTALLED, null) {
 
-				@Override
-				public Bundle addingBundle(Bundle bundle, BundleEvent event) {
-					String symbolicName = bundle.getSymbolicName();
+			@Override
+			public Bundle addingBundle(Bundle bundle, BundleEvent event) {
+				String symbolicName = bundle.getSymbolicName();
 
-					if (symbolicName.equals(_LPKG_NAME)) {
-						countDownLatch.countDown();
+				if (symbolicName.equals(_LPKG_NAME)) {
+					countDownLatch.countDown();
 
-						close();
-					}
-
-					return null;
+					close();
 				}
 
-			};
+				return null;
+			}
+
+		};
 
 		bundleTracker.open();
 

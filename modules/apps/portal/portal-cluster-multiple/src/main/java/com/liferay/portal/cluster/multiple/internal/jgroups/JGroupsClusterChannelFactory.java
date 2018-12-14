@@ -101,34 +101,30 @@ public class JGroupsClusterChannelFactory implements ClusterChannelFactory {
 			GetterUtil.getString(
 				_props.get(PropsKeys.CLUSTER_LINK_AUTODETECT_ADDRESS)));
 
-		_bundleTracker =
-			new BundleTracker<ClassLoader>(bundleContext, Bundle.ACTIVE, null) {
+		_bundleTracker = new BundleTracker<ClassLoader>(
+			bundleContext, Bundle.ACTIVE, null) {
 
-				@Override
-				public ClassLoader addingBundle(
-					Bundle bundle, BundleEvent event) {
+			@Override
+			public ClassLoader addingBundle(Bundle bundle, BundleEvent event) {
+				BundleWiring bundleWiring = bundle.adapt(BundleWiring.class);
 
-					BundleWiring bundleWiring = bundle.adapt(
-						BundleWiring.class);
+				ClassLoader classLoader = bundleWiring.getClassLoader();
 
-					ClassLoader classLoader = bundleWiring.getClassLoader();
+				ClusterClassLoaderPool.registerFallback(
+					bundle.getSymbolicName(), bundle.getVersion(), classLoader);
 
-					ClusterClassLoaderPool.registerFallback(
-						bundle.getSymbolicName(), bundle.getVersion(),
-						classLoader);
+				return classLoader;
+			}
 
-					return classLoader;
-				}
+			@Override
+			public void removedBundle(
+				Bundle bundle, BundleEvent event, ClassLoader classLoader) {
 
-				@Override
-				public void removedBundle(
-					Bundle bundle, BundleEvent event, ClassLoader classLoader) {
+				ClusterClassLoaderPool.unregisterFallback(
+					bundle.getSymbolicName(), bundle.getVersion());
+			}
 
-					ClusterClassLoaderPool.unregisterFallback(
-						bundle.getSymbolicName(), bundle.getVersion());
-				}
-
-			};
+		};
 
 		_bundleTracker.open();
 	}

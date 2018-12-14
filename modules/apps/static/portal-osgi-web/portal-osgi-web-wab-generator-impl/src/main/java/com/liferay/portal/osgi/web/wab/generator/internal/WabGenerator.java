@@ -106,38 +106,35 @@ public class WabGenerator
 
 		final CountDownLatch countDownLatch = new CountDownLatch(1);
 
-		BundleTracker<Void> bundleTracker =
-			new BundleTracker<Void>(bundleContext, Bundle.ACTIVE, null) {
+		BundleTracker<Void> bundleTracker = new BundleTracker<Void>(
+			bundleContext, Bundle.ACTIVE, null) {
 
-				@Override
-				public Void addingBundle(
-					Bundle bundle, BundleEvent bundleEvent) {
+			@Override
+			public Void addingBundle(Bundle bundle, BundleEvent bundleEvent) {
+				String location = bundle.getLocation();
 
-					String location = bundle.getLocation();
-
-					if (_log.isDebugEnabled()) {
-						_log.debug("Activated bundle " + location);
-					}
-
-					if (requiredForStartupContextPaths.remove(
-							_http.getParameter(
-								location, "Web-ContextPath", false))) {
-
-						if (_log.isDebugEnabled()) {
-							_log.debug(
-								"Bundle " + location +
-									" is required for startup");
-						}
-
-						if (requiredForStartupContextPaths.isEmpty()) {
-							countDownLatch.countDown();
-						}
-					}
-
-					return null;
+				if (_log.isDebugEnabled()) {
+					_log.debug("Activated bundle " + location);
 				}
 
-			};
+				if (requiredForStartupContextPaths.remove(
+						_http.getParameter(
+							location, "Web-ContextPath", false))) {
+
+					if (_log.isDebugEnabled()) {
+						_log.debug(
+							"Bundle " + location + " is required for startup");
+					}
+
+					if (requiredForStartupContextPaths.isEmpty()) {
+						countDownLatch.countDown();
+					}
+				}
+
+				return null;
+			}
+
+		};
 
 		if (_log.isDebugEnabled()) {
 			_log.debug(

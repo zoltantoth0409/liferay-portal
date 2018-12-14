@@ -57,71 +57,69 @@ public class NoticeableThreadPoolExecutor
 		_terminationDefaultNoticeableFuture.addFutureListener(
 			future -> threadPoolHandler.terminated());
 
-		_workerThreadPoolExecutor =
-			new ThreadPoolExecutor(
-				corePoolSize, maximumPoolSize, keepAliveTime, timeUnit,
-				new SynchronousQueue<>(), threadFactory,
-				(runnable, threadPoolExecutor) -> {
-					if (threadPoolExecutor.isShutdown()) {
-						rejectedExecutionHandler.rejectedExecution(
-							runnable, threadPoolExecutor);
+		_workerThreadPoolExecutor = new ThreadPoolExecutor(
+			corePoolSize, maximumPoolSize, keepAliveTime, timeUnit,
+			new SynchronousQueue<>(), threadFactory,
+			(runnable, threadPoolExecutor) -> {
+				if (threadPoolExecutor.isShutdown()) {
+					rejectedExecutionHandler.rejectedExecution(
+						runnable, threadPoolExecutor);
 
-						return;
-					}
-
-					BlockingQueue<Runnable> taskQueue =
-						threadPoolExecutor.getQueue();
-
-					try {
-						taskQueue.put(runnable);
-					}
-					catch (InterruptedException ie) {
-						rejectedExecutionHandler.rejectedExecution(
-							runnable, threadPoolExecutor);
-					}
-				}) {
-
-				@Override
-				protected void afterExecute(
-					Runnable runnable, Throwable throwable) {
-
-					threadPoolHandler.afterExecute(runnable, throwable);
+					return;
 				}
 
-				@Override
-				protected void beforeExecute(Thread thread, Runnable runnable) {
-					threadPoolHandler.beforeExecute(thread, runnable);
+				BlockingQueue<Runnable> taskQueue =
+					threadPoolExecutor.getQueue();
+
+				try {
+					taskQueue.put(runnable);
 				}
-
-				@Override
-				protected void terminated() {
-					if (terminationCounter.decrementAndGet() == 0) {
-						_terminationDefaultNoticeableFuture.run();
-					}
+				catch (InterruptedException ie) {
+					rejectedExecutionHandler.rejectedExecution(
+						runnable, threadPoolExecutor);
 				}
+			}) {
 
-			};
+			@Override
+			protected void afterExecute(
+				Runnable runnable, Throwable throwable) {
 
-		_dispatcherThreadPoolExecutor =
-			new ThreadPoolExecutor(
-				1, 1, keepAliveTime, timeUnit, blockingQueue,
-				runnable -> {
-					Thread thread = threadFactory.newThread(runnable);
+				threadPoolHandler.afterExecute(runnable, throwable);
+			}
 
-					thread.setName(thread.getName() + "-dispatcher");
+			@Override
+			protected void beforeExecute(Thread thread, Runnable runnable) {
+				threadPoolHandler.beforeExecute(thread, runnable);
+			}
 
-					return thread;
-				},
-				rejectedExecutionHandler) {
-
-				@Override
-				protected void terminated() {
-					if (terminationCounter.decrementAndGet() == 0) {
-						_terminationDefaultNoticeableFuture.run();
-					}
+			@Override
+			protected void terminated() {
+				if (terminationCounter.decrementAndGet() == 0) {
+					_terminationDefaultNoticeableFuture.run();
 				}
+			}
 
-			};
+		};
+
+		_dispatcherThreadPoolExecutor = new ThreadPoolExecutor(
+			1, 1, keepAliveTime, timeUnit, blockingQueue,
+			runnable -> {
+				Thread thread = threadFactory.newThread(runnable);
+
+				thread.setName(thread.getName() + "-dispatcher");
+
+				return thread;
+			},
+			rejectedExecutionHandler) {
+
+			@Override
+			protected void terminated() {
+				if (terminationCounter.decrementAndGet() == 0) {
+					_terminationDefaultNoticeableFuture.run();
+				}
+			}
+
+		};
 
 		_dispatcherThreadPoolExecutor.allowCoreThreadTimeOut(true);
 	}

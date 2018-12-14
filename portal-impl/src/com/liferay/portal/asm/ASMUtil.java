@@ -141,17 +141,15 @@ public class ASMUtil {
 
 		ClassNode classNode = new ClassNode();
 
-		ClassVisitor classVisitor =
-			new RemappingClassAdapter(
-				classNode, new RenameClassRemapper(name, newName)) {
+		ClassVisitor classVisitor = new RemappingClassAdapter(
+			classNode, new RenameClassRemapper(name, newName)) {
 
-				@Override
-				public void visitInnerClass(
-					String name, String outerName, String innerName,
-					int access) {
-				}
+			@Override
+			public void visitInnerClass(
+				String name, String outerName, String innerName, int access) {
+			}
 
-			};
+		};
 
 		classReader.accept(
 			classVisitor, ClassReader.SKIP_DEBUG | ClassReader.SKIP_FRAMES);

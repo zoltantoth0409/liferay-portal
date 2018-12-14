@@ -133,16 +133,15 @@ public class JSONWebServiceServiceActionTest
 
 		fileParams.put("fileName", null);
 
-		HttpServletRequest httpServletRequest =
-			new UploadServletRequestImpl(
-				createHttpRequest("/foo/add-file"), fileParams, null) {
+		HttpServletRequest httpServletRequest = new UploadServletRequestImpl(
+			createHttpRequest("/foo/add-file"), fileParams, null) {
 
-				@Override
-				public String getFileName(String name) {
-					return "test";
-				}
+			@Override
+			public String getFileName(String name) {
+				return "test";
+			}
 
-			};
+		};
 
 		JSONWebServiceAction jsonWebServiceAction = lookupJSONWebServiceAction(
 			httpServletRequest);
