@@ -557,7 +557,6 @@ public class JournalConverterImpl implements JournalConverter {
 					dynamicContentElement.getText());
 
 				String uuid = jsonObject.getString("uuid");
-
 				long groupId = jsonObject.getLong("groupId");
 
 				_dlAppLocalService.getFileEntryByUuidAndGroupId(uuid, groupId);
