@@ -82,7 +82,7 @@
 <!--TEXT_FORMATTING-->
 <tr>
 	<td>TEXT_FORMATTING_LINK_BROWSE_BUTTON</td>
-	<td>//button[contains(@title,'browse')]</td>
+	<td>//button[contains(@title,'browse')] | //button[contains(@aria-label,'Browse')]</td>
 	<td></td>
 </tr>
 <tr>
@@ -118,11 +118,6 @@
 <tr>
 	<td>TEXT_FORMATTING_LINK</td>
 	<td>//button[contains(@data-type,'button-link')]</td>
-	<td></td>
-</tr>
-<tr>
-	<td>TEXT_FORMATTING_LINK_BROWSE_BUTTON</td>
-	<td>//button[contains(@aria-label,'Browse')]</td>
 	<td></td>
 </tr>
 <tr>
