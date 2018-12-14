@@ -1540,8 +1540,6 @@ print AdminControl.invoke(appManager, 'startApplication', 'liferay-portal')
 				<dtd location="${definitions.dir}/liferay-user-notification-definitions_7_2_0.dtd" publicId="-//Liferay//DTD User Notification Definition 7.2.0//EN" />
 				<dtd location="${definitions.dir}/mule-configuration.dtd" publicId="-//MuleSource //DTD mule-configuration XML V1.0//EN" />
 				<dtd location="${definitions.dir}/spring-beans.dtd" publicId="-//SPRING//DTD BEAN//EN" />
-				<dtd location="${definitions.dir}/struts-config_1_2.dtd" publicId="-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" />
-				<dtd location="${definitions.dir}/tiles-config_1_1.dtd" publicId="-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN" />
 				<dtd location="${definitions.dir}/web-app_2_3.dtd" publicId="-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" />
 				<dtd location="${definitions.dir}/web-facesconfig_1_0.dtd" publicId="-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.0//EN" />
 				<dtd location="${definitions.dir}/web-facesconfig_1_1.dtd" publicId="-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.1//EN" />
