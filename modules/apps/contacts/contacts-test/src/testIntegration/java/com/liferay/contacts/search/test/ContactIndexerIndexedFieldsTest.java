@@ -87,9 +87,8 @@ public class ContactIndexerIndexedFieldsTest {
 
 		indexedFieldsFixture.postProcessDocument(document);
 
-		Map<String, String> expected = expectedFieldValues(contact);
-
-		FieldValuesAssert.assertFieldValues(expected, document, searchTerm);
+		FieldValuesAssert.assertFieldValues(
+			expectedFieldValues(contact), document, searchTerm);
 	}
 
 	protected Map<String, String> expectedFieldValues(Contact contact)
@@ -106,13 +105,11 @@ public class ContactIndexerIndexedFieldsTest {
 
 		map.put(Field.CLASS_NAME_ID, String.valueOf(contact.getClassNameId()));
 		map.put(Field.CLASS_PK, String.valueOf(contact.getClassPK()));
-		map.put(Field.ENTRY_CLASS_PK, String.valueOf(contact.getPrimaryKey()));
-		map.put(Field.ENTRY_CLASS_NAME, contact.getModelClassName());
-
 		map.put(Field.COMPANY_ID, String.valueOf(contact.getCompanyId()));
+		map.put(Field.ENTRY_CLASS_NAME, contact.getModelClassName());
+		map.put(Field.ENTRY_CLASS_PK, String.valueOf(contact.getPrimaryKey()));
 		map.put(Field.USER_ID, String.valueOf(contact.getUserId()));
 		map.put(Field.USER_NAME, contact.getFullName());
-
 		map.put("emailAddress", contact.getEmailAddress());
 		map.put("firstName", contact.getFirstName());
 		map.put(
