@@ -19,6 +19,6 @@ package com.liferay.document.library.preview.pdf.internal.constants;
  */
 public class PDFDLPreviewWebKeys {
 
-	public static final String MODULE_PATH = "modulePath";
+	public static final String MODULE_PATH = "MODULE_PATH";
 
 }
