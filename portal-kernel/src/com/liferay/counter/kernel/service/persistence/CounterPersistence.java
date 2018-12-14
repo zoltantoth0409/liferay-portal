@@ -21,6 +21,11 @@ import com.liferay.counter.kernel.model.Counter;
 
 import com.liferay.portal.kernel.service.persistence.BasePersistence;
 
+import java.io.Serializable;
+
+import java.util.Map;
+import java.util.Set;
+
 /**
  * The persistence interface for the counter service.
  *
@@ -40,6 +45,9 @@ public interface CounterPersistence extends BasePersistence<Counter> {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link CounterUtil} to access the counter persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
 	 */
+	@Override
+	public Map<Serializable, Counter> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys);
 
 	/**
 	* Caches the counter in the entity cache if it is enabled.
@@ -90,10 +98,6 @@ public interface CounterPersistence extends BasePersistence<Counter> {
 	* @return the counter, or <code>null</code> if a counter with the primary key could not be found
 	*/
 	public Counter fetchByPrimaryKey(String name);
-
-	@Override
-	public java.util.Map<java.io.Serializable, Counter> fetchByPrimaryKeys(
-		java.util.Set<java.io.Serializable> primaryKeys);
 
 	/**
 	* Returns all the counters.
