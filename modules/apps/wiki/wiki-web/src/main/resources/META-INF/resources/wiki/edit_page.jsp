@@ -397,11 +397,7 @@ if (portletTitleBasedNavigation) {
 	</aui:form>
 </div>
 
-<%
-String resolvedModuleName = (String)renderRequest.getAttribute(WikiPortletKeys.RESOLVED_MODULE_NAME);
-%>
-
-<aui:script require='<%= resolvedModuleName + "/wiki/js/WikiPortlet.es as WikiPortletJs" %>'>
+<aui:script require='<%= renderRequest.getAttribute(WikiPortletKeys.RESOLVED_MODULE_NAME) + "/wiki/js/WikiPortlet.es as WikiPortletJs" %>'>
 	new WikiPortletJs.default(
 		{
 			constants: {
