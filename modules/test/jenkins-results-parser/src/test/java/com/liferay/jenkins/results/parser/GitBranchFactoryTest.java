@@ -30,7 +30,7 @@ public class GitBranchFactoryTest extends GitRefTest {
 
 		if (localGitBranch == null) {
 			errorCollector.addError(
-				new Throwable("newLocalGitBranch returned a null value"));
+				new Throwable("Local Git branch is null"));
 		}
 	}
 

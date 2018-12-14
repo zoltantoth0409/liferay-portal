@@ -43,7 +43,7 @@ public class RemoteGitRefTest extends GitRefTest {
 				remoteGitRef.getRemoteGitRepository())) {
 
 			errorCollector.addError(
-				new Throwable("The remote git repository does not match"));
+				new Throwable("The remote Git repository does not match"));
 		}
 	}
 

@@ -53,7 +53,7 @@ public class LocalGitBranchTest extends GitRefTest {
 				localGitBranch.getGitWorkingDirectory())) {
 
 			errorCollector.addError(
-				new Throwable("The git working directory does not match"));
+				new Throwable("The Git working directory does not match"));
 		}
 	}
 
@@ -67,7 +67,7 @@ public class LocalGitBranchTest extends GitRefTest {
 				localGitBranch.getLocalGitRepository())) {
 
 			errorCollector.addError(
-				new Throwable("The local git repository does not match"));
+				new Throwable("The local Git repository does not match"));
 		}
 	}
 
