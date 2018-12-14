@@ -160,15 +160,14 @@ public class OrganizationFixture {
 	}
 
 	private String _joinCountryNames(Set<String> countryNames) {
-		String separator = ", ";
 		StringBuffer sb = new StringBuffer();
 
-		for (String string : countryNames) {
+		for (String countryName : countryNames) {
 			if (sb.length() != 0) {
-				sb.append(separator);
+				sb.append(", ");
 			}
 
-			sb.append(string);
+			sb.append(countryName);
 		}
 
 		return "[" + sb.toString() + "]";

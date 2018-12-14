@@ -37,7 +37,6 @@ public class OrganizationSummaryContributor implements ModelSummaryContributor {
 		Document document, Locale locale, String snippet) {
 
 		String title = document.get("name");
-
 		String content = null;
 
 		return new Summary(title, content);
