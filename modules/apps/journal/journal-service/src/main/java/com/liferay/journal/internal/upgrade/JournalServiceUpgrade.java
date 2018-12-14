@@ -14,6 +14,7 @@
 
 package com.liferay.journal.internal.upgrade;
 
+import com.liferay.asset.display.page.service.AssetDisplayPageEntryLocalService;
 import com.liferay.asset.kernel.service.AssetCategoryLocalService;
 import com.liferay.asset.kernel.service.AssetEntryLocalService;
 import com.liferay.asset.kernel.service.AssetVocabularyLocalService;
@@ -173,7 +174,10 @@ public class JournalServiceUpgrade implements UpgradeStepRegistrator {
 			"1.1.4", "1.1.5",
 			new UpgradeContentImages(_journalArticleImageUpgradeUtil));
 
-		registry.register("1.1.5", "1.1.6", new UpgradeAssetDisplayPageEntry());
+		registry.register(
+			"1.1.5", "1.1.6",
+			new UpgradeAssetDisplayPageEntry(
+				_assetDisplayPageEntryLocalService));
 	}
 
 	protected void deleteTempImages() throws Exception {
@@ -311,6 +315,11 @@ public class JournalServiceUpgrade implements UpgradeStepRegistrator {
 		JournalServiceUpgrade.class);
 
 	private AssetCategoryLocalService _assetCategoryLocalService;
+
+	@Reference
+	private AssetDisplayPageEntryLocalService
+		_assetDisplayPageEntryLocalService;
+
 	private AssetEntryLocalService _assetEntryLocalService;
 	private AssetVocabularyLocalService _assetVocabularyLocalService;
 	private CompanyLocalService _companyLocalService;
