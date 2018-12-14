@@ -114,23 +114,18 @@ public class ContactIndexerIndexedFieldsTest {
 		map.put(Field.USER_NAME, contact.getFullName());
 
 		map.put("emailAddress", contact.getEmailAddress());
-
 		map.put("firstName", contact.getFirstName());
 		map.put(
 			"firstName_sortable",
 			StringUtil.toLowerCase(contact.getFirstName()));
-
-		map.put("middleName", contact.getMiddleName());
-
-		map.put("lastName", contact.getLastName());
-		map.put(
-			"lastName_sortable", StringUtil.toLowerCase(contact.getLastName()));
-
 		map.put("fullName", contact.getFullName());
-
 		map.put("jobTitle", contact.getJobTitle());
 		map.put(
 			"jobTitle_sortable", StringUtil.toLowerCase(contact.getJobTitle()));
+		map.put("lastName", contact.getLastName());
+		map.put(
+			"lastName_sortable", StringUtil.toLowerCase(contact.getLastName()));
+		map.put("middleName", contact.getMiddleName());
 
 		return map;
 	}
