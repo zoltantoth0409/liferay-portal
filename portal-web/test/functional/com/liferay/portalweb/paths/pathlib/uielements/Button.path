@@ -429,6 +429,11 @@
 	<td></td>
 </tr>
 <tr>
+	<td>REMOVE_IMAGE</td>
+	<td>//button[@id='sdjj_null_null_removeImage']</td>
+	<td></td>
+</tr>
+<tr>
 	<td>REMOVE_REDIRECT</td>
 	<td>//button[contains(.,'Remove Redirect')]</td>
 	<td></td>
@@ -516,6 +521,11 @@
 <tr>
 	<td>SELECT_FILE</td>
 	<td>//button[contains(.,'Select File')]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>SELECT_FILE_SMALL_IMAGE</td>
+	<td>//div[contains(@class,'blogs-small-image-selector')]//a[contains(.,'Select File')]</td>
 	<td></td>
 </tr>
 <tr>
