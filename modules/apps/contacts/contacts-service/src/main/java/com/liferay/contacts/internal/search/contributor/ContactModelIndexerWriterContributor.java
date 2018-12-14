@@ -60,11 +60,9 @@ public class ContactModelIndexerWriterContributor
 
 	@Override
 	public BatchIndexingActionable getBatchIndexingActionable() {
-		DynamicQueryBatchIndexingActionableFactory factory =
-			dynamicQueryBatchIndexingActionableFactory;
-
-		return factory.getBatchIndexingActionable(
-			contactLocalService.getIndexableActionableDynamicQuery());
+		return dynamicQueryBatchIndexingActionableFactory.
+			getBatchIndexingActionable(
+				contactLocalService.getIndexableActionableDynamicQuery());
 	}
 
 	@Override
