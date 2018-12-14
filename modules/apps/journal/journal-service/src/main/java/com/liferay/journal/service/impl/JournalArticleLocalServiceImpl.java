@@ -5566,7 +5566,15 @@ public class JournalArticleLocalServiceImpl
 
 		String urlTitle = urlTitleMap.get(LocaleUtil.toLanguageId(locale));
 
-		if (Validator.isNull(urlTitle)) {
+		boolean articleIsDDMStructure = false;
+
+		if (classNameLocalService.getClassNameId(DDMStructure.class) ==
+				article.getClassNameId()) {
+
+			articleIsDDMStructure = true;
+		}
+
+		if (Validator.isNull(urlTitle) && !articleIsDDMStructure) {
 			throw new ArticleFriendlyURLException();
 		}
 
@@ -5643,9 +5651,7 @@ public class JournalArticleLocalServiceImpl
 
 		// Dynamic data mapping
 
-		if (classNameLocalService.getClassNameId(DDMStructure.class) ==
-				article.getClassNameId()) {
-
+		if (articleIsDDMStructure) {
 			updateDDMStructurePredefinedValues(
 				article.getClassPK(), content, serviceContext);
 		}
