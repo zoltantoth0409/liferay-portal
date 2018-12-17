@@ -24,7 +24,7 @@ import com.liferay.dynamic.data.mapping.test.util.DDMStructureTestHelper;
 import com.liferay.dynamic.data.mapping.test.util.DDMTemplateTestUtil;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.model.JournalFolderConstants;
-import com.liferay.journal.service.JournalArticleLocalServiceUtil;
+import com.liferay.journal.service.JournalArticleLocalService;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.apio.test.util.AuthConfigurationTestUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -33,8 +33,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.GroupConstants;
 import com.liferay.portal.kernel.model.User;
-import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
-import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.template.TemplateConstants;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
@@ -46,10 +45,8 @@ import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.InputStream;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -80,24 +77,33 @@ public class StructuredContentApioTestBundleActivator
 
 	@Override
 	public void start(BundleContext bundleContext) {
-		_autoCloseables = new ArrayList<>();
+		_ddmFormJSONDeserializerServiceReference =
+			bundleContext.getServiceReference(DDMFormJSONDeserializer.class);
 
-		_bundleContext = bundleContext;
+		_ddmFormJSONDeserializer = bundleContext.getService(
+			_ddmFormJSONDeserializerServiceReference);
 
-		_serviceReference = bundleContext.getServiceReference(
-			DDMFormJSONDeserializer.class);
+		_groupLocalServiceServiceReference = bundleContext.getServiceReference(
+			GroupLocalService.class);
 
-		_ddmFormJSONDeserializer = bundleContext.getService(_serviceReference);
+		_groupLocalService = bundleContext.getService(
+			_groupLocalServiceServiceReference);
+
+		_journalArticleLocalServiceServiceReference =
+			bundleContext.getServiceReference(JournalArticleLocalService.class);
+
+		_journalArticleLocalService = bundleContext.getService(
+			_journalArticleLocalServiceServiceReference);
 
 		try {
-			AuthConfigurationTestUtil.deployOAuthConfiguration(_bundleContext);
+			AuthConfigurationTestUtil.deployOAuthConfiguration(bundleContext);
 
 			_prepareTest();
 		}
 		catch (Exception e) {
 			_cleanUp();
 
-			throw new RuntimeException(e);
+			_log.error("Error found during startup ", e);
 		}
 	}
 
@@ -105,7 +111,9 @@ public class StructuredContentApioTestBundleActivator
 	public void stop(BundleContext bundleContext) {
 		_cleanUp();
 
-		_bundleContext.ungetService(_serviceReference);
+		bundleContext.ungetService(_ddmFormJSONDeserializerServiceReference);
+		bundleContext.ungetService(_groupLocalServiceServiceReference);
+		bundleContext.ungetService(_journalArticleLocalServiceServiceReference);
 	}
 
 	protected DDMForm deserialize(String content) {
@@ -117,37 +125,12 @@ public class StructuredContentApioTestBundleActivator
 		}
 	}
 
-	private JournalArticle _addJournalArticle(
-			Map<Locale, String> stringMap, long userId, long groupId,
-			String content, DDMStructure ddmStructure, DDMTemplate ddmTemplate)
-		throws Exception {
-
-		ServiceContext serviceContext = new ServiceContext();
-
-		serviceContext.setAddGroupPermissions(true);
-		serviceContext.setAddGuestPermissions(true);
-		serviceContext.setCompanyId(PortalUtil.getDefaultCompanyId());
-		serviceContext.setScopeGroupId(groupId);
-		serviceContext.setUserId(userId);
-
-		JournalArticle journalArticle =
-			JournalArticleLocalServiceUtil.addArticle(
-				userId, groupId,
-				JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID, stringMap,
-				null, content, ddmStructure.getStructureKey(),
-				ddmTemplate.getTemplateKey(), serviceContext);
-
-		return journalArticle;
-	}
-
 	private void _cleanUp() {
-		for (AutoCloseable autoCloseable : _autoCloseables) {
-			try {
-				autoCloseable.close();
-			}
-			catch (Exception e) {
-				_log.error(e, e);
-			}
+		try {
+			_groupLocalService.deleteGroup(_group);
+		}
+		catch (Exception e) {
+			_log.error("Error found during cleanup ", e);
 		}
 	}
 
@@ -170,7 +153,7 @@ public class StructuredContentApioTestBundleActivator
 		Map<Locale, String> nameMap = Collections.singletonMap(
 			LocaleUtil.getDefault(), SITE_NAME);
 
-		Group group = GroupLocalServiceUtil.addGroup(
+		_group = _groupLocalService.addGroup(
 			user.getUserId(), GroupConstants.DEFAULT_PARENT_GROUP_ID, null, 0,
 			GroupConstants.DEFAULT_LIVE_GROUP_ID, nameMap, nameMap,
 			GroupConstants.TYPE_SITE_OPEN, true,
@@ -178,13 +161,11 @@ public class StructuredContentApioTestBundleActivator
 			StringPool.SLASH + FriendlyURLNormalizerUtil.normalize(SITE_NAME),
 			true, true, ServiceContextTestUtil.getServiceContext());
 
-		_autoCloseables.add(() -> GroupLocalServiceUtil.deleteGroup(group));
-
 		DDMStructure ddmStructure = _getDDMStructure(
-			group, "test-journal-all-fields-structure.json");
+			_group, "test-journal-all-fields-structure.json");
 
 		DDMTemplate ddmTemplate = DDMTemplateTestUtil.addTemplate(
-			group.getGroupId(), ddmStructure.getStructureId(),
+			_group.getGroupId(), ddmStructure.getStructureId(),
 			PortalUtil.getClassNameId(JournalArticle.class),
 			TemplateConstants.LANG_TYPE_VM,
 			_read("test-journal-all-fields-template.xsl"), LocaleUtil.US);
@@ -195,10 +176,13 @@ public class StructuredContentApioTestBundleActivator
 			}
 		};
 
-		_addJournalArticle(
-			titleMap1, user.getUserId(), group.getGroupId(),
-			_read("test-journal-all-fields-content-2.xml"), ddmStructure,
-			ddmTemplate);
+		_journalArticleLocalService.addArticle(
+			user.getUserId(), _group.getGroupId(),
+			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID, titleMap1, null,
+			_read("test-journal-all-fields-content-1.xml"),
+			ddmStructure.getStructureKey(), ddmTemplate.getTemplateKey(),
+			ServiceContextTestUtil.getServiceContext(
+				_group.getGroupId(), user.getUserId()));
 
 		Map<Locale, String> titleMap2 = new HashMap<Locale, String>() {
 			{
@@ -207,10 +191,13 @@ public class StructuredContentApioTestBundleActivator
 			}
 		};
 
-		_addJournalArticle(
-			titleMap2, user.getUserId(), group.getGroupId(),
-			_read("test-journal-all-fields-content-2.xml"), ddmStructure,
-			ddmTemplate);
+		_journalArticleLocalService.addArticle(
+			user.getUserId(), _group.getGroupId(),
+			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID, titleMap2, null,
+			_read("test-journal-all-fields-content-2.xml"),
+			ddmStructure.getStructureKey(), ddmTemplate.getTemplateKey(),
+			ServiceContextTestUtil.getServiceContext(
+				_group.getGroupId(), user.getUserId()));
 	}
 
 	private String _read(String fileName) throws Exception {
@@ -228,9 +215,15 @@ public class StructuredContentApioTestBundleActivator
 	private static final Log _log = LogFactoryUtil.getLog(
 		StructuredContentApioTestBundleActivator.class);
 
-	private List<AutoCloseable> _autoCloseables;
-	private BundleContext _bundleContext;
 	private DDMFormJSONDeserializer _ddmFormJSONDeserializer;
-	private ServiceReference<DDMFormJSONDeserializer> _serviceReference;
+	private ServiceReference<DDMFormJSONDeserializer>
+		_ddmFormJSONDeserializerServiceReference;
+	private Group _group;
+	private GroupLocalService _groupLocalService;
+	private ServiceReference<GroupLocalService>
+		_groupLocalServiceServiceReference;
+	private JournalArticleLocalService _journalArticleLocalService;
+	private ServiceReference<JournalArticleLocalService>
+		_journalArticleLocalServiceServiceReference;
 
 }
