@@ -121,32 +121,6 @@ public class StructuredContentApioTestBundleActivator
 
 	private JournalArticle _addJournalArticle(
 			Map<Locale, String> stringMap, long userId, long groupId,
-			Locale defaultLocale, boolean addGuestPermissions,
-			boolean addGroupPermissions)
-		throws Exception {
-
-		ServiceContext serviceContext = new ServiceContext();
-
-		serviceContext.setAddGroupPermissions(addGroupPermissions);
-		serviceContext.setAddGuestPermissions(addGuestPermissions);
-		serviceContext.setCompanyId(PortalUtil.getDefaultCompanyId());
-		serviceContext.setScopeGroupId(groupId);
-		serviceContext.setUserId(userId);
-
-		JournalArticle journalArticle = JournalTestUtil.addArticle(
-			groupId, JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID,
-			JournalArticleConstants.CLASSNAME_ID_DEFAULT, StringUtil.randomId(),
-			false, stringMap, stringMap, stringMap, null, defaultLocale, null,
-			true, true, serviceContext);
-
-		_autoCloseables.add(
-			() -> JournalArticleLocalServiceUtil.deleteArticle(journalArticle));
-
-		return journalArticle;
-	}
-
-	private JournalArticle _addJournalArticle(
-			Map<Locale, String> stringMap, long userId, long groupId,
 			String content, DDMStructure ddmStructure, DDMTemplate ddmTemplate)
 		throws Exception {
 
@@ -213,16 +187,6 @@ public class StructuredContentApioTestBundleActivator
 
 		_autoCloseables.add(() -> GroupLocalServiceUtil.deleteGroup(group));
 
-		Map<Locale, String> titleMap1 = new HashMap<Locale, String>() {
-			{
-				put(LocaleUtil.SPAIN, TITLE_1_LOCALE_ES);
-			}
-		};
-
-		_addJournalArticle(
-			titleMap1, user.getUserId(), group.getGroupId(), LocaleUtil.SPAIN,
-			true, true);
-
 		DDMStructure ddmStructure = _getDDMStructure(
 			group, "test-journal-all-fields-structure.json");
 
@@ -231,6 +195,17 @@ public class StructuredContentApioTestBundleActivator
 			PortalUtil.getClassNameId(JournalArticle.class),
 			TemplateConstants.LANG_TYPE_VM,
 			_read("test-journal-all-fields-template.xsl"), LocaleUtil.US);
+
+		Map<Locale, String> titleMap1 = new HashMap<Locale, String>() {
+			{
+				put(LocaleUtil.SPAIN, TITLE_1_LOCALE_ES);
+			}
+		};
+
+		_addJournalArticle(
+			titleMap1, user.getUserId(), group.getGroupId(),
+			_read("test-journal-all-fields-content-2.xml"), ddmStructure,
+			ddmTemplate);
 
 		Map<Locale, String> titleMap2 = new HashMap<Locale, String>() {
 			{
@@ -241,7 +216,7 @@ public class StructuredContentApioTestBundleActivator
 
 		_addJournalArticle(
 			titleMap2, user.getUserId(), group.getGroupId(),
-			_read("test-journal-all-fields-content.xml"), ddmStructure,
+			_read("test-journal-all-fields-content-2.xml"), ddmStructure,
 			ddmTemplate);
 	}
 
