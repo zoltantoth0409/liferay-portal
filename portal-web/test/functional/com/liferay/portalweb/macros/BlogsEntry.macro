@@ -937,7 +937,7 @@ definition {
 	macro viewRSS {
 		var key_text = "RSS";
 
-		AssertClick(locator1 = "Button#ANY", value1 = "rss-full RSS");
+		AssertClick(locator1 = "Button#ANY", value1 = "RSS");
 
 		Pause(locator1 = "3000");
 
