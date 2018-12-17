@@ -36,6 +36,7 @@ public class AssetDisplayPageServiceUpgrade implements UpgradeStepRegistrator {
 			"1.0.0", "2.0.0",
 			new BaseUpgradeSQLServerDatetime(
 				new Class<?>[] {AssetDisplayPageEntryTable.class}));
+
 		registry.register(
 			"2.0.0", "2.1.0",
 			new UpgradeAssetDisplayLayout(
