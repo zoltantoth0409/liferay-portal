@@ -55,56 +55,52 @@ public class UpgradeAssetDisplayLayout extends UpgradeProcess {
 		ServiceContext serviceContext = new ServiceContext();
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
-			Statement statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery(sb.toString())) {
+			Statement s = connection.createStatement();
+			ResultSet rs = s.executeQuery(sb.toString());
+			PreparedStatement ps = AutoBatchPreparedStatementUtil.autoBatch(
+				connection.prepareStatement(
+					"update AssetDisplayPageEntry set plid = ? where " +
+						"assetDisplayPageEntryId = ?"))) {
 
-			try (PreparedStatement ps =
-					AutoBatchPreparedStatementUtil.autoBatch(
-						connection.prepareStatement(
-							"update AssetDisplayPageEntry set plid = ? where " +
-								"assetDisplayPageEntryId = ?"))) {
+			while (rs.next()) {
+				long classNameId = rs.getLong("classNameId");
+				long classPK = rs.getLong("classPK");
 
-				while (resultSet.next()) {
-					long classNameId = resultSet.getLong("classNameId");
-					long classPK = resultSet.getLong("classPK");
+				AssetEntry assetEntry = _assetEntryLocalService.fetchEntry(
+					classNameId, classPK);
 
-					AssetEntry assetEntry = _assetEntryLocalService.fetchEntry(
-						classNameId, classPK);
-
-					if (assetEntry == null) {
-						continue;
-					}
-
-					long assetDisplayPageEntryId = resultSet.getLong(
-						"assetDisplayPageEntryId");
-					long userId = resultSet.getLong("userId");
-					long groupId = resultSet.getLong("groupId");
-
-					UnicodeProperties typeSettingsProperties =
-						new UnicodeProperties();
-
-					typeSettingsProperties.put(
-						"visible", Boolean.FALSE.toString());
-
-					serviceContext.setAttribute(
-						"layout.instanceable.allowed", Boolean.TRUE);
-
-					Layout layout = _layoutLocalService.addLayout(
-						userId, groupId, false, 0, assetEntry.getTitleMap(),
-						assetEntry.getTitleMap(),
-						assetEntry.getDescriptionMap(), null, null,
-						"asset_display", typeSettingsProperties.toString(),
-						true, new HashMap<>(), serviceContext);
-
-					ps.setLong(1, layout.getPlid());
-
-					ps.setLong(2, assetDisplayPageEntryId);
-
-					ps.addBatch();
+				if (assetEntry == null) {
+					continue;
 				}
 
-				ps.executeBatch();
+				long assetDisplayPageEntryId = rs.getLong(
+					"assetDisplayPageEntryId");
+				long userId = rs.getLong("userId");
+				long groupId = rs.getLong("groupId");
+
+				UnicodeProperties typeSettingsProperties =
+					new UnicodeProperties();
+
+				typeSettingsProperties.put("visible", Boolean.FALSE.toString());
+
+				serviceContext.setAttribute(
+					"layout.instanceable.allowed", Boolean.TRUE);
+
+				Layout layout = _layoutLocalService.addLayout(
+					userId, groupId, false, 0, assetEntry.getTitleMap(),
+					assetEntry.getTitleMap(), assetEntry.getDescriptionMap(),
+					null, null, "asset_display",
+					typeSettingsProperties.toString(), true, new HashMap<>(),
+					serviceContext);
+
+				ps.setLong(1, layout.getPlid());
+
+				ps.setLong(2, assetDisplayPageEntryId);
+
+				ps.addBatch();
 			}
+
+			ps.executeBatch();
 		}
 	}
 
