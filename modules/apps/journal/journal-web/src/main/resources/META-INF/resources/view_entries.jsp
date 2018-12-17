@@ -55,15 +55,16 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 			<c:when test="<%= curArticle != null %>">
 
 				<%
+				Map<String, Object> rowData = new HashMap<String, Object>();
+
+				rowData.put("draggable", JournalArticlePermission.contains(permissionChecker, curArticle, ActionKeys.DELETE) || JournalArticlePermission.contains(permissionChecker, curArticle, ActionKeys.UPDATE));
+
 				String title = curArticle.getTitle(locale);
 
 				if (Validator.isNull(title)) {
 					title = curArticle.getTitle(LocaleUtil.fromLanguageId(curArticle.getDefaultLanguageId()));
 				}
 
-				Map<String, Object> rowData = new HashMap<String, Object>();
-
-				rowData.put("draggable", JournalArticlePermission.contains(permissionChecker, curArticle, ActionKeys.DELETE) || JournalArticlePermission.contains(permissionChecker, curArticle, ActionKeys.UPDATE));
 				rowData.put("title", HtmlUtil.escape(title));
 
 				row.setData(rowData);
