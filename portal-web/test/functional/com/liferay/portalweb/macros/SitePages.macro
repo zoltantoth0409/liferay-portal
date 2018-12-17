@@ -9,7 +9,7 @@ definition {
 
 		PortletEntry.inputName(name = "${pageName}");
 
-		PortletEntry.save();
+		Button.click(button = "Save");
 
 		if ("${sitePageType}" == "Embedded") {
 			Type(
