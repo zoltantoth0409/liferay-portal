@@ -387,7 +387,7 @@ definition {
 		DMPortlet.viewDefaultPG();
 	}
 
-	@description = "This is a use case for LPS-43104."
+	@description = "This is a use case for LPS-43104"
 	@priority = "5"
 	test ViewDMDocumentNoGuestRole {
 		ProductMenu.gotoPortlet(
