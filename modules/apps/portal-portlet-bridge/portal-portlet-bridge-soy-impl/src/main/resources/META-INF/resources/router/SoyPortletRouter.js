@@ -138,8 +138,11 @@ class SoyPortletRouter extends State {
 						(module) => {
 							super.maybeRedirectRouter();
 							let component = module.default;
+
 							component.RENDERER.setInjectedData(loadedState._INJECTED_DATA_);
+
 							this.router.component = component;
+
 							resolve();
 						},
 						error => reject(error)
