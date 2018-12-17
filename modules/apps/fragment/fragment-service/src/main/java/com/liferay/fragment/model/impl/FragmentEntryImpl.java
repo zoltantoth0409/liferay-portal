@@ -81,6 +81,7 @@ public class FragmentEntryImpl extends FragmentEntryBaseImpl {
 		jsonObject.put("cssPath", "src/index.css");
 		jsonObject.put("htmlPath", "src/index.html");
 		jsonObject.put("jsPath", "src/index.js");
+		jsonObject.put("name", getName());
 
 		FileEntry previewFileEntry = _getPreviewFileEntry();
 
@@ -89,8 +90,6 @@ public class FragmentEntryImpl extends FragmentEntryBaseImpl {
 				"thumbnailPath",
 				"src/thumbnail." + previewFileEntry.getExtension());
 		}
-
-		jsonObject.put("name", getName());
 
 		String typeLabel = getTypeLabel();
 
