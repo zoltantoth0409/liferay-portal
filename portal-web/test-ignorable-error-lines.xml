@@ -196,6 +196,14 @@
 			<contains></contains>
 			<matches>.*\[com.liferay.saml.opensaml.integration.internal.bootstrap.OpenSamlBootstrap\([0-9]+\)\].*The activate method has thrown an exception.*</matches>
 		</ignore-error>
+		<ignore-error description="LPS-88431, temporary workaround">
+			<contains>Unable to find class loader for com.liferay.portal.scheduler.quartz</contains>
+			<matches></matches>
+		</ignore-error>
+		<ignore-error description="LPS-88431, temporary workaround">
+			<contains>Unable to deserialize message payload</contains>
+			<matches></matches>
+		</ignore-error>
 		<ignore-error description="LRQA-14442, temporary workaround until Kiyoshi Lee fixes it">
 			<contains>[org_eclipse_equinox_http_servlet.*Framework Event Dispatcher: Equinox Container:</contains>
 			<matches></matches>
