@@ -23,8 +23,6 @@ List<String> previewFileURLs = (List<String>)request.getAttribute(DLPreviewVideo
 
 String randomNamespace = PortalUtil.generateRandomKey(request, "portlet_document_library_view_file_entry_preview") + StringPool.UNDERLINE;
 
-String modulePath = (String)request.getAttribute(DLPreviewVideoWebKeys.MODULE_PATH);
-
 List<Map<String, String>> videoSources = new ArrayList<>();
 
 for (String previewFileURL : previewFileURLs) {
@@ -53,6 +51,6 @@ context.put("videoPosterURL", videoPosterURL);
 <soy:component-renderer
 	componentId='<%= renderResponse.getNamespace() + randomNamespace + "previewVideo" %>'
 	context="<%= context %>"
-	module="<%= modulePath %>"
+	module="<%= (String)request.getAttribute(DLPreviewVideoWebKeys.MODULE_PATH) %>"
 	templateNamespace="com.liferay.document.library.preview.VideoPreviewer.render"
 />
