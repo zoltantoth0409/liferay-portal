@@ -148,6 +148,10 @@ definition {
 	}
 
 	macro viewNewSharedDocument {
+		var key_assetSharingPermission = "${assetSharingPermission}";
+		var key_dmDocumentTitle = "${dmDocumentTitle}";
+		var key_ownerName = "${ownerName}";
+		
 		AssertTextEquals(
 			locator1 = "DocumentsAndMediaShare#NOTIFICATIONS_TITLE",
 			value1 = "${ownerName} has shared ${dmDocumentTitle} with you for ${assetSharingPermission}."
