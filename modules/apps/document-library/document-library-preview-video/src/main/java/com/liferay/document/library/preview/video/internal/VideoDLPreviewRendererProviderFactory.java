@@ -51,7 +51,7 @@ public class VideoDLPreviewRendererProviderFactory {
 			bundleContext.registerService(
 				DLPreviewRendererProvider.class,
 				new VideoDLPreviewRendererProvider(
-					_servletContext, _npmResolver),
+					_npmResolver, _servletContext),
 				properties);
 	}
 

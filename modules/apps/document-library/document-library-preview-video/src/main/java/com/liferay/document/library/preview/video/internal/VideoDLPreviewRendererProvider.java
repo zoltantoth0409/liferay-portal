@@ -47,10 +47,10 @@ public class VideoDLPreviewRendererProvider
 	implements DLPreviewRendererProvider {
 
 	public VideoDLPreviewRendererProvider(
-		ServletContext servletContext, NPMResolver npmResolver) {
+		NPMResolver npmResolver, ServletContext servletContext) {
 
-		_servletContext = servletContext;
 		_npmResolver = npmResolver;
+		_servletContext = servletContext;
 	}
 
 	@Override
