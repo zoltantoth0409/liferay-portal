@@ -76,6 +76,14 @@ public interface TextDDMFormFieldTypeSettings
 	public String displayStyle();
 
 	@DDMFormField(
+		label = "%searchable", optionLabels = {"%disable", "%keyword", "%text"},
+		optionValues = {"none", "keyword", "text"}, predefinedValue = "keyword",
+		type = "radio"
+	)
+	@Override
+	public String indexType();
+
+	@DDMFormField(
 		dataType = "string", label = "%placeholder-text",
 		properties = {
 			"placeholder=%enter-placeholder-text",
