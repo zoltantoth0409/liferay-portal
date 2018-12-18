@@ -149,7 +149,7 @@ definition {
 
 	macro viewNewSharedDocument {
 		AssertTextEquals(
-			locator1 = "Notifications#NOTIFICATIONS_TITLE",
+			locator1 = "DocumentsAndMediaShare#NOTIFICATIONS_TITLE",
 			value1 = "${user} has shared ${dmDocumentTitle} with you for ${assetSharingPermission}."
 		);
 	}
