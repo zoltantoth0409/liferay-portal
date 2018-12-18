@@ -44,6 +44,17 @@
 	<td>//li/div[contains(.,'${key_userName}')]//div[4]/button[//*[name()='svg'][contains(@class,'lexicon-icon')]]</td>
 	<td></td>
 </tr>
+<tr>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<!--NOTIFICATIONS-->
+<tr>
+	<td>NOTIFICATIONS_TITLE</td>
+	<td>//h4/a[contains(.,'${key_ownerName} has shared ${key_dmDocumentTitle} with you for ${key_assetSharingPermission}')]</td>
+	<td></td>
+</tr>
 </tbody>
 </table>
 </body>
