@@ -104,10 +104,9 @@ public class StructuredContentApioTest {
 		).header(
 			"Content-Type", "application/json"
 		).body(
-			"{\"title\": \"Example Structured Content\"," +
-				"\"contentStructure\": \"" + contentStructureId + "\"," +
-					"\"values\": [{\"value\": \"1.0\",\"name\": " +
-						"\"MyDecimal\"}]}"
+			"{\"contentStructure\": \"" + contentStructureId +
+				"\", \"title\": \"Example Structured Content\", \"values\": " +
+					"[{\"name\": \"MyDecimal\", \"value\": \"1.0\"}]}"
 		).when(
 		).post(
 			href
@@ -170,10 +169,9 @@ public class StructuredContentApioTest {
 		).header(
 			"Content-Type", "application/json"
 		).body(
-			"{\"title\": \"Example Structured Content\"," +
-				"\"contentStructure\": \"" + contentStructureId + "\"," +
-					"\"values\": [{\"value\": \"1.0\",\"name\": " +
-						"\"MyDecimal\"}]}"
+			"{\"contentStructure\": \"" + contentStructureId +
+				"\", \"title\": \"Example Structured Content\", \"values\": " +
+					"[{\"name\": \"MyDecimal\", \"value\": \"1.0\"}]}"
 		).when(
 		).post(
 			href
@@ -579,10 +577,9 @@ public class StructuredContentApioTest {
 		).header(
 			"Content-Type", "application/json"
 		).body(
-			"{\"title\": \"Example Structured Content\"," +
-				"\"contentStructure\": \"" + contentStructureId + "\"," +
-					"\"values\": [{\"value\": \"1.0\",\"name\": " +
-						"\"MyDecimal\"}]}"
+			"{\"contentStructure\": \"" + contentStructureId +
+				"\", \"title\": \"Example Structured Content\", \"values\": " +
+					"[{\"name\": \"MyDecimal\", \"value\": \"1.0\"}]}"
 		).when(
 		).post(
 			href
@@ -600,10 +597,10 @@ public class StructuredContentApioTest {
 		).header(
 			"Content-Type", "application/json"
 		).body(
-			"{\"title\": \"Example Structured Content Modified\"," +
-				"\"contentStructure\": \"" + contentStructureId + "\"," +
-					"\"values\": [{\"value\": \"2.0\",\"name\": " +
-						"\"MyDecimal\"}]}"
+			"{\"contentStructure\": \"" + contentStructureId +
+				"\", \"title\": \"Example Structured Content Modified\", " +
+					"\"values\": [{\"name\": \"MyDecimal\", \"value\": " +
+						"\"2.0\"}]}"
 		).when(
 		).put(
 			structuredContentHref
