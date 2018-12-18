@@ -55,6 +55,7 @@ import com.liferay.portal.kernel.dao.db.DBManagerUtil;
 import com.liferay.portal.kernel.dao.db.DBProcessContext;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.module.framework.ModuleServiceLifecycle;
 import com.liferay.portal.kernel.repository.capabilities.PortalCapabilityLocator;
 import com.liferay.portal.kernel.security.permission.ResourceActions;
 import com.liferay.portal.kernel.service.CompanyLocalService;
@@ -335,6 +336,9 @@ public class JournalServiceUpgrade implements UpgradeStepRegistrator {
 	private JournalArticleImageUpgradeUtil _journalArticleImageUpgradeUtil;
 
 	private LayoutLocalService _layoutLocalService;
+
+	@Reference(target = ModuleServiceLifecycle.PORTAL_INITIALIZED, unbind = "-")
+	private ModuleServiceLifecycle _moduleServiceLifecycle;
 
 	@Reference
 	private PrefsPropsToConfigurationUpgradeHelper
