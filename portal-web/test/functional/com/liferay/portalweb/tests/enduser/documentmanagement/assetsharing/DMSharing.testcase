@@ -108,7 +108,7 @@ definition {
 		Notifications.viewNewSharedDocument(
 			assetSharingPermission = "viewing",
 			dmDocumentTitle = "DM Document Title",
-			user = "Test Test"
+			ownerName = "Test Test"
 		);
 
 		User.logoutPG();
@@ -136,7 +136,7 @@ definition {
 		Notifications.viewNewSharedDocument(
 			assetSharingPermission = "viewing",
 			dmDocumentTitle = "DM Document Title",
-			user = "Test Test"
+			ownerName = "Test Test"
 		);
 	}
 
