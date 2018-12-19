@@ -257,7 +257,7 @@ public class LayoutFriendlyURLLocalServiceImpl
 			return layoutFriendlyURLMap;
 		}
 
-		Map<Long, String> result = new HashMap<>();
+		Map<Long, String> filteredLayoutFriendlyURLMap = new HashMap<>();
 
 		String[] locales = StringUtil.split(
 			typeSettingsProperties.getProperty(PropsKeys.LOCALES));
@@ -266,11 +266,11 @@ public class LayoutFriendlyURLLocalServiceImpl
 			for (Layout layout : layouts) {
 				String friendlyURL = layoutFriendlyURLMap.get(layout.getPlid());
 
-				result.put(layout.getPlid(), friendlyURL);
+				filteredLayoutFriendlyURLMap.put(layout.getPlid(), friendlyURL);
 			}
 		}
 
-		return result;
+		return filteredLayoutFriendlyURLMap;
 	}
 
 	@Override
