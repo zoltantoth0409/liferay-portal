@@ -1904,22 +1904,18 @@ public class SitesImpl implements Sites {
 			boolean importData)
 		throws PortalException {
 
+		File cacheFile = null;
 		File file = null;
 
-		StringBundler sb = new StringBundler(importData ? 4 : 3);
+		if (!importData) {
+			StringBundler sb = new StringBundler(3);
 
-		sb.append(_TEMP_DIR);
-		sb.append(layoutSetPrototype.getUuid());
+			sb.append(_TEMP_DIR);
+			sb.append(layoutSetPrototype.getUuid());
+			sb.append(".lar");
 
-		if (importData) {
-			sb.append("-data");
-		}
+			cacheFile = new File(sb.toString());
 
-		sb.append(".lar");
-
-		File cacheFile = new File(sb.toString());
-
-		if (cacheFile.exists() && !importData) {
 			Date modifiedDate = layoutSetPrototype.getModifiedDate();
 
 			if (cacheFile.lastModified() >= modifiedDate.getTime()) {
@@ -1935,8 +1931,6 @@ public class SitesImpl implements Sites {
 
 		User user = UserLocalServiceUtil.getDefaultUser(
 			layoutSetPrototype.getCompanyId());
-
-		boolean newFile = false;
 
 		if (file == null) {
 			List<Layout> layoutSetPrototypeLayouts =
@@ -1960,8 +1954,6 @@ public class SitesImpl implements Sites {
 
 			file = ExportImportLocalServiceUtil.exportLayoutsAsFile(
 				exportImportConfiguration);
-
-			newFile = true;
 		}
 
 		Map<String, Serializable> importLayoutSettingsMap =
@@ -1982,7 +1974,7 @@ public class SitesImpl implements Sites {
 		ExportImportLocalServiceUtil.importLayouts(
 			exportImportConfiguration, file);
 
-		if (newFile) {
+		if ((cacheFile != null) && !cacheFile.exists()) {
 			try {
 				FileUtil.copyFile(file, cacheFile);
 
