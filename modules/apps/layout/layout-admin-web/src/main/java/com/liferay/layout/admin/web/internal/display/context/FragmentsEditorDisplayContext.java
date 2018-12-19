@@ -99,11 +99,11 @@ public class FragmentsEditorDisplayContext {
 	}
 
 	public SoyContext getEditorContext() throws PortalException {
-		SoyContext soyContext = SoyContextFactoryUtil.createSoyContext();
-
-		if (_editorContext != null) {
-			return _editorContext;
+		if (_soyContext != null) {
+			return _soyContext;
 		}
+
+		SoyContext soyContext = SoyContextFactoryUtil.createSoyContext();
 
 		soyContext.put(
 			"addFragmentEntryLinkURL",
@@ -231,9 +231,9 @@ public class FragmentsEditorDisplayContext {
 			_getFragmentEntryActionURL(
 				"/layout/update_layout_page_template_entry_asset_type"));
 
-		_editorContext = soyContext;
+		_soyContext = soyContext;
 
-		return _editorContext;
+		return _soyContext;
 	}
 
 	private Map<String, Object> _getDefaultConfigurations() {
@@ -573,13 +573,13 @@ public class FragmentsEditorDisplayContext {
 		_assetDisplayContributorTracker;
 	private final long _classNameId;
 	private final long _classPK;
-	private SoyContext _editorContext;
 	private Long _groupId;
 	private final ItemSelector _itemSelector;
 	private LayoutPageTemplateEntry _layoutPageTemplateEntry;
 	private final RenderResponse _renderResponse;
 	private final HttpServletRequest _request;
 	private final boolean _showMapping;
+	private SoyContext _soyContext;
 	private final ThemeDisplay _themeDisplay;
 
 }
