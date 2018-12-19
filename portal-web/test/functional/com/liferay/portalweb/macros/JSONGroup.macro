@@ -9,7 +9,7 @@
 					<return name="groupDescriptionEncoded" />
 				</execute>
 
-				<var name="groupDescriptionMap">{"en_US":"${groupDescriptionEncoded}"}</var>
+				<var name="groupDescriptionMap"><![CDATA[{"en_US":"${groupDescriptionEncoded}"}]]></var>
 			</then>
 			<else>
 				<var name="groupDescriptionMap" value="{}" />
@@ -25,7 +25,7 @@
 					<return name="groupNameEncoded" />
 				</execute>
 
-				<var name="groupNameMap">{"en_US":"${groupNameEncoded}"}</var>
+				<var name="groupNameMap"><![CDATA[{"en_US":"${groupNameEncoded}"}]]></var>
 			</then>
 			<else>
 				<fail message="Please set 'groupName'." />

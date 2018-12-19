@@ -9,7 +9,7 @@
 					<return name="roleDescriptionEncoded" />
 				</execute>
 
-				<var name="roleDescriptionMap">{"en_US":"${roleDescriptionEncoded}"}</var>
+				<var name="roleDescriptionMap"><![CDATA[{"en_US":"${roleDescriptionEncoded}"}]]></var>
 			</then>
 			<else>
 				<var name="roleDescriptionMap" value="{}" />
@@ -39,7 +39,7 @@
 					<return name="roleTitleEncoded" />
 				</execute>
 
-				<var name="roleTitleMap">{"en_US":"${roleTitleEncoded}"}</var>
+				<var name="roleTitleMap"><![CDATA[{"en_US":"${roleTitleEncoded}"}]]></var>
 			</then>
 			<else>
 				<var name="roleTitleMap" value="{}" />
