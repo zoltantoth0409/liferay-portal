@@ -509,21 +509,21 @@ public class InvokerFilterHelper {
 
 			updateFilterMappings(servletFilterName, filter);
 
-			String[] dispatchers = (String[])serviceReference.getProperty(
+			Set<Dispatcher> dispatchers = new HashSet<>();
+
+			String[] dispatcherStrings = (String[])serviceReference.getProperty(
 				"dispatcher");
 
-			Set<Dispatcher> dispatcherSet = new HashSet<>();
-
-			if (dispatchers != null) {
-				for (String dispatcher : dispatchers) {
-					dispatcherSet.add(Dispatcher.valueOf(dispatcher));
+			if (dispatcherStrings != null) {
+				for (String dispatcher : dispatcherStrings) {
+					dispatchers.add(Dispatcher.valueOf(dispatcher));
 				}
 			}
 
 			FilterMapping filterMapping = new FilterMapping(
 				servletFilterName, filter, filterConfig,
 				StringPlus.asList(serviceReference.getProperty("url-pattern")),
-				dispatcherSet);
+				dispatchers);
 
 			registerFilterMapping(filterMapping, positionFilterName, after);
 
