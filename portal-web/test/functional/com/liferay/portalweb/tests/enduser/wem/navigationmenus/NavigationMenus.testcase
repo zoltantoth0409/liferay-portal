@@ -302,7 +302,7 @@ definition {
 	@description = "This is a usecase for LPS-76658"
 	@priority = "5"
 	test EditNavigationMenuPageItemName {
-		property portal.acceptance = "true";
+		property portal.acceptance = "quarantine";
 
 		SitePages.openPagesAdmin(siteURLKey = "test-site-name");
 
