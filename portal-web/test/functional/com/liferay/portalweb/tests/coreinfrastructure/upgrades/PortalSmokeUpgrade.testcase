@@ -19,7 +19,7 @@
 		<property name="database.types" value="mariadb,mysql,postgresql" />
 		<property name="portal.upgrades" value="true" />
 		<property name="portal.version" value="6.1.2" />
-		<property name="test.assert.warning.exceptions" value="false" />
+		<property name="test.assert.warning.exceptions" value="true" />
 
 		<execute macro="Upgrade#viewUpgrade" />
 
@@ -30,7 +30,7 @@
 		<property name="data.archive.type" value="data-archive-portal" />
 		<property name="portal.upgrades" value="true" />
 		<property name="portal.version" value="6.1.30" />
-		<property name="test.assert.warning.exceptions" value="false" />
+		<property name="test.assert.warning.exceptions" value="true" />
 
 		<execute macro="Upgrade#viewUpgrade" />
 
@@ -41,7 +41,7 @@
 		<property name="data.archive.type" value="data-archive-portal" />
 		<property name="portal.upgrades" value="true" />
 		<property name="portal.version" value="6.2.10.15" />
-		<property name="test.assert.warning.exceptions" value="false" />
+		<property name="test.assert.warning.exceptions" value="true" />
 
 		<execute macro="Upgrade#viewUpgrade" />
 
@@ -52,7 +52,7 @@
 		<property name="data.archive.type" value="data-archive-portal" />
 		<property name="portal.upgrades" value="true" />
 		<property name="portal.version" value="6.2.10.21" />
-		<property name="test.assert.warning.exceptions" value="false" />
+		<property name="test.assert.warning.exceptions" value="true" />
 
 		<execute macro="Upgrade#viewUpgrade" />
 
@@ -64,7 +64,7 @@
 		<property name="database.types" value="mariadb,mysql,postgresql" />
 		<property name="portal.upgrades" value="true" />
 		<property name="portal.version" value="6.2.5" />
-		<property name="test.assert.warning.exceptions" value="false" />
+		<property name="test.assert.warning.exceptions" value="true" />
 
 		<execute macro="Upgrade#viewUpgrade" />
 
@@ -75,7 +75,7 @@
 		<property name="data.archive.type" value="data-archive-portal" />
 		<property name="portal.upgrades" value="true" />
 		<property name="portal.version" value="7.0.10" />
-		<property name="test.assert.warning.exceptions" value="false" />
+		<property name="test.assert.warning.exceptions" value="true" />
 		<property name="test.run.environment" value="EE" />
 
 		<execute macro="Upgrade#viewUpgrade" />
