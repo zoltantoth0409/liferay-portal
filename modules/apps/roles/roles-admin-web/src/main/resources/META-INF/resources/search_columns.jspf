@@ -18,7 +18,7 @@
 	<c:when test='<%= displayStyle.equals("descriptive") %>'>
 
 		<%
-		String icon;
+		String icon = "user";
 
 		int roleType = role.getType();
 
@@ -27,9 +27,6 @@
 		}
 		else if (roleType == RoleConstants.TYPE_ORGANIZATION) {
 			icon = "organizations";
-		}
-		else {
-			icon = "user";
 		}
 		%>
 
