@@ -192,6 +192,14 @@
 			<contains></contains>
 			<matches>.*\[com.liferay.saml.opensaml.integration.internal.bootstrap.OpenSamlBootstrap\([0-9]+\)\].*The activate method has thrown an exception.*</matches>
 		</ignore-error>
+		<ignore-error description="LPS-88391, LPS-88417 - temporarily ignore until fixed">
+			<contains></contains>
+			<matches>Attempting to upgrade table .* by recreating the table [\s\S]*</matches>
+		</ignore-error>
+		<ignore-error description="LPS-88391, LPS-88417 - temporarily ignore until fixed">
+			<contains></contains>
+			<matches>Successfully recreated and upgraded table .*</matches>
+		</ignore-error>
 		<ignore-error description="LPS-88395 - temporarily ignore until fixed">
 			<contains>IX_CED31606</contains>
 			<matches></matches>
@@ -202,6 +210,10 @@
 		</ignore-error>
 		<ignore-error description="LPS-88431, temporary workaround">
 			<contains>Unable to deserialize message payload</contains>
+			<matches></matches>
+		</ignore-error>
+		<ignore-error description="LPS-88522 - temporarily ignore until fixed">
+			<contains>already has the column lastPublishDate</contains>
 			<matches></matches>
 		</ignore-error>
 		<ignore-error description="LRQA-14442, temporary workaround until Kiyoshi Lee fixes it">
