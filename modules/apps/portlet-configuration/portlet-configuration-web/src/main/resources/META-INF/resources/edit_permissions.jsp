@@ -61,8 +61,8 @@ if (Validator.isNotNull(portletConfigurationPermissionsDisplayContext.getModelRe
 					>
 
 						<%
-						String icon;
-						String message;
+						String icon = "user";
+						String message = "regular-role";
 
 						int roleType = role.getType();
 
@@ -73,10 +73,6 @@ if (Validator.isNotNull(portletConfigurationPermissionsDisplayContext.getModelRe
 						else if (roleType == RoleConstants.TYPE_ORGANIZATION) {
 							icon = "organizations";
 							message = "organization-role";
-						}
-						else {
-							icon = "user";
-							message = "regular-role";
 						}
 						%>
 
