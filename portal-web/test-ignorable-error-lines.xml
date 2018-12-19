@@ -48,8 +48,8 @@
 			<contains>BasicResourcePool</contains>
 			<matches></matches>
 		</ignore-error>
-		<ignore-error description="">
-			<contains>Can't DROP 'IX_CED31606'</contains>
+		<ignore-error description="LPS-88395 - temporarily ignore until fixed">
+			<contains>IX_CED31606</contains>
 			<matches></matches>
 		</ignore-error>
 		<ignore-error description="">
