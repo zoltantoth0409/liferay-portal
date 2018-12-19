@@ -72,6 +72,9 @@ public class XSLTemplate implements Template {
 		_errorTemplateResource = errorTemplateResource;
 		_templateContextHelper = templateContextHelper;
 
+		_preventLocalConnections =
+			xslEngineConfiguration.preventLocalConnections();
+
 		_transformerFactory = TransformerFactory.newInstance(
 			_TRANSFORMER_FACTORY_CLASS_NAME, _TRANSFORMER_FACTORY_CLASS_LOADER);
 
@@ -117,6 +120,10 @@ public class XSLTemplate implements Template {
 		XSLErrorListener xslErrorListener = new XSLErrorListener(locale);
 
 		_transformerFactory.setErrorListener(xslErrorListener);
+
+		if (_preventLocalConnections) {
+			xslURIResolver = new XSLSecureURIResolver(xslURIResolver);
+		}
 
 		_transformerFactory.setURIResolver(xslURIResolver);
 
@@ -318,6 +325,7 @@ public class XSLTemplate implements Template {
 
 	private final Map<String, Object> _context;
 	private TemplateResource _errorTemplateResource;
+	private final boolean _preventLocalConnections;
 	private final TemplateContextHelper _templateContextHelper;
 	private final TransformerFactory _transformerFactory;
 	private StreamSource _xmlStreamSource;
