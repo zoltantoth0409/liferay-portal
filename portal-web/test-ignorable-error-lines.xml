@@ -48,10 +48,6 @@
 			<contains>BasicResourcePool</contains>
 			<matches></matches>
 		</ignore-error>
-		<ignore-error description="LPS-88395 - temporarily ignore until fixed">
-			<contains>IX_CED31606</contains>
-			<matches></matches>
-		</ignore-error>
 		<ignore-error description="">
 			<contains>Caused by:</contains>
 			<matches></matches>
@@ -195,6 +191,10 @@
 		<ignore-error description="LPS-70839">
 			<contains></contains>
 			<matches>.*\[com.liferay.saml.opensaml.integration.internal.bootstrap.OpenSamlBootstrap\([0-9]+\)\].*The activate method has thrown an exception.*</matches>
+		</ignore-error>
+		<ignore-error description="LPS-88395 - temporarily ignore until fixed">
+			<contains>IX_CED31606</contains>
+			<matches></matches>
 		</ignore-error>
 		<ignore-error description="LPS-88431, temporary workaround">
 			<contains>Unable to find class loader for com.liferay.portal.scheduler.quartz</contains>
