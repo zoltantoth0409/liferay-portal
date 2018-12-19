@@ -66,8 +66,6 @@ definition {
 	}
 
 	macro addPageTranslations {
-		SitePages.gotoPageMenuItem(menuItem = "Configure", pageName = "${page}");
-
 		PortletEntry.changeLocale(fieldName = "Name", locale = "${pageTranslation}");
 
 		PortletEntry.inputName(name = "${pageTranslationName}");
