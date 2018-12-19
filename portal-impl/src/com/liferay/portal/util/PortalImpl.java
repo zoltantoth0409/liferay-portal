@@ -22,6 +22,7 @@ import com.liferay.expando.kernel.exception.ValueDataException;
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.model.ExpandoColumnConstants;
 import com.liferay.exportimport.kernel.staging.StagingUtil;
+import com.liferay.layouts.admin.kernel.model.LayoutTypePortletConstants;
 import com.liferay.message.boards.kernel.model.MBMessage;
 import com.liferay.message.boards.kernel.model.MBThread;
 import com.liferay.petra.encryptor.Encryptor;
@@ -3252,7 +3253,16 @@ public class PortalImpl implements Portal {
 		}
 
 		if (layout.isTypeURL()) {
-			return getLayoutActualURL(layout);
+			String portalURL = getPortalURL(layout, themeDisplay);
+
+			String url = layout.getTypeSettingsProperty(
+				LayoutTypePortletConstants.URL);
+
+			if (!url.startsWith(StringPool.SLASH) &&
+				!url.startsWith(portalURL)) {
+
+				return getLayoutActualURL(layout);
+			}
 		}
 
 		String layoutFriendlyURL = getLayoutFriendlyURL(layout, themeDisplay);
