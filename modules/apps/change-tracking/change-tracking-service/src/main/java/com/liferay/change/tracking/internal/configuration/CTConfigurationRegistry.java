@@ -41,7 +41,7 @@ public class CTConfigurationRegistry {
 		getCTConfigurationOptionalByResourceClassName(String className) {
 
 		return Optional.ofNullable(
-			_configurationsByResourceClassName.get(className));
+			_ctConfigurationsByResourceClassName.get(className));
 	}
 
 	public Optional<CTConfiguration<?, ?>>
@@ -54,7 +54,7 @@ public class CTConfigurationRegistry {
 		getCTConfigurationOptionalByVersionClassName(String className) {
 
 		return Optional.ofNullable(
-			_configurationsByVersionClassName.get(className));
+			_ctConfigurationsByVersionClassName.get(className));
 	}
 
 	@Reference(
@@ -63,26 +63,30 @@ public class CTConfigurationRegistry {
 	)
 	private void _addCTConfiguration(CTConfiguration<?, ?> ctConfiguration) {
 		Class<?> resourceEntityClass = ctConfiguration.getResourceEntityClass();
+
+		_ctConfigurationsByResourceClassName.put(
+			resourceEntityClass.getName(), ctConfiguration);
+
 		Class<?> versionEntityClass = ctConfiguration.getVersionEntityClass();
 
-		_configurationsByResourceClassName.put(
-			resourceEntityClass.getName(), ctConfiguration);
-		_configurationsByVersionClassName.put(
+		_ctConfigurationsByVersionClassName.put(
 			versionEntityClass.getName(), ctConfiguration);
 	}
 
 	private void _removeCTConfiguration(CTConfiguration<?, ?> ctConfiguration) {
 		Class<?> resourceEntityClass = ctConfiguration.getResourceEntityClass();
+
+		_ctConfigurationsByResourceClassName.remove(
+			resourceEntityClass.getName());
+
 		Class<?> versionEntityClass = ctConfiguration.getVersionEntityClass();
 
-		_configurationsByResourceClassName.remove(
-			resourceEntityClass.getName());
-		_configurationsByVersionClassName.remove(versionEntityClass.getName());
+		_ctConfigurationsByVersionClassName.remove(versionEntityClass.getName());
 	}
 
 	private final Map<String, CTConfiguration<?, ?>>
-		_configurationsByResourceClassName = new HashMap<>();
+		_ctConfigurationsByResourceClassName = new HashMap<>();
 	private final Map<String, CTConfiguration<?, ?>>
-		_configurationsByVersionClassName = new HashMap<>();
+		_ctConfigurationsByVersionClassName = new HashMap<>();
 
 }
