@@ -17,7 +17,6 @@ package com.liferay.notifications.web.internal.portlet;
 import com.liferay.notifications.web.internal.constants.NotificationsPortletKeys;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Release;
-import com.liferay.portal.kernel.model.UserNotificationDelivery;
 import com.liferay.portal.kernel.model.UserNotificationDeliveryConstants;
 import com.liferay.portal.kernel.model.UserNotificationEvent;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
@@ -76,19 +75,7 @@ public class NotificationsPortlet extends MVCPortlet {
 			actionRequest, "rowIds");
 
 		for (long userNotificationEventId : userNotificationEventIds) {
-			try {
-				UserNotificationEvent userNotificationEvent =
-					_userNotificationEventLocalService.
-						fetchUserNotificationEvent(userNotificationEventId);
-
-				if (userNotificationEvent != null) {
-					_userNotificationEventLocalService.
-						deleteUserNotificationEvent(userNotificationEvent);
-				}
-			}
-			catch (Exception e) {
-				throw new PortletException(e);
-			}
+			_deleteUserNotificationEvent(userNotificationEventId);
 		}
 
 		_sendRedirect(actionRequest, actionResponse);
@@ -101,19 +88,7 @@ public class NotificationsPortlet extends MVCPortlet {
 		long userNotificationEventId = ParamUtil.getLong(
 			actionRequest, "userNotificationEventId");
 
-		try {
-			UserNotificationEvent userNotificationEvent =
-				_userNotificationEventLocalService.
-					fetchUserNotificationEvent(userNotificationEventId);
-
-			if (userNotificationEvent != null) {
-				_userNotificationEventLocalService.deleteUserNotificationEvent(
-					userNotificationEvent);
-			}
-		}
-		catch (Exception e) {
-			throw new PortletException(e);
-		}
+		_deleteUserNotificationEvent(userNotificationEventId);
 
 		_sendRedirect(actionRequest, actionResponse);
 	}
@@ -344,6 +319,24 @@ public class NotificationsPortlet extends MVCPortlet {
 
 		_userNotificationEventLocalService.updateUserNotificationEvent(
 			userNotificationEvent);
+	}
+
+	private void _deleteUserNotificationEvent(long userNotificationEventId)
+		throws PortletException {
+
+		try {
+			UserNotificationEvent userNotificationEvent =
+				_userNotificationEventLocalService.
+					fetchUserNotificationEvent(userNotificationEventId);
+
+			if (userNotificationEvent != null) {
+				_userNotificationEventLocalService.deleteUserNotificationEvent(
+					userNotificationEvent);
+			}
+		}
+		catch (Exception e) {
+			throw new PortletException(e);
+		}
 	}
 
 	private void _sendRedirect(
