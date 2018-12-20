@@ -175,7 +175,7 @@ public class Log4JUtil {
 			ServerDetector.SYSTEM_PROPERTY_KEY_SERVER_DETECTOR_SERVER_ID,
 			serverId);
 
-		_liferayHome = _xmlAttributeEscape(liferayHome);
+		_liferayHome = _escapeXMLAttribute(liferayHome);
 
 		configureLog4J(classLoader);
 
@@ -257,7 +257,7 @@ public class Log4JUtil {
 
 	private static String _getLiferayHome() {
 		if (_liferayHome == null) {
-			_liferayHome = _xmlAttributeEscape(
+			_liferayHome = _escapeXMLAttribute(
 				PropsUtil.get(PropsKeys.LIFERAY_HOME));
 		}
 
@@ -322,14 +322,14 @@ public class Log4JUtil {
 			StringPool.BLANK);
 	}
 
-	private static String _xmlAttributeEscape(String s) {
+	private static String _escapeXMLAttribute(String s) {
 		return StringUtil.replace(
 			s,
 			new char[] {
-				CharPool.AMPERSAND, CharPool.LESS_THAN, CharPool.QUOTE,
-				CharPool.APOSTROPHE
+				CharPool.AMPERSAND, CharPool.APOSTROPHE, CharPool.LESS_THAN,
+				CharPool.QUOTE				
 			},
-			new String[] {"&amp;", "&lt;", "&quot;", "&apos;"});
+			new String[] {"&amp;", "&apos;", "&lt;", "&quot;"});
 	}
 
 	private static final Logger _logger = Logger.getRootLogger();
