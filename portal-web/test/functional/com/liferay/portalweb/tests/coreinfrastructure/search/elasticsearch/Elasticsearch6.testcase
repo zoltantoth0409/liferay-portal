@@ -81,9 +81,9 @@
 
 		<!-- LRQA-28998 -->
 
-		<!--<execute macro="Elasticsearch#viewClusterStatus">
+		<!-- <execute macro="Elasticsearch#viewClusterStatus">
 			<var name="clusterStatus" value="&quot;cluster_name&quot; : &quot;LiferayElasticsearchCluster1&quot;" />
-		</execute>-->
+		</execute> -->
 	</command>
 
 	<command name="ElasticsearchRemoteClusterSmokeTest" priority="5">
