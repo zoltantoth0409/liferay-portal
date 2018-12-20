@@ -1297,7 +1297,6 @@ definition {
 		NavItem.gotoTemplates();
 
 		WebContentTemplates.addCP(
-			addRoleViewPermissions = "Power User",
 			structureName = "Global Structure",
 			templateDescription = "Template Description",
 			templateName = "Template Name"
