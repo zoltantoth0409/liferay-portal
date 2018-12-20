@@ -1343,9 +1343,9 @@ public class TopLevelBuild extends BaseBuild {
 
 			new PoshiTestFailureMessageGenerator(),
 
+			new GitLPushFailureMessageGenerator(),
 			new GradleTaskFailureMessageGenerator(),
 			new RebaseFailureMessageGenerator(),
-			new GitLPushFailureMessageGenerator(),
 
 			new CIFailureMessageGenerator(),
 			new DownstreamFailureMessageGenerator(),
