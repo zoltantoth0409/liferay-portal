@@ -18,7 +18,7 @@
 
 		<execute function="AssertElementPresent" locator1="Icon#ANGLE_LEFT_BACK" />
 
-		<var method="selenium#getText(TestOAuth#OAUTH_ADMIN_APPLICATION_CREDENTIALS)" name="applicationCredentials" />
+		<var method="selenium#getText('TestOAuth#OAUTH_ADMIN_APPLICATION_CREDENTIALS')" name="applicationCredentials" />
 
 		<return value="${applicationCredentials}" />
 	</command>
