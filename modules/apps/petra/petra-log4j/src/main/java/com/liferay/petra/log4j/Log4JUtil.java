@@ -208,6 +208,16 @@ public class Log4JUtil {
 		}
 	}
 
+	private static String _escapeXMLAttribute(String s) {
+		return StringUtil.replace(
+			s,
+			new char[] {
+				CharPool.AMPERSAND, CharPool.APOSTROPHE, CharPool.LESS_THAN,
+				CharPool.QUOTE
+			},
+			new String[] {"&amp;", "&apos;", "&lt;", "&quot;"});
+	}
+
 	/**
 	 * @see com.liferay.portal.util.FileImpl#getBytes(InputStream, int, boolean)
 	 */
@@ -320,16 +330,6 @@ public class Log4JUtil {
 		return StringUtil.replace(
 			content, "<appender-ref ref=\"" + appenderName + "\" />",
 			StringPool.BLANK);
-	}
-
-	private static String _escapeXMLAttribute(String s) {
-		return StringUtil.replace(
-			s,
-			new char[] {
-				CharPool.AMPERSAND, CharPool.APOSTROPHE, CharPool.LESS_THAN,
-				CharPool.QUOTE				
-			},
-			new String[] {"&amp;", "&apos;", "&lt;", "&quot;"});
 	}
 
 	private static final Logger _logger = Logger.getRootLogger();
