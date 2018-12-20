@@ -3,11 +3,7 @@
 		<if>
 			<isset var="roleDescription" />
 			<then>
-				<execute class="com.liferay.poshi.runner.util.URLUtil" method="encode">
-					<arg value="${roleDescription}" />
-					<arg value="UTF-8" />
-					<return name="roleDescriptionEncoded" />
-				</execute>
+				<var method="URLUtil#encode('${roleDescription}', 'UTF-8')" name="roleDescriptionEncoded" />
 
 				<var name="roleDescriptionMap"><![CDATA[{"en_US":"${roleDescriptionEncoded}"}]]></var>
 			</then>
@@ -19,11 +15,7 @@
 		<if>
 			<isset var="roleName" />
 			<then>
-				<execute class="com.liferay.poshi.runner.util.URLUtil" method="encode">
-					<arg value="${roleName}" />
-					<arg value="UTF-8" />
-					<return name="roleNameEncoded" />
-				</execute>
+				<var method="URLUtil#encode('${roleName}', 'UTF-8')" name="roleNameEncoded" />
 			</then>
 			<else>
 				<fail message="Please set 'roleName'." />
@@ -33,11 +25,7 @@
 		<if>
 			<isset var="roleTitle" />
 			<then>
-				<execute class="com.liferay.poshi.runner.util.URLUtil" method="encode">
-					<arg value="${roleTitle}" />
-					<arg value="UTF-8" />
-					<return name="roleTitleEncoded" />
-				</execute>
+				<var method="URLUtil#encode('${roleTitle}', 'UTF-8')" name="roleTitleEncoded" />
 
 				<var name="roleTitleMap"><![CDATA[{"en_US":"${roleTitleEncoded}"}]]></var>
 			</then>
@@ -104,11 +92,7 @@
 
 		<echo>## * Role Type: ${roleType}</echo>
 
-		<execute class="com.liferay.poshi.runner.util.JSONCurlUtil" method="post">
-			<arg value="${curl}" />
-			<arg value="$" />
-			<return name="temp" />
-		</execute>
+		<var method="JSONCurlUtil#post('${curl}', '$')" name="temp" />
 	</command>
 
 	<command name="_assignRoleToUser">
@@ -157,11 +141,7 @@
 
 		<echo>## * User Email Address: ${userEmailAddress}</echo>
 
-		<execute class="com.liferay.poshi.runner.util.JSONCurlUtil" method="post">
-			<arg value="${curl}" />
-			<arg value="$" />
-			<return name="temp" />
-		</execute>
+		<var method="JSONCurlUtil#post('${curl}', '$')" name="temp" />
 	</command>
 
 	<command name="addOrganizationRole">
@@ -257,11 +237,7 @@
 		<if>
 			<isset var="roleName" />
 			<then>
-				<execute class="com.liferay.poshi.runner.util.URLUtil" method="encode">
-					<arg value="${roleName}" />
-					<arg value="UTF-8" />
-					<return name="roleNameEncoded" />
-				</execute>
+				<var method="URLUtil#encode('${roleName}', 'UTF-8')" name="roleNameEncoded" />
 
 				<var method="StringUtil#replace('${roleNameEncoded}','+','%20')" name="roleNameEncoded" />
 			</then>
@@ -283,11 +259,7 @@
 				-u test@liferay.com:test
 		]]></var>
 
-		<execute class="com.liferay.poshi.runner.util.JSONCurlUtil" method="get">
-			<arg value="${curl}" />
-			<arg value="$['roleId']" />
-			<return name="roleId" />
-		</execute>
+		<var method="JSONCurlUtil#get('${curl}', '$[\'roleId\']')" name="roleId" />
 
 		<return value="${roleId}" />
 	</command>
@@ -311,11 +283,7 @@
 				-u test@liferay.com:test
 		]]></var>
 
-		<execute class="com.liferay.poshi.runner.util.JSONCurlUtil" method="get">
-			<arg value="${curl}" />
-			<arg value="$['name']" />
-			<return name="roleName" />
-		</execute>
+		<var method="JSONCurlUtil#get('${curl}', '$[\'name\']')" name="roleName" />
 
 		<return value="${roleName}" />
 	</command>

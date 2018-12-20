@@ -30,8 +30,6 @@
 				-d actionId=${resourceAction}
 		]]></var>
 
-		<execute class="com.liferay.poshi.runner.util.JSONCurlUtil" method="post">
-			<arg value="${curl}" />
-		</execute>
+		<var method="JSONCurlUtil#post('${curl}')" />
 	</command>
 </definition>
