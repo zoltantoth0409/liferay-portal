@@ -490,7 +490,9 @@ public class StructuredContentApioTest {
 	}
 
 	private String _read(String fileName, List<String> vars) throws Exception {
-		URL url = getClass().getResource(fileName);
+		Class<?> clazz = getClass();
+
+		URL url = clazz.getResource(fileName);
 
 		return String.format(StringUtil.read(url.openStream()), vars.toArray());
 	}
