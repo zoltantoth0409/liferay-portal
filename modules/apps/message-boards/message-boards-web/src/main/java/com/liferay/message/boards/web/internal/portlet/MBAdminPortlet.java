@@ -72,11 +72,9 @@ public class MBAdminPortlet extends MVCPortlet {
 		throws IOException, PortletException {
 
 		renderRequest.setAttribute(AssetWebKeys.ASSET_HELPER, _assetHelper);
-
 		renderRequest.setAttribute(
 			MBPortletKeys.RESOLVED_MODULE_NAME,
 			_npmResolver.resolveModuleName("message-boards-web"));
-
 		renderRequest.setAttribute(TrashWebKeys.TRASH_HELPER, _trashHelper);
 
 		super.render(renderRequest, renderResponse);
