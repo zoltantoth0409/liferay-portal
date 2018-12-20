@@ -359,7 +359,7 @@ public class FragmentEntryLocalServiceImpl
 			ResourceConstants.SCOPE_INDIVIDUAL,
 			fragmentEntry.getFragmentEntryId());
 
-		// Preview Image
+		// Preview image
 
 		if (fragmentEntry.getPreviewFileEntryId() > 0) {
 			PortletFileRepositoryUtil.deletePortletFileEntry(
