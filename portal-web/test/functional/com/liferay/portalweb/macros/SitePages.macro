@@ -11,14 +11,14 @@ definition {
 
 		Button.click(button = "Save");
 
+		SelectFrame.selectFrameTop();
+
 		if ("${sitePageType}" == "Embedded") {
 			Type(
 				locator1 = "SitePagesEditPage#PAGE_TYPE_EMBEDDED_URL_FIELD",
 				value1 = "${pageTypeURL}"
 			);
 		}
-
-		SelectFrame.selectFrameTop();
 
 		if (isSet(inheritChanges)) {
 			Page.togglePageTemplateInheritChanges(toggleValue = "${inheritChanges}");
