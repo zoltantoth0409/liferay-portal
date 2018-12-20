@@ -81,7 +81,8 @@ public class CTConfigurationRegistry {
 
 		Class<?> versionEntityClass = ctConfiguration.getVersionEntityClass();
 
-		_ctConfigurationsByVersionClassName.remove(versionEntityClass.getName());
+		_ctConfigurationsByVersionClassName.remove(
+			versionEntityClass.getName());
 	}
 
 	private final Map<String, CTConfiguration<?, ?>>
