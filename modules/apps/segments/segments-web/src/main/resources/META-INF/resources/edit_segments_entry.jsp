@@ -64,10 +64,10 @@ for (int i = 0; i < segmentsCriteriaContributors.size(); i++) {
 <portlet:actionURL name="updateSegmentsEntry" var="updateSegmentsEntryActionURL" />
 
 <aui:form action="<%= updateSegmentsEntryActionURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveSegmentsEntry();" %>'>
-	<aui:input name="dynamic" type="hidden" value="<%= true %>" />
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 	<aui:input name="segmentsEntryId" type="hidden" value="<%= segmentsEntryId %>" />
 	<aui:input name="type" type="hidden" value="<%= type %>" />
+	<aui:input name="dynamic" type="hidden" value="<%= true %>" />
 
 	<%
 	String segmentEditRootElementId = renderResponse.getNamespace() + "-segment-edit-root";

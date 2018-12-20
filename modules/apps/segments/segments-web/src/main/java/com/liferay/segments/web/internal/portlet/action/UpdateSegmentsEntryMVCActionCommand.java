@@ -81,7 +81,6 @@ public class UpdateSegmentsEntryMVCActionCommand extends BaseMVCActionCommand {
 		Map<Locale, String> descriptionMap =
 			LocalizationUtil.getLocalizationMap(actionRequest, "description");
 		boolean active = ParamUtil.getBoolean(actionRequest, "active", true);
-		boolean dynamic = ParamUtil.getBoolean(actionRequest, "dynamic", true);
 		String key = ParamUtil.getString(actionRequest, "key", name);
 		String type = ParamUtil.getString(actionRequest, "type");
 
@@ -92,6 +91,9 @@ public class UpdateSegmentsEntryMVCActionCommand extends BaseMVCActionCommand {
 			SegmentsEntry segmentsEntry = null;
 
 			Criteria criteria = getCriteria(actionRequest, type);
+
+			boolean dynamic = ParamUtil.getBoolean(
+				actionRequest, "dynamic", true);
 
 			validateCriteria(criteria, dynamic);
 
