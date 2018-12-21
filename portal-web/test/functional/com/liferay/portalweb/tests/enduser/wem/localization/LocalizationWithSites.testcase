@@ -596,7 +596,10 @@ definition {
 
 		Navigator.gotoSitePage(pageName = "Site Page 1", siteName = "Site Name");
 
-		LanguagePortlet.selectLanguagePG(locale = "en-us");
+		LanguagePortlet.selectLanguagePG(
+			locale = "en_US",
+			textIcon = "English-United States"
+		);
 	}
 
 	@description = "This is a use case for LPS-59345"
