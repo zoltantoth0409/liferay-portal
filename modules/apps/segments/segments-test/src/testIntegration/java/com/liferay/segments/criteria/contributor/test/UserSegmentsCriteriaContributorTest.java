@@ -88,8 +88,8 @@ public class UserSegmentsCriteriaContributorTest {
 		_entityModelServiceTracker.open();
 
 		filter = registry.getFilter(
-			"(&(segments.criteria.contributor.key=user)(objectClass=" +
-				SegmentsCriteriaContributor.class.getName() + "))");
+			"(&(objectClass=" + SegmentsCriteriaContributor.class.getName() +
+				")(segments.criteria.contributor.key=user))");
 
 		_segmentsCriteriaContributorServiceTracker = registry.trackServices(
 			filter);
