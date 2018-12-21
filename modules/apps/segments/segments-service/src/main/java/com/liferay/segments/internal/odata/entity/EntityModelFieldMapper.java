@@ -50,7 +50,7 @@ public class EntityModelFieldMapper {
 		Map<String, EntityField> entityFieldsMap =
 			entityModel.getEntityFieldsMap();
 
-		List<Field> fields = new ArrayList();
+		List<Field> fields = new ArrayList<>();
 
 		entityFieldsMap.forEach(
 			(entityFieldName, entityField) -> fields.addAll(
@@ -130,7 +130,7 @@ public class EntityModelFieldMapper {
 			return Collections.emptyList();
 		}
 
-		List<Field> complexFields = new ArrayList();
+		List<Field> complexFields = new ArrayList<>();
 
 		entityFieldsMap.forEach(
 			(entityFieldName, entityField) -> {
@@ -157,7 +157,7 @@ public class EntityModelFieldMapper {
 	private List<Field.Option> _getExpandoColumnFieldOptions(
 		ExpandoColumn expandoColumn) {
 
-		List<Field.Option> fieldOptions = new ArrayList();
+		List<Field.Option> fieldOptions = new ArrayList<>();
 
 		if (expandoColumn.getType() == ExpandoColumnConstants.DOUBLE_ARRAY) {
 			for (double value : (double[])expandoColumn.getDefaultValue()) {
