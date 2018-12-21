@@ -543,10 +543,9 @@ public class BookmarksFolderPersistenceImpl extends BasePersistenceImpl<Bookmark
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(bookmarksFolder);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					bookmarksFolder)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1368,10 +1367,9 @@ public class BookmarksFolderPersistenceImpl extends BasePersistenceImpl<Bookmark
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(bookmarksFolder);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					bookmarksFolder)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1896,10 +1894,9 @@ public class BookmarksFolderPersistenceImpl extends BasePersistenceImpl<Bookmark
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(bookmarksFolder);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					bookmarksFolder)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2207,10 +2204,9 @@ public class BookmarksFolderPersistenceImpl extends BasePersistenceImpl<Bookmark
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(bookmarksFolder);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					bookmarksFolder)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2765,10 +2761,9 @@ public class BookmarksFolderPersistenceImpl extends BasePersistenceImpl<Bookmark
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(bookmarksFolder);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					bookmarksFolder)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -3304,10 +3299,9 @@ public class BookmarksFolderPersistenceImpl extends BasePersistenceImpl<Bookmark
 		qPos.add(parentFolderId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(bookmarksFolder);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					bookmarksFolder)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -3631,10 +3625,9 @@ public class BookmarksFolderPersistenceImpl extends BasePersistenceImpl<Bookmark
 		qPos.add(parentFolderId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(bookmarksFolder);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					bookmarksFolder)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -4214,10 +4207,9 @@ public class BookmarksFolderPersistenceImpl extends BasePersistenceImpl<Bookmark
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(bookmarksFolder);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					bookmarksFolder)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -4796,10 +4788,9 @@ public class BookmarksFolderPersistenceImpl extends BasePersistenceImpl<Bookmark
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(bookmarksFolder);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					bookmarksFolder)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -5137,10 +5128,9 @@ public class BookmarksFolderPersistenceImpl extends BasePersistenceImpl<Bookmark
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(bookmarksFolder);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					bookmarksFolder)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -5769,10 +5759,9 @@ public class BookmarksFolderPersistenceImpl extends BasePersistenceImpl<Bookmark
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(bookmarksFolder);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					bookmarksFolder)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -6112,10 +6101,9 @@ public class BookmarksFolderPersistenceImpl extends BasePersistenceImpl<Bookmark
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(bookmarksFolder);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					bookmarksFolder)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

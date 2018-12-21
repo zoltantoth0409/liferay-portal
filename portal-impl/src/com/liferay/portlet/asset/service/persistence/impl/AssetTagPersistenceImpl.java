@@ -543,10 +543,9 @@ public class AssetTagPersistenceImpl extends BasePersistenceImpl<AssetTag>
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(assetTag);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					assetTag)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1365,10 +1364,9 @@ public class AssetTagPersistenceImpl extends BasePersistenceImpl<AssetTag>
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(assetTag);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					assetTag)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1891,10 +1889,9 @@ public class AssetTagPersistenceImpl extends BasePersistenceImpl<AssetTag>
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(assetTag);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					assetTag)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2676,10 +2673,9 @@ public class AssetTagPersistenceImpl extends BasePersistenceImpl<AssetTag>
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(assetTag);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					assetTag)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -3774,10 +3770,9 @@ public class AssetTagPersistenceImpl extends BasePersistenceImpl<AssetTag>
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(assetTag);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					assetTag)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

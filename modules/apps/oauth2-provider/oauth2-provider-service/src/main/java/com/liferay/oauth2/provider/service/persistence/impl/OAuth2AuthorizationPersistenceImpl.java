@@ -519,10 +519,9 @@ public class OAuth2AuthorizationPersistenceImpl extends BasePersistenceImpl<OAut
 		qPos.add(userId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(oAuth2Authorization);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					oAuth2Authorization)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1045,10 +1044,9 @@ public class OAuth2AuthorizationPersistenceImpl extends BasePersistenceImpl<OAut
 		qPos.add(oAuth2ApplicationId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(oAuth2Authorization);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					oAuth2Authorization)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1575,10 +1573,9 @@ public class OAuth2AuthorizationPersistenceImpl extends BasePersistenceImpl<OAut
 		qPos.add(accessTokenContentHash);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(oAuth2Authorization);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					oAuth2Authorization)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2106,10 +2103,9 @@ public class OAuth2AuthorizationPersistenceImpl extends BasePersistenceImpl<OAut
 		qPos.add(refreshTokenContentHash);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(oAuth2Authorization);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					oAuth2Authorization)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

@@ -545,10 +545,9 @@ public class BookmarksEntryPersistenceImpl extends BasePersistenceImpl<Bookmarks
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(bookmarksEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					bookmarksEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1369,10 +1368,9 @@ public class BookmarksEntryPersistenceImpl extends BasePersistenceImpl<Bookmarks
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(bookmarksEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					bookmarksEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1900,10 +1898,9 @@ public class BookmarksEntryPersistenceImpl extends BasePersistenceImpl<Bookmarks
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(bookmarksEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					bookmarksEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2441,10 +2438,9 @@ public class BookmarksEntryPersistenceImpl extends BasePersistenceImpl<Bookmarks
 		qPos.add(folderId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(bookmarksEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					bookmarksEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2765,10 +2761,9 @@ public class BookmarksEntryPersistenceImpl extends BasePersistenceImpl<Bookmarks
 		qPos.add(folderId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(bookmarksEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					bookmarksEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -3858,10 +3853,9 @@ public class BookmarksEntryPersistenceImpl extends BasePersistenceImpl<Bookmarks
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(bookmarksEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					bookmarksEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -4182,10 +4176,9 @@ public class BookmarksEntryPersistenceImpl extends BasePersistenceImpl<Bookmarks
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(bookmarksEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					bookmarksEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -4760,10 +4753,9 @@ public class BookmarksEntryPersistenceImpl extends BasePersistenceImpl<Bookmarks
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(bookmarksEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					bookmarksEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -5084,10 +5076,9 @@ public class BookmarksEntryPersistenceImpl extends BasePersistenceImpl<Bookmarks
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(bookmarksEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					bookmarksEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -5667,10 +5658,9 @@ public class BookmarksEntryPersistenceImpl extends BasePersistenceImpl<Bookmarks
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(bookmarksEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					bookmarksEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -6248,10 +6238,9 @@ public class BookmarksEntryPersistenceImpl extends BasePersistenceImpl<Bookmarks
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(bookmarksEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					bookmarksEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -6587,10 +6576,9 @@ public class BookmarksEntryPersistenceImpl extends BasePersistenceImpl<Bookmarks
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(bookmarksEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					bookmarksEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -7213,10 +7201,9 @@ public class BookmarksEntryPersistenceImpl extends BasePersistenceImpl<Bookmarks
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(bookmarksEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					bookmarksEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -7552,10 +7539,9 @@ public class BookmarksEntryPersistenceImpl extends BasePersistenceImpl<Bookmarks
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(bookmarksEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					bookmarksEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -8204,10 +8190,9 @@ public class BookmarksEntryPersistenceImpl extends BasePersistenceImpl<Bookmarks
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(bookmarksEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					bookmarksEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -8543,10 +8528,9 @@ public class BookmarksEntryPersistenceImpl extends BasePersistenceImpl<Bookmarks
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(bookmarksEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					bookmarksEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -9709,10 +9693,9 @@ public class BookmarksEntryPersistenceImpl extends BasePersistenceImpl<Bookmarks
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(bookmarksEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					bookmarksEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -10048,10 +10031,9 @@ public class BookmarksEntryPersistenceImpl extends BasePersistenceImpl<Bookmarks
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(bookmarksEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					bookmarksEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -11271,10 +11253,9 @@ public class BookmarksEntryPersistenceImpl extends BasePersistenceImpl<Bookmarks
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(bookmarksEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					bookmarksEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -11624,10 +11605,9 @@ public class BookmarksEntryPersistenceImpl extends BasePersistenceImpl<Bookmarks
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(bookmarksEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					bookmarksEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

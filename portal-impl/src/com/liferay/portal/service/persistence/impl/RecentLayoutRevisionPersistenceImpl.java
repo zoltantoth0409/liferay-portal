@@ -510,10 +510,9 @@ public class RecentLayoutRevisionPersistenceImpl extends BasePersistenceImpl<Rec
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(recentLayoutRevision);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					recentLayoutRevision)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1019,10 +1018,9 @@ public class RecentLayoutRevisionPersistenceImpl extends BasePersistenceImpl<Rec
 		qPos.add(userId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(recentLayoutRevision);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					recentLayoutRevision)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1545,10 +1543,9 @@ public class RecentLayoutRevisionPersistenceImpl extends BasePersistenceImpl<Rec
 		qPos.add(layoutRevisionId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(recentLayoutRevision);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					recentLayoutRevision)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

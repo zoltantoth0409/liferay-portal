@@ -537,10 +537,9 @@ public class SocialRelationPersistenceImpl extends BasePersistenceImpl<SocialRel
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(socialRelation);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					socialRelation)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1116,10 +1115,9 @@ public class SocialRelationPersistenceImpl extends BasePersistenceImpl<SocialRel
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(socialRelation);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					socialRelation)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1646,10 +1644,9 @@ public class SocialRelationPersistenceImpl extends BasePersistenceImpl<SocialRel
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(socialRelation);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					socialRelation)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2152,10 +2149,9 @@ public class SocialRelationPersistenceImpl extends BasePersistenceImpl<SocialRel
 		qPos.add(userId1);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(socialRelation);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					socialRelation)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2658,10 +2654,9 @@ public class SocialRelationPersistenceImpl extends BasePersistenceImpl<SocialRel
 		qPos.add(userId2);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(socialRelation);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					socialRelation)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -3161,10 +3156,9 @@ public class SocialRelationPersistenceImpl extends BasePersistenceImpl<SocialRel
 		qPos.add(type);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(socialRelation);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					socialRelation)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -3698,10 +3692,9 @@ public class SocialRelationPersistenceImpl extends BasePersistenceImpl<SocialRel
 		qPos.add(type);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(socialRelation);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					socialRelation)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -4243,10 +4236,9 @@ public class SocialRelationPersistenceImpl extends BasePersistenceImpl<SocialRel
 		qPos.add(userId2);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(socialRelation);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					socialRelation)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -4787,10 +4779,9 @@ public class SocialRelationPersistenceImpl extends BasePersistenceImpl<SocialRel
 		qPos.add(type);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(socialRelation);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					socialRelation)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -5331,10 +5322,9 @@ public class SocialRelationPersistenceImpl extends BasePersistenceImpl<SocialRel
 		qPos.add(type);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(socialRelation);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					socialRelation)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

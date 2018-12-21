@@ -553,10 +553,9 @@ public class AnnouncementsEntryPersistenceImpl extends BasePersistenceImpl<Annou
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(announcementsEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					announcementsEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -889,10 +888,9 @@ public class AnnouncementsEntryPersistenceImpl extends BasePersistenceImpl<Annou
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(announcementsEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					announcementsEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1535,10 +1533,9 @@ public class AnnouncementsEntryPersistenceImpl extends BasePersistenceImpl<Annou
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(announcementsEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					announcementsEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1890,10 +1887,9 @@ public class AnnouncementsEntryPersistenceImpl extends BasePersistenceImpl<Annou
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(announcementsEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					announcementsEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2488,10 +2484,9 @@ public class AnnouncementsEntryPersistenceImpl extends BasePersistenceImpl<Annou
 		qPos.add(userId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(announcementsEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					announcementsEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2799,10 +2794,9 @@ public class AnnouncementsEntryPersistenceImpl extends BasePersistenceImpl<Annou
 		qPos.add(userId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(announcementsEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					announcementsEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -3390,10 +3384,9 @@ public class AnnouncementsEntryPersistenceImpl extends BasePersistenceImpl<Annou
 		qPos.add(classPK);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(announcementsEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					announcementsEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -3717,10 +3710,9 @@ public class AnnouncementsEntryPersistenceImpl extends BasePersistenceImpl<Annou
 		qPos.add(classPK);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(announcementsEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					announcementsEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -4355,10 +4347,9 @@ public class AnnouncementsEntryPersistenceImpl extends BasePersistenceImpl<Annou
 		qPos.add(classPK);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(announcementsEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					announcementsEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -4699,10 +4690,9 @@ public class AnnouncementsEntryPersistenceImpl extends BasePersistenceImpl<Annou
 		qPos.add(classPK);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(announcementsEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					announcementsEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -5348,10 +5338,9 @@ public class AnnouncementsEntryPersistenceImpl extends BasePersistenceImpl<Annou
 		qPos.add(alert);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(announcementsEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					announcementsEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -5690,10 +5679,9 @@ public class AnnouncementsEntryPersistenceImpl extends BasePersistenceImpl<Annou
 		qPos.add(alert);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(announcementsEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					announcementsEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -6372,10 +6360,9 @@ public class AnnouncementsEntryPersistenceImpl extends BasePersistenceImpl<Annou
 		qPos.add(alert);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(announcementsEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					announcementsEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -6728,10 +6715,9 @@ public class AnnouncementsEntryPersistenceImpl extends BasePersistenceImpl<Annou
 		qPos.add(alert);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(announcementsEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					announcementsEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

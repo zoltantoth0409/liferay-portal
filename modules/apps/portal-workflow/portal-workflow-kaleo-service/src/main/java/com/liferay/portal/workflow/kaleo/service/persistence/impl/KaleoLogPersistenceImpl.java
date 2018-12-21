@@ -506,10 +506,9 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(kaleoLog);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					kaleoLog)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1029,10 +1028,9 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		qPos.add(kaleoDefinitionVersionId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(kaleoLog);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					kaleoLog)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1542,10 +1540,9 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		qPos.add(kaleoInstanceId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(kaleoLog);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					kaleoLog)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2066,10 +2063,9 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		qPos.add(kaleoTaskInstanceTokenId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(kaleoLog);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					kaleoLog)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2630,10 +2626,9 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(kaleoLog);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					kaleoLog)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -3314,10 +3309,9 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(kaleoLog);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					kaleoLog)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

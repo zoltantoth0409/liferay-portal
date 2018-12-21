@@ -528,10 +528,9 @@ public class AssetEntryAssetCategoryRelPersistenceImpl
 		qPos.add(assetEntryId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(assetEntryAssetCategoryRel);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					assetEntryAssetCategoryRel)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1053,10 +1052,9 @@ public class AssetEntryAssetCategoryRelPersistenceImpl
 		qPos.add(assetCategoryId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(assetEntryAssetCategoryRel);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					assetEntryAssetCategoryRel)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

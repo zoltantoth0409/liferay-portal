@@ -514,10 +514,9 @@ public class ChangesetCollectionPersistenceImpl extends BasePersistenceImpl<Chan
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(changesetCollection);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					changesetCollection)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1024,10 +1023,9 @@ public class ChangesetCollectionPersistenceImpl extends BasePersistenceImpl<Chan
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(changesetCollection);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					changesetCollection)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1563,10 +1561,9 @@ public class ChangesetCollectionPersistenceImpl extends BasePersistenceImpl<Chan
 		qPos.add(userId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(changesetCollection);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					changesetCollection)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2380,10 +2377,9 @@ public class ChangesetCollectionPersistenceImpl extends BasePersistenceImpl<Chan
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(changesetCollection);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					changesetCollection)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

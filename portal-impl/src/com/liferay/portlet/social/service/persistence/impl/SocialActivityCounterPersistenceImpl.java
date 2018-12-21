@@ -515,10 +515,9 @@ public class SocialActivityCounterPersistenceImpl extends BasePersistenceImpl<So
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(socialActivityCounter);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					socialActivityCounter)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1057,10 +1056,9 @@ public class SocialActivityCounterPersistenceImpl extends BasePersistenceImpl<So
 		qPos.add(classPK);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(socialActivityCounter);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					socialActivityCounter)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1673,10 +1671,9 @@ public class SocialActivityCounterPersistenceImpl extends BasePersistenceImpl<So
 		qPos.add(ownerType);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(socialActivityCounter);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					socialActivityCounter)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

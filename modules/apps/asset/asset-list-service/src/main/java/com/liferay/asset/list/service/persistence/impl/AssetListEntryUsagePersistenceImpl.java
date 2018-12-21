@@ -542,10 +542,9 @@ public class AssetListEntryUsagePersistenceImpl extends BasePersistenceImpl<Asse
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(assetListEntryUsage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					assetListEntryUsage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1367,10 +1366,9 @@ public class AssetListEntryUsagePersistenceImpl extends BasePersistenceImpl<Asse
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(assetListEntryUsage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					assetListEntryUsage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1913,10 +1911,9 @@ public class AssetListEntryUsagePersistenceImpl extends BasePersistenceImpl<Asse
 		qPos.add(assetListEntryId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(assetListEntryUsage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					assetListEntryUsage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2460,10 +2457,9 @@ public class AssetListEntryUsagePersistenceImpl extends BasePersistenceImpl<Asse
 		qPos.add(classNameId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(assetListEntryUsage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					assetListEntryUsage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

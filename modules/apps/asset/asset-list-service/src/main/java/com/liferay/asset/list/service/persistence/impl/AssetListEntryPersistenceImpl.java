@@ -541,10 +541,9 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(assetListEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					assetListEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1364,10 +1363,9 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(assetListEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					assetListEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1890,10 +1888,9 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(assetListEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					assetListEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2202,10 +2199,9 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(assetListEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					assetListEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -3040,10 +3036,9 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(assetListEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					assetListEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -3390,10 +3385,9 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(assetListEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					assetListEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -4013,10 +4007,9 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 		qPos.add(type);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(assetListEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					assetListEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -4337,10 +4330,9 @@ public class AssetListEntryPersistenceImpl extends BasePersistenceImpl<AssetList
 		qPos.add(type);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(assetListEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					assetListEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

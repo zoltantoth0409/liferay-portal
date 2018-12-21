@@ -545,10 +545,9 @@ public class UserGroupPersistenceImpl extends BasePersistenceImpl<UserGroup>
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(userGroup);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					userGroup)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -876,10 +875,9 @@ public class UserGroupPersistenceImpl extends BasePersistenceImpl<UserGroup>
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(userGroup);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					userGroup)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1514,10 +1512,9 @@ public class UserGroupPersistenceImpl extends BasePersistenceImpl<UserGroup>
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(userGroup);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					userGroup)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1861,10 +1858,9 @@ public class UserGroupPersistenceImpl extends BasePersistenceImpl<UserGroup>
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(userGroup);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					userGroup)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2455,10 +2451,9 @@ public class UserGroupPersistenceImpl extends BasePersistenceImpl<UserGroup>
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(userGroup);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					userGroup)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2763,10 +2758,9 @@ public class UserGroupPersistenceImpl extends BasePersistenceImpl<UserGroup>
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(userGroup);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					userGroup)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -3346,10 +3340,9 @@ public class UserGroupPersistenceImpl extends BasePersistenceImpl<UserGroup>
 		qPos.add(parentUserGroupId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(userGroup);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					userGroup)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -3670,10 +3663,9 @@ public class UserGroupPersistenceImpl extends BasePersistenceImpl<UserGroup>
 		qPos.add(parentUserGroupId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(userGroup);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					userGroup)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -4520,10 +4512,9 @@ public class UserGroupPersistenceImpl extends BasePersistenceImpl<UserGroup>
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(userGroup);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					userGroup)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -4867,10 +4858,9 @@ public class UserGroupPersistenceImpl extends BasePersistenceImpl<UserGroup>
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(userGroup);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					userGroup)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

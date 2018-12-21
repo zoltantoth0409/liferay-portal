@@ -538,10 +538,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(ddmStructure);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					ddmStructure)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1357,10 +1356,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(ddmStructure);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					ddmStructure)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1884,10 +1882,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(ddmStructure);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					ddmStructure)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2195,10 +2192,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(ddmStructure);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					ddmStructure)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -3213,10 +3209,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		qPos.add(parentStructureId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(ddmStructure);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					ddmStructure)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -3721,10 +3716,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		qPos.add(classNameId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(ddmStructure);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					ddmStructure)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -4258,10 +4252,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(ddmStructure);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					ddmStructure)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -4807,10 +4800,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		qPos.add(parentStructureId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(ddmStructure);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					ddmStructure)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -5134,10 +5126,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		qPos.add(parentStructureId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(ddmStructure);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					ddmStructure)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -5732,10 +5723,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		qPos.add(classNameId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(ddmStructure);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					ddmStructure)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -6056,10 +6046,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		qPos.add(classNameId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(ddmStructure);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					ddmStructure)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -7158,10 +7147,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		qPos.add(classNameId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(ddmStructure);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					ddmStructure)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -8058,10 +8046,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(ddmStructure);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					ddmStructure)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -8448,10 +8435,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(ddmStructure);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					ddmStructure)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -9231,10 +9217,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(ddmStructure);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					ddmStructure)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -9636,10 +9621,9 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(ddmStructure);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					ddmStructure)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

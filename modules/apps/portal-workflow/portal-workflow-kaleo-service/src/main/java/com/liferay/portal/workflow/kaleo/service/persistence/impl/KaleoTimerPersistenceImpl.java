@@ -568,10 +568,9 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 		qPos.add(kaleoClassPK);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(kaleoTimer);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					kaleoTimer)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1198,10 +1197,9 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 		qPos.add(blocking);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(kaleoTimer);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					kaleoTimer)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

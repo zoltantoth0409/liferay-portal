@@ -504,10 +504,9 @@ public class ExpandoRowPersistenceImpl extends BasePersistenceImpl<ExpandoRow>
 		qPos.add(tableId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(expandoRow);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					expandoRow)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1005,10 +1004,9 @@ public class ExpandoRowPersistenceImpl extends BasePersistenceImpl<ExpandoRow>
 		qPos.add(classPK);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(expandoRow);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					expandoRow)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

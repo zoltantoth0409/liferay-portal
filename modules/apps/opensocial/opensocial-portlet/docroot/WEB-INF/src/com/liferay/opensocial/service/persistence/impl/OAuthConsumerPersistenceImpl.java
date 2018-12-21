@@ -542,10 +542,9 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(oAuthConsumer);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					oAuthConsumer)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
