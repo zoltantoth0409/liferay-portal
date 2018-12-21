@@ -54,13 +54,13 @@ sb.append("/js/fragments_editor/reducers/fragments.es as FragmentsReducerModule,
 sb.append(layoutsAdminDisplayContext.getModuleName());
 sb.append("/js/fragments_editor/reducers/placeholders.es as PlaceholdersReducerModule, ");
 sb.append(layoutsAdminDisplayContext.getModuleName());
-sb.append("/js/fragments_editor/reducers/sections.es as SectionsReducerModule");
+sb.append("/js/fragments_editor/reducers/sections.es as SectionsReducerModule, ");
 sb.append(layoutsAdminDisplayContext.getModuleName());
 sb.append("/js/fragments_editor/reducers/sidebar.es as SidebarReducerModule, ");
 sb.append(layoutsAdminDisplayContext.getModuleName());
 sb.append("/js/fragments_editor/reducers/translations.es as TranslationsReducerModule, ");
 sb.append(layoutsAdminDisplayContext.getModuleName());
-sb.append("/js/fragments_editor/store/store.es as StoreModule, ");
+sb.append("/js/fragments_editor/store/store.es as StoreModule");
 %>
 
 <aui:script require="<%= sb.toString() %>">
