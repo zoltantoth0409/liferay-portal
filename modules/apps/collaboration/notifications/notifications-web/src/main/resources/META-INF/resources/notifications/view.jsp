@@ -109,7 +109,7 @@ navigationURL.setParameter(SearchContainer.DEFAULT_CUR_PARAM, "0");
 		</c:if>
 
 		<liferay-frontend:management-bar-button
-			href='<%= "javascript:" + renderResponse.getNamespace() + "deleteAllNotifications();" %>'
+			href='<%= "javascript:" + renderResponse.getNamespace() + "deleteNotifications();" %>'
 			icon="times"
 			label="delete"
 		/>
@@ -141,12 +141,12 @@ navigationURL.setParameter(SearchContainer.DEFAULT_CUR_PARAM, "0");
 </div>
 
 <aui:script>
-	function <portlet:namespace />deleteAllNotifications() {
+	function <portlet:namespace />deleteNotifications() {
 		var form = AUI.$(document.<portlet:namespace />fm);
 
 		form.attr('method', 'post');
 
-		submitForm(form, '<portlet:actionURL name="deleteAllNotifications"><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:actionURL>');
+		submitForm(form, '<portlet:actionURL name="deleteNotifications"><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:actionURL>');
 	}
 
 	function <portlet:namespace />markNotificationsAsRead() {
