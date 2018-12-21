@@ -52,7 +52,7 @@ import org.junit.runner.RunWith;
  * @author Víctor Galán
  */
 @RunWith(Arquillian.class)
-public class BlogPostingNestedCollectionResourceTest
+public class DefaultBlogPostingNestedCollectionResourceTest
 	extends BaseBlogPostingNestedCollectionResourceTest {
 
 	@ClassRule
