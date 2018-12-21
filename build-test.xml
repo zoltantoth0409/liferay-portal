@@ -1740,6 +1740,7 @@ logExceptionsOnly=B&quot;false&quot;</echo>
 
 			<get
 				dest="${basedir}"
+				httpusecaches="false"
 				src="${patching.tool.version.url}"
 			/>
 
