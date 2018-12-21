@@ -549,10 +549,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1368,10 +1367,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1890,10 +1888,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2199,10 +2196,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2752,10 +2748,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -3253,10 +3248,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(userId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -3755,10 +3749,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(threadId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -4261,10 +4254,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(threadId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -4794,10 +4786,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(userId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -5117,10 +5108,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(userId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -5712,10 +5702,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(categoryId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -6035,10 +6024,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(categoryId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -6628,10 +6616,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -6950,10 +6937,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -7544,10 +7530,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -8090,10 +8075,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(classNameId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -8913,10 +8897,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(classPK);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -9455,10 +9438,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(parentMessageId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -9996,10 +9978,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(answer);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -10537,10 +10518,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -11064,10 +11044,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -11605,10 +11584,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -12148,10 +12126,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -12722,10 +12699,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -13060,10 +13036,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -13700,10 +13675,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(threadId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -14038,10 +14012,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(threadId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -14680,10 +14653,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -15018,10 +14990,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -15658,10 +15629,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(classPK);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -16249,10 +16219,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -17138,10 +17107,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -17755,10 +17723,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(answer);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -18109,10 +18076,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(answer);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -18799,10 +18765,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -19153,10 +19118,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -19839,10 +19803,9 @@ public class MBMessagePersistenceImpl extends BasePersistenceImpl<MBMessage>
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbMessage);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbMessage)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

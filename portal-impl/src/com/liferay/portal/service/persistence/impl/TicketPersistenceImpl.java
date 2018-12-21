@@ -807,10 +807,9 @@ public class TicketPersistenceImpl extends BasePersistenceImpl<Ticket>
 		qPos.add(type);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(ticket);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					ticket)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1418,10 +1417,9 @@ public class TicketPersistenceImpl extends BasePersistenceImpl<Ticket>
 		qPos.add(type);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(ticket);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					ticket)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

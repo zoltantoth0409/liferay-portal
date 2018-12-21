@@ -538,10 +538,9 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(calendar);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					calendar)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1357,10 +1356,9 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(calendar);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					calendar)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1913,10 +1911,9 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 		qPos.add(calendarResourceId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(calendar);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					calendar)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2238,10 +2235,9 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 		qPos.add(calendarResourceId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(calendar);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					calendar)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2873,10 +2869,9 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 		qPos.add(defaultCalendar);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(calendar);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					calendar)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -3214,10 +3209,9 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 		qPos.add(defaultCalendar);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(calendar);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					calendar)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

@@ -507,10 +507,9 @@ public class DLFileRankPersistenceImpl extends BasePersistenceImpl<DLFileRank>
 		qPos.add(userId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(dlFileRank);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					dlFileRank)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1015,10 +1014,9 @@ public class DLFileRankPersistenceImpl extends BasePersistenceImpl<DLFileRank>
 		qPos.add(fileEntryId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(dlFileRank);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					dlFileRank)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1549,10 +1547,9 @@ public class DLFileRankPersistenceImpl extends BasePersistenceImpl<DLFileRank>
 		qPos.add(userId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(dlFileRank);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					dlFileRank)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2127,10 +2124,9 @@ public class DLFileRankPersistenceImpl extends BasePersistenceImpl<DLFileRank>
 		qPos.add(active);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(dlFileRank);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					dlFileRank)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

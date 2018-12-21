@@ -542,10 +542,9 @@ public class FriendlyURLEntryPersistenceImpl extends BasePersistenceImpl<Friendl
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(friendlyURLEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					friendlyURLEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1366,10 +1365,9 @@ public class FriendlyURLEntryPersistenceImpl extends BasePersistenceImpl<Friendl
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(friendlyURLEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					friendlyURLEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1957,10 +1955,9 @@ public class FriendlyURLEntryPersistenceImpl extends BasePersistenceImpl<Friendl
 		qPos.add(classPK);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(friendlyURLEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					friendlyURLEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

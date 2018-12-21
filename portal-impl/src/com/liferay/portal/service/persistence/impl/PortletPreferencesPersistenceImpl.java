@@ -511,10 +511,9 @@ public class PortletPreferencesPersistenceImpl extends BasePersistenceImpl<Portl
 		qPos.add(plid);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(portletPreferences);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					portletPreferences)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1050,10 +1049,9 @@ public class PortletPreferencesPersistenceImpl extends BasePersistenceImpl<Portl
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(portletPreferences);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					portletPreferences)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1631,10 +1629,9 @@ public class PortletPreferencesPersistenceImpl extends BasePersistenceImpl<Portl
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(portletPreferences);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					portletPreferences)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2218,10 +2215,9 @@ public class PortletPreferencesPersistenceImpl extends BasePersistenceImpl<Portl
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(portletPreferences);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					portletPreferences)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2813,10 +2809,9 @@ public class PortletPreferencesPersistenceImpl extends BasePersistenceImpl<Portl
 		qPos.add(plid);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(portletPreferences);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					portletPreferences)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -3434,10 +3429,9 @@ public class PortletPreferencesPersistenceImpl extends BasePersistenceImpl<Portl
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(portletPreferences);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					portletPreferences)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -4067,10 +4061,9 @@ public class PortletPreferencesPersistenceImpl extends BasePersistenceImpl<Portl
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(portletPreferences);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					portletPreferences)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -4713,10 +4706,9 @@ public class PortletPreferencesPersistenceImpl extends BasePersistenceImpl<Portl
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(portletPreferences);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					portletPreferences)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

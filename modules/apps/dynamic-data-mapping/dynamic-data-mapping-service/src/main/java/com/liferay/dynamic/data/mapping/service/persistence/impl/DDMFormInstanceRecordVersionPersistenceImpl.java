@@ -536,10 +536,9 @@ public class DDMFormInstanceRecordVersionPersistenceImpl
 		qPos.add(formInstanceRecordId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(ddmFormInstanceRecordVersion);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					ddmFormInstanceRecordVersion)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1115,10 +1114,9 @@ public class DDMFormInstanceRecordVersionPersistenceImpl
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(ddmFormInstanceRecordVersion);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					ddmFormInstanceRecordVersion)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1938,10 +1936,9 @@ public class DDMFormInstanceRecordVersionPersistenceImpl
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(ddmFormInstanceRecordVersion);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					ddmFormInstanceRecordVersion)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2591,10 +2588,9 @@ public class DDMFormInstanceRecordVersionPersistenceImpl
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(ddmFormInstanceRecordVersion);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					ddmFormInstanceRecordVersion)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

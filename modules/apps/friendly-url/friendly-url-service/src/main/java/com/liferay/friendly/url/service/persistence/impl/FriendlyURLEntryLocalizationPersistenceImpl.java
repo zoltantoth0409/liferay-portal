@@ -534,10 +534,9 @@ public class FriendlyURLEntryLocalizationPersistenceImpl
 		qPos.add(friendlyURLEntryId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(friendlyURLEntryLocalization);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					friendlyURLEntryLocalization)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

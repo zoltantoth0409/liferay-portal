@@ -539,10 +539,9 @@ public class WikiPageResourcePersistenceImpl extends BasePersistenceImpl<WikiPag
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(wikiPageResource);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					wikiPageResource)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1363,10 +1362,9 @@ public class WikiPageResourcePersistenceImpl extends BasePersistenceImpl<WikiPag
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(wikiPageResource);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					wikiPageResource)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

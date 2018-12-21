@@ -569,10 +569,9 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(resourceBlock);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					resourceBlock)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1189,10 +1188,9 @@ public class ResourceBlockPersistenceImpl extends BasePersistenceImpl<ResourceBl
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(resourceBlock);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					resourceBlock)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

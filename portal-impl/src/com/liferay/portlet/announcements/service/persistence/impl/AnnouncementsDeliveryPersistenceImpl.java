@@ -516,10 +516,9 @@ public class AnnouncementsDeliveryPersistenceImpl extends BasePersistenceImpl<An
 		qPos.add(userId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(announcementsDelivery);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					announcementsDelivery)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

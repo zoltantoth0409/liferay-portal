@@ -542,10 +542,9 @@ public class SiteFriendlyURLPersistenceImpl extends BasePersistenceImpl<SiteFrie
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(siteFriendlyURL);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					siteFriendlyURL)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1365,10 +1364,9 @@ public class SiteFriendlyURLPersistenceImpl extends BasePersistenceImpl<SiteFrie
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(siteFriendlyURL);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					siteFriendlyURL)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1923,10 +1921,9 @@ public class SiteFriendlyURLPersistenceImpl extends BasePersistenceImpl<SiteFrie
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(siteFriendlyURL);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					siteFriendlyURL)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

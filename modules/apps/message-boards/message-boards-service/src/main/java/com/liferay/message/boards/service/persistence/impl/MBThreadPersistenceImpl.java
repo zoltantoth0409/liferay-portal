@@ -551,10 +551,9 @@ public class MBThreadPersistenceImpl extends BasePersistenceImpl<MBThread>
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbThread);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbThread)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1371,10 +1370,9 @@ public class MBThreadPersistenceImpl extends BasePersistenceImpl<MBThread>
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbThread);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbThread)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1893,10 +1891,9 @@ public class MBThreadPersistenceImpl extends BasePersistenceImpl<MBThread>
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbThread);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbThread)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2202,10 +2199,9 @@ public class MBThreadPersistenceImpl extends BasePersistenceImpl<MBThread>
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbThread);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbThread)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -3000,10 +2996,9 @@ public class MBThreadPersistenceImpl extends BasePersistenceImpl<MBThread>
 		qPos.add(categoryId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbThread);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbThread)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -3322,10 +3317,9 @@ public class MBThreadPersistenceImpl extends BasePersistenceImpl<MBThread>
 		qPos.add(categoryId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbThread);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbThread)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -4399,10 +4393,9 @@ public class MBThreadPersistenceImpl extends BasePersistenceImpl<MBThread>
 		qPos.add(categoryId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbThread);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbThread)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -4723,10 +4716,9 @@ public class MBThreadPersistenceImpl extends BasePersistenceImpl<MBThread>
 		qPos.add(categoryId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbThread);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbThread)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -5314,10 +5306,9 @@ public class MBThreadPersistenceImpl extends BasePersistenceImpl<MBThread>
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbThread);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbThread)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -5636,10 +5627,9 @@ public class MBThreadPersistenceImpl extends BasePersistenceImpl<MBThread>
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbThread);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbThread)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -6231,10 +6221,9 @@ public class MBThreadPersistenceImpl extends BasePersistenceImpl<MBThread>
 		qPos.add(priority);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbThread);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbThread)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -6794,10 +6783,9 @@ public class MBThreadPersistenceImpl extends BasePersistenceImpl<MBThread>
 		qPos.add(priority);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbThread);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbThread)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -7405,10 +7393,9 @@ public class MBThreadPersistenceImpl extends BasePersistenceImpl<MBThread>
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbThread);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbThread)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -7766,10 +7753,9 @@ public class MBThreadPersistenceImpl extends BasePersistenceImpl<MBThread>
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbThread);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbThread)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -8441,10 +8427,9 @@ public class MBThreadPersistenceImpl extends BasePersistenceImpl<MBThread>
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbThread);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbThread)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -8779,10 +8764,9 @@ public class MBThreadPersistenceImpl extends BasePersistenceImpl<MBThread>
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbThread);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbThread)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -9941,10 +9925,9 @@ public class MBThreadPersistenceImpl extends BasePersistenceImpl<MBThread>
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbThread);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbThread)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -10280,10 +10263,9 @@ public class MBThreadPersistenceImpl extends BasePersistenceImpl<MBThread>
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbThread);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbThread)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -11444,10 +11426,9 @@ public class MBThreadPersistenceImpl extends BasePersistenceImpl<MBThread>
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbThread);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbThread)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -11783,10 +11764,9 @@ public class MBThreadPersistenceImpl extends BasePersistenceImpl<MBThread>
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbThread);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbThread)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -12408,10 +12388,9 @@ public class MBThreadPersistenceImpl extends BasePersistenceImpl<MBThread>
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbThread);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbThread)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -12747,10 +12726,9 @@ public class MBThreadPersistenceImpl extends BasePersistenceImpl<MBThread>
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbThread);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbThread)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

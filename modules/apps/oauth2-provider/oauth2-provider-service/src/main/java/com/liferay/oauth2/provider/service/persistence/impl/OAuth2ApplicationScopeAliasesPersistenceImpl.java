@@ -522,10 +522,9 @@ public class OAuth2ApplicationScopeAliasesPersistenceImpl
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(oAuth2ApplicationScopeAliases);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					oAuth2ApplicationScopeAliases)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1049,10 +1048,9 @@ public class OAuth2ApplicationScopeAliasesPersistenceImpl
 		qPos.add(oAuth2ApplicationId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(oAuth2ApplicationScopeAliases);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					oAuth2ApplicationScopeAliases)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1601,10 +1599,9 @@ public class OAuth2ApplicationScopeAliasesPersistenceImpl
 		qPos.add(scopeAliasesHash);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(oAuth2ApplicationScopeAliases);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					oAuth2ApplicationScopeAliases)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

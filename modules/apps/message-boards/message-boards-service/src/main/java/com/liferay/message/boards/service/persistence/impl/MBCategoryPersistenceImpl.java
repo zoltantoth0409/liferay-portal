@@ -543,10 +543,9 @@ public class MBCategoryPersistenceImpl extends BasePersistenceImpl<MBCategory>
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbCategory);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbCategory)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1363,10 +1362,9 @@ public class MBCategoryPersistenceImpl extends BasePersistenceImpl<MBCategory>
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbCategory);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbCategory)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1886,10 +1884,9 @@ public class MBCategoryPersistenceImpl extends BasePersistenceImpl<MBCategory>
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbCategory);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbCategory)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2195,10 +2192,9 @@ public class MBCategoryPersistenceImpl extends BasePersistenceImpl<MBCategory>
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbCategory);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbCategory)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2750,10 +2746,9 @@ public class MBCategoryPersistenceImpl extends BasePersistenceImpl<MBCategory>
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbCategory);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbCategory)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -3289,10 +3284,9 @@ public class MBCategoryPersistenceImpl extends BasePersistenceImpl<MBCategory>
 		qPos.add(parentCategoryId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbCategory);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbCategory)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -3614,10 +3608,9 @@ public class MBCategoryPersistenceImpl extends BasePersistenceImpl<MBCategory>
 		qPos.add(parentCategoryId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbCategory);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbCategory)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -4711,10 +4704,9 @@ public class MBCategoryPersistenceImpl extends BasePersistenceImpl<MBCategory>
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbCategory);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbCategory)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -5034,10 +5026,9 @@ public class MBCategoryPersistenceImpl extends BasePersistenceImpl<MBCategory>
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbCategory);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbCategory)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -5629,10 +5620,9 @@ public class MBCategoryPersistenceImpl extends BasePersistenceImpl<MBCategory>
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbCategory);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbCategory)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -7442,10 +7432,9 @@ public class MBCategoryPersistenceImpl extends BasePersistenceImpl<MBCategory>
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbCategory);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbCategory)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -7781,10 +7770,9 @@ public class MBCategoryPersistenceImpl extends BasePersistenceImpl<MBCategory>
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbCategory);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbCategory)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -8950,10 +8938,9 @@ public class MBCategoryPersistenceImpl extends BasePersistenceImpl<MBCategory>
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbCategory);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbCategory)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -9289,10 +9276,9 @@ public class MBCategoryPersistenceImpl extends BasePersistenceImpl<MBCategory>
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbCategory);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbCategory)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

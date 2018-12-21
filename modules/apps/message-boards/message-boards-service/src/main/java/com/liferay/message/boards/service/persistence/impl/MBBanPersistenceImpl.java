@@ -531,10 +531,9 @@ public class MBBanPersistenceImpl extends BasePersistenceImpl<MBBan>
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbBan);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbBan)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1344,10 +1343,9 @@ public class MBBanPersistenceImpl extends BasePersistenceImpl<MBBan>
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbBan);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbBan)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1861,10 +1859,9 @@ public class MBBanPersistenceImpl extends BasePersistenceImpl<MBBan>
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbBan);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbBan)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2357,10 +2354,9 @@ public class MBBanPersistenceImpl extends BasePersistenceImpl<MBBan>
 		qPos.add(userId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbBan);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbBan)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2855,10 +2851,9 @@ public class MBBanPersistenceImpl extends BasePersistenceImpl<MBBan>
 		qPos.add(banUserId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(mbBan);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					mbBan)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

@@ -513,10 +513,9 @@ public class ChangesetEntryPersistenceImpl extends BasePersistenceImpl<Changeset
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(changesetEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					changesetEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1021,10 +1020,9 @@ public class ChangesetEntryPersistenceImpl extends BasePersistenceImpl<Changeset
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(changesetEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					changesetEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1548,10 +1546,9 @@ public class ChangesetEntryPersistenceImpl extends BasePersistenceImpl<Changeset
 		qPos.add(changesetCollectionId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(changesetEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					changesetEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2088,10 +2085,9 @@ public class ChangesetEntryPersistenceImpl extends BasePersistenceImpl<Changeset
 		qPos.add(classNameId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(changesetEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					changesetEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2636,10 +2632,9 @@ public class ChangesetEntryPersistenceImpl extends BasePersistenceImpl<Changeset
 		qPos.add(classNameId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(changesetEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					changesetEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

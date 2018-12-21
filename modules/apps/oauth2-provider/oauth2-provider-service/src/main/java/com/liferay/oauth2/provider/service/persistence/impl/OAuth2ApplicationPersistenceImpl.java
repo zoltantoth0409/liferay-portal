@@ -518,10 +518,9 @@ public class OAuth2ApplicationPersistenceImpl extends BasePersistenceImpl<OAuth2
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(oAuth2Application);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					oAuth2Application)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -830,10 +829,9 @@ public class OAuth2ApplicationPersistenceImpl extends BasePersistenceImpl<OAuth2
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(oAuth2Application);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					oAuth2Application)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

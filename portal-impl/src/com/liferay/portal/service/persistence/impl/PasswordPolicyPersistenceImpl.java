@@ -543,10 +543,9 @@ public class PasswordPolicyPersistenceImpl extends BasePersistenceImpl<PasswordP
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(passwordPolicy);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					passwordPolicy)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -879,10 +878,9 @@ public class PasswordPolicyPersistenceImpl extends BasePersistenceImpl<PasswordP
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(passwordPolicy);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					passwordPolicy)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1521,10 +1519,9 @@ public class PasswordPolicyPersistenceImpl extends BasePersistenceImpl<PasswordP
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(passwordPolicy);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					passwordPolicy)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1871,10 +1868,9 @@ public class PasswordPolicyPersistenceImpl extends BasePersistenceImpl<PasswordP
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(passwordPolicy);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					passwordPolicy)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2469,10 +2465,9 @@ public class PasswordPolicyPersistenceImpl extends BasePersistenceImpl<PasswordP
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(passwordPolicy);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					passwordPolicy)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2781,10 +2776,9 @@ public class PasswordPolicyPersistenceImpl extends BasePersistenceImpl<PasswordP
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(passwordPolicy);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					passwordPolicy)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
