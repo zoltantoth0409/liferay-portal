@@ -30,18 +30,15 @@ import java.util.Optional;
 public interface CTManager {
 
 	/**
-	 * Registers a model change into the change tracking framework in the
-	 * context of the current user's active change collection.
+	 * Retrieves the latest model change in the context of the current user's
+	 * active change collection.
 	 *
 	 * @param  userId the primary key of the user
-	 * @param  classNameId the primary key of the changed version model's class
-	 * @param  classPK the primary key of the changed version model
 	 * @param  resourcePrimKey the primary key of the changed resource model
-	 * @return the change tracking entry representing the registered model
-	 *         change
+	 * @return the change tracking entry representing the model change
 	 */
-	public Optional<CTEntry> registerModelChange(
-		long userId, long classNameId, long classPK, long resourcePrimKey);
+	public Optional<CTEntry> getLatestModelChangeCTEntryOptional(
+		long userId, long resourcePrimKey);
 
 	/**
 	 * Retrieves all model changes in the context of the current user's active
@@ -71,17 +68,6 @@ public interface CTManager {
 		QueryDefinition<CTEntry> queryDefinition);
 
 	/**
-	 * Retrieves the latest model change in the context of the current user's
-	 * active change collection.
-	 *
-	 * @param  userId the primary key of the user
-	 * @param  resourcePrimKey the primary key of the changed resource model
-	 * @return the change tracking entry representing the model change
-	 */
-	public Optional<CTEntry> getLatestModelChangeCTEntryOptional(
-		long userId, long resourcePrimKey);
-
-	/**
 	 * Retrieves a model change in the context of the current user's active
 	 * change collection.
 	 *
@@ -92,5 +78,19 @@ public interface CTManager {
 	 */
 	public Optional<CTEntry> getModelChangeCTEntryOptional(
 		long userId, long classNameId, long classPK);
+
+	/**
+	 * Registers a model change into the change tracking framework in the
+	 * context of the current user's active change collection.
+	 *
+	 * @param  userId the primary key of the user
+	 * @param  classNameId the primary key of the changed version model's class
+	 * @param  classPK the primary key of the changed version model
+	 * @param  resourcePrimKey the primary key of the changed resource model
+	 * @return the change tracking entry representing the registered model
+	 *         change
+	 */
+	public Optional<CTEntry> registerModelChange(
+		long userId, long classNameId, long classPK, long resourcePrimKey);
 
 }
