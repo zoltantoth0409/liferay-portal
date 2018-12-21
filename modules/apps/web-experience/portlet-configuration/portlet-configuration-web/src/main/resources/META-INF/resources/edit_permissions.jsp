@@ -313,19 +313,10 @@ RoleSearchTerms searchTerms = (RoleSearchTerms)roleSearchContainer.getSearchTerm
 				>
 
 					<%
-					String definePermissionsHREF = null;
-
 					String name = role.getName();
-
-					if (!name.equals(RoleConstants.ADMINISTRATOR) && !name.equals(RoleConstants.ORGANIZATION_ADMINISTRATOR) && !name.equals(RoleConstants.ORGANIZATION_OWNER) && !name.equals(RoleConstants.OWNER) && !name.equals(RoleConstants.SITE_ADMINISTRATOR) && !name.equals(RoleConstants.SITE_OWNER) && !role.isTeam() && RolePermissionUtil.contains(permissionChecker, role.getRoleId(), ActionKeys.DEFINE_PERMISSIONS)) {
-						definePermissionsURL.setParameter("roleId", String.valueOf(role.getRoleId()));
-
-						definePermissionsHREF = definePermissionsURL.toString();
-					}
 					%>
 
 					<liferay-ui:search-container-column-text
-						href="<%= definePermissionsHREF %>"
 						name="role"
 					>
 						<%= role.getTitle(locale) %>
