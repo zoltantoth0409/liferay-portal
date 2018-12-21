@@ -16,7 +16,7 @@ class ChangeDefaultLanguage extends Component {
 
 		this.defaultLanguage = defaultLanguage;
 		this.languages = this.languages.map(
-			language => {
+			language => {
 				return Object.assign(
 					{},
 					language,
