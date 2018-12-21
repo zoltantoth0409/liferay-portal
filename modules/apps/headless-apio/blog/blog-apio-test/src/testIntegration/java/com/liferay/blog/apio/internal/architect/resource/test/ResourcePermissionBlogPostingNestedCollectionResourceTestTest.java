@@ -51,7 +51,7 @@ import org.junit.runner.RunWith;
  * @author Víctor Galán
  */
 @RunWith(Arquillian.class)
-public class BlogPostingNestedCollectionResourcePermissionTest
+public class ResourcePermissionBlogPostingNestedCollectionResourceTestTest
 	extends BaseBlogPostingNestedCollectionResourceTest {
 
 	@ClassRule
