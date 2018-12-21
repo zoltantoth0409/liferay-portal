@@ -525,10 +525,9 @@ public class ExportImportConfigurationPersistenceImpl
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(exportImportConfiguration);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					exportImportConfiguration)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1042,10 +1041,9 @@ public class ExportImportConfigurationPersistenceImpl
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(exportImportConfiguration);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					exportImportConfiguration)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1585,10 +1583,9 @@ public class ExportImportConfigurationPersistenceImpl
 		qPos.add(type);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(exportImportConfiguration);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					exportImportConfiguration)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2135,10 +2132,9 @@ public class ExportImportConfigurationPersistenceImpl
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(exportImportConfiguration);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					exportImportConfiguration)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2725,10 +2721,9 @@ public class ExportImportConfigurationPersistenceImpl
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(exportImportConfiguration);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					exportImportConfiguration)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

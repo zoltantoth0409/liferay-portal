@@ -510,10 +510,9 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		qPos.add(userId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(userThread);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					userThread)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1016,10 +1015,9 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		qPos.add(mbThreadId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(userThread);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					userThread)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1778,10 +1776,9 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		qPos.add(deleted);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(userThread);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					userThread)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2356,10 +2353,9 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		qPos.add(deleted);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(userThread);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					userThread)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

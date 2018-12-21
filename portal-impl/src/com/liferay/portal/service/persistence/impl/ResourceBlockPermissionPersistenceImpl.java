@@ -529,10 +529,9 @@ public class ResourceBlockPermissionPersistenceImpl extends BasePersistenceImpl<
 		qPos.add(resourceBlockId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(resourceBlockPermission);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					resourceBlockPermission)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1039,10 +1038,9 @@ public class ResourceBlockPermissionPersistenceImpl extends BasePersistenceImpl<
 		qPos.add(roleId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(resourceBlockPermission);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					resourceBlockPermission)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

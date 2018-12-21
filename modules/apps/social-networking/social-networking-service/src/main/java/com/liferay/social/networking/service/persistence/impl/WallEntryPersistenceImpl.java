@@ -507,10 +507,9 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(wallEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					wallEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1008,10 +1007,9 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 		qPos.add(userId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(wallEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					wallEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1541,10 +1539,9 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 		qPos.add(userId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(wallEntry);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					wallEntry)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

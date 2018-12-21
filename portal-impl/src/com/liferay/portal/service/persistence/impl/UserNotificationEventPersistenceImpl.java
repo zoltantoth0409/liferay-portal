@@ -543,10 +543,9 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(userNotificationEvent);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					userNotificationEvent)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1129,10 +1128,9 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(userNotificationEvent);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					userNotificationEvent)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1660,10 +1658,9 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		qPos.add(userId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(userNotificationEvent);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					userNotificationEvent)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2195,10 +2192,9 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(userNotificationEvent);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					userNotificationEvent)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2755,10 +2751,9 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		qPos.add(deliveryType);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(userNotificationEvent);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					userNotificationEvent)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -3307,10 +3302,9 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		qPos.add(delivered);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(userNotificationEvent);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					userNotificationEvent)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -3857,10 +3851,9 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		qPos.add(archived);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(userNotificationEvent);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					userNotificationEvent)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -4446,10 +4439,9 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		qPos.add(delivered);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(userNotificationEvent);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					userNotificationEvent)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -5043,10 +5035,9 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		qPos.add(archived);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(userNotificationEvent);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					userNotificationEvent)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -5639,10 +5630,9 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		qPos.add(actionRequired);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(userNotificationEvent);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					userNotificationEvent)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -6237,10 +6227,9 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		qPos.add(archived);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(userNotificationEvent);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					userNotificationEvent)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -6890,10 +6879,9 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		qPos.add(delivered);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(userNotificationEvent);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					userNotificationEvent)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -7542,10 +7530,9 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		qPos.add(actionRequired);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(userNotificationEvent);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					userNotificationEvent)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -8182,10 +8169,9 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		qPos.add(archived);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(userNotificationEvent);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					userNotificationEvent)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

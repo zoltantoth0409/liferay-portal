@@ -541,10 +541,9 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(layout);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					layout)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1388,10 +1387,9 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(layout);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					layout)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1911,10 +1909,9 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(layout);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					layout)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2219,10 +2216,9 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(layout);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					layout)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2771,10 +2767,9 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(layout);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					layout)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -3525,10 +3520,9 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(layout);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					layout)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -4096,10 +4090,9 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(layout);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					layout)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -4653,10 +4646,9 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 		qPos.add(privateLayout);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(layout);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					layout)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -4976,10 +4968,9 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 		qPos.add(privateLayout);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(layout);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					layout)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -5600,10 +5591,9 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(layout);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					layout)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -6675,10 +6665,9 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 		qPos.add(parentLayoutId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(layout);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					layout)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -7015,10 +7004,9 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 		qPos.add(parentLayoutId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(layout);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					layout)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -8289,10 +8277,9 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(layout);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					layout)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -8653,10 +8640,9 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(layout);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					layout)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -9910,10 +9896,9 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 		qPos.add(priority);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(layout);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					layout)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -10265,10 +10250,9 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 		qPos.add(priority);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(layout);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					layout)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

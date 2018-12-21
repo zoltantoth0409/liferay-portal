@@ -509,10 +509,9 @@ public class LayoutSetPersistenceImpl extends BasePersistenceImpl<LayoutSet>
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(layoutSet);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					layoutSet)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1060,10 +1059,9 @@ public class LayoutSetPersistenceImpl extends BasePersistenceImpl<LayoutSet>
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(layoutSet);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					layoutSet)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

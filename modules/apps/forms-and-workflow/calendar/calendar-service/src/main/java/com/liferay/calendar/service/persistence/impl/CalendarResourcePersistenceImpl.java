@@ -535,10 +535,9 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		qPos.add(resourceBlockId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(calendarResource);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					calendarResource)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1066,10 +1065,9 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(calendarResource);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					calendarResource)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1891,10 +1889,9 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(calendarResource);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					calendarResource)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2419,10 +2416,9 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(calendarResource);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					calendarResource)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2673,10 +2669,9 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		qPos.add(groupId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(calendarResource);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					calendarResource)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -3227,10 +3222,9 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		qPos.add(active);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(calendarResource);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					calendarResource)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -3795,10 +3789,9 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(calendarResource);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					calendarResource)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -4088,10 +4081,9 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(calendarResource);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					calendarResource)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -5241,10 +5233,9 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		qPos.add(active);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(calendarResource);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					calendarResource)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -5508,10 +5499,9 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		qPos.add(active);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(calendarResource);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					calendarResource)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -6365,10 +6355,9 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		qPos.add(active);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(calendarResource);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					calendarResource)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

@@ -536,10 +536,9 @@ public class EmailAddressPersistenceImpl extends BasePersistenceImpl<EmailAddres
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(emailAddress);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					emailAddress)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1113,10 +1112,9 @@ public class EmailAddressPersistenceImpl extends BasePersistenceImpl<EmailAddres
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(emailAddress);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					emailAddress)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1641,10 +1639,9 @@ public class EmailAddressPersistenceImpl extends BasePersistenceImpl<EmailAddres
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(emailAddress);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					emailAddress)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2144,10 +2141,9 @@ public class EmailAddressPersistenceImpl extends BasePersistenceImpl<EmailAddres
 		qPos.add(userId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(emailAddress);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					emailAddress)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2681,10 +2677,9 @@ public class EmailAddressPersistenceImpl extends BasePersistenceImpl<EmailAddres
 		qPos.add(classNameId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(emailAddress);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					emailAddress)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -3258,10 +3253,9 @@ public class EmailAddressPersistenceImpl extends BasePersistenceImpl<EmailAddres
 		qPos.add(classPK);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(emailAddress);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					emailAddress)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -3878,10 +3872,9 @@ public class EmailAddressPersistenceImpl extends BasePersistenceImpl<EmailAddres
 		qPos.add(primary);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(emailAddress);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					emailAddress)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

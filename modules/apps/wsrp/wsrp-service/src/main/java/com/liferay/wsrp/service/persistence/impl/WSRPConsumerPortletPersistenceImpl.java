@@ -547,10 +547,9 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(wsrpConsumerPortlet);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					wsrpConsumerPortlet)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1128,10 +1127,9 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(wsrpConsumerPortlet);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					wsrpConsumerPortlet)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1670,10 +1668,9 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		qPos.add(wsrpConsumerId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(wsrpConsumerPortlet);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					wsrpConsumerPortlet)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

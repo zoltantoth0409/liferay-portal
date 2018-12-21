@@ -529,10 +529,9 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(app);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					app)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1096,10 +1095,9 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(app);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					app)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1613,10 +1611,9 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(app);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					app)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2341,10 +2338,9 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(app);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					app)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

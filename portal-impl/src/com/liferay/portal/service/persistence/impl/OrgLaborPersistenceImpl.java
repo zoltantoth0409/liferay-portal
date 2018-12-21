@@ -514,10 +514,9 @@ public class OrgLaborPersistenceImpl extends BasePersistenceImpl<OrgLabor>
 		qPos.add(organizationId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(orgLabor);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					orgLabor)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

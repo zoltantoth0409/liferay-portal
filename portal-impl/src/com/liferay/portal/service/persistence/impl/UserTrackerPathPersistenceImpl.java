@@ -521,10 +521,9 @@ public class UserTrackerPathPersistenceImpl extends BasePersistenceImpl<UserTrac
 		qPos.add(userTrackerId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(userTrackerPath);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					userTrackerPath)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

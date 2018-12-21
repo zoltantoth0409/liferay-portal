@@ -530,10 +530,9 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		qPos.add(meetupsEntryId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(meetupsRegistration);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					meetupsRegistration)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1302,10 +1301,9 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		qPos.add(status);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(meetupsRegistration);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					meetupsRegistration)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 

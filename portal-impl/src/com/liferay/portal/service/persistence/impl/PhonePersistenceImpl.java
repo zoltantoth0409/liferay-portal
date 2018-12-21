@@ -531,10 +531,9 @@ public class PhonePersistenceImpl extends BasePersistenceImpl<Phone>
 		}
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(phone);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					phone)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1102,10 +1101,9 @@ public class PhonePersistenceImpl extends BasePersistenceImpl<Phone>
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(phone);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					phone)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -1623,10 +1621,9 @@ public class PhonePersistenceImpl extends BasePersistenceImpl<Phone>
 		qPos.add(companyId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(phone);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					phone)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2121,10 +2118,9 @@ public class PhonePersistenceImpl extends BasePersistenceImpl<Phone>
 		qPos.add(userId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(phone);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					phone)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -2653,10 +2649,9 @@ public class PhonePersistenceImpl extends BasePersistenceImpl<Phone>
 		qPos.add(classNameId);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(phone);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					phone)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -3227,10 +3222,9 @@ public class PhonePersistenceImpl extends BasePersistenceImpl<Phone>
 		qPos.add(classPK);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(phone);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					phone)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
@@ -3840,10 +3834,9 @@ public class PhonePersistenceImpl extends BasePersistenceImpl<Phone>
 		qPos.add(primary);
 
 		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByConditionValues(phone);
-
-			for (Object value : values) {
-				qPos.add(value);
+			for (Object orderByConditionValue : orderByComparator.getOrderByConditionValues(
+					phone)) {
+				qPos.add(orderByConditionValue);
 			}
 		}
 
