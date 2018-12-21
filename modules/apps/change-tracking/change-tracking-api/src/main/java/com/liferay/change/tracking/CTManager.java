@@ -52,7 +52,7 @@ public interface CTManager {
 	 * @return a list of change tracking entries representing all the registered
 	 *         model changes
 	 */
-	public List<CTEntry> retrieveAllModelChanges(
+	public List<CTEntry> getModelChangeCTEntries(
 		long userId, long resourcePrimKey);
 
 	/**
@@ -66,7 +66,7 @@ public interface CTManager {
 	 * @return a list of change tracking entries representing the registered
 	 *         model changes
 	 */
-	public List<CTEntry> retrieveAllModelChanges(
+	public List<CTEntry> getModelChangeCTEntries(
 		long userId, long resourcePrimKey,
 		QueryDefinition<CTEntry> queryDefinition);
 
@@ -78,7 +78,7 @@ public interface CTManager {
 	 * @param  resourcePrimKey the primary key of the changed resource model
 	 * @return the change tracking entry representing the model change
 	 */
-	public Optional<CTEntry> retrieveLatestModelChange(
+	public Optional<CTEntry> getLatestModelChangeCTEntryOptional(
 		long userId, long resourcePrimKey);
 
 	/**
@@ -90,7 +90,7 @@ public interface CTManager {
 	 * @param  classPK the primary key of the changed version model
 	 * @return the change tracking entry representing the model change
 	 */
-	public Optional<CTEntry> retrieveModelChange(
+	public Optional<CTEntry> getModelChangeCTEntryOptional(
 		long userId, long classNameId, long classPK);
 
 }
