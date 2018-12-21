@@ -319,6 +319,7 @@ RoleSearchTerms searchTerms = (RoleSearchTerms)roleSearchContainer.getSearchTerm
 					<liferay-ui:search-container-column-text
 						name="role"
 					>
+
 						<%
 						String icon = "user";
 						String message = "regular-role";
