@@ -137,9 +137,9 @@ String randomNamespace = ParamUtil.getString(request, "randomNamespace");
 
 		<aui:script use="liferay-logo-editor">
 			<portlet:actionURL name="/image_uploader/view" var="addTempImageURL">
-				<portlet:param name="aspectRatio" value="<%= String.valueOf(aspectRatio) %>" />
 				<portlet:param name="mvcRenderCommandName" value="/image_uploader/view" />
 				<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD_TEMP %>" />
+				<portlet:param name="aspectRatio" value="<%= String.valueOf(aspectRatio) %>" />
 				<portlet:param name="maxFileSize" value="<%= String.valueOf(maxFileSize) %>" />
 				<portlet:param name="preserveRatio" value="<%= String.valueOf(preserveRatio) %>" />
 			</portlet:actionURL>
@@ -148,12 +148,11 @@ String randomNamespace = ParamUtil.getString(request, "randomNamespace");
 
 			var logoEditor = new Liferay.LogoEditor(
 				{
+					aspectRatio: <%= aspectRatio %>,
 
 					<%
 					DecimalFormatSymbols decimalFormatSymbols = DecimalFormatSymbols.getInstance(locale);
 					%>
-
-					aspectRatio: <%= aspectRatio %>,
 
 					decimalSeparator: '<%= decimalFormatSymbols.getDecimalSeparator() %>',
 

@@ -82,12 +82,12 @@ else {
 		</div>
 
 		<liferay-portlet:renderURL portletName="<%= PortletKeys.IMAGE_UPLOADER %>" var="uploadImageURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-			<liferay-portlet:param name="aspectRatio" value="<%= String.valueOf(aspectRatio) %>" />
 			<liferay-portlet:param name="mvcRenderCommandName" value="/image_uploader/view" />
+			<liferay-portlet:param name="randomNamespace" value="<%= randomNamespace %>" />
+			<liferay-portlet:param name="aspectRatio" value="<%= String.valueOf(aspectRatio) %>" />
 			<liferay-portlet:param name="currentLogoURL" value="<%= currentLogoURL %>" />
 			<liferay-portlet:param name="maxFileSize" value="<%= String.valueOf(maxFileSize) %>" />
 			<liferay-portlet:param name="preserveRatio" value="<%= String.valueOf(preserveRatio) %>" />
-			<liferay-portlet:param name="randomNamespace" value="<%= randomNamespace %>" />
 			<liferay-portlet:param name="tempImageFileName" value="<%= tempImageFileName %>" />
 		</liferay-portlet:renderURL>
 
