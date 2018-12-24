@@ -86,9 +86,8 @@ public class DefaultBlogPostingNestedCollectionResourceTest
 
 		BlogPosting blogPosting = new BlogPostingImpl(
 			"alternativeHeadline", "articleBody", "caption",
-			Collections.emptyList(), 0L, date, date, date,
-			"description", "friendlyurlpath", "headline", 0L,
-			Collections.emptyList());
+			Collections.emptyList(), 0L, date, date, date, "description",
+			"friendlyurlpath", "headline", 0L, Collections.emptyList());
 
 		BlogsEntry blogsEntry = addBlogsEntry(
 			_group.getGroupId(), blogPosting, user);
@@ -260,9 +259,8 @@ public class DefaultBlogPostingNestedCollectionResourceTest
 
 		BlogPosting blogPosting = new BlogPostingImpl(
 			"alternativeHeadline", "articleBody", "caption",
-			Collections.emptyList(), 0L, date, date, date,
-			"description", "friendlyurlpath", "headline", 0L,
-			Collections.emptyList());
+			Collections.emptyList(), 0L, date, date, date, "description",
+			"friendlyurlpath", "headline", 0L, Collections.emptyList());
 
 		BlogsEntry blogsEntry = addBlogsEntry(
 			_group.getGroupId(), blogPosting, user);
@@ -271,8 +269,8 @@ public class DefaultBlogPostingNestedCollectionResourceTest
 
 		BlogPosting updatedBlogPosting = new BlogPostingImpl(
 			blogPosting.getAlternativeHeadline(), blogPosting.getArticleBody(),
-			blogPosting.getCaption(), Collections.emptyList(), 0L, date,
-			date, date, blogPosting.getDescription(),
+			blogPosting.getCaption(), Collections.emptyList(), 0L, date, date,
+			date, blogPosting.getDescription(),
 			blogPosting.getFriendlyURLPath(), updatedHeadline, 0L,
 			Collections.emptyList());
 
