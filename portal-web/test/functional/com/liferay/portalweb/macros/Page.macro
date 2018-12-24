@@ -785,6 +785,10 @@
 		<var name="key_page" value="${page}" />
 		<var name="key_themeName" value="${themeName}" />
 
+		<execute macro="ProductMenuHelper#expandCategory">
+			<var name="category" value="Navigation" />
+		</execute>
+
 		<execute function="Click#mouseOverClick" locator1="SitePages#SPECIFIC_PAGE_ELLIPSIS" />
 
 		<execute function="AssertClick#assertPartialTextClickAt" locator1="MenuItem#ANY_MENU_ITEM" value1="Configure Page">
