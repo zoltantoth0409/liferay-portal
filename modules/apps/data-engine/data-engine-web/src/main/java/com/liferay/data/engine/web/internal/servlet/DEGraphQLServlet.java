@@ -277,12 +277,12 @@ public class DEGraphQLServlet extends HttpServlet {
 		ServletResponseUtil.write(response, serialize(executionResult));
 	}
 
-	protected boolean isArrayStart(String str) {
-		for (int i = 0; i < str.length(); i++) {
-			char ch = str.charAt(i);
+	protected boolean isArrayStart(String s) {
+		for (int i = 0; i < s.length(); i++) {
+			char c = s.charAt(i);
 
-			if (!Character.isWhitespace(ch)) {
-				if (ch == '[') {
+			if (!Character.isWhitespace(c)) {
+				if (c == '[') {
 					return true;
 				}
 
