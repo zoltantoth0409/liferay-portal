@@ -266,10 +266,10 @@ public class BlogPostingNestedCollectionResource
 			long blogsEntryId, BlogPosting blogPosting, CurrentUser currentUser)
 		throws PortalException {
 
-		BlogsEntry blogsEntry = _blogsEntryService.getEntry(blogsEntryId);
 		long userId = _getUserId(blogPosting, currentUser);
-
+		BlogsEntry blogsEntry = _blogsEntryService.getEntry(blogsEntryId);
 		ImageSelector imageSelector = _getImageSelector(blogPosting);
+
 		ServiceContext serviceContext = _getServiceContext(
 			blogsEntry.getGroupId(), blogPosting);
 
