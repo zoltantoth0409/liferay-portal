@@ -200,6 +200,12 @@ definition {
 
 		Navigator.openSiteURL(siteName = "Test Site Name");
 
+		NavigationMenusWidget.gotoNavigationMenuWidgetConfig();
+
+		NavigationMenusWidget.chooseMenu(menuName = "Test Navigation Menu Name");
+
+		Portlet.saveAndCloseConfig();
+
 		AssertClick(
 			locator1 = "Home#PAGE",
 			value1 = "Liferay",
