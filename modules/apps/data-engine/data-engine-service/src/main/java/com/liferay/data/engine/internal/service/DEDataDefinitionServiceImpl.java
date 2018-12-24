@@ -168,13 +168,13 @@ public class DEDataDefinitionServiceImpl implements DEDataDefinitionService {
 		throws PortalException {
 
 		String resourceName = DEDataEnginePermissionSupport.RESOURCE_NAME;
-		String action = DEActionKeys.ADD_DATA_DEFINITION_ACTION;
+		String actionId = DEActionKeys.ADD_DATA_DEFINITION_ACTION;
 
 		if (!deDataEnginePermissionSupport.contains(
-				permissionChecker, resourceName, groupId, action)) {
+				permissionChecker, resourceName, groupId, actionId)) {
 
 			throw new PrincipalException.MustHavePermission(
-				permissionChecker, resourceName, groupId, action);
+				permissionChecker, resourceName, groupId, actionId);
 		}
 	}
 
