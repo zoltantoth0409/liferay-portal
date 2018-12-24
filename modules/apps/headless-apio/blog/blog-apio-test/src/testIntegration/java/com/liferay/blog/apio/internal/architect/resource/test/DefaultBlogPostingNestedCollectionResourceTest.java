@@ -77,7 +77,7 @@ public class DefaultBlogPostingNestedCollectionResourceTest
 
 	@Test
 	public void testAddBlogsEntry() throws Exception {
-		Date dateNow = new Date();
+		Date date = new Date();
 
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
@@ -86,7 +86,7 @@ public class DefaultBlogPostingNestedCollectionResourceTest
 
 		BlogPosting blogPosting = new BlogPostingImpl(
 			"alternativeHeadline", "articleBody", "caption",
-			Collections.emptyList(), 0L, dateNow, dateNow, dateNow,
+			Collections.emptyList(), 0L, date, date, date,
 			"description", "friendlyurlpath", "headline", 0L,
 			Collections.emptyList());
 
@@ -99,9 +99,9 @@ public class DefaultBlogPostingNestedCollectionResourceTest
 			blogPosting.getArticleBody(), blogsEntry.getContent());
 		Assert.assertEquals(
 			blogPosting.getCaption(), blogsEntry.getCoverImageCaption());
-		Assert.assertEquals(dateNow, blogsEntry.getCreateDate());
-		Assert.assertEquals(dateNow, blogsEntry.getDisplayDate());
-		Assert.assertEquals(dateNow, blogsEntry.getModifiedDate());
+		Assert.assertEquals(date, blogsEntry.getCreateDate());
+		Assert.assertEquals(date, blogsEntry.getDisplayDate());
+		Assert.assertEquals(date, blogsEntry.getModifiedDate());
 		Assert.assertEquals(
 			blogPosting.getDescription(), blogsEntry.getDescription());
 		Assert.assertEquals(
@@ -251,7 +251,7 @@ public class DefaultBlogPostingNestedCollectionResourceTest
 
 	@Test
 	public void testUpdateBlogsEntry() throws Exception {
-		Date dateNow = new Date();
+		Date date = new Date();
 
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
@@ -260,7 +260,7 @@ public class DefaultBlogPostingNestedCollectionResourceTest
 
 		BlogPosting blogPosting = new BlogPostingImpl(
 			"alternativeHeadline", "articleBody", "caption",
-			Collections.emptyList(), 0L, dateNow, dateNow, dateNow,
+			Collections.emptyList(), 0L, date, date, date,
 			"description", "friendlyurlpath", "headline", 0L,
 			Collections.emptyList());
 
@@ -271,8 +271,8 @@ public class DefaultBlogPostingNestedCollectionResourceTest
 
 		BlogPosting updatedBlogPosting = new BlogPostingImpl(
 			blogPosting.getAlternativeHeadline(), blogPosting.getArticleBody(),
-			blogPosting.getCaption(), Collections.emptyList(), 0L, dateNow,
-			dateNow, dateNow, blogPosting.getDescription(),
+			blogPosting.getCaption(), Collections.emptyList(), 0L, date,
+			date, date, blogPosting.getDescription(),
 			blogPosting.getFriendlyURLPath(), updatedHeadline, 0L,
 			Collections.emptyList());
 
@@ -286,9 +286,9 @@ public class DefaultBlogPostingNestedCollectionResourceTest
 			updatedBlogPosting.getArticleBody(), blogsEntry.getContent());
 		Assert.assertEquals(
 			updatedBlogPosting.getCaption(), blogsEntry.getCoverImageCaption());
-		Assert.assertEquals(dateNow, blogsEntry.getCreateDate());
-		Assert.assertEquals(dateNow, blogsEntry.getDisplayDate());
-		Assert.assertEquals(dateNow, blogsEntry.getModifiedDate());
+		Assert.assertEquals(date, blogsEntry.getCreateDate());
+		Assert.assertEquals(date, blogsEntry.getDisplayDate());
+		Assert.assertEquals(date, blogsEntry.getModifiedDate());
 		Assert.assertEquals(
 			updatedBlogPosting.getDescription(), blogsEntry.getDescription());
 		Assert.assertEquals(
