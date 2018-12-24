@@ -208,6 +208,8 @@ definition {
 
 		Form.closeSidebar();
 
+		Form.save();
+
 		Form.publishForm();
 
 		FormsAdminNavigator.gotoPublishedForm();
