@@ -278,21 +278,21 @@ public class DefaultBlogPostingNestedCollectionResourceTest
 			blogsEntry.getEntryId(), updatedBlogPosting, user);
 
 		Assert.assertEquals(
-			updatedBlogPosting.getAlternativeHeadline(),
-			blogsEntry.getSubtitle());
-		Assert.assertEquals(
 			updatedBlogPosting.getArticleBody(), blogsEntry.getContent());
 		Assert.assertEquals(
 			updatedBlogPosting.getCaption(), blogsEntry.getCoverImageCaption());
 		Assert.assertEquals(date, blogsEntry.getCreateDate());
+		Assert.assertEquals(
+			updatedBlogPosting.getDescription(), blogsEntry.getDescription());
 		Assert.assertEquals(date, blogsEntry.getDisplayDate());
 		Assert.assertEquals(date, blogsEntry.getModifiedDate());
 		Assert.assertEquals(
-			updatedBlogPosting.getDescription(), blogsEntry.getDescription());
-		Assert.assertEquals(
-			updatedBlogPosting.getFriendlyURLPath(), blogsEntry.getUrlTitle());
+			updatedBlogPosting.getAlternativeHeadline(),
+			blogsEntry.getSubtitle());
 		Assert.assertEquals(
 			updatedBlogPosting.getHeadline(), blogsEntry.getTitle());
+		Assert.assertEquals(
+			updatedBlogPosting.getFriendlyURLPath(), blogsEntry.getUrlTitle());
 	}
 
 	private BlogsEntry _addBlogEntry(
