@@ -252,15 +252,15 @@ public class DefaultBlogPostingNestedCollectionResourceTest
 	public void testUpdateBlogsEntry() throws Exception {
 		Date date = new Date();
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
-		User user = UserLocalServiceUtil.getUser(serviceContext.getUserId());
-
 		BlogPosting blogPosting = new BlogPostingImpl(
 			"alternativeHeadline", "articleBody", "caption",
 			Collections.emptyList(), 0L, date, date, date, "description",
 			"friendlyurlpath", "headline", 0L, Collections.emptyList());
+
+		ServiceContext serviceContext =
+			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
+
+		User user = UserLocalServiceUtil.getUser(serviceContext.getUserId());
 
 		BlogsEntry blogsEntry = addBlogsEntry(
 			_group.getGroupId(), blogPosting, user);
