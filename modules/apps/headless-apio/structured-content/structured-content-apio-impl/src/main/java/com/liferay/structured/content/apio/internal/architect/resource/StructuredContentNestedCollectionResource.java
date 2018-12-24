@@ -174,14 +174,14 @@ public class StructuredContentNestedCollectionResource
 		serviceContext.setAddGroupPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
 
-		if (ListUtil.isNotEmpty(structuredContent.getKeywords())) {
-			serviceContext.setAssetTagNames(
-				ArrayUtil.toStringArray(structuredContent.getKeywords()));
-		}
-
 		if (ListUtil.isNotEmpty(structuredContent.getCategories())) {
 			serviceContext.setAssetCategoryIds(
 				ArrayUtil.toLongArray(structuredContent.getCategories()));
+		}
+
+		if (ListUtil.isNotEmpty(structuredContent.getKeywords())) {
+			serviceContext.setAssetTagNames(
+				ArrayUtil.toStringArray(structuredContent.getKeywords()));
 		}
 
 		serviceContext.setScopeGroupId(contentSpaceId);
