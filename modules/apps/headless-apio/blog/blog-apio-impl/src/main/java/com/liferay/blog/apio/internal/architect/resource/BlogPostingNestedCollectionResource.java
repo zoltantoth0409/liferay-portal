@@ -235,17 +235,17 @@ public class BlogPostingNestedCollectionResource
 			serviceContext.setModifiedDate(modifiedDate);
 		}
 
-		List<String> keywords = blogPosting.getKeywords();
-
-		if (ListUtil.isNotEmpty(keywords)) {
-			serviceContext.setAssetTagNames(ArrayUtil.toStringArray(keywords));
-		}
-
 		List<Long> categories = blogPosting.getCategories();
 
 		if (ListUtil.isNotEmpty(categories)) {
 			serviceContext.setAssetCategoryIds(
 				ArrayUtil.toLongArray(categories));
+		}
+
+		List<String> keywords = blogPosting.getKeywords();
+
+		if (ListUtil.isNotEmpty(keywords)) {
+			serviceContext.setAssetTagNames(ArrayUtil.toStringArray(keywords));
 		}
 
 		return serviceContext;
