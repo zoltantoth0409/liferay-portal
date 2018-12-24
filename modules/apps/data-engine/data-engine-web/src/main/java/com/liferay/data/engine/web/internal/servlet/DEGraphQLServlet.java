@@ -146,6 +146,11 @@ public class DEGraphQLServlet extends HttpServlet {
 			RuntimeWiring.newRuntimeWiring();
 
 		runtimeWiringBuilder.type(
+			"MutationType",
+			typeWiring -> typeWiring.dataFetcher(
+				"deleteDataDefinition", _deDeleteDataDefinitionDataFetcher));
+
+		runtimeWiringBuilder.type(
 			"QueryType",
 			typeWiring -> typeWiring.dataFetcher(
 				"getDataDefinition", _deGetDataDefinitionDataFetcher));
@@ -154,11 +159,6 @@ public class DEGraphQLServlet extends HttpServlet {
 			"MutationType",
 			typeWiring -> typeWiring.dataFetcher(
 				"saveDataDefinition", _deSaveDataDefinitionDataFetcher));
-
-		runtimeWiringBuilder.type(
-			"MutationType",
-			typeWiring -> typeWiring.dataFetcher(
-				"deleteDataDefinition", _deDeleteDataDefinitionDataFetcher));
 
 		return runtimeWiringBuilder.build();
 	}
