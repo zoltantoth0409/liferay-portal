@@ -221,19 +221,6 @@ public class BlogPostingNestedCollectionResource
 
 		serviceContext.setAddGroupPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
-		serviceContext.setScopeGroupId(groupId);
-
-		Date createdDate = blogPosting.getCreatedDate();
-
-		if (createdDate != null) {
-			serviceContext.setCreateDate(createdDate);
-		}
-
-		Date modifiedDate = blogPosting.getModifiedDate();
-
-		if (modifiedDate != null) {
-			serviceContext.setModifiedDate(modifiedDate);
-		}
 
 		List<Long> categories = blogPosting.getCategories();
 
@@ -247,6 +234,20 @@ public class BlogPostingNestedCollectionResource
 		if (ListUtil.isNotEmpty(keywords)) {
 			serviceContext.setAssetTagNames(ArrayUtil.toStringArray(keywords));
 		}
+
+		Date createdDate = blogPosting.getCreatedDate();
+
+		if (createdDate != null) {
+			serviceContext.setCreateDate(createdDate);
+		}
+
+		Date modifiedDate = blogPosting.getModifiedDate();
+
+		if (modifiedDate != null) {
+			serviceContext.setModifiedDate(modifiedDate);
+		}
+
+		serviceContext.setScopeGroupId(groupId);
 
 		return serviceContext;
 	}
