@@ -93,19 +93,19 @@ public class DefaultBlogPostingNestedCollectionResourceTest
 			_group.getGroupId(), blogPosting, user);
 
 		Assert.assertEquals(
-			blogPosting.getAlternativeHeadline(), blogsEntry.getSubtitle());
-		Assert.assertEquals(
 			blogPosting.getArticleBody(), blogsEntry.getContent());
 		Assert.assertEquals(
 			blogPosting.getCaption(), blogsEntry.getCoverImageCaption());
 		Assert.assertEquals(date, blogsEntry.getCreateDate());
+		Assert.assertEquals(
+			blogPosting.getDescription(), blogsEntry.getDescription());
 		Assert.assertEquals(date, blogsEntry.getDisplayDate());
 		Assert.assertEquals(date, blogsEntry.getModifiedDate());
 		Assert.assertEquals(
-			blogPosting.getDescription(), blogsEntry.getDescription());
+			blogPosting.getAlternativeHeadline(), blogsEntry.getSubtitle());
+		Assert.assertEquals(blogPosting.getHeadline(), blogsEntry.getTitle());
 		Assert.assertEquals(
 			blogPosting.getFriendlyURLPath(), blogsEntry.getUrlTitle());
-		Assert.assertEquals(blogPosting.getHeadline(), blogsEntry.getTitle());
 	}
 
 	@Test
