@@ -207,11 +207,11 @@ public class DefaultBlogPostingNestedCollectionResourceTest
 
 	@Test
 	public void testGetPageItemsWith1Scheduled() throws Exception {
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
-
 		Date displayDate = new Date(
 			System.currentTimeMillis() + 24 * 60 * 60 * 1000);
+
+		ServiceContext serviceContext =
+			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
 
 		_addBlogEntry(displayDate, serviceContext);
 
