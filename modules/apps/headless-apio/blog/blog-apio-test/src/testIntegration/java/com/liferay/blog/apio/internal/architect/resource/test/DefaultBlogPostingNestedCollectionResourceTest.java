@@ -133,13 +133,14 @@ public class DefaultBlogPostingNestedCollectionResourceTest
 			friendlyURLPath, RandomTestUtil.randomString(10), 0L,
 			Collections.emptyList());
 
-		AbstractThrowableAssert exception = Assertions.assertThatThrownBy(
-			() -> addBlogsEntry(_group.getGroupId(), blogPosting2, user)
-		).isInstanceOf(
-			ValidationException.class
-		);
+		AbstractThrowableAssert abstractThrowableAssert =
+			Assertions.assertThatThrownBy(
+				() -> addBlogsEntry(_group.getGroupId(), blogPosting2, user)
+			).isInstanceOf(
+				ValidationException.class
+			);
 
-		exception.hasMessage("Duplicate friendly URL");
+		abstractThrowableAssert.hasMessage("Duplicate friendly URL");
 	}
 
 	@Test
