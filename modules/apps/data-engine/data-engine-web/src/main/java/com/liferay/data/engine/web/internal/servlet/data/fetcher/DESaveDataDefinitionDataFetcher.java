@@ -109,7 +109,7 @@ public class DESaveDataDefinitionDataFetcher
 		}
 		catch (DEDataDefinitionException.NoSuchDataDefinition nsdd) {
 			errorMessage = getMessage(
-				languageId, "no-such-data-definition-with-id",
+				languageId, "no-data-definition-exists-with-id-x",
 				nsdd.getDEDataDefinitionId());
 		}
 		catch (Exception e) {
