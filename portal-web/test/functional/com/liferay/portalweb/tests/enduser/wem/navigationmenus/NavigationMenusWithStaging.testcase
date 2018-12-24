@@ -26,8 +26,6 @@ definition {
 			layoutName = "Test Page 3"
 		);
 
-		NavigationMenusAdmin.openNavigationMenusAdmin(siteURLKey = "test-site-name");
-
 		Staging.openStagingAdmin(siteURLKey = "test-site-name");
 
 		Staging.activateStagingCP(siteName = "Test Site Name");
@@ -182,15 +180,6 @@ definition {
 			item = "URL",
 			url = "https://www.liferay.com/",
 			urlName = "Liferay"
-		);
-
-		NavigationMenusAdmin.openNavigationMenusAdmin(
-			siteURLKey = "test-site-name-staging"
-		);
-
-		NavigationMenusAdmin.markAsPrimaryNavigation(
-			newMenuName = "Test Navigation Menu Name",
-			oldMenuName = "Default"
 		);
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name-staging");
@@ -414,15 +403,6 @@ definition {
 			urlName = "Liferay"
 		);
 
-		NavigationMenusAdmin.openNavigationMenusAdmin(
-			siteURLKey = "test-site-name-staging"
-		);
-
-		NavigationMenusAdmin.markAsPrimaryNavigation(
-			newMenuName = "Test Navigation Menu Name",
-			oldMenuName = "Default"
-		);
-
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name-staging");
 
 		NavigationMenusWidget.gotoNavigationMenuWidgetConfig();
@@ -500,15 +480,6 @@ definition {
 		NavigationMenusAdmin.addItem(
 			item = "Page",
 			pageNames = "Test Page 1,Test Page 2,Test Page 3"
-		);
-
-		NavigationMenusAdmin.openNavigationMenusAdmin(
-			siteURLKey = "test-site-name-staging"
-		);
-
-		NavigationMenusAdmin.markAsPrimaryNavigation(
-			newMenuName = "Test Navigation Menu Name",
-			oldMenuName = "Default"
 		);
 
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name-staging");
