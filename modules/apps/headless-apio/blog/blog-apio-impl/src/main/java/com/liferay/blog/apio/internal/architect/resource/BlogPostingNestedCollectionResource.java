@@ -223,16 +223,16 @@ public class BlogPostingNestedCollectionResource
 		serviceContext.setAddGuestPermissions(true);
 		serviceContext.setScopeGroupId(groupId);
 
-		Date dateCreated = blogPosting.getCreatedDate();
+		Date createdDate = blogPosting.getCreatedDate();
 
-		if (dateCreated != null) {
-			serviceContext.setCreateDate(dateCreated);
+		if (createdDate != null) {
+			serviceContext.setCreateDate(createdDate);
 		}
 
-		Date dateModified = blogPosting.getModifiedDate();
+		Date modifiedDate = blogPosting.getModifiedDate();
 
-		if (dateModified != null) {
-			serviceContext.setModifiedDate(dateModified);
+		if (modifiedDate != null) {
+			serviceContext.setModifiedDate(modifiedDate);
 		}
 
 		List<String> keywords = blogPosting.getKeywords();
