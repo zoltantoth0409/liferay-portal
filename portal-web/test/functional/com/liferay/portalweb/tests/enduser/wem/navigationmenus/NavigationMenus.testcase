@@ -331,12 +331,10 @@ definition {
 
 		NavigationMenusAdmin.addMenu(menuName = "Test Navigation Menu Name");
 
-		for (var index : list "1,2") {
-			NavigationMenusAdmin.addItem(
-				item = "Page",
-				pageName = "Site Page Name ${index}"
-			);
-		}
+		NavigationMenusAdmin.addItem(
+			item = "Page",
+			pageNames = "Site Page Name 1,Site Page Name 2"
+		);
 
 		ProductMenu.gotoPortlet(
 			category = "Build",
