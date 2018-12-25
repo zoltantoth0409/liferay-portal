@@ -48,53 +48,45 @@ public class DESaveDataDefinitionDataFetcher
 
 	@Override
 	public SaveDataDefinitionType get(DataFetchingEnvironment environment) {
-		long userId = GetterUtil.getLong(environment.getArgument("userId"));
-		long groupId = GetterUtil.getLong(environment.getArgument("groupId"));
-
-		Map<String, Object> dataDefinitionAttributes = environment.getArgument(
-			"dataDefinition");
-
-		String languageId = environment.getArgument("languageId");
-
-		List<DEDataDefinitionField> deDataDefinitionFields =
-			createDEDataDefinitionFields(
-				(List<Map<String, Object>>)dataDefinitionAttributes.get(
-					"fields"));
-		long dataDefinitionId = GetterUtil.getLong(
-			dataDefinitionAttributes.get("dataDefinitionId"));
-		Map<String, String> descriptions = getLocalizedValues(
-			(List<Map<String, Object>>)dataDefinitionAttributes.get(
-				"descriptions"));
-		Map<String, String> names = getLocalizedValues(
-			(List<Map<String, Object>>)dataDefinitionAttributes.get("names"));
-		String storageType = GetterUtil.getString(
-			dataDefinitionAttributes.get("storageType"), "json");
-
-		DEDataDefinition deDataDefinition = new DEDataDefinition(
-			deDataDefinitionFields);
-
-		deDataDefinition.setDEDataDefinitionId(dataDefinitionId);
-		deDataDefinition.setDescription(descriptions);
-		deDataDefinition.setName(names);
-		deDataDefinition.setStorageType(storageType);
-
-		DEDataDefinitionSaveRequest deDataDefinitionSaveRequest =
-			DEDataDefinitionRequestBuilder.saveBuilder(
-				deDataDefinition
-			).inGroup(
-				groupId
-			).onBehalfOf(
-				userId
-			).build();
-
 		SaveDataDefinitionType saveDataDefinitionType =
 			new SaveDataDefinitionType();
 
 		String errorMessage = null;
+		String languageId = environment.getArgument("languageId");
 
 		try {
+			Map<String, Object> dataDefinitionAttributes =
+				environment.getArgument("dataDefinition");
+
+			DEDataDefinition deDataDefinition = new DEDataDefinition(
+				createDEDataDefinitionFields(
+					(List<Map<String, Object>>)dataDefinitionAttributes.get(
+						"fields")));
+
+			deDataDefinition.setDEDataDefinitionId(
+				GetterUtil.getLong(
+					dataDefinitionAttributes.get("dataDefinitionId")));
+			deDataDefinition.setDescription(
+				getLocalizedValues(
+					(List<Map<String, Object>>)dataDefinitionAttributes.get(
+						"descriptions")));
+			deDataDefinition.setName(
+				getLocalizedValues(
+					(List<Map<String, Object>>)dataDefinitionAttributes.get(
+						"names")));
+			deDataDefinition.setStorageType(
+				GetterUtil.getString(
+					dataDefinitionAttributes.get("storageType"), "json"));
+
 			DEDataDefinitionSaveResponse deDataDefinitionSaveResponse =
-				deDataDefinitionService.execute(deDataDefinitionSaveRequest);
+				deDataDefinitionService.execute(
+					DEDataDefinitionRequestBuilder.saveBuilder(
+						deDataDefinition
+					).inGroup(
+						GetterUtil.getLong(environment.getArgument("groupId"))
+					).onBehalfOf(
+						GetterUtil.getLong(environment.getArgument("userId"))
+					).build());
 
 			DataDefinition dataDefinition = createDataDefinition(
 				deDataDefinitionSaveResponse.getDEDataDefinitionId(),

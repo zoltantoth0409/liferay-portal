@@ -39,24 +39,21 @@ public class DEDeleteDataDefinitionDataFetcher
 
 	@Override
 	public DeleteDataDefinitionType get(DataFetchingEnvironment environment) {
-		long dataDefinitionId = GetterUtil.getLong(
-			environment.getArgument("dataDefinitionId"));
-
-		String languageId = environment.getArgument("languageId");
-
-		DEDataDefinitionDeleteRequest deDataDefinitionDeleteRequest =
-			DEDataDefinitionRequestBuilder.deleteBuilder(
-			).byId(
-				dataDefinitionId
-			).build();
-
 		DeleteDataDefinitionType deleteDataDefinitionType =
 			new DeleteDataDefinitionType();
 
 		String errorMessage = null;
+		String languageId = environment.getArgument("languageId");
 
 		try {
-			deDataDefinitionService.execute(deDataDefinitionDeleteRequest);
+			long dataDefinitionId = GetterUtil.getLong(
+				environment.getArgument("dataDefinitionId"));
+
+			deDataDefinitionService.execute(
+				DEDataDefinitionRequestBuilder.deleteBuilder(
+				).byId(
+					dataDefinitionId
+				).build());
 
 			DataDefinition dataDefinition = new DataDefinitionType();
 

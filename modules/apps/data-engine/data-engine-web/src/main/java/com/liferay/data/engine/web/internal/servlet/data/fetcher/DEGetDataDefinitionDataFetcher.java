@@ -41,25 +41,22 @@ public class DEGetDataDefinitionDataFetcher
 
 	@Override
 	public GetDataDefinitionType get(DataFetchingEnvironment environment) {
-		long dataDefinitionId = GetterUtil.getLong(
-			environment.getArgument("dataDefinitionId"));
-
-		String languageId = environment.getArgument("languageId");
-
-		DEDataDefinitionGetRequest deDataDefinitionGetRequest =
-			DEDataDefinitionRequestBuilder.getBuilder(
-			).byId(
-				dataDefinitionId
-			).build();
-
-		String errorMessage = null;
-
 		GetDataDefinitionType getDataDefinitionType =
 			new GetDataDefinitionType();
 
+		String errorMessage = null;
+		String languageId = environment.getArgument("languageId");
+
 		try {
+			long dataDefinitionId = GetterUtil.getLong(
+				environment.getArgument("dataDefinitionId"));
+
 			DEDataDefinitionGetResponse deDataDefinitionGetResponse =
-				deDataDefinitionService.execute(deDataDefinitionGetRequest);
+				deDataDefinitionService.execute(
+					DEDataDefinitionRequestBuilder.getBuilder(
+						).byId(
+							dataDefinitionId
+						).build());
 
 			DEDataDefinition deDataDefinition =
 				deDataDefinitionGetResponse.getDeDataDefinition();
