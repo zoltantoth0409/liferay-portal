@@ -154,7 +154,7 @@ public class PersonCollectionResource
 						LocaleUtil.getDefault(),
 						personCreatorForm.getGivenName(), StringPool.BLANK,
 						personCreatorForm.getFamilyName(), prefixId, suffixId,
-						false, personCreatorForm.getBirthdayMonth(),
+						true, personCreatorForm.getBirthdayMonth(),
 						personCreatorForm.getBirthdayDay(),
 						personCreatorForm.getBirthdayYear(),
 						personCreatorForm.getJobTitle(), null, null, null, null,
@@ -330,7 +330,7 @@ public class PersonCollectionResource
 			user.getOpenId(), false, null, user.getLanguageId(),
 			user.getTimeZoneId(), user.getGreeting(), user.getComments(),
 			personUpdaterForm.getGivenName(), user.getMiddleName(),
-			personUpdaterForm.getFamilyName(), prefixId, suffixId, false,
+			personUpdaterForm.getFamilyName(), prefixId, suffixId, true,
 			_getDefaultValue(
 				personUpdaterForm.getBirthdayMonthOptional(),
 				birthdayDate.getMonth()),
