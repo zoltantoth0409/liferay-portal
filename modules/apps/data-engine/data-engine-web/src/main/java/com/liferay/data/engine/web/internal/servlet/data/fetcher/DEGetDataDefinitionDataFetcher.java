@@ -16,7 +16,6 @@ package com.liferay.data.engine.web.internal.servlet.data.fetcher;
 
 import com.liferay.data.engine.exception.DEDataDefinitionException;
 import com.liferay.data.engine.model.DEDataDefinition;
-import com.liferay.data.engine.service.DEDataDefinitionGetRequest;
 import com.liferay.data.engine.service.DEDataDefinitionGetResponse;
 import com.liferay.data.engine.service.DEDataDefinitionRequestBuilder;
 import com.liferay.data.engine.service.DEDataDefinitionService;

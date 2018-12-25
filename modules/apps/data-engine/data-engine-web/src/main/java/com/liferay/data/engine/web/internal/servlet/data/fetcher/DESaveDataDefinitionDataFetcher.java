@@ -18,7 +18,6 @@ import com.liferay.data.engine.exception.DEDataDefinitionException;
 import com.liferay.data.engine.model.DEDataDefinition;
 import com.liferay.data.engine.model.DEDataDefinitionField;
 import com.liferay.data.engine.service.DEDataDefinitionRequestBuilder;
-import com.liferay.data.engine.service.DEDataDefinitionSaveRequest;
 import com.liferay.data.engine.service.DEDataDefinitionSaveResponse;
 import com.liferay.data.engine.service.DEDataDefinitionService;
 import com.liferay.data.engine.web.internal.graphql.model.DataDefinition;

@@ -15,7 +15,6 @@
 package com.liferay.data.engine.web.internal.servlet.data.fetcher;
 
 import com.liferay.data.engine.exception.DEDataDefinitionException;
-import com.liferay.data.engine.service.DEDataDefinitionDeleteRequest;
 import com.liferay.data.engine.service.DEDataDefinitionRequestBuilder;
 import com.liferay.data.engine.service.DEDataDefinitionService;
 import com.liferay.data.engine.web.internal.graphql.model.DataDefinition;
