@@ -1069,7 +1069,7 @@ public class DefaultStructuredContentNestedCollectionResourceTest
 	}
 
 	private static final AcceptLanguage _acceptLanguage =
-		() -> LocaleUtil.getDefault();
+		() -> LocaleUtil.US;
 
 	@Inject
 	private DDMFormJSONDeserializer _ddmFormJSONDeserializer;
@@ -1079,8 +1079,5 @@ public class DefaultStructuredContentNestedCollectionResourceTest
 
 	@Inject
 	private JournalArticleLocalService _journalArticleLocalService;
-
-	@Inject
-	private UserLocalService _userLocalService;
 
 }
