@@ -1,4 +1,4 @@
-<definition component-name="portal-util-misc">
+<definition component-name="portal-util-misc" ignore="true">
 	<property name="dummy.socket.proxy.disabled" value="true" />
 	<property name="osgi.app.includes" value="currency-converter" />
 	<property name="portal.release" value="true" />
@@ -33,6 +33,8 @@
 			</then>
 		</if>
 	</tear-down>
+
+	<!-- LPS-73677 -->
 
 	<command name="ConvertCurrencyUSDToEUR" priority="2">
 		<execute macro="Navigator#gotoPage">

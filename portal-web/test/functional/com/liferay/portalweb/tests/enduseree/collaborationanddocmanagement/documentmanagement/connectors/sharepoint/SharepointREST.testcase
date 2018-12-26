@@ -1,4 +1,4 @@
-<definition component-name="portal-document-management-ee">
+<definition component-name="portal-document-management-ee" ignore="true">
 	<property name="dummy.socket.proxy.disabled" value="true" />
 	<property name="osgi.app.includes" value="sharepoint-rest" />
 	<property name="portal.ssl.enabled" value="true" />
@@ -142,6 +142,8 @@
 			</then>
 		</if>
 	</tear-down>
+
+	<!-- LPS-87107 -->
 
 	<command name="ViewRepository" priority="5">
 		<execute macro="DMRepository#gotoCP">

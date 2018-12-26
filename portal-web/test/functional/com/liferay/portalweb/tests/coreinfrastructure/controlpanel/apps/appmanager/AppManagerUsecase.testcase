@@ -25,7 +25,9 @@
 		</if>
 	</tear-down>
 
-	<command name="InstallUninstallApp" priority="5">
+	<!-- LRQA-42977 -->
+
+	<command ignore="true" name="InstallUninstallApp" priority="5">
 		<property name="test.name.skip.portal.instance" value="AppManagerUsecase#InstallUninstallApp" />
 
 		<var name="appName" value="test-app-portlet" />

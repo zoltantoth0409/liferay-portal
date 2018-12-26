@@ -306,7 +306,9 @@
 		<execute function="AssertTextEquals" locator1="Home#STATUS_MESSAGE" value1="This instance is inactive. Please contact the administrator." />
 	</command>
 
-	<command name="ViewVirtualHostPrivateSitePage" priority="4">
+	<!-- LPS-84364 -->
+
+	<command ignore="true" name="ViewVirtualHostPrivateSitePage" priority="4">
 		<property name="custom.properties" value="virtual.hosts.valid.hosts=localhost,127.0.0.1,www.able.com,www.baker.com,www.charlie.com" />
 		<property name="test.name.skip.portal.instance" value="PortalconfigurationUsecase#ViewVirtualHostPrivateSitePage" />
 

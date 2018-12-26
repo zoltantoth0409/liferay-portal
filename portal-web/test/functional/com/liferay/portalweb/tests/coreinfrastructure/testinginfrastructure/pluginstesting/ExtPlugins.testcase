@@ -24,7 +24,9 @@
 		</if>
 	</tear-down>
 
-	<command name="ViewSampleExtPluginValidationViaDeploy" priority="5">
+	<!-- LPS-83448 -->
+
+	<command ignore="true" name="ViewSampleExtPluginValidationViaDeploy" priority="5">
 		<property name="test.name.skip.portal.instance" value="ExtPlugins#ViewSampleExtPluginValidationViaDeploy" />
 
 		<execute macro="Portlet#assertServerStartup" />

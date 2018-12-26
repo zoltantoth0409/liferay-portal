@@ -13,7 +13,9 @@
 		<execute macro="Upgrade#reindexSearches" />
 	</set-up>
 
-	<command name="ViewCalendarArchive612" priority="5">
+	<!-- LPS-81751 -->
+
+	<command ignore="true" name="ViewCalendarArchive612" priority="5">
 		<property name="data.archive.type" value="data-archive-calendar" />
 		<property name="database.types" value="mariadb,mysql,postgresql" />
 		<property name="osgi.modules.includes" value="calevent" />
@@ -22,7 +24,9 @@
 		<execute macro="Upgrade#viewCalendar" />
 	</command>
 
-	<command name="ViewCalendarArchive6130" priority="5">
+	<!-- LPS-81751 -->
+
+	<command ignore="true" name="ViewCalendarArchive6130" priority="5">
 		<property name="data.archive.type" value="data-archive-calendar" />
 		<property name="osgi.modules.includes" value="calevent" />
 		<property name="portal.version" value="6.1.30" />

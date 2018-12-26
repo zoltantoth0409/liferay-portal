@@ -12,7 +12,9 @@
 		<execute macro="Page#tearDownPG" />
 	</tear-down>
 
-	<command name="ViewDependencyAbleFox" priority="4">
+	<!-- LPS-83458 -->
+
+	<command ignore="true" name="ViewDependencyAbleFox" priority="4">
 		<execute macro="Page#add">
 			<var name="pageName" value="Test Dependency Page" />
 		</execute>
