@@ -749,7 +749,7 @@ definition {
 		WebContent.addExistingRelatedAssetCP(
 			assetTitle = "Web Content Title 2",
 			assetType = "Basic Web Content",
-			siteName = "Liferay",
+			siteName = "Test Site Name",
 			webContentTitle = "Web Content Title 1"
 		);
 
