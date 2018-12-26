@@ -168,7 +168,7 @@ public abstract class BaseStructuredContentNestedCollectionResourceTestCase {
 			Pagination pagination, long contentSpaceId,
 			AcceptLanguage acceptLanguage, ThemeDisplay themeDisplay,
 			Filter filter, Sort sort)
-		throws Exception {
+		throws Throwable {
 
 		NestedCollectionResource nestedCollectionResource =
 			_getNestedCollectionResource();
@@ -182,9 +182,14 @@ public abstract class BaseStructuredContentNestedCollectionResourceTestCase {
 
 		method.setAccessible(true);
 
-		return (PageItems)method.invoke(
-			nestedCollectionResource, pagination, contentSpaceId,
-			acceptLanguage, themeDisplay, filter, sort);
+		try {
+			return (PageItems)method.invoke(
+				nestedCollectionResource, pagination, contentSpaceId,
+				acceptLanguage, themeDisplay, filter, sort);
+		}
+		catch (InvocationTargetException ite) {
+			throw ite.getTargetException();
+		}
 	}
 
 	protected com.liferay.portal.kernel.search.filter.Filter getSearchFilter(
