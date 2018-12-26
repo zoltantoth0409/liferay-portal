@@ -24,10 +24,6 @@ public class UpgradeSchema extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		upgradeSchema();
-	}
-
-	protected void upgradeSchema() throws Exception {
 		alter(
 			LayoutPageTemplateEntryTable.class,
 			new AlterTableAddColumn("plid LONG"));
