@@ -145,9 +145,11 @@ public class DDMFormTemplateContextFactoryImpl
 		List<DDMFormFieldType> ddmFormFieldTypes =
 			_ddmFormFieldTypeServicesTracker.getDDMFormFieldTypes();
 
-		templateContext.put(
-			"fieldTypes",
-			_ddmFormFieldTypesJSONSerializer.serialize(ddmFormFieldTypes));
+		if (!ddmFormRenderingContext.isViewMode()) {
+			templateContext.put(
+				"fieldTypes",
+				_ddmFormFieldTypesJSONSerializer.serialize(ddmFormFieldTypes));
+		}
 
 		templateContext.put("groupId", ddmFormRenderingContext.getGroupId());
 

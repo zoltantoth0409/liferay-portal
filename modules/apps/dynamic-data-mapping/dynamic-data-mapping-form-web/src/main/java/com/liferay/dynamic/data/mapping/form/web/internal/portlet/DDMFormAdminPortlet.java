@@ -143,6 +143,7 @@ public class DDMFormAdminPortlet extends MVCPortlet {
 		ddmFormRenderingContext.setLocale(themeDisplay.getLocale());
 		ddmFormRenderingContext.setPortletNamespace(
 			renderResponse.getNamespace());
+		ddmFormRenderingContext.setViewMode(true);
 
 		return ddmFormRenderingContext;
 	}
