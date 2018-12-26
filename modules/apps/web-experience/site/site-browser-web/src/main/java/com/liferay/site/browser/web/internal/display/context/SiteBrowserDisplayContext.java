@@ -296,6 +296,8 @@ public class SiteBrowserDisplayContext {
 
 		long[] selectedGroupIds = StringUtil.split(
 			ParamUtil.getString(_request, "selectedGroupIds"), 0L);
+		boolean filterManageableGroups = ParamUtil.getBoolean(
+			_request, "filterManageableGroups", true);
 		boolean includeCompany = ParamUtil.getBoolean(
 			_request, "includeCompany");
 		boolean includeCurrentGroup = ParamUtil.getBoolean(
@@ -314,6 +316,8 @@ public class SiteBrowserDisplayContext {
 		portletURL.setParameter("types", getTypes());
 		portletURL.setParameter("displayStyle", getDisplayStyle());
 		portletURL.setParameter("filter", getFilter());
+		portletURL.setParameter(
+			"filterManageableGroups", String.valueOf(filterManageableGroups));
 		portletURL.setParameter(
 			"includeCompany", String.valueOf(includeCompany));
 		portletURL.setParameter(
