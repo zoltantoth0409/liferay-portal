@@ -20,7 +20,7 @@ import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 /**
  * @author Pavel Savinov
  */
-public class UpgradeScheme extends UpgradeProcess {
+public class UpgradeSchema extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
