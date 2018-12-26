@@ -36,6 +36,7 @@ import com.liferay.portal.odata.filter.Filter;
 import com.liferay.portal.odata.sort.Sort;
 import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
+import com.liferay.structured.content.apio.architect.model.StructuredContent;
 import com.liferay.structured.content.apio.architect.resource.StructuredContentField;
 
 import java.io.InputStream;
@@ -60,6 +61,33 @@ public abstract class BaseStructuredContentNestedCollectionResourceTestCase {
 
 		JournalArticleLocalServiceUtil.updateAsset(
 			userId, journalArticle, null, assetTagNames, null, null);
+	}
+
+	protected JournalArticle addJournalArticle(
+			long contentSpaceId, StructuredContent structuredContent,
+			AcceptLanguage acceptLanguage, ThemeDisplay themeDisplay)
+		throws Throwable {
+
+		NestedCollectionResource nestedCollectionResource =
+			_getNestedCollectionResource();
+
+		Class<? extends NestedCollectionResource> clazz =
+			nestedCollectionResource.getClass();
+
+		Method method = clazz.getDeclaredMethod(
+			"_addJournalArticle", long.class, StructuredContent.class,
+			AcceptLanguage.class, ThemeDisplay.class);
+
+		method.setAccessible(true);
+
+		try {
+			return (JournalArticle)method.invoke(
+				nestedCollectionResource, contentSpaceId, structuredContent,
+				acceptLanguage, themeDisplay);
+		}
+		catch (InvocationTargetException ite) {
+			throw ite.getTargetException();
+		}
 	}
 
 	protected StructuredContentField createStructuredContentField(
@@ -256,6 +284,33 @@ public abstract class BaseStructuredContentNestedCollectionResourceTestCase {
 				"/test/" + fileName);
 
 		return StringUtil.read(inputStream);
+	}
+
+	protected JournalArticle updateJournalArticle(
+			long journalArticleId, StructuredContent structuredContent,
+			AcceptLanguage acceptLanguage, ThemeDisplay themeDisplay)
+		throws Throwable {
+
+		NestedCollectionResource nestedCollectionResource =
+			_getNestedCollectionResource();
+
+		Class<? extends NestedCollectionResource> clazz =
+			nestedCollectionResource.getClass();
+
+		Method method = clazz.getDeclaredMethod(
+			"_updateJournalArticle", long.class, StructuredContent.class,
+			AcceptLanguage.class, ThemeDisplay.class);
+
+		method.setAccessible(true);
+
+		try {
+			return (JournalArticle)method.invoke(
+				nestedCollectionResource, journalArticleId, structuredContent,
+				acceptLanguage, themeDisplay);
+		}
+		catch (InvocationTargetException ite) {
+			throw ite.getTargetException();
+		}
 	}
 
 	private NestedCollectionResource _getNestedCollectionResource()
