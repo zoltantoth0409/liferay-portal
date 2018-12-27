@@ -151,7 +151,7 @@ public class FragmentsEditorDisplayContext {
 		soyContext.put("languageId", _themeDisplay.getLanguageId());
 		soyContext.put(
 			"layoutData", JSONFactoryUtil.createJSONObject(_getLayoutData()));
-		soyContext.put("panels", _getSoyContextPanels());
+		soyContext.put("panels", _getPanelSoyContexts());
 		soyContext.put("portletNamespace", _renderResponse.getNamespace());
 		soyContext.put(
 			"renderFragmentEntryURL",
@@ -230,7 +230,7 @@ public class FragmentsEditorDisplayContext {
 			"fragmentEntryLinks", _getSoyContextFragmentEntryLinks());
 		soyContext.put(
 			"layoutData", JSONFactoryUtil.createJSONObject(_getLayoutData()));
-		soyContext.put("panels", _getSoyContextPanels());
+		soyContext.put("panels", _getPanelSoyContexts());
 		soyContext.put(
 			"sections",
 			_getSoyContextFragmentCollections(
@@ -478,7 +478,7 @@ public class FragmentsEditorDisplayContext {
 		return _soyContextFragmentEntryLinksSoyContext;
 	}
 
-	private List<SoyContext> _getSoyContextPanels() {
+	private List<SoyContext> _getPanelSoyContexts() {
 		if (_panelSoyContexts != null) {
 			return _panelSoyContexts;
 		}
