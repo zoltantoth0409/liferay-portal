@@ -84,8 +84,8 @@ public class FragmentsEditorDisplayContext {
 	}
 
 	public SoyContext getEditorContext() throws PortalException {
-		if (_editorContext != null) {
-			return _editorContext;
+		if (_editorSoyContext != null) {
+			return _editorSoyContext;
 		}
 
 		SoyContext soyContext = SoyContextFactoryUtil.createSoyContext();
@@ -175,14 +175,14 @@ public class FragmentsEditorDisplayContext {
 			_getFragmentEntryActionURL(
 				"/content_layout/update_layout_page_template_data"));
 
-		_editorContext = soyContext;
+		_editorSoyContext = soyContext;
 
-		return _editorContext;
+		return _editorSoyContext;
 	}
 
 	public SoyContext getFragmentEntryLinkListContext() throws PortalException {
-		if (_fragmentEntryLinkListContext != null) {
-			return _fragmentEntryLinkListContext;
+		if (_fragmentEntryLinkListSoyContext != null) {
+			return _fragmentEntryLinkListSoyContext;
 		}
 
 		SoyContext soyContext = SoyContextFactoryUtil.createSoyContext();
@@ -208,16 +208,16 @@ public class FragmentsEditorDisplayContext {
 			"spritemap",
 			_themeDisplay.getPathThemeImages() + "/lexicon/icons.svg");
 
-		_fragmentEntryLinkListContext = soyContext;
+		_fragmentEntryLinkListSoyContext = soyContext;
 
-		return _fragmentEntryLinkListContext;
+		return _fragmentEntryLinkListSoyContext;
 	}
 
 	public SoyContext getFragmentsEditorSidebarContext()
 		throws PortalException {
 
-		if (_fragmentsEditorSidebarContext != null) {
-			return _fragmentsEditorSidebarContext;
+		if (_fragmentsEditorSidebarSoyContext != null) {
+			return _fragmentsEditorSidebarSoyContext;
 		}
 
 		SoyContext soyContext = SoyContextFactoryUtil.createSoyContext();
@@ -239,14 +239,14 @@ public class FragmentsEditorDisplayContext {
 			"spritemap",
 			_themeDisplay.getPathThemeImages() + "/lexicon/icons.svg");
 
-		_fragmentsEditorSidebarContext = soyContext;
+		_fragmentsEditorSidebarSoyContext = soyContext;
 
-		return _fragmentsEditorSidebarContext;
+		return _fragmentsEditorSidebarSoyContext;
 	}
 
 	public SoyContext getFragmentsEditorToolbarContext() {
-		if (_fragmentsEditorToolbarContext != null) {
-			return _fragmentsEditorToolbarContext;
+		if (_fragmentsEditorToolbarSoyContext != null) {
+			return _fragmentsEditorToolbarSoyContext;
 		}
 
 		SoyContext soyContext = SoyContextFactoryUtil.createSoyContext();
@@ -284,9 +284,9 @@ public class FragmentsEditorDisplayContext {
 			"spritemap",
 			_themeDisplay.getPathThemeImages() + "/lexicon/icons.svg");
 
-		_fragmentsEditorToolbarContext = soyContext;
+		_fragmentsEditorToolbarSoyContext = soyContext;
 
-		return _fragmentsEditorToolbarContext;
+		return _fragmentsEditorToolbarSoyContext;
 	}
 
 	private Map<String, Object> _getDefaultConfigurations() {
@@ -423,8 +423,8 @@ public class FragmentsEditorDisplayContext {
 	private SoyContext _getSoyContextFragmentEntryLinks()
 		throws PortalException {
 
-		if (_soyContextFragmentEntryLinks != null) {
-			return _soyContextFragmentEntryLinks;
+		if (_soyContextFragmentEntryLinksSoyContext != null) {
+			return _soyContextFragmentEntryLinksSoyContext;
 		}
 
 		SoyContext soyContexts = SoyContextFactoryUtil.createSoyContext();
@@ -473,9 +473,9 @@ public class FragmentsEditorDisplayContext {
 			_themeDisplay.setIsolated(isolated);
 		}
 
-		_soyContextFragmentEntryLinks = soyContexts;
+		_soyContextFragmentEntryLinksSoyContext = soyContexts;
 
-		return _soyContextFragmentEntryLinks;
+		return _soyContextFragmentEntryLinksSoyContext;
 	}
 
 	private List<SoyContext> _getSoyContextPanels() {
@@ -552,16 +552,16 @@ public class FragmentsEditorDisplayContext {
 	}
 
 	private Map<String, Object> _defaultConfigurations;
-	private SoyContext _editorContext;
-	private SoyContext _fragmentEntryLinkListContext;
-	private SoyContext _fragmentsEditorSidebarContext;
-	private SoyContext _fragmentsEditorToolbarContext;
+	private SoyContext _editorSoyContext;
+	private SoyContext _fragmentEntryLinkListSoyContext;
+	private SoyContext _fragmentsEditorSidebarSoyContext;
+	private SoyContext _fragmentsEditorToolbarSoyContext;
 	private ItemSelectorCriterion _imageItemSelectorCriterion;
 	private final ItemSelector _itemSelector;
 	private String _layoutData;
 	private final RenderResponse _renderResponse;
 	private final HttpServletRequest _request;
-	private SoyContext _soyContextFragmentEntryLinks;
+	private SoyContext _soyContextFragmentEntryLinksSoyContext;
 	private List<SoyContext> _soyContextPanels;
 	private final ThemeDisplay _themeDisplay;
 	private ItemSelectorCriterion _urlItemSelectorCriterion;
