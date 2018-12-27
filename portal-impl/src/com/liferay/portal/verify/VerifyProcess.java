@@ -83,7 +83,7 @@ public abstract class VerifyProcess extends BaseDBProcess {
 						"Completed verification process ",
 						ClassUtil.getClassName(this), " in ",
 						String.valueOf(System.currentTimeMillis() - start),
-						"ms"));
+						" ms"));
 			}
 		}
 	}
