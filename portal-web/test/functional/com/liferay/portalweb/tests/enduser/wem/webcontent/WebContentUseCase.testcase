@@ -405,6 +405,18 @@ definition {
 			portlet = "Server Administration"
 		);
 
+		ServerAdministration.configureExternalServices(installXuggler = "true");
+
+		Portlet.shutdownServer();
+
+		Portlet.startServer(deleteLiferayHome = "false");
+
+		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "Server Administration"
+		);
+
 		ServerAdministration.configureExternalServices(enableXuggler = "true");
 
 		Navigator.openURL();
@@ -945,6 +957,18 @@ definition {
 		property dummy.socket.proxy.disabled = "true";
 		property test.name.skip.portal.instance = "WebContentUseCase#AddVideoViaWebContent";
 		property testray.component.names = "Web Content Administration";
+
+		ProductMenu.gotoPortlet(
+			category = "Configuration",
+			panel = "Control Panel",
+			portlet = "Server Administration"
+		);
+
+		ServerAdministration.configureExternalServices(installXuggler = "true");
+
+		Portlet.shutdownServer();
+
+		Portlet.startServer(deleteLiferayHome = "false");
 
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
