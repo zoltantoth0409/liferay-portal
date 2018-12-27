@@ -16,7 +16,6 @@
 
 <%
 String p_u_i_d = ParamUtil.getString(request, "p_u_i_d");
-String keywords = ParamUtil.getString(request, "keywords");
 int step = ParamUtil.getInteger(request, "step", 1);
 String displayStyle = ParamUtil.getString(request, "displayStyle", "list");
 String eventName = ParamUtil.getString(request, "eventName", liferayPortletResponse.getNamespace() + "selectSiteRole");
@@ -29,6 +28,8 @@ long uniqueGroupId = 0;
 List<Group> groups = null;
 
 if (step == 1) {
+	String keywords = ParamUtil.getString(request, "keywords");
+
 	boolean searching = Validator.isNotNull(keywords);
 
 	if (searching) {
