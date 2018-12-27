@@ -386,6 +386,58 @@ public class FragmentsEditorDisplayContext {
 		return _layoutData;
 	}
 
+	private List<SoyContext> _getPanelSoyContexts() {
+		if (_panelSoyContexts != null) {
+			return _panelSoyContexts;
+		}
+
+		List<SoyContext> soyContexts = new ArrayList<>();
+
+		SoyContext availableSoyContext =
+			SoyContextFactoryUtil.createSoyContext();
+
+		availableSoyContext.put("icon", "cards");
+		availableSoyContext.put(
+			"label", LanguageUtil.get(_themeDisplay.getLocale(), "sections"));
+		availableSoyContext.put("panelId", "sections");
+
+		soyContexts.add(availableSoyContext);
+
+		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
+			"content.Language", _request.getLocale(), getClass());
+
+		availableSoyContext = SoyContextFactoryUtil.createSoyContext();
+
+		availableSoyContext.put("icon", "cards");
+		availableSoyContext.put(
+			"label", LanguageUtil.get(resourceBundle, "section-builder"));
+		availableSoyContext.put("panelId", "elements");
+
+		soyContexts.add(availableSoyContext);
+
+		availableSoyContext = SoyContextFactoryUtil.createSoyContext();
+
+		availableSoyContext.put("icon", "page-template");
+		availableSoyContext.put(
+			"label", LanguageUtil.get(_themeDisplay.getLocale(), "layouts"));
+		availableSoyContext.put("panelId", "layouts");
+
+		soyContexts.add(availableSoyContext);
+
+		availableSoyContext = SoyContextFactoryUtil.createSoyContext();
+
+		availableSoyContext.put("icon", "pages-tree");
+		availableSoyContext.put(
+			"label", LanguageUtil.get(_themeDisplay.getLocale(), "structure"));
+		availableSoyContext.put("panelId", "structure");
+
+		soyContexts.add(availableSoyContext);
+
+		_panelSoyContexts = soyContexts;
+
+		return _panelSoyContexts;
+	}
+
 	private List<SoyContext> _getSoyContextFragmentCollections(int type) {
 		List<SoyContext> soyContexts = new ArrayList<>();
 
@@ -478,58 +530,6 @@ public class FragmentsEditorDisplayContext {
 		return _soyContextFragmentEntryLinksSoyContext;
 	}
 
-	private List<SoyContext> _getPanelSoyContexts() {
-		if (_panelSoyContexts != null) {
-			return _panelSoyContexts;
-		}
-
-		List<SoyContext> soyContexts = new ArrayList<>();
-
-		SoyContext availableSoyContext =
-			SoyContextFactoryUtil.createSoyContext();
-
-		availableSoyContext.put("icon", "cards");
-		availableSoyContext.put(
-			"label", LanguageUtil.get(_themeDisplay.getLocale(), "sections"));
-		availableSoyContext.put("panelId", "sections");
-
-		soyContexts.add(availableSoyContext);
-
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", _request.getLocale(), getClass());
-
-		availableSoyContext = SoyContextFactoryUtil.createSoyContext();
-
-		availableSoyContext.put("icon", "cards");
-		availableSoyContext.put(
-			"label", LanguageUtil.get(resourceBundle, "section-builder"));
-		availableSoyContext.put("panelId", "elements");
-
-		soyContexts.add(availableSoyContext);
-
-		availableSoyContext = SoyContextFactoryUtil.createSoyContext();
-
-		availableSoyContext.put("icon", "page-template");
-		availableSoyContext.put(
-			"label", LanguageUtil.get(_themeDisplay.getLocale(), "layouts"));
-		availableSoyContext.put("panelId", "layouts");
-
-		soyContexts.add(availableSoyContext);
-
-		availableSoyContext = SoyContextFactoryUtil.createSoyContext();
-
-		availableSoyContext.put("icon", "pages-tree");
-		availableSoyContext.put(
-			"label", LanguageUtil.get(_themeDisplay.getLocale(), "structure"));
-		availableSoyContext.put("panelId", "structure");
-
-		soyContexts.add(availableSoyContext);
-
-		_panelSoyContexts = soyContexts;
-
-		return _panelSoyContexts;
-	}
-
 	private ItemSelectorCriterion _getURLItemSelectorCriterion() {
 		if (_urlItemSelectorCriterion != null) {
 			return _urlItemSelectorCriterion;
@@ -559,10 +559,10 @@ public class FragmentsEditorDisplayContext {
 	private ItemSelectorCriterion _imageItemSelectorCriterion;
 	private final ItemSelector _itemSelector;
 	private String _layoutData;
+	private List<SoyContext> _panelSoyContexts;
 	private final RenderResponse _renderResponse;
 	private final HttpServletRequest _request;
 	private SoyContext _soyContextFragmentEntryLinksSoyContext;
-	private List<SoyContext> _panelSoyContexts;
 	private final ThemeDisplay _themeDisplay;
 	private ItemSelectorCriterion _urlItemSelectorCriterion;
 
