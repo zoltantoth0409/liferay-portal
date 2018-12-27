@@ -25,6 +25,22 @@
 		<execute function="AssertTextEquals" locator1="PageTemplates#PAGE_TEMPLATE_TABLE_ACTIVE" value1="${pageTemplateActive}" />
 	</command>
 
+	<command name="configurePageTemplateLayout">
+		<execute function="Click" locator1="PageTemplates#PAGE_TEMPLATE_TABLE_NAME" value1="${pageTemplateName}">
+			<var name="key_pageTemplateName" value="${pageTemplateName}" />
+		</execute>
+
+		<execute function="Pause" locator1="3000" />
+
+		<execute function="SelectWindow#selectPopUp" locator1="null" />
+
+		<execute function="Click#pauseClickAt" locator1="ControlMenu#EDIT_COG" />
+
+		<execute macro="Page#editPageLayoutColumn">
+			<var name="columnName" value="${columnName}" />
+		</execute>
+	</command>
+
 	<command name="deactivateAndActivate">
 		<var name="key_pageTemplateName" value="${pageTemplateName}" />
 
