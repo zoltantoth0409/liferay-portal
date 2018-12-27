@@ -30,7 +30,10 @@ List<Group> groups = null;
 if (step == 1) {
 	String keywords = ParamUtil.getString(request, "keywords");
 
-	if (Validator.isNotNull(keywords)) {
+	if (Validator.isNull(keywords)) {
+		groups = selUser.getGroups();
+	}
+	else {
 		LinkedHashMap<String, Object> groupParams = new LinkedHashMap<>();
 
 		groupParams.put("inherit", Boolean.FALSE);
@@ -38,9 +41,6 @@ if (step == 1) {
 		groupParams.put("usersGroups", selUser.getUserId());
 
 		groups = GroupLocalServiceUtil.search(user.getCompanyId(), keywords, groupParams, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-	}
-	else {
-		groups = selUser.getGroups();
 	}
 
 	if (filterManageableGroups) {
