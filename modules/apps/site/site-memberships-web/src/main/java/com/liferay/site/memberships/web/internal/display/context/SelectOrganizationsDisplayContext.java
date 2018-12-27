@@ -179,9 +179,6 @@ public class SelectOrganizationsDisplayContext {
 		ThemeDisplay themeDisplay = (ThemeDisplay)_request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		long parentOrganizationId =
-			OrganizationConstants.ANY_PARENT_ORGANIZATION_ID;
-
 		OrganizationSearch organizationSearch = new OrganizationSearch(
 			_renderRequest, getPortletURL());
 
@@ -215,7 +212,8 @@ public class SelectOrganizationsDisplayContext {
 
 			BaseModelSearchResult<Organization> baseModelSearchResult =
 				OrganizationLocalServiceUtil.searchOrganizations(
-					themeDisplay.getCompanyId(), parentOrganizationId, keywords,
+					themeDisplay.getCompanyId(),
+					OrganizationConstants.ANY_PARENT_ORGANIZATION_ID, keywords,
 					organizationParams, organizationSearch.getStart(),
 					organizationSearch.getEnd(), sort);
 
@@ -224,12 +222,14 @@ public class SelectOrganizationsDisplayContext {
 		}
 		else {
 			total = OrganizationLocalServiceUtil.searchCount(
-				themeDisplay.getCompanyId(), parentOrganizationId, keywords,
+				themeDisplay.getCompanyId(),
+				OrganizationConstants.ANY_PARENT_ORGANIZATION_ID, keywords,
 				searchTerms.getType(), searchTerms.getRegionIdObj(),
 				searchTerms.getCountryIdObj(), organizationParams);
 
 			results = OrganizationLocalServiceUtil.search(
-				themeDisplay.getCompanyId(), parentOrganizationId, keywords,
+				themeDisplay.getCompanyId(),
+				OrganizationConstants.ANY_PARENT_ORGANIZATION_ID, keywords,
 				searchTerms.getType(), searchTerms.getRegionIdObj(),
 				searchTerms.getCountryIdObj(), organizationParams,
 				organizationSearch.getStart(), organizationSearch.getEnd(),
