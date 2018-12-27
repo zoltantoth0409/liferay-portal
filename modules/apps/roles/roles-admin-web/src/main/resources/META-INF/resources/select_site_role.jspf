@@ -30,9 +30,7 @@ List<Group> groups = null;
 if (step == 1) {
 	String keywords = ParamUtil.getString(request, "keywords");
 
-	boolean searching = Validator.isNotNull(keywords);
-
-	if (searching) {
+	if (Validator.isNotNull(keywords)) {
 		LinkedHashMap<String, Object> groupParams = new LinkedHashMap<>();
 
 		groupParams.put("inherit", Boolean.FALSE);
@@ -49,7 +47,7 @@ if (step == 1) {
 		groups = UsersAdminUtil.filterGroups(permissionChecker, groups);
 	}
 
-	if (!searching && (groups.size() == 1)) {
+	if (Validator.isNull(keywords) && (groups.size() == 1)) {
 		step = 2;
 
 		uniqueGroupId = groups.get(0).getGroupId();
