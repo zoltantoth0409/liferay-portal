@@ -206,6 +206,8 @@ definition {
 
 		DDLRecord.addPGViaAP(ddlRecordFieldData = "Text Field", fieldName = "Text");
 
+		Navigator.gotoPage(pageName = "Asset Publisher Page");
+
 		DDLRecord.viewPGViaAP(
 			ddlListName = "New Data Definition for List: List Name",
 			ddlRecordFieldData = "Text Field"
