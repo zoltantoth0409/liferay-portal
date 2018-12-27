@@ -479,8 +479,8 @@ public class FragmentsEditorDisplayContext {
 	}
 
 	private List<SoyContext> _getSoyContextPanels() {
-		if (_soyContextPanels != null) {
-			return _soyContextPanels;
+		if (_panelSoyContexts != null) {
+			return _panelSoyContexts;
 		}
 
 		List<SoyContext> soyContexts = new ArrayList<>();
@@ -525,9 +525,9 @@ public class FragmentsEditorDisplayContext {
 
 		soyContexts.add(availableSoyContext);
 
-		_soyContextPanels = soyContexts;
+		_panelSoyContexts = soyContexts;
 
-		return _soyContextPanels;
+		return _panelSoyContexts;
 	}
 
 	private ItemSelectorCriterion _getURLItemSelectorCriterion() {
@@ -562,7 +562,7 @@ public class FragmentsEditorDisplayContext {
 	private final RenderResponse _renderResponse;
 	private final HttpServletRequest _request;
 	private SoyContext _soyContextFragmentEntryLinksSoyContext;
-	private List<SoyContext> _soyContextPanels;
+	private List<SoyContext> _panelSoyContexts;
 	private final ThemeDisplay _themeDisplay;
 	private ItemSelectorCriterion _urlItemSelectorCriterion;
 
