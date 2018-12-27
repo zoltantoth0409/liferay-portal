@@ -224,17 +224,17 @@ public class SelectOrganizationsDisplayContext {
 			total = OrganizationLocalServiceUtil.searchCount(
 				themeDisplay.getCompanyId(),
 				OrganizationConstants.ANY_PARENT_ORGANIZATION_ID,
-				searchTerms.getKeywords(),
-				searchTerms.getType(), searchTerms.getRegionIdObj(),
-				searchTerms.getCountryIdObj(), organizationParams);
+				searchTerms.getKeywords(), searchTerms.getType(),
+				searchTerms.getRegionIdObj(), searchTerms.getCountryIdObj(),
+				organizationParams);
 
 			results = OrganizationLocalServiceUtil.search(
 				themeDisplay.getCompanyId(),
 				OrganizationConstants.ANY_PARENT_ORGANIZATION_ID,
-				searchTerms.getKeywords(),
-				searchTerms.getType(), searchTerms.getRegionIdObj(),
-				searchTerms.getCountryIdObj(), organizationParams,
-				organizationSearch.getStart(), organizationSearch.getEnd(),
+				searchTerms.getKeywords(), searchTerms.getType(),
+				searchTerms.getRegionIdObj(), searchTerms.getCountryIdObj(),
+				organizationParams, organizationSearch.getStart(),
+				organizationSearch.getEnd(),
 				organizationSearch.getOrderByComparator());
 		}
 
