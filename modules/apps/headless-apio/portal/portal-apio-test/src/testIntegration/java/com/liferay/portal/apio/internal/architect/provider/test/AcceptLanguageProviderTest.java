@@ -96,14 +96,14 @@ public class AcceptLanguageProviderTest {
 	public void testCreateContextWithNoAcceptLanguageGuestUser()
 		throws Exception {
 
+		User defaultUser = _userLocalService.getDefaultUser(
+			TestPropsValues.getCompanyId());
+
 		MockHttpServletRequest mockHttpServletRequest =
 			new MockHttpServletRequest();
 
 		AcceptLanguage acceptLanguage = _provider.createContext(
 			mockHttpServletRequest);
-
-		User defaultUser = _userLocalService.getDefaultUser(
-			TestPropsValues.getCompanyId());
 
 		Assert.assertEquals(
 			defaultUser.getLocale(), acceptLanguage.getPreferredLocale());
