@@ -193,8 +193,6 @@ public class SelectOrganizationsDisplayContext {
 		LinkedHashMap<String, Object> organizationParams =
 			new LinkedHashMap<>();
 
-		String keywords = searchTerms.getKeywords();
-
 		List<Organization> results = null;
 		int total = 0;
 
@@ -204,7 +202,8 @@ public class SelectOrganizationsDisplayContext {
 		if (indexer.isIndexerEnabled() &&
 			PropsValues.ORGANIZATIONS_SEARCH_WITH_INDEX) {
 
-			organizationParams.put("expandoAttributes", keywords);
+			organizationParams.put(
+				"expandoAttributes", searchTerms.getKeywords());
 
 			Sort sort = SortFactoryUtil.getSort(
 				Organization.class, organizationSearch.getOrderByCol(),
@@ -213,9 +212,10 @@ public class SelectOrganizationsDisplayContext {
 			BaseModelSearchResult<Organization> baseModelSearchResult =
 				OrganizationLocalServiceUtil.searchOrganizations(
 					themeDisplay.getCompanyId(),
-					OrganizationConstants.ANY_PARENT_ORGANIZATION_ID, keywords,
-					organizationParams, organizationSearch.getStart(),
-					organizationSearch.getEnd(), sort);
+					OrganizationConstants.ANY_PARENT_ORGANIZATION_ID,
+					searchTerms.getKeywords(), organizationParams,
+					organizationSearch.getStart(), organizationSearch.getEnd(),
+					sort);
 
 			results = baseModelSearchResult.getBaseModels();
 			total = baseModelSearchResult.getLength();
@@ -223,13 +223,15 @@ public class SelectOrganizationsDisplayContext {
 		else {
 			total = OrganizationLocalServiceUtil.searchCount(
 				themeDisplay.getCompanyId(),
-				OrganizationConstants.ANY_PARENT_ORGANIZATION_ID, keywords,
+				OrganizationConstants.ANY_PARENT_ORGANIZATION_ID,
+				searchTerms.getKeywords(),
 				searchTerms.getType(), searchTerms.getRegionIdObj(),
 				searchTerms.getCountryIdObj(), organizationParams);
 
 			results = OrganizationLocalServiceUtil.search(
 				themeDisplay.getCompanyId(),
-				OrganizationConstants.ANY_PARENT_ORGANIZATION_ID, keywords,
+				OrganizationConstants.ANY_PARENT_ORGANIZATION_ID,
+				searchTerms.getKeywords(),
 				searchTerms.getType(), searchTerms.getRegionIdObj(),
 				searchTerms.getCountryIdObj(), organizationParams,
 				organizationSearch.getStart(), organizationSearch.getEnd(),
