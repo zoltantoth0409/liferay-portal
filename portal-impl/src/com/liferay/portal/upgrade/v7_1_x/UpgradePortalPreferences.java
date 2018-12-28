@@ -111,12 +111,12 @@ public class UpgradePortalPreferences extends UpgradeProcess {
 					continue;
 				}
 
-				long portalPreferencesId = rs.getLong("portalPreferencesId");
-
 				ps2.setString(
 					1,
 					convertDefaultReminderQueries(
 						localizedPreference, preferences));
+
+				long portalPreferencesId = rs.getLong("portalPreferencesId");
 
 				ps2.setLong(2, portalPreferencesId);
 
