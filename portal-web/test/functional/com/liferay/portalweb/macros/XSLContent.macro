@@ -1,5 +1,9 @@
 <definition>
 	<command name="configureConfigurationAdminXSL">
+		<execute macro="SystemSettings#gotoCategory">
+			<var name="category" value="Web Experience" />
+		</execute>
+
 		<var name="key_configurationAdminName" value="XSL Content Options" />
 
 		<while>
