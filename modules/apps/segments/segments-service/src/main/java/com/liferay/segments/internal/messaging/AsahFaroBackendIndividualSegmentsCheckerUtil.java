@@ -140,15 +140,15 @@ public class AsahFaroBackendIndividualSegmentsCheckerUtil {
 	}
 
 	private ServiceContext _getServiceContext() throws PortalException {
-		long companyId = _portal.getDefaultCompanyId();
+		ServiceContext serviceContext = new ServiceContext();
 
-		Company company = _companyLocalService.getCompany(companyId);
+		Company company = _companyLocalService.getCompany(
+			_portal.getDefaultCompanyId());
+
+		serviceContext.setScopeGroupId(company.getGroupId());
 
 		User user = company.getDefaultUser();
 
-		ServiceContext serviceContext = new ServiceContext();
-
-		serviceContext.setScopeGroupId(company.getGroupId());
 		serviceContext.setUserId(user.getUserId());
 
 		return serviceContext;
