@@ -51,7 +51,7 @@ import org.osgi.service.component.annotations.Reference;
 public class AsahFaroBackendIndividualSegmentsCheckerUtil {
 
 	public void checkIndividualSegments() throws PortalException {
-		Results<IndividualSegment> individualSegmentResults;
+		Results<IndividualSegment> individualSegmentResults = null;
 
 		try {
 			individualSegmentResults =
