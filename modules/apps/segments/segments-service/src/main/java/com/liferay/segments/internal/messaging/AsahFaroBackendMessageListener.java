@@ -51,20 +51,18 @@ public class AsahFaroBackendMessageListener extends BaseMessageListener {
 	@Activate
 	@Modified
 	protected void activate(Map<String, Object> properties) {
+		Class<?> clazz = getClass();
+
 		SegmentsServiceConfiguration segmentsServiceConfiguration =
 			ConfigurableUtil.createConfigurable(
 				SegmentsServiceConfiguration.class, properties);
 
-		Class<?> clazz = getClass();
-
-		String className = clazz.getName();
-
 		Trigger trigger = _triggerFactory.createTrigger(
-			className, className, null, null,
+			clazz.getName(), clazz.getName(), null, null,
 			segmentsServiceConfiguration.checkInterval(), TimeUnit.MINUTE);
 
 		SchedulerEntry schedulerEntry = new SchedulerEntryImpl(
-			className, trigger);
+			clazz.getName(), trigger);
 
 		_schedulerEngineHelper.register(
 			this, schedulerEntry, DestinationNames.SCHEDULER_DISPATCH);
