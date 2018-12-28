@@ -56,7 +56,7 @@ public class AsahFaroBackendIndividualSegmentsCheckerUtil {
 		try {
 			individualSegmentResults =
 				_asahFaroBackendClient.getIndividualSegmentResults(
-					1, _MAX_PAGE_SIZE,
+					1, _DELTA,
 					Collections.singletonList(
 						OrderByField.desc("dateModified")));
 		}
@@ -154,7 +154,7 @@ public class AsahFaroBackendIndividualSegmentsCheckerUtil {
 		return serviceContext;
 	}
 
-	private static final int _MAX_PAGE_SIZE = 100;
+	private static final int _DELTA = 100;
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		AsahFaroBackendIndividualSegmentsCheckerUtil.class);
