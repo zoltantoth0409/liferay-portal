@@ -46,6 +46,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -60,7 +61,8 @@ import org.w3c.dom.Node;
 public class LiferayObjectWrapper extends DefaultObjectWrapper {
 
 	public LiferayObjectWrapper(
-		String[] allowedClassNames, String[] restrictedClassNames) {
+		String[] allowedClassNames, String[] restrictedClassNames,
+		Map<String, List<String>> restrictedClassProperties) {
 
 		super(Configuration.getVersion());
 
@@ -108,6 +110,24 @@ public class LiferayObjectWrapper extends DefaultObjectWrapper {
 				}
 
 				_allowedClassNames.add(allowedClassName);
+			}
+		}
+
+		if ((restrictedClassProperties == null) ||
+			restrictedClassProperties.isEmpty()) {
+
+			_restrictedClassPropertiesMap = Collections.emptyMap();
+		}
+		else {
+			_restrictedClassPropertiesMap = new HashMap<>();
+
+			for (Map.Entry<String, List<String>> entry :
+					restrictedClassProperties.entrySet()) {
+
+				String className = entry.getKey();
+				List<String> properties = entry.getValue();
+
+				_restrictedClassPropertiesMap.put(className, properties);
 			}
 		}
 
@@ -163,6 +183,19 @@ public class LiferayObjectWrapper extends DefaultObjectWrapper {
 
 		if (!_allowAllClasses) {
 			_checkClassIsRestricted(clazz);
+		}
+
+		if (_restrictedClassPropertiesMap.containsKey(className)) {
+			LiferayFreeMarkerBeanModel templateModel =
+				(LiferayFreeMarkerBeanModel)
+					_LIFERAY_MODEL_FACTORY.create(object, this);
+
+			List<String> restrictedProperties =
+				_restrictedClassPropertiesMap.get(className);
+
+			templateModel.setRestrictedProperties(restrictedProperties);
+
+			return templateModel;
 		}
 
 		if (className.startsWith("com.liferay.")) {
@@ -279,6 +312,19 @@ public class LiferayObjectWrapper extends DefaultObjectWrapper {
 
 		};
 
+	private static final ModelFactory _LIFERAY_MODEL_FACTORY =
+		new ModelFactory() {
+
+			@Override
+			public TemplateModel create(
+				Object object, ObjectWrapper objectWrapper) {
+
+				return new LiferayFreeMarkerBeanModel(
+					object, (BeansWrapper)objectWrapper);
+			}
+
+		};
+
 	private static final ModelFactory _NODE_MODEL_FACTORY = new ModelFactory() {
 
 		@Override
@@ -348,6 +394,7 @@ public class LiferayObjectWrapper extends DefaultObjectWrapper {
 	private final Map<String, ClassRestrictionInformation>
 		_classRestrictionInformations = new ConcurrentHashMap<>();
 	private final List<Class<?>> _restrictedClasses;
+	private final Map<String, List<String>> _restrictedClassPropertiesMap;
 	private final List<String> _restrictedPackageNames;
 
 	private static class ClassRestrictionInformation {
