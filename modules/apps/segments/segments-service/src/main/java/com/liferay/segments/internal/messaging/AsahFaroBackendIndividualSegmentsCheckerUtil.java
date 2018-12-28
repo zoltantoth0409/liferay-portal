@@ -105,7 +105,7 @@ public class AsahFaroBackendIndividualSegmentsCheckerUtil {
 			if (segmentsEntry == null) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(
-						"Adding new segment from individual segment with ID " +
+						"Adding new segment from individual segment " +
 							individualSegment.getId());
 				}
 
@@ -121,9 +121,9 @@ public class AsahFaroBackendIndividualSegmentsCheckerUtil {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					StringBundler.concat(
-						"Updating existing segment with ID ",
+						"Updating existing segment ",
 						segmentsEntry.getSegmentsEntryId(),
-						" from individual segment with ID ",
+						" from individual segment ",
 						individualSegment.getId()));
 			}
 
@@ -133,7 +133,7 @@ public class AsahFaroBackendIndividualSegmentsCheckerUtil {
 		}
 		catch (PortalException pe) {
 			_log.error(
-				"Unable to process individual segment with ID " +
+				"Unable to process individual segment " +
 					individualSegment.getId(),
 				pe);
 		}
