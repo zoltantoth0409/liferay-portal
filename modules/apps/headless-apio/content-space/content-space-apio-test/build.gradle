@@ -12,5 +12,6 @@ dependencies {
 	testIntegrationCompile group: "com.liferay", name: "com.liferay.arquillian.extension.junit.bridge", version: "1.0.10"
 	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
 	testIntegrationCompile project(":apps:apio-architect:apio-architect-api")
+	testIntegrationCompile project(":apps:headless-apio:content-space:content-space-apio-api")
 	testIntegrationCompile project(":apps:petra:petra-json-web-service-client")
 }
