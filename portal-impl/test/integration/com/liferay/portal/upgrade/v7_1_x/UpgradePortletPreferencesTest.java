@@ -98,11 +98,9 @@ public class UpgradePortletPreferencesTest extends UpgradePortalPreferences {
 		Assert.assertEquals(
 			"defaultValue",
 			portletPreferences.getValue("reminderQueries", null));
-
 		Assert.assertEquals(
 			"defaultValue",
 			portletPreferences.getValue("reminderQueries_en_US", null));
-
 		Assert.assertEquals(
 			"spanishValue",
 			portletPreferences.getValue("reminderQueries_es_ES", null));
