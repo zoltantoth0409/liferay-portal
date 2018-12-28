@@ -80,9 +80,10 @@ public class AsahFaroBackendIndividualSegmentsCheckerUtil {
 
 		ServiceContext serviceContext = _getServiceContext();
 
-		List<IndividualSegment> items = individualSegmentResults.getItems();
+		List<IndividualSegment> individualSegments =
+			individualSegmentResults.getItems();
 
-		items.forEach(
+		individualSegments.forEach(
 			individualSegment -> _addIndividualSegment(
 				individualSegment, serviceContext));
 	}
