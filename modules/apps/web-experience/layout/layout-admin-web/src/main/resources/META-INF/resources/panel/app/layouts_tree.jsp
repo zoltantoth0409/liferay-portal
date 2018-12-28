@@ -322,6 +322,7 @@ LayoutsTreeDisplayContext layoutsTreeDisplayContext = new LayoutsTreeDisplayCont
 			if (confirm('<%= UnicodeLanguageUtil.get(resourceBundle, "are-you-sure-you-want-to-delete-the-selected-page") %>')) {
 				var link = event.currentTarget;
 
+				document.hrefFm.setAttribute('data-senna-off', 'true');
 				submitForm(document.hrefFm, link.attr('href'));
 			}
 		},
