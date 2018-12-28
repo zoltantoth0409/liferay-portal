@@ -71,13 +71,12 @@ public class ImageDLPreviewRendererProvider
 					_servletContext.getRequestDispatcher("/preview/view.jsp");
 
 				request.setAttribute(
-					WebKeys.DOCUMENT_LIBRARY_FILE_VERSION, fileVersion);
-
-				request.setAttribute(
 					ImageDLPreviewWebKeys.MODULE_PATH,
 					_npmResolver.resolveModuleName(
 						"document-library-preview-image/preview/js" +
 							"/ImagePreviewer.es"));
+				request.setAttribute(
+					WebKeys.DOCUMENT_LIBRARY_FILE_VERSION, fileVersion);
 
 				requestDispatcher.include(request, response);
 			});
