@@ -39,6 +39,7 @@ import templates from './Layout.soy';
  * Metal drag
  * @param {number}
  */
+
 const DRAG_SPEED = 20;
 
 const UPDATE_PATH_TIMEOUT = 500;
@@ -49,11 +50,13 @@ const UPDATE_PATH_TIMEOUT = 500;
  * and N-th + 3 levels of layouts tree.
  * @review
  */
+
 class Layout extends Component {
 
 	/**
 	 * @inheritDoc
 	 */
+
 	attached() {
 		this._handleLayoutColumnsScroll = this._handleLayoutColumnsScroll.bind(this);
 
@@ -92,6 +95,7 @@ class Layout extends Component {
 	 * @inheritDoc
 	 * @review
 	 */
+
 	dispose() {
 		this._layoutDragDrop.dispose();
 		this._removeLayoutColumnsScrollListener();
@@ -100,6 +104,7 @@ class Layout extends Component {
 	/**
 	 * @inheritDoc
 	 */
+
 	rendered(firstRendered) {
 		requestAnimationFrame(
 			() => {
@@ -129,6 +134,7 @@ class Layout extends Component {
 	 * @private
 	 * @review
 	 */
+
 	_addLayoutColumnsScrollListener() {
 		const {layoutColumns} = this.refs;
 
@@ -148,6 +154,7 @@ class Layout extends Component {
 	 * @private
 	 * @review
 	 */
+
 	_addLayoutDragDropTargets(items) {
 		let element = null;
 		let query = null;
@@ -167,6 +174,7 @@ class Layout extends Component {
 	 * @return {Promise<object>}
 	 * @review
 	 */
+
 	_getItemChildren(plid) {
 		const formData = new FormData();
 
@@ -194,6 +202,7 @@ class Layout extends Component {
 	 * @private
 	 * @review
 	 */
+
 	_handleDragLayoutColumnItem(eventData) {
 		clearTimeout(this._updatePathTimeout);
 
@@ -235,6 +244,7 @@ class Layout extends Component {
 	 * @private
 	 * @review
 	 */
+
 	_handleDropLayoutColumnItem(eventData) {
 		this._removeLayoutColumnsScrollListener();
 
@@ -367,6 +377,7 @@ class Layout extends Component {
 	 * @private
 	 * @review
 	 */
+
 	_handleLayoutColumnItemCheck(event) {
 		this._setLayoutColumnItemChecked(
 			event.delegateTarget.value,
@@ -380,6 +391,7 @@ class Layout extends Component {
 	 * @private
 	 * @review
 	 */
+
 	_handleLayoutColumnItemCheckboxClick(event) {
 		event.stopPropagation();
 	}
@@ -393,6 +405,7 @@ class Layout extends Component {
 	 * @private
 	 * @review
 	 */
+
 	_handleLayoutColumnItemClick(event) {
 		const targetIsA = event.target.tagName === 'A';
 		const targetIsButton = event.target.tagName === 'BUTTON';
@@ -422,6 +435,7 @@ class Layout extends Component {
 	 * @review
 	 * @see DRAG_SPEED
 	 */
+
 	_handleLayoutColumnsScroll() {
 		const {layoutColumns} = this.refs;
 
@@ -440,6 +454,7 @@ class Layout extends Component {
 	 * @private
 	 * @review
 	 */
+
 	_handleLeaveLayoutColumnItem() {
 		this._resetHoveredData();
 	}
@@ -450,6 +465,7 @@ class Layout extends Component {
 	 * @private
 	 * @review
 	 */
+
 	_handleStartMovingLayoutColumnItem(eventData) {
 		this._addLayoutColumnsScrollListener();
 
@@ -479,6 +495,7 @@ class Layout extends Component {
 	 * @private
 	 * @review
 	 */
+
 	_initializeLayoutDragDrop() {
 		if (this._layoutDragDrop) {
 			this._layoutDragDrop.dispose();
@@ -516,6 +533,7 @@ class Layout extends Component {
 	 * @return {Promise<object>}
 	 * @review
 	 */
+
 	_moveLayoutColumnItemOnServer(parentPlid, plid, priority) {
 		const formData = new FormData();
 
@@ -533,7 +551,7 @@ class Layout extends Component {
 				credentials: 'include',
 				method: 'POST'
 			}
-		).catch(
+		).catch (
 			() => {
 				this._resetHoveredData();
 			}
@@ -548,6 +566,7 @@ class Layout extends Component {
 	 * @return {Array}
 	 * @review
 	 */
+
 	_removeHasChildArrow(layoutColumns, itemPlid) {
 		let nextLayoutColumns = layoutColumns;
 
@@ -580,6 +599,7 @@ class Layout extends Component {
 	 * @private
 	 * @review
 	 */
+
 	_removeLayoutColumnsScrollListener() {
 		const {layoutColumns} = this.refs;
 
@@ -597,6 +617,7 @@ class Layout extends Component {
 	 * Resets dragging information to null
 	 * @private
 	 */
+
 	_resetHoveredData() {
 		this._draggingItemPosition = null;
 		this._hoveredLayoutColumnItemPlid = null;
@@ -610,6 +631,7 @@ class Layout extends Component {
 	 * @private
 	 * @review
 	 */
+
 	_setColumnHoveredData(draggingItemPlid, targetColumnIndex) {
 		const targetColumnIsChild = columnIsItemChild(
 			targetColumnIndex,
@@ -642,6 +664,7 @@ class Layout extends Component {
 	 * @review
 	 * @see DRAG_POSITIONS
 	 */
+
 	_setItemHoveredData(position, sourceItemPlid, targetItemPlid) {
 		const targetColumnIndex = getItemColumnIndex(
 			this.layoutColumns,
@@ -674,6 +697,7 @@ class Layout extends Component {
 	 * @private
 	 * @review
 	 */
+
 	_setLayoutColumnItemChecked(plid, checked) {
 		const column = getItemColumn(this.layoutColumns, plid);
 		const columnIndex = this.layoutColumns.indexOf(column);
@@ -695,6 +719,7 @@ class Layout extends Component {
 	 * @private
 	 * @review
 	 */
+
 	_updatePath(targetItemPlid) {
 		let nextLayoutColumns = this.layoutColumns;
 
@@ -910,6 +935,7 @@ Layout.STATE = {
 	 * @review
 	 * @type {number}
 	 */
+
 	_layoutColumnsScrollLeft: Config.internal().value(null),
 
 	/**
