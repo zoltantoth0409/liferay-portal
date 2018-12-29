@@ -56,7 +56,7 @@ public class MyUserAccountApioTest {
 			"_links.user-account.href"
 		);
 
-		_userHrefURL = new URL(
+		_userURL = new URL(
 			ApioClientBuilder.given(
 			).basicAuth(
 				"test@liferay.com", "test"
@@ -88,13 +88,13 @@ public class MyUserAccountApioTest {
 			_read("test-get-my-user-account-update-user.json")
 		).when(
 		).put(
-			_userHrefURL.toExternalForm()
+			_userURL.toExternalForm()
 		).then(
 		).statusCode(
 			200
 		);
 
-		_myUserAccountHref = new URL(
+		_myUserAccountURL = new URL(
 			ApioClientBuilder.given(
 			).basicAuth(
 				"kate.williams@liferay.com", "wkate"
@@ -117,7 +117,7 @@ public class MyUserAccountApioTest {
 			"test@liferay.com", "test"
 		).when(
 		).delete(
-			_userHrefURL.toExternalForm()
+			_userURL.toExternalForm()
 		).then(
 		).statusCode(
 			Matchers.isOneOf(200, 204)
@@ -133,7 +133,7 @@ public class MyUserAccountApioTest {
 			"Accept", "application/hal+json"
 		).when(
 		).get(
-			_myUserAccountHref.toExternalForm()
+			_myUserAccountURL.toExternalForm()
 		).then(
 		).statusCode(
 			200
@@ -171,12 +171,12 @@ public class MyUserAccountApioTest {
 		return String.format(StringUtil.read(url.openStream()));
 	}
 
-	private URL _myUserAccountHref;
+	private URL _myUserAccountURL;
 	private URL _rootEndpointURL;
 
 	@ArquillianResource
 	private URL _url;
 
-	private URL _userHrefURL;
+	private URL _userURL;
 
 }
