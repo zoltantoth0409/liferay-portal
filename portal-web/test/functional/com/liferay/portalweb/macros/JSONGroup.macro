@@ -349,7 +349,7 @@
 				-u test@liferay.com:test
 		]]></var>
 
-		<var method="JSONCurlUtil#get('${curl}', '$.[?(@[\'nameCurrentValue\'] == '${groupName}')][\'groupId\']')" name="groupId" />
+		<var method="JSONCurlUtil#get('${curl}', '$.[?(@[\'nameCurrentValue\'] == \'${groupName}\')][\'groupId\']')" name="groupId" />
 
 		<var method="StringUtil#replace('${groupId}', '[&quot;', '')" name="groupId" />
 
