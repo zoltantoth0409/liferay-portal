@@ -114,7 +114,7 @@ public class ContentSpaceActionRouterTest {
 		PageItems<ContentSpace> contentSpacePageItems = getPageItems(
 			PaginationRequest.of(50, 1), company);
 
-		ContentSpace contentSpace = _findContentSpace(
+		ContentSpace contentSpace = _getContentSpace(
 			(List<ContentSpace>)contentSpacePageItems.getItems(),
 			_group.getGroupId());
 
@@ -131,7 +131,7 @@ public class ContentSpaceActionRouterTest {
 		PageItems<ContentSpace> contentSpacePageItems = getPageItems(
 			PaginationRequest.of(50, 1), company);
 
-		ContentSpace contentSpace = _findContentSpace(
+		ContentSpace contentSpace = _getContentSpace(
 			(List<ContentSpace>)contentSpacePageItems.getItems(),
 			_group.getGroupId());
 
@@ -173,7 +173,7 @@ public class ContentSpaceActionRouterTest {
 			new ServiceContext());
 	}
 
-	private ContentSpace _findContentSpace(
+	private ContentSpace _getContentSpace(
 		List<ContentSpace> contentSpaces, long groupId) {
 
 		Stream<ContentSpace> stream = contentSpaces.stream();
