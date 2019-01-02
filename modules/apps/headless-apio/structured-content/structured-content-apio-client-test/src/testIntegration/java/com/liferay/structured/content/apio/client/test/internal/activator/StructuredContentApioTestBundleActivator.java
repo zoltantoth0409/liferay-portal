@@ -83,7 +83,7 @@ public class StructuredContentApioTestBundleActivator
 		catch (Exception e) {
 			_cleanUp();
 
-			_log.error("Error found during startup ", e);
+			_log.error(e, e);
 		}
 	}
 
