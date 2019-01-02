@@ -475,11 +475,10 @@ public class JournalPortlet extends MVCPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
 
-		renderRequest.setAttribute(TrashWebKeys.TRASH_HELPER, _trashHelper);
-
 		renderRequest.setAttribute(
 			JournalWebKeys.RESOLVED_MODULE_NAME,
 			_npmResolver.resolveModuleName("journal-web"));
+		renderRequest.setAttribute(TrashWebKeys.TRASH_HELPER, _trashHelper);
 
 		String path = getPath(renderRequest, renderResponse);
 
