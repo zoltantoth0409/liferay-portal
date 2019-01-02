@@ -250,7 +250,7 @@ public class JournalContentImpl
 				}
 				catch (ClassCastException cce) {
 					if (_log.isWarnEnabled()) {
-						_log.warn("Exception on caching article display", cce);
+						_log.warn("Unable to cache article display", cce);
 					}
 				}
 			}
