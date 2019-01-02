@@ -40,7 +40,7 @@ public class DLServiceUpgradeProcess implements UpgradeStepRegistrator {
 			new UpgradeDocumentLibrary(_store));
 
 		registry.register(
-			"com.liferay.document.library.service", "1.0.1", "1.0.2",
+			"com.liferay.document.library.service", "1.0.0", "1.0.1",
 			new UpgradeDLFileShortcut());
 	}
 
