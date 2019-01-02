@@ -460,8 +460,7 @@ public class DLFileEntryLocalServiceImpl
 		String oldVersion = dlFileVersion.getVersion();
 
 		DLFileEntry dlFileEntry = _checkOutDLFileEntryModel(
-			userId, fileEntryId, fileEntryTypeId, owner, expirationTime,
-			serviceContext);
+			userId, fileEntryId, owner, expirationTime, serviceContext);
 
 		if (!oldVersion.equals(
 				DLFileEntryConstants.PRIVATE_WORKING_COPY_VERSION)) {
@@ -2528,7 +2527,7 @@ public class DLFileEntryLocalServiceImpl
 		if (autoCheckIn) {
 			if ((file != null) || (is != null)) {
 				dlFileEntry = _checkOutDLFileEntryModel(
-					userId, fileEntryId, fileEntryTypeId, serviceContext);
+					userId, fileEntryId, serviceContext);
 			}
 			else {
 				dlFileEntry = checkOutFileEntry(
@@ -2758,18 +2757,17 @@ public class DLFileEntryLocalServiceImpl
 	protected DLFileVersionPolicy dlFileVersionPolicy;
 
 	private DLFileEntry _checkOutDLFileEntryModel(
-			long userId, long fileEntryId, long fileEntryTypeId,
-			ServiceContext serviceContext)
+			long userId, long fileEntryId, ServiceContext serviceContext)
 		throws PortalException {
 
 		return _checkOutDLFileEntryModel(
-			userId, fileEntryId, fileEntryTypeId, StringPool.BLANK,
+			userId, fileEntryId, StringPool.BLANK,
 			DLFileEntryImpl.LOCK_EXPIRATION_TIME, serviceContext);
 	}
 
 	private DLFileEntry _checkOutDLFileEntryModel(
-			long userId, long fileEntryId, long fileEntryTypeId, String owner,
-			long expirationTime, ServiceContext serviceContext)
+			long userId, long fileEntryId, String owner, long expirationTime,
+			ServiceContext serviceContext)
 		throws PortalException {
 
 		DLFileEntry dlFileEntry = dlFileEntryPersistence.findByPrimaryKey(
