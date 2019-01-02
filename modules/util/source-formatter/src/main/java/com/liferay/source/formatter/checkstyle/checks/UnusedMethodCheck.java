@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.checkstyle.util.DetailASTUtil;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 
@@ -153,6 +154,56 @@ public class UnusedMethodCheck extends BaseCheck {
 				String text = firstChildDetailAST.getText();
 
 				referencedMethodNames.add(text.substring(1, text.length() - 1));
+			}
+		}
+
+		List<DetailAST> annotationDetailASTList =
+			DetailASTUtil.getAllChildTokens(
+				classDefinitionDetailAST, true, TokenTypes.ANNOTATION);
+
+		for (DetailAST annotationDetailAST : annotationDetailASTList) {
+			DetailAST atDetailAST = annotationDetailAST.findFirstToken(
+				TokenTypes.AT);
+
+			FullIdent fullIdent = FullIdent.createFullIdent(
+				atDetailAST.getNextSibling());
+
+			String annotationName = fullIdent.getText();
+
+			if (!annotationName.endsWith("Reference")) {
+				continue;
+			}
+
+			List<DetailAST> annotationMemberValuePairDetailASTList =
+				DetailASTUtil.getAllChildTokens(
+					annotationDetailAST, false,
+					TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
+
+			for (DetailAST annotationMemberValuePairDetailAST :
+					annotationMemberValuePairDetailASTList) {
+
+				DetailAST firstChildDetailAST =
+					annotationMemberValuePairDetailAST.getFirstChild();
+
+				String propertyName = firstChildDetailAST.getText();
+
+				if (!propertyName.equals("unbind")) {
+					continue;
+				}
+
+				DetailAST nextSiblingDetailAST =
+					firstChildDetailAST.getNextSibling();
+
+				fullIdent = FullIdent.createFullIdentBelow(
+					nextSiblingDetailAST.getNextSibling());
+
+				String propertyValueName = fullIdent.getText();
+
+				if (propertyValueName.matches("\".*\"")) {
+					referencedMethodNames.add(
+						propertyValueName.substring(
+							1, propertyValueName.length() - 1));
+				}
 			}
 		}
 
