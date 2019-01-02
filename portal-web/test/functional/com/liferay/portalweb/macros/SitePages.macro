@@ -139,13 +139,11 @@ definition {
 	}
 
 	macro configureChildPage {
-		ProductMenu.gotoPortlet(
-			category = "Build",
-			panel = "Site Administration",
-			portlet = "Pages"
+		SitePages.gotoPageMenuItem(
+			menuItem = "Configure",
+			pageName = "${pageName}",
+			parentPagesHierarchy = "${parentPagesHierarchy}"
 		);
-
-		SitePages.gotoPageMenuItem(menuItem = "Configure", pageName = "${pageName}");
 
 		SitePages._configurePage(
 			columnName = "${columnName}",
