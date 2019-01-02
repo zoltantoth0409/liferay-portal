@@ -84,6 +84,17 @@ public class DDMStructureModelListener extends BaseModelListener<DDMStructure> {
 				public void performAction(DDLRecordSet recordSet)
 					throws PortalException {
 
+					Locale siteLocale = null;
+
+					if (ExportImportThreadLocal.isImportInProcess()) {
+						siteLocale = LocaleThreadLocal.getSiteDefaultLocale();
+
+						Locale stagingLocale = LocaleUtil.fromLanguageId(
+							ddmStructure.getDefaultLanguageId());
+
+						LocaleThreadLocal.setSiteDefaultLocale(stagingLocale);
+					}
+
 					ServiceContext serviceContext = new ServiceContext();
 
 					serviceContext.setAddGuestPermissions(true);
@@ -96,25 +107,18 @@ public class DDMStructureModelListener extends BaseModelListener<DDMStructure> {
 
 					serviceContext.setUserId(defaultUserId);
 
-					Locale siteLocale = null;
-
-					if (ExportImportThreadLocal.isImportInProcess()) {
-						siteLocale = LocaleThreadLocal.getSiteDefaultLocale();
-
-						Locale stagingLocale = LocaleUtil.fromLanguageId(
-							ddmStructure.getDefaultLanguageId());
-
-						LocaleThreadLocal.setSiteDefaultLocale(stagingLocale);
+					try {
+						_ddlRecordSetLocalService.updateRecordSet(
+							recordSet.getRecordSetId(),
+							ddmStructure.getStructureId(),
+							recordSet.getNameMap(),
+							recordSet.getDescriptionMap(),
+							recordSet.getMinDisplayRows(), serviceContext);
 					}
-
-					_ddlRecordSetLocalService.updateRecordSet(
-						recordSet.getRecordSetId(),
-						ddmStructure.getStructureId(), recordSet.getNameMap(),
-						recordSet.getDescriptionMap(),
-						recordSet.getMinDisplayRows(), serviceContext);
-
-					if (ExportImportThreadLocal.isImportInProcess()) {
-						LocaleThreadLocal.setSiteDefaultLocale(siteLocale);
+					finally {
+						if (ExportImportThreadLocal.isImportInProcess()) {
+							LocaleThreadLocal.setSiteDefaultLocale(siteLocale);
+						}
 					}
 				}
 
