@@ -44,9 +44,9 @@ public class TestBulkSelectionAction implements BulkSelectionAction<Integer> {
 
 		Integer integer = MapUtil.getInteger(inputMap, "integer");
 
-		Stream<Integer> integerStream = bulkSelection.stream();
+		Stream<Integer> stream = bulkSelection.stream();
 
-		_lastResult = integerStream.map(
+		_lastResult = stream.map(
 			n -> n * integer
 		).mapToInt(
 			Integer::intValue
