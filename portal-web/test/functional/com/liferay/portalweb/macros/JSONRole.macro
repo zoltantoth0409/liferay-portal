@@ -72,25 +72,25 @@
 				-d subtype=
 		]]></var>
 
-		<echo>## Adding a 'Role' with the following info using JSONWS:</echo>
+		<echo message="## Adding a 'Role' with the following info using JSONWS:" />
 
 		<if>
 			<isset var="roleDescription" />
 			<then>
-				<echo>## * Role Description: ${roleDescription}</echo>
+				<echo message="## * Role Description: ${roleDescription}" />
 			</then>
 		</if>
 
-		<echo>## * Role Name: ${roleName}</echo>
+		<echo message="## * Role Name: ${roleName}" />
 
 		<if>
 			<isset var="roleTitle" />
 			<then>
-				<echo>## * Role Title: ${roleTitle}</echo>
+				<echo message="## * Role Title: ${roleTitle}" />
 			</then>
 		</if>
 
-		<echo>## * Role Type: ${roleType}</echo>
+		<echo message="## * Role Type: ${roleType}" />
 
 		<var method="JSONCurlUtil#post('${curl}', '$')" name="temp" />
 	</command>
@@ -135,11 +135,11 @@
 			<return name="userEmailAddress" />
 		</execute>
 
-		<echo>## Assigning a 'User' to a 'Role' with the following info using JSONWS:</echo>
+		<echo message="## Assigning a 'User' to a 'Role' with the following info using JSONWS:" />
 
-		<echo>## * Role Name: ${roleName}</echo>
+		<echo message="## * Role Name: ${roleName}" />
 
-		<echo>## * User Email Address: ${userEmailAddress}</echo>
+		<echo message="## * User Email Address: ${userEmailAddress}" />
 
 		<var method="JSONCurlUtil#post('${curl}', '$')" name="temp" />
 	</command>
