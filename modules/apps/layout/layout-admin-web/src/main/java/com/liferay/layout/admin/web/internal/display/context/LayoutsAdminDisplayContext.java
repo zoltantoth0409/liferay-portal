@@ -113,7 +113,6 @@ public class LayoutsAdminDisplayContext {
 
 		_liferayPortletRequest.setAttribute(
 			WebKeys.LAYOUT_DESCRIPTIONS, getLayoutDescriptions());
-
 		_resolvedModuleName = (String)_request.getAttribute(
 			LayoutAdminWebKeys.RESOLVED_MODULE_NAME);
 	}
