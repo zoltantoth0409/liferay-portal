@@ -1521,7 +1521,7 @@
 
 		<execute macro="PortletEntry#publish" />
 
-		<var method="StringUtil#extractLast('${currentDateYear}','0')" name="shortYear" />
+		<var method="StringUtil#extractLast('${currentDateYear}', '0')" name="shortYear" />
 
 		<execute macro="DDLRecord#viewViaDDLDisplayPG">
 			<var name="ddlListName" value="List Name" />

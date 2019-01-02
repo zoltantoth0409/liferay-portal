@@ -239,7 +239,7 @@
 			<then>
 				<var method="URLUtil#encode('${roleName}', 'UTF-8')" name="roleNameEncoded" />
 
-				<var method="StringUtil#replace('${roleNameEncoded}','+','%20')" name="roleNameEncoded" />
+				<var method="StringUtil#replace('${roleNameEncoded}', '+', '%20')" name="roleNameEncoded" />
 			</then>
 			<else>
 				<fail message="Please set 'roleName'." />
