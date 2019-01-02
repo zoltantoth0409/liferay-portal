@@ -5,10 +5,8 @@
 </#if>
 
 <#assign
-	fieldRawValue = paramUtil.getString(request, "${namespacedFieldName}", fieldRawValue)
-
 	assetTitle = ""
-
+	fieldRawValue = paramUtil.getString(request, "${namespacedFieldName}", fieldRawValue)
 	message = ""
 />
 
@@ -17,7 +15,6 @@
 		fieldJournalJSONObject = jsonFactoryUtil.createJSONObject(fieldRawValue)
 
 		journalArticle = fetchLatestArticle(fieldJournalJSONObject)
-
 		message = fieldJournalJSONObject.getString("message")
 	/>
 
