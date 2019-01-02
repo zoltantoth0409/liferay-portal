@@ -48,16 +48,16 @@ public class DistBundleCommand extends BaseCommand {
 
 		Path liferayHomeDirPath = liferayHomeDir.toPath();
 
-		if (_format.equals("zip")) {
-			FileUtil.zip(liferayHomeDirPath, _outputFile, _includeFolder);
+		if (_format.equals("7z")) {
+			FileUtil.sevenZip(liferayHomeDirPath, _outputFile, _includeFolder);
 		}
 		else if (_format.equals("tar") || _format.equals("tar.gz") ||
 				 _format.equals("tgz")) {
 
 			FileUtil.tar(liferayHomeDirPath, _outputFile, _includeFolder);
 		}
-		else if (_format.equals("7z")) {
-			FileUtil.sevenZip(liferayHomeDirPath, _outputFile, _includeFolder);
+		else if (_format.equals("zip")) {
+			FileUtil.zip(liferayHomeDirPath, _outputFile, _includeFolder);
 		}
 		else {
 			throw new IllegalArgumentException(
