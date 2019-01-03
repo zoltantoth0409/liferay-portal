@@ -51,7 +51,7 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 
 /**
- * @author Ruben Pulido
+ * @author Rubén Pulido
  */
 public class ContentStructureApioTestBundleActivator
 	implements BundleActivator {

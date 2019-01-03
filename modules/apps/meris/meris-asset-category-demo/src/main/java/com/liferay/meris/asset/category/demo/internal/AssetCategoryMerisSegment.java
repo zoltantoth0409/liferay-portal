@@ -20,7 +20,7 @@ import com.liferay.meris.MerisSegment;
 import java.util.Locale;
 
 /**
- * @author Eduardo Garcia
+ * @author Eduardo García
  */
 public class AssetCategoryMerisSegment
 	implements MerisSegment, Comparable<AssetCategoryMerisSegment> {
