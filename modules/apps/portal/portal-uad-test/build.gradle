@@ -5,4 +5,5 @@ dependencies {
 	testIntegrationCompile project(":apps:portal:portal-uad")
 	testIntegrationCompile project(":apps:user-associated-data:user-associated-data-api")
 	testIntegrationCompile project(":apps:user-associated-data:user-associated-data-test-util")
+	testIntegrationCompile project(":core:petra:petra-string")
 }

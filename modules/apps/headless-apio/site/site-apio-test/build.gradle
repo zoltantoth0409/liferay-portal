@@ -20,4 +20,5 @@ dependencies {
 	testIntegrationCompile project(":apps:dynamic-data-mapping:dynamic-data-mapping-test-util")
 	testIntegrationCompile project(":apps:headless-apio:site:site-apio-api")
 	testIntegrationCompile project(":apps:petra:petra-json-web-service-client")
+	testIntegrationCompile project(":core:petra:petra-string")
 }

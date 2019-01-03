@@ -13,4 +13,5 @@ dependencies {
 	testIntegrationCompile project(":apps:headless-apio:blog:blog-apio-api")
 	testIntegrationCompile project(":apps:headless-apio:portal:portal-apio-api")
 	testIntegrationCompile project(":apps:headless-apio:portal:portal-apio-test-util")
+	testIntegrationCompile project(":core:registry-api")
 }
