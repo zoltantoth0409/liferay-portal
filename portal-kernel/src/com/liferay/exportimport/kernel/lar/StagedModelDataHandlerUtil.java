@@ -33,7 +33,7 @@ import java.util.Map;
 
 /**
  * @author Brian Wing Shun Chan
- * @author Mate Thurzo
+ * @author Máté Thurzó
  */
 @ProviderType
 public class StagedModelDataHandlerUtil {

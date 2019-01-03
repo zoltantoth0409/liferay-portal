@@ -50,7 +50,7 @@ import org.junit.Rule;
 import org.junit.Test;
 
 /**
- * @author Eduardo Garcia
+ * @author Eduardo García
  */
 @Sync
 public class AssetUtilTest {

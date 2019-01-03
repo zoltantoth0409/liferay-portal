@@ -25,7 +25,7 @@ import java.util.List;
 
 /**
  * @author Daniel Kocsis
- * @author Mate Thurzo
+ * @author Máté Thurzó
  */
 public abstract class BaseExportImportLifecycleListener
 	implements ExportImportLifecycleListener {

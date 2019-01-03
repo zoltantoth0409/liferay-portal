@@ -66,7 +66,7 @@ import javax.mail.internet.InternetAddress;
 
 /**
  * @author Brian Wing Shun Chan
- * @author Mate Thurzo
+ * @author Máté Thurzó
  * @author Raymond Augé
  * @author Sergio González
  * @author Roberto Díaz

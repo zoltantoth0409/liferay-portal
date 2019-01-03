@@ -30,7 +30,7 @@ import org.osgi.framework.FrameworkUtil;
 import org.osgi.util.tracker.ServiceTracker;
 
 /**
- * @author Eduardo Garcia
+ * @author Eduardo García
  */
 public class PortletDisplayTemplateUtil {
 

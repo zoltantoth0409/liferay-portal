@@ -22,7 +22,7 @@ import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 import com.liferay.portal.kernel.util.PortletKeys;
 
 /**
- * @author Ivan Zaera
+ * @author Iván Zaera
  * @author Jorge Ferrer
  */
 public class PortletInstanceSettingsLocator implements SettingsLocator {

@@ -29,7 +29,7 @@ import java.util.TreeSet;
 
 /**
  * @author Brian Wing Shun Chan
- * @author Eduardo Garcia
+ * @author Eduardo García
  * @author Peter Fellwock
  */
 public class ShoppingGroupServiceConfigurationOverrideImpl

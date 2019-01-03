@@ -27,7 +27,7 @@ import java.util.ResourceBundle;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Eduardo Garcia
+ * @author Eduardo García
  * @author Roberto Díaz
  */
 @Component(

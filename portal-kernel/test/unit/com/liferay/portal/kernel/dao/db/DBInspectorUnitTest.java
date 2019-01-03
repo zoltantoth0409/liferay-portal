@@ -33,7 +33,7 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 /**
- * @author Mariano Alvaro Saiz
+ * @author Mariano Álvaro Sáiz
  */
 @RunWith(MockitoJUnitRunner.class)
 public class DBInspectorUnitTest {

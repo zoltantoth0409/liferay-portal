@@ -43,7 +43,7 @@ import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.component.annotations.ReferencePolicy;
 
 /**
- * @author Carlos Sierra Andres
+ * @author Carlos Sierra Andrés
  */
 @Component(immediate = true)
 public class ThemeContributorDynamicInclude implements DynamicInclude {

@@ -139,7 +139,7 @@ import jodd.bean.BeanUtil;
  * @author Raymond Augé
  * @author Bruno Farache
  * @author Alexander Chow
- * @author Mate Thurzo
+ * @author Máté Thurzó
  */
 @ProviderType
 public class PortletDataContextImpl implements PortletDataContext {

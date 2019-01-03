@@ -30,7 +30,7 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 /**
- * @author Mariano Alvaro Saiz
+ * @author Mariano Álvaro Sáiz
  */
 @PrepareForTest(PropsUtil.class)
 @RunWith(PowerMockRunner.class)

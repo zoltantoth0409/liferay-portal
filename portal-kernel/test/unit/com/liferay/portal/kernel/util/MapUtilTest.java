@@ -31,7 +31,7 @@ import org.junit.runner.RunWith;
 /**
  * @author Sampsa Sohlman
  * @author Manuel de la Peña
- * @author Peter Borkuti
+ * @author Péter Borkuti
  */
 @RunWith(Enclosed.class)
 public class MapUtilTest {

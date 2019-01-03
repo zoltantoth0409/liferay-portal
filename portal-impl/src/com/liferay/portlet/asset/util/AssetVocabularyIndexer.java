@@ -45,7 +45,7 @@ import javax.portlet.PortletRequest;
 import javax.portlet.PortletResponse;
 
 /**
- * @author Istvan Andras Dezsi
+ * @author István András Dézsi
  */
 @OSGiBeanProperties
 public class AssetVocabularyIndexer extends BaseIndexer<AssetVocabulary> {
