@@ -65,7 +65,7 @@
 		</execute>
 
 		<execute macro="Tag#addInvalidCP">
-			<var name="tagName"><![CDATA['tag']]></var>
+			<var name="tagName" value="'tag'" />
 		</execute>
 
 		<execute macro="Navigator#openURL" />
