@@ -346,17 +346,15 @@ public class MBThreadFinderImpl
 			String sql = CustomSQLUtil.get(COUNT_BY_G_U_LPD);
 
 			if (userId <= 0) {
-				if (includeAnonymous) {
-					sql = StringUtil.replace(
-						sql, _INNER_JOIN_SQL, StringPool.BLANK);
-				}
+				sql = StringUtil.replace(
+					sql, _INNER_JOIN_SQL, StringPool.BLANK);
 
 				sql = StringUtil.replace(sql, _USER_ID_SQL, StringPool.BLANK);
 			}
 
 			sql = updateSQL(sql, queryDefinition);
 
-			if (!includeAnonymous) {
+			if (!includeAnonymous && (userId > 0)) {
 				sql = CustomSQLUtil.appendCriteria(
 					sql, "AND (MBMessage.anonymous = [$FALSE$])");
 			}
@@ -802,17 +800,15 @@ public class MBThreadFinderImpl
 			String sql = CustomSQLUtil.get(FIND_BY_G_U_LPD);
 
 			if (userId <= 0) {
-				if (includeAnonymous) {
-					sql = StringUtil.replace(
-						sql, _INNER_JOIN_SQL, StringPool.BLANK);
-				}
+				sql = StringUtil.replace(
+					sql, _INNER_JOIN_SQL, StringPool.BLANK);
 
 				sql = StringUtil.replace(sql, _USER_ID_SQL, StringPool.BLANK);
 			}
 
 			sql = updateSQL(sql, queryDefinition);
 
-			if (!includeAnonymous) {
+			if (!includeAnonymous && (userId > 0)) {
 				sql = CustomSQLUtil.appendCriteria(
 					sql, "AND (MBMessage.anonymous = [$FALSE$])");
 			}
