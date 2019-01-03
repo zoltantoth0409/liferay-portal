@@ -1331,11 +1331,6 @@ print AdminControl.invoke(appManager, 'startApplication', 'liferay-portal')
 			<arg value="testIntegrationClasses" />
 		</gradle-execute>
 
-		<gradle-execute dir="modules/sdk/gradle-util" failonerror="false" forcedcacheenabled="false" setupbinariescache="false" task="findbugsMain">
-			<arg value="--continue" />
-			<arg value="--parallel" />
-		</gradle-execute>
-
 		<ant dir="portal-web" inheritAll="false" target="update-gradle-cache" />
 
 		<property name="git.unignore.gradle.cache" value="**/.gradle/*${line.separator}/.gradle/caches/*${line.separator}/.gradle/caches/modules-2/*${line.separator}!/.gradle/caches${line.separator}!/.gradle/caches/modules-2${line.separator}!/.gradle/caches/modules-2/files-2.1" />
