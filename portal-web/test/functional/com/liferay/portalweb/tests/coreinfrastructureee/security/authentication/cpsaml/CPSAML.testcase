@@ -557,7 +557,7 @@
 			<var name="userLastName" value="Test" />
 		</execute>
 
-		<!-- Logout SP and verify SP is logged out-->
+		<!-- Logout SP and verify SP is logged out -->
 
 		<execute macro="User#logoutPG">
 			<var name="specificURL" value="http://www.able.com:9080" />
@@ -622,7 +622,7 @@
 			<var name="userLastName" value="Test" />
 		</execute>
 
-		<!-- Logout SP and verify SP is logged out-->
+		<!-- Logout SP and verify SP is logged out -->
 
 		<execute macro="User#logoutPG">
 			<var name="specificURL" value="http://www.able.com:9080" />
@@ -831,7 +831,7 @@
 			<var name="userLastName" value="Test" />
 		</execute>
 
-		<!-- Logout SP and verify SP is logged out-->
+		<!-- Logout SP and verify SP is logged out -->
 
 		<execute macro="User#logoutPG">
 			<var name="specificURL" value="http://www.able.com:9080" />
