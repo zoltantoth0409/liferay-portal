@@ -12,6 +12,10 @@ deploy {
 }
 
 importFiles {
+	ext {
+		autoClean = false
+	}
+
 	from processResources
 
 	into {
