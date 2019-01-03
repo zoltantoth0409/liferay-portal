@@ -4,4 +4,5 @@ dependencies {
 	testIntegrationCompile project(":apps:foundation:user-associated-data:user-associated-data-api")
 	testIntegrationCompile project(":apps:foundation:user-associated-data:user-associated-data-test-util")
 	testIntegrationCompile project(":apps:web-experience:layout:layout-uad")
+	testIntegrationCompile project(":core:petra:petra-string")
 }
