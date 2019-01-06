@@ -71,9 +71,7 @@ public class WikiDisplayPortlet extends MVCPortlet {
 		throws IOException, PortletException {
 
 		renderRequest.setAttribute(AssetWebKeys.ASSET_HELPER, _assetHelper);
-
 		renderRequest.setAttribute(TrashWebKeys.TRASH_HELPER, _trashHelper);
-
 		renderRequest.setAttribute(
 			WikiPortletKeys.RESOLVED_MODULE_NAME,
 			_npmResolver.resolveModuleName("wiki-web"));
