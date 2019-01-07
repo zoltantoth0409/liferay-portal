@@ -205,8 +205,6 @@ definition {
 	}
 
 	macro addViaAPSelectScope {
-		AssetPublisherPortlet.addAsset(assetType = "Blogs Entry");
-
 		MouseOver.mouseOverNotVisible(locator1 = "AP#ADD_ASSET_PLUS_ICON");
 
 		Click(locator1 = "AP#ADD_ASSET_PLUS_ICON");
