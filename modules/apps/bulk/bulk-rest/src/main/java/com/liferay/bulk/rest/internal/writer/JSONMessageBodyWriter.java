@@ -44,7 +44,7 @@ public class JSONMessageBodyWriter implements MessageBodyWriter {
 
 	@Override
 	public long getSize(
-		Object obj, Class type, Type genericType, Annotation[] annotations,
+		Object obj, Class clazz, Type genericType, Annotation[] annotations,
 		MediaType mediaType) {
 
 		return -1;
@@ -52,7 +52,7 @@ public class JSONMessageBodyWriter implements MessageBodyWriter {
 
 	@Override
 	public boolean isWriteable(
-		Class type, Type genericType, Annotation[] annotations,
+		Class clazz, Type genericType, Annotation[] annotations,
 		MediaType mediaType) {
 
 		return true;
@@ -60,9 +60,9 @@ public class JSONMessageBodyWriter implements MessageBodyWriter {
 
 	@Override
 	public void writeTo(
-			Object target, Class type, Type genericType,
+			Object target, Class clazz, Type genericType,
 			Annotation[] annotations, MediaType mediaType,
-			MultivaluedMap httpHeaders, OutputStream outputStream)
+			MultivaluedMap multivaluedMap, OutputStream outputStream)
 		throws IOException {
 
 		_objectMapper.writeValue(outputStream, target);
