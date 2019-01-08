@@ -48,9 +48,8 @@
 			'liferay-ddm-form-renderer',
 			'liferay-ddm-form-renderer-field',
 			function(A) {lb}
-
-				if (Liferay.DMMFieldTypesReady) {lb}
-					Liferay.component(
+				var renderForm = function() {lb}
+						Liferay.component(
 					'{$containerId}DDMForm',
 					new Liferay.DDM.Renderer.Form(
 						{lb}
@@ -75,36 +74,16 @@
 						{rb}
 					).render()
 				);
+				{rb};
+
+				if (Liferay.DDMFieldTypesReady) {lb}
+					renderForm();
 				{rb}
 				else {lb}
 					Liferay.onceAfter(
-						'DMMFieldTypesReady',
+						'DDMFieldTypesReady',
 						function ()  {lb}
-											Liferay.component(
-					'{$containerId}DDMForm',
-					new Liferay.DDM.Renderer.Form(
-						{lb}
-							container: '#{$containerId}',
-							dataProviderURL: '{$dataProviderURL|noAutoescape}',
-							definition: {$definition|noAutoescape},
-							evaluation: {$evaluation|noAutoescape},
-							evaluatorURL: '{$evaluatorURL|noAutoescape}',
-
-							{if $layout}
-								layout: {$layout|noAutoescape},
-							{/if}
-
-							portletNamespace: '{$portletNamespace}',
-							readOnly: {$readOnly},
-							readOnlyFields : {$readOnlyFields|noAutoescape},
-							showRequiredFieldsWarning: {$showRequiredFieldsWarning},
-							showSubmitButton: {$showSubmitButton},
-							submitLabel: '{$submitLabel}',
-							templateNamespace: '{$templateNamespace}',
-							values: {$values|noAutoescape}
-						{rb}
-					).render()
-				);
+							renderForm();
 						{rb}
 					);
 				{rb}
