@@ -1,25 +1,26 @@
-<definition>
-	<command name="gotoManageFieldSets">
-		<execute macro="LexiconEntry#gotoHeaderMenuItem">
-			<var name="menuItem" value="Manage Field Sets" />
-		</execute>
+definition {
+	macro gotoManageFieldSets {
+		LexiconEntry.gotoHeaderMenuItem(menuItem = "Manage Field Sets");
 
-		<execute function="AssertTextEquals" locator1="Portlet#HEADER" value1="Field Sets" />
-	</command>
+		AssertTextEquals(locator1 = "Portlet#HEADER", value1 = "Field Sets");
+	}
 
-	<command name="gotoManageForms">
-		<execute macro="KaleoFormsNavigator#gotoManageFieldSets" />
+	macro gotoManageForms {
+		KaleoFormsNavigator.gotoManageFieldSets();
 
-		<execute function="Type" locator1="NavBar#BASIC_SEARCH_FIELD" value1="${kfFieldSetName}" />
+		Type(locator1 = "NavBar#BASIC_SEARCH_FIELD", value1 = "${kfFieldSetName}");
 
-		<execute function="Click" locator1="Icon#BASIC_SEARCH" />
+		Click(locator1 = "Icon#BASIC_SEARCH");
 
-		<execute function="Click#waitForMenuToggleJSClick" locator1="KaleoFormsAdminSelectStructure#KALEO_FORMS_STRUCTURE_ELLIPSIS">
-			<var name="key_kfFieldSetName" value="${kfFieldSetName}" />
-		</execute>
+		Click.waitForMenuToggleJSClick(
+			locator1 = "KaleoFormsAdminSelectStructure#KALEO_FORMS_STRUCTURE_ELLIPSIS",
+			key_kfFieldSetName = "${kfFieldSetName}"
+		);
 
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Manage Forms">
-			<var name="key_menuItem" value="Manage Forms" />
-		</execute>
-	</command>
-</definition>
+		AssertClick(
+			locator1 = "MenuItem#ANY_MENU_ITEM",
+			value1 = "Manage Forms",
+			key_menuItem = "Manage Forms"
+		);
+	}
+}

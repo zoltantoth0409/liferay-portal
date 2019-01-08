@@ -1,75 +1,121 @@
-<definition>
-	<command name="configureConfigurationAdminXSL">
-		<execute macro="SystemSettings#gotoCategory">
-			<var name="category" value="Web Experience" />
-		</execute>
+definition {
+	macro configureConfigurationAdminXSL {
+		SystemSettings.gotoCategory(category = "Web Experience");
 
-		<var name="key_configurationAdminName" value="XSL Content Options" />
+		var key_configurationAdminName = "XSL Content Options";
 
-		<while>
-			<condition function="IsElementNotPresent" locator1="ConfigurationAdmin#CONFIGURATION_ADMIN_NAME_LINK" />
-			<then>
-				<execute function="Click" locator1="Icon#CARET_RIGHT" />
+		while (IsElementNotPresent(locator1 = "ConfigurationAdmin#CONFIGURATION_ADMIN_NAME_LINK")) {
+			Click(locator1 = "Icon#CARET_RIGHT");
 
-				<execute function="Pause" value1="1000" />
-			</then>
-		</while>
+			Pause(value1 = "1000");
+		}
 
-		<execute function="Click" locator1="ConfigurationAdmin#CONFIGURATION_ADMIN_NAME_LINK" />
+		Click(locator1 = "ConfigurationAdmin#CONFIGURATION_ADMIN_NAME_LINK");
 
-		<execute function="Type" locator1="TextArea#URL" value1="@portlet_context_url@,@portal_url@" />
+		Type(locator1 = "TextArea#URL", value1 = "@portlet_context_url@,@portal_url@");
 
-		<execute function="Check" locator1="ConfigurationAdmin#XSL_CONTENT_CONFIGURATION_XML_DOCTYPE_DECLARATION_CHECKBOX" />
+		Check(
+			locator1 = "ConfigurationAdmin#XSL_CONTENT_CONFIGURATION_XML_DOCTYPE_DECLARATION_CHECKBOX"
+		);
 
-		<execute function="Click" locator1="Button#SAVE" />
+		Click(locator1 = "Button#SAVE");
 
-		<execute macro="Alert#viewSuccessMessage" />
-	</command>
+		Alert.viewSuccessMessage();
+	}
 
-	<command name="gotoDocumentURL">
-		<var name="key_dmDocumentTitle" value="${dmDocumentTitle}" />
+	macro gotoDocumentURL {
+		var key_dmDocumentTitle = "${dmDocumentTitle}";
 
-		<execute function="AssertClick" locator1="DocumentsAndMedia#ICON_DOCUMENT_TITLE_LINK" value1="${dmDocumentTitle}" />
+		AssertClick(
+			locator1 = "DocumentsAndMedia#ICON_DOCUMENT_TITLE_LINK",
+			value1 = "${dmDocumentTitle}"
+		);
 
-		<execute function="AssertTextEquals" locator1="DocumentsAndMediaDocument#DOCUMENT_INFO_UPLOADED_BY" value1="Test Test" />
+		AssertTextEquals(
+			locator1 = "DocumentsAndMediaDocument#DOCUMENT_INFO_UPLOADED_BY",
+			value1 = "Test Test"
+		);
 
-		<execute function="Click" locator1="Icon#INFO" />
+		Click(locator1 = "Icon#INFO");
 
-		<execute function="ClickNoError" locator1="Link#URL" />
+		ClickNoError(locator1 = "Link#URL");
 
-		<execute function="Pause" locator1="5000" />
-	</command>
+		Pause(locator1 = "5000");
+	}
 
-	<command name="viewConfigurationXSLContent">
-		<execute macro="IFrame#selectDialogFrame" />
+	macro viewConfigurationXSLContent {
+		IFrame.selectDialogFrame();
 
-		<execute function="AssertTextEquals" locator1="TextInput#SETUP_XML_URL" value1="@portlet_context_url@/example.xml" />
-		<execute function="AssertTextEquals" locator1="TextInput#SETUP_XSL_URL" value1="@portlet_context_url@/example.xsl" />
+		AssertTextEquals(
+			locator1 = "TextInput#SETUP_XML_URL",
+			value1 = "@portlet_context_url@/example.xml"
+		);
 
-		<execute function="SelectFrameTop" value1="relative=top" />
-	</command>
+		AssertTextEquals(
+			locator1 = "TextInput#SETUP_XSL_URL",
+			value1 = "@portlet_context_url@/example.xsl"
+		);
 
-	<command name="viewConsoleError">
-		<execute function="AssertConsoleTextPresent" value1="${consoleTextError}" />
-	</command>
+		SelectFrameTop(value1 = "relative=top");
+	}
 
-	<command name="viewErrorMessage">
-		<execute function="AssertTextEquals" locator1="Message#ERROR" value1="An error occurred while processing your XML and XSL." />
-	</command>
+	macro viewConsoleError {
+		AssertConsoleTextPresent(value1 = "${consoleTextError}");
+	}
 
-	<command name="viewXSLPortletHymnDisplay">
-		<execute function="AssertTextEquals" locator1="XSLContentPortlet#TITLE" value1="My Hymn Collection" />
+	macro viewErrorMessage {
+		AssertTextEquals(
+			locator1 = "Message#ERROR",
+			value1 = "An error occurred while processing your XML and XSL."
+		);
+	}
 
-		<execute function="AssertTextEquals" locator1="XSLContentPortlet#TABLE_TITLE_HEADER" value1="Title" />
-		<execute function="AssertTextEquals" locator1="XSLContentPortlet#TABLE_ARTIST_HEADER" value1="Artist" />
-		<execute function="AssertTextEquals" locator1="XSLContentPortlet#TABLE_COUNTRY_HEADER" value1="Country" />
-		<execute function="AssertTextEquals" locator1="XSLContentPortlet#TABLE_YEAR_HEADER" value1="Year" />
+	macro viewXSLPortletHymnDisplay {
+		AssertTextEquals(
+			locator1 = "XSLContentPortlet#TITLE",
+			value1 = "My Hymn Collection"
+		);
 
-		<var name="key_titleEntry" value="${tableTitleEntry}" />
+		AssertTextEquals(
+			locator1 = "XSLContentPortlet#TABLE_TITLE_HEADER",
+			value1 = "Title"
+		);
 
-		<execute function="AssertTextEquals" locator1="XSLContentPortlet#TABLE_TITLE_ENTRY" value1="${tableTitleEntry}" />
-		<execute function="AssertTextEquals" locator1="XSLContentPortlet#TABLE_ARTIST_ENTRY" value1="${tableArtistEntry}" />
-		<execute function="AssertTextEquals" locator1="XSLContentPortlet#TABLE_COUNTRY_ENTRY" value1="${tableCountryEntry}" />
-		<execute function="AssertTextEquals" locator1="XSLContentPortlet#TABLE_YEAR_ENTRY" value1="${tableYearEntry}" />
-	</command>
-</definition>
+		AssertTextEquals(
+			locator1 = "XSLContentPortlet#TABLE_ARTIST_HEADER",
+			value1 = "Artist"
+		);
+
+		AssertTextEquals(
+			locator1 = "XSLContentPortlet#TABLE_COUNTRY_HEADER",
+			value1 = "Country"
+		);
+
+		AssertTextEquals(
+			locator1 = "XSLContentPortlet#TABLE_YEAR_HEADER",
+			value1 = "Year"
+		);
+
+		var key_titleEntry = "${tableTitleEntry}";
+
+		AssertTextEquals(
+			locator1 = "XSLContentPortlet#TABLE_TITLE_ENTRY",
+			value1 = "${tableTitleEntry}"
+		);
+
+		AssertTextEquals(
+			locator1 = "XSLContentPortlet#TABLE_ARTIST_ENTRY",
+			value1 = "${tableArtistEntry}"
+		);
+
+		AssertTextEquals(
+			locator1 = "XSLContentPortlet#TABLE_COUNTRY_ENTRY",
+			value1 = "${tableCountryEntry}"
+		);
+
+		AssertTextEquals(
+			locator1 = "XSLContentPortlet#TABLE_YEAR_ENTRY",
+			value1 = "${tableYearEntry}"
+		);
+	}
+}

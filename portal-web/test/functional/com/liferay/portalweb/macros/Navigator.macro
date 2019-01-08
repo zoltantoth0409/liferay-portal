@@ -1,251 +1,199 @@
-<definition>
-	<command name="_gotoPage">
-		<var name="key_pageName" value="${pageName}" />
+definition {
+	macro _gotoPage {
+		var key_pageName = "${pageName}";
+		var count = "0";
 
-		<var name="count" value="0" />
+		while ((!("${count}" == "3")) && (IsElementNotPresent(locator1 = "Home#PAGE_ACTIVE"))) {
+			AssertClick(locator1 = "Home#PAGE", value1 = "${pageName}");
 
-		<while>
-			<and>
-				<not>
-					<equals arg1="${count}" arg2="3" />
-				</not>
-				<condition function="IsElementNotPresent" locator1="Home#PAGE_ACTIVE" />
-			</and>
-			<then>
-				<execute function="AssertClick" locator1="Home#PAGE" value1="${pageName}" />
+			var count = MathUtil.sum("${count}", "1");
+		}
 
-				<var method="MathUtil#sum('${count}', '1')" name="count" />
-			</then>
-		</while>
+		AssertVisible(locator1 = "Home#PAGE_ACTIVE");
+	}
 
-		<execute function="AssertVisible" locator1="Home#PAGE_ACTIVE" />
-	</command>
+	macro _isLocalizedURL {
+		var currentURL = Navigator.getCurrentURL();
 
-	<command name="_isLocalizedURL">
-		<execute macro="Navigator#getCurrentURL">
-			<return name="currentURL" />
-		</execute>
+		var portalURL = PropsUtil.get("portal.url");
+		var isLocalizedURL = "false";
 
-		<var method="PropsUtil#get('portal.url')" name="portalURL" />
+		if (contains("${currentURL}", "${portalURL}/${locale}")) {
+			var isLocalizedURL = "true";
+		}
 
-		<var name="isLocalizedURL" value="false" />
+		return "${isLocalizedURL}";
+	}
 
-		<if>
-			<contains string="${currentURL}" substring="${portalURL}/${locale}" />
-			<then>
-				<var name="isLocalizedURL" value="true" />
-			</then>
-		</if>
+	macro closeSpecificWindow {
+		Navigator.selectSpecificWindow(windowTitle = "${closeWindowTitle}");
 
-		<return value="${isLocalizedURL}" />
-	</command>
+		Close.closeAndSelectWindow(locator1 = "title=${selectWindowTitle}");
+	}
 
-	<command name="closeSpecificWindow">
-		<execute macro="Navigator#selectSpecificWindow">
-			<var name="windowTitle" value="${closeWindowTitle}" />
-		</execute>
+	macro closeWindow {
+		Close.closeWindow();
+	}
 
-		<execute function="Close#closeAndSelectWindow" locator1="title=${selectWindowTitle}" />
-	</command>
+	macro ensureLocaleURL {
+		var isLocalizedURL = Navigator._isLocalizedURL(locale = "${locale}");
 
-	<command name="closeWindow">
-		<execute function="Close#closeWindow" />
-	</command>
+		if ("${isLocalizedURL}" == "false") {
+			var currentURL = Navigator.getCurrentURL();
 
-	<command name="ensureLocaleURL">
-		<execute macro="Navigator#_isLocalizedURL">
-			<return name="isLocalizedURL" />
-			<var name="locale" value="${locale}" />
-		</execute>
+			var portalURL = PropsUtil.get("portal.url");
 
-		<if>
-			<equals arg1="${isLocalizedURL}" arg2="false" />
-			<then>
-				<execute macro="Navigator#getCurrentURL">
-					<return name="currentURL" />
-				</execute>
+			Navigator.openSpecificURL(
+				url = StringUtil.replace("${currentURL}", "${portalURL}", "${portalURL}/${locale}")
+			);
+		}
+	}
 
-				<var method="PropsUtil#get('portal.url')" name="portalURL" />
+	macro getCurrentURL {
+		var currentURL = selenium.getLocation();
 
-				<execute macro="Navigator#openSpecificURL">
-					<var method="StringUtil#replace('${currentURL}', '${portalURL}', '${portalURL}/${locale}')" name="url" />
-				</execute>
-			</then>
-		</if>
-	</command>
+		return "${currentURL}";
+	}
 
-	<command name="getCurrentURL">
-		<var method="selenium#getLocation()" name="currentURL" />
+	macro gotoBack {
+		Click(locator1 = "Icon#BACK");
+	}
 
-		<return value="${currentURL}" />
-	</command>
+	macro gotoEditPageViaControlMenu {
+		Click(locator1 = "ControlMenu#EDIT_COG");
 
-	<command name="gotoBack">
-		<execute function="Click" locator1="Icon#BACK" />
-	</command>
+		AssertTextEquals(locator1 = "Portlet#HEADER", value1 = "${pageName}");
+	}
 
-	<command name="gotoEditPageViaControlMenu">
-		<execute function="Click" locator1="ControlMenu#EDIT_COG" />
+	macro gotoNavItem {
+		var key_navItem = "${navItem}";
 
-		<execute function="AssertTextEquals" locator1="Portlet#HEADER" value1="${pageName}" />
-	</command>
+		AssertClick(locator1 = "NavBar#NAV_ITEM_LINK", value1 = "${navItem}");
 
-	<command name="gotoNavItem">
-		<var name="key_navItem" value="${navItem}" />
+		AssertElementPresent(locator1 = "NavBar#ACTIVE_NAV_ITEM_LINK");
+	}
 
-		<execute function="AssertClick" locator1="NavBar#NAV_ITEM_LINK" value1="${navItem}" />
+	macro gotoNavTab {
+		var key_tab = "${navTab}";
 
-		<execute function="AssertElementPresent" locator1="NavBar#ACTIVE_NAV_ITEM_LINK" />
-	</command>
+		AssertClick(locator1 = "NavTab#TAB_LINK", value1 = "${navTab}");
 
-	<command name="gotoNavTab">
-		<var name="key_tab" value="${navTab}" />
+		AssertElementPresent(locator1 = "NavTab#ACTIVE_TAB_LINK");
+	}
 
-		<execute function="AssertClick" locator1="NavTab#TAB_LINK" value1="${navTab}" />
+	@summary = "Navigate to the page named '${pageName}'"
+	macro gotoPage {
+		Navigator.openURL();
 
-		<execute function="AssertElementPresent" locator1="NavTab#ACTIVE_TAB_LINK" />
-	</command>
+		if (isSet(sitePagePrivacy)) {
+			ProductMenu.gotoPrivatePages();
+		}
 
-	<command name="gotoPage" summary="Navigate to the page named '${pageName}'">
-		<execute macro="Navigator#openURL" />
+		Pause(locator1 = "3000");
 
-		<if>
-			<isset var="sitePagePrivacy" />
-			<then>
-				<execute macro="ProductMenu#gotoPrivatePages" />
-			</then>
-		</if>
+		Navigator._gotoPage(pageName = "${pageName}");
+	}
 
-		<execute function="Pause" locator1="3000" />
+	macro gotoPrivateSitePage {
+		Navigator.openPrivateSiteURL(siteName = "${siteName}");
 
-		<execute macro="Navigator#_gotoPage">
-			<var name="pageName" value="${pageName}" />
-		</execute>
-	</command>
+		Navigator._gotoPage(pageName = "${pageName}");
+	}
 
-	<command name="gotoPrivateSitePage">
-		<execute macro="Navigator#openPrivateSiteURL">
-			<var name="siteName" value="${siteName}" />
-		</execute>
+	@summary = "Navigate to the page named '${pageName}'"
+	macro gotoPrivateStagedSitePage {
+		Navigator.openPrivateStagedSiteURL(siteNameURL = "${siteName}");
 
-		<execute macro="Navigator#_gotoPage">
-			<var name="pageName" value="${pageName}" />
-		</execute>
-	</command>
+		ProductMenu.gotoPrivatePages();
 
-	<command name="gotoPrivateStagedSitePage" summary="Navigate to the page named '${pageName}'">
-		<execute macro="Navigator#openPrivateStagedSiteURL">
-			<var name="siteNameURL" value="${siteName}" />
-		</execute>
+		Navigator._gotoPage(pageName = "${pageName}");
+	}
 
-		<execute macro="ProductMenu#gotoPrivatePages" />
+	macro gotoSEOPanel {
+		Navigator.gotoNavTab(navTab = "SEO");
 
-		<execute macro="Navigator#_gotoPage">
-			<var name="pageName" value="${pageName}" />
-		</execute>
-	</command>
+		Panel.expandPanel(panelHeading = "SEO");
+	}
 
-	<command name="gotoSEOPanel">
-		<execute macro="Navigator#gotoNavTab">
-			<var name="navTab" value="SEO" />
-		</execute>
+	macro gotoSitePage {
+		Navigator.openSiteURL(siteName = "${siteName}");
 
-		<execute macro="Panel#expandPanel">
-			<var name="panelHeading" value="SEO" />
-		</execute>
-	</command>
+		Navigator._gotoPage(pageName = "${pageName}");
+	}
 
-	<command name="gotoSitePage">
-		<execute macro="Navigator#openSiteURL">
-			<var name="siteName" value="${siteName}" />
-		</execute>
+	macro gotoSpecificURLPage {
+		Navigator.openSpecificURL(url = "${url}");
 
-		<execute macro="Navigator#_gotoPage">
-			<var name="pageName" value="${pageName}" />
-		</execute>
-	</command>
+		Navigator._gotoPage(pageName = "${pageName}");
+	}
 
-	<command name="gotoSpecificURLPage">
-		<execute macro="Navigator#openSpecificURL">
-			<var name="url" value="${url}" />
-		</execute>
+	@summary = "Navigate to the page named '${pageName}'"
+	macro gotoStagedSitePage {
+		Navigator.openStagingSiteURL(siteName = "${siteName}");
 
-		<execute macro="Navigator#_gotoPage">
-			<var name="pageName" value="${pageName}" />
-		</execute>
-	</command>
+		Navigator._gotoPage(pageName = "${pageName}");
+	}
 
-	<command name="gotoStagedSitePage" summary="Navigate to the page named '${pageName}'">
-		<execute macro="Navigator#openStagingSiteURL">
-			<var name="siteName" value="${siteName}" />
-		</execute>
+	macro gotoStagedView {
+		ProductMenuHelper.openProductMenu();
 
-		<execute macro="Navigator#_gotoPage">
-			<var name="pageName" value="${pageName}" />
-		</execute>
-	</command>
+		Click(locator1 = "Link#STAGING");
+	}
 
-	<command name="gotoStagedView">
-		<execute macro="ProductMenuHelper#openProductMenu" />
+	macro openNodePort {
+		Open(locator1 = "http://localhost:${nodePort}");
+	}
 
-		<execute function="Click" locator1="Link#STAGING" />
-	</command>
+	macro openPrivateSitePageURL {
+		var siteNameURL = StringUtil.replace("${siteName}", " ", "-");
+		var siteNameURL = StringUtil.lowerCase("${siteNameURL}");
+		var pageNameURL = StringUtil.replace("${pageName}", " ", "-");
+		var pageNameURL = StringUtil.lowerCase("${pageNameURL}");
 
-	<command name="openNodePort">
-		<execute function="Open" locator1="http://localhost:${nodePort}" />
-	</command>
+		Open(locator1 = "/group/${siteNameURL}/${pageNameURL}");
+	}
 
-	<command name="openPrivateSitePageURL">
-		<var method="StringUtil#replace('${siteName}', ' ', '-')" name="siteNameURL" />
-		<var method="StringUtil#lowerCase('${siteNameURL}')" name="siteNameURL" />
+	macro openPrivateSiteURL {
+		var siteNameURL = StringUtil.replace("${siteName}", " ", "-");
+		var siteNameURL = StringUtil.lowerCase("${siteNameURL}");
 
-		<var method="StringUtil#replace('${pageName}', ' ', '-')" name="pageNameURL" />
-		<var method="StringUtil#lowerCase('${pageNameURL}')" name="pageNameURL" />
+		Open(locator1 = "/group/${siteNameURL}");
+	}
 
-		<execute function="Open" locator1="/group/${siteNameURL}/${pageNameURL}" />
-	</command>
+	macro openPrivateStagedSiteURL {
+		var siteNameURL = StringUtil.replace("${siteNameURL}", " ", "-");
+		var siteNameURL = StringUtil.lowerCase("${siteNameURL}");
 
-	<command name="openPrivateSiteURL">
-		<var method="StringUtil#replace('${siteName}', ' ', '-')" name="siteNameURL" />
-		<var method="StringUtil#lowerCase('${siteNameURL}')" name="siteNameURL" />
+		Open(locator1 = "/group/${siteNameURL}-staging");
+	}
 
-		<execute function="Open" locator1="/group/${siteNameURL}" />
-	</command>
+	macro openPrivateURL {
+		Open(locator1 = "/group/guest");
+	}
 
-	<command name="openPrivateStagedSiteURL">
-		<var method="StringUtil#replace('${siteNameURL}', ' ', '-')" name="siteNameURL" />
-		<var method="StringUtil#lowerCase('${siteNameURL}')" name="siteNameURL" />
+	macro openSiteURL {
+		var siteNameURL = StringUtil.replace("${siteName}", " ", "-");
+		var siteNameURL = StringUtil.lowerCase("${siteNameURL}");
 
-		<execute function="Open" locator1="/group/${siteNameURL}-staging" />
-	</command>
+		Open(locator1 = "/web/${siteNameURL}");
+	}
 
-	<command name="openPrivateURL">
-		<execute function="Open" locator1="/group/guest" />
-	</command>
+	macro openSpecificURL {
+		Open(locator1 = "${url}");
+	}
 
-	<command name="openSiteURL">
-		<var method="StringUtil#replace('${siteName}', ' ', '-')" name="siteNameURL" />
-		<var method="StringUtil#lowerCase('${siteNameURL}')" name="siteNameURL" />
+	macro openStagingSiteURL {
+		var siteNameURL = StringUtil.replace("${siteName}", " ", "-");
+		var siteNameURL = StringUtil.lowerCase("${siteNameURL}");
 
-		<execute function="Open" locator1="/web/${siteNameURL}" />
-	</command>
+		Open(locator1 = "/web/${siteNameURL}-staging");
+	}
 
-	<command name="openSpecificURL">
-		<execute function="Open" locator1="${url}" />
-	</command>
+	macro openURL {
+		Open(locator1 = "/web/guest/home");
+	}
 
-	<command name="openStagingSiteURL">
-		<var method="StringUtil#replace('${siteName}', ' ', '-')" name="siteNameURL" />
-		<var method="StringUtil#lowerCase('${siteNameURL}')" name="siteNameURL" />
-
-		<execute function="Open" locator1="/web/${siteNameURL}-staging" />
-	</command>
-
-	<command name="openURL">
-		<execute function="Open" locator1="/web/guest/home" />
-	</command>
-
-	<command name="selectSpecificWindow">
-		<execute function="SelectWindow" locator1="title=${windowTitle}" />
-	</command>
-</definition>
+	macro selectSpecificWindow {
+		SelectWindow(locator1 = "title=${windowTitle}");
+	}
+}

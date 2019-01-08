@@ -1,218 +1,266 @@
-<definition>
-	<command name="checkSocialBookmarks">
-		<execute function="Check#checkToggleSwitch" locator1="Checkbox#ENABLE_SOCIAL_BOOKMARKS" />
-	</command>
+definition {
+	macro checkSocialBookmarks {
+		Check.checkToggleSwitch(locator1 = "Checkbox#ENABLE_SOCIAL_BOOKMARKS");
+	}
 
-	<command name="configureScopePG">
-		<execute macro="Portlet#gotoPortletOptions">
-			<var name="portletName" value="${portletName}" />
-			<var name="portletOption" value="Configuration" />
-		</execute>
+	macro configureScopePG {
+		Portlet.gotoPortletOptions(
+			portletName = "${portletName}",
+			portletOption = "Configuration"
+		);
 
-		<execute macro="IFrame#selectConfigurationFrame" />
+		IFrame.selectConfigurationFrame();
 
-		<execute macro="Navigator#gotoNavItem">
-			<var name="navItem" value="Scope" />
-		</execute>
+		Navigator.gotoNavItem(navItem = "Scope");
 
-		<execute function="Select" locator1="Select#SCOPE" value1="${scopeSelection}" />
+		Select(locator1 = "Select#SCOPE", value1 = "${scopeSelection}");
 
-		<execute macro="PortletEntry#save" />
-	</command>
+		PortletEntry.save();
+	}
 
-	<command name="enableSocialBookmarkSites">
-		<var name="key_socialBookmarkSite" value="${socialBookmarkSite}" />
+	macro enableSocialBookmarkSites {
+		var key_socialBookmarkSite = "${socialBookmarkSite}";
 
-		<execute function="Check" locator1="SocialBookmarks#SOCIAL_BOOKMARKS_CONFIGURATION_CHECKBOX" />
-	</command>
+		Check(locator1 = "SocialBookmarks#SOCIAL_BOOKMARKS_CONFIGURATION_CHECKBOX");
+	}
 
-	<command name="gotoRSS">
-		<execute function="AssertClick" locator1="Configuration#NAVIGATION_RSS" value1="RSS" />
-	</command>
+	macro gotoRSS {
+		AssertClick(locator1 = "Configuration#NAVIGATION_RSS", value1 = "RSS");
+	}
 
-	<command name="selectDisplayTemplate">
-		<execute function="Select" locator1="Configuration#SETUP_DISPLAY_SETTINGS_DISPLAY_TEMPLATE_SELECT" value1="${displayTemplate}" />
-	</command>
+	macro selectDisplayTemplate {
+		Select(
+			locator1 = "Configuration#SETUP_DISPLAY_SETTINGS_DISPLAY_TEMPLATE_SELECT",
+			value1 = "${displayTemplate}"
+		);
+	}
 
-	<command name="selectMaximumItemstoDisplay">
-		<execute function="Select" locator1="Select#MAXIMUM_ITEMS_TO_DISPLAY" value1="${maximumItemsToDisplay}" />
-	</command>
+	macro selectMaximumItemstoDisplay {
+		Select(
+			locator1 = "Select#MAXIMUM_ITEMS_TO_DISPLAY",
+			value1 = "${maximumItemsToDisplay}"
+		);
+	}
 
-	<command name="selectScopeCP">
-		<var name="key_scopeDefault" value="${scopeDefault}" />
+	macro selectScopeCP {
+		var key_scopeDefault = "${scopeDefault}";
 
-		<execute function="Click#pauseClickAt" locator1="ProductMenu#PRODUCT_MENU_PANEL_SCOPE_COG" />
+		Click.pauseClickAt(locator1 = "ProductMenu#PRODUCT_MENU_PANEL_SCOPE_COG");
 
-		<var name="key_scopeSelection" value="${scopeSelection}" />
+		var key_scopeSelection = "${scopeSelection}";
 
-		<execute function="AssertClick#assertPartialTextClickAt" locator1="MenuItem#ANY_MENU_ITEM" value1="${scopeSelection}">
-			<var name="key_menuItem" value="${scopeSelection}" />
-		</execute>
+		AssertClick.assertPartialTextClickAt(
+			locator1 = "MenuItem#ANY_MENU_ITEM",
+			value1 = "${scopeSelection}",
+			key_menuItem = "${scopeSelection}"
+		);
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="ProductMenu#PRODUCT_MENU_PANEL_SCOPE" value1="${scopeSelection}" />
-	</command>
+		AssertTextEquals.assertPartialText(
+			locator1 = "ProductMenu#PRODUCT_MENU_PANEL_SCOPE",
+			value1 = "${scopeSelection}"
+		);
+	}
 
-	<command name="selectScopePG">
-		<var name="key_scopeSelection" value="${scopeSelection}" />
+	macro selectScopePG {
+		var key_scopeSelection = "${scopeSelection}";
 
-		<execute function="Select" locator1="Select#SCOPE" value1="regexp:.*${scopeSelection}.*" />
+		Select(locator1 = "Select#SCOPE", value1 = "regexp:.*${scopeSelection}.*");
 
-		<execute function="Pause" locator1="3000" />
+		Pause(locator1 = "3000");
 
-		<execute function="Click" locator1="Button#SAVE" />
+		Click(locator1 = "Button#SAVE");
 
-		<execute macro="Alert#viewSuccessMessage" />
+		Alert.viewSuccessMessage();
 
-		<execute macro="BlogsConfiguration#viewScopeSelection">
-			<var name="scopeSelection" value="${scopeSelection}" />
-		</execute>
-	</command>
+		BlogsConfiguration.viewScopeSelection(scopeSelection = "${scopeSelection}");
+	}
 
-	<command name="uncheckComments">
-		<execute function="Uncheck" locator1="Checkbox#ENABLE_COMMENTS" />
-	</command>
+	macro uncheckComments {
+		Uncheck(locator1 = "Checkbox#ENABLE_COMMENTS");
+	}
 
-	<command name="uncheckRelatedAssets">
-		<execute function="Uncheck" locator1="Checkbox#ENABLE_RELATED_ASSETS" />
-	</command>
+	macro uncheckRelatedAssets {
+		Uncheck(locator1 = "Checkbox#ENABLE_RELATED_ASSETS");
+	}
 
-	<command name="uncheckRSSSubscriptionCheckbox">
-		<execute function="Uncheck#uncheckToggleSwitch" locator1="Checkbox#ENABLE_RSS_SUBSCRIPTION" />
-	</command>
+	macro uncheckRSSSubscriptionCheckbox {
+		Uncheck.uncheckToggleSwitch(locator1 = "Checkbox#ENABLE_RSS_SUBSCRIPTION");
+	}
 
-	<command name="uncheckSocialBookmarks">
-		<execute function="Uncheck#uncheckToggleSwitch" locator1="Checkbox#ENABLE_SOCIAL_BOOKMARKS" />
-	</command>
+	macro uncheckSocialBookmarks {
+		Uncheck.uncheckToggleSwitch(locator1 = "Checkbox#ENABLE_SOCIAL_BOOKMARKS");
+	}
 
-	<command name="viewAsSiteMemberPG">
-		<var name="key_portletName" value="Blogs" />
+	macro viewAsSiteMemberPG {
+		var key_portletName = "Blogs";
 
-		<execute function="AssertElementPresent" locator1="Portlet#TITLE" />
-		<execute function="AssertElementNotPresent" locator1="Blogs#ADD_BLOGS_ENTRY" />
+		AssertElementPresent(locator1 = "Portlet#TITLE");
 
-		<if>
-			<condition function="IsElementPresent" locator1="Portlet#OPTIONS_ICON" />
-			<then>
-				<execute function="Click#mouseOverClick" locator1="Portlet#OPTIONS_ICON" />
+		AssertElementNotPresent(locator1 = "Blogs#ADD_BLOGS_ENTRY");
 
-				<execute function="AssertElementNotPresent" locator1="MenuItem#ANY_MENU_ITEM">
-					<var name="key_menuItem" value="Permissions" />
-				</execute>
-			</then>
-		</if>
+		if (IsElementPresent(locator1 = "Portlet#OPTIONS_ICON")) {
+			Click.mouseOverClick(locator1 = "Portlet#OPTIONS_ICON");
 
-		<execute function="AssertTextEquals" locator1="Link#SUBSCRIBE" value1="Subscribe" />
-		<execute function="AssertTextEquals" locator1="Link#RSS" value1="RSS" />
-	</command>
+			AssertElementNotPresent(
+				locator1 = "MenuItem#ANY_MENU_ITEM",
+				key_menuItem = "Permissions"
+			);
+		}
 
-	<command name="viewDefaultConfiguration">
-		<execute function="AssertTextEquals#assertValue" locator1="Select#MAXIMUM_ITEMS_TO_DISPLAY" value1="20" />
-		<execute function="AssertTextEquals#assertValue" locator1="Configuration#SETUP_DISPLAY_SETTINGS_DISPLAY_TEMPLATE_SELECT" value1="abstract" />
-		<execute function="AssertChecked" locator1="Checkbox#ENABLE_FLAGS" />
-		<execute function="AssertChecked" locator1="Checkbox#ENABLE_RELATED_ASSETS" />
-		<execute function="AssertChecked" locator1="Checkbox#ENABLE_RATINGS" />
-		<execute function="AssertChecked" locator1="Checkbox#ENABLE_COMMENTS" />
-		<execute function="AssertChecked" locator1="Checkbox#ENABLE_COMMENT_RATINGS" />
-		<execute function="Check#checkToggleSwitch" locator1="Checkbox#ENABLE_SOCIAL_BOOKMARKS" />
-		<execute function="AssertTextEquals#assertValue" locator1="Configuration#SETUP_SOCIAL_BOOKMARKS_DISPLAY_STYLE_SELECT" value1="menu" />
-		<execute function="AssertTextEquals#assertValue" locator1="Configuration#SETUP_SOCIAL_BOOKMARKS_DISPLAY_POSITION_SELECT" value1="bottom" />
-		<execute function="AssertChecked" locator1="Checkbox#TWITTER" />
-		<execute function="AssertChecked" locator1="Checkbox#FACEBOOK" />
-		<execute function="AssertChecked" locator1="Checkbox#GOOGLE_PLUS" />
-	</command>
+		AssertTextEquals(locator1 = "Link#SUBSCRIBE", value1 = "Subscribe");
 
-	<command name="viewDefaultConfigurationRSS">
-		<execute function="Check#checkToggleSwitch" locator1="Checkbox#ENABLE_RSS_SUBSCRIPTION" />
-		<execute function="AssertTextEquals#assertValue" locator1="Configuration#SETUP_RSS_MAXIMUM_ITEMS_TO_DISPLAY_SELECT" value1="20" />
-		<execute function="AssertTextEquals#assertValue" locator1="Configuration#SETUP_RSS_DISPLAY_STYLE_SELECT" value1="full-content" />
-		<execute function="AssertTextEquals#assertValue" locator1="Configuration#SETUP_RSS_FORMAT_SELECT" value1="atom_1.0" />
-	</command>
+		AssertTextEquals(locator1 = "Link#RSS", value1 = "RSS");
+	}
 
-	<command name="viewNoPermissionCP">
-		<var name="key_portletTitle" value="Blogs" />
+	macro viewDefaultConfiguration {
+		AssertTextEquals.assertValue(
+			locator1 = "Select#MAXIMUM_ITEMS_TO_DISPLAY",
+			value1 = "20"
+		);
 
-		<execute function="AssertTextEquals" locator1="Home#SITE_ADMINISTRATION_PORTLET_TITLE" value1="Blogs" />
-		<execute function="AssertElementPresent" locator1="NavBar#CONTAINER" />
-		<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No entries were found." />
-	</command>
+		AssertTextEquals.assertValue(
+			locator1 = "Configuration#SETUP_DISPLAY_SETTINGS_DISPLAY_TEMPLATE_SELECT",
+			value1 = "abstract"
+		);
 
-	<command name="viewNoPermissionPG">
-		<execute function="AssertElementNotPresent" locator1="Blogs#ADD_BLOGS_ENTRY" />
-		<execute function="AssertElementNotPresent" locator1="Link#SUBSCRIBE" />
-		<execute function="AssertTextEquals" locator1="Link#RSS" value1="RSS" />
+		AssertChecked(locator1 = "Checkbox#ENABLE_FLAGS");
 
-		<if>
-			<condition function="IsElementPresent" locator1="Portlet#OPTIONS_ICON" />
-			<then>
-				<execute function="Click#mouseOverClick" locator1="Portlet#OPTIONS_ICON" />
+		AssertChecked(locator1 = "Checkbox#ENABLE_RELATED_ASSETS");
 
-				<execute function="AssertElementNotPresent" locator1="MenuItem#ANY_MENU_ITEM">
-					<var name="key_menuItem" value="Permissions" />
-				</execute>
+		AssertChecked(locator1 = "Checkbox#ENABLE_RATINGS");
 
-				<if>
-					<condition function="IsElementPresent" locator1="MenuItem#ANY_MENU_ITEM">
-						<var name="key_menuItem" value="Configuration" />
-					</condition>
+		AssertChecked(locator1 = "Checkbox#ENABLE_COMMENTS");
 
-					<then>
-						<execute function="Click" locator1="MenuItem#ANY_MENU_ITEM">
-							<var name="key_menuItem" value="Configuration" />
-						</execute>
+		AssertChecked(locator1 = "Checkbox#ENABLE_COMMENT_RATINGS");
 
-						<execute macro="IFrame#selectConfigurationFrame" />
+		Check.checkToggleSwitch(locator1 = "Checkbox#ENABLE_SOCIAL_BOOKMARKS");
 
-						<execute function="AssertElementNotPresent" locator1="MenuItem#ANY_MENU_ITEM">
-							<var name="key_menuItem" value="Permissions" />
-						</execute>
-					</then>
-				</if>
-			</then>
-		</if>
-	</command>
+		AssertTextEquals.assertValue(
+			locator1 = "Configuration#SETUP_SOCIAL_BOOKMARKS_DISPLAY_STYLE_SELECT",
+			value1 = "menu"
+		);
 
-	<command name="viewNoSubscribePG">
-		<execute function="AssertElementNotPresent" locator1="Link#SUBSCRIBE" />
-	</command>
+		AssertTextEquals.assertValue(
+			locator1 = "Configuration#SETUP_SOCIAL_BOOKMARKS_DISPLAY_POSITION_SELECT",
+			value1 = "bottom"
+		);
 
-	<command name="viewPermissionsPG">
-		<execute function="Click#mouseOverClick" locator1="Portlet#OPTIONS_ICON" />
+		AssertChecked(locator1 = "Checkbox#TWITTER");
 
-		<if>
-			<condition function="IsElementPresent" locator1="Portlet#OPTIONS_MENULIST_PERMISSIONS" />
-			<then>
-				<execute function="Click" locator1="Portlet#OPTIONS_MENULIST_PERMISSIONS" />
+		AssertChecked(locator1 = "Checkbox#FACEBOOK");
 
-				<execute macro="IFrame#selectDialogFrame" />
-			</then>
-		</if>
+		AssertChecked(locator1 = "Checkbox#GOOGLE_PLUS");
+	}
 
-		<execute function="AssertElementPresent" locator1="MenuItem#ANY_MENU_ITEM">
-			<var name="key_menuItem" value="Permissions" />
-		</execute>
-	</command>
+	macro viewDefaultConfigurationRSS {
+		Check.checkToggleSwitch(locator1 = "Checkbox#ENABLE_RSS_SUBSCRIPTION");
 
-	<command name="viewScopeDefaultNoEntryCP">
-		<execute macro="Navigator#openURL" />
+		AssertTextEquals.assertValue(
+			locator1 = "Configuration#SETUP_RSS_MAXIMUM_ITEMS_TO_DISPLAY_SELECT",
+			value1 = "20"
+		);
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Content" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Blogs" />
-		</execute>
+		AssertTextEquals.assertValue(
+			locator1 = "Configuration#SETUP_RSS_DISPLAY_STYLE_SELECT",
+			value1 = "full-content"
+		);
 
-		<execute function="AssertElementPresent" locator1="ProductMenu#PRODUCT_MENU_PANEL_SCOPE" />
+		AssertTextEquals.assertValue(
+			locator1 = "Configuration#SETUP_RSS_FORMAT_SELECT",
+			value1 = "atom_1.0"
+		);
+	}
 
-		<execute function="AssertTextEquals" locator1="ProductMenu#PRODUCT_MENU_PANEL_SCOPE" value1="${contentScopeName}" />
+	macro viewNoPermissionCP {
+		var key_portletTitle = "Blogs";
 
-		<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No entries were found." />
-	</command>
+		AssertTextEquals(
+			locator1 = "Home#SITE_ADMINISTRATION_PORTLET_TITLE",
+			value1 = "Blogs"
+		);
 
-	<command name="viewScopeSelection">
-		<execute function="AssertSelectedLabel" locator1="Select#SCOPE" value1="${scopeSelection}" />
-	</command>
+		AssertElementPresent(locator1 = "NavBar#CONTAINER");
 
-	<command name="viewSubscribePG">
-		<execute function="AssertTextEquals" locator1="Link#SUBSCRIBE" value1="Subscribe" />
-	</command>
-</definition>
+		AssertTextEquals(
+			locator1 = "Message#EMPTY_INFO",
+			value1 = "No entries were found."
+		);
+	}
+
+	macro viewNoPermissionPG {
+		AssertElementNotPresent(locator1 = "Blogs#ADD_BLOGS_ENTRY");
+
+		AssertElementNotPresent(locator1 = "Link#SUBSCRIBE");
+
+		AssertTextEquals(locator1 = "Link#RSS", value1 = "RSS");
+
+		if (IsElementPresent(locator1 = "Portlet#OPTIONS_ICON")) {
+			Click.mouseOverClick(locator1 = "Portlet#OPTIONS_ICON");
+
+			AssertElementNotPresent(
+				locator1 = "MenuItem#ANY_MENU_ITEM",
+				key_menuItem = "Permissions"
+			);
+
+			if (IsElementPresent(locator1 = "MenuItem#ANY_MENU_ITEM", key_menuItem = "Configuration")) {
+				Click(locator1 = "MenuItem#ANY_MENU_ITEM", key_menuItem = "Configuration");
+
+				IFrame.selectConfigurationFrame();
+
+				AssertElementNotPresent(
+					locator1 = "MenuItem#ANY_MENU_ITEM",
+					key_menuItem = "Permissions"
+				);
+			}
+		}
+	}
+
+	macro viewNoSubscribePG {
+		AssertElementNotPresent(locator1 = "Link#SUBSCRIBE");
+	}
+
+	macro viewPermissionsPG {
+		Click.mouseOverClick(locator1 = "Portlet#OPTIONS_ICON");
+
+		if (IsElementPresent(locator1 = "Portlet#OPTIONS_MENULIST_PERMISSIONS")) {
+			Click(locator1 = "Portlet#OPTIONS_MENULIST_PERMISSIONS");
+
+			IFrame.selectDialogFrame();
+		}
+
+		AssertElementPresent(
+			locator1 = "MenuItem#ANY_MENU_ITEM",
+			key_menuItem = "Permissions"
+		);
+	}
+
+	macro viewScopeDefaultNoEntryCP {
+		Navigator.openURL();
+
+		ProductMenu.gotoPortlet(
+			category = "Content",
+			panel = "Site Administration",
+			portlet = "Blogs"
+		);
+
+		AssertElementPresent(locator1 = "ProductMenu#PRODUCT_MENU_PANEL_SCOPE");
+
+		AssertTextEquals(
+			locator1 = "ProductMenu#PRODUCT_MENU_PANEL_SCOPE",
+			value1 = "${contentScopeName}"
+		);
+
+		AssertTextEquals(
+			locator1 = "Message#EMPTY_INFO",
+			value1 = "No entries were found."
+		);
+	}
+
+	macro viewScopeSelection {
+		AssertSelectedLabel(locator1 = "Select#SCOPE", value1 = "${scopeSelection}");
+	}
+
+	macro viewSubscribePG {
+		AssertTextEquals(locator1 = "Link#SUBSCRIBE", value1 = "Subscribe");
+	}
+}

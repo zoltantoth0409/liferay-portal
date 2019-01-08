@@ -1,834 +1,1014 @@
-<definition>
-	<var name="orgName" value="Organization Name" />
+definition {
+	var orgName = "Organization Name";
 
-	<command name="addAdditionalEmailAddressesCP">
-		<execute macro="Organization#gotoIdentificationCP">
-			<var name="panelHeading" value="Additional Email Addresses" />
-		</execute>
+	macro addAdditionalEmailAddressesCP {
+		Organization.gotoIdentificationCP(panelHeading = "Additional Email Addresses");
 
-		<execute function="Type" locator1="UsersAndOrganizationsEditOrganization#ADDITIONAL_EMAIL_ADDRESSES_EMAIL_ADDRESS_FIELD" value1="${orgAdditionalEmailAddress}" />
+		Type(
+			locator1 = "UsersAndOrganizationsEditOrganization#ADDITIONAL_EMAIL_ADDRESSES_EMAIL_ADDRESS_FIELD",
+			value1 = "${orgAdditionalEmailAddress}"
+		);
 
-		<execute function="Click" locator1="UsersAndOrganizationsEditOrganization#ADDITIONAL_EMAIL_ADDRESSES_EMAIL_ADDRESS_FIELD" />
+		Click(
+			locator1 = "UsersAndOrganizationsEditOrganization#ADDITIONAL_EMAIL_ADDRESSES_EMAIL_ADDRESS_FIELD"
+		);
 
-		<execute macro="PortletEntry#save" />
+		PortletEntry.save();
 
-		<execute macro="Organization#gotoIdentificationCP">
-			<var name="panelHeading" value="Additional Email Addresses" />
-		</execute>
+		Organization.gotoIdentificationCP(panelHeading = "Additional Email Addresses");
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditOrganization#ADDITIONAL_EMAIL_ADDRESSES_EMAIL_ADDRESS_FIELD" value1="${orgAdditionalEmailAddress}" />
-	</command>
+		AssertTextEquals(
+			locator1 = "UsersAndOrganizationsEditOrganization#ADDITIONAL_EMAIL_ADDRESSES_EMAIL_ADDRESS_FIELD",
+			value1 = "${orgAdditionalEmailAddress}"
+		);
+	}
 
-	<command name="addAddressCP">
-		<execute macro="Organization#gotoIdentificationCP" />
+	macro addAddressCP {
+		Organization.gotoIdentificationCP();
 
-		<execute function="Type" locator1="UsersAndOrganizationsEditOrganization#ADDRESSES_STREET_FIELD_1" value1="${orgAddressStreet}" />
-		<execute function="Type" locator1="UsersAndOrganizationsEditOrganization#ADDRESSES_CITY_FIELD" value1="${orgAddressCity}" />
-		<execute function="Type" locator1="UsersAndOrganizationsEditOrganization#ADDRESSES_POSTAL_CODE_FIELD" value1="${orgAddressPostal}" />
+		Type(
+			locator1 = "UsersAndOrganizationsEditOrganization#ADDRESSES_STREET_FIELD_1",
+			value1 = "${orgAddressStreet}"
+		);
 
-		<execute function="Select" locator1="UsersAndOrganizationsEditOrganization#ADDRESSES_COUNTRY_SELECT" value1="${orgAddressCountry}" />
-		<execute function="Select" locator1="UsersAndOrganizationsEditOrganization#ADDRESSES_REGION_SELECT" value1="${orgAddressRegion}" />
-		<execute function="Select" locator1="UsersAndOrganizationsEditOrganization#ADDRESSES_TYPE_SELECT" value1="${orgAddressType}" />
+		Type(
+			locator1 = "UsersAndOrganizationsEditOrganization#ADDRESSES_CITY_FIELD",
+			value1 = "${orgAddressCity}"
+		);
 
-		<execute function="Check" locator1="UsersAndOrganizationsEditOrganization#ADDRESSES_MAILING_CHECKBOX" />
-		<execute function="Click" locator1="UsersAndOrganizationsEditOrganization#ADDRESSES_PRIMARY_RADIO" />
+		Type(
+			locator1 = "UsersAndOrganizationsEditOrganization#ADDRESSES_POSTAL_CODE_FIELD",
+			value1 = "${orgAddressPostal}"
+		);
 
-		<execute macro="PortletEntry#save" />
-	</command>
+		Select(
+			locator1 = "UsersAndOrganizationsEditOrganization#ADDRESSES_COUNTRY_SELECT",
+			value1 = "${orgAddressCountry}"
+		);
 
-	<command name="addCategorizationCP">
-		<execute macro="Organization#editOrganizationInformationCP">
-			<var name="orgName" value="${orgName}" />
-			<var name="panelHeading" value="Categorization" />
-		</execute>
+		Select(
+			locator1 = "UsersAndOrganizationsEditOrganization#ADDRESSES_REGION_SELECT",
+			value1 = "${orgAddressRegion}"
+		);
 
-		<var name="key_tagName" value="${tagName}" />
+		Select(
+			locator1 = "UsersAndOrganizationsEditOrganization#ADDRESSES_TYPE_SELECT",
+			value1 = "${orgAddressType}"
+		);
 
-		<execute function="Click" locator1="UsersAndOrganizationsEditOrganization#CATEGORIZATION_TAGS_FIELD" />
+		Check(
+			locator1 = "UsersAndOrganizationsEditOrganization#ADDRESSES_MAILING_CHECKBOX"
+		);
 
-		<execute function="Type" locator1="UsersAndOrganizationsEditOrganization#CATEGORIZATION_TAGS_FIELD" value1="${tagName}" />
+		Click(
+			locator1 = "UsersAndOrganizationsEditOrganization#ADDRESSES_PRIMARY_RADIO"
+		);
 
-		<execute function="AssertClick" locator1="Button#ADD_TAGS" value1="Add" />
+		PortletEntry.save();
+	}
 
-		<execute function="AssertElementPresent" locator1="UsersAndOrganizationsEditOrganization#CATEGORIZATION_TAG" />
+	macro addCategorizationCP {
+		Organization.editOrganizationInformationCP(
+			orgName = "${orgName}",
+			panelHeading = "Categorization"
+		);
 
-		<execute macro="PortletEntry#save" />
+		var key_tagName = "${tagName}";
 
-		<execute macro="Organization#gotoOrganizationInformationCP">
-			<var name="panelHeading" value="Categorization" />
-		</execute>
+		Click(
+			locator1 = "UsersAndOrganizationsEditOrganization#CATEGORIZATION_TAGS_FIELD"
+		);
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditOrganization#CATEGORIZATION_TAG" value1="${tagName}" />
-	</command>
+		Type(
+			locator1 = "UsersAndOrganizationsEditOrganization#CATEGORIZATION_TAGS_FIELD",
+			value1 = "${tagName}"
+		);
 
-	<command name="addCommentCP">
-		<execute macro="Organization#gotoMiscellaneousCP" />
+		AssertClick(locator1 = "Button#ADD_TAGS", value1 = "Add");
 
-		<execute function="Type" locator1="TextArea#COMMENTS" value1="${orgComment}" />
+		AssertElementPresent(
+			locator1 = "UsersAndOrganizationsEditOrganization#CATEGORIZATION_TAG"
+		);
 
-		<execute macro="PortletEntry#save" />
+		PortletEntry.save();
 
-		<execute macro="Organization#gotoMiscellaneousCP" />
+		Organization.gotoOrganizationInformationCP(panelHeading = "Categorization");
 
-		<execute function="AssertTextEquals" locator1="TextArea#COMMENTS" value1="${orgComment}" />
-	</command>
+		AssertTextEquals(
+			locator1 = "UsersAndOrganizationsEditOrganization#CATEGORIZATION_TAG",
+			value1 = "${tagName}"
+		);
+	}
 
-	<command name="addCP">
-		<execute function="AssertClick" locator1="NavBar#ORGANIZATIONS" value1="Organizations" />
+	macro addCommentCP {
+		Organization.gotoMiscellaneousCP();
 
-		<var name="key_navItem" value="Organizations" />
+		Type(locator1 = "TextArea#COMMENTS", value1 = "${orgComment}");
 
-		<execute function="AssertElementPresent" locator1="NavBar#ACTIVE_NAV_ITEM_LINK" />
+		PortletEntry.save();
 
-		<execute macro="LexiconEntry#gotoAdd" />
+		Organization.gotoMiscellaneousCP();
 
-		<if>
-			<equals arg1="${orgType}" arg2="Location" />
-			<then>
-				<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Location">
-					<var name="key_menuItem" value="Location" />
-				</execute>
-			</then>
-			<elseif>
-				<condition function="IsElementPresent" locator1="MenuItem#ANY_MENU_ITEM">
-					<var name="key_menuItem" value="Organization" />
-				</condition>
+		AssertTextEquals(locator1 = "TextArea#COMMENTS", value1 = "${orgComment}");
+	}
 
-				<then>
-					<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Organization">
-						<var name="key_menuItem" value="Organization" />
-					</execute>
-				</then>
-			</elseif>
-		</if>
+	macro addCP {
+		AssertClick(locator1 = "NavBar#ORGANIZATIONS", value1 = "Organizations");
 
-		<execute function="Type" locator1="TextInput#NAME" value1="${orgName}" />
+		var key_navItem = "Organizations";
 
-		<execute macro="Button#clickSave" />
+		AssertElementPresent(locator1 = "NavBar#ACTIVE_NAV_ITEM_LINK");
 
-		<if>
-			<equals arg1="${organizationName}" arg2="Duplicate" />
-			<then>
-				<execute macro="Alert#viewRequestFailedToComplete" />
+		LexiconEntry.gotoAdd();
 
-				<execute function="AssertTextEquals#assertPartialText" locator1="Message#ERROR_2" value1="The organization name is already taken." />
-			</then>
-			<else>
-				<var name="key_orgType" value="${orgType}" />
+		if ("${orgType}" == "Location") {
+			AssertClick(
+				locator1 = "MenuItem#ANY_MENU_ITEM",
+				value1 = "Location",
+				key_menuItem = "Location"
+			);
+		}
+		else if (IsElementPresent(locator1 = "MenuItem#ANY_MENU_ITEM", key_menuItem = "Organization")) {
+			AssertClick(
+				locator1 = "MenuItem#ANY_MENU_ITEM",
+				value1 = "Organization",
+				key_menuItem = "Organization"
+			);
+		}
 
-				<execute macro="Alert#viewSuccessMessage" />
-				<execute function="AssertTextEquals" locator1="TextInput#NAME" value1="${orgName}" />
-				<execute function="AssertTextEquals#assertValue" locator1="UsersAndOrganizationsEditOrganization#DETAILS_TYPE" value1="${orgType}" />
-			</else>
-		</if>
-	</command>
+		Type(locator1 = "TextInput#NAME", value1 = "${orgName}");
 
-	<command name="addMemberCP">
-		<execute macro="Organization#gotoActionsCmd">
-			<var name="orgName" value="${orgName}" />
-		</execute>
+		Button.clickSave();
 
-		<var name="key_orgName" value="${orgName}" />
+		if ("${organizationName}" == "Duplicate") {
+			Alert.viewRequestFailedToComplete();
 
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Assign Users">
-			<var name="key_menuItem" value="Assign Users" />
-		</execute>
+			AssertTextEquals.assertPartialText(
+				locator1 = "Message#ERROR_2",
+				value1 = "The organization name is already taken."
+			);
+		}
+		else {
+			var key_orgType = "${orgType}";
 
-		<execute macro="Navigator#gotoNavTab">
-			<var name="navTab" value="Available" />
-		</execute>
+			Alert.viewSuccessMessage();
 
-		<var name="key_userScreenName" value="${userScreenName}" />
+			AssertTextEquals(locator1 = "TextInput#NAME", value1 = "${orgName}");
 
-		<if>
-			<condition function="IsElementNotPresent" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" />
-			<then>
-				<execute function="Type" locator1="TextInput#SITE_SEARCH_KEYWORDS" value1="${userScreenName}" />
+			AssertTextEquals.assertValue(
+				locator1 = "UsersAndOrganizationsEditOrganization#DETAILS_TYPE",
+				value1 = "${orgType}"
+			);
+		}
+	}
 
-				<execute function="AssertClick" locator1="Button#SEARCH" value1="Search" />
-			</then>
-		</if>
+	macro addMemberCP {
+		Organization.gotoActionsCmd(orgName = "${orgName}");
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
-		<execute function="Check" locator1="UsersAndOrganizationsAssignUsers#USER_TABLE_CHECKBOX" />
+		var key_orgName = "${orgName}";
 
-		<execute function="AssertClick" locator1="Button#UPDATE_ASSOCIATIONS" value1="Update Associations" />
+		AssertClick(
+			locator1 = "MenuItem#ANY_MENU_ITEM",
+			value1 = "Assign Users",
+			key_menuItem = "Assign Users"
+		);
 
-		<execute macro="Alert#viewSuccessMessage" />
+		Navigator.gotoNavTab(navTab = "Available");
 
-		<execute macro="Navigator#gotoNavTab">
-			<var name="navTab" value="Current" />
-		</execute>
+		var key_userScreenName = "${userScreenName}";
 
-		<execute function="AssertChecked" locator1="UsersAndOrganizationsAssignUsers#USER_TABLE_CHECKBOX" />
+		if (IsElementNotPresent(locator1 = "UsersAndOrganizations#USER_TABLE_SCREEN_NAME")) {
+			Type(locator1 = "TextInput#SITE_SEARCH_KEYWORDS", value1 = "${userScreenName}");
 
-		<if>
-			<isset var="userMiddleName" />
-			<then>
-				<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_USER_NAME" value1="${userFirstName} ${userMiddleName} ${userLastName}" />
-			</then>
-			<else>
-				<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_USER_NAME" value1="${userFirstName} ${userLastName}" />
-			</else>
-		</if>
+			AssertClick(locator1 = "Button#SEARCH", value1 = "Search");
+		}
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
-	</command>
+		AssertTextEquals(
+			locator1 = "UsersAndOrganizations#USER_TABLE_SCREEN_NAME",
+			value1 = "${userScreenName}"
+		);
 
-	<command name="addPhoneNumbersCP">
-		<execute macro="Organization#gotoIdentificationCP">
-			<var name="panelHeading" value="Phone Numbers" />
-		</execute>
+		Check(locator1 = "UsersAndOrganizationsAssignUsers#USER_TABLE_CHECKBOX");
 
-		<execute function="Type" locator1="UsersAndOrganizationsEditOrganization#PHONE_NUMBERS_NUMBER_FIELD" value1="${orgPhoneNumber}" />
-		<execute function="Click" locator1="UsersAndOrganizationsEditOrganization#PHONE_NUMBERS_PRIMARY_RADIO" />
+		AssertClick(
+			locator1 = "Button#UPDATE_ASSOCIATIONS",
+			value1 = "Update Associations"
+		);
 
-		<execute macro="PortletEntry#save" />
+		Alert.viewSuccessMessage();
 
-		<execute macro="Organization#gotoIdentificationCP">
-			<var name="panelHeading" value="Phone Numbers" />
-		</execute>
+		Navigator.gotoNavTab(navTab = "Current");
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditOrganization#PHONE_NUMBERS_NUMBER_FIELD" value1="${orgPhoneNumber}" />
-	</command>
+		AssertChecked(locator1 = "UsersAndOrganizationsAssignUsers#USER_TABLE_CHECKBOX");
 
-	<command name="addReminderQueriesCP">
-		<execute macro="Organization#gotoMiscellaneousCP">
-			<var name="panelHeading" value="Reminder Queries" />
-		</execute>
+		if (isSet(userMiddleName)) {
+			AssertTextEquals(
+				locator1 = "UsersAndOrganizations#USER_TABLE_USER_NAME",
+				value1 = "${userFirstName} ${userMiddleName} ${userLastName}"
+			);
+		}
+		else {
+			AssertTextEquals(
+				locator1 = "UsersAndOrganizations#USER_TABLE_USER_NAME",
+				value1 = "${userFirstName} ${userLastName}"
+			);
+		}
 
-		<execute function="Type" locator1="UsersAndOrganizationsEditOrganization#REMINDER_QUERIES_DEFAULT_LANGUAGE_FIELD" value1="${orgReminderQueriesDefaultLanguage}" />
+		AssertTextEquals(
+			locator1 = "UsersAndOrganizations#USER_TABLE_SCREEN_NAME",
+			value1 = "${userScreenName}"
+		);
+	}
 
-		<execute function="Select" locator1="UsersAndOrganizationsEditOrganization#REMINDER_QUERIES_LOCALIZED_LANGUAGE_SELECT" value1="${orgLocalizedLanguage}" />
+	macro addPhoneNumbersCP {
+		Organization.gotoIdentificationCP(panelHeading = "Phone Numbers");
 
-		<execute function="Type" locator1="UsersAndOrganizationsEditOrganization#REMINDER_QUERIES_TEXT_FIELD" value1="${orgReminderQuery}" />
+		Type(
+			locator1 = "UsersAndOrganizationsEditOrganization#PHONE_NUMBERS_NUMBER_FIELD",
+			value1 = "${orgPhoneNumber}"
+		);
 
-		<execute macro="PortletEntry#save" />
+		Click(
+			locator1 = "UsersAndOrganizationsEditOrganization#PHONE_NUMBERS_PRIMARY_RADIO"
+		);
 
-		<execute macro="Organization#gotoMiscellaneousCP">
-			<var name="panelHeading" value="Reminder Queries" />
-		</execute>
+		PortletEntry.save();
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditOrganization#REMINDER_QUERIES_DEFAULT_LANGUAGE_FIELD" value1="${orgReminderQueriesDefaultLanguage}" />
-		<execute function="Select" locator1="UsersAndOrganizationsEditOrganization#REMINDER_QUERIES_LOCALIZED_LANGUAGE_SELECT" value1="${orgLocalizedLanguage}" />
+		Organization.gotoIdentificationCP(panelHeading = "Phone Numbers");
 
-		<execute function="AssertSelectedLabel" locator1="UsersAndOrganizationsEditOrganization#REMINDER_QUERIES_LOCALIZED_LANGUAGE_SELECT" value1="${orgLocalizedLanguage}" />
-	</command>
+		AssertTextEquals(
+			locator1 = "UsersAndOrganizationsEditOrganization#PHONE_NUMBERS_NUMBER_FIELD",
+			value1 = "${orgPhoneNumber}"
+		);
+	}
 
-	<command name="addServicesCP">
-		<execute macro="Organization#gotoIdentificationCP">
-			<var name="panelHeading" value="Services" />
-		</execute>
+	macro addReminderQueriesCP {
+		Organization.gotoMiscellaneousCP(panelHeading = "Reminder Queries");
 
-		<execute function="Select" locator1="UsersAndOrganizationsEditOrganization#SERVICES_MONDAY_OPEN_SELECT" value1="${orgServicesOpen}" />
+		Type(
+			locator1 = "UsersAndOrganizationsEditOrganization#REMINDER_QUERIES_DEFAULT_LANGUAGE_FIELD",
+			value1 = "${orgReminderQueriesDefaultLanguage}"
+		);
 
-		<execute function="Select" locator1="UsersAndOrganizationsEditOrganization#SERVICES_MONDAY_CLOSE_SELECT" value1="${orgServicesClosed}" />
-
-		<execute macro="PortletEntry#save" />
+		Select(
+			locator1 = "UsersAndOrganizationsEditOrganization#REMINDER_QUERIES_LOCALIZED_LANGUAGE_SELECT",
+			value1 = "${orgLocalizedLanguage}"
+		);
 
-		<execute macro="Organization#gotoIdentificationCP">
-			<var name="panelHeading" value="Services" />
-		</execute>
+		Type(
+			locator1 = "UsersAndOrganizationsEditOrganization#REMINDER_QUERIES_TEXT_FIELD",
+			value1 = "${orgReminderQuery}"
+		);
 
-		<execute function="AssertSelectedLabel" locator1="UsersAndOrganizationsEditOrganization#SERVICES_MONDAY_OPEN_SELECT" value1="${orgServicesOpen}" />
-		<execute function="AssertSelectedLabel" locator1="UsersAndOrganizationsEditOrganization#SERVICES_MONDAY_CLOSE_SELECT" value1="${orgServicesClosed}" />
-	</command>
+		PortletEntry.save();
 
-	<command name="addSiteCP">
-		<execute macro="Organization#gotoActionsCmd">
-			<var name="orgName" value="${orgName}" />
-		</execute>
+		Organization.gotoMiscellaneousCP(panelHeading = "Reminder Queries");
 
-		<var name="key_orgName" value="${orgName}" />
-
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Edit">
-			<var name="key_menuItem" value="Edit" />
-		</execute>
-
-		<execute function="Pause" locator1="3000" />
+		AssertTextEquals(
+			locator1 = "UsersAndOrganizationsEditOrganization#REMINDER_QUERIES_DEFAULT_LANGUAGE_FIELD",
+			value1 = "${orgReminderQueriesDefaultLanguage}"
+		);
 
-		<execute macro="Panel#expandPanel">
-			<var name="panelHeading" value="Organization Site" />
-		</execute>
+		Select(
+			locator1 = "UsersAndOrganizationsEditOrganization#REMINDER_QUERIES_LOCALIZED_LANGUAGE_SELECT",
+			value1 = "${orgLocalizedLanguage}"
+		);
 
-		<execute function="Check" locator1="UsersAndOrganizationsEditOrganization#ORGANIZATION_SITE_CREATE_SITE_CHECKBOX" />
+		AssertSelectedLabel(
+			locator1 = "UsersAndOrganizationsEditOrganization#REMINDER_QUERIES_LOCALIZED_LANGUAGE_SELECT",
+			value1 = "${orgLocalizedLanguage}"
+		);
+	}
 
-		<if>
-			<or>
-				<equals arg1="${organizationSite}" arg2="Community Site" />
-				<equals arg1="${organizationSite}" arg2="Intranet Site" />
-			</or>
-			<then>
-				<execute function="Select" locator1="UserGroupsEditUserGroup#PUBLIC_PAGES_SELECT" value1="${organizationSite}" />
+	macro addServicesCP {
+		Organization.gotoIdentificationCP(panelHeading = "Services");
 
-				<if>
-					<equals arg1="${checkEnablePropagationCheckbox}" arg2="true" />
-					<then>
-						<execute function="AssertChecked" locator1="UserGroupsEditUserGroup#ENABLE_PROPAGATION_PUBLIC_PAGE_CHECKBOX" />
-					</then>
-					<else>
-						<execute function="Uncheck" locator1="UserGroupsEditUserGroup#ENABLE_PROPAGATION_PUBLIC_PAGE_CHECKBOX" />
-					</else>
-				</if>
-			</then>
-		</if>
-
-		<execute macro="PortletEntry#save" />
+		Select(
+			locator1 = "UsersAndOrganizationsEditOrganization#SERVICES_MONDAY_OPEN_SELECT",
+			value1 = "${orgServicesOpen}"
+		);
+
+		Select(
+			locator1 = "UsersAndOrganizationsEditOrganization#SERVICES_MONDAY_CLOSE_SELECT",
+			value1 = "${orgServicesClosed}"
+		);
+
+		PortletEntry.save();
 
-		<execute macro="Panel#expandPanel">
-			<var name="panelHeading" value="Organization Site" />
-		</execute>
+		Organization.gotoIdentificationCP(panelHeading = "Services");
 
-		<if>
-			<condition function="IsElementPresent" locator1="UserGroupsEditUserGroup#PUBLIC_PAGES_SELECT" />
-			<then>
-				<execute function="AssertChecked" locator1="UsersAndOrganizationsEditOrganization#ORGANIZATION_SITE_CREATE_SITE_CHECKBOX" />
-			</then>
-		</if>
-	</command>
+		AssertSelectedLabel(
+			locator1 = "UsersAndOrganizationsEditOrganization#SERVICES_MONDAY_OPEN_SELECT",
+			value1 = "${orgServicesOpen}"
+		);
+
+		AssertSelectedLabel(
+			locator1 = "UsersAndOrganizationsEditOrganization#SERVICES_MONDAY_CLOSE_SELECT",
+			value1 = "${orgServicesClosed}"
+		);
+	}
+
+	macro addSiteCP {
+		Organization.gotoActionsCmd(orgName = "${orgName}");
 
-	<command name="addSiteCPWithPrivatePage">
-		<execute macro="Organization#gotoActionsCmd">
-			<var name="orgName" value="${orgName}" />
-		</execute>
-
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Edit">
-			<var name="key_menuItem" value="Edit" />
-		</execute>
+		var key_orgName = "${orgName}";
 
-		<execute function="Pause" locator1="3000" />
+		AssertClick(
+			locator1 = "MenuItem#ANY_MENU_ITEM",
+			value1 = "Edit",
+			key_menuItem = "Edit"
+		);
 
-		<execute macro="Panel#expandPanel">
-			<var name="panelHeading" value="Organization Site" />
-		</execute>
+		Pause(locator1 = "3000");
 
-		<execute function="Check" locator1="UsersAndOrganizationsEditOrganization#ORGANIZATION_SITE_CREATE_SITE_CHECKBOX" />
+		Panel.expandPanel(panelHeading = "Organization Site");
 
-		<if>
-			<or>
-				<equals arg1="${organizationSite}" arg2="Community Site" />
-				<equals arg1="${organizationSite}" arg2="Intranet Site" />
-			</or>
-			<then>
-				<execute function="Select" locator1="UsersAndOrganizationsEditOrganization#ORGANIZATION_SITE_PRIVATE_PAGES_SELECT" value1="${organizationSite}" />
+		Check(
+			locator1 = "UsersAndOrganizationsEditOrganization#ORGANIZATION_SITE_CREATE_SITE_CHECKBOX"
+		);
 
-				<if>
-					<equals arg1="${checkEnablePropagationCheckbox}" arg2="true" />
-					<then>
-						<execute function="AssertChecked" locator1="UsersAndOrganizationsEditOrganization#ENABLE_PROPAGATION_PRIVATE_PAGE_CHECKBOX" />
-					</then>
-					<else>
-						<execute function="Uncheck" locator1="UsersAndOrganizationsEditOrganization#ENABLE_PROPAGATION_PRIVATE_PAGE_CHECKBOX" />
-					</else>
-				</if>
-			</then>
-		</if>
+		if (("${organizationSite}" == "Community Site") || ("${organizationSite}" == "Intranet Site")) {
+			Select(
+				locator1 = "UserGroupsEditUserGroup#PUBLIC_PAGES_SELECT",
+				value1 = "${organizationSite}"
+			);
 
-		<execute macro="PortletEntry#save" />
+			if ("${checkEnablePropagationCheckbox}" == "true") {
+				AssertChecked(
+					locator1 = "UserGroupsEditUserGroup#ENABLE_PROPAGATION_PUBLIC_PAGE_CHECKBOX"
+				);
+			}
+			else {
+				Uncheck(
+					locator1 = "UserGroupsEditUserGroup#ENABLE_PROPAGATION_PUBLIC_PAGE_CHECKBOX"
+				);
+			}
+		}
 
-		<execute macro="Panel#expandPanel">
-			<var name="panelHeading" value="Organization Site" />
-		</execute>
+		PortletEntry.save();
 
-		<if>
-			<condition function="IsElementPresent" locator1="UsersAndOrganizationsEditOrganization#ORGANIZATION_SITE_PRIVATE_PAGES_SELECT" />
-			<then>
-				<execute function="AssertChecked" locator1="UsersAndOrganizationsEditOrganization#ORGANIZATION_SITE_CREATE_SITE_CHECKBOX" />
-			</then>
-		</if>
-	</command>
+		Panel.expandPanel(panelHeading = "Organization Site");
+
+		if (IsElementPresent(locator1 = "UserGroupsEditUserGroup#PUBLIC_PAGES_SELECT")) {
+			AssertChecked(
+				locator1 = "UsersAndOrganizationsEditOrganization#ORGANIZATION_SITE_CREATE_SITE_CHECKBOX"
+			);
+		}
+	}
 
-	<command name="addWebsitesCP">
-		<execute macro="Organization#gotoIdentificationCP">
-			<var name="panelHeading" value="Websites" />
-		</execute>
+	macro addSiteCPWithPrivatePage {
+		Organization.gotoActionsCmd(orgName = "${orgName}");
 
-		<execute function="Type" locator1="UsersAndOrganizationsEditOrganization#WEBSITES_URL_FIELD" value1="${orgWebsite}" />
-		<execute function="Click" locator1="UsersAndOrganizationsEditOrganization#WEBSITES_PRIMARY_RADIO" />
+		AssertClick(
+			locator1 = "MenuItem#ANY_MENU_ITEM",
+			value1 = "Edit",
+			key_menuItem = "Edit"
+		);
 
-		<execute macro="PortletEntry#save" />
+		Pause(locator1 = "3000");
 
-		<execute macro="Organization#gotoIdentificationCP">
-			<var name="panelHeading" value="Websites" />
-		</execute>
+		Panel.expandPanel(panelHeading = "Organization Site");
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditOrganization#WEBSITES_URL_FIELD" value1="${orgWebsite}" />
-	</command>
+		Check(
+			locator1 = "UsersAndOrganizationsEditOrganization#ORGANIZATION_SITE_CREATE_SITE_CHECKBOX"
+		);
 
-	<command name="addWithLocalizedCountryCP">
-		<execute macro="Navigator#gotoNavItem">
-			<var name="navItem" value="${navItem}" />
-		</execute>
+		if (("${organizationSite}" == "Community Site") || ("${organizationSite}" == "Intranet Site")) {
+			Select(
+				locator1 = "UsersAndOrganizationsEditOrganization#ORGANIZATION_SITE_PRIVATE_PAGES_SELECT",
+				value1 = "${organizationSite}"
+			);
 
-		<execute macro="LexiconEntry#gotoAdd" />
+			if ("${checkEnablePropagationCheckbox}" == "true") {
+				AssertChecked(
+					locator1 = "UsersAndOrganizationsEditOrganization#ENABLE_PROPAGATION_PRIVATE_PAGE_CHECKBOX"
+				);
+			}
+			else {
+				Uncheck(
+					locator1 = "UsersAndOrganizationsEditOrganization#ENABLE_PROPAGATION_PRIVATE_PAGE_CHECKBOX"
+				);
+			}
+		}
 
-		<if>
-			<condition function="IsElementPresent" locator1="MenuItem#ANY_MENU_ITEM">
-				<var name="key_menuItem" value="${localizedOption}" />
-			</condition>
+		PortletEntry.save();
 
-			<then>
-				<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="${localizedOption}">
-					<var name="key_menuItem" value="${localizedOption}" />
-				</execute>
-			</then>
-		</if>
+		Panel.expandPanel(panelHeading = "Organization Site");
 
-		<execute function="Type" locator1="TextInput#NAME" value1="${orgName}" />
+		if (IsElementPresent(locator1 = "UsersAndOrganizationsEditOrganization#ORGANIZATION_SITE_PRIVATE_PAGES_SELECT")) {
+			AssertChecked(
+				locator1 = "UsersAndOrganizationsEditOrganization#ORGANIZATION_SITE_CREATE_SITE_CHECKBOX"
+			);
+		}
+	}
 
-		<execute function="Select" locator1="UsersAndOrganizations#ORGANIZATION_COUNTRY_NAME" value1="${countryName}">
-			<var name="key_countryName" value="${countryName}" />
-		</execute>
+	macro addWebsitesCP {
+		Organization.gotoIdentificationCP(panelHeading = "Websites");
 
-		<execute function="AssertClick" locator1="Button#SAVE_LOCALIZED" value1="${saveButton}">
-			<var name="key_saveButton" value="${saveButton}" />
-		</execute>
+		Type(
+			locator1 = "UsersAndOrganizationsEditOrganization#WEBSITES_URL_FIELD",
+			value1 = "${orgWebsite}"
+		);
 
-		<execute macro="Alert#viewSuccessMessage" />
-	</command>
+		Click(locator1 = "UsersAndOrganizationsEditOrganization#WEBSITES_PRIMARY_RADIO");
 
-	<command name="assignOrgRoleCP">
-		<execute macro="Organization#gotoActionsCmd">
-			<var name="orgName" value="${orgName}" />
-		</execute>
+		PortletEntry.save();
 
-		<var name="key_orgName" value="${orgName}" />
+		Organization.gotoIdentificationCP(panelHeading = "Websites");
 
-		<execute function="Pause" locator1="5000" />
+		AssertTextEquals(
+			locator1 = "UsersAndOrganizationsEditOrganization#WEBSITES_URL_FIELD",
+			value1 = "${orgWebsite}"
+		);
+	}
 
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Assign Organization Roles">
-			<var name="key_menuItem" value="Assign Organization Roles" />
-		</execute>
+	macro addWithLocalizedCountryCP {
+		Navigator.gotoNavItem(navItem = "${navItem}");
 
-		<execute function="SelectFrame" locator1="IFrame#DIALOG" />
+		LexiconEntry.gotoAdd();
 
-		<execute function="AssertTextEquals" locator1="//tr[contains(.,'${roleName}')]/td[1]/span/a" value1="${roleName}" />
+		if (IsElementPresent(locator1 = "MenuItem#ANY_MENU_ITEM", key_menuItem = "${localizedOption}")) {
+			AssertClick(
+				locator1 = "MenuItem#ANY_MENU_ITEM",
+				value1 = "${localizedOption}",
+				key_menuItem = "${localizedOption}"
+			);
+		}
 
-		<execute function="Click" locator1="//tr[contains(.,'${roleName}')]/td[1]/span/a" />
+		Type(locator1 = "TextInput#NAME", value1 = "${orgName}");
 
-		<execute macro="Navigator#gotoNavItem">
-			<var name="navItem" value="Available" />
-		</execute>
+		Select(
+			locator1 = "UsersAndOrganizations#ORGANIZATION_COUNTRY_NAME",
+			value1 = "${countryName}",
+			key_countryName = "${countryName}"
+		);
 
-		<execute macro="Search#searchCP">
-			<var name="searchTerm" value="${userScreenName}" />
-		</execute>
+		AssertClick(
+			locator1 = "Button#SAVE_LOCALIZED",
+			value1 = "${saveButton}",
+			key_saveButton = "${saveButton}"
+		);
 
-		<var name="key_userScreenName" value="${userScreenName}" />
+		Alert.viewSuccessMessage();
+	}
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+	macro assignOrgRoleCP {
+		Organization.gotoActionsCmd(orgName = "${orgName}");
 
-		<execute function="Check" locator1="UsersAndOrganizationsAssignUsers#USER_TABLE_CHECKBOX" />
+		var key_orgName = "${orgName}";
 
-		<execute function="AssertClick" locator1="Button#UPDATE_ASSOCIATIONS" value1="Update Associations" />
+		Pause(locator1 = "5000");
 
-		<execute macro="Alert#viewSuccessMessage" />
+		AssertClick(
+			locator1 = "MenuItem#ANY_MENU_ITEM",
+			value1 = "Assign Organization Roles",
+			key_menuItem = "Assign Organization Roles"
+		);
 
-		<execute macro="Navigator#gotoNavItem">
-			<var name="navItem" value="Current" />
-		</execute>
+		SelectFrame(locator1 = "IFrame#DIALOG");
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_USER_NAME" value1="${userFirstName} ${userLastName}" />
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+		AssertTextEquals(
+			locator1 = "//tr[contains(.,'${roleName}')]/td[1]/span/a",
+			value1 = "${roleName}"
+		);
 
-		<execute macro="IFrame#selectTopFrame" />
+		Click(locator1 = "//tr[contains(.,'${roleName}')]/td[1]/span/a");
 
-		<execute function="Click" locator1="Icon#CLOSE" />
-	</command>
+		Navigator.gotoNavItem(navItem = "Available");
 
-	<command name="deleteCP">
-		<execute macro="Organization#gotoActionsCmd">
-			<var name="orgName" value="${orgName}" />
-		</execute>
+		Search.searchCP(searchTerm = "${userScreenName}");
 
-		<var name="key_orgName" value="${orgName}" />
+		var key_userScreenName = "${userScreenName}";
 
-		<execute function="AssertClickNoError" locator1="MenuItem#ANY_MENU_ITEM" value1="Delete">
-			<var name="key_menuItem" value="Delete" />
-		</execute>
+		AssertTextEquals(
+			locator1 = "UsersAndOrganizations#USER_TABLE_SCREEN_NAME",
+			value1 = "${userScreenName}"
+		);
 
-		<execute function="Confirm" value1="Are you sure you want to delete this? It will be deleted immediately." />
+		Check(locator1 = "UsersAndOrganizationsAssignUsers#USER_TABLE_CHECKBOX");
 
-		<execute macro="Alert#viewSuccessMessage" />
+		AssertClick(
+			locator1 = "Button#UPDATE_ASSOCIATIONS",
+			value1 = "Update Associations"
+		);
 
-		<execute function="AssertTextNotPresent" value1="${orgName}" />
-	</command>
+		Alert.viewSuccessMessage();
 
-	<command name="editOrganizationCreateSite">
-		<execute macro="Organization#editOrganizationInformationCP">
-			<var name="orgName" value="${orgName}" />
-			<var name="panelHeading" value="Organization Site" />
-		</execute>
+		Navigator.gotoNavItem(navItem = "Current");
 
-		<execute function="Check" locator1="UsersAndOrganizationsEditOrganization#ORGANIZATION_SITE_CREATE_SITE_CHECKBOX" />
+		AssertTextEquals(
+			locator1 = "UsersAndOrganizations#USER_TABLE_USER_NAME",
+			value1 = "${userFirstName} ${userLastName}"
+		);
 
-		<execute macro="PortletEntry#save" />
+		AssertTextEquals(
+			locator1 = "UsersAndOrganizations#USER_TABLE_SCREEN_NAME",
+			value1 = "${userScreenName}"
+		);
 
-		<execute macro="Organization#gotoOrganizationInformationCP">
-			<var name="panelHeading" value="Organization Site" />
-		</execute>
+		IFrame.selectTopFrame();
 
-		<execute function="AssertChecked" locator1="UsersAndOrganizationsEditOrganization#ORGANIZATION_SITE_CREATE_SITE_CHECKBOX" />
-	</command>
+		Click(locator1 = "Icon#CLOSE");
+	}
 
-	<command name="editOrganizationInformationCP">
-		<execute macro="UsersAndOrganizationsNavigator#gotoOrganizations" />
+	macro deleteCP {
+		Organization.gotoActionsCmd(orgName = "${orgName}");
 
-		<execute macro="Organization#gotoActionsCmd">
-			<var name="orgName" value="${orgName}" />
-		</execute>
+		var key_orgName = "${orgName}";
 
-		<var name="key_orgName" value="${orgName}" />
+		AssertClickNoError(
+			locator1 = "MenuItem#ANY_MENU_ITEM",
+			value1 = "Delete",
+			key_menuItem = "Delete"
+		);
 
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Edit">
-			<var name="key_menuItem" value="Edit" />
-		</execute>
+		Confirm(
+			value1 = "Are you sure you want to delete this? It will be deleted immediately."
+		);
 
-		<execute macro="Organization#gotoOrganizationInformationCP">
-			<var name="panelHeading" value="${panelHeading}" />
-		</execute>
-	</command>
+		Alert.viewSuccessMessage();
 
-	<command name="editSiteCP">
-		<execute macro="Organization#gotoActionsCmd">
-			<var name="orgName" value="${orgName}" />
-		</execute>
+		AssertTextNotPresent(value1 = "${orgName}");
+	}
 
-		<var name="key_orgName" value="${orgName}" />
+	macro editOrganizationCreateSite {
+		Organization.editOrganizationInformationCP(
+			orgName = "${orgName}",
+			panelHeading = "Organization Site"
+		);
 
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Edit">
-			<var name="key_menuItem" value="Edit" />
-		</execute>
+		Check(
+			locator1 = "UsersAndOrganizationsEditOrganization#ORGANIZATION_SITE_CREATE_SITE_CHECKBOX"
+		);
 
-		<execute function="Type" locator1="TextInput#NAME" value1="${orgNameEdit}" />
+		PortletEntry.save();
 
-		<execute macro="PortletEntry#save" />
+		Organization.gotoOrganizationInformationCP(panelHeading = "Organization Site");
 
-		<execute function="AssertTextEquals" locator1="TextInput#NAME" value1="${orgNameEdit}" />
-	</command>
+		AssertChecked(
+			locator1 = "UsersAndOrganizationsEditOrganization#ORGANIZATION_SITE_CREATE_SITE_CHECKBOX"
+		);
+	}
 
-	<command name="gotoActionsCmd">
-		<execute function="Pause" locator1="1000" />
+	macro editOrganizationInformationCP {
+		UsersAndOrganizationsNavigator.gotoOrganizations();
 
-		<execute function="Type" locator1="NavBar#BASIC_SEARCH_FIELD" value1="${orgName}" />
+		Organization.gotoActionsCmd(orgName = "${orgName}");
 
-		<execute function="Click" locator1="Button#SUBMIT" />
+		var key_orgName = "${orgName}";
 
-		<execute function="AssertVisible" locator1="UsersAndOrganizations#ORGANIZATION_TABLE_NAME_GENERIC" />
+		AssertClick(
+			locator1 = "MenuItem#ANY_MENU_ITEM",
+			value1 = "Edit",
+			key_menuItem = "Edit"
+		);
 
-		<var name="key_orgName" value="${orgName}" />
+		Organization.gotoOrganizationInformationCP(panelHeading = "${panelHeading}");
+	}
 
-		<if>
-			<condition function="IsElementNotPresent" locator1="UsersAndOrganizations#ORGANIZATION_TABLE_NAME" />
-			<then>
-				<execute macro="Pagination#changePagination">
-					<var name="itemsPerPage" value="30" />
-				</execute>
-			</then>
-		</if>
+	macro editSiteCP {
+		Organization.gotoActionsCmd(orgName = "${orgName}");
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizations#ORGANIZATION_TABLE_NAME" value1="${orgName}" />
+		var key_orgName = "${orgName}";
 
-		<execute function="Click" locator1="UsersAndOrganizations#ORGANIZATION_TABLE_ACTIONS" />
-	</command>
+		AssertClick(
+			locator1 = "MenuItem#ANY_MENU_ITEM",
+			value1 = "Edit",
+			key_menuItem = "Edit"
+		);
 
-	<command name="gotoCP">
-		<execute function="Type" locator1="TextInput#SEARCH" value1="${searchToken}" />
+		Type(locator1 = "TextInput#NAME", value1 = "${orgNameEdit}");
 
-		<execute function="Click" locator1="Button#SUBMIT" />
+		PortletEntry.save();
 
-		<var name="key_orgName" value="${orgName}" />
+		AssertTextEquals(locator1 = "TextInput#NAME", value1 = "${orgNameEdit}");
+	}
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizations#ORGANIZATION_TABLE_NAME" value1="${orgName}" />
+	macro gotoActionsCmd {
+		Pause(locator1 = "1000");
 
-		<execute function="AssertClick" locator1="UsersAndOrganizations#ORGANIZATION_TABLE_NAME" value1="${orgName}" />
+		Type(locator1 = "NavBar#BASIC_SEARCH_FIELD", value1 = "${orgName}");
 
-		<execute macro="Breadcrumb#viewActiveEntry">
-			<var name="breadcrumbName" value="${orgName}" />
-		</execute>
-	</command>
+		Click(locator1 = "Button#SUBMIT");
 
-	<command name="gotoIdentificationCP">
-		<execute function="AssertClick" locator1="NavTab#IDENTIFICATION" value1="Identification" />
+		AssertVisible(
+			locator1 = "UsersAndOrganizations#ORGANIZATION_TABLE_NAME_GENERIC"
+		);
 
-		<if>
-			<isset var="panelHeading" />
-			<then>
-				<execute macro="Panel#expandPanel">
-					<var name="panelHeading" value="${panelHeading}" />
-				</execute>
-			</then>
-		</if>
-	</command>
+		var key_orgName = "${orgName}";
 
-	<command name="gotoMiscellaneousCP">
-		<execute function="AssertClick" locator1="UsersAndOrganizations#MISCELLANEOUS" value1="Miscellaneous" />
+		if (IsElementNotPresent(locator1 = "UsersAndOrganizations#ORGANIZATION_TABLE_NAME")) {
+			Pagination.changePagination(itemsPerPage = "30");
+		}
 
-		<if>
-			<isset var="panelHeading" />
-			<then>
-				<execute macro="Panel#expandPanel">
-					<var name="panelHeading" value="${panelHeading}" />
-				</execute>
-			</then>
-		</if>
-	</command>
+		AssertTextEquals(
+			locator1 = "UsersAndOrganizations#ORGANIZATION_TABLE_NAME",
+			value1 = "${orgName}"
+		);
 
-	<command name="gotoOrganizationInformationCP">
-		<execute function="AssertClick" locator1="UsersAndOrganizations#ORGANIZATION_INFORMATION" value1="Organization Information" />
+		Click(locator1 = "UsersAndOrganizations#ORGANIZATION_TABLE_ACTIONS");
+	}
 
-		<if>
-			<isset var="panelHeading" />
-			<then>
-				<execute macro="Panel#expandPanel">
-					<var name="panelHeading" value="${panelHeading}" />
-				</execute>
-			</then>
-		</if>
-	</command>
+	macro gotoCP {
+		Type(locator1 = "TextInput#SEARCH", value1 = "${searchToken}");
 
-	<command name="manageMembershipOptionsInSites">
-		<execute macro="Organization#gotoActionsCmd">
-			<var name="orgName" value="${orgName}" />
-		</execute>
+		Click(locator1 = "Button#SUBMIT");
 
-		<var name="key_orgName" value="${orgName}" />
+		var key_orgName = "${orgName}";
 
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Manage Site">
-			<var name="key_menuItem" value="Manage Site" />
-		</execute>
+		AssertTextEquals(
+			locator1 = "UsersAndOrganizations#ORGANIZATION_TABLE_NAME",
+			value1 = "${orgName}"
+		);
 
-		<if>
-			<equals arg1="${selectMembershipType}" arg2="true" />
-			<then>
-				<execute function="AssertTextEquals" locator1="SitesEditSite#MEMBERSHIP_OPTIONS_MEMBERSHIP_TYPE_LABEL" value1="Membership Type" />
+		AssertClick(
+			locator1 = "UsersAndOrganizations#ORGANIZATION_TABLE_NAME",
+			value1 = "${orgName}"
+		);
 
-				<execute function="Select" locator1="SitesEditSite#MEMBERSHIP_OPTIONS_MEMBERSHIP_TYPE" value1="${membershipType}" />
-			</then>
-		</if>
+		Breadcrumb.viewActiveEntry(breadcrumbName = "${orgName}");
+	}
 
-		<if>
-			<equals arg1="${allowManualMembershipManagement}" arg2="true" />
-			<then>
-				<execute function="Check#checkToggleSwitch" locator1="Checkbox#ALLOW_MANUAL_MEMBERSHIP_MANAGEMENT" />
-			</then>
-		</if>
+	macro gotoIdentificationCP {
+		AssertClick(locator1 = "NavTab#IDENTIFICATION", value1 = "Identification");
 
-		<execute macro="PortletEntry#save" />
-	</command>
+		if (isSet(panelHeading)) {
+			Panel.expandPanel(panelHeading = "${panelHeading}");
+		}
+	}
 
-	<command name="removeMemberCP">
-		<execute macro="Organization#gotoActionsCmd">
-			<var name="orgName" value="${orgName}" />
-		</execute>
+	macro gotoMiscellaneousCP {
+		AssertClick(
+			locator1 = "UsersAndOrganizations#MISCELLANEOUS",
+			value1 = "Miscellaneous"
+		);
 
-		<var name="key_orgName" value="${orgName}" />
+		if (isSet(panelHeading)) {
+			Panel.expandPanel(panelHeading = "${panelHeading}");
+		}
+	}
 
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Assign Users">
-			<var name="key_menuItem" value="Assign Users" />
-		</execute>
+	macro gotoOrganizationInformationCP {
+		AssertClick(
+			locator1 = "UsersAndOrganizations#ORGANIZATION_INFORMATION",
+			value1 = "Organization Information"
+		);
 
-		<var name="key_userScreenName" value="${userScreenName}" />
+		if (isSet(panelHeading)) {
+			Panel.expandPanel(panelHeading = "${panelHeading}");
+		}
+	}
 
-		<execute function="AssertClick" locator1="UsersAndOrganizationsAssignUsers#CURRENT_TAB" value1="Current" />
+	macro manageMembershipOptionsInSites {
+		Organization.gotoActionsCmd(orgName = "${orgName}");
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizations#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
-		<execute function="Uncheck" locator1="UsersAndOrganizationsAssignUsers#USER_TABLE_CHECKBOX" />
+		var key_orgName = "${orgName}";
 
-		<execute function="AssertClick" locator1="Button#UPDATE_ASSOCIATIONS" value1="Update Associations" />
+		AssertClick(
+			locator1 = "MenuItem#ANY_MENU_ITEM",
+			value1 = "Manage Site",
+			key_menuItem = "Manage Site"
+		);
 
-		<execute macro="Alert#viewSuccessMessage" />
+		if ("${selectMembershipType}" == "true") {
+			AssertTextEquals(
+				locator1 = "SitesEditSite#MEMBERSHIP_OPTIONS_MEMBERSHIP_TYPE_LABEL",
+				value1 = "Membership Type"
+			);
 
-		<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No users were found." />
-	</command>
+			Select(
+				locator1 = "SitesEditSite#MEMBERSHIP_OPTIONS_MEMBERSHIP_TYPE",
+				value1 = "${membershipType}"
+			);
+		}
 
-	<command name="searchCP">
-		<execute function="Type" locator1="TextInput#SEARCH" value1="${searchTerm}" />
+		if ("${allowManualMembershipManagement}" == "true") {
+			Check.checkToggleSwitch(
+				locator1 = "Checkbox#ALLOW_MANUAL_MEMBERSHIP_MANAGEMENT"
+			);
+		}
 
-		<execute function="Click" locator1="Button#SUBMIT" />
+		PortletEntry.save();
+	}
 
-		<var name="key_orgName" value="${orgName}" />
+	macro removeMemberCP {
+		Organization.gotoActionsCmd(orgName = "${orgName}");
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizations#ORGANIZATION_TABLE_NAME" value1="${orgName}" />
-	</command>
+		var key_orgName = "${orgName}";
 
-	<command name="selectParentOrganizationCP">
-		<var name="key_orgName" value="${orgName}" />
+		AssertClick(
+			locator1 = "MenuItem#ANY_MENU_ITEM",
+			value1 = "Assign Users",
+			key_menuItem = "Assign Users"
+		);
 
-		<execute function="Click" locator1="UsersAndOrganizations#ORGANIZATION_TABLE_ACTIONS" />
+		var key_userScreenName = "${userScreenName}";
 
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Edit">
-			<var name="key_menuItem" value="Edit" />
-		</execute>
+		AssertClick(
+			locator1 = "UsersAndOrganizationsAssignUsers#CURRENT_TAB",
+			value1 = "Current"
+		);
 
-		<execute function="AssertClick" locator1="UsersAndOrganizationsEditOrganization#PARENT_ORGANIZATION_SELECT_BUTTON" value1="Select" />
+		AssertTextEquals(
+			locator1 = "UsersAndOrganizations#USER_TABLE_SCREEN_NAME",
+			value1 = "${userScreenName}"
+		);
 
-		<execute function="SelectFrame" locator1="UsersAndOrganizationsSelectOrganization#SELECT_ORGANIZATION_IFRAME" />
+		Uncheck(locator1 = "UsersAndOrganizationsAssignUsers#USER_TABLE_CHECKBOX");
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditUser#ORGANIZATIONS_TABLE_NAME" value1="${orgName}" />
+		AssertClick(
+			locator1 = "Button#UPDATE_ASSOCIATIONS",
+			value1 = "Update Associations"
+		);
 
-		<var name="key_orgName" value="${parentOrgName}" />
+		Alert.viewSuccessMessage();
 
-		<execute function="AssertClick" locator1="UsersAndOrganizationsSelectOrganization#ORGANIZATION_TABLE_CHOOSE_BUTTON" value1="Choose" />
+		AssertTextEquals(
+			locator1 = "Message#EMPTY_INFO",
+			value1 = "No users were found."
+		);
+	}
 
-		<execute function="SelectFrame" value1="relative=top" />
+	macro searchCP {
+		Type(locator1 = "TextInput#SEARCH", value1 = "${searchTerm}");
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditOrganization#PARENT_ORGANIZATION_TABLE_NAME" value1="${parentOrgName}" />
+		Click(locator1 = "Button#SUBMIT");
 
-		<execute macro="PortletEntry#save" />
-	</command>
+		var key_orgName = "${orgName}";
 
-	<command name="tearDownCP">
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Users" />
-			<var name="panel" value="Control Panel" />
-			<var name="portlet" value="Users and Organizations" />
-		</execute>
+		AssertTextEquals(
+			locator1 = "UsersAndOrganizations#ORGANIZATION_TABLE_NAME",
+			value1 = "${orgName}"
+		);
+	}
 
-		<while>
-			<condition function="IsElementPresent" locator1="UsersAndOrganizations#ORGANIZATION_TABLE_NAME_GENERIC" value1="${orgName}" />
-			<then>
-				<execute function="Click" locator1="UsersAndOrganizations#ORGANIZATION_TABLE_NAME_GENERIC" />
+	macro selectParentOrganizationCP {
+		var key_orgName = "${orgName}";
 
-				<execute function="AssertClick" locator1="UsersAndOrganizationsOrganization#MENU_ASSIGN_USERS" value1="Assign Users" />
+		Click(locator1 = "UsersAndOrganizations#ORGANIZATION_TABLE_ACTIONS");
 
-				<execute function="AssertClick" locator1="UsersAndOrganizationsAssignUsers#CURRENT_TAB" value1="Current" />
+		AssertClick(
+			locator1 = "MenuItem#ANY_MENU_ITEM",
+			value1 = "Edit",
+			key_menuItem = "Edit"
+		);
 
-				<if>
-					<and>
-						<condition function="IsElementPresent" locator1="Checkbox#SELECT_ALL" />
-						<condition function="IsVisible" locator1="Checkbox#SELECT_ALL" />
-					</and>
-					<then>
-						<execute function="Uncheck" locator1="Checkbox#SELECT_ALL" />
+		AssertClick(
+			locator1 = "UsersAndOrganizationsEditOrganization#PARENT_ORGANIZATION_SELECT_BUTTON",
+			value1 = "Select"
+		);
 
-						<execute function="AssertClick" locator1="Button#UPDATE_ASSOCIATIONS" value1="Update Associations" />
+		SelectFrame(
+			locator1 = "UsersAndOrganizationsSelectOrganization#SELECT_ORGANIZATION_IFRAME"
+		);
 
-						<execute function="AssertTextEquals" locator1="Message#INFO" value1="No users were found." />
-					</then>
-				</if>
+		AssertTextEquals(
+			locator1 = "UsersAndOrganizationsEditUser#ORGANIZATIONS_TABLE_NAME",
+			value1 = "${orgName}"
+		);
 
-				<execute function="AssertClick#assertPartialTextClickAt" locator1="Link#BACK" value1="Back" />
+		var key_orgName = "${parentOrgName}";
 
-				<execute function="AssertClickNoError" locator1="UsersAndOrganizationsOrganization#MENU_DELETE" value1="Delete" />
+		AssertClick(
+			locator1 = "UsersAndOrganizationsSelectOrganization#ORGANIZATION_TABLE_CHOOSE_BUTTON",
+			value1 = "Choose"
+		);
 
-				<execute function="Confirm" value1="Are you sure you want to delete this? It will be deleted immediately." />
-			</then>
-		</while>
-	</command>
+		SelectFrame(value1 = "relative=top");
 
-	<command name="viewAssignMemberCP">
-		<var name="key_userScreenName" value="${userScreenName}" />
+		AssertTextEquals(
+			locator1 = "UsersAndOrganizationsEditOrganization#PARENT_ORGANIZATION_TABLE_NAME",
+			value1 = "${parentOrgName}"
+		);
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizationsOrganization#USER_TABLE_NAME" value1="${userName}" />
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizationsOrganization#USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
-	</command>
+		PortletEntry.save();
+	}
 
-	<command name="viewCP">
-		<var name="key_orgName" value="${orgName}" />
+	macro tearDownCP {
+		ProductMenu.gotoPortlet(
+			category = "Users",
+			panel = "Control Panel",
+			portlet = "Users and Organizations"
+		);
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizations#ORGANIZATION_TABLE_NAME" value1="${orgName}" />
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizations#ORGANIZATION_TABLE_TYPE" value1="${orgType}" />
+		while (IsElementPresent(locator1 = "UsersAndOrganizations#ORGANIZATION_TABLE_NAME_GENERIC", value1 = "${orgName}")) {
+			Click(locator1 = "UsersAndOrganizations#ORGANIZATION_TABLE_NAME_GENERIC");
 
-		<execute function="Click" locator1="UsersAndOrganizations#ORGANIZATION_TABLE_ACTIONS" />
+			AssertClick(
+				locator1 = "UsersAndOrganizationsOrganization#MENU_ASSIGN_USERS",
+				value1 = "Assign Users"
+			);
 
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Edit">
-			<var name="key_menuItem" value="Edit" />
-		</execute>
+			AssertClick(
+				locator1 = "UsersAndOrganizationsAssignUsers#CURRENT_TAB",
+				value1 = "Current"
+			);
 
-		<var name="key_orgType" value="${orgType}" />
+			if ((IsElementPresent(locator1 = "Checkbox#SELECT_ALL")) && (IsVisible(locator1 = "Checkbox#SELECT_ALL"))) {
+				Uncheck(locator1 = "Checkbox#SELECT_ALL");
 
-		<execute function="AssertTextEquals" locator1="Portlet#HEADER" value1="Edit ${orgName}" />
-		<execute function="AssertTextEquals" locator1="TextInput#NAME" value1="${orgName}" />
-		<execute function="AssertTextEquals#assertValue" locator1="UsersAndOrganizationsEditOrganization#DETAILS_TYPE" value1="${orgType}" />
-	</command>
+				AssertClick(
+					locator1 = "Button#UPDATE_ASSOCIATIONS",
+					value1 = "Update Associations"
+				);
 
-	<command name="viewLocalizedCountryCP">
-		<execute function="AssertClick" locator1="NavBar#NAV_ITEM_LINK" value1="${navItem}">
-			<var name="key_navItem" value="${navItem}" />
-		</execute>
+				AssertTextEquals(locator1 = "Message#INFO", value1 = "No users were found.");
+			}
 
-		<execute function="Click" locator1="UsersAndOrganizations#ORGANIZATION_TABLE_ACTIONS">
-			<var name="key_orgName" value="${orgName}" />
-		</execute>
+			AssertClick.assertPartialTextClickAt(locator1 = "Link#BACK", value1 = "Back");
 
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="${editLocalized}">
-			<var name="key_menuItem" value="${editLocalized}" />
-		</execute>
+			AssertClickNoError(
+				locator1 = "UsersAndOrganizationsOrganization#MENU_DELETE",
+				value1 = "Delete"
+			);
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="UsersAndOrganizations#ORGANIZATION_COUNTRY_NAME" value1="${countryName}">
-			<var name="key_countryName" value="${countryName}" />
-		</execute>
-	</command>
+			Confirm(
+				value1 = "Are you sure you want to delete this? It will be deleted immediately."
+			);
+		}
+	}
 
-	<command name="viewMembersNotFoundCP">
-		<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="This organization does not have any users." />
-	</command>
+	macro viewAssignMemberCP {
+		var key_userScreenName = "${userScreenName}";
 
-	<command name="viewNoOrganizationsFoundCP">
-		<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No organizations were found." />
-	</command>
+		AssertTextEquals(
+			locator1 = "UsersAndOrganizationsOrganization#USER_TABLE_NAME",
+			value1 = "${userName}"
+		);
 
-	<command name="viewParentOrganizationCP">
-		<execute macro="Organization#gotoActionsCmd">
-			<var name="orgName" value="${orgName}" />
-		</execute>
+		AssertTextEquals(
+			locator1 = "UsersAndOrganizationsOrganization#USER_TABLE_SCREEN_NAME",
+			value1 = "${userScreenName}"
+		);
+	}
 
-		<var name="key_orgName" value="${orgName}" />
+	macro viewCP {
+		var key_orgName = "${orgName}";
 
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Edit">
-			<var name="key_menuItem" value="Edit" />
-		</execute>
+		AssertTextEquals(
+			locator1 = "UsersAndOrganizations#ORGANIZATION_TABLE_NAME",
+			value1 = "${orgName}"
+		);
 
-		<execute function="AssertClick" locator1="UsersAndOrganizationsEditOrganization#PARENT_ORGANIZATION_SELECT_BUTTON" value1="Select" />
+		AssertTextEquals(
+			locator1 = "UsersAndOrganizations#ORGANIZATION_TABLE_TYPE",
+			value1 = "${orgType}"
+		);
 
-		<execute function="SelectFrame" locator1="UsersAndOrganizationsSelectOrganization#SELECT_ORGANIZATION_IFRAME" />
+		Click(locator1 = "UsersAndOrganizations#ORGANIZATION_TABLE_ACTIONS");
 
-		<if>
-			<equals arg1="${parentOrgExist}" arg2="true" />
-			<then>
-				<var name="key_orgName" value="${subOrgName}" />
+		AssertClick(
+			locator1 = "MenuItem#ANY_MENU_ITEM",
+			value1 = "Edit",
+			key_menuItem = "Edit"
+		);
 
-				<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditUser#ORGANIZATIONS_TABLE_NAME" value1="${subOrgName}" />
-				<execute function="AssertTextEquals" locator1="UsersAndOrganizationsSelectOrganization#ORGANIZATION_TABLE_PARENT_ORGANIZATION" value1="${parentOrgName}" />
-			</then>
-			<elseif>
-				<equals arg1="${parentOrgExist}" arg2="false" />
-				<then>
-					<execute function="AssertTextEquals" locator1="UsersAndOrganizationsEditUser#ORGANIZATIONS_TABLE_NAME" value1="${orgName}" />
-					<execute function="AssertTextEquals" locator1="UsersAndOrganizationsSelectOrganization#ORGANIZATION_TABLE_PARENT_ORGANIZATION" value1="" />
-				</then>
-			</elseif>
-		</if>
+		var key_orgType = "${orgType}";
 
-		<execute macro="IFrame#closeFrame" />
-	</command>
+		AssertTextEquals(locator1 = "Portlet#HEADER", value1 = "Edit ${orgName}");
 
-	<command name="viewRemoveMemberCP">
-		<execute function="Type" locator1="TextInput#SEARCH" value1="${orgName}" />
+		AssertTextEquals(locator1 = "TextInput#NAME", value1 = "${orgName}");
 
-		<execute function="Click" locator1="Icon#BASIC_SEARCH" />
+		AssertTextEquals.assertValue(
+			locator1 = "UsersAndOrganizationsEditOrganization#DETAILS_TYPE",
+			value1 = "${orgType}"
+		);
+	}
 
-		<var name="key_orgName" value="${orgName}" />
+	macro viewLocalizedCountryCP {
+		AssertClick(
+			locator1 = "NavBar#NAV_ITEM_LINK",
+			value1 = "${navItem}",
+			key_navItem = "${navItem}"
+		);
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizations#ORGANIZATION_TABLE_NAME" value1="${orgName}" />
+		Click(
+			locator1 = "UsersAndOrganizations#ORGANIZATION_TABLE_ACTIONS",
+			key_orgName = "${orgName}"
+		);
 
-		<execute function="AssertClick" locator1="UsersAndOrganizations#ORGANIZATION_TABLE_NAME" value1="${orgName}" />
+		AssertClick(
+			locator1 = "MenuItem#ANY_MENU_ITEM",
+			value1 = "${editLocalized}",
+			key_menuItem = "${editLocalized}"
+		);
 
-		<execute function="AssertTextNotPresent" value1="${userFirstName}" />
-	</command>
+		AssertTextEquals.assertPartialText(
+			locator1 = "UsersAndOrganizations#ORGANIZATION_COUNTRY_NAME",
+			value1 = "${countryName}",
+			key_countryName = "${countryName}"
+		);
+	}
 
-	<command name="viewSubOrganizationCP">
-		<var name="key_orgName" value="${orgName}" />
+	macro viewMembersNotFoundCP {
+		AssertTextEquals(
+			locator1 = "Message#EMPTY_INFO",
+			value1 = "This organization does not have any users."
+		);
+	}
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizations#ORGANIZATION_TABLE_TYPE" value1="${orgType}" />
+	macro viewNoOrganizationsFoundCP {
+		AssertTextEquals(
+			locator1 = "Message#EMPTY_INFO",
+			value1 = "No organizations were found."
+		);
+	}
 
-		<execute function="AssertClick" locator1="UsersAndOrganizations#ORGANIZATION_TABLE_NAME" value1="${orgName}" />
+	macro viewParentOrganizationCP {
+		Organization.gotoActionsCmd(orgName = "${orgName}");
 
-		<var name="key_suborgName" value="${suborgName}" />
+		var key_orgName = "${orgName}";
 
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizationsOrganization#SUBORGANIZATION_TABLE_NAME" value1="${suborgName}" />
-		<execute function="AssertTextEquals" locator1="UsersAndOrganizationsOrganization#SUBORGANIZATION_TABLE_TYPE" value1="${suborgType}" />
-		<execute function="AssertElementPresent" locator1="UsersAndOrganizationsOrganization#SUBORGANIZATION_TABLE_ACTIONS" />
-	</command>
-</definition>
+		AssertClick(
+			locator1 = "MenuItem#ANY_MENU_ITEM",
+			value1 = "Edit",
+			key_menuItem = "Edit"
+		);
+
+		AssertClick(
+			locator1 = "UsersAndOrganizationsEditOrganization#PARENT_ORGANIZATION_SELECT_BUTTON",
+			value1 = "Select"
+		);
+
+		SelectFrame(
+			locator1 = "UsersAndOrganizationsSelectOrganization#SELECT_ORGANIZATION_IFRAME"
+		);
+
+		if ("${parentOrgExist}" == "true") {
+			var key_orgName = "${subOrgName}";
+
+			AssertTextEquals(
+				locator1 = "UsersAndOrganizationsEditUser#ORGANIZATIONS_TABLE_NAME",
+				value1 = "${subOrgName}"
+			);
+
+			AssertTextEquals(
+				locator1 = "UsersAndOrganizationsSelectOrganization#ORGANIZATION_TABLE_PARENT_ORGANIZATION",
+				value1 = "${parentOrgName}"
+			);
+		}
+		else if ("${parentOrgExist}" == "false") {
+			AssertTextEquals(
+				locator1 = "UsersAndOrganizationsEditUser#ORGANIZATIONS_TABLE_NAME",
+				value1 = "${orgName}"
+			);
+
+			AssertTextEquals(
+				locator1 = "UsersAndOrganizationsSelectOrganization#ORGANIZATION_TABLE_PARENT_ORGANIZATION",
+				value1 = ""
+			);
+		}
+
+		IFrame.closeFrame();
+	}
+
+	macro viewRemoveMemberCP {
+		Type(locator1 = "TextInput#SEARCH", value1 = "${orgName}");
+
+		Click(locator1 = "Icon#BASIC_SEARCH");
+
+		var key_orgName = "${orgName}";
+
+		AssertTextEquals(
+			locator1 = "UsersAndOrganizations#ORGANIZATION_TABLE_NAME",
+			value1 = "${orgName}"
+		);
+
+		AssertClick(
+			locator1 = "UsersAndOrganizations#ORGANIZATION_TABLE_NAME",
+			value1 = "${orgName}"
+		);
+
+		AssertTextNotPresent(value1 = "${userFirstName}");
+	}
+
+	macro viewSubOrganizationCP {
+		var key_orgName = "${orgName}";
+
+		AssertTextEquals(
+			locator1 = "UsersAndOrganizations#ORGANIZATION_TABLE_TYPE",
+			value1 = "${orgType}"
+		);
+
+		AssertClick(
+			locator1 = "UsersAndOrganizations#ORGANIZATION_TABLE_NAME",
+			value1 = "${orgName}"
+		);
+
+		var key_suborgName = "${suborgName}";
+
+		AssertTextEquals(
+			locator1 = "UsersAndOrganizationsOrganization#SUBORGANIZATION_TABLE_NAME",
+			value1 = "${suborgName}"
+		);
+
+		AssertTextEquals(
+			locator1 = "UsersAndOrganizationsOrganization#SUBORGANIZATION_TABLE_TYPE",
+			value1 = "${suborgType}"
+		);
+
+		AssertElementPresent(
+			locator1 = "UsersAndOrganizationsOrganization#SUBORGANIZATION_TABLE_ACTIONS"
+		);
+	}
+}

@@ -1,32 +1,42 @@
-<definition>
-	<command name="searchPG">
-		<var name="key_portletName" value="${portletName}" />
+definition {
+	macro searchPG {
+		var key_portletName = "${portletName}";
 
-		<execute function="AssertElementPresent" locator1="Portlet#SEARCH_PORTLET_FIELD" />
+		AssertElementPresent(locator1 = "Portlet#SEARCH_PORTLET_FIELD");
 
-		<execute function="Type" locator1="Portlet#SEARCH_PORTLET_FIELD" value1="${searchTerm}" />
+		Type(locator1 = "Portlet#SEARCH_PORTLET_FIELD", value1 = "${searchTerm}");
 
-		<execute function="KeyPress" locator1="Portlet#SEARCH_PORTLET_FIELD" value1="\RETURN" />
-	</command>
+		KeyPress(locator1 = "Portlet#SEARCH_PORTLET_FIELD", value1 = "\RETURN");
+	}
 
-	<command name="viewSearchNoAssetTitle">
-		<var name="key_searchAssetTitle" value="${searchAssetTitle}" />
+	macro viewSearchNoAssetTitle {
+		var key_searchAssetTitle = "${searchAssetTitle}";
 
-		<execute function="AssertTextNotPresent" locator1="SearchResults#ASSET_ENTRY_TABLE_TITLE" value1="${searchAssetTitle}" />
-	</command>
+		AssertTextNotPresent(
+			locator1 = "SearchResults#ASSET_ENTRY_TABLE_TITLE",
+			value1 = "${searchAssetTitle}"
+		);
+	}
 
-	<command name="viewSearchResultsPG">
-		<var name="key_searchAssetTitle" value="${searchAssetTitle}" />
-		<var name="key_searchAssetType" value="${searchAssetType}" />
+	macro viewSearchResultsPG {
+		var key_searchAssetTitle = "${searchAssetTitle}";
+		var key_searchAssetType = "${searchAssetType}";
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="SearchResults#ASSET_ENTRY_TABLE_TITLE_SPECIFIC" value1="${searchAssetTitle}" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="SearchResults#ASSET_ENTRY_TABLE_TYPE_SPECIFIC" value1="${searchAssetType}" />
+		AssertTextEquals.assertPartialText(
+			locator1 = "SearchResults#ASSET_ENTRY_TABLE_TITLE_SPECIFIC",
+			value1 = "${searchAssetTitle}"
+		);
 
-		<if>
-			<isset var="searchAssetSummary" />
-			<then>
-				<execute function="AssertTextEquals#assertPartialText" locator1="SearchResults#ASSET_ENTRY_TABLE_SUMMARY_SPECIFIC" value1="${searchAssetSummary}" />
-			</then>
-		</if>
-	</command>
-</definition>
+		AssertTextEquals.assertPartialText(
+			locator1 = "SearchResults#ASSET_ENTRY_TABLE_TYPE_SPECIFIC",
+			value1 = "${searchAssetType}"
+		);
+
+		if (isSet(searchAssetSummary)) {
+			AssertTextEquals.assertPartialText(
+				locator1 = "SearchResults#ASSET_ENTRY_TABLE_SUMMARY_SPECIFIC",
+				value1 = "${searchAssetSummary}"
+			);
+		}
+	}
+}

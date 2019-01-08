@@ -1,232 +1,280 @@
-<definition>
-	<command name="addCP">
-		<execute macro="LexiconEntry#gotoAdd" />
+definition {
+	macro addCP {
+		LexiconEntry.gotoAdd();
 
-		<execute macro="PortletEntry#inputName">
-			<var name="name" value="${pageTemplateName}" />
-		</execute>
+		PortletEntry.inputName(name = "${pageTemplateName}");
 
-		<execute macro="PortletEntry#inputDescriptionTextInput">
-			<var name="description" value="This is a page template description" />
-		</execute>
+		PortletEntry.inputDescriptionTextInput(
+			description = "This is a page template description"
+		);
 
-		<if>
-			<equals arg1="${pageTemplateActive}" arg2="No" />
-			<then>
-				<execute function="Click" locator1="ToggleSwitch#ACTIVE" />
-			</then>
-		</if>
+		if ("${pageTemplateActive}" == "No") {
+			Click(locator1 = "ToggleSwitch#ACTIVE");
+		}
 
-		<execute macro="PortletEntry#save" />
+		PortletEntry.save();
 
-		<var name="key_pageTemplateName" value="${pageTemplateName}" />
+		var key_pageTemplateName = "${pageTemplateName}";
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="PageTemplates#PAGE_TEMPLATE_TABLE_NAME" value1="${pageTemplateName}" />
-		<execute function="AssertTextEquals" locator1="PageTemplates#PAGE_TEMPLATE_TABLE_ACTIVE" value1="${pageTemplateActive}" />
-	</command>
+		AssertTextEquals.assertPartialText(
+			locator1 = "PageTemplates#PAGE_TEMPLATE_TABLE_NAME",
+			value1 = "${pageTemplateName}"
+		);
 
-	<command name="configurePageTemplateLayout">
-		<execute function="Click" locator1="PageTemplates#PAGE_TEMPLATE_TABLE_NAME" value1="${pageTemplateName}">
-			<var name="key_pageTemplateName" value="${pageTemplateName}" />
-		</execute>
+		AssertTextEquals(
+			locator1 = "PageTemplates#PAGE_TEMPLATE_TABLE_ACTIVE",
+			value1 = "${pageTemplateActive}"
+		);
+	}
 
-		<execute function="Pause" locator1="3000" />
+	macro configurePageTemplateLayout {
+		Click(
+			locator1 = "PageTemplates#PAGE_TEMPLATE_TABLE_NAME",
+			value1 = "${pageTemplateName}",
+			key_pageTemplateName = "${pageTemplateName}"
+		);
 
-		<execute function="SelectWindow#selectPopUp" locator1="null" />
+		Pause(locator1 = "3000");
 
-		<execute function="Click#pauseClickAt" locator1="ControlMenu#EDIT_COG" />
+		SelectWindow.selectPopUp(locator1 = "null");
 
-		<execute macro="Page#editPageLayoutColumn">
-			<var name="columnName" value="${columnName}" />
-		</execute>
-	</command>
+		Click.pauseClickAt(locator1 = "ControlMenu#EDIT_COG");
 
-	<command name="deactivateAndActivate">
-		<var name="key_pageTemplateName" value="${pageTemplateName}" />
+		Page.editPageLayoutColumn(columnName = "${columnName}");
+	}
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="PageTemplates#PAGE_TEMPLATE_TABLE_NAME" value1="${pageTemplateName}" />
+	macro deactivateAndActivate {
+		var key_pageTemplateName = "${pageTemplateName}";
 
-		<execute macro="LexiconEntry#gotoEntryMenuItem">
-			<var name="menuItem" value="Edit" />
-			<var name="rowEntry" value="${pageTemplateName}" />
-		</execute>
+		AssertTextEquals.assertPartialText(
+			locator1 = "PageTemplates#PAGE_TEMPLATE_TABLE_NAME",
+			value1 = "${pageTemplateName}"
+		);
 
-		<if>
-			<isset var="pageTemplateStatus" />
-			<then>
-				<execute function="Click" locator1="ToggleSwitch#ACTIVE" />
-			</then>
-		</if>
+		LexiconEntry.gotoEntryMenuItem(
+			menuItem = "Edit",
+			rowEntry = "${pageTemplateName}"
+		);
 
-		<execute macro="PortletEntry#save" />
-	</command>
+		if (isSet(pageTemplateStatus)) {
+			Click(locator1 = "ToggleSwitch#ACTIVE");
+		}
 
-	<command name="deleteCP">
-		<execute macro="LexiconEntry#gotoEntryMenuItemNoError">
-			<var name="menuItem" value="Delete" />
-			<var name="rowEntry" value="${pageTemplateName}" />
-		</execute>
+		PortletEntry.save();
+	}
 
-		<execute function="Confirm" value1="Are you sure you want to delete this? It will be deleted immediately." />
+	macro deleteCP {
+		LexiconEntry.gotoEntryMenuItemNoError(
+			menuItem = "Delete",
+			rowEntry = "${pageTemplateName}"
+		);
 
-		<execute macro="Alert#viewSuccessMessage" />
-	</command>
+		Confirm(
+			value1 = "Are you sure you want to delete this? It will be deleted immediately."
+		);
 
-	<command name="editCP">
-		<execute function="AssertTextEquals#assertPartialText" locator1="PageTemplates#PAGE_TEMPLATE_TABLE_NAME" value1="${pageTemplateName}">
-			<var name="key_pageTemplateName" value="${pageTemplateName}" />
-		</execute>
+		Alert.viewSuccessMessage();
+	}
 
-		<execute macro="LexiconEntry#gotoEntryMenuItem">
-			<var name="menuItem" value="Edit" />
-			<var name="rowEntry" value="${pageTemplateName}" />
-		</execute>
+	macro editCP {
+		AssertTextEquals.assertPartialText(
+			locator1 = "PageTemplates#PAGE_TEMPLATE_TABLE_NAME",
+			value1 = "${pageTemplateName}",
+			key_pageTemplateName = "${pageTemplateName}"
+		);
 
-		<execute macro="PortletEntry#inputName">
-			<var name="name" value="${pageTemplateName} Edit" />
-		</execute>
+		LexiconEntry.gotoEntryMenuItem(
+			menuItem = "Edit",
+			rowEntry = "${pageTemplateName}"
+		);
 
-		<if>
-			<equals arg1="${pageTemplateActive}" arg2="No" />
-			<then>
-				<execute function="Click" locator1="ToggleSwitch#ACTIVE" />
-			</then>
-		</if>
+		PortletEntry.inputName(name = "${pageTemplateName} Edit");
 
-		<execute macro="Button#clickSave" />
+		if ("${pageTemplateActive}" == "No") {
+			Click(locator1 = "ToggleSwitch#ACTIVE");
+		}
 
-		<var name="key_pageTemplateName" value="${pageTemplateName}" />
+		Button.clickSave();
 
-		<execute macro="Alert#viewSuccessMessage" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="PageTemplates#PAGE_TEMPLATE_TABLE_NAME" value1="${pageTemplateName} Edit" />
-		<execute function="AssertTextEquals" locator1="PageTemplates#PAGE_TEMPLATE_TABLE_ACTIVE" value1="${pageTemplateActive}" />
-	</command>
+		var key_pageTemplateName = "${pageTemplateName}";
 
-	<command name="editDescription">
-		<execute function="AssertTextEquals#assertPartialText" locator1="PageTemplates#PAGE_TEMPLATE_TABLE_NAME" value1="${pageTemplateName}">
-			<var name="key_pageTemplateName" value="${pageTemplateName}" />
-		</execute>
+		Alert.viewSuccessMessage();
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="PageTemplates#PAGE_TEMPLATE_TABLE_DESCRITPION" value1="${pageTemplateDescription}">
-			<var name="key_pageTemplateDescription" value="${pageTemplateDescription}" />
-		</execute>
+		AssertTextEquals.assertPartialText(
+			locator1 = "PageTemplates#PAGE_TEMPLATE_TABLE_NAME",
+			value1 = "${pageTemplateName} Edit"
+		);
 
-		<execute macro="LexiconEntry#gotoEntryMenuItem">
-			<var name="menuItem" value="Edit" />
-			<var name="rowEntry" value="${pageTemplateName}" />
-		</execute>
+		AssertTextEquals(
+			locator1 = "PageTemplates#PAGE_TEMPLATE_TABLE_ACTIVE",
+			value1 = "${pageTemplateActive}"
+		);
+	}
 
-		<execute macro="PortletEntry#inputDescriptionTextInput">
-			<var name="description" value="This is a page template description edit" />
-		</execute>
+	macro editDescription {
+		AssertTextEquals.assertPartialText(
+			locator1 = "PageTemplates#PAGE_TEMPLATE_TABLE_NAME",
+			value1 = "${pageTemplateName}",
+			key_pageTemplateName = "${pageTemplateName}"
+		);
 
-		<execute macro="PortletEntry#save" />
-	</command>
+		AssertTextEquals.assertPartialText(
+			locator1 = "PageTemplates#PAGE_TEMPLATE_TABLE_DESCRITPION",
+			value1 = "${pageTemplateDescription}",
+			key_pageTemplateDescription = "${pageTemplateDescription}"
+		);
 
-	<command name="gotoPageTemplateViaEdit">
-		<var name="key_pageTemplateName" value="${pageTemplateName}" />
+		LexiconEntry.gotoEntryMenuItem(
+			menuItem = "Edit",
+			rowEntry = "${pageTemplateName}"
+		);
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="PageTemplates#PAGE_TEMPLATE_TABLE_NAME" value1="${pageTemplateName}" />
+		PortletEntry.inputDescriptionTextInput(
+			description = "This is a page template description edit"
+		);
 
-		<execute function="AssertClick#assertPartialTextClickAt" locator1="PageTemplates#PAGE_TEMPLATE_TABLE_NAME" value1="${pageTemplateName}" />
-	</command>
+		PortletEntry.save();
+	}
 
-	<command name="tearDownCP">
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Sites" />
-			<var name="panel" value="Control Panel" />
-			<var name="portlet" value="Page Templates" />
-		</execute>
+	macro gotoPageTemplateViaEdit {
+		var key_pageTemplateName = "${pageTemplateName}";
 
-		<var name="key_rowEntry" value="Page Template Name" />
+		AssertTextEquals.assertPartialText(
+			locator1 = "PageTemplates#PAGE_TEMPLATE_TABLE_NAME",
+			value1 = "${pageTemplateName}"
+		);
 
-		<while>
-			<condition function="IsElementPresent" locator1="Icon#ROW_VERTICAL_ELLIPSIS" />
-			<then>
-				<execute macro="LexiconEntry#gotoEntryMenuItemNoError">
-					<var name="menuItem" value="Delete" />
-					<var name="rowEntry" value="Page Template Name" />
-				</execute>
+		AssertClick.assertPartialTextClickAt(
+			locator1 = "PageTemplates#PAGE_TEMPLATE_TABLE_NAME",
+			value1 = "${pageTemplateName}"
+		);
+	}
 
-				<execute function="Confirm" value1="Are you sure you want to delete this? It will be deleted immediately." />
+	macro tearDownCP {
+		ProductMenu.gotoPortlet(
+			category = "Sites",
+			panel = "Control Panel",
+			portlet = "Page Templates"
+		);
 
-				<execute macro="Alert#viewSuccessMessage" />
-			</then>
-		</while>
-	</command>
+		var key_rowEntry = "Page Template Name";
 
-	<command name="viewCP">
-		<execute function="AssertTextEquals#assertPartialText" locator1="PageTemplates#PAGE_TEMPLATE_TABLE_NAME" value1="${pageTemplateName}">
-			<var name="key_pageTemplateName" value="${pageTemplateName}" />
-		</execute>
-	</command>
+		while (IsElementPresent(locator1 = "Icon#ROW_VERTICAL_ELLIPSIS")) {
+			LexiconEntry.gotoEntryMenuItemNoError(
+				menuItem = "Delete",
+				rowEntry = "Page Template Name"
+			);
 
-	<command name="viewDefaultCP">
-		<for list="${pageTemplateNameList}" param="pageTemplateName">
-			<var name="key_pageTemplateName" value="${pageTemplateName}" />
+			Confirm(
+				value1 = "Are you sure you want to delete this? It will be deleted immediately."
+			);
 
-			<execute function="AssertTextEquals#assertPartialText" locator1="PageTemplates#PAGE_TEMPLATE_TABLE_NAME" value1="${pageTemplateName}" />
-		</for>
+			Alert.viewSuccessMessage();
+		}
+	}
 
-		<execute function="AssertElementNotPresent" locator1="PageTemplates#PAGE_TEMPLATE_TABLE_NAME_4" />
-	</command>
+	macro viewCP {
+		AssertTextEquals.assertPartialText(
+			locator1 = "PageTemplates#PAGE_TEMPLATE_TABLE_NAME",
+			value1 = "${pageTemplateName}",
+			key_pageTemplateName = "${pageTemplateName}"
+		);
+	}
 
-	<command name="viewDefaultLocalizedCP">
-		<for list="${pageTemplateNameList}" param="pageTemplateNameTranslation">
-			<var name="key_pageTemplateName" value="${pageTemplateNameTranslation}" />
+	macro viewDefaultCP {
+		for (var pageTemplateName : list "${pageTemplateNameList}") {
+			var key_pageTemplateName = "${pageTemplateName}";
 
-			<execute function="AssertTextEquals#assertPartialText" locator1="PageTemplates#PAGE_TEMPLATE_TABLE_NAME" value1="${pageTemplateNameTranslation}" />
-		</for>
+			AssertTextEquals.assertPartialText(
+				locator1 = "PageTemplates#PAGE_TEMPLATE_TABLE_NAME",
+				value1 = "${pageTemplateName}"
+			);
+		}
 
-		<for list="${pageTemplateDescriptionList}" param="DescriptionTranslation">
-			<var name="key_pageTemplateDescription" value="${DescriptionTranslation}" />
+		AssertElementNotPresent(locator1 = "PageTemplates#PAGE_TEMPLATE_TABLE_NAME_4");
+	}
 
-			<execute function="AssertTextEquals#assertPartialText" locator1="PageTemplates#PAGE_TEMPLATE_TABLE_DESCRITPION" value1="${DescriptionTranslation}" />
-		</for>
-	</command>
+	macro viewDefaultLocalizedCP {
+		for (var pageTemplateNameTranslation : list "${pageTemplateNameList}") {
+			var key_pageTemplateName = "${pageTemplateNameTranslation}";
 
-	<command name="viewDefaultPortletPG">
-		<if>
-			<equals arg1="${pageTemplateName}" arg2="Blog" />
-			<then>
-				<execute function="AssertElementPresent" locator1="Home#PORTLET_1" />
-				<execute function="AssertElementPresent" locator1="Home#PORTLET_2" />
-				<execute function="AssertElementPresent" locator1="Home#PORTLET_3" />
+			AssertTextEquals.assertPartialText(
+				locator1 = "PageTemplates#PAGE_TEMPLATE_TABLE_NAME",
+				value1 = "${pageTemplateNameTranslation}"
+			);
+		}
 
-				<for list="${portletTitleList}" param="portletName">
-					<var name="key_portletName" value="${portletName}" />
+		for (var DescriptionTranslation : list "${pageTemplateDescriptionList}") {
+			var key_pageTemplateDescription = "${DescriptionTranslation}";
 
-					<execute function="AssertTextEquals" locator1="Portlet#TITLE" value1="${portletName}" />
-				</for>
-			</then>
-		</if>
-	</command>
+			AssertTextEquals.assertPartialText(
+				locator1 = "PageTemplates#PAGE_TEMPLATE_TABLE_DESCRITPION",
+				value1 = "${DescriptionTranslation}"
+			);
+		}
+	}
 
-	<command name="viewDescription">
-		<var name="key_pageTemplateName" value="${pageTemplateName}" />
+	macro viewDefaultPortletPG {
+		if ("${pageTemplateName}" == "Blog") {
+			AssertElementPresent(locator1 = "Home#PORTLET_1");
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="PageTemplates#PAGE_TEMPLATE_TABLE_NAME" value1="${pageTemplateName}" />
+			AssertElementPresent(locator1 = "Home#PORTLET_2");
 
-		<var name="key_pageTemplateDescription" value="${pageTemplateDescription}" />
+			AssertElementPresent(locator1 = "Home#PORTLET_3");
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="PageTemplates#PAGE_TEMPLATE_TABLE_DESCRITPION" value1="${pageTemplateDescription}" />
-	</command>
+			for (var portletName : list "${portletTitleList}") {
+				var key_portletName = "${portletName}";
 
-	<command name="viewPG">
-		<var name="key_pageTemplateName" value="${pageTemplateName}" />
+				AssertTextEquals(locator1 = "Portlet#TITLE", value1 = "${portletName}");
+			}
+		}
+	}
 
-		<execute function="AssertClick#assertPartialTextClickAt" locator1="PageTemplates#PAGE_TEMPLATE_TABLE_NAME" value1="${pageTemplateName}" />
+	macro viewDescription {
+		var key_pageTemplateName = "${pageTemplateName}";
 
-		<execute function="SelectWindow" locator1="title=${pageTemplateName} - ${siteName}" />
+		AssertTextEquals.assertPartialText(
+			locator1 = "PageTemplates#PAGE_TEMPLATE_TABLE_NAME",
+			value1 = "${pageTemplateName}"
+		);
 
-		<execute function="AssertTextEquals" locator1="Home#SITE_NAME" value1="${pageTemplateName}" />
-		<execute function="AssertTextEquals" locator1="Home#PAGE_TEMPLATE" value1="${pageTemplateName}" />
-	</command>
+		var key_pageTemplateDescription = "${pageTemplateDescription}";
 
-	<command name="viewStatus">
-		<var name="key_pageTemplateName" value="${pageTemplateName}" />
+		AssertTextEquals.assertPartialText(
+			locator1 = "PageTemplates#PAGE_TEMPLATE_TABLE_DESCRITPION",
+			value1 = "${pageTemplateDescription}"
+		);
+	}
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="PageTemplates#PAGE_TEMPLATE_TABLE_NAME" value1="${pageTemplateName}" />
-		<execute function="AssertTextEquals" locator1="PageTemplates#PAGE_TEMPLATE_TABLE_ACTIVE" value1="${pageTemplateStatus}" />
-	</command>
-</definition>
+	macro viewPG {
+		var key_pageTemplateName = "${pageTemplateName}";
+
+		AssertClick.assertPartialTextClickAt(
+			locator1 = "PageTemplates#PAGE_TEMPLATE_TABLE_NAME",
+			value1 = "${pageTemplateName}"
+		);
+
+		SelectWindow(locator1 = "title=${pageTemplateName} - ${siteName}");
+
+		AssertTextEquals(locator1 = "Home#SITE_NAME", value1 = "${pageTemplateName}");
+
+		AssertTextEquals(
+			locator1 = "Home#PAGE_TEMPLATE",
+			value1 = "${pageTemplateName}"
+		);
+	}
+
+	macro viewStatus {
+		var key_pageTemplateName = "${pageTemplateName}";
+
+		AssertTextEquals.assertPartialText(
+			locator1 = "PageTemplates#PAGE_TEMPLATE_TABLE_NAME",
+			value1 = "${pageTemplateName}"
+		);
+
+		AssertTextEquals(
+			locator1 = "PageTemplates#PAGE_TEMPLATE_TABLE_ACTIVE",
+			value1 = "${pageTemplateStatus}"
+		);
+	}
+}

@@ -1,27 +1,25 @@
-<definition>
-	<command name="gotoPermissionSectionViaDropdown">
-		<var name="key_navItem" value="${contentTitle}" />
+definition {
+	macro gotoPermissionSectionViaDropdown {
+		var key_navItem = "${contentTitle}";
 
-		<if>
-			<condition function="IsNotVisible" locator1="RolesPermissionsNavigation#PERMISSIONS_NAVITEM" />
+		if (IsNotVisible(locator1 = "RolesPermissionsNavigation#PERMISSIONS_NAVITEM")) {
+			var key_navItem = "${sectionTitle}";
 
-			<then>
-				<var name="key_navItem" value="${sectionTitle}" />
+			AssertClick(
+				locator1 = "RolesPermissionsNavigation#PERMISSIONS_NAVITEM",
+				value1 = "${sectionTitle}"
+			);
+		}
 
-				<execute function="AssertClick" locator1="RolesPermissionsNavigation#PERMISSIONS_NAVITEM" value1="${sectionTitle}" />
-			</then>
-		</if>
+		if (IsNotVisible(locator1 = "RolesPermissionsNavigation#${permissionName}")) {
+			var key_navItem = "${contentTitle}";
 
-		<if>
-			<condition function="IsNotVisible" locator1="RolesPermissionsNavigation#${permissionName}" />
+			AssertClick(
+				locator1 = "RolesPermissionsNavigation#PERMISSIONS_NAVITEM",
+				value1 = "${contentTitle}"
+			);
+		}
 
-			<then>
-				<var name="key_navItem" value="${contentTitle}" />
-
-				<execute function="AssertClick" locator1="RolesPermissionsNavigation#PERMISSIONS_NAVITEM" value1="${contentTitle}" />
-			</then>
-		</if>
-
-		<execute function="Click" locator1="RolesPermissionsNavigation#${permissionName}" />
-	</command>
-</definition>
+		Click(locator1 = "RolesPermissionsNavigation#${permissionName}");
+	}
+}

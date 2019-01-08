@@ -1,37 +1,32 @@
-<definition>
-	<command name="addDate">
+definition {
 
-		<!--
+	macro addDate {
+
+		/*
 		To ensure the desired month will always be reached, please set the date in current year.
-		-->
+		*/
 
-		<var method="DateUtil#getCurrentMonth()" name="currentDateMonth" />
-		<var method="DateUtil#getCurrentYear()" name="currentDateYear" />
+		var currentDateMonth = DateUtil.getCurrentMonth();
+		var currentDateYear = DateUtil.getCurrentYear();
 
-		<if>
-			<not>
-				<equals arg1="${currentDateMonth}" arg2="12" />
-			</not>
-			<then>
-				<while>
-					<condition function="IsElementNotPresent" locator1="YUICalendarWidget#DATEPICKER_SPECIFIC_MONTH_YEAR">
-						<var name="key_month" value="December" />
-						<var name="key_year" value="${currentDateYear}" />
-					</condition>
+		if (!("${currentDateMonth}" == "12")) {
+			while (IsElementNotPresent(locator1 = "YUICalendarWidget#DATEPICKER_SPECIFIC_MONTH_YEAR", key_month = "December", key_year = "${currentDateYear}")) {
+				Click(locator1 = "YUICalendarWidget#NEXT_MONTH_ARROW");
+			}
+		}
 
-					<then>
-						<execute function="Click" locator1="YUICalendarWidget#NEXT_MONTH_ARROW" />
-					</then>
-				</while>
-			</then>
-		</if>
+		var key_day = "${day}";
+		var key_month = "${month}";
+		var key_year = "${year}";
 
-		<var name="key_day" value="${day}" />
-		<var name="key_month" value="${month}" />
-		<var name="key_year" value="${year}" />
+		AssertTextEquals(
+			locator1 = "YUICalendarWidget#DATEPICKER_SPECIFIC_MONTH_YEAR",
+			value1 = "${month} ${year}"
+		);
 
-		<execute function="AssertTextEquals" locator1="YUICalendarWidget#DATEPICKER_SPECIFIC_MONTH_YEAR" value1="${month} ${year}" />
-
-		<execute function="AssertClick" locator1="YUICalendarWidget#DATEPICKER_SPECIFIC_DAY" value1="${day}" />
-	</command>
-</definition>
+		AssertClick(
+			locator1 = "YUICalendarWidget#DATEPICKER_SPECIFIC_DAY",
+			value1 = "${day}"
+		);
+	}
+}

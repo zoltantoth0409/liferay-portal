@@ -1,1057 +1,1155 @@
-<definition>
-	<var name="entryAuthorFullName" value="Test Test" />
-
-	<command name="addContentWithInlineImage">
-		<execute macro="AlloyEditor#addContent">
-			<var name="content" value="${entryContent}" />
-		</execute>
-
-		<execute macro="ItemSelector#gotoItemSelectorViaAlloyEditor" />
-
-		<execute macro="ItemSelector#uploadFile">
-			<var name="navTab" value="${navTab}" />
-			<var name="uploadFileName" value="${uploadFileName}" />
-		</execute>
-	</command>
+definition {
+	var entryAuthorFullName = "Test Test";
 
-	<command name="addCustomAbstract">
-		<execute function="Click" locator1="Radio#CUSTOM_ABSTRACT" />
+	macro addContentWithInlineImage {
+		AlloyEditor.addContent(content = "${entryContent}");
 
-		<execute macro="PortletEntry#inputDescriptionTextInput">
-			<var name="description" value="${entryAbstractDescription}" />
-		</execute>
-	</command>
+		ItemSelector.gotoItemSelectorViaAlloyEditor();
 
-	<command name="addCustomURL">
-		<execute function="Click" locator1="Radio#CUSTOM_URL" />
+		ItemSelector.uploadFile(
+			navTab = "${navTab}",
+			uploadFileName = "${uploadFileName}"
+		);
+	}
 
-		<execute function="Type" locator1="TextInput#BLOGS_ENTRY_URL" value1="${customURL}" />
-	</command>
+	macro addCustomAbstract {
+		Click(locator1 = "Radio#CUSTOM_ABSTRACT");
 
-	<command name="addEntryContent">
-		<execute macro="AlloyEditor#addTitle">
-			<var name="title" value="${entryTitle}" />
-		</execute>
+		PortletEntry.inputDescriptionTextInput(
+			description = "${entryAbstractDescription}"
+		);
+	}
 
-		<if>
-			<isset var="entrySubtitle" />
-			<then>
-				<execute macro="BlogsEntry#addSubtitle">
-					<var name="entrySubtitle" value="${entrySubtitle}" />
-				</execute>
-			</then>
-		</if>
+	macro addCustomURL {
+		Click(locator1 = "Radio#CUSTOM_URL");
 
-		<execute macro="AlloyEditor#addContent">
-			<var name="content" value="${entryContent}" />
-		</execute>
-	</command>
+		Type(locator1 = "TextInput#BLOGS_ENTRY_URL", value1 = "${customURL}");
+	}
 
-	<command name="addEntryExternalLinkViaBrowseButton">
-		<if>
-			<isset var="entryContent" />
-			<then>
-				<execute function="DoubleClick" locator1="BlogsEntry#CONTENT_LINK">
-					<var name="key_entryContent" value="${entryContent}" />
-				</execute>
-			</then>
-			<else>
-				<execute function="SelectFieldText" locator1="AlloyEditor#CONTENT_FIELD">
-					<var name="key_editor" value="content" />
-				</execute>
-			</else>
-		</if>
-
-		<execute function="Click" locator1="AlloyEditor#TEXT_FORMATTING_LINK" />
-
-		<execute function="Click" locator1="AlloyEditor#TEXT_FORMATTING_LINK_BROWSE_BUTTON" />
-
-		<execute macro="ItemSelector#selectDMImage">
-			<var name="imageFileName" value="${imageFileName}" />
-			<var name="navTab" value="${navTab}" />
-		</execute>
+	macro addEntryContent {
+		AlloyEditor.addTitle(title = "${entryTitle}");
 
-		<execute macro="PortletEntry#publish" />
-	</command>
+		if (isSet(entrySubtitle)) {
+			BlogsEntry.addSubtitle(entrySubtitle = "${entrySubtitle}");
+		}
 
-	<command name="addRelatedAsset">
-		<execute function="AssertClick" locator1="AssetRelatedAssets#RELATED_ASSETS_SELECT" value1="Select" />
+		AlloyEditor.addContent(content = "${entryContent}");
+	}
 
-		<var name="key_assetType" value="${assetType}" />
+	macro addEntryExternalLinkViaBrowseButton {
+		if (isSet(entryContent)) {
+			DoubleClick(
+				locator1 = "BlogsEntry#CONTENT_LINK",
+				key_entryContent = "${entryContent}"
+			);
+		}
+		else {
+			SelectFieldText(locator1 = "AlloyEditor#CONTENT_FIELD", key_editor = "content");
+		}
 
-		<execute function="AssertClick" locator1="AssetRelatedAssets#RELATED_ASSETS_SELECT_MENULIST_ASSET" value1="${assetType}" />
+		Click(locator1 = "AlloyEditor#TEXT_FORMATTING_LINK");
+
+		Click(locator1 = "AlloyEditor#TEXT_FORMATTING_LINK_BROWSE_BUTTON");
 
-		<var name="key_assetTitle" value="${assetTitle}" />
+		ItemSelector.selectDMImage(
+			imageFileName = "${imageFileName}",
+			navTab = "${navTab}"
+		);
+
+		PortletEntry.publish();
+	}
 
-		<execute function="SelectFrame" locator1="AssetRelatedAssets#SELECT_ASSET_IFRAME" />
+	macro addRelatedAsset {
+		AssertClick(
+			locator1 = "AssetRelatedAssets#RELATED_ASSETS_SELECT",
+			value1 = "Select"
+		);
 
-		<execute function="AssertClick" locator1="AssetRelatedAssets#ASSET_TABLE_CHOOSE" value1="${assetTitle}" />
+		var key_assetType = "${assetType}";
 
-		<execute function="SelectFrame" value1="relative=top" />
-	</command>
+		AssertClick(
+			locator1 = "AssetRelatedAssets#RELATED_ASSETS_SELECT_MENULIST_ASSET",
+			value1 = "${assetType}"
+		);
 
-	<command name="addSmallImage">
-		<execute function="Click" locator1="Button#SELECT_FILE_SMALL_IMAGE" />
+		var key_assetTitle = "${assetTitle}";
 
-		<execute macro="ItemSelector#uploadFile">
-			<var name="navTab" value="${navTab}" />
-			<var name="uploadFileName" value="${uploadFileName}" />
-		</execute>
-	</command>
+		SelectFrame(locator1 = "AssetRelatedAssets#SELECT_ASSET_IFRAME");
 
-	<command name="addSubtitle">
-		<execute function="Type#typeEditor" locator1="AlloyEditor#SUBTITLE_FIELD" value1="${entrySubtitle}" />
-	</command>
+		AssertClick(
+			locator1 = "AssetRelatedAssets#ASSET_TABLE_CHOOSE",
+			value1 = "${assetTitle}"
+		);
 
-	<command name="addTag">
-		<var name="key_tagName" value="${tagName}" />
+		SelectFrame(value1 = "relative=top");
+	}
 
-		<execute function="Type" locator1="AssetCategorization#TAGS_FIELD" value1="${tagName}" />
+	macro addSmallImage {
+		Click(locator1 = "Button#SELECT_FILE_SMALL_IMAGE");
 
-		<execute function="AssertClick" locator1="Button#ADD_TAGS" value1="Add" />
+		ItemSelector.uploadFile(
+			navTab = "${navTab}",
+			uploadFileName = "${uploadFileName}"
+		);
+	}
 
-		<execute function="AssertTextEquals" locator1="AssetCategorization#TAG" value1="${tagName}" />
-	</command>
+	macro addSubtitle {
+		Type.typeEditor(
+			locator1 = "AlloyEditor#SUBTITLE_FIELD",
+			value1 = "${entrySubtitle}"
+		);
+	}
 
-	<command name="addTagList">
-		<for list="${tagNameList}" param="tagName">
-			<execute function="Type#clickAtType" locator1="AssetCategorization#CATEGORIES_SEARCH_FIELD" value1="${tagName}" />
+	macro addTag {
+		var key_tagName = "${tagName}";
 
-			<execute function="AssertClick" locator1="Button#ADD_TAGS" value1="Add" />
-		</for>
-	</command>
+		Type(locator1 = "AssetCategorization#TAGS_FIELD", value1 = "${tagName}");
 
-	<command name="addWithTrackbackURLPG">
-		<execute macro="BlogsNavigator#gotoEntryPG">
-			<var name="entryContent" value="${entryContent}" />
-			<var name="entryTitle" value="${entryTitle}" />
-		</execute>
+		AssertClick(locator1 = "Button#ADD_TAGS", value1 = "Add");
 
-		<var name="key_entryContent" value="${entryContent}" />
-		<var name="key_entryTitle" value="${entryTitle}" />
+		AssertTextEquals(locator1 = "AssetCategorization#TAG", value1 = "${tagName}");
+	}
 
-		<execute macro="BlogsEntry#viewPG">
-			<var name="entryContent" value="${entryContent}" />
-			<var name="entryTitle" value="${entryTitle}" />
-		</execute>
+	macro addTagList {
+		for (var tagName : list "${tagNameList}") {
+			Type.clickAtType(
+				locator1 = "AssetCategorization#CATEGORIES_SEARCH_FIELD",
+				value1 = "${tagName}"
+			);
 
-		<execute function="Pause" locator1="3000" />
+			AssertClick(locator1 = "Button#ADD_TAGS", value1 = "Add");
+		}
+	}
 
-		<execute function="Copy" locator1="BlogsEntry#COMMENTS_TRACKBACK_URL" />
+	macro addWithTrackbackURLPG {
+		BlogsNavigator.gotoEntryPG(
+			entryContent = "${entryContent}",
+			entryTitle = "${entryTitle}"
+		);
 
-		<if>
-			<equals arg1="${virtualHosts}" arg2="true" />
-			<then>
-				<execute macro="Navigator#gotoSpecificURLPage">
-					<var name="pageName" value="Blogs Page" />
-					<var name="url" value="${virtualHostsURL}" />
-				</execute>
-			</then>
-			<else>
-				<execute macro="Navigator#gotoPage">
-					<var name="pageName" value="Blogs Page" />
-				</execute>
-			</else>
-		</if>
+		var key_entryContent = "${entryContent}";
+		var key_entryTitle = "${entryTitle}";
 
-		<execute macro="BlogsNavigator#gotoAddEntry" />
+		BlogsEntry.viewPG(
+			entryContent = "${entryContent}",
+			entryTitle = "${entryTitle}"
+		);
 
-		<execute macro="BlogsEntry#addEntryContent">
-			<var name="entryContent" value="${entryContent2}" />
-			<var name="entryTitle" value="${entryTitle2}" />
-		</execute>
+		Pause(locator1 = "3000");
 
-		<execute macro="Panel#expandPanel">
-			<var name="panelHeading" value="Configuration" />
-		</execute>
+		Copy(locator1 = "BlogsEntry#COMMENTS_TRACKBACK_URL");
 
-		<execute function="Paste" locator1="AlloyEditor#TRACKBACKS_TO_SEND" />
+		if ("${virtualHosts}" == "true") {
+			Navigator.gotoSpecificURLPage(
+				pageName = "Blogs Page",
+				url = "${virtualHostsURL}"
+			);
+		}
+		else {
+			Navigator.gotoPage(pageName = "Blogs Page");
+		}
 
-		<execute function="AssertClick" locator1="Button#PUBLISH" value1="Publish" />
+		BlogsNavigator.gotoAddEntry();
 
-		<execute macro="Alert#viewSuccessMessage" />
-	</command>
+		BlogsEntry.addEntryContent(
+			entryContent = "${entryContent2}",
+			entryTitle = "${entryTitle2}"
+		);
 
-	<command name="addWithWorkflowPG">
-		<execute macro="BlogsNavigator#gotoAddEntry" />
+		Panel.expandPanel(panelHeading = "Configuration");
 
-		<execute macro="BlogsEntry#addEntryContent">
-			<var name="entryContent" value="${entryContent}" />
-			<var name="entryTitle" value="${entryTitle}" />
-		</execute>
+		Paste(locator1 = "AlloyEditor#TRACKBACKS_TO_SEND");
 
-		<execute function="AssertClick" locator1="Button#SUBMIT_FOR_PUBLICATION" value1="Submit for Publication" />
+		AssertClick(locator1 = "Button#PUBLISH", value1 = "Publish");
 
-		<execute macro="Alert#viewSuccessMessage" />
-	</command>
+		Alert.viewSuccessMessage();
+	}
 
-	<command name="autoSaveDraft">
-		<execute function="Pause" locator1="30000" />
+	macro addWithWorkflowPG {
+		BlogsNavigator.gotoAddEntry();
 
-		<execute function="AssertElementPresent" locator1="Message#DRAFT_AUTO_SAVE" />
-	</command>
+		BlogsEntry.addEntryContent(
+			entryContent = "${entryContent}",
+			entryTitle = "${entryTitle}"
+		);
 
-	<command name="editContent">
-		<execute function="AssertTextEquals" locator1="AlloyEditor#CONTENT_FIELD" value1="${entryContent}" />
+		AssertClick(
+			locator1 = "Button#SUBMIT_FOR_PUBLICATION",
+			value1 = "Submit for Publication"
+		);
 
-		<execute macro="AlloyEditor#addContent">
-			<var name="content" value="${entryContentEdit}" />
-		</execute>
-	</command>
+		Alert.viewSuccessMessage();
+	}
 
-	<command name="editDisplayDate">
-		<var method="DateUtil#getCurrentDate()" name="displayDateDay" />
-		<var method="DateUtil#getCurrentMonth()" name="displayDateMonth" />
-		<var method="DateUtil#getCurrentYear()" name="displayDateYear" />
+	macro autoSaveDraft {
+		Pause(locator1 = "30000");
 
-		<var name="displayDate" value="${displayDateMonth}/${displayDateDay}/${displayDateYear}" />
+		AssertElementPresent(locator1 = "Message#DRAFT_AUTO_SAVE");
+	}
 
-		<execute function="Type" locator1="TextInput#DISPLAY_DATE" value1="${displayDate}" />
+	macro editContent {
+		AssertTextEquals(
+			locator1 = "AlloyEditor#CONTENT_FIELD",
+			value1 = "${entryContent}"
+		);
+
+		AlloyEditor.addContent(content = "${entryContentEdit}");
+	}
+
+	macro editDisplayDate {
+		var displayDateDay = DateUtil.getCurrentDate();
+		var displayDateMonth = DateUtil.getCurrentMonth();
+		var displayDateYear = DateUtil.getCurrentYear();
+		var displayDate = "${displayDateMonth}/${displayDateDay}/${displayDateYear}";
 
-		<var method="DateUtil#getCurrentHour()" name="displayTimeHour" />
+		Type(locator1 = "TextInput#DISPLAY_DATE", value1 = "${displayDate}");
 
-		<var name="displayTimeMinute" value="${displayTimeMinute}" />
+		var displayTimeHour = DateUtil.getCurrentHour();
+		var displayTimeMinute = "${displayTimeMinute}";
+		var displayTime = "${displayTimeHour}:${displayTimeMinute}";
 
-		<var name="displayTime" value="${displayTimeHour}:${displayTimeMinute}" />
+		Type(locator1 = "TextInput#DISPLAY_DATE_TIME", value1 = "${displayTime}");
+	}
 
-		<execute function="Type" locator1="TextInput#DISPLAY_DATE_TIME" value1="${displayTime}" />
-	</command>
+	macro editDisplayDateYear {
+		var displayDateDay = selenium.getElementValue("TextInput#DISPLAY_DATE_DAY");
+		var displayDateMonth = selenium.getElementValue("TextInput#DISPLAY_DATE_MONTH");
+		var displayDateYear = DateUtil.getCurrentYear();
+		var displayDateYear = MathUtil.sum("${displayDateYear}", "1");
+		var displayDate = "${displayDateMonth}/${displayDateDay}/${displayDateYear}";
 
-	<command name="editDisplayDateYear">
-		<var method="selenium#getElementValue('TextInput#DISPLAY_DATE_DAY')" name="displayDateDay" />
-		<var method="selenium#getElementValue('TextInput#DISPLAY_DATE_MONTH')" name="displayDateMonth" />
-		<var method="DateUtil#getCurrentYear()" name="displayDateYear" />
+		Type(locator1 = "TextInput#DISPLAY_DATE", value1 = "${displayDate}");
+	}
 
-		<var method="MathUtil#sum('${displayDateYear}', '1')" name="displayDateYear" />
+	macro editEntryContent {
+		BlogsEntry.editTitle(
+			entryTitle = "${entryTitle}",
+			entryTitleEdit = "${entryTitleEdit}"
+		);
 
-		<var name="displayDate" value="${displayDateMonth}/${displayDateDay}/${displayDateYear}" />
+		if (isSet(entrySubtitleEdit)) {
+			BlogsEntry.editSubtitle(
+				entrySubtitle = "${entrySubtitle}",
+				entrySubtitleEdit = "${entrySubtitleEdit}"
+			);
+		}
 
-		<execute function="Type" locator1="TextInput#DISPLAY_DATE" value1="${displayDate}" />
-	</command>
+		BlogsEntry.editContent(
+			entryContent = "${entryContent}",
+			entryContentEdit = "${entryContentEdit}"
+		);
+	}
 
-	<command name="editEntryContent">
-		<execute macro="BlogsEntry#editTitle">
-			<var name="entryTitle" value="${entryTitle}" />
-			<var name="entryTitleEdit" value="${entryTitleEdit}" />
-		</execute>
+	macro editNoPermissionPG {
+		var key_entryTitle = "${entryTitle}";
 
-		<if>
-			<isset var="entrySubtitleEdit" />
-			<then>
-				<execute macro="BlogsEntry#editSubtitle">
-					<var name="entrySubtitle" value="${entrySubtitle}" />
-					<var name="entrySubtitleEdit" value="${entrySubtitleEdit}" />
-				</execute>
-			</then>
-		</if>
+		AssertTextEquals(locator1 = "BlogsEntry#TITLE", value1 = "${entryTitle}");
 
-		<execute macro="BlogsEntry#editContent">
-			<var name="entryContent" value="${entryContent}" />
-			<var name="entryContentEdit" value="${entryContentEdit}" />
-		</execute>
-	</command>
+		var key_entryContent = "${entryContent}";
 
-	<command name="editNoPermissionPG">
-		<var name="key_entryTitle" value="${entryTitle}" />
+		AssertTextEquals(locator1 = "BlogsEntry#CONTENT", value1 = "${entryContent}");
 
-		<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="${entryTitle}" />
+		Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
 
-		<var name="key_entryContent" value="${entryContent}" />
+		AssertElementNotPresent(
+			locator1 = "MenuItem#ANY_MENU_ITEM",
+			key_menuItem = "Edit"
+		);
+	}
 
-		<execute function="AssertTextEquals" locator1="BlogsEntry#CONTENT" value1="${entryContent}" />
+	macro editSubtitle {
+		AssertTextEquals(
+			locator1 = "AlloyEditor#SUBTITLE_FIELD",
+			value1 = "${entrySubtitle}"
+		);
 
-		<execute function="Click" locator1="Icon#BODY_VERTICAL_ELLIPSIS" />
+		Type.typeEditor(
+			locator1 = "AlloyEditor#SUBTITLE_FIELD",
+			value1 = "${entrySubtitleEdit}"
+		);
+	}
 
-		<execute function="AssertElementNotPresent" locator1="MenuItem#ANY_MENU_ITEM">
-			<var name="key_menuItem" value="Edit" />
-		</execute>
-	</command>
+	macro editTitle {
+		AssertTextEquals(locator1 = "AlloyEditor#TITLE_FIELD", value1 = "${entryTitle}");
 
-	<command name="editSubtitle">
-		<execute function="AssertTextEquals" locator1="AlloyEditor#SUBTITLE_FIELD" value1="${entrySubtitle}" />
+		AlloyEditor.addTitle(title = "${entryTitleEdit}");
+	}
 
-		<execute function="Type#typeEditor" locator1="AlloyEditor#SUBTITLE_FIELD" value1="${entrySubtitleEdit}" />
-	</command>
+	macro entryAddPermissions {
+		if (isSet(viewableBy)) {
+			Select(
+				locator1 = "AssetPermissions#VIEWABLE_AS_SELECT",
+				value1 = "${viewableBy}"
+			);
+		}
 
-	<command name="editTitle">
-		<execute function="AssertTextEquals" locator1="AlloyEditor#TITLE_FIELD" value1="${entryTitle}" />
+		if (isSet(permissionDefinitionKey)) {
+			if (IsNotVisible(locator1 = "AssetPermissions#HIDE_OPTIONS_LINK")) {
+				AssertClick.assertPartialTextClickAt(
+					locator1 = "AssetPermissions#MORE_OPTIONS_LINK",
+					value1 = "More Options"
+				);
+			}
 
-		<execute macro="AlloyEditor#addTitle">
-			<var name="title" value="${entryTitleEdit}" />
-		</execute>
-	</command>
+			var key_permissionDefinitionKey = "${permissionDefinitionKey}";
+			var key_roleName = "${roleName}";
 
-	<command name="entryAddPermissions">
-		<if>
-			<isset var="viewableBy" />
-			<then>
-				<execute function="Select" locator1="AssetPermissions#VIEWABLE_AS_SELECT" value1="${viewableBy}" />
-			</then>
-		</if>
+			Check(locator1 = "AssetPermissions#PERMISSIONS_CHECKBOX");
+		}
+	}
 
-		<if>
-			<isset var="permissionDefinitionKey" />
-			<then>
-				<if>
-					<condition function="IsNotVisible" locator1="AssetPermissions#HIDE_OPTIONS_LINK" />
-					<then>
-						<execute function="AssertClick#assertPartialTextClickAt" locator1="AssetPermissions#MORE_OPTIONS_LINK" value1="More Options" />
-					</then>
-				</if>
+	macro flagPG {
+		var key_entryTitle = "${entryTitle}";
 
-				<var name="key_permissionDefinitionKey" value="${permissionDefinitionKey}" />
-				<var name="key_roleName" value="${roleName}" />
+		Click(locator1 = "BlogsEntry#FLAG_LINK");
 
-				<execute function="Check" locator1="AssetPermissions#PERMISSIONS_CHECKBOX" />
-			</then>
-		</if>
-	</command>
+		AssertElementPresent.assertVisible(locator1 = "BlogsEntry#FLAG_MODAL");
 
-	<command name="flagPG">
-		<var name="key_entryTitle" value="${entryTitle}" />
+		AssertTextEquals(
+			locator1 = "ReportContent#WARNING",
+			value1 = "You are about to report a violation of our Terms of Use. All reports are strictly confidential."
+		);
 
-		<execute function="Click" locator1="BlogsEntry#FLAG_LINK" />
+		AssertTextEquals(
+			locator1 = "ReportContent#WARNING_TERMS_OF_USE_LINK",
+			value1 = "Terms of Use"
+		);
 
-		<execute function="AssertElementPresent#assertVisible" locator1="BlogsEntry#FLAG_MODAL" />
-		<execute function="AssertTextEquals" locator1="ReportContent#WARNING" value1="You are about to report a violation of our Terms of Use. All reports are strictly confidential." />
-		<execute function="AssertTextEquals" locator1="ReportContent#WARNING_TERMS_OF_USE_LINK" value1="Terms of Use" />
+		Select(locator1 = "ReportContent#REASON_SELECT", value1 = "${flagReason}");
 
-		<execute function="Select" locator1="ReportContent#REASON_SELECT" value1="${flagReason}" />
+		Button.clickSave();
 
-		<execute macro="Button#clickSave" />
+		AssertTextEquals.assertPartialText(
+			locator1 = "ReportContent#SUCCESS_MESSAGE",
+			value1 = "Although we cannot disclose our final decision, we do review every report and appreciate your effort to make sure ${siteName} is a safe environment for everyone."
+		);
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="ReportContent#SUCCESS_MESSAGE" value1="Although we cannot disclose our final decision, we do review every report and appreciate your effort to make sure ${siteName} is a safe environment for everyone." />
+		Click(locator1 = "Icon#CLOSE");
+	}
 
-		<execute function="Click" locator1="Icon#CLOSE" />
-	</command>
+	macro moveToRecycleBinCP {
+		var key_entryTitle = "${entryTitle}";
 
-	<command name="moveToRecycleBinCP">
-		<var name="key_entryTitle" value="${entryTitle}" />
+		AssertTextEquals(
+			locator1 = "Blogs#DESCRIPTIVE_VIEW_ENTRY_TITLE",
+			value1 = "${entryTitle}"
+		);
 
-		<execute function="AssertTextEquals" locator1="Blogs#DESCRIPTIVE_VIEW_ENTRY_TITLE" value1="${entryTitle}" />
+		Click(locator1 = "Blogs#DESCRIPTIVE_VIEW_ENTRY_OPTIONS_DROPDOWN");
 
-		<execute function="Click" locator1="Blogs#DESCRIPTIVE_VIEW_ENTRY_OPTIONS_DROPDOWN" />
+		PortletEntry.clickMoveToRecycleBin();
 
-		<execute macro="PortletEntry#clickMoveToRecycleBin" />
+		AssertElementPresent(locator1 = "Message#SUCCESS");
+	}
 
-		<execute function="AssertElementPresent" locator1="Message#SUCCESS" />
-	</command>
+	macro moveToRecycleBinDraftCP {
+		var key_entryTitle = "${entryTitle}";
 
-	<command name="moveToRecycleBinDraftCP">
-		<var name="key_entryTitle" value="${entryTitle}" />
+		AssertTextEquals(
+			locator1 = "Blogs#DESCRIPTIVE_VIEW_ENTRY_TITLE",
+			value1 = "${entryTitle}"
+		);
 
-		<execute function="AssertTextEquals" locator1="Blogs#DESCRIPTIVE_VIEW_ENTRY_TITLE" value1="${entryTitle}" />
-		<execute function="AssertTextEquals" locator1="Blogs#DESCRIPTIVE_VIEW_ENTRY_STATUS" value1="Draft" />
+		AssertTextEquals(
+			locator1 = "Blogs#DESCRIPTIVE_VIEW_ENTRY_STATUS",
+			value1 = "Draft"
+		);
 
-		<execute function="Click" locator1="Blogs#DESCRIPTIVE_VIEW_ENTRY_OPTIONS_DROPDOWN" />
+		Click(locator1 = "Blogs#DESCRIPTIVE_VIEW_ENTRY_OPTIONS_DROPDOWN");
 
-		<execute macro="PortletEntry#clickMoveToRecycleBin" />
+		PortletEntry.clickMoveToRecycleBin();
 
-		<execute function="AssertElementPresent" locator1="Message#SUCCESS" />
-	</command>
+		AssertElementPresent(locator1 = "Message#SUCCESS");
+	}
 
-	<command name="moveToRecycleBinNoPermissionPG">
-		<execute function="AssertElementNotPresent" locator1="Link#MOVE_TO_THE_RECYCLE_BIN" />
-	</command>
+	macro moveToRecycleBinNoPermissionPG {
+		AssertElementNotPresent(locator1 = "Link#MOVE_TO_THE_RECYCLE_BIN");
+	}
 
-	<command name="moveToRecycleBinPG">
-		<var name="key_entryContent" value="${entryContent}" />
-		<var name="key_entryTitle" value="${entryTitle}" />
+	macro moveToRecycleBinPG {
+		var key_entryContent = "${entryContent}";
+		var key_entryTitle = "${entryTitle}";
 
-		<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="${entryTitle}" />
-		<execute function="AssertTextEquals" locator1="BlogsEntry#CONTENT" value1="${entryContent}" />
+		AssertTextEquals(locator1 = "BlogsEntry#TITLE", value1 = "${entryTitle}");
 
-		<var name="key_assetHeader" value="${entryTitle}" />
+		AssertTextEquals(locator1 = "BlogsEntry#CONTENT", value1 = "${entryContent}");
 
-		<execute function="Click" locator1="Icon#DESCRIPTIVE_HEADER_VERTICAL_ELLIPSIS" />
+		var key_assetHeader = "${entryTitle}";
 
-		<execute macro="PortletEntry#clickMoveToRecycleBin" />
+		Click(locator1 = "Icon#DESCRIPTIVE_HEADER_VERTICAL_ELLIPSIS");
 
-		<execute function="AssertElementPresent" locator1="Message#SUCCESS" />
-		<execute function="AssertElementNotPresent" locator1="BlogsEntry#TITLE" />
-		<execute function="AssertElementNotPresent" locator1="BlogsEntry#CONTENT" />
-	</command>
+		PortletEntry.clickMoveToRecycleBin();
 
-	<command name="publishWithInvalidContent">
-		<execute function="AssertClick" locator1="Button#PUBLISH" value1="Publish" />
+		AssertElementPresent(locator1 = "Message#SUCCESS");
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="BlogsEntry#CONTENT_FIELD_HELPER" value1="This field is required." />
-		<execute function="AssertElementNotPresent" locator1="Message#SUCCESS" />
-	</command>
+		AssertElementNotPresent(locator1 = "BlogsEntry#TITLE");
 
-	<command name="publishWithInvalidTitle">
-		<execute function="AssertClick" locator1="Button#PUBLISH" value1="Publish" />
+		AssertElementNotPresent(locator1 = "BlogsEntry#CONTENT");
+	}
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="BlogsEntry#TITLE_FIELD_HELPER" value1="This field is required to publish the entry." />
-		<execute function="AssertElementNotPresent" locator1="Message#SUCCESS" />
-	</command>
+	macro publishWithInvalidContent {
+		AssertClick(locator1 = "Button#PUBLISH", value1 = "Publish");
 
-	<command name="publishWithInvalidTitleLength">
-		<execute function="AssertClick" locator1="Button#PUBLISH" value1="Publish" />
+		AssertTextEquals.assertPartialText(
+			locator1 = "BlogsEntry#CONTENT_FIELD_HELPER",
+			value1 = "This field is required."
+		);
 
-		<execute macro="Alert#viewRequestFailedToComplete" />
+		AssertElementNotPresent(locator1 = "Message#SUCCESS");
+	}
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="Message#ERROR_ENTER_A_VALID_TITLE" value1="Please enter a valid title." />
-	</command>
+	macro publishWithInvalidTitle {
+		AssertClick(locator1 = "Button#PUBLISH", value1 = "Publish");
 
-	<command name="publishWithWorkflow">
-		<var name="key_entryTitle" value="${entryTitle}" />
+		AssertTextEquals.assertPartialText(
+			locator1 = "BlogsEntry#TITLE_FIELD_HELPER",
+			value1 = "This field is required to publish the entry."
+		);
 
-		<execute function="AssertClick" locator1="Button#SUBMIT_FOR_PUBLICATION" value1="Submit for Publication" />
+		AssertElementNotPresent(locator1 = "Message#SUCCESS");
+	}
 
-		<execute macro="Alert#viewSuccessMessage" />
-	</command>
+	macro publishWithInvalidTitleLength {
+		AssertClick(locator1 = "Button#PUBLISH", value1 = "Publish");
 
-	<command name="rateThumbsDown">
-		<var name="key_entryTitle" value="${entryTitle}" />
+		Alert.viewRequestFailedToComplete();
 
-		<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="${entryTitle}" />
+		AssertTextEquals.assertPartialText(
+			locator1 = "Message#ERROR_ENTER_A_VALID_TITLE",
+			value1 = "Please enter a valid title."
+		);
+	}
 
-		<execute function="Click" locator1="Ratings#THUMBS_DOWN" />
-	</command>
+	macro publishWithWorkflow {
+		var key_entryTitle = "${entryTitle}";
 
-	<command name="rateThumbsUp">
-		<var name="key_entryTitle" value="${entryTitle}" />
+		AssertClick(
+			locator1 = "Button#SUBMIT_FOR_PUBLICATION",
+			value1 = "Submit for Publication"
+		);
 
-		<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="${entryTitle}" />
+		Alert.viewSuccessMessage();
+	}
 
-		<execute function="Click" locator1="Ratings#THUMBS_UP" />
-	</command>
+	macro rateThumbsDown {
+		var key_entryTitle = "${entryTitle}";
 
-	<command name="removeSmallImage">
-		<execute function="Click" locator1="Button#REMOVE_IMAGE" />
+		AssertTextEquals(locator1 = "BlogsEntry#TITLE", value1 = "${entryTitle}");
 
-		<execute function="AssertElementNotPresent" locator1="BlogsEntry#SMALL_IMAGE">
-			<var name="key_smallImage" value="${uploadFileName}" />
-		</execute>
+		Click(locator1 = "Ratings#THUMBS_DOWN");
+	}
 
-		<execute function="AssertElementPresent" locator1="Button#SELECT_FILE_SMALL_IMAGE" />
-	</command>
+	macro rateThumbsUp {
+		var key_entryTitle = "${entryTitle}";
 
-	<command name="removeViewPermissionsPG">
-		<var name="key_assetHeader" value="${entryTitle}" />
-		<var method="StringUtil#replace('${roleName}', ' ', '-')" name="key_roleName" />
-		<var method="StringUtil#lowerCase('${key_roleName}')" name="key_roleName" />
+		AssertTextEquals(locator1 = "BlogsEntry#TITLE", value1 = "${entryTitle}");
 
-		<execute function="Click" locator1="Icon#DESCRIPTIVE_HEADER_VERTICAL_ELLIPSIS" />
+		Click(locator1 = "Ratings#THUMBS_UP");
+	}
 
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="Permissions">
-			<var name="key_menuItem" value="Permissions" />
-		</execute>
+	macro removeSmallImage {
+		Click(locator1 = "Button#REMOVE_IMAGE");
 
-		<execute macro="IFrame#selectPermissionsFrame" />
+		AssertElementNotPresent(
+			locator1 = "BlogsEntry#SMALL_IMAGE",
+			key_smallImage = "${uploadFileName}"
+		);
 
-		<execute function="Uncheck" locator1="Permissions#CONTENT_PERMISSIONS_VIEW_CHECKBOX" value1="${roleName}" />
+		AssertElementPresent(locator1 = "Button#SELECT_FILE_SMALL_IMAGE");
+	}
 
-		<execute macro="Button#clickSave" />
+	macro removeViewPermissionsPG {
+		var key_assetHeader = "${entryTitle}";
+		var key_roleName = StringUtil.replace("${roleName}", " ", "-");
+		var key_roleName = StringUtil.lowerCase("${key_roleName}");
 
-		<execute function="SelectFrame" value1="relative=top" />
-	</command>
+		Click(locator1 = "Icon#DESCRIPTIVE_HEADER_VERTICAL_ELLIPSIS");
 
-	<command name="saveAsDraft">
-		<execute function="AssertClick" locator1="Button#SAVE_AS_DRAFT" value1="Save as Draft" />
+		AssertClick(
+			locator1 = "MenuItem#ANY_MENU_ITEM",
+			value1 = "Permissions",
+			key_menuItem = "Permissions"
+		);
 
-		<execute macro="Alert#viewSuccessMessage" />
-	</command>
+		IFrame.selectPermissionsFrame();
 
-	<command name="scheduleBlogEntry">
-		<var method="selenium#getElementValue('TextInput#DISPLAY_DATE_DAY')" name="displayDateDay" />
-		<var method="selenium#getElementValue('TextInput#DISPLAY_DATE_MONTH')" name="displayDateMonth" />
+		Uncheck(
+			locator1 = "Permissions#CONTENT_PERMISSIONS_VIEW_CHECKBOX",
+			value1 = "${roleName}"
+		);
 
-		<var method="MathUtil#sum('${displayDateMonth}', '1')" name="displayDateMonth" />
+		Button.clickSave();
 
-		<var method="selenium#getElementValue('TextInput#DISPLAY_DATE_YEAR')" name="displayDateYear" />
+		SelectFrame(value1 = "relative=top");
+	}
 
-		<var name="displayDate" value="${displayDateMonth}/${displayDateDay}/${displayDateYear}" />
+	macro saveAsDraft {
+		AssertClick(locator1 = "Button#SAVE_AS_DRAFT", value1 = "Save as Draft");
 
-		<execute function="Type" locator1="TextInput#DISPLAY_DATE" value1="${displayDate}" />
+		Alert.viewSuccessMessage();
+	}
 
-		<var method="selenium#getElementValue('TextInput#DISPLAY_DATE_HOUR')" name="displayDateHour" />
+	macro scheduleBlogEntry {
+		var displayDateDay = selenium.getElementValue("TextInput#DISPLAY_DATE_DAY");
+		var displayDateMonth = selenium.getElementValue("TextInput#DISPLAY_DATE_MONTH");
+		var displayDateMonth = MathUtil.sum("${displayDateMonth}", "1");
+		var displayDateYear = selenium.getElementValue("TextInput#DISPLAY_DATE_YEAR");
+		var displayDate = "${displayDateMonth}/${displayDateDay}/${displayDateYear}";
 
-		<var method="StringUtil#length('${displayDateHour}')" name="displayDateHourLength" />
+		Type(locator1 = "TextInput#DISPLAY_DATE", value1 = "${displayDate}");
 
-		<if>
-			<equals arg1="${displayDateHourLength}" arg2="1" />
-			<then>
-				<var name="displayDateHour" value="0${displayDateHour}" />
-			</then>
-		</if>
+		var displayDateHour = selenium.getElementValue("TextInput#DISPLAY_DATE_HOUR");
+		var displayDateHourLength = StringUtil.length("${displayDateHour}");
 
-		<var method="selenium#getElementValue('TextInput#DISPLAY_DATE_MINUTE')" name="displayDateMinute" />
+		if ("${displayDateHourLength}" == "1") {
+			var displayDateHour = "0${displayDateHour}";
+		}
 
-		<var method="MathUtil#sum('${displayDateMinute}', '3')" name="displayDateMinuteFuture" />
+		var displayDateMinute = selenium.getElementValue("TextInput#DISPLAY_DATE_MINUTE");
+		var displayDateMinuteFuture = MathUtil.sum("${displayDateMinute}", "3");
+		var displayDateMinuteFutureLength = StringUtil.length("${displayDateMinuteFuture}");
 
-		<var method="StringUtil#length('${displayDateMinuteFuture}')" name="displayDateMinuteFutureLength" />
+		if ("${displayDateMinuteFutureLength}" == "1") {
+			var displayDateMinuteFuture = "0${displayDateMinuteFuture}";
+		}
 
-		<if>
-			<equals arg1="${displayDateMinuteFutureLength}" arg2="1" />
-			<then>
-				<var name="displayDateMinuteFuture" value="0${displayDateMinuteFuture}" />
-			</then>
-		</if>
+		var displayDateMeridian = selenium.getElementValue("TextInput#DISPLAY_DATE_MERIDIAN");
+		var displayDateMeridian = StringUtil.replace("${displayDateMeridian}", "0", "AM");
+		var displayDateMeridian = StringUtil.replace("${displayDateMeridian}", "1", "PM");
+		var displayTime = "${displayDateHour}:${displayDateMinuteFuture} ${displayDateMeridian}";
 
-		<var method="selenium#getElementValue('TextInput#DISPLAY_DATE_MERIDIAN')" name="displayDateMeridian" />
+		Type(locator1 = "TextInput#DISPLAY_DATE_TIME", value1 = "${displayTime}");
+	}
 
-		<var method="StringUtil#replace('${displayDateMeridian}', '0', 'AM')" name="displayDateMeridian" />
-		<var method="StringUtil#replace('${displayDateMeridian}', '1', 'PM')" name="displayDateMeridian" />
+	macro searchCP {
+		var key_entryContent = "${entryContent}";
+		var key_entryTitle = "${entryTitle}";
 
-		<var name="displayTime" value="${displayDateHour}:${displayDateMinuteFuture} ${displayDateMeridian}" />
+		Type(locator1 = "NavBar#BASIC_SEARCH_FIELD", value1 = "${entrySearchTerm}");
 
-		<execute function="Type" locator1="TextInput#DISPLAY_DATE_TIME" value1="${displayTime}" />
-	</command>
+		KeyPress(locator1 = "NavBar#BASIC_SEARCH_FIELD", value1 = "\RETURN");
 
-	<command name="searchCP">
-		<var name="key_entryContent" value="${entryContent}" />
-		<var name="key_entryTitle" value="${entryTitle}" />
+		AssertTextEquals(
+			locator1 = "Blogs#DESCRIPTIVE_VIEW_ENTRY_TITLE",
+			value1 = "${entryTitle}"
+		);
+	}
 
-		<execute function="Type" locator1="NavBar#BASIC_SEARCH_FIELD" value1="${entrySearchTerm}" />
+	macro searchNoCP {
+		var key_entryContent = "${entryContent}";
+		var key_entryTitle = "${entryTitle}";
 
-		<execute function="KeyPress" locator1="NavBar#BASIC_SEARCH_FIELD" value1="\RETURN" />
+		Type(locator1 = "NavBar#BASIC_SEARCH_FIELD", value1 = "${entrySearchTerm}");
 
-		<execute function="AssertTextEquals" locator1="Blogs#DESCRIPTIVE_VIEW_ENTRY_TITLE" value1="${entryTitle}" />
-	</command>
+		KeyPress(locator1 = "NavBar#BASIC_SEARCH_FIELD", value1 = "\RETURN");
 
-	<command name="searchNoCP">
-		<var name="key_entryContent" value="${entryContent}" />
-		<var name="key_entryTitle" value="${entryTitle}" />
+		AssertTextEquals(
+			locator1 = "Message#EMPTY_INFO",
+			value1 = "No entries were found."
+		);
 
-		<execute function="Type" locator1="NavBar#BASIC_SEARCH_FIELD" value1="${entrySearchTerm}" />
+		AssertElementNotPresent(locator1 = "Blogs#DESCRIPTIVE_VIEW_ENTRY_TITLE");
+	}
 
-		<execute function="KeyPress" locator1="NavBar#BASIC_SEARCH_FIELD" value1="\RETURN" />
+	macro selectFormattingStyle {
+		SelectFieldText(locator1 = "AlloyEditor#CONTENT_FIELD");
 
-		<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No entries were found." />
-		<execute function="AssertElementNotPresent" locator1="Blogs#DESCRIPTIVE_VIEW_ENTRY_TITLE" />
-	</command>
+		Click(locator1 = "AlloyEditor#TEXT_FORMATTING_STYLE");
 
-	<command name="selectFormattingStyle">
-		<execute function="SelectFieldText" locator1="AlloyEditor#CONTENT_FIELD" />
+		Click(
+			locator1 = "AlloyEditor#TEXT_FORMATTING_STYLE_DROPDOWN",
+			key_styleFormat = "${styleFormat}"
+		);
+	}
 
-		<execute function="Click" locator1="AlloyEditor#TEXT_FORMATTING_STYLE" />
+	macro subscribePG {
+		AssertClick(locator1 = "Link#SUBSCRIBE", value1 = "Subscribe");
 
-		<execute function="Click" locator1="AlloyEditor#TEXT_FORMATTING_STYLE_DROPDOWN">
-			<var name="key_styleFormat" value="${styleFormat}" />
-		</execute>
-	</command>
+		Alert.viewSuccessMessage();
+	}
 
-	<command name="subscribePG">
-		<execute function="AssertClick" locator1="Link#SUBSCRIBE" value1="Subscribe" />
+	macro tearDownCP {
+		Navigator.openURL();
 
-		<execute macro="Alert#viewSuccessMessage" />
-	</command>
+		ProductMenu.gotoPortlet(
+			category = "Content",
+			panel = "Site Administration",
+			portlet = "Blogs"
+		);
 
-	<command name="tearDownCP">
-		<execute macro="Navigator#openURL" />
+		if (IsElementPresent(locator1 = "Message#EMPTY_INFO", value1 = "No entries were found.")) {
+			Blogs.viewNoEntryCP();
+		}
+		else {
+			Check.checkAll(locator1 = "Checkbox#SELECT_ALL");
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Content" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Blogs" />
-		</execute>
+			Click(locator1 = "Icon#MOVE_TO_RECYCLE_BIN");
 
-		<if>
-			<condition function="IsElementPresent" locator1="Message#EMPTY_INFO" value1="No entries were found." />
-			<then>
-				<execute macro="Blogs#viewNoEntryCP" />
-			</then>
-			<else>
-				<execute function="Check#checkAll" locator1="Checkbox#SELECT_ALL" />
+			AssertElementPresent(locator1 = "Message#SUCCESS");
+		}
 
-				<execute function="Click" locator1="Icon#MOVE_TO_RECYCLE_BIN" />
+		Navigator.openURL();
 
-				<execute function="AssertElementPresent" locator1="Message#SUCCESS" />
-			</else>
-		</if>
+		ProductMenu.gotoPortlet(
+			category = "Content",
+			panel = "Site Administration",
+			portlet = "Recycle Bin"
+		);
 
-		<execute macro="Navigator#openURL" />
+		RecycleBin.emptyCP();
+	}
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Content" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Recycle Bin" />
-		</execute>
+	macro viewAbstractDisplay {
+		var key_entryAbstractDescription = "${entryAbstractDescription}";
+		var key_entryTitle = "${entryTitle}";
 
-		<execute macro="RecycleBin#emptyCP" />
-	</command>
+		AssertTextEquals(locator1 = "BlogsEntry#TITLE", value1 = "${entryTitle}");
 
-	<command name="viewAbstractDisplay">
-		<var name="key_entryAbstractDescription" value="${entryAbstractDescription}" />
-		<var name="key_entryTitle" value="${entryTitle}" />
+		AssertTextEquals.assertPartialText(
+			locator1 = "BlogsEntry#CONTENT_ABSTRACT",
+			value1 = "${entryAbstractDescription}"
+		);
 
-		<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="${entryTitle}" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="BlogsEntry#CONTENT_ABSTRACT" value1="${entryAbstractDescription}" />
-		<execute function="AssertTextNotEquals" locator1="BlogsEntry#CONTENT_GENERIC" value1="${entryContent}" />
-	</command>
+		AssertTextNotEquals(
+			locator1 = "BlogsEntry#CONTENT_GENERIC",
+			value1 = "${entryContent}"
+		);
+	}
 
-	<command name="viewAsRelatedAssetPG">
-		<var name="key_assetTitle" value="${assetTitle}" />
-		<var name="key_entryContent" value="${entryContent}" />
-		<var name="key_entryTitle" value="${entryTitle}" />
+	macro viewAsRelatedAssetPG {
+		var key_assetTitle = "${assetTitle}";
+		var key_entryContent = "${entryContent}";
+		var key_entryTitle = "${entryTitle}";
 
-		<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="${entryTitle}" />
-		<execute function="AssertTextEquals" locator1="BlogsEntry#CONTENT" value1="${entryContent}" />
-		<execute function="AssertTextEquals" locator1="AssetRelatedAssets#HEADER" value1="Related Assets:" />
-		<execute function="AssertTextEquals" locator1="AssetRelatedAssets#ASSET_TITLE" value1="${assetTitle}" />
-	</command>
+		AssertTextEquals(locator1 = "BlogsEntry#TITLE", value1 = "${entryTitle}");
 
-	<command name="viewDefaultCP">
-		<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="No entries were found." />
-		<execute function="AssertElementNotPresent" locator1="Blogs#ENTRY_TABLE_TITLE" />
-	</command>
+		AssertTextEquals(locator1 = "BlogsEntry#CONTENT", value1 = "${entryContent}");
 
-	<command name="viewDisabledSocialBookmarkSites">
-		<execute function="AssertElementNotPresent" locator1="Icon#SHARE" />
-	</command>
+		AssertTextEquals(
+			locator1 = "AssetRelatedAssets#HEADER",
+			value1 = "Related Assets:"
+		);
 
-	<command name="viewEnabledSocialBookmarkSites">
-		<execute function="Click" locator1="Icon#SHARE" />
+		AssertTextEquals(
+			locator1 = "AssetRelatedAssets#ASSET_TITLE",
+			value1 = "${assetTitle}"
+		);
+	}
 
-		<for list="${socialBookmarkSites}" param="socialBookmarkSite">
-			<var name="key_socialBookmarkSite" value="${socialBookmarkSite}" />
+	macro viewDefaultCP {
+		AssertTextEquals(
+			locator1 = "Message#EMPTY_INFO",
+			value1 = "No entries were found."
+		);
 
-			<execute function="AssertElementPresent" locator1="SocialBookmarks#SOCIAL_BOOKMARKS_SITE_LINK" />
-		</for>
-	</command>
+		AssertElementNotPresent(locator1 = "Blogs#ENTRY_TABLE_TITLE");
+	}
 
-	<command name="viewEntry">
-		<var name="key_entryContent" value="${entryContent}" />
-		<var name="key_entrySubtitle" value="${entrySubtitle}" />
-		<var name="key_entryTitle" value="${entryTitle}" />
-		<var name="key_uploadFileName" value="${uploadFileName}" />
+	macro viewDisabledSocialBookmarkSites {
+		AssertElementNotPresent(locator1 = "Icon#SHARE");
+	}
 
-		<execute function="Pause" locator1="3000" />
+	macro viewEnabledSocialBookmarkSites {
+		Click(locator1 = "Icon#SHARE");
 
-		<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="${entryTitle}" />
+		for (var socialBookmarkSite : list "${socialBookmarkSites}") {
+			var key_socialBookmarkSite = "${socialBookmarkSite}";
 
-		<if>
-			<isset var="entrySubtitle" />
-			<then>
-				<execute function="AssertTextEquals" locator1="BlogsEntry#SUBTITLE" value1="${entrySubtitle}" />
-			</then>
-		</if>
+			AssertElementPresent(locator1 = "SocialBookmarks#SOCIAL_BOOKMARKS_SITE_LINK");
+		}
+	}
 
-		<if>
-			<isset var="uploadFileName" />
-			<then>
-				<execute function="AssertElementPresent" locator1="BlogsEntry#ENTRY_COVER_IMAGE" />
-			</then>
-		</if>
+	macro viewEntry {
+		var key_entryContent = "${entryContent}";
+		var key_entrySubtitle = "${entrySubtitle}";
+		var key_entryTitle = "${entryTitle}";
+		var key_uploadFileName = "${uploadFileName}";
 
-		<if>
-			<isset var="entryContent" />
-			<then>
-				<execute function="AssertTextEquals" locator1="BlogsEntry#CONTENT" value1="${entryContent}" />
-			</then>
-		</if>
+		Pause(locator1 = "3000");
 
-		<if>
-			<isset var="entryContentBold" />
-			<then>
-				<execute function="AssertTextEquals#assertPartialText" locator1="BlogsEntry#CONTENT_HTML_BOLD" value1="${entryContentBold}" />
-			</then>
-		</if>
+		AssertTextEquals(locator1 = "BlogsEntry#TITLE", value1 = "${entryTitle}");
 
-		<if>
-			<isset var="entryContentItalics" />
-			<then>
-				<execute function="AssertTextEquals#assertPartialText" locator1="BlogsEntry#CONTENT_HTML_ITALICS" value1="${entryContentItalics}" />
-			</then>
-		</if>
-	</command>
+		if (isSet(entrySubtitle)) {
+			AssertTextEquals(locator1 = "BlogsEntry#SUBTITLE", value1 = "${entrySubtitle}");
+		}
 
-	<command name="viewEntryAsWorkflowAsset">
-		<execute macro="SiteAdmin#viewPortletTitle">
-			<var name="portletTitle" value="${entryTitle}" />
-		</execute>
+		if (isSet(uploadFileName)) {
+			AssertElementPresent(locator1 = "BlogsEntry#ENTRY_COVER_IMAGE");
+		}
 
-		<var name="key_entryContent" value="${entryContent}" />
+		if (isSet(entryContent)) {
+			AssertTextEquals(locator1 = "BlogsEntry#CONTENT", value1 = "${entryContent}");
+		}
 
-		<execute function="AssertTextEquals" locator1="BlogsEntry#CONTENT" value1="${entryContent}" />
-	</command>
+		if (isSet(entryContentBold)) {
+			AssertTextEquals.assertPartialText(
+				locator1 = "BlogsEntry#CONTENT_HTML_BOLD",
+				value1 = "${entryContentBold}"
+			);
+		}
 
-	<command name="viewEntryAuthorCP">
-		<var name="entryAuthorFullName" value="${entryAuthorFullName}" />
-		<var name="key_entryTitle" value="${entryTitle}" />
+		if (isSet(entryContentItalics)) {
+			AssertTextEquals.assertPartialText(
+				locator1 = "BlogsEntry#CONTENT_HTML_ITALICS",
+				value1 = "${entryContentItalics}"
+			);
+		}
+	}
 
-		<execute function="AssertTextEquals" locator1="Blogs#ENTRY_TABLE_AUTHOR" value1="${entryAuthorFullName}" />
-	</command>
+	macro viewEntryAsWorkflowAsset {
+		SiteAdmin.viewPortletTitle(portletTitle = "${entryTitle}");
 
-	<command name="viewEntryExternalURL">
-		<execute macro="BlogsNavigator#gotoEditCP">
-			<var name="entryTitle" value="${entryTitle}" />
-		</execute>
+		var key_entryContent = "${entryContent}";
 
-		<execute function="DoubleClick" locator1="BlogsEntry#CONTENT_LINK">
-			<var name="key_entryContent" value="${entryContent}" />
-		</execute>
+		AssertTextEquals(locator1 = "BlogsEntry#CONTENT", value1 = "${entryContent}");
+	}
 
-		<execute function="Click" locator1="AlloyEditor#TEXT_FORMATTING_LINK" />
+	macro viewEntryAuthorCP {
+		var entryAuthorFullName = "${entryAuthorFullName}";
+		var key_entryTitle = "${entryTitle}";
 
-		<execute function="AssertTextEquals" locator1="AlloyEditor#TEXT_FORMATTING_LINK_INPUT" value1="${entryExternalURL}" />
-	</command>
+		AssertTextEquals(
+			locator1 = "Blogs#ENTRY_TABLE_AUTHOR",
+			value1 = "${entryAuthorFullName}"
+		);
+	}
 
-	<command name="viewEntryTable">
-		<var name="key_entryTitle" value="${entryTitle}" />
+	macro viewEntryExternalURL {
+		BlogsNavigator.gotoEditCP(entryTitle = "${entryTitle}");
 
-		<execute macro="Portlet#changeDisplayStyle">
-			<var name="displayStyle" value="List" />
-		</execute>
+		DoubleClick(
+			locator1 = "BlogsEntry#CONTENT_LINK",
+			key_entryContent = "${entryContent}"
+		);
 
-		<execute function="AssertElementPresent" locator1="Blogs#ENTRY_TABLE_CHECKBOX" />
-		<execute function="AssertTextEquals" locator1="Blogs#ENTRY_TABLE_TITLE" value1="${entryTitle}" />
-		<execute function="AssertElementPresent" locator1="Blogs#ENTRY_TABLE_CREATE_DATE" />
-		<execute function="AssertTextEquals" locator1="Blogs#ENTRY_TABLE_STATUS" value1="Approved" />
-	</command>
+		Click(locator1 = "AlloyEditor#TEXT_FORMATTING_LINK");
 
-	<command name="viewEntryViaAPPG">
-		<var name="key_assetContent" value="${entryContent}" />
-		<var name="key_assetTitle" value="${assetTitle}" />
+		AssertTextEquals(
+			locator1 = "AlloyEditor#TEXT_FORMATTING_LINK_INPUT",
+			value1 = "${entryExternalURL}"
+		);
+	}
 
-		<execute function="AssertClick" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${entryTitle}" />
+	macro viewEntryTable {
+		var key_entryTitle = "${entryTitle}";
 
-		<execute function="AssertTextEquals" locator1="APAsset#ASSET_TITLE_HEADER" value1="${entryTitle}" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="APAsset#ASSET_CONTENT" value1="${entryContent}" />
-	</command>
+		Portlet.changeDisplayStyle(displayStyle = "List");
 
-	<command name="viewInlineImage">
-		<var name="key_uploadFileName" value="${uploadFileName}" />
+		AssertElementPresent(locator1 = "Blogs#ENTRY_TABLE_CHECKBOX");
 
-		<execute function="AssertVisible" locator1="BlogsEntry#CONTENT_INLINE_IMAGE" value1="${uploadFileName}" />
-	</command>
+		AssertTextEquals(locator1 = "Blogs#ENTRY_TABLE_TITLE", value1 = "${entryTitle}");
 
-	<command name="viewNoAddPermissions">
-		<execute function="AssertElementNotPresent" locator1="Blogs#ADD_BLOGS_ENTRY" />
-	</command>
+		AssertElementPresent(locator1 = "Blogs#ENTRY_TABLE_CREATE_DATE");
 
-	<command name="viewNoCP">
-		<var name="key_entryTitle" value="${entryTitle}" />
+		AssertTextEquals(locator1 = "Blogs#ENTRY_TABLE_STATUS", value1 = "Approved");
+	}
 
-		<execute function="AssertElementNotPresent" locator1="Blogs#ENTRY_TABLE_TITLE" />
-	</command>
+	macro viewEntryViaAPPG {
+		var key_assetContent = "${entryContent}";
+		var key_assetTitle = "${assetTitle}";
 
-	<command name="viewNoEntryAsGuestPG">
-		<var name="key_entryTitle" value="${entryTitle}" />
+		AssertClick(locator1 = "AP#ASSET_ABSTRACT_TITLE", value1 = "${entryTitle}");
 
-		<execute function="AssertElementNotPresent" locator1="BlogsEntry#TITLE" />
-	</command>
+		AssertTextEquals(
+			locator1 = "APAsset#ASSET_TITLE_HEADER",
+			value1 = "${entryTitle}"
+		);
 
-	<command name="viewNoEntryViaAPPG">
-		<var name="key_assetTitle" value="${assetTitle}" />
+		AssertTextEquals.assertPartialText(
+			locator1 = "APAsset#ASSET_CONTENT",
+			value1 = "${entryContent}"
+		);
+	}
 
-		<execute function="AssertTextNotPresent" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${entryTitle}" />
-		<execute function="AssertTextNotPresent" locator1="AP#ASSET_ABSTRACT_DESCRIPTION" value1="${entryContent}" />
-	</command>
+	macro viewInlineImage {
+		var key_uploadFileName = "${uploadFileName}";
 
-	<command name="viewNoEntryViaBlogsAggregatorPG">
-		<execute function="AssertElementPresent" locator1="BlogsAggregator#NO_ENTRY_MESSAGE" />
-	</command>
+		AssertVisible(
+			locator1 = "BlogsEntry#CONTENT_INLINE_IMAGE",
+			value1 = "${uploadFileName}"
+		);
+	}
 
-	<command name="viewNoPG">
-		<var name="key_entryTitle" value="${entryTitle}" />
+	macro viewNoAddPermissions {
+		AssertElementNotPresent(locator1 = "Blogs#ADD_BLOGS_ENTRY");
+	}
 
-		<execute function="AssertElementNotPresent" locator1="BlogsEntry#TITLE" />
-	</command>
+	macro viewNoCP {
+		var key_entryTitle = "${entryTitle}";
 
-	<command name="viewNoTag">
-		<var name="key_entryTitle" value="${entryTitle}" />
+		AssertElementNotPresent(locator1 = "Blogs#ENTRY_TABLE_TITLE");
+	}
 
-		<if>
-			<isset var="tagNameList" />
-			<then>
-				<for list="${tagNameList}" param="tagName">
-					<var method="StringUtil#lowerCase('${tagName}')" name="tagName" />
+	macro viewNoEntryAsGuestPG {
+		var key_entryTitle = "${entryTitle}";
 
-					<var name="key_tagName" value="${tagName}" />
+		AssertElementNotPresent(locator1 = "BlogsEntry#TITLE");
+	}
 
-					<execute function="AssertElementNotPresent" locator1="BlogsEntry#TAG" />
-				</for>
-			</then>
-			<else>
-				<var method="StringUtil#lowerCase('${tagName}')" name="tagName" />
+	macro viewNoEntryViaAPPG {
+		var key_assetTitle = "${assetTitle}";
 
-				<var name="key_tagName" value="${tagName}" />
+		AssertTextNotPresent(
+			locator1 = "AP#ASSET_ABSTRACT_TITLE",
+			value1 = "${entryTitle}"
+		);
 
-				<execute function="AssertElementNotPresent" locator1="BlogsEntry#TAG" />
-			</else>
-		</if>
-	</command>
+		AssertTextNotPresent(
+			locator1 = "AP#ASSET_ABSTRACT_DESCRIPTION",
+			value1 = "${entryContent}"
+		);
+	}
 
-	<command name="viewPermissionsNoPermission">
-		<execute function="AssertElementNotPresent" locator1="Link#PERMISSIONS" />
-	</command>
+	macro viewNoEntryViaBlogsAggregatorPG {
+		AssertElementPresent(locator1 = "BlogsAggregator#NO_ENTRY_MESSAGE");
+	}
 
-	<command name="viewPermissionsNoPermissionPG">
-		<var name="key_entryTitle" value="${entryTitle}" />
+	macro viewNoPG {
+		var key_entryTitle = "${entryTitle}";
 
-		<execute function="AssertElementNotPresent" locator1="MenuItem#ANY_MENU_ITEM">
-			<var name="key_menuItem" value="Permissions" />
-		</execute>
-	</command>
+		AssertElementNotPresent(locator1 = "BlogsEntry#TITLE");
+	}
 
-	<command name="viewPermissionsPG">
-		<execute macro="LexiconEntry#gotoEllipsisMenuItem">
-			<var name="menuItem" value="Permissions" />
-		</execute>
+	macro viewNoTag {
+		var key_entryTitle = "${entryTitle}";
 
-		<execute macro="IFrame#selectPermissionsFrame" />
+		if (isSet(tagNameList)) {
+			for (var tagName : list "${tagNameList}") {
+				var tagName = StringUtil.lowerCase("${tagName}");
+				var key_tagName = "${tagName}";
 
-		<execute function="SelectFrame" value1="relative=top" />
-	</command>
+				AssertElementNotPresent(locator1 = "BlogsEntry#TAG");
+			}
+		}
+		else {
+			var tagName = StringUtil.lowerCase("${tagName}");
+			var key_tagName = "${tagName}";
 
-	<command name="viewPG">
-		<var name="key_entryContent" value="${entryContent}" />
-		<var name="key_entryTitle" value="${entryTitle}" />
+			AssertElementNotPresent(locator1 = "BlogsEntry#TAG");
+		}
+	}
 
-		<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="${entryTitle}" />
+	macro viewPermissionsNoPermission {
+		AssertElementNotPresent(locator1 = "Link#PERMISSIONS");
+	}
 
-		<if>
-			<isset var="entrySubtitle" />
-			<then>
-				<execute function="AssertTextEquals" locator1="BlogsEntry#SUBTITLE" value1="${entrySubtitle}" />
-			</then>
-		</if>
+	macro viewPermissionsNoPermissionPG {
+		var key_entryTitle = "${entryTitle}";
 
-		<var name="key_entryContent" value="${entryContent}" />
+		AssertElementNotPresent(
+			locator1 = "MenuItem#ANY_MENU_ITEM",
+			key_menuItem = "Permissions"
+		);
+	}
 
-		<execute function="AssertTextEquals" locator1="BlogsEntry#CONTENT" value1="${entryContent}" />
-	</command>
+	macro viewPermissionsPG {
+		LexiconEntry.gotoEllipsisMenuItem(menuItem = "Permissions");
 
-	<command name="viewPGViaAP">
-		<var name="key_assetContent" value="${entryContent}" />
-		<var name="key_assetTitle" value="${entryTitle}" />
+		IFrame.selectPermissionsFrame();
 
-		<execute function="AssertTextEquals" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${entryTitle}" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="AP#ASSET_ABSTRACT_DESCRIPTION" value1="${entryContent}" />
+		SelectFrame(value1 = "relative=top");
+	}
 
-		<execute function="AssertClick" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${entryTitle}" />
+	macro viewPG {
+		var key_entryContent = "${entryContent}";
+		var key_entryTitle = "${entryTitle}";
 
-		<execute function="AssertVisible" locator1="Icon#SHARE" />
+		AssertTextEquals(locator1 = "BlogsEntry#TITLE", value1 = "${entryTitle}");
 
-		<execute function="AssertTextEquals" locator1="APAsset#ASSET_TITLE_HEADER" value1="${entryTitle}" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="APAsset#ASSET_CONTENT" value1="${entryContent}" />
-	</command>
+		if (isSet(entrySubtitle)) {
+			AssertTextEquals(locator1 = "BlogsEntry#SUBTITLE", value1 = "${entrySubtitle}");
+		}
 
-	<command name="viewRelatedAssetPG">
-		<var name="key_assetTitle" value="${assetTitle}" />
-		<var name="key_assetType" value="${assetType}" />
-		<var name="key_entryTitle" value="${entryTitle}" />
+		var key_entryContent = "${entryContent}";
 
-		<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="${entryTitle}" />
-		<execute function="AssertTextEquals" locator1="AssetRelatedAssets#HEADER" value1="Related Assets:" />
-		<execute function="AssertTextEquals" locator1="BlogsEntry#RELATED_ASSETS_TITLE" value1="${assetTitle}" />
-	</command>
+		AssertTextEquals(locator1 = "BlogsEntry#CONTENT", value1 = "${entryContent}");
+	}
 
-	<command name="viewRSS">
-		<execute function="AssertClick" locator1="Link#RSS" value1="RSS" />
+	macro viewPGViaAP {
+		var key_assetContent = "${entryContent}";
+		var key_assetTitle = "${entryTitle}";
 
-		<execute function="Pause" locator1="3000" />
+		AssertTextEquals(locator1 = "AP#ASSET_ABSTRACT_TITLE", value1 = "${entryTitle}");
 
-		<execute function="SelectWindow" locator1="title=${siteName}" />
+		AssertTextEquals.assertPartialText(
+			locator1 = "AP#ASSET_ABSTRACT_DESCRIPTION",
+			value1 = "${entryContent}"
+		);
 
-		<execute function="AssertTextEquals" locator1="RSS#FEED_TITLE" value1="${siteName}" />
-		<execute function="AssertTextEquals" locator1="RSS#FEED_SUBTITLE" value1="${siteName}" />
-		<execute function="AssertTextEquals" locator1="Blogs#RSS_ENTRY_TITLE" value1="${entryTitle}" />
-		<execute function="AssertTextEquals" locator1="Blogs#RSS_ENTRY_CONTENT" value1="${entryContent}" />
-	</command>
+		AssertClick(locator1 = "AP#ASSET_ABSTRACT_TITLE", value1 = "${entryTitle}");
 
-	<command name="viewStatus">
-		<execute function="AssertTextEquals" locator1="AssetWorkflow#WORKFLOW_STATUS" value1="${entryStatus}" />
-	</command>
+		AssertVisible(locator1 = "Icon#SHARE");
 
-	<command name="viewTag">
-		<var name="key_entryTitle" value="${entryTitle}" />
+		AssertTextEquals(
+			locator1 = "APAsset#ASSET_TITLE_HEADER",
+			value1 = "${entryTitle}"
+		);
 
-		<if>
-			<isset var="tagNameList" />
-			<then>
-				<for list="${tagNameList}" param="tagName">
-					<var method="StringUtil#lowerCase('${tagName}')" name="tagName" />
+		AssertTextEquals.assertPartialText(
+			locator1 = "APAsset#ASSET_CONTENT",
+			value1 = "${entryContent}"
+		);
+	}
 
-					<var name="key_tagName" value="tagName" />
+	macro viewRelatedAssetPG {
+		var key_assetTitle = "${assetTitle}";
+		var key_assetType = "${assetType}";
+		var key_entryTitle = "${entryTitle}";
 
-					<execute function="AssertTextEquals" locator1="BlogsEntry#TAG" value1="${tagName}" />
+		AssertTextEquals(locator1 = "BlogsEntry#TITLE", value1 = "${entryTitle}");
 
-					<execute function="AssertClick" locator1="BlogsEntry#TAG" value1="${tagName}" />
+		AssertTextEquals(
+			locator1 = "AssetRelatedAssets#HEADER",
+			value1 = "Related Assets:"
+		);
 
-					<execute function="AssertTextEquals#assertPartialText" locator1="AssetCategorization#TAG_FILTER_TITLE" value1="Entries with tag ${tagName}" />
-					<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="${entryTitle}" />
-				</for>
-			</then>
-			<else>
-				<var method="StringUtil#lowerCase('${tagName}')" name="tagName" />
+		AssertTextEquals(
+			locator1 = "BlogsEntry#RELATED_ASSETS_TITLE",
+			value1 = "${assetTitle}"
+		);
+	}
 
-				<var name="key_tagName" value="tagName" />
+	macro viewRSS {
+		AssertClick(locator1 = "Link#RSS", value1 = "RSS");
 
-				<execute function="AssertTextEquals" locator1="BlogsEntry#TAG" value1="${tagName}" />
+		Pause(locator1 = "3000");
 
-				<execute function="AssertClick" locator1="BlogsEntry#TAG" value1="${tagName}" />
+		SelectWindow(locator1 = "title=${siteName}");
 
-				<execute function="AssertTextEquals#assertPartialText" locator1="AssetCategorization#TAG_FILTER_TITLE" value1="Entries with tag ${tagName}" />
-				<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="${entryTitle}" />
-			</else>
-		</if>
-	</command>
+		AssertTextEquals(locator1 = "RSS#FEED_TITLE", value1 = "${siteName}");
 
-	<command name="viewTagPG">
-		<var name="key_entryTitle" value="${entryTitle}" />
+		AssertTextEquals(locator1 = "RSS#FEED_SUBTITLE", value1 = "${siteName}");
 
-		<if>
-			<isset var="tagNameList" />
-			<then>
-				<for list="${tagNameList}" param="tagName">
-					<var method="StringUtil#lowerCase('${tagName}')" name="tagName" />
+		AssertTextEquals(locator1 = "Blogs#RSS_ENTRY_TITLE", value1 = "${entryTitle}");
 
-					<var name="key_tagName" value="${tagName}" />
+		AssertTextEquals(
+			locator1 = "Blogs#RSS_ENTRY_CONTENT",
+			value1 = "${entryContent}"
+		);
+	}
 
-					<execute function="AssertClick" locator1="BlogsEntry#TAG" value1="${tagName}" />
+	macro viewStatus {
+		AssertTextEquals(
+			locator1 = "AssetWorkflow#WORKFLOW_STATUS",
+			value1 = "${entryStatus}"
+		);
+	}
 
-					<execute function="AssertTextEquals#assertPartialText" locator1="AssetCategorization#TAG_FILTER_TITLE" value1="Entries with tag ${tagName}" />
-					<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="${entryTitle}" />
-				</for>
-			</then>
-			<else>
-				<var method="StringUtil#lowerCase('${tagName}')" name="tagName" />
+	macro viewTag {
+		var key_entryTitle = "${entryTitle}";
 
-				<var name="key_tagName" value="${tagName}" />
+		if (isSet(tagNameList)) {
+			for (var tagName : list "${tagNameList}") {
+				var tagName = StringUtil.lowerCase("${tagName}");
+				var key_tagName = "tagName";
 
-				<execute function="AssertClick" locator1="BlogsEntry#TAG" value1="${tagName}" />
+				AssertTextEquals(locator1 = "BlogsEntry#TAG", value1 = "${tagName}");
 
-				<execute function="AssertTextEquals#assertPartialText" locator1="AssetCategorization#TAG_FILTER_TITLE" value1="Entries with tag ${tagName}" />
-				<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="${entryTitle}" />
-			</else>
-		</if>
-	</command>
+				AssertClick(locator1 = "BlogsEntry#TAG", value1 = "${tagName}");
 
-	<command name="viewThumbsDown">
-		<var name="key_entryTitle" value="${entryTitle}" />
+				AssertTextEquals.assertPartialText(
+					locator1 = "AssetCategorization#TAG_FILTER_TITLE",
+					value1 = "Entries with tag ${tagName}"
+				);
 
-		<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="${entryTitle}" />
+				AssertTextEquals(locator1 = "BlogsEntry#TITLE", value1 = "${entryTitle}");
+			}
+		}
+		else {
+			var tagName = StringUtil.lowerCase("${tagName}");
+			var key_tagName = "tagName";
 
-		<execute function="AssertTextEquals" locator1="Ratings#THUMBS_DOWN" value1="${voteCount}" />
-	</command>
+			AssertTextEquals(locator1 = "BlogsEntry#TAG", value1 = "${tagName}");
 
-	<command name="viewThumbsUp">
-		<var name="key_entryTitle" value="${entryTitle}" />
+			AssertClick(locator1 = "BlogsEntry#TAG", value1 = "${tagName}");
 
-		<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="${entryTitle}" />
+			AssertTextEquals.assertPartialText(
+				locator1 = "AssetCategorization#TAG_FILTER_TITLE",
+				value1 = "Entries with tag ${tagName}"
+			);
 
-		<execute function="AssertTextEquals" locator1="Ratings#THUMBS_UP" value1="${voteCount}" />
-	</command>
+			AssertTextEquals(locator1 = "BlogsEntry#TITLE", value1 = "${entryTitle}");
+		}
+	}
 
-	<command name="viewTitle">
-		<var name="key_entryTitle" value="${entryTitle}" />
+	macro viewTagPG {
+		var key_entryTitle = "${entryTitle}";
 
-		<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="${entryTitle}" />
-	</command>
+		if (isSet(tagNameList)) {
+			for (var tagName : list "${tagNameList}") {
+				var tagName = StringUtil.lowerCase("${tagName}");
+				var key_tagName = "${tagName}";
 
-	<command name="viewViewCountPG">
-		<execute macro="Navigator#gotoPage">
-			<var name="pageName" value="${pageName}" />
-		</execute>
+				AssertClick(locator1 = "BlogsEntry#TAG", value1 = "${tagName}");
 
-		<var name="key_entryTitle" value="${entryTitle}" />
+				AssertTextEquals.assertPartialText(
+					locator1 = "AssetCategorization#TAG_FILTER_TITLE",
+					value1 = "Entries with tag ${tagName}"
+				);
 
-		<execute function="AssertClick" locator1="BlogsEntry#TITLE_LINK" value1="${entryTitle}" />
+				AssertTextEquals(locator1 = "BlogsEntry#TITLE", value1 = "${entryTitle}");
+			}
+		}
+		else {
+			var tagName = StringUtil.lowerCase("${tagName}");
+			var key_tagName = "${tagName}";
 
-		<execute function="AssertElementPresent#pauseAssertVisible" locator1="Comments#SUBSCRIBE_TO_COMMENTS_LINK" />
+			AssertClick(locator1 = "BlogsEntry#TAG", value1 = "${tagName}");
 
-		<execute macro="Navigator#gotoPage">
-			<var name="pageName" value="${pageName}" />
-		</execute>
+			AssertTextEquals.assertPartialText(
+				locator1 = "AssetCategorization#TAG_FILTER_TITLE",
+				value1 = "Entries with tag ${tagName}"
+			);
 
-		<execute function="AssertClick" locator1="BlogsEntry#TITLE_LINK" value1="${entryTitle}" />
+			AssertTextEquals(locator1 = "BlogsEntry#TITLE", value1 = "${entryTitle}");
+		}
+	}
 
-		<execute function="AssertElementPresent#pauseAssertVisible" locator1="Comments#SUBSCRIBE_TO_COMMENTS_LINK" />
+	macro viewThumbsDown {
+		var key_entryTitle = "${entryTitle}";
 
-		<var method="selenium#getText('BlogsEntry#ENTRY_VIEW_COUNT')" name="entryViewCount" />
+		AssertTextEquals(locator1 = "BlogsEntry#TITLE", value1 = "${entryTitle}");
 
-		<var method="StringUtil#extractLast('${entryViewCount}', ',')" name="entryViewCount" />
-		<var method="StringUtil#extractDigits('${entryViewCount}')" name="entryViewCount" />
+		AssertTextEquals(locator1 = "Ratings#THUMBS_DOWN", value1 = "${voteCount}");
+	}
 
-		<if>
-			<equals arg1="${entryViewCount}" arg2="1" />
-			<then>
-				<execute function="AssertTextEquals#assertPartialText" locator1="BlogsEntry#ENTRY_VIEW_COUNT" value1="${entryViewCount} View" />
-			</then>
-			<else>
-				<execute function="AssertTextEquals#assertPartialText" locator1="BlogsEntry#ENTRY_VIEW_COUNT" value1="${entryViewCount} Views" />
-			</else>
-		</if>
+	macro viewThumbsUp {
+		var key_entryTitle = "${entryTitle}";
 
-		<execute macro="Navigator#gotoPage">
-			<var name="pageName" value="${pageName}" />
-		</execute>
+		AssertTextEquals(locator1 = "BlogsEntry#TITLE", value1 = "${entryTitle}");
 
-		<execute function="AssertClick" locator1="BlogsEntry#TITLE_LINK" value1="${entryTitle}" />
+		AssertTextEquals(locator1 = "Ratings#THUMBS_UP", value1 = "${voteCount}");
+	}
 
-		<var method="MathUtil#sum('${entryViewCount}', '1')" name="entryViewCount" />
+	macro viewTitle {
+		var key_entryTitle = "${entryTitle}";
 
-		<execute function="AssertTextEquals#assertPartialText" locator1="BlogsEntry#ENTRY_VIEW_COUNT" value1="${entryViewCount} Views" />
-	</command>
+		AssertTextEquals(locator1 = "BlogsEntry#TITLE", value1 = "${entryTitle}");
+	}
 
-	<command name="viewWithAbstractDisplayTemplatePG">
-		<var name="key_entryAbstractDescription" value="${entryAbstractDescription}" />
-		<var name="key_entryTitle" value="${entryTitle}" />
+	macro viewViewCountPG {
+		Navigator.gotoPage(pageName = "${pageName}");
 
-		<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="${entryTitle}" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="BlogsEntry#CONTENT_ABSTRACT" value1="${entryAbstractDescription}" />
-	</command>
+		var key_entryTitle = "${entryTitle}";
 
-	<command name="viewWithTitleDisplayTemplatePG">
-		<var name="key_entryTitle" value="${entryTitle}" />
+		AssertClick(locator1 = "BlogsEntry#TITLE_LINK", value1 = "${entryTitle}");
 
-		<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="${entryTitle}" />
-		<execute function="AssertTextNotPresent" locator1="BlogsEntry#CONTENT" value1="${entryContent}" />
-	</command>
+		AssertElementPresent.pauseAssertVisible(
+			locator1 = "Comments#SUBSCRIBE_TO_COMMENTS_LINK"
+		);
 
-	<command name="viewWithTrackbackURLPG">
-		<execute macro="BlogsEntry#viewPG">
-			<var name="entryContent" value="${entryContent}" />
-			<var name="entryTitle" value="${entryTitle}" />
-		</execute>
+		Navigator.gotoPage(pageName = "${pageName}");
 
-		<var name="key_entryContent" value="${entryContent}" />
-		<var name="key_entryTitle" value="${entryTitle}" />
+		AssertClick(locator1 = "BlogsEntry#TITLE_LINK", value1 = "${entryTitle}");
 
-		<if>
-			<condition function="IsTextEqual" locator1="Blogs#ENTRY_COMMENTS_COUNT" value1="2" />
-			<then>
-				<execute function="AssertTextEquals" locator1="Blogs#ENTRY_COMMENTS_COUNT" value1="2" />
-			</then>
-			<else>
-				<execute function="AssertTextEquals" locator1="Blogs#ENTRY_COMMENTS_COUNT" value1="1" />
-			</else>
-		</if>
+		AssertElementPresent.pauseAssertVisible(
+			locator1 = "Comments#SUBSCRIBE_TO_COMMENTS_LINK"
+		);
 
-		<execute function="AssertClick" locator1="BlogsEntry#TITLE_LINK" value1="${entryTitle}" />
+		var entryViewCount = selenium.getText("BlogsEntry#ENTRY_VIEW_COUNT");
+		var entryViewCount = StringUtil.extractLast("${entryViewCount}", ",");
+		var entryViewCount = StringUtil.extractDigits("${entryViewCount}");
 
-		<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="${entryTitle}" />
-		<execute function="AssertTextEquals" locator1="BlogsEntry#CONTENT" value1="${entryContent}" />
-		<execute function="AssertTextEquals" locator1="Comments#ENTRY_COUNT_PANEL" value1="1 Comments" />
-		<execute function="AssertTextEquals" locator1="Comments#COMMENT_BODY" value1="[...] ${entryContent2} [...] Read More" />
+		if ("${entryViewCount}" == "1") {
+			AssertTextEquals.assertPartialText(
+				locator1 = "BlogsEntry#ENTRY_VIEW_COUNT",
+				value1 = "${entryViewCount} View"
+			);
+		}
+		else {
+			AssertTextEquals.assertPartialText(
+				locator1 = "BlogsEntry#ENTRY_VIEW_COUNT",
+				value1 = "${entryViewCount} Views"
+			);
+		}
 
-		<execute function="AssertClick" locator1="Link#READ_MORE" value1="Read More" />
+		Navigator.gotoPage(pageName = "${pageName}");
 
-		<var name="key_entryContent" value="${entryContent2}" />
-		<var name="key_entryTitle" value="${entryTitle2}" />
+		AssertClick(locator1 = "BlogsEntry#TITLE_LINK", value1 = "${entryTitle}");
 
-		<execute function="AssertTextEquals" locator1="BlogsEntry#TITLE" value1="${entryTitle2}" />
-		<execute function="AssertTextEquals" locator1="BlogsEntry#CONTENT" value1="${entryContent2}" />
-	</command>
+		var entryViewCount = MathUtil.sum("${entryViewCount}", "1");
 
-	<command name="viewWithWorkflowCP">
-		<var name="key_entryTitle" value="${entryTitle}" />
+		AssertTextEquals.assertPartialText(
+			locator1 = "BlogsEntry#ENTRY_VIEW_COUNT",
+			value1 = "${entryViewCount} Views"
+		);
+	}
 
-		<execute macro="Portlet#changeDisplayStyle">
-			<var name="displayStyle" value="List" />
-		</execute>
+	macro viewWithAbstractDisplayTemplatePG {
+		var key_entryAbstractDescription = "${entryAbstractDescription}";
+		var key_entryTitle = "${entryTitle}";
 
-		<execute function="AssertTextEquals" locator1="Blogs#ENTRY_TABLE_TITLE" value1="${entryTitle}" />
-		<execute function="AssertTextEquals" locator1="Blogs#ENTRY_TABLE_STATUS" value1="Pending" />
-	</command>
+		AssertTextEquals(locator1 = "BlogsEntry#TITLE", value1 = "${entryTitle}");
 
-	<command name="viewWithWorkflowPGViaAP">
-		<var name="key_assetTitle" value="${entryTitle}" />
+		AssertTextEquals.assertPartialText(
+			locator1 = "BlogsEntry#CONTENT_ABSTRACT",
+			value1 = "${entryAbstractDescription}"
+		);
+	}
 
-		<execute function="AssertElementNotPresent" locator1="AP#ASSET_ABSTRACT_TITLE" />
-	</command>
-</definition>
+	macro viewWithTitleDisplayTemplatePG {
+		var key_entryTitle = "${entryTitle}";
+
+		AssertTextEquals(locator1 = "BlogsEntry#TITLE", value1 = "${entryTitle}");
+
+		AssertTextNotPresent(
+			locator1 = "BlogsEntry#CONTENT",
+			value1 = "${entryContent}"
+		);
+	}
+
+	macro viewWithTrackbackURLPG {
+		BlogsEntry.viewPG(
+			entryContent = "${entryContent}",
+			entryTitle = "${entryTitle}"
+		);
+
+		var key_entryContent = "${entryContent}";
+		var key_entryTitle = "${entryTitle}";
+
+		if (IsTextEqual(locator1 = "Blogs#ENTRY_COMMENTS_COUNT", value1 = "2")) {
+			AssertTextEquals(locator1 = "Blogs#ENTRY_COMMENTS_COUNT", value1 = "2");
+		}
+		else {
+			AssertTextEquals(locator1 = "Blogs#ENTRY_COMMENTS_COUNT", value1 = "1");
+		}
+
+		AssertClick(locator1 = "BlogsEntry#TITLE_LINK", value1 = "${entryTitle}");
+
+		AssertTextEquals(locator1 = "BlogsEntry#TITLE", value1 = "${entryTitle}");
+
+		AssertTextEquals(locator1 = "BlogsEntry#CONTENT", value1 = "${entryContent}");
+
+		AssertTextEquals(locator1 = "Comments#ENTRY_COUNT_PANEL", value1 = "1 Comments");
+
+		AssertTextEquals(
+			locator1 = "Comments#COMMENT_BODY",
+			value1 = "[...] ${entryContent2} [...] Read More"
+		);
+
+		AssertClick(locator1 = "Link#READ_MORE", value1 = "Read More");
+
+		var key_entryContent = "${entryContent2}";
+		var key_entryTitle = "${entryTitle2}";
+
+		AssertTextEquals(locator1 = "BlogsEntry#TITLE", value1 = "${entryTitle2}");
+
+		AssertTextEquals(locator1 = "BlogsEntry#CONTENT", value1 = "${entryContent2}");
+	}
+
+	macro viewWithWorkflowCP {
+		var key_entryTitle = "${entryTitle}";
+
+		Portlet.changeDisplayStyle(displayStyle = "List");
+
+		AssertTextEquals(locator1 = "Blogs#ENTRY_TABLE_TITLE", value1 = "${entryTitle}");
+
+		AssertTextEquals(locator1 = "Blogs#ENTRY_TABLE_STATUS", value1 = "Pending");
+	}
+
+	macro viewWithWorkflowPGViaAP {
+		var key_assetTitle = "${entryTitle}";
+
+		AssertElementNotPresent(locator1 = "AP#ASSET_ABSTRACT_TITLE");
+	}
+}

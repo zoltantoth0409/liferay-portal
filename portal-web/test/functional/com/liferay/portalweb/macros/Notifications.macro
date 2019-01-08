@@ -1,225 +1,238 @@
-<definition>
-	<command name="acceptRequest">
-		<var name="key_requestsTitle" value="${requestsTitle}" />
+definition {
+	macro acceptRequest {
+		var key_requestsTitle = "${requestsTitle}";
 
-		<execute function="AssertTextEquals" locator1="Notifications#NOTIFICATIONS_TITLE" value1="${requestsTitle}" />
+		AssertTextEquals(
+			locator1 = "Notifications#NOTIFICATIONS_TITLE",
+			value1 = "${requestsTitle}"
+		);
 
-		<execute function="AssertClick" locator1="Button#CONFIRM" value1="Confirm" />
-	</command>
+		AssertClick(locator1 = "Button#CONFIRM", value1 = "Confirm");
+	}
 
-	<command name="deleteNotification">
-		<var name="key_contentBody" value="${contentBody}" />
+	macro deleteNotification {
+		var key_contentBody = "${contentBody}";
 
-		<execute function="Click" locator1="Notifications#NOTIFICATIONS_VERTICAL_ELLIPSIS" />
+		Click(locator1 = "Notifications#NOTIFICATIONS_VERTICAL_ELLIPSIS");
 
-		<execute function="AssertClickNoError" locator1="MenuItem#ANY_MENU_ITEM" value1="Delete">
-			<var name="key_menuItem" value="Delete" />
-		</execute>
+		AssertClickNoError(
+			locator1 = "MenuItem#ANY_MENU_ITEM",
+			value1 = "Delete",
+			key_menuItem = "Delete"
+		);
 
-		<execute function="AssertElementNotPresent" locator1="Notifications#NOTIFICATIONS_CONTENT" />
-	</command>
+		AssertElementNotPresent(locator1 = "Notifications#NOTIFICATIONS_CONTENT");
+	}
 
-	<command name="goToFilterValues">
-		<var name="key_filterValue" value="${filterValue}" />
+	macro goToFilterValues {
+		var key_filterValue = "${filterValue}";
 
-		<execute function="Click" locator1="Dropdown#FILTER" />
+		Click(locator1 = "Dropdown#FILTER");
 
-		<execute function="AssertClick" locator1="Dropdown#FILTER_VALUES" value1="${filterValue}" />
-	</command>
+		AssertClick(locator1 = "Dropdown#FILTER_VALUES", value1 = "${filterValue}");
+	}
 
-	<command name="gotoNotifications">
-		<if>
-			<condition function="IsElementPresent" locator1="Notifications#USER_BAR_BADGE_COUNT" />
-			<then>
-				<execute function="Click" locator1="Notifications#USER_BAR_BADGE_COUNT" />
-			</then>
-		</if>
+	macro gotoNotifications {
+		if (IsElementPresent(locator1 = "Notifications#USER_BAR_BADGE_COUNT")) {
+			Click(locator1 = "Notifications#USER_BAR_BADGE_COUNT");
+		}
 
-		<if>
-			<condition function="IsElementPresent" locator1="Notifications#PROFILE_BADGE_COUNT" />
-			<then>
-				<execute function="Click" locator1="Notifications#PROFILE_BADGE_COUNT" />
-			</then>
-		</if>
+		if (IsElementPresent(locator1 = "Notifications#PROFILE_BADGE_COUNT")) {
+			Click(locator1 = "Notifications#PROFILE_BADGE_COUNT");
+		}
 
-		<if>
-			<condition function="IsElementPresent" locator1="Notifications#MY_ACCOUNT_BADGE_COUNT" />
-			<then>
-				<execute function="Click" locator1="Notifications#MY_ACCOUNT_BADGE_COUNT" />
-			</then>
-		</if>
+		if (IsElementPresent(locator1 = "Notifications#MY_ACCOUNT_BADGE_COUNT")) {
+			Click(locator1 = "Notifications#MY_ACCOUNT_BADGE_COUNT");
+		}
 
-		<if>
-			<condition function="IsElementPresent" locator1="Notifications#NOTIFICATIONS_BADGE_COUNT" />
-			<then>
-				<execute function="Click" locator1="Notifications#NOTIFICATIONS_BADGE_COUNT" />
-			</then>
-		</if>
+		if (IsElementPresent(locator1 = "Notifications#NOTIFICATIONS_BADGE_COUNT")) {
+			Click(locator1 = "Notifications#NOTIFICATIONS_BADGE_COUNT");
+		}
 
-		<if>
-			<condition function="IsElementPresent" locator1="Notifications#USER_NAVIGATION_BAR_BADGE_COUNT" />
-			<then>
-				<execute function="Click" locator1="Notifications#USER_NAVIGATION_BAR_BADGE_COUNT" />
-			</then>
-		</if>
-	</command>
+		if (IsElementPresent(locator1 = "Notifications#USER_NAVIGATION_BAR_BADGE_COUNT")) {
+			Click(locator1 = "Notifications#USER_NAVIGATION_BAR_BADGE_COUNT");
+		}
+	}
 
-	<command name="gotoNotificationsEntry">
-		<execute function="AssertClick" locator1="Notifications#NOTIFICATIONS_WORKFLOW_TITLE" value1="${notificationsWorkflowTitle}">
-			<var name="key_notificationsWorkflowTitle" value="${notificationsWorkflowTitle}" />
-		</execute>
-	</command>
+	macro gotoNotificationsEntry {
+		AssertClick(
+			locator1 = "Notifications#NOTIFICATIONS_WORKFLOW_TITLE",
+			value1 = "${notificationsWorkflowTitle}",
+			key_notificationsWorkflowTitle = "${notificationsWorkflowTitle}"
+		);
+	}
 
-	<command name="navigateToContent">
-		<execute function="AssertClick#assertPartialTextClickAt" locator1="Notifications#NOTIFICATIONS_CONTENT" value1="${contentBody}">
-			<var name="key_contentBody" value="${contentBody}" />
-		</execute>
-	</command>
+	macro navigateToContent {
+		AssertClick.assertPartialTextClickAt(
+			locator1 = "Notifications#NOTIFICATIONS_CONTENT",
+			value1 = "${contentBody}",
+			key_contentBody = "${contentBody}"
+		);
+	}
 
-	<command name="reviewViaNotificationsEntry">
-		<execute macro="Notifications#gotoNotificationsEntry">
-			<var name="notificationsWorkflowTitle" value="${notificationsWorkflowTitle}" />
-		</execute>
+	macro reviewViaNotificationsEntry {
+		Notifications.gotoNotificationsEntry(
+			notificationsWorkflowTitle = "${notificationsWorkflowTitle}"
+		);
 
-		<execute function="Click" locator1="Icon#BODY_VERTICAL_ELLIPSIS" />
+		Click(locator1 = "Icon#BODY_VERTICAL_ELLIPSIS");
 
-		<execute function="AssertClick" locator1="MenuItem#ANY_MENU_ITEM" value1="${menuItem}">
-			<var name="key_menuItem" value="${menuItem}" />
-		</execute>
+		AssertClick(
+			locator1 = "MenuItem#ANY_MENU_ITEM",
+			value1 = "${menuItem}",
+			key_menuItem = "${menuItem}"
+		);
 
-		<execute macro="IFrame#selectDialogFrame" />
+		IFrame.selectDialogFrame();
 
-		<execute macro="Button#clickDone" />
+		Button.clickDone();
 
-		<execute function="SelectFrameTop" />
+		SelectFrameTop();
 
-		<execute macro="Alert#viewSuccessMessage" />
-	</command>
+		Alert.viewSuccessMessage();
+	}
 
-	<command name="tearDownUnreadNotifications">
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="My Account" />
-			<var name="panel" value="User" />
-			<var name="portlet" value="Notifications" />
-		</execute>
+	macro tearDownUnreadNotifications {
+		ProductMenu.gotoPortlet(
+			category = "My Account",
+			panel = "User",
+			portlet = "Notifications"
+		);
 
-		<var name="key_contentBody" value="${contentBody}" />
+		var key_contentBody = "${contentBody}";
 
-		<if>
-			<condition function="IsElementPresent" locator1="Notifications#NOTIFICATIONS_CONTENT" />
-			<then>
-				<execute function="AssertClick" locator1="Notifications#MARK_AS_READ" value1="Mark as Read" />
-			</then>
-		</if>
-	</command>
+		if (IsElementPresent(locator1 = "Notifications#NOTIFICATIONS_CONTENT")) {
+			AssertClick(locator1 = "Notifications#MARK_AS_READ", value1 = "Mark as Read");
+		}
+	}
 
-	<command name="viewBadgeCount">
-		<if>
-			<condition function="IsElementPresent" locator1="Notifications#USER_BAR_BADGE_COUNT" />
-			<then>
-				<execute function="AssertTextEquals" locator1="Notifications#USER_BAR_BADGE_COUNT" value1="${notificationCount}" />
-			</then>
-		</if>
+	macro viewBadgeCount {
+		if (IsElementPresent(locator1 = "Notifications#USER_BAR_BADGE_COUNT")) {
+			AssertTextEquals(
+				locator1 = "Notifications#USER_BAR_BADGE_COUNT",
+				value1 = "${notificationCount}"
+			);
+		}
 
-		<if>
-			<condition function="IsElementPresent" locator1="Notifications#PROFILE_BADGE_COUNT" />
-			<then>
-				<execute function="AssertTextEquals" locator1="Notifications#PROFILE_BADGE_COUNT" value1="${notificationCount}" />
-			</then>
-		</if>
+		if (IsElementPresent(locator1 = "Notifications#PROFILE_BADGE_COUNT")) {
+			AssertTextEquals(
+				locator1 = "Notifications#PROFILE_BADGE_COUNT",
+				value1 = "${notificationCount}"
+			);
+		}
 
-		<if>
-			<condition function="IsElementPresent" locator1="Notifications#MY_ACCOUNT_BADGE_COUNT" />
-			<then>
-				<execute function="AssertTextEquals" locator1="Notifications#MY_ACCOUNT_BADGE_COUNT" value1="${notificationCount}" />
-			</then>
-		</if>
+		if (IsElementPresent(locator1 = "Notifications#MY_ACCOUNT_BADGE_COUNT")) {
+			AssertTextEquals(
+				locator1 = "Notifications#MY_ACCOUNT_BADGE_COUNT",
+				value1 = "${notificationCount}"
+			);
+		}
 
-		<if>
-			<condition function="IsElementPresent" locator1="Notifications#NOTIFICATIONS_BADGE_COUNT" />
-			<then>
-				<if>
-					<condition function="IsElementPresent#isVisible" locator1="Notifications#NOTIFICATIONS_BADGE_COUNT" />
-					<then>
-						<execute function="AssertTextEquals" locator1="Notifications#NOTIFICATIONS_BADGE_COUNT" value1="${notificationCount}" />
-					</then>
-				</if>
-			</then>
-		</if>
+		if (IsElementPresent(locator1 = "Notifications#NOTIFICATIONS_BADGE_COUNT")) {
+			if (IsElementPresent.isVisible(locator1 = "Notifications#NOTIFICATIONS_BADGE_COUNT")) {
+				AssertTextEquals(
+					locator1 = "Notifications#NOTIFICATIONS_BADGE_COUNT",
+					value1 = "${notificationCount}"
+				);
+			}
+		}
 
-		<if>
-			<condition function="IsElementPresent" locator1="Notifications#USER_NAVIGATION_BAR_BADGE_COUNT" />
-			<then>
-				<execute function="AssertTextEquals" locator1="Notifications#USER_NAVIGATION_BAR_BADGE_COUNT" value1="${notificationCount}" />
-			</then>
-		</if>
-	</command>
+		if (IsElementPresent(locator1 = "Notifications#USER_NAVIGATION_BAR_BADGE_COUNT")) {
+			AssertTextEquals(
+				locator1 = "Notifications#USER_NAVIGATION_BAR_BADGE_COUNT",
+				value1 = "${notificationCount}"
+			);
+		}
+	}
 
-	<command name="viewDefaultContent">
-		<execute function="AssertTextEquals" locator1="Message#EMPTY_INFO" value1="You do not have any notifications." />
-	</command>
+	macro viewDefaultContent {
+		AssertTextEquals(
+			locator1 = "Message#EMPTY_INFO",
+			value1 = "You do not have any notifications."
+		);
+	}
 
-	<command name="viewNewComment">
-		<var method="StringUtil#lowerCase('${assetType}')" name="assetType" />
-		<var name="key_contentBody" value="${contentBody}" />
+	macro viewNewComment {
+		var assetType = StringUtil.lowerCase("${assetType}");
+		var key_contentBody = "${contentBody}";
 
-		<execute function="AssertTextEquals" locator1="Notifications#NOTIFICATIONS_TITLE" value1="${user} added a new ${assetType} to ${content}." />
-		<execute function="AssertTextEquals#assertPartialText" locator1="Notifications#NOTIFICATIONS_CONTENT" value1="${contentBody}" />
-	</command>
+		AssertTextEquals(
+			locator1 = "Notifications#NOTIFICATIONS_TITLE",
+			value1 = "${user} added a new ${assetType} to ${content}."
+		);
 
-	<command name="viewNewContent">
-		<var method="StringUtil#lowerCase('${assetType}')" name="assetType" />
-		<var name="key_contentBody" value="${contentBody}" />
+		AssertTextEquals.assertPartialText(
+			locator1 = "Notifications#NOTIFICATIONS_CONTENT",
+			value1 = "${contentBody}"
+		);
+	}
 
-		<execute function="AssertTextEquals" locator1="Notifications#NOTIFICATIONS_TITLE" value1="${user} added a new ${assetType}." />
-		<execute function="AssertTextEquals" locator1="Notifications#NOTIFICATIONS_CONTENT" value1="${contentBody}" />
-	</command>
+	macro viewNewContent {
+		var assetType = StringUtil.lowerCase("${assetType}");
+		var key_contentBody = "${contentBody}";
 
-	<command name="viewNoNotificationEntry">
-		<execute function="AssertElementNotPresent" locator1="Notifications#USER_BAR_BADGE_COUNT" />
-		<execute function="AssertElementNotPresent" locator1="Notifications#NOTIFICATIONS_CONTENT_GENERIC" />
-		<execute function="AssertElementNotPresent" locator1="Notifications#NOTIFICATIONS_TITLE" />
-	</command>
+		AssertTextEquals(
+			locator1 = "Notifications#NOTIFICATIONS_TITLE",
+			value1 = "${user} added a new ${assetType}."
+		);
 
-	<command name="viewNoNotifications">
-		<if>
-			<equals arg1="${activePanel}" arg2="Profile" />
-			<then>
-				<execute function="AssertElementNotPresent" locator1="Notifications#PROFILE_BADGE_COUNT" />
-			</then>
-		</if>
+		AssertTextEquals(
+			locator1 = "Notifications#NOTIFICATIONS_CONTENT",
+			value1 = "${contentBody}"
+		);
+	}
 
-		<if>
-			<equals arg1="${activePanel}" arg2="My Account" />
-			<then>
-				<execute function="AssertElementNotPresent" locator1="Notifications#MY_ACCOUNT_BADGE_COUNT" />
-			</then>
-		</if>
+	macro viewNoNotificationEntry {
+		AssertElementNotPresent(locator1 = "Notifications#USER_BAR_BADGE_COUNT");
 
-		<if>
-			<equals arg1="${activePanel}" arg2="Notifications" />
-			<then>
-				<execute function="AssertElementNotPresent" locator1="Notifications#NOTIFICATIONS_BADGE_COUNT" />
-			</then>
-		</if>
-	</command>
+		AssertElementNotPresent(
+			locator1 = "Notifications#NOTIFICATIONS_CONTENT_GENERIC"
+		);
 
-	<command name="viewNoRequest">
-		<execute function="AssertElementNotPresent" locator1="Button#CONFIRM" />
-		<execute function="AssertElementNotPresent" locator1="Button#IGNORE" />
-	</command>
+		AssertElementNotPresent(locator1 = "Notifications#NOTIFICATIONS_TITLE");
+	}
 
-	<command name="viewRequest">
-		<execute function="Click" locator1="Notifications#REQUESTS_LIST_TAB" />
+	macro viewNoNotifications {
+		if ("${activePanel}" == "Profile") {
+			AssertElementNotPresent(locator1 = "Notifications#PROFILE_BADGE_COUNT");
+		}
 
-		<execute function="AssertTextEquals" locator1="Notifications#NOTIFICATIONS_TITLE" value1="${requestsTitle}" />
-	</command>
+		if ("${activePanel}" == "My Account") {
+			AssertElementNotPresent(locator1 = "Notifications#MY_ACCOUNT_BADGE_COUNT");
+		}
 
-	<command name="viewUpdatedContent">
-		<var method="StringUtil#lowerCase('${assetType}')" name="assetType" />
-		<var name="key_contentBody" value="${contentBody}" />
+		if ("${activePanel}" == "Notifications") {
+			AssertElementNotPresent(locator1 = "Notifications#NOTIFICATIONS_BADGE_COUNT");
+		}
+	}
 
-		<execute function="AssertTextEquals" locator1="Notifications#NOTIFICATIONS_TITLE" value1="${user} updated a ${assetType}." />
-		<execute function="AssertTextEquals" locator1="Notifications#NOTIFICATIONS_CONTENT" value1="${contentBody}" />
-	</command>
-</definition>
+	macro viewNoRequest {
+		AssertElementNotPresent(locator1 = "Button#CONFIRM");
+
+		AssertElementNotPresent(locator1 = "Button#IGNORE");
+	}
+
+	macro viewRequest {
+		Click(locator1 = "Notifications#REQUESTS_LIST_TAB");
+
+		AssertTextEquals(
+			locator1 = "Notifications#NOTIFICATIONS_TITLE",
+			value1 = "${requestsTitle}"
+		);
+	}
+
+	macro viewUpdatedContent {
+		var assetType = StringUtil.lowerCase("${assetType}");
+		var key_contentBody = "${contentBody}";
+
+		AssertTextEquals(
+			locator1 = "Notifications#NOTIFICATIONS_TITLE",
+			value1 = "${user} updated a ${assetType}."
+		);
+
+		AssertTextEquals(
+			locator1 = "Notifications#NOTIFICATIONS_CONTENT",
+			value1 = "${contentBody}"
+		);
+	}
+}
