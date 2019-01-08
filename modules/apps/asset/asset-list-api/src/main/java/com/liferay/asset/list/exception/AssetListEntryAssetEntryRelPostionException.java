@@ -22,20 +22,20 @@ import com.liferay.portal.kernel.exception.PortalException;
  * @author Brian Wing Shun Chan
  */
 @ProviderType
-public class InvalidAssetEntryPositionException extends PortalException {
+public class AssetListEntryAssetEntryRelPostionException extends PortalException {
 
-	public InvalidAssetEntryPositionException() {
+	public AssetListEntryAssetEntryRelPostionException() {
 	}
 
-	public InvalidAssetEntryPositionException(String msg) {
+	public AssetListEntryAssetEntryRelPostionException(String msg) {
 		super(msg);
 	}
 
-	public InvalidAssetEntryPositionException(String msg, Throwable cause) {
+	public AssetListEntryAssetEntryRelPostionException(String msg, Throwable cause) {
 		super(msg, cause);
 	}
 
-	public InvalidAssetEntryPositionException(Throwable cause) {
+	public AssetListEntryAssetEntryRelPostionException(Throwable cause) {
 		super(cause);
 	}
 

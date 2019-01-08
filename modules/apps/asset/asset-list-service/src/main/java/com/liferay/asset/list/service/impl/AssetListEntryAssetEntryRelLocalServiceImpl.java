@@ -18,7 +18,7 @@ import com.liferay.asset.kernel.AssetRendererFactoryRegistryUtil;
 import com.liferay.asset.kernel.model.AssetEntry;
 import com.liferay.asset.kernel.model.AssetRendererFactory;
 import com.liferay.asset.kernel.service.AssetEntryLocalService;
-import com.liferay.asset.list.exception.InvalidAssetEntryPositionException;
+import com.liferay.asset.list.exception.AssetListEntryAssetEntryRelPostionException;
 import com.liferay.asset.list.model.AssetListEntryAssetEntryRel;
 import com.liferay.asset.list.service.base.AssetListEntryAssetEntryRelLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -53,7 +53,7 @@ public class AssetListEntryAssetEntryRelLocalServiceImpl
 				assetListEntryId, position);
 
 		if (assetListEntryAssetEntryRel != null) {
-			throw new InvalidAssetEntryPositionException();
+			throw new AssetListEntryAssetEntryRelPostionException();
 		}
 
 		User user = userLocalService.getUser(serviceContext.getUserId());
@@ -95,7 +95,7 @@ public class AssetListEntryAssetEntryRelLocalServiceImpl
 				assetListEntryId, position);
 
 		if (assetListEntryAssetEntryRel != null) {
-			throw new InvalidAssetEntryPositionException();
+			throw new AssetListEntryAssetEntryRelPostionException();
 		}
 
 		return addAssetListEntryAssetEntryRel(

@@ -147,8 +147,8 @@
 		<reference entity="User" package-path="com.liferay.portal" />
 	</entity>
 	<exceptions>
+		<exception>AssetListEntryAssetEntryRelPostion</exception>
 		<exception>AssetListEntryTitle</exception>
 		<exception>DuplicateAssetListEntryTitle</exception>
-		<exception>InvalidAssetEntryPosition</exception>
 	</exceptions>
 </service-builder>
