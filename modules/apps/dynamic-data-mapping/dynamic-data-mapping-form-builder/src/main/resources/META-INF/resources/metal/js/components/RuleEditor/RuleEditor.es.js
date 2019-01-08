@@ -960,7 +960,8 @@ class RuleEditor extends Component {
 
 	_handleCancelRule(event) {
 		this.emit(
-			'ruleCancel'
+			'ruleCancel',
+			{}
 		);
 	}
 

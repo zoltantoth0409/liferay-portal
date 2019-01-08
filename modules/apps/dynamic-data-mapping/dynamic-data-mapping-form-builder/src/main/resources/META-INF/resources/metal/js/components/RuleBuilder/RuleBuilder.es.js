@@ -269,8 +269,19 @@ class RuleBuilder extends Component {
 		this._showRuleList();
 	}
 
-	_handleRuleCancel(event) {
-		this._showRuleList();
+	_handleRuleCanceled(event) {
+		const rules = this.props.rules.map(
+			(rule, ruleIndex) => {
+				return this.index === ruleIndex ? this.originalRule : rule;
+			}
+		);
+
+		this.setState(
+			{
+				mode: 'view',
+				rules
+			}
+		);
 	}
 
 	_handleRuleDeleted({ruleId}) {
@@ -361,14 +372,14 @@ class RuleBuilder extends Component {
 	render() {
 		const RuleBuilderEvents = {
 			ruleAdded: this._handleRuleAdded.bind(this),
-			ruleCancel: this._handleRuleCancel.bind(this),
+			ruleCancel: this._handleRuleCanceled.bind(this),
 			ruleDeleted: this._handleRuleDeleted.bind(this),
 			ruleEdited: this._handleRuleEdited.bind(this)
 		};
 
 		const RuleEditionEvents = {
 			ruleAdded: this._handleRuleSaveEdition.bind(this),
-			ruleCancel: this._handleRuleCancel.bind(this)
+			ruleCancel: this._handleRuleCanceled.bind(this)
 		};
 
 		const {
