@@ -259,23 +259,6 @@ public class DDMFormValuesFactoryImpl implements DDMFormValuesFactory {
 		return ddmFormFieldParameterName.substring(0, pos);
 	}
 
-	protected Set<Locale> getAvailableLocales(String[] availableLanguageIds) {
-		Set<Locale> availableLocales = new HashSet<>();
-
-		for (String availableLanguageId : availableLanguageIds) {
-			Locale availableLocale = LocaleUtil.fromLanguageId(
-				availableLanguageId);
-
-			availableLocales.add(availableLocale);
-		}
-
-		if (availableLocales.isEmpty()) {
-			availableLocales.add(LocaleThreadLocal.getSiteDefaultLocale());
-		}
-
-		return availableLocales;
-	}
-
 	protected String[] getDDMFormFieldParameterNameParts(
 		String ddmFormFieldParameterName) {
 
