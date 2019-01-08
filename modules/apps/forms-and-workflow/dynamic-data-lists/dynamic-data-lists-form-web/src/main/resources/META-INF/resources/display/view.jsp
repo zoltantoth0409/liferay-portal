@@ -118,22 +118,6 @@ long recordSetId = ddlFormDisplayContext.getRecordSetId();
 						</div>
 					</aui:form>
 				</div>
-
-				<liferay-util:html-top
-					outputKey="loadDDMFieldTypes"
-				>
-					<aui:script use="liferay-ddm-form-renderer,liferay-ddl-soy-template-util">
-						Liferay.DDL.SoyTemplateUtil.loadModules(
-							function() {
-								Liferay.DDM.Renderer.FieldTypes.register(<%= ddlFormDisplayContext.getDDMFormFieldTypesJSONArray() %>);
-
-								Liferay.DMMFieldTypesReady = true;
-
-								Liferay.fire('DMMFieldTypesReady');
-							}
-						);
-					</aui:script>
-				</liferay-util:html-top>
 			</c:when>
 			<c:otherwise>
 				<div class="alert alert-warning">

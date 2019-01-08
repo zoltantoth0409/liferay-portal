@@ -189,22 +189,6 @@ renderResponse.setTitle((recordSet == null) ? LanguageUtil.get(request, "new-for
 
 		<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="publishRecordSet" var="publishRecordSetURL" />
 
-		<liferay-util:html-top
-			outputKey="loadDDMFieldTypes"
-		>
-			<aui:script use="liferay-ddm-form-renderer,liferay-ddl-soy-template-util">
-				Liferay.DDL.SoyTemplateUtil.loadModules(
-					function() {
-						Liferay.DDM.Renderer.FieldTypes.register(<%= ddlFormAdminDisplayContext.getDDMFormFieldTypesJSONArray() %>);
-
-						Liferay.DMMFieldTypesReady = true;
-
-						Liferay.fire('DMMFieldTypesReady');
-					}
-				);
-			</aui:script>
-		</liferay-util:html-top>
-
 		<aui:script>
 			var initHandler = Liferay.after(
 				'form:registered',
