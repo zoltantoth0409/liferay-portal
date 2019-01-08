@@ -494,14 +494,12 @@ class LayoutProvider extends Component {
 	}
 
 	_handleRuleAdded(rule) {
-		const newRule = {...rule};
-		const {rules} = this.state;
-
-		rules.push(newRule);
-
 		this.setState(
 			{
-				rules
+				rules: [
+					...this.state.rules,
+					rule
+				]
 			}
 		);
 	}
@@ -519,7 +517,6 @@ class LayoutProvider extends Component {
 	}
 
 	_handleRuleSaveEdition(event) {
-
 		const {actions, conditions, ruleEditedIndex} = event;
 
 		const logicalOperator = event['logical-operator'];
@@ -615,7 +612,9 @@ class LayoutProvider extends Component {
 				return {
 					...field,
 					localizedValue: {},
-					value: undefined
+					readOnly: true,
+					value: undefined,
+					visible: true
 				};
 			}
 		);
