@@ -117,7 +117,7 @@ public class JournalArticleResourceWrapper extends BaseModelWrapper<JournalArtic
 
 	@Override
 	public long getLatestArticlePK() {
-		return _journalArticleResource.getLatestArticlePK();
+		return model.getLatestArticlePK();
 	}
 
 	/**
