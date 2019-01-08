@@ -85,13 +85,10 @@ public class BulkAssetEntryResource {
 				_bulkSelectionFactory.create(
 					bulkAssetEntryCommonTagsActionModel.getParameterMap());
 
-			PermissionChecker permissionChecker =
-				PermissionCheckerFactoryUtil.create(user);
+			Stream<FileEntry> stream = bulkSelection.stream();
 
-			Stream<FileEntry> fileEntryStream = bulkSelection.stream();
-
-			Set<String> commonTags = fileEntryStream.map(
-				_getFileEntryTagsSet(permissionChecker)
+			Set<String> commonTags = stream.map(
+				_getFileEntryTagsSet(PermissionCheckerFactoryUtil.create(user))
 			).reduce(
 				SetUtil::intersect
 			).orElse(
