@@ -28,7 +28,7 @@ class Calculator extends Component {
 
 		expression: Config.string().value(''),
 
-		expressionArray: Config.array().value([]),
+		expressionArray: Config.array().valueFn('_expressionArrayValueFn'),
 
 		index: Config.number().value(0),
 
@@ -92,6 +92,20 @@ class Calculator extends Component {
 		else if (changes.hasOwnProperty('options')) {
 			this._keepLatestExpression(changes);
 		}
+	}
+
+	/**
+	 * @private
+	 */
+	_expressionArrayValueFn() {
+		let expressionArray = [];
+		const regex = /\(|\)|numeric[0-9]*|[0-9]+|sum\((numeric[0-9]*|[0-9])\)|[+-/*]/g;
+
+		if (this.expression.trim()) {
+			expressionArray = this.expression.match(regex);
+		}
+
+		return expressionArray;
 	}
 
 	_addItemIntoExpression(calculatorOperationFieldSelected, calculatorSymbol, dropdownItemWasSelected, dropdownItemName) {
