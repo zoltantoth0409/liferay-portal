@@ -27,10 +27,10 @@ import com.liferay.dynamic.data.mapping.storage.DDMFormFieldValue;
 import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMapFactory;
+import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleThreadLocal;
 import com.liferay.portal.kernel.util.LocaleUtil;
-import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -256,15 +256,6 @@ public class DDMFormValuesFactoryImpl implements DDMFormValuesFactory {
 		return ddmFormFieldParameterName.substring(0, pos);
 	}
 
-	protected Set<Locale> getAvailableLocales(
-		HttpServletRequest httpServletRequest) {
-
-		String[] availableLanguageIds = ParamUtil.getParameterValues(
-			httpServletRequest, "availableLanguageIds");
-
-		return getAvailableLocales(availableLanguageIds);
-	}
-
 	protected Set<Locale> getAvailableLocales(String[] availableLanguageIds) {
 		Set<Locale> availableLocales = new HashSet<>();
 
@@ -415,17 +406,6 @@ public class DDMFormValuesFactoryImpl implements DDMFormValuesFactory {
 		}
 
 		return ddmFormFieldValues;
-	}
-
-	protected Locale getDefaultLocale(HttpServletRequest httpServletRequest) {
-		String defaultLanguageId = ParamUtil.getString(
-			httpServletRequest, "defaultLanguageId");
-
-		if (Validator.isNull(defaultLanguageId)) {
-			return LocaleThreadLocal.getSiteDefaultLocale();
-		}
-
-		return LocaleUtil.fromLanguageId(defaultLanguageId);
 	}
 
 	protected String getEntryKeyPrefix(
