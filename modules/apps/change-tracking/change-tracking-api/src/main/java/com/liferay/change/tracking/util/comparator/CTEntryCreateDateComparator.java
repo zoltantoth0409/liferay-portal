@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.change.tracking.util;
+package com.liferay.change.tracking.util.comparator;
 
 import com.liferay.change.tracking.model.CTEntry;
 import com.liferay.portal.kernel.util.DateUtil;

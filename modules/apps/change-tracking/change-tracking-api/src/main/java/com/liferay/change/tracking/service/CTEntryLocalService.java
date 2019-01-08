@@ -198,8 +198,8 @@ public interface CTEntryLocalService extends BaseLocalService,
 		Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<CTEntry> fetchCTEntries(long collectionId, long classPrimKey,
-		QueryDefinition<CTEntry> queryDefinition);
+	public List<CTEntry> fetchCTEntries(long collectionId,
+		long resourcePrimKey, QueryDefinition<CTEntry> queryDefinition);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<CTEntry> fetchCTEntries(long collectionId,
