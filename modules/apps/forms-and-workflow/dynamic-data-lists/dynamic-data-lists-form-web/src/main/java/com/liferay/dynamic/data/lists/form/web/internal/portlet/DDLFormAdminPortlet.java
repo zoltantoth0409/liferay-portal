@@ -181,8 +181,6 @@ public class DDLFormAdminPortlet extends MVCPortlet {
 		ddmFormRenderingContext.setPortletNamespace(
 			renderResponse.getNamespace());
 
-		ddmFormRenderingContext.setViewMode(true);
-
 		return ddmFormRenderingContext;
 	}
 
