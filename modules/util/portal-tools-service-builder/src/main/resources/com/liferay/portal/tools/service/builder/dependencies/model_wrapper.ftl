@@ -39,7 +39,6 @@ import java.util.Objects;
 
 @ProviderType
 public class ${entity.name}Wrapper
-
 	<#assign entityFieldName = "model" />
 
 	<#if serviceBuilder.isVersionLTE_7_1_0()>
