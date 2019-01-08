@@ -1,201 +1,186 @@
-<definition component-name="portal-collaboration">
-	<property name="portal.release" value="true" />
-	<property name="portal.upstream" value="true" />
-	<property name="testray.main.component.name" value="Blogs" />
+@component-name = "portal-collaboration"
+definition {
+	property portal.release = "true";
+	property portal.upstream = "true";
+	property testray.main.component.name = "Blogs";
 
-	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+	setUp {
+		TestCase.setUpPortalInstance();
 
-		<execute macro="User#firstLoginPG" />
+		User.firstLoginPG();
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Sites" />
-			<var name="panel" value="Control Panel" />
-			<var name="portlet" value="Sites" />
-		</execute>
+		ProductMenu.gotoPortlet(
+			category = "Sites",
+			panel = "Control Panel",
+			portlet = "Sites"
+		);
 
-		<execute macro="Site#addBlankCP">
-			<var name="siteName" value="Site Name" />
-		</execute>
+		Site.addBlankCP(siteName = "Site Name");
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Sites" />
-			<var name="panel" value="Control Panel" />
-			<var name="portlet" value="Sites" />
-		</execute>
+		ProductMenu.gotoPortlet(
+			category = "Sites",
+			panel = "Control Panel",
+			portlet = "Sites"
+		);
 
-		<execute macro="Page#add">
-			<var name="pageName" value="Staging Blogs Page" />
-			<var name="siteName" value="Site Name" />
-		</execute>
+		Page.add(pageName = "Staging Blogs Page", siteName = "Site Name");
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Publishing" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Staging" />
-		</execute>
+		ProductMenu.gotoPortlet(
+			category = "Publishing",
+			panel = "Site Administration",
+			portlet = "Staging"
+		);
 
-		<execute macro="Staging#activateStagingCP">
-			<var name="siteName" value="Site Name" />
-		</execute>
-	</set-up>
+		Staging.activateStagingCP(siteName = "Site Name");
+	}
 
-	<tear-down>
-		<var method="PropsUtil#get('test.portal.instance')" name="testPortalInstance" />
+	tearDown {
+		var testPortalInstance = PropsUtil.get("test.portal.instance");
 
-		<if>
-			<equals arg1="${testPortalInstance}" arg2="true" />
-			<then>
-				<execute macro="PortalInstances#tearDownCP" />
-			</then>
-			<else>
-				<execute macro="BlogsEntry#tearDownCP" />
-			</else>
-		</if>
-	</tear-down>
+		if ("${testPortalInstance}" == "true") {
+			PortalInstances.tearDownCP();
+		}
+		else {
+			BlogsEntry.tearDownCP();
+		}
+	}
 
-	<command name="PublishEntryWithDeletedSmallImage" priority="5">
-		<description message="This is a use case for LPS-78833." />
+	@description = "This is a use case for LPS-78833."
+	@priority = "5"
+	test PublishEntryWithDeletedSmallImage {
+		Navigator.gotoStagedSitePage(
+			pageName = "Staging Blogs Page",
+			siteName = "Site Name"
+		);
 
-		<execute macro="Navigator#gotoStagedSitePage">
-			<var name="pageName" value="Staging Blogs Page" />
-			<var name="siteName" value="Site Name" />
-		</execute>
+		ProductMenu.gotoPortlet(
+			category = "Content",
+			panel = "Site Administration",
+			portlet = "Blogs"
+		);
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Content" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Blogs" />
-		</execute>
+		BlogsNavigator.gotoAddEntry();
 
-		<execute macro="BlogsNavigator#gotoAddEntry" />
+		BlogsEntry.addEntryContent(
+			entryContent = "Blogs Entry Content",
+			entryTitle = "Blogs Entry Title"
+		);
 
-		<execute macro="BlogsEntry#addEntryContent">
-			<var name="entryContent" value="Blogs Entry Content" />
-			<var name="entryTitle" value="Blogs Entry Title" />
-		</execute>
+		Panel.expandPanel(panelHeading = "Configuration");
 
-		<execute macro="Panel#expandPanel">
-			<var name="panelHeading" value="Configuration" />
-		</execute>
+		BlogsEntry.addSmallImage(
+			navTab = "Upload Image",
+			uploadFileName = "Document_3.jpg"
+		);
 
-		<execute macro="BlogsEntry#addSmallImage">
-			<var name="navTab" value="Upload Image" />
-			<var name="uploadFileName" value="Document_3.jpg" />
-		</execute>
+		PortletEntry.publish();
 
-		<execute macro="PortletEntry#publish" />
+		Navigator.gotoStagedSitePage(
+			pageName = "Staging Blogs Page",
+			siteName = "Site Name"
+		);
 
-		<execute macro="Navigator#gotoStagedSitePage">
-			<var name="pageName" value="Staging Blogs Page" />
-			<var name="siteName" value="Site Name" />
-		</execute>
+		Staging.gotoPublishToLive();
 
-		<execute macro="Staging#gotoPublishToLive" />
+		Staging.publishToLive();
 
-		<execute macro="Staging#publishToLive" />
+		ProductMenu.gotoLiveSite();
 
-		<execute macro="ProductMenu#gotoLiveSite" />
+		ProductMenu.gotoPortlet(
+			category = "Content",
+			panel = "Site Administration",
+			portlet = "Blogs"
+		);
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Content" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Blogs" />
-		</execute>
+		Portlet.changeDisplayStyle(displayStyle = "Descriptive");
 
-		<execute macro="Portlet#changeDisplayStyle">
-			<var name="displayStyle" value="Descriptive" />
-		</execute>
+		AssertElementPresent(
+			locator1 = "Blogs#DESCRIPTIVE_VIEW_ENTRY_TITLE",
+			key_entryTitle = "Blogs Entry Title"
+		);
 
-		<execute function="AssertElementPresent" locator1="Blogs#DESCRIPTIVE_VIEW_ENTRY_TITLE">
-			<var name="key_entryTitle" value="Blogs Entry Title" />
-		</execute>
+		Navigator.gotoStagedSitePage(
+			pageName = "Staging Blogs Page",
+			siteName = "Site Name"
+		);
 
-		<execute macro="Navigator#gotoStagedSitePage">
-			<var name="pageName" value="Staging Blogs Page" />
-			<var name="siteName" value="Site Name" />
-		</execute>
+		ProductMenu.gotoPortlet(
+			category = "Content",
+			panel = "Site Administration",
+			portlet = "Blogs"
+		);
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Content" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Blogs" />
-		</execute>
+		BlogsNavigator.gotoEditCP(entryTitle = "Blogs Entry Title");
 
-		<execute macro="BlogsNavigator#gotoEditCP">
-			<var name="entryTitle" value="Blogs Entry Title" />
-		</execute>
+		Panel.expandPanel(panelHeading = "Configuration");
 
-		<execute macro="Panel#expandPanel">
-			<var name="panelHeading" value="Configuration" />
-		</execute>
+		BlogsEntry.removeSmallImage(uploadFileName = "Document_3.jpg");
 
-		<execute macro="BlogsEntry#removeSmallImage">
-			<var name="uploadFileName" value="Document_3.jpg" />
-		</execute>
+		PortletEntry.publish();
 
-		<execute macro="PortletEntry#publish" />
+		Navigator.gotoStagedSitePage(
+			pageName = "Staging Blogs Page",
+			siteName = "Site Name"
+		);
 
-		<execute macro="Navigator#gotoStagedSitePage">
-			<var name="pageName" value="Staging Blogs Page" />
-			<var name="siteName" value="Site Name" />
-		</execute>
+		Staging.gotoPublishToLive();
 
-		<execute macro="Staging#gotoPublishToLive" />
+		Staging.publishToLive();
 
-		<execute macro="Staging#publishToLive" />
+		Navigator.gotoStagedSitePage(
+			pageName = "Staging Blogs Page",
+			siteName = "Site Name"
+		);
 
-		<execute macro="Navigator#gotoStagedSitePage">
-			<var name="pageName" value="Staging Blogs Page" />
-			<var name="siteName" value="Site Name" />
-		</execute>
+		ProductMenu.gotoPortlet(
+			category = "Content",
+			panel = "Site Administration",
+			portlet = "Blogs"
+		);
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Content" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Blogs" />
-		</execute>
+		BlogsNavigator.gotoEditCP(entryTitle = "Blogs Entry Title");
 
-		<execute macro="BlogsNavigator#gotoEditCP">
-			<var name="entryTitle" value="Blogs Entry Title" />
-		</execute>
+		AssertElementNotPresent(
+			locator1 = "BlogsEntry#SMALL_IMAGE",
+			key_smallImage = "Document_3.jpg"
+		);
 
-		<execute function="AssertElementNotPresent" locator1="BlogsEntry#SMALL_IMAGE">
-			<var name="key_smallImage" value="Document_3.jpg" />
-		</execute>
+		AssertTextEquals(
+			locator1 = "Button#SELECT_FILE_SMALL_IMAGE",
+			value1 = "Select File"
+		);
 
-		<execute function="AssertTextEquals" locator1="Button#SELECT_FILE_SMALL_IMAGE" value1="Select File" />
+		ProductMenu.gotoLiveSite();
 
-		<execute macro="ProductMenu#gotoLiveSite" />
+		ProductMenu.gotoPortlet(
+			category = "Content",
+			panel = "Site Administration",
+			portlet = "Blogs"
+		);
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Content" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Blogs" />
-		</execute>
+		Portlet.changeDisplayStyle(displayStyle = "Descriptive");
 
-		<execute macro="Portlet#changeDisplayStyle">
-			<var name="displayStyle" value="Descriptive" />
-		</execute>
+		AssertElementPresent(
+			locator1 = "Blogs#DESCRIPTIVE_VIEW_ENTRY_TITLE",
+			key_entryTitle = "Blogs Entry Title"
+		);
 
-		<execute function="AssertElementPresent" locator1="Blogs#DESCRIPTIVE_VIEW_ENTRY_TITLE">
-			<var name="key_entryTitle" value="Blogs Entry Title" />
-		</execute>
+		AssertClick(
+			locator1 = "NavBar#NAV_BAR_GENERAL",
+			value1 = "Images",
+			key_navItem = "Images"
+		);
 
-		<execute function="AssertClick" locator1="NavBar#NAV_BAR_GENERAL" value1="Images">
-			<var name="key_navItem" value="Images" />
-		</execute>
+		Portlet.changeDisplayStyle(displayStyle = "Descriptive");
 
-		<execute macro="Portlet#changeDisplayStyle">
-			<var name="displayStyle" value="Descriptive" />
-		</execute>
+		AssertElementPresent(
+			locator1 = "ControlMenuAddPanel#CONTENT_TITLE",
+			key_assetTitle = "Document_3.jpg"
+		);
 
-		<execute function="AssertElementPresent" locator1="ControlMenuAddPanel#CONTENT_TITLE">
-			<var name="key_assetTitle" value="Document_3.jpg" />
-		</execute>
-
-		<execute function="AssertElementNotPresent" locator1="ControlMenuAddPanel#CONTENT_TITLE">
-			<var name="key_assetTitle" value="Document_3 (1).jpg" />
-		</execute>
-	</command>
-</definition>
+		AssertElementNotPresent(
+			locator1 = "ControlMenuAddPanel#CONTENT_TITLE",
+			key_assetTitle = "Document_3 (1).jpg"
+		);
+	}
+}

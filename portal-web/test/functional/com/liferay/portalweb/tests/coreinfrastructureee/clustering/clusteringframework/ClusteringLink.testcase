@@ -1,118 +1,139 @@
-<definition component-name="portal-performance-and-fault-tolerance-ee">
-	<property name="portal.release" value="true" />
-	<property name="portal.upstream" value="true" />
-	<property name="testray.main.component.name" value="Clustering" />
+@component-name = "portal-performance-and-fault-tolerance-ee"
+definition {
+	property portal.release = "true";
+	property portal.upstream = "true";
+	property testray.main.component.name = "Clustering";
 
-	<set-up>
-		<execute macro="TestCase#setUpPortalInstance" />
+	setUp {
+		TestCase.setUpPortalInstance();
 
-		<execute macro="User#firstLoginPG" />
-	</set-up>
+		User.firstLoginPG();
+	}
 
-	<tear-down>
-		<var method="PropsUtil#get('test.portal.instance')" name="testPortalInstance" />
+	tearDown {
+		var testPortalInstance = PropsUtil.get("test.portal.instance");
 
-		<if>
-			<equals arg1="${testPortalInstance}" arg2="true" />
-			<then>
-				<execute macro="PortalInstances#tearDownCP" />
-			</then>
-			<else>
-				<execute macro="Page#tearDownPG" />
+		if ("${testPortalInstance}" == "true") {
+			PortalInstances.tearDownCP();
+		}
+		else {
+			Page.tearDownPG();
 
-				<execute macro="BlogsEntry#tearDownCP" />
-			</else>
-		</if>
-	</tear-down>
+			BlogsEntry.tearDownCP();
+		}
+	}
 
-	<command name="ClusteringLinkPortalProperties" priority="5">
-		<property name="custom.properties" value="cluster.link.enabled=false" />
-		<property name="test.name.skip.portal.instance" value="ClusteringLink#ClusteringLinkPortalProperties" />
+	@priority = "5"
+	test ClusteringLinkPortalProperties {
+		property custom.properties = "cluster.link.enabled=false";
+		property test.name.skip.portal.instance = "ClusteringLink#ClusteringLinkPortalProperties";
 
-		<execute function="AssertConsoleTextNotPresent" value1="channelName: liferay-channel-control" />
+		AssertConsoleTextNotPresent(value1 = "channelName: liferay-channel-control");
 
-		<execute macro="Portlet#shutdownServer" />
+		Portlet.shutdownServer();
 
-		<execute function="AntCommand" locator1="build-test.xml" value1="portal-ext-properties-update -Dupdate.properties.original=&quot;cluster.link.enabled=false&quot; -Dupdate.properties=&quot;cluster.link.enabled=true&quot;" />
+		AntCommand(
+			locator1 = "build-test.xml",
+			value1 = "portal-ext-properties-update -Dupdate.properties.original=&quot;cluster.link.enabled=false&quot; -Dupdate.properties=&quot;cluster.link.enabled=true&quot;"
+		);
 
-		<execute macro="Portlet#startServer">
-			<var name="deleteLiferayHome" value="false" />
-		</execute>
+		Portlet.startServer(deleteLiferayHome = "false");
 
-		<execute macro="Portlet#assertServerStartup" />
+		Portlet.assertServerStartup();
 
-		<execute function="AssertConsoleTextPresent" value1="channelName: liferay-channel-control" />
-		<execute function="AssertConsoleTextPresent" value1="channelName: liferay-channel-transport-0" />
+		AssertConsoleTextPresent(value1 = "channelName: liferay-channel-control");
 
-		<execute macro="Portlet#shutdownServer" />
+		AssertConsoleTextPresent(value1 = "channelName: liferay-channel-transport-0");
 
-		<execute function="AntCommand" locator1="build-test.xml" value1="portal-ext-properties-update -Dadd.new.properties=true -Dupdate.properties=&quot;cluster.link.channel.name.control=test-control-channel&quot;" />
+		Portlet.shutdownServer();
 
-		<execute function="AntCommand" locator1="build-test.xml" value1="portal-ext-properties-update -Dadd.new.properties=true -Dupdate.properties=&quot;cluster.link.channel.name.transport.0=test-transport-channel&quot;" />
+		AntCommand(
+			locator1 = "build-test.xml",
+			value1 = "portal-ext-properties-update -Dadd.new.properties=true -Dupdate.properties=&quot;cluster.link.channel.name.control=test-control-channel&quot;"
+		);
 
-		<execute macro="Portlet#startServer">
-			<var name="deleteLiferayHome" value="false" />
-		</execute>
+		AntCommand(
+			locator1 = "build-test.xml",
+			value1 = "portal-ext-properties-update -Dadd.new.properties=true -Dupdate.properties=&quot;cluster.link.channel.name.transport.0=test-transport-channel&quot;"
+		);
 
-		<execute macro="Portlet#assertServerStartup" />
+		Portlet.startServer(deleteLiferayHome = "false");
 
-		<execute function="AssertConsoleTextPresent" value1="channelName: test-control-channel" />
-		<execute function="AssertConsoleTextPresent" value1="channelName: test-transport-channel" />
+		Portlet.assertServerStartup();
 
-		<execute macro="Portlet#shutdownServer" />
+		AssertConsoleTextPresent(value1 = "channelName: test-control-channel");
 
-		<execute function="AntCommand" locator1="build-test.xml" value1="portal-ext-properties-update -Dadd.new.properties=true -Dupdate.properties=&quot;cluster.link.channel.properties.control=tcp.xml&quot;" />
+		AssertConsoleTextPresent(value1 = "channelName: test-transport-channel");
 
-		<execute macro="Portlet#startServer">
-			<var name="deleteLiferayHome" value="false" />
-		</execute>
+		Portlet.shutdownServer();
 
-		<execute macro="Portlet#assertServerStartup" />
+		AntCommand(
+			locator1 = "build-test.xml",
+			value1 = "portal-ext-properties-update -Dadd.new.properties=true -Dupdate.properties=&quot;cluster.link.channel.properties.control=tcp.xml&quot;"
+		);
 
-		<execute function="AssertConsoleTextPresent" value1="Create a new JGroups channel" />
-		<execute function="AssertConsoleTextPresent" value1="properties: TCP" />
+		Portlet.startServer(deleteLiferayHome = "false");
 
-		<execute macro="Portlet#shutdownServer" />
+		Portlet.assertServerStartup();
 
-		<execute function="AntCommand" locator1="build-test.xml" value1="portal-ext-properties-update -Dupdate.properties.original=&quot;cluster.link.channel.properties.control=tcp.xml&quot; -Dupdate.properties=&quot;cluster.link.channel.properties.transport.0=tcp.xml&quot;" />
+		AssertConsoleTextPresent(value1 = "Create a new JGroups channel");
 
-		<execute macro="Portlet#startServer">
-			<var name="deleteLiferayHome" value="false" />
-		</execute>
+		AssertConsoleTextPresent(value1 = "properties: TCP");
 
-		<execute macro="Portlet#assertServerStartup" />
+		Portlet.shutdownServer();
 
-		<execute function="AssertConsoleTextPresent" value1="Create a new JGroups channel" />
-		<execute function="AssertConsoleTextPresent" value1="properties: TCP" />
-		<execute function="AssertConsoleTextPresent" value1="Autodetecting JGroups outgoing IP address and interface for www.google.com:80" />
+		AntCommand(
+			locator1 = "build-test.xml",
+			value1 = "portal-ext-properties-update -Dupdate.properties.original=&quot;cluster.link.channel.properties.control=tcp.xml&quot; -Dupdate.properties=&quot;cluster.link.channel.properties.transport.0=tcp.xml&quot;"
+		);
 
-		<execute macro="Portlet#shutdownServer" />
+		Portlet.startServer(deleteLiferayHome = "false");
 
-		<execute function="AntCommand" locator1="build-test.xml" value1="portal-ext-properties-update -Dupdate.properties.original=&quot;cluster.link.channel.properties.transport.0=tcp.xml&quot; -Dupdate.properties=&quot;cluster.link.autodetect.address=&quot;" />
+		Portlet.assertServerStartup();
 
-		<execute macro="Portlet#startServer">
-			<var name="deleteLiferayHome" value="true" />
-		</execute>
+		AssertConsoleTextPresent(value1 = "Create a new JGroups channel");
 
-		<execute macro="Portlet#assertServerStartup" />
+		AssertConsoleTextPresent(value1 = "properties: TCP");
 
-		<execute function="AssertConsoleTextPresent" value1="bind_addr=127.0.0.1" />
-		<execute function="AssertConsoleTextNotPresent" value1="Autodetecting JGroups outgoing IP address and interface for www.google.com:80" />
+		AssertConsoleTextPresent(
+			value1 = "Autodetecting JGroups outgoing IP address and interface for www.google.com:80"
+		);
 
-		<execute macro="Portlet#shutdownServer" />
+		Portlet.shutdownServer();
 
-		<var method="PropsUtil#get('ip.address')" name="ipAddress" />
+		AntCommand(
+			locator1 = "build-test.xml",
+			value1 = "portal-ext-properties-update -Dupdate.properties.original=&quot;cluster.link.channel.properties.transport.0=tcp.xml&quot; -Dupdate.properties=&quot;cluster.link.autodetect.address=&quot;"
+		);
 
-		<execute function="AntCommand" locator1="build-test.xml" value1="portal-ext-properties-update -Dadd.new.properties=true -Dupdate.properties=&quot;cluster.link.bind.addr[&quot;cluster-link-control&quot;]=${ipAddress}&quot;" />
+		Portlet.startServer(deleteLiferayHome = "true");
 
-		<execute function="AntCommand" locator1="build-test.xml" value1="portal-ext-properties-update -Dadd.new.properties=true -Dupdate.properties=&quot;cluster.link.bind.addr[&quot;cluster-link-udp&quot;]=${ipAddress}&quot;" />
+		Portlet.assertServerStartup();
 
-		<execute macro="Portlet#startServer">
-			<var name="deleteLiferayHome" value="false" />
-		</execute>
+		AssertConsoleTextPresent(value1 = "bind_addr=127.0.0.1");
 
-		<execute macro="Portlet#assertServerStartup" />
+		AssertConsoleTextNotPresent(
+			value1 = "Autodetecting JGroups outgoing IP address and interface for www.google.com:80"
+		);
 
-		<execute function="AssertConsoleTextPresent" value1="bind_addr=${ipAddress}" />
-	</command>
-</definition>
+		Portlet.shutdownServer();
+
+		var ipAddress = PropsUtil.get("ip.address");
+
+		AntCommand(
+			locator1 = "build-test.xml",
+			value1 = "portal-ext-properties-update -Dadd.new.properties=true -Dupdate.properties=&quot;cluster.link.bind.addr[&quot;cluster-link-control&quot;]=${ipAddress}&quot;"
+		);
+
+		AntCommand(
+			locator1 = "build-test.xml",
+			value1 = "portal-ext-properties-update -Dadd.new.properties=true -Dupdate.properties=&quot;cluster.link.bind.addr[&quot;cluster-link-udp&quot;]=${ipAddress}&quot;"
+		);
+
+		Portlet.startServer(deleteLiferayHome = "false");
+
+		Portlet.assertServerStartup();
+
+		AssertConsoleTextPresent(value1 = "bind_addr=${ipAddress}");
+	}
+}
