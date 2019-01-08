@@ -207,7 +207,6 @@ public class UserIndexerIndexedFieldsTest {
 		map.put(Field.STATUS, String.valueOf(user.getStatus()));
 		map.put(Field.USER_ID, String.valueOf(user.getUserId()));
 		map.put(Field.USER_NAME, StringUtil.toLowerCase(user.getFullName()));
-
 		map.put("emailAddress", user.getEmailAddress());
 		map.put("firstName", user.getFirstName());
 		map.put(

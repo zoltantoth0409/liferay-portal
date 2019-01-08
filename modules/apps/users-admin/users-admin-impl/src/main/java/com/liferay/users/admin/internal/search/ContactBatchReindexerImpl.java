@@ -41,9 +41,7 @@ public class ContactBatchReindexerImpl implements ContactBatchReindexer {
 
 				dynamicQuery.add(userIdPropery.eq(userId));
 			});
-
 		batchIndexingActionable.setCompanyId(companyId);
-
 		batchIndexingActionable.setPerformActionMethod(
 			(Contact contact) -> {
 				batchIndexingActionable.addDocuments(
