@@ -28,13 +28,13 @@ public class BulkActionResponseModel {
 		new BulkActionResponseModel();
 
 	public BulkActionResponseModel() {
-		_status = "success";
 		_description = StringPool.BLANK;
+		_status = "success";
 	}
 
 	public BulkActionResponseModel(Throwable throwable) {
-		_status = "error";
 		_description = throwable.getMessage();
+		_status = "error";
 	}
 
 	public String getDescription() {

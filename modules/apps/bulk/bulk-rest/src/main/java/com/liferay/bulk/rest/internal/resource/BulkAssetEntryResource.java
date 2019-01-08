@@ -81,13 +81,14 @@ public class BulkAssetEntryResource {
 			bulkAssetEntryCommonTagsActionModel) {
 
 		try {
-			BulkSelection<FileEntry> selection = _bulkSelectionFactory.create(
-				bulkAssetEntryCommonTagsActionModel.getParameterMap());
+			BulkSelection<FileEntry> bulkSelection =
+				_bulkSelectionFactory.create(
+					bulkAssetEntryCommonTagsActionModel.getParameterMap());
 
 			PermissionChecker permissionChecker =
 				PermissionCheckerFactoryUtil.create(user);
 
-			Stream<FileEntry> fileEntryStream = selection.stream();
+			Stream<FileEntry> fileEntryStream = bulkSelection.stream();
 
 			Set<String> commonTags = fileEntryStream.map(
 				_getFileEntryTagsSet(permissionChecker)
@@ -98,7 +99,7 @@ public class BulkAssetEntryResource {
 			);
 
 			return new BulkAssetEntryCommonTagsModel(
-				selection.describe(locale), new ArrayList<>(commonTags));
+				bulkSelection.describe(locale), new ArrayList<>(commonTags));
 		}
 		catch (Exception e) {
 			return new BulkAssetEntryCommonTagsModel(e);
@@ -128,11 +129,11 @@ public class BulkAssetEntryResource {
 				bulkAssetEntryUpdateTagsActionModel)
 		throws Exception {
 
-		BulkSelection<FileEntry> selection = _bulkSelectionFactory.create(
+		BulkSelection<FileEntry> bulkSelection = _bulkSelectionFactory.create(
 			bulkAssetEntryUpdateTagsActionModel.getParameterMap());
 
 		_bulkSelectionRunner.run(
-			selection, _editTagsBulkSelectionAction,
+			bulkSelection, _editTagsBulkSelectionAction,
 			new HashMap<String, Serializable>() {
 				{
 					put(
