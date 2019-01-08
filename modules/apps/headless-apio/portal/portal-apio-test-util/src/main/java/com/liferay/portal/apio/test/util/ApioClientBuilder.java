@@ -55,7 +55,7 @@ public class ApioClientBuilder {
 
 		public RequestSpecification(
 			Authentication authentication, Map<String, String> headers,
-			Body body, List<Multipart> multipart) {
+			Body body, List<Multipart> multiparts) {
 
 			_authentication = authentication;
 
@@ -73,19 +73,19 @@ public class ApioClientBuilder {
 				_body = body;
 			}
 
-			if (multipart == null) {
+			if (multiparts == null) {
 				_multiparts = Collections.emptyList();
 			}
 			else {
-				_multiparts = multipart;
+				_multiparts = multiparts;
 			}
 		}
 
 		public RequestSpecification(
 			Authentication authentication, Map<String, String> headers,
-			List<Multipart> multipart) {
+			List<Multipart> multiparts) {
 
-			this(authentication, headers, Body.EMPTY, multipart);
+			this(authentication, headers, Body.EMPTY, multiparts);
 		}
 
 		public RequestSpecification basicAuth(String user, String password) {
