@@ -68,11 +68,11 @@ public class CTEntryLocalServiceImpl extends CTEntryLocalServiceBaseImpl {
 
 	@Override
 	public List<CTEntry> fetchCTEntries(
-		long collectionId, long classPrimKey,
+		long collectionId, long resourcePrimKey,
 		QueryDefinition<CTEntry> queryDefinition) {
 
 		return ctEntryFinder.findByCTCollectionId(
-			collectionId, classPrimKey, queryDefinition);
+			collectionId, resourcePrimKey, queryDefinition);
 	}
 
 	@Override
