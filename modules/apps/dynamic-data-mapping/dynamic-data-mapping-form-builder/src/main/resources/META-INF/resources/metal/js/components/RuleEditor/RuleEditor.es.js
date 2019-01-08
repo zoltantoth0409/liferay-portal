@@ -3,6 +3,7 @@ import 'clay-modal';
 import {Config} from 'metal-state';
 import {PagesVisitor} from '../../util/visitors.es';
 import '../Calculator/Calculator.es';
+import '../Page/PageRenderer.es';
 import Component from 'metal-component';
 import Soy from 'metal-soy';
 import templates from './RuleEditor.soy.js';
@@ -560,10 +561,10 @@ class RuleEditor extends Component {
 				);
 
 				if (!targetFieldExists) {
-					actions = this._clearAllActionFieldValues(index);
+					action.target = '';
 				}
 
-				actions[index].calculatorFields = this._updateCalculatorFields(index, action.target);
+				action.calculatorFields = this._updateCalculatorFields(action, action.target);
 			}
 		);
 
@@ -630,22 +631,13 @@ class RuleEditor extends Component {
 		);
 	}
 
-	_clearAllActionFieldValues(index) {
-		let {actions} = this;
-
-		actions = this._clearTargetValue(actions, index);
-
-		return actions;
-	}
-
 	_clearAllConditionFieldValues(index) {
-		let {conditions, secondOperandSelectedList} = this;
+		const {secondOperandSelectedList} = this;
+		let {conditions} = this;
 
 		conditions = this._clearFirstOperandValue(conditions, index);
 		conditions = this._clearOperatorValue(conditions, index);
 		conditions = this._clearSecondOperandValue(conditions, index);
-
-		secondOperandSelectedList = this._clearSelectedSecondOperand(secondOperandSelectedList, index);
 
 		this.setState(
 			{
@@ -664,14 +656,6 @@ class RuleEditor extends Component {
 		}
 
 		return conditions;
-	}
-
-	_clearTargetValue(actions, index) {
-		if (actions[index]) {
-			actions[index].target = '';
-		}
-
-		return actions;
 	}
 
 	_clearOperatorValue(conditions, index) {
@@ -842,7 +826,7 @@ class RuleEditor extends Component {
 
 	_getFieldTypeByFieldName(fieldName) {
 		let dataType = '';
-		let fieldRepeatable = false;
+		let repeatable = false;
 		let type = '';
 
 		if (fieldName === 'user') {
@@ -855,12 +839,12 @@ class RuleEditor extends Component {
 
 			if (selectedField) {
 				dataType = selectedField.dataType;
-				fieldRepeatable = selectedField.repeatable;
+				repeatable = selectedField.repeatable;
 				type = selectedField.type;
 			}
 		}
 
-		return {dataType, fieldRepeatable, type};
+		return {dataType, repeatable, type};
 	}
 
 	_getOperatorsByFieldType(fieldType) {
@@ -917,8 +901,8 @@ class RuleEditor extends Component {
 				if (fieldName !== previousAction) {
 					newActions[index].action = fieldName;
 					newActions[index].calculatorFields = [];
-					newActions[index].target = '';
 					newActions[index].label = '';
+					newActions[index].target = '';
 				}
 			}
 			else {
@@ -967,9 +951,9 @@ class RuleEditor extends Component {
 
 	_handleDataProviderInputEdited(event) {
 		const {fieldInstance, value} = event;
+		const {actions} = this;
 		const actionIndex = this._getIndex(fieldInstance, '.action');
 		const inputIndex = this._getIndex(fieldInstance, '.container-input-field');
-		const {actions} = this;
 
 		const name = actions[actionIndex].inputs[inputIndex].name;
 
@@ -1068,11 +1052,11 @@ class RuleEditor extends Component {
 
 		if (value && value.length > 0 && value[0]) {
 			const fieldName = value[0];
-			const {dataType, fieldRepeatable} = this._getFieldTypeByFieldName(fieldName);
+			const {dataType, repeatable} = this._getFieldTypeByFieldName(fieldName);
 
 			const firstOperand = {
 				label: this._getFieldLabel(fieldName),
-				repeatable: fieldRepeatable,
+				repeatable,
 				type: dataType == 'user' ? 'user' : 'field',
 				value: fieldName
 			};
@@ -1205,9 +1189,7 @@ class RuleEditor extends Component {
 
 	_handleSecondOperandFieldEdited(event) {
 		const {conditions, roles} = this;
-		const {fieldInstance, originalEvent, value} = event;
-
-		const {delegateTarget} = originalEvent;
+		const {fieldInstance, value} = event;
 		let fieldValue = '';
 
 		if (value && typeof (value) == 'object' && value[0]) {
@@ -1219,18 +1201,20 @@ class RuleEditor extends Component {
 
 		let index;
 
-		if (delegateTarget.closest('.condition-type-value')) {
+		if (fieldInstance.element.closest('.condition-type-value')) {
 			index = this._getIndex(fieldInstance, '.condition-type-value');
 		}
 
 		let secondOperand = conditions[index].operands[1];
 
 		if (!secondOperand) {
-			secondOperand = {type: fieldValue};
+			secondOperand = {
+				dataType: fieldInstance.dataType,
+				type: fieldInstance.type
+			};
 		}
 
 		let roleLabel = '';
-
 		let userType = '';
 
 		if (conditions[index].operands[0].type === 'user') {
@@ -1240,8 +1224,9 @@ class RuleEditor extends Component {
 
 		conditions[index].operands[1] = {
 			...secondOperand,
+			dataType: fieldInstance.dataType,
 			label: roleLabel ? roleLabel.label : '',
-			type: userType ? userType : secondOperand.type,
+			type: userType ? userType : fieldInstance.type,
 			value: fieldValue
 		};
 
@@ -1252,52 +1237,67 @@ class RuleEditor extends Component {
 		);
 	}
 
+	_handleSecondOperandValueEdited(event) {
+		const {conditions} = this;
+		const {fieldInstance, value} = event;
+		const index = this._getIndex(fieldInstance, '.condition-type-value');
+		const secondOperandValue = Array.isArray(value) ? value[0] : value;
+
+		this.setState(
+			{
+				conditions: conditions.map(
+					(condition, conditionIndex) => {
+						const operands = [...condition.operands];
+
+						if (index == conditionIndex) {
+							operands[1] = {
+								...operands[1],
+								value: secondOperandValue
+							};
+						}
+
+						return {
+							...condition,
+							operands
+						};
+					}
+				)
+			}
+		);
+	}
+
 	_handleSecondOperandTypeEdited(event) {
 		let {conditions} = this;
 		const {fieldInstance, value} = event;
 		const index = this._getIndex(fieldInstance, '.condition-type');
-		const secondOperand = conditions[index].operands[1];
+		const {operands} = conditions[index];
+		const secondOperand = operands[1];
 
-		let valueType = 'field';
+		let [secondOperandType, valueType] = ['field'];
 
 		if (value[0] == 'value') {
 			valueType = 'string';
+			secondOperandType = this._getFieldTypeByFieldName(operands[0].value).type;
 		}
 
-		if (value[0] == '') {
+		if (secondOperand && ((secondOperand.type === secondOperandType) || (secondOperand.type === 'string' && secondOperandType !== 'field'))) {
+			return;
+		}
+
+		if ((value[0] == '') || (secondOperand && secondOperand.dataType != valueType)) {
 			conditions = this._clearSecondOperandValue(conditions, index);
 		}
-		else if (secondOperand && secondOperand.dataType != valueType) {
-			conditions = this._clearSecondOperandValue(conditions, index);
+
+		if (secondOperand) {
+			secondOperand.type = secondOperandType;
 		}
-
-		if (value && value.length > 0 && value[0]) {
-			let secondOperandDataType = 'field';
-			let secondOperandType = '';
-			const selectedValue = value[0];
-
-			if (selectedValue === 'value') {
-				const {dataType, type} = this._getFieldTypeByFieldName(conditions[index].operands[0].value);
-
-				secondOperandType = type;
-				secondOperandDataType = dataType;
-			}
-			else {
-				secondOperandType = 'field';
-			}
-
-			if (secondOperand) {
-				secondOperand.type = secondOperandType;
-				secondOperand.dataType = secondOperandDataType;
-			}
-			else {
-				conditions[index].operands.push(
-					{
-						dataType: secondOperandDataType,
-						type: secondOperandType
-					}
-				);
-			}
+		else {
+			conditions[index].operands.push(
+				{
+					type: secondOperandType,
+					value: ''
+				}
+			);
 		}
 
 		this.setState(
@@ -1390,8 +1390,6 @@ class RuleEditor extends Component {
 			},
 			[]
 		);
-
-		return actions[index].calculatorFields;
 	}
 
 	formatDataProviderParameter(parameters) {
@@ -1652,7 +1650,7 @@ class RuleEditor extends Component {
 
 		calculateActions.forEach(
 			({expression}) => {
-				if (expression.length == 0) {
+				if (expression && expression.length == 0) {
 					allFieldsFilled = false;
 				}
 			}

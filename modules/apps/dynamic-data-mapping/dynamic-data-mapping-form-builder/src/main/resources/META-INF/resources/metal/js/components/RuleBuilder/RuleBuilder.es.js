@@ -58,6 +58,8 @@ class RuleBuilder extends Component {
 
 		rolesURL: Config.string().required(),
 
+		originalRule: Config.object(),
+
 		rules: Config.arrayOf(
 			Config.shapeOf(
 				{
@@ -237,16 +239,6 @@ class RuleBuilder extends Component {
 	}
 
 	/**
-	 * Show the rule screen to edit an existing rule. For now, this method does not receive the rule data for edition.
-	 * @param {!Event} event
-	 * @private
-	 */
-
-	_handleEditRuleClicked() {
-		this._showRuleEdition();
-	}
-
-	/**
 	 * Show the rule screen to create a new rule
 	 * @param {!Event} event
 	 * @private
@@ -294,7 +286,16 @@ class RuleBuilder extends Component {
 	}
 
 	_handleRuleEdited({ruleId}) {
-		this.setState({index: parseInt(ruleId, 10)});
+		const {rules} = this.props;
+
+		ruleId = parseInt(ruleId, 10);
+
+		this.setState(
+			{
+				index: ruleId,
+				originalRule: rules[ruleId]
+			}
+		);
 
 		this._showRuleEdition();
 	}
@@ -326,8 +327,7 @@ class RuleBuilder extends Component {
 
 		if (visible) {
 			this._eventHandler.add(
-				dom.on('#addFieldButton', 'click', this._handleAddRuleClick.bind(this)),
-				dom.on('.rule-card-edit', 'click', this._handleEditRuleClicked.bind(this))
+				dom.on('#addFieldButton', 'click', this._handleAddRuleClick.bind(this))
 			);
 		}
 		else {

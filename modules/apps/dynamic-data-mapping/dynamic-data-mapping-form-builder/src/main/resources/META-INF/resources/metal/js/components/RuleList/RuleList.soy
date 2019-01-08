@@ -4,7 +4,7 @@
  * Prints the DDM form rule builder cotainer.
  */
 {template .render}
-	{@param? dropdownExpanded: bool}
+	{@param? dropdownExpandedIndex: number}
 	{@param rules: list<[
 			conditions: list<[
 				operator: string,
@@ -29,23 +29,23 @@
 	{@param? rulesCardOptions: ?}
 	{@param strings: ?}
 	{@param spritemap: string}
-	{@param _handleDropdownExpanded: any}
+	{@param _handleDropdownClicked: any}
 	{@param _handleRuleCardClicked: any}
+
 	<div class="form-builder-rule-builder-container">
 		<h1 class="form-builder-section-title text-default">{$strings.rules}</h1>
 
 		<div class="liferay-ddm-form-rule-rules-list-container">
 			{call .rule_list}
-				{param dropdownExpanded: $dropdownExpanded /}
+				{param dropdownExpandedIndex: $dropdownExpandedIndex /}
 				{param rules: $rules /}
 				{param rulesCardOptions: $rulesCardOptions /}
 				{param strings: $strings /}
 				{param spritemap: $spritemap /}
-				{param _handleDropdownExpanded: $_handleDropdownExpanded /}
+				{param _handleDropdownClicked: $_handleDropdownClicked /}
 				{param _handleRuleCardClicked: $_handleRuleCardClicked /}
 			{/call}
 		</div>
-
 	</div>
 {/template}
 
@@ -53,14 +53,13 @@
  * Prints the DDM form card rule.
  */
 {template .rule_list}
-	{@param? dropdownExpanded: bool}
 	{@param rules: list<[
 			conditions: list<[
 				operator: string,
 				operands: list<[
 					type: string,
 					label: string,
-					value: string
+					value: ?
 				]>
 			]>,
 			actions: list<[
@@ -75,11 +74,12 @@
 			logicalOperator: string
 		]>
 	}
-	{@param? rulesCardOptions: ?}
 	{@param strings: ?}
 	{@param spritemap: string}
-	{@param _handleDropdownExpanded: any}
+	{@param _handleDropdownClicked: any}
 	{@param _handleRuleCardClicked: any}
+	{@param? dropdownExpandedIndex: number}
+	{@param? rulesCardOptions: ?}
 
 	<div class="form-builder-rule-list">
 		{if length($rules) > 0}
@@ -126,7 +126,6 @@
 									{param logicalOperator: $rule.logicalOperator /}
 									{param outputValue: $action.outputValue /}
 									{param strings: $strings /}
-
 								{/call}
 								{if not isLast($action)}
 								, <br />
@@ -139,21 +138,26 @@
 					<div class="list-group-item-field">
 						<div class="card-col-field">
 							<div class="dropdown dropdown-action">
-								<div class="ddm-page-settings" data-card-id="{index($rule)}" role="group">
+								{let $ruleIndex: index($rule) /}
+								{let $isExpanded: $dropdownExpandedIndex == $ruleIndex /}
+
+								<div class="ddm-rule-list-settings" data-card-id={$ruleIndex}>
 									{call ClayActionsDropdown.render}
 										{param items: $rulesCardOptions /}
-										{param expanded: $dropdownExpanded /}
-										{param triggerClasses: 'component-action' /}
+										{param expanded: $isExpanded /}
 										{param events: [
-											'itemClicked': $_handleRuleCardClicked,
-											'expandedChanged': $_handleDropdownExpanded
+											'itemClicked': $_handleRuleCardClicked
 										] /}
 										{param spritemap: $spritemap /}
 									{/call}
-								</div>
 
-								<a class="component-action dropdown-toggle" data-toggle="dropdown" href="#1">
-								</a>
+									<button class="component-action cursor-pointer dropdown-toggle" data-rule-index="{$ruleIndex}" data-onclick={$_handleDropdownClicked}>
+										{call ClayIcon.render}
+											{param spritemap: $spritemap /}
+											{param symbol: 'ellipsis-v' /}
+										{/call}
+									</button>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -206,7 +210,7 @@
 {template .condition}
 	{@param? operandLabel: string}
 	{@param? operandType: string}
-	{@param? operandValue: string}
+	{@param? operandValue: ?}
 	{@param strings: ?}
 
 	{if $operandType == 'double' or $operandType == 'integer' or $operandType == 'string'}

@@ -144,6 +144,7 @@
 	{@param? _handleRuleAdded: any}
 	{@param? _handleSecondOperandFieldEdited: any}
 	{@param? _handleSecondOperandTypeEdited: any}
+	{@param? _handleSecondOperandValueEdited: any}
 	{@param? _handleTargetSelection: any}
 	{@param? _handleModalButtonClicked: any}
 	{@param? roles: list<[
@@ -180,6 +181,7 @@
 					{param _handleOperatorEdited: $_handleOperatorEdited /}
 					{param _handleSecondOperandFieldEdited: $_handleSecondOperandFieldEdited /}
 					{param _handleSecondOperandTypeEdited: $_handleSecondOperandTypeEdited /}
+					{param _handleSecondOperandValueEdited: $_handleSecondOperandValueEdited /}
 					{param binaryOperator: $condition.binaryOperator /}
 					{param fieldOptions: $fieldOptions /}
 					{param firstOperandType: $condition.operands[0].type /}
@@ -223,6 +225,7 @@
 					{param actionInputs: $action.inputs /}
 					{param actionOutputs: $action.outputs /}
 					{param actionSelected: $action.action /}
+					{param actionExpression: $action.expression /}
 					{param actionTypes: $actionTypes /}
 					{param calculatorOptions: $calculatorOptions /}
 					{param calculatorFields: $action.calculatorFields /}
@@ -386,6 +389,7 @@
 	{@param? _handleDataProviderOutputEdited: any}
 	{@param? _handleDeleteAction: any}
 	{@param? _handleTargetSelection: any}
+	{@param? actionExpression: string}
 	{@param? actionInputs: list<[
 		label: string,
 		name: string,
@@ -492,6 +496,7 @@
 						{param events: [
 							'editExpression': $_handleEditExpression
 						]/}
+						{param expression: $actionExpression /}
 						{param index: $index /}
 						{param calculatorOptions: $calculatorOptions /}
 						{param deletedFields: $deletedFields /}
@@ -595,6 +600,7 @@
 	{@param? _handleOperatorEdited: any}
 	{@param? _handleSecondOperandFieldEdited: any}
 	{@param? _handleSecondOperandTypeEdited: any}
+	{@param? _handleSecondOperandValueEdited: any}
 	{@param? firstOperandType: string}
 	{@param? firstOperandValueSelected: string}
 	{@param? firstOperandOptions: list<[
@@ -678,7 +684,7 @@
 									{if $fieldHasOptions}
 										{delcall PageRenderer.RegisterFieldType variant="'select'"}
 											{param events: [
-												'fieldEdited': $_handleSecondOperandFieldEdited
+												'fieldEdited': $_handleSecondOperandValueEdited
 											] /}
 											{param name: $secondOperandFieldName /}
 											{param options: $firstOperandOptions /}
@@ -691,7 +697,7 @@
 									{elseif $secondOperandType == 'field'}
 										{delcall PageRenderer.RegisterFieldType variant="'select'"}
 											{param events: [
-												'fieldEdited': $_handleSecondOperandFieldEdited
+												'fieldEdited': $_handleSecondOperandValueEdited
 											] /}
 											{param options: $fieldOptions /}
 											{param placeholder: $strings.chooseAnOption /}
@@ -700,9 +706,11 @@
 											{param value: [$secondOperandValue] /}
 										{/delcall}
 									{else}
-										{delcall PageRenderer.RegisterFieldType variant="$secondOperandType"}
+										{let $fieldType: $secondOperandType == 'string' ? 'text' : $secondOperandType /}
+
+										{delcall PageRenderer.RegisterFieldType variant="$fieldType"}
 											{param events: [
-												'fieldEdited': $_handleSecondOperandFieldEdited
+												'fieldEdited': $_handleSecondOperandValueEdited
 											] /}
 											{param name: $secondOperandFieldName /}
 											{param readOnly: $readOnly /}
