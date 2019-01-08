@@ -22,7 +22,8 @@ import com.liferay.portal.kernel.exception.PortalException;
  * @author Brian Wing Shun Chan
  */
 @ProviderType
-public class AssetListEntryAssetEntryRelPostionException extends PortalException {
+public class AssetListEntryAssetEntryRelPostionException
+	extends PortalException {
 
 	public AssetListEntryAssetEntryRelPostionException() {
 	}
@@ -31,7 +32,9 @@ public class AssetListEntryAssetEntryRelPostionException extends PortalException
 		super(msg);
 	}
 
-	public AssetListEntryAssetEntryRelPostionException(String msg, Throwable cause) {
+	public AssetListEntryAssetEntryRelPostionException(
+		String msg, Throwable cause) {
+
 		super(msg, cause);
 	}
 
