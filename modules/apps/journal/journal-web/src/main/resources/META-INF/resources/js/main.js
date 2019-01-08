@@ -241,6 +241,7 @@ AUI.add(
 								var inputDefaultValue = inputComponent.getValue(defaultLanguageId);
 
 								inputComponent.updateInputLanguage(inputDefaultValue);
+
 								inputComponent.selectFlag(selectedLanguageId);
 							}
 						}
