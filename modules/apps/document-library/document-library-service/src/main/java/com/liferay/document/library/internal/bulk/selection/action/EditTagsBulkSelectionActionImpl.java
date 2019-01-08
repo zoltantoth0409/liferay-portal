@@ -94,7 +94,9 @@ public class EditTagsBulkSelectionActionImpl
 							assetEntry.getTagNames());
 
 						currentTagNamesSet.removeAll(toRemoveTagNamesSet);
+
 						currentTagNamesSet.addAll(toAddTagNamesSet);
+
 						currentTagNamesSet.removeIf(
 							tagName -> !AssetUtil.isValidWord(tagName));
 
