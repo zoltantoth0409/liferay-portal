@@ -1,15 +1,16 @@
-<definition default="pauseSelect">
-	<command name="pauseSelect">
-		<execute function="WaitForSPARefresh" />
+@default = "pauseSelect"
+definition {
+	function pauseSelect {
+		WaitForSPARefresh();
 
-		<execute argument1="5000" selenium="pause" />
+		selenium.pause("5000");
 
-		<execute function="WaitForSPARefresh" />
+		WaitForSPARefresh();
 
-		<execute selenium="waitForVisible" />
+		selenium.waitForVisible();
 
-		<execute selenium="mouseOver" />
+		selenium.mouseOver();
 
-		<execute selenium="select" />
-	</command>
-</definition>
+		selenium.select();
+	}
+}
