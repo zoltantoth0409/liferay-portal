@@ -4,6 +4,7 @@ import {EventHandler} from 'metal-events';
 import Component from 'metal-jsx';
 import RuleList from '../../components/RuleList/index.es';
 import RuleEditor from '../../components/RuleEditor/index.es';
+import {makeFetch} from '../../util/fetch.es';
 
 /**
  * Builder.
@@ -103,6 +104,15 @@ class RuleBuilder extends Component {
 	}
 
 	static STATE = {
+		dataProvider: Config.arrayOf(
+			Config.shapeOf(
+				{
+					id: Config.string(),
+					name: Config.string(),
+					uuid: Config.string()
+				}
+			)
+		).internal(),
 
 		/**
 		 * @default
@@ -158,6 +168,41 @@ class RuleBuilder extends Component {
 
 	created() {
 		this._eventHandler = new EventHandler();
+
+		this._fetchDataProvider();
+	}
+
+	_fetchDataProvider() {
+		const {dataProviderInstancesURL} = this.props;
+
+		makeFetch(
+			{
+				method: 'GET',
+				url: dataProviderInstancesURL
+			}
+		).then(
+			responseData => {
+				if (!this.isDisposed()) {
+					this.setState(
+						{
+							dataProvider: responseData.map(
+								data => {
+									return {
+										...data,
+										label: data.name,
+										value: data.id
+									};
+								}
+							)
+						}
+					);
+				}
+			}
+		).catch(
+			error => {
+				throw new Error(error);
+			}
+		);
 	}
 
 	/**
@@ -337,12 +382,17 @@ class RuleBuilder extends Component {
 			spritemap
 		} = this.props;
 
+		const {
+			dataProvider
+		} = this.state;
+
 		return (
 			<div class="container">
 				{this.state.mode === 'create' && (
 					<RuleEditor
 						actions={[]}
 						conditions={[]}
+						dataProvider={dataProvider}
 						dataProviderInstanceParameterSettingsURL={dataProviderInstanceParameterSettingsURL}
 						dataProviderInstancesURL={dataProviderInstancesURL}
 						events={RuleBuilderEvents}
@@ -350,12 +400,14 @@ class RuleBuilder extends Component {
 						functionsURL={functionsURL}
 						key={'create'}
 						pages={pages}
+						ref="RuleEditor"
 						rolesURL={rolesURL}
 						spritemap={spritemap}
 					/>
 				)}
 				{this.state.mode === 'edit' && (
 					<RuleEditor
+
 						dataProviderInstanceParameterSettingsURL={dataProviderInstanceParameterSettingsURL}
 						dataProviderInstancesURL={dataProviderInstancesURL}
 						events={RuleEditionEvents}
@@ -363,6 +415,7 @@ class RuleBuilder extends Component {
 						functionsURL={functionsURL}
 						key={'edit'}
 						pages={pages}
+						ref="RuleEditor"
 						rolesURL={rolesURL}
 						rule={rules[this.state.index]}
 						ruleEditedIndex={this.state.index}
@@ -370,7 +423,13 @@ class RuleBuilder extends Component {
 					/>
 				)}
 				{this.state.mode === 'view' && (
-					<RuleList dataProviderInstancesURL={dataProviderInstancesURL} events={RuleBuilderEvents} pages={pages} rules={rules} spritemap={spritemap} />
+					<RuleList
+						dataProvider={dataProvider}
+						events={RuleBuilderEvents}
+						pages={pages}
+						rules={rules}
+						spritemap={spritemap}
+					/>
 				)}
 			</div>
 		);

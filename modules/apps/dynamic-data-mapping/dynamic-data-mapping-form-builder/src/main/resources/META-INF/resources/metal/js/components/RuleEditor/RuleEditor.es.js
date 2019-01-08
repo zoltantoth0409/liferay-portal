@@ -388,7 +388,6 @@ class RuleEditor extends Component {
 	}
 
 	created() {
-		this._fetchDataProvider();
 		this._fetchRoles();
 		this._fetchFunctionsURL();
 
@@ -696,39 +695,6 @@ class RuleEditor extends Component {
 		return secondOperandSelectedList;
 	}
 
-	_fetchDataProvider() {
-		const {dataProviderInstancesURL} = this;
-
-		makeFetch(
-			{
-				method: 'GET',
-				url: dataProviderInstancesURL
-			}
-		).then(
-			responseData => {
-				if (!this.isDisposed()) {
-					this.setState(
-						{
-							dataProvider: responseData.map(
-								data => {
-									return {
-										...data,
-										label: data.name,
-										value: data.id
-									};
-								}
-							)
-						}
-					);
-				}
-			}
-		).catch(
-			error => {
-				throw new Error(error);
-			}
-		);
-	}
-
 	_fetchDataProviderParameters(id, index) {
 		const {actions, dataProviderInstanceParameterSettingsURL} = this;
 
@@ -740,26 +706,25 @@ class RuleEditor extends Component {
 				url: `${url}?ddmDataProviderInstanceId=${id}`
 			}
 		).then(
-			responseData => {
-				if (!this.isDisposed()) {
+			({inputs, outputs}) => {
+				actions[index].inputs = [];
+				actions[index].outputs = [];
+
+				if (!this.isDisposed() && inputs.length && outputs.length) {
 					const newInput = {
-						...responseData.inputs[0],
-						[responseData.inputs[0].name]: ''
+						...inputs[0],
+						[inputs[0].name]: ''
 					};
 					const newOutput = {
-						...responseData.outputs[0],
-						[responseData.outputs[0].name]: ''
+						...outputs[0],
+						[outputs[0].name]: ''
 					};
 
 					actions[index].inputs = [newInput];
 					actions[index].outputs = [newOutput];
-
-					this.setState(
-						{
-							actions
-						}
-					);
 				}
+
+				return actions;
 			}
 		).catch(
 			error => {
@@ -1359,34 +1324,10 @@ class RuleEditor extends Component {
 		}
 		else if (previousTarget !== id) {
 			if (this.actions[index].action == 'auto-fill') {
-				this._fetchDataProviderParameters(id, index)
-					.then(
-						() => {
-							if (!this.isDisposed()) {
-								actions[index] = {
-									...actions[index],
-									inputs: this.formatDataProviderParameter(actions[index].inputs),
-									outputs: this.formatDataProviderParameter(actions[index].outputs)
-								};
-
-								actions[index].ddmDataProviderInstanceUUID = this.dataProvider.find(
-									data => {
-										return data.id == id;
-									}
-								).uuid;
-								actions[index].hasRequiredInputs = (actions[index].inputs)
-									.some(
-										input => {
-											return input.required;
-										}
-									);
-								this.setState(actions);
-							}
-						}
-					);
+				this.getDataProviderOptions(id, index);
 			}
 			else if (this.actions[index].action == 'calculate') {
-				actions[index].calculatorFields = this._updateCalculatorFields(index, id);
+				actions[index].calculatorFields = this._updateCalculatorFields(this.actions[index], id);
 			}
 		}
 
@@ -1397,10 +1338,45 @@ class RuleEditor extends Component {
 		);
 	}
 
-	_updateCalculatorFields(index, id) {
-		const {actions, calculatorResultOptions} = this;
+	getDataProviderOptions(id, index) {
+		this._fetchDataProviderParameters(id, index)
+			.then(
+				actions => {
+					console.log('disposed', this.isDisposed());
+					if (!this.isDisposed()) {
+						actions[index] = {
+							...actions[index],
+							inputs: this.formatDataProviderParameter(actions[index].inputs),
+							outputs: this.formatDataProviderParameter(actions[index].outputs)
+						};
 
-		actions[index].calculatorFields = calculatorResultOptions.reduce(
+						actions[index].ddmDataProviderInstanceUUID = this.dataProvider.find(
+							data => {
+								return data.id == id;
+							}
+						).uuid;
+
+						actions[index].hasRequiredInputs = (actions[index].inputs)
+							.some(
+								input => {
+									return input.required;
+								}
+							);
+
+						this.setState(
+							{
+								actions
+							}
+						);
+					}
+				}
+			);
+	}
+
+	_updateCalculatorFields(action, id) {
+		const {calculatorResultOptions} = this;
+
+		return calculatorResultOptions.reduce(
 			(prev, option) => {
 				return (option.fieldName === id) ? prev : [
 					...prev,
@@ -1488,50 +1464,46 @@ class RuleEditor extends Component {
 
 		conditions.forEach(
 			condition => {
-
 				if (condition.operands[0].type == 'user') {
 					condition.operands[0].label = condition.operands[0].value;
 					condition.operands[1].type = 'list';
 				}
+
 				if (condition.operands[1]) {
-					condition.operands[1].type = condition.operands[1].dataType;
-					condition.operands[1].label = condition.operands[1].value;
-					delete condition.operands[1].dataType;
+					condition.operands[1].label = condition.operands[1].value
 				}
 			}
 		);
+
 		return conditions;
 	}
 
 	_removeActionInternalProperties() {
 		const {actions} = this;
 
-		actions.forEach(
+		return actions.map(
 			action => {
-				if (action.action == 'auto-fill') {
-					action.inputs = this._prepareAutofillInputs(action);
-					action.outputs = this._prepareAutofillOutputs(action);
-					delete action.target;
-					delete action.label;
-					delete action.inputValue;
-					delete action.outputValue;
+				const {action: actionType, expression, label, target} = action;
+				const newAction = {
+					action: actionType
+				};
+
+				if (actionType == 'auto-fill') {
+					newAction.inputs = this._prepareAutofillInputs(action);
+					newAction.outputs = this._prepareAutofillOutputs(action);
+				}
+				else {
+					newAction.target = target;
+					newAction.label = label;
 				}
 
-				if (action.action != 'auto-fill') {
-					delete action.inputs;
-					delete action.outputs;
+				if (actionType == 'calculate') {
+					newAction.expression = expression;
 				}
 
-				if (action.action != 'calculate') {
-					delete action.expression;
-				}
-
-				delete action.calculatorFields;
-				delete action.hasRequiredInputs;
-
+				return newAction;
 			}
 		);
-		return actions;
 	}
 
 	_setActions(actions) {

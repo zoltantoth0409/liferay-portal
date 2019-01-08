@@ -1,10 +1,12 @@
 import 'clay-button';
+import 'clay-dropdown';
 import {Config} from 'metal-state';
 import {EventHandler} from 'metal-events';
 import Component from 'metal-component';
 import Soy from 'metal-soy';
+import dom from 'metal-dom';
+
 import templates from './RuleList.soy.js';
-import {makeFetch} from '../../util/fetch.es';
 
 /**
  * LayoutRenderer.
@@ -22,11 +24,9 @@ class RuleList extends Component {
 					uuid: Config.string()
 				}
 			)
-		).internal(),
+		),
 
-		dataProviderInstancesURL: Config.string().required(),
-
-		dropdownExpanded: Config.bool().internal(),
+		dropdownExpandedIndex: Config.number().internal(),
 
 		pages: Config.array().required(),
 
@@ -268,8 +268,8 @@ class RuleList extends Component {
 		return newRules;
 	}
 
-	_setDataProviderNames() {
-		const newRules = this.rules;
+	_setDataProviderNames(states) {
+		const newRules = states.rules;
 
 		if (this.dataProvider) {
 			for (let rule = 0; rule < newRules.length; rule++) {
@@ -285,8 +285,9 @@ class RuleList extends Component {
 					}
 				);
 			}
-			this.setState({rules: newRules});
 		}
+
+		return newRules;
 	}
 
 	_getRulesCardOptions() {
@@ -305,11 +306,11 @@ class RuleList extends Component {
 	}
 
 	prepareStateForRender(states) {
-		this._setDataProviderNames();
+		const rules = this._setDataProviderNames(states);
 
 		return {
 			...states,
-			rules: states.rules.map(
+			rules: rules.map(
 				rule => {
 					return {
 						...rule,
@@ -347,7 +348,7 @@ class RuleList extends Component {
 	_setOperandValue(operand) {
 		let field = '';
 
-		if (operand.type === 'field' || operand.type != 'user') {
+		if (operand.type === 'field') {
 			field = this._getFieldLabel(operand.value);
 		}
 		else {
