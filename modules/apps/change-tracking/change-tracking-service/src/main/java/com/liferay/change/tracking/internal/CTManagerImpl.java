@@ -61,10 +61,9 @@ public class CTManagerImpl implements CTManager {
 
 		QueryDefinition<CTEntry> queryDefinition = new QueryDefinition<>();
 
-		queryDefinition.setStart(0);
 		queryDefinition.setEnd(1);
-
 		queryDefinition.setOrderByComparator(new CTEntryCreateDateComparator());
+		queryDefinition.setStart(0);
 
 		List<CTEntry> ctEntries = getModelChangeCTEntries(
 			userId, resourcePrimKey, queryDefinition);
@@ -176,11 +175,11 @@ public class CTManagerImpl implements CTManager {
 				catch (PortalException pe) {
 					StringBundler sb = new StringBundler(5);
 
-					sb.append("Unable to register model change {classNameId: ");
+					sb.append("Unable to register model change  with class ");
+					sb.append("name ID ");
 					sb.append(classNameId);
-					sb.append(" , classPK: ");
+					sb.append(" and class PK ");
 					sb.append(classPK);
-					sb.append("}");
 
 					_log.error(sb.toString(), pe);
 
