@@ -88,5 +88,5 @@
 		"format": "npm run csf -- -i",
 		"test": "metalsoy --soyDeps \"node_modules/clay-+(button|checkbox|dropdown|icon|label|link|portal|radio|management-toolbar)/src/**/*.soy\" && jest && npm run cleanSoy"
 	},
-	"version": "1.2.8"
+	"version": "1.3.0"
 }
