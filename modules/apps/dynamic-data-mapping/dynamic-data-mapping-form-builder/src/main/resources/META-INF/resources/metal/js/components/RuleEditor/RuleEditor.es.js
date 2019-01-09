@@ -1482,7 +1482,7 @@ class RuleEditor extends Component {
 
 		return actions.map(
 			action => {
-				const {action: actionType, expression, label, target} = action;
+				const {action: actionType, expression, label, target, ddmDataProviderInstanceUUID} = action;
 				const newAction = {
 					action: actionType
 				};
@@ -1490,6 +1490,7 @@ class RuleEditor extends Component {
 				if (actionType == 'auto-fill') {
 					newAction.inputs = this._prepareAutofillInputs(action);
 					newAction.outputs = this._prepareAutofillOutputs(action);
+					newAction.ddmDataProviderInstanceUUID = ddmDataProviderInstanceUUID;
 				}
 				else {
 					newAction.target = target;
