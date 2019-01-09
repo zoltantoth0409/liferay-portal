@@ -6871,7 +6871,7 @@ public class JournalArticleLocalServiceImpl
 		String portletId = PortletProviderUtil.getPortletId(
 			JournalArticle.class.getName(), PortletProvider.Action.EDIT);
 
-		final ActionableDynamicQuery actionableDynamicQuery =
+		ActionableDynamicQuery actionableDynamicQuery =
 			getActionableDynamicQuery();
 
 		actionableDynamicQuery.setAddCriteriaMethod(
