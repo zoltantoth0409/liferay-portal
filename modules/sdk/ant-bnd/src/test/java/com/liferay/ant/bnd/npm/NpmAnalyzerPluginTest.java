@@ -30,6 +30,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -401,9 +402,12 @@ public class NpmAnalyzerPluginTest {
 		try (InputStream inputStream = clazz.getResourceAsStream(path);
 			InputStreamReader inputStreamReader = new InputStreamReader(
 				inputStream, StandardCharsets.UTF_8);
-			BufferedReader buffer = new BufferedReader(inputStreamReader)) {
+			BufferedReader bufferedReader = new BufferedReader(
+				inputStreamReader)) {
 
-			return buffer.lines().collect(Collectors.joining("\n"));
+			Stream<String> stream = bufferedReader.lines();
+
+			return stream.collect(Collectors.joining("\n"));
 		}
 	}
 
