@@ -6868,9 +6868,6 @@ public class JournalArticleLocalServiceImpl
 	protected void checkArticlesByDisplayDate(Date displayDate)
 		throws PortalException {
 
-		String portletId = PortletProviderUtil.getPortletId(
-			JournalArticle.class.getName(), PortletProvider.Action.EDIT);
-
 		ActionableDynamicQuery actionableDynamicQuery =
 			getActionableDynamicQuery();
 
@@ -6895,6 +6892,10 @@ public class JournalArticleLocalServiceImpl
 				ServiceContext serviceContext = new ServiceContext();
 
 				serviceContext.setCommand(Constants.UPDATE);
+
+				String portletId = PortletProviderUtil.getPortletId(
+					JournalArticle.class.getName(),
+					PortletProvider.Action.EDIT);
 
 				String layoutFullURL = PortalUtil.getLayoutFullURL(
 					article.getGroupId(), portletId);
