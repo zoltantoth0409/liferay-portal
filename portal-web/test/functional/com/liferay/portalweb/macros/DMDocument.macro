@@ -1944,7 +1944,7 @@ definition {
 		if (isSet(dmRepositoryName)) {
 			AssertClick.assertTextClickAtAndPause(
 				locator1 = "DocumentsAndMedia#SEARCH_REPOSITORY_TAB",
-				value1 = "repository ${dmRepositoryName}"
+				value1 = "${dmRepositoryName}"
 			);
 		}
 
