@@ -52,7 +52,6 @@
 <aui:form action="<%= deleteLayoutURL %>" cssClass="container-fluid-1280" name="fm">
 	<c:choose>
 		<c:when test="<%= layoutsAdminDisplayContext.hasLayouts() %>">
-
 			<%
 			Map<String, Object> context = new HashMap<>();
 
@@ -68,7 +67,7 @@
 
 			<soy:component-renderer
 				context="<%= context %>"
-				module="layout-admin-web/js/miller_columns/Layout.es"
+				module='<%= npmResolvedPackageName + "/js/miller_columns/Layout.es" %>'
 				templateNamespace="com.liferay.layout.admin.web.Layout.render"
 			/>
 		</c:when>

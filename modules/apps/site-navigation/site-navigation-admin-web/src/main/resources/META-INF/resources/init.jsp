@@ -73,7 +73,6 @@ page import="javax.portlet.PortletURL" %>
 <%@ include file="/init-ext.jsp" %>
 
 <%
-String npmResolvedPackageName = (String)renderRequest.getAttribute("npmResolvedPackageName");
 SiteNavigationAdminDisplayContext siteNavigationAdminDisplayContext = new SiteNavigationAdminDisplayContext(liferayPortletRequest, liferayPortletResponse, request);
 SiteNavigationMenuItemTypeRegistry siteNavigationMenuItemTypeRegistry = siteNavigationAdminDisplayContext.getSiteNavigationMenuItemTypeRegistry();
 %>

@@ -452,8 +452,8 @@ if (portletTitleBasedNavigation) {
 	</aui:form>
 </div>
 
-<aui:script require="message-boards-web/message_boards/js/MBPortlet.es">
-	new messageBoardsWebMessage_boardsJsMBPortletEs.default(
+<aui:script require='<%= npmResolvedPackageName + "/message_boards/js/MBPortlet.es as MBPortlet" %>'>
+	new MBPortlet.default(
 		{
 			constants: {
 				'ACTION_PUBLISH': '<%= WorkflowConstants.ACTION_PUBLISH %>',
