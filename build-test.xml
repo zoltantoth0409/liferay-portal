@@ -11037,6 +11037,10 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 	<target name="upgrade-legacy-database">
 		<prepare-database-upgrade-configuration />
 
+		<get-java-jdk-bundle-version test.batch.name="${test.batch.name}" />
+
+		<get-java-jdk-home version="${java.jdk.bundle.version}" />
+
 		<trycatch property="upgrade.error">
 			<try>
 				<if>
@@ -11049,6 +11053,7 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 							jar="${liferay.home}/tools/portal-tools-db-upgrade-client/com.liferay.portal.tools.db.upgrade.client.jar"
 							timeout="900000"
 						>
+							<env key="JAVA_HOME" value="${java.jdk.home}" />
 							<env key="WAS_HOME" value="${app.server.dir}" />
 						</java>
 					</then>
@@ -11059,7 +11064,9 @@ module.framework.properties.blacklist.portal.profile.names=${blacklist.portal.pr
 							fork="true"
 							jar="${liferay.home}/tools/portal-tools-db-upgrade-client/com.liferay.portal.tools.db.upgrade.client.jar"
 							timeout="900000"
-						/>
+						>
+							<env key="JAVA_HOME" value="${java.jdk.home}" />
+						</java>
 					</else>
 				</if>
 			</try>
