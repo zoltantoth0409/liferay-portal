@@ -96,7 +96,7 @@ class Layout extends Component {
 	 * @review
 	 */
 
-	dispose() {
+	disposed() {
 		this._layoutDragDrop.dispose();
 		this._removeLayoutColumnsScrollListener();
 	}
