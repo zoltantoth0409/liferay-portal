@@ -213,7 +213,7 @@
 	{@param? operandValue: ?}
 	{@param strings: ?}
 
-	{if $operandType == 'double' or $operandType == 'integer' or $operandType == 'string'}
+	{if $operandType == 'double' or $operandType == 'integer' or $operandType == 'string' or $operandType == 'text'}
 		<span>{$strings.value} </span>
 	{else}
 		{if $operandType != 'user' and $operandType != 'list'}
@@ -246,8 +246,6 @@
 
 	<span><b>{$action} </b></span>
 
-	<span>{$strings['field']} </span>
-
 	{if $action == 'auto-fill'}
 		{call .label}
 			{param content: $inputValue /}
@@ -262,8 +260,6 @@
 		{/call}
 
 		<b> into </b>
-
-		<span>{$strings['field']} </span>
 
 		{call .label}
 			{param content: $label /}
