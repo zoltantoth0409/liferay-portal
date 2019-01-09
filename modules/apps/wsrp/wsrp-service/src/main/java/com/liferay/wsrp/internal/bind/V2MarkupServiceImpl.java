@@ -14,6 +14,7 @@
 
 package com.liferay.wsrp.internal.bind;
 
+import com.liferay.petra.string.CharPool;
 import com.liferay.portal.kernel.exception.NoSuchLayoutException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -830,7 +831,9 @@ public class V2MarkupServiceImpl
 
 		if (ArrayUtil.contains(localesEnabled, languageId)) {
 			sb.append(StringPool.SLASH);
-			sb.append(languageId);
+			sb.append(
+				StringUtil.replaceFirst(
+					languageId, CharPool.UNDERLINE, CharPool.DASH));
 		}
 
 		sb.append(_PATH_WIDGET);
