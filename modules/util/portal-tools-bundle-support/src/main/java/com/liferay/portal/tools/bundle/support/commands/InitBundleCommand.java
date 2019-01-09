@@ -187,7 +187,7 @@ public class InitBundleCommand extends DownloadCommand {
 
 	@Parameter(
 		converter = FileConverter.class,
-		description = "A list of jars ti deploy to 'osgi/modules'.",
+		description = "A list of JARs to deploy to \"osgi/modules\".",
 		names = "--provided-modules"
 	)
 	private List<File> _providedModules = new ArrayList<>();
