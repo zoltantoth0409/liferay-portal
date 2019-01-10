@@ -238,7 +238,6 @@
 {template .action}
 	{@param action: string}
 	{@param dataProviderName: ?}
-	{@param inputValue: ?}
 	{@param expression: ?}
 	{@param label: ?}
 	{@param outputValue: ?}
@@ -247,9 +246,6 @@
 	<span><b>{$action} </b></span>
 
 	{if $action == 'auto-fill'}
-		{call .label}
-			{param content: $inputValue /}
-		{/call}
 		{call .label}
 			{param content: $outputValue /}
 		{/call}
