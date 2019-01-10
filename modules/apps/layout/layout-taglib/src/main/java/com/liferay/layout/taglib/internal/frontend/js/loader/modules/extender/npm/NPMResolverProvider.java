@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.layout.taglib.internal.js.loader.modules.extender.npm;
+package com.liferay.layout.taglib.internal.frontend.js.loader.modules.extender.npm;
 
 import com.liferay.frontend.js.loader.modules.extender.npm.NPMResolver;
 
