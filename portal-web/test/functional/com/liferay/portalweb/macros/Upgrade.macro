@@ -1003,7 +1003,6 @@ definition {
 		);
 
 		AssetPublisherPortlet.viewAssetMetadataPG(
-			addMetadata = "true",
 			categoryName = "Category Name",
 			vocabularyName = "Vocabulary Name"
 		);
