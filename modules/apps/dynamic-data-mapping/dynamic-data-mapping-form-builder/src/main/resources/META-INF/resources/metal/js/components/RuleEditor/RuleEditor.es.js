@@ -261,9 +261,7 @@ class RuleEditor extends Component {
 					name: Config.string()
 				}
 			)
-		).internal(),
-
-		rolesURL: Config.string(),
+		).value([]),
 
 		/**
 		 * @default 0
@@ -389,7 +387,6 @@ class RuleEditor extends Component {
 	}
 
 	created() {
-		this._fetchRoles();
 		this._fetchFunctionsURL();
 
 		if (this.rule) {
@@ -732,39 +729,6 @@ class RuleEditor extends Component {
 					this.setState(
 						{
 							calculatorOptions: responseData
-						}
-					);
-				}
-			}
-		).catch(
-			error => {
-				throw new Error(error);
-			}
-		);
-	}
-
-	_fetchRoles() {
-		const {rolesURL} = this;
-
-		makeFetch(
-			{
-				method: 'GET',
-				url: rolesURL
-			}
-		).then(
-			responseData => {
-				if (!this.isDisposed()) {
-					this.setState(
-						{
-							roles: responseData.map(
-								data => {
-									return {
-										...data,
-										label: data.name,
-										value: data.id
-									};
-								}
-							)
 						}
 					);
 				}

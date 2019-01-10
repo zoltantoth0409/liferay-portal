@@ -127,6 +127,15 @@ class RuleBuilder extends Component {
 
 		mode: Config.oneOf(['view', 'edit', 'create']).value('view'),
 
+		roles: Config.arrayOf(
+			Config.shapeOf(
+				{
+					id: Config.string(),
+					name: Config.string()
+				}
+			)
+		).internal(),
+
 		rules: Config.arrayOf(
 			Config.shapeOf(
 				{
@@ -172,6 +181,40 @@ class RuleBuilder extends Component {
 		this._eventHandler = new EventHandler();
 
 		this._fetchDataProvider();
+		this._fetchRoles();
+	}
+
+	_fetchRoles() {
+		const {rolesURL} = this.props;
+
+		makeFetch(
+			{
+				method: 'GET',
+				url: rolesURL
+			}
+		).then(
+			responseData => {
+				if (!this.isDisposed()) {
+					this.setState(
+						{
+							roles: responseData.map(
+								data => {
+									return {
+										...data,
+										label: data.name,
+										value: data.id
+									};
+								}
+							)
+						}
+					);
+				}
+			}
+		).catch(
+			error => {
+				throw new Error(error);
+			}
+		);
 	}
 
 	_fetchDataProvider() {
@@ -388,13 +431,13 @@ class RuleBuilder extends Component {
 			functionsMetadata,
 			functionsURL,
 			pages,
-			rolesURL,
 			rules,
 			spritemap
 		} = this.props;
 
 		const {
-			dataProvider
+			dataProvider,
+			roles
 		} = this.state;
 
 		return (
@@ -412,7 +455,7 @@ class RuleBuilder extends Component {
 						key={'create'}
 						pages={pages}
 						ref="RuleEditor"
-						rolesURL={rolesURL}
+						roles={roles}
 						spritemap={spritemap}
 					/>
 				)}
@@ -427,7 +470,7 @@ class RuleBuilder extends Component {
 						key={'edit'}
 						pages={pages}
 						ref="RuleEditor"
-						rolesURL={rolesURL}
+						roles={roles}
 						rule={rules[this.state.index]}
 						ruleEditedIndex={this.state.index}
 						spritemap={spritemap}
@@ -438,6 +481,7 @@ class RuleBuilder extends Component {
 						dataProvider={dataProvider}
 						events={RuleBuilderEvents}
 						pages={pages}
+						roles={roles}
 						rules={rules}
 						spritemap={spritemap}
 					/>
