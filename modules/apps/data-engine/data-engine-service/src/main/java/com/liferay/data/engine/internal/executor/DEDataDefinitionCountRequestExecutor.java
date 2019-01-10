@@ -35,12 +35,11 @@ public class DEDataDefinitionCountRequestExecutor {
 	public DEDataDefinitionCountResponse execute(
 		DEDataDefinitionCountRequest deDataDefinitionCountRequest) {
 
-		int count = ddmStructureService.getStructuresCount(
-			deDataDefinitionCountRequest.getCompanyId(),
-			new long[] {deDataDefinitionCountRequest.getGroupId()},
-			portal.getClassNameId(DEDataDefinition.class));
-
-		return DEDataDefinitionCountResponse.Builder.of(count);
+		return DEDataDefinitionCountResponse.Builder.of(
+			ddmStructureService.getStructuresCount(
+				deDataDefinitionCountRequest.getCompanyId(),
+				new long[] {deDataDefinitionCountRequest.getGroupId()},
+				portal.getClassNameId(DEDataDefinition.class)));
 	}
 
 	protected DDMStructureService ddmStructureService;
