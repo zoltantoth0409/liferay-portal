@@ -641,6 +641,7 @@ public class LayoutsTreeImpl implements LayoutsTree {
 				"sortable",
 				hasManageLayoutsPermission && !mobile &&
 				SitesUtil.isLayoutSortable(layout));
+			jsonObject.put("target", layout.getTarget());
 			jsonObject.put("type", layout.getType());
 			jsonObject.put(
 				"updateable",
