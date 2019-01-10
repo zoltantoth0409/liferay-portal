@@ -1286,7 +1286,10 @@ class RuleEditor extends Component {
 		actions[index].target = id;
 		actions[index].label = id;
 
-		if (id === '') {
+		if (id === undefined) {
+			actions[index].target = '';
+		}
+		else if (id === '') {
 			actions[index].inputs = [];
 			actions[index].outputs = [];
 			actions[index].hasRequiredInputs = false;
