@@ -20,6 +20,7 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
 
 /**
  * @author Julien Castelain
+ * @review
  */
 @ExtendedObjectClassDefinition(category = "third-party")
 @Meta.OCD(
@@ -31,9 +32,9 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
 public interface JSJQueryConfiguration {
 
 	/**
-	 * Set this to <code>true</code> to enable jquery usage.
+	 * Set this to <code>true</code> to enable JQuery usage.
 	 *
-	 * @return <code>true</code> if jquery is enabled.
+	 * @return <code>true</code> if JQuery is enabled.
 	 * @review
 	 */
 	@Meta.AD(deflt = "true", name = "enable-jquery", required = false)
