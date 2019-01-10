@@ -58,10 +58,8 @@ public class JournalArticleAssetEntryUsageChecker
 		throws PortalException {
 
 		_checkAssetPublisherUsages(assetEntry, true);
-
 		_checkAssetPublisherUsages(assetEntry, false);
-
-		_checkWebContentUsages(assetEntry);
+		_checkContentSearches(assetEntry);
 	}
 
 	private void _checkAssetPublisherUsages(
@@ -121,8 +119,11 @@ public class JournalArticleAssetEntryUsageChecker
 		}
 	}
 
-	private void _checkWebContentUsages(AssetEntry assetEntry)
+	private void _checkContentSearches(AssetEntry assetEntry)
 		throws PortalException {
+
+		ServiceContext serviceContext =
+			ServiceContextThreadLocal.getServiceContext();
 
 		JournalArticle article = _journalArticleLocalService.fetchLatestArticle(
 			assetEntry.getClassPK());
@@ -130,9 +131,6 @@ public class JournalArticleAssetEntryUsageChecker
 		List<JournalContentSearch> contentSearches =
 			_journalContentSearchLocalService.getArticleContentSearches(
 				article.getArticleId());
-
-		ServiceContext serviceContext =
-			ServiceContextThreadLocal.getServiceContext();
 
 		for (JournalContentSearch contentSearch : contentSearches) {
 			Layout layout = _layoutLocalService.fetchLayout(
