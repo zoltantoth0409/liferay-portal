@@ -213,7 +213,7 @@
 	{@param? operandValue: ?}
 	{@param strings: ?}
 
-	{if $operandType == 'double' or $operandType == 'integer' or $operandType == 'string' or $operandType == 'text'}
+	{if $operandType == 'double' or $operandType == 'integer' or $operandType == 'string' or $operandType == 'text' or $operandType == 'numeric'}
 		<span>{$strings.value} </span>
 	{else}
 		{if $operandType != 'user' and $operandType != 'list'}
