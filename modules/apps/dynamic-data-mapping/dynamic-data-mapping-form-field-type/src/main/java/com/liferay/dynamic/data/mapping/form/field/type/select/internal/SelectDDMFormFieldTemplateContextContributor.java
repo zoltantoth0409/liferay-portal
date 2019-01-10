@@ -87,14 +87,11 @@ public class SelectDDMFormFieldTemplateContextContributor
 
 		Map<String, String> stringsMap = new HashMap<>();
 
-		Locale displayLocale;
+		Locale displayLocale = getDisplayLocale(
+			ddmFormFieldRenderingContext.getHttpServletRequest());
 
-		if (ddmFormFieldRenderingContext.isViewMode()) {
+		if (displayLocale == null) {
 			displayLocale = ddmFormFieldRenderingContext.getLocale();
-		}
-		else {
-			displayLocale = getDisplayLocale(
-				ddmFormFieldRenderingContext.getHttpServletRequest());
 		}
 
 		ResourceBundle resourceBundle = getResourceBundle(displayLocale);
