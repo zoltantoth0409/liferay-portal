@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.journal.internal.util;
+package com.liferay.journal.internal.asset.util;
 
 import com.liferay.asset.kernel.model.AssetEntry;
 import com.liferay.asset.model.AssetEntryUsage;
