@@ -68,7 +68,6 @@ public class SchemaUtils {
 	 *
 	 * @param  componentProperties
 	 * @return Schema
-	 * @review
 	 */
 	public static Schema getMainSchemaFromInputConnector(
 		ComponentProperties componentProperties) {
@@ -94,7 +93,6 @@ public class SchemaUtils {
 	 *
 	 * @param  componentProperties
 	 * @return Schema
-	 * @review
 	 */
 	public static Schema getMainSchemaFromOutputConnector(
 		ComponentProperties componentProperties) {
@@ -107,7 +105,6 @@ public class SchemaUtils {
 	 *
 	 * @param  componentProperties
 	 * @return Schema
-	 * @review
 	 */
 	public static Schema getOutputSchema(
 		ComponentProperties componentProperties) {
@@ -133,7 +130,6 @@ public class SchemaUtils {
 	 *
 	 * @param componentProperties
 	 * @return
-	 * @review
 	 */
 	public static Schema getRejectSchema(
 		ComponentProperties componentProperties) {
@@ -195,7 +191,6 @@ public class SchemaUtils {
 	 * @param  newSchemaName
 	 * @param  moreFields
 	 * @return Schema
-	 * @review
 	 */
 	public static Schema newSchema(
 		Schema metadataSchema, String newSchemaName,

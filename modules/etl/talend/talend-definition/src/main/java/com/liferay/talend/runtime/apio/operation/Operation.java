@@ -24,7 +24,6 @@ import java.util.stream.Stream;
  * Represents a resource's operation.
  *
  * @author Zoltán Takács
- * @reviw
  */
 public class Operation {
 

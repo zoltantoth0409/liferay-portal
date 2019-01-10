@@ -39,7 +39,6 @@ public class ApioUtils {
 	 *
 	 * @param  jsonNode Input JsonNode
 	 * @return JsonNode for the context node, otherwise MissingNode
-	 * @review
 	 */
 	public static JsonNode getContextJsonNode(JsonNode jsonNode) {
 		return _findJsonNode(jsonNode, JSONLDConstants.CONTEXT);
@@ -50,7 +49,6 @@ public class ApioUtils {
 	 *
 	 * @param  collectionJsonNode
 	 * @return String the managed type of the collection, empty string otherwise
-	 * @review
 	 */
 	public static String getManagedType(JsonNode collectionJsonNode) {
 		JsonNode typeJsonNode = collectionJsonNode.path(JSONLDConstants.TYPE);
@@ -80,7 +78,6 @@ public class ApioUtils {
 	 * in a List
 	 *
 	 * @return <code>List</code> of <code>Operation</code>, empty List otherwise
-	 * @review
 	 */
 	public static List<Property> getSupportedProperties(
 		JsonNode supportedPropertiesJsonNode) {
@@ -149,7 +146,6 @@ public class ApioUtils {
 	 * @param  contextJsonNode
 	 * @return the name of the type coercion term keys otherwise empty
 	 *         <code>List<String></code>
-	 * @review
 	 */
 	public static List<String> getTypeCoercionTermKeys(
 		JsonNode contextJsonNode) {
@@ -186,7 +182,6 @@ public class ApioUtils {
 	 * @param  contextJsonNode
 	 * @return <code>String</code> the Vocab's value e.g "@vocab":
 	 *         "http://schema.org" otherwise empty String
-	 * @review
 	 */
 	public static String getVocabulary(JsonNode contextJsonNode) {
 		JsonNode jsonNode = contextJsonNode.path(JSONLDConstants.VOCAB);

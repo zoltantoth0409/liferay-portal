@@ -39,7 +39,6 @@ public interface BearerTokenProvider {
 	 * opportunity to modify it before it is saved or returned to a client
 	 *
 	 * @param accessToken
-	 * @review
 	 */
 	public default void onBeforeCreate(AccessToken accessToken) {
 	}
@@ -49,7 +48,6 @@ public interface BearerTokenProvider {
 	 * opportunity to modify it before it is saved or returned to a client
 	 *
 	 * @param refreshToken
-	 * @review
 	 */
 	public default void onBeforeCreate(RefreshToken refreshToken) {
 	}

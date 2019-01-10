@@ -77,8 +77,6 @@ public class LiferayWriter
 	 * It will be the part of WriterWithFeedback API in the next version of
 	 * daikon dependency. When we migrate to Talend 7, we just need to add the
 	 * Override annotation here
-	 *
-	 * @review
 	 */
 	public void cleanWrites() {
 		_successWrites.clear();
