@@ -665,8 +665,7 @@ class RuleEditor extends Component {
 
 	_clearSecondOperandValue(conditions, index) {
 		if (conditions[index] && conditions[index].operands[1]) {
-			conditions[index].operands[1].type = '';
-			conditions[index].operands[1].value = '';
+			conditions[index].operands = [conditions[index].operands[0]];
 		}
 
 		return conditions;
@@ -1237,25 +1236,30 @@ class RuleEditor extends Component {
 		const {operands} = conditions[index];
 		const secondOperand = operands[1];
 
-		let [secondOperandType, valueType] = ['field'];
+		let secondOperandType = 'field';
+		let valueType = 'field';
 
 		if (value[0] == 'value') {
 			valueType = 'string';
 			secondOperandType = this._getFieldTypeByFieldName(operands[0].value).type;
 		}
 
-		if (secondOperand && ((secondOperand.type === secondOperandType) || (secondOperand.type === 'string' && secondOperandType !== 'field'))) {
+		if (secondOperand && ((secondOperand.type === secondOperandType)) && value[0] !== '') {
 			return;
 		}
 
-		if ((value[0] == '') || (secondOperand && secondOperand.dataType != valueType)) {
+		if ((value[0] == '')) {
 			conditions = this._clearSecondOperandValue(conditions, index);
+		}
+		else if (secondOperand && secondOperand.dataType != valueType) {
+			conditions[index].operands[1].type = '';
+			conditions[index].operands[1].value = '';
 		}
 
 		if (secondOperand) {
 			secondOperand.type = secondOperandType;
 		}
-		else {
+		else if ((value[0] !== '')) {
 			conditions[index].operands.push(
 				{
 					type: secondOperandType,
