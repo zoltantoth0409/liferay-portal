@@ -252,7 +252,7 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 				throw new FragmentEntryContentException(
 					LanguageUtil.get(
 						_resourceBundle,
-						"non-unique-widgets-within-the-same-fragment-must-" +
+						"duplicate-widgets-within-the-same-fragment-must-" +
 							"have-an-id"));
 			}
 		}
