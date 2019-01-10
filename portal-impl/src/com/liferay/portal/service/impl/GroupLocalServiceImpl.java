@@ -271,6 +271,15 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 			}
 
 			if (Validator.isNull(groupKey)) {
+				Locale siteDefaultLocale = LocaleUtil.getSiteDefault();
+
+				if (siteDefaultLocale != null) {
+					groupKey = nameMap.get(siteDefaultLocale);
+					friendlyName = nameMap.get(siteDefaultLocale);
+				}
+			}
+
+			if (Validator.isNull(groupKey)) {
 				groupKey = nameMap.get(LocaleUtil.US);
 				friendlyName = nameMap.get(LocaleUtil.US);
 			}
