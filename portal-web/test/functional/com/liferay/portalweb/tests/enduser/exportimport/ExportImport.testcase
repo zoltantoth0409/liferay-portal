@@ -443,7 +443,7 @@ definition {
 			portlet = "Web Content"
 		);
 
-		WebContent.deleteCP(webContentTitle = "Web Content Title");
+		WebContent.deleteCP(siteURLKey = "guest", webContentTitle = "Web Content Title");
 
 		LAR.exportPortlet(
 			exportIndividualDeletions = "true",
