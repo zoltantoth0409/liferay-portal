@@ -156,5 +156,16 @@ describe(
 				expect(component.state.rules.length).toEqual(totalRules);
 			}
 		);
+
+		it(
+			'should fetch roles when rendered',
+			() => {
+				const spy = jest.spyOn(window, 'fetch');
+
+				component = new RuleBuilder(baseConfig);
+
+				expect(spy).toHaveBeenCalledWith(component.props.url, expect.anything());
+			}
+		);
 	}
 );

@@ -480,21 +480,6 @@ describe(
 						);
 
 						it(
-							'should fetch roles when rendered',
-							() => {
-								const spy = jest.spyOn(window, 'fetch');
-
-								component = new RuleEditor(
-									{
-										...getBaseConfig()
-									}
-								);
-
-								expect(spy).toHaveBeenCalledWith(component.rolesURL, expect.anything());
-							}
-						);
-
-						it(
 							'should keep operator values the same when first operand changes to another value of the same type',
 							() => {
 								component = new RuleEditor(
