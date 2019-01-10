@@ -486,7 +486,7 @@ public class FacetedSearcherImpl
 				indexerPostProcessor.postProcessFullQuery(
 					fullQuery, searchContext);
 			}
-		};
+		}
 	}
 
 	private final ExpandoQueryContributorHelper _expandoQueryContributorHelper;
