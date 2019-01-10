@@ -37,7 +37,9 @@ public class DECountDataDefinitionDataFetcher
 	implements DataFetcher<CountDataDefinitionType> {
 
 	@Override
-	public CountDataDefinitionType get(DataFetchingEnvironment dataFetchingEnvironment) {
+	public CountDataDefinitionType get(
+		DataFetchingEnvironment dataFetchingEnvironment) {
+
 		CountDataDefinitionType countDataDefinitionType =
 			new CountDataDefinitionType();
 
