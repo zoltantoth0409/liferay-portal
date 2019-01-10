@@ -50,26 +50,21 @@ public class DEListDataDefinitionDataFetcher
 
 		String errorMessage = null;
 
-		long groupId = GetterUtil.getLong(
-			dataFetchingEnvironment.getArgument("groupId"));
-		long companyId = GetterUtil.getLong(
-			dataFetchingEnvironment.getArgument("companyId"));
-		int start = dataFetchingEnvironment.getArgument("start");
-		int end = dataFetchingEnvironment.getArgument("end");
-
-		DEDataDefinitionListRequest deDataDefinitionListRequest =
-			DEDataDefinitionRequestBuilder.listBuilder(
-			).inCompany(
-				companyId
-			).inGroup(
-				groupId
-			).startingAt(
-				start
-			).endingAt(
-				end
-			).build();
-
 		try {
+			DEDataDefinitionListRequest deDataDefinitionListRequest =
+				DEDataDefinitionRequestBuilder.listBuilder(
+				).endingAt(
+					dataFetchingEnvironment.getArgument("end")
+				).inCompany(
+					GetterUtil.getLong(
+						dataFetchingEnvironment.getArgument("companyId"))
+				).inGroup(
+					GetterUtil.getLong(
+						dataFetchingEnvironment.getArgument("groupId"))
+				).startingAt(
+					dataFetchingEnvironment.getArgument("start")
+				).build();
+
 			DEDataDefinitionListResponse deDataDefinitionListResponse =
 				deDataDefinitionService.execute(deDataDefinitionListRequest);
 

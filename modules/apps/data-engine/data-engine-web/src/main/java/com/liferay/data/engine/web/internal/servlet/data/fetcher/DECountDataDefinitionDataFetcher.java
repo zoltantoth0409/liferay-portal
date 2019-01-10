@@ -41,17 +41,14 @@ public class DECountDataDefinitionDataFetcher
 		CountDataDefinitionType countDataDefinitionType =
 			new CountDataDefinitionType();
 
-		long companyId = GetterUtil.getLong(
-			dataFetchingEnvironment.getArgument("companyId"));
-		long groupId = GetterUtil.getLong(
-			dataFetchingEnvironment.getArgument("groupId"));
-
 		DEDataDefinitionCountRequest deDataDefinitionCountRequest =
 			DEDataDefinitionRequestBuilder.countBuilder(
 			).inCompany(
-				companyId
+				GetterUtil.getLong(
+					dataFetchingEnvironment.getArgument("companyId"))
 			).inGroup(
-				groupId
+				GetterUtil.getLong(
+					dataFetchingEnvironment.getArgument("groupId"))
 			).build();
 
 		DEDataDefinitionCountResponse deDataDefinitionCountResponse =
