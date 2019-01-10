@@ -82,10 +82,10 @@ public class DEDataDefinitionGetRequestExecutor {
 		DEDataDefinition deDataDefinition = new DEDataDefinition(
 			deDataDefinitionFields);
 
-		deDataDefinition.setDEDataDefinitionId(ddmStructure.getStructureId());
 		deDataDefinition.addDescriptions(ddmStructure.getDescriptionMap());
 		deDataDefinition.addNames(ddmStructure.getNameMap());
 		deDataDefinition.setCreateDate(ddmStructure.getCreateDate());
+		deDataDefinition.setDEDataDefinitionId(ddmStructure.getStructureId());
 		deDataDefinition.setModifiedDate(ddmStructure.getModifiedDate());
 		deDataDefinition.setStorageType(ddmStructure.getStorageType());
 		deDataDefinition.setUserId(ddmStructure.getUserId());
