@@ -19,14 +19,3 @@ app.artifacts-1.0.1=\
 app.change.log-1.0.1=LPS-86408
 
 app.git.id-1.0.1=fbffbfe01b4b6a163bb22b8014b98f2ff1e8689e
-
-#
-# Liferay App Version 1.0.2
-#
-
-app.artifacts-1.0.2=\
-	com.liferay.portal.validation.api-1.0.3.jar
-
-app.change.log-1.0.2=LPS-86408 
-
-app.git.id-1.0.2=492fd595ea5650d1e508fa210520b364fca3dbb7
