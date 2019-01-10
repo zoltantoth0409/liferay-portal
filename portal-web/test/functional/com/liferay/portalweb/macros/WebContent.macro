@@ -786,11 +786,7 @@ definition {
 			webContentTitleEscapeCharacter = "${webContentTitleEscapeCharacter}"
 		);
 
-		ProductMenu.gotoPortlet(
-			category = "Recycle Bin",
-			panel = "Site Administration",
-			portlet = "Recycle Bin"
-		);
+		RecycleBin.openRecycleBinAdmin(siteURLKey = "${siteURLKey}");
 
 		RecycleBin.emptyCP();
 
