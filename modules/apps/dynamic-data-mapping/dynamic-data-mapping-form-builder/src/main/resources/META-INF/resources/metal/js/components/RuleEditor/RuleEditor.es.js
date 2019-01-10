@@ -1314,7 +1314,6 @@ class RuleEditor extends Component {
 		this._fetchDataProviderParameters(id, index)
 			.then(
 				actions => {
-					console.log('disposed', this.isDisposed());
 					if (!this.isDisposed()) {
 						actions[index] = {
 							...actions[index],
@@ -1453,7 +1452,7 @@ class RuleEditor extends Component {
 
 		return actions.map(
 			action => {
-				const {action: actionType, expression, label, target, ddmDataProviderInstanceUUID} = action;
+				const {action: actionType, ddmDataProviderInstanceUUID, expression, label, target} = action;
 				const newAction = {
 					action: actionType
 				};
