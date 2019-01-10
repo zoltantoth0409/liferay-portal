@@ -42,17 +42,20 @@ public class DEListDataDefinitionDataFetcher
 	extends DEBaseDataDefinitionDataFetcher
 	implements DataFetcher<ListDataDefinitionType> {
 
-	public ListDataDefinitionType get(DataFetchingEnvironment environment) {
+	public ListDataDefinitionType get(
+		DataFetchingEnvironment dataFetchingEnvironment) {
+
 		ListDataDefinitionType listDataDefinitionType =
 			new ListDataDefinitionType();
 
 		String errorMessage = null;
 
-		long groupId = GetterUtil.getLong(environment.getArgument("groupId"));
+		long groupId = GetterUtil.getLong(
+			dataFetchingEnvironment.getArgument("groupId"));
 		long companyId = GetterUtil.getLong(
-			environment.getArgument("companyId"));
-		int start = environment.getArgument("start");
-		int end = environment.getArgument("end");
+			dataFetchingEnvironment.getArgument("companyId"));
+		int start = dataFetchingEnvironment.getArgument("start");
+		int end = dataFetchingEnvironment.getArgument("end");
 
 		DEDataDefinitionListRequest deDataDefinitionListRequest =
 			DEDataDefinitionRequestBuilder.listBuilder(
@@ -85,7 +88,7 @@ public class DEListDataDefinitionDataFetcher
 		}
 		catch (DEDataDefinitionException dedde) {
 			errorMessage = getMessage(
-				environment.getArgument("languageId"),
+				dataFetchingEnvironment.getArgument("languageId"),
 				"unable-to-retrive-data-definitions");
 		}
 
