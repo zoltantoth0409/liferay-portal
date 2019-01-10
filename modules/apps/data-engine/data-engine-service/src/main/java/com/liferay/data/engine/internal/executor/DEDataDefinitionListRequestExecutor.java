@@ -51,14 +51,14 @@ public class DEDataDefinitionListRequestExecutor {
 			DEDataDefinitionListRequest deDataDefinitionListRequest)
 		throws Exception {
 
+		List<DEDataDefinition> deDataDefinitions = new ArrayList<>();
+
 		List<DDMStructure> ddmStructures = ddmStructureService.getStructures(
 			deDataDefinitionListRequest.getCompanyId(),
 			new long[] {deDataDefinitionListRequest.getGroupId()},
 			portal.getClassNameId(DEDataDefinition.class),
 			deDataDefinitionListRequest.getStart(),
 			deDataDefinitionListRequest.getEnd(), null);
-
-		List<DEDataDefinition> deDataDefinitions = new ArrayList<>();
 
 		for (DDMStructure ddmStructure : ddmStructures) {
 			deDataDefinitions.add(map(ddmStructure));
