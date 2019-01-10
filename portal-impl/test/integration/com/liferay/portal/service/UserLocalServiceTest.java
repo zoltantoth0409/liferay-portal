@@ -85,12 +85,13 @@ public class UserLocalServiceTest {
 		int start = 5;
 		int delta = 5;
 
-		List<User> groupUsers = UserLocalServiceUtil.getGroupUsers(
+		List<User> partialGroupUsers = UserLocalServiceUtil.getGroupUsers(
 			group.getGroupId(), WorkflowConstants.STATUS_APPROVED, start,
 			start + delta, null);
 
-		Assert.assertEquals(groupUsers.toString(), delta, groupUsers.size());
-		Assert.assertTrue(allGroupUsers.containsAll(groupUsers));
+		Assert.assertEquals(
+			partialGroupUsers.toString(), delta, partialGroupUsers.size());
+		Assert.assertTrue(allGroupUsers.containsAll(partialGroupUsers));
 	}
 
 	@Test
