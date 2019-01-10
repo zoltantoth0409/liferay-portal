@@ -403,14 +403,12 @@ public class DisplayPageFriendlyURLResolver implements FriendlyURLResolver {
 				groupId,
 				_classNameLocalService.getClassNameId(JournalArticle.class),
 				urlTitle);
-
 		Locale locale = _portal.getLocale(request);
 
 		if (friendlyURLEntryLocalization != null) {
 			request.setAttribute(
 				AssetDisplayWebKeys.CURRENT_I18N_LANGUAGE_ID,
 				LocaleUtil.toLanguageId(locale));
-
 			request.setAttribute(
 				WebKeys.I18N_LANGUAGE_ID,
 				friendlyURLEntryLocalization.getLanguageId());
