@@ -41,7 +41,7 @@ public class ArquillianBundleActivator implements BundleActivator {
 
 		MBeanServer mBeanServer = _findOrCreateMBeanServer();
 
-		_testRunner = new JMXTestRunner(bundle::loadClass) {
+		_jmxTestRunner = new JMXTestRunner(bundle::loadClass) {
 
 			@Override
 			public byte[] runTestMethod(String className, String methodName) {
@@ -54,14 +54,14 @@ public class ArquillianBundleActivator implements BundleActivator {
 
 		};
 
-		_testRunner.registerMBean(mBeanServer);
+		_jmxTestRunner.registerMBean(mBeanServer);
 	}
 
 	@Override
-	public void stop(BundleContext context) throws JMException {
+	public void stop(BundleContext bundleContext) throws JMException {
 		MBeanServer mBeanServer = _findOrCreateMBeanServer();
 
-		_testRunner.unregisterMBean(mBeanServer);
+		_jmxTestRunner.unregisterMBean(mBeanServer);
 	}
 
 	private MBeanServer _findOrCreateMBeanServer() {
@@ -81,6 +81,6 @@ public class ArquillianBundleActivator implements BundleActivator {
 		return mBeanServer;
 	}
 
-	private JMXTestRunner _testRunner;
+	private JMXTestRunner _jmxTestRunner;
 
 }
