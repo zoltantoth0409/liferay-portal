@@ -76,6 +76,15 @@ class RuleList extends Component {
 			)
 		),
 
+		roles: Config.arrayOf(
+			Config.shapeOf(
+				{
+					id: Config.string(),
+					name: Config.string()
+				}
+			)
+		).value([]),
+
 		/**
 		 * @default undefined
 		 * @instance
@@ -252,8 +261,7 @@ class RuleList extends Component {
 	_setRules(newRules) {
 		for (let rule = 0; rule < newRules.length; rule++) {
 			const actions = newRules[rule].actions;
-
-			newRules[rule].actions = actions;
+			const conditions = newRules[rule].conditions;
 
 			actions.forEach(
 				action => {
@@ -265,6 +273,27 @@ class RuleList extends Component {
 
 						action.outputValue = outputValue.toString();
 					}
+				}
+			);
+
+			newRules[rule].conditions = conditions.map(
+				condition => {
+					if (condition.operands.length < 2 && condition.operands[0].type === 'list') {
+						condition.operands = [
+							{
+								label: 'user',
+								repeatable: false,
+								type: 'user',
+								value: 'user'
+							},
+							{
+								...condition.operands[0],
+								label: condition.operands[0].value
+							}
+						];
+					}
+
+					return condition;
 				}
 			);
 
@@ -322,6 +351,7 @@ class RuleList extends Component {
 	}
 
 	prepareStateForRender(states) {
+		const {roles} = this;
 		const rules = this._setDataProviderNames(states);
 
 		return {
@@ -344,9 +374,19 @@ class RuleList extends Component {
 								return {
 									...condition,
 									operands: condition.operands.map(
-										operand => {
+										(operand, index) => {
+											let {label} = operand;
+
+											if (operand.type === 'field') {
+												label = this._getFieldLabel(operand.value);
+											}
+											else if (index == 1 && condition.operands[0].type === 'user' && roles.length) {
+												label = roles.find(role => role.id === operand.value).label;
+											}
+
 											return {
 												...operand,
+												label,
 												value: this._setOperandValue(operand)
 											};
 										}
