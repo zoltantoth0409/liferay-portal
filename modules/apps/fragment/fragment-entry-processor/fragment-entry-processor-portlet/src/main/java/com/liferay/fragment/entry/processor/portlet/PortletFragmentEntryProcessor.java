@@ -246,9 +246,9 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 				}
 			}
 
-			Elements widgets = document.select(htmlTagName);
+			Elements elements = document.select(htmlTagName);
 
-			if ((widgets.size() > 1) && Validator.isNull(id)) {
+			if ((elements.size() > 1) && Validator.isNull(id)) {
 				throw new FragmentEntryContentException(
 					LanguageUtil.get(
 						_resourceBundle,
