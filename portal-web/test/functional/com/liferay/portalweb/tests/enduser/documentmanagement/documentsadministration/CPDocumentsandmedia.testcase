@@ -144,7 +144,7 @@ definition {
 
 		DMDocument.checkinCP(
 			dmDocumentTitle = "Check in as major version",
-			revision = "Minor"
+			revision = "Major"
 		);
 
 		Navigator.openURL();
@@ -164,7 +164,7 @@ definition {
 			dmDocumentTitle = "Check in as major version"
 		);
 
-		DMDocument.expandInfo();
+		Click(locator1 = "Icon#INFO");
 
 		DMDocument.selectVersion();
 
