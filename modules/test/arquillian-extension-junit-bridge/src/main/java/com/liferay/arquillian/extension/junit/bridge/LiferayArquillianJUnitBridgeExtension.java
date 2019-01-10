@@ -44,8 +44,6 @@ public class LiferayArquillianJUnitBridgeExtension
 			"/arquillian.remote.marker");
 
 		if (url == null) {
-			extensionBuilder.service(
-				ApplicationArchiveProcessor.class, OSGiAllInProcessor.class);
 			extensionBuilder.override(
 				ApplicationArchiveProcessor.class,
 				OSGiApplicationArchiveProcessor.class,
@@ -54,6 +52,8 @@ public class LiferayArquillianJUnitBridgeExtension
 			extensionBuilder.override(
 				AuxiliaryArchiveAppender.class, JUnitDeploymentAppender.class,
 				JUnitBridgeAuxiliaryArchiveAppender.class);
+			extensionBuilder.service(
+				ApplicationArchiveProcessor.class, OSGiAllInProcessor.class);
 			extensionBuilder.service(
 				DeployableContainer.class,
 				LiferayRemoteDeployableContainer.class);
