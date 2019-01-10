@@ -219,14 +219,14 @@ public class PortletFragmentEntryProcessor implements FragmentEntryProcessor {
 			String alias = StringUtil.replace(
 				htmlTagName, "lfr-widget-", StringPool.BLANK);
 
-			String id = element.id();
-
 			if (Validator.isNull(_portletRegistry.getPortletName(alias))) {
 				throw new FragmentEntryContentException(
 					LanguageUtil.format(
 						_resourceBundle,
 						"there-is-no-widget-available-for-alias-x", alias));
 			}
+
+			String id = element.id();
 
 			if (Validator.isNotNull(id) && !Validator.isAlphanumericName(id)) {
 				throw new FragmentEntryContentException(
