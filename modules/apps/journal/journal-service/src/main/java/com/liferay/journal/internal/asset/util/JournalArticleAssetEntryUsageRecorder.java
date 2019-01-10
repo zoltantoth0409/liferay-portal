@@ -60,6 +60,41 @@ public class JournalArticleAssetEntryUsageRecorder
 		_recordPortletPreferences(assetEntry, false);
 	}
 
+	private void _recordJournalContentSearches(AssetEntry assetEntry)
+		throws PortalException {
+
+		ServiceContext serviceContext =
+			ServiceContextThreadLocal.getServiceContext();
+
+		JournalArticle article = _journalArticleLocalService.fetchLatestArticle(
+			assetEntry.getClassPK());
+
+		List<JournalContentSearch> contentSearches =
+			_journalContentSearchLocalService.getArticleContentSearches(
+				article.getArticleId());
+
+		for (JournalContentSearch contentSearch : contentSearches) {
+			Layout layout = _layoutLocalService.fetchLayout(
+				contentSearch.getGroupId(), contentSearch.isPrivateLayout(),
+				contentSearch.getLayoutId());
+
+			AssetEntryUsage assetEntryUsage =
+				_assetEntryUsageLocalService.fetchAssetEntryUsage(
+					assetEntry.getEntryId(),
+					_portal.getClassNameId(Layout.class), layout.getPlid(),
+					contentSearch.getPortletId());
+
+			if (assetEntryUsage != null) {
+				continue;
+			}
+
+			_assetEntryUsageLocalService.addAssetEntryUsage(
+				article.getUserId(), contentSearch.getGroupId(),
+				assetEntry.getEntryId(), _portal.getClassNameId(Layout.class),
+				layout.getPlid(), contentSearch.getPortletId(), serviceContext);
+		}
+	}
+
 	private void _recordPortletPreferences(
 			AssetEntry assetEntry, boolean privateLayout)
 		throws PortalException {
@@ -114,42 +149,6 @@ public class JournalArticleAssetEntryUsageRecorder
 				assetEntry.getEntryId(), _portal.getClassNameId(Layout.class),
 				portletPreferences.getPlid(), portletPreferences.getPortletId(),
 				serviceContext);
-		}
-	}
-
-	private void _recordJournalContentSearches(
-			AssetEntry assetEntry)
-		throws PortalException {
-
-		ServiceContext serviceContext =
-			ServiceContextThreadLocal.getServiceContext();
-
-		JournalArticle article = _journalArticleLocalService.fetchLatestArticle(
-			assetEntry.getClassPK());
-
-		List<JournalContentSearch> contentSearches =
-			_journalContentSearchLocalService.getArticleContentSearches(
-				article.getArticleId());
-
-		for (JournalContentSearch contentSearch : contentSearches) {
-			Layout layout = _layoutLocalService.fetchLayout(
-				contentSearch.getGroupId(), contentSearch.isPrivateLayout(),
-				contentSearch.getLayoutId());
-
-			AssetEntryUsage assetEntryUsage =
-				_assetEntryUsageLocalService.fetchAssetEntryUsage(
-					assetEntry.getEntryId(),
-					_portal.getClassNameId(Layout.class), layout.getPlid(),
-					contentSearch.getPortletId());
-
-			if (assetEntryUsage != null) {
-				continue;
-			}
-
-			_assetEntryUsageLocalService.addAssetEntryUsage(
-				article.getUserId(), contentSearch.getGroupId(),
-				assetEntry.getEntryId(), _portal.getClassNameId(Layout.class),
-				layout.getPlid(), contentSearch.getPortletId(), serviceContext);
 		}
 	}
 
