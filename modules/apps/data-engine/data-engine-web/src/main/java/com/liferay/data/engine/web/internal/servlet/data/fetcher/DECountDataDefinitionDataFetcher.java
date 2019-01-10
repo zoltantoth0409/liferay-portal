@@ -37,13 +37,14 @@ public class DECountDataDefinitionDataFetcher
 	implements DataFetcher<CountDataDefinitionType> {
 
 	@Override
-	public CountDataDefinitionType get(DataFetchingEnvironment environment) {
+	public CountDataDefinitionType get(DataFetchingEnvironment dataFetchingEnvironment) {
 		CountDataDefinitionType countDataDefinitionType =
 			new CountDataDefinitionType();
 
 		long companyId = GetterUtil.getLong(
-			environment.getArgument("companyId"));
-		long groupId = GetterUtil.getLong(environment.getArgument("groupId"));
+			dataFetchingEnvironment.getArgument("companyId"));
+		long groupId = GetterUtil.getLong(
+			dataFetchingEnvironment.getArgument("groupId"));
 
 		DEDataDefinitionCountRequest deDataDefinitionCountRequest =
 			DEDataDefinitionRequestBuilder.countBuilder(
