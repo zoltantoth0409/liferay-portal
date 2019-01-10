@@ -87,8 +87,7 @@ public class AssetPortlet extends MVCPortlet {
 		catch (PortalException pe) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"An error occurred while executing the checking of asset " +
-						"entry usages for asset entry " + assetEntryId,
+					"Unable to check asset entry usages for " + assetEntryId,
 					pe);
 			}
 		}
