@@ -234,8 +234,8 @@ public class ReleaseVersionsTest {
 
 			sb.append(") branches is not allowed. Please ");
 
-			Path updateVersionPath;
-			String updateVersionSeparator;
+			Path updateVersionPath = null;
+			String updateVersionSeparator = null;
 
 			Path gitRepoPath = _getParentFile(dirPath, ".gitrepo");
 
