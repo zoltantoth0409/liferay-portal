@@ -17,7 +17,7 @@ package com.liferay.asset.web.internal.portlet;
 import com.liferay.asset.constants.AssetPortletKeys;
 import com.liferay.asset.kernel.model.AssetEntry;
 import com.liferay.asset.kernel.service.AssetEntryLocalService;
-import com.liferay.asset.util.AssetEntryUsageChecker;
+import com.liferay.asset.util.AssetEntryUsageRecorder;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -77,11 +77,11 @@ public class AssetPortlet extends MVCPortlet {
 			assetEntryId);
 
 		try {
-			AssetEntryUsageChecker assetEntryUsageChecker =
-				_assetEntryUsageCheckers.get(assetEntry.getClassName());
+			AssetEntryUsageRecorder assetEntryUsageRecorder =
+				_assetEntryUsageRecorders.get(assetEntry.getClassName());
 
-			if (assetEntryUsageChecker != null) {
-				assetEntryUsageChecker.checkAssetEntryUsages(assetEntry);
+			if (assetEntryUsageRecorder != null) {
+				assetEntryUsageRecorder.record(assetEntry);
 			}
 		}
 		catch (PortalException pe) {
@@ -100,8 +100,8 @@ public class AssetPortlet extends MVCPortlet {
 		policy = ReferencePolicy.DYNAMIC,
 		policyOption = ReferencePolicyOption.GREEDY
 	)
-	protected void addAssetEntryUsageChecker(
-		AssetEntryUsageChecker assetEntryUsageChecker,
+	protected void addAssetEntryUsageRecorder(
+		AssetEntryUsageRecorder assetEntryUsageRecorder,
 		Map<String, Object> properties) {
 
 		String modelClassName = GetterUtil.getString(
@@ -111,11 +111,11 @@ public class AssetPortlet extends MVCPortlet {
 			return;
 		}
 
-		_assetEntryUsageCheckers.put(modelClassName, assetEntryUsageChecker);
+		_assetEntryUsageRecorders.put(modelClassName, assetEntryUsageRecorder);
 	}
 
-	protected void removeAssetEntryUsageChecker(
-		AssetEntryUsageChecker assetEntryUsageChecker,
+	protected void removeAssetEntryUsageRecorder(
+		AssetEntryUsageRecorder assetEntryUsageRecorder,
 		Map<String, Object> properties) {
 
 		String modelClassName = GetterUtil.getString(
@@ -125,7 +125,7 @@ public class AssetPortlet extends MVCPortlet {
 			return;
 		}
 
-		_assetEntryUsageCheckers.remove(modelClassName);
+		_assetEntryUsageRecorders.remove(modelClassName);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(AssetPortlet.class);
@@ -133,7 +133,7 @@ public class AssetPortlet extends MVCPortlet {
 	@Reference
 	private AssetEntryLocalService _assetEntryLocalService;
 
-	private final Map<String, AssetEntryUsageChecker> _assetEntryUsageCheckers =
-		new ConcurrentHashMap<>();
+	private final Map<String, AssetEntryUsageRecorder>
+		_assetEntryUsageRecorders = new ConcurrentHashMap<>();
 
 }

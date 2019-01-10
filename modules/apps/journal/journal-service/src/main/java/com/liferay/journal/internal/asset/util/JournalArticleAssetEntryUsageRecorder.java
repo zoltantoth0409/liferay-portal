@@ -18,7 +18,7 @@ import com.liferay.asset.kernel.model.AssetEntry;
 import com.liferay.asset.model.AssetEntryUsage;
 import com.liferay.asset.publisher.constants.AssetPublisherPortletKeys;
 import com.liferay.asset.service.AssetEntryUsageLocalService;
-import com.liferay.asset.util.AssetEntryUsageChecker;
+import com.liferay.asset.util.AssetEntryUsageRecorder;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.model.JournalContentSearch;
 import com.liferay.journal.service.JournalArticleLocalService;
@@ -48,21 +48,19 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	immediate = true,
 	property = "model.class.name=com.liferay.journal.model.JournalArticle",
-	service = AssetEntryUsageChecker.class
+	service = AssetEntryUsageRecorder.class
 )
-public class JournalArticleAssetEntryUsageChecker
-	implements AssetEntryUsageChecker {
+public class JournalArticleAssetEntryUsageRecorder
+	implements AssetEntryUsageRecorder {
 
 	@Override
-	public void checkAssetEntryUsages(AssetEntry assetEntry)
-		throws PortalException {
-
-		_checkAssetPublisherUsages(assetEntry, true);
-		_checkAssetPublisherUsages(assetEntry, false);
-		_checkContentSearches(assetEntry);
+	public void record(AssetEntry assetEntry) throws PortalException {
+		_recordJournalContentSearches(assetEntry);
+		_recordPortletPreferences(assetEntry, true);
+		_recordPortletPreferences(assetEntry, false);
 	}
 
-	private void _checkAssetPublisherUsages(
+	private void _recordPortletPreferences(
 			AssetEntry assetEntry, boolean privateLayout)
 		throws PortalException {
 
@@ -119,7 +117,8 @@ public class JournalArticleAssetEntryUsageChecker
 		}
 	}
 
-	private void _checkContentSearches(AssetEntry assetEntry)
+	private void _recordJournalContentSearches(
+			AssetEntry assetEntry)
 		throws PortalException {
 
 		ServiceContext serviceContext =
