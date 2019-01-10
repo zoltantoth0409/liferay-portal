@@ -148,29 +148,25 @@ public class DEGraphQLServlet extends HttpServlet {
 			RuntimeWiring.newRuntimeWiring();
 
 		runtimeWiringBuilder.type(
-			"QueryType",
-			typeWiring -> typeWiring.dataFetcher(
-				"countDataDefinition", _deCountDataDefinitionDataFetcher));
-
-		runtimeWiringBuilder.type(
 			"MutationType",
 			typeWiring -> typeWiring.dataFetcher(
 				"deleteDataDefinition", _deDeleteDataDefinitionDataFetcher));
-
-		runtimeWiringBuilder.type(
-			"QueryType",
-			typeWiring -> typeWiring.dataFetcher(
-				"getDataDefinition", _deGetDataDefinitionDataFetcher));
-
-		runtimeWiringBuilder.type(
-			"QueryType",
-			typeWiring -> typeWiring.dataFetcher(
-				"listDataDefinition", _deListDataDefinitionDataFetcher));
-
 		runtimeWiringBuilder.type(
 			"MutationType",
 			typeWiring -> typeWiring.dataFetcher(
 				"saveDataDefinition", _deSaveDataDefinitionDataFetcher));
+		runtimeWiringBuilder.type(
+			"QueryType",
+			typeWiring -> typeWiring.dataFetcher(
+				"countDataDefinition", _deCountDataDefinitionDataFetcher));
+		runtimeWiringBuilder.type(
+			"QueryType",
+			typeWiring -> typeWiring.dataFetcher(
+				"getDataDefinition", _deGetDataDefinitionDataFetcher));
+		runtimeWiringBuilder.type(
+			"QueryType",
+			typeWiring -> typeWiring.dataFetcher(
+				"listDataDefinition", _deListDataDefinitionDataFetcher));
 
 		return runtimeWiringBuilder.build();
 	}
