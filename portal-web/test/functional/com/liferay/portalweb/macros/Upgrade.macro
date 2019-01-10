@@ -1002,10 +1002,12 @@ definition {
 			assetTitle = "Web Content Title"
 		);
 
-		AssetPublisherPortlet.viewAssetMetadataPG(
-			categoryName = "Category Name",
-			vocabularyName = "Vocabulary Name"
-		);
+		if (isSet(categoryName)) {
+			AssetPublisherPortlet.viewAssetMetadataPG(
+				categoryName = "${categoryName}",
+				vocabularyName = "Vocabulary Name"
+			);
+		}
 	}
 
 	macro viewCalendar {
