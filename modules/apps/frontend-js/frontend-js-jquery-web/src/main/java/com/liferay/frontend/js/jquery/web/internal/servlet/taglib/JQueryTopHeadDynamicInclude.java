@@ -50,24 +50,25 @@ public class JQueryTopHeadDynamicInclude extends BaseDynamicInclude {
 			String key)
 		throws IOException {
 
-		if (_jsJQueryConfiguration.enableJQuery()) {
-			PrintWriter printWriter = response.getWriter();
+		if (!_jsJQueryConfiguration.enableJQuery()) {
+			return;
+		}
 
-			AbsolutePortalURLBuilder absolutePortalURLBuilder =
-				_absolutePortalURLBuilderFactory.getAbsolutePortalURLBuilder(
-					request);
+		PrintWriter printWriter = response.getWriter();
 
-			for (String fileName : _FILE_NAMES) {
-				printWriter.print(
-					"<script data-senna-track=\"permanent\" src=\"");
+		AbsolutePortalURLBuilder absolutePortalURLBuilder =
+			_absolutePortalURLBuilderFactory.getAbsolutePortalURLBuilder(
+				request);
 
-				printWriter.print(
-					absolutePortalURLBuilder.forResource(
-						"/o/frontend-js-jquery-web/" + fileName
-					).build());
+		for (String fileName : _FILE_NAMES) {
+			printWriter.print("<script data-senna-track=\"permanent\" src=\"");
 
-				printWriter.println("\" type=\"text/javascript\"></script>");
-			}
+			printWriter.print(
+				absolutePortalURLBuilder.forResource(
+					"/o/frontend-js-jquery-web/" + fileName
+				).build());
+
+			printWriter.println("\" type=\"text/javascript\"></script>");
 		}
 	}
 
