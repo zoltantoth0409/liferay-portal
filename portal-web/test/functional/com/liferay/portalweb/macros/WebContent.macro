@@ -94,6 +94,12 @@ definition {
 
 		SelectFrame(locator1 = "AssetRelatedAssets#SELECT_ASSET_IFRAME");
 
+		if (isSet(scopeSite)) {
+			Click(locator1 = "Dropdown#FILTER_AND_ORDER");
+
+			MenuItem.click(menuItem = "${scopeSite}");
+		}
+
 		Search.searchCP(searchTerm = "${assetTitle}");
 
 		var key_assetTitle = "${assetTitle}";
