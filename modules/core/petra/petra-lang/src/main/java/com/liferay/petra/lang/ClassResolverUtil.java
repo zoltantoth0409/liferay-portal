@@ -34,8 +34,9 @@ public class ClassResolverUtil {
 			if (clazz != null) {
 				return clazz;
 			}
-
-			throw cnfe;
+			else {
+				throw cnfe;
+			}
 		}
 	}
 

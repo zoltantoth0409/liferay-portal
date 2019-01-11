@@ -2490,18 +2490,19 @@ public class OrganizationLocalServiceImpl
 		if (Validator.isNull(name)) {
 			throw new OrganizationNameException();
 		}
+		else {
+			Organization organization = organizationPersistence.fetchByC_N(
+				companyId, name);
 
-		Organization organization = organizationPersistence.fetchByC_N(
-			companyId, name);
+			if ((organization != null) &&
+				StringUtil.equalsIgnoreCase(organization.getName(), name)) {
 
-		if ((organization != null) &&
-			StringUtil.equalsIgnoreCase(organization.getName(), name)) {
+				if ((organizationId <= 0) ||
+					(organization.getOrganizationId() != organizationId)) {
 
-			if ((organizationId <= 0) ||
-				(organization.getOrganizationId() != organizationId)) {
-
-				throw new DuplicateOrganizationException(
-					"There is another organization named " + name);
+					throw new DuplicateOrganizationException(
+						"There is another organization named " + name);
+				}
 			}
 		}
 

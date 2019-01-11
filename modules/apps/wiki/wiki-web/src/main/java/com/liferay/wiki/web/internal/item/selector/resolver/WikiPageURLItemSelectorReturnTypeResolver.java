@@ -76,16 +76,17 @@ public class WikiPageURLItemSelectorReturnTypeResolver
 				page.getNodeId(), StringPool.SLASH,
 				URLCodec.encodeURL(WikiEscapeUtil.escapeName(page.getTitle())));
 		}
+		else {
+			PortletURL portletURL = _portal.getControlPanelPortletURL(
+				themeDisplay.getRequest(), WikiPortletKeys.WIKI_ADMIN,
+				PortletRequest.RENDER_PHASE);
 
-		PortletURL portletURL = _portal.getControlPanelPortletURL(
-			themeDisplay.getRequest(), WikiPortletKeys.WIKI_ADMIN,
-			PortletRequest.RENDER_PHASE);
+			portletURL.setParameter("mvcRenderCommandName", "/wiki/view");
+			portletURL.setParameter("nodeId", String.valueOf(page.getNodeId()));
+			portletURL.setParameter("title", page.getTitle());
 
-		portletURL.setParameter("mvcRenderCommandName", "/wiki/view");
-		portletURL.setParameter("nodeId", String.valueOf(page.getNodeId()));
-		portletURL.setParameter("title", page.getTitle());
-
-		return _http.removeDomain(portletURL.toString());
+			return _http.removeDomain(portletURL.toString());
+		}
 	}
 
 	@Reference

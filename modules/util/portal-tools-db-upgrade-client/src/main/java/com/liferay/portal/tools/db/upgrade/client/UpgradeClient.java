@@ -212,8 +212,9 @@ public class UpgradeClient {
 
 					break;
 				}
-
-				System.out.println(line);
+				else {
+					System.out.println(line);
+				}
 			}
 
 			System.out.flush();
@@ -370,10 +371,11 @@ public class UpgradeClient {
 
 			return false;
 		}
+		else {
+			System.out.println(" done.");
 
-		System.out.println(" done.");
-
-		return true;
+			return true;
+		}
 	}
 
 	private void _printHelp() {
@@ -394,8 +396,9 @@ public class UpgradeClient {
 		if (command.equals("exit") || command.equals("quit")) {
 			return false;
 		}
-
-		System.out.println(gogoShellClient.send(command));
+		else {
+			System.out.println(gogoShellClient.send(command));
+		}
 
 		return true;
 	}

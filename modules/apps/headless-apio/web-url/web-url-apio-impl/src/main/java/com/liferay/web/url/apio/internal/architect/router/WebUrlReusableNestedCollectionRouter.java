@@ -84,11 +84,12 @@ public class WebUrlReusableNestedCollectionRouter
 				organization.getModelClassName(),
 				organization.getOrganizationId());
 		}
+		else {
+			User user = _userService.getUserById(classNameClassPK.getClassPK());
 
-		User user = _userService.getUserById(classNameClassPK.getClassPK());
-
-		return _websiteService.getWebsites(
-			Contact.class.getName(), user.getContactId());
+			return _websiteService.getWebsites(
+				Contact.class.getName(), user.getContactId());
+		}
 	}
 
 	@Reference

@@ -74,8 +74,9 @@ public class SimpleCaptchaImpl implements Captcha {
 		if (!validateChallenge(request)) {
 			throw new CaptchaTextException();
 		}
-
-		incrementCounter(request);
+		else {
+			incrementCounter(request);
+		}
 
 		if (_log.isDebugEnabled()) {
 			_log.debug("CAPTCHA text is valid");
@@ -91,8 +92,9 @@ public class SimpleCaptchaImpl implements Captcha {
 		if (!validateChallenge(portletRequest)) {
 			throw new CaptchaTextException();
 		}
-
-		incrementCounter(portletRequest);
+		else {
+			incrementCounter(portletRequest);
+		}
 
 		if (_log.isDebugEnabled()) {
 			_log.debug("CAPTCHA text is valid");

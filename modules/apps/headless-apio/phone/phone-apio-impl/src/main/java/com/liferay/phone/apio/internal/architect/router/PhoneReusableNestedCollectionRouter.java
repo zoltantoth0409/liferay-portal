@@ -84,11 +84,12 @@ public class PhoneReusableNestedCollectionRouter
 				organization.getModelClassName(),
 				organization.getOrganizationId());
 		}
+		else {
+			User user = _userService.getUserById(classNameClassPK.getClassPK());
 
-		User user = _userService.getUserById(classNameClassPK.getClassPK());
-
-		return _phoneService.getPhones(
-			Contact.class.getName(), user.getContactId());
+			return _phoneService.getPhones(
+				Contact.class.getName(), user.getContactId());
+		}
 	}
 
 	@Reference

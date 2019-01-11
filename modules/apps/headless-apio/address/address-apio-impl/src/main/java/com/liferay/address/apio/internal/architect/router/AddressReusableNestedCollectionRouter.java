@@ -77,15 +77,17 @@ public class AddressReusableNestedCollectionRouter
 				currentUser.getCompanyId(), organization.getModelClassName(),
 				organization.getOrganizationId());
 		}
+		else {
+			User user = _userService.getUserById(classNameClassPK.getClassPK());
 
-		User user = _userService.getUserById(classNameClassPK.getClassPK());
+			CommonPermissionUtil.check(
+				(PermissionChecker)credentials.get(), user.getModelClassName(),
+				user.getUserId(), ActionKeys.VIEW);
 
-		CommonPermissionUtil.check(
-			(PermissionChecker)credentials.get(), user.getModelClassName(),
-			user.getUserId(), ActionKeys.VIEW);
-
-		return _addressLocalService.getAddresses(
-			user.getCompanyId(), Contact.class.getName(), user.getContactId());
+			return _addressLocalService.getAddresses(
+				user.getCompanyId(), Contact.class.getName(),
+				user.getContactId());
+		}
 	}
 
 	private PageItems<Address> _getPageItems(

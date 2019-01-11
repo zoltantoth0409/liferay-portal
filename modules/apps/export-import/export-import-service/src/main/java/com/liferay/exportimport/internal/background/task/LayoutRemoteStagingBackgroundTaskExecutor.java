@@ -302,10 +302,11 @@ public class LayoutRemoteStagingBackgroundTaskExecutor
 
 				break;
 			}
+			else {
+				missingRemoteParentLayouts.add(parentLayout);
 
-			missingRemoteParentLayouts.add(parentLayout);
-
-			parentLayoutId = parentLayout.getParentLayoutId();
+				parentLayoutId = parentLayout.getParentLayoutId();
+			}
 		}
 
 		return missingRemoteParentLayouts;

@@ -476,8 +476,9 @@ public class ChannelImpl extends BaseChannelImpl {
 			if (isRemoveNotificationEvent(notificationEvent, currentTime)) {
 				break;
 			}
-
-			notificationEvents.add(notificationEvent);
+			else {
+				notificationEvents.add(notificationEvent);
+			}
 		}
 
 		if (flush) {

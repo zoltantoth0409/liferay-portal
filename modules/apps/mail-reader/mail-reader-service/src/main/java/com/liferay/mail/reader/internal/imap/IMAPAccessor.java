@@ -106,14 +106,15 @@ public class IMAPAccessor {
 			if (jxFolder.exists()) {
 				throw new MailException(MailException.FOLDER_ALREADY_EXISTS);
 			}
+			else {
+				if (jxFolder.create(Folder.HOLDS_MESSAGES)) {
+					return new String[] {
+						jxFolder.getFullName(), jxFolder.getName()
+					};
+				}
 
-			if (jxFolder.create(Folder.HOLDS_MESSAGES)) {
-				return new String[] {
-					jxFolder.getFullName(), jxFolder.getName()
-				};
+				throw new MailException(MailException.FOLDER_CREATE_FAILED);
 			}
-
-			throw new MailException(MailException.FOLDER_CREATE_FAILED);
 		}
 		catch (MessagingException me) {
 			throw new MailException(me);
@@ -393,8 +394,9 @@ public class IMAPAccessor {
 					jxFolder.getFullName(), jxFolder.getName()
 				};
 			}
-
-			throw new MailException(MailException.FOLDER_RENAME_FAILED);
+			else {
+				throw new MailException(MailException.FOLDER_RENAME_FAILED);
+			}
 		}
 		catch (MessagingException me) {
 			throw new MailException(me);

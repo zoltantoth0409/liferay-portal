@@ -1484,50 +1484,52 @@ public class PortletImportControllerImpl implements PortletImportController {
 				LayoutImportException.TYPE_WRONG_BUILD_NUMBER,
 				new Object[] {importBuildNumber, buildNumber});
 		}
+		else {
+			BiPredicate<Version, Version> majorVersionBiPredicate =
+				(currentVersion, importVersion) -> Objects.equals(
+					currentVersion.getMajor(), importVersion.getMajor());
 
-		BiPredicate<Version, Version> majorVersionBiPredicate =
-			(currentVersion, importVersion) -> Objects.equals(
-				currentVersion.getMajor(), importVersion.getMajor());
+			BiPredicate<Version, Version> minorVersionBiPredicate =
+				(currentVersion, importVersion) -> {
+					int currentMinorVersion = GetterUtil.getInteger(
+						currentVersion.getMinor(), -1);
+					int importedMinorVersion = GetterUtil.getInteger(
+						importVersion.getMinor(), -1);
 
-		BiPredicate<Version, Version> minorVersionBiPredicate =
-			(currentVersion, importVersion) -> {
-				int currentMinorVersion = GetterUtil.getInteger(
-					currentVersion.getMinor(), -1);
-				int importedMinorVersion = GetterUtil.getInteger(
-					importVersion.getMinor(), -1);
+					if (((currentMinorVersion == -1) &&
+						 (importedMinorVersion == -1)) ||
+						(currentMinorVersion < importedMinorVersion)) {
 
-				if (((currentMinorVersion == -1) &&
-					 (importedMinorVersion == -1)) ||
-					(currentMinorVersion < importedMinorVersion)) {
+						return false;
+					}
 
-					return false;
-				}
+					return true;
+				};
 
-				return true;
-			};
+			BiPredicate<Version, Version> manifestVersionBiPredicate =
+				(currentVersion, importVersion) -> {
+					BiPredicate<Version, Version> versionBiPredicate =
+						majorVersionBiPredicate.and(minorVersionBiPredicate);
 
-		BiPredicate<Version, Version> manifestVersionBiPredicate =
-			(currentVersion, importVersion) -> {
-				BiPredicate<Version, Version> versionBiPredicate =
-					majorVersionBiPredicate.and(minorVersionBiPredicate);
+					return versionBiPredicate.test(
+						currentVersion, importVersion);
+				};
 
-				return versionBiPredicate.test(currentVersion, importVersion);
-			};
+			String importSchemaVersion = GetterUtil.getString(
+				headerElement.attributeValue("schema-version"), "1.0.0");
 
-		String importSchemaVersion = GetterUtil.getString(
-			headerElement.attributeValue("schema-version"), "1.0.0");
+			if (!manifestVersionBiPredicate.test(
+					Version.getInstance(
+						ExportImportConstants.EXPORT_IMPORT_SCHEMA_VERSION),
+					Version.getInstance(importSchemaVersion))) {
 
-		if (!manifestVersionBiPredicate.test(
-				Version.getInstance(
-					ExportImportConstants.EXPORT_IMPORT_SCHEMA_VERSION),
-				Version.getInstance(importSchemaVersion))) {
-
-			throw new LayoutImportException(
-				LayoutImportException.TYPE_WRONG_LAR_SCHEMA_VERSION,
-				new Object[] {
-					importSchemaVersion,
-					ExportImportConstants.EXPORT_IMPORT_SCHEMA_VERSION
-				});
+				throw new LayoutImportException(
+					LayoutImportException.TYPE_WRONG_LAR_SCHEMA_VERSION,
+					new Object[] {
+						importSchemaVersion,
+						ExportImportConstants.EXPORT_IMPORT_SCHEMA_VERSION
+					});
+			}
 		}
 
 		// Type

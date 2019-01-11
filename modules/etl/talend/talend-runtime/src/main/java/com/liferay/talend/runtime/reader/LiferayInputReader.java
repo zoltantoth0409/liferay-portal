@@ -71,17 +71,18 @@ public class LiferayInputReader extends LiferayBaseReader<IndexedRecord> {
 
 			return true;
 		}
+		else {
+			String actual = _apioResourceCollection.getResourceActualPage();
+			String last = _apioResourceCollection.getResourceLastPage();
 
-		String actual = _apioResourceCollection.getResourceActualPage();
-		String last = _apioResourceCollection.getResourceLastPage();
+			if (actual.equals(last)) {
+				_hasMore = false;
 
-		if (actual.equals(last)) {
-			_hasMore = false;
+				return false;
+			}
 
-			return false;
+			_hasMore = true;
 		}
-
-		_hasMore = true;
 
 		LiferaySource liferaySource = (LiferaySource)getCurrentSource();
 

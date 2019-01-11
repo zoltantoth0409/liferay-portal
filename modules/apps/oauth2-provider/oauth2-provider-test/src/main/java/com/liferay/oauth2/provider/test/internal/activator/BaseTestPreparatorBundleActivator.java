@@ -567,14 +567,15 @@ public abstract class BaseTestPreparatorBundleActivator
 
 			return () -> deleteConfiguration(bundleContext, servicePid);
 		}
+		else {
+			Dictionary<String, Object> oldProperties =
+				configuration.getProperties();
 
-		Dictionary<String, Object> oldProperties =
-			configuration.getProperties();
+			updateConfiguration(bundleContext, servicePid, properties);
 
-		updateConfiguration(bundleContext, servicePid, properties);
-
-		return () -> updateConfiguration(
-			bundleContext, servicePid, oldProperties);
+			return () -> updateConfiguration(
+				bundleContext, servicePid, oldProperties);
+		}
 	}
 
 	protected ArrayList<AutoCloseable> autoCloseables;

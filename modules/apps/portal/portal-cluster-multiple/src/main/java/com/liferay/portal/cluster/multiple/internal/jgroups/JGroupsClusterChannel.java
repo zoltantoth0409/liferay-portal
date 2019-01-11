@@ -198,8 +198,9 @@ public class JGroupsClusterChannel implements ClusterChannel {
 				throw new SystemException(
 					"Unable to send multicast message", e);
 			}
-
-			throw new SystemException("Unable to send unicast message", e);
+			else {
+				throw new SystemException("Unable to send unicast message", e);
+			}
 		}
 	}
 

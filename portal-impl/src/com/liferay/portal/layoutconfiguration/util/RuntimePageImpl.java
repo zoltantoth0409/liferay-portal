@@ -341,11 +341,12 @@ public class RuntimePageImpl implements RuntimePage {
 					request, response, portletId, templateResource, langType,
 					false);
 			}
+			else {
+				doProcessCustomizationSettings(
+					request, response, templateResource, langType, false);
 
-			doProcessCustomizationSettings(
-				request, response, templateResource, langType, false);
-
-			return null;
+				return null;
+			}
 		}
 		finally {
 			if ((pluginClassLoader != null) &&

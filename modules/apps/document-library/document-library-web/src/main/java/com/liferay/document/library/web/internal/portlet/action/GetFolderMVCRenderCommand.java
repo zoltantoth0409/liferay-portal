@@ -53,8 +53,9 @@ public abstract class GetFolderMVCRenderCommand implements MVCRenderCommand {
 
 				return "/document_library/error.jsp";
 			}
-
-			throw new PortletException(e);
+			else {
+				throw new PortletException(e);
+			}
 		}
 
 		return getPath();

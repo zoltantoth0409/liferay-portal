@@ -351,11 +351,12 @@ public class LayoutImpl extends LayoutBaseImpl {
 
 			return layoutSet.getColorScheme();
 		}
+		else {
+			Theme theme = getTheme();
 
-		Theme theme = getTheme();
-
-		return ThemeLocalServiceUtil.getColorScheme(
-			getCompanyId(), theme.getThemeId(), getColorSchemeId());
+			return ThemeLocalServiceUtil.getColorScheme(
+				getCompanyId(), theme.getThemeId(), getColorSchemeId());
+		}
 	}
 
 	/**

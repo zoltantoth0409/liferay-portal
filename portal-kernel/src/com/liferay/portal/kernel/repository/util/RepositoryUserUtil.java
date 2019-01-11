@@ -40,14 +40,15 @@ public class RepositoryUserUtil {
 		if (Validator.isNull(name)) {
 			throw new PrincipalException("Principal is null");
 		}
+		else {
+			for (int i = 0; i < BaseServiceImpl.ANONYMOUS_NAMES.length; i++) {
+				if (StringUtil.equalsIgnoreCase(
+						name, BaseServiceImpl.ANONYMOUS_NAMES[i])) {
 
-		for (int i = 0; i < BaseServiceImpl.ANONYMOUS_NAMES.length; i++) {
-			if (StringUtil.equalsIgnoreCase(
-					name, BaseServiceImpl.ANONYMOUS_NAMES[i])) {
-
-				throw new PrincipalException(
-					"Principal cannot be " +
-						BaseServiceImpl.ANONYMOUS_NAMES[i]);
+					throw new PrincipalException(
+						"Principal cannot be " +
+							BaseServiceImpl.ANONYMOUS_NAMES[i]);
+				}
 			}
 		}
 

@@ -122,8 +122,9 @@ public class ViewEntryMVCRenderCommand implements MVCRenderCommand {
 
 				return "/blogs/error.jsp";
 			}
-
-			throw new PortletException(e);
+			else {
+				throw new PortletException(e);
+			}
 		}
 
 		return "/blogs/view_entry.jsp";

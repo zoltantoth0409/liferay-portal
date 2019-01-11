@@ -335,11 +335,12 @@ public class JCRStore extends BaseStore {
 				if (itr.getPosition() == itr.getSize()) {
 					break;
 				}
+				else {
+					if (!StringUtils.equals(
+							JCRConstants.JCR_ROOT_VERSION, version.getName())) {
 
-				if (!StringUtils.equals(
-						JCRConstants.JCR_ROOT_VERSION, version.getName())) {
-
-					versionHistory.removeVersion(version.getName());
+						versionHistory.removeVersion(version.getName());
+					}
 				}
 			}
 

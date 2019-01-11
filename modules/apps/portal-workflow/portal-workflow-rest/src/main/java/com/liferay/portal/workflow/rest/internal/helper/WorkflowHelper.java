@@ -282,12 +282,13 @@ public class WorkflowHelper {
 			return LanguageUtil.format(
 				locale, "task-initially-assigned-to-x", user.getFullName());
 		}
+		else {
+			Role role = _roleLocalService.getRole(workflowLog.getRoleId());
 
-		Role role = _roleLocalService.getRole(workflowLog.getRoleId());
-
-		return LanguageUtil.format(
-			locale, "task-initially-assigned-to-the-x-role",
-			role.getDescriptiveName());
+			return LanguageUtil.format(
+				locale, "task-initially-assigned-to-the-x-role",
+				role.getDescriptiveName());
+		}
 	}
 
 	protected String getSubmissionForPublicationMessage(

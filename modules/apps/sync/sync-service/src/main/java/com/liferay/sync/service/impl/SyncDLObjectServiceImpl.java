@@ -1299,18 +1299,19 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			return syncDLObjectFinder.filterFindByR_U_T(
 				repositoryId, userId, ArrayUtil.toLongArray(typePKs));
 		}
+		else {
+			List<Long> sublistTypePKs = typePKs.subList(
+				0, _SQL_DATA_MAX_PARAMETERS);
 
-		List<Long> sublistTypePKs = typePKs.subList(
-			0, _SQL_DATA_MAX_PARAMETERS);
+			List<Long> checkedTypePKs = syncDLObjectFinder.filterFindByR_U_T(
+				repositoryId, userId, ArrayUtil.toLongArray(sublistTypePKs));
 
-		List<Long> checkedTypePKs = syncDLObjectFinder.filterFindByR_U_T(
-			repositoryId, userId, ArrayUtil.toLongArray(sublistTypePKs));
+			sublistTypePKs.clear();
 
-		sublistTypePKs.clear();
+			checkedTypePKs.addAll(checkTypePKs(repositoryId, userId, typePKs));
 
-		checkedTypePKs.addAll(checkTypePKs(repositoryId, userId, typePKs));
-
-		return checkedTypePKs;
+			return checkedTypePKs;
+		}
 	}
 
 	protected Map<String, String> getPortletPreferencesMap()

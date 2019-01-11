@@ -885,10 +885,12 @@ public class HtmlImpl implements Html {
 
 					break;
 				}
+				else {
 
-				// Skip past "</"
+					// Skip past "</"
 
-				x += 2;
+					x += 2;
+				}
 			}
 			else {
 				break;

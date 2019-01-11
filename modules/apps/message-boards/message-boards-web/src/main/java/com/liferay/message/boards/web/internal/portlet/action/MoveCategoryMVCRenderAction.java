@@ -57,8 +57,9 @@ public class MoveCategoryMVCRenderAction implements MVCRenderCommand {
 
 				return "/message_boards/error.jsp";
 			}
-
-			throw new PortletException(e);
+			else {
+				throw new PortletException(e);
+			}
 		}
 
 		return "/message_boards/move_category.jsp";

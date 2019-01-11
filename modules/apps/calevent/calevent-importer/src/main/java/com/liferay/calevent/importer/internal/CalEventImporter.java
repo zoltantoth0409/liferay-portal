@@ -678,37 +678,41 @@ public class CalEventImporter {
 				_classNameLocalService.getClassNameId(User.class), userId, null,
 				null, nameMap, descriptionMap, true, serviceContext);
 		}
+		else {
+			CalendarResource calendarResource =
+				_calendarResourceLocalService.fetchCalendarResource(
+					_classNameLocalService.getClassNameId(Group.class),
+					groupId);
 
-		CalendarResource calendarResource =
-			_calendarResourceLocalService.fetchCalendarResource(
-				_classNameLocalService.getClassNameId(Group.class), groupId);
+			if (calendarResource != null) {
+				return calendarResource;
+			}
 
-		if (calendarResource != null) {
-			return calendarResource;
+			userId = group.getCreatorUserId();
+
+			User user = _userLocalService.fetchUserById(userId);
+
+			if ((user == null) || user.isDefaultUser()) {
+				Role role = _roleLocalService.getRole(
+					group.getCompanyId(), RoleConstants.ADMINISTRATOR);
+
+				long[] userIds = _userLocalService.getRoleUserIds(
+					role.getRoleId());
+
+				userId = userIds[0];
+			}
+
+			Map<Locale, String> nameMap = new HashMap<>();
+
+			nameMap.put(LocaleUtil.getDefault(), group.getDescriptiveName());
+
+			Map<Locale, String> descriptionMap = new HashMap<>();
+
+			return _calendarResourceLocalService.addCalendarResource(
+				userId, groupId,
+				_classNameLocalService.getClassNameId(Group.class), groupId,
+				null, null, nameMap, descriptionMap, true, serviceContext);
 		}
-
-		userId = group.getCreatorUserId();
-
-		User user = _userLocalService.fetchUserById(userId);
-
-		if ((user == null) || user.isDefaultUser()) {
-			Role role = _roleLocalService.getRole(
-				group.getCompanyId(), RoleConstants.ADMINISTRATOR);
-
-			long[] userIds = _userLocalService.getRoleUserIds(role.getRoleId());
-
-			userId = userIds[0];
-		}
-
-		Map<Locale, String> nameMap = new HashMap<>();
-
-		nameMap.put(LocaleUtil.getDefault(), group.getDescriptiveName());
-
-		Map<Locale, String> descriptionMap = new HashMap<>();
-
-		return _calendarResourceLocalService.addCalendarResource(
-			userId, groupId, _classNameLocalService.getClassNameId(Group.class),
-			groupId, null, null, nameMap, descriptionMap, true, serviceContext);
 	}
 
 	protected void importAssetLink(
@@ -916,8 +920,9 @@ public class CalEventImporter {
 						startDate, durationHour, durationMinute, allDay, type,
 						recurrence, remindBy, firstReminder, secondReminder);
 				}
-
-				throw new NoSuchBookingException();
+				else {
+					throw new NoSuchBookingException();
+				}
 			}
 		}
 	}

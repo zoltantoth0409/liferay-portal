@@ -94,32 +94,33 @@ public class PluginAutoDeployListenerHelper {
 
 			return xmlFile.exists();
 		}
+		else {
+			ZipFile zipFile = null;
 
-		ZipFile zipFile = null;
+			try {
+				zipFile = new ZipFile(_file);
 
-		try {
-			zipFile = new ZipFile(_file);
+				if (zipFile.getEntry(checkXmlFile) == null) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(
+							_file.getPath() + " does not have " + checkXmlFile);
+					}
 
-			if (zipFile.getEntry(checkXmlFile) == null) {
-				if (_log.isDebugEnabled()) {
-					_log.debug(
-						_file.getPath() + " does not have " + checkXmlFile);
+					return false;
 				}
 
-				return false;
+				return true;
 			}
-
-			return true;
-		}
-		catch (IOException ioe) {
-			throw new AutoDeployException(ioe);
-		}
-		finally {
-			if (zipFile != null) {
-				try {
-					zipFile.close();
-				}
-				catch (IOException ioe) {
+			catch (IOException ioe) {
+				throw new AutoDeployException(ioe);
+			}
+			finally {
+				if (zipFile != null) {
+					try {
+						zipFile.close();
+					}
+					catch (IOException ioe) {
+					}
 				}
 			}
 		}

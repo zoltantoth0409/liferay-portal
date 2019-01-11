@@ -26,8 +26,9 @@ public enum StorageType {
 		if (JSON.getValue().equals(value)) {
 			return JSON;
 		}
-
-		throw new IllegalArgumentException("Invalid value " + value);
+		else {
+			throw new IllegalArgumentException("Invalid value " + value);
+		}
 	}
 
 	public String getValue() {

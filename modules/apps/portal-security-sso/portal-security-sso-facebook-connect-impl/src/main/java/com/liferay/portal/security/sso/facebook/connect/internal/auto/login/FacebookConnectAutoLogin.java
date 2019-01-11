@@ -89,13 +89,15 @@ public class FacebookConnectAutoLogin extends BaseAutoLogin {
 			return _userLocalService.getUserByEmailAddress(
 				companyId, emailAddress);
 		}
+		else {
+			long facebookId = GetterUtil.getLong(
+				(String)session.getAttribute(
+					FacebookConnectWebKeys.FACEBOOK_USER_ID));
 
-		long facebookId = GetterUtil.getLong(
-			(String)session.getAttribute(
-				FacebookConnectWebKeys.FACEBOOK_USER_ID));
-
-		if (facebookId > 0) {
-			return _userLocalService.getUserByFacebookId(companyId, facebookId);
+			if (facebookId > 0) {
+				return _userLocalService.getUserByFacebookId(
+					companyId, facebookId);
+			}
 		}
 
 		return null;

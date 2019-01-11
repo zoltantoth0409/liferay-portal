@@ -68,8 +68,9 @@ public class EditPageAttachmentsMVCRenderCommand implements MVCRenderCommand {
 
 				return "/wiki/error.jsp";
 			}
-
-			throw new PortletException(e);
+			else {
+				throw new PortletException(e);
+			}
 		}
 
 		return "/wiki/edit_page_attachment.jsp";

@@ -120,11 +120,12 @@ public class DLViewMVCRenderCommand extends GetFolderMVCRenderCommand {
 			return authorizationCapability.hasCustomRedirectFlow(
 				renderRequest, renderResponse);
 		}
+		else {
+			_dlAppService.getFileEntriesCount(
+				dlFolder.getRepositoryId(), dlFolder.getFolderId());
 
-		_dlAppService.getFileEntriesCount(
-			dlFolder.getRepositoryId(), dlFolder.getFolderId());
-
-		return false;
+			return false;
+		}
 	}
 
 	@Reference

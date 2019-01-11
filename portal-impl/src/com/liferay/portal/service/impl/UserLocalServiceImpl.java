@@ -1824,8 +1824,9 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 			return new KeyValuePair(name, password);
 		}
-
-		throw new PrincipalException.MustBeAuthenticated(userId);
+		else {
+			throw new PrincipalException.MustBeAuthenticated(userId);
+		}
 	}
 
 	/**
@@ -2933,8 +2934,9 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 			throw new NoSuchUserException(sb.toString());
 		}
-
-		return users.get(0);
+		else {
+			return users.get(0);
+		}
 	}
 
 	/**

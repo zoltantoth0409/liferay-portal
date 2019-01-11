@@ -49,10 +49,11 @@ public class MultiDestinationMessagingProxyInvocationHandler
 
 			return _baseMultiDestinationProxyBean.synchronousSend(proxyRequest);
 		}
+		else {
+			_baseMultiDestinationProxyBean.send(proxyRequest);
 
-		_baseMultiDestinationProxyBean.send(proxyRequest);
-
-		return null;
+			return null;
+		}
 	}
 
 	private static final InvocationHandlerFactory _invocationHandlerFactory =

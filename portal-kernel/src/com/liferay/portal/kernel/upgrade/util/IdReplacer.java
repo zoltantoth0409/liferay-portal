@@ -52,33 +52,34 @@ public class IdReplacer {
 
 				break;
 			}
+			else {
+				sb.append(s.substring(pos, x + begin.length()));
 
-			sb.append(s.substring(pos, x + begin.length()));
+				String oldString = s.substring(x + begin.length(), y);
 
-			String oldString = s.substring(x + begin.length(), y);
+				if (Validator.isNotNull(oldString)) {
+					Long oldValue = Long.valueOf(GetterUtil.getLong(oldString));
 
-			if (Validator.isNotNull(oldString)) {
-				Long oldValue = Long.valueOf(GetterUtil.getLong(oldString));
+					Long newValue = null;
 
-				Long newValue = null;
-
-				try {
-					newValue = (Long)valueMapper.getNewValue(oldValue);
-				}
-				catch (StagnantRowException sre) {
-					if (_log.isWarnEnabled()) {
-						_log.warn(sre, sre);
+					try {
+						newValue = (Long)valueMapper.getNewValue(oldValue);
 					}
+					catch (StagnantRowException sre) {
+						if (_log.isWarnEnabled()) {
+							_log.warn(sre, sre);
+						}
+					}
+
+					if (newValue == null) {
+						newValue = oldValue;
+					}
+
+					sb.append(newValue);
 				}
 
-				if (newValue == null) {
-					newValue = oldValue;
-				}
-
-				sb.append(newValue);
+				pos = y;
 			}
-
-			pos = y;
 		}
 
 		return sb.toString();
@@ -108,30 +109,31 @@ public class IdReplacer {
 
 				break;
 			}
+			else {
+				sb.append(s.substring(pos, x + begin.length()));
 
-			sb.append(s.substring(pos, x + begin.length()));
+				Long oldValue = Long.valueOf(
+					GetterUtil.getLong(s.substring(x + begin.length(), y)));
 
-			Long oldValue = Long.valueOf(
-				GetterUtil.getLong(s.substring(x + begin.length(), y)));
+				Long newValue = null;
 
-			Long newValue = null;
-
-			try {
-				newValue = (Long)valueMapper.getNewValue(oldValue);
-			}
-			catch (StagnantRowException sre) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(sre, sre);
+				try {
+					newValue = (Long)valueMapper.getNewValue(oldValue);
 				}
+				catch (StagnantRowException sre) {
+					if (_log.isWarnEnabled()) {
+						_log.warn(sre, sre);
+					}
+				}
+
+				if (newValue == null) {
+					newValue = oldValue;
+				}
+
+				sb.append(newValue);
+
+				pos = y;
 			}
-
-			if (newValue == null) {
-				newValue = oldValue;
-			}
-
-			sb.append(newValue);
-
-			pos = y;
 		}
 
 		return sb.toString();

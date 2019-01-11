@@ -104,10 +104,11 @@ public class ByteArrayFileInputStream extends InputStream {
 
 			return -1;
 		}
+		else {
+			initFileInputStream();
 
-		initFileInputStream();
-
-		return fileInputStream.read();
+			return fileInputStream.read();
+		}
 	}
 
 	@Override

@@ -214,20 +214,22 @@ public class JournalFolderServiceImpl extends JournalFolderServiceBaseImpl {
 			return journalArticleFinder.filterCountByG_F(
 				groupId, folderIds, queryDefinition);
 		}
+		else {
+			int start = 0;
+			int end = PropsValues.SQL_DATA_MAX_PARAMETERS;
 
-		int start = 0;
-		int end = PropsValues.SQL_DATA_MAX_PARAMETERS;
+			int articlesCount = journalArticleFinder.filterCountByG_F(
+				groupId, folderIds.subList(start, end), queryDefinition);
 
-		int articlesCount = journalArticleFinder.filterCountByG_F(
-			groupId, folderIds.subList(start, end), queryDefinition);
+			List<Long> sublist = folderIds.subList(start, end);
 
-		List<Long> sublist = folderIds.subList(start, end);
+			sublist.clear();
 
-		sublist.clear();
+			articlesCount += getFoldersAndArticlesCount(
+				groupId, folderIds, status);
 
-		articlesCount += getFoldersAndArticlesCount(groupId, folderIds, status);
-
-		return articlesCount;
+			return articlesCount;
+		}
 	}
 
 	@Override

@@ -76,12 +76,13 @@ public class AssetVocabularySettingsImportHelper
 		if (_classNameLocalService.fetchClassName(className) != null) {
 			return true;
 		}
+		else {
+			if (_log.isWarnEnabled()) {
+				_log.warn("No class name found for " + className);
+			}
 
-		if (_log.isWarnEnabled()) {
-			_log.warn("No class name found for " + className);
+			return false;
 		}
-
-		return false;
 	}
 
 	protected void fillClassNameIdsAndClassTypePKs(

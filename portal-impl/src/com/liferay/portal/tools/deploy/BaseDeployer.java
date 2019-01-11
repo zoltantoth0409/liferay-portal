@@ -1820,12 +1820,13 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 				return PluginPackageUtil.readPluginPackageProperties(
 					displayName, properties);
 			}
+			else {
+				String xml = StringUtil.read(is);
 
-			String xml = StringUtil.read(is);
+				xml = XMLUtil.fixProlog(xml);
 
-			xml = XMLUtil.fixProlog(xml);
-
-			return PluginPackageUtil.readPluginPackageXml(xml);
+				return PluginPackageUtil.readPluginPackageXml(xml);
+			}
 		}
 		catch (Exception e) {
 			_log.error(file.getPath() + ": " + e.toString(), e);

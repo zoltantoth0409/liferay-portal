@@ -118,10 +118,11 @@ public class BasePersistenceImpl<T extends BaseModel<T>>
 		if (results.isEmpty()) {
 			return 0;
 		}
+		else {
+			Long firstResult = results.get(0);
 
-		Long firstResult = results.get(0);
-
-		return firstResult.longValue();
+			return firstResult.longValue();
+		}
 	}
 
 	@Override

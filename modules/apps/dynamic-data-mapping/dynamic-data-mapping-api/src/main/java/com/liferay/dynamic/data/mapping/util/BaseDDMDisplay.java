@@ -315,16 +315,17 @@ public abstract class BaseDDMDisplay implements DDMDisplay {
 
 			return ParamUtil.getString(liferayPortletRequest, "redirect");
 		}
+		else {
+			String portletId = PortletProviderUtil.getPortletId(
+				DDMStructure.class.getName(), PortletProvider.Action.VIEW);
 
-		String portletId = PortletProviderUtil.getPortletId(
-			DDMStructure.class.getName(), PortletProvider.Action.VIEW);
+			PortletURL portletURL = PortalUtil.getControlPanelPortletURL(
+				liferayPortletRequest, portletId, PortletRequest.RENDER_PHASE);
 
-		PortletURL portletURL = PortalUtil.getControlPanelPortletURL(
-			liferayPortletRequest, portletId, PortletRequest.RENDER_PHASE);
+			portletURL.setParameter("mvcPath", "/view.jsp");
 
-		portletURL.setParameter("mvcPath", "/view.jsp");
-
-		return portletURL.toString();
+			return portletURL.toString();
+		}
 	}
 
 	@Override

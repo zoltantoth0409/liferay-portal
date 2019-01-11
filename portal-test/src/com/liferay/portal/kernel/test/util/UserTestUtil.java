@@ -169,17 +169,18 @@ public class UserTestUtil {
 				jobTitle, groupIds, organizationIds, roleIds, userGroupIds,
 				sendMail, serviceContext);
 		}
+		else {
+			String emailAddress =
+				"UserServiceTest." + RandomTestUtil.nextLong() + "@test.com";
 
-		String emailAddress =
-			"UserServiceTest." + RandomTestUtil.nextLong() + "@test.com";
-
-		return UserLocalServiceUtil.addUser(
-			TestPropsValues.getUserId(), TestPropsValues.getCompanyId(),
-			autoPassword, password1, password2, autoScreenName, screenName,
-			emailAddress, facebookId, openId, locale, firstName, middleName,
-			lastName, prefixId, suffixId, male, birthdayMonth, birthdayDay,
-			birthdayYear, jobTitle, groupIds, organizationIds, roleIds,
-			userGroupIds, sendMail, serviceContext);
+			return UserLocalServiceUtil.addUser(
+				TestPropsValues.getUserId(), TestPropsValues.getCompanyId(),
+				autoPassword, password1, password2, autoScreenName, screenName,
+				emailAddress, facebookId, openId, locale, firstName, middleName,
+				lastName, prefixId, suffixId, male, birthdayMonth, birthdayDay,
+				birthdayYear, jobTitle, groupIds, organizationIds, roleIds,
+				userGroupIds, sendMail, serviceContext);
+		}
 	}
 
 	public static User addUser(Company company) throws Exception {

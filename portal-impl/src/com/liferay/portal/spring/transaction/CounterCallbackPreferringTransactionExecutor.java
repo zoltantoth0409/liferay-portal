@@ -82,11 +82,13 @@ public class CounterCallbackPreferringTransactionExecutor
 					if (throwable instanceof RuntimeException) {
 						throw (RuntimeException)throwable;
 					}
-
-					throw new ThrowableHolderException(throwable);
+					else {
+						throw new ThrowableHolderException(throwable);
+					}
 				}
-
-				return new ThrowableHolder(throwable);
+				else {
+					return new ThrowableHolder(throwable);
+				}
 			}
 		}
 

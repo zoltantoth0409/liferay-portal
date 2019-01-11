@@ -112,10 +112,11 @@ public class KBObjectsPriorityComparator<T> extends OrderByComparator<T> {
 
 			return kbArticle.getTitle();
 		}
+		else {
+			KBFolder kbFolder = (KBFolder)obj;
 
-		KBFolder kbFolder = (KBFolder)obj;
-
-		return kbFolder.getName();
+			return kbFolder.getName();
+		}
 	}
 
 	private final boolean _ascending;

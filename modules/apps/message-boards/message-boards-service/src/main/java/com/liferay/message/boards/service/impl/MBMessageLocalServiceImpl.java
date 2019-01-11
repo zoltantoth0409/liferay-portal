@@ -1983,21 +1983,22 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 				layoutURL, Portal.FRIENDLY_URL_SEPARATOR,
 				"message_boards/view_message/", message.getMessageId());
 		}
+		else {
+			Group group = groupLocalService.fetchGroup(message.getGroupId());
 
-		Group group = groupLocalService.fetchGroup(message.getGroupId());
+			portletId = PortletProviderUtil.getPortletId(
+				MBMessage.class.getName(), PortletProvider.Action.MANAGE);
 
-		portletId = PortletProviderUtil.getPortletId(
-			MBMessage.class.getName(), PortletProvider.Action.MANAGE);
+			PortletURL portletURL = PortalUtil.getControlPanelPortletURL(
+				request, group, portletId, 0, 0, PortletRequest.RENDER_PHASE);
 
-		PortletURL portletURL = PortalUtil.getControlPanelPortletURL(
-			request, group, portletId, 0, 0, PortletRequest.RENDER_PHASE);
+			portletURL.setParameter(
+				"mvcRenderCommandName", "/message_boards/view_message");
+			portletURL.setParameter(
+				"messageId", String.valueOf(message.getMessageId()));
 
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/message_boards/view_message");
-		portletURL.setParameter(
-			"messageId", String.valueOf(message.getMessageId()));
-
-		return portletURL.toString();
+			return portletURL.toString();
+		}
 	}
 
 	protected String getSubject(String subject, String body) {

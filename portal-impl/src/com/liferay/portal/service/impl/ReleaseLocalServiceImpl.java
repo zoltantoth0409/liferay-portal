@@ -257,8 +257,10 @@ public class ReleaseLocalServiceImpl extends ReleaseLocalServiceBaseImpl {
 
 			return release.getBuildNumber();
 		}
-
-		throw new NoSuchReleaseException("The database needs to be populated");
+		else {
+			throw new NoSuchReleaseException(
+				"The database needs to be populated");
+		}
 	}
 
 	@Override

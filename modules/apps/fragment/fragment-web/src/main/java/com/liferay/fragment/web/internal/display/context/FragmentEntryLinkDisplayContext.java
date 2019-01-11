@@ -154,12 +154,13 @@ public class FragmentEntryLinkDisplayContext {
 
 			return layout.getName(themeDisplay.getLocale());
 		}
+		else {
+			LayoutPageTemplateEntry layoutPageTemplateEntry =
+				LayoutPageTemplateEntryLocalServiceUtil.
+					getLayoutPageTemplateEntry(fragmentEntryLink.getClassPK());
 
-		LayoutPageTemplateEntry layoutPageTemplateEntry =
-			LayoutPageTemplateEntryLocalServiceUtil.getLayoutPageTemplateEntry(
-				fragmentEntryLink.getClassPK());
-
-		return layoutPageTemplateEntry.getName();
+			return layoutPageTemplateEntry.getName();
+		}
 	}
 
 	public String getFragmentEntryLinkTypeLabel(

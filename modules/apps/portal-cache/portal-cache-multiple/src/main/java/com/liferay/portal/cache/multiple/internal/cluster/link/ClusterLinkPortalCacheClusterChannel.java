@@ -93,16 +93,17 @@ public class ClusterLinkPortalCacheClusterChannel
 
 					break;
 				}
+				else {
+					try {
+						PortalCacheClusterEvent portalCacheClusterEvent =
+							_portalCacheClusterEventQueue.take();
 
-				try {
-					PortalCacheClusterEvent portalCacheClusterEvent =
-						_portalCacheClusterEventQueue.take();
+						dispatchEvent(portalCacheClusterEvent);
 
-					dispatchEvent(portalCacheClusterEvent);
-
-					_sentEventCounter.incrementAndGet();
-				}
-				catch (InterruptedException ie) {
+						_sentEventCounter.incrementAndGet();
+					}
+					catch (InterruptedException ie) {
+					}
 				}
 			}
 			catch (Throwable t) {

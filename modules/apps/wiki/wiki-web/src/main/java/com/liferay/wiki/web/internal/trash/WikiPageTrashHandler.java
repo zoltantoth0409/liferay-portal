@@ -387,16 +387,17 @@ public class WikiPageTrashHandler extends BaseWikiTrashHandler {
 
 			throw ree;
 		}
+		else {
+			List<WikiPage> pages = _wikiPageLocalService.getDependentPages(
+				page.getNodeId(), true, page.getTitle(),
+				WorkflowConstants.STATUS_IN_TRASH);
 
-		List<WikiPage> pages = _wikiPageLocalService.getDependentPages(
-			page.getNodeId(), true, page.getTitle(),
-			WorkflowConstants.STATUS_IN_TRASH);
-
-		for (WikiPage curPage : pages) {
-			checkRestorableEntry(
-				curPage.getResourcePrimKey(), 0, containerModelId,
-				curPage.getTitle(),
-				_trashHelper.getOriginalTitle(curPage.getTitle()));
+			for (WikiPage curPage : pages) {
+				checkRestorableEntry(
+					curPage.getResourcePrimKey(), 0, containerModelId,
+					curPage.getTitle(),
+					_trashHelper.getOriginalTitle(curPage.getTitle()));
+			}
 		}
 	}
 

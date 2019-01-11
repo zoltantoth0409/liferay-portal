@@ -123,12 +123,14 @@ public class ModifiedFacetCalendarDisplayBuilder {
 			return _calendarFactory.getCalendar(
 				_fromYear, _fromMonth, _fromDay, 0, 0, 0, 0, _timeZone);
 		}
+		else {
+			Calendar calendar = _calendarFactory.getCalendar(
+				_timeZone, _locale);
 
-		Calendar calendar = _calendarFactory.getCalendar(_timeZone, _locale);
+			calendar.add(Calendar.DATE, -1);
 
-		calendar.add(Calendar.DATE, -1);
-
-		return calendar;
+			return calendar;
+		}
 	}
 
 	private Calendar _getToCalendar() {
@@ -136,10 +138,12 @@ public class ModifiedFacetCalendarDisplayBuilder {
 			return _calendarFactory.getCalendar(
 				_toYear, _toMonth, _toDay, 0, 0, 0, 0, _timeZone);
 		}
+		else {
+			Calendar toCalendar = _calendarFactory.getCalendar(
+				_timeZone, _locale);
 
-		Calendar toCalendar = _calendarFactory.getCalendar(_timeZone, _locale);
-
-		return toCalendar;
+			return toCalendar;
+		}
 	}
 
 	private boolean _isRangeBackwards(

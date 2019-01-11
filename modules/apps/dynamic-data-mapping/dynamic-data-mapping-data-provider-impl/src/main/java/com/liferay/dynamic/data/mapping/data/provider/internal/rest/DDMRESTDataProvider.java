@@ -104,8 +104,9 @@ public class DDMRESTDataProvider implements DDMDataProvider {
 				return DDMDataProviderResponse.error(
 					DDMDataProviderResponse.Status.SERVICE_UNAVAILABLE);
 			}
-
-			throw new DDMDataProviderException(he);
+			else {
+				throw new DDMDataProviderException(he);
+			}
 		}
 		catch (Exception e) {
 			throw new DDMDataProviderException(e);

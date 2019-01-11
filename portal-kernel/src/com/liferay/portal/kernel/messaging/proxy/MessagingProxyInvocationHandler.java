@@ -54,10 +54,11 @@ public class MessagingProxyInvocationHandler implements InvocationHandler {
 
 			return _baseProxyBean.synchronousSend(proxyRequest);
 		}
+		else {
+			_baseProxyBean.send(proxyRequest);
 
-		_baseProxyBean.send(proxyRequest);
-
-		return null;
+			return null;
+		}
 	}
 
 	private static final InvocationHandlerFactory _invocationHandlerFactory =

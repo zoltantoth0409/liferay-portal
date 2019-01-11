@@ -483,8 +483,9 @@ public class JournalArticleIndexer
 
 				return;
 			}
-
-			classPK = journalArticle.getResourcePrimKey();
+			else {
+				classPK = journalArticle.getResourcePrimKey();
+			}
 		}
 
 		deleteDocument(journalArticle.getCompanyId(), classPK);

@@ -63,8 +63,9 @@ public class EditFileShortcutMVCRenderCommand implements MVCRenderCommand {
 
 				return "/document_library/error.jsp";
 			}
-
-			throw new PortletException(e);
+			else {
+				throw new PortletException(e);
+			}
 		}
 
 		return "/document_library/edit_file_shortcut.jsp";

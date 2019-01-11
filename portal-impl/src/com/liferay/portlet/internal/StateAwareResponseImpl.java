@@ -336,27 +336,28 @@ public abstract class StateAwareResponseImpl
 		if (params == null) {
 			throw new IllegalArgumentException();
 		}
+		else {
+			_mutableRenderParametersImpl.clear();
 
-		_mutableRenderParametersImpl.clear();
+			for (Map.Entry<String, String[]> entry : params.entrySet()) {
+				String key = entry.getKey();
 
-		for (Map.Entry<String, String[]> entry : params.entrySet()) {
-			String key = entry.getKey();
+				if (key == null) {
+					throw new IllegalArgumentException();
+				}
 
-			if (key == null) {
-				throw new IllegalArgumentException();
+				String[] value = entry.getValue();
+
+				if (value == null) {
+					throw new IllegalArgumentException();
+				}
+
+				if (setPublicRenderParameter(key, value)) {
+					continue;
+				}
+
+				_mutableRenderParametersImpl.setValues(key, value);
 			}
-
-			String[] value = entry.getValue();
-
-			if (value == null) {
-				throw new IllegalArgumentException();
-			}
-
-			if (setPublicRenderParameter(key, value)) {
-				continue;
-			}
-
-			_mutableRenderParametersImpl.setValues(key, value);
 		}
 
 		_calledSetRenderParameter = true;

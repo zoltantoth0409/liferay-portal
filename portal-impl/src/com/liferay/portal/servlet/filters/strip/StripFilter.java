@@ -614,10 +614,11 @@ public class StripFilter extends BasePortalFilter {
 
 				continue;
 			}
+			else {
+				charBuffer.position(i);
 
-			charBuffer.position(i);
-
-			break;
+				break;
+			}
 		}
 
 		if (skipped && appendSeparator) {

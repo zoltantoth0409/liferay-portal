@@ -79,8 +79,9 @@ public class AxisServlet extends org.apache.axis.transport.http.AxisServlet {
 					if (e instanceof RuntimeException) {
 						throw (RuntimeException)e;
 					}
-
-					throw new RuntimeException(e);
+					else {
+						throw new RuntimeException(e);
+					}
 				}
 			}
 			finally {
@@ -169,8 +170,9 @@ public class AxisServlet extends org.apache.axis.transport.http.AxisServlet {
 				if (e instanceof ServletException) {
 					throw (ServletException)e;
 				}
-
-				throw new ServletException(e);
+				else {
+					throw new ServletException(e);
+				}
 			}
 		}
 	}

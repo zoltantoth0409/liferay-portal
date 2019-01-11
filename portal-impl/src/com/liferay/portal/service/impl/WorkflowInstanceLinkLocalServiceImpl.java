@@ -177,8 +177,9 @@ public class WorkflowInstanceLinkLocalServiceImpl
 
 			throw new NoSuchWorkflowInstanceLinkException(sb.toString());
 		}
-
-		return workflowInstanceLinks.get(0);
+		else {
+			return workflowInstanceLinks.get(0);
+		}
 	}
 
 	@Override

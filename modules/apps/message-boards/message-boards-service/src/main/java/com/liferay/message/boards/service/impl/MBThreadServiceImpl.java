@@ -161,14 +161,16 @@ public class MBThreadServiceImpl extends MBThreadServiceBaseImpl {
 				return mbThreadFinder.filterFindByS_G_U_C(
 					groupId, userId, categoryIds, queryDefinition);
 			}
-
-			if (includeAnonymous) {
-				threadIds = mbMessageFinder.filterFindByG_U_C_S(
-					groupId, userId, categoryIds, status, start, end);
-			}
 			else {
-				threadIds = mbMessageFinder.filterFindByG_U_C_A_S(
-					groupId, userId, categoryIds, false, status, start, end);
+				if (includeAnonymous) {
+					threadIds = mbMessageFinder.filterFindByG_U_C_S(
+						groupId, userId, categoryIds, status, start, end);
+				}
+				else {
+					threadIds = mbMessageFinder.filterFindByG_U_C_A_S(
+						groupId, userId, categoryIds, false, status, start,
+						end);
+				}
 			}
 		}
 
@@ -271,22 +273,24 @@ public class MBThreadServiceImpl extends MBThreadServiceBaseImpl {
 			return mbMessageFinder.filterCountByG_U_C_S(
 				groupId, 0, categoryIds, status);
 		}
+		else {
+			if (subscribed) {
+				QueryDefinition<MBThread> queryDefinition =
+					new QueryDefinition<>(status);
 
-		if (subscribed) {
-			QueryDefinition<MBThread> queryDefinition = new QueryDefinition<>(
-				status);
+				return mbThreadFinder.filterCountByS_G_U_C(
+					groupId, userId, categoryIds, queryDefinition);
+			}
+			else {
+				if (includeAnonymous) {
+					return mbMessageFinder.filterCountByG_U_C_S(
+						groupId, userId, categoryIds, status);
+				}
 
-			return mbThreadFinder.filterCountByS_G_U_C(
-				groupId, userId, categoryIds, queryDefinition);
+				return mbMessageFinder.filterCountByG_U_C_A_S(
+					groupId, userId, categoryIds, false, status);
+			}
 		}
-
-		if (includeAnonymous) {
-			return mbMessageFinder.filterCountByG_U_C_S(
-				groupId, userId, categoryIds, status);
-		}
-
-		return mbMessageFinder.filterCountByG_U_C_A_S(
-			groupId, userId, categoryIds, false, status);
 	}
 
 	@Override
@@ -321,12 +325,13 @@ public class MBThreadServiceImpl extends MBThreadServiceBaseImpl {
 		if (status == WorkflowConstants.STATUS_ANY) {
 			return mbThreadFinder.filterCountByG_C(groupId, categoryId);
 		}
+		else {
+			QueryDefinition<MBThread> queryDefinition = new QueryDefinition<>(
+				status);
 
-		QueryDefinition<MBThread> queryDefinition = new QueryDefinition<>(
-			status);
-
-		return mbThreadFinder.filterCountByG_C(
-			groupId, categoryId, queryDefinition);
+			return mbThreadFinder.filterCountByG_C(
+				groupId, categoryId, queryDefinition);
+		}
 	}
 
 	@Override

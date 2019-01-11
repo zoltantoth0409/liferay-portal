@@ -4498,10 +4498,11 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 
 			return groups;
 		}
+		else {
+			joinedGroups.retainAll(groups);
 
-		joinedGroups.retainAll(groups);
-
-		return joinedGroups;
+			return joinedGroups;
+		}
 	}
 
 	protected long[] getClassNameIds() {

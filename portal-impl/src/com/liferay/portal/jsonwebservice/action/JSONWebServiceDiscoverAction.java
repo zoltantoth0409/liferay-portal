@@ -311,8 +311,9 @@ public class JSONWebServiceDiscoverAction implements JSONWebServiceAction {
 			if (!returnType) {
 				return "file";
 			}
-
-			type = FileData.class;
+			else {
+				type = FileData.class;
+			}
 		}
 		else if (type.equals(Locale.class) || type.equals(String.class) ||
 				 type.equals(TimeZone.class)) {

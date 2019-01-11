@@ -203,10 +203,11 @@ public class SyncJSONFilter implements Filter {
 
 					return;
 				}
-
-				throwable = new SyncClientMinBuildException(
-					"Sync client does not meet minimum build " +
-						syncClientMinBuild);
+				else {
+					throwable = new SyncClientMinBuildException(
+						"Sync client does not meet minimum build " +
+							syncClientMinBuild);
+				}
 			}
 		}
 		else {

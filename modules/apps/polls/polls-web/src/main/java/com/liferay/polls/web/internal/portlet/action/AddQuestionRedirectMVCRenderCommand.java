@@ -55,8 +55,9 @@ public class AddQuestionRedirectMVCRenderCommand implements MVCRenderCommand {
 
 				return "/polls/error.jsp";
 			}
-
-			throw new PortletException(e);
+			else {
+				throw new PortletException(e);
+			}
 		}
 
 		return "/polls/view_question.jsp";

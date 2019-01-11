@@ -71,8 +71,9 @@ public class SchedulerEventMessageListenerWrapper
 			if (e instanceof MessageListenerException) {
 				throw (MessageListenerException)e;
 			}
-
-			throw new MessageListenerException(e);
+			else {
+				throw new MessageListenerException(e);
+			}
 		}
 		finally {
 			TriggerState triggerState = null;

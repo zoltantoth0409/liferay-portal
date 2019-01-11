@@ -3611,17 +3611,18 @@ public class JournalArticleLocalServiceImpl
 			if ((article == null) || articleId.equals(article.getArticleId())) {
 				break;
 			}
+			else {
+				String suffix = StringPool.DASH + i;
 
-			String suffix = StringPool.DASH + i;
+				String prefix = urlTitle;
 
-			String prefix = urlTitle;
+				if (urlTitle.length() > suffix.length()) {
+					prefix = urlTitle.substring(
+						0, urlTitle.length() - suffix.length());
+				}
 
-			if (urlTitle.length() > suffix.length()) {
-				prefix = urlTitle.substring(
-					0, urlTitle.length() - suffix.length());
+				urlTitle = prefix + suffix;
 			}
-
-			urlTitle = prefix + suffix;
 		}
 
 		return urlTitle;
@@ -8659,17 +8660,18 @@ public class JournalArticleLocalServiceImpl
 
 				return i - 1;
 			}
+			else {
+				String suffix = StringPool.DASH + i;
 
-			String suffix = StringPool.DASH + i;
+				String prefix = urlTitle;
 
-			String prefix = urlTitle;
+				if (urlTitle.length() > suffix.length()) {
+					prefix = urlTitle.substring(
+						0, urlTitle.length() - suffix.length());
+				}
 
-			if (urlTitle.length() > suffix.length()) {
-				prefix = urlTitle.substring(
-					0, urlTitle.length() - suffix.length());
+				urlTitle = prefix + suffix;
 			}
-
-			urlTitle = prefix + suffix;
 		}
 	}
 

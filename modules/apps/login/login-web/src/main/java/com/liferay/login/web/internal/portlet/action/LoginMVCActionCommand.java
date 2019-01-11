@@ -265,8 +265,9 @@ public class LoginMVCActionCommand extends BaseMVCActionCommand {
 				if (doActionAfterLogin) {
 					return;
 				}
-
-				actionResponse.sendRedirect(mainPath);
+				else {
+					actionResponse.sendRedirect(mainPath);
+				}
 			}
 		}
 	}

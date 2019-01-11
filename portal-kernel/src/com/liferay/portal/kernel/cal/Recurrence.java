@@ -1046,18 +1046,20 @@ public class Recurrence implements Serializable {
 
 			return false;
 		}
+		else {
 
-		// position < 0
+			// position < 0
 
-		int negativeCandidatePosition =
-			((candidate.getActualMaximum(field) - candidate.get(field)) /
-				7) + 1;
+			int negativeCandidatePosition =
+				((candidate.getActualMaximum(field) - candidate.get(field)) /
+					7) + 1;
 
-		if (-position == negativeCandidatePosition) {
-			return true;
+			if (-position == negativeCandidatePosition) {
+				return true;
+			}
+
+			return false;
 		}
-
-		return false;
 	}
 
 	/**

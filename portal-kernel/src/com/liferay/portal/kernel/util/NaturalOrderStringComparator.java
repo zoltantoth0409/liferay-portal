@@ -112,20 +112,21 @@ public class NaturalOrderStringComparator
 
 				break;
 			}
+			else {
+				char c1UpperCase = Character.toUpperCase(c1);
+				char c2UpperCase = Character.toUpperCase(c2);
 
-			char c1UpperCase = Character.toUpperCase(c1);
-			char c2UpperCase = Character.toUpperCase(c2);
+				if (c1UpperCase == c2UpperCase) {
+					i1++;
+					i2++;
 
-			if (c1UpperCase == c2UpperCase) {
-				i1++;
-				i2++;
+					continue;
+				}
 
-				continue;
+				value = c1UpperCase - c2UpperCase;
+
+				break;
 			}
-
-			value = c1UpperCase - c2UpperCase;
-
-			break;
 		}
 
 		if ((value == 0) && (length1 != length2)) {

@@ -324,10 +324,11 @@ public class TextFormatter {
 
 				break;
 			}
+			else {
+				char c = Character.toLowerCase(s.charAt(i));
 
-			char c = Character.toLowerCase(s.charAt(i));
-
-			sb.setCharAt(i, c);
+				sb.setCharAt(i, c);
+			}
 		}
 
 		return sb.toString();

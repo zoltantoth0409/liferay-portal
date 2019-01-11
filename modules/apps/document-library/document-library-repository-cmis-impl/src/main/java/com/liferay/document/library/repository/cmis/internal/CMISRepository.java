@@ -148,8 +148,9 @@ public class CMISRepository extends BaseCmisRepository {
 			if (size == 0) {
 				throw new FileNameException("Title is null");
 			}
-
-			title = sourceFileName;
+			else {
+				title = sourceFileName;
+			}
 		}
 
 		try {

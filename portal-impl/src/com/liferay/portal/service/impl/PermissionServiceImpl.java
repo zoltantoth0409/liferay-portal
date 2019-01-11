@@ -110,12 +110,13 @@ public class PermissionServiceImpl extends PermissionServiceBaseImpl {
 
 				return true;
 			}
+			else {
+				ModelResourcePermissionHelper.check(
+					modelResourcePermission, permissionChecker, groupId,
+					classPK, actionId);
 
-			ModelResourcePermissionHelper.check(
-				modelResourcePermission, permissionChecker, groupId, classPK,
-				actionId);
-
-			return true;
+				return true;
+			}
 		}
 
 		BaseModelPermissionChecker baseModelPermissionChecker =

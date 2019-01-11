@@ -194,13 +194,14 @@ public class LanguageExtension implements Extension {
 		if (excludePortalResource) {
 			return new CacheResourceBundleLoader(resourceBundleLoader);
 		}
+		else {
+			AggregateResourceBundleLoader aggregateResourceBundleLoader =
+				new AggregateResourceBundleLoader(
+					resourceBundleLoader,
+					ResourceBundleLoaderUtil.getPortalResourceBundleLoader());
 
-		AggregateResourceBundleLoader aggregateResourceBundleLoader =
-			new AggregateResourceBundleLoader(
-				resourceBundleLoader,
-				ResourceBundleLoaderUtil.getPortalResourceBundleLoader());
-
-		return new CacheResourceBundleLoader(aggregateResourceBundleLoader);
+			return new CacheResourceBundleLoader(aggregateResourceBundleLoader);
+		}
 	}
 
 	protected void registerResourceBundleLoader(

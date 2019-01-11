@@ -76,10 +76,11 @@ public class OrganizationUserNameComparator extends OrderByComparator<Object> {
 
 			return organization.getName();
 		}
+		else {
+			User user = (User)obj;
 
-		User user = (User)obj;
-
-		return user.getLastName();
+			return user.getLastName();
+		}
 	}
 
 	private final boolean _ascending;

@@ -348,8 +348,9 @@ public abstract class BaseDB implements DB {
 			if (failOnError) {
 				throw new IOException("Invalid path " + path);
 			}
-
-			return;
+			else {
+				return;
+			}
 		}
 
 		String template = StringUtil.read(is);

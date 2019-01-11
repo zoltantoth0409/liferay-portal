@@ -2468,16 +2468,18 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 				page.getNodeId(), StringPool.SLASH,
 				URLCodec.encodeURL(WikiEscapeUtil.escapeName(page.getTitle())));
 		}
+		else {
+			PortletURL portletURL = PortalUtil.getControlPanelPortletURL(
+				request, WikiPortletKeys.WIKI_ADMIN,
+				PortletRequest.RENDER_PHASE);
 
-		PortletURL portletURL = PortalUtil.getControlPanelPortletURL(
-			request, WikiPortletKeys.WIKI_ADMIN, PortletRequest.RENDER_PHASE);
+			portletURL.setParameter(
+				"mvcRenderCommandName", "/wiki/view_page_activities");
+			portletURL.setParameter("nodeId", String.valueOf(page.getNodeId()));
+			portletURL.setParameter("title", page.getTitle());
 
-		portletURL.setParameter(
-			"mvcRenderCommandName", "/wiki/view_page_activities");
-		portletURL.setParameter("nodeId", String.valueOf(page.getNodeId()));
-		portletURL.setParameter("title", page.getTitle());
-
-		return portletURL.toString();
+			return portletURL.toString();
+		}
 	}
 
 	protected List<ObjectValuePair<Long, Integer>> getPageVersionStatuses(

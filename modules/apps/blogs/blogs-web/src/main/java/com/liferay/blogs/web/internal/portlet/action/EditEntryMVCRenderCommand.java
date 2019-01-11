@@ -75,8 +75,9 @@ public class EditEntryMVCRenderCommand implements MVCRenderCommand {
 
 				return "/blogs/error.jsp";
 			}
-
-			throw new PortletException(e);
+			else {
+				throw new PortletException(e);
+			}
 		}
 
 		return "/blogs/edit_entry.jsp";

@@ -202,47 +202,49 @@ public class CASFilter extends BaseFilter {
 
 			return;
 		}
+		else {
+			String login = (String)session.getAttribute(CASWebKeys.CAS_LOGIN);
 
-		String login = (String)session.getAttribute(CASWebKeys.CAS_LOGIN);
+			if (Validator.isNotNull(login)) {
+				processFilter(
+					CASFilter.class.getName(), request, response, filterChain);
 
-		if (Validator.isNotNull(login)) {
-			processFilter(
-				CASFilter.class.getName(), request, response, filterChain);
+				return;
+			}
 
-			return;
-		}
+			String serverName = casConfiguration.serverName();
 
-		String serverName = casConfiguration.serverName();
+			String serviceURL = casConfiguration.serviceURL();
 
-		String serviceURL = casConfiguration.serviceURL();
+			if (Validator.isNull(serviceURL)) {
+				serviceURL = CommonUtils.constructServiceUrl(
+					request, response, serviceURL, serverName, "ticket", false);
+			}
 
-		if (Validator.isNull(serviceURL)) {
-			serviceURL = CommonUtils.constructServiceUrl(
-				request, response, serviceURL, serverName, "ticket", false);
-		}
+			String ticket = ParamUtil.getString(request, "ticket");
 
-		String ticket = ParamUtil.getString(request, "ticket");
+			if (Validator.isNull(ticket)) {
+				String loginUrl = casConfiguration.loginURL();
 
-		if (Validator.isNull(ticket)) {
-			String loginUrl = casConfiguration.loginURL();
+				loginUrl = _http.addParameter(loginUrl, "service", serviceURL);
 
-			loginUrl = _http.addParameter(loginUrl, "service", serviceURL);
+				response.sendRedirect(loginUrl);
 
-			response.sendRedirect(loginUrl);
+				return;
+			}
 
-			return;
-		}
+			TicketValidator ticketValidator = getTicketValidator(companyId);
 
-		TicketValidator ticketValidator = getTicketValidator(companyId);
+			Assertion assertion = ticketValidator.validate(ticket, serviceURL);
 
-		Assertion assertion = ticketValidator.validate(ticket, serviceURL);
+			if (assertion != null) {
+				AttributePrincipal attributePrincipal =
+					assertion.getPrincipal();
 
-		if (assertion != null) {
-			AttributePrincipal attributePrincipal = assertion.getPrincipal();
+				login = attributePrincipal.getName();
 
-			login = attributePrincipal.getName();
-
-			session.setAttribute(CASWebKeys.CAS_LOGIN, login);
+				session.setAttribute(CASWebKeys.CAS_LOGIN, login);
+			}
 		}
 
 		processFilter(

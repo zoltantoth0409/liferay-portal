@@ -263,11 +263,12 @@ public class LiferayWriter
 		if (fieldType == Schema.Type.STRING) {
 			return (String)indexedRecord.get(idField.pos());
 		}
-
-		throw new IOException(
-			i18nMessages.getMessage(
-				"error.unsupported.field.schema", idField.name(),
-				fieldType.getName()));
+		else {
+			throw new IOException(
+				i18nMessages.getMessage(
+					"error.unsupported.field.schema", idField.name(),
+					fieldType.getName()));
+		}
 	}
 
 	protected static final I18nMessages i18nMessages;

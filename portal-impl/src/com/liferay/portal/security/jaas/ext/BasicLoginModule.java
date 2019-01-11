@@ -95,8 +95,9 @@ public class BasicLoginModule implements LoginModule {
 
 			return true;
 		}
-
-		throw new LoginException();
+		else {
+			throw new LoginException();
+		}
 	}
 
 	@Override

@@ -39,10 +39,11 @@ public class JobStateSerializeUtil {
 		if (version == 1) {
 			return _deserialize_1(jobStateMap);
 		}
-
-		throw new IllegalStateException(
-			"Unable to deserialize field for job state with version " +
-				version);
+		else {
+			throw new IllegalStateException(
+				"Unable to deserialize field for job state with version " +
+					version);
+		}
 	}
 
 	public static Map<String, Object> serialize(JobState jobState) {

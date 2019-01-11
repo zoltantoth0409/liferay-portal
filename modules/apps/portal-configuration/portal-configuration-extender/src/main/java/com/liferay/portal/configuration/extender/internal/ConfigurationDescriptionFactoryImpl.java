@@ -56,12 +56,14 @@ public class ConfigurationDescriptionFactoryImpl
 				new PropertiesSupplier(
 					namedConfigurationContent.getInputStream()));
 		}
+		else {
+			pid = name;
 
-		pid = name;
-
-		return new SingleConfigurationDescription(
-			pid,
-			new PropertiesSupplier(namedConfigurationContent.getInputStream()));
+			return new SingleConfigurationDescription(
+				pid,
+				new PropertiesSupplier(
+					namedConfigurationContent.getInputStream()));
+		}
 	}
 
 	private class PropertiesSupplier

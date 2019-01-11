@@ -69,8 +69,9 @@ public class EditUserMyAccountMVCRenderCommand implements MVCRenderCommand {
 
 				return "/error.jsp";
 			}
-
-			throw new PortletException(e);
+			else {
+				throw new PortletException(e);
+			}
 		}
 
 		return "/edit_user.jsp";

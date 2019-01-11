@@ -79,8 +79,9 @@ public class GlobalShutdownAction extends SimpleAction {
 			if (threadGroup.getParent() == null) {
 				break;
 			}
-
-			threadGroup = threadGroup.getParent();
+			else {
+				threadGroup = threadGroup.getParent();
+			}
 		}
 
 		return threadGroup;

@@ -141,8 +141,9 @@ public class ToolsUtil {
 			throw new IllegalArgumentException(
 				"The namespace element is required");
 		}
-
-		rootElement.add(namespaceElement);
+		else {
+			rootElement.add(namespaceElement);
+		}
 
 		_addElements(rootElement, entityElements);
 

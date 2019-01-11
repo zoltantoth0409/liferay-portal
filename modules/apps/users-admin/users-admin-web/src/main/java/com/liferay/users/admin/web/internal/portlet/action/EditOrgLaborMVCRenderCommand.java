@@ -55,8 +55,9 @@ public class EditOrgLaborMVCRenderCommand implements MVCRenderCommand {
 
 				return "/error.jsp";
 			}
-
-			throw new PortletException(e);
+			else {
+				throw new PortletException(e);
+			}
 		}
 
 		return "/edit_org_labor.jsp";
