@@ -114,6 +114,7 @@ if (portletTitleBasedNavigation) {
 								<div class="entry-info text-muted">
 									<small>
 										<strong><%= HtmlUtil.escape(previousEntry.getUserName()) %></strong>
+
 										<span> - </span>
 										<span class="hide-accessible"><liferay-ui:message key="published-date" /></span>
 										<%= dateFormatDate.format(previousEntry.getDisplayDate()) %>
@@ -158,6 +159,7 @@ if (portletTitleBasedNavigation) {
 								<div class="entry-info text-muted">
 									<small>
 										<strong><%= HtmlUtil.escape(nextEntry.getUserName()) %></strong>
+
 										<span> - </span>
 										<span class="hide-accessible"><liferay-ui:message key="published-date" /></span>
 										<%= dateFormatDate.format(nextEntry.getDisplayDate()) %>

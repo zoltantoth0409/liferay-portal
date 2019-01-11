@@ -79,6 +79,7 @@ String socialBookmarksDisplayPosition = blogsPortletInstanceConfiguration.social
 					<c:if test="<%= !viewSingleEntry %>">
 						<small>
 							<strong><%= HtmlUtil.escape(entry.getUserName()) %></strong>
+
 							<span> - </span>
 							<span class="hide-accessible"><liferay-ui:message key="published-date" /></span>
 							<%= dateFormatDate.format(entry.getDisplayDate()) %>
@@ -257,6 +258,7 @@ String socialBookmarksDisplayPosition = blogsPortletInstanceConfiguration.social
 						<div class="comments">
 							<a href="<%= viewEntryCommentsURL %>">
 								<i class="icon-comment icon-monospaced"></i>
+
 								<span><%= String.valueOf(messagesCount) %></span>
 							</a>
 						</div>

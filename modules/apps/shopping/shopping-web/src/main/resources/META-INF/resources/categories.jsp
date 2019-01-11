@@ -283,6 +283,7 @@ boolean showSearch = (categoriesAndItemsCount > 0);
 
 						<h6 class="text-default">
 							<liferay-ui:message key="categories" />: <span><%= subcategoriesCount %></span>
+
 							<liferay-ui:message key="items" />: <span><%= subitemsCount %></span>
 						</h6>
 					</liferay-ui:search-container-column-text>
