@@ -4,7 +4,7 @@
 [subrepo]
 	autopull = true
 	cmdver = liferay
-	commit = 1e8edd3d84b33688213172b445ff2622a17245b6
+	commit = 0000000000000000000000000000000000000000
 	mergebuttonmergecommits = false
 	mode = pull
 	parent = 0000000000000000000000000000000000000000
