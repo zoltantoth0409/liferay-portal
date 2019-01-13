@@ -3,12 +3,12 @@
 <root available-locales="en_US,es_ES" default-locale="en_US">
 	<request/>
 	<dynamic-element index-type="keyword" name="Local" type="text">
-		<dynamic-content language-id="en_US"><![CDATA[Southamton]]></dynamic-content>
-		<dynamic-content language-id="es_ES"><![CDATA[Southamton]]></dynamic-content>
+		<dynamic-content language-id="en_US"><![CDATA[Southampton]]></dynamic-content>
+		<dynamic-content language-id="es_ES"><![CDATA[Southampton]]></dynamic-content>
 	</dynamic-element>
 	<dynamic-element index-type="keyword" name="Visitor" type="text">
 		<dynamic-content language-id="en_US"><![CDATA[Manchester City]]></dynamic-content>
-		<dynamic-content language-id="es_ES"><![CDATA[Mancherster City]]></dynamic-content>
+		<dynamic-content language-id="es_ES"><![CDATA[Manchester City]]></dynamic-content>
 	</dynamic-element>
 	<dynamic-element index-type="keyword" name="LocalResult" type="ddm-integer">
 		<dynamic-content language-id="en_US"><![CDATA[1]]></dynamic-content>
