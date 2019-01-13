@@ -140,8 +140,8 @@ public class HeadlessDemo extends BasePortalInstanceLifecycleListener {
 		JournalArticle journalArticle = _journalArticleLocalService.addArticle(
 			user.getUserId(), _group.getGroupId(),
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID, titleMap, null,
-			_read(fileName), ddmStructure.getStructureKey(),
-			ddmTemplate.getTemplateKey(),
+			_read("journal-article/" + fileName),
+			ddmStructure.getStructureKey(), ddmTemplate.getTemplateKey(),
 			_getServiceContext(company, group, user));
 
 		_journalArticleLocalService.updateAsset(
@@ -162,7 +162,7 @@ public class HeadlessDemo extends BasePortalInstanceLifecycleListener {
 		serviceContext.setScopeGroupId(group.getGroupId());
 
 		String postmanVars = _read(
-			"postman-vars.json",
+			"file-entry/demo-variables.json",
 			Arrays.asList(
 				String.valueOf(group.getGroupId()),
 				String.valueOf(ddmStructure.getStructureId()),
@@ -200,7 +200,8 @@ public class HeadlessDemo extends BasePortalInstanceLifecycleListener {
 		throws Exception {
 
 		DDMStructure ddmStructure = _getDDMStructure(
-			company, group, user, "demo-football-match-result.json");
+			company, group, user,
+			"ddm-structure/demo-football-match-result-local-vs-visitor.json");
 
 		ServiceContext serviceContext = new ServiceContext();
 
@@ -225,7 +226,7 @@ public class HeadlessDemo extends BasePortalInstanceLifecycleListener {
 					put(LocaleUtil.SPAIN, "Southampton contra Man. City");
 				}
 			},
-			"demo-football-match-result-content-1.xml",
+			"demo-football-match-result-southampton-vs-manchester.xml",
 			new String[] {"premier"});
 
 		JournalArticle journalArticle2 = _addJournalArticle(
@@ -236,7 +237,7 @@ public class HeadlessDemo extends BasePortalInstanceLifecycleListener {
 					put(LocaleUtil.SPAIN, "Man. City contra Crystal Palace");
 				}
 			},
-			"demo-football-match-result-content-2.xml",
+			"demo-football-match-result-manchester-vs-crystal.xml",
 			new String[] {"premier"});
 
 		JournalArticle journalArticle3 = _addJournalArticle(
@@ -247,7 +248,7 @@ public class HeadlessDemo extends BasePortalInstanceLifecycleListener {
 					put(LocaleUtil.SPAIN, "Leicester City contra Man. City");
 				}
 			},
-			"demo-football-match-result-content-3.xml",
+			"demo-football-match-result-leicester-vs-manchester.xml",
 			new String[] {"premier"});
 
 		JournalArticle journalArticle4 = _addJournalArticle(
@@ -258,7 +259,7 @@ public class HeadlessDemo extends BasePortalInstanceLifecycleListener {
 					put(LocaleUtil.SPAIN, "Man. City contra Hoffenhein");
 				}
 			},
-			"demo-football-match-result-content-4.xml",
+			"demo-football-match-result-manchester-vs-hoffenhein.xml",
 			new String[] {"champions"});
 
 		return Arrays.asList(
@@ -272,10 +273,11 @@ public class HeadlessDemo extends BasePortalInstanceLifecycleListener {
 
 		_layoutSetLocalService.updateLogo(
 			group.getGroupId(), false, true,
-			FileUtil.getBytes(HeadlessDemo.class, _PATH + "logo.png"));
+			FileUtil.getBytes(
+				HeadlessDemo.class, _PATH + "layout-set/logo.png"));
 
 		DDMStructure mainPageDDMStructure = _getDDMStructure(
-			company, group, user, "demo-variables.json");
+			company, group, user, "ddm-structure/demo-variables.json");
 
 		ServiceContext serviceContext = new ServiceContext();
 
@@ -290,8 +292,9 @@ public class HeadlessDemo extends BasePortalInstanceLifecycleListener {
 			Collections.singletonMap(
 				LocaleUtil.US, "Template Main Page Example"),
 			null, DDMTemplateManager.TEMPLATE_TYPE_DISPLAY, null,
-			TemplateConstants.LANG_TYPE_VM, _read("demo-variable-template.ftl"),
-			false, false, null, null, serviceContext);
+			TemplateConstants.LANG_TYPE_VM,
+			_read("ddm-template/demo-variables.ftl"), false, false, null, null,
+			serviceContext);
 
 		JournalArticle journalArticle = journalArticles.get(0);
 
@@ -316,7 +319,7 @@ public class HeadlessDemo extends BasePortalInstanceLifecycleListener {
 		String portletIdAdded = layoutTypePortlet.addPortletId(
 			user.getUserId(), JournalContentPortletKeys.JOURNAL_CONTENT, false);
 
-		long ownerId = PortletKeysPREFS_OWNER_ID_DEFAULT;
+		long ownerId = PortletKeys.PREFS_OWNER_ID_DEFAULT;
 		int ownerType = PortletKeys.PREFS_OWNER_TYPE_LAYOUT;
 
 		PortletPreferences prefs =
@@ -335,8 +338,9 @@ public class HeadlessDemo extends BasePortalInstanceLifecycleListener {
 				JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 				Collections.singletonMap(LocaleUtil.US, "Main Page"), null,
 				_read(
-					"demo-variables-content.xml",
+					"journal-article/demo-variables.xml",
 					Arrays.asList(
+						String.valueOf(group.getGroupId()),
 						String.valueOf(group.getGroupId()),
 						String.valueOf(ddmStructure.getStructureId()),
 						String.valueOf(journalArticle.getResourcePrimKey()),
@@ -404,7 +408,7 @@ public class HeadlessDemo extends BasePortalInstanceLifecycleListener {
 	}
 
 	private static final String _PATH =
-		"/com/liferay/headless/apio/demo/internal/";
+		"/com/liferay/headless/apio/demo/internal/dependencies/";
 
 	private static final String _SITE_NAME = "Sports Magazine";
 
