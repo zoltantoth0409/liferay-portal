@@ -72,12 +72,10 @@ public class DESaveModelPermissionsDataDefinitionDataFetcher
 			if (MapUtil.getBoolean(properties, "delete")) {
 				builder = builder.allowDelete();
 			}
-
-			if (MapUtil.getBoolean(properties, "update")) {
+			else if (MapUtil.getBoolean(properties, "update")) {
 				builder = builder.allowUpdate();
 			}
-
-			if (MapUtil.getBoolean(properties, "view")) {
+			else if (MapUtil.getBoolean(properties, "view")) {
 				builder = builder.allowView();
 			}
 
