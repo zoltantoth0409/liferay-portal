@@ -503,7 +503,7 @@ public class FragmentsEditorDisplayContext {
 
 		Set<String> portletIds = portletCategory.getPortletIds();
 
-		Stream<String> portletIdsStream = portletIds.stream();
+		Stream<String> stream = portletIds.stream();
 
 		LayoutTypePortlet layoutTypePortlet =
 			_themeDisplay.getLayoutTypePortlet();
@@ -512,7 +512,7 @@ public class FragmentsEditorDisplayContext {
 
 		ServletContext servletContext = session.getServletContext();
 
-		return portletIdsStream.map(
+		return stream.map(
 			portletId -> PortletLocalServiceUtil.getPortletById(
 				_themeDisplay.getCompanyId(), portletId)
 		).filter(
@@ -682,7 +682,7 @@ public class FragmentsEditorDisplayContext {
 
 		Stream<PortletCategory> stream = portletCategories.stream();
 
-		return categoryStream.sorted(
+		return stream.sorted(
 			new PortletCategoryComparator(_themeDisplay.getLocale())
 		).filter(
 			category -> !category.isHidden()
