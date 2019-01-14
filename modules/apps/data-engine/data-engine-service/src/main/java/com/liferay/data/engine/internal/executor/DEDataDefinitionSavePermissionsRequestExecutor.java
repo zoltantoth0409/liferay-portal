@@ -61,7 +61,7 @@ public class DEDataDefinitionSavePermissionsRequestExecutor {
 			actionIds.add(DEActionKeys.DEFINE_PERMISSIONS_ACTION);
 		}
 
-		List<String> rolesNotFound = new ArrayList<>();
+		List<String> noSuchRoleNames = new ArrayList<>();
 		List<Role> roles = new ArrayList<>();
 
 		for (String roleName : roleNames) {
@@ -69,13 +69,13 @@ public class DEDataDefinitionSavePermissionsRequestExecutor {
 				roles.add(_roleLocalService.getRole(companyId, roleName));
 			}
 			catch (NoSuchRoleException nsre) {
-				rolesNotFound.add(roleName);
+				noSuchRoleNames.add(roleName);
 			}
 		}
 
-		if (!rolesNotFound.isEmpty()) {
+		if (!noSuchRoleNames.isEmpty()) {
 			throw new DEDataDefinitionException.NoSuchRoles(
-				ArrayUtil.toStringArray(rolesNotFound));
+				ArrayUtil.toStringArray(noSuchRoleNames));
 		}
 
 		for (Role role : roles) {
