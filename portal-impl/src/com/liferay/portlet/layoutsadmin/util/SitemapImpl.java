@@ -286,14 +286,14 @@ public class SitemapImpl implements Sitemap {
 
 				sb.append(portalURL);
 				sb.append(PortalUtil.getPathContext());
-				sb.append("/sitemap.xml?layoutUuid=");
+				sb.append("/sitemap.xml?p_l_id=");
+				sb.append(layout.getPlid());
+				sb.append("&layoutUuid=");
 				sb.append(layout.getUuid());
 				sb.append("&groupId=");
 				sb.append(layoutSet.getGroupId());
 				sb.append("&privateLayout=");
 				sb.append(layout.isPrivateLayout());
-				sb.append("&p_l_id=");
-				sb.append(layout.getPlid());
 
 				locationElement.addText(sb.toString());
 			}
