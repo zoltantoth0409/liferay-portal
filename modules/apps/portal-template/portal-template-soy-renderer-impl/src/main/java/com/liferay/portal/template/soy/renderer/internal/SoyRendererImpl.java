@@ -87,8 +87,7 @@ public class SoyRendererImpl implements SoyRenderer {
 	private Template _getTemplate() throws TemplateException {
 		if (_templateManager == null) {
 			throw new TemplateException(
-				"Unable to find the '" + TemplateConstants.LANG_TYPE_SOY +
-					"' template manager");
+				"Unable to find the Soy template manager");
 		}
 
 		return _templateManager.getTemplate(
