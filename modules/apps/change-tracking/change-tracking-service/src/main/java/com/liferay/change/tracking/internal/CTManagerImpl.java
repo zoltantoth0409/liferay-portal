@@ -188,9 +188,9 @@ public class CTManagerImpl implements CTManager {
 			sb.append(classNameId);
 			sb.append(", class PK ");
 			sb.append(classPK);
-			sb.append(", resource primary key ");
+			sb.append(", and resource primary key ");
 			sb.append(resourcePrimKey);
-			sb.append(" in CTCollection ");
+			sb.append(" in change tracking collection ");
 			sb.append(ctCollection.getCtCollectionId());
 
 			throw new CTEntryException(
@@ -205,9 +205,9 @@ public class CTManagerImpl implements CTManager {
 			sb.append(classNameId);
 			sb.append(", class PK ");
 			sb.append(classPK);
-			sb.append(", resource primary key ");
+			sb.append(", and resource primary key ");
 			sb.append(resourcePrimKey);
-			sb.append(" in CTCollection ");
+			sb.append(" in change tracking collection ");
 			sb.append(ctCollection.getCtCollectionId());
 
 			throw new CTException(user.getCompanyId(), sb.toString(), pe);
