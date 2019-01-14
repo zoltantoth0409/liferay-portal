@@ -35,6 +35,6 @@ renderResponse.setTitle(layoutPageTemplateDisplayContext.getLayoutPageTemplateEn
 
 <soy:component-renderer
 	context="<%= fragmentsEditorDisplayContext.getEditorContext() %>"
-	module='<%= npmResolvedPackageName + "/js/fragments_editor/FragmentsEditor.es" %>'
+	module="js/fragments_editor/FragmentsEditor.es"
 	templateNamespace="com.liferay.layout.admin.web.FragmentsEditor.render"
 />
