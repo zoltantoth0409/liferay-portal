@@ -130,18 +130,17 @@ public class DefaultMediaObjectNestedCollectionResourceTest
 			2, TimeUnit.SECONDS
 		).until(
 			() -> {
-				List<AdaptiveMedia<AMImageProcessor>> adaptiveMediaList =
+				List<AdaptiveMedia<AMImageProcessor>> adaptiveMedias =
 					_getAdaptiveMedias(fileEntry);
 
-				return adaptiveMediaList.size() == 2;
+				return adaptiveMedias.size() == 2;
 			}
 		);
 
-		List<AdaptiveMedia<AMImageProcessor>> adaptiveMediaList =
+		List<AdaptiveMedia<AMImageProcessor>> adaptiveMedias =
 			_getAdaptiveMedias(fileEntry);
 
-		AdaptiveMedia<AMImageProcessor> adaptiveMedia1 = adaptiveMediaList.get(
-			0);
+		AdaptiveMedia<AMImageProcessor> adaptiveMedia1 = adaptiveMedias.get(0);
 
 		URL url1 = new URL(
 			TestPropsValues.PORTAL_URL + adaptiveMedia1.getURI());
@@ -155,8 +154,7 @@ public class DefaultMediaObjectNestedCollectionResourceTest
 			adaptiveMedia1.getValueOptional(
 				AMAttribute.getConfigurationUuidAMAttribute()).get());
 
-		AdaptiveMedia<AMImageProcessor> adaptiveMedia2 = adaptiveMediaList.get(
-			1);
+		AdaptiveMedia<AMImageProcessor> adaptiveMedia2 = adaptiveMedias.get(1);
 
 		URL url2 = new URL(
 			TestPropsValues.PORTAL_URL + adaptiveMedia2.getURI());
