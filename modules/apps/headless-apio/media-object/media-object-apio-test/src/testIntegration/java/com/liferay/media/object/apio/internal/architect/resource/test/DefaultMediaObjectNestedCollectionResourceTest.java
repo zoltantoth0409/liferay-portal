@@ -109,8 +109,8 @@ public class DefaultMediaObjectNestedCollectionResourceTest
 
 		byte[] bytes = FileUtil.getBytes(
 			getClass(),
-			"/com/liferay/media/object/apio/internal/architect/resource/test/" +
-				fileName);
+			"/com/liferay/media/object/apio/internal/architect/resource/test" +
+				"/dependencies/" + fileName);
 
 		BinaryFile binaryFile = new BinaryFile(
 			new ByteArrayInputStream(bytes), (long)bytes.length, "image/jpeg",
