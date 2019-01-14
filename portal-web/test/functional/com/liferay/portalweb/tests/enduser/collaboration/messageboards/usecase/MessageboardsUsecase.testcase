@@ -860,7 +860,10 @@ definition {
 
 		Navigator.gotoPage(pageName = "Message Boards Page 2");
 
-		Search.searchPG(searchTerm = "MB Thread3 Message Subject");
+		SearchPortlet.searchPG(
+			portletName = "Message Boards",
+			searchTerm = "MB Thread3 Message Subject"
+		);
 
 		MessageboardsPortlet.viewSearchResultPG(
 			threadBody = "MB Thread3 Message Body",
@@ -870,7 +873,10 @@ definition {
 
 		Navigator.gotoPage(pageName = "Message Boards Page 2");
 
-		Search.searchPG(searchTerm = "MB Thread4 Message Subject");
+		SearchPortlet.searchPG(
+			portletName = "Message Boards",
+			searchTerm = "MB Thread4 Message Subject"
+		);
 
 		MessageboardsPortlet.viewSearchResultPG(
 			threadBody = "MB Thread4 Message Body",
@@ -880,7 +886,10 @@ definition {
 
 		Navigator.gotoPage(pageName = "Message Boards Page 2");
 
-		Search.searchPG(searchTerm = "MB Thread1 Message Subject");
+		SearchPortlet.searchPG(
+			portletName = "Message Boards",
+			searchTerm = "MB Thread1 Message Subject"
+		);
 
 		MessageboardsPortlet.viewNoSearchResultSubjectPG(
 			threadSubject = "MB Thread1 Message Subject"
@@ -888,7 +897,10 @@ definition {
 
 		Navigator.gotoPage(pageName = "Message Boards Page 2");
 
-		Search.searchPG(searchTerm = "MB Thread2 Message Subject");
+		SearchPortlet.searchPG(
+			portletName = "Message Boards",
+			searchTerm = "MB Thread2 Message Subject"
+		);
 
 		MessageboardsPortlet.viewNoSearchResultSubjectPG(
 			threadSubject = "MB Thread2 Message Subject"
@@ -896,7 +908,10 @@ definition {
 
 		Navigator.gotoPage(pageName = "Message Boards Page");
 
-		Search.searchPG(searchTerm = "MB Thread1 Message Subject");
+		SearchPortlet.searchPG(
+			portletName = "Message Boards",
+			searchTerm = "MB Thread1 Message Subject"
+		);
 
 		MessageboardsPortlet.viewSearchResultPG(
 			threadBody = "MB Thread1 Message Body",
@@ -906,7 +921,10 @@ definition {
 
 		Navigator.gotoPage(pageName = "Message Boards Page");
 
-		Search.searchPG(searchTerm = "MB Thread2 Message Subject");
+		SearchPortlet.searchPG(
+			portletName = "Message Boards",
+			searchTerm = "MB Thread2 Message Subject"
+		);
 
 		MessageboardsPortlet.viewSearchResultPG(
 			threadBody = "MB Thread2 Message Body",
@@ -916,7 +934,10 @@ definition {
 
 		Navigator.gotoPage(pageName = "Message Boards Page");
 
-		Search.searchPG(searchTerm = "MB Thread3 Message Subject");
+		SearchPortlet.searchPG(
+			portletName = "Message Boards",
+			searchTerm = "MB Thread3 Message Subject"
+		);
 
 		MessageboardsPortlet.viewNoSearchResultSubjectPG(
 			threadSubject = "MB Thread3 Message Subject"
@@ -924,7 +945,10 @@ definition {
 
 		Navigator.gotoPage(pageName = "Message Boards Page");
 
-		Search.searchPG(searchTerm = "MB Thread4 Message Subject");
+		SearchPortlet.searchPG(
+			portletName = "Message Boards",
+			searchTerm = "MB Thread4 Message Subject"
+		);
 
 		MessageboardsPortlet.viewNoSearchResultSubjectPG(
 			threadSubject = "MB Thread4 Message Subject"
