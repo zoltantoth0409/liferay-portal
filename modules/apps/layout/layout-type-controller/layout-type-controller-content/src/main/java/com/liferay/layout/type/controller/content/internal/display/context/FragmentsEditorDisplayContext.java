@@ -677,10 +677,10 @@ public class FragmentsEditorDisplayContext {
 	private List<SoyContext> _getWidgetCategoriesContexts(
 		PortletCategory portletCategory) {
 
-		Collection<PortletCategory> categories =
+		Collection<PortletCategory> portletCategories =
 			portletCategory.getCategories();
 
-		Stream<PortletCategory> categoryStream = categories.stream();
+		Stream<PortletCategory> stream = portletCategories.stream();
 
 		return categoryStream.sorted(
 			new PortletCategoryComparator(_themeDisplay.getLocale())
