@@ -19,6 +19,8 @@ import com.liferay.data.engine.exception.DEDataDefinitionException;
 import com.liferay.data.engine.service.DEDataDefinitionSavePermissionsRequest;
 import com.liferay.data.engine.service.DEDataDefinitionSavePermissionsResponse;
 import com.liferay.portal.kernel.exception.NoSuchRoleException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.ResourceConstants;
 import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.service.ResourcePermissionLocalService;
@@ -69,6 +71,10 @@ public class DEDataDefinitionSavePermissionsRequestExecutor {
 				roles.add(_roleLocalService.getRole(companyId, roleName));
 			}
 			catch (NoSuchRoleException nsre) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(roleName, nsre);
+				}
+
 				noSuchRoleNames.add(roleName);
 			}
 		}
@@ -88,6 +94,9 @@ public class DEDataDefinitionSavePermissionsRequestExecutor {
 		return DEDataDefinitionSavePermissionsResponse.Builder.of(
 			ArrayUtil.toStringArray(roleNames));
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		DEDataDefinitionSavePermissionsRequestExecutor.class);
 
 	private final ResourcePermissionLocalService
 		_resourcePermissionLocalService;
