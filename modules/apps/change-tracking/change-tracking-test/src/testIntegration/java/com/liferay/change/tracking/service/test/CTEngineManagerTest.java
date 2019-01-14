@@ -80,7 +80,8 @@ public class CTEngineManagerTest {
 
 		_user = UserTestUtil.addUser();
 
-		// If test environment has it enabled disable for the first run
+		// If the test environment has change tracking enabled, then disable
+		// change tracking for the first run
 
 		if (_ctEngineManager.isChangeTrackingEnabled(
 				TestPropsValues.getCompanyId())) {
