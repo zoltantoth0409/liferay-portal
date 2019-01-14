@@ -20,6 +20,7 @@ import com.github.yuchi.semver.Version;
 import com.liferay.frontend.js.loader.modules.extender.internal.JSLoaderModulesTracker;
 import com.liferay.frontend.js.loader.modules.extender.npm.JSBundle;
 import com.liferay.frontend.js.loader.modules.extender.npm.JSBundleProcessor;
+import com.liferay.frontend.js.loader.modules.extender.npm.JSBundleTracker;
 import com.liferay.frontend.js.loader.modules.extender.npm.JSModule;
 import com.liferay.frontend.js.loader.modules.extender.npm.JSPackage;
 import com.liferay.frontend.js.loader.modules.extender.npm.JSPackageDependency;
@@ -28,6 +29,8 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyFactory;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -224,6 +227,14 @@ public class NPMRegistryImpl implements NPMRegistry {
 		_reopenBundleTracker();
 	}
 
+	@Reference(
+		cardinality = ReferenceCardinality.MULTIPLE,
+		policy = ReferencePolicy.DYNAMIC
+	)
+	protected void bindJSBundleTracker(JSBundleTracker jsBundleTracker) {
+		_jsBundleTrackers.add(jsBundleTracker);
+	}
+
 	@Deactivate
 	protected synchronized void deactivate() {
 		_bundleTracker.close();
@@ -237,6 +248,10 @@ public class NPMRegistryImpl implements NPMRegistry {
 		_jsBundleProcessors.remove(jsBundleProcessor);
 
 		_reopenBundleTracker();
+	}
+
+	protected void unbindJSBundleTracker(JSBundleTracker jsBundleTracker) {
+		_jsBundleTrackers.remove(jsBundleTracker);
 	}
 
 	private JSONObject _getPackageJSONObject(Bundle bundle) {
@@ -369,6 +384,9 @@ public class NPMRegistryImpl implements NPMRegistry {
 	private static final JSPackage _NULL_JS_PACKAGE =
 		ProxyFactory.newDummyInstance(JSPackage.class);
 
+	private static final Log _log = LogFactoryUtil.getLog(
+		NPMRegistryImpl.class);
+
 	private BundleContext _bundleContext;
 	private BundleTracker<JSBundle> _bundleTracker;
 	private final Map<String, JSPackage> _dependencyJSPackages =
@@ -389,6 +407,9 @@ public class NPMRegistryImpl implements NPMRegistry {
 			}
 
 		});
+
+	private final Set<JSBundleTracker> _jsBundleTrackers =
+		new ConcurrentSkipListSet<>(Comparator.comparingInt(Object::hashCode));
 
 	@Reference
 	private JSLoaderModulesTracker _jsLoaderModulesTracker;
@@ -425,7 +446,22 @@ public class NPMRegistryImpl implements NPMRegistry {
 
 		@Override
 		public JSBundle addingBundle(Bundle bundle, BundleEvent bundleEvent) {
-			return _processBundle(bundle);
+			JSBundle jsBundle = _processBundle(bundle);
+
+			if (jsBundle != null) {
+				for (JSBundleTracker jsBundleTracker : _jsBundleTrackers) {
+					try {
+						jsBundleTracker.addedBundle(bundle, jsBundle);
+					}
+					catch (Exception e) {
+						_log.error(
+							"JSBundle tracker invocation failed with exception",
+							e);
+					}
+				}
+			}
+
+			return jsBundle;
 		}
 
 		@Override
@@ -438,6 +474,16 @@ public class NPMRegistryImpl implements NPMRegistry {
 			Bundle bundle, BundleEvent bundleEvent, JSBundle jsBundle) {
 
 			_removeBundle(jsBundle);
+
+			for (JSBundleTracker jsBundleTracker : _jsBundleTrackers) {
+				try {
+					jsBundleTracker.removedBundle(bundle, jsBundle);
+				}
+				catch (Exception e) {
+					_log.error(
+						"JSBundle tracker invocation failed with exception", e);
+				}
+			}
 		}
 
 	}
