@@ -294,12 +294,12 @@ public class JournalArticleIndexer
 			}
 		}
 
+		QueryConfig queryConfig = searchContext.getQueryConfig();
+
 		String[] localizedFieldNames =
 			_searchLocalizationHelper.getLocalizedFieldNames(
 				new String[] {Field.CONTENT, Field.DESCRIPTION, Field.TITLE},
 				searchContext);
-
-		QueryConfig queryConfig = searchContext.getQueryConfig();
 
 		queryConfig.addHighlightFieldNames(localizedFieldNames);
 	}
