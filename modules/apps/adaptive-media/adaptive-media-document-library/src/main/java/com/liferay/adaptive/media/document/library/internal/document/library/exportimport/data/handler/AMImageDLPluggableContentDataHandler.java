@@ -119,9 +119,7 @@ public class AMImageDLPluggableContentDataHandler
 		List<AdaptiveMedia<AMImageProcessor>> adaptiveMedias =
 			adaptiveMediaStream.collect(Collectors.toList());
 
-		for (AdaptiveMedia<AMImageProcessor> adaptiveMedia :
-				adaptiveMedias) {
-
+		for (AdaptiveMedia<AMImageProcessor> adaptiveMedia : adaptiveMedias) {
 			_exportMedia(portletDataContext, fileEntry, adaptiveMedia);
 		}
 	}

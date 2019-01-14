@@ -128,8 +128,7 @@ public class DefaultMediaObjectNestedCollectionResourceTest
 		Assert.assertEquals(
 			adaptiveMedias.toString(), 2, adaptiveMedias.size());
 
-		AdaptiveMedia<AMImageProcessor> adaptiveMedia1 = adaptiveMedias.get(
-			0);
+		AdaptiveMedia<AMImageProcessor> adaptiveMedia1 = adaptiveMedias.get(0);
 
 		URL url1 = new URL(
 			TestPropsValues.PORTAL_URL + adaptiveMedia1.getURI());
@@ -143,8 +142,7 @@ public class DefaultMediaObjectNestedCollectionResourceTest
 			adaptiveMedia1.getValueOptional(
 				AMAttribute.getConfigurationUuidAMAttribute()).get());
 
-		AdaptiveMedia<AMImageProcessor> adaptiveMedia2 = adaptiveMedias.get(
-			1);
+		AdaptiveMedia<AMImageProcessor> adaptiveMedia2 = adaptiveMedias.get(1);
 
 		URL url2 = new URL(
 			TestPropsValues.PORTAL_URL + adaptiveMedia2.getURI());
