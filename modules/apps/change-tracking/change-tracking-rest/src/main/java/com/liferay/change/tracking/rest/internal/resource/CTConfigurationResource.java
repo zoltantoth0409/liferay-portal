@@ -93,20 +93,13 @@ public class CTConfigurationResource {
 
 		boolean changeTrackingEnabled =
 			_ctEngineManager.isChangeTrackingEnabled(companyId);
-
 		boolean setChangeTrackingEnabled =
 			ctConfigurationUpdateModel.isChangeTrackingEnabled();
 
 		if (changeTrackingEnabled && !setChangeTrackingEnabled) {
-
-			// Change Tracking enabled - requested to disable
-
 			_ctEngineManager.disableChangeTracking(companyId);
 		}
 		else if (!changeTrackingEnabled && setChangeTrackingEnabled) {
-
-			// Change Tracking disabled - requested to enable
-
 			_ctEngineManager.enableChangeTracking(companyId, user.getUserId());
 		}
 	}
