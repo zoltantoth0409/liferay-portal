@@ -41,14 +41,14 @@ import org.osgi.service.component.annotations.Reference;
  * @author Gergely Mathe
  */
 @Component(immediate = true, service = ServiceWrapper.class)
-public class JournalArticleCTLocalServiceWrapper
+public class CTJournalArticleLocalServiceWrapper
 	extends JournalArticleLocalServiceWrapper {
 
-	public JournalArticleCTLocalServiceWrapper() {
+	public CTJournalArticleLocalServiceWrapper() {
 		super(null);
 	}
 
-	public JournalArticleCTLocalServiceWrapper(
+	public CTJournalArticleLocalServiceWrapper(
 		JournalArticleLocalService journalArticleLocalService) {
 
 		super(journalArticleLocalService);
@@ -354,7 +354,7 @@ public class JournalArticleCTLocalServiceWrapper
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		JournalArticleCTLocalServiceWrapper.class);
+		CTJournalArticleLocalServiceWrapper.class);
 
 	@Reference
 	private CTManager _ctManager;
