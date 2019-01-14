@@ -541,20 +541,20 @@ public class FragmentsEditorDisplayContext {
 				servletContext, _themeDisplay.getLocale())
 		).map(
 			portlet -> {
-				SoyContext portletContext =
+				SoyContext portletSoyContext =
 					SoyContextFactoryUtil.createSoyContext();
 
-				portletContext.put("instanceable", portlet.isInstanceable());
-				portletContext.put("portletId", portlet.getPortletId());
-				portletContext.put(
+				portletSoyContext.put("instanceable", portlet.isInstanceable());
+				portletSoyContext.put("portletId", portlet.getPortletId());
+				portletSoyContext.put(
 					"title",
 					PortalUtil.getPortletTitle(
 						portlet, servletContext, _themeDisplay.getLocale()));
-				portletContext.put(
+				portletSoyContext.put(
 					"used",
 					layoutTypePortlet.hasPortletId(portlet.getPortletId()));
 
-				return portletContext;
+				return portletSoyContext;
 			}
 		).collect(
 			Collectors.toList()
