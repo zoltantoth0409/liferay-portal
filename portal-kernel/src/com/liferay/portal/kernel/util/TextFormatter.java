@@ -199,9 +199,13 @@ public class TextFormatter {
 	}
 
 	public static String formatStorageSize(double size, Locale locale) {
-		String suffix = _STORAGE_SIZE_SUFFIX_KB;
+		String suffix = _STORAGE_SIZE_SUFFIX_B;
 
-		size = size / _STORAGE_SIZE_DENOMINATOR;
+		if (size >= _STORAGE_SIZE_DENOMINATOR) {
+			suffix = _STORAGE_SIZE_SUFFIX_KB;
+
+			size = size / _STORAGE_SIZE_DENOMINATOR;
+		}
 
 		if (size >= _STORAGE_SIZE_DENOMINATOR) {
 			suffix = _STORAGE_SIZE_SUFFIX_MB;
@@ -217,7 +221,9 @@ public class TextFormatter {
 
 		NumberFormat numberFormat = NumberFormat.getInstance(locale);
 
-		if (suffix.equals(_STORAGE_SIZE_SUFFIX_KB)) {
+		if (suffix.equals(_STORAGE_SIZE_SUFFIX_B) ||
+			suffix.equals(_STORAGE_SIZE_SUFFIX_KB)) {
+
 			numberFormat.setMaximumFractionDigits(0);
 		}
 		else {
@@ -422,6 +428,8 @@ public class TextFormatter {
 	}
 
 	private static final double _STORAGE_SIZE_DENOMINATOR = 1024.0;
+
+	private static final String _STORAGE_SIZE_SUFFIX_B = "B";
 
 	private static final String _STORAGE_SIZE_SUFFIX_GB = "GB";
 
