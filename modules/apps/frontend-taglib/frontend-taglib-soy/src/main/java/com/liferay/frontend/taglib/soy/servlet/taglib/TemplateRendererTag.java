@@ -14,6 +14,7 @@
 
 package com.liferay.frontend.taglib.soy.servlet.taglib;
 
+import com.liferay.frontend.js.loader.modules.extender.npm.NPMResolvedPackageNameUtil;
 import com.liferay.frontend.taglib.soy.internal.util.SoyJavaScriptRendererUtil;
 import com.liferay.frontend.taglib.soy.internal.util.SoyTemplateResourcesProviderUtil;
 import com.liferay.petra.string.StringPool;
@@ -39,6 +40,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 
@@ -124,11 +126,24 @@ public class TemplateRendererTag extends ParamAndPropertyAncestorTagImpl {
 	}
 
 	public String getModule() {
-		return _module;
+		if (!_useNamespace) {
+			return _module;
+		}
+
+		ServletRequest servletRequest = pageContext.getRequest();
+
+		String namespace = NPMResolvedPackageNameUtil.get(
+			servletRequest.getServletContext());
+
+		return namespace + "/" + _module;
 	}
 
 	public String getTemplateNamespace() {
 		return _templateNamespace;
+	}
+
+	public boolean getUseNamespace() {
+		return _useNamespace;
 	}
 
 	public void putHTMLValue(String key, String value) {
@@ -177,6 +192,10 @@ public class TemplateRendererTag extends ParamAndPropertyAncestorTagImpl {
 		_templateNamespace = namespace;
 	}
 
+	public void setUseNamespace(boolean useNamespace) {
+		_useNamespace = useNamespace;
+	}
+
 	public void setWrapper(boolean wrapper) {
 		_wrapper = wrapper;
 	}
@@ -189,6 +208,7 @@ public class TemplateRendererTag extends ParamAndPropertyAncestorTagImpl {
 			_hydrate = null;
 			_module = null;
 			_templateNamespace = null;
+			_useNamespace = true;
 			_wrapper = null;
 		}
 	}
@@ -300,6 +320,7 @@ public class TemplateRendererTag extends ParamAndPropertyAncestorTagImpl {
 	private String _module;
 	private Template _template;
 	private String _templateNamespace;
+	private Boolean _useNamespace = true;
 	private Boolean _wrapper;
 
 }
