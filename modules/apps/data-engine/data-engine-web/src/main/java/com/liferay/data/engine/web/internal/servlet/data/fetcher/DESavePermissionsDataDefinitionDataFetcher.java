@@ -50,17 +50,18 @@ public class DESavePermissionsDataDefinitionDataFetcher
 
 	@Override
 	public SavePermissionsDataDefinitionType get(
-		DataFetchingEnvironment environment) {
+		DataFetchingEnvironment dataFetchingEnvironment) {
 
 		SavePermissionsDataDefinitionType savePermissionsDataDefinitionType =
 			new SavePermissionsDataDefinitionType();
 
 		String errorMessage = null;
-		String languageId = environment.getArgument("languageId");
+		String languageId = dataFetchingEnvironment.getArgument("languageId");
 
 		try {
-			Map<String, Object> properties = environment.getArgument(
-				"saveDataDefinitionPermissionsInput");
+			Map<String, Object> properties =
+				dataFetchingEnvironment.getArgument(
+					"saveDataDefinitionPermissionsInput");
 
 			List<String> roleNames = (List<String>)properties.get("roleNames");
 

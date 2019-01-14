@@ -44,18 +44,19 @@ public class DESaveModelPermissionsDataDefinitionDataFetcher
 
 	@Override
 	public SaveModelPermissionsDataDefinitionType get(
-		DataFetchingEnvironment environment) {
+		DataFetchingEnvironment dataFetchingEnvironment) {
 
 		SaveModelPermissionsDataDefinitionType
 			saveModelPermissionsDataDefinitionType =
 				new SaveModelPermissionsDataDefinitionType();
 
 		String errorMessage = null;
-		String languageId = environment.getArgument("languageId");
+		String languageId = dataFetchingEnvironment.getArgument("languageId");
 
 		try {
-			Map<String, Object> properties = environment.getArgument(
-				"saveDataDefinitionModelPermissionsInput");
+			Map<String, Object> properties =
+				dataFetchingEnvironment.getArgument(
+					"saveDataDefinitionModelPermissionsInput");
 
 			DEDataDefinitionSaveModelPermissionsRequest.Builder builder =
 				DEDataDefinitionRequestBuilder.saveModelPermissionsBuilder(
