@@ -413,17 +413,19 @@ public class FragmentsEditorDisplayContext {
 			return _panelSoyContexts;
 		}
 
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			"content.Language", _request.getLocale(), getClass());
-
 		List<SoyContext> soyContexts = new ArrayList<>();
 
 		SoyContext availableSoyContext =
 			SoyContextFactoryUtil.createSoyContext();
 
 		availableSoyContext.put("icon", "cards");
+
+		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
+			"content.Language", _request.getLocale(), getClass());
+
 		availableSoyContext.put(
 			"label", LanguageUtil.get(resourceBundle, "sections"));
+
 		availableSoyContext.put("panelId", "sections");
 
 		soyContexts.add(availableSoyContext);
