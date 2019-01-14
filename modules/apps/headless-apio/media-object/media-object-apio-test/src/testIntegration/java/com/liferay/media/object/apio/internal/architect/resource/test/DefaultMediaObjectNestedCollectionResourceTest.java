@@ -122,7 +122,7 @@ public class DefaultMediaObjectNestedCollectionResourceTest
 		FileEntry fileEntry = _addFileEntry(
 			_group.getGroupId(),
 			new MediaObjectImpl(
-				binaryFile, "My media object testGetAdaptiveMedia", null, null,
+				binaryFile, "My media object testGetAdaptiveMedias", null, null,
 				null));
 
 		Awaitility.await(
