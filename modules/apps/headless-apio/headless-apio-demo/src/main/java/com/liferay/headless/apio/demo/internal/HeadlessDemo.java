@@ -16,10 +16,7 @@ package com.liferay.headless.apio.demo.internal;
 
 import com.liferay.document.library.kernel.model.DLFolderConstants;
 import com.liferay.document.library.kernel.service.DLAppLocalService;
-import com.liferay.dynamic.data.mapping.io.DDMFormDeserializer;
-import com.liferay.dynamic.data.mapping.io.DDMFormDeserializerDeserializeRequest;
-import com.liferay.dynamic.data.mapping.io.DDMFormDeserializerDeserializeResponse;
-import com.liferay.dynamic.data.mapping.io.DDMFormDeserializerTracker;
+import com.liferay.dynamic.data.mapping.io.DDMFormJSONDeserializer;
 import com.liferay.dynamic.data.mapping.kernel.DDMTemplate;
 import com.liferay.dynamic.data.mapping.kernel.DDMTemplateManager;
 import com.liferay.dynamic.data.mapping.kernel.DDMTemplateManagerUtil;
@@ -118,17 +115,12 @@ public class HeadlessDemo extends BasePortalInstanceLifecycleListener {
 	}
 
 	protected DDMForm deserialize(String content) {
-		DDMFormDeserializer ddmFormDeserializer =
-			_ddmFormDeserializerTracker.getDDMFormDeserializer("json");
-
-		DDMFormDeserializerDeserializeRequest.Builder builder =
-			DDMFormDeserializerDeserializeRequest.Builder.newBuilder(content);
-
-		DDMFormDeserializerDeserializeResponse
-			ddmFormDeserializerDeserializeResponse =
-				ddmFormDeserializer.deserialize(builder.build());
-
-		return ddmFormDeserializerDeserializeResponse.getDDMForm();
+		try {
+			return _ddmFormJSONDeserializer.deserialize(content);
+		}
+		catch (PortalException pe) {
+			throw new RuntimeException(pe);
+		}
 	}
 
 	private JournalArticle _addJournalArticle(
@@ -415,7 +407,7 @@ public class HeadlessDemo extends BasePortalInstanceLifecycleListener {
 	private static final Log _log = LogFactoryUtil.getLog(HeadlessDemo.class);
 
 	@Reference
-	private DDMFormDeserializerTracker _ddmFormDeserializerTracker;
+	private DDMFormJSONDeserializer _ddmFormJSONDeserializer;
 
 	@Reference
 	private DDMStructureLocalService _ddmStructureLocalService;
