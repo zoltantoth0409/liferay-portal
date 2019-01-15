@@ -10,12 +10,12 @@ AUI.add(
 				ATTRS: {
 					availableLanguageIds: {
 						value: [
-							themeDisplay.getDefaultLanguageId()
+							"en_US"
 						]
 					},
 
 					defaultLanguageId: {
-						value: themeDisplay.getDefaultLanguageId()
+						value: "en_US"
 					},
 
 					fieldHandler: {
@@ -58,15 +58,21 @@ AUI.add(
 
 						var fieldType = FieldTypes.get(field.get('type'));
 
-						var builderLanguage = themeDisplay.getDefaultLanguageId();
+						var builderLanguage = "en_US";
 
-						var settingsLanguage = themeDisplay.getLanguageId();
+						var settingsLanguage = themeDisplay.getDefaultLanguageId();
 
 						fieldType.get('settings').fields.forEach(
 							function(item, index) {
 								var value = field.get(item.name);
 
-								config[item.name] = coerceLanguage(value, settingsLanguage, builderLanguage);
+								var valueLanguage = settingsLanguage;
+
+								if (typeof value === "object") {
+									valueLanguage = Object.keys(value)[0] || settingsLanguage;
+								}
+
+								config[item.name] = coerceLanguage(value, valueLanguage, builderLanguage);
 							}
 						);
 
