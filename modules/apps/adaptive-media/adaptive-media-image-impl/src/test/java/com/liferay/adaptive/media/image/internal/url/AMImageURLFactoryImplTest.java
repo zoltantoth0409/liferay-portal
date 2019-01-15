@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.repository.model.FileVersion;
 
 import java.net.URI;
 
-import java.util.Date;
 import java.util.HashMap;
 
 import org.junit.Assert;
@@ -60,12 +59,6 @@ public class AMImageURLFactoryImplTest {
 		);
 
 		Mockito.when(
-			_fileVersion.getModifiedDate()
-		).thenReturn(
-			_modifiedDate
-		);
-
-		Mockito.when(
 			_amURIResolver.resolveURI(Mockito.any(URI.class))
 		).thenAnswer(
 			invocation -> URI.create("prefix/" + invocation.getArguments()[0])
@@ -79,9 +72,7 @@ public class AMImageURLFactoryImplTest {
 		URI uri = _amImageURLFactory.createFileEntryURL(
 			_fileVersion, _amImageConfigurationEntry);
 
-		Assert.assertEquals(
-			"prefix/image/1/theUuid/fileName?t=" + _modifiedDate.getTime(),
-			uri.toString());
+		Assert.assertEquals("prefix/image/1/theUuid/fileName", uri.toString());
 	}
 
 	@Test
@@ -105,7 +96,5 @@ public class AMImageURLFactoryImplTest {
 
 	@Mock
 	private FileVersion _fileVersion;
-
-	private final Date _modifiedDate = new Date();
 
 }
