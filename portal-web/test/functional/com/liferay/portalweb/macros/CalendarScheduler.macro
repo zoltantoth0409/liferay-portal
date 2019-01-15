@@ -552,15 +552,11 @@ definition {
 
 		var key_messageLocalized = "${messageLocalized}";
 
-		if (!(
-
-		IsElementPresent(locator1 = "Calendar#SCHEDULER_VIEW_DAY_SHOW_MORE_LOCALIZED");)) {
+		if (!(IsElementPresent(locator1 = "Calendar#SCHEDULER_VIEW_DAY_SHOW_MORE_LOCALIZED"))) {
 			Click(locator1 = "Calendar#VIEW_NEXT_BUTTON");
 		}
 
-		if (!(
-
-		IsElementPresent(locator1 = "Calendar#SCHEDULER_VIEW_DAY_SHOW_MORE_LOCALIZED");)) {
+		if (!(IsElementPresent(locator1 = "Calendar#SCHEDULER_VIEW_DAY_SHOW_MORE_LOCALIZED"))) {
 			Click(locator1 = "Calendar#VIEW_PREVIOUS_BUTTON");
 		}
 
