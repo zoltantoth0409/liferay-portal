@@ -14,9 +14,6 @@
 
 package com.liferay.media.object.apio.internal.architect.resource.test;
 
-import com.liferay.adaptive.media.AMAttribute;
-import com.liferay.adaptive.media.AdaptiveMedia;
-import com.liferay.adaptive.media.image.processor.AMImageProcessor;
 import com.liferay.apio.architect.file.BinaryFile;
 import com.liferay.apio.architect.pagination.PageItems;
 import com.liferay.apio.architect.resource.NestedCollectionResource;
@@ -26,7 +23,6 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
-import com.liferay.portal.kernel.test.rule.Sync;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
@@ -44,14 +40,8 @@ import java.nio.charset.StandardCharsets;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.apache.commons.io.IOUtils;
-
-import org.awaitility.Awaitility;
 
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Assert;
@@ -103,72 +93,6 @@ public class DefaultMediaObjectNestedCollectionResourceTest
 		Assert.assertEquals(fileEntry.getSize(), 0L);
 		Assert.assertEquals(
 			"My media object testAddMediaObject", fileEntry.getTitle());
-	}
-
-	@Sync
-	@Test
-	public void testGetAdaptiveMedias() throws Exception {
-		String fileName = "image.png";
-
-		byte[] bytes = FileUtil.getBytes(
-			getClass(),
-			"/com/liferay/media/object/apio/internal/architect/resource/test" +
-				"/dependencies/" + fileName);
-
-		BinaryFile binaryFile = new BinaryFile(
-			new ByteArrayInputStream(bytes), (long)bytes.length, "image/jpeg",
-			fileName);
-
-		FileEntry fileEntry = addFileEntry(
-			_group.getGroupId(),
-			new MediaObjectImpl(
-				binaryFile, "My media object testGetAdaptiveMedias", null, null,
-				null));
-
-		Awaitility.await(
-		).atMost(
-			20, TimeUnit.SECONDS
-		).until(
-			() -> {
-				List<AdaptiveMedia<AMImageProcessor>> adaptiveMedias =
-					_getAdaptiveMedias(fileEntry);
-
-				return adaptiveMedias.size() == 2;
-			}
-		);
-
-		List<AdaptiveMedia<AMImageProcessor>> adaptiveMedias =
-			_getAdaptiveMedias(fileEntry);
-
-		AdaptiveMedia<AMImageProcessor> adaptiveMedia1 = adaptiveMedias.get(0);
-
-		URL url1 = new URL(
-			TestPropsValues.PORTAL_URL + adaptiveMedia1.getURI());
-
-		byte[] contentBytes1 = IOUtils.toByteArray(url1.openStream());
-
-		Assert.assertTrue(contentBytes1.length > 0);
-
-		Assert.assertEquals(
-			"Preview-1000x0",
-			adaptiveMedia1.getValueOptional(
-				AMAttribute.getConfigurationUuidAMAttribute()
-			).get());
-
-		AdaptiveMedia<AMImageProcessor> adaptiveMedia2 = adaptiveMedias.get(1);
-
-		URL url2 = new URL(
-			TestPropsValues.PORTAL_URL + adaptiveMedia2.getURI());
-
-		byte[] contentBytes2 = IOUtils.toByteArray(url2.openStream());
-
-		Assert.assertTrue(contentBytes2.length > 0);
-
-		Assert.assertEquals(
-			"Thumbnail-300x300",
-			adaptiveMedia2.getValueOptional(
-				AMAttribute.getConfigurationUuidAMAttribute()
-			).get());
 	}
 
 	@Test
@@ -255,24 +179,6 @@ public class DefaultMediaObjectNestedCollectionResourceTest
 			"My media object description", fileEntry.getDescription());
 		Assert.assertEquals(
 			"My media object testGetPageItems", fileEntry.getTitle());
-	}
-
-	private List<AdaptiveMedia<AMImageProcessor>> _getAdaptiveMedias(
-			FileEntry fileEntry)
-		throws Exception {
-
-		NestedCollectionResource nestedCollectionResource =
-			getNestedCollectionResource();
-
-		Class<?> clazz = nestedCollectionResource.getClass();
-
-		Method method = clazz.getDeclaredMethod(
-			"_getAdaptiveMedias", FileEntry.class);
-
-		method.setAccessible(true);
-
-		return (List<AdaptiveMedia<AMImageProcessor>>)method.invoke(
-			getNestedCollectionResource(), fileEntry);
 	}
 
 	private String _getFileEntryPreviewURL(FileEntry fileEntry)
