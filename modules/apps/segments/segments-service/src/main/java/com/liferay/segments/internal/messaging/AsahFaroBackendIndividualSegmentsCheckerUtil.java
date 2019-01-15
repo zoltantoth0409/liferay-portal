@@ -74,6 +74,7 @@ public class AsahFaroBackendIndividualSegmentsCheckerUtil {
 		}
 
 		_asahFaroBackendClient = asahFaroBackendClientOptional.get();
+
 		_checkIndividualSegments();
 		_checkIndividualSegmentsMemberships();
 	}
@@ -262,11 +263,9 @@ public class AsahFaroBackendIndividualSegmentsCheckerUtil {
 
 		String asahFaroBackendDataSourceId = GetterUtil.getString(
 			portletPreferences.getValue("liferayAnalyticsDataSourceId", null));
-
 		String asahFaroBackendSecuritySignature = GetterUtil.getString(
 			portletPreferences.getValue(
 				"liferayAnalyticsFaroBackendSecuritySignature", null));
-
 		String asahFaroBackendURL = GetterUtil.getString(
 			portletPreferences.getValue("liferayAnalyticsEndpointURL", null));
 
@@ -275,7 +274,7 @@ public class AsahFaroBackendIndividualSegmentsCheckerUtil {
 			Validator.isNull(asahFaroBackendURL)) {
 
 			if (_log.isInfoEnabled()) {
-				_log.info("Unable to configure Asah Faro Backend Client");
+				_log.info("Unable to configure Asah Faro backend client");
 			}
 
 			return Optional.empty();
