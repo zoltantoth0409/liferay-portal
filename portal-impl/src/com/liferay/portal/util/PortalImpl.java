@@ -2843,7 +2843,10 @@ public class PortalImpl implements Portal {
 				layoutActualURL.contains(StringPool.QUESTION)) {
 
 				layoutActualURL = layoutActualURL.concat(
-					StringPool.AMPERSAND).concat(queryString);
+					StringPool.AMPERSAND
+				).concat(
+					queryString
+				);
 			}
 		}
 
@@ -4310,7 +4313,10 @@ public class PortalImpl implements Portal {
 		String portletDescription = LanguageUtil.get(
 			resourceBundle,
 			JavaConstants.JAVAX_PORTLET_DESCRIPTION.concat(
-				StringPool.PERIOD).concat(portlet.getRootPortletId()),
+				StringPool.PERIOD
+			).concat(
+				portlet.getRootPortletId()
+			),
 			null);
 
 		if (Validator.isNull(portletDescription)) {
@@ -4331,7 +4337,10 @@ public class PortalImpl implements Portal {
 		return LanguageUtil.get(
 			locale,
 			JavaConstants.JAVAX_PORTLET_DESCRIPTION.concat(
-				StringPool.PERIOD).concat(portletId));
+				StringPool.PERIOD
+			).concat(
+				portletId
+			));
 	}
 
 	@Override
@@ -4346,7 +4355,10 @@ public class PortalImpl implements Portal {
 		return LanguageUtil.get(
 			user.getLocale(),
 			JavaConstants.JAVAX_PORTLET_DESCRIPTION.concat(
-				StringPool.PERIOD).concat(portletId));
+				StringPool.PERIOD
+			).concat(
+				portletId
+			));
 	}
 
 	public LayoutQueryStringComposite
@@ -4573,7 +4585,10 @@ public class PortalImpl implements Portal {
 		String portletLongTitle = LanguageUtil.get(
 			locale,
 			JavaConstants.JAVAX_PORTLET_LONG_TITLE.concat(
-				StringPool.PERIOD).concat(portletId),
+				StringPool.PERIOD
+			).concat(
+				portletId
+			),
 			StringPool.BLANK);
 
 		if (Validator.isNull(portletLongTitle)) {
@@ -4597,8 +4612,11 @@ public class PortalImpl implements Portal {
 
 	@Override
 	public String getPortletNamespace(String portletId) {
-		return StringPool.UNDERLINE.concat(portletId).concat(
-			StringPool.UNDERLINE);
+		return StringPool.UNDERLINE.concat(
+			portletId
+		).concat(
+			StringPool.UNDERLINE
+		);
 	}
 
 	@Override
@@ -4707,8 +4725,11 @@ public class PortalImpl implements Portal {
 
 		String portletTitle = LanguageUtil.get(
 			resourceBundle,
-			JavaConstants.JAVAX_PORTLET_TITLE.concat(StringPool.PERIOD).concat(
-				portletId),
+			JavaConstants.JAVAX_PORTLET_TITLE.concat(
+				StringPool.PERIOD
+			).concat(
+				portletId
+			),
 			null);
 
 		if (Validator.isNull(portletTitle)) {
@@ -4730,8 +4751,11 @@ public class PortalImpl implements Portal {
 	public String getPortletTitle(String portletId, User user) {
 		return LanguageUtil.get(
 			user.getLocale(),
-			JavaConstants.JAVAX_PORTLET_TITLE.concat(StringPool.PERIOD).concat(
-				portletId));
+			JavaConstants.JAVAX_PORTLET_TITLE.concat(
+				StringPool.PERIOD
+			).concat(
+				portletId
+			));
 	}
 
 	@Override
@@ -5564,9 +5588,11 @@ public class PortalImpl implements Portal {
 					uniqueElementId = elementId.concat(String.valueOf(i));
 				}
 				else {
-					uniqueElementId =
-						elementId.concat(StringPool.UNDERLINE).concat(
-							String.valueOf(i));
+					uniqueElementId = elementId.concat(
+						StringPool.UNDERLINE
+					).concat(
+						String.valueOf(i)
+					);
 				}
 
 				i++;
@@ -8629,9 +8655,10 @@ public class PortalImpl implements Portal {
 					locale,
 					canonicalURLPrefix.concat(
 						_buildI18NPath(
-							languageId, locale,
-							themeDisplay.getSiteGroup())).concat(
-								alternateURLSuffix));
+							languageId, locale, themeDisplay.getSiteGroup())
+					).concat(
+						alternateURLSuffix
+					));
 			}
 		}
 
@@ -8696,7 +8723,11 @@ public class PortalImpl implements Portal {
 								themeDisplay.isSecure());
 						}
 
-						return portalURL.concat(_pathContext).concat(path);
+						return portalURL.concat(
+							_pathContext
+						).concat(
+							path
+						);
 					}
 
 					if (_isSameHostName(virtualHostname, portalDomain) &&
@@ -8715,7 +8746,11 @@ public class PortalImpl implements Portal {
 							path = themeDisplay.getI18nPath();
 						}
 
-						return portalURL.concat(_pathContext).concat(path);
+						return portalURL.concat(
+							_pathContext
+						).concat(
+							path
+						);
 					}
 				}
 			}
@@ -8864,8 +8899,11 @@ public class PortalImpl implements Portal {
 
 		String portletTitle = LanguageUtil.get(
 			resourceBundle,
-			JavaConstants.JAVAX_PORTLET_TITLE.concat(StringPool.PERIOD).concat(
-				rootPortletId),
+			JavaConstants.JAVAX_PORTLET_TITLE.concat(
+				StringPool.PERIOD
+			).concat(
+				rootPortletId
+			),
 			null);
 
 		if (Validator.isNull(portletTitle)) {
