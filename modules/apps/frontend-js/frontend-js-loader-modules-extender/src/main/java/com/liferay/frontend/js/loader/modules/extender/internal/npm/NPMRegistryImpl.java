@@ -296,27 +296,29 @@ public class NPMRegistryImpl implements NPMRegistry {
 		for (JSBundleProcessor jsBundleProcessor : _jsBundleProcessors) {
 			JSBundle jsBundle = jsBundleProcessor.process(bundle);
 
+			if (jsBundle == null) {
+				continue;
+			}
+
+			_jsBundles.put(jsBundle, bundle);
+
+			_processLegacyBridges(bundle);
+
+			_refreshJSModuleCaches();
+
 			if (jsBundle != null) {
-				_jsBundles.put(jsBundle, bundle);
-
-				_processLegacyBridges(bundle);
-
-				_refreshJSModuleCaches();
-
-				if (jsBundle != null) {
-					for (JSBundleTracker jsBundleTracker : _jsBundleTrackers) {
-						try {
-							jsBundleTracker.addedJSBundle(
-								jsBundle, bundle, NPMRegistryImpl.this);
-						}
-						catch (Exception e) {
-							_log.error("Unable to add JS bundle", e);
-						}
+				for (JSBundleTracker jsBundleTracker : _jsBundleTrackers) {
+					try {
+						jsBundleTracker.addedJSBundle(
+							jsBundle, bundle, NPMRegistryImpl.this);
+					}
+					catch (Exception e) {
+						_log.error("Unable to add JS bundle", e);
 					}
 				}
-
-				return jsBundle;
 			}
+
+			return jsBundle;
 		}
 
 		return null;
