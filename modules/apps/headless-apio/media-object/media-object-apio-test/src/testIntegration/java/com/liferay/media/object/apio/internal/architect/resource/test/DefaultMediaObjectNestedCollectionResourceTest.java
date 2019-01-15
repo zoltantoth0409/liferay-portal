@@ -127,7 +127,7 @@ public class DefaultMediaObjectNestedCollectionResourceTest
 
 		Awaitility.await(
 		).atMost(
-			2, TimeUnit.SECONDS
+			20, TimeUnit.SECONDS
 		).until(
 			() -> {
 				List<AdaptiveMedia<AMImageProcessor>> adaptiveMedias =
