@@ -85,7 +85,7 @@ public class NPMRegistryImpl implements NPMRegistry {
 	 * @return the OSGi bundles
 	 */
 	public Collection<JSBundle> getJSBundles() {
-		return _jsBundles;
+		return _jsBundles.keySet();
 	}
 
 	/**
@@ -233,6 +233,17 @@ public class NPMRegistryImpl implements NPMRegistry {
 	)
 	protected void bindJSBundleTracker(JSBundleTracker jsBundleTracker) {
 		_jsBundleTrackers.add(jsBundleTracker);
+
+		for (Map.Entry<JSBundle, Bundle> entry : _jsBundles.entrySet()) {
+			try {
+				jsBundleTracker.addedJSBundle(
+					entry.getKey(), entry.getValue(), this);
+			}
+			catch (Exception e) {
+				_log.error(
+					"JSBundle tracker invocation failed with exception", e);
+			}
+		}
 	}
 
 	@Deactivate
@@ -287,11 +298,26 @@ public class NPMRegistryImpl implements NPMRegistry {
 			JSBundle jsBundle = jsBundleProcessor.process(bundle);
 
 			if (jsBundle != null) {
-				_jsBundles.add(jsBundle);
+				_jsBundles.put(jsBundle, bundle);
 
 				_processLegacyBridges(bundle);
 
 				_refreshJSModuleCaches();
+
+				if (jsBundle != null) {
+					for (JSBundleTracker jsBundleTracker : _jsBundleTrackers) {
+						try {
+							jsBundleTracker.addedJSBundle(
+								jsBundle, bundle, NPMRegistryImpl.this);
+						}
+						catch (Exception e) {
+							_log.error(
+								"JSBundle tracker invocation failed with " +
+									"exception ",
+								e);
+						}
+					}
+				}
 
 				return jsBundle;
 			}
@@ -337,7 +363,7 @@ public class NPMRegistryImpl implements NPMRegistry {
 		Map<String, JSModule> resolvedJSModules = new HashMap<>();
 		Map<String, JSPackage> resolvedJSPackages = new HashMap<>();
 
-		for (JSBundle jsBundle : _jsBundles) {
+		for (JSBundle jsBundle : _jsBundles.keySet()) {
 			for (JSPackage jsPackage : jsBundle.getJSPackages()) {
 				jsPackages.put(jsPackage.getId(), jsPackage);
 				jsPackageVersions.add(new JSPackageVersion(jsPackage));
@@ -365,13 +391,28 @@ public class NPMRegistryImpl implements NPMRegistry {
 	}
 
 	private synchronized boolean _removeBundle(JSBundle jsBundle) {
-		boolean removed = _jsBundles.remove(jsBundle);
+		Bundle bundle = _jsBundles.get(jsBundle);
 
-		if (removed) {
-			_refreshJSModuleCaches();
+		if (bundle == null) {
+			return false;
 		}
 
-		return removed;
+		_jsBundles.remove(jsBundle);
+
+		_refreshJSModuleCaches();
+
+		for (JSBundleTracker jsBundleTracker : _jsBundleTrackers) {
+			try {
+				jsBundleTracker.removedJSBundle(
+					jsBundle, bundle, NPMRegistryImpl.this);
+			}
+			catch (Exception e) {
+				_log.error(
+					"JSBundle tracker invocation failed with exception", e);
+			}
+		}
+
+		return true;
 	}
 
 	private synchronized void _reopenBundleTracker() {
@@ -394,20 +435,7 @@ public class NPMRegistryImpl implements NPMRegistry {
 	private final Map<String, String> _globalAliases = new HashMap<>();
 	private final List<JSBundleProcessor> _jsBundleProcessors =
 		new ArrayList<>();
-
-	private final Set<JSBundle> _jsBundles = new ConcurrentSkipListSet<>(
-		new Comparator<JSBundle>() {
-
-			@Override
-			public int compare(JSBundle jsBundle1, JSBundle jsBundle2) {
-				String id1 = jsBundle1.getId();
-				String id2 = jsBundle2.getId();
-
-				return id1.compareTo(id2);
-			}
-
-		});
-
+	private final Map<JSBundle, Bundle> _jsBundles = new ConcurrentHashMap<>();
 	private final Set<JSBundleTracker> _jsBundleTrackers =
 		new ConcurrentSkipListSet<>(Comparator.comparingInt(Object::hashCode));
 
@@ -446,23 +474,7 @@ public class NPMRegistryImpl implements NPMRegistry {
 
 		@Override
 		public JSBundle addingBundle(Bundle bundle, BundleEvent bundleEvent) {
-			JSBundle jsBundle = _processBundle(bundle);
-
-			if (jsBundle != null) {
-				for (JSBundleTracker jsBundleTracker : _jsBundleTrackers) {
-					try {
-						jsBundleTracker.addedJSBundle(
-							jsBundle, bundle, NPMRegistryImpl.this);
-					}
-					catch (Exception e) {
-						_log.error(
-							"JSBundle tracker invocation failed with exception",
-							e);
-					}
-				}
-			}
-
-			return jsBundle;
+			return _processBundle(bundle);
 		}
 
 		@Override
@@ -475,17 +487,6 @@ public class NPMRegistryImpl implements NPMRegistry {
 			Bundle bundle, BundleEvent bundleEvent, JSBundle jsBundle) {
 
 			_removeBundle(jsBundle);
-
-			for (JSBundleTracker jsBundleTracker : _jsBundleTrackers) {
-				try {
-					jsBundleTracker.removedJSBundle(
-						jsBundle, bundle, NPMRegistryImpl.this);
-				}
-				catch (Exception e) {
-					_log.error(
-						"JSBundle tracker invocation failed with exception", e);
-				}
-			}
 		}
 
 	}
