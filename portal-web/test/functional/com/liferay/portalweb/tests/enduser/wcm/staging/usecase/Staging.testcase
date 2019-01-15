@@ -203,6 +203,95 @@ definition {
 		Staging.viewAddButtonExists();
 	}
 
+	@description = "This is a use case for LPS-82674."
+	@priority = "4"
+	test PublishDeleteWCFolderWithArticleViaAP {
+		Navigator.openSiteURL(siteName = "Site Name");
+
+		Portlet.addPG(portletName = "Asset Publisher");
+
+		ProductMenu.gotoPortlet(
+			category = "Publishing",
+			panel = "Site Administration",
+			portlet = "Staging"
+		);
+
+		Staging.activateStagingCP(siteName = "Site Name");
+
+		ProductMenu.gotoPortlet(
+			category = "Content",
+			panel = "Site Administration",
+			portlet = "Web Content"
+		);
+
+		WebContentFolder.addCP(
+			folderDescription = "WC Folder Description",
+			folderName = "WC Folder Name"
+		);
+
+		WebContent.addArticleCP(
+			webContentContent = "Webcontent Content",
+			webContentTitle = "Webcontent Title"
+		);
+
+		WebContent.moveArticlesToFolderCP(
+			folderName = "WC Folder Name",
+			webContentArticlesList = "Webcontent Title"
+		);
+
+		Navigator.gotoStagedSitePage(
+			pageName = "Staging Test Page",
+			siteName = "Site Name"
+		);
+
+		Staging.gotoPublishToLive();
+
+		Staging.publishToLive();
+
+		ProductMenu.gotoPortlet(
+			category = "Content",
+			panel = "Site Administration",
+			portlet = "Web Content"
+		);
+
+		WebContentFolder.moveToRecycleBinCP(
+			assetType = "Web Content Folder",
+			folderName = "WC Folder Name"
+		);
+
+		Navigator.gotoStagedSitePage(
+			pageName = "Staging Test Page",
+			siteName = "Site Name"
+		);
+
+		AssertTextEquals(locator1 = "Message#INFO", value1 = "There are no results.");
+
+		Navigator.openSiteURL(siteName = "Site Name");
+
+		AssetPublisherPortlet.viewAssetPG(
+			assetContent = "WC Folder Description",
+			assetTitle = "WC Folder Name"
+		);
+
+		AssetPublisherPortlet.viewAssetPG(
+			assetContent = "Webcontent Content",
+			assetTitle = "Webcontent Title"
+		);
+
+		Navigator.gotoStagedSitePage(
+			pageName = "Staging Test Page",
+			siteName = "Site Name"
+		);
+
+		Staging.gotoPublishToLive();
+
+		Staging.publishToLive();
+
+		Navigator.openSiteURL(siteName = "Site Name");
+
+		AssertTextEquals(locator1 = "Message#INFO", value1 = "There are no results.");
+	}
+
 	@description = "This is a use case for LPS-80492."
 	@priority = "4"
 	test PublishRenamedTags {
