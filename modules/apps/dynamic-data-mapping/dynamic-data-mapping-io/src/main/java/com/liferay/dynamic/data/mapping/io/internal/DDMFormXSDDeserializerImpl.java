@@ -60,7 +60,6 @@ public class DDMFormXSDDeserializerImpl implements DDMFormXSDDeserializer {
 			setDDMFormAvailableLocales(document.getRootElement(), ddmForm);
 			setDDMFormDefaultLocale(document.getRootElement(), ddmForm);
 			setDDMFormFields(document.getRootElement(), ddmForm);
-
 			setDDMFormLocalizedValuesDefaultLocale(ddmForm);
 		}
 		catch (DocumentException de) {
