@@ -265,7 +265,7 @@ definition {
 				Check(locator1 = "Checkbox#DELETIONS");
 			}
 
-			if (!(isSet(portletName))) {
+			if (isSet(portletName)) {
 				if (IsNotChecked(locator1 = "ExportImport#CONTENT")) {
 					Check(locator1 = "ExportImport#CONTENT");
 				}
