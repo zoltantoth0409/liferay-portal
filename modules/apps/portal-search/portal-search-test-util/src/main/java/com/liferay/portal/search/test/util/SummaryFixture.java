@@ -92,15 +92,15 @@ public class SummaryFixture<T> {
 	protected HttpServletRequest createHttpServletRequest(
 		PortletRequest portletRequest, Locale locale) {
 
-		MockHttpServletRequest httpServletRequest =
+		MockHttpServletRequest mockHttpServletRequest =
 			new MockHttpServletRequest();
 
-		httpServletRequest.setAttribute(
+		mockHttpServletRequest.setAttribute(
 			JavaConstants.JAVAX_PORTLET_REQUEST, portletRequest);
-		httpServletRequest.setPreferredLocales(
+		mockHttpServletRequest.setPreferredLocales(
 			Collections.singletonList(locale));
 
-		return httpServletRequest;
+		return mockHttpServletRequest;
 	}
 
 	protected HttpServletResponse createHttpServletResponse() {
@@ -110,23 +110,23 @@ public class SummaryFixture<T> {
 	protected PortletRequest createPortletRequest(Locale locale)
 		throws Exception {
 
-		MockRenderRequest portletRequest = new MockRenderRequest();
+		MockRenderRequest mockRenderRequest = new MockRenderRequest();
 
-		HttpServletRequest request = createHttpServletRequest(
-			portletRequest, locale);
+		HttpServletRequest httpServletRequest = createHttpServletRequest(
+			mockRenderRequest, locale);
 
 		HttpServletResponse response = createHttpServletResponse();
 
 		ThemeDisplay themeDisplay = createThemeDisplay(
-			request, response, locale);
+			httpServletRequest, response, locale);
 
-		portletRequest.setAttribute(WebKeys.THEME_DISPLAY, themeDisplay);
+		mockRenderRequest.setAttribute(WebKeys.THEME_DISPLAY, themeDisplay);
 
-		portletRequest.addPreferredLocale(locale);
+		mockRenderRequest.addPreferredLocale(locale);
 
-		request.setAttribute(WebKeys.THEME_DISPLAY, themeDisplay);
+		httpServletRequest.setAttribute(WebKeys.THEME_DISPLAY, themeDisplay);
 
-		return portletRequest;
+		return mockRenderRequest;
 	}
 
 	protected PortletResponse createPortletResponse() {
