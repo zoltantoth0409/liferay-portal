@@ -98,6 +98,14 @@ definition {
 
 		SelectFrame(locator1 = "AssetRelatedAssets#SELECT_ASSET_IFRAME");
 
+		if (isSet(scopeSite)) {
+			var key_filterValue = "${scopeSite}";
+
+			Click(locator1 = "Dropdown#FILTER");
+
+			AssertClick(locator1 = "Dropdown#FILTER_VALUES", value1 = "${scopeSite}");
+		}
+
 		Type(locator1 = "Search#SEARCH_FIELD", value1 = "${assetTitle}");
 
 		Click(locator1 = "Icon#BASIC_SEARCH");
