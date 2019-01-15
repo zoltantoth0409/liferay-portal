@@ -27,8 +27,6 @@ import java.net.URLEncoder;
 
 import java.nio.charset.StandardCharsets;
 
-import java.util.Date;
-
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -43,12 +41,10 @@ public class AMImageURLFactoryImpl implements AMImageURLFactory {
 		FileVersion fileVersion,
 		AMImageConfigurationEntry amImageConfigurationEntry) {
 
-		Date modifiedDate = fileVersion.getModifiedDate();
-
 		String relativeURI = String.format(
-			"image/%d/%s/%s?t=%d", fileVersion.getFileEntryId(),
+			"image/%d/%s/%s", fileVersion.getFileEntryId(),
 			amImageConfigurationEntry.getUUID(),
-			_encode(fileVersion.getFileName()), modifiedDate.getTime());
+			_encode(fileVersion.getFileName()));
 
 		return _amURIResolver.resolveURI(URI.create(relativeURI));
 	}
