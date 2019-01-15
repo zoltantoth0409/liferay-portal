@@ -240,8 +240,7 @@ public class NPMRegistryImpl implements NPMRegistry {
 					entry.getKey(), entry.getValue(), this);
 			}
 			catch (Exception e) {
-				_log.error(
-					"JSBundle tracker invocation failed with exception", e);
+				_log.error("Unable to add JS bundle", e);
 			}
 		}
 	}
@@ -311,10 +310,7 @@ public class NPMRegistryImpl implements NPMRegistry {
 								jsBundle, bundle, NPMRegistryImpl.this);
 						}
 						catch (Exception e) {
-							_log.error(
-								"JSBundle tracker invocation failed with " +
-									"exception ",
-								e);
+							_log.error("Unable to add JS bundle", e);
 						}
 					}
 				}
@@ -407,8 +403,7 @@ public class NPMRegistryImpl implements NPMRegistry {
 					jsBundle, bundle, NPMRegistryImpl.this);
 			}
 			catch (Exception e) {
-				_log.error(
-					"JSBundle tracker invocation failed with exception", e);
+				_log.error("Unable to remove JS bundle", e);
 			}
 		}
 
