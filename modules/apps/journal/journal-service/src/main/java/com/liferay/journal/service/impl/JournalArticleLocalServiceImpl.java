@@ -6905,7 +6905,7 @@ public class JournalArticleLocalServiceImpl
 
 				journalArticleLocalService.updateStatus(
 					userId, article, WorkflowConstants.STATUS_APPROVED, null,
-					serviceContext, new HashMap<String, Serializable>());
+					serviceContext, new HashMap<>());
 			});
 		actionableDynamicQuery.setTransactionConfig(
 			DefaultActionableDynamicQuery.REQUIRES_NEW_TRANSACTION_CONFIG);
