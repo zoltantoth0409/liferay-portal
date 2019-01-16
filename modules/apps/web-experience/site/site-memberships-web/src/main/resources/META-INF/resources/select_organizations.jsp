@@ -38,13 +38,33 @@ long parentOrganizationId = OrganizationConstants.ANY_PARENT_ORGANIZATION_ID;
 
 LinkedHashMap<String, Object> organizationParams = new LinkedHashMap<String, Object>();
 
-int organizationsCount = OrganizationLocalServiceUtil.searchCount(company.getCompanyId(), parentOrganizationId, searchTerms.getKeywords(), searchTerms.getType(), searchTerms.getRegionIdObj(), searchTerms.getCountryIdObj(), organizationParams);
+List<Organization> organizations = null;
 
-organizationSearch.setTotal(organizationsCount);
+int organizationsCount = 0;
 
-List<Organization> organizations = OrganizationLocalServiceUtil.search(company.getCompanyId(), parentOrganizationId, searchTerms.getKeywords(), searchTerms.getType(), searchTerms.getRegionIdObj(), searchTerms.getCountryIdObj(), organizationParams, organizationSearch.getStart(), organizationSearch.getEnd(), organizationSearch.getOrderByComparator());
+Indexer<?> indexer = IndexerRegistryUtil.nullSafeGetIndexer(Organization.class);
+
+if (indexer.isIndexerEnabled() && PropsValues.ORGANIZATIONS_SEARCH_WITH_INDEX) {
+	organizationParams.put("expandoAttributes", searchTerms.getKeywords());
+
+	Sort sort = SortFactoryUtil.getSort(Organization.class, organizationSearch.getOrderByCol(), organizationSearch.getOrderByType());
+
+	BaseModelSearchResult<Organization> baseModelSearchResult =
+		OrganizationLocalServiceUtil.searchOrganizations(themeDisplay.getCompanyId(), OrganizationConstants.ANY_PARENT_ORGANIZATION_ID, searchTerms.getKeywords(), organizationParams, organizationSearch.getStart(), organizationSearch.getEnd(), sort);
+
+	organizationsCount = baseModelSearchResult.getLength();
+
+	organizations = baseModelSearchResult.getBaseModels();
+}
+else {
+	organizationsCount = OrganizationLocalServiceUtil.searchCount(company.getCompanyId(), parentOrganizationId, searchTerms.getKeywords(), searchTerms.getType(), searchTerms.getRegionIdObj(), searchTerms.getCountryIdObj(), organizationParams);
+
+	organizations = OrganizationLocalServiceUtil.search(company.getCompanyId(), parentOrganizationId, searchTerms.getKeywords(), searchTerms.getType(), searchTerms.getRegionIdObj(), searchTerms.getCountryIdObj(), organizationParams, organizationSearch.getStart(), organizationSearch.getEnd(), organizationSearch.getOrderByComparator());
+}
 
 organizationSearch.setResults(organizations);
+
+organizationSearch.setTotal(organizationsCount);
 %>
 
 <aui:nav-bar cssClass="collapse-basic-search" markupView="lexicon">
