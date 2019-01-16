@@ -66,13 +66,7 @@ AUI.add(
 							function(item, index) {
 								var value = field.get(item.name);
 
-								var valueLanguage = settingsLanguage;
-
-								if (typeof value === "object") {
-									valueLanguage = Object.keys(value)[0] || settingsLanguage;
-								}
-
-								config[item.name] = coerceLanguage(value, valueLanguage, builderLanguage);
+								config[item.name] = coerceLanguage(value, settingsLanguage, builderLanguage);
 							}
 						);
 
