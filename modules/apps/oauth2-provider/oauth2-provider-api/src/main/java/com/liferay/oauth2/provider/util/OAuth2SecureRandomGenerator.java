@@ -41,6 +41,8 @@ public class OAuth2SecureRandomGenerator {
 	protected static String generateSecureRandomString() {
 		int size = 16;
 
+		StringBundler sb = new StringBundler(size);
+
 		int count = (int)Math.ceil((double)size / 8);
 
 		byte[] buffer = new byte[count * 8];
@@ -48,8 +50,6 @@ public class OAuth2SecureRandomGenerator {
 		for (int i = 0; i < count; i++) {
 			BigEndianCodec.putLong(buffer, i * 8, SecureRandomUtil.nextLong());
 		}
-
-		StringBundler sb = new StringBundler(size);
 
 		for (int i = 0; i < size; i++) {
 			sb.append(Integer.toHexString(0xFF & buffer[i]));
