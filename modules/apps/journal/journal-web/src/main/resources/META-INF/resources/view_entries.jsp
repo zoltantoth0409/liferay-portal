@@ -155,11 +155,11 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 
 							RowChecker rowChecker = articleSearchContainer.getRowChecker();
 
+							User curArticleUser = UserLocalServiceUtil.fetchUser(curArticle.getUserId());
+
 							Date createDate = curArticle.getModifiedDate();
 
 							String modifiedDateDescription = LanguageUtil.getTimeDescription(request, System.currentTimeMillis() - createDate.getTime(), true);
-
-							User curArticleUser = UserLocalServiceUtil.fetchUser(curArticle.getUserId());
 							%>
 
 							<c:choose>
