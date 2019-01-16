@@ -189,11 +189,11 @@ public abstract class BaseUpgradePortletId extends UpgradeProcess {
 	protected void updateGroup(String oldRootPortletId, String newRootPortletId)
 		throws Exception {
 
-		String oldStagingPortletId = _getStagedPortletId(oldRootPortletId);
+		String oldStagedPortletId = _getStagedPortletId(oldRootPortletId);
 
 		String sql1 = StringBundler.concat(
 			"select groupId, typeSettings from Group_ where typeSettings like ",
-			"'%", oldStagingPortletId, "%'");
+			"'%", oldStagedPortletId, "%'");
 
 		String sql2 = "update Group_ set typeSettings = ? where groupId = ?";
 
@@ -209,7 +209,7 @@ public abstract class BaseUpgradePortletId extends UpgradeProcess {
 				String typeSettings = rs.getString("typeSettings");
 
 				String newTypeSettings = getNewTypeSettings(
-					typeSettings, oldStagingPortletId,
+					typeSettings, oldStagedPortletId,
 					_getStagedPortletId(newRootPortletId));
 
 				ps2.setString(1, newTypeSettings);
