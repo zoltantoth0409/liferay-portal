@@ -370,11 +370,10 @@ public class UpgradeClient {
 
 			return false;
 		}
-		else {
-			System.out.println(" done.");
 
-			return true;
-		}
+		System.out.println(" done.");
+
+		return true;
 	}
 
 	private void _printHelp() {
