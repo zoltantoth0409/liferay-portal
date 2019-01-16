@@ -28,6 +28,7 @@ import com.liferay.dynamic.data.mapping.model.DDMFormLayoutColumn;
 import com.liferay.dynamic.data.mapping.model.DDMFormLayoutPage;
 import com.liferay.dynamic.data.mapping.model.DDMFormLayoutRow;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
+import com.liferay.dynamic.data.mapping.model.LocalizedValue;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
@@ -45,6 +46,8 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -244,6 +247,8 @@ public class DDLFormDisplayContext {
 
 		DDMForm ddmForm = ddmStructure.getDDMForm();
 
+		_transformToSiteDefaultLocale(ddmForm);
+
 		if (requireCaptcha) {
 			DDMFormField captchaDDMFormField = new DDMFormField(
 				_DDM_FORM_FIELD_NAME_CAPTCHA, "captcha");
@@ -394,6 +399,28 @@ public class DDLFormDisplayContext {
 		}
 
 		return true;
+	}
+
+	private void _transformToSiteDefaultLocale(DDMForm ddmForm) {
+		ThemeDisplay themeDisplay = getThemeDisplay();
+
+		Locale siteDefaultLocale = themeDisplay.getSiteDefaultLocale();
+
+		ddmForm.setDefaultLocale(siteDefaultLocale);
+
+		for (DDMFormField ddmFormField : ddmForm.getDDMFormFields()) {
+			Map<String, Object> properties = ddmFormField.getProperties();
+
+			for (Object value : properties.values()) {
+				if (value instanceof LocalizedValue) {
+					LocalizedValue localizedValue = (LocalizedValue)value;
+
+					localizedValue.setDefaultLocale(siteDefaultLocale);
+					localizedValue.addString(
+						siteDefaultLocale, localizedValue.getString(Locale.US));
+				}
+			}
+		}
 	}
 
 	private static final String _DDM_FORM_FIELD_NAME_CAPTCHA = "_CAPTCHA_";

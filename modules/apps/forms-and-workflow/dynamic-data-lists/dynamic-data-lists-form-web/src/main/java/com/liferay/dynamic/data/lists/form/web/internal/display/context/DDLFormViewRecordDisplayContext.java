@@ -28,12 +28,18 @@ import com.liferay.dynamic.data.mapping.model.DDMForm;
 import com.liferay.dynamic.data.mapping.model.DDMFormField;
 import com.liferay.dynamic.data.mapping.model.DDMFormLayout;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
+import com.liferay.dynamic.data.mapping.model.LocalizedValue;
 import com.liferay.dynamic.data.mapping.service.DDMStructureLocalService;
 import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
 import com.liferay.dynamic.data.mapping.util.DDMFormValuesMerger;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
+import com.liferay.portal.kernel.util.WebKeys;
+
+import java.util.Locale;
+import java.util.Map;
 
 import javax.portlet.RenderRequest;
 
@@ -73,6 +79,8 @@ public class DDLFormViewRecordDisplayContext {
 		DDMStructure ddmStructure = getDDMStructure();
 
 		DDMForm ddmForm = ddmStructure.getDDMForm();
+
+		_transformToSiteDefaultLocale(renderRequest, ddmForm);
 
 		DDMFormValues ddmFormValues = _ddmFormValuesFactory.create(
 			renderRequest, ddmForm);
@@ -169,6 +177,31 @@ public class DDLFormViewRecordDisplayContext {
 				ddmFormField.getNestedDDMFormFields()) {
 
 			setDDMFormFieldReadOnly(nestedDDMFormField);
+		}
+	}
+
+	private void _transformToSiteDefaultLocale(
+		RenderRequest renderRequest, DDMForm ddmForm) {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		Locale siteDefaultLocale = themeDisplay.getSiteDefaultLocale();
+
+		ddmForm.setDefaultLocale(siteDefaultLocale);
+
+		for (DDMFormField ddmFormField : ddmForm.getDDMFormFields()) {
+			Map<String, Object> properties = ddmFormField.getProperties();
+
+			for (Object value : properties.values()) {
+				if (value instanceof LocalizedValue) {
+					LocalizedValue localizedValue = (LocalizedValue)value;
+
+					localizedValue.setDefaultLocale(siteDefaultLocale);
+					localizedValue.addString(
+						siteDefaultLocale, localizedValue.getString(Locale.US));
+				}
+			}
 		}
 	}
 
