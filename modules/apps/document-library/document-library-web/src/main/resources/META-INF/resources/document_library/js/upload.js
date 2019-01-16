@@ -140,9 +140,9 @@ AUI.add(
 			'<span class="lfr-status-error-label">{invalidFilesLength}</span>',
 
 			'<ul class="list-unstyled">',
-				'<tpl for="invalidFiles">',
-					'<li><b>{name}</b>: {errorMessage}</li>',
-				'</tpl>',
+			'<tpl for="invalidFiles">',
+			'<li><b>{name}</b>: {errorMessage}</li>',
+			'</tpl>',
 			'</ul>'
 		);
 
@@ -1080,7 +1080,7 @@ AUI.add(
 						var validFiles = filesPartition.matches;
 
 						if (keyData) {
-							instance._updateDataSetEntry(key, keyData, validFiles);
+							instance._updateDataSetEn trykey, keyData, validFiles);
 						}
 						else {
 							var dataSet = instance._getDataSet();
@@ -1221,7 +1221,7 @@ AUI.add(
 					_startNextUpload: function(event) {
 						var instance = this;
 
-						instance._destroyEntry();
+						instance._destroyEn try);
 
 						var dataSet = instance._getDataSet();
 

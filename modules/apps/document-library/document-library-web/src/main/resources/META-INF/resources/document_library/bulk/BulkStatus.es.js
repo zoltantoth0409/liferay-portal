@@ -24,6 +24,7 @@ class BulkStatus extends Component {
 			this.startWatch();
 		}
 	}
+
 	/**
 	 * Clears the interval to stop sending ajax requests.
 	 *
@@ -66,7 +67,7 @@ class BulkStatus extends Component {
 				e => {
 					this._onBulkFinish(true);
 				}
-			)
+			);
 	}
 
 	/**
@@ -126,7 +127,7 @@ class BulkStatus extends Component {
 			this.intervalSpeed
 		);
 
-		if(!this.bulkInProgress) {
+		if (!this.bulkInProgress) {
 			this.visibleTimeOut = setTimeout(
 				() => {
 					this.bulkInProgress = true;
@@ -191,6 +192,7 @@ BulkStatus.STATE = {
 };
 
 // Register component
+
 Soy.register(BulkStatus, templates);
 
 export default BulkStatus;

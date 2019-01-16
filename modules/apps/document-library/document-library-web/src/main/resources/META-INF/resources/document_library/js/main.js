@@ -240,8 +240,7 @@ AUI.add(
 
 									openMSOfficeError.removeClass('hide');
 								}
-
-							}
+}
 						);
 					},
 
@@ -264,7 +263,7 @@ AUI.add(
 											fileEntries: instance._selectedFileEntries,
 											portletNamespace: namespace,
 											repositoryId: parseFloat(form.get(namespace + 'repositoryId').val()),
-											spritemap: themeDisplay.getPathThemeImages() + "/lexicon/icons.svg",
+											spritemap: themeDisplay.getPathThemeImages() + '/lexicon/icons.svg',
 											urlTags: urlTags,
 											urlUpdateTags: urlUpdateTags
 										},

@@ -73,7 +73,7 @@ class EditTags extends Component {
 			)
 			.then(
 				response => {
-					callback(response)
+					callback(response);
 				}
 			)
 			.catch(
@@ -94,7 +94,7 @@ class EditTags extends Component {
 		this.loading = true;
 
 		let bodyData = {
-			"bulkAssetEntryCommonTagsActionModel": {
+			'bulkAssetEntryCommonTagsActionModel': {
 				repositoryId: this.repositoryId,
 				selection: this.fileEntries
 			}
@@ -150,7 +150,7 @@ class EditTags extends Component {
 		);
 
 		let bodyData = {
-			"bulkAssetEntryUpdateTagsActionModel": {
+			'bulkAssetEntryUpdateTagsActionModel': {
 				append: this.append,
 				repositoryId: this.repositoryId,
 				selection: this.fileEntries,
@@ -172,8 +172,7 @@ class EditTags extends Component {
 				}
 			}
 		);
-
-	}
+}
 
 	/**
 	 * Transforms the tags list in the object needed
@@ -191,8 +190,8 @@ class EditTags extends Component {
 			commonTags.forEach(
 				tag => {
 					let tagObj = {
-						"label": tag,
-						"value": tag
+						'label': tag,
+						'value': tag
 					};
 
 					commonTagsObjList.push(tagObj);
@@ -211,6 +210,7 @@ class EditTags extends Component {
  * @type {!Object}
  */
 EditTags.STATE = {
+
 	/**
 	 * Tags that want to be edited.
 	 *
@@ -314,7 +314,7 @@ EditTags.STATE = {
 	 * @type {String}
 	 */
 	urlUpdateTags: Config.string().required()
-}
+};
 
 // Register component
 
