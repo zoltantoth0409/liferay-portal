@@ -700,15 +700,14 @@ public class DEDataDefinitionServiceTest {
 				_deDataDefinitionService);
 		}
 
-		List<DEDataDefinition> deDataDefinitionsSearch = searchDataDefinition(
+		List<DEDataDefinition> deDataDefinitions = searchDataDefinition(
 			_group, "");
 
 		IdempotentRetryAssert.retryAssert(
 			3, TimeUnit.SECONDS,
 			() -> {
 				Assert.assertEquals(
-					deDataDefinitionsSearch.toString(), 5,
-					deDataDefinitionsSearch.size());
+					deDataDefinitions.toString(), 5, deDataDefinitions.size());
 
 				return null;
 			});
@@ -799,15 +798,14 @@ public class DEDataDefinitionServiceTest {
 				_deDataDefinitionService);
 		}
 
-		List<DEDataDefinition> deDataDefinitionsSearch = searchDataDefinition(
+		List<DEDataDefinition> deDataDefinitions = searchDataDefinition(
 			_group, "description1");
 
 		IdempotentRetryAssert.retryAssert(
 			3, TimeUnit.SECONDS,
 			() -> {
 				Assert.assertEquals(
-					deDataDefinitionsSearch.toString(), 1,
-					deDataDefinitionsSearch.size());
+					deDataDefinitions.toString(), 1, deDataDefinitions.size());
 
 				return null;
 			});
@@ -823,15 +821,14 @@ public class DEDataDefinitionServiceTest {
 				_deDataDefinitionService);
 		}
 
-		List<DEDataDefinition> deDataDefinitionsSearch = searchDataDefinition(
+		List<DEDataDefinition> deDataDefinitions = searchDataDefinition(
 			_group, "Description1");
 
 		IdempotentRetryAssert.retryAssert(
 			3, TimeUnit.SECONDS,
 			() -> {
 				Assert.assertEquals(
-					deDataDefinitionsSearch.toString(), 1,
-					deDataDefinitionsSearch.size());
+					deDataDefinitions.toString(), 1, deDataDefinitions.size());
 
 				return null;
 			});
@@ -847,15 +844,14 @@ public class DEDataDefinitionServiceTest {
 				_deDataDefinitionService);
 		}
 
-		List<DEDataDefinition> deDataDefinitionsSearch = searchDataDefinition(
+		List<DEDataDefinition> deDataDefinitions = searchDataDefinition(
 			_group, "Name1");
 
 		IdempotentRetryAssert.retryAssert(
 			3, TimeUnit.SECONDS,
 			() -> {
 				Assert.assertEquals(
-					deDataDefinitionsSearch.toString(), 1,
-					deDataDefinitionsSearch.size());
+					deDataDefinitions.toString(), 1, deDataDefinitions.size());
 
 				return null;
 			});
@@ -874,15 +870,14 @@ public class DEDataDefinitionServiceTest {
 		DEDataEngineTestUtil.insertDEDataDefinition(
 			_adminUser, _group, "nonascii£", "Name", _deDataDefinitionService);
 
-		List<DEDataDefinition> deDataDefinitionsSearch = searchDataDefinition(
+		List<DEDataDefinition> deDataDefinitions = searchDataDefinition(
 			_group, "nonascii£");
 
 		IdempotentRetryAssert.retryAssert(
 			3, TimeUnit.SECONDS,
 			() -> {
 				Assert.assertEquals(
-					deDataDefinitionsSearch.toString(), 1,
-					deDataDefinitionsSearch.size());
+					deDataDefinitions.toString(), 1, deDataDefinitions.size());
 
 				return null;
 			});
@@ -898,15 +893,14 @@ public class DEDataDefinitionServiceTest {
 				_deDataDefinitionService);
 		}
 
-		List<DEDataDefinition> deDataDefinitionsSearch = searchDataDefinition(
+		List<DEDataDefinition> deDataDefinitions = searchDataDefinition(
 			_group, "NonExistingNameDescription");
 
 		IdempotentRetryAssert.retryAssert(
 			3, TimeUnit.SECONDS,
 			() -> {
 				Assert.assertEquals(
-					deDataDefinitionsSearch.toString(), 0,
-					deDataDefinitionsSearch.size());
+					deDataDefinitions.toString(), 0, deDataDefinitions.size());
 
 				return null;
 			});
@@ -922,15 +916,14 @@ public class DEDataDefinitionServiceTest {
 				_deDataDefinitionService);
 		}
 
-		List<DEDataDefinition> deDataDefinitionsSearch = searchDataDefinition(
+		List<DEDataDefinition> deDataDefinitions = searchDataDefinition(
 			_group, "Descrip");
 
 		IdempotentRetryAssert.retryAssert(
 			3, TimeUnit.SECONDS,
 			() -> {
 				Assert.assertEquals(
-					deDataDefinitionsSearch.toString(), 5,
-					deDataDefinitionsSearch.size());
+					deDataDefinitions.toString(), 5, deDataDefinitions.size());
 
 				return null;
 			});
@@ -953,15 +946,14 @@ public class DEDataDefinitionServiceTest {
 		DEDataEngineTestUtil.insertDEDataDefinition(
 			_adminUser, _group, "Spaced ", "Name", _deDataDefinitionService);
 
-		List<DEDataDefinition> deDataDefinitionsSearch = searchDataDefinition(
+		List<DEDataDefinition> deDataDefinitions = searchDataDefinition(
 			_group, "Spaced Words");
 
 		IdempotentRetryAssert.retryAssert(
 			3, TimeUnit.SECONDS,
 			() -> {
 				Assert.assertEquals(
-					deDataDefinitionsSearch.toString(), 2,
-					deDataDefinitionsSearch.size());
+					deDataDefinitions.toString(), 2, deDataDefinitions.size());
 
 				return null;
 			});
