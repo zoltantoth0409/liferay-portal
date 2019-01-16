@@ -40,7 +40,7 @@ definition {
 
 	@priority = "4"
 	test NavigateToSearchResultsViaURL {
-		property portal.acceptance = "true";
+		property portal.acceptance = "quarantine";
 
 		ProductMenu.gotoPortlet(
 			category = "Content",
