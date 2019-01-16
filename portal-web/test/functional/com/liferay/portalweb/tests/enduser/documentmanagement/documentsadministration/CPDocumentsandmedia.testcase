@@ -119,7 +119,7 @@ definition {
 
 		DMNavigator.gotoDocumentCP(dmDocumentTitle = "DM Document Title");
 
-		DMDocument.viewCP(dmDocumentSize = "0KB", dmDocumentTitle = "DM Document Title");
+		DMDocument.viewCP(dmDocumentSize = "259B", dmDocumentTitle = "DM Document Title");
 	}
 
 	@description = "This test ensures that a user can check in a document as a major version."
@@ -249,7 +249,7 @@ definition {
 
 		DMNavigator.gotoDocumentCP(dmDocumentTitle = "DM Document Title");
 
-		DMDocument.viewCP(dmDocumentSize = "0KB", dmDocumentTitle = "DM Document Title");
+		DMDocument.viewCP(dmDocumentSize = "259B", dmDocumentTitle = "DM Document Title");
 
 		Navigator.openURL();
 
@@ -328,7 +328,7 @@ definition {
 
 		DMNavigator.gotoDocumentCP(dmDocumentTitle = "DM Document Title");
 
-		DMDocument.viewCP(dmDocumentSize = "0KB", dmDocumentTitle = "DM Document Title");
+		DMDocument.viewCP(dmDocumentSize = "259B", dmDocumentTitle = "DM Document Title");
 
 		Navigator.openURL();
 
@@ -396,7 +396,7 @@ definition {
 
 		DMNavigator.gotoDocumentCP(dmDocumentTitle = "DM Document Title");
 
-		DMDocument.viewCP(dmDocumentSize = "0KB", dmDocumentTitle = "DM Document Title");
+		DMDocument.viewCP(dmDocumentSize = "259B", dmDocumentTitle = "DM Document Title");
 	}
 
 	@priority = "4"
