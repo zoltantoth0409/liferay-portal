@@ -55,10 +55,10 @@ public class JournalArticleAssetEntryUsageRecorder
 
 	@Override
 	public void record(AssetEntry assetEntry) throws PortalException {
-		int usagesCount = _assetEntryUsageLocalService.getAssetEntryUsagesCount(
+		int count = _assetEntryUsageLocalService.getAssetEntryUsagesCount(
 			assetEntry.getEntryId(), StringPool.BLANK);
 
-		if (usagesCount > 0) {
+		if (count > 0) {
 			return;
 		}
 
