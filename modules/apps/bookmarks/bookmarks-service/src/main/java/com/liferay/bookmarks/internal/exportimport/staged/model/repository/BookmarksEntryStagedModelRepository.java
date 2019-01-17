@@ -179,9 +179,8 @@ public class BookmarksEntryStagedModelRepository
 
 	@Override
 	public BookmarksEntry updateStagedModel(
-			PortletDataContext portletDataContext,
-			BookmarksEntry bookmarksEntry)
-		throws PortalException {
+		PortletDataContext portletDataContext,
+		BookmarksEntry bookmarksEntry) {
 
 		throw new UnsupportedOperationException();
 	}
