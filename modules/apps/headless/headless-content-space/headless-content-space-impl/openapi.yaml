@@ -1,0 +1,45 @@
+components:
+  schemas:
+    ContentSpace:
+      properties:
+        availableLanguages:
+          items:
+            type: string
+          type: array
+        author:
+          $ref: '../../headless-person/headless-person-impl/openapi.yaml/components/schemas/Person'
+        description:
+          type: string
+        id:
+          type: integer
+        name:
+          type: string
+        self:
+          type: string
+      type: object
+info:
+  description: ''
+  title: Title
+  version: 1.0.0
+paths:
+  /content-space:
+    get:
+      responses:
+        200:
+          content:
+            '*/*': {}
+          description: ''
+  /content-space/{id}:
+    get:
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          content:
+            '*/*': {}
+          description: ''
+openapi: 3.0.1
