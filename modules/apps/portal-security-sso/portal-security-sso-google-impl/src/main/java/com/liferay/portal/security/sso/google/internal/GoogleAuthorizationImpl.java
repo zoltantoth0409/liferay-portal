@@ -258,6 +258,7 @@ public class GoogleAuthorizationImpl implements GoogleAuthorization {
 		}
 		else {
 			_checkAllowUserCreation(companyId, userinfoplus);
+
 			user = addUser(companyId, userinfoplus);
 
 			session.setAttribute(
