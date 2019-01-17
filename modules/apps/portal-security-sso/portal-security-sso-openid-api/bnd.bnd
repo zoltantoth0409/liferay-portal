@@ -4,5 +4,6 @@ Bundle-Version: 1.0.9
 Export-Package:\
 	com.liferay.portal.security.sso.openid,\
 	com.liferay.portal.security.sso.openid.configuration,\
-	com.liferay.portal.security.sso.openid.constants
+	com.liferay.portal.security.sso.openid.constants,\
+	com.liferay.portal.security.sso.openid.exception
 Liferay-Releng-Module-Group-Title: Security Frameworks
