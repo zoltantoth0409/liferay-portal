@@ -27,8 +27,8 @@ import com.liferay.portal.kernel.util.ServerDetector;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.portal.template.soy.utils.SoyContext;
-import com.liferay.portal.template.soy.utils.SoyContextFactoryUtil;
+import com.liferay.portal.template.soy.util.SoyContext;
+import com.liferay.portal.template.soy.util.SoyContextFactoryUtil;
 import com.liferay.taglib.aui.ScriptTag;
 import com.liferay.taglib.util.ParamAndPropertyAncestorTagImpl;
 
