@@ -29,14 +29,14 @@ import org.jboss.arquillian.core.api.event.ManagerStarted;
  */
 public class ConfigurationRegistrar {
 
-	public void loadConfiguration(@Observes ManagerStarted event)
+	public void loadConfiguration(@Observes ManagerStarted managerStarted)
 		throws IOException {
 
-		_arquillianDescriptor.set(new ArquillianDescriptorImpl(null));
+		_instanceProducer.set(new ArquillianDescriptorImpl(null));
 	}
 
 	@ApplicationScoped
 	@Inject
-	private InstanceProducer<ArquillianDescriptor> _arquillianDescriptor;
+	private InstanceProducer<ArquillianDescriptor> _instanceProducer;
 
 }
