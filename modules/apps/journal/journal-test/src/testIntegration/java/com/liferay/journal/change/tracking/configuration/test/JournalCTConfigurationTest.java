@@ -73,7 +73,7 @@ public class JournalCTConfigurationTest {
 			_getCTConfigurationOptional();
 
 		Assert.assertTrue(
-			"Change tracking configuration not found in registry",
+			"Change tracking configuration is not registered",
 			ctConfigurationOptional.isPresent());
 
 		JournalArticleResource resourceEntity =
@@ -88,7 +88,8 @@ public class JournalCTConfigurationTest {
 			);
 
 		Assert.assertNotNull(
-			"Resource entity by resource entity ID not found", resourceEntity);
+			"Resource entity by resource entity ID does not exist",
+			resourceEntity);
 
 		Assert.assertEquals(
 			"Resource entity by resource entity ID is invalid",
@@ -153,7 +154,8 @@ public class JournalCTConfigurationTest {
 			);
 
 		Assert.assertNotNull(
-			"Version entity by version entity ID not found", versionEntity);
+			"Version entity by version entity ID does not exist",
+			versionEntity);
 
 		Assert.assertEquals(
 			"Version entity by version entity ID is invalid", _journalArticle,
