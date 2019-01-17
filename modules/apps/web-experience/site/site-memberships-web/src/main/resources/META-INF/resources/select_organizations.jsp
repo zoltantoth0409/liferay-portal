@@ -47,21 +47,19 @@ if (indexer.isIndexerEnabled() && PropsValues.ORGANIZATIONS_SEARCH_WITH_INDEX) {
 
 	Sort sort = SortFactoryUtil.getSort(Organization.class, organizationSearch.getOrderByCol(), organizationSearch.getOrderByType());
 
-	BaseModelSearchResult<Organization> baseModelSearchResult =
-		OrganizationLocalServiceUtil.searchOrganizations(themeDisplay.getCompanyId(), OrganizationConstants.ANY_PARENT_ORGANIZATION_ID, searchTerms.getKeywords(), organizationParams, organizationSearch.getStart(), organizationSearch.getEnd(), sort);
-
-	organizationsCount = baseModelSearchResult.getLength();
+	BaseModelSearchResult<Organization> baseModelSearchResult = OrganizationLocalServiceUtil.searchOrganizations(themeDisplay.getCompanyId(), OrganizationConstants.ANY_PARENT_ORGANIZATION_ID, searchTerms.getKeywords(), organizationParams, organizationSearch.getStart(), organizationSearch.getEnd(), sort);
 
 	organizations = baseModelSearchResult.getBaseModels();
+
+	organizationsCount = baseModelSearchResult.getLength();
 }
 else {
-	organizationsCount = OrganizationLocalServiceUtil.searchCount(themeDisplay.getCompanyId(), OrganizationConstants.ANY_PARENT_ORGANIZATION_ID, searchTerms.getKeywords(), searchTerms.getType(), searchTerms.getRegionIdObj(), searchTerms.getCountryIdObj(), organizationParams);
-
 	organizations = OrganizationLocalServiceUtil.search(themeDisplay.getCompanyId(), OrganizationConstants.ANY_PARENT_ORGANIZATION_ID, searchTerms.getKeywords(), searchTerms.getType(), searchTerms.getRegionIdObj(), searchTerms.getCountryIdObj(), organizationParams, organizationSearch.getStart(), organizationSearch.getEnd(), organizationSearch.getOrderByComparator());
+
+	organizationsCount = OrganizationLocalServiceUtil.searchCount(themeDisplay.getCompanyId(), OrganizationConstants.ANY_PARENT_ORGANIZATION_ID, searchTerms.getKeywords(), searchTerms.getType(), searchTerms.getRegionIdObj(), searchTerms.getCountryIdObj(), organizationParams);
 }
 
 organizationSearch.setResults(organizations);
-
 organizationSearch.setTotal(organizationsCount);
 %>
 
