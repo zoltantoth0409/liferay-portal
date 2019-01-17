@@ -181,9 +181,9 @@ public class DEDataDefinitionServiceTest {
 		DEDataEngineTestUtil.insertDEDataDefinition(
 			_adminUser, _group, _deDataDefinitionService);
 
-		int deDataDefinitionTotal = countDataDefinition(_group);
+		int total = counDEtDataDefinitions(_group);
 
-		Assert.assertEquals(2, deDataDefinitionTotal);
+		Assert.assertEquals(2, total);
 	}
 
 	@Test
@@ -192,23 +192,23 @@ public class DEDataDefinitionServiceTest {
 			DEDataEngineTestUtil.insertDEDataDefinition(
 				_adminUser, _group, _deDataDefinitionService);
 
-		int deDataDefinitionTotal = countDataDefinition(_group);
+		int total = counDEtDataDefinitions(_group);
 
-		Assert.assertEquals(1, deDataDefinitionTotal);
+		Assert.assertEquals(1, total);
 
-		deleteDataDefinition(
+		deleteDEDataDefinition(
 			_adminUser, deDataDefinition.getDEDataDefinitionId());
 
-		int deDataDefinitionTotalAfterDelete = countDataDefinition(_group);
+		int totalAfterDelete = counDEtDataDefinitions(_group);
 
-		Assert.assertEquals(0, deDataDefinitionTotalAfterDelete);
+		Assert.assertEquals(0, totalAfterDelete);
 	}
 
 	@Test
 	public void testCountWithNoRecords() throws Exception {
-		int deDataDefinitionTotal = countDataDefinition(_group);
+		int total = counDEtDataDefinitions(_group);
 
-		Assert.assertEquals(0, deDataDefinitionTotal);
+		Assert.assertEquals(0, total);
 	}
 
 	@Test
@@ -218,9 +218,9 @@ public class DEDataDefinitionServiceTest {
 
 		Group otherGroup = GroupTestUtil.addGroup();
 
-		int deDataDefinitionTotal = countDataDefinition(otherGroup);
+		int total = counDEtDataDefinitions(otherGroup);
 
-		Assert.assertEquals(0, deDataDefinitionTotal);
+		Assert.assertEquals(0, total);
 	}
 
 	@Test
@@ -350,7 +350,7 @@ public class DEDataDefinitionServiceTest {
 		_deDataDefinitionService.execute(
 			deDataDefinitionSaveModelPermissionsRequest);
 
-		deleteDataDefinition(
+		deleteDEDataDefinition(
 			_siteMember, deDataDefinition.getDEDataDefinitionId());
 	}
 
@@ -444,7 +444,7 @@ public class DEDataDefinitionServiceTest {
 		User user = _userLocalService.getDefaultUser(
 			TestPropsValues.getCompanyId());
 
-		deleteDataDefinition(user, deDataDefinition.getDEDataDefinitionId());
+		deleteDEDataDefinition(user, deDataDefinition.getDEDataDefinitionId());
 	}
 
 	@Test
@@ -472,7 +472,7 @@ public class DEDataDefinitionServiceTest {
 		_deDataDefinitionService.execute(
 			deDataDefinitionSaveModelPermissionsRequest);
 
-		DEDataDefinition deDataDefinition = getDataDefinition(
+		DEDataDefinition deDataDefinition = getDEDataDefinition(
 			user, expectedDEDataDefinition.getDEDataDefinitionId());
 
 		Assert.assertEquals(expectedDEDataDefinition, deDataDefinition);
@@ -499,7 +499,7 @@ public class DEDataDefinitionServiceTest {
 		_deDataDefinitionService.execute(
 			deDataDefinitionSaveModelPermissionsRequest);
 
-		DEDataDefinition deDataDefinition = getDataDefinition(
+		DEDataDefinition deDataDefinition = getDEDataDefinition(
 			_siteMember, expectedDEDataDefinition.getDEDataDefinitionId());
 
 		Assert.assertEquals(expectedDEDataDefinition, deDataDefinition);
@@ -528,7 +528,7 @@ public class DEDataDefinitionServiceTest {
 		User user = _userLocalService.getDefaultUser(
 			TestPropsValues.getCompanyId());
 
-		getDataDefinition(user, deDataDefinition.getDEDataDefinitionId());
+		getDEDataDefinition(user, deDataDefinition.getDEDataDefinitionId());
 	}
 
 	@Test
@@ -553,9 +553,9 @@ public class DEDataDefinitionServiceTest {
 
 	@Test
 	public void testListPaginatedMiddleInsideRange() throws Exception {
-		int dataDefinitionTotal = 5;
+		int total = 5;
 
-		for (int i = 0; i < dataDefinitionTotal; i++) {
+		for (int i = 0; i < total; i++) {
 			DEDataEngineTestUtil.insertDEDataDefinition(
 				_adminUser, _group, _deDataDefinitionService);
 		}
@@ -569,9 +569,9 @@ public class DEDataDefinitionServiceTest {
 
 	@Test
 	public void testListPaginatedMiddleOutOfRange() throws Exception {
-		int dataDefinitionTotal = 5;
+		int total = 5;
 
-		for (int i = 0; i < dataDefinitionTotal; i++) {
+		for (int i = 0; i < total; i++) {
 			DEDataEngineTestUtil.insertDEDataDefinition(
 				_adminUser, _group, _deDataDefinitionService);
 		}
@@ -585,9 +585,9 @@ public class DEDataDefinitionServiceTest {
 
 	@Test
 	public void testListPaginatedOutOfRange() throws Exception {
-		int dataDefinitionTotal = 5;
+		int total = 5;
 
-		for (int i = 0; i < dataDefinitionTotal; i++) {
+		for (int i = 0; i < total; i++) {
 			DEDataEngineTestUtil.insertDEDataDefinition(
 				_adminUser, _group, _deDataDefinitionService);
 		}
@@ -601,9 +601,9 @@ public class DEDataDefinitionServiceTest {
 
 	@Test
 	public void testListPaginatedReturnLast() throws Exception {
-		int dataDefinitionTotal = 5;
+		int total = 5;
 
-		for (int i = 0; i < dataDefinitionTotal; i++) {
+		for (int i = 0; i < total; i++) {
 			DEDataEngineTestUtil.insertDEDataDefinition(
 				_adminUser, _group, _deDataDefinitionService);
 		}
@@ -617,9 +617,9 @@ public class DEDataDefinitionServiceTest {
 
 	@Test
 	public void testListPaginatedStartingAtMinusOne() throws Exception {
-		int dataDefinitionTotal = 5;
+		int total = 5;
 
-		for (int i = 0; i < dataDefinitionTotal; i++) {
+		for (int i = 0; i < total; i++) {
 			DEDataEngineTestUtil.insertDEDataDefinition(
 				_adminUser, _group, _deDataDefinitionService);
 		}
@@ -633,9 +633,9 @@ public class DEDataDefinitionServiceTest {
 
 	@Test
 	public void testListPaginatedStartingAtMinusTwo() throws Exception {
-		int dataDefinitionTotal = 5;
+		int total = 5;
 
-		for (int i = 0; i < dataDefinitionTotal; i++) {
+		for (int i = 0; i < total; i++) {
 			DEDataEngineTestUtil.insertDEDataDefinition(
 				_adminUser, _group, _deDataDefinitionService);
 		}
@@ -649,9 +649,9 @@ public class DEDataDefinitionServiceTest {
 
 	@Test
 	public void testListPaginatedStartingAtZero() throws Exception {
-		int dataDefinitionTotal = 5;
+		int total = 5;
 
-		for (int i = 0; i < dataDefinitionTotal; i++) {
+		for (int i = 0; i < total; i++) {
 			DEDataEngineTestUtil.insertDEDataDefinition(
 				_adminUser, _group, _deDataDefinitionService);
 		}
@@ -676,9 +676,9 @@ public class DEDataDefinitionServiceTest {
 
 	@Test
 	public void testListWithRecords() throws Exception {
-		int dataDefinitionTotal = 5;
+		int total = 5;
 
-		for (int i = 0; i < dataDefinitionTotal; i++) {
+		for (int i = 0; i < total; i++) {
 			DEDataEngineTestUtil.insertDEDataDefinition(
 				_adminUser, _group, _deDataDefinitionService);
 		}
@@ -692,15 +692,15 @@ public class DEDataDefinitionServiceTest {
 
 	@Test
 	public void testSearchBlank() throws Exception {
-		int dataDefinitionTotal = 5;
+		int total = 5;
 
-		for (int i = 0; i < dataDefinitionTotal; i++) {
+		for (int i = 0; i < total; i++) {
 			DEDataEngineTestUtil.insertDEDataDefinition(
 				_adminUser, _group, "Description" + i, "Name" + i,
 				_deDataDefinitionService);
 		}
 
-		List<DEDataDefinition> deDataDefinitions = searchDataDefinition(
+		List<DEDataDefinition> deDataDefinitions = searchDEDataDefinitions(
 			_group, "");
 
 		IdempotentRetryAssert.retryAssert(
@@ -722,7 +722,7 @@ public class DEDataDefinitionServiceTest {
 			_adminUser, _group, "description2", "name 2",
 			_deDataDefinitionService);
 
-		int total = searchCountDataDefinition(_group, "name");
+		int total = searchCountDEDataDefinitions(_group, "name");
 
 		IdempotentRetryAssert.retryAssert(
 			3, TimeUnit.SECONDS,
@@ -740,10 +740,10 @@ public class DEDataDefinitionServiceTest {
 				_adminUser, _group, "description1", "name 1",
 				_deDataDefinitionService);
 
-		deleteDataDefinition(
+		deleteDEDataDefinition(
 			_adminUser, deDataDefinition.getDEDataDefinitionId());
 
-		int total = searchCountDataDefinition(_group, "name");
+		int total = searchCountDEDataDefinitions(_group, "name");
 
 		IdempotentRetryAssert.retryAssert(
 			3, TimeUnit.SECONDS,
@@ -756,7 +756,7 @@ public class DEDataDefinitionServiceTest {
 
 	@Test
 	public void testSearchCountWithNoRecords() throws Exception {
-		int total = searchCountDataDefinition(_group, "name");
+		int total = searchCountDEDataDefinitions(_group, "name");
 
 		IdempotentRetryAssert.retryAssert(
 			3, TimeUnit.SECONDS,
@@ -774,10 +774,11 @@ public class DEDataDefinitionServiceTest {
 				_adminUser, _group, "description1", "name 1",
 				_deDataDefinitionService);
 
-		deleteDataDefinition(
+		deleteDEDataDefinition(
 			_adminUser, deDataDefinition.getDEDataDefinitionId());
 
-		int total = searchCountDataDefinition(GroupTestUtil.addGroup(), "name");
+		int total = searchCountDEDataDefinitions(
+			GroupTestUtil.addGroup(), "name");
 
 		IdempotentRetryAssert.retryAssert(
 			3, TimeUnit.SECONDS,
@@ -790,15 +791,15 @@ public class DEDataDefinitionServiceTest {
 
 	@Test
 	public void testSearchExactCaseSensitive() throws Exception {
-		int dataDefinitionTotal = 5;
+		int total = 5;
 
-		for (int i = 0; i < dataDefinitionTotal; i++) {
+		for (int i = 0; i < total; i++) {
 			DEDataEngineTestUtil.insertDEDataDefinition(
 				_adminUser, _group, "Description" + i, "Name" + i,
 				_deDataDefinitionService);
 		}
 
-		List<DEDataDefinition> deDataDefinitions = searchDataDefinition(
+		List<DEDataDefinition> deDataDefinitions = searchDEDataDefinitions(
 			_group, "description1");
 
 		IdempotentRetryAssert.retryAssert(
@@ -813,15 +814,15 @@ public class DEDataDefinitionServiceTest {
 
 	@Test
 	public void testSearchExactDescription() throws Exception {
-		int dataDefinitionTotal = 5;
+		int total = 5;
 
-		for (int i = 0; i < dataDefinitionTotal; i++) {
+		for (int i = 0; i < total; i++) {
 			DEDataEngineTestUtil.insertDEDataDefinition(
 				_adminUser, _group, "Description" + i, "Name" + i,
 				_deDataDefinitionService);
 		}
 
-		List<DEDataDefinition> deDataDefinitions = searchDataDefinition(
+		List<DEDataDefinition> deDataDefinitions = searchDEDataDefinitions(
 			_group, "Description1");
 
 		IdempotentRetryAssert.retryAssert(
@@ -836,15 +837,15 @@ public class DEDataDefinitionServiceTest {
 
 	@Test
 	public void testSearchExactName() throws Exception {
-		int dataDefinitionTotal = 5;
+		int total = 5;
 
-		for (int i = 0; i < dataDefinitionTotal; i++) {
+		for (int i = 0; i < total; i++) {
 			DEDataEngineTestUtil.insertDEDataDefinition(
 				_adminUser, _group, "Description" + i, "Name" + i,
 				_deDataDefinitionService);
 		}
 
-		List<DEDataDefinition> deDataDefinitions = searchDataDefinition(
+		List<DEDataDefinition> deDataDefinitions = searchDEDataDefinitions(
 			_group, "Name1");
 
 		IdempotentRetryAssert.retryAssert(
@@ -859,9 +860,9 @@ public class DEDataDefinitionServiceTest {
 
 	@Test
 	public void testSearchNonascii() throws Exception {
-		int dataDefinitionTotal = 5;
+		int total = 5;
 
-		for (int i = 0; i < dataDefinitionTotal; i++) {
+		for (int i = 0; i < total; i++) {
 			DEDataEngineTestUtil.insertDEDataDefinition(
 				_adminUser, _group, "Description" + i, "Name" + i,
 				_deDataDefinitionService);
@@ -870,7 +871,7 @@ public class DEDataDefinitionServiceTest {
 		DEDataEngineTestUtil.insertDEDataDefinition(
 			_adminUser, _group, "nonascii£", "Name", _deDataDefinitionService);
 
-		List<DEDataDefinition> deDataDefinitions = searchDataDefinition(
+		List<DEDataDefinition> deDataDefinitions = searchDEDataDefinitions(
 			_group, "nonascii£");
 
 		IdempotentRetryAssert.retryAssert(
@@ -885,15 +886,15 @@ public class DEDataDefinitionServiceTest {
 
 	@Test
 	public void testSearchNonexistingNameDescription() throws Exception {
-		int dataDefinitionTotal = 5;
+		int total = 5;
 
-		for (int i = 0; i < dataDefinitionTotal; i++) {
+		for (int i = 0; i < total; i++) {
 			DEDataEngineTestUtil.insertDEDataDefinition(
 				_adminUser, _group, "Description" + i, "Name" + i,
 				_deDataDefinitionService);
 		}
 
-		List<DEDataDefinition> deDataDefinitions = searchDataDefinition(
+		List<DEDataDefinition> deDataDefinitions = searchDEDataDefinitions(
 			_group, "NonExistingNameDescription");
 
 		IdempotentRetryAssert.retryAssert(
@@ -908,15 +909,15 @@ public class DEDataDefinitionServiceTest {
 
 	@Test
 	public void testSearchParcial() throws Exception {
-		int dataDefinitionTotal = 5;
+		int total = 5;
 
-		for (int i = 0; i < dataDefinitionTotal; i++) {
+		for (int i = 0; i < total; i++) {
 			DEDataEngineTestUtil.insertDEDataDefinition(
 				_adminUser, _group, "Description" + i, "Name" + i,
 				_deDataDefinitionService);
 		}
 
-		List<DEDataDefinition> deDataDefinitions = searchDataDefinition(
+		List<DEDataDefinition> deDataDefinitions = searchDEDataDefinitions(
 			_group, "Descrip");
 
 		IdempotentRetryAssert.retryAssert(
@@ -931,9 +932,9 @@ public class DEDataDefinitionServiceTest {
 
 	@Test
 	public void testSearchWithSpace() throws Exception {
-		int dataDefinitionTotal = 5;
+		int total = 5;
 
-		for (int i = 0; i < dataDefinitionTotal; i++) {
+		for (int i = 0; i < total; i++) {
 			DEDataEngineTestUtil.insertDEDataDefinition(
 				_adminUser, _group, "Description " + i, "Name" + i,
 				_deDataDefinitionService);
@@ -946,7 +947,7 @@ public class DEDataDefinitionServiceTest {
 		DEDataEngineTestUtil.insertDEDataDefinition(
 			_adminUser, _group, "Spaced ", "Name", _deDataDefinitionService);
 
-		List<DEDataDefinition> deDataDefinitions = searchDataDefinition(
+		List<DEDataDefinition> deDataDefinitions = searchDEDataDefinitions(
 			_group, "Spaced Words");
 
 		IdempotentRetryAssert.retryAssert(
@@ -1012,7 +1013,7 @@ public class DEDataDefinitionServiceTest {
 		}
 	}
 
-	protected int countDataDefinition(Group group) throws Exception {
+	protected int counDEtDataDefinitions(Group group) throws Exception {
 		DEDataDefinitionCountRequest deDataDefinitionCountRequest =
 			DEDataDefinitionRequestBuilder.countBuilder(
 			).inCompany(
@@ -1027,7 +1028,7 @@ public class DEDataDefinitionServiceTest {
 		return deDataDefinitionCountResponse.getTotal();
 	}
 
-	protected void deleteDataDefinition(User user, long deDataDefinitionId)
+	protected void deleteDEDataDefinition(User user, long deDataDefinitionId)
 		throws Exception {
 
 		PermissionThreadLocal.setPermissionChecker(
@@ -1042,7 +1043,7 @@ public class DEDataDefinitionServiceTest {
 		_deDataDefinitionService.execute(deDataDefinitionDeleteRequest);
 	}
 
-	protected DEDataDefinition getDataDefinition(
+	protected DEDataDefinition getDEDataDefinition(
 			User user, long deDataDefinitionId)
 		throws Exception {
 
@@ -1083,7 +1084,7 @@ public class DEDataDefinitionServiceTest {
 		return deDataDefinitionListResponse.getDEDataDefinitions();
 	}
 
-	protected int searchCountDataDefinition(Group group, String keywords) {
+	protected int searchCountDEDataDefinitions(Group group, String keywords) {
 		DEDataDefinitionSearchCountRequest deDataDefinitionSearchCountRequest =
 			DEDataDefinitionRequestBuilder.searchCountBuilder(
 			).havingKeywords(
@@ -1102,7 +1103,7 @@ public class DEDataDefinitionServiceTest {
 		return deDataDefinitionSearchCountResponse.getTotal();
 	}
 
-	protected List<DEDataDefinition> searchDataDefinition(
+	protected List<DEDataDefinition> searchDEDataDefinitions(
 			Group group, String keywords)
 		throws Exception {
 

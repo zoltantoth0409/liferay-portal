@@ -44,6 +44,8 @@ public class DEDataDefinitionSearchExecutor {
 			DEDataDefinitionSearchRequest deDataDefinitionSearchRequest)
 		throws Exception {
 
+		List<DEDataDefinition> deDataDefinitions = new ArrayList<>();
+
 		List<DDMStructure> ddmStructures = ddmStructureService.search(
 			deDataDefinitionSearchRequest.getCompanyId(),
 			new long[] {deDataDefinitionSearchRequest.getGroupId()},
@@ -52,8 +54,6 @@ public class DEDataDefinitionSearchExecutor {
 			WorkflowConstants.STATUS_ANY,
 			deDataDefinitionSearchRequest.getStart(),
 			deDataDefinitionSearchRequest.getEnd(), null);
-
-		List<DEDataDefinition> deDataDefinitions = new ArrayList<>();
 
 		for (DDMStructure ddmStructure : ddmStructures) {
 			deDataDefinitions.add(
