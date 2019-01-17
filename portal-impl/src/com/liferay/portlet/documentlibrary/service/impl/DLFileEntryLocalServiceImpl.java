@@ -2485,14 +2485,8 @@ public class DLFileEntryLocalServiceImpl
 			autoCheckIn = true;
 		}
 
-		boolean updateDLStore = false;
-
-		if ((file != null) || (is != null)) {
-			updateDLStore = true;
-		}
-
 		if (autoCheckIn) {
-			if (updateDLStore) {
+			if ((file != null) || (is != null)) {
 				dlFileEntry = _checkOutDLFileEntryModel(
 					userId, fileEntryId, fileEntryTypeId, serviceContext);
 			}
@@ -2568,7 +2562,7 @@ public class DLFileEntryLocalServiceImpl
 
 			// File
 
-			if (updateDLStore) {
+			if ((file != null) || (is != null)) {
 				DLStoreUtil.deleteFile(
 					user.getCompanyId(), dlFileEntry.getDataRepositoryId(),
 					dlFileEntry.getName(), version);
