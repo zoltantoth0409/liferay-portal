@@ -377,6 +377,7 @@ public class EditMessageMVCActionCommand extends BaseMVCActionCommand {
 		long messageId = ParamUtil.getLong(actionRequest, "messageId");
 
 		long groupId = themeDisplay.getScopeGroupId();
+		long siteGroupId = themeDisplay.getSiteGroupId();
 		long categoryId = ParamUtil.getLong(actionRequest, "mbCategoryId");
 		long threadId = ParamUtil.getLong(actionRequest, "threadId");
 		long parentMessageId = ParamUtil.getLong(
@@ -385,7 +386,7 @@ public class EditMessageMVCActionCommand extends BaseMVCActionCommand {
 		String body = ParamUtil.getString(actionRequest, "body");
 
 		MBGroupServiceSettings mbGroupServiceSettings =
-			MBGroupServiceSettings.getInstance(groupId);
+			MBGroupServiceSettings.getInstance(siteGroupId);
 
 		List<ObjectValuePair<String, InputStream>> inputStreamOVPs =
 			new ArrayList<>(5);
