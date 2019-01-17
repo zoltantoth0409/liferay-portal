@@ -88,10 +88,10 @@ public class JournalCTConfigurationTest {
 			);
 
 		Assert.assertNotNull(
-			"Resource entity by resource entity id not found", resourceEntity);
+			"Resource entity by resource entity ID not found", resourceEntity);
 
 		Assert.assertEquals(
-			"Resource entity by resource entity id is invalid",
+			"Resource entity by resource entity ID is invalid",
 			_journalArticleResource, resourceEntity);
 
 		Class<JournalArticleResource> resourceClass =
@@ -121,7 +121,7 @@ public class JournalCTConfigurationTest {
 		);
 
 		Assert.assertEquals(
-			"Resource entity id by resource entity is invalid",
+			"Resource entity ID by resource entity is invalid",
 			_journalArticleResource.getResourcePrimKey(), resourceEntityId);
 
 		resourceEntityId = (long)ctConfigurationOptional.map(
@@ -138,7 +138,7 @@ public class JournalCTConfigurationTest {
 		);
 
 		Assert.assertEquals(
-			"Resource entity id by version entity is invalid",
+			"Resource entity ID by version entity is invalid",
 			_journalArticleResource.getResourcePrimKey(), resourceEntityId);
 
 		JournalArticle versionEntity =
@@ -153,10 +153,10 @@ public class JournalCTConfigurationTest {
 			);
 
 		Assert.assertNotNull(
-			"Version entity by version entity id not found", versionEntity);
+			"Version entity by version entity ID not found", versionEntity);
 
 		Assert.assertEquals(
-			"Version entity by version entity id is invalid", _journalArticle,
+			"Version entity by version entity ID is invalid", _journalArticle,
 			versionEntity);
 
 		Class<JournalArticle> versionClass =
@@ -185,7 +185,7 @@ public class JournalCTConfigurationTest {
 		);
 
 		Assert.assertEquals(
-			"Version entity id by resource entity is invalid",
+			"Version entity ID by resource entity is invalid",
 			_journalArticle.getId(), versionEntityId);
 
 		versionEntityId = (long)ctConfigurationOptional.map(
@@ -202,7 +202,7 @@ public class JournalCTConfigurationTest {
 		);
 
 		Assert.assertEquals(
-			"Version entity id by version entity is invalid",
+			"Version entity ID by version entity is invalid",
 			_journalArticle.getId(), versionEntityId);
 
 		int versionEntityStatus = ctConfigurationOptional.map(
