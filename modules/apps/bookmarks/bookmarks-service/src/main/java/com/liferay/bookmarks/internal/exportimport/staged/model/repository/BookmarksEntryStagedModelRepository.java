@@ -187,7 +187,7 @@ public class BookmarksEntryStagedModelRepository
 
 	public BookmarksEntry updateStagedModel(
 			PortletDataContext portletDataContext,
-			BookmarksEntry bookmarksEntry, long existingEntityId)
+			BookmarksEntry bookmarksEntry, long existingEntryId)
 		throws PortalException {
 
 		long userId = portletDataContext.getUserId(
@@ -197,7 +197,7 @@ public class BookmarksEntryStagedModelRepository
 			bookmarksEntry);
 
 		return _bookmarksEntryLocalService.updateEntry(
-			userId, existingEntityId, bookmarksEntry.getGroupId(),
+			userId, existingEntryId, bookmarksEntry.getGroupId(),
 			bookmarksEntry.getFolderId(), bookmarksEntry.getName(),
 			bookmarksEntry.getUrl(), bookmarksEntry.getDescription(),
 			serviceContext);
