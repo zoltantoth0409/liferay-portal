@@ -401,14 +401,14 @@ public class DLFileEntryLocalServiceImpl
 			long expirationTime, ServiceContext serviceContext)
 		throws PortalException {
 
+		DLFileEntry dlFileEntry = _checkOutDLFileEntryModel(
+			userId, fileEntryId, fileEntryTypeId, owner, expirationTime,
+			serviceContext);
+
 		DLFileVersion dlFileVersion =
 			dlFileVersionLocalService.getLatestFileVersion(fileEntryId, false);
 
 		String version = dlFileVersion.getVersion();
-
-		DLFileEntry dlFileEntry = _checkOutDLFileEntryModel(
-			userId, fileEntryId, fileEntryTypeId, owner, expirationTime,
-			serviceContext);
 
 		if (!version.equals(
 				DLFileEntryConstants.PRIVATE_WORKING_COPY_VERSION)) {
