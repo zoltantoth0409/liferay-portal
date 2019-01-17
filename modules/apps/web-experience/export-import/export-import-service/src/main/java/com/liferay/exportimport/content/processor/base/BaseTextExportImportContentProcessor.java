@@ -74,9 +74,11 @@ import com.liferay.portal.util.PropsValues;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -1619,8 +1621,6 @@ public class BaseTextExportImportContentProcessor
 				}
 
 				if (!relativePortalURL) {
-					List<String> hostNames = new ArrayList<>();
-
 					String portalURL = pathContext;
 
 					if (Validator.isNull(portalURL)) {
@@ -1637,17 +1637,19 @@ public class BaseTextExportImportContentProcessor
 						}
 					}
 
+					Set<String> hostNames = new HashSet<>();
+
 					hostNames.add(portalURL);
 
 					List<Company> companies =
 						CompanyLocalServiceUtil.getCompanies();
 
 					for (Company company : companies) {
-						hostNames.add(
-							Http.HTTP_WITH_SLASH + company.getWebId());
-						hostNames.add(
-							Http.HTTPS_WITH_SLASH + company.getWebId());
-						hostNames.add(company.getWebId());
+						String virtualHostname = company.getVirtualHostname();
+
+						hostNames.add(Http.HTTP_WITH_SLASH + virtualHostname);
+						hostNames.add(Http.HTTPS_WITH_SLASH + virtualHostname);
+						hostNames.add(virtualHostname);
 					}
 
 					for (String hostName : hostNames) {
