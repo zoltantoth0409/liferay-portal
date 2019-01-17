@@ -55,6 +55,7 @@ import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.MapUtil;
@@ -1642,6 +1643,10 @@ public class BaseTextExportImportContentProcessor
 						CompanyLocalServiceUtil.getCompanies();
 
 					for (Company company : companies) {
+						hostNames.add(
+							Http.HTTP_WITH_SLASH + company.getWebId());
+						hostNames.add(
+							Http.HTTPS_WITH_SLASH + company.getWebId());
 						hostNames.add(company.getWebId());
 					}
 
@@ -1652,9 +1657,18 @@ public class BaseTextExportImportContentProcessor
 							curBeginPos, endPos);
 
 						if (substring.startsWith(hostName)) {
-							absolutePortalURL = true;
+							if (content.regionMatches(
+									true, curBeginPos - _OFFSET_HREF_ATTRIBUTE,
+									"href=", 0,
+									5) ||
+								content.regionMatches(
+									true, curBeginPos - _OFFSET_SRC_ATTRIBUTE,
+									"src=", 0, 4)) {
 
-							continue;
+								absolutePortalURL = true;
+
+								continue;
+							}
 						}
 					}
 				}
