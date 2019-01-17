@@ -104,8 +104,10 @@ public class DLFileEntryMetadataLocalServiceTest {
 		List<com.liferay.dynamic.data.mapping.kernel.DDMStructure>
 			ddmStructures = _dlFileEntryType.getDDMStructures();
 
+		DDMStructure ddmStructure = ddmStructures.get(0);
+
 		_ddmStructure = DDMStructureLocalServiceUtil.getStructure(
-			ddmStructures.get(0).getStructureId());
+			ddmStructure.getStructureId());
 
 		Map<String, DDMFormValues> ddmFormValuesMap = setUpDDMFormValuesMap(
 			_ddmStructure.getStructureKey(), user.getLocale());
