@@ -39,9 +39,9 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.security.sso.openid.OpenIdProvider;
 import com.liferay.portal.security.sso.openid.OpenIdProviderRegistry;
-import com.liferay.portal.security.sso.openid.OpenIdServiceException;
 import com.liferay.portal.security.sso.openid.OpenIdServiceHandler;
-import com.liferay.portal.security.sso.openid.StrangersNotAllowedException;
+import com.liferay.portal.security.sso.openid.exception.OpenIdServiceException;
+import com.liferay.portal.security.sso.openid.exception.StrangersNotAllowedException;
 import com.liferay.portal.security.sso.openid.internal.constants.OpenIdWebKeys;
 
 import java.io.IOException;
