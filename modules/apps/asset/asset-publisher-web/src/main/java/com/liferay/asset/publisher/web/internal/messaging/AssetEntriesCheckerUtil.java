@@ -100,7 +100,7 @@ public class AssetEntriesCheckerUtil {
 			(com.liferay.portal.kernel.model.PortletPreferences
 				portletPreferences) -> {
 					_checkAssetEntries(portletPreferences);
-				});
+			});
 
 		actionableDynamicQuery.performActions();
 	}
