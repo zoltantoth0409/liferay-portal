@@ -1618,7 +1618,7 @@ public class BaseTextExportImportContentProcessor
 				}
 
 				if (!relativePortalURL) {
-					List<String> portalHosts = new ArrayList<>();
+					List<String> hostNames = new ArrayList<>();
 
 					String portalURL = pathContext;
 
@@ -1636,22 +1636,22 @@ public class BaseTextExportImportContentProcessor
 						}
 					}
 
-					portalHosts.add(portalURL);
+					hostNames.add(portalURL);
 
 					List<Company> companies =
 						CompanyLocalServiceUtil.getCompanies();
 
 					for (Company company : companies) {
-						portalHosts.add(company.getWebId());
+						hostNames.add(company.getWebId());
 					}
 
-					for (String portalHost : portalHosts) {
-						int curBeginPos = beginPos - portalHost.length();
+					for (String hostName : hostNames) {
+						int curBeginPos = beginPos - hostName.length();
 
 						String substring = content.substring(
 							curBeginPos, endPos);
 
-						if (substring.startsWith(portalHost)) {
+						if (substring.startsWith(hostName)) {
 							absolutePortalURL = true;
 
 							continue;
