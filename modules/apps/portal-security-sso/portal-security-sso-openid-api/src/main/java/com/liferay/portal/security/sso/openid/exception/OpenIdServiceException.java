@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.security.sso.openid;
+package com.liferay.portal.security.sso.openid.exception;
 
 import com.liferay.portal.kernel.exception.PortalException;
 
