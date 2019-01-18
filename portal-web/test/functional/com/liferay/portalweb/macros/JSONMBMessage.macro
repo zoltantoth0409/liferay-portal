@@ -15,8 +15,7 @@ definition {
 				-d inputStreamOVPs=[] \
 				-d anonymous=true \
 				-d priority=0 \
-				-d allowPingbacks=true \
-				-d entryURL='javascript:alert(3)'
+				-d allowPingbacks=true 
 		''';
 
 		echo("## Adding a 'Message' with the following info using JSONWS:");
