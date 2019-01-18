@@ -1231,7 +1231,7 @@ definition {
 
 			Pause(locator1 = "1000");
 
-			AssertConsoleTextNotPresent(value1 = "OutOfMemoryError");
+			AssertConsoleTextNotPresent(value1 = "java.lang.OutOfMemoryError");
 		}
 	}
 
