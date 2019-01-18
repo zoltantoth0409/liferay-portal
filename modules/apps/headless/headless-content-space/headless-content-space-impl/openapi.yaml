@@ -29,13 +29,11 @@ paths:
         - in: query
           name: page
           schema:
-            format: int
-            type: number
+            type: integer
         - in: query
           name: per_page
           schema:
-            format: int
-            type: number
+            type: integer
       responses:
         200:
           content:
