@@ -45,7 +45,7 @@ public class LogicalEvaluationTest {
 			expected,
 			evaluate("true && ((false || true) && (false || false))"));
 
-		expected = ((true && 2 > 1) || (4.0 < 3)) && ((2 + 1) > 5 || true);
+		expected = ((true && (2 > 1)) || (4.0 < 3)) && (((2 + 1) > 5) || true);
 
 		Assert.assertEquals(
 			expected,
