@@ -74,8 +74,8 @@ public class MBThreadServiceImpl extends MBThreadServiceBaseImpl {
 
 	@Override
 	public List<MBThread> getGroupThreads(
-			long groupId, long userId, Date modifiedDate, int status, int start,
-			int end)
+			long groupId, long userId, Date modifiedDate,
+			boolean includeAnonymous, int status, int start, int end)
 		throws PortalException {
 
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
@@ -93,8 +93,17 @@ public class MBThreadServiceImpl extends MBThreadServiceBaseImpl {
 			return Collections.emptyList();
 		}
 
-		List<Long> threadIds = mbMessageFinder.filterFindByG_U_MD_C_S(
-			groupId, userId, modifiedDate, categoryIds, status, start, end);
+		List<Long> threadIds = null;
+
+		if (includeAnonymous) {
+			threadIds = mbMessageFinder.filterFindByG_U_MD_C_S(
+				groupId, userId, modifiedDate, categoryIds, status, start, end);
+		}
+		else {
+			threadIds = mbMessageFinder.filterFindByG_U_MD_C_A_S(
+				groupId, userId, modifiedDate, categoryIds, false, status,
+				start, end);
+		}
 
 		List<MBThread> threads = new ArrayList<>(threadIds.size());
 
@@ -105,6 +114,16 @@ public class MBThreadServiceImpl extends MBThreadServiceBaseImpl {
 		}
 
 		return threads;
+	}
+
+	@Override
+	public List<MBThread> getGroupThreads(
+			long groupId, long userId, Date modifiedDate, int status, int start,
+			int end)
+		throws PortalException {
+
+		return mbThreadService.getGroupThreads(
+			groupId, userId, modifiedDate, true, status, start, end);
 	}
 
 	@Override
@@ -184,7 +203,8 @@ public class MBThreadServiceImpl extends MBThreadServiceBaseImpl {
 
 	@Override
 	public int getGroupThreadsCount(
-		long groupId, long userId, Date modifiedDate, int status) {
+		long groupId, long userId, Date modifiedDate, boolean includeAnonymous,
+		int status) {
 
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			QueryDefinition<MBThread> queryDefinition = new QueryDefinition<>(
@@ -201,8 +221,21 @@ public class MBThreadServiceImpl extends MBThreadServiceBaseImpl {
 			return 0;
 		}
 
-		return mbMessageFinder.filterCountByG_U_MD_C_S(
-			groupId, userId, modifiedDate, categoryIds, status);
+		if (includeAnonymous) {
+			return mbMessageFinder.filterCountByG_U_MD_C_S(
+				groupId, userId, modifiedDate, categoryIds, status);
+		}
+
+		return mbMessageFinder.filterCountByG_U_MD_C_A_S(
+			groupId, userId, modifiedDate, categoryIds, false, status);
+	}
+
+	@Override
+	public int getGroupThreadsCount(
+		long groupId, long userId, Date modifiedDate, int status) {
+
+		return mbThreadService.getGroupThreadsCount(
+			groupId, userId, modifiedDate, true, status);
 	}
 
 	@Override
