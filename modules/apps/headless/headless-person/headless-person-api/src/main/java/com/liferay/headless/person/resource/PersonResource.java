@@ -32,7 +32,7 @@ import com.liferay.portal.kernel.model.Company;
 public interface PersonResource extends ActionRouter<Person> {
 
 	@Actions.Create
-	public Person createPerson(@Body Person person) throws PortalException;
+	public Person addPerson(@Body Person person) throws PortalException;
 
 	@Actions.Remove
 	public void deletePerson(@Id long personId) throws PortalException;
@@ -47,6 +47,10 @@ public interface PersonResource extends ActionRouter<Person> {
 
 	@Actions.Replace
 	public Person replacePerson(@Id long personId, @Body Person person)
+		throws PortalException;
+
+	@Actions.Update
+	public Person updatePerson(@Id long personId, @Body Person person)
 		throws PortalException;
 
 }

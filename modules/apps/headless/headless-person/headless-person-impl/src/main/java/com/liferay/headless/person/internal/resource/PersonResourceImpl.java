@@ -34,7 +34,7 @@ import org.osgi.service.component.annotations.Component;
 public class PersonResourceImpl implements PersonResource {
 
 	@Override
-	public Person createPerson(Person person) throws PortalException {
+	public Person addPerson(Person person) throws PortalException {
 		return null;
 	}
 
@@ -56,6 +56,13 @@ public class PersonResourceImpl implements PersonResource {
 
 	@Override
 	public Person replacePerson(long personId, Person person)
+		throws PortalException {
+
+		return null;
+	}
+
+	@Override
+	public Person updatePerson(long personId, Person person)
 		throws PortalException {
 
 		return null;
