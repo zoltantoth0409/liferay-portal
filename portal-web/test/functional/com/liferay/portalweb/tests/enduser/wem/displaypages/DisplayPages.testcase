@@ -44,7 +44,7 @@ definition {
 	@description = "User can add a display page with fragments."
 	@priority = "5"
 	test AddDisplayPage {
-		property portal.acceptance = "false";
+		property portal.acceptance = "true";
 
 		PageEditor.addFragment(
 			collectionName = "Collection Name",
