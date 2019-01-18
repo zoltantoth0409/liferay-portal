@@ -40,8 +40,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true,
 	property = "model.class.name=com.liferay.bookmarks.model.BookmarksEntry",
 	service = {
-		BookmarksEntryStagedModelRepository.class,
-		StagedModelRepository.class
+		BookmarksEntryStagedModelRepository.class, StagedModelRepository.class
 	}
 )
 public class BookmarksEntryStagedModelRepository
@@ -175,8 +174,8 @@ public class BookmarksEntryStagedModelRepository
 	}
 
 	public BookmarksEntry updateStagedModel(
-		PortletDataContext portletDataContext,
-		BookmarksEntry bookmarksEntry, long existingEntityId)
+			PortletDataContext portletDataContext,
+			BookmarksEntry bookmarksEntry, long existingEntityId)
 		throws PortalException {
 
 		long userId = portletDataContext.getUserId(
