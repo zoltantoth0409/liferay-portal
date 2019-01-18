@@ -110,7 +110,7 @@ definition {
 
 		DMNavigator.gotoDocumentCP(dmDocumentTitle = "DM Document Title");
 
-		DMDocument.viewCP(dmDocumentSize = "0KB", dmDocumentTitle = "DM Document Title");
+		DMDocument.viewCP(dmDocumentSize = "259B", dmDocumentTitle = "DM Document Title");
 	}
 
 	@priority = "5"
@@ -133,7 +133,7 @@ definition {
 
 		DMNavigator.gotoDocumentCP(dmDocumentTitle = "DM Document Title");
 
-		DMDocument.viewCP(dmDocumentSize = "0KB", dmDocumentTitle = "DM Document Title");
+		DMDocument.viewCP(dmDocumentSize = "259B", dmDocumentTitle = "DM Document Title");
 
 		Navigator.openURL();
 
@@ -211,7 +211,7 @@ definition {
 
 		DMNavigator.gotoDocumentCP(dmDocumentTitle = "DM Document Title");
 
-		DMDocument.viewCP(dmDocumentSize = "0KB", dmDocumentTitle = "DM Document Title");
+		DMDocument.viewCP(dmDocumentSize = "259B", dmDocumentTitle = "DM Document Title");
 
 		Navigator.openURL();
 
@@ -279,7 +279,7 @@ definition {
 
 		DMNavigator.gotoDocumentCP(dmDocumentTitle = "DM Document Title");
 
-		DMDocument.viewCP(dmDocumentSize = "0KB", dmDocumentTitle = "DM Document Title");
+		DMDocument.viewCP(dmDocumentSize = "259B", dmDocumentTitle = "DM Document Title");
 	}
 
 	@priority = "4"

@@ -236,7 +236,7 @@ definition {
 		);
 
 		KBArticle.viewKBArticleWithAttachmentCP(
-			kbArticleAttachment = "Document_1.txt (0KB) Delete",
+			kbArticleAttachment = "Document_1.txt (259B) Delete",
 			kbArticleContent = "Knowledge Base Article Content",
 			kbArticleTitle = "Knowledge Base Article Title"
 		);
@@ -731,7 +731,7 @@ definition {
 		);
 
 		KBArticle.viewKBArticleWithAttachmentCP(
-			kbArticleAttachment = "Document_1.txt (0KB) Delete",
+			kbArticleAttachment = "Document_1.txt (259B) Delete",
 			kbArticleContent = "Knowledge Base Article Content Edit",
 			kbArticleTitle = "Knowledge Base Article Title Edit"
 		);
