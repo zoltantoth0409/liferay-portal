@@ -109,12 +109,12 @@ public class GoogleLoginErrorMVCRenderCommand implements MVCRenderCommand {
 		new HashMap<String, Class<? extends Throwable>>() {
 			{
 				put(
+					StrangersNotAllowedException.class.getSimpleName(),
+					StrangersNotAllowedException.class);
+				put(
 					UserEmailAddressException.MustNotUseCompanyMx.class.
 						getSimpleName(),
 					UserEmailAddressException.MustNotUseCompanyMx.class);
-				put(
-					StrangersNotAllowedException.class.getSimpleName(),
-					StrangersNotAllowedException.class);
 			}
 		};
 
