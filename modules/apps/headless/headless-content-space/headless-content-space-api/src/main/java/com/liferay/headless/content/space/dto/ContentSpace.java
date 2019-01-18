@@ -33,6 +33,10 @@ public interface ContentSpace extends Identifier<Long> {
 	@Vocabulary.Field("availableLanguages")
 	public List<String> getAvailableLanguages();
 
+	@Vocabulary.Field("creator")
+	@Vocabulary.LinkTo(resource = Person.class)
+	public Long getCreatorId();
+
 	@Vocabulary.Field("description")
 	public String getDescription();
 
@@ -41,9 +45,5 @@ public interface ContentSpace extends Identifier<Long> {
 
 	@Vocabulary.Field("name")
 	public String getName(Locale locale);
-
-	@Vocabulary.Field("creator")
-	@Vocabulary.LinkTo(resource = Person.class)
-	public Long getCreatorId();
 
 }

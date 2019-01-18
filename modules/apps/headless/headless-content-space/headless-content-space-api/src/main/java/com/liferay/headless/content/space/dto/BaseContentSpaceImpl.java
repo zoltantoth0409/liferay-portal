@@ -28,6 +28,11 @@ public abstract class BaseContentSpaceImpl implements ContentSpace {
 	}
 
 	@Override
+	public Long getCreatorId() {
+		return _creatorId;
+	}
+
+	@Override
 	public String getDescription() {
 		return _description;
 	}
@@ -41,6 +46,10 @@ public abstract class BaseContentSpaceImpl implements ContentSpace {
 		_availableLanguages = availableLanguages;
 	}
 
+	public void setCreatorId(Long creatorId) {
+		_creatorId = creatorId;
+	}
+
 	public void setDescription(String description) {
 		_description = description;
 	}
@@ -50,18 +59,8 @@ public abstract class BaseContentSpaceImpl implements ContentSpace {
 	}
 
 	private List<String> _availableLanguages;
+	private Long _creatorId;
 	private String _description;
 	private long _id;
-
-	@Override
-	public Long getCreatorId() {
-		return creatorId;
-	}
-
-	public void setCreatorId(Long creatorId) {
-		this.creatorId = creatorId;
-	}
-
-	private Long creatorId;
 
 }
