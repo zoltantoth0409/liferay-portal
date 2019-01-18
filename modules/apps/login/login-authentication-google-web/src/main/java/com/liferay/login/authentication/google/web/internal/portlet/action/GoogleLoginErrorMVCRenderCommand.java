@@ -88,7 +88,6 @@ public class GoogleLoginErrorMVCRenderCommand implements MVCRenderCommand {
 
 		HttpServletRequest httpServletRequest = _portal.getHttpServletRequest(
 			renderRequest);
-
 		HttpServletResponse httpServletResponse =
 			_portal.getHttpServletResponse(renderResponse);
 
