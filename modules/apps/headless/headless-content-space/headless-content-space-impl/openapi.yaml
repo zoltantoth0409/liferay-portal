@@ -7,7 +7,7 @@ components:
             type: string
           type: array
         author:
-          $ref: '../../headless-person/headless-person-impl/openapi.yaml/components/schemas/Person'
+          $ref: "../../headless-person/headless-person-impl/openapi.yaml/components/schemas/Person"
         description:
           type: string
         id:
@@ -18,12 +18,12 @@ components:
           type: string
       type: object
 info:
-  description: ''
-  title: ''
+  description: ""
+  title: ""
   version: 1.0.0
 openapi: 3.0.1
 paths:
-  '/content-space':
+  "/content-space":
     get:
       parameters:
         - in: query
@@ -37,13 +37,13 @@ paths:
       responses:
         200:
           content:
-            '*/*':
+            "*/*":
               schema:
                 items:
-                  $ref: '#/components/schemas/ContentSpace'
+                  $ref: "#/components/schemas/ContentSpace"
                 type: array
-          description: ''
-  '/content-space/{id}':
+          description: ""
+  "/content-space/{id}":
     get:
       parameters:
         - in: path
@@ -54,7 +54,7 @@ paths:
       responses:
         200:
           content:
-            '*/*':
+            "*/*":
               schema:
-                $ref: '#/components/schemas/ContentSpace'
-          description: ''
+                $ref: "#/components/schemas/ContentSpace"
+          description: ""
