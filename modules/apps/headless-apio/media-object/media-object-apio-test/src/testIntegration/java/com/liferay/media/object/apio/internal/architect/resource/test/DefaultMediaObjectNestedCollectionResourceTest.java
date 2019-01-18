@@ -152,7 +152,8 @@ public class DefaultMediaObjectNestedCollectionResourceTest
 		Assert.assertEquals(
 			"Preview-1000x0",
 			adaptiveMedia1.getValueOptional(
-				AMAttribute.getConfigurationUuidAMAttribute()).get());
+				AMAttribute.getConfigurationUuidAMAttribute()
+			).get());
 
 		AdaptiveMedia<AMImageProcessor> adaptiveMedia2 = adaptiveMedias.get(1);
 
@@ -166,7 +167,8 @@ public class DefaultMediaObjectNestedCollectionResourceTest
 		Assert.assertEquals(
 			"Thumbnail-300x300",
 			adaptiveMedia2.getValueOptional(
-				AMAttribute.getConfigurationUuidAMAttribute()).get());
+				AMAttribute.getConfigurationUuidAMAttribute()
+			).get());
 	}
 
 	@Test
