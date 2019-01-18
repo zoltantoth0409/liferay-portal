@@ -100,10 +100,10 @@ public class TemplateRendererTag extends ParamAndPropertyAncestorTagImpl {
 			return _module;
 		}
 
-		HttpServletRequest request =
+		HttpServletRequest httpServletRequest =
 			(HttpServletRequest)pageContext.getRequest();
 
-		String namespace = NPMResolvedPackageNameUtil.get(request);
+		String namespace = NPMResolvedPackageNameUtil.get(httpServletRequest);
 
 		return namespace + "/" + _module;
 	}
