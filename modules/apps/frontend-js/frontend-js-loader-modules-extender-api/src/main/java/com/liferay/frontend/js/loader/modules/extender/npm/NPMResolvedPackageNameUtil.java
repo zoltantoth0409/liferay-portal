@@ -29,10 +29,10 @@ import javax.servlet.http.HttpServletRequest;
 public class NPMResolvedPackageNameUtil {
 
 	public static String get(HttpServletRequest request) {
+		ServletContext servletContext = request.getServletContext();
+
 		String portletResource = ParamUtil.getString(
 			request, "portletResource");
-
-		ServletContext servletContext = request.getServletContext();
 
 		if (Validator.isNotNull(portletResource)) {
 			PortletBag portletBag = PortletBagPool.get(
