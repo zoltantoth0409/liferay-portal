@@ -15,17 +15,18 @@
 package com.liferay.headless.person.dto;
 
 import com.liferay.apio.architect.annotation.Id;
-import com.liferay.apio.architect.annotation.Vocabulary;
+import com.liferay.apio.architect.annotation.Vocabulary.Field;
+import com.liferay.apio.architect.annotation.Vocabulary.Type;
 import com.liferay.apio.architect.identifier.Identifier;
 
 /**
  * @author Brian Wing Shun Chan
  * @generated
  */
-@Vocabulary.Type("Person")
+@Type("Person")
 public interface Person extends Identifier<Long> {
 
-	@Vocabulary.Field("familyName")
+	@Field("familyName")
 	public String getFamilyName();
 
 	@Id

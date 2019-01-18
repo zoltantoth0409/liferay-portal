@@ -38,7 +38,7 @@ import org.osgi.service.component.annotations.Component;
 public class BlogPostingResourceImpl implements BlogPostingResource {
 
 	@Override
-	public BlogPosting createBlogPosting(
+	public BlogPosting addBlogPosting(
 			@ParentId(ContentSpace.class) long groupId,
 			@Body BlogPosting blogPosting)
 		throws PortalException {

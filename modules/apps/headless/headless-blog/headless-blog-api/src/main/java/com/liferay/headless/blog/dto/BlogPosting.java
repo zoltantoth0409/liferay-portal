@@ -15,14 +15,12 @@
 package com.liferay.headless.blog.dto;
 
 import com.liferay.apio.architect.annotation.Id;
-import com.liferay.apio.architect.annotation.Vocabulary;
+import com.liferay.apio.architect.annotation.Vocabulary.Field;
+import com.liferay.apio.architect.annotation.Vocabulary.Type;
 import com.liferay.apio.architect.identifier.Identifier;
-import com.liferay.headless.content.space.dto.ContentSpace;
 
 import java.util.Date;
 import java.util.List;
-
-import static com.liferay.apio.architect.annotation.Vocabulary.*;
 
 /**
  * @author Alejandro Hernández

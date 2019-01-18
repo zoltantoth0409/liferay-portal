@@ -14,7 +14,10 @@
 
 package com.liferay.headless.blog.resource;
 
-import com.liferay.apio.architect.annotation.Actions;
+import com.liferay.apio.architect.annotation.Actions.Create;
+import com.liferay.apio.architect.annotation.Actions.Remove;
+import com.liferay.apio.architect.annotation.Actions.Replace;
+import com.liferay.apio.architect.annotation.Actions.Retrieve;
 import com.liferay.apio.architect.annotation.Body;
 import com.liferay.apio.architect.annotation.Id;
 import com.liferay.apio.architect.annotation.ParentId;
@@ -25,8 +28,6 @@ import com.liferay.headless.blog.dto.BlogPosting;
 import com.liferay.headless.content.space.dto.ContentSpace;
 import com.liferay.portal.kernel.exception.PortalException;
 
-import static com.liferay.apio.architect.annotation.Actions.*;
-
 /**
  * @author Víctor Galán
  * @generated
@@ -34,7 +35,7 @@ import static com.liferay.apio.architect.annotation.Actions.*;
 public interface BlogPostingResource extends ActionRouter<BlogPosting> {
 
 	@Create
-	public BlogPosting createBlogPosting(
+	public BlogPosting addBlogPosting(
 			@ParentId(ContentSpace.class) long contentSpaceId,
 			@Body BlogPosting blogPosting)
 		throws PortalException;
