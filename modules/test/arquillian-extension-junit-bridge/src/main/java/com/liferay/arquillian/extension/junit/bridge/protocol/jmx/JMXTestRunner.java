@@ -54,8 +54,10 @@ public class JMXTestRunner
 	}
 
 	private static byte[] _toByteArray(TestResult testResult) {
-		try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-			ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream)) {
+		try (ByteArrayOutputStream byteArrayOutputStream =
+			new ByteArrayOutputStream();
+			ObjectOutputStream objectOutputStream =
+			new ObjectOutputStream(byteArrayOutputStream)) {
 
 			objectOutputStream.writeObject(testResult);
 
