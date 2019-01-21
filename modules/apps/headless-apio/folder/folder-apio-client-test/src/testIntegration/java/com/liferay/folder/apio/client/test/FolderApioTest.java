@@ -249,7 +249,7 @@ public class FolderApioTest {
 			folderHref
 		).then(
 		).statusCode(
-			200
+			204
 		);
 	}
 
