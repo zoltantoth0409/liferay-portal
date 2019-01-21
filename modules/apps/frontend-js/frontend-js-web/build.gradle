@@ -1,6 +1,7 @@
-XXX
 import com.liferay.gradle.plugins.node.tasks.NpmRunTask
 import com.liferay.gradle.util.copy.StripPathSegmentsAction
+
+XXX
 
 task buildClay(type: Copy)
 task buildJQuery(type: Copy)
