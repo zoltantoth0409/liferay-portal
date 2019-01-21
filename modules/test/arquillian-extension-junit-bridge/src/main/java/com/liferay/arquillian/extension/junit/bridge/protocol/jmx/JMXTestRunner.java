@@ -37,12 +37,12 @@ public class JMXTestRunner
 	@Override
 	public byte[] runTestMethod(String className, String methodName) {
 		try {
-			TestRunner runner = TestRunners.getTestRunner(
+			TestRunner testRunner = TestRunners.getTestRunner(
 				JMXTestRunner.class.getClassLoader());
 
 			Class<?> testClass = _classLoader.loadClass(className);
 
-			return _toByteArray(runner.execute(testClass, methodName));
+			return _toByteArray(testRunner.execute(testClass, methodName));
 		}
 		catch (ClassNotFoundException cnfe) {
 			TestResult testResult = TestResult.failed(cnfe);
@@ -54,13 +54,14 @@ public class JMXTestRunner
 	}
 
 	private static byte[] _toByteArray(TestResult testResult) {
-		try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			ObjectOutputStream oos = new ObjectOutputStream(baos)) {
+		try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+			ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream)) {
 
-			oos.writeObject(testResult);
-			oos.flush();
+			objectOutputStream.writeObject(testResult);
 
-			return baos.toByteArray();
+			objectOutputStream.flush();
+
+			return byteArrayOutputStream.toByteArray();
 		}
 		catch (IOException ioe) {
 			throw new RuntimeException(
