@@ -55,9 +55,9 @@ public class JMXTestRunner
 
 	private static byte[] _toByteArray(TestResult testResult) {
 		try (ByteArrayOutputStream byteArrayOutputStream =
-			new ByteArrayOutputStream();
-			ObjectOutputStream objectOutputStream =
-			new ObjectOutputStream(byteArrayOutputStream)) {
+				new ByteArrayOutputStream();
+			ObjectOutputStream objectOutputStream = new ObjectOutputStream(
+				byteArrayOutputStream)) {
 
 			objectOutputStream.writeObject(testResult);
 
@@ -67,7 +67,7 @@ public class JMXTestRunner
 		}
 		catch (IOException ioe) {
 			throw new RuntimeException(
-				"Could not serialize object: " + testResult, ioe);
+				"Unable to serialize object: " + testResult, ioe);
 		}
 	}
 

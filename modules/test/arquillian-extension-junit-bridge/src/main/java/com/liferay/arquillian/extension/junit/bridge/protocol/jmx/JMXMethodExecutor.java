@@ -53,8 +53,8 @@ public class JMXMethodExecutor implements ContainerMethodExecutor {
 			byte[] data = _jmxTestRunnerMBean.runTestMethod(
 				testClass.getName(), method.getName());
 
-			try (InputStream is = new UnsyncByteArrayInputStream(data);
-				ObjectInputStream oos = new ObjectInputStream(is)) {
+			try (InputStream inputStream = new UnsyncByteArrayInputStream(data);
+				ObjectInputStream oos = new ObjectInputStream(inputStream)) {
 
 				TestResult testResult = (TestResult)oos.readObject();
 
