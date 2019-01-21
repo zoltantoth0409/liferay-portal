@@ -257,7 +257,7 @@ public class EntityModelFieldMapper {
 			return Optional.of(field);
 		}
 		catch (Exception e) {
-			_log.error("Error obtaining id entity field", e);
+			_log.error("Unable to get ID entity field", e);
 
 			return Optional.empty();
 		}
