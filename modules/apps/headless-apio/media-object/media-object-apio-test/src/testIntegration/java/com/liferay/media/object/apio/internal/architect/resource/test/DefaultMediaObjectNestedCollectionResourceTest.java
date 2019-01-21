@@ -17,6 +17,7 @@ package com.liferay.media.object.apio.internal.architect.resource.test;
 import com.liferay.apio.architect.file.BinaryFile;
 import com.liferay.apio.architect.pagination.PageItems;
 import com.liferay.apio.architect.resource.NestedCollectionResource;
+import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.media.object.apio.internal.architect.resource.test.model.MediaObjectImpl;
 import com.liferay.portal.apio.test.util.PaginationRequest;
 import com.liferay.portal.kernel.model.Group;
@@ -43,7 +44,6 @@ import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 
-import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.ClassRule;
