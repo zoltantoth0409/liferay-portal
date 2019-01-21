@@ -247,9 +247,7 @@ public class EditMessageMVCActionCommand extends BaseMVCActionCommand {
 		MBMessage message) {
 
 		if (message == null) {
-			String redirect = ParamUtil.getString(actionRequest, "redirect");
-
-			return redirect;
+			return ParamUtil.getString(actionRequest, "redirect");
 		}
 
 		int workflowAction = ParamUtil.getInteger(
@@ -376,8 +374,6 @@ public class EditMessageMVCActionCommand extends BaseMVCActionCommand {
 
 		long messageId = ParamUtil.getLong(actionRequest, "messageId");
 
-		long groupId = themeDisplay.getScopeGroupId();
-		long siteGroupId = themeDisplay.getSiteGroupId();
 		long categoryId = ParamUtil.getLong(actionRequest, "mbCategoryId");
 		long threadId = ParamUtil.getLong(actionRequest, "threadId");
 		long parentMessageId = ParamUtil.getLong(
@@ -386,7 +382,7 @@ public class EditMessageMVCActionCommand extends BaseMVCActionCommand {
 		String body = ParamUtil.getString(actionRequest, "body");
 
 		MBGroupServiceSettings mbGroupServiceSettings =
-			MBGroupServiceSettings.getInstance(siteGroupId);
+			MBGroupServiceSettings.getInstance(themeDisplay.getSiteGroupId());
 
 		List<ObjectValuePair<String, InputStream>> inputStreamOVPs =
 			new ArrayList<>(5);
@@ -451,8 +447,8 @@ public class EditMessageMVCActionCommand extends BaseMVCActionCommand {
 					// Post new thread
 
 					message = _mbMessageService.addMessage(
-						groupId, categoryId, subject, body,
-						mbGroupServiceSettings.getMessageFormat(),
+						themeDisplay.getScopeGroupId(), categoryId, subject,
+						body, mbGroupServiceSettings.getMessageFormat(),
 						inputStreamOVPs, anonymous, priority, allowPingbacks,
 						serviceContext);
 
