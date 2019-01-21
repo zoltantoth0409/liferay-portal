@@ -67,7 +67,8 @@ public class XSLSecureURIResolver implements XSLURIResolver {
 			return null;
 		}
 		catch (MalformedURLException | UnknownHostException e) {
-			throw new TransformerException("Error resolving URL reference", e);
+			throw new TransformerException(
+				"Unable to resolve URL reference", e);
 		}
 	}
 
