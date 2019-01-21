@@ -81,8 +81,6 @@ public class XSLTemplate implements Template {
 		}
 		catch (TransformerConfigurationException tce) {
 		}
-
-		_context = new HashMap<>();
 	}
 
 	@Override
@@ -295,7 +293,7 @@ public class XSLTemplate implements Template {
 		}
 	}
 
-	private final Map<String, Object> _context;
+	private final Map<String, Object> _context = new HashMap<>();
 	private TemplateResource _errorTemplateResource;
 	private final boolean _preventLocalConnections;
 	private final TemplateContextHelper _templateContextHelper;
