@@ -208,29 +208,8 @@ public class VelocityManager extends BaseSingleTemplateManager {
 				RuntimeConstants.UBERSPECT_CLASSNAME,
 				LiferaySecureUberspector.class.getName());
 
-			String contextName = ClassLoaderPool.getContextName(
-				clazz.getClassLoader());
-
-			contextName = contextName.concat(
-				TemplateConstants.CLASS_LOADER_SEPARATOR);
-
-			String[] velocimacroLibrary =
-				_velocityEngineConfiguration.velocimacroLibrary();
-
-			StringBundler sb = new StringBundler(3 * velocimacroLibrary.length);
-
-			for (String library : velocimacroLibrary) {
-				sb.append(contextName);
-				sb.append(library);
-				sb.append(StringPool.COMMA);
-			}
-
-			if (velocimacroLibrary.length > 0) {
-				sb.setIndex(sb.index() - 1);
-			}
-
 			extendedProperties.setProperty(
-				VelocityEngine.VM_LIBRARY, sb.toString());
+				VelocityEngine.VM_LIBRARY, _getVelocimacroLibrary(clazz));
 
 			extendedProperties.setProperty(
 				VelocityEngine.VM_LIBRARY_AUTORELOAD,
@@ -295,6 +274,31 @@ public class VelocityManager extends BaseSingleTemplateManager {
 		}
 
 		return template;
+	}
+
+	private String _getVelocimacroLibrary(Class<?> clazz) {
+		String contextName = ClassLoaderPool.getContextName(
+			clazz.getClassLoader());
+
+		contextName = contextName.concat(
+			TemplateConstants.CLASS_LOADER_SEPARATOR);
+
+		String[] velocimacroLibrary =
+			_velocityEngineConfiguration.velocimacroLibrary();
+
+		StringBundler sb = new StringBundler(3 * velocimacroLibrary.length);
+
+		for (String library : velocimacroLibrary) {
+			sb.append(contextName);
+			sb.append(library);
+			sb.append(StringPool.COMMA);
+		}
+
+		if (velocimacroLibrary.length > 0) {
+			sb.setIndex(sb.index() - 1);
+		}
+
+		return sb.toString();
 	}
 
 	private static final Method _layoutIconMethod;

@@ -284,31 +284,7 @@ public class FreeMarkerManager extends BaseSingleTemplateManager {
 				_freeMarkerEngineConfiguration.restrictedClasses()));
 
 		try {
-			Class<?> clazz = getClass();
-
-			String contextName = ClassLoaderPool.getContextName(
-				clazz.getClassLoader());
-
-			contextName = contextName.concat(
-				TemplateConstants.CLASS_LOADER_SEPARATOR);
-
-			String[] macroLibrary =
-				_freeMarkerEngineConfiguration.macroLibrary();
-
-			StringBundler sb = new StringBundler(3 * macroLibrary.length);
-
-			for (String library : macroLibrary) {
-				sb.append(contextName);
-				sb.append(library);
-				sb.append(StringPool.COMMA);
-			}
-
-			if (macroLibrary.length > 0) {
-				sb.setIndex(sb.index() - 1);
-			}
-
-			_configuration.setSetting("auto_import", sb.toString());
-
+			_configuration.setSetting("auto_import", _getMacroLibrary());
 			_configuration.setSetting(
 				"template_exception_handler",
 				_freeMarkerEngineConfiguration.templateExceptionHandler());
@@ -455,6 +431,32 @@ public class FreeMarkerManager extends BaseSingleTemplateManager {
 	@Reference(unbind = "-")
 	protected void setSingleVMPool(SingleVMPool singleVMPool) {
 		_singleVMPool = singleVMPool;
+	}
+
+	private String _getMacroLibrary() {
+		Class<?> clazz = getClass();
+
+		String contextName = ClassLoaderPool.getContextName(
+			clazz.getClassLoader());
+
+		contextName = contextName.concat(
+			TemplateConstants.CLASS_LOADER_SEPARATOR);
+
+		String[] macroLibrary = _freeMarkerEngineConfiguration.macroLibrary();
+
+		StringBundler sb = new StringBundler(3 * macroLibrary.length);
+
+		for (String library : macroLibrary) {
+			sb.append(contextName);
+			sb.append(library);
+			sb.append(StringPool.COMMA);
+		}
+
+		if (macroLibrary.length > 0) {
+			sb.setIndex(sb.index() - 1);
+		}
+
+		return sb.toString();
 	}
 
 	private static final Class<?>[] _INTERFACES = {ServletContext.class};
