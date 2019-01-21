@@ -257,9 +257,6 @@ public class EditMessageMVCActionCommand extends BaseMVCActionCommand {
 			return getSaveAndContinueRedirect(
 				actionRequest, actionResponse, message);
 		}
-		else if (message == null) {
-			return ParamUtil.getString(actionRequest, "redirect");
-		}
 
 		ActionResponseImpl actionResponseImpl =
 			(ActionResponseImpl)actionResponse;
