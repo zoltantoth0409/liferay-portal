@@ -133,7 +133,7 @@ public class TemplateRendererTag extends ParamAndPropertyAncestorTagImpl {
 
 		String namespace;
 
-		if (_servletContextSet) {
+		if (_setServletContext) {
 			namespace = NPMResolvedPackageNameUtil.get(servletContext);
 		}
 		else {
@@ -175,7 +175,7 @@ public class TemplateRendererTag extends ParamAndPropertyAncestorTagImpl {
 	public void release() {
 		super.release();
 
-		_servletContextSet = false;
+		_setServletContext = false;
 	}
 
 	public void setComponentId(String componentId) {
@@ -207,7 +207,7 @@ public class TemplateRendererTag extends ParamAndPropertyAncestorTagImpl {
 	public void setServletContext(ServletContext servletContext) {
 		super.setServletContext(servletContext);
 
-		_servletContextSet = true;
+		_setServletContext = true;
 	}
 
 	public void setTemplateNamespace(String namespace) {
@@ -340,7 +340,7 @@ public class TemplateRendererTag extends ParamAndPropertyAncestorTagImpl {
 	private Set<String> _dependencies;
 	private Boolean _hydrate;
 	private String _module;
-	private boolean _servletContextSet;
+	private boolean _setServletContext;
 	private Template _template;
 	private String _templateNamespace;
 	private Boolean _useNamespace = true;
