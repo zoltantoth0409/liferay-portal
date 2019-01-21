@@ -22,7 +22,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 public class NoSuchProductionCTCollectionException extends PortalException {
 
 	public NoSuchProductionCTCollectionException() {
-		super("Production Change Tracking Collection cannot be found");
+		super("Production change tracking collection does not exist");
 	}
 
 	public NoSuchProductionCTCollectionException(String msg) {
