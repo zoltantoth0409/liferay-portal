@@ -355,6 +355,7 @@ public class JournalEditArticleDisplayContext {
 		}
 
 		sb.append(group.getPathFriendlyURL(privateLayout, _themeDisplay));
+
 		sb.append(group.getFriendlyURL());
 
 		sb.append(JournalArticleConstants.CANONICAL_URL_SEPARATOR);
