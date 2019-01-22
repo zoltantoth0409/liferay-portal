@@ -37,7 +37,6 @@ OrganizationSearchTerms searchTerms = (OrganizationSearchTerms)organizationSearc
 LinkedHashMap<String, Object> organizationParams = new LinkedHashMap<String, Object>();
 
 List<Organization> organizations = null;
-
 int organizationsCount = 0;
 
 Indexer<?> indexer = IndexerRegistryUtil.nullSafeGetIndexer(Organization.class);
@@ -50,12 +49,10 @@ if (indexer.isIndexerEnabled() && PropsValues.ORGANIZATIONS_SEARCH_WITH_INDEX) {
 	BaseModelSearchResult<Organization> baseModelSearchResult = OrganizationLocalServiceUtil.searchOrganizations(themeDisplay.getCompanyId(), OrganizationConstants.ANY_PARENT_ORGANIZATION_ID, searchTerms.getKeywords(), organizationParams, organizationSearch.getStart(), organizationSearch.getEnd(), sort);
 
 	organizations = baseModelSearchResult.getBaseModels();
-
 	organizationsCount = baseModelSearchResult.getLength();
 }
 else {
 	organizations = OrganizationLocalServiceUtil.search(themeDisplay.getCompanyId(), OrganizationConstants.ANY_PARENT_ORGANIZATION_ID, searchTerms.getKeywords(), searchTerms.getType(), searchTerms.getRegionIdObj(), searchTerms.getCountryIdObj(), organizationParams, organizationSearch.getStart(), organizationSearch.getEnd(), organizationSearch.getOrderByComparator());
-
 	organizationsCount = OrganizationLocalServiceUtil.searchCount(themeDisplay.getCompanyId(), OrganizationConstants.ANY_PARENT_ORGANIZATION_ID, searchTerms.getKeywords(), searchTerms.getType(), searchTerms.getRegionIdObj(), searchTerms.getCountryIdObj(), organizationParams);
 }
 
