@@ -687,7 +687,7 @@ public class DefaultPortalLDAP implements PortalLDAP {
 
 		Collection<Object> values = userMappings.values();
 
-		values.removeIf(o -> Validator.isNull(o));
+		values.removeIf(object -> Validator.isNull(object));
 
 		String[] mappedUserAttributeIds = ArrayUtil.toStringArray(
 			values.toArray(new Object[userMappings.size()]));
