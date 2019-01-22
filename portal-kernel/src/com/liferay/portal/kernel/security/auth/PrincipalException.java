@@ -238,7 +238,7 @@ public class PrincipalException extends PortalException {
 
 			super(
 				String.format(
-					"User %s did not provide valid CSRF token for %s", userId,
+					"User %s did not provide a valid CSRF token for %s", userId,
 					origin),
 				cause);
 
