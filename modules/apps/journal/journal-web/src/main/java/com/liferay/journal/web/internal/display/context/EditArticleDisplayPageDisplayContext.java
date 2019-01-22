@@ -146,9 +146,18 @@ public class EditArticleDisplayPageDisplayContext {
 			return _displayPageType;
 		}
 
-		String articleId = ParamUtil.getString(_request, "articleId");
+		long classPK;
 
-		if (Validator.isNull(articleId)) {
+		JournalArticle article = getArticle();
+
+		if (article != null) {
+			classPK = article.getResourcePrimKey();
+		}
+		else {
+			classPK = 0;
+		}
+
+		if (classPK == 0) {
 			_displayPageType = AssetDisplayPageConstants.TYPE_DEFAULT;
 
 			return _displayPageType;
