@@ -26,7 +26,7 @@ import java.util.List;
  * @review
  */
 @ProviderType
-public interface MerisProfileManager <P extends MerisProfile> {
+public interface MerisProfileManager<P extends MerisProfile> {
 
 	/**
 	 * Returns a {@code MerisProfile}
