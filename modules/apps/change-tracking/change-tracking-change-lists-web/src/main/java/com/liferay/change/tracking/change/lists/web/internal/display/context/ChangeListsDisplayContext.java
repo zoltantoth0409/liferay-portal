@@ -33,12 +33,12 @@ import javax.servlet.http.HttpServletRequest;
 public class ChangeListsDisplayContext {
 
 	public ChangeListsDisplayContext(
-		RenderResponse renderResponse, HttpServletRequest request) {
+		HttpServletRequest httpServletRequest, RenderResponse renderResponse) {
 
+		_httpServletRequest = httpServletRequest;
 		_renderResponse = renderResponse;
-		_request = request;
 
-		_themeDisplay = (ThemeDisplay)_request.getAttribute(
+		_themeDisplay = (ThemeDisplay)_httpServletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 	}
 
@@ -55,14 +55,17 @@ public class ChangeListsDisplayContext {
 		Map<String, String> translations = new HashMap<>();
 
 		translations.put(
-			"description", LanguageUtil.get(_request, "description"));
+			"description",
+			LanguageUtil.get(_httpServletRequest, "description"));
 		translations.put(
-			"production-view", LanguageUtil.get(_request, "production-view"));
+			"production-view",
+			LanguageUtil.get(_httpServletRequest, "production-view"));
 		translations.put(
-			"published-by", LanguageUtil.get(_request, "published-by"));
+			"published-by",
+			LanguageUtil.get(_httpServletRequest, "published-by"));
 		translations.put(
 			"published-change-list",
-			LanguageUtil.get(_request, "published-change-list"));
+			LanguageUtil.get(_httpServletRequest, "published-change-list"));
 
 		soyContext.put("translations", translations);
 
@@ -78,8 +81,8 @@ public class ChangeListsDisplayContext {
 		return soyContext;
 	}
 
+	private final HttpServletRequest _httpServletRequest;
 	private final RenderResponse _renderResponse;
-	private final HttpServletRequest _request;
 	private final ThemeDisplay _themeDisplay;
 
 }
