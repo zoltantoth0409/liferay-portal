@@ -76,7 +76,7 @@ public class DefaultPortalKaleoManager
 
 			Group companyGroup = groupLocalService.getCompanyGroup(companyId);
 
-			String definitionName = _DEFAULT_DEFINITION_NAME;
+			String definitionName = _DEFINITION_NAME;
 
 			if (_definitionAssets.containsKey(assetClassName)) {
 				definitionName = _definitionAssets.get(assetClassName);
@@ -287,7 +287,7 @@ public class DefaultPortalKaleoManager
 	@Reference(target = "(proxy.bean=false)")
 	protected WorkflowComparatorFactory workflowComparatorFactory;
 
-	private static final String _DEFAULT_DEFINITION_NAME = "Single Approver";
+	private static final String _DEFINITION_NAME = "Single Approver";
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		DefaultPortalKaleoManager.class);
@@ -298,7 +298,7 @@ public class DefaultPortalKaleoManager
 		new HashMap<String, String>() {
 			{
 				put(
-					_DEFAULT_DEFINITION_NAME,
+					_DEFINITION_NAME,
 					"META-INF/definitions/single-approver-definition.xml");
 			}
 		};
