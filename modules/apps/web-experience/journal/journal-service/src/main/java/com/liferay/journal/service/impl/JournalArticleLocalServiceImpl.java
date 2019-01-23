@@ -6457,6 +6457,8 @@ public class JournalArticleLocalServiceImpl
 		actionableDynamicQuery.setTransactionConfig(
 			DefaultActionableDynamicQuery.REQUIRES_NEW_TRANSACTION_CONFIG);
 
+		actionableDynamicQuery.setInterval(1000);
+
 		actionableDynamicQuery.performActions();
 	}
 
@@ -6618,6 +6620,8 @@ public class JournalArticleLocalServiceImpl
 
 		actionableDynamicQuery.setTransactionConfig(
 			DefaultActionableDynamicQuery.REQUIRES_NEW_TRANSACTION_CONFIG);
+
+		actionableDynamicQuery.setInterval(1000);
 
 		actionableDynamicQuery.performActions();
 
