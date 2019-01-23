@@ -6429,7 +6429,6 @@ public class JournalArticleLocalServiceImpl
 				dynamicQuery.add(
 					statusProperty.eq(WorkflowConstants.STATUS_SCHEDULED));
 			});
-		actionableDynamicQuery.setInterval(_INTERVAL);
 		actionableDynamicQuery.setPerformActionMethod(
 			(JournalArticle article) -> {
 				long userId = PortalUtil.getValidUserId(
@@ -6489,7 +6488,6 @@ public class JournalArticleLocalServiceImpl
 				dynamicQuery.add(
 					statusProperty.eq(WorkflowConstants.STATUS_APPROVED));
 			});
-		actionableDynamicQuery.setInterval(_INTERVAL);
 		actionableDynamicQuery.setPerformActionMethod(
 			(JournalArticle article) -> {
 				if (isExpireAllArticleVersions(article.getCompanyId())) {
@@ -6593,7 +6591,6 @@ public class JournalArticleLocalServiceImpl
 				dynamicQuery.add(
 					statusProperty.ne(WorkflowConstants.STATUS_IN_TRASH));
 			});
-		actionableDynamicQuery.setInterval(_INTERVAL);
 		actionableDynamicQuery.setPerformActionMethod(
 			(JournalArticle article) -> {
 				long groupId = article.getGroupId();
@@ -8626,8 +8623,6 @@ public class JournalArticleLocalServiceImpl
 
 		return journalServiceConfiguration.checkInterval();
 	}
-
-	private static final int _INTERVAL = 1000;
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		JournalArticleLocalServiceImpl.class);
