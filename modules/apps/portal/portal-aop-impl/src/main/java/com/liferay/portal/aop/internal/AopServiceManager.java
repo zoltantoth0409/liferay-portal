@@ -92,7 +92,7 @@ public class AopServiceManager {
 			if (aopInterfaces.length == 0) {
 				throw new IllegalArgumentException(
 					StringBundler.concat(
-						"Cannot register ", aopService.getClass(),
+						"Unable to register ", aopService.getClass(),
 						" without a service interface"));
 			}
 
@@ -181,14 +181,14 @@ public class AopServiceManager {
 				if (!aopInterface.isInterface()) {
 					throw new IllegalArgumentException(
 						StringBundler.concat(
-							"Cannot proxy ", aopServiceClass, " because ",
+							"Unable to proxy ", aopServiceClass, " because ",
 							aopInterface, " is not an interface"));
 				}
 
 				if (!aopInterface.isAssignableFrom(aopServiceClass)) {
 					throw new IllegalArgumentException(
 						StringBundler.concat(
-							"Cannot proxy ", aopServiceClass, " because ",
+							"Unable to proxy ", aopServiceClass, " because ",
 							aopInterface, " is not implemented"));
 				}
 
