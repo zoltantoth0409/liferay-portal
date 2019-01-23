@@ -83,7 +83,7 @@ public class DiscussionTaglibHelper {
 	}
 
 	public String getSubscriptionClassName() {
-		return _MBDISCUSSION_CLASS_NAME + StringPool.UNDERLINE + getClassName();
+		return _CLASS_NAME + StringPool.UNDERLINE + getClassName();
 	}
 
 	public long getUserId() {
@@ -125,7 +125,7 @@ public class DiscussionTaglibHelper {
 		return _ratingsEnabled;
 	}
 
-	private static final String _MBDISCUSSION_CLASS_NAME =
+	private static final String _CLASS_NAME =
 		"com.liferay.message.boards.model.MBDiscussion";
 
 	private Boolean _assetEntryVisible;
