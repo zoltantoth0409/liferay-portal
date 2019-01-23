@@ -78,8 +78,6 @@ import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.IndexableActionableDynamicQuery;
-import com.liferay.portal.kernel.dao.orm.Order;
-import com.liferay.portal.kernel.dao.orm.OrderFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.QueryDefinition;
@@ -6495,7 +6493,27 @@ public class JournalArticleLocalServiceImpl
 		indexableActionableDynamicQuery.setPerformActionMethod(
 			(JournalArticle article) -> {
 				if (isExpireAllArticleVersions(article.getCompanyId())) {
-					checkArticlesByExpirationDate(article);
+					List<JournalArticle> currentArticles =
+						journalArticlePersistence.findByG_A(
+							article.getGroupId(), article.getArticleId(),
+							QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+							new ArticleVersionComparator(true));
+
+					for (JournalArticle currentArticle : currentArticles) {
+						if ((currentArticle.getExpirationDate() == null) ||
+							(currentArticle.getVersion() >
+								article.getVersion())) {
+
+							continue;
+						}
+
+						currentArticle.setExpirationDate(
+							article.getExpirationDate());
+						currentArticle.setStatus(
+							WorkflowConstants.STATUS_EXPIRED);
+
+						journalArticlePersistence.update(currentArticle);
+					}
 				}
 
 				article.setStatus(WorkflowConstants.STATUS_EXPIRED);
@@ -6524,49 +6542,6 @@ public class JournalArticleLocalServiceImpl
 			_previousCheckDate = new Date(
 				expirationDate.getTime() - getArticleCheckInterval());
 		}
-	}
-
-	protected void checkArticlesByExpirationDate(JournalArticle article)
-		throws PortalException {
-
-		ActionableDynamicQuery actionableDynamicQuery =
-			getActionableDynamicQuery();
-
-		actionableDynamicQuery.setAddCriteriaMethod(
-			dynamicQuery -> {
-				Property groupIdProperty = PropertyFactoryUtil.forName(
-					"groupId");
-
-				dynamicQuery.add(groupIdProperty.eq(article.getGroupId()));
-
-				Property articleIdProperty = PropertyFactoryUtil.forName(
-					"articleId");
-
-				dynamicQuery.add(articleIdProperty.eq(article.getArticleId()));
-
-				Property versionProperty = PropertyFactoryUtil.forName(
-					"version");
-
-				dynamicQuery.add(versionProperty.lt(article.getVersion()));
-
-				Property expirationDateProperty = PropertyFactoryUtil.forName(
-					"expirationDate");
-
-				dynamicQuery.add(expirationDateProperty.isNotNull());
-
-				Order order = OrderFactoryUtil.asc("modifiedDate");
-
-				dynamicQuery.addOrder(order);
-			});
-		actionableDynamicQuery.setPerformActionMethod(
-			(JournalArticle currentArticle) -> {
-				currentArticle.setExpirationDate(article.getExpirationDate());
-				currentArticle.setStatus(WorkflowConstants.STATUS_EXPIRED);
-
-				journalArticlePersistence.update(currentArticle);
-			});
-
-		actionableDynamicQuery.performActions();
 	}
 
 	protected void checkArticlesByReviewDate(Date reviewDate)
