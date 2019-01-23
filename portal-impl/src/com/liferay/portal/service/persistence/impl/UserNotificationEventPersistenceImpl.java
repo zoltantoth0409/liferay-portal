@@ -80,18 +80,18 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		".List1";
 	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
 		".List2";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindAll = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED,
 			UserNotificationEventImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindAll = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED,
 			UserNotificationEventImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountAll = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_UUID = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByUuid = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED,
 			UserNotificationEventImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid",
@@ -101,14 +101,14 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByUuid = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED,
 			UserNotificationEventImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid",
 			new String[] { String.class.getName() },
 			UserNotificationEventModelImpl.UUID_COLUMN_BITMASK |
 			UserNotificationEventModelImpl.TIMESTAMP_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_UUID = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByUuid = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid",
 			new String[] { String.class.getName() });
@@ -188,11 +188,11 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID;
+			finderPath = _finderPathWithoutPaginationFindByUuid;
 			finderArgs = new Object[] { uuid };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_UUID;
+			finderPath = _finderPathWithPaginationFindByUuid;
 			finderArgs = new Object[] { uuid, start, end, orderByComparator };
 		}
 
@@ -582,7 +582,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 	public int countByUuid(String uuid) {
 		uuid = Objects.toString(uuid, "");
 
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID;
+		FinderPath finderPath = _finderPathCountByUuid;
 
 		Object[] finderArgs = new Object[] { uuid };
 
@@ -639,7 +639,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 
 	private static final String _FINDER_COLUMN_UUID_UUID_2 = "userNotificationEvent.uuid = ?";
 	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(userNotificationEvent.uuid IS NULL OR userNotificationEvent.uuid = '')";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_UUID_C = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByUuid_C = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED,
 			UserNotificationEventImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid_C",
@@ -649,8 +649,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C =
-		new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByUuid_C = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED,
 			UserNotificationEventImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid_C",
@@ -658,7 +657,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 			UserNotificationEventModelImpl.UUID_COLUMN_BITMASK |
 			UserNotificationEventModelImpl.COMPANYID_COLUMN_BITMASK |
 			UserNotificationEventModelImpl.TIMESTAMP_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_UUID_C = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByUuid_C = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid_C",
 			new String[] { String.class.getName(), Long.class.getName() });
@@ -745,11 +744,11 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C;
+			finderPath = _finderPathWithoutPaginationFindByUuid_C;
 			finderArgs = new Object[] { uuid, companyId };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_UUID_C;
+			finderPath = _finderPathWithPaginationFindByUuid_C;
 			finderArgs = new Object[] {
 					uuid, companyId,
 					
@@ -1169,7 +1168,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 	public int countByUuid_C(String uuid, long companyId) {
 		uuid = Objects.toString(uuid, "");
 
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_C;
+		FinderPath finderPath = _finderPathCountByUuid_C;
 
 		Object[] finderArgs = new Object[] { uuid, companyId };
 
@@ -1231,7 +1230,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 	private static final String _FINDER_COLUMN_UUID_C_UUID_2 = "userNotificationEvent.uuid = ? AND ";
 	private static final String _FINDER_COLUMN_UUID_C_UUID_3 = "(userNotificationEvent.uuid IS NULL OR userNotificationEvent.uuid = '') AND ";
 	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 = "userNotificationEvent.companyId = ?";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_USERID = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByUserId = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED,
 			UserNotificationEventImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUserId",
@@ -1241,15 +1240,14 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID =
-		new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByUserId = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED,
 			UserNotificationEventImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUserId",
 			new String[] { Long.class.getName() },
 			UserNotificationEventModelImpl.USERID_COLUMN_BITMASK |
 			UserNotificationEventModelImpl.TIMESTAMP_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_USERID = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByUserId = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUserId",
 			new String[] { Long.class.getName() });
@@ -1327,11 +1325,11 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID;
+			finderPath = _finderPathWithoutPaginationFindByUserId;
 			finderArgs = new Object[] { userId };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_USERID;
+			finderPath = _finderPathWithPaginationFindByUserId;
 			finderArgs = new Object[] { userId, start, end, orderByComparator };
 		}
 
@@ -1695,7 +1693,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 	 */
 	@Override
 	public int countByUserId(long userId) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_USERID;
+		FinderPath finderPath = _finderPathCountByUserId;
 
 		Object[] finderArgs = new Object[] { userId };
 
@@ -1740,7 +1738,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 	}
 
 	private static final String _FINDER_COLUMN_USERID_USERID_2 = "userNotificationEvent.userId = ?";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_TYPE = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByType = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED,
 			UserNotificationEventImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByType",
@@ -1750,14 +1748,14 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_TYPE = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByType = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED,
 			UserNotificationEventImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByType",
 			new String[] { String.class.getName() },
 			UserNotificationEventModelImpl.TYPE_COLUMN_BITMASK |
 			UserNotificationEventModelImpl.TIMESTAMP_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_TYPE = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByType = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByType",
 			new String[] { String.class.getName() });
@@ -1837,11 +1835,11 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_TYPE;
+			finderPath = _finderPathWithoutPaginationFindByType;
 			finderArgs = new Object[] { type };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_TYPE;
+			finderPath = _finderPathWithPaginationFindByType;
 			finderArgs = new Object[] { type, start, end, orderByComparator };
 		}
 
@@ -2231,7 +2229,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 	public int countByType(String type) {
 		type = Objects.toString(type, "");
 
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_TYPE;
+		FinderPath finderPath = _finderPathCountByType;
 
 		Object[] finderArgs = new Object[] { type };
 
@@ -2288,7 +2286,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 
 	private static final String _FINDER_COLUMN_TYPE_TYPE_2 = "userNotificationEvent.type = ?";
 	private static final String _FINDER_COLUMN_TYPE_TYPE_3 = "(userNotificationEvent.type IS NULL OR userNotificationEvent.type = '')";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_U_DT = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByU_DT = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED,
 			UserNotificationEventImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByU_DT",
@@ -2298,7 +2296,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_DT = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByU_DT = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED,
 			UserNotificationEventImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByU_DT",
@@ -2306,7 +2304,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 			UserNotificationEventModelImpl.USERID_COLUMN_BITMASK |
 			UserNotificationEventModelImpl.DELIVERYTYPE_COLUMN_BITMASK |
 			UserNotificationEventModelImpl.TIMESTAMP_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_U_DT = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByU_DT = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByU_DT",
 			new String[] { Long.class.getName(), Integer.class.getName() });
@@ -2392,11 +2390,11 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_DT;
+			finderPath = _finderPathWithoutPaginationFindByU_DT;
 			finderArgs = new Object[] { userId, deliveryType };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_U_DT;
+			finderPath = _finderPathWithPaginationFindByU_DT;
 			finderArgs = new Object[] {
 					userId, deliveryType,
 					
@@ -2790,7 +2788,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 	 */
 	@Override
 	public int countByU_DT(long userId, int deliveryType) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_U_DT;
+		FinderPath finderPath = _finderPathCountByU_DT;
 
 		Object[] finderArgs = new Object[] { userId, deliveryType };
 
@@ -2840,7 +2838,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 
 	private static final String _FINDER_COLUMN_U_DT_USERID_2 = "userNotificationEvent.userId = ? AND ";
 	private static final String _FINDER_COLUMN_U_DT_DELIVERYTYPE_2 = "userNotificationEvent.deliveryType = ?";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_U_D = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByU_D = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED,
 			UserNotificationEventImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByU_D",
@@ -2850,7 +2848,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_D = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByU_D = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED,
 			UserNotificationEventImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByU_D",
@@ -2858,7 +2856,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 			UserNotificationEventModelImpl.USERID_COLUMN_BITMASK |
 			UserNotificationEventModelImpl.DELIVERED_COLUMN_BITMASK |
 			UserNotificationEventModelImpl.TIMESTAMP_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_U_D = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByU_D = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByU_D",
 			new String[] { Long.class.getName(), Boolean.class.getName() });
@@ -2943,11 +2941,11 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_D;
+			finderPath = _finderPathWithoutPaginationFindByU_D;
 			finderArgs = new Object[] { userId, delivered };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_U_D;
+			finderPath = _finderPathWithPaginationFindByU_D;
 			finderArgs = new Object[] {
 					userId, delivered,
 					
@@ -3341,7 +3339,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 	 */
 	@Override
 	public int countByU_D(long userId, boolean delivered) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_U_D;
+		FinderPath finderPath = _finderPathCountByU_D;
 
 		Object[] finderArgs = new Object[] { userId, delivered };
 
@@ -3391,7 +3389,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 
 	private static final String _FINDER_COLUMN_U_D_USERID_2 = "userNotificationEvent.userId = ? AND ";
 	private static final String _FINDER_COLUMN_U_D_DELIVERED_2 = "userNotificationEvent.delivered = ?";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_U_A = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByU_A = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED,
 			UserNotificationEventImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByU_A",
@@ -3401,7 +3399,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_A = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByU_A = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED,
 			UserNotificationEventImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByU_A",
@@ -3409,7 +3407,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 			UserNotificationEventModelImpl.USERID_COLUMN_BITMASK |
 			UserNotificationEventModelImpl.ARCHIVED_COLUMN_BITMASK |
 			UserNotificationEventModelImpl.TIMESTAMP_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_U_A = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByU_A = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByU_A",
 			new String[] { Long.class.getName(), Boolean.class.getName() });
@@ -3494,11 +3492,11 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_A;
+			finderPath = _finderPathWithoutPaginationFindByU_A;
 			finderArgs = new Object[] { userId, archived };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_U_A;
+			finderPath = _finderPathWithPaginationFindByU_A;
 			finderArgs = new Object[] {
 					userId, archived,
 					
@@ -3890,7 +3888,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 	 */
 	@Override
 	public int countByU_A(long userId, boolean archived) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_U_A;
+		FinderPath finderPath = _finderPathCountByU_A;
 
 		Object[] finderArgs = new Object[] { userId, archived };
 
@@ -3940,7 +3938,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 
 	private static final String _FINDER_COLUMN_U_A_USERID_2 = "userNotificationEvent.userId = ? AND ";
 	private static final String _FINDER_COLUMN_U_A_ARCHIVED_2 = "userNotificationEvent.archived = ?";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_U_DT_D = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByU_DT_D = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED,
 			UserNotificationEventImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByU_DT_D",
@@ -3951,8 +3949,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_DT_D =
-		new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByU_DT_D = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED,
 			UserNotificationEventImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByU_DT_D",
@@ -3964,7 +3961,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 			UserNotificationEventModelImpl.DELIVERYTYPE_COLUMN_BITMASK |
 			UserNotificationEventModelImpl.DELIVERED_COLUMN_BITMASK |
 			UserNotificationEventModelImpl.TIMESTAMP_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_U_DT_D = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByU_DT_D = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByU_DT_D",
 			new String[] {
@@ -4058,11 +4055,11 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_DT_D;
+			finderPath = _finderPathWithoutPaginationFindByU_DT_D;
 			finderArgs = new Object[] { userId, deliveryType, delivered };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_U_DT_D;
+			finderPath = _finderPathWithPaginationFindByU_DT_D;
 			finderArgs = new Object[] {
 					userId, deliveryType, delivered,
 					
@@ -4481,7 +4478,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 	 */
 	@Override
 	public int countByU_DT_D(long userId, int deliveryType, boolean delivered) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_U_DT_D;
+		FinderPath finderPath = _finderPathCountByU_DT_D;
 
 		Object[] finderArgs = new Object[] { userId, deliveryType, delivered };
 
@@ -4536,7 +4533,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 	private static final String _FINDER_COLUMN_U_DT_D_USERID_2 = "userNotificationEvent.userId = ? AND ";
 	private static final String _FINDER_COLUMN_U_DT_D_DELIVERYTYPE_2 = "userNotificationEvent.deliveryType = ? AND ";
 	private static final String _FINDER_COLUMN_U_DT_D_DELIVERED_2 = "userNotificationEvent.delivered = ?";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_U_DT_A = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByU_DT_A = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED,
 			UserNotificationEventImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByU_DT_A",
@@ -4547,8 +4544,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_DT_A =
-		new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByU_DT_A = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED,
 			UserNotificationEventImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByU_DT_A",
@@ -4560,7 +4556,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 			UserNotificationEventModelImpl.DELIVERYTYPE_COLUMN_BITMASK |
 			UserNotificationEventModelImpl.ARCHIVED_COLUMN_BITMASK |
 			UserNotificationEventModelImpl.TIMESTAMP_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_U_DT_A = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByU_DT_A = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByU_DT_A",
 			new String[] {
@@ -4654,11 +4650,11 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_DT_A;
+			finderPath = _finderPathWithoutPaginationFindByU_DT_A;
 			finderArgs = new Object[] { userId, deliveryType, archived };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_U_DT_A;
+			finderPath = _finderPathWithPaginationFindByU_DT_A;
 			finderArgs = new Object[] {
 					userId, deliveryType, archived,
 					
@@ -5077,7 +5073,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 	 */
 	@Override
 	public int countByU_DT_A(long userId, int deliveryType, boolean archived) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_U_DT_A;
+		FinderPath finderPath = _finderPathCountByU_DT_A;
 
 		Object[] finderArgs = new Object[] { userId, deliveryType, archived };
 
@@ -5132,7 +5128,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 	private static final String _FINDER_COLUMN_U_DT_A_USERID_2 = "userNotificationEvent.userId = ? AND ";
 	private static final String _FINDER_COLUMN_U_DT_A_DELIVERYTYPE_2 = "userNotificationEvent.deliveryType = ? AND ";
 	private static final String _FINDER_COLUMN_U_DT_A_ARCHIVED_2 = "userNotificationEvent.archived = ?";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_U_D_A = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByU_D_A = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED,
 			UserNotificationEventImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByU_D_A",
@@ -5143,7 +5139,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_D_A = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByU_D_A = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED,
 			UserNotificationEventImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByU_D_A",
@@ -5155,7 +5151,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 			UserNotificationEventModelImpl.DELIVERED_COLUMN_BITMASK |
 			UserNotificationEventModelImpl.ACTIONREQUIRED_COLUMN_BITMASK |
 			UserNotificationEventModelImpl.TIMESTAMP_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_U_D_A = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByU_D_A = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByU_D_A",
 			new String[] {
@@ -5249,11 +5245,11 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_D_A;
+			finderPath = _finderPathWithoutPaginationFindByU_D_A;
 			finderArgs = new Object[] { userId, delivered, actionRequired };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_U_D_A;
+			finderPath = _finderPathWithPaginationFindByU_D_A;
 			finderArgs = new Object[] {
 					userId, delivered, actionRequired,
 					
@@ -5674,7 +5670,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 	@Override
 	public int countByU_D_A(long userId, boolean delivered,
 		boolean actionRequired) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_U_D_A;
+		FinderPath finderPath = _finderPathCountByU_D_A;
 
 		Object[] finderArgs = new Object[] { userId, delivered, actionRequired };
 
@@ -5729,7 +5725,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 	private static final String _FINDER_COLUMN_U_D_A_USERID_2 = "userNotificationEvent.userId = ? AND ";
 	private static final String _FINDER_COLUMN_U_D_A_DELIVERED_2 = "userNotificationEvent.delivered = ? AND ";
 	private static final String _FINDER_COLUMN_U_D_A_ACTIONREQUIRED_2 = "userNotificationEvent.actionRequired = ?";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_U_A_A = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByU_A_A = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED,
 			UserNotificationEventImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByU_A_A",
@@ -5740,7 +5736,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_A_A = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByU_A_A = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED,
 			UserNotificationEventImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByU_A_A",
@@ -5752,7 +5748,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 			UserNotificationEventModelImpl.ACTIONREQUIRED_COLUMN_BITMASK |
 			UserNotificationEventModelImpl.ARCHIVED_COLUMN_BITMASK |
 			UserNotificationEventModelImpl.TIMESTAMP_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_U_A_A = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByU_A_A = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByU_A_A",
 			new String[] {
@@ -5846,11 +5842,11 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_A_A;
+			finderPath = _finderPathWithoutPaginationFindByU_A_A;
 			finderArgs = new Object[] { userId, actionRequired, archived };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_U_A_A;
+			finderPath = _finderPathWithPaginationFindByU_A_A;
 			finderArgs = new Object[] {
 					userId, actionRequired, archived,
 					
@@ -6271,7 +6267,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 	@Override
 	public int countByU_A_A(long userId, boolean actionRequired,
 		boolean archived) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_U_A_A;
+		FinderPath finderPath = _finderPathCountByU_A_A;
 
 		Object[] finderArgs = new Object[] { userId, actionRequired, archived };
 
@@ -6326,7 +6322,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 	private static final String _FINDER_COLUMN_U_A_A_USERID_2 = "userNotificationEvent.userId = ? AND ";
 	private static final String _FINDER_COLUMN_U_A_A_ACTIONREQUIRED_2 = "userNotificationEvent.actionRequired = ? AND ";
 	private static final String _FINDER_COLUMN_U_A_A_ARCHIVED_2 = "userNotificationEvent.archived = ?";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_U_T_DT_D = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByU_T_DT_D = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED,
 			UserNotificationEventImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByU_T_DT_D",
@@ -6337,8 +6333,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_T_DT_D =
-		new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByU_T_DT_D = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED,
 			UserNotificationEventImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByU_T_DT_D",
@@ -6351,7 +6346,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 			UserNotificationEventModelImpl.DELIVERYTYPE_COLUMN_BITMASK |
 			UserNotificationEventModelImpl.DELIVERED_COLUMN_BITMASK |
 			UserNotificationEventModelImpl.TIMESTAMP_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_U_T_DT_D = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByU_T_DT_D = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByU_T_DT_D",
 			new String[] {
@@ -6452,11 +6447,11 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_T_DT_D;
+			finderPath = _finderPathWithoutPaginationFindByU_T_DT_D;
 			finderArgs = new Object[] { userId, type, deliveryType, delivered };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_U_T_DT_D;
+			finderPath = _finderPathWithPaginationFindByU_T_DT_D;
 			finderArgs = new Object[] {
 					userId, type, deliveryType, delivered,
 					
@@ -6927,7 +6922,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		boolean delivered) {
 		type = Objects.toString(type, "");
 
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_U_T_DT_D;
+		FinderPath finderPath = _finderPathCountByU_T_DT_D;
 
 		Object[] finderArgs = new Object[] { userId, type, deliveryType, delivered };
 
@@ -6999,7 +6994,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 	private static final String _FINDER_COLUMN_U_T_DT_D_TYPE_3 = "(userNotificationEvent.type IS NULL OR userNotificationEvent.type = '') AND ";
 	private static final String _FINDER_COLUMN_U_T_DT_D_DELIVERYTYPE_2 = "userNotificationEvent.deliveryType = ? AND ";
 	private static final String _FINDER_COLUMN_U_T_DT_D_DELIVERED_2 = "userNotificationEvent.delivered = ?";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_U_DT_D_A = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByU_DT_D_A = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED,
 			UserNotificationEventImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByU_DT_D_A",
@@ -7010,8 +7005,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_DT_D_A =
-		new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByU_DT_D_A = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED,
 			UserNotificationEventImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByU_DT_D_A",
@@ -7024,7 +7018,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 			UserNotificationEventModelImpl.DELIVERED_COLUMN_BITMASK |
 			UserNotificationEventModelImpl.ACTIONREQUIRED_COLUMN_BITMASK |
 			UserNotificationEventModelImpl.TIMESTAMP_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_U_DT_D_A = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByU_DT_D_A = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByU_DT_D_A",
 			new String[] {
@@ -7124,13 +7118,13 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_DT_D_A;
+			finderPath = _finderPathWithoutPaginationFindByU_DT_D_A;
 			finderArgs = new Object[] {
 					userId, deliveryType, delivered, actionRequired
 				};
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_U_DT_D_A;
+			finderPath = _finderPathWithPaginationFindByU_DT_D_A;
 			finderArgs = new Object[] {
 					userId, deliveryType, delivered, actionRequired,
 					
@@ -7576,7 +7570,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 	@Override
 	public int countByU_DT_D_A(long userId, int deliveryType,
 		boolean delivered, boolean actionRequired) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_U_DT_D_A;
+		FinderPath finderPath = _finderPathCountByU_DT_D_A;
 
 		Object[] finderArgs = new Object[] {
 				userId, deliveryType, delivered, actionRequired
@@ -7638,7 +7632,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 	private static final String _FINDER_COLUMN_U_DT_D_A_DELIVERYTYPE_2 = "userNotificationEvent.deliveryType = ? AND ";
 	private static final String _FINDER_COLUMN_U_DT_D_A_DELIVERED_2 = "userNotificationEvent.delivered = ? AND ";
 	private static final String _FINDER_COLUMN_U_DT_D_A_ACTIONREQUIRED_2 = "userNotificationEvent.actionRequired = ?";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_U_DT_A_A = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByU_DT_A_A = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED,
 			UserNotificationEventImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByU_DT_A_A",
@@ -7649,8 +7643,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_DT_A_A =
-		new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByU_DT_A_A = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED,
 			UserNotificationEventImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByU_DT_A_A",
@@ -7663,7 +7656,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 			UserNotificationEventModelImpl.ACTIONREQUIRED_COLUMN_BITMASK |
 			UserNotificationEventModelImpl.ARCHIVED_COLUMN_BITMASK |
 			UserNotificationEventModelImpl.TIMESTAMP_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_U_DT_A_A = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByU_DT_A_A = new FinderPath(UserNotificationEventModelImpl.ENTITY_CACHE_ENABLED,
 			UserNotificationEventModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByU_DT_A_A",
 			new String[] {
@@ -7763,13 +7756,13 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_DT_A_A;
+			finderPath = _finderPathWithoutPaginationFindByU_DT_A_A;
 			finderArgs = new Object[] {
 					userId, deliveryType, actionRequired, archived
 				};
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_U_DT_A_A;
+			finderPath = _finderPathWithPaginationFindByU_DT_A_A;
 			finderArgs = new Object[] {
 					userId, deliveryType, actionRequired, archived,
 					
@@ -8215,7 +8208,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 	@Override
 	public int countByU_DT_A_A(long userId, int deliveryType,
 		boolean actionRequired, boolean archived) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_U_DT_A_A;
+		FinderPath finderPath = _finderPathCountByU_DT_A_A;
 
 		Object[] finderArgs = new Object[] {
 				userId, deliveryType, actionRequired, archived
@@ -8547,8 +8540,8 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 					userNotificationEventModelImpl.getUuid()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
+			FinderCacheUtil.removeResult(_finderPathCountByUuid, args);
+			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByUuid,
 				args);
 
 			args = new Object[] {
@@ -8556,20 +8549,20 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 					userNotificationEventModelImpl.getCompanyId()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C,
+			FinderCacheUtil.removeResult(_finderPathCountByUuid_C, args);
+			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByUuid_C,
 				args);
 
 			args = new Object[] { userNotificationEventModelImpl.getUserId() };
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
+			FinderCacheUtil.removeResult(_finderPathCountByUserId, args);
+			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByUserId,
 				args);
 
 			args = new Object[] { userNotificationEventModelImpl.getType() };
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_TYPE, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_TYPE,
+			FinderCacheUtil.removeResult(_finderPathCountByType, args);
+			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByType,
 				args);
 
 			args = new Object[] {
@@ -8577,8 +8570,8 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 					userNotificationEventModelImpl.getDeliveryType()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_DT, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_DT,
+			FinderCacheUtil.removeResult(_finderPathCountByU_DT, args);
+			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByU_DT,
 				args);
 
 			args = new Object[] {
@@ -8586,8 +8579,8 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 					userNotificationEventModelImpl.isDelivered()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_D, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_D,
+			FinderCacheUtil.removeResult(_finderPathCountByU_D, args);
+			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByU_D,
 				args);
 
 			args = new Object[] {
@@ -8595,8 +8588,8 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 					userNotificationEventModelImpl.isArchived()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_A, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_A,
+			FinderCacheUtil.removeResult(_finderPathCountByU_A, args);
+			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByU_A,
 				args);
 
 			args = new Object[] {
@@ -8605,8 +8598,8 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 					userNotificationEventModelImpl.isDelivered()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_DT_D, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_DT_D,
+			FinderCacheUtil.removeResult(_finderPathCountByU_DT_D, args);
+			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByU_DT_D,
 				args);
 
 			args = new Object[] {
@@ -8615,8 +8608,8 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 					userNotificationEventModelImpl.isArchived()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_DT_A, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_DT_A,
+			FinderCacheUtil.removeResult(_finderPathCountByU_DT_A, args);
+			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByU_DT_A,
 				args);
 
 			args = new Object[] {
@@ -8625,8 +8618,8 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 					userNotificationEventModelImpl.isActionRequired()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_D_A, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_D_A,
+			FinderCacheUtil.removeResult(_finderPathCountByU_D_A, args);
+			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByU_D_A,
 				args);
 
 			args = new Object[] {
@@ -8635,8 +8628,8 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 					userNotificationEventModelImpl.isArchived()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_A_A, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_A_A,
+			FinderCacheUtil.removeResult(_finderPathCountByU_A_A, args);
+			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByU_A_A,
 				args);
 
 			args = new Object[] {
@@ -8646,8 +8639,8 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 					userNotificationEventModelImpl.isDelivered()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_T_DT_D, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_T_DT_D,
+			FinderCacheUtil.removeResult(_finderPathCountByU_T_DT_D, args);
+			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByU_T_DT_D,
 				args);
 
 			args = new Object[] {
@@ -8657,8 +8650,8 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 					userNotificationEventModelImpl.isActionRequired()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_DT_D_A, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_DT_D_A,
+			FinderCacheUtil.removeResult(_finderPathCountByU_DT_D_A, args);
+			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByU_DT_D_A,
 				args);
 
 			args = new Object[] {
@@ -8668,43 +8661,42 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 					userNotificationEventModelImpl.isArchived()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_DT_A_A, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_DT_A_A,
+			FinderCacheUtil.removeResult(_finderPathCountByU_DT_A_A, args);
+			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByU_DT_A_A,
 				args);
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_ALL,
-				FINDER_ARGS_EMPTY);
-			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL,
+			FinderCacheUtil.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
+			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindAll,
 				FINDER_ARGS_EMPTY);
 		}
 
 		else {
 			if ((userNotificationEventModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByUuid.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						userNotificationEventModelImpl.getOriginalUuid()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
+				FinderCacheUtil.removeResult(_finderPathCountByUuid, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByUuid,
 					args);
 
 				args = new Object[] { userNotificationEventModelImpl.getUuid() };
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
+				FinderCacheUtil.removeResult(_finderPathCountByUuid, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByUuid,
 					args);
 			}
 
 			if ((userNotificationEventModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByUuid_C.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						userNotificationEventModelImpl.getOriginalUuid(),
 						userNotificationEventModelImpl.getOriginalCompanyId()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C,
+				FinderCacheUtil.removeResult(_finderPathCountByUuid_C, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByUuid_C,
 					args);
 
 				args = new Object[] {
@@ -8712,54 +8704,54 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 						userNotificationEventModelImpl.getCompanyId()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C,
+				FinderCacheUtil.removeResult(_finderPathCountByUuid_C, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByUuid_C,
 					args);
 			}
 
 			if ((userNotificationEventModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByUserId.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						userNotificationEventModelImpl.getOriginalUserId()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
+				FinderCacheUtil.removeResult(_finderPathCountByUserId, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByUserId,
 					args);
 
 				args = new Object[] { userNotificationEventModelImpl.getUserId() };
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
+				FinderCacheUtil.removeResult(_finderPathCountByUserId, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByUserId,
 					args);
 			}
 
 			if ((userNotificationEventModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_TYPE.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByType.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						userNotificationEventModelImpl.getOriginalType()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_TYPE, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_TYPE,
+				FinderCacheUtil.removeResult(_finderPathCountByType, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByType,
 					args);
 
 				args = new Object[] { userNotificationEventModelImpl.getType() };
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_TYPE, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_TYPE,
+				FinderCacheUtil.removeResult(_finderPathCountByType, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByType,
 					args);
 			}
 
 			if ((userNotificationEventModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_DT.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByU_DT.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						userNotificationEventModelImpl.getOriginalUserId(),
 						userNotificationEventModelImpl.getOriginalDeliveryType()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_DT, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_DT,
+				FinderCacheUtil.removeResult(_finderPathCountByU_DT, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByU_DT,
 					args);
 
 				args = new Object[] {
@@ -8767,20 +8759,20 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 						userNotificationEventModelImpl.getDeliveryType()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_DT, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_DT,
+				FinderCacheUtil.removeResult(_finderPathCountByU_DT, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByU_DT,
 					args);
 			}
 
 			if ((userNotificationEventModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_D.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByU_D.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						userNotificationEventModelImpl.getOriginalUserId(),
 						userNotificationEventModelImpl.getOriginalDelivered()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_D, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_D,
+				FinderCacheUtil.removeResult(_finderPathCountByU_D, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByU_D,
 					args);
 
 				args = new Object[] {
@@ -8788,20 +8780,20 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 						userNotificationEventModelImpl.isDelivered()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_D, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_D,
+				FinderCacheUtil.removeResult(_finderPathCountByU_D, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByU_D,
 					args);
 			}
 
 			if ((userNotificationEventModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_A.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByU_A.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						userNotificationEventModelImpl.getOriginalUserId(),
 						userNotificationEventModelImpl.getOriginalArchived()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_A, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_A,
+				FinderCacheUtil.removeResult(_finderPathCountByU_A, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByU_A,
 					args);
 
 				args = new Object[] {
@@ -8809,21 +8801,21 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 						userNotificationEventModelImpl.isArchived()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_A, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_A,
+				FinderCacheUtil.removeResult(_finderPathCountByU_A, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByU_A,
 					args);
 			}
 
 			if ((userNotificationEventModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_DT_D.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByU_DT_D.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						userNotificationEventModelImpl.getOriginalUserId(),
 						userNotificationEventModelImpl.getOriginalDeliveryType(),
 						userNotificationEventModelImpl.getOriginalDelivered()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_DT_D, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_DT_D,
+				FinderCacheUtil.removeResult(_finderPathCountByU_DT_D, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByU_DT_D,
 					args);
 
 				args = new Object[] {
@@ -8832,21 +8824,21 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 						userNotificationEventModelImpl.isDelivered()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_DT_D, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_DT_D,
+				FinderCacheUtil.removeResult(_finderPathCountByU_DT_D, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByU_DT_D,
 					args);
 			}
 
 			if ((userNotificationEventModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_DT_A.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByU_DT_A.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						userNotificationEventModelImpl.getOriginalUserId(),
 						userNotificationEventModelImpl.getOriginalDeliveryType(),
 						userNotificationEventModelImpl.getOriginalArchived()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_DT_A, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_DT_A,
+				FinderCacheUtil.removeResult(_finderPathCountByU_DT_A, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByU_DT_A,
 					args);
 
 				args = new Object[] {
@@ -8855,21 +8847,21 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 						userNotificationEventModelImpl.isArchived()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_DT_A, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_DT_A,
+				FinderCacheUtil.removeResult(_finderPathCountByU_DT_A, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByU_DT_A,
 					args);
 			}
 
 			if ((userNotificationEventModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_D_A.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByU_D_A.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						userNotificationEventModelImpl.getOriginalUserId(),
 						userNotificationEventModelImpl.getOriginalDelivered(),
 						userNotificationEventModelImpl.getOriginalActionRequired()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_D_A, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_D_A,
+				FinderCacheUtil.removeResult(_finderPathCountByU_D_A, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByU_D_A,
 					args);
 
 				args = new Object[] {
@@ -8878,21 +8870,21 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 						userNotificationEventModelImpl.isActionRequired()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_D_A, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_D_A,
+				FinderCacheUtil.removeResult(_finderPathCountByU_D_A, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByU_D_A,
 					args);
 			}
 
 			if ((userNotificationEventModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_A_A.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByU_A_A.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						userNotificationEventModelImpl.getOriginalUserId(),
 						userNotificationEventModelImpl.getOriginalActionRequired(),
 						userNotificationEventModelImpl.getOriginalArchived()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_A_A, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_A_A,
+				FinderCacheUtil.removeResult(_finderPathCountByU_A_A, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByU_A_A,
 					args);
 
 				args = new Object[] {
@@ -8901,13 +8893,13 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 						userNotificationEventModelImpl.isArchived()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_A_A, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_A_A,
+				FinderCacheUtil.removeResult(_finderPathCountByU_A_A, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByU_A_A,
 					args);
 			}
 
 			if ((userNotificationEventModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_T_DT_D.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByU_T_DT_D.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						userNotificationEventModelImpl.getOriginalUserId(),
 						userNotificationEventModelImpl.getOriginalType(),
@@ -8915,8 +8907,8 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 						userNotificationEventModelImpl.getOriginalDelivered()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_T_DT_D, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_T_DT_D,
+				FinderCacheUtil.removeResult(_finderPathCountByU_T_DT_D, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByU_T_DT_D,
 					args);
 
 				args = new Object[] {
@@ -8926,13 +8918,13 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 						userNotificationEventModelImpl.isDelivered()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_T_DT_D, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_T_DT_D,
+				FinderCacheUtil.removeResult(_finderPathCountByU_T_DT_D, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByU_T_DT_D,
 					args);
 			}
 
 			if ((userNotificationEventModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_DT_D_A.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByU_DT_D_A.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						userNotificationEventModelImpl.getOriginalUserId(),
 						userNotificationEventModelImpl.getOriginalDeliveryType(),
@@ -8940,8 +8932,8 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 						userNotificationEventModelImpl.getOriginalActionRequired()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_DT_D_A, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_DT_D_A,
+				FinderCacheUtil.removeResult(_finderPathCountByU_DT_D_A, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByU_DT_D_A,
 					args);
 
 				args = new Object[] {
@@ -8951,13 +8943,13 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 						userNotificationEventModelImpl.isActionRequired()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_DT_D_A, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_DT_D_A,
+				FinderCacheUtil.removeResult(_finderPathCountByU_DT_D_A, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByU_DT_D_A,
 					args);
 			}
 
 			if ((userNotificationEventModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_DT_A_A.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByU_DT_A_A.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						userNotificationEventModelImpl.getOriginalUserId(),
 						userNotificationEventModelImpl.getOriginalDeliveryType(),
@@ -8965,8 +8957,8 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 						userNotificationEventModelImpl.getOriginalArchived()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_DT_A_A, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_DT_A_A,
+				FinderCacheUtil.removeResult(_finderPathCountByU_DT_A_A, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByU_DT_A_A,
 					args);
 
 				args = new Object[] {
@@ -8976,8 +8968,8 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 						userNotificationEventModelImpl.isArchived()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_DT_A_A, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_DT_A_A,
+				FinderCacheUtil.removeResult(_finderPathCountByU_DT_A_A, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByU_DT_A_A,
 					args);
 			}
 		}
@@ -9250,11 +9242,11 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL;
+			finderPath = _finderPathWithoutPaginationFindAll;
 			finderArgs = FINDER_ARGS_EMPTY;
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_ALL;
+			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] { start, end, orderByComparator };
 		}
 
@@ -9343,7 +9335,7 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
+		Long count = (Long)FinderCacheUtil.getResult(_finderPathCountAll,
 				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
@@ -9356,11 +9348,11 @@ public class UserNotificationEventPersistenceImpl extends BasePersistenceImpl<Us
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL,
+				FinderCacheUtil.putResult(_finderPathCountAll,
 					FINDER_ARGS_EMPTY, count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_ALL,
+				FinderCacheUtil.removeResult(_finderPathCountAll,
 					FINDER_ARGS_EMPTY);
 
 				throw processException(e);

@@ -89,16 +89,16 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 		".List1";
 	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
 		".List2";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindAll = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindAll = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountAll = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_UUID = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByUuid = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid",
 			new String[] {
@@ -107,13 +107,13 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByUuid = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid",
 			new String[] { String.class.getName() },
 			GroupModelImpl.UUID_COLUMN_BITMASK |
 			GroupModelImpl.NAME_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_UUID = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByUuid = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid",
 			new String[] { String.class.getName() });
@@ -191,11 +191,11 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID;
+			finderPath = _finderPathWithoutPaginationFindByUuid;
 			finderArgs = new Object[] { uuid };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_UUID;
+			finderPath = _finderPathWithPaginationFindByUuid;
 			finderArgs = new Object[] { uuid, start, end, orderByComparator };
 		}
 
@@ -576,7 +576,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	public int countByUuid(String uuid) {
 		uuid = Objects.toString(uuid, "");
 
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID;
+		FinderPath finderPath = _finderPathCountByUuid;
 
 		Object[] finderArgs = new Object[] { uuid };
 
@@ -633,13 +633,13 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 
 	private static final String _FINDER_COLUMN_UUID_UUID_2 = "group_.uuid = ?";
 	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(group_.uuid IS NULL OR group_.uuid = '')";
-	public static final FinderPath FINDER_PATH_FETCH_BY_UUID_G = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathFetchByUUID_G = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_ENTITY, "fetchByUUID_G",
 			new String[] { String.class.getName(), Long.class.getName() },
 			GroupModelImpl.UUID_COLUMN_BITMASK |
 			GroupModelImpl.GROUPID_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_UUID_G = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByUUID_G = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUUID_G",
 			new String[] { String.class.getName(), Long.class.getName() });
@@ -710,7 +710,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_UUID_G,
+			result = FinderCacheUtil.getResult(_finderPathFetchByUUID_G,
 					finderArgs, this);
 		}
 
@@ -761,7 +761,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 				List<Group> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
+					FinderCacheUtil.putResult(_finderPathFetchByUUID_G,
 						finderArgs, list);
 				}
 				else {
@@ -773,7 +773,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
+				FinderCacheUtil.removeResult(_finderPathFetchByUUID_G,
 					finderArgs);
 
 				throw processException(e);
@@ -817,7 +817,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	public int countByUUID_G(String uuid, long groupId) {
 		uuid = Objects.toString(uuid, "");
 
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_G;
+		FinderPath finderPath = _finderPathCountByUUID_G;
 
 		Object[] finderArgs = new Object[] { uuid, groupId };
 
@@ -879,7 +879,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	private static final String _FINDER_COLUMN_UUID_G_UUID_2 = "group_.uuid = ? AND ";
 	private static final String _FINDER_COLUMN_UUID_G_UUID_3 = "(group_.uuid IS NULL OR group_.uuid = '') AND ";
 	private static final String _FINDER_COLUMN_UUID_G_GROUPID_2 = "group_.groupId = ?";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_UUID_C = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByUuid_C = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid_C",
 			new String[] {
@@ -888,15 +888,14 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C =
-		new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByUuid_C = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid_C",
 			new String[] { String.class.getName(), Long.class.getName() },
 			GroupModelImpl.UUID_COLUMN_BITMASK |
 			GroupModelImpl.COMPANYID_COLUMN_BITMASK |
 			GroupModelImpl.NAME_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_UUID_C = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByUuid_C = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid_C",
 			new String[] { String.class.getName(), Long.class.getName() });
@@ -981,11 +980,11 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C;
+			finderPath = _finderPathWithoutPaginationFindByUuid_C;
 			finderArgs = new Object[] { uuid, companyId };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_UUID_C;
+			finderPath = _finderPathWithPaginationFindByUuid_C;
 			finderArgs = new Object[] {
 					uuid, companyId,
 					
@@ -1394,7 +1393,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	public int countByUuid_C(String uuid, long companyId) {
 		uuid = Objects.toString(uuid, "");
 
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_C;
+		FinderPath finderPath = _finderPathCountByUuid_C;
 
 		Object[] finderArgs = new Object[] { uuid, companyId };
 
@@ -1456,8 +1455,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	private static final String _FINDER_COLUMN_UUID_C_UUID_2 = "group_.uuid = ? AND ";
 	private static final String _FINDER_COLUMN_UUID_C_UUID_3 = "(group_.uuid IS NULL OR group_.uuid = '') AND ";
 	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 = "group_.companyId = ?";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_COMPANYID =
-		new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByCompanyId = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByCompanyId",
 			new String[] {
@@ -1466,14 +1464,13 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID =
-		new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByCompanyId = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByCompanyId",
 			new String[] { Long.class.getName() },
 			GroupModelImpl.COMPANYID_COLUMN_BITMASK |
 			GroupModelImpl.NAME_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_COMPANYID = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByCompanyId = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCompanyId",
 			new String[] { Long.class.getName() });
@@ -1550,11 +1547,11 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID;
+			finderPath = _finderPathWithoutPaginationFindByCompanyId;
 			finderArgs = new Object[] { companyId };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_COMPANYID;
+			finderPath = _finderPathWithPaginationFindByCompanyId;
 			finderArgs = new Object[] { companyId, start, end, orderByComparator };
 		}
 
@@ -1910,7 +1907,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	 */
 	@Override
 	public int countByCompanyId(long companyId) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_COMPANYID;
+		FinderPath finderPath = _finderPathCountByCompanyId;
 
 		Object[] finderArgs = new Object[] { companyId };
 
@@ -1955,12 +1952,12 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	}
 
 	private static final String _FINDER_COLUMN_COMPANYID_COMPANYID_2 = "group_.companyId = ?";
-	public static final FinderPath FINDER_PATH_FETCH_BY_LIVEGROUPID = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathFetchByLiveGroupId = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_ENTITY, "fetchByLiveGroupId",
 			new String[] { Long.class.getName() },
 			GroupModelImpl.LIVEGROUPID_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_LIVEGROUPID = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByLiveGroupId = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByLiveGroupId",
 			new String[] { Long.class.getName() });
@@ -2022,7 +2019,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_LIVEGROUPID,
+			result = FinderCacheUtil.getResult(_finderPathFetchByLiveGroupId,
 					finderArgs, this);
 		}
 
@@ -2057,7 +2054,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 				List<Group> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_LIVEGROUPID,
+					FinderCacheUtil.putResult(_finderPathFetchByLiveGroupId,
 						finderArgs, list);
 				}
 				else {
@@ -2080,7 +2077,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_LIVEGROUPID,
+				FinderCacheUtil.removeResult(_finderPathFetchByLiveGroupId,
 					finderArgs);
 
 				throw processException(e);
@@ -2120,7 +2117,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	 */
 	@Override
 	public int countByLiveGroupId(long liveGroupId) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_LIVEGROUPID;
+		FinderPath finderPath = _finderPathCountByLiveGroupId;
 
 		Object[] finderArgs = new Object[] { liveGroupId };
 
@@ -2165,7 +2162,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	}
 
 	private static final String _FINDER_COLUMN_LIVEGROUPID_LIVEGROUPID_2 = "group_.liveGroupId = ?";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_C_C = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByC_C = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_C",
 			new String[] {
@@ -2174,14 +2171,14 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_C = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByC_C = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_C",
 			new String[] { Long.class.getName(), Long.class.getName() },
 			GroupModelImpl.COMPANYID_COLUMN_BITMASK |
 			GroupModelImpl.CLASSNAMEID_COLUMN_BITMASK |
 			GroupModelImpl.NAME_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_C_C = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByC_C = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_C",
 			new String[] { Long.class.getName(), Long.class.getName() });
@@ -2265,11 +2262,11 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_C;
+			finderPath = _finderPathWithoutPaginationFindByC_C;
 			finderArgs = new Object[] { companyId, classNameId };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_C_C;
+			finderPath = _finderPathWithPaginationFindByC_C;
 			finderArgs = new Object[] {
 					companyId, classNameId,
 					
@@ -2653,7 +2650,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	 */
 	@Override
 	public int countByC_C(long companyId, long classNameId) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_C;
+		FinderPath finderPath = _finderPathCountByC_C;
 
 		Object[] finderArgs = new Object[] { companyId, classNameId };
 
@@ -2703,7 +2700,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 
 	private static final String _FINDER_COLUMN_C_C_COMPANYID_2 = "group_.companyId = ? AND ";
 	private static final String _FINDER_COLUMN_C_C_CLASSNAMEID_2 = "group_.classNameId = ?";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_C_P = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByC_P = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_P",
 			new String[] {
@@ -2712,14 +2709,14 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_P = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByC_P = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_P",
 			new String[] { Long.class.getName(), Long.class.getName() },
 			GroupModelImpl.COMPANYID_COLUMN_BITMASK |
 			GroupModelImpl.PARENTGROUPID_COLUMN_BITMASK |
 			GroupModelImpl.NAME_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_C_P = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByC_P = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_P",
 			new String[] { Long.class.getName(), Long.class.getName() });
@@ -2803,11 +2800,11 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_P;
+			finderPath = _finderPathWithoutPaginationFindByC_P;
 			finderArgs = new Object[] { companyId, parentGroupId };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_C_P;
+			finderPath = _finderPathWithPaginationFindByC_P;
 			finderArgs = new Object[] {
 					companyId, parentGroupId,
 					
@@ -3193,7 +3190,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	 */
 	@Override
 	public int countByC_P(long companyId, long parentGroupId) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_P;
+		FinderPath finderPath = _finderPathCountByC_P;
 
 		Object[] finderArgs = new Object[] { companyId, parentGroupId };
 
@@ -3243,13 +3240,13 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 
 	private static final String _FINDER_COLUMN_C_P_COMPANYID_2 = "group_.companyId = ? AND ";
 	private static final String _FINDER_COLUMN_C_P_PARENTGROUPID_2 = "group_.parentGroupId = ?";
-	public static final FinderPath FINDER_PATH_FETCH_BY_C_GK = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathFetchByC_GK = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_ENTITY, "fetchByC_GK",
 			new String[] { Long.class.getName(), String.class.getName() },
 			GroupModelImpl.COMPANYID_COLUMN_BITMASK |
 			GroupModelImpl.GROUPKEY_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_C_GK = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByC_GK = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_GK",
 			new String[] { Long.class.getName(), String.class.getName() });
@@ -3320,7 +3317,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_C_GK,
+			result = FinderCacheUtil.getResult(_finderPathFetchByC_GK,
 					finderArgs, this);
 		}
 
@@ -3371,7 +3368,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 				List<Group> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_GK,
+					FinderCacheUtil.putResult(_finderPathFetchByC_GK,
 						finderArgs, list);
 				}
 				else {
@@ -3383,8 +3380,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_GK,
-					finderArgs);
+				FinderCacheUtil.removeResult(_finderPathFetchByC_GK, finderArgs);
 
 				throw processException(e);
 			}
@@ -3427,7 +3423,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	public int countByC_GK(long companyId, String groupKey) {
 		groupKey = Objects.toString(groupKey, "");
 
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_GK;
+		FinderPath finderPath = _finderPathCountByC_GK;
 
 		Object[] finderArgs = new Object[] { companyId, groupKey };
 
@@ -3489,13 +3485,13 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	private static final String _FINDER_COLUMN_C_GK_COMPANYID_2 = "group_.companyId = ? AND ";
 	private static final String _FINDER_COLUMN_C_GK_GROUPKEY_2 = "group_.groupKey = ?";
 	private static final String _FINDER_COLUMN_C_GK_GROUPKEY_3 = "(group_.groupKey IS NULL OR group_.groupKey = '')";
-	public static final FinderPath FINDER_PATH_FETCH_BY_C_F = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathFetchByC_F = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_ENTITY, "fetchByC_F",
 			new String[] { Long.class.getName(), String.class.getName() },
 			GroupModelImpl.COMPANYID_COLUMN_BITMASK |
 			GroupModelImpl.FRIENDLYURL_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_C_F = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByC_F = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_F",
 			new String[] { Long.class.getName(), String.class.getName() });
@@ -3566,7 +3562,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_C_F,
+			result = FinderCacheUtil.getResult(_finderPathFetchByC_F,
 					finderArgs, this);
 		}
 
@@ -3617,7 +3613,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 				List<Group> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_F,
+					FinderCacheUtil.putResult(_finderPathFetchByC_F,
 						finderArgs, list);
 				}
 				else {
@@ -3629,8 +3625,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_F,
-					finderArgs);
+				FinderCacheUtil.removeResult(_finderPathFetchByC_F, finderArgs);
 
 				throw processException(e);
 			}
@@ -3673,7 +3668,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	public int countByC_F(long companyId, String friendlyURL) {
 		friendlyURL = Objects.toString(friendlyURL, "");
 
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_F;
+		FinderPath finderPath = _finderPathCountByC_F;
 
 		Object[] finderArgs = new Object[] { companyId, friendlyURL };
 
@@ -3735,7 +3730,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	private static final String _FINDER_COLUMN_C_F_COMPANYID_2 = "group_.companyId = ? AND ";
 	private static final String _FINDER_COLUMN_C_F_FRIENDLYURL_2 = "group_.friendlyURL = ?";
 	private static final String _FINDER_COLUMN_C_F_FRIENDLYURL_3 = "(group_.friendlyURL IS NULL OR group_.friendlyURL = '')";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_C_S = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByC_S = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_S",
 			new String[] {
@@ -3744,14 +3739,14 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_S = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByC_S = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_S",
 			new String[] { Long.class.getName(), Boolean.class.getName() },
 			GroupModelImpl.COMPANYID_COLUMN_BITMASK |
 			GroupModelImpl.SITE_COLUMN_BITMASK |
 			GroupModelImpl.NAME_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_C_S = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByC_S = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_S",
 			new String[] { Long.class.getName(), Boolean.class.getName() });
@@ -3834,11 +3829,11 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_S;
+			finderPath = _finderPathWithoutPaginationFindByC_S;
 			finderArgs = new Object[] { companyId, site };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_C_S;
+			finderPath = _finderPathWithPaginationFindByC_S;
 			finderArgs = new Object[] {
 					companyId, site,
 					
@@ -4221,7 +4216,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	 */
 	@Override
 	public int countByC_S(long companyId, boolean site) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_S;
+		FinderPath finderPath = _finderPathCountByC_S;
 
 		Object[] finderArgs = new Object[] { companyId, site };
 
@@ -4271,7 +4266,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 
 	private static final String _FINDER_COLUMN_C_S_COMPANYID_2 = "group_.companyId = ? AND ";
 	private static final String _FINDER_COLUMN_C_S_SITE_2 = "group_.site = ?";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_C_A = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByC_A = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_A",
 			new String[] {
@@ -4280,14 +4275,14 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_A = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByC_A = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_A",
 			new String[] { Long.class.getName(), Boolean.class.getName() },
 			GroupModelImpl.COMPANYID_COLUMN_BITMASK |
 			GroupModelImpl.ACTIVE_COLUMN_BITMASK |
 			GroupModelImpl.NAME_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_C_A = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByC_A = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_A",
 			new String[] { Long.class.getName(), Boolean.class.getName() });
@@ -4370,11 +4365,11 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_A;
+			finderPath = _finderPathWithoutPaginationFindByC_A;
 			finderArgs = new Object[] { companyId, active };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_C_A;
+			finderPath = _finderPathWithPaginationFindByC_A;
 			finderArgs = new Object[] {
 					companyId, active,
 					
@@ -4757,7 +4752,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	 */
 	@Override
 	public int countByC_A(long companyId, boolean active) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_A;
+		FinderPath finderPath = _finderPathCountByC_A;
 
 		Object[] finderArgs = new Object[] { companyId, active };
 
@@ -4807,7 +4802,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 
 	private static final String _FINDER_COLUMN_C_A_COMPANYID_2 = "group_.companyId = ? AND ";
 	private static final String _FINDER_COLUMN_C_A_ACTIVE_2 = "group_.active = ?";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_C_CPK = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByC_CPK = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_CPK",
 			new String[] {
@@ -4816,14 +4811,14 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_CPK = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByC_CPK = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_CPK",
 			new String[] { Long.class.getName(), Long.class.getName() },
 			GroupModelImpl.CLASSNAMEID_COLUMN_BITMASK |
 			GroupModelImpl.CLASSPK_COLUMN_BITMASK |
 			GroupModelImpl.NAME_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_C_CPK = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByC_CPK = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_CPK",
 			new String[] { Long.class.getName(), Long.class.getName() });
@@ -4907,11 +4902,11 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_CPK;
+			finderPath = _finderPathWithoutPaginationFindByC_CPK;
 			finderArgs = new Object[] { classNameId, classPK };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_C_CPK;
+			finderPath = _finderPathWithPaginationFindByC_CPK;
 			finderArgs = new Object[] {
 					classNameId, classPK,
 					
@@ -5295,7 +5290,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	 */
 	@Override
 	public int countByC_CPK(long classNameId, long classPK) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_CPK;
+		FinderPath finderPath = _finderPathCountByC_CPK;
 
 		Object[] finderArgs = new Object[] { classNameId, classPK };
 
@@ -5345,7 +5340,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 
 	private static final String _FINDER_COLUMN_C_CPK_CLASSNAMEID_2 = "group_.classNameId = ? AND ";
 	private static final String _FINDER_COLUMN_C_CPK_CLASSPK_2 = "group_.classPK = ?";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_T_A = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByT_A = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByT_A",
 			new String[] {
@@ -5354,14 +5349,14 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_T_A = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByT_A = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByT_A",
 			new String[] { Integer.class.getName(), Boolean.class.getName() },
 			GroupModelImpl.TYPE_COLUMN_BITMASK |
 			GroupModelImpl.ACTIVE_COLUMN_BITMASK |
 			GroupModelImpl.NAME_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_T_A = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByT_A = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByT_A",
 			new String[] { Integer.class.getName(), Boolean.class.getName() });
@@ -5442,11 +5437,11 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_T_A;
+			finderPath = _finderPathWithoutPaginationFindByT_A;
 			finderArgs = new Object[] { type, active };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_T_A;
+			finderPath = _finderPathWithPaginationFindByT_A;
 			finderArgs = new Object[] {
 					type, active,
 					
@@ -5829,7 +5824,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	 */
 	@Override
 	public int countByT_A(int type, boolean active) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_T_A;
+		FinderPath finderPath = _finderPathCountByT_A;
 
 		Object[] finderArgs = new Object[] { type, active };
 
@@ -5879,7 +5874,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 
 	private static final String _FINDER_COLUMN_T_A_TYPE_2 = "group_.type = ? AND ";
 	private static final String _FINDER_COLUMN_T_A_ACTIVE_2 = "group_.active = ?";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_G_C_P = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByG_C_P = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_C_P",
 			new String[] {
@@ -5888,7 +5883,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_COUNT_BY_G_C_P = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationCountByG_C_P = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByG_C_P",
 			new String[] {
@@ -5977,7 +5972,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
-		finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_G_C_P;
+		finderPath = _finderPathWithPaginationFindByG_C_P;
 		finderArgs = new Object[] {
 				groupId, companyId, parentGroupId,
 				
@@ -6231,7 +6226,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	 */
 	@Override
 	public int countByG_C_P(long groupId, long companyId, long parentGroupId) {
-		FinderPath finderPath = FINDER_PATH_WITH_PAGINATION_COUNT_BY_G_C_P;
+		FinderPath finderPath = _finderPathWithPaginationCountByG_C_P;
 
 		Object[] finderArgs = new Object[] { groupId, companyId, parentGroupId };
 
@@ -6286,7 +6281,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	private static final String _FINDER_COLUMN_G_C_P_GROUPID_2 = "group_.groupId > ? AND ";
 	private static final String _FINDER_COLUMN_G_C_P_COMPANYID_2 = "group_.companyId = ? AND ";
 	private static final String _FINDER_COLUMN_G_C_P_PARENTGROUPID_2 = "group_.parentGroupId = ?";
-	public static final FinderPath FINDER_PATH_FETCH_BY_C_C_C = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathFetchByC_C_C = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_ENTITY, "fetchByC_C_C",
 			new String[] {
@@ -6295,7 +6290,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 			GroupModelImpl.COMPANYID_COLUMN_BITMASK |
 			GroupModelImpl.CLASSNAMEID_COLUMN_BITMASK |
 			GroupModelImpl.CLASSPK_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_C_C_C = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByC_C_C = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_C_C",
 			new String[] {
@@ -6372,7 +6367,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_C_C_C,
+			result = FinderCacheUtil.getResult(_finderPathFetchByC_C_C,
 					finderArgs, this);
 		}
 
@@ -6417,7 +6412,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 				List<Group> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_C_C,
+					FinderCacheUtil.putResult(_finderPathFetchByC_C_C,
 						finderArgs, list);
 				}
 				else {
@@ -6429,8 +6424,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_C_C,
-					finderArgs);
+				FinderCacheUtil.removeResult(_finderPathFetchByC_C_C, finderArgs);
 
 				throw processException(e);
 			}
@@ -6473,7 +6467,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	 */
 	@Override
 	public int countByC_C_C(long companyId, long classNameId, long classPK) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_C_C;
+		FinderPath finderPath = _finderPathCountByC_C_C;
 
 		Object[] finderArgs = new Object[] { companyId, classNameId, classPK };
 
@@ -6528,7 +6522,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	private static final String _FINDER_COLUMN_C_C_C_COMPANYID_2 = "group_.companyId = ? AND ";
 	private static final String _FINDER_COLUMN_C_C_C_CLASSNAMEID_2 = "group_.classNameId = ? AND ";
 	private static final String _FINDER_COLUMN_C_C_C_CLASSPK_2 = "group_.classPK = ?";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_C_C_P = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByC_C_P = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_C_P",
 			new String[] {
@@ -6537,7 +6531,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_C_P = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByC_C_P = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_C_P",
 			new String[] {
@@ -6547,7 +6541,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 			GroupModelImpl.CLASSNAMEID_COLUMN_BITMASK |
 			GroupModelImpl.PARENTGROUPID_COLUMN_BITMASK |
 			GroupModelImpl.NAME_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_C_C_P = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByC_C_P = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_C_P",
 			new String[] {
@@ -6640,11 +6634,11 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_C_P;
+			finderPath = _finderPathWithoutPaginationFindByC_C_P;
 			finderArgs = new Object[] { companyId, classNameId, parentGroupId };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_C_C_P;
+			finderPath = _finderPathWithPaginationFindByC_C_P;
 			finderArgs = new Object[] {
 					companyId, classNameId, parentGroupId,
 					
@@ -7055,7 +7049,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	 */
 	@Override
 	public int countByC_C_P(long companyId, long classNameId, long parentGroupId) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_C_P;
+		FinderPath finderPath = _finderPathCountByC_C_P;
 
 		Object[] finderArgs = new Object[] { companyId, classNameId, parentGroupId };
 
@@ -7110,7 +7104,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	private static final String _FINDER_COLUMN_C_C_P_COMPANYID_2 = "group_.companyId = ? AND ";
 	private static final String _FINDER_COLUMN_C_C_P_CLASSNAMEID_2 = "group_.classNameId = ? AND ";
 	private static final String _FINDER_COLUMN_C_C_P_PARENTGROUPID_2 = "group_.parentGroupId = ?";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_C_P_S = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByC_P_S = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_P_S",
 			new String[] {
@@ -7120,7 +7114,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_P_S = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByC_P_S = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_P_S",
 			new String[] {
@@ -7131,7 +7125,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 			GroupModelImpl.PARENTGROUPID_COLUMN_BITMASK |
 			GroupModelImpl.SITE_COLUMN_BITMASK |
 			GroupModelImpl.NAME_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_C_P_S = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByC_P_S = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_P_S",
 			new String[] {
@@ -7224,11 +7218,11 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_P_S;
+			finderPath = _finderPathWithoutPaginationFindByC_P_S;
 			finderArgs = new Object[] { companyId, parentGroupId, site };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_C_P_S;
+			finderPath = _finderPathWithPaginationFindByC_P_S;
 			finderArgs = new Object[] {
 					companyId, parentGroupId, site,
 					
@@ -7638,7 +7632,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	 */
 	@Override
 	public int countByC_P_S(long companyId, long parentGroupId, boolean site) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_P_S;
+		FinderPath finderPath = _finderPathCountByC_P_S;
 
 		Object[] finderArgs = new Object[] { companyId, parentGroupId, site };
 
@@ -7693,7 +7687,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	private static final String _FINDER_COLUMN_C_P_S_COMPANYID_2 = "group_.companyId = ? AND ";
 	private static final String _FINDER_COLUMN_C_P_S_PARENTGROUPID_2 = "group_.parentGroupId = ? AND ";
 	private static final String _FINDER_COLUMN_C_P_S_SITE_2 = "group_.site = ?";
-	public static final FinderPath FINDER_PATH_FETCH_BY_C_L_GK = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathFetchByC_L_GK = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_ENTITY, "fetchByC_L_GK",
 			new String[] {
@@ -7703,7 +7697,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 			GroupModelImpl.COMPANYID_COLUMN_BITMASK |
 			GroupModelImpl.LIVEGROUPID_COLUMN_BITMASK |
 			GroupModelImpl.GROUPKEY_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_C_L_GK = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByC_L_GK = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_L_GK",
 			new String[] {
@@ -7783,7 +7777,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_C_L_GK,
+			result = FinderCacheUtil.getResult(_finderPathFetchByC_L_GK,
 					finderArgs, this);
 		}
 
@@ -7839,7 +7833,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 				List<Group> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_L_GK,
+					FinderCacheUtil.putResult(_finderPathFetchByC_L_GK,
 						finderArgs, list);
 				}
 				else {
@@ -7851,7 +7845,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_L_GK,
+				FinderCacheUtil.removeResult(_finderPathFetchByC_L_GK,
 					finderArgs);
 
 				throw processException(e);
@@ -7897,7 +7891,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	public int countByC_L_GK(long companyId, long liveGroupId, String groupKey) {
 		groupKey = Objects.toString(groupKey, "");
 
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_L_GK;
+		FinderPath finderPath = _finderPathCountByC_L_GK;
 
 		Object[] finderArgs = new Object[] { companyId, liveGroupId, groupKey };
 
@@ -7964,7 +7958,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	private static final String _FINDER_COLUMN_C_L_GK_LIVEGROUPID_2 = "group_.liveGroupId = ? AND ";
 	private static final String _FINDER_COLUMN_C_L_GK_GROUPKEY_2 = "group_.groupKey = ?";
 	private static final String _FINDER_COLUMN_C_L_GK_GROUPKEY_3 = "(group_.groupKey IS NULL OR group_.groupKey = '')";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_C_T_S = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByC_T_S = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_T_S",
 			new String[] {
@@ -7974,7 +7968,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_COUNT_BY_C_T_S = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationCountByC_T_S = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByC_T_S",
 			new String[] {
@@ -8065,7 +8059,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
-		finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_C_T_S;
+		finderPath = _finderPathWithPaginationFindByC_T_S;
 		finderArgs = new Object[] {
 				companyId, treePath, site,
 				
@@ -8501,7 +8495,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	public int countByC_T_S(long companyId, String treePath, boolean site) {
 		treePath = Objects.toString(treePath, "");
 
-		FinderPath finderPath = FINDER_PATH_WITH_PAGINATION_COUNT_BY_C_T_S;
+		FinderPath finderPath = _finderPathWithPaginationCountByC_T_S;
 
 		Object[] finderArgs = new Object[] { companyId, treePath, site };
 
@@ -8568,8 +8562,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	private static final String _FINDER_COLUMN_C_T_S_TREEPATH_2 = "group_.treePath LIKE ? AND ";
 	private static final String _FINDER_COLUMN_C_T_S_TREEPATH_3 = "(group_.treePath IS NULL OR group_.treePath LIKE '') AND ";
 	private static final String _FINDER_COLUMN_C_T_S_SITE_2 = "group_.site = ?";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_C_LIKEN_S =
-		new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByC_LikeN_S = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_LikeN_S",
 			new String[] {
@@ -8579,8 +8572,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_COUNT_BY_C_LIKEN_S =
-		new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationCountByC_LikeN_S = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByC_LikeN_S",
 			new String[] {
@@ -8671,7 +8663,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
-		finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_C_LIKEN_S;
+		finderPath = _finderPathWithPaginationFindByC_LikeN_S;
 		finderArgs = new Object[] {
 				companyId, name, site,
 				
@@ -9107,7 +9099,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	public int countByC_LikeN_S(long companyId, String name, boolean site) {
 		name = Objects.toString(name, "");
 
-		FinderPath finderPath = FINDER_PATH_WITH_PAGINATION_COUNT_BY_C_LIKEN_S;
+		FinderPath finderPath = _finderPathWithPaginationCountByC_LikeN_S;
 
 		Object[] finderArgs = new Object[] { companyId, name, site };
 
@@ -9174,7 +9166,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	private static final String _FINDER_COLUMN_C_LIKEN_S_NAME_2 = "lower(group_.name) LIKE ? AND ";
 	private static final String _FINDER_COLUMN_C_LIKEN_S_NAME_3 = "(group_.name IS NULL OR group_.name LIKE '') AND ";
 	private static final String _FINDER_COLUMN_C_LIKEN_S_SITE_2 = "group_.site = ?";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_C_S_A = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByC_S_A = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_S_A",
 			new String[] {
@@ -9184,7 +9176,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_S_A = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByC_S_A = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_S_A",
 			new String[] {
@@ -9195,7 +9187,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 			GroupModelImpl.SITE_COLUMN_BITMASK |
 			GroupModelImpl.ACTIVE_COLUMN_BITMASK |
 			GroupModelImpl.NAME_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_C_S_A = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByC_S_A = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_S_A",
 			new String[] {
@@ -9287,11 +9279,11 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_S_A;
+			finderPath = _finderPathWithoutPaginationFindByC_S_A;
 			finderArgs = new Object[] { companyId, site, active };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_C_S_A;
+			finderPath = _finderPathWithPaginationFindByC_S_A;
 			finderArgs = new Object[] {
 					companyId, site, active,
 					
@@ -9700,7 +9692,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	 */
 	@Override
 	public int countByC_S_A(long companyId, boolean site, boolean active) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_S_A;
+		FinderPath finderPath = _finderPathCountByC_S_A;
 
 		Object[] finderArgs = new Object[] { companyId, site, active };
 
@@ -9755,7 +9747,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	private static final String _FINDER_COLUMN_C_S_A_COMPANYID_2 = "group_.companyId = ? AND ";
 	private static final String _FINDER_COLUMN_C_S_A_SITE_2 = "group_.site = ? AND ";
 	private static final String _FINDER_COLUMN_C_S_A_ACTIVE_2 = "group_.active = ?";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_G_C_C_P = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByG_C_C_P = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_C_C_P",
 			new String[] {
@@ -9765,7 +9757,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_COUNT_BY_G_C_C_P = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationCountByG_C_C_P = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByG_C_C_P",
 			new String[] {
@@ -9860,7 +9852,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
-		finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_G_C_C_P;
+		finderPath = _finderPathWithPaginationFindByG_C_C_P;
 		finderArgs = new Object[] {
 				groupId, companyId, classNameId, parentGroupId,
 				
@@ -10136,7 +10128,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	@Override
 	public int countByG_C_C_P(long groupId, long companyId, long classNameId,
 		long parentGroupId) {
-		FinderPath finderPath = FINDER_PATH_WITH_PAGINATION_COUNT_BY_G_C_C_P;
+		FinderPath finderPath = _finderPathWithPaginationCountByG_C_C_P;
 
 		Object[] finderArgs = new Object[] {
 				groupId, companyId, classNameId, parentGroupId
@@ -10198,7 +10190,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	private static final String _FINDER_COLUMN_G_C_C_P_COMPANYID_2 = "group_.companyId = ? AND ";
 	private static final String _FINDER_COLUMN_G_C_C_P_CLASSNAMEID_2 = "group_.classNameId = ? AND ";
 	private static final String _FINDER_COLUMN_G_C_C_P_PARENTGROUPID_2 = "group_.parentGroupId = ?";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_G_C_P_S = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByG_C_P_S = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_C_P_S",
 			new String[] {
@@ -10208,7 +10200,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_COUNT_BY_G_C_P_S = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationCountByG_C_P_S = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByG_C_P_S",
 			new String[] {
@@ -10303,7 +10295,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
-		finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_G_C_P_S;
+		finderPath = _finderPathWithPaginationFindByG_C_P_S;
 		finderArgs = new Object[] {
 				groupId, companyId, parentGroupId, site,
 				
@@ -10578,7 +10570,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	@Override
 	public int countByG_C_P_S(long groupId, long companyId, long parentGroupId,
 		boolean site) {
-		FinderPath finderPath = FINDER_PATH_WITH_PAGINATION_COUNT_BY_G_C_P_S;
+		FinderPath finderPath = _finderPathWithPaginationCountByG_C_P_S;
 
 		Object[] finderArgs = new Object[] {
 				groupId, companyId, parentGroupId, site
@@ -10640,7 +10632,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	private static final String _FINDER_COLUMN_G_C_P_S_COMPANYID_2 = "group_.companyId = ? AND ";
 	private static final String _FINDER_COLUMN_G_C_P_S_PARENTGROUPID_2 = "group_.parentGroupId = ? AND ";
 	private static final String _FINDER_COLUMN_G_C_P_S_SITE_2 = "group_.site = ?";
-	public static final FinderPath FINDER_PATH_FETCH_BY_C_C_L_GK = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathFetchByC_C_L_GK = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_ENTITY, "fetchByC_C_L_GK",
 			new String[] {
@@ -10651,7 +10643,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 			GroupModelImpl.CLASSNAMEID_COLUMN_BITMASK |
 			GroupModelImpl.LIVEGROUPID_COLUMN_BITMASK |
 			GroupModelImpl.GROUPKEY_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_C_C_L_GK = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByC_C_L_GK = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_C_L_GK",
 			new String[] {
@@ -10742,7 +10734,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_C_C_L_GK,
+			result = FinderCacheUtil.getResult(_finderPathFetchByC_C_L_GK,
 					finderArgs, this);
 		}
 
@@ -10803,7 +10795,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 				List<Group> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_C_L_GK,
+					FinderCacheUtil.putResult(_finderPathFetchByC_C_L_GK,
 						finderArgs, list);
 				}
 				else {
@@ -10815,7 +10807,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_C_L_GK,
+				FinderCacheUtil.removeResult(_finderPathFetchByC_C_L_GK,
 					finderArgs);
 
 				throw processException(e);
@@ -10865,7 +10857,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 		long liveGroupId, String groupKey) {
 		groupKey = Objects.toString(groupKey, "");
 
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_C_L_GK;
+		FinderPath finderPath = _finderPathCountByC_C_L_GK;
 
 		Object[] finderArgs = new Object[] {
 				companyId, classNameId, liveGroupId, groupKey
@@ -10939,8 +10931,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	private static final String _FINDER_COLUMN_C_C_L_GK_LIVEGROUPID_2 = "group_.liveGroupId = ? AND ";
 	private static final String _FINDER_COLUMN_C_C_L_GK_GROUPKEY_2 = "group_.groupKey = ?";
 	private static final String _FINDER_COLUMN_C_C_L_GK_GROUPKEY_3 = "(group_.groupKey IS NULL OR group_.groupKey = '')";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_C_P_LIKEN_S =
-		new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByC_P_LikeN_S = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_P_LikeN_S",
 			new String[] {
@@ -10950,8 +10941,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_COUNT_BY_C_P_LIKEN_S =
-		new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationCountByC_P_LikeN_S = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByC_P_LikeN_S",
 			new String[] {
@@ -11048,7 +11038,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
-		finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_C_P_LIKEN_S;
+		finderPath = _finderPathWithPaginationFindByC_P_LikeN_S;
 		finderArgs = new Object[] {
 				companyId, parentGroupId, name, site,
 				
@@ -11508,7 +11498,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 		String name, boolean site) {
 		name = Objects.toString(name, "");
 
-		FinderPath finderPath = FINDER_PATH_WITH_PAGINATION_COUNT_BY_C_P_LIKEN_S;
+		FinderPath finderPath = _finderPathWithPaginationCountByC_P_LikeN_S;
 
 		Object[] finderArgs = new Object[] { companyId, parentGroupId, name, site };
 
@@ -11580,7 +11570,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	private static final String _FINDER_COLUMN_C_P_LIKEN_S_NAME_2 = "lower(group_.name) LIKE ? AND ";
 	private static final String _FINDER_COLUMN_C_P_LIKEN_S_NAME_3 = "(group_.name IS NULL OR group_.name LIKE '') AND ";
 	private static final String _FINDER_COLUMN_C_P_LIKEN_S_SITE_2 = "group_.site = ?";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_C_P_S_I = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByC_P_S_I = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_P_S_I",
 			new String[] {
@@ -11590,8 +11580,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_P_S_I =
-		new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByC_P_S_I = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, GroupImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_P_S_I",
 			new String[] {
@@ -11603,7 +11592,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 			GroupModelImpl.SITE_COLUMN_BITMASK |
 			GroupModelImpl.INHERITCONTENT_COLUMN_BITMASK |
 			GroupModelImpl.NAME_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_C_P_S_I = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByC_P_S_I = new FinderPath(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_P_S_I",
 			new String[] {
@@ -11701,13 +11690,13 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_P_S_I;
+			finderPath = _finderPathWithoutPaginationFindByC_P_S_I;
 			finderArgs = new Object[] {
 					companyId, parentGroupId, site, inheritContent
 				};
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_C_P_S_I;
+			finderPath = _finderPathWithPaginationFindByC_P_S_I;
 			finderArgs = new Object[] {
 					companyId, parentGroupId, site, inheritContent,
 					
@@ -12146,7 +12135,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	@Override
 	public int countByC_P_S_I(long companyId, long parentGroupId, boolean site,
 		boolean inheritContent) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_P_S_I;
+		FinderPath finderPath = _finderPathCountByC_P_S_I;
 
 		Object[] finderArgs = new Object[] {
 				companyId, parentGroupId, site, inheritContent
@@ -12243,30 +12232,30 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 		EntityCacheUtil.putResult(GroupModelImpl.ENTITY_CACHE_ENABLED,
 			GroupImpl.class, group.getPrimaryKey(), group);
 
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
+		FinderCacheUtil.putResult(_finderPathFetchByUUID_G,
 			new Object[] { group.getUuid(), group.getGroupId() }, group);
 
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_LIVEGROUPID,
+		FinderCacheUtil.putResult(_finderPathFetchByLiveGroupId,
 			new Object[] { group.getLiveGroupId() }, group);
 
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_GK,
+		FinderCacheUtil.putResult(_finderPathFetchByC_GK,
 			new Object[] { group.getCompanyId(), group.getGroupKey() }, group);
 
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_F,
+		FinderCacheUtil.putResult(_finderPathFetchByC_F,
 			new Object[] { group.getCompanyId(), group.getFriendlyURL() }, group);
 
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_C_C,
+		FinderCacheUtil.putResult(_finderPathFetchByC_C_C,
 			new Object[] {
 				group.getCompanyId(), group.getClassNameId(), group.getClassPK()
 			}, group);
 
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_L_GK,
+		FinderCacheUtil.putResult(_finderPathFetchByC_L_GK,
 			new Object[] {
 				group.getCompanyId(), group.getLiveGroupId(),
 				group.getGroupKey()
 			}, group);
 
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_C_L_GK,
+		FinderCacheUtil.putResult(_finderPathFetchByC_C_L_GK,
 			new Object[] {
 				group.getCompanyId(), group.getClassNameId(),
 				group.getLiveGroupId(), group.getGroupKey()
@@ -12345,44 +12334,44 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 				groupModelImpl.getUuid(), groupModelImpl.getGroupId()
 			};
 
-		FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
+		FinderCacheUtil.putResult(_finderPathCountByUUID_G, args,
 			Long.valueOf(1), false);
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G, args,
+		FinderCacheUtil.putResult(_finderPathFetchByUUID_G, args,
 			groupModelImpl, false);
 
 		args = new Object[] { groupModelImpl.getLiveGroupId() };
 
-		FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_LIVEGROUPID, args,
+		FinderCacheUtil.putResult(_finderPathCountByLiveGroupId, args,
 			Long.valueOf(1), false);
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_LIVEGROUPID, args,
+		FinderCacheUtil.putResult(_finderPathFetchByLiveGroupId, args,
 			groupModelImpl, false);
 
 		args = new Object[] {
 				groupModelImpl.getCompanyId(), groupModelImpl.getGroupKey()
 			};
 
-		FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_GK, args,
+		FinderCacheUtil.putResult(_finderPathCountByC_GK, args,
 			Long.valueOf(1), false);
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_GK, args,
-			groupModelImpl, false);
+		FinderCacheUtil.putResult(_finderPathFetchByC_GK, args, groupModelImpl,
+			false);
 
 		args = new Object[] {
 				groupModelImpl.getCompanyId(), groupModelImpl.getFriendlyURL()
 			};
 
-		FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_F, args,
-			Long.valueOf(1), false);
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_F, args,
-			groupModelImpl, false);
+		FinderCacheUtil.putResult(_finderPathCountByC_F, args, Long.valueOf(1),
+			false);
+		FinderCacheUtil.putResult(_finderPathFetchByC_F, args, groupModelImpl,
+			false);
 
 		args = new Object[] {
 				groupModelImpl.getCompanyId(), groupModelImpl.getClassNameId(),
 				groupModelImpl.getClassPK()
 			};
 
-		FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_C_C, args,
+		FinderCacheUtil.putResult(_finderPathCountByC_C_C, args,
 			Long.valueOf(1), false);
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_C_C, args,
+		FinderCacheUtil.putResult(_finderPathFetchByC_C_C, args,
 			groupModelImpl, false);
 
 		args = new Object[] {
@@ -12390,9 +12379,9 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 				groupModelImpl.getGroupKey()
 			};
 
-		FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_L_GK, args,
+		FinderCacheUtil.putResult(_finderPathCountByC_L_GK, args,
 			Long.valueOf(1), false);
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_L_GK, args,
+		FinderCacheUtil.putResult(_finderPathFetchByC_L_GK, args,
 			groupModelImpl, false);
 
 		args = new Object[] {
@@ -12400,9 +12389,9 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 				groupModelImpl.getLiveGroupId(), groupModelImpl.getGroupKey()
 			};
 
-		FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_C_L_GK, args,
+		FinderCacheUtil.putResult(_finderPathCountByC_C_L_GK, args,
 			Long.valueOf(1), false);
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_C_L_GK, args,
+		FinderCacheUtil.putResult(_finderPathFetchByC_C_L_GK, args,
 			groupModelImpl, false);
 	}
 
@@ -12413,34 +12402,34 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 					groupModelImpl.getUuid(), groupModelImpl.getGroupId()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G, args);
+			FinderCacheUtil.removeResult(_finderPathCountByUUID_G, args);
+			FinderCacheUtil.removeResult(_finderPathFetchByUUID_G, args);
 		}
 
 		if ((groupModelImpl.getColumnBitmask() &
-				FINDER_PATH_FETCH_BY_UUID_G.getColumnBitmask()) != 0) {
+				_finderPathFetchByUUID_G.getColumnBitmask()) != 0) {
 			Object[] args = new Object[] {
 					groupModelImpl.getOriginalUuid(),
 					groupModelImpl.getOriginalGroupId()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G, args);
+			FinderCacheUtil.removeResult(_finderPathCountByUUID_G, args);
+			FinderCacheUtil.removeResult(_finderPathFetchByUUID_G, args);
 		}
 
 		if (clearCurrent) {
 			Object[] args = new Object[] { groupModelImpl.getLiveGroupId() };
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_LIVEGROUPID, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_LIVEGROUPID, args);
+			FinderCacheUtil.removeResult(_finderPathCountByLiveGroupId, args);
+			FinderCacheUtil.removeResult(_finderPathFetchByLiveGroupId, args);
 		}
 
 		if ((groupModelImpl.getColumnBitmask() &
-				FINDER_PATH_FETCH_BY_LIVEGROUPID.getColumnBitmask()) != 0) {
+				_finderPathFetchByLiveGroupId.getColumnBitmask()) != 0) {
 			Object[] args = new Object[] { groupModelImpl.getOriginalLiveGroupId() };
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_LIVEGROUPID, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_LIVEGROUPID, args);
+			FinderCacheUtil.removeResult(_finderPathCountByLiveGroupId, args);
+			FinderCacheUtil.removeResult(_finderPathFetchByLiveGroupId, args);
 		}
 
 		if (clearCurrent) {
@@ -12448,19 +12437,19 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 					groupModelImpl.getCompanyId(), groupModelImpl.getGroupKey()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_GK, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_GK, args);
+			FinderCacheUtil.removeResult(_finderPathCountByC_GK, args);
+			FinderCacheUtil.removeResult(_finderPathFetchByC_GK, args);
 		}
 
 		if ((groupModelImpl.getColumnBitmask() &
-				FINDER_PATH_FETCH_BY_C_GK.getColumnBitmask()) != 0) {
+				_finderPathFetchByC_GK.getColumnBitmask()) != 0) {
 			Object[] args = new Object[] {
 					groupModelImpl.getOriginalCompanyId(),
 					groupModelImpl.getOriginalGroupKey()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_GK, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_GK, args);
+			FinderCacheUtil.removeResult(_finderPathCountByC_GK, args);
+			FinderCacheUtil.removeResult(_finderPathFetchByC_GK, args);
 		}
 
 		if (clearCurrent) {
@@ -12469,19 +12458,19 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 					groupModelImpl.getFriendlyURL()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_F, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_F, args);
+			FinderCacheUtil.removeResult(_finderPathCountByC_F, args);
+			FinderCacheUtil.removeResult(_finderPathFetchByC_F, args);
 		}
 
 		if ((groupModelImpl.getColumnBitmask() &
-				FINDER_PATH_FETCH_BY_C_F.getColumnBitmask()) != 0) {
+				_finderPathFetchByC_F.getColumnBitmask()) != 0) {
 			Object[] args = new Object[] {
 					groupModelImpl.getOriginalCompanyId(),
 					groupModelImpl.getOriginalFriendlyURL()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_F, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_F, args);
+			FinderCacheUtil.removeResult(_finderPathCountByC_F, args);
+			FinderCacheUtil.removeResult(_finderPathFetchByC_F, args);
 		}
 
 		if (clearCurrent) {
@@ -12490,20 +12479,20 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 					groupModelImpl.getClassNameId(), groupModelImpl.getClassPK()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_C_C, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_C_C, args);
+			FinderCacheUtil.removeResult(_finderPathCountByC_C_C, args);
+			FinderCacheUtil.removeResult(_finderPathFetchByC_C_C, args);
 		}
 
 		if ((groupModelImpl.getColumnBitmask() &
-				FINDER_PATH_FETCH_BY_C_C_C.getColumnBitmask()) != 0) {
+				_finderPathFetchByC_C_C.getColumnBitmask()) != 0) {
 			Object[] args = new Object[] {
 					groupModelImpl.getOriginalCompanyId(),
 					groupModelImpl.getOriginalClassNameId(),
 					groupModelImpl.getOriginalClassPK()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_C_C, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_C_C, args);
+			FinderCacheUtil.removeResult(_finderPathCountByC_C_C, args);
+			FinderCacheUtil.removeResult(_finderPathFetchByC_C_C, args);
 		}
 
 		if (clearCurrent) {
@@ -12513,20 +12502,20 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 					groupModelImpl.getGroupKey()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_L_GK, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_L_GK, args);
+			FinderCacheUtil.removeResult(_finderPathCountByC_L_GK, args);
+			FinderCacheUtil.removeResult(_finderPathFetchByC_L_GK, args);
 		}
 
 		if ((groupModelImpl.getColumnBitmask() &
-				FINDER_PATH_FETCH_BY_C_L_GK.getColumnBitmask()) != 0) {
+				_finderPathFetchByC_L_GK.getColumnBitmask()) != 0) {
 			Object[] args = new Object[] {
 					groupModelImpl.getOriginalCompanyId(),
 					groupModelImpl.getOriginalLiveGroupId(),
 					groupModelImpl.getOriginalGroupKey()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_L_GK, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_L_GK, args);
+			FinderCacheUtil.removeResult(_finderPathCountByC_L_GK, args);
+			FinderCacheUtil.removeResult(_finderPathFetchByC_L_GK, args);
 		}
 
 		if (clearCurrent) {
@@ -12537,12 +12526,12 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 					groupModelImpl.getGroupKey()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_C_L_GK, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_C_L_GK, args);
+			FinderCacheUtil.removeResult(_finderPathCountByC_C_L_GK, args);
+			FinderCacheUtil.removeResult(_finderPathFetchByC_C_L_GK, args);
 		}
 
 		if ((groupModelImpl.getColumnBitmask() &
-				FINDER_PATH_FETCH_BY_C_C_L_GK.getColumnBitmask()) != 0) {
+				_finderPathFetchByC_C_L_GK.getColumnBitmask()) != 0) {
 			Object[] args = new Object[] {
 					groupModelImpl.getOriginalCompanyId(),
 					groupModelImpl.getOriginalClassNameId(),
@@ -12550,8 +12539,8 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 					groupModelImpl.getOriginalGroupKey()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_C_L_GK, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_C_L_GK, args);
+			FinderCacheUtil.removeResult(_finderPathCountByC_C_L_GK, args);
+			FinderCacheUtil.removeResult(_finderPathFetchByC_C_L_GK, args);
 		}
 	}
 
@@ -12723,22 +12712,22 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 		 if (isNew) {
 			Object[] args = new Object[] { groupModelImpl.getUuid() };
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
+			FinderCacheUtil.removeResult(_finderPathCountByUuid, args);
+			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByUuid,
 				args);
 
 			args = new Object[] {
 					groupModelImpl.getUuid(), groupModelImpl.getCompanyId()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C,
+			FinderCacheUtil.removeResult(_finderPathCountByUuid_C, args);
+			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByUuid_C,
 				args);
 
 			args = new Object[] { groupModelImpl.getCompanyId() };
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
+			FinderCacheUtil.removeResult(_finderPathCountByCompanyId, args);
+			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByCompanyId,
 				args);
 
 			args = new Object[] {
@@ -12746,8 +12735,8 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 					groupModelImpl.getClassNameId()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_C, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_C,
+			FinderCacheUtil.removeResult(_finderPathCountByC_C, args);
+			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_C,
 				args);
 
 			args = new Object[] {
@@ -12755,40 +12744,40 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 					groupModelImpl.getParentGroupId()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_P, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_P,
+			FinderCacheUtil.removeResult(_finderPathCountByC_P, args);
+			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_P,
 				args);
 
 			args = new Object[] {
 					groupModelImpl.getCompanyId(), groupModelImpl.isSite()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_S, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_S,
+			FinderCacheUtil.removeResult(_finderPathCountByC_S, args);
+			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_S,
 				args);
 
 			args = new Object[] {
 					groupModelImpl.getCompanyId(), groupModelImpl.isActive()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_A, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_A,
+			FinderCacheUtil.removeResult(_finderPathCountByC_A, args);
+			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_A,
 				args);
 
 			args = new Object[] {
 					groupModelImpl.getClassNameId(), groupModelImpl.getClassPK()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_CPK, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_CPK,
+			FinderCacheUtil.removeResult(_finderPathCountByC_CPK, args);
+			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_CPK,
 				args);
 
 			args = new Object[] {
 					groupModelImpl.getType(), groupModelImpl.isActive()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_T_A, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_T_A,
+			FinderCacheUtil.removeResult(_finderPathCountByT_A, args);
+			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByT_A,
 				args);
 
 			args = new Object[] {
@@ -12797,8 +12786,8 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 					groupModelImpl.getParentGroupId()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_C_P, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_C_P,
+			FinderCacheUtil.removeResult(_finderPathCountByC_C_P, args);
+			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_C_P,
 				args);
 
 			args = new Object[] {
@@ -12806,8 +12795,8 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 					groupModelImpl.getParentGroupId(), groupModelImpl.isSite()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_P_S, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_P_S,
+			FinderCacheUtil.removeResult(_finderPathCountByC_P_S, args);
+			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_P_S,
 				args);
 
 			args = new Object[] {
@@ -12815,8 +12804,8 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 					groupModelImpl.isActive()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_S_A, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_S_A,
+			FinderCacheUtil.removeResult(_finderPathCountByC_S_A, args);
+			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_S_A,
 				args);
 
 			args = new Object[] {
@@ -12825,80 +12814,77 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 					groupModelImpl.isInheritContent()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_P_S_I, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_P_S_I,
+			FinderCacheUtil.removeResult(_finderPathCountByC_P_S_I, args);
+			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_P_S_I,
 				args);
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_ALL,
-				FINDER_ARGS_EMPTY);
-			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL,
+			FinderCacheUtil.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
+			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindAll,
 				FINDER_ARGS_EMPTY);
 		}
 
 		else {
 			if ((groupModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByUuid.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] { groupModelImpl.getOriginalUuid() };
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
+				FinderCacheUtil.removeResult(_finderPathCountByUuid, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByUuid,
 					args);
 
 				args = new Object[] { groupModelImpl.getUuid() };
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID,
+				FinderCacheUtil.removeResult(_finderPathCountByUuid, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByUuid,
 					args);
 			}
 
 			if ((groupModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByUuid_C.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						groupModelImpl.getOriginalUuid(),
 						groupModelImpl.getOriginalCompanyId()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C,
+				FinderCacheUtil.removeResult(_finderPathCountByUuid_C, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByUuid_C,
 					args);
 
 				args = new Object[] {
 						groupModelImpl.getUuid(), groupModelImpl.getCompanyId()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_C, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_UUID_C,
+				FinderCacheUtil.removeResult(_finderPathCountByUuid_C, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByUuid_C,
 					args);
 			}
 
 			if ((groupModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByCompanyId.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						groupModelImpl.getOriginalCompanyId()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID,
-					args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
+				FinderCacheUtil.removeResult(_finderPathCountByCompanyId, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByCompanyId,
 					args);
 
 				args = new Object[] { groupModelImpl.getCompanyId() };
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_COMPANYID,
-					args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_COMPANYID,
+				FinderCacheUtil.removeResult(_finderPathCountByCompanyId, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByCompanyId,
 					args);
 			}
 
 			if ((groupModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_C.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByC_C.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						groupModelImpl.getOriginalCompanyId(),
 						groupModelImpl.getOriginalClassNameId()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_C, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_C,
+				FinderCacheUtil.removeResult(_finderPathCountByC_C, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_C,
 					args);
 
 				args = new Object[] {
@@ -12906,20 +12892,20 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 						groupModelImpl.getClassNameId()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_C, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_C,
+				FinderCacheUtil.removeResult(_finderPathCountByC_C, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_C,
 					args);
 			}
 
 			if ((groupModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_P.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByC_P.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						groupModelImpl.getOriginalCompanyId(),
 						groupModelImpl.getOriginalParentGroupId()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_P, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_P,
+				FinderCacheUtil.removeResult(_finderPathCountByC_P, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_P,
 					args);
 
 				args = new Object[] {
@@ -12927,60 +12913,60 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 						groupModelImpl.getParentGroupId()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_P, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_P,
+				FinderCacheUtil.removeResult(_finderPathCountByC_P, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_P,
 					args);
 			}
 
 			if ((groupModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_S.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByC_S.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						groupModelImpl.getOriginalCompanyId(),
 						groupModelImpl.getOriginalSite()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_S, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_S,
+				FinderCacheUtil.removeResult(_finderPathCountByC_S, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_S,
 					args);
 
 				args = new Object[] {
 						groupModelImpl.getCompanyId(), groupModelImpl.isSite()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_S, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_S,
+				FinderCacheUtil.removeResult(_finderPathCountByC_S, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_S,
 					args);
 			}
 
 			if ((groupModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_A.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByC_A.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						groupModelImpl.getOriginalCompanyId(),
 						groupModelImpl.getOriginalActive()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_A, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_A,
+				FinderCacheUtil.removeResult(_finderPathCountByC_A, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_A,
 					args);
 
 				args = new Object[] {
 						groupModelImpl.getCompanyId(), groupModelImpl.isActive()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_A, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_A,
+				FinderCacheUtil.removeResult(_finderPathCountByC_A, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_A,
 					args);
 			}
 
 			if ((groupModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_CPK.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByC_CPK.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						groupModelImpl.getOriginalClassNameId(),
 						groupModelImpl.getOriginalClassPK()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_CPK, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_CPK,
+				FinderCacheUtil.removeResult(_finderPathCountByC_CPK, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_CPK,
 					args);
 
 				args = new Object[] {
@@ -12988,41 +12974,41 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 						groupModelImpl.getClassPK()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_CPK, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_CPK,
+				FinderCacheUtil.removeResult(_finderPathCountByC_CPK, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_CPK,
 					args);
 			}
 
 			if ((groupModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_T_A.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByT_A.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						groupModelImpl.getOriginalType(),
 						groupModelImpl.getOriginalActive()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_T_A, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_T_A,
+				FinderCacheUtil.removeResult(_finderPathCountByT_A, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByT_A,
 					args);
 
 				args = new Object[] {
 						groupModelImpl.getType(), groupModelImpl.isActive()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_T_A, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_T_A,
+				FinderCacheUtil.removeResult(_finderPathCountByT_A, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByT_A,
 					args);
 			}
 
 			if ((groupModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_C_P.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByC_C_P.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						groupModelImpl.getOriginalCompanyId(),
 						groupModelImpl.getOriginalClassNameId(),
 						groupModelImpl.getOriginalParentGroupId()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_C_P, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_C_P,
+				FinderCacheUtil.removeResult(_finderPathCountByC_C_P, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_C_P,
 					args);
 
 				args = new Object[] {
@@ -13031,21 +13017,21 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 						groupModelImpl.getParentGroupId()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_C_P, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_C_P,
+				FinderCacheUtil.removeResult(_finderPathCountByC_C_P, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_C_P,
 					args);
 			}
 
 			if ((groupModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_P_S.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByC_P_S.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						groupModelImpl.getOriginalCompanyId(),
 						groupModelImpl.getOriginalParentGroupId(),
 						groupModelImpl.getOriginalSite()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_P_S, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_P_S,
+				FinderCacheUtil.removeResult(_finderPathCountByC_P_S, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_P_S,
 					args);
 
 				args = new Object[] {
@@ -13054,21 +13040,21 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 						groupModelImpl.isSite()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_P_S, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_P_S,
+				FinderCacheUtil.removeResult(_finderPathCountByC_P_S, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_P_S,
 					args);
 			}
 
 			if ((groupModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_S_A.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByC_S_A.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						groupModelImpl.getOriginalCompanyId(),
 						groupModelImpl.getOriginalSite(),
 						groupModelImpl.getOriginalActive()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_S_A, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_S_A,
+				FinderCacheUtil.removeResult(_finderPathCountByC_S_A, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_S_A,
 					args);
 
 				args = new Object[] {
@@ -13076,13 +13062,13 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 						groupModelImpl.isActive()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_S_A, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_S_A,
+				FinderCacheUtil.removeResult(_finderPathCountByC_S_A, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_S_A,
 					args);
 			}
 
 			if ((groupModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_P_S_I.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByC_P_S_I.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						groupModelImpl.getOriginalCompanyId(),
 						groupModelImpl.getOriginalParentGroupId(),
@@ -13090,8 +13076,8 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 						groupModelImpl.getOriginalInheritContent()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_P_S_I, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_P_S_I,
+				FinderCacheUtil.removeResult(_finderPathCountByC_P_S_I, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_P_S_I,
 					args);
 
 				args = new Object[] {
@@ -13101,8 +13087,8 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 						groupModelImpl.isInheritContent()
 					};
 
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_C_P_S_I, args);
-				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_C_P_S_I,
+				FinderCacheUtil.removeResult(_finderPathCountByC_P_S_I, args);
+				FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindByC_P_S_I,
 					args);
 			}
 		}
@@ -13373,11 +13359,11 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL;
+			finderPath = _finderPathWithoutPaginationFindAll;
 			finderArgs = FINDER_ARGS_EMPTY;
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_ALL;
+			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] { start, end, orderByComparator };
 		}
 
@@ -13466,7 +13452,7 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
+		Long count = (Long)FinderCacheUtil.getResult(_finderPathCountAll,
 				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
@@ -13479,11 +13465,11 @@ public class GroupPersistenceImpl extends BasePersistenceImpl<Group>
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL,
+				FinderCacheUtil.putResult(_finderPathCountAll,
 					FINDER_ARGS_EMPTY, count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_ALL,
+				FinderCacheUtil.removeResult(_finderPathCountAll,
 					FINDER_ARGS_EMPTY);
 
 				throw processException(e);
