@@ -6466,8 +6466,6 @@ public class JournalArticleLocalServiceImpl
 		ActionableDynamicQuery actionableDynamicQuery =
 			getActionableDynamicQuery();
 
-		long checkInterval = getArticleCheckInterval();
-
 		actionableDynamicQuery.setAddCriteriaMethod(
 			dynamicQuery -> {
 				Property classNameIdProperty = PropertyFactoryUtil.forName(
@@ -6485,11 +6483,12 @@ public class JournalArticleLocalServiceImpl
 				Property expirationDateProperty = PropertyFactoryUtil.forName(
 					"expirationDate");
 
+				long checkInterval = getArticleCheckInterval();
+
 				dynamicQuery.add(
 					expirationDateProperty.le(
 						new Date(expirationDate.getTime() + checkInterval)));
 			});
-
 		actionableDynamicQuery.setInterval(_INTERVAL);
 		actionableDynamicQuery.setPerformActionMethod(
 			(JournalArticle article) -> {
