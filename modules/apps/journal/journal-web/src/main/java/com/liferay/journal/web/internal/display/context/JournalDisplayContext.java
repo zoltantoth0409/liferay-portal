@@ -71,6 +71,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
+import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.Portlet;
 import com.liferay.portal.kernel.module.configuration.ConfigurationProviderUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
@@ -733,7 +734,17 @@ public class JournalDisplayContext {
 
 		Group group = themeDisplay.getScopeGroup();
 
-		sb.append(group.getPathFriendlyURL(false, themeDisplay));
+		boolean privateLayout = false;
+
+		if (_article != null) {
+			Layout layout = _article.getLayout();
+
+			if (layout != null) {
+				privateLayout = layout.isPrivateLayout();
+			}
+		}
+
+		sb.append(group.getPathFriendlyURL(privateLayout, themeDisplay));
 		sb.append(group.getFriendlyURL());
 
 		sb.append(JournalArticleConstants.CANONICAL_URL_SEPARATOR);
