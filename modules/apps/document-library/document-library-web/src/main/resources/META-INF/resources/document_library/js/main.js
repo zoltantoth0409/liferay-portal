@@ -100,7 +100,7 @@ AUI.add(
 						return instance._folderId;
 					},
 
-					onActionItemClicked: function(event) {
+					handleActionItemClicked: function(event) {
 						var instance = this;
 
 						var action = event.data.item.data.action;
@@ -132,7 +132,7 @@ AUI.add(
 						}
 					},
 
-					onFilterItemClicked: function(event) {
+					handleFilterItemClicked: function(event) {
 						var instance = this;
 
 						var itemData = event.data.item.data;
