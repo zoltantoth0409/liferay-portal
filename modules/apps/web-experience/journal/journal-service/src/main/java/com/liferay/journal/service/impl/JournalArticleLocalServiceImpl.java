@@ -186,6 +186,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
@@ -6571,7 +6572,7 @@ public class JournalArticleLocalServiceImpl
 	protected void checkArticlesByReviewDate(Date reviewDate)
 		throws PortalException {
 
-		List<JournalArticle> latestArticles = new ArrayList<>();
+		Set<Long> latestArticleIds = new HashSet<>();
 
 		List<JournalArticle> articles = journalArticleFinder.findByReviewDate(
 			JournalArticleConstants.CLASSNAME_ID_DEFAULT, reviewDate,
@@ -6593,14 +6594,12 @@ public class JournalArticleLocalServiceImpl
 					groupId, articleId);
 			}
 
-			if (!latestArticles.contains(article)) {
+			if (latestArticleIds.add(article.getPrimaryKey())) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						"Sending review notification for article " +
 							article.getId());
 				}
-
-				latestArticles.add(article);
 
 				String portletId = PortletProviderUtil.getPortletId(
 					JournalArticle.class.getName(),
