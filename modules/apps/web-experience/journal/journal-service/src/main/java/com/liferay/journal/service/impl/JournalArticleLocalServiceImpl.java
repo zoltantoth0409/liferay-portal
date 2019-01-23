@@ -6567,7 +6567,7 @@ public class JournalArticleLocalServiceImpl
 
 		List<JournalArticle> latestArticles = new ArrayList<>();
 
-		final ActionableDynamicQuery actionableDynamicQuery =
+		ActionableDynamicQuery actionableDynamicQuery =
 			getActionableDynamicQuery();
 
 		actionableDynamicQuery.setAddCriteriaMethod(
@@ -6593,7 +6593,7 @@ public class JournalArticleLocalServiceImpl
 				dynamicQuery.add(
 					statusProperty.ne(WorkflowConstants.STATUS_IN_TRASH));
 			});
-
+		actionableDynamicQuery.setInterval(_INTERVAL);
 		actionableDynamicQuery.setPerformActionMethod(
 			(JournalArticle article) -> {
 				long groupId = article.getGroupId();
@@ -6611,11 +6611,8 @@ public class JournalArticleLocalServiceImpl
 					latestArticles.add(article);
 				}
 			});
-
 		actionableDynamicQuery.setTransactionConfig(
 			DefaultActionableDynamicQuery.REQUIRES_NEW_TRANSACTION_CONFIG);
-
-		actionableDynamicQuery.setInterval(_INTERVAL);
 
 		actionableDynamicQuery.performActions();
 
