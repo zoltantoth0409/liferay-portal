@@ -146,15 +146,12 @@ public class EditArticleDisplayPageDisplayContext {
 			return _displayPageType;
 		}
 
-		long classPK;
+		long classPK = 0;
 
 		JournalArticle article = getArticle();
 
 		if (article != null) {
 			classPK = article.getResourcePrimKey();
-		}
-		else {
-			classPK = 0;
 		}
 
 		if (classPK == 0) {
