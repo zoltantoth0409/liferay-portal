@@ -85,18 +85,18 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 		".List1";
 	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
 		".List2";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindAll = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
 			ShoppingOrderModelImpl.FINDER_CACHE_ENABLED,
 			ShoppingOrderImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
 			"findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindAll = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
 			ShoppingOrderModelImpl.FINDER_CACHE_ENABLED,
 			ShoppingOrderImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
 			"findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountAll = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
 			ShoppingOrderModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_GROUPID = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByGroupId = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
 			ShoppingOrderModelImpl.FINDER_CACHE_ENABLED,
 			ShoppingOrderImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
 			"findByGroupId",
@@ -106,14 +106,13 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID =
-		new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByGroupId = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
 			ShoppingOrderModelImpl.FINDER_CACHE_ENABLED,
 			ShoppingOrderImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
 			"findByGroupId", new String[] { Long.class.getName() },
 			ShoppingOrderModelImpl.GROUPID_COLUMN_BITMASK |
 			ShoppingOrderModelImpl.CREATEDATE_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_GROUPID = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByGroupId = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
 			ShoppingOrderModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByGroupId",
 			new String[] { Long.class.getName() });
@@ -190,11 +189,11 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID;
+			finderPath = _finderPathWithoutPaginationFindByGroupId;
 			finderArgs = new Object[] { groupId };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_GROUPID;
+			finderPath = _finderPathWithPaginationFindByGroupId;
 			finderArgs = new Object[] { groupId, start, end, orderByComparator };
 		}
 
@@ -865,7 +864,7 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 	 */
 	@Override
 	public int countByGroupId(long groupId) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_GROUPID;
+		FinderPath finderPath = _finderPathCountByGroupId;
 
 		Object[] finderArgs = new Object[] { groupId };
 
@@ -957,12 +956,12 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 	}
 
 	private static final String _FINDER_COLUMN_GROUPID_GROUPID_2 = "shoppingOrder.groupId = ?";
-	public static final FinderPath FINDER_PATH_FETCH_BY_NUMBER = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathFetchByNumber = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
 			ShoppingOrderModelImpl.FINDER_CACHE_ENABLED,
 			ShoppingOrderImpl.class, FINDER_CLASS_NAME_ENTITY, "fetchByNumber",
 			new String[] { String.class.getName() },
 			ShoppingOrderModelImpl.NUMBER_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_NUMBER = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByNumber = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
 			ShoppingOrderModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByNumber",
 			new String[] { String.class.getName() });
@@ -1026,7 +1025,7 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = finderCache.getResult(FINDER_PATH_FETCH_BY_NUMBER,
+			result = finderCache.getResult(_finderPathFetchByNumber,
 					finderArgs, this);
 		}
 
@@ -1072,8 +1071,8 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 				List<ShoppingOrder> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(FINDER_PATH_FETCH_BY_NUMBER,
-						finderArgs, list);
+					finderCache.putResult(_finderPathFetchByNumber, finderArgs,
+						list);
 				}
 				else {
 					ShoppingOrder shoppingOrder = list.get(0);
@@ -1084,7 +1083,7 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(FINDER_PATH_FETCH_BY_NUMBER, finderArgs);
+				finderCache.removeResult(_finderPathFetchByNumber, finderArgs);
 
 				throw processException(e);
 			}
@@ -1125,7 +1124,7 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 	public int countByNumber(String number) {
 		number = Objects.toString(number, "");
 
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_NUMBER;
+		FinderPath finderPath = _finderPathCountByNumber;
 
 		Object[] finderArgs = new Object[] { number };
 
@@ -1181,12 +1180,12 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 
 	private static final String _FINDER_COLUMN_NUMBER_NUMBER_2 = "shoppingOrder.number = ?";
 	private static final String _FINDER_COLUMN_NUMBER_NUMBER_3 = "(shoppingOrder.number IS NULL OR shoppingOrder.number = '')";
-	public static final FinderPath FINDER_PATH_FETCH_BY_PPTXNID = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathFetchByPPTxnId = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
 			ShoppingOrderModelImpl.FINDER_CACHE_ENABLED,
 			ShoppingOrderImpl.class, FINDER_CLASS_NAME_ENTITY,
 			"fetchByPPTxnId", new String[] { String.class.getName() },
 			ShoppingOrderModelImpl.PPTXNID_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_PPTXNID = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByPPTxnId = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
 			ShoppingOrderModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByPPTxnId",
 			new String[] { String.class.getName() });
@@ -1251,7 +1250,7 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = finderCache.getResult(FINDER_PATH_FETCH_BY_PPTXNID,
+			result = finderCache.getResult(_finderPathFetchByPPTxnId,
 					finderArgs, this);
 		}
 
@@ -1297,7 +1296,7 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 				List<ShoppingOrder> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(FINDER_PATH_FETCH_BY_PPTXNID,
+					finderCache.putResult(_finderPathFetchByPPTxnId,
 						finderArgs, list);
 				}
 				else {
@@ -1320,8 +1319,7 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(FINDER_PATH_FETCH_BY_PPTXNID,
-					finderArgs);
+				finderCache.removeResult(_finderPathFetchByPPTxnId, finderArgs);
 
 				throw processException(e);
 			}
@@ -1362,7 +1360,7 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 	public int countByPPTxnId(String ppTxnId) {
 		ppTxnId = Objects.toString(ppTxnId, "");
 
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_PPTXNID;
+		FinderPath finderPath = _finderPathCountByPPTxnId;
 
 		Object[] finderArgs = new Object[] { ppTxnId };
 
@@ -1418,7 +1416,7 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 
 	private static final String _FINDER_COLUMN_PPTXNID_PPTXNID_2 = "shoppingOrder.ppTxnId = ?";
 	private static final String _FINDER_COLUMN_PPTXNID_PPTXNID_3 = "(shoppingOrder.ppTxnId IS NULL OR shoppingOrder.ppTxnId = '')";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_G_U_PPPS = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByG_U_PPPS = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
 			ShoppingOrderModelImpl.FINDER_CACHE_ENABLED,
 			ShoppingOrderImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
 			"findByG_U_PPPS",
@@ -1429,8 +1427,7 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_U_PPPS =
-		new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByG_U_PPPS = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
 			ShoppingOrderModelImpl.FINDER_CACHE_ENABLED,
 			ShoppingOrderImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
 			"findByG_U_PPPS",
@@ -1442,7 +1439,7 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 			ShoppingOrderModelImpl.USERID_COLUMN_BITMASK |
 			ShoppingOrderModelImpl.PPPAYMENTSTATUS_COLUMN_BITMASK |
 			ShoppingOrderModelImpl.CREATEDATE_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_G_U_PPPS = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByG_U_PPPS = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
 			ShoppingOrderModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_U_PPPS",
 			new String[] {
@@ -1538,11 +1535,11 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_U_PPPS;
+			finderPath = _finderPathWithoutPaginationFindByG_U_PPPS;
 			finderArgs = new Object[] { groupId, userId, ppPaymentStatus };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_G_U_PPPS;
+			finderPath = _finderPathWithPaginationFindByG_U_PPPS;
 			finderArgs = new Object[] {
 					groupId, userId, ppPaymentStatus,
 					
@@ -2352,7 +2349,7 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 	public int countByG_U_PPPS(long groupId, long userId, String ppPaymentStatus) {
 		ppPaymentStatus = Objects.toString(ppPaymentStatus, "");
 
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_G_U_PPPS;
+		FinderPath finderPath = _finderPathCountByG_U_PPPS;
 
 		Object[] finderArgs = new Object[] { groupId, userId, ppPaymentStatus };
 
@@ -2524,10 +2521,10 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 			ShoppingOrderImpl.class, shoppingOrder.getPrimaryKey(),
 			shoppingOrder);
 
-		finderCache.putResult(FINDER_PATH_FETCH_BY_NUMBER,
+		finderCache.putResult(_finderPathFetchByNumber,
 			new Object[] { shoppingOrder.getNumber() }, shoppingOrder);
 
-		finderCache.putResult(FINDER_PATH_FETCH_BY_PPTXNID,
+		finderCache.putResult(_finderPathFetchByPPTxnId,
 			new Object[] { shoppingOrder.getPpTxnId() }, shoppingOrder);
 
 		shoppingOrder.resetOriginalValues();
@@ -2603,16 +2600,16 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 		ShoppingOrderModelImpl shoppingOrderModelImpl) {
 		Object[] args = new Object[] { shoppingOrderModelImpl.getNumber() };
 
-		finderCache.putResult(FINDER_PATH_COUNT_BY_NUMBER, args,
-			Long.valueOf(1), false);
-		finderCache.putResult(FINDER_PATH_FETCH_BY_NUMBER, args,
+		finderCache.putResult(_finderPathCountByNumber, args, Long.valueOf(1),
+			false);
+		finderCache.putResult(_finderPathFetchByNumber, args,
 			shoppingOrderModelImpl, false);
 
 		args = new Object[] { shoppingOrderModelImpl.getPpTxnId() };
 
-		finderCache.putResult(FINDER_PATH_COUNT_BY_PPTXNID, args,
-			Long.valueOf(1), false);
-		finderCache.putResult(FINDER_PATH_FETCH_BY_PPTXNID, args,
+		finderCache.putResult(_finderPathCountByPPTxnId, args, Long.valueOf(1),
+			false);
+		finderCache.putResult(_finderPathFetchByPPTxnId, args,
 			shoppingOrderModelImpl, false);
 	}
 
@@ -2621,35 +2618,35 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 		if (clearCurrent) {
 			Object[] args = new Object[] { shoppingOrderModelImpl.getNumber() };
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_NUMBER, args);
-			finderCache.removeResult(FINDER_PATH_FETCH_BY_NUMBER, args);
+			finderCache.removeResult(_finderPathCountByNumber, args);
+			finderCache.removeResult(_finderPathFetchByNumber, args);
 		}
 
 		if ((shoppingOrderModelImpl.getColumnBitmask() &
-				FINDER_PATH_FETCH_BY_NUMBER.getColumnBitmask()) != 0) {
+				_finderPathFetchByNumber.getColumnBitmask()) != 0) {
 			Object[] args = new Object[] {
 					shoppingOrderModelImpl.getOriginalNumber()
 				};
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_NUMBER, args);
-			finderCache.removeResult(FINDER_PATH_FETCH_BY_NUMBER, args);
+			finderCache.removeResult(_finderPathCountByNumber, args);
+			finderCache.removeResult(_finderPathFetchByNumber, args);
 		}
 
 		if (clearCurrent) {
 			Object[] args = new Object[] { shoppingOrderModelImpl.getPpTxnId() };
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_PPTXNID, args);
-			finderCache.removeResult(FINDER_PATH_FETCH_BY_PPTXNID, args);
+			finderCache.removeResult(_finderPathCountByPPTxnId, args);
+			finderCache.removeResult(_finderPathFetchByPPTxnId, args);
 		}
 
 		if ((shoppingOrderModelImpl.getColumnBitmask() &
-				FINDER_PATH_FETCH_BY_PPTXNID.getColumnBitmask()) != 0) {
+				_finderPathFetchByPPTxnId.getColumnBitmask()) != 0) {
 			Object[] args = new Object[] {
 					shoppingOrderModelImpl.getOriginalPpTxnId()
 				};
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_PPTXNID, args);
-			finderCache.removeResult(FINDER_PATH_FETCH_BY_PPTXNID, args);
+			finderCache.removeResult(_finderPathCountByPPTxnId, args);
+			finderCache.removeResult(_finderPathFetchByPPTxnId, args);
 		}
 	}
 
@@ -2828,8 +2825,8 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 		 if (isNew) {
 			Object[] args = new Object[] { shoppingOrderModelImpl.getGroupId() };
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
-			finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
+			finderCache.removeResult(_finderPathCountByGroupId, args);
+			finderCache.removeResult(_finderPathWithoutPaginationFindByGroupId,
 				args);
 
 			args = new Object[] {
@@ -2838,43 +2835,43 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 					shoppingOrderModelImpl.getPpPaymentStatus()
 				};
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_G_U_PPPS, args);
-			finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_U_PPPS,
+			finderCache.removeResult(_finderPathCountByG_U_PPPS, args);
+			finderCache.removeResult(_finderPathWithoutPaginationFindByG_U_PPPS,
 				args);
 
-			finderCache.removeResult(FINDER_PATH_COUNT_ALL, FINDER_ARGS_EMPTY);
-			finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL,
+			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
+			finderCache.removeResult(_finderPathWithoutPaginationFindAll,
 				FINDER_ARGS_EMPTY);
 		}
 
 		else {
 			if ((shoppingOrderModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByGroupId.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						shoppingOrderModelImpl.getOriginalGroupId()
 					};
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
+				finderCache.removeResult(_finderPathCountByGroupId, args);
+				finderCache.removeResult(_finderPathWithoutPaginationFindByGroupId,
 					args);
 
 				args = new Object[] { shoppingOrderModelImpl.getGroupId() };
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_GROUPID, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_GROUPID,
+				finderCache.removeResult(_finderPathCountByGroupId, args);
+				finderCache.removeResult(_finderPathWithoutPaginationFindByGroupId,
 					args);
 			}
 
 			if ((shoppingOrderModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_U_PPPS.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByG_U_PPPS.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						shoppingOrderModelImpl.getOriginalGroupId(),
 						shoppingOrderModelImpl.getOriginalUserId(),
 						shoppingOrderModelImpl.getOriginalPpPaymentStatus()
 					};
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_G_U_PPPS, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_U_PPPS,
+				finderCache.removeResult(_finderPathCountByG_U_PPPS, args);
+				finderCache.removeResult(_finderPathWithoutPaginationFindByG_U_PPPS,
 					args);
 
 				args = new Object[] {
@@ -2883,8 +2880,8 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 						shoppingOrderModelImpl.getPpPaymentStatus()
 					};
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_G_U_PPPS, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_G_U_PPPS,
+				finderCache.removeResult(_finderPathCountByG_U_PPPS, args);
+				finderCache.removeResult(_finderPathWithoutPaginationFindByG_U_PPPS,
 					args);
 			}
 		}
@@ -3159,11 +3156,11 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL;
+			finderPath = _finderPathWithoutPaginationFindAll;
 			finderArgs = FINDER_ARGS_EMPTY;
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_ALL;
+			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] { start, end, orderByComparator };
 		}
 
@@ -3252,7 +3249,7 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)finderCache.getResult(FINDER_PATH_COUNT_ALL,
+		Long count = (Long)finderCache.getResult(_finderPathCountAll,
 				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
@@ -3265,12 +3262,11 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(FINDER_PATH_COUNT_ALL, FINDER_ARGS_EMPTY,
+				finderCache.putResult(_finderPathCountAll, FINDER_ARGS_EMPTY,
 					count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(FINDER_PATH_COUNT_ALL,
-					FINDER_ARGS_EMPTY);
+				finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
 
 				throw processException(e);
 			}

@@ -83,16 +83,16 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 		".List1";
 	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
 		".List2";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(AccountModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindAll = new FinderPath(AccountModelImpl.ENTITY_CACHE_ENABLED,
 			AccountModelImpl.FINDER_CACHE_ENABLED, AccountImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL = new FinderPath(AccountModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindAll = new FinderPath(AccountModelImpl.ENTITY_CACHE_ENABLED,
 			AccountModelImpl.FINDER_CACHE_ENABLED, AccountImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(AccountModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountAll = new FinderPath(AccountModelImpl.ENTITY_CACHE_ENABLED,
 			AccountModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_USERID = new FinderPath(AccountModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByUserId = new FinderPath(AccountModelImpl.ENTITY_CACHE_ENABLED,
 			AccountModelImpl.FINDER_CACHE_ENABLED, AccountImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUserId",
 			new String[] {
@@ -101,14 +101,13 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID =
-		new FinderPath(AccountModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByUserId = new FinderPath(AccountModelImpl.ENTITY_CACHE_ENABLED,
 			AccountModelImpl.FINDER_CACHE_ENABLED, AccountImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUserId",
 			new String[] { Long.class.getName() },
 			AccountModelImpl.USERID_COLUMN_BITMASK |
 			AccountModelImpl.ADDRESS_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_USERID = new FinderPath(AccountModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByUserId = new FinderPath(AccountModelImpl.ENTITY_CACHE_ENABLED,
 			AccountModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUserId",
 			new String[] { Long.class.getName() });
@@ -184,11 +183,11 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID;
+			finderPath = _finderPathWithoutPaginationFindByUserId;
 			finderArgs = new Object[] { userId };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_USERID;
+			finderPath = _finderPathWithPaginationFindByUserId;
 			finderArgs = new Object[] { userId, start, end, orderByComparator };
 		}
 
@@ -547,7 +546,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	 */
 	@Override
 	public int countByUserId(long userId) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_USERID;
+		FinderPath finderPath = _finderPathCountByUserId;
 
 		Object[] finderArgs = new Object[] { userId };
 
@@ -591,13 +590,13 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	}
 
 	private static final String _FINDER_COLUMN_USERID_USERID_2 = "account.userId = ?";
-	public static final FinderPath FINDER_PATH_FETCH_BY_U_A = new FinderPath(AccountModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathFetchByU_A = new FinderPath(AccountModelImpl.ENTITY_CACHE_ENABLED,
 			AccountModelImpl.FINDER_CACHE_ENABLED, AccountImpl.class,
 			FINDER_CLASS_NAME_ENTITY, "fetchByU_A",
 			new String[] { Long.class.getName(), String.class.getName() },
 			AccountModelImpl.USERID_COLUMN_BITMASK |
 			AccountModelImpl.ADDRESS_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_U_A = new FinderPath(AccountModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByU_A = new FinderPath(AccountModelImpl.ENTITY_CACHE_ENABLED,
 			AccountModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByU_A",
 			new String[] { Long.class.getName(), String.class.getName() });
@@ -668,8 +667,8 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = finderCache.getResult(FINDER_PATH_FETCH_BY_U_A,
-					finderArgs, this);
+			result = finderCache.getResult(_finderPathFetchByU_A, finderArgs,
+					this);
 		}
 
 		if (result instanceof Account) {
@@ -719,7 +718,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 				List<Account> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(FINDER_PATH_FETCH_BY_U_A, finderArgs,
+					finderCache.putResult(_finderPathFetchByU_A, finderArgs,
 						list);
 				}
 				else {
@@ -742,7 +741,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(FINDER_PATH_FETCH_BY_U_A, finderArgs);
+				finderCache.removeResult(_finderPathFetchByU_A, finderArgs);
 
 				throw processException(e);
 			}
@@ -785,7 +784,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	public int countByU_A(long userId, String address) {
 		address = Objects.toString(address, "");
 
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_U_A;
+		FinderPath finderPath = _finderPathCountByU_A;
 
 		Object[] finderArgs = new Object[] { userId, address };
 
@@ -879,7 +878,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 		entityCache.putResult(AccountModelImpl.ENTITY_CACHE_ENABLED,
 			AccountImpl.class, account.getPrimaryKey(), account);
 
-		finderCache.putResult(FINDER_PATH_FETCH_BY_U_A,
+		finderCache.putResult(_finderPathFetchByU_A,
 			new Object[] { account.getUserId(), account.getAddress() }, account);
 
 		account.resetOriginalValues();
@@ -955,9 +954,9 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 				accountModelImpl.getUserId(), accountModelImpl.getAddress()
 			};
 
-		finderCache.putResult(FINDER_PATH_COUNT_BY_U_A, args, Long.valueOf(1),
+		finderCache.putResult(_finderPathCountByU_A, args, Long.valueOf(1),
 			false);
-		finderCache.putResult(FINDER_PATH_FETCH_BY_U_A, args, accountModelImpl,
+		finderCache.putResult(_finderPathFetchByU_A, args, accountModelImpl,
 			false);
 	}
 
@@ -968,19 +967,19 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 					accountModelImpl.getUserId(), accountModelImpl.getAddress()
 				};
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_U_A, args);
-			finderCache.removeResult(FINDER_PATH_FETCH_BY_U_A, args);
+			finderCache.removeResult(_finderPathCountByU_A, args);
+			finderCache.removeResult(_finderPathFetchByU_A, args);
 		}
 
 		if ((accountModelImpl.getColumnBitmask() &
-				FINDER_PATH_FETCH_BY_U_A.getColumnBitmask()) != 0) {
+				_finderPathFetchByU_A.getColumnBitmask()) != 0) {
 			Object[] args = new Object[] {
 					accountModelImpl.getOriginalUserId(),
 					accountModelImpl.getOriginalAddress()
 				};
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_U_A, args);
-			finderCache.removeResult(FINDER_PATH_FETCH_BY_U_A, args);
+			finderCache.removeResult(_finderPathCountByU_A, args);
+			finderCache.removeResult(_finderPathFetchByU_A, args);
 		}
 	}
 
@@ -1157,30 +1156,30 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 		 if (isNew) {
 			Object[] args = new Object[] { accountModelImpl.getUserId() };
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
-			finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
+			finderCache.removeResult(_finderPathCountByUserId, args);
+			finderCache.removeResult(_finderPathWithoutPaginationFindByUserId,
 				args);
 
-			finderCache.removeResult(FINDER_PATH_COUNT_ALL, FINDER_ARGS_EMPTY);
-			finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL,
+			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
+			finderCache.removeResult(_finderPathWithoutPaginationFindAll,
 				FINDER_ARGS_EMPTY);
 		}
 
 		else {
 			if ((accountModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByUserId.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						accountModelImpl.getOriginalUserId()
 					};
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
+				finderCache.removeResult(_finderPathCountByUserId, args);
+				finderCache.removeResult(_finderPathWithoutPaginationFindByUserId,
 					args);
 
 				args = new Object[] { accountModelImpl.getUserId() };
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
+				finderCache.removeResult(_finderPathCountByUserId, args);
+				finderCache.removeResult(_finderPathWithoutPaginationFindByUserId,
 					args);
 			}
 		}
@@ -1452,11 +1451,11 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL;
+			finderPath = _finderPathWithoutPaginationFindAll;
 			finderArgs = FINDER_ARGS_EMPTY;
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_ALL;
+			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] { start, end, orderByComparator };
 		}
 
@@ -1545,7 +1544,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)finderCache.getResult(FINDER_PATH_COUNT_ALL,
+		Long count = (Long)finderCache.getResult(_finderPathCountAll,
 				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
@@ -1558,12 +1557,11 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(FINDER_PATH_COUNT_ALL, FINDER_ARGS_EMPTY,
+				finderCache.putResult(_finderPathCountAll, FINDER_ARGS_EMPTY,
 					count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(FINDER_PATH_COUNT_ALL,
-					FINDER_ARGS_EMPTY);
+				finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
 
 				throw processException(e);
 			}

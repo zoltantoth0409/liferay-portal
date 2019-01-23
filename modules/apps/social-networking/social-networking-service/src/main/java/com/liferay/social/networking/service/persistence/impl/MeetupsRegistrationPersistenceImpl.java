@@ -80,19 +80,18 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		".List1";
 	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
 		".List2";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindAll = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
 			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
 			MeetupsRegistrationImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindAll = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
 			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
 			MeetupsRegistrationImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountAll = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
 			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_MEETUPSENTRYID =
-		new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByMeetupsEntryId = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
 			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
 			MeetupsRegistrationImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByMeetupsEntryId",
@@ -102,15 +101,14 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MEETUPSENTRYID =
-		new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByMeetupsEntryId = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
 			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
 			MeetupsRegistrationImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByMeetupsEntryId",
 			new String[] { Long.class.getName() },
 			MeetupsRegistrationModelImpl.MEETUPSENTRYID_COLUMN_BITMASK |
 			MeetupsRegistrationModelImpl.MODIFIEDDATE_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_MEETUPSENTRYID = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByMeetupsEntryId = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
 			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByMeetupsEntryId",
 			new String[] { Long.class.getName() });
@@ -192,11 +190,11 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MEETUPSENTRYID;
+			finderPath = _finderPathWithoutPaginationFindByMeetupsEntryId;
 			finderArgs = new Object[] { meetupsEntryId };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_MEETUPSENTRYID;
+			finderPath = _finderPathWithPaginationFindByMeetupsEntryId;
 			finderArgs = new Object[] {
 					meetupsEntryId,
 					
@@ -567,7 +565,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 */
 	@Override
 	public int countByMeetupsEntryId(long meetupsEntryId) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_MEETUPSENTRYID;
+		FinderPath finderPath = _finderPathCountByMeetupsEntryId;
 
 		Object[] finderArgs = new Object[] { meetupsEntryId };
 
@@ -611,14 +609,14 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	}
 
 	private static final String _FINDER_COLUMN_MEETUPSENTRYID_MEETUPSENTRYID_2 = "meetupsRegistration.meetupsEntryId = ?";
-	public static final FinderPath FINDER_PATH_FETCH_BY_U_ME = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathFetchByU_ME = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
 			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
 			MeetupsRegistrationImpl.class, FINDER_CLASS_NAME_ENTITY,
 			"fetchByU_ME",
 			new String[] { Long.class.getName(), Long.class.getName() },
 			MeetupsRegistrationModelImpl.USERID_COLUMN_BITMASK |
 			MeetupsRegistrationModelImpl.MEETUPSENTRYID_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_U_ME = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByU_ME = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
 			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByU_ME",
 			new String[] { Long.class.getName(), Long.class.getName() });
@@ -688,8 +686,8 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = finderCache.getResult(FINDER_PATH_FETCH_BY_U_ME,
-					finderArgs, this);
+			result = finderCache.getResult(_finderPathFetchByU_ME, finderArgs,
+					this);
 		}
 
 		if (result instanceof MeetupsRegistration) {
@@ -728,8 +726,8 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 				List<MeetupsRegistration> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(FINDER_PATH_FETCH_BY_U_ME,
-						finderArgs, list);
+					finderCache.putResult(_finderPathFetchByU_ME, finderArgs,
+						list);
 				}
 				else {
 					if (list.size() > 1) {
@@ -751,7 +749,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(FINDER_PATH_FETCH_BY_U_ME, finderArgs);
+				finderCache.removeResult(_finderPathFetchByU_ME, finderArgs);
 
 				throw processException(e);
 			}
@@ -793,7 +791,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 */
 	@Override
 	public int countByU_ME(long userId, long meetupsEntryId) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_U_ME;
+		FinderPath finderPath = _finderPathCountByU_ME;
 
 		Object[] finderArgs = new Object[] { userId, meetupsEntryId };
 
@@ -842,7 +840,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 	private static final String _FINDER_COLUMN_U_ME_USERID_2 = "meetupsRegistration.userId = ? AND ";
 	private static final String _FINDER_COLUMN_U_ME_MEETUPSENTRYID_2 = "meetupsRegistration.meetupsEntryId = ?";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_ME_S = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByME_S = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
 			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
 			MeetupsRegistrationImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByME_S",
@@ -852,7 +850,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ME_S = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByME_S = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
 			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
 			MeetupsRegistrationImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByME_S",
@@ -860,7 +858,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 			MeetupsRegistrationModelImpl.MEETUPSENTRYID_COLUMN_BITMASK |
 			MeetupsRegistrationModelImpl.STATUS_COLUMN_BITMASK |
 			MeetupsRegistrationModelImpl.MODIFIEDDATE_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_ME_S = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByME_S = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
 			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByME_S",
 			new String[] { Long.class.getName(), Integer.class.getName() });
@@ -946,11 +944,11 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ME_S;
+			finderPath = _finderPathWithoutPaginationFindByME_S;
 			finderArgs = new Object[] { meetupsEntryId, status };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_ME_S;
+			finderPath = _finderPathWithPaginationFindByME_S;
 			finderArgs = new Object[] {
 					meetupsEntryId, status,
 					
@@ -1341,7 +1339,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 */
 	@Override
 	public int countByME_S(long meetupsEntryId, int status) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_ME_S;
+		FinderPath finderPath = _finderPathCountByME_S;
 
 		Object[] finderArgs = new Object[] { meetupsEntryId, status };
 
@@ -1406,7 +1404,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 			MeetupsRegistrationImpl.class, meetupsRegistration.getPrimaryKey(),
 			meetupsRegistration);
 
-		finderCache.putResult(FINDER_PATH_FETCH_BY_U_ME,
+		finderCache.putResult(_finderPathFetchByU_ME,
 			new Object[] {
 				meetupsRegistration.getUserId(),
 				meetupsRegistration.getMeetupsEntryId()
@@ -1492,9 +1490,9 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 				meetupsRegistrationModelImpl.getMeetupsEntryId()
 			};
 
-		finderCache.putResult(FINDER_PATH_COUNT_BY_U_ME, args, Long.valueOf(1),
+		finderCache.putResult(_finderPathCountByU_ME, args, Long.valueOf(1),
 			false);
-		finderCache.putResult(FINDER_PATH_FETCH_BY_U_ME, args,
+		finderCache.putResult(_finderPathFetchByU_ME, args,
 			meetupsRegistrationModelImpl, false);
 	}
 
@@ -1507,19 +1505,19 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 					meetupsRegistrationModelImpl.getMeetupsEntryId()
 				};
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_U_ME, args);
-			finderCache.removeResult(FINDER_PATH_FETCH_BY_U_ME, args);
+			finderCache.removeResult(_finderPathCountByU_ME, args);
+			finderCache.removeResult(_finderPathFetchByU_ME, args);
 		}
 
 		if ((meetupsRegistrationModelImpl.getColumnBitmask() &
-				FINDER_PATH_FETCH_BY_U_ME.getColumnBitmask()) != 0) {
+				_finderPathFetchByU_ME.getColumnBitmask()) != 0) {
 			Object[] args = new Object[] {
 					meetupsRegistrationModelImpl.getOriginalUserId(),
 					meetupsRegistrationModelImpl.getOriginalMeetupsEntryId()
 				};
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_U_ME, args);
-			finderCache.removeResult(FINDER_PATH_FETCH_BY_U_ME, args);
+			finderCache.removeResult(_finderPathCountByU_ME, args);
+			finderCache.removeResult(_finderPathFetchByU_ME, args);
 		}
 	}
 
@@ -1704,8 +1702,8 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 					meetupsRegistrationModelImpl.getMeetupsEntryId()
 				};
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_MEETUPSENTRYID, args);
-			finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MEETUPSENTRYID,
+			finderCache.removeResult(_finderPathCountByMeetupsEntryId, args);
+			finderCache.removeResult(_finderPathWithoutPaginationFindByMeetupsEntryId,
 				args);
 
 			args = new Object[] {
@@ -1713,46 +1711,44 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 					meetupsRegistrationModelImpl.getStatus()
 				};
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_ME_S, args);
-			finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ME_S,
+			finderCache.removeResult(_finderPathCountByME_S, args);
+			finderCache.removeResult(_finderPathWithoutPaginationFindByME_S,
 				args);
 
-			finderCache.removeResult(FINDER_PATH_COUNT_ALL, FINDER_ARGS_EMPTY);
-			finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL,
+			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
+			finderCache.removeResult(_finderPathWithoutPaginationFindAll,
 				FINDER_ARGS_EMPTY);
 		}
 
 		else {
 			if ((meetupsRegistrationModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MEETUPSENTRYID.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByMeetupsEntryId.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						meetupsRegistrationModelImpl.getOriginalMeetupsEntryId()
 					};
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_MEETUPSENTRYID,
-					args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MEETUPSENTRYID,
+				finderCache.removeResult(_finderPathCountByMeetupsEntryId, args);
+				finderCache.removeResult(_finderPathWithoutPaginationFindByMeetupsEntryId,
 					args);
 
 				args = new Object[] {
 						meetupsRegistrationModelImpl.getMeetupsEntryId()
 					};
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_MEETUPSENTRYID,
-					args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MEETUPSENTRYID,
+				finderCache.removeResult(_finderPathCountByMeetupsEntryId, args);
+				finderCache.removeResult(_finderPathWithoutPaginationFindByMeetupsEntryId,
 					args);
 			}
 
 			if ((meetupsRegistrationModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ME_S.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByME_S.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						meetupsRegistrationModelImpl.getOriginalMeetupsEntryId(),
 						meetupsRegistrationModelImpl.getOriginalStatus()
 					};
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_ME_S, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ME_S,
+				finderCache.removeResult(_finderPathCountByME_S, args);
+				finderCache.removeResult(_finderPathWithoutPaginationFindByME_S,
 					args);
 
 				args = new Object[] {
@@ -1760,8 +1756,8 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 						meetupsRegistrationModelImpl.getStatus()
 					};
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_ME_S, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_ME_S,
+				finderCache.removeResult(_finderPathCountByME_S, args);
+				finderCache.removeResult(_finderPathWithoutPaginationFindByME_S,
 					args);
 			}
 		}
@@ -2037,11 +2033,11 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL;
+			finderPath = _finderPathWithoutPaginationFindAll;
 			finderArgs = FINDER_ARGS_EMPTY;
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_ALL;
+			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] { start, end, orderByComparator };
 		}
 
@@ -2130,7 +2126,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)finderCache.getResult(FINDER_PATH_COUNT_ALL,
+		Long count = (Long)finderCache.getResult(_finderPathCountAll,
 				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
@@ -2143,12 +2139,11 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(FINDER_PATH_COUNT_ALL, FINDER_ARGS_EMPTY,
+				finderCache.putResult(_finderPathCountAll, FINDER_ARGS_EMPTY,
 					count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(FINDER_PATH_COUNT_ALL,
-					FINDER_ARGS_EMPTY);
+				finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
 
 				throw processException(e);
 			}

@@ -79,17 +79,16 @@ public class DLSyncEventPersistenceImpl extends BasePersistenceImpl<DLSyncEvent>
 		".List1";
 	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
 		".List2";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(DLSyncEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindAll = new FinderPath(DLSyncEventModelImpl.ENTITY_CACHE_ENABLED,
 			DLSyncEventModelImpl.FINDER_CACHE_ENABLED, DLSyncEventImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL = new FinderPath(DLSyncEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindAll = new FinderPath(DLSyncEventModelImpl.ENTITY_CACHE_ENABLED,
 			DLSyncEventModelImpl.FINDER_CACHE_ENABLED, DLSyncEventImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(DLSyncEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountAll = new FinderPath(DLSyncEventModelImpl.ENTITY_CACHE_ENABLED,
 			DLSyncEventModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_MODIFIEDTIME =
-		new FinderPath(DLSyncEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByModifiedTime = new FinderPath(DLSyncEventModelImpl.ENTITY_CACHE_ENABLED,
 			DLSyncEventModelImpl.FINDER_CACHE_ENABLED, DLSyncEventImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByModifiedTime",
 			new String[] {
@@ -98,8 +97,7 @@ public class DLSyncEventPersistenceImpl extends BasePersistenceImpl<DLSyncEvent>
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_COUNT_BY_MODIFIEDTIME =
-		new FinderPath(DLSyncEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationCountByModifiedTime = new FinderPath(DLSyncEventModelImpl.ENTITY_CACHE_ENABLED,
 			DLSyncEventModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "countByModifiedTime",
 			new String[] { Long.class.getName() });
@@ -176,7 +174,7 @@ public class DLSyncEventPersistenceImpl extends BasePersistenceImpl<DLSyncEvent>
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
-		finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_MODIFIEDTIME;
+		finderPath = _finderPathWithPaginationFindByModifiedTime;
 		finderArgs = new Object[] { modifiedTime, start, end, orderByComparator };
 
 		List<DLSyncEvent> list = null;
@@ -537,7 +535,7 @@ public class DLSyncEventPersistenceImpl extends BasePersistenceImpl<DLSyncEvent>
 	 */
 	@Override
 	public int countByModifiedTime(long modifiedTime) {
-		FinderPath finderPath = FINDER_PATH_WITH_PAGINATION_COUNT_BY_MODIFIEDTIME;
+		FinderPath finderPath = _finderPathWithPaginationCountByModifiedTime;
 
 		Object[] finderArgs = new Object[] { modifiedTime };
 
@@ -582,12 +580,12 @@ public class DLSyncEventPersistenceImpl extends BasePersistenceImpl<DLSyncEvent>
 	}
 
 	private static final String _FINDER_COLUMN_MODIFIEDTIME_MODIFIEDTIME_2 = "dlSyncEvent.modifiedTime > ?";
-	public static final FinderPath FINDER_PATH_FETCH_BY_TYPEPK = new FinderPath(DLSyncEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathFetchByTypePK = new FinderPath(DLSyncEventModelImpl.ENTITY_CACHE_ENABLED,
 			DLSyncEventModelImpl.FINDER_CACHE_ENABLED, DLSyncEventImpl.class,
 			FINDER_CLASS_NAME_ENTITY, "fetchByTypePK",
 			new String[] { Long.class.getName() },
 			DLSyncEventModelImpl.TYPEPK_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_TYPEPK = new FinderPath(DLSyncEventModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByTypePK = new FinderPath(DLSyncEventModelImpl.ENTITY_CACHE_ENABLED,
 			DLSyncEventModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByTypePK",
 			new String[] { Long.class.getName() });
@@ -649,7 +647,7 @@ public class DLSyncEventPersistenceImpl extends BasePersistenceImpl<DLSyncEvent>
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_TYPEPK,
+			result = FinderCacheUtil.getResult(_finderPathFetchByTypePK,
 					finderArgs, this);
 		}
 
@@ -684,7 +682,7 @@ public class DLSyncEventPersistenceImpl extends BasePersistenceImpl<DLSyncEvent>
 				List<DLSyncEvent> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_TYPEPK,
+					FinderCacheUtil.putResult(_finderPathFetchByTypePK,
 						finderArgs, list);
 				}
 				else {
@@ -696,7 +694,7 @@ public class DLSyncEventPersistenceImpl extends BasePersistenceImpl<DLSyncEvent>
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_TYPEPK,
+				FinderCacheUtil.removeResult(_finderPathFetchByTypePK,
 					finderArgs);
 
 				throw processException(e);
@@ -736,7 +734,7 @@ public class DLSyncEventPersistenceImpl extends BasePersistenceImpl<DLSyncEvent>
 	 */
 	@Override
 	public int countByTypePK(long typePK) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_TYPEPK;
+		FinderPath finderPath = _finderPathCountByTypePK;
 
 		Object[] finderArgs = new Object[] { typePK };
 
@@ -814,7 +812,7 @@ public class DLSyncEventPersistenceImpl extends BasePersistenceImpl<DLSyncEvent>
 		EntityCacheUtil.putResult(DLSyncEventModelImpl.ENTITY_CACHE_ENABLED,
 			DLSyncEventImpl.class, dlSyncEvent.getPrimaryKey(), dlSyncEvent);
 
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_TYPEPK,
+		FinderCacheUtil.putResult(_finderPathFetchByTypePK,
 			new Object[] { dlSyncEvent.getTypePK() }, dlSyncEvent);
 
 		dlSyncEvent.resetOriginalValues();
@@ -890,9 +888,9 @@ public class DLSyncEventPersistenceImpl extends BasePersistenceImpl<DLSyncEvent>
 		DLSyncEventModelImpl dlSyncEventModelImpl) {
 		Object[] args = new Object[] { dlSyncEventModelImpl.getTypePK() };
 
-		FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_TYPEPK, args,
+		FinderCacheUtil.putResult(_finderPathCountByTypePK, args,
 			Long.valueOf(1), false);
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_TYPEPK, args,
+		FinderCacheUtil.putResult(_finderPathFetchByTypePK, args,
 			dlSyncEventModelImpl, false);
 	}
 
@@ -901,18 +899,18 @@ public class DLSyncEventPersistenceImpl extends BasePersistenceImpl<DLSyncEvent>
 		if (clearCurrent) {
 			Object[] args = new Object[] { dlSyncEventModelImpl.getTypePK() };
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_TYPEPK, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_TYPEPK, args);
+			FinderCacheUtil.removeResult(_finderPathCountByTypePK, args);
+			FinderCacheUtil.removeResult(_finderPathFetchByTypePK, args);
 		}
 
 		if ((dlSyncEventModelImpl.getColumnBitmask() &
-				FINDER_PATH_FETCH_BY_TYPEPK.getColumnBitmask()) != 0) {
+				_finderPathFetchByTypePK.getColumnBitmask()) != 0) {
 			Object[] args = new Object[] {
 					dlSyncEventModelImpl.getOriginalTypePK()
 				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_TYPEPK, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_TYPEPK, args);
+			FinderCacheUtil.removeResult(_finderPathCountByTypePK, args);
+			FinderCacheUtil.removeResult(_finderPathFetchByTypePK, args);
 		}
 	}
 
@@ -1066,9 +1064,8 @@ public class DLSyncEventPersistenceImpl extends BasePersistenceImpl<DLSyncEvent>
 		}
 		else
 		 if (isNew) {
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_ALL,
-				FINDER_ARGS_EMPTY);
-			FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL,
+			FinderCacheUtil.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
+			FinderCacheUtil.removeResult(_finderPathWithoutPaginationFindAll,
 				FINDER_ARGS_EMPTY);
 		}
 
@@ -1342,11 +1339,11 @@ public class DLSyncEventPersistenceImpl extends BasePersistenceImpl<DLSyncEvent>
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL;
+			finderPath = _finderPathWithoutPaginationFindAll;
 			finderArgs = FINDER_ARGS_EMPTY;
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_ALL;
+			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] { start, end, orderByComparator };
 		}
 
@@ -1435,7 +1432,7 @@ public class DLSyncEventPersistenceImpl extends BasePersistenceImpl<DLSyncEvent>
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
+		Long count = (Long)FinderCacheUtil.getResult(_finderPathCountAll,
 				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
@@ -1448,11 +1445,11 @@ public class DLSyncEventPersistenceImpl extends BasePersistenceImpl<DLSyncEvent>
 
 				count = (Long)q.uniqueResult();
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL,
+				FinderCacheUtil.putResult(_finderPathCountAll,
 					FINDER_ARGS_EMPTY, count);
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_ALL,
+				FinderCacheUtil.removeResult(_finderPathCountAll,
 					FINDER_ARGS_EMPTY);
 
 				throw processException(e);

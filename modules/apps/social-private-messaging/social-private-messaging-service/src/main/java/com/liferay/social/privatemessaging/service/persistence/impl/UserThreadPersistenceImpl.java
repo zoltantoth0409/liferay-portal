@@ -82,16 +82,16 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		".List1";
 	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
 		".List2";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindAll = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 			UserThreadModelImpl.FINDER_CACHE_ENABLED, UserThreadImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindAll = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 			UserThreadModelImpl.FINDER_CACHE_ENABLED, UserThreadImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountAll = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 			UserThreadModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_USERID = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByUserId = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 			UserThreadModelImpl.FINDER_CACHE_ENABLED, UserThreadImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUserId",
 			new String[] {
@@ -100,14 +100,13 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID =
-		new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByUserId = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 			UserThreadModelImpl.FINDER_CACHE_ENABLED, UserThreadImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUserId",
 			new String[] { Long.class.getName() },
 			UserThreadModelImpl.USERID_COLUMN_BITMASK |
 			UserThreadModelImpl.MODIFIEDDATE_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_USERID = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByUserId = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 			UserThreadModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUserId",
 			new String[] { Long.class.getName() });
@@ -184,11 +183,11 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID;
+			finderPath = _finderPathWithoutPaginationFindByUserId;
 			finderArgs = new Object[] { userId };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_USERID;
+			finderPath = _finderPathWithPaginationFindByUserId;
 			finderArgs = new Object[] { userId, start, end, orderByComparator };
 		}
 
@@ -547,7 +546,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 */
 	@Override
 	public int countByUserId(long userId) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_USERID;
+		FinderPath finderPath = _finderPathCountByUserId;
 
 		Object[] finderArgs = new Object[] { userId };
 
@@ -591,8 +590,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	}
 
 	private static final String _FINDER_COLUMN_USERID_USERID_2 = "userThread.userId = ?";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_MBTHREADID =
-		new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByMBThreadId = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 			UserThreadModelImpl.FINDER_CACHE_ENABLED, UserThreadImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByMBThreadId",
 			new String[] {
@@ -601,14 +599,13 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MBTHREADID =
-		new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByMBThreadId = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 			UserThreadModelImpl.FINDER_CACHE_ENABLED, UserThreadImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByMBThreadId",
 			new String[] { Long.class.getName() },
 			UserThreadModelImpl.MBTHREADID_COLUMN_BITMASK |
 			UserThreadModelImpl.MODIFIEDDATE_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_MBTHREADID = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByMBThreadId = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 			UserThreadModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByMBThreadId",
 			new String[] { Long.class.getName() });
@@ -686,11 +683,11 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MBTHREADID;
+			finderPath = _finderPathWithoutPaginationFindByMBThreadId;
 			finderArgs = new Object[] { mbThreadId };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_MBTHREADID;
+			finderPath = _finderPathWithPaginationFindByMBThreadId;
 			finderArgs = new Object[] { mbThreadId, start, end, orderByComparator };
 		}
 
@@ -1052,7 +1049,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 */
 	@Override
 	public int countByMBThreadId(long mbThreadId) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_MBTHREADID;
+		FinderPath finderPath = _finderPathCountByMBThreadId;
 
 		Object[] finderArgs = new Object[] { mbThreadId };
 
@@ -1096,13 +1093,13 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	}
 
 	private static final String _FINDER_COLUMN_MBTHREADID_MBTHREADID_2 = "userThread.mbThreadId = ?";
-	public static final FinderPath FINDER_PATH_FETCH_BY_U_M = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathFetchByU_M = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 			UserThreadModelImpl.FINDER_CACHE_ENABLED, UserThreadImpl.class,
 			FINDER_CLASS_NAME_ENTITY, "fetchByU_M",
 			new String[] { Long.class.getName(), Long.class.getName() },
 			UserThreadModelImpl.USERID_COLUMN_BITMASK |
 			UserThreadModelImpl.MBTHREADID_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_U_M = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByU_M = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 			UserThreadModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByU_M",
 			new String[] { Long.class.getName(), Long.class.getName() });
@@ -1171,8 +1168,8 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = finderCache.getResult(FINDER_PATH_FETCH_BY_U_M,
-					finderArgs, this);
+			result = finderCache.getResult(_finderPathFetchByU_M, finderArgs,
+					this);
 		}
 
 		if (result instanceof UserThread) {
@@ -1211,7 +1208,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 				List<UserThread> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(FINDER_PATH_FETCH_BY_U_M, finderArgs,
+					finderCache.putResult(_finderPathFetchByU_M, finderArgs,
 						list);
 				}
 				else {
@@ -1234,7 +1231,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(FINDER_PATH_FETCH_BY_U_M, finderArgs);
+				finderCache.removeResult(_finderPathFetchByU_M, finderArgs);
 
 				throw processException(e);
 			}
@@ -1275,7 +1272,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 */
 	@Override
 	public int countByU_M(long userId, long mbThreadId) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_U_M;
+		FinderPath finderPath = _finderPathCountByU_M;
 
 		Object[] finderArgs = new Object[] { userId, mbThreadId };
 
@@ -1324,7 +1321,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 
 	private static final String _FINDER_COLUMN_U_M_USERID_2 = "userThread.userId = ? AND ";
 	private static final String _FINDER_COLUMN_U_M_MBTHREADID_2 = "userThread.mbThreadId = ?";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_U_D = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByU_D = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 			UserThreadModelImpl.FINDER_CACHE_ENABLED, UserThreadImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByU_D",
 			new String[] {
@@ -1333,14 +1330,14 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_D = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByU_D = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 			UserThreadModelImpl.FINDER_CACHE_ENABLED, UserThreadImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByU_D",
 			new String[] { Long.class.getName(), Boolean.class.getName() },
 			UserThreadModelImpl.USERID_COLUMN_BITMASK |
 			UserThreadModelImpl.DELETED_COLUMN_BITMASK |
 			UserThreadModelImpl.MODIFIEDDATE_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_U_D = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByU_D = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 			UserThreadModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByU_D",
 			new String[] { Long.class.getName(), Boolean.class.getName() });
@@ -1423,11 +1420,11 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_D;
+			finderPath = _finderPathWithoutPaginationFindByU_D;
 			finderArgs = new Object[] { userId, deleted };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_U_D;
+			finderPath = _finderPathWithPaginationFindByU_D;
 			finderArgs = new Object[] {
 					userId, deleted,
 					
@@ -1815,7 +1812,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 */
 	@Override
 	public int countByU_D(long userId, boolean deleted) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_U_D;
+		FinderPath finderPath = _finderPathCountByU_D;
 
 		Object[] finderArgs = new Object[] { userId, deleted };
 
@@ -1864,7 +1861,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 
 	private static final String _FINDER_COLUMN_U_D_USERID_2 = "userThread.userId = ? AND ";
 	private static final String _FINDER_COLUMN_U_D_DELETED_2 = "userThread.deleted = ?";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_U_R_D = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindByU_R_D = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 			UserThreadModelImpl.FINDER_CACHE_ENABLED, UserThreadImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByU_R_D",
 			new String[] {
@@ -1874,7 +1871,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 			Integer.class.getName(), Integer.class.getName(),
 				OrderByComparator.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_R_D = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindByU_R_D = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 			UserThreadModelImpl.FINDER_CACHE_ENABLED, UserThreadImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByU_R_D",
 			new String[] {
@@ -1885,7 +1882,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 			UserThreadModelImpl.READ_COLUMN_BITMASK |
 			UserThreadModelImpl.DELETED_COLUMN_BITMASK |
 			UserThreadModelImpl.MODIFIEDDATE_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_U_R_D = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByU_R_D = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 			UserThreadModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByU_R_D",
 			new String[] {
@@ -1979,11 +1976,11 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_R_D;
+			finderPath = _finderPathWithoutPaginationFindByU_R_D;
 			finderArgs = new Object[] { userId, read, deleted };
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_U_R_D;
+			finderPath = _finderPathWithPaginationFindByU_R_D;
 			finderArgs = new Object[] {
 					userId, read, deleted,
 					
@@ -2394,7 +2391,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 */
 	@Override
 	public int countByU_R_D(long userId, boolean read, boolean deleted) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_U_R_D;
+		FinderPath finderPath = _finderPathCountByU_R_D;
 
 		Object[] finderArgs = new Object[] { userId, read, deleted };
 
@@ -2481,7 +2478,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		entityCache.putResult(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 			UserThreadImpl.class, userThread.getPrimaryKey(), userThread);
 
-		finderCache.putResult(FINDER_PATH_FETCH_BY_U_M,
+		finderCache.putResult(_finderPathFetchByU_M,
 			new Object[] { userThread.getUserId(), userThread.getMbThreadId() },
 			userThread);
 
@@ -2561,10 +2558,10 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 				userThreadModelImpl.getMbThreadId()
 			};
 
-		finderCache.putResult(FINDER_PATH_COUNT_BY_U_M, args, Long.valueOf(1),
+		finderCache.putResult(_finderPathCountByU_M, args, Long.valueOf(1),
 			false);
-		finderCache.putResult(FINDER_PATH_FETCH_BY_U_M, args,
-			userThreadModelImpl, false);
+		finderCache.putResult(_finderPathFetchByU_M, args, userThreadModelImpl,
+			false);
 	}
 
 	protected void clearUniqueFindersCache(
@@ -2575,19 +2572,19 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 					userThreadModelImpl.getMbThreadId()
 				};
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_U_M, args);
-			finderCache.removeResult(FINDER_PATH_FETCH_BY_U_M, args);
+			finderCache.removeResult(_finderPathCountByU_M, args);
+			finderCache.removeResult(_finderPathFetchByU_M, args);
 		}
 
 		if ((userThreadModelImpl.getColumnBitmask() &
-				FINDER_PATH_FETCH_BY_U_M.getColumnBitmask()) != 0) {
+				_finderPathFetchByU_M.getColumnBitmask()) != 0) {
 			Object[] args = new Object[] {
 					userThreadModelImpl.getOriginalUserId(),
 					userThreadModelImpl.getOriginalMbThreadId()
 				};
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_U_M, args);
-			finderCache.removeResult(FINDER_PATH_FETCH_BY_U_M, args);
+			finderCache.removeResult(_finderPathCountByU_M, args);
+			finderCache.removeResult(_finderPathFetchByU_M, args);
 		}
 	}
 
@@ -2766,14 +2763,14 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		 if (isNew) {
 			Object[] args = new Object[] { userThreadModelImpl.getUserId() };
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
-			finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
+			finderCache.removeResult(_finderPathCountByUserId, args);
+			finderCache.removeResult(_finderPathWithoutPaginationFindByUserId,
 				args);
 
 			args = new Object[] { userThreadModelImpl.getMbThreadId() };
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_MBTHREADID, args);
-			finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MBTHREADID,
+			finderCache.removeResult(_finderPathCountByMBThreadId, args);
+			finderCache.removeResult(_finderPathWithoutPaginationFindByMBThreadId,
 				args);
 
 			args = new Object[] {
@@ -2781,9 +2778,8 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 					userThreadModelImpl.isDeleted()
 				};
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_U_D, args);
-			finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_D,
-				args);
+			finderCache.removeResult(_finderPathCountByU_D, args);
+			finderCache.removeResult(_finderPathWithoutPaginationFindByU_D, args);
 
 			args = new Object[] {
 					userThreadModelImpl.getUserId(),
@@ -2791,59 +2787,59 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 					userThreadModelImpl.isDeleted()
 				};
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_U_R_D, args);
-			finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_R_D,
+			finderCache.removeResult(_finderPathCountByU_R_D, args);
+			finderCache.removeResult(_finderPathWithoutPaginationFindByU_R_D,
 				args);
 
-			finderCache.removeResult(FINDER_PATH_COUNT_ALL, FINDER_ARGS_EMPTY);
-			finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL,
+			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
+			finderCache.removeResult(_finderPathWithoutPaginationFindAll,
 				FINDER_ARGS_EMPTY);
 		}
 
 		else {
 			if ((userThreadModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByUserId.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						userThreadModelImpl.getOriginalUserId()
 					};
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
+				finderCache.removeResult(_finderPathCountByUserId, args);
+				finderCache.removeResult(_finderPathWithoutPaginationFindByUserId,
 					args);
 
 				args = new Object[] { userThreadModelImpl.getUserId() };
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_USERID, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_USERID,
+				finderCache.removeResult(_finderPathCountByUserId, args);
+				finderCache.removeResult(_finderPathWithoutPaginationFindByUserId,
 					args);
 			}
 
 			if ((userThreadModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MBTHREADID.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByMBThreadId.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						userThreadModelImpl.getOriginalMbThreadId()
 					};
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_MBTHREADID, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MBTHREADID,
+				finderCache.removeResult(_finderPathCountByMBThreadId, args);
+				finderCache.removeResult(_finderPathWithoutPaginationFindByMBThreadId,
 					args);
 
 				args = new Object[] { userThreadModelImpl.getMbThreadId() };
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_MBTHREADID, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_MBTHREADID,
+				finderCache.removeResult(_finderPathCountByMBThreadId, args);
+				finderCache.removeResult(_finderPathWithoutPaginationFindByMBThreadId,
 					args);
 			}
 
 			if ((userThreadModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_D.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByU_D.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						userThreadModelImpl.getOriginalUserId(),
 						userThreadModelImpl.getOriginalDeleted()
 					};
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_U_D, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_D,
+				finderCache.removeResult(_finderPathCountByU_D, args);
+				finderCache.removeResult(_finderPathWithoutPaginationFindByU_D,
 					args);
 
 				args = new Object[] {
@@ -2851,21 +2847,21 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 						userThreadModelImpl.isDeleted()
 					};
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_U_D, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_D,
+				finderCache.removeResult(_finderPathCountByU_D, args);
+				finderCache.removeResult(_finderPathWithoutPaginationFindByU_D,
 					args);
 			}
 
 			if ((userThreadModelImpl.getColumnBitmask() &
-					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_R_D.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByU_R_D.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						userThreadModelImpl.getOriginalUserId(),
 						userThreadModelImpl.getOriginalRead(),
 						userThreadModelImpl.getOriginalDeleted()
 					};
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_U_R_D, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_R_D,
+				finderCache.removeResult(_finderPathCountByU_R_D, args);
+				finderCache.removeResult(_finderPathWithoutPaginationFindByU_R_D,
 					args);
 
 				args = new Object[] {
@@ -2874,8 +2870,8 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 						userThreadModelImpl.isDeleted()
 					};
 
-				finderCache.removeResult(FINDER_PATH_COUNT_BY_U_R_D, args);
-				finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_R_D,
+				finderCache.removeResult(_finderPathCountByU_R_D, args);
+				finderCache.removeResult(_finderPathWithoutPaginationFindByU_R_D,
 					args);
 			}
 		}
@@ -3149,11 +3145,11 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL;
+			finderPath = _finderPathWithoutPaginationFindAll;
 			finderArgs = FINDER_ARGS_EMPTY;
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_ALL;
+			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] { start, end, orderByComparator };
 		}
 
@@ -3242,7 +3238,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)finderCache.getResult(FINDER_PATH_COUNT_ALL,
+		Long count = (Long)finderCache.getResult(_finderPathCountAll,
 				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
@@ -3255,12 +3251,11 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(FINDER_PATH_COUNT_ALL, FINDER_ARGS_EMPTY,
+				finderCache.putResult(_finderPathCountAll, FINDER_ARGS_EMPTY,
 					count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(FINDER_PATH_COUNT_ALL,
-					FINDER_ARGS_EMPTY);
+				finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
 
 				throw processException(e);
 			}

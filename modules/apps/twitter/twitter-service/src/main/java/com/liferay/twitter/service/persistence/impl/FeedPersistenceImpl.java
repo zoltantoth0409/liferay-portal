@@ -81,22 +81,22 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		".List1";
 	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
 		".List2";
-	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_ALL = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithPaginationFindAll = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
 			FeedModelImpl.FINDER_CACHE_ENABLED, FeedImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathWithoutPaginationFindAll = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
 			FeedModelImpl.FINDER_CACHE_ENABLED, FeedImpl.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
-	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountAll = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
 			FeedModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
-	public static final FinderPath FINDER_PATH_FETCH_BY_U_TSN = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathFetchByU_TSN = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
 			FeedModelImpl.FINDER_CACHE_ENABLED, FeedImpl.class,
 			FINDER_CLASS_NAME_ENTITY, "fetchByU_TSN",
 			new String[] { Long.class.getName(), String.class.getName() },
 			FeedModelImpl.USERID_COLUMN_BITMASK |
 			FeedModelImpl.TWITTERSCREENNAME_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_U_TSN = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
+	private final FinderPath _finderPathCountByU_TSN = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
 			FeedModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByU_TSN",
 			new String[] { Long.class.getName(), String.class.getName() });
@@ -167,8 +167,8 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = finderCache.getResult(FINDER_PATH_FETCH_BY_U_TSN,
-					finderArgs, this);
+			result = finderCache.getResult(_finderPathFetchByU_TSN, finderArgs,
+					this);
 		}
 
 		if (result instanceof Feed) {
@@ -219,8 +219,8 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 				List<Feed> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(FINDER_PATH_FETCH_BY_U_TSN,
-						finderArgs, list);
+					finderCache.putResult(_finderPathFetchByU_TSN, finderArgs,
+						list);
 				}
 				else {
 					if (list.size() > 1) {
@@ -242,7 +242,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(FINDER_PATH_FETCH_BY_U_TSN, finderArgs);
+				finderCache.removeResult(_finderPathFetchByU_TSN, finderArgs);
 
 				throw processException(e);
 			}
@@ -285,7 +285,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	public int countByU_TSN(long userId, String twitterScreenName) {
 		twitterScreenName = Objects.toString(twitterScreenName, "");
 
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_U_TSN;
+		FinderPath finderPath = _finderPathCountByU_TSN;
 
 		Object[] finderArgs = new Object[] { userId, twitterScreenName };
 
@@ -361,7 +361,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		entityCache.putResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
 			FeedImpl.class, feed.getPrimaryKey(), feed);
 
-		finderCache.putResult(FINDER_PATH_FETCH_BY_U_TSN,
+		finderCache.putResult(_finderPathFetchByU_TSN,
 			new Object[] { feed.getUserId(), feed.getTwitterScreenName() }, feed);
 
 		feed.resetOriginalValues();
@@ -437,9 +437,9 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 				feedModelImpl.getUserId(), feedModelImpl.getTwitterScreenName()
 			};
 
-		finderCache.putResult(FINDER_PATH_COUNT_BY_U_TSN, args,
-			Long.valueOf(1), false);
-		finderCache.putResult(FINDER_PATH_FETCH_BY_U_TSN, args, feedModelImpl,
+		finderCache.putResult(_finderPathCountByU_TSN, args, Long.valueOf(1),
+			false);
+		finderCache.putResult(_finderPathFetchByU_TSN, args, feedModelImpl,
 			false);
 	}
 
@@ -451,19 +451,19 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 					feedModelImpl.getTwitterScreenName()
 				};
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_U_TSN, args);
-			finderCache.removeResult(FINDER_PATH_FETCH_BY_U_TSN, args);
+			finderCache.removeResult(_finderPathCountByU_TSN, args);
+			finderCache.removeResult(_finderPathFetchByU_TSN, args);
 		}
 
 		if ((feedModelImpl.getColumnBitmask() &
-				FINDER_PATH_FETCH_BY_U_TSN.getColumnBitmask()) != 0) {
+				_finderPathFetchByU_TSN.getColumnBitmask()) != 0) {
 			Object[] args = new Object[] {
 					feedModelImpl.getOriginalUserId(),
 					feedModelImpl.getOriginalTwitterScreenName()
 				};
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_U_TSN, args);
-			finderCache.removeResult(FINDER_PATH_FETCH_BY_U_TSN, args);
+			finderCache.removeResult(_finderPathCountByU_TSN, args);
+			finderCache.removeResult(_finderPathFetchByU_TSN, args);
 		}
 	}
 
@@ -636,8 +636,8 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		}
 		else
 		 if (isNew) {
-			finderCache.removeResult(FINDER_PATH_COUNT_ALL, FINDER_ARGS_EMPTY);
-			finderCache.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL,
+			finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
+			finderCache.removeResult(_finderPathWithoutPaginationFindAll,
 				FINDER_ARGS_EMPTY);
 		}
 
@@ -907,11 +907,11 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_ALL;
+			finderPath = _finderPathWithoutPaginationFindAll;
 			finderArgs = FINDER_ARGS_EMPTY;
 		}
 		else {
-			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_ALL;
+			finderPath = _finderPathWithPaginationFindAll;
 			finderArgs = new Object[] { start, end, orderByComparator };
 		}
 
@@ -1000,7 +1000,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 */
 	@Override
 	public int countAll() {
-		Long count = (Long)finderCache.getResult(FINDER_PATH_COUNT_ALL,
+		Long count = (Long)finderCache.getResult(_finderPathCountAll,
 				FINDER_ARGS_EMPTY, this);
 
 		if (count == null) {
@@ -1013,12 +1013,11 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 
 				count = (Long)q.uniqueResult();
 
-				finderCache.putResult(FINDER_PATH_COUNT_ALL, FINDER_ARGS_EMPTY,
+				finderCache.putResult(_finderPathCountAll, FINDER_ARGS_EMPTY,
 					count);
 			}
 			catch (Exception e) {
-				finderCache.removeResult(FINDER_PATH_COUNT_ALL,
-					FINDER_ARGS_EMPTY);
+				finderCache.removeResult(_finderPathCountAll, FINDER_ARGS_EMPTY);
 
 				throw processException(e);
 			}
