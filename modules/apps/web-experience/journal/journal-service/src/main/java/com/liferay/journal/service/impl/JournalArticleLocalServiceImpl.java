@@ -7233,14 +7233,19 @@ public class JournalArticleLocalServiceImpl
 		}
 	}
 
-	protected long getArticleCheckInterval() throws PortalException {
-		long companyId = CompanyThreadLocal.getCompanyId();
+	protected long getArticleCheckInterval() {
+		try {
+			long companyId = CompanyThreadLocal.getCompanyId();
 
-		JournalServiceConfiguration journalServiceConfiguration =
-			configurationProvider.getCompanyConfiguration(
-				JournalServiceConfiguration.class, companyId);
+			JournalServiceConfiguration journalServiceConfiguration =
+				configurationProvider.getCompanyConfiguration(
+					JournalServiceConfiguration.class, companyId);
 
-		return journalServiceConfiguration.checkInterval();
+			return journalServiceConfiguration.checkInterval();
+		}
+		catch (PortalException pe) {
+			throw new RuntimeException(pe);
+		}
 	}
 
 	protected Locale getArticleDefaultLocale(String content) {
