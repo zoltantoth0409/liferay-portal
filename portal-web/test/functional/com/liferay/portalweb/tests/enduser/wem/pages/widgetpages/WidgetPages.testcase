@@ -83,6 +83,7 @@ definition {
 
 	@priority = "4"
 	test AddPagesFullPageApplicationForRelease {
+		property portal.upstream = "false";
 		property testray.component.names = "Site Pages Administration";
 
 		for (var portlet : list "Blogs,Documents and Media,Wiki,Media Gallery,Message Boards,Form,RSS Publisher,OAuth2 Authorize Portlet") {
