@@ -76,7 +76,16 @@ public class CheckArticleMessageListener extends BaseMessageListener {
 
 	@Override
 	protected void doReceive(Message message) throws Exception {
-		_journalArticleLocalService.checkArticles();
+		if (!_checkingArticles) {
+			_checkingArticles = true;
+
+			try {
+				_journalArticleLocalService.checkArticles();
+			}
+			finally {
+				_checkingArticles = false;
+			}
+		}
 	}
 
 	@Reference(unbind = "-")
@@ -98,6 +107,7 @@ public class CheckArticleMessageListener extends BaseMessageListener {
 		_schedulerEngineHelper = schedulerEngineHelper;
 	}
 
+	private boolean _checkingArticles;
 	private JournalArticleLocalService _journalArticleLocalService;
 	private SchedulerEngineHelper _schedulerEngineHelper;
 
