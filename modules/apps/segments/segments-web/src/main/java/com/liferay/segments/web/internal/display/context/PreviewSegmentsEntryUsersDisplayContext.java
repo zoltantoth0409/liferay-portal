@@ -177,7 +177,7 @@ public class PreviewSegmentsEntryUsersDisplayContext {
 			}
 			catch (PortalException pe) {
 				_log.error(
-					"Error retrieving segment with ID " + segmentsEntryId, pe);
+					"Unable to get segment entry " + segmentsEntryId, pe);
 
 				return null;
 			}
