@@ -14,6 +14,7 @@
 
 package com.liferay.dynamic.data.mapping.form.builder.internal.servlet;
 
+import com.liferay.dynamic.data.mapping.constants.DDMPortletKeys;
 import com.liferay.dynamic.data.mapping.model.DDMDataProviderInstance;
 import com.liferay.dynamic.data.mapping.service.DDMDataProviderInstanceLocalService;
 import com.liferay.dynamic.data.mapping.util.comparator.DataProviderInstanceNameComparator;
@@ -24,6 +25,7 @@ import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -88,6 +90,15 @@ public class DDMDataProviderInstancesServlet extends BaseDDMFormBuilderServlet {
 			Locale locale = LocaleUtil.fromLanguageId(languageId);
 
 			long scopeGroupId = ParamUtil.getLong(request, "scopeGroupId");
+
+			Group scopeGroup = themeDisplay.getScopeGroup();
+
+			if (scopeGroup.isStagingGroup() &&
+				!scopeGroup.isStagedPortlet(
+					DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN)) {
+
+				scopeGroupId = scopeGroup.getLiveGroupId();
+			}
 
 			long[] groupIds = _portal.getCurrentAndAncestorSiteGroupIds(
 				scopeGroupId);
