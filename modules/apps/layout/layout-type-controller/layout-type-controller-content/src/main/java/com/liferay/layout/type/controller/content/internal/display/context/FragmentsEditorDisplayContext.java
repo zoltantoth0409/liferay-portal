@@ -657,6 +657,9 @@ public class FragmentsEditorDisplayContext {
 					"editableValues",
 					JSONFactoryUtil.createJSONObject(
 						fragmentEntryLink.getEditableValues()));
+				soyContext.put(
+					"fragmentEntryLinkId",
+					String.valueOf(fragmentEntryLink.getFragmentEntryLinkId()));
 
 				if (fragmentEntry != null) {
 					soyContext.put(
@@ -667,16 +670,12 @@ public class FragmentsEditorDisplayContext {
 					String portletId = _getPortletId(content);
 
 					soyContext.put("fragmentEntryId", 0);
-					soyContext.put("portletId", portletId);
 					soyContext.put(
 						"name",
 						PortalUtil.getPortletTitle(
 							portletId, _themeDisplay.getLocale()));
+					soyContext.put("portletId", portletId);
 				}
-
-				soyContext.put(
-					"fragmentEntryLinkId",
-					String.valueOf(fragmentEntryLink.getFragmentEntryLinkId()));
 
 				soyContexts.put(
 					String.valueOf(fragmentEntryLink.getFragmentEntryLinkId()),
