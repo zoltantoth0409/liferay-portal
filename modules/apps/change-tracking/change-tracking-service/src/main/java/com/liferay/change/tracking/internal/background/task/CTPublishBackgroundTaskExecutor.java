@@ -52,9 +52,9 @@ public class CTPublishBackgroundTaskExecutor
 	extends BaseBackgroundTaskExecutor {
 
 	public CTPublishBackgroundTaskExecutor() {
-		setIsolationLevel(BackgroundTaskConstants.ISOLATION_LEVEL_COMPANY);
 		setBackgroundTaskStatusMessageTranslator(
 			new CTPublishBackgroundTaskStatusMessageTranslator());
+		setIsolationLevel(BackgroundTaskConstants.ISOLATION_LEVEL_COMPANY);
 
 		Bundle bundle = FrameworkUtil.getBundle(
 			CTPublishBackgroundTaskExecutor.class);
