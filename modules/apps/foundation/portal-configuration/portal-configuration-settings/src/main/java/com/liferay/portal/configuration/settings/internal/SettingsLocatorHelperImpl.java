@@ -321,11 +321,13 @@ public class SettingsLocatorHelperImpl implements SettingsLocatorHelper {
 
 			configurationBeanManagedService.unregister();
 
+			Class<?> configurationBeanClass = _configurationBeanClasses.remove(
+				configurationBeanManagedService.getConfigurationPid());
+
 			_configurationBeanClasses.remove(
 				configurationBeanManagedService.getConfigurationPid());
 
-			_configurationBeanSettings.remove(
-				configurationBeanManagedService.getConfigurationPid());
+			_configurationBeanSettings.remove(configurationBeanClass);
 		}
 
 		private ConfigurationBeanDeclarationServiceTracker(
