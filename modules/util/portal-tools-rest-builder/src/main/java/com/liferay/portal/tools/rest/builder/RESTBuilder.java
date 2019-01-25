@@ -18,24 +18,16 @@ import com.liferay.portal.tools.ArgumentsUtil;
 import com.liferay.portal.tools.rest.builder.internal.freemarker.FreeMarker;
 import com.liferay.portal.tools.rest.builder.internal.freemarker.FreeMarkerConstants;
 import com.liferay.portal.tools.rest.builder.internal.util.FileUtil;
+import com.liferay.portal.tools.rest.builder.internal.util.YAMLUtil;
 import com.liferay.portal.tools.rest.builder.internal.yaml.Components;
 import com.liferay.portal.tools.rest.builder.internal.yaml.ConfigYAML;
 import com.liferay.portal.tools.rest.builder.internal.yaml.OpenAPIYAML;
 import com.liferay.portal.tools.rest.builder.internal.yaml.Schema;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import org.yaml.snakeyaml.Yaml;
-import org.yaml.snakeyaml.constructor.Constructor;
-import org.yaml.snakeyaml.introspector.PropertyUtils;
-import org.yaml.snakeyaml.representer.Representer;
 
 /**
  * @author Peter Shin
@@ -63,9 +55,11 @@ public class RESTBuilder {
 			String restOpenAPIFileName)
 		throws Exception {
 
-		ConfigYAML configYAML = _getConfigYAML(restConfigFileName);
+		ConfigYAML configYAML = YAMLUtil.load(
+			restConfigFileName, ConfigYAML.class);
 
-		OpenAPIYAML openAPIYAML = _getOpenAPIYAML(restOpenAPIFileName);
+		OpenAPIYAML openAPIYAML = YAMLUtil.load(
+			restOpenAPIFileName, OpenAPIYAML.class);
 
 		Components components = openAPIYAML.getComponents();
 
@@ -86,34 +80,6 @@ public class RESTBuilder {
 				configYAML, copyrightFileName, openAPIYAML, schemaName);
 
 			FileUtil.write(file, content);
-		}
-	}
-
-	private ConfigYAML _getConfigYAML(String restConfigFileName) {
-		File file = new File(restConfigFileName);
-
-		try (InputStream inputStream = new FileInputStream(file)) {
-			Constructor constructor = new Constructor(ConfigYAML.class);
-
-			Representer representer = new Representer();
-
-			PropertyUtils propertyUtils = representer.getPropertyUtils();
-
-			propertyUtils.setSkipMissingProperties(true);
-
-			Yaml yaml = new Yaml(constructor, representer);
-
-			return yaml.loadAs(inputStream, ConfigYAML.class);
-		}
-		catch (FileNotFoundException fnfe) {
-			System.out.println(fnfe.getMessage());
-
-			return null;
-		}
-		catch (IOException ioe) {
-			ioe.printStackTrace();
-
-			return null;
 		}
 	}
 
@@ -156,34 +122,6 @@ public class RESTBuilder {
 		sb.append(".java");
 
 		return new File(sb.toString());
-	}
-
-	private OpenAPIYAML _getOpenAPIYAML(String restOpenAPIFileName) {
-		File file = new File(restOpenAPIFileName);
-
-		try (InputStream inputStream = new FileInputStream(file)) {
-			Constructor constructor = new Constructor(OpenAPIYAML.class);
-
-			Representer representer = new Representer();
-
-			PropertyUtils propertyUtils = representer.getPropertyUtils();
-
-			propertyUtils.setSkipMissingProperties(true);
-
-			Yaml yaml = new Yaml(constructor, representer);
-
-			return yaml.loadAs(inputStream, OpenAPIYAML.class);
-		}
-		catch (FileNotFoundException fnfe) {
-			System.out.println(fnfe.getMessage());
-
-			return null;
-		}
-		catch (IOException ioe) {
-			ioe.printStackTrace();
-
-			return null;
-		}
 	}
 
 	private String _getResourceContent(
