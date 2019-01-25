@@ -91,8 +91,8 @@ public class RESTBuilder {
 		Map<String, Object> context = new HashMap<>();
 
 		context.put("configYAML", configYAML);
-		context.put("name", schemaName);
 		context.put("schema", schema);
+		context.put("schemaName", schemaName);
 
 		return _freeMarker.processTemplate(
 			copyrightFileName, FreeMarkerConstants.DTO_FTL, context);
@@ -124,8 +124,8 @@ public class RESTBuilder {
 		Map<String, Object> context = new HashMap<>();
 
 		context.put("configYAML", configYAML);
-		context.put("info", openAPIYAML.getInfo());
-		context.put("name", schemaName);
+		context.put("openAPIYAML", openAPIYAML);
+		context.put("schemaName", schemaName);
 
 		return _freeMarker.processTemplate(
 			copyrightFileName, FreeMarkerConstants.RESOURCE_FTL, context);

@@ -9,6 +9,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @generated
  */
 @Generated("")
-@XmlRootElement(name = "${name}")
-public class ${name} {
+@XmlRootElement(name = "${schemaName}")
+public class ${schemaName} {
 }
