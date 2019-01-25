@@ -20,9 +20,9 @@ definition {
 
 	@priority = "4"
 	test MySQLtoMySQLEditedAdministratorUser {
-		SetupWizard.viewDefaultPortalNamePG();
-
 		property test.name.skip.portal.instance = "SetupWizardMySQL#MySQLtoMySQLEditedAdministratorUser";
+
+		SetupWizard.viewDefaultPortalNamePG();
 
 		SetupWizard.configureAdministratorUserPG(
 			administratorEmail = "testsetupwizard@liferay.com",
