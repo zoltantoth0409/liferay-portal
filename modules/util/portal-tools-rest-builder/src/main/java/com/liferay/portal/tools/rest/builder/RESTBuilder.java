@@ -94,16 +94,8 @@ public class RESTBuilder {
 		context.put("name", schemaName);
 		context.put("schema", schema);
 
-		String content = _freeMarker.processTemplate(
-			FreeMarkerConstants.DTO_FTL, context);
-
-		if ((copyrightFileName != null) && !copyrightFileName.isEmpty()) {
-			File copyrightFile = new File(copyrightFileName);
-
-			content = FileUtil.read(copyrightFile) + "\n\n" + content;
-		}
-
-		return content;
+		return _freeMarker.processTemplate(
+			copyrightFileName, FreeMarkerConstants.DTO_FTL, context);
 	}
 
 	private File _getDTOFile(ConfigYAML configYAML, String schemaName) {
@@ -135,16 +127,8 @@ public class RESTBuilder {
 		context.put("info", openAPIYAML.getInfo());
 		context.put("name", schemaName);
 
-		String content = _freeMarker.processTemplate(
-			FreeMarkerConstants.RESOURCE_FTL, context);
-
-		if ((copyrightFileName != null) && !copyrightFileName.isEmpty()) {
-			File copyrightFile = new File(copyrightFileName);
-
-			content = FileUtil.read(copyrightFile) + "\n\n" + content;
-		}
-
-		return content;
+		return _freeMarker.processTemplate(
+			copyrightFileName, FreeMarkerConstants.RESOURCE_FTL, context);
 	}
 
 	private File _getResourceFile(ConfigYAML configYAML, String schemaName) {

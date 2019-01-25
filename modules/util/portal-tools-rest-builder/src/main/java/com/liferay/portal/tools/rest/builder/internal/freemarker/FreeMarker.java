@@ -14,12 +14,15 @@
 
 package com.liferay.portal.tools.rest.builder.internal.freemarker;
 
+import com.liferay.portal.tools.rest.builder.internal.util.FileUtil;
+
 import freemarker.cache.ClassTemplateLoader;
 
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapperBuilder;
 import freemarker.template.Template;
 
+import java.io.File;
 import java.io.StringWriter;
 
 import java.util.Map;
@@ -45,7 +48,8 @@ public class FreeMarker {
 		_configuration.setTemplateUpdateDelayMilliseconds(Long.MAX_VALUE);
 	}
 
-	public String processTemplate(String name, Map<String, Object> context)
+	public String processTemplate(
+			String copyrightFileName, String name, Map<String, Object> context)
 		throws Exception {
 
 		Template template = _configuration.getTemplate(name);
@@ -57,6 +61,12 @@ public class FreeMarker {
 		StringBuffer stringBuffer = stringWriter.getBuffer();
 
 		String content = stringBuffer.toString();
+
+		if ((copyrightFileName != null) && !copyrightFileName.isEmpty()) {
+			File copyrightFile = new File(copyrightFileName);
+
+			content = FileUtil.read(copyrightFile) + "\n\n" + content;
+		}
 
 		return content.replace("\r\n", "\n");
 	}
