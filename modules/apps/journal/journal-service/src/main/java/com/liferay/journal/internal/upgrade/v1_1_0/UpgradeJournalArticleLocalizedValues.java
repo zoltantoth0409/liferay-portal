@@ -15,6 +15,7 @@
 package com.liferay.journal.internal.upgrade.v1_1_0;
 
 import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
 import com.liferay.portal.kernel.dao.jdbc.AutoBatchPreparedStatementUtil;
@@ -144,8 +145,7 @@ public class UpgradeJournalArticleLocalizedValues extends UpgradeProcess {
 
 					if (localizedDescription != null) {
 						String safeLocalizedDescription = _getSafeString(
-							localizedDescription, "UTF-8",
-							_MAX_LENGTH_DESCRIPTION);
+							localizedDescription, _MAX_LENGTH_DESCRIPTION);
 
 						if (localizedDescription != safeLocalizedDescription) {
 							_log(articleId, "description");
@@ -185,10 +185,10 @@ public class UpgradeJournalArticleLocalizedValues extends UpgradeProcess {
 		return db.increment();
 	}
 
-	private String _getSafeString(String value, String charset, int maxLength)
+	private String _getSafeString(String value, int maxLength)
 		throws Exception {
 
-		byte[] valueBytes = value.getBytes("UTF-8");
+		byte[] valueBytes = value.getBytes(StringPool.UTF8);
 
 		if (valueBytes.length <= maxLength) {
 			return value;
@@ -198,7 +198,7 @@ public class UpgradeJournalArticleLocalizedValues extends UpgradeProcess {
 
 		System.arraycopy(valueBytes, 0, convertedValue, 0, maxLength);
 
-		String returnValue = new String(convertedValue, charset);
+		String returnValue = new String(convertedValue, StringPool.UTF8);
 
 		return StringUtil.shorten(returnValue, returnValue.length() - 1);
 	}
