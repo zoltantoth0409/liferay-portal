@@ -643,12 +643,12 @@ public class DDMDataProviderDisplayContext {
 	}
 
 	private long[] _getGroupIds() {
+		long scopeGroupId = _ddmDataProviderRequestHelper.getScopeGroupId();
+
 		ThemeDisplay themeDisplay =
 			_ddmDataProviderRequestHelper.getThemeDisplay();
 
 		Group scopeGroup = themeDisplay.getScopeGroup();
-
-		long scopeGroupId = _ddmDataProviderRequestHelper.getScopeGroupId();
 
 		if (scopeGroup.isStagingGroup() &&
 			!scopeGroup.isStagedPortlet(
