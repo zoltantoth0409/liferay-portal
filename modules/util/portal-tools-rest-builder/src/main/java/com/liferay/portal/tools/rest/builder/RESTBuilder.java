@@ -108,7 +108,6 @@ public class RESTBuilder {
 
 		sb.append(apiPackagePath.replace('.', '/'));
 
-		sb.append("/");
 		sb.append("/dto/");
 		sb.append(schemaName);
 		sb.append(".java");
@@ -141,7 +140,6 @@ public class RESTBuilder {
 
 		sb.append(apiPackagePath.replace('.', '/'));
 
-		sb.append("/");
 		sb.append("/resource/");
 		sb.append(schemaName);
 		sb.append("Resource.java");
