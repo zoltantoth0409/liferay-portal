@@ -80,38 +80,12 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		".List1";
 	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
 		".List2";
-	private final FinderPath _finderPathWithPaginationFindAll = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
-			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
-			MeetupsRegistrationImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
-	private final FinderPath _finderPathWithoutPaginationFindAll = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
-			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
-			MeetupsRegistrationImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
-	private final FinderPath _finderPathCountAll = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
-			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
-	private final FinderPath _finderPathWithPaginationFindByMeetupsEntryId = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
-			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
-			MeetupsRegistrationImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByMeetupsEntryId",
-			new String[] {
-				Long.class.getName(),
-				
-			Integer.class.getName(), Integer.class.getName(),
-				OrderByComparator.class.getName()
-			});
-	private final FinderPath _finderPathWithoutPaginationFindByMeetupsEntryId = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
-			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
-			MeetupsRegistrationImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByMeetupsEntryId",
-			new String[] { Long.class.getName() },
-			MeetupsRegistrationModelImpl.MEETUPSENTRYID_COLUMN_BITMASK |
-			MeetupsRegistrationModelImpl.MODIFIEDDATE_COLUMN_BITMASK);
-	private final FinderPath _finderPathCountByMeetupsEntryId = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
-			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByMeetupsEntryId",
-			new String[] { Long.class.getName() });
+	private FinderPath _finderPathWithPaginationFindAll;
+	private FinderPath _finderPathWithoutPaginationFindAll;
+	private FinderPath _finderPathCountAll;
+	private FinderPath _finderPathWithPaginationFindByMeetupsEntryId;
+	private FinderPath _finderPathWithoutPaginationFindByMeetupsEntryId;
+	private FinderPath _finderPathCountByMeetupsEntryId;
 
 	/**
 	 * Returns all the meetups registrations where meetupsEntryId = &#63;.
@@ -609,17 +583,8 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	}
 
 	private static final String _FINDER_COLUMN_MEETUPSENTRYID_MEETUPSENTRYID_2 = "meetupsRegistration.meetupsEntryId = ?";
-	private final FinderPath _finderPathFetchByU_ME = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
-			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
-			MeetupsRegistrationImpl.class, FINDER_CLASS_NAME_ENTITY,
-			"fetchByU_ME",
-			new String[] { Long.class.getName(), Long.class.getName() },
-			MeetupsRegistrationModelImpl.USERID_COLUMN_BITMASK |
-			MeetupsRegistrationModelImpl.MEETUPSENTRYID_COLUMN_BITMASK);
-	private final FinderPath _finderPathCountByU_ME = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
-			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByU_ME",
-			new String[] { Long.class.getName(), Long.class.getName() });
+	private FinderPath _finderPathFetchByU_ME;
+	private FinderPath _finderPathCountByU_ME;
 
 	/**
 	 * Returns the meetups registration where userId = &#63; and meetupsEntryId = &#63; or throws a {@link NoSuchMeetupsRegistrationException} if it could not be found.
@@ -840,28 +805,9 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 	private static final String _FINDER_COLUMN_U_ME_USERID_2 = "meetupsRegistration.userId = ? AND ";
 	private static final String _FINDER_COLUMN_U_ME_MEETUPSENTRYID_2 = "meetupsRegistration.meetupsEntryId = ?";
-	private final FinderPath _finderPathWithPaginationFindByME_S = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
-			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
-			MeetupsRegistrationImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByME_S",
-			new String[] {
-				Long.class.getName(), Integer.class.getName(),
-				
-			Integer.class.getName(), Integer.class.getName(),
-				OrderByComparator.class.getName()
-			});
-	private final FinderPath _finderPathWithoutPaginationFindByME_S = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
-			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
-			MeetupsRegistrationImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByME_S",
-			new String[] { Long.class.getName(), Integer.class.getName() },
-			MeetupsRegistrationModelImpl.MEETUPSENTRYID_COLUMN_BITMASK |
-			MeetupsRegistrationModelImpl.STATUS_COLUMN_BITMASK |
-			MeetupsRegistrationModelImpl.MODIFIEDDATE_COLUMN_BITMASK);
-	private final FinderPath _finderPathCountByME_S = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
-			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByME_S",
-			new String[] { Long.class.getName(), Integer.class.getName() });
+	private FinderPath _finderPathWithPaginationFindByME_S;
+	private FinderPath _finderPathWithoutPaginationFindByME_S;
+	private FinderPath _finderPathCountByME_S;
 
 	/**
 	 * Returns all the meetups registrations where meetupsEntryId = &#63; and status = &#63;.
@@ -2164,6 +2110,83 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 * Initializes the meetups registration persistence.
 	 */
 	public void afterPropertiesSet() {
+		_finderPathWithPaginationFindAll = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+				MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
+				MeetupsRegistrationImpl.class,
+				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
+
+		_finderPathWithoutPaginationFindAll = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+				MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
+				MeetupsRegistrationImpl.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
+				new String[0]);
+
+		_finderPathCountAll = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+				MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
+				new String[0]);
+
+		_finderPathWithPaginationFindByMeetupsEntryId = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+				MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
+				MeetupsRegistrationImpl.class,
+				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByMeetupsEntryId",
+				new String[] {
+					Long.class.getName(),
+					
+				Integer.class.getName(), Integer.class.getName(),
+					OrderByComparator.class.getName()
+				});
+
+		_finderPathWithoutPaginationFindByMeetupsEntryId = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+				MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
+				MeetupsRegistrationImpl.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+				"findByMeetupsEntryId", new String[] { Long.class.getName() },
+				MeetupsRegistrationModelImpl.MEETUPSENTRYID_COLUMN_BITMASK |
+				MeetupsRegistrationModelImpl.MODIFIEDDATE_COLUMN_BITMASK);
+
+		_finderPathCountByMeetupsEntryId = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+				MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+				"countByMeetupsEntryId", new String[] { Long.class.getName() });
+
+		_finderPathFetchByU_ME = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+				MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
+				MeetupsRegistrationImpl.class, FINDER_CLASS_NAME_ENTITY,
+				"fetchByU_ME",
+				new String[] { Long.class.getName(), Long.class.getName() },
+				MeetupsRegistrationModelImpl.USERID_COLUMN_BITMASK |
+				MeetupsRegistrationModelImpl.MEETUPSENTRYID_COLUMN_BITMASK);
+
+		_finderPathCountByU_ME = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+				MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByU_ME",
+				new String[] { Long.class.getName(), Long.class.getName() });
+
+		_finderPathWithPaginationFindByME_S = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+				MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
+				MeetupsRegistrationImpl.class,
+				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByME_S",
+				new String[] {
+					Long.class.getName(), Integer.class.getName(),
+					
+				Integer.class.getName(), Integer.class.getName(),
+					OrderByComparator.class.getName()
+				});
+
+		_finderPathWithoutPaginationFindByME_S = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+				MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
+				MeetupsRegistrationImpl.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByME_S",
+				new String[] { Long.class.getName(), Integer.class.getName() },
+				MeetupsRegistrationModelImpl.MEETUPSENTRYID_COLUMN_BITMASK |
+				MeetupsRegistrationModelImpl.STATUS_COLUMN_BITMASK |
+				MeetupsRegistrationModelImpl.MODIFIEDDATE_COLUMN_BITMASK);
+
+		_finderPathCountByME_S = new FinderPath(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
+				MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByME_S",
+				new String[] { Long.class.getName(), Integer.class.getName() });
 	}
 
 	public void destroy() {

@@ -85,38 +85,12 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		".List1";
 	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
 		".List2";
-	private final FinderPath _finderPathWithPaginationFindAll = new FinderPath(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
-			WSRPConsumerPortletModelImpl.FINDER_CACHE_ENABLED,
-			WSRPConsumerPortletImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
-	private final FinderPath _finderPathWithoutPaginationFindAll = new FinderPath(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
-			WSRPConsumerPortletModelImpl.FINDER_CACHE_ENABLED,
-			WSRPConsumerPortletImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
-	private final FinderPath _finderPathCountAll = new FinderPath(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
-			WSRPConsumerPortletModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
-	private final FinderPath _finderPathWithPaginationFindByUuid = new FinderPath(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
-			WSRPConsumerPortletModelImpl.FINDER_CACHE_ENABLED,
-			WSRPConsumerPortletImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid",
-			new String[] {
-				String.class.getName(),
-				
-			Integer.class.getName(), Integer.class.getName(),
-				OrderByComparator.class.getName()
-			});
-	private final FinderPath _finderPathWithoutPaginationFindByUuid = new FinderPath(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
-			WSRPConsumerPortletModelImpl.FINDER_CACHE_ENABLED,
-			WSRPConsumerPortletImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid",
-			new String[] { String.class.getName() },
-			WSRPConsumerPortletModelImpl.UUID_COLUMN_BITMASK |
-			WSRPConsumerPortletModelImpl.NAME_COLUMN_BITMASK);
-	private final FinderPath _finderPathCountByUuid = new FinderPath(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
-			WSRPConsumerPortletModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid",
-			new String[] { String.class.getName() });
+	private FinderPath _finderPathWithPaginationFindAll;
+	private FinderPath _finderPathWithoutPaginationFindAll;
+	private FinderPath _finderPathCountAll;
+	private FinderPath _finderPathWithPaginationFindByUuid;
+	private FinderPath _finderPathWithoutPaginationFindByUuid;
+	private FinderPath _finderPathCountByUuid;
 
 	/**
 	 * Returns all the wsrp consumer portlets where uuid = &#63;.
@@ -642,28 +616,9 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 
 	private static final String _FINDER_COLUMN_UUID_UUID_2 = "wsrpConsumerPortlet.uuid = ?";
 	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(wsrpConsumerPortlet.uuid IS NULL OR wsrpConsumerPortlet.uuid = '')";
-	private final FinderPath _finderPathWithPaginationFindByUuid_C = new FinderPath(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
-			WSRPConsumerPortletModelImpl.FINDER_CACHE_ENABLED,
-			WSRPConsumerPortletImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid_C",
-			new String[] {
-				String.class.getName(), Long.class.getName(),
-				
-			Integer.class.getName(), Integer.class.getName(),
-				OrderByComparator.class.getName()
-			});
-	private final FinderPath _finderPathWithoutPaginationFindByUuid_C = new FinderPath(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
-			WSRPConsumerPortletModelImpl.FINDER_CACHE_ENABLED,
-			WSRPConsumerPortletImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid_C",
-			new String[] { String.class.getName(), Long.class.getName() },
-			WSRPConsumerPortletModelImpl.UUID_COLUMN_BITMASK |
-			WSRPConsumerPortletModelImpl.COMPANYID_COLUMN_BITMASK |
-			WSRPConsumerPortletModelImpl.NAME_COLUMN_BITMASK);
-	private final FinderPath _finderPathCountByUuid_C = new FinderPath(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
-			WSRPConsumerPortletModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid_C",
-			new String[] { String.class.getName(), Long.class.getName() });
+	private FinderPath _finderPathWithPaginationFindByUuid_C;
+	private FinderPath _finderPathWithoutPaginationFindByUuid_C;
+	private FinderPath _finderPathCountByUuid_C;
 
 	/**
 	 * Returns all the wsrp consumer portlets where uuid = &#63; and companyId = &#63;.
@@ -1228,27 +1183,9 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	private static final String _FINDER_COLUMN_UUID_C_UUID_2 = "wsrpConsumerPortlet.uuid = ? AND ";
 	private static final String _FINDER_COLUMN_UUID_C_UUID_3 = "(wsrpConsumerPortlet.uuid IS NULL OR wsrpConsumerPortlet.uuid = '') AND ";
 	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 = "wsrpConsumerPortlet.companyId = ?";
-	private final FinderPath _finderPathWithPaginationFindByWsrpConsumerId = new FinderPath(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
-			WSRPConsumerPortletModelImpl.FINDER_CACHE_ENABLED,
-			WSRPConsumerPortletImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByWsrpConsumerId",
-			new String[] {
-				Long.class.getName(),
-				
-			Integer.class.getName(), Integer.class.getName(),
-				OrderByComparator.class.getName()
-			});
-	private final FinderPath _finderPathWithoutPaginationFindByWsrpConsumerId = new FinderPath(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
-			WSRPConsumerPortletModelImpl.FINDER_CACHE_ENABLED,
-			WSRPConsumerPortletImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByWsrpConsumerId",
-			new String[] { Long.class.getName() },
-			WSRPConsumerPortletModelImpl.WSRPCONSUMERID_COLUMN_BITMASK |
-			WSRPConsumerPortletModelImpl.NAME_COLUMN_BITMASK);
-	private final FinderPath _finderPathCountByWsrpConsumerId = new FinderPath(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
-			WSRPConsumerPortletModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByWsrpConsumerId",
-			new String[] { Long.class.getName() });
+	private FinderPath _finderPathWithPaginationFindByWsrpConsumerId;
+	private FinderPath _finderPathWithoutPaginationFindByWsrpConsumerId;
+	private FinderPath _finderPathCountByWsrpConsumerId;
 
 	/**
 	 * Returns all the wsrp consumer portlets where wsrpConsumerId = &#63;.
@@ -1746,17 +1683,8 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	}
 
 	private static final String _FINDER_COLUMN_WSRPCONSUMERID_WSRPCONSUMERID_2 = "wsrpConsumerPortlet.wsrpConsumerId = ?";
-	private final FinderPath _finderPathFetchByW_P = new FinderPath(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
-			WSRPConsumerPortletModelImpl.FINDER_CACHE_ENABLED,
-			WSRPConsumerPortletImpl.class, FINDER_CLASS_NAME_ENTITY,
-			"fetchByW_P",
-			new String[] { Long.class.getName(), String.class.getName() },
-			WSRPConsumerPortletModelImpl.WSRPCONSUMERID_COLUMN_BITMASK |
-			WSRPConsumerPortletModelImpl.PORTLETHANDLE_COLUMN_BITMASK);
-	private final FinderPath _finderPathCountByW_P = new FinderPath(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
-			WSRPConsumerPortletModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByW_P",
-			new String[] { Long.class.getName(), String.class.getName() });
+	private FinderPath _finderPathFetchByW_P;
+	private FinderPath _finderPathCountByW_P;
 
 	/**
 	 * Returns the wsrp consumer portlet where wsrpConsumerId = &#63; and portletHandle = &#63; or throws a {@link NoSuchConsumerPortletException} if it could not be found.
@@ -2836,6 +2764,107 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 * Initializes the wsrp consumer portlet persistence.
 	 */
 	public void afterPropertiesSet() {
+		_finderPathWithPaginationFindAll = new FinderPath(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
+				WSRPConsumerPortletModelImpl.FINDER_CACHE_ENABLED,
+				WSRPConsumerPortletImpl.class,
+				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
+
+		_finderPathWithoutPaginationFindAll = new FinderPath(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
+				WSRPConsumerPortletModelImpl.FINDER_CACHE_ENABLED,
+				WSRPConsumerPortletImpl.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
+				new String[0]);
+
+		_finderPathCountAll = new FinderPath(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
+				WSRPConsumerPortletModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
+				new String[0]);
+
+		_finderPathWithPaginationFindByUuid = new FinderPath(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
+				WSRPConsumerPortletModelImpl.FINDER_CACHE_ENABLED,
+				WSRPConsumerPortletImpl.class,
+				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid",
+				new String[] {
+					String.class.getName(),
+					
+				Integer.class.getName(), Integer.class.getName(),
+					OrderByComparator.class.getName()
+				});
+
+		_finderPathWithoutPaginationFindByUuid = new FinderPath(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
+				WSRPConsumerPortletModelImpl.FINDER_CACHE_ENABLED,
+				WSRPConsumerPortletImpl.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid",
+				new String[] { String.class.getName() },
+				WSRPConsumerPortletModelImpl.UUID_COLUMN_BITMASK |
+				WSRPConsumerPortletModelImpl.NAME_COLUMN_BITMASK);
+
+		_finderPathCountByUuid = new FinderPath(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
+				WSRPConsumerPortletModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid",
+				new String[] { String.class.getName() });
+
+		_finderPathWithPaginationFindByUuid_C = new FinderPath(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
+				WSRPConsumerPortletModelImpl.FINDER_CACHE_ENABLED,
+				WSRPConsumerPortletImpl.class,
+				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid_C",
+				new String[] {
+					String.class.getName(), Long.class.getName(),
+					
+				Integer.class.getName(), Integer.class.getName(),
+					OrderByComparator.class.getName()
+				});
+
+		_finderPathWithoutPaginationFindByUuid_C = new FinderPath(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
+				WSRPConsumerPortletModelImpl.FINDER_CACHE_ENABLED,
+				WSRPConsumerPortletImpl.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid_C",
+				new String[] { String.class.getName(), Long.class.getName() },
+				WSRPConsumerPortletModelImpl.UUID_COLUMN_BITMASK |
+				WSRPConsumerPortletModelImpl.COMPANYID_COLUMN_BITMASK |
+				WSRPConsumerPortletModelImpl.NAME_COLUMN_BITMASK);
+
+		_finderPathCountByUuid_C = new FinderPath(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
+				WSRPConsumerPortletModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid_C",
+				new String[] { String.class.getName(), Long.class.getName() });
+
+		_finderPathWithPaginationFindByWsrpConsumerId = new FinderPath(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
+				WSRPConsumerPortletModelImpl.FINDER_CACHE_ENABLED,
+				WSRPConsumerPortletImpl.class,
+				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByWsrpConsumerId",
+				new String[] {
+					Long.class.getName(),
+					
+				Integer.class.getName(), Integer.class.getName(),
+					OrderByComparator.class.getName()
+				});
+
+		_finderPathWithoutPaginationFindByWsrpConsumerId = new FinderPath(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
+				WSRPConsumerPortletModelImpl.FINDER_CACHE_ENABLED,
+				WSRPConsumerPortletImpl.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+				"findByWsrpConsumerId", new String[] { Long.class.getName() },
+				WSRPConsumerPortletModelImpl.WSRPCONSUMERID_COLUMN_BITMASK |
+				WSRPConsumerPortletModelImpl.NAME_COLUMN_BITMASK);
+
+		_finderPathCountByWsrpConsumerId = new FinderPath(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
+				WSRPConsumerPortletModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+				"countByWsrpConsumerId", new String[] { Long.class.getName() });
+
+		_finderPathFetchByW_P = new FinderPath(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
+				WSRPConsumerPortletModelImpl.FINDER_CACHE_ENABLED,
+				WSRPConsumerPortletImpl.class, FINDER_CLASS_NAME_ENTITY,
+				"fetchByW_P",
+				new String[] { Long.class.getName(), String.class.getName() },
+				WSRPConsumerPortletModelImpl.WSRPCONSUMERID_COLUMN_BITMASK |
+				WSRPConsumerPortletModelImpl.PORTLETHANDLE_COLUMN_BITMASK);
+
+		_finderPathCountByW_P = new FinderPath(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
+				WSRPConsumerPortletModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByW_P",
+				new String[] { Long.class.getName(), String.class.getName() });
 	}
 
 	public void destroy() {

@@ -82,38 +82,12 @@ public class ShoppingCouponPersistenceImpl extends BasePersistenceImpl<ShoppingC
 		".List1";
 	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
 		".List2";
-	private final FinderPath _finderPathWithPaginationFindAll = new FinderPath(ShoppingCouponModelImpl.ENTITY_CACHE_ENABLED,
-			ShoppingCouponModelImpl.FINDER_CACHE_ENABLED,
-			ShoppingCouponImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
-			"findAll", new String[0]);
-	private final FinderPath _finderPathWithoutPaginationFindAll = new FinderPath(ShoppingCouponModelImpl.ENTITY_CACHE_ENABLED,
-			ShoppingCouponModelImpl.FINDER_CACHE_ENABLED,
-			ShoppingCouponImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
-	private final FinderPath _finderPathCountAll = new FinderPath(ShoppingCouponModelImpl.ENTITY_CACHE_ENABLED,
-			ShoppingCouponModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
-	private final FinderPath _finderPathWithPaginationFindByGroupId = new FinderPath(ShoppingCouponModelImpl.ENTITY_CACHE_ENABLED,
-			ShoppingCouponModelImpl.FINDER_CACHE_ENABLED,
-			ShoppingCouponImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
-			"findByGroupId",
-			new String[] {
-				Long.class.getName(),
-				
-			Integer.class.getName(), Integer.class.getName(),
-				OrderByComparator.class.getName()
-			});
-	private final FinderPath _finderPathWithoutPaginationFindByGroupId = new FinderPath(ShoppingCouponModelImpl.ENTITY_CACHE_ENABLED,
-			ShoppingCouponModelImpl.FINDER_CACHE_ENABLED,
-			ShoppingCouponImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByGroupId",
-			new String[] { Long.class.getName() },
-			ShoppingCouponModelImpl.GROUPID_COLUMN_BITMASK |
-			ShoppingCouponModelImpl.CREATEDATE_COLUMN_BITMASK);
-	private final FinderPath _finderPathCountByGroupId = new FinderPath(ShoppingCouponModelImpl.ENTITY_CACHE_ENABLED,
-			ShoppingCouponModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByGroupId",
-			new String[] { Long.class.getName() });
+	private FinderPath _finderPathWithPaginationFindAll;
+	private FinderPath _finderPathWithoutPaginationFindAll;
+	private FinderPath _finderPathCountAll;
+	private FinderPath _finderPathWithPaginationFindByGroupId;
+	private FinderPath _finderPathWithoutPaginationFindByGroupId;
+	private FinderPath _finderPathCountByGroupId;
 
 	/**
 	 * Returns all the shopping coupons where groupId = &#63;.
@@ -597,15 +571,8 @@ public class ShoppingCouponPersistenceImpl extends BasePersistenceImpl<ShoppingC
 	}
 
 	private static final String _FINDER_COLUMN_GROUPID_GROUPID_2 = "shoppingCoupon.groupId = ?";
-	private final FinderPath _finderPathFetchByCode = new FinderPath(ShoppingCouponModelImpl.ENTITY_CACHE_ENABLED,
-			ShoppingCouponModelImpl.FINDER_CACHE_ENABLED,
-			ShoppingCouponImpl.class, FINDER_CLASS_NAME_ENTITY, "fetchByCode",
-			new String[] { String.class.getName() },
-			ShoppingCouponModelImpl.CODE_COLUMN_BITMASK);
-	private final FinderPath _finderPathCountByCode = new FinderPath(ShoppingCouponModelImpl.ENTITY_CACHE_ENABLED,
-			ShoppingCouponModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCode",
-			new String[] { String.class.getName() });
+	private FinderPath _finderPathFetchByCode;
+	private FinderPath _finderPathCountByCode;
 
 	/**
 	 * Returns the shopping coupon where code = &#63; or throws a {@link NoSuchCouponException} if it could not be found.
@@ -1567,6 +1534,56 @@ public class ShoppingCouponPersistenceImpl extends BasePersistenceImpl<ShoppingC
 	 * Initializes the shopping coupon persistence.
 	 */
 	public void afterPropertiesSet() {
+		_finderPathWithPaginationFindAll = new FinderPath(ShoppingCouponModelImpl.ENTITY_CACHE_ENABLED,
+				ShoppingCouponModelImpl.FINDER_CACHE_ENABLED,
+				ShoppingCouponImpl.class,
+				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
+
+		_finderPathWithoutPaginationFindAll = new FinderPath(ShoppingCouponModelImpl.ENTITY_CACHE_ENABLED,
+				ShoppingCouponModelImpl.FINDER_CACHE_ENABLED,
+				ShoppingCouponImpl.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
+				new String[0]);
+
+		_finderPathCountAll = new FinderPath(ShoppingCouponModelImpl.ENTITY_CACHE_ENABLED,
+				ShoppingCouponModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
+				new String[0]);
+
+		_finderPathWithPaginationFindByGroupId = new FinderPath(ShoppingCouponModelImpl.ENTITY_CACHE_ENABLED,
+				ShoppingCouponModelImpl.FINDER_CACHE_ENABLED,
+				ShoppingCouponImpl.class,
+				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByGroupId",
+				new String[] {
+					Long.class.getName(),
+					
+				Integer.class.getName(), Integer.class.getName(),
+					OrderByComparator.class.getName()
+				});
+
+		_finderPathWithoutPaginationFindByGroupId = new FinderPath(ShoppingCouponModelImpl.ENTITY_CACHE_ENABLED,
+				ShoppingCouponModelImpl.FINDER_CACHE_ENABLED,
+				ShoppingCouponImpl.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByGroupId",
+				new String[] { Long.class.getName() },
+				ShoppingCouponModelImpl.GROUPID_COLUMN_BITMASK |
+				ShoppingCouponModelImpl.CREATEDATE_COLUMN_BITMASK);
+
+		_finderPathCountByGroupId = new FinderPath(ShoppingCouponModelImpl.ENTITY_CACHE_ENABLED,
+				ShoppingCouponModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByGroupId",
+				new String[] { Long.class.getName() });
+
+		_finderPathFetchByCode = new FinderPath(ShoppingCouponModelImpl.ENTITY_CACHE_ENABLED,
+				ShoppingCouponModelImpl.FINDER_CACHE_ENABLED,
+				ShoppingCouponImpl.class, FINDER_CLASS_NAME_ENTITY,
+				"fetchByCode", new String[] { String.class.getName() },
+				ShoppingCouponModelImpl.CODE_COLUMN_BITMASK);
+
+		_finderPathCountByCode = new FinderPath(ShoppingCouponModelImpl.ENTITY_CACHE_ENABLED,
+				ShoppingCouponModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCode",
+				new String[] { String.class.getName() });
 	}
 
 	public void destroy() {

@@ -85,37 +85,12 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 		".List1";
 	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
 		".List2";
-	private final FinderPath _finderPathWithPaginationFindAll = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
-			ShoppingOrderModelImpl.FINDER_CACHE_ENABLED,
-			ShoppingOrderImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
-			"findAll", new String[0]);
-	private final FinderPath _finderPathWithoutPaginationFindAll = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
-			ShoppingOrderModelImpl.FINDER_CACHE_ENABLED,
-			ShoppingOrderImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-			"findAll", new String[0]);
-	private final FinderPath _finderPathCountAll = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
-			ShoppingOrderModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
-	private final FinderPath _finderPathWithPaginationFindByGroupId = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
-			ShoppingOrderModelImpl.FINDER_CACHE_ENABLED,
-			ShoppingOrderImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
-			"findByGroupId",
-			new String[] {
-				Long.class.getName(),
-				
-			Integer.class.getName(), Integer.class.getName(),
-				OrderByComparator.class.getName()
-			});
-	private final FinderPath _finderPathWithoutPaginationFindByGroupId = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
-			ShoppingOrderModelImpl.FINDER_CACHE_ENABLED,
-			ShoppingOrderImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-			"findByGroupId", new String[] { Long.class.getName() },
-			ShoppingOrderModelImpl.GROUPID_COLUMN_BITMASK |
-			ShoppingOrderModelImpl.CREATEDATE_COLUMN_BITMASK);
-	private final FinderPath _finderPathCountByGroupId = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
-			ShoppingOrderModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByGroupId",
-			new String[] { Long.class.getName() });
+	private FinderPath _finderPathWithPaginationFindAll;
+	private FinderPath _finderPathWithoutPaginationFindAll;
+	private FinderPath _finderPathCountAll;
+	private FinderPath _finderPathWithPaginationFindByGroupId;
+	private FinderPath _finderPathWithoutPaginationFindByGroupId;
+	private FinderPath _finderPathCountByGroupId;
 
 	/**
 	 * Returns all the shopping orders where groupId = &#63;.
@@ -956,15 +931,8 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 	}
 
 	private static final String _FINDER_COLUMN_GROUPID_GROUPID_2 = "shoppingOrder.groupId = ?";
-	private final FinderPath _finderPathFetchByNumber = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
-			ShoppingOrderModelImpl.FINDER_CACHE_ENABLED,
-			ShoppingOrderImpl.class, FINDER_CLASS_NAME_ENTITY, "fetchByNumber",
-			new String[] { String.class.getName() },
-			ShoppingOrderModelImpl.NUMBER_COLUMN_BITMASK);
-	private final FinderPath _finderPathCountByNumber = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
-			ShoppingOrderModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByNumber",
-			new String[] { String.class.getName() });
+	private FinderPath _finderPathFetchByNumber;
+	private FinderPath _finderPathCountByNumber;
 
 	/**
 	 * Returns the shopping order where number = &#63; or throws a {@link NoSuchOrderException} if it could not be found.
@@ -1180,15 +1148,8 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 
 	private static final String _FINDER_COLUMN_NUMBER_NUMBER_2 = "shoppingOrder.number = ?";
 	private static final String _FINDER_COLUMN_NUMBER_NUMBER_3 = "(shoppingOrder.number IS NULL OR shoppingOrder.number = '')";
-	private final FinderPath _finderPathFetchByPPTxnId = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
-			ShoppingOrderModelImpl.FINDER_CACHE_ENABLED,
-			ShoppingOrderImpl.class, FINDER_CLASS_NAME_ENTITY,
-			"fetchByPPTxnId", new String[] { String.class.getName() },
-			ShoppingOrderModelImpl.PPTXNID_COLUMN_BITMASK);
-	private final FinderPath _finderPathCountByPPTxnId = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
-			ShoppingOrderModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByPPTxnId",
-			new String[] { String.class.getName() });
+	private FinderPath _finderPathFetchByPPTxnId;
+	private FinderPath _finderPathCountByPPTxnId;
 
 	/**
 	 * Returns the shopping order where ppTxnId = &#63; or throws a {@link NoSuchOrderException} if it could not be found.
@@ -1416,36 +1377,9 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 
 	private static final String _FINDER_COLUMN_PPTXNID_PPTXNID_2 = "shoppingOrder.ppTxnId = ?";
 	private static final String _FINDER_COLUMN_PPTXNID_PPTXNID_3 = "(shoppingOrder.ppTxnId IS NULL OR shoppingOrder.ppTxnId = '')";
-	private final FinderPath _finderPathWithPaginationFindByG_U_PPPS = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
-			ShoppingOrderModelImpl.FINDER_CACHE_ENABLED,
-			ShoppingOrderImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
-			"findByG_U_PPPS",
-			new String[] {
-				Long.class.getName(), Long.class.getName(),
-				String.class.getName(),
-				
-			Integer.class.getName(), Integer.class.getName(),
-				OrderByComparator.class.getName()
-			});
-	private final FinderPath _finderPathWithoutPaginationFindByG_U_PPPS = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
-			ShoppingOrderModelImpl.FINDER_CACHE_ENABLED,
-			ShoppingOrderImpl.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-			"findByG_U_PPPS",
-			new String[] {
-				Long.class.getName(), Long.class.getName(),
-				String.class.getName()
-			},
-			ShoppingOrderModelImpl.GROUPID_COLUMN_BITMASK |
-			ShoppingOrderModelImpl.USERID_COLUMN_BITMASK |
-			ShoppingOrderModelImpl.PPPAYMENTSTATUS_COLUMN_BITMASK |
-			ShoppingOrderModelImpl.CREATEDATE_COLUMN_BITMASK);
-	private final FinderPath _finderPathCountByG_U_PPPS = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
-			ShoppingOrderModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_U_PPPS",
-			new String[] {
-				Long.class.getName(), Long.class.getName(),
-				String.class.getName()
-			});
+	private FinderPath _finderPathWithPaginationFindByG_U_PPPS;
+	private FinderPath _finderPathWithoutPaginationFindByG_U_PPPS;
+	private FinderPath _finderPathCountByG_U_PPPS;
 
 	/**
 	 * Returns all the shopping orders where groupId = &#63; and userId = &#63; and ppPaymentStatus = &#63;.
@@ -3292,6 +3226,100 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 	 * Initializes the shopping order persistence.
 	 */
 	public void afterPropertiesSet() {
+		_finderPathWithPaginationFindAll = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
+				ShoppingOrderModelImpl.FINDER_CACHE_ENABLED,
+				ShoppingOrderImpl.class,
+				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
+
+		_finderPathWithoutPaginationFindAll = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
+				ShoppingOrderModelImpl.FINDER_CACHE_ENABLED,
+				ShoppingOrderImpl.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
+				new String[0]);
+
+		_finderPathCountAll = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
+				ShoppingOrderModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
+				new String[0]);
+
+		_finderPathWithPaginationFindByGroupId = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
+				ShoppingOrderModelImpl.FINDER_CACHE_ENABLED,
+				ShoppingOrderImpl.class,
+				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByGroupId",
+				new String[] {
+					Long.class.getName(),
+					
+				Integer.class.getName(), Integer.class.getName(),
+					OrderByComparator.class.getName()
+				});
+
+		_finderPathWithoutPaginationFindByGroupId = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
+				ShoppingOrderModelImpl.FINDER_CACHE_ENABLED,
+				ShoppingOrderImpl.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByGroupId",
+				new String[] { Long.class.getName() },
+				ShoppingOrderModelImpl.GROUPID_COLUMN_BITMASK |
+				ShoppingOrderModelImpl.CREATEDATE_COLUMN_BITMASK);
+
+		_finderPathCountByGroupId = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
+				ShoppingOrderModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByGroupId",
+				new String[] { Long.class.getName() });
+
+		_finderPathFetchByNumber = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
+				ShoppingOrderModelImpl.FINDER_CACHE_ENABLED,
+				ShoppingOrderImpl.class, FINDER_CLASS_NAME_ENTITY,
+				"fetchByNumber", new String[] { String.class.getName() },
+				ShoppingOrderModelImpl.NUMBER_COLUMN_BITMASK);
+
+		_finderPathCountByNumber = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
+				ShoppingOrderModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByNumber",
+				new String[] { String.class.getName() });
+
+		_finderPathFetchByPPTxnId = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
+				ShoppingOrderModelImpl.FINDER_CACHE_ENABLED,
+				ShoppingOrderImpl.class, FINDER_CLASS_NAME_ENTITY,
+				"fetchByPPTxnId", new String[] { String.class.getName() },
+				ShoppingOrderModelImpl.PPTXNID_COLUMN_BITMASK);
+
+		_finderPathCountByPPTxnId = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
+				ShoppingOrderModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByPPTxnId",
+				new String[] { String.class.getName() });
+
+		_finderPathWithPaginationFindByG_U_PPPS = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
+				ShoppingOrderModelImpl.FINDER_CACHE_ENABLED,
+				ShoppingOrderImpl.class,
+				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByG_U_PPPS",
+				new String[] {
+					Long.class.getName(), Long.class.getName(),
+					String.class.getName(),
+					
+				Integer.class.getName(), Integer.class.getName(),
+					OrderByComparator.class.getName()
+				});
+
+		_finderPathWithoutPaginationFindByG_U_PPPS = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
+				ShoppingOrderModelImpl.FINDER_CACHE_ENABLED,
+				ShoppingOrderImpl.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByG_U_PPPS",
+				new String[] {
+					Long.class.getName(), Long.class.getName(),
+					String.class.getName()
+				},
+				ShoppingOrderModelImpl.GROUPID_COLUMN_BITMASK |
+				ShoppingOrderModelImpl.USERID_COLUMN_BITMASK |
+				ShoppingOrderModelImpl.PPPAYMENTSTATUS_COLUMN_BITMASK |
+				ShoppingOrderModelImpl.CREATEDATE_COLUMN_BITMASK);
+
+		_finderPathCountByG_U_PPPS = new FinderPath(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
+				ShoppingOrderModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByG_U_PPPS",
+				new String[] {
+					Long.class.getName(), Long.class.getName(),
+					String.class.getName()
+				});
 	}
 
 	public void destroy() {

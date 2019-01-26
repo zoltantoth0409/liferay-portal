@@ -78,38 +78,12 @@ public class ShoppingItemFieldPersistenceImpl extends BasePersistenceImpl<Shoppi
 		".List1";
 	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
 		".List2";
-	private final FinderPath _finderPathWithPaginationFindAll = new FinderPath(ShoppingItemFieldModelImpl.ENTITY_CACHE_ENABLED,
-			ShoppingItemFieldModelImpl.FINDER_CACHE_ENABLED,
-			ShoppingItemFieldImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
-	private final FinderPath _finderPathWithoutPaginationFindAll = new FinderPath(ShoppingItemFieldModelImpl.ENTITY_CACHE_ENABLED,
-			ShoppingItemFieldModelImpl.FINDER_CACHE_ENABLED,
-			ShoppingItemFieldImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
-	private final FinderPath _finderPathCountAll = new FinderPath(ShoppingItemFieldModelImpl.ENTITY_CACHE_ENABLED,
-			ShoppingItemFieldModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
-	private final FinderPath _finderPathWithPaginationFindByItemId = new FinderPath(ShoppingItemFieldModelImpl.ENTITY_CACHE_ENABLED,
-			ShoppingItemFieldModelImpl.FINDER_CACHE_ENABLED,
-			ShoppingItemFieldImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByItemId",
-			new String[] {
-				Long.class.getName(),
-				
-			Integer.class.getName(), Integer.class.getName(),
-				OrderByComparator.class.getName()
-			});
-	private final FinderPath _finderPathWithoutPaginationFindByItemId = new FinderPath(ShoppingItemFieldModelImpl.ENTITY_CACHE_ENABLED,
-			ShoppingItemFieldModelImpl.FINDER_CACHE_ENABLED,
-			ShoppingItemFieldImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByItemId",
-			new String[] { Long.class.getName() },
-			ShoppingItemFieldModelImpl.ITEMID_COLUMN_BITMASK |
-			ShoppingItemFieldModelImpl.NAME_COLUMN_BITMASK);
-	private final FinderPath _finderPathCountByItemId = new FinderPath(ShoppingItemFieldModelImpl.ENTITY_CACHE_ENABLED,
-			ShoppingItemFieldModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByItemId",
-			new String[] { Long.class.getName() });
+	private FinderPath _finderPathWithPaginationFindAll;
+	private FinderPath _finderPathWithoutPaginationFindAll;
+	private FinderPath _finderPathCountAll;
+	private FinderPath _finderPathWithPaginationFindByItemId;
+	private FinderPath _finderPathWithoutPaginationFindByItemId;
+	private FinderPath _finderPathCountByItemId;
 
 	/**
 	 * Returns all the shopping item fields where itemId = &#63;.
@@ -1277,6 +1251,45 @@ public class ShoppingItemFieldPersistenceImpl extends BasePersistenceImpl<Shoppi
 	 * Initializes the shopping item field persistence.
 	 */
 	public void afterPropertiesSet() {
+		_finderPathWithPaginationFindAll = new FinderPath(ShoppingItemFieldModelImpl.ENTITY_CACHE_ENABLED,
+				ShoppingItemFieldModelImpl.FINDER_CACHE_ENABLED,
+				ShoppingItemFieldImpl.class,
+				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
+
+		_finderPathWithoutPaginationFindAll = new FinderPath(ShoppingItemFieldModelImpl.ENTITY_CACHE_ENABLED,
+				ShoppingItemFieldModelImpl.FINDER_CACHE_ENABLED,
+				ShoppingItemFieldImpl.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
+				new String[0]);
+
+		_finderPathCountAll = new FinderPath(ShoppingItemFieldModelImpl.ENTITY_CACHE_ENABLED,
+				ShoppingItemFieldModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
+				new String[0]);
+
+		_finderPathWithPaginationFindByItemId = new FinderPath(ShoppingItemFieldModelImpl.ENTITY_CACHE_ENABLED,
+				ShoppingItemFieldModelImpl.FINDER_CACHE_ENABLED,
+				ShoppingItemFieldImpl.class,
+				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByItemId",
+				new String[] {
+					Long.class.getName(),
+					
+				Integer.class.getName(), Integer.class.getName(),
+					OrderByComparator.class.getName()
+				});
+
+		_finderPathWithoutPaginationFindByItemId = new FinderPath(ShoppingItemFieldModelImpl.ENTITY_CACHE_ENABLED,
+				ShoppingItemFieldModelImpl.FINDER_CACHE_ENABLED,
+				ShoppingItemFieldImpl.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByItemId",
+				new String[] { Long.class.getName() },
+				ShoppingItemFieldModelImpl.ITEMID_COLUMN_BITMASK |
+				ShoppingItemFieldModelImpl.NAME_COLUMN_BITMASK);
+
+		_finderPathCountByItemId = new FinderPath(ShoppingItemFieldModelImpl.ENTITY_CACHE_ENABLED,
+				ShoppingItemFieldModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByItemId",
+				new String[] { Long.class.getName() });
 	}
 
 	public void destroy() {

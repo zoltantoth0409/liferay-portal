@@ -81,25 +81,11 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		".List1";
 	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
 		".List2";
-	private final FinderPath _finderPathWithPaginationFindAll = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
-			FeedModelImpl.FINDER_CACHE_ENABLED, FeedImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
-	private final FinderPath _finderPathWithoutPaginationFindAll = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
-			FeedModelImpl.FINDER_CACHE_ENABLED, FeedImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
-	private final FinderPath _finderPathCountAll = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
-			FeedModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
-	private final FinderPath _finderPathFetchByU_TSN = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
-			FeedModelImpl.FINDER_CACHE_ENABLED, FeedImpl.class,
-			FINDER_CLASS_NAME_ENTITY, "fetchByU_TSN",
-			new String[] { Long.class.getName(), String.class.getName() },
-			FeedModelImpl.USERID_COLUMN_BITMASK |
-			FeedModelImpl.TWITTERSCREENNAME_COLUMN_BITMASK);
-	private final FinderPath _finderPathCountByU_TSN = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
-			FeedModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByU_TSN",
-			new String[] { Long.class.getName(), String.class.getName() });
+	private FinderPath _finderPathWithPaginationFindAll;
+	private FinderPath _finderPathWithoutPaginationFindAll;
+	private FinderPath _finderPathCountAll;
+	private FinderPath _finderPathFetchByU_TSN;
+	private FinderPath _finderPathCountByU_TSN;
 
 	/**
 	 * Returns the feed where userId = &#63; and twitterScreenName = &#63; or throws a {@link NoSuchFeedException} if it could not be found.
@@ -1038,6 +1024,31 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 * Initializes the feed persistence.
 	 */
 	public void afterPropertiesSet() {
+		_finderPathWithPaginationFindAll = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
+				FeedModelImpl.FINDER_CACHE_ENABLED, FeedImpl.class,
+				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
+
+		_finderPathWithoutPaginationFindAll = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
+				FeedModelImpl.FINDER_CACHE_ENABLED, FeedImpl.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
+				new String[0]);
+
+		_finderPathCountAll = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
+				FeedModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
+				new String[0]);
+
+		_finderPathFetchByU_TSN = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
+				FeedModelImpl.FINDER_CACHE_ENABLED, FeedImpl.class,
+				FINDER_CLASS_NAME_ENTITY, "fetchByU_TSN",
+				new String[] { Long.class.getName(), String.class.getName() },
+				FeedModelImpl.USERID_COLUMN_BITMASK |
+				FeedModelImpl.TWITTERSCREENNAME_COLUMN_BITMASK);
+
+		_finderPathCountByU_TSN = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
+				FeedModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByU_TSN",
+				new String[] { Long.class.getName(), String.class.getName() });
 	}
 
 	public void destroy() {
