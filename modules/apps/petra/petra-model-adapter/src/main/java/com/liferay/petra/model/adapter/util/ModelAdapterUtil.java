@@ -155,7 +155,19 @@ public class ModelAdapterUtil {
 				}
 			}
 
-			return delegateMethod.invoke(_delegateObject, args);
+			Object result = delegateMethod.invoke(_delegateObject, args);
+
+			if (result == null) {
+				return null;
+			}
+
+			Class<?> returnType = method.getReturnType();
+
+			if (returnType.isAssignableFrom(result.getClass())) {
+				return result;
+			}
+
+			return adapt(returnType, result);
 		}
 
 		private DelegateInvocationHandler(Object delegateObject) {
