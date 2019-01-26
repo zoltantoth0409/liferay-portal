@@ -73,33 +73,12 @@ public class CTProcessPersistenceImpl extends BasePersistenceImpl<CTProcess>
 		".List1";
 	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
 		".List2";
-	private final FinderPath _finderPathWithPaginationFindAll = new FinderPath(CTProcessModelImpl.ENTITY_CACHE_ENABLED,
-			CTProcessModelImpl.FINDER_CACHE_ENABLED, CTProcessImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
-	private final FinderPath _finderPathWithoutPaginationFindAll = new FinderPath(CTProcessModelImpl.ENTITY_CACHE_ENABLED,
-			CTProcessModelImpl.FINDER_CACHE_ENABLED, CTProcessImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
-	private final FinderPath _finderPathCountAll = new FinderPath(CTProcessModelImpl.ENTITY_CACHE_ENABLED,
-			CTProcessModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
-	private final FinderPath _finderPathWithPaginationFindByCompanyId = new FinderPath(CTProcessModelImpl.ENTITY_CACHE_ENABLED,
-			CTProcessModelImpl.FINDER_CACHE_ENABLED, CTProcessImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByCompanyId",
-			new String[] {
-				Long.class.getName(),
-				
-			Integer.class.getName(), Integer.class.getName(),
-				OrderByComparator.class.getName()
-			});
-	private final FinderPath _finderPathWithoutPaginationFindByCompanyId = new FinderPath(CTProcessModelImpl.ENTITY_CACHE_ENABLED,
-			CTProcessModelImpl.FINDER_CACHE_ENABLED, CTProcessImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByCompanyId",
-			new String[] { Long.class.getName() },
-			CTProcessModelImpl.COMPANYID_COLUMN_BITMASK);
-	private final FinderPath _finderPathCountByCompanyId = new FinderPath(CTProcessModelImpl.ENTITY_CACHE_ENABLED,
-			CTProcessModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCompanyId",
-			new String[] { Long.class.getName() });
+	private FinderPath _finderPathWithPaginationFindAll;
+	private FinderPath _finderPathWithoutPaginationFindAll;
+	private FinderPath _finderPathCountAll;
+	private FinderPath _finderPathWithPaginationFindByCompanyId;
+	private FinderPath _finderPathWithoutPaginationFindByCompanyId;
+	private FinderPath _finderPathCountByCompanyId;
 
 	/**
 	 * Returns all the ct processes where companyId = &#63;.
@@ -583,24 +562,9 @@ public class CTProcessPersistenceImpl extends BasePersistenceImpl<CTProcess>
 	}
 
 	private static final String _FINDER_COLUMN_COMPANYID_COMPANYID_2 = "ctProcess.companyId = ?";
-	private final FinderPath _finderPathWithPaginationFindByUserId = new FinderPath(CTProcessModelImpl.ENTITY_CACHE_ENABLED,
-			CTProcessModelImpl.FINDER_CACHE_ENABLED, CTProcessImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUserId",
-			new String[] {
-				Long.class.getName(),
-				
-			Integer.class.getName(), Integer.class.getName(),
-				OrderByComparator.class.getName()
-			});
-	private final FinderPath _finderPathWithoutPaginationFindByUserId = new FinderPath(CTProcessModelImpl.ENTITY_CACHE_ENABLED,
-			CTProcessModelImpl.FINDER_CACHE_ENABLED, CTProcessImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUserId",
-			new String[] { Long.class.getName() },
-			CTProcessModelImpl.USERID_COLUMN_BITMASK);
-	private final FinderPath _finderPathCountByUserId = new FinderPath(CTProcessModelImpl.ENTITY_CACHE_ENABLED,
-			CTProcessModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUserId",
-			new String[] { Long.class.getName() });
+	private FinderPath _finderPathWithPaginationFindByUserId;
+	private FinderPath _finderPathWithoutPaginationFindByUserId;
+	private FinderPath _finderPathCountByUserId;
 
 	/**
 	 * Returns all the ct processes where userId = &#63;.
@@ -1081,24 +1045,9 @@ public class CTProcessPersistenceImpl extends BasePersistenceImpl<CTProcess>
 	}
 
 	private static final String _FINDER_COLUMN_USERID_USERID_2 = "ctProcess.userId = ?";
-	private final FinderPath _finderPathWithPaginationFindByCollectionId = new FinderPath(CTProcessModelImpl.ENTITY_CACHE_ENABLED,
-			CTProcessModelImpl.FINDER_CACHE_ENABLED, CTProcessImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByCollectionId",
-			new String[] {
-				Long.class.getName(),
-				
-			Integer.class.getName(), Integer.class.getName(),
-				OrderByComparator.class.getName()
-			});
-	private final FinderPath _finderPathWithoutPaginationFindByCollectionId = new FinderPath(CTProcessModelImpl.ENTITY_CACHE_ENABLED,
-			CTProcessModelImpl.FINDER_CACHE_ENABLED, CTProcessImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByCollectionId",
-			new String[] { Long.class.getName() },
-			CTProcessModelImpl.CTCOLLECTIONID_COLUMN_BITMASK);
-	private final FinderPath _finderPathCountByCollectionId = new FinderPath(CTProcessModelImpl.ENTITY_CACHE_ENABLED,
-			CTProcessModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCollectionId",
-			new String[] { Long.class.getName() });
+	private FinderPath _finderPathWithPaginationFindByCollectionId;
+	private FinderPath _finderPathWithoutPaginationFindByCollectionId;
+	private FinderPath _finderPathCountByCollectionId;
 
 	/**
 	 * Returns all the ct processes where ctCollectionId = &#63;.
@@ -2168,6 +2117,82 @@ public class CTProcessPersistenceImpl extends BasePersistenceImpl<CTProcess>
 	 * Initializes the ct process persistence.
 	 */
 	public void afterPropertiesSet() {
+		_finderPathWithPaginationFindAll = new FinderPath(CTProcessModelImpl.ENTITY_CACHE_ENABLED,
+				CTProcessModelImpl.FINDER_CACHE_ENABLED, CTProcessImpl.class,
+				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
+
+		_finderPathWithoutPaginationFindAll = new FinderPath(CTProcessModelImpl.ENTITY_CACHE_ENABLED,
+				CTProcessModelImpl.FINDER_CACHE_ENABLED, CTProcessImpl.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
+				new String[0]);
+
+		_finderPathCountAll = new FinderPath(CTProcessModelImpl.ENTITY_CACHE_ENABLED,
+				CTProcessModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
+				new String[0]);
+
+		_finderPathWithPaginationFindByCompanyId = new FinderPath(CTProcessModelImpl.ENTITY_CACHE_ENABLED,
+				CTProcessModelImpl.FINDER_CACHE_ENABLED, CTProcessImpl.class,
+				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByCompanyId",
+				new String[] {
+					Long.class.getName(),
+					
+				Integer.class.getName(), Integer.class.getName(),
+					OrderByComparator.class.getName()
+				});
+
+		_finderPathWithoutPaginationFindByCompanyId = new FinderPath(CTProcessModelImpl.ENTITY_CACHE_ENABLED,
+				CTProcessModelImpl.FINDER_CACHE_ENABLED, CTProcessImpl.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByCompanyId",
+				new String[] { Long.class.getName() },
+				CTProcessModelImpl.COMPANYID_COLUMN_BITMASK);
+
+		_finderPathCountByCompanyId = new FinderPath(CTProcessModelImpl.ENTITY_CACHE_ENABLED,
+				CTProcessModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCompanyId",
+				new String[] { Long.class.getName() });
+
+		_finderPathWithPaginationFindByUserId = new FinderPath(CTProcessModelImpl.ENTITY_CACHE_ENABLED,
+				CTProcessModelImpl.FINDER_CACHE_ENABLED, CTProcessImpl.class,
+				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUserId",
+				new String[] {
+					Long.class.getName(),
+					
+				Integer.class.getName(), Integer.class.getName(),
+					OrderByComparator.class.getName()
+				});
+
+		_finderPathWithoutPaginationFindByUserId = new FinderPath(CTProcessModelImpl.ENTITY_CACHE_ENABLED,
+				CTProcessModelImpl.FINDER_CACHE_ENABLED, CTProcessImpl.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUserId",
+				new String[] { Long.class.getName() },
+				CTProcessModelImpl.USERID_COLUMN_BITMASK);
+
+		_finderPathCountByUserId = new FinderPath(CTProcessModelImpl.ENTITY_CACHE_ENABLED,
+				CTProcessModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUserId",
+				new String[] { Long.class.getName() });
+
+		_finderPathWithPaginationFindByCollectionId = new FinderPath(CTProcessModelImpl.ENTITY_CACHE_ENABLED,
+				CTProcessModelImpl.FINDER_CACHE_ENABLED, CTProcessImpl.class,
+				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByCollectionId",
+				new String[] {
+					Long.class.getName(),
+					
+				Integer.class.getName(), Integer.class.getName(),
+					OrderByComparator.class.getName()
+				});
+
+		_finderPathWithoutPaginationFindByCollectionId = new FinderPath(CTProcessModelImpl.ENTITY_CACHE_ENABLED,
+				CTProcessModelImpl.FINDER_CACHE_ENABLED, CTProcessImpl.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+				"findByCollectionId", new String[] { Long.class.getName() },
+				CTProcessModelImpl.CTCOLLECTIONID_COLUMN_BITMASK);
+
+		_finderPathCountByCollectionId = new FinderPath(CTProcessModelImpl.ENTITY_CACHE_ENABLED,
+				CTProcessModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+				"countByCollectionId", new String[] { Long.class.getName() });
 	}
 
 	public void destroy() {

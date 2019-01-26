@@ -70,8 +70,8 @@ public class CTProcessModelImpl extends BaseModelImpl<CTProcess>
 			{ "companyId", Types.BIGINT },
 			{ "userId", Types.BIGINT },
 			{ "createDate", Types.TIMESTAMP },
-			{ "backgroundTaskId", Types.BIGINT },
-			{ "ctCollectionId", Types.BIGINT }
+			{ "ctCollectionId", Types.BIGINT },
+			{ "backgroundTaskId", Types.BIGINT }
 		};
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
 
@@ -80,11 +80,11 @@ public class CTProcessModelImpl extends BaseModelImpl<CTProcess>
 		TABLE_COLUMNS_MAP.put("companyId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("userId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("createDate", Types.TIMESTAMP);
-		TABLE_COLUMNS_MAP.put("backgroundTaskId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("ctCollectionId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("backgroundTaskId", Types.BIGINT);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table CTProcess (ctProcessId LONG not null primary key,companyId LONG,userId LONG,createDate DATE null,backgroundTaskId LONG,ctCollectionId LONG)";
+	public static final String TABLE_SQL_CREATE = "create table CTProcess (ctProcessId LONG not null primary key,companyId LONG,userId LONG,createDate DATE null,ctCollectionId LONG,backgroundTaskId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table CTProcess";
 	public static final String ORDER_BY_JPQL = " ORDER BY ctProcess.ctProcessId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY CTProcess.ctProcessId ASC";
@@ -148,8 +148,8 @@ public class CTProcessModelImpl extends BaseModelImpl<CTProcess>
 		attributes.put("companyId", getCompanyId());
 		attributes.put("userId", getUserId());
 		attributes.put("createDate", getCreateDate());
-		attributes.put("backgroundTaskId", getBackgroundTaskId());
 		attributes.put("ctCollectionId", getCtCollectionId());
+		attributes.put("backgroundTaskId", getBackgroundTaskId());
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -183,16 +183,16 @@ public class CTProcessModelImpl extends BaseModelImpl<CTProcess>
 			setCreateDate(createDate);
 		}
 
-		Long backgroundTaskId = (Long)attributes.get("backgroundTaskId");
-
-		if (backgroundTaskId != null) {
-			setBackgroundTaskId(backgroundTaskId);
-		}
-
 		Long ctCollectionId = (Long)attributes.get("ctCollectionId");
 
 		if (ctCollectionId != null) {
 			setCtCollectionId(ctCollectionId);
+		}
+
+		Long backgroundTaskId = (Long)attributes.get("backgroundTaskId");
+
+		if (backgroundTaskId != null) {
+			setBackgroundTaskId(backgroundTaskId);
 		}
 	}
 
@@ -277,16 +277,6 @@ public class CTProcessModelImpl extends BaseModelImpl<CTProcess>
 	}
 
 	@Override
-	public long getBackgroundTaskId() {
-		return _backgroundTaskId;
-	}
-
-	@Override
-	public void setBackgroundTaskId(long backgroundTaskId) {
-		_backgroundTaskId = backgroundTaskId;
-	}
-
-	@Override
 	public long getCtCollectionId() {
 		return _ctCollectionId;
 	}
@@ -306,6 +296,16 @@ public class CTProcessModelImpl extends BaseModelImpl<CTProcess>
 
 	public long getOriginalCtCollectionId() {
 		return _originalCtCollectionId;
+	}
+
+	@Override
+	public long getBackgroundTaskId() {
+		return _backgroundTaskId;
+	}
+
+	@Override
+	public void setBackgroundTaskId(long backgroundTaskId) {
+		_backgroundTaskId = backgroundTaskId;
 	}
 
 	public long getColumnBitmask() {
@@ -343,8 +343,8 @@ public class CTProcessModelImpl extends BaseModelImpl<CTProcess>
 		ctProcessImpl.setCompanyId(getCompanyId());
 		ctProcessImpl.setUserId(getUserId());
 		ctProcessImpl.setCreateDate(getCreateDate());
-		ctProcessImpl.setBackgroundTaskId(getBackgroundTaskId());
 		ctProcessImpl.setCtCollectionId(getCtCollectionId());
+		ctProcessImpl.setBackgroundTaskId(getBackgroundTaskId());
 
 		ctProcessImpl.resetOriginalValues();
 
@@ -441,9 +441,9 @@ public class CTProcessModelImpl extends BaseModelImpl<CTProcess>
 			ctProcessCacheModel.createDate = Long.MIN_VALUE;
 		}
 
-		ctProcessCacheModel.backgroundTaskId = getBackgroundTaskId();
-
 		ctProcessCacheModel.ctCollectionId = getCtCollectionId();
+
+		ctProcessCacheModel.backgroundTaskId = getBackgroundTaskId();
 
 		return ctProcessCacheModel;
 	}
@@ -460,10 +460,10 @@ public class CTProcessModelImpl extends BaseModelImpl<CTProcess>
 		sb.append(getUserId());
 		sb.append(", createDate=");
 		sb.append(getCreateDate());
-		sb.append(", backgroundTaskId=");
-		sb.append(getBackgroundTaskId());
 		sb.append(", ctCollectionId=");
 		sb.append(getCtCollectionId());
+		sb.append(", backgroundTaskId=");
+		sb.append(getBackgroundTaskId());
 		sb.append("}");
 
 		return sb.toString();
@@ -494,12 +494,12 @@ public class CTProcessModelImpl extends BaseModelImpl<CTProcess>
 		sb.append(getCreateDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>backgroundTaskId</column-name><column-value><![CDATA[");
-		sb.append(getBackgroundTaskId());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>ctCollectionId</column-name><column-value><![CDATA[");
 		sb.append(getCtCollectionId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>backgroundTaskId</column-name><column-value><![CDATA[");
+		sb.append(getBackgroundTaskId());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -519,10 +519,10 @@ public class CTProcessModelImpl extends BaseModelImpl<CTProcess>
 	private long _originalUserId;
 	private boolean _setOriginalUserId;
 	private Date _createDate;
-	private long _backgroundTaskId;
 	private long _ctCollectionId;
 	private long _originalCtCollectionId;
 	private boolean _setOriginalCtCollectionId;
+	private long _backgroundTaskId;
 	private long _columnBitmask;
 	private CTProcess _escapedModel;
 }

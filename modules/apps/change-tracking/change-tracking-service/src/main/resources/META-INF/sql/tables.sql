@@ -37,6 +37,6 @@ create table CTProcess (
 	companyId LONG,
 	userId LONG,
 	createDate DATE null,
-	backgroundTaskId LONG,
-	ctCollectionId LONG
+	ctCollectionId LONG,
+	backgroundTaskId LONG
 );

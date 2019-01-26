@@ -47,8 +47,8 @@ public class CTProcessWrapper extends BaseModelWrapper<CTProcess>
 		attributes.put("companyId", getCompanyId());
 		attributes.put("userId", getUserId());
 		attributes.put("createDate", getCreateDate());
-		attributes.put("backgroundTaskId", getBackgroundTaskId());
 		attributes.put("ctCollectionId", getCtCollectionId());
+		attributes.put("backgroundTaskId", getBackgroundTaskId());
 
 		return attributes;
 	}
@@ -79,16 +79,16 @@ public class CTProcessWrapper extends BaseModelWrapper<CTProcess>
 			setCreateDate(createDate);
 		}
 
-		Long backgroundTaskId = (Long)attributes.get("backgroundTaskId");
-
-		if (backgroundTaskId != null) {
-			setBackgroundTaskId(backgroundTaskId);
-		}
-
 		Long ctCollectionId = (Long)attributes.get("ctCollectionId");
 
 		if (ctCollectionId != null) {
 			setCtCollectionId(ctCollectionId);
+		}
+
+		Long backgroundTaskId = (Long)attributes.get("backgroundTaskId");
+
+		if (backgroundTaskId != null) {
+			setBackgroundTaskId(backgroundTaskId);
 		}
 	}
 

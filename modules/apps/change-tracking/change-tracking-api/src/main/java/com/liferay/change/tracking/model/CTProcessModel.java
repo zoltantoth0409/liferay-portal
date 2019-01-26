@@ -129,20 +129,6 @@ public interface CTProcessModel extends BaseModel<CTProcess>, ShardedModel {
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Returns the background task ID of this ct process.
-	 *
-	 * @return the background task ID of this ct process
-	 */
-	public long getBackgroundTaskId();
-
-	/**
-	 * Sets the background task ID of this ct process.
-	 *
-	 * @param backgroundTaskId the background task ID of this ct process
-	 */
-	public void setBackgroundTaskId(long backgroundTaskId);
-
-	/**
 	 * Returns the ct collection ID of this ct process.
 	 *
 	 * @return the ct collection ID of this ct process
@@ -155,4 +141,18 @@ public interface CTProcessModel extends BaseModel<CTProcess>, ShardedModel {
 	 * @param ctCollectionId the ct collection ID of this ct process
 	 */
 	public void setCtCollectionId(long ctCollectionId);
+
+	/**
+	 * Returns the background task ID of this ct process.
+	 *
+	 * @return the background task ID of this ct process
+	 */
+	public long getBackgroundTaskId();
+
+	/**
+	 * Sets the background task ID of this ct process.
+	 *
+	 * @param backgroundTaskId the background task ID of this ct process
+	 */
+	public void setBackgroundTaskId(long backgroundTaskId);
 }

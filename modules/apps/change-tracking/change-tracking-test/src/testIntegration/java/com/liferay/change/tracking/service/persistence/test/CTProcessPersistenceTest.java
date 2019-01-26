@@ -128,9 +128,9 @@ public class CTProcessPersistenceTest {
 
 		newCTProcess.setCreateDate(RandomTestUtil.nextDate());
 
-		newCTProcess.setBackgroundTaskId(RandomTestUtil.nextLong());
-
 		newCTProcess.setCtCollectionId(RandomTestUtil.nextLong());
+
+		newCTProcess.setBackgroundTaskId(RandomTestUtil.nextLong());
 
 		_ctProcesses.add(_persistence.update(newCTProcess));
 
@@ -145,10 +145,10 @@ public class CTProcessPersistenceTest {
 		Assert.assertEquals(Time.getShortTimestamp(
 				existingCTProcess.getCreateDate()),
 			Time.getShortTimestamp(newCTProcess.getCreateDate()));
-		Assert.assertEquals(existingCTProcess.getBackgroundTaskId(),
-			newCTProcess.getBackgroundTaskId());
 		Assert.assertEquals(existingCTProcess.getCtCollectionId(),
 			newCTProcess.getCtCollectionId());
+		Assert.assertEquals(existingCTProcess.getBackgroundTaskId(),
+			newCTProcess.getBackgroundTaskId());
 	}
 
 	@Test
@@ -197,7 +197,7 @@ public class CTProcessPersistenceTest {
 	protected OrderByComparator<CTProcess> getOrderByComparator() {
 		return OrderByComparatorFactoryUtil.create("CTProcess", "ctProcessId",
 			true, "companyId", true, "userId", true, "createDate", true,
-			"backgroundTaskId", true, "ctCollectionId", true);
+			"ctCollectionId", true, "backgroundTaskId", true);
 	}
 
 	@Test
@@ -403,9 +403,9 @@ public class CTProcessPersistenceTest {
 
 		ctProcess.setCreateDate(RandomTestUtil.nextDate());
 
-		ctProcess.setBackgroundTaskId(RandomTestUtil.nextLong());
-
 		ctProcess.setCtCollectionId(RandomTestUtil.nextLong());
+
+		ctProcess.setBackgroundTaskId(RandomTestUtil.nextLong());
 
 		_ctProcesses.add(_persistence.update(ctProcess));
 

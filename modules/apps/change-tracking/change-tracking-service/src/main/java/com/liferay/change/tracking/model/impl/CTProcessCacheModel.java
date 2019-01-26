@@ -76,10 +76,10 @@ public class CTProcessCacheModel implements CacheModel<CTProcess>,
 		sb.append(userId);
 		sb.append(", createDate=");
 		sb.append(createDate);
-		sb.append(", backgroundTaskId=");
-		sb.append(backgroundTaskId);
 		sb.append(", ctCollectionId=");
 		sb.append(ctCollectionId);
+		sb.append(", backgroundTaskId=");
+		sb.append(backgroundTaskId);
 		sb.append("}");
 
 		return sb.toString();
@@ -100,8 +100,8 @@ public class CTProcessCacheModel implements CacheModel<CTProcess>,
 			ctProcessImpl.setCreateDate(new Date(createDate));
 		}
 
-		ctProcessImpl.setBackgroundTaskId(backgroundTaskId);
 		ctProcessImpl.setCtCollectionId(ctCollectionId);
+		ctProcessImpl.setBackgroundTaskId(backgroundTaskId);
 
 		ctProcessImpl.resetOriginalValues();
 
@@ -117,9 +117,9 @@ public class CTProcessCacheModel implements CacheModel<CTProcess>,
 		userId = objectInput.readLong();
 		createDate = objectInput.readLong();
 
-		backgroundTaskId = objectInput.readLong();
-
 		ctCollectionId = objectInput.readLong();
+
+		backgroundTaskId = objectInput.readLong();
 	}
 
 	@Override
@@ -132,15 +132,15 @@ public class CTProcessCacheModel implements CacheModel<CTProcess>,
 		objectOutput.writeLong(userId);
 		objectOutput.writeLong(createDate);
 
-		objectOutput.writeLong(backgroundTaskId);
-
 		objectOutput.writeLong(ctCollectionId);
+
+		objectOutput.writeLong(backgroundTaskId);
 	}
 
 	public long ctProcessId;
 	public long companyId;
 	public long userId;
 	public long createDate;
-	public long backgroundTaskId;
 	public long ctCollectionId;
+	public long backgroundTaskId;
 }

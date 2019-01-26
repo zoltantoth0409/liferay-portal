@@ -37,8 +37,8 @@ public class CTProcessSoap implements Serializable {
 		soapModel.setCompanyId(model.getCompanyId());
 		soapModel.setUserId(model.getUserId());
 		soapModel.setCreateDate(model.getCreateDate());
-		soapModel.setBackgroundTaskId(model.getBackgroundTaskId());
 		soapModel.setCtCollectionId(model.getCtCollectionId());
+		soapModel.setBackgroundTaskId(model.getBackgroundTaskId());
 
 		return soapModel;
 	}
@@ -123,14 +123,6 @@ public class CTProcessSoap implements Serializable {
 		_createDate = createDate;
 	}
 
-	public long getBackgroundTaskId() {
-		return _backgroundTaskId;
-	}
-
-	public void setBackgroundTaskId(long backgroundTaskId) {
-		_backgroundTaskId = backgroundTaskId;
-	}
-
 	public long getCtCollectionId() {
 		return _ctCollectionId;
 	}
@@ -139,10 +131,18 @@ public class CTProcessSoap implements Serializable {
 		_ctCollectionId = ctCollectionId;
 	}
 
+	public long getBackgroundTaskId() {
+		return _backgroundTaskId;
+	}
+
+	public void setBackgroundTaskId(long backgroundTaskId) {
+		_backgroundTaskId = backgroundTaskId;
+	}
+
 	private long _ctProcessId;
 	private long _companyId;
 	private long _userId;
 	private Date _createDate;
-	private long _backgroundTaskId;
 	private long _ctCollectionId;
+	private long _backgroundTaskId;
 }
