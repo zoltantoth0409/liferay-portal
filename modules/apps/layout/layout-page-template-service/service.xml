@@ -99,7 +99,7 @@
 		<finder name="GroupId" return-type="Collection">
 			<finder-column name="groupId" />
 		</finder>
-		<finder name="LayoutPrototype" return-type="Collection">
+		<finder name="LayoutPrototypeId" return-type="Collection">
 			<finder-column name="layoutPrototypeId" />
 		</finder>
 		<finder name="Plid" return-type="LayoutPageTemplateEntry" unique="true">
