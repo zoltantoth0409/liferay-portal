@@ -318,8 +318,8 @@ public class LayoutPageTemplateEntryLocalServiceImpl
 	public LayoutPageTemplateEntry fetchFirstLayoutPageTemplateEntry(
 		long layoutPrototypeId) {
 
-		return layoutPageTemplateEntryPersistence.fetchByLayoutPrototype_First(
-			layoutPrototypeId, null);
+		return layoutPageTemplateEntryPersistence.
+			fetchByLayoutPrototypeId_First(layoutPrototypeId, null);
 	}
 
 	@Override
