@@ -65,11 +65,11 @@ public class LiferayRemoteDeployableContainer
 
 			_frameworkMBean.startBundle(bundleId);
 
-			_deployedBundles.put(archive.getName(), bundleId);
+			_deployedBundleIds.put(archive.getName(), bundleId);
 		}
 		catch (Exception e) {
 			throw new DeploymentException(
-				"Cannot deploy: " + archive.getName(), e);
+				"Unable to deploy " + archive.getName(), e);
 		}
 
 		ProtocolMetaData protocolMetaData = new ProtocolMetaData();
@@ -130,7 +130,7 @@ public class LiferayRemoteDeployableContainer
 
 	@Override
 	public void undeploy(Archive<?> archive) throws DeploymentException {
-		long bundleId = _deployedBundles.remove(archive.getName());
+		long bundleId = _deployedBundleIds.remove(archive.getName());
 
 		if (bundleId == 0) {
 			return;
@@ -141,20 +141,20 @@ public class LiferayRemoteDeployableContainer
 		}
 		catch (IOException ioe) {
 			throw new DeploymentException(
-				"Unable to uninstall bundle: " + bundleId, ioe);
+				"Unable to uninstall bundle " + bundleId, ioe);
 		}
 	}
 
 	@Override
-	public void undeploy(Descriptor desc) {
+	public void undeploy(Descriptor descriptor) {
 	}
 
 	private long _installBundle(Archive<?> archive) throws Exception {
 		Path tempFilePath = Files.createTempFile(null, ".jar");
 
-		ZipExporter exporter = archive.as(ZipExporter.class);
+		ZipExporter zipExporter = archive.as(ZipExporter.class);
 
-		try (InputStream inputStream = exporter.exportAsInputStream()) {
+		try (InputStream inputStream = zipExporter.exportAsInputStream()) {
 			Files.copy(
 				inputStream, tempFilePath, StandardCopyOption.REPLACE_EXISTING);
 		}
@@ -196,7 +196,7 @@ public class LiferayRemoteDeployableContainer
 		}
 	}
 
-	private final Map<String, Long> _deployedBundles = new HashMap<>();
+	private final Map<String, Long> _deployedBundleIds = new HashMap<>();
 	private FrameworkMBean _frameworkMBean;
 	private MBeanServerConnection _mBeanServerConnection;
 
