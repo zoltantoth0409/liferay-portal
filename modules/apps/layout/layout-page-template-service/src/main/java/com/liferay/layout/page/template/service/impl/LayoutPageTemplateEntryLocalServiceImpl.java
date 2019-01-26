@@ -124,9 +124,8 @@ public class LayoutPageTemplateEntryLocalServiceImpl
 
 		return addLayoutPageTemplateEntry(
 			userId, groupId, layoutPageTemplateCollectionId, classNameId,
-			classTypeId, name,
-			LayoutPageTemplateEntryTypeConstants.TYPE_WIDGET_PAGE,
-			defaultTemplate, 0, 0, plid, status, new ServiceContext());
+			classTypeId, name, type, defaultTemplate, 0, 0, plid, status,
+			new ServiceContext());
 	}
 
 	@Override
