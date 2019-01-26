@@ -936,6 +936,61 @@ public class LayoutPageTemplateEntryUtil {
 	}
 
 	/**
+	* Returns the layout page template entry where plid = &#63; or throws a {@link NoSuchPageTemplateEntryException} if it could not be found.
+	*
+	* @param plid the plid
+	* @return the matching layout page template entry
+	* @throws NoSuchPageTemplateEntryException if a matching layout page template entry could not be found
+	*/
+	public static LayoutPageTemplateEntry findByPlid(long plid)
+		throws com.liferay.layout.page.template.exception.NoSuchPageTemplateEntryException {
+		return getPersistence().findByPlid(plid);
+	}
+
+	/**
+	* Returns the layout page template entry where plid = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param plid the plid
+	* @return the matching layout page template entry, or <code>null</code> if a matching layout page template entry could not be found
+	*/
+	public static LayoutPageTemplateEntry fetchByPlid(long plid) {
+		return getPersistence().fetchByPlid(plid);
+	}
+
+	/**
+	* Returns the layout page template entry where plid = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param plid the plid
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the matching layout page template entry, or <code>null</code> if a matching layout page template entry could not be found
+	*/
+	public static LayoutPageTemplateEntry fetchByPlid(long plid,
+		boolean retrieveFromCache) {
+		return getPersistence().fetchByPlid(plid, retrieveFromCache);
+	}
+
+	/**
+	* Removes the layout page template entry where plid = &#63; from the database.
+	*
+	* @param plid the plid
+	* @return the layout page template entry that was removed
+	*/
+	public static LayoutPageTemplateEntry removeByPlid(long plid)
+		throws com.liferay.layout.page.template.exception.NoSuchPageTemplateEntryException {
+		return getPersistence().removeByPlid(plid);
+	}
+
+	/**
+	* Returns the number of layout page template entries where plid = &#63;.
+	*
+	* @param plid the plid
+	* @return the number of matching layout page template entries
+	*/
+	public static int countByPlid(long plid) {
+		return getPersistence().countByPlid(plid);
+	}
+
+	/**
 	* Returns all the layout page template entries where groupId = &#63; and layoutPageTemplateCollectionId = &#63;.
 	*
 	* @param groupId the group ID

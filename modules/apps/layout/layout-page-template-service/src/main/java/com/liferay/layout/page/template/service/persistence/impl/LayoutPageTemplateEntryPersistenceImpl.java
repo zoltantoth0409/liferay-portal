@@ -2789,6 +2789,197 @@ public class LayoutPageTemplateEntryPersistenceImpl extends BasePersistenceImpl<
 
 	private static final String _FINDER_COLUMN_LAYOUTPROTOTYPE_LAYOUTPROTOTYPEID_2 =
 		"layoutPageTemplateEntry.layoutPrototypeId = ?";
+	private FinderPath _finderPathFetchByPlid;
+	private FinderPath _finderPathCountByPlid;
+
+	/**
+	 * Returns the layout page template entry where plid = &#63; or throws a {@link NoSuchPageTemplateEntryException} if it could not be found.
+	 *
+	 * @param plid the plid
+	 * @return the matching layout page template entry
+	 * @throws NoSuchPageTemplateEntryException if a matching layout page template entry could not be found
+	 */
+	@Override
+	public LayoutPageTemplateEntry findByPlid(long plid)
+		throws NoSuchPageTemplateEntryException {
+		LayoutPageTemplateEntry layoutPageTemplateEntry = fetchByPlid(plid);
+
+		if (layoutPageTemplateEntry == null) {
+			StringBundler msg = new StringBundler(4);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("plid=");
+			msg.append(plid);
+
+			msg.append("}");
+
+			if (_log.isDebugEnabled()) {
+				_log.debug(msg.toString());
+			}
+
+			throw new NoSuchPageTemplateEntryException(msg.toString());
+		}
+
+		return layoutPageTemplateEntry;
+	}
+
+	/**
+	 * Returns the layout page template entry where plid = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param plid the plid
+	 * @return the matching layout page template entry, or <code>null</code> if a matching layout page template entry could not be found
+	 */
+	@Override
+	public LayoutPageTemplateEntry fetchByPlid(long plid) {
+		return fetchByPlid(plid, true);
+	}
+
+	/**
+	 * Returns the layout page template entry where plid = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param plid the plid
+	 * @param retrieveFromCache whether to retrieve from the finder cache
+	 * @return the matching layout page template entry, or <code>null</code> if a matching layout page template entry could not be found
+	 */
+	@Override
+	public LayoutPageTemplateEntry fetchByPlid(long plid,
+		boolean retrieveFromCache) {
+		Object[] finderArgs = new Object[] { plid };
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = finderCache.getResult(_finderPathFetchByPlid, finderArgs,
+					this);
+		}
+
+		if (result instanceof LayoutPageTemplateEntry) {
+			LayoutPageTemplateEntry layoutPageTemplateEntry = (LayoutPageTemplateEntry)result;
+
+			if ((plid != layoutPageTemplateEntry.getPlid())) {
+				result = null;
+			}
+		}
+
+		if (result == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_SELECT_LAYOUTPAGETEMPLATEENTRY_WHERE);
+
+			query.append(_FINDER_COLUMN_PLID_PLID_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(plid);
+
+				List<LayoutPageTemplateEntry> list = q.list();
+
+				if (list.isEmpty()) {
+					finderCache.putResult(_finderPathFetchByPlid, finderArgs,
+						list);
+				}
+				else {
+					LayoutPageTemplateEntry layoutPageTemplateEntry = list.get(0);
+
+					result = layoutPageTemplateEntry;
+
+					cacheResult(layoutPageTemplateEntry);
+				}
+			}
+			catch (Exception e) {
+				finderCache.removeResult(_finderPathFetchByPlid, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		if (result instanceof List<?>) {
+			return null;
+		}
+		else {
+			return (LayoutPageTemplateEntry)result;
+		}
+	}
+
+	/**
+	 * Removes the layout page template entry where plid = &#63; from the database.
+	 *
+	 * @param plid the plid
+	 * @return the layout page template entry that was removed
+	 */
+	@Override
+	public LayoutPageTemplateEntry removeByPlid(long plid)
+		throws NoSuchPageTemplateEntryException {
+		LayoutPageTemplateEntry layoutPageTemplateEntry = findByPlid(plid);
+
+		return remove(layoutPageTemplateEntry);
+	}
+
+	/**
+	 * Returns the number of layout page template entries where plid = &#63;.
+	 *
+	 * @param plid the plid
+	 * @return the number of matching layout page template entries
+	 */
+	@Override
+	public int countByPlid(long plid) {
+		FinderPath finderPath = _finderPathCountByPlid;
+
+		Object[] finderArgs = new Object[] { plid };
+
+		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_LAYOUTPAGETEMPLATEENTRY_WHERE);
+
+			query.append(_FINDER_COLUMN_PLID_PLID_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(plid);
+
+				count = (Long)q.uniqueResult();
+
+				finderCache.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				finderCache.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_PLID_PLID_2 = "layoutPageTemplateEntry.plid = ?";
 	private FinderPath _finderPathWithPaginationFindByG_L;
 	private FinderPath _finderPathWithoutPaginationFindByG_L;
 	private FinderPath _finderPathCountByG_L;
@@ -19779,6 +19970,10 @@ public class LayoutPageTemplateEntryPersistenceImpl extends BasePersistenceImpl<
 				layoutPageTemplateEntry.getGroupId()
 			}, layoutPageTemplateEntry);
 
+		finderCache.putResult(_finderPathFetchByPlid,
+			new Object[] { layoutPageTemplateEntry.getPlid() },
+			layoutPageTemplateEntry);
+
 		finderCache.putResult(_finderPathFetchByG_N,
 			new Object[] {
 				layoutPageTemplateEntry.getGroupId(),
@@ -19873,6 +20068,13 @@ public class LayoutPageTemplateEntryPersistenceImpl extends BasePersistenceImpl<
 		finderCache.putResult(_finderPathFetchByUUID_G, args,
 			layoutPageTemplateEntryModelImpl, false);
 
+		args = new Object[] { layoutPageTemplateEntryModelImpl.getPlid() };
+
+		finderCache.putResult(_finderPathCountByPlid, args, Long.valueOf(1),
+			false);
+		finderCache.putResult(_finderPathFetchByPlid, args,
+			layoutPageTemplateEntryModelImpl, false);
+
 		args = new Object[] {
 				layoutPageTemplateEntryModelImpl.getGroupId(),
 				layoutPageTemplateEntryModelImpl.getName()
@@ -19906,6 +20108,25 @@ public class LayoutPageTemplateEntryPersistenceImpl extends BasePersistenceImpl<
 
 			finderCache.removeResult(_finderPathCountByUUID_G, args);
 			finderCache.removeResult(_finderPathFetchByUUID_G, args);
+		}
+
+		if (clearCurrent) {
+			Object[] args = new Object[] {
+					layoutPageTemplateEntryModelImpl.getPlid()
+				};
+
+			finderCache.removeResult(_finderPathCountByPlid, args);
+			finderCache.removeResult(_finderPathFetchByPlid, args);
+		}
+
+		if ((layoutPageTemplateEntryModelImpl.getColumnBitmask() &
+				_finderPathFetchByPlid.getColumnBitmask()) != 0) {
+			Object[] args = new Object[] {
+					layoutPageTemplateEntryModelImpl.getOriginalPlid()
+				};
+
+			finderCache.removeResult(_finderPathCountByPlid, args);
+			finderCache.removeResult(_finderPathFetchByPlid, args);
 		}
 
 		if (clearCurrent) {
@@ -20983,6 +21204,17 @@ public class LayoutPageTemplateEntryPersistenceImpl extends BasePersistenceImpl<
 				LayoutPageTemplateEntryModelImpl.FINDER_CACHE_ENABLED,
 				Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
 				"countByLayoutPrototype", new String[] { Long.class.getName() });
+
+		_finderPathFetchByPlid = new FinderPath(LayoutPageTemplateEntryModelImpl.ENTITY_CACHE_ENABLED,
+				LayoutPageTemplateEntryModelImpl.FINDER_CACHE_ENABLED,
+				LayoutPageTemplateEntryImpl.class, FINDER_CLASS_NAME_ENTITY,
+				"fetchByPlid", new String[] { Long.class.getName() },
+				LayoutPageTemplateEntryModelImpl.PLID_COLUMN_BITMASK);
+
+		_finderPathCountByPlid = new FinderPath(LayoutPageTemplateEntryModelImpl.ENTITY_CACHE_ENABLED,
+				LayoutPageTemplateEntryModelImpl.FINDER_CACHE_ENABLED,
+				Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+				"countByPlid", new String[] { Long.class.getName() });
 
 		_finderPathWithPaginationFindByG_L = new FinderPath(LayoutPageTemplateEntryModelImpl.ENTITY_CACHE_ENABLED,
 				LayoutPageTemplateEntryModelImpl.FINDER_CACHE_ENABLED,
