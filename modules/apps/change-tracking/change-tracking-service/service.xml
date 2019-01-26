@@ -99,8 +99,8 @@
 
 		<!-- Other fields -->
 
-		<column name="backgroundTaskId" type="long" />
 		<column name="ctCollectionId" type="long" />
+		<column name="backgroundTaskId" type="long" />
 
 		<!-- Finder methods -->
 
