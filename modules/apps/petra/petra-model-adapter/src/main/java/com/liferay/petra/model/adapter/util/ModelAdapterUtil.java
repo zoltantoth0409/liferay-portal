@@ -132,7 +132,7 @@ public class ModelAdapterUtil {
 
 			Class<?> delegateClass = _delegateObject.getClass();
 
-			method = delegateClass.getMethod(
+			Method delegateMethod = delegateClass.getMethod(
 				method.getName(), method.getParameterTypes());
 
 			if (args != null) {
@@ -155,7 +155,7 @@ public class ModelAdapterUtil {
 				}
 			}
 
-			return method.invoke(_delegateObject, args);
+			return delegateMethod.invoke(_delegateObject, args);
 		}
 
 		private DelegateInvocationHandler(Object delegateObject) {
