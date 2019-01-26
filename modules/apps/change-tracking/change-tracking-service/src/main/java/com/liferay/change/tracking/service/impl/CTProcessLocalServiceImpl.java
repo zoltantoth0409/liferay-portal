@@ -53,15 +53,12 @@ public class CTProcessLocalServiceImpl extends CTProcessLocalServiceBaseImpl {
 		ctProcess.setUserId(user.getUserId());
 
 		ctProcess.setCreateDate(serviceContext.getCreateDate(new Date()));
-
-		// starting the publication process in the background
+		ctProcess.setCtCollectionId(ctCollectionId);
 
 		long backgroundTaskId = _addBackgroundTask(
 			user, ctCollectionId, ctProcessId, serviceContext);
 
 		ctProcess.setBackgroundTaskId(backgroundTaskId);
-
-		ctProcess.setCtCollectionId(ctCollectionId);
 
 		return ctProcessPersistence.update(ctProcess);
 	}
