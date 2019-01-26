@@ -136,11 +136,6 @@ public class CategoryNestedCollectionResourceTest {
 			assetCategoryRetrieved.getName());
 	}
 
-	/**
-	 * Test get page items.
-	 *
-	 * @throws Exception the exception
-	 */
 	@Test
 	public void testGetPageItems() throws Exception {
 		Category category = new CategoryImpl(
