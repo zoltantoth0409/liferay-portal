@@ -137,12 +137,11 @@ public class FragmentEntryActionDropdownItems {
 		ResourceURL exportFragmentEntryURL =
 			_renderResponse.createResourceURL();
 
-		exportFragmentEntryURL.setResourceID(
-			"/fragment/export_fragment_entries");
-
 		exportFragmentEntryURL.setParameter(
 			"fragmentEntryId",
 			String.valueOf(_fragmentEntry.getFragmentEntryId()));
+		exportFragmentEntryURL.setResourceID(
+			"/fragment/export_fragment_entries");
 
 		return dropdownItem -> {
 			dropdownItem.setHref(exportFragmentEntryURL);
