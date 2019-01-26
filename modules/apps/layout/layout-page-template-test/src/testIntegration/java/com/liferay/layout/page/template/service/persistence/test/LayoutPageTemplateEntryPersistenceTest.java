@@ -257,10 +257,10 @@ public class LayoutPageTemplateEntryPersistenceTest {
 	}
 
 	@Test
-	public void testCountByLayoutPrototype() throws Exception {
-		_persistence.countByLayoutPrototype(RandomTestUtil.nextLong());
+	public void testCountByLayoutPrototypeId() throws Exception {
+		_persistence.countByLayoutPrototypeId(RandomTestUtil.nextLong());
 
-		_persistence.countByLayoutPrototype(0L);
+		_persistence.countByLayoutPrototypeId(0L);
 	}
 
 	@Test

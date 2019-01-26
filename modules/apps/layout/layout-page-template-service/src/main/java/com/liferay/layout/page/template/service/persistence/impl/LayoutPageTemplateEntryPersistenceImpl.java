@@ -2283,9 +2283,9 @@ public class LayoutPageTemplateEntryPersistenceImpl extends BasePersistenceImpl<
 	}
 
 	private static final String _FINDER_COLUMN_GROUPID_GROUPID_2 = "layoutPageTemplateEntry.groupId = ?";
-	private FinderPath _finderPathWithPaginationFindByLayoutPrototype;
-	private FinderPath _finderPathWithoutPaginationFindByLayoutPrototype;
-	private FinderPath _finderPathCountByLayoutPrototype;
+	private FinderPath _finderPathWithPaginationFindByLayoutPrototypeId;
+	private FinderPath _finderPathWithoutPaginationFindByLayoutPrototypeId;
+	private FinderPath _finderPathCountByLayoutPrototypeId;
 
 	/**
 	 * Returns all the layout page template entries where layoutPrototypeId = &#63;.
@@ -2294,9 +2294,9 @@ public class LayoutPageTemplateEntryPersistenceImpl extends BasePersistenceImpl<
 	 * @return the matching layout page template entries
 	 */
 	@Override
-	public List<LayoutPageTemplateEntry> findByLayoutPrototype(
+	public List<LayoutPageTemplateEntry> findByLayoutPrototypeId(
 		long layoutPrototypeId) {
-		return findByLayoutPrototype(layoutPrototypeId, QueryUtil.ALL_POS,
+		return findByLayoutPrototypeId(layoutPrototypeId, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
 
@@ -2313,9 +2313,9 @@ public class LayoutPageTemplateEntryPersistenceImpl extends BasePersistenceImpl<
 	 * @return the range of matching layout page template entries
 	 */
 	@Override
-	public List<LayoutPageTemplateEntry> findByLayoutPrototype(
+	public List<LayoutPageTemplateEntry> findByLayoutPrototypeId(
 		long layoutPrototypeId, int start, int end) {
-		return findByLayoutPrototype(layoutPrototypeId, start, end, null);
+		return findByLayoutPrototypeId(layoutPrototypeId, start, end, null);
 	}
 
 	/**
@@ -2332,10 +2332,10 @@ public class LayoutPageTemplateEntryPersistenceImpl extends BasePersistenceImpl<
 	 * @return the ordered range of matching layout page template entries
 	 */
 	@Override
-	public List<LayoutPageTemplateEntry> findByLayoutPrototype(
+	public List<LayoutPageTemplateEntry> findByLayoutPrototypeId(
 		long layoutPrototypeId, int start, int end,
 		OrderByComparator<LayoutPageTemplateEntry> orderByComparator) {
-		return findByLayoutPrototype(layoutPrototypeId, start, end,
+		return findByLayoutPrototypeId(layoutPrototypeId, start, end,
 			orderByComparator, true);
 	}
 
@@ -2354,7 +2354,7 @@ public class LayoutPageTemplateEntryPersistenceImpl extends BasePersistenceImpl<
 	 * @return the ordered range of matching layout page template entries
 	 */
 	@Override
-	public List<LayoutPageTemplateEntry> findByLayoutPrototype(
+	public List<LayoutPageTemplateEntry> findByLayoutPrototypeId(
 		long layoutPrototypeId, int start, int end,
 		OrderByComparator<LayoutPageTemplateEntry> orderByComparator,
 		boolean retrieveFromCache) {
@@ -2365,11 +2365,11 @@ public class LayoutPageTemplateEntryPersistenceImpl extends BasePersistenceImpl<
 		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
 				(orderByComparator == null)) {
 			pagination = false;
-			finderPath = _finderPathWithoutPaginationFindByLayoutPrototype;
+			finderPath = _finderPathWithoutPaginationFindByLayoutPrototypeId;
 			finderArgs = new Object[] { layoutPrototypeId };
 		}
 		else {
-			finderPath = _finderPathWithPaginationFindByLayoutPrototype;
+			finderPath = _finderPathWithPaginationFindByLayoutPrototypeId;
 			finderArgs = new Object[] {
 					layoutPrototypeId,
 					
@@ -2407,7 +2407,7 @@ public class LayoutPageTemplateEntryPersistenceImpl extends BasePersistenceImpl<
 
 			query.append(_SQL_SELECT_LAYOUTPAGETEMPLATEENTRY_WHERE);
 
-			query.append(_FINDER_COLUMN_LAYOUTPROTOTYPE_LAYOUTPROTOTYPEID_2);
+			query.append(_FINDER_COLUMN_LAYOUTPROTOTYPEID_LAYOUTPROTOTYPEID_2);
 
 			if (orderByComparator != null) {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
@@ -2470,11 +2470,11 @@ public class LayoutPageTemplateEntryPersistenceImpl extends BasePersistenceImpl<
 	 * @throws NoSuchPageTemplateEntryException if a matching layout page template entry could not be found
 	 */
 	@Override
-	public LayoutPageTemplateEntry findByLayoutPrototype_First(
+	public LayoutPageTemplateEntry findByLayoutPrototypeId_First(
 		long layoutPrototypeId,
 		OrderByComparator<LayoutPageTemplateEntry> orderByComparator)
 		throws NoSuchPageTemplateEntryException {
-		LayoutPageTemplateEntry layoutPageTemplateEntry = fetchByLayoutPrototype_First(layoutPrototypeId,
+		LayoutPageTemplateEntry layoutPageTemplateEntry = fetchByLayoutPrototypeId_First(layoutPrototypeId,
 				orderByComparator);
 
 		if (layoutPageTemplateEntry != null) {
@@ -2501,10 +2501,10 @@ public class LayoutPageTemplateEntryPersistenceImpl extends BasePersistenceImpl<
 	 * @return the first matching layout page template entry, or <code>null</code> if a matching layout page template entry could not be found
 	 */
 	@Override
-	public LayoutPageTemplateEntry fetchByLayoutPrototype_First(
+	public LayoutPageTemplateEntry fetchByLayoutPrototypeId_First(
 		long layoutPrototypeId,
 		OrderByComparator<LayoutPageTemplateEntry> orderByComparator) {
-		List<LayoutPageTemplateEntry> list = findByLayoutPrototype(layoutPrototypeId,
+		List<LayoutPageTemplateEntry> list = findByLayoutPrototypeId(layoutPrototypeId,
 				0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -2523,11 +2523,11 @@ public class LayoutPageTemplateEntryPersistenceImpl extends BasePersistenceImpl<
 	 * @throws NoSuchPageTemplateEntryException if a matching layout page template entry could not be found
 	 */
 	@Override
-	public LayoutPageTemplateEntry findByLayoutPrototype_Last(
+	public LayoutPageTemplateEntry findByLayoutPrototypeId_Last(
 		long layoutPrototypeId,
 		OrderByComparator<LayoutPageTemplateEntry> orderByComparator)
 		throws NoSuchPageTemplateEntryException {
-		LayoutPageTemplateEntry layoutPageTemplateEntry = fetchByLayoutPrototype_Last(layoutPrototypeId,
+		LayoutPageTemplateEntry layoutPageTemplateEntry = fetchByLayoutPrototypeId_Last(layoutPrototypeId,
 				orderByComparator);
 
 		if (layoutPageTemplateEntry != null) {
@@ -2554,16 +2554,16 @@ public class LayoutPageTemplateEntryPersistenceImpl extends BasePersistenceImpl<
 	 * @return the last matching layout page template entry, or <code>null</code> if a matching layout page template entry could not be found
 	 */
 	@Override
-	public LayoutPageTemplateEntry fetchByLayoutPrototype_Last(
+	public LayoutPageTemplateEntry fetchByLayoutPrototypeId_Last(
 		long layoutPrototypeId,
 		OrderByComparator<LayoutPageTemplateEntry> orderByComparator) {
-		int count = countByLayoutPrototype(layoutPrototypeId);
+		int count = countByLayoutPrototypeId(layoutPrototypeId);
 
 		if (count == 0) {
 			return null;
 		}
 
-		List<LayoutPageTemplateEntry> list = findByLayoutPrototype(layoutPrototypeId,
+		List<LayoutPageTemplateEntry> list = findByLayoutPrototypeId(layoutPrototypeId,
 				count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -2583,7 +2583,7 @@ public class LayoutPageTemplateEntryPersistenceImpl extends BasePersistenceImpl<
 	 * @throws NoSuchPageTemplateEntryException if a layout page template entry with the primary key could not be found
 	 */
 	@Override
-	public LayoutPageTemplateEntry[] findByLayoutPrototype_PrevAndNext(
+	public LayoutPageTemplateEntry[] findByLayoutPrototypeId_PrevAndNext(
 		long layoutPageTemplateEntryId, long layoutPrototypeId,
 		OrderByComparator<LayoutPageTemplateEntry> orderByComparator)
 		throws NoSuchPageTemplateEntryException {
@@ -2596,13 +2596,13 @@ public class LayoutPageTemplateEntryPersistenceImpl extends BasePersistenceImpl<
 
 			LayoutPageTemplateEntry[] array = new LayoutPageTemplateEntryImpl[3];
 
-			array[0] = getByLayoutPrototype_PrevAndNext(session,
+			array[0] = getByLayoutPrototypeId_PrevAndNext(session,
 					layoutPageTemplateEntry, layoutPrototypeId,
 					orderByComparator, true);
 
 			array[1] = layoutPageTemplateEntry;
 
-			array[2] = getByLayoutPrototype_PrevAndNext(session,
+			array[2] = getByLayoutPrototypeId_PrevAndNext(session,
 					layoutPageTemplateEntry, layoutPrototypeId,
 					orderByComparator, false);
 
@@ -2616,7 +2616,7 @@ public class LayoutPageTemplateEntryPersistenceImpl extends BasePersistenceImpl<
 		}
 	}
 
-	protected LayoutPageTemplateEntry getByLayoutPrototype_PrevAndNext(
+	protected LayoutPageTemplateEntry getByLayoutPrototypeId_PrevAndNext(
 		Session session, LayoutPageTemplateEntry layoutPageTemplateEntry,
 		long layoutPrototypeId,
 		OrderByComparator<LayoutPageTemplateEntry> orderByComparator,
@@ -2634,7 +2634,7 @@ public class LayoutPageTemplateEntryPersistenceImpl extends BasePersistenceImpl<
 
 		query.append(_SQL_SELECT_LAYOUTPAGETEMPLATEENTRY_WHERE);
 
-		query.append(_FINDER_COLUMN_LAYOUTPROTOTYPE_LAYOUTPROTOTYPEID_2);
+		query.append(_FINDER_COLUMN_LAYOUTPROTOTYPEID_LAYOUTPROTOTYPEID_2);
 
 		if (orderByComparator != null) {
 			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
@@ -2729,8 +2729,8 @@ public class LayoutPageTemplateEntryPersistenceImpl extends BasePersistenceImpl<
 	 * @param layoutPrototypeId the layout prototype ID
 	 */
 	@Override
-	public void removeByLayoutPrototype(long layoutPrototypeId) {
-		for (LayoutPageTemplateEntry layoutPageTemplateEntry : findByLayoutPrototype(
+	public void removeByLayoutPrototypeId(long layoutPrototypeId) {
+		for (LayoutPageTemplateEntry layoutPageTemplateEntry : findByLayoutPrototypeId(
 				layoutPrototypeId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
 			remove(layoutPageTemplateEntry);
 		}
@@ -2743,8 +2743,8 @@ public class LayoutPageTemplateEntryPersistenceImpl extends BasePersistenceImpl<
 	 * @return the number of matching layout page template entries
 	 */
 	@Override
-	public int countByLayoutPrototype(long layoutPrototypeId) {
-		FinderPath finderPath = _finderPathCountByLayoutPrototype;
+	public int countByLayoutPrototypeId(long layoutPrototypeId) {
+		FinderPath finderPath = _finderPathCountByLayoutPrototypeId;
 
 		Object[] finderArgs = new Object[] { layoutPrototypeId };
 
@@ -2755,7 +2755,7 @@ public class LayoutPageTemplateEntryPersistenceImpl extends BasePersistenceImpl<
 
 			query.append(_SQL_COUNT_LAYOUTPAGETEMPLATEENTRY_WHERE);
 
-			query.append(_FINDER_COLUMN_LAYOUTPROTOTYPE_LAYOUTPROTOTYPEID_2);
+			query.append(_FINDER_COLUMN_LAYOUTPROTOTYPEID_LAYOUTPROTOTYPEID_2);
 
 			String sql = query.toString();
 
@@ -2787,7 +2787,7 @@ public class LayoutPageTemplateEntryPersistenceImpl extends BasePersistenceImpl<
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_LAYOUTPROTOTYPE_LAYOUTPROTOTYPEID_2 =
+	private static final String _FINDER_COLUMN_LAYOUTPROTOTYPEID_LAYOUTPROTOTYPEID_2 =
 		"layoutPageTemplateEntry.layoutPrototypeId = ?";
 	private FinderPath _finderPathFetchByPlid;
 	private FinderPath _finderPathCountByPlid;
@@ -20365,8 +20365,8 @@ public class LayoutPageTemplateEntryPersistenceImpl extends BasePersistenceImpl<
 					layoutPageTemplateEntryModelImpl.getLayoutPrototypeId()
 				};
 
-			finderCache.removeResult(_finderPathCountByLayoutPrototype, args);
-			finderCache.removeResult(_finderPathWithoutPaginationFindByLayoutPrototype,
+			finderCache.removeResult(_finderPathCountByLayoutPrototypeId, args);
+			finderCache.removeResult(_finderPathWithoutPaginationFindByLayoutPrototypeId,
 				args);
 
 			args = new Object[] {
@@ -20536,21 +20536,23 @@ public class LayoutPageTemplateEntryPersistenceImpl extends BasePersistenceImpl<
 			}
 
 			if ((layoutPageTemplateEntryModelImpl.getColumnBitmask() &
-					_finderPathWithoutPaginationFindByLayoutPrototype.getColumnBitmask()) != 0) {
+					_finderPathWithoutPaginationFindByLayoutPrototypeId.getColumnBitmask()) != 0) {
 				Object[] args = new Object[] {
 						layoutPageTemplateEntryModelImpl.getOriginalLayoutPrototypeId()
 					};
 
-				finderCache.removeResult(_finderPathCountByLayoutPrototype, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByLayoutPrototype,
+				finderCache.removeResult(_finderPathCountByLayoutPrototypeId,
+					args);
+				finderCache.removeResult(_finderPathWithoutPaginationFindByLayoutPrototypeId,
 					args);
 
 				args = new Object[] {
 						layoutPageTemplateEntryModelImpl.getLayoutPrototypeId()
 					};
 
-				finderCache.removeResult(_finderPathCountByLayoutPrototype, args);
-				finderCache.removeResult(_finderPathWithoutPaginationFindByLayoutPrototype,
+				finderCache.removeResult(_finderPathCountByLayoutPrototypeId,
+					args);
+				finderCache.removeResult(_finderPathWithoutPaginationFindByLayoutPrototypeId,
 					args);
 			}
 
@@ -21180,11 +21182,11 @@ public class LayoutPageTemplateEntryPersistenceImpl extends BasePersistenceImpl<
 				Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
 				"countByGroupId", new String[] { Long.class.getName() });
 
-		_finderPathWithPaginationFindByLayoutPrototype = new FinderPath(LayoutPageTemplateEntryModelImpl.ENTITY_CACHE_ENABLED,
+		_finderPathWithPaginationFindByLayoutPrototypeId = new FinderPath(LayoutPageTemplateEntryModelImpl.ENTITY_CACHE_ENABLED,
 				LayoutPageTemplateEntryModelImpl.FINDER_CACHE_ENABLED,
 				LayoutPageTemplateEntryImpl.class,
 				FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
-				"findByLayoutPrototype",
+				"findByLayoutPrototypeId",
 				new String[] {
 					Long.class.getName(),
 					
@@ -21192,18 +21194,31 @@ public class LayoutPageTemplateEntryPersistenceImpl extends BasePersistenceImpl<
 					OrderByComparator.class.getName()
 				});
 
-		_finderPathWithoutPaginationFindByLayoutPrototype = new FinderPath(LayoutPageTemplateEntryModelImpl.ENTITY_CACHE_ENABLED,
+		_finderPathWithoutPaginationFindByLayoutPrototypeId = new FinderPath(LayoutPageTemplateEntryModelImpl.ENTITY_CACHE_ENABLED,
 				LayoutPageTemplateEntryModelImpl.FINDER_CACHE_ENABLED,
 				LayoutPageTemplateEntryImpl.class,
 				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-				"findByLayoutPrototype", new String[] { Long.class.getName() },
+				"findByLayoutPrototypeId",
+				new String[] { Long.class.getName() },
 				LayoutPageTemplateEntryModelImpl.LAYOUTPROTOTYPEID_COLUMN_BITMASK |
 				LayoutPageTemplateEntryModelImpl.NAME_COLUMN_BITMASK);
 
-		_finderPathCountByLayoutPrototype = new FinderPath(LayoutPageTemplateEntryModelImpl.ENTITY_CACHE_ENABLED,
+		_finderPathCountByLayoutPrototypeId = new FinderPath(LayoutPageTemplateEntryModelImpl.ENTITY_CACHE_ENABLED,
 				LayoutPageTemplateEntryModelImpl.FINDER_CACHE_ENABLED,
 				Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
-				"countByLayoutPrototype", new String[] { Long.class.getName() });
+				"countByLayoutPrototypeId",
+				new String[] { Long.class.getName() });
+
+		_finderPathFetchByPlid = new FinderPath(LayoutPageTemplateEntryModelImpl.ENTITY_CACHE_ENABLED,
+				LayoutPageTemplateEntryModelImpl.FINDER_CACHE_ENABLED,
+				LayoutPageTemplateEntryImpl.class, FINDER_CLASS_NAME_ENTITY,
+				"fetchByPlid", new String[] { Long.class.getName() },
+				LayoutPageTemplateEntryModelImpl.PLID_COLUMN_BITMASK);
+
+		_finderPathCountByPlid = new FinderPath(LayoutPageTemplateEntryModelImpl.ENTITY_CACHE_ENABLED,
+				LayoutPageTemplateEntryModelImpl.FINDER_CACHE_ENABLED,
+				Long.class, FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION,
+				"countByPlid", new String[] { Long.class.getName() });
 
 		_finderPathFetchByPlid = new FinderPath(LayoutPageTemplateEntryModelImpl.ENTITY_CACHE_ENABLED,
 				LayoutPageTemplateEntryModelImpl.FINDER_CACHE_ENABLED,
