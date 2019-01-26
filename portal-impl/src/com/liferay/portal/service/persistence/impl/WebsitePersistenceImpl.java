@@ -83,34 +83,12 @@ public class WebsitePersistenceImpl extends BasePersistenceImpl<Website>
 		".List1";
 	public static final String FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION = FINDER_CLASS_NAME_ENTITY +
 		".List2";
-	private final FinderPath _finderPathWithPaginationFindAll = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
-			WebsiteModelImpl.FINDER_CACHE_ENABLED, WebsiteImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
-	private final FinderPath _finderPathWithoutPaginationFindAll = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
-			WebsiteModelImpl.FINDER_CACHE_ENABLED, WebsiteImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll", new String[0]);
-	private final FinderPath _finderPathCountAll = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
-			WebsiteModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
-	private final FinderPath _finderPathWithPaginationFindByUuid = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
-			WebsiteModelImpl.FINDER_CACHE_ENABLED, WebsiteImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid",
-			new String[] {
-				String.class.getName(),
-				
-			Integer.class.getName(), Integer.class.getName(),
-				OrderByComparator.class.getName()
-			});
-	private final FinderPath _finderPathWithoutPaginationFindByUuid = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
-			WebsiteModelImpl.FINDER_CACHE_ENABLED, WebsiteImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid",
-			new String[] { String.class.getName() },
-			WebsiteModelImpl.UUID_COLUMN_BITMASK |
-			WebsiteModelImpl.CREATEDATE_COLUMN_BITMASK);
-	private final FinderPath _finderPathCountByUuid = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
-			WebsiteModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid",
-			new String[] { String.class.getName() });
+	private FinderPath _finderPathWithPaginationFindAll;
+	private FinderPath _finderPathWithoutPaginationFindAll;
+	private FinderPath _finderPathCountAll;
+	private FinderPath _finderPathWithPaginationFindByUuid;
+	private FinderPath _finderPathWithoutPaginationFindByUuid;
+	private FinderPath _finderPathCountByUuid;
 
 	/**
 	 * Returns all the websites where uuid = &#63;.
@@ -631,26 +609,9 @@ public class WebsitePersistenceImpl extends BasePersistenceImpl<Website>
 
 	private static final String _FINDER_COLUMN_UUID_UUID_2 = "website.uuid = ?";
 	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(website.uuid IS NULL OR website.uuid = '')";
-	private final FinderPath _finderPathWithPaginationFindByUuid_C = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
-			WebsiteModelImpl.FINDER_CACHE_ENABLED, WebsiteImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid_C",
-			new String[] {
-				String.class.getName(), Long.class.getName(),
-				
-			Integer.class.getName(), Integer.class.getName(),
-				OrderByComparator.class.getName()
-			});
-	private final FinderPath _finderPathWithoutPaginationFindByUuid_C = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
-			WebsiteModelImpl.FINDER_CACHE_ENABLED, WebsiteImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid_C",
-			new String[] { String.class.getName(), Long.class.getName() },
-			WebsiteModelImpl.UUID_COLUMN_BITMASK |
-			WebsiteModelImpl.COMPANYID_COLUMN_BITMASK |
-			WebsiteModelImpl.CREATEDATE_COLUMN_BITMASK);
-	private final FinderPath _finderPathCountByUuid_C = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
-			WebsiteModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid_C",
-			new String[] { String.class.getName(), Long.class.getName() });
+	private FinderPath _finderPathWithPaginationFindByUuid_C;
+	private FinderPath _finderPathWithoutPaginationFindByUuid_C;
+	private FinderPath _finderPathCountByUuid_C;
 
 	/**
 	 * Returns all the websites where uuid = &#63; and companyId = &#63;.
@@ -1210,25 +1171,9 @@ public class WebsitePersistenceImpl extends BasePersistenceImpl<Website>
 	private static final String _FINDER_COLUMN_UUID_C_UUID_2 = "website.uuid = ? AND ";
 	private static final String _FINDER_COLUMN_UUID_C_UUID_3 = "(website.uuid IS NULL OR website.uuid = '') AND ";
 	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 = "website.companyId = ?";
-	private final FinderPath _finderPathWithPaginationFindByCompanyId = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
-			WebsiteModelImpl.FINDER_CACHE_ENABLED, WebsiteImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByCompanyId",
-			new String[] {
-				Long.class.getName(),
-				
-			Integer.class.getName(), Integer.class.getName(),
-				OrderByComparator.class.getName()
-			});
-	private final FinderPath _finderPathWithoutPaginationFindByCompanyId = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
-			WebsiteModelImpl.FINDER_CACHE_ENABLED, WebsiteImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByCompanyId",
-			new String[] { Long.class.getName() },
-			WebsiteModelImpl.COMPANYID_COLUMN_BITMASK |
-			WebsiteModelImpl.CREATEDATE_COLUMN_BITMASK);
-	private final FinderPath _finderPathCountByCompanyId = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
-			WebsiteModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCompanyId",
-			new String[] { Long.class.getName() });
+	private FinderPath _finderPathWithPaginationFindByCompanyId;
+	private FinderPath _finderPathWithoutPaginationFindByCompanyId;
+	private FinderPath _finderPathCountByCompanyId;
 
 	/**
 	 * Returns all the websites where companyId = &#63;.
@@ -1710,25 +1655,9 @@ public class WebsitePersistenceImpl extends BasePersistenceImpl<Website>
 	}
 
 	private static final String _FINDER_COLUMN_COMPANYID_COMPANYID_2 = "website.companyId = ?";
-	private final FinderPath _finderPathWithPaginationFindByUserId = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
-			WebsiteModelImpl.FINDER_CACHE_ENABLED, WebsiteImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUserId",
-			new String[] {
-				Long.class.getName(),
-				
-			Integer.class.getName(), Integer.class.getName(),
-				OrderByComparator.class.getName()
-			});
-	private final FinderPath _finderPathWithoutPaginationFindByUserId = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
-			WebsiteModelImpl.FINDER_CACHE_ENABLED, WebsiteImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUserId",
-			new String[] { Long.class.getName() },
-			WebsiteModelImpl.USERID_COLUMN_BITMASK |
-			WebsiteModelImpl.CREATEDATE_COLUMN_BITMASK);
-	private final FinderPath _finderPathCountByUserId = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
-			WebsiteModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUserId",
-			new String[] { Long.class.getName() });
+	private FinderPath _finderPathWithPaginationFindByUserId;
+	private FinderPath _finderPathWithoutPaginationFindByUserId;
+	private FinderPath _finderPathCountByUserId;
 
 	/**
 	 * Returns all the websites where userId = &#63;.
@@ -2209,26 +2138,9 @@ public class WebsitePersistenceImpl extends BasePersistenceImpl<Website>
 	}
 
 	private static final String _FINDER_COLUMN_USERID_USERID_2 = "website.userId = ?";
-	private final FinderPath _finderPathWithPaginationFindByC_C = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
-			WebsiteModelImpl.FINDER_CACHE_ENABLED, WebsiteImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_C",
-			new String[] {
-				Long.class.getName(), Long.class.getName(),
-				
-			Integer.class.getName(), Integer.class.getName(),
-				OrderByComparator.class.getName()
-			});
-	private final FinderPath _finderPathWithoutPaginationFindByC_C = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
-			WebsiteModelImpl.FINDER_CACHE_ENABLED, WebsiteImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_C",
-			new String[] { Long.class.getName(), Long.class.getName() },
-			WebsiteModelImpl.COMPANYID_COLUMN_BITMASK |
-			WebsiteModelImpl.CLASSNAMEID_COLUMN_BITMASK |
-			WebsiteModelImpl.CREATEDATE_COLUMN_BITMASK);
-	private final FinderPath _finderPathCountByC_C = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
-			WebsiteModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_C",
-			new String[] { Long.class.getName(), Long.class.getName() });
+	private FinderPath _finderPathWithPaginationFindByC_C;
+	private FinderPath _finderPathWithoutPaginationFindByC_C;
+	private FinderPath _finderPathCountByC_C;
 
 	/**
 	 * Returns all the websites where companyId = &#63; and classNameId = &#63;.
@@ -2751,31 +2663,9 @@ public class WebsitePersistenceImpl extends BasePersistenceImpl<Website>
 
 	private static final String _FINDER_COLUMN_C_C_COMPANYID_2 = "website.companyId = ? AND ";
 	private static final String _FINDER_COLUMN_C_C_CLASSNAMEID_2 = "website.classNameId = ?";
-	private final FinderPath _finderPathWithPaginationFindByC_C_C = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
-			WebsiteModelImpl.FINDER_CACHE_ENABLED, WebsiteImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_C_C",
-			new String[] {
-				Long.class.getName(), Long.class.getName(), Long.class.getName(),
-				
-			Integer.class.getName(), Integer.class.getName(),
-				OrderByComparator.class.getName()
-			});
-	private final FinderPath _finderPathWithoutPaginationFindByC_C_C = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
-			WebsiteModelImpl.FINDER_CACHE_ENABLED, WebsiteImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_C_C",
-			new String[] {
-				Long.class.getName(), Long.class.getName(), Long.class.getName()
-			},
-			WebsiteModelImpl.COMPANYID_COLUMN_BITMASK |
-			WebsiteModelImpl.CLASSNAMEID_COLUMN_BITMASK |
-			WebsiteModelImpl.CLASSPK_COLUMN_BITMASK |
-			WebsiteModelImpl.CREATEDATE_COLUMN_BITMASK);
-	private final FinderPath _finderPathCountByC_C_C = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
-			WebsiteModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_C_C",
-			new String[] {
-				Long.class.getName(), Long.class.getName(), Long.class.getName()
-			});
+	private FinderPath _finderPathWithPaginationFindByC_C_C;
+	private FinderPath _finderPathWithoutPaginationFindByC_C_C;
+	private FinderPath _finderPathCountByC_C_C;
 
 	/**
 	 * Returns all the websites where companyId = &#63; and classNameId = &#63; and classPK = &#63;.
@@ -3332,35 +3222,9 @@ public class WebsitePersistenceImpl extends BasePersistenceImpl<Website>
 	private static final String _FINDER_COLUMN_C_C_C_COMPANYID_2 = "website.companyId = ? AND ";
 	private static final String _FINDER_COLUMN_C_C_C_CLASSNAMEID_2 = "website.classNameId = ? AND ";
 	private static final String _FINDER_COLUMN_C_C_C_CLASSPK_2 = "website.classPK = ?";
-	private final FinderPath _finderPathWithPaginationFindByC_C_C_P = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
-			WebsiteModelImpl.FINDER_CACHE_ENABLED, WebsiteImpl.class,
-			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_C_C_P",
-			new String[] {
-				Long.class.getName(), Long.class.getName(), Long.class.getName(),
-				Boolean.class.getName(),
-				
-			Integer.class.getName(), Integer.class.getName(),
-				OrderByComparator.class.getName()
-			});
-	private final FinderPath _finderPathWithoutPaginationFindByC_C_C_P = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
-			WebsiteModelImpl.FINDER_CACHE_ENABLED, WebsiteImpl.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_C_C_P",
-			new String[] {
-				Long.class.getName(), Long.class.getName(), Long.class.getName(),
-				Boolean.class.getName()
-			},
-			WebsiteModelImpl.COMPANYID_COLUMN_BITMASK |
-			WebsiteModelImpl.CLASSNAMEID_COLUMN_BITMASK |
-			WebsiteModelImpl.CLASSPK_COLUMN_BITMASK |
-			WebsiteModelImpl.PRIMARY_COLUMN_BITMASK |
-			WebsiteModelImpl.CREATEDATE_COLUMN_BITMASK);
-	private final FinderPath _finderPathCountByC_C_C_P = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
-			WebsiteModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_C_C_P",
-			new String[] {
-				Long.class.getName(), Long.class.getName(), Long.class.getName(),
-				Boolean.class.getName()
-			});
+	private FinderPath _finderPathWithPaginationFindByC_C_C_P;
+	private FinderPath _finderPathWithoutPaginationFindByC_C_C_P;
+	private FinderPath _finderPathCountByC_C_C_P;
 
 	/**
 	 * Returns all the websites where companyId = &#63; and classNameId = &#63; and classPK = &#63; and primary = &#63;.
@@ -4840,6 +4704,194 @@ public class WebsitePersistenceImpl extends BasePersistenceImpl<Website>
 	 * Initializes the website persistence.
 	 */
 	public void afterPropertiesSet() {
+		_finderPathWithPaginationFindAll = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
+				WebsiteModelImpl.FINDER_CACHE_ENABLED, WebsiteImpl.class,
+				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findAll", new String[0]);
+
+		_finderPathWithoutPaginationFindAll = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
+				WebsiteModelImpl.FINDER_CACHE_ENABLED, WebsiteImpl.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findAll",
+				new String[0]);
+
+		_finderPathCountAll = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
+				WebsiteModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll",
+				new String[0]);
+
+		_finderPathWithPaginationFindByUuid = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
+				WebsiteModelImpl.FINDER_CACHE_ENABLED, WebsiteImpl.class,
+				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid",
+				new String[] {
+					String.class.getName(),
+					
+				Integer.class.getName(), Integer.class.getName(),
+					OrderByComparator.class.getName()
+				});
+
+		_finderPathWithoutPaginationFindByUuid = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
+				WebsiteModelImpl.FINDER_CACHE_ENABLED, WebsiteImpl.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid",
+				new String[] { String.class.getName() },
+				WebsiteModelImpl.UUID_COLUMN_BITMASK |
+				WebsiteModelImpl.CREATEDATE_COLUMN_BITMASK);
+
+		_finderPathCountByUuid = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
+				WebsiteModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid",
+				new String[] { String.class.getName() });
+
+		_finderPathWithPaginationFindByUuid_C = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
+				WebsiteModelImpl.FINDER_CACHE_ENABLED, WebsiteImpl.class,
+				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUuid_C",
+				new String[] {
+					String.class.getName(), Long.class.getName(),
+					
+				Integer.class.getName(), Integer.class.getName(),
+					OrderByComparator.class.getName()
+				});
+
+		_finderPathWithoutPaginationFindByUuid_C = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
+				WebsiteModelImpl.FINDER_CACHE_ENABLED, WebsiteImpl.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUuid_C",
+				new String[] { String.class.getName(), Long.class.getName() },
+				WebsiteModelImpl.UUID_COLUMN_BITMASK |
+				WebsiteModelImpl.COMPANYID_COLUMN_BITMASK |
+				WebsiteModelImpl.CREATEDATE_COLUMN_BITMASK);
+
+		_finderPathCountByUuid_C = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
+				WebsiteModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid_C",
+				new String[] { String.class.getName(), Long.class.getName() });
+
+		_finderPathWithPaginationFindByCompanyId = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
+				WebsiteModelImpl.FINDER_CACHE_ENABLED, WebsiteImpl.class,
+				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByCompanyId",
+				new String[] {
+					Long.class.getName(),
+					
+				Integer.class.getName(), Integer.class.getName(),
+					OrderByComparator.class.getName()
+				});
+
+		_finderPathWithoutPaginationFindByCompanyId = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
+				WebsiteModelImpl.FINDER_CACHE_ENABLED, WebsiteImpl.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByCompanyId",
+				new String[] { Long.class.getName() },
+				WebsiteModelImpl.COMPANYID_COLUMN_BITMASK |
+				WebsiteModelImpl.CREATEDATE_COLUMN_BITMASK);
+
+		_finderPathCountByCompanyId = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
+				WebsiteModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCompanyId",
+				new String[] { Long.class.getName() });
+
+		_finderPathWithPaginationFindByUserId = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
+				WebsiteModelImpl.FINDER_CACHE_ENABLED, WebsiteImpl.class,
+				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByUserId",
+				new String[] {
+					Long.class.getName(),
+					
+				Integer.class.getName(), Integer.class.getName(),
+					OrderByComparator.class.getName()
+				});
+
+		_finderPathWithoutPaginationFindByUserId = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
+				WebsiteModelImpl.FINDER_CACHE_ENABLED, WebsiteImpl.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByUserId",
+				new String[] { Long.class.getName() },
+				WebsiteModelImpl.USERID_COLUMN_BITMASK |
+				WebsiteModelImpl.CREATEDATE_COLUMN_BITMASK);
+
+		_finderPathCountByUserId = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
+				WebsiteModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUserId",
+				new String[] { Long.class.getName() });
+
+		_finderPathWithPaginationFindByC_C = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
+				WebsiteModelImpl.FINDER_CACHE_ENABLED, WebsiteImpl.class,
+				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_C",
+				new String[] {
+					Long.class.getName(), Long.class.getName(),
+					
+				Integer.class.getName(), Integer.class.getName(),
+					OrderByComparator.class.getName()
+				});
+
+		_finderPathWithoutPaginationFindByC_C = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
+				WebsiteModelImpl.FINDER_CACHE_ENABLED, WebsiteImpl.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_C",
+				new String[] { Long.class.getName(), Long.class.getName() },
+				WebsiteModelImpl.COMPANYID_COLUMN_BITMASK |
+				WebsiteModelImpl.CLASSNAMEID_COLUMN_BITMASK |
+				WebsiteModelImpl.CREATEDATE_COLUMN_BITMASK);
+
+		_finderPathCountByC_C = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
+				WebsiteModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_C",
+				new String[] { Long.class.getName(), Long.class.getName() });
+
+		_finderPathWithPaginationFindByC_C_C = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
+				WebsiteModelImpl.FINDER_CACHE_ENABLED, WebsiteImpl.class,
+				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_C_C",
+				new String[] {
+					Long.class.getName(), Long.class.getName(),
+					Long.class.getName(),
+					
+				Integer.class.getName(), Integer.class.getName(),
+					OrderByComparator.class.getName()
+				});
+
+		_finderPathWithoutPaginationFindByC_C_C = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
+				WebsiteModelImpl.FINDER_CACHE_ENABLED, WebsiteImpl.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_C_C",
+				new String[] {
+					Long.class.getName(), Long.class.getName(),
+					Long.class.getName()
+				},
+				WebsiteModelImpl.COMPANYID_COLUMN_BITMASK |
+				WebsiteModelImpl.CLASSNAMEID_COLUMN_BITMASK |
+				WebsiteModelImpl.CLASSPK_COLUMN_BITMASK |
+				WebsiteModelImpl.CREATEDATE_COLUMN_BITMASK);
+
+		_finderPathCountByC_C_C = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
+				WebsiteModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_C_C",
+				new String[] {
+					Long.class.getName(), Long.class.getName(),
+					Long.class.getName()
+				});
+
+		_finderPathWithPaginationFindByC_C_C_P = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
+				WebsiteModelImpl.FINDER_CACHE_ENABLED, WebsiteImpl.class,
+				FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_C_C_P",
+				new String[] {
+					Long.class.getName(), Long.class.getName(),
+					Long.class.getName(), Boolean.class.getName(),
+					
+				Integer.class.getName(), Integer.class.getName(),
+					OrderByComparator.class.getName()
+				});
+
+		_finderPathWithoutPaginationFindByC_C_C_P = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
+				WebsiteModelImpl.FINDER_CACHE_ENABLED, WebsiteImpl.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByC_C_C_P",
+				new String[] {
+					Long.class.getName(), Long.class.getName(),
+					Long.class.getName(), Boolean.class.getName()
+				},
+				WebsiteModelImpl.COMPANYID_COLUMN_BITMASK |
+				WebsiteModelImpl.CLASSNAMEID_COLUMN_BITMASK |
+				WebsiteModelImpl.CLASSPK_COLUMN_BITMASK |
+				WebsiteModelImpl.PRIMARY_COLUMN_BITMASK |
+				WebsiteModelImpl.CREATEDATE_COLUMN_BITMASK);
+
+		_finderPathCountByC_C_C_P = new FinderPath(WebsiteModelImpl.ENTITY_CACHE_ENABLED,
+				WebsiteModelImpl.FINDER_CACHE_ENABLED, Long.class,
+				FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_C_C_P",
+				new String[] {
+					Long.class.getName(), Long.class.getName(),
+					Long.class.getName(), Boolean.class.getName()
+				});
 	}
 
 	public void destroy() {
