@@ -3,7 +3,7 @@ import PortletBase from 'frontend-js-web/liferay/PortletBase.es';
 import {Config} from 'metal-state';
 
 class ManagementToolbarDefaultEventHandler extends PortletBase {
-	addFragmentEntry(itemData) {
+	addFragmentEn tryitemData) {
 		OpenSimpleInputModal(
 			{
 				dialogTitle: itemData.title,
