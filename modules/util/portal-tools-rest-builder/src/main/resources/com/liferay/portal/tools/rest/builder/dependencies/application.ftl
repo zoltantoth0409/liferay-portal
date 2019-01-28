@@ -1,4 +1,4 @@
-package ${configYAML.apiPackagePath}.internal.application;
+package ${configYAML.apiPackagePath}.internal.jaxrs.application;
 
 import javax.annotation.Generated;
 

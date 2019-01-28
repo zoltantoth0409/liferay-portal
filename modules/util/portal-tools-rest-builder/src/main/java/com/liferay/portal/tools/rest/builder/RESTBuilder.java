@@ -100,7 +100,7 @@ public class RESTBuilder {
 
 		sb.append(apiPackagePath.replace('.', '/'));
 
-		sb.append("/internal/application/");
+		sb.append("/internal/jaxrs/application/");
 
 		Application application = configYAML.getApplication();
 
