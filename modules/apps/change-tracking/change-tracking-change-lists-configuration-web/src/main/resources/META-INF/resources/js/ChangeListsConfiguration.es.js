@@ -117,7 +117,7 @@ class ChangeListsConfiguration extends PortletBase {
 				(error) => {
 					const message = typeof error === 'string' ?
 						error :
-						Liferay.Language.get('an-error-occured-when-saving-configuration');
+						Liferay.Language.get('an-error-occured-while-saving-configuration');
 
 					openToast(
 						{
@@ -150,7 +150,7 @@ class ChangeListsConfiguration extends PortletBase {
 				(error) => {
 					const message = typeof error === 'string' ?
 						error :
-						Liferay.Language.get('an-error-occured-when-saving-configuration');
+						Liferay.Language.get('an-error-occured-while-saving-configuration');
 
 					openToast(
 						{
