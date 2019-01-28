@@ -103,7 +103,7 @@ public class FragmentEntryProcessorEditableTest {
 		FragmentEntryLink fragmentEntryLink =
 			FragmentEntryLinkLocalServiceUtil.createFragmentEntryLink(0);
 
-		FragmentEntry fragmentEntry = _createFragmentEntry(
+		FragmentEntry fragmentEntry = _addFragmentEntry(
 			"fragment_entry.html");
 
 		fragmentEntryLink.setHtml(fragmentEntry.getHtml());
@@ -124,7 +124,7 @@ public class FragmentEntryProcessorEditableTest {
 		FragmentEntryLink fragmentEntryLink =
 			FragmentEntryLinkLocalServiceUtil.createFragmentEntryLink(0);
 
-		FragmentEntry fragmentEntry = _createFragmentEntry(
+		FragmentEntry fragmentEntry = _addFragmentEntry(
 			"fragment_entry.html");
 
 		fragmentEntryLink.setHtml(fragmentEntry.getHtml());
@@ -143,14 +143,14 @@ public class FragmentEntryProcessorEditableTest {
 	public void testFragmentEntryProcessorEditableWithDuplicateIds()
 		throws Exception {
 
-		_createFragmentEntry("fragment_entry_with_duplicate_editable_ids.html");
+		_addFragmentEntry("fragment_entry_with_duplicate_editable_ids.html");
 	}
 
 	@Test(expected = FragmentEntryContentException.class)
 	public void testFragmentEntryProcessorEditableWithInvalidTypeAttribute()
 		throws Exception {
 
-		_createFragmentEntry(
+		_addFragmentEntry(
 			"fragment_entry_with_invalid_editable_type_attribute.html");
 	}
 
@@ -161,7 +161,7 @@ public class FragmentEntryProcessorEditableTest {
 		FragmentEntryLink fragmentEntryLink =
 			FragmentEntryLinkLocalServiceUtil.createFragmentEntryLink(0);
 
-		FragmentEntry fragmentEntry = _createFragmentEntry(
+		FragmentEntry fragmentEntry = _addFragmentEntry(
 			"fragment_entry.html");
 
 		fragmentEntryLink.setHtml(fragmentEntry.getHtml());
@@ -185,7 +185,7 @@ public class FragmentEntryProcessorEditableTest {
 		FragmentEntryLink fragmentEntryLink =
 			FragmentEntryLinkLocalServiceUtil.createFragmentEntryLink(0);
 
-		FragmentEntry fragmentEntry = _createFragmentEntry(
+		FragmentEntry fragmentEntry = _addFragmentEntry(
 			"fragment_entry.html");
 
 		fragmentEntryLink.setHtml(fragmentEntry.getHtml());
@@ -208,7 +208,7 @@ public class FragmentEntryProcessorEditableTest {
 		FragmentEntryLink fragmentEntryLink =
 			FragmentEntryLinkLocalServiceUtil.createFragmentEntryLink(0);
 
-		FragmentEntry fragmentEntry = _createFragmentEntry(
+		FragmentEntry fragmentEntry = _addFragmentEntry(
 			"fragment_entry.html");
 
 		fragmentEntryLink.setHtml(fragmentEntry.getHtml());
@@ -232,7 +232,7 @@ public class FragmentEntryProcessorEditableTest {
 		FragmentEntryLink fragmentEntryLink =
 			FragmentEntryLinkLocalServiceUtil.createFragmentEntryLink(0);
 
-		FragmentEntry fragmentEntry = _createFragmentEntry(
+		FragmentEntry fragmentEntry = _addFragmentEntry(
 			"fragment_entry.html");
 
 		fragmentEntryLink.setHtml(fragmentEntry.getHtml());
@@ -256,7 +256,7 @@ public class FragmentEntryProcessorEditableTest {
 		FragmentEntryLink fragmentEntryLink =
 			FragmentEntryLinkLocalServiceUtil.createFragmentEntryLink(0);
 
-		FragmentEntry fragmentEntry = _createFragmentEntry(
+		FragmentEntry fragmentEntry = _addFragmentEntry(
 			"fragment_entry.html");
 
 		fragmentEntryLink.setHtml(fragmentEntry.getHtml());
@@ -277,7 +277,7 @@ public class FragmentEntryProcessorEditableTest {
 	public void testFragmentEntryProcessorEditableWithMissingAttributes()
 		throws Exception {
 
-		_createFragmentEntry(
+		_addFragmentEntry(
 			"fragment_entry_with_missing_editable_attributes.html");
 	}
 
@@ -288,7 +288,7 @@ public class FragmentEntryProcessorEditableTest {
 		FragmentEntryLink fragmentEntryLink =
 			FragmentEntryLinkLocalServiceUtil.createFragmentEntryLink(0);
 
-		FragmentEntry fragmentEntry = _createFragmentEntry(
+		FragmentEntry fragmentEntry = _addFragmentEntry(
 			"fragment_entry.html");
 
 		fragmentEntryLink.setHtml(fragmentEntry.getHtml());
@@ -312,7 +312,7 @@ public class FragmentEntryProcessorEditableTest {
 		FragmentEntryLink fragmentEntryLink =
 			FragmentEntryLinkLocalServiceUtil.createFragmentEntryLink(0);
 
-		FragmentEntry fragmentEntry = _createFragmentEntry(
+		FragmentEntry fragmentEntry = _addFragmentEntry(
 			"fragment_entry.html");
 
 		fragmentEntryLink.setHtml(fragmentEntry.getHtml());
@@ -329,7 +329,7 @@ public class FragmentEntryProcessorEditableTest {
 				LocaleUtil.CHINESE));
 	}
 
-	private FragmentEntry _createFragmentEntry(String htmlFile)
+	private FragmentEntry _addFragmentEntry(String htmlFile)
 		throws IOException, PortalException {
 
 		ServiceContext serviceContext =
