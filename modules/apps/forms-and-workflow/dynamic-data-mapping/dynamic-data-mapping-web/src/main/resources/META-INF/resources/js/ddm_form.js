@@ -1374,7 +1374,7 @@ AUI.add(
 
 						var groupIdNode = A.one('#' + this.get('portletNamespace') + 'groupId');
 
-						var groupId = groupIdNode.getAttribute('value') || themeDisplay.getScopeGroupId();
+						var groupId = (groupIdNode && groupIdNode.getAttribute('value')) || themeDisplay.getScopeGroupId();
 
 						url.setParameter('eventName', 'selectContent');
 						url.setParameter('groupId', groupId);
@@ -1536,7 +1536,7 @@ AUI.add(
 
 							var groupIdNode = A.one('#' + this.get('portletNamespace') + 'groupId');
 
-							var groupId = groupIdNode.getAttribute('value') || themeDisplay.getScopeGroupId();
+							var groupId = (groupIdNode && groupIdNode.getAttribute('value')) || themeDisplay.getScopeGroupId();
 
 							var layoutsRoot = {
 								groupId: groupId,
@@ -1962,7 +1962,7 @@ AUI.add(
 
 						var groupIdNode = A.one('#' + this.get('portletNamespace') + 'groupId');
 
-						var groupId = groupIdNode.getAttribute('value') || themeDisplay.getScopeGroupId();
+						var groupId = (groupIdNode && groupIdNode.getAttribute('value')) || themeDisplay.getScopeGroupId();
 
 						var parentLayoutId = instance._currentParentLayoutId;
 
@@ -2203,7 +2203,7 @@ AUI.add(
 
 						var groupIdNode = A.one('#' + this.get('portletNamespace') + 'groupId');
 
-						var groupId = groupIdNode.getAttribute('value') || themeDisplay.getScopeGroupId();
+						var groupId = (groupIdNode && groupIdNode.getAttribute('value')) || themeDisplay.getScopeGroupId();
 
 						if (selectedLayout && selectedLayout.layoutId) {
 							instance._requestSiblingLayouts(
