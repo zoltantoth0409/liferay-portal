@@ -512,7 +512,7 @@ public class BeanPortletExtension implements Extension {
 			}
 			catch (IllegalStateException ise) {
 
-				// The service has already been unregistered
+				// Ignore since the service has been unregistered
 
 			}
 		}
