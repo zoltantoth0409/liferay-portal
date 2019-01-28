@@ -29,7 +29,7 @@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 <portlet:defineObjects />
 
 <%
-ChangeListsConfigurationDisplayContext changeListsConfigurationDisplayContext = new ChangeListsConfigurationDisplayContext(renderResponse, request);
+ChangeListsConfigurationDisplayContext changeListsConfigurationDisplayContext = new ChangeListsConfigurationDisplayContext(request, renderResponse);
 %>
 
 <%@ include file="/init-ext.jsp" %>

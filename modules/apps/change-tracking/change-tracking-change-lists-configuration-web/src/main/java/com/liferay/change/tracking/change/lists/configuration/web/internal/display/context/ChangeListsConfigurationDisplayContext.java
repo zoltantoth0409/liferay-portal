@@ -29,12 +29,12 @@ import javax.servlet.http.HttpServletRequest;
 public class ChangeListsConfigurationDisplayContext {
 
 	public ChangeListsConfigurationDisplayContext(
-		RenderResponse renderResponse, HttpServletRequest request) {
+		HttpServletRequest httpServletRequest, RenderResponse renderResponse) {
 
+		_httpServletRequest = httpServletRequest;
 		_renderResponse = renderResponse;
-		_request = request;
 
-		_themeDisplay = (ThemeDisplay)_request.getAttribute(
+		_themeDisplay = (ThemeDisplay)_httpServletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 	}
 
@@ -55,8 +55,8 @@ public class ChangeListsConfigurationDisplayContext {
 		return soyContext;
 	}
 
+	private final HttpServletRequest _httpServletRequest;
 	private final RenderResponse _renderResponse;
-	private final HttpServletRequest _request;
 	private final ThemeDisplay _themeDisplay;
 
 }
