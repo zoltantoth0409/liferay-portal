@@ -86,6 +86,7 @@ public class Arquillian extends BlockJUnit4ClassRunner {
 				public void testRunFinished(Result result) throws Exception {
 					try {
 						_testRunnerAdaptor.afterSuite();
+
 						_testRunnerAdaptor.shutdown();
 
 						_testRunnerAdaptor = null;
@@ -149,13 +150,13 @@ public class Arquillian extends BlockJUnit4ClassRunner {
 
 		statement = withPotentialTimeout(method, test, statement);
 
-		final Statement originalStatement = statement;
+		final Statement oldStatement = statement;
 
 		for (MethodRule methodRule : rules(test)) {
 			statement = methodRule.apply(statement, method, test);
 		}
 
-		final Statement statementWithRules = statement;
+		final Statement newStatement = statement;
 
 		return new Statement() {
 
@@ -172,11 +173,11 @@ public class Arquillian extends BlockJUnit4ClassRunner {
 							() -> {
 								flag.set(true);
 
-								statementWithRules.evaluate();
+								newStatement.evaluate();
 							}));
 
 					if (flag.get() == false) {
-						originalStatement.evaluate();
+						oldStatement.evaluate();
 					}
 				}
 				catch (Throwable t) {
