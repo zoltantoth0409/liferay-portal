@@ -831,7 +831,7 @@ definition {
 		WebContent.openWebContentAdmin(siteURLKey = "site-name");
 
 		WebContentNavigator.gotoViewStatus(
-			webContentStatus = "DRAFT",
+			webContentStatus = "Draft",
 			webContentTitle = "WC WebContent Title"
 		);
 
