@@ -183,14 +183,11 @@ public class UpdateUserRolesMVCActionCommand extends BaseMVCActionCommand {
 			HttpServletRequest request = _portal.getHttpServletRequest(
 				actionRequest);
 
-			long organizationId = 0;
-
 			String backURL = null;
-
-			String redirect = ParamUtil.getString(request, "redirect");
-
+			long organizationId = 0;
 			String portletNameSpace = _portal.getPortletNamespace(
 				UsersAdminPortletKeys.MY_ORGANIZATIONS);
+			String redirect = ParamUtil.getString(request, "redirect");
 
 			if (Validator.isNotNull(redirect)) {
 				Map<String, String[]> parameterMap = _http.getParameterMap(
