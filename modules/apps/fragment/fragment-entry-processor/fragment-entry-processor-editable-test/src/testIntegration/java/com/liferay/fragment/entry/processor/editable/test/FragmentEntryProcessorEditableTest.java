@@ -103,8 +103,7 @@ public class FragmentEntryProcessorEditableTest {
 		FragmentEntryLink fragmentEntryLink =
 			FragmentEntryLinkLocalServiceUtil.createFragmentEntryLink(0);
 
-		FragmentEntry fragmentEntry = _addFragmentEntry(
-			"fragment_entry.html");
+		FragmentEntry fragmentEntry = _addFragmentEntry("fragment_entry.html");
 
 		fragmentEntryLink.setHtml(fragmentEntry.getHtml());
 
@@ -124,8 +123,7 @@ public class FragmentEntryProcessorEditableTest {
 		FragmentEntryLink fragmentEntryLink =
 			FragmentEntryLinkLocalServiceUtil.createFragmentEntryLink(0);
 
-		FragmentEntry fragmentEntry = _addFragmentEntry(
-			"fragment_entry.html");
+		FragmentEntry fragmentEntry = _addFragmentEntry("fragment_entry.html");
 
 		fragmentEntryLink.setHtml(fragmentEntry.getHtml());
 
@@ -161,8 +159,7 @@ public class FragmentEntryProcessorEditableTest {
 		FragmentEntryLink fragmentEntryLink =
 			FragmentEntryLinkLocalServiceUtil.createFragmentEntryLink(0);
 
-		FragmentEntry fragmentEntry = _addFragmentEntry(
-			"fragment_entry.html");
+		FragmentEntry fragmentEntry = _addFragmentEntry("fragment_entry.html");
 
 		fragmentEntryLink.setHtml(fragmentEntry.getHtml());
 
@@ -185,8 +182,7 @@ public class FragmentEntryProcessorEditableTest {
 		FragmentEntryLink fragmentEntryLink =
 			FragmentEntryLinkLocalServiceUtil.createFragmentEntryLink(0);
 
-		FragmentEntry fragmentEntry = _addFragmentEntry(
-			"fragment_entry.html");
+		FragmentEntry fragmentEntry = _addFragmentEntry("fragment_entry.html");
 
 		fragmentEntryLink.setHtml(fragmentEntry.getHtml());
 
@@ -208,8 +204,7 @@ public class FragmentEntryProcessorEditableTest {
 		FragmentEntryLink fragmentEntryLink =
 			FragmentEntryLinkLocalServiceUtil.createFragmentEntryLink(0);
 
-		FragmentEntry fragmentEntry = _addFragmentEntry(
-			"fragment_entry.html");
+		FragmentEntry fragmentEntry = _addFragmentEntry("fragment_entry.html");
 
 		fragmentEntryLink.setHtml(fragmentEntry.getHtml());
 
@@ -232,8 +227,7 @@ public class FragmentEntryProcessorEditableTest {
 		FragmentEntryLink fragmentEntryLink =
 			FragmentEntryLinkLocalServiceUtil.createFragmentEntryLink(0);
 
-		FragmentEntry fragmentEntry = _addFragmentEntry(
-			"fragment_entry.html");
+		FragmentEntry fragmentEntry = _addFragmentEntry("fragment_entry.html");
 
 		fragmentEntryLink.setHtml(fragmentEntry.getHtml());
 
@@ -256,8 +250,7 @@ public class FragmentEntryProcessorEditableTest {
 		FragmentEntryLink fragmentEntryLink =
 			FragmentEntryLinkLocalServiceUtil.createFragmentEntryLink(0);
 
-		FragmentEntry fragmentEntry = _addFragmentEntry(
-			"fragment_entry.html");
+		FragmentEntry fragmentEntry = _addFragmentEntry("fragment_entry.html");
 
 		fragmentEntryLink.setHtml(fragmentEntry.getHtml());
 
@@ -288,8 +281,7 @@ public class FragmentEntryProcessorEditableTest {
 		FragmentEntryLink fragmentEntryLink =
 			FragmentEntryLinkLocalServiceUtil.createFragmentEntryLink(0);
 
-		FragmentEntry fragmentEntry = _addFragmentEntry(
-			"fragment_entry.html");
+		FragmentEntry fragmentEntry = _addFragmentEntry("fragment_entry.html");
 
 		fragmentEntryLink.setHtml(fragmentEntry.getHtml());
 
@@ -312,8 +304,7 @@ public class FragmentEntryProcessorEditableTest {
 		FragmentEntryLink fragmentEntryLink =
 			FragmentEntryLinkLocalServiceUtil.createFragmentEntryLink(0);
 
-		FragmentEntry fragmentEntry = _addFragmentEntry(
-			"fragment_entry.html");
+		FragmentEntry fragmentEntry = _addFragmentEntry("fragment_entry.html");
 
 		fragmentEntryLink.setHtml(fragmentEntry.getHtml());
 
