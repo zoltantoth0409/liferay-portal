@@ -326,6 +326,10 @@
 
 					instance.refreshLayout(portletBound);
 
+					if (window.location.hash) {
+						window.location.hash = 'p_' + portletId;
+					}
+
 					portletBoundary = portletBound;
 
 					var Layout = Liferay.Layout;
