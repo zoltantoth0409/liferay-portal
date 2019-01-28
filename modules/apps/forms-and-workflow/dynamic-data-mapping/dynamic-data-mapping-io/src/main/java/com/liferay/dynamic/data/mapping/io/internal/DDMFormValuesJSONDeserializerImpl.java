@@ -48,7 +48,7 @@ public class DDMFormValuesJSONDeserializerImpl
 
 	@Override
 	public DDMFormValues deserialize(
-			DDMForm ddmForm, String serializedDDMFormValues) {
+		DDMForm ddmForm, String serializedDDMFormValues) {
 
 		DDMFormValues ddmFormValues = new DDMFormValues(ddmForm);
 
@@ -62,6 +62,7 @@ public class DDMFormValuesJSONDeserializerImpl
 				jsonObject.getString("defaultLanguageId"), ddmFormValues);
 			setDDMFormFieldValues(
 				jsonObject.getJSONArray("fieldValues"), ddmFormValues);
+
 			setDDMFormLocalizedValuesDefaultLocale(ddmFormValues);
 		}
 		catch (Exception e) {
