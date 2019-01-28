@@ -150,6 +150,7 @@ public class PortletCategory implements Serializable {
 
 	public void setPortletIds(Set<String> portletIds) {
 		_portletIds.clear();
+
 		_portletIds.addAll(portletIds);
 	}
 
