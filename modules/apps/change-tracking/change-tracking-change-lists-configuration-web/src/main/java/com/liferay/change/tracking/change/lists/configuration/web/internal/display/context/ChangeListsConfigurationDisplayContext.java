@@ -41,16 +41,16 @@ public class ChangeListsConfigurationDisplayContext {
 	public SoyContext getChangeListsConfigurationContext() {
 		SoyContext soyContext = SoyContextFactoryUtil.createSoyContext();
 
+		soyContext.put("portalURL", _themeDisplay.getPortalURL());
+		soyContext.put("portletNamespace", _renderResponse.getNamespace());
+		soyContext.put(
+			"spritemap",
+			_themeDisplay.getPathThemeImages() + "/lexicon/icons.svg");
 		soyContext.put(
 			"urlChangeTrackingConfiguration",
 			_themeDisplay.getPortalURL() +
 				"/o/change-tracking/configurations/" +
 					_themeDisplay.getCompanyId());
-		soyContext.put("portletNamespace", _renderResponse.getNamespace());
-		soyContext.put("portalURL", _themeDisplay.getPortalURL());
-		soyContext.put(
-			"spritemap",
-			_themeDisplay.getPathThemeImages() + "/lexicon/icons.svg");
 
 		return soyContext;
 	}
