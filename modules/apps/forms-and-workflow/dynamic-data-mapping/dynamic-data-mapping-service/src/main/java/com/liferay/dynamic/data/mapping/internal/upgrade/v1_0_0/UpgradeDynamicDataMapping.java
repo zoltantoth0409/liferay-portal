@@ -1655,9 +1655,9 @@ public class UpgradeDynamicDataMapping extends UpgradeProcess {
 		public DDMFormValues deserialize(DDMForm ddmForm, String xml)
 			throws PortalException {
 
-			try {
-				DDMFormValues ddmFormValues = new DDMFormValues(ddmForm);
+			DDMFormValues ddmFormValues = new DDMFormValues(ddmForm);
 
+			try {
 				Document document = SAXReaderUtil.read(xml);
 
 				Element rootElement = document.getRootElement();
@@ -1684,12 +1684,17 @@ public class UpgradeDynamicDataMapping extends UpgradeProcess {
 						ddmFormValues.addDDMFormFieldValue(ddmFormFieldValue);
 					}
 				}
-
-				return ddmFormValues;
 			}
 			catch (DocumentException de) {
 				throw new UpgradeException(de);
 			}
+			catch (Exception e) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(e, e);
+				}
+			}
+
+			return ddmFormValues;
 		}
 
 		protected int countDDMFieldRepetitions(
@@ -2145,6 +2150,9 @@ public class UpgradeDynamicDataMapping extends UpgradeProcess {
 				}
 			}
 		}
+
+		private static final Log _log = LogFactoryUtil.getLog(
+			DDMFormValuesXSDDeserializer.class);
 
 		private long _companyId;
 
