@@ -100,11 +100,11 @@ public class FragmentEntryProcessorEditableTest {
 
 	@Test
 	public void testFragmentEntryProcessorEditable() throws Exception {
-		FragmentEntry fragmentEntry = _createFragmentEntry(
-			"fragment_entry.html");
-
 		FragmentEntryLink fragmentEntryLink =
 			FragmentEntryLinkLocalServiceUtil.createFragmentEntryLink(0);
+
+		FragmentEntry fragmentEntry = _createFragmentEntry(
+			"fragment_entry.html");
 
 		fragmentEntryLink.setHtml(fragmentEntry.getHtml());
 
@@ -121,11 +121,11 @@ public class FragmentEntryProcessorEditableTest {
 	public void testFragmentEntryProcessorEditableCompatibility()
 		throws Exception {
 
-		FragmentEntry fragmentEntry = _createFragmentEntry(
-			"fragment_entry.html");
-
 		FragmentEntryLink fragmentEntryLink =
 			FragmentEntryLinkLocalServiceUtil.createFragmentEntryLink(0);
+
+		FragmentEntry fragmentEntry = _createFragmentEntry(
+			"fragment_entry.html");
 
 		fragmentEntryLink.setHtml(fragmentEntry.getHtml());
 
@@ -158,11 +158,11 @@ public class FragmentEntryProcessorEditableTest {
 	public void testFragmentEntryProcessorEditableWithMatchedDefaultSegmentAndDefaultLanguage()
 		throws Exception {
 
-		FragmentEntry fragmentEntry = _createFragmentEntry(
-			"fragment_entry.html");
-
 		FragmentEntryLink fragmentEntryLink =
 			FragmentEntryLinkLocalServiceUtil.createFragmentEntryLink(0);
+
+		FragmentEntry fragmentEntry = _createFragmentEntry(
+			"fragment_entry.html");
 
 		fragmentEntryLink.setHtml(fragmentEntry.getHtml());
 
@@ -182,11 +182,11 @@ public class FragmentEntryProcessorEditableTest {
 	public void testFragmentEntryProcessorEditableWithMatchedLanguage()
 		throws Exception {
 
-		FragmentEntry fragmentEntry = _createFragmentEntry(
-			"fragment_entry.html");
-
 		FragmentEntryLink fragmentEntryLink =
 			FragmentEntryLinkLocalServiceUtil.createFragmentEntryLink(0);
+
+		FragmentEntry fragmentEntry = _createFragmentEntry(
+			"fragment_entry.html");
 
 		fragmentEntryLink.setHtml(fragmentEntry.getHtml());
 
@@ -205,11 +205,11 @@ public class FragmentEntryProcessorEditableTest {
 	public void testFragmentEntryProcessorEditableWithMatchedLanguageCompatibility()
 		throws Exception {
 
-		FragmentEntry fragmentEntry = _createFragmentEntry(
-			"fragment_entry.html");
-
 		FragmentEntryLink fragmentEntryLink =
 			FragmentEntryLinkLocalServiceUtil.createFragmentEntryLink(0);
+
+		FragmentEntry fragmentEntry = _createFragmentEntry(
+			"fragment_entry.html");
 
 		fragmentEntryLink.setHtml(fragmentEntry.getHtml());
 
@@ -229,11 +229,11 @@ public class FragmentEntryProcessorEditableTest {
 	public void testFragmentEntryProcessorEditableWithMatchedSegmentAndDefaultLanguage()
 		throws Exception {
 
-		FragmentEntry fragmentEntry = _createFragmentEntry(
-			"fragment_entry.html");
-
 		FragmentEntryLink fragmentEntryLink =
 			FragmentEntryLinkLocalServiceUtil.createFragmentEntryLink(0);
+
+		FragmentEntry fragmentEntry = _createFragmentEntry(
+			"fragment_entry.html");
 
 		fragmentEntryLink.setHtml(fragmentEntry.getHtml());
 
@@ -253,11 +253,11 @@ public class FragmentEntryProcessorEditableTest {
 	public void testFragmentEntryProcessorEditableWithMatchedSegmentAndLanguage()
 		throws Exception {
 
-		FragmentEntry fragmentEntry = _createFragmentEntry(
-			"fragment_entry.html");
-
 		FragmentEntryLink fragmentEntryLink =
 			FragmentEntryLinkLocalServiceUtil.createFragmentEntryLink(0);
+
+		FragmentEntry fragmentEntry = _createFragmentEntry(
+			"fragment_entry.html");
 
 		fragmentEntryLink.setHtml(fragmentEntry.getHtml());
 
@@ -285,11 +285,11 @@ public class FragmentEntryProcessorEditableTest {
 	public void testFragmentEntryProcessorEditableWithUnmatchedLanguage()
 		throws Exception {
 
-		FragmentEntry fragmentEntry = _createFragmentEntry(
-			"fragment_entry.html");
-
 		FragmentEntryLink fragmentEntryLink =
 			FragmentEntryLinkLocalServiceUtil.createFragmentEntryLink(0);
+
+		FragmentEntry fragmentEntry = _createFragmentEntry(
+			"fragment_entry.html");
 
 		fragmentEntryLink.setHtml(fragmentEntry.getHtml());
 
@@ -309,11 +309,11 @@ public class FragmentEntryProcessorEditableTest {
 	public void testFragmentEntryProcessorEditableWithUnmatchedLanguageCompatibility()
 		throws Exception {
 
-		FragmentEntry fragmentEntry = _createFragmentEntry(
-			"fragment_entry.html");
-
 		FragmentEntryLink fragmentEntryLink =
 			FragmentEntryLinkLocalServiceUtil.createFragmentEntryLink(0);
+
+		FragmentEntry fragmentEntry = _createFragmentEntry(
+			"fragment_entry.html");
 
 		fragmentEntryLink.setHtml(fragmentEntry.getHtml());
 
