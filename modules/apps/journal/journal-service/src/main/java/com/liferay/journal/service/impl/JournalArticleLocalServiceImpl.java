@@ -459,9 +459,7 @@ public class JournalArticleLocalServiceImpl
 
 		// Friendly URLs
 
-		friendlyURLEntryLocalService.addFriendlyURLEntry(
-			groupId, classNameLocalService.getClassNameId(JournalArticle.class),
-			resourcePrimKey, urlTitleMap, serviceContext);
+		updateFriendlyURLs(article, urlTitleMap, serviceContext);
 
 		// Article localization
 
@@ -5671,20 +5669,7 @@ public class JournalArticleLocalServiceImpl
 
 		// Friendly URLs
 
-		List<FriendlyURLEntry> friendlyURLEntries =
-			friendlyURLEntryLocalService.getFriendlyURLEntries(
-				groupId,
-				classNameLocalService.getClassNameId(JournalArticle.class),
-				article.getResourcePrimKey());
-
-		for (FriendlyURLEntry friendlyURLEntry : friendlyURLEntries) {
-			friendlyURLEntryLocalService.deleteFriendlyURLEntry(
-				friendlyURLEntry);
-		}
-
-		friendlyURLEntryLocalService.addFriendlyURLEntry(
-			groupId, classNameLocalService.getClassNameId(JournalArticle.class),
-			article.getResourcePrimKey(), urlTitleMap, serviceContext);
+		updateFriendlyURLs(article, urlTitleMap, serviceContext);
 
 		// Asset
 
@@ -8515,6 +8500,28 @@ public class JournalArticleLocalServiceImpl
 		finally {
 			serviceContext.setIndexingEnabled(indexingEnabled);
 		}
+	}
+
+	protected void updateFriendlyURLs(
+			JournalArticle article, Map<String, String> urlTitleMap,
+			ServiceContext serviceContext)
+		throws PortalException {
+
+		List<FriendlyURLEntry> friendlyURLEntries =
+			friendlyURLEntryLocalService.getFriendlyURLEntries(
+				article.getGroupId(),
+				classNameLocalService.getClassNameId(JournalArticle.class),
+				article.getResourcePrimKey());
+
+		for (FriendlyURLEntry friendlyURLEntry : friendlyURLEntries) {
+			friendlyURLEntryLocalService.deleteFriendlyURLEntry(
+				friendlyURLEntry);
+		}
+
+		friendlyURLEntryLocalService.addFriendlyURLEntry(
+			article.getGroupId(),
+			classNameLocalService.getClassNameId(JournalArticle.class),
+			article.getResourcePrimKey(), urlTitleMap, serviceContext);
 	}
 
 	protected void updatePreviousApprovedArticle(JournalArticle article)
