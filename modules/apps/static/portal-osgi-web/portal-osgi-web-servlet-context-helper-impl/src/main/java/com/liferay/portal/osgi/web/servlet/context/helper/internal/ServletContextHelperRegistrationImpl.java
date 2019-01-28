@@ -121,7 +121,7 @@ public class ServletContextHelperRegistrationImpl
 		}
 		catch (IllegalStateException ise) {
 
-			// ignore since the service has been unregistered
+			// Ignore since the service has been unregistered
 
 		}
 
@@ -130,7 +130,7 @@ public class ServletContextHelperRegistrationImpl
 		}
 		catch (IllegalStateException ise) {
 
-			// ignore since the service has been unregistered
+			// Ignore since the service has been unregistered
 
 		}
 
@@ -139,7 +139,7 @@ public class ServletContextHelperRegistrationImpl
 		}
 		catch (IllegalStateException ise) {
 
-			// ignore since the service has been unregistered
+			// Ignore since the service has been unregistered
 
 		}
 
@@ -148,7 +148,7 @@ public class ServletContextHelperRegistrationImpl
 		}
 		catch (IllegalStateException ise) {
 
-			// ignore since the service has been unregistered
+			// Ignore since the service has been unregistered
 
 		}
 
@@ -157,7 +157,7 @@ public class ServletContextHelperRegistrationImpl
 		}
 		catch (IllegalStateException ise) {
 
-			// ignore since the service has been unregistered
+			// Ignore since the service has been unregistered
 
 		}
 
@@ -167,7 +167,7 @@ public class ServletContextHelperRegistrationImpl
 			}
 			catch (IllegalStateException ise) {
 
-				// ignore since the service has been unregistered
+				// Ignore since the service has been unregistered
 
 			}
 		}
