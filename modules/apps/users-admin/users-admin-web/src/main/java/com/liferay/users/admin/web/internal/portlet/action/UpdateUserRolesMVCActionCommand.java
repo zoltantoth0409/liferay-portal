@@ -129,12 +129,10 @@ public class UpdateUserRolesMVCActionCommand extends BaseMVCActionCommand {
 			User currentUser = _userService.getCurrentUser();
 
 			if (currentUser.getUserId() == user.getUserId()) {
-				String redirect = _getRedirect(
-					actionRequest, currentUser);
+				String redirect = _getRedirect(actionRequest, currentUser);
 
 				if (Validator.isNotNull(redirect)) {
-					sendRedirect(
-						actionRequest, actionResponse, redirect);
+					sendRedirect(actionRequest, actionResponse, redirect);
 				}
 			}
 		}
@@ -157,8 +155,7 @@ public class UpdateUserRolesMVCActionCommand extends BaseMVCActionCommand {
 		}
 	}
 
-	private String _getRedirect(
-			ActionRequest actionRequest, User currentUser)
+	private String _getRedirect(ActionRequest actionRequest, User currentUser)
 		throws Exception {
 
 		PortletConfig portletConfig = (PortletConfig)actionRequest.getAttribute(
