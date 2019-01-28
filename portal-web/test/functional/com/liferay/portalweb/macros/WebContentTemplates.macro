@@ -67,6 +67,12 @@ definition {
 				value1 = "${templateScript}"
 			);
 		}
+
+		if (isSet(templateSmallImageURL)) {
+			WebContentTemplates.inputSmallImage(
+				templateSmallImageURL = "${templateSmallImageURL}"
+			);
+		}
 	}
 
 	macro addField {
@@ -227,6 +233,27 @@ definition {
 		);
 
 		PortletEntry.save();
+	}
+
+	@summary = "Input a small image with the url '${templateSmallImageURL}'"
+	macro inputSmallImage {
+		Panel.expandPanel(panelHeading = "Details");
+
+		if (IsElementNotPresent(locator1 = "DDMEditTemplate#DETAILS_SMALL_IMAGE_URL")) {
+			Check(locator1 = "DDMEditTemplate#DETAILS_SMALL_IMAGE");
+			}
+		else {
+			Click(locator1 = "DDMEditTemplate#DETAILS_SMALL_IMAGE");
+
+			Check(locator1 = "DDMEditTemplate#DETAILS_SMALL_IMAGE");
+			}
+
+		Check(locator1 = "DDMEditTemplate#DETAILS_SMALL_IMAGE_URL");
+
+		Type(
+			locator1 = "DDMEditTemplate#DETAILS_SMALL_IMAGE_URL_INPUT",
+			value1 = "${templateSmallImageURL}"
+		);
 	}
 
 	macro localizeTemplateName {
