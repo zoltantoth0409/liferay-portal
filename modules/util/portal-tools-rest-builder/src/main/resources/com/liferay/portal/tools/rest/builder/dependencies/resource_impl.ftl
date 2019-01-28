@@ -1,7 +1,7 @@
 package ${configYAML.apiPackagePath}.internal.resource;
 
-import ${configYAML.apiPackagePath}.dto.RESTCollection;
 import ${configYAML.apiPackagePath}.dto.${schemaName};
+import ${configYAML.apiPackagePath}.dto.${schemaName}Collection;
 import ${configYAML.apiPackagePath}.resource.${schemaName}Resource;
 
 import com.liferay.rest.booster.apio.context.Pagination;
@@ -28,10 +28,10 @@ import org.osgi.service.jaxrs.whiteboard.JaxrsWhiteboardConstants;
 public class ${schemaName}ResourceImpl implements ${schemaName}Resource {
 
 	@Override
-	public RESTCollection<${schemaName}> get${schemaName}s(String size, Pagination pagination)
+	public ${schemaName}Collection<${schemaName}> get${schemaName}s(String size, Pagination pagination)
 		throws Exception {
 
-		return new RESTCollection(Collections.emptyList(), 0);
+		return new ${schemaName}Collection(Collections.emptyList(), 0);
 	}
 
 }

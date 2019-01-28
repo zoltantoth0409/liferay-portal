@@ -1,7 +1,7 @@
 package ${configYAML.apiPackagePath}.resource;
 
-import ${configYAML.apiPackagePath}.dto.RESTCollection;
 import ${configYAML.apiPackagePath}.dto.${schemaName};
+import ${configYAML.apiPackagePath}.dto.${schemaName}Collection;
 
 import com.liferay.oauth2.provider.scope.RequiresScope;
 import com.liferay.rest.booster.apio.context.Pagination;
@@ -25,7 +25,7 @@ public interface ${schemaName}Resource {
 	@GET
 	@Produces("application/json")
 	@RequiresScope("${configYAML.application.name}.read")
-	public RESTCollection<${schemaName}> get${schemaName}s(
+	public ${schemaName}Collection<${schemaName}> get${schemaName}s(
 			@QueryParam("size") String size, @Context Pagination pagination)
 		throws Exception;
 

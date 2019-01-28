@@ -78,11 +78,11 @@ public class RESTBuilder {
 
 			_createResourceImplFile(
 				configYAML, copyrightFileName, openAPIYAML, schemaName);
+
+			_createCollectionFile(configYAML, copyrightFileName, schemaName);
 		}
 
 		_createApplicationFile(configYAML, copyrightFileName);
-
-		_createRESTCollectionFile(configYAML, copyrightFileName, openAPIYAML);
 
 		System.out.println(YAMLUtil.dump(openAPIYAML));
 	}
@@ -118,6 +118,40 @@ public class RESTBuilder {
 
 		String content = FreeMarkerUtil.processTemplate(
 			copyrightFileName, FreeMarkerConstants.APPLICATION_FTL, context);
+
+		FileUtil.write(content, file);
+
+		return file;
+	}
+
+	private File _createCollectionFile(
+			ConfigYAML configYAML, String copyrightFileName, String schemaName)
+		throws Exception {
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(configYAML.getApiDir());
+		sb.append("/");
+
+		String apiPackagePath = configYAML.getApiPackagePath();
+
+		sb.append(apiPackagePath.replace('.', '/'));
+
+		sb.append("/dto/");
+		sb.append(schemaName);
+		sb.append("Collection.java");
+
+		File file = new File(sb.toString());
+
+		Map<String, Object> context = new HashMap<>();
+
+		context.put("configYAML", configYAML);
+		context.put("schemaName", schemaName);
+		context.put("stringUtil", StringUtil_IW.getInstance());
+		context.put("validator", Validator_IW.getInstance());
+
+		String content = FreeMarkerUtil.processTemplate(
+			copyrightFileName, FreeMarkerConstants.COLLECTION_FTL, context);
 
 		FileUtil.write(content, file);
 
@@ -227,40 +261,6 @@ public class RESTBuilder {
 
 		String content = FreeMarkerUtil.processTemplate(
 			copyrightFileName, FreeMarkerConstants.RESOURCE_IMPL_FTL, context);
-
-		FileUtil.write(content, file);
-
-		return file;
-	}
-
-	private File _createRESTCollectionFile(
-			ConfigYAML configYAML, String copyrightFileName,
-			OpenAPIYAML openAPIYAML)
-		throws Exception {
-
-		StringBuilder sb = new StringBuilder();
-
-		sb.append(configYAML.getApiDir());
-		sb.append("/");
-
-		String apiPackagePath = configYAML.getApiPackagePath();
-
-		sb.append(apiPackagePath.replace('.', '/'));
-
-		sb.append("/dto/RESTCollection.java");
-
-		File file = new File(sb.toString());
-
-		Map<String, Object> context = new HashMap<>();
-
-		context.put("configYAML", configYAML);
-		context.put("openAPIYAML", openAPIYAML);
-		context.put("stringUtil", StringUtil_IW.getInstance());
-		context.put("validator", Validator_IW.getInstance());
-
-		String content = FreeMarkerUtil.processTemplate(
-			copyrightFileName, FreeMarkerConstants.REST_COLLECTION_FTL,
-			context);
 
 		FileUtil.write(content, file);
 
