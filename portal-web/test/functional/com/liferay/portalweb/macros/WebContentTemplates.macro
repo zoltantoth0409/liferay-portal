@@ -434,9 +434,17 @@ definition {
 			value1 = "${templateName}"
 		);
 
-		AssertTextEquals(
-			locator1 = "DDMSelectTemplate#TEMPLATE_TABLE_DESCRIPTION",
-			value1 = "${templateDescription}"
-		);
+		if (isSet(templateSmallImage)) {
+			AssertVisible(
+				locator1 = "DDMSelectTemplate#TEMPLATE_TABLE_DESCRIPTION_SMALL_IMAGE",
+				value1 = "${templateSmallImage}"
+			);
+		}
+		else {
+			AssertTextEquals(
+				locator1 = "DDMSelectTemplate#TEMPLATE_TABLE_DESCRIPTION",
+				value1 = "${templateDescription}"
+			);
+		}
 	}
 }
