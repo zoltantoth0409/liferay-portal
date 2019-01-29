@@ -14,26 +14,33 @@
 
 package com.liferay.headless.workflow.dto;
 
+import com.liferay.portal.vulcan.collection.BaseCollection;
+
+import java.util.Collection;
+import java.util.Collections;
+
 import javax.annotation.Generated;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
 
 /**
  * @author Javier Gamarra
  * @generated
  */
 @Generated("")
-@XmlRootElement(name = "WorkflowTask")
-public class WorkflowTask {
+@XmlRootElement(name = "collection")
+@XmlSeeAlso({WorkflowTask.class})
+public class WorkflowTaskCollection<T> extends BaseCollection<T> {
 
-	public long getId() {
-		return _id;
+	public WorkflowTaskCollection() {
+		setItems(Collections.emptyList());
+		setTotalCount(0);
 	}
 
-	public void setId(long id) {
-		_id = id;
+	public WorkflowTaskCollection(Collection<T> items, int totalCount) {
+		setItems(items);
+		setTotalCount(totalCount);
 	}
-
-	private long _id;
 
 }
