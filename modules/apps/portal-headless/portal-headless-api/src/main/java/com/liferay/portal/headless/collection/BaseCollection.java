@@ -12,7 +12,9 @@
  * details.
  */
 
-package com.liferay.rest.booster.apio.context;
+package com.liferay.portal.headless.collection;
+
+import java.util.Collection;
 
 import javax.xml.bind.annotation.XmlElement;
 
@@ -22,7 +24,7 @@ import javax.xml.bind.annotation.XmlElement;
 public class BaseCollection<T> {
 
 	@XmlElement(name = "item")
-	public java.util.Collection<T> getItems() {
+	public Collection<T> getItems() {
 		return _items;
 	}
 
@@ -36,7 +38,7 @@ public class BaseCollection<T> {
 		return _totalCount;
 	}
 
-	public void setItems(java.util.Collection<T> items) {
+	public void setItems(Collection<T> items) {
 		_items = items;
 	}
 
@@ -44,7 +46,7 @@ public class BaseCollection<T> {
 		_totalCount = totalCount;
 	}
 
-	private java.util.Collection<T> _items;
+	private Collection<T> _items;
 	private int _totalCount;
 
 }
