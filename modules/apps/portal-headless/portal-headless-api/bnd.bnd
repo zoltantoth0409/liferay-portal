@@ -1,6 +1,0 @@
-Bundle-Name: Liferay Portal Headless API
-Bundle-SymbolicName: com.liferay.portal.headless.api
-Bundle-Version: 1.0.0
-Export-Package:\
-	com.liferay.portal.headless.collection,\
-	com.liferay.portal.headless.context
