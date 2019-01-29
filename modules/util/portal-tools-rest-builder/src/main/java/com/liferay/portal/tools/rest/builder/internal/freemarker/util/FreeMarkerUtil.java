@@ -23,21 +23,24 @@ import java.util.Map;
  */
 public class FreeMarkerUtil {
 
-	public static final String APPLICATION_FTL = "com/liferay/portal/tools/rest/builder/dependencies/application.ftl";
+	public static final String APPLICATION_FTL = "application.ftl";
 
-	public static final String COLLECTION_FTL = "com/liferay/portal/tools/rest/builder/dependencies/collection.ftl";
+	public static final String COLLECTION_FTL = "collection.ftl";
 
-	public static final String DTO_FTL = "com/liferay/portal/tools/rest/builder/dependencies/dto.ftl";
+	public static final String DTO_FTL = "dto.ftl";
 
-	public static final String RESOURCE_FTL = "com/liferay/portal/tools/rest/builder/dependencies/resource.ftl";
+	public static final String RESOURCE_FTL = "resource.ftl";
 
-	public static final String RESOURCE_IMPL_FTL = "com/liferay/portal/tools/rest/builder/dependencies/resource_impl.ftl";
+	public static final String RESOURCE_IMPL_FTL = "resource_impl.ftl";
 
 	public static String processTemplate(
 			String copyrightFileName, String name, Map<String, Object> context)
 		throws Exception {
 
-		return _freeMarker.processTemplate(copyrightFileName, name, context);
+		return _freeMarker.processTemplate(
+			copyrightFileName,
+			"com/liferay/portal/tools/rest/builder/dependencies/" + name,
+			context);
 	}
 
 	private static final FreeMarker _freeMarker = new FreeMarker();
