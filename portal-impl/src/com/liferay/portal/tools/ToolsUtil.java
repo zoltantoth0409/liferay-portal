@@ -455,11 +455,11 @@ public class ToolsUtil {
 
 		// Beautify
 
-		String jalopyIgnoreStart = "@start-ignoring-jalopy@";
+		String jalopyIgnoreStart = "/* @start-ignoring-jalopy@ */";
 
 		int start = content.indexOf(jalopyIgnoreStart);
 
-		String jalopyIgnoreEnd = "@stop-ignoring-jalopy@";
+		String jalopyIgnoreEnd = "/* @stop-ignoring-jalopy@ */";
 
 		String jalopyIgnoreBody = null;
 
